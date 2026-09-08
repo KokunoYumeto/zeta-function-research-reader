@@ -1,0 +1,336 @@
+\section{The complete source momentum equation in arithmetic profile coordinates}
+\label{sec:ns-stress-arithmetic}
+
+The preceding actual-witness calculation detects the constructed velocity.
+Here we transport its \emph{complete equation}, including the mechanism
+that leaves a smooth force while the velocity grows. The source increment
+identity is the one in Section 3.3 and the correction cycle of Section 3.4
+of~\cite{openaiNS2026release}; the realized fields are (9.21), the
+localization is (10.4), and the force is (10.5), with its extension (10.11).
+Existence of those fields is imported from the released construction,
+not independently reproved here. Every correspondence below is proved
+directly, with no averaging of the constructed fields.
+
+\subsection{The retained profile bundle and its explicit inverse}
+
+Write physical Cartesian coordinates as \(x=(x_1,x_2,x_3)\). Keep the
+original polynomial
+\[
+\begin{split}
+ F_1&=(1+x_1x_2)^3x_3+x_2^2(1+x_1x_2)(4+3x_1x_2),\\
+ F_2&=x_2+3x_1(1+x_1x_2)^2x_3+3x_1x_2^2(4+3x_1x_2),\\
+ F_3&=2x_1-3x_1^2x_2-x_1^3x_3,
+\end{split}
+\qquad
+ S=(F_1/2,F_2,F_3),\quad J=DS .
+\]
+The earlier exact determinant calculation gives \(\det J=-1\);
+its pointwise inverse is the polynomial matrix
+\(J^{-1}=[2W_1\ W_2\ W_3]\). None of these statements supplies
+a globally single-valued inverse of \(S\), and none is needed:
+the physical point \(x\) is retained throughout.
+
+Fix the entire arithmetic function \(H=\Xi\), or the complete
+\(H=K_0=T_{\mathcal D}\Xi\) from
+Section~\ref{sec:xi4-actual-Weil}. Put
+\[
+ d_H^2=\int_{\R}|H'(s)|^2\,ds,\qquad 0<d_H<\infty .
+\]
+These are the original functions, not a finite spectral truncation.
+Their Schwartz bounds and the positivity of this integral were proved
+in the preceding flow correspondence. Define the linear map
+\begin{equation}\label{eq:nsa-T}
+ (\mathcal T_x b)_a(s)=H'(s+S_a(x))\sum_{k=1}^3J_{ak}(x)b_k,
+ \qquad b\in\C^3,\quad a=1,2,3 .
+\end{equation}
+Its codomain fibre \(\mathcal E_x\) is its three-dimensional complex
+image in \(L^2(\R;\C^3)\), also an image in
+\(\mathscr S(\R;\C^3)\) and in entire functions of \(s\).
+It has kernel zero. Explicitly, for \(B\in\mathcal E_x\),
+\begin{equation}\label{eq:nsa-inverse}
+ c_a=\frac1{d_H^2}\int_{\R}
+             \overline{H'(s+S_a(x))}B_a(s)\,ds,\qquad
+ b=J(x)^{-1}c .
+\end{equation}
+Substitution of \eqref{eq:nsa-T} into this formula gives \(c=Jb\)
+by real translation in the integral; substitution of the resulting
+\(b\) recovers \(B\) by its membership in \(\mathcal E_x\).
+In particular
+\begin{equation}\label{eq:nsa-norm}
+ \|\mathcal T_xb\|_{L^2_s}^2=d_H^2|J(x)b|^2 .
+\end{equation}
+On every compact physical set both \(J,J^{-1}\) are bounded.
+The maps and inverse therefore identify smooth vector fields with
+smooth sections of the displayed finite-rank bundle, with uniform
+seminorm bounds on compact sets. Differentiating
+\eqref{eq:nsa-T} proves this assertion for each spatial derivative:
+only finitely many derivatives of the polynomials and translated
+Schwartz functions occur. The inverse follows from
+\eqref{eq:nsa-inverse} by the same bounds and differentiation under
+the absolutely convergent integral. No division by a zero of \(H'\)
+occurs.
+
+\subsection{The full connection, including the mixing of different shifts}
+
+For \(i=1,2,3\) set
+\[
+ \Gamma_i(x)=(\partial_iJ(x))J(x)^{-1},\qquad
+ (\mathcal R_{ab,x}f)(s)=f(s+S_a(x)-S_b(x)).
+\]
+Each translation has the stated inverse
+\(\mathcal R_{ba,x}\) and preserves Lebesgue measure. On smooth
+sections of \(\mathcal E\) define
+\begin{equation}\label{eq:nsa-connection}
+ (\mathfrak D_iB)_a
+ =\partial_iB_a-J_{ai}\partial_sB_a
+                 -\sum_{b=1}^3(\Gamma_i)_{ab}\mathcal R_{ab,x}B_b .
+\end{equation}
+The translations in the last term are essential: the three components
+have different spectral shifts. This is not ordinary matrix
+multiplication of the three unshifted functions.
+
+For every smooth \(b(x)\), the exact identity is
+\begin{equation}\label{eq:nsa-intertwine}
+ \mathfrak D_i(\mathcal T_xb)=\mathcal T_x(\partial_i b).
+\end{equation}
+Indeed \(\partial_i(\mathcal T_xb)_a\) is
+\[
+ J_{ai}H''(s+S_a)(Jb)_a+
+ H'(s+S_a)\bigl((\partial_iJ)b+J\partial_i b\bigr)_a .
+\]
+The first subtracted term of \eqref{eq:nsa-connection} removes
+the displayed \(H''\) term. In the final term
+\(\mathcal R_{ab,x}(\mathcal T_xb)_b
+ =H'(s+S_a)(Jb)_b\); hence that term removes exactly
+\((\partial_iJ)b\). The remaining expression is
+\(\mathcal T_x\partial_i b\), proving the identity.
+
+Iteration proves, with their full lower-order terms retained,
+\[
+ \mathfrak D_i\mathfrak D_j\mathcal T b
+       =\mathcal T\partial_i\partial_j b,\qquad
+ [\mathfrak D_i,\mathfrak D_j]B=0,\qquad
+ \sum_i\mathfrak D_i^2\mathcal T b=\mathcal T\Delta b .
+\]
+Thus the connection is flat on this bundle. Its flatness is an exact
+conjugation identity, not a statement that its displayed coefficients
+vanish. For example the matrix coefficients themselves satisfy
+\[
+ \partial_i\Gamma_j-\partial_j\Gamma_i=[\Gamma_i,\Gamma_j].
+\]
+To check the sign, differentiate \(J^{-1}\):
+\(\partial_iJ^{-1}=-J^{-1}(\partial_iJ)J^{-1}\);
+the two mixed derivatives of \(J\) cancel and leave the displayed
+commutator. The variable translations in
+\eqref{eq:nsa-connection} are still retained separately.
+
+For a physical stress tensor \(R=(R_{ki})\), encode its \(i\)-th
+column by \(B_i=\mathcal T_x(R_{\cdot i})\). With the physical
+convention \((\operatorname{div}R)_k=\sum_i\partial_iR_{ki}\),
+\begin{equation}\label{eq:nsa-stress}
+ \sum_i\mathfrak D_iB_i=\mathcal T_x(\operatorname{div}R).
+\end{equation}
+The column index has not been discarded or averaged. The inverse
+\eqref{eq:nsa-inverse}, separately on each column, recovers the
+entire tensor. This convention avoids silently identifying a
+covariance in the cylindrical frame with its Cartesian components.
+If \(O=(e_r,e_\theta,e_z)\), then its actual Cartesian tensor is
+\(OR_{\rm cyl}O^{\mathsf T}\); derivatives in
+\eqref{eq:nsa-stress} act on \(O\) as well as on \(R_{\rm cyl}\).
+
+\subsection{The complete nonlinear equation and the original cancellation cycle}
+
+Let \(u_\nu,p_\nu,f_\nu\) be the actual localized fields and extended
+force of the preceding section, with unchanged physical \(\nu>0\).
+Write \(V=\mathcal T_xu_\nu\) and \(\mathcal F=\mathcal T_xf_\nu\).
+Velocity on the right sides below always means the full inverse
+\(u_\nu=\mathcal T_x^{-1}V\), not an additional unspecified input.
+The equation is exactly
+\begin{equation}\label{eq:nsa-NS}
+ \partial_tV+\sum_i(u_\nu)_i\mathfrak D_iV
+       -\nu\sum_i\mathfrak D_i^2V+\mathcal T_x\nabla p_\nu
+       =\mathcal F,\qquad
+ \sum_i\partial_i(\mathcal T_x^{-1}V)_i=0 .
+\end{equation}
+Every term follows from \eqref{eq:nsa-intertwine}; the map is
+time independent, so \(\partial_t\mathcal T_xu=\mathcal T_x\partial_tu\).
+Conversely applying \(\mathcal T_x^{-1}\) proves the original
+Navier--Stokes equation, including the stated divergence equation.
+Thus this is an invertible equation on the specified bundle.
+In conservative form its nonlinear flux columns are
+\((u_\nu)_iV=\mathcal T_x(u_\nu(u_\nu)_i)\).
+The product rule for \(\mathfrak D_i\), derived directly from
+\eqref{eq:nsa-connection}, gives the same convection because
+\(\operatorname{div}u_\nu=0\).
+
+Here is the exact source correction identity in these coordinates.
+For a divergence-free physical increment \(w\), pressure increment
+\(\pi\), and \(W=\mathcal T_xw\), define
+\[
+ \mathscr R_{\mathcal E}(V,p)
+ =\partial_tV+\sum_i u_i\mathfrak D_iV
+                       -\nu\sum_i\mathfrak D_i^2V+\mathcal T_x\nabla p.
+\]
+Expanding every product, without taking any mean, gives
+\begin{align}
+ \mathscr R_{\mathcal E}(V+W,p+\pi)
+ &=\mathscr R_{\mathcal E}(V,p)
+     +\partial_tW+\sum_i u_i\mathfrak D_iW
+     +\sum_i w_i\mathfrak D_iV \notag\\
+ &\quad-\nu\sum_i\mathfrak D_i^2W+\mathcal T_x\nabla\pi
+                     +\sum_i\mathfrak D_i(w_iW).
+ \label{eq:nsa-increment}
+\end{align}
+The final term equals \(\mathcal T_x\operatorname{div}(w\otimes w)\)
+by \eqref{eq:nsa-stress}. It includes the entire self-interaction.
+The two preceding transport terms are the two linearized
+interactions with the actual current background. The pressure
+increment is not omitted. Equation \eqref{eq:nsa-increment} is
+therefore the exact image of the source identity at every finite stage,
+before the source estimates improve its remainder.
+
+In particular, write a source residual as
+\(-\operatorname{div}R+E\). Its image is
+\(-\sum_i\mathfrak D_i\mathcal T_x(R_{\cdot i})+\mathcal T_xE\).
+When the source pulse covariance supplies \(R\), its divergence
+cancels this first term by \eqref{eq:nsa-stress}; all differences
+between the actual quadratic tensor and that selected covariance
+remain explicit tensor columns in \eqref{eq:nsa-increment}.
+The source uses an auxiliary torus and an angular average to
+construct the leading covariance, before physical evaluation.
+Here that evaluation and conversion to Cartesian components precede
+\(\mathcal T_x\). We make no assertion that angular averaging
+commutes with \(S(x)\), \(J(x)\), or this connection.
+
+The source takes curls \emph{after} cutting off the potentials.
+For every actual finite-stage increment of the form
+\(w=\operatorname{curl}(\chi A)+\chi b e_\theta\), its full image is
+\[
+ \mathcal T_xw=\chi\mathcal T_x(\operatorname{curl}A+b e_\theta)
+                    +\mathcal T_x(\nabla\chi\times A).
+\]
+Consequently the last term is present both in the linear and
+quadratic terms of \eqref{eq:nsa-increment}. For the realized
+cutoff sums (9.21), the sums are locally finite before terminal
+time. Linearity and the proved local seminorm bounds transport
+their actual derivatives and sums. At the terminal point the
+all-order remainder estimate is imported from the source
+summation proof, not inferred from formal termwise summation.
+
+\subsection{A smooth arithmetic force and the actual growing field}
+
+The source force is compactly supported and smooth through time one.
+Therefore \(\mathcal F(t,x,\cdot)\) is a smooth compactly
+space--time-supported function with values in
+\(\mathscr S(\R;\C^3)\). This follows at every seminorm, not only
+in \(L^2_s\): differentiating in \(t,x,s\) gives finite sums of
+derivatives of \(f_\nu,J,S\) times derivatives of \(H'\) translated
+by the bounded \(S_a(x)\) on \(K_\nu\). For nonnegative integers
+\(m,k\), bounded translations obey
+\[
+ \sup_s(1+|s|)^m|H^{(k)}(s+a)|
+ \leq (1+|a|)^m
+           \sup_y(1+|y|)^m|H^{(k)}(y)|.
+\]
+Every derivative of \(f_\nu\) vanishes outside its fixed support;
+the same proof covers all support boundaries.
+
+Near the singular point the stronger source estimate (10.9) is
+retained. In physical viscosity coordinates put
+\[
+ Q_\nu(x,t)=(1-t)+|x_3/\sqrt\nu|^{1/(1/2-h)} .
+\]
+For every Cartesian multi-index \(\alpha\), time derivative order
+\(j\), spectral derivative order \(k\), weight \(m\), and \(N\),
+the source's bounds and the preceding finite product expansions give
+\begin{equation}\label{eq:nsa-flatforce}
+ \sup_s(1+|s|)^m
+ |\partial_x^\alpha\partial_t^j\partial_s^k
+            \mathcal F(t,x,s)|
+ \leq C_{\alpha,j,k,m,N,\nu}\,Q_\nu(x,t)^N
+\end{equation}
+for \(0\leq t<1\) on its stated scaled source neighborhood.
+The smooth continuation of the force for \(t\geq1\) was proved
+separately; this preterminal estimate is not asserted there.
+This is flatness of the actual force
+image, not a bound for each separate term of the nonlinear equation.
+Only finitely many source derivatives enter each left side, so choosing
+their bounds at the same \(N\) proves the estimate.
+
+The actual velocity still grows. At
+\[
+ t=1-\tau,\quad r=\sqrt{2\nu X_{\rm in}\tau},\quad
+ x_{\nu,\tau}=(r,0,0),
+\]
+retain the source's fixed \(h,X_{\rm in},e_0\) and actual remainder
+\(R_*(\tau)\), with
+\(|R_*(\tau)|\leq C_*\tau^{2h}\) and \(e_0>0\).
+Direct substitution in the original polynomials gives
+\[
+ S(r,0,0)=(0,0,2r),\qquad
+ J(r,0,0)=
+ \begin{pmatrix}0&0&1/2\\0&1&3r\\2&-3r^2&-r^3\end{pmatrix}.
+\]
+The first two profile shifts coincide. The two rows therefore prove
+the full-function identity
+\begin{equation}\label{eq:nsa-actualgrowth}
+ V_2(1-\tau,x_{\nu,\tau},s)-6rV_1(1-\tau,x_{\nu,\tau},s)
+ =\sqrt\nu\,\tau^{-1/2-h}(e_0+R_*(\tau))H'(s).
+\end{equation}
+No leading-profile substitution was made in the left side: it uses
+the complete localized constructed velocity. Taking its norm yields
+exactly
+\[
+ \|V_2-6rV_1\|_{L^2_s}^2
+     =\nu\tau^{-1-2h}(e_0+R_*(\tau))^2d_H^2 .
+\]
+For \(C_*\tau^{2h}\leq e_0/2\), within the unchanged source cutoff
+region, Cauchy--Schwarz in the two components gives
+\[
+ \|V(1-\tau,x_{\nu,\tau},\cdot)\|_{L^2_s}
+ \geq
+ \frac{\sqrt\nu\,d_He_0}{2\sqrt{1+72\nu X_{\rm in}\tau}}\,
+                  \tau^{-1/2-h}.
+\]
+Meanwhile, if \(M_\nu=\max_{K_\nu}\|J\|_{\rm op}\) and
+\(E_\nu=\int_0^1\|f_\nu(t)\|_2dt\), the source energy estimate and
+\eqref{eq:nsa-norm} give
+\[
+ \|V(t)\|_{L^2_{x,s}}\leq d_HM_\nu\|u_\nu(t)\|_2
+                         \leq d_HM_\nu E_\nu .
+\]
+Thus the source's concentration, bounded integrated energy and smooth
+force coexist in the exact arithmetic momentum equation
+\eqref{eq:nsa-NS}. No sign test or zero ordinate is substituted for
+the constructed field.
+
+\subsection{The original theta amplitude and the next arithmetic question}
+
+For \(H=\Xi\) retain the minus-Fourier convention and the even theta
+input \(g_0\) from the actual-theta calculation:
+\(\Xi(s)=\int_\R g_0(v)e^{-isv}dv\).
+Fourier inversion and differentiation give
+\[
+ \widehat{H'}(\omega)=2\pi i\omega\,g_0(\omega),\qquad
+ \widehat{V_a}(t,x,\omega)
+ =2\pi i\omega\,g_0(\omega)
+               e^{i\omega S_a(x)}(J(x)u_\nu(t,x))_a .
+\]
+For verification of the constants, the double minus transform of
+\(g_0\) is \(2\pi g_0(-\omega)\), and \(g_0\) is even; integration
+by parts supplies the factor \(i\omega\). All functions are Schwartz,
+so both operations are justified. For \(K_0\), replace \(g_0\) by
+the complete reflected input \(w(-\omega)g_0(\omega)\); no summand
+or derivative term of \(w\) is removed.
+
+This explicit amplitude formula explains what the present map
+transports: the full physical equation acts on the specified
+three-component arithmetic subbundle. It is not an assertion that
+the source force is the scalar de Bruijn--Newman heat generator.
+The source-specific Mellin equation of the radial heat profile in
+Section~\ref{sec:ns-source-heat-arithmetic} supplies a second,
+different exact interface with zeta. Section~\ref{sec:ns-angular-mellin}
+calculates the actual corrected nonlinear radial fluxes under that
+Mellin map, retaining their full stress-cancellation mechanism.
+Section~\ref{sec:ns-axis-arithmetic-jet} then identifies an exact
+fixed-axis derivative of its arithmetic image.

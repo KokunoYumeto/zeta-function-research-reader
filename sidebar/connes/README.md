@@ -18,9 +18,13 @@ The Cartan continuation constructs a standard closed real subspace whose Tomita 
 
 The retained spatial section also splits the entire spatial space and computes compressed diffusion, its complete leakage, the constant kernel, the affine commutator kernel, and the exact component returning on the second diffusion. The public forced Navier–Stokes manuscript is recorded as an imported source claim, with its two distinct PDF revisions and pinned formal source; this work does not claim to have independently verified that theorem.
 
+The public Navier–Stokes witness is now an explicit external input to a complete arithmetic propagation. Its actual corrected swirl, viscosity scaling, force, compact support, energy bound, original remainder and varying material sample labels are retained. Two original arithmetic derivative channels give an exact multiple of Xi-prime with the source blowup coefficient. The logarithmic residue at every actual Xi zero is that coefficient times its multiplicity; the complete residue field has bounded spatial L2 energy and unbounded spatial supremum.
+
+The original moving quotient profile represents zero, while its temporal defect is the exact class v[Xi-prime]. Its possibly lost component is retained by a common quotient by the intersection of the actual source relation and Xi times the entire ring. Both projection kernels and the continuous residue recovery map are proved. The same real shifts preserve every zero's imaginary coordinate, multiplicity and whole analytic unit. This concrete residue singularity is not an off-critical-zero conclusion. The original source membership of Xi-prime and frozen descent remain unresolved.
+
 ## Reproduce
 
-Run `python checks/verify_exact.py` with SymPy installed. This is one worker, and on Windows it installs an exact 5,000,000,000-byte process-tree memory ceiling before importing SymPy. Run `pdflatex -interaction=nonstopmode -halt-on-error main.tex` twice from `tex/`. Copy the resulting `tex/main.pdf` to the reader filename above. No network, Lean, index rebuilding, or numerical zero search is needed.
+Run `python checks/verify_exact.py` with SymPy installed. This is one worker, and on Windows it installs an exact 5,000,000,000-byte process-tree memory ceiling before importing SymPy. Then run `python checks/build_current.py`; this runs the two TeX passes sequentially under the same memory policy. Run `python checks/render_current.py` for the reader copy and page renders, inspect the changed pages reported in its receipt, and only then run `python checks/record_artifacts.py`. No network, Lean, index rebuilding, or numerical zero search is needed.
 
 ## Include in another TeX document
 

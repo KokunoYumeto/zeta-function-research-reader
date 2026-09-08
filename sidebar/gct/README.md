@@ -139,3 +139,8 @@ and logbook/USER_INPUTS.md. The 111-page record is an earlier checkpoint.
 
 
 The third tranche now includes the fully audited NS concentration/conic map. On s=τ=1−t,b=z, the z=0 path gives C=−42τ+196τ²−280τ³+160τ⁴−32τ⁵, negative near the finite endpoint. Complete profile/vector residuals and flat rank-four physical heat/arithmetic operators are retained. Independent checks195+101+374+34 passed. The global source NS theorem is not independently verified here. User authorizes immediate DOI publication of rigorously derived promising work with honest open endpoints; coordinator01a03492-84a8-7d20-b7bf-667a02b24479 owns the existing upload route. Initial publication links4 user-supplied public workbenches; profanity-filtered JSONLs are a later stage. No competing upload or new sidebar. The new bounded YM composition calculation runs under agents/ym_composition_review and must be audited before inclusion.
+
+
+## Verified149-page edition and current research
+
+The149-page edition is frozen in publication/edition_20260908T203003/reader.pdf, with its complete publicsourcearchive and publicationdescription identified by publication/READY.json. All57steps passed in the fresh authoredtree; the publicarchive's19specifiedcheckers passed independently; every149PDFpage passedvisualreview. Public DOI publication was dispatched to the existing coordinator and parent; no DOI is yet verified in this task. Full mathematical goal remains active. The new integral full-source braiding investigation is next-tranche work under agents/next_full_braiding and is not included in that frozen edition.

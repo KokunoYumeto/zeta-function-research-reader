@@ -153,7 +153,9 @@ def prime_tail(i, j):
     n = arb(M+1)
     b = base.B+D/336
     aa = b+n.log()/672
-    coeff = c*c*arb(2).sqrt()*ell[i]*ell[j]*(81/(8*a*n)).exp()*(1+1/(4*a*n*336**2*aa**2))
+    # The Gaussian integral is sqrt(pi/(2*a*n)), not 1/sqrt(2*n).
+    # See SUPPRESSION_BOUND_REVIEW.md, equations (13)--(17).
+    coeff = c*c*(2*PI/a).sqrt()*ell[i]*ell[j]*(81/(8*a*n)).exp()*(1+1/(4*a*n*336**2*aa**2))
     first = n**(arb(7)/2)*n.log()*aa**2*(-2*a*n).exp()
     next_a = b+(n+1).log()/672
     ratio = (-2*a).exp()*(1+1/n)**(arb(7)/2)*(n+1).log()/n.log()*(next_a/aa)**2

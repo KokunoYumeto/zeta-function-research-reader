@@ -7,10 +7,10 @@ Mirroring is not a mathematical audit or an endorsement of an endpoint claim.
 
 | Reader | PDF | Pages in this snapshot |
 |---|---|---:|
-| main | [Read PDF](reader.pdf) | 338 |
+| main | [Read PDF](reader.pdf) | 377 |
 | fluid | [Read PDF](sidebar/fluid/reader.pdf) | 208 |
-| heat | [Read PDF](sidebar/heat/reader.pdf) | 96 |
-| connes | [Read PDF](sidebar/connes/reader.pdf) | 62 |
+| heat | [Read PDF](sidebar/heat/reader.pdf) | 120 |
+| connes | [Read PDF](sidebar/connes/reader.pdf) | 82 |
 | gct | [Read PDF](sidebar/gct/reader.pdf) | 149 |
 
 The main TeX entrypoint is [main.tex](main.tex). The complete incoming texts

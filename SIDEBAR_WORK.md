@@ -12,13 +12,13 @@ Complete TeX entrypoint: `sidebar/fluid/tex/main.tex`. Replay files and source s
 
 ## Heat transport on the retained inverse-fibre cover
 
-[Complete reader (96 pages)](sidebar/heat/reader.pdf)
+[Complete reader (120 pages)](sidebar/heat/reader.pdf)
 
 Complete TeX entrypoint: `sidebar/heat/tex/main.tex`. Replay files and source status: `sidebar/heat/README.md` and the corresponding proof/check directories.
 
 ## Arithmetic trace quotient and exact heat transport
 
-[Complete reader (62 pages)](sidebar/connes/reader.pdf)
+[Complete reader (82 pages)](sidebar/connes/reader.pdf)
 
 Complete TeX entrypoint: `sidebar/connes/tex/main.tex`. Replay files and source status: `sidebar/connes/README.md` and the corresponding proof/check directories.
 
@@ -27,3 +27,7 @@ Complete TeX entrypoint: `sidebar/connes/tex/main.tex`. Replay files and source 
 [Complete reader (149 pages)](sidebar/gct/reader.pdf)
 
 Complete TeX entrypoint: `sidebar/gct/tex/main.tex`. Replay files and source status: `sidebar/gct/README.md` and the corresponding proof/check directories.
+
+## Registered incoming work awaiting its first complete reader
+
+- Vacuum hydrodynamics, gravity and thermodynamic structures (`sidebar/vacuum`): pending; no completed reader is asserted.

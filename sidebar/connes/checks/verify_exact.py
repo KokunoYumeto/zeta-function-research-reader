@@ -480,6 +480,84 @@ for degree in range(7):
     identity(f"viscous_original_pullback_residual_degree{degree}",
              sp.diff(spatial,theta)-nu*lap(spatial)-residual)
 
+# Actual three-coordinate source and the published sample retain all entries.
+Ffull=sp.Matrix([2*sigma,
+ yy+3*xx*Qsp**2*ww+3*xx*yy**2*(4+3*xx*yy),
+ 2*xx-3*xx**2*yy-xx**3*ww])
+Sfull=sp.diag(half,1,1)*Ffull
+JF=Ffull.jacobian(coords)
+JS=Sfull.jacobian(coords)
+identity("flow_original_polynomial_determinant",JF.det()+2)
+identity("flow_original_spatial_S_determinant",JS.det()+1)
+rows=[sp.Matrix(list(JF.row(j))) for j in range(3)]
+Winverse=sp.Matrix.hstack(-rows[1].cross(rows[2])/2,
+                          -rows[2].cross(rows[0])/2,
+                          -rows[0].cross(rows[1])/2)
+identity("flow_original_full_cofactor_inverse",JF*Winverse-sp.eye(3))
+identity("flow_original_scaled_target_inverse",
+         JS*Winverse*sp.diag(2,1,1)-sp.eye(3))
+rr=sp.symbols("r_sample",positive=True)
+path={xx:rr,yy:0,ww:0}
+Jpath=sp.Matrix([[0,0,half],[0,1,3*rr],[2,-3*rr**2,-rr**3]])
+Jpath_inverse=sp.Matrix([[-8*rr**3,3*rr**2/2,half],[-6*rr,1,0],[2,0,0]])
+identity("public_witness_original_sample_coordinates",Sfull.subs(path)-sp.Matrix([0,0,2*rr]))
+identity("public_witness_original_sample_J",JS.subs(path)-Jpath)
+identity("public_witness_original_sample_full_inverse",Jpath*Jpath_inverse-sp.eye(3))
+identity("public_witness_original_sample_inverse_reverse",Jpath_inverse*Jpath-sp.eye(3))
+uvec=sp.Matrix(sp.symbols("u_sample1:4"))
+vvec=Jpath*uvec
+identity("public_witness_full_swirl_channel",vvec[1]-6*rr*vvec[0]-uvec[1])
+nu_positive,Xin,tau_positive=sp.symbols("nu_positive X_in tau_positive",positive=True)
+identity("public_witness_residue_norm_denominator",
+         (1+36*rr**2).subs(rr,sp.sqrt(2*nu_positive*Xin*tau_positive))
+         -(1+72*nu_positive*Xin*tau_positive))
+
+aa,th,vv,bb,thp,thpp=sp.symbols("a_shift theta v_t b_t theta_prime theta_second")
+sample_h=3-2*s+5*s**2-7*s**3+11*s**5
+def V_flow(h):
+    return heat(h,th).subs(s,s+aa)
+def V_flow_inverse(h):
+    return heat(h.subs(s,s-aa),-th)
+identity("flow_translation_heat_full_inverse",V_flow_inverse(V_flow(sample_h))-sample_h)
+identity("flow_original_spectrum_conjugate",
+         V_flow(s*sample_h)-((s+aa)*V_flow(sample_h)-th*sp.diff(V_flow(sample_h),s)/2))
+Fprofile=V_flow(sample_h)
+timeop=lambda h: thp*sp.diff(h,th)+vv*sp.diff(h,aa)+bb*sp.diff(h,vv)+thpp*sp.diff(h,thp)
+identity("flow_profile_first_time_generator",
+         timeop(Fprofile)+thp*sp.diff(Fprofile,s,2)/4-vv*sp.diff(Fprofile,s))
+identity("flow_profile_full_second_time_generator",
+         timeop(timeop(Fprofile))-
+         (thp**2*sp.diff(Fprofile,s,4)/16
+          -thp*vv*sp.diff(Fprofile,s,3)/2
+          +(vv**2-thpp/4)*sp.diff(Fprofile,s,2)+bb*sp.diff(Fprofile,s)))
+du=sp.symbols("du0:9")
+Du=sp.Matrix(3,3,du)
+force_terms=sp.Matrix(sp.symbols("material_accel1:4"))
+for j in range(3):
+    Sj=Sfull[j]
+    gradSj=sp.Matrix([sp.diff(Sj,z) for z in coords])
+    accel=gradSj.dot(force_terms)+(uvec.T*sp.hessian(Sj,coords)*uvec)[0]
+    material_full=gradSj.dot(force_terms-Du*uvec)
+    velocity_expr=gradSj.dot(uvec)
+    material_full+=sum(uvec[k]*sp.diff(velocity_expr,coords[k]) for k in range(3))
+    material_full+=gradSj.dot(Du*uvec)
+    identity(f"flow_full_material_acceleration_channel{j+1}",accel-material_full)
+
+zz_local=sp.symbols("zeta_local")
+unit=3+5*zz_local+7*zz_local**2+11*zz_local**3
+speed=sp.symbols("actual_swirl_speed")
+for multiplicity in range(1,6):
+    entire=zz_local**multiplicity*unit
+    logarithmic=speed*sp.diff(entire,zz_local)/entire
+    identity(f"flow_residue_complete_local_unit_m{multiplicity}",
+             logarithmic-speed*(multiplicity/zz_local+sp.diff(unit,zz_local)/unit))
+    identity(f"flow_residue_coefficient_m{multiplicity}",
+             sp.residue(logarithmic,zz_local,0)-multiplicity*speed)
+sample_tangent=sp.Matrix([rr/(2*tau_positive),0,0])+uvec
+for j in (0,1):
+    identity(f"public_witness_moving_label_cancellation_channel{j+1}",
+             (Jpath*sample_tangent)[j]-vvec[j])
+
 source = ROOT / "tex" / "connes_quotient_heat_transport.tex"
 receipt = {"schema_version": 1, "run_class": "non-critical", "resource": RESOURCE,
            "sympy_version": sp.__version__, "workers": 1, "check_count": len(checks),

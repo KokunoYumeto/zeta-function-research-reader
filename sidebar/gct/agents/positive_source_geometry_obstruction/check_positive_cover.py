@@ -2,6 +2,9 @@
 
 Only the standard library is used. Laurent polynomials are sparse integer
 dictionaries. All writes stay beside this script; source inputs are read only.
+Default reproduction reads only the frozen matrices, basis and small preserved
+source-observation receipt. --observe-source additionally observes the optional
+primary-source shelf and verifies its hash and preserved bounded excerpt.
 """
 from pathlib import Path
 from collections import Counter, defaultdict
@@ -9,13 +12,15 @@ from fractions import Fraction
 from itertools import product
 import hashlib
 import json
+import argparse
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 SOURCE=ROOT/'agents/full_source_generators'
 MF=SOURCE/'full_generators.json'
 BF=SOURCE/'source_basis/basis_1260.json'
-PRIMARY=ROOT/'agents/nonstandard_rh/shelf/cs_0703110v4/source/Apr13KroneckerGCT4.tex'
+SOURCE_OBSERVATION=HERE/'source_observation.json'
+EXPECTED_PRIMARY='5c5b990306c3b817d822df9f5088fdd42dda146fc3449155a0b2f6202d2ed49e'
 EXPECTED_M='e26086722e2910dc9ffff7d57314a25e80b79bb00bfb1808a42bf97761377253'
 EXPECTED_B='77233bf1fb129fd3dd7077987f1ae2ea62619aaff1ff178432a342fa2f15b767'
 checks=0
@@ -62,6 +67,37 @@ def project(v,n):
         if not out[j]: del out[j]
     return out
 def inject(v,n): return dict(v)|{i+n:p for i,p in v.items()}
+
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--observe-source',action='store_true',
+                    help='Additionally read the optional primary-source shelf and verify its hash and bounded excerpt.')
+args=parser.parse_args()
+preserved=json.loads(SOURCE_OBSERVATION.read_text(encoding='utf-8'))
+assert preserved['kind']=='preserved_primary_source_observation'
+assert preserved['source_sha256']==EXPECTED_PRIMARY
+assert preserved['source_loci']=={
+    'sign_coherence':[7240,7323],
+    'prior_sign_readjustment_obstruction':[7324,7326],
+    'printed_endpoint_and_paths':[7328,7350]}
+for excerpt in preserved['bounded_excerpts']:
+    assert hashlib.sha256(excerpt['text'].encode('utf-8')).hexdigest()==excerpt['utf8_sha256']
+observation={'mode':'preserved_receipt_only','source_observed_this_run':False,
+             'receipt_sha256':sha(SOURCE_OBSERVATION),
+             'source_sha256_basis':'preserved source observation; optional shelf was not read'}
+if args.observe_source:
+    primary=ROOT/preserved['source_relative_path']
+    if not primary.is_file():
+        parser.error('--observe-source requires the optional primary source at '+str(primary))
+    primary_bytes=primary.read_bytes()
+    observed_sha=hashlib.sha256(primary_bytes).hexdigest()
+    assert observed_sha==EXPECTED_PRIMARY,'Observed primary-source hash differs from the preserved source pin'
+    primary_lines=primary_bytes.decode('utf-8').splitlines(keepends=True)
+    for excerpt in preserved['bounded_excerpts']:
+        observed=''.join(primary_lines[excerpt['first_line']-1:excerpt['last_line']])
+        assert observed==excerpt['text'],'Observed bounded source excerpt differs from the preserved observation'
+    observation={'mode':'live_optional_source_observation','source_observed_this_run':True,
+                 'receipt_sha256':sha(SOURCE_OBSERVATION),'observed_source_sha256':observed_sha,
+                 'verified_bounded_excerpt_count':len(preserved['bounded_excerpts'])}
 
 ck(sha(MF)==EXPECTED_M)
 ck(sha(BF)==EXPECTED_B)
@@ -151,12 +187,12 @@ for j in range(n):
     ck(project(single(j),n)==single(j))
 
 receipt={'status':'passed','checks':checks,'dimension':n,'positive_cover_dimension':2*n,
-         'matrices_sha256':sha(MF),'basis_sha256':sha(BF),'primary_source_sha256':sha(PRIMARY),
-         'source_loci':{'sign_coherence':[7240,7323],'prior_sign_readjustment_obstruction':[7324,7326],
-                        'printed_endpoint_and_paths':[7328,7350]},
+         'matrices_sha256':sha(MF),'basis_sha256':sha(BF),'primary_source_sha256':preserved['source_sha256'],
+         'source_loci':preserved['source_loci'],'source_observation':observation,
          'retained_edges':[{'source':j,'target':i,'coefficient':serial(a)} for j,i,a in retained],
          'all_q_positive_proof':'Every nonzero coefficient has one coefficient sign; the four retained magnitudes are explicit nonempty positive Laurent sums. Their loop quotient is strictly negative.',
          'stats':stats,'commutator_defects':defects,
          'scope':'Integral positive cover and exact free-generator quotient. The cover is not a full quantum-group module; the explicit nonzero relation defects land in its diagonal kernel.'}
 (HERE/'verification.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
-print(json.dumps({'status':'passed','checks':checks,'stats':stats,'defects':defects}))
+print(json.dumps({'status':'passed','checks':checks,'stats':stats,'defects':defects,
+                  'source_observation':observation}))

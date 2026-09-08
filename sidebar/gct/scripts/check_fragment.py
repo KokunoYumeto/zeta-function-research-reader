@@ -13,7 +13,7 @@ assert len(labels)==len(set(labels)), 'Duplicate label'
 wrapper=r'''\documentclass[11pt,a4paper]{article}
 \usepackage[margin=27mm]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,hyperref}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,hyperref,mathrsfs}
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{theorem}[proposition]{Theorem}
 \newtheorem{lemma}[proposition]{Lemma}

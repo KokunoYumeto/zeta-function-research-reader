@@ -69,6 +69,8 @@ for relative in scripts:
                            stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     output=process.stdout.decode('utf-8',errors='replace')
     receipt.append({'script':relative,'exit_code':process.returncode,'output':output})
+    (ROOT/'checks/reproduction_progress.json').write_text(json.dumps(
+        {'runs':receipt,'complete':False},indent=2),encoding='utf-8')
     if process.returncode:
         print(output); raise SystemExit(process.returncode)
 (ROOT/'checks/reproduction.json').write_text(json.dumps(

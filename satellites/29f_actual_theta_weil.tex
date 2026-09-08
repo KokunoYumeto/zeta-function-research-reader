@@ -72,8 +72,7 @@ so it need not be added to this upper bound. The full positive kernel has
 the bound
 \begin{equation}\label{eq:xt-theta-max}
  |g_0(u)|\le C_\Phi e^{-\pi},\quad
- C_\Phi=\frac{4\pi^2}{1-16e^{-3\pi}}
-       +\frac{6\pi}{1-4e^{-3\pi}}.
+ C_\Phi=\frac{4\pi^2}{1-16e^{-3\pi}}.
 \end{equation}
 
 For \(x=\log n\ge0\), split the convolution integral into
@@ -97,15 +96,19 @@ at most
 The bounds use only \(|w(u)|\le B+|u|/336\) and the product identity
 \((a+\delta)(b+\delta)-ab=\delta(a+b)+\delta^2\).
 The three finite cell integrals are evaluated by Arb interval
-quadrature; every cell is split at all truncated-power knots. Thus the
+quadrature, split at the actual reflection locations \(0\) and \(x\).
+On each cell the two reflected theta arguments have fixed signs. Thus the
 reported ball plus \(E_{\rm ext}+E_{\rm trunc}\) encloses the exact \(h(x)\).
 
 For the prime tail use a bound on the whole convolution line. Positivity
 and the ratio of successive theta terms give, for every real \(u\),
 \[
  |g_0(u)|\le C e^{9|u|/2-\pi e^{2|u|}},\qquad
- C=\frac{4\pi^2}{1-16e^{-3\pi}}<40.
+ C=C_\Phi=\frac{4\pi^2}{1-16e^{-3\pi}}<40.
 \]
+For the last bound, the finite exponential series gives \(e^3>20\);
+using \(3<\pi<22/7\) yields
+\(C<4(22/7)^2/(1-16/8000)=968000/24451<40\).
 Put \(x=\log n\), \(v=x/2+y\), and \(A_n=B+x/672\).
 The identities and inequalities
 \[
@@ -146,12 +149,22 @@ This proves the conservative envelope
 \begin{equation}\label{eq:xt-prime-envelope}
  |h(\log n)|\le3000\left(B+\frac{\log n}{672}\right)^2n^4e^{-2\pi n}.
 \end{equation}
-The right side times \(\Lambda(n)/\sqrt n\) is decreasing for integers
-\(n\ge17\): its consecutive ratio is at most
+Use \(\Lambda(n)\le\log n\). The resulting continuous majorant is
+\(F(t)=t^{7/2}\log t\,(B+\log t/672)^2e^{-2\pi t}\).
+Its logarithmic derivative
+\[
+ \frac7{2t}+\frac1{t\log t}
+ +\frac2{t(672B+\log t)}-2\pi
+\]
+is decreasing for \(t>1\). Hence \(\log F\) is concave and its
+consecutive ratios for integers \(n\ge17\) are at most
 \[
  r=e^{-2\pi}(18/17)^{7/2}\frac{\log18}{\log17}
- \left(\frac{B+\log18/672}{B+\log17/672}\right)^2<1.
+\left(\frac{B+\log18/672}{B+\log17/672}\right)^2<1.
 \]
+For example the three ratios are bounded by \(2,2,4\), respectively,
+so \(r<16e^{-6}<1/25\). This is a ratio bound on the majorant, not
+on the sparse von Mangoldt sequence.
 Therefore the omitted prime-power sum after integer cutoff \(16\) is at most
 \begin{equation}\label{eq:xt-prime-tail}
  E_{\rm prime}=6000\,17^{7/2}\log17
@@ -209,6 +222,50 @@ Finally \(\log(1+2t)\le\log(1+2T)+(t-T)/(T+1/2)\) for \(t\ge T\).
 Integrating \(e^{-t}\) and \((t-T)e^{-t}\) proves the displayed tail.
 No zero ordinates or RH input occurs.
 
+\subsection{Passage from compact tests to the actual input}
+
+Here is the noncompact-test justification for
+\eqref{eq:xt-full-value}. Choose an even real
+\(\chi\in C_c^\infty(\mathbb R)\), with \(0\le\chi\le1\) and
+\(\chi=1\) near zero, and put \(q_R(u)=\chi(u/R)q(u)\), \(R\ge1\).
+Then \(q_R^\star=q_R\). Every fixed derivative of \(q\) is
+superexponentially decaying: differentiating its theta series adds only
+fixed polynomial factors in the summation index, \(e^{2|u|}\), and
+\(|u|\), still dominated by the negative exponential. The differentiated
+series converge uniformly on compact intervals; evenness supplies the
+negative half-line. It follows by Leibniz's rule that
+\(\|q_R\|_1+\|q_R''\|_1\) is uniformly bounded.
+Twice integrating by parts gives
+\[
+ |\widehat q_R(t)|
+ \le \min\{\|q_R\|_1,\|q_R''\|_1/|t|^2\}
+ \le C_*(1+|t|)^{-2}
+\]
+with one constant independent of \(R\). Thus the gamma integrands are
+dominated by an integrable multiple of
+\((1+|t|)^{-4}\log(2+|t|)\), and converge by dominated convergence.
+The pole evaluations converge because
+\(|q(u)|e^{|u|/2}\) is integrable.
+
+For the arithmetic terms,
+\[
+ |(q_R*q_R)(x)|\le
+ \int_{\mathbb R}|q(v)q(x-v)|\,dv.
+\]
+The proof of \eqref{eq:xt-prime-envelope} bounds this absolute-product
+integral, not merely a cancellation in \(h\). It consequently supplies
+one summable, \(R\)-independent majorant after von Mangoldt weighting
+for every \(n\ge17\). Each fixed convolution converges by dominated
+convergence; the finitely many smaller integers cause no difficulty.
+The compact-test explicit formula therefore passes to
+\eqref{eq:xt-full-value} with all its terms retained.
+For completeness, applying the same integration-by-parts argument to
+the weighted derivatives gives uniform Fourier decay on
+\(|\operatorname{Im}z|\le1/2\). Together with the zero-count estimate
+in \eqref{eq:rh-weil-convention}, this also proves absolute convergence
+and passage to the spectral sum. No assumption about the location of
+the zeros is used.
+
 \subsection{The certified value}
 
 The one-worker Arb calculation uses 192-bit balls, \(N=8\), \(T=64\), prime
@@ -222,14 +279,14 @@ agents/connes\_actual\_input\_review/actual\_theta\_weil/actual\_theta\_weil\_re
 \end{center}
 with checker hash
 \begin{center}\small\ttfamily
-d0bbeb4cc91d0ff522655f8e8bf39f0d2981a48c41834e595dc5ffbd6c532279
+f937f8a919e9a45cf00db975064723c8c28af93a26e5376d306005ab98340a5b
 \end{center}
 The component enclosures are
 \[
  \begin{aligned}
- \text{pole terms}&=[2.1389982672320680\,10^{-7}\pm4.11\,10^{-62}],\\
- \text{prime terms through }16&=[1.4681655033429546\,10^{-8}\pm4.62\,10^{-28}],\\
- E_{\rm prime}&<1.053\,10^{-43},\qquad E_\Gamma(64)<8.103\,10^{-27},
+ \text{pole terms}&\in[2.1389982672320679,\ 2.1389982672320681]\,10^{-7},\\
+ \text{prime terms through }16&\in[1.4681655033429545,\ 1.4681655033429548]\,10^{-8},\\
+ E_{\rm prime}&<3.850\,10^{-43},\qquad E_\Gamma(64)<8.103\,10^{-27},
  \end{aligned}
 \]
 and the complete outward-rounded value is

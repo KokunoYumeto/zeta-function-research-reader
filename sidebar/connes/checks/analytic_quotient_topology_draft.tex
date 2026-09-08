@@ -1,0 +1,365 @@
+% Independent mathematical draft, 8 September 2026.
+% Sole write target of the delegated subtask.
+% Verbatim parent assignment:
+% Independent concrete math subtask, within checks/analytic_quotient_topology_draft.tex only: prove Qκ=(E,compact-open)/(XiE) is topologically isomorphic to its jet-evaluation image in product over Xi zeros of C^m, and is incomplete; contrast Qγ Frechet complete quotient, so continuous bijection Qγ→Qκ is not homeomorphism. Suggested proof: for each disk R choose R'>R avoiding boundary zeros, finite Hermite polynomial H matching all jets of f at zeros≤R'. Then (f−H)/Xi holomorphic on diskR' and Taylor polynomials approximate on diskR, so quotient seminorm inf_h M_{f−Xi h}(R)≤M_H(R)≤C_R finite jetnorm. Reverse finitejet continuity viaCauchy. Image finite projections onto; choose distinctzerosλn→∞ and arbitrary zerothjetvalues exp(|λn|²) (otherjets0) impossible for Eorder≤1. Productimage denseproper, hence incomplete; to explicitly show Cauchy sequence partial finite Hermite interpolants qn converges coordinatewise to that nonrealizable tuple. Gamma Frechetcomplete quotient closed proven. Full proof carefully preserves multiplicities and exacttopologies, no identifyingτ. Let me know if any gap.
+% Dependencies read in the current parent TeX:
+% thm:cq-division (entire division preserves E),
+% thm:cq-equalclosures (N_gamma=N_kappa=Xi E), and eq:cq-Xi.
+% This fragment proves quotient topology, completeness and comparison;
+% none of its assertions identifies either explicit topology with tau.
+% Validation receipt: 36 exact derivative identities passed for the
+% Hermite basis at nodes 0, 1+i, -2 with multiplicities 2, 3, 1;
+% all basis degrees are <=5. TeX environment nesting and label uniqueness
+% against the then-current parent source passed. Parent owns PDF compilation.
+% Reproduce the algebraic regression with Python + SymPy 1.13.1:
+% import sympy as sp
+% s,z=sp.symbols('s z')
+% nodes=[(sp.Integer(0),2),(1+sp.I,3),(sp.Integer(-2),1)]
+% count=0
+% for lam,m in nodes:
+%     B=sp.prod((s-nu)**mult for nu,mult in nodes if nu!=lam)
+%     for j in range(m):
+%         germ=z**j/(sp.factorial(j)*B.subs(s,lam+z))
+%         trunc=sp.series(germ,z,0,m).removeO()
+%         L=sp.expand(B*trunc.subs(z,s-lam))
+%         assert sp.degree(L,s)<=sum(mult for _,mult in nodes)-1
+%         for nu,mult in nodes:
+%             for k in range(mult):
+%                 assert sp.simplify(sp.diff(L,s,k).subs(s,nu)-(1 if nu==lam and k==j else 0))==0
+%                 count+=1
+% assert count==36
+
+\subsection{The actual difference between the two analytic quotient topologies}
+\label{sec:cq-quotient-topologies}
+Retain the original entire-function set $\cqE=\mathcal H_{\leq1}$,
+the original coordinate $s$, and
+$\Xi(s)=\xi(\tfrac12+is)$ from \eqref{eq:cq-Xi}.
+Let $\Lambda$ be the set of its distinct zeros and let
+$m_\lambda=\operatorname{ord}_\lambda\Xi\geq1$ be each actual
+multiplicity. Put
+\[
+ I=\Xi\cqE,\qquad
+ Q_\kappa=(\cqE,\kappa)/I,\qquad
+ Q_\gamma=(\cqE,\gamma)/I,\qquad
+ \mathcal P_\Xi=\prod_{\lambda\in\Lambda}\cqC^{m_\lambda}.
+\]
+The product has its ordinary product topology. Coordinates in
+$\cqC^{m_\lambda}$ are the actual derivatives of orders
+$0,\ldots,m_\lambda-1$, with no factorial rescaling. Define
+\begin{equation}\label{eq:cq-total-jet-map}
+ J_\Xi f=(f^{(j)}(\lambda))_{
+          \lambda\in\Lambda,\ 0\leq j<m_\lambda},
+ \qquad \mathcal V_\Xi=J_\Xi(\cqE)\subset\mathcal P_\Xi.
+\end{equation}
+Every point of $\mathcal V_\Xi$ retains the entire input's arithmetic
+jets. The restriction to this image is essential.
+
+\begin{cqtheorem}[Jet topology and its completion]
+\label{thm:cq-jet-topology}
+The map induced by \eqref{eq:cq-total-jet-map} is a topological
+linear isomorphism
+\[
+ \overline J_\Xi:Q_\kappa\xrightarrow{\ \cong\ }
+ \mathcal V_\Xi
+\]
+onto the subspace topology from $\mathcal P_\Xi$.
+The image is dense and proper. Consequently $Q_\kappa$ is
+incomplete, and its Hausdorff completion is canonically
+$\mathcal P_\Xi$ via this map. In contrast $Q_\gamma$ is a
+Fr\'echet space and is complete. The identity on the same
+underlying quotient vector space induces a continuous linear
+bijection
+\begin{equation}\label{eq:cq-topology-comparison-strict}
+ \iota:Q_\gamma\longrightarrow Q_\kappa
+\end{equation}
+whose inverse is not continuous.
+\end{cqtheorem}
+
+\begin{proof}
+We first construct each finite interpolation map with its constants.
+For a finite nonempty set $F\subset\Lambda$, write
+$d_F=\sum_{\lambda\in F}m_\lambda$ and set
+\[
+ B_{\lambda,F}(s)=
+ \prod_{\substack{\nu\in F\\\nu\ne\lambda}}
+ (s-\nu)^{m_\nu}.
+\]
+The empty product is $1$. Since
+$B_{\lambda,F}(\lambda)\ne0$, the germ
+$(s-\lambda)^j/(j!B_{\lambda,F}(s))$ is holomorphic at
+$\lambda$. Denote its Taylor polynomial through degree
+$m_\lambda-1$, in powers of the unchanged difference
+$s-\lambda$, by $T_{\lambda,m_\lambda-1}$ of that germ. Put
+\begin{equation}\label{eq:cq-Hermite-basis-unscaled}
+ L_{\lambda,j,F}(s)=B_{\lambda,F}(s)
+ T_{\lambda,m_\lambda-1}
+ \left(\frac{(s-\lambda)^j}{j!B_{\lambda,F}(s)}\right),
+ \qquad 0\leq j<m_\lambda.
+\end{equation}
+This is a polynomial of degree at most $d_F-1$.
+For $\nu\in F\setminus\{\lambda\}$ it vanishes to order
+at least $m_\nu$ at $\nu$. At $\lambda$ its difference from
+$(s-\lambda)^j/j!$ vanishes to order at least $m_\lambda$.
+Therefore, for all $\nu\in F$ and $0\leq k<m_\nu$,
+\[
+ L_{\lambda,j,F}^{(k)}(\nu)
+   =\begin{cases}1,&(\nu,k)=(\lambda,j),\\0,&\text{otherwise}.
+     \end{cases}
+\]
+It follows that the linear map to polynomials
+\begin{equation}\label{eq:cq-finite-Hermite-lift}
+ H_F(v)(s)=\sum_{\lambda\in F}\sum_{j=0}^{m_\lambda-1}
+              v_{\lambda,j}L_{\lambda,j,F}(s)
+\end{equation}
+realizes every prescribed finite array of actual derivatives
+$v=(v_{\lambda,j})$. For each $R>0$ define
+\[
+ M_f(R)=\max_{|s|\leq R}|f(s)|,\qquad
+ C_{R,F}=\sum_{\lambda\in F}\sum_{j=0}^{m_\lambda-1}
+                  M_{L_{\lambda,j,F}}(R).
+\]
+The triangle inequality gives the exact finite bound
+\begin{equation}\label{eq:cq-Hermite-lift-bound}
+ M_{H_F(v)}(R)\leq C_{R,F}
+             \max_{\lambda\in F,\,j<m_\lambda}|v_{\lambda,j}|.
+\end{equation}
+When $F$ is empty set $H_F=0$, $C_{R,F}=0$ and the maximum
+over that empty set to $0$.
+
+The kernel of $J_\Xi$ is precisely $I$. Indeed $J_\Xi f=0$
+means that $f/\Xi$ has a removable singularity at each zero of
+$\Xi$ by its local Taylor expansions. Away from those zeros it
+is already holomorphic. Thus it extends to an entire function,
+which belongs to the original order class $\cqE$ by
+Lemma~\ref{thm:cq-division}; consequently $f\in\Xi\cqE$.
+The converse follows by the product rule at each zero. This proves
+that $\overline J_\Xi$ is a well-defined linear bijection onto
+$\mathcal V_\Xi$, with inverse sending the jet array of any
+$f\in\cqE$ to its class $[f]$. The kernel calculation proves
+that this inverse is independent of the choice of such $f$.
+
+The quotient topology on $Q_\kappa$ is generated by
+\begin{equation}\label{eq:cq-compact-quotient-seminorm}
+ q_R([f])=\inf_{h\in\cqE}M_{f-\Xi h}(R),\qquad R>0.
+\end{equation}
+For completeness, these are seminorms because they are infima of
+the representatives' seminorms modulo a linear subspace. The
+identity
+$\{q_R<\epsilon\}=\pi_\kappa(\{M_f(R)<\epsilon\})$
+holds for every $\epsilon>0$, and the quotient map
+$\pi_\kappa$ is open since the inverse image of the image of
+an open set $U$ is the union $U+I$ of its translates.
+The increasing disk seminorms generate the compact-open topology;
+the displayed identity therefore proves the assertion about the
+quotient topology. Integer $R\geq1$ suffice.
+
+Fix $R>0$. Choose $R'>R$ such that the circle $|s|=R'$
+contains no zero of $\Xi$, and put
+$F=\{\lambda\in\Lambda:|\lambda|<R'\}$, a finite set.
+For $f\in\cqE$ form
+$H=H_F((f^{(j)}(\lambda))_{\lambda\in F,j<m_\lambda})$.
+The function $(f-H)/\Xi$ is holomorphic throughout $|s|<R'$
+by the exact finite interpolation just proved. Its Taylor
+polynomials $p_n(s)$ at $s=0$ consequently converge uniformly on
+$|s|\leq R$ to $(f-H)/\Xi$. In particular $p_n\in\cqE$,
+and
+\[
+ M_{f-\Xi p_n}(R)
+ \leq M_H(R)+M_\Xi(R)
+        M_{(f-H)/\Xi-p_n}(R).
+\]
+Taking the infimum over admissible representatives and then the
+limit gives
+\begin{equation}\label{eq:cq-quotient-from-finite-jets}
+ q_R([f])\leq M_H(R)
+ \leq C_{R,F}
+       \max_{\lambda\in F,\,j<m_\lambda}|f^{(j)}(\lambda)|.
+\end{equation}
+No entire extension or growth bound for $(f-H)/\Xi$ outside this
+disk was used. In particular there is no additional division
+assumption hidden in the approximation. If $F$ is empty, this
+proof gives $q_R=0$, which is compatible with the other quotient
+seminorms separating points.
+
+Conversely, fix a finite set $F\subset\Lambda$, and choose
+$R>\max_{\lambda\in F}|\lambda|$ and
+$0<\delta<R-\max_{\lambda\in F}|\lambda|$.
+Cauchy's formula on the radius-$\delta$ circle about each
+$\lambda$ gives, for every $h\in\cqE$,
+\[
+ |f^{(j)}(\lambda)|
+ =|(f-\Xi h)^{(j)}(\lambda)|
+ \leq j!\delta^{-j}M_{f-\Xi h}(R),
+ \qquad\lambda\in F,\quad j<m_\lambda.
+\]
+Here $0!=1$, so this bound includes the zeroth derivative without
+altering its value. Taking infima gives
+\begin{equation}\label{eq:cq-finite-jets-from-quotient}
+ \max_{\lambda\in F,\,j<m_\lambda}|f^{(j)}(\lambda)|
+ \leq\left(\max_{\lambda\in F,\,j<m_\lambda}
+                        j!\delta^{-j}\right)q_R([f]).
+\end{equation}
+Equations \eqref{eq:cq-quotient-from-finite-jets} and
+\eqref{eq:cq-finite-jets-from-quotient} prove continuity in both
+directions, with the exact stated topologies.
+
+We next verify that the zero set needed for incompleteness is
+indeed infinite and has an enumeration escaping every compact
+set. The source Hadamard product for the original even $\Xi$,
+retaining its nonzero constant $\Xi(0)$, implies that finitely
+many zeros would make $\Xi$ a polynomial. This is impossible:
+at the original coordinate $s=-i(2n-\tfrac12)$, $n\geq1$,
+the defining completion gives exactly
+\begin{equation}\label{eq:cq-Xi-nonpolynomial-values}
+ \Xi\bigl(-i(2n-\tfrac12)\bigr)
+ =\xi(2n)=n(2n-1)(n-1)!\,\pi^{-n}\zeta(2n).
+\end{equation}
+For integer $n\geq2$, $\zeta(2n)>1$ by its positive Dirichlet
+series, and the last $\lfloor n/2\rfloor$ factors of $(n-1)!$
+are at least $n/2$. Thus the logarithm of the right hand side is
+at least
+\[
+ \log(n(2n-1))+\lfloor n/2\rfloor\log(n/2)-n\log\pi,
+\]
+which exceeds $d\log(2n)$ for every fixed $d$ and all
+sufficiently large $n$. Polynomial values of degree $d$ on these
+points are bounded by a constant times $(2n)^d$, a contradiction.
+Since $\Xi$ is nonzero and entire, its zeros are isolated, each
+multiplicity is finite and each closed disk contains finitely
+many distinct zeros. We may therefore enumerate all distinct
+zeros as $\Lambda=\{\lambda_1,\lambda_2,\ldots\}$ with
+$|\lambda_n|\to\infty$, retaining each $m_{\lambda_n}$.
+This argument uses neither reality nor simplicity of any zero.
+
+Every projection of $\mathcal V_\Xi$ onto finitely many full
+zero-jet blocks is onto, by \eqref{eq:cq-finite-Hermite-lift}.
+Such finite coordinate cylinders form a base of the product
+topology. Consequently $\mathcal V_\Xi$ is dense in
+$\mathcal P_\Xi$. It is proper: define the particular array
+$v\in\mathcal P_\Xi$ by
+\begin{equation}\label{eq:cq-nonrealizable-jet-array}
+ v_{\lambda_n,0}=\exp(|\lambda_n|^2),\qquad
+ v_{\lambda_n,j}=0\quad(1\leq j<m_{\lambda_n}).
+\end{equation}
+For each $f\in\cqE$ there is a finite constant $A_f>0$ with
+$M_f(r)\leq A_f\exp(r^{3/2})$ for every $r\geq0$; this is
+exactly the order-at-most-one bound, extended over a bounded
+interval by increasing $A_f$. Were $J_\Xi f=v$, we would have
+\[
+ \exp(|\lambda_n|^2)
+ \leq A_f\exp(|\lambda_n|^{3/2})\quad\text{for all }n,
+\]
+which contradicts $|\lambda_n|\to\infty$.
+
+The incompleteness can be exhibited by an actual sequence of
+polynomial classes. Set $F_n=\{\lambda_1,\ldots,\lambda_n\}$,
+$H_n=H_{F_n}(v|_{F_n})$, and $x_n=[H_n]\in Q_\kappa$.
+For each fixed zero-jet block, $J_\Xi H_n$ agrees with $v$
+from some index onward; hence $J_\Xi H_n\to v$ in the product.
+Equivalently, for each fixed $R$, the finite set in
+\eqref{eq:cq-quotient-from-finite-jets} lies in every sufficiently
+large $F_n$, so that inequality gives
+\[
+ q_R(x_n-x_k)=0\qquad(n,k\text{ sufficiently large}).
+\]
+Thus $(x_n)$ is Cauchy in $Q_\kappa$. If it converged to a
+class $[f]$, continuity of $\overline J_\Xi$ and uniqueness of
+limits in the product would give $J_\Xi f=v$, already disproved.
+For example the product is metrized by the complete
+translation-invariant metric
+\[
+ d(v,w)=\sum_{n=1}^\infty2^{-n}
+       \min\!\left(1,\max_{0\leq j<m_{\lambda_n}}
+                          |v_{\lambda_n,j}-w_{\lambda_n,j}|\right).
+\]
+A Cauchy sequence for this metric is Cauchy in each finite
+coordinate block, so has a coordinatewise limit; controlling a
+finite initial sum and the geometric tail proves convergence in
+the metric. This proves product completeness directly. The
+isomorphism $\overline J_\Xi$, being linear and continuous
+with a continuous linear inverse, preserves the additive
+uniformities. Its dense embedding in this complete product
+therefore gives the claimed Hausdorff completion.
+
+Finally, we prove the completeness assertion for the stronger
+quotient explicitly. The growth seminorms are
+\[
+ \|f\|_{p,a}=\sup_{s\in\cqC}|f(s)|e^{-a|s|^p},
+ \qquad 1<p<2,\quad a>0.
+\]
+The countable family $p=1+1/j$, $a=1/k$ for integers $j\geq2$
+and $k\geq1$ defines the same topology: for arbitrary $1<p<2,a>0$
+choose $p_j<p$, and the finite maximum of
+$r^{p_j}-ar^p$ controls $\|f\|_{p,a}$ by a constant times
+$\|f\|_{p_j,1}$. Each countable seminorm belongs to the original
+family, proving both comparisons. Enumerate this countable family
+as $(u_\ell)_{\ell\geq1}$ and put
+$P_n=\max_{1\leq\ell\leq n}u_\ell$.
+If $(f_n)$ is Cauchy in all these seminorms, it is Cauchy uniformly
+on each compact set, and has an entire limit $f$. In the weighted
+Cauchy inequality for any fixed seminorm, passage to the
+pointwise limit in the second index yields the same uniform
+weighted bound for $f_n-f$. Thus $f$ has all the finite growth
+seminorms, lies in the original $\cqE$, and $f_n\to f$ in
+$\gamma$. This proves completeness of $(\cqE,\gamma)$.
+
+The ideal $I$ is closed: the proved kernel description is an
+intersection of kernels of derivative evaluations, and Cauchy's
+estimate shows that each of these evaluations is continuous for
+$\gamma$. The quotient is therefore Hausdorff. Its topology has
+the countable increasing seminorm family
+\[
+ \widetilde P_n([f])=\inf_{h\in I}P_n(f+h).
+\]
+Let $(y_n)$ be a Cauchy sequence in this quotient. Choose a
+strictly increasing subsequence of indices $n_k$ so far out that
+\[
+ \widetilde P_k(y_{n_{k+1}}-y_{n_k})<2^{-k-1}
+ \quad(k\geq1).
+\]
+This is possible by the Cauchy property and by taking $n_k$ past
+the threshold for the $k$th seminorm before selecting the next
+index. Choose a representative $d_k\in\cqE$ of each displayed
+difference with $P_k(d_k)<2^{-k}$. For any fixed $j$, the tail
+$k\geq j$ satisfies $P_j(d_k)\leq P_k(d_k)<2^{-k}$.
+Consequently the partial sums of $\sum_{k\geq1}d_k$ are
+Cauchy in $\gamma$ and converge in $\cqE$. Adding a
+representative of $y_{n_1}$ gives a function whose quotient class
+is the limit of $(y_{n_k})$. The full Cauchy sequence $(y_n)$
+then has the same limit: for each quotient neighbourhood choose
+a smaller additive neighbourhood whose sum with itself is
+contained in it, and combine the Cauchy tail with a convergent
+subsequence term. The countable seminorm topology is metrizable,
+so this proves quotient completeness and the Fr\'echet assertion.
+
+The identity $(\cqE,\gamma)\to(\cqE,\kappa)$ is continuous:
+for every $R,p,a$, one has $M_f(R)\leq e^{aR^p}\|f\|_{p,a}$.
+It preserves the identical algebraic subspace $I$, so the
+quotient universal property proves continuity and bijectivity
+of \eqref{eq:cq-topology-comparison-strict}. If its inverse
+were continuous, it would be a continuous linear map, hence
+uniformly continuous for the additive uniformities. The Cauchy
+sequence $(x_n)$ constructed above would then be Cauchy in the
+complete $Q_\gamma$, would converge there, and by continuity of
+$\iota$ would converge in $Q_\kappa$, a contradiction. This
+proves that its inverse is not continuous. No invariance of
+metric completeness under arbitrary nonlinear homeomorphisms
+has been used.
+\end{proof}
+
+The original coordinate action remains visible after completion.
+For $v=J_\Xi f$, the exact product rule gives
+\begin{equation}\label{eq:cq-original-s-on-completed-jets}
+ \bigl(J_\Xi(sf)\bigr)_{\lambda,j}
+ =\lambda v_{\lambda,j}+jv_{\lambda,j-1},
+ \qquad 0\leq j<m_\lambda,
+\end{equation}
+where the second term is $0$ when $j=0$. Each output coordinate
+depends on finitely many input coordinates, so this extends to
+a continuous linear operator on the entire product completion.
+The factors $j$ are retained because these coordinates are actual
+derivatives. The completion adds precisely the nonrealizable
+jet arrays, including \eqref{eq:cq-nonrealizable-jet-array}; it
+does not add an entire function of order at most one representing
+such an array. Neither analytic quotient topology has been
+identified with the source topology $\tau$.

@@ -1,0 +1,78 @@
+\subsection{The endpoint summation identity with its complete remainder}
+\label{sec:cq-angular-EM-proof}
+
+The endpoint calculation below uses an exact summation formula.
+We give its proof here so that the fixed-axis result has no missing
+local dependency. Define the Bernoulli polynomials by the convergent
+power series, for the auxiliary variable $v$ near zero,
+\[
+ \frac{ve^{xv}}{e^v-1}=\sum_{n=0}^\infty B_n(x)\frac{v^n}{n!},
+ \qquad B_n=B_n(0).
+\]
+The singularity at $v=0$ is removable. Differentiation in $x$ gives
+$B_n'=nB_{n-1}$; subtracting the series at $x=0$ from that at
+$x=1$ gives $B_n(1)=B_n(0)$ for $n\ne1$ and
+$B_1(1)-B_1(0)=1$. Expansion to second degree gives
+$B_1(x)=x-1/2$ and $B_2=1/6$.
+The function $v/(e^v-1)+v/2$ is even, by direct substitution
+of $-v$. Therefore $B_{2k+1}=0$ for every $k\geq1$.
+Write $\widetilde B_n(y)=B_n(y-\lfloor y\rfloor)$ away
+from integers, with the common endpoint value for $n\geq2$.
+For these $n$ the function is continuous, bounded and periodic.
+
+Let $f$ be smooth and compactly supported on $[0,\infty)$,
+let $x>0$, and let $M\geq1$ be an integer. The exact identity is
+\begin{equation}
+\begin{split}
+ \sum_{n\geq1}f(nx)
+ &=\frac1x\int_0^\infty f(v)\,dv-\frac{f(0)}2
+ -\sum_{k=1}^M\frac{B_{2k}}{(2k)!}
+                         x^{2k-1}f^{(2k-1)}(0)+\mathcal R_M(f,x),\\
+ \mathcal R_M(f,x)
+ &=-\frac{x^{2M-1}}{(2M)!}
+    \int_0^\infty\widetilde B_{2M}(v/x)f^{(2M)}(v)\,dv,\\
+ |\mathcal R_M(f,x)|
+ &\leq\frac{\|B_{2M}\|_{L^\infty([0,1])}}{(2M)!}
+                          x^{2M-1}\|f^{(2M)}\|_{L^1(0,\infty)}.
+\end{split}
+\label{eq:cq-angular-EM}
+\end{equation}
+To prove it first take mesh one on $[0,N]$, with integer $N$
+beyond the support. On every unit interval integration by parts gives
+\[
+ \int_n^{n+1} B_1(v-n)f'(v)\,dv
+ =\frac{f(n)+f(n+1)}2-\int_n^{n+1}f(v)\,dv.
+\]
+Summing produces the trapezoidal sum minus the integral.
+Repeated integration by parts using $B_j'=jB_{j-1}$ yields
+the endpoint terms $B_{2k}(f^{(2k-1)}(N)-f^{(2k-1)}(0))/(2k)!$
+and the remaining integral
+$-\int_0^N\widetilde B_{2M}f^{(2M)}/(2M)!$.
+The internal boundary terms cancel because the endpoint values
+of $B_j$ agree for $j\geq2$; the odd endpoint coefficients
+above degree one vanish by the already proved parity.
+All upper endpoint derivatives vanish by the choice of $N$.
+Apply this identity to $v\mapsto f(xv)$ and substitute $u=xv$
+in each integral. This gives every power and sign in
+\eqref{eq:cq-angular-EM}, including the stated norm bound.
+
+For completeness the value of zeta needed at the first axis pole
+also follows from this formula. Apply its finite-interval proof
+on $[1,N]$ to $v^{-w}$ and initially let $N\to\infty$
+for $\operatorname{Re}w>1$. For $M=2$ the result is
+\[
+ \zeta(w)=\frac1{w-1}+\frac12
+    +\frac{B_2}{2!}w+\frac{B_4}{4!}w(w+1)(w+2)
+    -\frac{(w)_4}{4!}\int_1^\infty
+                     \widetilde B_4(v)v^{-w-4}\,dv.
+\]
+Here $(w)_4=w(w+1)(w+2)(w+3)$.
+Boundedness of the periodic polynomial proves that the last
+integral is holomorphic for $\operatorname{Re}w>-3$, with
+all complex derivatives justified by the integrable logarithmic
+weights on compact subsets. Thus the equality continues there
+apart from the pole at one. Substitution $w=-1$ cancels the
+first two terms, and the two higher products vanish. Hence
+$\zeta(-1)=-B_2/2=-1/12$, with its sign fixed by the actual
+summation formula. These classical formulas agree with
+\cite[\S2.10(i)]{cqDLMFEM} and \cite[\S25.6(i)]{cqDLMFZeta}.

@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "artifact": "Exact affine Boussinesq core differential replay",
+  "sympy_version": "1.13.1",
+  "scope": "Local uncut general-profile wave, exact momentum pressure lift, and sine-mode diffusion; not finite-energy blowup or Navier–Stokes.",
+  "source_location": "Sections 1.2 and 3.1, Lemma 3.1",
+  "original_conventions": {
+    "J": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "buoyancy_direction": [
+      0,
+      1
+    ],
+    "vorticity": "partial_1 u_2 - partial_2 u_1",
+    "domain": "R^2",
+    "lambda": "positive, retained",
+    "zeta": "nonzero, retained",
+    "q": "|zeta|^2, named q to distinguish the thermal diffusion coefficient kappa"
+  },
+  "formulas": {
+    "phase": "s=lambda*zeta.x; zeta_dot=-D^T*zeta",
+    "general_profile": "theta_wave=Theta*F(s), psi=Omega*P(s)/(lambda^2*q), v=Omega*J*zeta*F(s)/(lambda*q), omega_wave=Omega*F'(s), P'=F",
+    "inviscid_amplitudes": "Theta_dot=-(J*zeta.G)*Omega/(lambda*q); Omega_dot=lambda*zeta_1*Theta",
+    "sine_diffusive_amplitudes": "Theta_dot=-kappa*lambda^2*q*Theta-(J*zeta.G)*Omega/(lambda*q); Omega_dot=lambda*zeta_1*Theta-nu*lambda^2*q*Omega",
+    "frozen_matrix": [
+      [
+        "-kappa*(lambda*r)^2",
+        "A*sin(phi)/(lambda*r)"
+      ],
+      [
+        "lambda*r*sin(phi)",
+        "-nu*(lambda*r)^2"
+      ]
+    ],
+    "eigenvalues": "-(kappa+nu)*(lambda*r)^2/2 +/- sqrt((kappa-nu)^2*(lambda*r)^4/4+A*sin(phi)^2)",
+    "positive_growth_iff": "A*sin(phi)^2 > kappa*nu*lambda^4*r^4"
+  },
+  "checks": [
+    {
+      "name": "trace_free",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "phase_transport",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "streamfunction_velocity",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "streamfunction_vorticity",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "velocity_divergence",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "velocity_curl",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "self_advection_temperature",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "self_advection_vorticity",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "self_advection_velocity",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "general_profile_scalar_residual",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "general_profile_vorticity_residual",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "general_profile_thermal_diffusion",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "general_profile_viscous_diffusion",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "general_profile_momentum_increment",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "momentum_curl_compatibility",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "general_profile_pressure_lift",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "inviscid_scalar_equation",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "inviscid_vorticity_equation",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "sine_diffusive_scalar_equation",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "sine_diffusive_vorticity_equation",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "sine_diffusive_momentum_increment",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "sine_diffusive_pressure_lift",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "frozen_characteristic_polynomial",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "growth_threshold_difference",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    },
+    {
+      "name": "inviscid_growing_eigenline_for_positive_sine",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "frozen_hydrostatic_pressure",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "common_damping_through_time_dependent_coupling",
+      "passed": true,
+      "residual": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "equal_diffusion_amplitude_matrix",
+      "passed": true,
+      "residual": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "phase_mode_diffusion_factor",
+      "passed": true,
+      "residual": [
+        "0"
+      ]
+    }
+  ],
+  "exact_rational_examples": [
+    {
+      "label": "growing",
+      "A": "9",
+      "lambda": "2",
+      "r": "3",
+      "phi": "pi/2",
+      "kappa": "1/100",
+      "nu": "1/100",
+      "matrix": [
+        [
+          "-9/25",
+          "3/2"
+        ],
+        [
+          "6",
+          "-9/25"
+        ]
+      ],
+      "eigenvalues": [
+        "-84/25",
+        "66/25"
+      ],
+      "threshold_margin": "5544/625"
+    },
+    {
+      "label": "neutral",
+      "A": "9",
+      "lambda": "2",
+      "r": "3",
+      "phi": "pi/2",
+      "kappa": "1/12",
+      "nu": "1/12",
+      "matrix": [
+        [
+          "-3",
+          "3/2"
+        ],
+        [
+          "6",
+          "-3"
+        ]
+      ],
+      "eigenvalues": [
+        "-6",
+        "0"
+      ],
+      "threshold_margin": "0"
+    },
+    {
+      "label": "decaying",
+      "A": "9",
+      "lambda": "2",
+      "r": "3",
+      "phi": "pi/2",
+      "kappa": "1",
+      "nu": "1",
+      "matrix": [
+        [
+          "-36",
+          "3/2"
+        ],
+        [
+          "6",
+          "-36"
+        ]
+      ],
+      "eigenvalues": [
+        "-39",
+        "-33"
+      ],
+      "threshold_margin": "-1287"
+    }
+  ],
+  "all_passed": true
+}

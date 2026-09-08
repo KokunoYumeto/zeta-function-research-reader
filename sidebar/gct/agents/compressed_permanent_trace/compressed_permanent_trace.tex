@@ -1,0 +1,566 @@
+\section{A smaller sign-algebra trace and its exact source correspondence}
+\label{sec:compressed-permanent-trace}
+
+The permanent trace of Section~\ref{sec:permanent-trace-projection}
+admits a second, smaller finite-algebra representation. We retain the
+same $n^2$ coordinates $Z_{ij}$ and the same permanent polynomial;
+we construct the correspondence between the two representations explicitly.
+The sign sum used below is the Ryser--Glynn expression recorded in
+\cite[Equation (8)]{LandsbergRessayre2017SignTrace}; the original
+Glynn article is \cite{Glynn2010SignTrace}. All identities and maps
+needed here are proved below, independently of those references.
+
+\subsection{The sign algebra, its integral basis, and its regular trace}
+
+Fix an integer $n\ge1$. Put $O=\mathbb Z[1/2]$, $R=O[Z_{ij}]$,
+$r_n=2^{n-1}$, and
+\[
+ B_n=O[d_2,\ldots,d_n]/(d_j^2-1:2\le j\le n),\qquad d_1=1.
+\]
+For $n=1$ this means $B_1=O$. For each subset
+$S\subseteq\{2,\ldots,n\}$ write $d_S=\prod_{j\in S}d_j$,
+including $d_\varnothing=1$. The elements $d_S$ form an $O$-basis.
+Indeed, successive division by the monic polynomials $d_j^2-1$
+gives a unique remainder with exponents zero or one: viewing the
+ring as a polynomial ring in the last variable over the preceding
+quotient, monic division gives a free module with basis $1,d_j$.
+Induction proves the assertion over $O$ and equally over $\mathbb Z$.
+Multiplication is
+\[
+ d_Sd_T=d_{S\mathbin{\triangle}T},
+\]
+where $S\mathbin{\triangle}T=(S\setminus T)\cup(T\setminus S)$.
+There are exactly $r_n$ basis elements, one for each independent
+membership choice in a set of size $n-1$.
+
+Write $\tau_B(b)=\operatorname{Tr}_{B_n/O}(m_b)$ for the regular
+trace, where $m_b(x)=bx$. Multiplication by $d_S$ permutes the basis
+by $T\mapsto S\mathbin{\triangle}T$. A basis vector is fixed if
+and only if $S=\varnothing$, since cancelling $T$ under symmetric
+difference gives that equivalence. Thus
+\begin{equation}\label{eq:compressed-regular-trace}
+ \tau_B\Bigl(\sum_S b_Sd_S\Bigr)=r_n b_\varnothing.
+\end{equation}
+This identity holds first over $\mathbb Z$ and then over every
+coefficient ring by taking the same finite diagonal sum.
+
+There is also an explicit split basis. Let
+$\Delta_n=\{\delta\in\{-1,1\}^n:\delta_1=1\}$ and set
+\[
+ \epsilon_\delta=\prod_{j=2}^n\frac{1+\delta_jd_j}{2}.
+\]
+Each factor is idempotent, since
+$(1+\delta_jd_j)^2/4=(1+\delta_jd_j)/2$.
+Opposite factors multiply to $(1-d_j^2)/4=0$, and summing the
+two factors for one coordinate gives one. Multiplying these identities
+shows that the $\epsilon_\delta$ are orthogonal idempotents summing
+to one. Evaluation at $d_j=\eta_j$ gives
+$\epsilon_\delta(\eta)=1$ when $\eta=\delta$ and zero otherwise.
+The identity
+$d_S=\sum_\delta(\prod_{j\in S}\delta_j)\epsilon_\delta$
+follows by multiplying $d_j\epsilon_\delta=\delta_j\epsilon_\delta$
+and summing the idempotents. It proves the mutually inverse algebra maps
+\[
+ B_n\longrightarrow O^{\Delta_n},\quad b\longmapsto(b(\delta))_\delta,
+ \qquad(c_\delta)_\delta\longmapsto\sum_\delta c_\delta\epsilon_\delta.
+\]
+In particular $\tau_B(b)=\sum_\delta b(\delta)$.
+
+For completeness the factor inverted here has exact integral content.
+Before localizing, the evaluation matrix from the $d_S$ basis to
+the integral point basis is
+$H_{\delta,S}=\prod_{j\in S}\delta_j$. For two subsets $S,T$,
+the sum $\sum_\delta H_{\delta,S}H_{\delta,T}$ is $r_n$ if
+$S=T$ and zero otherwise: in the latter case choose a coordinate
+in $S\mathbin{\triangle}T$ and pair each $\delta$ with the sign
+vector obtained by flipping that coordinate. Therefore
+\[
+ H^{\mathsf T}H=r_n I,\qquad H^{-1}=r_n^{-1}H^{\mathsf T}
+ \quad\text{over }\mathbb Q.
+\]
+The image of $\mathbb Z[d_2,\ldots,d_n]/(d_j^2-1)$ in
+$\mathbb Z^{\Delta_n}$ consists exactly of integer vectors $v$
+such that every component of $H^{\mathsf T}v$ is divisible by $r_n$:
+necessity follows from the first identity, and sufficiency follows
+by applying the displayed inverse. Thus the integral evaluation map
+is injective and becomes an isomorphism after inverting two. For
+$n\ge2$ it is not surjective: the coordinate vector supported at
+a single $\delta$ has $H^{\mathsf T}v$ with every component $1$
+or $-1$, which is not divisible by $r_n\ge2$.
+No integral identification of these two lattices has been made.
+
+\subsection{The exact parity computation, with both orientations}
+
+Put $\chi_n=\prod_{j=1}^n d_j=d_{\{2,\ldots,n\}}$ and define
+row-linear elements and their multiplier by
+\begin{equation}\label{eq:compressed-row-multiplier}
+ L_i(Z)=\sum_{j=1}^n d_j Z_{ij},\qquad
+ v_n(Z)=r_n^{-1}\chi_n\prod_{i=1}^n L_i(Z)
+ \quad\text{in }B_n\otimes_O R.
+\end{equation}
+
+\begin{theorem}\label{thm:compressed-permanent-trace}
+The regular multiplication trace on the rank-$r_n$ algebra satisfies
+\[
+ \operatorname{Tr}_{B_n\otimes R/R}(m_{v_n(Z)})
+ =\sum_{\sigma\in\mathfrak S_n}\prod_{i=1}^n Z_{i,\sigma(i)}
+ =\operatorname{per}_n(Z).
+\]
+The identity holds over $O$ and after any homomorphism from $O$
+to a commutative ring, in particular over $\mathbb Q$ and every
+field of odd characteristic.
+\end{theorem}
+\begin{proof}
+Expand the product in \eqref{eq:compressed-row-multiplier} without
+changing its row order:
+\[
+ v_n(Z)=r_n^{-1}
+ \sum_{(j_1,\ldots,j_n)\in[n]^n}
+      \chi_n d_{j_1}\cdots d_{j_n}\prod_{i=1}^n Z_{ij_i}.
+\]
+For a tuple let $m_j$ be the number of its entries equal to $j$.
+The group-basis monomial $\chi_n\prod_i d_{j_i}$ is one exactly
+when $m_j+1$ is even for each $j\ge2$, or equivalently when each
+of $m_2,\ldots,m_n$ is odd. In that case write $m_j=1+2a_j$
+for $j\ge2$, with $a_j\ge0$. The equality $\sum_jm_j=n$ becomes
+\[
+ m_1+2\sum_{j=2}^n a_j=1.
+\]
+It forces $m_1=1$ and every $a_j=0$. Conversely, if every column
+is chosen once, all the exponents are even as required. Thus exactly
+the permutation tuples contribute to the coefficient of $d_\varnothing$,
+each with coefficient $r_n^{-1}$ times its original row monomial.
+Equation~\eqref{eq:compressed-regular-trace} multiplies that coefficient
+by the exact factor $r_n$, proving the formula. For $n=1$ the
+same equation says $m_1=1$; directly $r_1=\chi_1=d_1=1$ and
+$v_1(Z)=Z_{11}$ in the rank-one algebra. Finally all the calculations
+are identities in the displayed free algebra over $O$, so applying
+a coefficient homomorphism preserves them, including their traces.
+\end{proof}
+
+The split-basis form of this equality is the fully signed expression
+\[
+ \operatorname{per}_n(Z)=2^{1-n}
+ \sum_{\delta\in\Delta_n}
+ \Bigl(\prod_{j=1}^n\delta_j\Bigr)
+ \prod_{i=1}^n\Bigl(\sum_{j=1}^n\delta_j Z_{ij}\Bigr).
+\]
+The prefactor and product of signs are retained. To give the other
+orientation explicitly, use a second copy of the sign algebra with
+generators $e_2,\ldots,e_n$, $e_1=1$, and put
+\[
+ \widehat v_n(Z)=2^{1-n}
+ \Bigl(\prod_{i=1}^n e_i\Bigr)
+ \prod_{j=1}^n\Bigl(\sum_{i=1}^n e_i Z_{ij}\Bigr).
+\]
+Let the coefficient-ring involution send $Z_{ij}$ to $Z_{ji}$,
+and send $d_j$ in the first sign algebra to $e_j$ in the second.
+This is an isomorphism of the underlying $O$-algebras with polynomial
+coefficients; its square, with the reverse generator renaming, is
+the identity. It sends $v_n(Z)$ to $\widehat v_n(Z)$ by direct
+substitution. The trace of the latter is
+$\operatorname{per}_n(Z^{\mathsf T})=\operatorname{per}_n(Z)$:
+the term $\prod_i Z_{\sigma(i),i}$ becomes
+$\prod_j Z_{j,\sigma^{-1}(j)}$, and inversion permutes
+$\mathfrak S_n$ bijectively. Thus transposition is a specified
+coordinate map, not an implicit interchange of the original rows
+and columns in \eqref{eq:compressed-row-multiplier}.
+
+Over $\mathbb Z$ the unscaled numerator
+$w_n(Z)=\chi_n\prod_iL_i(Z)$ is an element of the integral group
+algebra and satisfies $\operatorname{Tr}(m_{w_n})=r_n\operatorname{per}_n$.
+For $n\ge2$ the scaled element $v_n$ is not in that integral
+group algebra with polynomial coefficients. The monomial
+$Z_{11}\cdots Z_{n1}$ occurs exactly once in the expansion and has
+coefficient $\chi_n/r_n$, which is not integral in the $d_S$ basis.
+The resulting trace polynomial nevertheless belongs to $\mathbb Z[Z]$
+by the proved identity. It can be reduced to characteristic two
+through that integer polynomial or the original split integral trace
+matrix. There is no homomorphism $O\to k$ for a field $k$ of
+characteristic two, because the unit two would map to zero.
+The scaled sign-algebra operator is therefore not specialized by
+such a nonexistent coefficient map. Its integer numerator has trace
+zero there for $n\ge2$, which cannot by itself recover the permanent;
+at $Z=I_n$ the permanent is one.
+
+\subsection{The original source fibre over the same coefficient ring}
+
+Retain the original map with its source orientation $(x,y,w)$ and
+target orientation $(a,b,c)$:
+\begin{align*}
+ F_1&=(1+xy)^3w+y^2(1+xy)(4+3xy),\\
+ F_2&=y+3x(1+xy)^2w+3xy^2(4+3xy),\\
+ F_3&=2x-3x^2y-x^3w.
+\end{align*}
+It still has $\det DF=-2$, and its retained polynomial and derivative
+are $P=cr^3-2r^2+br-2a$ and $P'=3cr^2-4r+b$. Neither expression
+is altered by the sign algebra. The original fibre at $(-1/4,0,0)$
+is defined over $O$, and the isomorphism
+\[
+ O[x,y,w]/(F_1+1/4,F_2,F_3)
+ \longrightarrow O[X]/(X^3-X),\qquad
+ (x,y,w)\longmapsto\bigl(X,-3X/2,(27X^2-1)/4\bigr)
+\]
+continues to hold there. To check the base ring explicitly, put
+$h=2-3xy-x^2w$. The identity
+$1=h/2+x(3y+xw)/2$ makes $(x)$ and $(h)$ comaximal after imposing
+$F_1+1/4,F_2$. As $F_3=xh$, the quotient splits into its $x=0$
+and $h=0$ factors by the same two-ideal intersection argument.
+The first is $O$, with $(x,y,w)=(0,0,-1/4)$. In the second,
+$x(3y+xw)=2$ makes $x$ a unit; putting $r=y+1/x$, $\alpha=1/x$
+gives $F_1=r^2+r\alpha$, $F_2=4r+2\alpha$, hence
+$\alpha=-2r$, $r^2=1/4$. Conversely these equations make $r$
+a unit and recover the original source coordinates and target
+equations. This factor is $O[r]/(r^2-1/4)$, with
+$x=-2r$, $y=-3x/2$, $w=13/2$. All inverses used are powers of
+two or the stated source unit. The two factors give exactly
+$O[X]/(X^3-X)$, with its original $x=0$ point retained.
+
+The idempotents $e_-=(X^2-X)/2$, $e_0=1-X^2$,
+$e_+=(X^2+X)/2$ give evaluation at $X=-1,0,1$ over $O$ as
+in Proposition~\ref{prop:sv-full-fibre}. Take $N=3n^2$ tensor
+factors and write $\mathcal A_N$ for the resulting full source
+algebra over $O$. Its point set is $\Omega_N=\{-1,0,1\}^N$;
+write $E_\omega$ for its product idempotents. It has rank $3^N$,
+and $\Lambda_N=\bigoplus_{\omega\in\Omega_N}\mathbb Z E_\omega$
+is the original split integral lattice, with its coordinatewise
+multiplication. In particular $\mathcal A_N=\Lambda_N\otimes O$.
+This lattice differs from the unsplit integral presentation with
+source-coordinate denominators, as already proved for each factor.
+
+For a permutation $\sigma$, let $\omega(\sigma)$ be the original
+source point with $B_{ij}=1$ exactly when $j=\sigma(i)$ and with
+the unique row and column prefix flags of the preceding construction.
+In every witness coordinate $h$ this point has
+\[
+ X_h=2B_h-1,\qquad y_h=-3X_h/2,\qquad
+ w_h=(27X_h^2-1)/4.
+\]
+Here $B_h$ denotes the appropriate original witness bit, including
+the two groups of flags. Distinct permutations have distinct
+$B$-arrays and therefore distinct points. Put
+\[
+ f_n=\sum_{\sigma\in\mathfrak S_n}E_{\omega(\sigma)},
+ \qquad A_{\mathrm{perm}}=f_n\mathcal A_N.
+\]
+Orthogonality proves $f_n^2=f_n$ and gives the algebra decomposition
+$\mathcal A_N=A_{\mathrm{perm}}\oplus(1-f_n)\mathcal A_N$.
+The first ideal has identity $f_n$ and rank $n!$. The map
+$a\mapsto f_na$ is a surjective algebra map to this ideal with
+kernel $(1-f_n)\mathcal A_N$. It retains the complementary ideal
+as its explicitly specified kernel, including every boundary point
+with some $X_h=0$.
+
+The projected original multiplier is exactly
+\begin{equation}\label{eq:compressed-original-u}
+ u_n(Z)=\sum_{\sigma\in\mathfrak S_n}
+           E_{\omega(\sigma)}\prod_{i=1}^n Z_{i,\sigma(i)}.
+\end{equation}
+Indeed the unweighted constraint-clause product is one precisely on those uniquely
+flagged assignments, each appended weighted clause supplies the
+specified entry, and the original product idempotent kills every
+boundary factor. These are precisely the evaluations of the
+projected multiplier established above; the split evaluation
+isomorphism proves equality as an element, not only as a trace.
+Since $u_n=f_nu_n$, its multiplication is zero on the full
+complementary ideal. Consequently
+\[
+ \operatorname{Tr}_{\mathcal A_N}(m_{u_n})
+ =\operatorname{Tr}_{A_{\mathrm{perm}}}(m_{u_n})
+ =\operatorname{per}_n(Z).
+\]
+The full original rank $3^{3n^2}$ and all its zero eigenvalues
+remain present in the first trace.
+
+\subsection{A common tensor module and an exact sequence of traces}
+
+Let $T_n=(O^n)^{\otimes n}$, with factor $i$ assigned to row $i$.
+For $\boldsymbol j=(j_1,\ldots,j_n)\in[n]^n$ denote its tensor
+basis vector by $t_{\boldsymbol j}$. Define three $O$-linear maps
+on every basis vector by
+\[
+ \begin{split}
+ S_n:T_n&\longrightarrow A_{\mathrm{perm}},\qquad
+ S_n(t_{\boldsymbol j})=
+ \begin{cases}E_{\omega(\sigma)},&j_i=\sigma(i)\text{ for all }i,\\
+ 0,&\text{otherwise},\end{cases}\\
+ K_n:T_n&\longrightarrow B_n,\qquad
+ K_n(t_{\boldsymbol j})=r_n^{-1}\chi_n\prod_i d_{j_i},\\
+ \varepsilon_n:T_n&\longrightarrow O,\qquad
+ \varepsilon_n(t_{\boldsymbol j})=
+ \begin{cases}1,&\boldsymbol j\text{ is a permutation tuple},\\
+ 0,&\text{otherwise}.\end{cases}
+ \end{split}
+\]
+Writing $\tau_A$ for regular trace on $A_{\mathrm{perm}}$, we have
+the equalities of actual linear maps
+\begin{equation}\label{eq:compressed-trace-square}
+ \tau_AS_n=\varepsilon_n=\tau_BK_n.
+\end{equation}
+The first follows because a coordinate idempotent has trace one;
+the second is exactly the parity computation for one tuple.
+The universal row-choice tensor
+\[
+ t(Z)=\bigotimes_{i=1}^n\Bigl(\sum_{j=1}^n Z_{ij}t_j\Bigr)
+     =\sum_{\boldsymbol j}\Bigl(\prod_i Z_{ij_i}\Bigr)t_{\boldsymbol j}
+ \quad\text{in }T_n\otimes_O R
+\]
+is sent by $S_n$ to \eqref{eq:compressed-original-u}, by $K_n$
+to \eqref{eq:compressed-row-multiplier}, and by $\varepsilon_n$
+to the permanent. Thus \eqref{eq:compressed-trace-square} relates
+every coefficient before taking the trace of the polynomial.
+
+The kernels and surjections in this correspondence are explicit.
+The map $S_n$ is surjective, and its kernel has as basis the
+nonpermutation tuples, because the remaining images are the
+distinct basis idempotents. For a tuple put
+\[
+ p(\boldsymbol j)=\{j\in\{2,\ldots,n\}:
+            j\text{ occurs an odd number of times in }\boldsymbol j\}.
+\]
+For each subset $U\subseteq\{2,\ldots,n\}$ choose
+$\boldsymbol a(U)$ to consist first of the elements of $U$ in
+increasing order and then of $n-|U|$ entries equal to one.
+Its parity set is $U$. Thus
+$K_n(t_{\boldsymbol a(U)})=r_n^{-1}\chi_nd_U$,
+and these elements form a basis of $B_n$ because multiplication
+by the unit $\chi_n/r_n$ permutes and rescales its basis.
+This proves surjectivity with a specified section. The differences
+\[
+ t_{\boldsymbol j}-t_{\boldsymbol a(p(\boldsymbol j))}
+ \quad\bigl(\boldsymbol j\ne\boldsymbol a(p(\boldsymbol j))\bigr)
+\]
+form a basis of $\ker K_n$: subtracting these differences reduces
+an arbitrary vector to the selected representatives, whose images
+are independent; each difference has coefficient one on its own
+unselected basis vector and zero on the other unselected vectors,
+which proves independence.
+
+The parity proof also shows that $p(\boldsymbol j)=\{2,\ldots,n\}$
+holds exactly for permutation tuples. Every other selected representative
+$\boldsymbol a(U)$ is therefore nonpermutational. The regular trace
+kernel in $B_n$ is the free span of $d_V$ with $V\ne\varnothing$,
+by \eqref{eq:compressed-regular-trace} and the invertibility of $r_n$.
+The preceding representatives consequently prove
+\begin{equation}\label{eq:compressed-kernel-trace}
+ K_n(\ker S_n)=\ker\tau_B.
+\end{equation}
+
+\begin{proposition}\label{prop:compressed-exact-sequence}
+There is an exact sequence of $O$-modules
+\[
+ T_n\xrightarrow{\ (S_n,-K_n)\ }
+ A_{\mathrm{perm}}\oplus B_n
+ \xrightarrow{\ (a,b)\mapsto\tau_A(a)+\tau_B(b)\ }O
+ \longrightarrow0.
+\]
+The first image has rank $n!+r_n-1$, and its kernel
+$\ker S_n\cap\ker K_n$ is free of rank $n^n-n!-r_n+1$.
+\end{proposition}
+\begin{proof}
+Equation~\eqref{eq:compressed-trace-square} says the composite is
+zero. The second map is surjective because it sends
+$(E_{\omega(\mathrm{id})},0)$ to one. Suppose
+$\tau_A(a)+\tau_B(b)=0$. Choose $t_0\in T_n$ with $S_n(t_0)=a$.
+Then $b+K_n(t_0)$ has trace
+$\tau_B(b)+\varepsilon_n(t_0)=\tau_B(b)+\tau_A(a)=0$.
+Equation~\eqref{eq:compressed-kernel-trace} supplies
+$t_1\in\ker S_n$ such that $K_n(t_1)=-b-K_n(t_0)$.
+It follows that $(S_n,-K_n)(t_0+t_1)=(a,b)$, proving exactness.
+
+There is an explicit basis for the kernel of the second arrow:
+take $(E_{\omega(\sigma)}-E_{\omega(\mathrm{id})},0)$ for
+$\sigma\ne\mathrm{id}$, together with
+$(0,d_V)$ for $V\ne\varnothing$ and the single vector
+$(-r_nE_{\omega(\mathrm{id})},1)$. Their traces vanish.
+Subtracting the nonidentity $A_{\mathrm{perm}}$ coefficients and
+the nonempty $B_n$ coefficients from any trace-zero pair reduces
+it to $(a_0E_{\omega(\mathrm{id})},b_0)$ with
+$a_0+r_nb_0=0$, which is the last vector multiplied by $b_0$.
+The same coordinates prove independence. There are $n!+r_n-1$
+such vectors. Choose lifts of these basis vectors under the first
+surjection just proved; their linear extension gives a section.
+Then $T_n$ is the direct sum of their free span and the first
+kernel. For freeness of that kernel without an unstated theorem,
+decompose $T_n$ into permutation and nonpermutation basis vectors.
+An element of $\ker S_n$ uses only the latter. Group those vectors
+by their parity sets $U\ne\{2,\ldots,n\}$. On each group $K_n$
+sends every vector to the same nonzero distinct basis multiple.
+Its kernel therefore has basis the differences against the selected
+representative in that group, by the argument above. The total
+number is $(n^n-n!)-(r_n-1)$, as asserted.
+\end{proof}
+
+For $n\ge2$ this common-tensor construction cannot be replaced by
+a linear map making either of its two surjections factor through
+the other. The tuple $(1,\ldots,1)$ is nonpermutational, so its
+$S_n$ image is zero whereas its $K_n$ image is the nonzero unit
+$\chi_n/r_n$. This disproves a factorization $K_n=L S_n$.
+For two distinct permutations, the difference of their tensor
+vectors has $K_n$ image zero, since each image is $1/r_n$,
+whereas its $S_n$ image is a nonzero difference of basis idempotents.
+This disproves a factorization $S_n=M K_n$. The exact sequence
+and coefficient trace maps above supply the proved relation despite
+these specific obstructions. For $n=1$ both coefficient maps are
+isomorphisms between rank-one modules, and the original full source
+still has rank $3^3=27$ with its stated complement.
+More explicitly, at $n=1$ the unique flagged point is
+$(X_{B_{11}},X_{R_{11}},X_{C_{11}})=(1,1,1)$. Evaluation there
+is a surjective $O$-algebra map $\mathcal A_3\to O=B_1$;
+its kernel is the span of the other 26 point idempotents, and
+it sends $u_1(Z)=Z_{11}E_{(1,1,1)}$ to $v_1(Z)=Z_{11}$.
+
+\subsection{A multiplication obstruction and the unequal power traces}
+
+Equality of the first traces does not give equality of their spectra.
+Specialize the original coordinates to the identity matrix $I_n$.
+In \eqref{eq:compressed-original-u} only $\sigma=\mathrm{id}$
+survives, so $u_n(I_n)=E_{\omega(\mathrm{id})}$ is an idempotent
+in the full original algebra and its permutation ideal. On the sign
+side $L_i(I_n)=d_i$, and hence
+\[
+ v_n(I_n)=r_n^{-1}\chi_n\prod_i d_i=r_n^{-1}\chi_n^2=r_n^{-1}1.
+\]
+For $n\ge2$ over $\mathbb Q$ this element is not idempotent,
+since $r_n^{-2}-r_n^{-1}=(1-r_n)/r_n^2\ne0$.
+Every multiplicative map, whether unital or not, sends an idempotent
+to an idempotent. Thus no $\mathbb Q[Z]$-linear multiplicative map
+from the original full source algebra or its permutation ideal
+to $B_n\otimes\mathbb Q[Z]$ sends $u_n(Z)$ to $v_n(Z)$:
+such a map would specialize at $Z=I_n$ to the impossible map just
+described. This is an obstruction for the stated compatible base
+map. No assertion about arbitrary changes of the $Z$ coordinates
+is needed. In odd characteristic the specific test may disappear
+when $r_n=1$ in the field; the rational assertion retains its domain.
+
+There is a stronger generic obstruction that covers every field $k$
+of characteristic different from two, even after passing to the
+rational function field $K=k(Z_{ij})$. Both source algebras and the
+sign algebra split as products of copies of $K$, by their stated
+point idempotents. Compose a $K$-linear multiplicative map from
+either source algebra to the sign algebra with any sign-coordinate
+evaluation. Each primitive source idempotent must map to an
+idempotent of the field $K$, hence to zero or one: the equation
+$x(x-1)=0$ in a field forces these two possibilities. Orthogonality
+allows at most one of them to map to one. Therefore the image
+of $u_n$ in this coordinate is either zero or one of its permutation
+monomials. At a fixed sign vector $\delta$, however, the coefficient
+of the nonpermutation monomial $\prod_i Z_{i1}$ in $v_n(\delta)$
+is $r_n^{-1}\prod_j\delta_j\ne0$, and the coefficient of every
+permutation monomial is $r_n^{-1}\ne0$. These statements follow
+by selecting the indicated unique term in each row sum; all row
+monomials are distinct. For $n\ge2$ this polynomial is consequently
+neither zero nor a single permutation monomial. The injection
+$k[Z]\hookrightarrow K$ preserves these inequalities. This proves
+that no such $K$-linear multiplicative map sends $u_n$ to $v_n$,
+including nonunital maps. It also proves the compatible polynomial
+base-map obstruction over every such field, since a map over
+$k[Z]$ would extend to $K$ by scalar extension.
+
+For every integer $d\ge1$ the original power trace and the new one
+are, respectively,
+\[
+ \operatorname{Tr}(m_{u_n}^d)=
+       \sum_{\sigma}\prod_i Z_{i,\sigma(i)}^d,
+ \qquad
+ \operatorname{Tr}(m_{v_n}^d)=
+       r_n^{-d}\sum_{\delta\in\Delta_n}
+       \Bigl(\prod_j\delta_j\Bigr)^d
+       \prod_i\Bigl(\sum_j\delta_j Z_{ij}\Bigr)^d.
+\]
+These follow by taking powers of the diagonal entries in their
+specified point bases. At $Z=I_n$ they equal $1$ and $r_n^{1-d}$.
+In particular $d=2$ distinguishes them over $\mathbb Q$ for $n\ge2$.
+Their characteristic determinants at this same specialization are
+$1-T$ and $(1-T/r_n)^{r_n}$, respectively: the full original
+operator has one eigenvalue one and all other eigenvalues zero,
+whereas the sign operator has $r_n$ copies of $1/r_n$.
+The common first trace, the exact coefficient maps, and these
+different higher traces are all retained simultaneously.
+
+\subsection{The exact dimension obstruction for a fixed algebra}
+
+Let $k$ now be any field and $D$ a finite-dimensional associative
+unital $k$-algebra of dimension $q_D$. Fix $c\in D$ and elements
+$a_{ij}\in D$, all independent of the polynomial coordinates $Z$.
+No commutativity of $D$ is assumed. Define
+\[
+ A_i(Z)=\sum_{j=1}^n a_{ij}Z_{ij},\qquad
+ Q_D(Z)=\operatorname{Tr}_{D\otimes k[Z]/k[Z]}
+                 (m_{c A_1(Z)\cdots A_n(Z)}),
+\]
+where the product has the displayed order, the $Z$ coordinates are
+central, and $m_b(x)=bx$ is left multiplication. Associativity
+implies $m_bm_{b'}=m_{bb'}$ directly on every $x\in D$.
+
+\begin{theorem}\label{thm:compressed-fixed-algebra-bound}
+For every cut $0\le k_0\le n$, the row coefficient contraction
+of $Q_D$ has rank at most $q_D$. Consequently, if
+$Q_D(Z)=\operatorname{per}_n(Z)$ as polynomials, then
+\[
+ q_D\ge\binom n{k_0}\quad(0\le k_0\le n),\qquad
+ q_D\ge\binom n{\lfloor n/2\rfloor}.
+\]
+\end{theorem}
+\begin{proof}
+Use the head and tail monomial spaces $H_{k_0},T_{k_0}$ of
+Theorem~\ref{thm:per-exact-row-rank}. Define a linear map on
+the dual head basis by
+\[
+ a:H_{k_0}^*\longrightarrow D,\qquad
+ h_{\boldsymbol j}^*\longmapsto
+ a_{1j_1}\cdots a_{k_0j_{k_0}},
+\]
+with the empty product equal to $1_D$. Define
+\[
+ b:D\longrightarrow T_{k_0},\qquad
+ z\longmapsto\sum_{\boldsymbol l}
+ \operatorname{Tr}_D\bigl(m_{c z
+      a_{k_0+1,l_{k_0+1}}\cdots a_{n,l_n}}\bigr)
+ t_{\boldsymbol l}.
+\]
+Both are $k$-linear, since multiplication by a fixed factor is
+linear and the matrix trace is linear. Expanding the ordered product
+in $Q_D$ shows that its coefficient at
+$h_{\boldsymbol j}t_{\boldsymbol l}$ is exactly the displayed
+trace with $z=a_{1j_1}\cdots a_{k_0j_{k_0}}$. Its coefficient
+contraction is therefore $ba$ and has rank at most $\dim_kD=q_D$.
+If it is the permanent contraction, the integral identity minor
+of Theorem~\ref{thm:per-exact-row-rank} gives rank $\binom n{k_0}$
+over this same field. The middle choice gives the last inequality.
+\end{proof}
+
+For any field of odd characteristic, or of characteristic zero,
+\eqref{eq:compressed-row-multiplier} is a representation of this
+precise form with $D=B_n\otimes k$, $c=\chi_n/r_n$,
+$a_{ij}=d_j$, and $q_D=2^{n-1}$. Thus the construction gives an
+upper bound $2^{n-1}$ for this algebra dimension, while the theorem
+gives its universal lower bound $\binom n{\lfloor n/2\rfloor}$.
+This lower bound is exponential: the binomial coefficients count
+all subsets by their cardinalities and sum to $2^n$; the ratio
+$\binom n{k+1}/\binom nk=(n-k)/(k+1)$ shows the middle coefficient
+is maximal, so it is at least $2^n/(n+1)$.
+The factorization assumes a fixed algebra with coordinate-independent
+structure and coefficients. It places no restriction on representing
+an arbitrary polynomial as a single unconstrained element of a
+rank-one algebra; in that larger description the element itself
+could already contain the permanent.
+
+The sign algebra is smaller than the original source algebra for
+every $n\ge1$, since $2^{n-1}\le3^{n-1}<3^{3n^2}$, and smaller
+than its Boolean corner $2^{3n^2}$. Its stated dimension remains
+exponential. Enumerating its $2^{n-1}$ signs and directly evaluating
+the displayed $n$ row sums and product uses $O(n^2 2^{n-1})$
+arithmetic operations: each sign requires $n^2$ signed entries,
+$n(n-1)$ additions for the row sums, $n-1$ multiplications for
+their product, and a bounded number of sign and scale operations;
+the resulting values are summed over that many signs. These loops
+give a uniform explicit algorithm. For integer $L\ge0$ and entries with
+$|Z_{ij}|<2^L$, each row sum has absolute value at most $n2^L$,
+and the integer signed numerator is bounded in absolute value by
+$2^{n-1}n^n2^{nL}$. Its exact division by $2^{n-1}$ yields the
+integer permanent by the proof above; a sufficient signed bit bound
+for that numerator is
+$n-1+n\lceil\log_2 n\rceil+nL+2$.
+No polynomial-size representation or unrestricted circuit separation
+is inferred from this compressed trace or its fixed-algebra bound.

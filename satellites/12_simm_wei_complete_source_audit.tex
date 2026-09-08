@@ -1,0 +1,882 @@
+\subsubsection{Complete source-level audit of Simm--Wei}
+\label{sec:simm-wei-complete-audit}
+
+This subsection records a complete content-level reading of Simm and Wei,
+\emph{On moments of the derivative of CUE characteristic polynomials and the Riemann
+zeta function}, arXiv:2409.03687v2 \cite{simmWei2026}.  The source TeX, its compiled
+bibliography, and the arXiv source archive were read as distinct pinned objects.  We distinguish
+results proved in Simm--Wei, imported from an identified source, independently checked here,
+and not proved in this version; the last status is strictly source-relative.
+An exact bounded certificate, \texttt{CERT-SIMM-WEI-20260828-0001}, independently replays
+the finite polynomial checks stated below.  It is not used as a replacement for any analytic
+argument.
+
+\paragraph{Objects, coordinates, and the three limits.}
+Let $U\in U(N)$ have normalized Haar law and put
+\begin{equation}
+ \Lambda_N(z)=\det(I-zU^*),\qquad
+ G_N(z)=\log\Lambda_N(z),\qquad |z|<1.
+ \label{eq:SW-objects}
+\end{equation}
+The logarithm is the analytic branch fixed by $G_N(0)=0$.  If
+$e^{\mathrm i\theta_1},\ldots,e^{\mathrm i\theta_N}$ are the eigenvalues of $U$, then
+\begin{align}
+ G_N(z)&=\sum_{j=1}^{N}\log(1-ze^{-\mathrm i\theta_j})
+       =-\sum_{k\geq1}\frac{\operatorname{Tr}(U^{-k})}{k}z^k,
+ \label{eq:SW-GN}\\
+ G_N'(z)&=-\sum_{j=1}^{N}\frac{e^{-\mathrm i\theta_j}}
+                                  {1-ze^{-\mathrm i\theta_j}}
+       =-\sum_{k\geq1}\operatorname{Tr}(U^{-k})z^{k-1}.
+ \label{eq:SW-GN-prime}
+\end{align}
+The first equality in \eqref{eq:SW-GN-prime} corrects the source's summation-letter typo:
+the summand is indexed by $j$, not by $k$.  Haar rotation shows that
+$\mathbb E|\Lambda_N'(z)|^{2s}$ depends on $z$ only through $u=|z|^2$.  The source keeps
+three different limiting problems:
+\begin{equation}
+ \begin{array}{c|c|c}
+ \text{regime}&u&\text{distance }1-u\\ \hline
+ \text{global}&u\in[0,1)\text{ fixed}&1-u\\
+ \text{mesoscopic}&1-N^{-\alpha},\ 0<\alpha<1&N^{-\alpha}\\
+ \text{microscopic}&1-c/N,\ c\in\mathbb R\text{ fixed}&c/N.
+ \end{array}
+ \label{eq:SW-three-regimes}
+\end{equation}
+No one of these coordinate prescriptions is silently substituted for another.
+
+\paragraph{The Gaussian field and the global moment.}
+Let $(\mathcal N_k)_{k\geq1}$ be independent standard complex Gaussian variables, so their
+real and imaginary parts have variance $1/2$, and define on the open disc
+\begin{equation}
+ G(z)=\sum_{k\geq1}\frac{\mathcal N_k}{\sqrt{k}}z^k,
+ \qquad
+ G'(z)=\sum_{k\geq1}\sqrt{k}\,\mathcal N_k z^{k-1},
+ \qquad \Lambda(z)=e^{G(z)}.
+ \label{eq:SW-Gaussian-field}
+\end{equation}
+The trace central limit theorem and strong Szeg\H{o} machinery give, for fixed points in the
+disc \cite{diaconisShahshahani1994,diaconisEvans2001,johansson1997},
+\begin{equation}
+ (G_N(z_1),G_N'(z_2))\Longrightarrow(G(z_1),G'(z_2)).
+ \label{eq:SW-joint-convergence}
+\end{equation}
+Direct summation of the
+power-series covariances gives, without a change of coordinates,
+\begin{equation}
+ \Gamma_{11}=-\log(1-|z_1|^2),\qquad
+ \Gamma_{12}=\frac{z_1}{1-z_1\overline{z_2}},\qquad
+ \Gamma_{22}=\frac1{(1-|z_2|^2)^2}.
+ \label{eq:SW-covariance}
+\end{equation}
+Here $\Gamma_{ab}=\mathbb E(Q_a\overline{Q_b})$ for
+$Q=(G(z_1),G'(z_2))$, and the relation matrix $\mathbb E(Q_aQ_b)$ is zero.
+
+\begin{theorem}[Simm--Wei global joint moment]
+\label{thm:SW-global-joint}
+Fix $|z_1|,|z_2|<1$.  For $s,h\in\mathbb C$ with $\operatorname{Re}h>-1$, interpret
+positive-real complex powers using the real logarithm.  Then
+\begin{equation}
+ \lim_{N\to\infty}\mathbb E\!\left[
+ \left|\frac{\Lambda_N'(z_2)}{\Lambda_N(z_2)}\right|^{2h}
+ |\Lambda_N(z_1)|^{2s}\right]
+ =\frac{e^{-s^2\rho}\Gamma(h+1){}_1F_1(h+1,1;s^2\rho)}
+ {(1-|z_2|^2)^{2h}(1-|z_1|^2)^{s^2}},
+ \label{eq:SW-global-joint}
+\end{equation}
+where
+\begin{equation}
+ \rho=\frac{|z_1|^2(1-|z_2|^2)^2}{|1-z_1\overline{z_2}|^2}.
+ \label{eq:SW-rho}
+\end{equation}
+In particular, for fixed $|z|<1$ and $\operatorname{Re}s>-1$,
+\begin{equation}
+ \lim_{N\to\infty}\mathbb E|\Lambda_N'(z)|^{2s}
+ =\frac{e^{-s^2|z|^2}\Gamma(s+1){}_1F_1(s+1,1;s^2|z|^2)}
+ {(1-|z|^2)^{s^2+2s}}.
+ \label{eq:SW-global-derivative}
+\end{equation}
+For $s\in\mathbb N$ this is
+\begin{equation}
+ \frac{s!L_s(-s^2|z|^2)}{(1-|z|^2)^{s^2+2s}}.
+ \label{eq:SW-global-integer}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Gaussian calculation and analytic dependency chain]
+Put $D=\det\Gamma$.  The density of $Q=(w_1,w_2)$ is
+\begin{equation}
+ \frac1{\pi^2D}\exp\!\left[-\frac{
+ \Gamma_{22}|w_1|^2-\Gamma_{12}\overline{w_1}w_2
+ -\overline{\Gamma_{12}}w_1\overline{w_2}+\Gamma_{11}|w_2|^2}{D}\right].
+ \label{eq:SW-joint-density}
+\end{equation}
+For real $s$ and $\operatorname{Re}h>-1$, complete the square in $w_1$ in the integral of
+$|w_2|^{2h}e^{s(w_1+\overline{w_1})}$.  After scaling
+$w_2\mapsto\sqrt{\Gamma_{22}}w_2$ one obtains
+\begin{equation}
+ \Gamma_{22}^{h}e^{s^2D/\Gamma_{22}}
+ \frac1\pi\int_{\mathbb C}|w|^{2h}e^{-|w|^2+s\xi w+s\overline{\xi w}}\,d^2w,
+ \qquad \xi=\frac{\Gamma_{12}}{\sqrt{\Gamma_{22}}}.
+ \label{eq:SW-square-completed}
+\end{equation}
+Angular integration kills unequal holomorphic and antiholomorphic powers.  Radial integration
+then gives
+\begin{align}
+ \frac1\pi\int_{\mathbb C}|w|^{2h}e^{-|w|^2+s\xi w+s\overline{\xi w}}\,d^2w
+ &=\sum_{k\geq0}\frac{\Gamma(h+k+1)}{(k!)^2}s^{2k}|\xi|^{2k}\notag\\
+ &=\Gamma(h+1){}_1F_1(h+1,1;s^2|\xi|^2).
+ \label{eq:SW-hypergeometric-integral}
+\end{align}
+The covariance entries imply
+\begin{equation}
+ |\xi|^2=\rho,\qquad
+ \Gamma_{22}^{h}e^{s^2D/\Gamma_{22}}
+ =(1-|z_2|^2)^{-2h}(1-|z_1|^2)^{-s^2}e^{-s^2\rho},
+ \label{eq:SW-covariance-substitution}
+\end{equation}
+which proves the formula for real $s$; both sides are entire in $s$, giving the stated
+extension.  Kummer's transformation yields
+$e^{-x}{}_1F_1(s+1,1;x)=L_s(-x)$ for integer $s$.
+
+It remains to justify passage from convergence in law to expectations.  For nonnegative
+$\operatorname{Re}h$, Cauchy--Schwarz and a sufficiently high integer moment reduce the
+claim to bounded integer moments of $\Lambda_N'$ and positive or negative moments of
+$\Lambda_N$; the latter are the interior-disc bounds of Forrester--Keating
+\cite[Cor.~2]{forresterKeating2004}.  For $-1<\operatorname{Re}h<0$, the negative-moment
+estimate proved next supplies the missing uniform integrability.  Thus the Gaussian
+calculation, the trace limit, and the uniform-integrability theorem together prove
+\eqref{eq:SW-global-joint}; none alone suffices.
+\end{proof}
+
+For integer $s$, the numerator in \eqref{eq:SW-global-integer} also follows by differentiating
+the exact Gaussian product
+\begin{equation}
+ \mathbb E\prod_{i=1}^{s}\Lambda(z_i)
+              \prod_{j=1}^{s}\overline{\Lambda(\overline{w_j})}
+ =\prod_{i,j=1}^{s}(1-z_iw_j)^{-1}.
+ \label{eq:SW-Gaussian-product}
+\end{equation}
+After all $z_i$ derivatives are merged, the product is
+$F(z,\mathbf w)H(z,\mathbf w)$ with
+\begin{equation}
+ F(z,\mathbf w)=\prod_{j=1}^{s}(1-zw_j)^{-s},\qquad
+ H(z,\mathbf w)=\left(\sum_{j=1}^{s}\frac{w_j}{1-zw_j}\right)^s.
+\end{equation}
+If exactly $k$ of the $w$ derivatives strike $F$, the merged contribution is
+\begin{equation}
+ \binom{s}{k}^2(s-k)!(s|z|)^{2k}(1-|z|^2)^{-s^2-2s},
+\end{equation}
+and summing $0\leq k\leq s$ gives $s!L_s(-s^2|z|^2)$.
+
+\paragraph{Negative moments: small balls in two real coordinates.}
+Set
+\begin{equation}
+ f_r(\theta)=-\frac{e^{-\mathrm i\theta}}{1-re^{-\mathrm i\theta}},
+ \qquad X_N(f_r)=\sum_{j=1}^{N}f_r(\theta_j)=G_N'(r).
+\end{equation}
+
+\begin{theorem}[Simm--Wei negative-moment bound]
+\label{thm:SW-negative}
+For fixed $0\leq r<1$, $N>4$, and $0\leq a<2$, a constant $C_{a,r}$ independent of $N$
+satisfies
+\begin{equation}
+ \mathbb E|G_N'(r)|^{-a}\leq C_{a,r},\qquad
+ \mathbb E|\Lambda_N'(r)|^{-a}\leq C_{a,r}.
+ \label{eq:SW-negative}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof with the uniform stationary-point calculation made explicit]
+Integration by parts reduces the first estimate to the two-dimensional small-ball bound
+\begin{equation}
+ \mathbb P(|X_N(f_r)|<y)\leq C_ry^2,\qquad 0<y<1,
+ \label{eq:SW-small-ball-target}
+\end{equation}
+because $\int_0^1y^{1-a}dy<\infty$ exactly for $a<2$.  Hal\'asz's concentration
+inequality \cite[Sec.~5]{halasz1977} gives
+\begin{equation}
+ \mathbb P(|X_N(f_r)|\leq y)
+ \leq y^2\int_{|\xi_1|<y^{-1}}\int_{|\xi_2|<y^{-1}}
+ |\psi_N(\xi_1,\xi_2)|\,d\xi_1\,d\xi_2,
+ \label{eq:SW-Halasz}
+\end{equation}
+where $\xi=|\xi_1|+|\xi_2|$, $\eta_j=\xi_j/\xi$, and
+\begin{equation}
+ \psi_N=\mathbb E e^{\mathrm i\xi X_N(g)},\qquad
+ g(\theta)=\frac{\eta_1(r-\cos\theta)+\eta_2\sin\theta}
+ {1+r^2-2r\cos\theta}.
+ \label{eq:SW-g}
+\end{equation}
+The characteristic function is the Toeplitz determinant of
+$h(\theta)=e^{\mathrm i\xi g(\theta)}$.  Hadamard's inequality and stationary phase give,
+for $\xi>N^8$,
+\begin{equation}
+ |\psi_N(\xi_1,\xi_2)|\leq C_r^N N^{-N/2}\xi^{-N/4}.
+ \label{eq:SW-high-frequency}
+\end{equation}
+The uniformity needed here is visible in coordinates.  If
+\begin{equation}
+ A=\eta_2(1+r^2),\quad B=\eta_1(1-r^2),\quad C=2r\eta_2,
+\end{equation}
+then a zero of $g'$ satisfies $A\cos\theta+B\sin\theta=C$, while the derivative of this
+numerator in the tangent direction has square
+\begin{equation}
+ (-A\sin\theta+B\cos\theta)^2=A^2+B^2-C^2
+ =(1-r^2)^2(\eta_1^2+\eta_2^2).
+ \label{eq:SW-stationary-nondegenerate}
+\end{equation}
+Because $|\eta_1|+|\eta_2|=1$, the last parenthesis is at least $1/2$.  The denominator in
+\eqref{eq:SW-g} lies between $(1-r)^2$ and $(1+r)^2$.  Hence all zeros are uniformly
+nondegenerate.  This also covers $\eta_2=0$ directly, and, by compactness and the implicit
+function theorem, covers the perturbed phases $\xi g-k\theta$ occurring in the Fourier
+coefficients when $|k|\leq N$ and $\xi>N^8$.  Thus the invoked stationary-phase estimate
+\cite[Ch.~6]{bleisteinHandelsman1986} has the required uniform constants; checking only one
+fixed parameter value would not have done so.
+
+For the low and intermediate ranges, Johansson's exponential estimate
+\cite[proof of Prop.~2.8]{johansson1997} applies to the smooth family \eqref{eq:SW-g}.  Its
+quantities are uniformly controlled because that family is compact in every $C^m$ norm for
+fixed $r<1$.  In particular
+\begin{equation}
+ b=\frac1{2\pi}\int_0^{2\pi}(g')^2
+ =\frac{(\eta_1^2+\eta_2^2)(1+r^2)}{2(1-r)^3(1+r)^3}
+\end{equation}
+is uniformly positive, and one obtains
+\begin{equation}
+ |\psi_N|\leq e^{-c_r(\xi_1^2+\xi_2^2)}\quad(\xi<N),
+ \qquad |\psi_N|\leq e^{-c_rN^2}\quad(N\leq\xi<N^8).
+ \label{eq:SW-low-mid-frequency}
+\end{equation}
+Integrating \eqref{eq:SW-high-frequency} and \eqref{eq:SW-low-mid-frequency} over the three
+regions gives a constant independent of $N$ in \eqref{eq:SW-Halasz}, proving
+\eqref{eq:SW-small-ball-target}.  The finitely many sizes $5\leq N\leq8$ are absorbed by the
+same Fourier estimate with an $N$-dependent constant and then a maximum over this finite set.
+
+Finally $\Lambda_N'=G_N'\Lambda_N$.  Choose conjugate H\"older exponents $q,\ell>1$ with
+$aq<2$.  Then
+\begin{equation}
+ \mathbb E|\Lambda_N'(r)|^{-a}
+ \leq(\mathbb E|G_N'(r)|^{-aq})^{1/q}
+      (\mathbb E|\Lambda_N(r)|^{-a\ell})^{1/\ell}.
+\end{equation}
+The second factor is bounded by Forrester--Keating for large $N$
+\cite[Cor.~2]{forresterKeating2004}.  For the remaining finite sizes,
+$|\Lambda_N(r)|\geq(1-r)^N$ pointwise.  This completes both bounds.
+\end{proof}
+
+\paragraph{Jensen's formula and derivative zeros.}
+Let $n_N(r)$ count zeros of $\Lambda_N'$ in $|z|<r$, with multiplicity.  Jensen's formula,
+the preceding negative moments, and moment bounds for the smooth linear statistics
+$G_N'$, $G_N''$, and $G_N$ give uniform integrability.  The required cumulant bounds are
+imported from Soshnikov \cite{soshnikov2000}.  Consequently, uniformly for $r$ in a compact
+subset of $[0,1)$,
+\begin{equation}
+ \lim_{N\to\infty}\int_0^r\frac{\mathbb E n_N(t)}t,dt=-\log(1-r^2),
+ \qquad
+ \lim_{N\to\infty}\mathbb E n_N(r)=\frac{2r^2}{1-r^2}.
+ \label{eq:SW-Jensen-result}
+\end{equation}
+Indeed,
+\begin{equation}
+ \int_0^r\frac{\mathbb E n_N(t)}t,dt
+ =\mathbb E\log|\Lambda_N'(r)|-\mathbb E\log|\Lambda_N'(0)|,
+\end{equation}
+and differentiation gives
+\begin{equation}
+ \mathbb E n_N(r)=r\,\mathbb E\operatorname{Re}
+ \frac{\Lambda_N''(r)}{\Lambda_N'(r)}.
+\end{equation}
+The convergence required for the last quotient is joint convergence of $G_N'$, $G_N''$,
+and $G_N$, followed by the identity
+$\Lambda_N''/\Lambda_N'=G_N''/G_N'+G_N'$.  The source sentence naming
+$r(d/dr)\log|G_N|$ is therefore read as a variable-name slip, not as the actual target.
+
+\paragraph{Exact finite-$N$ determinant.}
+For a partition $\lambda\vdash s$, pad $\lambda$ to length $s$, let $f_\lambda$ be the
+number of standard Young tableaux of shape $\lambda$, and retain the source's nonstandard
+factorial
+\begin{equation}
+ \lambda!:=\prod_{i=1}^{s}(\lambda_i+s-i)!.
+ \label{eq:SW-partition-factorial}
+\end{equation}
+Put
+\begin{equation}
+ p_i=\lambda_i+s-i,\qquad q_j=\mu_j+s-j,
+ \qquad K_N(u)=\sum_{k=0}^{N+s-1}u^k.
+ \label{eq:SW-pq-kernel}
+\end{equation}
+
+\begin{theorem}[Simm--Wei finite determinant]
+\label{thm:SW-finite-determinant}
+For $N,s\in\mathbb N$ and $z\in\mathbb C$,
+\begin{equation}
+ \mathbb E|\Lambda_N'(z)|^{2s}
+ =\sum_{\lambda,\mu\vdash s}\frac{f_\lambda f_\mu}{\lambda!\mu!}
+ \det\!\left(\left[u^{p_i}K_N^{(p_i)}(u)\right]^{(q_j)}\right)_{i,j=1}^{s},
+ \qquad u=|z|^2.
+ \label{eq:SW-finite-determinant}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The Akemann--Vernizzi characteristic-polynomial identity gives
+\begin{equation}
+ \mathbb E\prod_{i=1}^{s}\det(I-z_iU)det(I-w_iU^*)
+ =\frac{\det(K_N(z_iw_j))_{i,j=1}^{s}}
+ {\Delta(\mathbf z)\Delta(\mathbf w)}
+ \label{eq:SW-Akemann-Vernizzi}
+\end{equation}
+\cite[Thm.~1]{akemannVernizzi2003}.  The numerator is alternating in each list.  For an
+alternating polynomial $P(x_1,\ldots,x_s)$, the confluent derivative identity used by
+Simm--Wei is
+\begin{equation}
+ \left.\prod_{i=1}^{s}\partial_{x_i}\frac{P(\mathbf x)}{\Delta(\mathbf x)}
+ \right|_{\mathbf x=x}
+ =\sum_{\lambda\vdash s}
+ \frac{f_\lambda}{\prod_i(\lambda_i+s-i)!}
+ \left.\prod_i\partial_{x_i}^{\lambda_i+s-i}P(\mathbf x)\right|_{\mathbf x=x},
+ \label{eq:SW-confluent-partition-identity}
+\end{equation}
+with the harmless common sign determined by the chosen orientation of $\Delta$; applying it
+once in each variable list cancels that sign.  Its recursion deletes one corner of a Young
+diagram, which is exactly the standard-tableau recursion, hence its coefficient is
+$f_\lambda$.
+
+Apply \eqref{eq:SW-confluent-partition-identity} to both lists in
+\eqref{eq:SW-Akemann-Vernizzi}.  Expanding the determinant by permutations allows the
+derivatives to be taken entrywise.  At $z_i=w_j=r$, differentiation of
+$K_N(z_iw_j)$ gives a factor $r^{q_j-p_i}$ multiplying
+$[u^{p_i}K_N^{(p_i)}(u)]^{(q_j)}$.  The determinant-wide factor is
+$r^{\sum_jq_j-\sum_ip_i}=1$, since both sums equal $s(s+1)/2$.  This proves
+\eqref{eq:SW-finite-determinant} for $r\ne0$, and polynomial continuation gives $r=0$.
+The source's displayed induction has one denominator running to $n$ where the preceding and
+following expressions require $n-1$; the corrected range is used here.
+\end{proof}
+
+The independent certificate evaluates the right side of
+\eqref{eq:SW-finite-determinant} and a separate Weyl-density Laurent constant term.  Their
+exact common values are
+\begin{equation}
+\begin{array}{c|c|l}
+N&s&\mathbb E|\Lambda_N'(z)|^{2s}\\ \hline
+1&1,2,3&1\\
+2&1&1+4u\\
+2&2&2(1+8u+8u^2)\\
+3&1&1+4u+9u^2\\
+3&2&2+32u+116u^2+144u^3+81u^4.
+\end{array}
+\label{eq:SW-certificate-table}
+\end{equation}
+These are bounded checks of the general identity, not a finite-case proof of it.
+
+\paragraph{Mesoscopic limit: the discarded tail is exponentially small.}
+
+\begin{theorem}[Simm--Wei mesoscopic derivative moment]
+\label{thm:SW-mesoscopic}
+For fixed $s\in\mathbb N$, $0<\alpha<1$, and $u_N=1-N^{-\alpha}$,
+\begin{equation}
+ \mathbb E|\Lambda_N'(z_N)|^{2s}
+ \sim N^{\alpha(s^2+2s)}s!L_s(-s^2),
+ \qquad |z_N|^2=u_N.
+ \label{eq:SW-mesoscopic}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write the finite kernel with its tail retained:
+\begin{equation}
+ K_N(u)=\frac1{1-u}-\frac{u^{N+s}}{1-u}.
+ \label{eq:SW-kernel-tail}
+\end{equation}
+All derivative orders in \eqref{eq:SW-finite-determinant} are bounded in terms of the fixed
+$s$.  After any fixed number $m$ of differentiations, the second term at $u_N$ is bounded by
+a fixed power of $N$ times
+\begin{equation}
+ u_N^{N+s-m}\leq\exp(-(N+s-m)N^{-\alpha})
+ =\exp(-N^{1-\alpha}+O(N^{-\alpha})).
+ \label{eq:SW-tail-exponential}
+\end{equation}
+The determinant has fixed size, so this error is negligible compared with every power of
+$N$.  Thus the finite kernel may, in this regime and after this estimate, be replaced by
+$\widetilde K(u)=(1-u)^{-1}$.  The resulting partition determinant is not newly evaluated:
+it is exactly the global integer identity \eqref{eq:SW-global-integer}.  Therefore
+\begin{align}
+ \mathbb E|\Lambda_N'(z_N)|^{2s}
+ &\sim(1-u_N)^{-s^2-2s}s!L_s(-s^2u_N)\notag\\
+ &\sim N^{\alpha(s^2+2s)}s!L_s(-s^2),
+\end{align}
+which proves the claim.  This supplies the uniform estimate implicit in the source's short
+replacement of $K_N$ by $\widetilde K$.
+\end{proof}
+
+\paragraph{Microscopic limit and positivity.}
+For $p\geq0$ the finite kernel has the exact beta-integral derivative
+\begin{equation}
+ u^pK_N^{(p)}(u)
+ =\frac{(N+s)!}{(N+s-p-1)!}u^p
+ \int_0^1x^p(1-x(1-u))^{N+s-p-1},dx.
+ \label{eq:SW-beta-kernel}
+\end{equation}
+This formula retains the factorial and the finite endpoint; neither is normalized away.
+
+\begin{theorem}[Simm--Wei microscopic derivative moment]
+\label{thm:SW-microscopic}
+Fix $c\in\mathbb R$, $s\in\mathbb N$, and set $u_N=1-c/N$ whenever this is nonnegative.
+Then
+\begin{equation}
+ \mathbb E|\Lambda_N'(z_N)|^{2s}\sim N^{s^2+2s}b_s(c),
+ \label{eq:SW-microscopic}
+\end{equation}
+where
+\begin{equation}
+ b_s(c)=\sum_{\lambda,\mu\vdash s}\frac{f_\lambda f_\mu}{\lambda!\mu!}
+ \det\!\left(\int_0^1x^{p_i+q_j}e^{-cx}\,dx\right)_{i,j=1}^{s}>0.
+ \label{eq:SW-bs-partitions}
+\end{equation}
+Equivalently, if
+\begin{equation}
+ F_c(v,w)=\int_0^1J_0(2\sqrt{vx})J_0(2\sqrt{wx})e^{-cx}\,dx,
+ \label{eq:SW-Fc}
+\end{equation}
+then
+\begin{equation}
+ b_s(c)=\left.\partial_v^s\partial_w^s
+ \det\!\left(\partial_v^{i-1}\partial_w^{j-1}F_c(v,w)
+ \right)_{i,j=1}^{s}\right|_{v=w=0}.
+ \label{eq:SW-bs-Bessel}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiate \eqref{eq:SW-beta-kernel} $q$ times.  The summand in which every derivative
+strikes the integral has the largest factorial power.  Since $p,q$ range over a fixed finite
+set and $c$ is fixed, dominated convergence gives the entrywise expansion
+\begin{equation}
+ \left[u^pK_N^{(p)}(u)\right]^{(q)}\Big|_{u=1-c/N}
+ =N^{p+q+1}\left(\int_0^1x^{p+q}e^{-cx}\,dx+O_{p,q,c}(N^{-1})\right).
+ \label{eq:SW-entry-microscopic}
+\end{equation}
+Factor $N^{p_i+1}$ from row $i$ and $N^{q_j}$ from column $j$.  Since
+\begin{equation}
+ \sum_i p_i=\sum_jq_j=s+\frac{s(s-1)}2=\frac{s(s+1)}2,
+\end{equation}
+the total power is $N^{s^2+2s}$.  Substitution in
+\eqref{eq:SW-finite-determinant} yields \eqref{eq:SW-bs-partitions}.
+
+For positivity, Andr\'eief's identity rewrites each moment determinant as an integral of two
+alternants.  Summing the two partition lists separately gives the square
+\begin{equation}
+ b_s(c)=\frac1{s!}\int_{[0,1]^s}
+ \left(\sum_{\lambda\vdash s}\frac{f_\lambda}{\lambda!}
+ s_\lambda(\mathbf x)\right)^2
+ e^{-c\sum_jx_j}\Delta(\mathbf x)^2\,d\mathbf x.
+ \label{eq:SW-bs-positive}
+\end{equation}
+Every factor is nonnegative for $\mathbf x\in[0,1]^s$, and the displayed polynomial is not
+identically zero, so the integral is strictly positive.  This nonvanishing also licenses the
+asymptotic equivalence sign after the entrywise limit.
+
+To obtain \eqref{eq:SW-bs-Bessel}, use the hook-content relation between
+$f_\lambda$, $s_\lambda(1,\ldots,1)$, and \eqref{eq:SW-partition-factorial}; introduce one
+degree-marking variable for the condition $|\lambda|=s$; and apply the Schur--Bessel
+determinant expansion
+\begin{equation}
+ \sum_{\lambda:\,\ell(\lambda)\leq s}
+ \frac{s_\lambda(\mathbf x)s_\lambda(-\mathbf v)}{(\lambda!)^2}
+ =\frac{\det(J_0(2\sqrt{x_iv_j}))_{i,j=1}^{s}}
+ {\Delta(\mathbf x)\Delta(\mathbf v)}.
+ \label{eq:SW-Schur-Bessel}
+\end{equation}
+This is the character expansion used by Simm--Wei, with provenance in Balantekin
+\cite[App.~B]{balantekin2000}.  Applying Andr\'eief again and then the confluent determinant
+identity
+\begin{equation}
+ \left.\frac{\det(B(v_i,w_j))}{\Delta(\mathbf v)\Delta(\mathbf w)}
+ \right|_{\mathbf v=v,\mathbf w=w}
+ =\left(\prod_{k=0}^{s-1}(k!)^{-2}\right)
+ \det(\partial_v^{i-1}\partial_w^{j-1}B(v,w))
+ \label{eq:SW-confluent-two-list}
+\end{equation}
+leaves exactly \eqref{eq:SW-bs-Bessel}.
+\end{proof}
+
+The integral definition \eqref{eq:SW-Fc} is correct as printed.  One subsequent displayed
+Christoffel--Darboux identity in v2 has both an undefined $z$ and an extra factor $2$.  The
+correct $c=0$ identity is
+\begin{equation}
+ \int_0^1J_0(2\sqrt{vx})J_0(2\sqrt{wx})\,dx
+ =\frac{\sqrt wJ_0(2\sqrt v)J_0'(2\sqrt w)
+       -\sqrt vJ_0'(2\sqrt v)J_0(2\sqrt w)}{v-w},
+ \label{eq:SW-correct-Bessel-CD}
+\end{equation}
+continued across $v=w$.  It follows from $x=t^2$ and the standard Bessel product integral.
+At $w=0$, termwise integration gives
+\begin{equation}
+ \sum_{m\geq0}\frac{(-v)^m}{(m!)^2(m+1)},
+\end{equation}
+whose constant term is $1$; the printed right side has constant term $2$.  The certificate
+checks the first eight exact coefficients.  Because the microscopic theorem uses
+\eqref{eq:SW-Fc}, the defect in the later identification does not alter
+\eqref{eq:SW-microscopic} or \eqref{eq:SW-bs-Bessel}.
+
+\paragraph{The zeta-side results: theorem, conditional theorem, and conjecture.}
+For $\sigma>1/2$, define, when the limit exists,
+\begin{equation}
+ \mathcal M_s'(\sigma)=\lim_{T\to\infty}\frac1T
+ \int_1^T|\zeta'(\sigma+\mathrm it)|^{2s}\,dt.
+ \label{eq:SW-zeta-mean}
+\end{equation}
+Simm--Wei propose for complex $s$ with $\operatorname{Re}s>0$ the asymptotic
+\begin{equation}
+ \mathcal M_s'(\sigma)\sim
+ \frac{a_sh_s}{(2\sigma-1)^{s^2+2s}},\qquad
+ h_s=e^{-s^2}\Gamma(s+1){}_1F_1(s+1,1;s^2),
+ \label{eq:SW-zeta-conjecture}
+\end{equation}
+as $\sigma\downarrow1/2$, with the Keating--Snaith arithmetic factor
+\begin{equation}
+ a_s=\prod_p(1-p^{-1})^{s^2}
+ \sum_{m\geq0}\left(\frac{\Gamma(s+m)}{\Gamma(m+1)\Gamma(s)}\right)^2p^{-m}.
+ \label{eq:SW-arithmetic-factor}
+\end{equation}
+Equation \eqref{eq:SW-zeta-conjecture} is a conjectural transfer from the global CUE boundary
+coefficient.  It is not a map from individual CUE eigenvalues or derivative zeros to
+individual zeta zeros.
+
+\begin{theorem}[Unconditional fourth derivative moment in the fixed-$\sigma$ mean]
+\label{thm:SW-zeta-fourth}
+As $\sigma\downarrow1/2$,
+\begin{equation}
+ \mathcal M_2'(\sigma)\sim\frac6{\pi^2}\frac{34}{(2\sigma-1)^8}.
+ \label{eq:SW-zeta-fourth}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof and independent pole extraction]
+Introduce four independent shifts.  The fixed-$\sigma$ mean-value calculation gives
+\begin{equation}
+ \mathcal M_2'(\sigma)=\left.
+ \partial_{\alpha_1}\partial_{\alpha_2}\partial_{\beta_1}\partial_{\beta_2}
+ \frac{\prod_{i,j=1}^{2}\zeta(2\sigma+\alpha_i+\beta_j)}
+ {\zeta(4\sigma+\alpha_1+\alpha_2+\beta_1+\beta_2)}
+ \right|_{\boldsymbol\alpha=\boldsymbol\beta=0}.
+ \label{eq:SW-four-shift}
+\end{equation}
+The identity follows by the approximate functional equation, differentiation by Cauchy's
+formula, the diagonal condition $n_1n_2=n_3n_4$, and Ramanujan's local Euler-factor identity;
+this is the argument of Simm--Wei \cite[Sec.~3]{simmWei2026}.  Their symmetric choice
+$x=y=\sqrt{t/(2\pi)}$ satisfies the stated $x,y\geq1$ hypothesis only for $t\geq2\pi$.
+Starting the argument there repairs the boundary; the omitted finite interval is $o(T)$ after
+division by $T$.
+
+Put $\delta=2\sigma-1$.  The leading singular part of the numerator of
+\eqref{eq:SW-four-shift} is
+\begin{equation}
+ P(\boldsymbol\alpha,\boldsymbol\beta)
+ =\prod_{i,j=1}^{2}(\delta+\alpha_i+\beta_j)^{-1}.
+\end{equation}
+Exact differentiation gives
+\begin{equation}
+ \left.\delta^8
+ \partial_{\alpha_1}\partial_{\alpha_2}\partial_{\beta_1}\partial_{\beta_2}P
+ \right|_0=34.
+ \label{eq:SW-coefficient-34}
+\end{equation}
+The denominator in \eqref{eq:SW-four-shift} tends to
+$\zeta(2)=\pi^2/6$; any derivative that strikes that regular factor has lower pole order.
+This proves \eqref{eq:SW-zeta-fourth}.  Equation \eqref{eq:SW-coefficient-34} is also replayed
+symbolically by the bounded certificate.
+\end{proof}
+
+Let $\ell_s=\log*\cdots*\log$ be the $s$-fold Dirichlet convolution, so
+\begin{equation}
+ (\zeta'(w))^s=(-1)^s\sum_{n\geq1}\frac{\ell_s(n)}{n^w}
+ \qquad(\operatorname{Re}w>1).
+ \label{eq:SW-log-convolution}
+\end{equation}
+
+\begin{theorem}[Simm--Wei, conditional on Lindel\"of]
+\label{thm:SW-zeta-general}
+Assume the Lindel\"of hypothesis.  For every integer $s\geq3$ and every $\sigma>1/2$,
+\begin{equation}
+ \mathcal M_s'(\sigma)=\sum_{n\geq1}\frac{\ell_s(n)^2}{n^{2\sigma}},
+ \label{eq:SW-mean-Dirichlet}
+\end{equation}
+and, as $\sigma\downarrow1/2$,
+\begin{equation}
+ \mathcal M_s'(\sigma)\sim
+ a_s\frac{s!L_s(-s^2)}{(2\sigma-1)^{s^2+2s}}.
+ \label{eq:SW-zeta-general}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Factorization after the mean-value input]
+The passage from Lindel\"of to \eqref{eq:SW-mean-Dirichlet} is an adaptation of Titchmarsh's
+mean-value argument: its smoothed Mellin integral replaces $\zeta(w)^s$ by
+$(\zeta'(w))^s$, and Cauchy's formula transfers the Lindel\"of bound to $\zeta'$
+\cite[Chs.~7 and~13]{titchmarsh1986}.  The present audit has not independently replayed that
+identified human-source dependency from a local copy.
+
+For the algebraic part, define
+\begin{equation}
+ \sigma_{\boldsymbol\alpha}(m)=
+ \sum_{n_1\cdots n_s=m}n_1^{-\alpha_1}\cdots n_s^{-\alpha_s}.
+\end{equation}
+Near the zero shift, absolute convergence permits termwise differentiation, and
+\begin{equation}
+ \sum_{m\geq1}\frac{\sigma_{\boldsymbol\alpha}(m)
+                            \sigma_{\boldsymbol\beta}(m)}{m^{2\sigma}}
+ =H_\sigma(\boldsymbol\alpha,\boldsymbol\beta)
+  \prod_{i,j=1}^{s}\zeta(2\sigma+\alpha_i+\beta_j).
+ \label{eq:SW-H-factorization}
+\end{equation}
+Cancellation of every first-order prime term shows that $H_\sigma$ is holomorphic in a
+fixed neighbourhood of the origin for $\sigma$ near $1/2$; hence it and all derivatives
+needed here are locally bounded by the several-variable Cauchy formula.  This is the precise
+boundedness used in the proof.  No global uniform bound on the entire half-plane
+$\operatorname{Re}w>1/2$ is required.  On the diagonal shift,
+\begin{equation}
+ H_\sigma(\delta_0,\ldots,\delta_0;\delta_0,\ldots,\delta_0)
+ =\zeta(2\sigma+2\delta_0)^{-s^2}
+   \sum_{n\geq1}\frac{d_s(n)^2}{n^{2\sigma+2\delta_0}}.
+ \label{eq:SW-H-diagonal}
+\end{equation}
+The source's lower limit $n=0$ in this display is a typographical error; Dirichlet series
+begin at $1$.  It follows that $H_\sigma(0,0)\to a_s$.
+
+In differentiating \eqref{eq:SW-H-factorization}, any derivative falling on $H_\sigma$
+leaves at least one fewer derivative on the $s^2$ simple pole factors and therefore produces
+a strictly smaller pole order.  The leading term is $H_\sigma(0,0)$ times all $2s$
+derivatives of the pole product.  Exact product-rule counting gives
+\begin{equation}
+ \left.\prod_i\partial_{\alpha_i}\prod_j\partial_{\beta_j}
+ \prod_{i,j}(\delta+\alpha_i+\beta_j)^{-1}\right|_0
+ =\frac{\sum_{k=0}^{s}\binom{s}{k}^2(s-k)!s^{2k}}
+ {\delta^{s^2+2s}}
+ =\frac{s!L_s(-s^2)}{\delta^{s^2+2s}}.
+ \label{eq:SW-pole-product-general}
+\end{equation}
+Taking $\delta=2\sigma-1$ proves \eqref{eq:SW-zeta-general}.
+\end{proof}
+
+The logical boundary is now exact.  The fourth moment is unconditional within the
+fixed-$\sigma$ mean-value theorem used in \eqref{eq:SW-four-shift}; the integer moments
+$s\geq3$ use Lindel\"of through \eqref{eq:SW-mean-Dirichlet}; and the noninteger statement
+\eqref{eq:SW-zeta-conjecture} remains conjectural in this source.  None of these statements
+supplies an individual-zero correspondence.
+
+\paragraph{Alternative finite-$N$ structure: exact status of the source proof.}
+The notation in the introduction of v2 calls $A$ a block matrix and then divides $A$ by
+Vandermondes, although every later use requires a scalar determinant.  The typed objects are
+therefore
+\begin{equation}
+ \mathcal A(\mathbf z,\mathbf w)=
+ \begin{pmatrix}V_{\mathbf z}&Y_{\mathbf z}\\Y_{\mathbf w}&V_{\mathbf w}\end{pmatrix},
+ \qquad
+ A(\mathbf z,\mathbf w)=\det\mathcal A(\mathbf z,\mathbf w),
+ \qquad
+ G(\mathbf z,\mathbf w)=\frac{A(\mathbf z,\mathbf w)}
+ {\Delta(\mathbf z)\Delta(\mathbf w)},
+ \label{eq:SW-A-G-corrected}
+\end{equation}
+where $(V_{\mathbf z})_{ij}=z_i^{j-1}$ and
+$(Y_{\mathbf z})_{ij}=z_i^{N+2s-j}$, and similarly for $\mathbf w$.  Put also
+\begin{equation}
+ F(\mathbf z,\mathbf w)=\prod_{i,j=1}^{s}(1-z_iw_j)^{-1}.
+\end{equation}
+The Conrey--Farmer--Keating--Rubinstein--Snaith Schur determinant gives the exact factorization
+of the characteristic-polynomial correlation as $F(-\mathbf w,-\mathbf z)G(-\mathbf
+w,-\mathbf z)$ \cite{conreyFarmerKeatingRubinsteinSnaith2003}.
+
+For $0\leq h_1\leq h_2\leq s$, Simm--Wei compute the derivatives of $F$ explicitly as
+\begin{align}
+ &\binom{s}{h_1}\binom{s}{h_2}
+ \left.\prod_{j=1}^{s-h_2}\partial_{w_j}
+       \prod_{i=1}^{s-h_1}\partial_{z_i}F(\mathbf z,\mathbf w)
+ \right|_{\mathbf z=\mathbf w=-r}\notag\\
+ &\quad=\frac{(-sr)^{h_2-h_1}}
+ {(1-r^2)^{s^2+2s-h_1-h_2}}
+ \frac{e^{-s^2r^2}}{h_1!h_2!\Gamma(h_2-h_1+1)}
+ \frac{\Gamma(s+1)^2}{\Gamma(s-h_2+1)}
+ {}_1F_1(s+1-h_1,h_2-h_1+1;s^2r^2).
+ \label{eq:SW-F-mixed-derivatives}
+\end{align}
+They then define
+\begin{equation}
+ b_{h_1,h_2}(N,r)=(-sr)^{h_2-h_1}
+ \left.\prod_{j=1}^{h_2}\partial_{w_j}
+       \prod_{i=1}^{h_1}\partial_{z_i}G(\mathbf z,\mathbf w)
+ \right|_{\mathbf z=\mathbf w=-r}
+ \label{eq:SW-bhh}
+\end{equation}
+and group the Leibniz expansion by $h=h_1+h_2$ into
+\begin{equation}
+ \mathbb E|\Lambda_N'(z)|^{2s}
+ =\sum_{h\geq0}\frac{C_h(N,r)}{(1-r^2)^{s^2+2s-h}}.
+ \label{eq:SW-structure-expansion}
+\end{equation}
+The displayed formula for $C_h$ is the sum over $h_1<h_2$, doubled by symmetry, plus the
+diagonal $h_1=h_2$ term.  This finite Leibniz decomposition follows from
+\eqref{eq:SW-F-mixed-derivatives} once the derivatives of $G$ are known.
+
+The source then states a general coefficient proposition expressing those derivatives of
+$G$ as finite sums
+\begin{equation}
+ \left.\prod_{j=1}^{h_2}\partial_{w_j}
+       \prod_{i=1}^{h_1}\partial_{z_i}G\right|_{-r,-r}
+ =(-1)^{h_1+h_2}\sum_{m\geq0}\sum_{\ell=1}^{s}
+ d_{m,\ell,s}(h_1,h_2)
+ r^{2N\ell-(s^2-s+h_1+h_2)+2m}.
+ \label{eq:SW-general-b-proposition}
+\end{equation}
+For $(h_1,h_2)=(0,0)$ an active Laplace-expansion proof is present.  For general
+$(h_1,h_2)\ne(0,0)$, the long derivation immediately following the proposition is commented
+out in arXiv:2409.03687v2 and no replacement active proof occurs.  Consequently
+\eqref{eq:SW-general-b-proposition}, and the portions of the alternative structure theorem
+that depend on it, are not proved in this source version.
+Generalized Vandermonde determinants, cited by the source at this point, have independent
+human provenance in Heineman \cite{heineman1929}; that citation does not by itself supply the
+commented coefficient derivation.
+
+There is, however, one exact incompatibility in the theorem as printed.  For positive integer
+$s$,
+\begin{equation}
+ \frac1{\Gamma(s-h_2+1)}=0\qquad(h_2>s).
+\end{equation}
+Hence every term contributing to $C_h$ vanishes when $h>2s$, so
+\begin{equation}
+ C_h(N,r)=0\qquad(h>2s).
+ \label{eq:SW-Ch-truncation}
+\end{equation}
+The simultaneous printed assertion that, for every $h\geq0$, $C_h$ has degree
+$Ns+s^2+s-h$ cannot hold for these zero polynomials.  A corrected statement must at least
+restrict any degree claim to the nonzero range $0\leq h\leq2s$ and separately establish that
+the displayed leading coefficient does not vanish.  This is an exact internal contradiction,
+not an inference from a missing proof.
+
+For $s=1$ the entire structure can be retained independently, for every $N$.  From
+\begin{equation}
+ M_N(u):=\mathbb E|\Lambda_N'(z)|^2=\sum_{j=1}^{N}j^2u^{j-1}
+ =\frac{d}{du}\left(u\frac{d}{du}\frac{1-u^{N+1}}{1-u}\right),
+ \label{eq:SW-s1-start}
+\end{equation}
+direct differentiation and collection by powers of $(1-u)^{-1}$ gives
+\begin{equation}
+ M_N(u)=\frac{C_0}{(1-u)^3}+\frac{C_1}{(1-u)^2}+\frac{C_2}{1-u},
+ \label{eq:SW-s1-structure}
+\end{equation}
+with
+\begin{equation}
+ C_0=(1+u)(1-u^{N+1}),\qquad
+ C_1=-2(N+1)u^{N+1},\qquad
+ C_2=-(N+1)^2u^N.
+ \label{eq:SW-s1-coefficients}
+\end{equation}
+This all-$N$ identity is proved by \eqref{eq:SW-s1-start}; the certificate additionally
+replays it for $1\leq N\leq8$.
+
+\paragraph{Non-derivative CUE appendix and Painlev\'e interfaces.}
+Simm--Wei's appendix keeps the related but distinct moment
+\begin{equation}
+ M_N(s,z)=\int_{U(N)}|\Lambda_N(z)|^{2s}\,d\mu.
+ \label{eq:SW-nonderivative-moment}
+\end{equation}
+On $|z|=1$, the Keating--Snaith product and Barnes-$G$ asymptotic are
+\begin{equation}
+ M_N(s,e^{\mathrm i\theta})=
+ \prod_{j=1}^{N}\frac{\Gamma(j)\Gamma(j+2s)}{\Gamma(j+s)^2},
+ \qquad
+ M_N(s,e^{\mathrm i\theta})\sim
+ N^{s^2}\frac{G(1+s)^2}{G(1+2s)},
+ \label{eq:SW-KS-product}
+\end{equation}
+for $\operatorname{Re}s>-1/2$ \cite{keatingSnaith2000}.  For integer $s>0$ and arbitrary
+$z$, the appendix imports from the non-Hermitian characteristic-polynomial literature the
+Jacobi integral
+\begin{equation}
+ M_N(s,z)=\frac1{c_{s,N}}\int_{[0,1]^s}
+ \prod_{j=1}^{s}(1-t_j(1-|z|^2))^N\Delta(\mathbf t)^2\,d\mathbf t,
+ \label{eq:SW-Jacobi-integral}
+\end{equation}
+where
+\begin{equation}
+ c_{s,N}=\prod_{j=0}^{s-1}
+ \frac{\Gamma(N+j+1)\Gamma(j+1)\Gamma(j+2)}{\Gamma(N+s+j+1)}
+ \label{eq:SW-Jacobi-normalization}
+\end{equation}
+\cite{deanoSimm2022,serebryakovSimmDubach2023}.  The change of variables is retained
+exactly: for $|z|<1$,
+\begin{equation}
+ M_N(s,z)=(1-|z|^2)^{-s^2}
+ \mathbb P\!\left(t_{\max}^{(0,N)}\leq1-|z|^2\right).
+ \label{eq:SW-Jacobi-largest}
+\end{equation}
+This is the map to the Jacobi largest-eigenvalue distribution; it is not merely a similarity
+of exponents.
+
+The integer microscopic and global/mesoscopic consequences of
+\eqref{eq:SW-Jacobi-integral} are, respectively,
+\begin{align}
+ M_N(s,z_N)&\sim N^{s^2}\prod_{j=1}^{s}\frac1{\Gamma(j)\Gamma(j+1)}
+ \int_{[0,1]^s}e^{-c\sum t_j}\Delta(\mathbf t)^2\,d\mathbf t,
+ &&|z_N|^2=1-c/N,
+ \label{eq:SW-nonderivative-micro}\\
+ M_N(s,z)&\longrightarrow(1-|z|^2)^{-s^2},
+ &&|z|<1\text{ fixed},
+ \label{eq:SW-nonderivative-global}\\
+ M_N(s,z_N)&\sim N^{\alpha s^2},
+ &&|z_N|^2=1-N^{-\alpha}.
+ \label{eq:SW-nonderivative-meso}
+\end{align}
+The finite-$N$ Painlev\'e VI representation is obtained through the Jacobi largest-eigenvalue
+law and Forrester--Witte \cite{forresterWitte2004}; the microscopic Painlev\'e V expression
+uses the Laguerre law and Tracy--Widom/Forrester--Witte
+\cite{tracyWidom1994,forresterWitte2002}.  The extension in complex $s$ is not inferred from
+the appearance of the formulas: it is imported from the uniform Toeplitz asymptotics of
+Claeys--Its--Krasovsky \cite{claeysItsKrasovsky2011} and the cited Painlev\'e identifications.
+
+The source's theorem saying that the Painlev\'e V microscopic formula holds for every
+$\operatorname{Re}s>-1/2$ omits in its standalone wording that this is the $c>0$ scaling
+used immediately before it.  The formula contains $(N/c)^{s^2}$ and an integral from $c$ to
+$\infty$, so $c>0$ and the stated branch conventions are part of the typed result.  This is a
+missing local hypothesis, not evidence against the cited Toeplitz theorem.
+
+\paragraph{Source corrections, dependencies, and nonclaims.}
+The following record separates editorial corrections from mathematical status.
+\begin{enumerate}
+  \item In the logarithmic derivative, the finite eigenvalue sum is over $j=1,\ldots,N$;
+  the source prints $k$ while retaining $\theta_j$.
+  \item Two small-ball displays contain an extra parenthesis inside
+  $\mathbb P(|X_N(f)|<y)$.  The event used in the proof is the one just written.
+  \item The symmetric approximate-functional-equation choice begins at $t=2\pi$, not at
+  $t=1$; the finite initial interval has been retained and then shown negligible.
+  \item The diagonal Dirichlet series in \eqref{eq:SW-H-diagonal} starts at $n=1$.
+  \item The Euler factor needed near the origin is holomorphic and locally bounded.  The
+  argument invokes no estimate uniform on the entire half-plane toward
+  $\operatorname{Re}w=1/2$; this audit makes no claim about whether such an estimate is
+  proved elsewhere.
+  \item In the confluent induction, the final denominator product is through $n-1$.
+  \item In the mixed derivative of $A$, the derivative orders use $\mu_i$ with the matching
+  $w_i$; one source display prints a mismatched index.
+  \item The Laplace expansion is indexed by
+  $S\in\binom{[2s]}s$, not by a subset of the set of all such subsets.
+  \item The mesoscopic determinant has a missing closing parenthesis around
+  $u^p\widetilde K^{(p)}(u)$ before the $q$th derivative.
+  \item The Jensen quotient estimate uses $|G_N'(r)|^{-q(1+\varepsilon)}$; one absolute-value
+  delimiter is missing in the source.
+  \item The Bessel quotient is corrected by \eqref{eq:SW-correct-Bessel-CD}.
+  \item In the final combinatorial appendix, one product indexed by the length-$\ell$ list is
+  printed through $s$, and a later factorial contains an undefined $p$ where the surrounding
+  indices require $s$.  Those appendix coefficient formulas are not used as independent
+  evidence here.
+\end{enumerate}
+
+The strong Szeg\H{o}/trace limit, Hal\'asz inequality, stationary phase, Johansson bound,
+Forrester--Keating interior moments, Soshnikov cumulants, Akemann--Vernizzi determinant,
+Balantekin character expansion, classical mean-value theorem, and Painlev\'e/Toeplitz
+identifications remain separately attributed dependencies.  The present audit supplies the
+coordinate substitutions and repairs above, the all-$N$ $s=1$ identity, the pole-coefficient
+extraction, the Bessel factor diagnostic, and bounded finite determinant checks.  It does not
+claim a proof of the conjectural noninteger zeta transfer, a proof of the commented general
+$G$-coefficient proposition, a new individual-zero map, or any endpoint statement about the
+zero set of the zeta function.

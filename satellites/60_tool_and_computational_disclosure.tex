@@ -1,0 +1,175 @@
+\section{Tool and computational resource disclosure}
+\label{sec:tool-disclosure}
+
+This living corpus is prepared with automated language models, symbolic and numerical
+software, and---where a bounded theorem is suitable---the Lean proof assistant.  The local
+research-note inputs were produced primarily with ChatGPT 5.4 Pro and ChatGPT 5.5 Pro,
+with occasional ChatGPT 5.6 Pro input.  GPT-5.6 Sol Ultra performs the present consolidation,
+source crosswalk, proof audit, and document maintenance.  Some local notes may contain
+exploratory conversational input from Claude Opus 4.6 or Fable 5; no particular mathematical
+claim is attributed to either system without a claim-level audit.
+
+These systems are disclosed as tools, not authors.  Credit and responsibility are assigned
+only to identified humans.  Every literature-backed claim must terminate in a human-authored
+public source; a private local file records local lineage but is not used as scholarly
+authority for mathematics it may have inherited.  A genuinely local result is attributed to
+its human contributor only after proof, chronology, ownership, and novelty checks.  Unresolved
+provenance is reported as unresolved rather than replaced by model attribution.  This policy
+implements the disclosure, attribution, human-responsibility, review-support, and
+checkability recommendations of the Leiden Declaration on Artificial Intelligence and
+Mathematics~\cite[Recommendations for individual mathematicians]{leiden2026}.
+
+For each admitted computational or formal certificate, the public tree will retain the
+source, exact command, dependency and toolchain versions, theorem or check name, input and
+output hashes, exit status, and a bounded resource receipt.  Lean certification supplements
+the complete human-readable proof; it does not replace it.  Every future Lean or Lake session
+is capped at exactly $4\,\mathrm{GiB}=4{,}294{,}967{,}296$ aggregate process-tree bytes.  The
+replay wrapper samples the complete spawned process tree, kills the tree when the cap is reached,
+and removes any pre-existing compiled output before replay so that failure cannot inherit a
+stale certificate.
+
+The accepted finite-coordinate and Laurent replays use Lean~4.32.0 and Mathlib commit
+\begin{center}\small\texttt{81a5d257c8e410db227a6665ed08f64fea08e997}.\end{center}
+Their measured aggregate peaks are
+1,933,365,248 and 1,404,055,552 bytes.  An earlier exploratory Laurent evaluator imported a
+larger environment and repeated native evaluation three times; one observed snapshot crossed
+the cap at 6,050,037,760 aggregate bytes.  That run was interrupted, its spawned processes were
+terminated, and it is not a certificate.  The accepted Laurent theorem uses one disclosed
+\texttt{native\_decide} evaluation, so the Lean compiler is part of that certificate's trust
+boundary.  The same five integers are independently checked by the sparse-Python and shifted
+SymPy exact replays recorded in \texttt{CERT-N3-CUE-20260825-0001}.
+
+\texttt{CERT-U2-CUE-20260825-0001} uses Python~3.13.9 and only exact integer/fraction
+arithmetic.  It independently assembles the normalized $U(2)$ Weyl-density Laurent constant
+term and the beta-times-circle multinomial moment formula, and checks their agreement for
+orders one through eight.  Its source SHA--256 is
+\begin{center}\small\texttt{7d200a1a375d568237a07c51a7eb94d8455a49b5e6b78bacf5cba5d27d2c1610}.\end{center}
+The certificate explicitly excludes the measure pushforward from its scope: the torus map,
+two inverse branches, boundary fibres, Jacobian, and independence are the written proof in
+\cref{thm:u2-exact-derivative-law}.
+
+\texttt{CERT-N3-PHASE-20260825-0001} uses Python~3.13.9 and SymPy~1.13.1 with
+exact symbolic polynomial and rational arithmetic.  Its twenty-two checks cover the
+rationalized real and imaginary coordinates of the first peeled $N=3$ variable $Z$, the
+trace and norm identities, the complete base inverse, both discriminant presentations, the
+factorization of $S$, the lifted $J$ coordinate and inverse, and the affine $(u,v)$--$(u,X)$
+coordinate change.  Its source SHA--256 is
+\begin{center}\small\texttt{bca8e81cbc09a2bd2d24f86200daf68b815304f9d6c1a65b731c014ae4328ff4}.\end{center}
+The fresh normalized output agrees byte for byte with the retained output at SHA--256
+\begin{center}\small\texttt{62e910773b91a78e9943e9f76d678fe75491f21998afbccd800065dbfe453ed8}.\end{center}
+The executable certificate does not replace the inequality and surjectivity proof in
+\cref{thm:n3-base-quotient,thm:n3-physical-trace-cover}.
+
+\texttt{CERT-N3-DECK-20260826-0001} uses Python~3.13.9 and SymPy~1.13.1 with
+exact symbolic polynomial and rational arithmetic.  Its twenty-one checks cover the affine
+deck-curve parametrization and inverse, the lossless recovered-$\beta_0$ carrier, the exact
+carrier-equivariance defect, the $J$-dependent equivariant sheet parameter, both target
+coordinates, the target curve equation, and the base-coordinate square modulo the physical
+cover equation.  Its source and retained-output SHA--256 values are respectively
+\begin{center}
+\small
+\texttt{d4299a25508fb5f8505a4346d4aa5e26d8c61c728e2e3448772e406709299a97},\\
+\texttt{15ff919d7bdeddfba1ec130997773df0266fc3deb5204236d62bb8ce6e1adf1e}.
+\end{center}
+A fresh run parsed to the same twenty-one named checks and the same coordinate/nonclaim record.
+The companion Lean certificate \texttt{FORMAL-20260826-0015} compiled to a 444,184-byte
+\texttt{.olean} at SHA--256
+\begin{center}
+\small\texttt{8bd2c3f79ffe8e4b48220a1679cf3eb143b520896331d773bc6e93415ebf179e}.
+\end{center}
+Its bounded build exited zero with empty standard streams and a 1,452,122,112-byte peak
+aggregate working set under the 4,026,531,840-byte cap.  Neither executable replaces the
+written fibre proof or upgrades the interface to a CUE-distribution, critical-line, or
+zeta-zero statement.
+
+The two exact SymPy certificates discussed here are
+\begin{center}\small
+\texttt{CERT-SIMM-WEI-20260828-0001},\\
+\texttt{CERT-CUE-MELLIN-20260828-0001}.
+\end{center}
+Both have complete JSON receipts and were replayed under two independently installed
+Python and SymPy version pairs:
+3.13.9/1.13.1 and 3.13.1/1.13.3.  The first checks the bounded finite-determinant,
+$s=1$, differentiated-pole, Bessel-series, and reciprocal-Gamma truncation calculations
+listed in \cref{sec:simm-wei-complete-audit}.  It does not certify the source's
+analytic convergence, uniform integrability, Painlev\'e, or conditional number-theory
+arguments.
+
+The CUE--Mellin certificate has source SHA--256
+\begin{center}\small
+\texttt{03a5157960c09af23f351bed95159c875d1a22ea01dcbc88c5fedfa22e31576f}
+\end{center}
+and receipt SHA--256
+\begin{center}\small
+\texttt{6f4501023864e7821e968e20ec65ddf687626a16b1a2f9c07a5d99cac4824b8a}.
+\end{center}
+Its thirty-nine named checks cover the $U(2)$ Weyl/terminating-${}_3F_2$ identity through
+order seven, the exact $N=3$ state-coordinate arrow and norm identity, the descended trace
+kernel through order eight, the four printed low-order kernels, the $\Psi_2$ Gram obstruction,
+the affine cubic and its discriminant, and forty-two terminating Gauss laws.  The
+compact-measure recovery, state-kernel transport, analytic
+transform identities, multiplier-lattice count, and Galois conclusion retain the complete
+written proofs in \cref{sec:cue-mellin-complete-programme}; no executable finite check is
+presented as a substitute for them or as an individual-zero statement.
+
+\texttt{CERT-GNTE-DIVISOR-20260828-0001} is the exact finite-coordinate certificate for
+\cref{sec:divisor-sheaf-audit}.  Its pure-standard-library Python script is retained in the
+directory \path{certificates/globalization_nte_divisor_sheaves}, under the filename
+\path{verify_chain_cube_packet_core.py}.  Fresh runs under Python~3.13.9 and Python~3.13.1
+both pass the same twelve named checks.
+For every $1\leq m\leq8$, it exhausts the Boolean cube, verifies the reduced retraction,
+both chain--cube adjunctions, join preservation, both complete fibre descriptions and their
+cardinalities, the coefficient-support section and finite-alphabet fibres, the explicit
+cancellation obstruction, and the degree-shift/socle coordinates.  It also exhausts the
+diagonal fixed parts for packet sizes $1$, $2$, and $4$, and checks the two commuting phase
+involutions and representative independence on an exact Gaussian-integer grid.  The script
+and receipt SHA--256 values are respectively
+\begin{center}\small
+\texttt{b7192e29d5d558e27cf7b6db6c25960ef6011bbb6f3490833e715c9ff3570b79},\\
+\texttt{26a94d7af47e5d73acaa6d7e752e43df26366bdfaba920fff674aa541371527f}.
+\end{center}
+The executable deliberately certifies no analytic or sheaf-theoretic claim.  Those claims
+retain their full standard proofs and named human-source dependencies in the chapter.
+
+\texttt{CERT-GNTE-STABLE-TO-NATURAL-20260830-0001} is a two-runtime exact
+SymPy replay of the finite coordinate layer of the stable-to-natural extension
+morphism.  Both Python/SymPy version pairs 3.13.9/1.13.1 and
+3.13.1/1.13.3 pass 2,361 named checks.  The receipt separately discloses a
+preflight harness failure caused by comparing oppositely oriented basis-vector
+lists instead of their rank-one span; the accepted checker uses the exact
+rank test.  The executable does not certify essentiality, Green
+imprimitivity, Brown--Green--Rieffel stabilization, multiplier or corona
+extensions, or Busby reconstruction.  Those remain the complete cited
+standard proofs in
+\cref{lem:natural-one-zero-essential-pullback,%
+lem:compatible-stabilized-edge-morphisms,%
+thm:stable-to-natural-extension-embedding}.  It launches neither Lean nor
+Lake.
+
+\texttt{CERT-GNTE-NONCONSTANT-UNIT-K-20260830-0001} is the two-runtime
+exact SymPy replay of the finite coordinate layer of the complete
+nonconstant unit-fibre calculation.  Both Python/SymPy version pairs
+3.13.9/1.13.1 and 3.13.1/1.13.3 pass the same 5,315 named checks, whose
+ordered-name digest is
+\begin{center}\small
+\texttt{1774e5fe4724618e3e1701568756e13413c5d18c0931bd1eae45193fd7d3c5d2}.
+\end{center}
+The script and receipt SHA--256 values are respectively
+\begin{center}\small
+\texttt{a312ef288ed67dbe8bf44c37b5c15bcb5699e27ee61d4d494a5c42302954b520},\\
+\texttt{2f22ab6eecc5c12df6f242435091c95333d45c50858542cc737a5c4a109c205f}.
+\end{center}
+The checker covers finite orbit/stabilizer coordinates, invariant and
+coinvariant transition matrices including their multiplicities, finite and
+archimedean boundary matrices, the global kernel/cokernel coordinates, and
+the one-prime case.  It does not certify the mapping-torus theorem,
+profinite commutative K-theory, Green imprimitivity, six-term exactness,
+continuity, or winding orientation; those remain the complete cited standard
+proofs in
+\cref{lem:unit-fibre-mapping-torus-k-groups,%
+prop:unit-fibre-finite-level-limits,%
+thm:full-finite-edge-boundary-map,%
+thm:full-archimedean-unit-fibre-boundary,%
+thm:full-natural-one-zero-k-theory}.  It launches neither Lean nor Lake and
+makes no finite-set-coherence, endpoint, individual-zero, or global-zeta
+claim.

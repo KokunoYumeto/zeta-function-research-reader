@@ -1,0 +1,220 @@
+\section{The actual separated-link operator at a Riemann spectral fibre}
+\label{sec:xi4-trace-pole}
+
+Keep the original $\Xi(s)=\xi(1/2+is)=8H_0(2s)$ and the operator
+$\mathcal T_{\mathcal D}$ of \eqref{eq:xw-TD}. Put
+$K=\mathcal T_{\mathcal D}\Xi$. The following calculation concerns
+this actual function, not an arbitrary entire replacement for $\Xi$.
+
+\subsection{A nonzero coefficient at a certified simple zero}
+
+There is a unique simple real zero $\gamma$ of $\Xi$ in
+\begin{equation}\label{eq:xp-gamma-interval}
+ \frac{28269450279469}{2000000000000}<\gamma<
+ \frac{28269450287469}{2000000000000}.
+\end{equation}
+The certificate evaluates the original infinite theta integral,
+with the kernel and tails in Section~\ref{sec:xi4-actual-Weil};
+its normalization is the one of \cite{rodgersTao2020,polymath2019}.
+Here are the explicit inequalities used to certify this particular zero.
+For the two doubled rational endpoints $l,r$ of
+\eqref{eq:xp-gamma-interval}, the outward-rounded integrals satisfy
+\[
+ \begin{gathered}
+ H_0(l)>3.4571\,10^{-13},\qquad H_0(r)<-3.4564\,10^{-13},\\
+ -0.001382720<16H'_0([l,r])<-0.001382718.
+ \end{gathered}
+\]
+Continuity gives a root; the strictly negative derivative proves
+uniqueness and simplicity throughout that interval. In every integral
+the sum over $n\geq9$ and the range $u\geq2$ are bounded separately
+and added as symmetric errors. Their respective absolute bounds are
+less than $3.273\,10^{-74}$ and $8.427\,10^{-2037}$ for this
+real-argument calculation. Large real translations do not change
+the sine/cosine bounds used in those tails.
+
+Fresh integrations over the enclosing interval, with all original
+coefficients retained, give
+\[
+\begin{aligned}
+ \Xi(\gamma+3)&=[-0.000508120\ \pm5.76\,10^{-10}],\\
+ \Xi(\gamma+9/2)&=[-0.000180084\ \pm4.62\,10^{-10}],\\
+ \Xi(\gamma+13/2)&=[-9.117\,10^{-6}\ \pm2.49\,10^{-10}],\\
+ \Xi'(\gamma+3)&=[0.0002611693\ \pm4.80\,10^{-11}].
+\end{aligned}
+\]
+Using $\Xi'=16H'_0(2s)$ and the negative derivative-delta term gives
+\begin{equation}\label{eq:xp-nonzero}
+\begin{split}
+ K(\gamma)&=c_0\Xi(\gamma+3)-\Xi'(\gamma+3)/336
+          +c_1\Xi(\gamma+9/2)+c_2\Xi(\gamma+13/2),\\
+ -8.07510\,10^{-7}&<K(\gamma)<-8.07506\,10^{-7},\\
+ 0.000583998&<r_\gamma:=K(\gamma)/\Xi'(\gamma)<0.000584002.
+\end{split}
+\end{equation}
+These deliberately widened bounds also contain an independent
+recombination of the serialized scalar intervals. They use neither
+an assumed zero ordinate nor RH. The reproducible one-worker
+5,000,000,000-byte calculation and its complete receipt are
+\begin{center}\ttfamily
+verify\_xi4\_trace\_pole.py\\
+xi4\_trace\_pole\_results.json.
+\end{center}
+
+Taylor expansion at the certified simple root now proves
+\begin{equation}\label{eq:xp-ratio-pole}
+ \frac{K(s)}{\Xi(s)}=\frac{r_\gamma}{s-\gamma}
+                  +\text{a holomorphic function near }\gamma.
+\end{equation}
+Indeed $\Xi(s)=(s-\gamma)A_\gamma(s)$ with
+$A_\gamma(\gamma)=\Xi'(\gamma)\ne0$; dividing the Taylor series
+of $K/A_\gamma$ gives exactly the displayed principal part.
+Thus the original source coefficient does not preserve frozen
+$\Xi$-divisibility. This is a pole at an on-critical-line zero,
+not an off-critical zero or an RH counterexample.
+
+The full Weil calculation has a precise, different connection to this
+same operator. For a test $g$, $\mathcal T_{\mathcal D}\mathscr Fg
+=\mathscr F(wg)$ and its pulled-back quadratic value is
+$W_w(g,g)=W(wg,wg)$, using the whole weighted autocorrelation
+\eqref{eq:xw-correlation}. Negating $g$ negates its linear Fourier
+value and leaves this quadratic value unchanged. For the compact
+test $g=e^{2iu}b_4(u)$ of Section~\ref{sec:xi4-actual-Weil}, exact
+interval recombination of every cross term yields
+\[
+\begin{array}{rl}
+ \text{explicit-formula pole terms:}&
+ [1.9093530770084217927\,10^{-6}\ \pm 10^{-25}],\\
+ \text{gamma contribution:}&[-1.155956081\,10^{-6}\ \pm2.64\,10^{-16}],\\
+ \text{prime term to subtract:}&
+ [7.5339692863834583529\,10^{-7}\ \pm 10^{-26}],\\
+ \text{complete value:}&[6.7\,10^{-14}\ \pm6.34\,10^{-16}]>0.
+\end{array}
+\]
+The displayed component intervals have been widened outwards; the
+complete value is calculated from the full-precision components, not
+their printed decimal centers. This compact test is not the
+noncompact theta input whose transform is $\Xi$. Its arithmetic
+balance does not cancel the pole \eqref{eq:xp-ratio-pole}.
+The read-only replay \texttt{report\_xi4\_components.py} retains
+all fifteen matrix entries and the factor two on cross terms.
+
+\subsection{Its exact original Schwartz--Mellin meaning}
+
+Retain the arithmetic map of
+Connes--Consani--Moscovici~\cite[\S3.1 and \S3.6]{ccmProlate2024}:
+\[
+ (\mathcal E\psi)(x)=x^{1/2}\sum_{n\ge1}\psi(nx),\qquad
+ F(s)=\mathcal F_\mu\mathcal E\psi(s)
+     =\int_0^\infty\mathcal E\psi(x)x^{-is}\frac{dx}{x}.
+\]
+Here $\psi$ is even Schwartz and
+$\psi(0)=\widehat\psi(0)=0$, with the source Fourier convention
+$\widehat\psi(y)=\int\psi(x)e^{-2\pi ixy}dx$.
+Its Mellin transform
+$M_\psi(z)=\int_0^\infty\psi(x)x^{z-1}dx$
+is holomorphic for $\Re z>-2$. At the origin this follows from
+evenness and $\psi(0)=0$, which imply $\psi(x)=O(x^2)$; at infinity
+it follows from the Schwartz bounds. Derivatives in $z$ add powers
+of $\log x$, still dominated on each compact substrip.
+For $\Re z>1$, absolute convergence and $y=nx$ give
+\begin{equation}\label{eq:xp-Mellin}
+ F(i(z-1/2))=\zeta(z)M_\psi(z).
+\end{equation}
+The trace is entire: Poisson summation and the two zero conditions
+give
+\[
+ \sum_{n\ge1}\psi(nx)=x^{-1}\sum_{n\ge1}\widehat\psi(n/x).
+\]
+Thus $\mathcal E\psi$ decays faster than every power at both
+ends, as do its logarithmic derivatives. Its defining Mellin
+integral converges locally uniformly for every complex $s$.
+Analytic continuation therefore extends \eqref{eq:xp-Mellin}
+to $\Re z>-2$, with the removable value at $z=1$ since
+$M_\psi(1)=\frac12\widehat\psi(0)=0$.
+
+The seed $\Xi$ itself is genuinely in this source image. Take
+\begin{equation}\label{eq:xp-Hermite-seed}
+ \psi_0(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+ A(z)=\tfrac12z(z-1)\pi^{-z/2}\Gamma(z/2).
+\end{equation}
+Direct substitution $y=\pi x^2$ and the gamma recurrence yield
+$M_{\psi_0}(z)=A(z)$. Both source zero conditions hold, and
+$\zeta(z)A(z)=\xi(z)$; the functional equation
+$\xi(1-z)=\xi(z)$ gives
+$\mathcal F_\mu\mathcal E\psi_0=\Xi$ with the original minus
+Mellin sign. This proves the seed's provenance by its explicit input.
+
+Set $\rho=1/2-i\gamma$. It is a simple nontrivial zero of
+$\zeta$. For any original Schwartz input, \eqref{eq:xp-Mellin}
+vanishes at $\rho$. But its putative value for $F=K$ is
+$K(\gamma)\ne0$. Therefore no original even Schwartz input with
+the two source zero conditions has trace $K$.
+The exact meromorphic expression, not merely this exclusion, is
+\begin{equation}\label{eq:xp-JK}
+ \frac{K(i(z-1/2))}{\zeta(z)}
+ =\frac{c_0\xi(z-3i)+(i/336)\xi'(z-3i)
+       +c_1\xi(z-9i/2)+c_2\xi(z-13i/2)}{\zeta(z)}.
+\end{equation}
+The sign $+i/336$ follows by differentiating
+$\Xi(i(z-1/2)+a)=\xi(z-ia)$ with respect to $a$.
+Using $\Xi'(\gamma)=-i\xi'(\rho)$ and
+$\xi'(\rho)=A(\rho)\zeta'(\rho)$, its nonzero residue is
+\begin{equation}\label{eq:xp-Mellin-residue}
+ \operatorname*{Res}_{z=\rho}
+ \frac{K(i(z-1/2))}{\zeta(z)}=-iA(\rho)r_\gamma.
+\end{equation}
+All factors of $A(\rho)$ are finite and nonzero. This retains the
+gamma factor and the orientation of the coordinate change.
+
+\subsection{The comparison retains the lost coordinate}
+
+Let $E$ be the entire functions of order at most one and define
+\[
+ e(F)=F(\gamma),\qquad
+ \ell(F)=(\mathcal T_{\mathcal D}F)(\gamma),\qquad
+ d_0=\mathcal D(1)=127/219024.
+\]
+Finite translations and differentiation preserve $E$.
+The actual relation between the original and transformed evaluations
+is the map $J:E\to\C^2$, $J(F)=(e(F),\ell(F))$, whose explicit
+right inverse is
+\begin{equation}\label{eq:xp-right-inverse}
+ R(a,b)=a+\frac{b-d_0a}{K(\gamma)}\Xi.
+\end{equation}
+Indeed $e(1)=1$, $\ell(1)=d_0$, $e(\Xi)=0$ and
+$\ell(\Xi)=K(\gamma)$. These identities prove $JR=I_2$ and
+the full splitting
+\[
+ E=\ker J\oplus\operatorname{span}\{1,\Xi\},\qquad
+ F=(F-RJF)+RJF.
+\]
+Thus every fibre is $R(a,b)+\ker J$. Projection onto the first
+coordinate discards the second, and vice versa; each projection has
+its usual one-dimensional coordinate-axis kernel. In particular
+$\ell$ cannot factor through $e$, since $\Xi\in\ker e$ but
+$\ell(\Xi)\ne0$. This is the precise local representative defect,
+with both measurements and the source vector producing it retained.
+
+There is also a full algebraic moving-relation comparison, without
+assuming invertibility of $\mathcal T_{\mathcal D}$ on $E$.
+For any specified source relation $I\subset E$, put
+$T=\mathcal T_{\mathcal D}$ and
+$\Gamma_T=\{(F,TF):F\in E\}$.
+Its subspace $\Gamma_T(I)=\{(n,Tn):n\in I\}$ gives
+\[
+ \Gamma_T/\Gamma_T(I)\simeq E/I,
+ \quad[(F,TF)]\mapsto[F],\qquad
+ [F]\mapsto[(F,TF)].
+\]
+The second projection is a surjection onto $T(E)/T(I)$ with kernel
+$(I+\ker T)/I$. To prove the kernel formula, $TF\in T(I)$ means
+$TF=Tn$ for some $n\in I$, exactly $F-n\in\ker T$.
+Every output class has a preimage by the definition of $T(E)$.
+These formulas apply both to the actual Schwartz trace image
+intersected with $E$ and to the analytic relation $\Xi E$.
+They neither assert invariance of those frozen relations nor erase
+the possible kernel of $T$. The compact-test automorphism in
+Section~\ref{sec:xi4-actual-Weil} retains its separately proved
+inverse $1/w$; it was never an assertion of global invertibility
+on the entire-function ring or on an unspecified source topology.

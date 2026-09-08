@@ -1,0 +1,249 @@
+\section{An explicit three-dimensional viscous strain layer}
+\label{sec:viscous-strain}
+
+The preceding phase-amplitude construction has a directly computable
+three-dimensional counterpart. This section derives that counterpart in the
+Cartesian Navier--Stokes equation, with its pressure and viscosity intact,
+and places any finite interval of its central dynamics inside a smooth,
+compactly supported forced solution. This is a local building block. The
+constructed compact solution is global and therefore establishes no
+nonexistence alternative from Section~\ref{sec:target}.
+
+\subsection{The full velocity and its exact evolution}
+
+Fix $\sigma>0$, $\nu>0$, $a_0\in\R$, and
+$(K_1,K_3)\in\R^2\setminus\{(0,0)\}$. Coordinates remain
+$x=(x_1,x_2,x_3)\in\R^3$ and time is $t\geq0$. Define
+\begin{align}
+ k_1(t)&=K_1e^{-\sigma t},& k_3(t)&=K_3,&
+ k(t)&=(k_1(t),0,K_3),\\
+ q(t)&=K_1^2e^{-2\sigma t}+K_3^2,&
+ \varphi(x,t)&=k_1(t)x_1+K_3x_3.
+\end{align}
+\begin{equation}
+ a(t)=a_0\exp\left\{\sigma t-
+ \nu\left[\frac{K_1^2}{2\sigma}(1-e^{-2\sigma t})+K_3^2t\right]\right\}.
+ \label{eq:vs-amplitude}
+\end{equation}
+In particular $q(t)>0$ at each finite time. Put
+\begin{equation}\label{eq:vs-fields}
+ u(x,t)=\bigl(\sigma x_1,-\sigma x_2+a(t)\cos\varphi(x,t),0\bigr),
+ \qquad p_0(x,t)=-\frac{\sigma^2}{2}(x_1^2+x_2^2).
+\end{equation}
+
+\begin{proposition}[Exact viscous wave over a strain]
+The fields \eqref{eq:vs-fields} solve
+\[
+ u_t+(u\cdot\nabla)u+\nabla p_0=\nu\Delta u,
+ \qquad \operatorname{div}u=0
+\]
+at every $(x,t)\in\R^3\times[0,\infty)$. They are smooth on this
+entire time interval. Their vorticity and its supremum norm are exactly
+\begin{equation}\label{eq:vs-vorticity}
+ \omega=a(t)\sin\varphi\,(K_3,0,-k_1(t)),
+ \qquad \|\omega(t)\|_\infty=|a(t)|\sqrt{q(t)}.
+\end{equation}
+The full velocity has infinite spatial energy at every time.
+\end{proposition}
+\begin{proof}
+Write $D=\operatorname{diag}(\sigma,-\sigma,0)$,
+$u_b=Dx$, and $v=a\cos\varphi\,e_2$. Direct differentiation gives
+\[
+ k'=-D^Tk,\quad (\partial_t+u_b\cdot\nabla)\varphi=0,
+ \quad a'=(\sigma-\nu q)a.
+\]
+The second component $v$ is independent of $x_2$, so
+$(v\cdot\nabla)v=0$ and $\operatorname{div}v=0$.
+Moreover $(v\cdot\nabla)u_b=Dv=-\sigma v$ and
+$\Delta v=-qv$. Thus
+\[
+ v_t+(u_b\cdot\nabla)v+(v\cdot\nabla)u_b
+ =(a'-\sigma a)\cos\varphi\,e_2=-\nu qv.
+\]
+The base equations hold because
+$(u_b\cdot\nabla)u_b=D^2x=(\sigma^2x_1,\sigma^2x_2,0)$,
+$\nabla p_0=-D^2x$, $\Delta u_b=0$, and $\tr D=0$.
+Adding these identities proves every momentum component and divergence.
+Taking the Cartesian curl gives \eqref{eq:vs-vorticity}. Since
+$k(t)\ne0$, the linear map $x\mapsto k(t)\cdot x$ takes every real
+value, so $|\sin\varphi|$ attains one; this proves the supremum formula.
+Every displayed coefficient is smooth for finite $t$, proving global
+smoothness. Finally $|u(x,t)|^2\geq\sigma^2x_1^2$; its integral over
+$[1,2]\times\R\times[0,1]$ is infinite, proving the energy assertion.
+\end{proof}
+
+For $a_0\ne0$ the exact logarithmic vorticity rate is
+\begin{equation}\label{eq:vs-growth}
+ \frac{d}{dt}\log\|\omega(t)\|_\infty
+ =\sigma-\nu q-\frac{\sigma k_1(t)^2}{q}
+ =\frac{\sigma K_3^2}{q}-\nu q.
+\end{equation}
+Indeed $q'=-2\sigma k_1^2$ and differentiation of
+$\log|a|+\tfrac12\log q$ gives the displayed equality. Consequently
+vorticity increases at a particular time exactly when
+$\sigma K_3^2>\nu q(t)^2$. In the retained subfamily $K_1=0$,
+$K_3\ne0$, the full formula becomes
+\[
+ \|\omega(t)\|_\infty
+ =|a_0K_3|e^{(\sigma-\nu K_3^2)t}.
+\]
+This grows when $\sigma>\nu K_3^2$, but has no finite-time
+singularity. In the different subfamily $K_3=0$, $K_1\ne0$,
+\[
+ \|\omega(t)\|_\infty
+ =|a_0K_1|\exp\left[-\frac{\nu K_1^2}{2\sigma}
+ (1-e^{-2\sigma t})\right].
+\]
+Here the changing wavevector cancels the amplitude's strain growth. These
+two exact expressions keep the distinction between amplitude, spatial
+frequency, and vorticity visible in a common family.
+
+\subsection{A compact realization with an unchanged interior}
+
+Fix $0<R_0<R_1$ and $0<T_0<T_1$. The following explicit cutoffs specify
+the entire constructed data and force. Define
+\[
+ b(s)=\begin{cases}e^{-1/s},&s>0,\\0,&s\leq0,\end{cases}
+ \qquad H(s)=\frac{b(s)}{b(s)+b(1-s)},
+\]
+and
+\begin{equation}\label{eq:vs-cutoffs}
+ \chi(x)=H\left(\frac{R_1^2-|x|^2}{R_1^2-R_0^2}\right),
+ \qquad
+ \eta(t)=H\left(\frac{T_1-t}{T_1-T_0}\right).
+\end{equation}
+The denominator in $H$ is positive for all real $s$: if $s\leq0$,
+then $1-s>0$; if $s\geq1$, then $s>0$; and both are positive when
+$0<s<1$. Each positive-side derivative of $b$ is $e^{-1/s}$ times
+a polynomial in $1/s$, as induction under differentiation shows.
+For each integer $m\geq0$, $z^me^{-z}\to0$ as $z\to\infty$:
+the series for $e^{z/2}$ bounds $z^m e^{-z/2}$ by a constant, leaving
+an additional factor $e^{-z/2}\to0$. Thus all these derivatives
+vanish at zero and $b,H,\chi,\eta$ are smooth. In particular
+$0\leq\chi,\eta\leq1$, $\chi=1$ on $|x|\leq R_0$, $\chi=0$
+on $|x|\geq R_1$, $\eta=1$ for $0\leq t\leq T_0$, and
+$\eta=0$ for $t\geq T_1$.
+
+An explicit vector potential for \eqref{eq:vs-fields} is
+\begin{equation}\label{eq:vs-potential}
+ A(x,t)=-\frac13x\times(Dx)
+       +\frac{a(t)}{q(t)}(e_2\times k(t))\sin\varphi(x,t).
+\end{equation}
+Here the curl orientation is the original right-handed Cartesian one.
+To check the base term, the product identity
+\[
+ \curl(X\times Y)=X\operatorname{div}Y
+ -Y\operatorname{div}X+(Y\cdot\nabla)X-(X\cdot\nabla)Y
+\]
+follows by expanding its three components. For $X=x,Y=Dx$, its
+right side is $0-3Dx+Dx-Dx=-3Dx$. For the wave term,
+$k\times(e_2\times k)=q e_2$ since $k\cdot e_2=0$.
+Taking its curl therefore gives $a\cos\varphi\,e_2$.
+Together these calculations prove $\curl A=u$.
+
+Set
+\begin{equation}\label{eq:vs-compact-fields}
+ w=\nabla\chi\times A,\qquad V=\chi u+w=\curl(\chi A),
+ \qquad U=\eta V,\qquad P=\eta^2\chi p_0.
+\end{equation}
+Prescribe the force by the following expanded, finite expression, where
+$\nabla\chi\cdot\nabla u=\sum_{j=1}^3(\partial_j\chi)\partial_j u$:
+\begin{align}
+ F={}&\eta'V+\eta\partial_t w
+ -\nu\eta\bigl[2\nabla\chi\cdot\nabla u+(\Delta\chi)u+\Delta w\bigr]
+ \nonumber\\
+ &+\eta\chi(\eta\chi-1)(u\cdot\nabla)u
+ +\eta\chi(\eta-1)\nabla p_0\nonumber\\
+ &+\eta^2\bigl[\chi(u\cdot\nabla\chi)u
+       +\chi(u\cdot\nabla)w+\chi(w\cdot\nabla)u
+ \nonumber\\
+ &\hspace{23mm}+(w\cdot\nabla\chi)u+(w\cdot\nabla)w
+       +p_0\nabla\chi\bigr].
+ \label{eq:vs-compact-force}
+\end{align}
+All factors in this formula have been explicitly defined, including their
+initial values and cutoffs. In particular no solution-dependent unknown
+force is left to choose.
+
+\begin{proposition}[Exact localization and admissibility]
+The fields $(U,P,F)$ in
+\eqref{eq:vs-compact-fields}--\eqref{eq:vs-compact-force} satisfy
+\[
+ U_t+(U\cdot\nabla)U+\nabla P=\nu\Delta U+F,
+ \qquad \operatorname{div}U=0.
+\]
+They are smooth for all $t\geq0$. Their spatial supports lie in
+$\{|x|\leq R_1\}$, and all three vanish for $t\geq T_1$.
+The initial datum $U(x,0)=\curl(\chi A(x,0))$ satisfies
+\eqref{eq:schwartz-data}, the force satisfies
+\eqref{eq:schwartz-force}, and $U$ satisfies \eqref{eq:energy}.
+On $|x|<R_0$, $0\leq t\leq T_0$, one has exactly
+$(U,P,F)=(u,p_0,0)$.
+\end{proposition}
+\begin{proof}
+The divergence of a curl is zero because each mixed second derivative
+appears twice with opposite signs. Since $\eta$ is spatially constant,
+this proves $\operatorname{div}U=0$. Direct products give
+\begin{align*}
+ \Delta V&=\chi\Delta u+2\nabla\chi\cdot\nabla u
+              +(\Delta\chi)u+\Delta w,\\
+ (V\cdot\nabla)V
+ &=\chi^2(u\cdot\nabla)u+\chi(u\cdot\nabla\chi)u
+   +\chi(u\cdot\nabla)w+\chi(w\cdot\nabla)u\\
+ &\qquad +(w\cdot\nabla\chi)u+(w\cdot\nabla)w,\\
+ \nabla(\chi p_0)&=\chi\nabla p_0+p_0\nabla\chi.
+\end{align*}
+Insert these three identities into
+$U_t+(U\cdot\nabla)U+\nabla P-\nu\Delta U$.
+The terms $\eta\chi(u_t-\nu\Delta u)$ equal
+$-\eta\chi[(u\cdot\nabla)u+\nabla p_0]$ by the already proved
+uncut equation. Combining their two coefficients with the displayed
+convection and pressure expansions produces
+$\eta\chi(\eta\chi-1)$ and $\eta\chi(\eta-1)$ respectively.
+Every remaining term is exactly \eqref{eq:vs-compact-force}, proving
+the momentum equation with the prescribed force.
+
+Smoothness follows from the explicit formulas, $q>0$ at finite time,
+and flatness of the cutoffs at their endpoints. Outside the spatial
+cutoff, $\chi$ and all its derivatives vanish, hence $w,V,U,P,F$
+vanish. For $t\geq T_1$, $\eta$ and every time derivative vanish,
+so $U,P,F$ vanish as well. Each mixed derivative of $F$ is consequently
+bounded on the compact set $\{|x|\leq R_1,0\leq t\leq T_1\}$,
+say by $M_{\alpha m}$. For every $K\in\mathbb N_0$, the choice
+\[
+ C_{\alpha mK}=M_{\alpha m}(1+R_1+T_1)^K
+\]
+proves \eqref{eq:schwartz-force}, including the exterior where the
+derivative is zero. The same argument at $t=0$ proves the data condition.
+
+For a quantitative energy bound define
+\[
+ a_* =|a_0|e^{\sigma T_1},\qquad
+ k_* =\sqrt{K_1^2e^{-2\sigma T_1}+K_3^2}>0,
+ \qquad c_\chi=\|\nabla\chi\|_\infty.
+\]
+The viscosity exponent in \eqref{eq:vs-amplitude} is nonpositive for
+$0\leq t\leq T_1$, so $|a|\leq a_*$ there. Also
+$\sqrt q\geq k_*$, $|Dx|\leq\sigma R_1$ on the spatial support,
+and \eqref{eq:vs-potential} gives
+$|A|\leq\sigma R_1^2/3+a_*/k_*$. Consequently
+\[
+ \int_{\R^3}|U(x,t)|^2\,dx
+ \leq\frac{4\pi R_1^3}{3}
+ \left[\sigma R_1+a_*+
+ c_\chi\left(\frac{\sigma R_1^2}{3}+\frac{a_*}{k_*}\right)\right]^2
+ \quad(t\geq0).
+\]
+Adding one to this finite right side provides the strict bound in
+\eqref{eq:energy}. Finally, on the stated interior plateau
+$\chi=\eta=1$, $w=0$ and all cutoff derivatives vanish; direct
+substitution proves $(U,P,F)=(u,p_0,0)$ there.
+\end{proof}
+
+The original strain, both initial wavevector components, amplitude,
+viscosity, inner and outer spatial radii, and both time endpoints have
+all been retained. Localization supplies an actual map from this
+nondecaying exact solution to admissible compact data and forcing with an
+identical finite interior evolution. Increasing an amplification parameter
+creates a different smooth solution; the displayed family alone does not
+produce a finite-time singular solution for fixed prescribed data.

@@ -1,0 +1,525 @@
+\section{The current S6 dynamics and an exact viscous periodic image}
+\label{sec:s6-dynamics}
+
+The current source task is \emph{S6 Proof Audit, Reconstruction \& Overleaf
+Release}. Its dynamical source is
+\path{supporting_materials/workbench/research/quaternionic_4441_reconciliation.tex},
+in the cumulative \path{s6_consolidated_canonical_2026-08-26} workbench.
+The three-real-field equations occur at lines 3396--3460 and the periodic
+continuation at lines 3485--3583 in the audited snapshot. The source hashes
+are recorded in \path{sources/s6_dynamics_source_hashes.json}. The construction
+below uses these actual later field equations, rather than repeating the
+earlier polynomial map. It proves an explicit map to classical positive
+viscosity Navier--Stokes on the unit flat torus. The image consists of global
+smooth solutions. No conclusion about every possible map from the workbench,
+or about its full geometric reconstruction, follows from this calculation.
+
+\subsection{The retained full gauge--scalar equations}
+
+Use the source real state space and metric
+\[
+ \mathcal E=\operatorname{Herm}_3(\C)_0\oplus\C^3,
+ \qquad
+ \langle(\phi,c),(\psi,d)\rangle
+   =\tr(\phi\psi)+2\operatorname{Re}(c^*d).
+\]
+Here the subscript means trace zero. Retain signature $(+---)$, source
+time $\tau$, the gauge action $(\Phi,b)\mapsto(g\Phi g^*,gb)$ for $g\in SU(3)$,
+and the potential
+\begin{equation}\label{eq:s6dyn-potential}
+ V=\frac{m^2}{2}s+\frac{\Gamma}{4}s^2
+       -\kappa(\det\Phi-b^*\Phi b),\qquad
+ s=\tr\Phi^2+2b^*b.
+\end{equation}
+The scalar kinetic density is
+$\tfrac12\tr(D_\mu\Phi D^\mu\Phi)+(D_\mu b)^*D^\mu b$.
+We use the identically zero connection $\mathcal A_\mu=0$ and retain
+$Z_{\rm tf}=Z-\tr(Z)I_3/3$. Set $a=m^2+\Gamma s$. Direct variation gives
+\begin{align}
+ dV(\delta\Phi,\delta b)
+ &=\tr\!\left([a\Phi-\kappa(\operatorname{adj}\Phi-bb^*)_{\rm tf}]
+                   \delta\Phi\right)\notag\\
+ &\quad+2\operatorname{Re}\!\left[((aI_3+\kappa\Phi)b)^*
+                   \delta b\right].\label{eq:s6dyn-variation}
+\end{align}
+The determinant derivative used here is the polynomial identity
+$d(\det\Phi)[H]=\tr((\operatorname{adj}\Phi)H)$, which holds also for
+singular matrices by polynomial continuation from the invertible ones.
+Integration by parts with the displayed kinetic metric therefore gives
+\begin{align}
+ \Box\Phi&=-a\Phi+\kappa(\operatorname{adj}\Phi-bb^*)_{\rm tf},\notag\\
+ \Box b&=-(aI_3+\kappa\Phi)b,\qquad
+ \Box=\partial_\tau^2-\sum_{j=1}^3\partial_{x_j}^2.
+ \label{eq:s6dyn-full}
+\end{align}
+The matter current paired with an anti-Hermitian connection variation is
+\[
+ J_\mu=[\Phi,\partial_\mu\Phi]
+       +b(\partial_\mu b)^*-(\partial_\mu b)b^*.
+\]
+For the fields used below, this matrix is zero, so its trace-free projection
+is zero as well. The Yang--Mills field strength of the zero connection is
+zero. Thus all connection equations, including Gauss, hold for the full
+variational system, not only for variations restricted to the scalar ansatz.
+
+Put
+\begin{equation}\label{eq:s6dyn-sector}
+ \Phi=\operatorname{diag}(h+k,h-k,-2h),\qquad b=\beta e_3,
+ \qquad h,k,\beta\in\R.
+\end{equation}
+All commutators in $J_\mu$ vanish because the matrices are diagonal;
+the remaining two products are equal because $\beta$ and its derivatives
+are real. Further,
+\begin{align*}
+ s&=6h^2+2k^2+2\beta^2,\\
+ \det\Phi-b^*\Phi b&=2h(k^2+\beta^2-h^2),\\
+ \operatorname{adj}\Phi-bb^*
+ &=\operatorname{diag}\bigl(-2h(h-k),-2h(h+k),h^2-k^2-\beta^2\bigr).
+\end{align*}
+The last trace is $-3h^2-k^2-\beta^2$. Removing exactly one third of it
+in \eqref{eq:s6dyn-full}, taking half the sum and difference of the first
+two diagonal entries, and using the third component of $b$, gives
+\begin{align}
+ \Box h&=-ah-\kappa h^2+\frac{\kappa}{3}(k^2+\beta^2),\notag\\
+ \Box k&=-(a-2\kappa h)k,\qquad
+ \Box\beta=-(a-2\kappa h)\beta,\notag\\
+ a&=m^2+\Gamma(6h^2+2k^2+2\beta^2).
+ \label{eq:s6dyn-three}
+\end{align}
+Conversely these equations give every component of
+\eqref{eq:s6dyn-full}; all omitted entries are zero. This proves the exact
+invariant sector. For homogeneous fields the kinetic density is
+$3\dot h^2+\dot k^2+\dot\beta^2$, with Euler--Lagrange weights $6,2,2$.
+
+\subsection{The source oscillator, including its parameter interval}
+
+Retain the source hypotheses
+\[
+ 0<m^2<\frac{\kappa^2}{27\Gamma},\qquad \Gamma>0,\quad\kappa>0,
+ \qquad d_0=\sqrt{\kappa^2-24\Gamma m^2},\qquad
+ h_0=\frac{\kappa+d_0}{24\Gamma}.
+\]
+Choose $h_0<h<\kappa/(6\Gamma)$ and define
+\begin{align}
+ \Delta(h)&=1-\frac{6\Gamma h}{\kappa},&
+ a(h)&=\frac{m^2+12\Gamma h^2}{\Delta(h)},\notag\\
+ R^2(h)&=\frac{3a(h)h}{\kappa}+3h^2,&
+ \omega^2(h)&=a(h)-2\kappa h
+   =\frac{m^2-2\kappa h+24\Gamma h^2}{\Delta(h)}.
+ \label{eq:s6dyn-parameters}
+\end{align}
+Take the positive roots $R,\omega$. The square root $d_0$ is real and
+$0<d_0<\kappa$; in particular $0<h_0<\kappa/(12\Gamma)$, so the interval
+for $h$ is nonempty. The denominator is positive there, as are $a$ and
+$R^2$. The numerator of $\omega^2$ factors as
+\[
+ 24\Gamma\left(h-\frac{\kappa-d_0}{24\Gamma}\right)(h-h_0),
+\]
+so $\omega^2>0$. Direct substitution gives the three exact identities
+\begin{equation}\label{eq:s6dyn-three-identities}
+ a=m^2+\Gamma(6h^2+2R^2),\qquad
+ -ah-\kappa h^2+\frac{\kappa R^2}{3}=0,\qquad
+ \omega^2=a-2\kappa h.
+\end{equation}
+Consequently
+\begin{equation}\label{eq:s6dyn-oscillator}
+ h(\tau)=h,\qquad k(\tau)=R\cos(\omega\tau),\qquad
+ \beta(\tau)=R\sin(\omega\tau),\qquad\mathcal A_\mu=0
+\end{equation}
+solves the full equations for every real $\tau$. Indeed its squared radius
+is $R^2$, its last two second derivatives are $-\omega^2$ times the original
+coordinates, and its first second derivative is zero; these are precisely
+\eqref{eq:s6dyn-three}. The observable $\|b\|^2=R^2\sin^2(\omega\tau)$
+is gauge invariant and nonconstant. In the source polar convention
+$k=r\cos(2\theta)$, $\beta=-r\sin(2\theta)$, this same trajectory is
+$r=R$, $\theta=-\omega\tau/2$, preserving the original minus sign.
+
+Its conserved energy density, obtained by adding its kinetic and potential
+densities without rescaling, is
+\begin{equation}\label{eq:s6dyn-source-energy}
+ E(h)=R^2\omega^2+m^2(3h^2+R^2)+\Gamma(3h^2+R^2)^2
+                 -2\kappa h(R^2-h^2).
+\end{equation}
+On the source flat torus of volume $\mathcal V_3$, the total energy is
+$\mathcal V_3E(h)$. This volume and this scalar energy are not identified
+with the fluid volume or kinetic energy in the map below.
+
+\subsection{A coefficient map with two nonparallel wave directions}
+
+The target is exactly $\T^3=\R^3/\Z^3$, with coordinates $(x_1,x_2,x_3)$,
+Euclidean metric, standard orientation, and volume one. Choose and retain
+\[
+ n\in\mathbb N_{>0},\qquad \lambda=2\pi n,\qquad
+ \nu>0,\quad\eta>0,\quad\sigma>0.
+\]
+Here $\tau=\sigma t$ is the stated source-to-fluid time dictionary and
+$\eta$ converts scalar amplitude to fluid velocity; these are independent
+parameters. Define
+\begin{equation}\label{eq:s6dyn-modes}
+ B_1=(\sin(\lambda x_3),\cos(\lambda x_3),0),\qquad
+ B_2=(0,\sin(\lambda x_1),\cos(\lambda x_1)).
+\end{equation}
+Both fields are unit-periodic. Their wave directions are $e_3$ and $e_1$.
+For example
+$\partial_3(B_1)_2=-\lambda\sin(\lambda x_3)$ and
+$\partial_3(B_1)_1=\lambda\cos(\lambda x_3)$; inserting these in the
+oriented curl gives $\curl B_1=\lambda B_1$. The same calculation with
+$\partial_1(B_2)_3=-\lambda\sin(\lambda x_1)$ and
+$\partial_1(B_2)_2=\lambda\cos(\lambda x_1)$ gives
+$\curl B_2=\lambda B_2$. Componentwise differentiation further proves
+\begin{equation}\label{eq:s6dyn-mode-identities}
+ \operatorname{div}B_j=0,\quad\Delta B_j=-\lambda^2B_j,\quad
+ |B_j|^2=1,\quad
+ B_1\cdot B_2=c(x):=\cos(\lambda x_3)\sin(\lambda x_1).
+\end{equation}
+The mean of $c$ is zero, by integration of either sine or cosine over the
+unit interval. Therefore $(B_1,B_2)$ is an orthonormal pair in real
+$L^2(\T^3;\R^3)$, despite its nonzero pointwise inner product.
+
+Put $d(t)=e^{-\nu\lambda^2t}$. For each finite $t$, the map
+\begin{equation}\label{eq:s6dyn-linear-map}
+ L_t:\R^2\longrightarrow C^\infty(\T^3;\R^3),\qquad
+ L_t(K,B)=\eta d(t)(KB_1+BB_2)
+\end{equation}
+has kernel zero and image $\operatorname{span}_{\R}\{B_1,B_2\}$.
+Its inverse on that image and its inner product are exactly
+\begin{align}
+ K&=\frac{\int_{\T^3}L_t(K,B)\cdot B_1\,dx}{\eta d(t)},&
+ B&=\frac{\int_{\T^3}L_t(K,B)\cdot B_2\,dx}{\eta d(t)},\notag\\
+ \langle L_t(K,B),L_t(K',B')\rangle_{L^2}
+ &=\eta^2d(t)^2(KK'+BB').\label{eq:s6dyn-inverse}
+\end{align}
+These statements follow by the two orthogonality integrals, not by a
+dimension count. On the source oscillator circle $K^2+B^2=R^2$, its image
+is the circle of $L^2$ radius $\eta d(t)R$ in that two-dimensional plane.
+The original $h$ is retained as a fixed parameter defining this circle;
+the construction does not identify the full three-coordinate state space
+or the full gauge configuration space with this plane.
+
+There is also an exact flow relation on this image. Define
+$J_EB_1=B_2$ and $J_EB_2=-B_1$ on the two-dimensional image. The
+orthogonality already proved gives $J_E^*=-J_E$. For any trajectory
+$q(\tau)=(k(\tau),\beta(\tau))$ with
+$q'=\omega(-\beta,k)$, direct differentiation of \eqref{eq:s6dyn-linear-map}
+gives
+\[
+ \frac{d}{dt}L_t(q(\sigma t))
+   =(-\nu\lambda^2I+\sigma\omega J_E)L_t(q(\sigma t)).
+\]
+Thus the full coefficient evolution, time conversion, and damping
+are included in the map; it is not only a correspondence of time slices.
+
+\subsection{Exact pressure, force, energy, and regularity}
+
+For readability write $K(t)=k(\sigma t)$ and $B(t)=\beta(\sigma t)$.
+Then $K'=-\sigma\omega B$, $B'=\sigma\omega K$, and $K^2+B^2=R^2$.
+Define the following complete periodic data and solution:
+\begin{align}
+ u(x,t)&=\eta d(t)(K(t)B_1(x)+B(t)B_2(x)),\notag\\
+ p(x,t)&=-\eta^2d(t)^2K(t)B(t)c(x),\notag\\
+ f(x,t)&=\eta\sigma\omega d(t)(-B(t)B_1(x)+K(t)B_2(x)),\notag\\
+ u^0(x)&=\eta R B_1(x).
+ \label{eq:s6dyn-ns-solution}
+\end{align}
+These satisfy the full three-dimensional classical system
+\eqref{eq:ns}, with the stated positive viscosity and its original sign.
+To prove this, \eqref{eq:s6dyn-mode-identities} first gives
+$\operatorname{div}u=0$, $\curl u=\lambda u$, and $\Delta u=-\lambda^2u$.
+The component identity
+\[
+ ((u\cdot\nabla)u)_i
+ =\partial_i\frac{|u|^2}{2}-(u\times\curl u)_i
+\]
+follows by expanding the two Levi--Civita symbols in the cross product.
+Here its cross product is zero. Since
+\[
+ \frac{|u|^2}{2}
+   =\frac{\eta^2d(t)^2R^2}{2}+\eta^2d(t)^2K(t)B(t)c(x),
+\]
+the first term has zero spatial gradient and
+$(u\cdot\nabla)u+\nabla p=0$ exactly. This pressure is spatially
+nonconstant whenever $KB\ne0$: $\partial_1c=\lambda\cos(\lambda x_3)
+\cos(\lambda x_1)$ is not the zero function. Thus the nonlinear
+interaction has been calculated, including its nonzero pressure.
+Finally $d'=-\nu\lambda^2d$ and the two oscillator derivatives give
+$\partial_tu=\nu\Delta u+f$, completing every component of the equation.
+At $t=0$ the displayed initial condition follows from $(K,B)=(R,0)$.
+
+The fluid kinetic energy and its exact balance are
+\begin{equation}\label{eq:s6dyn-fluid-energy}
+ \mathcal E_{\rm fluid}(t)=\frac12\int_{\T^3}|u|^2dx
+       =\frac{\eta^2R^2}{2}e^{-2\nu\lambda^2t},\qquad
+ \mathcal E_{\rm fluid}'(t)
+       +\nu\int_{\T^3}|\nabla u|^2dx=0.
+\end{equation}
+Indeed integration of $u\cdot f$ gives
+$\eta^2\sigma\omega d^2(-KB+BK)=0$. Integration by parts on the
+periodic cube gives
+$\int|\nabla u|^2=-\int u\cdot\Delta u=\lambda^2\eta^2d^2R^2$,
+which proves the balance and agrees with differentiating the energy.
+The force does zero \emph{integrated} work; no pointwise zero-work claim
+is made, since
+$u\cdot f=\eta^2\sigma\omega d^2(K^2-B^2)c(x)$.
+
+All fields in \eqref{eq:s6dyn-ns-solution} are smooth for $t\ge0$.
+For each spatial multi-index $\alpha$ and each nonnegative integer $r$,
+differentiation of the finite trigonometric expressions gives
+\[
+ \sup_{x\in\T^3}|\partial_x^\alpha\partial_t^rf(x,t)|
+ \le C_{\alpha r}e^{-\nu\lambda^2t},
+\]
+with a finite constant depending on the retained parameters. For every
+integer $N\ge0$, $(1+t)^Ne^{-\nu\lambda^2t}$ is bounded on $[0,\infty)$:
+it is continuous on $[0,1]$, and for $t\ge1$ the exponential series
+$e^{\nu\lambda^2t}\ge(\nu\lambda^2t)^{N+1}/(N+1)!$ gives decay of
+its product with $(1+t)^N$. Thus the force satisfies precisely the
+periodic decay condition \eqref{eq:periodic-force}, and the initial data
+are smooth, divergence-free, and periodic. The construction gives an
+explicit global solution for these admissible data. Its decaying fluid
+energy \eqref{eq:s6dyn-fluid-energy} and the constant source energy
+\eqref{eq:s6dyn-source-energy} show exactly that this map preserves the
+displayed differential equations with the displayed force dictionary;
+it is not an energy-preserving identification of the two systems.
+
+\subsection{Gauge equivalence and the exact translation quotient}
+
+The coefficient map above uses the marked diagonal sector. It does not
+silently identify gauge-equivalent source matrices with a single fixed
+coordinate velocity. This issue has an exact resolution for the fixed
+$h$ circle used here. For two states \eqref{eq:s6dyn-sector} with this
+same $h>0$, full $SU(3)$ gauge equivalence implies
+\[
+  \beta'^2=\beta^2,\qquad
+ 2h(k'^2-h^2)=\det\Phi'=\det\Phi=2h(k^2-h^2),
+\]
+so $k'^2=k^2$. Conversely every independent change of signs of
+$k,\beta$ is a gauge transformation. In fact
+\[
+ g_b=\operatorname{diag}(-1,1,-1),\qquad
+ g_s=\begin{pmatrix}0&1&0\\1&0&0\\0&0&-1\end{pmatrix}
+\]
+are unitary matrices of determinant one. The first sends
+$(k,\beta)$ to $(k,-\beta)$, and the second sends it to $(-k,-\beta)$;
+their product realizes $(-k,\beta)$. These statements remain valid when
+one coordinate is zero. This proves both directions of the orbit
+classification within the fixed-$h$ sector, with no generic-orbit
+exception.
+
+For a torus translation $T_a v(x)=v(x+a)$, define
+\[
+ a_1=(0,0,1/(2n)),\qquad a_2=(1/(2n),0,0).
+\]
+Then
+\[
+ T_{a_1}B_1=-B_1,\quad T_{a_1}B_2=B_2,\qquad
+ T_{a_2}B_1=B_1,\quad T_{a_2}B_2=-B_2.
+\]
+Consequently the $SU(3)$ orbit relation just calculated corresponds
+exactly under $L_t$ to the orbit relation generated by $T_{a_1},T_{a_2}$
+on its image. Their action on this image factors through
+$(\Z/2\Z)^2$; the translations themselves need not have order two on
+the whole torus. The map therefore descends to a bijection between the
+fixed-$h$ source circle modulo the stated gauge equivalence and the
+image circle modulo these translations. The inverse is supplied by
+\eqref{eq:s6dyn-inverse} followed by the sign orbit.
+
+For entire trajectories, a constant sign transformation also transforms
+the derivatives $(K',B')$ with the same signs. Applying
+\eqref{eq:s6dyn-ns-solution} using these transformed derivatives in
+$f=\eta d(K'B_1+B'B_2)$ intertwines all three fields $(u,p,f)$ with
+the corresponding fixed torus translation. A single sign reversal
+changes the orientation of the source oscillator; it is not to be
+inserted into $K'=-\sigma\omega B$, $B'=\sigma\omega K$ while
+retaining those first-order equations. The second-order source equations
+are unchanged. This proves equivariance of the full construction without
+discarding its orientation data.
+
+\subsection{What the fixed curl sector actually evolves}
+
+Let $E_\lambda$ be the real smooth periodic fields satisfying
+$\operatorname{div}v=0$ and $\curl v=\lambda v$, for the same
+$\lambda=2\pi n>0$. Let $P$ be the flat torus orthogonal projection
+onto divergence-free fields, including the constant fields. In Fourier
+coordinates its symbol is $P_j=I-jj^{\mathsf T}/|j|^2$ for
+$j\in\Z^3\setminus\{0\}$ and $P_0=I$. This definition proves
+$P\nabla q=0$ for every smooth periodic scalar $q$.
+For any time-dependent field that remains in $E_\lambda$, the component
+identity used above gives
+\[
+ P((u\cdot\nabla)u)=0,\qquad\Delta u=-\lambda^2u.
+\]
+Projection of the full Navier--Stokes equation therefore yields the
+\emph{exact} evolution
+\begin{equation}\label{eq:s6dyn-linear-sector}
+ \partial_tu+\nu\lambda^2u=Pf,\qquad
+ u(t)=e^{-\nu\lambda^2t}u(0)
+      +\int_0^t e^{-\nu\lambda^2(t-s)}Pf(s)\,ds.
+\end{equation}
+The second identity follows by differentiating
+$e^{\nu\lambda^2t}u(t)$ and integrating; no nonlinear estimate is
+substituted for an equality. Necessarily $Pf(s)\in E_\lambda$ for a
+solution that stays in that space. Conversely a smooth force with this
+property and an initial field in $E_\lambda$ gives a velocity in
+$E_\lambda$ by this formula. The complete pressure reconstruction is
+\[
+ \widehat q(0,t)=0,\qquad
+ \widehat q(j,t)=\frac{j\cdot\widehat f(j,t)}
+                         {2\pi i|j|^2}\quad(j\ne0),\qquad
+ p=q-\frac{|u|^2}{2}+c_0(t).
+\]
+Here $c_0$ is any smooth real function. Smoothness of $f$ gives rapid
+decay of its Fourier coefficients, including every time derivative
+on finite intervals, so this series defines a smooth real $q$.
+Its reality follows from the conjugate symmetry of $\widehat f$.
+Multiplication of its coefficient by $2\pi i j$ proves
+$\nabla q=(I-P)f$. Substitution then gives the full equation, since
+$Pf+\nabla(|u|^2/2)+\nabla p-f=0$.
+
+There are only finitely many Fourier frequencies in $E_\lambda$.
+Indeed $\Delta u=-\lambda^2u$ gives
+$(4\pi^2|j|^2-\lambda^2)\widehat u(j)=0$; hence $|j|=n$, a finite
+set of integer triples, and $\widehat u(0)=0$. Every spatial derivative
+norm is consequently bounded by a fixed finite sum of absolute values
+of these coefficients. Smooth prescribed forcing on a finite closed
+time interval has bounded coefficients there. Formula
+\eqref{eq:s6dyn-linear-sector} bounds every coefficient and all its
+time derivatives on that interval, by differentiation of the finite
+scalar integrals. Thus this entire exact invariant sector has no
+finite-time singularity under smooth prescribed forcing. This establishes
+the behavior of this particular image, not an obstruction to maps whose
+images contain interacting curl eigenvalues or an unbounded frequency
+sequence.
+
+\subsection{The September 8 Wilson-box vacuum gives a second exact map}
+
+The later source extension
+\path{ym_bulk_plaquette_extension.tex} retains an open cubic spatial
+graph with vertices $\{-L,\ldots,L\}^3$, $L\in\Z$, $L\ge2$, all
+$N=3(2L)(2L+1)^2$ positive links and all $M=3(2L)^2(2L+1)$ elementary
+faces. The exact configuration space is the compact connected manifold
+\[
+ \mathcal C_L=SU(2)^N,
+ \qquad\dim_{\R}\mathcal C_L=3N.
+\]
+The following symbols are the \emph{Wilson source} parameters: its
+$\kappa=2g_{\rm YM}^2/a$ is a kinetic coefficient, with $g_{\rm YM}>0$,
+and its $a>0$ is a
+lattice spacing. They are not the scalar cubic coefficient or $a(h)$
+of \eqref{eq:s6dyn-parameters}. Retain
+\[
+ b=\frac1{2g_{\rm YM}^2a},\qquad
+ H=-\kappa\Delta+V,\qquad
+ V=b\sum_p(2-W_p),\qquad
+ W_p=\tr(U_{e_1}U_{e_2}U_{e_3}^{-1}U_{e_4}^{-1}),
+\]
+with the oriented boundary of each square as in the source. The metric
+on each factor is bi-invariant with orthonormal
+$T_j=-i\sigma_j/2$ and inner product $-2\tr(T_jT_k)=\delta_{jk}$.
+Haar probability measure is its volume measure up to the fixed total
+volume factor; this factor does not affect integration by parts.
+
+The lowest eigenfunction $\psi$ may be chosen smooth, strictly positive,
+and $L^2$ normalized. To record the analytical ingredients explicitly,
+the bounded smooth real potential and compact manifold give a Rayleigh
+minimizer: a bounded-energy minimizing sequence has bounded $H^1$ norm,
+its subsequence converges strongly in $L^2$ by compact Sobolev embedding,
+and weak lower semicontinuity gives the minimum. Replacing it by its
+absolute value preserves its $L^2$ norm and does not increase the
+Dirichlet integral. The weak Euler--Lagrange equation and elliptic
+regularity give a smooth nonnegative eigenfunction. The strong maximum
+principle applied after a sufficiently large constant shift makes it
+strictly positive. Its eigenvalue $E$ is the minimum. Uniqueness up to
+scale also follows directly: if another real ground eigenfunction is
+$\psi F$, subtracting $F$ times the equation for $\psi$ and integrating
+against $F\psi$ gives $\int\psi^2|\nabla F|^2=0$; thus $F$ is constant.
+The real and imaginary parts give the corresponding complex uniqueness.
+This argument retains the actual interacting potential, with every link
+and face present.
+
+Set $\phi=\log\psi$ and $\rho=\psi^2$. Expanding the Laplacian of
+$\psi F$ proves the ground-state transform
+\[
+ \psi^{-1}(H-E)(\psi F)
+  =-\kappa\bigl(\Delta F+\nabla\log\rho\cdot\nabla F\bigr).
+\]
+The forward heat drift is $\beta_{\rm W}=\kappa\nabla\log\rho$.
+Define its negative as the potential velocity
+$u_{\rm W}=-2\kappa\nabla\phi=-\beta_{\rm W}$.
+To fix the geometric diffusion sign, define
+\[
+ \Delta_{\rm rough}Y=\sum_j\left(
+ \nabla_{E_j}\nabla_{E_j}Y-
+ \nabla_{\nabla_{E_j}E_j}Y\right),\qquad
+ \mathcal D Y=\Delta_{\rm rough}Y-\operatorname{Ric}^{\sharp}Y.
+\]
+The commutation of covariant derivatives on the gradient gives
+\[
+ \Delta_{\rm rough}\nabla q
+   =\nabla\Delta q+\operatorname{Ric}^{\sharp}\nabla q,
+ \qquad \mathcal D\nabla q=\nabla\Delta q.
+\]
+For completeness, the bi-invariant connection on each factor is
+$\nabla_XY=[X,Y]/2$ on invariant fields. The Koszul formula gives this
+identity from invariance of the metric. Substitution in the definition
+of curvature gives sectional curvature $|[X,Y]|^2/4$ for orthonormal
+$X,Y$. Since $[T_j,T_k]=\epsilon_{jk\ell}T_\ell$, this curvature is
+$1/4$, and summing its two transverse directions gives
+$\operatorname{Ric}=g/2$. Mixed factors have zero curvature, so on the
+product $\mathcal D=\Delta_{\rm rough}-I/2$.
+
+The original ground-state equation, divided by its positive $\psi$,
+now yields
+\[
+ \kappa(\Delta\phi+|\nabla\phi|^2)=V-E.
+\]
+The symmetry of the Hessian gives
+$\nabla_{\nabla\phi}\nabla\phi=\nabla|\nabla\phi|^2/2$.
+Taking a gradient of the preceding identity therefore proves the exact
+stationary viscous equation
+\begin{align}
+ \nabla_{u_{\rm W}}u_{\rm W}-\kappa\mathcal D u_{\rm W}
+ &=2\kappa^2\nabla(|\nabla\phi|^2+\Delta\phi)\notag\\
+ &=2\kappa\nabla V
+ =-\frac{2}{a^2}\nabla\sum_pW_p.
+ \label{eq:s6dyn-wilson-burgers}
+\end{align}
+The last coefficient uses $2\kappa b=2/a^2$. This is an exact forced
+potential Burgers equation on the retained configuration manifold.
+The velocity sign is essential: the forward drift itself satisfies
+$\nabla_{\beta_{\rm W}}\beta_{\rm W}+\kappa\mathcal D\beta_{\rm W}
+=2\kappa\nabla V$.
+
+Its incompressible component can be computed exactly on this same
+manifold. If $\operatorname{div}u_{\rm W}=-2\kappa\Delta\phi$ vanished,
+then integration against $\phi$ would give
+$0=\int\phi\Delta\phi=-\int|\nabla\phi|^2$, so $\phi$ and $\psi$
+would be constant by connectedness. The ground-state equation would
+then force $V$ to be constant. It is not: all identity links give
+$V=0$, whereas replacing one strictly interior link by $-I$ leaves
+all other links at the identity and changes precisely its four incident
+face traces from $2$ to $-2$, giving $V=16b>0$. Therefore this actual
+vacuum velocity is not divergence-free. Moreover for every smooth
+divergence-free vector field $Y$,
+\[
+ \langle u_{\rm W},Y\rangle_{L^2}
+   =2\kappa\int\phi\operatorname{div}Y=0.
+\]
+By continuity this holds for the $L^2$ closure of those fields, so the
+orthogonal incompressible projection of $u_{\rm W}$ is exactly zero.
+The force in \eqref{eq:s6dyn-wilson-burgers} is also a gradient and has
+zero such projection. This proves both the differential-equation
+correspondence and what its specific incompressible projection retains.
+It does not erase the interacting vacuum, replace the graph by three
+coordinates, or exclude different maps from excited states or currents.
+
+\subsection{Exact replay record}
+
+The standalone script \path{scripts/check_s6_dynamics.py} checks the
+matrix sector variation, all three oscillator parameter identities,
+the oriented curls, divergences and Laplacians of both modes, their
+orthogonality, the full viscous momentum residual, the nonlinear
+pressure, the gauge generators and translation signs, the energy
+identity, and the Wilson parameter coefficient. Its deterministic
+record is \path{checks/s6_dynamics_checks.json}. These finite symbolic
+identities accompany the analytic arguments above; they do not certify
+the full source workbench or establish a Navier--Stokes counterexample.

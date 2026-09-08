@@ -1,0 +1,355 @@
+\section{A direct permanent projection of the shared-verifier trace}
+\label{sec:permanent-trace-projection}
+
+The polynomial $Q_{N,M}(E)$ and its full-fibre trace now have a concrete
+relation to the permanent, with all witness extensions and sizes specified.
+For an integer $n\ge1$ introduce the $n^2$ independent variables
+$Z_{ij}$, $1\le i,j\le n$, and define
+\[
+ \operatorname{per}_n(Z)=\sum_{\sigma\in\mathfrak S_n}
+                  \prod_{i=1}^n Z_{i,\sigma(i)}
+ \quad\text{in }\mathbb Z[Z_{ij}].
+\]
+We will use exactly
+\begin{equation}\label{eq:per-trace-size}
+ N=3n^2,\qquad M_0=n^3+5n^2,\qquad M=n^3+6n^2
+\end{equation}
+witness bits and clauses. The original source map in
+Proposition~\ref{prop:sv-full-fibre} and its target $(-1/4,0,0)$
+remain unchanged in every one of these $N$ factors.
+
+\subsection{The uniquely extended Boolean witness}
+
+Order the $N$ bits by the following three groups, each in lexicographic
+index order:
+\[
+ B_{ij}\ (1\le i,j\le n),\qquad
+ R_{ik}\ (1\le i,k\le n),\qquad
+ C_{jk}\ (1\le j,k\le n).
+\]
+The bit $B_{ij}$ specifies whether the permutation uses entry $(i,j)$.
+For each row $i$, impose the equivalences
+\[
+ R_{i1}\leftrightarrow B_{i1},\qquad
+ R_{ik}\leftrightarrow(R_{i,k-1}\vee B_{ik})\ (2\le k\le n),
+ \qquad R_{in}=1.
+\]
+Also impose $\neg B_{ij}\vee\neg B_{il}$ for every $j<l$.
+For each column $j$, impose the equivalences
+\[
+ C_{j1}\leftrightarrow B_{1j},\qquad
+ C_{jk}\leftrightarrow(C_{j,k-1}\vee B_{kj})\ (2\le k\le n),
+ \qquad C_{jn}=1,
+\]
+and $\neg B_{ij}\vee\neg B_{lj}$ for every $i<l$.
+
+We specify every clause in these equivalences. Encode $w\leftrightarrow v$
+as $(\neg w\vee v)$ and $(w\vee\neg v)$. Encode
+$w\leftrightarrow(u\vee v)$ as
+\[
+ (\neg u\vee w),\qquad(\neg v\vee w),\qquad
+ (u\vee v\vee\neg w).
+\]
+The first two clauses say that either true input forces $w=1$;
+the third says that $w=1$ forces at least one true input.
+These two implications prove the equivalence for every Boolean triple.
+The two clauses for equality prove both implications in the same way.
+Encode the final truth requirement by the unary clause $w$.
+Pad a binary clause $(a\vee b)$ to $(a\vee b\vee b)$ and a unary
+clause $a$ to $(a\vee a\vee a)$. Since $0,1$ satisfy $v^2=v$, this
+padding preserves each clause's truth value under its polynomial
+arithmetization $1-\prod_{k=1}^3(1-L_k)$.
+
+Order clauses first by rows, then by columns, and within each row or
+column by the equivalences in increasing prefix index, the final truth
+requirement, and the exclusion pairs in lexicographic order. This fixes
+an ordered list of three-literal clauses without an unspecified choice.
+Each row or column contributes
+\[
+ 2+3(n-1)+1+\binom n2=3n+\binom n2
+\]
+clauses, including when $n=1$. There are $2n$ such lists, yielding
+$M_0=2n(3n+\binom n2)=n^3+5n^2$.
+
+For each assignment to the $B_{ij}$, the equivalences force the unique
+extension
+\[
+ R_{ik}=\bigvee_{j=1}^k B_{ij},\qquad
+ C_{jk}=\bigvee_{i=1}^k B_{ij}.
+\]
+The formulas follow by induction on $k$ starting with the equality clause;
+they also satisfy every equivalence, proving existence and uniqueness.
+The final truth requirements and pair exclusions then say that each
+row and each column has exactly one true entry. Reading the true entry
+of row $i$ as $\sigma(i)$ gives a map to $\mathfrak S_n$: no two rows
+choose the same column, and every column is chosen. Conversely every
+permutation yields exactly those entries and exactly the displayed
+prefix flags. These maps are inverse. In particular auxiliary witnesses
+do not multiply the number of contributions.
+
+\subsection{The exact parameter-ring map}
+
+Use the $6MN$ independent parameters $E_{a,k,h,\pm}$ of
+Section~\ref{sec:sv-shared-verifier}, with clause index $1\le a\le M$,
+slot $1\le k\le3$, and witness index $1\le h\le N$ in the order above.
+Define a ring homomorphism
+\begin{equation}\label{eq:per-trace-parameter-map}
+ \Psi_n:\mathbb Z[E_{a,k,h,\pm}]
+       \longrightarrow\mathbb Z[Z_{ij}]
+\end{equation}
+by giving the image of every parameter. In the first $M_0$ clauses,
+put $1$ at the unique parameter corresponding to the signed literal
+in that slot and $0$ at all other parameters of that slot. For each
+$(i,j)$, append one clause, in lexicographic order. In its first slot,
+put $Z_{ij}$ at the positive parameter for the witness $B_{ij}$,
+put $1$ at the negative parameter for that same witness, and put $0$
+at all its other parameters. Put $0$ at every parameter in its
+second and third slots. These $n^2$ appended clauses give exactly
+the value of $M$ in \eqref{eq:per-trace-size}. The map uses only
+variables and the integer constants $0,1$.
+
+This map is surjective: $Z_{ij}$ is the image of its chosen appended
+positive parameter, denoted $E^*_{ij}$. Its kernel is explicit.
+For each of the other parameters whose image is $0$ or $1$, take
+the relation $E-\Psi_n(E)$. These relations generate the kernel:
+the quotient is the polynomial ring on the $E^*_{ij}$, and its
+inverse to the induced map sends $Z_{ij}$ to $[E^*_{ij}]$.
+Thus \eqref{eq:per-trace-parameter-map} is the coordinate map of a
+closed affine embedding, with the indicated linear ideal.
+
+Write $\mathcal A(B,R,C)$ for the product of the first $M_0$
+arithmetized clauses. The appended clause has first literal
+$Z_{ij}B_{ij}+(1-B_{ij})$ and other two literals zero. Therefore
+its arithmetized value is exactly
+\[
+ 1-\bigl(1-Z_{ij}B_{ij}-(1-B_{ij})\bigr)(1-0)(1-0)
+       =1-B_{ij}+Z_{ij}B_{ij}.
+\]
+This calculation is a polynomial identity before Boolean substitution.
+It proves
+\[
+ \Psi_n(V_{N,M})=
+ \mathcal A(B,R,C)\prod_{i,j}(1-B_{ij}+Z_{ij}B_{ij}).
+\]
+When evaluated at Boolean witnesses, $\mathcal A$ is one precisely
+at the uniquely extended permutation assignments, and zero at all
+others. At the permutation $\sigma$ the remaining product is
+$\prod_i Z_{i,\sigma(i)}$: the selected entries contribute $Z_{ij}$
+and every unselected entry contributes $1$. Hence
+\begin{equation}\label{eq:per-trace-projection}
+ \Psi_n\bigl(Q_{N,M}(E)\bigr)=\operatorname{per}_n(Z).
+\end{equation}
+All these equalities hold over $\mathbb Z$. Indeed both sides are
+the same finite sum of the explicitly computed integer-coefficient
+polynomials, term by term. Base change gives the identity over any
+commutative ring; the interpretation of an integer count as a rank
+uses the characteristic-zero fibre in the earlier trace theorem.
+
+\subsection{Transport through the original full fibre and its trace}
+
+Work over a characteristic-zero field $k$ and retain $A_N=A_1^{\otimes N}$,
+its original source coordinates, its product idempotent $e$, and the
+Boolean idempotents $\beta_h$. Apply $\Psi_n$ to the coefficients of
+$u(E)=eV_{N,M}(E,\beta)$, and call its image $u_n(Z)$.
+There is a commutative square of actual linear maps
+\[
+\begin{array}{ccc}
+ A_N\otimes_k k[E]&\xrightarrow{\ m_{u(E)}\ }&A_N\otimes_k k[E]\\
+ \big\downarrow{1\otimes\Psi_n}&&\big\downarrow{1\otimes\Psi_n}\\
+ A_N\otimes_k k[Z]&\xrightarrow{\ m_{u_n(Z)}\ }&A_N\otimes_k k[Z].
+\end{array}
+\]
+For a pure tensor the equality says
+$\Psi_n(u(E)f)=\Psi_n(u(E))\Psi_n(f)$, which is the multiplicativity
+of the coefficient map. Linearity proves it on all inputs.
+In the retained product-idempotent basis the multiplication matrices
+are diagonal, and coefficient substitution acts on each diagonal entry.
+Thus taking the finite sum of those entries commutes with $\Psi_n$,
+giving the fully specified equality
+\begin{equation}\label{eq:per-original-trace}
+ \operatorname{Tr}_{A_N\otimes k[Z]/k[Z]}(m_{u_n(Z)})
+        =\operatorname{per}_n(Z).
+\end{equation}
+The full algebra has dimension $3^{3n^2}$; its Boolean corner has
+dimension $2^{3n^2}$. The $x=0$ factors of the original source fibre
+are still present and receive weight zero through $e$.
+For each nonzero contribution, the $B$ entries encode a permutation
+and the $R,C$ entries are the forced flags. This describes every
+contributing original fibre point, not merely the final trace value.
+
+The same formulas give a complete finite-support generating series.
+In the split idempotent basis, $m_{u_n}$ has one diagonal entry
+$\prod_i Z_{i,\sigma(i)}$ for each $\sigma\in\mathfrak S_n$ and
+zero at all other basis positions. Consequently
+\[
+ \det(I-Tm_{u_n})=
+ \prod_{\sigma\in\mathfrak S_n}
+       \left(1-T\prod_i Z_{i,\sigma(i)}\right),
+\]
+and, for each integer $d\ge1$,
+\[
+ \operatorname{Tr}(m_{u_n}^{d})
+       =\operatorname{per}_n\bigl((Z_{ij}^{d})_{ij}\bigr).
+\]
+These follow by multiplying or summing diagonal entries, retaining
+their multiplicities even when two monomials acquire the same value
+after a later specialization of $Z$. The first coefficient of the
+displayed characteristic determinant is $-\operatorname{per}_n(Z)$,
+with that sign fixed by choosing the single $-T$ factor in the product.
+
+\subsection{The corresponding class-variety morphism}
+
+The affine parameter projection also gives a precise homogeneous
+orbit-closure map. Retain $N,M$ from \eqref{eq:per-trace-size}, let
+$a=6MN$, and set $D=3M$. The total degree of $Q_{N,M}$ in its
+$a$ parameters is exactly $D$ over a characteristic-zero field.
+The upper bound follows because each of the $M$ clauses has parameter
+degree at most three. For the lower bound, take the monomial
+\[
+ \mathfrak m=\prod_{b=1}^{M}\prod_{k=1}^3 E_{b,k,1,-}.
+\]
+At a fixed Boolean witness its coefficient in $V_{N,M}$ is
+$(1-B_1)^{3M}$: the degree-three part of each clause is
+$L_{b,1}L_{b,2}L_{b,3}$, with positive sign. Summing gives coefficient
+$2^{N-1}$ in $Q_{N,M}$, since exactly that many witnesses have $B_1=0$.
+This coefficient is nonzero in characteristic zero, proving the exact
+degree without any possible cancellation being suppressed.
+
+Introduce a new coordinate $Z_0$ and define
+\[
+ f(E,Z_0)=Z_0^D Q_{N,M}(E/Z_0).
+\]
+Every term has nonnegative $Z_0$ exponent because the degree is at
+most $D$, so this defines a degree-$D$ polynomial on
+$V=\mathbb C^{a+1}$. Let $W=\mathbb C^{n^2+1}$ have coordinates
+$(Z_{ij},Z_0)$. Homogenize every substitution in
+\eqref{eq:per-trace-parameter-map}: replace its image $0$ by $0$,
+$1$ by $Z_0$, and $Z_{ij}$ by itself. Together with the identity on
+$Z_0$, these formulas define a linear map $L:W\to V$.
+The projection $p:V\to W$ reads the chosen coordinates
+$(E^*_{ij},Z_0)$, so $pL=1_W$. In particular $L$ is injective and
+$A=Lp$ is an explicitly specified idempotent endomorphism of $V$.
+
+On $Z_0\ne0$ the proven permanent projection yields
+\[
+ f(L(Z,Z_0))
+ =Z_0^D\operatorname{per}_n(Z/Z_0)
+ =Z_0^{D-n}\operatorname{per}_n(Z).
+\]
+Since $D\ge n$, both sides are polynomials; their difference vanishes
+after localization at the nonzero polynomial $Z_0$ in a polynomial
+domain, and hence is zero everywhere. Put
+\[
+ g=f\circ A=p^*\bigl(Z_0^{D-n}\operatorname{per}_n(Z)\bigr)
+   \in\operatorname{Sym}^D(V^*).
+\]
+The section $L^*$ gives $L^*p^*=1$, so no coefficients of the
+padded permanent are lost when it is written on this larger space.
+
+Let $G=\operatorname{GL}(V)$ act by $(h\cdot u)(v)=u(h^{-1}v)$.
+Then
+\[
+ \overline{G\cdot g}\ \subseteq\ \overline{G\cdot f}.
+\]
+To prove the inclusion, write
+$v=Lp(v)+(v-Lp(v))$. The two summands belong to $\operatorname{im}L$
+and $\ker p$; their intersection is zero because $pL=1$.
+Thus $V=\operatorname{im}L\oplus\ker p$, and $A$ acts by $1$ and
+$0$ on those summands, respectively. In particular
+\[
+ \det(A+\epsilon I_V)
+   =(1+\epsilon)^{n^2+1}\epsilon^{a-n^2}.
+\]
+This proves invertibility for $\epsilon\ne0,-1$, retaining both
+exceptional values and their full multiplicities.
+At every other scalar value,
+$f\circ(A+\epsilon I_V)$ belongs to $G\cdot f$, by taking
+$h=(A+\epsilon I_V)^{-1}$. A polynomial equation of that orbit
+evaluated on this polynomial family vanishes at infinitely many
+$\epsilon$, so vanishes identically and at $\epsilon=0$.
+This proves $g\in\overline{G\cdot f}$. The latter is closed and
+$G$-stable: multiplication by a fixed element of $G$ is an
+invertible linear map of the ambient space and sends the orbit to
+itself, hence its closure to itself. It therefore contains the
+orbit closure of $g$, proving the full inclusion.
+
+Both orbit closures are affine cones. Nonzero scalar multiples of
+a degree-$D$ form are obtained from scalar coordinate substitutions,
+because every nonzero complex number has a $D$th root. The zero
+form is the limit of the polynomial family $\epsilon^D u$, so also
+belongs to each closure. Comparing powers of a scalar in an
+equation on either cone shows that each homogeneous component of
+that equation vanishes there. Thus restriction gives, in every
+coordinate-ring degree $j\ge0$, the exact $G$-equivariant sequence
+\[
+ 0\longrightarrow
+ \frac{I(\overline{G\cdot g})_j}{I(\overline{G\cdot f})_j}
+ \longrightarrow\mathbb C[\overline{G\cdot f}]_j
+ \longrightarrow\mathbb C[\overline{G\cdot g}]_j
+ \longrightarrow0.
+\]
+The maps are induced by the identity on the ambient polynomial
+coordinate ring; inclusion of the two ideals proves their kernels
+and surjectivity. Equivariance follows because both ideals are
+$G$-stable. For every finite-dimensional $G$-module $U$,
+precomposition with the last surjection is an injection
+\[
+ \operatorname{Hom}_G(\mathbb C[\overline{G\cdot g}]_j,U)
+ \hookrightarrow
+ \operatorname{Hom}_G(\mathbb C[\overline{G\cdot f}]_j,U).
+\]
+A map in the kernel vanishes on the entire image of a surjection
+and hence on its whole domain, proving injectivity directly.
+This is an exact representation consequence for the stated padded
+permanent and verifier class varieties. It does not assert an
+inclusion of either class variety in a determinant class variety.
+
+\subsection{Uniform sizes and the exact circuit implication}
+
+The one-index parameter for the preceding family is exactly
+\[
+ t_n=(N+M-2)(N+M-1)/2+N,
+ \qquad N+M=n^3+9n^2.
+\]
+In particular $t_n=O(n^6)$. The clause construction writes $M=O(n^3)$
+clauses with $O(\log(n+1))$-bit witness indices; the full dense parameter
+map lists $6MN=O(n^5)$ entries, each either $0$, $1$, or a named
+$Z_{ij}$. All lists are generated by the explicit bounded loops above
+in polynomial time. A sparse list uses only the three selected literal
+positions per ordinary clause and two nonzero positions per appended
+clause. This proves uniformity as well as the numerical bounds.
+
+Substitution of \eqref{eq:per-trace-parameter-map} in any division-free
+arithmetic circuit computing $Q_{N,M}$ replaces input leaves by
+$0,1,Z_{ij}$ and leaves every gate intact. Induction on the gate order
+proves the resulting circuit computes the permanent, with no increase
+in the number of arithmetic-operation gates. Existing constants remain
+unchanged; at most two shared constant vertices for $0,1$ add $O(1)$
+constant storage. In a description that repeats constants at every
+input leaf, the additional total constant-bit length is at most a
+constant times the number of replaced leaves. In either convention
+the maximum bit length of a constant becomes at most the maximum of
+the previous bound and $1$. If the supplied circuit family is
+polynomial in its one-index parameter $t$, its restriction at $t=t_n$
+has polynomial size in $n$ because the displayed $t_n$ is polynomial.
+An algorithm producing those descriptions remains polynomial after this
+explicit substitution. These are exact maps of supplied circuit
+descriptions; no small circuit for $Q$ or for the permanent has been
+assumed or constructed by them.
+
+This permanent projection makes the trace complexity question concrete.
+For a binary input matrix $Z$, every surviving diagonal entry is $0$
+or $1$, so the integer permanent lies in $[0,n!]$. Also
+$n!\le n^n\le2^{n^2}<2^{N+1}$: the inequality $n\le2^n$ follows
+by induction from $1\le2$, since $n+1\le2n$ for $n\ge1$.
+Consequently evaluating a supplied integer-constant circuit for the
+projected trace modulo $2^{N+1}$ recovers the exact count as its
+least nonnegative residue. The preceding gate-substitution map
+and the earlier school-multiplication bound apply with this
+unchanged modulus, including its exact $N+1=3n^2+1$ bits.
+The polynomial-size incidence determinant from the preceding section
+still encodes the shared equations. The trace and characteristic
+determinant above retain their explicitly exponential ambient sizes.
+Obtaining smaller representations or proving the required lower bounds
+is additional mathematics, and no Boolean or algebraic complexity
+equality or separation follows solely from these exact morphisms.

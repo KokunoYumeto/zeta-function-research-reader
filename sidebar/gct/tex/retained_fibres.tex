@@ -1,0 +1,586 @@
+\section{The retained inverse fibre as an explicit determinantal family}
+\label{sec:fc-determinantal}
+
+All rings in the algebraic statements are over a specified field $k$ of
+characteristic zero. The bit statements use $k=\mathbb Q$ and signed binary
+integers. No operation changes the coefficients of the original map.
+The third source coordinate is named $w$; the renaming from the source's
+$t$ is the identity $(x,y,t)\mapsto(x,y,w)$. The source expressions were
+read in full from the parent satellite and the independent fluid extension;
+their paths and SHA--256 hashes are in \texttt{source\_hashes.json}.
+Every calculation used below is reproved here and replayed by the included
+exact checker.
+
+\subsection{The original map and its localized coordinate-ring isomorphism}
+
+Put $A=k[a,b,c]$, $B=k[x,y,w]$, and define $F^*:A\to B$ by
+\begin{align*}
+ F^*(a)=F_1&=(1+xy)^3w+y^2(1+xy)(4+3xy),\\
+ F^*(b)=F_2&=y+3x(1+xy)^2w+3xy^2(4+3xy),\\
+ F^*(c)=F_3&=2x-3x^2y-x^3w.
+\end{align*}
+The determinant retains the source orientation $(x,y,w)$ and target
+orientation $(a,b,c)$ and equals $-2$. Here is a direct proof. On $x\ne0$
+set $v=1+xy$, $h=2-3xy-x^2w$, $A_0=v^2+v-v^3h$ and
+$B_0=4v+2-3v^2h$. Their inverse coordinate formulas are
+$y=(v-1)/x$ and $w=(5-3v-h)/x^2$, so these are actual coordinates
+on the stated open set. Substitution in the original expressions yields
+$F=(A_0/x^2,B_0/x,xh)$ and
+\[
+ \det\frac{\partial(x,v,h)}{\partial(x,y,w)}=-x^3,
+ \qquad
+ \det\frac{\partial F}{\partial(x,v,h)}
+ =x^{-3}\det\begin{pmatrix}
+ -2A_0&2v+1-3v^2h&-v^3\\
+ -B_0&4-6vh&-3v^2\\h&0&1
+ \end{pmatrix}=2x^{-3}.
+\]
+Expansion of the last numerator gives
+\[
+ (4-6vh)(-2v^2-2v+3v^3h)
+ +(2v+1-3v^2h)(4v+2-6v^2h)=2.
+\]
+Multiplication proves $\det DF=-2$ on $x\ne0$. Both sides are
+polynomials, and their equality in the localization of the domain $B$
+proves equality in $B$ as well.
+
+Retain the exact polynomial and derivative
+\[
+ P=cr^3-2r^2+br-2a,\qquad P'=3cr^2-4r+b,\qquad \alpha=P'/2.
+\]
+Define the $A$-algebra
+\[
+ E=\bigl(A[r]/(P)\bigr)[1/P'].
+\]
+There is an isomorphism of $A$-algebras $\Phi:E\to B[1/x]$ given by
+\[
+ (a,b,c,r,1/P')\longmapsto
+ (F_1,F_2,F_3,y+1/x,x/2).
+\]
+Its inverse $\Psi:B[1/x]\to E$ is specified on every generator by
+\[
+ x\longmapsto 2/P',\quad
+ y\longmapsto r-P'/2,\quad
+ w\longmapsto 5(P'/2)^2-3r(P'/2)-c(P'/2)^3,
+ \quad x^{-1}\longmapsto P'/2.
+\]
+To prove these assertions before quotienting, introduce independent
+coordinates $(r,\alpha,c)$ with $\alpha\ne0$ and put
+\[
+ H(r,\alpha,c)=
+ \left(\alpha^{-1},r-\alpha,5\alpha^2-3r\alpha-c\alpha^3\right).
+\]
+Solving $F_3=c$ after setting $r=y+1/x$, $\alpha=1/x$ gives this
+formula and its inverse exactly. Direct substitution gives
+\[
+ F\circ H=(r^2+r\alpha-cr^3,\ 4r+2\alpha-3cr^2,\ c).
+\]
+The equation $F_2=b$ says $2\alpha=P'$, and then
+$2(F_1-a)=P$. Conversely those two relations give $F_1=a,F_2=b$.
+They show that the displayed maps respect $P=0$, the inverse elements,
+and the $A$-algebra structure. The recovery equations
+$r=y+1/x$, $\alpha=1/x$ show both compositions are the identity on
+all their generators. This proves the ring isomorphism, including its
+excluded divisor $P'=0$.
+
+The morphism $F^*$ is injective. Indeed $A[r]/(P)$ is isomorphic to
+$k[b,c,r]$ by eliminating $a=(cr^3-2r^2+br)/2$; both substitution maps
+are inverse on the generators. A nonzero
+$h(a,b,c)=\sum_{j=0}^d h_j(b,c)a^j$, $h_d\ne0$, has, after this
+substitution, highest $r$ coefficient $h_d(b,c)c^d/2^d$ at degree $3d$,
+which is nonzero in $k[b,c]$. Thus $A$ injects into the quotient and,
+since $P'\ne0$ there, into $E$ and then $B[1/x]$. Consequently it
+also injects into $B$. This proves dominance without treating it as an
+assumption.
+
+\subsection{Every specialized fibre and the finite free locus}
+
+For $(a_0,b_0,c_0)\in k^3$, set
+\[
+ B_{a_0,b_0,c_0}=k[x,y,w]/(F_1-a_0,F_2-b_0,F_3-c_0),
+ \qquad E_{a_0,b_0,c_0}=k[r,1/P']/(P),
+\]
+where $P$ and $P'$ here have the specialized coefficients.
+If $c_0\ne0$, then $xh=c_0$ in the fibre ring, so $x$ is a unit
+with inverse $h/c_0$. The preceding isomorphism therefore proves
+$B_{a_0,b_0,c_0}\simeq E_{a_0,b_0,c_0}$ on the entire fibre.
+If $c_0=0$, the entire fibre ring is instead
+\[
+ B_{a_0,b_0,0}\simeq k\ \times\ E_{a_0,b_0,0}.
+\]
+Here is a proof that includes its scheme structure. Work first in
+$R=k[x,y,w]/(F_1-a_0,F_2-b_0)$. The polynomials $x,h$ generate the
+unit ideal since
+$1=h/2+x(3y+xw)/2$. Their ideals therefore have intersection $(xh)$:
+if $z=xu=hv$, multiplication by the displayed expression for $1$
+shows $z\in(xh)$. The map
+$R/(xh)\to R/(x)\times R/(h)$ is injective by that intersection;
+given classes modulo the two ideals, their lifts combine using the
+same two summands of $1$ to prove surjectivity. This proves the asserted
+product decomposition. The first factor is $k$ because
+$F(0,y,w)=(w+4y^2,y,0)$, with point $(0,b_0,a_0-4b_0^2)$.
+In the second factor, $x(3y+xw)=2$ makes $x$ a unit and the chart
+isomorphism identifies it with $E_{a_0,b_0,0}$.
+
+Over an algebraic closure, write $P=d\prod_j(r-\rho_j)^{m_j}$,
+with distinct $\rho_j$. The coprime factors yield a product of the
+rings $\bar k[r]/((r-\rho_j)^{m_j})$: the elementary two-ideal
+argument just given applies repeatedly. When $m_j=1$, $P'$ has
+nonzero value at $\rho_j$ and is a unit in that factor. When $m_j>1$,
+$P'$ belongs to its nilpotent ideal $(r-\rho_j)$, so inverting $P'$
+turns that factor into the zero ring. Thus $E$ retains exactly the
+simple roots, each with its reduced point. The complete finite inverse
+points are
+\[
+ \left(2/P'(\rho_j),\rho_j-P'(\rho_j)/2,
+ 5(P'(\rho_j)/2)^2-3\rho_jP'(\rho_j)/2-c_0(P'(\rho_j)/2)^3\right)
+\]
+for $m_j=1$, together with the boundary point when $c_0=0$.
+The original polynomial, its multiplicities, and its excluded roots
+remain recorded by $(P,P')$ even when the localization removes a factor.
+
+The coefficient discriminant is exactly
+\[
+ D=4(b^2-cb^3+18abc-16a-27a^2c^2).
+\]
+For direct verification, expansion of the determinant
+\[
+ \det\begin{pmatrix}
+ c&-2&b&-2a&0\\0&c&-2&b&-2a\\
+ 3c&-4&b&0&0\\0&3c&-4&b&0\\0&0&3c&-4&b
+ \end{pmatrix}=-cD
+\]
+gives the stated polynomial. This determinant is the resultant because
+its matrix represents $(u,v)\mapsto uP+vP'$ on the bases of
+polynomials of degrees less than $2$ and $3$, respectively, with the
+indicated descending coefficient order. Over a field it vanishes
+exactly when $P,P'$ share a nonconstant factor: a nonzero kernel gives
+$uP=-vP'$ and the coprime case forces $P\mid v$, impossible at
+$\deg v<3$; a common factor gives a kernel vector by dividing both
+polynomials by it. This also proves the simple-root interpretation.
+
+Let $A_U=A[1/(cD)]$. Then $A_U[r]/(P)$ is free with basis
+$(1,r,r^2)$. Polynomial division by the unit leading coefficient $c$
+gives a spanning remainder of degree at most two, and a nonzero multiple
+of $P$ has degree at least three, proving independence. No replacement
+of $P$ is made here. The original relation gives the multiplication matrix
+\[
+ C=\begin{pmatrix}
+ 0&0&2a/c\\1&0&-b/c\\0&1&2/c
+ \end{pmatrix},\qquad
+ N=3cC^2-4C+bI_3.
+\]
+Its columns are exactly the coefficients of multiplying the ordered
+basis by $r$ and $P'$, respectively. Direct determinant expansion gives
+$\det N=-D/c$, so
+$N^{-1}=-(c/D)\operatorname{adj}(N)$. This explicit inverse proves that
+$P'$ is a unit in the quotient, and hence
+\[
+ B\otimes_A A_U\simeq A_U[r]/(P).
+\]
+This is a finite free rank-three morphism. Its unramified behavior can
+also be proved without omitting the derivative: for a square-zero ideal
+$I$ of an $A_U$-algebra $T$, a root $r_0$ in $T/I$ has a lift
+$\widetilde r$ in $T$, and the unique root lift is
+$\widetilde r-P(\widetilde r)/P'(\widetilde r)$.
+The denominator is a unit because its reduction is; Taylor expansion
+has no terms of degree two in $I$. If two lifts differ by $e\in I$,
+subtraction gives $P'(\widetilde r)e=0$, so $e=0$. This is the
+unique infinitesimal lifting property, establishing the finite etale
+claim on precisely $U$.
+
+At $c_0=0$, the polynomial still has degree two and its quadratic
+discriminant is $b_0^2-16a_0$, while $D=4(b_0^2-16a_0)$. The
+boundary point remains necessary. In particular the fibre at
+$(-1/4,0,0)$ consists exactly of
+\[
+ (1,-3/2,13/2),\quad(-1,3/2,13/2),\quad(0,0,-1/4).
+\]
+At $c_0\ne0$ the cubic is a triple-root polynomial exactly at
+$b_0=4/(3c_0)$, $a_0=4/(27c_0^2)$, with root $2/(3c_0)$.
+Indeed comparing $c_0(r-\rho)^3$ with all four coefficients gives
+these three equations and conversely verifies them. Its entire finite
+fibre is empty since its only root has $P'=0$ and $c_0\ne0$ excludes
+$x=0$.
+
+\subsection{Generic degree, the absence of a rational inverse, and nonfiniteness}
+
+In $k[a,b,c,r]$, $(P)$ is a prime ideal since its quotient was explicitly
+identified with the domain $k[b,c,r]$. Thus $P$ is irreducible there.
+It is primitive as a polynomial over $k[a,b,c]$ in $r$, since its
+coefficient $-2$ is a unit. The primitive-polynomial argument proves
+irreducibility over $K=k(a,b,c)$: clearing denominators in a proposed
+factorization and cancelling the common prime factors of the coefficients
+would produce a factorization in the unique-factorization ring
+$k[a,b,c][r]$. To justify that cancellation, the product of two primitive
+polynomials is primitive, since reduction modulo any prime leaves two
+nonzero polynomials over a domain and hence a nonzero product. This
+proves the required primitive-polynomial argument.
+
+The chart identities now give
+\[
+ k(x,y,w)=k(F_1,F_2,F_3)(y+1/x),\qquad
+ [k(x,y,w):k(F_1,F_2,F_3)]=3.
+\]
+Both containments in the first equality follow from the displayed
+inverse formulas; irreducibility of the degree-three polynomial proves
+the degree. A rational inverse would make the two fields equal, so none
+exists. There is also no rational section over a dense target open set:
+if its $x$ coordinate were identically zero then its $F_3$ coordinate
+would be zero, contrary to the generic variable $c$; otherwise its
+$r=y+1/x$ would be an element of $K$ satisfying the irreducible cubic.
+These proofs rule out those exact rational maps and retain the
+rank-three algebraic correspondence constructed above.
+
+The morphism $F$ is not finite. Define the following homomorphism to
+$k[t,t^{-1}]$ by its values on the original coordinates:
+\[
+ x=t^{-1},\quad y=-3t/2,\quad w=13t^2/2.
+\]
+Direct substitution gives $(F_1,F_2,F_3)=(-t^2/4,0,0)$.
+If $B$ were finite over $A$, then multiplication by $x$ on finitely
+many $A$-module generators would give a monic relation for $x$:
+write $xm_i=\sum_j a_{ij}m_j$ and multiply the matrix $xI-(a_{ij})$
+by its adjugate; its monic determinant annihilates every generator and
+therefore $1\in B$. Under the displayed homomorphism such a relation
+would become
+\[
+ t^{-m}+\sum_{j=0}^{m-1}q_j(-t^2/4,0,0)t^{-j}=0.
+\]
+Multiplication by $t^m$ gives a polynomial with constant term $1$,
+while every summand in the sum is divisible by $t$. This is impossible.
+Thus nonfiniteness is proved directly from the original map and is
+compatible with its finite free restriction to $U$.
+
+\subsection{The projective binary cubic restores the entire boundary sheet}
+
+There is a stronger global presentation retaining the $x=0$ sheet as a
+projective root. Define
+\[
+ Z=\{cR^3-2R^2T+bRT^2-2aT^3=0\}\subset\mathbb P^1_A,
+ \qquad [R:T]=[1+xy:x].
+\]
+The last expression defines a morphism on the entire source because
+$1=(1+xy)-yx$ proves its two homogeneous coordinates generate the
+unit ideal. Substitution of $F_1,F_2,F_3$ in the homogeneous equation
+gives zero: on $x\ne0$ it is $x^3P(y+1/x)=0$, and equality in the
+localization of the source polynomial domain proves the polynomial
+identity everywhere.
+
+Let $Z^{\rm s}$ be the open simple-root locus: on $T\ne0$ its
+coordinates are $r=R/T$ and it is defined by $P=0$, $P'\ne0$; on
+$R\ne0$ use the distinct root coordinate $h=T/R$ and put
+\[
+ Q(h)=c-2h+bh^2-2ah^3,\qquad d=Q'(h)=-2+2bh-6ah^2.
+\]
+Its simple-root condition is $d\ne0$. On the overlap $h=1/r$,
+$Q(h)=h^3P(1/h)$ and, on that zero scheme, $d=-hP'(1/h)$.
+Since $h$ is a unit on the overlap, the two simple-root conditions
+agree exactly.
+
+The morphism from the source to $Z$ is an isomorphism onto $Z^{\rm s}$.
+On the first chart this is the already proved inverse-root isomorphism.
+Here is the entire second chart, including $x=0$:
+\[
+ x=-2h/d,\qquad y=b-3ah,\qquad
+ w=-ad^3/8-y^2d^2/4+3y^2d/2.
+\]
+To prove it, first keep $a,b,h$ independent and define $d,x,y,w$ by
+these displayed formulas with $d\ne0$. Substitution and expansion give
+\[
+ 1+xy=-2/d,\qquad
+ F_1=a,\qquad F_2=b,\qquad F_3=2h-bh^2+2ah^3=c-Q(h).
+\]
+For example $1+xy=(d-2hb+6ah^2)/d=-2/d$ directly. For the other
+formulas one may insert that identity into the original $F_i$:
+with $v=-2/d$, the first is
+$v^3w+y^2v(1+3v)=a$, since $4+3xy=1+3v$;
+the second is
+$y+3xv^2w+3xy^2(1+3v)=y+3ha=b$.
+The third follows by $F_3=x(5-3v-x^2w)$, inserting the displayed
+$w$ and $y=b-3ah$, and expanding to $2h-bh^2+2ah^3$.
+Thus the formulas define the inverse map on $Q=0$, $d\ne0$.
+Conversely on the source chart $v=1+xy\ne0$, set $h=x/v$,
+$a=F_1$, $b=F_2$, $c=F_3$. The polynomial identity gives $Q=0$;
+the two original equations for $F_1,F_2$ give
+$y=b-3ah$ by subtracting $3hF_1$ from $F_2$.
+Consequently
+$1+xy=1+x(b-3ah)=1+hv(b-3ah)$ gives
+$v(1-bh+3ah^2)=1$, equivalently $d=-2/v$.
+Then $x=hv=-2h/d$, and solving the original $F_1=a$ for $w$
+gives exactly the stated $w$. These recover every generator, proving
+both compositions. The source charts $x\ne0$ and $v\ne0$ cover it;
+the two inverse maps agree on their overlap because both are inverse
+to the same forward coordinates. This proves the global isomorphism.
+At $h=0$, $Q=0$ requires $c=0$, $d=-2$, and the formulas give
+$(x,y,w)=(0,b,a-4b^2)$. Thus the boundary point is retained as
+$[R:T]=[1:0]$, with no discarded sheet.
+
+The projective scheme $Z$ is finite locally free of rank three over
+$A$. An elementary affine cover proves this. Evaluate its binary cubic
+at the three constant points $[j:1]$, $j=0,1,-1$, obtaining
+\[
+ f_0=-2a,\quad f_1=c-2+b-2a,\quad f_{-1}=-c-2-b-2a.
+\]
+They generate the unit ideal since $f_1+f_{-1}-2f_0=-4$.
+On the base open set $f_j\ne0$, the point $[j:1]$ is absent from $Z$.
+Use the explicitly invertible homogeneous change
+\[
+ U=T,\quad V=R-jT,\qquad R=V+jU,\quad T=U.
+\]
+The removed point becomes $[U:V]=[1:0]$, so all of $Z$ on this
+base open lies in the affine chart $V\ne0$ with $s=U/V$.
+The affine coordinate formula is $R=1+js$, $T=s$; its polynomial is
+\[
+ c(1+js)^3-2(1+js)^2s+b(1+js)s^2-2as^3,
+\]
+whose leading coefficient is exactly $f_j$. It is a unit on this
+base open, so division with the original polynomial gives the free
+basis $1,s,s^2$ exactly as in the earlier cubic proof. The changes
+are invertible projective linear maps and retain all original
+coefficients. The three base opens cover, proving finite local
+freeness and its rank.
+
+The branch locus is exactly $D=0$. When $c\ne0$ this is the
+resultant calculation already proved. When $c=0$, $[1:0]$ is a simple
+root because $d(0)=-2$, and the remaining affine polynomial has degree
+two with repeated root exactly when $b^2-16a=0$, equivalently $D=0$.
+These arguments apply in the residue field at each base point and in
+its algebraic closure. Consequently over $D\ne0$ every projective
+root is simple, so $Z^{\rm s}=Z$ there and the original $F$ is finite
+locally free of rank three on the larger open $\{D\ne0\}$, including
+$c=0$. The unique root-lifting argument on the two charts proves it is
+etale there. The algebra on $cD\ne0$ used previously gives its concrete
+single-chart basis; that smaller open was sufficient and was not the
+entire finite etale locus.
+
+\subsection{A size-parameterized family with complete encoding}
+
+For each integer $n\ge1$ retain independent variables
+$(x_i,y_i,w_i)$ and targets $(a_i,b_i,c_i)$ for $1\le i\le n$.
+Define $F^{[n]}$ to apply the preceding three original polynomials to
+each block. This is a morphism $\mathbb A_k^{3n}\to\mathbb A_k^{3n}$
+with coordinate homomorphism $a_i\mapsto F_1(x_i,y_i,w_i)$,
+$b_i\mapsto F_2(x_i,y_i,w_i)$, $c_i\mapsto F_3(x_i,y_i,w_i)$.
+Its Jacobian is block diagonal, so its determinant is exactly $(-2)^n$.
+Its complete fibre algebra is the tensor product over $k$ of the
+single-block fibre algebras just proved. This assertion follows by
+presenting the tensor product as a polynomial ring on the disjoint sets
+of generators modulo the union of their defining relations. It includes
+every boundary factor at $c_i=0$.
+
+Over $\{\prod_i D_i\ne0\}$ the block family is finite locally free
+of rank $3^n$, by the preceding projective-cover proof and tensor products.
+Over its subopen $U_n=\{\prod_i c_iD_i\ne0\}$, the algebra is finite free of
+rank $3^n$ with the explicit basis
+$\{\prod_i r_i^{e_i}:0\le e_i\le2\}$. Spanning follows by repeated
+use of each original relation
+$c_ir_i^3=2r_i^2-b_ir_i+2a_i$. Independence follows by taking tensor
+products of the proven single-block bases: applying the corresponding
+coordinate functionals to a putative relation extracts each coefficient.
+The generic algebra is a domain since eliminating the $a_i$ identifies
+its polynomial presentation with $k[b_i,c_i,r_i:1\le i\le n]$ before
+localizing. A finite-dimensional domain over the target rational
+function field is a field, because multiplication by a nonzero element
+is an injective linear map and hence surjective. Thus the generic
+function-field degree is also exactly $3^n$.
+
+At the rational target with every block $(-1/4,0,0)$, the fibre contains
+exactly the $3^n$ ordered choices of the three displayed rational points.
+A format requiring one separate record for each point therefore has
+output length at least $3^n$ symbols. In contrast, the tuple of equations
+$(P_i,P_i')$, their localizations, and the specified boundary rule has
+linear length in $n$ with fixed-size coefficients at this target. The
+inequality follows from the mandated output format, and is not an
+inference about the difficulty of obtaining that compact representation.
+
+Here is an exact arithmetic-circuit model. A gate is binary $+,-$, or
+$\times$, with fan-out allowed, and constants are $1,2,3,4$ for $F$.
+Input nodes, constant nodes, and output wires are not counted as gates.
+For one block the following list is a 26-gate circuit; each assignment
+is exactly one gate and no listed coefficient is suppressed:
+\[
+\begin{array}{llll}
+ g_1=xy,&g_2=1+g_1,&g_3=g_2g_2,&g_4=g_3g_2,\\
+ g_5=3g_1,&g_6=4+g_5,&g_7=yy,&g_8=g_7g_6,\\
+ g_9=g_2g_8,&g_{10}=g_4w,&g_{11}=g_{10}+g_9,&g_{12}=xg_3,\\
+ g_{13}=g_{12}w,&g_{14}=3g_{13},&g_{15}=xg_8,&g_{16}=3g_{15},\\
+ g_{17}=y+g_{14},&g_{18}=g_{17}+g_{16},&g_{19}=xx,&g_{20}=g_{19}x,\\
+ g_{21}=g_{19}y,&g_{22}=3g_{21},&g_{23}=g_{20}w,&g_{24}=2x,\\
+ g_{25}=g_{24}-g_{22},&g_{26}=g_{25}-g_{23}.&&
+\end{array}
+\]
+The outputs are $(g_{11},g_{18},g_{26})$; substitution verifies all
+three original formulas. Thus $F^{[n]}$ uses $26n$ gates. Its component
+degrees remain $7,6,4$ per block. The tuple is uniformly constructible:
+a loop on the binary index $i$ writes the same 26 instructions with
+the input and gate indices of block $i$. Using binary indices, its
+bit description has length $O(n\log(n+1))$, and the loop takes that
+many elementary output operations.
+
+For bit evaluation, encode each signed integer by a sign and its binary
+magnitude, and assume magnitudes of the $3n$ inputs are less than $2^L$,
+$L\ge1$. Every displayed intermediate has magnitude less than
+$2^{7L+10}$. For example $|g_1|<2^{2L}$,
+$|g_2|<2^{2L+1}$, $|g_6|<2^{2L+2}$,
+$|g_{10}|<2^{7L+3}$, and $|g_9|<2^{6L+3}$;
+the remaining products in the list have smaller exponent bounds, while
+at most two sums require an extra bit. These inequalities also verify
+the loose common bound for all gates. Grade-school multiplication on
+$O(L)$ bits takes $O(L^2)$ bit operations by summing shifted partial
+products; addition and subtraction take $O(L)$ operations by one pass
+with carries. Evaluation therefore takes $O(n(L+1)^2)$ bit operations,
+plus the circuit description or output indexing cost. This is a uniform
+Boolean-time upper bound for this specified evaluation problem.
+
+For target integers of magnitude less than $2^L$, retain the coefficient
+tuples\[
+ (c_i,-2,b_i,-2a_i),\qquad (3c_i,-4,b_i).
+\]
+Their entries have at most $L+3$ magnitude bits. Writing all polynomial
+and localization equations
+\[
+ P_i(r_i)=0,\qquad z_iP_i'(r_i)-1=0
+\]
+therefore costs $O(n(L+1))$ bits and bit operations up to the index
+encoding. The ring maps above identify $z_i$ with $1/P_i'$ and hence
+$x_i=2z_i$ on its stated chart. Testing $c_i=0$ supplies the already
+proved boundary rule. No root selection is performed by writing these
+equations. When a rational root $r=p/q$, $q\ne0$, is supplied as a
+certificate, with signed numerator and denominator lengths at most $M$,
+integer cross multiplication verifies $P(r)=0$ and $P'(r)\ne0$ using
+a fixed number of products of $O(L+M+1)$-bit integers. The coordinate
+formulas then return exact rational numerators and denominators of
+$O(L+M+1)$ bits in $O((L+M+1)^2)$ operations. Reduction to coprime
+numerators and denominators is unnecessary: the output represents the
+same rational numbers and retains the actual expression. This proves
+the stated verification and lifting complexity while keeping the
+selection of an algebraic embedding distinct from its full algebra.
+
+\subsection{Exact determinant projections that retain every cubic coefficient}
+
+A single retained polynomial has the following affine-linear matrix:
+\[
+ M(a,b,c,r)=\begin{pmatrix}
+ r&-1&0&0\\0&r&-1&0\\0&0&r&-1\\-2a&b&-2&c
+ \end{pmatrix},\qquad \det M=P.
+\]
+Expansion along the last row gives the four signed contributions
+$-2a,br,-2r^2,cr^3$, respectively, proving the identity including signs.
+Introduce one new variable $z$ and replace each constant entry by that
+constant times $z$. This gives the homogeneous linear matrix
+\[
+ M^h=\begin{pmatrix}
+ r&-z&0&0\\0&r&-z&0\\0&0&r&-z\\-2a&b&-2z&c
+ \end{pmatrix},
+ \quad \det M^h=cr^3-2z^2r^2+brz^2-2az^3=:P^h.
+\]
+Every monomial on the right has degree four; setting $z=1$ gives the
+original polynomial exactly. On $z\ne0$ its relation to the affine
+coordinates is the explicitly invertible substitution
+$(a,b,c,r,z)\mapsto(a/z,b/z,c/z,r/z,z)$ with inverse
+$(A,B,C,R,z)\mapsto(zA,zB,zC,zR,z)$, and
+$P^h=z^4P(a/z,b/z,c/z,r/z)$. The divisor $z=0$ is newly added:
+there $P^h=cr^3$. It is not identified with a finite original chart.
+
+For $n$ blocks, the block-diagonal determinant $\prod_i P_i$ has
+size $4n$. Its zero condition is a union of the individual hypersurfaces,
+since a product in a field is zero exactly when a factor is zero.
+It is not the simultaneous system $P_1=\cdots=P_n=0$ when $n\ge2$.
+For example set all $r_i=b_i=c_i=0$, $a_1=0$, $a_2=1$, and for
+$i>2$ set $a_i=1$. The product vanishes but $P_2=-2$.
+
+The following determinant instead encodes every equation by a coefficient
+map. Introduce independent selectors $t_1,\ldots,t_n$ and set
+\[
+ Q_n=\sum_{i=1}^n t_iP_i(r_i),\quad
+ T_i=\begin{pmatrix}1&-r_i&0&0\\0&1&-r_i&0\\0&0&1&-r_i\\0&0&0&1\end{pmatrix},
+ \quad v_i=\begin{pmatrix}-2a_i\\b_i\\-2\\c_i\end{pmatrix}.
+\]
+Let $T=\operatorname{diag}(T_1,\ldots,T_n)$,
+$v=(v_1^{\mathsf T},\ldots,v_n^{\mathsf T})^{\mathsf T}$, and
+$u=(t_1,0,0,0,\ldots,t_n,0,0,0)$. Then
+\[
+ \mathcal M_n=\begin{pmatrix}T&v\\-u&0\end{pmatrix},
+ \qquad \det\mathcal M_n=Q_n,
+ \qquad \operatorname{size}(\mathcal M_n)=4n+1.
+\]
+For a complete proof, write $T_i=I-N_i$. Since $N_i^4=0$,
+$T_i^{-1}=I+N_i+N_i^2+N_i^3$, whose first row is
+$(1,r_i,r_i^2,r_i^3)$. Thus $e_1^{\mathsf T}T_i^{-1}v_i=P_i$.
+Left multiplication of $\mathcal M_n$ by the determinant-one matrix
+$\left(\begin{smallmatrix}I&0\\uT^{-1}&1\end{smallmatrix}\right)$
+gives $\left(\begin{smallmatrix}T&v\\0&uT^{-1}v\end{smallmatrix}\right)$.
+As $\det T=1$, its determinant is $uT^{-1}v=Q_n$.
+Every entry of $\mathcal M_n$ is affine-linear in the original variables
+and selectors with coefficients in $\{0,1,-1,-2\}$.
+
+For an arbitrary coefficient ring $R$, the map
+$\iota:R^n\to R[t_1,\ldots,t_n]_1$,
+$(f_1,\ldots,f_n)\mapsto\sum_i t_if_i$, is an $R$-module
+isomorphism onto the homogeneous selector-degree-one part, with inverse
+$Q\mapsto([t_1]Q,\ldots,[t_n]Q)$. Comparing the unique monomial
+coefficients proves both compositions are identities. In particular
+$(P_1,\ldots,P_n)=([t_1]\det\mathcal M_n,\ldots,[t_n]\det\mathcal M_n)$
+as ideals in $k[a_i,b_i,c_i,r_i]$. For a specialized point over any
+extension field, all fibre equations hold if and only if the determinant
+is identically zero as a polynomial in the selectors. Specializing the
+selectors first can lose information: when $t_1=t_2=1$, the choices
+$P_1=2$, $P_2=-2$ give zero sum without either equation holding.
+The coefficient map is an explicit reversible transport of the tuple,
+not an asserted isomorphism between the fibre scheme and one
+hypersurface in a larger space.
+
+Replace each constant in $\mathcal M_n$ by that constant times $z$;
+call the resulting homogeneous linear matrix $\mathcal M_n^h$.
+Its determinant is
+\[
+ \det\mathcal M_n^h
+ =z^{4n-4}\sum_{i=1}^n t_i
+   (c_ir_i^3-2z^2r_i^2+b_ir_iz^2-2a_iz^3).
+\]
+To prove this without assigning an inverse at $z=0$, first localize at
+$z$. The four diagonal entries of each $T_i$ become $z$, and the first
+row of its inverse is $(z^{-1},r_iz^{-2},r_i^2z^{-3},r_i^3z^{-4})$.
+The last vector becomes $(-2a_i,b_i,-2z,c_i)^{\mathsf T}$, and
+$\det T=z^{4n}$. Applying the same determinant-one block multiplication
+gives the displayed formula in $k[\text{variables},z,z^{-1}]$.
+Both sides belong to the polynomial subring, whose localization is
+injective, so the identity holds also at $z=0$. The factor
+$z^{4n-4}$ is explicit: for $n>1$ the entire hyperplane $z=0$ is an
+additional zero component of the padded determinant. At $z=1$ all
+original fibre coefficients are recovered.
+
+The determinantal projection is an exact coordinate-ring homomorphism.
+With $d=4n+1$ let $k[X_{pq}:1\le p,q\le d]$ be the coordinate ring
+of all $d\times d$ matrices. The homomorphism
+$\vartheta_n:k[X_{pq}]\to k[a_i,b_i,c_i,r_i,t_i,z]$ sends
+$X_{pq}$ to the displayed $(p,q)$ entry of $\mathcal M_n^h$.
+It sends the universal determinant to the stated padded polynomial.
+It is surjective: each $a_i,b_i,c_i,r_i,t_i$ is a nonzero scalar
+multiple of a specified entry, and a diagonal entry gives $z$.
+Its kernel is generated by the linear relations among those entries.
+To prove the last claim constructively, for each target variable choose
+one entry mapping to it after its indicated scalar division. Subtract
+from every other $X_{pq}$ the same linear combination of these chosen
+entries as its image. These linear differences lie in the kernel.
+Modulo them the source is the polynomial ring on the chosen entries;
+the induced map to the target polynomial ring has the inverse sending
+each target variable to its chosen entry. Therefore the kernel is
+exactly the ideal generated by those differences. This proves the map,
+its image, its kernel and the degree $d$ of the determinant image.
+
+Finally, Horner evaluation of the unaltered cubic uses seven gates:
+$c_ir_i$, then addition of $-2$, multiplication by $r_i$, addition of
+$b_i$, multiplication by $r_i$, separately $(-2)a_i$, and addition of
+that last term. Computing all $t_iP_i$ and their sum uses $9n-1$ gates.
+Thus $Q_n$ has an explicitly uniform linear-size arithmetic circuit and
+a linear-size affine determinantal representation. The homogeneous padded
+form has a linear-size determinant representation as well. These are
+constructive upper bounds for a family derived from the original fibres.
+They retain their generic degree $3^n$ and their original exceptional
+loci. They prove no reduction from arbitrary Boolean satisfiability to
+these independent blocks, and they assert no Boolean complexity equality
+or separation. The concrete complexity transport established here is
+the coefficient-recoverable determinant projection and the fully specified
+uniform bit algorithms above.

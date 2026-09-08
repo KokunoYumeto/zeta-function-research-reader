@@ -1,0 +1,904 @@
+\section{The arithmetic trace quotient and exact heat transport}
+\label{sec:connes-complete-transport}
+
+\subsection{The primary arithmetic object and the topology actually specified}
+\label{sec:cq-source}
+The starting point is Connes--Consani--Moscovici,
+\emph{Zeta zeros and prolate wave operators: Semilocal adelic operators},
+Section 3.6, proof-PDF pages 17--19, especially Lemma 3.3,
+equations (3.16)--(3.22), and Proposition 3.6
+\cite{ccmProlate2024}. The preceding arithmetic map is
+\[
+ \mathcal E f(x)=x^{1/2}\sum_{n\geq1}f(nx),\qquad
+ \mathcal F_\mu g(s)=\int_0^\infty g(x)x^{-is}\,\frac{dx}{x}.
+\]
+The input consists of even Schwartz functions with
+$f(0)=\widehat f(0)=0$. The paper's two Hermite families are
+\[
+ \psi_\ell^+=h_{4\ell}-\frac{h_{4\ell}(0)}{h_0(0)}h_0,
+ \qquad
+ \psi_\ell^-=-h_{4\ell+2}
+       +\frac{h_{4\ell+2}(0)}{h_2(0)}h_2\quad(\ell\geq1).
+\]
+These signs and the minus sign in the Mellin exponent are retained.
+The completed function is
+\begin{equation}\label{eq:cq-Xi}
+ \Xi(s)=\xi(\tfrac12+is),\qquad
+ \xi(z)=\tfrac12z(z-1)\pi^{-z/2}\Gamma(z/2)\zeta(z),
+ \qquad \Xi(s)=8H_0(2s).
+\end{equation}
+The paper proves
+\begin{equation}\label{eq:cq-image}
+ \mathcal F_\mu\mathcal E\psi_\ell^\pm=R_\ell^\pm\Xi,
+ \qquad P_\ell^\pm=-\tfrac12(\tfrac14+s^2)R_\ell^\pm.
+\end{equation}
+It also states immediately before Proposition 3.6 that these give all
+polynomial multiples of $\Xi$. Here is the precise algebra behind the
+last assertion. The top summands of (3.19) and (3.20) are nonzero;
+their degrees are $2\ell$ and $2\ell+1$. Division by
+$-\tfrac12(\tfrac14+s^2)$ gives degrees $2\ell-2$ and
+$2\ell-1$, respectively. The even and odd parities remain.
+Thus the ordered family $R_1^+,R_1^-,R_2^+,R_2^-,\ldots$
+has one polynomial of each degree, with a nonzero leading coefficient.
+Subtracting the appropriate multiple of the polynomial of largest
+degree, and iterating down to degree zero, expresses every polynomial
+as a finite linear combination. Linear independence follows by the
+largest-degree coefficient of a finite relation. Consequently
+\begin{equation}\label{eq:cq-N}
+ \cqN=\overline{\operatorname{span}
+ \{\mathcal F_\mu\mathcal E\psi_\ell^\pm\}}^{\,\tau}
+ =\overline{\cqC[s]\Xi}^{\,\tau},\qquad
+ \cqQ=(\cqE,\tau)/\cqN.
+\end{equation}
+Here $\tau$ denotes precisely the source's topology. No equality of
+this closed space with a principal algebraic ideal is being asserted.
+Multiplication $M f(s)=sf(s)$ is continuous in the topological ring;
+it preserves the dense generating subspace, and hence $\cqN$.
+Its induced operator $S$ is the operator of Proposition 3.6.
+We use the source's spectral assertion as an explicitly imported theorem:
+\begin{equation}\label{eq:cq-source-spectrum}
+ \cqSpec(S)=\{\lambda\in\cqC:
+             \zeta(\tfrac12+i\lambda)=0
+             \text{ at a nontrivial zero}\}.
+\end{equation}
+Spectrum here means failure of a continuous two-sided inverse.
+No proof of the entire source spectral theorem is claimed as a new
+result of this manuscript.
+
+There is a material source limitation. Page 19 calls $\cqE$ the
+Hadamard topological ring of entire functions of order at most one;
+it does not state seminorms or a convergence criterion. The cited
+Connes--Marcolli Proposition 2.24, printed pages 379--381,
+proves the polynomial-image assertion and explicitly discusses
+different function-space realizations \cite{connesMarcolli2008}. It does not supply
+that missing specification. We therefore retain $\tau$ in every
+source quotient. Below, all assertions depending on another topology
+name and define that topology. The comparison with the source is an
+exact quotient diagram, rather than an identification by terminology.
+
+\subsection{A globally defined heat map on the original underlying functions}
+\label{sec:cq-heatspace}
+For an entire function $f$, let
+$M_f(r)=\max_{|s|\leq r}|f(s)|$ and define its order by
+\[
+ \limsup_{r\to\infty}
+       \frac{\log\log\max(e,M_f(r))}{\log r}.
+\]
+The zero function is included. For $1<p<2$, $a>0$ set
+\[
+ \|f\|_{p,a}=\sup_{s\in\cqC}|f(s)|e^{-a|s|^p}.
+\]
+The underlying set $\cqE$ is exactly the set where all these seminorms
+are finite. Indeed order at most one gives, for $1<q<p$,
+$M_f(r)\leq\exp(r^q)$ for sufficiently large $r$; the expression
+$r^q-ar^p$ is bounded above. Conversely finiteness gives order at
+most $p$ for every $p>1$.
+Write $\gamma$ for this explicitly defined growth topology.
+It is enough to take $p=1+1/j$, $j\geq2$, and $a=1/k$, $k\geq1$:
+given $p>1,a>0$, select one of these $p_j<p$ and use the boundedness
+of $|s|^{p_j}/k-a|s|^p$. This proves equivalence of the countable
+family with all displayed seminorms. A sequence Cauchy in these
+seminorms converges uniformly on compact sets to an entire function.
+Taking pointwise limits in each weighted Cauchy inequality gives
+convergence in that seminorm and finiteness of its norm. Thus
+$(\cqE,\gamma)$ is a complete metrizable locally convex space.
+
+\begin{cqlemma}[Derivative bounds and the heat group]\label{thm:cq-heat}
+Put $D=\cqD$. Differentiation and multiplication by $s$ map the
+original underlying set $\cqE$ into itself. For $m\geq1$,
+\begin{equation}\label{eq:cq-cauchy}
+ \|D^mf\|_{p,a}\leq
+ m!\left(\frac{epa}{m}\right)^{m/p}
+ \|f\|_{p,a/2^{p-1}}.
+\end{equation}
+For every $t\in\cqC$, the series
+\begin{equation}\label{eq:cq-U}
+ U_tf=\sum_{k=0}^\infty\frac{(-t/4)^k}{k!}D^{2k}f
+\end{equation}
+converges in $\gamma$, locally uniformly in $t$; $U_t$ is a
+continuous automorphism of $(\cqE,\gamma)$ and
+$U_tU_u=U_{t+u}$, $U_t^{-1}=U_{-t}$.
+\end{cqlemma}
+\begin{proof}
+Cauchy's circle formula on a circle of radius $R$ about $s$ gives
+\[
+ |D^mf(s)|\leq m!R^{-m}\max_{|z-s|=R}|f(z)|.
+\]
+For $b=a/2^{p-1}$ the inequality
+$|s+z|^p\leq2^{p-1}(|s|^p+|z|^p)$ bounds the last expression,
+after multiplication by $e^{-a|s|^p}$, by
+$m!R^{-m}e^{aR^p}\|f\|_{p,b}$. Choosing
+$R=(m/(ap))^{1/p}$ proves \eqref{eq:cq-cauchy}.
+For multiplication use
+\[
+ \|Mf\|_{p,a}\leq\sup_{r\geq0}re^{-ar^p/2}\|f\|_{p,a/2}.
+\]
+The $k$th heat summand is at most
+\[
+ \frac{(|t|/4)^k}{k!}(2k)!
+       \left(\frac{epa}{2k}\right)^{2k/p}\|f\|_{p,b}.
+\]
+Since $(2k)!/k!\leq(2k)^k$, its scalar factor is at most
+$[C_{p,a}|t|k^{1-2/p}]^k$, whose $k$th root tends to zero.
+This proves summability, continuity, and locally uniform convergence
+of every time-differentiated series by the same estimate with the
+additional polynomial factors in $k$. Commutation with $D$ follows
+from continuity of $D$. In the double composition series group
+terms with $n=k+\ell$. The sum of the absolute scalar coefficients
+at $D^{2n}f$ is $( (|t|+|u|)/4)^n/n!$; the preceding estimate
+justifies regrouping. The binomial theorem gives $U_{t+u}$.
+The value at zero is the identity, proving the inverse.
+\end{proof}
+
+\begin{cqlemma}[Polynomial approximation]\label{thm:cq-density}
+The Taylor polynomials of any $f\in\cqE$ converge to $f$ in $\gamma$.
+Multiplication of two elements is continuous in $\gamma$.
+\end{cqlemma}
+\begin{proof}
+If $f=\sum c_ns^n$, Cauchy's coefficient bound with parameter
+$b<a$ gives, for $n\geq1$,
+\[
+ |c_n|\leq\|f\|_{p,b}(epb/n)^{n/p}.
+\]
+Also $\|s^n\|_{p,a}=(n/(epa))^{n/p}$. Therefore
+$\|c_ns^n\|_{p,a}\leq\|f\|_{p,b}(b/a)^{n/p}$.
+The tail is bounded by a convergent geometric series.
+Finally $\|fg\|_{p,a}\leq\|f\|_{p,a/2}\|g\|_{p,a/2}$.
+\end{proof}
+
+Retain the actual real heat family, rather than substitute a polynomial:
+\begin{align}\label{eq:cq-realheat}
+ \Phi(u)&=\sum_{n\geq1}
+ (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\notag\\
+ Z_t(s)&=8H_t(2s)=8\int_0^\infty e^{tu^2}\Phi(u)\cos(2su)\,du,
+ &\partial_tZ_t=-\tfrac14D^2Z_t,
+ &Z_0=\Xi.
+\end{align}
+These are the Rodgers--Tao conventions, Section 1 \cite{rodgersTao2020}.
+For clarity the analytic exchanges in this transport can be proved
+directly. Since $n^2e^{4u}\geq(n^2+e^{4u})/2$, the absolutely
+convergent sums $\sum n^je^{-\pi n^2/2}$ give constants $C,c>0$
+such that $|\Phi(u)|\leq Ce^{9u}e^{-ce^{4u}}$ for $u\geq0$.
+For $|t|\leq T$ and $|s|\leq R$, every derivative of the integrand
+is bounded by a polynomial in $u$ times
+$C\exp(Tu^2+(2R+9)u-ce^{4u})$, which is integrable.
+The exponential series in $t$ can therefore be integrated absolutely.
+Because $D^{2k}\cos(2su)=(-1)^k(2u)^{2k}\cos(2su)$, it gives
+exactly $Z_t=U_t\Xi$ with the coefficient $(-t/4)^k/k!$.
+In particular $Z_t$ lies in the original order-at-most-one set for
+every complex $t$, by Lemma~\ref{thm:cq-heat}; it is never identically
+zero because $U_t$ is invertible and $\Xi(0)\ne0$.
+
+\subsection{Transport of the actual closed arithmetic image}
+\label{sec:cq-moving}
+Define $\tau_t$ on the same underlying vector space $\cqE$ by
+declaring $U_t:(\cqE,\tau)\longrightarrow(\cqE,\tau_t)$ a
+homeomorphism. This definition specifies every open set:
+$V$ is $\tau_t$-open exactly when $U_{-t}V$ is $\tau$-open.
+It uses the globally defined bijection just proved and does not require
+unproved continuity in $\tau$. Set
+\begin{equation}\label{eq:cq-Qt}
+ N_t=U_t\cqN
+ =\overline{\operatorname{span}\{U_t(R_\ell^\pm\Xi)\}}^{\,\tau_t},
+ \qquad Q_t=(\cqE,\tau_t)/N_t.
+\end{equation}
+The closure equality follows because homeomorphisms carry closure to
+closure. In particular $N_t$ is closed. The quotient map
+\begin{equation}\label{eq:cq-Phi}
+ \mathcal U_t:\cqQ\longrightarrow Q_t,\qquad [f]\longmapsto[U_tf]
+\end{equation}
+is well defined, bijective, and continuous, with continuous inverse
+$[g]\mapsto[U_{-t}g]$. Indeed changing $f$ by $n\in\cqN$
+changes $U_tf$ by $U_tn\in N_t$, and the inverse gives necessity;
+the quotient universal property proves both continuity statements.
+
+\begin{cqtheorem}[Exact arithmetic heat intertwiner]\label{thm:cq-moving}
+On the entire-function set,
+\begin{equation}\label{eq:cq-B}
+ B_t=U_tMU_{-t}=M-\tfrac t2D.
+\end{equation}
+This operator preserves $N_t$, is continuous in $\tau_t$, and induces
+$S_t$ on $Q_t$. It satisfies
+$S_t\mathcal U_t=\mathcal U_tS$ and
+\begin{equation}\label{eq:cq-specmove}
+ \cqSpec(S_t)=\cqSpec(S)
+ =\{\lambda:\zeta(\tfrac12+i\lambda)=0\text{ nontrivially}\}.
+\end{equation}
+The time-dependent trace functions are exactly
+$U_t(R_\ell^\pm\Xi)=R_\ell^\pm(B_t)Z_t$.
+\end{cqtheorem}
+\begin{proof}
+The product rule gives $D^{2k}Mf=MD^{2k}f+2kD^{2k-1}f$.
+Insert this identity in the convergent heat series to obtain
+$U_tM=(M-(t/2)D)U_t$, proving \eqref{eq:cq-B}.
+If $n\in\cqN$, then $B_tU_tn=U_tMn\in N_t$.
+Continuity is conjugation of the continuous $M$ by the defining
+homeomorphism. The induced identity follows on representatives.
+If $T$ is a continuous inverse of $S-\lambda$, then
+$\mathcal U_tT\mathcal U_t^{-1}$ is a continuous inverse of
+$S_t-\lambda$. Conjugating in the opposite direction proves the
+converse, and hence the spectrum equality using
+\eqref{eq:cq-source-spectrum}. Apply the polynomial identity
+$U_tp(M)=p(B_t)U_t$ to $\Xi$ for the last assertion.
+\end{proof}
+
+The heat map also transports the full multiplication, with every
+cross term retained. For $f,g\in\cqE$ define
+\begin{equation}\label{eq:cq-star}
+ f\star_t g=U_t\bigl((U_{-t}f)(U_{-t}g)\bigr)
+    =\sum_{n=0}^\infty\frac{(-t/2)^n}{n!}(D^nf)(D^ng).
+\end{equation}
+We prove the series identity, including convergence. For
+$F_t=U_tf$, $G_t=U_tg$, the series
+\[
+ J_t=\sum_{n=0}^\infty\frac{(-t/2)^n}{n!}
+                    (D^nF_t)(D^nG_t)
+\]
+converges in $\gamma$, uniformly on compact time sets: applying
+\eqref{eq:cq-cauchy} with output norm $(p,a/2)$ to both factors
+bounds its $n$th term by
+\[
+ K\left[\frac T2\left(\frac{epa}{2}\right)^{2/p}
+                   n^{1-2/p}\right]^n\quad(|t|\leq T),
+\]
+where $K$ bounds the product of the two input norms
+$(p,a/2^p)$, and is finite by the heat estimate. The root test
+applies. Cauchy's formula in time permits termwise time derivatives;
+continuity of $D$ permits spatial derivatives. Differentiating the
+coefficient contributes
+\[
+ -\tfrac12\sum_{n\ge0}(-t/2)^n(D^{n+1}F_t)(D^{n+1}G_t)/n!.
+\]
+Differentiating the factors contributes the two pure second-derivative
+terms with coefficient $-1/4$. The complete product rule therefore
+gives $\partial_tJ_t=-D^2J_t/4$ and $J_0=fg$.
+Its entire time Taylor coefficients are uniquely
+$(-1/4)^kD^{2k}(fg)/k!$, so $J_t=U_t(fg)$.
+Replacing the inputs by $U_{-t}f,U_{-t}g$ proves
+\eqref{eq:cq-star}. Conjugation of ordinary multiplication proves
+associativity, commutativity, unit $1$, and continuity for $\tau_t$,
+even when continuity of the series in the source topology is unknown.
+The identity $s\star_t f=sf-tf'/2$ recovers exactly $B_t$.
+No ideal property of $\cqN$ beyond its stated polynomial invariance
+is required for this identity or for the quotient in
+Theorem~\ref{thm:cq-moving}.
+
+The transported actual trace image has no common point-evaluation
+zero at any nonzero time. Suppose $\lambda$ were such a common
+zero. It would annihilate each $U_t(s^n\Xi)$. For every $a\in\cqC$,
+the Taylor series of $e^{as}$ converges in $\gamma$ by
+Lemma~\ref{thm:cq-density}. Multiplication, $U_t$, and evaluation
+are continuous in $\gamma$, so
+\[
+ 0=\sum_{n=0}^\infty\frac{a^n}{n!}U_t(s^n\Xi)(\lambda)
+   =e^{a\lambda-ta^2/4}Z_t(\lambda-ta/2).
+\]
+The last equality follows from the just-proved product formula
+and the entire Taylor formula for $Z_t$. At $t\ne0$ varying $a$
+forces $Z_t$ to vanish everywhere, a contradiction. This argument
+uses only the polynomial generators contained in $N_t$; it assumes
+no source-topology convergence of the exponential series. Thus the
+source arithmetic spectrum in \eqref{eq:cq-specmove} is carried by
+the explicitly transported operator and relation, even though the
+transported relation has no common ordinary evaluation zero.
+
+The first two nonconstant polynomial generators make the extra terms
+visible without changing any polynomial coefficient:
+\begin{align}\label{eq:cq-generators}
+ U_t(s\Xi)&=sZ_t-\tfrac t2Z_t',\notag\\
+ U_t(s^2\Xi)&=s^2Z_t-t sZ_t'-\tfrac t2Z_t+\tfrac{t^2}4Z_t''.
+\end{align}
+For $L=\partial_t+\tfrac14D^2$, the complete product rule is
+\begin{equation}\label{eq:cq-unit}
+ L(AP)=A\bigl(P_t+\tfrac14P_{ss}\bigr)
+       +\bigl(A_t+\tfrac14A_{ss}\bigr)P
+       +\tfrac12A_sP_s.
+\end{equation}
+Thus $L(R(s)Z_t)=\tfrac14R''Z_t+\tfrac12R'Z_t'$.
+The family $R(B_t)Z_t$ solves the homogeneous heat equation, whereas
+the displayed expression is the full defect of replacing it by
+$R(s)Z_t$. For a local factorization $Z_t=AP$ with $A\ne0$,
+the same formula retains the analytic unit $A$ and its derivatives.
+At a simple zero $\lambda(t)$, differentiating
+$Z_t(\lambda(t))=0$ gives
+\begin{equation}\label{eq:cq-zero}
+ \lambda'(t)=\frac14\frac{Z_{ss}}{Z_s}(t,\lambda(t))
+ =\frac14\frac{P_{ss}}{P_s}(t,\lambda(t))
+    +\frac12\frac{A_s}{A}(t,\lambda(t)).
+\end{equation}
+This statement is on the open locus $Z_s\ne0$, on which the analytic
+implicit-function theorem supplies the local curve; it claims no
+chosen zero is simple. At a multiple zero the division is undefined,
+and the full equation \eqref{eq:cq-unit} remains the equation to use.
+
+\subsection{Derivative domains, multivalued operators, and jet extensions}
+\label{sec:cq-jets}
+Every derivative has the full underlying domain $\cqE$ by
+Lemma~\ref{thm:cq-heat}. Continuity in the unnamed source topology is
+not assumed. The following gives exact source-quotient operators and
+their domains without imposing it. For $k\geq1$ put
+\[
+ K_k=\{n\in\cqN:D^kn\in\cqN\},\qquad
+ W_k=(D^k\cqN+\cqN)/\cqN\subseteq\cqQ.
+\]
+The derivative correspondence is the actual linear relation
+\begin{equation}\label{eq:cq-relation}
+ \mathfrak D_k=\{([f],[D^kf]):f\in\cqE\}
+                    \subseteq\cqQ\times\cqQ.
+\end{equation}
+For fixed $[f]$, its output fibre is precisely $[D^kf]+W_k$:
+all representatives are $f+n$ with $n\in\cqN$, and linearity gives
+all and only the stated outputs. The kernel of its presenting map
+$f\mapsto([f],[D^kf])$ is exactly $K_k$. The relation has domain
+all of $\cqQ$; its multivalued part at zero is exactly $W_k$.
+Thus it is the graph of an operator exactly when $D^k\cqN\subseteq
+\cqN$. This is a calculated equivalence, with an explicit obstruction
+space, rather than an assumption of invariance.
+
+There is no nonempty domain of quotient classes on which the same
+representative formula is unambiguous if $W_k\ne0$ and every
+representative of a class is admitted: addition of the same offending
+$n$ gives two different outputs for every class. A chosen linear
+lift is a different map. More precisely any vector subspace
+$A\subseteq\cqE$ supplies a single-valued map on its quotient image
+$q(A)$ exactly when $D^k(A\cap\cqN)\subseteq\cqN$; the identical
+difference-of-representatives argument proves both directions.
+The first heat generator is $-D^2/4$, so its ambiguity space is
+$-W_2/4$, with the coefficient and sign unchanged.
+
+Even when $W_k$ is not closed, the smallest source-closed enlargement
+of the target relation subspace is explicit:
+\begin{equation}\label{eq:cq-target}
+ [f]\longmapsto[D^kf]:
+ \cqQ\longrightarrow
+ \cqE/\overline{\cqN+D^k\cqN}^{\,\tau}.
+\end{equation}
+It is well defined algebraically. Equip its source with the quotient
+of the graph topology $f\mapsto(f,D^kf)$ in
+$(\cqE,\tau)^2$ to obtain a continuous map. This specifies a
+topology change explicitly, without claiming it is the original one.
+The lost part of the original target $\cqQ$ is exactly
+$\overline{\cqN+D^k\cqN}^{\,\tau}/\cqN$.
+
+Here is an extension which retains correlated derivatives rather than
+quotienting them away. For $j\geq1$ define the bijection
+\[
+ T_j(f_0,\ldots,f_j)
+   =(f_0,f_1-Df_0,\ldots,f_j-D^jf_0).
+\]
+Its inverse is $(f_0,g_1,\ldots,g_j)\mapsto
+(f_0,g_1+Df_0,\ldots,g_j+D^jf_0)$.
+Give $V_j=\cqE^{j+1}$ the topology transported by $T_j$ from
+$(\cqE,\tau)\times(\cqE,\gamma)^j$. The residual factors
+are explicitly given the proved Hausdorff growth topology; the
+source factor keeps its original topology. For $J_jf=(f,Df,\ldots,D^jf)$,
+$T_j(J_j\cqN)=\cqN\oplus0^j$, so $J_j\cqN$ is closed.
+Define
+\begin{equation}\label{eq:cq-jetextension}
+ X_j=V_j/J_j\cqN.
+\end{equation}
+Then the map
+\[
+ [f_0,\ldots,f_j]\longmapsto
+ ([f_0],f_1-Df_0,\ldots,f_j-D^jf_0)
+\]
+is a homeomorphism $X_j\simeq\cqQ\oplus(\cqE,\gamma)^j$; independence,
+the inverse, and continuity follow directly from $T_j$ and the
+quotient definition. In particular there is the split exact sequence
+\begin{equation}\label{eq:cq-jetseq}
+ 0\longrightarrow\cqE^j\longrightarrow X_j
+ \xrightarrow{[f_0,\ldots,f_j]\mapsto[f_0]}\cqQ
+ \longrightarrow0,
+ \qquad [f]\longmapsto[J_jf].
+\end{equation}
+Its relation on a source generator retains every product term:
+\begin{equation}\label{eq:cq-rawjet}
+ D^k(R\Xi)=\sum_{h=0}^k\binom kh R^{(h)}\Xi^{(k-h)}
+                    \quad(0\leq k\leq j).
+\end{equation}
+The binomial formula follows by induction from the ordinary product
+rule, including the two edge terms at each step.
+
+The original spectral coordinate acts on $V_j$ by
+\[
+ (\mathcal M_j f)_k=s f_k+k f_{k-1}\quad(0\leq k\leq j),
+ \qquad f_{-1}=0.
+\]
+The identity $D^k(sf)=sD^kf+kD^{k-1}f$ proves
+$\mathcal M_jJ_jf=J_j(sf)$; it therefore preserves the exact
+relation subspace. In the $T_j$ coordinates it acts by $S$ on
+$\cqQ$ and by $g_k\mapsto sg_k+kg_{k-1}$ on the residual terms
+($g_0=0$). This also proves continuity in the stated topology.
+Notice that \eqref{eq:cq-jetseq} adds a free residual module:
+the spectrum of the entire extension is not claimed to equal the
+source spectrum. The arithmetic quotient and its split inclusion
+are explicitly preserved.
+
+\subsection{A fully computed analytic realization and its exact comparison}
+\label{sec:cq-analytic}
+We now compute the closures and the failure of descent in specified
+topologies. This does not identify them with $\tau$.
+Let $\kappa$ be the topology of uniform convergence on compact sets
+on the same set $\cqE$, and define
+\[
+ N_\gamma=\overline{\cqC[s]\Xi}^{\,\gamma},\qquad
+ N_\kappa=\overline{\cqC[s]\Xi}^{\,\kappa}.
+\]
+Evaluations of all derivatives are continuous in both topologies by
+Cauchy's formula. The growth topology is finer than $\kappa$, so
+$N_\gamma\subseteq N_\kappa$.
+If $\lambda$ is a zero of $\Xi$ with its actual multiplicity $m_\lambda$,
+every element of either closed subspace has vanishing derivatives
+of orders $0,\ldots,m_\lambda-1$ at $\lambda$.
+
+\begin{cqtheorem}[Compact closure, multiplicities, and coordinate spectrum]
+\label{thm:cq-compact}
+The compact closure is exactly
+\begin{equation}\label{eq:cq-compactideal}
+ \begin{aligned}
+ N_\kappa
+ &=\{f\in\cqE:f/\Xi\text{ extends to an entire function}\}\\
+ &=\{f\in\cqE:D^hf(\lambda)=0\ (h<m_\lambda),\ \Xi(\lambda)=0\}.
+ \end{aligned}
+\end{equation}
+On $Q_\kappa=(\cqE,\kappa)/N_\kappa$, multiplication by $s$ has
+spectrum exactly the zeros of $\Xi$ in the original $s$ coordinate.
+For a zero $\lambda$ of multiplicity $m$, there is a continuous
+surjection
+\[
+ Q_\kappa\longrightarrow\cqC[\epsilon]/(\epsilon^m),\qquad
+ [f]\longmapsto\sum_{h=0}^{m-1}\frac{D^hf(\lambda)}{h!}\epsilon^h,
+\]
+intertwining multiplication by $s$ with $\lambda+\epsilon$.
+\end{cqtheorem}
+\begin{proof}
+The vanishing conditions are closed and hold on every $p\Xi$,
+so the closure is contained in the last displayed set. Local Taylor
+division at each isolated zero identifies that set with entire
+divisibility by $\Xi$. For such an $f$, put $g=f/\Xi\in\cqO(\cqC)$.
+Its Taylor polynomials $p_n$ converge uniformly on every compact;
+$p_n\Xi\to f$ in $\kappa$. Every $p_n\Xi$ belongs to the original
+order class even though no growth assertion about $g$ is needed.
+This proves \eqref{eq:cq-compactideal} with the closure retained.
+The local-jet map is independent of representatives; the polynomials
+$1,(s-\lambda),\ldots,(s-\lambda)^{m-1}$ prove surjectivity.
+Leibniz's rule gives the stated action, and the finite jet evaluations
+are continuous.
+
+If $\Xi(\lambda)\ne0$, define
+\[
+ T_\lambda f(s)=
+ \frac{f(s)-f(\lambda)\Xi(s)/\Xi(\lambda)}{s-\lambda},
+\]
+filling in the removable value. Division by a linear factor preserves
+the order bound: outside a disk about $\lambda$ the denominator is
+bounded below, and inside a disk the filled entire function is bounded.
+It is continuous in $\kappa$ by Cauchy's formula on a larger disk
+applied to the numerator. For $n\in N_\kappa$ the quotient
+$T_\lambda n/\Xi=(n/\Xi-(n/\Xi)(\lambda))/(s-\lambda)$ is entire;
+thus it descends. Direct multiplication proves
+$(S_\kappa-\lambda)[T_\lambda f]=[f]$.
+Applying $T_\lambda$ to $(s-\lambda)f$ gives $f$ exactly, proving
+the other inverse identity. If $\Xi(\lambda)=0$, evaluation at
+$\lambda$ descends to a nonzero continuous functional which annihilates
+the image of $S_\kappa-\lambda$. Hence that operator is not
+surjective. This proves the spectrum claim.
+\end{proof}
+
+\begin{cqtheorem}[Direct differential and heat obstructions]
+\label{thm:cq-obstruction}
+Neither $N_\gamma$ nor $N_\kappa$ is invariant under $D$ or $D^2$.
+For either frozen quotient, neither representative formula $[f']$
+nor $[-f''/4]$ defines an operator on any nonempty class domain
+admitting all representatives.
+For every $t\ne0$, neither $U_tN_\gamma\subseteq N_\gamma$ nor
+$U_tN_\kappa\subseteq N_\kappa$ holds. Ordinary multiplication
+by $s$ preserves neither $U_tN_\gamma$ nor $U_tN_\kappa$.
+\end{cqtheorem}
+\begin{proof}
+Choose any zero $\lambda$ of the actual $\Xi$ and let $m\geq1$
+be its multiplicity. The existence of its zeros is part of the
+classical arithmetic datum in the primary source; no realness or
+simplicity is used. Write $\Xi=(s-\lambda)^mA$ with
+$A(\lambda)\ne0$. Then $\Xi'=(s-\lambda)^{m-1}
+(mA+(s-\lambda)A')$ does not vanish to order $m$.
+Since $\Xi\in N_\gamma\subseteq N_\kappa$, both derivative
+invariance assertions fail. If $m\geq2$, $\Xi''$ has leading
+coefficient $m(m-1)A(\lambda)$ at order $m-2$, proving the
+second-derivative failure. If $m=1$, use the actual polynomial
+multiple $n=(s-\lambda)\Xi$ instead: $n''(\lambda)=2\Xi'(\lambda)
+\ne0$. This retains the product-rule cross term and covers all
+multiplicities. The nonempty-domain assertion follows from the
+explicit fibre computation in \eqref{eq:cq-relation}.
+
+For $a\in\cqC$, $e^{as}\Xi\in N_\gamma$ by polynomial
+approximation of $e^{as}$ and continuous multiplication, and hence
+belongs to $N_\kappa$. The conjugation $D(e^{as}f)=e^{as}(D+a)f$
+and the absolutely convergent heat and translation series give
+\begin{equation}\label{eq:cq-exponential}
+ U_t(e^{as}\Xi)(s)
+    =e^{as-ta^2/4}Z_t(s-ta/2).
+\end{equation}
+For completeness, the translation series for $f$ is its Taylor
+series about $s$ and sums to $f(s-ta/2)$; its local uniform
+convergence and the derivative estimates justify commutation of
+$e^{-(ta/2)D}$ with $U_t$. If $U_tN_\bullet\subseteq N_\bullet$
+for either choice, evaluate \eqref{eq:cq-exponential} at $\lambda$.
+The exponential never vanishes, so $Z_t(\lambda-ta/2)=0$ for
+every $a$. When $t\ne0$ these arguments fill $\cqC$; this contradicts
+$Z_t\ne0$. Finally if $M$ preserved $U_tN_\bullet$, conjugation
+would imply $(M+(t/2)D)N_\bullet\subseteq N_\bullet$.
+Since $M$ already preserves $N_\bullet$, this forces
+$DN_\bullet\subseteq N_\bullet$, contrary to the first part.
+\end{proof}
+
+The analytic moving-divisor quotient, which does carry the zeros of
+the actual $Z_t$ under ordinary $s$, is
+\begin{equation}\label{eq:cq-divisor}
+ I_t=\overline{\cqC[s]Z_t}^{\,\kappa}
+ =\{f\in\cqE:f/Z_t\text{ is entire}\},\qquad
+ A_t=(\cqE,\kappa)/I_t.
+\end{equation}
+The proof of Theorem~\ref{thm:cq-compact} applies verbatim with
+the nonzero entire order-at-most-one function $Z_t$: it uses only
+local Taylor division and compact polynomial approximation.
+Consequently $\cqSpec(M\text{ on }A_t)=\{\lambda:Z_t(\lambda)=0\}$,
+with the full local multiplicity jets, and with the explicit inverse
+$[f]\mapsto[(f-f(\lambda)Z_t/Z_t(\lambda))/(s-\lambda)]$
+off that set. Equation \eqref{eq:cq-zero} is the evolution of this
+original-coordinate spectrum on its simple-zero locus.
+This spectrum can move; \eqref{eq:cq-specmove} is the spectrum
+of the different, exactly specified transported operator $B_t$.
+
+We now give the promised comparison morphisms with every kernel
+retained. Put $J=\cqN\cap N_\kappa$ and
+$C=(\cqE,\tau\vee\kappa)/J$, where $\tau\vee\kappa$ is the
+topology generated by both topologies. Since each summand is closed
+in its own topology, $J$ is closed in their join. The identity maps
+give continuous surjections
+\begin{equation}\label{eq:cq-span}
+ \cqQ\ \longleftarrow\ C\ \longrightarrow\ Q_\kappa,
+ \qquad\ker(C\to\cqQ)=\cqN/J,
+ \quad\ker(C\to Q_\kappa)=N_\kappa/J.
+\end{equation}
+Each assertion follows by taking the same representative $f$ and
+testing membership in the respective relation subspace; the quotient
+universal property proves continuity. An algebraic common quotient is
+$\cqE/(\cqN+N_\kappa)$ with the quotient topology from the join;
+its Hausdorff version uses
+$\overline{\cqN+N_\kappa}^{\,\tau\vee\kappa}$.
+The map from $C$ to this further quotient is continuous. Continuity
+of maps to it from each of the two separately topologized quotients
+is not asserted. No closedness of the sum is presumed. This describes
+the precise information lost in that further quotient.
+
+At time $t$ replace the two subspaces by $N_t$ and $I_t$ and the
+join by $\tau_t\vee\kappa$. The same construction gives continuous
+surjections from their intersection quotient to the genuine transported
+arithmetic quotient $Q_t$ and to $A_t$, with kernels
+$N_t/(N_t\cap I_t)$ and $I_t/(N_t\cap I_t)$, respectively.
+The two generator systems are linked by the explicit formula
+$R(B_t)Z_t$ versus $R(s)Z_t$ and the defects
+\eqref{eq:cq-generators}--\eqref{eq:cq-unit}.
+These are exact morphisms and closure formulas for the actual source
+space. Determining that either kernel vanishes for $\tau$ is not
+established by the two inspected primary texts. Accordingly the
+source-frozen statements $D\cqN\subseteq\cqN$ and
+$D^2\cqN\subseteq\cqN$ have not been decided solely from that
+unnamed topology. The unqualified noninvariance results above have
+been proved in the two explicitly specified analytic realizations.
+
+\subsection{The inverse-root cover, the branch locus, and arithmetic fibres}
+\label{sec:cq-cover}
+The retained polynomial inverse-fibre slice is
+$P_{a,0,0}(r)=-2r^2-2a$. Its root equation is $a=-r^2$.
+The arithmetic coordinate is $a=2s$, so
+\begin{equation}\label{eq:cq-cover}
+ s=-r^2/2.
+\end{equation}
+The finite free extension of the actual quotient is
+\[
+ \widehat Q=\cqC[r]\otimes_{\cqC[s]}\cqQ
+           =\cqQ\oplus r\cqQ,
+ \qquad
+ \mathcal R=\begin{pmatrix}0&-2S\\1&0\end{pmatrix},
+ \qquad -\tfrac12\mathcal R^2=\begin{pmatrix}S&0\\0&S\end{pmatrix}.
+\]
+The even--odd decomposition of a polynomial in $r$ proves freeness
+with basis $(1,r)$ and uniqueness coefficient by coefficient.
+Multiplying $q_0+rq_1$ by $r$ proves the displayed matrices;
+the finite direct-sum topology makes every induced map continuous.
+The involution is $(q_0,q_1)\mapsto(q_0,-q_1)$; the trace is
+$\operatorname{Tr}(q_0+rq_1)=2q_0$, with kernel $r\cqQ$.
+It is $\cqC[s]$-linear. It does not provide a $\cqC[r]$-module
+quotient with this kernel unless $S=0$: multiplying $rq$ by $r$
+gives $-2Sq$ in the even summand. This proves the exact limitation,
+rather than suppressing the odd component. The same construction
+at time $t$ uses $S_t$ and is conjugated by
+$\operatorname{diag}(\mathcal U_t,\mathcal U_t)$.
+
+The original $s$-spectrum is unchanged by the extension: an inverse
+of $S-\lambda$ duplicates to a diagonal inverse, and conversely
+projection of an inverse of the doubled matrix to its first component,
+following inclusion of that component, gives an inverse of
+$S-\lambda$. Both directions are continuous. Moreover
+\begin{equation}\label{eq:cq-rspec}
+ \cqSpec(\mathcal R)
+ =\{\rho\in\cqC:-\rho^2/2\in\cqSpec(S)\}.
+\end{equation}
+To prove this without an unsupported spectral-mapping citation,
+solve $(\mathcal R-\rho)(u,v)=(a,b)$. The second row gives
+$u=b+\rho v$ and the first becomes
+$-2(S+\rho^2/2)v=a+\rho b$. A continuous inverse of
+$S+\rho^2/2$ therefore gives a continuous inverse matrix.
+Conversely the right-hand side $(a,0)$ and the second projection
+of an inverse matrix supply an inverse of $-2(S+\rho^2/2)$,
+with both identities checked by the same two rows.
+
+Before any quotient by $\Xi$, let $\mathcal O_s$ be the sheaf of
+holomorphic functions in $s$ and put
+$B=\mathcal O_s[r]/(r^2+2s)$, identified with
+$\mathcal O_s\oplus r\mathcal O_s$. On the punctured base $s\ne0$,
+implicit differentiation gives
+$dr/ds=-1/r=r/(2s)$. Thus the actual lifted derivative is
+\begin{equation}\label{eq:cq-connection}
+ \nabla_s\binom{f_0}{f_1}
+ =\binom{f_0'}{f_1'+f_1/(2s)},\quad
+ R=\begin{pmatrix}0&-2s\\1&0\end{pmatrix},\quad
+ [\nabla_s,R]=-R^{-1}.
+\end{equation}
+Indeed with $A=\operatorname{diag}(0,1/(2s))$,
+$R'+AR-RA=\left(\begin{smallmatrix}0&-1\\1/(2s)&0\end{smallmatrix}\right)
+=-R^{-1}$. A second application gives
+\begin{equation}\label{eq:cq-connection2}
+ \nabla_s^2=\operatorname{diag}
+ \left(D^2,D^2+s^{-1}D-\frac1{4s^2}\right).
+\end{equation}
+Equivalently, on a function of $r$ the derivative is
+$-r^{-1}\partial_r$ and the heat generator is
+$-\tfrac14r^{-2}\partial_r^2+\tfrac14r^{-3}\partial_r$.
+Squaring $-r^{-1}\partial_r$ by the product rule proves this
+with both signs preserved.
+
+The branch extension is exact. The meromorphic connection sends
+$B$ into $s^{-1}B$ and the connection one-form has a simple pole
+with residue $\operatorname{diag}(0,1/2)$. Its maximal domain for
+holomorphic output at $s=0$ is
+\begin{equation}\label{eq:cq-branchdomain}
+ \operatorname{Dom}_{\rm hol}\nabla_s
+       =\mathcal O_s\oplus r s\mathcal O_s.
+\end{equation}
+In fact the odd coefficient is $f_1'+f_1/(2s)$; its only possible
+pole has coefficient $f_1(0)/2$, proving necessity and sufficiency.
+For the square, write $f_1=\sum_{n\geq0}a_ns^n$. Its image has
+coefficient $(n^2-1/4)a_ns^{n-2}$. The negative powers vanish
+exactly when $a_0=a_1=0$, so
+\[
+ \operatorname{Dom}_{\rm hol}\nabla_s^2
+       =\mathcal O_s\oplus r s^2\mathcal O_s.
+\]
+For $k$ iterates the odd coefficient is
+$\prod_{h=0}^{k-1}(n+1/2-h)a_ns^{n-k}$, whose prefactor is
+never zero for integral $n$. Thus its domain is
+$\mathcal O_s\oplus r s^k\mathcal O_s$.
+No derivation $B\to B$ extending $\partial_s$ exists at the branch:
+derivation of $r^2+2s=0$ would give $2r\delta(r)+2=0$,
+forcing $r$ to be a unit although it vanishes at the branch point.
+The logarithmic derivative $s\nabla_s$
+does extend to all of $B$, with matrix
+$sD+\operatorname{diag}(0,1/2)$.
+
+These are sheaf and representative calculations; they do not assert
+that $\nabla_s$ descends through the frozen arithmetic relation.
+For a holomorphic local multiplier $R_0(s)$ the relation vector
+$(R_0\Xi,0)$ acquires $(R_0'\Xi+R_0\Xi',0)$, and the odd
+relation $(0,R_0\Xi)$ acquires
+$(0,R_0'\Xi+R_0\Xi'+R_0\Xi/(2s))$.
+The second iterate includes the full $2R_0'\Xi'$ term, as well as
+the odd $s^{-1}D-1/(4s^2)$ terms of
+\eqref{eq:cq-connection2}. Jet extension
+\eqref{eq:cq-jetextension}, or the moving closed quotient
+\eqref{eq:cq-Qt}, retains these relations exactly.
+
+Finally, the branch point is not an arithmetic spectral point at
+$t=0$. The source gives $\Xi(0)\ne0$, so its Proposition 3.6
+makes $S$ continuously invertible; then $\mathcal R$ is invertible
+by \eqref{eq:cq-rspec}. In the analytic divisor realization the
+stronger local statement follows from $\Xi$ being a holomorphic
+unit on a disk about zero: the quotient stalk is zero there.
+For real $t$, $Z_t(0)>0$ directly from the retained kernel:
+\[
+ 2\pi^2n^4e^{9u}-3\pi n^2e^{5u}
+ =\pi n^2e^{5u}(2\pi n^2e^{4u}-3)>0\quad(u\geq0),
+\]
+and the positive integral converges by the bound already proved.
+Thus the actual real heat divisor never meets the cover branch
+point $s=0$. On a simple zero curve its retained lift satisfies
+$r^2=-2\lambda$, $r'=-\lambda'/r$; together with
+\eqref{eq:cq-zero} these are the original-coordinate and cover
+equations, including the unit contribution. A nonreal $r$ alone
+does not specify whether $\lambda=-r^2/2$ is nonreal.
+
+\subsection{Exact ingress from compact Weil tests}
+\label{sec:cq-tests}
+The accompanying retained Weil-test calculation supplies the concrete
+space $\mathcal E=C_c^\infty(\mathbb R;\cqC)$ with coordinate
+operator $T=-i\partial_u$ and Fourier transform
+\[
+ (\mathscr Ff)(s)=\int_{\mathbb R}f(u)e^{-ius}\,du.
+\]
+Here we give the complete heat ingress and its inverse domains;
+none of the following claims requires identifying the source
+quotient topology with a test-space topology. Integration by parts
+gives $\mathscr F(Tf)=s\mathscr Ff$ with no endpoint term.
+If $\operatorname{supp}f\subset[-L,L]$, then
+\[
+ |\mathscr Ff(s)|\leq\|f\|_1e^{L|\operatorname{Im}s|},
+ \qquad
+ \|\mathscr Ff\|_{p,a}\leq
+ \|f\|_1\sup_{r\geq0}e^{Lr-ar^p}<\infty.
+\]
+Thus the Fourier transform maps the actual test space into the
+original entire-function set, continuously in $\gamma$ on every
+fixed-support smooth-function space and hence in its usual
+inductive-limit topology.
+
+Define, for all complex $t$,
+\begin{equation}\label{eq:cq-testheat}
+ (G_tf)(u)=e^{tu^2/4}f(u),\qquad
+ U_t\mathscr Ff=\mathscr F G_tf,\qquad
+ T_t=G_tTG_{-t}=T+\frac{it}{2}u.
+\end{equation}
+The multiplication $G_t$ is a continuous automorphism on each
+fixed-support smooth-function space, with inverse $G_{-t}$.
+Indeed each derivative of the smooth multiplier is bounded on the
+fixed compact support, and Leibniz's finite sum bounds every output
+derivative seminorm by finitely many input ones. The same argument
+for the inverse proves the assertion. The exponential series and
+every $u$-derivative converge uniformly on a fixed compact set,
+locally uniformly in $t$; consequently the family is entire in time
+in that test topology. In the Fourier integral,
+$D^{2k}\mathscr Ff=\mathscr F((-1)^ku^{2k}f)$.
+The compact support permits absolute interchange with the
+exponential series, proving the middle identity with the exact
+factor $1/4$. Finally differentiation of $e^{-tu^2/4}f$ gives
+the displayed $T_t$, and
+\[
+ \mathscr F(T_tf)=B_t\mathscr Ff,
+ \qquad D\mathscr Ff=\mathscr F(-iu f).
+\]
+Both equations follow directly from the integral, including their
+signs. The test-space version of the retained cover is therefore
+\[
+ \mathcal R_t^{\rm test}
+   =\begin{pmatrix}0&-2T_t\\1&0\end{pmatrix},\qquad
+ (\mathcal R_t^{\rm test})^2=-2\operatorname{diag}(T_t,T_t).
+\]
+Componentwise Fourier transformation intertwines this matrix with
+the representative matrix using $B_t$, and then with the actual
+quotient matrix using $S_t$.
+
+To retain every possible arithmetic relation in this ingress, put
+\begin{equation}\label{eq:cq-testkernel}
+ K=\{f\in\mathcal E:\mathscr Ff\in\cqN\},\qquad
+ K_t=\{f\in\mathcal E:\mathscr Ff\in N_t\}.
+\end{equation}
+Then $K_t=G_tK$: by \eqref{eq:cq-testheat},
+$\mathscr Ff\in U_t\cqN$ exactly when
+$\mathscr F(G_{-t}f)\in\cqN$. Thus there are injective linear
+maps onto their explicitly specified images
+\[
+ \mathcal E/K\longrightarrow\cqQ,\quad[f]\longmapsto[\mathscr Ff],
+ \qquad
+ \mathcal E/K_t\longrightarrow Q_t,\quad[f]\longmapsto[\mathscr Ff],
+\]
+and the square formed by $G_t$ and $\mathcal U_t$ commutes.
+The kernel statements follow exactly from
+\eqref{eq:cq-testkernel}; no claim that $K=0$ in the unnamed
+source topology is inserted. To make the ingress continuous without
+that identification, give $\mathcal E$ the join $\eta$ of its
+usual test topology with the inverse-image topology of $\tau$
+under $\mathscr F$. Then $K$ is closed and the first quotient map
+is continuous. Give the time-$t$ test space the transported
+topology $(G_t)_*\eta$; the second map and the commutative square
+are continuous by \eqref{eq:cq-testheat}. This specifies the exact
+topologies rather than claiming an unproved topological embedding
+of a quotient image equipped with its subspace topology.
+
+There is a fully explicit inverse-domain calculation in the same
+test coordinates. For $\lambda\in\cqC$, $k\geq1$, the image is
+\begin{equation}\label{eq:cq-testmoments}
+ (T_t-\lambda)^k\mathcal E
+ =\left\{g\in\mathcal E:
+ \int_{\mathbb R}v^j e^{-tv^2/4-i\lambda v}g(v)\,dv=0
+                  \quad(0\leq j<k)\right\}.
+\end{equation}
+On that precise image the inverse is
+\begin{equation}\label{eq:cq-testinverse}
+ [(T_t-\lambda)^{-k}g](u)
+ =\frac{i^ke^{tu^2/4+i\lambda u}}{(k-1)!}
+ \int_{-\infty}^{u}(u-v)^{k-1}
+            e^{-tv^2/4-i\lambda v}g(v)\,dv.
+\end{equation}
+To prove both directions, write
+$f=e^{tu^2/4+i\lambda u}h$.
+Direct differentiation gives
+\[
+ (T_t-\lambda)f=e^{tu^2/4+i\lambda u}(-i h').
+\]
+Iteration reduces the inverse equation to a $k$th primitive, giving
+\eqref{eq:cq-testinverse} because $(-i)^ki^k=1$.
+For $g$ supported in $[a,b]$, that formula vanishes below $a$.
+Above $b$, expansion of $(u-v)^{k-1}$ shows it vanishes identically
+exactly when all $k$ moments in \eqref{eq:cq-testmoments} vanish;
+the binomial coefficients and the nonzero exponential do not change
+that equivalence. Its smoothness follows by repeated differentiation
+of the integral; smoothness of $g$ with compact support gives
+matching derivatives at both endpoints. Necessity for any compact
+solution also follows by integrating $h^{(k)}$ against
+$1,v,\ldots,v^{k-1}$ and integrating by parts $k$ times.
+Uniqueness follows since a compactly supported solution of
+$h^{(k)}=0$ is a polynomial of degree at most $k-1$ which vanishes
+on a ray, and hence is zero. This proves the exact image, inverse,
+kernel zero, and preservation of the original support interval.
+
+In particular the inverse of $\mathcal R_t^{\rm test}$ is
+\[
+ (g_0,g_1)\longmapsto(g_1,-\tfrac12T_t^{-1}g_0),
+ \qquad
+ \operatorname{Dom}(\mathcal R_t^{\rm test})^{-1}
+ =\left\{(g_0,g_1):\int e^{-tv^2/4}g_0(v)\,dv=0\right\}.
+\]
+Substitution into its two rows proves both inverse identities.
+Thus the branch-locus obstruction in the concrete test realization
+is a retained Gaussian-weighted zero-moment condition. The exact
+arithmetic quotient instead has invertible $S_t$ and root operator,
+as proved above. Their ingress map and its kernels explain precisely
+how these statements coexist; one operator's inverse domain is not
+silently assigned to the other realization.
+
+\subsection{Proof scope and reproducibility}
+The new source-topology assertions proved here are the complete
+transported closure, homeomorphic quotient, conjugated spectral
+operator, source-domain differential correspondence, correlated jet
+extension, finite free cover, compact-test heat ingress with its
+weighted-moment inverse domains, and exact comparison diagrams. The
+explicit compact and growth realizations have proved frozen
+differential and heat noninvariance; the compact realization also
+has a complete divisor and spectrum calculation with multiplicities.
+The missing identification of the paper's unnamed topology is
+recorded explicitly and is not replaced by a conditional arithmetic
+theorem. Nothing in these results establishes an off-critical zero,
+a negative Weil value, or an arithmetic endpoint by analogy with
+the inverse-fibre collision. The exact transport through that
+collision cover and the derivative information it requires have
+been calculated above.
+
+The companion checker uses rational polynomial arithmetic to verify
+the heat conjugation on finite polynomial inputs, the retained
+product terms, the matrix commutator, the iterated branch-domain
+coefficients, the original-coordinate relation, and sample finite
+jet multiplication. These are reproducible checks of the displayed
+identities, not a substitute for their written proofs. Source
+hashes and exact reading locators are in the companion provenance
+receipt; no numerical zero search or Lean run is part of this work.

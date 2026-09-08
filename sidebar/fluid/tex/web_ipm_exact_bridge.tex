@@ -1,0 +1,388 @@
+\section{IPM: exact pressure, Fourier, and affine-wave correspondences}
+\label{sec:ipm-exact-bridge}
+
+This section audits equations (4.1)--(4.6) of the incoming research report,
+physical PDF pages 10--11, and proves the additional identities used here.
+Its starting equation is retained with the report's coefficients and signs:
+\begin{equation}\label{eq:ipm-report-darcy}
+ \partial_t\rho+u\cdot\nabla\rho=F,\qquad
+ u=-\nabla p-\rho e_2,\qquad \nabla\cdot u=0,
+ \qquad e_2=(0,1).
+\end{equation}
+The spatial coordinates are $x=(x_1,x_2)$; neither coordinate, time, nor a
+coefficient in this equation is rescaled without an explicit map below.
+
+\subsection{The primary-source coefficient and the Fourier zero mode}
+
+The primary manuscript of Alp\"oge, Buckmaster, and Coiculescu,
+\emph{Extending the C\'ordoba--Mart\'inez-Zoroa IPM Blow-up to Uniformly
+Space-Time Smooth Forcing}, specifies on physical page 3, equations (1)--(2),
+the torus $\mathbb T^2_{2\pi}=(\mathbb R/2\pi\mathbb Z)^2$ and operator
+\begin{equation}\label{eq:ipm-source-operator}
+ \widehat{u_{\mathbb T}(\sigma)}(k)=2\pi m(k)\widehat\sigma(k)
+ \quad(k\in\mathbb Z^2\setminus\{0\}),\qquad
+ \widehat{u_{\mathbb T}(\sigma)}(0)=0,
+ \qquad \partial_t\sigma+u_{\mathbb T}(\sigma)\cdot\nabla\sigma=G,
+\end{equation}
+where
+\begin{equation}\label{eq:ipm-symbol}
+ \widehat f(k)=\frac1{(2\pi)^2}\int_{[0,2\pi]^2}f(x)e^{-ik\cdot x}\,dx,
+ \qquad
+ m(k)=\left(\frac{k_1k_2}{k_1^2+k_2^2},
+             -\frac{k_1^2}{k_1^2+k_2^2}\right).
+\end{equation}
+The factor $2\pi$ is explicit in the source and absent in report equation
+(4.2). The following results give the exact relation. The source's
+Theorem 2.1 states smooth forcing on $[0,1]\times\mathbb T^2_{2\pi}$,
+odd mean-zero density and force, smoothness before time $1$, and divergence
+of density and velocity gradients. This statement is source evidence, not
+an independent certification of that manuscript's full iteration.
+The retrieved file, its hash, and the inspection locations are recorded in
+the accompanying source inventory; the primary URL is
+\url{https://cims.nyu.edu/~tristanb/ipm.pdf}.
+
+\begin{proposition}[Pressure elimination with the zero mode retained]
+\label{prop:ipm-pressure}
+For any $\rho\in C^\infty(\mathbb T^2_{2\pi})$, set
+$\overline\rho=\widehat\rho(0)$ and define the mean-zero periodic pressure
+$\mathcal P\rho$ and the periodic vector field $\mathcal M\rho$ by
+\begin{align}
+ \widehat{\mathcal P\rho}(k)&=
+       \frac{i k_2}{k_1^2+k_2^2}\widehat\rho(k)\quad(k\ne0),
+ &\widehat{\mathcal P\rho}(0)&=0,\label{eq:ipm-pressure-fourier}\\
+ \widehat{\mathcal M\rho}(k)&=m(k)\widehat\rho(k)\quad(k\ne0),
+ &\widehat{\mathcal M\rho}(0)&=-\overline\rho e_2.
+ \label{eq:ipm-full-operator}
+\end{align}
+Then $\mathcal M\rho=-\nabla\mathcal P\rho-\rho e_2$ and
+$\nabla\cdot\mathcal M\rho=0$. Every smooth periodic solution of the
+last two equations in \eqref{eq:ipm-report-darcy} has this velocity and
+has pressure $\mathcal P\rho+c$ for a spatial constant $c$.
+If $\mathcal M_0$ has the same nonzero symbol and zero symbol at $k=0$, then
+\begin{equation}\label{eq:ipm-mean-pressure-relation}
+ \mathcal M\rho=\mathcal M_0\rho-\overline\rho e_2,
+ \qquad
+ \mathcal M_0\rho=-\nabla\mathcal P\rho-(\rho-\overline\rho)e_2.
+\end{equation}
+On the universal cover $\mathbb R^2$, the same field $\mathcal M_0\rho$
+satisfies the unprojected Darcy law with pressure
+$\mathcal P\rho-\overline\rho x_2$. This pressure is periodic exactly when
+$\overline\rho=0$.
+\end{proposition}
+\begin{proof}
+Taking divergence of $u=-\nabla p-\rho e_2$ gives
+$\Delta p=-\partial_2\rho$. For $k\ne0$ its Fourier coefficients obey
+$-(k_1^2+k_2^2)\widehat p(k)=-i k_2\widehat\rho(k)$, giving
+\eqref{eq:ipm-pressure-fourier}. Hence
+\[
+ \widehat u(k)=-ik\frac{ik_2}{k_1^2+k_2^2}\widehat\rho(k)
+                   -e_2\widehat\rho(k)
+ =\left(\frac{k_1k_2}{k_1^2+k_2^2},
+ \frac{k_2^2}{k_1^2+k_2^2}-1\right)\widehat\rho(k)
+ =m(k)\widehat\rho(k).
+\]
+The zero Fourier coefficient of a periodic gradient is zero, so
+$\widehat u(0)=-\overline\rho e_2$, with no freedom to set it to zero
+unless $\overline\rho=0$. Direct multiplication gives
+$k\cdot m(k)=(k_1^2k_2-k_1^2k_2)/(k_1^2+k_2^2)=0$.
+Smoothness follows because smooth Fourier coefficients decay faster than
+every polynomial, whereas all displayed multipliers grow at most
+polynomially; this also justifies every termwise derivative. The difference
+of two periodic pressures with the same density has every nonzero Fourier
+coefficient zero, and is therefore constant. Subtracting the zero-mode
+formulas proves \eqref{eq:ipm-mean-pressure-relation}.
+Finally $\nabla(-\overline\rho x_2)=-\overline\rho e_2$ proves the
+cover-space formula. Translation by $2\pi e_2$ changes that pressure by
+$-2\pi\overline\rho$, proving the stated periodicity criterion.
+\end{proof}
+
+\begin{proposition}[Exact coefficient map without changing space or time]
+\label{prop:ipm-coefficient-map}
+On the same torus and time interval, define the source and report residuals
+\[
+ \mathcal N_{2\pi}(\sigma)=\partial_t\sigma+
+                   2\pi\mathcal M_0\sigma\cdot\nabla\sigma,
+ \qquad
+ \mathcal N_1(\rho)=\partial_t\rho+\mathcal M\rho\cdot\nabla\rho.
+\]
+For every smooth spatially mean-zero $\sigma$ the following is an exact
+operator identity:
+\begin{equation}\label{eq:ipm-coefficient-intertwining}
+ \mathcal N_1(2\pi\sigma)=2\pi\mathcal N_{2\pi}(\sigma).
+\end{equation}
+Adjoin to the source scalar equation its periodic potential
+$q=\mathcal P\sigma+c_{\rm s}(t)$, where $c_{\rm s}$ is an arbitrary smooth
+function. It gives the exact velocity relation
+$u_{\mathbb T}(\sigma)=2\pi(-\nabla q-\sigma e_2)$.
+Consequently the invertible map of these full forced systems is
+\begin{equation}\label{eq:ipm-source-report-map}
+ \rho=2\pi\sigma,\quad F=2\pi G,\quad
+ u=u_{\mathbb T}(\sigma)=2\pi\mathcal M_0\sigma,
+ \quad p=2\pi q=2\pi\mathcal P\sigma+2\pi c_{\rm s}(t).
+\end{equation}
+It sends source initial density $\sigma^{\rm in}$ to
+$\rho^{\rm in}=2\pi\sigma^{\rm in}$; its inverse divides density, force,
+and pressure by $2\pi$ (recovering $q$) and leaves velocity, space, and time fixed.
+It multiplies every density or force derivative and every homogeneous norm
+of such a derivative by $2\pi$. Velocity and its derivatives are unchanged.
+\end{proposition}
+\begin{proof}
+Linearity and the mean-zero condition give
+$\mathcal M(2\pi\sigma)=2\pi\mathcal M_0\sigma$ and
+$\mathcal P(2\pi\sigma)=2\pi\mathcal P\sigma$. Therefore
+\[
+ \partial_t(2\pi\sigma)+
+ (2\pi\mathcal M_0\sigma)\cdot\nabla(2\pi\sigma)
+ =2\pi[\partial_t\sigma+
+        2\pi\mathcal M_0\sigma\cdot\nabla\sigma].
+\]
+Proposition~\ref{prop:ipm-pressure} proves both Darcy's law and
+incompressibility for the pressure in \eqref{eq:ipm-source-report-map};
+the gradient of $2\pi c_{\rm s}(t)$ is zero. Thus every spatially constant
+pressure function is retained by the map and its inverse.
+All inverse formulas follow by dividing by the nonzero constant $2\pi$.
+Differentiation and absolute homogeneity of norms prove the last assertion.
+Integrating the source transport equation on the torus gives
+$\partial_t\overline\sigma=\overline G$, since the advective integral is
+$\int\nabla\cdot(\sigma u_{\mathbb T}(\sigma))=0$; thus the source's
+mean-zero forcing and initial density preserve the required subspace.
+\end{proof}
+
+There is also an exact treatment of the mean mode. Let $b(t)$ be any smooth
+real function, let $B(t)=\int_{t_0}^t b(s)\,ds$, and write
+$y=x+B(t)e_2$. For a smooth mean-zero source density $\sigma$ and an arbitrary
+smooth real function $c(t)$ define
+\begin{align}\label{eq:ipm-mean-dynamical-map}
+ \rho(x,t)&=2\pi\sigma(y,t)+b(t),&
+ u(x,t)&=u_{\mathbb T}(\sigma)(y,t)-b(t)e_2,\\
+ p(x,t)&=2\pi\mathcal P\sigma(y,t)+c(t),&
+ F(x,t)&=2\pi G(y,t)+b'(t).\notag
+\end{align}
+These are periodic in $x$ and solve \eqref{eq:ipm-report-darcy} whenever the
+source residual is $G$. Indeed Darcy's law is
+$-2\pi\nabla\mathcal P\sigma-(2\pi\sigma+b)e_2
+=u_{\mathbb T}(\sigma)-be_2$ at $y$. Incompressibility is preserved by
+translation. The transport residual is exactly
+\[
+ 2\pi\sigma_t+2\pi B'\partial_2\sigma+b'
+ +(u_{\mathbb T}(\sigma)-be_2)\cdot2\pi\nabla\sigma
+ =2\pi G+b',
+\]
+because $B'=b$. Conversely, any smooth periodic report solution is put in
+this form by $b=\overline\rho$, $c=\overline p$, $B(t)=\int_{t_0}^t b$, and
+$\sigma(y,t)=[\rho(y-B(t)e_2,t)-b(t)]/(2\pi)$; the preceding equalities
+read backwards prove its source equation. This retains the mean density,
+the mean velocity, and their exact dynamical relation.
+
+\subsection{Every mean-zero periodic phase profile}
+
+\begin{proposition}[Wave, pressure, cancellation, and mean correction]
+\label{prop:ipm-wave}
+Let $k=(k_1,k_2)\in\mathbb Z^2\setminus\{0\}$, let
+$h\in C^\infty(\mathbb R/2\pi\mathbb Z;\mathbb R)$, and suppose
+$\int_0^{2\pi}h(s)\,ds=0$. Put $\kappa=k_1^2+k_2^2$ and let $H$ be the
+unique mean-zero $2\pi$-periodic function with $H'=h$. For every real $a$,
+\begin{align}\label{eq:ipm-periodic-wave}
+ \vartheta(x)&=a h(k\cdot x),&
+ v(x)&=a m(k)h(k\cdot x),&
+ \pi(x)&=-\frac{a k_2}{\kappa}H(k\cdot x)
+\end{align}
+are smooth periodic fields satisfying
+$v=\mathcal M\vartheta=\mathcal M_0\vartheta
+=-\nabla\pi-\vartheta e_2$,
+$\nabla\cdot v=0$, and $v\cdot\nabla\vartheta=0$.
+For the primary source, velocity and pressure are respectively $2\pi v$
+and $2\pi\pi$ at the unchanged source density $\vartheta$.
+If the mean-zero hypothesis on $h$ is dropped and
+$\overline h=(2\pi)^{-1}\int_0^{2\pi}h$, the report operator instead gives
+\begin{equation}\label{eq:ipm-nonzero-mean-wave}
+ \mathcal M[a h(k\cdot x)]
+ =a m(k)(h(k\cdot x)-\overline h)-a\overline h e_2,
+ \qquad
+ \mathcal M[a h]\cdot\nabla(a h)
+ =-a^2\overline h k_2h'(k\cdot x).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The function $H_*(s)=\int_0^s h(r)\,dr$ is periodic because the integral
+over a period is zero. Subtracting its mean gives $H$, and the difference
+of two such primitives is a constant of mean zero. Write
+$h(s)=\sum_{n\in\mathbb Z\setminus\{0\}}h_ne^{ins}$.
+For each integer $N\ge0$, integration by parts $N$ times bounds
+$|h_n|\le C_N|n|^{-N}$, so the series and all derivatives converge
+absolutely. The frequency $nk$ is nonzero, and direct substitution gives
+\[
+ m(nk)=\left(\frac{n^2k_1k_2}{n^2(k_1^2+k_2^2)},
+ -\frac{n^2k_1^2}{n^2(k_1^2+k_2^2)}\right)=m(k).
+\]
+Distinct $n$ give distinct frequencies $nk$. Thus the spatial mean is zero
+and the multiplier acts on every harmonic by the same vector $m(k)$,
+including negative $n$. Applying the pressure formula harmonic by harmonic,
+or differentiating $\pi$, gives
+\[
+ -\nabla\pi-\vartheta e_2
+ =a\left(\frac{k_1k_2}{\kappa},\frac{k_2^2}{\kappa}-1\right)h(k\cdot x)
+ =a m(k)h(k\cdot x).
+\]
+Finally $\nabla\cdot v=a(m(k)\cdot k)h'=0$ and
+$v\cdot\nabla\vartheta=a^2(m(k)\cdot k)hh'=0$.
+The source assertion follows by multiplying velocity and pressure by the
+explicit source coefficient. For nonzero mean, apply the proved formulas
+to $h-\overline h$, retain the Darcy zero-mode term
+$-a\overline h e_2$, and take its dot product with $ak h'$.
+\end{proof}
+
+The same direct pressure proof of \eqref{eq:ipm-periodic-wave} holds on
+$\mathbb R^2$ for every nonzero real $k$, without imposing an integer lattice.
+On a rectangular torus with periods $L_1,L_2>0$ it holds whenever
+$k_jL_j\in2\pi\mathbb Z$ for $j=1,2$. These are explicit descent conditions,
+not changes of coordinates. A profile with a smaller fundamental period
+may also descend for additional $k$; no necessity claim is made for an
+arbitrary non-faithful profile.
+
+\subsection{The frozen growth rate is realized by a full affine solution}
+
+\begin{theorem}[Exact unforced affine IPM solution and flow]
+\label{thm:ipm-affine-solution}
+Fix $A,a_0,t_0\in\mathbb R$, $k\in\mathbb R^2\setminus\{0\}$, and a real
+smooth $2\pi$-periodic mean-zero profile $h$ with the primitive $H$ above.
+Retain $\kappa=k_1^2+k_2^2$ and define
+\begin{equation}\label{eq:ipm-affine-amplitude}
+ \lambda=\frac{A k_1^2}{k_1^2+k_2^2},\qquad
+ a(t)=a_0\exp\left(\frac{A k_1^2}{k_1^2+k_2^2}(t-t_0)\right).
+\end{equation}
+On the entire domain $\mathbb R^2\times\mathbb R$ set
+\begin{align}\label{eq:ipm-affine-fields}
+ \rho(x,t)&=A x_2+a(t)h(k_1x_1+k_2x_2),\\
+ u(x,t)&=a(t)\left(\frac{k_1k_2}{k_1^2+k_2^2},
+                  -\frac{k_1^2}{k_1^2+k_2^2}\right)h(k_1x_1+k_2x_2),\notag\\
+ p(x,t)&=-\frac A2 x_2^2
+         -\frac{a(t)k_2}{k_1^2+k_2^2}H(k_1x_1+k_2x_2).
+ \notag
+\end{align}
+These fields solve the full system \eqref{eq:ipm-report-darcy} with $F=0$,
+and are smooth at every finite time. The exact Lagrangian map and its inverse
+are
+\begin{align}\label{eq:ipm-affine-flow}
+ \Phi_t(y)&=y+m(k)h(k\cdot y)I(t),&
+ \Phi_t^{-1}(x)&=x-m(k)h(k\cdot x)I(t),&
+ I(t)&=\int_{t_0}^t a(s)\,ds.
+\end{align}
+They preserve area and satisfy
+$\rho(\Phi_t(y),t)=A y_2+a_0h(k\cdot y)$.
+\end{theorem}
+\begin{proof}
+No pressure multiplier is applied to the affine function $Ax_2$ at
+frequency zero: its pressure is the explicitly displayed polynomial.
+Direct differentiation gives
+\[
+ -\nabla\left(-\frac A2x_2^2\right)-(Ax_2)e_2=0,
+ \qquad
+ -\nabla\left(-\frac{a(t)k_2}{\kappa}H(k\cdot x)\right)
+       -a(t)h(k\cdot x)e_2=a(t)m(k)h(k\cdot x).
+\]
+Adding these identities proves Darcy's law. Write $s=k\cdot x$.
+All terms of the divergence and transport equations are
+\begin{align*}
+ \nabla\cdot u&=a(t)h'(s)(k_1m_1(k)+k_2m_2(k))=0,\\
+ \partial_t\rho&=a'(t)h(s),\\
+ \nabla\rho&=Ae_2+a(t)k h'(s),\\
+ u\cdot\nabla\rho
+ &=Aa(t)m_2(k)h(s)+a(t)^2(m(k)\cdot k)h(s)h'(s)\\
+ &=-\frac{A k_1^2}{k_1^2+k_2^2}a(t)h(s)+0.
+\end{align*}
+Since $a'=\lambda a$, their sum is identically zero.
+For a spatial multi-index $\alpha=(\alpha_1,\alpha_2)$ and any integer
+$j\ge0$, the wave part has derivative
+\[
+ \partial_t^j\partial_x^\alpha[a(t)h(k\cdot x)]
+ =a_0\lambda^j e^{\lambda(t-t_0)}
+     k_1^{\alpha_1}k_2^{\alpha_2}h^{(|\alpha|)}(k\cdot x).
+\]
+Together with the derivatives of the retained polynomial $Ax_2$ and
+$-Ax_2^2/2$, this proves smoothness and boundedness of every derivative on
+every compact subset of $\mathbb R^2\times\mathbb R$; wave derivatives are
+also bounded on all space for every compact time interval.
+
+Because $k\cdot m(k)=0$, $k\cdot\Phi_t(y)=k\cdot y$.
+Differentiating in time yields
+$\partial_t\Phi_t(y)=a(t)m(k)h(k\cdot y)=u(\Phi_t(y),t)$.
+The same phase identity verifies both compositions of the displayed inverse.
+The derivative matrix is
+$D_y\Phi_t=\mathrm{Id}+I(t)h'(k\cdot y)m(k)\otimes k$.
+Its two-dimensional determinant, expanded directly, is
+\[
+ (1+Ih'm_1k_1)(1+Ih'm_2k_2)-(Ih'm_1k_2)(Ih'm_2k_1)
+ =1+Ih'(m_1k_1+m_2k_2)=1.
+\]
+Finally
+\[
+ \rho(\Phi_t(y),t)=Ay_2+
+       [A m_2(k)I(t)+a(t)]h(k\cdot y).
+\]
+The derivative of the bracket is $A m_2(k)a(t)+a'(t)=0$ and its value at
+$t=t_0$ is $a_0$, proving the transported-density identity. This argument
+does not divide by $A$, $a_0$, or $k_1$, so the stationary degenerate cases
+are included exactly.
+\end{proof}
+
+For $A>0$ and $k_1\ne0$ the report's rate
+$-m(k)\cdot(Ae_2)=A k_1^2/(k_1^2+k_2^2)$ is therefore the exact growth rate
+of this nonlinear solution. Its arbitrary-amplitude wave has identically
+zero self-advection. The statement concerns an exponential in time, so it
+establishes no finite-time singularity.
+
+For completeness, retaining the primary coefficient in the cover-space
+Darcy law $u=-\nabla p-2\pi\sigma e_2$ gives the exact fields
+\begin{align}\label{eq:ipm-source-affine}
+ \sigma&=A_{\rm s}x_2+a_{\rm s}(t)h(k\cdot x),\qquad
+ u=2\pi a_{\rm s}(t)m(k)h(k\cdot x),\\
+ p&=-\pi A_{\rm s}x_2^2-
+       \frac{2\pi a_{\rm s}(t)k_2}{\kappa}H(k\cdot x),\qquad
+ a_{\rm s}'=\frac{2\pi A_{\rm s}k_1^2}{\kappa}a_{\rm s}.
+ \notag
+\end{align}
+Indeed the substitutions $A=2\pi A_{\rm s}$ and $a=2\pi a_{\rm s}$ in
+\eqref{eq:ipm-affine-fields} give exactly these velocities and pressures,
+and divide the scalar equation by $2\pi$. Thus the apparent rates have the
+same value under the proved density map; no factor has been discarded.
+
+\subsection{The exact domain and energy limitations}
+
+If $A\ne0$, $\rho$ in \eqref{eq:ipm-affine-fields} cannot be a periodic
+function on a full two-dimensional lattice. To prove this, suppose a lattice
+period $\ell$ has $\ell_2\ne0$. Periodicity under every integer multiple
+$n\ell$ would give
+\[
+ 0=An\ell_2+a(t)[h(k\cdot x+n k\cdot\ell)-h(k\cdot x)].
+\]
+The second term has absolute value at most $2|a(t)|\|h\|_\infty$ whereas
+$|An\ell_2|\to\infty$, a contradiction. A full two-dimensional lattice
+contains such an $\ell$. When $A=0$ and $k\in\mathbb Z^2\setminus\{0\}$,
+the formulas do descend to $\mathbb T^2_{2\pi}$ and reduce to the exact
+stationary wave of Proposition~\ref{prop:ipm-wave}.
+
+If $a_0\ne0$, $h\not\equiv0$, and $k_1\ne0$, the velocity has infinite
+kinetic energy on $\mathbb R^2$ at every finite time. Here is the exact
+integral. Set $J(k_1,k_2)=(-k_2,k_1)$ and use the invertible coordinates
+$x=(s k+rJk)/\kappa$, so $k\cdot x=s$ and $dx=\kappa^{-1}ds\,dr$.
+Moreover
+\[
+ |m(k)|^2=\frac{k_1^2k_2^2+k_1^4}{\kappa^2}
+          =\frac{k_1^2}{\kappa}.
+\]
+For any $R>0$ the integral over $0\le s\le2\pi$, $-R\le r\le R$ is
+\[
+ \frac{2R}{\kappa}\,|a(t)|^2\frac{k_1^2}{\kappa}
+                  \int_0^{2\pi}|h(s)|^2\,ds.
+\]
+All factors except $R$ are strictly positive, so letting $R\to\infty$
+proves the assertion. If $k_1=0$, $m(k)=0$ and the velocity is zero; that
+degenerate case is retained rather than included in the infinite-energy
+claim. The affine scalar background also does not lie in $L^2$ when
+$A\ne0$: if $k_1\ne0$ it grows linearly in $r$ in these same coordinates;
+if $k_1=0$ it is a nonzero function of $x_2$ independent of $x_1$.
+For the latter assertion, a nonzero affine function cannot be canceled
+globally by the bounded periodic wave. The exact localized residual below
+is the next map toward a finite-energy field; a failure of direct periodic
+descent is only that descent obstruction.

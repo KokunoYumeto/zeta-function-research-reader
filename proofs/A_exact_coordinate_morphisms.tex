@@ -1,0 +1,466 @@
+\section{Complete proofs of exact coordinate morphisms}
+\label{sec:complete-coordinate-proofs}
+
+This section gives the complete proofs behind morphism records
+\texttt{0001--0003} and \texttt{0006--0011}.  The source-dependent
+coordinates come from Weil's logarithmic Mellin transform, Guinand's explicit
+logarithmic substitution, Montgomery's pair form, Goldston's opposite Fourier
+sign, and Keating--Snaith's CUE scaling and moment formulas
+\cite[Collected Papers II, pp.~52--58]{weil1952}
+\cite[p.~115]{guinand1948}
+\cite[pp.~181--193]{montgomery1973}
+\cite[Secs.~3--6]{goldston2004}
+\cite[pp.~57--89]{keatingSnaith2000}.
+The proofs below are exact coordinate derivations from those retained objects.
+They are not presently assigned a novelty claim.
+
+\subsection{The logarithmic group coordinate}
+
+\begin{theorem}[Exponential/logarithm isomorphism with Haar coordinate]
+\label{thm:exp-log-haar}
+Let
+\[
+ E:(\R,+)\longrightarrow(\R_{>0},\cdot),\qquad E(u)=e^u.
+\]
+Then $E$ is a real-analytic group isomorphism with real-analytic inverse
+$L(x)=\log x$.  Every fibre of $E$ and $L$ is a singleton.  For every
+nonnegative measurable $H$, and hence for every absolutely integrable $H$,
+\begin{equation}
+ \int_0^\infty H(x)\,\frac{dx}{x}
+ =\int_{-\infty}^{\infty}H(e^u)\,du.
+ \label{eq:haar-coordinate-complete}
+\end{equation}
+Thus $E$ transports additive Haar measure $du$ exactly to multiplicative Haar
+measure $dx/x$.
+\end{theorem}
+
+\begin{proof}
+For $u,v\in\R$,
+$E(u+v)=e^{u+v}=e^ue^v=E(u)E(v)$, so $E$ is a homomorphism.  Its derivative
+$e^u$ is positive, its limits at $-\infty$ and $+\infty$ are $0$ and $+\infty$,
+and it is therefore a bijection from $\R$ to $\R_{>0}$.  The identities
+$\log(e^u)=u$ and $e^{\log x}=x$ give the two-sided inverse and singleton
+fibres.  Both functions are real analytic on their stated domains.
+
+For the measure statement, the ordinary one-variable substitution $x=e^u$
+has $dx=e^u,du=x,du$, whence $dx/x=du$.  Applying the substitution theorem
+first to nonnegative $H$ proves \eqref{eq:haar-coordinate-complete}; applying it
+to positive and negative, or real and imaginary, parts gives the absolutely
+integrable case.  No statement is made for $x\leq0$, which lies outside the
+codomain.
+\end{proof}
+
+\begin{theorem}[Mellin transform on a vertical line is a Fourier transform]
+\label{thm:mellin-fourier-coordinate}
+Fix $c\in\R$.  Let $f:\R_{>0}\to\C$ be measurable and define
+\[
+ g_c(u)=e^{cu}f(e^u).
+\]
+Then
+\begin{equation}
+ g_c\in L^1(\R,du)
+ \quad\Longleftrightarrow\quad
+ \int_0^\infty |f(x)|x^{c-1}\,dx<\infty.
+ \label{eq:mellin-l1-equivalence}
+\end{equation}
+Under these equivalent conditions, using $x^s=e^{s\log x}$ for $x>0$,
+\begin{align}
+ \mathcal M f(c+it)
+ &:=\int_0^\infty f(x)x^{c+it-1}\,dx \\
+ &=\int_\R g_c(u)e^{itu}\,du
+ =\mathcal F_+[g_c](t)
+ =\mathcal F_-[g_c](-t),
+ \label{eq:mellin-fourier-complete}
+\end{align}
+where
+$\mathcal F_+[g](t)=\int_\R g(u)e^{itu}du$ and
+$\mathcal F_-[g](t)=\int_\R g(u)e^{-itu}du$.
+The underlying coordinate map is invertible:
+\begin{equation}
+ f(x)=x^{-c}g_c(\log x),\qquad x>0.
+ \label{eq:mellin-coordinate-inverse}
+\end{equation}
+No Fourier-inversion conclusion is included unless its separate hypotheses
+hold.
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:exp-log-haar},
+\[
+ \int_0^\infty |f(x)|x^{c-1}\,dx
+ =\int_\R |f(e^u)|e^{(c-1)u}e^u,du
+ =\int_\R |g_c(u)|,du,
+\]
+which proves \eqref{eq:mellin-l1-equivalence}.  The same substitution in the
+absolutely convergent Mellin integral gives
+\[
+ f(e^u)e^{(c+it-1)u}e^u
+ =e^{cu}f(e^u)e^{itu}=g_c(u)e^{itu}.
+\]
+This proves the first two equalities in
+\eqref{eq:mellin-fourier-complete}; the last equality is the literal identity
+$e^{itu}=e^{-i(-t)u}$.  Finally, setting $u=\log x$ in the definition of $g_c$
+gives \eqref{eq:mellin-coordinate-inverse}.  This is the exact coordinate core
+of the logarithmic Mellin presentations used by Weil and Guinand; it neither
+changes their Fourier constants nor erases their test-space hypotheses
+\cite[Collected Papers II, pp.~52--58]{weil1952}
+\cite[p.~115]{guinand1948}.
+\end{proof}
+
+\begin{theorem}[Multiplicative--additive convolution conjugacy]
+\label{thm:multiplicative-additive-convolution}
+For $f,h\in L^1(\R_{>0},dx/x)$ define
+\[
+ (f*_{\times}h)(x)=\int_0^\infty f(y)h(x/y)\,\frac{dy}{y}
+\]
+at every point where the integral is absolutely convergent, and define
+$U(f)(u)=f(e^u)$.  Then $U$ is an isometric linear bijection
+\[
+ L^1(\R_{>0},dx/x)\longrightarrow L^1(\R,du),
+ \qquad U^{-1}(F)(x)=F(\log x),
+\]
+and, almost everywhere,
+\begin{equation}
+ U(f*_{\times}h)=U(f)*_+U(h),
+ \qquad
+ (F*_+H)(u)=\int_\R F(v)H(u-v)\,dv.
+ \label{eq:convolution-complete}
+\end{equation}
+No normalizing constant occurs.
+\end{theorem}
+
+\begin{proof}
+The norm identity
+\[
+ \int_\R|U(f)(u)|,du
+ =\int_0^\infty|f(x)|\,\frac{dx}{x}
+\]
+is \eqref{eq:haar-coordinate-complete}.  The displayed inverse follows from
+$e^{\log x}=x$ and $\log(e^u)=u$, so $U$ is an isometric bijection with
+singleton fibres.  For $x=e^u$ and $y=e^v$, $dy/y=dv$ and
+$x/y=e^{u-v}$.  Hence, wherever the integral is absolutely convergent,
+\[
+ U(f*_{\times}h)(u)
+ =\int_\R f(e^v)h(e^{u-v}),dv
+ =\int_\R U(f)(v)U(h)(u-v)\,dv.
+\]
+Tonelli's theorem applied to
+$|U(f)(v)U(h)(u-v)|$ shows that this convergence and equality hold for almost
+every $u$, proving \eqref{eq:convolution-complete}.  This is a transport of the
+convolution object, not an identification obtained by discarding a measure
+factor; compare the general LCA-group convolution framework
+\cite[Sec.~1.1]{rudin1990}.
+\end{proof}
+
+\subsection{Height and matrix-size coordinates}
+
+\begin{theorem}[Keating--Snaith continuous density coordinate]
+\label{thm:ks-density-coordinate-complete}
+Define
+\[
+ D:(2\pi,\infty)\longrightarrow(0,\infty),
+ \qquad D(T)=\log\frac{T}{2\pi}.
+\]
+Then $D$ is a real-analytic, orientation-preserving bijection with
+$D^{-1}(n)=2\pi e^n$, and every fibre is a singleton.  If
+\[
+ \Delta_\zeta(T)=\frac{2\pi}{\log(T/(2\pi))},
+ \qquad \Delta_{\mathrm{CUE}}(n)=\frac{2\pi}{n},
+\]
+then $\Delta_{\mathrm{CUE}}(D(T))=\Delta_\zeta(T)$ exactly.
+
+The integer projections are additional noninjective maps.  Explicitly,
+\begin{align*}
+ \lfloor D(T)\rfloor=m
+ &\Longleftrightarrow
+ T\in[2\pi e^m,2\pi e^{m+1})\cap(2\pi,\infty),\quad m\geq0,\\
+ \lceil D(T)\rceil=m
+ &\Longleftrightarrow
+ T\in(2\pi e^{m-1},2\pi e^m],\quad m\geq1.
+\end{align*}
+For the floor projection the fibre $m=0$ does not correspond to a positive
+matrix size.  A nearest-integer projection requires an additional tie-breaking
+rule at half-integers.
+\end{theorem}
+
+\begin{proof}
+$D'(T)=1/T>0$.  Moreover,
+$D(T)\to0$ as $T\downarrow2\pi$ and $D(T)\to\infty$ as $T\to\infty$.
+Thus $D$ is the asserted bijection.  Solving $n=\log(T/(2\pi))$ gives
+$T=2\pi e^n$, and substitution gives the spacing equality.  The floor and
+ceiling fibres follow by applying the strictly increasing exponential to
+$m\leq D(T)<m+1$ and $m-1<D(T)\leq m$, respectively.  Keating and Snaith use
+the retained scale $\log(T/(2\pi))$ in their CUE comparison
+\cite[eqs.~(8) and~(92)]{keatingSnaith2000}; the calculation here proves only
+the scale-coordinate map, not a map from zeros to eigenphases or from zeta to
+characteristic polynomials.
+\end{proof}
+
+\begin{theorem}[Exact transition between two finite-height pair coordinates]
+\label{thm:finite-height-coordinate-transition}
+For $T\geq2$ and $\Delta\in\R$, retain $T$ and define
+\[
+ u_M(T,\Delta)=\frac{\log T}{2\pi}\Delta,
+ \qquad
+ u_D(T,\Delta)=\frac{\log(T/(2\pi))}{2\pi}\Delta.
+\]
+For $T\neq2\pi$ both maps in the $\Delta$ coordinate are bijective, and
+\begin{align}
+ u_D&=\frac{\log(T/(2\pi))}{\log T},u_M,
+ &u_M&=\frac{\log T}{\log(T/(2\pi))},u_D,\label{eq:height-transition-full}\\
+ \Delta&=\frac{2\pi}{\log T}u_M,
+ &\Delta&=\frac{2\pi}{\log(T/(2\pi))}u_D.\label{eq:height-inverses-full}
+\end{align}
+At $T=2\pi$, $u_D$ sends every $\Delta$ to $0$, while $u_M$ remains
+bijective.  The transition reverses orientation for $2\leq T<2\pi$ and
+preserves it for $T>2\pi$.  Its multiplier tends to $1$ as
+$T\to\infty$, but is not equal to $1$ at any finite $T$.
+
+For $T>2\pi$ the corresponding pointed coordinate
+\[
+ U_T(\gamma)=\frac{\log(T/(2\pi))}{2\pi}(\gamma-T)
+\]
+has inverse
+$U_T^{-1}(u)=T+2\pi u/\log(T/(2\pi))$, and
+\[
+ U_T(\gamma)-U_T(\gamma')
+ =\frac{\log(T/(2\pi))}{2\pi}(\gamma-\gamma').
+\]
+For a labelled finite configuration, retaining all pair differences forgets
+exactly common translation; forgetting labels may lose additional data, for
+which no injectivity claim is made.
+\end{theorem}
+
+\begin{proof}
+Since $T\geq2$, $\log T>0$, so $\Delta\mapsto u_M$ is always a positive
+scalar bijection.  If $T\neq2\pi$, the scalar
+$\log(T/(2\pi))/(2\pi)$ is nonzero; division gives
+\eqref{eq:height-transition-full} and \eqref{eq:height-inverses-full}.
+At $T=2\pi$ that scalar is zero, proving the stated collapse.  Its sign is
+negative below $2\pi$ and positive above $2\pi$, while
+\[
+ \frac{\log(T/(2\pi))}{\log T}
+ =1-\frac{\log(2\pi)}{\log T}\longrightarrow1.
+\]
+Because $2\pi\neq1$, equality with $1$ would require
+$\log(2\pi)=0$, which never occurs.
+
+The formulas for $U_T$, its inverse, and its differences are direct scalar
+algebra.  If labelled configurations $(x_i)_{i=1}^m$ and $(y_i)_{i=1}^m$
+have $x_i-x_j=y_i-y_j$ for every $i,j$, then taking $j=1$ gives
+$x_i-y_i=x_1-y_1$ for every $i$; conversely, a common translation preserves
+all differences.  This proves the precise labelled kernel statement.  The two
+scales are taken respectively from Montgomery and Keating--Snaith
+\cite[pp.~181--182]{montgomery1973}
+\cite[eqs.~(8) and~(92)]{keatingSnaith2000}.  No point-process limit follows
+from the coordinate algebra.
+\end{proof}
+
+\subsection{Fourier signs and the weighted pair measure}
+
+\begin{theorem}[Fourier-sign reflection is an involutive bijection]
+\label{thm:fourier-sign-reflection-complete}
+For $r\in L^1(\R)$ define
+\[
+ \widehat r_M(\alpha)=\int_\R r(u)e^{-2\pi i\alpha u}\,du,
+ \qquad
+ \widehat r_G(\alpha)=\int_\R r(u)e^{2\pi i\alpha u}\,du.
+\]
+Let $J(h)(\alpha)=h(-\alpha)$.  Then
+\[
+ \widehat r_G=J(\widehat r_M),\qquad J^2=\operatorname{id}.
+\]
+Thus every fibre of the convention change is a singleton.  If $F$ is even and
+the two pairings converge absolutely, then
+\begin{equation}
+ \int_\R F(\alpha)\widehat r_M(\alpha)\,d\alpha
+ =\int_\R F(\alpha)\widehat r_G(\alpha)\,d\alpha.
+ \label{eq:fourier-pairing-sign-complete}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The identity
+\[
+ \widehat r_M(-\alpha)
+ =\int_\R r(u)e^{2\pi i\alpha u}\,du
+ =\widehat r_G(\alpha)
+\]
+proves the first assertion, and $J(J(h))(\alpha)=h(\alpha)$ proves the second.
+For the pairing, substitute $\beta=-\alpha$ in the left-hand integral:
+\[
+ \int_\R F(-\beta)\widehat r_M(-\beta)\,d\beta
+ =\int_\R F(\beta)\widehat r_G(\beta)\,d\beta.
+\]
+The retained conventions are Montgomery's and Goldston's
+\cite[pp.~181--182, eqs.~(3)--(6)]{montgomery1973}
+\cite[Sec.~5]{goldston2004}; the equality uses evenness and does not normalize
+either sign away.
+\end{proof}
+
+\begin{theorem}[Weighted pair measure and its complete transform]
+\label{thm:weighted-pair-measure-complete}
+Assume the real-ordinate hypothesis used by Montgomery, fix $T\geq2$, and let
+$\gamma$ range with multiplicity over the finite multiset of ordinates with
+$0<\gamma\leq T$.  Put
+\[
+ w(v)=\frac4{4+v^2},\qquad
+ c_T=\frac{T}{2\pi}\log T,
+\]
+and define the finite positive Borel measure
+\begin{equation}
+ \mu_T=c_T^{-1}\sum_{0<\gamma,\gamma'\leq T}
+ w(\gamma-\gamma')
+ \delta_{(\gamma-\gamma')\log T/(2\pi)}.
+ \label{eq:pair-measure-complete}
+\end{equation}
+Then its plus-sign Fourier--Stieltjes transform is exactly Montgomery's pair
+form:
+\begin{equation}
+ \widehat\mu_{T,+}(\alpha)
+ :=\int_\R e^{2\pi i\alpha u}\,d\mu_T(u)
+ =c_T^{-1}\sum_{0<\gamma,\gamma'\leq T}
+ T^{i\alpha(\gamma-\gamma')}w(\gamma-\gamma')
+ =F_M(\alpha,T).
+ \label{eq:pair-transform-complete}
+\end{equation}
+If $r$ has the inversion representation
+$r(u)=\int_\R\widehat r_M(\alpha)e^{2\pi i\alpha u}d\alpha$ with
+$\widehat r_M\in L^1(\R)$, then
+\begin{equation}
+ \int_\R r(u)\,d\mu_T(u)
+ =\int_\R\widehat r_M(\alpha)F_M(\alpha,T)\,d\alpha.
+ \label{eq:pair-test-complete}
+\end{equation}
+The full transform is injective on finite complex regular Borel measures.
+\end{theorem}
+
+\begin{proof}
+The sum in \eqref{eq:pair-measure-complete} is finite, $c_T>0$, and $w>0$,
+so it defines a finite positive measure.  Evaluating its transform gives
+\begin{align*}
+ \widehat\mu_{T,+}(\alpha)
+ &=c_T^{-1}\sum_{\gamma,\gamma'}w(\gamma-\gamma')
+ \exp\!\left(2\pi i\alpha
+ \frac{(\gamma-\gamma')\log T}{2\pi}\right)\\
+ &=c_T^{-1}\sum_{\gamma,\gamma'}w(\gamma-\gamma')
+ e^{i\alpha(\gamma-\gamma')\log T},
+\end{align*}
+which is \eqref{eq:pair-transform-complete}.  Substitute the inversion formula
+for $r$ into the finite sum defining $\int r,d\mu_T$.  Since
+$\widehat r_M\in L^1$ and the sum is finite, Fubini is immediate and yields
+\eqref{eq:pair-test-complete}.  These are the exact finite objects in
+Montgomery's paper
+\cite[pp.~181--182, eqs.~(2)--(6)]{montgomery1973}.
+
+For injectivity, if two finite complex regular measures have the same plus-sign
+transform, their difference $\sigma$ has
+$\int e^{2\pi i\alpha u}d\sigma(u)=0$ for all $\alpha$.  Replacing $\alpha$ by
+$-\alpha$ gives the zero transform in Rudin's sign convention.  Rudin's
+Fourier--Stieltjes uniqueness theorem therefore gives $\sigma=0$
+\cite[p.~29, Thm.~1.7.3(b)]{rudin1990}.
+\end{proof}
+
+\begin{theorem}[Explicit kernel of transform restriction]
+\label{thm:restricted-transform-obstruction-complete}
+Let
+\[
+ R:\mathcal M(\R)\longrightarrow C([-1,1]),
+ \qquad R(\mu)=\widehat\mu_+\big|_{[-1,1]},
+\]
+where $\mathcal M(\R)$ is the vector space of finite signed Borel measures and
+$\widehat\mu_+(\alpha)=\int e^{2\pi i\alpha u}d\mu(u)$.  Then $R$ is not
+injective.  More precisely, there is an explicit nonzero absolutely continuous
+finite signed measure $\nu$ with $R(\nu)=0$.
+\end{theorem}
+
+\begin{proof}
+Define the standard smooth bump
+\[
+ b(x)=
+ \begin{cases}
+  \exp\!\bigl(-1/(1-x^2)\bigr),&|x|<1,\\
+  0,&|x|\geq1,
+ \end{cases}
+\]
+and set
+\[
+ \phi(\alpha)=b\bigl(4(\alpha-5/2)\bigr)
+                +b\bigl(4(\alpha+5/2)\bigr).
+\]
+Then $\phi$ is real, even, smooth, nonzero, and its support is contained in
+$[-11/4,-9/4]\cup[9/4,11/4]$, which is disjoint from $[-1,1]$.  Put
+\begin{equation}
+ g(u)=\int_\R\phi(\alpha)e^{-2\pi i\alpha u}\,d\alpha,
+ \qquad d\nu(u)=g(u)\,du.
+ \label{eq:restriction-witness}
+\end{equation}
+Because $\phi$ is real and even, pairing $\alpha$ with $-\alpha$ shows that
+$g$ is real.  For integers $k,N\geq0$, differentiation under the compactly
+supported integral and $N$ integrations by parts give
+\[
+ (2\pi i u)^N g^{(k)}(u)
+ =\int_\R
+ \frac{d^N}{d\alpha^N}
+ \bigl((-2\pi i\alpha)^k\phi(\alpha)\bigr)
+ e^{-2\pi i\alpha u}\,d\alpha,
+\]
+up to the harmless sign $(-1)^N$.  The right side is bounded because its
+integrand is smooth and compactly supported.  Hence $g$ is Schwartz, in
+particular $g\in L^1(\R)$, so $\nu$ is a finite signed measure.
+
+Fourier inversion in the displayed $2\pi$ convention gives
+\begin{equation}
+ \widehat\nu_+(\beta)
+ =\int_\R e^{2\pi i\beta u}g(u)\,du
+ =\phi(\beta)
+ \label{eq:restriction-witness-transform}
+\end{equation}
+\cite[pp.~21--23, Thm.~1.5.1]{rudin1990}.  Thus
+$\widehat\nu_+=0$ on $[-1,1]$, while $\widehat\nu_+=\phi$ is not the zero
+function; consequently $\nu\neq0$.  Therefore $R(\nu)=0$ with
+$\nu\neq0$, proving noninjectivity.  For any finite signed measure $\mu$,
+$\mu$ and $\mu+\nu$ have the same restricted transform.  This proof makes no
+claim that $\mu+\nu$ remains positive when $\mu$ is positive; the obstruction
+is exactly in the stated signed-measure category.
+\end{proof}
+
+\subsection{Moment-parameter coordinate}
+
+\begin{theorem}[Keating--Snaith moment parameter is an affine bijection]
+\label{thm:ks-moment-coordinate-complete}
+The map
+\[
+ s\longmapsto\lambda=s/2
+\]
+is a complex-affine bijection from $\{\Re s>-1\}$ to
+$\{\Re\lambda>-1/2\}$ with inverse $s=2\lambda$.  Under this map the exact
+finite-CUE moment formula
+\[
+ \mathbb E_{U(N)}|Z_N(U;\theta)|^s
+ =\prod_{j=1}^N
+ \frac{\Gamma(j)\Gamma(j+s)}{\Gamma(j+s/2)^2}
+\]
+becomes exactly
+\[
+ \mathbb E_{U(N)}|Z_N(U;\theta)|^{2\lambda}
+ =\prod_{j=1}^N
+ \frac{\Gamma(j)\Gamma(j+2\lambda)}{\Gamma(j+\lambda)^2},
+\]
+and $N^{(s/2)^2}=N^{\lambda^2}$ for $N>0$.  Every parameter fibre is a
+singleton, and the half-plane boundary and any meromorphic poles are
+transported rather than removed.
+\end{theorem}
+
+\begin{proof}
+The inverse identities $2(s/2)=s$ and $(2\lambda)/2=\lambda$ prove bijectivity,
+while $\Re(s/2)>-1/2$ is equivalent to $\Re s>-1$.  Substitute
+$s=2\lambda$ in every factor:
+$\Gamma(j+s)=\Gamma(j+2\lambda)$ and
+$\Gamma(j+s/2)=\Gamma(j+\lambda)$.  The power identity is the same
+substitution, using the real logarithm of $N>0$ to define complex powers.
+The starting finite-CUE formula and its domain are Keating--Snaith's theorem
+\cite[pp.~57--64, eqs.~(1), (6), and~(20)--(26)]{keatingSnaith2000}.
+This coordinate equality does not identify a CUE moment with a zeta moment;
+that transfer remains conjectural in the same source.
+\end{proof}

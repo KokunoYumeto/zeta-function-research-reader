@@ -1,0 +1,244 @@
+\section{The full Weil form on the actual theta input}
+\label{sec:xi4-actual-theta-weil}
+
+The compact spline calculation above does not test the noncompact input
+whose Fourier transform is \(\Xi\). We now evaluate the complete Weil form
+on that input after the actual multiplier \(w\). This section retains both
+pole terms, the entire gamma integral, every prime power, all cross terms,
+and explicit infinite-tail bounds. It uses the classical explicit formula
+\eqref{eq:rh-full-weil-test}, with the conventions of Weil
+\cite{weil1952} and Alp\"oge--Furman~\cite[Sections 1.1--1.2 and 2]{alpogeFurman2026}.
+
+\subsection{The input, its involution, and the exact scale}
+
+Put
+\[
+ \psi_0(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+ g_0(u)=e^{u/2}\sum_{n\ge1}\psi_0(ne^u).
+\]
+The Gaussian differentiation in \eqref{eq:xp-Hermite-seed} gives
+\(\widehat\psi_0=\psi_0\) and \(\psi_0(0)=0\). Poisson summation therefore
+gives \(g_0(-u)=g_0(u)\). Writing the source theta kernel as
+\[
+ \Phi(v)=\sum_{n\ge1}
+ (2\pi^2n^4e^{9v}-3\pi n^2e^{5v})e^{-\pi n^2e^{4v}},
+\]
+one has, by direct substitution,
+\begin{equation}\label{eq:xt-g0-scale}
+ g_0(u)=\sum_{n\ge1}(4\pi^2n^4e^{9u/2}-6\pi n^2e^{5u/2})e^{-\pi n^2e^{2u}}
+       =2\Phi(u/2).
+\end{equation}
+Since \(H_0(z)=\int_0^\infty\Phi(v)\cos(zv)\,dv\) and
+\(\Xi(s)=8H_0(2s)\), the change of variable \(u=2v\) proves
+\[
+ \mathscr Fg_0(s)=\int_{\mathbb R}g_0(u)e^{-isu}\,du=\Xi(s).
+\]
+No rescaling of the source coefficient or of \(w\) is made.
+
+Set \(q(u)=w(u)g_0(u)\) and \(Q=\mathscr Fq=\mathcal T_{\mathcal D}\Xi\).
+The relation \(g_0(-u)=g_0(u)\) and \(w(-u)=\overline{w(u)}\) gives
+\(q^\star(u):=\overline{q(-u)}=q(u)\). Hence
+\[
+ h(x):=(q*q^\star)(x)=\int_{\mathbb R}q(v)q(x-v)\,dv,
+ \qquad \widehat h(z)=Q(z)^2.
+\]
+On the real axis \(Q(t)\) is real, so the Weil value is the real number
+\begin{equation}\label{eq:xt-full-value}
+ W(q,q)=2\Re Q(i/2)^2+\int_{\mathbb R}Q(t)^2G(t)\,dt
+ -\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+       \{h(\log n)+h(-\log n)\},
+\end{equation}
+where
+\[
+ G(t)=\frac{1}{2\pi}\left(\Re\psi(1/4+it/2)-\log\pi\right).
+\]
+The correlation in \eqref{eq:xt-full-value} is not a pointwise value of
+\(Q\); it is the full convolution and therefore retains every cross term.
+
+\subsection{Uniform theta and correlation bounds}
+
+For \(u\ge0\) write \(\Theta_N(u)\) for the first \(N\) terms of
+\eqref{eq:xt-g0-scale}. Every summand is nonnegative, because
+\(2\pi n^2e^{2u}-3\ge2\pi-3>0\). For \(N=8\), the omitted tail is bounded by
+\begin{equation}\label{eq:xt-theta-tail}
+ 0\le g_0(u)-\Theta_8(u)\le
+ E_8:=\frac{4\pi^2 9^4e^{-\pi9^2}}
+ {1-(10/9)^4e^{-\pi(19)}}.
+\end{equation}
+Indeed \(e^{9u/2}e^{-\pi n^2e^{2u}}\le e^{-\pi n^2}\) for \(u\ge0\),
+and the ratio of consecutive \(n^4\) majorants is at most the denominator
+ratio displayed. The negative quadratic term can only reduce a summand,
+so it need not be added to this upper bound. The full positive kernel has
+the bound
+\begin{equation}\label{eq:xt-theta-max}
+ |g_0(u)|\le C_\Phi e^{-\pi},\quad
+ C_\Phi=\frac{4\pi^2}{1-16e^{-3\pi}}
+       +\frac{6\pi}{1-4e^{-3\pi}}.
+\end{equation}
+
+For \(x=\log n\ge0\), split the convolution integral into
+\([-3,0]\), \([0,x]\), and \([x,x+3]\). On the first and last cells use the
+evenness of \(g_0\) to replace negative arguments by positive ones; the
+remaining two rays have one argument of size at least \(3\). Replacing
+both factors by \eqref{eq:xt-theta-max} and integrating the elementary
+majorants gives the exterior error
+\begin{equation}\label{eq:xt-exterior-tail}
+ E_{\rm ext}(x)=
+ \frac{2C_\Phi^2 e^{-\pi}\exp(\tfrac92\,3-\pi e^6)
+       (B+(x+3)/336)^2}
+      {2\pi e^6-\tfrac92-
+       [168(B+(x+3)/336)]^{-1}},\qquad B=|c_0|+c_1+c_2.
+\end{equation}
+Replacing \(g_0\) by \(\Theta_8\) on the three cells changes the product by
+at most
+\begin{equation}\label{eq:xt-trunc-tail}
+ E_{\rm trunc}(x)=(x+6)(B+(x+3)/336)^2(2C_\Phi e^{-\pi}E_8+E_8^2).
+\end{equation}
+The bounds use only \(|w(u)|\le B+|u|/336\) and the product identity
+\((a+\delta)(b+\delta)-ab=\delta(a+b)+\delta^2\).
+The three finite cell integrals are evaluated by Arb interval
+quadrature; every cell is split at all truncated-power knots. Thus the
+reported ball plus \(E_{\rm ext}+E_{\rm trunc}\) encloses the exact \(h(x)\).
+
+For the prime tail use a bound on the whole convolution line. Positivity
+and the ratio of successive theta terms give, for every real \(u\),
+\[
+ |g_0(u)|\le C e^{9|u|/2-\pi e^{2|u|}},\qquad
+ C=\frac{4\pi^2}{1-16e^{-3\pi}}<40.
+\]
+Put \(x=\log n\), \(v=x/2+y\), and \(A_n=B+x/672\).
+The identities and inequalities
+\[
+\begin{gathered}
+ |v|+|x-v|=\max(x,2|y|)\le x+2|y|,\\
+ e^{2|v|}+e^{2|x-v|}
+ \ge e^{2v}+e^{2(x-v)}=2n\cosh(2y)\ge2n+4ny^2,\\
+ |w(v)w(x-v)|\le(A_n+|y|/336)^2,\qquad
+ 9|y|\le2\pi n y^2+\frac{81}{8\pi n}
+\end{gathered}
+\]
+bound \(|h(x)|\) by
+\[
+C^2n^{9/2}e^{-2\pi n+81/(8\pi n)}
+ \int_{\mathbb R}(A_n+|y|/336)^2e^{-2\pi n y^2}\,dy.
+\]
+Use \((a+b)^2\le2a^2+2b^2\) and the exact Gaussian moments
+\[
+ \int_{\mathbb R}e^{-2\pi n y^2}dy=(2n)^{-1/2},\qquad
+ \int_{\mathbb R}y^2e^{-2\pi n y^2}dy
+       =\frac1{4\pi n\sqrt{2n}}.
+\]
+The resulting coefficient multiplying \(A_n^2n^4e^{-2\pi n}\) is
+\[
+ C^2\sqrt2\,e^{81/(8\pi n)}
+       \left(1+\frac1{4\pi n\,336^2A_n^2}\right).
+\]
+For \(n\ge17\), use \(A_n\ge\log n/672\), \(\log17>2\),
+\(\pi>3\), and \(\sqrt2<10/7\).
+Also \(81/(8\pi n)<1/5\) and \(e^{1/5}<5/4\), the latter obtained
+by bounding its Taylor series by the geometric series.
+Thus this coefficient is less than
+\[
+ 1600\frac{10}{7}\frac54\frac{205}{204}
+       =\frac{4100000}{1428}<3000.
+\]
+This proves the conservative envelope
+\begin{equation}\label{eq:xt-prime-envelope}
+ |h(\log n)|\le3000\left(B+\frac{\log n}{672}\right)^2n^4e^{-2\pi n}.
+\end{equation}
+The right side times \(\Lambda(n)/\sqrt n\) is decreasing for integers
+\(n\ge17\): its consecutive ratio is at most
+\[
+ r=e^{-2\pi}(18/17)^{7/2}\frac{\log18}{\log17}
+ \left(\frac{B+\log18/672}{B+\log17/672}\right)^2<1.
+\]
+Therefore the omitted prime-power sum after integer cutoff \(16\) is at most
+\begin{equation}\label{eq:xt-prime-tail}
+ E_{\rm prime}=6000\,17^{7/2}\log17
+ \left(B+\frac{\log17}{672}\right)^2e^{-34\pi}/(1-r).
+\end{equation}
+
+For the gamma integral, shift the two theta Fourier contours by \(\pm i/2\).
+The resulting exponential factor is \(a=\pi\cos1>0\); summing the geometric
+theta majorants gives
+\[
+ C_\theta=\frac{4\pi^2}{1-16e^{-3a}}
+           +\frac{6\pi}{1-4e^{-3a}}.
+\]
+The polynomial factor and one derivative term in \(w\) give the explicit
+constant
+\[
+ C_K=2C_\theta e^{13/4}
+ \left(\frac{9}{2ae}\right)^{9/4}e^{-a/2}
+ \left(\frac{B+1/672}{a}+\frac1{336a^2}\right).
+\]
+The standard digamma bound
+\[
+ |G(t)|\le\{\gamma_E+8+\log\pi+\log(1+2|t|)\}/(2\pi)
+\]
+then yields, for \(T=64\),
+\begin{equation}\label{eq:xt-gamma-tail}
+ E_\Gamma(T)=\frac{C_K^2}{\pi}e^{-T}
+ \left(\gamma_E+8+\log\pi+\log(1+2T)+\frac1{T+1/2}\right).
+\end{equation}
+Here are the contour details. For \(u\ge0\), the theta series on
+\(u\pm i/2\) has absolute value at most
+\(C_\theta e^{9u/2-ae^{2u}}\); evenness supplies the other half-line.
+The multiplier on that strip is at most
+\(e^{13/4}(B+1/672+|u|/336)\).
+Split the theta exponential into two equal factors and use
+\[
+ e^{9u/2-(a/2)e^{2u}}\le
+       \left(\frac9{2ae}\right)^{9/4},\qquad
+ e^{-(a/2)e^{2u}}\le e^{-a/2-au}.
+\]
+Integrating \(e^{-au}\) and \(ue^{-au}\) gives exactly \(C_K\).
+Horizontal contour displacement, with the vertical ends tending to zero
+by these estimates, proves \(|Q(t)|\le C_K e^{-|t|/2}\).
+For the digamma bound, use its convergent series at \(z=1/4+ib\):
+\[
+ \frac1n-\frac{n+1/4}{(n+1/4)^2+b^2}
+ =\frac{1/4}{n(n+1/4)}
+  +\frac{b^2}{(n+1/4)((n+1/4)^2+b^2)}.
+\]
+Splitting the second sum at \(\max(1,\lceil |b|\rceil)\) bounds its
+tail by \(1/2\) and its initial part by \(1+\log(1+|b|)\).
+The \(n=0\) real term has absolute value at most \(4\).
+Together these imply the stated, larger bound for \(|G(t)|\).
+Finally \(\log(1+2t)\le\log(1+2T)+(t-T)/(T+1/2)\) for \(t\ge T\).
+Integrating \(e^{-t}\) and \((t-T)e^{-t}\) proves the displayed tail.
+No zero ordinates or RH input occurs.
+
+\subsection{The certified value}
+
+The one-worker Arb calculation uses 192-bit balls, \(N=8\), \(T=64\), prime
+integer cutoff \(16\), margin \(3\), and absolute/relative tolerance \(2^{-90}\).
+It integrates all 128 gamma cells and the three correlation cells for each
+prime power \(n\le16\), then adds \eqref{eq:xt-prime-tail},
+\eqref{eq:xt-gamma-tail}, \eqref{eq:xt-exterior-tail} and
+\eqref{eq:xt-trunc-tail}. The exact receipt is
+\begin{center}\small\ttfamily
+agents/connes\_actual\_input\_review/actual\_theta\_weil/actual\_theta\_weil\_results.json
+\end{center}
+with checker hash
+\begin{center}\small\ttfamily
+d0bbeb4cc91d0ff522655f8e8bf39f0d2981a48c41834e595dc5ffbd6c532279
+\end{center}
+The component enclosures are
+\[
+ \begin{aligned}
+ \text{pole terms}&=[2.1389982672320680\,10^{-7}\pm4.11\,10^{-62}],\\
+ \text{prime terms through }16&=[1.4681655033429546\,10^{-8}\pm4.62\,10^{-28}],\\
+ E_{\rm prime}&<1.053\,10^{-43},\qquad E_\Gamma(64)<8.103\,10^{-27},
+ \end{aligned}
+\]
+and the complete outward-rounded value is
+\begin{equation}\label{eq:xt-result}
+ W(wg_0,wg_0)=[2.0984855607004\,10^{-11}\pm6.08\,10^{-25}]>0.
+\end{equation}
+Thus the actual theta input is not a negative Weil witness. This positive
+value is separate from the already proved negative linear coefficient
+\(K(\gamma)\) and from the uncanceled pole \(K/\Xi\): one is a quadratic
+full-form value and the other is a linear shifted evaluation. The
+calculation establishes positivity for this one actual noncompact input,
+not global Weil positivity and not RH.

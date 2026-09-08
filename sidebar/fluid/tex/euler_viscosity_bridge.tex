@@ -1,0 +1,408 @@
+\section{The exact Euler--Navier--Stokes force map and its terminal obstruction}
+\label{sec:euler-viscosity-bridge}
+
+All spatial variables in this section remain the original Cartesian variables
+$x=(x_1,x_2,x_3)\in\mathbb R^3$.  Time remains $t\in[0,T)$, where
+$0<T<\infty$.  The viscosity is an arbitrary fixed real number $\nu>0$;
+it is not set equal to one.  Vector norms are Euclidean, matrix norms are
+Frobenius, and all $L^p$ norms below are over $\mathbb R^3$.  We use
+$(\operatorname{curl}v)_i=\sum_{j,k=1}^3\varepsilon_{ijk}\partial_jv_k$,
+$\operatorname{div}v=\sum_j\partial_jv_j$, and
+$\Delta v=\sum_j\partial_j^2v$, component by component.  In particular,
+$\varepsilon_{123}=1$ fixes the orientation.
+
+\paragraph{Source and the exact scope of the application.}
+The released manuscript \emph{Blowup for the Euler equations with smooth
+forcing}, Theorem 1.1, states the existence of a smooth Euler solution with
+compactly supported smooth initial velocity, a force smooth through a finite
+terminal time and supported in a fixed solid torus, finite energy and bounded
+spatial velocity gradients on each shorter time interval, and
+$\|\operatorname{curl}u(t)\|_\infty\longrightarrow\infty$ as $t\uparrow T$.
+Its Section 13.2 and Proposition 13.3 additionally state that the constructed
+velocity has fixed compact support and is uniformly bounded before $T$.
+The released \texttt{euler-blowup/README.md} states the finite-energy Lipschitz
+class and the same vorticity divergence.  These are the specific source facts
+used for the application below.  This section proves the force map and the
+obstruction to transferring that \emph{same velocity} with a regular force.
+It does not repeat or independently certify the manuscript's complete Euler
+existence construction or its claimed Lean verification.  No Navier--Stokes
+existence or singularity assertion is assumed in the proofs below.
+
+\subsection{The map, including every pressure adjustment}
+
+Let $(u,p_E,f_E)$ solve
+\begin{equation}\label{eq:bridge-euler}
+ \partial_tu+(u\cdot\nabla)u+\nabla p_E=f_E,
+ \qquad \operatorname{div}u=0.
+\end{equation}
+For any scalar distribution $q$ on $\mathbb R^3\times(0,T)$ define
+\begin{equation}\label{eq:bridge-map}
+ p_{NS}=p_E+q,\qquad f_{NS}=f_E-\nu\Delta u+\nabla q.
+\end{equation}
+Then exactly the same velocity $u$ satisfies
+\begin{equation}\label{eq:bridge-ns}
+ \partial_tu+(u\cdot\nabla)u+\nabla p_{NS}
+       =\nu\Delta u+f_{NS},\qquad \operatorname{div}u=0.
+\end{equation}
+Indeed the left side of \eqref{eq:bridge-ns} is $f_E+\nabla q$ by
+\eqref{eq:bridge-euler}, and its right side is
+$\nu\Delta u+f_E-\nu\Delta u+\nabla q=f_E+\nabla q$.
+Conversely, subtracting \eqref{eq:bridge-euler} from
+\eqref{eq:bridge-ns} proves \eqref{eq:bridge-map} with
+$q=p_{NS}-p_E$.  Thus \eqref{eq:bridge-map} describes \emph{all} forces
+and pressures for which the original velocity solves the viscous equation;
+there is no restriction on the pressure adjustment beyond the meaning of
+the displayed distributions.
+
+Put $\omega=\operatorname{curl}u$.  Commutation of distributional partial
+derivatives gives
+\begin{equation}\label{eq:bridge-curl-force}
+ \operatorname{curl}f_{NS}
+     =\operatorname{curl}f_E-\nu\Delta\omega.
+\end{equation}
+To verify the pressure cancellation componentwise, write its $i$th component as
+\[
+(\operatorname{curl}\nabla q)_i
+=\sum_{j,k}\varepsilon_{ijk}\partial_j\partial_kq.
+\]
+the terms indexed by $(j,k)$ and $(k,j)$ cancel because the derivatives
+commute and $\varepsilon_{ikj}=-\varepsilon_{ijk}$.
+The identity \eqref{eq:bridge-curl-force} is therefore independent of $q$,
+including pressure adjustments whose gradients have bad behavior at
+spatial infinity.  An arbitrary distribution $q$ need not possess time
+sections.  Nevertheless, since $u$ and $f_E$ are smooth before $T$, the
+right side of \eqref{eq:bridge-curl-force} is smooth and is the canonical
+representative of the distribution $\operatorname{curl}f_{NS}$.  Its
+time sections are therefore defined for every $t<T$, independently of
+whether $q$ or $f_{NS}$ has time sections.
+
+\subsection{A terminal energy bound from the stated preterminal class}
+
+Here is a complete justification that the source's preterminal energy
+hypothesis supplies a bound independent of the shorter interval.  Suppose
+$u$ is smooth on $\mathbb R^3\times[0,T)$ and solves
+\eqref{eq:bridge-euler}, with a distributional pressure, and for every
+$\tau<T$ satisfies
+\begin{equation}\label{eq:bridge-energy-class}
+ u\in L^\infty([0,\tau];L^2),\qquad
+ \nabla u\in L^\infty(\mathbb R^3\times[0,\tau]).
+\end{equation}
+Suppose $f_E$ is continuous into $L^2$ on every such shorter interval and
+$\int_0^T\|f_E(s)\|_2\,ds<\infty$.  The compactly supported smooth
+force in the source has these properties: a common compact containing set
+$K$ gives
+$\|f_E(s)\|_2\le |K|^{1/2}\sup_{K\times[0,T]}|f_E|$.
+
+First, a spatially Lipschitz field $v\in L^2$ with Lipschitz constant
+$L=\|\nabla v\|_\infty>0$ is bounded.  If $A=|v(x)|>0$, then
+$|v(y)|\ge A/2$ on the ball of radius $A/(2L)$ about $x$.  Hence
+\[
+ \|v\|_2^2\ge \frac{A^2}{4}\frac{4\pi}{3}
+                    \left(\frac{A}{2L}\right)^3
+       =\frac{\pi A^5}{24L^3},\qquad
+ \|v\|_\infty\le
+       \left(\frac{24}{\pi}\right)^{1/5}\|v\|_2^{2/5}L^{3/5}.
+\]
+If $L=0$, $v$ is constant and its finite $L^2$ norm forces $v=0$.
+Smoothness and Fatou's lemma extend the almost-every-time bounds in
+\eqref{eq:bridge-energy-class} to every time section.  The inequality
+therefore bounds $u$ uniformly on each $[0,\tau]$.
+
+We justify the elimination of pressure without a growth assumption on
+$p_E$.  Use the unitary Fourier convention
+$\widehat v(\xi)=(2\pi)^{-3/2}\int e^{-ix\cdot\xi}v(x)\,dx$,
+extended by density to $L^2$.  Let $P$ be the orthogonal $L^2$ projection
+with multiplier
+$I-\xi\otimes\xi/|\xi|^2$ for $\xi\ne0$; its value at $0$ does not
+affect an $L^2$ function.  This real symmetric idempotent multiplier has
+operator norm at most one.  It projects onto the fields with
+distributional divergence zero and preserves curl, as is verified by
+$\xi\cdot Pv=0$ and $\xi\times Pv=\xi\times v$.
+
+Set $g=f_E-(u\cdot\nabla)u$.  On $[0,\tau]$ this is an $L^\infty_tL^2_x$
+field, since
+$\|(u\cdot\nabla)u\|_2\le\|\nabla u\|_\infty\|u\|_2$.
+Taking curl of Euler and using $\operatorname{div}u=0$ shows that
+both curl and divergence of the space-time distribution
+$\partial_tu-Pg$ vanish.  For a compactly supported smooth time test
+$\eta$ in $(0,\tau)$, its pairing with that test is the $L^2$ field
+\[
+ V_\eta=-\int_0^\tau u(t)\eta'(t)\,dt
+             -\int_0^\tau Pg(t)\eta(t)\,dt.
+\]
+It has zero curl and divergence.  Fourier transformation gives
+$\xi\times\widehat V_\eta=0$ and
+$\xi\cdot\widehat V_\eta=0$ almost everywhere.  For $\xi\ne0$ the
+first relation makes $\widehat V_\eta$ parallel to $\xi$ and the second
+makes it perpendicular, so it is zero.  The remaining point $\xi=0$
+has measure zero.  Thus $V_\eta=0$, proving
+$\partial_tu=Pg$ as an $L^2$-valued distribution in time.
+
+For completeness, the distributional conclusion supplies an absolutely
+continuous $L^2$ representative: subtract the Bochner primitive
+$\int_0^t Pg(s)\,ds$ from $u$; pairing the remainder against each
+$L^2$ test vector gives a scalar distribution with derivative zero and
+hence a constant.  The constants define one $L^2$ vector, using the
+uniform $L^2$ bounds.  This gives the claimed representative.  Its
+strong $L^2$ continuity and the original local smoothness identify it
+with the given $u(t)$ at every $t$, including $t=0$: choose times of
+almost-everywhere agreement converging to the chosen time and pair
+against compactly supported spatial tests.  Consequently
+$u(t)=u(0)+\int_0^t Pg(s)\,ds$ in $L^2$.
+
+The Hilbert-space norm identity now gives, for almost every $t<\tau$,
+\[
+ \frac12\frac{d}{dt}\|u(t)\|_2^2
+    =\langle u,Pg\rangle_{L^2}
+    =\langle u,f_E\rangle_{L^2}
+      -\int u\cdot((u\cdot\nabla)u)\,dx.
+\]
+The norm identity follows by expanding the square of
+$u(t+h)=u(t)+\int_t^{t+h}Pg(s)\,ds$ and using the Lebesgue
+differentiation theorem for the $L^2$-valued integrand.  Orthogonality
+of $P$ and $Pu=u$ justify its removal from the inner product.
+
+Choose a smooth cutoff $\chi_R(x)=\chi(x/R)$, equal to one on
+$|x|\le R$, zero for $|x|\ge2R$, with $0\le\chi\le1$ and
+$|\nabla\chi_R|\le C_\chi/R$.  Local integration by parts and
+$\operatorname{div}u=0$ give
+\[
+ \int\chi_R u\cdot((u\cdot\nabla)u)\,dx
+       =-\frac12\int|u|^2u\cdot\nabla\chi_R\,dx.
+\]
+The right side has absolute value at most
+$C_\chi\|u\|_\infty\|u\|_2^2/(2R)$ and tends to zero.
+The left integrand is dominated by
+$\|\nabla u\|_\infty|u|^2$, so dominated convergence applies.
+We have proved the exact Euler energy identity
+\begin{equation}\label{eq:bridge-energy-identity}
+ \frac12\|u(t)\|_2^2-\frac12\|u(0)\|_2^2
+          =\int_0^t\langle u(s),f_E(s)\rangle_{L^2}\,ds.
+\end{equation}
+For $\epsilon>0$, differentiation of
+$(\|u(t)\|_2^2+\epsilon^2)^{1/2}$, the identity just proved, and
+Cauchy--Schwarz bound its derivative above by $\|f_E(t)\|_2$.
+Integrating and then taking $\epsilon\downarrow0$ proves
+\begin{equation}\label{eq:bridge-E}
+ \|u(t)\|_2\le\|u(0)\|_2+\int_0^t\|f_E(s)\|_2\,ds
+ \le E:=\|u(0)\|_2+\int_0^T\|f_E(s)\|_2\,ds<\infty.
+\end{equation}
+The proof works on every $[0,\tau]$, and its final constant does not
+depend on $\tau$.  It therefore proves \eqref{eq:bridge-E} for every
+$t<T$.  For the actual constructed field, the fixed support and
+uniform velocity bound in Proposition 13.3 give a second direct
+verification of this conclusion.
+
+\subsection{A heat identity with no hidden assumption at spatial infinity}
+
+Let $v\in L^2(\mathbb R^3;\mathbb R^3)$ and put
+$\zeta=\operatorname{curl}v$ as a tempered distribution.  Suppose the
+distribution $\Delta\zeta$ is represented by a bounded vector field $h$.
+Define, for $a>0$,
+\[
+ G_a(x)=(4\pi a)^{-3/2}\exp\left(-\frac{|x|^2}{4a}\right),
+ \qquad e^{a\Delta}w=G_a*w.
+\]
+The following identity is an equality of tempered distributions, with a
+bounded continuous representative on its right:
+\begin{equation}\label{eq:bridge-heat-identity}
+ \zeta=\operatorname{curl}(G_a*v)
+                 -\int_0^a G_r*h\,dr.
+\end{equation}
+In particular,
+\begin{equation}\label{eq:bridge-heat-bound}
+ \|\operatorname{curl}v\|_\infty
+ \le C_0a^{-5/4}\|v\|_2+a\|\Delta\operatorname{curl}v\|_\infty,
+ \qquad C_0=\frac{1}{\sqrt2}(8\pi)^{-3/4},\quad a>0.
+\end{equation}
+For a smooth $v$ the bound concerns its ordinary pointwise curl.
+
+Here are all convergence and constant computations.  A function in $L^2$
+defines a tempered distribution by Cauchy--Schwarz on Schwartz test
+functions; its distributional derivatives do so as well.  For a Schwartz
+test function $\phi$, the map $r\mapsto G_r*\phi$, with value $\phi$
+at $r=0$, is continuously differentiable in Schwartz space on every
+bounded interval of nonnegative $r$, and its derivative is
+$G_r*\Delta\phi$.  This follows directly by Fourier transformation:
+the multipliers are $e^{-r|\xi|^2}$ and
+$-|\xi|^2e^{-r|\xi|^2}$; differentiating each Schwartz seminorm is
+justified by the rapid decay of $\widehat\phi$ and polynomial bounds
+on all derivatives of these multipliers, uniform for bounded $r$.
+The fundamental theorem of calculus, paired with $\zeta$, gives
+\[
+ \langle G_a*\zeta-\zeta,\phi\rangle
+       =\int_0^a\langle\Delta\zeta,G_r*\phi\rangle\,dr
+       =\int_0^a\langle G_r*h,\phi\rangle\,dr.
+\]
+Fubini is valid because
+$|\langle h,G_r*\phi\rangle|
+ \le\|h\|_\infty\|\phi\|_1$ for every $r\ge0$;
+the Gaussian has integral one and is nonnegative.
+Differentiating the convolution with $v$ in distributions gives
+$G_a*\zeta=\operatorname{curl}(G_a*v)$, proving
+\eqref{eq:bridge-heat-identity}.  The function
+$\int_0^aG_r*h\,dr$ is bounded by $a\|h\|_\infty$.
+It is continuous: integrals over $[\delta,a]$ are continuous, and the
+integral over $[0,\delta]$ has uniform norm at most
+$\delta\|h\|_\infty$, which tends to zero.  This proves the asserted
+representative without a pointwise or growth assumption on $\zeta$.
+
+For a real unit vector $b$ and every $x$, the scalar triple product
+and Cauchy--Schwarz give
+\[
+ \left|b\cdot\operatorname{curl}(G_a*v)(x)\right|
+   =\left|\int v(y)\cdot\bigl(b\times\nabla G_a(x-y)\bigr)\,dy\right|
+   \le\|v\|_2\left(\int|b\times\nabla G_a(z)|^2\,dz\right)^{1/2}.
+\]
+The sign in this formula follows from
+$\operatorname{curl}(G_a*v)=\int\nabla G_a(x-y)\times v(y)\,dy$.
+The Gaussian integrals are
+\[
+ \|G_a\|_2^2
+   =(4\pi a)^{-3}(2\pi a)^{3/2}=(8\pi a)^{-3/2},
+ \qquad
+ \int(\partial_jG_a)(\partial_kG_a)
+       =\frac{\delta_{jk}}{4a}\|G_a\|_2^2.
+\]
+Indeed $\partial_jG_a=-x_jG_a/(2a)$, odd integrands have zero
+integral, and integration by parts in one dimension gives
+$\int x_j^2G_a^2=a\int G_a^2$.
+Thus
+\[
+ \int|b\times\nabla G_a|^2
+  =\int\bigl(|\nabla G_a|^2-|b\cdot\nabla G_a|^2\bigr)
+  =\frac{1}{2a}(8\pi a)^{-3/2}.
+\]
+Taking the supremum over $|b|=1$ yields
+$\|\operatorname{curl}(G_a*v)\|_\infty
+ \le C_0a^{-5/4}\|v\|_2$ with precisely the constant displayed in
+\eqref{eq:bridge-heat-bound}.  Together with
+\eqref{eq:bridge-heat-identity} this proves the bound.
+
+There is no surviving spatial harmonic term in this argument: the
+distributional identity started with $\zeta=\operatorname{curl}v$ for
+$v\in L^2$, kept its exact heat evolution, and integrated its actual
+Laplacian.  No boundedness of $\zeta$ was used to prove its boundedness.
+
+\subsection{The pressure-independent obstruction and its rate}
+
+Apply \eqref{eq:bridge-heat-bound} to each original time section $u(t)$.
+Write
+\[
+ M(t)=\|\omega(t)\|_\infty,\quad
+ F_E(t)=\|\operatorname{curl}f_E(t)\|_\infty,\quad
+ F_{NS}(t)=\|(\operatorname{curl}f_E-\nu\Delta\omega)(t)\|_\infty.
+\]
+Thus $F_{NS}$ always uses the canonical curl representative just proved
+to exist, even for an arbitrary distributional pressure adjustment.
+Whenever $F_{NS}(t)<\infty$, identity
+\eqref{eq:bridge-curl-force} shows that
+$\Delta\omega(t)$ is bounded and that
+\begin{equation}\label{eq:bridge-direct-bound}
+ M(t)\le C_0a^{-5/4}E+
+                    \frac{a}{\nu}\bigl(F_E(t)+F_{NS}(t)\bigr)
+ \qquad\hbox{for every }a>0.
+\end{equation}
+In particular, a finite uniform bound on the two force curls gives a
+finite uniform bound on vorticity, contradicting the source's
+$M(t)\longrightarrow\infty$.
+
+The conclusion already excludes uniformly bounded first spatial
+derivatives of $f_{NS}$.  Explicitly, for any vector field $f$,
+\[
+ |\operatorname{curl}f|^2
+   =(\partial_2f_3-\partial_3f_2)^2
+    +(\partial_3f_1-\partial_1f_3)^2
+    +(\partial_1f_2-\partial_2f_1)^2
+   \le2|\nabla f|_F^2,
+\]
+using $(a-b)^2\le2(a^2+b^2)$ on each displayed summand.
+The source's fixed support and smoothness through $T$ give
+$F_E^*:=\sup_{t<T}F_E(t)<\infty$.
+If $f_{NS}$ is a smooth spacetime force and
+$\sup_{t<T}\|\nabla f_{NS}(t)\|_\infty=B<\infty$, then
+\eqref{eq:bridge-direct-bound} gives
+\[
+ M(t)\le C_0a^{-5/4}E+
+                  \frac{a}{\nu}\bigl(F_E^*+\sqrt2 B\bigr)
+ \quad(0\le t<T)
+\]
+for each fixed $a>0$, an explicit contradiction.
+More generally, suppose the spacetime distributions
+$\partial_j(f_{NS})_k$ have bounded measurable representatives, whose
+matrix has essential supremum Frobenius norm $B$ on
+$\mathbb R^3\times(0,T)$.  The same componentwise inequality gives a
+spacetime essential bound $\sqrt2B$ on the curl.  The canonical curl
+representative is smooth, so this bound holds everywhere: a strict
+violation at one point would persist on an open set of positive
+measure.  The displayed contradiction therefore also rules out
+uniformly bounded spacetime weak first derivatives for arbitrary
+distributional forces, without assuming time sections of their gradients.
+
+One can also quantify the necessary loss.  The source has $E>0$:
+otherwise \eqref{eq:bridge-E} gives $u=0$ and $M=0$.
+Put $A=C_0E>0$.  At a time with $M(t)>0$, rearrange
+\eqref{eq:bridge-heat-bound}, using $\|u(t)\|_2\le E$, to get
+\[
+ \|\Delta\omega(t)\|_\infty
+       \ge \frac{M(t)}{a}-\frac{A}{a^{9/4}}.
+\]
+Take the admissible positive value
+$a=(9A/(4M(t)))^{4/5}$.  This is the maximizer: differentiating the
+right side gives $-M(t)a^{-2}+(9A/4)a^{-13/4}$, with a unique zero
+there, positive derivative before that zero and negative derivative
+after it.  Substitution gives
+\begin{equation}\label{eq:bridge-laplacian-lower}
+ \|\Delta\omega(t)\|_\infty
+ \ge \frac{5}{9}\left(\frac{4}{9}\right)^{4/5}
+               (C_0E)^{-4/5}M(t)^{9/5}.
+\end{equation}
+The reverse triangle inequality in \eqref{eq:bridge-curl-force}
+therefore proves, for every pressure adjustment,
+\begin{equation}\label{eq:bridge-force-lower}
+ F_{NS}(t)\ge
+ \nu\frac{5}{9}\left(\frac{4}{9}\right)^{4/5}
+                (C_0E)^{-4/5}M(t)^{9/5}-F_E(t).
+\end{equation}
+When a force curl is unbounded at the chosen time the inequality holds
+in the extended sense.  If it is bounded, all preceding steps apply.
+For $M(t)=0$ the same displayed lower bound is simply
+$F_{NS}(t)\ge-F_E(t)$ and also holds.  Finally, whenever the force has
+smooth spacetime representatives, as every candidate in the target problem
+must have,
+\begin{equation}\label{eq:bridge-gradient-lower}
+ \|\nabla f_{NS}(t)\|_\infty\ge\frac1{\sqrt2}
+ \left[\nu\frac{5}{9}\left(\frac{4}{9}\right)^{4/5}
+              (C_0E)^{-4/5}M(t)^{9/5}-F_E(t)\right].
+\end{equation}
+Consequently $M(t)\to\infty$ and $F_E^*<\infty$ imply
+$F_{NS}(t)\to\infty$ for every distributional pressure adjustment in
+\eqref{eq:bridge-map}.  For smooth spacetime forces they also imply
+$\|\nabla f_{NS}(t)\|_\infty\to\infty$.  This is stronger than
+excluding only the choice
+$p_{NS}=p_E$.
+
+\paragraph{The precise result for the released construction.}
+The original Euler velocity has a well-defined exact viscous realization
+with force $f_E-\nu\Delta u+\nabla q$ for every $\nu>0$ and every
+pressure adjustment $q$.  Every such force has a canonical smooth curl
+whose spatial supremum diverges as the original terminal time is
+approached, and none has uniformly bounded spacetime weak first
+derivatives.  For smooth spacetime forces,
+their spatial first-derivative supremum also diverges at that time.
+Thus this realization cannot have a force smooth through the terminal
+time with a common compact support, nor can it satisfy a requirement
+of globally bounded first spatial derivatives through that time.
+On $\mathbb R^3$, smoothness alone on a noncompact spatial domain would
+not imply a global derivative bound; the fixed-support or stated decay
+requirement is material and has been kept explicit.
+
+This obstruction concerns the original velocity and the exact map
+\eqref{eq:bridge-map}.  It proves no nonexistence statement about a
+different Navier--Stokes velocity, a different construction, a
+viscosity-dependent change of the evolving fields, or a different
+mathematical correspondence.  It also gives no Navier--Stokes
+counterexample with the initial data and forcing regularity required
+by a Millennium problem formulation.  The map and the obstruction,
+rather than a mere comparison of equation names, identify exactly
+what a successful further transfer must change.

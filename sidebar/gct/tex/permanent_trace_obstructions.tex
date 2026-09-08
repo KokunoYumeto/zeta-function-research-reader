@@ -1,0 +1,290 @@
+\section{Exact obstructions for two specified trace representations}
+\label{sec:per-trace-obstructions}
+
+Retain the parameter projection, source fibre, and multiplication operator
+of the preceding section. Write $\mathcal A_N$ for its full split source
+algebra and $u_Z$ for the projected multiplier, where
+$N=3n^2$, $M=n^3+6n^2$. In its original point-idempotent basis the
+diagonal entries of multiplication by $u_Z$ are zero except at the
+uniquely flagged permutation witnesses. Their entries are
+$\prod_i Z_{i,\sigma(i)}$. Thus the already constructed polynomial is
+\[
+ P_n(Z)=\operatorname{Tr}_{\mathcal A_N}(m_{u_Z})
+       =\sum_{\sigma\in S_n}\prod_{i=1}^n Z_{i,\sigma(i)}.
+\]
+The following calculations concern this same trace. No change of source
+coordinates or removal of its zero eigenvalues is needed. The original
+rational-coordinate fibre retains its characteristic-zero base here.
+The integral split idempotent lattice constructed above carries the
+same diagonal multiplication matrix with entries in $\mathbb Z[Z]$;
+its trace polynomial therefore has integer coefficients. It is that
+integral matrix and polynomial, and hence their coefficient matrices,
+which can be base changed to any field, including characteristic two.
+This does not reduce the source coordinates containing $1/2$ modulo two.
+
+\subsection{Coefficient contraction and its exact rank}
+
+Fix a field $k$, $n\ge1$, and $0\le k_0\le n$. To avoid using the
+field symbol as an integer index, denote the cut by $k_0$ throughout.
+Let $H_{k_0}$ be the vector space with basis
+\[
+ h_{\boldsymbol j}=\prod_{i=1}^{k_0}Z_{i,j_i},
+ \qquad \boldsymbol j\in\{1,\ldots,n\}^{k_0},
+\]
+and let $T_{k_0}$ have basis
+$t_{\boldsymbol l}=\prod_{i=k_0+1}^{n}Z_{i,l_i}$ indexed by the
+remaining $n-k_0$ choices. Empty products give the one-dimensional
+spaces at the two endpoints. Since the variable sets are disjoint,
+multiplication identifies $H_{k_0}\otimes_k T_{k_0}$ with the space
+of polynomials homogeneous of degree one in each row of $Z$.
+Indeed, multiplication maps the displayed tensor basis bijectively
+onto its distinct monomial basis. Define the coefficient contraction
+\[
+ \mathcal F_{k_0}:H_{k_0}^*\longrightarrow T_{k_0},\qquad
+ \mathcal F_{k_0}(h_{\boldsymbol j}^*)
+  =\sum_{\boldsymbol l}
+   [h_{\boldsymbol j}t_{\boldsymbol l}]P_n\,t_{\boldsymbol l}.
+\]
+Here $[m]$ denotes the coefficient of the exact monomial $m$.
+
+\begin{theorem}\label{thm:per-exact-row-rank}
+For every field and every displayed cut,
+$\operatorname{rank}\mathcal F_{k_0}=\binom n{k_0}$.
+There is an integral factorization through the free module on the
+$k_0$-element subsets of $\{1,\ldots,n\}$, and an integral identity
+minor of that size.
+\end{theorem}
+\begin{proof}
+Let $U_{k_0}$ have basis $e_S$ for those subsets. Define
+$a:H_{k_0}^*\to U_{k_0}$ by
+$a(h_{\boldsymbol j}^*)=e_{\{j_1,\ldots,j_{k_0}\}}$ if the
+indices $j_i$ are distinct, and by zero otherwise. Define
+\[
+ b(e_S)=\sum_{\{l_{k_0+1},\ldots,l_n\}=S^c
+                   \atop\text{all indices distinct}}t_{\boldsymbol l}.
+\]
+A monomial in $P_n$ uses each column exactly once. Conversely every
+choice using each row and column exactly once is the monomial of a
+unique permutation and has coefficient one. These two facts give
+$\mathcal F_{k_0}=ba$ on every displayed basis vector, including
+those with repeated columns. The factorization proves the upper bound.
+
+For each $S$, take $\boldsymbol j(S)$ to be the elements of $S$ in
+increasing order assigned to the first $k_0$ rows, and take
+$\boldsymbol l(S)$ to be the elements of $S^c$ in increasing order
+assigned to the remaining rows. The coefficient of
+$h_{\boldsymbol j(S)}t_{\boldsymbol l(S')}$ is one exactly when
+$S=S'$: disjointness and cardinalities force $S=(S'^c)^c$.
+It is zero otherwise. Thus these rows and columns give the identity
+matrix over $\mathbb Z$, proving the lower bound over every field.
+No division by a factorial or by a characteristic-dependent integer
+has occurred.
+\end{proof}
+
+This is also an exact map from the original trace construction.
+For a matrix $B(Z)$ over a polynomial ring, finite coefficient extraction
+commutes with its trace:
+$[m]\operatorname{Tr}B=\sum_v[m]B_{vv}
+=\operatorname{Tr}([m]B)$. This follows directly from the definition
+of the diagonal sum, for every coefficient and over every base ring.
+Apply it to the full $3^N\times3^N$ matrix $m_{u_Z}$.
+The projection to its uniquely flagged permutation diagonal entries
+therefore gives precisely the maps $a,b$ above, while every retained
+zero diagonal entry contributes zero. This proves the coefficient
+contraction correspondence; the matrix size $3^N$ is unchanged.
+
+For every integer $d\ge1$ the same argument applied to the previously
+proved power trace $\operatorname{Tr}(m_{u_Z}^d)
+=\operatorname{per}_n((Z_{ij}^d))$ gives the same rank.
+Use the head and tail bases with each exponent $1$ replaced by $d$;
+these are still distinct monomials in every characteristic. Their
+coefficient matrix is the same integral zero-one matrix.
+
+\subsection{Optimal widths of row-ordered branching programs}
+
+A row-ordered algebraic branching program here means a finite directed
+layered graph with layers $0,1,\ldots,n$, one source at layer zero,
+one sink at layer $n$, and edges only from layer $i-1$ to layer $i$.
+Every such edge is labelled by a homogeneous linear form in
+$Z_{i1},\ldots,Z_{in}$ over $k$. The output is the sum over all
+source-to-sink paths of the product of their labels. The width $w_i$
+is the number of vertices at layer $i$; distinct parallel edges may
+equivalently be combined by adding their labels.
+
+\begin{theorem}\label{thm:per-row-abp}
+Every such program for $P_n$ has $w_i\ge\binom ni$ at every layer.
+These bounds hold simultaneously with equality. The minimum total
+number of vertices, including both endpoints, is $2^n$.
+An attaining program has exactly $n2^{n-1}$ edges.
+\end{theorem}
+\begin{proof}
+For a vertex $v$ in layer $i$, let $p_v$ be the sum of path products
+from the source to $v$, and $q_v$ the corresponding sum from $v$
+to the sink. Each full path has exactly one such $v$ and decomposes
+uniquely into its prefix and suffix. Distributivity therefore gives
+$P_n=\sum_{v\text{ in layer }i}p_vq_v$, with $p_v\in H_i$ and
+$q_v\in T_i$. Its coefficient contraction factors as
+\[
+ H_i^*\longrightarrow k^{w_i}\longrightarrow T_i,
+ \qquad\lambda\longmapsto(\lambda(p_v))_v,
+ \qquad(c_v)_v\longmapsto\sum_v c_vq_v.
+\]
+Its rank is at most $w_i$. The preceding theorem proves the lower bound.
+
+For attainment, put at layer $i$ all subsets $S\subseteq\{1,\ldots,n\}$
+of size $i$. For every $j\notin S$ put an edge from $S$ to
+$S\cup\{j\}$ labelled $Z_{i+1,j}$. A full path chooses the columns
+$j_1,\ldots,j_n$ without repetition, so determines one permutation.
+Every permutation determines exactly this path. Multiplying its
+labels and then summing gives $P_n$. The number of vertices is
+$\sum_i\binom ni=2^n$, because each subset has one cardinality and
+there are two membership choices for each of the $n$ elements.
+The number of edges is
+$\sum_{S\subseteq[n]}(n-|S|)=n2^{n-1}$: count pairs $(S,j)$ with
+$j\notin S$, choosing $j$ in $n$ ways and an arbitrary subset of
+its $n-1$ other elements. Summing the width lower bounds proves
+minimality of the stated total vertex number.
+\end{proof}
+
+The row condition is part of this precise representation class.
+The factorization just proved does not apply to a branching program
+that may reuse a row at several layers or intermix row variables
+inside a layer. Thus the result gives no lower bound for that larger
+class from an unproved identification of its states with $H_i$.
+The proved exact map is the prefix--suffix contraction above.
+
+\subsection{An exponential obstruction for nonnegative arithmetic}
+
+Now work over $\mathbb R$. A monotone arithmetic circuit means a
+finite acyclic circuit with leaves that are variables $Z_{ij}$ or
+nonnegative real constants, and binary addition and multiplication
+gates. Its size $s$ is the number of arithmetic-operation gates.
+Fan-out is allowed. No subtraction or division is allowed. A parse
+tree at a gate is defined recursively: at an addition choose one
+of its two children; at a multiplication take both; copy occurrences
+when a gate is used more than once. A nonzero parse tree is one
+whose constant-leaf product is positive. It contributes that positive
+coefficient times the product of its variable leaves.
+Induction in a topological ordering proves that a gate polynomial
+is the sum of its parse-tree contributions. There are only finitely
+many parse trees, since the circuit is finite and acyclic.
+
+\begin{lemma}\label{lem:per-live-gate-profile}
+Suppose such a circuit computes $P_n$. A gate occurrence is called
+live if it occurs in a nonzero output parse tree, and a gate is live
+if it has such an occurrence. For every live gate $g$ there are
+uniquely determined subsets $I_g,J_g\subseteq[n]$ of the same size
+such that every monomial at $g$ with positive coefficient is a
+matching from $I_g$ onto $J_g$. In particular its degree is the
+fixed integer $d_g=|I_g|=|J_g|$.
+\end{lemma}
+\begin{proof}
+Fix one nonzero output parse tree and one occurrence of $g$ in it.
+Remove the subtree rooted at that occurrence and retain the rest,
+including every other occurrence of $g$ if there is one. Let $c m$
+be the product of the retained constant and variable leaves, so
+$c>0$. Every monomial $t$ with positive coefficient at $g$ has a
+nonzero parse tree there, by the parse expansion. Substituting that
+tree in the retained occurrence produces a nonzero output parse
+tree contributing a positive multiple of $mt$. Nonnegative
+coefficients cannot cancel, so $mt$ occurs in $P_n$.
+
+Every monomial of $P_n$ has total exponent one in each row and
+column, and exponent at most one on each variable. Consequently
+$m$ is a partial matching; all such $t$ use exactly the rows and
+columns missing from $m$, once each. These two complementary
+sets are $I_g$ and $J_g$. They have the same size because any
+monomial $t$ uses one variable per used row and column. At least
+one $t$ exists, since the fixed occurrence was nonzero. That
+monomial already determines its sets of rows and columns,
+showing uniqueness and independence of the chosen live occurrence.
+\end{proof}
+
+At a live addition, every child chosen in a nonzero parse tree has
+the same profile and degree as the parent: each of its monomials
+also occurs at the parent. At a live multiplication with nonzero
+children, both children are live by extending the fixed context,
+their row sets and their column sets are disjoint, and their unions
+are those of the parent. This follows by multiplying any positive
+monomial of the first child by one of the second and using the
+lemma. In particular their degrees add. These conclusions establish
+the needed homogeneity and disjointness from positivity; they have
+not been added as circuit hypotheses.
+
+\begin{theorem}\label{thm:per-monotone-lower-bound}
+For every $n\ge4$, every monotone arithmetic circuit computing
+the original projected trace $P_n$ satisfies
+\[
+ s\ \ge\ \binom n{\lceil n/3\rceil}
+       \ \ge\ 2^{\lceil n/3\rceil}.
+\]
+\end{theorem}
+\begin{proof}
+Each of the $n!$ permutation monomials has positive coefficient,
+so choose one of its nonzero output parse trees, using any fixed
+ordering of the finite tree set to make the choice definite.
+Start at its output occurrence, of degree $n$. At an addition
+follow its chosen child. At a multiplication follow a child of
+larger degree, with a fixed rule for ties. Continue until reaching
+the first occurrence of degree at most $2n/3$.
+
+This procedure terminates: it follows a descending path in a finite
+tree, and leaf degrees are zero or one. An addition cannot be the
+first degree decrease across the threshold, because its chosen
+child has the same degree. Hence that first crossing follows a
+multiplication of degree greater than $2n/3$. Its selected child
+has at least half the parent degree. The selected gate $g$ thus has
+\[
+ n/3<d_g\le2n/3,
+ \quad\text{and in particular}\quad
+ \lceil n/3\rceil\le d_g\le\lfloor2n/3\rfloor.
+\]
+For $n\ge4$ this degree is at least two, so $g$ is an
+arithmetic-operation gate, not an input leaf.
+
+Assign the original permutation to this gate. Its chosen parse tree
+contains a monomial from $g$, which matches precisely $I_g$ to $J_g$.
+Therefore every permutation assigned to $g$ sends $I_g$ onto $J_g$.
+For $d_g=d$ the number of all permutations with this property is
+exactly $d!(n-d)!$: choose independently a bijection $I_g\to J_g$
+and one $I_g^c\to J_g^c$. Each has $d!$ and $(n-d)!$ choices,
+respectively, by successive choices of images. The assignments
+partition the $n!$ permutations among at most $s$ gates. Thus
+\[
+ n!\le s\max_{\lceil n/3\rceil\le d\le\lfloor2n/3\rfloor}
+                         d!(n-d)!.
+\]
+The ratio $\binom n{d+1}/\binom nd=(n-d)/(d+1)$ proves that
+the binomial coefficients increase up to their middle and then
+decrease symmetrically, since $\binom nd=\binom n{n-d}$.
+The two endpoints of the displayed range are complementary
+integers, so its minimum binomial coefficient is
+$\binom n{\lceil n/3\rceil}$. This proves the first bound.
+Finally set $r_0=\lceil n/3\rceil$. For $n\ge4$ we have
+$r_0\le n/2$: write $n=3a+b$ with $b=0,1,2$ and check the
+three inequalities directly, with $a\ge1$ and the case $b=0$
+having $a\ge2$ if necessary. For $0\le i<r_0$,
+$(n-i)/(r_0-i)\ge n/r_0\ge2$, since
+$r_0(n-i)-n(r_0-i)=i(n-r_0)\ge0$. Multiplication gives
+\[
+ \binom n{r_0}
+ =\prod_{i=0}^{r_0-1}\frac{n-i}{r_0-i}
+ \ge2^{r_0},
+\]
+as claimed.
+\end{proof}
+
+This theorem constrains positive arithmetic representations of the
+specific original-fibre trace after the proved permanent projection.
+The universal verifier polynomial before that projection contains
+signed coefficients, and the support lemma was proved only for the
+nonnegative circuit just defined. The projection is nevertheless the
+exact gate-preserving input-substitution map of the preceding section.
+If a nonnegative circuit description survives that map as a circuit
+of this class, the displayed lower bound applies to its arithmetic
+gate count. For signed circuits the cancellation step in the proof
+is unavailable; the present theorem makes no assertion that it holds.
+The row-ordered and nonnegative bounds provide two explicit
+asymptotic obstructions with their maps and domains. The broader
+unrestricted obstruction in the research programme remains to be
+constructed.

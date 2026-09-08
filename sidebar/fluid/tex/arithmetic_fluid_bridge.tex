@@ -1,0 +1,377 @@
+\section{Arithmetic heat observables and exact three-dimensional fluid maps}\label{arithmetic-heat-observables-and-exact-three-dimensional-fluid-maps}
+
+The formulas audited in this section come from the maintained zeta source,
+\path{satellites/22_rh_counterexample_routes.tex}: fluid metric and time
+coordinates at lines 14--108; BC state and modular time at 112--179;
+heat and Cole--Hopf at 928--980; completed arithmetic heat at 982--1218.
+The finite identities below were independently replayed by
+\path{scripts/verify_arithmetic_fluid_bridge.py} (29 exact checks).
+The hydrodynamic vacuum reconstruction is a sourced construction; the
+coordinate, scalar PDE, incompressibility, pressure and shear calculations
+are proved below. The original polynomial and its metric pullback are
+proved in the separate polynomial section of this notebook.
+
+\subsection{The actual fluid/vacuum map and its preserved constants}\label{the-actual-fluidvacuum-map-and-its-preserved-constants}
+
+The local source cites Bredberg--Keeler--Lysov--Strominger, §5.1, equations (14)--(20). Its coordinates are \((\tau,r,x^1,\ldots,x^p)\), cutoff \(r=r_c>0\), and future Rindler horizon \(r=0\). It retains the metric
+
+\[
+\begin{aligned}
+ds^2={}&-r\,d\tau^2+2\,d\tau\,dr+\delta_{ij}dx^idx^j\\
+&-2(1-r/r_c)v_i\,dx^id\tau-2r_c^{-1}v_i\,dx^idr\\
+&+(1-r/r_c)[(v^2+2P)d\tau^2+r_c^{-1}v_iv_jdx^idx^j]
++r_c^{-1}(v^2+2P)d\tau\,dr\\
+&-r_c^{-1}(r^2-r_c^2)\Delta v_i\,dx^id\tau+\cdots.
+\end{aligned}
+\]
+
+The expansion assigns \(v=O(\epsilon)\), \(P=O(\epsilon^2)\), \(\partial_i=O(\epsilon)\), \(\partial_{\tau}=O(\epsilon^2)\). It imposes
+
+\[
+\partial_i v^i=0,\qquad
+\partial_\tau v_i+v^j\partial_jv_i+\partial_iP-r_c\Delta v_i=0.
+\]
+
+The source gives a hydrodynamic expansion with flat cutoff metric, horizon regularity and specified incoming data. It does not exhibit an independently constructed vacuum solution whose boundary velocity becomes singular while meeting the three-dimensional problem's data requirements. For \(p=3\), the bulk has five coordinates \((\tau,r,x^1,x^2,x^3)\), a point relevant to any attempted transfer from four-dimensional relativity.
+
+The temperature calculation can be checked exactly without solving the perturbative Einstein equations. On \(r>0\), define
+
+\[
+\eta=\tau-\log r,\quad \xi=2\sqrt r,
+\qquad X^0=\xi\sinh(\eta/2),\quad X^1=\xi\cosh(\eta/2).
+\]
+
+Since \(d \tau=d \eta+dr/r\), direct multiplication gives
+
+\[
+-r(d\eta+dr/r)^2+2(d\eta+dr/r)dr
+=-r\,d\eta^2+dr^2/r
+=-(\xi^2/4)d\eta^2+d\xi^2.
+\]
+
+Direct differentiation of the hyperbolic coordinates gives \(-(dX^0)^2+(dX^1)^2\) for the final expression. Their image is the right Minkowski wedge, with inverse
+
+\[
+\xi=\sqrt{(X^1)^2-(X^0)^2},\qquad
+\eta=2\operatorname{arctanh}(X^0/X^1).
+\]
+
+Thus the inverse-chart singularity at the horizon is not a curvature singularity of this zeroth-order metric: its components become constant Minkowski components under the displayed map.
+
+On the cutoff orbit, set
+
+\[
+t=\sqrt{r_c}\tau,\quad
+V_i(t,x)=r_c^{-1/2}v_i(t/\sqrt{r_c},x),\quad
+\Pi(t,x)=r_c^{-1}P(t/\sqrt{r_c},x).
+\]
+
+The inverse is \(v_i(\tau,x)=\sqrt{r_c}V_i(\sqrt{r_c}\tau,x)\) and \(P(\tau,x)=r_c \Pi(\sqrt{r_c}\tau,x)\). The four terms in the equation become, in order,
+
+\[
+r_c\partial_tV_i,\qquad r_cV^j\partial_jV_i,
+\qquad r_c\partial_i\Pi,\qquad r_c^{3/2}\Delta V_i.
+\]
+
+Consequently the proper-time equation has viscosity \(\nu_{\mathrm{loc}}=\sqrt{r_c}\). In the source's units \(\hbar=c=k_B=1\), its acceleration temperature is \(T_{\mathrm{loc}}=1/(4\pi\sqrt{r_c})\), so \(\nu_{\mathrm{loc}}=1/(4\pi T_{\mathrm{loc}})\). Neither viscosity is set to one in this calculation. Sending \(r_c\) to zero changes the viscosity and degenerates the time map; it is not a singularity at a fixed positive viscosity and fixed physical time.
+
+\subsection{BC state, modular flow, and heat observable}\label{bc-state-modular-flow-and-heat-observable}
+
+Let \(H\) on \(\ell^2(\mathbb N^\times)\) be the self-adjoint diagonal operator
+
+\[
+H\varepsilon_n=(\log n)\varepsilon_n,\quad
+\operatorname{Dom}H=\{a:\sum_n(\log n)^2|a_n|^2<\infty\}.
+\]
+
+For real \(\beta>1\), define \(Z(\beta)=\zeta(\beta)\), \(p_n=n^{-\beta}/Z(\beta)\), \(D_\beta\varepsilon_n=p_n\varepsilon_n\), and \(\varphi_{\beta}(A)=\operatorname{Tr}(D_{\beta} A)\) on bounded operators. All \(p_n\) are positive and sum to one. In the convention used by the source,
+
+\[
+\alpha_u(A)=D_\beta^{-iu}AD_\beta^{iu}
+=e^{i\beta uH}Ae^{-i\beta uH}.
+\]
+
+Indeed \(D_{\beta}^{-iu}=Z(\beta)^{iu}e^{i \beta uH}\), and the scalar factors cancel. On matrix units the factor is \((m/n)^{i \beta u}\). The opposite modular sign changes \(\beta u\) to \(-\beta u\). The positive-temperature partition function supplies no pole of this real-time unitary conjugation.
+
+The actual heat observable is
+
+\[
+F_\beta(\tau,x)=\varphi_\beta(e^{-\tau H^2}e^{ixH})
+=\frac1{\zeta(\beta)}\sum_{n\ge1}n^{-\beta}
+e^{-\tau(\log n)^2+ix\log n}.
+\]
+
+For real \(\tau\ge 0,x\), every derivative of prescribed finite order is uniformly dominated on \(\tau\ge 0\) by a constant times \(\sum n^{-\beta}(\log n)^k\), which converges by the integral test after \(n=e^s\). Differentiating in \(\tau\) or twice in \(x\) introduces the same factor \(-(\log n)^2\). Therefore
+
+\[
+\partial_\tau F_\beta=\partial_x^2F_\beta,
+\qquad F_\beta(0,x)=\zeta(\beta-ix)/\zeta(\beta).
+\]
+
+This is a scalar complex heat equation on a real spatial line. \(\tau\) varies the observable, while the Gibbs state and modular automorphism remain fixed. Every displayed observable commutes with \(H\); its modular evolution is constant. This is an exact dynamical test, not an argument from different terminology.
+
+On any open set where a heat solution \(F\) with viscosity \(\nu>0\) is nonzero, define \(u=-2 \nu F_x/F\). A global logarithm is unnecessary; local logarithms \(L=\log F\) suffice and their derivatives agree. Since
+
+\[
+L_\tau=\nu(L_{xx}+L_x^2),
+\]
+
+one gets
+
+\[
+u_\tau=-2\nu^2L_{xxx}-4\nu^2L_xL_{xx},\quad
+uu_x=4\nu^2L_xL_{xx},\quad
+\nu u_{xx}=-2\nu^2L_{xxx}.
+\]
+
+Their sum proves \(u_{\tau}+u u_x=\nu u_{xx}\). If \(F=(x-x_0)^m a(x)\) with \(a(x_0)\ne 0\), the exact local result is
+
+\[
+u=-\frac{2\nu m}{x-x_0}-2\nu\frac{a'}a.
+\]
+
+These poles are real mathematical singularities of the logarithmic-derivative map; the following tests determine what happens to them under candidate three-dimensional maps.
+
+For the specific BC solution at \(\tau=x=0\), write
+
+\[
+\mu=\sum_np_n\log n,\qquad
+\sigma^2=\sum_np_n(\log n)^2-\mu^2.
+\]
+
+Then \(F=1\), \(F_x=i \mu\), \(F_{xx}=-\sum p_n(\log n)^2\), so the viscosity-one Burgers field satisfies
+
+\[
+u(0,0)=-2i\mu,\qquad u_x(0,0)=2\sigma^2.
+\]
+
+Here \(\mu>0\), since the \(n=2\) summand is positive and all summands are nonnegative. Also \(\sigma^2=\sum p_n(\log n-\mu)^2>0\): equality would force every \(\log n\) with \(p_n>0\) to equal \(\mu\), contradicted by \(\log 1=0\) and \(\log 2>0\). Thus this particular source-derived velocity is nonreal and has strictly positive divergence under the direct longitudinal lift.
+
+The exact map to two real fields is also available. Write \(u=a+ib\), with real \(a,b\). Multiplication gives \(uu_x=aa_x-bb_x+i(ab_x+ba_x)\), hence
+
+\[
+a_t+aa_x-bb_x=\nu a_{xx},\qquad
+b_t+ab_x+ba_x=\nu b_{xx}.
+\]
+
+Thus the real-part map retains a coupled forcing term \(bb_x\). Taking the real part of the heat observable before constructing a shear in the arithmetic shear construction below has the exactly different, explicitly proved linear heat evolution.
+
+\subsection{Longitudinal and shear lifts: exact scalar-pressure test}\label{longitudinal-and-shear-lifts-exact-scalar-pressure-test}
+
+Use the three-dimensional unforced equation with real coordinates \((x,y,z)\) and unchanged positive viscosity \(\nu\):
+
+\[
+\partial_tU+(U\cdot\nabla)U+\nabla p-\nu\Delta U=0,
+\qquad\nabla\cdot U=0.
+\]
+
+First let \(U=(u(t,x),0,0)\). Its divergence is \(u_x\). A Burgers solution solves its first momentum equation with spatially constant pressure, but it is incompressible only when \(u_x=0\). Burgers then gives \(u_t=0\). This map therefore retains only constant Burgers fields as incompressible solutions.
+
+Next let \(U=(0,u(t,x),0)\). Its divergence vanishes, and \((U \cdot \nabla)U=0\). Its momentum residual before pressure is
+
+\[
+R=(0,u_t-\nu u_{xx},0)=(0,-uu_x,0).
+\]
+
+A twice differentiable scalar pressure can cancel this residual only if
+
+\[
+p_x=0,\qquad p_y=uu_x,\qquad p_z=0.
+\]
+
+Commutation of mixed derivatives yields the necessary condition \((u u_x)_x=0\). It is also sufficient on a rectangular coordinate patch: if \(u u_x=c(t)\), choose \(p=c(t)y+p_0(t)\). On a periodic domain, integrating \(u u_x=(u^2/2)_x=c(t)\) over one period gives \(c(t)=0\); a smooth real function with \(u^2\) spatially constant is spatially constant on the connected circle.
+
+The pressure obstruction is not merely generic rhetoric. For \(0<\epsilon<1\),
+
+\[
+F(t,x)=1+\epsilon e^{-\nu t}\cos x,
+\qquad
+u(t,x)=\frac{2\nu a(t)\sin x}{1+a(t)\cos x},
+\qquad a(t)=\epsilon e^{-\nu t},
+\]
+
+is a globally positive real heat solution for \(t\ge0\), together with its smooth real Burgers image. Indeed \(0<a(t)\le\epsilon<1\) on that time half-line, so \(F\ge1-\epsilon>0\). At \(x=0\), \(u=0\), \(u_x=2 \nu a/(1+a)\), and
+
+\[
+\partial_x(uu_x)(t,0)=\frac{4\nu^2a(t)^2}{(1+a(t))^2}>0.
+\]
+
+Consequently no scalar pressure makes its shear lift an unforced incompressible Navier--Stokes solution even locally near \(x=0\). Conversely, the explicit force \(f=(0,-u u_x,0)\) does make that shear lift satisfy the forced equation with constant pressure. If a logarithmic-derivative pole develops, that force carries products of its singular derivatives; smoothness of an admissible forcing cannot be inferred from this formula.
+
+\subsection{A stronger divergence-free completion and all its surviving real Burgers fields}\label{a-stronger-divergence-free-completion-and-all-its-surviving-real-burgers-fields}
+
+The map
+
+\[
+U(t,x,y,z)=(u(t,x),-y u_x(t,x),0)
+\]
+
+preserves the longitudinal component and cancels its divergence exactly: \(u_x-u_x=0\). Suppose \(u\) is a real smooth Burgers solution. Direct differentiation gives
+
+\[
+R_1=u_t+uu_x-\nu u_{xx}=0,
+\]
+
+\[
+R_2=y[-u_{xt}-uu_{xx}+u_x^2+\nu u_{xxx}].
+\]
+
+Differentiating Burgers gives \(u_{xt}+u_x^2+u u_{xx}=\nu u_{xxx}\), so
+
+\[
+R=(0,2y u_x^2,0).
+\]
+
+The scalar-pressure equations are \(p_x=0\), \(p_y=-2y u_x^2\), \(p_z=0\). Their \(xy\) compatibility is \((u_x^2)_x=0\). Conversely, when this expression vanishes, \(p=-y^2 u_x^2+p_0(t)\) has the required derivatives. On a connected real spatial interval, continuity implies that a real \(u_x\) with constant square is constant: if the square is zero it vanishes; if positive, it cannot change sign without crossing zero. Hence \(u=a(t)x+b(t)\).
+
+Substitution into Burgers yields exactly
+
+\[
+a'+a^2=0,\qquad b'+ab=0.
+\]
+
+For data \(a(0)=a_0\), \(b(0)=b_0\), the solutions on \(1+a_0t\ne 0\) are
+
+\[
+a(t)=\frac{a_0}{1+a_0t},\quad
+b(t)=\frac{b_0}{1+a_0t},\quad
+U=\left(\frac{a_0x+b_0}{1+a_0t},-\frac{a_0y}{1+a_0t},0\right),
+\quad p=-\frac{a_0^2y^2}{(1+a_0t)^2}+p_0(t).
+\]
+
+These are exact incompressible Navier--Stokes solutions for every \(\nu>0\); all velocity Laplacians vanish. If \(a_0<0\), their coefficients diverge at \(t=-1/a_0>0\). At \(t=0\), however, their velocity grows linearly in space and is nonperiodic. Its squared integral on \(\mathbb R^3\) is infinite. If \(a_0=0\) and \(b_0\ne 0\), the constant field also has infinite \(\mathbb R^3\) energy, although it is a globally smooth periodic solution. Thus this explicitly constructed blowup family does not have the decay, finite energy or periodic initial data of the target problem. No admissibility issue is hidden in the pressure.
+
+\subsection{Exact arithmetic maps into genuine three-dimensional Navier--Stokes}\label{exact-arithmetic-maps-into-genuine-three-dimensional-navierstokes}
+
+The arithmetic heat observable does supply solutions directly, without passing through its logarithmic derivative. On \(\mathbb R^3\), set
+
+\[
+q(t,x)=\operatorname{Re}F_\beta(\nu t,x),\quad
+U(t,x,y,z)=(0,q(t,x),0),\quad p=p_0(t).
+\]
+
+The chain rule gives \(q_t=\nu q_{xx}\). Hence the divergence, convection, pressure gradient and heat residual all vanish in the Navier--Stokes equation. This is a genuine real-valued, viscosity-preserving morphism. The derivative bounds in the BC heat calculation above prove global smoothness for \(t\ge 0\). For every such time, all summands at \(x=0\) are nonnegative and the \(n=1\) summand gives \(q(t,0)\ge1/\zeta(\beta)>0\). Continuity therefore gives a nonempty spatial interval on which its magnitude is bounded below at that time. Since the field is independent of \((y,z)\), its \(\mathbb R^3\) energy is infinite at every \(t\ge0\).
+
+A periodic finite-energy version follows from an explicitly specified bounded arithmetic projection. Fix an integer \(b\ge 2\), a length \(\ell>0\), and let \(P_b\) be the orthogonal projection onto the closed span of \(\{\varepsilon_{b^k}:k\ge0\}\). Define
+
+\[
+c=\frac{2\pi}{\ell\log b},\qquad
+G(t,x)=\operatorname{Re}\varphi_\beta
+\left(P_b e^{-\nu c^2tH^2}e^{icxH}\right).
+\]
+
+The state is unchanged. Direct basis evaluation gives every coefficient and frequency:
+
+\[
+G(t,x)=\frac1{\zeta(\beta)}\sum_{k=0}^\infty
+b^{-k\beta}e^{-\nu(2\pi k/\ell)^2t}
+\cos(2\pi kx/\ell).
+\]
+
+For each finite derivative order, geometric decay in \(k\) dominates its polynomial factor, uniformly for \(t\ge 0\). Thus this is a globally smooth periodic heat solution satisfying \(G_t=\nu G_{xx}\). On the cubic torus \((\mathbb R/\ell\mathbb Z)^3\),
+
+\[
+U=(0,G(t,x),0),\qquad p=p_0(t)
+\]
+
+is an exact incompressible Navier--Stokes solution. Taking \(\ell=1\) gives precisely the specified unit torus \(\mathbb R^3/\mathbb Z^3\), with the same viscosity and pressure. Orthogonality of the cosine modes, established by integrating their product over \([0,\ell]\), gives the finite energy
+
+\[
+\int_{[0,\ell]^3}|U|^2
+=\frac{\ell^3}{\zeta(\beta)^2}
+\left[1+\frac12\sum_{k\ge1}b^{-2k\beta}
+e^{-2\nu(2\pi k/\ell)^2t}\right].
+\]
+
+Each nonconstant summand decreases in time. Termwise differentiation is justified by the same geometric bound and gives \(\frac d{dt}\int|U|^2=-2\nu\int|\nabla U|^2\). This supplies the exact state, observable, time, spatial period, real velocity, pressure and viscosity dictionary for a completed fluid bridge. It produces globally smooth shears, not a singularity.
+
+\subsection{Multidimensional Cole--Hopf and finite-energy incompressibility}\label{multidimensional-colehopf-and-finite-energy-incompressibility}
+
+Let a positive real \(F\) solve \(F_t=\nu \Delta F\) on \(\mathbb R^3\), and let \(L=\log F\), \(U=-2 \nu \nabla L\). Direct differentiation gives
+
+\[
+L_t=\nu(\Delta L+|\nabla L|^2),\quad
+U_t=-2\nu^2\nabla\Delta L-2\nu^2\nabla|\nabla L|^2.
+\]
+
+The Hessian of \(L\) is symmetric, so \((U \cdot \nabla)U=4 \nu^2 \operatorname{Hess}(L) \nabla L=2 \nu^2 \nabla|\nabla L|^2\), while \(\nu \Delta U=-2 \nu^2 \nabla \Delta L\). Thus \(U\) solves the vector Burgers equation. Its incompressibility is the exact additional equation \(\Delta L=0\). In that case every component of \(U\) is harmonic. If \(U\) is square integrable on \(\mathbb R^3\), the harmonic mean-value property and Cauchy--Schwarz give, for each component and any radius \(R\),
+
+\[
+|U_i(x)|\le |B_R|^{-1/2}\|U_i\|_{L^2(\mathbb R^3)}.
+\]
+
+Letting \(R\) tend to infinity proves \(U_i(x)=0\). Therefore the real positive scalar Cole--Hopf construction cannot yield a nonzero finite-energy incompressible velocity on all of \(\mathbb R^3\).
+
+On a torus, a smooth periodic gradient velocity with both zero curl and zero divergence is spatially constant: integrate by parts to obtain
+
+\[
+\int |\nabla U|^2=\int (|\nabla\times U|^2+|\nabla\cdot U|^2)=0.
+\]
+
+If \(L\) itself is periodic, integration of each derivative over its period also forces that constant to be zero. These statements concern this exact map; they exclude no other nonlinear arithmetic-to-fluid correspondence.
+
+\subsection{Completed zeta and Newman time: coordinate and singularity checks}\label{completed-zeta-and-newman-time-coordinate-and-singularity-checks}
+
+The source retains the Hermite seed
+
+\[
+h(x)=\frac\pi2x^2(2\pi x^2-3)e^{-\pi x^2},\quad
+S(\lambda)=\sum_{n\ge1}h(n\lambda),\quad
+k(v)=e^{v/2}S(e^v).
+\]
+
+The Mellin constants can be checked completely. For \(\operatorname{Re}s>-2\), integration with \(q=\pi x^2\) gives
+
+\[
+\begin{aligned}
+{\cal M}h(s)
+&=\pi^{-s/2}\left[\tfrac12\Gamma(s/2+2)-\tfrac34\Gamma(s/2+1)\right]\\
+&=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2).
+\end{aligned}
+\]
+
+The expression is interpreted at removable singularities by its convergent integral. For the real Fourier convention \(\widehat f(q)=\int_{\mathbb R}f(x)e^{-2\pi ixq}\,dx\), differentiation of the Gaussian transform gives
+
+\[
+\widehat{x^2e^{-\pi x^2}}=(1/(2\pi)-q^2)e^{-\pi q^2},\qquad
+\widehat{x^4e^{-\pi x^2}}=(q^4-3q^2/\pi+3/(4\pi^2))e^{-\pi q^2}.
+\]
+
+Their linear combination with coefficients \(\pi^2\) and \(-3\pi/2\) is \(h(q)\). Thus \(\widehat h=h\) and \(\int h=h(0)=0\). Poisson summation for this Schwartz function yields \(2S(\lambda)=2\lambda^{-1}S(1/\lambda)\); no constant term remains. This proves \(k(-v)=k(v)\). For \(\lambda\ge1\), the absolute series is bounded by \(C\lambda^4e^{-\pi\lambda^2}\), because \(\sum_{n\ge1}n^4e^{-\pi(n^2-1)}\) converges. Applying symmetry to the signed sum gives \(|S(\lambda)|\le C\lambda^{-5}e^{-\pi/\lambda^2}\) for \(0<\lambda\le1\). This latter estimate uses cancellation; it does not bound the series of absolute values of the original small-\(\lambda\) summands. The two bounds for \(S\), including the extra logarithmic powers introduced by differentiation in its Mellin variable, make its Mellin integral entire.
+
+For \(\operatorname{Re}s>1\), the sum of absolute termwise integrals is \(\sum n^{-\operatorname{Re}s}\int_0^\infty |h(x)|x^{\operatorname{Re}s-1}dx<\infty\). Fubini and the substitution \(x=n\lambda\) consequently prove
+
+\[
+{\cal M}S(s)=\zeta(s){\cal M}h(s)=\xi(s)/4,
+\quad\xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\]
+
+The entire continuation follows from the just-proved bounds and the identity theorem. The Newman function is
+
+\[
+H_t(z)=\frac12\int_{\mathbb R}e^{tv^2/4}k(v)e^{izv/2}\,dv,
+\qquad H_0(z)=\frac18\xi(1/2+iz/2).
+\]
+
+The value at zero time follows by substituting \(\lambda=e^v\) in the preceding Mellin identity and retaining its extra factor \(1/2\). On any compact complex \((t,z)\) set, the factors introduced by a fixed number of derivatives are bounded by a polynomial in \(|v|\) times \(e^{C(v^2+|v|)}\). The two displayed estimates for \(S\) dominate that expression at both ends, proving the differentiation under the integral used next.
+
+Differentiating its integrand in \(t\) multiplies it by \(v^2/4\); twice differentiating in \(z\) multiplies it by \(-v^2/4\). Hence \(H_t\) obeys backward heat in its displayed real Newman time. With \(F(\tau,z)=H_{-\tau}(z)\), forward heat is \(F_{\tau}=F_{zz}\), and \(u=-2 F_z/F\) has positive viscosity one. The completed coordinate \(s=1/2+iz/2\) is invertible with \(z=-2i(s-1/2)\); for \(X_t(s)=8H_t(-2i(s-1/2))\), the chain rule gives the unambiguous equation \(\partial_t X_t(s)=\tfrac14\partial_s^2X_t(s)\). The logarithmic derivative \(w=-(1/2)X_s/X\) has viscosity \(1/4\) in that complex coordinate.
+
+For a zero \(\rho=\sigma+i \gamma\) of \(\xi\), its Newman coordinate is \(z=2 \gamma+i(1-2 \sigma)\). A critical-line zero becomes a real spatial pole of the Cole--Hopf field already at \(\tau=0\). The source's interval certificate at \(t=0\) is a real simple zero in \([28.269450279469,28.269450287469]\). If that certificate is used as input, the resulting real-axis Burgers velocity is initially singular there; it is not a solution emerging from smooth data at time zero. A nonreal zero is a pole at a complex spatial coordinate, which does not by itself make a velocity on real \(\mathbb R^3\) singular. Time reversal also reverses the sign in the viscosity equation as displayed above; it cannot be suppressed when transporting a collision.
+
+The arithmetic spectral fibre coordinates in \(\text{source lines }328\text{--}335\) are different and explicit: \(z=i \rho=-\gamma+i \sigma\), with inverse \(\rho=-iz\). The map between these spectral and Newman coordinates is \(z_{\mathrm{Newman}}=-2z_{\mathrm{spectral}}+i\). Substitution gives \(-2(-\gamma+i \sigma)+i=2 \gamma+i(1-2 \sigma)\). This is an exact affine relation between the two zero-coordinate presentations, but it assigns no three real spatial coordinates, divergence-free real velocity, pressure or initial-time regularity to a fibre.
+
+\subsection{Primary-source and verification boundary}\label{primary-source-and-verification-boundary}
+
+The fluid/gravity source is Bredberg, Keeler, Lysov and Strominger,
+\emph{From Navier--Stokes To Einstein}, \url{https://arxiv.org/abs/1101.2451},
+\S5.1, equations (14)--(20). The horizon temperature convention is from
+Eling, Fouxon and Oz, \emph{The Incompressible Navier--Stokes Equations From
+Black Hole Membrane Dynamics}, \url{https://arxiv.org/abs/0905.3638}.
+The real-zero interval quoted above is a source certificate, not a new
+interval replay in this section. The source audit and its exact file
+hashes are retained in \path{research/arithmetic_fluid_bridge.md}.
+The actual periodic arithmetic shears meet the velocity, pressure and
+positive-viscosity equations and remain globally smooth. The tested
+logarithmic-derivative lifts supply the exact defects computed above;
+none gives an admissible classical counterexample.

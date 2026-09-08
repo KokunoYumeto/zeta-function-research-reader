@@ -1,0 +1,482 @@
+\section{The exact affine Boussinesq wave and its viscous counterpart}
+\label{sec:boussinesq-core}
+
+This section reconstructs the local calculation in Alp\"oge and Buckmaster's
+\emph{Blowup for the Boussinesq equations with smooth forcing}, Sections 1.2
+and 3.1, from its equations. The source is
+\url{https://cims.nyu.edu/~tristanb/boussinesq.pdf}.
+The pressure construction and the diffusion calculation below make explicit
+what the local wave does in the momentum equation. All coordinates, the
+upward buoyancy direction, the frequency parameter, and the signed
+amplitudes are retained. The fields in this section are defined on
+$\mathbb R^2$; their lack of spatial decay is part of their stated scope.
+
+\subsection{Coordinates, operators, and prescribed affine forces}
+
+Write $x=(x_1,x_2)$, $e_2=(0,1)$, and
+\[
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
+\nabla^\perp=J\nabla,\qquad
+\operatorname{curl}(w_1,w_2)=\partial_1w_2-\partial_2w_1.
+\]
+Thus $\operatorname{curl}(\nabla^\perp\psi)=\Delta\psi$.
+Let $I\subset\mathbb R$ be an open interval containing $0$.
+Let $D:I\to\mathbb R^{2\times2}$ and $G:I\to\mathbb R^2$ be smooth,
+with $\operatorname{tr}D=0$. Put
+\[
+u_b(x,t)=D(t)x,\qquad \theta_b(x,t)=G(t)\cdot x.
+\]
+For any prescribed smooth pressure $p_b:I\times\mathbb R^2\to\mathbb R$,
+define, without discarding any term,
+\begin{align}
+f_{\theta,b}(x,t)&=(\dot G+D^TG)\cdot x,\label{eq:bc-base-scalar}\\
+f_{u,b}(x,t)&=(\dot D+D^2)x+\nabla p_b-(G\cdot x)e_2.
+\label{eq:bc-base-vector}
+\end{align}
+For constants $\kappa,\nu\geq0$ these fields satisfy
+\begin{align}
+\partial_t\theta_b+u_b\cdot\nabla\theta_b
+ &=\kappa\Delta\theta_b+f_{\theta,b},\label{eq:bc-scalar-pde}\\
+\partial_tu_b+(u_b\cdot\nabla)u_b+\nabla p_b
+ &=\nu\Delta u_b+\theta_be_2+f_{u,b},\qquad
+\operatorname{div}u_b=0. \label{eq:bc-momentum-pde}
+\end{align}
+Indeed, $\partial_tu_b=\dot D x$, $(u_b\cdot\nabla)u_b=D^2x$,
+$\nabla\theta_b=G$, and both affine Laplacians vanish. These substitutions
+give exactly \eqref{eq:bc-base-scalar}--\eqref{eq:bc-base-vector}.
+In particular, an arbitrary time-dependent pair $(D,G)$ is not being
+silently declared to be an unforced background.
+
+The source uses the letter $\kappa$ for $|\zeta|^2$ inside its local lemma.
+Here $q=|\zeta|^2$ denotes that exact quantity, while $\kappa$ denotes
+the additional thermal diffusion coefficient. Neither quantity is set
+equal to one.
+
+\subsection{A general periodic profile and transported phase}
+
+Fix $\lambda>0$ and $\zeta_0\in\mathbb R^2\setminus\{0\}$.
+The phase vector is the solution of
+\begin{equation}
+\dot\zeta=-D^T\zeta,\qquad \zeta(0)=\zeta_0.
+\label{eq:bc-phase}
+\end{equation}
+It stays nonzero on $I$. Here is a direct justification of the linear
+ODE facts used throughout this section. On a compact time interval the
+matrix coefficient is bounded by some finite $L$. Successive integration
+of the equation $M'=DM$, $M(0)=\mathrm{Id}$ gives a matrix series whose
+$n$th term has norm at most $(L|t|)^n/n!$. It and its differentiated
+integral equation converge uniformly on that interval, producing a
+solution. The same construction solves $N'=-ND$, $N(0)=\mathrm{Id}$.
+Differentiation gives $(NM)'=0$, so $NM=\mathrm{Id}$. Smoothness follows
+by repeated differentiation of the equation. For uniqueness, the
+difference of two solutions is bounded, and iterating its homogeneous
+integral equation bounds its norm by a fixed constant times
+$(L|t|)^n/n!$ for every $n$; this tends to zero. The construction on
+overlapping compact intervals consequently agrees. Then
+$\zeta=M^{-T}\zeta_0$ gives \eqref{eq:bc-phase} and cannot vanish.
+The same integral-series argument applies to the amplitude systems below.
+
+Let $F:\mathbb R\to\mathbb R$ be smooth, odd, $2\pi$-periodic,
+and not identically zero. Its integral over one period is zero:
+the integral on $[-\pi,\pi]$ vanishes by oddness, and periodicity makes
+all period integrals equal. Therefore
+\[
+P_0(s)=\int_0^sF(a)\,da,\qquad
+P(s)=P_0(s)-\frac1{2\pi}\int_{-\pi}^{\pi}P_0(a)\,da
+\]
+defines a smooth, even, mean-zero, periodic primitive with $P'=F$.
+For evenness, substitution $a=-b$ gives $P_0(-s)=P_0(s)$.
+For periodicity,
+$P_0(s+2\pi)-P_0(s)=\int_s^{s+2\pi}F(a)\,da=0$.
+Subtracting the displayed constant supplies zero mean without changing
+the derivative.
+
+Set
+\[
+q(t)=|\zeta(t)|^2>0,\qquad
+s(x,t)=\lambda\zeta(t)\cdot x,\qquad
+C(t)=\frac{\Omega(t)}{\lambda q(t)}.
+\]
+The signed amplitudes are $\Theta,\Omega:I\to\mathbb R$.
+Define the added fields
+\begin{equation}
+\vartheta=\Theta F(s),\qquad
+\psi=\frac{\Omega}{\lambda^2q}P(s),\qquad
+v=CJ\zeta F(s),\qquad
+\varpi=\Omega F'(s).
+\label{eq:bc-wave}
+\end{equation}
+Every identity below concerns these original fields.
+
+\begin{proposition}[Exact uncut inviscid wave, including pressure]
+\label{prop:bc-uncut}
+For $\kappa=\nu=0$, take the unique smooth amplitude solution with any
+real initial amplitudes and
+\begin{equation}
+\dot\Theta=-\frac{J\zeta\cdot G}{\lambda q}\Omega,\qquad
+\dot\Omega=\lambda\zeta_1\Theta.
+\label{eq:bc-amplitudes}
+\end{equation}
+Define
+\begin{equation}
+h=\dot C J\zeta+2C D J\zeta-\Theta e_2,\qquad
+\pi(x,t)=-\frac{\zeta\cdot h}{\lambda q}P(s(x,t)).
+\label{eq:bc-pressure}
+\end{equation}
+Then
+\[
+\theta=\theta_b+\vartheta,\qquad u=u_b+v,\qquad p=p_b+\pi
+\]
+satisfy the full inviscid scalar and momentum equations
+\eqref{eq:bc-scalar-pde}--\eqref{eq:bc-momentum-pde} with exactly the
+same prescribed forces \eqref{eq:bc-base-scalar}--\eqref{eq:bc-base-vector}.
+Their vorticity is
+$\omega=D_{21}-D_{12}+\varpi$.
+\end{proposition}
+
+\begin{proof}
+First $\nabla s=\lambda\zeta$. Since $P'=F$,
+\[
+\nabla^\perp\psi=\frac{\Omega}{\lambda q}J\zeta F(s)=v,\qquad
+\Delta\psi=\frac{\Omega}{\lambda^2q}\lambda^2q F'(s)=\varpi.
+\]
+Also
+\[
+\operatorname{div}v=C\lambda(J\zeta\cdot\zeta)F'(s)=0.
+\]
+Write $L_b=\partial_t+(Dx)\cdot\nabla$. The precise phase calculation is
+\[
+L_bs=\lambda\dot\zeta\cdot x+\lambda\zeta\cdot Dx
+=\lambda(\dot\zeta+D^T\zeta)\cdot x=0.
+\]
+The wave gradients are
+\[
+\nabla\vartheta=\lambda\Theta\zeta F'(s),\qquad
+\nabla\varpi=\lambda\Omega\zeta F''(s).
+\]
+Their scalar products with $v$ vanish because $J\zeta\cdot\zeta=0$.
+The background vorticity $D_{21}-D_{12}$ is spatially constant, so
+$v\cdot\nabla\omega_b=0$ as well. Consequently the scalar residual
+increment is exactly
+\[
+L_b\vartheta+v\cdot\nabla\theta_b+v\cdot\nabla\vartheta
+=\left(\dot\Theta+\frac{\Omega}{\lambda q}J\zeta\cdot G\right)F(s)=0.
+\]
+The vorticity residual increment is exactly
+\[
+L_b\varpi+v\cdot\nabla\omega_b+v\cdot\nabla\varpi-\partial_1\vartheta
+=(\dot\Omega-\lambda\zeta_1\Theta)F'(s)=0.
+\]
+Thus far this is the scalar--vorticity calculation. We next prove its
+explicit lift to the momentum equation.
+
+Write
+$D=\left(\begin{smallmatrix}a&b\\c&-a\end{smallmatrix}\right)$.
+Multiplication gives $DJ+JD^T=0$. Hence
+$J\dot\zeta=-JD^T\zeta=DJ\zeta$. The phase identity and
+$v\cdot\nabla v=0$ give
+\begin{align*}
+L_bv+(v\cdot\nabla)u_b+(v\cdot\nabla)v-\vartheta e_2
+&=(\dot C J\zeta+CJ\dot\zeta+CDJ\zeta-\Theta e_2)F(s)\\
+&=hF(s).
+\end{align*}
+To show that the pressure in \eqref{eq:bc-pressure} cancels this exact
+vector, compute
+\[
+\dot q=-2\zeta\cdot D^T\zeta=-2\zeta\cdot D\zeta,\qquad
+(J\zeta)\cdot DJ\zeta=-\zeta\cdot D\zeta=\frac{\dot q}{2}.
+\]
+The second equality follows by multiplication with the displayed
+trace-free matrix, without symmetry assumptions on $D$. Therefore
+\[
+(J\zeta)\cdot h
+=\dot Cq+C\dot q-\Theta\zeta_1
+=\frac{\dot\Omega}{\lambda}-\Theta\zeta_1=0.
+\]
+The vectors $\zeta,J\zeta$ are orthogonal and have the same positive
+squared length $q$, so
+$h=q^{-1}(\zeta\cdot h)\zeta$.
+Finally
+\[
+\nabla\pi=-\frac{\zeta\cdot h}{q}\zeta F(s)=-hF(s).
+\]
+The momentum residual increment consequently vanishes component by
+component. The already computed divergence and curl establish the
+remaining claims.
+\end{proof}
+
+If $F(s)=\sin s$, the mean-zero primitive is $P(s)=-\cos s$.
+The signs in \eqref{eq:bc-wave} then read
+\[
+\psi=-\frac{\Omega}{\lambda^2q}\cos s,\qquad
+v=\frac{\Omega}{\lambda q}J\zeta\sin s,\qquad
+\varpi=\Omega\cos s,
+\]
+so they agree with the sine-wave presentation, including its negative
+streamfunction coefficient.
+
+The profile can also be chosen exactly linear near zero. For completeness,
+fix $0<a<b<\pi$, put $\rho(t)=e^{-1/t}$ for $t>0$ and $\rho(t)=0$
+for $t\leq0$, and set
+\[
+\chi(s)=\frac{\rho(b^2-s^2)}
+{\rho(b^2-s^2)+\rho(s^2-a^2)},\qquad
+F(s)=\sum_{m\in\mathbb Z}(s-2\pi m)\chi(s-2\pi m).
+\]
+The denominator is strictly positive: its two arguments cannot both be
+nonpositive because $a<b$. The function $\rho$ is smooth at zero
+since each one-sided derivative is a polynomial in $1/t$ times
+$e^{-1/t}$ and tends to zero as $t\downarrow0$.
+Thus $\chi$ is smooth and even, equals one for $|s|\leq a$, and
+vanishes for $|s|\geq b$. The sum is locally finite, periodic, odd,
+and equals $s$ for $|s|\leq a$. In that region,
+\[
+\vartheta=\lambda\Theta\,\zeta\cdot x,\qquad
+v=\frac{\Omega}{q}J\zeta\,(\zeta\cdot x),\qquad \varpi=\Omega.
+\]
+In particular
+\begin{equation}
+\nabla\vartheta(0,t)=\lambda\Theta\zeta,\qquad
+Dv(0,t)=\frac{\Omega}{q}J\zeta\otimes\zeta.
+\label{eq:bc-central-gradient}
+\end{equation}
+These two identities also hold for the sine profile since
+$F(0)=0$ and $F'(0)=1$.
+
+\subsection{Thermal diffusion and viscosity}
+
+For the same general profile, subtracting the affine background from
+the diffusive equations gives the exact scalar and vorticity residuals
+\begin{align}
+R_\theta&=
+\left(\dot\Theta+\frac{\Omega}{\lambda q}J\zeta\cdot G\right)F(s)
+-\kappa\lambda^2q\,\Theta F''(s),\label{eq:bc-general-diffusion-scalar}\\
+R_\omega&=(\dot\Omega-\lambda\zeta_1\Theta)F'(s)
+-\nu\lambda^2q\,\Omega F'''(s).
+\label{eq:bc-general-diffusion-vorticity}
+\end{align}
+Indeed, $\Delta\vartheta=\lambda^2q\,\Theta F''(s)$ and
+$\Delta\varpi=\lambda^2q\,\Omega F'''(s)$, while all advective
+cancellations proved above still hold. Thus the general profile is
+not automatically closed under the diffusive equations.
+
+For the sine profile, $F''=-F$ and $F'''=-F'$, and the exact amplitude
+equations are instead
+\begin{equation}
+\dot\Theta=-\kappa\lambda^2q\,\Theta
+-\frac{J\zeta\cdot G}{\lambda q}\Omega,\qquad
+\dot\Omega=\lambda\zeta_1\Theta-\nu\lambda^2q\,\Omega.
+\label{eq:bc-diffusive-amplitudes}
+\end{equation}
+These equations also lift to the full diffusive momentum equation
+without changing the prescribed background forces. In fact replace
+$h$ in \eqref{eq:bc-pressure} by
+\[
+h_\nu=\dot C J\zeta+2CDJ\zeta+\nu\lambda^2q\,C J\zeta-\Theta e_2
+\]
+and put
+$\pi_\nu=-(\zeta\cdot h_\nu)P(s)/(\lambda q)$.
+The additional momentum term is exactly
+$-\nu\Delta v=\nu\lambda^2q\,v$.
+Moreover
+\[
+J\zeta\cdot h_\nu
+=\frac{\dot\Omega+\nu\lambda^2q\,\Omega}{\lambda}
+-\Theta\zeta_1=0
+\]
+by \eqref{eq:bc-diffusive-amplitudes}. The same orthogonal decomposition
+and gradient calculation therefore give
+$\nabla\pi_\nu=-h_\nu F(s)$, proving the asserted full momentum identity.
+
+\subsection{The frozen matrix with every frequency factor retained}
+
+Fix
+\[
+D=0,\qquad G=-Ae_2,\qquad A>0,\qquad
+\zeta=r(\sin\varphi,\cos\varphi),\qquad r>0,\quad\varphi\in\mathbb R.
+\]
+Here $r,\lambda,A,\varphi$ are constants, and $k=\lambda r>0$
+is the magnitude of the physical wavevector.
+This is an exact stationary unforced background when
+\[
+u_b=0,\quad\theta_b=-Ax_2,\quad p_b=-\frac A2x_2^2:
+\quad \nabla p_b=\theta_be_2,\quad f_{\theta,b}=f_{u,b}=0.
+\]
+Its affine temperature does not decay in space.
+
+Since $J\zeta=r(-\cos\varphi,\sin\varphi)$, we have
+$J\zeta\cdot G=-Ar\sin\varphi$ and $\zeta_1=r\sin\varphi$.
+Equations \eqref{eq:bc-diffusive-amplitudes} become
+\begin{equation}
+\frac{d}{dt}\begin{pmatrix}\Theta\\\Omega\end{pmatrix}
+=
+B\begin{pmatrix}\Theta\\\Omega\end{pmatrix},\qquad
+B=\begin{pmatrix}
+-\kappa k^2&A\sin\varphi/k\\
+k\sin\varphi&-\nu k^2
+\end{pmatrix}.
+\label{eq:bc-frozen-matrix}
+\end{equation}
+No wavelength or coefficient has been absorbed into a new unit system.
+
+\begin{proposition}[Exact growth threshold for the frozen sine wave]
+The two eigenvalues of \eqref{eq:bc-frozen-matrix} are
+\begin{equation}
+\mu_\pm=-\frac{(\kappa+\nu)k^2}{2}
+\ \pm\
+\sqrt{\frac{(\kappa-\nu)^2k^4}{4}+A\sin^2\varphi}.
+\label{eq:bc-eigenvalues}
+\end{equation}
+There is a strictly positive eigenvalue if and only if
+\begin{equation}
+A\sin^2\varphi>\kappa\nu\,\lambda^4r^4.
+\label{eq:bc-growth-threshold}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Direct expansion yields
+\[
+\det(\mu\mathrm{Id}-B)
+=(\mu+\kappa k^2)(\mu+\nu k^2)-A\sin^2\varphi
+=\mu^2+(\kappa+\nu)k^2\mu+\kappa\nu k^4-A\sin^2\varphi.
+\]
+Completing the square gives \eqref{eq:bc-eigenvalues}.
+The expression under the square root is nonnegative.
+Since $\kappa,\nu\geq0$, $\mu_-\leq0$, and $\mu_+>0$ is equivalent
+to the square root exceeding $(\kappa+\nu)k^2/2$.
+Both quantities are nonnegative, so squaring is an equivalence.
+Subtracting $(\kappa+\nu)^2k^4/4$ from the radicand gives
+$A\sin^2\varphi-\kappa\nu k^4$. Finally $k^4=\lambda^4r^4$.
+This proves both directions, including the strict inequality.
+\end{proof}
+
+For $\kappa=\nu=0$ and $0<\varphi<\pi$, the positive eigenvalue is
+$\sqrt A\sin\varphi$ and its eigenline is
+\[
+\Omega=\frac{\lambda r}{\sqrt A}\Theta.
+\]
+Substitution into both rows of \eqref{eq:bc-frozen-matrix} proves
+this statement directly. Thus along that line
+\[
+\Theta(t)=\Theta(0)e^{\sqrt A\sin\varphi\,t},\qquad
+\Omega(t)=\frac{\lambda r}{\sqrt A}\Theta(0)
+e^{\sqrt A\sin\varphi\,t}.
+\]
+Negative $\Theta(0)$ gives negative $\Omega$ and, by
+\eqref{eq:bc-central-gradient}, a temperature-gradient increment
+pointing along $-\zeta$. Its Euclidean magnitude is
+$\lambda r|\Theta|$, whereas the sine temperature amplitude is
+$|\Theta|$. Also
+$Dv(0)=\Omega Je(\varphi)\otimes e(\varphi)$ for the original
+$e(\varphi)=(\sin\varphi,\cos\varphi)$.
+
+If $\kappa,\nu>0$ with $A$ fixed, the threshold fails whenever
+$k^4\geq A/(\kappa\nu)$, because $\sin^2\varphi\leq1$.
+If $\kappa=0$, $\nu>0$, and $\sin\varphi\ne0$, the positive rate is
+still strictly positive, but the exact rationalized expression is
+\[
+\mu_+=
+\frac{A\sin^2\varphi}
+{\sqrt{\nu^2k^4/4+A\sin^2\varphi}+\nu k^2/2}
+\leq \frac{A\sin^2\varphi}{\nu k^2}.
+\]
+The equality comes from multiplication by the conjugate, and the
+bound uses a denominator at least $\nu k^2$.
+Thus even in this one-diffusion case the inviscid growth rate cannot
+be carried over unchanged.
+
+A fixed finite-dimensional matrix in \eqref{eq:bc-frozen-matrix}
+does not produce a finite-time singularity: its solution is
+$\sum_{n=0}^{\infty}t^nB^n/n!$ times the initial vector, bounded by
+$e^{|t|\|B\|}$ times that vector's norm on every bounded time interval.
+The spatial fields constructed from it are smooth at every finite
+time. A nonzero uncut wave also has no finite spatial $L^2$ norm:
+on a strip of positive width where its periodic profile has
+magnitude bounded below, the profile is constant in the unbounded
+direction perpendicular to $\zeta$, so integrating its square in
+that direction diverges. The affine background separately fails
+the spatial decay requirements.
+
+\subsection{Exact common damping through growth, steering and holding}
+
+The released construction uses a growth interval followed by a rotation
+that returns the new vorticity amplitude to zero. Its holding interval
+then prepares the next layer. The following identity computes the effect
+of equal diffusion coefficients on the sine-wave amplitude system for
+the same prescribed affine background, including time-dependent phase
+length and steering. It does not assume that the background generated
+by a whole family of interacting layers is unchanged by viscosity.
+
+Retain a compact interval $[t_0,t_1]$, the original $D,G,\zeta,\lambda$,
+and $q=|\zeta|^2$. Define
+\[
+ A_0(t)=\begin{pmatrix}
+ 0&-(J\zeta\cdot G)/(\lambda q)\\
+ \lambda\zeta_1&0
+ \end{pmatrix},\qquad
+ d(t,t_0)=\exp\left(-\nu\lambda^2\int_{t_0}^tq(s)\,ds\right).
+\]
+For $\kappa=\nu>0$, the exact viscous amplitude matrix is
+$A_0(t)-\nu\lambda^2q(t)\mathrm{Id}$. Let $Z_E=(\Theta_E,\Omega_E)$
+be the uniquely defined solution of $Z_E'=A_0Z_E$ with any real
+initial pair. Then the viscous solution with that same pair is
+\begin{equation}\label{eq:bc-common-damping}
+ Z_\nu(t)=d(t,t_0)Z_E(t).
+\end{equation}
+Indeed $d'=-\nu\lambda^2qd$, and the ordinary product rule gives
+\[
+ (dZ_E)'=(A_0-\nu\lambda^2q\mathrm{Id})(dZ_E).
+\]
+Also $d(t_0,t_0)=1$. The existence and uniqueness argument for the
+linear system given earlier in this section proves the assertion and
+its converse after multiplication by $d^{-1}$. The scalar factor
+commutes with $A_0(t)$ even when the matrices $A_0(t)$ at different
+times do not commute with each other.
+
+Since $d>0$ at each finite time, zeros and signs of both amplitude
+components are preserved at exactly the same times in these two
+systems. In particular, a return $\Omega_E(t_*)=0$ remains a return
+$\Omega_\nu(t_*)=0$. During a subsequent interval where $\zeta_1=0$
+and the initial vorticity is zero, uniqueness gives $\Omega_E=0$,
+$\Theta_E$ constant, and
+\[
+ \Omega_\nu(t)=0,\qquad
+ \Theta_\nu(t)=\Theta_\nu(t_*)
+ \exp\left(-\nu\lambda^2\int_{t_*}^tq(s)\,ds\right).
+\]
+Thus the held vorticity remains zero while the held temperature
+amplitude decays by this exact factor.
+
+When $\Theta_E(t_0)\ne0$ and $\Theta_E(t_1)\ne0$, put
+$g=|\Theta_E(t_1)|/|\Theta_E(t_0)|>0$.
+The viscous amplitude gain on the complete chosen interval is exactly
+\begin{equation}\label{eq:bc-cycle-gain}
+ \frac{|\Theta_\nu(t_1)|}{|\Theta_\nu(t_0)|}
+ =g\exp\left(-\nu\lambda^2\int_{t_0}^{t_1}q(s)\,ds\right).
+\end{equation}
+It exceeds one precisely when
+$\log g>\nu\lambda^2\int_{t_0}^{t_1}q(s)\,ds$, by monotonicity
+of the logarithm. In the frozen growing eigenline, with
+$0<\varphi<\pi$, this gives the retained rate
+$\sqrt A\sin\varphi-\nu\lambda^2r^2$ and exactly the equal-diffusion
+case of \eqref{eq:bc-growth-threshold}.
+
+For a general periodic phase profile, its Fourier mode $m$ instead
+has the factor
+\[
+ d_m(t,t_0)=\exp\left(-\nu m^2\lambda^2
+                                  \int_{t_0}^tq(s)\,ds\right).
+\]
+This follows by the same matrix product calculation after
+$\partial_s^2e^{ims}=-m^2e^{ims}$. The sine factor $d_1$ applies to
+modes $|m|=1$. Nonzero modes with distinct absolute frequencies have
+different damping factors for $t>t_0$, so their sum generally has no
+common scalar damping factor;
+the full Fourier evolution is the one constructed in
+Section~\ref{sec:localized-layer}.
+
+That section also gives exact finite localized corrections with their
+remaining residual. Section~\ref{sec:swirl-carrier} gives the full
+three-dimensional swirl transfer and its computed force. Neither the
+frozen eigenvalue nor the common-damping identity establishes a
+singular limit of the coupled, localized sequence.

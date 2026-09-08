@@ -1,0 +1,514 @@
+% Standalone proof body. The wrapper is metric_volume_lift_standalone.tex.
+\section{Exact metric realization and the circle volume lift}
+\label{sec:ml-realization}
+
+This section proves the metric and volume maps needed by the rational
+cylinder reduction. It does not assert existence of a nonzero solution to
+the nonlinear reduced equations. All constructions below are explicit maps
+on the stated data, and all residual identities hold for arbitrary smooth
+data in their domains, including data with nonzero residual.
+
+\subsection{Domains, conventions, and the source ordering}
+Let $N$ be a smooth, Hausdorff, second-countable manifold of dimension
+$n\geq2$. Let $v,w\in\Gamma(TN)$ be smooth and pointwise linearly independent,
+and let $\theta,\eta\in\Omega^1(N)$. The independence requirement is pointwise
+on all of $N$; the same results apply on any open independent locus without
+extending a formula across its rank-changing boundary. Define
+\begin{equation}\label{eq:ml-H}
+ H=\begin{pmatrix}a&b\\c&d\end{pmatrix}
+  :=\begin{pmatrix}\theta(v)&\theta(w)\\\eta(v)&\eta(w)\end{pmatrix},
+ \qquad A(X):=\begin{pmatrix}\theta(X)\\\eta(X)\end{pmatrix}.
+\end{equation}
+No rescaling of $v,w$, their order, or the given one-forms is made. A
+Riemannian metric has positive definiteness as part of its definition.
+When a volume form is prescribed, $N$ is additionally oriented and
+$\mu\in\Omega^n(N)$ is smooth and everywhere positive for that orientation.
+The metric volume form is positive for the same orientation. Divergence is
+defined by $\mathcal L_X\mu=(\operatorname{div}_\mu X)\mu$.
+For a two-form $\omega$, the contraction convention is
+$(\iota_X\omega)(Y)=\omega(X,Y)$.
+
+The primary 2024 post defines $\theta=h(v,\cdot)$ and writes $\lambda$ for
+$h(w,\cdot)$, corresponding to $\eta$ here. Its displayed equation (7)
+orders the rows as $(\lambda,\theta)$ while ordering the columns as $(v,w)$.
+Thus its displayed matrix is $\Pi_{\rm swap}H$, with
+\begin{equation}\label{eq:ml-source-order}
+ \Pi_{\rm swap}=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+ \det(\Pi_{\rm swap}H)=-\det H.
+\end{equation}
+For an independent pair realized by a positive metric, $\det H>0$, so
+the displayed $\Pi_{\rm swap}H$ is not a positive definite Gram matrix. Simultaneously
+reordering both arguments would give $\Pi_{\rm swap}H\Pi_{\rm swap}^T$, which is a Gram matrix in
+the order $(w,v)$. Equation \eqref{eq:ml-source-order} identifies the exact
+permutation; the correct duality map remains the one proved below.
+The incoming report uses the correctly ordered $H$.
+See \url{https://terrytao.wordpress.com/2024/09/08/a-possible-approach-to-finite-time-blowup-for-the-euler-equations/}.
+
+\subsection{All realizing metrics, globally}
+\begin{proposition}[Complete realization on the independent locus]
+\label{prop:ml-metric}
+There exists a smooth Riemannian metric $h$ on $N$ satisfying
+\begin{equation}\label{eq:ml-duality}
+ h(v,X)=\theta(X),\qquad h(w,X)=\eta(X)\quad(X\in TN)
+\end{equation}
+exactly when $H$ is symmetric positive definite at every point. In this
+case put $D=\operatorname{span}(v,w)$, $E=\ker\theta\cap\ker\eta$, and define
+\begin{equation}\label{eq:ml-projection}
+ P(X)=(v\ \ w)H^{-1}A(X),\qquad Q(X)=X-P(X).
+\end{equation}
+Then $P$ and $Q$ are smooth complementary projections with images $D$ and
+$E$. The full set of metrics satisfying \eqref{eq:ml-duality} is
+\begin{equation}\label{eq:ml-family}
+ h_k(X,Y)=A(X)^TH^{-1}A(Y)+k(QX,QY),
+\end{equation}
+where $k$ ranges over the smooth positive definite metrics on $E$.
+For $n=2$, $E$ is the zero bundle and the first term is the unique metric.
+\end{proposition}
+\begin{proof}
+If \eqref{eq:ml-duality} holds, its restriction to $(v,w)$ gives the Gram
+matrix of the independent pair. Symmetry follows from symmetry of $h$;
+for $(s,t)\ne(0,0)$ its quadratic form equals
+$h(sv+tw,sv+tw)>0$. This proves necessity, including $b=c$.
+
+Conversely suppose $H=H^T>0$. The map $A:TN\to N\times\mathbb R^2$
+has rank two because its restriction to $D$ is the invertible matrix $H$.
+In local coordinates its kernel is a smooth rank-$(n-2)$ subbundle:
+an invertible two-column minor allows solving two components smoothly in
+terms of the remaining components. Thus $E$ is a smooth vector bundle.
+For $X\in TN$, $A(PX)=HH^{-1}A(X)=A(X)$, so $QX\in E$;
+also $Pv=v$, $Pw=w$, and $P|_E=0$. These equalities prove
+$P^2=P$, $Q^2=Q$, $PQ=QP=0$, and $TN=D\oplus E$.
+The entries of $H^{-1}$ are smooth because $\det H$ never vanishes,
+so both projections are smooth globally.
+
+For completeness, a global positive metric on $E$ can be constructed as
+follows. Choose a locally finite trivializing cover and a smooth partition
+of unity subordinate to it, and give each local trivialization its
+coordinate Euclidean quadratic form. Their partition-weighted sum is
+smooth. At a point, at least one nonzero partition weight multiplies a
+strictly positive quadratic form on any nonzero vector in that fibre;
+the other summands are nonnegative. This produces a smooth positive $k$.
+This construction uses only the stated smooth-manifold hypotheses, which
+give a locally finite refinement and smooth partitions of unity.
+
+Formula \eqref{eq:ml-family} is smooth and symmetric. If $X\ne0$, then
+either $A(X)\ne0$, making its first quadratic term positive, or
+$A(X)=0$ and $QX=X\ne0$, making the second term positive. Moreover
+$A(v)=He_1$, $A(w)=He_2$, $Qv=Qw=0$. Hence
+$h_k(v,X)=e_1^TA(X)=\theta(X)$ and
+$h_k(w,X)=e_2^TA(X)=\eta(X)$, proving sufficiency.
+
+To prove exhaustion, any realizing $h$ has $h(D,E)=0$ by its two prescribed
+dualities. Its restriction to $D$ is $H$ in the given frame $(v,w)$.
+Writing $X=PX+QX$, $Y=PY+QY$ therefore gives
+\eqref{eq:ml-family} with $k=h|_E$. Conversely every such $k$ was already
+shown to work. If $n=2$, $E$ has rank zero, leaving no free term.
+\end{proof}
+
+\subsection{Exact compatibility with a prescribed volume}
+\begin{proposition}[Dimension two and dimensions at least three]
+\label{prop:ml-volume}
+Retain $H=H^T>0$ and the specified orientation and positive $\mu$.
+If $n=2$, a metric satisfying \eqref{eq:ml-duality} and
+$d\operatorname{vol}_h=\mu$ exists exactly when
+\begin{equation}\label{eq:ml-2d-condition}
+ \mu(v,w)^2=\det H=\theta(v)\eta(w)-\theta(w)\eta(v).
+\end{equation}
+If $n\geq3$, such a metric always exists. Explicitly choose any $k_0>0$
+on $E$, form $h_0=h_{k_0}$, define the positive smooth ratio $q$ by
+\begin{equation}\label{eq:ml-q}
+ \mu=q\,d\operatorname{vol}_{h_0},\qquad m=n-2,
+\end{equation}
+and set $k=q^{2/m}k_0$ in \eqref{eq:ml-family}.
+\end{proposition}
+\begin{proof}
+For $n=2$, the ordered frame $(v,w)$ is either positive or negative for
+the specified orientation on each connected component. Let
+$\varepsilon=\operatorname{sgn}\mu(v,w)\in\{1,-1\}$, which is locally
+constant because $\mu(v,w)$ never vanishes. The metric volume of this
+frame is exactly $\varepsilon\sqrt{\det H}$. Thus its equality to
+$\mu(v,w)$ is equivalent to \eqref{eq:ml-2d-condition}, because both
+have the sign $\varepsilon$. Equality on this frame is equality of the
+two top-degree forms. The metric was unique in
+Proposition~\ref{prop:ml-metric}, proving both directions without changing
+the orientation or setting any determinant to a normalized value.
+
+For $n\geq3$, choose any local frame $e_1,\ldots,e_m$ of $E$. In the
+unchanged frame $(v,w,e_1,\ldots,e_m)$, the metrics $h_0$ and $h_k$ have
+matrices $\operatorname{diag}(H,K_0)$ and
+$\operatorname{diag}(H,q^{2/m}K_0)$, respectively. Consequently
+\[
+ \frac{\det\operatorname{diag}(H,q^{2/m}K_0)}
+      {\det\operatorname{diag}(H,K_0)}
+ =\frac{(\det H)q^{2m/m}\det K_0}{(\det H)\det K_0}=q^2.
+\]
+Both metric volume forms have the specified orientation and their positive
+ratio is therefore $q$. It follows from \eqref{eq:ml-q} that
+$d\operatorname{vol}_{h_k}=\mu$. The function $q^{2/m}$ is globally smooth
+and positive, so the metric is global. No trivialization of $E$ was
+required globally.
+\end{proof}
+
+The assertion in the incoming report that the local construction does
+not freely prescribe volume requires this dimensional refinement:
+with an everywhere independent pair the complete same-manifold
+obstruction is \eqref{eq:ml-2d-condition} in dimension two, whereas there
+is no prescribed-positive-volume obstruction in dimensions at least three.
+Changing $k$ can change acceleration as a vector. The exact acceleration
+relation, including the inverse metric, is proved next.
+
+\subsection{Dualization of each reduced acceleration}
+For a realizing metric $h$, let $\nabla$ denote its Levi-Civita
+connection and let $\flat_h:TN\to T^*N$ and
+$\sharp_h:T^*N\to TN$ be its mutually inverse metric dualities.
+Equations \eqref{eq:wb-accel} and \eqref{eq:wb-polarized} have already
+proved the full acceleration and polarization identities for this
+metric, with the same contraction convention. We now keep their inverse
+metric maps explicit while varying the complement metric.
+
+For a prescribed scalar $\varphi\in C^\infty(N)$ define, with all
+coefficients retained,
+\begin{align}
+ B_0&=\varphi\eta+\iota_vd\theta+\tfrac12d[\theta(v)],\label{eq:ml-B0}\\
+ B_1&=-4\varphi\theta+\iota_vd\eta+\iota_wd\theta
+                   +\tfrac12d[\theta(w)+\eta(v)],\label{eq:ml-B1}\\
+ B_2&=-3\varphi\eta+\iota_wd\eta+\tfrac12d[\eta(w)].\label{eq:ml-B2}
+\end{align}
+The exact vector residuals are
+\begin{equation}\label{eq:ml-residuals}
+ \begin{split}
+ \varphi w+\nabla_vv&=\sharp_h B_0,\\
+ -4\varphi v+\nabla_vw+\nabla_wv&=\sharp_h B_1,\\
+ -3\varphi w+\nabla_ww&=\sharp_h B_2.
+ \end{split}
+\end{equation}
+These are identities for arbitrary smooth data in the domain of
+Proposition~\ref{prop:ml-metric}. In particular vanishing of the three
+one-form residuals is equivalent to vanishing of the three vector
+residuals, for each realizing $h$, since $\sharp_h$ is an isomorphism.
+The residuals $B_j$ are independent of $k$; their vector representatives
+are related for any two realizing metrics by the explicit fibrewise map
+$\sharp_{h_{k_2}}\flat_{h_{k_1}}$. Together with the volume construction
+this proves the exact realization relation for the reduced system,
+including its two divergence constraints
+$\operatorname{div}_\mu v=0$ and $\operatorname{div}_\mu w=2\varphi$.
+It does not assume these constraints or $B_j=0$ have been solved.
+
+\subsection{The circle lift as a map of metric and volume data}
+\label{subsec:ml-circle}
+Here the base metric $h$ is fixed; it may be any smooth Riemannian metric,
+including the metric already realizing the given pair. The construction
+in this subsection needs no pair of independent fields and works in
+every base dimension. Keep the given $\mu$ and define $f>0$ by
+\begin{equation}\label{eq:ml-f}
+ \mu=f\,d\operatorname{vol}_h.
+\end{equation}
+Fix a circle period $L>0$ without normalizing it. Put
+\begin{equation}\label{eq:ml-lift-metric}
+ \widehat N=N\times(\mathbb R/L\mathbb Z),\qquad
+ \pi:\widehat N\to N,\quad\pi(y,s)=y,\qquad
+ \widehat h=\pi^*h+(f\circ\pi)^2ds\otimes ds.
+\end{equation}
+The form $ds$ is the global invariant one-form induced from $\mathbb R$;
+the coordinate $s$ itself is only local modulo $L$.
+The product orientation is specified by a positive base form followed
+by $ds$. Define the injective linear lift
+\begin{equation}\label{eq:ml-J}
+ \mathcal J:\Gamma(TN)\longrightarrow\Gamma(T\widehat N),\qquad
+ (\mathcal JX)_{(y,s)}=(X_y,0).
+\end{equation}
+Its image consists precisely of the horizontal vector fields invariant
+under all circle translations. In coordinates the coefficients of a
+translation-invariant horizontal field depend only on $y$, yielding
+the inverse of $\mathcal J$. For functions and differential forms the
+map is the ordinary pullback $\pi^*$, which is also injective:
+restriction to the slice $y\mapsto(y,s_0)$ is a left inverse.
+
+\begin{proposition}[Volume and first-order operators of the lift]
+\label{prop:ml-circle-first}
+The data \eqref{eq:ml-lift-metric} satisfy
+\begin{align}
+ d\operatorname{vol}_{\widehat h}&=\pi^*\mu\wedge ds,
+                                                        \label{eq:ml-lift-vol}\\
+ (\mathcal JX)^{\flat_{\widehat h}}&=\pi^*(X^{\flat_h}),
+ \qquad\operatorname{grad}_{\widehat h}\pi^*F
+        =\mathcal J(\operatorname{grad}_hF),             \label{eq:ml-lift-dual}\\
+ \operatorname{div}_{\widehat h}\mathcal JX
+        &=\pi^*(\operatorname{div}_\mu X),              \label{eq:ml-lift-div}\\
+ \widehat\nabla_{\mathcal JX}\mathcal JY
+        &=\mathcal J(\nabla_XY),                       \label{eq:ml-lift-connection}\\
+ [\mathcal JX,\mathcal JY]&=\mathcal J[X,Y],\qquad
+ d\pi^*\alpha=\pi^*d\alpha,\qquad
+ \iota_{\mathcal JX}\pi^*\alpha=\pi^*(\iota_X\alpha).
+                                                        \label{eq:ml-pullback}
+\end{align}
+For a time-dependent field $X(t)$ the lift commutes with $\partial_t$.
+\end{proposition}
+\begin{proof}
+Take positively oriented local coordinates $y^1,\ldots,y^n$ on $N$.
+Write $h=(h_{ij})$, $h^{-1}=(h^{ij})$, and $D_h=\det(h_{ij})>0$.
+The matrix of $\widehat h$ in the unchanged coordinates $(y,s)$ is
+$\operatorname{diag}(h_{ij},f^2)$, with determinant $D_hf^2$.
+Its positive volume is therefore
+$f\sqrt{D_h}\,dy^1\wedge\cdots\wedge dy^n\wedge ds$, proving
+\eqref{eq:ml-lift-vol} with its orientation and coefficient.
+Pairing $(X,0)$ with $(Y,a\partial_s)$ gives $h(X,Y)$, proving the
+duality identity. Pairing $(\operatorname{grad}_hF,0)$ with the same
+arbitrary vector gives $dF(Y)$, proving the gradient identity.
+
+If $\mu=\rho\,dy^1\wedge\cdots\wedge dy^n$, expand its Lie derivative
+using $\mathcal L_X dy^j=dX^j$ and the product rule. Only the coefficient
+of $dy^1\wedge\cdots\wedge dy^n$ survives, giving
+\begin{equation}\label{eq:ml-div-coord}
+ \operatorname{div}_\mu X
+     =\rho^{-1}\partial_i(\rho X^i)
+     =\operatorname{div}_hX+X(\log f),
+ \qquad\rho=f\sqrt{D_h}.
+\end{equation}
+The lifted field has zero $s$ component, so the identical divergence
+calculation with density $\rho$ in $(y,s)$ proves
+\eqref{eq:ml-lift-div}.
+
+For clarity, all potentially nonzero lifted Christoffel coefficients are
+computed from
+$\widehat\Gamma^A_{BC}=\tfrac12\widehat h^{AD}
+(\partial_B\widehat h_{CD}+\partial_C\widehat h_{BD}
+-\partial_D\widehat h_{BC})$:
+\begin{align}
+ \widehat\Gamma^k_{ij}&=\Gamma^k_{ij},&
+ \widehat\Gamma^s_{ij}&=0,&
+ \widehat\Gamma^k_{is}&=\widehat\Gamma^k_{si}=0,\notag\\
+ \widehat\Gamma^s_{is}&=\widehat\Gamma^s_{si}=f^{-1}\partial_i f,&
+ \widehat\Gamma^k_{ss}&=-f h^{kj}\partial_jf,&
+ \widehat\Gamma^s_{ss}&=0.                            \label{eq:ml-Christoffel}
+\end{align}
+For instance the middle coefficient in the second line equals
+$\tfrac12h^{kj}(-\partial_j f^2)=-f h^{kj}\partial_jf$;
+the first equals $\tfrac12 f^{-2}\partial_i f^2$.
+The other equalities follow because there are no mixed metric entries,
+$\partial_s h_{ij}=\partial_s f=0$, and the horizontal inverse block
+is $h^{-1}$. Since $\mathcal JX$ and $\mathcal JY$ have zero vertical
+components, \eqref{eq:ml-Christoffel} proves
+\eqref{eq:ml-lift-connection}, including its zero vertical component.
+
+The coordinate formula for a bracket contains only derivatives of the
+horizontal coefficients, proving the bracket identity. Pulling back a
+form replaces its coefficient functions by functions of $y$ and retains
+the differentials $dy^i$; taking $d$ differentiates those coefficients
+in the same $y$ directions, proving the exterior-derivative identity.
+Evaluation of the alternating forms on arbitrary product tangent vectors
+proves the contraction identity. The map $\mathcal J$ is fixed in time,
+and its coordinate coefficients are those of $X$, proving commutation
+with $\partial_t$.
+\end{proof}
+
+The warping in \eqref{eq:ml-lift-metric} equals the determinant construction
+in Section 3 of the primary 2017 paper: defining
+$D_\mu(h)$ by $d\operatorname{vol}_h=\sqrt{D_\mu(h)}\mu$ gives
+$D_\mu(h)=f^{-2}$ and thus $D_\mu(h)^{-1}=f^2$.
+Our circle has retained period $L$, while that source takes $L=1$.
+Its Section 4 proves a metric realization by another complement;
+\eqref{eq:ml-family} provides the full family in the intrinsic kernel
+complement. See Sections 3--4 of
+\url{https://arxiv.org/html/1707.07807v2}.
+
+In particular set
+$(\widehat v,\widehat w,\widehat\theta,\widehat\eta,
+\widehat\varphi)=(\mathcal Jv,\mathcal Jw,
+\pi^*\theta,\pi^*\eta,\pi^*\varphi)$. Equations
+\eqref{eq:ml-lift-dual} and \eqref{eq:ml-pullback} give the exact
+identities $\widehat B_j=\pi^*B_j$ for all three residuals
+\eqref{eq:ml-B0}--\eqref{eq:ml-B2};
+\eqref{eq:ml-lift-connection} gives the corresponding lift of each vector
+residual, with coefficients $1,-4,-3$ unchanged. The divergence residuals
+lift as
+\[
+ \operatorname{div}_{\widehat h}\widehat v
+       =\pi^*(\operatorname{div}_\mu v),\qquad
+ \operatorname{div}_{\widehat h}\widehat w-2\widehat\varphi
+       =\pi^*(\operatorname{div}_\mu w-2\varphi).
+\]
+Injectivity of pullback and of $\mathcal J$ proves both directions of
+each zero-residual equivalence. Thus the volume obstruction in dimension
+two has an explicit exact bridge to dimension three. This statement
+constructs the bridge for every input tuple; it is not an existence claim
+for a tuple with the nonlinear residuals zero.
+
+\subsection{Time-dependent dynamics and energy}
+Fix a time interval $I\subset\mathbb R$ and smooth
+$U:I\times N\to TN$, $p:I\times N\to\mathbb R$, and
+$F:I\times N\to TN$, with the vector fields based at $y\in N$.
+Define the momentum residual, without discarding pressure or force, by
+\begin{equation}\label{eq:ml-Euler-residual}
+ \mathcal E_{h}(U,p,F)
+    =\partial_tU+\nabla_UU+\operatorname{grad}_hp-F.
+\end{equation}
+The lifted fields are
+$\widehat U=\mathcal JU$, $\widehat p=\pi^*p$,
+$\widehat F=\mathcal JF$. Proposition~\ref{prop:ml-circle-first} proves
+\begin{equation}\label{eq:ml-dynamics}
+ \mathcal E_{\widehat h}(\widehat U,\widehat p,\widehat F)
+   =\mathcal J\mathcal E_h(U,p,F),\qquad
+ \operatorname{div}_{\widehat h}\widehat U
+   =\pi^*\operatorname{div}_\mu U.
+\end{equation}
+Hence $\mathcal J$ is a bijection between the base smooth solution pairs
+of the weighted-volume Euler system
+$\mathcal E_h=0$, $\operatorname{div}_\mu U=0$ and the lifted smooth
+Euler solution pairs whose velocity is horizontal and whose velocity,
+pressure, and specified force are circle-invariant with the given lifts.
+This is a statement about solution sets, proved by the two residual
+identities and the explicit inverses on their images. It neither assumes
+existence for arbitrary initial data nor changes the base divergence
+constraint from $\operatorname{div}_\mu$ to $\operatorname{div}_h$.
+Indeed those two divergences differ by the explicit term $U(\log f)$.
+
+If $N$ is compact without boundary, the energy and its balance are
+also exact. For any smooth $X,Y$,
+\begin{equation}\label{eq:ml-energy-norm}
+ \int_{\widehat N}\widehat h(\mathcal JX,\mathcal JY)
+              d\operatorname{vol}_{\widehat h}
+   =L\int_N h(X,Y)\,\mu.
+\end{equation}
+This follows by \eqref{eq:ml-lift-vol}, the unchanged horizontal inner
+product, and $\int_{\mathbb R/L\mathbb Z}ds=L$.
+Let $E_\mu(U)=\tfrac12\int_Nh(U,U)\mu$.
+For any smooth solution of the base system in \eqref{eq:ml-dynamics},
+metric compatibility and time independence of $h,\mu$ give
+\[
+ \frac{dE_\mu}{dt}
+  =-\int_N U\!\left(\tfrac12h(U,U)+p\right)\mu
+      +\int_Nh(F,U)\mu
+  =\int_Nh(F,U)\mu.
+\]
+For the final equality, let $G=\tfrac12h(U,U)+p$ and use
+$\operatorname{div}_\mu(GU)=U(G)+G\operatorname{div}_\mu U=U(G)$.
+Its integral is zero: $\mathcal L_{GU}\mu=d(\iota_{GU}\mu)$ because
+$d\mu=0$ in top degree, and Stokes' theorem has no boundary term.
+The lifted kinetic energy is $LE_\mu$ and its work balance is multiplied
+by the same $L$. No energy coefficient has been normalized away.
+
+\subsection{Second-order operators: the exact additional terms}
+\label{subsec:ml-second}
+The lift preserves the horizontal connection in
+\eqref{eq:ml-lift-connection}, but tracing over all lifted directions adds
+terms. Define
+$Z=\operatorname{grad}_h\log f$. The scalar Laplacian convention here is
+$\Delta_h F=\operatorname{div}_h\operatorname{grad}_hF$, whose Euclidean
+expression is $\sum_i\partial_i^2F$. By the gradient and divergence
+identities already proved,
+\begin{equation}\label{eq:ml-scalar-Laplace}
+ \Delta_{\widehat h}\pi^*F
+   =\pi^*\big(\Delta_hF+h(Z,\operatorname{grad}_hF)\big).
+\end{equation}
+Indeed $\operatorname{div}_\mu\operatorname{grad}_hF
+=\operatorname{div}_h\operatorname{grad}_hF
++(\operatorname{grad}_hF)(\log f)$ by
+\eqref{eq:ml-div-coord}; the last term is the displayed inner product.
+
+For vector fields use the positive-trace rough operator
+\begin{equation}\label{eq:ml-rough-definition}
+ \mathscr L_hX=\sum_{a=1}^n
+    \left(\nabla_{e_a}\nabla_{e_a}X-
+                        \nabla_{\nabla_{e_a}e_a}X\right),
+\end{equation}
+in any local $h$-orthonormal frame. This is the metric trace of the
+second covariant derivative, so its definition is independent of frame.
+Set $e_0=f^{-1}\partial_s$ on the lift and lift each $e_a$ horizontally.
+The Christoffel formulas prove
+\begin{equation}\label{eq:ml-unit-vertical}
+ \widehat\nabla_{\mathcal JX}e_0=0,\qquad
+ \widehat\nabla_{e_0}\mathcal JX=h(Z,X)e_0,\qquad
+ \widehat\nabla_{e_0}e_0=-\mathcal JZ.
+\end{equation}
+For example the first equality follows from differentiating $f^{-1}$:
+$-f^{-2}X(f)\partial_s+f^{-1}X(\log f)\partial_s=0$.
+The second is $f^{-1}X(\log f)\partial_s$.
+The third is $f^{-2}(-f\operatorname{grad}_hf)=-Z$, since
+$\partial_s f=0$.
+The horizontal trace in \eqref{eq:ml-rough-definition} is exactly
+$\mathcal J\mathscr L_hX$. The remaining term is
+\[
+ \widehat\nabla_{e_0}\big(h(Z,X)e_0\big)
+   -\widehat\nabla_{-\mathcal JZ}\mathcal JX
+   =-h(Z,X)\mathcal JZ+\mathcal J(\nabla_ZX),
+\]
+because $e_0[h(Z,X)]=0$. Thus the full vector formula is
+\begin{equation}\label{eq:ml-rough-lift}
+ \mathscr L_{\widehat h}\mathcal JX
+  =\mathcal J\left(\mathscr L_hX+\nabla_ZX-h(Z,X)Z\right).
+\end{equation}
+
+The form version can be calculated without an unspecified viscosity
+convention. Define the codifferential on differential forms by
+$\delta_h\alpha=-\sum_a\iota_{e_a}\nabla_{e_a}\alpha$ and the
+nonnegative Hodge Laplacian by
+$\Delta_h^{\mathrm H}=d\delta_h+\delta_hd$.
+For every $k$-form $\alpha$,
+\begin{equation}\label{eq:ml-codiff}
+ \delta_{\widehat h}\pi^*\alpha
+       =\pi^*(\delta_h\alpha-\iota_Z\alpha),\qquad
+ \Delta_{\widehat h}^{\mathrm H}\pi^*\alpha
+       =\pi^*(\Delta_h^{\mathrm H}\alpha-\mathcal L_Z\alpha).
+\end{equation}
+Here contractions of zero-forms are zero. To prove the first identity,
+the horizontal frame terms agree with the base terms by
+\eqref{eq:ml-lift-connection} and
+$\widehat\nabla_{\mathcal Je_a}e_0=0$. For $k\geq1$ and horizontal
+$Y_1,\ldots,Y_{k-1}$, the vertical contribution before its minus sign is
+\[
+ (\widehat\nabla_{e_0}\pi^*\alpha)
+       (e_0,\mathcal JY_1,\ldots,\mathcal JY_{k-1})
+ =\alpha(Z,Y_1,\ldots,Y_{k-1}).
+\]
+The derivative of the initially zero evaluation is zero, the derivative
+of its first slot is $-Z$, and derivatives of the other slots are
+vertical and still give zero by alternation. Evaluations with an
+additional vertical slot are zero. This proves the first formula on
+all tangent arguments. Applying $d$, commuting it with pullback, and
+also applying the first identity to $d\alpha$ gives
+$\Delta^{\mathrm H}_{\widehat h}\pi^*\alpha
+=\pi^*(\Delta_h^{\mathrm H}\alpha-d\iota_Z\alpha-\iota_Zd\alpha)$.
+The equality $d\iota_Z+\iota_Zd=\mathcal L_Z$ follows in coordinates
+by differentiating the coefficients of $\alpha$ and of $Z$: its
+coefficient for indices $i_1,\ldots,i_k$ is
+$Z^j\partial_j\alpha_{i_1\cdots i_k}
++\sum_{r=1}^k(\partial_{i_r}Z^j)
+  \alpha_{i_1\cdots i_{r-1}j i_{r+1}\cdots i_k}$,
+which is the coordinate definition of the Lie derivative. This proves
+the second formula, including its sign. For functions it is consistent
+with \eqref{eq:ml-scalar-Laplace} since
+$\Delta_h^{\mathrm H}F=-\Delta_hF$ under the specified conventions.
+
+These identities supply an exact viscous bridge with all added terms.
+For example retain a dimensional viscosity $\nu>0$ and define
+\[
+ \mathcal V_h(U,p,F)
+ =\partial_tU+\nabla_UU+\operatorname{grad}_hp
+                           -\nu\mathscr L_hU-F.
+\]
+Equation \eqref{eq:ml-rough-lift} yields, for every input triple,
+\begin{equation}\label{eq:ml-viscous-residual}
+ \mathcal V_{\widehat h}(\mathcal JU,\pi^*p,\mathcal JF)
+ =\mathcal J\left(\mathcal V_h(U,p,F)
+              -\nu[\nabla_ZU-h(Z,U)Z]\right).
+\end{equation}
+Accordingly the explicitly corrected force
+\begin{equation}\label{eq:ml-viscous-force}
+ \widehat F_{\rm corr}
+ =\mathcal J\left(F-\nu[\nabla_ZU-h(Z,U)Z]\right)
+\end{equation}
+gives the exact identity
+$\mathcal V_{\widehat h}(\mathcal JU,\pi^*p,\widehat F_{\rm corr})
+=\mathcal J\mathcal V_h(U,p,F)$, with divergence still given by
+\eqref{eq:ml-lift-div}. The signs follow by substituting
+\eqref{eq:ml-viscous-force} into \eqref{eq:ml-viscous-residual}; the two
+drift contributions cancel. Equivalently, without changing force, the
+base diffusion operator that lifts is
+$\mathscr L_h+\nabla_Z-(X\mapsto h(Z,X)Z)$.
+If a base field becomes singular, this formula alone gives no bound on
+the corrected force; its exact extra term has been retained. Nor is a
+metric rough operator asserted to equal the Euclidean three-dimensional
+Navier--Stokes operator on a different manifold. The proven morphism is
+\eqref{eq:ml-viscous-residual}, together with its precise force correction,
+between the stated domains and operators.

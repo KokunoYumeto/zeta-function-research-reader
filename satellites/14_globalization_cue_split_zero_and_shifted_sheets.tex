@@ -1,0 +1,988 @@
+\section{Split-zero support and shifted Dedekind sheets}
+\label{sec:gcue-audited-core}
+
+This section reconstructs the common algebraic and analytic core of the overlapping
+split-zero and shifted-sheet notes.  The semiring and semimodule terminology is standard
+in the sense of Golan \cite[Chap.~17, pp.~191--202]{golan1999}.  There is also a precise
+classical analogue: a strong semilattice of groups consists of groups connected by coherent
+structure homomorphisms, with multiplication transported to the meet index
+\cite[\S9.1, pp.~183--184, Thm.~9.1.6]{knauer2011}.  The theorem below is not quoted from
+either source.  It is a join-oriented, $R$-linear refinement proved directly from the
+split-zero scalar action, including its morphisms and quasi-inverse constructions.
+
+\subsection{The split-zero semiring in literal coordinates}
+
+Let $R$ be a nonzero commutative ring with identity.  On the disjoint union
+\[
+ S=G(R):=R\sqcup\{\tau\}
+\]
+define, for $r,r'\in R$,
+\[
+ r\oplus r'=r+r',\qquad r\oplus\tau=\tau\oplus r=r,
+\]
+and
+\[
+ r\odot r'=rr',\qquad r\odot\tau=\tau\odot r=\tau,
+ \qquad \tau\odot\tau=\tau.
+\]
+Thus the semiring zero is $\tau$, whereas
+\[
+ e:=0_R\in R\subset S
+\]
+is a second, supported element lying over the arithmetic zero of $R$.
+
+Write $\mathbb B=\{0,1\}$ for the Boolean semiring and
+\[
+ D_R:=\{(0_R,0)\}\cup(R\times\{1\})\subset R\times\mathbb B.
+\]
+
+\begin{proposition}[Coordinate model, projections, and the unique support character]
+\label{prop:gcue-coordinate-support}
+The map
+\[
+ \Theta_R:S\longrightarrow D_R,
+ \qquad
+ \Theta_R(\tau)=(0_R,0),\qquad \Theta_R(r)=(r,1),
+\]
+is a semiring isomorphism.  The coordinate projections
+\[
+ p_R:D_R\to R,\quad p_R(r,b)=r,
+ \qquad
+ \chi_R:D_R\to\mathbb B,\quad\chi_R(r,b)=b
+\]
+are semiring homomorphisms, and $\chi_R\Theta_R$ is the only unital semiring
+homomorphism $S\to\mathbb B$.  In particular,
+\[
+ p_R^{-1}(0_R)=\{\tau,e\},\qquad
+ \chi_R^{-1}(0)=\{\tau\},\qquad
+ \chi_R^{-1}(1)=R.
+\]
+\end{proposition}
+
+\begin{proof}
+The map is bijective by the displayed disjoint decompositions.  Coordinatewise addition in
+$R\times\mathbb B$ gives
+\[
+ (r,1)+(r',1)=(r+r',1),\qquad (r,1)+(0_R,0)=(r,1),
+\]
+and coordinatewise multiplication gives
+\[
+ (r,1)(r',1)=(rr',1),\qquad (r,1)(0_R,0)=(0_R,0).
+\]
+Hence $D_R$ is closed under both operations and $\Theta_R$ preserves them.  The two
+projections are therefore homomorphisms.
+
+Let $f:S\to\mathbb B$ be a unital semiring homomorphism.  It sends the semiring zero
+$\tau$ to $0$ and $1_R$ to $1$.  The equality $e=1_R\oplus(-1_R)$ in the supported copy
+of $R$ gives
+\[
+ f(e)=1+f(-1_R)=1
+\]
+in the Boolean semiring.  For every $r\in R$ one has $re=e$, so
+\[
+ f(r)f(e)=f(e)=1.
+\]
+Consequently $f(r)=1$ for all supported $r$, while $f(\tau)=0$; hence
+$f=\chi_R\Theta_R$.  The three fibre identities now follow directly.
+\end{proof}
+
+\begin{proposition}[Products and an explicit multiplicative reconstruction]
+\label{prop:gcue-product-reconstruction}
+For nonzero commutative rings $A,B$, the map
+\[
+ G(A\times B)\longrightarrow G(A)\times_{\mathbb B}G(B),
+ \qquad
+ \tau\longmapsto(\tau_A,\tau_B),\quad (a,b)\longmapsto(a,b),
+\]
+is a semiring isomorphism.
+
+Let $M_R$ be the multiplicative monoid underlying $G(R)$ and let $\N[M_R]$ be its free
+commutative monoid semiring.  If $Q_R$ is the quotient by
+\[
+ [a]+[b]=[a+b]\quad(a,b\in R),
+ \qquad
+ [x]+[\tau]=[x]\quad(x\in M_R),
+\]
+then the evaluation map $[x]\mapsto x$ induces a semiring isomorphism
+$Q_R\simeq G(R)$.
+\end{proposition}
+
+\begin{proof}
+An element of the fibre product has equal Boolean supports in its two coordinates.  It is
+therefore either $(\tau_A,\tau_B)$ or a pair $(a,b)\in A\times B$.  This gives the stated
+bijection, and the coordinate formulas in \cref{prop:gcue-coordinate-support} prove that it
+preserves both operations.
+
+For the reconstruction, evaluation respects the defining relations and therefore induces
+$\bar\pi:Q_R\to G(R)$.  Conversely define
+\[
+ \iota:G(R)\longrightarrow Q_R,
+ \qquad \iota(\tau)=[\tau],\qquad \iota(r)=[r].
+\]
+For supported $r,r'$ the first relation gives
+$\iota(r\oplus r')=[r+r']=[r]+[r']$; the second gives
+$\iota(r\oplus\tau)=[r]=[r]+[\tau]$.  Multiplication is inherited from $M_R$, so $\iota$
+is a semiring homomorphism in every remaining case as well.  On generators,
+\[
+ \bar\pi\iota=\operatorname{id}_{G(R)},\qquad
+ \iota\bar\pi([x])=[x].
+\]
+Since the classes $[x]$ generate $Q_R$ as a semiring, the second equality extends to
+$\iota\bar\pi=\operatorname{id}_{Q_R}$.  Thus the two maps are explicit two-sided inverses;
+no unproved uniqueness-of-normal-form assertion is needed.
+\end{proof}
+
+\subsection{All additive idempotents and the semimodule equivalence}
+
+Let $M$ be a left $S$-semimodule and put
+\[
+ \varepsilon_M:M\to M,\qquad \varepsilon_M(m)=em.
+\]
+
+\begin{lemma}[The support skeleton is exactly the idempotent locus]
+\label{lem:gcue-all-idempotents}
+For every $m\in M$,
+\[
+ m+\varepsilon_M(m)=m.
+\]
+Moreover
+\[
+ L_M:=eM=\{y\in M:y+y=y\}.
+\]
+With $l\vee l':=l+l'$, this set is a join-semilattice whose least element is the additive
+zero $0_M$.
+\end{lemma}
+
+\begin{proof}
+Because $1_R\oplus e=1_R$ in $S$, distributivity gives
+\[
+ m+em=(1_R\oplus e)m=m.
+\]
+If $l=em$, then
+\[
+ l+l=(e\oplus e)m=em=l,
+\]
+so $eM$ consists of additive idempotents.  Conversely, suppose $y+y=y$.  Since
+$e=1_R\oplus(-1_R)$,
+\[
+ ey=y+(-1_R)y.
+\]
+Using $y+y=y$ once gives
+\[
+ y+ey=(y+y)+(-1_R)y=y+(-1_R)y=ey.
+\]
+The first displayed identity also says $y+ey=y$, hence $ey=y$.  Thus every additive
+idempotent lies in $eM$.  Closure under addition follows from
+$em+en=e(m+n)$, and the usual order $l\le l'$ iff $l+l'=l'$ makes addition the join.
+Finally $0_M=e0_M$.
+\end{proof}
+
+For $l\in L_M$ define the fibre
+\[
+ M_l:=\{m\in M:em=l\}.
+\]
+
+\begin{lemma}[Fibre modules and exact transport]
+\label{lem:gcue-fibre-modules}
+Each $M_l$ is canonically an $R$-module whose zero is $l$.  If $l\le l'$, then
+\[
+ T_{l,l'}:M_l\to M_{l'},\qquad T_{l,l'}(m)=m+l'
+\]
+is $R$-linear, and
+\[
+ T_{l,l}=\operatorname{id},\qquad
+ T_{l',l''}T_{l,l'}=T_{l,l''}\quad(l\le l'\le l'').
+\]
+\end{lemma}
+
+\begin{proof}
+For $m,n\in M_l$,
+\[
+ e(m+n)=em+en=l+l=l,
+\]
+so the fibre is additively closed.  By \cref{lem:gcue-all-idempotents}, $m+l=m$.
+Furthermore
+\[
+ m+(-1_R)m=(1_R\oplus(-1_R))m=em=l,
+\]
+so $(-1_R)m$ is the additive inverse of $m$ inside the fibre.  For $r\in R$,
+\[
+ e(rm)=(er)m=em=l,
+\]
+because $er=e$.  The restricted scalar action is therefore an $R$-module action, with
+$0_Rm=em=l$.
+
+If $l\le l'$, then
+\[
+ e(m+l')=em+el'=l+l'=l',
+\]
+so $T_{l,l'}$ is well-defined.  Inside $M_{l'}$,
+\[
+ T_{l,l'}(m+n)=m+n+l'=(m+l')+(n+l')
+\]
+because $l'+l'=l'$.  Also every supported scalar fixes the support idempotents:
+$rl'=(re)l'=el'=l'$.  Hence
+\[
+ T_{l,l'}(rm)=rm+l'=r(m+l').
+\]
+Finally $m+l=m$, and for $l\le l'\le l''$,
+\[
+ (m+l')+l''=m+(l'+l'')=m+l''.
+\]
+These are the identity and composition equations.
+\end{proof}
+
+Define $\operatorname{Diag}_R$ as follows.  An object is a join-semilattice $L$ with least
+element $0$, an $R$-module $A_l$ for each $l\in L$, and $R$-linear maps
+\[
+ \rho_{l,l'}:A_l\to A_{l'}\qquad(l\le l')
+\]
+such that $\rho_{l,l}=\operatorname{id}$ and
+$\rho_{l',l''}\rho_{l,l'}=\rho_{l,l''}$.  A morphism
+$(\phi,f):(L,A,\rho)\to(L',A',\rho')$ consists of a zero- and join-preserving map
+$\phi:L\to L'$ and $R$-linear maps $f_l:A_l\to A'_{\phi(l)}$ satisfying
+\[
+ f_{l'}\rho_{l,l'}=\rho'_{\phi(l),\phi(l')}f_l.
+\]
+
+\begin{theorem}[Split-zero semimodules are $R$-linear join diagrams]
+\label{thm:gcue-semimodule-equivalence}
+There is an equivalence of categories
+\[
+ G(R)\text{-}\operatorname{SMod}\simeq\operatorname{Diag}_R.
+\]
+On an $S$-semimodule it sends $M$ to
+$(L_M,\{M_l\},\{T_{l,l'}\})$.  In the opposite direction it sends
+$\mathcal A=(L,A,\rho)$ to the disjoint union
+\[
+ M(\mathcal A)=\bigsqcup_{l\in L}A_l
+\]
+with, for $x\in A_l$ and $y\in A_m$,
+\begin{align*}
+ x\boxplus y
+ &=\rho_{l,l\vee m}(x)+_{A_{l\vee m}}\rho_{m,l\vee m}(y),\\
+ r\cdot x&=rx\in A_l\quad(r\in R),\\
+ \tau\cdot x&=0_{A_0}.
+\end{align*}
+The additive zero is $0_{A_0}$.
+\end{theorem}
+
+\begin{proof}
+The forward construction is supplied by
+\cref{lem:gcue-all-idempotents,lem:gcue-fibre-modules}.  If
+$F:M\to N$ is $S$-linear, then
+\[
+ F(em)=eF(m),
+\]
+so its restriction to $L_M$ is a zero- and join-preserving map
+$\phi_F:L_M\to L_N$.  Each restriction
+$F_l:M_l\to N_{\phi_F(l)}$ is $R$-linear, and
+\[
+ F_{l'}T_{l,l'}(m)=F(m+l')=F(m)+F(l')
+ =T_{\phi_F(l),\phi_F(l')}F_l(m),
+\]
+so these restrictions form a diagram morphism.
+
+We next verify the reverse construction rather than appealing to an analogy.  Commutativity
+of $\boxplus$ is immediate.  If $x\in A_l$, $y\in A_m$, $z\in A_n$, and
+$u=l\vee m\vee n$, functoriality of the $\rho$'s gives
+\[
+ (x\boxplus y)\boxplus z
+ =\rho_{l,u}(x)+\rho_{m,u}(y)+\rho_{n,u}(z)
+ =x\boxplus(y\boxplus z).
+\]
+Also
+\[
+ x\boxplus0_{A_0}=\rho_{l,l}(x)+\rho_{0,l}(0)=x.
+\]
+For $r\in R$, linearity of transport proves
+$r(x\boxplus y)=rx\boxplus ry$ and
+$(r+r')x=rx\boxplus r'x$ within $A_l$.  The cases involving $\tau$ are explicit:
+\[
+ (r\oplus\tau)x=rx=rx\boxplus0_{A_0},
+ \qquad
+ \tau(x\boxplus y)=0_{A_0}=0_{A_0}\boxplus0_{A_0},
+\]
+and $r(\tau x)=\tau(rx)=0_{A_0}$.  Associativity and the unit law for scalar
+multiplication reduce to the corresponding statements in each $R$-module.  Hence
+$M(\mathcal A)$ is an $S$-semimodule.
+
+Given a diagram morphism $(\phi,f)$, define $F$ on the component $A_l$ to be $f_l$.
+For $x\in A_l,y\in A_m$, join preservation and naturality give
+\begin{align*}
+ F(x\boxplus y)
+ &=f_{l\vee m}\bigl(\rho_{l,l\vee m}(x)+\rho_{m,l\vee m}(y)\bigr)\\
+ &=\rho'_{\phi(l),\phi(l)\vee\phi(m)}f_l(x)
+   +\rho'_{\phi(m),\phi(l)\vee\phi(m)}f_m(y)\\
+ &=F(x)\boxplus F(y).
+\end{align*}
+The scalar equations follow from $R$-linearity and $\phi(0)=0$.  Thus the reverse
+construction is functorial.
+
+Starting from $M$, its fibres partition its underlying set.  For $m\in M_l$ and
+$n\in M_{l'}$, put $u=l\vee l'$.  Reconstructed addition is
+\[
+ (m+u)+(n+u)=m+n+u.
+\]
+But $e(m+n)=u$, so \cref{lem:gcue-all-idempotents} gives $m+n+u=m+n$.
+Thus the reconstructed operation and scalar action are the original ones.
+
+Starting from $\mathcal A$, one has
+\[
+ e\cdot x=0_{A_l}\qquad(x\in A_l).
+\]
+The support skeleton is therefore $\{0_{A_l}:l\in L\}$, with
+$0_{A_l}\boxplus0_{A_m}=0_{A_{l\vee m}}$; it is canonically $L$.  The fibre above
+$0_{A_l}$ is exactly $A_l$, and for $l\le l'$ the reconstructed transport is
+\[
+ x\boxplus0_{A_{l'}}=\rho_{l,l'}(x).
+\]
+These canonical identifications are natural and prove that the functors are mutually
+quasi-inverse.
+\end{proof}
+
+\begin{corollary}[Cancellative and free-coordinate sectors]
+\label{cor:gcue-cancellative-free}
+The full subcategory of additively cancellative $G(R)$-semimodules is equivalent to
+$R$-modules.  For $F_n=G(R)^n$, the support skeleton is the Boolean lattice
+$\mathcal P(\{1,\dots,n\})$ under union; the fibre above $I$ is $R^I$, and transport
+$I\subseteq J$ is extension by $0_R$ in $J\setminus I$.
+
+If $M$ is generated by $m_1,\dots,m_n$, then $L_M$ is join-generated by
+$em_1,\dots,em_n$, so $|L_M|\le2^n$.  For $l\in L_M$, the $R$-module $M_l$ is generated
+by the transported $T_{em_i,l}(m_i)$ for which $em_i\le l$.
+\end{corollary}
+
+\begin{proof}
+If $M$ is cancellative, then
+$m+em=m=m+0_M$ implies $em=0_M$ for every $m$, so its diagram has one support and is a
+single $R$-module.  Conversely an $R$-module becomes an $S$-semimodule by letting
+$\tau$ act as zero; its additive monoid is cancellative.
+
+For $x=(x_1,\dots,x_n)\in S^n$, the coordinate $(ex)_i$ is $\tau$ when $x_i=\tau$ and
+$e$ when $x_i\in R$.  Hence $ex$ is identified with
+$I=\{i:x_i\in R\}$.  The elements over $I$ have arbitrary $R$-coordinates in $I$ and
+$\tau$ elsewhere, giving $R^I$.  Adding the support idempotent of $J$ inserts $0_R$ in
+the coordinates $J\setminus I$.
+
+Finally, every generated element is a finite sum of supported scalar multiples of the
+$m_i$; terms multiplied by $\tau$ are the global zero and may be removed.  Supported
+scalars preserve support, while support of a sum is the join.  This proves the join-generation
+and cardinality statements.  If a sum has support $l$, each summand support is at most $l$;
+transporting every summand into $M_l$ gives the asserted fibre generators.
+\end{proof}
+
+\subsection{The complete ideal lattice and the exact zero-divisor boundary}
+
+For a ring ideal $I\lhd R$, put $I^G=I\sqcup\{\tau\}\subseteq G(R)$.
+
+\begin{theorem}[The ideal lattice has one additional bottom element]
+\label{thm:gcue-ideal-lattice}
+The assignments
+\[
+ I\longmapsto I^G,
+ \qquad
+ J\longmapsto J\cap R
+\]
+are mutually inverse inclusion-preserving bijections between ring ideals of $R$ and the
+nonzero semiring ideals of $G(R)$, where ``nonzero'' means different from the semiring zero
+ideal $\{\tau\}$.  Every semiring ideal is therefore exactly one of
+\[
+ \{\tau\}
+ \quad\text{or}\quad
+ I^G=I\sqcup\{\tau\}\quad(I\lhd R).
+\]
+Thus the ideal lattice of $G(R)$ is the ideal lattice of $R$ with one new bottom element
+adjoined strictly below
+\[
+ (0_R)^G=\{\tau,e\}.
+\]
+On the lifted part the bijection preserves arbitrary intersections, generated joins, and
+products; in particular,
+\[
+ I^GJ^G=(IJ)^G.
+\]
+The extra bottom ideal is absorbing for ideal multiplication.
+\end{theorem}
+
+\begin{proof}
+A semiring ideal $J$ contains the semiring zero $\tau$.  If it contains no supported
+element, then $J=\{\tau\}$.  Otherwise choose $x\in J\cap R$.  Since $J$ is closed under
+external multiplication,
+\[
+ ex=e\in J.
+\]
+Consequently $J\cap R$ contains $0_R=e$.  It is closed under ring addition and
+multiplication by elements of $R$; and if $y\in J\cap R$, then
+$(-1_R)y=-y\in J\cap R$.  Hence it is a ring ideal and
+\[
+ J=(J\cap R)\sqcup\{\tau\}.
+\]
+Conversely $I^G$ is plainly closed under $\oplus$ and under multiplication by every element
+of $G(R)$.  This proves the stated classification and the inverse bijection away from the
+extra bottom.  Intersections and generated joins of lifted ideals follow from the inverse
+order isomorphism.
+
+The product ideal $I^GJ^G$ is generated by finite sums of products $xy$.  A product with a
+$\tau$ factor is $\tau$; a supported product is the ordinary product in $R$.  Finite sums of
+the latter are precisely the elements of $IJ$, and $\tau$ is already present.  Hence the
+product is $(IJ)^G$.
+Finally any product involving the ideal $\{\tau\}$ is generated only by $\tau$, so that
+ideal is absorbing.
+\end{proof}
+
+\begin{proposition}[What divisibility by the supported zero detects]
+\label{prop:gcue-zero-divisibility}
+For $x\in G(R)$,
+\[
+ e\mid x\quad\Longleftrightarrow\quad x\in\{e,\tau\}.
+\]
+Consequently the implication
+\[
+ e\mid xy\quad\Longrightarrow\quad e\mid x\ \text{or}\ e\mid y
+\]
+holds for all $x,y\in G(R)$ if and only if $R$ is an integral domain.
+\end{proposition}
+
+\begin{proof}
+The image of multiplication by $e$ is exactly $\{e,\tau\}$: for $r\in R$, $er=e$, while
+$e\tau=\tau$.  This proves the first equivalence.  If $R$ is a domain and $e\mid xy$, then
+either one factor is $\tau$, or $x,y\in R$ and $xy=0_R$, which forces $x=0_R$ or
+$y=0_R$.  In all cases $e$ divides one factor.  Conversely, if $R$ has nonzero zero divisors
+$a,b$ with $ab=0_R$, then $e\mid ab$ but $a,b\notin\{e,\tau\}$, so $e$ divides neither.
+For example, $2\cdot3=0$ in $\Z/6\Z$ gives the concrete failure.
+\end{proof}
+
+\subsection{Shifted Dirichlet flow and its exact endpoint boundary}
+
+Let
+\[
+ L(s)=\sum_{n\ge1}a_n n^{-s}
+\]
+converge absolutely in $\Re s>\sigma_a$.  For real $t>-1$ define
+\[
+ L_t(s)=\sum_{n\ge1}a_n(n+t)^{-s}.
+\]
+For complex $|t|<1$, the same notation uses the principal logarithm; every $n+t$ then lies
+in the open right half-plane.
+
+\begin{theorem}[Shift generator, all jets, and the convergent translation series]
+\label{thm:gcue-shift-flow}
+On $\Re s>\sigma_a$ the shifted series is locally normally convergent in its allowed
+$t$-domain and, for every integer $m\ge0$,
+\begin{equation}
+ \partial_t^mL_t(s)=(-1)^m(s)_mL_t(s+m),
+ \qquad
+ (s)_m=s(s+1)\cdots(s+m-1).
+ \label{eq:gcue-shift-jets}
+\end{equation}
+For $|t|<1$,
+\begin{equation}
+ L_t(s)=\sum_{m\ge0}(-1)^m\frac{(s)_m}{m!}t^mL(s+m),
+ \label{eq:gcue-shift-binomial}
+\end{equation}
+locally normally on $\{\Re s>\sigma_a,\ |t|<1\}$.  Thus if
+$D$ denotes the operator $(Df)(s)=s f(s+1)$, the notation
+$L_t=\exp(-tD)L$ is an equality represented by the convergent series
+\eqref{eq:gcue-shift-binomial} on this domain, not merely a formal slogan.
+\end{theorem}
+
+\begin{proof}
+On a compact real interval $I\Subset(-1,\infty)$ there is $c_I>0$ such that
+$n+t\ge c_I n$ for all $n\ge1$ and $t\in I$.  Hence the original absolute convergence
+majorizes the shifted series uniformly on compact subsets of $\Re s>\sigma_a$; the same
+argument applies after any fixed number of $t$-derivatives.  Termwise differentiation gives
+\[
+ \partial_t^m(n+t)^{-s}=(-1)^m(s)_m(n+t)^{-s-m},
+\]
+which proves \eqref{eq:gcue-shift-jets}.  For complex $t$ in a compact subdisc the estimate
+$|n+t|\ge n-|t|$ gives the same normal-convergence conclusion.
+
+For each $n$ and $|t|<1$ the binomial theorem gives
+\[
+ (n+t)^{-s}=n^{-s}\sum_{m\ge0}(-1)^m\frac{(s)_m}{m!}\left(\frac tn\right)^m.
+\]
+To justify both interchanges, take a compact set on which
+$\Re s\ge\sigma>\sigma_a$, $|s|\le A$, and $|t|\le\rho<1$.  For $m\ge1$,
+\[
+ \frac{|(s)_m|}{m!}
+ \le \frac{A}{m}\prod_{j=1}^{m-1}\left(1+\frac Aj\right)
+ \le C_A m^{A-1}.
+\]
+Therefore the absolute double series is bounded by
+\[
+ \left(\sum_{n\ge1}|a_n|n^{-\sigma}\right)
+ \left(1+C_A\sum_{m\ge1}m^{A-1}\rho^m\right)<\infty.
+\]
+Fubini's theorem for absolutely convergent series now gives
+\eqref{eq:gcue-shift-binomial}, and the same majorant proves local normal convergence.
+The last statement is exactly the power-series definition of $\exp(-tD)$ applied term by
+term.
+\end{proof}
+
+\begin{corollary}[Logarithmic shifted jets]
+\label{cor:gcue-log-jets}
+On any open set where $L_t(s)\ne0$, set
+\[
+ H_m(t,s)=(-1)^m(s)_m\frac{L_t(s+m)}{L_t(s)}.
+\]
+Then every $\partial_t^m\log L_t(s)$ is the universal logarithmic derivative polynomial in
+$H_1,\dots,H_m$.  In particular,
+\begin{align*}
+ \partial_t\log L_t(s)
+ &=-s\frac{L_t(s+1)}{L_t(s)},\\
+ \partial_t^2\log L_t(s)
+ &=s(s+1)\frac{L_t(s+2)}{L_t(s)}
+   -s^2\left(\frac{L_t(s+1)}{L_t(s)}\right)^2.
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+For a nonvanishing holomorphic function $F$, the identity $(\log F)'=F'/F$ and the
+quotient rule show inductively that $(\log F)^{(m)}$ is a polynomial in
+$F'/F,\dots,F^{(m)}/F$ with integer coefficients.  Substitute
+$F^{(j)}/F=H_j$ from \eqref{eq:gcue-shift-jets}.  The first two quotient-rule computations
+are the displayed formulas.
+\end{proof}
+
+For the Riemann coefficients $a_n=1$, one has
+\[
+ \zeta_t(s):=\sum_{n\ge1}(n+t)^{-s}=\zeta(s,1+t),
+\]
+where the right side is the Hurwitz zeta function in the notation of
+DLMF~25.11.1 \cite[Eq.~25.11.1]{apostolDLMF25}.
+
+\begin{theorem}[A nonintegral shift is not an ordinary Dirichlet series]
+\label{thm:gcue-noninteger-shift}
+Let $0<t<1$.  There is no sequence $(b_m)_{m\ge1}$ whose ordinary Dirichlet series
+$\sum_{m\ge1}b_m m^{-s}$ converges absolutely in a right half-plane and agrees there with
+$\zeta_t(s)$.  At $t=1$,
+\[
+ \zeta_1(s)=\zeta(s)-1=\sum_{m\ge2}m^{-s};
+\]
+this ordinary Dirichlet series cannot have an Euler product all of whose local factors are
+normalized to have constant term $1$.
+\end{theorem}
+
+\begin{proof}
+For real $\sigma\to+\infty$, dominated convergence in the absolutely convergent positive
+series gives
+\[
+ (1+t)^\sigma\zeta_t(\sigma)
+ =1+\sum_{n\ge2}\left(\frac{1+t}{n+t}\right)^\sigma\longrightarrow1.
+\]
+Indeed, after fixing $\sigma_0>1$, the summands for $\sigma\ge\sigma_0$ are dominated by
+the summable sequence
+$(1+t)^{\sigma_0}(n+t)^{-\sigma_0}$.
+
+Now let $F(s)=\sum b_m m^{-s}$ be a nonzero ordinary Dirichlet series absolutely
+convergent at $\sigma_0$, and let $m_0$ be its least nonzero coefficient index.  Then
+\[
+ m_0^\sigma F(\sigma)
+ =b_{m_0}+\sum_{m>m_0}b_m\left(\frac{m_0}{m}\right)^\sigma
+ \longrightarrow b_{m_0}.
+\]
+For the tail, dominated convergence applies after writing its absolute value term as
+\[
+ |b_m|m^{-\sigma_0}m_0^{\sigma_0}
+ \left(\frac{m_0}{m}\right)^{\sigma-\sigma_0}.
+\]
+If $F=\zeta_t$, comparison of the two nonzero leading exponential scales forces
+$m_0=1+t$, impossible because $m_0$ is an integer and $0<t<1$.
+
+The $t=1$ identity follows by the index change $m=n+1$.  A convergent normalized Euler
+product
+\[
+ \prod_p\left(1+\sum_{k\ge1}c_{p,k}p^{-ks}\right)
+\]
+has coefficient $1$ at $1^{-s}$: it is obtained by selecting the constant term from every
+local factor.  The coefficient at $1^{-s}$ in $\zeta(s)-1$ is $0$, proving the final claim.
+\end{proof}
+
+For $R=\Z$, the ideals $n\Z$ give two different literal size coordinates:
+\[
+ |\Z/n\Z|=n,
+ \qquad
+ |G(\Z/n\Z)|=n+1.
+\]
+Thus the ordinary ideal sheet is $\zeta(s)$ while the split-size sheet is
+$\zeta(s)-1$.  The change is exactly the retained unsupported element $\tau$; it is not a
+normalization of the arithmetic-zero coordinate.
+
+\subsection{A lossless support-to-endpoint lattice morphism}
+
+The affine deck coordinates and their inverse were proved in
+\cref{prop:local-deck-coordinate-isomorphism}; the endpoint coefficient isomorphism was
+proved in \cref{prop:local-residue-coordinate-map}.  We now construct the missing arrow
+from the rank-two split-zero support skeleton to that endpoint geometry.
+
+Let $F_2=G(R)^2$, with support coordinates labelled $0,1$.  Let
+\[
+ E=\C e_0\oplus\C e_1,
+ \qquad
+ E_I=\operatorname{span}_{\C}\{e_i:i\in I\}
+ \quad(I\subseteq\{0,1\}).
+\]
+On the $s$-line put
+\[
+ u=s(s-1),\qquad v=2s-1,
+ \qquad q=\frac1u,\qquad \ell=\frac vu,
+\]
+and define the two-dimensional differential space
+\[
+ \mathcal P_\Omega=\operatorname{span}_{\C}\{q\,ds,\ell\,ds\}.
+\]
+
+\begin{theorem}[Boolean support cube to endpoint principal parts]
+\label{thm:gcue-support-endpoint-map}
+The maps
+\begin{align*}
+ \Lambda:\mathcal P(\{0,1\})&\longrightarrow
+ \{0,\C e_0,\C e_1,E\},& I&\longmapsto E_I,\\
+ \operatorname{Res}_{0,1}:\mathcal P_\Omega&\longrightarrow E,&
+ Aq\,ds+B\ell\,ds&\longmapsto(-A+B)e_0+(A+B)e_1
+\end{align*}
+are lattice and vector-space isomorphisms, respectively.  Their inverse data are
+\[
+ A=\frac{b-a}{2},\qquad B=\frac{a+b}{2}
+ \quad\text{for }ae_0+be_1\in E.
+\]
+Consequently $I\mapsto\operatorname{Res}_{0,1}^{-1}(E_I)$ is the explicit lattice
+isomorphism
+\[
+ \begin{array}{c|c}
+ I&\operatorname{Res}_{0,1}^{-1}(E_I)\\ \hline
+ \varnothing&0\\
+ \{0\}&\C\,ds/s\\
+ \{1\}&\C\,ds/(s-1)\\
+ \{0,1\}&\mathcal P_\Omega.
+ \end{array}
+\]
+
+The coordinate transposition on $F_2$ and the deck involution
+$\sigma(s)=1-s$ act equivariantly on these lattices.  The support projection
+\[
+ \pi_{\rm supp}:F_2\to\mathcal P(\{0,1\})
+\]
+has the complete fibre $R^I$ over $I$; the two displayed isomorphisms have singleton fibres.
+Thus the composite from $F_2$ to endpoint subspaces loses exactly the $R^I$ fibre
+coordinates and no support information.
+\end{theorem}
+
+\begin{proof}
+Union and intersection of subsets map under $I\mapsto E_I$ to sum and intersection of
+coordinate subspaces, so $\Lambda$ is a lattice isomorphism.  Partial fractions give
+\[
+ q=\frac1{s-1}-\frac1s,
+ \qquad
+ \ell=\frac1{s-1}+\frac1s.
+\]
+Hence the endpoint residues of $Aq\,ds+B\ell\,ds$ are
+$(a,b)=(-A+B,A+B)$.  The coefficient matrix has determinant $-2$, and solving gives the
+displayed inverse.  In particular,
+\[
+ \ell-q=\frac2s,
+ \qquad
+ q+\ell=\frac2{s-1},
+\]
+which proves all four rows of the table.
+
+Transposition sends a support subset $I$ to the subset obtained by swapping $0$ and $1$.
+For differentials,
+\[
+ \sigma^*\left(\frac{ds}{s}\right)=\frac{ds}{s-1},
+ \qquad
+ \sigma^*\left(\frac{ds}{s-1}\right)=\frac{ds}{s},
+\]
+so the endpoint coordinate lines are swapped by the same permutation; $0$ and the full
+space are fixed.  This proves equivariance.  The fibre statement for $\pi_{\rm supp}$ is
+\cref{cor:gcue-cancellative-free} with $n=2$, while bijectivity gives singleton fibres for
+$\Lambda$ and $\operatorname{Res}_{0,1}$.
+\end{proof}
+
+This theorem is an exact morphism at the support-skeleton level.  It does not identify the
+scalar semiring $G(R)$ with $\C$, nor does it discard the fibre coordinates while pretending
+that the resulting map is injective.  The separate physical $N=3$ cover and its two exact
+maps to the same deck curve, including the complete fibres and the fixed-locus obstruction,
+are already proved in \cref{thm:n3-deck-interface}.
+
+\subsection{The endpoint Stone defect and its coprime kernel}
+
+Set
+\[
+ b(1)=0,\qquad b(n)=1\quad(n\ge2),
+ \qquad
+ \zeta(s)-1=\sum_{n\ge1}b(n)n^{-s}.
+\]
+
+\begin{theorem}[Exact boundary defect and interior coprime series]
+\label{thm:gcue-stone-coprime}
+For coprime positive integers $m,n$, define
+\[
+ \delta_b(m,n)=b(mn)-b(m)b(n).
+\]
+Then
+\[
+ \delta_b(m,n)=
+ \begin{cases}
+ 1,&\text{exactly one of $m,n$ is $1$},\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\]
+Consequently, for $\Re s,\Re t>1$,
+\begin{align}
+ \sum_{(m,n)=1}\delta_b(m,n)m^{-s}n^{-t}
+ &=\zeta(s)+\zeta(t)-2,
+ \label{eq:gcue-boundary-defect}\\
+ C(s,t):=\sum_{\substack{m,n\ge2\\(m,n)=1}}m^{-s}n^{-t}
+ &=\frac{\zeta(s)\zeta(t)}{\zeta(s+t)}-\zeta(s)-\zeta(t)+1.
+ \label{eq:gcue-coprime-kernel}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+If $m=n=1$, both terms in $\delta_b$ vanish.  If exactly one argument is $1$, then
+$b(mn)=1$ and $b(m)b(n)=0$.  If both are at least $2$, both terms equal $1$.  This proves
+the pointwise formula, and summing its two boundary rays gives
+\eqref{eq:gcue-boundary-defect}.
+
+Absolute convergence in the stated domain permits an Euler factorization of the full
+coprime sum.  For each prime $p$, at most one of its two exponents is positive, so
+\begin{align*}
+ \sum_{(m,n)=1}m^{-s}n^{-t}
+ &=\prod_p\left(1+\sum_{j\ge1}p^{-js}+\sum_{k\ge1}p^{-kt}\right)\\
+ &=\prod_p\frac{1-p^{-(s+t)}}{(1-p^{-s})(1-p^{-t})}
+ =\frac{\zeta(s)\zeta(t)}{\zeta(s+t)}.
+\end{align*}
+Removing the row $m=1$ and column $n=1$, and restoring the twice-removed point $(1,1)$,
+gives \eqref{eq:gcue-coprime-kernel}.
+\end{proof}
+
+There is a literal two-point quotient behind the first formula.  Let
+$q:\N_{\ge1}\to\{\xi_1,\xi_*\}$ send $1$ to $\xi_1$ and every $n\ge2$ to $\xi_*$.  Then
+$q(mn)=q(m)q(n)$ for the multiplication table
+\[
+ \xi_1^2=\xi_1,\qquad \xi_1\xi_*=\xi_*\xi_1=\xi_*^2=\xi_*.
+\]
+For the characteristic functions
+$u_0=\mathbf1_{\{\xi_1\}}$ and $v_0=\mathbf1_{\{\xi_*\}}$, pullback along multiplication
+gives
+\[
+ \Delta u_0=u_0\otimes u_0,\qquad
+ \Delta v_0=v_0\otimes u_0+u_0\otimes v_0+v_0\otimes v_0.
+\]
+Thus $\Delta v_0-v_0\otimes v_0$ is exactly the two boundary rays in
+\eqref{eq:gcue-boundary-defect}, not merely a visual similarity.
+
+\subsection{Number-field shifts and the ideal-ratio kernel}
+
+Let $K$ be a number field with ring of integers $\mathcal O_K$.  Milne proves that the
+nonzero fractional ideals form the free abelian group on the nonzero prime ideals
+\cite[Chap.~3, p.~53, Thm.~3.20]{milneANT2020}, and that the numerical norm
+$N\mathfrak a=[\mathcal O_K:\mathfrak a]$ is multiplicative
+\cite[Chap.~4, pp.~69--70, Prop.~4.2(a)]{milneANT2020}.  Neukirch then defines
+\[
+ \zeta_K(s)=\sum_{0\ne\mathfrak a\lhd\mathcal O_K}N(\mathfrak a)^{-s}
+ =\sum_{n\ge1}a_K(n)n^{-s}
+\]
+and proves its absolutely convergent prime-ideal Euler product for $\Re s>1$
+\cite[Chap.~VII, \S5, p.~457, Def.~5.1 and Prop.~5.2]{neukirch1999}.  His
+Theorem~5.9 and Corollaries~5.10--5.11 prove the meromorphic continuation to $\C$, with
+the unique simple pole at $s=1$ and the class-number-formula residue
+\cite[pp.~465--467]{neukirch1999}.  These are the analytic inputs used below; the shifted
+continuation is proved separately.
+
+For $|t|<1$, using the principal logarithm, define first on $\Re s>1$
+\[
+ \zeta_{K,t}(s)
+ :=\sum_{n\ge1}a_K(n)(n+t)^{-s}
+ =\sum_{0\ne\mathfrak a\lhd\mathcal O_K}(N\mathfrak a+t)^{-s}.
+\]
+
+\begin{theorem}[Complete shifted Dedekind continuation]
+\label{thm:gcue-dedekind-shift}
+For $|t|<1$ and $\Re s>1$,
+\begin{equation}
+ \zeta_{K,t}(s)
+ =\sum_{m\ge0}(-1)^m\frac{(s)_m}{m!}t^m\zeta_K(s+m).
+ \label{eq:gcue-dedekind-shift}
+\end{equation}
+The part with $m\ge1$ extends to an entire function of $s$, locally normally in
+$\C\times\{|t|<1\}$.  Hence \eqref{eq:gcue-dedekind-shift} is the meromorphic
+continuation of $\zeta_{K,t}$ to the whole $s$-plane.  Its only pole is the simple pole at
+$s=1$, and its residue there equals $\operatorname*{Res}_{s=1}\zeta_K(s)$.
+\end{theorem}
+
+\begin{proof}
+The identity on $\Re s>1$ is \cref{thm:gcue-shift-flow} applied to the absolutely
+convergent Dirichlet series for $\zeta_K$.
+
+Fix $m\ge1$.  By the cited continuation theorem, $\zeta_K(s+m)$ is holomorphic except
+for a simple pole at $s=1-m$.  The polynomial
+\[
+ (s)_m=\prod_{j=0}^{m-1}(s+j)
+\]
+has a simple zero there: the factor with $j=m-1$ vanishes and all other factors are
+nonzero.  Therefore $(s)_m\zeta_K(s+m)$ is holomorphic at $1-m$ and has no other
+singularity; it is entire.
+
+It remains to prove convergence rather than merely say that continuation carries over
+termwise.  Let $C\subset\C$ be compact and choose $A\ge1$ with $|s|\le A$ on $C$.
+For $m\ge A+2$, one has $\Re(s+m)\ge2$ and the nonnegative Dirichlet coefficients give
+\[
+ |\zeta_K(s+m)|\le\zeta_K(\Re(s+m))\le\zeta_K(2).
+\]
+As in the proof of \cref{thm:gcue-shift-flow},
+\[
+ \frac{|(s)_m|}{m!}
+ \le \frac{A}{m}\prod_{j=1}^{m-1}\left(1+\frac Aj\right)
+ \le C_A m^{A-1}.
+\]
+On $|t|\le\rho<1$, the tail is therefore bounded uniformly on $C$ by a constant times
+$\sum_m m^{A-1}\rho^m$.  The finitely many earlier terms are entire by the cancellation
+just proved.  The Weierstrass theorem now makes the $m\ge1$ sum entire in $s$ and locally
+normal in $(s,t)$.
+
+Thus the only possible pole in \eqref{eq:gcue-dedekind-shift} comes from its $m=0$ term,
+which is $\zeta_K(s)$.  The remaining sum is entire, so neither the order nor the residue of
+that pole changes.  Equality on the original half-plane and uniqueness of meromorphic
+continuation finish the proof.
+\end{proof}
+
+\begin{theorem}[The exact Dedekind ratio coefficients]
+\label{thm:gcue-dedekind-ratio}
+For every integer $r\ge1$ and $\Re s>1$,
+\begin{equation}
+ Q_{K,r}(s):=\frac{\zeta_K(s+r)}{\zeta_K(s)}
+ =\sum_{0\ne\mathfrak a\lhd\mathcal O_K}
+ \alpha_{K,r}(\mathfrak a)N(\mathfrak a)^{-s},
+ \label{eq:gcue-dedekind-ratio}
+\end{equation}
+where the series is absolutely convergent, $\alpha_{K,r}$ is multiplicative, and
+\begin{align}
+ \alpha_{K,r}(\mathfrak p^k)
+ &=-\frac{N(\mathfrak p)^r-1}{N(\mathfrak p)^{rk}}
+ \qquad(k\ge1),
+ \label{eq:gcue-dedekind-prime-power}\\
+ \alpha_{K,r}(\mathfrak a)
+ &=(-1)^{\omega(\mathfrak a)}
+ \frac{\prod_{\mathfrak p\mid\mathfrak a}(N(\mathfrak p)^r-1)}
+ {N(\mathfrak a)^r}.
+ \label{eq:gcue-dedekind-general-coeff}
+\end{align}
+The meromorphic quotient $Q_{K,r}$ exists wherever the ratio is defined after continuation;
+\eqref{eq:gcue-dedekind-ratio} is asserted only in its proved absolute-convergence
+half-plane.
+\end{theorem}
+
+\begin{proof}
+The sourced Euler product is nonzero on $\Re s>1$, and there
+\[
+ Q_{K,r}(s)=\prod_{\mathfrak p}
+ \frac{1-N(\mathfrak p)^{-s}}{1-N(\mathfrak p)^{-s-r}}.
+\]
+For $q=N(\mathfrak p)$ and $x=q^{-s}$, the local factor has the exact geometric expansion
+\begin{align*}
+ \frac{1-x}{1-q^{-r}x}
+ &=1+(q^{-r}-1)x\sum_{j\ge0}q^{-rj}x^j\\
+ &=1-\sum_{k\ge1}(1-q^{-r})q^{-r(k-1)}x^k.
+\end{align*}
+Its $\mathfrak p^k$ coefficient is therefore
+\[
+ -(1-q^{-r})q^{-r(k-1)}=-\frac{q^r-1}{q^{rk}},
+\]
+which proves \eqref{eq:gcue-dedekind-prime-power}.  Unique prime-ideal factorization then
+gives multiplicativity, and multiplying the prime-power values gives
+\eqref{eq:gcue-dedekind-general-coeff}.
+
+For $\sigma=\Re s>1$, the absolute nonconstant mass of the local factor is
+\[
+ \sum_{k\ge1}|\alpha_{K,r}(\mathfrak p^k)|q^{-k\sigma}
+ =\frac{(1-q^{-r})q^{-\sigma}}{1-q^{-(\sigma+r)}}
+ \le \frac{q^{-\sigma}}{1-2^{-(\sigma+r)}}.
+\]
+The sum of $N(\mathfrak p)^{-\sigma}$ over prime ideals is bounded by the corresponding
+positive sum over all nonzero ideals, which converges for $\sigma>1$.  Hence the product of
+absolute local series converges and its coefficient expansion is absolutely convergent.
+This proves \eqref{eq:gcue-dedekind-ratio} without extending the Dirichlet series beyond
+that domain.
+\end{proof}
+
+\begin{corollary}[Nonintegral Dedekind shifts]
+\label{cor:gcue-dedekind-noninteger}
+For real $0<t<1$, $\zeta_{K,t}$ is not an ordinary Dirichlet series in integer bases
+$n^{-s}$ on any right half-plane of absolute convergence.
+\end{corollary}
+
+\begin{proof}
+Exactly one ideal, $\mathcal O_K$, has norm $1$, so $a_K(1)=1$.  Since all $a_K(n)$ are
+nonnegative and the unshifted series converges absolutely for $\sigma>1$, the same dominated
+convergence argument as in \cref{thm:gcue-noninteger-shift} gives
+\[
+ (1+t)^\sigma\zeta_{K,t}(\sigma)\longrightarrow1.
+\]
+Every nonzero ordinary Dirichlet series has an integral leading base $m_0$ by the lemma
+proved inside \cref{thm:gcue-noninteger-shift}.  Equality would force $m_0=1+t$, which is
+impossible for $0<t<1$.
+\end{proof}
+
+There is also a literal number-field version of the separated quotient size.  For a nonzero
+ideal $\mathfrak a$,
+\[
+ |G(\mathcal O_K/\mathfrak a)|=N(\mathfrak a)+1.
+\]
+By norm multiplicativity,
+\begin{align*}
+ w(\mathfrak a\mathfrak b)
+ &=N(\mathfrak a)N(\mathfrak b)+1,\\
+ w(\mathfrak a)w(\mathfrak b)
+ &=N(\mathfrak a)N(\mathfrak b)+N(\mathfrak a)+N(\mathfrak b)+1
+\end{align*}
+for $w(\mathfrak a)=N(\mathfrak a)+1$.  Their difference is positive.  Therefore the
+Dirichlet series
+\[
+ \sum_{0\ne\mathfrak a\lhd\mathcal O_K}(N(\mathfrak a)+1)^{-s}
+\]
+cannot be reconstructed from prime-ideal factorization by treating $w$ as a multiplicative
+ideal norm.  This is the exact obstruction; it does not claim that every conceivable
+factorization of the resulting analytic function is impossible.
+
+\subsection{Executable finite certificate}
+
+The accompanying exact-arithmetic certificate
+\texttt{verify\_split\_zero\_shifted\_core.py} passes under Python/SymPy
+3.13.9/1.13.1 and 3.13.1/1.13.3.  Its 26 named checks exhaust the semiring laws, unique
+Boolean character, rank-two idempotent skeleton, ideal classification, generated ideal
+products, and supported-zero divisibility in the five models
+$R=\Z/n\Z$ for $n=2,3,4,5,6$.  It also checks the endpoint residue matrix and inverse,
+support-swap equivariance, the Stone defect through all coprime pairs up to $64$, the exact
+local coprime Euler factor, shifted jets through order $8$, Pochhammer pole cancellation
+through order $16$, and the Dedekind local ratio coefficients over the stated finite test
+grid.  This audit is what exposed the additional bottom ideal $\{\tau\}$ in
+\cref{thm:gcue-ideal-lattice}.  The general category and convergence theorems remain the
+standard proofs above; finite replay is not substituted for them.
+
+\subsection{Interfaces retained and interfaces still requiring arrows}
+
+The finite CUE measure, Verblunsky recursion, Mellin--Hurwitz transform, $U(2)$ and $U(3)$
+models, trace descent, finite phase-space algebra, and ratio-lattice carrier are proved in
+\cref{sec:cue-mellin-complete-programme}.  They are not repeated here.  The present chapter adds
+three exact interfaces:
+\begin{enumerate}
+ \item the full categorical equivalence
+ $G(R)$-$\operatorname{SMod}\simeq\operatorname{Diag}_R$, including all additive
+ idempotents and morphisms;
+ \item the equivariant support-cube-to-endpoint-subspace map of
+ \cref{thm:gcue-support-endpoint-map}, with its exact fibres;
+ \item the shifted Dedekind continuation and ideal-ratio coefficient kernel of
+ \cref{thm:gcue-dedekind-shift,thm:gcue-dedekind-ratio}.
+\end{enumerate}
+The numerical equality
+\[
+ s^2+2s=\dim_{\C}\mathfrak{sl}_{s+1}(\C)
+\]
+and the explicit block bijection already proved in
+\cref{prop:local-block-coordinate-bijection} do not, by themselves, map a Kostka determinant,
+a Haar integral, or a microscopic asymptotic to a representation.  Constructing such a
+functor remains an explicit interface problem.  This is a statement about the arrows built in
+this corpus, not a claim about what has or has not been proved elsewhere.

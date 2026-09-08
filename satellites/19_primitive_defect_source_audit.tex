@@ -1,0 +1,852 @@
+\section{Primitive-defect source audit: a proved coordinate core}
+\label{sec:primitive-defect-source-audit}
+
+This chapter records the part of the modern local source
+``Primitive Defect Augmentations, Split-Zero Support, and A-Series Realizations''
+which survives a line-by-line audit.  The local source was read consecutively
+at its hash-pinned TeX edition (lines~1--1474).  It is an input artifact, not a
+human provenance record.  The present chapter therefore cites human sources
+for imported facts and labels every local construction by its actual proof
+scope.  In particular, the source's final ``consolidated theorem'' is not
+retained as one theorem: its summands live in different typed categories, and
+several of the proposed arrows were not defined.
+
+\subsection{Scope, source identity, and audit boundary}
+
+The audited source has 47,978 bytes and SHA-256
+\begin{quote}\small\texttt{2f3289f6a04105d3f15fe5f7c36dde286515e61f465caf1}\allowbreak\\
+\texttt{582f9808e19f3d2f7}.\end{quote}
+An identical TeX copy occurs in the adjacent version directory.  The source
+contains the following distinct layers:
+
+\begin{enumerate}[label=(\alph*)]
+  \item literal split-zero semiring and support-linearization constructions;
+  \item augmentation, Fourier, root-lattice, and Eisenstein calculations;
+  \item a proposed semilocal crossed-product boundary model;
+  \item principal parts of a shifted completed Hurwitz function;
+  \item orbifold, Weyl-operator, CUE, spectral, F-theory, and moonshine
+        interfaces; and
+  \item a conjectural CUE/Epstein transform bridge.
+\end{enumerate}
+
+Only (a), the finite-dimensional portions of (b), the principal-part algebra,
+and the explicitly typed finite CUE/Weyl calculations are proved below.  The
+other layers are retained in the machine-readable audit as candidate
+interfaces with their missing definitions and dependencies.  ``Not proved in
+this chapter'' is a source-relative statement; it is not a claim about the
+whole literature.
+
+\subsection{The split-zero semiring and its two zero fibres}
+
+Let $R$ be a nonzero commutative ring and put
+\[
+  G_R=R\sqcup\{\tau\}.
+\]
+For $r,s\in R$ define
+\[
+ r\oplus s=r+s,\qquad r\oplus\tau=\tau\oplus r=r,
+ \qquad \tau\oplus\tau=\tau,
+\]
+and
+\[
+ r\odot s=rs,\qquad r\odot\tau=\tau\odot r=\tau,
+ \qquad \tau\odot\tau=\tau.
+\]
+
+\begin{proposition}[Semiring and coordinate model]
+\label{prop:primitive-split-zero}
+The operations above make $G_R$ a commutative semiring with additive zero
+$\tau$ and multiplicative unit $1_R$.  The map
+\[
+ \iota:G_R\longrightarrow D_R:=\{(0,0)\}\cup(R\times\{1\}),
+ \qquad \iota(\tau)=(0,0),\quad \iota(r)=(r,1),
+\]
+is an injective semiring homomorphism when $D_R$ has the coordinatewise
+operations inherited from $R\times\{0,1\}$ with the same split-zero tables.
+The projections
+\[
+ p_R(\tau)=0_R,\quad p_R(r)=r,
+ \qquad
+ \chi_R(\tau)=0,\quad \chi_R(r)=1
+\]
+have fibres
+\[
+ p_R^{-1}(0_R)=\{\tau,0_R\},\qquad
+ \chi_R^{-1}(0)=\{\tau\},\qquad
+ \chi_R^{-1}(1)=R.
+\]
+\end{proposition}
+
+\begin{proof}
+If all entries are in $R$, associativity, commutativity, and distributivity
+are those of $R$.  If an entry is $\tau$, the addition table says that it is
+an identity, so every associativity case reduces to the case with the $\tau$
+removed.  For multiplication, $\tau$ is absorbing, so associativity and
+commutativity reduce in the same way.  For distributivity, if the multiplier
+is $\tau$ both sides are $\tau$; if the multiplier and both summands are in
+$R$, distributivity is inherited from $R$; and, for example,
+\[
+ r\odot(s\oplus\tau)=r\odot s=rs\oplus\tau
+                 =(r\odot s)\oplus(r\odot\tau).
+\]
+The remaining cases are symmetric.  Thus the semiring axioms hold.
+The displayed coordinate map is injective because $(0,0)$ is not in
+$R\times\{1\}$.  Checking a pair of supported entries uses the ring laws;
+checking a pair containing $\tau$ uses the two defining tables, so it
+preserves both operations and the unit.  Reading the first and second
+coordinates gives the three fibre identities.
+\end{proof}
+
+\begin{theorem}[Support and arithmetic prime ideals]
+\label{thm:primitive-prime-ideals}
+The subset $\mathfrak s_R=\{\tau\}$ is a prime ideal of $G_R$.  If $R$ is an
+integral domain, then $\mathfrak z_R=\{\tau,0_R\}$ is also a prime ideal, and
+\[
+ \mathfrak s_R\subset\mathfrak z_R.
+\]
+\end{theorem}
+
+\begin{proof}
+The set $\mathfrak s_R$ is closed under addition and absorbs multiplication.
+If $x\odot y=\tau$ and neither factor is $\tau$, then $x,y\in R$ and
+$x\odot y=xy\in R$, a contradiction.  Hence one factor belongs to
+$\mathfrak s_R$, which is primality.
+
+Assume now that $R$ is a domain.  The set $\mathfrak z_R$ is closed under
+addition and absorbs multiplication.  If $x\odot y\in\mathfrak z_R$ and
+neither factor is $\tau$, then $x,y\in R$ and $xy=0_R$; the domain property
+gives $x=0_R$ or $y=0_R$.  Thus one factor is in $\mathfrak z_R$.
+Both ideals are proper because $R\ne\{0_R\}$, and the inclusion is immediate.
+\end{proof}
+
+The two ideals retain different information: the first separates support from
+absence, while the second also identifies the supported arithmetic zero with
+the semiring zero.  No identification of these ideals with objects in a
+different category is made here.
+
+\subsection{Support linearization and the $A$-series kernel}
+
+For a finite set $I$, let $\mathcal P(I)$ be its Boolean support cube and put
+\[
+ \mathcal L_I(J)=\sum_{j\in J}e_j\in\mathbb Z^I,
+ \qquad
+ \delta_I\!\left(\sum_{i\in I}a_i e_i\right)=-\sum_{i\in I}a_i.
+\]
+
+\begin{theorem}[Exact kernel coordinates]
+\label{thm:primitive-A-kernel}
+If $|I|=r$, then
+\[
+ \ker\delta_I=\left\{(a_1,\ldots,a_r)\in\mathbb Z^r:
+                    \sum_i a_i=0\right\}
+\]
+has basis $\alpha_i=e_i-e_{i+1}$ $(1\leq i<r)$.  Its Gram matrix for the
+standard inner product is the Cartan matrix of type $A_{r-1}$; for $r=1$ the
+kernel is the zero lattice $A_0$.
+\end{theorem}
+
+\begin{proof}
+Choose an ordering of $I$.  Every $\alpha_i$ has coordinate sum zero.  If
+$a=(a_1,\ldots,a_r)$ has sum zero, set
+\[
+ b_i=a_1+\cdots+a_i\qquad(1\leq i<r).
+\]
+The $j$th coordinate of $\sum_{i<r}b_i(e_i-e_{i+1})$ is $b_1=a_1$ for
+$j=1$, is $b_j-b_{j-1}=a_j$ for $1<j<r$, and is
+$-b_{r-1}=a_r$ for $j=r$.  Thus the $\alpha_i$ span the kernel.  If a linear
+combination of them is zero, its first coordinate is the coefficient of
+$\alpha_1$, then its second new coordinate determines the coefficient of
+$\alpha_2$, and so on; hence they are independent.
+Finally
+\[
+ \langle\alpha_i,\alpha_j\rangle=
+ \begin{cases}2&i=j,\\-1&|i-j|=1,\\0&|i-j|>1,\end{cases}
+\]
+which is the $A_{r-1}$ Cartan matrix.  When $r=1$ there are no roots and the
+kernel is $0$.
+\end{proof}
+
+The defect of a support $J$ is exactly
+$\delta_I(\mathcal L_I(J))=-|J|$.  This is a statement about the displayed
+free abelian group.  A Grothendieck group, representation ring, or fusion
+ring may have relations and primitive objects of dimension other than one;
+the slogan ``universal negative dimension'' is therefore valid only after
+the explicit free, dimension-one hypotheses have been imposed.
+
+\subsection{Cyclic Fourier projection}
+
+Let $C_r=\langle g\mid g^r=1\rangle$ and
+$\omega=e^{2\pi i/r}$.  In $\mathbb C[C_r]$ define
+\[
+ S_{ab}=r^{-1/2}\omega^{ab},\qquad a,b\in\mathbb Z/r\mathbb Z.
+\]
+
+\begin{proposition}[Augmentation is the trivial Fourier coordinate]
+\label{prop:primitive-fourier}
+For $x=\sum_{a=0}^{r-1}c_ag^a$,
+\[
+ \epsilon(x)=\sum_a c_a=\sqrt r\sum_a c_aS_{a0}.
+\]
+The nontrivial Fourier modes span
+$\ker(\epsilon)\otimes_{\mathbb Z}\mathbb C$.
+\end{proposition}
+
+\begin{proof}
+Since $S_{a0}=r^{-1/2}$, the first equality is immediate.  For
+$b\in\mathbb Z/r\mathbb Z$ put
+$f_b=\sum_a\omega^{-ab}g^a$.  The finite geometric sum gives
+\[
+ \sum_{a=0}^{r-1}\omega^{a(b-c)}=r\,\mathbf 1_{b=c},
+\]
+so the $f_b$ form a basis.  The coefficient sum of $f_b$ is $r$ for $b=0$
+and $0$ otherwise.  Therefore the kernel is exactly the span of
+$f_1,\ldots,f_{r-1}$.
+\end{proof}
+
+\subsection{The $C_3$ augmentation ideal and the Eisenstein Epstein sum}
+
+For $C_3=\langle g\rangle$, the augmentation ideal has basis
+$\alpha_1=1-g$, $\alpha_2=g-g^2$, with Gram matrix
+\[
+ \begin{pmatrix}2&-1\\-1&2\end{pmatrix}.
+\]
+The evaluation map $\pi_\omega:\mathbb Z[C_3]\to\mathbb Z[\omega]$,
+$g\mapsto\omega$, has kernel generated by $1+g+g^2$, and
+\[
+ \pi_\omega(I_{C_3})=(1-\omega)\mathbb Z[\omega].
+\]
+Indeed, the two basis images are $1-\omega$ and
+$\omega-\omega^2=\omega(1-\omega)$, and $\omega$ is a unit.
+
+Writing $z=m+n\omega$ gives
+\[
+ N(z)=z\overline z=m^2-mn+n^2,
+ \qquad Q_{A_2}(m,n)=2N(z).
+\]
+
+\begin{theorem}[$A_2$ Epstein zeta in its initial half-plane]
+\label{thm:primitive-A2-epstein}
+For $\Re(s)>1$,
+\[
+ Z_{A_2}(s):=\sum_{(m,n)\ne(0,0)}Q_{A_2}(m,n)^{-s}
+ =2^{-s}6\,\zeta(s)L(s,\chi_{-3}).
+\]
+The identity then extends wherever the two cited meromorphic continuations
+are defined.
+\end{theorem}
+
+\begin{proof}
+The norm is multiplicative because it is the complex norm in
+$K=\mathbb Q(\sqrt{-3})$.  The Eisenstein integers are Euclidean for this
+norm: the triangular lattice $\mathbb Z[\omega]\subset\mathbb C$ has Voronoi
+cells of circumradius $1/\sqrt3<1$, so for $z\in K$ choose
+$q\in\mathbb Z[\omega]$ with $|z-q|<1$ and, after clearing a denominator,
+obtain Euclidean division $a=bq+r$ with $N(r)<N(b)$.  Hence every nonzero
+ideal is principal.  The six elements
+\(\{\pm1,\pm\omega,\pm\omega^2\}\) are exactly the units (their norm is
+one), so each nonzero principal ideal has six generators.
+
+For $\Re(s)>1$, unique ideal factorization and multiplicativity of the ideal
+norm give the Dedekind Euler product (the standard theorem is recorded in
+Milne and Neukirch~\cite{milneANT2020,neukirch1999}).  Consequently
+\[
+ \sum_{0\ne z\in\mathbb Z[\omega]}N(z)^{-s}=6\,\zeta_K(s).
+\]
+The quadratic character of $K$ is $\chi_{-3}$; comparing the Euler factor at
+each rational prime (split for $p\equiv1\pmod3$, inert for
+$p\equiv2\pmod3$, and ramified at $3$) gives
+\[
+ \zeta_K(s)=\zeta(s)L(s,\chi_{-3}).
+\]
+Multiplying by $2^{-s}$ proves the displayed formula.  The series argument
+was made only in $\Re(s)>1$; continuation is imported from the cited
+Dedekind-zeta theorem rather than silently inferred from the series.
+\end{proof}
+
+\subsection{Completed Hurwitz principal parts}
+
+The local source writes $F_t(s)=\zeta(s,1+t)$ and
+\[
+ \Lambda_t(s)=\pi^{-s/2}\Gamma(s/2)F_t(s).
+\]
+The value formula used here is DLMF~25.11.13.  The simple pole and
+specialization are recorded in DLMF~25.11.1--2~\cite{apostolDLMF25}.
+The following statement uses $a=1+t$ in the DLMF range $\Re(a)>0$ (or, more
+generally, away from nonpositive-integer parameter singularities).
+
+\begin{lemma}[Invariant and anti-invariant principal-part basis]
+\label{lem:primitive-principal-parts}
+Put $u=s(s-1)$ and $v=2s-1$.  Then
+\[
+ u(1-s)=u(s),\qquad v(1-s)=-v(s),\qquad v^2=1+4u,
+\]
+and
+\[
+ \frac1u=\frac1{s-1}-\frac1s,
+ \qquad
+ \frac vu=\frac1{s-1}+\frac1s.
+\]
+If $P(s)=a/s+b/(s-1)$, then
+\[
+ P(s)=A\frac1u+B\frac vu,\qquad
+ A=\frac{b-a}{2},\quad B=\frac{a+b}{2}.
+\]
+\end{lemma}
+
+\begin{proof}
+The first three identities follow by direct substitution.  Since
+$u=s(s-1)$ and $v=2s-1$, partial fractions give the next two identities.
+Expanding $A/u+Bv/u$ gives coefficient $-A+B$ at $1/s$ and $A+B$ at
+$1/(s-1)$.  Solving $a=-A+B$, $b=A+B$ gives the displayed $A,B$.
+\end{proof}
+
+\begin{theorem}[Shifted completed-Hurwitz endpoint calculation]
+\label{thm:primitive-hurwitz-endpoints}
+Under the parameter restriction above,
+\[
+ \operatorname*{Res}_{s=0}\Lambda_t=-1-2t,
+ \qquad
+ \operatorname*{Res}_{s=1}\Lambda_t=1,
+\]
+and hence
+\[
+ \operatorname{PP}_{\{0,1\}}(\Lambda_t)
+ =(1+t)\frac1u-t\frac vu.
+\]
+For $t=1$ the anti-invariant term is $-v/u$, with residue $-1$ at both
+endpoints.
+\end{theorem}
+
+\begin{proof}
+At $s=1$, DLMF gives residue one for $\zeta(s,a)$, while
+$\pi^{-1/2}\Gamma(1/2)=1$, proving the second residue.  At $s=0$,
+\[
+ \Gamma(s/2)=\frac2s+O(1),\qquad \pi^{-s/2}=1+O(s),
+ \]
+and DLMF~25.11.13 gives
+$\zeta(0,1+t)=\tfrac12-(1+t)=-\tfrac12-t$.  The first residue is therefore
+$2(-\tfrac12-t)=-1-2t$.  Apply Lemma~\ref{lem:primitive-principal-parts}
+with $a=-1-2t$ and $b=1$; it gives $A=1+t$ and $B=-t$.  At $t=1$,
+$-v/u=-1/s-1/(s-1)$, so both endpoint residues are $-1$.
+\end{proof}
+
+\begin{remark}[What the critical-line calculation actually says]
+On $s=\frac12+i\gamma$,
+\[
+ u=-\left(\gamma^2+\frac14\right)\in\mathbb R,
+ \qquad v=2i\gamma.
+\]
+Thus $1/u$ is real and $v/u$ is purely imaginary.  These are orthogonal only
+after choosing the standard real inner product on
+$\mathbb C\cong\mathbb R^2$; there is no canonical assertion of orthogonality
+of complex subspaces in the source's wording.  This observation has no
+implication about the location of zeros.
+\end{remark}
+
+\subsection{The finite Weyl algebra and the corrected $r=3$ matrices}
+
+Let $V=\mathbb C^r$ with basis $|m\rangle$, $m\in\mathbb Z/r\mathbb Z$, and
+define
+\[
+ X|m\rangle=|m+1\rangle,
+ \qquad Z|m\rangle=\omega^m|m\rangle,
+ \qquad W_{a,b}=X^aZ^b.
+\]
+Then $ZX=\omega XZ$ and
+\[
+ W_{a,b}W_{c,d}=\omega^{bc}W_{a+c,b+d},
+ \qquad
+ [W_{a,b},W_{c,d}]
+   =(\omega^{bc}-\omega^{ad})W_{a+c,b+d}.
+\]
+
+\begin{theorem}[Finite Weyl basis]
+\label{thm:primitive-weyl-basis}
+The $r^2$ operators $W_{a,b}$ form a basis of $M_r(\mathbb C)$, and the
+$r^2-1$ nonidentity operators form a basis of $\mathfrak{sl}_r(\mathbb C)$.
+\end{theorem}
+
+\begin{proof}
+The relation $ZX=\omega XZ$ gives the multiplication formula, and reversing
+the two factors gives the commutator.  If $a\ne0$, $X^aZ^b$ has zero diagonal;
+if $a=0$ and $b\ne0$, its trace is
+$\sum_{m=0}^{r-1}\omega^{bm}=0$.  Hence every nonidentity operator is
+traceless.  To prove independence, suppose
+$\sum_{a,b}c_{a,b}X^aZ^b=0$.  The $(m+a,m)$ entry isolates
+$c_{a,b}\omega^{bm}$ as a finite Fourier polynomial in $m$; Fourier
+orthogonality forces every $c_{a,b}=0$.  There are $r^2$ independent
+operators in the $r^2$-dimensional matrix space, and the trace map has the
+one-dimensional span of the identity as a complementary direction.  The
+nonidentity span is therefore exactly the traceless subspace.
+\end{proof}
+
+For $r=3$, preserving the declared action on kets requires
+\[
+ X=\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix},
+ \qquad
+ X^2=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},
+ \qquad
+ Z=\operatorname{diag}(1,\omega,\omega^2).
+\]
+Direct multiplication gives $ZX=\omega XZ$.  The matrix printed as $X$ in
+the audited local source is the second displayed matrix, hence is actually
+$X^2$ under the source's ket convention; with that printed matrix the relation
+is $ZX=\omega^2XZ$.  The correction is a relabelling of the two shifts and of
+the four mixed products, not a change of the abstract Weyl algebra.  The
+finite matrix calculation has no map here to a split-zero element $\tau$:
+the zero matrix and unsupported absence remain distinct typed objects.
+
+\subsection{The CUE exponent: a numerical equality and an independent block map}
+
+Grover, Mezzadri, and Simm define, for Haar $U\in U(N)$,
+\[
+ \Lambda_N(z)=\det(1-zU^\dagger),\qquad
+ M_{\mu,\nu}(z,N)=\mathbb E\!\left[
+ \prod_i\Lambda_N^{(\mu_i)}(z)
+ \prod_j\overline{\Lambda_N^{(\nu_j)}(z)}\right]
+\]
+and prove their microscopic equal-length asymptotic with exponent
+$|\mu|+|\nu|+s^2$ under the hypotheses stated in their equal-length
+microscopic theorem~\cite{groverMezzadriSimm2026}.  For $\mu=\nu=(1^s)$ this exponent is
+\[
+ s+s+s^2=s^2+2s=(s+1)^2-1.
+\]
+The last equality is a dimension count, not a statement made by the CUE
+paper that its moment has a Lie-algebra-valued functor.
+
+\begin{proposition}[Explicit block-vector-space isomorphism]
+\label{prop:primitive-cue-block}
+For $W=\mathbb C^s$, the map
+\[
+ \Theta:\operatorname{End}(W)\oplus W\oplus W^\vee
+       \longrightarrow \mathfrak{sl}(W\oplus\mathbb C),\qquad
+ (A,u,\varphi)\longmapsto
+ \begin{pmatrix}A&u\\\varphi&-\operatorname{tr}A\end{pmatrix}
+\]
+is a vector-space isomorphism.
+\end{proposition}
+
+\begin{proof}
+An element of $\mathfrak{sl}(W\oplus\mathbb C)$ has a unique block form
+$\left(\begin{smallmatrix}B&u\\\varphi&\lambda\end{smallmatrix}\right)$ with
+$\operatorname{tr}B+\lambda=0$.  It is therefore uniquely
+$\Theta(B,u,\varphi)$.  Conversely every displayed block has trace zero.
+Linearity and the two inverse descriptions prove bijectivity.  Transporting
+the matrix commutator through this bijection gives a Lie bracket on the source
+vector space, but supplies no map from the CUE moment space to that bracket.
+\end{proof}
+
+\subsection{The finite-prime boundary: local model, semilocal fibre, and exact
+quotient}
+
+This subsection closes the finite-prime local calculation and then compares it
+with the two-place semilocal geometry without discarding the $p$-adic unit
+coordinate.  Fix a rational prime $p$ and put $\ell=\log p$.
+
+\begin{definition}[The one-ended valuation space]
+Let
+\[
+ \overline{\mathbb Z}_{+}=\mathbb Z\sqcup\{\infty\}
+\]
+have the topology in which every integer is isolated and a neighbourhood basis
+at $\infty$ is
+\[
+ N_M=\{\infty\}\cup\{m\in\mathbb Z:m\geq M\},\qquad M\in\mathbb Z.
+\]
+Thus only the positive end is compactified.  Define
+\[
+ \bar v_p:\mathbb Q_p\longrightarrow\overline{\mathbb Z}_{+},\qquad
+ \bar v_p(x)=
+ \begin{cases}v_p(x),&x\ne0,\\ \infty,&x=0.
+ \end{cases}
+\]
+\end{definition}
+
+\begin{lemma}[Exact valuation quotient]
+\label{lem:primitive-valuation-quotient}
+The map $\bar v_p$ is the topological quotient by multiplication by
+$\mathbb Z_p^\times$.  In particular,
+\[
+ \mathbb Q_p/\mathbb Z_p^\times\ \xrightarrow{\ \sim\ }\
+ \overline{\mathbb Z}_{+}
+\]
+is a homeomorphism, not merely a bijection of strata.
+\end{lemma}
+
+\begin{proof}
+For $m\in\mathbb Z$ the fibre is
+$\bar v_p^{-1}(m)=p^m\mathbb Z_p^\times$, one
+$\mathbb Z_p^\times$-orbit, while the fibre over $\infty$ is $\{0\}$.
+The inverse images
+\[
+ \bar v_p^{-1}(\{m\})=p^m\mathbb Z_p^\times,
+ \qquad
+ \bar v_p^{-1}(N_M)=p^M\mathbb Z_p
+\]
+are open, so $\bar v_p$ is continuous.  It is also open.  An open set
+containing a nonzero $x$ contains a sufficiently small ball on which the
+valuation is constant, hence its image contains the isolated point $v_p(x)$.
+An open set containing $0$ contains $p^M\mathbb Z_p$ for some $M$, hence its
+image contains $N_M$.  A continuous open surjection is a quotient map, and its
+fibres are exactly the stated unit orbits.
+\end{proof}
+
+Set
+\[
+ Y_\ell=\overline{\mathbb Z}_{+}\times\mathbb R,
+ \qquad
+ T^n(m,y)=(m+n,y+n\ell),
+ \qquad
+ T^n(\infty,y)=(\infty,y+n\ell).
+\]
+Translation by an integer preserves the positive-end neighbourhoods $N_M$,
+so every $T^n$ is a homeomorphism.  The space $Y_\ell$ is locally compact and
+Hausdorff: an integer has a compact singleton neighbourhood, and
+$N_M\times[a,b]$ is a compact neighbourhood of each $(\infty,y)$ after
+shrinking the interval.
+
+\begin{proposition}[Orbit coordinates and the spiral compactification]
+\label{prop:primitive-local-orbit-space}
+The $\mathbb Z$-action on $Y_\ell$ is free and proper.  Its orbit space is
+\[
+ X_\ell=\mathbb R\sqcup S^1_\ell,
+ \qquad S^1_\ell=\mathbb R/\ell\mathbb Z,
+\]
+under the orbit map
+\[
+ q_\ell(m,y)=y-m\ell,\qquad
+ q_\ell(\infty,y)=[y]_\ell.
+\]
+The topology is determined exactly as follows: the two displayed pieces have
+their usual topologies, and a generic net $t_j\in\mathbb R$ converges to
+$[a]_\ell\in S^1_\ell$ precisely when
+\[
+ t_j\longrightarrow-\infty,\qquad [t_j]_\ell\longrightarrow[a]_\ell.
+\]
+Equivalently, $X_\ell$ is homeomorphic to the closed subset of $\mathbb C$
+formed by the unit circle and the disjoint spiral
+\[
+ t\longmapsto (1+e^t)\exp(2\pi i t/\ell),
+\]
+with $[a]_\ell$ sent to $\exp(2\pi i a/\ell)$.
+\end{proposition}
+
+\begin{proof}
+If $T^n(m,y)=(m,y)$, then $m+n=m$; at the boundary,
+$y+n\ell=y$.  In either case $n=0$, so the action is free.  If compact sets
+$K,L\subset Y_\ell$ satisfy $T^nK\cap L\ne\varnothing$, the projections of
+$K$ and $L$ to the real coordinate are bounded, while that coordinate changes
+by $n\ell$.  Only finitely many $n$ can occur, which is properness for this
+discrete action.
+
+On the generic part, $t=y-m\ell$ is invariant and every orbit meets
+$\{0\}\times\mathbb R$ once.  On the boundary the quotient is
+$\mathbb R/\ell\mathbb Z$.  For the cross-stratum topology, representatives
+$(m_j,y_j)$ converge to $(\infty,a)$ exactly when $m_j\to+\infty$ and
+$y_j\to a$.  Their invariant coordinates then satisfy
+$t_j=y_j-m_j\ell\to-\infty$ and $[t_j]_\ell=[y_j]_\ell\to[a]_\ell$.
+Conversely, from those two conditions choose integers $m_j$ such that
+$y_j=t_j+m_j\ell\to a$; necessarily $m_j\to+\infty$, giving representatives
+converging to $(\infty,a)$.  The spiral has radius $1+e^t$, so it is injective;
+the same convergence criterion identifies its complete finite accumulation
+set with the unit circle.  This proves the last description and the asserted
+homeomorphism.
+\end{proof}
+
+Let $U=\mathbb Z\times\mathbb R\subset Y_\ell$ and
+$F=\{\infty\}\times\mathbb R$.  Since $\mathbb Z$ is amenable, full and
+reduced crossed products agree and the invariant open--closed decomposition
+gives
+\[
+ 0\longrightarrow I_p\longrightarrow E_p\longrightarrow Q_p\longrightarrow0,
+\]
+where
+\[
+ I_p=C_0(U)\rtimes\mathbb Z,\qquad
+ E_p=C_0(Y_\ell)\rtimes\mathbb Z,\qquad
+ Q_p=C_0(F)\rtimes\mathbb Z.
+\]
+For a free proper action, the Green--Rieffel module identifies the crossed
+product with the compact operators on the quotient module
+\cite[Theorem~1.3.22]{meslandSengun2025}.  Applied to $Y_\ell$, $U$, and $F$,
+it gives an extension-level Morita equivalence
+\[
+\begin{array}{ccccccccc}
+0&\to&I_p&\to&E_p&\to&Q_p&\to&0\\
+ &&\sim_M\downarrow&&\sim_M\downarrow&&\sim_M\downarrow\\
+0&\to&C_0(\mathbb R)&\to&C_0(X_\ell)&\to&C(S^1_\ell)&\to&0.
+\end{array}
+\]
+Here extension-level compatibility is not an extra assumption.  In the
+standard module obtained by completing $C_c(Y_\ell)$, the closed submodule
+generated by $C_0(\mathbb R)\subset C_0(X_\ell)$ is the completion of
+$C_c(U)$, and its quotient is the completion of $C_c(F)$.  The corresponding
+linking-algebra ideal and quotient therefore give the displayed commuting
+diagram.  Functoriality of the six-term sequence transports its connecting
+maps.
+
+\begin{theorem}[The local finite-prime boundary coefficient]
+\label{thm:primitive-local-boundary}
+Choose the generator of $K_1(C_0(\mathbb R))$ represented by
+\[
+ v(t)=\frac{t-i}{t+i};
+\]
+as $t$ increases, this loop winds counterclockwise.  Under the explicit Green
+modules above, the connecting map satisfies
+\[
+ \partial_p:K_0(Q_p)\longrightarrow K_1(I_p),
+ \qquad \partial_p([1])=-[v].
+\]
+\end{theorem}
+
+\begin{proof}
+Define a function on the entire quotient $X_\ell$ by
+\[
+ h(t)=\phi(t)=\frac{1}{1+e^t}\quad(t\in\mathbb R),
+ \qquad h([a]_\ell)=1\quad([a]_\ell\in S^1_\ell).
+\]
+The convergence criterion in Proposition~\ref{prop:primitive-local-orbit-space}
+gives continuity at every boundary phase because $\phi(t)\to1$ as
+$t\to-\infty$.  The only escaping end of $X_\ell$ is $t\to+\infty$, where
+$\phi(t)\to0$, so $h\in C_0(X_\ell)$.  Its quotient is the constant projection
+$1\in C(S^1_\ell)$.
+
+Blackadar's explicit exponential formula for the six-term connecting map
+\cite[Section~9.3.2]{blackadar1986} therefore gives
+\[
+ \partial[1]=[u],\qquad
+ u(t)=\exp\!\left(2\pi i\phi(t)\right)\in 1+C_0(\mathbb R).
+\]
+Both endpoint limits of $u$ are $1$.  Along the oriented compactification of
+$\mathbb R$, its continuous argument $2\pi\phi(t)$ decreases from $2\pi$ to
+$0$, hence its winding number is $-1$.  Thus $[u]=-[v]$.  Naturality for the
+extension-level Green modules gives the identical coefficient in the crossed
+product extension.
+\end{proof}
+
+We now retain the unit coordinate which the local model suppresses.  The
+two-place model of Connes, Consani, and Marcolli is
+$(\mathbb Q_p\times\mathbb R)/(\{\pm1\}\times p^{\mathbb Z})$; its
+$p$-boundary is the circle $\mathbb R_+^\times/p^{\mathbb Z}$, and its
+logarithmic scale is $\mathbb R/\ell\mathbb Z$
+\cite[Section~8.2]{connesConsaniMarcolli2007}.  Restrict to the generic stratum
+and this $p$-boundary, namely
+\[
+ W_p=\mathbb Q_p\times\mathbb R^\times,
+ \qquad G_p=\{\pm p^n:n\in\mathbb Z\},
+\]
+with diagonal multiplication.  This action is free because the real coordinate
+is nonzero.  It is proper because boundedness of the absolute value of that
+coordinate in two compact sets bounds $n$, leaving only the finite sign.
+
+\begin{proposition}[Complete semilocal orbit coordinates]
+\label{prop:primitive-semilocal-orbits}
+The orbit space $\mathcal S_p=W_p/G_p$ is
+\[
+ \mathcal S_p=(\mathbb Z_p^\times\times\mathbb R)\sqcup S^1_\ell.
+\]
+After using the sign to choose $y>0$, its coordinates are
+\[
+ (x,y)\longmapsto
+ \left(p^{-m}x,\,\log y-m\ell\right),
+ \qquad m=v_p(x),\quad x\ne0,
+\]
+and
+\[
+ (0,y)\longmapsto[\log y]_\ell.
+\]
+A generic net $(a_j,t_j)$ converges to $[b]_\ell$ exactly when
+\[
+ t_j\to-\infty,\qquad [t_j]_\ell\to[b]_\ell;
+\]
+there is no condition on $a_j\in\mathbb Z_p^\times$.
+\end{proposition}
+
+\begin{proof}
+The sign choice is unique because $y\ne0$.  For $x\ne0$, write uniquely
+$x=p^m a$ with $m=v_p(x)$ and $a\in\mathbb Z_p^\times$.  Multiplication by
+$p^n$ changes $(m,\log y)$ to $(m+n,\log y+n\ell)$ and leaves both $a$ and
+$t=\log y-m\ell$ invariant.  At $x=0$, the remaining orbit coordinate is
+$[\log y]_\ell$.  These formulas give a bijection.
+
+For convergence to $(0,y)$ choose orbit representatives
+$(p^{m_j}a_j,y_j)$ with $y_j\to y$.  They approach the boundary precisely when
+$m_j\to+\infty$; this convergence is uniform in the unit $a_j$ because
+$|p^{m_j}a_j|_p=p^{-m_j}$.  Consequently
+$t_j=\log y_j-m_j\ell\to-\infty$ and
+$[t_j]_\ell=[\log y_j]_\ell\to[\log y]_\ell$.  The converse follows by
+choosing integers $m_j\to+\infty$ for which
+$t_j+m_j\ell\to b$ and taking representatives
+$(p^{m_j}a_j,\exp(t_j+m_j\ell))$.  This also proves the topological statement.
+\end{proof}
+
+The compact group $K_p=\mathbb Z_p^\times$ acts on $\mathcal S_p$ by
+multiplication in the first generic coordinate and fixes the boundary circle.  Its
+orbit space is exactly $X_\ell$.  Write the quotient map as
+\[
+ \Pi_p:\mathcal S_p\longrightarrow X_\ell,\qquad
+ \Pi_p(a,t)=t,\qquad \Pi_p([b]_\ell)=[b]_\ell.
+\]
+Thus $\Pi_p^{-1}(t)=\mathbb Z_p^\times$ on the generic stratum and
+$\Pi_p^{-1}([b]_\ell)=\{[b]_\ell\}$ on the boundary.  Pullback gives the exact
+commutative diagram
+\[
+\begin{array}{ccccccccc}
+0&\to&C_0(\mathbb R)&\to&C_0(X_\ell)&\to&C(S^1_\ell)&\to&0\\
+ &&\downarrow\scriptstyle{\pi^*}&&\downarrow\scriptstyle{\Pi_p^*}
+ &&\Vert\\
+0&\to&C_0(\mathbb Z_p^\times\times\mathbb R)&\to&C_0(\mathcal S_p)
+ &\to&C(S^1_\ell)&\to&0,
+\end{array}
+\]
+where $\pi(a,t)=t$.  The lower extension is Morita equivalent, by the same
+restricted Green-module argument, to the natural semilocal crossed-product
+extension
+\[
+\begin{split}
+0\to {}&C_0(\mathbb Q_p^\times\times\mathbb R^\times)\rtimes G_p
+\longrightarrow C_0(W_p)\rtimes G_p\\
+&\longrightarrow C_0(\{0\}\times\mathbb R^\times)\rtimes G_p\to0.
+\end{split}
+\]
+
+\begin{corollary}[The semilocal boundary class and its exact relation to the
+local coefficient]
+\label{cor:primitive-semilocal-boundary}
+Under the suspension/Bott identification
+\[
+ K_1\!\left(C_0(\mathbb Z_p^\times\times\mathbb R)\right)
+ \cong K_0(C(\mathbb Z_p^\times))
+ \cong C(\mathbb Z_p^\times,\mathbb Z),
+\]
+the semilocal connecting map sends
+\[
+ [1]\longmapsto \bigl(a\mapsto-1\bigr).
+\]
+It is the pullback of the local class $-1$ along $\pi$.
+\end{corollary}
+
+\begin{proof}
+Naturality of the displayed extension diagram gives
+$\partial_{\rm sl}=\pi^*_*\partial_p$.  Equivalently, the same lift is
+\[
+ h(a,t)=\frac1{1+e^t},\qquad h([b]_\ell)=1,
+\]
+and its exponential is the clockwise unitary from
+Theorem~\ref{thm:primitive-local-boundary}, constant in $a$.  Since
+$\mathbb Z_p^\times$ is compact and totally disconnected, stable projection
+classes in $C(\mathbb Z_p^\times)$ are their locally constant integer-valued
+rank functions.  Pointwise winding is $-1$ at every $a$, proving the formula.
+\end{proof}
+
+\begin{proposition}[Why the unit fibre cannot be removed by Morita
+equivalence]
+\label{prop:primitive-semilocal-morita-obstruction}
+The map $\Pi_p$ is a proper quotient with the fibres displayed above, but it is
+not a homeomorphism.  Moreover, the natural semilocal crossed-product algebra
+$C_0(W_p)\rtimes G_p$ is not strongly Morita equivalent to $E_p$.
+\end{proposition}
+
+\begin{proof}
+The compact group $K_p$ acts continuously on $\mathcal S_p$, so its orbit map
+$\Pi_p$ is closed and proper.  On the generic open stratum it forgets the
+entire $K_p$ coordinate; for example, a continuous function supported in a
+proper clopen subset of $K_p$ does not lie in the image of $\Pi_p^*$.
+
+For a topological obstruction independent of this particular formula, note
+that $K_p$ is totally disconnected and has no isolated points.  Hence no point
+of $K_p\times\mathbb R$ is locally connected: the projection of a connected
+set to $K_p$ is a singleton, but $\{a\}\times\mathbb R$ has empty interior.
+The generic stratum is dense in $\mathcal S_p$, so $\mathcal S_p$ has no
+nonempty open set consisting of locally connected points.  By contrast, the
+generic stratum $\mathbb R\subset X_\ell$ is a nonempty open set of locally
+connected points.  Thus the two orbit spaces are not homeomorphic.
+
+Both group actions are free and proper, so their crossed products are strongly
+Morita equivalent to $C_0(\mathcal S_p)$ and $C_0(X_\ell)$, respectively
+\cite[Theorem~1.3.22]{meslandSengun2025}.  Strong Morita equivalence of
+commutative $C^*$-algebras induces a homeomorphism of their primitive spectra
+\cite[p.~208]{green1978}.
+The proved topological obstruction and transitivity of Morita equivalence rule
+out a Morita equivalence between the two crossed products.
+\end{proof}
+
+Consequently the local coefficient $-1$ is correct, and its natural semilocal
+image is the constant class $a\mapsto-1$.  What fails is the audited source's
+claim that forgetting the $\mathbb Z_p^\times$ coordinate is itself a Morita
+reduction.  A different spherical corner or unit-character projection could
+still define another map, but it must be stated and proved; it is not supplied
+by the source or by the two-place construction.  At this stage no larger
+multi-place algebra follows from the two-place theorem alone; Subsection
+\ref{subsec:unstabilized-semilocal-one-zero} constructs the natural finite-set
+candidate independently and records exactly what it retains and forgets.
+
+\paragraph{Executable boundary check.}
+The bounded replay is
+\begin{center}
+\footnotesize
+\path{certificates/globalization_nte_finite_prime_boundary/verify_finite_prime_boundary.py}.
+\end{center}
+It checks the two invariant coordinates, the
+spiral radius limits, the derivative and endpoint values of $\phi$, the
+clockwise winding $-1$, the counterclockwise Cayley generator $+1$, and the
+pointwise-constant semilocal winding.  It does not certify the quotient
+topologies, the Green--Rieffel theorem, extension-level Morita compatibility,
+or the primitive-spectrum obstruction; those are the standard proofs printed
+above.
+
+\input{satellites/19a_archimedean_reflection_boundary}
+
+\input{satellites/19b_global_place_balancing_conjecture}
+
+\input{satellites/19c_unstabilized_semilocal_one_zero_algebra}
+
+\input{satellites/19d_stable_to_natural_extension_morphism}
+
+\input{satellites/19e_nonconstant_unit_fibre_k_theory}
+
+\input{satellites/19f_finite_set_coherence}
+
+\subsection{Candidate interfaces retained without overclaiming}
+
+The following broader source interfaces remain useful research leads.  The
+table separates the bounded theorems now proved from the additional evidence
+that would be required for any stronger interface claim.
+
+\begin{center}
+\begin{tabular}{p{0.25\textwidth}p{0.31\textwidth}p{0.34\textwidth}}
+\toprule
+Source layer & Precisely retained datum & Missing typed evidence before admission\\
+\midrule
+ Global finite-prime assembly & The local boundary is $-1$; the natural
+ unit-retaining multi-place algebra is Definition
+ \ref{def:unstabilized-one-zero-algebra}; Theorem
+ \ref{thm:stable-to-natural-extension-embedding} lifts the stable codiagonal
+ square to an injective extension morphism; and Theorem
+ \ref{thm:full-natural-one-zero-k-theory} computes the full nonconstant
+ finite invariants, finite coinvariants, archimedean sign-even image, natural
+ connecting map, $K_0$ kernel, and $K_1$ extension & Any stronger
+ surjectivity, isomorphism, or Morita-equivalence claim must account for the
+ explicit odd-difference quotient $\mathcal Q_P$, the finite-level
+ coinvariant multiplicities, and coherence under enlarging $P$.
+ Proposition \ref{prop:minimal-symmetric-sign-enrichment} retains the sign
+ difference in a separate split carrier; it does not identify that carrier
+ with the natural boundary algebra\\
+Archimedean APS/global splice & The reflection crossed product, its matrix
+ model, quotient, two boundary generators, map $\partial_\infty(a,b)=-(a+b)$,
+ the whole-line and two compact-interval index realizations, and the stable
+ multi-place codiagonal and the natural arithmetic representative are proved
+ separately & A specified APS domain, endpoint projectors, adjoint domain,
+ and an exact morphism from that operator realization to the extension data\\
+Orbifold labels & The conditional $(C,\rho)$ label set and the $S_3$ count $(1,1,2,3,3,2,2,2)$ & The exact VOA/orbifold hypotheses and a content-read primary source for the claimed fusion setting\\
+Leech/moonshine & The formal $A_2$ direct-sum rank count and the displayed theta identity as candidate data & A human-source chain for the $12A_2$ neighbour construction and the stated simple-current identifications\\
+Spectral/F-theory layers & Rank-one, ADE, Mordell--Weil, and BSD expressions as separately typed analogies or sourced dictionaries & Exact operators, bases, arithmetic fibration, and maps; no common object follows from shared notation\\
+CUE/Epstein bridge & The four listed structural coincidences & An explicit transform-level map between compact pushforward measures and discrete lattice-shell measures\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Consequently, the local source's broad ``primitive defect realization theorem''
+is replaced by a collection of theorems above plus an open-interface ledger.
+No endpoint statement, individual-zero map, critical-line conclusion, or
+Riemann-zeta zero result is inferred from the finite algebraic coincidences.

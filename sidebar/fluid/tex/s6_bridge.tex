@@ -1,0 +1,482 @@
+% Standalone mathematical section; requires amsmath, amssymb, amsthm.
+% Original source tasks are not modified by this section.
+\section{Exact bridges from the retained Fable polynomial and the S6 cusp}
+\label{sec:s6b}
+
+\subsection{Source and scope}
+The source corpus is \emph{S6 Proof Audit, Reconstruction \& Overleaf Release};
+its audited artifact names and hashes are retained with this notebook.
+Its current source root is
+\path{s6_consolidated_canonical_2026-08-26}.  All source locators
+in this section are relative to that root.  The dated status in
+\path{supporting_materials/workbench/research/status.tex},
+lines 145--154 and 527--587, says that all six topology bridges are closed and
+records a compact complex threefold $X$ with
+$X\cong_{\mathrm{diff}}S^6$, $a(X)=1$, and
+$\langle c_3(T_X),[X]\rangle=2$.  It explicitly defines ``Verified'' to mean
+that a complete proof is written in the workbench.  The older unconfirmed
+audit verdict at \texttt{main.tex}, lines 5989 and 6241, is not the current
+workbench verdict.  The present bounded audit checks the concrete polynomial,
+metric, differential-operator and Fourier calculations below; it does not
+independently re-certify every analytic gluing and integral geometric map of
+the complete S6 workbench.
+
+For example, the displayed terminal group presentation at status lines
+578--580 is trivial by an exact calculation: $xy=1$ gives $y=x^{-1}$;
+$x^3=c$ and $y^4=c^{-1}$ give $x^{-4}=x^{-3}$, hence $x=1$, then $y=c=1$.
+This verifies the algebra of that presentation.  Whether it is the geometric
+fundamental group is a different claim, whose geometric proof is in the
+source; this short algebra calculation does not replace that proof.
+
+The polynomial source is
+\path{supporting_materials/workbench/comparative_context/prior_fable_context.tex},
+lines 8--28.  That file describes a pinned JGPTech certificate for a map
+attributed there to Fable; lines 31--38 expressly say that an original
+model-session transcript was not recovered there.  The JSON supplied with
+this audit is a new exact replay record, not that missing discovery transcript.
+
+\subsection{The original polynomial, its determinant, and its collision}
+Retain the original ordered polynomial coordinates $(x,y,t)$ and define
+$F:\mathbb C^3\longrightarrow\mathbb C^3$ by
+\begin{align}
+ F_1&=(1+xy)^3t+y^2(1+xy)(4+3xy),\label{eq:s6b:F1}\\
+ F_2&=y+3x(1+xy)^2t+3xy^2(4+3xy),\label{eq:s6b:F2}\\
+ F_3&=2x-3x^2y-x^3t.\label{eq:s6b:F3}
+\end{align}
+The symbol $t$ in these three equations is a spatial coordinate, never fluid
+time.  Fluid time below is $s$.  To compare with a convention using spatial
+coordinates $(z_1,z_2,z_3)$, use the explicitly defined linear isometry
+$R(z_1,z_2,z_3)=(x,y,t)=(z_1,z_2,z_3)$.  Its derivative is $I_3$,
+determinant is $1$, and its pullback sends
+$(\partial_x,\partial_y,\partial_t)$ to
+$(\partial_{z_1},\partial_{z_2},\partial_{z_3})$ in the same order.
+Thus $F\circ R$ is an exact renaming preserving every coefficient,
+derivative, volume form and Euclidean operator.  We continue to use $(x,y,t)$.
+
+Here is a determinant proof retaining also the locus $x=0$.  On $x\ne0$,
+put $v=1+xy$ and $h=2-3xy-x^2t$.  Direct substitution gives
+\[
+ F_1=\frac{v^2+v-v^3h}{x^2},\qquad
+ F_2=\frac{4v+2-3v^2h}{x},\qquad F_3=xh.
+\]
+The coordinate-change determinant is
+\[
+ \det\frac{\partial(x,v,h)}{\partial(x,y,t)}
+ =\det\begin{pmatrix}1&0&0\\y&x&0\\-3y-2xt&-3x&-x^2\end{pmatrix}
+ =-x^3.
+\]
+Writing $A=v^2+v-v^3h$ and $B=4v+2-3v^2h$, the other determinant is
+\[
+ \det\frac{\partial(F_1,F_2,F_3)}{\partial(x,v,h)}
+ =x^{-3}\det\begin{pmatrix}
+ -2A&2v+1-3v^2h&-v^3\\
+ -B&4-6vh&-3v^2\\ h&0&1
+ \end{pmatrix}=\frac2{x^3}.
+\]
+Indeed the displayed numerator expands to
+\[
+ (4-6vh)(-2v^2-2v+3v^3h)
+ +(2v+1-3v^2h)(4v+2-6v^2h)=2.
+\]
+Consequently $\det DF=-2$ on $x\ne0$.  Both sides are polynomials in the
+original coordinates, so equality on this open set is a polynomial identity
+and includes $x=0$.  Independently, substitution at $x=0$ into the original
+Jacobian gives determinant $-2$ there as well.
+
+The three retained points
+\[
+ p_0=(0,0,-1/4),\quad p_+=(1,-3/2,13/2),\quad
+ p_-=(-1,3/2,13/2)
+\]
+are distinct and have common image $(-1/4,0,0)$.  At $p_0$ this follows
+directly from the original equations.  At $p_\pm$, one has
+$xy=-3/2$, $1+xy=-1/2$, $4+3xy=-1/2$, $y^2=9/4$ and $t=13/2$.
+Thus $F_1=-13/16+9/16=-1/4$.  At $p_+$,
+$F_2=-12/8+39/8-27/8=0$ and $F_3=2+9/2-13/2=0$.
+At $p_-$ each summand in $F_2,F_3$ changes sign, so both remain zero.
+This is an exact algebraic certificate about the displayed map, independent
+of authorship or discovery claims.
+In fact these are the entire fibre, including over $\mathbb C$.
+For a point with image $(-1/4,0,0)$ and $x=0$, the original second equation
+gives $y=0$ and the first then gives $t=-1/4$.
+For $x\ne0$, $F_3=xh=0$ gives $h=0$; the retained equations give
+$xF_2=4v+2=0$, hence $v=-1/2$, and
+$x^2F_1=v^2+v=-1/4$.  Since $F_1=-1/4$, this forces $x^2=1$.
+Then $y=(v-1)/x=-3/(2x)$ and
+$t=(5-3v)/x^2=13/2$.  Both possibilities are exactly $p_+$ and $p_-$.
+
+\subsection{A polynomial incompressible velocity and an escaping trajectory}
+Restrict $F$ to $\mathbb R^3$ and let $J=DF$ in the original coordinate order.
+Since $\det J=-2$, the field $W=J^{-1}e_1$ is globally polynomial.  Its full
+components are
+\begin{align}
+ W_x={}&3x^6yt+9x^5y^2+3x^5t+3x^4y-4x^3,\\
+ W_y={}&3x^4yt+9x^3y^2+3x^3t+3x^2y-3x,\\
+ W_t={}&-9x^5yt^2-45x^4y^2t-9x^4t^2-54x^3y^3
+          -30x^3yt-27x^2y^2+9x^2t+21xy+1.
+ \label{eq:s6b:W}
+\end{align}
+These components can be verified without an inverse-matrix convention:
+cofactor expansion gives
+\begin{equation}
+ W=\frac{\nabla F_2\times\nabla F_3}{\det J}
+   =-\frac12\nabla F_2\times\nabla F_3
+   =\operatorname{curl}\!\left(-\frac12 F_2\nabla F_3\right).
+ \label{eq:s6b:potential}
+\end{equation}
+The dot product of $\nabla F_1$ with the numerator is $\det J$; the dot
+products with $\nabla F_2,\nabla F_3$ are zero.  Hence $JW=e_1$ exactly,
+proving the inverse claim.  Expanding the three cross-product components
+gives precisely \eqref{eq:s6b:W}.  The identity
+$\operatorname{curl}(a\nabla b)=\nabla a\times\nabla b$ follows by
+the product rule and cancellation of the symmetric second derivatives of
+$b$.  Mixed derivatives likewise give $\operatorname{div}\operatorname{curl}=0$.
+In particular $\operatorname{div}W=0$.  An independent component check is
+\begin{align*}
+ \partial_xW_x&=18x^5yt+45x^4y^2+15x^4t+12x^3y-12x^2,\\
+ \partial_yW_y&=3x^4t+18x^3y+3x^2,\\
+ \partial_tW_t&=-18x^5yt-45x^4y^2-18x^4t-30x^3y+9x^2,
+\end{align*}
+whose sum is zero coefficient by coefficient.
+
+For $s<1/4$ use the positive real square root and define
+\begin{equation}
+ \gamma(s)=\bigl((1-4s)^{-1/2},
+          -\tfrac32(1-4s)^{1/2},\tfrac{13}{2}(1-4s)\bigr).
+ \label{eq:s6b:trajectory}
+\end{equation}
+The entire displayed interval is part of its definition; in particular
+$\gamma(0)=p_+$.  Along the curve, write $X=(1-4s)^{-1/2}$.
+Then $y=-3/(2X)$ and $t=13/(2X^2)$.  Substituting into
+\eqref{eq:s6b:W} gives
+$W(\gamma(s))=(2X^3,3X,-26)$, which is exactly $\gamma'(s)$.
+The restricted original map gives
+\[
+ F(\gamma(s))=(-1/(4X^2),0,0)=(s-1/4,0,0).
+\]
+Equivalently, this last equality and $J\gamma'=e_1$ give the same trajectory
+identity because $J$ is invertible everywhere.  As $s\uparrow1/4$, the first
+coordinate tends to $+\infty$.  Therefore this integral curve has no
+continuous extension to time $1/4$ in $\mathbb R^3$: any such extension
+would have a finite first coordinate.  This is finite-time escape of a
+particle trajectory in a stationary smooth polynomial vector field.
+
+\subsection{Exact Euclidean Navier--Stokes residual}
+Use the Euclidean Laplacian
+$\Delta=\partial_x^2+\partial_y^2+\partial_t^2$ and viscosity $\nu>0$.
+A stationary unforced Navier--Stokes solution with velocity $W$ would satisfy
+\begin{equation}
+ (W\cdot\nabla)W-\nu\Delta W=-\nabla p.
+ \label{eq:s6b:steady-ns}
+\end{equation}
+The right-hand side has zero curl, even for a distributional pressure,
+because distributional mixed derivatives commute.  Direct differentiation
+of the retained polynomial gives
+\begin{equation}
+ \left.\operatorname{curl}\bigl((W\cdot\nabla)W-\nu\Delta W\bigr)
+ \right|_{(x,y,t)=(0,0,t)}=(0,0,-18\nu t).
+ \label{eq:s6b:curl-obstruction}
+\end{equation}
+Here is a local calculation of that identity in addition to the exact replay.
+Along this axis $W=(0,0,1)$ and the only possibly nonzero entry of $DW$ is
+$\partial_xW_y=-3$; $\partial_xW_t=21y$ vanishes there.  Thus
+$(W\cdot\nabla)W=\partial_tW=0$ there.  Differentiating this advection
+expression before restriction gives zero first derivatives there: the
+product-rule term from $\partial_xW_y=-3$ multiplies $\partial_yW=0$,
+and the remaining term $\partial_{xt}W$ also vanishes; derivatives in
+$y,t$ vanish by the same displayed polynomial.
+Consequently its curl is zero there.  The viscous curl is read from
+\begin{align*}
+ W_x&=-4x^3+3x^4y+3x^5t+9x^5y^2+3x^6yt,\\
+ W_y&=-3x+3x^2y+3x^3(t+3y^2)+3x^4yt,\\
+ W_t&=1+21xy+x^2(9t-27y^2)+x^3(-30yt-54y^3)\\
+    &\hspace{14mm}+x^4(-9t^2-45y^2t)-9x^5yt^2.
+\end{align*}
+At $x=y=0$,
+$\partial_y\Delta W_t-\partial_t\Delta W_y=0$,
+$\partial_t\Delta W_x-\partial_x\Delta W_t=0$, and
+$\partial_x\Delta W_y-\partial_y\Delta W_x=18t$.
+These are respectively the three components of $\operatorname{curl}\Delta W$.
+They prove \eqref{eq:s6b:curl-obstruction}, including its sign.
+At the single point $(0,0,1)$ the residual curl is $(0,0,-18\nu)\ne0$.
+Thus no pressure makes $W$ an unforced stationary Euclidean Navier--Stokes
+solution for any positive viscosity.
+
+There is also an independent initial-data obstruction.  $W$ has infinite
+Euclidean kinetic energy.  For completeness, a nonzero polynomial $P$ of
+degree $d$ cannot lie in $L^2(\mathbb R^3)$: its top homogeneous part is
+nonzero on some open spherical patch, and is bounded in absolute value
+below by a positive constant on a smaller compact patch.  On the associated
+cone, for all sufficiently large radii, lower-degree terms are bounded by
+half the leading term, so $|P(r\theta)|\ge c r^d$.
+The polar-coordinate integral then dominates
+$c^2\int_R^\infty r^{2d+2}\,dr=\infty$ times a positive solid angle.
+Apply this to a nonzero component of $W$; its first component has degree $8$.
+Moreover $W$ is not unit-periodic: on $y=t=0$ its first component is
+$-4x^3$, whose values at $x=0,1$ differ.  None of these facts establishes
+anything about every possible velocity constructed from $F$; they establish
+the precise limitations of the displayed $W$.
+
+\subsection{Exact local-isometry correspondence and incomplete metric}
+There is a stronger geometric bridge.  Equip the same underlying
+$\mathbb R^3$ with
+\begin{equation}
+ g=J^{\mathsf T}J,
+ \qquad g_{ab}=\sum_{i=1}^3(\partial_aF_i)(\partial_bF_i).
+ \label{eq:s6b:metric}
+\end{equation}
+This is positive definite because $J$ is invertible.  Its determinant is $4$,
+so its positive volume density is $2\,dx\,dy\,dt$; the signed pullback of
+the target orientation is instead $F^*(dX_1\wedge dX_2\wedge dX_3)
+=-2\,dx\wedge dy\wedge dt$.  The real inverse function theorem gives
+local coordinates $X_i=F_i$ around every point.  In exactly these coordinates
+the metric is $dX_1^2+dX_2^2+dX_3^2$.  Thus $F$ is a flat local isometry,
+with the specified orientation reversal; it is not asserted to be a global
+coordinate chart.
+The metric change already appears at the original origin:
+\[
+ J(0)=\begin{pmatrix}0&0&1\\0&1&0\\2&0&0\end{pmatrix},
+ \qquad g(0)=\operatorname{diag}(4,1,1).
+\]
+For a direct scalar diffusion comparison, the target coordinate $X_1$
+is Euclidean harmonic, while $F^*X_1=F_1$ has
+$\Delta F_1(0)=8$, from its exact quadratic term $4y^2$.
+The metric correspondence therefore does not intertwine the two
+ordinary Euclidean Laplacians.
+
+Let $\Omega=F(\mathbb R^3)$, an open set, and let a smooth target velocity
+$v(s,X)$ and pressure $p(s,X)$ be defined on an open time interval times
+$\Omega$.  Define
+\begin{equation}
+ u(s,x,y,t)=J(x,y,t)^{-1}v(s,F(x,y,t)),\qquad
+ p_g(s,x,y,t)=p(s,F(x,y,t)).
+ \label{eq:s6b:pullback}
+\end{equation}
+This is a globally defined pullback map on those fields.  In each of the
+local coordinates $X=F(x,y,t)$ its components and metric are precisely
+$v$ and the Euclidean metric.  Consequently the following operator
+identities hold on every local chart, and hence globally:
+\begin{align*}
+ \operatorname{div}_g u&=(\operatorname{div}v)\circ F,\\
+ \nabla^g_u u&=J^{-1}((v\cdot\nabla_X)v)\circ F,\\
+ \operatorname{grad}_g p_g&=J^{-1}(\nabla_Xp)\circ F,\\
+ (\Delta_{H,g}u^\flat)^\sharp
+       &=J^{-1}(-\Delta_Xv)\circ F.
+\end{align*}
+Here $\Delta_{H,g}=d\delta_g+\delta_gd$ is the nonnegative Hodge Laplacian;
+on Euclidean one-forms it is the negative componentwise Laplacian.
+One may verify the identities directly in $X$ coordinates: the metric
+components are constant, Christoffel symbols vanish, the divergence is
+$\sum_i\partial_{X_i}v_i$, and the Hodge Laplacian is
+$-\sum_i\partial_{X_i}^2$ on each component.  Coordinate tensor
+transformation gives exactly the displayed $J^{-1}$ factors.
+The $g$-divergence also equals ordinary coordinate divergence because its
+volume density is the constant $2$:
+$\operatorname{div}_gu=\frac12\sum_a\partial_a(2u^a)
+=\operatorname{div}u$.
+
+It follows by substitution, retaining the same $s$ and $\nu$, that pullback
+carries the Euclidean equation
+$\partial_sv+(v\cdot\nabla_X)v=-\nabla_Xp+\nu\Delta_Xv$
+to the exact intrinsic equation
+\[
+ \partial_su+\nabla^g_u u
+ =-\operatorname{grad}_gp_g-\nu(\Delta_{H,g}u^\flat)^\sharp,
+ \qquad \operatorname{div}_gu=0.
+\]
+This is a proved morphism between specified PDE solution spaces.
+Conversely a smooth field $u$ descends under this morphism precisely when
+$J(x)u(x)$ is constant on each fibre of $F$; a pressure descends precisely
+when it too is constant on each fibre.  Necessity follows from
+\eqref{eq:s6b:pullback}.  For sufficiency these equalities define a field
+and pressure on $\Omega$; local inverses of $F$ prove smoothness, and
+fibre constancy makes the local definitions agree.  The local operator
+identities then prove the equations for the descended field.  There is
+therefore a full local correspondence and a stated exact global descent
+condition, not an assertion of a nonexistent global inverse.
+
+In particular the target solution $v=e_1$, $p=0$ pulls back to $u=W$.
+It is parallel for $g$, has $|W|_g=1$, and solves this metric equation for
+every $s$ and every $\nu>0$.  Its metric energy is also infinite:
+$\int_{\mathbb R^3}|W|_g^2\,d\operatorname{vol}_g
+=2\int_{\mathbb R^3}1\,dx\,dy\,dt=\infty$.
+Nevertheless $g$ is incomplete.  The
+$g$-speed of \eqref{eq:s6b:trajectory} is
+$|J\gamma'|=|e_1|=1$.  For any sequence $s_n\uparrow1/4$, the tail of
+the curve has length $|s_n-s_m|$, so the points $\gamma(s_n)$ are Cauchy
+in the $g$ distance.  They cannot converge to a point of $\mathbb R^3$:
+the first coordinate is unbounded, and a smooth positive-definite metric
+induces the ordinary local topology.  To check the latter assertion at a
+putative limit, take a small closed Euclidean ball around it.  The minimum
+eigenvalue of $g$ on this compact ball is positive; every curve reaching
+the ball's boundary has $g$ length at least that lower length factor
+times the Euclidean radius.  Thus sufficiently small metric balls lie
+in any chosen Euclidean neighborhood of the limit.  This contradicts
+the unbounded coordinate of the sequence.
+The metric field remains smooth at every finite spatial point and at every
+time; particle escape in this incomplete metric is not finite-time loss
+of smoothness in the complete Euclidean spatial geometry.
+
+\subsection{A compactly supported incompressible initial-data map}
+An explicit localization retains a genuine map to smooth admissible spatial
+data.  Define $b(r)=e^{-1/r}$ for $r>0$ and $b(r)=0$ for $r\le0$, and
+\[
+ \eta(r)=\frac{b(4-r)}{b(4-r)+b(r-1)},\qquad
+ \chi(z)=\eta(|z-p_+|^2/R^2),\quad R>0.
+\]
+The denominator is positive for every real $r$.  Each derivative of $b$
+on the positive side is an exponential times a polynomial in $1/r$,
+which tends to zero as $r\downarrow0$; hence $b$ and $\eta$ are smooth.
+The function $\chi$ equals $1$ on the closed radius-$R$ ball about $p_+$
+and $0$ outside the radius-$2R$ ball.  Set
+\begin{equation}
+ U_\chi=-\frac12\operatorname{curl}(\chi F_2\nabla F_3)
+ =\chi W-\frac12 F_2(\nabla\chi\times\nabla F_3).
+ \label{eq:s6b:cutoff}
+\end{equation}
+The product rule proves the second equality.  All factors are smooth,
+and the potential has compact support, so $U_\chi$ is smooth and compactly
+supported.  Its divergence is zero by commuting mixed derivatives.
+On the plateau $\chi\equiv1$ its derivative is zero, giving
+$U_\chi=W$ exactly.  Every derivative of $U_\chi$ is bounded and
+compactly supported; in particular the field is in every Sobolev space
+of nonnegative integral order, has finite energy, and decays faster than
+every inverse power.  It is thus an explicit map to smooth finite-energy
+divergence-free initial data for the Euclidean problem.
+
+The autonomous particle equation for this compact field is complete.
+Indeed $|U_\chi|\le M$ globally and its first derivatives are bounded,
+so it is globally Lipschitz.  On every finite time interval a trajectory
+stays within distance $M$ times the length of that interval from its
+initial point; standard local ODE existence and uniqueness extend it
+past any finite endpoint in that compact ball.  This completeness
+statement concerns its autonomous ODE and makes no assertion about
+the subsequent nonlinear Navier--Stokes evolution of $U_\chi$.
+The escaping curve $\gamma$ leaves the plateau in finite time before
+$1/4$ because its first coordinate diverges.  Thus the exact local
+agreement does not preserve the escaping final segment.
+
+\subsection{Retained cusp Fourier data mapped to exact periodic solutions}
+The source
+\path{supporting_materials/workbench/research/cusp_spectral_geometry.tex},
+lines 83--185, specifies an additional Euclidean metric on a regular
+four-dimensional real torus.  Retain all original coefficients:
+\[
+ P_T=\begin{pmatrix}
+ 6\alpha_T&\eta_T&1&0\\6m_T&L_T&0&0\\
+ c_T&\alpha_T&0&1\\-q_T&m_T&0&0
+ \end{pmatrix},\qquad D_T=L_Tq_T+6m_T^2>0,
+ \quad F_T=\mathbb R^4/P_T\mathbb Z^4.
+\]
+Its oriented determinant is $-D_T$.  For the original dual label
+$k=(r,s_0,n_1,n_2)\in\mathbb Z^4$ define
+\[
+ R_T=r-6\alpha_Tn_1-c_Tn_2,\qquad
+ S_T=s_0-\eta_Tn_1-\alpha_Tn_2.
+\]
+Here $s_0$ denotes the source's second integer Fourier label, solely to
+avoid collision with fluid time $s$; the map $s_{\rm source}\mapsto s_0$
+is the identity on that integer, with no change to the label or lattice.
+Solving $P_T^{\mathsf T}\ell=k$ gives exactly
+\[
+ \ell=\left(n_1,\frac{m_TR_T+q_TS_T}{D_T},n_2,
+                  \frac{-L_TR_T+6m_TS_T}{D_T}\right).
+\]
+The first and third components come from the last two equations; the other
+two solve
+$\begin{pmatrix}6m_T&-q_T\\L_T&m_T\end{pmatrix}
+(\ell_2,\ell_4)^{\mathsf T}=(R_T,S_T)^{\mathsf T}$,
+whose determinant is $D_T$.  This proves the inverse-transpose formula,
+including every sign.  The character
+$\exp(2\pi i\langle\ell,x\rangle)$ is well-defined on $F_T$ since
+$\langle\ell,P_Tn\rangle=k\cdot n\in\mathbb Z$.
+The nonnegative scalar Laplacian $\Delta_T$ therefore has the eigenvalue
+$4\pi^2|\ell|^2$ on this character by two differentiations.
+
+Fix any nonzero original label $k$ and put $a=|\ell|>0$.
+Consider the exact closed sector of functions
+$h([x])=f(\langle\ell,x\rangle\bmod1)$ with smooth real $1$-periodic $f$.
+The phase map is surjective onto the circle: its lift is a nonzero real
+linear functional, so takes every real value.  Hence this representation
+determines $f$ uniquely.  On this sector define
+\[
+ \mathcal I_k h(z_1,z_2,z_3)=e_2 f(z_1),
+ \qquad (z_1,z_2,z_3)\in\mathbb R^3/\mathbb Z^3.
+\]
+This is an injective linear map with fully specified source and target.
+If $\Delta_3=-\sum_{j=1}^3\partial_{z_j}^2$ is the nonnegative
+componentwise operator on the target, the chain rule proves
+\[
+ \Delta_T h=-a^2f''(\langle\ell,x\rangle),\qquad
+ \Delta_3\mathcal I_kh=e_2(-f''(z_1))
+   =a^{-2}\mathcal I_k\Delta_T h.
+\]
+Thus the source heat solution $h(\tau)=e^{-\nu\tau\Delta_T}h_0$
+gives the target velocity
+\[
+ u(s,z)=\mathcal I_k h(s/a^2)(z),\qquad p(s,z)=0,
+ \quad s\ge0.
+\]
+It satisfies $\partial_su=-\nu\Delta_3u$.  Also
+$\operatorname{div}u=\partial_{z_2}f(z_1)=0$ and
+$(u\cdot\nabla)u=f(z_1)\partial_{z_2}(e_2f(z_1))=0$.
+Therefore it solves the full unforced periodic three-dimensional
+Navier--Stokes equation with viscosity $\nu$, exactly.
+
+For an explicit global regularity proof in this sector, write
+$f_0(\theta)=\sum_{n\in\mathbb Z}c_ne^{2\pi in\theta}$ with
+$c_{-n}=\overline{c_n}$.  Integration by parts $N$ times in the Fourier
+coefficient integral bounds $|c_n|\le C_N|n|^{-N}$ for every $N$ and
+$n\ne0$.  The target solution is
+\[
+ u(s,z)=e_2\sum_{n\in\mathbb Z}
+        c_n e^{-4\pi^2\nu n^2s}e^{2\pi in z_1}.
+\]
+After any prescribed finite number of time and space derivatives, choose
+$N$ larger than the resulting power of $n$ plus $2$.  The differentiated
+series then converges absolutely and uniformly for every $s\ge0$.
+It follows that this solution is smooth for all nonnegative time; its
+energy on the unit torus is finite, and its mean is zero when $c_0=0$.
+No singularity is obtained by this exact Fourier-sector morphism.
+
+The source gauge operator at
+\path{supporting_materials/workbench/research/cusp_gauge_operators.tex},
+lines 64--95, is the Hessian $g_{\mathrm{YM}}^{-2}d^*d$ at a product
+connection.  On a co-closed one-form, $d^*d$ agrees with the Hodge
+Laplacian because $dd^*$ vanishes.  This identifies its differential
+expression with the positive linear diffusion operator; it supplies no
+nonzero convection term.  In the exact periodic sector above that
+term was computed explicitly and is zero.
+
+\subsection{Reproducibility and precise conclusion}
+The exact rational-polynomial script
+\path{scripts/s6_bridge_check.py} retains the original $F$,
+checks $\det DF=-2$, all three collision images, $JW=e_1$, the vector
+potential, divergence, trajectory, residual curl, the full retained cusp
+matrix determinant and inverse transpose.  It writes
+\path{research/s6_bridge_audit.json}, including SHA-256
+hashes of the seven source files used.  All assertions passed with
+SymPy 1.13.1 on 8 September 2026; a separate agent independently replayed
+the velocity, trajectory, potential and residual-curl calculations and
+confirmed their signs.
+The fixed source hashes are packaged in
+\path{sources/s6_source_hashes.json}.
+Default replay uses that recorded provenance and requires no sibling source
+repository; it does not claim to reread the seven source files.
+The optional \texttt{--source-root} argument additionally rereads those
+original files and fails on a hash mismatch.  The result records which
+of these two provenance modes was used.
+
+The exact relations established here are a polynomial developing map,
+its divergence-free inverse-Jacobian field, its flat local-isometry PDE
+pullback, its compactly supported divergence-free localization, and its
+cusp Fourier-sector map to classical periodic Navier--Stokes solutions.
+The escaping polynomial field fails the unforced Euclidean PDE by the
+nonzero curl in \eqref{eq:s6b:curl-obstruction}; the metric pullback is
+smooth but has incomplete spatial geometry; the localized fields are
+admissible initial data without an established singular evolution; and
+the Fourier-sector solutions are globally smooth.  Accordingly these
+calculations provide no verified disproof of the classical
+three-dimensional Navier--Stokes existence-and-smoothness assertion.
+They also do not assert absence of other mathematical relations or rule
+out other constructions from the retained objects.

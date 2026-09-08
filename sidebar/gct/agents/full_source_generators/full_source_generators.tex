@@ -1,0 +1,704 @@
+\section{The complete original GCT-IV module and its integral projection}
+\label{sec:full-source-generators}
+
+Let $A=\mathbb Z[q,q^{-1}]$, $K=\mathbb Q(q)$, $p=q+q^{-1}$,
+and $[j]=q^{j-1}+q^{j-3}+\cdots+q^{1-j}$ for $j>0$.
+This section constructs the four original Chevalley matrices on
+$\check X_{(7,5,3)}$, rather than extending the four-dimensional
+negative-Borel quotient of Section~\ref{sec:gct-generator-interval}.
+The column shape is exactly $\alpha=(3,3,3,2,2,1,1)$; the row
+shape is $(7,5,3,0)$; the column-count shape is $[0,3,2,2]$.
+The source parameter, denoted $u$ in its TeX, remains the
+indeterminate $q$ here.
+
+The construction is finite and explicit.  The file
+\texttt{agents/}\allowbreak
+\texttt{full\_source\_generators/}\allowbreak
+\texttt{full\_generators.json}
+contains every entry of all four $1260\times1260$ matrices and
+the image of every original tabloid. Its coefficient convention is
+a list of pairs $(k,a_k)$ denoting the Laurent polynomial
+$\sum_k a_kq^k$; its sparse matrix convention lists target indices
+in each source column. Indices start at zero. The file
+\texttt{source\_basis/basis\_1260.json} gives every original
+column label, scalar, invariant record, twelve-tuple, and weight.
+The definitions and recurrences below specify these files exactly;
+the attached Python programs implement those definitions with
+integer arithmetic and exhaustive, finite checks.
+
+\subsection{The original ambient basis and all adjacent relations}
+
+Write $Y=\check Y_\alpha$. Its original NST basis is indexed by
+the set $\mathcal W$ of all column tuples in
+\[
+ \{123,124,134,234\}^3\times
+ \{12,13,23,32,24,34\}^2\times\{1,2,3,4\}^2.
+\]
+The product is the source based product, with the indicated column
+composition retained. Thus $|\mathcal W|=4^3 6^2 4^2=36864$.
+These are column labels, not ordinary tensor monomials. In
+particular, the two columns $23$ and $32$ are distinct.
+The alphabet is $1=(1,1),2=(1,2),3=(2,1),4=(2,2)$.
+For diagram calculations read each column from bottom to top,
+then extract its $V$ and $W$ letters:
+\[
+\begin{array}{c|cc@{\qquad}c|cc}
+c&V&W&c&V&W\\\hline
+1&1&1&2&1&2\\3&2&1&4&2&2\\
+12&11&21&13&21&11\\23&21&12&32&12&21\\
+24&21&22&34&22&21\\
+123&211&121&124&211&221\\
+134&221&211&234&221&212
+\end{array}
+\]
+Some selected canonical tensor summands of the height-three
+columns use other words. The displayed dictionary is the literal
+diagram reading rule; it avoids identifying a whole column with
+one summand of its canonical expansion.
+
+Let $R_K$ be the original sum of the six adjacent source
+submodules $\check Y_{\triangleright^i\alpha}\subset Y$.
+The following tables give all of its integral two-column basis
+relations. Each row is an equality of the images in $Y/R_K$;
+the equality means that the difference belongs to the indicated
+local submodule before taking the quotient:
+\[
+\begin{array}{c|l}
+(2,1)&(23)(1)=(32)(1),\quad(23)(3)=(34)(1),\\
+ &(24)(3)=(34)(2),\quad(24)(1)=(32)(2)\\\hline
+(3,2)&(124)(13)=-(134)(12),\quad(234)(23)=-(234)(32),\\
+ &(234)(13)=-(134)(32),\quad(124)(23)=-(234)(12)\\\hline
+(2,2)&(32)(24)=(24)(32),\quad(12)(13)=(13)(12),\\
+ &(34)(24)=(24)(34),\quad(12)(23)=(23)(12),\\
+ &(32)(13)=(13)(32),\quad(34)(13)=(13)(34),\\
+ &(34)(23)=(23)(34),\quad(12)(24)=(24)(12),\\
+ &(32)(23)=(23)(32),\quad(24)(13)=(34)(12).
+\end{array}
+\]
+The first nine $(2,2)$ relations are its nine-dimensional
+degree-preserving component; the last is its one-dimensional
+invariant component. For an integral local relation the source
+based products for the submodule and ambient module agree, so
+these relations hold with every left and right NST context.
+
+There are two further local strings at each equal height. The
+active side, its three words $C_{11},C_{12},C_{22}$, and its
+invariant $I$ are as follows:
+\[
+\begin{array}{c|c|ccc|c}
+h&\text{side}&C_{11}&C_{12}&C_{22}&I\\\hline
+1&V&(2)(1)&(2)(3)&(4)(3)&(4)(1)\\
+1&W&(3)(1)&(3)(2)&(4)(2)&(4)(1)\\
+2&V&(32)(12)&(32)(32)&(34)(32)&(34)(12)\\
+2&W&(23)(13)&(23)(23)&(24)(23)&(24)(13)\\
+3&V&(124)(123)&(124)(134)&(234)(134)&(234)(123)\\
+3&W&(134)(123)&(134)(124)&(234)(124)&(234)(123)
+\end{array}
+\]
+In the ambient two-column module their projected string vectors
+are $\widetilde C_{11}=C_{11}$,
+$\widetilde C_{12}=C_{12}+p^{-1}I$,
+$\widetilde C_{22}=C_{22}$.  Their contextual products in
+$\check Y_{\triangleright^i\alpha}$ give exactly
+\begin{equation}\label{eq:full-contextual-relations}
+ BC_{11}D=-p^{-1}B'ID,\qquad
+ BC_{12}D=-p^{-1}BID,\qquad
+ BC_{22}D=-p^{-1}BID'.
+\end{equation}
+Here is the full meaning of $B'$ and $D'$. Pair every $2$ with
+the next available $1$ to its right, using a stack of unmatched
+$2$ positions. For $11$, take the leftmost local unpaired $1$.
+If it has no partner in $B$, set $B'=0$; otherwise change its
+partner from $2$ to $1$ and apply the raising column Kashiwara
+operator at that column. For $22$, take the rightmost local
+unpaired $2$. If it has no partner in $D$, set $D'=0$;
+otherwise change that partner from $1$ to $2$ and apply the
+lowering column Kashiwara operator there. In either case an
+extra internal arc makes the corrected word zero. The other
+context is unchanged. The middle equality changes no context.
+These are the source contextual projection formulas, with every
+outside letter retained. An isolated equality from this table
+cannot be substituted in a longer product while discarding
+$B'$ or $D'$.
+
+The integral table and these six strings exhaust the local
+submodule bases for the adjacent shapes occurring in $\alpha$:
+$(3,3)$ twice, $(3,2)$ once, $(2,2)$ once, $(2,1)$ once and
+$(1,1)$ once. Taking all contexts therefore spans exactly $R_K$,
+by its defining sum. This proves that the following relation
+construction presents the original $\check X_{(7,5,3)}$.
+
+\subsection{A finite exact quotient algorithm}
+
+Order $\mathcal W$ lexicographically using the column orders in
+its displayed Cartesian product. There are $22528$ contextual
+instances of integral table rows and $47616$ instances of
+\eqref{eq:full-contextual-relations}. Each says
+$t_i=\epsilon p^kt_j$ with $\epsilon\in\{1,-1\}$ and
+$k\in\{0,-1\}$, or $t_i=0$.
+Join the vertices by these equalities, keeping for each vertex
+an accumulated scalar $\epsilon p^k$ relative to a chosen root.
+An equality within one component either agrees with its
+accumulated scalar, or yields
+$(1-\epsilon p^k)t_{\rm root}=0$. In the latter case set that
+component to zero; do the same when a zero relation is present.
+
+This is Gaussian elimination specialized to binomial relations
+over $K$. Indeed a spanning tree in each component expresses
+every vertex as its root times a nonzero scalar. Every remaining
+edge is then either $0=0$ or a nonzero scalar times that root.
+Consequently a component contributes exactly one free $K$
+coordinate if every cycle agrees and no zero relation is present,
+and contributes zero otherwise. For this original presentation
+the algorithm leaves exactly $1260$ nonzero components; $18652$
+original words are zero and $18212$ original words have nonzero
+image. The program checks every equation again through its
+computed projection.
+
+This elimination takes place over $K$. Inverting a nonzero
+$1-\epsilon p^k$ in a conflicting component does not prove that
+an integral presentation obtained merely by clearing denominators
+has no torsion. We make no such claim. The integral lattice and
+its exact kernel are constructed separately below inside the
+original field quotient.
+
+\input{agents/full_source_generators/source_basis/source_basis.tex}
+
+For each of the $1260$ displayed representatives $b_n$, let
+$b_n=\sigma_n p^{-d_n}\overline t_{w_n}$, with its fully
+specified sign and degree. Each nonzero relation component
+contains exactly one such representative. This is checked by
+matching all $1260$ roots; hence the vectors $b_n$ are an actual
+basis of the original quotient. For every original word $w$
+the table records
+\begin{equation}\label{eq:full-tab-projection}
+ \pi(t_w)=0\quad\hbox{or}\quad
+ \pi(t_w)=\epsilon_w p^{k_w}b_{n_w}.
+\end{equation}
+The algorithm produces only $k_w\in\{0,1,2,3\}$.
+The numbers of nonzero words with these four exponents are
+$12544,5100,552,16$, respectively. No sign is suppressed in
+the table.
+
+\subsection{Every entry of all four original generators}
+
+For a side $Z\in\{V,W\}$ concatenate the displayed diagram
+words of an original tabloid $w$. Let its unpaired ones from
+left to right be $a_1,\ldots,a_\varphi$, and its unpaired twos
+from left to right be $c_1,\ldots,c_\varepsilon$. Define
+$\mathcal F_{jZ}(w)$ by changing the column containing $a_j$
+with its lowering column Kashiwara operator; define
+$\mathcal E_{jZ}(w)$ by raising the column containing
+$c_{\varepsilon-j+1}$. An extra internal arc gives zero.
+To specify the column operator without an implicit convention:
+the other side's weight and internal-arc number stay fixed,
+the chosen side's number of twos changes by one, and the chosen
+side's original internal-arc number stays fixed. Among the
+columns of that same height there is exactly one such column.
+If the intermediate changed diagram has more internal arcs
+than the old diagram, the result is zero instead.
+
+The original ambient action is exactly
+\begin{equation}\label{eq:full-original-action}
+ F_Zt_w=\sum_{j=1}^{\varphi_Z(w)}[j]t_{\mathcal F_{jZ}(w)},
+ \qquad
+ E_Zt_w=\sum_{j=1}^{\varepsilon_Z(w)}[j]t_{\mathcal E_{jZ}(w)}.
+\end{equation}
+Terms whose changed word is zero are omitted. Apply
+\eqref{eq:full-tab-projection} to every summand and multiply by
+$\sigma_np^{-d_n}$ to obtain the column for $g b_n$.
+Equivalently, for $g=F_Z$ or $E_Z$ its $(m,n)$ entry is the
+finite sum
+\begin{equation}\label{eq:full-all-matrix-entries}
+ (G_g)_{mn}=
+ \sum_{\substack{j:\,\pi(t_{g_{jZ}(w_n)})
+       =\epsilon_jp^{k_j}b_m}}
+       [j]\sigma_n\epsilon_jp^{k_j-d_n}.
+\end{equation}
+This supplies every matrix entry, including all cancellations,
+signs, and possible intermediate denominators.
+
+The nonzero entry counts are
+\[
+\begin{array}{c|rrrr}
+g&F_V&E_V&F_W&E_W\\\hline
+\#\operatorname{supp}(G_g)&1998&2083&1998&2083.
+\end{array}
+\]
+Every resulting entry
+lies in $A$: finite integral Laurent addition and division by
+$p$ with remainder zero verify this directly. The original
+projection commutes with the action on every one of the $36864$
+ambient words for each of the four generators, including all
+$18652$ words with zero image. These $147456$ equalities prove
+descent throughout the original relation space, independently
+of the choice of representatives.
+
+Let $v_n$ and $w_n'$ be the numbers of $V$ and $W$ ones in
+the fifteen-letter diagram of $b_n$. The four diagonal
+$\mathfrak{gl}_2$ weight generators have eigenvalues
+$q^{v_n},q^{15-v_n},q^{w_n'},q^{15-w_n'}$. Thus the two
+Cartan ratios are
+$K_Vb_n=q^{2v_n-15}b_n$ and
+$K_Wb_n=q^{2w_n'-15}b_n$; their central products are $q^{15}$.
+The exact matrices satisfy
+\[
+ [E_Z,F_Z]=\frac{K_Z-K_Z^{-1}}{q-q^{-1}},\qquad
+ [g_V,h_W]=0\quad(g,h\in\{E,F\}),
+\]
+and $K_ZE_ZK_Z^{-1}=q^2E_Z$,
+$K_ZF_ZK_Z^{-1}=q^{-2}F_Z$, with trivial cross Cartan
+commutators. These equalities are checked as equality of
+integer Laurent coefficient dictionaries in every matrix
+column. They also follow by descent from
+\eqref{eq:full-original-action}, the source graphical action
+on the original tensor product. Thus these are the full
+original $U_q(\mathfrak{gl}_2\oplus\mathfrak{gl}_2)$
+generators, with their exact quotient identification.
+
+\subsection{Integral lattices, divided powers, and specialization}
+
+Define $L_A=\bigoplus_{n=0}^{1259}Ab_n\subset Y/R_K$.
+The exact Laurent integrality just proved makes this an
+integral generator lattice. For each $g\in\{E_V,F_V,E_W,F_W\}$
+define the matrices recursively by
+\[
+ G_g^{(0)}=I,\qquad G_g^{(m)}=G_gG_g^{(m-1)}/[m].
+\]
+This retains the original divided-power denominator until the
+division is established. The certificate computes each
+coefficient by exact integral Laurent division and verifies
+zero remainder for every $m=1,\ldots,10$. Both raising and
+lowering matrices have $G_g^{(9)}\ne0$ and $G_g^{(10)}=0$.
+Consequently all divided powers preserve $L_A$ and every
+higher divided power is zero. The nonzero-entry counts are
+\[
+\begin{array}{c|rrrrrrrrrrr}
+m&0&1&2&3&4&5&6&7&8&9&10\\\hline
+F_V,F_W&1260&1998&2314&2100&1489&892&447&185&56&12&0\\
+E_V,E_W&1260&2083&2425&2082&1486&907&452&186&56&12&0.
+\end{array}
+\]
+Over $K$ the recurrence is $G_g^m/[m]!$, by induction.
+The divided-power identities therefore hold over $K$; both
+sides are integral matrices, and the injection $A\hookrightarrow K$
+proves the same identities over $A$. This proves the full
+divided-power integral action, not only the four ordinary
+generator identities.
+
+There is also an exact map from the original ambient integral
+word span. Put $Y_A=\bigoplus_{w\in\mathcal W}At_w$ and
+use \eqref{eq:full-tab-projection} to define
+$\pi_A:Y_A\to L_A$. Its exponents are nonnegative, so this
+map is defined over $A$. For each $n$ choose the first word
+$w(n)$ in the fixed order whose projection is
+$\epsilon(n)b_n$, with exponent zero. The exhaustive table
+contains such a word for every $n$. Define
+$s_A(b_n)=\epsilon(n)t_{w(n)}$. Then
+$\pi_As_A(b_n)=b_n$ for each basis vector, proving
+$\pi_As_A=I$.
+
+Here is the entire kernel, with no unspecified torsion. For a
+nonpivot word $w$, set
+\[
+ h_w=\begin{cases}
+ t_w,&\pi_A(t_w)=0,\\
+ t_w-\epsilon_w\epsilon(n_w)p^{k_w}t_{w(n_w)},
+       &\pi_A(t_w)=\epsilon_wp^{k_w}b_{n_w}.
+ \end{cases}
+\]
+The $35604$ vectors $h_w$ form an $A$-basis of $\ker\pi_A$.
+Their image is zero by the displayed formula. They are
+independent because in a relation among them the coefficient
+of each distinct nonpivot original word is its own coefficient.
+Subtracting $\sum_w a_wh_w$ from any kernel vector leaves
+only pivot words; their images are signed distinct basis
+vectors of $L_A$, so all remaining coefficients vanish.
+This proves spanning. Therefore
+\begin{equation}\label{eq:full-integral-split}
+ 0\longrightarrow A^{35604}\xrightarrow{h}Y_A
+ \xrightarrow{\pi_A}L_A\longrightarrow0
+\end{equation}
+is split exact as a sequence of $A$-modules, with cokernel
+zero. Its section is a specified linear section; no
+equivariance of that section is asserted. The projection
+itself is equivariant by the $147456$ descent identities.
+The ambient graphical module has its original divided-power
+action, so its kernel is stable under that action as well.
+The section and all kernel vectors are listed in
+\texttt{raw\_integral\_projection.json}.
+
+Upon $q=1$ over $\mathbb Z$, $p=2$, and the same formulas
+with $p^{k_w}=2^{k_w}$ remain a split exact sequence of free
+abelian groups. In particular the natural kernel base-change
+map is an isomorphism. Every full generator and divided-power
+matrix specializes by replacing $\sum a_kq^k$ by $\sum a_k$;
+\texttt{specialized\_generators.json} gives all these exact
+integer entries. Thus this specialization retains every
+coefficient and has rank $1260$ over $\mathbb Z$.
+This is a statement about the actual image lattice inside
+the field quotient. It does not replace the unsaturated
+integral span of the original binomial relations by its
+saturation without identifying the map.
+
+For clarity the corresponding saturation map can also be
+stated exactly. Let $P_A\subset Y_A$ be generated by the
+integral contextual rows and by every nonintegral row
+$pt_w+t_{w'}$ (or $t_w$ when its correction is zero).
+Then $P_A\subset\ker\pi_A$ and
+$K\otimes_AP_A=K\otimes_A\ker\pi_A=R_K$.
+The induced map $Y_A/P_A\to L_A$ is onto and has exactly
+the torsion kernel $(\ker\pi_A)/P_A$.
+Here ``torsion'' follows because tensoring that kernel with
+$K$ is zero: each of its elements is annihilated by some
+nonzero element of $A$. It need not be zero. A fully explicit
+presentation of this kernel is obtained by expressing each
+displayed generator of $P_A$ in the basis $h_w$: its
+coefficient at $h_w$ is just its coefficient at that nonpivot
+word, as proved in the elimination above. This preserves
+the original relation presentation and states the exact
+map to its torsion-free image lattice.
+
+There is a sharper exact answer after a specified
+localization. Put $B=A[p^{-1}]$, retaining $2$ as a
+nonunit. In this ring every tree scalar in the original
+relation graph is a unit. Elimination along a spanning
+tree is therefore an invertible change of presentation
+coordinates over $B$. For each connected component it
+leaves one root and relations
+$(1-\epsilon p^k)\,\mathrm{root}=0$ for its non-tree
+edges, plus $\mathrm{root}=0$ if there is an explicit
+zero relation. The exhaustive graph has $1260$ components
+with no defect and no zero relation, $4147$ with an
+explicit zero relation, and $40$ further components
+whose entire nonzero cycle ideal is generated by
+$1-(-1)=2$. Consequently the actual localized
+presentation has the exact decomposition
+\begin{equation}\label{eq:full-localized-two-torsion}
+\begin{aligned}
+ B^{36864}/P_B&\simeq B^{1260}\oplus(B/(2))^{40},\\
+ \ker(B^{36864}/P_B\longrightarrow B\otimes_A L_A)
+       &\simeq(B/(2))^{40}.
+\end{aligned}
+\end{equation}
+The map to the image lattice is the previously specified
+original-word projection; the displayed isomorphism is
+given by the spanning-tree coordinates. This identifies
+the kernel of the actual map, with every original
+component listed in
+\texttt{quotient\_audit/}\allowbreak
+\texttt{relation\_graph\_certificate.json}.
+
+One of the forty torsion generators has the explicit
+original representative
+\[
+u=(123)(123)(234)(23)(23)(1)(1).
+\]
+The three original integral rows give, in succession,
+\[
+\begin{aligned}
+u&=-v,\qquad
+ v=(123)(123)(234)(32)(23)(1)(1),\\
+v&=w,\qquad
+ w=(123)(123)(234)(23)(32)(1)(1),\\
+w&=u.
+\end{aligned}
+\]
+The first row uses the adjacent $(3,2)$ relation, the
+second commutes $(32)(23)$, and the third uses
+$(32)(1)=(23)(1)$. Thus $2u=0$. Its component has
+six original vertices, no explicit zero relation, and
+cycle ideal exactly $(2)$; the spanning-tree proof shows
+that $u\ne0$ and generates one $B/(2)$ summand.
+Indeed $B/(2)$ is the localization of
+$\mathbb F_2[q,q^{-1}]$ at its nonzero element
+$q+q^{-1}$, so it is not the zero ring. This proves
+nonvanishing, not merely the absence of a proof that
+the torsion class vanishes.
+
+\subsection{The original rational specialization bridge}
+
+We first specify the source's map $s_X$, which is a map of
+quotients. For any original NST $t_w$, let $d(w)$ be its
+number of invariant column pairs, including pairs of
+different heights. Such a pair is detected by two arcs
+between its two columns. Define
+$Y_A^S=\bigoplus_w A(-p^{-1})^{d(w)}t_w$ inside $Y$.
+Let $R_A^S$ be the source's sum of the correspondingly
+scaled adjacent submodule lattices: scale each contextual
+submodule basis element $\widetilde t$ by
+$(-p^{-1})^{\deg(\widetilde t)}$, with its ambient filtered
+degree retained. Thus the source has the canonical surjection
+\[
+ s_X:Y_A^S/R_A^S\longrightarrow\pi(Y_A^S),\qquad
+ [y]\longmapsto\pi(y).
+\]
+The identification of its localized relation lattice
+with $P_B$ requires more than equality of their
+$K$-spans. We give both containments explicitly.
+By the source definition at lines $5620$--$5624$, a
+contextual basis vector is
+$g=B_0\mathbin{\heartsuit_g}\widetilde C
+\mathbin{\heartsuit_g}D_0$, with $B_0,D_0$ ranging
+over all original NST bases of the two contexts.
+Its actual lattice generator at lines $5881$--$5889$
+is $(-p^{-1})^{\deg(g)}g$. For an integral local
+$\widetilde C$, the equality at lines $5680$--$5685$
+is exact in $Y$: $g$ equals the ambient based product
+of the listed binomial with its two contexts. Thus it
+is the corresponding integral graph row with its
+original coefficients $+1,-1$ or $+1,+1$.
+For a nonintegral local $\widetilde C$, the equality
+at lines $5773$--$5785$ is also exact in $Y$:
+$g=t_w+p^{-1}t_{w'}$, or $g=t_w$ when the contextual
+correction is zero. This uses the explicit contextual
+corollary, not the weaker congruence for nonintegral
+vectors in lines $5680$--$5685$. The cleared graph
+row is respectively $pg$ or $g$. Therefore each
+source lattice generator is $\pm p^j$ times its
+corresponding graph row for a specified integer $j$,
+and conversely each graph row is $\pm p^{-j}$ times
+that source lattice generator. Every such coefficient
+is a unit in $B$; no factor $2$ is inverted in either
+containment. The contexts and local rows are
+exhaustive in both definitions. It follows that
+$B\otimes_A R_A^S=P_B$ as actual submodules of
+$B\otimes_A Y_A^S=B^{36864}$.
+Hence the localization of this exact source presentation is the presentation
+in \eqref{eq:full-localized-two-torsion}; its localized
+map $s_X$ has precisely the same nonzero kernel
+$(B/(2))^{40}$. In particular the source remark at
+lines $5901$--$5908$ asserting equality of its two
+integral forms cannot be used as an injectivity proof
+for these literal prescribed contextual lattices.
+The displayed original cycle gives the exact integral
+obstruction, while the rational specialization below
+constructs their isomorphism over its stated base.
+In this shape $\pi(Y_A^S)=L_A$: applying the explicit
+projection to each scaled word gives zero or
+$\epsilon(-1)^{d(w)}p^{k_w-d(w)}b_{n_w}$.
+All nonzero exponents are $0$ or $1$; their counts are
+$17728$ and $484$. Conversely the scaled honest
+representatives include every $b_n$. This proves both
+containments without assuming that $s_X$ is injective over $A$.
+
+Its rational specialization is injective, by the following
+additional argument. Every edge of the original relation
+graph has scalar $\epsilon p^k$, and every cycle product
+has that form. At $p=2$ all edges remain nonzero, and
+$\epsilon 2^k=1$ if and only if $\epsilon=1$ and $k=0$.
+These are exactly the conditions for $\epsilon p^k=1$ in
+$K$. Hence the $1260$ nonzero components remain nonzero,
+and every zero component remains zero. More specifically,
+the independently reconstructed graph has $4147$ components
+with an explicit zero relation and $40$ further components
+killed by a cycle of scalar $-1$. The specialized relation
+space has rank $36864-1260=35604$ over $\mathbb Q$.
+At $q=1$ the rescalings $(-p^{-1})^d=(-1/2)^d$ are
+nonzero rational numbers, so they change no rational span.
+Thus $\mathbb Q\otimes_A(Y_A^S/R_A^S)$ has dimension
+$1260$. The specialization of $s_X$ is a surjection onto
+$\mathbb Q\otimes_A L_A$, also of dimension $1260$ by
+\eqref{eq:full-integral-split}; hence it is an isomorphism.
+Its formula is the original quotient map, not a dimension
+comparison without a specified morphism.
+
+The rational specialization of $L_A$ is the restriction of
+the classical Schur module of row shape $(7,5,3,0)$, through
+an explicit quotient map, as follows. Realize each original
+column at $q=1$ in $(V\otimes W)^{\otimes h}$ by its source
+canonical column formula; take the ordinary exterior quotient
+$e_h:(V\otimes W)^{\otimes h}\to\bigwedge^h(V\otimes W)$
+on each column factor. The restriction to the original
+nonstandard exterior subspace is a $\mathrm{GL}(V)\times
+\mathrm{GL}(W)$ isomorphism over $\mathbb Q$. To see
+injectivity, define $\operatorname{Alt}_h:
+\bigwedge^hX\to X^{\otimes h}$ by the unnormalized signed
+sum over all permutations. Directly from the alternating
+relations, $e_h\operatorname{Alt}_h=h!I$ on $\bigwedge^hX$
+and $\operatorname{Alt}_he_h=h!I$ on the alternating
+tensor subspace. The source subspace at $q=1$ is exactly
+this alternating image, since the two tensor permutation
+actions on $V,W$ combine to the permutation action on
+$X=V\otimes W$. Thus $e_h$ has inverse
+$\operatorname{Alt}_h/h!$ on these subspaces. This proof retains
+the factor $h!$ and works over $\mathbb Q$, as stated.
+
+Tensor these seven maps, keeping the original ordered column
+factors. Apply this tensor product linearly to the actual
+specialized based-product vector $t_w$ and its tensor
+expansion. A based product at $q=1$ need not be the ordinary
+tensor product of its column labels; replacing each label
+independently and concatenating would not specify this map.
+The source defines its two-column submodules as
+the exact $U^\tau$ summands removed by the classical
+two-column Schur quotient: this is its defining prescription
+at source lines $5015$--$5021$, not an inference from the
+global dimension $1260$. Here the ambient two-column module
+is itself multiplicity-free as a $U^\tau$-module; the
+involution $\tau$ interchanges $V,W$ and distinguishes
+otherwise repeated restrictions. We verify the small cases
+to justify uniqueness of the prescribed subspace. Write
+$D_V=\det V,D_W=\det W$. First
+$Y_{(1,1)}$ has the three distinct $U^\tau$ summands of
+dimensions $9,6,1$, obtained from
+$(S^2V\oplus D_V)\otimes(S^2W\oplus D_W)$ by pairing
+the two cross terms. Next
+\[
+ \bigwedge^2X=(S^2V\otimes D_W)
+                 \oplus(D_V\otimes S^2W).
+\]
+Tensor with $X$ and use
+$S^2V\otimes V=S^3V\oplus D_VV$ and its $W$ version.
+The two cross outer terms pair to dimension $16$; the
+two copies of $D_VV\otimes D_WW$ split into the two
+distinct $\tau$ signs, each of dimension $4$.
+Thus $Y_{(2,1)}$ is multiplicity-free with dimensions
+$16,4,4$, the two last summands having opposite signs.
+For $Y_{(2,2)}$ use
+$S^2V\otimes S^2V=S^4V\oplus D_VS^2V\oplus D_V^2$
+and its $W$ version in the previous exterior decomposition.
+The outer terms pair to dimensions $10$ and $6$;
+the two cross terms of dimension $9$ split with opposite
+$\tau$ signs, and the two invariant lines also split
+with opposite signs. These six summands, of dimensions
+$10,6,9,9,1,1$, are pairwise inequivalent as
+$U^\tau$-modules. The displayed tensor decompositions
+follow by the explicit symmetric product and alternating
+contraction maps for two-dimensional $V,W$: in each
+case the weights are the disjoint strings with respective
+highest weights $(a+b-j,j)$, for $0\le j\le\min(a,b)$;
+their dimensions sum to $(a+1)(b+1)$, proving exhaustion.
+Finally $\bigwedge^3X\simeq D_VD_W\otimes X$ with
+the corresponding overall $\tau$ sign. Hence
+$Y_{(3,2)}$ and $Y_{(3,3)}$ are character twists of
+$Y_{(1,2)}$ and $Y_{(1,1)}$ and remain
+multiplicity-free. This proves the ambient fact needed
+here. Selecting the source's specified classical
+quotient summands therefore uniquely determines its
+kernel as the sum of all remaining ambient summands.
+The local bases in the two tables are the explicit bases
+given for this prescription in the source's Figures
+\texttt{straightening11} through \texttt{straightening33}.
+Consequently the columnwise exterior maps take each such
+specialized local submodule to the classical adjacent
+straightening submodule. This is the exact local
+identification used in the source proof at lines
+$6013$--$6018$; all its contexts are the unchanged tensor
+factors. Quotient by their sum on both sides. The relation
+graph argument above identifies the specialized relation
+space with the entire specialized kernel, so the resulting
+map is
+\[
+ s_{(7,5,3)}:\mathbb Q\otimes_A L_A
+   \longrightarrow
+ \left(\bigwedge^3X\right)^{\otimes3}
+ \otimes\left(\bigwedge^2X\right)^{\otimes2}
+ \otimes X^{\otimes2}\big/\text{classical adjacent relations}.
+\]
+Its formula takes any representative in $Y_A$ to the class
+of its columnwise exterior images. Two representatives
+differ by the kernel, whose rational specialization was
+proved equal to the specialized relation space; hence the map is
+well defined and injective. It is onto because the
+columnwise exterior maps are onto. The target is the
+classical Schur module $S_{(7,5,3)}X$ by its exterior-column
+presentation, and each map is equivariant. This is the
+explicit rational specialization correspondence used for
+the source character calculation. No literal identification
+of a crystal-highest tabloid with an $E$-annihilated vector
+is used here.
+
+\subsection{The full source map to the retained interval}
+
+In the full basis the original vectors are exactly
+\[
+ T=b_{126},\qquad T_1=b_{146},\qquad T_2=b_8,\qquad Q=b_{144}.
+\]
+These equalities include their original signs and the factors
+$-p^{-1}$ in $T_2,Q$. The height-two columns in $T_1,Q$
+commute by an integral table row when their order differs
+from the representative table; no scalar correction occurs.
+
+Form the directed support graph of the full $F_V,F_W$
+matrices. Let $\mathcal D$ be the descendants of $126$,
+and let $\mathcal J$ be the descendants which cannot reach
+$144$. Exhaustive traversal of these explicit matrices gives
+\[
+ |\mathcal D|=420,\quad |\mathcal J|=416,\quad
+ \mathcal D\setminus\mathcal J=\{126,146,8,144\}.
+\]
+Both sets are closed under outgoing lowering edges: a
+successor remains a descendant, and a successor able to
+reach $144$ would provide such a path from its predecessor.
+Their $A$-spans are therefore stable under the integral
+negative-Borel action and its divided powers. The exact
+projection $\bigoplus_{n\in\mathcal D}Ab_n\to M_A$ kills
+the $416$ basis vectors in $\mathcal J$ and takes the four
+remaining vectors, in the displayed order, to
+$e_0,e_1,e_2,e_3$. Its kernel is exactly the displayed
+$416$-dimensional span and its cokernel is zero.
+
+Projecting every column of the full matrices gives
+\[
+ F_V=\begin{pmatrix}0&0&0&0\\
+ [7]-[3]&0&0&0\\{}[8]&0&0&0\\0&[6]&-[3]&0
+ \end{pmatrix},\qquad F_W=0,
+\]
+and the original Cartan ratios
+$\operatorname{diag}(q^9,q^7,q^7,q^5)$ and $q^3I$.
+The full divided square has the actual entry
+\[
+ (F_V^{(2)})_{144,126}
+ =\frac{[6]([7]-[3])-[3][8]}{[2]}
+ =q^{10}-q^4-q^{-4}+q^{-10}.
+\]
+The relation with the earlier restricted raw tableau lattice
+is especially explicit. Its four raw words have images
+$(e_0,e_1,-pe_2,-pe_3)$, and therefore their inclusion matrix
+in $M_A$ is $\operatorname{diag}(1,1,-p,-p)$, with the
+previously proved cokernel $(A/(p))^2$. Enlarging the raw
+domain to $Y_A$ supplies other original words. The section
+chosen above gives the following four preimages, each with
+coefficient $+1$:
+\[
+\begin{array}{c|l}
+T&(123)(123)(124)(12)(12)(1)(1)\\
+T_1&(123)(123)(124)(12)(23)(1)(1)\\
+T_2&(123)(123)(123)(12)(12)(2)(3)\\
+Q&(123)(123)(124)(12)(13)(2)(3).
+\end{array}
+\]
+For the last two rows the active $V$-string is $C_{12}=(2)(3)$;
+the middle formula in \eqref{eq:full-contextual-relations}
+gives $(2)(3)=-p^{-1}(4)(1)$ with these exact contexts.
+This proves their stated images directly. The $T_1$ and
+$Q$ column-order adjustments use the integral $(2,2)$
+commutations already listed.
+
+Put $Y_{\mathcal D,A}=\pi_A^{-1}
+(\bigoplus_{n\in\mathcal D}Ab_n)$. Inclusion of the four
+old raw words into this module and the composite
+$Y_{\mathcal D,A}\xrightarrow{\pi_A}
+\bigoplus_{n\in\mathcal D}Ab_n\twoheadrightarrow M_A$
+give the commutative square
+\[
+\begin{array}{ccc}
+A^4_{\rm old\ raw}&\longrightarrow&Y_{\mathcal D,A}\\
+\big\downarrow{\scriptstyle\operatorname{diag}(1,1,-p,-p)}
+ &&\big\downarrow{\scriptstyle\pi_A\ {\rm followed\ by\ quotient}}\\
+M_A&\xrightarrow{\quad I\quad}&M_A.
+\end{array}
+\]
+Its right arrow is onto by the four additional preimages.
+Its left arrow retains its exact nonzero cokernel; enlarging
+the domain does not erase that restricted-lattice defect.
+Thus the earlier four-vector construction is recovered by
+an exact morphism from the full original generator module.
+Its integral endpoint map, conductor factorization and
+specialization kernel/cokernel remain the maps already
+proved in Section~\ref{sec:gct-generator-interval}.
+The extra $1256$ basis vectors here are original source
+vectors with their original raising and lowering actions;
+they are not chosen to repair the trace of a hypothetical
+four-dimensional quantum-group representation.

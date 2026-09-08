@@ -1,0 +1,415 @@
+\section{Exact arithmetic profiles driven by a supplied incompressible flow}
+\label{sec:naf}
+
+\subsection{Public source, retained input class and coordinates}
+
+The public manuscript \emph{Finite Time Blowup for Navier--Stokes}
+\cite[Theorem 1.1]{openaiNS2026} claims a smooth forced velocity on
+$\R^3\times[0,1)$, with one fixed compact spatial support, initial
+velocity zero, bounded kinetic energy and unbounded terminal supremum
+norm, for every $\nu>0$. Its complete proof and formal verification are
+not imported as independently certified results in this section. We
+construct and prove an operator correspondence for its stated smooth
+input class, which also contains the explicit localized fields in
+Section~\ref{s6f:localization}. The correspondence itself is established
+below without assuming any unproved endpoint. The first source statement
+is an attribution; the formulas and estimates that follow are our proofs.
+
+For attribution, Buckmaster's primary statement
+\cite[p.~1]{buckmasterStatement2026} identifies his collaboration with
+Levent Alp\"oge on smooth-forced Euler and credits Diego C\'ordoba and
+Luis Mart\'inez-Zoroa for the underlying forced-blowup programme.
+The revised NS manuscript \cite[pp.~2--3]{openaiNS2026} now discusses
+that programme and the hypodissipative extension with Zheng explicitly.
+These statements identify the respective work; they do not establish
+a dependency on the three-point period construction used above.
+
+Let $\mathcal U_{K,T,\nu}$ be the set of smooth real triples $(u,p,f)$
+on $[0,T)\times\R^3$ satisfying, component by component,
+\begin{equation}
+ \partial_tu_i+\sum_{j=1}^3u_j\partial_ju_i
+ =\nu\sum_{j=1}^3\partial_j^2u_i-\partial_ip+f_i,
+ \qquad \sum_i\partial_i u_i=0,
+ \qquad \operatorname{supp}u(t,\cdot)\subset K,
+ \label{naf:input}
+\end{equation}
+where $K\subset\R^3$ is compact, $0<T<\infty$, and $\nu>0$ is retained.
+We do not require compact support of $p,f$ for the following map. The
+particular compactly supported inputs already constructed above satisfy
+these conditions on every finite interval. No assertion of existence of
+a singular member is part of the definition of this set.
+
+In the original real polynomial coordinates $x=(x_1,x_2,x_3)=(x,y,w)$,
+retain every coefficient of $F$ and put
+\begin{equation}
+ S(x)=(F_1(x)/2,F_2(x),F_3(x))^{\mathsf T},\quad
+ J(x)=DS(x)=\operatorname{diag}(1/2,1,1)DF(x).
+ \label{naf:S}
+\end{equation}
+The earlier determinant proof gives $\det J=-1$, with the exact inverse
+\begin{equation}
+ J^{-1}=(DF)^{-1}\operatorname{diag}(2,1,1)
+       =[2W_1\ W_2\ W_3].
+ \label{naf:Jinverse}
+\end{equation}
+Thus $S_1=\sigma$ is precisely the earlier arithmetic coordinate. The
+other two coordinates retain the entire original target. No global
+injectivity of $S$ or $F$ is used; $J^{-1}$ is a pointwise matrix inverse.
+Both $J$ and $J^{-1}$ have polynomial entries.
+The first-coordinate observation alone has the exact velocity kernel
+$\ker(d\sigma)_x=\operatorname{span}_{\R}\{W_2(x),W_3(x)\}$.
+Indeed $d\sigma(W_i)=\delta_{1i}/2$ and the $W_i$ form a basis, by
+the full inverse matrix. The retained two additional target coordinates
+recover precisely those two directions in \eqref{naf:Jinverse}.
+
+\subsection{Flow, inverse and volume form on every preterminal interval}
+
+For an input of \eqref{naf:input}, define $X_t(q)$ by
+\[
+ \partial_tX_t(q)=u(t,X_t(q)),\qquad X_0(q)=q.
+\]
+Here $q\in\R^3$ is the retained initial label and $x=X_t(q)$ the physical
+coordinate. This is a global smooth diffeomorphism for each $t<T$.
+To prove existence with its actual domain, fix $T_0<T$. On
+$[0,T_0]\times K$, $u$ and every spatial derivative are bounded by
+compactness; they vanish outside $K$. In particular $u$ is globally
+Lipschitz in space, uniformly on this time interval. On a sufficiently
+short time interval, the map
+$Y\mapsto q+\int_0^t u(s,Y(s))\,ds$ is a contraction in the uniform
+norm on continuous curves, because its Lipschitz constant is at most
+the interval length times $\sup|Du|$. Successive contractions cover
+$[0,T_0]$; bounded $u$ prevents escape in each such interval. The same
+argument backward in time gives the inverse flow. Differentiation of
+the integral equation gives successive linear integral equations for
+each label derivative, proving their existence and continuity by the
+same local iteration, and proves smoothness by induction. Since $T_0$
+is arbitrary this proves all the assertions on $[0,T)$.
+
+Set $A=D_qX_t$. Differentiation gives
+\[
+ A'=Du(t,X_t)A,\qquad A(0)=I_3,\qquad
+ (\det A)'=(\operatorname{div}u)(t,X_t)\det A=0.
+\]
+The determinant identity follows first near $t=0$ by the product rule
+for the determinant and $A^{-1}$; it gives $\det A=1$, which prevents
+loss of invertibility and continues that identity to every $t<T$.
+Thus $\det A=1$ with its original positive orientation. Every point
+outside $K$ has the constant trajectory, by uniqueness. If a trajectory
+starting in $K$ ended outside $K$, the backward constant trajectory
+from its endpoint would contradict the inverse-flow uniqueness.
+Consequently
+\begin{equation}
+ X_t(K)=K,\qquad X_t(q)=q\ (q\notin K),\qquad
+ X_t(L)\subset K\cup L\quad\hbox{for every compact }L\subset\R^3.
+ \label{naf:compact}
+\end{equation}
+The inverse equality follows in the same way. These conclusions require
+no bound on $\sup_{t<T}|u|$.
+
+\subsection{An invertible profile correspondence with a complex spectral coordinate}
+
+Write $\mathcal B=C^\infty(\R^3;\mathcal O(\C_\zeta))$, with seminorms
+given by uniform suprema of finitely many real $q$ derivatives and
+complex $\zeta$ derivatives on compact products. Let
+\[
+ s_{j,t}(q)=S_j(X_t(q)),\qquad
+ \mathcal P_t:\mathcal O(\C)^3\longrightarrow\mathcal B^3,
+ \quad (h_j)_j\longmapsto
+       \bigl(h_j(s_{j,t}(q)+\zeta)\bigr)_j.
+\]
+Every $s_{j,t}$ is real. The domain variables of $h_j$ are complex;
+the spatial labels remain real, since a general smooth NS velocity
+need not have a holomorphic extension in space. The map on the full
+product is explicitly
+\begin{equation}
+ H_{j,t}:\R^3\times\C_\zeta\longrightarrow\R^3\times\C_s,
+ \quad(q,\zeta)\mapsto(q,s_{j,t}(q)+\zeta),\qquad
+ H_{j,t}^{-1}(q,s)=(q,s-s_{j,t}(q)).
+ \label{naf:skew}
+\end{equation}
+These are smooth in the real variables and biholomorphic on every
+complex fibre. For any fixed label $q_*$, an exact left inverse of
+$\mathcal P_t$, and inverse on its image, is
+\begin{equation}
+ (\mathcal R_tG)_j(s)=G_j(q_*,s-s_{j,t}(q_*)),\qquad
+ \mathcal R_t\mathcal P_t=I.
+ \label{naf:leftinverse}
+\end{equation}
+Substitution proves both directions on the image. On each compact
+product the image argument stays in a compact subset of $\C$, and all
+the finitely many derivatives of $s_{j,t}$ involved are bounded.
+The chain and product rules prove continuity of $\mathcal P_t$;
+evaluation and translation prove continuity of $\mathcal R_t$.
+Thus the image carries a topology for which the stated maps are an
+actual topological isomorphism, namely its subspace topology in
+$\mathcal B^3$. The map retains the full original complex profile.
+
+For comparison with the earlier spatial observable, let
+$e_0(q)=(q,0)$. The precise restriction is
+\[
+ e_0^*(\mathcal P_th)_1(q)=h_1(\sigma(X_t(q)))
+     =X_t^*(\sigma^*h_1)(q).
+\]
+The inverse in \eqref{naf:leftinverse} uses the complex fibre; no
+holomorphic spatial flow is silently supplied to this real restriction.
+
+\subsection{Full first and second time generators, and Euclidean diffusion}
+
+Let $\vartheta:[0,T)\to\R$ be smooth. It is the chosen Newman-time
+map, independent of physical $t$; no value for it is inferred from NS.
+Take either $h_\theta=Z_\theta$ or the full four-term coefficient
+$h_\theta=K_\theta$ of Section~\ref{sec:x4-arithmetic}, so that
+$\partial_\theta h_\theta=-\partial_s^2h_\theta/4$ with its original
+factor and sign. Set
+\[
+ \Psi_j(t,q,\zeta)=h_{\vartheta(t)}(s_{j,t}(q)+\zeta),\qquad
+ v_j(t,q)=[\nabla S_j\cdot u](t,X_t(q)).
+\]
+Then $\partial_ts_{j,t}=v_j$ and the chain rule proves the exact equation
+\begin{equation}
+ \partial_t\Psi_j=-\frac{\vartheta'}4\partial_\zeta^2\Psi_j
+                      +v_j\partial_\zeta\Psi_j.
+ \label{naf:first}
+\end{equation}
+The exact connection on the moving image of $\mathcal P_t$ is
+$\nabla_t=\partial_t-\operatorname{diag}(v_j)\partial_\zeta$:
+$\nabla_t(\mathcal P_t h_t)=\mathcal P_t(\partial_t h_t)$.
+This follows by the same chain rule for every smooth curve of entire
+profiles. It is a connection between the displayed moving images;
+multiplication by $v_j(q)$ is not being asserted to preserve a fixed
+image of the profile space.
+There is no $\zeta$ dependence in $v_j$. Differentiating this complete
+equation once more, including the time derivatives of its coefficients,
+gives
+\begin{equation}
+ \partial_t^2\Psi_j=
+ \frac{(\vartheta')^2}{16}\partial_\zeta^4\Psi_j
+ -\frac{\vartheta'v_j}{2}\partial_\zeta^3\Psi_j
+ +\left(v_j^2-\frac{\vartheta''}{4}\right)\partial_\zeta^2\Psi_j
+ +a_j\partial_\zeta\Psi_j,
+ \label{naf:second}
+\end{equation}
+where the acceleration coefficient is, with all NS terms retained,
+\begin{equation}
+ a_j=\partial_tv_j=
+ \left[\sum_i(\nu\Delta u_i-\partial_i p+f_i)\partial_i S_j
+             +\sum_{i,l}u_i u_l\partial_i\partial_l S_j\right](t,X_t(q)).
+ \label{naf:accel}
+\end{equation}
+Indeed apply $\partial_t+u\cdot\nabla_x$ to
+$\sum_i u_i\partial_iS_j$ and substitute \eqref{naf:input}; the
+derivative of $\partial_iS_j$ is exactly the displayed Hessian term.
+In \eqref{naf:second}, the cubic derivative occurs twice, each with
+coefficient $-\vartheta'v_j/4$, proving its coefficient $-\vartheta'v_j/2$.
+
+The full physical Laplacian has an exact material counterpart. Define
+\[
+ G_t=A^{-1}A^{-\mathsf T},\qquad
+ \mathcal L_t=\sum_{a,b}\partial_{q_a}
+                         (G_t^{ab}\partial_{q_b}).
+\]
+For every smooth scalar $b(x)$,
+\begin{equation}
+ \mathcal L_t(X_t^*b)=X_t^*(\Delta_xb).
+ \label{naf:laplace}
+\end{equation}
+Here is a proof retaining the first-order terms in $\mathcal L_t$.
+The gradient chain rule gives $\nabla_qX_t^*b=A^{\mathsf T}
+(\nabla_xb)\circ X_t$. For a compactly supported smooth test $\phi$,
+integration by parts and the change of variables $x=X_t(q)$, whose
+Jacobian is one, give
+\[
+ \int\phi\,\mathcal L_tX_t^*b\,dq
+ =-\int\nabla_q\phi\cdot A^{-1}(\nabla_xb)\circ X_t\,dq
+ =-\int\nabla_x(\phi\circ X_t^{-1})\cdot\nabla_xb\,dx
+ =\int\phi\,X_t^*\Delta_xb\,dq.
+\]
+All functions are smooth, so the distributional equality is pointwise.
+Apply this at fixed $\zeta$ to the full profile to obtain
+\begin{equation}
+ \mathcal L_t\Psi_j=(|\nabla S_j|^2\circ X_t)\partial_\zeta^2\Psi_j
+                      +(\Delta S_j\circ X_t)\partial_\zeta\Psi_j.
+ \label{naf:profilelaplace}
+\end{equation}
+Consequently its complete advective viscous residual is
+\[
+ (\partial_t-\nu\mathcal L_t)\Psi_j
+ =-\left(\frac{\vartheta'}4+\nu|\nabla S_j|^2\circ X_t\right)
+                                  \partial_\zeta^2\Psi_j
+   +(v_j-\nu\Delta S_j\circ X_t)\partial_\zeta\Psi_j.
+\]
+These formulas identify the two differential operators through an
+explicit coordinate map and calculate their remaining coefficients;
+they do not delete the viscosity or equate two time variables.
+
+\subsection{Recovering the actual velocity from the arithmetic temporal defect}
+
+For real $\theta$ the functions $Z_\theta,K_\theta$ and their spectral
+derivatives are Schwartz on the real $s$ line, by the weighted Fourier
+space proved above. With the original real kernel $k$ and multiplier
+$m$, their Fourier representations are
+\[
+ Z_\theta(s)=4\int_\R k(\omega)e^{\theta\omega^2/4}e^{is\omega}\,d\omega,
+ \qquad
+ K_\theta(s)=4\int_\R m(\omega)k(\omega)e^{\theta\omega^2/4}
+                                          e^{is\omega}\,d\omega.
+\]
+No source energy, derivative channel, or Fourier factor is changed.
+Define $d_h(\theta)^2=\int_\R|h_\theta'(s)|^2\,ds$. Then
+\begin{align}
+ d_Z(\theta)^2&=32\pi\int_\R
+                   \omega^2 k(\omega)^2e^{\theta\omega^2/2}\,d\omega,\notag\\
+ d_K(\theta)^2&=32\pi\int_\R
+        \omega^2|m(\omega)|^2 k(\omega)^2e^{\theta\omega^2/2}\,d\omega.
+ \label{naf:d}
+\end{align}
+For completeness, the factor follows without a Fourier convention
+change. For a Schwartz amplitude $b$, insert $e^{-\epsilon s^2}$ in
+the squared norm of $4\int b(\omega)e^{is\omega}d\omega$ and use Fubini.
+The result is
+$16\sqrt{\pi/\epsilon}\iint b(\omega)\overline{b(\eta)}
+e^{-(\omega-\eta)^2/(4\epsilon)}d\omega d\eta$.
+The Gaussian convolution, with mass $2\pi$, tends to $2\pi b$;
+splitting at any fixed small distance and using continuity and the
+Gaussian tail proves this convergence under the integral. Thus the
+limit is $32\pi\int|b|^2$. On the original side dominated convergence
+applies because the transform is Schwartz. Use respectively
+$b=i\omega k e^{\theta\omega^2/4}$ and
+$b=i\omega m k e^{\theta\omega^2/4}$ to prove \eqref{naf:d}.
+
+Both numbers are strictly positive. The previously proved $k(0)>0$
+and continuity give an interval of nonzero $k$ containing nonzero
+$\omega$. For the second integral the established full-real bound
+$|m|\geq575/1752192$ applies. The weighted bounds also prove continuity
+of these integrals in $\theta$ by domination on each compact parameter
+interval. Hence for each compact interval $I\subset\R$ there are
+finite constants $0<d_-\leq d_h(\theta)\leq d_+<\infty$ on $I$.
+
+Define the actual arithmetic temporal defect by
+\begin{equation}
+ D_j(t,q,s)=\partial_t\Psi_j(t,q,s)
+                   +\frac{\vartheta'}4\partial_s^2\Psi_j(t,q,s),
+ \qquad s\in\R.
+ \label{naf:defect}
+\end{equation}
+Equation \eqref{naf:first} gives $D_j=v_j h_{\vartheta}'(s+s_{j,t})$.
+Real translation preserves Lebesgue measure, so
+\begin{equation}
+ \sum_j\|D_j(t,q,\cdot)\|_{L^2(\R)}^2
+       =d_h(\vartheta(t))^2|v(t,q)|^2.
+ \label{naf:norm}
+\end{equation}
+Moreover the inverse is a literal integral followed by the original
+matrix inverse:
+\begin{equation}
+ \begin{aligned}
+ v_j&=\frac{\displaystyle\int_\R
+      \overline{h_{\vartheta}'(s+s_{j,t})}D_j(t,q,s)\,ds}
+                {d_h(\vartheta)^2},\\
+ u(t,X_t(q))&=2W_1(X_t(q))v_1+W_2(X_t(q))v_2+W_3(X_t(q))v_3.
+ \end{aligned}
+ \label{naf:recoveru}
+\end{equation}
+Substitution proves both inverse identities. The correspondence retains
+$X_t(q)$ as part of both sides:
+$(X_t,u\circ X_t)\leftrightarrow(X_t,D)$. The data $D$ alone are not
+claimed to select a globally unique inverse sheet of the polynomial map.
+At fixed $(t,q)$, the formula
+identifies $\R^3$ with the three-dimensional real subspace of
+$L^2(\R;\C)^3$ spanned componentwise by the three displayed shifted
+profiles. It is not merely an analogy between their norms.
+
+For a nonempty $K$, set
+$M=\max_K\|J\|_{\mathrm{op}}$ and
+$N=\max_K\|J^{-1}\|_{\mathrm{op}}$. They are finite and positive.
+If $\vartheta([0,T))\subset I$, the exact map satisfies, for all $t<T$,
+\begin{equation}
+ \frac{d_-}{N}\|u(t)\|_{L^\infty(\R^3)}
+ \leq \sup_q\left(\sum_j\|D_j(t,q,\cdot)\|_2^2\right)^{1/2}
+ \leq d_+M\|u(t)\|_{L^\infty(\R^3)}.
+ \label{naf:blowupequiv}
+\end{equation}
+Indeed $|Ju|\leq M|u|$ and $|u|\leq N|Ju|$ on $K$, while both $u$
+and $v$ vanish off $K$; \eqref{naf:compact} preserves $K$ and
+surjectivity preserves the supremum. Combine this with \eqref{naf:norm}.
+This proves equivalence of unbounded terminal velocity and unbounded
+supremum of this specific arithmetic temporal-defect norm for every
+input in the defined class. It supplies an exact detection map even
+though no singular member is established here. At $u=0$ all these
+defects vanish, as the same formulas require.
+The full space--spectral energy has an exact identity too. Since $v=0$
+off $K$, \eqref{naf:norm} is integrable in $q$ and the volume-preserving
+change of variables gives
+\[
+ \sum_j\int_{\R^3}\int_\R|D_j(t,q,s)|^2\,ds\,dq
+   =d_h(\vartheta(t))^2\int_{\R^3}|J(x)u(t,x)|^2\,dx.
+\]
+The same constants therefore bound its square root between
+$(d_-/N)\|u(t)\|_2$ and $d_+M\|u(t)\|_2$. In particular the map
+transfers a uniform kinetic-energy bound into a uniform joint
+$L^2(q,s)$ bound, while \eqref{naf:blowupequiv} detects concentration
+through the separate supremum in $q$. This conclusion follows from the
+displayed integrals without a spatial truncation of the defect.
+In particular $\vartheta(t)=0$ for every physical time is an explicit
+allowed choice. Then the entire input stays equal to the actual
+$\Xi$ (or $K_0$), and $D_j=\partial_t\Psi_j$; the constants in
+\eqref{naf:blowupequiv} use the single strictly positive value $d_h(0)$.
+
+For an actual separated-link pair, the full coefficient is $a_{ef}K$.
+The defect is then $a_{ef}D^K$, and its squared norm acquires exactly
+$a_{ef}^2$; division in \eqref{naf:recoveru} is available for
+$a_{ef}\ne0$. If $a_{ef}=0$ this pair supplies the zero observation,
+not a spurious inverse. For a pair with $a_{ef}>0$, recovery of $Z$ from
+the profiles of $K$ additionally uses the already proved full-domain
+inverse $\mathcal T_{\mathcal D}^{-1}$; its translation and derivative
+commutation hold because multiplication by $m$ commutes with
+$e^{is_{j,t}\omega}$ and $i\omega$ in the unchanged Fourier domain.
+
+\subsection{Bounded profile values and the exact transported zero divisor}
+
+For compact label set $L$, compact spectral set $E\subset\C$, and
+bounded $\vartheta([0,T))\subset I$, \eqref{naf:compact} puts every
+argument $s_{j,t}(q)+\zeta$ in the compact set $S_j(K\cup L)+E$.
+The jointly entire $Z$ and $K$ are bounded on that set times $I$.
+Therefore
+\[
+ \sup_{t<T,\ q\in L,\ \zeta\in E}|\Psi_j(t,q,\zeta)|<\infty.
+\]
+The identical argument bounds every pure spectral derivative. It does
+not bound time or spatial-label derivatives; \eqref{naf:blowupequiv}
+specifies a quantity that can grow even while these values stay bounded.
+
+Let $h_\theta(s)$ have a zero at $z_*$ of multiplicity $m$ and write its
+actual local factorization
+$h_\theta(s)=(s-z_*)^m A(s)$, $A(z_*)\ne0$. The full inverse of
+\eqref{naf:skew} takes that zero to
+\[
+ \zeta_*(q)=z_*-s_{j,t}(q),\qquad
+ \Psi_j=(\zeta-\zeta_*(q))^m A(s_{j,t}(q)+\zeta).
+\]
+Thus it preserves multiplicity and the whole analytic unit on every
+complex fibre. Its complete jet formula is
+\[
+ \partial_\zeta^{m+n}\Psi_j(t,q,\zeta_*(q))
+                 =\frac{(m+n)!}{n!}A^{(n)}(z_*),\qquad n\geq0,
+\]
+with all lower derivatives zero. This follows by multiplying the
+Taylor series of the unchanged $A$ by $(\zeta-\zeta_*)^m$; no unit
+coefficient has been discarded. Since $s_{j,t}(q)$ is real,
+$\operatorname{Im}\zeta_*(q)=\operatorname{Im}z_*$. At Newman time
+$\vartheta=0$ with $h=Z$, the full map to the completed-zeta argument is
+\[
+ \rho=\tfrac12+i(s_{j,t}(q)+\zeta),\qquad
+ \zeta=-i(\rho-\tfrac12)-s_{j,t}(q),\qquad
+ \operatorname{Re}\rho=\tfrac12-\operatorname{Im}\zeta.
+\]
+Consequently this NS-induced real translation preserves each zero's
+distance from the critical line exactly; the full arithmetic time
+evolution is still the specified $Z_\vartheta$. For $h=K$ the same
+coordinate proof transports the zeros of the four-term profile; these
+are converted to a statement about $Z$ only by actually applying the
+proved inverse operator to the whole profile. The inverse does not
+identify individual zeros of two different entire functions. These
+explicit maps give both the velocity detection and the precise zero
+transport of the construction, without deducing an off-critical zero
+from growth of the temporal defect.

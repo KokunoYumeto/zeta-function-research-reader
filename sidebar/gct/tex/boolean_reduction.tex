@@ -1,0 +1,100 @@
+\section{An explicit Boolean-to-algebraic edge with its encoding}
+\label{sec:boolean}
+The inclusion $\mathrm P\subseteq\mathrm{NP}$ follows directly:
+a deterministic machine is a nondeterministic machine with one
+available move at each step and the same running time.
+The reverse inclusion is the equality question.
+We retain a concrete edge by arithmetizing a three-literal conjunctive
+formula's verifier.
+
+For $n,m\ge1$, use $6mn$ commuting variables $E_{j,k,i,\sigma}$,
+where $1\le j\le m$, $1\le k\le3$, $1\le i\le n$,
+$\sigma\in\{+,-\}$, and auxiliary variables $b_1,\ldots,b_n$.
+Over $\mathbb Z$ define
+\begin{align*}
+ L_{j,k}(E,b)&=\sum_{i=1}^n
+   (E_{j,k,i,+}b_i+E_{j,k,i,-}(1-b_i)),\\
+ V_{n,m}(E,b)&=\prod_{j=1}^m
+   \left(1-\prod_{k=1}^3(1-L_{j,k}(E,b))\right),\\
+ Q_{n,m}(E)&=\sum_{b\in\{0,1\}^n}V_{n,m}(E,b).
+\end{align*}
+A formula $\varphi$ with $n$ explicitly named variables and $m$
+ordered three-literal clauses gives the zero--one array $E(\varphi)$
+with one $1$ in each slot $(j,k)$, at its literal's index and sign.
+Repeated literals are allowed. Input consists of explicitly named
+variables and ordered signed binary indices with delimiters.
+Writing $E(\varphi)$ uses $O(mn)$ bits and operations.
+This convention does not allow exponentially many unused variables
+to be specified solely by a binary upper bound: alternatively relabel
+the $r$ occurring variables and record the unused count separately.
+The projection from all $n$ Boolean variables to those $r$ coordinates
+has exactly $2^{n-r}$ elements in each fibre and preserves the verifier.
+Thus the original count is $2^{n-r}$ times the relabelled count.
+A binary specification of an enormous unused count would require this
+factored output format; writing all bits of the expanded count need
+not be polynomial in that shorter input encoding.
+
+\begin{proposition}[Exact counting reduction]\label{prop:counting}
+The integer $Q_{n,m}(E(\varphi))$ is exactly the number of satisfying
+assignments of $\varphi$. Deciding satisfiability of these formulas
+therefore reduces by this polynomial array map and a nonzero test
+to evaluation of this family on the specified arrays.
+\end{proposition}
+\begin{proof}
+For Boolean $b$, each selected $L_{j,k}$ is exactly the literal's
+truth value, $b_i$ or $1-b_i$.
+The product of their three complements is $1$ exactly when the
+clause is false. Its complement is its truth value.
+The outer product is $1$ exactly when all clauses hold, and $0$
+otherwise. Summation proves the integer equality and the bound
+$0\le Q_{n,m}(E(\varphi))\le2^n$.
+The stated array construction and zero test give the reduction.
+\end{proof}
+
+The displayed construction gives $V_{n,m}$ a uniform division-free
+arithmetic circuit of $O(mn)$ gates, constants $0,1$, total degree
+at most $6m$ in $(E,b)$ and degree at most $3m$ in $E$.
+Each literal has degree at most two, each clause at most six, and
+the products give these bounds. The loops over the displayed indices
+construct the circuit in polynomial time. To obtain the usual one-index
+family, assign
+$t=(n+m-2)(n+m-1)/2+n$. The consecutive diagonals of pairs $(n,m)$
+show this is a bijection from positive pairs to positive integers.
+Trying consecutive diagonals through $n+m\le t+1$ decodes it in
+polynomial time, and $n,m\le t$, so all variable, degree and gate bounds
+remain polynomial in $t$. If a definition requires exactly $t$ witness
+bits, multiply the verifier by $\prod_{i=n+1}^{t}(1-b_i)$ before
+summing; only the all-zero added bits contribute, leaving $Q_{n,m}$
+unchanged. By the definition of $\mathrm{VNP}$
+as Boolean exponential summation of a polynomial-size,
+polynomially bounded-degree arithmetic circuit family, this proves
+$Q_{n,m}\in\mathrm{VNP}_{\mathbb Q}$ by construction.
+
+There is also an explicit bit interface for a supplied, topologically
+ordered, fan-in-two division-free circuit $C$ over $+,-,\times$, with
+signed binary integer constants. On input $E(\varphi)$, evaluate its gates
+modulo $M=2^{n+1}$. For $L$ gates and total constant-bit length $B_C$,
+this takes $O(B_C+L(n+1)^2)$ arithmetic bit operations, plus graph and
+input reading and the chosen machine's memory-access overhead,
+by binary addition and school multiplication. Reduction to low
+$n+1$ bits handles products, long constants and signs.
+Induction over gates proves exact agreement with the integer value
+modulo $M$. If the supplied circuit computes $Q_{n,m}$, its residue
+is its exact value on this input since $0\le Q\le2^n<M$.
+This gives the precise evaluation reduction without a bound on
+intermediate integer magnitudes.
+
+No polynomial-size circuits for $Q_{n,m}$ have been constructed here.
+Polynomial-time generation of their full binary descriptions would
+make the displayed evaluation uniform and bound both gate count and
+constant-bit length. Descriptions supplied as size-dependent advice
+give a polynomial-advice interface only when their total binary
+description length is polynomial.
+Arbitrary complex constants do not admit this binary modular
+operation without additional input data.
+The retained inverse-fibre selector polynomial already has the
+explicit small determinant proved earlier; the present counting
+polynomial has the different, fully specified joint verifier product
+and Boolean summation. The next reduction must transport those
+joint constraints with their parameter growth. None is erased by
+calling both objects polynomial families.

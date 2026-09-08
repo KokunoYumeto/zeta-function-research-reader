@@ -1,0 +1,53 @@
+# Heat transport on the retained inverse-fibre cover
+
+Complete written calculations are in `tex/main.tex` and its included sections. The initial function is the actual `Xi(s)=xi(1/2+is)`; the original inverse-fibre polynomial and every coordinate change remain explicit. The work calculates the branch connection, heat transport, moving arithmetic relations, analytic units, zero transport, and the exact Euclidean spatial generator of the arithmetic observable. It does not claim an RH or classical Navier–Stokes counterexample.
+
+The September 8 edition also propagates the original finite-box coupling fourth coefficient, with `xi=1/(4g^4)`, through the actual arithmetic heat flow. Its complete spectral functional gives
+
+```text
+K_t(s) = -59 Z_t(s+3)/275184 - Z_t'(s+3)/336
+         + Z_t(s+9/2)/1296 + 3 Z_t(s+13/2)/132496.
+```
+
+The actual matrix element `<v_e,Z_t(s+A_xi)v_f>` has coefficient `a_ef K_t(s)` at order `xi^4`, with the finite-box even remainder proved uniformly on compact complex heat and spectral parameter sets. The shift-and-derivative operator has real Fourier multiplier modulus at least `575/1752192`. The text proves its continuous inverse on the stated weighted Fourier space, exact heat commutation, and full transport through the original spatial map. The source's complete proof is included as Appendix A. Both source proofs, the source checker and its receipt are retained byte-for-byte in `sources/xi4_source/`.
+
+Replay the exact checks from this directory:
+
+```text
+python scripts/check_heat_connection.py
+python scripts/zero_transport_check.py
+python scripts/check_euclidean_observable.py
+python scripts/check_xi4_transport.py
+python scripts/check_xi4_typed_maps.py
+python scripts/check_xi4_source_render.py
+python scripts/replay_connes_continuation.py
+python scripts/check_xi4_bilaplacian.py
+python scripts/check_s6_three_point_forcing.py
+python scripts/check_s6_three_point_fields.py
+python scripts/check_ns_arithmetic_flow.py
+```
+
+Requirements: Python 3 and SymPy; the resource-enforced replays require Windows. The five original mathematical scripts retain 201 passing exact checks (30+113+16+22+20); the Connes continuation adds 206, the full bilaplacian continuation adds 28, and the three-point quotient and fluid construction add 17 and 110, and the supplied-flow arithmetic correspondence adds 37, for 599 in total. The Connes replay wrapper verifies every frozen file and redirects the fresh receipt while preserving the source receipt. That checker and both three-point checkers and the NS-flow checker enforce a 5,000,000,000-byte Windows job ceiling with one worker. The separate source-render check verifies ordered mathematical tokens for all 146 original math blocks, all 25 equation tags and the four snapshot hashes. Full analytic proofs are written in the TeX; these checks are supplementary and do not claim Lean verification.
+
+The subsequent user-requested audit repaired gaps in explicit typed morphisms. The cumulative proof now writes both directions of the physical parameter chart, the full energy-distribution pushforward (including the coefficient `kappa/336` of the derivative delta), physical/Newman time intertwiners, both-sheet root-heat transport, and every transformed zero jet and analytic-unit coefficient. Each new map specifies its actual domain and codomain and proves its coordinate formulas. The original source snapshots and physical scales remain intact. The earlier edition did not fully meet the user's requirement at every introduced distinction; the audit and repairs are recorded in `logbook/three_rule_audit.md`.
+
+The full Connes quotient continuation is now included as Appendices B–J. Its nine original shareable files remain byte-for-byte in `sources/connes_continuation/`. Complete proofs compute the two stated quotient topologies, all multiplicity-jet domains and analytic units, the Mellin and principal-part maps, the retained cover, and compact-test inverse maps. The original source topology remains separately specified by its source; its spectral theorem is explicitly attributed as an imported theorem.
+
+The new `tex/connes_continuation_bridge.tex` proves equality of the Fourier and entire-order heat maps on their exact common function space. It gives both moving quotient coordinates, their complete kernels, the quotient homeomorphism and the full operator intertwiner. It also places the actual fourth coefficient in that common space. The new second-diffusion calculation is included with its complete source proof in `sources/ns_bilaplacian/`. For every entire input, the residue on the original escaping trajectory is `36 h'(0) + 15 h''(0)/16`. The full fourth coefficient retains that residue. At Newman time `-T`, its residue is `-15 (127/219024) k(0) sqrt(pi) T^(-3/2)` with a proved global error bounded by `96 C_* sqrt(pi) T^(-5/2)`. The original zero first energy moment cancels the competing leading derivative contribution. The typed material-coordinate map intertwines both the first and the squared full Euclidean diffusion operators. This divergence occurs along spatial escape; it does not supply a finite-point singular velocity or an off-critical zero. The cumulative PDF has 96 pages.
+
+The three-special-point construction is written completely in `tex/s6_three_point_quotient.tex` and `tex/s6_three_point_forcing.tex`. It retains the original points `(0,1,infinity)`, finite filling orders `(3,4)`, one unipotent cusp, full period matrix, analytic units, monodromies and logarithmic overlaps. The exact real quotient `P(a,b,c,d)=(a,b,c)` sends each marked source four-torus to a three-torus, with its full circle kernel and section defects computed. Its restriction to the original cusp two-torus and its real two-dimensional covering is explicit. The source-derived polarizations are `c1=(1,2,-4)/3`, `c2=(-1,-3,3)/4`, and `c0=(0,0,1)`; their determinant is `-1/12`.
+
+The regular marked three-torus carries the exact field `u=sum_j a_j(t)c_j sin(2*pi*k_j*x)` with `k1=(4,0,1)`, `k2=(3,0,1)`, `k0=(0,1,0)`. The proof gives its amplitude inverse, complete metric under the phase coordinate map, all six transverse nonlinear interactions, pressure, forcing and mean-stress image. Compact time amplitudes give a smooth admissible forced solution from rest. The Duhamel formula proves that this fixed three-mode image has no finite-time velocity blowup under smooth terminal forcing, and it classifies its unforced solutions exactly. A full curl localization supplies a compactly supported whole-space velocity and every additional force term. These are explicit three-dimensional forced constructions and interaction data; no breakdown or dependence of another paper on S6 is inferred. The complete local source identification and bounded reading scope are in `sources/s6_three_points/provenance.json`; no global complex-S6 claim is imported.
+
+The supplied-flow construction in `tex/ns_arithmetic_flow.tex` gives an exact additional map from the full original target `S=(F1/2,F2,F3)` and a smooth, compactly supported incompressible flow `X_t`. Its three arithmetic profiles are `h_theta(S_j(X_t(q))+zeta)`, using the actual `Z_theta` or complete `K_theta`. An explicit inverse integral recovers all three velocity components from the temporal defect `D_j=partial_t Psi_j + theta_prime partial_zeta^2 Psi_j/4`. The full Fourier constant is `d_Z(theta)^2=32*pi*integral omega^2*k(omega)^2*exp(theta*omega^2/2) d omega`, and the actual fourth coefficient retains `|m(omega)|^2` in that integral. This gives both directions of a velocity/defect norm comparison and a corresponding kinetic-energy identity. The pressure, force, positive viscosity, Hessian and full material diffusion terms remain explicit. At the concrete choice `theta=0`, these are translated actual Xi profiles and their time derivatives. Profile values remain bounded on compact sets while the defect detects velocity concentration; the complete fibrewise zero map preserves imaginary parts, multiplicities and every analytic-unit coefficient. No RH counterexample follows from that temporal growth.
+
+The public NS input is versioned in `sources/ns_public/provenance.json`: the earlier 165-page PDF and revised 166-page PDF have distinct hashes. The exact source class used here is read from Theorem 1.1; the complete NS proof and Lean kernel verification are not claimed as independently completed by this repository. Primary attribution to Alpöge and Buckmaster and the Córdoba–Martínez-Zoroa programme is recorded in the reader. The NS programme retains ownership of its formal verification.
+
+Build the reader with `pdflatex -halt-on-error main.tex` twice from `tex/`. The document uses standard AMS and LaTeX packages. Public source citations are in the document. No mutable sibling repository is required by the proof or checks.
+
+`scripts/import_xi4_source.py` optionally rebuilds the appendix typography using Pandoc and the frozen snapshots; rerunning it does not refresh existing snapshots from the growing source task. `checks/pdf_qa.json` identifies the PDF edition reviewed visually.
+
+The `logbook/` directory is private continuity and provenance material, including the required prior-session reading. It is not part of the shareable mathematical reader. The single existing source-task mirror worker handles Overleaf integration; this repository does not start another uploader.
+
+
+The closing appendix `tex/ns_public_witness.tex` now substitutes the released manuscript's actual corrected and localized field, including its arbitrary-viscosity transformation, terminal force extension, and explicit shrinking-ring swirl estimate. It proves the exact two-channel arithmetic profile identity, its source remainder and growth bound, and a terminal energy-space profile with its measure-preserving label map and Koopman isometry. The complete imported 166-page source proof is retained under `sources/ns_public/navier_stokes_166.pdf`; the source dependency and actual read scope are explicit. The earlier 599 symbolic checks are retained; the new five-page analytic application has its own full independent proof-review receipt.

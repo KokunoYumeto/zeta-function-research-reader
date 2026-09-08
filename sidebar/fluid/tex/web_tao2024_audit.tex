@@ -1,0 +1,403 @@
+\section{An exact audit of the 2024 rational cylinder construction}
+\label{sec:wb-tao2024}
+
+\subsection{Scope and primary-source comparison}
+The primary source is T.~Tao, \emph{A possible approach to finite time
+blowup for the Euler equations}, 8 September 2024,
+\url{https://terrytao.wordpress.com/2024/09/08/a-possible-approach-to-finite-time-blowup-for-the-euler-equations/}.
+The retrieved display contains the axial factor $(1+x^2)^{-1}$,
+the transverse factor $(1+x^2)^{-2}$, and a middle coefficient
+$-2\varphi v$. The calculations below retain these original rational
+functions and prove that the coefficient they generate is $-4\varphi v$.
+The source's equation (7) also has its two Gram-matrix rows interchanged.
+These are statements about the retrieved formulas, not claims about a
+singularity theorem. All further formulas in this section are derived here.
+The incoming report's equations (16.4)--(16.9), on physical PDF pages
+30--31 (printed pages 25--26), have the correct derivative, coefficient,
+and Gram order. Its local metric argument is extended below to precise
+global and volume statements.
+
+\subsection{The full product equations and the pressure map}
+Let $N$ be a smooth compact manifold without boundary with a smooth
+Riemannian metric $h$. A positive volume density suffices when $N$ is
+nonorientable; when a volume form is used, fix an orientation.
+On $M=\mathbb R_x\times N$ retain the product metric
+$g=dx^2+h$ and write $u=a\partial_x+U$ and $f=b\partial_x+F$.
+Here $a,p,b$ are real-valued smooth functions of $(t,x,y)$ and $U,F$
+are smooth sections of the pullback of $TN$. The sign convention is
+\begin{equation}\label{eq:wb-euler-sign}
+ \partial_tu+\nabla^g_u u=-\operatorname{grad}_g p+f,
+ \qquad \operatorname{div}_g u=0.
+\end{equation}
+In a coordinate chart $y^i$ on $N$, the only nonzero Christoffel
+symbols of $g$ are $\Gamma^i_{jk}(h)$: this follows directly from
+$g_{xx}=1$, $g_{xi}=0$, $\partial_xh_{ij}=0$ in
+$\Gamma^A_{BC}=\frac12g^{AD}(\partial_Bg_{CD}+\partial_Cg_{BD}
+-\partial_Dg_{BC})$. In particular
+\begin{align}
+ \partial_ta+a\partial_xa+U(a)&=-\partial_xp+b,
+ \label{eq:wb-axial}\\
+ \partial_tU+a\partial_xU+\nabla^h_U U&=-\operatorname{grad}_h p+F,
+ \label{eq:wb-transverse}\\
+ \partial_xa+\operatorname{div}_h U&=0.
+ \label{eq:wb-div}
+\end{align}
+The last identity also follows from
+$\operatorname{div}_g u=(\sqrt{\det h})^{-1}
+[\partial_x(\sqrt{\det h}\,a)+\partial_{y^i}(\sqrt{\det h}\,U^i)]$.
+
+There is an exact residual construction on this cylinder. For every
+smooth pair $(a,U)$ obeying \eqref{eq:wb-div}, set
+\begin{align}
+ A(t,x,y)&=\partial_ta+a\partial_xa+U(a),\\
+ R(t,x,y)&=\partial_tU+a\partial_xU+\nabla^h_U U,\\
+ p(t,x,y)&=q(t,y)-\int_0^x A(t,s,y)\,ds,
+ \label{eq:wb-pressure-map}\\
+ b&=0,\qquad F=\operatorname{grad}_h p+R,
+ \label{eq:wb-force-map}
+\end{align}
+where $q$ is any smooth real function on the time interval times $N$.
+The integral is over a finite interval for every $x$, so differentiation
+under it proves smoothness on the open spacetime domain. Its $x$
+derivative is $-A$ by the fundamental theorem of calculus. Substitution
+in \eqref{eq:wb-axial} and \eqref{eq:wb-transverse} proves every component
+of \eqref{eq:wb-euler-sign}. Conversely, a solution with $b=0$ has
+$p$ of \eqref{eq:wb-pressure-map}, with $q=p(t,0,y)$, and has the
+force \eqref{eq:wb-force-map}. Thus the pressure map describes exactly,
+and not merely formally, all such force/pressure pairs for a specified
+divergence-free velocity. Changing $q$ generally changes the transverse
+force; it is not the usual pressure gauge with the force held fixed.
+
+The cancelled-pressure subclass is $R=0$ and
+$F=\operatorname{grad}_h p$. Its closed velocity system is therefore
+\begin{equation}\label{eq:wb-cylinder-closed}
+ \partial_tU+a\partial_xU+\nabla^h_U U=0,
+ \qquad \partial_xa+\operatorname{div}_hU=0.
+\end{equation}
+On an axial circle, the same construction requires
+$\int_0^L A(t,s,y)\,ds=0$ for pressure periodicity. The integral formula
+on $\mathbb R$ supplies no automatic periodic realization.
+
+\subsection{Energy and the exact constant-parameter scaling}
+Set $e=|U|_h^2/2$. Metric compatibility gives
+$(\partial_t+a\partial_x+U)e=\langle R,U\rangle_h$.
+Since \eqref{eq:wb-div} holds,
+\begin{equation}\label{eq:wb-local-energy}
+ \partial_te+\partial_x(ae)+\operatorname{div}_h(eU)
+ =\langle R,U\rangle_h.
+\end{equation}
+Indeed, the two product-rule terms added to the transport derivative
+are $e(\partial_xa+\operatorname{div}_hU)=0$. Integration on
+$[-L,L]\times N$ yields the exact identity
+\[
+ \frac{d}{dt}\int_{-L}^L\!\int_N e\,dV_h\,dx
+ =-\int_N[ae]_{x=-L}^{x=L}\,dV_h
+ +\int_{-L}^L\!\int_N\langle R,U\rangle_h\,dV_h\,dx.
+\]
+Here the integral of the $N$ divergence vanishes: in an oriented
+chart $\operatorname{div}_h(eU)dV_h=d\iota_{eU}dV_h$, and Stokes'
+theorem on the compact boundaryless manifold gives zero; a partition
+of unity gives the identical density statement. Consequently the
+transverse energy is conserved for $R=0$ when the energy is finite,
+the axial boundary flux tends to zero, and differentiation and the
+$L\to\infty$ limit are justified, for example by uniform integrable
+majorants for $e$ and $\partial_te$ on each compact time interval.
+Finite energy alone is not substituted for this flux/limit requirement.
+
+For positive constants $\lambda,\mu$, let
+\[
+ \widetilde a(t,x,y)=\frac\lambda\mu
+ a(t/\mu,x/\lambda,y),\qquad
+ \widetilde U(t,x,y)=\frac1\mu U(t/\mu,x/\lambda,y).
+\]
+All three terms of $R$ acquire the factor $\mu^{-2}$; the divergence
+acquires the factor $\mu^{-1}$. This follows from the ordinary chain
+rule and the $x$ independence of $h$. The axial acceleration acquires
+$\lambda/\mu^2$. Hence in the cancelled-pressure subclass
+$\widetilde p=(\lambda^2/\mu^2)p(t/\mu,x/\lambda,y)$ and
+$\widetilde F=\operatorname{grad}_h\widetilde p$ give the exact
+full forced equations as well. This is a symmetry of that subclass
+with its force transformed, not an assertion about an arbitrary fixed
+force in \eqref{eq:wb-euler-sign}. The energy transformation is exactly
+\begin{equation}\label{eq:wb-energy-scale}
+ \widetilde E_N(t)=\frac\lambda{\mu^2}E_N(t/\mu),\qquad
+ \widetilde E_x(t)=\frac{\lambda^3}{\mu^2}E_x(t/\mu),
+\end{equation}
+by $x=\lambda\xi$. Equal nonzero transverse energies give
+$\mu^2=\lambda$; comparable energies give corresponding two-sided
+bounds on $\lambda/\mu^2$. No original dimensional constant or metric
+has been changed by these statements.
+
+\subsection{All rational coefficient equations, with the discrepancy retained}
+For smooth $\varphi\colon N\to\mathbb R$ and smooth vector fields
+$v,w\in\Gamma(TN)$, write
+\begin{equation}\label{eq:wb-rational}
+ D=1+x^2,\qquad a=\frac\varphi D,\qquad U=\frac{v+xw}{D^2}.
+\end{equation}
+Differentiation, without altering either denominator, gives
+\begin{align}
+ \partial_xa&=-\frac{2x\varphi}{D^2},\\
+ \partial_xU&=\frac{wD-4x(v+xw)}{D^3}
+ =\frac{w-4xv-3x^2w}{D^3},\label{eq:wb-U-derivative}\\
+ \nabla^h_U U&=\frac{\nabla_vv+x(\nabla_vw+\nabla_wv)
+ +x^2\nabla_ww}{D^4}.
+\end{align}
+The last formula uses $v(D)=w(D)=0$, including all connection terms
+in each $\nabla$. Define the three actual vector fields
+\begin{equation}\label{eq:wb-C}
+ C_0=\nabla_vv+\varphi w,\quad
+ C_1=\nabla_vw+\nabla_wv-4\varphi v,\quad
+ C_2=\nabla_ww-3\varphi w.
+\end{equation}
+The full residual and divergence, for arbitrary $\varphi,v,w$, are
+\begin{equation}\label{eq:wb-rational-residual}
+ R=\frac{C_0+xC_1+x^2C_2}{D^4},\qquad
+ \operatorname{div}_g u=
+ \frac{\operatorname{div}_hv+x(\operatorname{div}_hw-2\varphi)}{D^2}.
+\end{equation}
+Since $D>0$ for every real $x$, a vanishing vector polynomial has all
+coefficients zero in any chart. Thus the stationary closed system is
+equivalent in both directions to the five equations
+\begin{equation}\label{eq:wb-correct-five}
+ C_0=C_1=C_2=0,\qquad
+ \operatorname{div}_hv=0,\qquad\operatorname{div}_hw=2\varphi.
+\end{equation}
+There are no omitted derivatives of $\varphi$ in its transverse
+equation: the advective derivative there differentiates $U$, not $a$.
+Those derivatives occur in the axial pressure equation below.
+
+For the primary display's middle expression set instead
+$B_1=\nabla_vw+\nabla_wv-2\varphi v$. The exact relation is
+$C_1=B_1-2\varphi v$. In particular, retaining all four other
+equations and $B_1=0$ gives
+\begin{equation}\label{eq:wb-blog-residual}
+ R=-\frac{2x\varphi v}{(1+x^2)^4}.
+\end{equation}
+The discrepancy disappears exactly when the vector field
+$\varphi v$ vanishes identically. The residual construction
+\eqref{eq:wb-pressure-map}--\eqref{eq:wb-force-map} maps any such
+printed-system solution to full forced Euler with
+$F=\operatorname{grad}_h p-2x\varphi v/(1+x^2)^4$.
+This proves the precise bridge after the coefficient failure; it makes
+no assertion that a nondegenerate solution of either system has been found.
+More generally \eqref{eq:wb-rational-residual} gives that bridge for
+every triple satisfying only its two displayed divergence equations.
+
+\subsection{Explicit pressure, force tails, and energy of the original ansatz}
+For \eqref{eq:wb-rational}, the axial acceleration is
+\[
+ a\partial_xa+U(a)
+ =\frac{-2x\varphi^2+v(\varphi)+xw(\varphi)}{D^3}.
+\]
+Define
+\begin{align}
+ A_0&=2\varphi^2-w(\varphi),\qquad B_0=v(\varphi),\\
+ J(x)&=\frac{x}{4D^2}+\frac{3x}{8D}+\frac38\arctan x,\\
+ p(x,y)&=-\frac{A_0(y)}{4D^2}-B_0(y)J(x).
+ \label{eq:wb-explicit-pressure}
+\end{align}
+The derivative of the three summands in $J$ is respectively
+$1/(4D^2)-x^2/D^3$, $3/(8D)-3x^2/(4D^2)$, and $3/(8D)$;
+putting these over $D^3$ gives $J'=D^{-3}$.
+Also $(D^{-2})'=-4xD^{-3}$. Consequently
+$p_x=(xA_0-B_0)/D^3$, the negative of the displayed acceleration.
+Thus $p$ and
+\begin{equation}\label{eq:wb-explicit-force}
+ F=-\frac{\operatorname{grad}_h A_0}{4D^2}
+   -J(x)\operatorname{grad}_h B_0
+   +\frac{C_0+xC_1+x^2C_2}{D^4},\qquad b=0
+\end{equation}
+are a completely explicit, smooth stationary force/pressure pair for
+every divergence-compatible triple. Every spatial covariant derivative
+of this pair is bounded on $\mathbb R\times N$: derivatives in $y$
+of its coefficients are bounded by compactness, $J$ is bounded,
+and all positive-order $x$ derivatives of $J$ and of the displayed
+rational factors are bounded. These are stationary fields, so positive
+time derivatives vanish. This proves smooth bounded forcing for this
+stationary map; it does not imply bounds for a singularly modulated map.
+
+Its force tails have an exact further restriction. Since
+$J(+\infty)=3\pi/16$ and $J(-\infty)=-3\pi/16$,
+\begin{equation}\label{eq:wb-force-limits}
+ \lim_{x\to\pm\infty}F(x,\cdot)
+ =\mp\frac{3\pi}{16}\operatorname{grad}_h B_0.
+\end{equation}
+The other summands tend to zero uniformly on $N$. If
+$\operatorname{grad}_hB_0$ is nonzero at a point, it is bounded away
+from zero on a nonempty open set; the uniform limit gives a positive
+lower bound for $|F|$ on that set for all sufficiently large $|x|$.
+Then $F\notin L^2(M)$. If $\operatorname{grad}_hB_0=0$, the remaining
+terms are $O(|x|^{-4})$ or faster, and $F\in L^2(M)$.
+For the divergence-compatible triples under consideration,
+$\int_{N_j}B_0\,dV_h=\int_{N_j}\operatorname{div}_h(\varphi v)\,dV_h=0$
+on every connected component $N_j$. A function with zero gradient is
+constant on each component, so here the exact $L^2$ criterion is
+$B_0=v(\varphi)=0$.
+Adding a different $q(y)$ to the pressure adds $\operatorname{grad}_h q$
+to both limits in \eqref{eq:wb-force-limits}; both can vanish only
+when $\operatorname{grad}_hB_0=0$ and $\operatorname{grad}_hq=0$.
+Thus this tail issue cannot be removed by that pressure choice.
+
+The velocity always has finite total energy. The needed integrals are
+\begin{equation}\label{eq:wb-integrals}
+ \int_{\mathbb R}\frac{dx}{D^2}=\frac\pi2,\quad
+ \int_{\mathbb R}\frac{dx}{D^4}=\frac{5\pi}{16},\quad
+ \int_{\mathbb R}\frac{x\,dx}{D^4}=0,\quad
+ \int_{\mathbb R}\frac{x^2\,dx}{D^4}=\frac\pi{16}.
+\end{equation}
+For completeness put $x=\tan s$, $-\pi/2<s<\pi/2$.
+The first, second, and fourth integrands become respectively
+$\cos^2s$, $\cos^6s$, and $\sin^2s\cos^4s$.
+Integration by parts of $\int_{-\pi/2}^{\pi/2}\cos^{2m}s\,ds$
+gives $I_m=(2m-1)I_{m-1}/(2m)$ with $I_0=\pi$;
+hence $I_1=\pi/2$, $I_2=3\pi/8$, $I_3=5\pi/16$ and
+the fourth integral is $I_2-I_3=\pi/16$. Oddness gives the third.
+Expanding $|v+xw|^2=|v|^2+2x\langle v,w\rangle+x^2|w|^2$
+therefore proves
+\begin{equation}\label{eq:wb-exact-energy}
+ E_N=\frac\pi{32}\int_N(5|v|_h^2+|w|_h^2)\,dV_h,
+ \qquad E_x=\frac\pi4\int_N\varphi^2\,dV_h.
+\end{equation}
+Algebraic decay, compact transverse geometry, and smooth bounded force
+are the properties proved here; rapid decay in Euclidean three-space
+is not a consequence of these formulas.
+
+\subsection{Exact one-form and Lie-derivative equations}
+Let $\theta=h(v,\cdot)$ and $\eta=h(w,\cdot)$; the source calls the
+second one-form $\lambda$. The notation $\eta$ here prevents collision
+with the positive axial scaling parameter. For any vector field $X$,
+metric compatibility and vanishing torsion give
+\begin{align*}
+ (\iota_vd\theta)(X)
+ &=v[\theta(X)]-X[\theta(v)]-\theta([v,X])\\
+ &=h(\nabla_vv,X)-h(\nabla_Xv,v),\\
+ \tfrac12d[\theta(v)](X)&=h(\nabla_Xv,v).
+\end{align*}
+Adding proves
+\begin{equation}\label{eq:wb-accel}
+ (\nabla_vv)^\flat=\iota_vd\theta+\tfrac12d[\theta(v)].
+\end{equation}
+Apply this identity to $v+w$, expand every bilinear term, and subtract
+the individual $v$ and $w$ identities. The resulting mixed identity is
+\begin{equation}\label{eq:wb-polarized}
+ (\nabla_vw+\nabla_wv)^\flat
+ =\iota_vd\eta+\iota_wd\theta
+ +\tfrac12d[\eta(v)+\theta(w)].
+\end{equation}
+Since $h$ is positive definite, lowering indices is a vector-bundle
+isomorphism. The three equations $C_i=0$ are consequently equivalent
+to
+\begin{align}
+ \varphi\eta+\iota_vd\theta+\tfrac12d[\theta(v)]&=0,
+ \label{eq:wb-form-zero}\\
+ -4\varphi\theta+\iota_vd\eta+\iota_wd\theta
+ +\tfrac12d[\eta(v)+\theta(w)]&=0,
+ \label{eq:wb-form-one}\\
+ -3\varphi\eta+\iota_wd\eta+\tfrac12d[\eta(w)]&=0.
+ \label{eq:wb-form-two}
+\end{align}
+No antisymmetric covariant term has been dropped: the mixed expression
+is the symmetric sum of the two accelerations, exactly as in $C_1$.
+
+Define the Lie derivative on one-forms by
+$(\mathcal L_v\alpha)(X)=v[\alpha(X)]-\alpha([v,X])$.
+Expanding $d\alpha(v,X)$ shows directly that
+$\mathcal L_v\alpha=\iota_vd\alpha+d[\alpha(v)]$.
+Thus the identical system in Lie-derivative notation is
+\begin{align}
+ \mathcal L_v\theta-\tfrac12d[\theta(v)]+\varphi\eta&=0,\\
+ \mathcal L_v\eta+\mathcal L_w\theta
+ -\tfrac12d[\eta(v)+\theta(w)]-4\varphi\theta&=0,\\
+ \mathcal L_w\eta-\tfrac12d[\eta(w)]-3\varphi\eta&=0.
+ \label{eq:wb-lie-system}
+\end{align}
+With a specified smooth positive density $\omega$, define divergence
+by $\mathcal L_v\omega=(\operatorname{div}_\omega v)\omega$.
+The divergence constraints eliminate $\varphi$ exactly by
+$\varphi=\frac12\operatorname{div}_\omega w$ and
+$\operatorname{div}_\omega v=0$. In the middle one-form equation
+the resulting coefficient is therefore
+$-2(\operatorname{div}_\omega w)\theta$, rather than
+$-(\operatorname{div}_\omega w)\theta$. An arbitrary choice of
+$\omega$ requires the precise metric/volume realization proved in
+the following section; it is not implicitly equal to $dV_h$.
+
+For completeness the full time-dependent transverse equation also
+has an exact metric-free acceleration identity. Put
+$\zeta=h(U,\cdot)$, a time- and $x$-dependent one-form on $N$.
+The same calculation, with $h$ fixed in $t,x$, gives
+\[
+ R^\flat=\partial_t\zeta+a\partial_x\zeta
+ +\mathcal L_U\zeta-\tfrac12d_N[\zeta(U)].
+\]
+This equation includes all dynamics of the closed cylinder system;
+there is no derivative of $a$ in this transverse one-form identity.
+
+\subsection{Time-dependent concentration gives an explicit residual}
+Let $(a_*,U_*)$ be any fixed smooth stationary divergence-free pair
+on this same cylinder and put
+$R_*=a_*\partial_\xi U_*+\nabla_{U_*}U_*$.
+For arbitrary smooth positive functions $L(t),M(t)$, define
+\[
+ \xi=x/L(t),\qquad
+ a_{L,M}=\frac{L(t)}{M(t)}a_*(\xi,y),\qquad
+ U_{L,M}=\frac1{M(t)}U_*(\xi,y).
+\]
+Its divergence is $M^{-1}(\partial_\xi a_*+
+\operatorname{div}_hU_*)=0$. Direct differentiation proves the
+complete transverse residual
+\begin{equation}\label{eq:wb-modulation}
+ R_{L,M}=\frac1{M^2}R_*(\xi,y)
+ -\frac{M'}{M^2}U_*(\xi,y)
+ -\frac{L'}{ML}\xi\partial_\xi U_*(\xi,y).
+\end{equation}
+Indeed $\xi_t=-L'\xi/L$, the two transport terms have factor $M^{-2}$,
+and differentiating $M^{-1}U_*(\xi,y)$ gives exactly the last two
+terms. Its axial acceleration, with none of the modulation terms
+discarded, is
+\begin{align}
+ A_{L,M}={}&\left(\frac{L'}M-\frac{LM'}{M^2}\right)a_*
+ -\frac{L'}M\xi\partial_\xi a_*\notag\\
+ &+\frac L{M^2}\bigl(a_*\partial_\xi a_*+U_*(a_*)\bigr).
+ \label{eq:wb-modulation-axial}
+\end{align}
+Formula \eqref{eq:wb-pressure-map} with this $A_{L,M}$ and
+\eqref{eq:wb-force-map} with \eqref{eq:wb-modulation} supply an
+exact forced Euler solution on every open time interval where
+$L,M>0$ are smooth. No assertion of force regularity at an endpoint
+where these functions vanish follows from this construction.
+
+If $R_*=0$ and the transverse-energy scaling factor is held fixed by
+$M=\kappa\sqrt L$ with a fixed $\kappa>0$, then
+\begin{equation}\label{eq:wb-energy-modulation-defect}
+ R_{L,M}=-\frac{L'}{ML}
+ \left(\tfrac12U_*+\xi\partial_\xi U_*\right).
+\end{equation}
+For a nonzero smooth $U_*$ on the entire cylinder, the expression
+in parentheses cannot vanish identically. To prove this, on each
+half-line the equation is
+$\partial_\xi(|\xi|^{1/2}U_*)=0$ in each local bundle component.
+Thus $U_*=c_+(y)\xi^{-1/2}$ for $\xi>0$ and
+$U_*=c_-(y)(-\xi)^{-1/2}$ for $\xi<0$. Continuity at $\xi=0$
+forces both coefficient fields to vanish; the equation at zero also
+gives $U_*(0,y)=0$. Hence $U_*$ would be zero everywhere.
+Therefore nonconstant $L$ in this pure scaling construction produces
+a nonzero residual at every time with $L'\ne0$. This proves only
+the defect of pure modulation of a fixed smooth profile. The full
+residual and pressure formulas above remain an exact force bridge
+and do not exclude more general profile dynamics.
+
+There is a concrete nonzero stationary member, including its
+degeneracy. On a flat torus $N=\mathbb R^m/\Lambda$ with its
+specified constant positive metric and lattice $\Lambda$, choose
+a nonzero constant vector $V$ and take
+$\varphi=0$, $w=0$, $v=V$.
+All five equations \eqref{eq:wb-correct-five} hold because constant
+vector fields have zero covariant derivatives and divergence.
+Thus $a=0$, $U=V/(1+x^2)^2$, $p=0$, $f=0$ is a smooth unforced
+stationary Euler solution on this product cylinder. Its energy is
+$5\pi\operatorname{Vol}_h(N)|V|_h^2/32$ by
+\eqref{eq:wb-exact-energy}. The pair $(v,w)$ has rank one, so this
+example does not realize the independent-pair Gram condition or a
+singularity. It verifies directly that the rational construction has
+actual solutions while identifying the exact rank of this example.

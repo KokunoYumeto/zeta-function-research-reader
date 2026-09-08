@@ -1,0 +1,322 @@
+\section{Primary-source corrections for the incoming report}
+\label{sec:web-primary-corrections}
+
+This is a claim-specific source audit of the supplied report, with an independent
+operator calculation. It does not certify the complete proofs of the cited papers.
+The downloaded snapshots and their hashes are listed in
+\texttt{retrieval\_receipt.json}; the inspection date is 8 September 2026.
+
+\subsection{The fractional theorem and the exact endpoint statement}
+The published Theorem 1 of C\'ordoba, Mart\'inez-Zoroa and Zheng,
+\href{https://doi.org/10.1007/s00205-026-02198-0}{ARMA 250 (2026), article 38},
+uses $|\nabla|^\alpha=(-\Delta)^{\alpha/2}$ and includes
+$0\leq\alpha<(22-8\sqrt7)/9$.
+It asserts a solution on $\mathbb R^3\times[0,1]$ with positive viscosity,
+forcing in $L^1([0,1];C^{1,\epsilon}_x)\cap L^\infty([0,1];L^2_x)$
+for some $\epsilon>0$, velocity in $L^\infty_{t,x}\cap L^\infty_tL^2_x$,
+spatial smoothness for $t<1$, and
+$\lim_{t\uparrow1}\int_0^t\|\nabla u(\cdot,s)\|_\infty\,ds=\infty$.
+Section 1.1 says both solution and forcing are smooth before blow-up;
+Section 4.4 gives the corresponding preterminal construction.
+The theorem does not assert all-order mixed smoothness through $t=1$.
+The incoming report's positive range is valid as a subrange, but omits the
+endpoint $\alpha=0$ from the source theorem. Its distinction between
+$(-\Delta)^s$ and $|\nabla|^\alpha$ is correct: $s=\alpha/2$.
+The cumulative section on the dissipative vortex-layer programme already
+contains the parameter calculation and viscosity transfer, so it should be
+retained instead of duplicated here.
+
+\subsection{Tao's averaging: exact operator and dynamics}
+In \href{https://arxiv.org/html/1402.0290v3}{arXiv:1402.0290v3},
+equations (1.11)--(1.13) include dilations, rotations, and real order-zero
+Fourier multipliers. Footnote 8 records the role of dilation averaging in the
+non-degeneracy argument. The text preceding (1.16) explicitly says that
+arbitrary such averaging does not automatically preserve energy cancellation.
+Theorem 1.5 chooses a symmetric operator with cancellation and Schwartz
+divergence-free data for which no global $H^{10}$ mild solution exists.
+Thus the report's broad description is supported, but the dilation and
+cancellation qualifications should be supplied. The following calculation
+proves the precise relation with classical forced dynamics.
+
+Retain the source's Fourier convention
+$\widehat u(\xi)=\int_{\mathbb R^3}u(x)e^{-2\pi i x\cdot\xi}\,dx$.
+Let $H=H^{10}_{\mathrm{df}}(\mathbb R^3)$ be the real divergence-free Sobolev
+space, with norm
+$\|u\|_H^2=\int(1+4\pi^2|\xi|^2)^{10}|\widehat u(\xi)|^2\,d\xi$.
+Its $L^2$ dual is denoted $H^*$.
+The Leray projection $P$ has symbol
+$I-\xi\otimes\xi/|\xi|^2$ for $\xi\ne0$; its value at zero is immaterial.
+Define
+\[
+ B(u,v)=-\frac12 P\big((u\cdot\nabla)v+(v\cdot\nabla)u\big).
+\]
+For a probability space $(\Omega,\mu)$, retain
+$R_{j,\omega}\in SO(3)$, $C^{-1}\leq\lambda_{j,\omega}\leq C$ with $C\geq1$,
+and real order-zero symbols $m_{j,\omega}$ satisfying
+$m_{j,\omega}(-\xi)=\overline{m_{j,\omega}(\xi)}$ and
+\[
+ \|m\|_k=\sup_{\xi\ne0}|\xi|^k|\nabla^k m(\xi)|<\infty,
+ \qquad \int_\Omega\prod_{j=1}^3\|m_{j,\omega}\|_{k_j}\,d\mu<\infty
+ \quad(k_j\geq0).
+\]
+Write
+\[
+ \operatorname{Rot}_R u(x)=Ru(R^{-1}x),\qquad
+ \operatorname{Dil}_\lambda u(x)=\lambda^{3/2}u(\lambda x),\qquad
+ A_{j,\omega}=m_{j,\omega}(D)\operatorname{Rot}_{R_{j,\omega}}
+                       \operatorname{Dil}_{\lambda_{j,\omega}}.
+\]
+Retain the measurability of the source's parameter families: the maps
+$\omega\mapsto R_{j,\omega}$ and $\omega\mapsto\lambda_{j,\omega}$
+are measurable, and $(\omega,\xi)\mapsto m_{j,\omega}(\xi)$ is jointly
+measurable. In particular, for every fixed $u\in H$ the map
+$\omega\mapsto A_{j,\omega}u$ is strongly measurable in $H$.
+Here is a direct justification of this last assertion. Its Fourier
+representative is jointly measurable by the displayed formulas for
+rotation, dilation and multiplication. Its scalar coordinates against a
+countable orthonormal basis of the weighted Fourier $L^2$ space are
+measurable integrals. The finite orthogonal projections onto that basis
+are measurable finite-dimensional maps and converge in $H$ at every
+$\omega$, proving strong measurability. The same argument in unweighted
+$L^2$, using inverse rotations and dilations and conjugate symbols,
+proves that $\omega\mapsto A_{j,\omega}^*g$ is strongly measurable
+for every fixed $g\in L^2$. These are measurability hypotheses and their
+consequences; norm integrability alone is not being used to infer them.
+The averaging is the bilinear map $H\times H\to H^*$ specified by
+\[
+ \langle\widetilde B(u,v),w\rangle
+ =\int_\Omega\langle B(A_{1,\omega}u,A_{2,\omega}v),A_{3,\omega}w\rangle
+ \,d\mu(\omega).                                      \tag{WA1}
+\]
+All three operators preserve divergence. For rotations this follows by the
+chain rule and $R^{-1}R=I$; for dilations divergence is multiplied by
+$\lambda^{5/2}$; scalar Fourier multipliers commute with each derivative.
+They preserve real fields by the stated symbol symmetry. Changing variables
+$y=\lambda x$, and then $y=R^{-1}x$, proves that dilations and rotations are
+$L^2$ isometries with respective adjoints $\operatorname{Dil}_{\lambda^{-1}}$
+and $\operatorname{Rot}_{R^{-1}}$. Plancherel gives
+$m(D)^*=\overline m(D)$. Consequently
+\[
+ \widetilde B(u,v)=\int_\Omega A_{3,\omega}^*
+                  B(A_{1,\omega}u,A_{2,\omega}v)\,d\mu(\omega),
+ \quad
+ A_3^*=\operatorname{Dil}_{\lambda_3^{-1}}
+       \operatorname{Rot}_{R_3^{-1}}\overline m_3(D).       \tag{WA2}
+\]
+
+Here the integral actually defines an $L^2$ field, as follows without an
+unstated convergence step. Fourier Cauchy--Schwarz gives
+$\|u\|_\infty\leq C_S\|u\|_H$, where
+\[
+ C_S=\left(\int_{\mathbb R^3}(1+4\pi^2|\xi|^2)^{-10}\,d\xi\right)^{1/2}<\infty;
+\]
+the radial integrand at infinity is bounded by a constant times $r^{-18}$.
+Also $\|\nabla u\|_2\leq\|u\|_H$ and $\|P\|_{2\to2}=1$.
+Therefore $\|B(u,v)\|_2\leq C_S\|u\|_H\|v\|_H$.
+The Fourier formula for dilation is
+$\widehat{\operatorname{Dil}_\lambda u}(\xi)=\lambda^{-3/2}\widehat u(\xi/\lambda)$,
+which gives $\|A_j u\|_H\leq C^{10}\|m_j\|_0\|u\|_H$.
+The integrand in (WA2) thus has $L^2$ norm at most
+$C_SC^{20}\prod_j\|m_j\|_0\|u\|_H\|v\|_H$.
+It is also strongly measurable: continuity of $B:H\times H\to L^2$
+makes $g_\omega=B(A_{1,\omega}u,A_{2,\omega}v)$ strongly measurable.
+Approximate $g_\omega$ pointwise by measurable simple $L^2$-valued
+functions. Applying $A_{3,\omega}^*$ to each simple function gives a
+strongly measurable function by the preceding fixed-vector result.
+The images converge pointwise in $L^2$, since each $A_{3,\omega}^*$
+has finite operator norm. Thus the integrand is strongly measurable.
+Together with its integrable norm bound this proves existence of its
+Bochner integral, the asserted map, and the duality identity (WA1).
+No operator is replaced by an equal-looking different operator.
+
+For smooth fields, the Laplacian obeys
+\[
+ \Delta A_j=\lambda_j^2 A_j\Delta,                       \tag{WA3}
+\]
+because it commutes with scalar Fourier multipliers and rotations, and each
+of the two derivatives of $u(\lambda_jx)$ contributes a factor $\lambda_j$.
+Thus the actual dissipative operator remains explicitly present.
+
+Fix the particular cancellation-preserving $\widetilde B$ from Tao's theorem.
+For any $u\in C(I;H)\cap C^1(I;L^2)$ on a time interval $I$, set
+\[
+ f_u=(\widetilde B-B)(u,u),\qquad
+ p_u=-\Delta^{-1}\partial_i\partial_j(u_i u_j).
+\]
+Both fields are well defined in $L^2$ at each time: $u_i u_j\in L^2$ by
+$\|u\|_\infty\|u\|_2<\infty$, and the scalar pressure multiplier is bounded.
+Set $N=(u\cdot\nabla)u$. Divergence freedom gives
+$N_i=\partial_j(u_j u_i)$, hence
+$\nabla p_u=-(I-P)N$ in distributions and in $L^2$.
+Since $B(u,u)=-PN$, the following is an identity of $L^2$ residuals:
+\[
+ \partial_tu+N+\nabla p_u-\nu\Delta u-f_u
+ =\partial_tu-\nu\Delta u-\widetilde B(u,u),\qquad \nu>0. \tag{WA4}
+\]
+Indeed, $N+\nabla p_u=PN=-B(u,u)$; substitution proves every sign in
+(WA4). In particular the source's coefficient $\nu=1$ is retained when
+applying this identity to its solution. The map $u\mapsto(u,p_u,f_u)$
+transfers its averaged equation exactly to the ordinary forced equation,
+with the same spatial coordinates and the same time variable. Conversely
+the forced equation with this explicitly prescribed $f_u$ gives the averaged
+equation by the same identity. The force is divergence free because both
+bilinear operators take values in divergence-free fields.
+
+There is also an exact energy relation. For $u\in H$, integration against a
+cutoff $\chi_R(x)=\chi(x/R)$, equal to one on $|x|\leq R$ and supported on
+$|x|\leq2R$, gives
+\[
+ \int\chi_R N\cdot u
+ =-\frac12\int |u|^2u\cdot\nabla\chi_R.
+\]
+The right side is bounded in absolute value by
+$\|\nabla\chi\|_\infty\|u\|_\infty\|u\|_2^2/(2R)$ and tends to zero.
+Dominated convergence applies on the left because $N\in L^2$ and $u\in L^2$.
+As $P$ is self-adjoint and $Pu=u$, this proves
+$\langle B(u,u),u\rangle=0$. The chosen averaging has the same cancellation,
+so $\langle f_u,u\rangle=0$. Along a trajectory with zero residual in (WA4),
+Plancherel gives $\langle\Delta u,u\rangle=-\|\nabla u\|_2^2$ and therefore
+\[
+ \frac{d}{dt}\frac12\|u(t)\|_2^2=-\nu\|\nabla u(t)\|_2^2. \tag{WA5}
+\]
+This proves the force-defect bridge and its energy behavior. It supplies no
+all-order terminal estimates for $f_u$; those estimates are not a conclusion
+of (WA4) or (WA5). Consequently this exact transfer does not itself establish
+the requested smooth-through-terminal-time forced singularity.
+
+\subsection{The inspected numerical Euler manuscript's actual status}
+The author-hosted
+\href{https://anima-ai.org/wp-content/uploads/2026/09/Euler.pdf}{Ganeshram--Duruisseaux--Anandkumar manuscript}
+has 107 pages in the downloaded snapshot. Its abstract describes an
+approximate profile and evidence for stability. Page 5 explicitly identifies
+unfinished certification of constants and margins, allowing refinement of
+estimates. Page 13, Section 4.6, additionally identifies local well-posedness
+and continuation in rescaled time as necessary for an unconditional blow-up
+result. Page 14, Section 4.9, leaves terms outside the signed matrices to be
+certified. Thus the report's candidate-status description is supported;
+the remaining work should not be described solely as evaluating constants.
+This audit checks these status statements, not their eventual feasibility or
+the correctness of all individual certificates.
+Page 7, equations (3)--(7), defines $\lambda$ as the common radial and axial
+length exponent, and retains a moving axial centre with
+$\dot z_c=-C(T-t)^{\lambda-1}$.
+The report's fixed-centre illustrative ansatz therefore does not reproduce
+all the source's coordinates. The exact length dictionary is
+$\beta=\lambda$. Here is the complete coordinate and equation correspondence,
+including the axial translation and its velocity.
+
+Let $I\subset\mathbb R$ be an interval, $\nu\geq0$, and
+$d\in C^\infty(I;\mathbb R^3)$. Write
+$\mathcal N_\nu(u,p)=\partial_tu+(u\cdot\nabla)u+\nabla p-\nu\Delta u$
+on $\mathbb R^3\times I$, and let $\mathcal S_\nu(I)$ be the set of smooth
+triples $(u,p,f)$ on this domain with $u,f$ vector valued, $p$ scalar valued,
+$\operatorname{div}u=0$, and $\mathcal N_\nu(u,p)=f$.
+No spatial decay restriction is imposed in this definition. Define
+\begin{align}
+ u_d(x,t)&=u(x-d(t),t),&p_d(x,t)&=p(x-d(t),t),\notag\\
+ f_d(x,t)&=f(x-d(t),t)
+       -\sum_{j=1}^3d'_j(t)\partial_j u(x-d(t),t).
+ \label{eq:wb-moving-translation}
+\end{align}
+These formulas define a bijection $\mathcal S_\nu(I)\to\mathcal S_\nu(I)$.
+Indeed $\partial_tu_d=(\partial_tu-d'\cdot\nabla u)(x-d,t)$,
+$\partial_{x_i}u_d=(\partial_i u)(x-d,t)$, and
+$\partial_{x_i}\partial_{x_j}u_d=(\partial_i\partial_j u)(x-d,t)$.
+Consequently divergence, convection, pressure gradient, and Laplacian
+are the corresponding original quantities evaluated at $(x-d,t)$, while
+the displayed time derivative gives precisely $f_d$.
+The inverse, including its force component, is
+\[
+ u(y,t)=u_d(y+d(t),t),\quad p(y,t)=p_d(y+d(t),t),\quad
+ f(y,t)=f_d(y+d(t),t)+d'(t)\cdot\nabla u_d(y+d(t),t).
+\]
+Substitution in both orders proves the identity map on every component.
+The spatial Jacobian is the identity matrix with determinant one, so
+$\|u_d(t)\|_2=\|u(t)\|_2$ and
+$\|\nabla u_d(t)\|_2=\|\nabla u(t)\|_2$ whenever these norms are finite.
+Every spatial derivative and every compact support is translated exactly.
+Time derivatives retain derivatives of $d$; no bound through an endpoint
+is inferred when these derivatives are unbounded there.
+
+For clarity the velocity expressed in the moving frame is a second, also
+exact, map. For $(u,p,f)\in\mathcal S_\nu(I)$ put
+\[
+ v(y,t)=u(y+d(t),t)-d'(t),\quad
+ q(y,t)=p(y+d(t),t),\quad g(y,t)=f(y+d(t),t)-d''(t).
+\]
+Here $\partial_tv=(\partial_tu+d'\cdot\nabla u)(y+d,t)-d''$ and
+$(v\cdot\nabla)v=((u-d')\cdot\nabla u)(y+d,t)$; the two $d'$ terms
+cancel exactly, proving $\mathcal N_\nu(v,q)=g$ and
+$\operatorname{div}v=0$. Its inverse is
+$u(x,t)=v(x-d,t)+d'$, $p(x,t)=q(x-d,t)$,
+$f(x,t)=g(x-d,t)+d''$.
+Equivalently $q_a=q+d''\cdot y$ gives
+$\mathcal N_\nu(v,q_a)=f(y+d,t)$, with inverse pressure
+$p(x,t)=q_a(x-d,t)-d''\cdot(x-d)$.
+The affine pressure and constant velocity are retained, not discarded.
+If $u(t)\in L^2(\mathbb R^3)$ and $d'(t)\ne0$, then $v(t)\notin L^2$:
+otherwise the difference of two $L^2$ fields would be the nonzero constant
+$d'$, whose squared integral on balls is $|d'|^2(4\pi R^3/3)\to\infty$.
+Thus the first translation map preserves finite energy; the second has
+the explicitly proved different velocity and pressure behavior.
+
+Now retain $T,\tau_*,L_*,U_*>0$, $x_*\in\mathbb R^3$, and
+$\beta\in\mathbb R$. For $0\leq t<T$ put
+$s=(T-t)/\tau_*$ and $\ell=L_*s^\beta>0$.
+For a fixed smooth profile pair $(U,P)$ on $\mathbb R^3$ with
+$\operatorname{div}_Y U=0$, set
+\[
+ Y=\frac{x-x_*-d(t)}{\ell},\qquad
+ u_d=U_*s^{\beta-1}U(Y),\qquad
+ p_d=U_*^2s^{2\beta-2}P(Y).
+\]
+At each fixed $t$, $Y\mapsto x=x_*+d(t)+\ell Y$ is a diffeomorphism
+$\mathbb R^3\to\mathbb R^3$ with Jacobian $\ell I_3$ and determinant
+$\ell^3$. The field inverse on its image is
+$U(Y)=U_*^{-1}s^{1-\beta}u_d(x_*+d+\ell Y,t)$ and
+$P(Y)=U_*^{-2}s^{2-2\beta}p_d(x_*+d+\ell Y,t)$.
+Because $\partial_tY=\beta Y/(\tau_*s)-d'/\ell$,
+$\partial_{x_i}Y_j=\delta_{ij}/\ell$, direct differentiation of each
+component gives the complete prescribed force
+\begin{align}
+ f_d={}&\frac{U_*}{\tau_*}s^{\beta-2}
+ \left[(1-\beta)U+\beta(Y\cdot\nabla_Y)U
+ +\frac{U_*\tau_*}{L_*}
+       \{(U\cdot\nabla_Y)U+\nabla_Y P\}
+ -\frac{\nu\tau_*}{L_*^2}s^{1-2\beta}\Delta_Y U\right]\notag\\
+ &-\frac{U_*}{L_*}s^{-1}(d'(t)\cdot\nabla_Y)U.
+ \label{eq:wb-moving-profile-force}
+\end{align}
+All profiles on the right are evaluated at $Y$. The first line is the
+fixed-centre residual evaluated in translated coordinates; the second is
+exactly the force correction in \eqref{eq:wb-moving-translation}.
+Conversely the displayed field inverse and inverse force translation
+recover the fixed-centre forced equation with its original viscosity.
+
+In the cited axial convention put $d(t)=z_c(t)e_3$ and retain the source's
+constant $C$ and exponent $\lambda$, so
+$z_c'=-C(T-t)^{\lambda-1}$. For every reference $t_0<T$ the full primitive is
+\[
+ z_c(t)=
+ \begin{cases}
+ z_c(t_0)+\dfrac C\lambda\big((T-t)^\lambda-(T-t_0)^\lambda\big),
+     &\lambda\ne0,\\[3pt]
+ z_c(t_0)+C\log\!\dfrac{T-t}{T-t_0},&\lambda=0.
+ \end{cases}
+\]
+Differentiation proves the required negative sign in both cases.
+When $\beta=\lambda$, the last line of
+\eqref{eq:wb-moving-profile-force} is
+\[
+ \frac{CU_*\tau_*^{\lambda-1}}{L_*}
+ s^{\beta-2}\partial_{Y_3}U
+ =\frac{U_*}{\tau_*}s^{\beta-2}
+       \frac{C\tau_*^\lambda}{L_*}\partial_{Y_3}U.
+\]
+This is the exact retained drift in the moving-centre profile equation.
+The arbitrary initial centre is present in the inverse coordinate map.
+All formulas hold on the preterminal domain $s>0$, including $C=0$;
+they make no unproved assertion of an extension through $s=0$.
+They relate the two coordinate presentations and their forced equations;
+they do not identify their profile solutions or discard the source's
+additional profile equations.

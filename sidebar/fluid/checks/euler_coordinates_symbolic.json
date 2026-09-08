@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "title": "Axisymmetric Euler/Navier--Stokes coordinate identities",
+  "sympy_version": "1.13.1",
+  "method": "Exact expansion and rational cancellation of differential polynomials in arbitrary smooth symbolic functions",
+  "domain": "r > 0; y1=z; y2=r^2/2 > 0; nu >= 0",
+  "conventions": {
+    "cylindrical_order": "(u_r,u_phi,u_z)",
+    "streamfunction": "u_r=Psi_z/r; u_z=-Psi_r/r",
+    "swirl": "u_phi=Gamma/r",
+    "vorticity": "xi=(partial_z u_r-partial_r u_z)/r",
+    "volume_velocity": "v=(u_z,r u_r)=(-psi_y2,psi_y1)",
+    "D": "partial_t + u_r partial_r + u_z partial_z",
+    "L_minus": "partial_z^2 + partial_r^2 - r^-1 partial_r",
+    "L_plus": "partial_z^2 + partial_r^2 + 3r^-1 partial_r"
+  },
+  "scope": "Checks differential identities only; does not establish global pressure recovery, axis regularity, boundary conditions, singularity formation, or a Millennium Problem counterexample.",
+  "all_passed": true,
+  "check_count": 15,
+  "checks": [
+    {
+      "name": "divergence_free_streamfunction",
+      "identity": "partial_r u_r + u_r/r + partial_z u_z = 0",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "vorticity_streamfunction_sign",
+      "identity": "xi = (Psi_zz + Psi_rr - Psi_r/r)/r^2",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "azimuthal_momentum_residual",
+      "identity": "r R_phi = D Gamma - nu L_minus Gamma - r f_phi",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "meridional_curl_momentum_residual",
+      "identity": "partial_z R_r - partial_r R_z = r [D xi - r^-4 partial_z(Gamma^2) - nu L_plus xi - (partial_z f_r - partial_r f_z)/r]",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "pressure_curl_cancellation",
+      "identity": "partial_z(partial_r p) - partial_r(partial_z p) = 0",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "vector_laplacian_curl",
+      "identity": "partial_z(Delta_scalar u_r - u_r/r^2) - partial_r(Delta_scalar u_z) = r L_plus xi",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_coordinate_lminus",
+      "identity": "L_minus[a(t,z,r^2/2)] = [a_y1y1 + 2 y2 a_y2y2](t,z,r^2/2)",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_coordinate_lplus",
+      "identity": "L_plus[a(t,z,r^2/2)] = [a_y1y1 + 2 y2 a_y2y2 + 4 a_y2](t,z,r^2/2)",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_coordinate_material_derivative",
+      "identity": "(partial_t + u_z partial_z + u_r partial_r) a_pull = [partial_t a + U_z partial_y1 a + sqrt(2 y2) U_r partial_y2 a]_pull",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_velocity_first_component",
+      "identity": "v1 = u_z = -psi_y2",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_velocity_second_component",
+      "identity": "v2 = r u_r = psi_y1",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_velocity_divergence",
+      "identity": "partial_y1(-psi_y2) + partial_y2(psi_y1) = 0",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_vorticity_streamfunction",
+      "identity": "xi_pull = [(psi_y1y1 + 2 y2 psi_y2y2)/(2 y2)]_pull",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_swirl_source",
+      "identity": "[partial_y1(a^2)/(4 y2^2)]_pull = r^-4 partial_z(a_pull^2)",
+      "passed": true,
+      "exact_remainder": "0"
+    },
+    {
+      "name": "volume_coordinate_jacobian",
+      "identity": "det partial(y1,y2)/partial(z,r) = r; dy1 wedge dy2 = r dz wedge dr",
+      "passed": true,
+      "exact_remainder": "0"
+    }
+  ]
+}

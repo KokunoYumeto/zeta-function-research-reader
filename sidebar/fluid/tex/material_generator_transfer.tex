@@ -1,0 +1,306 @@
+\section{The full spatial material generator of the inverse-fibre flow}
+\label{sec:material-generator}
+
+Keep the original real coordinates $q=(x,y,w)$, polynomial $F$, Jacobian
+$J=DF$, and vector field $U=2W_1+6F_3W_2$ from
+Section~\ref{sec:inverse-fibre-heat}. That section proves $U\Pi=\Pi_{rr}$
+on the product with the inverse-root variable $r$. Here we calculate the
+actual three-dimensional spatial diffusion, covectors, vorticity,
+pressure, function spaces and time changes of this same flow.
+
+\subsection{The maximal flow and its complete differential}
+
+Use $\xi=(\xi_1,\xi_2,\xi_3)$ for the original initial point and
+$X_\tau(\xi)$ for the maximal solution of
+\[
+ \partial_\tau X_\tau(\xi)=U(X_\tau(\xi)),\qquad X_0(\xi)=\xi.
+\]
+Local existence at every finite $\xi$ follows directly from the integral
+equation: on a closed ball, $U$ and $DU$ are bounded, so for sufficiently
+short times $Y\mapsto\xi+\int_0^\tau U(Y(s))\,ds$ preserves the ball and
+is a contraction in the supremum norm. Its fixed point solves the ODE;
+the same Lipschitz estimate gives uniqueness. Differentiating the integral
+equation gives the variational equation, and successive differentiation
+gives smooth dependence on time and initial point. Continuation over
+overlapping such neighborhoods defines the maximal flow.
+
+Let $\mathcal D_\tau$ be the open set of initial points whose trajectory
+exists throughout the interval joining $0$ to $\tau$. Openness follows
+by covering that finite trajectory segment with the local neighborhoods
+just constructed. Uniqueness gives the inverse $X_{-\tau}$, so
+$X_\tau:\mathcal D_\tau\to\mathcal D_{-\tau}$ is a diffeomorphism.
+We do not replace either domain by all of $\R^3$.
+Define
+\[
+ A_\tau=D_\xi X_\tau,\quad C_\tau=A_\tau^{-1},\quad
+ B_\tau=\begin{pmatrix}1&0&0\\0&1&6\tau\\0&0&1\end{pmatrix}.
+\]
+Differentiating $F\circ X_\tau=\Phi_\tau\circ F$ gives the exact formulas
+\begin{equation}\label{eq:mg-A}
+ A_\tau=J(X_\tau)^{-1}B_\tau J(\xi),\qquad
+ C_\tau=J(\xi)^{-1}B_\tau^{-1}J(X_\tau),\qquad \det A_\tau=1.
+\end{equation}
+Both determinants of $J$ are the retained value $-2$, and $\det B_\tau=1$,
+which proves the determinant assertion. Direct differentiation of the
+ODE also gives $\partial_\tau A_\tau=DU(X_\tau)A_\tau$.
+
+The material metric and its inverse are therefore
+\begin{equation}\label{eq:mg-metric}
+ g_\tau=A_\tau^{\mathsf T}A_\tau,\quad
+ K_\tau=g_\tau^{-1}=C_\tau C_\tau^{\mathsf T},\quad
+ d\mathrm{vol}_{g_\tau}=d\xi_1\,d\xi_2\,d\xi_3.
+\end{equation}
+In particular the full tensor is
+\[
+ K_\tau=J(\xi)^{-1}B_\tau^{-1}J(X_\tau)J(X_\tau)^{\mathsf T}
+ B_\tau^{-\mathsf T}J(\xi)^{-\mathsf T}.
+\]
+Every matrix retains its evaluation point; a constant metric or a scalar
+multiple of the identity has not been substituted for this tensor.
+
+\subsection{Scalar diffusion, function spaces and energy}
+
+For a scalar $f(\tau,q)$ put $\widehat f=f\circ X_\tau$.
+The time and spatial chain rules are
+\begin{equation}\label{eq:mg-chain}
+ \partial_\tau\widehat f=((\partial_\tau+U\cdot\nabla_q)f)\circ X_\tau,
+ \qquad
+ (\nabla_qf)\circ X_\tau=C_\tau^{\mathsf T}\nabla_\xi\widehat f.
+\end{equation}
+With repeated indices summed from $1$ to $3$ and $\epsilon_{123}=1$,
+the cofactor formula in this index convention gives
+\[
+ (C_\tau)_{ik}=\tfrac12\epsilon_{iab}\epsilon_{k\ell m}
+ (A_\tau)_{\ell a}(A_\tau)_{mb},\qquad
+ \partial_{\xi_i}(C_\tau)_{ik}=0.
+\]
+The first equality uses $\det A_\tau=1$. For the second, differentiate
+the first equality. The derivative of the first factor contains
+$\partial_i\partial_aX^\ell$, whose symmetry in $i,a$ makes its
+contraction with $\epsilon_{iab}$ zero. The derivative of the second
+factor similarly vanishes by symmetry in $i,b$.
+Consequently the complete spatial diffusion operator is
+\begin{equation}\label{eq:mg-diffusion}
+ (\Delta_qf)\circ X_\tau=\mathcal L_\tau\widehat f,\qquad
+ \mathcal L_\tau h=\partial_{\xi_i}
+                    ((K_\tau)_{ij}\partial_{\xi_j}h).
+\end{equation}
+Indeed after composition $\partial_{q_k}=C_{ik}\partial_{\xi_i}$;
+applying it twice and using the cofactor divergence formula proves
+\eqref{eq:mg-diffusion}. The first-order coefficient
+$\partial_{\xi_i}(K_\tau)_{ij}$ is part of this formula.
+For every retained $\nu>0$ we have equality of full operators,
+\[
+ ((\partial_\tau+U\cdot\nabla_q-\nu\Delta_q)f)\circ X_\tau
+ =(\partial_\tau-\nu\mathcal L_\tau)\widehat f.
+\]
+
+For an open $D\Subset\mathcal D_\tau$, change of variables gives
+\begin{align}
+ \int_{X_\tau(D)}|f|^2\,dq&=\int_D|\widehat f|^2\,d\xi,\notag\\
+ \int_{X_\tau(D)}|\nabla_q f|^2\,dq
+ &=\int_D(\nabla_\xi\overline{\widehat f})^{\mathsf T}
+                       K_\tau\nabla_\xi\widehat f\,d\xi .
+ \label{eq:mg-dirichlet}
+\end{align}
+For compact smooth $h$, integration by parts also gives
+$-\int_D\overline h\,\mathcal L_\tau h
+=\int_D(\nabla\overline h)^{\mathsf T}K_\tau\nabla h$.
+The continuous positive-definite matrix $K_\tau$ on $\overline D$
+has a strictly positive minimum eigenvalue and a finite maximum eigenvalue.
+These bounds depend on $D,\tau$ and are not asserted uniform at escape.
+
+Define $H^1_0(D)$ by completion of $C_c^\infty(D)$ in the ordinary
+$H^1$ norm, and use the analogous definition on $X_\tau(D)$.
+The two eigenvalue bounds and \eqref{eq:mg-dirichlet} show that
+composition by $X_\tau$ extends to a bounded invertible map between
+these spaces, an isometry for the displayed material Dirichlet norm,
+and a unitary map of their $L^2$ spaces. The exact Dirichlet operator
+domains are carried bijectively as follows:
+\[
+ \{f\in H^1_0(X_\tau(D)):\Delta_qf\in L^2\}
+ \ \xrightarrow{\ f\mapsto f\circ X_\tau\ }\
+ \{h\in H^1_0(D):\mathcal L_\tau h\in L^2\}.
+\]
+Both derivative conditions are distributional. To prove the assertion,
+test a distributional derivative against a compact smooth function,
+use \eqref{eq:mg-dirichlet} in bilinear form, and change variables.
+The inverse change of variables proves the converse. Completion of
+compact smooth functions supplies the specified boundary conditions.
+
+For a real phase $\varphi$, a material covector $\ell=d_\xi\widehat\varphi$
+corresponds to the physical covector $C_\tau^{\mathsf T}\ell$.
+Its exact principal diffusive quadratic form is
+\begin{equation}\label{eq:mg-symbol}
+ \nu\,\ell^{\mathsf T}K_\tau\ell
+       =\nu\,|C_\tau^{\mathsf T}\ell|^2.
+\end{equation}
+Thus stretching of this actual covector and its diffusion cost are
+related by equality, including the original viscosity.
+
+\subsection{Vectors, covectors, pressure and vorticity}
+
+For a physical vector $V$ use material vector coefficients
+$v=C_\tau(V\circ X_\tau)$. Their metric dual is
+$v^{\flat_{g_\tau}}=g_\tau v=A_\tau^{\mathsf T}(V\circ X_\tau)$.
+The exact divergence and connection formulas are
+\[
+ (\operatorname{div}_q V)\circ X_\tau=\partial_{\xi_i}v^i,\qquad
+ (\Gamma_\tau)^k_{ij}=(C_\tau)_{k\ell}\partial_{\xi_i}\partial_{\xi_j}X^\ell_\tau.
+\]
+The first is the proved cofactor product rule. To prove the connection
+formula, differentiate $A_\tau v$ in a material direction and multiply
+by $C_\tau$. Its lower indices are symmetric; differentiating
+$g=A^{\mathsf T}A$ proves metric compatibility, identifying precisely
+the Levi--Civita connection. Consequently, if $z=C_\tau(Z\circ X_\tau)$,
+\[
+ C_\tau\bigl(((Z\cdot\nabla_q)V)\circ X_\tau\bigr)=\nabla^{g_\tau}_zv,
+ \qquad C_\tau((\nabla_qp)\circ X_\tau)=K_\tau\nabla_\xi\widehat p.
+\]
+The full vector diffusion is
+\begin{align}
+ \mathscr L_\tau v
+ &:=C_\tau\mathcal L_\tau(A_\tau v)
+   =C_\tau((\Delta_qV)\circ X_\tau)\notag\\
+ &=\mathcal L_\tau v+
+  2(K_\tau)_{ij}C_\tau(\partial_iA_\tau)\partial_jv
+   +C_\tau(\mathcal L_\tau A_\tau)v .
+ \label{eq:mg-vector-diffusion}
+\end{align}
+The last equality is the full product rule, using the symmetry of $K$;
+$\mathcal L_\tau$ acts componentwise on each displayed matrix or vector.
+This also equals the nonpositive Hodge vector Laplacian of $g_\tau$:
+the orientation-preserving local isometry $X_\tau$ transports $d$
+and the metric codifferential to their Euclidean versions, whose
+negative Hodge Laplacian is the Cartesian component Laplacian.
+
+Put $E_\tau=C_\tau\partial_\tau A_\tau$ and
+$u=C_\tau(U\circ X_\tau)$. Differentiating $C_\tau A_\tau=I$ gives
+\[
+ \partial_\tau v+E_\tau v
+ =C_\tau\bigl(((\partial_\tau+U\cdot\nabla_q)V)\circ X_\tau\bigr).
+\]
+Therefore the entire Navier--Stokes residual of any smooth $V,p,f$
+is carried to
+\begin{equation}\label{eq:mg-momentum}
+ \partial_\tau v+E_\tau v+\nabla^{g_\tau}_{v-u}v
+  +K_\tau\nabla_\xi\widehat p-\nu\mathscr L_\tau v-\mathfrak f,
+ \qquad \mathfrak f=C_\tau(f\circ X_\tau).
+\end{equation}
+This expression is $C_\tau$ times the composed original residual,
+by adding the proved time and connection identities. Its vanishing is
+equivalent to vanishing of that residual because $C_\tau$ is invertible.
+
+For the actual stationary $U$ we have exactly $u(\tau,\xi)=U(\xi)$:
+$J(\xi)U(\xi)=(2,6F_3(\xi),0)$, $F_3(X_\tau)=F_3(\xi)$,
+and $B_\tau$ fixes this vector; \eqref{eq:mg-A} therefore gives
+$A_\tau U(\xi)=U(X_\tau)$. The material vector coefficients are constant
+in time, while $g_\tau,E_\tau$ and both diffusion operators vary.
+Physical velocity and vorticity norms keep these changes:
+\[
+ |U(X_\tau)|^2=u^{\mathsf T}g_\tau u,\qquad
+ |\omega(X_\tau)|^2=W^{\mathsf T}g_\tau W,\quad
+ W=C_\tau(\omega\circ X_\tau),\quad\omega=\curl_qU.
+\]
+
+Choose any smooth pressure $p$ and the actual full force
+$f=(U\cdot\nabla)U-\nu\Delta U+\nabla p$ already computed in
+Section~\ref{sec:inverse-fibre-heat}. Put
+$\beta=X_\tau^*(U^\flat)=g_\tau u$ and $\Omega=d_\xi\beta$.
+In the original Euclidean coordinates,
+\[
+ (\partial_\tau+\mathcal L_U)U^\flat
+ =\nu\Delta_qU^\flat+f^\flat-d_q(p-|U|^2/2).
+\]
+Here $\mathcal L_U$ means Lie derivative, distinct from the scalar
+operator $\mathcal L_\tau$. Its extra covector term is
+$(DU)^{\mathsf T}U=\nabla_q(|U|^2/2)$, proving the displayed identity.
+Differentiating $A_\tau^{\mathsf T}(U\circ X_\tau)$ shows that
+pullback of this Lie derivative is the ordinary material time derivative.
+Hence, with $\Delta_H=d\delta+\delta d$ nonnegative by convention,
+\begin{align}
+ \partial_\tau\beta
+ &=-\nu\Delta_{H,g_\tau}\beta+g_\tau\mathfrak f
+       -d_\xi(\widehat p-u^{\mathsf T}g_\tau u/2),\notag\\
+ \partial_\tau\Omega
+ &=-\nu\Delta_{H,g_\tau}\Omega+d_\xi(g_\tau\mathfrak f).
+ \label{eq:mg-vorticity-form}
+\end{align}
+The second line follows by applying $d_\xi$: both $d^2=0$ and
+$d\Delta_H=\Delta_Hd$ follow from the displayed definition of $\Delta_H$.
+This commutation is at each fixed metric time and does not differentiate
+the time-dependent metric codifferential.
+
+Equivalently, the contravariant vorticity obeys
+\begin{equation}\label{eq:mg-vorticity-vector}
+ \partial_\tau W=\nu\mathscr L_\tau W+\curl_{g_\tau}\mathfrak f.
+\end{equation}
+Indeed taking Cartesian curl and using $\operatorname{div}U=0$ gives
+$(\partial_\tau+U\cdot\nabla)\omega
+=DU\,\omega+\nu\Delta\omega+\curl f$.
+The time product rule for $C_\tau$ cancels precisely the stretching
+term, since $E_\tau W=C_\tau DU(X_\tau)A_\tau W$.
+The orientation-preserving isometry transports the force curl as
+$C_\tau((\curl f)\circ X_\tau)=\curl_{g_\tau}\mathfrak f$.
+In material coordinates this last vector is
+$\epsilon_{ijk}\partial_{\xi_j}((g_\tau)_{k\ell}\mathfrak f^\ell)$;
+its volume denominator is one because $\det g_\tau=1$.
+Pressure disappears from this curl identity by $d^2=0$, with the
+full pressure still present in \eqref{eq:mg-momentum}.
+
+\subsection{Accumulated time keeps its acceleration and diffusion costs}
+
+Define an explicit time change, with its full inverse,
+\[
+ \rho(s)=\frac{1-e^{-8s}}8,\quad \sigma(s)=\rho'(s)=e^{-8s},
+ \quad s\ge0,\qquad s=-\tfrac18\log(1-8\tau).
+\]
+It maps $[0,\infty)$ bijectively to $[0,1/8)$. The exact spatial map is
+$Y_s=X_{\rho(s)}:\mathcal D_{\rho(s)}\to\mathcal D_{-\rho(s)}$,
+and it satisfies $\partial_sY_s=\sigma(s)U(Y_s)$.
+For a scalar material function $h$, on
+$\{(s,\xi):s\ge0,\ \xi\in\mathcal D_{\rho(s)}\}$ the complete chain rule is
+\[
+ [(\partial_\tau-\nu\mathcal L_\tau)h]_{\tau=\rho(s)}
+ =\sigma(s)^{-1}
+  (\partial_s-\nu\sigma(s)\mathcal L_{\rho(s)})h(\rho(s),\xi).
+\]
+Thus this time change transports the diffusion coefficient as displayed.
+
+For the actual stationary fields set
+$\widetilde U(s,q)=\sigma(s)U(q)$ and
+$\widetilde p(s,q)=\sigma(s)^2p(q)$.
+The velocity remains divergence-free. At the same viscosity $\nu>0$
+its exact force is
+\begin{equation}\label{eq:mg-time-force}
+ \widetilde f=\sigma' U+\sigma^2f
+                         +\nu(\sigma^2-\sigma)\Delta_qU.
+\end{equation}
+The time derivative gives $\sigma'U$, convection and pressure give
+their old values multiplied by $\sigma^2$, and diffusion gives
+$-\nu\sigma\Delta U$; inserting the original complete $f$ proves the
+formula. The previously computed axis values
+$\curl U=(0,0,6)$, $\Delta\curl U=(0,0,-108w)$ and
+$\curl f=(0,0,108\nu w)$ give the exact resulting curl
+\[
+ \curl\widetilde f(s,0,0,w)
+ =(0,0,108\nu e^{-8s}w-48e^{-8s}).
+\]
+It remains unbounded in $w$ at every finite $s$ for every pressure
+choice and $\nu>0$. The corresponding actual trajectory is
+\[
+ Y_s(1,-3/2,13/2)
+ =(e^{4s},-\tfrac32e^{-4s},\tfrac{13}{2}e^{-8s}).
+\]
+It escapes as $s\to\infty$ in this coordinate. These maps preserve
+the original escape at $\tau=1/8$, its spatial location at infinity,
+the full spatial diffusion and the exact force. They do not establish
+an admissible finite-energy Euclidean Navier--Stokes singularity.
+
+The exact replay \path{scripts/check_material_generator.py} checks the
+initial scalar and vector generator derivatives on arbitrary formal
+test functions, including all first-order and matrix terms, and the
+full vorticity and retained-time force identities. Its thirteen checks
+are recorded in \path{checks/material_generator_checks.json}.
+The finite-time operator and domain proofs are the written arguments
+above; the replay does not replace them.

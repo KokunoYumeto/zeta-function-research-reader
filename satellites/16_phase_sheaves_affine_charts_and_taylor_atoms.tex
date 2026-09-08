@@ -1,0 +1,1239 @@
+\section{Phase sheaves, affine charts, and Taylor atoms}
+\label{sec:phase-sheaf-audit}
+
+The preceding section constructed the divisor, jet, tail, and packet objects.
+We now develop the complementary phase layer and its exact maps to those
+objects.  Two classical inputs are used at their literal scope.
+Lee records that a nonvanishing holomorphic function on a simply connected
+domain has a holomorphic logarithm
+\cite[p.~145, Problem~5-11]{lee2024}; below we give the normalized local-disc
+construction directly from the logarithm power series.  Connes and Consani
+construct their circle cycles and prove the exact positive-integer family of
+lengths attached to a critical-line ordinate
+\cite[\S6]{connesConsani2021ZetaCycles}; that result is stated separately in
+\cref{prop:phase-cycle-coordinate}.  No map from a local derivative phase to
+their Hilbert-space construction is presumed.
+
+\subsection{The general fixed locus and Boolean affine points}
+
+We first retain two algebraic refinements which are independent of the analytic
+phase construction.  For a commutative ring \(R\), write
+\[
+ G(R)=R\sqcup\{\tau\},
+\]
+with the same operations as in \cref{sec:gcue-audited-core}: \(\tau\) is the
+additive identity and the multiplicative absorber, while the operations between
+supported elements are the ring operations.
+
+\begin{proposition}[Fixed locus over a general coefficient ring]
+\label{prop:phase-general-fixed-locus}
+Let \(u\in R^\times\).  Multiplication by \(u\) on \(G(R)\) has fixed set
+\[
+ \operatorname{Fix}_{G(R)}(u\cdot-)
+ =
+ \{\tau\}\sqcup \operatorname{Ann}_R(u-1),
+\]
+where
+\[
+ \operatorname{Ann}_R(u-1)=\{r\in R:(u-1)r=0\}.
+\]
+If \(R\) is an integral domain and \(u\ne1\), this reduces to
+\[
+ \operatorname{Fix}_{G(R)}(u\cdot-)=\{\tau,0_R\}.
+\]
+\end{proposition}
+
+\begin{proof}
+The absorber is fixed because \(u\tau=\tau\).  A supported element
+\(r\in R\subset G(R)\) is fixed precisely when
+\[
+ ur=r
+ \quad\Longleftrightarrow\quad
+ (u-1)r=0.
+\]
+This proves the first formula, including every possible zero-divisor
+contribution.  If \(R\) is a domain and \(u-1\ne0\), its annihilator is
+\(\{0_R\}\), which gives the second formula.
+\end{proof}
+
+Retain the Boolean coordinate isomorphism
+\(\beta:A\overset{\sim}{\longrightarrow}\mathbb B\) from
+\cref{prop:ds-fixed-pair}.  The multiplicity cube has a precise functor-of-points
+description; this is an additional map, not a replacement for the Artin-chain
+comparison of \cref{thm:ds-chain-cube}.
+
+\begin{proposition}[Boolean affine points and the two polynomial maps]
+\label{prop:phase-boolean-affine-points}
+For every \(m\geq1\), evaluation at the variables gives a bijection
+\[
+ \operatorname{ev}_m:
+ \mathbb B^m
+ \overset{\sim}{\longrightarrow}
+ \operatorname{Hom}_{\mathbb B\text{-alg}}
+ \bigl(\mathbb B[T_1,\ldots,T_m],\mathbb B\bigr),
+\]
+\[
+ (b_1,\ldots,b_m)\longmapsto
+ \bigl(P\longmapsto P(b_1,\ldots,b_m)\bigr).
+\]
+Under this bijection, the Boolean diagonal
+\[
+ \delta_m:\mathbb B\longrightarrow\mathbb B^m,
+ \qquad b\longmapsto(b,\ldots,b),
+\]
+is induced contravariantly by
+\[
+ \delta_m^*:
+ \mathbb B[T_1,\ldots,T_m]\longrightarrow\mathbb B[T],
+ \qquad T_j\longmapsto T,
+\]
+and the nonempty-support map
+\[
+ \sigma_m:\mathbb B^m\longrightarrow\mathbb B,
+ \qquad
+ (b_1,\ldots,b_m)\longmapsto b_1+\cdots+b_m,
+\]
+is induced contravariantly by
+\[
+ \sigma_m^*:
+ \mathbb B[T]\longrightarrow\mathbb B[T_1,\ldots,T_m],
+ \qquad
+ T\longmapsto T_1+\cdots+T_m.
+\]
+Moreover,
+\[
+ \sigma_m\delta_m=\operatorname{id}_{\mathbb B}.
+\]
+Transport through \(\beta\) recovers exactly the maps
+\(\Delta_m:A\to A^m\) and \(\Sigma_m:A^m\to A\) of
+\cref{prop:ds-boolean-retract}.
+\end{proposition}
+
+\begin{proof}
+A \(\mathbb B\)-algebra homomorphism out of the polynomial semiring is
+determined by the \(m\) values assigned to \(T_1,\ldots,T_m\).  Conversely, any
+\((b_1,\ldots,b_m)\in\mathbb B^m\) defines evaluation on a finite Boolean
+polynomial:
+\[
+  \sum_{\alpha\in\mathbb N^m}c_\alpha T^\alpha
+  \longmapsto
+  \sum_{\alpha\in\mathbb N^m}c_\alpha
+  \prod_{j=1}^m b_j^{\alpha_j},
+\]
+where only finitely many \(c_\alpha\) are nonzero.
+Evaluation preserves \(0,1\), addition, multiplication, and the coefficient
+copy of \(\mathbb B\).  These two constructions are inverse, proving the
+bijection.
+
+If \(b\in\mathbb B\) is a point of the affine line, composition of its evaluation
+map with \(\delta_m^*\) sends every \(T_j\) to \(b\); this is \(\delta_m(b)\).
+If \((b_1,\ldots,b_m)\) is an \(m\)-dimensional point, composition of its
+evaluation map with \(\sigma_m^*\) sends \(T\) to
+\(b_1+\cdots+b_m\); this is \(\sigma_m\).  Finally, Boolean addition is
+idempotent, so
+\[
+ \sigma_m\delta_m(b)=\underbrace{b+\cdots+b}_{m\ \mathrm{terms}}=b.
+\]
+The last statement follows by applying \(\beta\) in every coordinate.
+\end{proof}
+
+\subsection{A phase-decorated sheaf over the simple-zero locus}
+
+Let \(\Omega\subset\C\) be open and let \(f\) be a holomorphic function on
+\(\Omega\) which is not identically zero on any connected component.  Its
+simple-zero set
+\[
+Z_f^{\mathrm{simp}}
+:=
+\{x\in\Omega:f(x)=0,\ f'(x)\ne0\}
+\]
+is closed and discrete in \(\Omega\).  The derivative below is explicitly
+the derivative in the displayed global coordinate on \(\Omega\subset\C\).
+Write
+\[
+ D_f^{\mathrm{simp}}:=\sum_{x\in Z_f^{\mathrm{simp}}}[x].
+\]
+
+Define the pointed set
+\[
+ M:=\{\star\}\sqcup S^1
+\]
+with basepoint \(\star\), and define
+\[
+ \pi:M\longrightarrow A,
+ \qquad
+ \pi(\star)=\tau,\qquad \pi(u)=e\quad(u\in S^1).
+\]
+There is a pointed section
+\[
+ \iota:A\longrightarrow M,
+ \qquad
+ \iota(\tau)=\star,\qquad \iota(e)=1,
+\]
+so \(\pi\iota=\operatorname{id}_A\).
+
+\begin{theorem}[Phase-decorated simple-zero sheaf]
+\label{thm:phase-simple-sheaf}
+For an open \(U\subset\Omega\), set
+\[
+ \mathcal M_f^{\mathrm{ph}}(U):=
+ \prod_{x\in U\cap Z_f^{\mathrm{simp}}}M.
+\]
+Then \(\mathcal M_f^{\mathrm{ph}}\) is a sheaf of pointed sets.  Coordinatewise
+application of
+\(\pi\) and \(\iota\) gives a split morphism
+\[
+ \mathcal M_f^{\mathrm{ph}}
+ \underset{\iota_f}{\overset{\Pi_f}{\rightleftarrows}}
+ \mathcal A_{D_f^{\mathrm{simp}}},
+ \qquad
+ \Pi_f\iota_f=\operatorname{id}.
+\]
+At a simple zero \(x\), the two fibres of the stalk map are
+\[
+ \pi^{-1}(\tau)=\{\star\},
+ \qquad
+ \pi^{-1}(e)=S^1.
+\]
+The family
+\[
+ \varphi_f(U)
+ :=
+ \left(\frac{f'(x)}{|f'(x)|}\right)_
+ {x\in U\cap Z_f^{\mathrm{simp}}}
+\]
+is a section compatible with restriction, and
+\(\Pi_f(\varphi_f)\) is the everywhere-\(e\) section of the reduced Boolean
+shadow on the simple locus.
+\end{theorem}
+
+\begin{proof}
+The sheaf proof is coordinatewise.  For a cover \(U=\bigcup_iU_i\), compatible
+families on the \(U_i\) assign a unique value in \(M\) to every
+\(x\in U\cap Z_f^{\mathrm{simp}}\), and those values form the unique glued
+family.  Coordinatewise application of a pointed map commutes with coordinate
+projections, hence defines a sheaf morphism.  The equation
+\(\Pi_f\iota_f=\operatorname{id}\) follows coordinatewise from
+\(\pi\iota=\operatorname{id}_A\).  The displayed fibres follow directly from
+the definition of \(\pi\): discreteness gives a neighbourhood \(W\) of a simple
+zero \(x\) with \(W\cap Z_f^{\mathrm{simp}}=\{x\}\), so the two stalks identify
+with \(M\) and \(A\), respectively, and the induced stalk map is literally
+\(\pi\).
+
+At a simple zero \(x\), \(f'(x)\ne0\), so
+\(f'(x)/|f'(x)|\in S^1\).  The resulting families restrict by forgetting
+coordinates and therefore define a compatible section.  Every one of its
+coordinates is sent by \(\pi\) to \(e\), which proves the last assertion.
+\end{proof}
+
+Thus \(\Pi_f\) forgets the entire circle-valued derivative phase while retaining
+whether the stalk is occupied.  The section \(\iota_f\) selects the phase \(1\);
+it is not an inverse on \(\mathcal M_f^{\mathrm{ph}}\).  In particular, the fibre
+calculation
+states the exact information loss rather than identifying the two sheaves.
+
+\begin{corollary}[The negative-even derivative phase]
+\label{cor:phase-trivial-section}
+On the negative-even zero sector of \(\zeta\),
+\[
+ \varphi_\zeta(-2n)=(-1)^n
+ \qquad(n\geq1).
+\]
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:phase-simple-sheaf} on
+\(\Omega=\C\setminus\{1\}\), where \(\zeta\) is holomorphic.
+By \cref{prop:ds-trivial-derivative},
+\[
+ \zeta'(-2n)
+ =
+ (-1)^n
+ \frac{(2n)!}{2(2\pi)^{2n}}\zeta(2n+1).
+\]
+The factor after \((-1)^n\) is positive, so division by the absolute value
+leaves exactly \((-1)^n\).
+\end{proof}
+
+\subsection{Normalized real affine factors and their complete fibres}
+
+Write
+\[
+ S^1_+:=\{z\in S^1:\Re z>0\}.
+\]
+For \(a\in\R\), define the normalized real affine factor
+\[
+ \mathsf u(a):=\frac{1+\mathrm ia}{\sqrt{1+a^2}}.
+\]
+This notation is reserved for the phase-factor map; unit directions will be
+denoted by \(\nu\).
+
+\begin{proposition}[One-factor coordinate and its differential]
+\label{prop:phase-one-factor}
+The map
+\[
+ \mathsf u:\R\longrightarrow S^1_+
+\]
+is a real-analytic bijection with inverse
+\[
+ \mathsf u^{-1}(z)=\frac{\Im z}{\Re z}.
+\]
+It satisfies
+\[
+ \mathsf u(a)=\exp\bigl(\mathrm i\arctan a\bigr),
+ \qquad
+ \mathsf u'(a)=\frac{\mathrm i}{1+a^2}\mathsf u(a).
+\]
+\end{proposition}
+
+\begin{proof}
+Its modulus is one and its real part is
+\((1+a^2)^{-1/2}>0\), so the image lies in \(S^1_+\).  If
+\(z=x+\mathrm iy\in S^1_+\), put \(a=y/x\).  Since \(x>0\) and
+\(x^2+y^2=1\),
+\[
+ \frac{1}{\sqrt{1+a^2}}
+ =
+ \frac{1}{\sqrt{1+y^2/x^2}}
+ =x,
+\]
+and consequently \(\mathsf u(a)=x+\mathrm iy=z\).  This proves surjectivity
+and the inverse formula, hence also injectivity.
+
+Because \(\arctan a\in(-\pi/2,\pi/2)\),
+\[
+ \cos(\arctan a)=\frac1{\sqrt{1+a^2}},
+ \qquad
+ \sin(\arctan a)=\frac a{\sqrt{1+a^2}},
+\]
+which proves the exponential formula.  Differentiating it gives
+\[
+ \mathsf u'(a)
+ =
+ \frac{\mathrm i}{1+a^2}
+ \exp(\mathrm i\arctan a)
+ =
+ \frac{\mathrm i}{1+a^2}\mathsf u(a).
+\]
+\end{proof}
+
+For \(N\geq1\), define
+\[
+ P_N:\R^N\longrightarrow S^1,
+ \qquad
+ P_N(a_1,\ldots,a_N):=\prod_{k=1}^N\mathsf u(a_k).
+\]
+
+\begin{theorem}[Finite phase products, fibres, and a three-factor section]
+\label{thm:phase-finite-products}
+For every \((a_1,\ldots,a_N)\in\R^N\),
+\[
+ P_N(a_1,\ldots,a_N)
+ =
+ \exp\left(\mathrm i\sum_{k=1}^N\arctan a_k\right).
+\]
+If \(z=e^{\mathrm i\theta}\) with \(\theta\in(-\pi,\pi]\), then
+\[
+ P_N^{-1}(z)
+ =
+ \bigcup_{\substack{\ell\in\mathbb Z\\
+ \theta+2\pi\ell\in(-N\pi/2,N\pi/2)}}
+ \left\{
+ a\in\R^N:
+ \sum_{k=1}^N\arctan a_k=\theta+2\pi\ell
+ \right\}.
+\]
+In particular,
+\[
+ \operatorname{im}P_1=S^1_+,
+ \qquad
+ \operatorname{im}P_2=S^1\setminus\{-1\},
+ \qquad
+ \operatorname{im}P_N=S^1\quad(N\geq3).
+\]
+An explicit set-theoretic section of \(P_3\) is
+\[
+ s_3(e^{\mathrm i\theta})
+ =
+ \left(
+ \tan\frac\theta3,\,
+ \tan\frac\theta3,\,
+ \tan\frac\theta3
+ \right),
+ \qquad \theta\in(-\pi,\pi].
+\]
+\end{theorem}
+
+\begin{proof}
+Multiplying the exponential identity in \cref{prop:phase-one-factor} proves
+the first formula.  Equality with \(e^{\mathrm i\theta}\) holds exactly when
+\[
+ \sum_{k=1}^N\arctan a_k=\theta+2\pi\ell
+\]
+for some integer \(\ell\).  Every arctangent lies in
+\((-\pi/2,\pi/2)\), so only the integers satisfying the displayed interval
+condition can occur.  Conversely, every point on any displayed level set maps
+to \(z\).  This proves the complete fibre formula.
+
+For \(N=1\), the angle range is \((-\pi/2,\pi/2)\), which is \(S^1_+\).
+For \(N=2\), the sum ranges over \((-\pi,\pi)\), whose exponential image omits
+only \(-1\).  If \(N=3\), then for every principal argument
+\(\theta\in(-\pi,\pi]\), one has \(\theta/3\in(-\pi/2,\pi/2)\), and therefore
+\[
+ P_3\left(\tan\frac\theta3,\tan\frac\theta3,\tan\frac\theta3\right)
+ =
+ e^{\mathrm i\theta}.
+\]
+For \(N>3\), append zero coordinates, since \(\mathsf u(0)=1\).
+The displayed principal-argument section is not claimed to be continuous at
+\(-1\).
+\end{proof}
+
+\begin{proposition}[Orthogonal-walk expansion with signed steps]
+\label{prop:phase-orthogonal-walk}
+Let \(e_q=e_q(a_1,\ldots,a_N)\) be the elementary symmetric polynomials and
+put
+\[
+ W_r:=\sum_{q=0}^r\mathrm i^q e_q
+ \qquad(0\leq r\leq N).
+\]
+Then
+\[
+ \prod_{k=1}^N(1+\mathrm ia_k)
+ =
+ \sum_{q=0}^N\mathrm i^q e_q
+ =
+ A_N+\mathrm iB_N,
+\]
+where
+\[
+ A_N=\sum_{0\leq2j\leq N}(-1)^j e_{2j},
+ \qquad
+ B_N=\sum_{0\leq2j+1\leq N}(-1)^j e_{2j+1}.
+\]
+For \(1\leq q\leq N\), the \(q\)-th increment is
+\[
+ W_q-W_{q-1}=\mathrm i^q e_q;
+\]
+it is horizontal for even \(q\), vertical for odd \(q\), has signed scalar
+\(e_q\), and has Euclidean length \(|e_q|\).  Moreover,
+\[
+ A_N^2+B_N^2=\prod_{k=1}^N(1+a_k^2),
+\]
+and the normalized endpoint is
+\[
+ \frac{A_N+\mathrm iB_N}{\sqrt{A_N^2+B_N^2}}
+ =
+ P_N(a_1,\ldots,a_N).
+\]
+\end{proposition}
+
+\begin{proof}
+In expanding the product, selecting \(\mathrm ia_k\) from exactly the indices
+in a subset \(I\subseteq\{1,\ldots,N\}\) contributes
+\(\mathrm i^{|I|}\prod_{k\in I}a_k\).  Grouping by \(|I|=q\) gives
+\[
+ \prod_{k=1}^N(1+\mathrm ia_k)
+ =
+ \sum_{q=0}^N\mathrm i^q
+ \sum_{|I|=q}\prod_{k\in I}a_k
+ =
+ \sum_{q=0}^N\mathrm i^qe_q.
+\]
+Separating even and odd \(q\) gives \(A_N+\mathrm iB_N\).  The increment
+formula is immediate, including the sign and absolute Euclidean length.
+Taking squared absolute values in the product identity gives
+\[
+ A_N^2+B_N^2
+ =
+ \prod_{k=1}^N|1+\mathrm ia_k|^2
+ =
+ \prod_{k=1}^N(1+a_k^2).
+\]
+Division by the positive square root factorizes coordinatewise and gives
+\(\prod_k\mathsf u(a_k)=P_N(a)\).
+\end{proof}
+
+\begin{corollary}[Equal-step limit]
+\label{cor:phase-equal-step-limit}
+For every \(\theta\in\R\),
+\[
+ \lim_{N\to\infty}\mathsf u(\theta/N)^N=e^{\mathrm i\theta}.
+\]
+\end{corollary}
+
+\begin{proof}
+By \cref{thm:phase-finite-products},
+\[
+ \mathsf u(\theta/N)^N
+ =
+ \exp\bigl(\mathrm iN\arctan(\theta/N)\bigr).
+\]
+Since \(\arctan x/x\to1\) as \(x\to0\),
+\(N\arctan(\theta/N)\to\theta\), and continuity of the exponential proves the
+claim.
+\end{proof}
+
+\subsection{Branch-correct affine cyclotomic charts}
+
+The next theorem uses the continuous argument on the entire upper-half-plane
+path, so its formula remains valid even when the real part changes sign.
+
+\begin{theorem}[Affine phase chart in a fixed upper-half-plane direction]
+\label{thm:phase-affine-chart}
+Fix \(0<\phi<\pi\), put \(\omega=e^{\mathrm i\phi}\), and define
+\[
+ L_\phi(t):=1+t\omega
+ \qquad(t>0).
+\]
+There is a unique continuous argument
+\[
+ \Theta_\phi:(0,\infty)\longrightarrow(0,\phi),
+ \qquad
+ \frac{L_\phi(t)}{|L_\phi(t)|}=e^{\mathrm i\Theta_\phi(t)}.
+\]
+It is real analytic and satisfies
+\[
+ \Theta_\phi'(t)
+ =
+ \frac{\sin\phi}{1+2t\cos\phi+t^2}>0.
+\]
+It is a bijection, with exact inverse and radius
+\[
+ t_\phi(\theta)
+ =
+ \frac{\sin\theta}{\sin(\phi-\theta)},
+ \qquad
+ |L_\phi(t_\phi(\theta))|
+ =
+ \frac{\sin\phi}{\sin(\phi-\theta)}
+ \quad(0<\theta<\phi).
+\]
+Equivalently,
+\[
+ 1+t_\phi(\theta)e^{\mathrm i\phi}
+ =
+ \frac{\sin\phi}{\sin(\phi-\theta)}e^{\mathrm i\theta}.
+\]
+\end{theorem}
+
+\begin{proof}
+The imaginary part of \(L_\phi(t)\) is \(t\sin\phi>0\).  Thus the path lies
+entirely in the upper half-plane and has a unique continuous argument in
+\((0,\pi)\).  Since \(L_\phi(t)\) is a positive linear combination of the rays
+with arguments \(0\) and \(\phi\), and the open sector between those rays is
+convex for \(0<\phi<\pi\), this argument lies in \((0,\phi)\).
+
+For a nonzero differentiable complex path \(z(t)\), differentiation of a local
+logarithm gives
+\[
+ \frac{d}{dt}\arg z(t)=\Im\frac{z'(t)}{z(t)}.
+\]
+With \(z=L_\phi\),
+\[
+ \Theta_\phi'(t)
+ =
+ \Im\frac{e^{\mathrm i\phi}}{1+te^{\mathrm i\phi}}
+ =
+ \Im\frac{e^{\mathrm i\phi}+t}
+ {|1+te^{\mathrm i\phi}|^2}
+ =
+ \frac{\sin\phi}{1+2t\cos\phi+t^2}>0.
+\]
+Hence \(\Theta_\phi\) is real analytic and strictly increasing.  Directly,
+\[
+ \lim_{t\to0^+}\Theta_\phi(t)=0,
+ \qquad
+ \lim_{t\to\infty}\Theta_\phi(t)=\phi,
+\]
+so it is a bijection onto \((0,\phi)\).
+
+For \(0<\theta<\phi\), write
+\[
+ 1+te^{\mathrm i\phi}=re^{\mathrm i\theta}
+\]
+with \(r,t>0\).  Equating imaginary and real parts gives
+\[
+ t\sin\phi=r\sin\theta,
+ \qquad
+ 1+t\cos\phi=r\cos\theta.
+\]
+Eliminating \(r\) yields
+\[
+ t\sin(\phi-\theta)=\sin\theta,
+\]
+and therefore \(t=\sin\theta/\sin(\phi-\theta)\).  Substitution in the first
+equation gives \(r=\sin\phi/\sin(\phi-\theta)\).  These positive values satisfy
+the original complex equation, proving both inverse formulas.
+\end{proof}
+
+\begin{corollary}[Cyclotomic-direction charts]
+\label{cor:phase-cyclotomic-direction}
+Let \(p\) be an odd prime, let
+\(u\in\{1,\ldots,(p-1)/2\}\), and put
+\[
+ \omega_{p,u}=e^{2\pi\mathrm iu/p},
+\]
+Then \(t\mapsto(1+t\omega_{p,u})/|1+t\omega_{p,u}|\) is a bijection from
+\((0,\infty)\) to the open unit-circle arc with arguments
+\((0,2\pi u/p)\), with the inverse in
+\cref{thm:phase-affine-chart}.  In particular, for \(p=5,u=1\),
+\[
+ t(\theta)=\frac{\sin\theta}{\sin(2\pi/5-\theta)}
+ \qquad(0<\theta<2\pi/5).
+\]
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:phase-affine-chart} with \(\phi=2\pi u/p\), which lies in
+\((0,\pi)\) by the bound on \(u\).
+\end{proof}
+
+The term \emph{cyclotomic} here describes the fixed direction
+\(\omega_{p,u}\).  For an arbitrary real \(t\), the affine factor
+\(1+t\omega_{p,u}\) need not belong to the number field
+\(\mathbb Q(\omega_{p,u})\): subtracting \(1\) and dividing by the nonzero
+\(\omega_{p,u}\) shows that membership would imply
+\(t\in\mathbb Q(\omega_{p,u})\), whereas every transcendental real \(t\) lies
+outside this algebraic number field.  No arithmetic condition on a zeta
+derivative is implied by placing its phase in one of these real-analytic charts.
+\subsection{Uniform Taylor atomization of a real-analytic phase}
+
+\begin{theorem}[Exact Taylor atomization]
+\label{thm:phase-taylor-atomization}
+Let
+\[
+ \Theta(t)=\sum_{n=1}^{\infty}\beta_nt^n
+\]
+be real analytic for \(|t|<R\), with \(\beta_n\in\R\) and \(\Theta(0)=0\).
+There is \(r\in(0,R)\) such that
+\[
+ \sum_{n=1}^{\infty}|\beta_n|r^n<\frac{\pi}{4}.
+\]
+For \(|t|\leq r\), define
+\[
+ \alpha_n(t):=\tan(\beta_nt^n).
+\]
+Then:
+\begin{enumerate}
+\item \(\sum_{n\geq1}|\alpha_n(t)|\) converges uniformly on \([-r,r]\);
+\item for every \(N\geq1\),
+\[
+ \prod_{n=1}^N\mathsf u(\alpha_n(t))
+ =
+ \exp\left(\mathrm i\sum_{n=1}^N\beta_nt^n\right);
+\]
+\item the infinite product, defined as the uniform limit of its partial products,
+satisfies
+\[
+ \prod_{n=1}^{\infty}\mathsf u(\alpha_n(t))
+ =
+ e^{\mathrm i\Theta(t)}
+\]
+uniformly on \([-r,r]\);
+\item the unnormalized \(N\)-th product is the exact orthogonal-walk endpoint
+\[
+ \prod_{n=1}^N(1+\mathrm i\alpha_n(t))
+ =
+ \sum_{q=0}^N\mathrm i^q
+ e_q(\alpha_1(t),\ldots,\alpha_N(t));
+\]
+\item for \(|t|<r\),
+\[
+ \frac{d}{dt}e^{\mathrm i\Theta(t)}
+ =
+ \mathrm i\Theta'(t)e^{\mathrm i\Theta(t)},
+\qquad
+ \frac{\alpha_n'(t)}{1+\alpha_n(t)^2}
+ =
+ n\beta_nt^{n-1}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Absolute convergence of the power series at a sufficiently small positive
+radius permits a choice of \(r\) with the displayed strict bound.  For
+\(|t|\leq r\), every term satisfies
+\[
+ |\beta_nt^n|
+ \leq|\beta_n|r^n
+ <\frac{\pi}{4}.
+\]
+On \([-\pi/4,\pi/4]\), the mean-value theorem and
+\(\sec^2x\leq2\) give
+\[
+ |\tan x|\leq2|x|.
+\]
+Hence
+\[
+ |\alpha_n(t)|
+ \leq2|\beta_n|r^n,
+\]
+and the Weierstrass test proves uniform absolute convergence in (1).
+
+Because \(\beta_nt^n\in(-\pi/2,\pi/2)\),
+\[
+ \arctan\alpha_n(t)
+ =
+ \arctan(\tan(\beta_nt^n))
+ =
+ \beta_nt^n.
+\]
+Applying \cref{thm:phase-finite-products} gives (2).  The Taylor partial sums
+\(\Theta_N(t)=\sum_{n\leq N}\beta_nt^n\) converge uniformly to \(\Theta\) on
+\([-r,r]\).  Since \(z\mapsto e^{\mathrm iz}\) is uniformly continuous on
+the compact real interval containing their ranges, (2) converges uniformly to
+\(e^{\mathrm i\Theta(t)}\), proving (3).  Part (4) is
+\cref{prop:phase-orthogonal-walk} applied to the finite slope vector.
+
+The first identity in (5) is differentiation of the analytic composite.  For
+the second,
+\[
+ \alpha_n'(t)
+ =
+ \sec^2(\beta_nt^n)n\beta_nt^{n-1}
+ =
+ (1+\alpha_n(t)^2)n\beta_nt^{n-1}.
+\]
+\end{proof}
+
+The atomization is unique after the Taylor coefficients and the small tangent
+branch have been fixed.  It is not a uniqueness statement among all possible
+finite or infinite factorizations of the same unit phase; the complete finite
+fibres in \cref{thm:phase-finite-products} show why such a stronger assertion
+would fail.
+
+\subsection{Constructive logarithms and directional phase germs}
+
+For \(w\in\C^\times\), write
+\[
+ \operatorname{ph}(w):=\frac{w}{|w|}\in S^1.
+\]
+
+\begin{theorem}[Normalized logarithm and all Taylor coordinates]
+\label{thm:phase-local-logarithm}
+Let \(g\) be holomorphic near \(0\) and suppose \(g(0)\ne0\).  After shrinking
+to a disc \(|z|<\varepsilon\), there is a unique holomorphic function
+\[
+ h(z)=\sum_{n=1}^{\infty}c_nz^n,
+ \qquad h(0)=0,
+\]
+such that
+\[
+ g(z)=g(0)e^{h(z)}.
+\]
+If
+\[
+ \frac{g(z)}{g(0)}
+ =
+ 1+\sum_{n=1}^{\infty}a_nz^n,
+\]
+then every logarithmic coefficient is explicitly
+\[
+ c_n
+ =
+ \sum_{k=1}^n\frac{(-1)^{k+1}}{k}
+ \sum_{\substack{n_1+\cdots+n_k=n\\n_j\geq1}}
+ a_{n_1}\cdots a_{n_k}.
+\]
+For a unit direction \(\nu\in S^1\), put
+\[
+ \Theta_{g,\nu}(t)
+ :=
+ \Im h(t\nu)
+ =
+ \sum_{n=1}^{\infty}\beta_{g,\nu,n}t^n,
+\qquad
+ \beta_{g,\nu,n}:=\Im(c_n\nu^n).
+\]
+For real \(|t|<\varepsilon\),
+\[
+ |g(t\nu)|
+ =
+ |g(0)|
+ \exp\bigl(\Re h(t\nu)\bigr),
+\]
+\[
+ \operatorname{ph}(g(t\nu))
+ =
+ \operatorname{ph}(g(0))e^{\mathrm i\Theta_{g,\nu}(t)}.
+\]
+After decreasing \(\varepsilon\), the final factor has the uniform atomization
+of \cref{thm:phase-taylor-atomization}.
+\end{theorem}
+
+\begin{proof}
+Continuity and \(g(0)\ne0\) allow a disc on which
+\[
+ \left|\frac{g(z)}{g(0)}-1\right|<\frac12.
+\]
+Put \(q(z)=g(z)/g(0)-1\).  The series
+\[
+ h(z):=\sum_{k=1}^{\infty}\frac{(-1)^{k+1}}{k}q(z)^k
+\]
+converges normally on every smaller closed disc, hence is holomorphic.  It is
+the usual logarithm series, so \(e^{h(z)}=1+q(z)=g(z)/g(0)\), and \(h(0)=0\).
+If \(h_1,h_2\) are two such logarithms normalized by zero at the origin, then
+\(e^{h_1-h_2}=1\).  The continuous function \(h_1-h_2\) takes values in the
+discrete set \(2\pi\mathrm i\mathbb Z\); on the connected disc it is constant,
+and its value at zero is zero.  Thus \(h_1=h_2\).
+
+Expanding the \(k\)-th power,
+\[
+ q(z)^k
+ =
+ \sum_{n\geq k}
+ \left(
+ \sum_{\substack{n_1+\cdots+n_k=n\\n_j\geq1}}
+ a_{n_1}\cdots a_{n_k}
+ \right)z^n.
+\]
+For fixed \(n\), only \(1\leq k\leq n\) contributes.  Taking the coefficient of
+\(z^n\) in the logarithm series proves the displayed formula for \(c_n\).
+
+Substitute \(z=t\nu\):
+\[
+ g(t\nu)
+ =
+ g(0)\exp\left(\sum_{n\geq1}c_n\nu^nt^n\right).
+\]
+Taking the absolute value keeps the real part of the exponent; dividing by the
+absolute value keeps the imaginary part.  This proves the modulus and phase
+formulas.  The real power series for \(\Theta_{g,\nu}\) has zero constant term,
+so \cref{thm:phase-taylor-atomization} applies on a smaller interval.
+\end{proof}
+
+\begin{corollary}[First two directional atoms]
+\label{cor:phase-first-two-atoms}
+In the notation of \cref{thm:phase-local-logarithm},
+\[
+ c_1=a_1,
+ \qquad
+ c_2=a_2-\frac12a_1^2,
+\]
+and therefore
+\[
+ \beta_{g,\nu,1}=\Im(\nu a_1),
+\qquad
+ \beta_{g,\nu,2}
+ =
+ \Im\left(\nu^2\left(a_2-\frac12a_1^2\right)\right).
+\]
+\end{corollary}
+
+\begin{proof}
+The coefficient formula in \cref{thm:phase-local-logarithm} gives
+\[
+ c_1=a_1,
+\qquad
+ c_2=a_2-\frac12a_1a_1.
+\]
+Taking \(\Im(c_n\nu^n)\) gives the two directional formulas.
+\end{proof}
+
+\subsection{Local completed-function phase packets}
+
+Let \(\xi\) be the completed function used in
+\cref{thm:ds-packet-descent,prop:ds-phase-transport}.  Its entirety and exact
+zero set are sourced in \cref{sec:divisor-sheaf-audit}; the calculations below
+use only local holomorphy, exact order of vanishing, and the two functional
+symmetries.
+
+Fix a zero \(\rho\) of multiplicity \(m=m_\rho\), and set
+\[
+ \mu_\rho:=\frac{\xi^{(m)}(\rho)}{m!}\in\C^\times,
+\qquad
+ \psi_\rho(z):=
+ \frac{\xi(\rho+z)}{\mu_\rho z^m}
+\quad(z\ne0),
+\qquad
+ \psi_\rho(0):=1.
+\]
+
+\begin{theorem}[Local phase packet with explicit derivative coordinates]
+\label{thm:phase-local-packet}
+There is a disc on which a unique holomorphic
+\[
+ h_\rho(z)=\sum_{n=1}^{\infty}c_{\rho,n}z^n,
+\qquad h_\rho(0)=0,
+\]
+satisfies
+\[
+ \xi(\rho+z)=\mu_\rho z^m e^{h_\rho(z)}.
+\]
+Writing
+\[
+ \psi_\rho(z)=1+\sum_{j=1}^{\infty}a_{\rho,j}z^j,
+\]
+one has the exact derivative coordinates
+\[
+ a_{\rho,j}
+ =
+ \frac{m!\,\xi^{(m+j)}(\rho)}
+ {(m+j)!\,\xi^{(m)}(\rho)}
+\qquad(j\geq1),
+\]
+and
+\[
+ c_{\rho,n}
+ =
+ \sum_{k=1}^n\frac{(-1)^{k+1}}{k}
+ \sum_{\substack{n_1+\cdots+n_k=n\\n_j\geq1}}
+ a_{\rho,n_1}\cdots a_{\rho,n_k}.
+\]
+For a unit direction \(\nu\in S^1\), define
+\[
+ \Theta_{\rho,\nu}(t)
+ =
+ \Im h_\rho(t\nu)
+ =
+ \sum_{n=1}^{\infty}\beta_{\rho,\nu,n}t^n,
+\qquad
+ \beta_{\rho,\nu,n}:=\Im(c_{\rho,n}\nu^n).
+\]
+For all sufficiently small \(t>0\),
+\[
+ |\xi(\rho+t\nu)|
+ =
+ t^m|\mu_\rho|
+ \exp\bigl(\Re h_\rho(t\nu)\bigr),
+\]
+\[
+ \operatorname{ph}(\xi(\rho+t\nu))
+ =
+ \nu^m\operatorname{ph}(\mu_\rho)
+ e^{\mathrm i\Theta_{\rho,\nu}(t)}.
+\]
+After decreasing the radius, put
+\[
+ \alpha_{\rho,\nu,n}(t)
+ :=
+ \tan(\beta_{\rho,\nu,n}t^n).
+\]
+Then
+\[
+ e^{\mathrm i\Theta_{\rho,\nu}(t)}
+ =
+ \prod_{n=1}^{\infty}
+ \mathsf u(\alpha_{\rho,\nu,n}(t))
+\]
+uniformly on the resulting closed interval, and every finite truncation has the
+orthogonal-walk endpoint of
+\cref{prop:phase-orthogonal-walk}.
+\end{theorem}
+
+\begin{proof}
+Exact order \(m\) means that the Taylor series begins
+\[
+ \xi(\rho+z)
+ =
+ \sum_{j=0}^{\infty}
+ \frac{\xi^{(m+j)}(\rho)}{(m+j)!}z^{m+j},
+\qquad
+ \xi^{(m)}(\rho)\ne0.
+\]
+ Dividing by \(\mu_\rho z^m\) and using
+ \(\mu_\rho=\xi^{(m)}(\rho)/m!\) gives a holomorphic extension
+\[
+ \psi_\rho(z)
+ =
+ 1+
+ \sum_{j=1}^{\infty}
+ \frac{m!\,\xi^{(m+j)}(\rho)}
+ {(m+j)!\,\xi^{(m)}(\rho)}z^j.
+\]
+This proves the formula for \(a_{\rho,j}\).  Apply
+\cref{thm:phase-local-logarithm} to \(g=\psi_\rho\), whose value at zero is one.
+It produces the unique normalized \(h_\rho\), the composition formula for
+\(c_{\rho,n}\), and
+\[
+ \psi_\rho(z)=e^{h_\rho(z)}.
+\]
+ Multiplication by \(\mu_\rho z^m\) gives the factorization of \(\xi\).
+
+At \(z=t\nu\), with \(t>0\) and \(|\nu|=1\),
+\[
+ \xi(\rho+t\nu)
+ =
+ \mu_\rho t^m\nu^m e^{h_\rho(t\nu)}.
+\]
+Its absolute value and phase are exactly the two displayed formulas.  The final
+product and finite-walk assertions are
+\cref{thm:phase-taylor-atomization,prop:phase-orthogonal-walk} applied to the
+real-analytic phase \(\Theta_{\rho,\nu}\).
+\end{proof}
+
+\begin{corollary}[First two local packet atoms]
+\label{cor:phase-packet-first-two}
+For every unit direction \(\nu\),
+\[
+ \beta_{\rho,\nu,1}
+ =
+ \Im\left(
+ \nu\frac{\xi^{(m+1)}(\rho)}
+ {(m+1)\xi^{(m)}(\rho)}
+ \right),
+\]
+and
+\[
+ \beta_{\rho,\nu,2}
+ =
+ \Im\left[
+ \nu^2\left(
+ \frac{\xi^{(m+2)}(\rho)}
+ {(m+2)(m+1)\xi^{(m)}(\rho)}
+ -
+ \frac12
+ \left(
+ \frac{\xi^{(m+1)}(\rho)}
+ {(m+1)\xi^{(m)}(\rho)}
+ \right)^2
+ \right)
+ \right].
+\]
+\end{corollary}
+
+\begin{proof}
+The derivative-coordinate formula gives
+\[
+ a_{\rho,1}
+ =
+ \frac{\xi^{(m+1)}(\rho)}
+ {(m+1)\xi^{(m)}(\rho)},
+\qquad
+ a_{\rho,2}
+ =
+ \frac{\xi^{(m+2)}(\rho)}
+ {(m+2)(m+1)\xi^{(m)}(\rho)}.
+\]
+Substitute these into \cref{cor:phase-first-two-atoms}.
+\end{proof}
+
+\begin{proposition}[Exact packet transport of every local atom]
+\label{prop:phase-packet-atom-transport}
+After choosing a common sufficiently small radius,
+\[
+ \mu_{1-\rho}=(-1)^m\mu_\rho,
+\qquad
+ \mu_{\overline\rho}=\overline{\mu_\rho},
+\]
+\[
+ \psi_{1-\rho}(z)=\psi_\rho(-z),
+\qquad
+ \psi_{\overline\rho}(z)=\overline{\psi_\rho(\overline z)},
+\]
+\[
+ h_{1-\rho}(z)=h_\rho(-z),
+\qquad
+ h_{\overline\rho}(z)=\overline{h_\rho(\overline z)}.
+\]
+Consequently,
+\[
+ c_{1-\rho,n}=(-1)^nc_{\rho,n},
+\qquad
+ c_{\overline\rho,n}=\overline{c_{\rho,n}},
+\]
+and for every unit direction \(\nu\),
+\[
+ \beta_{1-\rho,-\nu,n}=\beta_{\rho,\nu,n},
+\qquad
+ \beta_{\overline\rho,\overline\nu,n}=-\beta_{\rho,\nu,n},
+\]
+\[
+ \alpha_{1-\rho,-\nu,n}(t)=\alpha_{\rho,\nu,n}(t),
+\qquad
+ \alpha_{\overline\rho,\overline\nu,n}(t)
+ =
+ -\alpha_{\rho,\nu,n}(t).
+\]
+\end{proposition}
+
+\begin{proof}
+The leading-coefficient formulas are
+\cref{prop:ds-phase-transport}.  From \(\xi(1-s)=\xi(s)\),
+\[
+ \xi(1-\rho+z)
+ =
+ \xi(\rho-z)
+ =
+ \mu_\rho(-z)^m\psi_\rho(-z)
+ =
+ \mu_{1-\rho}z^m\psi_\rho(-z),
+\]
+so division by the nonzero leading factor gives
+\(\psi_{1-\rho}(z)=\psi_\rho(-z)\).  Likewise,
+\[
+ \xi(\overline\rho+z)
+ =
+ \overline{\xi(\rho+\overline z)}
+ =
+ \overline{\mu_\rho\overline z^{\,m}
+ \,\psi_\rho(\overline z)}
+ =
+ \mu_{\overline\rho}z^m
+ \overline{\psi_\rho(\overline z)},
+\]
+which gives the conjugation formula for \(\psi\).
+
+Both sides of each proposed \(h\)-identity exponentiate to the same
+\(\psi\)-germ and vanish at zero.  Uniqueness in
+\cref{thm:phase-local-logarithm} proves the two \(h\)-identities.  Comparing
+Taylor coefficients gives
+\[
+ c_{1-\rho,n}=(-1)^nc_{\rho,n},
+\qquad
+ c_{\overline\rho,n}=\overline{c_{\rho,n}}.
+\]
+Therefore
+\[
+ \Im\bigl(c_{1-\rho,n}(-\nu)^n\bigr)
+ =
+ \Im(c_{\rho,n}\nu^n),
+\]
+while
+\[
+ \Im\bigl(c_{\overline\rho,n}\overline\nu^{\,n}\bigr)
+ =
+ \Im\overline{c_{\rho,n}\nu^n}
+ =
+ -\Im(c_{\rho,n}\nu^n).
+\]
+These are the two \(\beta\)-formulas.  The \(\alpha\)-formulas follow because
+\(\tan\) is odd.
+\end{proof}
+
+For a packet \(O\), a representative \(\rho\in O\), and \(m=m_O\), the leading
+phase \(\operatorname{ph}(\mu_\rho)\) descends to the quotient
+\(S^1/\Gamma_{m_O}\) constructed after
+\cref{prop:ds-phase-transport}.  The local Taylor factor is instead a germ of
+a curve
+\[
+ t\longmapsto e^{\mathrm i\Theta_{\rho,\nu}(t)}
+\]
+based at \(1\).  Let
+\[
+ \mathfrak G_1
+ :=
+ \{\gamma:(\mathbb R,0)\to(S^1,1):
+ \gamma\text{ is a real-analytic germ}\},
+\]
+and, with \(b_{\rho,\nu}:=\nu^m\operatorname{ph}(\mu_\rho)\), let
+\[
+ \mathfrak G_{\rho,\nu}
+ :=
+ \{\eta:(\mathbb R,0)\to(S^1,b_{\rho,\nu}):
+ \eta\text{ is a real-analytic germ}\}.
+\]
+Multiplication gives the exact bijection
+\[
+ T_{\rho,\nu}:\mathfrak G_1\overset{\sim}{\longrightarrow}
+ \mathfrak G_{\rho,\nu},
+ \qquad
+ T_{\rho,\nu}(\gamma)(t)=b_{\rho,\nu}\gamma(t),
+\]
+with inverse
+\(T_{\rho,\nu}^{-1}(\eta)(t)=b_{\rho,\nu}^{-1}\eta(t)\).
+The Taylor phase germ is the image of
+\(\gamma_{\rho,\nu}(t)=e^{\mathrm i\Theta_{\rho,\nu}(t)}\).
+Evaluation at zero on \(\mathfrak G_{\rho,\nu}\) has the constant value
+\(b_{\rho,\nu}\).  Thus it forgets the
+ complete sequence \((\beta_{\rho,\nu,n})_{n\geq1}\), while the full phase germ
+ retains exactly that sequence for the chosen direction \(\nu\).  It need not
+ determine the real parts of the complex coefficients \(c_{\rho,n}\).  This is
+coordinate-exact: if two normalized real phase germs have the same exponential,
+their difference is a continuous \(2\pi\mathbb Z\)-valued germ vanishing at zero,
+so it is zero and their Taylor coefficients agree.  For fixed \((\nu,n)\), the
+fibre of \(c\mapsto\Im(c\nu^n)\) through \(c_0\) is
+\(c_0+\nu^{-n}\mathbb R\).  This is the precise interface between the leading
+phase decoration and the Taylor-atomic refinement.
+
+\subsection{The independent circle-length coordinate from the literature}
+
+The following is a typed literature interface, not a consequence of the phase
+atomization.
+
+\begin{proposition}[Critical ordinate to the circle-length family]
+\label{prop:phase-cycle-coordinate}
+Let
+\[
+ \mathcal C_{\mathrm{cyc}}
+ :=
+ \left\{
+ (s,n):
+ s>0,\ \zeta\left(\frac12+\mathrm is\right)=0,\
+ n\in\mathbb Z_{>0}
+ \right\}.
+\]
+The coordinate map
+\[
+ \ell:\mathcal C_{\mathrm{cyc}}\longrightarrow\R_{>0},
+ \qquad
+ \ell(s,n)=\frac{2\pi n}{s},
+\]
+has fibre
+\[
+ \ell^{-1}(L)
+ =
+ \left\{
+ \left(\frac{2\pi n}{L},n\right):
+ n\geq1,\
+ \zeta\left(\frac12+\frac{2\pi\mathrm in}{L}\right)=0
+ \right\}.
+\]
+For every \(s>0\) with \(\zeta(\tfrac12+\mathrm is)=0\), the restriction
+\(n\mapsto\ell(s,n)\) has image the positive-integer family
+\[
+ \left\{\frac{2\pi n}{s}:n\geq1\right\},
+\]
+whose least member is \(2\pi/s\).  Connes and Consani prove that every circle
+with one of these lengths is a zeta-cycle and that its orthogonal complement
+carries the scaling character \(u\mapsto u^{\mathrm is}\)
+\cite[\S6]{connesConsani2021ZetaCycles}.
+\end{proposition}
+
+\begin{proof}
+The fibre formula follows by solving
+\[
+ L=\frac{2\pi n}{s}
+\]
+for \(s\), while retaining the defining zero condition of
+\(\mathcal C_{\mathrm{cyc}}\).
+For each such fixed \(s\), strict increase in \(n\) gives the displayed image and
+its least member.  The final sentence is the cited theorem: with
+\(L=2\pi n/s\) and \(\mu=e^L\),
+\[
+ \mu^{\mathrm is}=e^{\mathrm isL}=e^{2\pi\mathrm in}=1,
+\]
+so the character descends to the circle
+\(\R_+^*/\mu^{\mathbb Z}\); the source proves its orthogonality to the relevant
+Riemann-sum image.
+\end{proof}
+
+Different pairs \((s,n)\) can in principle lie in one fibre of \(\ell\), as the
+displayed fibre formula makes explicit.  Hence \(2\pi/s\) is only the least
+member of the family attached to that fixed \(s\); it is not a global
+shortest-cycle assertion.  No arrow from
+\((\beta_{\rho,\nu,n})_{n\geq1}\) to the Connes--Consani Hilbert space has been
+constructed here.
+
+\subsection{Certificate and formalization boundary}
+
+The finite certificate accompanying this chapter checks the Boolean polynomial
+point maps, the split retraction, complete finite-product fibres on a bounded
+grid, the elementary-symmetric endpoint identity, the affine-chart inverse,
+the first logarithmic coefficients, and the packet sign/conjugation laws.  Its
+floating-point checks use explicit error bounds and do not replace the standard
+proofs above.  The uniform-convergence and holomorphic-logarithm arguments are
+proved in the text and remain separate Lean targets.
+
+The retained object classes are now explicit.  The Boolean affine cube is a
+functor-of-points object; the phase decoration is a sheaf of pointed sets; the
+coefficient support map forgets an \(S^1\)-fibre at a simple zero; finite affine
+factors map to phases through \(P_N\) with the complete displayed fibres; the
+Taylor atomization maps one fixed real power series to a uniformly convergent
+phase product; and the circle-length coordinate is a separately sourced map
+\((s,n)\mapsto2\pi n/s\).  These positive morphisms are the asserted
+connections.  No categorical nonrelation, arithmetic nature of an individual
+derivative, zero-location conclusion, or spectral realization by the local
+phase atoms is asserted.

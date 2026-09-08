@@ -1,0 +1,676 @@
+% Integration fragment. Requires amsmath, amssymb, amsthm, mathtools, hyperref
+% and an existing proposition environment. All helper macros are local.
+\begingroup
+\def\T{\mathbb T^2}
+\def\R{\mathbb R}
+\def\Z{\mathbb Z}
+\def\av#1{\overline{#1}}
+\def\dd{\mathrm d}
+\def\diver{\operatorname{div}}
+\def\supp{\operatorname{supp}}
+\def\calN{\mathcal N}
+\section{Exact IPM smoothing and localization with every residual retained}
+The pressure and coefficient correspondences above are retained here.
+The following notation admits both source and report coefficients and either
+torus zero-mode convention; it also states the complete operator needed for
+the smoothing estimates.
+Fix $L_1,L_2>0$, put
+\[
+\T=\R^2/(L_1\Z\times L_2\Z),\qquad V=L_1L_2,\qquad
+\kappa(n)=\left(\frac{2\pi n_1}{L_1},\frac{2\pi n_2}{L_2}\right),\quad n\in\Z^2.
+\]
+Coordinates are $x=(x_1,x_2)$, $e_2=(0,1)$, Lebesgue volume is $\dd x$, and
+\[
+\widehat f(n)=\frac1V\int_{\T}f(x)e^{-i\kappa(n)\cdot x}\dd x,
+\qquad \av f=\widehat f(0),\qquad
+f(x)=\sum_{n\in\Z^2}\widehat f(n)e^{i\kappa(n)\cdot x}.
+\]
+The formulas below are initially identities for smooth periodic functions.
+Their $L^2$ extensions are stated separately. Let $\sigma\in\R$ be fixed and
+let $a\in\R^2$ be fixed. Define the scalar-to-vector linear operator
+$M_{\sigma,a}:C^\infty(\T;\R)\to C^\infty(\T;\R^2)$ by the full symbol
+\begin{equation}\label{ipmc:symbol}
+b_{\sigma,a}(n)=
+\begin{cases}
+\displaystyle\sigma\left(\frac{\kappa_1(n)\kappa_2(n)}{|\kappa(n)|^2},
+-\frac{\kappa_1(n)^2}{|\kappa(n)|^2}\right),&n\ne0,\\
+a,&n=0,
+\end{cases}
+\qquad \widehat{M_{\sigma,a}f}(n)=b_{\sigma,a}(n)\widehat f(n).
+\end{equation}
+The symbol is real and even, so it preserves the reality of $f$.
+It is bounded, so smooth Fourier series and their differentiated series
+converge absolutely after multiplication by this symbol. In particular the
+codomain asserted above is correct. Throughout, $M$ denotes this fixed
+$M_{\sigma,a}$, $u=M\rho$, and
+\begin{equation}\label{ipmc:N}
+\calN_{\sigma,a}(\rho)=\partial_t\rho+\diver(\rho M\rho)
+=\partial_t\rho+(M\rho)\cdot\nabla\rho.
+\end{equation}
+
+
+For completeness, these operator bounds require only the following calculation.
+At nonzero $n$, $\kappa(n)\cdot b_{\sigma,a}(n)=0$ and
+$|b_{\sigma,a}(n)|^2=\sigma^2\kappa_1(n)^2/|\kappa(n)|^2\le\sigma^2$;
+at $n=0$ the divergence multiplier is zero and the velocity symbol is $a$.
+Thus $\diver Mf=0$ and $\overline{Mf}=a\overline f$.
+Parseval gives
+$\|Mf\|_2\le B\|f\|_2$ with $B=\max\{|\sigma|,|a|\}$,
+and density of Fourier polynomials extends $M$ uniquely to $L^2$.
+Derivatives eliminate the zero mode, so
+$\|\nabla Mf\|_2\le|\sigma|\|\nabla f\|_2$ for $f\in H^1$.
+The report with periodic pressure is $(\sigma,a)=(1,-e_2)$;
+the primary manuscript's operator is $(\sigma,a)=(2\pi,0)$
+on $L_1=L_2=2\pi$, as established above.
+\section{The exact fixed-scale defect, including weak solutions}
+Choose $\eta\in C_c^\infty(\R^2)$ with $\eta\ge0$ and
+$\int_{\R^2}\eta(z)\dd z=1$. No radiality or vanishing moment is assumed.
+For $\varepsilon>0$, define
+\begin{equation}\label{ipmc:smoothing}
+S_\varepsilon f(x)=\int_{\R^2}\eta(z)f(x-\varepsilon z)\dd z
+=\int_{\T}K_\varepsilon(y)f(x-y)\dd y,
+\end{equation}
+where
+$K_\varepsilon(y)=\sum_{j\in\Z^2}\varepsilon^{-2}
+\eta((y+(L_1j_1,L_2j_2))/\varepsilon)$.
+The sum is locally finite; $K_\varepsilon$ is a smooth periodic kernel
+with integral $1$. The first equality follows by partitioning $\R^2$
+into translates of a fundamental cell and changing variables.
+Its Fourier multiplier is
+$s_\varepsilon(n)=\int_{\R^2}\eta(z)e^{-i\varepsilon\kappa(n)\cdot z}\dd z$.
+In particular $s_\varepsilon(0)=1$. Scalar multiplication of each Fourier
+coefficient proves, without omitting its zero mode,
+\begin{equation}\label{ipmc:commute}
+MS_\varepsilon=S_\varepsilon M,\qquad
+\partial_jS_\varepsilon=S_\varepsilon\partial_j,\qquad
+\partial_tS_\varepsilon=S_\varepsilon\partial_t
+\quad\text{when $\varepsilon$ is fixed.}
+\end{equation}
+The last identity also follows by testing the time derivative against a
+compactly supported test function and interchanging finite kernel integrals.
+
+\begin{proposition}[Flux defect and its sign]\label{ipmc:fixed}
+Let $\rho\in L^2_{\rm loc}(I\times\T)$ and let $F$ be a distribution such
+that $\partial_t\rho+\diver(\rho u)=F$, where $u=M\rho$. Put
+\[
+\rho_\varepsilon=S_\varepsilon\rho,\quad
+u_\varepsilon=S_\varepsilon u=M\rho_\varepsilon,\quad
+R_\varepsilon=S_\varepsilon(\rho u)-\rho_\varepsilon u_\varepsilon.
+\]
+All products in this definition are locally integrable. In distributions,
+\begin{equation}\label{ipmc:fixed-identity}
+\calN_{\sigma,a}(\rho_\varepsilon)
+=S_\varepsilon F-\diver R_\varepsilon.
+\end{equation}
+Define $C_\varepsilon=-\diver R_\varepsilon$ for this weak class.
+For smooth $\rho$ this states exactly
+\begin{equation}\label{ipmc:C}
+C_\varepsilon(\rho):=u_\varepsilon\cdot\nabla\rho_\varepsilon
+-S_\varepsilon(u\cdot\nabla\rho)=-\diver R_\varepsilon.
+\end{equation}
+Both $R_\varepsilon$ and $C_\varepsilon$ are independent of $a$.
+\end{proposition}
+\begin{proof}
+The $L^2$ bound from the preceding operator estimate, integrated over any
+compact time interval, puts $u$ in $L^2$. Cauchy--Schwarz puts $\rho u$
+in $L^1$. Kernel convolution is bounded on $L^2$ and $L^1$ by Jensen's
+inequality and translation invariance of Lebesgue volume, so the smoothed
+products are also in $L^1$. Applying $S_\varepsilon$ to the weak equation
+and using \eqref{ipmc:commute} gives
+\[
+\partial_t\rho_\varepsilon+\diver S_\varepsilon(\rho u)=S_\varepsilon F.
+\]
+Substitution of $S_\varepsilon(\rho u)=\rho_\varepsilon u_\varepsilon
++R_\varepsilon$ proves \eqref{ipmc:fixed-identity}. Since both $u$ and
+$u_\varepsilon$ are divergence free, the smooth conservative form equals
+\eqref{ipmc:C}, proving its sign. To compare zero modes, write
+$u=M_{\sigma,0}\rho+a\av\rho$. This last term is spatially constant.
+Its contribution to $R_\varepsilon$ is
+$a\av\rho S_\varepsilon\rho-a\av\rho\rho_\varepsilon=0$,
+because smoothing preserves the mean. This proves both independence claims.
+\end{proof}
+
+\begin{proposition}[Exact increment formula and convergence]\label{ipmc:increments}
+For $\delta_{\varepsilon z}f(x)=f(x-\varepsilon z)-f(x)$, the vector flux is
+\begin{align}\label{ipmc:increments-eq}
+R_\varepsilon(x)
+={}&\int_{\R^2}\eta(z)\delta_{\varepsilon z}\rho(x)
+                    \delta_{\varepsilon z}u(x)\dd z\\
+&-\left(\int_{\R^2}\eta(z)\delta_{\varepsilon z}\rho(x)\dd z\right)
+ \left(\int_{\R^2}\eta(z)\delta_{\varepsilon z}u(x)\dd z\right).\notag
+\end{align}
+For the $L^2_{\rm loc}$ class of Proposition \ref{ipmc:fixed},
+$R_\varepsilon\to0$ in $L^1_{\rm loc}(I\times\T)$ as $\varepsilon\downarrow0$,
+and $C_\varepsilon\to0$ in distributions. If at a fixed time $\rho,u\in H^1(\T)$,
+then, with $A_j=\int_{\R^2}\eta(z)|z|^j\dd z$,
+\begin{equation}\label{ipmc:H1}
+\|R_\varepsilon\|_{L^1(\T)}
+\le\varepsilon^2(A_2+A_1^2)\|\nabla\rho\|_2\|\nabla u\|_2
+\le |\sigma|\varepsilon^2(A_2+A_1^2)\|\nabla\rho\|_2^2.
+\end{equation}
+For spatially H\"older continuous $\rho\in C^{0,\alpha}$ and
+$u\in C^{0,\beta}$, $0<\alpha,\beta\le1$, measured using the flat torus
+distance, there is the explicit pointwise bound
+\begin{equation}\label{ipmc:holder}
+\|R_\varepsilon\|_\infty
+\le\varepsilon^{\alpha+\beta}
+(A_{\alpha+\beta}+A_\alpha A_\beta)[\rho]_{\alpha}[u]_{\beta}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Expand the first integral in \eqref{ipmc:increments-eq} as
+$S_\varepsilon(\rho u)-\rho u_\varepsilon-u\rho_\varepsilon+\rho u$.
+The product in its second line is
+$\rho_\varepsilon u_\varepsilon-\rho u_\varepsilon-u\rho_\varepsilon+\rho u$.
+Their difference is precisely $R_\varepsilon$. This expansion is legitimate
+almost everywhere by the integrability established above and Fubini's theorem.
+
+Spatial translations are continuous in $L^2(J\times\T)$ for compact $J\subset I$:
+first prove it for finite spatial Fourier polynomials with $L^2(J)$ coefficients,
+whose factors $e^{-i\kappa\cdot h}$ converge to $1$, and then approximate an
+$L^2$ function by these polynomials using Parseval and the norm-preserving
+property of translation. They are likewise continuous in $L^1$ by approximation
+by continuous functions and the isometry of translation. Integrating these
+convergences against $\eta$ with dominated convergence proves
+$S_\varepsilon\rho\to\rho$ and $S_\varepsilon u\to u$ in $L^2$, and
+$S_\varepsilon(\rho u)\to\rho u$ in $L^1$. Moreover
+\[
+\|\rho_\varepsilon u_\varepsilon-\rho u\|_1
+\le\|\rho_\varepsilon-\rho\|_2\|u_\varepsilon\|_2
++\|\rho\|_2\|u_\varepsilon-u\|_2\longrightarrow0.
+\]
+This proves the asserted flux convergence. For every compactly supported
+smooth scalar test function $\phi$,
+$\langle C_\varepsilon,\phi\rangle
+=\int R_\varepsilon\cdot\nabla\phi\,\dd t\dd x\to0$,
+proving distributional convergence with the correct sign.
+
+For $f\in H^1$, the line integral formula, first for smooth approximations
+and then by $H^1$ convergence, gives
+$\|f(\cdot-h)-f\|_2\le |h|\|\nabla f\|_2$.
+Apply Cauchy--Schwarz in $x$ to the first line of
+\eqref{ipmc:increments-eq}, and Minkowski followed by Cauchy--Schwarz
+to the second line. The resulting constants are respectively
+$\varepsilon^2 A_2$ and $\varepsilon^2 A_1^2$.
+Derivatives eliminate the zero mode; Parseval with the nonzero symbol bound
+gives $\|\nabla u\|_2\le|\sigma|\|\nabla\rho\|_2$, proving \eqref{ipmc:H1}.
+Finally the torus distance between $x-\varepsilon z$ and $x$ is at most
+$\varepsilon|z|$. Thus
+$|\delta_{\varepsilon z}\rho|\le[\rho]_\alpha\varepsilon^\alpha|z|^\alpha$
+and the corresponding inequality holds for $u$. Substitution into the two
+terms of \eqref{ipmc:increments-eq} proves \eqref{ipmc:holder}.
+\end{proof}
+
+The convergence just proved is a distributional residual statement. It does
+not assert a uniform bound for all mixed derivatives of a construction's force.
+The exact fixed-scale mixed derivative formula can also be retained: if
+$\mathcal R_\varepsilon(f,g)=S_\varepsilon(fg)-(S_\varepsilon f)(S_\varepsilon g)$,
+then for a time order $q\ge0$ and spatial multi-index $\gamma$,
+\begin{equation}\label{ipmc:mixed}
+\partial_t^q\partial_x^\gamma\mathcal R_\varepsilon(f,g)
+=\sum_{r=0}^q\sum_{\delta\le\gamma}
+\binom qr\binom\gamma\delta\,
+\mathcal R_\varepsilon(
+\partial_t^r\partial_x^\delta f,
+\partial_t^{q-r}\partial_x^{\gamma-\delta}g).
+\end{equation}
+Indeed the first derivative of the bilinear expression is the sum with the
+derivative on each of its two arguments, because fixed $S_\varepsilon$
+commutes with that derivative. Repeating this rule proves the binomial formula
+by induction, including its coefficients. Applied componentwise with
+$g=u$, it is an exact formula for every mixed derivative of $R_\varepsilon$.
+
+\section{Moving scales and Fourier cutoffs}
+\begin{proposition}[Time-dependent smoothing]\label{ipmc:moving}
+Let $\rho,F$ be smooth, let $\calN_{\sigma,a}(\rho)=F$, and let
+$\varepsilon\in C^1(I;(0,\infty))$. The precise identity is
+\begin{equation}\label{ipmc:moving-eq}
+\calN_{\sigma,a}(S_{\varepsilon(t)}\rho)
+=S_{\varepsilon(t)}F+C_{\varepsilon(t)}(\rho)
++\varepsilon'(t)(\partial_\varepsilon S_\varepsilon)_{\varepsilon=\varepsilon(t)}\rho,
+\end{equation}
+where
+\begin{equation}\label{ipmc:scale-derivative}
+\partial_\varepsilon S_\varepsilon\rho(x)
+=-\int_{\R^2}\eta(z)z\cdot\nabla\rho(x-\varepsilon z)\dd z.
+\end{equation}
+More generally, a smooth scalar Fourier multiplier $S(t)$, including a smooth
+Fourier cutoff, satisfies
+\begin{equation}\label{ipmc:general-S}
+\calN_{\sigma,a}(S(t)\rho)
+=S(t)F+\bigl((MS(t)\rho)\cdot\nabla S(t)\rho
+-S(t)((M\rho)\cdot\nabla\rho)\bigr)+(\partial_tS(t))\rho.
+\end{equation}
+This last statement requires that $S(t)$ and its time derivative act on the
+smooth functions at issue; finite smooth spectral cutoffs satisfy it directly.
+\end{proposition}
+\begin{proof}
+Differentiate the defining integral \eqref{ipmc:smoothing}. Compact support
+of $\eta$ and smoothness of $\rho$ justify differentiation under the integral,
+giving \eqref{ipmc:scale-derivative} and
+$\partial_t(S_{\varepsilon(t)}\rho)
+=S_{\varepsilon(t)}\partial_t\rho+
+\varepsilon'(t)(\partial_\varepsilon S_\varepsilon)\rho$.
+Add the nonlinear term and use Proposition \ref{ipmc:fixed} for its frozen
+value of $\varepsilon$. This proves \eqref{ipmc:moving-eq}.
+For the general statement, differentiate the scalar Fourier multiplier at each
+frequency and apply the same product rule. Its commutation with $M$ follows
+from multiplication of the corresponding scalar and vector symbols, including
+the zero mode, proving \eqref{ipmc:general-S}.
+\end{proof}
+
+For example, a cutoff with symbol $s(n/\mu(t))$, $s\in C_c^\infty(\R^2)$,
+$\mu(t)>0$, has the explicitly retained extra symbol
+\[
+\partial_t s(n/\mu(t))=-\frac{\mu'(t)}{\mu(t)^2}
+n\cdot(\nabla s)(n/\mu(t)).
+\]
+This is the chain rule, and is not part of the quadratic commutator.
+
+\section{Exact spatial localization and background--child residuals}
+For a smooth real cutoff $\chi(t,x)$, define the vector commutator
+\begin{equation}\label{ipmc:K}
+K_\chi f=[M,\chi]f=M(\chi f)-\chi Mf.
+\end{equation}
+There is no support assertion implicit in this definition: $M$ is a Fourier
+operator and $K_\chi f$ can persist in a region where $\chi=1$.
+In the present conventions its complete Fourier formula is
+\begin{equation}\label{ipmc:K-Fourier}
+\widehat{K_\chi f}(n)
+=\sum_{\ell\in\Z^2}
+\bigl(b_{\sigma,a}(n)-b_{\sigma,a}(\ell)\bigr)
+\widehat\chi(n-\ell)\widehat f(\ell).
+\end{equation}
+Indeed Fourier multiplication gives the first term with symbol
+$b_{\sigma,a}(n)$ and the second with symbol $b_{\sigma,a}(\ell)$;
+subtracting gives exactly the displayed sum. Smoothness makes it absolutely
+convergent. In particular the terms $n=0$ and $\ell=0$ are included, and
+\begin{equation}\label{ipmc:K-div}
+\diver K_\chi f=-(Mf)\cdot\nabla\chi,
+\qquad
+K^{\sigma,a}_\chi f=K^{\sigma,0}_\chi f
++a\bigl(\av{\chi f}-\chi\av f\bigr).
+\end{equation}
+The first equality follows by taking divergence of \eqref{ipmc:K} and using
+$\diver Mf=\diver M(\chi f)=0$; the second follows by inserting
+$M_{\sigma,a}f=M_{\sigma,0}f+a\av f$ into that same definition.
+
+\begin{proposition}[Cutoff of a complete density]\label{ipmc:cutoff}
+Let $\rho,F,\chi$ be smooth and let $\calN_{\sigma,a}(\rho)=F$.
+Set $u=M\rho$, $q=\chi\rho$, and $v=Mq=\chi u+K_\chi\rho$.
+Then the complete residual of $q$ is
+\begin{align}\label{ipmc:cutoff-eq}
+\calN_{\sigma,a}(q)
+={}&\chi F+\rho\partial_t\chi
++\chi(\chi-1)u\cdot\nabla\rho
++\chi(K_\chi\rho)\cdot\nabla\rho\\
+&+\chi\rho u\cdot\nabla\chi
++\rho(K_\chi\rho)\cdot\nabla\chi.\notag
+\end{align}
+\end{proposition}
+\begin{proof}
+Using $\diver v=0$, apply the product rule without deleting any term:
+\begin{align*}
+\partial_tq+v\cdot\nabla q
+&=\chi\partial_t\rho+\rho\partial_t\chi
++(\chi u+K_\chi\rho)\cdot(\chi\nabla\rho+\rho\nabla\chi)\\
+&=\chi(F-u\cdot\nabla\rho)+\rho\partial_t\chi
++\chi^2u\cdot\nabla\rho+\chi(K_\chi\rho)\cdot\nabla\rho\\
+&\qquad+\chi\rho u\cdot\nabla\chi+\rho(K_\chi\rho)\cdot\nabla\chi.
+\end{align*}
+Combining the two explicitly displayed coefficients of $u\cdot\nabla\rho$
+gives \eqref{ipmc:cutoff-eq}; all other original factors remain present.
+\end{proof}
+
+\begin{proposition}[Adding and then localizing a child]\label{ipmc:child}
+For any smooth background $r$ and child $\theta$, put $U=Mr$, $w=M\theta$.
+Then, without requiring that either field solve an auxiliary equation,
+\begin{equation}\label{ipmc:child-eq}
+\calN_{\sigma,a}(r+\theta)-\calN_{\sigma,a}(r)
+=\partial_t\theta+U\cdot\nabla\theta
++w\cdot\nabla r+w\cdot\nabla\theta.
+\end{equation}
+Define the computed linearized residual
+$G=\partial_t\theta+U\cdot\nabla\theta+w\cdot\nabla r$.
+For $q=\chi\theta$, the corresponding full localized residual is
+\begin{align}\label{ipmc:localized-child}
+\calN_{\sigma,a}(r+q)-\calN_{\sigma,a}(r)
+={}&\chi G+\theta(\partial_t\chi+U\cdot\nabla\chi)
++(K_\chi\theta)\cdot\nabla r\\
+&+\chi^2w\cdot\nabla\theta
++\chi(K_\chi\theta)\cdot\nabla\theta\notag\\
+&+\chi\theta w\cdot\nabla\chi
++\theta(K_\chi\theta)\cdot\nabla\chi.\notag
+\end{align}
+\end{proposition}
+\begin{proof}
+Linearity gives $M(r+\theta)=U+w$. Expanding
+$(U+w)\cdot\nabla(r+\theta)$ and subtracting $U\cdot\nabla r$
+leaves the three advective terms in \eqref{ipmc:child-eq}; the time derivative
+leaves $\partial_t\theta$. Apply this identity with $q$ in place of $\theta$.
+The three linear terms become
+\begin{align*}
+\partial_tq+U\cdot\nabla q+(Mq)\cdot\nabla r
+&=\chi\bigl(\partial_t\theta+U\cdot\nabla\theta
++w\cdot\nabla r\bigr)\\
+&\quad+\theta(\partial_t\chi+U\cdot\nabla\chi)
++(K_\chi\theta)\cdot\nabla r.
+\end{align*}
+The remaining quadratic term is
+\[
+(Mq)\cdot\nabla q
+=(\chi w+K_\chi\theta)\cdot(\chi\nabla\theta+\theta\nabla\chi),
+\]
+whose four products are exactly the final four terms in
+\eqref{ipmc:localized-child}. This proves the formula without treating $G$
+as an assumed vanishing quantity.
+\end{proof}
+
+Taking $r=S_\varepsilon\rho$ in Proposition \ref{ipmc:child} and inserting
+\eqref{ipmc:fixed-identity} proves precisely the report's background--child
+expansion for fixed $\varepsilon$. For moving $\varepsilon$, the additional
+linear scale derivative from \eqref{ipmc:moving-eq} must also be retained.
+For a nonzero lattice vector $n$, a smooth $2\pi$-periodic mean-zero profile
+$h$, and $\theta(x)=h(\kappa(n)\cdot x)$, its only frequencies are $jn$,
+$j\in\Z\setminus\{0\}$. The symbol obeys
+$b_{\sigma,a}(jn)=b_{\sigma,a}(n)$ at all these frequencies. Hence
+$w=b_{\sigma,a}(n)h(\kappa(n)\cdot x)$ and
+\[
+w\cdot\nabla\theta
+=h(\kappa\cdot x)h'(\kappa\cdot x)
+b_{\sigma,a}(n)\cdot\kappa(n)=0.
+\]
+This proves the exact transverse cancellation with its mean hypothesis.
+After localization, only the $\chi^2w\cdot\nabla\theta$ term in
+\eqref{ipmc:localized-child} vanishes by this identity; the other displayed
+terms retain their exact values. They give an exact forced relation for the
+localized field, rather than a claim that no relation exists.
+
+\section{An explicit nonzero smoothing defect}
+In this section only, take $L_1=L_2=2\pi$, set
+$U_\sigma=M_{\sigma,0}$, and let $S_s=e^{s\Delta}$ for fixed $s\ge0$.
+Its scalar multiplier at $n\in\mathbb Z^2$ is $e^{-s|n|^2}$.
+Here $m(n)=(n_1n_2/|n|^2,-n_1^2/|n|^2)$ for $n\ne0$ and $m(0)=0$;
+$P_\sigma$ denotes the pressure multiplier $i\sigma n_2/|n|^2$ at
+$n\ne0$ and $0$ at $n=0$, with the Darcy identity proved above.
+All fields below have zero mean, so the arbitrary torus mean-velocity
+coefficient has no effect on this example.
+\begin{proposition}[The exact defect, with a complete forced solution]
+Let \(\rho(t,x)=\cos x_1+\cos(x_1+x_2)\) for every \(t\in\R\) and
+\(x\in\T\). For every \(s\geq0\) and \(\sigma\in\R\), define
+\[
+ N_\sigma=U_\sigma\rho\cdot\nabla\rho,\qquad
+ C_{s,\sigma}=U_\sigma[S_s\rho]\cdot\nabla(S_s\rho)-S_sN_\sigma.
+\]
+Then
+\begin{align}
+ N_\sigma(x)
+ &=\frac{\sigma}{4}\sin(2x_1+x_2)
+                       +\frac{3\sigma}{4}\sin x_2,\label{ipmc:example-N}\\
+ C_{s,\sigma}(x)
+ &=\frac{\sigma}{4}(e^{-3s}-e^{-5s})\sin(2x_1+x_2)
+       +\frac{3\sigma}{4}(e^{-3s}-e^{-s})\sin x_2.\label{ipmc:example-C}
+\end{align}
+For every \(s>0\) and \(\sigma\ne0\), this defect is not the zero
+function. The stationary fields
+\begin{align*}
+ \rho&=\cos x_1+\cos(x_1+x_2),\\
+ u_\sigma&=\left(\frac{\sigma}{2}\cos(x_1+x_2),
+               -\sigma\cos x_1-\frac{\sigma}{2}\cos(x_1+x_2)\right),\\
+ p_\sigma&=-\frac{\sigma}{2}\sin(x_1+x_2)
+\end{align*}
+with forcing \(F_\sigma(t,x)=N_\sigma(x)\) solve, at every point,
+\[
+ \partial_t\rho+u_\sigma\cdot\nabla\rho=F_\sigma,
+ \qquad u_\sigma=-\nabla p_\sigma-\sigma\rho e_2,
+ \qquad\nabla\cdot u_\sigma=0.
+\]
+Their heat transforms solve these same equations with fields
+\((S_s\rho,S_su_\sigma,S_sp_\sigma)\) and the exact forcing
+\[
+ \widetilde F_{s,\sigma}=S_sF_\sigma+C_{s,\sigma}
+   =\frac{\sigma e^{-3s}}4\sin(2x_1+x_2)
+                 +\frac{3\sigma e^{-3s}}4\sin x_2.
+\]
+\end{proposition}
+
+\begin{proof}
+The functions are real and smooth on the original torus and have zero
+mean. The four nonzero coefficients of \(\rho\) are \(1/2\) at
+\((1,0),(-1,0),(1,1),(-1,-1)\). Since
+\[
+ m(1,0)=m(-1,0)=(0,-1),\qquad
+ m(1,1)=m(-1,-1)=(1/2,-1/2),
+\]
+the displayed formula for \(u_\sigma\) follows without any frequency
+rescaling. Directly,
+\[
+ -\nabla p_\sigma-\sigma\rho e_2
+ =\left(\frac\sigma2\cos(x_1+x_2),
+         \frac\sigma2\cos(x_1+x_2)-\sigma\cos x_1
+                                  -\sigma\cos(x_1+x_2)\right)
+ =u_\sigma,
+\]
+and the two divergence terms are
+\(-\sigma\sin(x_1+x_2)/2\) and
+\(+\sigma\sin(x_1+x_2)/2\), whose sum is zero. The original gradient is
+\[
+ \nabla\rho=(-\sin x_1-\sin(x_1+x_2),-\sin(x_1+x_2)).
+\]
+Multiplying both components, retaining all four terms, gives
+\begin{align*}
+ N_\sigma
+ ={}&-\frac\sigma2\cos(x_1+x_2)\sin x_1
+      -\frac\sigma2\cos(x_1+x_2)\sin(x_1+x_2)\\
+    &+\sigma\cos x_1\sin(x_1+x_2)
+      +\frac\sigma2\cos(x_1+x_2)\sin(x_1+x_2)\\
+ ={}&\sigma\cos x_1\sin(x_1+x_2)
+       -\frac\sigma2\sin x_1\cos(x_1+x_2).
+\end{align*}
+The exact trigonometric identities
+\begin{align*}
+ \cos x_1\sin(x_1+x_2)
+     &=\frac12\sin(2x_1+x_2)+\frac12\sin x_2,\\
+ \sin x_1\cos(x_1+x_2)
+     &=\frac12\sin(2x_1+x_2)-\frac12\sin x_2
+\end{align*}
+yield \eqref{ipmc:example-N} with both original interaction contributions retained.
+
+The input squared wave lengths are exactly \(1\) and \(2\). Therefore
+\begin{align*}
+ S_s\rho
+   &=e^{-s}\cos x_1+e^{-2s}\cos(x_1+x_2),\\
+ U_\sigma[S_s\rho]
+   &=\left(\frac\sigma2e^{-2s}\cos(x_1+x_2),
+           -\sigma e^{-s}\cos x_1
+                      -\frac\sigma2e^{-2s}\cos(x_1+x_2)\right),\\
+ \nabla(S_s\rho)
+   &=\left(-e^{-s}\sin x_1-e^{-2s}\sin(x_1+x_2),
+                                 -e^{-2s}\sin(x_1+x_2)\right).
+\end{align*}
+Consequently the four product terms are
+\begin{align*}
+ U_\sigma[S_s\rho]\cdot\nabla(S_s\rho)
+ ={}&-\frac\sigma2 e^{-3s}\cos(x_1+x_2)\sin x_1
+      -\frac\sigma2 e^{-4s}\cos(x_1+x_2)\sin(x_1+x_2)\\
+    &+\sigma e^{-3s}\cos x_1\sin(x_1+x_2)
+      +\frac\sigma2 e^{-4s}\cos(x_1+x_2)\sin(x_1+x_2)\\
+ ={}&\frac\sigma4e^{-3s}\sin(2x_1+x_2)
+                      +\frac{3\sigma}{4}e^{-3s}\sin x_2.
+\end{align*}
+The output frequencies \((2,1)\) and \((0,1)\) have squared lengths
+\(5\) and \(1\), respectively. Thus
+\[
+ S_sN_\sigma=\frac\sigma4e^{-5s}\sin(2x_1+x_2)
+                    +\frac{3\sigma}{4}e^{-s}\sin x_2.
+\]
+Subtracting this last expression in the stipulated order proves
+\eqref{ipmc:example-C}. At the explicit point \(x=(\pi/4,0)\),
+\[
+ C_{s,\sigma}(\pi/4,0)
+       =\frac\sigma4(e^{-3s}-e^{-5s})
+       =\frac\sigma4e^{-5s}(e^{2s}-1)\ne0
+       \quad(s>0,\ \sigma\ne0).
+\]
+This proves nonvanishing for each positive \(s\), not merely at one
+selected heat time. For \(s=0\) or \(\sigma=0\), formula \eqref{ipmc:example-C}
+instead gives zero exactly.
+
+All displayed original fields are time independent, so
+\(\partial_t\rho=0\). With the stated nonzero forcing for
+\(\sigma\ne0\), the transport equation follows from \eqref{ipmc:example-N}.
+The direct pressure and divergence computations already prove its two
+remaining equations. Heat multiplication commutes mode by mode with
+\(U_\sigma\), \(P_\sigma\), and the spatial derivatives. Therefore the
+heat-transformed fields satisfy Darcy's law and zero divergence. Their
+time derivative remains zero, and their transport term is the computed
+\(\sigma e^{-3s}N_1\), exactly the stated
+\(S_sF_\sigma+C_{s,\sigma}\). This proves all the transformed equations.
+\end{proof}
+
+\section{A complete finite-energy forced field on the plane}
+This section uses the report's coefficient $1$, its original Cartesian
+coordinates, and its Darcy law $v=-\nabla p-qe_2$ on $\R^2$.
+The affine field is retained explicitly; no multiplier is applied to its
+nonintegrable polynomial part.
+
+Fix $A,a_0,t_0\in\R$, $k=(k_1,k_2)\in\R^2\setminus\{0\}$, and a smooth
+real $2\pi$-periodic mean-zero function $h$. A smooth periodic primitive
+$H$ exists: start with $H_0(s)=\int_0^s h(z)\dd z$, whose increment under
+$s\mapsto s+2\pi$ is the zero integral of $h$, and subtract its period mean
+if a zero-mean pressure profile is desired. Set
+\[
+\kappa=k_1^2+k_2^2,\quad
+m(k)=\left(\frac{k_1k_2}{\kappa},-\frac{k_1^2}{\kappa}\right),\quad
+\lambda=\frac{A k_1^2}{\kappa},\quad
+\alpha(t)=a_0e^{\lambda(t-t_0)},\quad s=k\cdot x,
+\]
+\begin{equation}\label{ipmc:affine}
+\begin{split}
+r(t,x)&=Ax_2+\alpha(t)h(s),\qquad U(t,x)=\alpha(t)m(k)h(s),\\
+P(t,x)&=-\frac A2x_2^2-\frac{\alpha(t)k_2}{\kappa}H(s).
+\end{split}
+\end{equation}
+Theorem~\ref{thm:ipm-affine-solution} proves, by the complete
+Darcy and transport calculation for these unchanged fields,
+$U=-\nabla P-re_2$, $\diver U=0$, and $r_t+U\cdot\nabla r=0$,
+including $A=0$, $a_0=0$, and $k_1=0$.
+
+Let $I\subset\R$ be an open interval. Choose a fixed compact set
+$K\subset\R^2$ and a real smooth function $\chi\in C^\infty(I\times\R^2)$
+such that $\supp\chi(t,\cdot)\subset K$ for every $t\in I$. The cutoff
+is permitted to depend on time; its time derivative is retained below.
+Define the complete density $q=\chi r$. On $\R^2$ our Fourier convention is
+\[
+\widehat f(\xi)=\int_{\R^2}f(x)e^{-i\xi\cdot x}\dd x,\qquad
+f(x)=\frac1{(2\pi)^2}\int_{\R^2}\widehat f(\xi)e^{i\xi\cdot x}\dd\xi.
+\]
+Define $M_{\R^2}$ and $\mathcal P_{\R^2}$ on $C_c^\infty(\R^2)$ by
+\begin{equation}\label{ipmc:plane-operators}
+\widehat{M_{\R^2}f}(\xi)
+=\left(\frac{\xi_1\xi_2}{|\xi|^2},-\frac{\xi_1^2}{|\xi|^2}\right)\widehat f(\xi),
+\qquad
+\widehat{\mathcal P_{\R^2}f}(\xi)=\frac{i\xi_2}{|\xi|^2}\widehat f(\xi)
+\quad(\xi\ne0).
+\end{equation}
+Values assigned at the singleton $\xi=0$ do not change these Lebesgue
+Fourier integrals. This is distinct from a discrete torus zero mode.
+
+\begin{proposition}[Exact localized finite-energy solution]\label{ipmc:plane}
+The fields
+\begin{equation}\label{ipmc:plane-fields}
+q=\chi r,\qquad v=M_{\R^2}q,\qquad
+p_c=\mathcal P_{\R^2}q,\qquad E=v-\chi U
+\end{equation}
+are smooth on $I\times\R^2$ and obey
+\begin{equation}\label{ipmc:plane-pde}
+q_t+v\cdot\nabla q=F_c,\qquad
+v=-\nabla p_c-qe_2,\qquad \diver v=0,
+\end{equation}
+with the following explicit force:
+\begin{align}\label{ipmc:plane-force}
+F_c={}&\chi_t r+\chi(\chi-1)U\cdot\nabla r
++\chi r U\cdot\nabla\chi+rE\cdot\nabla\chi+\chi E\cdot\nabla r\\
+={}&\chi_t(Ax_2+\alpha h)
+-\chi(\chi-1)\frac{Ak_1^2}{\kappa}\alpha h\notag\\
+&+\chi\alpha(Ax_2+\alpha h)h\,m(k)\cdot\nabla\chi
++(Ax_2+\alpha h)E\cdot\nabla\chi\notag\\
+&+\chi E\cdot(Ae_2+\alpha k h').\notag
+\end{align}
+The arguments of $h,h'$ in this formula are the unchanged $s=k\cdot x$.
+Both $q$ and $F_c$ have spatial support in $K$.
+For every compact $J\subset I$, every time order $j\ge0$, and every spatial
+multi-index $\gamma$, their mixed derivatives and those of $v,p_c$ are
+bounded on $J\times\R^2$. The velocity and density have finite energy:
+\begin{equation}\label{ipmc:plane-energy}
+\|v(t)\|_2^2\le\|q(t)\|_2^2
+=\int_{\R^2}\chi(t,x)^2
+       [Ax_2+\alpha(t)h(k\cdot x)]^2\dd x<\infty.
+\end{equation}
+Thus \eqref{ipmc:plane-fields}--\eqref{ipmc:plane-force} are an actual
+smooth forced IPM solution for every such cutoff, including each fixed
+compact cutoff. No smallness of $F_c$ or $E$ is asserted.
+\end{proposition}
+\begin{proof}
+All derivatives of $q$ are smooth and supported in $K$, hence are bounded
+on $J\times\R^2$. For any nonnegative integer $N$, integration by parts gives
+\[
+\widehat{\partial_t^j q}(t,\xi)
+=(1+|\xi|^2)^{-N}\widehat{(1-\Delta_x)^N\partial_t^j q}(t,\xi).
+\]
+The Fourier transform on the right has absolute value at most the $L^1$
+norm of its argument, uniformly bounded for $t\in J$. Therefore every
+time derivative of $\widehat q$ decays faster than any inverse power of
+$|\xi|$, uniformly on $J$. The symbol of $M_{\R^2}$ has norm at most $1$.
+The pressure symbol has absolute value at most $|\xi|^{-1}$, which is
+locally integrable in two dimensions since
+$\int_{|\xi|<1}|\xi|^{-1}\dd\xi=2\pi$.
+Consequently all inverse Fourier integrals for $v,p_c$, including every
+time derivative and every spatial derivative, converge absolutely and
+uniformly on $J\times\R^2$. Differentiating under those integrals proves
+their claimed smoothness and boundedness. The symbols are conjugate symmetric
+under $\xi\mapsto-\xi$ as required for real outputs from real $q$.
+
+For $\xi\ne0$ the divergence multiplier vanishes, and the Darcy multiplier is
+\[
+-i\xi\frac{i\xi_2}{|\xi|^2}-e_2
+=\left(\frac{\xi_1\xi_2}{|\xi|^2},-\frac{\xi_1^2}{|\xi|^2}\right).
+\]
+The exceptional singleton has measure zero, so these equalities give the
+pointwise smooth Darcy and divergence equations after Fourier inversion.
+Parseval with the retained factor $(2\pi)^{-2}$ gives
+\[
+\|v\|_2^2=\frac1{(2\pi)^2}\int_{\R^2}
+\frac{\xi_1^2}{|\xi|^2}|\widehat q(\xi)|^2\dd\xi
+\le\frac1{(2\pi)^2}\int_{\R^2}|\widehat q(\xi)|^2\dd\xi=\|q\|_2^2,
+\]
+which proves \eqref{ipmc:plane-energy} because $q$ has compact support.
+
+The correction $E=v-\chi U$ is defined by actual smooth fields, so it is
+smooth and belongs to $L^2$ at each time. Taking divergence gives
+$\diver E=-U\cdot\nabla\chi$, since $\diver v=\diver U=0$.
+For the transport equation, the exact product expansion is
+\begin{align*}
+q_t+v\cdot\nabla q
+&=\chi_t r+\chi r_t+(\chi U+E)\cdot(r\nabla\chi+\chi\nabla r)\\
+&=\chi_t r-\chi U\cdot\nabla r+\chi rU\cdot\nabla\chi
++\chi^2U\cdot\nabla r+rE\cdot\nabla\chi+\chi E\cdot\nabla r.
+\end{align*}
+The already proved unforced affine identity supplies $r_t=-U\cdot\nabla r$.
+Combining the two displayed coefficients gives the first line of
+\eqref{ipmc:plane-force}. Substituting the complete fields and
+$U\cdot\nabla r=-Ak_1^2\alpha h/\kappa$ gives the remaining lines.
+Each term has a factor $\chi$, $\nabla\chi$, or $\chi_t$, all supported
+in $K$. Hence $\supp F_c\subset K$. Smoothness then implies all its mixed
+derivatives are uniformly bounded on $J\times K$, and they vanish outside
+$K$, proving the full uniform statement.
+\end{proof}
+
+In a spacetime open set on which $\chi=1$, the exact map retains
+$q=r$, $v=U+E$, and $F_c=E\cdot\nabla r$. Thus agreement of the localized
+density with the affine density does not require discarding the actual
+nonlocal velocity or its force. The result constructs a finite-energy forced
+field and its complete pressure; it makes no finite-time blow-up claim.
+
+
+\endgroup

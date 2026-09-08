@@ -1,0 +1,564 @@
+\section{The source radial heat profile and its exact arithmetic transform}
+\label{sec:ns-source-heat-arithmetic}
+
+This section starts from the integral in Lemma A.6, equations
+(A.32)--(A.38), of the preserved 165-page edition of
+\emph{Finite Time Blowup for Navier--Stokes}~\cite{openaiNS2026release}.
+It concerns that explicit heat-exterior profile, not an independent
+verification of the manuscript's complete nonlinear construction.
+The integral, all dilation coefficients, and the construction's parameter
+range \(0<h<1/100\) are retained.
+
+\subsection{The integral, its differential equation, and the physical field}
+
+Fix \(0<h<1/100\), and put \(A=1/2+h\). Define, on the real
+nonnegative half-line,
+\begin{equation}\label{eq:nh-profile}
+ H_h(x)=\frac1{\Gamma(1+h)}
+       \int_0^\infty e^{-v}v^h(1+xv)^{-h}\,dv .
+\end{equation}
+Every power in this formula uses its positive real base. For \(j\ge0\),
+with \((h)_0=1\) and \((h)_j=h(h+1)\cdots(h+j-1)\), differentiation
+under the integral gives
+\begin{equation}\label{eq:nh-jets}
+ H_h^{(j)}(x)=\frac{(-1)^j(h)_j}{\Gamma(1+h)}
+ \int_0^\infty e^{-v}v^{h+j}(1+xv)^{-h-j}\,dv .
+\end{equation}
+Indeed, the absolute value of each differentiated integrand on \(x\ge0\)
+is bounded by a constant times \(e^{-v}v^{h+j}\), which is integrable.
+Dominated convergence also gives the right endpoint derivatives and their
+continuity. Thus \(H_h\) is smooth on \([0,\infty)\), with
+\[
+ H_h(0)=1,\qquad H_h^{(j)}(0)=(-1)^j(h)_j(1+h)_j .
+\]
+This statement requires no convergent Taylor series at zero.
+
+The exact source equation is
+\begin{equation}\label{eq:nh-ode}
+ x^2H_h''(x)+[1+2(1+h)x]H_h'(x)+h(1+h)H_h(x)=0 .
+\end{equation}
+Here is a direct proof retaining all its coefficients. Set
+\[
+ F(v)=e^{-v}v^h(1+xv)^{-h},\qquad
+ B(v)=e^{-v}v^{1+h}(1+xv)^{-1-h}.
+\]
+Differentiation gives
+\[
+ B'(v)=F(v)\left\{\frac{1+h}{(1+xv)^2}
+                         -\frac v{1+xv}\right\}.
+\]
+Substitution from \eqref{eq:nh-jets} into the left side of
+\eqref{eq:nh-ode} gives \(h\Gamma(1+h)^{-1}\int_0^\infty B'(v)\,dv\):
+the remaining factor reduces exactly by
+\[
+ (1+h)\left[1-\frac{2xv}{1+xv}
+                   +\frac{x^2v^2}{(1+xv)^2}\right]
+       -\frac v{1+xv}
+ =\frac{1+h}{(1+xv)^2}-\frac v{1+xv}.
+\]
+Both boundary values of \(B\) vanish, by \(h>0\) at zero and
+exponential decay at infinity. This proves the equation, including \(x=0\)
+by right continuity.
+
+Use a distinct symbol \(\sigma=r^2/2\) for the physical radial variable,
+so that it is not confused with the Mellin argument below. The manuscript's
+heat exterior is
+\begin{equation}\label{eq:nh-physical}
+ K(r,t)=c_\infty \sigma^{-A}H_h(2\tau/\sigma),\qquad
+ \sigma=r^2/2,\quad \tau=1-t,\quad c_\infty>0 ,
+\end{equation}
+on \(r>0,\ t<1\). Its swirl term must be retained. To derive its
+physical equation, write \(Z=2\tau/\sigma\) and
+\(W(\sigma,\tau)=\sigma^{-A}H_h(Z)\). Direct differentiation yields
+\begin{align*}
+ W_\sigma&=\sigma^{-A-1}[-AH_h-ZH_h'],\\
+ W_{\sigma\sigma}
+ &=\sigma^{-A-2}[A(A+1)H_h+2(A+1)ZH_h'+Z^2H_h''],\\
+ \partial_t W&=-2\sigma^{-A-1}H_h'.
+\end{align*}
+Since \(\partial_r=r\partial_\sigma\),
+\[
+ (\partial_{rr}+r^{-1}\partial_r-r^{-2})W
+ =2\sigma W_{\sigma\sigma}+2W_\sigma-\frac{W}{2\sigma}
+ =2\sigma^{-A-1}
+   [Z^2H_h''+(2A+1)ZH_h'+(A^2-1/4)H_h].
+\]
+The identities \(2A+1=2(1+h)\) and \(A^2-1/4=h(1+h)\), together
+with \eqref{eq:nh-ode}, prove
+\begin{equation}\label{eq:nh-swirl-heat}
+ \partial_tK=(\partial_{rr}+r^{-1}\partial_r-r^{-2})K .
+\end{equation}
+The equation concerns this explicitly defined exterior field; it does not
+replace the nonlinear convection, pressure, or stress corrections of the
+full construction.
+
+\subsection{Two exact dilation differences and their derivative bounds}
+
+Define
+\begin{align}
+ \phi_h(x)&=H_h(x)-2^hH_h(2x),\label{eq:nh-phi}\\
+ \psi_h(x)&=\phi_h(x)-\tfrac12\phi_h(x/2)\notag\\
+ &=(1+2^{h-1})H_h(x)-2^hH_h(2x)-\tfrac12H_h(x/2).
+ \label{eq:nh-psi}
+\end{align}
+All three source evaluations and coefficients in the last line are retained.
+We first prove the all-order bounds needed for every subsequent integral
+and inverse series.
+
+For \(a>0\) put
+\[
+ I_a(\varepsilon)=\int_0^\infty e^{-v}
+                  \left(\frac v{v+\varepsilon}\right)^a\,dv .
+\]
+For \(0<\varepsilon\le1\),
+\begin{equation}\label{eq:nh-I-bound}
+ 0\le1-I_a(\varepsilon)
+ \le\varepsilon[1+a+a\log(1/\varepsilon)].
+\end{equation}
+To prove it, integrate
+\[
+ 0\le1-(1+\varepsilon/v)^{-a}
+       \le\min(1,a\varepsilon/v).
+\]
+The second inequality follows by integrating
+\(a(1+w)^{-a-1}\le a\). On \(0<v<\varepsilon\) use the bound \(1\);
+on \(\varepsilon<v<1\) use \(a\varepsilon/v\); on \(v>1\) use the
+latter bound with \(e^{-v}/v\le e^{-v}\). Their integrals give
+\eqref{eq:nh-I-bound}.
+
+Let \(c_j=(-1)^j(h)_j/\Gamma(1+h)\). Equation \eqref{eq:nh-jets}
+has the exact form
+\[
+ H_h^{(j)}(x)=c_jx^{-h-j}I_{h+j}(1/x),
+\]
+and differentiation of \eqref{eq:nh-phi} therefore gives the cancellation
+\[
+ \phi_h^{(j)}(x)
+ =c_jx^{-h-j}\{I_{h+j}(1/x)-I_{h+j}(1/(2x))\}.
+\]
+Using \eqref{eq:nh-I-bound} in both terms, and then differentiating
+\eqref{eq:nh-psi}, proves, for every \(j\ge0\),
+\begin{equation}\label{eq:nh-all-tail}
+ |\phi_h^{(j)}(x)|+|\psi_h^{(j)}(x)|
+ \le C_{h,j}x^{-1-h-j}(1+\log x)\qquad(x\ge1).
+\end{equation}
+At zero their derivatives are bounded by \eqref{eq:nh-jets}. In particular
+\(\phi_h,\psi_h\), and every derivative of each, are integrable.
+An ordinary substitution, now justified by that integrability, gives
+\begin{equation}\label{eq:nh-mean-zero}
+ \int_0^\infty\psi_h(x)\,dx
+ =\int_0^\infty\phi_h(x)\,dx
+       -\tfrac12\,2\int_0^\infty\phi_h(y)\,dy=0 .
+\end{equation}
+Their endpoint values are
+\[
+ \phi_h(0)=1-2^h,\qquad \psi_h(0)=\tfrac12(1-2^h).
+\]
+
+We will also need a lower-order asymptotic with a signed leading term.
+For fixed \(a>0\),
+\begin{equation}\label{eq:nh-I-asymptotic}
+ I_a(\varepsilon)=1-a\varepsilon\log(1/\varepsilon)+O_a(\varepsilon).
+\end{equation}
+The intervals \(v<\varepsilon\) and \(v>1\) contribute \(O_a(\varepsilon)\)
+to \(1-I_a\). On the middle interval Taylor's formula on \(0\le w\le1\)
+gives
+\(1-(1+w)^{-a}=aw+O_a(w^2)\). Hence its contribution is
+\[
+ a\varepsilon\int_\varepsilon^1\frac{e^{-v}}v\,dv
+       +O_a\left(\varepsilon^2\int_\varepsilon^1v^{-2}\,dv\right)
+ =a\varepsilon\log(1/\varepsilon)+O_a(\varepsilon).
+\]
+This proves \eqref{eq:nh-I-asymptotic}, rather than assuming an asymptotic
+expansion under a nonuniform integral. Substitution first into \(H_h\),
+then into the two differences, yields
+\begin{align}
+ H_h(x)&=\frac{x^{-h}}{\Gamma(1+h)}
+       -\frac{h\,x^{-1-h}\log x}{\Gamma(1+h)}
+       +O_h(x^{-1-h}),\notag\\
+ \phi_h(x)&=-\frac{h\,x^{-1-h}\log x}{2\Gamma(1+h)}
+       +O_h(x^{-1-h}),\notag\\
+ \psi_h(x)&=a_hx^{-1-h}\log x+O_h(x^{-1-h}),\qquad
+ a_h=\frac{h(2^h-1)}{2\Gamma(1+h)}>0 .
+ \label{eq:nh-signed-tail}
+\end{align}
+
+\subsection{The arithmetic trace, including every endpoint derivative}
+
+For \(x>0\), define the genuine arithmetic dilation sum
+\begin{equation}\label{eq:nh-S}
+ S_h(x)=\sum_{n\ge1}\psi_h(nx).
+\end{equation}
+After \(j\) differentiations its \(n\)-th term is
+\(n^j\psi_h^{(j)}(nx)\). On every compact subinterval of \((0,\infty)\),
+\eqref{eq:nh-all-tail} bounds it, apart from finitely many terms, by
+\(C n^{-1-h}(1+\log n)\). This is summable, so all differentiated
+series converge locally uniformly and \(S_h\) is smooth there. For \(x\ge1\),
+the same argument gives
+\begin{equation}\label{eq:nh-S-all-tail}
+ S_h^{(j)}(x)=O_{h,j}(x^{-1-h-j}(1+\log x)).
+\end{equation}
+Using the uniform remainder in \eqref{eq:nh-signed-tail} and summing
+absolutely further proves
+\begin{equation}\label{eq:nh-S-signed-tail}
+ S_h(x)=a_h\zeta(1+h)x^{-1-h}\log x+O_h(x^{-1-h}).
+\end{equation}
+Indeed \(\sum n^{-1-h}\log n<\infty\), and the sum of the individual
+remainders is bounded by \(C_hx^{-1-h}\zeta(1+h)\).
+
+We prove the needed endpoint summation formula explicitly. Let
+\(B_m(v)\) be the Bernoulli polynomials defined by \(B_0=1\),
+\(B_m'=mB_{m-1}\), and \(\int_0^1B_m(v)\,dv=0\) for \(m\ge1\);
+write \(B_m=B_m(0)\). In particular \(B_1(v)=v-1/2\).
+For \(m\ge2\) integration of \(B_m'\) shows \(B_m(1)=B_m(0)\).
+Uniqueness of this defining recursion proves
+\(B_m(1-v)=(-1)^mB_m(v)\), so \(B_m(0)=0\) for odd \(m\ge3\).
+Let \(\widetilde B_m(v)=B_m(\{v\})\); the values at the integers
+are immaterial inside integrals.
+
+Suppose \(f\) and its derivatives through order \(2M\) are integrable,
+have the indicated one-sided values at zero, and tend to zero at infinity
+through order \(2M-1\). Summing integration by parts over the intervals
+\([nx,(n+1)x]\) gives
+\[
+ \sum_{n\ge1}f(nx)
+ =x^{-1}\int_0^\infty f(v)\,dv-\frac{f(0)}2
+       +\int_0^\infty\widetilde B_1(v/x)f'(v)\,dv .
+\]
+For example, the integral on one interval equals the half-sum of its
+endpoint values minus \(x^{-1}\) times its integral. For every subsequent
+integration the identity
+\(\frac{d}{dv}\widetilde B_m(v/x)=
+m x^{-1}\widetilde B_{m-1}(v/x)\) holds between endpoints.
+The endpoint values match for \(m\ge2\), and the odd endpoint constants
+vanish as just proved. Repeating these integrations gives
+\begin{align}
+ \sum_{n\ge1}f(nx)
+ &=x^{-1}\int_0^\infty f(v)\,dv-\frac{f(0)}2
+   -\sum_{k=1}^M\frac{B_{2k}}{(2k)!}
+           f^{(2k-1)}(0)x^{2k-1}+R_M(f,x),\label{eq:nh-EM}\\
+ |R_M(f,x)|&\le
+ \frac{\|B_{2M}\|_{L^\infty[0,1]}}{(2M)!}
+ x^{2M-1}\int_0^\infty|f^{(2M)}(v)|\,dv .\notag
+\end{align}
+The remainder is the negative of
+\(x^{2M-1}(2M)!^{-1}\int\widetilde B_{2M}(v/x)f^{(2M)}(v)\,dv\);
+its displayed bound justifies the infinite endpoint limit as well.
+
+For every fixed \(j\ge0\), apply this formula to
+\[
+ f_j(v)=v^j\psi_h^{(j)}(v),\qquad
+ x^j S_h^{(j)}(x)=\sum_{n\ge1} f_j(nx).
+\]
+Each derivative \(f_j^{(k)}\) is a finite sum of constant multiples of
+\(v^{j-\ell}\psi_h^{(j+k-\ell)}(v)\), with
+\(0\le\ell\le\min(j,k)\). It is bounded near zero and
+\(O(v^{-1-h-k}(1+\log v))\) at infinity, so every integrability
+and boundary assumption of \eqref{eq:nh-EM} holds.
+Integrating by parts \(j\) times, with every boundary term zero by these
+same estimates, gives
+\[
+ \int_0^\infty f_j(v)\,dv
+   =(-1)^j j!\int_0^\infty\psi_h(v)\,dv=0.
+\]
+At the origin
+\begin{equation}\label{eq:nh-fj-endpoint}
+ f_j^{(r)}(0)=
+ \begin{cases}
+  0,&r<j,\\[2pt]
+  \dfrac{r!}{(r-j)!}\psi_h^{(r)}(0),&r\ge j.
+ \end{cases}
+\end{equation}
+Thus, after division by \(x^j\), every nonzero term of
+\eqref{eq:nh-EM} has a nonnegative power of \(x\). Choose
+\(2M-1>j\); its remainder tends to zero after this division.
+This proves that \(S_h^{(j)}\) is bounded at zero for every \(j\) and,
+more precisely, has a finite limit. With
+\(C_{h,j}\) denoting that limit,
+\begin{equation}\label{eq:nh-S-jets-zero}
+ C_{h,0}=-\frac{\psi_h(0)}2=\frac{2^h-1}{4},\qquad
+ C_{h,j}=-\frac{B_{j+1}}{j+1}\psi_h^{(j)}(0)\quad(j\ge1).
+\end{equation}
+For even \(j\ge2\) the last expression is zero. The formula follows
+from \eqref{eq:nh-fj-endpoint}: the possible constant term has
+\(2k-1=j\), and its coefficient is
+\(-B_{j+1}j!/(j+1)!\).
+
+These are actual smooth endpoint jets, not merely unrelated limits.
+For \(0<a<x\), the fundamental theorem of calculus gives
+\(S_h^{(j)}(x)-S_h^{(j)}(a)=
+\int_a^x S_h^{(j+1)}(v)\,dv\). Boundedness permits \(a\downarrow0\),
+and continuity of the limiting derivative proves that extending each
+\(S_h^{(j)}\) by \(C_{h,j}\) preserves the derivative relation.
+Induction proves \(S_h\in C^\infty([0,\infty))\). In particular
+\begin{equation}\label{eq:nh-S-zero}
+ S_h(x)=\frac{2^h-1}{4}+O_h(x)\qquad(x\downarrow0).
+\end{equation}
+The endpoint constant is positive. It is not a scalar Weil value.
+
+\subsection{The exact Mellin detector and its removable points}
+
+Use the Mellin convention
+\[
+ \mathcal M f(s)=\int_0^\infty f(x)x^{s-1}\,dx,\qquad
+ x^{s-1}=\exp((s-1)\log x),
+\]
+where \(s\in\mathbb C\) and \(\log x\) is real.
+For \(0<\Re s<h\), absolute interchange in \eqref{eq:nh-profile}
+and substitution \(w=xv\) give
+\begin{equation}\label{eq:nh-MH}
+ \mathcal M H_h(s)=
+ G_h(s):=\frac{\Gamma(s)\Gamma(h-s)\Gamma(1+h-s)}
+                    {\Gamma(h)\Gamma(1+h)} .
+\end{equation}
+For completeness, the inner integral is
+\(\int_0^\infty w^{s-1}(1+w)^{-h}dw\).
+In the absolutely convergent product integral
+\(\Gamma(s)\Gamma(h-s)\), substitute
+\((a,b)=(ry,r(1-y))\), \(r>0,\ 0<y<1\); its Jacobian is \(r\).
+The result is \(\Gamma(h)\int_0^1y^{s-1}(1-y)^{h-s-1}dy\).
+Substitution \(w=y/(1-y)\) proves that the inner integral is
+\(\Gamma(s)\Gamma(h-s)/\Gamma(h)\). The remaining \(v\)-integral
+is \(\Gamma(1+h-s)\), proving \eqref{eq:nh-MH}.
+
+For \(a>0\), substitution gives exactly
+\(\mathcal M[f(a\,\cdot)](s)=a^{-s}\mathcal M f(s)\).
+Consequently, initially on \(0<\Re s<h\),
+\begin{align}
+ \mathcal M\phi_h(s)&=(1-2^{h-s})G_h(s),\label{eq:nh-Mphi}\\
+ \mathcal M\psi_h(s)&=(1-2^{s-1})(1-2^{h-s})G_h(s).
+ \label{eq:nh-Mpsi}
+\end{align}
+The bounds already proved make the left sides holomorphic on
+\(0<\Re s<1+h\), with locally uniform logarithmic moments justifying
+all complex derivatives. On the right, the only gamma pole in that open
+strip is at \(s=h\). The factor \(1-2^{h-s}\) removes it, since
+\[
+ \lim_{s\to h}(1-2^{h-s})\Gamma(h-s)=-\log2.
+\]
+The identity theorem therefore proves \eqref{eq:nh-Mphi} and
+\eqref{eq:nh-Mpsi} throughout the enlarged strip, without interchanging
+a divergent source integral. In particular their removable values are
+\begin{align}
+ \mathcal M\phi_h(h)&=-\frac{\log2}{\Gamma(1+h)},&
+ \mathcal M\psi_h(h)&=
+ -\frac{(1-2^{h-1})\log2}{\Gamma(1+h)},\label{eq:nh-values-h}\\
+ \mathcal M\phi_h(1)&=
+ \frac{1-2^{h-1}}{h(h-1)},&
+ \mathcal M\psi_h(1)&=0.\label{eq:nh-values-one}
+\end{align}
+The last equality agrees with the direct mean-zero calculation.
+
+On the nonempty strip \(1<\Re s<1+h\), the sum defining \(S_h\)
+can be integrated termwise absolutely: the sum of the absolute Mellin
+integrals is
+\(\zeta(\Re s)\int_0^\infty|\psi_h(x)|x^{\Re s-1}dx<\infty\).
+It follows that
+\begin{equation}\label{eq:nh-detector}
+ \mathcal M S_h(s)=\zeta(s)(1-2^{s-1})(1-2^{h-s})
+       \frac{\Gamma(s)\Gamma(h-s)\Gamma(1+h-s)}
+                    {\Gamma(h)\Gamma(1+h)} .
+\end{equation}
+Equations \eqref{eq:nh-S-zero} and \eqref{eq:nh-S-all-tail} make its
+left side holomorphic on \(0<\Re s<1+h\). The right side's point at
+\(h\) is removable as above, and its point at \(1\) is removable because
+\(\zeta(s)\) has residue \(1\) there and
+\(1-2^{s-1}=-(s-1)\log2+O((s-1)^2)\).
+The identity therefore holds on the full open strip. Its values are
+\begin{align}
+ \mathcal M S_h(h)
+ &=-\frac{\zeta(h)(1-2^{h-1})\log2}{\Gamma(1+h)},\notag\\
+ \mathcal M S_h(1)
+ &=\frac{(1-2^{h-1})\log2}{h(1-h)}>0 .
+ \label{eq:nh-detector-removable}
+\end{align}
+Here \(\Gamma(h-1)/\Gamma(1+h)=1/[h(h-1)]\) supplies the second
+value; no sign or scale is suppressed.
+
+For fixed \(h\), throughout
+\begin{equation}\label{eq:nh-zero-domain}
+ h<\Re s<1
+\end{equation}
+the multiplier of \(\zeta(s)\) in \eqref{eq:nh-detector} is holomorphic
+and nowhere zero. The dilation factors can vanish only on the lines
+\(\Re s=h\) and \(\Re s=1\), respectively. The gamma functions
+have no zeros, and their poles do not lie in \eqref{eq:nh-zero-domain}.
+If a point \(s_0\) in that strip is a zero of order \(m\) of \(\zeta\),
+write \(\zeta(s)=(s-s_0)^m a(s)\), \(a(s_0)\ne0\); multiplication
+by the nonvanishing holomorphic factor preserves this order. Division
+proves the converse. Thus the detector preserves every zero and its
+exact multiplicity on \eqref{eq:nh-zero-domain}. The formula itself
+does not supply a new zero.
+
+The absolute Mellin strip is exactly \(0<\Re s<1+h\).
+Sufficiency was proved above. Necessity follows from the positive
+nonzero endpoint constant \eqref{eq:nh-S-zero} at zero and the positive
+leading term \eqref{eq:nh-S-signed-tail} at infinity: the absolute
+integral diverges for \(\Re s\le0\) at zero and for
+\(\Re s\ge1+h\) at infinity. This is the domain of the defining
+integral, not a denial of the meromorphic continuation supplied by
+\eqref{eq:nh-detector}.
+
+\subsection{All three inverse maps and their convergence}
+
+The source kernel is recovered by the following explicit series:
+\begin{align}
+ \phi_h(x)&=\sum_{j\ge0}2^{-j}\psi_h(x/2^j),\label{eq:nh-inv-one}\\
+ H_h(x)&=-\sum_{k\ge1}2^{-kh}\phi_h(x/2^k),\label{eq:nh-inv-two}\\
+ \psi_h(x)&=\sum_{n\ge1}\mu(n)S_h(nx).\label{eq:nh-inv-three}
+\end{align}
+The first finite sum, through \(j=J\), telescopes exactly to
+\[
+ \phi_h(x)-2^{-J-1}\phi_h(x/2^{J+1}).
+\]
+The term subtracted tends to zero because \(\phi_h\) is bounded near
+zero. The negative second finite sum, through \(k=K\), equals
+\[
+ H_h(x)-2^{-Kh}H_h(x/2^K);
+\]
+its last term tends to zero because \(h>0\) and \(H_h(0)=1\).
+For derivative order \(\ell\), the terms of these two series have the
+additional factors \(2^{-j\ell}\) and \(2^{-k\ell}\), respectively.
+All source derivatives are bounded on bounded intervals, so the series
+and every differentiated series converge uniformly on such intervals.
+Their remainders vanish there as well. Thus the two inverse identities
+hold smoothly, including at zero. Boundedness at zero also makes the
+inverses unique: iterating either corresponding homogeneous dilation
+equation gives its value times \(2^{-J}\), respectively \(2^{-Jh}\),
+at a shrinking argument, and hence zero.
+
+For the arithmetic inverse, at fixed \(x>0\) the double series is
+absolutely bounded by
+\[
+ \sum_{a,b\ge1}|\psi_h(abx)|
+ =\sum_{k\ge1}d(k)|\psi_h(kx)|
+ \le C_x\sum_{k\ge1}d(k)k^{-1-h}(1+\log k)<\infty.
+\]
+To verify the last convergence directly, set \(k=ab\), use
+\(\log(ab)=\log a+\log b\), and factor into products of
+\(\sum a^{-1-h}\) and \(\sum a^{-1-h}\log a\), both convergent
+by the integral test. Since \(|\mu(a)|\le1\), exchanging sums is
+legitimate and gives
+\[
+ \sum_{a\ge1}\mu(a)S_h(ax)
+ =\sum_{k\ge1}\psi_h(kx)\sum_{a\mid k}\mu(a)=\psi_h(x).
+\]
+The divisor coefficient is \(1\) for \(k=1\), while for \(k>1\) it is
+\(\prod_{p\mid k}(1-1)=0\), by the defining squarefree expansion of
+\(\mu\). For derivative order \(\ell\), the double-series terms have
+the factor \((ab)^\ell\psi_h^{(\ell)}(abx)\); the same majorant works
+by \eqref{eq:nh-all-tail}, locally uniformly in \(x>0\).
+Thus \eqref{eq:nh-inv-three} is also an equality of smooth functions
+with all derivatives, and is an actual inverse on this decay class.
+The three steps preserve the original source through the arithmetic
+sum; they are not merely identities between formal series.
+
+\subsection{The logarithmic Fourier map and its heat domain}
+
+For \(0<c<1+h\) define the logarithmic input
+\begin{equation}\label{eq:nh-log-input}
+ g_{h,c}(u)=e^{cu}S_h(e^u),\qquad u\in\mathbb R,
+\end{equation}
+and use the same minus-Fourier convention as the earlier sections.
+The change of variable \(x=e^u\) gives
+\begin{equation}\label{eq:nh-fourier}
+ \mathscr Fg_{h,c}(s)=\mathcal M S_h(c-is).
+\end{equation}
+This is an exact coordinate map, including its scale and vertical line.
+The domain of absolute convergence of the defining Fourier integral
+is exactly
+\begin{equation}\label{eq:nh-fourier-strip}
+ -c<\Im s<1+h-c .
+\end{equation}
+Indeed \(\Re(c-is)=c+\Im s\); the exact Mellin strip just proved
+therefore supplies both necessity and sufficiency.
+
+The real input \(g_{h,c}\) is a Schwartz function, despite the finite
+absolute complex strip. To check every seminorm, differentiate
+\(e^{cu}S_h(e^u)\) repeatedly. Each derivative is a finite linear
+combination of \(e^{cu}x^jS_h^{(j)}(x)\), \(x=e^u\), with
+\(0\le j\le k\) for derivative order \(k\).
+At \(u\to-\infty\), every \(S_h^{(j)}\) is bounded by the complete
+endpoint proof, so these derivatives are \(O_{h,c,k}(e^{cu})\).
+At \(u\to+\infty\), \eqref{eq:nh-S-all-tail} bounds them by
+\[
+ O_{h,c,k}((1+u)e^{-(1+h-c)u}).
+\]
+Multiplication by any power of \(|u|\) preserves boundedness and
+decay at both ends. This proves all Schwartz seminorm estimates.
+Fourier inversion recovers \(g_{h,c}\). To check the inversion directly
+on this domain, two integrations by parts give
+\(\mathscr Fg_{h,c}(s)=O((1+|s|)^{-2})\) on the real axis:
+the boundary terms vanish and \(g_{h,c}''\) is integrable.
+Insert the factor \(e^{-\varepsilon s^2}\), \(\varepsilon>0\),
+in the inverse integral. Absolute Fubini and the Gaussian integral
+identify it with
+\[
+ \int_{\mathbb R}
+ \frac{e^{-(u-v)^2/(4\varepsilon)}}{\sqrt{4\pi\varepsilon}}\,
+ g_{h,c}(v)\,dv.
+\]
+This tends to \(g_{h,c}(u)\): split at \(|u-v|=\delta\), use
+continuity on the inner interval, and use boundedness of \(g_{h,c}\)
+and the vanishing Gaussian tail outside it. On the Fourier side the
+integrable bound just proved permits \(\varepsilon\downarrow0\)
+by dominated convergence. Thus, explicitly on the real axis,
+\[
+ g_{h,c}(u)=\frac1{2\pi}\int_{\mathbb R}
+               \mathcal M S_h(c-is)e^{isu}\,ds,\qquad
+ S_h(x)=x^{-c}g_{h,c}(\log x).
+\]
+Together with \eqref{eq:nh-inv-one}--\eqref{eq:nh-inv-three}, these
+are inverse coordinates all the way back to \(H_h\).
+
+The earlier arithmetic heat convention multiplies a logarithmic input
+by \(e^{tu^2/4}\), corresponding to generator
+\(-\partial_s^2/4\) on its Fourier transform. On this actual input
+the domain must be checked, not inferred from its Schwartz property.
+Equation \eqref{eq:nh-S-zero} gives
+\begin{equation}\label{eq:nh-left-asymptotic}
+ g_{h,c}(u)\sim \frac{2^h-1}{4}e^{cu}\qquad(u\to-\infty).
+\end{equation}
+For any complex \(t\) with \(\Re t>0\) and any complex \(s\),
+the absolute integrand
+\(\lvert e^{tu^2/4}g_{h,c}(u)e^{-isu}\rvert\)
+is therefore bounded below on a sufficiently negative half-line by
+a positive constant times
+\[
+ \exp\bigl((\Re t)u^2/4+(c+\Im s)u\bigr).
+\]
+Its integral diverges. In particular the source input does not belong
+to the superexponentially decreasing two-sided heat domain used for
+the theta input. This explicit endpoint obstruction concerns that
+defining integral, not every possible analytic continuation.
+
+For \(\Re t<0\), on the other hand, set
+\begin{equation}\label{eq:nh-negative-heat}
+ F_{h,c}(s,t)=\int_{\mathbb R}
+ e^{tu^2/4}g_{h,c}(u)e^{-isu}\,du .
+\end{equation}
+On any compact set of such \((s,t)\), there is a uniform negative
+quadratic coefficient in \(u\). Every differentiated integrand is
+bounded by an integrable Gaussian times an exponential-linear factor
+and a fixed polynomial in \(|u|\), by the preceding endpoint estimates.
+Dominated differentiation proves joint holomorphy, entirety in \(s\),
+and the exact equation
+\begin{equation}\label{eq:nh-spectral-heat}
+ \partial_tF_{h,c}(s,t)=-\tfrac14\partial_s^2F_{h,c}(s,t).
+\end{equation}
+Both sides equal the integral with multiplier \(u^2/4\).
+As \(t\) tends to zero through \(\Re t<0\), dominated convergence
+on each compact substrip of \eqref{eq:nh-fourier-strip} gives the
+boundary value \eqref{eq:nh-fourier}, with every \(s\)-derivative.
+On \(\Re t=0\) absolute convergence is again exactly
+\eqref{eq:nh-fourier-strip}, since the heat multiplier has modulus one.
+No entire-time heat continuation is asserted.
+
+The constructions above give an invertible, source-specific route from the
+actual radial heat exterior to an arithmetic transform with exactly the
+zeta zero multiplicities on \eqref{eq:nh-zero-domain}. They establish
+neither a new off-critical-line zero nor a negative Weil witness. The
+physical exterior equation \eqref{eq:nh-swirl-heat} and the valid
+spectral equation \eqref{eq:nh-spectral-heat} have both been proved with
+their actual domains; the full nonlinear Navier--Stokes construction
+has not been replaced by either one.

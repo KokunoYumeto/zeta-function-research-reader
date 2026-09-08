@@ -1,0 +1,1018 @@
+\subsubsection{Proof-bearing audit of the Grover--Mezzadri--Simm tranche}
+\label{sec:GMS-complete-proof-audit}
+
+The preceding subsection records the statements.  This subsection records the proof chain at
+the level needed to reproduce it.  The primary object is version~1 of the paper together with
+four locally pinned source dependencies used in its proofs: the characteristic-polynomial determinant of
+Akemann--Vernizzi
+\cite[Thm.~1 and its proof]{akemannVernizzi2003}, Krattenthaler's divided-difference reduction
+\cite[Lemma~22]{krattenthaler1999}, Balantekin's determinant Taylor expansion
+\cite[App.~B]{balantekin2000}, and the finite-kernel microscopic estimate of Simm--Wei
+\cite[Sec.~5.1]{simmWei2026}.  The formulas and deductions below are a reconstruction with
+those human sources cited; author-side videos are not used as theorem evidence.  Macdonald's
+Schur-function identities, Hua's deeper provenance for the determinant expansion, and the
+Titchmarsh mean-value estimates remain separately marked imported boundaries wherever they
+enter.
+
+\paragraph{Exact finite-$N$ generating determinant.}
+For pairwise distinct coordinates
+$\mathbf z=(z_1,\ldots,z_K)$ and $\mathbf w=(w_1,\ldots,w_L)$, define
+\begin{equation}
+ \mathcal F_{N;K,L}(\mathbf z,\mathbf w)
+ =\mathbb E\!\left[
+   \prod_{i=1}^{K}\Lambda_N(z_i)
+   \prod_{j=1}^{L}\overline{\Lambda_N(\overline{w_j})}
+ \right],
+ \qquad
+ \mathcal K_{N+L}(r)=\sum_{q=0}^{N+L-1}r^q.
+ \label{eq:GMS-audit-F}
+\end{equation}
+The bar in the second product has a precise role:
+$\overline{\Lambda_N(\overline w)}=\det(I-wU)$, whereas
+$\Lambda_N(z)=\det(I-zU^\dagger)$.  Thus $z$ and $w$ are independent holomorphic
+coordinates until the final coalescence $w=\overline z$.
+
+\begin{theorem}[Corrected Akemann--Vernizzi determinant in the CUE coordinates]
+\label{thm:GMS-audit-AV}
+Suppose $K\geq L\geq1$ and put $d=K-L$.  Let
+$\Omega_N^{\mathrm{ker}\mid\mathrm{exc}}(\mathbf z,\mathbf w)$ be the $K\times K$ matrix
+whose $i$th row is
+\begin{equation}
+ \bigl(
+ z_i^{K-L}\mathcal K_{N+L}(z_iw_1),\ldots,
+ z_i^{K-L}\mathcal K_{N+L}(z_iw_L),
+ 1,z_i,\ldots,z_i^{K-L-1}
+ \bigr).
+ \label{eq:GMS-audit-OmegaN-row}
+\end{equation}
+Let $\Omega_N^{\mathrm{exc}\mid\mathrm{ker}}$ be obtained by moving the last $d$ columns to
+the front, without changing the order inside either block.  Then
+\begin{equation}
+ \mathcal F_{N;K,L}(\mathbf z,\mathbf w)
+ =(-1)^{Ld}\frac{\det\Omega_N^{\mathrm{ker}\mid\mathrm{exc}}(\mathbf z,\mathbf w)}
+ {\Delta(\mathbf z)\Delta(\mathbf w)}
+ =\frac{\det\Omega_N^{\mathrm{exc}\mid\mathrm{ker}}(\mathbf z,\mathbf w)}
+ {\Delta(\mathbf z)\Delta(\mathbf w)}.
+ \label{eq:GMS-audit-AV}
+\end{equation}
+Both sides extend holomorphically across every collision of $z$-coordinates or
+$w$-coordinates.
+\end{theorem}
+
+\begin{proof}
+We spell out the specialization because every exponent used later comes from it.  Under the
+Weyl integration formula, the eigenvalues $x_r=e^{i\theta_r}$ of a Haar unitary have joint
+density
+\begin{equation}
+ \frac{1}{N!(2\pi)^N}\,|\Delta(x_1,\ldots,x_N)|^2
+ \prod_{r=1}^{N}d\theta_r.
+ \label{eq:GMS-audit-Weyl}
+\end{equation}
+Multiplication by
+$\prod_{r,i}(1-z_i x_r^{-1})\prod_{r,j}(1-w_jx_r)$ appends the external
+coordinates to the two Vandermonde determinants.  Replacing monomials by the monic
+orthogonal polynomials does not change a Vandermonde determinant.  For Haar measure on the
+unit circle these polynomials are the monomials and all norms are one.  Expanding both
+determinants and applying orthogonality
+\begin{equation}
+ \frac1{2\pi}\int_0^{2\pi}x^p\overline{x^q}\,d\theta=\delta_{pq}
+ \label{eq:GMS-audit-circle-orthogonality}
+\end{equation}
+integrates the $N$ eigenvalue rows.  Equivalently, one applies the projection identity
+\begin{equation}
+ \frac1{2\pi}\int_0^{2\pi}
+ \mathcal K_m(vx^{-1})\mathcal K_m(xu)\,d\theta
+ =\mathcal K_m(vu),
+ \qquad \mathcal K_m(r)=\sum_{q=0}^{m-1}r^q,
+ \label{eq:GMS-audit-projection-kernel}
+\end{equation}
+successively; the factors $N,N-1,\ldots,1$ cancel the $N!$ in
+\eqref{eq:GMS-audit-Weyl}.  When $K=L$, the surviving external block is
+$\bigl(\mathcal K_{N+K}(z_iw_j)\bigr)_{i,j=1}^{K}$, giving
+\begin{equation}
+ \mathcal F_{N;K,K}
+ =\frac{\det(\mathcal K_{N+K}(z_iw_j))_{i,j=1}^{K}}
+ {\Delta(\mathbf z)\Delta(\mathbf w)}.
+ \label{eq:GMS-audit-equal-determinant}
+\end{equation}
+
+For $K>L$, introduce $d=K-L$ auxiliary coordinates
+$\boldsymbol\varepsilon=(\varepsilon_1,\ldots,\varepsilon_d)$ and apply
+\eqref{eq:GMS-audit-equal-determinant} to the ordered $K$-tuple
+$(w_1,\ldots,w_L,\varepsilon_1,\ldots,\varepsilon_d)$.  Since
+$\Lambda_N(0)=1$, its left-hand side tends to $\mathcal F_{N;K,L}$ as
+$\boldsymbol\varepsilon\to\boldsymbol0$.  The denominator factors exactly as
+\begin{equation}
+ \Delta(\mathbf w,\boldsymbol\varepsilon)
+ =\Delta(\mathbf w)\Delta(\boldsymbol\varepsilon)
+  \prod_{j=1}^{L}\prod_{r=1}^{d}(\varepsilon_r-w_j),
+ \label{eq:GMS-audit-padded-Vandermonde}
+\end{equation}
+and hence
+\begin{equation}
+ \lim_{\boldsymbol\varepsilon\to\boldsymbol0}
+ \frac{\Delta(\mathbf w,\boldsymbol\varepsilon)}
+ {\Delta(\mathbf w)\Delta(\boldsymbol\varepsilon)}
+ =(-1)^{Ld}\prod_{j=1}^{L}w_j^d.
+ \label{eq:GMS-audit-cross-Vandermonde-sign}
+\end{equation}
+In the numerator, division by $\Delta(\boldsymbol\varepsilon)$ and confluence at zero replace
+the auxiliary columns by
+\begin{equation}
+ \left.
+ \frac1{r!}\frac{\partial^r}{\partial\varepsilon^r}
+ \mathcal K_{N+K}(z_i\varepsilon)
+ \right|_{\varepsilon=0}=z_i^r,
+ \qquad 0\leq r<d.
+ \label{eq:GMS-audit-zero-jet-columns}
+\end{equation}
+For each remaining kernel column $j$, subtract the linear combination
+$\sum_{r=0}^{d-1}w_j^r(z_i^r)_i$.  This does not change the determinant and leaves
+\begin{equation}
+ \mathcal K_{N+K}(z_iw_j)-\sum_{r=0}^{d-1}(z_iw_j)^r
+ =(z_iw_j)^d\mathcal K_{N+L}(z_iw_j).
+ \label{eq:GMS-audit-kernel-tail-removal}
+\end{equation}
+Factoring $w_j^d$ from each of the $L$ kernel columns cancels
+$\prod_jw_j^d$ in \eqref{eq:GMS-audit-cross-Vandermonde-sign}; division by the remaining
+$(-1)^{Ld}$ gives the first equality in \eqref{eq:GMS-audit-AV}.  Moving the $L$ kernel
+columns past the $d$ excess columns contributes a second $(-1)^{Ld}$ and gives the
+excess-first equality with no prefactor.
+
+This padding proof is also the exact CUE-coordinate specialization of the two-block
+determinant proved by Akemann--Vernizzi
+\cite[pp.~8--12, especially the induction displayed in eq.~(2.12)]{akemannVernizzi2003}.
+Their determinant in variables $v_i,u_j$ is correct.  The parity in
+\eqref{eq:GMS-audit-AV} enters when the reciprocal coordinates used for
+$\det(I-zU^*)$ are converted to the ascending excess columns displayed in
+\eqref{eq:GMS-audit-OmegaN-row}.
+
+The numerator is alternating separately in $\mathbf z$ and $\mathbf w$.  Successive column
+subtractions, or Newton divided differences, factor every $z_j-z_i$ and every $w_j-w_i$.
+The quotient therefore extends holomorphically; at a collision its coordinates are the
+corresponding derivatives divided by factorials.  This is the confluent specialization of
+Krattenthaler's explicit divided-difference identity
+\cite[Lemma~22]{krattenthaler1999}.
+\end{proof}
+
+The factor in \eqref{eq:GMS-audit-AV} is forced already in the smallest unequal case.  Take
+$K=2$, $L=1$, $N=1$ and write the Haar eigenvalue as $e^{\mathrm i\theta}$.  Direct extraction
+of the constant Fourier coefficient gives
+\begin{align}
+ \mathcal F_{1;2,1}(z_1,z_2;w)
+ &=\frac1{2\pi}\int_0^{2\pi}
+ (1-z_1e^{-\mathrm i\theta})(1-z_2e^{-\mathrm i\theta})
+ (1-we^{\mathrm i\theta})\,d\theta\notag\\
+ &=1+w(z_1+z_2).
+ \label{eq:GMS-audit-K2L1-direct}
+\end{align}
+But the kernel-first numerator printed in version~1 is
+\begin{align}
+ \det\begin{pmatrix}
+ z_1(1+z_1w)&1\\ z_2(1+z_2w)&1
+ \end{pmatrix}
+ &=(z_1-z_2)\bigl(1+w(z_1+z_2)\bigr),
+ \label{eq:GMS-audit-K2L1-determinant}
+\end{align}
+whereas $\Delta(z_1,z_2)=z_2-z_1$.  Its uncorrected quotient is therefore the negative of
+\eqref{eq:GMS-audit-K2L1-direct}; here $(-1)^{L(K-L)}=-1$ repairs it.  This is a finite exact
+counterexample to the sign as printed, not a numerical asymptotic test.
+The cross-multiplied identity
+\eqref{eq:GMS-audit-K2L1-direct}--\eqref{eq:GMS-audit-K2L1-determinant} and the doubled
+fixed-exponent polynomial identity are replayed by \texttt{GMSUnequalSign.lean}.
+
+The companion receipt \texttt{FORMAL-20260827-0022.receipt.json} records Lean~4.32.0,
+mathlib commit beginning
+\texttt{81a5d257c8e4} (and stores the complete hash), exit code zero, and a peak process-tree
+working set below $1.41$~GB.  That certificate intentionally does not formalize Haar
+integration, the general confluent limit, or the large-\(N\) argument.
+
+\paragraph{Mesoscopic regime: uniform kernel control and exact coefficient extraction.}
+The proof of \eqref{eq:GMS-mesoscopic} has two logically separate parts.  The first removes
+the finite kernel with a uniform error; the second evaluates every derivative of the limiting
+Cauchy product.
+
+\begin{lemma}[Uniform limiting product]
+\label{lem:GMS-audit-uniform-product}
+Fix $\alpha\in(0,1)$ and the lists $\mu,\nu$.  There is
+$\delta>0$ such that, uniformly for $|z|<1-N^{-\alpha}$,
+\begin{equation}
+ M_{\mu,\nu}(z,N)
+ =\left.
+ \mathcal D_{\mathbf z}^{\mu}\mathcal D_{\mathbf w}^{\nu}
+ \prod_{i=1}^{K}\prod_{j=1}^{L}(1-z_iw_j)^{-1}
+ \right|_{\mathbf z=z,\,\mathbf w=\overline z}
+ +O(e^{-N^\delta}).
+ \label{eq:GMS-audit-uniform-product}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+First take $K=L$.  From \eqref{eq:GMS-audit-equal-determinant},
+\begin{equation}
+ \mathcal K_{N+K}(r)=\frac{1-r^{N+K}}{1-r}.
+ \label{eq:GMS-audit-kernel-tail}
+\end{equation}
+The Cauchy determinant identity gives
+\begin{equation}
+ \frac{\det((1-z_iw_j)^{-1})_{i,j=1}^{K}}
+ {\Delta(\mathbf z)\Delta(\mathbf w)}
+ =\prod_{i,j=1}^{K}(1-z_iw_j)^{-1}.
+ \label{eq:GMS-audit-Cauchy-determinant}
+\end{equation}
+For $d_N=1-|z|\geq N^{-\alpha}$, take each Cauchy differentiation contour to have radius
+$d_N/8$.  On their product, $|z_iw_j|\leq1-c_0d_N$ for an absolute $c_0>0$, and hence
+\begin{equation}
+ \left|\frac{(z_iw_j)^{N+K}}{1-z_iw_j}\right|
+ \leq C d_N^{-1}e^{-c_0Nd_N}
+ \leq C N^\alpha e^{-c_0N^{1-\alpha}}.
+ \label{eq:GMS-audit-tail-bound}
+\end{equation}
+The determinant has fixed size.  Divided differences express its Vandermonde quotient as a
+finite determinant of iterated divided differences, so the same bound holds there up to a
+fixed power of $d_N^{-1}$.  Cauchy's integral formula for the fixed total derivative order
+$|\mu|+|\nu|$ contributes another fixed power.  Every such polynomial in $N$ is absorbed by
+$e^{-c_0N^{1-\alpha}}$; for example one may take any
+$0<\delta<1-\alpha$.  This proves the claimed error for $K=L$.  If $K\ne L$, pad the shorter
+product with coordinates equal to zero and use $\Lambda_N(0)=1$; the same estimate survives
+before differentiation.  This proves \eqref{eq:GMS-audit-uniform-product}.
+\end{proof}
+
+\begin{lemma}[Coordinate extraction]
+\label{lem:GMS-audit-coefficient-extraction}
+For $|z|<1$, the derivative in \eqref{eq:GMS-audit-uniform-product} is exactly
+\begin{equation}
+ \frac{\mu!\nu!}{(1-|z|^2)^{KL+|\mu|+|\nu|}}
+ \sum_{\substack{Q\in\mathcal M_{\mu,\cdot}\\R\in\mathcal M_{\cdot,\nu}}}
+ \prod_{i=1}^{K}\prod_{j=1}^{L}p_{Q_{ij},R_{ij}}(z,\overline z).
+ \label{eq:GMS-audit-coefficient-result}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Make the invertible affine coordinate change
+\begin{equation}
+ z_i=z+(1-|z|^2)t_i,
+ \qquad
+ w_j=\overline z+(1-|z|^2)u_j.
+ \label{eq:GMS-audit-affine-change}
+\end{equation}
+No normalization is suppressed: its inverse is
+$t_i=(z_i-z)/(1-|z|^2)$ and $u_j=(w_j-\overline z)/(1-|z|^2)$, and its
+Jacobian contributes $(1-|z|^2)^{-|\mu|-|\nu|}$ to the derivative.  Direct multiplication
+gives
+\begin{equation}
+ 1-z_iw_j=(1-|z|^2)
+ \bigl((1-\overline zt_i)(1-zu_j)-t_iu_j\bigr).
+ \label{eq:GMS-audit-denominator-change}
+\end{equation}
+Therefore the derivative equals
+\begin{equation}
+ \frac{\mu!\nu!}{(1-|z|^2)^{KL+|\mu|+|\nu|}}
+ [\mathbf t^\mu\mathbf u^\nu]
+ \prod_{i,j}
+ \frac1{(1-\overline zt_i)(1-zu_j)-t_iu_j}.
+ \label{eq:GMS-audit-coefficient-operator}
+\end{equation}
+For each cell $(i,j)$ the geometric and negative-binomial expansions give
+\begin{align}
+ \frac1{(1-\overline zt)(1-zu)-tu}
+ &=\sum_{r\geq0}
+ \frac{t^ru^r}{(1-\overline zt)^{r+1}(1-zu)^{r+1}},\\
+ [t^q u^s]\frac1{(1-\overline zt)(1-zu)-tu}
+ &=\sum_{r=0}^{\min(q,s)}
+ \binom qr\binom sr\overline z^{q-r}z^{s-r}
+ =p_{q,s}(z,\overline z).
+ \label{eq:GMS-audit-cell-coefficient}
+\end{align}
+Distributing the exponent of each $t_i$ among the $L$ cells in row $i$ gives precisely a
+matrix $Q$ with row sums $\mu$; distributing each $u_j$ among column $j$ gives precisely a
+matrix $R$ with column sums $\nu$.  Multiplication of the independent cell coefficients in
+\eqref{eq:GMS-audit-cell-coefficient} proves \eqref{eq:GMS-audit-coefficient-result}.
+Combining the two lemmas proves \eqref{eq:GMS-mesoscopic}.
+
+At $z=0$, \eqref{eq:GMS-audit-cell-coefficient} is $1$ if $q=s$ and $0$ otherwise.
+Consequently only $Q=R$ survives, and the simultaneous row and column constraints give
+\eqref{eq:GMS-magic-square-limit} without an additional limit argument.
+\end{proof}
+
+\begin{lemma}[The $2\times2$ finite binomial sum]
+\label{lem:GMS-audit-hk-sum}
+For $k\in\mathbb N_0$,
+\begin{equation}
+ \sum_{n,m=0}^{k}
+ \binom{n+m+k+1}{k}\binom{3k-n-m+1}{k}
+ =(k+1)\left\{\binom{4k+3}{2k+2}
+ -2\binom{2k+1}{k}^{2}\right\}.
+ \label{eq:GMS-audit-finite-binomial-sum}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Introduce independent coefficient variables $x,y$.  Two finite geometric sums give the exact
+coefficient representation
+\begin{align}
+ &\sum_{n,m=0}^{k}
+ \binom{n+m+k+1}{k}\binom{3k-n-m+1}{k}\notag\\
+ &\quad=[x^ky^k]
+ (1+x)^{k+1}(1+y)^{3k+1}
+ \left(\sum_{r=0}^{k}\left(\frac{1+x}{1+y}\right)^r\right)^2\notag\\
+ &\quad=[x^ky^k]
+ (1+x)^{k+1}(1+y)^{k+1}
+ \left(\frac{(1+y)^{k+1}-(1+x)^{k+1}}{y-x}\right)^2.
+ \label{eq:GMS-audit-hk-coefficient}
+\end{align}
+The quotient is the finite polynomial
+$\sum_{r=0}^{k}(1+y)^{k-r}(1+x)^r$.  Expanding it, grouping terms by the
+total exponent, and applying
+$\sum_j\binom Aj\binom B{R-j}=\binom{A+B}{R}$ yields respectively the full
+Vandermonde coefficient $\binom{4k+3}{2k+2}$ and the two equal boundary coefficients
+$\binom{2k+1}{k}^2$.  The conversion
+$(r+1)\binom{r+k+1}{k}=(k+1)\binom{r+k+1}{k+1}$ supplies the factor $k+1$.
+Substitution in \eqref{eq:GMS-audit-hk-coefficient} gives
+\eqref{eq:GMS-audit-finite-binomial-sum}.
+\end{proof}
+
+For $\mu=\nu=(k,k)$, write
+\begin{equation}
+ Q=\begin{pmatrix}n&k-n\\m&k-m\end{pmatrix},
+ \qquad
+ R=\begin{pmatrix}k-p&k-q\\p&q\end{pmatrix}.
+ \label{eq:GMS-audit-2x2-parameters}
+\end{equation}
+Two applications of finite Vandermonde convolution first sum $p,q$ and give the left side of
+\eqref{eq:GMS-audit-finite-binomial-sum}.  The lemma therefore proves the closed formula
+\eqref{eq:GMS-hk}; no asymptotic or numerical fitting enters that constant.
+
+\paragraph{Microscopic regime with unequal list lengths.}
+We next prove the coordinate limit \eqref{eq:GMS-microscopic-unequal}, including the power of
+$N$ and the signs which are hidden if the two determinant presentations are simply identified.
+Assume $K\geq L\geq1$ and put $d=K-L\geq0$; the case $K<L$ follows by conjugating the
+moment and exchanging the two coordinate blocks.  Use the excess-first finite determinant in
+\eqref{eq:GMS-audit-AV}, and put
+\begin{equation}
+ z_i=1-\frac{a_i}{N},
+ \qquad w_j=1-\frac{b_j}{N}.
+ \label{eq:GMS-audit-micro-coordinates}
+\end{equation}
+The coordinate map is affine and invertible for fixed $N$; hence
+\begin{equation}
+ \mathcal D_{\mathbf z}^{\mu}\mathcal D_{\mathbf w}^{\nu}
+ =(-N)^{|\mu|+|\nu|}
+ \mathcal D_{\mathbf a}^{\mu}\mathcal D_{\mathbf b}^{\nu}.
+ \label{eq:GMS-audit-micro-derivative-map}
+\end{equation}
+The two Vandermonde factors transform exactly as
+\begin{equation}
+ \Delta(\mathbf z)=(-N)^{-K(K-1)/2}\Delta(\mathbf a),
+ \qquad
+ \Delta(\mathbf w)=(-N)^{-L(L-1)/2}\Delta(\mathbf b).
+ \label{eq:GMS-audit-micro-Vandermonde-map}
+\end{equation}
+For a kernel entry, uniformly on compact subsets of $(a,b)\in\mathbb C^2$,
+\begin{align}
+ \frac1N\mathcal K_{N+L}
+ \left(\left(1-\frac aN\right)\left(1-\frac bN\right)\right)
+ &=\frac1N\sum_{q=0}^{N+L-1}
+ \left(1-\frac{a+b}{N}+\frac{ab}{N^2}\right)^q\notag\\
+ &\longrightarrow\int_0^1e^{-(a+b)x}\,dx
+ =I(a+b).
+ \label{eq:GMS-audit-kernel-Riemann-limit}
+\end{align}
+This is a uniform Riemann-sum limit; the value at $a+b=0$ is the removable value $1$.
+
+The $d$ excess columns have entries $(1-a_i/N)^r$, $0\leq r<d$.  The binomial identity
+\begin{equation}
+ \left(1-\frac aN\right)^r
+ =\sum_{q=0}^{r}\binom rq\left(-\frac1N\right)^q a^q
+ \label{eq:GMS-audit-excess-binomial}
+\end{equation}
+is an upper-triangular change from the monomial columns $1,a,\ldots,a^{d-1}$.  Its determinant
+is
+\begin{equation}
+ (-1)^{d(d-1)/2}N^{-d(d-1)/2}.
+ \label{eq:GMS-audit-excess-determinant}
+\end{equation}
+The $L$ kernel columns contribute $N^L$.  The reciprocal Vandermondes contribute
+\begin{equation}
+ N^{K(K-1)/2+L(L-1)/2}.
+\end{equation}
+Thus the net exponent is
+\begin{align}
+ &\frac{K(K-1)}2+\frac{L(L-1)}2
+ -\frac{d(d-1)}2+L=KL.
+ \label{eq:GMS-audit-KL-exponent}
+\end{align}
+Because the finite determinant is now in excess-first order, no further block permutation is
+made.  Together with the two reciprocal Vandermonde signs,
+\eqref{eq:GMS-audit-excess-determinant} gives the fixed sign
+\begin{equation}
+ (-1)^{K(K-1)/2+L(L-1)/2+d(d-1)/2}=(-1)^{Ld},
+ \label{eq:GMS-audit-fixed-sign-parity}
+\end{equation}
+because the exponent equals
+$Ld+L(L-1)+d(d-1)$ and the last two summands are even.  Combining this with the derivative
+sign $(-1)^{|\mu|+|\nu|}$ in \eqref{eq:GMS-audit-micro-derivative-map} gives exactly
+$(-1)^{|\mu|+|\nu|+L(K-L)}$.  Substituting
+\eqref{eq:GMS-audit-kernel-Riemann-limit} into the exact determinant gives exactly the matrix
+$\Omega$ in \eqref{eq:GMS-microscopic-unequal}.
+
+It remains to justify differentiating after the limit and then coalescing the coordinates.
+For each $N$, the quotient in \eqref{eq:GMS-audit-AV} is a polynomial.  After division by the
+power $N^{KL}$ just computed, its divided-difference form converges uniformly on every compact
+set to $\det\Omega/(\Delta(\mathbf a)\Delta(\mathbf b))$.  The latter quotient is entire,
+because its numerator is alternating in each coordinate block.  The Weierstrass theorem and
+Cauchy's formula therefore give locally uniform convergence of every fixed derivative.  This
+proves \eqref{eq:GMS-microscopic-unequal} without assuming the coalesced expression in
+advance.  For an independent coalesced check, take $K=2,L=1$, zero derivative lists, and
+$c=0$.  The exact excess-first determinant gives
+\begin{equation}
+ \mathcal F_{N;2,1}(1,1;1)
+ =\left.\frac{d}{dz}\bigl(z\mathcal K_{N+1}(z)\bigr)\right|_{z=1}
+ =\frac{(N+1)(N+2)}2,
+\end{equation}
+so $N^{-2}\mathcal F_{N;2,1}\to1/2$.  On the limiting side
+$\det\!\begin{pmatrix}1&I(a_1+b)\\1&I(a_2+b)\end{pmatrix}/(a_2-a_1)
+\to I'(0)=-1/2$; the factor
+$(-1)^{L(K-L)}=-1$ is therefore again forced.  When $K=L$, $d=0$, so every equal-length
+microscopic formula is unchanged.
+
+\paragraph{The explicit fourth moment at microscopic distance.}
+For $K=L=2$, before differentiation and coalescence the limiting quotient is
+\begin{equation}
+ f(a_1,a_2,b_1,b_2)
+ =\frac{I(a_1+b_1)I(a_2+b_2)-I(a_1+b_2)I(a_2+b_1)}
+ {(a_2-a_1)(b_2-b_1)}.
+ \label{eq:GMS-audit-fourth-f}
+\end{equation}
+Let $a(u)=a_1+u(a_2-a_1)$ and $b(v)=b_1+v(b_2-b_1)$.  Applying the fundamental theorem of
+calculus once in each divided-difference coordinate gives the denominator-free identity
+\begin{align}
+ f&=-\int_0^1\!\int_0^1
+ \bigl[
+ I'(a(u)+b_1)I'(a_2+b(v))
+ -I''(a(u)+b(v))I(a_2+b_1)
+ \bigr]\,du\,dv.
+ \label{eq:GMS-audit-fourth-integral}
+\end{align}
+Indeed, this follows by applying $-\partial_u\partial_v$ to
+\begin{equation}
+ \frac{I(a(u)+b_1)I(a_2+b(v))-I(a(u)+b(v))I(a_2+b_1)}
+ {(a_2-a_1)(b_2-b_1)}
+\end{equation}
+and evaluating its four boundary values.  Since
+$I^{(r)}(x)=(-1)^rI_r(x)$, Leibniz's rule followed by
+$a_1=a_2=b_1=b_2=c\in\mathbb R$ turns
+$\partial_{a_1}^k\partial_{a_2}^k\partial_{b_1}^k\partial_{b_2}^k f$ into
+\begin{align}
+ -&(1-u)^kv^k\sum_{i,j=0}^{k}\binom ki\binom kj
+ \Bigl[
+ u^{k-i}(1-v)^j I_{3k-i-j+1}(2c)I_{k+i+j+1}(2c)\notag\\
+ &\hspace{46mm}
+ -u^{k-i}(1-v)^{k-j}I_{4k-i-j+2}(2c)I_{i+j}(2c)
+ \Bigr].
+ \label{eq:GMS-audit-fourth-integrand}
+\end{align}
+All factors are continuous on the compact square, so differentiation under the integral is
+valid.  The required beta integrals are explicit:
+\begin{align}
+ \int_0^1u^{k-i}(1-u)^kdu&=\frac{(k-i)!k!}{(2k-i+1)!},\\
+ \int_0^1v^k(1-v)^{k-j}dv&=\frac{k!(k-j)!}{(2k-j+1)!},\\
+ \int_0^1v^k(1-v)^jdv&=\frac{k!j!}{(k+j+1)!}.
+ \label{eq:GMS-audit-fourth-beta}
+\end{align}
+Consequently
+\begin{align}
+ C^{(1)}_{ij}(k)
+ &=\binom ki\binom kj
+ \frac{(k-i)!k!}{(2k-i+1)!}
+ \frac{k!(k-j)!}{(2k-j+1)!},\\
+ C^{(2)}_{ij}(k)
+ &=\binom ki\binom kj
+ \frac{(k-i)!k!}{(2k-i+1)!}
+ \frac{k!j!}{(k+j+1)!}.
+ \label{eq:GMS-audit-fourth-C}
+\end{align}
+This is the source's coefficient pair after rearranging factorials.  We have therefore proved
+the full formula
+\begin{align}
+ \lim_{N\to\infty}\frac{\mathbb E|\Lambda_N^{(k)}(1-c/N)|^4}{N^{4k+4}}
+ &=\sum_{i,j=0}^{k}\bigl[
+ C^{(1)}_{ij}(k)I_{4k-i-j+2}(2c)I_{i+j}(2c)\notag\\
+ &\hspace{25mm}
+ -C^{(2)}_{ij}(k)I_{3k-i-j+1}(2c)I_{k+i+j+1}(2c)
+ \bigr].
+ \label{eq:GMS-audit-fourth-final}
+\end{align}
+At $c=0$, $I_r(0)=1/(r+1)$ gives the source's double finite sum on the unit circle.  Direct
+substitution of $k=1$ reduces that sum to $61/10080$; this is a check of the coordinate and
+sign bookkeeping, not an additional asymptotic assumption.
+
+\paragraph{The confluent Kostka identity.}
+The exact finite-$N$ theorem rests on the following identity.  We include its proof so that the
+two coalescence operations are not black boxes.
+
+\begin{lemma}[Confluent determinant with prescribed derivatives]
+\label{lem:GMS-audit-confluent-Kostka}
+Let $f_1,\ldots,f_s$ be analytic near $z$, and let
+$\mu=(\mu_1,\ldots,\mu_s)\in\mathbb N_0^s$.  With
+$\alpha_i(\lambda)=\lambda_i+s-i$,
+\begin{align}
+ &\left.
+ \mathcal D_{\mathbf x}^{\mu}
+ \frac{\det(f_j(x_i))_{i,j=1}^{s}}{\Delta(\mathbf x)}
+ \right|_{x_1=\cdots=x_s=z}\notag\\
+ &\qquad=(-1)^{s(s-1)/2}\mu!
+ \sum_{\substack{\lambda\vdash|\mu|\\\ell(\lambda)\leq s}}
+ \frac{K_{\lambda\mu}}{\lambda!_{(s)}}
+ \det(f_j^{(\alpha_i(\lambda))}(z))_{i,j=1}^{s}.
+ \label{eq:GMS-audit-confluent-Kostka}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Write $x_i=z+y_i$.  Taylor expansion of each row and the Cauchy--Binet formula give
+\begin{equation}
+ \det(f_j(z+y_i))_{i,j=1}^{s}
+ =\sum_{0\leq n_1<\cdots<n_s}
+ \frac{\det(f_j^{(n_i)}(z))_{i,j=1}^{s}}
+ {n_1!\cdots n_s!}
+ \det(y_i^{n_j})_{i,j=1}^{s}.
+ \label{eq:GMS-audit-determinant-Taylor}
+\end{equation}
+For completeness, \eqref{eq:GMS-audit-determinant-Taylor} follows by factoring the infinite
+matrices
+$A_{i,n}=y_i^n/n!$ and $B_{n,j}=f_j^{(n)}(z)$ and summing the determinants of all $s$-column
+minors; analyticity gives absolute convergence in a sufficiently small polydisc.  This is the
+identity recorded by Balantekin, with its earlier provenance to Hua
+\cite[App.~B]{balantekin2000}.
+
+Every strictly increasing sequence has a unique partition coordinate
+\begin{equation}
+ n_i=\lambda_{s+1-i}+i-1.
+ \label{eq:GMS-audit-partition-reindex}
+\end{equation}
+Reversing the derivative rows gives
+\begin{equation}
+ \det(f_j^{(n_i)}(z))
+ =(-1)^{s(s-1)/2}
+ \det(f_j^{(\alpha_i(\lambda))}(z)),
+\end{equation}
+while the alternant formula for the Schur polynomial gives
+\begin{equation}
+ \det(y_i^{n_j})=\Delta(\mathbf y)s_\lambda(\mathbf y),
+ \qquad
+ n_1!\cdots n_s!=\lambda!_{(s)}.
+ \label{eq:GMS-audit-Schur-alternant}
+\end{equation}
+After division by $\Delta(\mathbf y)=\Delta(\mathbf x)$, use
+\begin{equation}
+ s_\lambda(\mathbf y)=\sum_{\eta\vdash|\lambda|}K_{\lambda\eta}m_\eta(\mathbf y),
+ \qquad
+ \left.\mathcal D_{\mathbf y}^{\mu}s_\lambda(\mathbf y)\right|_{\mathbf y=0}
+ =\mu!K_{\lambda\mu}.
+ \label{eq:GMS-audit-Schur-monomial}
+\end{equation}
+Only $|\lambda|=|\mu|$ survives.  Substitution proves
+\eqref{eq:GMS-audit-confluent-Kostka}; the symmetric-function identities used here are in
+Macdonald \cite[Ch.~I]{macdonald1995}.
+\end{proof}
+
+\begin{theorem}[Exact finite-$N$ derivative moment]
+\label{thm:GMS-audit-finite-N}
+Let $\mu,\nu$ both have length $s$, set $w=|z|^2$, and set
+$K_{N,s}(w)=\sum_{m=0}^{N+s-1}w^m$.  Then
+\begin{align}
+ M_{\mu,\nu}(z,N)
+ &=\mu!\nu!
+ \sum_{\substack{\lambda\vdash|\mu|,\ \ell(\lambda)\leq s\\
+                   \rho\vdash|\nu|,\ \ell(\rho)\leq s}}
+ \frac{K_{\lambda\mu}K_{\rho\nu}}
+ {\lambda!_{(s)}\rho!_{(s)}}z^{|\rho|-|\lambda|}\notag\\
+ &\qquad\times
+ \det\!\left(
+ \left(w^{\alpha_i(\lambda)}K_{N,s}^{(\alpha_i(\lambda))}(w)\right)^
+ {(\beta_j(\rho))}
+ \right)_{i,j=1}^{s}.
+ \label{eq:GMS-audit-finite-N}
+\end{align}
+The right side has no singularity at $z=0$.
+\end{theorem}
+
+\begin{proof}
+Apply \cref{lem:GMS-audit-confluent-Kostka} to the $\mathbf z$ block of
+\eqref{eq:GMS-audit-equal-determinant}, with
+$f_j(u)=K_{N,s}(uw_j)$.  Since
+$f_j^{(r)}(u)=w_j^rK_{N,s}^{(r)}(uw_j)$, this gives
+\begin{align}
+ &\left.\mathcal D_{\mathbf z}^{\mu}
+ \frac{\det(K_{N,s}(z_iw_j))}{\Delta(\mathbf z)}
+ \right|_{\mathbf z=z}\notag\\
+ &\quad=(-1)^{s(s-1)/2}\mu!
+ \sum_{\lambda\vdash|\mu|}
+ \frac{K_{\lambda\mu}}{\lambda!_{(s)}}
+ \det\!\left(w_j^{\alpha_i(\lambda)}
+ K_{N,s}^{(\alpha_i(\lambda))}(zw_j)\right)_{i,j=1}^{s}.
+ \label{eq:GMS-audit-first-confluence}
+\end{align}
+Terms with more than $s$ parts are understood to be absent.  Divide by $\Delta(\mathbf w)$
+and apply the same lemma to
+\begin{equation}
+ g_i(v)=v^{\alpha_i(\lambda)}K_{N,s}^{(\alpha_i(\lambda))}(zv).
+ \label{eq:GMS-audit-gi}
+\end{equation}
+The two confluent signs cancel.  If
+$H_i(u)=u^{\alpha_i(\lambda)}K_{N,s}^{(\alpha_i(\lambda))}(u)$, the chain rule gives
+\begin{equation}
+ g_i^{(\beta_j(\rho))}(\overline z)
+ =z^{\beta_j(\rho)-\alpha_i(\lambda)}
+ H_i^{(\beta_j(\rho))}(|z|^2).
+ \label{eq:GMS-audit-gi-factor}
+\end{equation}
+Factoring the powers of $z$ from the rows and columns gives
+$z^{\sum_j\beta_j-\sum_i\alpha_i}=z^{|\rho|-|\lambda|}$, proving
+\eqref{eq:GMS-audit-finite-N}.
+
+The apparently negative powers in \eqref{eq:GMS-audit-gi-factor} do not define the value at
+zero.  The unfactored coordinate is the polynomial
+\begin{equation}
+ g_i^{(\beta)}(\overline z)
+ =\sum_{m=\max(\alpha_i,\beta)}^{N+s-1}
+ (m)_{\alpha_i}(m)_{\beta}
+ z^{m-\alpha_i}\overline z^{m-\beta},
+ \label{eq:GMS-audit-zero-regularity}
+\end{equation}
+where $(m)_r=m!/(m-r)!$.  Thus the determinant, and hence the factored expression by
+continuation, is regular at $z=0$.
+\end{proof}
+
+For $\mu=\nu=(1^s)$, $K_{\lambda,(1^s)}$ is the number $f_\lambda$ of standard tableaux,
+$|\lambda|=|\rho|=s$, and the explicit power of $z$ is one.  Therefore
+\cref{thm:GMS-audit-finite-N} specializes term by term to the exact Simm--Wei first-derivative
+formula \cite[Thm.~1.5]{simmWei2026}; this is a proved specialization, not an analogy.
+
+\paragraph{Equal-length microscopic limit and strict positivity.}
+Let $z_N=1-c/N$, $w_N=|z_N|^2$, and $\tau=c+\overline c$.  For fixed nonnegative integers
+$a,b$,
+\begin{equation}
+ \left.
+ \left(u^aK_{N,s}^{(a)}(u)\right)^{(b)}
+ \right|_{u=w_N}
+ \sim N^{a+b+1}I_{a+b}(\tau),
+ \label{eq:GMS-audit-kernel-derivative-limit}
+\end{equation}
+uniformly for $c$ in compact subsets of $\mathbb C$.  To prove it, use the exact integral
+\begin{equation}
+ K_{N,s}(u)=(N+s)\int_0^1(1-x(1-u))^{N+s-1}dx.
+ \label{eq:GMS-audit-kernel-integral}
+\end{equation}
+After $a$ derivatives,
+\begin{equation}
+ u^aK_{N,s}^{(a)}(u)
+ =\frac{(N+s)!}{(N+s-a-1)!}u^a
+ \int_0^1x^a(1-x(1-u))^{N+s-a-1}dx.
+ \label{eq:GMS-audit-a-derivatives}
+\end{equation}
+In the subsequent $b$ derivatives, a term with $q$ derivatives falling on $u^a$ is of order
+$N^{a+b-q+1}$.  The unique leading term has $q=0$.  Since
+$w_N=1-\tau/N+O(N^{-2})$, dominated convergence on $[0,1]$ gives
+$(1-x(1-w_N))^{N+O(1)}\to e^{-\tau x}$ uniformly on compact $c$-sets.  This proves
+\eqref{eq:GMS-audit-kernel-derivative-limit}; it also reconstructs the estimate used from
+Simm--Wei \cite[eqs.~(5.22)--(5.25)]{simmWei2026}.
+
+For the $(i,j)$ determinant entry of \eqref{eq:GMS-audit-finite-N}, take
+$a=\alpha_i(\lambda)$ and $b=\beta_j(\rho)$.  Row and column factorization gives the exact
+total exponent
+\begin{align}
+ \sum_i\alpha_i(\lambda)+\sum_j\beta_j(\rho)+s
+ &=|\lambda|+|\rho|+s(s-1)+s\notag\\
+ &=|\mu|+|\nu|+s^2.
+ \label{eq:GMS-audit-equal-exponent}
+\end{align}
+Since $z_N^{|\rho|-|\lambda|}\to1$, substitution in the exact finite-$N$ formula proves
+\eqref{eq:GMS-microscopic-equal}.  Setting $c=0$ gives
+\eqref{eq:GMS-microscopic-circle}, because $I_r(0)=1/(r+1)$.
+
+Finally, Andr\'eief's identity
+\cite[Sec.~5.1, lemma labelled ``Andr\'eief identity'']{simmWei2026} transforms the determinant sum into
+\begin{align}
+ \frac{\mu!\nu!}{s!}\int_{[0,1]^s}
+ &\left(\prod_{q=1}^{s}e^{-\tau x_q}dx_q\right)
+ \left(\sum_{\substack{\lambda\vdash|\mu|\\\ell(\lambda)\leq s}}
+ \frac{K_{\lambda\mu}}{\lambda!_{(s)}}s_\lambda(\mathbf x)\right)
+ \left(\sum_{\substack{\rho\vdash|\nu|\\\ell(\rho)\leq s}}
+ \frac{K_{\rho\nu}}{\rho!_{(s)}}s_\rho(\mathbf x)\right)
+ \Delta(\mathbf x)^2.
+ \label{eq:GMS-audit-positive-integral}
+\end{align}
+Here $\tau=2\Re c$ is real, so the exponential weight is strictly positive.  Kostka numbers
+are nonnegative and Schur polynomials are positive on $(0,1)^s$.  The squared Vandermonde is
+positive away from the collision diagonals, a set of full measure.  Hence the integral is
+strictly positive.  This establishes that the displayed power of $N$ is the actual leading
+order rather than only an upper bound.
+
+\paragraph{Shifted zeta moments: the Dirichlet-series and Euler-product proof.}
+We now reconstruct the number-theoretic argument and keep its conditional and unconditional
+parts separate.  Throughout this paragraph $K,L\geq1$.  For small shift vectors
+$\boldsymbol\alpha=(\alpha_1,\ldots,\alpha_K)$, define
+\begin{align}
+ \sigma_{\boldsymbol\alpha}(m)
+ &=\sum_{n_1\cdots n_K=m}n_1^{-\alpha_1}\cdots n_K^{-\alpha_K},
+ \label{eq:GMS-audit-sigma-alpha}\\
+ A_\mu(m)
+ &=(-1)^{|\mu|}
+ \left.\partial_{\boldsymbol\alpha}^{\mu}
+ \sigma_{\boldsymbol\alpha}(m)\right|_{\boldsymbol\alpha=0}
+ =\sum_{n_1\cdots n_K=m}
+ \prod_{i=1}^{K}(\log n_i)^{\mu_i}.
+ \label{eq:GMS-audit-A-mu}
+\end{align}
+Absolute convergence for $\Re s>1$ gives, by termwise shift differentiation,
+\begin{equation}
+ \prod_{i=1}^{K}\zeta^{(\mu_i)}(s)
+ =(-1)^{|\mu|}\sum_{m\geq1}\frac{A_\mu(m)}{m^s}.
+ \label{eq:GMS-audit-derivative-Dirichlet-series}
+\end{equation}
+The elementary bound
+\begin{equation}
+ |A_\mu(m)|\leq(\log m)^{|\mu|}d_K(m)
+ \label{eq:GMS-audit-A-bound}
+\end{equation}
+will control every smoothing and limiting step.
+
+\begin{lemma}[Long mean at fixed $\sigma$]
+\label{lem:GMS-audit-long-mean}
+Assume the Lindel\"of hypothesis.  For every fixed $\sigma>1/2$,
+\begin{align}
+ \lim_{T\to\infty}\frac1T\int_1^T
+ &\prod_{i=1}^{K}\zeta^{(\mu_i)}(\sigma+it)
+ \prod_{j=1}^{L}\overline{\zeta^{(\nu_j)}(\sigma+it)}\,dt\notag\\
+ &=(-1)^{|\mu|+|\nu|}
+ \sum_{m\geq1}\frac{A_\mu(m)A_\nu(m)}{m^{2\sigma}}.
+ \label{eq:GMS-audit-long-mean}
+\end{align}
+\end{lemma}
+
+\begin{proof}[Source boundary and checked algebraic reduction]
+Under Lindel\"of, Cauchy's integral formula on a circle contained in
+$\Re s>1/2$ gives, for every fixed derivative order and every $\varepsilon>0$,
+\begin{equation}
+ \zeta^{(r)}(\sigma+it)=O_{r,\sigma,\varepsilon}((1+|t|)^\varepsilon).
+ \label{eq:GMS-audit-LH-derivative-bound}
+\end{equation}
+Grover--Mezzadri--Simm state that this is the derivative-list modification of Titchmarsh's
+proof of Theorem~7.9; Simm--Wei write out the repeated-first-derivative case
+\cite[Sec.~3, especially the proof following their eq.~(3.20)]{simmWei2026}.  The exact
+coefficient substitution can be checked without importing any estimate.  If $\delta>0$ and
+$\eta>\max\{0,1-\Re z\}$, Mellin inversion and absolute convergence on
+$\Re w=\Re z+\eta>1$ give
+\begin{equation}
+ (-1)^{|\mu|}\sum_{m\geq1}\frac{A_\mu(m)}{m^z}e^{-\delta m}
+ =\frac1{2\pi i}\int_{\Re w=\Re z+\eta}
+ \Gamma(w-z)\prod_{i=1}^{K}\zeta^{(\mu_i)}(w)\,
+ \delta^{z-w}\,dw.
+ \label{eq:GMS-audit-smoothed-Mellin}
+\end{equation}
+Here the residue at the pole $w=z$ of $\Gamma(w-z)$ is the unsmoothed zeta product.  A valid
+contour displacement goes to $\Re w=\Re z-\eta'$ with
+$0<\eta'<\min\{1,\Re z-1/2\}$; it cannot go ``to the line through $z$''.  The displacement
+must retain the $w=z$ residue and, when it lies between the two lines, the pole at $w=1$ of
+the zeta factors.  Gamma decay controls the latter for large $|\Im z|$, but the complete
+uniform estimates needed to average the remainder, let $\delta\downarrow0$, and retain only
+the diagonal $m=n$ are precisely the Titchmarsh input
+\cite[Chs.~VII and XIII]{titchmarsh1986}.  Since that book has not yet been content-read in
+the authorized corpus, this paragraph verifies the coordinate substitution and correct
+contour geometry but does not claim an independent replacement for the cited mean-value
+proof.  Equation \eqref{eq:GMS-audit-long-mean} remains a human-sourced published theorem.
+\end{proof}
+
+\begin{lemma}[Exact Euler factorization]
+\label{lem:GMS-audit-Euler-factorization}
+For shifts in a sufficiently small neighbourhood of zero and $\sigma>1/2$,
+\begin{align}
+ \sum_{m\geq1}\frac{\sigma_{\boldsymbol\alpha}(m)
+ \sigma_{\boldsymbol\beta}(m)}{m^{2\sigma}}
+ &=H_{K,L}(\boldsymbol\alpha,\boldsymbol\beta,\sigma)
+ \prod_{i=1}^{K}\prod_{j=1}^{L}
+ \zeta(2\sigma+\alpha_i+\beta_j),
+ \label{eq:GMS-audit-Euler-factorization}
+\end{align}
+where $H_{K,L}$ is analytic near
+$(\boldsymbol0,\boldsymbol0,\tfrac12)$ and
+\begin{align}
+ H_{K,L}(\boldsymbol0,\boldsymbol0,\tfrac12)
+ &=a_{\mu,\nu}\notag\\
+ &=\prod_p(1-p^{-1})^{KL}
+ \sum_{r\geq0}
+ \binom{K+r-1}{r}\binom{L+r-1}{r}p^{-r}.
+ \label{eq:GMS-audit-arithmetic-factor}
+\end{align}
+Only the lengths $K,L$, not the derivative entries, enter this arithmetic factor.
+\end{lemma}
+
+\begin{proof}
+Both coefficient functions are multiplicative.  At a prime $p$, writing
+$a_1+\cdots+a_K=r=b_1+\cdots+b_L$ gives the local factor
+\begin{align}
+ S_p&=1+\sum_{r\geq1}p^{-2r\sigma}
+ \sum_{\substack{a_1+\cdots+a_K=r\\b_1+\cdots+b_L=r}}
+ p^{-\sum_i a_i\alpha_i-\sum_jb_j\beta_j}.
+ \label{eq:GMS-audit-local-Sp}
+\end{align}
+The inverse of the proposed polar product has local expansion
+\begin{equation}
+ \prod_{i,j}(1-p^{-2\sigma-\alpha_i-\beta_j})
+ =1-\sum_{i,j}p^{-2\sigma-\alpha_i-\beta_j}
+ +O(p^{-4\sigma+O(\|\boldsymbol\alpha\|+\|\boldsymbol\beta\|)}).
+ \label{eq:GMS-audit-local-zeta-inverse}
+\end{equation}
+The $r=1$ term in \eqref{eq:GMS-audit-local-Sp} is exactly the positive double sum in
+\eqref{eq:GMS-audit-local-zeta-inverse}; it cancels.  Therefore the product of the two local
+factors is $1+O(p^{-4\sigma+o(1)})$, uniformly in a small shift polydisc.  The prime product
+converges normally whenever the polydisc is chosen inside the region
+$4\sigma-o(1)>1$, proving analyticity near $\sigma=1/2$.
+
+At zero shifts, the number of weak $K$-compositions of $r$ is
+$d_K(p^r)=\binom{K+r-1}{r}$, and similarly for $L$.  Setting
+$\sigma=1/2$ in the normally convergent residual product yields
+\eqref{eq:GMS-audit-arithmetic-factor}.
+\end{proof}
+
+Differentiate \eqref{eq:GMS-audit-Euler-factorization} by
+$\partial_{\boldsymbol\alpha}^{\mu}\partial_{\boldsymbol\beta}^{\nu}$ at zero.  Because
+$H_{K,L}$ and all of its derivatives are bounded near $\sigma=1/2$, the largest pole is the
+term in which every derivative lands on the $KL$ zeta factors.  If even one derivative lands
+on $H_{K,L}$, the total pole order decreases by at least one.  Taylor expansion at the shift
+origin gives the exact leading term
+\begin{align}
+ &\left.
+ \partial_{\boldsymbol\alpha}^{\mu}
+ \partial_{\boldsymbol\beta}^{\nu}
+ \prod_{i,j}\zeta(2\sigma+\alpha_i+\beta_j)
+ \right|_{\boldsymbol\alpha=\boldsymbol\beta=0}\notag\\
+ &\quad=\mu!\nu!
+ \sum_{\substack{Q\in\mathcal M_{\mu,\cdot}\\
+                   R\in\mathcal M_{\cdot,\nu}}}
+ \prod_{i,j}
+ \frac{\zeta^{(Q_{ij}+R_{ij})}(2\sigma)}{Q_{ij}!R_{ij}!}.
+ \label{eq:GMS-audit-zeta-contingency}
+\end{align}
+Since
+\begin{equation}
+ \zeta^{(r)}(2\sigma)
+ \sim\frac{(-1)^rr!}{(2\sigma-1)^{r+1}},
+ \label{eq:GMS-audit-zeta-pole-derivative}
+\end{equation}
+the total denominator exponent in every summand is
+$KL+|\mu|+|\nu|$, and
+\begin{equation}
+ \frac{(Q_{ij}+R_{ij})!}{Q_{ij}!R_{ij}!}
+ =\binom{Q_{ij}+R_{ij}}{Q_{ij}}.
+\end{equation}
+Combining \cref{lem:GMS-audit-long-mean,lem:GMS-audit-Euler-factorization} therefore proves
+\eqref{eq:GMS-zeta-off-line}, with exactly the coefficient $h_{\mu,\nu}$ displayed in the
+preceding sourced statement.
+
+\paragraph{The unconditional length-at-most-two cases.}
+For fixed $\sigma>1/2$ and sufficiently small shifts, define
+\begin{equation}
+ \mathcal G_{K,L}(\boldsymbol\alpha,\boldsymbol\beta;\sigma)
+ =\begin{cases}
+ \zeta(2\sigma+\alpha_1+\beta_1),&(K,L)=(1,1),\\
+ \prod_{j=1}^{2}\zeta(2\sigma+\alpha_1+\beta_j),&(K,L)=(1,2),\\
+ \prod_{i=1}^{2}\zeta(2\sigma+\alpha_i+\beta_1),&(K,L)=(2,1),\\
+ \displaystyle
+ \frac{\prod_{i,j=1}^{2}\zeta(2\sigma+\alpha_i+\beta_j)}
+ {\zeta(4\sigma+\alpha_1+\alpha_2+\beta_1+\beta_2)},&(K,L)=(2,2).
+ \end{cases}
+ \label{eq:GMS-audit-low-length-G}
+\end{equation}
+For $(1,1)$, Titchmarsh's mean-value theorem for Dirichlet series pairs equal indices.  For
+$(1,2)$, the coefficient of $n$ in the second product is the sum over $m_1m_2=n$; the diagonal
+pairing then separates into two factors, and $(2,1)$ follows by conjugation.  This is the
+algebraic reduction in the published proof.  When $1/2<\sigma\leq1$, the displayed Dirichlet
+series are not pointwise absolutely convergent, so the pairing must be justified by the
+$L^2$ limiting statement in Titchmarsh's Theorem~7.1 rather than by a formal multiplication of
+infinite series.  With that imported mean-value theorem, the first three cases give
+\begin{equation}
+ \lim_{T\to\infty}\frac1T\int_1^T
+ \prod_i\zeta^{(\mu_i)}(\sigma+it)
+ \prod_j\overline{\zeta^{(\nu_j)}(\sigma+it)}\,dt
+ =\left.
+ \partial_{\boldsymbol\alpha}^{\mu}
+ \partial_{\boldsymbol\beta}^{\nu}
+ \mathcal G_{K,L}\right|_{0}
+ \label{eq:GMS-audit-low-length-mean}
+\end{equation}
+for the first three cases without a hypothesis.
+
+For $(2,2)$ and $s=\sigma+it$ with $0<\sigma<1$, the approximate functional equation
+\begin{equation}
+ \zeta(s)=\sum_{n\leq x}n^{-s}
+ +\chi(s)\sum_{n\leq y}n^{s-1}
+ +O\!\left(x^{-\sigma}+|t|^{1/2-\sigma}y^{\sigma-1}\right),
+ \qquad x,y\geq1,\qquad xy=\frac{t}{2\pi},
+ \label{eq:GMS-audit-AFE}
+\end{equation}
+is differentiated by Cauchy's formula on a fixed circle contained in $0<\Re s<1$.  With
+$x=y=\sqrt{t/(2\pi)}$ this choice is valid for $t\geq2\pi$; the bounded initial interval makes
+no contribution after division by $T$.  The derivative remainder is the displayed error times
+a fixed power of $\log t$.  The case $\sigma\geq1$ is handled separately by the convergent
+Dirichlet-series mean-value argument.  On averaging the product of four main sums for
+$1/2<\sigma<1$, the diagonal $n_1n_2=n_3n_4$ survives.  Its Euler product is exactly
+\begin{align}
+ &\sum_{n_1n_2=n_3n_4}
+ n_1^{-\sigma-\alpha_1}n_2^{-\sigma-\alpha_2}
+ n_3^{-\sigma-\beta_1}n_4^{-\sigma-\beta_2}\notag\\
+ &\qquad=
+ \frac{\prod_{i,j=1}^{2}\zeta(2\sigma+\alpha_i+\beta_j)}
+ {\zeta(4\sigma+\alpha_1+\alpha_2+\beta_1+\beta_2)}.
+ \label{eq:GMS-audit-fourfold-Euler-identity}
+\end{align}
+At each prime this is the finite rational identity obtained by summing the four geometric
+exponents subject to $a_1+a_2=b_1+b_2$.  The differentiated off-diagonal and AFE remainders
+are
+$O_{\varepsilon,\mu,\nu}(T^{1-2\sigma+\varepsilon}(\log T)^C)$ after division by $T$.  Choosing
+$0<\varepsilon<2\sigma-1$ makes it vanish.  This is the exact analytic estimate imported by the paper from
+Titchmarsh's Theorem~7.5 and reproduced for the first-derivative case by Simm--Wei
+\cite[Sec.~3, Lemma~3.1]{simmWei2026}.  It proves the last case of
+\eqref{eq:GMS-audit-low-length-mean}.
+
+As $\sigma\downarrow1/2$, the denominator in the $(2,2)$ case tends to
+$\zeta(2)$; hence its reciprocal is $6/\pi^2$.  Derivatives falling on this regular denominator
+are lower order.  For $\mu=\nu=(k,k)$, the numerator calculation is exactly the $2\times2$
+contingency-table calculation in \cref{lem:GMS-audit-hk-sum}.  This proves the unconditional
+fourth-moment formula \eqref{eq:GMS-zeta-fourth} and its constant \eqref{eq:GMS-hk}.
+
+\begin{obligation}[Classical off-diagonal source boundary]
+\label{obl:GMS-audit-Titchmarsh-boundary}
+The authorized indexed corpus did not return a local copy of Titchmarsh's book during this
+tranche.  The audit above content-reads the pinned Grover--Mezzadri--Simm and Simm--Wei ranges,
+but both sources import classical estimates.  It therefore does not falsely claim a fresh
+line-by-line derivation of Titchmarsh's Theorems~7.1, 7.5, and 7.9, or of the Chapter~XIII
+mean-value equivalence invoked by Grover--Mezzadri--Simm.  A later content-level reading of an
+authorized copy must bind the exact hypotheses and pages of all four inputs to this
+obligation.  Until then, the fixed-shift results remain correctly attributed published
+theorems with explicit imported analytic lemmas, not independently certified theorems of this
+corpus.
+\end{obligation}
+
+For the real parameter $\sigma>1/2$, the substitution
+$\sigma=1/2+c/\log T$ requires fixed real $c>0$.  It changes the order of limits: the fixed-$\sigma$ long
+mean used above is no longer uniform by anything proved here.  Therefore the proposed transfer
+of \eqref{eq:GMS-microscopic-equal} to that shift remains a conjecture.  None of the CUE or
+shifted-mean formulas above supplies a map to individual zeta zeros.
+
+\paragraph{Exact crosswalk to the already derived CUE coordinates.}
+For a fixed $A\in\mathrm U(N)$ with eigenvalues $z_1,\ldots,z_N$, define
+\begin{equation}
+ \Phi_N(s)=\det(sI-A)=\prod_{j=1}^{N}(s-z_j),
+ \qquad
+ \chi_A=(-1)^N\det(A)^{-1}.
+ \label{eq:GMS-audit-Phi-chi}
+\end{equation}
+Because $z_j^{-1}=\overline{z_j}$, the GMS/CRS polynomial is not merely analogous to this
+monic polynomial: the exact phase morphism is
+\begin{equation}
+ \Lambda_A(s)=\det(I-sA^*)=\chi_A\Phi_N(s).
+ \label{eq:GMS-audit-exact-phase-morphism}
+\end{equation}
+It is invertible for fixed $A$, with inverse multiplication by $\chi_A^{-1}$, and it loses no
+derivative data.  If
+\begin{equation}
+ V_N=\Phi_N(1),
+ \qquad F_N=\frac1N\Phi_N'(1),
+ \label{eq:GMS-audit-VF}
+\end{equation}
+then
+\begin{equation}
+ \Lambda_A(1)=\chi_AV_N,
+ \qquad
+ \Lambda_A'(1)=\chi_ANF_N.
+ \label{eq:GMS-audit-first-jet-phase}
+\end{equation}
+Consequently, for $\mu=\nu=(1^s)$,
+\begin{equation}
+ M_{(1^s),(1^s)}(1,N)
+ =\mathbb E|\Lambda_A'(1)|^{2s}
+ =N^{2s}\mathbb E|F_N|^{2s}.
+ \label{eq:GMS-audit-exact-raw-moment-map}
+\end{equation}
+Thus the exact finite-$N$ GMS theorem specializes to both the Simm--Wei determinant and the
+raw CRS first-derivative moment already used later in this manuscript.
+
+The completed derivative is a coordinate obtained by the explicitly proved triangular
+first-jet map later in this file tree.  After choosing the eigenangle lifts, the corresponding
+phase $\rho_A$ and square-root branch exactly as in
+\eqref{eq:crs-z-derivative-coordinate},
+\begin{equation}
+ \mathcal Z_A'(1)=\rho_A N\left(F_N-\frac12V_N\right).
+ \label{eq:GMS-audit-completed-first-jet}
+\end{equation}
+Equation \eqref{eq:GMS-audit-completed-first-jet} states the morphism, rather than declaring
+the raw and completed derivatives categorically different.  Its inverse requires both the
+completed derivative and the value coordinate.  For derivative orders above one, the first-jet
+map is insufficient: the full Leibniz-triangular map among
+$(\Phi_N^{(r)}(1))_{0\leq r\leq m}$ and the corresponding completed jet must be written and
+proved before higher GMS moments can be transported to completed coordinates.  No such
+higher-jet transport, and no endpoint statement about individual zeros, is claimed here.

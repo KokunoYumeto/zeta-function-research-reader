@@ -1,0 +1,233 @@
+\section*{Independent audit of the NS concentration and conic transport}
+
+The audited objects are the explicit coordinates, differential operators,
+complete leading-field vector residual, rank-four conic connection and
+finite coefficient germ in \texttt{ns\_scaling\_bridge.tex}. This audit
+does not prove the source manuscript's global Navier--Stokes theorem.
+The complete audited source SHA is given in the accompanying JSON receipt;
+the prior material extension and interface are separately hashed there.
+No author files were edited.
+
+\subsection*{Concentration derivatives and the full vector residual}
+
+Retain $A=1/2+h$, $D=1/2-h$, $d=1-\xi^2$,
+$\ell=1-2h\xi^2$, $Q>0$, $0<h<1/2$, $-1<\xi<1$ and $X>0$.
+The map
+\[
+ (Q,\xi,X)\longmapsto
+ (t,z,\rho)=(1-Q(1-\xi^2),Q^D\xi,\sqrt{2QX})
+\]
+has inverse differential equal to the three vector fields
+\begin{align*}
+ \partial_t&=-\ell^{-1}\partial_Q
+      +\frac{D\xi}{Q\ell}\partial_\xi
+      +\frac X{Q\ell}\partial_X,\\
+ \partial_z&=\frac{2\xi Q^{1-D}}\ell\partial_Q
+      +\frac d{Q^D\ell}\partial_\xi
+      -\frac{2\xi X}{Q^D\ell}\partial_X,\\
+ \partial_\rho&=\frac\rho Q\partial_X.
+\end{align*}
+Multiplication by the exact forward Jacobian proves these identities.
+Its time--axial minor has determinant $-Q^D\ell$, or $Q^D\ell$
+when $t$ is replaced by $\tau=1-t$. There is no sign change
+missing in the first vector field. The independent checker verifies
+that these three fields commute on $Q,\xi,X$.
+
+Applying them to $Q^wf(X,\xi)$ yields exactly the author's
+$T_w$, $Z_w$ and $R=2X\partial_X^2+2\partial_X$.
+The second axial derivative is $Q^{w-2D}Z_{w-D}Z_wf$;
+$w-2D=w-1+2h$. The second time derivative is
+$Q^{w-2}T_{w-1}T_wf$. These identities were checked for an
+arbitrary symbolic smooth profile, not a finite numerical sample.
+
+The leading-field divergence is
+\[
+ \rho^{-1}\partial_\rho(\rho u_\rho^{(0)})
+       +\partial_z u_z^{(0)}
+   =Q^{-1}\bigl((V_0)_X+Z_{-A}U\bigr).
+\]
+Writing $I(X,\xi)=\int_0^XU(y,\xi)\,dy$ and integrating
+$XU_X$ by parts gives exactly
+\[
+ V_0=\ell^{-1}(2\xi XU-2D\xi I-d I_\xi).
+\]
+The integration constant is zero at the regular axis: smooth
+$V_0/X$ implies $V_0(0,\xi)=0$. Thus no unrecorded free radial
+flux is omitted. At $X=0$ the formulas involving $1/X$ are
+interpreted through the stated jointly smooth velocity-axis profiles;
+smooth pressure there additionally requires a smooth value
+$\Pi(0,\xi)$, which is not inferred from $\Pi_X$ alone. The displayed
+coordinate and residual computation itself is on $X>0$.
+
+For the material derivative, the radial contribution is
+$Q^{w-1}V_0f_X$ and the axial contribution is
+$Q^{w-A-D}UZ_wf=Q^{w-1}UZ_wf$.
+Thus its exact operator is $Q^{w-1}M_w$, as stated.
+The radial swirl and pressure-gradient terms both have weight
+$-2A-1/2=-3/2-2h$ and cancel by
+$\Pi_X=E^2/(2X)$. The remaining radial velocity is
+$u_\rho^{(0)}=Q^{-1/2}V_0/\sqrt{2X}$, giving the two retained
+radial weights $-3/2$ and $-3/2+2h$. The azimuthal frame term
+is $Q^{-A-1}V_0E/(2X)$, and the radial and azimuthal
+vector-Laplacian corrections are exactly the subtraction of
+$(2X)^{-1}$ from $R$. The axial pressure weight is
+$-2A-D=-A-1$. Substitution proves all three displayed vector
+residuals, with no vanishing residual asserted. The independent
+profile checker verifies their full expressions before and after
+the one stated radial cancellation.
+
+\subsection*{Complete conic derivations and both second derivatives}
+
+Put $m=b^2/16-2s$, $n=m+4$, $\beta=b/4$ and work over
+\[
+ \mathcal B=\mathbb C[s,b,(mn)^{-1}],\qquad
+ \mathcal E=\mathcal B[\eta,p]/(\eta^2-m,p^2-n).
+\]
+Since $2\eta$ and $2p$ are units, differentiating these relations
+uniquely gives
+\[
+ \nabla_s\eta=-1/\eta,\quad\nabla_sp=-1/p,\qquad
+ \nabla_b\eta=b/(16\eta),\quad\nabla_bp=b/(16p).
+\]
+These annihilate the defining relations, proving existence. Their
+commutator kills the base, and differentiation of the two relations
+then forces it to kill $\eta,p$, proving flatness. The independent
+checker also verifies the Leibniz identity for every product of the
+four basis elements $1,\eta,p,\eta p$.
+
+In that quadratic basis the matrices are
+\[
+ H_s=\operatorname{diag}(0,-1/m,-1/n,-1/m-1/n),\qquad
+ H_b=-bH_s/16.
+\]
+The change-of-coefficient matrix from $(1,r,p,rp)$ to this basis is
+\[
+ T=\begin{pmatrix}1&\beta&0&0\\0&1&0&0\\
+       0&0&1&\beta\\0&0&0&1\end{pmatrix}.
+\]
+For a coefficient vector $f$, differentiating $Tf$ gives
+\[
+ \Gamma_i=T^{-1}H_iT+T^{-1}\partial_iT.
+\]
+This proves both original-basis matrices in the author text, including
+the $1/4$ terms in $\Gamma_b$. The new $\Gamma_s$ equals exactly
+the previous material extension's matrix called $\Gamma_b$ there;
+that older subscript denotes the retained parameter $b$ in an
+$s$-direction connection. It is not the new $b$-direction matrix.
+
+Write $J_i=\partial_iH_i+H_i^2$. Differentiation using
+$m_s=n_s=-2$, $m_b=n_b=b/8$ gives
+\begin{align*}
+ J_s&=\operatorname{diag}(0,-m^{-2},-n^{-2},
+                   -m^{-2}-n^{-2}+2/(mn)),\\
+ (J_b)_{11}&=(16m)^{-1}-b^2/(256m^2),\\
+ (J_b)_{22}&=(16n)^{-1}-b^2/(256n^2),\\
+ (J_b)_{33}&=(m^{-1}+n^{-1})/16
+       -b^2(m^{-2}+n^{-2})/256+b^2/(128mn),
+ \qquad(J_b)_{00}=0.
+\end{align*}
+Every off-diagonal entry is zero. This confirms both author squares.
+Their exact original-basis constant terms are
+\[
+ Z_i=\partial_i\Gamma_i+\Gamma_i^2
+     =T^{-1}(J_iT+2H_i\partial_iT+\partial_i^2T),
+\]
+so the derivative of the varying basis is retained also at second order.
+For an independent complete expansion of the new axial square, define
+\[
+ u=-\frac b{64m}+\frac{b^3}{1024m^2},\qquad
+ v=u+\frac b{32n}-\frac{b^3}{512mn}.
+\]
+Then its entire constant matrix in $(1,r,p,rp)$ is
+\[
+ Z_b=\begin{pmatrix}
+ 0&u&0&0\\0&(J_b)_{11}&0&0\\
+ 0&0&(J_b)_{22}&v\\0&0&0&(J_b)_{33}
+ \end{pmatrix}.
+\]
+Direct differentiation and multiplication of the author's
+$\Gamma_b$ verifies each entry. The full operator is
+$\partial_b^2I_4+2\Gamma_b\partial_b+Z_b$.
+The analogous $Z_s$ agrees entry for entry with the prior material
+extension's complete square. The checker verifies both square-gauge
+identities and
+$\partial_s\Gamma_b-\partial_b\Gamma_s+
+\Gamma_s\Gamma_b-\Gamma_b\Gamma_s=0$ exactly.
+
+\subsection*{Domains, physical base change and finite coefficient germ}
+
+The conic inverse formulas $q=(p+\eta)/2$,
+$q^{-1}=(p-\eta)/2$ have product $(n-m)/4=1$.
+Their sum and difference recover $p,\eta$, and
+$s=b^2/32-\eta^2/2$ recovers the original base coordinate.
+Only $m=0$ and $n=0$ have been removed from the finite conic
+base. In Laurent coordinates this removes $q=\pm1,\pm i$;
+$q=0$ is already absent from the Laurent presentation.
+
+On $\Omega$ the base map $s=1-t$, $b=z$ is an explicit real
+coordinate identification. Extending scalars to complex smooth
+functions on this open base gives a rank-four algebra of sections.
+The extended derivations act on those coefficients as
+$\nabla_s=-\partial_t$, $\nabla_b=\partial_z$ and the radial
+derivative kills the conic generators. The connection matrices
+have no $\rho$ dependence. Flatness therefore proves that
+\[
+ -\nabla_s-\nu(\partial_\rho^2+\rho^{-1}\partial_\rho+\nabla_b^2)
+ \quad\hbox{commutes with}\quad-\nabla_s^2/4
+\]
+for constant $\nu$. This is a smooth algebra-bundle identity. It
+does not define differentiation on the earlier arbitrary topological
+arithmetic quotient; no such unsupported descent is used.
+The scalar coefficient inclusion $f\mapsto f1$ is the stated
+derivative-intertwining algebra map. The physical leading material
+derivative remains the separate $M_w$ formula, and is not identified
+with the original material base derivation $-\partial_t+6c\partial_z$.
+
+For $-4<m<0$ all four section values are
+$\eta=\pm i\sqrt{-m}$ and $p=\pm\sqrt{m+4}$.
+They are distinct and give $|q|=1$. Pointwise complex conjugation
+sends the first sign to its opposite and fixes the second; hence
+it sends $q$ to $q^{-1}$. No real nonzero $q$ can occur because
+$(q-q^{-1})^2=m<0$. These statements concern section values over
+the physical real base and retain all four sheets.
+
+On the specified growth path, $b=0$, $s=\tau$, $m=-2\tau$.
+For $0<\tau<2$ the sheet $q=e^{i\theta}$ has
+$\theta=\arcsin\sqrt{\tau/2}\in(0,\pi/2)$.
+The exact retained coefficient satisfies
+\[
+ C(e^{i\theta})=-4\sin(7\theta)\sin(3\theta)
+ =\tau(-42+196\tau-280\tau^2+160\tau^3-32\tau^4).
+\]
+The finite Laurent sums for $[3]$ and $[7]$ give the complete
+polynomial after $p^2=4-2\tau$; the independent checker retains
+all factors. Both sine factors are positive for
+$0<\theta<\pi/7$, proving the claimed strict negative interval
+$0<\tau<2\sin^2(\pi/7)$. The endpoint $\tau=0$ remains outside
+the localized connection; the scalar polynomial has its asserted
+limit and order there without extending that connection.
+
+For bounded $\varepsilon$, $e_0>0$ and $0<h<1/100$, the exact
+product on the full stated scalar-germ class is
+\[
+ C(q)\tau^{-A}(e_0+\tau^{2h}\varepsilon(\tau))
+       =\tau^D B(\tau)(e_0+\tau^{2h}\varepsilon(\tau)).
+\]
+Since $B(0)=-42$, $B(\tau)+42=O(\tau)$ and $0<2h<1$,
+the error is $O(\tau^{D+2h})$, the leading coefficient is
+$-42e_0$, and the product is negative for sufficiently small
+positive $\tau$ while tending to zero. This proof requires neither
+smoothness of the arbitrary bounded $\varepsilon$ nor a proof of
+the manuscript's completed velocity claim. Finally the pressure
+integral's sign is its stated infinity normalization: adding a
+function of time preserves the gradient but can change that sign.
+
+\paragraph{Audit conclusion.}
+No mathematical discrepancy was found in the audited bridge.
+The main independent checker verifies 374 exact conic, connection,
+basis, square and coefficient identities. The delegated independent
+profile checker verifies 34 exact inverse-coordinate, derivative,
+divergence, material and full vector-residual identities. Their
+combined scope supports the explicit formulas above, not an
+independent Navier--Stokes blow-up theorem, a plethysm obstruction,
+or a complexity separation.

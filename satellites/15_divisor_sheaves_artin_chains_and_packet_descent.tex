@@ -1,0 +1,857 @@
+\section{Divisor sheaves, Artin chains, jet supports, and packet descent}
+\label{sec:divisor-sheaf-audit}
+
+This section reconstructs one programme from the local notes as a sequence of
+typed constructions.  The classical inputs are deliberately narrow.  Lee gives
+the local factorization of a meromorphic function on a Riemann surface, the
+associated divisor language, skyscraper sheaves, sheafification, and the
+acyclicity of flasque sheaves
+\cite[pp.~93--95; Chap.~5, especially Thm.~5.9; pp.~184--188, Thm.~6.34]{lee2024}.
+Vakil gives a second formulation of sheafification by compatible germs and the
+one-dimensional regular-local-ring/DVR equivalences
+\cite[\S\S2.2.9 and 2.4.4--2.4.7; \S13.5]{vakil2024}.
+All special constructions and all comparison maps below are proved here.  In
+particular, neither classical source is being cited for the Boolean shadow or for
+the chain--cube adjunction.
+
+\subsection{The literal fixed pair at a zeta zero}
+
+Retain the split-zero semiring $S=G(\C)=\C\sqcup\{\tau\}$ of
+\cref{sec:gcue-audited-core}.  Its additive zero is $\tau$.  To avoid confusing
+that element with the ordinary complex number zero, write
+\[
+ e:=0_{\C}\in\C\subset S,
+ \qquad
+ A:=\{\tau,e\}\subset S.
+\]
+
+\begin{proposition}[Fixed pair in literal coordinates]
+\label{prop:ds-fixed-pair}
+The operations inherited from $S$ make $A$ a unital semiring, with additive
+zero $\tau$ and multiplicative identity $e$.  The map
+\[
+ \beta:A\longrightarrow\mathbb B=\{0,1\},
+ \qquad \beta(\tau)=0,\quad \beta(e)=1,
+\]
+is a semiring isomorphism.  If $u=-1\in\C\subset S$, then
+\[
+ \operatorname{Fix}(u\cdot-)=A.
+\]
+Consequently, at every zero $\rho$ of $\zeta$,
+\[
+ \zeta(\rho)-1=-1,
+ \qquad
+ \operatorname{Fix}\bigl((\zeta(\rho)-1)\cdot-\bigr)=A.
+\]
+\end{proposition}
+
+\begin{proof}
+The four sums and products in $A$ are
+\[
+ \tau+\tau=\tau,\quad \tau+e=e+\tau=e,\quad e+e=e,
+\]
+and
+\[
+ \tau\tau=\tau e=e\tau=\tau,\qquad e^2=e.
+\]
+These are exactly the Boolean tables under $\beta$.  Multiplication by $u$ fixes
+$\tau$ because $\tau$ is absorbing.  For a supported element $z\in\C\subset S$,
+$uz=z$ is the ordinary equality $-z=z$, hence $2z=0$ and therefore $z=0_{\C}=e$.
+This proves the fixed-set identity.  The final assertion is the direct substitution
+$\zeta(\rho)=0$; it detects no further analytic property of $\rho$.
+\end{proof}
+
+The internal unit of $A$ is $e$, whereas the unit of $S$ is $1_{\C}$.  Thus the
+inclusion $A\subset S$ is deliberately not being called a unit-preserving semiring
+map.
+
+\subsection{A product sheaf and the exact sheafification map}
+
+Let $X$ be a Riemann surface and let
+\[
+ D=\sum_{x\in Z}m_x[x]
+\]
+be an effective divisor with closed discrete support $Z\subset X$ and
+$m_x\in\mathbb Z_{\geq1}$.  For an open $U\subset X$, put
+\[
+ P_D(U):=\bigoplus_{x\in U\cap Z}A^{m_x},
+ \qquad
+ \mathcal V_D(U):=\prod_{x\in U\cap Z}A^{m_x},
+ \qquad
+ \mathcal A_D(U):=\prod_{x\in U\cap Z}A.
+\]
+The direct sum means finite support relative to the basepoint
+$(\tau,\ldots,\tau)$; every restriction map forgets the coordinates outside the
+smaller open set.
+
+\begin{lemma}[Product sheaf on discrete support]
+\label{lem:ds-product-sheaf}
+For any family $(M_x)_{x\in Z}$ of sets with fixed algebraic structure,
+\[
+ \mathcal F_M(U):=\prod_{x\in U\cap Z}M_x
+\]
+is a sheaf with that structure.  Its stalk is $M_x$ at $x\in Z$ and the terminal
+one-element object at $y\notin Z$.
+\end{lemma}
+
+\begin{proof}
+For an open cover $U=\bigcup_iU_i$, compatible families on the $U_i$ specify
+one and only one value at each $x\in U\cap Z$: choose any $i$ containing $x$,
+and compatibility makes the choice irrelevant.  These values form the unique
+global family.  If $x\in Z$, discreteness gives a neighbourhood $W$ with
+$W\cap Z=\{x\}$, so the directed system defining the stalk is eventually
+constant with value $M_x$.  If $y\notin Z$, closedness gives a neighbourhood
+disjoint from $Z$, and the directed system is eventually terminal.
+\end{proof}
+
+\begin{theorem}[Finite support sheafifies to arbitrary support]
+\label{thm:ds-sheafification}
+The coordinate inclusion
+\[
+ \eta_D:P_D\longrightarrow\mathcal V_D
+\]
+exhibits $\mathcal V_D$ as the sheafification of $P_D$ in sheaves of
+$A$-semimodules.
+\end{theorem}
+
+\begin{proof}
+The target is a sheaf by \cref{lem:ds-product-sheaf}.  Let $\mathcal G$ be a
+sheaf of $A$-semimodules and let $\varphi:P_D\to\mathcal G$ be a presheaf
+morphism.  Fix $s=(s_x)_{x\in U\cap Z}\in\mathcal V_D(U)$.  For every
+$x\in U\cap Z$, choose $U_x\subset U$ with $U_x\cap Z=\{x\}$, and put
+$U_0=U\setminus Z$.  The family
+\[
+ \{U_0\}\cup\{U_x:x\in U\cap Z\}
+\]
+covers $U$.  On $U_x$, the section $s$ is the finite-support section $s_x$;
+on $U_0$ it is zero.  If $x\ne y$, then
+$(U_x\cap U_y)\cap Z=\varnothing$, and the same is true of
+$U_x\cap U_0$.  Hence
+\[
+ \varphi_{U_x}(s_x),\qquad \varphi_{U_0}(0)
+\]
+agree on every overlap.  They glue uniquely in $\mathcal G$; call the result
+$\widetilde\varphi_U(s)$.  The construction commutes with restriction and with
+the $A$-semimodule operations because both statements hold on the displayed
+cover and sections of a sheaf are determined locally.  Thus
+$\widetilde\varphi:\mathcal V_D\to\mathcal G$ is a sheaf morphism.
+
+If $s$ already lies in $P_D(U)$, the glued local images are precisely the
+restrictions of $\varphi_U(s)$, so
+$\widetilde\varphi\eta_D=\varphi$.  If another extension has this property, it
+agrees with $\widetilde\varphi$ on every $U_x$ and on $U_0$, hence everywhere.
+This is the universal property of sheafification.  It also agrees with the
+compatible-germ construction in \cite[\S2.4.4--2.4.7]{vakil2024}.
+\end{proof}
+
+\subsection{Boolean coordinates, reduction, and lost information}
+
+For $m\geq1$, let $[m]=\{1,\ldots,m\}$ and $B_m=\mathcal P([m])$, ordered by
+inclusion and equipped with union as join.  Define
+\[
+ \Theta_m:A^m\longrightarrow B_m,
+ \qquad
+ \Theta_m(a)=\{r:a_r=e\}.
+\]
+
+\begin{proposition}[Boolean cube and reduced retract]
+\label{prop:ds-boolean-retract}
+The map $\Theta_m$ is an isomorphism of $A$-semimodules, where the scalar action
+on $B_m$ is
+\[
+ \tau I=\varnothing,\qquad eI=I.
+\]
+The maps
+\[
+ \Sigma_m:A^m\to A,\quad \Sigma_m(a)=a_1+\cdots+a_m,
+ \qquad
+ \Delta_m:A\to A^m,\quad \Delta_m(a)=(a,\ldots,a),
+\]
+are $A$-linear and satisfy $\Sigma_m\Delta_m=\operatorname{id}_A$.  In subset
+coordinates,
+\[
+ \Sigma_m(I)=
+ \begin{cases}\tau,&I=\varnothing,\\ e,&I\ne\varnothing,\end{cases}
+ \qquad
+ \Delta_m(\tau)=\varnothing,\quad \Delta_m(e)=[m].
+\]
+Thus the only nontrivial fibre of $\Sigma_m$ is the set of all
+$2^m-1$ nonempty subsets.
+\end{proposition}
+
+\begin{proof}
+Coordinatewise addition in $A^m$ is Boolean OR, so
+$\Theta_m(a+b)=\Theta_m(a)\cup\Theta_m(b)$; the inverse assigns $e$ to the
+coordinates in a subset and $\tau$ to its complement.  The formulas for
+$\Sigma_m$ and $\Delta_m$ are then the nonempty-set detector and the inclusion
+of the two extreme vertices.  They preserve joins and the scalar action, and
+their composite fixes both elements of $A$.  The fibre count is immediate from
+the displayed formula.
+\end{proof}
+
+Applying these maps independently at each $x$ gives sheaf morphisms
+\[
+ \mathcal V_D\mathop{\longrightarrow}^{\Sigma_D}\mathcal A_D
+ \mathop{\longrightarrow}^{\Delta_D}\mathcal V_D,
+ \qquad
+ \Sigma_D\Delta_D=\operatorname{id}_{\mathcal A_D}.
+\]
+If $\mathcal V_D\cong\mathcal A_D$, then their stalks at $x$ have respectively
+$2^{m_x}$ and $2$ elements; hence $m_x=1$.  Conversely that condition makes
+the definitions identical.  This proves, without erasing the retraction, that
+\[
+ \mathcal V_D\cong\mathcal A_D
+ \quad\Longleftrightarrow\quad
+ m_x=1\text{ for every }x\in Z.
+\]
+
+\subsection{The intrinsic Artin chain and both adjoints to the cube inclusion}
+
+Let $\mathfrak m_x$ be the maximal ideal of the analytic local ring
+$\mathcal O_{X,x}$ and define
+\[
+ Q_{x,m}:=\mathcal O_{X,x}/\mathfrak m_x^m.
+\]
+A centred holomorphic coordinate $t$ identifies
+\[
+ \mathcal O_{X,x}\cong\C\{t\},\qquad
+ Q_{x,m}\cong\C\{t\}/(t^m)\cong\C[t]/(t^m).
+\]
+
+\begin{proposition}[Complete ideal lattice]
+\label{prop:ds-artin-chain}
+The ideals of $Q_{x,m}$ are exactly
+\[
+ I_k:=\mathfrak m_x^k/\mathfrak m_x^m,
+ \qquad 0\leq k\leq m,
+\]
+and
+\[
+ Q_{x,m}=I_0\supset I_1\supset\cdots\supset I_m=0.
+\]
+This chain is intrinsic: changing the centred coordinate changes its polynomial
+presentation but not any $I_k$.
+\end{proposition}
+
+\begin{proof}
+Every nonzero convergent germ has a unique factorization $t^ku(t)$ with
+$k\geq0$ and $u(0)\ne0$.  If $J\ne0$ is an ideal of $\C\{t\}$, choose the least
+order $k$ of a nonzero element of $J$.  A least-order element is $t^ku$ with
+$u$ a unit, so $t^k\in J$; every element of $J$ has order at least $k$, so
+$J\subseteq(t^k)$.  Hence $J=(t^k)$.  Ideals of the quotient correspond to ideals
+of $\C\{t\}$ containing $(t^m)$, which are precisely $(t^k)$ for
+$0\leq k\leq m$.  Finally $(t)=\mathfrak m_x$, so the displayed ideals are the
+coordinate-free powers of the maximal ideal.  This is the analytic instance of
+the DVR ideal classification recorded in \cite[\S13.5, especially
+Thm.~13.5.4]{vakil2024}.
+\end{proof}
+
+Define terminal segments
+\[
+ T_r:=\{r,r+1,\ldots,m\}\quad(1\leq r\leq m),
+ \qquad T_{m+1}:=\varnothing,
+\]
+and let $C_m=\{T_1,\ldots,T_{m+1}\}\subset B_m$.  The intrinsic identification
+\[
+ \operatorname{Idl}(Q_{x,m})\longrightarrow C_m,
+ \qquad I_k\longmapsto T_{k+1},
+\]
+preserves inclusion and joins.  Let $i_m:C_m\hookrightarrow B_m$ be inclusion,
+and define
+\[
+ r_m(I)=
+ \begin{cases}
+ \varnothing,&I=\varnothing,\\
+ T_{\min I},&I\ne\varnothing,
+ \end{cases}
+ \qquad
+ s_m(I)=\{j\in[m]:T_j\subseteq I\}.
+\]
+
+\begin{theorem}[Coordinate-level chain--cube comparison]
+\label{thm:ds-chain-cube}
+For $I\in B_m$ and $T\in C_m$,
+\[
+ r_m(I)\subseteq T\iff I\subseteq i_m(T),
+ \qquad
+ i_m(T)\subseteq I\iff T\subseteq s_m(I).
+\]
+Thus $r_m\dashv i_m\dashv s_m$ in finite posets.  The map $r_m$ preserves
+joins and $r_mi_m=\operatorname{id}_{C_m}$, so $C_m$ is a split join-subsemilattice
+of $B_m$.  The fibres are exactly
+\[
+ r_m^{-1}(T_r)=
+ \begin{cases}
+ \{I\subseteq T_r:r\in I\},&1\leq r\leq m,\\
+ \{\varnothing\},&r=m+1,
+ \end{cases}
+\]
+and
+\[
+ s_m^{-1}(T_r)=
+ \begin{cases}
+ \{[m]\},&r=1,\\
+ \{I:T_r\subseteq I,\ r-1\notin I\},&2\leq r\leq m+1.
+ \end{cases}
+\]
+In the last line $T_{m+1}=\varnothing$, so the condition is $m\notin I$.
+Consequently the two adjoints forget, respectively, every coordinate above the
+first occupied coordinate and every coordinate below the terminal occupied run.
+\end{theorem}
+
+\begin{proof}
+The set $r_m(I)$ is the least terminal segment containing $I$, while $s_m(I)$ is
+the greatest terminal segment contained in $I$.  These two universal properties
+are exactly the displayed adjunctions.  Also
+\[
+ r_m(I\cup J)=r_m(I)\cup r_m(J):
+\]
+if both sets are nonempty, both sides are
+$T_{\min(\min I,\min J)}$, and the empty cases are immediate.  A terminal
+segment is fixed by terminal closure, proving $r_mi_m=\operatorname{id}$.
+
+For $1\leq r\leq m$, the equality $r_m(I)=T_r$ says precisely that $r$ is the
+least member of $I$, equivalently $r\in I\subseteq T_r$.  The empty fibre is
+obvious.  For $2\leq r\leq m$, the equality $s_m(I)=T_r$ says that the whole
+tail $T_r$ lies in $I$ but the next longer tail does not; this is equivalent to
+$T_r\subseteq I$ and $r-1\notin I$.  The endpoint cases follow from the same
+description.  These formulas also exhibit the information loss rather than merely
+counting it.
+\end{proof}
+
+For reference, the fibre cardinalities obtained from the proof are
+\[
+ |r_m^{-1}(T_r)|=2^{m-r}\ (r\leq m),
+\]
+and
+\[
+ |s_m^{-1}(T_1)|=1,\qquad
+ |s_m^{-1}(T_r)|=2^{r-2}\ (2\leq r\leq m+1).
+\]
+When $m\geq2$, $C_m$ has width $1$ whereas $B_m$ contains the incomparable
+vertices $\{1\}$ and $\{2\}$.  This is an explicit poset-isomorphism obstruction,
+not an assertion that the objects have no relation: their positive relation is the
+adjoint triple just proved.
+
+Define product sheaves
+\[
+ \mathcal I_D(U):=\prod_{x\in U\cap Z}\operatorname{Idl}(Q_{x,m_x}),
+ \qquad
+ \mathcal B_D(U):=\prod_{x\in U\cap Z}B_{m_x}.
+\]
+The ideal-chain identification and $\Theta_{m_x}$ give
+$\mathcal I_D\cong\prod C_{m_x}$ and identify $\mathcal B_D$ with
+$\mathcal V_D$ after forgetting from $A$-semimodules to join-semilattices.  Applying
+$i_{m_x}$ and $r_{m_x}$ coordinatewise gives morphisms of sheaves of
+join-semilattices
+\[
+ \mathcal I_D\mathop{\longrightarrow}^{i_D}\mathcal B_D
+ \mathop{\longrightarrow}^{r_D}\mathcal I_D,
+ \qquad r_Di_D=\operatorname{id}_{\mathcal I_D},
+\]
+Applying $s_{m_x}$ coordinatewise gives a morphism of sheaves of posets
+$s_D:\mathcal B_D\to\mathcal I_D$; it is not asserted to preserve joins.  Stalkwise
+$r_D\dashv i_D\dashv s_D$.  Every map commutes with restriction
+because restriction is coordinate projection.  This is the exact global morphism
+between the intrinsic Artin model and the Boolean multiplicity model.
+
+\subsection{Enhanced jets and the exact support morphism}
+
+Now take $X=\C$ with its literal global coordinate $s$.  For $x\in Z$, put
+$t_x=s-x$ and define
+\[
+ J_x:=\C[t_x]/(t_x^{m_x}),
+ \qquad
+ E_x:=t_x\C[t_x]/(t_x^{m_x+1}),
+ \qquad
+ L_x:=\C t_x^{m_x}\subset E_x.
+\]
+Thus $J_x$ has ordered basis $1,t_x,\ldots,t_x^{m_x-1}$ and $E_x$ has ordered
+basis $t_x,\ldots,t_x^{m_x}$.  The coordinate $t_x$ gives an algebra isomorphism
+$Q_{x,m_x}\cong J_x$ and a linear degree-shift isomorphism
+\[
+ d_x:E_x\longrightarrow J_x,
+ \qquad
+ d_x\left(\sum_{r=1}^{m_x}c_rt_x^r\right)
+   =\sum_{r=1}^{m_x}c_rt_x^{r-1}.
+\]
+Its inverse is multiplication by $t_x$ followed by reduction modulo
+$t_x^{m_x+1}$.  The map $d_x$ is a vector-space map, not a claim that $E_x$ has
+the quotient-ring multiplication of $J_x$.
+
+Define the coefficient-support map
+\[
+ \kappa_x:E_x\longrightarrow A^{m_x},
+ \qquad
+ \kappa_x\left(\sum_{r=1}^{m_x}c_rt_x^r\right)_r=
+ \begin{cases}e,&c_r\ne0,\\ \tau,&c_r=0.\end{cases}
+\]
+and the basepoint-preserving section
+\[
+ \iota_x:A^{m_x}\longrightarrow E_x,
+ \qquad
+ \iota_x(a)=\sum_{\{r:a_r=e\}}t_x^r.
+\]
+
+\begin{proposition}[Support fibres and the additive obstruction]
+\label{prop:ds-jet-support}
+The maps $\kappa_x$ and $\iota_x$ are morphisms of pointed sets and
+\[
+ \kappa_x\iota_x=\operatorname{id}_{A^{m_x}}.
+\]
+For the vertex corresponding to $I\subseteq[m_x]$, the fibre is
+\[
+ \kappa_x^{-1}(I)=
+ \left\{\sum_{r\in I}c_rt_x^r:c_r\in\C^\times\right\}
+ \cong(\C^\times)^{|I|},
+\]
+with the empty fibre interpreted as the singleton $\{0\}$.  The map $\kappa_x$
+is not additive.  Indeed, for every $m_x\geq1$,
+\[
+ \kappa_x(t_x)=\kappa_x(-t_x)=\{1\},
+ \qquad
+ \kappa_x(t_x-t_x)=\varnothing
+ \ne\{1\}\cup\{1\}.
+\]
+Finally, the additive monoids $E_x$ and $A^{m_x}$ are not isomorphic: the latter
+is idempotent, whereas $t_x+t_x=2t_x\ne t_x$ in characteristic zero.
+\end{proposition}
+
+\begin{proof}
+The coefficient $1$ in $\iota_x(a)$ is nonzero in exactly the positions in which
+$a_r=e$, proving the retraction identity.  Prescribing a support $I$ forces the
+coefficients in $I$ to be nonzero and all other coefficients to vanish, which gives
+the fibre formula.  The displayed cancellation proves nonadditivity.  An additive
+monoid isomorphism preserves the sentence $v+v=v$ for every $v$; the final two
+monoids satisfy different such sentences, yielding the stated obstruction.
+\end{proof}
+
+The product assignments
+\[
+ \mathcal J_D(U)=\prod_{x\in U\cap Z}J_x,
+ \quad
+ \mathcal E_D(U)=\prod_{x\in U\cap Z}E_x,
+ \quad
+ \mathcal L_D(U)=\prod_{x\in U\cap Z}L_x
+\]
+are sheaves by \cref{lem:ds-product-sheaf}.  The maps $d_x,\kappa_x,\iota_x$
+assemble coordinatewise into sheaf maps, including the pointed-set retraction
+\[
+ \mathcal E_D\mathop{\longrightarrow}^{\kappa_D}\mathcal V_D
+ \mathop{\longrightarrow}^{\iota_D}\mathcal E_D,
+ \qquad \kappa_D\iota_D=\operatorname{id}_{\mathcal V_D}.
+\]
+Thus the additive obstruction and the positive pointed-set morphism are retained
+simultaneously.
+
+\begin{proposition}[Terminal jet and the Artin socle]
+\label{prop:ds-terminal-socle}
+Under $d_x:E_x\to J_x$, the line $L_x$ maps isomorphically to
+\[
+ \operatorname{Soc}(J_x)
+ :=\{q\in J_x:t_xq=0\}
+ =\C t_x^{m_x-1}.
+\]
+Its nonzero elements have Boolean support $T_{m_x}=\{m_x\}$, which corresponds
+under \cref{thm:ds-chain-cube} to the smallest nonzero Artin ideal
+$I_{m_x-1}$.
+\end{proposition}
+
+\begin{proof}
+If $q=\sum_{r=0}^{m_x-1}c_rt_x^r$, then $t_xq=0$ modulo $t_x^{m_x}$ exactly
+when every $c_r$ with $0\leq r\leq m_x-2$ vanishes; this condition is vacuous
+when $m_x=1$.  Hence the socle is the displayed line.
+The degree shift sends $t_x^{m_x}$ to $t_x^{m_x-1}$, while coefficient support
+sends every nonzero scalar multiple of $t_x^{m_x}$ to $\{m_x\}=T_{m_x}$.
+The ideal-chain coordinate sends $I_{m_x-1}$ to the same terminal segment.
+\end{proof}
+
+\begin{theorem}[Local leading class with the required hypothesis]
+\label{thm:ds-leading-class}
+Let $f\not\equiv0$ be meromorphic on $\C$, let $Z_f$ be its zero set, and assume only that
+$f$ is holomorphic in a neighbourhood of every $x\in Z_f$.  If
+$m_x=\operatorname{ord}_x(f)$, then its truncated class in $E_x$ is
+\[
+ [f]_x=\frac{f^{(m_x)}(x)}{m_x!}\,t_x^{m_x}
+ \in L_x\setminus\{0\}.
+\]
+Its coefficient support is $T_{m_x}$, and its degree shift is a nonzero generator
+of the Artin socle.
+\end{theorem}
+
+\begin{proof}
+Holomorphy near $x$ and the definition of vanishing order give the Taylor
+expansion
+\[
+ f(s)=\sum_{r\geq m_x}\frac{f^{(r)}(x)}{r!}t_x^r,
+ \qquad f^{(m_x)}(x)\ne0.
+\]
+Reduction modulo $t_x^{m_x+1}$ leaves precisely the displayed term.  The support
+and socle claims are \cref{prop:ds-terminal-socle}.  No global entire-function
+hypothesis is used.
+\end{proof}
+
+\subsection{Compactification and the tail stalk}
+
+Let $j:\C\hookrightarrow\mathbb P^1(\C)$ be the standard inclusion and let
+$i_\infty:\{\infty\}\hookrightarrow\mathbb P^1(\C)$.  For a family of pointed
+sets $(M_x)_{x\in Z}$, define
+\[
+ \operatorname{Tail}(M):=\left(\prod_{x\in Z}M_x\right)\!\big/\sim,
+ \qquad
+ a\sim b\iff a_x=b_x\text{ for all but finitely many }x.
+\]
+For vector spaces $V_x$, this is the vector quotient
+\[
+ \operatorname{Tail}_{\C}(V)
+ =\left(\prod_{x\in Z}V_x\right)\Big/\left(\bigoplus_{x\in Z}V_x\right).
+\]
+Let $j_*\mathcal F_M(U)=\mathcal F_M(U\cap\C)$.  Define explicitly
+$j^{\mathrm{fin}}_!\mathcal F_M$ by the same formula when $\infty\notin U$ and,
+when $\infty\in U$, by retaining exactly the families with finite support.
+
+\begin{lemma}[The finite extension is a sheaf]
+\label{lem:ds-jfin-sheaf}
+The assignment $j^{\mathrm{fin}}_!\mathcal F_M$ is a sheaf, and its inclusion into
+$j_*\mathcal F_M$ is an isomorphism away from $\infty$.
+\end{lemma}
+
+\begin{proof}
+Only gluing over an open set $U$ containing $\infty$ requires proof.  Let
+$U=\bigcup_iU_i$ and let finite-support sections on the $U_i$ be compatible.
+Choose $i_0$ with $\infty\in U_{i_0}$.  The complement
+$K=\mathbb P^1(\C)\setminus U_{i_0}$ is a compact subset of $\C$.  Because $Z$
+is closed discrete, $K\cap Z$ is finite.  The section on $U_{i_0}$ has finite
+support, and compatibility forces the glued product section to vanish at every
+point of $(U\cap Z)\cap U_{i_0}$ outside that finite support.  The only remaining
+possible support lies in $K\cap Z$, also finite.  Hence the glued section has
+finite support.  Locality and the statement away from $\infty$ follow directly
+from the definition.
+\end{proof}
+
+\begin{theorem}[Exact tail stalk]
+\label{thm:ds-tail-stalk}
+The stalks of $j^{\mathrm{fin}}_!\mathcal F_M\to j_*\mathcal F_M$ agree at every
+finite point.  At infinity,
+\[
+ (j^{\mathrm{fin}}_!\mathcal F_M)_\infty\cong *,
+ \qquad
+ (j_*\mathcal F_M)_\infty\cong\operatorname{Tail}(M).
+\]
+For vector spaces there is a short exact sequence
+\[
+ 0\longrightarrow j^{\mathrm{fin}}_!\mathcal F_V
+ \longrightarrow j_*\mathcal F_V
+ \longrightarrow i_{\infty*}\operatorname{Tail}_{\C}(V)
+ \longrightarrow0.
+\]
+Both the middle and right sheaves are flasque.  Therefore
+\[
+ H^q\!\left(\mathbb P^1(\C),j^{\mathrm{fin}}_!\mathcal F_V\right)=0
+ \quad(q\geq1),
+\]
+and
+\[
+ \operatorname{Tail}_{\C}(V)
+ \cong
+ \Gamma(j_*\mathcal F_V)\big/\Gamma(j^{\mathrm{fin}}_!\mathcal F_V).
+\]
+\end{theorem}
+
+\begin{proof}
+The finite stalks are computed as in \cref{lem:ds-product-sheaf}.  A finite-support
+germ near infinity becomes the basepoint after shrinking past its finite support,
+so the first infinite stalk is terminal.  A neighbourhood of infinity has compact
+complement in $\C$, and therefore meets $Z$ in a cofinite subset.  Extending a
+family by basepoints across the finite complement identifies a germ of
+$j_*\mathcal F_M$ with a global family modulo eventual equality.  This proves the
+stalk formula.
+
+For vector spaces, the quotient map sends a family on a neighbourhood of
+$\infty$ to its class after zero extension over the finite complement.  It is
+surjective, and its kernel is exactly finite support, proving the sheaf sequence.
+Every restriction map of $j_*\mathcal F_V$ is a coordinate projection and is
+surjective by zero extension.  The same is immediate for the skyscraper at
+$\infty$; hence both are flasque.  The flasque-acyclicity theorem
+\cite[pp.~184--188, Thm.~6.34]{lee2024} and the long exact sequence give
+vanishing in degrees at least two.  In degree one, the relevant segment is
+\[
+ \Gamma(j_*\mathcal F_V)\longrightarrow
+ \operatorname{Tail}_{\C}(V)\longrightarrow
+ H^1(j^{\mathrm{fin}}_!\mathcal F_V)\longrightarrow0.
+\]
+The first arrow is the defining product-to-product/direct-sum quotient and is
+surjective.  Thus $H^1$ vanishes as well, and its kernel gives the global-section
+quotient formula.
+\end{proof}
+
+\subsection{The zeta divisor, its jet section, and its nonzero tails}
+
+The Riemann zeta function is meromorphic on $\C$, with its only pole a simple
+pole at $1$ \cite[\S25.2(i)]{apostolDLMF25}.  Define
+\[
+ Z_\zeta=\{\rho\in\C:\zeta(\rho)=0\},
+ \qquad
+ D_\zeta=\sum_{\rho\in Z_\zeta}m_\rho[\rho],
+ \quad m_\rho=\operatorname{ord}_\rho(\zeta).
+\]
+The zero set is closed and discrete: every zero has a neighbourhood on which
+$\zeta$ is holomorphic and not identically zero, so local factorization makes the
+zero isolated; the pole at $1$ is not a finite accumulation point of zeros.  Thus
+all preceding sheaves apply to $D_\zeta$.
+
+\begin{theorem}[Zeta divisor shadow and global leading jet]
+\label{thm:ds-zeta-shadow-jet}
+At every $\rho\in Z_\zeta$,
+\[
+ (\mathcal V_{D_\zeta})_\rho\cong A^{m_\rho},
+ \qquad
+ (\mathcal A_{D_\zeta})_\rho\cong A,
+\]
+and the second stalk is the literal fixed set from
+\cref{prop:ds-fixed-pair}.  The family
+\[
+ [\zeta]_\rho
+ =\lambda_\rho(s-\rho)^{m_\rho},
+ \qquad
+ \lambda_\rho=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}\ne0,
+\]
+is a global section of $\mathcal E_{D_\zeta}$.  Its support at $\rho$ is
+$T_{m_\rho}$ and its degree shift generates the socle of
+$\C[s-\rho]/(s-\rho)^{m_\rho}$.
+\end{theorem}
+
+\begin{proof}
+The stalk formulas are \cref{lem:ds-product-sheaf}; the fixed-set statement is
+\cref{prop:ds-fixed-pair}.  Although $\zeta$ is not entire, it is holomorphic near
+each of its zeros.  Hence \cref{thm:ds-leading-class} applies at every $\rho$.
+Arbitrary families are sections of the product sheaf, which proves globality.
+The support and socle conclusions were proved in
+\cref{prop:ds-terminal-socle}.
+\end{proof}
+
+The reflection formula
+\[
+ \zeta(s)=2(2\pi)^{s-1}\sin\!\left(\frac{\pi s}{2}\right)
+ \Gamma(1-s)\zeta(1-s)
+\]
+is DLMF equation 25.4.2 \cite[\S25.4, Eq.~25.4.2]{apostolDLMF25}; it also
+implies the trivial zeros \cite[\S25.10(i)]{apostolDLMF25}.
+
+\begin{proposition}[Trivial-zero multiplicity and leading coordinate]
+\label{prop:ds-trivial-derivative}
+For every $n\geq1$, the zero $-2n$ is simple and
+\[
+ \zeta'(-2n)
+ =(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{proposition}
+
+\begin{proof}
+At $s=-2n$, every factor in the reflection formula except the sine is holomorphic
+and nonzero: in particular $\Gamma(1+2n)=(2n)!$ and
+$\zeta(1+2n)>0$ by its positive Dirichlet series.  The sine has derivative
+$(\pi/2)\cos(-n\pi)=(\pi/2)(-1)^n$, so the zero is simple.  Differentiating the
+product at that simple sine zero leaves
+\[
+ 2(2\pi)^{-2n-1}\Gamma(1+2n)\zeta(1+2n)
+ \cdot\frac\pi2(-1)^n,
+\]
+which is the displayed expression after collecting powers of $2$ and $\pi$.
+\end{proof}
+
+\begin{corollary}[Nontriviality of both tail objects]
+\label{cor:ds-zeta-tail}
+The Boolean tail
+\[
+ \operatorname{Tail}\bigl((A^{m_\rho})_{\rho\in Z_\zeta}\bigr)
+\]
+has more than one element, and the vector tail
+\[
+ \left(\prod_{\rho\in Z_\zeta}E_\rho\right)
+ \Big/\left(\bigoplus_{\rho\in Z_\zeta}E_\rho\right)
+\]
+contains the nonzero class of $([\zeta]_\rho)_\rho$.
+\end{corollary}
+
+\begin{proof}
+The trivial zeros $-2,-4,\ldots$ form an infinite subset.  A family equal to a
+fixed nonbasepoint at every trivial-zero coordinate is not eventually the
+basepoint, so it gives a nonbasepoint Boolean tail class.  By
+\cref{prop:ds-trivial-derivative}, every coordinate $[\zeta]_{-2n}$ is nonzero.
+Hence the jet family is not finitely supported and its class in the vector quotient
+is nonzero.
+\end{proof}
+
+\subsection{Equivariance over nonidentity base maps}
+
+Before specializing to the completed function, we state the base-map convention
+explicitly.  Let $h:X\to X$ be a homeomorphism satisfying $h(Z)=Z$ and
+$m_{h(x)}=m_x$ for every $x\in Z$.  For every open $U\subset X$, define
+\[
+ T_h(U):\mathcal V_D(U)\longrightarrow\mathcal V_D(hU),
+ \qquad
+ \bigl(T_h(U)a\bigr)_{h(x),r}=a_{x,r}
+ \quad(1\leq r\leq m_x).
+\]
+The same coordinate transport defines $T_h$ on $\mathcal I_D$.
+
+\begin{proposition}[Exact transport and cocycle]
+\label{prop:ds-equivariant-transport}
+Every $T_h(U)$ is an isomorphism, with inverse $T_{h^{-1}}(hU)$, and
+\[
+ \operatorname{res}_{hU,hV}T_h(U)
+ =T_h(V)\operatorname{res}_{U,V}
+ \quad(V\subset U).
+\]
+For two divisor-preserving homeomorphisms $g,h$,
+\[
+ T_g(hU)T_h(U)=T_{g\circ h}(U).
+\]
+Thus these maps are equivariant sheaf data over the displayed base maps.  They
+are not being silently recast as endomorphisms over $\operatorname{id}_X$.
+Moreover the Artin--Boolean comparison is equivariant:
+\[
+ T_h i_D=i_D T_h,\qquad T_h r_D=r_D T_h,\qquad T_h s_D=s_D T_h.
+\]
+\end{proposition}
+
+\begin{proof}
+Each formula merely relabels the coordinate $(x,r)$ as $(h(x),r)$, so the inverse
+and restriction identities follow by substitution.  Relabelling first by $h$ and
+then by $g$ relabels by $g\circ h$, proving the cocycle.  The three chain--cube
+maps act on the $r$-coordinates at one support point and do not change the support
+point; relabelling and applying them therefore commute coordinate by coordinate.
+\end{proof}
+
+\subsection{Completed-zeta packet descent and phase coordinates}
+
+Use Riemann's completed function in the literal convention
+\[
+ \xi(s)=\frac12s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s).
+\]
+DLMF gives this normalization and the symmetry $\xi(1-s)=\xi(s)$
+\cite[\S25.4, Eqs.~25.4.3--25.4.4]{apostolDLMF25}.  Lagarias and Montague
+record explicitly that $\xi$ is entire and that its zeros are exactly the zeta
+zeros in $0<\Re(s)<1$
+\cite[\S1, Eq.~(1.1) and the following paragraph]{lagariasMontague2011}.
+On this open strip the remaining factor
+$\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)$ is holomorphic and nonzero, so the
+vanishing orders of $\xi$ and $\zeta$ agree.
+Let $D_\xi$ be this divisor and set
+\[
+ c(s)=\overline s,\qquad w(s)=1-s,\qquad
+ W=\{1,c,w,cw\}\cong C_2\times C_2.
+\]
+The identity $\overline{\xi(\overline s)}=\xi(s)$ follows first in a right
+half-plane from the real Dirichlet coefficients and the conjugation law for
+$\Gamma$, and then everywhere by analytic continuation.  Hence both $c$ and
+$w$ preserve $D_\xi$, including multiplicities.
+
+Let $Y_\xi=|D_\xi|/W$ with quotient map $q:|D_\xi|\to Y_\xi$.  Since the source
+is discrete and $W$ is finite, $Y_\xi$ is discrete.  For an orbit $O$, write
+$r_O=|O|$ and $m_O$ for its common multiplicity.
+
+\begin{theorem}[Packet descent with explicit diagonal inverse]
+\label{thm:ds-packet-descent}
+On the restriction of the divisor sheaves to $|D_\xi|$,
+\[
+ (q_*\mathcal V_{D_\xi})_O\cong(A^{m_O})^{r_O},
+ \qquad
+ (q_*\mathcal I_{D_\xi})_O\cong(C_{m_O})^{r_O}.
+\]
+The fixed parts under the transport action of $W$ are the diagonal subobjects.
+Projection to any chosen factor and diagonal repetition are mutually inverse on
+the fixed part.  Consequently
+\[
+ (q_*\mathcal V_{D_\xi})^W(U)
+ \cong\prod_{O\in U}A^{m_O},
+ \qquad
+ (q_*\mathcal I_{D_\xi})^W(U)
+ \cong\prod_{O\in U}C_{m_O}
+\]
+for every open $U\subseteq Y_\xi$.
+The descended chain--cube maps still satisfy
+$r\dashv i\dashv s$ stalkwise and $ri=\operatorname{id}$.
+\end{theorem}
+
+\begin{proof}
+Because the orbit space is discrete, the stalk of a pushforward at $O$ is the
+product of the stalks over $q^{-1}(O)=O$.  Multiplicity preservation gives the
+two displayed products.  The $W$-action permutes the factors transitively.
+A tuple is fixed exactly when every factor equals every other factor, which is
+the diagonal.  Projection of a diagonal tuple to one component is independent of
+the chosen component, and diagonal repetition is its two-sided inverse.  These
+maps commute with restrictions, so the stalkwise descriptions assemble into the
+displayed product sheaves.  The equivariance equations in
+\cref{prop:ds-equivariant-transport} descend the three comparison maps and their
+equations.
+\end{proof}
+
+For a zero $\rho$ of $\xi$, define the nonzero leading coefficient and its phase
+\[
+ \mu_\rho:=\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}\in\C^\times,
+ \qquad
+ \phi_\rho:=\frac{\mu_\rho}{|\mu_\rho|}\in S^1.
+\]
+
+\begin{proposition}[Exact phase transport]
+\label{prop:ds-phase-transport}
+For every such $\rho$,
+\[
+ \mu_{\overline\rho}=\overline{\mu_\rho},
+ \qquad
+ \mu_{1-\rho}=(-1)^{m_\rho}\mu_\rho,
+ \qquad
+ \mu_{1-\overline\rho}=(-1)^{m_\rho}\overline{\mu_\rho},
+\]
+and the identical formulas hold for $\phi$.
+\end{proposition}
+
+\begin{proof}
+Expand $\overline{\xi(\overline s)}=\xi(s)$ in local power series at $\rho$;
+coefficient conjugation gives the first formula.  Differentiating
+$\xi(1-s)=\xi(s)$ exactly $m_\rho$ times gives
+\[
+ (-1)^{m_\rho}\xi^{(m_\rho)}(1-s)=\xi^{(m_\rho)}(s).
+\]
+Evaluation at $s=\rho$ and division by $m_\rho!$ gives the second formula; the
+third is its conjugate.  Absolute values are preserved by conjugation and by the
+sign, so division by absolute value gives the phase formulas.
+\end{proof}
+
+For each orbit $O$, let $\Gamma_{m_O}$ be the subgroup of
+$\operatorname{Homeo}(S^1)$ generated by
+\[
+ z\longmapsto\overline z,\qquad z\longmapsto(-1)^{m_O}z,
+\]
+and put $\Phi_O=S^1/\Gamma_{m_O}$.  By
+\cref{prop:ds-phase-transport}, the image of $\phi_\rho$ in $\Phi_O$ is independent
+of $\rho\in O$.  These images form a section of the product sheaf
+\[
+ \mathcal{Ph}_\xi(U)=\prod_{O\in U}\Phi_O
+\]
+on $Y_\xi$.  This is a quotient-valued phase decoration of the packet sheaf; no
+claim about the location, multiplicity, or spectral origin of any individual zero
+is inferred from it.
+
+\subsection{Certificate boundary and retained interfaces}
+
+The accompanying exact finite certificate exhaustively checks, for
+$1\leq m\leq8$, the two adjunctions, the retraction, join preservation, every
+fibre formula and fibre cardinality, the reduced-shadow retraction, coefficient
+support fibres over a finite coefficient alphabet, and the Klein-four phase-action
+relations.  Those checks are a replay of finite algebra, not a replacement for the
+all-$m$ proofs above.  In particular, they do not certify analytic continuation,
+the functional equation, divisor discreteness, sheaf cohomology, or any statement
+about individual zeros.
+
+Three programme boundaries remain explicit.  First, $A^{m_x}$ is a constructed
+multiplicity shadow, while $Q_{x,m_x}$ is the intrinsic analytic thickening; their
+proved interface is $r_m\dashv i_m\dashv s_m$ and not an untyped identification.
+Second, the coefficient-support map from jets is a pointed-set retraction with
+explicit torus fibres and a proved additive obstruction.  Third, the symmetry maps
+are transport over $c$ and $w$, followed by fixed-point descent along $q$; they are
+not endomorphisms over an unchanged base.  Later blueprint, analytic packet-product,
+operator-algebraic, or physical interpretations require their own typed arrows and
+are not supplied by the present construction.

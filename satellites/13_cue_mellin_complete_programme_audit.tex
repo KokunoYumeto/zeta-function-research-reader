@@ -1,0 +1,1134 @@
+\subsubsection{Complete reconstruction of the CUE--Mellin peeling programme}
+\label{sec:cue-mellin-complete-programme}
+
+This subsection reconstructs the complete mathematical content of the three modern local
+CUE--Mellin TeX versions.  Their exact source identities are:
+\begin{quote}\small
+maintained source (1,591 lines):\\
+\texttt{4d4ed40c9968cc8cdfd28ebe129316ee04abcef47cef6683c01c47bd972daa4f}\\
+predecessor (1,032 lines):\\
+\texttt{21e450e24691c845c2d7d60b74e43555a854ccaf33407cbbe56d7dcc5a46b4a9}\\
+predecessor (877 lines):\\
+\texttt{7666d8a685914f91f0de96cb5e420c989001150a30a910bc33bb82249d61acea}\\
+separate 17-page PDF:\\
+\texttt{78eb0f5a545fa5c05b459aed0f973ae6fedcccd5615f84a914a5cd8179f47441}.
+\end{quote}
+They are versions of one programme, but deletion from a later version is not treated as a
+mathematical retraction.  In particular, the earlier auxiliary Gauss law, ratio-lattice
+count, and cubic trace calculation are audited below rather than lost.  The PDF was compared
+through native PDF text with a fresh two-pass compilation of the maintained TeX.  The
+mathematical body agrees; the 28 one-sided comparison lines are the two versions of fourteen
+table-of-contents, pagination, and date lines.  Thus it is a rendered snapshot, not an
+additional mathematical source.  No OCR is involved.
+
+The human-source boundary is fixed first.  Haar CUE, Weyl integration, and the derivative
+moment problem come from the published random-matrix literature
+\cite{forrester2022,winn2012,conreyRubinsteinSnaith2006,dehaye2008,
+groverMezzadriSimm2026,simmWei2026}.  The exact independent Verblunsky variables come from
+Killip--Nenciu, with the derivative telescope derived in
+\cref{thm:verblunsky-peel-derived} from their coordinates
+\cite{killipNenciu2004}.  Bernstein's original construction supplies the approximation
+operator used in the measure recovery \cite{bernstein1912}; Hausdorff is the historical
+source for the finite-difference moment criterion \cite{hausdorff1921}.  The local formulas
+below are then either consequences proved here from those inputs or independently derived
+finite identities.  No novelty priority is asserted.
+
+\paragraph{The fixed-rank Mellin object and its exact support.}
+For normalized Haar measure on $U(N)$, retain
+\begin{equation}
+ \Phi_N(z)=\det(zI-U),\qquad
+ X_N(U)=|\Phi_N'(1)|^2,\qquad
+ \mathsf M_N(k)=\mathbb E X_N^k
+ \label{eq:cueM-fixedN-objects}
+\end{equation}
+whenever the last integral is finite.  Equation
+\eqref{eq:GMS-Phi-exact-phase} gives the exact convention map to
+$\Lambda_N(z)=\det(1-zU^*)$: multiplication by the $z$-independent phase
+$(-1)^N\overline{\det U}$ has inverse $(-1)^N\det U$, zero kernel, singleton fibres, and
+preserves every derivative magnitude.  Consequently, for $s\in\mathbb Z_{>0}$,
+\begin{equation}
+ \mathsf M_N(s)=M_{(1^s),(1^s)}(1,N)
+ \label{eq:cueM-GMS-specialization}
+\end{equation}
+in the notation of Grover--Mezzadri--Simm
+\cite[eq.~(1.1)]{groverMezzadriSimm2026}.
+
+\begin{theorem}[Exact fixed-rank support and Mellin representation]
+\label{thm:cueM-fixedN-support}
+For every $N\geq2$, the pushforward probability
+\[
+ \nu_N=(X_N)_*\operatorname{Haar}_{U(N)}
+\]
+has exact support
+\begin{equation}
+ \operatorname{supp}\nu_N=[0,L_N],\qquad L_N=N^2 4^{N-1}.
+ \label{eq:cueM-exact-support}
+\end{equation}
+For every $k\geq0$,
+\begin{equation}
+ \mathsf M_N(k)=\int_0^{L_N}t^k\,d\nu_N(t).
+ \label{eq:cueM-Mellin-measure}
+\end{equation}
+The same identity is tautological for any other real $k$ for which the integral is finite;
+the theorem makes no additional negative-moment assertion.
+\end{theorem}
+
+\begin{proof}
+If $z_1,\ldots,z_N\in\mathbb T$ are the eigenvalues, then
+\[
+ \Phi_N'(1)=\sum_{m=1}^{N}\prod_{j\ne m}(1-z_j).
+\]
+Every factor has modulus at most $2$, so
+$|\Phi_N'(1)|\leq N2^{N-1}$ and $0\leq X_N\leq L_N$.  At $U=I_N$,
+$\Phi_N(z)=(z-1)^N$ and $X_N=0$; at $U=-I_N$,
+$\Phi_N(z)=(z+1)^N$ and $X_N=L_N$.  The continuous image of the compact connected group
+$U(N)$ in $\mathbb R$ is a compact interval, hence it is exactly $[0,L_N]$.
+
+It remains to distinguish image from measure support.  If $y=X_N(U_0)$ and $V$ is any open
+interval containing $y$, continuity makes $X_N^{-1}(V)$ an open neighbourhood of $U_0$.
+Normalized Haar measure has full support, so this neighbourhood has positive measure.
+Thus every image point belongs to the pushforward support.  The reverse inclusion was already
+proved by the bound.  Equation \eqref{eq:cueM-Mellin-measure} is the definition of a
+pushforward integral.
+\end{proof}
+
+\paragraph{The complete moment cone and a constructive inverse.}
+Push $\nu_N$ forward by $t\mapsto t/L_N$ and write the resulting probability as
+$\widetilde\nu_N$.  Its integer moments are
+\begin{equation}
+ c_{N,n}=\int_0^1x^n\,d\widetilde\nu_N(x)
+        =\frac{\mathsf M_N(n)}{L_N^n}.
+ \label{eq:cueM-normalized-moments}
+\end{equation}
+Use the forward difference
+$\Delta c_{N,n}=c_{N,n+1}-c_{N,n}$ without changing this sign convention.
+
+\begin{theorem}[Finite differences, positivity, and constructive recovery]
+\label{thm:cueM-Hausdorff-Bernstein}
+For all $n,r\geq0$,
+\begin{equation}
+ (-1)^r\Delta^r c_{N,n}
+ =\int_0^1x^n(1-x)^r\,d\widetilde\nu_N(x)\geq0.
+ \label{eq:cueM-Hausdorff-differences}
+\end{equation}
+For $m\geq0$ and $0\leq j\leq m$, define
+\begin{align}
+ \lambda_{N,m,j}
+ &=\binom mj(-1)^{m-j}\Delta^{m-j}c_{N,j} \notag\\
+ &=\binom mj\int_0^1x^j(1-x)^{m-j}\,d\widetilde\nu_N(x),
+ \label{eq:cueM-Bernstein-weights}\\
+ \widetilde\nu_{N,m}&=\sum_{j=0}^{m}\lambda_{N,m,j}\delta_{j/m}.
+ \label{eq:cueM-Bernstein-discrete}
+\end{align}
+Then the weights are nonnegative and sum to one, and
+\begin{equation}
+ \widetilde\nu_{N,m}\Rightarrow\widetilde\nu_N.
+ \label{eq:cueM-Bernstein-limit}
+\end{equation}
+Equivalently, the integer sequence in \eqref{eq:cueM-normalized-moments} constructively
+recovers the complete compact measure and therefore every nonnegative real moment:
+\begin{equation}
+ \frac{\mathsf M_N(k)}{L_N^k}
+ =\lim_{m\to\infty}\sum_{j=0}^{m}
+   \left(\frac jm\right)^k\lambda_{N,m,j},
+ \qquad k\geq0.
+ \label{eq:cueM-fractional-recovery}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expanding the difference gives
+\[
+ (-1)^r\Delta^r c_{N,n}
+ =\sum_{q=0}^{r}\binom rq(-1)^q c_{N,n+q}
+ =\int_0^1x^n\sum_{q=0}^{r}\binom rq(-x)^q\,d\widetilde\nu_N(x),
+\]
+and the binomial sum is $(1-x)^r$.  This proves
+\eqref{eq:cueM-Hausdorff-differences} and both expressions in
+\eqref{eq:cueM-Bernstein-weights}.  The weights are therefore nonnegative, while
+\[
+ \sum_{j=0}^{m}\lambda_{N,m,j}
+ =\int_0^1\sum_{j=0}^{m}\binom mjx^j(1-x)^{m-j}\,d\widetilde\nu_N(x)=1.
+\]
+For $f\in C([0,1])$,
+\[
+ \int f\,d\widetilde\nu_{N,m}
+ =\int_0^1\sum_{j=0}^{m}f(j/m)\binom mjx^j(1-x)^{m-j}
+   \,d\widetilde\nu_N(x).
+\]
+The inner sum is Bernstein's polynomial $B_mf$, and
+$\lVert B_mf-f\rVert_\infty\to0$ by Bernstein's theorem
+\cite[eqs.~(1)--(5)]{bernstein1912}.  This proves weak convergence.  Finally take
+$f(x)=x^k$, which is continuous for $k\geq0$.  This is the specialization of the general
+coordinate-preserving reconstruction in
+\cref{prop:bernstein-measure-reconstruction}, now written explicitly in the CUE moments.
+\end{proof}
+
+Two positivity consequences retain useful information that the scalar moments alone can
+hide.  For every $(a_0,\ldots,a_m)\in\mathbb C^{m+1}$,
+\begin{equation}
+ \sum_{i,j=0}^{m}a_i\overline{a_j}\mathsf M_N(i+j)
+ =\int_0^{L_N}\left|\sum_{i=0}^{m}a_it^i\right|^2d\nu_N(t)\geq0,
+ \label{eq:cueM-Hankel-PSD}
+\end{equation}
+so every moment Hankel matrix is positive semidefinite.  H\"older's inequality gives
+\begin{equation}
+ \mathsf M_N(\theta k_1+(1-\theta)k_0)
+ \leq\mathsf M_N(k_1)^\theta\mathsf M_N(k_0)^{1-\theta}
+ \label{eq:cueM-log-convex}
+\end{equation}
+whenever both endpoint moments are finite and $0\leq\theta\leq1$.
+
+\begin{proposition}[Stieltjes generating function with exact radius]
+\label{prop:cueM-Stieltjes-radius}
+The series
+\[
+ G_N(\tau)=\sum_{n\geq0}\mathsf M_N(n)\tau^n
+\]
+has radius $L_N^{-1}$ and, for $|\tau|<L_N^{-1}$,
+\begin{equation}
+ G_N(\tau)=\int_0^{L_N}\frac{d\nu_N(t)}{1-\tau t}.
+ \label{eq:cueM-Stieltjes-transform}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The upper support bound gives $\mathsf M_N(n)\leq L_N^n$.  Conversely, for every
+$\varepsilon>0$, exact support gives
+$\nu_N([L_N-\varepsilon,L_N])>0$ and hence
+\[
+ \mathsf M_N(n)\geq
+ \nu_N([L_N-\varepsilon,L_N])(L_N-\varepsilon)^n.
+\]
+Therefore $\lim_n\mathsf M_N(n)^{1/n}=L_N$.  Cauchy--Hadamard proves the radius, and uniform
+convergence of the geometric series on $[0,L_N]$ proves
+\eqref{eq:cueM-Stieltjes-transform}.
+\end{proof}
+
+\paragraph{Several large-rank moment scales.}
+For each fixed positive integer $s$, Grover--Mezzadri--Simm prove
+\begin{equation}
+ \mathsf M_N(s)\sim b_sN^{s^2+2s},\qquad b_s>0
+ \label{eq:cueM-GMS-exponent}
+\end{equation}
+as the $(1^s),(1^s)$ instance of their microscopic theorem
+\cite[Thm.~1.2 and Sec.~2]{groverMezzadriSimm2026}; the complete source-level determinant
+audit is in \cref{sec:GMS-complete-proof-audit}.
+
+\begin{theorem}[No deterministic scale carries two convergent nonzero moments]
+\label{thm:cueM-no-one-scale}
+If $r,s\in\mathbb Z_{>0}$ and $r\ne s$, there are no $a_N>0$ and
+$c_r,c_s\in(0,\infty)$ such that
+\begin{equation}
+ \frac{\mathsf M_N(r)}{a_N^r}\longrightarrow c_r,
+ \qquad
+ \frac{\mathsf M_N(s)}{a_N^s}\longrightarrow c_s.
+ \label{eq:cueM-two-moment-scale}
+\end{equation}
+For every fixed $m\geq1$ and $\alpha>0$,
+\begin{equation}
+ \mathbb P(X_N\geq N^\alpha)
+ \leq N^{m^2+2m-\alpha m+o(1)}.
+ \label{eq:cueM-Markov-tail}
+\end{equation}
+For $0<\theta<1$,
+\begin{equation}
+ \mathbb P\!\left(
+ X_N\geq(\theta b_m)^{1/m}N^{m+2}(1+o(1))
+ \right)
+ \geq(1-\theta)^2\frac{b_m^2}{b_{2m}}N^{-2m^2+o(1)}.
+ \label{eq:cueM-PZ-tail}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If \eqref{eq:cueM-two-moment-scale} held, then
+$a_N^r\sim(b_r/c_r)N^{r^2+2r}$ and
+$a_N^s\sim(b_s/c_s)N^{s^2+2s}$.  Taking logarithms and dividing by $\log N$ would make the
+same sequence $\log a_N/\log N$ converge to both $r+2$ and $s+2$.
+
+Markov's inequality applied to $X_N^m$ gives
+\[
+ \mathbb P(X_N\geq N^\alpha)
+ \leq\mathsf M_N(m)N^{-\alpha m},
+\]
+which becomes \eqref{eq:cueM-Markov-tail}.  For completeness, the inequality used in the
+other direction is obtained directly.  If $Z\geq0$, then
+\[
+ \mathbb EZ\leq\theta\mathbb EZ+
+ \mathbb E[Z\mathbf1_{\{Z\geq\theta\mathbb EZ\}}]
+ \leq\theta\mathbb EZ+(\mathbb EZ^2)^{1/2}
+ \mathbb P(Z\geq\theta\mathbb EZ)^{1/2}.
+\]
+After rearrangement this is the Paley--Zygmund bound
+\cite{paleyZygmund1932}.  Put $Z=X_N^m$ and use
+\eqref{eq:cueM-GMS-exponent} at $m$ and $2m$ to obtain
+\eqref{eq:cueM-PZ-tail}.
+\end{proof}
+
+The maximal-support coordinate illustrates the same multiscale behaviour without an
+asymptotic theorem.  Schur-character orthogonality gives
+\begin{equation}
+ \mathsf M_N(1)=\sum_{j=0}^{N-1}(N-j)^2
+ =\frac{N(N+1)(2N+1)}6.
+ \label{eq:cueM-first-moment}
+\end{equation}
+Indeed,
+$\Phi_N(z)=\sum_{j=0}^{N}(-1)^je_j(U)z^{N-j}$ and the exterior-power characters satisfy
+$\mathbb E[e_j(U)\overline{e_\ell(U)}]=\delta_{j\ell}$; this is the same Schur-coordinate
+orthogonality used throughout the derivative-moment literature
+\cite{macdonald1995,dehaye2008,groverMezzadriSimm2026}.  Hence
+$\mathbb E(X_N/L_N)\to0$.  Since $0\leq X_N/L_N\leq1$, Markov's inequality proves
+$X_N/L_N\to0$ in probability and therefore weakly.  This conclusion concerns the retained
+maximal-support scale $L_N$; it does not replace the distinct microscopic regimes in
+Grover--Mezzadri--Simm or Simm--Wei.
+
+\paragraph{The measure-valued Verblunsky recursion.}
+Define the state domain
+\begin{equation}
+ \mathcal A_j=\{u\in\mathbb C:1-j+2\operatorname{Re}u>0\},
+ \qquad 0\leq j\leq N-1.
+ \label{eq:cueM-state-domain}
+\end{equation}
+It contains $u_0=0$.  For $u\in\mathcal A_j$ retain, without changing variables,
+\begin{align}
+ T_j(\beta;u)&=\frac{1+u-\beta(j-\overline u)}{1-\beta},
+ \label{eq:cueM-T-state}\\
+ \eta_j(u)&=\frac{N-1-\overline u}{N-j+u},
+ \label{eq:cueM-eta-state}\\
+ \gamma_j(\beta,u)&=|1-\beta\eta_j(u)|^2.
+ \label{eq:cueM-gamma-state}
+\end{align}
+For $0\leq j\leq N-2$, let
+\begin{equation}
+ d\mu_{N-j-1}(\beta)=
+ \frac{N-j-1}{\pi}(1-|\beta|^2)^{N-j-2}\mathbf1_{\mathbb D}(\beta)d^2\beta,
+ \label{eq:cueM-beta-law}
+\end{equation}
+and take the terminal $\beta_{N-1}$ uniformly on $\mathbb T$.  These are exactly the
+independent pushforward laws proved in
+\cref{thm:verblunsky-peel-derived}, not fitted approximations.
+
+\begin{theorem}[State kernel, boundary law, and measure peel]
+\label{thm:cueM-measure-peel}
+The map $T_j(\beta;\cdot)$ sends $\mathcal A_j$ into $\mathcal A_{j+1}$ for every
+$\beta\in\mathbb D$, and $|\eta_j(u)|<1$ on $\mathcal A_j$.  Starting at a state
+$u\in\mathcal A_j$, define the future product recursively by
+\begin{align}
+ Y_{N-1}(u)&=|1-e^{-\mathrm i\Theta}\eta_{N-1}(u)|^2,
+ \label{eq:cueM-terminal-Y}\\
+ Y_j(u)&=\gamma_j(\beta_j,u)
+ Y_{j+1}(T_j(\beta_j;u)),
+ \qquad j\leq N-2,
+ \label{eq:cueM-recursive-Y}
+\end{align}
+where $\Theta$ is uniform on $[0,2\pi]$ and all future variables are independent.  Let
+$\mu_{j,u}$ be the law of $Y_j(u)$.  Then
+\begin{equation}
+ \mu_{j,u}=
+ \int_{\mathbb D}\sigma_{\gamma_j(\beta,u)}
+ \mu_{j+1,T_j(\beta;u)}\,d\mu_{N-j-1}(\beta),
+ \label{eq:cueM-measure-recursion}
+\end{equation}
+where $\sigma_a\mu=(x\mapsto ax)_*\mu$.  This equality means equality against every bounded
+continuous test function and therefore specifies the map, its domain, and its codomain.
+Moreover,
+\begin{equation}
+ \mathsf M_N(k)=N^{2k}\int y^k\,d\mu_{0,0}(y),
+ \qquad k\geq0.
+ \label{eq:cueM-peel-moment}
+\end{equation}
+
+At the boundary put $q=|\eta_{N-1}(u)|$.  If $q>0$, $\mu_{N-1,u}$ has density
+\begin{equation}
+ \frac{
+ \mathbf1_{[(1-q)^2,(1+q)^2]}(y)
+ }{\pi\sqrt{(y-(1-q)^2)((1+q)^2-y)}}\,dy;
+ \label{eq:cueM-boundary-arcsine}
+\end{equation}
+if $q=0$, it is the atom $\delta_1$.  For every $k\geq0$,
+\begin{equation}
+ \int y^k\,d\mu_{N-1,u}(y)
+ ={}_2F_1(-k,-k;1;q^2).
+ \label{eq:cueM-boundary-hypergeometric}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Put $w=2u-j$.  Direct substitution in \eqref{eq:cueM-T-state} gives
+\begin{equation}
+ 1+\operatorname{Re}(2T_j(\beta;u)-(j+1))
+ =\frac{1-|\beta|^2}{|1-\beta|^2}
+  (1+\operatorname{Re}w)>0,
+ \label{eq:cueM-state-propagation}
+\end{equation}
+so the state domain is preserved.  A second direct calculation gives
+\begin{equation}
+ |N-j+u|^2-|N-1-\overline u|^2
+ =(2N-j-1)(1-j+2\operatorname{Re}u)>0,
+ \label{eq:cueM-eta-bound}
+\end{equation}
+which proves both nonvanishing of the denominator and $|\eta_j(u)|<1$.
+
+Conditioning \eqref{eq:cueM-recursive-Y} on $\beta_j=\beta$ gives, for bounded continuous
+$f$,
+\[
+ \mathbb E[f(Y_j(u))\mid\beta_j=\beta]
+ =\int f(\gamma_j(\beta,u)y)\,
+ d\mu_{j+1,T_j(\beta;u)}(y).
+\]
+Integration in $\beta$ proves \eqref{eq:cueM-measure-recursion}.  The pathwise product in
+\eqref{eq:KN-complete-peel-modulus} proves \eqref{eq:cueM-peel-moment}; no moment recursion
+has been substituted for the underlying random variable.
+
+At the boundary,
+$Y=1+q^2-2q\cos\Theta$.  The pushforward of uniform angle under $x=\cos\Theta$ has density
+$(\pi\sqrt{1-x^2})^{-1}$ on $(-1,1)$.  The affine map
+$y=1+q^2-2qx$ has inverse $x=(1+q^2-y)/(2q)$ and derivative magnitude $(2q)^{-1}$;
+substitution gives \eqref{eq:cueM-boundary-arcsine}.  If $q=0$, the map is constantly one.
+Finally, $q<1$ and the two binomial series converge absolutely:
+\[
+ \frac1{2\pi}\int_0^{2\pi}
+ (1-qe^{-\mathrm i\theta})^k(1-qe^{\mathrm i\theta})^k\,d\theta
+ =\sum_{n\geq0}\frac{(-k)_n^2}{(n!)^2}q^{2n},
+\]
+because angular integration retains exactly the equal Fourier indices.  This is
+\eqref{eq:cueM-boundary-hypergeometric}; $q=0$ is included by direct evaluation.
+\end{proof}
+
+\paragraph{The exact transform carrier.}
+Let $\mathcal C_c$ be the real vector space of finite signed compactly supported Borel
+measures on $[0,\infty)$, with additive convolution $*$ and unit $\delta_0$.  For
+$\mu\in\mathcal C_c$, $t\geq0$, and $\operatorname{Re}s>1$, define
+\begin{align}
+ \mathcal L[\mu](t)&=\int e^{-tx}\,d\mu(x),
+ \label{eq:cueM-Laplace}\\
+ \mathcal Z_s[\mu](t)&=\int\zeta(s,1+tx)\,d\mu(x),
+ \label{eq:cueM-Hurwitz}\\
+ \mathcal D[\mu](t)&=\int\psi(1+tx)\,d\mu(x).
+ \label{eq:cueM-digamma}
+\end{align}
+
+\begin{theorem}[Transported convolution algebra and Bose coordinate]
+\label{thm:cueM-transform-algebra}
+The Laplace map is an injective algebra homomorphism
+\begin{equation}
+ \mathcal L[\mu*\nu]=\mathcal L[\mu]\mathcal L[\nu].
+ \label{eq:cueM-Laplace-product}
+\end{equation}
+For
+\begin{equation}
+ (\mathcal B_sF)(t)=\frac1{\Gamma(s)}
+ \int_0^\infty\frac{x^{s-1}}{e^x-1}F(tx)\,dx,
+ \label{eq:cueM-Bose-operator}
+\end{equation}
+one has
+\begin{equation}
+ \mathcal B_s\mathcal L[\mu]=\mathcal Z_s[\mu],
+ \qquad
+ -\operatorname{FP}_{s=1}\mathcal Z_s[\mu]=\mathcal D[\mu].
+ \label{eq:cueM-Bose-Hurwitz-digamma}
+\end{equation}
+Put
+\[
+ \mathfrak C_s=\{(\mathcal L[\mu],\mathcal Z_s[\mu],\mathcal D[\mu]):
+ \mu\in\mathcal C_c\}.
+\]
+Then
+\begin{equation}
+ \mathbf T_s:\mathcal C_c\longrightarrow
+ \mathfrak C_s,\qquad
+ \mu\longmapsto(\mathcal L[\mu],\mathcal Z_s[\mu],\mathcal D[\mu]),
+ \label{eq:cueM-transform-triple}
+\end{equation}
+is a bijection onto its displayed image, with zero kernel and singleton fibres.  Transporting
+$*$ through this bijection makes $\mathfrak C_s$ a commutative unital algebra.
+
+For $a\geq0$ let $S_aF(t)=F(at)$.  Then
+\begin{equation}
+ \mathbf T_s[\sigma_a\mu]=S_a\mathbf T_s[\mu],
+ \qquad
+ \mathcal B_sS_a=S_a\mathcal B_s,
+ \label{eq:cueM-dilation-commutation}
+\end{equation}
+and the measure peel becomes the exact linear recursion
+\begin{equation}
+ \mathbf T_s[\mu_{j,u}]=
+ \int_{\mathbb D}S_{\gamma_j(\beta,u)}
+ \mathbf T_s[\mu_{j+1,T_j(\beta;u)}]\,
+ d\mu_{N-j-1}(\beta).
+ \label{eq:cueM-transform-peel}
+\end{equation}
+This is an averaging of dilation operators on a transported convolution algebra; it is not
+being identified with convolution multiplication.
+\end{theorem}
+
+\begin{proof}
+Fubini gives
+\[
+ \mathcal L[\mu*\nu](t)=\iint e^{-t(x+y)}\,d\mu(x)d\nu(y)
+ =\mathcal L[\mu](t)\mathcal L[\nu](t).
+\]
+If $\mathcal L[\mu]$ vanishes identically and $\operatorname{supp}\mu\subset[0,R]$, then
+all derivatives at zero vanish, so $\int x^n\,d\mu(x)=0$ for every $n$.  Polynomial density
+in $C([0,R])$ and the Riesz representation theorem imply $\mu=0$; equivalently this is the
+compact-support instance of Fourier--Stieltjes uniqueness
+\cite{rudin1990}.  Thus the first component of \eqref{eq:cueM-transform-triple} already
+recovers $\mu$.
+
+ The classical Mellin integral
+\begin{equation}
+ \zeta(s,a)=\frac1{\Gamma(s)}\int_0^\infty
+ \frac{x^{s-1}e^{-(a-1)x}}{e^x-1}\,dx,
+ \qquad \operatorname{Re}s>1, a>0,
+ \label{eq:cueM-Hurwitz-Mellin}
+\end{equation}
+ and the simple pole at $s=1$ with residue one are recorded in the canonical Hurwitz source
+ \cite[\S25.11(i),(vii)]{apostolDLMF25}.  The constant term needed here can be derived
+ without importing an unstated formula.  For $a>0$,
+ \[
+  D(s,a):=\zeta(s,a)-\zeta(s)
+  =\sum_{n=0}^{\infty}\bigl((n+a)^{-s}-(n+1)^{-s}\bigr).
+ \]
+ The series and all of its $s$-derivatives converge locally uniformly for
+ $\operatorname{Re}s>0$: on a compact $a$-interval the mean-value theorem bounds the
+ $r$th derivative of the $n$th difference by
+ $C_r(1+\log^{r+1}(n+1))(n+1)^{-\operatorname{Re}s-1}$.  Hence $D$ is holomorphic near
+ $s=1$.  Using the Laurent expansion
+ $\zeta(s)=(s-1)^{-1}+\gamma+O(s-1)$ and the digamma series
+ \cite[eq.~(5.7.6)]{askeyRoyDLMF5},
+ \[
+  D(1,a)=\sum_{n=0}^{\infty}\left(\frac1{n+a}-\frac1{n+1}\right)
+        =-\psi(a)-\gamma,
+ \]
+ so indeed $\zeta(s,a)=(s-1)^{-1}-\psi(a)+O(s-1)$, locally uniformly for $a>0$.
+ Substitute $a=1+ty$ in
+\eqref{eq:cueM-Hurwitz-Mellin}, integrate in $y$, and use compact support to justify Fubini;
+this proves the first identity in \eqref{eq:cueM-Bose-Hurwitz-digamma}.  Integrating the
+Laurent expansion uniformly for $a$ in the resulting compact interval gives
+\[
+ \mathcal Z_s[\mu](t)=\frac{\mu([0,\infty))}{s-1}
+ -\mathcal D[\mu](t)+O(s-1),
+\]
+which proves the finite-part identity.  Bijectivity onto the displayed image and the
+transported product now follow from injectivity of $\mathcal L$.
+
+Finally, every transform in \eqref{eq:cueM-Laplace}--\eqref{eq:cueM-digamma} satisfies
+$F_{\sigma_a\mu}(t)=F_\mu(at)$.  This proves the first dilation equation; direct substitution
+in \eqref{eq:cueM-Bose-operator} proves the second.  Apply these identities to
+\eqref{eq:cueM-measure-recursion} to obtain \eqref{eq:cueM-transform-peel}.
+\end{proof}
+
+\paragraph{The complete noninteger $U(2)$ moment.}
+The exact Haar coordinate theorem \cref{thm:u2-exact-derivative-law} gives independent
+\begin{equation}
+ R\sim\operatorname{Beta}\!\left(\frac12,\frac32\right),
+ \qquad \phi\sim\operatorname{Unif}(\mathbb R/2\pi\mathbb Z),
+ \qquad X_2=4|1-\sqrt R e^{\mathrm i\phi}|^2,
+ \label{eq:cueM-U2-law}
+\end{equation}
+including the two-sheet folding map, its boundary fibres, and the exact support $[0,16]$.
+
+\begin{corollary}[Closed $U(2)$ Mellin moment]
+\label{cor:cueM-U2-3F2}
+For every real $k\geq0$,
+\begin{equation}
+ \mathsf M_2(k)=4^k\,{}_3F_2\!\left(
+ \begin{matrix}-k,-k,\frac12\\1,2\end{matrix};1\right).
+ \label{eq:cueM-U2-3F2}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Conditioning on $R=r$ and integrating the uniform phase gives
+\begin{equation}
+ \frac1{2\pi}\int_0^{2\pi}|1-\sqrt r e^{\mathrm i\phi}|^{2k}\,d\phi
+ ={}_2F_1(-k,-k;1;r).
+ \label{eq:cueM-U2-angular}
+\end{equation}
+Indeed, expand both binomial factors; the angular integral deletes precisely the unequal
+indices.  The beta density in \eqref{eq:u2-beta-density} therefore yields
+\begin{equation}
+ \mathsf M_2(k)=\frac{2^{2k+1}}\pi
+ \int_0^1r^{-1/2}(1-r)^{1/2}{}_2F_1(-k,-k;1;r)\,dr.
+ \label{eq:cueM-U2-beta-integral}
+\end{equation}
+For $k\geq0$ the hypergeometric coefficients are nonnegative, so Tonelli applies.  Termwise
+beta integration gives
+\[
+ \int_0^1r^{n-1/2}(1-r)^{1/2}\,dr
+ =B\!\left(n+\frac12,\frac32\right)
+ =\frac\pi2\frac{(1/2)_n}{(2)_n}.
+\]
+Substitution in \eqref{eq:cueM-U2-beta-integral} is exactly the defining ${}_3F_2$ series in
+\eqref{eq:cueM-U2-3F2}; the hypergeometric conventions and the terminating
+Chu--Vandermonde identity are recorded in the canonical reference
+\cite{oldeDaalhuisDLMF15}.  Independently, the finite certificate below compares the
+terminating right-hand side with Weyl constant terms for $k=0,\ldots,7$, obtaining
+\[
+ 1,5,34,285,2766,29666,340740,4108509.
+\]
+\end{proof}
+
+\paragraph{The first peeled $U(3)$ compact law.}
+Let $\beta_0\in\mathbb D$ and retain the exact rational coordinates
+\begin{equation}
+ \lambda=
+ \frac{(1-2\overline{\beta_0})(1-\beta_0)}
+ {(3-2\beta_0)(1-\overline{\beta_0})},\qquad
+ c=\frac{\overline{\beta_0}(1-\beta_0)}
+ {(3-2\beta_0)(1-\overline{\beta_0})},\qquad
+ d=\frac{2-\beta_0}{3-2\beta_0}.
+ \label{eq:cueM-U3-lambda-c-d}
+\end{equation}
+These are the same coordinates as \eqref{eq:n3-peeled-lambda-c-d}; their base quotient,
+inverse, fibres, branch locus, and physical $J$-sheet are proved without omissions in
+\cref{thm:n3-base-quotient,thm:n3-physical-trace-cover}.
+
+The connection to the state recursion is also exact.  Starting with $u_0=0$ gives
+\begin{equation}
+ u_1=T_0(\beta_0;0)=\frac1{1-\beta_0},\qquad
+ \eta_1(u_1)=\lambda.
+ \label{eq:cueM-U3-first-state}
+\end{equation}
+For the next disk variable $\beta\in\mathbb D$, put
+$u_2=T_1(\beta;u_1)$.  Substitution in \eqref{eq:cueM-T-state} and
+\eqref{eq:cueM-eta-state} gives the retained phase relation
+\begin{equation}
+ \eta_2(u_2)=
+ -\frac{\beta-1}{\overline\beta-1}
+ \frac{c+\overline\beta d}{1-\lambda\beta}.
+ \label{eq:cueM-U3-second-state}
+\end{equation}
+The first factor on the right has modulus one.  Hence, with
+\begin{equation}
+ A_{\beta_0}(\beta)=|1-\lambda\beta|^2,\qquad
+ B_{\beta_0}(\beta)=|c+\overline\beta d|^2,
+ \label{eq:cueM-U3-A-B}
+\end{equation}
+one has $B/A=|\eta_2(u_2)|^2<1$.  This proves the precise state-space arrow behind the local
+inner kernel; it is not an analogy between two formulas.
+
+\begin{theorem}[Local and global $U(3)$ compact measures]
+\label{thm:cueM-U3-compact-measures}
+For $\phi\in[0,\pi]$ define
+\begin{equation}
+ \Theta_{\beta_0}(\beta,\phi)=
+ A_{\beta_0}(\beta)+B_{\beta_0}(\beta)
+ +2\sqrt{A_{\beta_0}(\beta)B_{\beta_0}(\beta)}\cos\phi.
+ \label{eq:cueM-U3-Theta}
+\end{equation}
+Then, for $k\geq0$, the local inner kernel is the moment
+\begin{align}
+ \Psi_k(\beta_0)
+ &=\frac1\pi\int_{\mathbb D}
+ A_{\beta_0}(\beta)^k
+ {}_2F_1\!\left(-k,-k;1;\frac{B_{\beta_0}(\beta)}
+ {A_{\beta_0}(\beta)}\right)d^2\beta
+ \label{eq:cueM-U3-Psi-hypergeometric}\\
+ &=\frac1{\pi^2}\int_{\mathbb D}\int_0^\pi
+ \Theta_{\beta_0}(\beta,\phi)^k\,d\phi\,d^2\beta.
+ \label{eq:cueM-U3-Psi-measure}
+\end{align}
+For fixed $\beta_0,\beta$, if $B>0$ the conditional pushforward in $t$ has density
+\begin{equation}
+ \frac{
+ \mathbf1_{[(\sqrt A-\sqrt B)^2,(\sqrt A+\sqrt B)^2]}(t)
+ }{\pi\sqrt{(t-(\sqrt A-\sqrt B)^2)
+ ((\sqrt A+\sqrt B)^2-t)}}\,dt;
+ \label{eq:cueM-U3-conditional-density}
+\end{equation}
+if $B=0$ it is $\delta_A$.
+
+Define
+\begin{equation}
+ \Xi(\beta_0,\beta,\phi)=|3-2\beta_0|^2
+ \Theta_{\beta_0}(\beta,\phi)
+ \label{eq:cueM-U3-Xi}
+\end{equation}
+and push the probability measure
+\begin{equation}
+ \frac2\pi(1-|\beta_0|^2)d^2\beta_0\otimes
+ \frac{d^2\beta}{\pi}\otimes\frac{d\phi}{\pi}
+ \label{eq:cueM-U3-product-measure}
+\end{equation}
+forward under $\Xi$.  The result is exactly $\nu_3$ from
+\cref{thm:cueM-fixedN-support}; in particular
+\begin{equation}
+ \mathsf M_3(k)=\int_0^{144}t^k\,d\nu_3(t),\qquad
+ \operatorname{supp}\nu_3=[0,144].
+ \label{eq:cueM-U3-full-measure}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Fix $\beta_0,\beta$ and abbreviate $A=A_{\beta_0}(\beta)>0$ and
+$r=\sqrt{B/A}<1$.  Replacing a uniform angle by its translate if necessary,
+\[
+ A+B+2\sqrt{AB}\cos\phi=A|1+re^{\mathrm i\phi}|^2.
+\]
+The same diagonal Fourier calculation as in
+\eqref{eq:cueM-U2-angular} gives
+\[
+ \frac1\pi\int_0^\pi
+ (A+B+2\sqrt{AB}\cos\phi)^k\,d\phi
+ =A^k{}_2F_1(-k,-k;1;B/A),
+\]
+proving \eqref{eq:cueM-U3-Psi-measure}.  The change of variables from
+$x=\cos\phi$ to $t=A+B+2\sqrt{AB}x$ gives
+\eqref{eq:cueM-U3-conditional-density}; when $B=0$ the map is constant.
+
+For the outer step, the first factor of the pathwise derivative peel is
+$|1-(2/3)\beta_0|^2$.  Multiplying by the retained $3^2$ in
+\eqref{eq:cueM-peel-moment} gives $|3-2\beta_0|^2$.  The next disk law is uniform on
+$\mathbb D$, and the last circle law is precisely the angle just integrated.  Therefore the
+pushforward of \eqref{eq:cueM-U3-product-measure} is the law of $X_3$, proving the first
+assertion in \eqref{eq:cueM-U3-full-measure}.  Its exact support now follows from
+\cref{thm:cueM-fixedN-support} with $L_3=9\cdot16=144$; the local source's direct inequality
+$\Xi\leq144$ is consistent with, but weaker than, this equality.
+\end{proof}
+
+\paragraph{Integer kernels on the retained phase cover.}
+Put
+\begin{equation}
+ u=|\lambda|^2,\qquad v=|c|^2,\qquad
+ w=|d|^2=\frac{1-u+2v}{2},\qquad
+ Z=c\overline d\,\overline\lambda.
+ \label{eq:cueM-U3-u-v-w-Z}
+\end{equation}
+The complete $(u,v,J)$ cover, including the inverse to $\beta_0$, is already proved in
+\cref{thm:n3-physical-trace-cover}; here the retained $Z$ coordinate obeys
+\begin{equation}
+ Z+\overline Z=R(u,v)=\frac{9u^2-16uv-10u-16v+1}{16},\qquad
+ Z\overline Z=P(u,v)=uvw.
+ \label{eq:cueM-U3-trace-norm}
+\end{equation}
+Choose $a=\sqrt u$, $b=\sqrt v$, and $\rho=\sqrt w$.  If $ab\rho>0$, choose
+$\delta$ modulo $2\pi$ by $Z=ab\rho e^{-\mathrm i\delta}$; if $ab\rho=0$, $Z=0$ and
+$\delta$ is an immaterial fibre coordinate.  For $s\in\mathbb Z_{\geq0}$ and
+$0\leq m\leq s$, set
+\begin{align}
+ P_{s,m}(z)&=(1-az)^{s-m}(b+\rho e^{-\mathrm i\delta}z)^m
+ =\sum_{n=0}^{s}p_{s,m,n}z^n,
+ \label{eq:cueM-U3-Psm}\\
+ p_{s,m,n}&=\sum_{j=0}^{\min(m,n)}
+ (-a)^{n-j}b^{m-j}\rho^je^{-\mathrm i j\delta}
+ \binom{s-m}{n-j}\binom mj.
+ \label{eq:cueM-U3-psmn}
+\end{align}
+
+\begin{theorem}[Hermitian square and complete trace descent]
+\label{thm:cueM-U3-trace-descent}
+For every integer $s\geq0$,
+\begin{equation}
+ \Psi_s=\sum_{m=0}^{s}\binom sm^2
+ \sum_{n=0}^{s}\frac{|p_{s,m,n}|^2}{n+1}.
+ \label{eq:cueM-U3-Hermitian-square}
+\end{equation}
+Define
+\begin{equation}
+ T_0=2,\qquad T_1=R,\qquad T_{\ell+1}=RT_\ell-PT_{\ell-1}.
+ \label{eq:cueM-U3-trace-recurrence}
+\end{equation}
+Then $T_\ell=Z^\ell+\overline Z^{\,\ell}$ and the phase-invariant kernel is the explicit
+polynomial
+\begin{align}
+ \Psi_s^\sharp(u,v)
+ &=\sum_{m=0}^{s}\binom sm^2\left(
+ A_{s,m}+\sum_{\ell=1}^{\min(m,s-m)}(-1)^\ell T_\ell B_{s,m,\ell}
+ \right),
+ \label{eq:cueM-U3-Psi-general}\\
+ A_{s,m}
+ &=\sum_{p=0}^{s-m}\sum_{q=0}^{m}
+ \frac{\binom{s-m}{p}^2\binom mq^2}{p+q+1}
+ u^pv^{m-q}w^q,
+ \label{eq:cueM-U3-A-sm}\\
+ B_{s,m,\ell}
+ &=\sum_{p=0}^{s-m-\ell}\sum_{q=0}^{m-\ell}
+ \frac{
+ \binom{s-m}{p+\ell}\binom{s-m}{p}
+ \binom m{q+\ell}\binom mq
+ }{p+q+\ell+1}
+ u^pv^{m-q-\ell}w^q.
+ \label{eq:cueM-U3-B-sml}
+\end{align}
+It belongs to $\mathbb Q[u,v]$, has total degree exactly $s$, and
+\begin{equation}
+ [v^s]\Psi_s^\sharp(u,v)=\frac1{s+1}\binom{2s+1}{s}.
+ \label{eq:cueM-U3-v-leading}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For integer $s$,
+${}_2F_1(-s,-s;1;x)=\sum_{m=0}^{s}\binom sm^2x^m$.  Inserting this terminating identity
+in \eqref{eq:cueM-U3-Psi-hypergeometric} turns the $m$th summand into
+\[
+ |1-a\beta|^{2(s-m)}|b+\rho e^{\mathrm i\delta}\overline\beta|^{2m}
+ =|P_{s,m}(\beta)|^2.
+\]
+The exact disk orthogonality
+\[
+ \frac1\pi\int_{\mathbb D}\beta^n\overline\beta^{\,r}d^2\beta
+ =\frac{\delta_{nr}}{n+1}
+\]
+proves \eqref{eq:cueM-U3-Hermitian-square} after substituting
+\eqref{eq:cueM-U3-psmn}.
+
+The quadratic equation
+$Z^2-RZ+P=0$ and its conjugate imply
+$Z^{\ell+1}+\overline Z^{\,\ell+1}
+=R(Z^\ell+\overline Z^{\,\ell})-P(Z^{\ell-1}+\overline Z^{\,\ell-1})$;
+induction proves the trace recurrence.  Now expand $|p_{s,m,n}|^2$.  Terms with equal phase
+indices give \eqref{eq:cueM-U3-A-sm}.  If the two indices differ by $\ell>0$, the term and its
+conjugate combine to
+$(-1)^\ell(Z^\ell+\overline Z^{\,\ell})$ times the coefficient in
+\eqref{eq:cueM-U3-B-sml}.  Summing all allowed indices proves
+\eqref{eq:cueM-U3-Psi-general}; because $w,R,P\in\mathbb Q[u,v]$, the recurrence puts every
+$T_\ell$ and therefore $\Psi_s^\sharp$ in $\mathbb Q[u,v]$.
+
+For the degree bound, $A_{s,m}$ has degree at most $s$.  Induction in
+\eqref{eq:cueM-U3-trace-recurrence} gives $\deg T_\ell\leq2\ell$, while
+$\deg B_{s,m,\ell}\leq s-2\ell$; hence every off-diagonal term also has degree at most $s$.
+To isolate the pure $v^s$ coefficient, set $u=0$.  Then
+$w=v+1/2$, $P=0$, $R=1/16-v$, and $T_\ell=R^\ell$ for $\ell\geq1$.  At a fixed $m$, both
+the diagonal and off-diagonal contributions have $v$-degree at most $m$.  Thus only $m=s$
+can contribute to $v^s$, and its coefficient is
+\[
+ \sum_{q=0}^{s}\frac{\binom sq^2}{q+1}
+ =\frac1{s+1}\sum_{q=0}^{s}\binom sq\binom{s+1}{q+1}
+ =\frac1{s+1}\binom{2s+1}{s},
+\]
+by Vandermonde's identity.  It is nonzero, proving both
+\eqref{eq:cueM-U3-v-leading} and exact degree $s$.
+\end{proof}
+
+The first four resulting polynomials, retained rather than referred to by a private source,
+are
+\begin{align}
+ \Psi_1^\sharp={}&\frac{5+u+6v}{4},
+ \label{eq:cueM-Psi1}\\
+ \Psi_2^\sharp={}&\frac{47}{24}+\frac{11}{4}u+\frac{28}{3}v
+ -\frac{11}{8}u^2+4uv+\frac{10}{3}v^2,
+ \label{eq:cueM-Psi2}\\
+ \Psi_3^\sharp={}&\frac{105}{32}+\frac{465}{32}u+\frac{75}{2}v
+ -\frac{225}{32}u^2+\frac{195}{4}uv+\frac{405}{8}v^2\notag\\
+ &-\frac{65}{32}u^3-\frac{15}{2}u^2v+\frac{225}{8}uv^2+\frac{35}{4}v^3,
+ \label{eq:cueM-Psi3}\\
+ \Psi_4^\sharp={}&\frac1{320}\bigl(
+ 1759u^4-16224u^3v-11812u^3+3024u^2v^2-12816u^2v-2334u^2\notag\\
+ &\quad+50176uv^3+165984uv^2+117312uv+18732u
+ +8064v^4+78848v^3\notag\\
+ &\quad+121296v^2+40752v+1719\bigr).
+ \label{eq:cueM-Psi4}
+\end{align}
+
+\begin{proposition}[Exact sum-of-squares obstruction after descent]
+\label{prop:cueM-Psi2-not-SOS}
+The polynomial $\Psi_2^\sharp$ is not a sum of squares in $\mathbb R[u,v]$, although its
+pullback to the retained phase cover is the Hermitian square sum
+\eqref{eq:cueM-U3-Hermitian-square}.
+\end{proposition}
+
+\begin{proof}
+If a real polynomial of degree at most two is a sum of polynomial squares, each summand has
+degree at most one: otherwise the sum of the nonzero squares of their top homogeneous parts
+would be the zero polynomial.  Thus any such representation of $\Psi_2^\sharp$ would have a
+positive-semidefinite affine Gram matrix.  Coefficient comparison in the fixed ordered basis
+$(1,u,v)$ gives the unique symmetric matrix
+\[
+ Q=\begin{pmatrix}
+ 47/24&11/8&14/3\\
+ 11/8&-11/8&2\\
+ 14/3&2&10/3
+ \end{pmatrix},
+ \qquad
+ \Psi_2^\sharp=(1,u,v)Q(1,u,v)^{\mathsf T}.
+\]
+Its leading $2\times2$ principal minor equals
+\[
+ \frac{47}{24}\left(-\frac{11}{8}\right)-\left(\frac{11}{8}\right)^2
+ =-\frac{55}{12}<0.
+\]
+Hence $Q$ is not positive semidefinite.  The conclusion concerns polynomial squares in the
+quotient coordinates; equation \eqref{eq:cueM-U3-Hermitian-square} records the exact map to
+the different Hermitian-square presentation.
+\end{proof}
+
+The outer integral in \eqref{eq:cueM-U3-full-measure}, or independently the Weyl
+constant-term formula in \cref{prop:n3-cue-exact-moments}, gives
+\begin{equation}
+ \mathsf M_3(1)=14,\qquad \mathsf M_3(2)=375,\qquad
+ \mathsf M_3(3)=15510,\qquad \mathsf M_3(4)=847280,\qquad
+ \mathsf M_3(5)=55331424.
+ \label{eq:cueM-U3-finite-moments}
+\end{equation}
+These five values have independent exact Python/SymPy and bounded Lean certificates recorded
+in \texttt{CERT-N3-CUE-20260825-0001} and \texttt{FORMAL-20260825-0010}.
+
+\paragraph{The earlier Gauss coefficient law, with its moment domain repaired.}
+For $m\in\mathbb Z_{\geq1}$ and real $k>-1/2$, put
+\begin{equation}
+ F_m(z)={}_2F_1(-k,-k;m;z),\qquad
+ a_n^{(m,k)}=\frac{(-k)_n^2}{(m)_n n!}.
+ \label{eq:cueM-Gauss-F}
+\end{equation}
+
+\begin{theorem}[Auxiliary exponent probability law]
+\label{thm:cueM-Gauss-law}
+The numbers
+\begin{equation}
+ p_n^{(m,k)}=\frac{a_n^{(m,k)}}{F_m(1)},\qquad n\geq0,
+ \label{eq:cueM-Gauss-probabilities}
+\end{equation}
+form a probability distribution.  If $Y_{m,k}$ has this law, then for
+$0\leq\varepsilon\leq1$,
+\begin{equation}
+ \frac{F_m(1-\varepsilon)}{F_m(1)}
+ =\mathbb E(1-\varepsilon)^{Y_{m,k}}.
+ \label{eq:cueM-Gauss-PGF}
+\end{equation}
+If $k=s\in\mathbb Z_{\geq0}$, the support is $\{0,\ldots,s\}$; if
+$k\notin\mathbb Z_{\geq0}$, the support is infinite and
+\begin{equation}
+ p_n^{(m,k)}\sim
+ \frac{\Gamma(m)}{\Gamma(-k)^2F_m(1)}n^{-(m+2k+1)}.
+ \label{eq:cueM-Gauss-tail}
+\end{equation}
+
+For $s\in\mathbb Z_{>0}$ the factorial moments are
+\begin{align}
+ \mathbb EY_{m,s}&=\frac{s^2}{m+2s-1},
+ \label{eq:cueM-Gauss-mean-integer}\\
+ \mathbb E[Y_{m,s}(Y_{m,s}-1)]
+ &=\frac{s^2(s-1)^2}{(m+2s-2)(m+2s-1)}.
+ \label{eq:cueM-Gauss-second-integer}
+\end{align}
+For $s=0$, $Y_{m,0}=0$ almost surely.  If $k$ is nonintegral, the same two formulas with
+$s$ replaced by $k$ hold respectively under the sharp convergence conditions
+$m+2k>1$ and $m+2k>2$.
+\end{theorem}
+
+\begin{proof}
+The coefficients $a_n^{(m,k)}$ are nonnegative.  Gauss' summation formula gives, because
+$m+2k>0$,
+\begin{equation}
+ F_m(1)=\sum_{n\geq0}a_n^{(m,k)}
+ =\frac{\Gamma(m)\Gamma(m+2k)}{\Gamma(m+k)^2}>0
+ \label{eq:cueM-Gauss-normalizer}
+\end{equation}
+\cite[Gauss summation formula]{oldeDaalhuisDLMF15}.  This proves normalization and
+\eqref{eq:cueM-Gauss-PGF}.  For integer $s$, $(-s)_n=0$ exactly when $n>s$; for noninteger
+$k$ no Pochhammer factor vanishes.
+
+In the nonterminating case, gamma notation gives
+\[
+ p_n^{(m,k)}=\frac{\Gamma(m)}{\Gamma(-k)^2F_m(1)}
+ \frac{\Gamma(n-k)^2}{\Gamma(n+m)\Gamma(n+1)}.
+\]
+The standard gamma-ratio asymptotic
+$\Gamma(n+a)/\Gamma(n+b)\sim n^{a-b}$ proves
+\eqref{eq:cueM-Gauss-tail}.  Its power is strictly larger than $2$ exactly when
+$m+2k>1$, and strictly larger than $3$ exactly when $m+2k>2$, explaining the two
+nonintegral moment conditions.
+
+Where the differentiated series converges at one,
+\begin{align*}
+ F_m'(1)&=\frac{k^2}{m}{}_2F_1(1-k,1-k;m+1;1),\\
+ F_m''(1)&=\frac{k^2(k-1)^2}{m(m+1)}
+ {}_2F_1(2-k,2-k;m+2;1).
+\end{align*}
+Applying Gauss' formula to these two values and dividing by
+\eqref{eq:cueM-Gauss-normalizer} gives
+\[
+ \frac{F_m'(1)}{F_m(1)}=\frac{k^2}{m+2k-1},\qquad
+ \frac{F_m''(1)}{F_m(1)}=
+ \frac{k^2(k-1)^2}{(m+2k-2)(m+2k-1)}.
+\]
+They are respectively $\mathbb EY_{m,k}$ and
+$\mathbb E[Y_{m,k}(Y_{m,k}-1)]$.  For positive integral $s$, the series terminates and the
+same identities follow from Chu--Vandermonde without convergence restrictions; $s=0$ is the
+separate point mass already stated.  This repairs the earlier version's unrestricted display
+of the mean, without making any claim about the theorem's status outside that source.
+\end{proof}
+
+\paragraph{The fixed-length multiplier set is a ratio-lattice image.}
+For a finite real slice $\beta^{(1)},\ldots,\beta^{(r)}\in(-1,1)$, set
+\begin{equation}
+ q_i=\frac{1+\beta^{(i)}}{1-\beta^{(i)}}>0,\qquad
+ N_i=\begin{pmatrix}q_i&1\\0&1\end{pmatrix}.
+ \label{eq:cueM-drift-matrices}
+\end{equation}
+The top-left coordinate is a monoid morphism because
+\begin{equation}
+ N_{i_1}\cdots N_{i_m}=
+ \begin{pmatrix}
+ \prod_{j=1}^{m}q_{i_j}&
+ 1+q_{i_1}+q_{i_1}q_{i_2}+\cdots+q_{i_1}\cdots q_{i_{m-1}}\\
+ 0&1
+ \end{pmatrix}.
+ \label{eq:cueM-drift-product}
+\end{equation}
+
+\begin{theorem}[Exact fixed-length multiplier rank]
+\label{thm:cueM-multiplier-rank}
+Let
+\begin{equation}
+ \mathcal M_m=\left\{q_{i_1}\cdots q_{i_m}:1\leq i_j\leq r\right\},
+ \qquad
+ H=\left\langle\frac{q_1}{q_r},\ldots,\frac{q_{r-1}}{q_r}\right\rangle
+ \leq\mathbb R_{>0}^{\times},
+ \label{eq:cueM-multiplier-set}
+\end{equation}
+and let $d=\operatorname{rank}_{\mathbb Z}H$.  Then
+\begin{equation}
+ |\mathcal M_m|=\Theta(m^d).
+ \label{eq:cueM-multiplier-growth}
+\end{equation}
+More precisely,
+\begin{equation}
+ \mathcal M_m=q_r^m\left\{
+ \prod_{i=1}^{r-1}(q_i/q_r)^{n_i}:
+ n_i\in\mathbb Z_{\geq0},\ \sum_{i=1}^{r-1}n_i\leq m
+ \right\}.
+ \label{eq:cueM-multiplier-simplex-map}
+\end{equation}
+If $q_1,\ldots,q_r$ are multiplicatively independent, the displayed simplex map is
+injective and
+\begin{equation}
+ |\mathcal M_m|=\binom{m+r-1}{r-1}.
+ \label{eq:cueM-multiplier-independent}
+\end{equation}
+For arbitrary positive $q_i$,
+\begin{equation}
+ \operatorname{rank}_{\mathbb Z}\langle q_1,\ldots,q_r\rangle
+ =\dim_{\mathbb Q}\operatorname{span}_{\mathbb Q}
+ \{\log q_1,\ldots,\log q_r\};
+ \label{eq:cueM-log-rank}
+\end{equation}
+no algebraicity hypothesis is needed.
+\end{theorem}
+
+\begin{proof}
+A word is determined at the scalar level by its Parikh vector
+$(n_1,\ldots,n_r)$ with $\sum_i n_i=m$.  Replacing
+$n_r$ by $m-\sum_{i<r}n_i$ gives
+\eqref{eq:cueM-multiplier-simplex-map}.  Since a finitely generated subgroup of
+$\mathbb R_{>0}^{\times}$ is torsion-free, $H\cong\mathbb Z^d$.  Choose a basis of $H$.
+The exponent vector of each generator $q_i/q_r$ is fixed, so every coordinate of every image
+of the integer simplex is bounded in absolute value by $Cm$.  This gives $O(m^d)$ images.
+
+Because the listed ratios generate a rank-$d$ group, some $d$ of their exponent vectors are
+linearly independent over $\mathbb Q$, hence over $\mathbb Z$.  Restricting
+\eqref{eq:cueM-multiplier-simplex-map} to nonnegative powers of those $d$ generators gives
+an injective set of $\binom{m+d}{d}$ products.  This proves the lower bound, including the
+case $d=0$.  If all $q_i$ are multiplicatively independent, equality of two fixed-length
+products forces equality of every Parikh coordinate, giving
+\eqref{eq:cueM-multiplier-independent}.
+
+Finally, logarithm is an injective group homomorphism
+$\mathbb R_{>0}^{\times}\to(\mathbb R,+)$ with exponential as inverse on its image.
+Integral multiplicative relations among the $q_i$ are therefore exactly integral additive
+relations among $\log q_i$; clearing denominators gives the same statement for rational
+relations.  This proves \eqref{eq:cueM-log-rank}.  The earlier version counted with the rank
+of $\langle q_i\rangle$; fixed word length removes the common $q_r^m$ direction, so the
+ratio lattice $H$ is the exact object.
+\end{proof}
+
+\paragraph{The cubic trace polynomial.}
+Apply the invertible affine coordinate change already proved in
+\eqref{eq:n3-u-v-u-X-isomorphism}:
+\begin{equation}
+ X=9u-16v+1,\qquad v=\frac{9u+1-X}{16}.
+ \label{eq:cueM-u-v-X-map}
+\end{equation}
+It has singleton fibres and deletes no coordinate.
+
+\begin{theorem}[Generic splitting group of the cubic descended kernel]
+\label{thm:cueM-Q3-S3}
+Substitution of \eqref{eq:cueM-u-v-X-map} into \eqref{eq:cueM-Psi3} gives
+\begin{equation}
+ \Psi_3^\sharp\!\left(u,\frac{9u+1-X}{16}\right)
+ =\frac5{16384}Q_3(u,X),
+ \label{eq:cueM-Q3-transform}
+\end{equation}
+where
+\begin{align}
+ Q_3(u,X)={}&-7X^3+(549u+669)X^2
+ -(6645u^2+22746u+8997)X\notag\\
+ &+13783u^3+125949u^2+138933u+19087.
+ \label{eq:cueM-Q3}
+\end{align}
+As a polynomial in $X$ over $\mathbb Q(u)$, $Q_3$ is irreducible and its splitting field has
+Galois group $S_3$.
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:cueM-Q3-transform} is direct coefficient collection after the displayed
+affine substitution.  At $u=0$,
+\[
+ Q_3(0,X)=-7X^3+669X^2-8997X+19087.
+\]
+Modulo $11$, multiplication by the inverse of its nonzero leading scalar gives
+\[
+ f(X)=X^3+5X^2+3X-5.
+\]
+Its values at $0,1,\ldots,10$ are
+\[
+ 6,4,7,10,8,7,2,10,4,1,7,
+\]
+so it has no root in $\mathbb F_{11}$ and is irreducible there.  Thus
+$Q_3(0,X)$ is irreducible over $\mathbb Q$.  If $Q_3(u,X)$ factored over
+$\mathbb Q(u)$, Gauss' lemma would give a factorization in $\mathbb Q[u][X]$ after units
+were cleared.  Since the leading $X$ coefficient is the constant $-7$, the leading
+coefficients of both positive-$X$-degree factors would be nonzero constants; specialization
+at $u=0$ would retain both degrees and contradict the preceding irreducibility.  Therefore
+$Q_3$ is irreducible over $\mathbb Q(u)$.
+
+For a cubic $aX^3+bX^2+cX+d$, substitution in
+$b^2c^2-4ac^3-4b^3d-27a^2d^2+18abcd$ gives
+\begin{align}
+ \operatorname{disc}_XQ_3
+ =2^{18}3^3(&290275u^6+731094u^5+2234709u^4+2884436u^3\notag\\
+             &+3453789u^2+1714038u+984779).
+ \label{eq:cueM-Q3-discriminant}
+\end{align}
+This discriminant is not a square in $\mathbb Q(u)$.  Indeed, its nonzero specialization at
+$u=0$ is $2^{18}3^3\cdot984779$; the final integer has digit sum $44$ and is not divisible
+by $3$, so the $3$-adic valuation is the odd number $3$.  A rational-function square that is
+regular and nonzero at $u=0$ specializes to a rational square there, which is impossible.
+
+Irreducibility makes the Galois group a transitive subgroup of $S_3$.  The discriminant is a
+square exactly when that group lies in $A_3$.  Here it does not, so the transitive group is
+the full $S_3$.  The exact substitution, modular values, fraction-field irreducibility, and
+discriminant expansion are independently replayed by the finite certificate below.
+\end{proof}
+
+\paragraph{Certificate and exact scope.}
+The executable
+\path{certificates/cue_mellin_programme/verify_cue_mellin_finite_core.py}
+is recorded as \texttt{CERT-CUE-MELLIN-20260828-0001}.  It uses exact integer, rational,
+Laurent-constant-term, and symbolic polynomial arithmetic.  Two independent installed
+interpreters replay all 39 named checks: Python~3.13.9 with SymPy~1.13.1 and Python~3.13.1
+with SymPy~1.13.3.  It verifies the $U(2)$ Weyl/terminating-${}_3F_2$ equality through order
+seven; the exact $N=3$ recursive-state arrow and its squared-modulus identity; the trace
+formula, exact degree, and leading coefficient through order eight; all four printed
+$\Psi_s^\sharp$; the Gram obstruction; the affine cubic transform; fraction-field
+irreducibility and the complete discriminant; and 42 terminating Gauss probability laws and
+their first two factorial moments.
+
+The analytic and structural statements are not delegated to that bounded computation:
+\cref{thm:cueM-fixedN-support,thm:cueM-Hausdorff-Bernstein,%
+thm:cueM-no-one-scale,thm:cueM-measure-peel,thm:cueM-transform-algebra,%
+cor:cueM-U2-3F2,thm:cueM-U3-compact-measures,thm:cueM-U3-trace-descent,%
+thm:cueM-Gauss-law,thm:cueM-multiplier-rank,thm:cueM-Q3-S3}
+contain their standard proofs and exact dependencies.  The programme therefore supplies a
+fixed-rank compact Mellin measure, a constructive integer-to-real-moment inverse, an exact
+measure-valued derivative peel, a Laplace--Hurwitz--digamma transform carrier, complete
+$U(2)$ moments, and a phase-retaining $U(3)$ trace descent.  The maps to the published CUE
+derivative framework are \eqref{eq:cueM-GMS-specialization},
+\eqref{eq:cueM-U3-first-state}, and \eqref{eq:cueM-U3-second-state}; the map to the separate
+deck curve and its exact obstruction are already
+\cref{thm:n3-deck-interface}.  None of these finite-rank or transform statements supplies a
+map from an individual zeta zero to the CUE variables.  Any such further implication remains
+a separately typed morphism and proof obligation.

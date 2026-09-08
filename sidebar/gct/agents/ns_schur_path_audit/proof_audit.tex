@@ -1,0 +1,185 @@
+\section*{Independent audit of the concentration path through the Schur endpoint}
+
+This audit concerns the specified based endpoint diagram and its Schur
+functors. No identification of a tableau vector with a physical velocity,
+Hamiltonian state or generic quantum-group source vector is used.
+The root proof hash and all audit artifacts are recorded in
+\texttt{final\_audit.json}. The independently enumerated tableaux are
+retained in \texttt{tableau\_audit/}; neither audit checker imports the
+root checker.
+
+\subsection*{The exact descent required for the formal valuation}
+
+Let $R=\mathbb Z[1/2][q,q^{-1}]$, and retain the original based maps
+$E_C\xrightarrow{H}B_R\xrightarrow{V}N_R$ with fourth diagonal
+entries $[7]_q[3]_q$ and $(q-q^{-1})^2$. They descend as ordinary
+based module maps to three distinguished free $\mathbb Z[m]$-modules:
+\[
+ h_m=(m+3)\bigl((m+4)^3-5(m+4)^2+6(m+4)-1\bigr),
+ \qquad C_m=mh_m.
+\]
+Indeed the map $\mathbb Z[m]\to R$, $m\mapsto(q-q^{-1})^2$,
+sends $m+4$ to $(q+q^{-1})^2$. The complete finite Laurent sums give
+$[3]_q=(q+q^{-1})^2-1$ and
+$[7]_q=(q+q^{-1})^6-5(q+q^{-1})^4+6(q+q^{-1})^2-1$.
+Thus the three base-changed matrices equal the original matrices.
+The map of each corresponding free basis symbol to its original
+labelled basis vector, with inverse the same coordinate tuple,
+proves the stated isomorphisms of diagrams. This is a statement
+after base change to $R$, retaining its inversion of $2$.
+
+The distinct ring map $\mathbb Z[m]\to\mathbb R[[\tau]]$,
+$m\mapsto-2\tau$, gives exactly
+\[
+ h_\tau=21-98\tau+140\tau^2-80\tau^3+16\tau^4,
+ \quad B(\tau)=-2h_\tau,
+ \quad C_\tau=\tau B(\tau).
+\]
+It does not send the Laurent variable $q$ to an ordinary real power
+series. More explicitly, after $\tau=v^2$ the chosen complex branch is
+\[
+ q(v)=\sqrt{1-v^2/2}+iv/\sqrt2,
+ \qquad q(v)^{-1}=\sqrt{1-v^2/2}-iv/\sqrt2.
+\]
+Their product is one and their difference squared is $-2v^2$.
+The coefficient of $v$ is nonzero, so this branch is not a series
+in $v^2$. This explains why the diagram descent, rather than an
+asserted map of the full Laurent ring to $\mathbb R[[\tau]]$, is
+the correct source for the length calculation. Over the ramified
+ring $\mathbb C[[v]]$ the corresponding orders are doubled.
+
+\subsection*{Tableau eigenvalues, exact orders and inertia}
+
+The integral column-exterior to row-symmetric Schur construction is
+homogeneous in the content of each tableau: every tensor summand
+has the same number of each alphabet letter. A diagonal matrix
+therefore multiplies a tableau containing $k$ letters $4$ by its
+fourth diagonal entry to power $k$ when the other entries are one.
+In a nested Schur functor this count sums the contents of the inner
+tableaux with their outer multiplicities. This proves the claimed
+diagonal entries and functorial factorization directly over the
+coefficient rings, without dividing by a factorial.
+
+For $\nu=(7,5,3)$, the independent checker fills its fifteen cells
+in row-major order. At each cell it tries exactly the values in
+$\{1,2,3,4\}$ which are at least the value to its left and strictly
+larger than the value above. These comparisons are precisely the
+semistandard conditions. Every semistandard tableau has one unique
+sequence of choices in this recursion, so the enumeration is
+exhaustive and without repetition. The resulting content profile is
+\[
+ (m_0,m_1,m_2,m_3,m_4,m_5,m_6,m_7)
+ =(27,81,162,270,300,252,126,42).
+\]
+It has total $1260$, weighted total $\sum k m_k=4725$, even total
+$615$ and odd total $645$. These counts agree with the root's
+independent interlacing-shape formula.
+
+The constant term $B(0)=-42$ is a unit over $\mathbb R$. Therefore
+each coordinate map $C_\tau^k=\tau^kB(\tau)^k$ has image exactly
+$\tau^k\mathbb R[[\tau]]$, zero kernel and cokernel
+$\mathbb R[[\tau]]/(\tau^k)$. Its length is $k$ by its basis
+$1,\tau,\ldots,\tau^{k-1}$ for $k>0$. The eight multiplicities
+give length and determinant order $4725$, specialized rank $27$
+and specialized kernel and cokernel dimensions $1233$. This
+valuation calculation takes place over the stated real series ring,
+not over an integral ring in which the constant $21$ is a nonunit.
+
+On $I=(0,2\sin^2(\pi/7))$, put
+$\theta=\arcsin\sqrt{\tau/2}\in(0,\pi/7)$. The previously proved
+exact identity is
+\[
+ C_\tau=-4\sin(7\theta)\sin(3\theta)<0.
+\]
+Both factors are positive before the leading minus sign, because
+$0<7\theta<\pi$ and $0<3\theta<3\pi/7<\pi$.
+Also $-2\tau<0$, so $h_\tau=C_\tau/(-2\tau)>0$.
+After the explicitly matching source-to-target tableau identification,
+the diagonal endomorphism is selfadjoint for the fixed orthonormal
+tableau metric. Even and odd contents give orthogonal positive and
+negative spaces of dimensions $615$ and $645$. A larger positive
+space must intersect the negative space by the dimension formula,
+and conversely. Thus the inertia is exactly $(615,645,0)$ on all
+of $I$ for the unscaled endpoint and its node factor. This metric
+statement makes no assertion of equivariance for the generic full
+quantum source.
+
+\subsection*{The complete bounded-error scalar asymptotics}
+
+Let $0<h<1/100$, $A=1/2+h$, $e_0>0$ and let $\varepsilon$
+be a bounded real function near $0$ on the positive real axis.
+The explicitly defined map $L_\tau=g(\tau)D_\tau$ has
+\[
+ g(\tau)=\tau^{-A}(e_0+\tau^{2h}\varepsilon(\tau)).
+\]
+The Schur construction of degree $d$ multiplies every tableau
+monomial by $g^d$; for a nested shape the degree is the product of
+the two box counts. Consequently its exact entries are
+\[
+ \lambda_{k,j}(\tau)=\tau^{k-dA}B(\tau)^k
+                 (e_0+\tau^{2h}\varepsilon(\tau))^d.
+\]
+This uses the new explicitly chosen scalar multiple of the endpoint
+map, not an inferred identification of any endpoint vector with a
+fluid velocity.
+
+For completeness, the exact polynomial remainder can be written
+using an independent variable $u$:
+\begin{align*}
+ B(\tau)^k(e_0+u)^d-(-42)^ke_0^d
+ &=\tau\left(\frac{B(\tau)^k-(-42)^k}{\tau}\right)(e_0+u)^d\\
+ &\quad+u(-42)^k\left(\frac{(e_0+u)^d-e_0^d}{u}\right).
+\end{align*}
+Both quotients are polynomials, including the zero first quotient
+when $k=0$. Substitute $u=\tau^{2h}\varepsilon(\tau)$.
+Boundedness of $\varepsilon$ and continuity of the displayed
+polynomials on a fixed compact neighborhood make the first term
+$O(\tau)$ and the second $O(\tau^{2h})$. Since $0<2h<1$,
+the sum is $O(\tau^{2h})$. Thus
+\[
+ \lambda_{k,j}(\tau)=(-42)^ke_0^d\tau^{k-dA}
+                 +O(\tau^{k-dA+2h}).
+\]
+This proof requires no differentiability or continuity of the
+arbitrary bounded $\varepsilon$. The nonzero leading coefficient
+justifies each of the three root classifications according to
+the sign of $k-dA$.
+
+For $d=15$ all occurring $k$ satisfy
+$k-15A\leq-1/2-15h<0$. A uniform lower bound verifies the
+simultaneous divergence of all $1260$ entries: choose sufficiently
+small $\tau$ so that $\tau<1$, $|B(\tau)|\geq21$ and
+$e_0+\tau^{2h}\varepsilon(\tau)\geq e_0/2$. Then, for every
+$0\leq k\leq7$,
+\[
+ |\lambda_{k,j}(\tau)|
+ \geq(e_0/2)^{15}\tau^{k-15A}
+ \geq(e_0/2)^{15}\tau^{7-15A}\longrightarrow\infty.
+\]
+The same eventual positivity of the scalar factor proves that
+the inertia of this rescaled family is $(615,645,0)$ sufficiently
+near zero. It is not asserted on all of $I$ for arbitrary bounded
+error: where $g<0$ the odd total degree reverses the two indices,
+and where $g=0$ the entire positive-degree Schur map is zero.
+
+Multiplying all $1260$ entries gives the exact determinant
+\[
+ \det S_\nu(L_\tau)
+ =\tau^{4725-18900A}B(\tau)^{4725}
+       (e_0+\tau^{2h}\varepsilon(\tau))^{18900}.
+\]
+Its leading exponent is $-4725-18900h$, because
+$18900=15\cdot1260$. In comparison the scalar product
+$C_\tau g(\tau)$ has exponent $1-A=1/2-h>0$ and tends to zero.
+These two conclusions are compatible: the fifteen-box functor
+contributes fifteen copies of the scalar exponent, whereas its
+fourth-coordinate content is at most seven.
+
+\paragraph{Audit status.}
+The exact identities, complete tableau census, source and target
+tracking, metric specification and all exponent/remainder statements
+pass independent review. The preliminary formal-ring and full-interval
+inertia distinctions were incorporated or were already explicit in
+the final proof. No generic quantum-source equivariance, physical
+Hamiltonian interpretation or complexity lower bound is supplied
+by this specified endpoint composition.

@@ -1,0 +1,448 @@
+\section{The published concentration coordinates and an exact conic heat transport}
+\label{sec:ns-conic-transport}
+
+This section uses the coordinate formulas of the public manuscript
+\emph{Finite Time Blowup for Navier--Stokes}, whose author line is
+OpenAI. The source reading receipt records the preserved revisions and
+the audited source pin. The manuscript's Theorem~1.1 claims finite-time
+unbounded velocity for every viscosity $\nu>0$, zero initial velocity,
+a smooth compactly supported force, fixed compact spatial support before
+time one, and uniformly bounded kinetic energy. That global claim is
+not independently verified in this section. All statements proved below
+are explicit coordinate, differential-algebra, and scalar-germ identities.
+In particular, the leading field appearing in the source is retained as
+a leading field, rather than substituted for its completed construction.
+The current 166-page PDF has SHA-256
+\begin{center}\small\texttt{0e779481c4da40bd28d1e642e1d8ca57447d129610df28dfa5a11e9af8ae228f}.\end{center}
+The earlier 165-page PDF has SHA-256
+\begin{center}\small\texttt{8c8a94ad9ac824c8b605b9827cadf7beaca48bd10b380de3cfc872a2c37afa81}.\end{center}
+The source audit compares the cited passages in both versions: the
+coordinates are (3.2), current p.~7 and (4.1), current p.~24;
+the differential identities are Lemma~4.1 and (4.2), current p.~25;
+the profiles and balances are (4.3)--(4.7), current pp.~25--26;
+the growth and viscosity formulas are (10.21)--(10.23), current
+p.~124. The corresponding earlier passages are on pp.~7, 24--25,
+and 124. The selected equations agree; complete revision equivalence
+is not asserted. The preserved source commit is
+\begin{center}\small\texttt{8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538}.\end{center}
+The public manuscript supplies these source objects
+\cite{OpenAINSBridge2026}. Its revised historical account credits
+Diego C\'ordoba, Luis Mart\'inez-Zoroa, and the indicated joint work
+with Fan Zheng for preceding forced-flow constructions.
+Tristan Buckmaster's primary statement separately identifies his
+joint work with Levent Alp\"oge on announced smooth-forcing
+incompressible-porous-media, Boussinesq, and three-dimensional Euler
+blowup, and describes an unfinished verification of a hypodissipative
+Navier--Stokes claim \cite{BuckmasterStatementBridge2026}.
+These are the stated attributions and mathematical scopes. Neither
+source observation establishes priority or a technical dependency
+of the positive-viscosity manuscript on that joint work. The new
+conic calculations below are proved here from the displayed objects.
+
+\subsection{The exact source coordinates and differential operators}
+To prevent collisions of source notation, write $\rho$ for the source's
+cylindrical radius $r$, $Q$ for its concentration variable $q$, $\xi$
+for its similarity variable $\eta$, and $\sigma=\rho^2/2$ for its
+squared-radius variable $s$. The arithmetic coordinates $r,s,b,q$ retain
+their previous meanings. These are names for the original variables,
+not changes of their values. Retain
+\begin{gather*}
+ A=\tfrac12+h,\qquad D=\tfrac12-h,\qquad \tau=1-t,\\
+ z=Q^D\xi,\qquad \tau=Q(1-\xi^2),\qquad X=\frac{\rho^2}{2Q},\\
+ d=1-\xi^2,\qquad \ell=1-2h\xi^2.
+\end{gather*}
+The coordinate identities hold for $0<h<1/2$, $\tau>0$,
+$Q>0$, $-1<\xi<1$; the source's profile construction uses
+$0<h<1/100$. Powers of $Q$ denote their positive real values.
+For each $(z,\tau)\in\mathbb R\times(0,\infty)$ there is exactly one
+$Q>|z|^{1/D}$ with
+\[
+ Q-z^2Q^{2h}=\tau.
+\]
+Indeed the left side is zero at the stated endpoint, tends to infinity,
+and has derivative $1-2hz^2Q^{2h-1}\geq1-2h>0$ on this interval.
+The implicit-function theorem and $\ell>0$ prove smoothness. Inverting
+gives $\xi=zQ^{-D}$ and $\rho=\sqrt{2QX}$, the latter for $X>0$.
+The time--axial Jacobian is
+\[
+ \det\frac{\partial(\tau,z)}{\partial(Q,\xi)}
+ =Q^D(d+2D\xi^2)=Q^D\ell>0.
+\]
+Differentiating these exact relations at fixed physical coordinates gives
+\begin{align*}
+ Q_t&=-\ell^{-1},& \xi_t&=D\xi/(Q\ell),& X_t&=X/(Q\ell),\\
+ Q_z&=2\xi Q^{1-D}/\ell,&
+ \xi_z&=d/(Q^D\ell),& X_z&=-2\xi X/(Q^D\ell),\\
+ Q_\rho&=0,&\xi_\rho&=0,&X_\rho&=\rho/Q.
+\end{align*}
+For example $Q_\tau=1/\ell$, $\xi_\tau=-D\xi/(Q\ell)$,
+and $X_\tau=-X/(Q\ell)$, so the first line retains the time reversal.
+The $\xi_z$ calculation uses $\ell-2D\xi^2=d$.
+
+For any real $w$ and smooth profile $f(X,\xi)$ define
+$\mathcal P_w f=Q^w f(X,\xi)$ and
+\begin{align*}
+ T_wf&=\ell^{-1}(-wf+D\xi f_\xi+Xf_X),\\
+ Z_wf&=\ell^{-1}(2w\xi f+d f_\xi-2\xi Xf_X),\qquad
+ Rf=2Xf_{XX}+2f_X.
+\end{align*}
+The chain and product rules, with the preceding six derivatives, give
+\begin{equation}\label{eq:ns-profile-operators-exact}
+ \partial_t\mathcal P_w=\mathcal P_{w-1}T_w,
+ \qquad \partial_z\mathcal P_w=\mathcal P_{w-D}Z_w,
+ \qquad
+ (\partial_\rho^2+\rho^{-1}\partial_\rho)\mathcal P_w
+       =\mathcal P_{w-1}R.
+\end{equation}
+For the last identity, the two terms from differentiating $\rho/Q$
+and the cylindrical term each contribute $Q^{w-1}f_X$, and
+$\rho^2Q^{w-2}f_{XX}=2XQ^{w-1}f_{XX}$. Thus all radial constants
+are retained. Applying the axial identity twice gives
+\begin{align}
+ (\partial_t-\nu\Delta)\mathcal P_w f
+ &=\mathcal P_{w-1}(T_w-\nu R)f
+     -\nu\mathcal P_{w-1+2h}Z_{w-D}Z_wf,
+       \label{eq:ns-profile-heat-full}\\
+ -\tfrac14\partial_t^2\mathcal P_w f
+ &=-\tfrac14\mathcal P_{w-2}T_{w-1}T_wf.
+       \label{eq:ns-profile-arithmetic-full}
+\end{align}
+Here $\Delta$ is the three-dimensional scalar Laplacian on
+axisymmetric functions. These equations keep both distinct similarity
+weights $w-1$ and $w-1+2h$, as well as the arithmetic factor $-1/4$.
+
+The actual source leading profiles satisfy
+\[
+ u^{(0)}_\theta=Q^{-A}E,\quad u^{(0)}_z=Q^{-A}U,
+ \quad \rho u^{(0)}_\rho=V_0,\quad p^{(0)}=Q^{-2A}\Pi,
+ \qquad E=C_0^{-1}\sqrt{2X}\,\phi,\quad C_0>1,
+\]
+where $C_0$ denotes the source's amplitude constant, not the GCT
+coefficient. Its incompressibility and pressure identities are
+\[
+ V_0=\frac X\ell\left(2\xi U-2D\xi\mathcal A_XU
+                   -d\partial_\xi\mathcal A_XU\right),\quad
+ \mathcal A_XU=X^{-1}\int_0^XU(y,\xi)\,dy,\qquad
+ \Pi_X=E^2/(2X).
+\]
+The first follows by integrating
+$(V_0)_X=-Z_{-A}U$ from zero, using $A+D=1$ and
+integrating $XU_X$ exactly. The second is the source radial-pressure
+balance $\partial_\rho p^{(0)}=(u^{(0)}_\theta)^2/\rho$.
+The regular axis interpretation is the one stated by the source:
+$E/\sqrt{2X}$, $U$, and $V_0/X$ are smooth at $X=0$.
+
+For this particular leading field its physical material derivative on
+axisymmetric scalars has the exact representation
+\begin{equation}\label{eq:ns-source-material-profile}
+ \bigl(\partial_t+u^{(0)}_\rho\partial_\rho
+                     +u^{(0)}_z\partial_z\bigr)\mathcal P_w f
+   =\mathcal P_{w-1}M_wf,\qquad
+ M_w=T_w+V_0\partial_X+U Z_w.
+\end{equation}
+Indeed $u^{(0)}_\rho\partial_\rho\mathcal P_wf
+=Q^{w-1}V_0f_X$, while the axial term has weight
+$w-A-D=w-1$. This proves the correspondence for the actual source
+ansatz, including its nonlinear dependence on the chosen profiles.
+
+For completeness this also determines its full momentum residual,
+including the cylindrical frame terms. Put $f_\rho=V_0/\sqrt{2X}$
+and $R_1=R-(2X)^{-1}$. On $X>0$ the three components of
+$(\partial_t+u^{(0)}\cdot\nabla)u^{(0)}-\nu\Delta u^{(0)}
++\nabla p^{(0)}$ are
+\begin{align*}
+ \mathfrak r_\rho={}&\mathcal P_{-3/2}
+       (M_{-1/2}f_\rho-\nu R_1f_\rho)
+       -\nu\mathcal P_{-3/2+2h}Z_{-1/2-D}Z_{-1/2}f_\rho,\\
+ \mathfrak r_\theta={}&\mathcal P_{-A-1}
+       (M_{-A}E+V_0E/(2X)-\nu R_1E)
+       -\nu\mathcal P_{-A-1+2h}Z_{-A-D}Z_{-A}E,\\
+ \mathfrak r_z={}&\mathcal P_{-A-1}
+       (M_{-A}U-\nu RU+Z_{-2A}\Pi)
+       -\nu\mathcal P_{-A-1+2h}Z_{-A-D}Z_{-A}U.
+\end{align*}
+To verify these formulas, differentiation of the cylindrical unit
+vectors gives the radial convective term $-(u_\theta^{(0)})^2/\rho$,
+the azimuthal convective term $u_\rho^{(0)}u_\theta^{(0)}/\rho$,
+and the radial and azimuthal vector-Laplacian terms
+$-u_\rho^{(0)}/\rho^2$ and $-u_\theta^{(0)}/\rho^2$.
+The radial convective term cancels $\partial_\rho p^{(0)}$ by
+the exact displayed pressure balance. The azimuthal additional term
+is $\mathcal P_{-A-1}(V_0E/(2X))$.
+Finally $-2A-D=-A-1$ gives the axial pressure weight. Substituting
+\eqref{eq:ns-profile-operators-exact} proves every remaining term.
+No assertion that this residual vanishes is needed or made.
+
+The source constructs its leading profiles at viscosity one. Its
+actual passage to arbitrary $\nu>0$ is the spatial map
+\[
+ y=x/\sqrt\nu,\qquad
+ u_\nu(x,t)=\sqrt\nu\,u(y,t),\quad
+ p_\nu(x,t)=\nu p(y,t),\quad
+ f_\nu(x,t)=\sqrt\nu\,f(y,t).
+\]
+Every momentum term acquires the factor $\sqrt\nu$: time
+differentiation preserves the velocity prefactor; the two velocity
+factors in advection and the spatial derivative give
+$\nu\nu^{-1/2}$; viscosity and two spatial derivatives give
+$\nu\sqrt\nu\nu^{-1}$; and the pressure gradient gives
+$\nu\nu^{-1/2}$. The divergence is unchanged. The Jacobian
+$dx=\nu^{3/2}dy$ gives
+$\|u_\nu\|_2^2=\nu^{5/2}\|u\|_2^2$ and
+$\nu\int\|\nabla u_\nu\|_2^2dt
+=\nu^{5/2}\int\|\nabla u\|_2^2dt$ on the same time interval.
+In these rescaled fields the physical coordinates satisfy
+$z=\sqrt\nu Q^D\xi$, $\rho^2=2\nu QX$ and
+$\tau=Q(1-\xi^2)$. Thus $\partial_z$ gains $\nu^{-1/2}$
+and the radial scalar Laplacian gains $\nu^{-1}$ in
+\eqref{eq:ns-profile-operators-exact}. This is the source's specified
+viscosity transport, with its time coordinate unchanged.
+
+\subsection{The material base and the complete two-variable conic connection}
+Work first over $\mathbb C$. Retain the original coordinates $s,b,c,r$
+and $P=cr^3-2r^2+br-4s$. The original material base derivation and
+its simple-root lift are
+\[
+ U_B=\partial_s+6c\partial_b,\qquad
+ \mathcal D=\partial_s+6c\partial_b
+        +\frac{4-6cr}{3cr^2-4r+b}\partial_r.
+\]
+The three contributions to $\mathcal DP$ are $-4$, $6cr$, and
+$4-6cr$, so this is a derivation of the localization at $P_r$.
+Under the real base identification
+\begin{equation}\label{eq:ns-original-base-identification}
+ s=\tau=1-t,\qquad b=z,\qquad c=c,
+\end{equation}
+$U_B$ becomes $-\partial_t+6c\partial_z$. This identity concerns
+the stated material base; the leading physical material derivative
+has instead the explicitly proved profile formula
+\eqref{eq:ns-source-material-profile}. On $c=0$ the original
+arithmetic operator is exactly $-\partial_s^2/4=-\partial_t^2/4$.
+The previously established pullback by the original polynomial $F$
+composes with \eqref{eq:ns-original-base-identification}; its two
+original Euclidean diffusion coefficients are unchanged.
+
+On $c=0$, retain the complete cover
+\begin{gather*}
+ \beta=b/4,\qquad \eta=r-\beta,\qquad
+ m=b^2/16-2s,\qquad n=m+4,\\
+ \mathcal B=\mathbb C[s,b,(mn)^{-1}],\qquad
+ \mathcal E=\mathcal B[\eta,p]/(\eta^2-m,p^2-n).
+\end{gather*}
+The original branch factors are $\delta=16m=b^2-32s$ and
+$L=n=4+b^2/16-2s$. The localization removes both and only these
+two factors. The ring is free of rank four, with bases
+$(1,\eta,p,\eta p)$ and $(1,r,p,rp)$; monic division proves
+existence and uniqueness of the four coefficients. There are inverse
+maps to the localized original Laurent presentation, given by
+\begin{equation}\label{eq:ns-conic-laurent-map}
+ q=(p+\eta)/2,\quad q^{-1}=(p-\eta)/2,
+ \quad\eta=q-q^{-1},\quad p=q+q^{-1},\quad
+ s=b^2/32-\tfrac12(q-q^{-1})^2.
+\end{equation}
+The two displayed images of $q,q^{-1}$ have product
+$(n-m)/4=1$; sums and differences prove both inverse compositions.
+Thus the arithmetic $q$ in this formula is never set equal to $Q$.
+
+There are unique commuting derivations $\nabla_s,\nabla_b$ extending
+$\partial_s,\partial_b$ to $\mathcal E$. On generators they are
+\begin{align*}
+ \nabla_s\eta&=-1/\eta,&\nabla_sp&=-1/p,&
+ \nabla_sq&=-q/(\eta p),\\
+ \nabla_b\eta&=b/(16\eta),&\nabla_bp&=b/(16p),&
+ \nabla_bq&=bq/(16\eta p).
+\end{align*}
+Differentiating the two defining quadratic relations proves these
+formulas and their uniqueness, since $2\eta$ and $2p$ are units.
+Their commutator is a derivation killing $s,b$; differentiation of
+the same quadratic relations then forces it to kill $\eta,p$.
+This proves flatness without assuming that arbitrary differentiation
+descends to an unlocalized quotient.
+
+Here are the full matrices in the retained basis $(1,r,p,rp)$.
+Column vectors are coefficient vectors, and
+$\nabla_i=\partial_iI_4+\Gamma_i$:
+\begin{align*}
+ \Gamma_s&=\begin{pmatrix}
+ 0&\beta/m&0&0\\0&-1/m&0&0\\
+ 0&0&-1/n&\beta/m\\0&0&0&-1/m-1/n
+ \end{pmatrix},\\
+ \Gamma_b&=\begin{pmatrix}
+ 0&1/4-b\beta/(16m)&0&0\\0&b/(16m)&0&0\\
+ 0&0&b/(16n)&1/4-b\beta/(16m)\\
+ 0&0&0&b/(16m)+b/(16n)
+ \end{pmatrix}.
+\end{align*}
+For example $\nabla_br=1/4+b\eta/(16m)$ and
+$\nabla_b(rp)=p/4+(b/(16m)+b/(16n))\eta p
++b\beta p/(16n)$, which give the second and fourth columns.
+The other columns follow directly from the generator formulas.
+The inverse change of coefficient bases is explicit:
+\[
+ T=\begin{pmatrix}1&\beta&0&0\\0&1&0&0\\
+ 0&0&1&\beta\\0&0&0&1\end{pmatrix},\qquad
+ T^{-1}=\begin{pmatrix}1&-\beta&0&0\\0&1&0&0\\
+ 0&0&1&-\beta\\0&0&0&1\end{pmatrix}.
+\]
+In the $(1,\eta,p,\eta p)$ basis write
+\[
+ H_s=\operatorname{diag}(0,-m^{-1},-n^{-1},-m^{-1}-n^{-1}),
+ \qquad H_b=-\tfrac b{16}H_s.
+\]
+Then $\Gamma_i=T^{-1}H_iT+T^{-1}(\partial_iT)$, which
+also verifies that the $b$-dependent basis derivative has been retained.
+For clarity the entire second axial derivative in this basis is
+\[
+ \nabla_b^2=\partial_b^2I_4+2H_b\partial_b+J_b,
+\]
+where $J_b$ is diagonal with entries
+\begin{align*}
+ (J_b)_{00}&=0,\\
+ (J_b)_{11}&=\frac1{16m}-\frac{b^2}{256m^2},\qquad
+ (J_b)_{22}=\frac1{16n}-\frac{b^2}{256n^2},\\
+ (J_b)_{33}&=\frac1{16}\left(\frac1m+\frac1n\right)
+ -\frac{b^2}{256}\left(\frac1{m^2}+\frac1{n^2}\right)
+ +\frac{b^2}{128mn}.
+\end{align*}
+These entries are $\partial_bH_b+H_b^2$, using
+$\partial_bm=\partial_bn=b/8$. Similarly
+\[
+ \nabla_s^2=\partial_s^2I_4+2H_s\partial_s+J_s,
+ \quad J_s=\operatorname{diag}
+ \left(0,-m^{-2},-n^{-2},-m^{-2}-n^{-2}+2/(mn)\right).
+\]
+The formulas follow from $\partial_sm=\partial_sn=-2$.
+Returning to the original basis replaces each second-order constant
+matrix by $\partial_i\Gamma_i+\Gamma_i^2$ and each first-order
+matrix by $2\Gamma_i$, so no basis-dependent second derivative is lost.
+
+Let the physical real base be
+\[
+ \Omega=\{(\rho,z,t):\rho>0,\ t<1,\ m=z^2/16-2(1-t),\ mn\ne0\}.
+\]
+Tensoring $\mathcal E$ over its indicated base map with complex smooth
+functions on $\Omega$ gives a rank-four complex algebra bundle.
+On this bundle physical $\partial_t=-\nabla_s$,
+$\partial_z=\nabla_b$, and $\partial_\rho$ differentiates the smooth
+coefficients and kills $\eta,p$. Consequently its complete scalar
+heat and arithmetic operators are
+\begin{equation}\label{eq:ns-flat-heat-connection}
+ \mathcal N_\nu=-\nabla_s-\nu\bigl(
+ \partial_\rho^2+\rho^{-1}\partial_\rho+\nabla_b^2\bigr),
+ \qquad \mathcal H=-\tfrac14\nabla_s^2,
+ \qquad [\mathcal N_\nu,\mathcal H]=0.
+\end{equation}
+The commutator vanishes because the two lifted derivations commute,
+all transverse derivatives commute with them, and $\nu$ is constant.
+The coefficient inclusion $f\mapsto f\,1$ is an algebra map and
+intertwines every displayed physical derivative. Inserting the actual
+profiles into it therefore carries \eqref{eq:ns-profile-heat-full},
+\eqref{eq:ns-profile-arithmetic-full}, and the three exact residual
+identities to this bundle. This is the explicit differential
+correspondence; it does not identify the four cover coordinates with
+four independently constructed physical velocities.
+
+\subsection{The physical real structure and a finite negative coefficient}
+On the open physical region $-4<m<0$, put $a_*=\sqrt{-m}$ and
+$p_*=\sqrt{m+4}$ using the positive real square roots.
+The four sections of the complex cover are exactly
+\[
+ \eta=\epsilon i a_*,\quad p=\epsilon' p_*,\quad
+ r=b/4+\epsilon i a_*,\quad
+ q=\tfrac12(\epsilon'p_*+\epsilon i a_*),\qquad
+ \epsilon,\epsilon'\in\{1,-1\}.
+\]
+Their squared moduli are $(m+4-m)/4=1$, and the maps
+\eqref{eq:ns-conic-laurent-map} verify every equation. The four
+sections are distinct since $a_*,p_*>0$. Ordinary complex conjugation
+fixes $s,b$, fixes $p$, changes $\eta$ to $-\eta$, and sends $q$ to
+$q^{-1}$. This is the real structure over the physical real base.
+There is no real value of $q$ on this region: a real nonzero $q$ would
+give $m=(q-q^{-1})^2\geq0$. The branch boundaries $m=0$ and $m=-4$
+remain excluded from the connection, even though limits of the scalar
+polynomials below exist there.
+
+On the source's actual growth path $z=0$ and
+$\rho=\sqrt{2X_{\rm in}\tau}$, retain $Q=\tau$, $\xi=0$,
+$X=X_{\rm in}>0$. The base map gives $b=0,s=\tau$, so
+$m=-2\tau$. For $0<\tau<2$ choose the sheet
+\begin{equation}\label{eq:ns-unit-circle-growth-map}
+ \theta=\arcsin\sqrt{\tau/2},\quad
+ q=e^{i\theta},\quad \eta=i\sqrt{2\tau},\quad
+ p=\sqrt{4-2\tau},\quad r=i\sqrt{2\tau}.
+\end{equation}
+Here $\theta\in(0,\pi/2)$ and the formulas agree with the four-sheet
+description. In particular the source concentration $Q\downarrow0$
+maps to the finite arithmetic point $q\to1$, with the original branch
+point retained as a limit.
+
+For the original GCT coefficient, every factor is retained:
+\begin{align}
+ C(q)&=q^{10}-q^4-q^{-4}+q^{-10}
+       =(q-q^{-1})^2[7]_q[3]_q,\notag\\
+ C(e^{i\theta})&=-4\sin(7\theta)\sin(3\theta),\notag\\
+ C\big|_{b=0,s=\tau}
+ &=-2\tau(3-2\tau)(7-28\tau+28\tau^2-8\tau^3)
+   =\tau B(\tau),\label{eq:ns-finite-negative-polynomial}\\
+ B(\tau)&=-42+196\tau-280\tau^2+160\tau^3-32\tau^4.
+       \notag
+\end{align}
+The trigonometric equality follows by substituting $q=e^{i\theta}$
+and applying $2\cos(10\theta)-2\cos(4\theta)
+=-4\sin(7\theta)\sin(3\theta)$. For the polynomial equality,
+$[3]_q=p^2-1$ and $[7]_q=p^6-5p^4+6p^2-1$ follow by multiplying
+the corresponding finite Laurent sums by $q-q^{-1}$. Substituting
+$p^2=4-2\tau$ and $(q-q^{-1})^2=-2\tau$ gives the displayed
+factored polynomial and its full expansion. Therefore
+\[
+ C(q)<0\quad\hbox{for}\quad
+ 0<\tau<2\sin^2(\pi/7),\qquad
+ \lim_{\tau\downarrow0}\frac{C(q)}\tau=-42.
+\]
+Both sines are strictly positive on the stated interval because
+$0<\theta<\pi/7$ and $0<3\theta<3\pi/7<\pi$.
+This proves a finite negative value and its exact vanishing order.
+
+The precise scalar-germ transport of this coefficient is also explicit.
+Fix $0<h<1/100$, $e_0>0$, and any bounded real function
+$\varepsilon$ on $(0,\tau_0)$. Define the actual scalar function
+\[
+ g_\varepsilon(\tau)=\tau^{-A}
+          (e_0+\tau^{2h}\varepsilon(\tau)).
+\]
+Multiplication by the computed GCT coefficient gives the exact identity
+\begin{equation}\label{eq:ns-negative-germ-transport}
+ C(q)g_\varepsilon(\tau)
+ =\tau^D B(\tau)(e_0+\tau^{2h}\varepsilon(\tau)),\qquad
+ \lim_{\tau\downarrow0}\tau^{-D}C(q)g_\varepsilon(\tau)=-42e_0.
+\end{equation}
+This follows from $1-A=D$ and \eqref{eq:ns-finite-negative-polynomial}.
+Since $B(\tau)+42$ is divisible by $\tau$, and $0<2h<1$, the
+right side equals $-42e_0\tau^D+O(\tau^{D+2h})$.
+It is negative for sufficiently small $\tau$ and tends to zero,
+since $D>0$. Multiplication raises the displayed leading exponent by
+exactly one. In the formal power-series ring $\mathbb R[[\tau]]$,
+the same exact polynomial has order one, because $B(0)=-42\ne0$.
+No identification of $\tau$ with a prime number or of this order with
+a prime-adic valuation is made.
+
+The source's equation (10.21) reports its completed velocity component
+as $\tau^{-A}(e_0+O(\tau^{2h}))$ on this path. The exact map
+\eqref{eq:ns-negative-germ-transport} acts on the full stated class of
+such scalar germs; identifying a member with that completed solution
+retains the independent-verification status of the source theorem.
+The negative coefficient result above uses only the proved conic map
+and polynomial identities. It gives no asymptotic circuit-size bound,
+plethysm multiplicity obstruction, or nonstandard-RH eigenvalue claim.
+
+Finally, the source pressure normalization supplies a second exact
+sign statement with a different specified observable:
+$\Pi(X,\xi)=-\int_X^\infty E(y,\xi)^2/(2y)\,dy\leq0$
+whenever that integral is finite. It is strictly negative if the
+nonnegative integrand is positive on a set of positive measure.
+Replacing $p$ by $p+k(t)$ leaves its spatial gradient and the momentum
+equation unchanged, but need not preserve a chosen compact-support or
+infinity normalization. Thus the displayed pressure sign belongs to
+that normalization. The coefficient sign
+\eqref{eq:ns-finite-negative-polynomial} has instead been proved for
+the fixed original Laurent polynomial on the stated unit-circle sheet.

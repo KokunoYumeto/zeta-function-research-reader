@@ -1,0 +1,1132 @@
+\section{Centered packet products and the global zeta factorization}
+\label{sec:centered-packet-products}
+
+This section reconstructs the analytic packet-product branch at the level of
+functions, divisors, coordinates, products, and local germs.  The published
+inputs are kept separate from the deductions made here.  DLMF supplies the
+normalization and reflection symmetry of Riemann's completed function
+\cite[\S25.4, Eqs.~25.4.3--25.4.4]{apostolDLMF25}, the genus-one product over
+the nontrivial zeros
+\cite[\S25.2(iv), Eq.~25.2.12]{apostolDLMF25}, and the reciprocal-gamma
+product
+\cite[\S5.8, Eq.~5.8.2]{askeyRoyDLMF5}.  McMullen states and proves the
+canonical-product and Hadamard factorization theorems used to pass from an
+order-one entire function to its zero product
+\cite[Theorems~3.14--3.15, pp.~79--82]{mcMullen2023AdvancedComplex}.
+Lagarias and Montague record that the completed function is entire and that
+its zeros are exactly the nontrivial zeta zeros
+\cite[\S1, Eq.~(1.1) and the following paragraph]{lagariasMontague2011}.
+
+The local source under audit used a multiset of arbitrarily chosen
+representatives of sign pairs and then said that conjugation permuted that
+multiset.  That sentence need not hold for an arbitrary choice.  We avoid the
+choice entirely: sign orbits are the primary objects, conjugation acts on the
+orbit set, and the quotient is exhibited explicitly as the packet quotient of
+\cref{thm:ds-packet-descent}.  The second repair is analytic rather than
+set-theoretic: every termwise logarithmic differentiation below is justified by
+a compact-uniform \(O(n^{-2})\) or \(O(|\alpha|^{-2})\) estimate.
+
+\subsection{Centered coordinates and their two involutions}
+
+Retain the literal convention
+\begin{equation}
+\label{eq:cpp-xi-definition}
+ \xi(s)
+ =
+ \frac12s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s),
+\end{equation}
+and introduce the centered coordinate
+\begin{equation}
+\label{eq:cpp-centered-definition}
+ z=s-\frac12,
+ \qquad
+ \Xi(z)=\xi\!\left(\frac12+z\right).
+\end{equation}
+No rescaling of \(z\), \(\xi\), or \(\Xi\) is made.
+
+\begin{proposition}[Evenness, real structure, and the nonzero center]
+\label{prop:cpp-centered-symmetry}
+The function \(\Xi\) is entire and satisfies
+\begin{equation}
+\label{eq:cpp-Xi-symmetries}
+ \Xi(-z)=\Xi(z),
+ \qquad
+ \overline{\Xi(\overline z)}=\Xi(z).
+\end{equation}
+Moreover,
+\begin{equation}
+\label{eq:cpp-Xi-center-positive}
+ \Xi(0)=\xi\!\left(\frac12\right)>0.
+\end{equation}
+Consequently \(0\) is not a zero of \(\Xi\), every odd Taylor coefficient of
+\(\Xi\) at \(0\) vanishes, and every even Taylor coefficient is real.
+\end{proposition}
+
+\begin{proof}
+Entirety is the cited completed-function input.  The functional equation gives
+\[
+ \Xi(-z)
+ =
+ \xi\!\left(\frac12-z\right)
+ =
+ \xi\!\left(1-\left(\frac12+z\right)\right)
+ =
+ \Xi(z).
+\]
+The Dirichlet coefficients of \(\zeta\) are real in its half-plane of absolute
+convergence, and the gamma and exponential factors in
+\eqref{eq:cpp-xi-definition} respect complex conjugation there.  Analytic
+continuation therefore gives the second identity in
+\eqref{eq:cpp-Xi-symmetries} on all of \(\C\).
+
+For \(0<x<1\), DLMF's alternating-series identity
+\cite[\S25.2, Eq.~25.2.3]{apostolDLMF25} reads
+\[
+ \eta(x)
+ :=
+ \sum_{n\geq1}\frac{(-1)^{n-1}}{n^x}
+ =
+ \bigl(1-2^{1-x}\bigr)\zeta(x).
+\]
+Pairing consecutive summands gives
+\[
+ \eta(x)
+ =
+ \sum_{k\geq1}\bigl((2k-1)^{-x}-(2k)^{-x}\bigr)>0.
+\]
+Since \(1-2^{1-x}<0\), it follows that \(\zeta(x)<0\).  At \(x=1/2\),
+\[
+ \xi\!\left(\frac12\right)
+ =
+ -\frac18\pi^{-1/4}\Gamma\!\left(\frac14\right)
+ \zeta\!\left(\frac12\right)>0.
+\]
+This proves \eqref{eq:cpp-Xi-center-positive}.  The Taylor assertions now follow
+from evenness and the real structure.
+\end{proof}
+
+Let \(Z_\Xi\) denote the set of distinct zeros of \(\Xi\).  For
+\(\alpha\in Z_\Xi\), let
+\(m_\alpha=\operatorname{ord}_\alpha(\Xi)\).  Define
+\[
+ \iota_-(\alpha)=-\alpha,
+ \qquad
+ \iota_c(\alpha)=\overline\alpha.
+\]
+By \cref{prop:cpp-centered-symmetry}, these commuting involutions preserve
+\(Z_\Xi\) and its multiplicity function.  Since \(0\notin Z_\Xi\),
+\(\iota_-\) has no fixed point.  Put
+\begin{equation}
+\label{eq:cpp-sign-orbit-space}
+ S_\Xi:=Z_\Xi/\langle\iota_-\rangle,
+ \qquad
+ p_-:Z_\Xi\longrightarrow S_\Xi.
+\end{equation}
+For \(u=p_-(\alpha)\), set \(m_u=m_\alpha\) and
+\begin{equation}
+\label{eq:cpp-sign-factor}
+ Q_u(z):=1-\frac{z^2}{\alpha^2}.
+\end{equation}
+Both definitions are independent of the representative because replacing
+\(\alpha\) by \(-\alpha\) changes neither \(m_\alpha\) nor \(\alpha^2\).
+Conjugation induces
+\begin{equation}
+\label{eq:cpp-conjugation-on-sign-orbits}
+ \kappa:S_\Xi\longrightarrow S_\Xi,
+ \qquad
+ \kappa\bigl(p_-(\alpha)\bigr)=p_-(\overline\alpha).
+\end{equation}
+
+\begin{theorem}[Centered-zero packet quotient]
+\label{thm:cpp-sign-packet-quotient}
+Let \(D_\xi\), \(W=\{1,c,w,cw\}\), and
+\(Y_\xi=|D_\xi|/W\) be as in \cref{thm:ds-packet-descent}.  Translation by
+\(1/2\),
+\[
+ t:Z_\Xi\longrightarrow |D_\xi|,
+ \qquad
+ t(\alpha)=\frac12+\alpha,
+\]
+is a multiplicity-preserving bijection satisfying
+\begin{equation}
+\label{eq:cpp-translation-equivariance}
+ t\iota_-=wt,
+ \qquad
+ t\iota_c=ct.
+\end{equation}
+It induces a bijection
+\begin{equation}
+\label{eq:cpp-sign-packet-bijection}
+ \Psi:S_\Xi/\langle\kappa\rangle
+ \overset{\sim}{\longrightarrow}Y_\xi,
+ \qquad
+ \Psi\!\left(\langle\kappa\rangle p_-(\alpha)\right)
+ =
+ W\!\left(\frac12+\alpha\right).
+\end{equation}
+The composite
+\[
+ Z_\Xi\longrightarrow S_\Xi
+ \longrightarrow S_\Xi/\langle\kappa\rangle
+ \overset{\Psi}{\longrightarrow}Y_\xi
+\]
+has fibre over \(\Psi(\langle\kappa\rangle p_-(\alpha))\) equal to
+\begin{equation}
+\label{eq:cpp-zero-to-packet-fibre}
+ \{\alpha,-\alpha,\overline\alpha,-\overline\alpha\},
+\end{equation}
+with repetitions removed as a set.  It has two elements precisely when
+\(\overline\alpha=-\alpha\), and otherwise has four elements.
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:cpp-centered-definition} gives a bijection between zeros,
+including equality of vanishing orders.  Direct coordinate calculation gives
+\[
+ t(-\alpha)=\frac12-\alpha
+ =1-\left(\frac12+\alpha\right)=w(t(\alpha))
+\]
+and
+\[
+ t(\overline\alpha)
+ =\frac12+\overline\alpha
+ =\overline{\frac12+\alpha}=c(t(\alpha)),
+\]
+which proves \eqref{eq:cpp-translation-equivariance}.  Thus \(t\) maps every
+orbit of \(\langle\iota_-,\iota_c\rangle\) onto one \(W\)-orbit and induces
+\eqref{eq:cpp-sign-packet-bijection}.  Conversely, if
+\(t(\beta)=g(t(\alpha))\) for \(g\in W\), then
+\(\beta\) is respectively
+\(\alpha,\overline\alpha,-\alpha\), or \(-\overline\alpha\).  This proves
+injectivity and the fibre formula.  Since \(0\notin Z_\Xi\), the points
+\(\alpha\) and \(-\alpha\) are distinct.  A fixed sign orbit under
+conjugation would have \(\overline\alpha=\alpha\) or
+\(\overline\alpha=-\alpha\).  The first case would make
+\(1/2+\alpha\) a real zero in \(0<s<1\), which was ruled out in the proof of
+\cref{prop:cpp-centered-symmetry}.  Hence the only two-element fibre has
+\(\overline\alpha=-\alpha\), exactly the purely imaginary case.
+\end{proof}
+
+\subsection{The centered sign-orbit product}
+
+The order-one property and the genus-one zero product are classical analytic
+inputs.  DLMF records the genus-one product explicitly for \(\zeta\), citing
+Titchmarsh \S2.12
+\cite[\S25.2(iv), Eq.~25.2.12]{apostolDLMF25}.  Hadamard factorization in the
+form used below is proved in
+\cite[Theorems~3.14--3.15, pp.~79--82]{mcMullen2023AdvancedComplex}.
+We retain the exponential factor until evenness removes it; it is not silently
+normalized away.
+
+\begin{theorem}[Choice-free centered product]
+\label{thm:cpp-centered-product}
+The series
+\begin{equation}
+\label{eq:cpp-reciprocal-square-sum}
+ \sum_{u\in S_\Xi}\frac{m_u}{|\alpha_u|^2}
+\end{equation}
+converges, where \(\alpha_u\) is either representative of \(u\).  The product
+\begin{equation}
+\label{eq:cpp-centered-product}
+ \Xi(z)
+ =
+ \Xi(0)\prod_{u\in S_\Xi}Q_u(z)^{m_u}
+ =
+ \Xi(0)\prod_{u\in S_\Xi}
+ \left(1-\frac{z^2}{\alpha_u^2}\right)^{m_u}
+\end{equation}
+converges absolutely and locally uniformly on \(\C\).  It is independent of
+the ordering of \(S_\Xi\) and of every representative \(\alpha_u\).
+\end{theorem}
+
+\begin{proof}
+Hadamard factorization of the order-one entire function \(\Xi\), using
+\(\Xi(0)\ne0\), has the form
+\begin{equation}
+\label{eq:cpp-hadamard-unpaired}
+ \Xi(z)
+ =
+ e^{a+bz}
+ \prod_{\alpha\in Z_\Xi}
+ E_1\!\left(\frac z\alpha\right)^{m_\alpha},
+ \qquad
+ E_1(w)=(1-w)e^w.
+\end{equation}
+The exponent of convergence of the zeros is at most one; in particular
+\[
+ \sum_{\alpha\in Z_\Xi}\frac{m_\alpha}{|\alpha|^2}<\infty.
+\]
+Taking one term from each two-element sign orbit gives
+\eqref{eq:cpp-reciprocal-square-sum}.
+
+For either representative \(\alpha_u\) of \(u\),
+\begin{equation}
+\label{eq:cpp-E1-pair}
+ E_1\!\left(\frac z{\alpha_u}\right)
+ E_1\!\left(-\frac z{\alpha_u}\right)
+ =
+ (1-z/\alpha_u)e^{z/\alpha_u}
+ (1+z/\alpha_u)e^{-z/\alpha_u}
+ =
+ Q_u(z).
+\end{equation}
+The canonical product in \eqref{eq:cpp-hadamard-unpaired} is locally normally
+convergent, so the two factors belonging to each sign orbit may be grouped.
+This gives
+\[
+ \Xi(z)=e^{a+bz}\prod_{u\in S_\Xi}Q_u(z)^{m_u}.
+\]
+The product on the right is even.  Dividing the identity at \(z\) by the
+identity at \(-z\), initially away from the discrete zero set and then by
+analytic continuation, gives \(e^{2bz}=1\) for every \(z\).  Differentiation at
+\(z=0\) gives \(b=0\).  Evaluation at \(z=0\) then gives
+\(e^a=\Xi(0)\), proving \eqref{eq:cpp-centered-product}.
+
+It remains to check the stronger convergence assertion for the grouped
+product.  Fix \(R>0\).  For \(|z|\leq R\),
+\[
+ \sum_{u\in S_\Xi}
+ m_u\left|\frac{z^2}{\alpha_u^2}\right|
+ \leq
+ R^2\sum_{u\in S_\Xi}\frac{m_u}{|\alpha_u|^2}<\infty.
+\]
+The standard infinite-product criterion therefore gives absolute and uniform
+convergence on \(|z|\leq R\).  Since \(R\) is arbitrary, convergence is local
+uniform on \(\C\).  Absolute convergence makes the product invariant under
+reordering, and \(\alpha_u^2=(-\alpha_u)^2\) removes representative choice.
+\end{proof}
+
+\subsection{Packet polynomials and their coordinate inverse}
+
+For \(O\in Y_\xi\), define the normalized packet polynomial
+\begin{equation}
+\label{eq:cpp-packet-polynomial}
+ P_O(s)
+ :=
+ \prod_{\eta\in O}
+ \frac{s-\eta}{\frac12-\eta}.
+\end{equation}
+The denominator is nonzero because
+\(\xi(1/2)=\Xi(0)>0\).  This normalization is displayed because it is
+mathematical data: it fixes the otherwise undetermined nonzero scalar of the
+polynomial.
+
+\begin{proposition}[All packet coordinates, without a representative convention]
+\label{prop:cpp-packet-polynomial-coordinates}
+Every \(P_O\) lies in \(\mathbb R[s]\), satisfies \(P_O(1/2)=1\), and has
+simple root set exactly \(O\).
+
+If \(O\) has two points, then for either nonzero real coordinate
+\(\gamma\) with
+\[
+ O=\left\{\frac12+\mathrm i\gamma,\frac12-\mathrm i\gamma\right\},
+\]
+one has
+\begin{equation}
+\label{eq:cpp-packet-quadratic}
+ P_O\!\left(\frac12+z\right)
+ =
+ 1+\frac{z^2}{\gamma^2}.
+\end{equation}
+If \(O\) has four points, then for any coordinates
+\(a,\gamma\in\mathbb R\setminus\{0\}\) with
+\[
+ O=
+ \left\{
+ \frac12+a+\mathrm i\gamma,\,
+ \frac12+a-\mathrm i\gamma,\,
+ \frac12-a+\mathrm i\gamma,\,
+ \frac12-a-\mathrm i\gamma
+ \right\},
+\]
+and \(\alpha=a+\mathrm i\gamma\), one has
+\begin{align}
+\label{eq:cpp-packet-quartic-factored}
+ P_O\!\left(\frac12+z\right)
+ &=
+ \frac{\bigl((z-a)^2+\gamma^2\bigr)
+       \bigl((z+a)^2+\gamma^2\bigr)}
+      {(a^2+\gamma^2)^2}\\
+\label{eq:cpp-packet-quartic-sign-factors}
+ &=
+ \left(1-\frac{z^2}{\alpha^2}\right)
+ \left(1-\frac{z^2}{\overline\alpha^2}\right)\\
+\label{eq:cpp-packet-quartic-expanded}
+ &=
+ 1-2\Re(\alpha^{-2})z^2+|\alpha|^{-4}z^4.
+\end{align}
+All displayed expressions are invariant under the sign changes of \(a\) and
+\(\gamma\) generated by the packet action.
+\end{proposition}
+
+\begin{proof}
+The orbit \(O\) is closed under conjugation, so conjugate roots occur with the
+same multiplicity in the defining product.  Its coefficients are therefore
+real.  Substitution of \(s=1/2\) makes every factor equal to one, and the
+numerator shows that the root set is \(O\).
+
+For the two-point packet,
+\[
+ \frac{(z-\mathrm i\gamma)(z+\mathrm i\gamma)}
+ {(-\mathrm i\gamma)(\mathrm i\gamma)}
+ =
+ \frac{z^2+\gamma^2}{\gamma^2},
+\]
+which proves \eqref{eq:cpp-packet-quadratic}.  For the four-point packet,
+pairing conjugate roots first gives
+\[
+ \prod_{\eta\in O}\left(\frac12+z-\eta\right)
+ =
+ \bigl((z-a)^2+\gamma^2\bigr)
+ \bigl((z+a)^2+\gamma^2\bigr).
+\]
+At \(z=0\), the same expression equals \((a^2+\gamma^2)^2\).  This proves
+\eqref{eq:cpp-packet-quartic-factored}.  Pairing instead by the sign
+involution gives \eqref{eq:cpp-packet-quartic-sign-factors}.  Multiplication of
+those two factors gives \eqref{eq:cpp-packet-quartic-expanded}.  The final
+invariance follows either from the root set or by direct substitution.
+\end{proof}
+
+\begin{theorem}[Coordinate inverse and exact fibres]
+\label{thm:cpp-packet-polynomial-inverse}
+The map
+\begin{equation}
+\label{eq:cpp-packet-polynomial-map}
+ \mathcal P:Y_\xi\longrightarrow\mathbb R[s],
+ \qquad O\longmapsto P_O,
+\end{equation}
+is injective.  More explicitly:
+\begin{enumerate}
+\item If
+\[
+ P_O\!\left(\frac12+z\right)=1+c_2z^2
+\]
+is quadratic, then \(c_2>0\), \(\gamma^2=c_2^{-1}\), and its root set
+recovers \(O=\{1/2\pm\mathrm i\gamma\}\).
+\item If
+\[
+ P_O\!\left(\frac12+z\right)=1+c_2z^2+c_4z^4
+\]
+is quartic, then \(c_4>0\), and the squared coordinates are recovered by
+\begin{equation}
+\label{eq:cpp-quartic-coordinate-inverse}
+ R^2=c_4^{-1/2},
+ \qquad
+ \Delta=\frac{c_2}{2c_4},
+ \qquad
+ a^2=\frac{R^2-\Delta}{2},
+ \qquad
+ \gamma^2=\frac{R^2+\Delta}{2}.
+\end{equation}
+\end{enumerate}
+The composite
+\[
+ |D_\xi|\xrightarrow{q}Y_\xi
+ \xrightarrow{\mathcal P}\mathbb R[s]
+\]
+has fibre over \(P_O\) exactly \(O\).  The augmented coordinate
+\((P_O,m_O)\) recovers the effective packet divisor
+\begin{equation}
+\label{eq:cpp-packet-divisor-recovery}
+ D_O=m_O\sum_{\eta\in O}[\eta].
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For a quadratic packet, \eqref{eq:cpp-packet-quadratic} gives
+\(c_2=\gamma^{-2}\), proving the first inverse.  For a quartic packet, put
+\(R^2=a^2+\gamma^2=|\alpha|^2\).  From
+\eqref{eq:cpp-packet-quartic-expanded},
+\[
+ c_4=R^{-4}
+\]
+and
+\[
+ c_2
+ =
+ -2\frac{a^2-\gamma^2}{R^4}
+ =
+ 2c_4(\gamma^2-a^2).
+\]
+Thus \(\Delta=\gamma^2-a^2\), and solving the two linear equations
+\[
+ a^2+\gamma^2=R^2,
+ \qquad
+ \gamma^2-a^2=\Delta
+\]
+gives \eqref{eq:cpp-quartic-coordinate-inverse}.  The signs of \(a\) and
+\(\gamma\) are not discarded accidentally: all four sign choices are exactly
+the points already identified inside the packet \(O\).  Hence the coefficients
+recover the packet, proving injectivity.
+
+The root set of \(P_O\) is \(O\), so two points of \(|D_\xi|\) have the same
+polynomial precisely when they lie in the same packet.  This proves the fibre
+formula.  The polynomial has each packet point once; adjoining the common
+multiplicity and multiplying the corresponding point divisors proves
+\eqref{eq:cpp-packet-divisor-recovery}.
+\end{proof}
+
+\subsection{The product on the packet quotient}
+
+\begin{theorem}[Packet-grouped product]
+\label{thm:cpp-packet-product}
+For every \(O\in Y_\xi\), let \(m_O\) be the common vanishing order on that
+packet.  Then
+\begin{equation}
+\label{eq:cpp-packet-product}
+ \xi(s)
+ =
+ \xi\!\left(\frac12\right)
+ \prod_{O\in Y_\xi}P_O(s)^{m_O},
+\end{equation}
+and the product converges absolutely and locally uniformly on \(\C\).
+\end{theorem}
+
+\begin{proof}
+Put \(z=s-1/2\).  By \cref{thm:cpp-sign-packet-quotient}, a
+\(\kappa\)-orbit in \(S_\Xi\) corresponds to exactly one packet.
+If \(u=p_-(\alpha)\) is fixed by \(\kappa\), then
+\(\overline\alpha=-\alpha\), and
+\eqref{eq:cpp-packet-quadratic} gives
+\[
+ Q_u(z)=P_{\Psi(\langle\kappa\rangle u)}(s).
+\]
+If \(u\ne\kappa(u)\), then
+\eqref{eq:cpp-packet-quartic-sign-factors} gives
+\[
+ Q_u(z)Q_{\kappa(u)}(z)
+ =
+ P_{\Psi(\langle\kappa\rangle u)}(s).
+\]
+Multiplicities are preserved by both involutions.  Grouping the
+absolutely convergent product of \cref{thm:cpp-centered-product} over these
+one- or two-element \(\kappa\)-orbits therefore gives
+\eqref{eq:cpp-packet-product}.  Grouping finitely many factors at a time
+preserves absolute and local uniform convergence.
+\end{proof}
+
+\begin{remark}[Degree records orbit size, and nothing further is inferred]
+\label{rem:cpp-packet-degree-scope}
+At this exact coordinate level, a two-point packet contributes one quadratic
+factor and a four-point packet contributes one quartic factor.  This is a
+description of the quotient and its product.  No statement about the location
+of all packets, the simplicity of their zeros, or a spectral realization is
+deduced from the factor degrees.
+\end{remark}
+
+\subsection{Centered Taylor atoms as symmetric coordinates}
+
+To retain multiplicity without choosing repeated representatives, define the
+countable index set
+\begin{equation}
+\label{eq:cpp-symmetric-index-set}
+ I_\Xi
+ :=
+ \{(u,\ell):u\in S_\Xi,\ 1\leq\ell\leq m_u\},
+ \qquad
+ a_{(u,\ell)}:=\alpha_u^{-2}.
+\end{equation}
+The number \(a_{(u,\ell)}\) is independent of the representative of \(u\), and
+\cref{eq:cpp-reciprocal-square-sum} says
+\[
+ \sum_{i\in I_\Xi}|a_i|<\infty.
+\]
+For \(n\geq1\), set
+\begin{equation}
+\label{eq:cpp-elementary-symmetric}
+ \sigma_n
+ :=
+ \sum_{\substack{J\subset I_\Xi\\|J|=n}}
+ \prod_{i\in J}a_i,
+ \qquad
+ \sigma_0:=1.
+\end{equation}
+
+\begin{lemma}[Absolute symmetric expansion]
+\label{lem:cpp-symmetric-expansion}
+Every sum in \eqref{eq:cpp-elementary-symmetric} is absolutely convergent, and
+\begin{equation}
+\label{eq:cpp-infinite-symmetric-expansion}
+ \prod_{i\in I_\Xi}(1-a_i z^2)
+ =
+ \sum_{n=0}^{\infty}(-1)^n\sigma_n z^{2n}
+\end{equation}
+with absolute and locally uniform convergence on \(\C\).
+\end{lemma}
+
+\begin{proof}
+For fixed \(n\),
+\[
+ \sum_{\substack{J\subset I_\Xi\\|J|=n}}
+ \prod_{i\in J}|a_i|
+ \leq
+ \frac1{n!}\left(\sum_{i\in I_\Xi}|a_i|\right)^n<\infty.
+\]
+For a finite subset \(F\subset I_\Xi\), ordinary polynomial multiplication
+gives
+\[
+ \prod_{i\in F}(1-a_i z^2)
+ =
+ \sum_{n=0}^{|F|}(-1)^n\sigma_{n,F}z^{2n}.
+\]
+As \(F\) increases through finite subsets, absolute convergence gives
+\(\sigma_{n,F}\to\sigma_n\).  On \(|z|\leq R\),
+\[
+ \sum_{n\geq0}|\sigma_n|R^{2n}
+ \leq
+ \prod_{i\in I_\Xi}(1+|a_i|R^2)<\infty.
+\]
+The Weierstrass \(M\)-test now permits passage to the limit uniformly on the
+disc and proves \eqref{eq:cpp-infinite-symmetric-expansion}.
+\end{proof}
+
+\begin{theorem}[Exact centered Taylor coordinates]
+\label{thm:cpp-centered-taylor}
+The Taylor expansion of the completed function at its symmetry center is
+\begin{equation}
+\label{eq:cpp-Xi-taylor}
+ \Xi(z)
+ =
+ \Xi(0)\sum_{n=0}^{\infty}(-1)^n\sigma_nz^{2n}.
+\end{equation}
+Equivalently, for every \(n\geq0\),
+\begin{align}
+\label{eq:cpp-Xi-derivative-coordinates}
+ \frac{\Xi^{(2n)}(0)}{(2n)!\Xi(0)}
+ &=
+ (-1)^n\sigma_n,
+ &
+ \Xi^{(2n+1)}(0)&=0,\\
+\label{eq:cpp-xi-derivative-coordinates}
+ \frac{\xi^{(2n)}(1/2)}{(2n)!\xi(1/2)}
+ &=
+ (-1)^n\sigma_n,
+ &
+ \xi^{(2n+1)}(1/2)&=0.
+\end{align}
+In particular,
+\begin{align}
+\label{eq:cpp-second-central-derivative}
+ \frac{\xi''(1/2)}{2\xi(1/2)}
+ &=
+ -\sum_{i\in I_\Xi}a_i,\\
+\label{eq:cpp-fourth-central-derivative}
+ \frac{\xi^{(4)}(1/2)}{24\xi(1/2)}
+ &=
+ \sum_{\substack{J\subset I_\Xi\\|J|=2}}
+ \prod_{i\in J}a_i.
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Write the product in \cref{thm:cpp-centered-product} with one factor for each
+index \(i=(u,\ell)\in I_\Xi\).  Apply
+\cref{lem:cpp-symmetric-expansion}, multiply by \(\Xi(0)\), and compare the
+result with the Taylor series of \(\Xi\).  Translation by
+\(s=1/2+z\) gives the formulas for \(\xi\).  The last two identities are the
+cases \(n=1\) and \(n=2\).
+\end{proof}
+
+\begin{proposition}[Power-sum form on the zero-free centered disc]
+\label{prop:cpp-power-sum-log}
+Let
+\[
+ r_0:=\inf_{\alpha\in Z_\Xi}|\alpha|>0,
+\]
+and for \(k\geq1\) define the absolutely convergent power sum
+\[
+ p_k:=\sum_{i\in I_\Xi}a_i^k.
+\]
+Indeed, only finitely many \(i\) have \(|a_i|>1\), while
+\(|a_i|^k\leq|a_i|\) for every remaining index.  Thus
+\(\sum_i|a_i|^k<\infty\) follows directly from
+\(\sum_i|a_i|<\infty\), with no rearrangement convention.
+For \(|z|<r_0\),
+\begin{equation}
+\label{eq:cpp-power-sum-log}
+ \log\frac{\Xi(z)}{\Xi(0)}
+ =
+ -\sum_{k\geq1}\frac{p_k}{k}z^{2k},
+\end{equation}
+where the logarithm is the branch taking value \(0\) at \(z=0\).
+\end{proposition}
+
+\begin{proof}
+The zero set of a nonzero entire function is discrete, and \(0\notin Z_\Xi\),
+so \(r_0>0\).  Fix \(r<r_0\).  Then
+\(|a_i z^2|\leq r^2/|\alpha_i|^2<1\) for \(|z|\leq r\), and
+\[
+ \sum_i\sum_{k\geq1}\frac{|a_i z^2|^k}{k}
+ \leq
+ \sum_i\frac{|a_i|r^2}{1-|a_i|r^2}.
+\]
+Only finitely many denominators can be close to zero; the remaining tail is
+bounded by a fixed multiple of \(\sum_i|a_i|\).  Thus the double series is
+absolutely and uniformly convergent on \(|z|\leq r\).  Applying
+\(\log(1-w)=-\sum_{k\geq1}w^k/k\) term by term to
+\cref{eq:cpp-centered-product} proves \eqref{eq:cpp-power-sum-log}.
+\end{proof}
+
+\subsection{The pole, trivial sector, and packet sector}
+
+\begin{proposition}[Reciprocal-gamma product in the \(s\)-coordinate]
+\label{prop:cpp-reciprocal-gamma}
+For every \(s\in\C\),
+\begin{equation}
+\label{eq:cpp-gamma-product}
+ \frac1{\Gamma(s/2)}
+ =
+ \frac{s}{2}e^{\gamma s/2}
+ \prod_{n\geq1}
+ \left(1+\frac{s}{2n}\right)e^{-s/(2n)},
+\end{equation}
+with local uniform convergence.  Consequently,
+\begin{equation}
+\label{eq:cpp-zeta-from-xi}
+ \zeta(s)
+ =
+ \frac{\pi^{s/2}e^{\gamma s/2}}{s-1}
+ \left[
+ \prod_{n\geq1}
+ \left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+ \right]\xi(s)
+\end{equation}
+as an identity of meromorphic functions.
+\end{proposition}
+
+\begin{proof}
+DLMF's reciprocal-gamma product
+\cite[\S5.8, Eq.~5.8.2]{askeyRoyDLMF5} is
+\[
+ \frac1{\Gamma(w)}
+ =
+ we^{\gamma w}\prod_{n\geq1}
+ \left(1+\frac wn\right)e^{-w/n}.
+\]
+Substitution of \(w=s/2\) proves \eqref{eq:cpp-gamma-product}.  Solving
+\eqref{eq:cpp-xi-definition} for \(\zeta\) gives
+\[
+ \zeta(s)
+ =
+ \frac{2\pi^{s/2}}{s(s-1)}
+ \frac{\xi(s)}{\Gamma(s/2)}.
+\]
+Substitution of \eqref{eq:cpp-gamma-product} cancels the displayed factor
+\(2/s\) and proves \eqref{eq:cpp-zeta-from-xi}.  Both sides are meromorphic,
+so the identity extends across removable intermediate singularities.
+\end{proof}
+
+\begin{theorem}[Global pole-trivial-packet factorization]
+\label{thm:cpp-global-zeta-factorization}
+The exact factorization
+\begin{equation}
+\label{eq:cpp-global-zeta-factorization}
+ \zeta(s)
+ =
+ \frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+ \prod_{n\geq1}
+ \left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+ \prod_{O\in Y_\xi}P_O(s)^{m_O}
+\end{equation}
+holds on \(\C\) as an identity of meromorphic functions.  The displayed
+coordinates retain separately:
+\[
+ \frac1{s-1},
+ \qquad
+ e^{(\gamma+\log\pi)s/2}
+ \prod_{n\geq1}
+ \left(1+\frac{s}{2n}\right)e^{-s/(2n)},
+ \qquad
+ \prod_{O\in Y_\xi}P_O(s)^{m_O}.
+\]
+They have, respectively, the pole at \(1\), the simple zeros at the negative
+even integers, and the nontrivial zero divisor.  No factor is absorbed into
+another.
+\end{theorem}
+
+\begin{proof}
+Insert \eqref{eq:cpp-packet-product} into
+\eqref{eq:cpp-zeta-from-xi} and use
+\[
+ \pi^{s/2}e^{\gamma s/2}
+ =
+ e^{(\gamma+\log\pi)s/2}.
+\]
+The first factor has divisor \(-[1]\).  In the second sector, every exponential
+is nonzero, while \(1+s/(2n)\) has one simple zero at \(-2n\); the
+reciprocal-gamma identity proves that there are no additional zeros.  By
+\cref{thm:cpp-packet-polynomial-inverse}, the final sector has effective
+divisor
+\(\sum_{O\in Y_\xi}m_O\sum_{\eta\in O}[\eta]=D_\xi\).
+This proves both the function identity and the stated divisor accounting.
+\end{proof}
+
+\subsection{Normally convergent logarithmic derivatives}
+
+\begin{lemma}[Compact-uniform derivative bounds]
+\label{lem:cpp-log-derivative-bounds}
+Let \(K\subset\C\) be compact and put
+\[
+ R_s=\max_{s\in K}|s|,
+ \qquad
+ R_z=\max_{s\in K}\left|s-\frac12\right|.
+\]
+Then:
+\begin{enumerate}
+\item For every integer \(n>R_s\) and \(s\in K\),
+\begin{equation}
+\label{eq:cpp-gamma-derivative-bound}
+ \left|
+ \frac1{s+2n}-\frac1{2n}
+ \right|
+ =
+ \left|\frac{-s}{2n(s+2n)}\right|
+ \leq
+ \frac{R_s}{2n^2}.
+\end{equation}
+\item For \(u=p_-(\alpha)\in S_\Xi\) with
+\(|\alpha|>2R_z\), \(z=s-1/2\), and \(s\in K\),
+\begin{equation}
+\label{eq:cpp-packet-derivative-bound}
+ \left|
+ \frac{d}{dz}\log Q_u(z)
+ \right|
+ =
+ \left|\frac{-2z}{\alpha^2-z^2}\right|
+ \leq
+ \frac{8R_z}{3|\alpha|^2}.
+\end{equation}
+\end{enumerate}
+Consequently the two derivative series obtained from the trivial factors and
+the sign-orbit factors converge normally on compact subsets avoiding their
+respective divisors.  The same is true after grouping sign orbits into
+packets.
+\end{lemma}
+
+\begin{proof}
+If \(n>R_s\), then
+\[
+ |s+2n|\geq2n-|s|\geq2n-R_s>n,
+\]
+which proves \eqref{eq:cpp-gamma-derivative-bound}.  If
+\(|\alpha|>2R_z\), then
+\[
+ |\alpha^2-z^2|
+ \geq|\alpha|^2-|z|^2
+ >
+ \frac34|\alpha|^2,
+\]
+which gives \eqref{eq:cpp-packet-derivative-bound}.  The first majorant is a
+constant multiple of \(\sum n^{-2}\); the second is a constant multiple of
+\eqref{eq:cpp-reciprocal-square-sum}.  Only finitely many excluded small
+indices remain on a fixed compact set.  The Weierstrass \(M\)-test proves
+normal convergence.  A packet contains one or two sign orbits, so finite
+grouping preserves it.
+\end{proof}
+
+\begin{proposition}[One packet's rational logarithmic derivative]
+\label{prop:cpp-one-packet-log-derivative}
+For \(s\notin O\),
+\begin{equation}
+\label{eq:cpp-one-packet-log-derivative}
+ \frac{P_O'(s)}{P_O(s)}
+ =
+ \sum_{\eta\in O}\frac1{s-\eta}.
+\end{equation}
+The two sides are the same rational function in \(\mathbb R(s)\).
+\end{proposition}
+
+\begin{proof}
+Apply the finite product rule to
+\eqref{eq:cpp-packet-polynomial}.  The constant denominators have derivative
+zero, so
+\[
+ \frac{d}{ds}\log P_O(s)
+ =
+ \sum_{\eta\in O}\frac{d}{ds}\log(s-\eta)
+ =
+ \sum_{\eta\in O}\frac1{s-\eta}.
+\]
+The left side belongs to \(\mathbb R(s)\) because \(P_O\in\mathbb R[s]\).
+\end{proof}
+
+\begin{theorem}[Packet-grouped partial fractions]
+\label{thm:cpp-zeta-log-derivative}
+On
+\[
+ \C\setminus
+ \left(
+ \{1\}\cup\{-2,-4,-6,\ldots\}\cup|D_\xi|
+ \right),
+\]
+the normally convergent identity
+\begin{align}
+\label{eq:cpp-zeta-log-derivative}
+ \frac{\zeta'(s)}{\zeta(s)}
+ &=
+ \frac{\gamma+\log\pi}{2}
+ -\frac1{s-1}
+ +\sum_{n\geq1}
+ \left(\frac1{s+2n}-\frac1{2n}\right)
+ +\sum_{O\in Y_\xi}
+ m_O\frac{P_O'(s)}{P_O(s)}\\
+\label{eq:cpp-zeta-log-derivative-expanded}
+ &=
+ \frac{\gamma+\log\pi}{2}
+ -\frac1{s-1}
+ +\sum_{n\geq1}
+ \left(\frac1{s+2n}-\frac1{2n}\right)
+ +\sum_{O\in Y_\xi}
+ m_O\sum_{\eta\in O}\frac1{s-\eta}
+\end{align}
+holds.  On \(\C\setminus|D_\xi|\),
+\begin{equation}
+\label{eq:cpp-xi-log-derivative}
+ \frac{\xi'(s)}{\xi(s)}
+ =
+ \sum_{O\in Y_\xi}
+ m_O\frac{P_O'(s)}{P_O(s)}
+ =
+ \sum_{O\in Y_\xi}
+ m_O\sum_{\eta\in O}\frac1{s-\eta}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Fix a point outside the displayed divisor and choose a closed disc \(K\)
+around it which still avoids the divisor.  All factors in
+\eqref{eq:cpp-global-zeta-factorization} are nonzero on \(K\).  Choose local
+holomorphic logarithms there.  Finite partial products satisfy the ordinary
+finite logarithmic derivative formula.  By
+\cref{lem:cpp-log-derivative-bounds}, both infinite derivative tails converge
+uniformly on \(K\).  The products themselves converge locally uniformly by
+\cref{prop:cpp-reciprocal-gamma,thm:cpp-packet-product}.  Passing to the limit
+in the finite identities is therefore valid and gives
+\eqref{eq:cpp-zeta-log-derivative}.  Substitution of
+\cref{eq:cpp-one-packet-log-derivative} gives
+\eqref{eq:cpp-zeta-log-derivative-expanded}.
+
+Applying the same argument directly to
+\eqref{eq:cpp-packet-product} removes the pole and gamma sectors and proves
+\eqref{eq:cpp-xi-log-derivative}.  Since the point was arbitrary, the
+identities hold on the stated domains.
+\end{proof}
+
+\begin{remark}[Residues retain multiplicity]
+At \(s=1\), the term \(-1/(s-1)\) has residue \(-1\), as required for a
+simple pole of \(\zeta\).  At \(s=-2n\), the \(n\)-th trivial term has residue
+\(1\).  At \(\eta\in O\), the packet term has residue \(m_O\).  Thus
+\cref{eq:cpp-zeta-log-derivative-expanded} retains the signed divisor
+coordinate at every pole and zero.
+\end{remark}
+
+\subsection{Exact global-to-local morphisms}
+
+For \(O\in Y_\xi\), remove its factor from the global packet product and set
+\begin{equation}
+\label{eq:cpp-complementary-factor}
+ H_O(s)
+ :=
+ \xi\!\left(\frac12\right)
+ \prod_{\substack{O'\in Y_\xi\\O'\ne O}}
+ P_{O'}(s)^{m_{O'}}.
+\end{equation}
+Absolute local uniform convergence makes \(H_O\) entire, and its zero divisor
+is the union of all packets other than \(O\).  Hence
+\begin{equation}
+\label{eq:cpp-packet-complement-decomposition}
+ \xi(s)=H_O(s)P_O(s)^{m_O},
+ \qquad
+ H_O(\rho)\ne0\quad(\rho\in O).
+\end{equation}
+
+\begin{theorem}[Leading jet and normalized germ from the packet system]
+\label{thm:cpp-global-to-local-jet}
+Let \(\rho\in O\), let \(m=m_O\), and retain the leading coefficient
+\[
+ \mu_\rho=\frac{\xi^{(m)}(\rho)}{m!}
+\]
+from \cref{prop:ds-phase-transport}.  Then
+\begin{equation}
+\label{eq:cpp-leading-jet-from-packets}
+ \mu_\rho
+ =
+ H_O(\rho)\bigl(P_O'(\rho)\bigr)^m.
+\end{equation}
+On a sufficiently small disc about \(\rho\), the normalized local germ is
+\begin{equation}
+\label{eq:cpp-normalized-germ-from-packets}
+ \frac{\xi(s)}{\mu_\rho(s-\rho)^m}
+ =
+ \frac{H_O(s)}{H_O(\rho)}
+ \left(
+ \frac{P_O(s)}
+ {P_O'(\rho)(s-\rho)}
+ \right)^m.
+\end{equation}
+Both factors on the right extend holomorphically across \(s=\rho\) and take
+the value \(1\) there.  Thus the complete global packet system
+\[
+ \left(
+ \xi(1/2),\{(P_O,m_O):O\in Y_\xi\}
+ \right)
+\]
+determines every leading jet, its phase, and every normalized Taylor atom of
+\cref{thm:phase-taylor-atomization,thm:phase-local-logarithm}.
+\end{theorem}
+
+\begin{proof}
+The roots of \(P_O\) are simple because the elements of \(O\) are distinct.
+Taylor expansion at \(\rho\) gives
+\[
+ P_O(s)=P_O'(\rho)(s-\rho)+O((s-\rho)^2),
+\]
+with \(P_O'(\rho)\ne0\).  Equation
+\eqref{eq:cpp-packet-complement-decomposition} and
+\(H_O(s)=H_O(\rho)+O(s-\rho)\) therefore give
+\[
+ \xi(s)
+ =
+ H_O(\rho)\bigl(P_O'(\rho)\bigr)^m(s-\rho)^m
+ +O((s-\rho)^{m+1}).
+\]
+Comparison with the definition of \(\mu_\rho\) proves
+\eqref{eq:cpp-leading-jet-from-packets}.  Dividing the exact decomposition by
+that coefficient and by \((s-\rho)^m\) gives
+\eqref{eq:cpp-normalized-germ-from-packets}.  The removable factor
+\[
+ \frac{P_O(s)}{P_O'(\rho)(s-\rho)}
+\]
+has value \(1\) at \(\rho\), as does \(H_O(s)/H_O(\rho)\).  Their product
+therefore supplies the normalized germ, whose Taylor coefficients and
+normalized logarithm are the atoms constructed in Chapter~16.
+\end{proof}
+
+\begin{proposition}[Exact information loss of the one-packet projection]
+\label{prop:cpp-one-packet-information-loss}
+The packet coordinate \((P_O,m_O)\) recovers \(D_O\) by
+\eqref{eq:cpp-packet-divisor-recovery}, but it does not by itself determine
+\(\mu_\rho\).  The missing coordinate is exactly the nonzero complementary
+value \(H_O(\rho)\) in \eqref{eq:cpp-leading-jet-from-packets}.
+
+More concretely, fix \(O\), \(m\geq1\), and \(\rho\in O\).  Choose
+\(\lambda\in\mathbb R_{>0}\) such that
+\[
+ Q_\lambda(s):=1+\lambda(s-1/2)^2
+\]
+has no zero in \(O\) and \(Q_\lambda(\rho)\ne1\).  The two finite functions
+\[
+ F_1(s)=P_O(s)^m,
+ \qquad
+ F_2(s)=Q_\lambda(s)P_O(s)^m
+\]
+have the same packet polynomial and multiplicity at \(O\), but their leading
+coefficients at \(\rho\) are
+\[
+ \bigl(P_O'(\rho)\bigr)^m
+ \quad\hbox{and}\quad
+ Q_\lambda(\rho)\bigl(P_O'(\rho)\bigr)^m.
+\]
+Both functions remain even in \(s-1/2\) and respect complex conjugation;
+the additional roots of \(Q_\lambda\) are the two-point packet
+\(\{1/2\pm\mathrm i/\sqrt\lambda\}\), chosen disjoint from \(O\).
+Thus the fibre of the forgetful map from a full factor system to one packet
+contains distinct leading-jet values whenever the complementary coordinate is
+allowed to vary.
+\end{proposition}
+
+\begin{proof}
+The first assertion is exactly
+\cref{eq:cpp-leading-jet-from-packets}.  Only finitely many values of
+\(\lambda>0\) make \(Q_\lambda\) vanish at a point of \(O\).  Moreover
+\(\rho\ne1/2\), so \(Q_\lambda(\rho)=1\) would force \(\lambda=0\); every
+admissible positive choice therefore avoids it.  Choose any positive
+\(\lambda\) outside the finite excluded set.
+The displayed leading coefficients follow by the same first-order expansion
+used in \cref{thm:cpp-global-to-local-jet}.  This supplies two explicit points
+in one fibre and identifies the omitted coordinate rather than inferring
+nonidentity from different presentations.
+\end{proof}
+
+\begin{theorem}[Reconstruction map on admissible packet data]
+\label{thm:cpp-reconstruction-map}
+Let \(\mathfrak P_1\) be the set of data
+\[
+ \mathcal D=
+ \left(C,\{(P_O,m_O)\}_{O\in Y}\right)
+\]
+such that:
+\begin{enumerate}
+\item \(C\in\mathbb R^\times\);
+\item each \(P_O\in\mathbb R[s]\) has one of the explicit forms in
+      \cref{prop:cpp-packet-polynomial-coordinates} and
+      \(P_O(1/2)=1\);
+\item \(m_O\) is a positive integer; and
+\item after resolving every \(P_O\) into its one or two sign-orbit factors,
+      the resulting reciprocal-square sum converges and the reconstructed
+      entire function has order at most one.
+\end{enumerate}
+For data whose union of root packets is discrete, define
+\begin{equation}
+\label{eq:cpp-reconstruction-morphism}
+ \mathcal R(\mathcal D)(s)
+ :=
+ C\prod_{O\in Y}P_O(s)^{m_O}.
+\end{equation}
+Then \(\mathcal R(\mathcal D)\) is an even function of \(s-1/2\), respects
+complex conjugation, takes the value \(C\) at \(1/2\), and has effective zero
+divisor
+\[
+ \sum_{O\in Y}m_O\sum_{\eta\in O}[\eta].
+\]
+Conversely, within the class of order-at-most-one entire functions satisfying
+those two symmetries and nonvanishing at \(1/2\), the center value and packet
+divisor recover the function uniquely.  Hence extraction of packet data and
+\(\mathcal R\) are mutually inverse on that class.
+\end{theorem}
+
+\begin{proof}
+The convergence condition and the proof of
+\cref{thm:cpp-centered-product} give an entire product.  Each packet factor is
+even in \(s-1/2\), has real coefficients, and is one at the center, proving the
+three stated properties.  Its roots and multiplicity give the displayed
+divisor.
+
+For uniqueness, let \(F_1,F_2\) be two functions in the stated class with the
+same packet divisor and center value.  Apply Hadamard factorization separately
+to \(F_1(1/2+z)\) and \(F_2(1/2+z)\).  Their canonical zero products are the
+same, including multiplicities, so division gives
+\[
+ \frac{F_1(1/2+z)}{F_2(1/2+z)}=e^{a+bz}.
+\]
+Both functions are even in \(z\), so the quotient is even and \(b=0\), by the
+same derivative-at-zero argument used in
+\cref{thm:cpp-centered-product}.  Equality of the center values gives
+\(e^a=1\).  Thus \(F_1=F_2\).  Extraction followed by reconstruction and
+reconstruction followed by extraction are therefore both identities.
+\end{proof}
+
+\subsection{Certificate and theorem boundaries}
+
+The finite algebra in this chapter admits a deterministic certificate:
+the two- and four-point packet formulas, the coefficient inverse
+\eqref{eq:cpp-quartic-coordinate-inverse}, the one-packet logarithmic
+derivative, the first symmetric coefficients, and the leading-jet formula can
+all be checked as polynomial or rational identities over exact symbolic
+coordinates.  The companion script
+\texttt{verify\_centered\_packet\_products.py} passes seventeen named exact
+checks under Python/SymPy 3.13.9/1.13.1 and 3.13.1/1.13.3; receipt
+\texttt{CERT-GNTE-PACKET-20260828-0001} binds both runs.  Such a certificate
+checks those identities only.  It does not
+certify Hadamard factorization, the DLMF products, convergence of the actual
+zero product, analytic continuation, or any assertion about an individual
+zero.  Those analytic statements are proved above from their cited inputs and
+the explicit convergence estimates.
+
+The resulting interface is exact.  The sign-orbit quotient maps bijectively to
+the packet quotient; the packet polynomial has an explicit coordinate inverse;
+the augmented packet polynomial recovers the packet divisor; the complete
+packet system reconstructs the completed function in the stated order-one
+class; and \eqref{eq:cpp-leading-jet-from-packets} maps the global product to
+the local phase and Taylor-atom layer.  No endpoint, simplicity, or spectral
+claim is added.

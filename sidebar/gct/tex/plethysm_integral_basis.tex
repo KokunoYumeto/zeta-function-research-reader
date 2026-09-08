@@ -1,0 +1,436 @@
+\section{An integral tableau basis for the exact plethystic maps}
+\label{sec:plethysm-integral-tableau-basis}
+
+All constructions in this section are over an arbitrary commutative ring
+$R$ with identity. In particular, neither an integer nor a determinant
+is inverted. A partition is a finite sequence
+$\lambda=(\lambda_1\geq\cdots\geq\lambda_\ell>0)$.
+Write $d=|\lambda|$, $t=\lambda_1$, and
+$h_j=\#\{r:\lambda_r\geq j\}$ for its column lengths.
+The empty partition is allowed, with $d=t=\ell=0$.
+
+\subsection{The intrinsic image and its polynomial realization}
+
+For a finite free $R$-module $E$ define
+\begin{align}
+ C_\lambda(E)&=\bigotimes_{j=1}^{t}\bigwedge^{h_j}E,
+ &P_\lambda(E)&=\bigotimes_{r=1}^{\ell}\operatorname{Sym}^{\lambda_r}E.
+ \label{eq:plethysm-column-row-modules}
+\end{align}
+An empty tensor product in this section is $R$.
+For each column, send an exterior product to the alternating tensor
+\[
+ v_1\wedge\cdots\wedge v_h\longmapsto
+ \sum_{\sigma\in\mathfrak S_h}\operatorname{sgn}(\sigma)
+ v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(h)}.
+\]
+This formula is multilinear and alternating over $R$: when two inputs
+are equal, transposing their labels pairs equal tensors with opposite
+coefficients. It therefore defines a map out of the exterior power,
+also in characteristic two. Tensor these maps in the column order
+$1,\ldots,t$, relabel their tensor positions by the boxes $(r,j)$,
+reorder the positions into row order, and take the symmetric quotient
+in each row. Denote the resulting map by
+\begin{equation}
+ \delta_{\lambda,E}:C_\lambda(E)\longrightarrow P_\lambda(E),
+ \qquad
+ \mathsf S_\lambda(E)=\operatorname{im}\delta_{\lambda,E}.
+ \label{eq:plethysm-schur-image}
+\end{equation}
+Equation~\eqref{eq:plethysm-schur-image} is the Schur module convention
+used throughout this section. There is no additional row
+symmetrizer, factorial, or Young-idempotent normalization.
+
+Let $e_1,\ldots,e_n$ be an ordered basis of $E$.
+The module $\operatorname{Sym}^a(E)$ has the basis
+$e_1^{\alpha_1}\cdots e_n^{\alpha_n}$ with
+$\sum_i\alpha_i=a$. Indeed, the tensor-word basis is partitioned into
+permutation orbits, and the defining symmetry relations identify the
+words in each orbit; the free module on these orbits gives an inverse
+to this quotient description. The module $\bigwedge^a E$ has the basis
+$e_{i_1}\wedge\cdots\wedge e_{i_a}$ for
+$i_1<\cdots<i_a$. To see this without an assumption on $R$, sort each
+word with its permutation sign and send a word with repeated indices
+to zero. This alternating multilinear rule gives an inverse to the
+map from the free module on the displayed increasing words.
+
+Introduce independent variables $X_{r,i}$ for
+$1\leq r\leq\ell$ and $1\leq i\leq n$.
+The row monomial bases identify $P_\lambda(E)$ with the component of
+$R[X_{r,i}]$ having degree $\lambda_r$ in the variables with first
+index $r$. For an ordered list $I=(i_1,\ldots,i_a)$, where
+$a\leq\ell$, put
+\[
+ [I]_a=\det(X_{r,i_s})_{1\leq r,s\leq a},
+ \qquad [\varnothing]_0=1.
+\]
+Repeated entries give zero, and permuting the list multiplies this
+polynomial by the permutation sign.
+For a filling $T$ of the diagram of $\lambda$, write $I_j(T)$ for its
+$j$th column, read from top to bottom, and set
+\begin{equation}
+ b_T=\prod_{j=1}^{t}[I_j(T)]_{h_j}.
+ \label{eq:plethysm-flag-polynomial}
+\end{equation}
+Expanding the alternating tensors in the definition of $\delta$
+shows term by term that $b_T$ is the image of the column exterior
+tensor indexed by $T$. Consequently the $b_T$ with strictly increasing
+columns generate $\mathsf S_\lambda(E)$. A filling is called
+\emph{semistandard} when its columns strictly increase and its rows
+weakly increase, using the alphabet $1,\ldots,n$.
+
+\subsection{An alternating identity and an integral straightening proof}
+
+The following identity is proved in the polynomial ring, so it
+remains valid after every specialization of its coefficients.
+
+\begin{lemma}[The tail--head shuffle identity]
+\label{lem:plethysm-shuffle}
+Let $\ell\geq a\geq b\geq k\geq1$ and let $m=a-k+1$.
+Let $A$ be a list of column indices of length $k-1$,
+let $U=(u_1,\ldots,u_{a+1})$,
+and let $B$ be a list of length $b-k$. For a subset
+$S=\{s_1<\cdots<s_m\}\subseteq\{1,\ldots,a+1\}$, let $U_S$
+be the sublist in the original position order; the complementary
+sublist has the same convention. Set
+\[
+ \epsilon(S)=(-1)^{\sum_{v=1}^{m}(s_v-v)}.
+\]
+Then
+\begin{equation}
+ \sum_{\substack{S\subseteq\{1,\ldots,a+1\}\\|S|=m}}
+ \epsilon(S)[A,U_S]_a[U_{S^c},B]_b=0.
+ \label{eq:plethysm-shuffle}
+\end{equation}
+Here the minors use initial row segments of the same matrix.
+\end{lemma}
+
+\begin{proof}
+First let every entry of the lists denote a vector of $R^a$, and
+let the second determinant use its projection onto the first $b$
+coordinates. Keep $A$ and $B$ fixed. The left side is a multilinear
+function of the $a+1$ vectors of $U$. It is alternating, as follows.
+Suppose two of these vectors have equal values. A term putting both
+in the first determinant, or both in the second determinant, is
+zero. Pair each remaining subset with the subset obtained by
+exchanging those two positions between the subset and its complement.
+The two determinant products in such a pair agree up to the signs
+needed to restore the position orders inside the two sublists.
+The shuffle sign is the sign of the permutation that lists $S$
+first and $S^c$ second. Including the two internal reordering signs,
+the exchange is a single transposition of the full list. Thus the
+two paired terms have opposite coefficients and cancel. This proves
+vanishing on equal inputs by an explicit pairing, without deducing
+it from skew symmetry or dividing by two.
+
+Expand each of the $a+1$ vectors in the $a$ standard basis vectors
+of $R^a$. Multilinearity expresses the value as a sum of values on
+standard basis vectors. Each of these tuples repeats a vector, by
+the pigeonhole principle, so each value is zero by the preceding
+argument. The multilinear function therefore vanishes identically.
+Apply this result over the polynomial ring to the column vectors
+$(X_{1,i},\ldots,X_{a,i})^{\mathsf t}$. Its projection onto the first
+$b$ coordinates is precisely the column occurring in the second
+flag minor. This gives~\eqref{eq:plethysm-shuffle} with its stated
+signs and row sets.
+\end{proof}
+
+\begin{theorem}[Integral semistandard basis]
+\label{thm:plethysm-integral-basis}
+For every finite free $R$-module $E$ with its specified ordered basis,
+the elements $b_T$ indexed by semistandard tableaux of shape $\lambda$
+form an $R$-basis of $\mathsf S_\lambda(E)$.
+The image in~\eqref{eq:plethysm-schur-image} is a direct summand as an
+$R$-module of $P_\lambda(E)$; the splitting need not be natural.
+For every ring homomorphism $R\to R'$, the natural base-change map
+\begin{equation}
+ R'\otimes_R\mathsf S_\lambda(E)
+ \longrightarrow
+ \mathsf S_\lambda(R'\otimes_R E)
+ \label{eq:plethysm-basechange}
+\end{equation}
+is an isomorphism. No flatness hypothesis is needed.
+\end{theorem}
+
+\begin{proof}
+If $\lambda$ is empty, all three claims concern the identity map on
+$R$ and follow directly. If $h_1>n$, the first exterior factor is
+zero, and there are no strictly increasing first columns. Both the
+image and the claimed basis are empty, giving the zero module.
+We may therefore suppose that $\lambda$ is nonempty and $h_1\leq n$.
+
+First prove spanning. Order all strictly column-increasing fillings
+by lexicographic order of the word obtained by reading their columns
+from left to right, and each column from top to bottom. This is a
+finite totally ordered set. A filling $T$ that is not semistandard
+has adjacent columns
+\[
+ I=(i_1<\cdots<i_a),\qquad J=(j_1<\cdots<j_b),
+ \qquad a\geq b,
+\]
+and a row $k\leq b$ at which $i_k>j_k$.
+Apply Lemma~\ref{lem:plethysm-shuffle} with
+\[
+ A=(i_1,\ldots,i_{k-1}),\quad
+ U=(i_k,\ldots,i_a,j_1,\ldots,j_k),\quad
+ B=(j_{k+1},\ldots,j_b).
+\]
+The subset $S_0=\{1,\ldots,a-k+1\}$ has sign $+1$ and gives
+exactly $[I]_a[J]_b$. Move all the other summands to the other side
+of~\eqref{eq:plethysm-shuffle}, and multiply by the unchanged minors
+in the remaining columns of $T$.
+
+Every member of $(i_k,\ldots,i_a)$ is larger than every member of
+$(j_1,\ldots,j_k)$. Thus the entries of $U$ are distinct. A subset
+$S\ne S_0$ replaces at least one entry of the left-column tail by
+a strictly smaller entry from the right-column head. If a resulting
+column has a repeated entry, its determinant is zero and the term
+is discarded. In any other term, sort the two columns numerically
+and multiply by the two sorting signs. The fixed left-column prefix
+is unchanged as a multiset; all inserted values are smaller than
+all removed values. At the first place where the sorted old and
+new left columns differ, the new column therefore has the smaller
+entry. All preceding columns of the entire filling are unchanged.
+The resulting filling is strictly smaller than $T$ in the specified
+total order. The coefficient of the original term was exactly one,
+so this replacement uses only integer addition and subtraction.
+Induction on the finite total order proves that every generator
+$b_T$ is an integral linear combination of the semistandard $b_T$.
+This proof works after passage to $R$ as well.
+
+For independence, order the variables by
+\[
+ X_{1,1}>X_{1,2}>\cdots>X_{1,n}>
+ X_{2,1}>\cdots>X_{2,n}>\cdots>X_{\ell,n},
+\]
+and use lexicographic monomial order. If
+$i_1<\cdots<i_a$, the leading monomial of $[I]_a$ is
+$X_{1,i_1}\cdots X_{a,i_a}$, with coefficient $+1$.
+Indeed, among determinant permutations the largest monomial must
+choose the smallest available column index for its first row, then
+the smallest remaining index for its second row, and so on.
+Monomial order is preserved by multiplication, so
+\begin{equation}
+ \operatorname{in}(b_T)=
+ \prod_{(r,j)\in\lambda}X_{r,T(r,j)},
+ \qquad
+ \text{with coefficient }+1.
+ \label{eq:plethysm-leading-monomial}
+\end{equation}
+For a semistandard filling, this monomial determines each row's
+multiset of entries. A weakly increasing row is uniquely recovered
+from that multiset. Hence distinct semistandard tableaux have
+distinct leading monomials. In a nonzero linear combination over
+$R$, choose the largest leading monomial among the tableaux whose
+coefficients are nonzero. No other summand has a monomial that
+large. Its coefficient in the sum is the chosen nonzero coefficient
+times $1$, and cannot vanish. This proves independence even when
+$R$ has zero divisors.
+
+For completeness, this monicity also produces a splitting. Work
+first over $\mathbb Z$ and list the semistandard polynomials in
+decreasing order of their distinct leading monomials. Given any
+polynomial in the finite row-degree component $P_\lambda(\mathbb Z^n)$,
+process this list in order. At each stage, extract the coefficient
+of the current leading monomial, record it, and subtract that
+coefficient times the corresponding $b_T$. Later subtractions
+cannot change a leading monomial already processed, since all
+their monomials are smaller. Return the sum of the recorded
+multiples of $b_T$. This is a $\mathbb Z$-linear map into their
+span, and it is the identity on each $b_T$. It is therefore a
+retraction of the inclusion of that span. All its matrix entries
+are integers, so base change gives the stated retraction over
+every $R$.
+
+Finally the map~\eqref{eq:plethysm-basechange} sends
+$1\otimes b_T$ to the polynomial $b_T$ with coefficients in $R'$.
+The basis just proved on both sides shows that it is an
+isomorphism. The splitting explains in particular why taking this
+image commutes with arbitrary, possibly nonflat, base change.
+\end{proof}
+
+\subsection{Functoriality, all matrix entries, and the exact diagonal}
+
+\begin{proposition}[Functorial maps without denominators]
+\label{prop:plethysm-functorial}
+Every $R$-linear map $f:E\to F$ between finite free modules induces
+a map $\mathsf S_\lambda(f):\mathsf S_\lambda(E)\to
+\mathsf S_\lambda(F)$. These maps preserve identities and
+composition and commute with arbitrary base change. In the tableau
+bases, every matrix entry is an integer polynomial, homogeneous of
+degree $|\lambda|$ in the entries of $f$.
+\end{proposition}
+
+\begin{proof}
+The alternating tensor map commutes with $f^{\otimes h}$ term by
+term, tensor reordering commutes with applying $f$ in every slot,
+and symmetric quotient maps are natural. Thus the square
+\[
+ \begin{array}{ccc}
+ C_\lambda(E)&\xrightarrow{\delta_{\lambda,E}}&P_\lambda(E)\\
+ \big\downarrow C_\lambda(f)&&\big\downarrow P_\lambda(f)\\
+ C_\lambda(F)&\xrightarrow{\delta_{\lambda,F}}&P_\lambda(F)
+ \end{array}
+\]
+commutes. Restricting its right arrow to the images defines the
+claimed map. The identities and composition laws hold on the
+ambient row-symmetric modules and hence on their submodules.
+All constructions use tensor, exterior, and symmetric operations
+given by the displayed integral formulas. Together with
+Theorem~\ref{thm:plethysm-integral-basis}, this proves the base-change
+statement.
+
+Here is a formula that also proves the claim about every matrix
+entry. Choose bases $e_i$ and $f_j$, and write a matrix $M$ for the
+map, so that $f(e_i)=\sum_jM_{j,i}f_j$. For a strictly increasing
+column $I$ of length $a$, direct multilinear expansion and signed
+sorting in the exterior power give
+\begin{equation}
+ (\bigwedge^a f)(e_{i_1}\wedge\cdots\wedge e_{i_a})
+ =\sum_{\substack{J\text{ increasing}\\|J|=a}}
+       \det(M_{J,I})\,f_{j_1}\wedge\cdots\wedge f_{j_a}.
+ \label{eq:plethysm-exterior-matrix}
+\end{equation}
+Terms with repeated row indices vanish. For each distinct row
+set the terms with the possible row orders sum, with their sorting
+signs, to the determinant in~\eqref{eq:plethysm-exterior-matrix}.
+For the columns $I_c(T)$ of a tableau $T$, take the product of
+these expansions and then apply $\delta_{\lambda,F}$. This gives
+\begin{equation}
+ \mathsf S_\lambda(f)b_T
+ =\sum_{J_1,\ldots,J_t}
+       \left(\prod_{c=1}^t\det(M_{J_c,I_c(T)})\right)
+       b_{(J_1,\ldots,J_t)}.
+ \label{eq:plethysm-general-matrix}
+\end{equation}
+Apply the terminating integer straightening procedure already
+proved to each filling on the right. Every product of minors in
+its coefficient has total degree $\sum_c h_c=|\lambda|$.
+Straightening multiplies by integers and adds these products, so
+each final tableau coefficient is an integer homogeneous
+polynomial of that degree. This is a finite formula: there are
+$\prod_c\binom{\operatorname{rank}F}{h_c}$ choices in the sum,
+and straightening strictly decreases an order on the finite set
+of column-increasing fillings. No complexity bound beyond this
+finite procedure is asserted here.
+\end{proof}
+
+\begin{theorem}[The exact signed diagonal map]
+\label{thm:plethysm-diagonal}
+Let $E$ and $F$ have ordered bases of the same cardinality $n$,
+and let $D:E\to F$ have the specified matrix
+$\operatorname{diag}(d_1,\ldots,d_n)$, with arbitrary $d_i\in R$.
+For a semistandard tableau $T$, let $c_i(T)$ count its entries
+equal to $i$, and put
+\[
+ w_T=\prod_{i=1}^n d_i^{c_i(T)}.
+\]
+With the same tableau order on the two bases, the exact matrix of
+$\mathsf S_\lambda(D)$ is $\operatorname{diag}(w_T)_T$.
+In particular, there are the following specified maps and modules:
+\begin{align}
+ \ker\mathsf S_\lambda(D)
+   &=\bigoplus_T\operatorname{Ann}_R(w_T)\,b_T(E),\\
+ \operatorname{im}\mathsf S_\lambda(D)
+   &=\bigoplus_T(w_T)\,b_T(F),\\
+ \operatorname{coker}\mathsf S_\lambda(D)
+   &\cong\bigoplus_T R/(w_T).
+ \label{eq:plethysm-diagonal-modules}
+\end{align}
+The last isomorphism sends the class of
+$\sum_T a_Tb_T(F)$ to $(a_T\bmod (w_T))_T$.
+\end{theorem}
+
+\begin{proof}
+Apply $D$ in the column exterior tensor defining $b_T$.
+Each occurrence of $e_i$ contributes exactly the scalar $d_i$,
+and the product of these scalars is $w_T$. The commutative
+square in Proposition~\ref{prop:plethysm-functorial} therefore
+gives $\mathsf S_\lambda(D)b_T(E)=w_Tb_T(F)$ before any
+straightening. The tableau basis theorem proves the asserted
+matrix identity. A vector is in its kernel precisely when every
+coordinate $a_T$ satisfies $w_Ta_T=0$, which gives the first
+formula. Each target coordinate of an image is independently an
+element of $(w_T)$, giving the second. The displayed residue map
+is surjective and has exactly this image as its kernel, proving
+the third. This also treats $d_i=0$ and nonzero zero divisors.
+Signed elements $d_i$ have not been replaced by associates or
+absolute values.
+\end{proof}
+
+\subsection{Iteration and the plethystic exponent matrix}
+
+Let $\mathcal T_\lambda(n)$ be the tableau set in
+Theorem~\ref{thm:plethysm-integral-basis}, ordered by its
+column-reading words. Put $N=|\mathcal T_\lambda(n)|$.
+Regard this ordered set as the alphabet for semistandard tableaux
+$U$ of a second partition $\mu$. Write $c_T(U)$ for the number
+of entries of $U$ equal to the alphabet letter $T$, and define
+\begin{equation}
+ \Gamma_i(U)=\sum_{T\in\mathcal T_\lambda(n)}c_T(U)c_i(T).
+ \label{eq:plethysm-nested-exponents}
+\end{equation}
+Here the plethysm is the composed functor
+$\mathsf S_\mu\circ\mathsf S_\lambda$, with this integral
+Schur-image convention at both stages.
+
+\begin{corollary}[Nested Schur maps over the original ring]
+\label{cor:plethysm-nested-diagonal}
+The outer tableau elements $b_U$ form an $R$-basis of
+$\mathsf S_\mu(\mathsf S_\lambda(E))$.
+For the specified diagonal map $D$ of
+Theorem~\ref{thm:plethysm-diagonal}, the exact nested map is
+\begin{equation}
+ \mathsf S_\mu(\mathsf S_\lambda(D))b_U(E)
+   =\left(\prod_{i=1}^n d_i^{\Gamma_i(U)}\right)b_U(F).
+ \label{eq:plethysm-nested-diagonal}
+\end{equation}
+Every exponent is a nonnegative integer, and
+$\sum_i\Gamma_i(U)=|\mu|\,|\lambda|$.
+The kernel, image, and cokernel are given by
+\eqref{eq:plethysm-diagonal-modules} with the index $U$ and
+scalar $\prod_i d_i^{\Gamma_i(U)}$.
+For a general matrix $M$, every matrix entry of the composed
+functor is an integer polynomial homogeneous of degree
+$|\mu|\,|\lambda|$ in $M$.
+\end{corollary}
+
+\begin{proof}
+The inner module is finite free with the explicitly ordered basis
+$(b_T)_{T\in\mathcal T_\lambda(n)}$ by the basis theorem.
+Apply the same basis theorem to that free module and $\mu$.
+The inner map is diagonal, with entries
+$w_T=\prod_i d_i^{c_i(T)}$. Apply the diagonal theorem to this
+map and the outer shape $\mu$. Its scalar on $b_U$ is exactly
+\[
+ \prod_T w_T^{c_T(U)}
+   =\prod_T\prod_i d_i^{c_T(U)c_i(T)}
+   =\prod_i d_i^{\Gamma_i(U)}.
+\]
+The number of letters of an inner tableau is $|\lambda|$, so
+$\sum_i c_i(T)=|\lambda|$; the number of letters of an outer
+tableau is $|\mu|$, so $\sum_T c_T(U)=|\mu|$. Summing
+\eqref{eq:plethysm-nested-exponents} proves the degree identity.
+The coordinate kernel and quotient formulas follow from the
+diagonal theorem, with no additional ring hypotheses.
+For a general $M$, apply the integer homogeneous matrix formula
+first to $\lambda$, and then substitute those degree-$|\lambda|$
+entries into the degree-$|\mu|$ formula for the outer functor.
+This proves the last assertion. Empty shapes and zero inner
+rank follow directly from the conventions for empty tensor
+products and the absence of nonempty tableaux on an empty
+alphabet.
+\end{proof}
+
+The construction above retains the entire composed functor and
+its tableau matrix. It does not require a decomposition into
+irreducible Schur summands. The proof gives ordinary integral
+Schur operations on the specified linear maps; identifying them
+with a particular nonstandard quantum-group construction requires
+the corresponding specified representation map.
+For a primary comparison with the flag-minor standard monomial
+model, see D.~C.~Lax, \emph{Accessible Proof of Standard Monomial
+Basis for Coordinatization of Schubert Sets of Flags},
+\href{https://arxiv.org/abs/1508.02744}{arXiv:1508.02744},
+Sections~3--4. All basis, straightening, functoriality, and
+diagonal assertions used here were proved above over $R$.

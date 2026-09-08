@@ -1,0 +1,751 @@
+% Self-contained mathematical section; included by the cumulative main.tex.
+% Requires amsmath, amssymb, amsthm and the standard theorem environments.
+\section{The exact axisymmetric coordinate mechanism and its viscous extension}
+\label{sec:exact-euler-coordinates}
+
+This section gives the complete coordinate and force reconstruction underlying
+the Euler system on pages 3--4, equations (2.1)--(2.6), of
+\emph{Blowup for the Euler equations with smooth forcing}, the released
+manuscript examined in this repository.  The coordinate identities are proved
+here independently.  The compact force inverse is constructed and proved
+explicitly; no external inverse-divergence lemma is used.  The same calculation
+also gives every additional term for classical viscosity \(\nu>0\).
+It proves an exact correspondence of smooth equations.  It does not verify
+the manuscript's subsequent infinite construction or its terminal estimates.
+
+\subsection{Domains, signs, and the forward and inverse maps}
+
+Fix the original physical parameters
+\begin{gather*}
+ r_0>0,\qquad z_0\in\mathbb R,\qquad 0<R<r_0/2,
+ \qquad r=(x_1^2+x_2^2)^{1/2},\\
+ \mathcal T_R=\{(x_1,x_2,z):(z-z_0)^2+(r-r_0)^2<R^2\}.
+\end{gather*}
+No dilation or translation of these parameters is performed.  On \(r>0\),
+write
+\[
+ e_r=(\cos\phi,\sin\phi,0),\qquad
+ e_\phi=(-\sin\phi,\cos\phi,0),\qquad e_z=(0,0,1).
+\]
+Thus \((e_r,e_\phi,e_z)\) is positively oriented.  An axisymmetric vector
+field has the form
+\(u=u^r(r,z,t)e_r+u^\phi(r,z,t)e_\phi+u^z(r,z,t)e_z\),
+with components independent of \(\phi\).
+
+The ordered meridional coordinates in this section are \((z,r)\).
+Define the diffeomorphism and its inverse
+\begin{align}
+ \Phi:\mathbb R\times(0,\infty)&\longrightarrow
+              H:=\mathbb R\times(0,\infty),
+ &\Phi(z,r)&=(y_1,y_2)=(z,r^2/2),\label{eq:ec-Phi}\\
+ \Phi^{-1}(y_1,y_2)&=(y_1,\sqrt{2y_2}).\nonumber
+\end{align}
+Their Jacobian determinants, in these orders, are \(r\) and \(1/r\).
+In particular
+\begin{gather*}
+ dy_1\wedge dy_2=r\,dz\wedge dr,\qquad dy=r\,dz\,dr,\\
+ \partial_z=\partial_{y_1},\qquad
+ \partial_r=r\partial_{y_2},\qquad
+ \partial_{y_2}=r^{-1}\partial_r.
+\end{gather*}
+For a meridional set \(K\subset H\), its physical lift is
+\[
+ \widetilde K=\{(r\cos\phi,r\sin\phi,z):
+                 (z,r^2/2)\in K,\ \phi\in\mathbb R/(2\pi\mathbb Z)\}.
+\]
+Let \(D_0\Subset D\) be concentric open balls in \(H\), centered at
+\(y_*=(z_0,r_0^2/2)\), whose closures lie in the image under \(\Phi\) of
+the physical meridional disk defining \(\mathcal T_R\).  Such balls exist:
+that image is open and contains \(y_*\), so it contains a sufficiently small
+closed ball and a smaller concentric closed ball.  The notation
+\(D_0\Subset D\) means that \(\overline{D_0}\) is a compact subset of \(D\).
+
+All fields below are smooth on a time interval \(I\); at a closed endpoint,
+smoothness means compatible one-sided derivatives.  Their spatial supports
+are contained in the indicated fixed compact subset of the stated ball,
+uniformly in \(t\in I\).  Fields in volume coordinates supported in \(H\)
+are extended by zero to \(\mathbb R^2\).
+
+Set
+\begin{equation}
+ \begin{gathered}
+ J(a_1,a_2)=(-a_2,a_1),\qquad
+ A(y)=\begin{pmatrix}(2y_2)^{-1}&0\\0&1\end{pmatrix},\\
+ L=\partial_{y_2}^2+(2y_2)^{-1}\partial_{y_1}^2,
+ \qquad W=(2y_2)^{-2}.
+ \end{gathered}
+ \label{eq:ec-coefficients}
+\end{equation}
+The equality \(L=\operatorname{div}_y(A\nabla_y)\) follows by expansion:
+the first diagonal coefficient depends on \(y_2\), whereas the derivative
+in its divergence term is \(\partial_{y_1}\); the other diagonal coefficient
+is identically one.
+
+\begin{proposition}[Velocity correspondence with a fixed streamfunction gauge]
+\label{prop:ec-velocity}
+The linear map from pairs \((\Gamma,\Psi)\) of smooth functions supported
+in \(D_0\) to physical fields, defined by
+\begin{equation}
+ u^z=-\Psi_{y_2},\qquad
+ u^r=\frac{\Psi_{y_1}}{r},\qquad
+ u^\phi=\frac{\Gamma}{r},\qquad r=\sqrt{2y_2},
+ \label{eq:ec-physical-velocity}
+\end{equation}
+is a bijection onto the smooth, divergence-free, axisymmetric vector fields
+supported in \(\widetilde{D_0}\).  The inverse recovers
+\begin{equation}
+ \begin{gathered}
+ \Gamma(y,t)=r u^\phi(r,z,t),\qquad
+ v(y,t)=(u^z(r,z,t),r u^r(r,z,t)),\\
+ \Psi(y,t)=\int_{-\infty}^{y_1}v_2(s,y_2,t)\,ds.
+ \end{gathered}
+ \label{eq:ec-inverse}
+\end{equation}
+In particular \(v=J\nabla_y\Psi\).
+\end{proposition}
+
+\begin{proof}
+For an axisymmetric field,
+\begin{equation}
+ \operatorname{div}_x u
+ =\partial_z u^z+r^{-1}\partial_r(r u^r)
+ =\partial_{y_1}v_1+\partial_{y_2}v_2.
+ \label{eq:ec-divergence}
+\end{equation}
+One direct derivation of the first identity uses
+\(\partial_{x_1}r=\cos\phi\),
+\(\partial_{x_2}r=\sin\phi\),
+\(\partial_{x_1}\phi=-\sin\phi/r\), and
+\(\partial_{x_2}\phi=\cos\phi/r\), substituted into the Cartesian
+divergence.  The terms containing the azimuthal component cancel; those
+containing the radial component give \(\partial_r u^r+u^r/r\).
+For \eqref{eq:ec-physical-velocity}, \(v=(-\Psi_{y_2},\Psi_{y_1})\), so
+the right side of \eqref{eq:ec-divergence} is zero by equality of mixed
+derivatives.  The factors \(1/r\), the coordinate change, and the
+cylindrical basis are smooth on a neighborhood of the fixed support.
+The field is identically zero on a fixed neighborhood of the axis.
+Consequently its extension to all of \(\mathbb R^3\) is smooth, and its
+support is as stated.
+
+Conversely, let \(u\) be a field in the specified target space.  The
+functions \(\Gamma\) and \(v\) in \eqref{eq:ec-inverse} are smooth and
+compactly supported in \(D_0\).  Equation \eqref{eq:ec-divergence} gives
+\(\partial_{y_1}v_1+\partial_{y_2}v_2=0\).  The integral in
+\eqref{eq:ec-inverse} is smooth and satisfies
+\[
+ \Psi_{y_1}=v_2,\qquad
+ \Psi_{y_2}=\int_{-\infty}^{y_1}\partial_{y_2}v_2(s,y_2,t)\,ds
+ =-\int_{-\infty}^{y_1}\partial_s v_1(s,y_2,t)\,ds=-v_1.
+\]
+Here the lower boundary term vanishes by compact support.
+It remains to verify compact support of \(\Psi\), which cannot simply
+be inferred from compact support of its gradient.  Define
+\(m(y_2,t)=\int_{\mathbb R}v_2(s,y_2,t)\,ds\).  Its derivative is
+\[
+ \partial_{y_2}m=-\int_{\mathbb R}\partial_s v_1(s,y_2,t)\,ds=0.
+\]
+It vanishes for \(y_2\) outside the projection of the support, hence
+\(m=0\) everywhere.  Each horizontal slice of the ball \(D_0\) is
+an interval.  To the left of that interval the integral defining \(\Psi\)
+is zero; to its right it equals \(m=0\).  Thus \(\Psi=0\) outside
+\(D_0\).  A smaller concentric ball still contains the fixed compact
+support of \(v\), and the same argument places the support of \(\Psi\)
+in that smaller ball.  Therefore \(\Psi\) has the required compact support.
+Any two streamfunctions giving this \(v\) have zero gradient, so their
+difference is spatially constant.  Compact support makes that constant
+zero.  The formulas recover all three components of \(u\), proving the
+bijection, including its gauge and its time dependence.
+\end{proof}
+
+For every smooth axisymmetric scalar \(a\), the material derivative is
+preserved exactly:
+\begin{equation}
+ D a:=(\partial_t+u^r\partial_r+u^z\partial_z)a
+   =(\partial_t+v\cdot\nabla_y)a=:D_v a.
+ \label{eq:ec-material}
+\end{equation}
+This identity applies to scalar components; the derivative of a vector
+also differentiates the cylindrical basis, as computed below.
+The measure identity also gives the exact energy formula
+\begin{align}
+ \int_{\mathbb R^3}|u(x,t)|^2\,dx
+ &=2\pi\int_H\left[
+       \Psi_{y_2}^2+\frac{\Psi_{y_1}^2+\Gamma^2}{2y_2}\right]dy
+ \label{eq:ec-energy}\\
+ &=2\pi\int_H\left[v_1^2+\frac{v_2^2+\Gamma^2}{2y_2}\right]dy.
+ \nonumber
+\end{align}
+Indeed the azimuthal integral of a scalar independent of \(\phi\) is
+\(2\pi\), and \(r\,dr\,dz=dy\); insertion of
+\eqref{eq:ec-physical-velocity} proves both equalities.
+
+\subsection{Full vorticity and the exact physical gradient correspondence}
+
+The chosen orientation gives
+\begin{equation}
+ \omega^r=-\partial_z u^\phi,\qquad
+ \omega^\phi=\partial_z u^r-\partial_r u^z,\qquad
+ \omega^z=r^{-1}\partial_r(r u^\phi),
+ \qquad \omega=\nabla_x\times u.
+ \label{eq:ec-curl-cylindrical}
+\end{equation}
+These identities can be checked without a coordinate convention left
+implicit.  At \(\phi=0\),
+\(\partial_{x_1}=\partial_r\) and
+\(\partial_{x_2}=r^{-1}\partial_\phi\).
+The basis derivatives are
+\(\partial_\phi e_r=e_\phi\) and
+\(\partial_\phi e_\phi=-e_r\).
+Substitution into the Cartesian curl therefore gives, in order,
+\(-\partial_z u^\phi\),
+\(\partial_z u^r-\partial_r u^z\), and
+\(\partial_r u^\phi+u^\phi/r\).
+Rotational covariance gives the same components at every \(\phi\).
+
+Define the reduced azimuthal vorticity and the squared circulation by
+\[
+ \xi=\frac{\omega^\phi}{r},\qquad \Theta=\Gamma^2.
+\]
+The velocity map gives every component, with its original radial factor:
+\begin{equation}
+ \omega^r=-\frac{\Gamma_{y_1}}r,\qquad
+ \omega^\phi=rL\Psi=r\xi,\qquad
+ \omega^z=\Gamma_{y_2},\qquad \xi=L\Psi.
+ \label{eq:ec-full-vorticity}
+\end{equation}
+For the middle component, direct differentiation gives
+\[
+ r^{-1}(\partial_z u^r-\partial_r u^z)
+ =r^{-1}\left(\frac{\Psi_{y_1y_1}}r
+                          +r\Psi_{y_2y_2}\right)
+ =(2y_2)^{-1}\Psi_{y_1y_1}+\Psi_{y_2y_2}.
+\]
+The first and third components follow by differentiating \(\Gamma/r\)
+in \eqref{eq:ec-curl-cylindrical}.  Consequently the full physical
+gradient, rather than just its coordinate representation, obeys
+\begin{equation}
+ \nabla_x\Gamma=r\Gamma_{y_2}e_r+\Gamma_{y_1}e_z,
+ \qquad
+ |\omega|^2=\frac{|\nabla_x\Gamma|^2}{r^2}+r^2\xi^2.
+ \label{eq:ec-gradient-vorticity}
+\end{equation}
+The two displayed vectors contributing to \(\omega\) are orthogonal,
+which proves the sum of squares.
+For fields supported in \(\mathcal T_R\), put
+\(r_-=r_0-R>0\) and \(r_+=r_0+R\).  Pointwise on their support,
+\[
+ |\omega|\geq r_+^{-1}|\nabla_x\Gamma|,
+ \qquad
+ |\omega|\leq r_-^{-1}|\nabla_x\Gamma|+r_+|\xi|.
+\]
+Taking suprema preserves these inequalities.  Thus growth of the
+physical circulation gradient forces full vorticity growth by an
+explicit bounded geometric factor.  This statement alone gives no
+growth rate or time-integrability conclusion.
+
+\subsection{Derivation of the reduced Euler and Navier--Stokes equations}
+
+Keep \(\nu\geq0\) as an explicit constant and use the convention
+\begin{equation}
+ \partial_tu+(u\cdot\nabla_x)u+\nabla_xp
+      =\nu\Delta_xu+f,\qquad \operatorname{div}_xu=0.
+ \label{eq:ec-NS}
+\end{equation}
+The value \(\nu=0\) is Euler.  The force and pressure are axisymmetric
+in this calculation.  Define the scalar cylindrical Laplacian
+\(\Delta_0=\partial_z^2+\partial_r^2+r^{-1}\partial_r\).
+The basis derivatives above, together with
+\(u\cdot\nabla=u^r\partial_r+(u^\phi/r)\partial_\phi+u^z\partial_z\),
+give the acceleration components
+\[
+ D u^r-\frac{(u^\phi)^2}{r},\qquad
+ D u^\phi+\frac{u^r u^\phi}{r},\qquad D u^z.
+\]
+For completeness the scalar Laplacian follows by applying the divergence
+formula to the scalar gradient:
+\(\Delta a=r^{-1}\partial_r(r\partial_ra)
++r^{-2}\partial_\phi^2a+\partial_z^2a\).
+Apply this Cartesian-componentwise to a vector.  Since
+\(\partial_\phi^2e_r=-e_r\),
+\(\partial_\phi^2e_\phi=-e_\phi\), and
+\(\partial_\phi e_z=0\), its axisymmetric components are
+\[
+ (\Delta_xu)^r=(\Delta_0-r^{-2})u^r,\qquad
+ (\Delta_xu)^\phi=(\Delta_0-r^{-2})u^\phi,
+ \qquad (\Delta_xu)^z=\Delta_0u^z.
+\]
+Thus \eqref{eq:ec-NS} is precisely
+\begin{align}
+ D u^r-\frac{(u^\phi)^2}{r}+p_r
+       &=\nu(\Delta_0-r^{-2})u^r+f^r,\label{eq:ec-radial}\\
+ D u^\phi+\frac{u^r u^\phi}{r}
+       &=\nu(\Delta_0-r^{-2})u^\phi+f^\phi,\label{eq:ec-swirl}\\
+ D u^z+p_z&=\nu\Delta_0u^z+f^z.\label{eq:ec-axial}
+\end{align}
+
+Multiplying \eqref{eq:ec-swirl} by \(r\) and using \(Dr=u^r\) gives
+\begin{equation}
+ D\Gamma=\nu\mathcal D_-\Gamma+rf^\phi,
+ \qquad \mathcal D_-:=\partial_z^2+\partial_r^2-r^{-1}\partial_r.
+ \label{eq:ec-Gamma-physical}
+\end{equation}
+To verify the diffusion term explicitly,
+\[
+ \partial_r(\Gamma/r)=\Gamma_r/r-\Gamma/r^2,\qquad
+ \partial_r^2(\Gamma/r)=\Gamma_{rr}/r-2\Gamma_r/r^2+2\Gamma/r^3,
+\]
+so \(r(\Delta_0-r^{-2})(\Gamma/r)
+=\Gamma_{zz}+\Gamma_{rr}-\Gamma_r/r\).
+
+Next set \(q=\partial_z u^r-\partial_r u^z=r\xi\).
+For arbitrary smooth \(u^r,u^z\), expansion of the material derivative
+gives
+\begin{align*}
+ \partial_z(Du^r)-\partial_r(Du^z)
+ &=Dq+(\partial_zu^r)(\partial_ru^r)
+       +(\partial_zu^z)(\partial_zu^r)\\
+ &\hspace{9mm}-(\partial_ru^r)(\partial_ru^z)
+       -(\partial_ru^z)(\partial_zu^z)\\
+ &=Dq+(\partial_ru^r+\partial_zu^z)q
+ =Dq-\frac{u^r}{r}q=rD\xi.
+\end{align*}
+The penultimate equality uses exactly the divergence equation, and the
+last uses \(D(r\xi)=u^r\xi+rD\xi\).
+Apply \(\partial_z\) to \eqref{eq:ec-radial} and subtract
+\(\partial_r\) of \eqref{eq:ec-axial}.  The pressure cancels by equality
+of mixed derivatives.  The centrifugal term becomes
+\[
+ -\partial_z((u^\phi)^2/r)=-r^{-3}\partial_z(\Gamma^2).
+\]
+The viscous term is computed from the explicit commutator
+\[
+ \partial_r(\Delta_0 a)=\Delta_0(\partial_ra)-r^{-2}\partial_ra,
+ \qquad \partial_z\Delta_0a=\Delta_0\partial_za.
+\]
+These give
+\begin{align*}
+ \partial_z[(\Delta_0-r^{-2})u^r]-\partial_r\Delta_0u^z
+  &=(\Delta_0-r^{-2})q\\
+  &=(\Delta_0-r^{-2})(r\xi)
+   =r\left(\xi_{zz}+\xi_{rr}+\frac3r\xi_r\right).
+\end{align*}
+In the last line, \((r\xi)_r=\xi+r\xi_r\) and
+\((r\xi)_{rr}=2\xi_r+r\xi_{rr}\), so all zero-order terms cancel
+exactly.  Division by the original radius now proves
+\begin{equation}
+ D\xi=r^{-4}\partial_z(\Gamma^2)
+       +\nu\mathcal D_+\xi
+       +\frac{\partial_zf^r-\partial_rf^z}{r},
+ \qquad \mathcal D_+:=\partial_z^2+\partial_r^2+3r^{-1}\partial_r.
+ \label{eq:ec-xi-physical}
+\end{equation}
+
+For any scalar \(a(y_1,y_2,t)\),
+\[
+ \partial_r a=r a_{y_2},\qquad
+ \partial_r^2 a=a_{y_2}+r^2a_{y_2y_2},\qquad
+ \partial_z^2a=a_{y_1y_1}.
+\]
+Therefore the two distinct diffusion operators in volume coordinates are
+\begin{equation}
+ Q:=\partial_{y_1}^2+2y_2\partial_{y_2}^2,
+ \qquad M:=\partial_{y_1}^2+2y_2\partial_{y_2}^2+4\partial_{y_2},
+ \qquad \mathcal D_-=Q,\quad\mathcal D_+=M.
+ \label{eq:ec-volume-diffusion}
+\end{equation}
+In particular \(Q=2y_2L\).  This is equality of operators applied to a
+function, with multiplication by \(2y_2\) performed \emph{after} applying
+\(L\); it does not permit commuting derivatives through that factor.
+
+For the meridional force use the covector components
+\begin{equation}
+ b=(b_1,b_2)=(f^z,f^r/r),\qquad
+ \operatorname{curl}_y b:=\partial_{y_1}b_2-\partial_{y_2}b_1.
+ \label{eq:ec-force-covector}
+\end{equation}
+They differ from the pushforward velocity components because
+\[
+ f^z\,dz+f^r\,dr=b_1\,dy_1+b_2\,dy_2,
+ \qquad
+ \operatorname{curl}_yb
+       =\frac{\partial_zf^r-\partial_rf^z}{r}.
+\]
+The differential of this one-form is
+\((\operatorname{curl}_yb)dy_1\wedge dy_2\), which agrees with
+\((\partial_zf^r-\partial_rf^z)dz\wedge dr\) by the Jacobian.
+This proves the exact map for the force, including its orientation.
+
+The complete reduced system is consequently
+\begin{equation}
+ \boxed{\begin{aligned}
+    v&=J\nabla_y\Psi,\qquad \xi=L\Psi,\\
+    D_v\Gamma&=\nu Q\Gamma+rf^\phi,\\
+    D_v\xi&=W\partial_{y_1}(\Gamma^2)+\nu M\xi
+                          +\operatorname{curl}_y(f^z,f^r/r).
+ \end{aligned}}
+ \label{eq:ec-reduced-NS}
+\end{equation}
+The equation for the original square \(\Theta=\Gamma^2\), with its
+gradient-square term retained, is
+\begin{equation}
+ D_v\Theta=\nu Q\Theta
+ -2\nu\bigl((\Gamma_{y_1})^2+2y_2(\Gamma_{y_2})^2\bigr)
+ +2\Gamma r f^\phi.
+ \label{eq:ec-Theta}
+\end{equation}
+Indeed the product rule yields
+\(Q(\Gamma^2)=2\Gamma Q\Gamma
++2(\Gamma_{y_1})^2+4y_2(\Gamma_{y_2})^2\), and multiplication of the
+circulation equation by \(2\Gamma\) gives \eqref{eq:ec-Theta}.
+When \(\nu=0\), \eqref{eq:ec-reduced-NS} and
+\eqref{eq:ec-Theta} are exactly the Euler formulas (2.6) in the source.
+
+The momentum equations can also be displayed directly in volume
+coordinates, preserving the geometric quadratic terms:
+\begin{align}
+ D_vv_1+p_{y_1}&=f^z+\nu(Q+2\partial_{y_2})v_1,\label{eq:ec-v1}\\
+ D_vv_2-\frac{v_2^2+\Gamma^2}{2y_2}+2y_2p_{y_2}
+      &=rf^r+\nu Qv_2.\label{eq:ec-v2}
+\end{align}
+The first follows from \(v_1=u^z\) and
+\(\Delta_0=Q+2\partial_{y_2}\).  For the second,
+\(D(r u^r)=(u^r)^2+rDu^r\); multiply
+\eqref{eq:ec-radial} by \(r\), use \(r p_r=r^2p_{y_2}\),
+and apply the already proved identity
+\(r(\Delta_0-r^{-2})(v_2/r)=Qv_2\).
+
+\subsection{An explicit compact curl inverse, with proof and bounds}
+
+We construct the force operator used below.  Choose once and for all a
+smooth nonnegative function \(\eta\) supported in a compact subset of
+\(D\), with \(\int_{\mathbb R^2}\eta=1\).  Existence is explicit:
+choose a closed ball inside \(D\), put
+\(\eta_0(x)=\exp[-1/(1-|x-a|^2/\rho^2)]\) for \(|x-a|<\rho\)
+and zero otherwise, and divide it by its positive finite integral.
+Every derivative at the boundary vanishes because a polynomial in
+\((1-|x-a|^2/\rho^2)^{-1}\) times the exponential tends to zero.
+This proves the required smoothness of the bump.
+
+For a smooth \(g\) supported in \(D_0\), define
+\begin{equation}
+ (Bg)(x)=\int_{\mathbb R^2}g(y)(x-y)
+       \left(\int_1^\infty\eta(y+t(x-y))t\,dt\right)dy,
+ \qquad \mathcal Rg=JBg.
+ \label{eq:ec-B}
+\end{equation}
+The formula is interpreted by its absolutely locally integrable vector
+kernel, as justified next; equivalently it is given by the convergent
+smooth formulas in the proof.
+
+\begin{lemma}[Fixed compact inverse]
+\label{lem:ec-inverse-div}
+The operator \(B\) is linear and smooth on smooth compactly supported
+inputs, and
+\begin{equation}
+ \operatorname{div}Bg=g-\eta\int_{\mathbb R^2}g,
+ \qquad
+ \operatorname{curl}_y\mathcal Rg=g-\eta\int_{\mathbb R^2}g.
+ \label{eq:ec-B-div}
+\end{equation}
+Its support is contained in the convex hull of
+\(\operatorname{supp}g\cup\operatorname{supp}\eta\), hence compactly
+contained in \(D\).  For every nonnegative integer \(k\) there is a
+finite constant \(C_k\), depending only on the fixed balls, the bump,
+and \(k\), such that
+\begin{equation}
+ \|Bg\|_{C^k(\mathbb R^2)}+
+ \|\mathcal Rg\|_{C^k(\mathbb R^2)}\leq C_k\|g\|_{C^k(\mathbb R^2)}.
+ \label{eq:ec-B-bound}
+\end{equation}
+The same operator commutes with every time derivative.
+\end{lemma}
+
+\begin{proof}
+Put \(s=t-1\) and \(w=x-y\) in \eqref{eq:ec-B}.  Split the resulting
+\(s\)-integral at one.  The portion from zero to one is
+\begin{equation}
+ B_{\rm near}g(x)=\int_0^1(1+s)
+              \int_{\mathbb R^2}w g(x-w)\eta(x+sw)\,dw\,ds.
+ \label{eq:ec-B-near}
+\end{equation}
+In the portion from one to infinity put \(a=sw\).  It is
+\begin{equation}
+ B_{\rm far}g(x)=\int_1^\infty\frac{1+s}{s^3}
+              \int_{\mathbb R^2}a g(x-a/s)\eta(x+a)\,da\,ds.
+ \label{eq:ec-B-far}
+\end{equation}
+For \(x\) in any fixed bounded set, nonzero integrands in
+\eqref{eq:ec-B-near} have \(w\) in a fixed bounded set because
+\(x-w\in\operatorname{supp}g\subset\overline{D_0}\).
+The integration domains in \(w,s\) then have finite measure and all
+\(x\)-derivatives are bounded by fixed finite linear combinations of
+derivatives of \(g\) and \(\eta\).  In \eqref{eq:ec-B-far},
+\(a\) lies in a fixed bounded set because
+\(x+a\in\operatorname{supp}\eta\).  The scalar weight is integrable:
+\(\int_1^\infty(1+s)s^{-3}ds=3/2\).  Differentiating with respect to
+\(x\) differentiates only \(g(x-a/s)\) and \(\eta(x+a)\), with
+coefficients one.  Dominated convergence therefore permits every
+derivative, proves smoothness, and bounds derivatives through order
+\(k\) by a constant times \(\|g\|_{C^k}\).  These arguments also
+prove absolute convergence of the original vector integral locally in
+\(x\), by the indicated changes of variables.
+
+If an integrand in \eqref{eq:ec-B} is nonzero, then
+\(y\in\operatorname{supp}g\) and
+\(a=y+t(x-y)\in\operatorname{supp}\eta\) for some \(t\geq1\).
+Consequently \(x=(1-1/t)y+(1/t)a\) lies on the segment joining those
+two compact supports.  Outside their closed convex hull the integral
+vanishes.  Both supports lie in a smaller concentric closed ball inside
+the convex ball \(D\), so their convex hull is a compact subset of
+\(D\).  Apply the preceding derivative bounds on one fixed bounded
+neighborhood of \(\overline D\); outside that neighborhood the function
+and its derivatives vanish.  This proves the global estimate
+\eqref{eq:ec-B-bound}, also for \(JB\) because \(J\) preserves
+Euclidean norm.
+
+To prove the divergence identity, let \(\varphi\) be a smooth compactly
+supported test function.  In the pairing with \(\nabla\varphi\), change
+variables \(a=y+t(x-y)\) in the \(x\)-integral.  Then
+\(dx=t^{-2}da\) and \(x-y=(a-y)/t\).  Thus
+\begin{align*}
+ \int Bg(x)\cdot\nabla\varphi(x)\,dx
+  &=\int g(y)\int\eta(a)\int_1^\infty
+       \frac{a-y}{t^2}\cdot
+        \nabla\varphi\left(y+\frac{a-y}{t}\right)dt\,da\,dy\\
+  &=\int g(y)\int\eta(a)\,[\varphi(a)-\varphi(y)]\,da\,dy.
+\end{align*}
+All integrations here are absolutely convergent: \(a,y\) range over
+fixed compact sets and the remaining bound is a constant times
+\(t^{-2}\), whose integral is finite.  The second equality uses
+\[
+ \frac{d}{dt}\varphi\left(y+\frac{a-y}{t}\right)
+ =-\frac{a-y}{t^2}\cdot\nabla\varphi\left(y+\frac{a-y}{t}\right),
+\]
+and the limit at infinity is \(\varphi(y)\).
+Since \(\int\eta=1\), the definition of distributional divergence
+gives \(\operatorname{div}Bg=g-\eta\int g\).
+Both sides are smooth, so equality also holds pointwise.  Finally
+\(\operatorname{curl}_y Jb
+=\partial_{y_1}b_1+\partial_{y_2}b_2=\operatorname{div}b\),
+proving the curl identity with the stated sign.  The operator has no
+time-dependent coefficients, and the same dominated-convergence
+argument commutes any time derivative through it.  This proves all
+claims of the lemma.
+\end{proof}
+
+\subsection{Force and pressure recovery in both directions}
+
+For an arbitrary pair \((\Gamma,\Psi)\) as above define its exact
+reduced residuals at viscosity \(\nu\) by
+\begin{equation}
+ F_\nu^\Gamma=D_v\Gamma-\nu Q\Gamma,\qquad
+ E_\nu^\xi=D_v(L\Psi)-W\partial_{y_1}(\Gamma^2)-\nu M(L\Psi).
+ \label{eq:ec-residuals}
+\end{equation}
+No evolution equation has been assumed in this definition.
+
+\begin{proposition}[Complete compact reconstruction]
+\label{prop:ec-reconstruction}
+For every such smooth pair and every fixed \(\nu\geq0\), the formulas
+\begin{equation}
+ b=\mathcal R E_\nu^\xi,\qquad
+ f^z=b_1,\qquad f^r=rb_2,\qquad f^\phi=F_\nu^\Gamma/r
+ \label{eq:ec-force-recovery}
+\end{equation}
+give a smooth axisymmetric force supported in \(\widetilde D\).
+The velocity \eqref{eq:ec-physical-velocity} then solves
+\eqref{eq:ec-NS} with a smooth axisymmetric pressure on
+\(\mathbb R^3\times I\).  All statements include mixed space-time
+derivatives.  Conversely, every smooth axisymmetric solution of
+\eqref{eq:ec-NS} in this compact velocity class satisfies
+\eqref{eq:ec-reduced-NS} with its original force.  Hence the reduced
+equations plus the proved pressure reconstruction are an exact
+correspondence of the stated systems.
+\end{proposition}
+
+\begin{proof}
+First we verify the zero integral required by the compact inverse.
+All integrals are over \(\mathbb R^2\), where the fields have compact
+support away from \(y_2=0\).  Because \(L\Psi\) is a divergence,
+\(\int L\Psi=0\), and differentiation in time gives
+\(\int\partial_tL\Psi=0\).  Also
+\(v\cdot\nabla_y\xi=\operatorname{div}_y(v\xi)\), because
+\(\operatorname{div}_yv=0\), so its integral is zero.  The function
+\(W\) depends only on \(y_2\), and therefore
+\(\int W\partial_{y_1}\Gamma^2=0\).  Finally,
+\[
+ \int M\xi\,dy
+ =\int\bigl(\xi_{y_1y_1}+2y_2\xi_{y_2y_2}+4\xi_{y_2}\bigr)dy=0:
+\]
+the first and last terms integrate to zero, while integration by parts
+in the middle term gives \(-2\int\xi_{y_2}=0\).
+Thus \(\int E_\nu^\xi=0\), for Euler and for classical viscosity.
+Lemma~\ref{lem:ec-inverse-div} gives
+\(\operatorname{curl}_yb=E_\nu^\xi\), so
+\eqref{eq:ec-force-recovery} satisfies both equations in
+\eqref{eq:ec-reduced-NS}.  Its smoothness and support follow from that
+lemma and from the fixed positive lower bound on \(r\) on
+\(\widetilde D\).
+
+It remains to construct the pressure explicitly rather than leave it
+as a compatibility assertion.  Define the smooth physical vector field
+\begin{equation}
+ h=f+\nu\Delta_xu-\partial_tu-(u\cdot\nabla_x)u.
+ \label{eq:ec-h}
+\end{equation}
+It is axisymmetric, compactly supported in \(\widetilde D\), and
+identically zero in a fixed collar of the axis.  The circulation
+equation gives \(h^\phi=0\).  The previously proved meridional
+calculation gives the exact identity
+\begin{equation}
+ \partial_z h^r-\partial_r h^z
+ =r\left[\operatorname{curl}_y(f^z,f^r/r)
+        +\nu M\xi-D_v\xi+W\partial_{y_1}\Gamma^2\right]=0.
+ \label{eq:ec-h-curl}
+\end{equation}
+This also specifies the precise compatibility map from the momentum
+residual to the scalar residual, including the factor \(r\).
+
+For \(r\geq0\), extend the components of \(h\) by zero at the axis
+and put
+\begin{equation}
+ p(z,r,t)=\int_0^r h^r(z,\rho,t)\,d\rho.
+ \label{eq:ec-pressure}
+\end{equation}
+The integrand vanishes in a fixed neighborhood of \(\rho=0\), so
+there is no singular endpoint.  Direct differentiation yields
+\[
+ p_r=h^r,\qquad
+ p_z=\int_0^r\partial_z h^r(z,\rho,t)\,d\rho
+     =\int_0^r\partial_\rho h^z(z,\rho,t)\,d\rho=h^z(z,r,t).
+\]
+The last equality uses \(h^z(z,0,t)=0\).  There is no azimuthal
+derivative, so \(\nabla_xp=h\) for \(r>0\).  Moreover \(p=0\)
+in a fixed neighborhood of the axis.  It therefore extends smoothly
+as an axisymmetric scalar on \(\mathbb R^3\), with all time
+derivatives included.  Substitution of \eqref{eq:ec-h} proves
+\eqref{eq:ec-NS} everywhere, including the axis.
+
+For the converse, Proposition~\ref{prop:ec-velocity} recovers the
+unique compact streamfunction and circulation from the original
+velocity.  Applying the explicit component and curl calculations
+already proved gives \eqref{eq:ec-reduced-NS}.  The original pressure
+is allowed: no step replaced it by a force or changed its derivatives.
+This proves the asserted correspondence.
+\end{proof}
+
+There are uniform finite derivative bounds in this reconstruction.
+For nonnegative integers \(k,b\), the spatial chain and product rules,
+Lemma~\ref{lem:ec-inverse-div}, and the fixed support give
+\begin{equation}
+ \|\partial_t^b f\|_{C_x^k}
+ \leq C_k\left(
+       \|\partial_t^b E_\nu^\xi\|_{C_y^k}
+      +\|\partial_t^b F_\nu^\Gamma\|_{C_y^k}\right),
+ \label{eq:ec-physical-force-bound}
+\end{equation}
+where \(C_k\) depends on the fixed geometry and bump, not on the
+input pair or time.  To see explicitly why the coordinate factors are
+bounded, on the compact support \(r\) has a positive minimum and a
+finite maximum, so every finite derivative of \(r\), \(1/r\),
+\(\Phi\), \(\Phi^{-1}\), \(e_r\), and \(e_\phi\) is bounded there.
+Each derivative in the product and chain rules is a finite sum of
+products of these fixed derivatives with derivatives of the indicated
+input.  This proves \eqref{eq:ec-physical-force-bound} at every order.
+The pressure formula likewise preserves smoothness at each order by
+differentiation of its integral over a bounded radial interval on any
+compact spatial set.
+
+Force recovery is unique up to an exactly characterized gradient.
+Suppose two smooth axisymmetric force fields supported away from the
+axis realize the same \(F_\nu^\Gamma,E_\nu^\xi\).  Their difference
+\(g\) has \(g^\phi=0\) and
+\(\partial_zg^r-\partial_rg^z=0\).  The same formula
+\(q(z,r,t)=\int_0^r g^r(z,\rho,t)\,d\rho\) then proves
+\(g=\nabla_xq\).  Conversely adding \(\nabla_xq\) to the force and
+\(q\) to the pressure preserves \eqref{eq:ec-NS} and both reduced
+residuals, by direct substitution and cancellation of mixed
+derivatives.  Thus the missing scalar in a curl formulation is an
+explicit pressure gauge, with a proved reconstruction map.
+
+\subsection{What the viscosity calculation supplies for the next extension}
+
+At the level of arbitrary smooth fields, rather than just solutions,
+the same pair \((\Gamma,\Psi)\) has residual differences
+\begin{equation}
+ F_\nu^\Gamma-F_0^\Gamma=-\nu Q\Gamma,\qquad
+ E_\nu^\xi-E_0^\xi=-\nu M\xi.
+ \label{eq:ec-viscous-difference}
+\end{equation}
+These identities exhibit the precise two additional terms that must
+be controlled in the circulation and reduced-vorticity equations.
+The coefficient \(2y_2=r^2\), the drift \(4\partial_{y_2}\), the
+source coefficient \(W=r^{-4}\), and the original \(r_0,z_0,R,\nu\)
+have all been retained.  The square equation
+\eqref{eq:ec-Theta} also retains its nonzero viscous gradient-square
+term.
+
+There is an equally exact physical force identity.  For the same
+smooth \((u,p)\), define
+\(f_0=\partial_tu+(u\cdot\nabla)u+\nabla p\).  Then the unique
+force that makes this same \((u,p)\) satisfy the equation with viscosity
+\(\nu\) is
+\begin{equation}
+ f_\nu=f_0-\nu\Delta_xu.
+ \label{eq:ec-physical-force-difference}
+\end{equation}
+This follows by rearranging \eqref{eq:ec-NS}; it fixes the sign.
+The compact recovered force in \eqref{eq:ec-force-recovery} may use a
+different pressure gauge, but its difference from this expression has
+zero azimuthal component and zero meridional curl, by
+\eqref{eq:ec-viscous-difference}.  The preceding explicit potential
+construction proves that the difference is a smooth gradient.
+
+The coordinate mechanism therefore supplies a concrete translation
+between the equations.  It does not estimate
+\(\partial_t^b\partial_y^\alpha Q\Gamma\),
+\(\partial_t^b\partial_y^\alpha M\xi\), or
+\(\partial_t^b\partial_x^\alpha\Delta_xu\) at the terminal time of
+the released Euler construction.  Smoothness on each closed interval
+strictly before that time gives no uniform terminal bound by itself:
+even the scalar function \((T-t)^{-1}\) is smooth on every such
+interval and is unbounded as \(t\uparrow T\).  A classical
+Navier--Stokes construction requires actual estimates or cancellations
+for the displayed viscous terms in its own complete evolution.
+Those estimates have not been established in this section.
+
+\subsection{Independent symbolic verification and its exact scope}
+
+The accompanying script
+\texttt{scripts/check\_euler\_coordinates.py} verifies fifteen exact
+differential identities with arbitrary smooth symbolic functions
+\(\Psi,\Gamma,p,f^r,f^\phi,f^z\), retaining \(r>0\) and
+\(\nu\geq0\).  All fifteen remainders are the exact integer zero;
+the recorded output is
+\path{checks/euler_coordinates_symbolic.json}.
+In particular, define the complete physical momentum residuals
+\begin{align*}
+ R_r&=Du^r-(u^\phi)^2/r+p_r
+            -\nu(\Delta_0-r^{-2})u^r-f^r,\\
+ R_\phi&=Du^\phi+u^ru^\phi/r
+            -\nu(\Delta_0-r^{-2})u^\phi-f^\phi,\\
+ R_z&=Du^z+p_z-\nu\Delta_0u^z-f^z.
+\end{align*}
+The independent expansion checks the identities
+\begin{align}
+ rR_\phi&=D\Gamma-\nu\mathcal D_-\Gamma-rf^\phi,
+ \label{eq:ec-symbolic-swirl}\\
+ \partial_zR_r-\partial_rR_z
+ &=r\left[D\xi-r^{-4}\partial_z\Gamma^2-\nu\mathcal D_+\xi
+               -\frac{\partial_zf^r-\partial_rf^z}{r}\right].
+ \label{eq:ec-symbolic-curl}
+\end{align}
+Neither identity assumes that the residuals vanish.  The remaining
+checks include the streamfunction signs, divergence, force-free
+pressure cancellation, vector-Laplacian curl, both diffusion
+coordinate changes, the material derivative, the vorticity operator,
+the swirl source, and the oriented Jacobian.  These algebraic checks
+corroborate the local differential calculation.  The global support,
+smooth axis extension, inverse streamfunction, compact force inverse,
+and pressure recovery are established by the proofs above, not by the
+symbolic program.

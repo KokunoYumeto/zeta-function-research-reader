@@ -1,0 +1,530 @@
+\section{Transporting the retained counterexample mechanism}
+\label{sec:retained-mechanism}
+
+This section starts from the explicit polynomial used in the accompanying
+fluid reconstruction, not from a search over unrelated test functions.
+Tao's displayed map and geometric explanation\cite{tao2026jacobian},
+Speyer's marked-factor discussion\cite{speyer2026jacobian}, and
+Poplett's complete polynomial-coordinate proof\cite{poplett2026alias}
+identify the source. The calculations below retain its original coefficients.
+The interfaces developed here are the full inverse-fibre cubic, its coefficient
+heat flow, and the conductor model obtained from its two-sheet fibre product.
+These calculations establish precise local and dynamical connections;
+they do not identify a zero of the Riemann zeta function off its critical line.
+
+\subsection{Original coordinates and the entire inverse fibre}
+Use spatial coordinates $(x,y,w)$: $w$ is the third source coordinate
+called $t$ in the cited polynomial, with the explicit identity renaming
+$(x,y,t)\mapsto(x,y,w)$. Evolution time below is $\tau$ or $s$.
+Write the target as $(a,b,c)$ and set
+\begin{align}
+ F_1&=(1+xy)^3w+y^2(1+xy)(4+3xy),\notag\\
+ F_2&=y+3x(1+xy)^2w+3xy^2(4+3xy),\notag\\
+ F_3&=2x-3x^2y-x^3w. \label{eq:retained-F}
+\end{align}
+Here is a short exact determinant check. On $x\ne0$, put
+$v=1+xy$, $h=2-3xy-x^2w$, $A=v^2+v-v^3h$ and
+$B=4v+2-3v^2h$. Then $F=(A/x^2,B/x,xh)$ and
+\[
+ \det\frac{\partial(x,v,h)}{\partial(x,y,w)}=-x^3,
+ \qquad
+ \det\frac{\partial F}{\partial(x,v,h)}
+ =x^{-3}\det\begin{pmatrix}
+ -2A&2v+1-3v^2h&-v^3\\
+ -B&4-6vh&-3v^2\\h&0&1
+ \end{pmatrix}=2x^{-3}.
+\]
+The numerator in the last equality expands to
+$(4-6vh)(-2v^2-2v+3v^3h)
++(2v+1-3v^2h)(4v+2-6v^2h)=2$.
+The product is $-2$. Since $\det DF$ is a polynomial, the identity on
+$x\ne0$ proves $\det DF=-2$ everywhere, including $x=0$.
+
+\begin{proposition}[An exact inverse-fibre chart]
+\label{prop:retained-fibre}
+For fixed $(a,b,c)\in\C^3$, define
+\begin{equation}
+ P_{a,b,c}(r)=cr^3-2r^2+br-2a,
+ \qquad \alpha(r)=\frac12P'_{a,b,c}(r).
+ \label{eq:retained-cubic}
+\end{equation}
+The points in $F^{-1}(a,b,c)$ with $x\ne0$ correspond bijectively
+to the simple roots $r$ of $P_{a,b,c}$, by
+\begin{equation}
+ x=\alpha^{-1},\qquad y=r-\alpha,\qquad
+ w=5\alpha^2-3r\alpha-c\alpha^3.
+ \label{eq:retained-inverse}
+\end{equation}
+When $c=0$ there is one additional point
+$(0,b,a-4b^2)$. When $c\ne0$ there is no point with $x=0$.
+\end{proposition}
+\begin{proof}
+At a point with $x\ne0$ define $r=y+1/x$ and $\alpha=1/x$.
+Solving $F_3=c$ gives the formula for $w$ in
+\eqref{eq:retained-inverse}. Substitution in the other two original
+polynomials gives, before imposing their target values,
+\[
+ F_2=4r+2\alpha-3cr^2,\qquad
+ F_1=r^2+r\alpha-cr^3.
+\]
+Thus $F_2=b$ is precisely $2\alpha=3cr^2-4r+b=P'(r)$.
+After this substitution, $2(F_1-a)=P(r)$. These identities prove
+both directions, and recovering $r=y+1/x$ proves injectivity of the
+root parametrization. The requirement $\alpha\ne0$ is exactly
+the simple-root requirement; a multiple root is not a finite point
+of this chart. Finally $F(0,y,w)=(w+4y^2,y,0)$, which proves the
+separate boundary statement without division by $x$.
+\end{proof}
+
+For $c\ne0$ the cubic discriminant is
+\begin{equation}
+ \operatorname{Disc}_r P
+ =4\bigl(b^2-cb^3+18abc-16a-27a^2c^2\bigr).
+ \label{eq:retained-discriminant}
+\end{equation}
+This follows by substitution of $(c,-2,b,-2a)$ into the expanded
+cubic discriminant, or by eliminating $r$ between $P$ and $P'$.
+The same polynomial remains defined at $c=0$, but the polynomial
+then has degree two and the extra $x=0$ point must still be included.
+For example $(a,b,c)=(-1/4,0,0)$ gives $r=\pm1/2$ and
+$\alpha=-2r$, yielding $(1,-3/2,13/2)$ and
+$(-1,3/2,13/2)$; the additional point is $(0,0,-1/4)$.
+At $(a,b,c)=(0,0,0)$ the quadratic has a double root, hence neither
+of these two chart points survives; the additional point is $(0,0,0)$.
+In particular, loss of the two inverse branches is not a zero of
+$\det DF$ at a finite source point.
+
+\subsection{The same branch as an incompressible trajectory}
+Let $J=DF$ on $\R^3$ and define
+\begin{equation}
+ W=J^{-1}e_1=-\tfrac12\nabla F_2\times\nabla F_3
+   =\operatorname{curl}(-\tfrac12F_2\nabla F_3).
+ \label{eq:retained-piola}
+\end{equation}
+The scalar triple products with $\nabla F_i$ prove $JW=e_1$;
+the determinant computation shows that its coefficients are
+polynomial. Commuting mixed derivatives gives
+$\operatorname{div}W=0$.
+For $s<1/4$ define
+\[
+ \gamma_\pm(s)=\left(\pm(1-4s)^{-1/2},
+       \mp\tfrac32(1-4s)^{1/2},\tfrac{13}2(1-4s)\right).
+\]
+Both satisfy $F(\gamma_\pm(s))=(s-1/4,0,0)$ by the inverse chart.
+Differentiation gives $J\gamma_\pm'=e_1$, hence
+$\gamma_\pm'=W(\gamma_\pm)$. Their first coordinate escapes at
+$s=1/4$. The inverse-root coordinate on the positive branch is
+$r=-\sqrt{1-4s}/2$, with $r^2=1/4-s$ and $r'=-1/(2r)$.
+
+The metric making this transport an isometry is explicitly
+$g=J^{\mathsf T}J$, with $\det g=4$.
+Locally $X=F(x,y,w)$ is a coordinate system and $g=\sum dX_i^2$.
+Thus $W$ is the pullback of the constant field $e_1$, is parallel,
+and has $g$-norm one. It solves the intrinsic incompressible viscous
+equation for every positive viscosity with constant pressure and the
+Hodge Laplacian on one-forms. Its displayed trajectories have finite
+$g$-length before escaping, proving metric incompleteness: a sequence
+of their times tending to $1/4$ is metric Cauchy but has no finite
+coordinate limit. A smooth positive metric gives the ordinary local
+topology, as follows by bounding its eigenvalues above and below on
+a small closed coordinate ball.
+
+This transport retains its metric, rather than silently replacing it
+by the original Euclidean one. For a scalar target function $f$, set
+$W_i=J^{-1}e_i$. The chain rule proves
+\begin{equation}
+ W_i(f\circ F)=(\partial_i f)\circ F,
+ \qquad \sum_iW_i^2(f\circ F)=(\Delta_Xf)\circ F.
+ \label{eq:retained-operators}
+\end{equation}
+The fields commute: their bracket annihilates each $F_j$, and
+invertibility of $J$ then makes that bracket zero.
+The ordinary source Laplacian is not the operator in
+\eqref{eq:retained-operators}: $\Delta_{x,y,w}F_1(0)=8$ whereas
+$\Delta_X X_1=0$. These are explicit operator coordinates for the
+fluid transfer, not a conclusion that the constructions are unrelated.
+
+\subsection{The released fluid amplifier in material coordinates}
+The released Boussinesq construction\cite[Section~3.1, Lemma~3.1]{ab2026boussinesq}
+provides the following local wave. We retain its profile rather than
+replace it by a different trial wave. Write $J_2(a,b)=(-b,a)$,
+$\kappa=|\zeta|^2$, $\zeta(t_0)\ne0$, $\lambda>0$, and
+$s=\lambda\zeta\cdot x$.
+The earlier fields are $u_{\rm old}=Dx$, $\theta_{\rm old}=G\cdot x$,
+with $\operatorname{tr}D=0$. A smooth odd periodic profile $f$ has
+an even periodic primitive $p$, $p'=f$. The new fields are
+\[
+ \vartheta=\Theta f(s),\quad
+ \psi=\frac{\Omega}{\lambda^2\kappa}p(s),\quad
+ v=\frac{\Omega}{\lambda\kappa}J_2\zeta f(s),\quad
+ \varpi=\Omega f'(s).
+\]
+Here $v=J_2\nabla\psi$, $\varpi=\operatorname{curl}v=\Delta\psi$.
+The equations for the inviscid scalar and vorticity have right-hand
+sides $0$ and $\partial_1\theta$, respectively, before the specified
+forcing residuals. Their exact increments vanish when
+\begin{equation}
+ \dot\zeta=-D^{\mathsf T}\zeta,\qquad
+ \dot\Theta=-\frac{J_2\zeta\cdot G}{\lambda\kappa}\Omega,
+ \qquad \dot\Omega=\lambda\zeta_1\Theta.
+ \label{eq:retained-fluid-amplifier}
+\end{equation}
+For completeness, $\dot\zeta=-D^{\mathsf T}\zeta$ makes
+$(\partial_t+Dx\cdot\nabla)s=0$. Since $J_2\zeta\cdot\zeta=0$,
+$v\cdot\nabla\vartheta=v\cdot\nabla\varpi=0$.
+The old vorticity is spatially constant. The scalar residual is
+$[\dot\Theta+\Omega(J_2\zeta\cdot G)/(\lambda\kappa)]f(s)$;
+the vorticity residual is $[\dot\Omega-\lambda\zeta_1\Theta]f'(s)$.
+These expressions prove every cancellation in
+\eqref{eq:retained-fluid-amplifier}. They use no sinusoidal identity.
+
+The covector map has an exact inverse-flow origin. If
+$\dot M=DM$, $M(t_0)=I$, then
+$\zeta=M^{-\mathsf T}\zeta(t_0)$, as differentiation proves.
+Jacobi's determinant identity gives
+$\partial_t\det M=(\operatorname{tr}D)\det M=0$, so $\det M=1$.
+More generally a smooth incompressible material flow
+$\dot X(a,t)=u(X(a,t),t)$ with $X(a,t_0)=a$ has
+\[
+ \partial_t(D_aX)=(D_xu)\circ X\,D_aX,
+ \quad \det D_aX=1,
+ \quad \nabla_x(\phi_0\circ X^{-1})\circ X
+       =(D_aX)^{-\mathsf T}\nabla_a\phi_0.
+\]
+The first identity follows by differentiating the flow in its label;
+the other two follow by the determinant identity and chain rule.
+These formulas exhibit exactly how gradient information is transported
+while the determinant stays fixed. The particular amplification and
+reset sequence, compact localization, and all-derivative forcing control
+belong to the source construction, not to the determinant identity alone.
+
+One can retain viscosity directly in this calculation. Scalar
+diffusivity $\eta\ge0$ and vorticity viscosity $\nu\ge0$ add
+$\eta\lambda^2\kappa\Theta f''$ and
+$\nu\lambda^2\kappa\Omega f'''$ to the two right-hand sides.
+For the special profile $f(s)=\sin s$ and stationary background
+$D=0$, $G=-Ae_2$, $A>0$, put
+$\zeta=r(\sin\phi,\cos\phi)$ with $r>0$, and $k=\lambda r$.
+Then the amplitude matrix and its two eigenvalues are exactly
+\begin{align*}
+ B_{\eta,\nu}&=\begin{pmatrix}
+ -\eta k^2&A\sin\phi/k\\k\sin\phi&-\nu k^2
+ \end{pmatrix},\\
+ \mu_\pm&=-\frac{(\eta+\nu)k^2}{2}
+ \mathbin{\pm}\sqrt{\frac{(\eta-\nu)^2k^4}{4}+A\sin^2\phi}.
+\end{align*}
+Expanding $\det(\mu I-B)$ proves the formula; comparing the
+nonnegative square root with $(\eta+\nu)k^2/2$ gives
+$\mu_+>0$ exactly when $A\sin^2\phi>\eta\nu k^4$.
+For the actual localized profile, the displayed $f''$ and $f'''$
+terms remain; there is no replacement of those functions by $-f,-f'$.
+
+There is likewise an exact, reversible force map in the original
+three-dimensional Cartesian coordinates. From an Euler triple
+$\partial_tu+(u\cdot\nabla)u+\nabla p_E=f_E$, $\operatorname{div}u=0$,
+all Navier--Stokes triples with the same velocity and viscosity $\nu$
+are
+\[
+ p_{NS}=p_E+q,\qquad f_{NS}=f_E-\nu\Delta u+\nabla q,
+ \qquad \operatorname{curl}f_{NS}
+   =\operatorname{curl}f_E-\nu\Delta\operatorname{curl}u.
+\]
+Substitution proves sufficiency; subtraction proves necessity.
+The curl identity follows from commuting distributional derivatives,
+so it retains every pressure adjustment. The companion Euler
+manuscript\cite[Theorem~1.1 and Sections~3--4]{ab2026euler}
+is the source of the three-dimensional material-layer construction.
+This section reconstructs the amplifier and its exact transfer terms;
+it does not certify that manuscript's full multiscale proof or replace
+the viscous transfer by dropping $\nu\Delta u$.
+
+\subsection{Exact heat transport of the fibre cubic}
+Keep $a_0,b_0,c$ fixed and move the target by
+\begin{equation}
+ a(\tau)=a_0+2\tau,\qquad b(\tau)=b_0+6c\tau.
+ \label{eq:retained-coefficient-flow}
+\end{equation}
+For $P(\tau,r)=P_{a(\tau),b(\tau),c}(r)$ direct differentiation gives
+\begin{equation}
+ P_\tau=6cr-4=P_{rr}.
+ \label{eq:retained-heat}
+\end{equation}
+Thus the original inverse-fibre family is closed under the forward
+heat operator, with every coefficient and the time sign specified.
+On a simple root, $r_\tau=-P_{rr}/P_r$. The velocity of its lifted
+point in the original source coordinates is
+$J^{-1}(2,6c,0)^{\mathsf T}$, by differentiating its target.
+No such finite lift is assigned when $P_r=0$.
+
+With Newman time $t=-\tau$, write
+$\mathcal P(t,r)=P_{a_0-2t,b_0-6ct,c}(r)$. Then
+$\mathcal P_t=-\mathcal P_{rr}$ and
+$r_t=\mathcal P_{rr}/\mathcal P_r$, the same local zero equation
+as in Section~\ref{sec:rh-newman-collision}.
+For $b_0=c=0$ this becomes exactly
+\[
+ \mathcal P(t,r)=-2\bigl(r^2-2(t-t_c)\bigr),\qquad t_c=a_0/2.
+\]
+For real $a_0$ and real $t$, the double root occurs at $(t_c,0)$;
+the two roots are real for
+$t>t_c$ and nonreal for $t<t_c$. The point $a_0=-1/4$ of the
+original three-point collision corresponds to $t_c=-1/8$ in this
+particular heat orbit. Neither shifting this model time origin nor
+choosing another $a_0$ changes the distinguished initial function
+$H_0(z)=\xi(1/2+iz/2)/8$ of the actual Newman family.
+
+There is also an exact nonlinear velocity equation. Wherever $P\ne0$,
+set $u=-2P_r/P$. Writing locally $L=\log P$ gives
+$L_\tau=L_{rr}+L_r^2$. Differentiating this equality proves
+$u_\tau+uu_r=u_{rr}$. A zero of multiplicity $m$ gives
+$u=-2m/(r-r_*)+O(1)$ by factoring $P=(r-r_*)^mA$, $A(r_*)\ne0$.
+This is the singularity of a specified logarithmic-derivative map.
+
+The arithmetic transport can already be written without guessing a
+new zero. Define
+\[
+ \widehat H(t,x,y,w)=H_t(F_1(x,y,w)).
+\]
+The established Newman equation and
+\eqref{eq:retained-operators} give
+\begin{equation}
+ \partial_t\widehat H=-W_1^2\widehat H.
+ \label{eq:retained-arithmetic-pullback}
+\end{equation}
+Its values are constant on every fibre of $F$. In particular the
+nonzero functional
+$D_s=\delta_{\gamma_+(s)}-\delta_{\gamma_-(s)}$ annihilates every
+scalar $f\circ F$, including $\widehat H(t,\cdot)$, while
+$D_s(x)=2(1-4s)^{-1/2}$ diverges. This proves exactly which branch
+information scalar descent loses and supplies the retained
+branch-sensitive observable. The cancellation is not a negative
+Weil value or an off-critical zero.
+
+Even a local replacement of $H_t$ by a polynomial factor must carry
+its analytic unit. The exact product identity is
+\begin{equation}
+ (\partial_t+\partial_z^2)(AP)
+ =A(\partial_t+\partial_z^2)P+(A_t+A_{zz})P+2A_zP_z.
+ \label{eq:retained-unit-defect}
+\end{equation}
+At a simple zero of $P$, the ratio $(AP)_{zz}/(AP)_z$ is
+$P_{zz}/P_z+2A_z/A$. Thus discarding the unit would change the
+zero dynamics by an explicitly known term. The present reconstruction
+transfers the mechanism and its equations; it does not replace the
+arithmetic initial datum by a chosen cubic.
+
+\subsection{Two inverse sheets produce a conductor crossing}
+\label{sec:retained-conductor}
+On $b=c=0$ the inverse-root cover is the map
+$\pi:\C_r\to\C_a$, $a=-r^2$. Its two-fold self-fibre product has
+coordinate ring
+\[
+ B=\C[r_1,r_2]/(r_1^2-r_2^2).
+\]
+The linear changes
+\begin{equation}
+ u=r_1-r_2,\quad v=r_1+r_2,
+ \qquad r_1=(u+v)/2,\quad r_2=(v-u)/2
+ \label{eq:retained-node-map}
+\end{equation}
+give the exact ring isomorphism $B\simeq R=\C[u,v]/(uv)$.
+The component $u=0$ records equal roots, and $v=0$ records opposite
+roots. For the physical $x\ne0$ inverse chart one must remove $r_1r_2=0$;
+the crossing at the origin belongs to its algebraic completion.
+Adjoining a free coordinate $z$ gives the corresponding local surface
+$uv=0$ in three-space. This is an actual map from the retained
+polynomial to the double-crossing model used in the analysis of
+Campana--Demailly--Peternell\cite[Section~7, p.~692]{cdp2020},
+through a stated fibre-product construction.
+
+We first compute in the curve ring $R$; the free surface coordinate
+will be restored below. The normalization ring is
+$\widetilde R=\C[u]\oplus\C[v]$.
+The injection $R\to\widetilde R$ sends a polynomial to its
+restrictions $(f(u,0),f(0,v))$. Its image consists exactly of pairs
+having equal constant terms: the inverse reconstruction is
+$p(u)+q(v)-p(0)$ for a pair with $p(0)=q(0)$.
+The conductor is
+\[
+ \mathfrak c=(u,v)\subset R,
+ \qquad \mathfrak c\widetilde R=u\C[u]\oplus v\C[v].
+\]
+Indeed a pair with zero constant terms can be multiplied by every
+pair in $\widetilde R$ and remains in the image. Conversely
+multiplication by $(1,0)$ forces the common constant term of any
+conductor element to be zero.
+
+The intrinsic differential module is explicitly
+\begin{equation}
+ \Omega_R^1=(R\,du\oplus R\,dv)/R(v\,du+u\,dv).
+ \label{eq:retained-node-differentials}
+\end{equation}
+Its class $\theta=v\,du=-u\,dv$ is nonzero. If it were zero,
+$(v,0)=h(v,u)$ in $R^2$, so $hv=v$ and $hu=0$.
+The latter forces $h\in(v)$ by the just-proved normalization
+description. Reducing the former in $\C[v]$ then forces $h(0,v)=1$,
+contradicting $h\in(v)$. Also $u\theta=v\theta=0$.
+Since $u+v$ is a non-zero-divisor (its two normalized restrictions
+are nonzero polynomials), this is a genuine torsion class.
+Its image in $\Omega_{\widetilde R}^1$ is zero on both branches.
+
+In fact the kernel of $\Omega_R^1\to\Omega_{\widetilde R}^1$
+is exactly $\C\theta$. For a class $A\,du+B\,dv$ to map to zero,
+$A(u,0)=B(0,v)=0$, so $A=va(v)$ and $B=ub(u)$.
+The relations $v^2du=u^2dv=0$ reduce this class to
+$(a(0)-b(0))\theta$. This proves the kernel statement, not merely
+the existence of a forgotten class. In the original root coordinates,
+$\theta=r_2dr_1-r_1dr_2$: expand $vdu$ using
+\eqref{eq:retained-node-map} and use $r_1dr_1=r_2dr_2$.
+For the surface ring $R[z]$, differentials split as
+$(\Omega_R^1\otimes_R R[z])\oplus R[z]dz$.
+The last summand injects into the normalized ring's $dz$ summand,
+and the preceding calculation works coefficient by coefficient in $z$.
+Thus its kernel is exactly $\C[z]\theta$.
+
+The ambient restricted module is another explicit part of the same
+diagram: for $S=(uv=0)\subset\C^2$ it is
+$\Omega_{\C^2}^1|_S=R\,du\oplus R\,dv$.
+Its nonzero conormal $d(uv)=vdu+udv$ maps to zero in
+\eqref{eq:retained-node-differentials}; $vdu$ instead maps to the
+nonzero class $\theta$ and subsequently to zero on normalization.
+These two calculated kernels are the precise objects to retain when
+comparing an ambient restricted differential with its torsion-free
+quotient. They are not interchangeable vanishings. No global line
+bundle, compact threefold, or CDP20 counterexample is inferred just
+from this local ring: the existing global construction must transport
+these classes through its own gluing maps.
+
+Here is the global sheaf diagram in which the local calculation belongs.
+Let $S$ be a reduced effective Cartier divisor in a smooth complex
+manifold $X$. Put $E=\Omega_X^1|_S$, $N=\mathcal O_S(-S)$,
+$T=\ker(\Omega_S^1\to j_*\Omega_{S_{\rm reg}}^1)$, and
+$Q=\Omega_S^1/T$, where $j:S_{\rm reg}\hookrightarrow S$.
+Let $K$ be the inverse image of $T$ under $E\to\Omega_S^1$.
+The precise sequences are
+\begin{equation}
+ 0\longrightarrow N\longrightarrow K\longrightarrow T\longrightarrow0,
+ \qquad
+ 0\longrightarrow K\longrightarrow E\longrightarrow Q\longrightarrow0.
+ \label{eq:retained-cdp-filtration}
+\end{equation}
+Indeed the Cartier conormal map sends a local frame to $dg$ for
+a reduced defining equation $g$. At the generic smooth points of
+each component, $dg$ is nonzero. A coefficient annihilating it
+therefore vanishes on every component and is zero since $S$ is reduced.
+This proves left injectivity in the conormal sequence. Taking the
+inverse image of $T$ proves the first sequence, and its quotient proves
+the second. On $uv=0$, $N$ is generated by $vdu+udv$ and $T$ by
+the class calculated above.
+
+For any line bundle $L$ on $S$, twisting these sequences is exact
+because a line bundle is locally free. In particular the relevant
+segments in cohomology are
+\begin{align*}
+0&\longrightarrow H^0(N\otimes L)\longrightarrow H^0(K\otimes L)
+ \longrightarrow H^0(T\otimes L)
+ \xrightarrow{\delta_L} H^1(N\otimes L),\\
+0&\longrightarrow H^0(K\otimes L)\longrightarrow H^0(E\otimes L)
+ \longrightarrow H^0(Q\otimes L).
+\end{align*}
+The connecting map is explicit: lift a torsion section to sections
+$k_i$ of $K\otimes L$ on a sufficiently fine trivializing cover
+where these local lifts exist; the differences $k_j-k_i$ lie in
+$N\otimes L$ and form its representing cocycle.
+Changing lifts adds a coboundary. In the vanishing reduction used in
+the cited Section~7, setting the two endpoint groups
+$H^0(N\otimes L)$ and $H^0(Q\otimes L)$ to zero leaves precisely
+$\ker\delta_L$ as the ambient group $H^0(E\otimes L)$.
+It does not erase $T$. This calculation identifies the exact additional
+term and the actual gluing map, without assigning any global conclusion
+to the local model alone.
+
+\subsection{Retaining the two sheets in the arithmetic spectral quotient}
+Connes--Consani--Moscovici\cite[Section~3.6, Proposition~3.6]{ccmProlate2024}
+use the Hadamard topological ring $\mathcal H_{\le1}$ of entire
+functions of order at most one. Their quotient is
+\[
+ Q_{\rm ar}=\mathcal H_{\le1}/
+ \overline{\operatorname{span}\{\mathcal F_\mu\mathcal E(\psi_\ell^\pm)\}},
+ \qquad
+ (\mathcal F_\mu\mathcal E\psi_\ell^\pm)(s)=R_\ell^\pm(s)\Xi(s).
+\]
+Multiplication by $s$ induces an operator $S$ on this quotient;
+the cited proposition identifies its spectrum with the parameters
+$s$ for which $1/2+is$ is a nontrivial zeta zero. We use this
+specified quotient, not an orthogonal complement and not an
+unjustified replacement of the closed subspace by an algebraic ideal.
+The exact relation to our heat coordinate is
+\[
+ \Xi(s)=\xi(1/2+is)=8H_0(2s),\qquad a=2s.
+\]
+Consequently the retained inverse-root cover $a=-r^2$ gives
+$s=-r^2/2$, including the factor two.
+
+Form the finite free scalar extension
+\begin{equation}
+ \widehat Q_{\rm ar}=\C[r]\otimes_{\C[s]}Q_{\rm ar},
+ \qquad s\longmapsto-r^2/2.
+ \label{eq:retained-arithmetic-extension}
+\end{equation}
+Every polynomial in $r$ has a unique even--odd decomposition
+$p_0(-r^2/2)+r p_1(-r^2/2)$. Existence follows by separating its
+even and odd powers, and uniqueness by comparing those powers.
+Thus $\C[r]$ is free of rank two over $\C[s]$, and
+\eqref{eq:retained-arithmetic-extension} identifies exactly with
+$Q_{\rm ar}\oplus rQ_{\rm ar}$. Give it this finite direct-sum
+topology. We are not asserting that this tensor product is a space
+of all entire functions pulled back along $s=-r^2/2$; that would
+alter their growth class.
+
+In the ordered basis $(1,r)$, multiplication by $r$ and by the
+original spectral coordinate $s$ are, respectively,
+\begin{equation}
+ \mathcal R=\begin{pmatrix}0&-2S\\I&0\end{pmatrix},
+ \qquad \widehat S=-\tfrac12\mathcal R^2
+          =\begin{pmatrix}S&0\\0&S\end{pmatrix}.
+ \label{eq:retained-arithmetic-matrices}
+\end{equation}
+Indeed $r(q_0+r q_1)=-2S q_1+r q_0$, proving both matrices.
+The sheet involution sends $(q_0,q_1)$ to $(q_0,-q_1)$;
+its trace is $2q_0$ and its kernel is precisely $rQ_{\rm ar}$.
+This trace is $\C[s]$-linear, not $\C[r]$-linear:
+$\mathcal R(rq)=-2Sq$ lies in the even summand, so the odd
+summand is not in general preserved by $\mathcal R$ itself.
+The normalized trace $\pi(q_0,q_1)=q_0$ has section
+$\iota(q)=(q,0)$. Therefore the sequence
+\[
+ 0\longrightarrow rQ_{\rm ar}\longrightarrow\widehat Q_{\rm ar}
+ \xrightarrow{\pi}Q_{\rm ar}\longrightarrow0
+\]
+is split, and $\widehat S$ preserves both summands. These are the
+explicit branch-retention, branch-forgetting, and inverse maps.
+
+The spectrum in the original arithmetic coordinate is unchanged:
+$\operatorname{Spec}\widehat S=\operatorname{Spec}S$.
+Here spectrum means failure of a continuous two-sided inverse in
+the source quotient topology. If $S-\lambda$ has inverse $T$,
+$\operatorname{diag}(T,T)$ inverts $\widehat S-\lambda$.
+Conversely, for an inverse $B$ of $\widehat S-\lambda$,
+$\pi B\iota$ is an inverse of $S-\lambda$, since
+$\pi(\widehat S-\lambda)=(S-\lambda)\pi$ and
+$(\widehat S-\lambda)\iota=\iota(S-\lambda)$.
+Continuity follows from the finite direct-sum topology in both
+directions. This proof carries the actual operator and its lost
+summand; it does not turn a complex value of $r$ into an off-real
+value of the original spectral coordinate $s$.
+For an eigenvector $Sq=\lambda q$ and a scalar $\rho$ with
+$\rho^2=-2\lambda$, $(\rho q,q)$ is directly an eigenvector of
+$\mathcal R$ with eigenvalue $\rho$.
+Thus even that change of spectral coordinate is completely explicit.
+
+\paragraph{Verification and continuation.}
+The accompanying exact checker replays the determinant, inverse chart,
+entire collision fibre, discriminant, coefficient heat flow, escaping
+trajectory, and the fibre-product change of variables. It uses rational
+polynomial arithmetic, not numerical evidence or a Lean certification.
+The conductor and differential-module arguments above are full written
+proofs. The next arithmetic step carries the actual heat and material
+generators through the now-retained two-component arithmetic module,
+including the branch coupling and analytic-unit derivative. No independent generic zero scan
+is prescribed by this section.

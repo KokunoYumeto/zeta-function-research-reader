@@ -1,0 +1,423 @@
+\section{Formalization and open obligations}
+
+Every local theorem claim enters a reproducible Lean queue or carries an explicit account of
+why a different certificate is appropriate.  A formal replay never enlarges the statement it
+checks, and a passing executable calculation never supplies a missing conceptual map.
+
+\subsection{Completed finite-coordinate formalization}
+
+\texttt{FORMAL-20260825-0007} is implemented in the source file
+\path{formal/lean/ZetaFunctionFoundation/SourceBlockCoordinates.lean}.  For maps
+$\mu,\nu:\operatorname{Fin}(s)\to\N$, it defines the coordinate types
+\[
+ J_\mu=\coprod_{i:\operatorname{Fin}(s)}\operatorname{Fin}(\mu_i),\qquad
+ I_{\mu,\nu}=(\operatorname{Fin}(s)\times\operatorname{Fin}(s))
+ \amalg J_\mu\amalg J_\nu
+\]
+and the full coordinate space $I_{\mu,\nu}\to\C$.  The theorems
+\path{sourceCoord_card} and \path{sourceBlock_finrank} prove, without deleting a
+summand,
+\[
+ \#I_{\mu,\nu}=\dim_\C(\C^{I_{\mu,\nu}})
+ =s^2+\sum_i\mu_i+\sum_j\nu_j.
+\]
+
+For the first-derivative block, the file retains
+$(A,u,\varphi,\lambda)$ as four separate coordinates.  It proves that
+\[
+ (A,u,\varphi)\longmapsto(A,u,\varphi,-\operatorname{Tr}A)
+\]
+has the displayed block-extraction inverse, zero kernel, full range, and singleton fibres.
+It then introduces the literal index decomposition
+$\operatorname{Fin}(s)\amalg\mathbf{1}$, proves that four-block assembly and extraction are
+two-sided complex-linear inverses, and proves
+\[
+ \operatorname{Tr}\bigl(\operatorname{blockToMatrix}(A,u,\varphi,\lambda)\bigr)
+ =\operatorname{Tr}(A)+\lambda.
+\]
+Consequently \texttt{sourceSLEquiv} is an explicit linear equivalence with Mathlib's actual
+special-linear Lie algebra on that index set.  The definition \texttt{sourceCommutator} pulls
+the matrix commutator back through this equivalence, and
+\texttt{sourceCommutator\_matrix\_formula} proves that its image is exactly
+$XY-YX$.  Thus the formal file checks the coordinate map, its inverse, kernel, image, fibres,
+trace condition, and commutator pullback.  It constructs no map from a CUE moment, determinant,
+Haar law, or limiting object to either side.
+
+The accepted replay uses Lean~4.32.0 and Mathlib commit
+\begin{center}\small\texttt{81a5d257c8e410db227a6665ed08f64fea08e997}.\end{center}
+Its source SHA--256 is
+\begin{center}\small\texttt{521b647d6449672a7822fc348db680941494eaceff75756d0d3cf761272bce05},\end{center}
+and the compiled \texttt{.olean} SHA--256 is
+\begin{center}\small\texttt{79b32538a1f7aaeab42dc2ab402923603b53d1091d857cc06cefa74886697c34}.\end{center}
+The exact command, empty standard streams, exit code zero, and 1,933,365,248-byte aggregate
+peak are in \path{formal/lean/receipts/FORMAL-20260825-0007.receipt.json}.
+
+\subsection{Completed finite Laurent formalization}
+
+\texttt{FORMAL-20260825-0008} is implemented in the source file
+\path{formal/lean/ZetaFunctionFoundation/N3LaurentCertificate.lean}.  An exponent is the
+displayed triple in $\Z^3$, and a Laurent expression is a finite list of
+exponent/coefficient contributions.  Equal exponents are collected only by the explicit
+function \path{collectTerms}; \path{coefficient_insertTerm} and
+\path{coefficient_collectTerms} prove that this executable collection preserves every
+coefficient.  The multiplication theorem similarly identifies collected multiplication with
+the raw finite convolution contribution list.  Thus no unchecked preprocessing or silent
+change of coordinates enters the calculation.
+
+The file records the seven terms of
+$p=3-2(z_1+z_2+z_3)+(z_1z_2+z_1z_3+z_2z_3)$, proves coefficientwise that inversion sends
+$p_\alpha$ to $p_{-\alpha}$, constructs all six factors
+$(1-z_i/z_j)$ for $i\ne j$, and extracts the coefficient at $(0,0,0)$.  Lean verifies the
+integer numerators
+\[
+ 84,\quad2250,\quad93060,\quad5083680,\quad331988544,
+\]
+their exact divisibility by $3!=6$, and hence the five values in
+\cref{prop:n3-cue-exact-moments}.  The formal theorem is exactly the finite Laurent identity;
+the analytic passage from normalized Haar measure to the constant-term formula remains the
+separately cited human proof in \cref{prop:n3-cue-exact-moments}.
+
+The source SHA--256 is
+\begin{center}\small\texttt{4a34082b4e60df6511f4e7cca850a102dc2cb858130d2405890247986f766e67},\end{center}
+and the compiled \texttt{.olean} SHA--256 is
+\begin{center}\small\texttt{416341a266d0688e7c8082f480d2883bcbea31a5e49842e930f4028084f260e8}.\end{center}
+The accepted replay exits zero with a 1,404,055,552-byte aggregate peak.  Its use of
+\texttt{native\_decide}, and therefore its compiler trust boundary, is explicit in the receipt
+and independently backed by the two exact non-Lean implementations.
+
+\subsection{Remaining queue}
+
+Four successor obligations now bind the exact results added in this tranche.
+\texttt{FORMAL-20260825-}\allowbreak\texttt{0011} stages the compact shifted-Hurwitz work into the finite
+endpoint-residue equivalence, the all-order coefficient recursion, and the separate analytic
+Hurwitz/implicit-function layer.  The first two are finite coordinate problems; the last
+requires a located Mathlib meromorphic Hurwitz-zeta and complex implicit-function interface
+and may not be replaced by axioms.
+
+\texttt{FORMAL-20260825-}\allowbreak\texttt{0012} targets
+\cref{prop:finite-weyl-coordinate-isomorphism}: translation and character operators on an
+arbitrary finite abelian group, the retained cocycle product, character orthogonality,
+Hilbert--Schmidt basis, inverse coefficients, kernel, image, fibres, and the exact traceless
+restriction.  No unrecorded enumeration of the finite group may enter the statement.
+
+\texttt{FORMAL-20260825-}\allowbreak\texttt{0013} targets the exact $U(2)$ tranche.  It separates the finite
+centre/difference algebra, the two folding branches and boundary fibres, and the exact
+constant-term moment calculation from the analytic Haar-circle, change-of-variables, beta
+integral, and pushforward-measure layer.  The executable
+\path{certificates/u2_exact_law/verify_u2_exact_law.py} already checks, in exact rational
+arithmetic and by two independently assembled formulas, the first eight moments
+\[
+ 5,\ 34,\ 285,\ 2766,\ 29666,\ 340740,\ 4108509,\ 51351190.
+\]
+That finite certificate is not represented as a proof of the Jacobian or pushforward measure.
+
+\texttt{FORMAL-20260825-}\allowbreak\texttt{0014} targets
+\cref{thm:n3-base-quotient,thm:n3-physical-trace-cover}.  Its finite algebraic stage must
+formalize the rationalized $Z$ numerator, trace and norm equations, the two discriminant
+coordinates, the $S$ factorization, the affine $(u,v)$--$(u,X)$ equivalence, and the lifted
+inverse modulo $J^2+S=0$.  Its ordered-real stage must separately prove positivity of
+$D_0,h,g$, the exact image $\Omega_3$, surjectivity, two-point and branch fibres, $u<1$, and
+bijectivity of the physical lift.  The passing SymPy certificate checks the polynomial and
+rational identities only; it is not to be promoted into an inequality or surjectivity proof.
+
+The separate interface stage \texttt{FORMAL-20260826-}\allowbreak\texttt{0015} is complete.
+Against Lean~4.32.0 and pinned Mathlib~v4.32.0 it formalizes the deck-curve equation,
+the polynomial parametrization and its explicit inverse, the target involution, uniqueness of
+its fixed point, the general two-fixed-source-point obstruction to equivariant injectivity,
+the recovered-$\beta_0$ carrier parameter, and the exact $J\mapsto-J$ equivariance and
+coordinates of the sheet map from \cref{thm:n3-deck-interface}.  The accepted build contains
+no \texttt{sorry}, added axiom, \texttt{admit}, or \texttt{unsafe} declaration, and its peak
+aggregate process-tree working set was 1,452,122,112 bytes under the 4\,GB cap.  The complete
+horizontal-interval fibre classification and the ordered-real disc inequalities remain the
+human-readable proof, not claims made by the finite algebraic checker.
+
+\subsection{Completed derivative-coordinate formalizations}
+
+\texttt{FORMAL-20260826-0016} checks the finite phase-rotated Verblunsky derivative
+peel: differentiated Szeg\H{o} transitions, half-plane transport, the retained
+$\eta$-norm identity and strict-ratio interface, the one-step and finite-product
+telescopes, the triangular coordinate inverse, the terminal derivative identity, and
+unit-phase norm preservation.  Its source is
+\path{formal/lean/ZetaFunctionFoundation/VerblunskyPeel.lean}, with SHA--256
+\begin{center}\small
+\texttt{afd9511516c35c993455d24c981acec7b91852e8395d7b0f1d7f86ebf6392e2b}.
+\end{center}
+The compiled object has SHA--256
+\begin{center}\small
+\texttt{a30409a459eeb959bdd46fe5bad71b7496e209edfaa35add8e653dc88c61e2ac}.
+\end{center}
+The replay exits zero with empty streams and a 1,499,897,856-byte peak.  It does
+not formalize the probability transport or a large-$N$ theorem.
+
+\texttt{FORMAL-20260826-0018} checks the exact identity between the
+Bourgade--Nikeghbali--Rouault deformed coefficient at one and the retained
+phase-rotated coordinate, under the displayed nonzero hypotheses.  It also proves
+coordinatewise uniqueness of the recursively lifted derivative state over every retained
+$\gamma$ sequence.  Its source is
+\path{formal/lean/ZetaFunctionFoundation/GammaBetaCrosswalk.lean}, with SHA--256
+\begin{center}\small
+\texttt{0eaaf472571b6b13c8f00d3b32b8797b87d5f5c8b9d37fbd95ee687d2107ae20},
+\end{center}
+and the compiled object has SHA--256
+\begin{center}\small
+\texttt{b74b730a1fcd7eb2439c1f890000601215c66fe9e718cff4d4aafa13361fadfe}.
+\end{center}
+The replay exits zero with empty streams and a 1,414,193,152-byte peak.  Exact
+probability laws, Borel disintegration, and the determinant tilt remain standard
+human-readable proofs.
+
+\texttt{FORMAL-20260826-0019} checks the finite CRS first-jet interface from
+\cref{thm:crs-first-jet-crosswalk}.  It proves that
+\[
+ (V,d)\longmapsto
+ \rho\left(V,d-\frac N2V\right)
+\]
+and the displayed triangular inverse are two-sided inverses for $\rho\ne0$.  It also
+proves
+\[
+ \frac{\mathrm i}{2}V\left[-\mathrm i
+ \left(\frac{2NF}{V}-N\right)\right]
+ =N\left(F-\frac12V\right)
+ \qquad(V\ne0)
+\]
+and retains the literal centered value $NF$ at $V=0$.  Its source is
+\begin{center}\small
+\path{formal/lean/ZetaFunctionFoundation/CRSJetCrosswalk.lean}.
+\end{center}
+The source SHA--256 is
+\begin{center}\small
+\texttt{cb738b1de8e530a82ad05e548b2a0fdc351c39f99dd6fd2f7e10c28ada5f7796},
+\end{center}
+and the compiled object has SHA--256
+\begin{center}\small
+\texttt{645121bfc27878b05fb2152fdc172f84f069840c22b42880f15a7063d10018a3}.
+\end{center}
+The accepted replay uses Lean~4.32.0 and Mathlib commit
+\begin{center}\small
+\texttt{81a5d257c8e410db227a6665ed08f64fea08e997},
+\end{center}
+exits zero with empty streams, contains no \texttt{sorry}, added axiom,
+\texttt{admit}, or \texttt{unsafe} declaration, and peaks at 1,410,822,144 bytes
+under the 4\,GB cap.  It does not formalize the CRS asymptotic analysis or their
+separate number-theoretic conjecture.
+
+\texttt{CERT-DEHAYE-2008-20260826-0001} is the separate exact finite-data
+certificate for the complete supplemental tranche accompanying
+\cite{dehaye2008}.  The script
+\path{certificates/dehaye_2008/verify_dehaye_supplements.py} parses all 120
+supplied numerator polynomials over $\Z[u]$, checks evenness and monicity,
+replays all sixty denominator-preserving moment-family transforms, reconstructs
+all sixty denominators $Y_r$, matches the forty-five embedded table rows, and
+uses exact isolation after $y=u^2$ for the thirty recorded real-root counts.  It
+also binds the ten supplied artifacts by SHA--256.  The script, normalized
+standard output, and receipt hashes are respectively
+\begin{center}\small
+\texttt{47cc9a04ab90c6e1a1a956c0b650cec8a53d828903c71a794ce7b0089d7e39d6},\\
+\texttt{d53f8a47086a84fc17d1552b9a867f49aa991ae42447dc0ffdfeccdd15e96686},\\
+\texttt{0c17f01996803d852eb1fc41c4cd333fc0d2af0f5d1887732b8533b5196bb705}.
+\end{center}
+This certificate executes no Magma code and proves no statement in representation
+theory, no Carlson continuation, and no number-theoretic model transfer.
+
+\texttt{FORMAL-20260826-0020} checks the finite Dehaye angular-jet interface in
+\cref{thm:dehaye-angular-jet-crosswalk}.  It proves both compositions for
+\[
+ (V,d)\longmapsto\bigl(V,\mathrm i(d-NV)\bigr),\qquad
+ (z_0,z_1)\longmapsto\bigl(z_0,Nz_0-\mathrm iz_1\bigr),
+\]
+both compositions for the completed diagonal maps
+$ (z_0,z_1)\mapsto(z_0,\mathrm iz_1)$ and
+$(w_0,w_1)\mapsto(w_0,-\mathrm iw_1)$, and the exact affine identities
+\[
+ \mathrm i(u-N)=-\frac{\mathcal T+\mathrm iN}{2},\qquad
+ \mathrm i\left(u-\frac N2\right)=-\frac{\mathcal T}{2},
+ \qquad \mathcal T=-\mathrm i(2u-N).
+\]
+Its source is
+\path{formal/lean/ZetaFunctionFoundation/DehayeJetCrosswalk.lean}, with
+SHA--256
+\begin{center}\small
+\texttt{bd747850358abf964a42368b691b6e898221407b79ed61db7639e9cec73ccc9c},
+\end{center}
+and the compiled object has SHA--256
+\begin{center}\small
+\texttt{429318e08f71a8f3107e6d89b9017947e54187db0c61f23ba64f3a8abc8e8279}.
+\end{center}
+The accepted replay uses Lean~4.32.0 and pinned Mathlib commit
+\begin{center}\small
+\texttt{81a5d257c8e410db227a6665ed08f64fea08e997}.
+\end{center}
+It exits zero with empty streams,
+contains no \texttt{sorry}, added axiom, \texttt{admit}, or \texttt{unsafe}
+declaration, and peaks at 1,401,528,320 bytes under the 4\,GB cap.  It does not
+formalize Haar integration, Schur identities, the large-$N$ limit,
+meromorphic continuation, or the source's number-theoretic proposals.
+
+\texttt{FORMAL-20260828-0024} stages the finite algebra of the complete CUE--Mellin
+reconstruction in \cref{sec:cue-mellin-complete-programme}.  Its first layer is the exact
+finite-difference/Hausdorff algebra and Bernstein-weight identities after all measures and
+support intervals have been stated externally.  Its second layer is the terminating
+$U(2)$ constant-term--${}_3F_2$ equality.  Its third layer is the all-order trace recurrence,
+the descended polynomial formula, and its exact $v^s$ coefficient.  Its fourth layer is the
+fixed-word Parikh-simplex map to the quotient ratio lattice, including kernel and rank.  Its
+fifth layer contains the retained $N=3$ state substitutions, the affine cubic identity, its
+$u=0$ specialization, and the discriminant expansion.  The ordered-real support proof,
+compact-measure convergence, Laplace/Hurwitz/digamma analysis, general lattice asymptotics,
+and the irreducible-cubic Galois criterion remain complete standard proofs unless and until
+their required library interfaces are formalized separately.  This queue entry records a
+second checkability layer; it does not turn a proved manuscript theorem into a global
+proof-status claim.  Every future replay is subject to the exact aggregate
+process-tree ceiling of $4\,\mathrm{GiB}=4{,}294{,}967{,}296$ bytes and is to
+be split before elaboration approaches it.
+
+\texttt{FORMAL-20260828-0025} stages the finite and algebraic layers of the split-zero and
+shifted-sheet reconstruction in \cref{sec:gcue-audited-core}.  Its first layer is the literal
+coordinate semiring $G(R)\simeq D_R$, both projections, the unique unital Boolean support
+character, the fibre-product formula for products, and the two-sided multiplicative
+reconstruction.  Its second layer is the complete additive-idempotent skeleton, the
+$R$-module fibres and transport maps, and both functors in
+$G(R)$-$\operatorname{SMod}\simeq\operatorname{Diag}_R$, including the natural
+quasi-inverse equations.  Its third layer is the corrected ideal classification: the lifted
+ring ideals are exactly the nonzero semiring ideals, while $\{\tau\}$ is an additional bottom
+strictly below $\{\tau,0_R\}$; lifted ideal products and the supported-zero divisibility
+criterion are separate targets.  Its fourth layer is the rank-two support-cube map to endpoint
+principal-part subspaces, its inverse residue matrix, fibres, and deck equivariance.  Its fifth
+layer contains the two-point Stone comultiplication, the finite shift-jet and Pochhammer
+identities, and the prime-power formula for the Dedekind ratio coefficients.
+
+The exact certificate \texttt{CERT-GCUE-SPLIT-ZERO-20260828-0001} already checks 26 named
+finite consequences in two Python/SymPy installations.  In particular it independently
+exposes and verifies the additional bottom ideal in five quotient-ring models.  The locally
+normal shift series, the entire Pochhammer-cancelled Dedekind tail, and the absolute
+Euler-product expansion remain complete standard proofs in the manuscript; they are not
+claims made by the finite checker.  This Lean queue is an additional certification plan, not
+a statement that any theorem is unproved outside this formalization.
+
+\texttt{FORMAL-20260828-0026} stages the finite categorical and coordinate core of
+\cref{sec:divisor-sheaf-audit}.  The targets are the Boolean semimodule identification,
+the reduced split retraction $\Sigma_m\Delta_m=\operatorname{id}$ at the displayed maps, the terminal-chain
+inclusion with both adjoints $r_m\dashv i_m\dashv s_m$, the exact fibres of both adjoints,
+the degree-shift equivalence, the coefficient-support pointed retraction and its cancellation
+counterexample, the terminal-jet/socle coordinate, and the diagonal fixed-part descent for
+orbit sizes $1$, $2$, and $4$.  The formal statement must preserve the actual object classes:
+the coefficient-support map is a pointed-set map and is not to be coerced into an additive
+homomorphism.  The product-sheaf and sheafification proofs, analytic local-ring ideal
+classification, compactified tail stalk and flasqueness, completed-function identities, and
+equivariance over nonidentity base maps remain the complete standard proofs printed in the
+chapter until appropriate library interfaces are selected.  This queue item concerns only
+an additional formal certificate; it makes no statement about whether a result is proved in
+the wider literature.
+
+\subsection{Unstabilized semilocal one-zero certification}
+
+The certificate with stable ID
+\begin{center}\small
+\texttt{CERT-GNTE-MULTIPLACE-}\\
+\texttt{UNSTABILIZED-20260830-0001}
+\end{center}
+accompanies \cref{thm:multiplace-finite-edge-coordinates,thm:multiplace-arch-boundary,%
+thm:unstabilized-codiagonal-shadow,prop:unstabilized-global-action-nonproper}.
+The script
+\begin{center}\small
+\path{certificates/globalization_nte_multiplace_unstabilized/}\\
+\path{verify_multiplace_unstabilized.py}
+\end{center}
+passes in two Python~3.13/SymPy installations and replays 362 named checks for
+one through eight finite primes.  It checks the exponent and sign cancellations,
+the finite-boundary screw coordinates, the exact label-collapse matrix and its
+kernel, the formal and actual root-lattice ranks, explicit clopen sign sections,
+and the valuation pattern in the nonproperness sequence.  Its receipt binds the
+three content-read source loci and the exact manuscript hash.
+
+\texttt{FORMAL-20260830-0037} queues only the finite coordinate and integer
+layers for a possible Lean replay: generic and boundary exponent identities,
+the label morphism, its one-dimensional kernel, the codiagonal square, and the
+root-lattice quotient.  The orbit topology, crossed-product exactness, Green
+imprimitivity, compact-group quotient, six-term naturality, and nonproperness
+argument remain the complete cited standard proofs in the chapter.  No Lean
+process was launched for this tranche.
+
+\subsection{Stable-to-natural extension certification}
+
+The certificate with stable ID
+\texttt{CERT-GNTE-STABLE-TO-NATURAL-20260830-0001} accompanies
+\cref{lem:natural-one-zero-essential-pullback,%
+lem:compatible-stabilized-edge-morphisms,%
+thm:stable-to-natural-extension-embedding,%
+cor:stable-to-natural-K-square-lifted,%
+prop:minimal-symmetric-sign-enrichment}.
+Its script
+\begin{center}\small
+\path{certificates/globalization_nte_stable_to_natural/}%
+\path{verify_stable_to_natural.py}
+\end{center}
+passes 2,361 named checks in Python/SymPy version pairs
+3.13.9/1.13.1 and 3.13.1/1.13.3.  The exact finite layer covers the
+orthogonal corner assembly and compression inverse, constant-unit ideal
+factorization, finite matrix Busby equation, boundary naturality matrix,
+one-dimensional sign-difference kernel, split-enriched injectivity,
+evaluation left inverses, nonconstant sampled unit-fibre classes, and the
+minimal two-coordinate sign carrier.  A preflight harness comparison of
+oppositely oriented basis vectors failed before acceptance; it was replaced
+by the exact rank-one span test recorded in the receipt.  No failed run is
+presented as a certificate.
+
+\texttt{FORMAL-20260830-0038} queues only these finite matrix and integer
+coordinates for a possible Lean replay.  The density and essential-ideal
+argument, Green modules, linking-algebra stabilization, multiplier/corona
+extensions, Busby reconstruction, and crossed-product exactness remain the
+complete cited standard proofs in the chapter.  No Lean or Lake process was
+launched for this tranche.  Any future replay must use one guarded worker,
+\texttt{LEAN\_NUM\_THREADS=1}, \texttt{LAKE\_JOBS=1}, and the exact aggregate
+process-tree ceiling of $4\,\mathrm{GiB}=4{,}294{,}967{,}296$ bytes.
+
+\subsection{Nonconstant unit-fibre K-theory certification}
+
+The certificate with stable ID
+\texttt{CERT-GNTE-NONCONSTANT-UNIT-K-20260830-0001} accompanies
+\cref{lem:unit-fibre-mapping-torus-k-groups,%
+prop:unit-fibre-finite-level-limits,%
+thm:full-finite-edge-boundary-map,%
+thm:full-archimedean-unit-fibre-boundary,%
+thm:full-natural-one-zero-k-theory}.
+Its script
+\begin{center}\small
+\path{certificates/globalization_nte_nonconstant_unit_k/}%
+\path{verify_nonconstant_unit_k.py}
+\end{center}
+passes 5,315 named checks in Python/SymPy version pairs
+3.13.9/1.13.1 and 3.13.1/1.13.3.  It checks exact finite orbit lengths and
+stabilizers, invariant and coinvariant orbit bases, both direct-limit
+transition maps, the \(L_{\mathbf m'}/L_{\mathbf m}\) coinvariant
+multiplicity, transition composition and injectivity, finite and
+archimedean boundary matrices, the global kernel inverse, the odd-difference
+cokernel coordinate, and the one-prime specialization.  An initial harness
+run negated a value that already represented \(-S_h\); it failed before
+acceptance, was corrected to the manuscript's
+\(h_\infty=-S_h|_{H_P^+}\), and is not represented as a certificate.
+
+\texttt{FORMAL-20260830-0039} queues the finite permutation-module and
+integer-linear-algebra layers for a possible Lean replay.  The mapping-torus
+identification, Pimsner--Voiculescu exact sequence, profinite commutative
+K-theory, Green imprimitivity, six-term naturality, continuity, and winding
+arguments remain the complete cited standard proofs in the chapter.  No Lean
+or Lake process was launched for this tranche.  Any future replay must use one
+guarded worker, \texttt{LEAN\_NUM\_THREADS=1}, \texttt{LAKE\_JOBS=1}, and
+the current exact aggregate process-tree ceiling of
+$4\,\mathrm{GiB}=4{,}294{,}967{,}296$ bytes.
+
+Every future successor build uses the exact
+$4\,\mathrm{GiB}=4{,}294{,}967{,}296$-byte aggregate-process-tree ceiling and
+requires exact toolchain, command, stream, hash, exit, and peak-memory
+receipts.  Earlier receipts retain the historical cap actually enforced when
+those builds ran.
+
+The unfinished formal obligations are \texttt{FORMAL-20260824-0001} through
+\texttt{FORMAL-20260824-0006}.  The exp/log, Fourier, convolution, even-extension,
+finite-place, zero-pairing, finite-height-scale, and shifted-exponential coordinate maps remain
+to be encoded with every test-space and exceptional-locus hypothesis.  Weil's PF distribution,
+the limiting logarithmic-density functional, and the final gamma/trivial-zero commutator also
+require an explicit Mathlib integration/distribution interface; none may be introduced as an
+axiom.  Completion of the finite interface certificate above does not discharge any of these
+analytic items, the full ordered-real stage of \texttt{FORMAL-20260825-0014}, or any missing
+CUE-to-Lie or endpoint interface.

@@ -1,0 +1,495 @@
+\section{The entire inverse fibre and its incompressible coefficient heat flow}
+\label{sec:inverse-fibre-heat}
+
+The source for this calculation is the current zeta task's
+\path{tex/satellites/23_source_mechanism_transfer.tex}, with the companion
+\path{certificates/rh_counterexample_20260908/verify_retained_mechanism.py}.
+Both files were read without alteration. Their hashes are retained in
+\path{sources/inverse_fibre_heat_source_hashes.json}.
+The calculation below verifies their complete inverse-fibre map and then
+constructs its exact dynamical lift as a polynomial incompressible field.
+The fluid coordinates, metric, orientation, and diffusion operator are stated
+throughout.
+
+\subsection{Every finite inverse point, including the excluded roots}
+
+Retain the original map, with the identity renaming of its third spatial
+coordinate from $t$ to $w$:
+\begin{align}
+ F_1&=(1+xy)^3w+y^2(1+xy)(4+3xy),\notag\\
+ F_2&=y+3x(1+xy)^2w+3xy^2(4+3xy),\notag\\
+ F_3&=2x-3x^2y-x^3w. \label{eq:ifh-original}
+\end{align}
+The target coordinates are $(a,b,c)$. All algebraic statements first hold
+over $\C$. Real parameters and real roots give precisely the real points.
+For the determinant, on $x\ne0$ set
+\[
+ v=1+xy,\qquad h=2-3xy-x^2w,\qquad
+ A=v^2+v-v^3h,\qquad B=4v+2-3v^2h.
+\]
+Direct substitution gives $F=(A/x^2,B/x,xh)$ and
+\[
+ \det\frac{\partial(x,v,h)}{\partial(x,y,w)}=-x^3.
+\]
+The other determinant is $x^{-3}$ times
+\[
+ \det\begin{pmatrix}
+ -2A&2v+1-3v^2h&-v^3\\
+ -B&4-6vh&-3v^2\\h&0&1
+ \end{pmatrix}=2.
+\]
+Indeed expansion gives
+\[
+ (4-6vh)(-2v^2-2v+3v^3h)
+ +(2v+1-3v^2h)(4v+2-6v^2h)=2.
+\]
+Their product is $-2$. The original Jacobian determinant is a polynomial;
+agreement on $x\ne0$ proves
+\begin{equation}
+ \det DF=-2\quad\hbox{everywhere}. \label{eq:ifh-det}
+\end{equation}
+
+For fixed $(a,b,c)$ define
+\[
+ P_{a,b,c}(r)=cr^3-2r^2+br-2a,\qquad
+ \alpha=\tfrac12 P_r(r).
+\]
+For each simple root, the entire inverse point is
+\begin{equation}
+ H(r,\alpha,c)=
+ \left(\alpha^{-1},\ r-\alpha,\
+       5\alpha^2-3r\alpha-c\alpha^3\right).
+ \label{eq:ifh-chart}
+\end{equation}
+Here and below $\alpha\ne0$ is part of the domain. To prove both directions,
+start with $x\ne0$, set $\alpha=1/x$, $r=y+1/x$, and solve $F_3=c$.
+This gives exactly \eqref{eq:ifh-chart}. Before either other target equation
+is imposed, direct substitution gives
+\begin{equation}
+ F\circ H=
+ \left(r^2+r\alpha-cr^3,\ 4r+2\alpha-3cr^2,\ c\right).
+ \label{eq:ifh-target-chart}
+\end{equation}
+The second equation equals $b$ precisely when
+$2\alpha=3cr^2-4r+b=P_r(r)$. After imposing that identity,
+$2(F_1-a)=P(r)$. Thus the formulas give every point with $x\ne0$,
+and recovering $r=y+1/x$ proves injectivity of the parametrization.
+A multiple root has $\alpha=0$ and gives no finite point in this chart.
+
+The excluded hyperplane is handled without division:
+\[
+ F(0,y,w)=(w+4y^2,y,0).
+\]
+It contributes exactly $(0,b,a-4b^2)$ when $c=0$, and contributes no
+point when $c\ne0$. These statements exhaust the whole fibre.
+
+For completeness the multiplicities are explicit. If $c\ne0$, put
+\[
+ \mathscr D=4(b^2-cb^3+18abc-16a-27a^2c^2).
+\]
+Substitution of $(c,-2,b,-2a)$ in the cubic discriminant gives this
+formula. If $\mathscr D\ne0$, there are three simple complex roots and
+three finite complex inverse points. If $\mathscr D=0$ and there is a
+double root and a simple root, the entire fibre is the single point
+corresponding to the simple root. The remaining case is a triple root.
+Comparing coefficients of $c(r-r_*)^3$ gives exactly
+\begin{equation}
+ r_*=\frac{2}{3c},\qquad
+ b=\frac4{3c},\qquad a=\frac4{27c^2}. \label{eq:ifh-triple}
+\end{equation}
+All three root multiplicities then belong to the excluded $\alpha=0$
+locus, and the original finite fibre is empty.
+These are conclusions about this displayed polynomial and its inverse
+formulas, not about any other coordinate model.
+
+When $c=0$, the degree is exactly two, since its leading coefficient
+remains $-2$. Its discriminant is $\delta=b^2-16a$.
+If $\delta\ne0$, its two simple roots and the separate $x=0$ point
+give three complex points. If $\delta=0$, its double root supplies no
+chart point and the separate point is the whole fibre.
+For real parameters, a real cubic with $\mathscr D>0$ has three real
+simple roots, while $\mathscr D<0$ has one real simple root and a
+nonreal conjugate pair. This follows, for example, from
+$c^4\prod_{i<j}(r_i-r_j)^2$: it is positive for three distinct real
+roots and negative for one real root and a conjugate pair.
+In the double-root cubic case both the double and simple root are real,
+because a nonreal multiple root would require its conjugate with the
+same multiplicity. The real quadratic case has two real chart points
+when $\delta>0$ and none when $\delta<0$, always retaining the additional
+real boundary point.
+
+\subsection{The coefficient heat flow and every time constant}
+
+Let $\tau$ denote forward heat time. The complete target flow is
+\begin{equation}
+ \Phi_\tau(a,b,c)=(a+2\tau,\ b+6c\tau,\ c).
+ \label{eq:ifh-target-flow}
+\end{equation}
+It is a group of affine maps with determinant one:
+\[
+ D\Phi_\tau=
+ \begin{pmatrix}1&0&0\\0&1&6\tau\\0&0&1\end{pmatrix},
+ \qquad \Phi_{\tau+s}=\Phi_\tau\circ\Phi_s.
+\]
+For $P(\tau,r)=P_{\Phi_\tau(a,b,c)}(r)$,
+\begin{equation}
+ P_\tau=6cr-4=P_{rr}. \label{eq:ifh-heat}
+\end{equation}
+On a simple root the implicit function theorem applies because $P_r\ne0$;
+differentiating $P(\tau,r(\tau))=0$ gives
+$r'=-P_{rr}/P_r$. No derivative formula is assigned to a multiple root.
+
+Two further identities determine this coefficient motion exactly:
+\begin{align}
+ \frac{d}{d\tau}(b-3ca)&=0,\notag\\
+ \frac{d}{d\tau}\mathscr D
+ &=(2\partial_a+6c\partial_b)\mathscr D
+ =-8(3bc-4)^2. \label{eq:ifh-discriminant-flow}
+\end{align}
+Indeed differentiating the displayed polynomial $\mathscr D$ gives
+$4(48bc-18c^2b^2-32)$, which equals the last expression.
+Writing $A_0=3bc-4$ at $\tau=0$ and integrating the exact square gives
+\[
+ \mathscr D(\tau)=\mathscr D(0)
+ -8A_0^2\tau-144A_0c^2\tau^2-864c^4\tau^3.
+\]
+For real $c\ne0$ this is strictly decreasing: the integral of the
+nonnegative square over every interval of positive length is positive,
+since $A_0+18c^2\tau$ cannot vanish throughout such an interval.
+Its cubic leading term gives opposite infinite limits at the two ends
+of the real line. Thus each such real heat orbit meets the discriminant
+locus exactly once. For $c=0$, the derivative is instead the constant
+$-128$, with the degree-two interpretation above still required.
+
+For $c\ne0$, the exact coordinate substitution $r=z+2/(3c)$ gives
+\[
+ P=cz^3+\left(b-\frac4{3c}\right)z+K,\qquad
+ K=\frac{2b}{3c}-\frac{16}{27c^2}-2a.
+\]
+The original coefficient $c$ is retained, and $K$ is constant under
+\eqref{eq:ifh-target-flow}. If the orbit passes through
+\eqref{eq:ifh-triple} at $\tau_c$, its polynomial is exactly
+\[
+ P=c z\bigl(z^2+6(\tau-\tau_c)\bigr).
+\]
+For $\tau\ne\tau_c$, the central root has
+$\alpha=3c(\tau-\tau_c)$; either outer root has
+$\alpha=-6c(\tau-\tau_c)$. These explicit denominators record the
+escape of every chart inverse point at the triple-root time.
+At that time the finite fibre is empty, as proved above.
+
+Newman time is the specific reversal $t=-\tau$. Consequently
+\[
+ \mathcal P(t,r)=P_{a_0-2t,b_0-6ct,c}(r),\qquad
+ \mathcal P_t=-\mathcal P_{rr}.
+\]
+For $b_0=c=0$,
+\[
+ \mathcal P(t,r)=-2\bigl(r^2-2(t-a_0/2)\bigr).
+\]
+Thus $a_0=-1/4$ gives the model collision time $-1/8$ in this
+Newman convention, while its forward heat time is $+1/8$.
+Neither number specifies the Newman constant of the zeta family:
+the polynomial here has its own explicitly fixed initial datum.
+
+\subsection{A global polynomial incompressible lift}
+
+Write $J=DF$ and define all three inverse columns, with cyclic indices,
+\[
+ W_i=J^{-1}e_i
+ =-\tfrac12\nabla F_{i+1}\times\nabla F_{i+2}.
+\]
+The scalar triple products and \eqref{eq:ifh-det} prove $JW_i=e_i$.
+Commutation of mixed derivatives proves $\operatorname{div}W_i=0$.
+Each column is polynomial. Moreover $W_iF_j=\delta_{ij}$, and
+$[W_i,W_j]F_k=0$ for every $k$; invertibility of $J$ proves
+$[W_i,W_j]=0$.
+
+The exact heat lift is
+\begin{equation}
+ U=2W_1+6F_3W_2,\qquad JU=(2,6F_3,0)^{\mathsf T}.
+ \label{eq:ifh-U}
+\end{equation}
+It is a polynomial vector field on the whole original $\R^3$.
+Its ordinary Euclidean divergence is zero, since
+\[
+ \operatorname{div}U
+ =2\operatorname{div}W_1+6F_3\operatorname{div}W_2+6W_2F_3=0.
+\]
+A global vector potential is also explicit:
+\begin{equation}
+ U=\curl\left(-F_2\nabla F_3-\tfrac32F_3^2\nabla F_1\right).
+ \label{eq:ifh-potential}
+\end{equation}
+Expanding the curl gives
+$-\nabla F_2\times\nabla F_3-3F_3\nabla F_3\times\nabla F_1$,
+which is exactly \eqref{eq:ifh-U}.
+
+The complete component formula can be kept polynomial without an inverse
+denominator. With the same original $h=2-3xy-x^2w$, put
+$Q=3h(1+xy)-2$. Then
+\begin{align}
+ U_x&=x^3(Q^2-3h),\notag\\
+ U_y&=x(Q^2-Q-3h),\notag\\
+ U_w&=3Q+(3h+3xy-7)Q^2+(21-9xy)h-9h^2.
+ \label{eq:ifh-U-components}
+\end{align}
+These identities follow either by expanding \eqref{eq:ifh-U}, or by
+substituting the inverse chart into the differential calculation below
+and using $F_3=xh$. They hold on $x\ne0$ and then everywhere by polynomial
+identity. At $x=0$ they give $U=(0,0,2)$, so the separate inverse point
+has exactly the required boundary evolution.
+
+Let $\varphi_\tau$ be the maximal local flow of $U$. Smooth polynomial
+coefficients give local existence and uniqueness. Differentiating
+$F(\varphi_\tau(q))$ using \eqref{eq:ifh-U}, and using uniqueness for the
+affine target ODE, proves
+\begin{equation}
+ F\circ\varphi_\tau=\Phi_\tau\circ F
+ \label{eq:ifh-flow-intertwining}
+\end{equation}
+on every common interval of definition. This identity includes the time
+variable, not only a matching of fibres.
+Differentiating it in the original initial point gives
+\begin{equation}
+ D\varphi_\tau(q)=
+ J(\varphi_\tau(q))^{-1}D\Phi_\tau(F(q))J(q),
+ \qquad \det D\varphi_\tau=1.
+ \label{eq:ifh-material}
+\end{equation}
+Both determinants of $J$ are $-2$, so their ratio and
+$\det D\Phi_\tau=1$ give the last equality without a limit argument.
+For a retained initial covector $\xi_0$, its transported covector is
+\[
+ (D\varphi_\tau(q))^{-\mathsf T}\xi_0
+ =J(\varphi_\tau(q))^{\mathsf T}
+   (D\Phi_\tau)^{-\mathsf T}J(q)^{-\mathsf T}\xi_0.
+\]
+This is the full inverse-transpose material dictionary in these
+coordinates.
+
+There is an exact scalar operator identity as well. Define
+\[
+ \Pi(q,r)=F_3(q)r^3-2r^2+F_2(q)r-2F_1(q).
+\]
+Using $UF_1=2$, $UF_2=6F_3$, $UF_3=0$ gives, on the entire product
+of the original space with the root coordinate,
+\begin{equation}
+ U\Pi=6F_3r-4=\partial_r^2\Pi.
+ \label{eq:ifh-scalar-operator}
+\end{equation}
+Thus $\Pi(\varphi_\tau(q),r)$ obeys the exact forward heat equation
+in the displayed auxiliary variable $r$. This variable remains the
+inverse-root coordinate; it is not relabelled as a Euclidean spatial
+diffusion coordinate of the three-dimensional fluid.
+
+\subsection{The full inverse-chart dynamics and its preserved area form}
+
+In \eqref{eq:ifh-chart}, $(r,\alpha,c)$ are actual coordinates on $x\ne0$,
+with inverse $(y+1/x,1/x,F_3)$. Direct determinants of
+\eqref{eq:ifh-chart} and \eqref{eq:ifh-target-chart} give
+\[
+ \det DH=-\alpha,\qquad \det D(F\circ H)=2\alpha.
+\]
+They multiply consistently with $\det J=-2$.
+Put $q_r=3cr-2$, where the subscript is a name for this polynomial,
+not a derivative. The complete lifted ODE in this chart is
+\begin{equation}
+ r'=-\frac{q_r}{\alpha},\qquad
+ \alpha'=3c-\frac{q_r^2}{\alpha},\qquad c'=0.
+ \label{eq:ifh-root-ode}
+\end{equation}
+Indeed $P_{rr}=2q_r$, $P_r=2\alpha$ give the first equation.
+Differentiating
+$\alpha=(3cr^2-4r+b)/2$ along $b'=6c$ gives
+$\alpha'=q_r r'+3c$, which is the second equation.
+Differentiating each component of $H$ then yields exactly $U\circ H$.
+For example
+$x'=-\alpha'/\alpha^2=-3cx^2+q_r^2x^3$ and
+$y'=r'-\alpha'=(q_r^2-q_r)x-3c$.
+For the third component the unaltered expression is
+\[
+ w'=-3\alpha r'
+ +(10\alpha-3r-3c\alpha^2)\alpha',
+\]
+which gives \eqref{eq:ifh-U-components} after
+$c=xh$, $q_r=3h(1+xy)-2$ are substituted.
+
+The heat invariant $I=b-3ca$ becomes the specific polynomial
+\[
+ I(r,\alpha,c)=4r+2\alpha-6cr^2-3cr\alpha+3c^2r^3.
+\]
+Its two derivatives are
+\[
+ I_\alpha=-q_r,\qquad I_r=q_r^2-3c\alpha.
+\]
+Consequently, for each fixed real $c$, the nondegenerate two-form
+\[
+ \omega_c=\alpha\,dr\wedge d\alpha\quad(\alpha\ne0)
+\]
+satisfies
+$\iota_{(r',\alpha')}\omega_c=dI$.
+Indeed its contraction is
+$\alpha r'\,d\alpha-\alpha\alpha'\,dr
+ =I_\alpha\,d\alpha+I_r\,dr$.
+This states the exact Hamiltonian convention and proves the claimed
+Hamiltonian correspondence.
+
+The preserved signed volume can also be checked directly:
+\[
+ \partial_r(\alpha r')+\partial_\alpha(\alpha\alpha')
+ =\partial_r(-q_r)+\partial_\alpha(3c\alpha-q_r^2)=0.
+\]
+The Euclidean volume of the original source is
+$|\alpha|\,dr\,d\alpha\,dc$ in this chart. On either component of
+$\alpha\ne0$, the absolute value has a fixed sign relative to $\alpha$,
+so this same calculation proves its preservation. The density tending
+to zero at $\alpha=0$ describes a boundary of this inverse chart;
+$x=1/\alpha$ shows that boundary is not a finite original coordinate point.
+
+\subsection{The exact positive-viscosity fluid equation and escape}
+
+On the target $\R^3_{a,b,c}$ with Euclidean metric, standard orientation,
+and any retained viscosity $\nu>0$, set
+\[
+ v(a,b,c)=(2,6c,0),\qquad p=0,\qquad f=0.
+\]
+Every term of its stationary Navier--Stokes equation can be computed:
+$\operatorname{div}v=0$,
+$(v\cdot\nabla)v=(2\partial_a+6c\partial_b)v=0$, and
+$\Delta v=0$. Its oriented curl is $(-6,0,0)$.
+Its material flow is exactly \eqref{eq:ifh-target-flow}.
+
+On the original source set $g=J^{\mathsf T}J$, using the standard
+source orientation. This positive metric has $\det g=4$ and volume
+$2\,dx\,dy\,dw$. In a local $F$ chart it is precisely the Euclidean
+target metric. The Levi--Civita connection pulls back under this local
+isometry: this follows from its metric compatibility and zero torsion,
+which characterize that connection uniquely. The nonpositive vector
+diffusion operator is
+\[
+ \mathcal L_g Y=\bigl[-(d\delta_g+\delta_gd)Y^\flat_g\bigr]^\sharp_g.
+\]
+The Hodge Laplacian commutes with local metric pullback, including an
+orientation-reversing pullback, because the two orientation signs in
+the codifferential cancel. In Euclidean coordinates this operator is
+the componentwise Laplacian. Therefore
+\[
+ \operatorname{div}_gU=0,\qquad
+ \nabla^g_UU=0,\qquad \mathcal L_gU=0.
+\]
+These prove the complete intrinsic stationary unforced
+positive-viscosity Navier--Stokes equation with constant pressure.
+Its vorticity retains the orientation sign:
+\[
+ \curl_g U=6W_1.
+\]
+In fact $\det J=-2$ makes
+$*_gF^*\eta=-F^*(*_{\rm target}\eta)$.
+Applying this to $d(v^\flat)$ negates the pullback of
+$\curl v=-6e_1$, giving the displayed result.
+
+There are explicit real finite-time escaping material trajectories.
+On the initial fibre $(-1/4,0,0)$, for $\tau<1/8$ take
+\[
+ \gamma_\pm(\tau)=
+ \left(\pm(1-8\tau)^{-1/2},
+       \mp\tfrac32(1-8\tau)^{1/2},
+       \tfrac{13}{2}(1-8\tau)\right).
+\]
+Substitution in the full map gives
+$F(\gamma_\pm(\tau))=(-1/4+2\tau,0,0)$.
+Differentiation and $J^{-1}$ prove $\gamma_\pm'=U(\gamma_\pm)$.
+Their first coordinate escapes to infinity at $\tau=1/8$; their
+$g$-speed is $|v|=2$ throughout. Hence their length from $\tau=0$
+to the endpoint is $1/4$.
+Their times approaching $1/8$ form a metric Cauchy sequence because
+the remaining curve length tends to zero. It has no point limit:
+a smooth positive Riemannian metric induces the ordinary coordinate
+topology locally, while $x$ diverges. Thus the metric is incomplete.
+The separate inverse point $(0,0,-1/4+2\tau)$ remains a finite
+trajectory throughout. The coefficient heat collision and its
+escaping branches have all been retained by these formulas.
+
+\subsection{Its exact force in the original Euclidean metric}
+
+The same polynomial $U$, now using the original Euclidean metric
+and its component Laplacian, has stationary Navier--Stokes triples
+precisely of the form
+\[
+ p=q,\qquad f=(U\cdot\nabla)U-\nu\Delta U+\nabla q .
+\]
+Substitution proves sufficiency; rearrangement of the momentum equation
+proves necessity. Thus every pressure adjustment has been retained.
+
+The force has the following exact curl on the original coordinate axis:
+\begin{equation}
+ \curl f(0,0,w)=(0,0,108\nu w).
+ \label{eq:ifh-euclidean-force}
+\end{equation}
+Here is a direct derivative certificate from the full component formula.
+Its transverse polynomial terms of degree at most three are
+\[
+ U_x=10x^3+R_x,\quad
+ U_y=6x-12x^2y-18wx^3+R_y,\quad
+ U_w=2-54xy-18wx^2+R_w,
+\]
+where the remainders are defined by these exact differences and
+\[
+ R_x,R_y\in(x,y)^5\R[x,y,w],\qquad
+ R_w\in(x,y)^4\R[x,y,w].
+\]
+These ideal memberships follow by expanding
+\eqref{eq:ifh-U-components}; thus no unspecified coefficient enters a
+derivative of the required order. On the axis,
+\[
+ U=2e_3,\qquad
+ DU=\begin{pmatrix}0&0&0\\6&0&0\\0&0&0\end{pmatrix}=:N .
+\]
+The derivative of the convective acceleration there is
+$N^2+2\partial_w DU=0$, so its curl vanishes.
+For the diffusive part,
+\[
+ \Delta\curl U(0,0,w)=(0,0,-108w):
+\]
+the third component is
+$\partial_x\Delta U_y-\partial_y\Delta U_x=-108w$,
+from $-18wx^3$, and the first two components vanish from the displayed
+terms and remainder ideals. Commuting derivatives and using
+$\curl\nabla q=0$ proves \eqref{eq:ifh-euclidean-force}, also
+distributionally wherever a pressure is interpreted as a distribution.
+
+Thus this exact same Euclidean velocity cannot have a rapidly decaying
+smooth force for any pressure choice: its force curl is unbounded on
+the axis for $\nu>0$. The source field is also a nonzero polynomial,
+hence has infinite Euclidean $L^2$ norm. To see the latter fact directly,
+a nonzero leading homogeneous component of a polynomial is bounded
+away from zero on some open patch of the unit sphere. The full polynomial
+then has a positive multiple of its leading radial power on the
+corresponding cone for all sufficiently large radii. Radial integration
+diverges. A nonzero constant component already gives the same conclusion
+at degree zero. Here the field is nonconstant, as
+$U_y=6x$ to first order at the origin proves, and a polynomial periodic
+in every unit coordinate direction must be constant by the one-variable
+polynomial difference identity. It therefore does not define the
+required periodic velocity either.
+
+These calculations identify both fluid realizations completely:
+the target shear and its intrinsic lift are exact unforced viscous
+solutions, while the original Euclidean lift requires the precisely
+computed nondecaying force. The finite-time material escape belongs
+to the incomplete metric realization. No classical Euclidean
+Navier--Stokes counterexample or off-critical zeta zero is asserted.
+
+\subsection{Standalone exact replay}
+
+The script \path{scripts/check_inverse_fibre_heat.py} contains the
+original polynomials, inverse chart, determinants, source boundary,
+multiplicity formulas, heat constants, full polynomial fluid lift,
+Hamiltonian identities, and Euclidean force-curl calculation.
+Its standalone receipt is
+\path{checks/inverse_fibre_heat_checks.json}.
+The analytic local-flow, metric, and fibre-classification arguments
+are the proofs written above. The script makes no network request,
+runs no Lean process, and needs no mutable sibling repository.
+

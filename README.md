@@ -1,5 +1,23 @@
 # Riemann Zeta Function: Research Reader
 
+## Six-reader collection
+
+Start with the [complete six-reader edition](zenodo_collection_20260909_main411/). It includes separate PDFs and a ZIP of their paired source trees.
+
+| Subject | Reader | Pages |
+|---|---|---:|
+| Zeta and exact correspondences | [Main PDF](zenodo_collection_20260909_main411/01-main-reader.pdf) | 411 |
+| Fluid equations | [Fluid PDF](zenodo_collection_20260909_main411/02-fluid-reader.pdf) | 208 |
+| Heat transport | [Heat PDF](zenodo_collection_20260909_main411/03-heat-reader.pdf) | 120 |
+| Arithmetic trace quotients | [Connes PDF](zenodo_collection_20260909_main411/04-connes-reader.pdf) | 82 |
+| Geometric complexity | [GCT PDF](zenodo_collection_20260909_main411/05-gct-reader.pdf) | 174 |
+| Vacuum and gravity | [Vacuum PDF](zenodo_collection_20260909_main411/06-vacuum-reader.pdf) | 37 |
+
+This is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The [separate Navier–Stokes record](https://doi.org/10.5281/zenodo.22667379) is a related work, not the DOI for this collection. No Millennium-problem resolution is claimed.
+
+<!-- END COLLECTION -->
+
+
 A living literature-based research reader, with full TeX proofs, bibliographies,
 authored calculations and permitted proof certificates. Incoming work retains
 its own statements, hypotheses, qualifications and proof/sketch status.

@@ -1,6 +1,8 @@
 # Riemann zeta transfer collection (411-page edition)
 
-GitHub edition available; DOI archive pending.
+The frozen 2026-09-09 six-reader edition is archived on [Zenodo](https://zenodo.org/records/22678086), with DOI [10.5281/zenodo.22678086](https://doi.org/10.5281/zenodo.22678086). The [GitHub repository](../) is the living research repository; this folder mirrors the frozen edition.
+
+[Archived main PDF](https://zenodo.org/records/22678086/files/01-main-reader.pdf?download=1) · [Download archived source ZIP](https://zenodo.org/records/22678086/files/07-complete-mathematical-sources.zip?download=1).
 
 This frozen edition contains six paired research readers. The main reader is
 first; each companion reader is a separate clickable PDF, followed by the
@@ -18,5 +20,11 @@ complete source/checker ZIP.
 
 The PDFs preserve their exact authored statements, proofs, citations and
 qualification status. The source archive excludes protected primary works,
-private conversations, credentials and identifying machine paths. This
-GitHub edition is an online research collection, not a DOI archive or peer review.
+private conversations, credentials and identifying machine paths. Publication
+is not peer review.
+
+## Cite this edition
+
+KokunoYumeto. (2026-09-09). *Riemann zeta function and Navier–Stokes transfer: exact maps and research readers*. Zenodo. [10.5281/zenodo.22678086](https://doi.org/10.5281/zenodo.22678086). [Archive](https://zenodo.org/records/22678086).
+
+The [separate Navier–Stokes record](https://doi.org/10.5281/zenodo.22667379) is related work, not this six-reader edition.

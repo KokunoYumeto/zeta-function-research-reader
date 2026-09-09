@@ -1,9 +1,10 @@
 # Riemann zeta transfer collection (411-page edition)
 
-This folder is the online fallback collection for the separate Zenodo deposit
-that is currently staged but blocked by a Zenodo service timeout. The main
-reader is first; each companion reader is a separate clickable PDF, followed
-by the complete source/checker ZIP.
+GitHub edition available; DOI archive pending.
+
+This frozen edition contains six paired research readers. The main reader is
+first; each companion reader is a separate clickable PDF, followed by the
+complete source/checker ZIP.
 
 | reader | pages | SHA-256 |
 |---|---:|---|
@@ -18,4 +19,4 @@ by the complete source/checker ZIP.
 The PDFs preserve their exact authored statements, proofs, citations and
 qualification status. The source archive excludes protected primary works,
 private conversations, credentials and identifying machine paths. This
-fallback is an online workspace mirror, not a DOI and not peer review.
+GitHub edition is an online research collection, not a DOI archive or peer review.

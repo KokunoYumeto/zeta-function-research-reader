@@ -1,12 +1,22 @@
 # Zeta research: what we tried and why
 
-Reconstruct the zeta literature and investigate explicit connections to the supplied geometric and fluid constructions, keeping the original equations, source attribution and full mathematical work accessible. The broader motivation was to learn what these constructions actually carry into arithmetic, including whether they could reach an RH-relevant criterion.
+Reconstruct published results about the Riemann zeta function and connect them, by explicit formulas rather than metaphor, to three named inputs: the CUE characteristic-polynomial literature; the cubic polynomial map F:C^3→C^3 discussed by Tao, Speyer and Poplett; and the corrected finite-time Navier–Stokes reconstruction published as a companion reader. The broader motivation was to determine exactly what arithmetic information these interfaces carry and whether any route reaches an RH-relevant criterion.
+
+## What the named objects are
+
+The central analytic object is the Riemann zeta function ζ(s), together with its completed critical-line function Xi(t)=ξ(1/2+it). The adjacent random-matrix input is the CUE characteristic polynomial and its derivative moments, specifically A. Grover, F. Mezzadri and N. Simm, *Higher order derivative moments of CUE characteristic polynomials and the Riemann zeta function*, arXiv:2604.03051v1; the user also identified the Easy Riders channel as a public source for that programme.
+
+The geometric input is the explicit cubic map F:C³→C³ written in the reader: F1=(1+xy)³w+y²(1+xy)(4+3xy), F2=y+3x(1+xy)²w+3xy²(4+3xy), and F3=2x−3x²y−x³w. The reader cites Terry Tao’s 21 July 2026 exposition, David Speyer’s 20 July 2026 exposition, and J. Poplett’s *Local Fidelity, Global Alias* research note for this map.
+
+The fluid input is the corrected 208-page *Finite Time Blowup for Navier–Stokes* reconstruction: a velocity field uν(x,t), pressure pν, positive viscosity ν>0, zero initial velocity, smooth compactly supported forcing, and the nonlinear transport terms retained. Its public companion edition is [Zenodo 10.5281/zenodo.22678406](https://doi.org/10.5281/zenodo.22678406); the reader preserves the source attribution and states that independent analytical/Lean validation is unfinished.
+
+These routes are interfaces between named objects, not claims that ζ, a CUE polynomial, F, and uν are identical. Each entry below names the actual map or transform used and says what was and was not obtained.
 
 These five short accounts describe the selected routes in the [frozen 411-page reader](https://zenodo.org/records/22678086/files/01-main-reader.pdf), not the whole project. Route rationales are reconstructed from the written arguments; they are not quotations of the original motivation. The full calculations and human-source references remain in the reader.
 
 ## Keep the branches, then transport the equations
 
-We aimed to carry the supplied polynomial mechanism into fluid and arithmetic coordinates without losing inverse branches. Its inverse-fibre geometry exposes precisely where projection loses information. We constructed the full cubic inverse chart, exceptional fibres, incompressible trajectories and transformed diffusion operators. This gave exact maps and an escaping trajectory in the retained pullback metric. That metric is incomplete; this route did not itself produce a classical Euclidean Navier–Stokes singularity or an off-critical zeta zero. The later work therefore also uses the actual released fluid field.
+We aimed to test whether the explicit Tao–Speyer–Poplett cubic map can be carried into fluid and arithmetic coordinates without losing inverse branches. Its inverse-fibre geometry gives a concrete place to calculate exactly what a projection forgets. We started from the displayed F1,F2,F3 formulas and constructed the cubic inverse chart, exceptional fibres, incompressible trajectories and transformed diffusion operators. This gave exact maps and an escaping trajectory in the retained pullback metric. That metric is incomplete; this route did not itself produce a classical Euclidean Navier–Stokes singularity or an off-critical zeta zero. The later work therefore also uses the actual released fluid field.
 
 ## Test the negative coefficient in the complete Weil form
 
@@ -14,7 +24,7 @@ We aimed to determine whether the coefficient-level negative signal survives in 
 
 ## Transport the actual concentrating swirl into arithmetic
 
-We aimed to propagate the released corrected fluid field itself, rather than infer its behaviour from an analogy. Angular momentum retains a concentrating source component and admits explicit dilation and Mellin maps. We kept both nonlinear fluxes, force, viscosity and the projection remainder; constructed the arithmetic map and inverse, then examined the fixed-axis derivative. The written calculation obtains a directly growing arithmetic derivative and an equal genuine Mellin residue at s = −1. This is a precise transported signal, not an off-critical zeta zero. Independent verification of the imported complete source existence theorem is unfinished.
+We aimed to propagate the corrected Navier–Stokes reconstruction's actual velocity and angular momentum into the zeta Mellin coordinates, rather than infer its behaviour from an analogy. The published construction has an explicitly defined concentrating component, while angular momentum admits explicit dilation and Mellin maps involving ζ(s). We kept the named field uν, pressure, force, positive viscosity, both nonlinear fluxes and the projection remainder; constructed the arithmetic map and inverse, then examined the fixed-axis derivative. The written calculation obtains a directly growing arithmetic derivative and an equal genuine Mellin residue at s = −1. This is a precise transported signal, not an off-critical zeta zero. Independent verification of the imported complete source existence theorem is unfinished.
 
 ## Recover data hidden by trivial-zero cancellation
 

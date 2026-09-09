@@ -1,6 +1,6 @@
 # Riemann zeta transfer collection (411-page edition)
 
-The frozen 2026-09-09 six-reader edition is archived on [Zenodo](https://zenodo.org/records/22678086), with DOI [10.5281/zenodo.22678086](https://doi.org/10.5281/zenodo.22678086). The [GitHub repository](../) is the living research repository; this folder mirrors the frozen edition.
+The frozen 2026-09-09 six-reader edition is archived on [Zenodo](https://zenodo.org/records/22678086), with DOI [10.5281/zenodo.22678086](https://doi.org/10.5281/zenodo.22678086) assigned by Zenodo. The [GitHub repository](../) is the living research repository; this folder mirrors the frozen edition.
 
 [Archived main PDF](https://zenodo.org/records/22678086/files/01-main-reader.pdf?download=1) · [Download archived source ZIP](https://zenodo.org/records/22678086/files/07-complete-mathematical-sources.zip?download=1).
 

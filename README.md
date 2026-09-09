@@ -2,7 +2,9 @@
 
 ## Six-reader collection
 
-Start with the [complete six-reader edition](zenodo_collection_20260909_main411/). It includes separate PDFs and a ZIP of their paired source trees.
+Start with the [complete six-reader edition](zenodo_collection_20260909_main411/). It includes separate PDFs and a [complete source ZIP](zenodo_collection_20260909_main411/07-complete-mathematical-sources.zip) of their paired source trees.
+
+GitHub edition available; DOI archive pending.
 
 | Subject | Reader | Pages |
 |---|---|---:|

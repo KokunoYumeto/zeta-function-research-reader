@@ -17,7 +17,7 @@ This GitHub repository is the living research repository. The frozen 2026-09-09 
 | Geometric complexity | [GCT PDF](zenodo_collection_20260909_main411/05-gct-reader.pdf) | 174 |
 | Vacuum and gravity | [Vacuum PDF](zenodo_collection_20260909_main411/06-vacuum-reader.pdf) | 37 |
 
-The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The [separate Navier–Stokes record](https://doi.org/10.5281/zenodo.22667379) is a related work, not the DOI for this collection. No Millennium-problem resolution is claimed.
+The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The separate [corrected Navier–Stokes edition](https://doi.org/10.5281/zenodo.22678406) and its [reading guide](https://github.com/KokunoYumeto/yang-mills-interacting-workbench/tree/main/navier-stokes) are related work, not the DOI for this collection. The [earlier Navier–Stokes edition](https://doi.org/10.5281/zenodo.22667379) remains available; neither replaces the frozen fluid PDF above. No Millennium-problem resolution is claimed.
 
 <!-- END COLLECTION -->
 
@@ -47,6 +47,8 @@ publishes the current authorized **local** snapshot. The last independently
 confirmed Overleaf main build had 272 pages; current
 Overleaf synchronization must not be inferred from this GitHub commit.
 See [MIRROR_STATUS.json](MIRROR_STATUS.json) for exact snapshot status.
+
+The recurring Overleaf mirror timer was removed on 9 September 2026 at the owner’s request. Updates are manual for now. The latest manual connection attempt could not access an authenticated browser, so no newer Overleaf synchronization is claimed.
 
 ## References and provenance
 

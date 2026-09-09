@@ -4,7 +4,9 @@
 
 Start with the [complete six-reader edition](zenodo_collection_20260909_main411/). It includes separate PDFs and a [complete source ZIP](zenodo_collection_20260909_main411/07-complete-mathematical-sources.zip) of their paired source trees.
 
-GitHub edition available; DOI archive pending.
+This GitHub repository is the living research repository. The frozen 2026-09-09 six-reader edition is archived on [Zenodo](https://zenodo.org/records/22678086), with DOI [10.5281/zenodo.22678086](https://doi.org/10.5281/zenodo.22678086).
+
+[Archived main PDF](https://zenodo.org/records/22678086/files/01-main-reader.pdf?download=1) · [Download archived source ZIP](https://zenodo.org/records/22678086/files/07-complete-mathematical-sources.zip?download=1).
 
 | Subject | Reader | Pages |
 |---|---|---:|
@@ -15,7 +17,7 @@ GitHub edition available; DOI archive pending.
 | Geometric complexity | [GCT PDF](zenodo_collection_20260909_main411/05-gct-reader.pdf) | 174 |
 | Vacuum and gravity | [Vacuum PDF](zenodo_collection_20260909_main411/06-vacuum-reader.pdf) | 37 |
 
-This is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The [separate Navier–Stokes record](https://doi.org/10.5281/zenodo.22667379) is a related work, not the DOI for this collection. No Millennium-problem resolution is claimed.
+The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The [separate Navier–Stokes record](https://doi.org/10.5281/zenodo.22667379) is a related work, not the DOI for this collection. No Millennium-problem resolution is claimed.
 
 <!-- END COLLECTION -->
 

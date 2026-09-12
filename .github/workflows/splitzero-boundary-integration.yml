@@ -24,6 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 check_tau_recovery.py --prepare
+          python3 check_boundary.py
           python3 check_boundary_integration.py --prepare
           python3 -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
           python3 -O -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
@@ -48,6 +49,13 @@ jobs:
             test -n "$name" || continue
             lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
           done < TAU_RECOVERY_MODULES.txt
+      - name: Kernel check preserved boundary-layer sources
+        run: |
+          set -euo pipefail
+          while IFS= read -r name; do
+            test -n "$name" || continue
+            lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
+          done < BOUNDARY_MODULES.txt
       - name: Kernel check new integration sources
         run: |
           set -uo pipefail
@@ -56,13 +64,15 @@ jobs:
             test -n "$name" || continue
             echo "=== $name ==="
             if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
-          done < BOUNDARY_MODULES.txt
+          done < BOUNDARY_INTEGRATION_MODULES.txt
           exit "$status"
       - name: Audit new and inherited proof dependencies
         run: |
           set -euo pipefail
           lake env lean --trust=0 -DwarningAsError=true AuditBoundaryIntegration.lean | tee AuditBoundaryIntegration.log
           python3 check_boundary_integration.py AuditBoundaryIntegration.log
+          lake env lean --trust=0 -DwarningAsError=true AuditBoundary.lean >AuditBoundary.log
+          python3 check_boundary.py AuditBoundary.log
           lake env lean --trust=0 -DwarningAsError=true AuditTauRecovery.lean >AuditTauRecovery.log
           python3 check_tau_recovery.py AuditTauRecovery.log
           python3 check_derived.py --prepare

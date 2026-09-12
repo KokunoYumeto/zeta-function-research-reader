@@ -2,6 +2,8 @@
 
 Owner-directed continuation, 12 September 2026. This note distinguishes recovered formal sources, new formalization of source-derived consequences, and analytic inputs still requiring their own formal implementation. The successful workflow on an exact commit is the build record; until that run completes this note makes no certificate claim.
 
+**Build status added on 12 September 2026.** The preceding sentence records the pre-run state. The later [successful run 34686934725, job 103535438942](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34686934725/job/103535438942) used exact source head `5d2772ea0a16d177ac3e01ff70394b90ba95a232`. Its seven module hashes and 87 selected axiom reports were independently checked during integration. This is the certificate for those declarations, not for the separate analytic theta construction or an arithmetic weight estimate. The mathematical sources below are unchanged.
+
 ## 1. Provenance and unchanged data
 
 The base is the accepted SplitZero package on `main` at `14c69d604044b848d64318751a7bee19edfd9aba`. The original scalar core, earlier theorem modules, dependency pin and old workflows are unchanged. Four tau sources are recovered from the interrupted branch at `621eb8863d6e0421b1ce3a604e5712c14d7b5cc2`, with proof-script repairs where fresh Lean runs exposed incomplete elaboration. Those repairs do not change the mathematical statements.

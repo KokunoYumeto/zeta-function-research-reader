@@ -8,7 +8,7 @@ class TauTests(unittest.TestCase):
     def fixture(self, root, code='theorem x : True := by trivial\n'):
         (root/'TAU_RECOVERY_MODULES.txt').write_text('SplitZeroTest\n')
         (root/'TAU_RECOVERY_TARGETS.json').write_text(json.dumps({'SplitZeroTest':['SplitZero.Test.x']}))
-        (root/'SplitZeroTest.lean').write_text(code)
+        (root/'SplitZeroTest.lean').write_text(code, encoding='utf-8', newline='\n')
     def test_accept(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d); self.fixture(p)

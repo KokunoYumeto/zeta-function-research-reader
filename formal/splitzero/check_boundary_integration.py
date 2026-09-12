@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent
 
 
 def preflight(root: Path = ROOT):
-    spec = json.loads((root / 'BOUNDARY_TARGETS.json').read_text(encoding='utf-8'))
+    spec = json.loads((root / 'BOUNDARY_INTEGRATION_TARGETS.json').read_text(encoding='utf-8'))
     if not isinstance(spec, dict) or not spec:
         raise ValueError('empty or invalid manifest')
     names, hashes = [], {}
@@ -47,7 +47,7 @@ def main():
         text = ''.join('import ' + m + '\n' for m in spec) + '\n'
         text += ''.join('#print axioms ' + name + '\n' for name in names)
         (ROOT / 'AuditBoundaryIntegration.lean').write_text(text, encoding='utf-8')
-        (ROOT / 'BOUNDARY_MODULES.txt').write_text('\n'.join(spec) + '\n', encoding='utf-8')
+        (ROOT / 'BOUNDARY_INTEGRATION_MODULES.txt').write_text('\n'.join(spec) + '\n', encoding='utf-8')
     result = {'modules': len(spec), 'selected_targets': len(names), 'source_sha256': hashes}
     if args.log is not None:
         result['axioms'] = audit(args.log.read_text(encoding='utf-8'), names)

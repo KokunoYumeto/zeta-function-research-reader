@@ -125,19 +125,24 @@ class BoundaryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             spec = {'SplitZeroProbe': ['SplitZero.Probe.test']}
-            (root/'BOUNDARY_TARGETS.json').write_text(json.dumps(spec))
+            # The preserved library's manifest must never be consumed or overwritten.
+            legacy = root/'BOUNDARY_TARGETS.json'
+            legacy.write_text('not the integration manifest')
+            (root/'BOUNDARY_INTEGRATION_TARGETS.json').write_text(json.dumps(spec))
             with self.assertRaises(FileNotFoundError):
                 preflight(root)
             file = root/'SplitZeroProbe.lean'
-            file.write_text('theorem test : True := by trivial\n')
+            file.write_text('theorem test : True := by trivial\n', encoding='utf-8', newline='\n')
             self.assertEqual(preflight(root)[1], ['SplitZero.Probe.test'])
-            file.write_text('theorem test : True := by sorry\n')
+            self.assertEqual(legacy.read_text(), 'not the integration manifest')
+            file.write_text('theorem test : True := by sorry\n', encoding='utf-8', newline='\n')
             with self.assertRaises(ValueError):
                 preflight(root)
-            file.write_text('/- sorry only inside a comment -/\ntheorem test : True := by trivial\n')
+            file.write_text('/- sorry only inside a comment -/\ntheorem test : True := by trivial\n',
+                            encoding='utf-8', newline='\n')
             preflight(root)
             spec['SplitZeroProbe'].append('SplitZero.Probe.test')
-            (root/'BOUNDARY_TARGETS.json').write_text(json.dumps(spec))
+            (root/'BOUNDARY_INTEGRATION_TARGETS.json').write_text(json.dumps(spec))
             with self.assertRaises(ValueError):
                 preflight(root)
 

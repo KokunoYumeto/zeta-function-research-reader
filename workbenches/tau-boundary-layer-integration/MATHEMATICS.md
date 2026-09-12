@@ -8,6 +8,14 @@ The scalar core, marked arithmetic quotient, four-point tau chart, and original 
 
 Statements here are separated into encoded Lean conclusions and the analytic inputs required to instantiate them. The exact successful commit/run and source hashes belong to the verification receipt and PR record. A source file or a regression test alone is not a kernel certificate.
 
+### Coexistence with the established boundary library
+
+PR #15 at `21970bbf4760d0bbca512a4a7996a2e38f968947` is retained intact, including its original support/relation files, all five modules, and 38-target audit. This integration's support and relation additions live in `SplitZeroSupportChangeIntegration.lean` and `SplitZeroRelationLayerIntegration.lean`, importing those originals. Their namespaces coexist: `SupportMap/HomOver` and `ReindexedHom` retain their respective presentations; the original bundled `RelationLayer.Data` and the unbundled quotient maps retain their original domains.
+
+For every original `S : RelationLayer.Data R B`, `transport S.lower S.upper S.inclusion = S.transition`. For the same derivative `D` and preservation proof, the two derivative maps are also equal. Both are definitional equalities proved in Lean, with the same ambient representatives and no changed quotient. The 66 prior integration targets and these two compatibility equalities have their own 68-target manifest; neither manifest replaces the other.
+
+The active-support nonabsence proof uses the actual extensive support map: if `syncIndex A = empty`, then `A <= syncIndex A = empty`, whence `A = empty`, contradicting the original nonempty-support hypothesis. This changes only the proof script, not the theorem or its hypotheses.
+
 ## 1. The support-changing map is part of the morphism
 
 For existing linear join diagrams D over L and E over K, a `ReindexedHom D E` consists of a join-and-bottom-preserving map f:L->K and linear maps D_i->E_(f i), with the naturality squares for the given transports. The implementation constructs its actual G(R)-linear total map
@@ -202,9 +210,10 @@ From `formal/splitzero` on this contribution's branch, use Lean 4.31.0 and the u
     lake exe cache get
     lake -KmaxJobs=2 build
     python3 check_tau_recovery.py --prepare
+    python3 check_boundary.py
     python3 check_boundary_integration.py --prepare
 
-Then compile the tau modules listed in `TAU_RECOVERY_MODULES.txt`, followed in order by `BOUNDARY_MODULES.txt`, with:
+Then compile the tau modules listed in `TAU_RECOVERY_MODULES.txt`, the preserved five modules in `BOUNDARY_MODULES.txt`, and the six additions in `BOUNDARY_INTEGRATION_MODULES.txt`, in that order, with:
 
     lake env lean --trust=0 -DwarningAsError=true \
       -o .lake/build/lib/lean/NAME.olean NAME.lean
@@ -214,7 +223,9 @@ Finally:
     lake env lean --trust=0 -DwarningAsError=true AuditBoundaryIntegration.lean \
       > AuditBoundaryIntegration.log
     python3 check_boundary_integration.py AuditBoundaryIntegration.log
+    lake env lean --trust=0 -DwarningAsError=true AuditBoundary.lean > AuditBoundary.log
+    python3 check_boundary.py AuditBoundary.log
 
-The dedicated workflow also reruns the 87-target tau, 73-target derived, and 28-target structural audits and the checking-harness tests normally and with Python optimization. The new seven named Python methods combine exact finite regression models and negative audit controls. They are not arithmetic quadrature tests and do not replace Lean.
+The dedicated workflow checks all 68 integration targets and all 38 preserved boundary targets, and reruns the 87-target tau, 73-target derived, and 28-target structural audits and the checking-harness tests normally and with Python optimization. The seven integration Python methods combine exact finite regression models and negative audit controls, including independence from the preserved manifest. They are not arithmetic quadrature tests and do not replace Lean.
 
 No pre-existing scalar source, formal module, dependency pin, old workflow, reader corpus or another session's branch is changed.

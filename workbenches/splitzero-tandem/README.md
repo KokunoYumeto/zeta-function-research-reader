@@ -1,0 +1,22 @@
+# Split-Zero cohomology and arithmetic weight control
+
+This is the complete September 12b continuation of the [theta-comparison programme](../../RESEARCH_PROGRAMMES.md), available here as directly readable proof sources and runnable checkers, not only as a ZIP. [Read the 88-page PDF](Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) · [Build and run the checks](BUILDING.md) · [Exact source selection](SOURCE_SELECTION.json).
+
+The question is whether the original theta-function quotient can supply effective control of zeta's spectral data. The construction keeps the actual theta source, its supported zeros, the differential $D=-x\partial_x$, and the completed zeta function $g=2\xi$. A finite packet records chosen zeros and all their retained derivatives; its polynomial is $h$, and its coefficient space is $E=\mathbb C[t]/(h)$. A source representative is an actual function realizing those finite data. Adding a theta boundary changes that representative without changing its quotient class.
+
+## What was tried and what resulted
+
+- **Calculate all metrics obtainable from the original source corrections.** [The chain and metric proof](tex/tau_chain.tex) gives the exact fixed-level image $G_m+\Delta$, with $\Delta\geq0$ and $\operatorname{rank}\Delta\leq m+1$. It realizes each positive finite-packet metric at some finite source level and computes the sharp spectral infimum, retaining nilpotent jets. This identifies what a change of representative can do; it does not prove the remaining arithmetic estimate.
+- **Use the distinguished orthogonal representatives instead of an arbitrary metric choice.** [The Christoffel and boundary calculation](tex/tau_boundary.tex) identifies their Gram matrix with a full-jet interpolation kernel for the actual measure $|g/h|^2dt/(2\pi)$. It derives the two-vector boundary formula, determinant update and multiplicity-sensitive rank-two lower bound. The original local unit and all repeated-root data remain in the maps.
+- **Keep track of the topology in which arithmetic derivatives survive.** [The jet-topology proof](tex/jet_topology.tex) gives the finite-Sobolev graph closure and the exact Mellin-jet continuity threshold $|\operatorname{Re}\rho-1/2|<a$ in $L^2(e^{2a|\log x|}dx)$. It retains the additional $2a\operatorname{sign}(\log x)$ term in the energy identity instead of treating a topology change as free.
+- **Make the coefficient and support maps precise.** [Carrier calculations](tex/split_zero_carriers.tex) and [support diagrams](tex/support_diagrams.tex) supply the exact changing-index equivalence, kernel comparison and scalar/vector distinctions needed by the same programme. [The arithmetic input](tex/arithmetic_input.tex) and [research conclusion](tex/research_conclusion.tex) connect the pieces and state the remaining target.
+
+The new proofs received complete source-level tool-assisted review. Five bounded checkers were replayed; the carrier checker intentionally refuses optimized Python, and the other four pass both modes. The Gaussian kernel calibration is not an enclosure of the actual theta integrals. Written analytic proofs, numerical calibration and Lean results imported from earlier notes retain their distinct scopes. No RH proof, RH counterexample, or completed relative weight estimate is asserted.
+
+## Version and source history
+
+The selected contribution is `release_20260912b`. Its 88-page PDF has SHA-256 `22e636dbea901546273ca66b9b9be33dd0cb2fe1609572db1432fa2f04aeeb36`. The residue-duality passage explicitly uses reflection-stable packets for an internal pairing and gives the differently typed map for general packets. The general Christoffel construction is not restricted by that internal-pairing condition.
+
+Six complete earlier public notes appear as dated appendices with their own exact revisions. They are not rewritten to pretend that every historical status statement describes this later edition. The generated appendix TeX under `build/` is required source, not disposable output. [SOURCE_SELECTION.json](SOURCE_SELECTION.json) binds all selected source and checker files. Private transcripts, local staging manifests and later in-progress fragments are excluded from this frozen contribution.
+
+Later calculations can be contributed separately to this living workbench. The immutable source selection here remains available, so the web and local research sessions can compare precisely what changed.

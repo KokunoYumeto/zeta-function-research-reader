@@ -123,11 +123,11 @@ theorem evaluation_injective (S : A) (I : Ideal A) (r : ℕ) :
   obtain ⟨p, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel (R := R) S I r) x
   obtain ⟨q, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel (R := R) S I r) y
   apply (Submodule.Quotient.eq (cyclicLevel (R := R) S I r)).mpr
-  change Polynomial.aeval (R := R) S (p - q) ∈ I ^ r
+  change Polynomial.aeval (R := R) S (p - q) ∈ level (R := R) I r
+  rw [map_sub]
   change (level (R := R) I r).mkQ (Polynomial.aeval (R := R) S p) =
     (level (R := R) I r).mkQ (Polynomial.aeval (R := R) S q) at hxy
-  have hm := (Submodule.Quotient.eq (level (R := R) I r)).mp hxy
-  simpa only [map_sub] using hm
+  exact (Submodule.Quotient.eq (level (R := R) I r)).mp hxy
 
 theorem polynomial_chain_rule (D : Derivation R A A) (S : A)
     (hS : D S = 1) (p : Polynomial R) :

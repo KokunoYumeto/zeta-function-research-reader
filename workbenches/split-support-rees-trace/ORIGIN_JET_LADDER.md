@@ -33,7 +33,7 @@ These are actual finite labels in the existing source diagram. Their image ideal
 \tag{2}
 \]
 
-Containment follows from (1), and the generator at j=m gives equality. The ideal is independent of N once N>=m. For fixed N, the source inclusion W_{m+1,N} -> W_{m,N} gives the quotient map
+Containment follows from (1), and the generator at j=m gives equality. The ideal is independent of N once N>=m. For fixed N and 0<=m<N, the source inclusion W_{m+1,N} -> W_{m,N} gives the quotient map
 
 \[
 \mathcal D_{m+1}=\mathcal O/(gs^{m+1})\longrightarrow
@@ -63,7 +63,7 @@ The same theta source computes g(0)=1. Let theta(x)=sum_{n!=0} exp(-pi n^2 x^2).
 
 The functional equation gives g(1)=1.
 
-For an explicit Chinese-remainder inverse, let a_m(s) be the Taylor polynomial of 1/g at zero of degree less than m and put
+For m>=1, an explicit Chinese-remainder inverse is obtained by letting a_m(s) be the Taylor polynomial of 1/g at zero of degree less than m and putting
 
 \[
 b_m(s)=\frac{1-a_m(s)g(s)}{s^m}.
@@ -76,7 +76,7 @@ This is entire and a_m g+b_m s^m=1. The inverse of D_m -> D_0 direct-sum O/(s^m)
 \tag{5}
 \]
 
-Thus the m-step origin module is an exactly computed kernel of the restricted-presentation comparison. It is not being described as an extra nontrivial zero of the unchanged xi function.
+For m=0, O/(s^0)=0 and the comparison is the identity D_0 -> D_0 direct-sum 0; no Taylor polynomial is needed. Thus the m-step origin module is an exactly computed kernel of the restricted-presentation comparison. It is not being described as an extra nontrivial zero of the unchanged xi function.
 
 ## 3. Apply the original split congruence at every stage
 

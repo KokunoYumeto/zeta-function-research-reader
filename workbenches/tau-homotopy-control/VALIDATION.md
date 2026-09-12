@@ -10,6 +10,8 @@ The delivered Tau_Deligne_Control note and the retained PR #9/#10 source notes w
 
 Neither `lean` nor `lake` is installed in this execution environment. No new Lean build is claimed. The proposed `next_comm` change has the right mathematical target, but was not compiled in its surrounding declaration.
 
+**Superseding status, 12 September 2026.** The preceding execution statements record the original PR #11 review environment. The later [PR #12](https://github.com/KokunoYumeto/zeta-function-research-reader/pull/12), at head `5d2772ea0a16d177ac3e01ff70394b90ba95a232`, passed [run `34686934725`, job `103535438942`](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34686934725/job/103535438942): seven formal algebra/quotient-topology modules and 87 selected axiom reports, including both cochain equations and the inverse homotopy equivalence. This is a later remote certificate, not a successful rerun of the earlier failed revision or a local Lean execution here. It does not certify the analytic theta construction, the new Gram/control arguments, or RH.
+
 ## Executed checks
 
 - Python 3.13.5, SymPy 1.14.0.

@@ -225,7 +225,7 @@ Here $z_{V,\mathscr B}$ is the label-preserving zero map from the source fibre t
 
 The supported image projection is idempotent, and the quotient map is exactly the coequalizer of the theta relation inclusion and its supported-zero companion. The implementation's universal property applies against all split-linear targets. A theta boundary is sent to $e_\lambda=(\lambda,0)$; it is not sent to external absence.
 
-For the single-leg complex there is an actual continuous contraction
+For the single-leg complex there is an actual continuous contraction in complexes of locally convex complex vector spaces, after forgetting $A=\mathbb C[t]$-linearity:
 
 $$C_+\ \xrightleftharpoons[s]{q}\ Q[-1],\qquad H^1=\Lambda,$$
 
@@ -319,7 +319,7 @@ $$\boxed{0\to Q'_b\xrightarrow{q'}\mathscr B'_b
 
 The continuous cochain-dual complex is $[\mathscr B'_b\xrightarrow{\Theta'}V'_b]$ in degrees $-1,0$. Its cohomology is $Q'_b$ in degree $-1$ and zero in degree $0$. The transpose contraction proves this directly; no general exactness theorem for arbitrary locally convex quotients is assumed.
 
-The actual finite residue map into that continuous dual is
+For a finite packet $Z$ stable under $\rho\mapsto1-\overline\rho$, with the full multiplicities retained as in PR #9, the actual finite residue map into that continuous dual is
 
 $$\overline{E_Z}\longrightarrow Q'_b,\qquad
 \bar f\longmapsto\bigl(u\mapsto R_Z(f,j_Zu)\bigr),\tag{38}$$

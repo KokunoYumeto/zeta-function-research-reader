@@ -2,6 +2,15 @@
 
 This is an isolated research continuation for the Zeta workbench. It adds no claim to the existing reader and does not change the frozen editions. Begin with [RESEARCH_NOTE.md](RESEARCH_NOTE.md).
 
+## Complete calculation sequence
+
+1. [Rees defects and graded arithmetic traces](RESEARCH_NOTE.md): measure the information lost by comparison and recover its trace from the grading.
+2. [Actual adelic comparison](ACTUAL_ADELIC_COMPARISON.md): compute the theta image, arithmetic divisor and finite Mellin-jet maps.
+3. [Original quotient propagation](ORIGINAL_QUOTIENT_PROPAGATION.md): carry the original supported quotient through those maps without identifying supported zero with absence.
+4. [Origin-jet ladder](ORIGIN_JET_LADDER.md): use actual differentiated Gaussian source functions to construct an inverse system and its exact origin-jet kernels.
+
+The [programme guide](../../RESEARCH_PROGRAMMES.md) connects this sequence to the later cohomology and weight-control work.
+
 ## Results added here
 
 - Functorial comparison defects over the existing support diagram, with strictness of actual mixed-support synchronization.
@@ -20,6 +29,9 @@ From this directory:
 ```bash
 python checks/check_rees_trace.py --output checks/local-results.json
 python -O checks/check_rees_trace.py --output checks/local-results-optimized.json
+python checks/check_actual_comparison.py
+python checks/check_original_congruence.py
+python checks/check_origin_ladder.py
 ```
 
 Python 3.13.5 and SymPy 1.14.0 were used. The recorded run has 2,085 exact finite assertions in nine suites. There are no floating-point zero-location tests. Normal and optimized outputs were identical. Failure conditions use explicit exceptions, not assert statements. General theorems have written proofs; these finite instances are not formal verification of those proofs or of RH.
@@ -44,4 +56,4 @@ The attached predecessor has fuller adelic estimates. This addition includes the
 
 Research direction and split-support framework: KokunoYumeto. Derivations, exposition and executable finite checks in this addition were developed in the present ChatGPT session. This is tool-assisted mathematical work, not an independent external review. Existing source attribution and repository rights remain intact.
 
-No primary-literature PDFs, raw conversations, private paths, credentials, or unrelated project data are included. No blanket license is asserted over third-party material. The parent reader, accepted claim ledgers, schedules, other branches, and existing pull requests are untouched. This contribution is for a draft pull request, not an automatic merge.
+No primary-literature PDFs, raw conversations, private paths, credentials, or unrelated project data are included. No blanket license is asserted over third-party material. The preceding contribution record describes the original draft submission. On 12 September 2026, all four notes were integrated after source review and normal/optimized finite-check replays; [the integration report](../../INTEGRATION_REVIEW_20260912.md) records the scope. The frozen reader editions remain untouched.

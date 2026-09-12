@@ -192,7 +192,7 @@ For this actual f_0,
 
     closure span{D^j f_0:j>=0} in L2(R_+,dx) = H.
 
-Proof. The explicit unitary Mellin-line map sends F to M F(1/2+it) in L2(R,dt/(2 pi)). It sends D to 1/2+it and f_j to (1/2+it)^j g(1/2+it). The log-space function h(z)=exp(z/2) f_0(exp z) is holomorphic in |Im z|<pi/4 by its Gaussian series. For |Im z|<=a<pi/4 it decays superexponentially as Re z tends to positive infinity. Poisson gives h(z)=h(-z), so the same holds at the other end. Fourier contour displacement therefore gives |g(1/2+it)|<=C_a exp(-a|t|).
+Proof. The explicit unitary Mellin-line map sends F to M F(1/2+it) in L2(R,dt/(2 pi)). For general F in H this means the L2 extension of the source Mellin transform, not a claim that the ordinary integral converges. It sends D to 1/2+it and f_j to (1/2+it)^j g(1/2+it). The log-space function h(z)=exp(z/2) f_0(exp z) is holomorphic in |Im z|<pi/4 by its Gaussian series. For |Im z|<=a<pi/4 it decays superexponentially as Re z tends to positive infinity. Poisson gives h(z)=h(-z), so the same holds at the other end. Fourier contour displacement therefore gives |g(1/2+it)|<=C_a exp(-a|t|).
 
 The measure dmu=|g(1/2+it)|^2dt/(2 pi) has a positive exponential moment. If an L2(mu) function is orthogonal to all polynomials, multiplying mu by its conjugate gives a finite complex measure with a smaller positive exponential moment. Its Fourier transform is analytic in a strip and all derivatives at zero vanish. Analyticity and uniqueness of the Fourier transform imply that measure is zero. Thus polynomials are dense in L2(mu). Multiplication by g is unitary from this weighted space onto L2(dt/(2 pi)), because the nonzero analytic function g on the line is nonzero almost everywhere. This proves the assertion without RH.
 
@@ -210,6 +210,8 @@ The corrective map is the Hilbert/jet graph:
 
 Indeed finite theta polynomials give every (h,0) in the closure, and the sequence (R_m u,u) gives (0,u). For a specified positive metric on E, completion in ||F||_2^2+||J_ZF||_E^2 is this graph closure, and the quotient by the boundary closure is E by [(h,u)]|->u. The added metric is retained supplied data, not an implied positivity theorem for the Weil pairing.
 
+For E nonzero, this closure is a closed linear relation in H plus E, not the graph of an operator H->E: the sequence (R_m u,u)->(0,u) with u nonzero proves that J_Z is not closable on H. The graph-norm completion just described does not replace the original Frechet quotient topology.
+
 Its split observation is
 
     ((R_m u)^bullet,u^bullet) -> (e_H,u^bullet)
@@ -218,7 +220,7 @@ in the product of the stated support-fibre topologies. The arithmetic component 
 
 ## 7. Duality, trace and scope
 
-The original residue map has matrix S with S*=-S and A*S+SA=S. Its pullback of the dual metric is
+For the residue-duality statements here, retain PR #9, section 6's assumption that Z is stable under rho -> 1-conjugate(rho), with every zero's full multiplicity. This inherited restriction concerns the same-packet duality, not the preceding general Gram construction. The original residue map has matrix S with S*=-S and A*S+SA=S. Its pullback of the dual metric is
 
     G_m^D=S*G_m^-1 S,
     W_m^D=-S*G_m^-1 W_m G_m^-1 S.

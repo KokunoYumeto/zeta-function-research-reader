@@ -2,9 +2,11 @@
 
 [What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
 
-[What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
+## New: SplitZero, theta cohomology and weight control
 
-[What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
+The September 12 calculations develop support-preserving arithmetic coefficients, the quotient of rapidly decreasing functions by theta-function relations, and finite spectral data attached to zeta's zeros. They calculate explicit comparison maps, homotopies and rank-two matrices in an attempt to obtain the kind of weight control that makes Deligne's Weil II machinery effective. They do not yet establish the needed uniform estimate.
+
+Start with [the research-programme guide](RESEARCH_PROGRAMMES.md): it defines the objects and explains what each attempt was for, what worked and what remains unfinished. Then follow the full proofs and executable checks in each linked workbench. [Machine-readable routes and versions](WORKBENCHES.json) · [September 12 checking and source report](INTEGRATION_REVIEW_20260912.md).
 
 ## Six-reader collection
 
@@ -71,7 +73,7 @@ Build the main reader from repository root with `pdflatex main.tex` twice;
 follow each sidebar's README for its own entrypoint and mathematical checks.
 Some administrative seal scripts refer to private continuity/provenance files
 that are deliberately not included and are not required to read the proofs.
-No proof checks were rerun as part of this mirror publication.
+That statement of the original mirror's scope remains historical. The September 12 workbench integration separately replayed its finite tests and checked the exact successful Lean source run; see [the checking report](INTEGRATION_REVIEW_20260912.md). These checks do not retroactively certify all frozen readers.
 
 ## Rights and privacy
 

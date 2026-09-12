@@ -26,6 +26,8 @@ The difference is a map H1(C)->H0(C). There are no degree-minus-two endomorphism
 
 The supplied theorem is mathematically correct. Its Lean draft explicitly remains uncompiled, and its earlier failed chart build is not relabelled successful. No Lean or Lake executable is installed in the review environment.
 
+**Superseding status, 12 September 2026.** The preceding execution statements record the original PR #11 review environment. The later [PR #12](https://github.com/KokunoYumeto/zeta-function-research-reader/pull/12), at head `5d2772ea0a16d177ac3e01ff70394b90ba95a232`, passed [run `34686934725`, job `103535438942`](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34686934725/job/103535438942): seven formal algebra/quotient-topology modules and 87 selected axiom reports, including both cochain equations and the inverse homotopy equivalence. This is a later remote certificate, not a successful rerun of the earlier failed revision or a local Lean execution here. It does not certify the analytic theta construction, the new Gram/control arguments, or RH.
+
 For the actual analytic spaces instantiate R=C. With the quotient topology on Q, the continuous version follows: alpha q=F pr2 H is continuous, so the quotient property makes alpha continuous. Conversely the displayed formula sends continuous alpha to continuous H.
 
 For the polynomial action A0=C[t], Fourier has the exact type
@@ -188,7 +190,7 @@ $$\epsilon\widehat G\pm\widehat W-(\epsilon\eta_G+\eta_W)I\succeq0$$
 
 imply the actual two-sided control. This is an error-transfer theorem; arithmetic enclosures have not been computed here.
 
-The unchanged residue matrix S satisfies S*=-S and A*S+SA=S. Its exact dual transport is
+For the residue-duality statements here, retain PR #9, section 6's assumption that Z is stable under rho -> 1-conjugate(rho), with every zero's full multiplicity. This inherited restriction concerns the same-packet duality, not the preceding general Gram construction. The unchanged residue matrix S satisfies S*=-S and A*S+SA=S. Its exact dual transport is
 
 $$G_B^{\mathrm D}=S^*G_B^{-1}S,\qquad W_B^{\mathrm D}=-S^*G_B^{-1}W_BG_B^{-1}S.$$
 
@@ -214,7 +216,7 @@ This ensures that changing representatives has not changed a spectral coordinate
 
 ## 8. Validation and attribution
 
-The attachment supplies the homotopy-classification theorem and the uncompiled draft. This note verifies its proof and adds the continuous/twisted interface, supported reconstruction, coherent-family condition, and the connection to the actual control matrices. The original owner-directed SplitZero construction remains the source.
+The attachment supplies the homotopy-classification theorem and the uncompiled draft. That draft status is historical; see the dated superseding status in section 1. This note verifies its proof and adds the continuous/twisted interface, supported reconstruction, coherent-family condition, and the connection to the actual control matrices. The original owner-directed SplitZero construction remains the source.
 
 The independent checker has sixteen exact unittest methods, including finite parameter families. They passed normally and under python -O with identical successful JSON records. Intentional negative controls failed in both modes. The previous control checker also passed its sixteen methods. These finite checks cover algebraic models and polynomial-times-exponential integral calibrations, not evaluated zeta packets or analytic/Lean certification.
 

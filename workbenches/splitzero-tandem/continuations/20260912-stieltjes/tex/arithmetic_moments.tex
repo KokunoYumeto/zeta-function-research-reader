@@ -1,0 +1,435 @@
+\section{Certified moments from the original arithmetic theta source}
+\label{sec:arithmetic-moments}
+
+The moment matrices in the arithmetic kernel formulas can be calculated
+directly from the specified theta source.  This section gives an exact
+incomplete-gamma series, proves an explicit bound for the entire omitted
+double tail, and applies directed interval arithmetic to the retained
+terms.  The construction retains the original factor \(g=2\xi\), the
+measure \(dx\), the Euler operator \(D=-x\partial_x\), and every
+polynomial coefficient.  No information about the location of a zeta
+zero enters this calculation.
+
+\subsection{Source polynomials and the exact reflection map}
+
+Keep
+\[
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+ f_j=D^j\Theta\phi_*,\qquad
+ \Theta\phi(x)=2\sum_{n\geq1}\phi(nx).
+ \tag{AM.1}
+\]
+Introduce polynomials with their original integer coefficients by
+\[
+ P_0(z)=4z^2-6z,\qquad
+ P_{j+1}(z)=2z\bigl(P_j(z)-P'_j(z)\bigr),\qquad
+ Q_j(z)=\sum_{k=0}^j(-1)^k\binom jkP_k(z).
+ \tag{AM.2}
+\]
+Write \(p_{ja}\) and \(q_{ja}\) for the coefficients of \(z^a\).
+Both polynomials have degree \(d_j=j+2\), with leading coefficients
+\(2^{j+2}\) and \((-1)^j2^{j+2}\), respectively, and both have zero
+constant coefficient.  The formula defining \(Q_j\) is an explicit
+change of polynomial coordinates; neither family is discarded.
+
+Define the linear involution on the actual Hilbert observation by
+\[
+ \mathcal T:L^2(\mathbb R_{>0},dx)\longrightarrow
+ L^2(\mathbb R_{>0},dx),\qquad
+ (\mathcal TF)(x)=x^{-1}F(1/x).
+ \tag{AM.3}
+\]
+It is unitary and self-adjoint, satisfies \(\mathcal T^2=1\), and,
+on the strong Schwartz space \(\mathscr B\),
+\[
+ D\mathcal T=\mathcal T(1-D),\qquad
+ \mathcal Tf_0=f_0,\qquad
+ \mathcal Tf_j=(1-D)^jf_0.
+ \tag{AM.4}
+\]
+Consequently, the complete source series and its reflected series are
+\[
+ f_j(x)=2\sum_{n\geq1}P_j(\pi n^2x^2)e^{-\pi n^2x^2},\qquad
+ \widetilde f_j(x):=(1-D)^jf_0(x)
+   =2\sum_{n\geq1}Q_j(\pi n^2x^2)e^{-\pi n^2x^2},
+ \tag{AM.5}
+\]
+and \(f_j(1/x)=x\widetilde f_j(x)\).
+
+\begin{proof}
+For \(z=\pi x^2\), applying \(-x\partial_x\) to
+\(P(z)e^{-z}\) gives \(2z(P-P')e^{-z}\).  This proves the
+recurrence and (AM.5).  The leading coefficients and zero constant
+coefficients follow by induction.  Under the Fourier convention
+\(\widehat\phi(\xi)=\int\phi(x)e^{-2\pi ix\xi}\,dx\),
+differentiating the Fourier transform of the Gaussian gives
+\[
+ \widehat{x^2e^{-\pi x^2}}(\xi)
+  =\left(\frac1{2\pi}-\xi^2\right)e^{-\pi\xi^2},\qquad
+ \widehat{x^4e^{-\pi x^2}}(\xi)
+  =\left(\xi^4-\frac{3\xi^2}{\pi}
+                    +\frac3{4\pi^2}\right)e^{-\pi\xi^2}.
+\]
+Multiplication by the exact coefficients \(4\pi^2,-6\pi\)
+therefore gives \(\widehat\phi_* =\phi_*\).  Its value at zero
+is zero, and its integral is \(\widehat\phi_*(0)=0\).
+The theta--Fourier identity already proved for the source \(V\)
+then gives \(\mathcal Tf_0=f_0\).
+
+Substitution \(u=1/x\) gives
+\(\int|x^{-1}F(1/x)|^2dx=\int|F(u)|^2du\), so \(\mathcal T\)
+is unitary.  It is an involution and hence self-adjoint.  Direct
+differentiation proves \(D\mathcal T=\mathcal T(1-D)\), including
+the constant \(1\) arising from the original factor \(x^{-1}\).
+Induction proves the other identities in (AM.4).  Local uniform
+convergence of each differentiated Gaussian series follows on
+\(x\geq\delta>0\) by a polynomial times Gaussian majorant.  The
+series gives decay of all Euler derivatives at infinity, and its
+exact reflected expression gives the corresponding decay at zero.
+Thus these operations apply to the original functions in
+\(\mathscr B\).
+\end{proof}
+
+\subsection{An absolutely convergent double series for every entry}
+
+For integers \(i,j\geq0\), retain the raw moment entry
+\[
+ H_{ij}=\langle D^if_0,D^jf_0\rangle_{L^2(dx)}
+  =\int_{\mathbb R}
+    \overline{(1/2+it)^i}(1/2+it)^j
+       |2\xi(1/2+it)|^2\,\frac{dt}{2\pi}.
+ \tag{AM.6}
+\]
+The equality is the original Mellin Plancherel identity.  In
+particular \(H_{ij}\) is real because the source functions are real.
+For \(L\geq0\) and \(\lambda>0\), set
+\[
+ I_L(\lambda)=\int_1^\infty x^{2L}e^{-\lambda x^2}\,dx
+   =\frac{\Gamma(L+1/2,\lambda)}{2\lambda^{L+1/2}},
+ \qquad
+ \Gamma(a,\lambda)=\int_\lambda^\infty u^{a-1}e^{-u}\,du.
+ \tag{AM.7}
+\]
+
+\begin{theorem}[Exact original arithmetic moment series]
+With \(\lambda_{nm}=\pi(n^2+m^2)\), the following double series
+converges absolutely, including after the finite coefficient sums
+are replaced by their absolute values:
+\[
+ \boxed{\begin{aligned}
+ H_{ij}={}&2\sum_{n,m\geq1}\sum_{a=1}^{d_i}\sum_{b=1}^{d_j}
+ (p_{ia}p_{jb}+q_{ia}q_{jb})\pi^{a+b}n^{2a}m^{2b}\\[-2pt]
+ &\hspace{24mm}\cdot
+ \frac{\Gamma(a+b+1/2,\lambda_{nm})}
+      {\lambda_{nm}^{a+b+1/2}}.
+ \end{aligned}}
+ \tag{AM.8}
+\]
+Equivalently, it is the Gram integral on the positive half-domain
+\[
+ H_{ij}=\int_1^\infty
+       \bigl(f_i(x)f_j(x)+\widetilde f_i(x)\widetilde f_j(x)\bigr)dx.
+ \tag{AM.9}
+\]
+Thus the precise map to the positive Gram presentation is
+\[
+ \mathbb C[s]\longrightarrow L^2([1,\infty),dx)^{\oplus2},
+ \qquad P\longmapsto\bigl(P(D)f_0,P(1-D)f_0\bigr)\big|_{[1,\infty)}.
+ \tag{AM.10}
+\]
+It preserves the original polynomial inner product (AM.6) and is
+injective.  The signs in (AM.8) are retained; the positivity is
+the Gram positivity of this specified map.
+\end{theorem}
+
+\begin{proof}
+Split the integral in (AM.6) at \(x=1\).  On \((0,1)\), set
+\(x=1/u\).  The two factors \(u\) supplied by (AM.5) cancel the
+Jacobian \(u^{-2}\) exactly.  This gives (AM.9).
+For absolute convergence, write
+\[
+ C_j=\sum_{a=1}^{d_j}|p_{ja}|\pi^a,\qquad
+ E_j=\sum_{a=1}^{d_j}|q_{ja}|\pi^a.
+ \tag{AM.11}
+\]
+For \(n,x\geq1\), the polynomial bounds are
+\[
+ |P_j(\pi n^2x^2)|\leq C_j n^{2d_j}x^{2d_j},\qquad
+ |Q_j(\pi n^2x^2)|\leq E_j n^{2d_j}x^{2d_j}.
+\]
+Since \(n^2+m^2\geq2\) and \(x^2\geq1\),
+\[
+ (n^2+m^2)x^2\geq\tfrac12(n^2+m^2)+x^2.
+\]
+The absolute integrand series is therefore bounded by
+\[
+ 4(C_iC_j+E_iE_j)x^{2(d_i+d_j)}e^{-\pi x^2}
+ \left(\sum_{n\geq1}n^{2d_i}e^{-\pi n^2/2}\right)
+ \left(\sum_{m\geq1}m^{2d_j}e^{-\pi m^2/2}\right),
+\]
+which is integrable on \([1,\infty)\).  This proves all required
+sum--integral interchanges.  Substitution \(u=\lambda x^2\)
+gives (AM.7).  The two theta factors contribute \(4\), and
+(AM.7) contributes \(1/2\), leaving exactly the factor \(2\)
+in (AM.8).
+
+For complex polynomial coefficients, conjugate the coefficients
+of the first factor in the Gram integral.  Equation (AM.9) then
+proves the inner-product assertion in (AM.10).  If a nonzero
+polynomial \(P\) were in its kernel, its first component would
+vanish on \([1,\infty)\).  Put \(U(z)=\sum_jP_j(z)c_j\) when
+\(P(s)=\sum_jc_js^j\).  The distinct degrees and nonzero leading
+coefficients of the \(P_j\) imply \(U\ne0\).  Multiplying the
+vanishing theta series by \(e^{\pi x^2}/2\) gives
+\[
+ U(\pi x^2)=-\sum_{n\geq2}U(\pi n^2x^2)
+                         e^{-\pi(n^2-1)x^2}.
+\]
+The right side decays exponentially times a fixed polynomial as
+\(x\to\infty\), by the same Gaussian bound.  A nonzero polynomial
+on the left cannot have that decay.  This contradiction proves
+injectivity.
+\end{proof}
+
+\subsection{A complete finite truncation certificate}
+
+Let \(H_{ij}^{[N]}\) be (AM.8) with both theta indices restricted
+to \(1\leq n,m\leq N\), keeping all coefficients \(p_{ia},q_{ia}\).
+For the calculation of this entry choose an integer
+\(N\geq\max(d_i,d_j)\).  Define, for \(k=i,j\),
+\[
+ \begin{aligned}
+ r_{k,N}&=\left(\frac{N+2}{N+1}\right)^{2d_k}
+                 e^{-\pi(2N+3)},&
+ T_{k,N}&=\frac{(N+1)^{2d_k}}{1-r_{k,N}},\\
+ A_{k,N}&=\sum_{n=1}^N n^{2d_k}e^{-\pi(n^2-1)}
+       +T_{k,N}e^{-\pi((N+1)^2-1)}.
+ \end{aligned}
+ \tag{AM.12}
+\]
+All these numbers are specified positive real constants.  The
+choice of \(N\) ensures \(r_{k,N}<1\), since
+\[
+ \log r_{k,N}
+  <\frac{2d_k}{N+1}-\pi(2N+3)<2-5\pi<0.
+\]
+
+\begin{theorem}[Rigorous complete double-tail bound]
+For every \(i,j\geq0\) and \(N\geq\max(i,j)+2\),
+\[
+ \boxed{\begin{aligned}
+ |H_{ij}-H_{ij}^{[N]}|\leq\mathcal E_{ij,N}:={}&
+ 4(C_iC_j+E_iE_j)
+ \bigl(T_{i,N}A_{j,N}+A_{i,N}T_{j,N}\bigr)\\[-2pt]
+ &\cdot I_{d_i+d_j}\bigl(\pi((N+1)^2+1)\bigr).
+ \end{aligned}}
+ \tag{AM.13}
+\]
+In particular the bound tends to zero as \(N\to\infty\), for each
+fixed pair \(i,j\), and provides an explicit finite certificate
+for every raw arithmetic moment.
+\end{theorem}
+
+\begin{proof}
+For \(x\geq1\), the ratio of successive terms of
+\(n^{2d_k}e^{-\pi n^2x^2}\) is at most
+\[
+ \left(\frac{n+1}{n}\right)^{2d_k}e^{-\pi(2n+1)}.
+\]
+The logarithm of this expression has derivative
+\(-2d_k/(n(n+1))-2\pi<0\) for positive real \(n\).
+For \(n\geq N+1\) every ratio is consequently at most
+\(r_{k,N}\).  Summing the geometric majorant yields
+\[
+ \sum_{n>N}n^{2d_k}e^{-\pi n^2x^2}
+  \leq T_{k,N}e^{-\pi(N+1)^2x^2},\qquad
+ \sum_{n\geq1}n^{2d_k}e^{-\pi n^2x^2}
+  \leq A_{k,N}e^{-\pi x^2}.
+ \tag{AM.14}
+\]
+For the second inequality, divide by \(e^{-\pi x^2}\), bound
+each retained factor \(e^{-\pi(n^2-1)x^2}\) at \(x=1\), and
+apply the first inequality to the tail.
+
+Write \(F_{k,N}\) for the finite \(P_k\)-series and
+\(\widetilde F_{k,N}\) for the finite \(Q_k\)-series.
+Equations (AM.11) and (AM.14) give
+\[
+ \begin{aligned}
+ |f_k(x)|, |F_{k,N}(x)|
+  &\leq2C_k x^{2d_k}A_{k,N}e^{-\pi x^2},\\
+ |f_k(x)-F_{k,N}(x)|
+  &\leq2C_kx^{2d_k}T_{k,N}e^{-\pi(N+1)^2x^2}.
+ \end{aligned}
+\]
+The reflected inequalities have exactly \(E_k\) in place of
+\(C_k\).  In each product of (AM.9), use the exact decomposition
+\(ab-a_Nb_N=(a-a_N)b+a_N(b-b_N)\).  The resulting bound on the
+absolute difference of integrands is
+\[
+ 4(C_iC_j+E_iE_j)
+ (T_{i,N}A_{j,N}+A_{i,N}T_{j,N})
+ x^{2(d_i+d_j)}e^{-\pi((N+1)^2+1)x^2}.
+\]
+Its integral is exactly the right side of (AM.13).
+Finally, the \(A_{k,N}\) remain bounded for fixed \(k\), the
+\(T_{k,N}\) grow at most polynomially, and the integral decays
+exponentially in \((N+1)^2\).  For completeness, with
+\(L=d_i+d_j\) fixed and \(\lambda\geq2L\), the inequality
+\(\log x\leq(x^2-1)/2\) for \(x\geq1\) gives
+\[
+ I_L(\lambda)\leq e^{-\lambda}
+   \int_1^\infty e^{-(\lambda-L)(x^2-1)}dx
+ \leq \frac{e^{-\lambda}}{2(\lambda-L)}.
+\]
+Here the last step uses \(x^2-1\geq2(x-1)\).
+This proves the asserted limit with an additional elementary
+upper bound when desired.
+\end{proof}
+
+The finite matrix \((H_{ij}^{[N]})_{0\leq i,j\leq m}\) is itself
+positive definite for every \(N\geq1\).  Indeed it is the Gram
+matrix of \((F_{j,N},\widetilde F_{j,N})\) on the same half-domain;
+the injectivity proof in (AM.10) applies verbatim to the finite
+sum.  This fact does not assign an ordering to its difference
+from the full matrix.  The relation to the full matrix is the
+entrywise enclosure (AM.13), whose signs and error bounds are
+explicit.
+
+\subsection{Exact adjoint, parity, and finite-boundary checks}
+
+On \(\mathscr B\) in \(L^2(dx)\), integration by parts gives
+\(\langle DF,H\rangle=\langle F,(1-D)H\rangle\).
+Therefore the complete moments satisfy
+\[
+ H_{i+1,j}+H_{i,j+1}=H_{ij},\qquad
+ H_{ij}=\sum_{k=0}^i(-1)^k\binom ikH_{0,j+k},\qquad
+ H_{01}=\tfrac12H_{00}.
+ \tag{AM.15}
+\]
+All boundary terms vanish because the original functions have
+rapid decay at both ends.  More explicitly,
+\[
+ (Df_i)f_j+f_i(Df_j)-f_if_j=-\partial_x(xf_if_j),
+\]
+whose integral on \((0,\infty)\) is zero.  Moving each of the
+\(i\) copies of \(D\) in the first argument to the second gives
+the middle identity; symmetry gives the last one.
+
+The finite sums retain an exact boundary correction at \(x=1\):
+\[
+ \begin{aligned}
+ H_{i+1,j}^{[N]}+H_{i,j+1}^{[N]}-H_{ij}^{[N]}
+ ={}&F_{i,N}(1)F_{j,N}(1)\\[-2pt]
+ &-\widetilde F_{i,N}(1)\widetilde F_{j,N}(1).
+ \end{aligned}
+ \tag{AM.16}
+\]
+To prove this, use \(DF_{j,N}=F_{j+1,N}\) for the first
+component and \(D\widetilde F_{j,N}=\widetilde F_{j,N}
+-\widetilde F_{j+1,N}\) for the second.  Applying the preceding
+integration-by-parts calculation on \([1,\infty)\) gives the
+first displayed endpoint product for the first component and
+its negative for the second.  The endpoints at infinity vanish
+term by term.  In particular the exact finite identity
+\(H_{01}^{[N]}=H_{00}^{[N]}/2\) follows even before the omitted
+tail is enclosed, since \(F_{0,N}=\widetilde F_{0,N}\).
+
+One may also retain the exact triangular coordinate map
+\[
+ B_{ja}=\begin{cases}\binom ja(-1/2)^{j-a},&a\leq j,\\0,&a>j,
+             \end{cases}
+ \qquad C=BHB^T.
+ \tag{AM.17}
+\]
+This is the Gram matrix of \(u_j=(D-1/2)^jf_0\), with inverse
+coordinate matrix \((B^{-1})_{ja}=\binom ja(1/2)^{j-a}\).
+No original moment is lost.  Since
+\(\mathcal Tu_j=(-1)^ju_j\), unitarity proves \(C_{ij}=0\)
+for odd \(i+j\).  The operator \(D-1/2\) is skew-symmetric on
+this displayed strong Schwartz domain, so for \(i+j=2q\),
+\[
+ C_{ij}=(-1)^{i+q}\|u_q\|^2,\qquad
+ \|u_q\|^2=\int_{\mathbb R}t^{2q}|2\xi(1/2+it)|^2
+                                      \frac{dt}{2\pi}>0.
+ \tag{AM.18}
+\]
+For the first equality move all \(i\) powers to the second
+argument, and compare with moving the \(q\) powers in
+\(\langle u_q,u_q\rangle\).  Mellin Plancherel gives the
+second equality.  Strict positivity follows from the nonzero
+original function and the polynomial injectivity already proved.
+
+\subsection{Reproducible certified finite arithmetic data}
+
+The companion program \texttt{scripts/check\_arithmetic\_moments.py}
+implements the exact integer recurrence (AM.2), evaluates every
+retained term of (AM.8) by Arb directed ball arithmetic, and
+enlarges its radius by an upward-rounded value of (AM.13).
+Thus the final balls enclose the infinite-source entries, including
+rounding error and both omitted theta tails.  The default run
+uses \(0\leq i,j\leq5\), \(N=7\), and \(110\) decimal working
+digits; its machine-readable output is
+\texttt{checks/arithmetic\_moments.json}.
+
+Let \(\Delta_k=\det(H_{ij})_{0\leq i,j<k}\) and
+\(\Delta_0=1\).  The squared norm \(h_k\) of the monic
+degree-\(k\) polynomial for the original measure \(\mu\) is
+\[
+ h_k=\frac{\Delta_{k+1}}{\Delta_k}.
+ \tag{AM.19}
+\]
+Indeed the coefficients below the leading term solve the Gram
+system making that monic polynomial orthogonal to degrees below
+\(k\).  Substitution of that unique solution into its squared
+norm gives the Schur complement of the leading \(k\)-by-\(k\)
+Gram block.  The block determinant identity gives (AM.19).
+The interval calculation certifies strict positivity of all six
+leading principal determinants recorded in the companion certificate
+and all six corresponding
+\(h_k\); those are the actual arithmetic norms used by the
+orthogonal recurrence, through the finite degrees stated.
+
+Here are explicit certified intervals from that run.  Each row
+means the entire interval \([c-r,c+r]\), with the printed decimal
+centre \(c\) and radius \(r\) interpreted exactly.  Rounding the
+stored Arb balls to the displayed decimals was performed outwards.
+\[
+\begin{array}{c|r|l}
+ \text{raw moment}&c&r\\\hline
+ H_{00}&1.279007247846485140480&4.67\cdot10^{-22}\\
+ H_{01}&0.6395036239232425702398&3.33\cdot10^{-23}\\
+ H_{02}&-12.73579749060893715027&2.81\cdot10^{-21}\\
+ H_{11}&13.37530111453217972051&2.57\cdot10^{-21}\\
+ H_{12}&6.687650557266089860256&2.85\cdot10^{-22}\\
+ H_{22}&389.8820543216399270934&1.65\cdot10^{-20}
+\end{array}
+\]
+Symmetry supplies the other entries of this original three-by-three
+moment block.  The six original monic squared norms are enclosed by
+\[
+\begin{array}{c|r|l}
+ k&c\text{ for }h_k&r\\\hline
+ 0&1.279007247846485140480&4.67\cdot10^{-22}\\
+ 1&13.05554930257055843539&2.69\cdot10^{-21}\\
+ 2&250.0089768190499145175&4.88\cdot10^{-20}\\
+ 3&6694.666685525627506773&4.76\cdot10^{-19}\\
+ 4&224298.1953314520556463&9.95\cdot10^{-18}\\
+ 5&9383436.471794727053469&2.54\cdot10^{-16}
+\end{array}
+\]
+The analytic double-tail bound is less than
+\(2.961369\cdot10^{-63}\) for every entry of the six-by-six
+matrix, and is less than \(1.150030\cdot10^{-83}\) for \(H_{00}\).
+These bounds account for omitted source terms; the displayed
+intervals additionally include finite-term arithmetic and decimal
+conversion errors.
+
+The checker also evaluates (AM.15) and the independent exact
+finite-boundary identity (AM.16), and detects removal of either
+the reflected half-domain, the theta factor \(2\), or the
+adjoint constant \(1\).  Its checks execute identically under
+ordinary Python and Python's optimization flag.  Finite interval
+certificates do not assert an infinite-degree weight estimate;
+(AM.8)--(AM.14) give the exact arithmetic input and its complete
+error control for calculating further degrees.

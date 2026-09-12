@@ -1,0 +1,406 @@
+# Quantitative sum-fibre connection and the conormal arithmetic trace
+
+Owner-directed continuation of the split-zero programme, 12 September 2026.
+
+**Status.** Written analytic and algebraic deductions for review. The original theta source, its asserted range theorem, and the canonical finite representatives are inputs from the preceding work. No new Lean execution or arithmetic purity theorem is claimed. The new analytic estimate is a mass-retaining contraction for the actual spectral-sum density. The full matrix connection, its normal component, and the conormal derivative of the original theta relations are constructed as well; the contraction is not assigned to the full Weil control form without a comparison.
+
+## 1. Source intake and the unchanged marked object
+
+The newly uploaded Kernel Layer Integration archive is byte-identical to its earlier uploaded copy. Its thirty-one manifest entries and the fifty-three entries in the Spectral Sum Descent archive were independently verified. The kernel-layer note's identities are used as source results, not counted as new deductions:
+
+$$K_M=G_M^{-1},\qquad V_M=A_kK_M+K_MA_k^*-kK_M,\qquad W_M=G_MV_MG_M.\tag{1.1}$$
+
+In particular the same control problem is transported by the actual map $v=K_M\lambda$. The source's next theta-relation layer, its full-jet columns, and its map into $B_{M+1}/B_M$ remain attached. Its formalization interface is the existing internal quotient, not a replacement quotient.
+
+Retain the marked absolute base $\mathfrak b_\tau$, the scalar semiring, and the original infinite quotient:
+
+$$G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\qquad e_R=0_R^\bullet,\qquad
+\begin{array}{ccc}G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{j}&\mathbb C.
+\end{array}\tag{1.2}$$
+
+The target of $p_{\mathbb Z}$ is infinite. Every ring map below is lifted through $G$ and this square. A complex-linear map $T:V\to W$ is lifted instead by the explicitly defined split-linear map $T^\tau(v^\bullet)=(Tv)^\bullet$, $T^\tau(\tau)=\tau$. These are different types of construction, connected by their respective arithmetic projection squares. In the full support diagram the same formula is $(\lambda,v)\mapsto(\varphi(\lambda),T_\lambda v)$, with the displayed support transport $\varphi$. In particular amplitude zero is the receiving fibre's zero, not external absence.
+
+The original test spaces and operators are
+
+$$V=\{\phi\in\mathcal S(\mathbb R):\phi\text{ even},\ \phi(0)=0,\ \int_{\mathbb R}\phi=0\},$$
+$$\mathscr B=\{F\in C^\infty(\mathbb R_{>0}):\sup_{x>0}x^b|D^jF(x)|<\infty\ \ (b\in\mathbb Z,j\ge0)\},\qquad D=-x\partial_x,$$
+$$C_+=[V\xrightarrow{\Theta}\mathscr B],\quad \Theta\phi(x)=\sum_{n\ne0}\phi(nx),\quad Q=\mathscr B/\Theta V,$$
+$$\phi_*=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad g(s)=2\xi(s),\quad \mathcal M\Theta\phi=gH_\phi,\quad H_{\phi_*}=1.\tag{1.3}$$
+
+Fix a finite packet of actual zeros with full multiplicities, stable under $\rho\mapsto1-\bar\rho$. Put
+
+$$h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\quad d=\deg h,\quad v_h=g/h,\quad E_h=\mathbb C[s]/(h),\quad \upsilon_h=j_hv_h\in E_h^\times.\tag{1.4}$$
+
+The source supplies $F_h\in\mathscr B$ with $\mathcal MF_h=v_h$ and $h(D)F_h=\Theta\phi_*$. It also supplies
+
+$$\mathcal T_hP=P(D)F_h,\quad \mathcal T_h(hP)=\Theta(P(D)\phi_*),\quad J_h\mathcal T_hP=\upsilon_h[P]_h.\tag{1.5}$$
+
+The statements below also apply to $h=1$ as the actual theta-seed calculation, but that case has zero-dimensional arithmetic quotient and is not substituted for a nonempty packet.
+
+## 2. The sum coordinate and its conjugate logarithmic operator
+
+Let $k\ge2$, $S=\sum_{i=1}^ks_i$, and use the explicit centered relative coordinates
+
+$$z_i=s_i-S/k\quad(i<k),\quad z_k=-\sum_{i<k}z_i,\qquad s_i=S/k+z_i.\tag{2.1}$$
+
+On the original integration lines set
+
+$$s_i=\tfrac12+it_i,\quad S=\tfrac{k}{2}+iu,\quad u=\sum_i t_i,\quad y_i=t_i-u/k\ (i<k),\quad y_k=-\sum_{i<k}y_i.\tag{2.2}$$
+
+The inverse is $t_i=u/k+y_i$. The real Jacobian has absolute value one. For $k=2$, the earlier relative coordinate was $v=t_1-t_2=2y_1$, so $dt_1dt_2=du\,dy_1=\tfrac12du\,dv$. Thus the earlier factor $1/2$ remains exactly in that coordinate comparison. Its $\Delta$ is $4z_1^2=-4y_1^2$.
+
+Write
+
+$$a_h(t)=\frac{v_h(\tfrac12+it)}{\sqrt{2\pi}},\qquad w_h(t)=|a_h(t)|^2,\qquad \mu_h=\int_{\mathbb R}w_h(t)dt=\|F_h\|_{L^2(dx)}^2.\tag{2.3}$$
+
+The factor $\sqrt{2\pi}$ is the stated Mellin--Fourier Plancherel factor. No mass has been set to one. Define the actual fibre amplitude
+
+$$\Psi_k(u,\mathbf y)=\prod_{i=1}^k a_h(u/k+y_i).\tag{2.4}$$
+
+Mellin--Fourier followed by (2.2) is the unitary map
+
+$$\mathscr U_k:L^2(\mathbb R_{>0}^k,d^kx)\longrightarrow L^2(\mathbb R_u\times\mathbb R_{\mathbf y}^{k-1},du\,d\mathbf y).$$
+
+On the given test functions it satisfies
+
+$$\mathscr U_k(D^{(k)}F)=(\tfrac{k}{2}+iu)\mathscr U_kF,\quad D^{(k)}=\sum_iD_i,$$
+$$\partial_u\mathscr U_kF=i\mathscr U_k(\mathscr L_kF),\qquad \mathscr L_k=\frac1k\sum_{i=1}^k\log x_i,\qquad [D^{(k)},\mathscr L_k]=-1.\tag{2.5}$$
+
+Here $\mathscr L_k$ is multiplication by the displayed function; $1/k$ comes from the inverse coordinate map keeping the relative $z_i$ fixed. It does not change the scaling generator $D^{(k)}$. The identities follow by differentiating the Mellin integral. Logarithmic multiplication preserves $\mathscr B$ and the corresponding tensor test space.
+
+For the polynomial source,
+
+$$\mathscr U_k\mathcal T_h^{(k)}P=\Psi_k(u,\mathbf y)P(S/k+i y_1,\ldots,S/k+i y_k).\tag{2.6}$$
+
+Thus the operator whose new estimate is computed is related to the original scaling operator by the precise commutator (2.5), not equated with the generator or its weight defect.
+
+## 3. A quantitative contraction on the actual arithmetic density
+
+Define the convolution mass and its logarithmic-derivative energy by
+
+$$m_k(u)=\int_{\mathbb R^{k-1}}|\Psi_k(u,\mathbf y)|^2d\mathbf y=w_h^{*k}(u),\qquad \int m_k=\mu_h^k,$$
+$$\mathcal I_h=\int_{\mathbb R}\frac{|w_h'(t)|^2}{w_h(t)}dt,\qquad \mathcal I_{h,k}=\int_{\mathbb R}\frac{|m_k'(u)|^2}{m_k(u)}du.\tag{3.1}$$
+
+At isolated zeros of $w_h$, the integrand is assigned its limiting value where applicable, or any value on that null set. The construction and proofs use the smooth amplitude $a_h$, so no division at a zero is required. For $k\ge2$, $m_k(u)>0$ for every real $u$: each factor $w_h$ is positive almost everywhere, and its convolution integral has a positive integrand almost everywhere on its fibre.
+
+The original functional equation gives
+
+$$g^\dagger=g,\quad h^\dagger=(-1)^dh,\quad v_h^\dagger=(-1)^dv_h,\quad
+\overline{a_h(t)}=(-1)^da_h(t).\tag{3.2}$$
+
+Accordingly $a_h$ and $a_h'$ have the same fixed real/imaginary phase and
+
+$$\boxed{\mathcal I_h=4\int_{\mathbb R}|a_h'(t)|^2dt=4\int_0^\infty(\log x)^2|F_h(x)|^2dx<\infty,\qquad \int\overline{a_h}a_h'=0.}\tag{3.3}$$
+
+Proof: outside the discrete zero set, $w_h'=2\overline{a_h}a_h'$ is real, giving $w_h'^2/w_h=4|a_h'|^2$. Mellin Plancherel and $\partial_tv_h(\tfrac12+it)=iv_h'(\tfrac12+it)$ give the second equality. The zero integral is the integral of $w_h'/2$. The decay needed at both endpoints follows from $F_h\in\mathscr B$: $e^{y/2}F_h(e^y)$ is Schwartz, as are its polynomially weighted versions. Reflection (3.2) is essential for the equality rather than just an upper bound.
+
+Let $\mathscr H_u=L^2(\mathbb R^{k-1},d\mathbf y)$. The line inclusion and projection are
+
+$$j_{0,u}:\mathbb C\to\mathscr H_u,\quad c\mapsto c\Psi_k(u,\cdot),\qquad
+\Pi_{0,u}Z=\Psi_k\frac{\langle\Psi_k,Z\rangle}{m_k(u)}.$$
+
+Put
+
+$$n_k(u)=(1-\Pi_{0,u})\partial_u\Psi_k=\partial_u\Psi_k-\frac{m_k'}{2m_k}\Psi_k.\tag{3.4}$$
+
+The inner product is antilinear in its first argument. Equation (3.2) makes $\langle\Psi_k,\partial_u\Psi_k\rangle=m_k'/2$ real. Therefore (3.4) is precisely an orthogonal decomposition, including at zeros of individual amplitude factors.
+
+**Theorem 3.1 (mass-retaining sum contraction and exact relative term).**
+
+$$\boxed{\mathcal I_{h,k}+4\int_{\mathbb R}\|n_k(u)\|_{\mathscr H_u}^2du
+=\frac{\mu_h^{k-1}}{k}\mathcal I_h.}\tag{3.5}$$
+
+In particular
+
+$$\boxed{\mathcal I_{h,k}\le\frac{\mu_h^{k-1}}{k}\mathcal I_h.}\tag{3.6}$$
+
+**Proof.** Differentiate the actual product amplitude in the centered coordinates:
+
+$$\partial_u\Psi_k=\frac1k\sum_{i=1}^k a_h'(t_i)\prod_{j\ne i}a_h(t_j).$$
+
+Integrating its squared modulus over all original $t_i$, the $k$ diagonal terms each give $\mu_h^{k-1}\|a_h'\|^2$. Every distinct-index cross term is $\mu_h^{k-2}|\int\overline{a_h}a_h'|^2=0$. Thus
+
+$$\int\|\partial_u\Psi_k\|^2du=\frac{\mu_h^{k-1}}{4k}\mathcal I_h.$$
+
+The pointwise orthogonal decomposition (3.4) gives
+
+$$\|\partial_u\Psi_k\|^2=\frac{m_k'^2}{4m_k}+\|n_k\|^2.$$
+
+Integrate and multiply by four. This proves both statements and the finiteness of $\mathcal I_{h,k}$. All masses and the factor four remain.
+
+This is an application of the projection mechanism underlying Fisher-information convolution inequalities (Johnson--Barron), with the actual arithmetic amplitude, its phase, and its residual relative vector kept explicitly. It does not rely on log-concavity, a Gaussian approximation, or locations of the zeros beyond the stipulated reflection-stable packet and the source construction of $F_h$.
+
+The pair $(\Pi_{0,u}\partial_u\Psi_k,n_k)$ retains the full derivative by addition. Its split lift can have an active zero in either component without converting the other component or its source to $\tau$. Dropping $n_k$ would replace equality (3.5) by an inequality and lose the quantified relative contribution; the actual projection and its complementary map remain available.
+
+## 4. The full relative matrix has a computed connection and normal variation
+
+Take any finite linearly independent family of relative polynomials $\theta_\alpha(\mathbf z)$, independent of $S$. For the original degree-$M$ source use the actual coefficient functions
+
+$$P(\mathbf s)=\sum_\alpha\theta_\alpha(\mathbf z)f_\alpha(S),\qquad
+\deg f_\alpha\le M-\deg\theta_\alpha.\tag{4.1}$$
+
+Choose a homogeneous relative monomial basis, or the stated unscaled invariant basis on a symmetric summand, so that these degree conditions specify the exact original filtered image. This is the centered-coordinate version of the preceding matrix weight; substitution $s_i=S/k+z_i$ is triangular by total degree and invertible.
+
+Define the actual fibre map, its derivative, and its three Gram matrices:
+
+$$j_u:\mathbb C^r\to\mathscr H_u,\qquad j_uc=\Psi_k(u,\mathbf y)\sum_\alpha\theta_\alpha(i\mathbf y)c_\alpha,$$
+$$W(u)=j_u^*j_u,\qquad B(u)=j_u^*j_u',\qquad T(u)=(j_u')^*j_u'.\tag{4.2}$$
+
+These are integrals in the same arithmetic measure. $W(u)$ is strictly positive because the relative polynomials are independent and $\Psi_k$ is nonzero almost everywhere. Every entry is smooth by differentiated Schwartz estimates on compact $u$ intervals. Its domain has its stated finite size $r$; no assertion is made that $r$ remains fixed as the source degree grows.
+
+In the fixed-phase case (3.2),
+
+$$B(u)=\frac12W'(u).\tag{4.3}$$
+
+Indeed $\overline{\Psi_k}\partial_u\Psi_k$ is real almost everywhere, hence $B$ is Hermitian; differentiate $W$ to get $W'=B+B^*$. The integrals remain valid at the zero set because the smooth product amplitude, not its logarithm, is used.
+
+Let
+
+$$\Pi_u=j_uW^{-1}j_u^*,\qquad
+\Gamma_u=W^{-1}B=\frac12W^{-1}W',\qquad
+N_u=(1-\Pi_u)j_u'.\tag{4.4}$$
+
+The exact differential map is
+
+$$\boxed{\partial_u(j_uc(u))=j_u\bigl(c'(u)+\Gamma_uc(u)\bigr)+N_uc(u),\qquad j_u^*N_u=0.}\tag{4.5}$$
+
+Thus $\nabla_uc=c'+\Gamma_uc$ is a metric-compatible connection on this finite coefficient bundle:
+
+$$\Gamma_u^*W+W\Gamma_u=W'.\tag{4.6}$$
+
+The complete normal form is
+
+$$\boxed{\mathcal N(u):=N_u^*N_u=T-B^*W^{-1}B=T-\tfrac14W'W^{-1}W'\succeq0.}\tag{4.7}$$
+
+In particular no commutation of $W$ and $W'$ is assumed. Multiplication proves the identity and positivity follows from $1-\Pi_u$ being an orthogonal projection. The norm decomposition is
+
+$$\boxed{\|\partial_u(j_uc)\|^2=(\nabla_uc)^*W(\nabla_uc)+c^*\mathcal N c.}\tag{4.8}$$
+
+For the one-column constant family, (4.8) is exactly (3.5) before integration. For the full relative family it retains every matrix entry in both terms. Scalar inequality (3.6) is not inserted as a bound on this larger matrix: its precise connection is the inclusion of the constant column and the pair of projections $\Pi_{0,u},\Pi_u$ with $\operatorname{im}\Pi_{0,u}\subset\operatorname{im}\Pi_u$.
+
+### Change of relative frame
+
+For an explicitly given invertible smooth matrix $C(u)$, replace the fibre map by $j_u^C=j_uC(u)$. The exact transformed connection and normal map are
+
+$$W^C=C^*WC,\qquad \Gamma^C=C^{-1}\Gamma C+C^{-1}C',\qquad N^C=NC.\tag{4.12}$$
+
+These follow by differentiating $jC$ and applying the same orthogonal projection. This is the additional derivative term needed when using the earlier pointwise triangular square-completion map, whose coefficients can depend on $u$. Multiplication by $S$ still intertwines without such a term; the derivative's relationship to it is the explicit commutator (2.5). The exact filtered image of the original coefficient functions is retained after this change of frame.
+
+### 4.1 The differentiated filtered image is retained
+
+For the actual source coefficient function $c_P(u)=(f_\alpha(k/2+iu))_\alpha$, define the linear graph map
+
+$$\mathscr D_M:P\longmapsto\bigl(j_u\nabla_uc_P,\ N_uc_P\bigr).\tag{4.9}$$
+
+Its values lie in the specified graph image $\mathscr G_M$, not in two freely chosen function spaces. Addition of the two components recovers
+
+$$\operatorname{Add}\,\mathscr D_M(P)=\partial_u\mathscr U_k\mathcal T_h^{(k)}P=i\mathscr U_k\mathscr L_k\mathcal T_h^{(k)}P.\tag{4.10}$$
+
+The two summands are pointwise orthogonal, so this addition is an isometric injection on the graph into the derivative's actual image. This supplies a precise way to recover its arithmetic jet:
+
+$$\mathscr G_M\xrightarrow{\operatorname{Add}}i\mathscr U_k(\mathscr B^{\widehat\otimes k})
+\xrightarrow{-i\mathscr U_k^{-1}}\mathscr B^{\widehat\otimes k}\xrightarrow{J^{(k)}}E_h^{\otimes k}.\tag{4.11}$$
+
+No separate arithmetic-jet map on an arbitrary measurable normal section is asserted. The combined graph is exactly the domain on which the formula is defined. The original support label is retained in both components and in (4.11). The cohomological control still uses $A_k$, $R_M$, $G_M$, $W_M$ and (1.1); (2.5), (4.10), and (4.11) are the actual comparison to this new analytic derivative.
+
+## 5. Differentiating a supported relation requires its first infinitesimal layer
+
+The logarithmic observable in (2.5) has a calculated effect on the original theta relation, even in one variable:
+
+$$\boxed{J_h(\log x\,\Theta\phi)=j_h(g')\,j_h(H_\phi).}\tag{5.1}$$
+
+Proof: logarithmic multiplication differentiates the actual Mellin transform, so
+
+$$\mathcal M(\log x\,\Theta\phi)=g'H_\phi+gH_\phi'.$$
+
+Taking full jets modulo $h$ removes the second term, but not the first. For $\phi=P(D)\phi_*$, $H_\phi=P$; hence all $E_h$ values of $j_hH_\phi$ are supplied by actual original source functions.
+
+This is the map connecting the original supported boundary to the Jacobian trace contraction. In the original quotient $q\Theta=0$, while $J_h(\log x\,\Theta)$ has the explicitly displayed image. The typed resolution of that effect is a first thickening of the *same* relation ideal.
+
+Put
+
+$$\mathcal P=\mathbb C[s_1,\ldots,s_k],\quad I=(h(s_1),\ldots,h(s_k)),\quad E=\mathcal P/I,\quad E^{[2]}=\mathcal P/I^2.$$ 
+
+There is the actual exact sequence
+
+$$\boxed{0\longrightarrow I/I^2\longrightarrow E^{[2]}\xrightarrow{\pi}E\longrightarrow0.}\tag{5.2}$$
+
+The coefficient conormal map is the isomorphism
+
+$$\boxed{\iota_N:E^k\xrightarrow{\sim}I/I^2,\qquad (a_1,\ldots,a_k)\mapsto[\sum_i h(s_i)\widetilde a_i].}\tag{5.3}$$
+
+A direct proof uses monic division in each variable. The polynomial ring is free over $\mathbb C[h(s_1),\ldots,h(s_k)]$ with basis $\prod s_i^{a_i}$, $0\le a_i<d$. Modulo the square of the ideal of these latter variables, only coefficient degrees zero and one survive. This proves uniqueness and surjectivity in (5.3), retaining all nilpotents in $E$.
+
+Define the sum derivative at fixed relative coordinates
+
+$$\partial_S^\mathrm{rel}=\frac1k\sum_i\partial_{s_i}.\tag{5.4}$$
+
+It maps $I^2$ into $I$, so it induces a *complex-linear* map
+
+$$\boxed{\delta_S:E^{[2]}\longrightarrow E,\qquad[P]_{I^2}\mapsto[\partial_S^\mathrm{rel}P]_I.}\tag{5.5}$$
+
+It is a derivation along $\pi$:
+
+$$\delta_S(ab)=\pi(a)\delta_S(b)+\pi(b)\delta_S(a),\qquad\delta_S(S)=1.$$
+
+Its restriction to the retained conormal fibre is the $E$-linear row
+
+$$\boxed{\delta_S\iota_N(a_1,\ldots,a_k)=\frac1k\sum_i h'(s_i)a_i.}\tag{5.6}$$
+
+The full conormal differential, before contraction by $\partial_S^{\mathrm{rel}}$, is
+
+$$I/I^2\xrightarrow{d_I}\bigoplus_iE\,ds_i,\qquad
+(a_i)_i\mapsto\sum_i h'(s_i)a_i\,ds_i.\tag{5.7}$$
+
+This is the two-term cotangent presentation for the complete intersection, in cohomological degrees $-1,0$. Its universal differential and (5.5) are related by contraction $\sum b_i ds_i\mapsto k^{-1}\sum b_i$. This is the established conormal/cotangent construction applied to this exact packet ideal (Stacks, Tags 00S0 and 08SH).
+
+The original split diagram is
+
+$$G(E^{[2]})\xrightarrow{G(\pi)}G(E),\qquad
+\delta_S^\tau:G(E^{[2]})\longrightarrow G(E)\quad\text{as }G(\mathbb C)\text{-semimodules}.\tag{5.8}$$
+
+The first is a semiring morphism; the second is a split-linear map of coefficient modules, not a semiring morphism. Both send external absence to external absence and supported zero to supported zero. A supported conormal class has image $e_E$ under the first map, while its image under the second is the supported scalar specified in (5.6). The larger domain retains the datum needed to differentiate that relation.
+
+For one local block $h=(s-\rho)^m$ times a retained unit, (5.6) detects the $z^{m-1}$ coefficient with its factor $m$. In an ordered product of local block lengths $m_i$, the image of (5.6) has dimension
+
+$$\prod_i m_i-\prod_i(m_i-1),\tag{5.9}$$
+
+because it is the ideal generated by the unit multiples of $z_i^{m_i-1}$. Each unit is invertible in its actual local algebra. Monomials missing all top exponents form the complementary vector count; they are not discarded from $E$.
+
+### 5.1 Carry the arithmetic jet unit through the derivative
+
+Let $U(\mathbf s)=\prod_i v_h(s_i)$, and retain its full Taylor class $\widehat U\in E^{[2]}$. This class is invertible. Define
+
+$$\widehat{\mathcal J}P=\widehat U[P]_{I^2},\qquad \mathcal JP=U[P]_I,\qquad \beta_h=U^{-1}\delta_S\widehat U\in E.\tag{5.10}$$
+
+The finite Taylor realization here uses the entire functions on neighbourhoods of the finite zero set; polynomial Hermite interpolation supplies their classes. $E^{[2]}$ is *not* being called a new zeta-zero packet: it also retains first-order source relations not annihilated by $g$.
+
+The exact commuting equation is
+
+$$\boxed{J^{(k)}\mathscr L_k\mathcal T_h^{(k)}P
+=\delta_S\widehat{\mathcal J}P
+=\mathcal J(\partial_S^{\mathrm{rel}}P)+\beta_h\mathcal JP.}\tag{5.11}$$
+
+Proof: its Mellin transform is $\partial_S^{\mathrm{rel}}(UP)$. Apply the product rule before taking jets. Thus the coefficient-connection term is $\beta_h=k^{-1}\sum_i j(v_h'/v_h)(s_i)$, with no discarded local unit.
+
+For an original relation $P=\sum_i h(s_i)P_i$, the last term vanishes and
+
+$$\boxed{J^{(k)}\mathscr L_k\mathcal T_h^{(k)}P
+=\frac1kU\sum_i h'(s_i)[P_i]_I.}\tag{5.12}$$
+
+Modulo $I$, $v_h(s_i)h'(s_i)=g'(s_i)$, so the same equation can be written with $g'(s_i)$ and the other retained $v_h$ factors. This is the precise relationship between the analytic sum derivative in (4.10) and the conormal row (5.6).
+
+In one variable the source's residue pairing therefore obeys
+
+$$\boxed{\mathscr R_Z\bigl(f,J_h(\log x\,\Theta(P(D)\phi_*))\bigr)
+=\sum_{\rho\in Z}m_\rho\overline{f(1-\bar\rho)}P(\rho).}\tag{5.13}$$
+
+Indeed (5.1) makes the second argument $g'P$, and $g'/g$ has residue $m_\rho$. The residue pairing, its Jacobian contraction, and the logarithmic derivative of an actual original theta relation have now been connected by a single formula. No new positivity assertion is inferred from that equality.
+
+## 6. All higher derivative layers and the old cochain signs remain available
+
+For $r\ge1$, the derivation gives actual maps
+
+$$\partial_S^{\mathrm{rel}}:\mathcal P/I^{r+1}\longrightarrow\mathcal P/I^r.\tag{6.1}$$
+
+They commute with the quotient maps wherever their sources and targets match. The associated-graded algebra is explicitly
+
+$$\operatorname{gr}_I\mathcal P\cong E[\eta_1,\ldots,\eta_k],\qquad
+\eta_i\longleftrightarrow[h(s_i)].\tag{6.2}$$
+
+On it, the degree-minus-one derivative is
+
+$$\boxed{\operatorname{gr}(\partial_S^{\mathrm{rel}})
+=\frac1k\sum_i h'(s_i)\partial_{\eta_i}.}\tag{6.3}$$
+
+The proof expands $\partial(h^\alpha P)$. The term differentiating $P$ stays in $I^{|\alpha|}$ and disappears only in the explicitly specified quotient $I^{|\alpha|-1}/I^{|\alpha|}$. The other terms give (6.3) with every factor $\alpha_i$ retained. Consequently this layer has rank $\binom{r+k-1}{k-1}$ over $E$, not one new scalar support.
+
+There is also a full mixed derivative formula retaining all coordinate directions:
+
+$$\boxed{\left[\partial_{s_1}\cdots\partial_{s_k}
+\left(UP\prod_i h(s_i)\right)\right]_I
+=\left[U P\prod_i h'(s_i)\right]_I
+=\left[P\prod_i g'(s_i)\right]_I.}\tag{6.4}$$
+
+Every other product-rule term contains an undifferentiated $h(s_i)$ and maps to the supported zero in $E$. At the test-function level these derivatives are multiplication by $\prod_i\log x_i$. At the residue level (6.4) is the product Jacobian in the existing tensor arithmetic trace. The ordered volume form $ds_1\wedge\cdots\wedge ds_k$ and the previously specified tensor-duality sign are retained; no new identification of the iterated residue with an unsigned cochain supertrace is made.
+
+The original primitive of $h(s_i)P_i$ still has the sign $(-1)^{i-1}$ from the prior product complex. Its cochain differential supplies the second $(-1)^{i-1}$. Conormal reduction records the resulting coefficient $[P_i]_I$. It does not replace that source primitive or the higher syzygies of its Koszul complex.
+
+For a finite total-degree relation space, (6.1) is applied to the image of that exact space in $\mathcal P/I^{r+1}$. It does not enlarge the set of admissible representatives. The degree-$M$ next-relation map from the attachment feeds (5.12) by its actual polynomial numerator. This supplies a differentiated observation of those very same $e$-relations.
+
+## 7. Exact calibrations and a bounded arithmetic seed evaluation
+
+### 7.1 Gaussian fibre: the relative connection can be flat without deleting it
+
+Take the declared calibration $a(t)=e^{-t^2/4}$, $w(t)=e^{-t^2/2}$, $\mu=\sqrt{2\pi}$. This is a test of the formula, not the arithmetic input. For two factors,
+
+$$\Psi_2(u,y)=e^{-u^2/8}e^{-y^2/2},\qquad m_2(u)=\sqrt\pi e^{-u^2/4}.$$
+
+For every fixed relative polynomial frame, $j_u'=-(u/4)j_u$, so
+
+$$\Gamma_u=-\frac u4I,\qquad \mathcal N(u)=0,\qquad
+\mathcal I_2=\frac{\mu\mathcal I_1}{2}=\pi.\tag{7.1}$$
+
+All relative directions and their Gram entries remain; zero normal variation is a proved consequence of this particular product, not an instruction to erase the relative fibre in the arithmetic case.
+
+### 7.2 A zero-bearing calibration has nonzero retained normal variation
+
+Take instead $a(t)=t e^{-t^2/4}$ and $w(t)=t^2e^{-t^2/2}$. Then
+
+$$\mu=\sqrt{2\pi},\qquad \mathcal I_1=3\sqrt{2\pi},$$
+$$\Psi_2(u,y)=(u^2/4-y^2)e^{-u^2/8-y^2/2},$$
+$$m_2(u)=\frac{\sqrt\pi}{16}e^{-u^2/4}(u^4-4u^2+12).\tag{7.2}$$
+
+These identities follow from the complete Gaussian even moments; the polynomial has positive minimum $8$, so $m_2$ has no zero. For $u\ne0$, $\partial_u\Psi_2$ is not a multiple of $\Psi_2$ as a polynomial in $y$, so $n_2(u)\ne0$. The exact identity is
+
+$$\mathcal I_2+4\int\|n_2\|^2=3\pi,\qquad \mathcal I_2<3\pi.\tag{7.3}$$
+
+The checker calculates the two-column matrix connection and nonzero positive normal Gram at $u=1$, retaining the relative basis and its mass factors. This also tests the handling of zeros without assuming logarithmic scores are bounded.
+
+### 7.3 The actual arithmetic seed, with no selected zero coordinates
+
+For $h=1$, $F_h=f_0=\Theta\phi_*$. Its exact inversion is $f_0(x)=x^{-1}f_0(1/x)$. Hence
+
+$$\mu_1=2\int_1^\infty f_0(x)^2dx,\qquad
+\mathcal I_1=8\int_1^\infty(\log x)^2 f_0(x)^2dx.\tag{7.4}$$
+
+On that half-line use the actual absolutely convergent sum
+
+$$f_0(x)=2\sum_{n\ge1}(4\pi^2n^4x^4-6\pi n^2x^2)e^{-\pi n^2x^2}.$$
+
+The numerical evaluations at 45 digits with six integer terms and at 65 digits with eight integer terms agree on the displayed 35-digit values:
+
+$$\mu_1\approx1.2790072478464851404795335922671933,\qquad
+\mathcal I_1\approx0.12575246821348846545509759756793817.$$
+
+The optional computation evaluates (7.4) at two stated decimal precisions and two integer cutoffs. Its output is labeled numerical, not an interval certificate. The theorem uses the exact integrals; no numerical value or cutoff is imported into a purity assertion.
+
+## 8. What the new estimate controls in the programme
+
+The earlier arithmetic defect remains
+
+$$W_M=A_k^*G_M+G_MA_k-kG_M,\qquad V_M=A_kK_M+K_MA_k^*-kK_M,\qquad W_M=G_MV_MG_M.\tag{8.1}$$
+
+The new operations retain the path
+
+$$\mathcal T_k(P)\xrightarrow{\mathscr U_k}\Psi_k c_P
+\xrightarrow{\partial_u}\mathscr G_M
+\xrightarrow{\operatorname{Add},-i\mathscr U_k^{-1}}\mathscr L_k\mathcal T_k(P)
+\xrightarrow{J^{(k)}}\delta_S\widehat{\mathcal J}P.\tag{8.2}$$
+
+This is the explicit connection between the positive differential estimate, the matrix-valued relative fibre, and the first conormal layer of the original arithmetic quotient. It does not replace the scaling generator $A_k$ with differentiation. Their relation is the commutator (2.5), and the source's original representative relation $D^{(k)}R_M-R_MA_k\in B_{M+1}$ continues to determine (8.1).
+
+The result of this continuation is a genuine $1/k$ factor in (3.5), with the literal mass $\mu_h^{k-1}$, and an exact decomposition of the full matrix derivative. Uniform relative interpolation control is still needed to transfer that integrated smoothing to the extremal finite-packet estimate (8.1). The required comparison cannot be inferred from the scalar density alone; (4.9)--(4.11) and (5.11) provide the actual objects on which to work. All normal terms and the conormal Jacobian remain in that comparison.
+
+Deligne's source architecture requires a further estimate after the product-to-one-parameter operation, on the same arithmetic image and with its duality. This note constructs and estimates a differential of that new-base pushforward, and identifies its exact interaction with the trace-producing Jacobian. It does not assert that a Fisher inequality is already Deligne purity, or that the analytic matrix bundle is a finite-field lisse sheaf. The finite-point cohomology, spectral-sum restriction functor, kernel-layer calculation, and first infinitesimal quotient remain connected by the typed arrows above.
+
+## References and reading record
+
+1. Supplied *Tau Kernel Layer Integration*, NOTE.tex and RESEARCH_NOTE.md, read for the original relation-layer and antidual comparisons; the archive matched the earlier copy exactly and all manifest entries verified. The source's eighteen-method exact suite was rerun normally and with optimized Python. This is not a new formal certificate.
+2. Supplied *Tau Spectral Sum Descent*, NOTE.tex, read in full, especially §§2, 5, 6, 8 and 10. The same sum coordinate, matrix density, relative polynomial image, full jets, and residue comparison are used.
+3. Supplied *SplitZero: reconstruction, internal homology, and balanced finite jets*, §§1--4, for the existing original internal quotient and supported cohomology interfaces. No new scalar implementation is introduced.
+4. Oliver Johnson and Andrew Barron, *Fisher Information inequalities and the Central Limit Theorem*, arXiv:math/0111020, published in Probability Theory and Related Fields 129 (2004), 391--409. Their projection method is established background; Theorem 3.1 is proved here directly with the unaltered arithmetic mass and phase. https://arxiv.org/abs/math/0111020 .
+5. The Stacks Project, Tags 00S0 and 08SH, the conormal presentation and cotangent complex of a local complete intersection. These are reusable algebraic constructions; the explicit arithmetic conormal row and the trace connection are computed in §§5--6. https://stacks.math.columbia.edu/tag/00S0 and https://stacks.math.columbia.edu/tag/08SH .
+6. Deligne, *La conjecture de Weil II*, IHES 52 (1980), 137--252. This continuation relies on the previously identified tensor/pushforward/dual-control architecture, not a fresh reading or independent audit of all pages. No finite-field theorem is asserted on the new base merely from terminology.

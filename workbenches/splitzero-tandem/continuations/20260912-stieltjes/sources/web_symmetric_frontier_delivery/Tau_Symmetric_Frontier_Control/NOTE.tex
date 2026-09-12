@@ -1,0 +1,735 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Arithmetic frontier estimates and symmetric tensor control},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Arithmetic frontier estimates and symmetric tensor control}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Arithmetic frontier estimates and symmetric tensor
+control}\label{arithmetic-frontier-estimates-and-symmetric-tensor-control}
+
+Owner-directed continuation of the split-zero programme, 12 September
+2026.
+
+\textbf{Status.} New written deductions from the precise arithmetic
+source of PR \#14, submitted for mathematical review. The supplied Lean
+receipt certifies its stated coefficient, quotient, homotopy, and
+topology interfaces; it does not certify the analytic inputs or the
+results in this note. No purity estimate is assumed. No claim of global
+novelty is made for the underlying orthogonal-polynomial, finite-group,
+or matrix identities.
+
+\subsection{0. Source and purpose}\label{source-and-purpose}
+
+The source is PR \#14 at
+\texttt{3bff1b2bd87dfa2592f65c5ccc231f6ee9541dfc}, research-note Git
+blob \texttt{4ec40c15397128552bc276ec903fe59c89657d4e}. Its actual
+total-degree representative, full-jet map, and theta relation ideal are
+used without changing them.
+
+The source obtained two maps into the next relation layer, with
+
+\[W_{k,M}=-(Y_{k,M}^*C_{k,M}+C_{k,M}^*Y_{k,M}),\qquad
+G_{k,M}-G_{k,M+1}=Y_{k,M}^*Y_{k,M}.\tag{0.1}\]
+
+This note constructs coordinates on that \emph{actual relation layer},
+computes the relative control in them, proves a finite arithmetic upper
+bound, and constructs a smaller symmetric tensor cohomology summand that
+still contains every repeated eigenline used in amplification. Its exact
+complement and its trace are retained.
+
+The decisive new coordinate map is
+
+\[\boxed{b_M(q)=\mathcal T_h^{(k)}q-R_{k,M}\mathcal Jq.}\tag{0.2}\]
+
+It converts the highest orthogonal polynomial degree into an original
+theta boundary and has a calculated inverse and Gram matrix. A
+highest-degree polynomial alone need not be a boundary; its full-jet
+value is subtracted by the specific source representative in (0.2).
+
+\subsection{1. Unchanged split base, arithmetic source, and
+quotients}\label{unchanged-split-base-arithmetic-source-and-quotients}
+
+Retain
+
+\[G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\quad e_R=0_R^\bullet,\qquad
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{j}&\mathbb C.
+\end{array}\tag{1.1}\]
+
+The base is the marked absolute point \(\mathfrak b_\tau\). The first
+arithmetic target in (1.1) is still infinite. Every fixed-label linear
+map below is reconstructed by \((\lambda,x)\mapsto(\lambda,Tx)\); its
+value on external absence is external absence. A vanishing amplitude at
+an active label remains that label's supported zero.
+
+Use the original \(C_+=[V\xrightarrow\Theta\mathscr B]\) in degrees
+\(0,1\), where
+
+\[V=\{\phi\in\mathcal S(\mathbb R):\phi(-x)=\phi(x),\ \phi(0)=0,\ \int_{\mathbb R}\phi=0\},\]
+
+\[\mathscr B=\{F\in C^\infty(\mathbb R_{>0}):\sup_{x>0}x^b|D^jF(x)|<\infty\ (b\in\mathbb Z,j\ge0)\},\qquad D=-x\partial_x,\]
+
+\[\Theta\phi(x)=\sum_{n\ne0}\phi(nx),\quad q:\mathscr B\to Q=\mathscr B/\Theta V.\]
+
+The input is
+
+\[\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad
+\mathcal M\Theta\phi_*(s)=g(s)=2\xi(s).\]
+
+Fix a nonempty finite packet of actual nontrivial zeros of \(g\), with
+their full orders, and define
+
+\[h(t)=\prod_{\rho\in Z}(t-\rho)^{m_\rho},\quad d=\deg h,\quad E=\mathbb C[t]/(h),\quad
+v_h=g/h,\quad \upsilon=j_hv_h\in E^\times.\tag{1.2}\]
+
+No squarefree assumption is made. The source constructs
+\(F_h\in\mathscr B\) with \(h(D)F_h=\Theta\phi_*\) and
+\(\mathcal MF_h=v_h\). It supplies
+
+\[\mathcal T_h(P)=P(D)F_h,\quad
+\mathcal M\mathcal T_h(P)=v_hP,\quad
+\mathcal T_h(hP)=\Theta(P(D)\phi_*),\quad J_h\mathcal T_h(P)=\upsilon[P]_h.\tag{1.3}\]
+
+For tensor degree \(k\), put \(E_k=E^{\otimes k}\) and
+\(A_k=\sum_{j=1}^k A_j\), where \(A=M_t\). Let
+
+\[\mathcal P_M^{(k)}=\mathbb C[t_1,\ldots,t_k]_{\deg\le M},\qquad M\ge k(d-1),\]
+
+\[\mathcal T^{(k)}P=P(D_1,\ldots,D_k)F_h^{\otimes k},\qquad
+\mathcal J P=\upsilon^{\otimes k}[P]_{(h(t_1),\ldots,h(t_k))}.\tag{1.4}\]
+
+The relation space and its realization are
+
+\[\mathcal I_M=\mathcal P_M^{(k)}\cap(h(t_1),\ldots,h(t_k)),\qquad
+\mathcal B_M=\mathcal T^{(k)}\mathcal I_M.\tag{1.5}\]
+
+The source's least-norm representative
+\(R_M:E_k\to\mathscr B^{\otimes k}\subset\mathcal H_k\), with
+\(\mathcal H_k=L^2(\mathbb R_{>0}^k,d^kx)\), satisfies
+
+\[J^{(k)}R_M=1,\quad q^{\otimes k}R_M=\sigma_h^{\otimes k},\quad
+R_M(E_k)\perp\mathcal B_M.\tag{1.6}\]
+
+Its finite Gram is \(G_M=R_M^*R_M\succ0\). Every adjoint here is of a
+finite-domain map into the declared Hilbert observation; no bounded
+Hilbert-space extension of the full theta map is assumed.
+
+\subsection{2. Unscaled polynomial coordinates with every moment
+retained}\label{unscaled-polynomial-coordinates-with-every-moment-retained}
+
+The arithmetic measure is exactly
+
+\[d\nu_h(y)=|v_h(\tfrac12+iy)|^2\frac{dy}{2\pi}.\tag{2.1}\]
+
+The source's log-coordinate and Fourier maps give
+\(\|\mathcal T_hP\|_{L^2(dx)}^2=\int|P(\tfrac12+iy)|^2d\nu_h(y)\). The
+mass of this measure is not set to one.
+
+Starting from \(1,t,t^2,\ldots\), subtract its orthogonal projections
+onto the preceding span:
+
+\[p_0=1,\quad p_n=t^n-\operatorname{proj}_{\mathcal P_{n-1}}t^n,\quad
+\omega_n=\int|p_n(\tfrac12+iy)|^2d\nu_h(y)>0.\tag{2.2}\]
+
+No polynomial is divided by its norm. Let \(T_N\) be the triangular
+matrix with columns \(p_0,\ldots,p_N\) in the original power basis. The
+exact coordinate relation is
+
+\[T_N^*M_{h,N}T_N=\operatorname{diag}(\omega_0,\ldots,\omega_N).\tag{2.3}\]
+
+The earlier seed-boundary vectors \(u_n=P_n(D)\Theta\phi_*\) are related
+to these coordinates by \(\mathcal T_h(hP_n)=u_n\). Their measure is
+\(|g|^2dy/(2\pi)\); equation (1.3) is the map to the present \(|g/h|^2\)
+measure. The two orthogonalizations have not been interchanged.
+
+\textbf{Recurrence.} Define \(a_0=0\) and \(a_n=\omega_n/\omega_{n-1}\)
+for \(n\ge1\). Then
+
+\[\boxed{tp_n=p_{n+1}+b_np_n-a_np_{n-1},\qquad
+b_n=\frac{\int(\tfrac12+iy)|p_n(\tfrac12+iy)|^2d\nu_h(y)}{\omega_n},\quad \Re b_n=\tfrac12.}\tag{2.4}\]
+
+Here \(p_{-1}=0\). The possibly nonzero \(\Im b_n\) remains. The packet
+measure need not be even in the height coordinate \(y\).
+
+\textbf{Proof.} Multiplication by \(t\) has adjoint multiplication by
+\(1-t\) for this polynomial inner product. Pairing \(tp_n\) with
+\(p_j\), \(j<n-1\), gives zero. Its coefficient of \(p_{n+1}\) is one by
+its leading term; pairing with \(p_{n-1}\) gives
+\(-\omega_n/\omega_{n-1}\). The diagonal is the displayed integral. This
+proves every coefficient. These are the usual orthogonal-polynomial
+operations, applied through the specified coordinate map rather than
+changing the arithmetic generator.
+
+For \(\alpha\in\mathbb N^k\), define
+
+\[p_\alpha=\prod_jp_{\alpha_j}(t_j),\quad
+\omega_\alpha=\prod_j\omega_{\alpha_j},\quad
+z_\alpha=\mathcal Jp_\alpha\in E_k.\tag{2.5}\]
+
+The columns \(z_\alpha\) contain the complete unit
+\(\upsilon^{\otimes k}\) and all nilpotent jets.
+
+\textbf{Inverse-metric formula.} In the fixed original basis of \(E_k\),
+
+\[\boxed{\mathcal C_M=G_M^{-1}=\sum_{|\alpha|\le M}\frac{z_\alpha z_\alpha^*}{\omega_\alpha}.}\tag{2.6}\]
+
+Indeed (2.3) applied to the tensor polynomial basis transforms
+\(J M^{-1}J^*\) exactly into this sum. The representative coefficient on
+\(p_\alpha\) is
+
+\[\boxed{c_\alpha(u)=\omega_\alpha^{-1}z_\alpha^*G_Mu.}\tag{2.7}\]
+
+These formulas avoid inversion of a large raw monomial moment matrix,
+without imposing a new metric.
+
+\subsection{3. The highest polynomial degree is isomorphic to the actual
+new relation
+layer}\label{the-highest-polynomial-degree-is-isomorphic-to-the-actual-new-relation-layer}
+
+Let \(\mathcal U_M=\operatorname{span}\{p_\beta:|\beta|=M+1\}\) and
+retain its ordered basis. Put
+
+\[\Omega=\operatorname{diag}(\omega_\beta)_{|\beta|=M+1},\quad
+F=[z_\beta]_{|\beta|=M+1}:\mathbb C^r\to E_k,\quad
+r=\binom{M+k}{k-1}.\tag{3.1}\]
+
+Write \(T_+:\mathbb C^r\to\mathcal H_k\) for the map with columns
+\(\mathcal T^{(k)}p_\beta\). Its image is orthogonal to the entire
+degree-\(M\) polynomial image, including \(R_M(E_k)\).
+
+The prior actual new relation layer is
+
+\[\mathcal E_M=(1-P_{\mathcal B_M})\mathcal B_{M+1}.\]
+
+\textbf{Theorem: relation-graph isomorphism.} The map
+
+\[\boxed{b_M=T_+-R_MF:\mathbb C^r\xrightarrow{\sim}\mathcal E_M}\tag{3.2}\]
+
+is an isomorphism and has
+
+\[\boxed{H_M=b_M^*b_M=\Omega+F^*G_MF,\qquad b_M^*R_M=-F^*G_M.}\tag{3.3}\]
+
+\textbf{Proof.} Its full jet is \(F-F=0\), so (1.5) makes it an actual
+boundary of degree at most \(M+1\). Both terms are orthogonal to
+\(\mathcal B_M\). If \(b_Mu=0\), its component in the highest orthogonal
+polynomial degree is \(T_+u=0\), so \(u=0\). The source calculation
+gives \(\dim\mathcal E_M=r\), proving surjectivity. Alternatively every
+degree-\(M+1\) boundary has a unique highest orthogonal component;
+subtract its \(b_M\) image and the result lies in \(\mathcal B_M\). This
+also constructs the inverse. Orthogonality \(T_+^*R_M=0\) proves (3.3).
+
+A primitive is fully specified: form the numerator
+\(p_\beta-c_M(z_\beta)\), where \(c_M\) is (2.7), divide it in the fixed
+variable order by \(h(t_1),\ldots,h(t_k)\), and use the original theta
+primitive in the factor where \(h(t_j)\) appears. Give that primitive
+coefficient \((-1)^{j-1}\); the tensor differential supplies the same
+sign. No relation is inferred solely from a dimension count.
+
+The comparison with the original internal quotient is
+
+\[\mathbb C^r\xrightarrow{b_M}\mathcal E_M
+\xrightarrow{v\mapsto[v]}\mathcal B_{M+1}/\mathcal B_M
+\hookrightarrow\mathscr B^{\otimes k}/\mathcal B_M
+\longrightarrow\mathscr B^{\otimes k}/\mathcal B_{M+1}.\tag{3.4}\]
+
+The last composite is zero. Its split lift sends \((\lambda_M,u)\) to
+\((\lambda_{M+1},0)\), not to \(\tau\). At \(\lambda_M\), \(u\ne0\)
+represents a nonzero kernel class. The map \(b_M\) describes the entire
+class that is about to become a supported zero.
+
+\textbf{Representative update.} Orthogonal projection onto
+\(b_M(\mathbb C^r)\) gives
+
+\[\boxed{Y_M=-b_MH_M^{-1}F^*G_M,\qquad R_{M+1}=R_M+b_MH_M^{-1}F^*G_M.}\tag{3.5}\]
+
+Consequently
+
+\[\boxed{G_{M+1}=G_M-G_MF(\Omega+F^*G_MF)^{-1}F^*G_M,}\tag{3.6}\]
+
+\[\boxed{\mathcal C_{M+1}=\mathcal C_M+F\Omega^{-1}F^*.}\tag{3.7}\]
+
+The complete volume identity is
+
+\[\frac{\det\mathcal C_{M+1}}{\det\mathcal C_M}
+=\frac{\det(\Omega+F^*G_MF)}{\det\Omega}.\tag{3.8}\]
+
+The full matrices in (3.6)--(3.7) remain available; their determinant in
+(3.8) is an additional observation, not their replacement.
+
+\subsection{4. Relative control is a highest-degree Christoffel--Darboux
+identity}\label{relative-control-is-a-highest-degree-christoffeldarboux-identity}
+
+For each \(|\beta|=M+1\), put
+
+\[w_\beta=\sum_{j:\beta_j>0}a_{\beta_j}z_{\beta-e_j},\qquad
+E_+=[w_\beta]_{|\beta|=M+1}.\tag{4.1}\]
+
+The name \(E_+\) denotes this finite matrix, not the scalar \(e\) or the
+arithmetic quotient \(E_h\); its type is \(\mathbb C^r\to E_k\).
+
+\textbf{Theorem: exact displacement.}
+
+\[\boxed{\mathcal Z_M:=A_k\mathcal C_M+\mathcal C_MA_k^*-k\mathcal C_M
+=F\Omega^{-1}E_+^*+E_+\Omega^{-1}F^*.}\tag{4.2}\]
+
+\textbf{Proof.} Apply (2.4) in each factor of (2.6). A pair of adjacent
+indices inside \(|\alpha|\le M\) cancels because
+\(a_{\alpha_j+1}=\omega_{\alpha+e_j}/\omega_\alpha\). The diagonal
+contributes \(\sum_j(b_{\alpha_j}+\overline b_{\alpha_j})=k\), precisely
+the term subtracted in (4.2). The remaining ordered pairs have
+\(|\beta|=M+1\) and predecessor \(\beta-e_j\); collecting them gives
+(4.1)--(4.2). The imaginary diagonal coefficients cancel with their
+conjugates here; they were retained in the recurrence and are not
+assigned zero.
+
+This identity is the tensor total-degree version of the
+Christoffel--Darboux cancellation. The standard one-variable formula is
+background; the maps to the full arithmetic quotient and its source
+boundaries are specified above.
+
+The derivative defect also has an exact expression in the same
+relation-graph coordinates:
+
+\[B_M=D^{(k)}R_M-R_MA_k,\qquad
+\boxed{C_M^{\mathrm{rel}}:=(1-P_{\mathcal B_M})B_M=b_M\Omega^{-1}E_+^*G_M.}\tag{4.3}\]
+
+\textbf{Proof.} The coefficient of \(p_\beta\) in \(D^{(k)}R_Mu\) is
+\(\sum_j\omega_{\beta-e_j}^{-1}z_{\beta-e_j}^*G_Mu=\omega_\beta^{-1}w_\beta^*G_Mu\).
+The defect is an original boundary. The inverse of (3.2), followed by
+projection away from \(\mathcal B_M\), therefore gives (4.3).
+
+Substituting (3.5) and (4.3) into the previous cross-pairing formula
+proves
+
+\[\boxed{W_M=A_k^*G_M+G_MA_k-kG_M
+=G_M\mathcal Z_MG_M
+=-(Y_M^*C_M^{\mathrm{rel}}+(C_M^{\mathrm{rel}})^*Y_M).}\tag{4.4}\]
+
+Thus the new highest-degree computation is connected to both maps in the
+preceding note, including their minus sign and their support-valued
+boundary primitive.
+
+\subsubsection{4.1 Exact finite certificate and a proved upper
+estimate}\label{exact-finite-certificate-and-a-proved-upper-estimate}
+
+For every real \(\epsilon\), congruence by the actual invertible \(G_M\)
+gives
+
+\[\boxed{-\epsilon G_M\preceq W_M\preceq\epsilon G_M
+\iff -\epsilon\mathcal C_M\preceq\mathcal Z_M\preceq\epsilon\mathcal C_M.}\tag{4.5}\]
+
+This transports the inequality; no eigenvalue or generator has been
+rescaled.
+
+Put \(\mathcal B=[F,E_+]\) and
+
+\[\mathsf J=\begin{pmatrix}0&\Omega^{-1}\\\Omega^{-1}&0\end{pmatrix}.\]
+
+The nonzero generalized eigenvalues of \((\mathcal Z_M,\mathcal C_M)\)
+are the nonzero eigenvalues of
+
+\[\boxed{\mathsf J\mathcal B^*G_M\mathcal B.}\tag{4.6}\]
+
+The proof is the pair of maps \(\mathcal B:\mathbb C^{2r}\to E_k\) and
+\(\mathsf J\mathcal B^*G_M:E_k\to\mathbb C^{2r}\) and the equality of
+nonzero spectra of their two composites. These eigenvalues are real
+because the first composite is the operator of the Hermitian pencil in
+(4.5). The \(2r\)-matrix itself need not be Hermitian in its displayed
+coordinates.
+
+There is also a direct upper bound. Let
+
+\[\lambda_{k,M}=\max_{v\ne0}\frac{v^*F\Omega^{-1}F^*v}{v^*\mathcal C_Mv},\]
+
+\[\Gamma_{k,M}=\max_{|\alpha|=M}\sum_{j=1}^k\left(a_{\alpha_j+1}+(k-1)a_{\alpha_j}\right).\tag{4.7}\]
+
+Then the actual arithmetic control excess satisfies
+
+\[\boxed{\epsilon_{k,M}\le2\sqrt{\Gamma_{k,M}\lambda_{k,M}}.}\tag{4.8}\]
+
+\textbf{Proof.} Let \(Z_M\) be the columns \(z_\alpha\), \(|\alpha|=M\),
+and \(\Omega_M=\operatorname{diag}(\omega_\alpha)\). The
+lowering-incidence matrix \(L\) has \(L_{\alpha\beta}=a_{\beta_j}\) when
+\(\alpha=\beta-e_j\), summed over matching \(j\). Then \(E_+=Z_ML\). The
+matrix \(\Omega_ML\Omega^{-1}L^*\) is similar to a positive semidefinite
+matrix and has nonnegative entries. Its row sum at \(\alpha\) is exactly
+the sum in (4.7), so its spectral radius is at most \(\Gamma_{k,M}\).
+This proves
+
+\[E_+\Omega^{-1}E_+^*\preceq
+\Gamma_{k,M}Z_M\Omega_M^{-1}Z_M^*
+\preceq\Gamma_{k,M}\mathcal C_M.\]
+
+Cauchy--Schwarz in the same \(\Omega^{-1}\) pairing now gives
+
+\[|v^*\mathcal Z_Mv|
+\le2\sqrt{v^*F\Omega^{-1}F^*v}\sqrt{v^*E_+\Omega^{-1}E_+^*v}
+\le2\sqrt{\lambda_{k,M}\Gamma_{k,M}}\,v^*\mathcal C_Mv.\]
+
+This proves (4.8). The phase-sensitive formula (4.6) is retained for a
+sharper estimate. Equation (4.8) is not claimed sublinear in \(k\); its
+two arithmetic factors are now fully specified.
+
+\subsection{5. A symmetric cohomology summand that retains the
+amplification
+witnesses}\label{a-symmetric-cohomology-summand-that-retains-the-amplification-witnesses}
+
+Let \(\mathcal C_k=C_+^{\widehat\otimes k}\) with its original tensor
+differential. For \(\pi\in S_k\), the chain permutation is
+
+\[T_\pi(x_1\otimes\cdots\otimes x_k)
+=(-1)^{\sum_{i<j,\,\pi(i)>\pi(j)}|x_i||x_j|}
+ x_{\pi^{-1}(1)}\otimes\cdots\otimes x_{\pi^{-1}(k)}.\tag{5.1}\]
+
+The exponent uses the original inputs crossed by \(\pi\). Adjacent
+transpositions verify the cochain equation and the permutation
+relations. In top degree every input has degree one, so
+\(T_\pi=\operatorname{sgn}(\pi)P_\pi\), where \(P_\pi\) is ordinary
+factor permutation.
+
+Define the actual idempotent
+
+\[\boxed{\mathsf S_k=\frac1{k!}\sum_{\pi\in S_k}\operatorname{sgn}(\pi)T_\pi.}\tag{5.2}\]
+
+The unscaled numerator squares to \(k!\) times itself. The displayed
+\(1/k!\) is necessary to make the specified morphism idempotent and is
+not absorbed into a pairing or an arithmetic function. In degree \(k\)
+the two signs multiply to \(+1\), hence
+
+\[\boxed{H^k(\mathsf S_k\mathcal C_k)\cong
+(Q^{\widehat\otimes k})^{S_k}.}\tag{5.3}\]
+
+On a finite packet this contains \((E^{\otimes k})^{S_k}\) with its
+entire nilpotent action. If \(Av=\rho v\), then \(v^{\otimes k}\) is
+nonzero, lies in this summand, and has generator eigenvalue \(k\rho\).
+Using the unsigned chain average instead would give the alternating
+top-degree summand and would kill a repeated vector for \(k>1\);
+equation (5.2) is the precise replacement.
+
+The complement is retained through the actual cochain decomposition
+
+\[\mathcal C_k\xrightarrow{x\mapsto(\mathsf S_kx,(1-\mathsf S_k)x)}
+\operatorname{im}\mathsf S_k\oplus\operatorname{im}(1-\mathsf S_k),\qquad (u,v)\mapsto u+v.\tag{5.4}\]
+
+At an invariant joint support this is reconstructed fibrewise. On all
+support masks the lift of (5.2) has the specified support map
+\(\lambda\mapsto\bigvee_\pi\pi\lambda\). Its formula is the sum of the
+actual supported scalars \((\operatorname{sgn}\pi/k!)^\bullet T_\pi\). A
+vanishing projected amplitude lands at the orbit-joined supported zero,
+not at \(\tau\). Original transports into that joint fibre remain
+recorded. No injectivity of arbitrary support transports is assumed.
+
+\subsubsection{5.1 The canonical representatives commute with this
+operation}\label{the-canonical-representatives-commute-with-this-operation}
+
+Permutation of variables preserves the total-degree numerator, its
+relation ideal, the product arithmetic measure, and the full unit
+\(\upsilon^{\otimes k}\). Uniqueness of the constrained minimum gives
+
+\[R_MP_\pi=P_\pi R_M.\tag{5.5}\]
+
+Consequently \(R_M\) restricts to the invariant arithmetic module
+
+\[E_k^{\mathrm{sym}}=(E^{\otimes k})^{S_k},\qquad
+\boxed{\dim E_k^{\mathrm{sym}}=\binom{k+d-1}{d-1}.}\tag{5.6}\]
+
+This is not a change of the spectral packet. The inclusion
+\(I_k:E_k^{\mathrm{sym}}\hookrightarrow E_k\) gives
+
+\[G_M^{\mathrm{sym}}=I_k^*G_MI_k,\qquad
+W_M^{\mathrm{sym}}=I_k^*W_MI_k,\qquad A_kI_k=I_kA_k^{\mathrm{sym}}.\tag{5.7}\]
+
+All repeated eigenlines remain, so this smaller family still contains
+every witness needed by the tensor-amplification upper estimate. For
+example, \(d=3,k=8\) gives dimension \(45\) rather than \(3^8=6561\).
+This is a dimension reduction, not a bound on \(W_M^{\mathrm{sym}}\).
+
+\subsection{6. Orbit sums give the symmetric matrices with all
+factorials
+retained}\label{orbit-sums-give-the-symmetric-matrices-with-all-factorials-retained}
+
+For a nondecreasing tuple \(\lambda\in\mathbb N^k\), let
+\(\operatorname{Orb}\lambda\) denote its distinct permutations and
+
+\[n_\lambda=\frac{k!}{\prod_{j\ge0}m_j(\lambda)!},\quad
+p_{[\lambda]}=\sum_{\alpha\in\operatorname{Orb}\lambda}p_\alpha,\quad
+\omega_{[\lambda]}=n_\lambda\prod_j\omega_{\lambda_j}.\tag{6.1}\]
+
+Distinct product basis vectors are orthogonal, proving the last formula
+directly. The orbit sum is not divided by its norm or its orbit size.
+
+The target basis is likewise the unscaled orbit sums of
+\(e_{a_1}\otimes\cdots\otimes e_{a_k}\), \(0\le a_j<d\), where
+\(e_i=[t^i]\). Let \(I_k\) be their column inclusion and
+
+\[D_k=I_k^*I_k=\operatorname{diag}\left(\frac{k!}{\prod_i n_i!}\right),\qquad
+L_k=D_k^{-1}I_k^*.\tag{6.2}\]
+
+The explicit \(L_k\) extracts the common coefficient on an orbit. For
+each orbit polynomial, define
+
+\[z_{[\lambda]}=L_k\mathcal Jp_{[\lambda]}.\]
+
+Then
+
+\[\boxed{\mathcal C_M^{\mathrm{sym}}
+=\sum_{|\lambda|\le M}\frac{z_{[\lambda]}z_{[\lambda]}^*}{\omega_{[\lambda]}},\qquad
+G_M^{\mathrm{sym}}=(\mathcal C_M^{\mathrm{sym}})^{-1}.}\tag{6.3}\]
+
+The comparison with full coordinates is
+
+\[\boxed{\mathcal C_M^{\mathrm{sym}}=L_k\mathcal C_ML_k^*,\qquad
+G_M^{\mathrm{sym}}=I_k^*G_MI_k.}\tag{6.4}\]
+
+Inversion and compression have not been commuted without the displayed
+\(D_k\) factors. Equation (6.4) follows because the full form commutes
+with the orthogonal permutation projection and by substituting
+\(L_k=D_k^{-1}I_k^*\).
+
+The symmetric polynomial numerator has one basis vector per partition of
+its degree into at most \(k\) parts. For \(M\ge k(d-1)\) the jet map is
+onto, because a tensor remainder has total degree at most \(k(d-1)\) and
+averaging makes a symmetric lift of every invariant jet. Thus
+
+\[\boxed{\dim(\mathcal E_M^{S_k})=p_{\le k}(M+1),}\tag{6.5}\]
+
+where \(p_{\le k}(n)\) is the number of partitions of \(n\) into at most
+\(k\) parts. The maps \(b_M,Y_M,C_M^{\mathrm{rel}}\) are
+permutation-equivariant and therefore restrict to that very subspace.
+Fixed-order polynomial division yields a primitive; applying
+\(\mathsf S_k\) to it gives a symmetric cochain primitive because
+\(d\mathsf S_k=\mathsf S_kd\).
+
+The highest-layer formulas in sections 3--4 hold on the invariant
+coordinates by grouping \(F,E_+\) into orbit sums, applying \(L_k\), and
+using the diagonal entries \(\omega_{[\lambda]}\). This computes the
+symmetric bound directly, instead of building a \(d^k\)-dimensional
+matrix first. The upper-bound row-sum estimate can still use the fully
+retained \(\Gamma_{k,M}\); the exact grouped incidence matrix can give a
+smaller constant.
+
+\subsubsection{6.1 Reflection and the original
+trace}\label{reflection-and-the-original-trace}
+
+For a reflection-stable packet the source involution \(j_h\) induces
+\(j_h^{\otimes k}\) on both summands in (5.4), commutes with
+permutations, and preserves the canonical representatives. Hence on the
+symmetric metric an upper control implies the opposite lower control by
+the same involution. The residue pairing and its Jacobian map are still
+transported through their specified inclusions; no auxiliary positive
+Gram is declared to be the Weil form.
+
+For a finite packet action \(U(a)=\exp((\log a)A)\), the exact trace on
+the invariant summand is
+
+\[\boxed{\operatorname{Tr}(U(a)^{\otimes k}|E_k^{\mathrm{sym}})
+=\frac1{k!}\sum_{\pi\in S_k}\prod_{c\in\operatorname{Cycles}(\pi)}
+\operatorname{Tr}(U(a)^{|c|}|E).}\tag{6.6}\]
+
+The proof expands the permutation operator in the tensor basis; each
+cycle forces the corresponding contracted indices and gives the
+indicated trace. It holds for nonsemisimple \(U\). The cohomological
+supertrace is \((-1)^k\) times (6.6). The complement trace remains
+
+\[(-1)^k\left(\operatorname{Tr}(U(a)|E)^k-
+\operatorname{Tr}(U(a)^{\otimes k}|E_k^{\mathrm{sym}})\right).\tag{6.7}\]
+
+These are traces of finite-rank cochain projectors on the original
+complex. An infinite packet sum and its trace topology are not supplied
+by these formulas.
+
+\subsection{7. An exact joint-control calculation with the nilpotent
+direction
+retained}\label{an-exact-joint-control-calculation-with-the-nilpotent-direction-retained}
+
+This section is a declared algebraic calibration, not a packet of zeta
+zeros. Take the polynomial quotient
+
+\[E=\mathbb C[s]/((s-\tfrac12)^2),\qquad d\nu(y)=e^{-y^2/2}dy,\quad c=\sqrt{2\pi}.\]
+
+The measure has its literal mass \(c\), and the unit in the calibration
+jet map is \(1\). The polynomial basis comparison \(x=s-1/2\) is given
+by
+
+\[B:\operatorname{span}(1,x)\xrightarrow{\sim}\operatorname{span}(1,s),\qquad
+B=\begin{pmatrix}1&-1/2\\0&1\end{pmatrix}.\tag{7.1}\]
+
+The operator remains multiplication by \(s=1/2+x\). In the symmetric
+basis
+
+\[1\otimes1,\quad 1\otimes x+x\otimes1,\quad x\otimes x,\]
+
+its two-fold generator is
+
+\[A_2^{\mathrm{sym}}=\begin{pmatrix}1&0&0\\1&1&0\\0&2&1\end{pmatrix}.\tag{7.2}\]
+
+The two-fold total-degree-\(4\) calculation gives
+
+\[\boxed{G_{2,4}^{\mathrm{sym}}=c^2\operatorname{diag}(1/3,2/3,1/4),}\tag{7.3}\]
+
+\[\boxed{W_{2,4}^{\mathrm{sym}}=c^2
+\begin{pmatrix}0&2/3&0\\2/3&0&1/2\\0&1/2&0\end{pmatrix}.}\tag{7.4}\]
+
+Its generalized characteristic polynomial is
+
+\[\frac{\det(zG_{2,4}^{\mathrm{sym}}-W_{2,4}^{\mathrm{sym}})}{\det G_{2,4}^{\mathrm{sym}}}
+=z(z^2-7/2),\]
+
+so the exact two-sided excess is \(\sqrt{7/2}\). The independent
+rectangular degree-\(2\)-per-factor construction gives \(\sqrt6\) at the
+same containing total degree. This proves an actual improvement for the
+specified joint construction in this calibration; the nilpotent operator
+in (7.2) is unchanged.
+
+For comparison, the smaller joint total degree \(M=2\) has excess
+\(\sqrt6\), whereas the rectangular degree-\(1\) construction contained
+in it has excess \(2\). Consequently a larger correction space alone
+does not monotonically improve the control constant. The typed
+comparison is inclusion of the two polynomial numerators and the
+resulting Gram compression; the direct formula (4.2) supplies the actual
+control value. Both calibrations are retained so that the first
+improvement is not promoted into a false monotonicity theorem.
+
+\subsection{8. Exact target, counterfactuals, and
+handoff}\label{exact-target-counterfactuals-and-handoff}
+
+The next estimate is now an arithmetic highest-layer estimate, either by
+the phase-sensitive pencil (4.5)--(4.6), or by bounding the two factors
+in (4.8). On the symmetric cohomology family it concerns the same
+\(G_M^{\mathrm{sym}}\) and \(W_M^{\mathrm{sym}}\), with all relation
+primitives retained. The source of every matrix entry is the actual
+measure \(|2\xi/h|^2dy/(2\pi)\), not a fitted metric.
+
+A sublinear excess in tensor degree has not been proved. For every
+actual eigenvector \(Av=\rho v\), the retained witness in the symmetric
+summand satisfies
+
+\[\frac{(v^{\otimes k})^*W_M(v^{\otimes k})}
+{(v^{\otimes k})^*G_M(v^{\otimes k})}
+=k(2\Re\rho-1).\tag{8.1}\]
+
+The symmetric reduction therefore retains the witness needed by
+Deligne-style amplification; it does not assume its disappearance. The
+input Deligne passages use tensoring \emph{and} a separate geometric
+estimate. Our new work supplies a computable smaller arithmetic target
+and a proved finite bound, not that geometric estimate by renaming a
+category.
+
+Constructive continuations are recorded with their exact maps:
+
+\begin{itemize}
+\tightlist
+\item
+  Raw moment inversion: use (2.3)--(2.7), retaining every \(\omega_j\)
+  and the full jet unit.
+\item
+  Highest polynomials that are not relations: use \(b_M=T_+-R_MF\), not
+  an assertion that high degree is zero.
+\item
+  Absolute Gram decay: use the congruence (4.5), retaining
+  \(\mathcal C_M=G_M^{-1}\) and the whole highest-layer update.
+\item
+  Excessive tensor dimension: use the chain projector (5.2) and the
+  symmetric numerator/quotient (6.1)--(6.5), while retaining the
+  complementary cohomology and trace.
+\item
+  A Cauchy--Schwarz bound too large: use the exact signed matrix (4.6);
+  its phases and cross terms have not been replaced by their absolute
+  values in the stored data.
+\item
+  Ordinary zero observations: reconstruct the maps and kernels in (3.4).
+  A new relation is \(e\)-zero at the next label; the original class and
+  the full kernel remain upstream.
+\end{itemize}
+
+The supplied quotient/homotopy Lean results can formalize the finite
+algebra of (3.2)--(4.6) and the chain-permutation calculation. The
+original analytic range theorem, arithmetic moment bounds, and any
+uniform tensor estimate remain separate written-analysis inputs.
+
+\subsection{References and evidence
+scope}\label{references-and-evidence-scope}
+
+The current input was read in the mounted \texttt{NOTE.tex} and checked
+against the pinned public markdown (especially sections 7--9). The prior
+formalization receipt was read at its recorded scope: its section-change
+and internal-quotient statements are used, without treating its analytic
+assumptions as proved Lean theorems.
+
+The classical orthogonal-polynomial recurrence and Christoffel--Darboux
+formula are documented in NIST DLMF sections 18.2(iv)--(v),
+https://dlmf.nist.gov/18.2. The tensor complex and its signed
+commutativity are documented in the Stacks Project, Tag 0GWN,
+https://stacks.math.columbia.edu/tag/0GWN. These are background
+mechanisms; sections 3--6 above prove their specific maps on this
+arithmetic source.
+
+The retained Deligne reading for the intended amplification is the
+supplied account of Weil II 3.2.13 and 3.3.4--3.3.6. No new full
+rereading of Weil II is claimed in this turn. No external source corpus
+is redistributed in this package.
+
+The checker uses exact finite Gaussian moment fixtures, including
+repeated-root quotients, nonconstant units, a nonzero imaginary
+recurrence diagonal, and both signed chain degrees. They are not
+arithmetic measurements. All derived infinite-dimensional statements
+rest on the written arguments and the explicitly named prior analytic
+inputs, not on the finite tests.
+
+\end{document}

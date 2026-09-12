@@ -47,3 +47,7 @@ Start from the full note and its exact version. Briefly record the question, why
 ## Complete tandem continuation: source metrics and Mellin jets
 
 The [separate 88-page continuation](workbenches/splitzero-tandem/) provides full TeX proofs and checking code for the exact source-metric image, the confluent Christoffel kernel of the actual theta measure, rank-two boundary formulas and weighted Mellin-jet topology. Its reading guide states the motivation and results of each calculation. It is a separately hash-pinned September 12b contribution, not an unrecorded change to the earlier workbench sources or a completed arithmetic weight estimate.
+
+## Current continuation
+
+The [current research guide](CURRENT_RESEARCH.md) covers the coherent interpolation, derived boundary control, spectral-sum pushforward and complete216-page kernel/symmetric continuation now integrated into main. It also links the425-page source-directed zeta reader. Historical source notes and editions above remain separately identified.

@@ -12,7 +12,7 @@ $$T_h(P)=P(D)F_h,\quad T_h(hP)=\Theta(P(D)\phi_*),\quad J_hT_h(P)=\upsilon_h[P]_
 
 where `upsilon_h=j_h(g/h)` is the full invertible jet, not the scalar e. These analytic range statements are inputs from the previous work, not newly Lean-certified here.
 
-For k factors, the actual numerator is `P_M=C[s_1,...,s_k]_(degree<=M)`, the relation space is its intersection with `(h(s_1),...,h(s_k))`, and its theta realization is `B_(k,M)`. The canonical representative R_(k,M) is the unique least-norm lift with exactly these relations allowed. Its full jets, arithmetic class, Gram G and control W remain those of #14.
+For k factors, the actual numerator is `P_M=C[s_1,...,s_k]_(degree<=M)`, the relation space is its intersection with `(h(s_1),...,h(s_k))`, and its theta realization is `B_(k,M)`. The canonical representative R_(k,M) is the unique least-norm lift with exactly these relations allowed. Its full jets, arithmetic class, Gram G and control W remain those of #14. For full-quotient interpolation and its invertible Gram/control matrices, retain the inherited range `M>=k(d-1)`, `d=deg h`, from #14, section 7.
 
 The supplied Kernel Layer Integration supplement agrees with the Symmetric Frontier note under `K=C_inverse`, `U=F`, `D=Omega`, `E_layer=b_M`, and `F_derivative=Omega^(-1)E_plus*`. Its sharper rank and original-layer identities are retained as source results, not counted again as new work.
 
@@ -24,7 +24,7 @@ $$\iota_k:\mathbb C[S]\to E_h^{\otimes k},\qquad S\mapsto[s_1+\cdots+s_k].$$
 
 Restriction of modules through this map is the exact quasi-coherent pushforward along the finite scheme morphism. Its adjunction maps are `f -> (l -> f(1 tensor l))` and `a tensor l -> a f(l)`. Applying G gives `p G(iota)=iota p`, with e sent to e and tau to tau; the morphism is over the same absolute pointed base. No finite field is substituted.
 
-For the actual finite image E, with sum operator A, there is the free resolution
+For the full finite quotient `E=E_h^tensor k`, with sum operator A, there is the free resolution
 
 $$0\to\mathbb C[S]\otimes E\xrightarrow{SI-A}\mathbb C[S]\otimes E\xrightarrow{\mathrm{ev}_A}E_A\to0.$$
 

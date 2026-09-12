@@ -39,3 +39,7 @@ We aimed to extend the axis calculation beyond its first derivative without repl
 [Read the main manuscript](https://zenodo.org/records/22678086/files/01-main-reader.pdf) · [Exact complete source archive](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/490a7ac7ef693702e9d92ba1e933a440d8f55b9b/zenodo_collection_20260909_main411/07-complete-mathematical-sources.zip) · [Machine-readable accounts and per-section hashes](ATTEMPTS.json)
 
 The machine records identify the exact archive members and section/equation labels. This pass adds research history and navigation, not a new proof review or a prescribed next-calculation queue. Later results may extend these frozen accounts.
+
+## September12 continuation: the actual arithmetic control
+
+The [current guide](CURRENT_RESEARCH.md#what-was-tried-why-and-what-it-produced) records the next attempts: constrained interpolation in the original measure, boundary control derived from theta derivatives, exact norm/Gram-volume comparison, symmetry sharpening, and spectral-sum pushforward. The216-page continuation provides their complete proofs. The newer main-reader Sections35–37 compute exact axial singularities and their invertible arithmetic residue image; they do not infer a zeta-zero witness.

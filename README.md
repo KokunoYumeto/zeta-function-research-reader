@@ -1,5 +1,9 @@
 # Riemann Zeta Function: Research Reader
 
+## Current calculations: theta norms, kernel layers and symmetric control
+
+Start with the [current research guide](CURRENT_RESEARCH.md), which explains the objects, the motivation for each attempt and what it produced. Read the [complete 216-page continuation](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) with its [proofs and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/), or the [425-page main research reader](reader.pdf). Earlier frozen editions below are preserved.
+
 [What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
 
 ## New: SplitZero, theta cohomology and weight control
@@ -27,7 +31,7 @@ This GitHub repository is the living research repository. The frozen 2026-09-09 
 | Geometric complexity | [GCT PDF](zenodo_collection_20260909_main411/05-gct-reader.pdf) | 174 |
 | Vacuum and gravity | [Vacuum PDF](zenodo_collection_20260909_main411/06-vacuum-reader.pdf) | 37 |
 
-The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The separate [corrected Navier–Stokes edition](https://doi.org/10.5281/zenodo.22678406) and its [reading guide](https://github.com/KokunoYumeto/yang-mills-interacting-workbench/tree/main/navier-stokes) are related work, not the DOI for this collection. The [earlier Navier–Stokes edition](https://doi.org/10.5281/zenodo.22667379) remains available; neither replaces the frozen fluid PDF above. No Millennium-problem resolution is claimed.
+The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The current root-level main reader is listed below; the frozen collection remains unchanged. The separate [corrected Navier–Stokes edition](https://doi.org/10.5281/zenodo.22678406) and its [reading guide](https://github.com/KokunoYumeto/yang-mills-interacting-workbench/tree/main/navier-stokes) are related work, not the DOI for this collection. The [earlier Navier–Stokes edition](https://doi.org/10.5281/zenodo.22667379) remains available; neither replaces the frozen fluid PDF above. No Millennium-problem resolution is claimed.
 
 <!-- END COLLECTION -->
 
@@ -39,7 +43,7 @@ Mirroring is not a mathematical audit or an endorsement of an endpoint claim.
 
 | Reader | PDF | Pages in this snapshot |
 |---|---|---:|
-| main | [Read PDF](reader.pdf) | 377 |
+| main | [Read PDF](reader.pdf) | 425 |
 | fluid | [Read PDF](sidebar/fluid/reader.pdf) | 208 |
 | heat | [Read PDF](sidebar/heat/reader.pdf) | 120 |
 | connes | [Read PDF](sidebar/connes/reader.pdf) | 82 |

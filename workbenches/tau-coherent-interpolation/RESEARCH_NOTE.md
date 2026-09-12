@@ -233,7 +233,7 @@ $$u_0=f_0,\quad u_n=(1-P_{n-1})D^nf_0,\quad\mathfrak h_n=\|u_n\|^2,$$
 
 $$Du_n=u_{n+1}+\tfrac12u_n-\frac{\mathfrak h_n}{\mathfrak h_{n-1}}u_{n-1}\quad(n\ge1).\tag{6.1}$$
 
-The diagonal $1/2$ and the negative last coefficient follow from $D^*=1-D$ on these functions. Neither the $u_n$ nor their norms are rescaled. Define $r_n=\mathfrak h_n^{-1}u_n^*s_h$. The new density result makes the entire tail formula exact:
+The identity $D^*=1-D$ fixes the real part of the diagonal to $1/2$ and gives the negative last coefficient. Here the actual seed $f_0=\Theta\phi_*$ is real, $D$ preserves real functions, and the Gram--Schmidt projections of this real Krylov family preserve reality. Thus the diagonal coefficient is real and is exactly $1/2$. Equivalently, the actual spectral weight $|g(1/2+it)|^2$ is even and the centered orthogonal polynomials have the corresponding parity. Neither the $u_n$ nor their norms are rescaled. Define $r_n=\mathfrak h_n^{-1}u_n^*s_h$. The new density result makes the entire tail formula exact:
 
 $$\boxed{G_{h,n}=\sum_{j>n}\mathfrak h_j r_j^*r_j.}\tag{6.2}$$
 

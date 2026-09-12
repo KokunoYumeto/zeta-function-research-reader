@@ -6,7 +6,7 @@ The corrected note has **11,253 bytes**, SHA256 `3efaf1c36f9c0e6e94bb3738a807a73
 
 ## Mathematical content of the correction
 
-The monic-division freeness statement now explicitly applies to a nonempty packet, of degree (d\ge1\). For 
+The monic-division freeness statement now explicitly applies to a nonempty packet, of degree \(d\ge1\). For 
 \(\mathcal P=\mathbb C[s_1,\ldots,s_k]\), repeated monic division expresses every polynomial uniquely as a sum of products
 \[
  \prod_{i=1}^k h(s_i)^{\beta_i}s_i^{\alpha_i},
@@ -14,7 +14,7 @@ The monic-division freeness statement now explicitly applies to a nonempty packe
 \]
 Existence follows by Euclidean division in each original variable. For uniqueness, each displayed product has leading exponent vector \((d\beta_i+\alpha_i)_{i=1}^k\); distinct index pairs give distinct vectors. Taking a maximal vector in a finite relation proves that its coefficient is zero, and repeating proves that every coefficient is zero. Thus the stated free basis and the resulting first conormal description have the asserted nonempty-packet domain.
 
-For the empty packet, the retained polynomial is (h=1\), with the same (k\ge2\). Hence every generator of \(I=(h(s_1),\ldots,h(s_k))\) is one, so
+For the empty packet, the retained polynomial is \(h=1\), with the same \(k\ge2\). Hence every generator of \(I=(h(s_1),\ldots,h(s_k))\) is one, so
 \[
  I=\mathcal P,\qquad I^r=\mathcal P\quad(r\ge1),\qquad
  E=\mathcal P/I=0,\qquad E^{[2]}=\mathcal P/I^2=0,

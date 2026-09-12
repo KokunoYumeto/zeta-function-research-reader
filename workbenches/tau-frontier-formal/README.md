@@ -16,22 +16,27 @@ Quot.sound occur in the accepted reports.
 ## Integration snapshot
 
 While this contribution was being checked, PR #16 completed and was merged.
-The exact new main snapshot is
+The pinned mathematical main snapshot imported by this contribution is
 `fd414804b9bae5f7e8e5714d94b3be43f412d30d`, containing Codex's final PR #16
 head `566083775551a7ecc9a5884b16a8b9b927adc2f0`, as well as the merged PR #17
 spectral-sum research note. The earlier coordination paragraph in RESEARCH_NOTE
 records a development snapshot; its mention of a failed #16 run is historical,
-not the final status. The final #16 receipt reports its successful 66-target
-check at run 34710753565/job 103598989742.
+not the final status. The final #16 receipt reports its successful 68-target
+check at [run 34710780871 / job 103599067568](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34710780871/job/103599067568).
 
 The integration commit imports that pinned main snapshot into this PR branch,
 retaining all of its files. Our five source blobs, target manifest, checker and
 mathematical note are byte-identical to the successful baseline. The added
-workflow now checks Codex's six modules and 66 targets, the five new frontier
+workflow checks Codex's six modules and 68 targets, the five new frontier
 modules and 40 targets, and all inherited audits in the same workspace. It also
-checks a combined import of both developments. The final PR validation record
-identifies the completed combined run; a pending run is not a certificate.
-Main itself and both other-session branches were not modified by this work.
+checks a combined import of both developments. The exact integrated head
+`2faa4e7360431c805fe794321469edd5e70679cc` passed that combined check at
+[run 34711653248 / job 103601382893](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34711653248/job/103601382893),
+including 25 checking-harness tests normally and under `python -O`.
+The author branch import did not modify main or other-session branches.
+[PR #18](https://github.com/KokunoYumeto/zeta-function-research-reader/pull/18)
+was subsequently reviewed and merged, preserving all mathematical source blobs.
+The same frontier checks run on relevant main pushes and pull-request changes.
 
 ## Mathematics and source scope
 

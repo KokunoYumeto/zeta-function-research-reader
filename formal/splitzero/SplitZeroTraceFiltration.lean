@@ -51,8 +51,8 @@ theorem resolution_budget (Q : ι → Matrix n n ℂ) (Fplus Fminus : Matrix n n
       rw [← Finset.mul_sum, Finset.sum_add_distrib]
     _ = 2 * e := by rw [overlap_sum Q Fplus hQ, overlap_sum Q Fminus hQ, htp, htm]; ring
 
+omit [Fintype ι] [DecidableEq n] in
 /-- Two consecutive nested metric projections give an actual graded-piece projector. -/
-omit [Fintype ι] in
 theorem nested_difference (P Q : Matrix n n ℂ)
     (hP : P * P = P) (hQ : Q * Q = Q)
     (hPQ : P * Q = P) (hQP : Q * P = P)

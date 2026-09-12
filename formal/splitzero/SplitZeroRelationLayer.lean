@@ -125,6 +125,6 @@ def orthogonalData (L M : Submodule ℂ H) [L.HasOrthogonalProjection] (hLM : L 
   inclusion := hLM
   project := L.starProjection.toLinearMap
   project_mem x := L.starProjection_apply_mem x
-  project_fix x hx := (Submodule.starProjection_eq_self_iff).mpr hx
+  project_fix _ hx := (Submodule.starProjection_eq_self_iff).mpr hx
 end Orthogonal
 end SplitZero.RelationLayer

@@ -2,11 +2,13 @@
 
 ## Current calculations: theta norms, kernel layers and symmetric control
 
-**Published:** [Zenodo DOI 10.5281/zenodo.22728704](https://doi.org/10.5281/zenodo.22728704) · [separate PDFs and matching source packages](calculation_edition_20260912b/). That frozen edition includes PRs #14–17 and #19, including repaired #16. PR #18 and the exterior-packet continuation are newer current-repository work.
+**Published:** [Zenodo DOI 10.5281/zenodo.22729194](https://doi.org/10.5281/zenodo.22729194) · [separate PDFs and matching source packages](calculation_edition_20260912c/). This edition includes the merged PR #18 frontier formalization, PR #20 sum-connection calculation and complete new tandem continuation. The [preceding 425/216-page edition](calculation_edition_20260912b/) remains frozen and unchanged.
 
-Start with the [current research guide](CURRENT_RESEARCH.md), which explains the objects, the motivation for each attempt and what it produced. Read the [complete 216-page continuation](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) with its [proofs and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/), or the [433-page main research reader](reader.pdf). Earlier frozen editions below are preserved.
+Start with the [current research guide](CURRENT_RESEARCH.md), which explains the objects, the motivation for each attempt and what it produced. Read the [complete 292-page calculation reader](workbenches/splitzero-tandem/continuations/20260912-stieltjes/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf), with its [28 proof sections, 12 complete source appendices and checks](workbenches/splitzero-tandem/continuations/20260912-stieltjes/), or the [433-page broader zeta reader](reader.pdf).
 
-The current reader now includes [alternating/exterior packet-cost calculations](workbenches/exterior-packet-cost/) in Section 38, pages 397–404, with full proof source and exact checkers. This continuing-reader update leaves the frozen DOI edition unchanged.
+The new continuation develops both positive-half-line Stieltjes branches of the original theta measure, arithmetic Gram determinants, full spectral-sum relative fibres, and the exact derivative/conormal maps into the arithmetic residue trace. The main reader includes [alternating/exterior packet costs](workbenches/exterior-packet-cost/) in Section 38, pages 397–404, retaining full multiplicities, metrics and repeated-root directions. [PR #20's shorter public note](workbenches/tau-sum-connection/) preserves its separate source revision and empty-packet clarification.
+
+This GitHub edition folder contains **four new files**. The [complete twenty-file Zenodo record](https://zenodo.org/records/22729194#files) also retains all sixteen earlier downloads unchanged; the [edition guide](calculation_edition_20260912c/README.md#earlier-downloads-preserved) links every one.
 
 [What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
 

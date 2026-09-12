@@ -119,6 +119,7 @@ theorem spectralProjection_difference (H : Matrix n n ℂ) (z : ℂ) (hz : z ≠
   field_simp
   ring
 
+omit [Fintype n] in
 /-- Hermitian control, derived from the original weighted defect equation. -/
 theorem control_selfadjoint (A H : Matrix n n ℂ) (w : ℝ)
     (hH : A.conjTranspose + A - (w : ℂ) • 1 = H) : H.conjTranspose = H := by

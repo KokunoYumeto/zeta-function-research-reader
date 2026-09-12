@@ -1,6 +1,6 @@
 # Orthogonal theta boundaries and rank-two arithmetic control
 
-Owner-directed SplitZero continuation, 12 September 2026. Base: PR #11, d37eade4f9e6a82c1a88aeff710a3b851a34eb49. This is an additive research contribution with written proofs for review, not a new Lean certificate. The conversation delivery contains a longer numbered LaTeX/HTML version, the full reading record, and exploratory arithmetic moments.
+Owner-directed SplitZero continuation, 12 September 2026. Base: PR #11, d37eade4f9e6a82c1a88aeff710a3b851a34eb49. This is an additive research contribution with written proofs for review, not a new Lean certificate for the analytic results. The conversation delivery contains a longer numbered LaTeX/HTML version, the full reading record, and exploratory arithmetic moments.
 
 ## 1. Reviewed input and exact types
 
@@ -10,7 +10,7 @@ The supplied other-session theorem is correct: for injective Theta:V->B, an R-li
 
 Writing H=(u,v) gives u-Fv=kappa. Since d(x,0)=Theta x, Hd=0 gives H Theta=0; hence Fv descends uniquely to alpha. Substitution proves the converse. The difference is gamma(alpha-beta)q with gamma(v)=(v,F^-1v). The solution set is affine relative to H_0, not generally a vector space with the zero homotopy as origin.
 
-Its Lean draft remains uncompiled. Neither lean nor lake is installed in this runtime. The proposed zero-composition repair has the right mathematical type, but no kernel certificate is inferred from that observation. PR #11 already supplies the continuous specialization, the Fourier twist over C[t], support-changing lifts, coherent dilations and representative-change formulas. Those are retained inputs, not new results here.
+The attachment's uncompiled-draft status has now been superseded by the other session's successful PR #12 at `5d2772ea0a16d177ac3e01ff70394b90ba95a232`. The actual `SplitZeroTauHomotopy.lean`, completed job `103535438942`, and its full log were read. Both cochain equations and the inverse equivalence passed the specified kernel checks. Retraction and quotient-topology interfaces also passed with their explicit hypotheses. This is the other session's formalization; neither the actual analytic theta construction nor the new Gram/control results below are certified by it. No local Lean/Lake execution is claimed. See `COORDINATION_UPDATE.md` for exact scope. PR #11 already supplies the continuous specialization, the Fourier twist over C[t], support-changing lifts, coherent dilations and representative-change formulas. Those are retained inputs, not new results here.
 
 Keep the original tau base and the square G(Z)->G(C) over Z->C, with p:G(Z)->Z still infinite, e=ofR(0), and tau the external scalar zero. No Boolean localization replaces the base quotient. All quotient relations below use the original internal coequalizer and preserve the support label.
 
@@ -229,6 +229,6 @@ All representative changes above are original theta boundaries. Their extension 
 
 The new results are the actual orthogonal source choice, rank-two boundary formula, exact relative certificate, rank-one source-kernel recurrence, arithmetic moment tail bound, and the full Hilbert/jet topology comparison. No uniform arithmetic purity estimate, global spectral-kernel vanishing, RH or GRH is asserted.
 
-The thirteen finite exact tests check the encoded algebra and declared calibration models, not infinite analytic arguments or actual zeta zeros. The complete cochain-homotopy theorem remains the other session's result. Existing Lean modules and earlier validation receipts are untouched.
+The thirteen finite exact tests check the encoded algebra and declared calibration models, not infinite analytic arguments or actual zeta zeros. The complete cochain-homotopy theorem remains the other session's result, now supported by the independently inspected successful PR #12 run. Its certificate does not extend to the new analytic control results. Existing Lean modules and earlier validation receipts are untouched.
 
-References: live PR #11 at the pinned head; the supplied Tau_Deligne_Control and Tau_Global_Comparison source notes; the supplied other-session homotopy proof and uncompiled draft; the previously retained Weil II 3.3.4-3.3.6 and 6.2 duality excerpts. Standard orthogonal-polynomial context is NIST DLMF 18.2; the density argument needed here is proved above for the actual arithmetic measure.
+References: live PR #11 at the pinned head; successful PR #12 and source/job references in COORDINATION_UPDATE.md; the supplied Tau_Deligne_Control and Tau_Global_Comparison source notes; the supplied other-session homotopy proof; the previously retained Weil II 3.3.4-3.3.6 and 6.2 duality excerpts. Standard orthogonal-polynomial context is NIST DLMF 18.2; the density argument needed here is proved above for the actual arithmetic measure.

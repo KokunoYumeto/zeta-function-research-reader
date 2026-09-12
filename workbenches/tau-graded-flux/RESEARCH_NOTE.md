@@ -77,7 +77,7 @@ $$D^j\phi_*=2^{-2j-4}\psi_{j+2}+\operatorname{span}(\psi_0,\ldots,\psi_{j+1}).\t
 
 The nonzero triangular coefficients prove that this kernel is $V_n$. Since $P_V$ fixes it, $S_n$ is the stated projection. For nesting, the correction map in (2.1) has image in $\operatorname{span}(\psi_0,\psi_1)$; both relevant $\Pi$'s fix this image and $P_V$ annihilates it. Expanding $P_V\Pi_{n+2}P_V\Pi_{m+2}$ proves (2.5).
 
-**Quantitative estimate.** For every integer $r\ge1$ and $a\ge0$,
+**Quantitative estimate.** For integers $r\ge1$ and $a\ge0$,
 
 $$\boxed{\|L^r(\phi-S_n\phi)\|_2
 \le C_r\mu_{n+3}^{-a}\|L^{r+a}\phi\|_2,}\tag{2.7}$$
@@ -160,10 +160,10 @@ Every pair of orders for introducing two indices has opposite signs, so $d^2=0$.
 
 There is an explicit map of this complex into the original $C_+^{\otimes k}$. On the $I$-component it is
 
-$$\mathscr T_I(P)=P(D_1,\ldots,D_k)
-\left(\bigotimes_{j\notin I}\phi_*\ \otimes\!\!\!\bigotimes_{j\in I}F_h\right),\tag{3.4}$$
+$$b_j^I=\begin{cases}\phi_*,&j\notin I,\\F_h,&j\in I,\end{cases}\qquad
+\mathscr T_I(P)=P(D_1,\ldots,D_k)\left(\bigotimes_{j=1}^k b_j^I\right).\tag{3.4}$$
 
-with factors placed in their original order, not regrouped. Applying the $j$th theta differential replaces $\phi_*$ with $f_0=h(D_j)F_h$, with precisely the sign in (3.3). This proves the cochain square. In top degree its quotient map is
+The factors in (3.4) remain in their original order. Applying the $j$th theta differential replaces $\phi_*$ with $f_0=h(D_j)F_h$, with precisely the sign in (3.3). This proves the cochain square. In top degree its quotient map is
 
 $$\pi_{h,k,M}(P)=\upsilon_h^{\otimes k}[P]_{(h(t_1),\ldots,h(t_k))}.\tag{3.5}$$
 
@@ -365,7 +365,7 @@ The coefficient extraction is finite. Thus total-degree data in $k$ variables ar
 
 ### Certified finite enclosures
 
-If Hermitian approximations obey $\|\mathcal C-\widehat{\mathcal C}\|\le\eta_C$ and $\|\mathcal F-\widehat{\mathcal F}\|\le\eta_F$, sufficient tests are
+For $\epsilon\ge0$, if Hermitian approximations obey $\|\mathcal C-\widehat{\mathcal C}\|\le\eta_C$ and $\|\mathcal F-\widehat{\mathcal F}\|\le\eta_F$, sufficient tests are
 
 $$\widehat{\mathcal C}-\eta_CI\succ0,\qquad
 \epsilon\widehat{\mathcal C}\pm\widehat{\mathcal F}
@@ -373,8 +373,7 @@ $$\widehat{\mathcal C}-\eta_CI\succ0,\qquad
 
 These now require no inverse-enclosure step. Coefficient and moment errors have not disappeared: they enter $v_j,\eta_j$ and consequently $\eta_C,\eta_F$. For example
 
-$$\|vv^*-\widehat v\widehat v^*\|
-\le2\|\widehat v\|\,\delta_v+\delta_v^2$$
+$$\|vv^*-\widehat v\widehat v^*\|\le2\|\widehat v\|\,\delta_v+\delta_v^2$$
 
 when $\|v-\widehat v\|\le\delta_v$, and a positive lower bound for $\eta_j$ must be retained before using its reciprocal. The checker tests exact rational calibrations; it supplies no unevaluated arithmetic integral enclosure.
 
@@ -409,17 +408,17 @@ Thus there is an exact Gram gap, not an assumed equality or an inverse-compressi
 
 The corresponding control gap is
 
-$$W_h=i^{\otimes k*}W_Hi^{\otimes k}
+$$W_h=(i^{\otimes k})^*W_Hi^{\otimes k}
 +A_{h,k}^*(\Delta^*\Delta)+(\Delta^*\Delta)A_{h,k}-k\Delta^*\Delta.\tag{7.4}$$
 
 The full last term is retained; a positive Gram gap does not imply a positive control gap. This supplies the exact correction needed when transporting an upper estimate between differently sized product packets.
 
 ## 8. Reflection, residue trace, and the intended Deligne estimate
 
-For a reflection-stable packet the existing involution $j_hu(s)=\overline{u(1-\bar s)}$ and its product preserve the canonical minimum. Its matrix $C_h$ satisfies
+For a reflection-stable packet the existing involution $j_hu(s)=\overline{u(1-\bar s)}$ and its product preserve the canonical minimum. Let $C_h$ be its one-factor matrix, and set $C_{h,k}=C_h^{\otimes k}$ on $E_h^{\otimes k}$. With $G=G_{k,M}$ the identities are
 
-$$C_h\bar C_h=1,\quad C_h^*G C_h=\bar G,\quad
-A_kC_h^{\otimes k}=C_h^{\otimes k}(kI-\bar A_k).\tag{8.1}$$
+$$C_{h,k}\overline{C_{h,k}}=1,\quad C_{h,k}^*G C_{h,k}=\bar G,\quad
+A_kC_{h,k}=C_{h,k}(kI-\bar A_k).\tag{8.1}$$
 
 These are the same-metric input identities proved in PR #14. In the dual information coordinates put $B_h=(C_h^{-1})^*$. Inverting only the formal identity (8.1), not performing a numerical inverse, gives
 

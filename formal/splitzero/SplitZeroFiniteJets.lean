@@ -34,7 +34,9 @@ def baseChange (rho : k) (m : ℕ) :
 
 @[simp] theorem baseChange_tmul (rho : k) (m : ℕ) (b : B) (p : Polynomial k) :
     baseChange rho m (b ⊗ₜ[Polynomial k] (Ideal.Quotient.mk (jetIdeal rho m) p)) =
-      Ideal.Quotient.mk _ (algebraMap (Polynomial k) B p * b) := rfl
+      Ideal.Quotient.mk _ (algebraMap (Polynomial k) B p * b) := by
+  simpa only [baseChange, Algebra.smul_def] using
+    (Algebra.TensorProduct.quotIdealMapEquivTensorQuot_symm_tmul B (jetIdeal rho m) b p)
 
 @[simp] theorem baseChange_inverse (rho : k) (m : ℕ) (b : B) :
     (baseChange rho m).symm (Ideal.Quotient.mk _ b) = b ⊗ₜ[Polynomial k] 1 := rfl

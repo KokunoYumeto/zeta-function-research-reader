@@ -44,7 +44,8 @@ def recoverEquiv : (intrinsic R M).Total ≃ₗ[G R] M where
       _ = x.val + y.val := by rw [support_add_self, add_support]
   map_smul' a x := by
     obtain ⟨_ | a⟩ := a
-    · rfl
+    · change (0 : M) = (0 : G R) • x.2.val
+      rw [zero_smul]
     · rfl
 
 @[simp] theorem recover_apply (l : SplitZero.Diagram.Support R M)

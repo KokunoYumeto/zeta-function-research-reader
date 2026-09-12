@@ -76,11 +76,13 @@ theorem relation_maps_to_fibre_zero (i : L) (x : D.V i) (hx : x ∈ B.fibre i) :
     B.quotientMap.total ⟨i, x⟩ = ⟨i, 0⟩ := by
   change (⟨i, Submodule.Quotient.mk x⟩ : B.quotientDiagram.Total) = ⟨i, 0⟩
   rw [(Submodule.Quotient.mk_eq_zero _).mpr hx]
+  rfl
 
 section Universal
 variable {M : Type w} [AddCommMonoid M] [Module (G R) M]
 variable (f : D.Total →ₗ[G R] M)
 variable (hf : ∀ i (x : D.V i), x ∈ B.fibre i → f ⟨i, x⟩ = f ⟨i, 0⟩)
+include hf
 
 theorem constant_on_quotient_fibres {x y : D.Total}
     (h : B.quotientMap.total x = B.quotientMap.total y) : f x = f y := by
@@ -210,7 +212,9 @@ def cycles : LinearDiagram R L where
 
 def boundaries : Relations C.cycles where
   fibre i := (C.obj i).boundaries
-  stable h hx := (C.arrow h).maps_boundaries hx
+  stable := by
+    intro i j h x hx
+    exact (C.arrow h).maps_boundaries hx
 
 /-- Actual fibrewise cycle quotient, already equipped with its semimodule structure. -/
 def homology : LinearDiagram R L := C.boundaries.quotientDiagram

@@ -110,7 +110,13 @@ def postcompose {F G H : Diagram R} (g : Diagram.Hom G H) :
 def dualDifferential (F : Diagram R) (W : ModuleCat.{u} R) :
     (F.eta →ₗ[R] W) →ₗ[R] ((F.plus →ₗ[R] W) × (F.minus →ₗ[R] W)) where
   toFun ℓ := (ℓ.comp F.left, -(ℓ.comp F.right))
-  map_add' f g := by ext x <;> simp <;> abel
+  map_add' f g := by
+    apply Prod.ext
+    · rfl
+    · apply LinearMap.ext
+      intro x
+      change -(f (F.right x) + g (F.right x)) = -f (F.right x) + -g (F.right x)
+      abel
   map_smul' a f := by ext x <;> simp
 
 /-- The two Hom descriptions have exactly the same signed differential. -/

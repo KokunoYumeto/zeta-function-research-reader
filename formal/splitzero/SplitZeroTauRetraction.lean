@@ -96,7 +96,10 @@ def splitEquiv : (V × S.Q) ≃ₗ[R] B where
       rw [map_add, q_theta, quotient_section, zero_add]
   right_inv b := S.decompose b
   map_add' p p' := by simp only [Prod.fst_add, Prod.snd_add, map_add]; abel
-  map_smul' a p := by simp only [Prod.smul_fst, Prod.smul_snd, map_smul, smul_add]
+  map_smul' a p := by
+    change S.theta (a • p.1) + S.sectionMap (a • p.2) =
+      a • (S.theta p.1 + S.sectionMap p.2)
+    rw [map_smul, map_smul, smul_add]
 
 /-- The same input can be any finite packet map; no spectral assumption is inserted. -/
 theorem normalize_representative {E : Type u} [AddCommGroup E] [Module R E]
@@ -199,6 +202,7 @@ theorem changed_equivariant_iff (b : S.Q →ₗ[R] V) :
     apply LinearMap.ext
     intro u
     have hu := LinearMap.congr_fun h u
+    change A.onB (S.changeSection b u) = S.changeSection b (A.onQuotient u) at hu
     rw [A.changed_block b u] at hu
     have hz : S.theta (A.changeDefect b u) = 0 := add_left_eq_self.mp hu
     exact S.theta_injective (hz.trans S.theta.map_zero.symm)
@@ -212,11 +216,11 @@ end Operator
 section Topology
 variable [TopologicalSpace V] [TopologicalSpace B] [ContinuousSub B] [T2Space B]
 
-theorem projection_continuous (hθ : Continuous S.theta) (hλ : Continuous S.lambda) :
-    Continuous S.projection := continuous_id.sub (hθ.comp hλ)
+theorem projection_continuous (hTheta : Continuous S.theta) (hLambda : Continuous S.lambda) :
+    Continuous S.projection := continuous_id.sub (hTheta.comp hLambda)
 
 /-- Valid for the actual locally convex topologies; no Banach norm is assumed. -/
-theorem closed_range (hθ : Continuous S.theta) (hλ : Continuous S.lambda) :
+theorem closed_range (hTheta : Continuous S.theta) (hLambda : Continuous S.lambda) :
     IsClosed (Set.range S.theta) := by
   have h : Set.range S.theta = S.projection ⁻¹' ({0} : Set B) := by
     ext b
@@ -227,7 +231,7 @@ theorem closed_range (hθ : Continuous S.theta) (hλ : Continuous S.lambda) :
       change b - S.theta (S.lambda b) = 0 at hb
       exact ⟨S.lambda b, (sub_eq_zero.mp hb).symm⟩
   rw [h]
-  exact isClosed_singleton.preimage (S.projection_continuous hθ hλ)
+  exact isClosed_singleton.preimage (S.projection_continuous hTheta hLambda)
 end Topology
 end Data
 

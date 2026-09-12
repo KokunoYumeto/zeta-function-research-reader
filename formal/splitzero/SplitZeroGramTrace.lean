@@ -57,11 +57,18 @@ theorem transport_mul (M N : Matrix n n ℂ) :
   rw [Matrix.trace_mul_cycle, c.left_inverse, one_mul]
 
 theorem inverse_star_gram : c.inverse.conjTranspose * G = c.forward := by
-  rw [← c.gram, ← Matrix.mul_assoc, ← Matrix.conjTranspose_mul,
-    c.right_inverse, Matrix.conjTranspose_one, one_mul]
+  calc
+    _ = c.inverse.conjTranspose * (c.forward.conjTranspose * c.forward) :=
+      congrArg (fun M : Matrix n n ℂ => c.inverse.conjTranspose * M) c.gram.symm
+    _ = (c.forward * c.inverse).conjTranspose * c.forward := by
+      rw [Matrix.conjTranspose_mul, Matrix.mul_assoc]
+    _ = c.forward := by rw [c.right_inverse, Matrix.conjTranspose_one, one_mul]
 
 theorem gram_inverse : G * c.inverse = c.forward.conjTranspose := by
-  rw [← c.gram, Matrix.mul_assoc, c.right_inverse, mul_one]
+  calc
+    _ = (c.forward.conjTranspose * c.forward) * c.inverse :=
+      congrArg (fun M : Matrix n n ℂ => M * c.inverse) c.gram.symm
+    _ = c.forward.conjTranspose := by rw [Matrix.mul_assoc, c.right_inverse, mul_one]
 
 theorem congruence_left (M : Matrix n n ℂ) :
     c.inverse.conjTranspose * (G * M) * c.inverse = c.transport M := by
@@ -105,6 +112,7 @@ theorem transport_pair_trace (P H : Matrix n n ℂ) :
     Matrix.trace (c.transport P * c.transport H) = Matrix.trace (P * H) := by
   rw [← c.transport_mul, c.transport_trace]
 
+include c in
 /-- Full invariant-subspace trace bound in G with the original inclusion attached. -/
 theorem invariant_excess_bound {d : Type*} [Fintype d] [DecidableEq d]
     (A H : Matrix n n ℂ) (B : Matrix n d ℂ) (L : Matrix d n ℂ)
@@ -122,7 +130,7 @@ theorem invariant_excess_bound {d : Type*} [Fintype d] [DecidableEq d]
   have hLB' : (L * c.inverse) * (c.forward * B) = 1 := by
     calc
       _ = L * (c.inverse * c.forward) * B := by simp only [Matrix.mul_assoc]
-      _ = 1 := by rw [c.left_inverse, mul_one, hLB]
+      _ = 1 := by rw [c.left_inverse, Matrix.mul_one, hLB]
   have hAB' : c.transport A * (c.forward * B) = (c.forward * B) * a := by
     calc
       _ = c.forward * A * (c.inverse * c.forward) * B := by

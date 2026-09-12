@@ -1,6 +1,7 @@
 import SplitZeroExtension
 import SplitZeroFibres
 import SplitZeroPresentation
+import SplitZeroMaps
 
 #print axioms SplitZero.Extension.ringHomEquiv
 #print axioms SplitZero.Extension.existsUnique_ring_factor
@@ -24,3 +25,9 @@ import SplitZeroPresentation
 #print axioms SplitZero.Presentation.missing_zero_relation_countermodel
 #print axioms SplitZero.Presentation.correctedPresentationLift
 #print axioms SplitZero.Presentation.correctedPresentationLift_unique
+#print axioms SplitZero.Maps.no_injective_ring_target
+#print axioms SplitZero.Maps.coordinates_injective
+#print axioms SplitZero.Maps.coordinates_image
+#print axioms SplitZero.Maps.reflection_natural
+#print axioms SplitZero.Maps.amplitude_faithful
+#print axioms SplitZero.Maps.splitHomEquiv

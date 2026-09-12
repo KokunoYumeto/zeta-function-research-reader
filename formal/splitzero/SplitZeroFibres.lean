@@ -70,13 +70,12 @@ instance fiberAddCommGroup : AddCommGroup (Fiber l) where
   zero_add x := by
     apply Subtype.ext
     change l.val + x.val = x.val
-    rw [← x.property, add_comm]
-    exact add_support x.val
+    exact (add_comm l.val x.val).trans
+      ((congrArg (fun z : M => x.val + z) x.property.symm).trans (add_support x.val))
   add_zero x := by
     apply Subtype.ext
     change x.val + l.val = x.val
-    rw [← x.property]
-    exact add_support x.val
+    exact (congrArg (fun z : M => x.val + z) x.property.symm).trans (add_support x.val)
   neg_add_cancel x := by
     apply Subtype.ext
     change (ofR (-1 : R) : G R) • x.val + x.val = l.val
@@ -142,8 +141,7 @@ theorem transport_self (l : Support R M) : transport (le_refl l) = LinearMap.id 
   intro x
   apply Subtype.ext
   change x.val + l.val = x.val
-  rw [← x.property]
-  exact add_support x.val
+  exact (congrArg (fun z : M => x.val + z) x.property.symm).trans (add_support x.val)
 
 theorem transport_comp {l k n : Support R M} (h : l ≤ k) (h' : k ≤ n) :
     (transport h').comp (transport h) = transport (le_trans h h') := by
@@ -191,7 +189,8 @@ def fiberDecomposition : M ≃ Σ l : Support R M, Fiber l where
 theorem reconstruct_add (m n : M) :
     let x := fiberDecomposition (R := R) m
     let y := fiberDecomposition (R := R) n
-    (transport (le_sup_left x.1 y.1) x.2 + transport (le_sup_right x.1 y.1) y.2).val = m + n := by
+    (transport (le_sup_left : x.1 ≤ x.1 ⊔ y.1) x.2 +
+      transport (le_sup_right : y.1 ≤ x.1 ⊔ y.1) y.2).val = m + n := by
   change (m + (support (R := R) m + support (R := R) n)) +
     (n + (support (R := R) m + support (R := R) n)) = m + n
   rw [← support_add]

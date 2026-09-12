@@ -24,11 +24,12 @@ def outMatrix (h : ℝ) (a b : ι → ℂ) : Matrix ι (Fin 2) ℂ :=
 def rowMatrix (a b : ι → ℂ) : Matrix (Fin 2) ι ℂ :=
   fun k j => ![a j, b j] k
 
+omit [Fintype ι] in
 theorem cross_factorization (h : ℝ) (a b : ι → ℂ) :
     crossMatrix h a b = outMatrix h a b * rowMatrix a b := by
   ext i j
   simp only [crossMatrix, outMatrix, rowMatrix, Matrix.mul_apply, Fin.sum_univ_two,
-    Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+    Matrix.cons_val_zero, Matrix.cons_val_one]
   ring
 
 theorem rank_le_two (h : ℝ) (a b : ι → ℂ) :
@@ -86,7 +87,7 @@ theorem compressed_determinant (a b x : ℝ) (c : ℂ) :
       (((x - c.re)^2 + c.im^2 - a*b : ℝ) : ℂ) := by
   apply Complex.ext <;>
     simp [compressed, Matrix.det_fin_two, Matrix.sub_apply, Matrix.smul_apply,
-      Matrix.one_apply, Complex.mul_re, Complex.mul_im] <;> ring
+      pow_two, Complex.mul_re, Complex.mul_im] <;> ring
 
 theorem real_roots (a b cr ci x : ℝ) (h : 0 ≤ a*b-ci^2) :
     (x-cr)^2+ci^2-a*b = 0 ↔
@@ -105,8 +106,10 @@ theorem exact_radius (c q : ℝ) (hq : 0 ≤ q) :
     max |c+q| |c-q| = |c|+q := by
   apply le_antisymm
   · apply max_le
-    · simpa only [abs_of_nonneg hq] using abs_add c q
-    · simpa only [sub_eq_add_neg, abs_neg, abs_of_nonneg hq] using abs_add c (-q)
+    · apply abs_le.mpr
+      constructor <;> linarith [neg_abs_le c, le_abs_self c]
+    · apply abs_le.mpr
+      constructor <;> linarith [neg_abs_le c, le_abs_self c]
   · rcases le_total 0 c with hc | hc
     · calc
         |c|+q = c+q := by rw [abs_of_nonneg hc]
@@ -119,5 +122,5 @@ theorem exact_radius (c q : ℝ) (hq : 0 ≤ q) :
 
 theorem traceless_radius (a b ci : ℝ) :
     max |Real.sqrt (a*b-ci^2)| |-Real.sqrt (a*b-ci^2)| = Real.sqrt (a*b-ci^2) := by
-  simpa using exact_radius 0 (Real.sqrt (a*b-ci^2)) (Real.sqrt_nonneg _)
+  rw [abs_neg, max_self, abs_of_nonneg (Real.sqrt_nonneg _)]
 end SplitZero.ControlCompression

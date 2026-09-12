@@ -1,0 +1,746 @@
+\textbf{Codex's integration has advanced: PR \#16 is merged, and the combined frontier/Codex run has
+now passed.} I checked the current repository state and the completed job: it rebuilt the inherited
+sources, checked the frontier files, imported both developments into one Lean environment, and
+completed their selected axiom audits. The ``combined run pending'' sentence in PR \#18's
+description is therefore out of date.
+
+I continued with the new sum-connection note rather than duplicating that work. \textbf{The
+additional result is a complete calculation of what its conormal derivative detects, what it misses,
+and how that calculation restricts to the symmetric tensor summand.} It also packages the quotient
+and derivative together as a genuine algebra homomorphism.
+
+The new results below have complete mathematical proofs and exact finite algebra checks. The Lean
+continuation at the end is an \textbf{uncompiled draft}: the local execution service is timing out,
+and the currently exposed GitHub actions provide no write operation. No remote files were changed in
+this turn.
+
+\subsubsection{1. The derivative now has a complete quotient
+construction}\label{conormal_tower_pasted:the-derivative-now-has-a-complete-quotient-construction}
+
+Retain the source's notation, with tensor degree \(k\ge1\):
+
+\[
+P=\mathbb C[s_1,\ldots,s_k],\qquad
+h_i=h(s_i),\qquad
+I=(h_1,\ldots,h_k),
+\]
+
+\[
+E=P/I,\qquad E^{[2]}=P/I^2,
+\qquad
+\partial_S=\frac1k\sum_{i=1}^k\partial_{s_i}.
+\]
+
+Here \(h\) is the original monic packet polynomial, including all multiplicities. These are
+precisely the relation ideal and derivative in the new attachment.
+
+For any derivation \(D\) of a commutative algebra and any ideal \(I\),
+
+\[
+\boxed{D(I^{r+1})\subseteq I^r\qquad(r\ge0).}
+\]
+
+\textbf{Proof.} An element of \(I^{r+1}\) is a sum of multiples of products of \(r+1\) elements of
+\(I\). The product rule differentiates one factor at a time, leaving at least \(r\) factors in
+\(I\). Differentiating an exterior coefficient leaves all \(r+1\) factors. Additivity completes the
+proof.
+
+Consequently the source's maps exist at every order:
+
+\[
+\delta_r:P/I^{r+1}\longrightarrow P/I^r,
+\qquad
+[F]\longmapsto[\partial_SF].
+\]
+
+They commute with the quotient transitions. In particular,
+
+\[
+\delta_1:E^{[2]}\longrightarrow E
+\]
+
+is a derivation \textbf{along} the quotient \(\pi:E^{[2]}\to E\):
+
+\[
+\boxed{
+\delta_1(xy)=\pi(x)\delta_1(y)+\pi(y)\delta_1(x).
+}
+\]
+
+This is the appropriate product rule; \(\delta_1\) is not an endomorphism of the arithmetic algebra
+\(E\).
+
+\paragraph{Monic division constructs all the retained
+layers}\label{conormal_tower_pasted:monic-division-constructs-all-the-retained-layers}
+
+There is a unique finite expansion
+
+\[
+F=\sum_{\alpha\in\mathbb N^k}
+h_1^{\alpha_1}\cdots h_k^{\alpha_k}r_\alpha,
+\qquad
+\deg_{s_i}r_\alpha<d:=\deg h.
+\]
+
+Existence follows by repeated monic division in the separate variables. For uniqueness, the leading
+monomials of
+
+\[
+h^\alpha s^\beta,\qquad 0\le\beta_i<d,
+\]
+
+have exponent vectors \(d\alpha+\beta\), which are distinct. A finite dependence therefore has a
+unique largest leading monomial and cannot cancel.
+
+This gives explicit coordinates---not just an existence statement---for
+
+\[
+I^r/I^{r+1}\cong E[\eta_1,\ldots,\eta_k]_r,
+\qquad
+\eta_i\longleftrightarrow[h_i].
+\]
+
+In particular,
+
+\[
+I/I^2\cong E^k,
+\qquad
+(a_i)\longmapsto\left[\sum_i h_i\widetilde a_i\right],
+\]
+
+and
+
+\[
+\dim_{\mathbb C}P/I^{r+1}
+=d^k\binom{k+r}{k}.
+\]
+
+On the associated graded, the derivative is exactly
+
+\[
+\boxed{
+\operatorname{gr}(\partial_S)
+=
+\frac1k\sum_i[h_i']\,\partial_{\eta_i}.
+}
+\]
+
+Indeed, differentiating a coefficient of \(h^\alpha r_\alpha\) stays in \(I^{|\alpha|}\), while
+differentiating one \(h_i\)-factor lowers the ideal order and contributes the literal exponent
+\(\alpha_i\). This proves the higher-layer formula in the attachment without deleting those exponent
+factors.
+
+The standard conormal construction supplies the map
+
+\[
+I/I^2\longrightarrow\Omega_{P/\mathbb C}\otimes_PE.
+\]
+
+The calculation here identifies its coordinates for this particular ideal and then contracts it by
+the specified sum direction; those are distinct operations (The Stacks Project Authors, n.d., Tag
+00S0). (\href{https://stacks.math.columbia.edu/tag/00S0}{The Stacks Project})
+
+\subsubsection{2. The exact information detected by the sum
+derivative}\label{conormal_tower_pasted:the-exact-information-detected-by-the-sum-derivative}
+
+Let
+
+\[
+A_h=\mathbb C[s]/(h),\qquad E=A_h^{\otimes k},
+\]
+
+and write
+
+\[
+c_i=[h'(s_i)]\in E.
+\]
+
+Under the preceding conormal coordinates, the restriction of \(\delta_1\) is the \(E\)-linear map
+
+\[
+\boxed{
+\partial_N:E^k\longrightarrow E,
+\qquad
+(a_1,\ldots,a_k)\longmapsto\frac1k\sum_i c_i a_i.
+}
+\]
+
+The attachment gives this row. The following kernel, cokernel, and rank calculations are additional
+deductions.
+
+Let
+
+\[
+b=\deg\gcd(h,h').
+\]
+
+Over \(\mathbb C\), if \(h\) has \(q\) distinct roots, then
+
+\[
+b=d-q=\sum_\rho(m_\rho-1).
+\]
+
+The image and cokernel are
+
+\[
+\boxed{
+\operatorname{im}\partial_N=(c_1,\ldots,c_k)\subseteq E,
+}
+\]
+
+\[
+\boxed{
+\operatorname{coker}\partial_N
+\cong
+\left(\mathbb C[s]/(h,h')\right)^{\otimes k}.
+}
+\]
+
+\textbf{Proof.} The image is the ideal generated by the row entries because \(1/k\) is invertible.
+Quotienting \(E\) by those entries imposes \(h(s_i)=h'(s_i)=0\) in each separate variable, giving
+the displayed tensor product.
+
+Therefore
+
+\[
+\boxed{
+\operatorname{rank}_{\mathbb C}\partial_N=d^k-b^k,
+\qquad
+\dim_{\mathbb C}\ker\partial_N=(k-1)d^k+b^k.
+}
+\]
+
+These formulas separate two sources of information lost by this particular observation.
+
+When \(h\) is squarefree, \(b=0\), so the contracted derivative is onto. Nevertheless, for \(k>1\)
+its kernel still has dimension \((k-1)d^k\): \textbf{contracting to the sum direction does not
+observe every relative conormal direction, even without repeated roots.}
+
+When roots are repeated, the additional term \(b^k\) records the failure of the Jacobian entries to
+generate the unit ideal.
+
+For example, take the declared algebraic calibration
+
+\[
+h(s)=s^2,\qquad k=2,\qquad
+E=\mathbb C[x,y]/(x^2,y^2).
+\]
+
+Then
+
+\[
+\partial_N(a,b)=xa+yb.
+\]
+
+Its image is
+
+\[
+\operatorname{span}\{x,y,xy\},
+\]
+
+so its rank is three and its kernel has dimension five. The conormal vector \((x,0)\) is nonzero but
+lies in that kernel. Its representative is \(x^3\) modulo
+
+\[
+I^2=(x^4,x^2y^2,y^4),
+\]
+
+so the retained relation is genuinely nonzero before observation.
+
+These are ranks of the \textbf{conormal restriction}, not of the whole map
+\(\delta_1:E^{[2]}\to E\). The latter is onto: in coordinates
+
+\[
+S=\sum_i s_i,\qquad z_i=s_i-S/k,
+\]
+
+one has \(\partial_S=\partial/\partial S\), and a polynomial primitive is obtained by integrating
+its powers of \(S\). The same argument makes every \(\delta_r\) onto.
+
+\paragraph{Package the quotient and derivative as one algebra
+map}\label{conormal_tower_pasted:package-the-quotient-and-derivative-as-one-algebra-map}
+
+Introduce an ordinary formal square-zero parameter \(\epsilon\), distinct from the supported scalar
+\(e\). Define
+
+\[
+\boxed{
+\mathcal J_S^1:E^{[2]}
+\longrightarrow E[\epsilon]/(\epsilon^2),
+\qquad
+x\longmapsto\pi(x)+\epsilon\,\delta_1(x).
+}
+\]
+
+This is a unital \(\mathbb C\)-algebra homomorphism. Multiplication follows from the relative
+product rule:
+
+\[
+(\pi x+\epsilon\delta x)(\pi y+\epsilon\delta y)
+=
+\pi(xy)+\epsilon\delta(xy).
+\]
+
+Thus the source's two differently typed maps can be retained together in a single multiplicative
+observation. Its kernel is exactly
+
+\[
+\ker\mathcal J_S^1
+=
+\{n\in I/I^2:\partial_Nn=0\},
+\]
+
+and consequently
+
+\[
+\boxed{
+\dim\ker\mathcal J_S^1=(k-1)d^k+b^k,
+\qquad
+\dim\operatorname{im}\mathcal J_S^1=2d^k-b^k.
+}
+\]
+
+The proof of the image dimension is the exact sequence
+
+\[
+0\longrightarrow\epsilon\,\operatorname{im}\partial_N
+\longrightarrow\operatorname{im}\mathcal J_S^1
+\longrightarrow E\longrightarrow0.
+\]
+
+This also describes the precise quotient of the first thickening seen by the sum derivative. It does
+not silently identify that quotient with the entire first thickening.
+
+\paragraph{Retaining every first derivative is a different
+observation}\label{conormal_tower_pasted:retaining-every-first-derivative-is-a-different-observation}
+
+If all coordinate derivatives are retained, the map is
+
+\[
+\mathcal J_{\mathrm{all}}^1:
+E^{[2]}\longrightarrow E\oplus E^k,
+\qquad
+[F]\longmapsto
+\left([F],([\partial_iF])_i\right),
+\]
+
+where \(E^k\) is a square-zero ideal in the target.
+
+On \(I/I^2\cong E^k\), its derivative component is
+
+\[
+(a_i)\longmapsto(c_i a_i)_i.
+\]
+
+Each multiplication map \(M_{c_i}\) has kernel dimension \(b\,d^{k-1}\). Hence
+
+\[
+\boxed{
+\dim\ker\mathcal J_{\mathrm{all}}^1
+=
+k\,b\,d^{k-1}.
+}
+\]
+
+In the squarefree case this full first-jet map is an algebra isomorphism onto the square-zero
+extension \(E\oplus E^k\). With repeated roots it still loses the explicitly computed
+Jacobian-annihilator directions, which remain in the higher source layers.
+
+The split lifts retain their original meaning throughout:
+
+\[
+G(\pi)(n^\bullet)=e_E,
+\qquad
+G(\mathcal J_S^1)(n^\bullet)
+=
+(\epsilon\,\partial_Nn)^\bullet.
+\]
+
+External absence maps to external absence. This is a calculation of a retained relation before
+quotienting, not a rule that differentiates \(e\) into a nonzero scalar. The attachment makes that
+distinction explicitly.
+
+\subsubsection{3. This calculation restricts to the symmetric tensor
+construction}\label{conormal_tower_pasted:this-calculation-restricts-to-the-symmetric-tensor-construction}
+
+The preceding maps commute with simultaneous permutation of variables and conormal indices. Let
+
+\[
+N=I/I^2\cong E^k,\qquad
+T=\mathbb C[s]/(h,h').
+\]
+
+The cokernel sequence is equivariant:
+
+\[
+N\xrightarrow{\partial_N}E\longrightarrow T^{\otimes k}\longrightarrow0.
+\]
+
+Taking \(S_k\)-invariants remains exact: given an invariant element in an image, average any
+preimage with the literal factor \(1/k!\). Thus
+
+\[
+\boxed{
+\operatorname{coker}\left(
+\partial_N:N^{S_k}\to E^{S_k}
+\right)
+\cong
+(T^{\otimes k})^{S_k}.
+}
+\]
+
+The invariant conormal domain has the explicit description
+
+\[
+\boxed{
+N^{S_k}
+\cong
+A_h\otimes
+(A_h^{\otimes(k-1)})^{S_{k-1}}.
+}
+\]
+
+An invariant tuple is determined by its first component, which is invariant under permutations
+fixing the first index; the other components are its prescribed translates. This constructs both
+directions of the identification.
+
+Consequently,
+
+\[
+\dim N^{S_k}
+=
+d\binom{d+k-2}{k-1},
+\]
+
+\[
+\boxed{
+\operatorname{rank}\partial_N^{S_k}
+=
+\binom{d+k-1}{k}
+-
+\binom{b+k-1}{k},
+}
+\]
+
+and
+
+\[
+\boxed{
+\dim\ker\partial_N^{S_k}
+=
+d\binom{d+k-2}{k-1}
+-\binom{d+k-1}{k}
++\binom{b+k-1}{k}.
+}
+\]
+
+For \(b=0\), the final binomial is zero.
+
+For \(h=s^2\) and \(k=2\), the symmetric conormal domain has dimension four, the symmetric
+arithmetic target has dimension three, and the restricted derivative has rank two. Its kernel still
+has dimension two.
+
+These are ordinary variable-permutation invariants of the relation algebra. To place them in the
+original cochain construction, use the source's \textbf{signed chain idempotent}
+
+\[
+\mathsf S_k=\frac1{k!}\sum_{\pi\in S_k}\operatorname{sgn}(\pi)T_\pi.
+\]
+
+Its two top-degree signs produce precisely the ordinary symmetric tensors used here. Replacing it by
+the unsigned chain average would change the selected summand.
+
+This gives the smaller cohomological calculation its own exact derivative kernel; selecting the
+symmetric summand does not amount to presuming that the remaining relative information vanishes.
+
+\subsubsection{4. The arithmetic unit and trace remain
+attached}\label{conormal_tower_pasted:the-arithmetic-unit-and-trace-remain-attached}
+
+The new note retains
+
+\[
+U=\prod_i(g/h)(s_i)
+\]
+
+and its Taylor class \(\widehat U\in E^{[2]}\). The relative Leibniz rule proves
+
+\[
+\boxed{
+\delta_1(\widehat Ux)
+=
+U\,\delta_1(x)+\delta_1(\widehat U)\pi(x).
+}
+\]
+
+On a conormal class \(n\), the second term vanishes:
+
+\[
+\boxed{
+\delta_1(\widehat Un)
+=
+U\,\partial_Nn.
+}
+\]
+
+Because \(U\) is a unit, this arithmetic multiplication changes neither the kernel nor the ranks
+calculated above. It is nevertheless retained in the actual map, rather than assigned the value one.
+This is the source's specified unit correction.
+
+There is also an important distinction between the \textbf{sum-Jacobian response} and the
+\textbf{product Jacobian used by the full product trace}.
+
+Multiplication by
+
+\[
+\prod_i h'(s_i)
+\]
+
+on \(E=A_h^{\otimes k}\) has rank
+
+\[
+\boxed{q^k,}
+\]
+
+where \(q\) is the number of distinct roots of \(h\). Its kernel has dimension
+
+\[
+d^k-q^k
+\]
+
+and is the nilradical of \(E\).
+
+\textbf{Proof.} At a root \(\rho\) of multiplicity \(m\), write
+
+\[
+h(\rho+z)=z^m u_\rho(z),\qquad u_\rho(0)\ne0.
+\]
+
+Modulo \(z^m\),
+
+\[
+h'(\rho+z)=m\,u_\rho(0)z^{m-1}.
+\]
+
+Multiplication by this element has one-dimensional image and kernel \((z)\). At a \(k\)-tuple of
+roots, the product Jacobian similarly sends the constant coefficient to a nonzero multiple of
+
+\[
+z_1^{m_1-1}\cdots z_k^{m_k-1}
+\]
+
+and annihilates the maximal ideal. There is one image dimension per root tuple, giving \(q^k\).
+
+This is not the rank \(d^k-b^k\) of the contracted conormal row. The two operators use the same
+derivative factors but perform different observations.
+
+The one-variable trace identity remains exact. Let
+
+\[
+\lambda_h([P])
+=
+\sum_{\rho}\operatorname{Res}_{s=\rho}\frac{P(s)}{h(s)}\,ds.
+\]
+
+Then
+
+\[
+\boxed{
+\lambda_h(h'P)
+=
+\operatorname{Tr}(M_P\mid A_h).
+}
+\]
+
+Locally, \(h'/h=m_\rho/(s-\rho)+u_\rho'/u_\rho\), so its residue against \(P\) is
+\(m_\rho P(\rho)\). Multiplication by \(P\) on the local algebra has that same trace because its
+nilpotent terms have zero diagonal.
+
+Writing \(\upsilon_h=j_h(g/h)\) and \(\varepsilon_h=\upsilon_h^{-1}\), the actual arithmetic pairing
+gives
+
+\[
+\begin{aligned}
+\mathscr R_Z(f,j_h(g')P)
+&=\lambda_h\!\left(
+\varepsilon_h f^\dagger\upsilon_h h'P
+\right)\\
+&=\lambda_h(f^\dagger h'P)\\
+&=\operatorname{Tr}(M_{f^\dagger P}\mid A_h).
+\end{aligned}
+\]
+
+Both unit factors are present before cancellation. This is the algebraic form of the attachment's
+observation of
+
+\[
+(\log x)\Theta(P(D)\phi_*),
+\]
+
+with the original \(g=2\xi\), reflection, and multiplicities retained.
+
+\subsubsection{5. Lean continuation against the integrated
+library}\label{conormal_tower_pasted:lean-continuation-against-the-integrated-library}
+
+The merged Codex source already supplies
+
+\begin{verbatim}
+SplitZero.RelationLayer.derivative
+\end{verbatim}
+
+as the quotient map induced by a linear map that carries the source relations into the target
+relations. I read its implementation and reused that interface below rather than introducing another
+quotient.
+
+The following proposed \nolinkurl{SplitZeroConormalTower.lean} proves the ideal-power containment from
+the derivation law, uses it to construct every descended derivative, proves compatibility between
+levels, and computes the derivative of an original relation. Its proof scripts are complete, but
+\textbf{compilation has not been checked}.
+
+\begin{verbatim}
+import SplitZeroRelationLayerIntegration
+import Mathlib.RingTheory.Derivation.Basic
+import Mathlib.RingTheory.Ideal.Operations
+
+/-!
+Derivative maps between the original ideal-power quotients.
+
+This draft reuses RelationLayer.derivative. It does not assume that
+the ideal is derivative-stable or that the packet is squarefree.
+-/
+
+noncomputable section
+
+namespace SplitZero.ConormalTower
+
+variable {R A : Type*}
+  [CommRing R] [CommRing A] [Algebra R A]
+
+/-- The original ideal-power relation, viewed over the coefficient ring. -/
+def level (I : Ideal A) (r : ℕ) : Submodule R A :=
+  (I ^ r).restrictScalars R
+
+/-- A derivation lowers ideal order by at most one. -/
+theorem deriv_mem_pow
+    (D : Derivation R A A) (I : Ideal A) (r : ℕ)
+    {x : A} (hx : x ∈ I ^ (r + 1)) :
+    D x ∈ I ^ r := by
+  induction r generalizing x with
+  | zero =>
+      rw [Submodule.pow_zero, Ideal.one_eq_top]
+      exact Submodule.mem_top
+  | succ r ih =>
+      rw [Submodule.pow_succ] at hx
+      refine Submodule.mul_induction_on hx ?_ ?_
+      · intro a ha b hb
+        rw [D.leibniz]
+        change a * D b + b * D a ∈ I ^ (r + 1)
+        have hd : D a * b ∈ I ^ (r + 1) := by
+          rw [Submodule.pow_succ]
+          exact Ideal.mul_mem_mul (ih ha) hb
+        exact (I ^ (r + 1)).add_mem
+          ((I ^ (r + 1)).mul_mem_right (D b) ha)
+          (by simpa only [mul_comm] using hd)
+      · intro a b ha hb
+        rw [map_add]
+        exact (I ^ (r + 1)).add_mem ha hb
+
+/-- The derivative on A/I^(r+1), with values in A/I^r. -/
+def descended
+    (D : Derivation R A A) (I : Ideal A) (r : ℕ) :
+    (A ⧸ level (R := R) I (r + 1)) →ₗ[R]
+      (A ⧸ level (R := R) I r) :=
+  SplitZero.RelationLayer.derivative
+    (level I (r + 1)) (level I r) D.toLinearMap
+    (fun _ hx => deriv_mem_pow D I r hx)
+
+@[simp]
+theorem descended_mk
+    (D : Derivation R A A) (I : Ideal A) (r : ℕ) (x : A) :
+    descended D I r ((level I (r + 1)).mkQ x) =
+      (level I r).mkQ (D x) :=
+  rfl
+
+/-- Forget one ideal-adic layer without differentiating. -/
+def projection (I : Ideal A) (r : ℕ) :
+    (A ⧸ level (R := R) I (r + 1)) →ₗ[R]
+      (A ⧸ level (R := R) I r) :=
+  SplitZero.RelationLayer.transport
+    (level I (r + 1)) (level I r)
+    (fun _ hx => Ideal.pow_le_pow_right (Nat.le_succ r) hx)
+
+@[simp]
+theorem projection_mk (I : Ideal A) (r : ℕ) (x : A) :
+    projection (R := R) I r ((level I (r + 1)).mkQ x) =
+      (level I r).mkQ x :=
+  rfl
+
+/-- Derivative and quotient transition form the actual commuting square. -/
+theorem tower_square
+    (D : Derivation R A A) (I : Ideal A) (r : ℕ) :
+    (projection I r).comp (descended D I (r + 1)) =
+      (descended D I r).comp (projection I (r + 1)) := by
+  apply LinearMap.ext
+  intro z
+  obtain ⟨x, rfl⟩ :=
+    Submodule.Quotient.mk_surjective (level I (r + 2)) z
+  rfl
+
+/-- On a retained relation z*a, only a*D(z) survives modulo I. -/
+theorem conormal_product
+    (D : Derivation R A A) (I : Ideal A)
+    (z a : A) (hz : z ∈ I) :
+    descended D I 1 ((level I 2).mkQ (z * a)) =
+      (level I 1).mkQ (a * D z) := by
+  rw [descended_mk, D.leibniz]
+  change
+    (level I 1).mkQ (z * D a + a * D z) =
+      (level I 1).mkQ (a * D z)
+  rw [map_add]
+  have hzero : (level (R := R) I 1).mkQ (z * D a) = 0 := by
+    apply (Submodule.Quotient.mk_eq_zero _).mpr
+    change z * D a ∈ I ^ 1
+    rw [Submodule.pow_one]
+    exact I.mul_mem_right (D a) hz
+  rw [hzero, zero_add]
+
+end SplitZero.ConormalTower
+\end{verbatim}
+
+The derivation and ideal-product APIs used here were checked against the repository's existing
+Mathlib revision, rather than assumed from a different release. That source inspection does not
+substitute for running Lean.
+
+\subsubsection{Verification and the remaining quantitative
+connection}\label{conormal_tower_pasted:verification-and-the-remaining-quantitative-connection}
+
+The fresh Wolfram calculations passed \textbf{161 exact checks}: conormal ranks and invariant
+restrictions, full first-jet ranks, ideal-square annihilation, residue traces, product-Jacobian
+ranks, higher derivative identities, and retained-unit trace identities. The fixtures include
+squarefree polynomials, repeated roots, mixed multiplicities, and tensor degrees through three. An
+initial variable-binding error in my checker was corrected before the successful runs. These are
+finite algebra checks, not a new Lean certificate or evaluations of arithmetic zero locations.
+
+The new result does not identify the Hilbert-space normal map \(N_u\) with the algebraic conormal
+module \(I/I^2\). The attachment's filtered graph supplies the stated route from the full derivative
+to arithmetic jets. Its exact scalar identity
+
+\[
+\mathcal I_{h,k}
++4\int\|n_k(u)\|^2\,du
+=
+\frac{\mu_h^{k-1}}{k}\mathcal I_h
+\]
+
+retains the Hilbert normal contribution; the conormal calculations above now identify the algebraic
+kernel encountered by the subsequent sum-direction observation. Those two pieces must remain
+separately typed when estimating the original weight-control form.
+
+\textbf{The continuation now provides an exact first-jet algebra map, its full retained kernel, the
+corresponding symmetric restriction, and all-order quotient derivatives.} Codex can build those on
+the merged quotient library without recreating the scalar, homology, or boundary-control
+implementations.
+
+\paragraph{Reference}\label{conormal_tower_pasted:reference}
+
+The Stacks Project Authors. (n.d.). \emph{The naive cotangent complex} (Tag 00S0). \emph{The Stacks
+Project}. (\href{https://stacks.math.columbia.edu/tag/00S0}{The Stacks Project})

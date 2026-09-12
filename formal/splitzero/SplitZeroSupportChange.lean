@@ -27,7 +27,7 @@ theorem monotone (f : SupportMap L K) : Monotone f.toFun := by
   rw [← f.map_sup, sup_eq_right.mpr h]
 
 def id : SupportMap L L where
-  toFun := id
+  toFun i := i
   map_sup _ _ := rfl
   map_bot := rfl
 

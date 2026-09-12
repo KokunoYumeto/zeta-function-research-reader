@@ -1,5 +1,7 @@
 # Zeta, theta cohomology and arithmetic weight control
 
+[Read the published edition](https://doi.org/10.5281/zenodo.22728704) · [PDFs and matching source packages](calculation_edition_20260912b/)
+
 This research collection develops explicit calculations about the Riemann zeta
 function and the operators that encode it. The current focus is the
 **Split-Zero and theta-cohomology programme**: preserve the information in
@@ -40,6 +42,7 @@ arithmetic transforms, and the source-directed fluid calculations.
 |---|---|---|
 | [Constrained interpolation](workbenches/tau-coherent-interpolation/) | Compute minimum-norm representatives from the actual arithmetic measure, rather than choose a convenient replacement metric. | Full-jet kernel/Gram inverse formulas, nested-packet comparisons and a joint total-degree tensor construction. The original local units and theta primitives remain in the maps. |
 | [Boundary control from raw theta derivatives](workbenches/tau-boundary-layer-formal/) | Derive the small-rank control matrix from the actual derivative sequence. | Exact escape, relation-quotient and Gram-update formulas; five new Lean modules checked at the recorded PR15 head. The analytic theta specialization and integral estimates have separate written proofs, not an inferred Lean certificate. |
+| [Supported boundary integration](workbenches/tau-boundary-layer-integration/) | Carry support-changing maps, all four-mask homotopies and the next orthogonal relation layer through the same original coefficient system. | Exact quotient maps, Gram updates and rank-two control identities; six integration modules pass strict Lean checks with 68 selected axiom reports, alongside the 38 preserved boundary targets. Analytic integral estimates retain their separate written scope. |
 | [Theta norms and kernel layers](workbenches/splitzero-tandem/continuations/20260912-frontier/tex/kernel_layer_continuation.tex) | Connect the packet-dependent interpolation problem to the original theta norm sequence and track the next relation. | Complete norm/Gram-volume identities, a full relation-layer graph and derivative quotient, retaining initial indices and cross terms. See the cumulative reader's named kernel-layer sections for the complete formulas. |
 | [Symmetric arithmetic frontier](workbenches/splitzero-tandem/continuations/20260912-frontier/) | Use the original conjugation/reflection symmetries to sharpen the actual control estimate. | Quartet parity removes the general factor two in the stated finite-stage bound. Literal orbit sums transport it to signed symmetric cohomology, retaining orbit multiplicities and zero cases. An asymptotic vanishing estimate is not asserted. |
 | [Spectral-sum pushforward](workbenches/tau-spectral-sum/) | Carry a tensor calculation onto one spectral coordinate without discarding the relative directions. | One-variable matrix weights, exact Jacobians, duality, traces and complete nilpotent sum fibres. The original filtered image and arithmetic metric are retained. |

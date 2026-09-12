@@ -1,3 +1,14 @@
+# Completed integration update
+
+The review below records the earlier captured heads. PRs #14, #15, #17 and
+#19 were subsequently merged. PR #16 was repaired at
+`566083775551a7ecc9a5884b16a8b9b927adc2f0`, passed all seven exact-head workflows,
+and merged as `fd414804b9bae5f7e8e5714d94b3be43f412d30d`.
+[Successful strict integration run](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34710780871).
+The five original boundary modules and 38 targets were preserved; the six
+integration modules and 68 targets passed. No earlier failed result is erased
+or relabelled. The new PR #18 was outside this reviewed publication snapshot.
+
 # Bounded exact-head merge-readiness review: PRs 14–18
 
 12 September 2026. Repository: `KokunoYumeto/zeta-function-research-reader`.

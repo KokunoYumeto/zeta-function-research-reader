@@ -23,8 +23,8 @@ theorem hsSq_nonneg (M : Matrix n n ℂ) : 0 ≤ hsSq M := by
   exact (RCLike.nonneg_iff.mp
     (Matrix.posSemidef_conjTranspose_mul_self M).trace_nonneg).1
 
-/-- The overlap of two orthogonal projections is a squared norm. -/
 omit [DecidableEq n] in
+/-- The overlap of two orthogonal projections is a squared norm. -/
 theorem projection_overlap_eq (P F : Matrix n n ℂ)
     (hP : P * P = P) (hPs : P.conjTranspose = P)
     (hF : F * F = F) (hFs : F.conjTranspose = F) :
@@ -116,6 +116,7 @@ theorem projector_difference_square (P Q : Matrix n n ℂ)
     _ = P * P - P * Q - Q * P + Q * Q := by noncomm_ring
     _ = 0 := by rw [hP, hQ, hQP, hPQ]; abel
 
+omit [DecidableEq n] in
 /-- The orthogonal and spectral projectors give the same invariant trace. -/
 theorem projector_trace_comparison (P Q A : Matrix n n ℂ)
     (hQP : Q * P = P) (hPQ : P * Q = Q) (hAQ : A * Q = Q * A) :
@@ -128,8 +129,8 @@ theorem projector_trace_comparison (P Q A : Matrix n n ℂ)
     _ = Matrix.trace ((P * Q) * A) := by rw [Matrix.mul_assoc]
     _ = Matrix.trace (Q * A) := by rw [hPQ]
 
-/-- Trace of the actual compression, using inclusion and coefficient extraction. -/
 omit [DecidableEq n] in
+/-- Trace of the actual compression, using inclusion and coefficient extraction. -/
 theorem invariant_trace {d : Type*} [Fintype d] [DecidableEq d]
     (A : Matrix n n ℂ) (B : Matrix n d ℂ) (L : Matrix d n ℂ)
     (a : Matrix d d ℂ) (hLB : L * B = 1) (hAB : A * B = B * a) :

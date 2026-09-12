@@ -30,7 +30,7 @@ theorem kernel_congruence (A G K : Matrix n n ℂ) (w : ℝ)
       noncomm_ring
     _ = kernel A K w := by simp [hGK, hKG, kernel, add_comm]
 
-/-- Defect compression under an intertwining inclusion. -/
+/- Defect compression under an intertwining inclusion. -/
 omit [DecidableEq n] [DecidableEq d] in
 theorem primal_compression (A G : Matrix n n ℂ) (As : Matrix d d ℂ)
     (I : Matrix n d ℂ) (w : ℝ) (hAI : A * I = I * As) :

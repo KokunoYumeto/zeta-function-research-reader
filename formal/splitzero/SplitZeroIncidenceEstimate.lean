@@ -16,7 +16,8 @@ variable {ι : Type*} [Fintype ι]
 variable {H K : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
   [NormedAddCommGroup K] [InnerProductSpace ℝ K]
 
-/-- Cauchy--Schwarz for a finite vector sum, including the empty index type. -/
+/- Cauchy--Schwarz for a finite vector sum, including the empty index type. -/
+omit [InnerProductSpace ℝ H] in
 theorem norm_sum_sq (u : ι → H) :
     ‖∑ i, u i‖ ^ 2 ≤ (Fintype.card ι : ℝ) * ∑ i, ‖u i‖ ^ 2 := by
   have ht := norm_sum_le (Finset.univ : Finset ι) u
@@ -36,9 +37,11 @@ theorem raising_lowering_identity (u : ι → H) (v : ι → K)
   have hu : ‖∑ i, u i‖ ^ 2 = ∑ i, ∑ j, inner ℝ (u i) (u j) := by
     rw [← real_inner_self_eq_norm_sq]
     simp only [sum_inner, inner_sum]
+    rw [Finset.sum_comm]
   have hv : ‖∑ i, v i‖ ^ 2 = ∑ i, ∑ j, inner ℝ (v i) (v j) := by
     rw [← real_inner_self_eq_norm_sq]
     simp only [sum_inner, inner_sum]
+    rw [Finset.sum_comm]
   calc
     ‖∑ i, u i‖ ^ 2 - ‖∑ i, v i‖ ^ 2 =
         ∑ i, ((∑ j, inner ℝ (u i) (u j)) - ∑ j, inner ℝ (v i) (v j)) := by
@@ -57,7 +60,8 @@ theorem raising_lowering_identity (u : ι → H) (v : ι → K)
             exact (hi (Finset.mem_univ i)).elim
         _ = ‖u i‖ ^ 2 - ‖v i‖ ^ 2 := by
           rw [real_inner_self_eq_norm_sq, real_inner_self_eq_norm_sq]
-    _ = (∑ i, ‖u i‖ ^ 2) - ∑ i, ‖v i‖ ^ 2 := Finset.sum_sub_distrib
+    _ = (∑ i, ‖u i‖ ^ 2) - ∑ i, ‖v i‖ ^ 2 := by
+      rw [Finset.sum_sub_distrib]
 
 /-- This is the source's k-1 lowering cost, not k times the raising norm. -/
 theorem raising_bound (u : ι → H) (v : ι → K)

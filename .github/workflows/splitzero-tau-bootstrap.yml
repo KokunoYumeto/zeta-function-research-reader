@@ -1,0 +1,47 @@
+name: SplitZero tau pinned environment
+on:
+  push:
+    branches: [codex/splitzero-tau-base-20260912]
+    paths: ['.github/workflows/splitzero-tau-bootstrap.yml']
+permissions:
+  contents: read
+jobs:
+  environment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Reproduce the existing pinned environment
+        working-directory: formal/splitzero
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          export PATH="$HOME/.elan/bin:$PATH"
+          lean --version
+          lake update > "$RUNNER_TEMP/setup.log" 2>&1 || { tail -60 "$RUNNER_TEMP/setup.log"; exit 1; }
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get >> "$RUNNER_TEMP/setup.log" 2>&1 || { tail -60 "$RUNNER_TEMP/setup.log"; exit 1; }
+          lake -KmaxJobs=2 build
+      - name: Package compiler and public dependencies for offline proof development
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar --exclude='.git' --exclude='*.c' --exclude='*.o' --exclude='*.a' --exclude='*.trace' -I 'zstd -T0 -5' -cf "$RUNNER_TEMP/tau-lean-env.tar.zst" -C "$HOME/.elan/toolchains" leanprover--lean4---v4.31.0 -C "$GITHUB_WORKSPACE" formal/splitzero
+          sha256sum "$RUNNER_TEMP/tau-lean-env.tar.zst" | tee "$RUNNER_TEMP/tau-lean-env.sha256"
+          ls -lh "$RUNNER_TEMP/tau-lean-env.tar.zst"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env
+          path: |
+            ${{ runner.temp }}/tau-lean-env.tar.zst
+            ${{ runner.temp }}/tau-lean-env.sha256
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error

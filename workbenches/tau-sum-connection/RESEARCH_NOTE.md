@@ -98,7 +98,9 @@ The correct domain retaining this derivative is constructed as follows. Put $\ma
 $$0\to I/I^2\to E^{[2]}\xrightarrow{\pi}E\to0,\qquad
 E^k\xrightarrow{\sim}I/I^2,\quad(a_i)\mapsto[\sum_i h(s_i)\widetilde a_i].$$
 
-Monic division proves the isomorphism: $\mathcal P$ is free over $\mathbb C[h(s_1),\ldots,h(s_k)]$ with basis $s^\alpha$, $0\le\alpha_i<d$; only degrees zero and one in the latter variables survive modulo $I^2$.
+For a nonempty packet, so $d\ge1$, monic division proves the isomorphism: $\mathcal P$ is free over $\mathbb C[h(s_1),\ldots,h(s_k)]$ with basis $s^\alpha$, $0\le\alpha_i<d$; only degrees zero and one in the latter variables survive modulo $I^2$.
+
+For the empty packet $h=1$, with the same $k\ge2$, every generator $h(s_i)$ is $1$. Thus $I=\mathcal P$ and $I^r=\mathcal P$ for every $r\ge1$: $E$, $E^{[2]}$, $I/I^2$, all higher quotient spaces, and all associated-graded pieces are zero. Their quotient and derivative maps are the unique zero maps on these underlying modules; in particular $\delta_S(S)=1_E$ reads $0=0$ in the zero ring. Their split lifts still retain supported zero separately from external $\tau$. The analytic amplitude $v_1=g$, its actual mass $\mu_1$, and the analytic definitions and estimates above remain unchanged.
 
 The derivative at fixed relative coordinates descends as the complex-linear map
 

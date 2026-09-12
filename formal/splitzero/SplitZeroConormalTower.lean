@@ -104,26 +104,28 @@ theorem top_level_zero (r : ℕ) (x : A) :
 
 /-- Literal pullback of the r-th multivariable relation along S. -/
 def cyclicLevel (S : A) (I : Ideal A) (r : ℕ) : Submodule R (Polynomial R) :=
-  (level I r).comap (Polynomial.aeval S).toLinearMap
+  (level (R := R) I r).comap (Polynomial.aeval (R := R) S).toLinearMap
 
 /-- Evaluation embeds the cyclic quotient in the original quotient. -/
 def evaluation (S : A) (I : Ideal A) (r : ℕ) :
-    (Polynomial R ⧸ cyclicLevel S I r) →ₗ[R] (A ⧸ level I r) :=
-  (cyclicLevel S I r).mapQ (level I r) (Polynomial.aeval S).toLinearMap le_rfl
+    (Polynomial R ⧸ cyclicLevel (R := R) S I r) →ₗ[R]
+      (A ⧸ level (R := R) I r) :=
+  (cyclicLevel (R := R) S I r).mapQ (level (R := R) I r)
+    (Polynomial.aeval (R := R) S).toLinearMap le_rfl
 
 @[simp] theorem evaluation_mk (S : A) (I : Ideal A) (r : ℕ) (p : Polynomial R) :
-    evaluation S I r ((cyclicLevel S I r).mkQ p) =
-      (level I r).mkQ (Polynomial.aeval S p) := rfl
+    evaluation (R := R) S I r ((cyclicLevel (R := R) S I r).mkQ p) =
+      (level (R := R) I r).mkQ (Polynomial.aeval (R := R) S p) := rfl
 
 theorem evaluation_injective (S : A) (I : Ideal A) (r : ℕ) :
     Function.Injective (evaluation (R := R) S I r) := by
   intro x y hxy
-  obtain ⟨p, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel S I r) x
-  obtain ⟨q, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel S I r) y
-  apply (Submodule.Quotient.eq (cyclicLevel S I r)).mpr
-  change Polynomial.aeval S (p - q) ∈ I ^ r
-  change (level I r).mkQ (Polynomial.aeval S p) =
-    (level I r).mkQ (Polynomial.aeval S q) at hxy
+  obtain ⟨p, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel (R := R) S I r) x
+  obtain ⟨q, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel (R := R) S I r) y
+  apply (Submodule.Quotient.eq (cyclicLevel (R := R) S I r)).mpr
+  change Polynomial.aeval (R := R) S (p - q) ∈ I ^ r
+  change (level (R := R) I r).mkQ (Polynomial.aeval (R := R) S p) =
+    (level (R := R) I r).mkQ (Polynomial.aeval (R := R) S q) at hxy
   have hm := (Submodule.Quotient.eq (level (R := R) I r)).mp hxy
   simpa only [map_sub] using hm
 
@@ -136,29 +138,30 @@ theorem polynomial_chain_rule (D : Derivation R A A) (S : A)
 /-- Formal differentiation on the exact cyclic relation tower. -/
 def cyclicDerivative (D : Derivation R A A) (S : A) (hS : D S = 1)
     (I : Ideal A) (r : ℕ) :
-    (Polynomial R ⧸ cyclicLevel S I (r + 1)) →ₗ[R] (Polynomial R ⧸ cyclicLevel S I r) :=
-  SplitZero.RelationLayer.derivative (cyclicLevel S I (r + 1))
-    (cyclicLevel S I r) Polynomial.derivative (by
+    (Polynomial R ⧸ cyclicLevel (R := R) S I (r + 1)) →ₗ[R]
+      (Polynomial R ⧸ cyclicLevel (R := R) S I r) :=
+  SplitZero.RelationLayer.derivative (cyclicLevel (R := R) S I (r + 1))
+    (cyclicLevel (R := R) S I r) Polynomial.derivative (by
       intro p hp
-      change Polynomial.aeval S (Polynomial.derivative p) ∈ I ^ r
+      change Polynomial.aeval (R := R) S (Polynomial.derivative p) ∈ I ^ r
       rw [← polynomial_chain_rule D S hS]
       exact deriv_mem_pow D I r hp)
 
 @[simp] theorem cyclicDerivative_mk (D : Derivation R A A) (S : A)
     (hS : D S = 1) (I : Ideal A) (r : ℕ) (p : Polynomial R) :
-    cyclicDerivative D S hS I r ((cyclicLevel S I (r + 1)).mkQ p) =
-      (cyclicLevel S I r).mkQ (Polynomial.derivative p) := rfl
+    cyclicDerivative D S hS I r ((cyclicLevel (R := R) S I (r + 1)).mkQ p) =
+      (cyclicLevel (R := R) S I r).mkQ (Polynomial.derivative p) := rfl
 
 /-- The sum-generated derivative is the restriction of the original derivative. -/
 theorem cyclic_square (D : Derivation R A A) (S : A) (hS : D S = 1)
     (I : Ideal A) (r : ℕ) :
-    (descended D I r).comp (evaluation S I (r + 1)) =
-      (evaluation S I r).comp (cyclicDerivative D S hS I r) := by
+    (descended D I r).comp (evaluation (R := R) S I (r + 1)) =
+      (evaluation (R := R) S I r).comp (cyclicDerivative D S hS I r) := by
   apply LinearMap.ext
   intro x
-  obtain ⟨p, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel S I (r + 1)) x
-  change (level I r).mkQ (D (Polynomial.aeval S p)) =
-    (level I r).mkQ (Polynomial.aeval S (Polynomial.derivative p))
+  obtain ⟨p, rfl⟩ := Submodule.Quotient.mk_surjective (cyclicLevel (R := R) S I (r + 1)) x
+  change (level (R := R) I r).mkQ (D (Polynomial.aeval (R := R) S p)) =
+    (level (R := R) I r).mkQ (Polynomial.aeval (R := R) S (Polynomial.derivative p))
   rw [polynomial_chain_rule D S hS]
 
 /-- The extra unit-derivative term is retained before the arithmetic quotient. -/

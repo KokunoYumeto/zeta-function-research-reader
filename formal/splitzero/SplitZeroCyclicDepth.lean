@@ -105,8 +105,8 @@ theorem attained_maximum (m : ι → ℕ) (r : ℕ) (j : ι)
 omit [DecidableEq ι] in
 theorem floor_attained_maximum (m : ι → ℕ) (r : ℕ) (j : ι)
     (hm : ∀ i, 0 < m i) (hr : 0 < r) (hmax : ∀ i, m i ≤ m j) :
-    (∀ a, (∑ i, a i / m i) < r → (∑ i, a i) ≤ ceiling m r (m j)) ∧
-      ∃ a, (∑ i, a i / m i) < r ∧ (∑ i, a i) = ceiling m r (m j) := by
+    (∀ a : ι → ℕ, (∑ i, a i / m i) < r → (∑ i, a i) ≤ ceiling m r (m j)) ∧
+      ∃ a : ι → ℕ, (∑ i, a i / m i) < r ∧ (∑ i, a i) = ceiling m r (m j) := by
   classical
   obtain ⟨hb, a, ha, hd⟩ := attained_maximum m r j hm hr hmax
   exact ⟨fun a ha => hb a (admissible_of_floor_sum m a r hm ha),

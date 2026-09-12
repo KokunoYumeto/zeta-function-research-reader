@@ -84,7 +84,8 @@ theorem control_boundary (x y : E) :
       S.representative y⟫)
   rw [inner_sub_right, inner_sub_left]
   unfold control
-  linear_combination -(S.green (S.representative x) (S.representative y))
+  rw [← S.green (S.representative x) (S.representative y)]
+  ring
 
 theorem control_cross (x y : E) :
     S.control x y =

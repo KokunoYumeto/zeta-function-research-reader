@@ -1,0 +1,91 @@
+name: SplitZero conormal cyclic tower
+on:
+  push:
+    branches: [astra/conormal-cyclic-integration-20260912]
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroConormalTower.lean'
+      - 'formal/splitzero/SplitZeroCyclicDepth.lean'
+      - 'formal/splitzero/CONORMAL_CYCLIC_TARGETS.json'
+      - 'formal/splitzero/check_conormal_cyclic.py'
+      - '.github/workflows/splitzero-conormal-cyclic.yml'
+permissions:
+  contents: read
+jobs:
+  conormal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Manifests and inherited checking-harness tests
+        run: |
+          set -euo pipefail
+          python3 check_tau_recovery.py --prepare
+          python3 check_boundary.py
+          python3 check_boundary_integration.py --prepare
+          python3 check_frontier.py
+          python3 check_conormal_cyclic.py
+          python3 -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+          python3 -O -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+      - name: Install unchanged pinned environment
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lean --version
+          lake update >ConormalSetup.log 2>&1 || { tail -80 ConormalSetup.log; exit 1; }
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get >>ConormalSetup.log 2>&1 || { tail -80 ConormalSetup.log; exit 1; }
+      - name: Rebuild merged Codex and frontier modules
+        run: |
+          set -euo pipefail
+          lake -KmaxJobs=2 build >ConormalPrior.log 2>&1 || { cat ConormalPrior.log; exit 1; }
+          tail -25 ConormalPrior.log
+          for list in TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt BOUNDARY_INTEGRATION_MODULES.txt FRONTIER_MODULES.txt; do
+            while IFS= read -r name; do
+              test -n "$name" || continue
+              echo "=== inherited $name ==="
+              lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
+            done < "$list"
+          done
+      - name: Check new sources
+        run: |
+          set -uo pipefail
+          status=0
+          while IFS= read -r name; do
+            test -n "$name" || continue
+            echo "=== $name ==="
+            if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
+          done < CONORMAL_CYCLIC_MODULES.txt
+          exit "$status"
+      - name: Joint import and exact transitive reports
+        run: |
+          set -euo pipefail
+          cat TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt BOUNDARY_INTEGRATION_MODULES.txt FRONTIER_MODULES.txt CONORMAL_CYCLIC_MODULES.txt | awk 'NF && !seen[$0]++ {print "import " $0}' > JointConormalCyclic.lean
+          lake env lean --trust=0 -DwarningAsError=true JointConormalCyclic.lean
+          lake env lean --trust=0 -DwarningAsError=true AuditConormalCyclic.lean | tee AuditConormalCyclic.log
+          python3 check_conormal_cyclic.py AuditConormalCyclic.log
+          lake env lean --trust=0 -DwarningAsError=true AuditFrontier.lean >AuditFrontier.log
+          python3 check_frontier.py AuditFrontier.log
+          lake env lean --trust=0 -DwarningAsError=true AuditBoundaryIntegration.lean >AuditBoundaryIntegration.log
+          python3 check_boundary_integration.py AuditBoundaryIntegration.log
+          lake env lean --trust=0 -DwarningAsError=true AuditBoundary.lean >AuditBoundary.log
+          python3 check_boundary.py AuditBoundary.log
+          lake env lean --trust=0 -DwarningAsError=true AuditTauRecovery.lean >AuditTauRecovery.log
+          python3 check_tau_recovery.py AuditTauRecovery.log
+          python3 check_derived.py --prepare
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean >AuditDerived.log
+          python3 check_derived.py AuditDerived.log
+          lake env lean --trust=0 -DwarningAsError=true Audit.lean >Audit.log
+          python3 check_axioms.py Audit.log

@@ -6,10 +6,12 @@ import SplitZeroGramTrace
 No eigenvectors of the arithmetic action are chosen. Cayley--Hamilton is
 proved directly for the 2 by 2 compressed matrix. Its trace and determinant
 produce the control polynomial and its rank-one spectral projectors.
+The zero-allowance case and the original Gram are included separately.
 -/
 noncomputable section
 namespace SplitZero.TraceCertificate
 open Matrix
+open scoped ComplexOrder
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 theorem two_cayley (C : Matrix (Fin 2) (Fin 2) ℂ) :
@@ -17,7 +19,7 @@ theorem two_cayley (C : Matrix (Fin 2) (Fin 2) ℂ) :
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.trace_fin_two,
-      Matrix.det_fin_two, Matrix.one_apply] <;> ring
+      Matrix.det_fin_two] <;> ring
 
 theorem two_square (C : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ)
     (ht : Matrix.trace C = 0) (hd : C.det = -(z ^ 2)) :
@@ -26,20 +28,25 @@ theorem two_square (C : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ)
   rw [ht, hd, zero_smul, sub_zero, neg_smul] at h
   exact sub_eq_zero.mp (by simpa only [sub_eq_add_neg] using h)
 
-/-- A cubic annihilator for the ambient operator, derived from its factorization. -/
+omit [DecidableEq n] in
+/-- A cubic annihilator derived from the literal rectangular factorization. -/
 theorem factor_cubic (U : Matrix n (Fin 2) ℂ) (V : Matrix (Fin 2) n ℂ)
     (z : ℂ) (ht : Matrix.trace (V * U) = 0)
     (hd : (V * U).det = -(z ^ 2)) :
     (U * V) * (U * V) * (U * V) = z ^ 2 • (U * V) := by
   calc
     _ = U * ((V * U) * (V * U)) * V := by simp only [Matrix.mul_assoc]
-    _ = U * (z ^ 2 • 1) * V := by rw [two_square (V * U) z ht hd]
-    _ = z ^ 2 • (U * V) := by simp only [Matrix.mul_smul, Matrix.smul_mul, mul_one]
+    _ = U * (z ^ 2 • (1 : Matrix (Fin 2) (Fin 2) ℂ)) * V := by
+      rw [two_square (V * U) z ht hd]
+    _ = z ^ 2 • (U * V) := by
+      simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one]
 
+omit [DecidableEq n] in
 theorem factor_trace (U : Matrix n (Fin 2) ℂ) (V : Matrix (Fin 2) n ℂ)
     (ht : Matrix.trace (V * U) = 0) : Matrix.trace (U * V) = 0 := by
   rw [Matrix.trace_mul_comm, ht]
 
+omit [DecidableEq n] in
 theorem factor_square_trace (U : Matrix n (Fin 2) ℂ) (V : Matrix (Fin 2) n ℂ)
     (z : ℂ) (ht : Matrix.trace (V * U) = 0)
     (hd : (V * U).det = -(z ^ 2)) :
@@ -87,12 +94,14 @@ theorem spectralProjection_idempotent (H : Matrix n n ℂ) (z : ℂ) (hz : z ≠
     field_simp
   rw [hs]
 
+omit [DecidableEq n] in
 theorem spectralProjection_selfadjoint (H : Matrix n n ℂ) (e : ℝ)
     (hH : H.conjTranspose = H) :
     (spectralProjection H (e : ℂ)).conjTranspose = spectralProjection H (e : ℂ) := by
   simp [spectralProjection, numerator, Matrix.conjTranspose_smul,
-    Matrix.conjTranspose_mul, hH, Complex.star_def]
+    Matrix.conjTranspose_mul, hH]
 
+omit [DecidableEq n] in
 theorem spectralProjection_trace (H : Matrix n n ℂ) (z : ℂ) (hz : z ≠ 0)
     (ht : Matrix.trace H = 0) (ht2 : Matrix.trace (H * H) = 2 * z ^ 2) :
     Matrix.trace (spectralProjection H z) = 1 := by
@@ -101,6 +110,7 @@ theorem spectralProjection_trace (H : Matrix n n ℂ) (z : ℂ) (hz : z ≠ 0)
     ht, ht2, smul_eq_mul, mul_zero, add_zero]
   exact inv_mul_cancel₀ hd
 
+omit [DecidableEq n] in
 theorem spectralProjection_difference (H : Matrix n n ℂ) (z : ℂ) (hz : z ≠ 0) :
     z • (spectralProjection H z - spectralProjection H (-z)) = H := by
   ext i j
@@ -109,7 +119,26 @@ theorem spectralProjection_difference (H : Matrix n n ℂ) (z : ℂ) (hz : z ≠
   field_simp
   ring
 
-/-- The aggregate trace estimate with the control projections constructed, not assumed. -/
+/-- Hermitian control, derived from the original weighted defect equation. -/
+theorem control_selfadjoint (A H : Matrix n n ℂ) (w : ℝ)
+    (hH : A.conjTranspose + A - (w : ℂ) • 1 = H) : H.conjTranspose = H := by
+  rw [← hH]
+  simp only [Matrix.conjTranspose_sub, Matrix.conjTranspose_add,
+    Matrix.conjTranspose_conjTranspose, Matrix.conjTranspose_smul,
+    Matrix.conjTranspose_one, Complex.star_def, Complex.conj_ofReal]
+  abel
+
+omit [DecidableEq n] in
+/-- The zero certificate uses Hermitian positivity, not an invalid nilpotent inference. -/
+theorem zero_certificate (U : Matrix n (Fin 2) ℂ) (V : Matrix (Fin 2) n ℂ)
+    (hH : (U * V).conjTranspose = U * V)
+    (ht : Matrix.trace (V * U) = 0) (hd : (V * U).det = 0) : U * V = 0 := by
+  apply Matrix.trace_conjTranspose_mul_self_eq_zero_iff.mp
+  rw [hH]
+  have h := factor_square_trace U V 0 ht (by simpa using hd)
+  simpa using h
+
+/-- The positive certificate constructs control projections rather than assuming them. -/
 theorem positive_certificate_bound {d : Type*} [Fintype d] [DecidableEq d]
     (A : Matrix n n ℂ) (B : Matrix n d ℂ) (L : Matrix d n ℂ)
     (a : Matrix d d ℂ) (w e : ℝ)
@@ -125,13 +154,7 @@ theorem positive_certificate_bound {d : Type*} [Fintype d] [DecidableEq d]
   have htH2 : Matrix.trace (H * H) = 2 * (e : ℂ) ^ 2 := factor_square_trace U V _ ht hd
   have heC : (e : ℂ) ≠ 0 := by exact_mod_cast (ne_of_gt he)
   have hnC : -(e : ℂ) ≠ 0 := neg_ne_zero.mpr heC
-  have hHs : H.conjTranspose = H := by
-    change (U * V).conjTranspose = U * V
-    rw [← hH]
-    simp only [Matrix.conjTranspose_sub, Matrix.conjTranspose_add,
-      Matrix.conjTranspose_conjTranspose, Matrix.conjTranspose_smul,
-      Matrix.conjTranspose_one, Complex.star_def, Complex.conj_ofReal]
-    abel
+  have hHs : H.conjTranspose = H := control_selfadjoint A H w hH
   have h3n : H * H * H = (-(e : ℂ)) ^ 2 • H := by simpa only [neg_sq] using h3
   have htH2n : Matrix.trace (H * H) = 2 * (-(e : ℂ)) ^ 2 := by
     simpa only [neg_sq] using htH2
@@ -148,5 +171,66 @@ theorem positive_certificate_bound {d : Type*} [Fintype d] [DecidableEq d]
   · rw [spectralProjection_trace H _ hnC htH htH2n]; rfl
   · rw [hH]
     exact (spectralProjection_difference H _ heC).symm
+
+/-- The complete nonnegative certificate includes the zero-allowance case. -/
+theorem certificate_bound {d : Type*} [Fintype d] [DecidableEq d]
+    (A : Matrix n n ℂ) (B : Matrix n d ℂ) (L : Matrix d n ℂ)
+    (a : Matrix d d ℂ) (w e : ℝ)
+    (U : Matrix n (Fin 2) ℂ) (V : Matrix (Fin 2) n ℂ)
+    (he : 0 ≤ e) (hLB : L * B = 1) (hAB : A * B = B * a)
+    (hP : (B * L).conjTranspose = B * L)
+    (hH : A.conjTranspose + A - (w : ℂ) • 1 = U * V)
+    (ht : Matrix.trace (V * U) = 0) (hd : (V * U).det = -((e : ℂ) ^ 2)) :
+    |2 * (Matrix.trace a).re - w * (Fintype.card d : ℝ)| ≤ e := by
+  by_cases he0 : e = 0
+  · subst e
+    have hz : U * V = 0 := zero_certificate U V
+      (control_selfadjoint A (U * V) w hH) ht (by simpa using hd)
+    have htP : (Matrix.trace (B * L)).re = (Fintype.card d : ℝ) := by
+      rw [Matrix.trace_mul_comm, hLB, Matrix.trace_one]
+      simp
+    have hi := SplitZero.TraceProjection.defect_trace (B * L) A w hP
+    rw [SplitZero.TraceProjection.invariant_trace A B L a hLB hAB, htP,
+      hH, hz, Matrix.mul_zero, Matrix.trace_zero, Complex.zero_re] at hi
+    rw [← hi, abs_zero]
+  · exact positive_certificate_bound A B L a w e U V
+      (lt_of_le_of_ne he (Ne.symm he0)) hLB hAB hP hH ht hd
+
+/-- Final finite trace theorem on the original Gram with the actual two-row certificate. -/
+theorem original_gram_bound {d : Type*} [Fintype d] [DecidableEq d]
+    (G : Matrix n n ℂ) (c : SplitZero.GramTrace.Coordinates G)
+    (A : Matrix n n ℂ) (B : Matrix n d ℂ) (L : Matrix d n ℂ)
+    (a : Matrix d d ℂ) (w e : ℝ)
+    (U : Matrix n (Fin 2) ℂ) (V : Matrix (Fin 2) n ℂ)
+    (he : 0 ≤ e) (hLB : L * B = 1) (hAB : A * B = B * a)
+    (hP : (B * L).conjTranspose * G = G * (B * L))
+    (hH : G * (U * V) = SplitZero.MetricRestriction.primal A G w)
+    (ht : Matrix.trace (V * U) = 0) (hd : (V * U).det = -((e : ℂ) ^ 2)) :
+    |2 * (Matrix.trace a).re - w * (Fintype.card d : ℝ)| ≤ e := by
+  have hLB' : (L * c.inverse) * (c.forward * B) = 1 := by
+    calc
+      _ = L * (c.inverse * c.forward) * B := by simp only [Matrix.mul_assoc]
+      _ = 1 := by rw [c.left_inverse, Matrix.mul_one, hLB]
+  have hAB' : c.transport A * (c.forward * B) = (c.forward * B) * a := by
+    calc
+      _ = c.forward * A * (c.inverse * c.forward) * B := by
+        simp only [SplitZero.GramTrace.Coordinates.transport, Matrix.mul_assoc]
+      _ = c.forward * (A * B) := by rw [c.left_inverse, mul_one, Matrix.mul_assoc]
+      _ = _ := by rw [hAB, Matrix.mul_assoc]
+  have hP' : ((c.forward * B) * (L * c.inverse)).conjTranspose =
+      (c.forward * B) * (L * c.inverse) := by
+    simpa only [SplitZero.GramTrace.Coordinates.transport, Matrix.mul_assoc]
+      using c.transport_selfadjoint (B * L) hP
+  have hVU : (V * c.inverse) * (c.forward * U) = V * U := by
+    calc
+      _ = V * (c.inverse * c.forward) * U := by simp only [Matrix.mul_assoc]
+      _ = V * U := by rw [c.left_inverse, Matrix.mul_one]
+  have hH' : (c.transport A).conjTranspose + c.transport A - (w : ℂ) • 1 =
+      (c.forward * U) * (V * c.inverse) := by
+    rw [← c.control_transfer A (U * V) w hH]
+    simp only [SplitZero.GramTrace.Coordinates.transport, Matrix.mul_assoc]
+  exact certificate_bound (c.transport A) (c.forward * B) (L * c.inverse) a w e
+    (c.forward * U) (V * c.inverse) he hLB' hAB' hP' hH'
+    (by rw [hVU]; exact ht) (by rw [hVU]; exact hd)
 
 end SplitZero.TraceCertificate

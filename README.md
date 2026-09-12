@@ -4,6 +4,8 @@
 
 ## New: SplitZero, theta cohomology and weight control
 
+**Read the new calculation edition:** [separate PDFs and source packages](calculation_edition_20260912/) · [Zenodo DOI](https://zenodo.org/records/22727889). The earlier edition below is preserved.
+
 The September 12 calculations develop support-preserving arithmetic coefficients, the quotient of rapidly decreasing functions by theta-function relations, and finite spectral data attached to zeta's zeros. They calculate explicit comparison maps, homotopies and rank-two matrices in an attempt to obtain the kind of weight control that makes Deligne's Weil II machinery effective. They do not yet establish the needed uniform estimate.
 
 Start with [the research-programme guide](RESEARCH_PROGRAMMES.md): it defines the objects and explains what each attempt was for, what worked and what remains unfinished. Then follow the full proofs and executable checks in each linked workbench. [Machine-readable routes and versions](WORKBENCHES.json) · [September 12 checking and source report](INTEGRATION_REVIEW_20260912.md).

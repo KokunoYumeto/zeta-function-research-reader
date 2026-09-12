@@ -38,6 +38,21 @@ jobs:
           python3 check_exterior_trace.py
           python3 -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
           python3 -O -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+      - name: Exact trace Gram and filtration regressions
+        run: |
+          set -euo pipefail
+          checker=../../workbenches/tau-exterior-trace-formal/check_trace_models.py
+          python3 "$checker" --json TraceModels.normal.json
+          python3 -O "$checker" --json TraceModels.optimized.json
+          cmp TraceModels.normal.json TraceModels.optimized.json
+          if python3 "$checker" --self-test-failure >TraceModels.negative.log 2>&1; then
+            echo 'negative control unexpectedly passed'; exit 1
+          fi
+          if python3 -O "$checker" --self-test-failure >TraceModels.negative.optimized.log 2>&1; then
+            echo 'optimized negative control unexpectedly passed'; exit 1
+          fi
+          grep 'intentional negative control' TraceModels.negative.log
+          grep 'intentional negative control' TraceModels.negative.optimized.log
       - name: Unchanged pinned Lean environment
         run: |
           set -euo pipefail

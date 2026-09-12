@@ -1,12 +1,20 @@
+## Current source continuation: arithmetic Toda and Gamma descent
+
+A zeta packet is a finite collection of selected zeros with all multiplicities retained. This continuation calculates the cost of those spectral configurations in the original theta-function source norm; it does not choose a favorable new metric or assert an off-critical-line zero.
+
+The [482-page main reader](reader.pdf) and [424-page cumulative Toda companion](workbenches/splitzero-tandem/continuations/20260913-toda/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) express the canonical quotient volume as a source determinant divided by an original-relation determinant. Their two Toda flows retain the phase and explicit nonnegative losses. Gamma convolution supplies exact mass-preserving coefficient formulas, and an analytic generating map links them to the same moment input. A separate written endpoint criterion selects an existing canonical degree from four volumes and two norms. See [the research reading guide](edition/toda-gamma/PUBLIC_READING_GUIDE.md), [source and verification routes](edition/toda-gamma/README.md), and [the complete Gamma delivery](workbenches/tau-gamma-convolution-descent/README.md).
+
+The uniform growing-degree estimate on the actual arithmetic determinant ratios remains unresolved. A one-sided bound on individual positive correction factors does not control their consecutive ratios. Finite strict-kernel checks, written Jensen/root assembly, finite regressions and analytic-seed interval enclosures have distinct scopes; no arithmetic asymptotic or Riemann-hypothesis conclusion is asserted. PR23 supplies five finite strict-kernel-checked Toda modules; the Jensen/root endpoint assembly is written, not an additional claimed Lean theorem. The published edition below remains DOI 10.5281/zenodo.22730356 until an actual successor publication receipt is recorded.
+
 # Riemann Zeta Function: Research Reader
 
-## Current calculations: cyclic sums, exterior traces and arithmetic control
+## Previous published edition: cyclic sums, exterior traces and arithmetic control
 
-**Published:** [Zenodo DOI 10.5281/zenodo.22730356](https://doi.org/10.5281/zenodo.22730356) · [454/387-page readers and complete source packages](calculation_edition_20260912d/).
+**Previously published edition:** [Zenodo DOI 10.5281/zenodo.22730356](https://doi.org/10.5281/zenodo.22730356) · [454/387-page readers and complete source packages](calculation_edition_20260912d/).
 
 This edition studies finite packets of zeros of the Riemann zeta function, retaining each zero's full multiplicity and the inner product inherited from the original theta-function source. Its question is concrete: how does real displacement from the critical line appear in sums of zero jets, and what exact arithmetic quantity controls that displacement?
 
-Read the [current research guide](CURRENT_RESEARCH.md) for the objects, motivations, attempts and outcomes. The [387-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-cyclic/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) is the Zenodo preview; the [454-page broader zeta reader](reader.pdf) retains the full literature-based synthesis and new exterior-trace chapter. Formal modules and analytic arguments have their separately stated checking scopes.
+Read the [research guide for that edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/199d2bbfbf551de8272e573a9ce90bd5f1005988/CURRENT_RESEARCH.md) for the objects, motivations, attempts and outcomes. The [387-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-cyclic/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) is that edition's Zenodo preview; the [454-page broader zeta reader](calculation_edition_20260912d/21-main-reader-454p.pdf) retains the full literature-based synthesis and new exterior-trace chapter. Formal modules and analytic arguments have their separately stated checking scopes.
 
 This GitHub edition adds **four reader/source files**. The [twenty-four-file Zenodo record](https://zenodo.org/records/22730356#files) retains all twenty previous downloads; the [preceding 433/292-page edition](calculation_edition_20260912c/) and earlier source revisions remain frozen.
 
@@ -49,7 +57,7 @@ Mirroring is not a mathematical audit or an endorsement of an endpoint claim.
 
 | Reader | PDF | Pages in this snapshot |
 |---|---|---:|
-| main | [Read PDF](reader.pdf) | 454 |
+| main | [Read PDF](reader.pdf) | 482 |
 | fluid | [Read PDF](sidebar/fluid/reader.pdf) | 208 |
 | heat | [Read PDF](sidebar/heat/reader.pdf) | 120 |
 | connes | [Read PDF](sidebar/connes/reader.pdf) | 82 |

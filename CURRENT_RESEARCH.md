@@ -1,10 +1,18 @@
-# Zeta, theta cohomology and arithmetic weight control
+## Current source continuation: arithmetic Toda and Gamma descent
 
-[Read the published edition](https://doi.org/10.5281/zenodo.22730356) · [Separate PDFs and matching sources](calculation_edition_20260912d/)
+A zeta packet is a finite collection of selected zeros with all multiplicities retained. This continuation calculates the cost of those spectral configurations in the original theta-function source norm; it does not choose a favorable new metric or assert an off-critical-line zero.
+
+The [482-page main reader](reader.pdf) and [424-page cumulative Toda companion](workbenches/splitzero-tandem/continuations/20260913-toda/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) express the canonical quotient volume as a source determinant divided by an original-relation determinant. Their two Toda flows retain the phase and explicit nonnegative losses. Gamma convolution supplies exact mass-preserving coefficient formulas, and an analytic generating map links them to the same moment input. A separate written endpoint criterion selects an existing canonical degree from four volumes and two norms. See [the research reading guide](edition/toda-gamma/PUBLIC_READING_GUIDE.md), [source and verification routes](edition/toda-gamma/README.md), and [the complete Gamma delivery](workbenches/tau-gamma-convolution-descent/README.md).
+
+The uniform growing-degree estimate on the actual arithmetic determinant ratios remains unresolved. A one-sided bound on individual positive correction factors does not control their consecutive ratios. Finite strict-kernel checks, written Jensen/root assembly, finite regressions and analytic-seed interval enclosures have distinct scopes; no arithmetic asymptotic or Riemann-hypothesis conclusion is asserted. PR23 supplies five finite strict-kernel-checked Toda modules; the Jensen/root endpoint assembly is written, not an additional claimed Lean theorem. The published edition below remains DOI 10.5281/zenodo.22730356 until an actual successor publication receipt is recorded.
+
+# Previous published edition: zeta, theta cohomology and arithmetic weight control
+
+[Read the previous published edition](https://doi.org/10.5281/zenodo.22730356) · [Separate PDFs and matching sources](calculation_edition_20260912d/)
 
 This edition studies finite packets of zeros of the Riemann zeta function, retaining each zero's full multiplicity and the inner product inherited from the original theta-function source. Its question is concrete: how does real displacement from the critical line appear in sums of zero jets, and what exact arithmetic quantity controls that displacement?
 
-Start with the [387-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-cyclic/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf), with its [complete sources and checks](workbenches/splitzero-tandem/continuations/20260912-cyclic/). The [454-page broader zeta reader](reader.pdf) adds the complete diagonal/exterior and exterior-trace arguments to the literature, CUE, arithmetic and source-directed fluid calculations.
+Start with the [387-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-cyclic/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf), with its [complete sources and checks](workbenches/splitzero-tandem/continuations/20260912-cyclic/). The [454-page broader zeta reader](calculation_edition_20260912d/21-main-reader-454p.pdf) adds the complete diagonal/exterior and exterior-trace arguments to the literature, CUE, arithmetic and source-directed fluid calculations.
 
 The finite spectral packet records every retained zero jet, including repeated-root directions. Its arithmetic Gram matrix comes from the original theta-derived representatives. The new exterior calculation bounds the sum of positive spectral defects using the same rank-two allowance as a single vector. The required asymptotic upper estimate remains unfinished; the collection records the exact maps and calculations, not an RH proof.
 
@@ -66,4 +74,4 @@ PDFs are separate readable files, with paired source packages and publication
 identities. Raw conversation transcripts and local literature archives are
 research references, not public payload.
 
-The [current twenty-four-file Zenodo record](https://zenodo.org/records/22730356#files) preserves all twenty earlier downloads. The [four new readers/source packages and prior-download links](calculation_edition_20260912d/README.md) identify the 454/387-page edition separately from its frozen predecessors.
+The [previously published twenty-four-file Zenodo record](https://zenodo.org/records/22730356#files) preserves all twenty earlier downloads. The [four new readers/source packages and prior-download links](calculation_edition_20260912d/README.md) identify the 454/387-page edition separately from its frozen predecessors.

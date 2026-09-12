@@ -204,7 +204,9 @@ theorem changed_equivariant_iff (b : S.Q →ₗ[R] V) :
     have hu := LinearMap.congr_fun h u
     change A.onB (S.changeSection b u) = S.changeSection b (A.onQuotient u) at hu
     rw [A.changed_block b u] at hu
-    have hz : S.theta (A.changeDefect b u) = 0 := add_left_eq_self.mp hu
+    have hz : S.theta (A.changeDefect b u) = 0 := by
+      have hh := congrArg (fun z : B => z - S.changeSection b (A.onQuotient u)) hu
+      simpa only [add_sub_cancel_right, sub_self] using hh
     exact S.theta_injective (hz.trans S.theta.map_zero.symm)
   · intro h
     apply LinearMap.ext
@@ -214,13 +216,14 @@ theorem changed_equivariant_iff (b : S.Q →ₗ[R] V) :
 end Operator
 
 section Topology
-variable [TopologicalSpace V] [TopologicalSpace B] [ContinuousSub B] [T2Space B]
+variable [TopologicalSpace V] [TopologicalSpace B] [ContinuousSub B]
 
 theorem projection_continuous (hTheta : Continuous S.theta) (hLambda : Continuous S.lambda) :
     Continuous S.projection := continuous_id.sub (hTheta.comp hLambda)
 
 /-- Valid for the actual locally convex topologies; no Banach norm is assumed. -/
-theorem closed_range (hTheta : Continuous S.theta) (hLambda : Continuous S.lambda) :
+theorem closed_range [T2Space B]
+    (hTheta : Continuous S.theta) (hLambda : Continuous S.lambda) :
     IsClosed (Set.range S.theta) := by
   have h : Set.range S.theta = S.projection ⁻¹' ({0} : Set B) := by
     ext b

@@ -1,0 +1,651 @@
+\section{The actual kernel layer, its derivative image, and its quotient}
+\label{sec:kernel-layer-continuation}
+
+This section integrates the complete kernel-layer delivery of
+12 September 2026.  Its archive hash and member hashes are recorded in
+\path{sources/web_kernel_layer_delivery/LOCAL_STAGING_PROVENANCE.json}.
+The source note's formulas (9)--(28) identify the interpolation kernel
+with an explicit basis of the next original theta relation layer.
+We first prove those maps in the retained coordinates and then calculate
+the exact derivative image and the entire quotient of that layer.
+The new quotient calculation retains the part of the layer not reached
+by the summed Euler derivative.
+
+\subsection{The original arithmetic source and its constrained minimum}
+
+Keep \(g=2\xi\), a nonempty full packet
+\(h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho}\), and
+\(d=\deg h\).  Fix \(k\geq1\), and set
+\[
+ E=E_h^{\otimes k},\quad E_h=\mathbb C[s]/(h),\quad
+ A=\sum_{j=1}^k A_{h,j},\quad
+ v_h=g/h,\quad \upsilon_h=j_hv_h\in E_h^\times.
+                                                               \tag{KL.1}
+\]
+All tensor coordinates use the original monomial remainders.  The
+function \(F_h\), with Mellin transform \(g/h\), is the original
+test function satisfying \(h(D)F_h=f_0\).  The exact source map is
+\[
+ \mathcal T(P)=P(D_1,\ldots,D_k)F_h^{\otimes k},\quad
+ \mathcal M_k\mathcal T(P)
+       =P(s_1,\ldots,s_k)\prod_{j=1}^k v_h(s_j),
+ \qquad s_j=\tfrac12+it_j.                                \tag{KL.2}
+\]
+The Mellin multiplier proves injectivity on polynomials.  Its Hilbert
+norm is the polynomial norm for the unchanged product measure
+\[
+ d\nu_h(t)=|v_h(\tfrac12+it)|^2\frac{dt}{2\pi},\qquad
+ \nu_h^{\otimes k}.                                      \tag{KL.3}
+\]
+Let \(\mathcal P_N\) be the polynomials of total degree at most
+\(N\), and let \(\mathcal J_N:\mathcal P_N\to E\) be full
+reduction by \(h(s_1),\ldots,h(s_k)\), followed by multiplication
+by the original unit \(\upsilon_h^{\otimes k}\).
+For \(N\geq k(d-1)\) this is onto, since the monomial remainder
+basis has at most that total degree.  Fix an integer
+\(N\geq k(d-1)\) for the remainder of this section; all subsequent
+levels \(N+1,N+2\) satisfy the same threshold.
+Its kernel and its original
+theta image are
+\[
+ \mathcal I_N=\mathcal P_N\cap(h(s_1),\ldots,h(s_k)),
+ \qquad \mathcal L_N=\mathcal T\mathcal I_N.              \tag{KL.4}
+\]
+
+Let \(p_j(s)\) be the actual monic orthogonal polynomial of
+\(\nu_h\), and retain \(\kappa_j=\|p_j\|_{\nu_h}^2>0\).
+All moments exist by the proved arithmetic decay.  The Gram is
+strictly positive because the density is positive except at a
+discrete set; this proves existence and uniqueness by finite
+orthogonal projection.  For multi-indices set
+\[
+ p_\alpha=\prod_jp_{\alpha_j},\quad
+ \kappa_\alpha=\prod_j\kappa_{\alpha_j},\quad
+ a_\alpha=\bigotimes_j\bigl(\upsilon_h[p_{\alpha_j}]_h\bigr).
+                                                               \tag{KL.5}
+\]
+The monic triangular change preserves the full space of degree at
+most \(N\), and product integration makes its Gram diagonal.
+It follows, by direct constrained minimization, that the original
+canonical representative and its metric are
+\[
+ \mathcal K_N=\sum_{|\alpha|\leq N}
+                 \frac{a_\alpha a_\alpha^*}{\kappa_\alpha}>0,
+ \qquad G_N=\mathcal K_N^{-1},
+ \qquad
+ R_Nu=\sum_{|\alpha|\leq N}\mathcal T(p_\alpha)
+                 \frac{a_\alpha^*G_Nu}{\kappa_\alpha}.
+                                                               \tag{KL.6}
+\]
+Indeed the full jet of this vector is \(\mathcal K_NG_Nu=u\).
+If a coefficient vector has zero full jet, its inner product with
+the displayed coefficient vector is zero.  Every other representative
+of that same jet is its sum with such a vector; its squared norm is
+therefore \(u^*G_Nu\) plus the squared norm of the added relation.
+This proves the unique minimum, its metric, and
+\(R_N\perp\mathcal L_N\).  These are the original maps
+\(J^{(k)}R_N=I\) and \(q^{(k)}R_N=\sigma\).
+The notation \(\mathcal K_N\) here includes the local unit.
+To specify the comparison in the full tensor dimension, put
+\[
+ r_\alpha=\bigotimes_j[p_{\alpha_j}]_h,\qquad
+ K_N^{\rm rem}=\sum_{|\alpha|\leq N}
+             \frac{r_\alpha r_\alpha^*}{\kappa_\alpha}.
+\]
+Then \(\mathcal K_N=U_{\upsilon_h^{\otimes k}}K_N^{\rm rem}
+U_{\upsilon_h^{\otimes k}}^*\), as an equality of operators on
+\(E_h^{\otimes k}\).  When \(k=1\), \(K_N^{\rm rem}\) is
+exactly the earlier remainder-only kernel \(K_N\).
+
+\subsection{The complete next-layer frame and its theta primitives}
+
+Write \(\Sigma_n=\{\alpha\in\mathbb N^k:|\alpha|=n\}\)
+and \(\mathsf H_n=\mathbb C^{\Sigma_n}\).  The coordinate
+identification sends \(x\in\mathsf H_n\) to the homogeneous
+polynomial \(\sum_\alpha x_\alpha z^\alpha\); these \(z_j\)
+are coefficient variables and are not substituted for the original
+Mellin variables \(s_j\).
+For \(\beta\in\Sigma_{N+1}\), define the actual functions
+\[
+ e_\beta=\mathcal T(p_\beta)-R_Na_\beta,
+ \qquad \mathscr E_N x=\sum_\beta x_\beta e_\beta,
+ \qquad
+ \mathcal E_N=\mathcal L_{N+1}\cap\mathcal L_N^\perp.
+                                                               \tag{KL.7}
+\]
+The full jet of \(e_\beta\) is zero, hence it is in
+\(\mathcal L_{N+1}\).  The new-degree polynomial is orthogonal
+to all old polynomials and \(R_Na_\beta\perp\mathcal L_N\),
+so \(e_\beta\in\mathcal E_N\).
+The leading total-degree terms of the \(e_\beta\) are the distinct
+monomials \(s^\beta\), proving independence by the injectivity of
+\(\mathcal T\).  For any element of \(\mathcal E_N\), subtract
+its full degree-\(N+1\) combination of the \(e_\beta\).  The
+remainder has zero jet and degree at most \(N\), hence is in
+\(\mathcal L_N\).  It is also orthogonal to that space, so it is
+zero.  This proves the exact isomorphism
+\[
+ \mathscr E_N:\mathsf H_{N+1}\xrightarrow{\sim}\mathcal E_N
+       \xrightarrow{\ e\mapsto[e]\ }
+                            \mathcal L_{N+1}/\mathcal L_N.
+                                                               \tag{KL.8}
+\]
+The inverse of the second arrow is \([f]\mapsto(I-P_{\mathcal L_N})f\).
+
+Every vector in (KL.7) has a primitive in the original tensor complex.
+Its numerator polynomial is
+\[
+ p_\beta-\sum_{|\alpha|\leq N}
+           p_\alpha\frac{a_\alpha^*G_Na_\beta}{\kappa_\alpha}.
+                                                               \tag{KL.9}
+\]
+Successive monic division in the ordered variables
+\(s_1,\ldots,s_k\) expresses this zero-jet polynomial as
+\(\sum_i h(s_i)Q_{i,\beta}\), where
+\(\deg Q_{i,\beta}\leq N+1-d\).  At each replacement the
+leading power of the divided variable decreases and total degree
+does not increase, proving the bound.  After the last division,
+the remainder has degree below \(d\) in every variable; its full
+jet is zero, so uniqueness of the complete remainder forces it to
+vanish.  In the \(i\)-th tensor factor replace \(F_h\) by
+\((-1)^{i-1}\phi_*\), and apply \(Q_{i,\beta}(D_1,\ldots,D_k)\)
+to the whole tensor.  The preceding \(i-1\) degree-one factors
+give the differential sign \((-1)^{i-1}\).  Together with
+\(h(D)F_h=\Theta\phi_*\), the boundary of this primitive is
+exactly \(+\mathcal T(h(s_i)Q_{i,\beta})\).  Summing proves
+the asserted primitive with all ordered signs retained.
+
+Put
+\[
+ \mathsf U_N=(a_\beta)_{\beta\in\Sigma_{N+1}},\qquad
+ \mathsf D_{N+1}=\operatorname{diag}(\kappa_\beta),\qquad
+ \mathsf H_N^{\rm lay}=\mathscr E_N^*\mathscr E_N.
+\]
+Expanding (KL.7) and using old/new polynomial orthogonality proves
+\[
+ \mathsf H_N^{\rm lay}
+      =\mathsf D_{N+1}+\mathsf U_N^*G_N\mathsf U_N>0,
+ \qquad \mathscr E_N^*R_N=-\mathsf U_N^*G_N.              \tag{KL.10}
+\]
+Define the projection loss \(Y_N=P_{\mathcal E_N}R_N\).
+In particular its exact formula is
+\(Y_N=-\mathscr E_N(\mathsf H_N^{\rm lay})^{-1}\mathsf U_N^*G_N\).
+Its rank is exactly \(\operatorname{rank}\mathsf U_N\), because
+every other displayed factor is injective or invertible on its
+declared space.
+
+\subsection{The exact incidence map and the derivative-image rank}
+
+Define the actual old top-degree columns and their original norms by
+\[
+ \mathsf A_N=(a_\alpha)_{\alpha\in\Sigma_N}:\mathsf H_N\to E,
+ \qquad \mathsf D_N=\operatorname{diag}(\kappa_\alpha)_{\Sigma_N}.
+                                                               \tag{KL.11}
+\]
+Define the coordinate incidence map by
+\[
+ \mathsf T_n:\mathsf H_n\to\mathsf H_{n+1},\qquad
+ (\mathsf T_nx)_\beta=
+             \sum_{i:\beta_i>0}x_{\beta-\mathbf e_i}.
+                                                               \tag{KL.12}
+\]
+On the specified homogeneous coefficient polynomials this is
+multiplication by \(\ell(z)=z_1+\cdots+z_k\).  A product of two
+nonzero polynomials over \(\mathbb C\) is nonzero: choose a
+monomial order compatible with products and multiply the two leading
+terms.  Since \(\ell\ne0\), \(\mathsf T_n\) is injective.
+
+The full unprojected derivative defect and its projected layer map are
+\[
+ B_N=D^{(k)}R_N-R_NA,\qquad
+ C_N=(I-P_{\mathcal L_N})B_N:E\to\mathcal E_N.
+\]
+They have the exact coordinate factorization
+\[
+ \boxed{C_N=\mathscr E_N\mathsf T_N\mathsf D_N^{-1}
+                                  \mathsf A_N^*G_N.}    \tag{KL.13}
+\]
+To prove it, multiply the finite numerator in (KL.6) by
+\(s_1+\cdots+s_k\).  Monicity makes its coefficient at the
+new top polynomial \(p_\beta\) equal to
+\(\sum_{i:\beta_i>0}a_{\beta-\mathbf e_i}^*G_Nu/
+\kappa_{\beta-\mathbf e_i}\), precisely the row on the right
+side of (KL.13).  The numerator of \(R_NAu\) has degree at
+most \(N\).  Subtract the right side of (KL.13) from \(B_Nu\):
+its numerator has degree at most \(N\) and its full jet is zero,
+so it is an original relation in \(\mathcal L_N\).
+Orthogonal projection proves (KL.13), including the original
+quotient statement \([B_Nu]=[C_Nu]\) in
+\(\mathscr B^{(k)}/\mathcal L_N\).
+
+\begin{theorem}[Exact derivative rank and its full kernel]
+With every original jet column retained,
+\[
+ \boxed{\operatorname{rank}C_N=\operatorname{rank}\mathsf A_N,
+ \qquad \ker C_N=\mathcal K_N\ker\mathsf A_N^*.}         \tag{KL.14}
+\]
+Define the original weight form
+\(W_N=A^*G_N+G_NA-kG_N\).  It obeys the refined bound
+\[
+ \operatorname{rank}W_N\leq
+  2\min\{\operatorname{rank}\mathsf A_N,
+                         \operatorname{rank}\mathsf U_N\}.
+                                                               \tag{KL.15}
+\]
+\end{theorem}
+\begin{proof}
+Both \(\mathscr E_N\) and \(\mathsf T_N\) are injective;
+\(\mathsf D_N\) and \(G_N\) are invertible.  Thus (KL.13)
+has rank \(\operatorname{rank}\mathsf A_N^*\), which equals
+the rank of its conjugate transpose.  Its kernel is
+\(G_N^{-1}\ker\mathsf A_N^*=\mathcal K_N\ker\mathsf A_N^*\),
+with the displayed invertible coordinate map retained.  The original
+Green identity and orthogonality give
+\(W_N=-(Y_N^*C_N+C_N^*Y_N)\).  Each summand has rank at most
+the lesser of the two map ranks; the rank of a sum is at most the
+sum of its ranks.  Use (KL.10) and (KL.14) to obtain (KL.15).
+No nonzero homogeneous-leading-term assertion has been substituted
+for an actual column \(a_\alpha\).
+\end{proof}
+
+\subsection{The whole quotient of the next layer by the derivative image}
+
+For \(k\geq2\), let \(\mathsf H_n'\) be the homogeneous
+polynomials of degree \(n\) in \(z_1,\ldots,z_{k-1}\).
+There is a split exact sequence of vector spaces
+\[
+ 0\longrightarrow\mathsf H_n
+  \xrightarrow{\ \mathsf T_n\ }\mathsf H_{n+1}
+  \xrightarrow{\ \rho_n\ }\mathsf H_{n+1}'
+  \longrightarrow0,\qquad
+ \rho_n f=f(z_1,\ldots,z_{k-1},-\!\sum_{i<k}z_i).
+                                                               \tag{KL.16}
+\]
+For a complete proof and inverse, divide \(f\) by the monic
+linear polynomial \(\ell=z_k+\sum_{i<k}z_i\) in the last
+variable.  Every replacement retains total degree, giving uniquely
+\[
+ f=\ell q+\iota r,\qquad q\in\mathsf H_n,
+ \quad r=\rho_nf\in\mathsf H_{n+1}',                    \tag{KL.17}
+\]
+where \(\iota\) includes a polynomial independent of \(z_k\).
+For uniqueness set \(z_k=-\sum_{i<k}z_i\) first to obtain
+\(r=0\), then use injectivity of multiplication by \(\ell\).
+This also proves surjectivity, exactness and the specified section
+\(\iota\).  The ordered last coordinate and the signs in the
+substitution remain part of the map.
+
+\begin{theorem}[Exact unused-layer quotient]
+Set \(Z_N=\operatorname{im}(\mathsf D_N^{-1}\mathsf A_N^*)
+\subseteq\mathsf H_N\).  Then the actual quotient is
+\[
+ \boxed{\mathcal E_N/\operatorname{im}C_N
+   \simeq(\mathsf H_N/Z_N)\oplus\mathsf H_{N+1}'.}        \tag{KL.18}
+\]
+For an original layer representative \(e=\mathscr E_N f\),
+divide \(f=\ell q+\iota r\) by (KL.17); the map sends
+\([e]\) to \(([q],r)\).  Its inverse sends
+\(([q],r)\) to \([\mathscr E_N(\ell q+\iota r)]\).
+\end{theorem}
+\begin{proof}
+The invertibility of \(G_N\) in (KL.13) gives
+\(\operatorname{im}C_N=\mathscr E_N\mathsf T_NZ_N\).
+Changing \(e\) by such an element changes exactly \(q\) by an
+element of \(Z_N\), while leaving \(r\) unchanged.  Thus the
+first map is well-defined.  Changing the representative of \([q]\)
+has the same effect on the inverse, so the inverse is well-defined.
+The unique division (KL.17) proves both inverse identities.
+For \(k=1\), \(\mathsf T_N\) is an isomorphism between the
+one-dimensional shell spaces and the same statement holds with
+\(\mathsf H_{N+1}'=0\).
+\end{proof}
+
+In particular \(\dim\mathsf H_{N+1}'=\binom{N+k-1}{k-2}\)
+for \(k\geq2\), by counting monomials; the first summand has
+dimension \(\binom{N+k-1}{k-1}-\operatorname{rank}\mathsf A_N\).
+Their sum is exactly the original layer dimension minus
+\(\operatorname{rank}C_N\).  The quotient therefore retains both
+the full-jet rank loss and the explicitly complementary relation
+directions.  For every coordinate vector, (KL.9) supplies its original
+theta primitive.  The quotient is of actual test-function relations,
+with those primitives, rather than only a quotient of dimensions.
+
+\subsection{The derivative between consecutive relation quotients}
+
+The original Euler sum has
+\(D^{(k)}\mathcal L_N\subseteq\mathcal L_{N+1}\), because
+it multiplies the numerator polynomial by \(s_1+\cdots+s_k\)
+and preserves the ideal in (KL.4).  Hence it induces the well-typed
+map
+\[
+ \partial_N:\mathcal L_{N+1}/\mathcal L_N
+       \longrightarrow\mathcal L_{N+2}/\mathcal L_{N+1},
+ \qquad [f]\longmapsto[D^{(k)}f].                       \tag{KL.19}
+\]
+Under the exact layer coordinates of (KL.8), its matrix is
+\[
+ \boxed{\partial_N=\mathscr E_{N+1}\mathsf T_{N+1}
+                                           \mathscr E_N^{-1},}
+                                                               \tag{KL.20}
+\]
+where each \(\mathscr E\) is followed or preceded by its quotient
+isomorphism as in (KL.8).  Write \(e_\beta^{(N)}\) for (KL.7)
+at level \(N\), and \(e_{\beta+\mathbf e_i}^{(N+1)}\) for
+the next layer.  The actual recurrence
+\(sp_j=p_{j+1}+b_jp_j-(\kappa_j/\kappa_{j-1})p_{j-1}\)
+gives the complete retained difference
+\[
+\begin{split}
+ D^{(k)}e_\beta^{(N)}-\sum_i e_{\beta+\mathbf e_i}^{(N+1)}
+ ={}&\mathcal T\left[
+       \left(\sum_i b_{\beta_i}\right)p_\beta
+       -\sum_{i:\beta_i>0}
+        \frac{\kappa_{\beta_i}}{\kappa_{\beta_i-1}}
+                       p_{\beta-\mathbf e_i}\right]\\
+    &-D^{(k)}R_Na_\beta
+      +R_{N+1}\sum_i a_{\beta+\mathbf e_i}.
+\end{split}
+\]
+The final term in the one-variable recurrence is omitted at \(j=0\).
+Every term on the right has numerator degree at most \(N+1\).
+Each term on the left has zero full jet, so their difference is in
+\(\mathcal L_{N+1}\).  This proves (KL.20) with all lower
+polynomial coefficients retained.  Applying the explicit ordered
+division in (KL.9) to this displayed numerator supplies its original
+theta primitive.
+
+It follows that \(\partial_N\) is injective and its cokernel is
+exactly \(\mathsf H_{N+2}'\), with maps (KL.16)--(KL.17) at
+index \(N+1\).  Thus the original derivative connects consecutive
+relation quotient types by a proved injection; it has not been made
+an endomorphism of a fixed quotient.  The ordinary relation-admission
+map has the same declared source and target:
+\[
+ \operatorname{adm}_N:\mathcal L_{N+1}/\mathcal L_N
+       \longrightarrow\mathcal L_{N+2}/\mathcal L_{N+1},
+ \qquad [f]\longmapsto[f]=0.
+\]
+Equation (KL.19) instead sends the representative to its next
+derivative class.  These are explicitly different typed maps of the
+same original representative, related by (KL.20) and the inclusion
+of their actual numerator relations.
+
+All maps here have their original supported lifts.  At a fixed
+support label \(\lambda\), a linear map \(T\) acts by
+\((\lambda,x)\mapsto(\lambda,Tx)\).  The relation-admission
+map therefore sends a killed class to the receiving fibre's
+supported zero.  The external zero \(\tau\) remains external
+absence.  Each displayed kernel and quotient records its full
+supported vector space and each derivative retains its consecutive
+source and target; no passage to the Hilbert closure is used.
+
+\subsection{The exact original-theta norm and volume bridge}
+
+Specialize to \(k=1\).  We now distinguish the degree-indexed
+\(G_N\) of (KL.6) from the correction-indexed original metric by
+writing
+\[
+ \mathbf G_m=G_{d+m}\quad(m\geq-1),\qquad
+ \mathbf R_m=R_{d+m},\qquad
+ r_m=\frac{\det\mathbf G_m}{\det\mathbf G_{m-1}}
+       \quad(m\geq0).
+                                                               \tag{KL.21}
+\]
+At \(m=-1\), \(\mathcal P_{d-1}\) contains no nonzero
+multiple of \(h\).  Thus the original representative is exactly
+the fixed section
+\[
+ s_hu=\mathbf R_{-1}u
+   =\mathcal T_h\operatorname{rem}_h(\varepsilon_hu),
+ \qquad \varepsilon_h=\upsilon_h^{-1},
+ \qquad \mathbf G_{-1}=s_h^*s_h.
+\]
+This fixes the initial determinant in (KL.21), without introducing
+a negative-degree theta polynomial.  Put \(L_{-1}=0\) and
+\[
+ f_j=D^jf_0,\qquad L_j=\operatorname{span}(f_0,\ldots,f_j),
+ \qquad u_j=(I-P_{L_{j-1}})f_j,
+ \qquad \mathfrak h_j=\|u_j\|^2>0\quad(j\geq0).
+                                                               \tag{KL.22}
+\]
+These \(u_j=Q_j(D)f_0\) are the monic orthogonal theta
+vectors for the original measure
+\(|g(1/2+it)|^2dt/(2\pi)\).  Their definition does not depend
+on \(h\).  The monic \(p_j\) and their norms \(\kappa_j\)
+continue to use the original packet-dependent measure
+\(|g/h|^2dt/(2\pi)\).  Multiplication by the unchanged monic
+polynomial \(h\) is the exact isometry connecting their source
+polynomial spaces:
+\[
+ P\longmapsto hP,\qquad
+ \|hP\|_{\nu_h}^2=\|P\|_{|g|^2dt/(2\pi)}^2,
+ \qquad \mathcal T_h(hP)=P(D)f_0.
+                                                               \tag{KL.23}
+\]
+This follows by cancellation of the pointwise factor \(|h|^2\)
+in the integral; the identities extend across the discrete zeros by
+their entire expressions.  It is an isometry onto the specified
+subspace of multiples of \(h\), with its degree shifted by the
+full degree \(d=\sum_\rho m_\rho\).
+
+\begin{theorem}[Original norm as an exact relative Gram volume]
+For every \(j\geq0\), including the initial theta vector,
+\[
+ \boxed{\kappa_{d+j}=\mathfrak h_j r_j.}                \tag{KL.24}
+\]
+Consequently, for \(m\geq0\),
+\[
+ \boxed{\frac{\kappa_{d+m+1}}{\kappa_{d+m}}
+    =\frac{\mathfrak h_{m+1}}{\mathfrak h_m}
+                         \frac{r_{m+1}}{r_m},\qquad
+ \frac{\det\mathbf G_m}{\det\mathbf G_{-1}}
+    =\prod_{j=0}^m\frac{\kappa_{d+j}}{\mathfrak h_j}.} \tag{KL.25}
+\]
+All ratios have positive denominators and all packet multiplicities
+are retained.
+\end{theorem}
+\begin{proof}
+At the degree level \(N=d+j-1\), define
+\(e_{d+j}=\mathcal T_hp_{d+j}-\mathbf R_{j-1}a_{d+j}\).
+Its numerator has zero full jet, is monic of degree \(d+j\),
+and is divisible by the original monic \(h\).  By ordinary monic
+division its quotient is monic of degree \(j\).  Under (KL.23)
+this is \(f_j\) plus a vector in \(L_{j-1}\).  By (KL.7)
+it is orthogonal to that space.  The defining orthogonal projection
+in (KL.22) therefore proves
+\[
+ e_{d+j}=u_j,
+ \qquad
+ \mathfrak h_j=\kappa_{d+j}
+                       +a_{d+j}^*\mathbf G_{j-1}a_{d+j}.
+                                                               \tag{KL.26}
+\]
+When \(j=0\), the quotient of the numerator by \(h\) is the
+constant \(1\), so the same argument explicitly gives
+\(e_d=f_0=u_0\); no previous theta layer is required.
+
+For the full unit cancellation put
+\(v_l=[p_l]_h=p_l(A_h)[1]_h\), and
+\(K_{l-1}=\sum_{i=0}^{l-1}v_iv_i^*/\kappa_i\), using the
+original monomial remainder coordinates.  At \(l=d+j\),
+\[
+ a_l=U_{\upsilon_h}v_l,\qquad
+ \mathbf G_{j-1}=U_{\varepsilon_h}^*K_{l-1}^{-1}
+                                      U_{\varepsilon_h},
+ \qquad
+ a_l^*\mathbf G_{j-1}a_l=v_l^*K_{l-1}^{-1}v_l.          \tag{KL.27}
+\]
+Both cancellations use
+\(U_{\varepsilon_h}U_{\upsilon_h}=I\); hence they preserve
+every derivative of the original local unit at every full jet.
+The degree update
+\(K_l=K_{l-1}+v_lv_l^*/\kappa_l\) has determinant ratio
+\(1+v_l^*K_{l-1}^{-1}v_l/\kappa_l\).  To verify this scalar
+identity directly, expand \(\det(I+xy^*)\) multilinearly in
+its columns: all terms with two updated columns vanish since those
+columns are multiples of \(x\), leaving \(1+y^*x\).
+The fixed-unit congruences in (KL.27) then give
+\[
+ r_j=\frac{\kappa_l}
+          {\kappa_l+v_l^*K_{l-1}^{-1}v_l}
+     =\frac{\kappa_{d+j}}{\mathfrak h_j}.
+\]
+This also proves \(0<r_j\leq1\), including the case \(v_l=0\).
+Divide two consecutive identities and multiply the first \(m+1\)
+identities to obtain (KL.25).
+\end{proof}
+
+For two full packets \(h,H\), their original norm sequences are
+therefore connected at the same theta degree \(j\) by the exact
+scalar equality
+\[
+ \frac{\kappa_{\deg h+j}^{(h)}}{r_j^{(h)}}
+    =\mathfrak h_j
+    =\frac{\kappa_{\deg H+j}^{(H)}}{r_j^{(H)}}.           \tag{KL.28}
+\]
+When \(h\mid H\), the corresponding source isometry is
+\(P\mapsto(H/h)P\), since
+\((g/H)(H/h)P=(g/h)P\).  At the old centres this equality
+preserves every jet, and at each added centre \(g/h\) has the
+complete zero order, so it realizes exactly the CRT insertion of
+zero jets.  The reference numerator has degree below \(\deg H\)
+and is its unique full remainder.  Both corrected representatives
+then subtract the same projection onto the packet-independent
+\(L_j\), proving the coherent equality
+\(\mathbf R_{H,j}\iota_{hH}=\mathbf R_{h,j}\), including
+\(j=-1\).  Thus (KL.28) connects precisely these original
+coherent source maps and their fixed-section metrics.
+
+\subsection{The complete scalar dictionary for the boundary energy}
+
+For \(m\geq0\), set \(n=d+m+1\) and retain the terminal
+notation
+\[
+ M_n=\kappa_{n-1}^{-1}K_{n-1}^{-1},\quad
+ \alpha_n=v_{n-1}^*M_nv_{n-1},\quad
+ \beta_n=v_n^*M_nv_n,\quad
+ \gamma_n=v_n^*M_nv_{n-1}.
+\]
+Define the original theta projection rows by
+\[
+ d_j=\mathfrak h_j^{-1}u_j^*s_h:E_h\to\mathbb C,
+ \qquad
+ \mathbf R_m=s_h-\sum_{j=0}^m u_jd_j,
+ \qquad c_m=d_m\mathbf G_m^{-1}d_{m+1}^*.
+                                                               \tag{KL.29}
+\]
+Here an expression \(u_j^*F\) denotes the Hilbert inner product
+\(\langle u_j,F\rangle\), conjugate-linear in its first
+argument.  The row \(d_j\) therefore retains the original
+unnormalized vector and the exact factor \(\mathfrak h_j^{-1}\).
+
+The complete row and scalar comparison is
+\[
+\boxed{\begin{aligned}
+ d_m&=-\frac{v_{n-1}^*K_{n-1}^{-1}U_{\varepsilon_h}}
+                    {\kappa_{n-1}},\\
+ d_{m+1}&=-\frac{v_n^*K_{n-1}^{-1}U_{\varepsilon_h}}
+                         {\mathfrak h_{m+1}},\\
+ d_m\mathbf G_m^{-1}d_m^*
+      &=\frac{\alpha_n}{\kappa_{n-1}},\\
+ d_{m+1}\mathbf G_m^{-1}d_{m+1}^*
+      &=\frac{\kappa_{n-1}\beta_n}{\mathfrak h_{m+1}^2},\\
+ \mathfrak h_{m+1}c_m&=\overline{\gamma_n}.
+\end{aligned}}                                                 \tag{KL.30}
+\]
+To prove the first row, the polynomial numerator of \(s_h\)
+has degree below \(d\).  In (KL.29), each \(u_j\) has numerator
+\(hQ_j\), monic of degree \(d+j\).  Thus the coefficient of
+degree \(d+m=n-1\) in the numerator of \(\mathbf R_m\) is
+\(-d_m\).  The finite expansion (KL.6) gives the same coefficient
+as \(a_{n-1}^*\mathbf G_m/\kappa_{n-1}\).  Cancelling the
+same units as in (KL.27) proves the first row, also at \(m=0\).
+For the second row use \(u_{m+1}=e_n\), so (KL.10) gives
+\(u_{m+1}^*\mathbf R_m=-a_n^*\mathbf G_m\).
+The orthogonality of \(u_{m+1}\) to \(L_m\) also gives
+\(u_{m+1}^*\mathbf R_m=u_{m+1}^*s_h
+ =\mathfrak h_{m+1}d_{m+1}\).  This proves its formula.
+Finally
+\(\mathbf G_m^{-1}=U_{\upsilon_h}K_{n-1}U_{\upsilon_h}^*\);
+insert both rows, cancel both unit pairs and the adjacent kernel
+inverse.  The three remaining products are exactly those in
+(KL.30), including the conjugation in the last line.
+
+\begin{theorem}[Exact original-norm formula for the reflected packet]
+Suppose the original full packet is stable under
+\(\rho\mapsto1-\overline\rho\).  For its actual relative
+allowance \(\epsilon_m\),
+\[
+ \boxed{\epsilon_m^2=
+  \frac{\mathfrak h_{m+1}}{\mathfrak h_m}
+       (r_m^{-1}-1)(1-r_{m+1})
+       -\mathfrak h_{m+1}^2|c_m|^2.}                  \tag{KL.31}
+\]
+If the packet is also stable under ordinary conjugation, then
+\(c_m=0\), so its complete formula becomes
+\[
+ \boxed{\epsilon_m^2=
+  \frac{\mathfrak h_{m+1}}{\mathfrak h_m}
+                  (r_m^{-1}-1)(1-r_{m+1}).}            \tag{KL.32}
+\]
+\end{theorem}
+\begin{proof}
+The terminal identity (KT.4), with the original full multiplicities,
+gives
+\(\operatorname{Re}\gamma_n=
+\operatorname{Re}\operatorname{tr}A_h-d/2=0\): reflected
+centres contribute complementary real parts with equal orders.
+Its two possible nonzero generalized eigenvalues then yield
+\(\epsilon_m^2=\alpha_n\beta_n-|\gamma_n|^2\).
+The preceding and succeeding rank-one kernel updates, also proved
+directly in (KL.27), give
+\[
+ \alpha_n=1-r_m,\qquad
+ \beta_n=\frac{\kappa_n}{\kappa_{n-1}}
+                              \frac{1-r_{m+1}}{r_{m+1}}.
+\]
+Insert (KL.25) into the product \(\alpha_n\beta_n\) and
+the last line of (KL.30) into \(|\gamma_n|^2\).  Every positive
+ratio is retained, and this is (KL.31).
+
+For the final assertion, conjugation stability makes \(h\) real
+in the original monomial coordinates.  The real Taylor coefficients
+of \(g\) give
+\((g/h)(1/2-it)=\overline{(g/h)(1/2+it)}\), so the actual
+\(\nu_h\) is even in \(t\).  Its monomial Gram matrix is real:
+the integrand for entry \(\overline{s^i}s^j\) at \(-t\) is
+the complex conjugate of its integrand at \(t\).  Therefore the
+unique solution of the real Gram linear equations for the monic
+\(p_l\) has real coefficients.  Polynomial division by the real
+monic \(h\) makes each \(v_l\) real, and the finite sum for
+\(K_{n-1}\) is real.  Its inverse and \(M_n\) are real as well.
+Consequently \(\gamma_n\) is real.  The already proved reflection
+trace identity makes its real part zero, hence \(\gamma_n=0\).
+Equation (KL.30), with \(\mathfrak h_{m+1}>0\), proves
+\(c_m=0\).  No division by a jet column, an off-line displacement,
+or a boundary energy has been used; all zero-column cases remain
+included.
+\end{proof}
+
+The source PR15 denotes the relative determinant at correction
+\(m\) by \(\delta_m=\det\mathbf G_{m+1}/\det\mathbf G_m\).
+Its exact index map is therefore \(\delta_m=r_{m+1}\), with
+\(\delta_{-1}=r_0\).  Its cross-term row product is the
+\(c_m\) of (KL.29).  Equations (KL.24)--(KL.31) prove the full
+map from its original-theta scalar formula to the terminal-kernel
+formula, including both monic norm families, the unit congruences,
+the conjugation, the fixed initial section, and the complete orders.
+These equalities calculate the same actual boundary energy at every
+finite stage.  They do not supply an estimate tending to zero; that
+requires further information about these now explicitly related
+arithmetic quantities.
+
+
+The packet-independent norms in (KL.24)--(KL.32) also have the
+complete positive-half-line formulas (SP.18)--(SP.21) and the
+gamma-reference determinant formulas (TG.16)--(TG.19). Those
+sections prove the original affine and quadratic coordinate maps,
+their inverses, both measures and every phase. Consequently these
+formulas can be substituted directly into the identities here;
+the actual unit, packet determinant ratios, full zero orders and
+source degree indices remain unchanged.

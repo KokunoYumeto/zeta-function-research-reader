@@ -1,0 +1,824 @@
+---
+title: "Exterior trace amplification on the original τ-base arithmetic complex"
+subtitle: "A determinant-line control bound and the exact quartet growth test"
+date: "12 September 2026"
+---
+
+# Result and scope
+
+The previous cyclic-sum construction has a Hermitian control form of rank at most two. The continuation here uses that specific property, rather than changing its metric. Passing to an exterior power of the same arithmetic module does **not** multiply the control allowance by the exterior degree. It makes it possible to control a determinant line containing the sum of the positive real-part defects.
+
+For the actual cyclic packet and its specified least-norm representative, the new inequality is
+
+$$
+\boxed{
+\sum_{\Re\lambda>k/2}\ell_\lambda(2\Re\lambda-k)
+\ \leq\ \epsilon_{h,k,N}^{\mathrm{cyc}}.
+}
+$$
+
+For a complete nonreal off-line quartet with real displacement $\delta>0$ and common multiplicity $m$, it gives the exact lower bound
+
+$$
+\boxed{
+\epsilon_{h,k,N}^{\mathrm{cyc}}
+\geq
+2\delta\,[1+k(m-1)](k+1)
+\left\lfloor\frac{(k+1)^2}{4}\right\rfloor,
+\qquad
+N\geq[1+k(m-1)](k+1)^2-1.
+}
+$$
+
+For simple roots this grows as $\delta k^3/2$. The corresponding sufficient analytic target is therefore a **subcubic** upper bound on this same explicitly defined allowance, rather than the earlier sublinear target obtained from one repeated eigenvector. This note proves the lower bound and constructs the exterior/cohomological maps. It does not prove that analytic upper bound, and it does not claim RH.
+
+The finite-dimensional extremal-trace ingredient is classical: it is a rank-two case of the Ky Fan principle. The contribution here is its application through the existing arithmetic representatives, their original theta boundaries, their split-support lifts, and the exact sum-set and multiplicity calculation. General finite-dimensional linear algebra is not presented as a new classical theorem.
+
+# 1. GitHub corrections integrated at a pinned revision
+
+The repository read for this continuation is `KokunoYumeto/zeta-function-research-reader`, with pinned main revision
+
+`a4494fba4968db837a8af6fcb952c8688cd5d1da`.
+
+The inspection was bounded: the latest PR metadata, the main revision, the current sum-connection note, selected parts of the new Stieltjes/conormal continuation, and the formal frontier note. It was not an independent audit of the entire 292-page edition.
+
+## 1.1 The empty packet
+
+The current PR #20 source explicitly corrects the scope of its monic-freeness argument. For a nonempty packet $d=\deg h\geq1$, the original conormal calculation applies. For $h=1$ and $k\geq2$,
+
+$$
+I=(h(s_1),\ldots,h(s_k))=\mathbb C[s_1,\ldots,s_k],
+\qquad
+\mathbb C[\mathbf s]/I^r=0\quad(r\geq1).
+$$
+
+The algebraic spectral module is then zero. Its split lift $G(0)$ still contains the external absence $\tau$ and the supported zero $e$. The analytic amplitude $g$ and its mass do not vanish. No Gram inverse on a nonzero spectral space is inferred from that analytic amplitude.
+
+Every inverse matrix below is on a **nonempty** actual spectral packet. The empty case has the unique maps between zero coefficient modules and the corresponding original split lifts.
+
+The reviewed public note blob is `797d8bc298aec06b112b53a03654a9664323e748`. Its historical validation file records an earlier note blob; that historical receipt is not relabelled as a new proof check.
+
+## 1.2 Metric restriction retains its hypotheses
+
+The current formal frontier note requires, for rectangular inclusion and extraction matrices,
+
+$$
+LI=1,\qquad P=IL=P^*,\qquad PK=KP,\qquad GK=1
+$$
+
+before concluding
+
+$$
+(I^*GI)(LKL^*)=1.
+$$
+
+The spectral projection used later need not be orthogonal for the arithmetic metric. Accordingly this note uses the actual compressed Gram $C_+^*GC_+$ and its inverse. It does not replace that inverse by $C_+^*G^{-1}C_+$.
+
+## 1.3 Formalization and source boundaries
+
+The source library already constructs the original internal quotient, cohomology maps, comparison kernels, support-changing morphisms, and homology of a cochain-idempotent image. These are inputs. This continuation neither reruns Lean nor extends the scope of their published certificates to the analytic theta construction.
+
+The new tandem note also constructs the conormal algebra map into dual numbers and keeps the variable-frame connection term. Those results remain compatible inputs; they are not recounted as new results here.
+
+# 2. The original scalar and arithmetic source
+
+Retain the original split scalar
+
+$$
+G(R)=\{\tau_R\}\sqcup\{r^\bullet:r\in R\},
+\qquad e_R=0_R^\bullet.
+$$
+
+Its original quotient and coefficient maps remain
+
+$$
+\boxed{
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{j}&\mathbb C.
+\end{array}
+}
+$$
+
+Here $j$ is the specified unital embedding. The target of $p_{\mathbb Z}$ is infinite. Every lifted coefficient map sends $e$ to $e$ and $\tau$ to $\tau$ before the arithmetic observation.
+
+Keep the source spaces
+
+$$
+V=\{\phi\in\mathcal S(\mathbb R):\phi\text{ even},\ \phi(0)=0,\ \int_{\mathbb R}\phi=0\},
+$$
+
+$$
+\mathscr B=\left\{F\in C^\infty(\mathbb R_{>0}):
+\sup_{x>0}x^b|D^jF(x)|<\infty\text{ for all }b\in\mathbb Z,\ j\geq0\right\},
+\qquad D=-x\partial_x,
+$$
+
+$$
+\Theta\phi(x)=\sum_{n\ne0}\phi(nx),
+\qquad C_+=[V\xrightarrow{\Theta}\mathscr B],
+\qquad Q=H^1(C_+)=\mathscr B/\Theta V.
+$$
+
+The complex is in degrees $0,1$. Retain
+
+$$
+\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},
+\qquad
+\mathcal M\Theta\phi_*=g,
+$$
+
+$$
+\boxed{
+g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).
+}
+$$
+
+These definitions and the continuous/finite source comparisons are inherited from the supplied cyclic-sum note. Their analytic proofs are not newly re-established in this note.
+
+For a nonempty finite reflection-stable actual zero packet with complete orders, set
+
+$$
+h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\quad
+E_h=\mathbb C[s]/(h),\quad
+v_h=g/h,\quad \upsilon_h=j_h(v_h)\in E_h^\times.
+$$
+
+For $k\geq1$, the full tensor arithmetic algebra, generator and unit are
+
+$$
+B_k=E_h^{\otimes k},\qquad
+S=s_1+\cdots+s_k,\qquad A_k=M_S,\qquad U_k=\upsilon_h^{\otimes k}.
+$$
+
+At a sum $\lambda$, its maximal local nilpotent length is
+
+$$
+\ell_\lambda=
+\max_{\rho_1+\cdots+\rho_k=\lambda}
+\left(1+\sum_i(m_{\rho_i}-1)\right).
+$$
+
+Use the original cyclic algebra and its arithmetic inclusion
+
+$$
+\chi(S)=\prod_\lambda(S-\lambda)^{\ell_\lambda},
+\qquad C=\mathbb C[S]/(\chi),\qquad q_k=\deg\chi,
+$$
+
+$$
+\alpha:C\hookrightarrow B_k^{S_k},\quad[P]\mapsto P(A_k)1,
+\qquad
+\eta=M_{U_k}\alpha:C\hookrightarrow B_k^{S_k}.
+$$
+
+The first arrow is a unital algebra map. The map $M_{U_k}$ and its inverse $M_{U_k^{-1}}$ are explicit module automorphisms. Thus $\eta$ retains the arithmetic unit without declaring it to be a unital algebra inclusion.
+
+The source already provides an equivariant retraction $\pi:B_k^{S_k}\to C$, $\pi\eta=1$, and retains $\ker\pi$. Together with the full finite jet map and the original signed symmetrization this gives a left inverse to the cyclic inclusion in the top cohomology of $C_+^{\widehat\otimes k}$. No cyclic complement is discarded in this continuation.
+
+# 3. The existing canonical metric and its rank-two operator
+
+The actual source map is
+
+$$
+\mathcal V_{h,k}P=P(D_1+\cdots+D_k)(F_h^{\otimes k}),
+\qquad \mathcal MF_h=g/h.
+$$
+
+It obeys
+
+$$
+J^{(k)}\mathcal V_{h,k}=\eta\pi_\chi,
+\qquad
+q^{(k)}\mathcal V_{h,k}=\sigma_h^{\otimes k}\eta\pi_\chi.
+$$
+
+The norm remains
+
+$$
+\|\mathcal V_{h,k}P\|^2
+=\int_{\mathbb R}|P(k/2+iu)|^2m_{h,k}(u)\,du,
+$$
+
+where
+
+$$
+a_h(t)=\frac{(g/h)(1/2+it)}{\sqrt{2\pi}},
+\quad w_h=|a_h|^2,
+\quad\mu_h=\int_{\mathbb R}w_h,
+\quad m_{h,k}=w_h^{*k}.
+$$
+
+The total mass is $\mu_h^k$. Construct the monic orthogonal polynomials $p_j(S)$ by subtracting lower-degree projections from $S^j$; retain their squared norms $\omega_j$, including $\omega_0=\mu_h^k$.
+
+For $N\geq q_k-1$, in the fixed remainder coordinates on $C$, put
+
+$$
+b_j=[p_j]_\chi,\qquad
+K=\sum_{j=0}^{N}\frac{b_jb_j^*}{\omega_j},\qquad G=K^{-1},
+$$
+
+$$
+R u=\mathcal V_{h,k}
+\left(\sum_{j=0}^{N}p_j\frac{b_j^*Gu}{\omega_j}\right).
+$$
+
+These are the actual canonical representative and metric:
+
+$$
+R^*R=G,\qquad J^{(k)}R=\eta,\qquad
+q^{(k)}R=\sigma_h^{\otimes k}\eta.
+$$
+
+For $A=M_S$ on $C$, the source's exact boundary control is
+
+$$
+\boxed{
+W=A^*G+GA-kG
+=G\frac{b_{N+1}b_N^*+b_Nb_{N+1}^*}{\omega_N}G.
+}
+$$
+
+Introduce the metric raising map $G:C\to C^\#$, $v\mapsto(w\mapsto w^*Gv)$, where $C^\#$ is the space of conjugate-linear functionals. Its inverse is $K$. Define the corresponding Gram adjoint and control endomorphism by the typed composites
+
+$$
+A^{\sharp_G}=G^{-1}A^*G:C\to C,
+\qquad
+H=G^{-1}W=A^{\sharp_G}+A-kI_C.
+$$
+
+Then $H^{\sharp_G}=H$ and $\operatorname{rank}H\leq2$. Reflection pairs $\lambda$ with $k-\bar\lambda$, with equal full length. Hence
+
+$$
+\operatorname{Tr}H=2\Re\operatorname{Tr}A-kq_k=0.
+$$
+
+Thus the nonzero spectrum of $H$ is $\{+\epsilon,-\epsilon\}$ for the actual nonnegative number
+
+$$
+\boxed{
+\epsilon=
+\frac{\sqrt{a_Nd_N-|c_N|^2}}{\omega_N},\quad
+ a_N=b_N^*Gb_N,\quad d_N=b_{N+1}^*Gb_{N+1},\quad
+ c_N=b_N^*Gb_{N+1}.
+}
+$$
+
+The source reflection gives $\bar c_N=-c_N$. Equivalently $\epsilon^2=\operatorname{Tr}(H^2)/2$. The case $\epsilon=0$ means $H=0$ by its $G$-self-adjointness. No orthonormal replacement of the retained polynomial coordinates is made.
+
+# 4. Exterior control: the allowance does not multiply by exterior degree
+
+Let $1\leq p\leq q_k$. On $\bigwedge^p C$, define the **additive exterior generator**
+
+$$
+A^{[p]}(v_1\wedge\cdots\wedge v_p)
+=\sum_{j=1}^p
+v_1\wedge\cdots\wedge Av_j\wedge\cdots\wedge v_p.
+$$
+
+Its relation to the multiplicative exterior functor is
+
+$$
+A^{[p]}=\left.\frac{d}{dt}\right|_{t=0}\bigwedge^p(e^{tA}),
+\qquad
+\bigwedge^p(e^{tA})=e^{tA^{[p]}}.
+$$
+
+In the unscaled increasing-index wedge basis, the Gram matrix is
+
+$$
+G^{[p]}_{I,J}=\det G_{I,J}.
+$$
+
+It is positive definite and is the determinant inner product induced from the original $G$.
+
+**Theorem 4.1.** The exact exterior control identity is
+
+$$
+\boxed{
+(A^{[p]})^*G^{[p]}+G^{[p]}A^{[p]}-kpG^{[p]}
+=G^{[p]}H^{[p]}.
+}
+$$
+
+For $1\leq p\leq q_k-1$,
+
+$$
+\boxed{
+-\epsilon G^{[p]}
+\preceq
+(A^{[p]})^*G^{[p]}+G^{[p]}A^{[p]}-kpG^{[p]}
+\preceq\epsilon G^{[p]}.
+}
+$$
+
+If $\epsilon>0$, this is the exact optimal allowance. For $p=q_k$ the control form is zero.
+
+**Proof.** The induced Gram adjoint satisfies
+
+$$
+(A^{[p]})^{\sharp_{G^{[p]}}}=(A^{\sharp_G})^{[p]}.
+$$
+
+This follows by applying the product rule to the determinant pairing of decomposable vectors. Since $(kI_C)^{[p]}=kpI$, add the two terms to obtain the identity.
+
+For the order bound, keep the $G$-orthogonal eigenspace decomposition
+
+$$
+C=L_+\oplus Z_0\oplus L_-,
+\qquad H|_{L_+}=\epsilon,\quad H|_{Z_0}=0,\quad H|_{L_-}=-\epsilon.
+$$
+
+Both $L_+$ and $L_-$ have dimension one, and $\dim Z_0=q_k-2$. The exterior product of each direct-summand inclusion gives the complete decomposition
+
+$$
+\begin{aligned}
+\bigwedge^p C={}&\bigwedge^p Z_0
+\ \oplus\ (L_+\wedge\bigwedge^{p-1}Z_0)\\
+&\oplus\ (L_-\wedge\bigwedge^{p-1}Z_0)
+\ \oplus\ (L_+\wedge L_-\wedge\bigwedge^{p-2}Z_0).
+\end{aligned}
+$$
+
+The eigenvalues of $H^{[p]}$ on these four summands are respectively $0,\epsilon,-\epsilon,0$. The multiplicity of each nonzero eigenvalue is $\binom{q_k-2}{p-1}$; summands with impossible degree are zero modules. This proves every assertion, including the top-degree case. When $\epsilon=0$, the identity gives the conclusion directly. $\square$
+
+This is the mechanism that makes a determinant-line estimate stronger than testing one eigenvector: a wedge cannot contain the same one-dimensional positive control direction twice.
+
+# 5. The exterior maps live on the original cochain source
+
+Define the unscaled alternating map
+
+$$
+\operatorname{Alt}_p:\bigwedge^p C\hookrightarrow C^{\otimes p},
+\quad
+v_1\wedge\cdots\wedge v_p\mapsto
+\sum_{\pi\in S_p}\operatorname{sgn}(\pi)
+ v_{\pi(1)}\otimes\cdots\otimes v_{\pi(p)}.
+$$
+
+If $\operatorname{wed}:C^{\otimes p}\to\bigwedge^p C$ is the exterior quotient, then
+
+$$
+\operatorname{wed}\operatorname{Alt}_p=p!I.
+$$
+
+The actual source representative is
+
+$$
+\boxed{
+R_p=R^{\otimes p}\operatorname{Alt}_p:
+\bigwedge^p C\longrightarrow\mathscr B^{\widehat\otimes kp}.
+}
+$$
+
+It retains
+
+$$
+R_p^*R_p=p!G^{[p]},\qquad
+J^{(kp)}R_p=\eta^{\otimes p}\operatorname{Alt}_p,
+$$
+
+$$
+q^{(kp)}R_p=(\sigma_h^{\otimes k}\eta)^{\otimes p}
+             \operatorname{Alt}_p.
+$$
+
+The last map is injective: compose with the existing finite-jet/retraction map in each block, then with $\operatorname{wed}/p!$. The factorial is part of this inverse composite; the representative itself is not divided by its norm.
+
+The actual source control is therefore
+
+$$
+W_p^{\mathrm{source}}=p!\bigl((A^{[p]})^*G^{[p]}+G^{[p]}A^{[p]}-kpG^{[p]}\bigr).
+$$
+
+Both its Gram and its control retain the same literal $p!$. Its relative allowance is the original $\epsilon$.
+
+## 5.1 The cochain idempotent and both permutation signs
+
+Let $\mathcal C_k=C_+^{\widehat\otimes k}$. Let $T_\pi$ be the actual Koszul permutation on $\mathcal C_k^{\widehat\otimes p}$. Its top-degree action is $(\operatorname{sgn}\pi)^kP_\pi$, with $P_\pi$ ordinary block permutation. The chain idempotent for the exterior top-degree component is
+
+$$
+\boxed{
+\mathsf A_{p,k}
+=\frac1{p!}\sum_{\pi\in S_p}
+ (\operatorname{sgn}\pi)^{k+1}T_\pi.
+}
+$$
+
+The two top-degree signs multiply to $\operatorname{sgn}\pi$. Its square equals itself by the group-algebra calculation, with the factor $1/p!$ retained. The complementary idempotent $1-\mathsf A_{p,k}$ remains, with its own cohomology and trace. The existing projected-homology theorem supplies inclusion and retraction on the original cycle/boundary quotient.
+
+These sign rules are the standard symmetric-monoidal structure on complexes, instantiated here on the retained arithmetic degree $k$; they are not an assumption that degree-one vectors commute without sign.
+
+## 5.2 Propagate the actual theta primitive
+
+The previous source construction supplies a map
+
+$$
+K_N^{\mathrm{prim}}:C\to\mathcal C_k^{k-1},
+\qquad D^{(k)}R-RA=dK_N^{\mathrm{prim}}.
+$$
+
+Define
+
+$$
+\boxed{
+K_{N,p}^{\mathrm{prim}}
+=\sum_{j=1}^p(-1)^{k(j-1)}
+R^{\otimes(j-1)}\otimes K_N^{\mathrm{prim}}\otimes R^{\otimes(p-j)}
+\operatorname{Alt}_p.
+}
+$$
+
+The source and target are $\bigwedge^pC$ and $\mathcal C_k^{\widehat\otimes p,\,kp-1}$. Applying the tensor differential contributes the same $(-1)^{k(j-1)}$ on the displayed summand. Differentials on the top-degree $R$ factors vanish. Consequently
+
+$$
+\boxed{
+D^{(kp)}R_p-R_pA^{[p]}=dK_{N,p}^{\mathrm{prim}}.
+}
+$$
+
+This is the exact boundary producing the exterior control form on the original source.
+
+## 5.3 Original support and the alternative full-product minimum
+
+Every coefficient map above has its original $G(\mathbb C)$-linear reconstructed lift. At a chosen active support label, a term with zero amplitude remains at that label's zero. The sums of differently located primitives use the joins of their actual tensor support masks; the character average uses the corresponding orbit join. External scalar $\tau$ maps every input to external absence, while $e$ maps it to its fibre zero. In particular the boundary in the preceding equation is sent by the next internal quotient to the receiving supported zero, not to $\tau$.
+
+There is also an exact comparison with the earlier full-product minimum. Set
+
+$$
+I_{k,p}=\eta^{\otimes p}\operatorname{Alt}_p,
+\qquad M\geq\max\{pN,kp(\deg h-1)\}.
+$$
+
+Let $R_{kp,M}^{\mathrm{full}}$ be the already-constructed canonical full-jet representative. Both it and $R_p$ lie in the stated degree-$M$ source after applying $I_{k,p}$. Hence
+
+$$
+\Delta=R_p-R_{kp,M}^{\mathrm{full}}I_{k,p}
+$$
+
+has zero full jets, and its numerator belongs to the original ideal $(h(s_1),\ldots,h(s_{kp}))$. Thus it is an original theta boundary with the source's polynomial-division primitive. Orthogonality of the full minimum gives
+
+$$
+\boxed{
+p!G^{[p]}=I_{k,p}^*G_{kp,M}^{\mathrm{full}}I_{k,p}+\Delta^*\Delta.
+}
+$$
+
+The complete control comparison is
+
+$$
+\begin{aligned}
+W_p^{\mathrm{source}}={}&I_{k,p}^*W_{kp,M}^{\mathrm{full}}I_{k,p}\\
+&+(A^{[p]})^*\Delta^*\Delta+\Delta^*\Delta A^{[p]}-kp\Delta^*\Delta.
+\end{aligned}
+$$
+
+This connects the two representative choices without identifying their metrics or discarding their boundary difference.
+
+# 6. A determinant line measures the sum of the positive defects
+
+Let
+
+$$
+C_{>}=\bigoplus_{\Re\lambda>k/2}C_\lambda\subseteq C
+$$
+
+be the sum of the **full generalized eigenspaces**, of total dimension $p$. Here $C_\lambda\cong\mathbb C[S]/(S-\lambda)^{\ell_\lambda}$. Write its inclusion as $I_{>}:C_{>}\hookrightarrow C$. Its determinant line has the actual injection
+
+$$
+\det(C_{>})=\bigwedge^p C_{>}
+\xrightarrow{\,\bigwedge^p I_{>}\,}
+\bigwedge^p C
+\xrightarrow{R_p}
+\mathscr B^{\widehat\otimes kp}.
+$$
+
+The additive exterior generator acts on this line by
+
+$$
+\zeta_{>}=\operatorname{Tr}(A|_{C_{>}})
+=\sum_{\Re\lambda>k/2}\ell_\lambda\lambda.
+$$
+
+Indeed expansion of $A$ on a wedge of a basis keeps only its diagonal coefficients: every off-diagonal replacement repeats one basis vector and has zero wedge. The full nilpotent modules are retained before this determinant map; their dimensions appear in the trace. No simplicity assertion follows: a critical-line Jordan block can have nonzero numerical control while contributing zero real-part defect.
+
+Define
+
+$$
+\boxed{
+L_{h,k}:=2\Re\zeta_{>}-kp
+=\sum_{\Re\lambda>k/2}\ell_\lambda(2\Re\lambda-k).
+}
+$$
+
+**Theorem 6.1.** For every admitted $N$,
+
+$$
+\boxed{0\leq L_{h,k}\leq\epsilon_{h,k,N}^{\mathrm{cyc}}.}
+$$
+
+**Proof.** If $p=0$, the left side is zero. Otherwise reflection implies $p<q_k$. Let $v$ be the nonzero determinant vector of an unscaled basis of $C_{>}$. On this actual eigenline,
+
+$$
+\frac{v^*W_p^{\mathrm{source}}v}{v^*(p!G^{[p]})v}
+=2\Re\zeta_{>}-kp=L_{h,k}.
+$$
+
+Theorem 4.1 bounds the same quotient by $\epsilon$. $\square$
+
+The old eigenline argument gave the maximum individual defect. This theorem controls their entire positive sum, with their full lengths. Reflection also gives
+
+$$
+L_{h,k}
+=\frac12\sum_\lambda\ell_\lambda|2\Re\lambda-k|
+=\sum_\lambda\ell_\lambda|\Re\lambda-k/2|.
+$$
+
+## 6.2 The exact arithmetic volume equation
+
+Let $B_{>}:\mathbb C^p\to C$ be the column map of a fixed unscaled basis of $C_{>}$, and set $G_{>}=B_{>}^*GB_{>}$. Its determinant vector $v_{>}$ has squared source norm
+
+$$
+\|R_pv_{>}\|^2=p!\det G_{>}.
+$$
+
+For the original parameter $a>0$, let $U_{>}(a)=a^{A|_{C_{>}}}$. Then
+
+$$
+\boxed{
+\det(U_{>}(a)^*G_{>}U_{>}(a))
+=a^{kp+L_{h,k}}\det G_{>}.
+}
+$$
+
+The entire exterior control integrates for $a\geq1$ to
+
+$$
+a^{kp-\epsilon}p!\det G_{>}
+\ \leq\ \|R_p\bigwedge^pU_{>}(a)v_{>}\|^2
+\ \leq\ a^{kp+\epsilon}p!\det G_{>}.
+$$
+
+Differentiating the norm along $a=e^t$ and applying the exact quadratic inequality proves the bound. Comparing with the exact determinant equality again gives $L_{h,k}\leq\epsilon$. The determinant, its norm, and its weight are all produced by maps from the original arithmetic module.
+
+# 7. Spectral and metric projections are linked explicitly
+
+The determinant argument has an equivalent trace calculation useful for computation. Let $Q_{>}=e_{>}(A)$ be the actual CRT spectral idempotent, where $e_{>}$ is one modulo each positive-defect factor and zero modulo every other factor. It commutes with $A$.
+
+Choose the original CRT column map $B_{>}:\mathbb C^p\to C$, including every jet. Its $G$-orthogonal projection is
+
+$$
+\boxed{
+P_{>}=B_{>}(B_{>}^*GB_{>})^{-1}B_{>}^*G.
+}
+$$
+
+Their exact relationship is
+
+$$
+Q_{>}P_{>}=P_{>},\qquad P_{>}Q_{>}=Q_{>},\qquad
+P_{>}^{\sharp_G}=P_{>},\qquad(P_{>}-Q_{>})^2=0.
+$$
+
+The first two identities follow from their common range and identity restrictions there. Expanding the square gives the last identity. Invariance of that range gives $P_{>}AP_{>}=AP_{>}$ and
+
+$$
+\operatorname{Tr}(P_{>}A)=\operatorname{Tr}(Q_{>}A)=\zeta_{>}.
+$$
+
+Since $\operatorname{Tr}(P_{>}A^{\sharp_G})$ is the conjugate of $\operatorname{Tr}(P_{>}A)$,
+
+$$
+\boxed{\operatorname{Tr}(P_{>}H)=L_{h,k}.}
+$$
+
+For $\epsilon>0$, the two $G$-orthogonal rank-one control projections are the exact polynomials
+
+$$
+F_+=\frac{H^2+\epsilon H}{2\epsilon^2},\qquad
+F_-=\frac{H^2-\epsilon H}{2\epsilon^2}.
+$$
+
+They give the full slack formula
+
+$$
+\boxed{
+L_{h,k}=\epsilon(1-\eta_{h,k,N}),
+\quad
+\eta_{h,k,N}=1-\operatorname{Tr}(P_{>}F_+)
+                  +\operatorname{Tr}(P_{>}F_-)\geq0.
+}
+$$
+
+With $\|T\|_{\mathrm{HS},G}^2=\operatorname{Tr}(T^{\sharp_G}T)$, this is
+
+$$
+\eta_{h,k,N}
+=\|(1-P_{>})F_+\|_{\mathrm{HS},G}^2
+ +\|P_{>}F_-\|_{\mathrm{HS},G}^2.
+$$
+
+Thus the gap has a specified projection meaning rather than an omitted term. This is the elementary rank-two instance of the classical extremal-trace principle.
+
+The retained finite trace has its resolvent description as well:
+
+$$
+\zeta_{>}
+=\frac1{2\pi i}\int_{\Gamma_{>}}
+S\operatorname{Tr}((SI-A)^{-1})\,dS,
+$$
+
+where the positively oriented contour encloses exactly the indicated finite blocks. The complementary trace remains
+
+$$
+\operatorname{Tr}f(A)
+=\operatorname{Tr}(Q_{>}f(A))
+ +\operatorname{Tr}((1-Q_{>})f(A)).
+$$
+
+Multiplication by $(-1)^k$ gives the inherited cohomological sign. The determinant line occurs in degree $kp$, retaining $(-1)^{kp}$ for its trace. Split lifts of either projector send an existing class with zero projected amplitude to a supported zero, while the paired projector retains the complementary component.
+
+# 8. Exact sum counting for a nonreal quartet
+
+Take a complete actual nontrivial quartet
+
+$$
+\rho_{\varepsilon,\eta}
+=\frac12+\varepsilon\delta+i\eta\gamma,
+\qquad \varepsilon,\eta\in\{+1,-1\},\quad
+\delta>0,\quad\gamma>0,
+$$
+
+with common full multiplicity $m$. This is a specification for the following theorem, not an assertion that an off-line zero has been found. The two standard symmetries of $g=2\xi$ give the full quartet and equal orders from any such actual zero.
+
+The distinct $k$-fold sums are precisely
+
+$$
+\boxed{
+\lambda_{a,b}
+=\frac k2+\delta(2a-k)+i\gamma(2b-k),
+\qquad 0\leq a,b\leq k.
+}
+$$
+
+**Proof of existence.** Let $a$ count positive real signs and $b$ positive imaginary signs. Choose an integer $t$ with
+
+$$
+\max(0,a+b-k)\leq t\leq\min(a,b).
+$$
+
+The four occupation counts
+
+$$
+(t,\ a-t,\ b-t,\ k-a-b+t)
+$$
+
+are nonnegative and sum to $k$, with the required two margins. Conversely every tuple has such margins. Since $\delta$ and $\gamma$ are nonzero real numbers, equality of two sums forces equality of both margins. No hypothesis of algebraic independence of zero ordinates is used.
+
+All ordered tuple blocks have the same maximal length
+
+$$
+\ell_k=1+k(m-1).
+$$
+
+The nilpotency proof is the original one: the top monomial in $(z_1+\cdots+z_k)^{k(m-1)}$ has coefficient $(k(m-1))!/((m-1)!)^k\ne0$. It survives before the next power vanishes. Hence
+
+$$
+\boxed{
+\chi_{h,k}(S)=\prod_{a,b=0}^k(S-\lambda_{a,b})^{\ell_k},
+\qquad q_k=\ell_k(k+1)^2.
+}
+$$
+
+For the positive-defect subspace,
+
+$$
+p=\ell_k(k+1)\left\lceil\frac k2\right\rceil.
+$$
+
+Summing its real defects gives
+
+$$
+\begin{aligned}
+L_{h,k}
+&=2\delta\ell_k(k+1)
+\sum_{a=\lfloor k/2\rfloor+1}^{k}(2a-k)\\
+&=2\delta\ell_k(k+1)
+\left\lfloor\frac{(k+1)^2}{4}\right\rfloor.
+\end{aligned}
+$$
+
+For $k=2n$, the last sum is $n(n+1)$; for $k=2n+1$, it is $(n+1)^2$. The imaginary parts cancel in the determinant trace because $\sum_{b=0}^k(2b-k)=0$.
+
+Combining this calculation with Theorem 6.1 proves
+
+$$
+\boxed{
+2\delta[1+k(m-1)](k+1)
+\left\lfloor\frac{(k+1)^2}{4}\right\rfloor
+\leq\epsilon_{h,k,N}^{\mathrm{cyc}},
+\quad N\geq[1+k(m-1)](k+1)^2-1.
+}
+$$
+
+Every multiplicity is retained. For simple roots the leading term is $\delta k^3/2$; for $m>1$ it is $\delta(m-1)k^4/2$.
+
+For the two-point reflected pair alone, the analogous exact lower bound is
+
+$$
+\epsilon_{h,k,N}^{\mathrm{cyc}}
+\geq2\delta[1+k(m-1)]
+\left\lfloor\frac{(k+1)^2}{4}\right\rfloor.
+$$
+
+The quartet supplies the additional, rigorously counted factor $k+1$ through its distinct imaginary sums.
+
+# 9. The quantitative target after this construction
+
+The current source formula is still
+
+$$
+\epsilon_{h,k,N}^{\mathrm{cyc}}
+=\frac{\sqrt{a_Nd_N-|c_N|^2}}{\omega_N}.
+$$
+
+A contradiction to any actual off-line quartet now follows from a bound
+
+$$
+\boxed{
+\frac{\sqrt{a_Nd_N-|c_N|^2}}{k^3\omega_N}\longrightarrow0
+}
+$$
+
+along a permitted choice $N=N(k)\geq[1+k(m-1)](k+1)^2-1$, proved for its actual arithmetic measure and complete jet map. For this contradiction the packet $h$ is fixed: constants may depend on $h$, and uniformity over all zero locations is not required. The expression itself has not been shown to tend to zero here. The result is a stronger amplification theorem and a weaker sufficient growth target for the next analytic estimate.
+
+For a simple quartet, the source degree is at least quadratic in $k$. This cost is retained; a fixed-degree central-limit estimate cannot simply be inserted at that growing degree. The previously proved scalar Fisher contraction, with its factor $\mu_h^{k-1}/k$, is not assigned to every polynomial moment.
+
+The existing polynomial derivative formulas supply those actual moments:
+
+$$
+\mathcal M_h(z)=\sum_{j\geq0}\mu_j\frac{z^j}{j!},\qquad
+\mathcal N_h(z)=\sum_{j\geq0}\nu_j\frac{z^j}{j!},
+$$
+
+$$
+\int u^j m_{h,k}(u)du=j![z^j]\mathcal M_h(z)^k,
+$$
+
+$$
+\int u^j\|\partial_u\Psi_{h,k}\|^2du
+=j![z^j]\left[
+\frac1k\mathcal N_h\mathcal M_h^{k-1}
++\frac{k-1}{4k}z^2\mathcal M_h^k\right].
+$$
+
+All masses, polynomial degrees and cross terms remain. The new determinant bound uses their already-defined Gram and control matrices rather than changing the source in order to obtain a favourable value.
+
+The real interval $0<s<1$ causes no missing quartet case: the alternating zeta series there is positive when grouped into consecutive pairs, while $1-2^{1-s}<0$, so $\zeta(s)<0$. An actual nontrivial off-line zero is therefore nonreal and is covered by its complete quartet. This argument only identifies the case split; it supplies no upper estimate.
+
+# 10. Deligne architecture and the boundary retained in this step
+
+The inherited Weil-II reading identifies an amplification pattern: carry the same arithmetic spectral information into a cohomological tensor image, obtain a further estimate there, and transport dual control without changing the representation. The finite-field geometric theorem is not being applied on a renamed base.
+
+Here the new characteristic-zero operation is
+
+$$
+\begin{gathered}
+\text{original theta complex over }\mathfrak b_\tau\\
+\downarrow\ \text{existing }k\text{-fold cyclic sum image}\\
+(C,A,R_N,G_N,W_N)\\
+\downarrow\ \text{signed exterior cochain map}\\
+(\bigwedge^p C,A^{[p]},R_p,p!G^{[p]})\\
+\uparrow\ \det(C_{>})\\
+\text{exact sum of positive arithmetic defects}.
+\end{gathered}
+$$
+
+The exterior operation controls that determinant line with the **same** allowance as the cyclic image. The original $e$-relation primitives are carried by $K_{N,p}^{\mathrm{prim}}$; the scalar $\tau$ remains external absence. The spectral and metric projectors, their difference, the cyclic complement, the exterior complement and their finite traces are all explicit.
+
+No direct implication from the cardinality of the infinite quotient to positivity is used. Its role is to remain the structural arithmetic quotient throughout the construction, not to be replaced by a finite-field scalar or by the Boolean support observation.
+
+# 11. Verification and reproducibility
+
+The supplied cyclic-sum archive was safely extracted and all 42 entries of its SHA-256 manifest verified. Its 24-method checker was rerun normally and under Python optimization, with matching success records. The new checker contains 22 exact finite test methods; its normal, optimized and deliberately failing results are recorded in `checks/`.
+
+The Gaussian calculations in the checker are declared algebraic calibrations. Their literal measure is
+
+$$
+\frac{7^k}{\sqrt{2\pi k}}e^{-u^2/(2k)}du.
+$$
+
+They test companion matrices, full repeated-root modules, the canonical inverse-moment Gram, exterior factorials, the additive generator, the trace bound and the quartet counting. The mass is $7^k$, not one. These examples do not claim that the calibration roots are zeta zeros.
+
+The written arguments are general. Finite tests are regression evidence, not a Lean certificate, interval arithmetic for the actual spectral integrals, or independent certification of the whole analytic source corpus. No repository or other-session branch is changed by this continuation.
+
+# References and provenance
+
+1. Owner programme, **Tau Cyclic Sum Control**, delivered `NOTE.tex`, 12 September 2026. The original packet, norm, canonical section, rank-two identity, reflection and thickened relation maps are source inputs. Archive and member hashes are in `checks/source_manifest.json`.
+2. Owner repository, pinned main `a4494fba4968db837a8af6fcb952c8688cd5d1da`. Reviewed `workbenches/tau-sum-connection/RESEARCH_NOTE.md`, current blob `797d8bc298aec06b112b53a03654a9664323e748`; `workbenches/tau-frontier-formal/RESEARCH_NOTE.md`; selected `sum_connection_stieltjes.tex` and `conormal_finite_weyl.tex`. Exact reading scope is in `SOURCE_REVIEW.md`.
+3. Original SplitZero derived/reconstruction note and the actual universal property of its internal quotient; retained in the owner's supplied formalization material.
+4. Overton, M. L., and Womersley, R. S. (1992), **On the Sum of the Largest Eigenvalues of a Symmetric Matrix**, SIAM Journal on Matrix Analysis and Applications 13(1), 41–45, doi:10.1137/0613006. Used only as attribution for the classical extremal-trace ingredient. The rank-two proof used here is fully written above.
+5. The Stacks Project, Tag **0GWN**, tensor products of complexes. Used for the standard tensor differential and Koszul permutation types; the specific arithmetic signs and primitive are calculated above.
+6. NIST DLMF §25.4, equations 25.4.3–25.4.4, the functional equation and the literal definition of $\xi$. The original arithmetic function in this program remains $2\xi$.
+7. Deligne, P. (1980), **La conjecture de Weil II**, Publications Mathématiques de l'IHÉS 52, 137–252. The supplied TeX/reading record at §3.2.13 motivates the amplification architecture. This note does not claim a new full reading or a finite-field purity theorem on the $\tau$-base.

@@ -1,77 +1,94 @@
-## Current source continuation: arithmetic Toda and Gamma descent
+[Published DOI 10.5281/zenodo.22730756](https://doi.org/10.5281/zenodo.22730756) · [Paired PDFs and source downloads](calculation_edition_20260912e/README.md)
 
-A zeta packet is a finite collection of selected zeros with all multiplicities retained. This continuation calculates the cost of those spectral configurations in the original theta-function source norm; it does not choose a favorable new metric or assert an off-critical-line zero.
+# Arithmetic zeta packets: quotient volumes, Toda control and gamma convolution
 
-The [482-page main reader](reader.pdf) and [424-page cumulative Toda companion](workbenches/splitzero-tandem/continuations/20260913-toda/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) express the canonical quotient volume as a source determinant divided by an original-relation determinant. Their two Toda flows retain the phase and explicit nonnegative losses. Gamma convolution supplies exact mass-preserving coefficient formulas, and an analytic generating map links them to the same moment input. A separate written endpoint criterion selects an existing canonical degree from four volumes and two norms. See [the research reading guide](edition/toda-gamma/PUBLIC_READING_GUIDE.md), [source and verification routes](edition/toda-gamma/README.md), and [the complete Gamma delivery](workbenches/tau-gamma-convolution-descent/README.md).
+This research edition studies a concrete finite part of the Riemann zeta
+function's spectral data. A **packet** is a chosen finite collection of its
+zeros, with every selected multiplicity retained. Its polynomial h divides
+the completed function g=2xi. The original theta-function source has Mellin
+transform g/h. Tensor products of this source represent sums of the selected
+zero jets, including their full repeated-root structure.
 
-The uniform growing-degree estimate on the actual arithmetic determinant ratios remains unresolved. A one-sided bound on individual positive correction factors does not control their consecutive ratios. Finite strict-kernel checks, written Jensen/root assembly, finite regressions and analytic-seed interval enclosures have distinct scopes; no arithmetic asymptotic or Riemann-hypothesis conclusion is asserted. PR23 supplies five finite strict-kernel-checked Toda modules; the Jensen/root endpoint assembly is written, not an additional claimed Lean theorem. The published edition below remains DOI 10.5281/zenodo.22730356 until an actual successor publication receipt is recorded.
+The purpose is to calculate the cost of those spectral configurations in
+the original arithmetic source norm. It is not to choose a favorable new
+metric or to assert that an off-critical-line zero exists.
 
-# Previous published edition: zeta, theta cohomology and arithmetic weight control
+## What to read
 
-[Read the previous published edition](https://doi.org/10.5281/zenodo.22730356) · [Separate PDFs and matching sources](calculation_edition_20260912d/)
+- **Main research reader, 482 pages.** The complete literature-and-proof
+  synthesis now includes Section 41 on arithmetic source/relation volumes
+  and Section 42 on gamma convolution descent. The end of Section 42 proves
+  the direct analytic generating-function map into the same Toda input.
+- **Split-Zero/Toda companion, 424 pages.** A cumulative, more focused account
+  of the source, its cohomological quotient and finite spectral controls,
+  with 38 proof chapters and 18 complete source appendices. The new chapters
+  calculate the separate source and relation curvature terms, certified
+  theta-seed inputs, and an exact Gaussian calibration.
+- **Separate full source ZIPs.** These retain the mathematical texts,
+  formalization sources and scoped checking records for each reader.
+  Earlier published PDFs and archives remain separate downloads.
+- **Gamma and endpoint workbenches.** The delivered HTML/Markdown/LaTeX
+  argument and its finite checker remain readable separately. The endpoint
+  criterion and its gamma-coordinate substitution explain a finite-window
+  way to choose one of the existing canonical representatives.
 
-This edition studies finite packets of zeros of the Riemann zeta function, retaining each zero's full multiplicity and the inner product inherited from the original theta-function source. Its question is concrete: how does real displacement from the critical line appear in sums of zero jets, and what exact arithmetic quantity controls that displacement?
+## The attempts, their motivation and their results
 
-Start with the [387-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-cyclic/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf), with its [complete sources and checks](workbenches/splitzero-tandem/continuations/20260912-cyclic/). The [454-page broader zeta reader](calculation_edition_20260912d/21-main-reader-454p.pdf) adds the complete diagonal/exterior and exterior-trace arguments to the literature, CUE, arithmetic and source-directed fluid calculations.
+| Calculation | Why it was tried | What it establishes |
+| --- | --- | --- |
+| Exterior trace control | A single-vector bound can miss the combined displacement of many spectral directions. | The finite exterior calculation bounds their aggregate positive trace defect using the same rank-two allowance, with multiplicities and source factors retained. |
+| Source and relation volumes | Relations vanish in the quotient, but their source norms still affect the least-norm representatives. | The determinant of the canonical quotient metric is exactly a source Hankel determinant divided by a relation Hankel determinant. |
+| Two Toda flows | Both determinant sequences come from exponential deformation of the original arithmetic measure. | Their derivative formulas calculate the source/relation curvature and the original complex cross term. The finite upper estimate retains explicit nonnegative losses. |
+| Gamma convolution descent | Computing a new high-dimensional convolution integral for each tensor degree is expensive. | A classical gamma reference, multiplied by the actual arithmetic amplitude, gives an exact all-tensor coefficient formula and an explicit tail majorant. Its relative-fibre component is retained. |
+| Analytic generating-function map | The coefficient expansion and the Toda moment function appeared as separate descriptions of the same source. | They are linked by an explicit analytic map and inverse. A degree-N Gram matrix differentiated j times uses only the one-factor coefficients through degree 2N+j. |
+| Endpoint degree selection | Bounding every recurrence coefficient in a whole degree window is stronger than selecting one useful canonical degree. | The written finite Jensen argument uses four endpoint quotient volumes and two endpoint polynomial norms. The gamma-coordinate version retains the exact reference and arithmetic correction factors. |
 
-The finite spectral packet records every retained zero jet, including repeated-root directions. Its arithmetic Gram matrix comes from the original theta-derived representatives. The new exterior calculation bounds the sum of positive spectral defects using the same rank-two allowance as a single vector. The required asymptotic upper estimate remains unfinished; the collection records the exact maps and calculations, not an RH proof.
+## The quantities are attached to explicit maps
 
-## What the objects mean
+At degree N the source is the original polynomial space, mapped to the cyclic
+algebra C[S]/(chi). The relation columns are multiplication by the original
+monic polynomial chi. The canonical representative is the unique least-norm
+lift for the arithmetic moment matrix. Its correction from a reference lift
+is a literal relation; its image is an actual theta boundary, with an explicit
+tensor-cochain primitive. The quotient sends `(lambda_N,P)` to
+`(lambda_N,[P]_chi)`: the fibre label remains even when the polynomial class
+is zero. The unit, all signs, the centre k/2, the total mass and the
+repeated-root orders remain in these formulas.
 
-- **Split-Zero coefficients** retain a ring's original zero as a supported
-  element while adjoining a distinct external zero, denoted tau. Maps retain
-  which fibre an element belongs to; killing its coefficient is not silently
-  identified with forgetting that fibre.
-- **Theta cohomology** here means a specified space of rapidly decreasing
-  functions modulo the image of a specified theta-function summation map.
-  Under the Mellin transform, that map becomes multiplication by
-  `g(s)=2 xi(s)`, with `xi` the completed Riemann zeta function. The notes state
-  the test spaces, inverses and quotient maps explicitly.
-- A **spectral packet** is a finite collection of spectral points with their
-  full multiplicities. The quotient `E_h=C[s]/(h)` records all derivatives up
-  to those orders. Repeated roots therefore retain nilpotent directions.
-- The **arithmetic Gram matrix** is the matrix of inner products of the chosen
-  original theta-derived representatives. The control form measures how their
-  scaling action departs from the central weight. Their relative size, not
-  either matrix's absolute smallness, is the quantitative question.
+The gamma density is therefore a computational reference, not a substitute
+for the zeta-derived measure. The arithmetic amplitude and its phase remain
+in the multiplication map. The coefficient transform computes observations
+of that same source and retains the orthogonal component removed by the sum
+projection.
 
-## What was tried, why, and what it produced
+## Verification and the present quantitative boundary
 
-| Calculation | Why try it? | Result and present scope |
-|---|---|---|
-| [Full zero jets and original source maps](edition/exterior-trace/RESEARCH_ATTEMPTS.md) | Represent repeated zeros without losing their derivatives, nilpotent directions or full local unit. | Exact source-to-quotient and comparison maps retain the multiplicities and original metric; they do not supply a global estimate for the zeros. |
-| [Cyclic sums and rank-two arithmetic control](edition/exterior-trace/RESEARCH_ATTEMPTS.md) | Isolate the image generated by one polynomial in the total spectral coordinate, including collisions of sums. | The maximum colliding jet depth and least-norm Gram matrix are explicit. Two recurrence boundary terms give the exact rank-two control, whose arithmetic size remains to be estimated. |
-| [Exterior trace amplification](edition/exterior-trace/RESEARCH_ATTEMPTS.md) | Accumulate the positive real displacements without multiplying the control allowance by the exterior degree. | The proof gives L <= epsilon. An exact off-line quartet forces cubic growth for simple zeros and quartic growth for repeated zeros; the necessary subcubic arithmetic upper bound is not established. |
-| [Conormal layers and cyclic depth](edition/exterior-trace/RESEARCH_ATTEMPTS.md) | Differentiate the vanishing relation before quotienting it out, retaining each higher ideal layer. | PR21 proves the quotient derivative, commuting tower square, chain rule and finite degree extremum in their stated finite algebraic scope; its public-main post-merge checks passed. |
-| [Equality, coupling and Gram increments](workbenches/splitzero-tandem/continuations/20260912-cyclic/README.md) | Compute what occupies the gap between squared arithmetic control and squared real spectral excess. | The cumulative reader gives a coupling norm plus two nonnegative determinant terms, projection-based equality conditions and exact positive Cauchy–Binet formulas; the large-degree arithmetic estimate remains unfinished. |
-| [Constrained interpolation](workbenches/tau-coherent-interpolation/) | Compute minimum-norm representatives from the actual arithmetic measure, rather than choose a convenient replacement metric. | Full-jet kernel/Gram inverse formulas, nested-packet comparisons and a joint total-degree tensor construction. The original local units and theta primitives remain in the maps. |
-| [Boundary control from raw theta derivatives](workbenches/tau-boundary-layer-formal/) | Derive the small-rank control matrix from the actual derivative sequence. | Exact escape, relation-quotient and Gram-update formulas; five new Lean modules checked at the recorded PR15 head. The analytic theta specialization and integral estimates have separate written proofs, not an inferred Lean certificate. |
-| [Supported boundary integration](workbenches/tau-boundary-layer-integration/) | Carry support-changing maps, all four-mask homotopies and the next orthogonal relation layer through the same original coefficient system. | Exact quotient maps, Gram updates and rank-two control identities; six integration modules pass strict Lean checks with 68 selected axiom reports, alongside the 38 preserved boundary targets. Analytic integral estimates retain their separate written scope. |
-| [Theta norms and kernel layers](workbenches/splitzero-tandem/continuations/20260912-frontier/tex/kernel_layer_continuation.tex) | Connect the packet-dependent interpolation problem to the original theta norm sequence and track the next relation. | Complete norm/Gram-volume identities, a full relation-layer graph and derivative quotient, retaining initial indices and cross terms. See the cumulative reader's named kernel-layer sections for the complete formulas. |
-| [Symmetric arithmetic frontier](workbenches/splitzero-tandem/continuations/20260912-frontier/) | Use the original conjugation/reflection symmetries to sharpen the actual control estimate. | Quartet parity removes the general factor two in the stated finite-stage bound. Literal orbit sums transport it to signed symmetric cohomology, retaining orbit multiplicities and zero cases. An asymptotic vanishing estimate is not asserted. |
-| [Spectral-sum pushforward](workbenches/tau-spectral-sum/) | Carry a tensor calculation onto one spectral coordinate without discarding the relative directions. | One-variable matrix weights, exact Jacobians, duality, traces and complete nilpotent sum fibres. The original filtered image and arithmetic metric are retained. |
-| [Stieltjes branches and arithmetic Gram determinants](workbenches/splitzero-tandem/continuations/20260912-stieltjes/) | Express the original theta norms on the positive half-line while keeping both reflection branches, local units and multiplicities. | Exact gamma-reference norm formulas and arithmetic determinant ratios; quartet derivative-energy/volume identities. Full written proofs retain the original arithmetic zeros and show the precise limitations of the cited exponential-weight results. |
-| [Sum connection and conormal trace](workbenches/tau-sum-connection/) | Calculate what differentiation of the actual sum pushforward retains beyond its scalar density. | Full tangential connection, normal energy and conormal response into the residue trace; original mass, Jacobian drift and both half-line boundary traces retained. The shorter public note and complete source appendix are separately identified. Finite checks pass; no new Lean certificate is asserted. |
-| [Alternating/exterior packet costs](workbenches/exterior-packet-cost/) | Determine what alternating projection retains from full spectral multiplicities, original metrics and repeated-root directions. | Exact subset moments, determinant-line cancellation and surviving proper-degree nilpotent sectors; complete EA.1–38 proofs and 8,173 combinatorial/coordinate plus 26 metric cases, normal and optimized. Test matrices are fixtures, not arithmetic upper estimates; no new Lean certification is claimed. |
-| [Finite frontier formalization](workbenches/tau-frontier-formal/) | Check the cross estimates, signed averages and projected homology maps inside the existing formal library. | PR #18 is merged: five modules/40 selected reports, with 68 integration targets and the inherited libraries passing the combined strict checks. All original maps and finite hypotheses remain; analytic instantiations are not inferred. |
-| [Axial source-to-arithmetic transport](satellites/29s_ns_axial_branch_radius.tex) | Determine exactly which singularity information from the specified fluid source survives its arithmetic transform. | The broad reader's Sections 35–37 give all-axis Mellin data, four complex branch points, the sharp moving radius and an invertible endpoint-residue map. This is a calculation on the stated source patch, not a new zeta-zero witness or independent certification of the imported fluid existence theorem. |
+Written proofs, exact finite regression checks, interval enclosures and Lean
+checks have different stated scopes in the accompanying records. The gamma
+delivery passed its 17 finite methods normally and under optimization;
+independent fixtures also rejected altered mass, multiplicity, conjugation
+and relation formulas. These are not interval certificates for arbitrary
+arithmetic packets.
 
-The full proofs fix the domains, signs, coordinates and scope of each result. The current cumulative reader retains its complete derivations, source appendices and stated checking scopes. Earlier attempt rows remain useful routes into their original source revisions.
+PR #22 supplies the checked finite original-Gram trace and projection
+formalization: four modules and 50 selected transitive-axiom reports. The
+exact reviewed revision was merged, and its three post-merge workflows
+passed. PR #23 adds five strictly kernel-checked Toda modules and 30 selected
+transitive-axiom reports. It has been merged; its exact source and checking
+records accompany the edition. The Jensen/root assembly of its endpoint criterion
+is a written proof, not an additional claimed Lean theorem.
 
-## Continuing the shared work
+The companion's certified numerical inputs concern the **unmodified analytic
+seed h=1**, not a nonempty zero packet. This seed has nonzero mass while its
+finite arithmetic quotient is zero-dimensional. The Gaussian example is an
+explicit calibration, not zeta-zero data.
 
-The next quantitative questions concern the **same original arithmetic
-columns, norms and filtered spaces**: what the finite-stage estimates do as
-the degree and tensor order grow, and which explicit source estimates control
-that growth. New contributions should identify the calculation attempted,
-its motivation, the full map or estimate obtained, what failed or remains
-unfinished, and the precise source revision. Earlier attempts remain in
-[ATTEMPTS.md](ATTEMPTS.md); the broader library-to-programme map is
-[RESEARCH_PROGRAMMES.md](RESEARCH_PROGRAMMES.md).
+The outstanding quantitative problem is an upper estimate for the specified
+arithmetic determinant/endpoint ratios as tensor and polynomial degrees
+grow. The present identities do not prove that estimate. In particular, a
+one-sided bound on individual positive correction factors does not bound
+their consecutive ratios. No proof or disproof of the Riemann hypothesis is
+claimed by this edition.
 
-Frozen older editions remain linked in the repository. The current edition's
-PDFs are separate readable files, with paired source packages and publication
-identities. Raw conversation transcripts and local literature archives are
-research references, not public payload.
 
-The [previously published twenty-four-file Zenodo record](https://zenodo.org/records/22730356#files) preserves all twenty earlier downloads. The [four new readers/source packages and prior-download links](calculation_edition_20260912d/README.md) identify the 454/387-page edition separately from its frozen predecessors.
+The exact current assets and retained previous downloads are listed in the [edition index](calculation_edition_20260912e/README.md). The immutable source commit is `a3f7aa023b59e2ecd4d0a590aad912f2ecd86ec7`.

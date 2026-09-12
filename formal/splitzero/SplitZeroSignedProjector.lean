@@ -23,7 +23,7 @@ def twist (chi : G →* ℂ) (rho : Representation ℂ G V) : Representation ℂ
   map_one' := by simp
   map_mul' g h := by
     ext x
-    simp [map_mul, Module.End.mul_apply, smul_smul]
+    simp [map_mul, Module.End.mul_apply, smul_smul, mul_comm]
 
 theorem average_apply (rho : Representation ℂ G V) (x : V) :
     rho.averageMap x = ⅟(Fintype.card G : ℂ) • ∑ g : G, rho g x := by
@@ -38,7 +38,8 @@ theorem signed_average_apply (chi : G →* ℂ) (rho : Representation ℂ G V) (
 
 theorem average_idempotent (rho : Representation ℂ G V) :
     rho.averageMap.comp rho.averageMap = rho.averageMap := by
-  ext x
+  apply LinearMap.ext
+  intro x
   exact rho.averageMap_id _ (rho.averageMap_invariant x)
 
 /-- An invariant vector is preserved, not replaced by an orbit representative. -/
@@ -50,7 +51,8 @@ theorem preserves_invariant (rho : Representation ℂ G V) (x : V)
 theorem average_natural (rho : Representation ℂ G V) (sigma : Representation ℂ G W)
     (f : V →ₗ[ℂ] W) (hf : ∀ g x, f (rho g x) = sigma g (f x)) :
     f.comp rho.averageMap = sigma.averageMap.comp f := by
-  ext x
+  apply LinearMap.ext
+  intro x
   simp only [LinearMap.comp_apply, average_apply, map_smul, map_sum, hf]
 
 /-- Cancelling both signs gives the ordinary invariant projector at top degree. -/
@@ -128,7 +130,8 @@ theorem homology_decomposition (x : C.H) :
 
 theorem complement_idempotent :
     S.complementHomology.comp S.complementHomology = S.complementHomology := by
-  ext x
+  apply LinearMap.ext
+  intro x
   have hi := LinearMap.congr_fun S.homology_idempotent x
   change S.averageChain.onHomology (S.averageChain.onHomology x) =
     S.averageChain.onHomology x at hi

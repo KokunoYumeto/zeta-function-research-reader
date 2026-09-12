@@ -42,12 +42,11 @@ theorem primal_compression (A G : Matrix n n ℂ) (As : Matrix d d ℂ)
         (I.conjTranspose * A.conjTranspose) * (G * I) +
         (I.conjTranspose * G) * (A * I) -
         (w : ℂ) • (I.conjTranspose * G * I) := by
-      simp only [primal, mul_add, add_mul, mul_sub, sub_mul,
-        mul_smul_comm, smul_mul_assoc]
-      noncomm_ring
+      simp only [primal, Matrix.mul_add, Matrix.add_mul, Matrix.mul_sub,
+        Matrix.sub_mul, Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_assoc]
     _ = primal As (I.conjTranspose * G * I) w := by
       rw [hstar, hAI]
-      simp only [primal, mul_assoc]
+      simp only [primal, Matrix.mul_assoc]
 
 /-- Orbit sums use I for inclusion and L for coefficient extraction.
 The self-adjoint orbit projection is I L, not generally I I*. -/
@@ -56,18 +55,19 @@ theorem inverse_compression (G K : Matrix n n ℂ)
     (hLI : L * I = 1) (hP : (I * L).conjTranspose = I * L)
     (hKP : (I * L) * K = K * (I * L)) (hGK : G * K = 1) :
     (I.conjTranspose * G * I) * (L * K * L.conjTranspose) = 1 := by
-  have hPI : (I * L) * I = I := by simp [mul_assoc, hLI]
+  have hPI : (I * L) * I = I := by rw [Matrix.mul_assoc, hLI, Matrix.mul_one]
   have hIP : I.conjTranspose * (I * L) = I.conjTranspose := by
     have h := congrArg Matrix.conjTranspose hPI
-    simpa only [Matrix.conjTranspose_mul, hP] using h
+    rw [Matrix.conjTranspose_mul, hP] at h
+    exact h
   calc
     (I.conjTranspose * G * I) * (L * K * L.conjTranspose) =
         I.conjTranspose * G * ((I * L) * K) * L.conjTranspose := by
-      simp only [mul_assoc]
+      simp only [Matrix.mul_assoc]
     _ = I.conjTranspose * G * (K * (I * L)) * L.conjTranspose := by rw [hKP]
     _ = I.conjTranspose * (G * K) * (I * L) * L.conjTranspose := by
-      simp only [mul_assoc]
-    _ = I.conjTranspose * L.conjTranspose := by rw [hGK, mul_one, hIP]
+      simp only [Matrix.mul_assoc]
+    _ = I.conjTranspose * L.conjTranspose := by rw [hGK, Matrix.mul_one, hIP]
     _ = (L * I).conjTranspose := (Matrix.conjTranspose_mul L I).symm
     _ = 1 := by rw [hLI, Matrix.conjTranspose_one]
 

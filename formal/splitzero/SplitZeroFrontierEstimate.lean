@@ -19,8 +19,8 @@ local notation "⟪" x ", " y "⟫" => inner ℂ x y
 theorem cross_abs (x y : H) :
     |(⟪x, y⟫ + ⟪y, x⟫).re| ≤ 2 * (‖x‖ * ‖y‖) := by
   have h := (Complex.abs_re_le_norm (⟪x, y⟫)).trans (norm_inner_le_norm x y)
-  have hs : (⟪y, x⟫).re = (⟪x, y⟫).re := by
-    simpa using congrArg Complex.re (inner_conj_symm y x)
+  have hs : (⟪y, x⟫).re = (⟪x, y⟫).re :=
+    congrArg Complex.re (inner_conj_symm x y)
   rw [Complex.add_re, hs]
   apply abs_le.mpr
   rcases abs_le.mp h with ⟨hl, hu⟩

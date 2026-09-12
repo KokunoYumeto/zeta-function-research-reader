@@ -21,8 +21,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - name: Static checks and exhaustive named-declaration audit setup
-        run: python3 check.py --prepare
+      - name: Test checker and prepare named-declaration audit
+        run: |
+          python3 -m unittest -v test_check.py
+          python3 check.py --prepare
       - name: Install pinned Lean and Mathlib
         run: |
           set -euo pipefail
@@ -39,7 +41,7 @@ jobs:
           set -euo pipefail
           lake -KmaxJobs=1 build SplitZero >Build.log 2>&1 || { cat Build.log; exit 1; }
           cat Build.log
-          for source in SplitZero/Core.lean SplitZero/Hom.lean SplitZero/Support.lean SplitZero/Reconstruction.lean; do
+          for source in SplitZero/*.lean; do
             lake env lean --trust=0 -DwarningAsError=true "$source"
           done
           lake env lean --trust=0 -DwarningAsError=true Audit.lean | tee Audit.log

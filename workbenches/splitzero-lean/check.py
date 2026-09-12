@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Fail closed on absent/nonstandard axiom reports for all named SplitZero declarations."""
+"""Check the authored modules and fail closed on missing/nonstandard axiom reports.
+
+The source-name extractor supports this package's one-namespace declaration
+style; it is not a general Lean parser. Compilation checks all imported modules.
+"""
 import argparse
 import json
 import re
@@ -7,41 +11,59 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ALLOW = {"propext", "Classical.choice", "Quot.sound"}
+DECLARATION = re.compile(
+    r'^(?:@\[[^\n]*\]\s*)?'
+    r'(?:(?:protected|noncomputable)\s+)?'
+    r'(?:theorem|lemma|def|abbrev|structure|instance)\s+'
+    r'([A-Za-z_][A-Za-z_0-9]*)\b', re.M)
 
-def strip_comments(text):
+
+def strip_comments(text: str) -> str:
     out, i, depth = [], 0, 0
     while i < len(text):
         if text.startswith('/-', i):
-            depth += 1; i += 2
+            depth += 1
+            out.extend('  ')
+            i += 2
         elif depth and text.startswith('-/', i):
-            depth -= 1; i += 2
+            depth -= 1
+            out.extend('  ')
+            i += 2
         elif depth:
-            out.append('\n' if text[i] == '\n' else ' '); i += 1
+            out.append('\n' if text[i] == '\n' else ' ')
+            i += 1
         elif text.startswith('--', i):
             j = text.find('\n', i)
-            i = len(text) if j == -1 else j
+            j = len(text) if j == -1 else j
+            out.extend(' ' * (j - i))
+            i = j
         else:
-            out.append(text[i]); i += 1
+            out.append(text[i])
+            i += 1
     if depth:
         raise ValueError('unterminated Lean comment')
     return ''.join(out)
 
-def targets():
+
+def targets() -> list[str]:
     names = []
-    for path in sorted((ROOT / 'SplitZero').glob('*.lean')):
+    paths = sorted((ROOT / 'SplitZero').glob('*.lean'))
+    for path in paths:
         raw = path.read_bytes()
         if raw.startswith(b'\xef\xbb\xbf') or b'\r' in raw:
             raise ValueError(f'noncanonical encoding: {path}')
         code = strip_comments(raw.decode('utf-8'))
-        if re.search(r'\b(sorry|admit|axiom|unsafe|implemented_by)\b', code):
-            raise ValueError(f'forbidden proof escape: {path}')
-        for match in re.finditer(r'^(?:@\[[^\n]*\]\s*)?(?:(?:protected|private|noncomputable)\s+)?(?:theorem|lemma|def|instance)\s+([A-Za-z_][A-Za-z_0-9]*)\b', code, re.M):
-            names.append('SplitZero.' + match.group(1))
+        if re.search(r'\b(sorry|admit|axiom|unsafe|implemented_by|private)\b', code):
+            raise ValueError(f'unsupported or forbidden declaration: {path}')
+        names.extend('SplitZero.' + m.group(1) for m in DECLARATION.finditer(code))
     if not names or len(names) != len(set(names)):
         raise ValueError('empty or duplicated audit targets')
     return names
 
-def audit(log, names):
+
+def audit(log: str, names: list[str]) -> dict[str, list[str]]:
+    if not names or len(names) != len(set(names)):
+        raise ValueError('empty or duplicated required targets')
     reports = {}
     pattern = r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]"
     for name, axioms in re.findall(pattern, log, re.S):
@@ -59,6 +81,7 @@ def audit(log, names):
             raise ValueError(f'nonstandard axioms: {name}: {reports[name] - ALLOW}')
     return {name: sorted(reports[name]) for name in names}
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--prepare', action='store_true')
@@ -66,7 +89,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     names = targets()
     if args.prepare:
-        (ROOT / 'Audit.lean').write_text('import SplitZero\n\n' + ''.join('#print axioms ' + n + '\n' for n in names), encoding='utf-8')
+        (ROOT / 'Audit.lean').write_text('import SplitZero\n\n' + ''.join(
+            '#print axioms ' + n + '\n' for n in names), encoding='utf-8')
     result = {'named_targets': len(names), 'static_check': 'pass'}
     if args.log:
         result['axioms'] = audit(args.log.read_text(encoding='utf-8'), names)

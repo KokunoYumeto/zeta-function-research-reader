@@ -37,7 +37,7 @@ def splitHomeomorph [IsTopologicalAddGroup B]
   toEquiv := S.splitEquiv.toEquiv
   continuous_toFun := (hTheta.comp continuous_fst).add
     ((S.section_continuous hTheta hLambda).comp continuous_snd)
-  continuous_invFun := hLambda.prod_mk (LinearMap.range S.theta).continuous_mkQ
+  continuous_invFun := hLambda.prodMk (LinearMap.range S.theta).continuous_mkQ
 
 theorem changeSection_continuous [IsTopologicalAddGroup B]
     (hTheta : Continuous S.theta) (hLambda : Continuous S.lambda)

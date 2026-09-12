@@ -54,7 +54,7 @@ def unitCycle : (source k).Cycles := ⟨(1 : k), rfl⟩
 theorem unit_class_nonzero [Nontrivial k] : (source k).classOf (unitCycle k) ≠ 0 := by
   intro h
   obtain ⟨x, hx⟩ := ((source k).class_zero_iff_boundary (unitCycle k)).mp h
-  exact zero_ne_one hx
+  exact (zero_ne_one : (0 : k) ≠ (1 : k)) hx
 
 theorem killed_map_zero : (killed k).onHomology = 0 := by
   apply LinearMap.ext

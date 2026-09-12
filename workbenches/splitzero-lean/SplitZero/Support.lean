@@ -14,10 +14,10 @@ namespace SplitZero
 def support (R : Type*) [CommRing R] {M : Type*}
     [AddCommMonoid M] [Module (G R) M] (m : M) : M := (e : G R) • m
 
-def Skeleton (R M : Type*) [CommRing R] [AddCommMonoid M] [Module (G R) M] :=
+abbrev Skeleton (R M : Type*) [CommRing R] [AddCommMonoid M] [Module (G R) M] :=
   {l : M // support R l = l}
 
-def Fiber (R M : Type*) [CommRing R] [AddCommMonoid M] [Module (G R) M]
+abbrev Fiber (R M : Type*) [CommRing R] [AddCommMonoid M] [Module (G R) M]
     (l : Skeleton R M) := {m : M // support R m = l.val}
 
 section
@@ -85,7 +85,6 @@ instance skeletonSemilatticeSup : SemilatticeSup (Skeleton R M) where
   le l m := l.val + m.val = m.val
   le_refl l := (support_eq_self_iff R l.val).mp l.property
   le_trans l m n hlm hmn := by
-    change l.val + n.val = n.val
     calc
       l.val + n.val = l.val + (m.val + n.val) := by rw [hmn]
       _ = (l.val + m.val) + n.val := (add_assoc _ _ _).symm
@@ -116,24 +115,29 @@ theorem skeleton_smul (r : R) (l : Skeleton R M) : (ofR r : G R) • l.val = l.v
     _ = support R l.val := ofR_smul_support R r l.val
     _ = l.val := l.property
 
+instance fiberZero (l : Skeleton R M) : Zero (Fiber R M l) := ⟨⟨l.val, l.property⟩⟩
+
+instance fiberAdd (l : Skeleton R M) : Add (Fiber R M l) :=
+  ⟨fun x y => ⟨x.val + y.val, by
+    rw [support_add, x.property, y.property]
+    exact (support_eq_self_iff R l.val).mp l.property⟩⟩
+
+instance fiberNeg (l : Skeleton R M) : Neg (Fiber R M l) :=
+  ⟨fun x => ⟨(ofR (-1 : R) : G R) • x.val, (support_smul R _ _).trans x.property⟩⟩
+
 /-- Each fibre has its own additive zero, namely its support label. -/
 instance fiberAddCommGroup (l : Skeleton R M) : AddCommGroup (Fiber R M l) where
-  add x y := ⟨x.val + y.val, by
-    rw [support_add, x.property, y.property]
-    exact (support_eq_self_iff R l.val).mp l.property⟩
-  zero := ⟨l.val, l.property⟩
-  neg x := ⟨(ofR (-1 : R) : G R) • x.val, (support_smul R _ _).trans x.property⟩
+  add := (· + ·)
+  zero := 0
+  neg := Neg.neg
   add_assoc x y z := Subtype.ext (add_assoc x.val y.val z.val)
   zero_add x := by
     apply Subtype.ext
-    change l.val + x.val = x.val
-    rw [← x.property, add_comm]
-    exact add_support R x.val
+    exact (add_comm l.val x.val).trans
+      ((congrArg (fun z : M => x.val + z) x.property.symm).trans (add_support R x.val))
   add_zero x := by
     apply Subtype.ext
-    change x.val + l.val = x.val
-    rw [← x.property]
-    exact add_support R x.val
+    exact (congrArg (fun z : M => x.val + z) x.property.symm).trans (add_support R x.val)
   add_comm x y := Subtype.ext (add_comm x.val y.val)
   neg_add_cancel x := Subtype.ext ((negation_add R x.val).trans x.property)
   nsmul := nsmulRec
@@ -179,9 +183,7 @@ theorem transport_refl (l : Skeleton R M) : transport R l l le_rfl = LinearMap.i
   apply LinearMap.ext
   intro x
   apply Subtype.ext
-  change x.val + l.val = x.val
-  rw [← x.property]
-  exact add_support R x.val
+  exact (congrArg (fun z : M => x.val + z) x.property.symm).trans (add_support R x.val)
 
 theorem transport_trans (l m n : Skeleton R M) (hlm : l ≤ m) (hmn : m ≤ n) :
     (transport R m n hmn).comp (transport R l m hlm) = transport R l n (le_trans hlm hmn) := by

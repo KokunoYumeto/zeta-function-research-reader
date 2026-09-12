@@ -16,8 +16,7 @@ abbrev Boolean := G (ZMod 1)
 
 theorem boolean_one_add_one : (1 : Boolean) + 1 = 1 := by
   change ofR ((1 : ZMod 1) + 1) = ofR 1
-  congr 1
-  exact Subsingleton.elim _ _
+  exact congrArg ofR (Subsingleton.elim _ _)
 
 variable (R : Type*) [CommRing R]
 
@@ -45,8 +44,8 @@ def allGeneratorsOne : G R →* Boolean where
   map_one' := rfl
   map_mul' _ _ := by simp
 
-/-- Kernel-checked countermodel to the claim that the two printed relation families
-already imply [tau] = 0 in the uncontracted free monoid semiring. -/
+/-- Countermodel to the claim that the two printed relation families already imply
+[tau] = 0 in the uncontracted free monoid semiring. -/
 theorem reconstruction_relations_do_not_force_zero :
     (∀ a b : R, allGeneratorsOne R (ofR a) + allGeneratorsOne R (ofR b) =
       allGeneratorsOne R (ofR (a + b))) ∧

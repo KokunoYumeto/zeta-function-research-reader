@@ -1,0 +1,1397 @@
+% Complete source sections 12--13 plus their required division, source-algebra
+% and Sobolev-comparison proofs. Source SHA256:
+% b70272d1e23d49d2c5b7c9d407a01b151443a17ea93a7e6a3f4597e0e982f90a.
+% Integration changes only namespace, exact local cross-references and the
+% explicit time-first field convention; dependency additions are recorded.
+\section{The actual source quotient of a flow-driven arithmetic profile}
+\label{csq:sec-flow-source-quotient}
+
+
+\subsection{Retained source data and the full division estimate}
+The arithmetic data are exactly those of
+Section~\ref{sec:cq-source} and \eqref{eq:cq-N}:
+$\cqE$ is the set of entire functions of order at most one,
+$\cqN=\overline{\mathbb C[s]\Xi}^{\,\tau}$,
+$\cqQ=(\cqE,\tau)/\cqN$, and $S[h]=[sh]$.
+The source topology $\tau$ remains unnamed beyond the primary
+specification; it is not replaced by the explicit growth topology
+$\gamma$ of Section~\ref{sec:cq-heatspace}.
+Its growth seminorms are
+$\|h\|_{p,a}=\sup_s|h(s)|e^{-a|s|^p}$ for every $1<p<2$, $a>0$.
+The full-domain heat group is precisely \eqref{eq:cq-U}.
+The original multiplication $M h(s)=s h(s)$ preserves $\cqN$,
+as proved from its polynomial generators in Section~\ref{sec:cq-source}.
+In the flow formulas below, $S_j$, $J$ and $X_t$ instead denote
+the polynomial target, its derivative and the volume-preserving
+preterminal material flow of Section~\ref{sec:ns-full-flow};
+their exact formulas are \eqref{nfl:S}, \eqref{nfl:Jinverse} and
+\eqref{nfl:compact}. The field convention is $u(t,x)$.
+The particular source field and its full remainder are those of
+Section~\ref{sec:ns-actual-witness}. Its cited existence theorem
+remains an imported primary-source result.
+
+For the division argument the value $\Xi(0)=\xi(1/2)$ is nonzero.
+One direct verification retains the usual Dirichlet eta function:
+$\eta(1/2)=\sum_{n\geq1}(-1)^{n-1}n^{-1/2}>0$, since its paired
+terms are positive and its first pair is strictly positive.
+The alternating-series convergence and
+$\eta(s)=(1-2^{1-s})\zeta(s)$ give
+$\zeta(1/2)=\eta(1/2)/(1-\sqrt2)<0$.
+The other factors in
+$\xi(1/2)=\tfrac12(1/2)(-1/2)\pi^{-1/4}\Gamma(1/4)\zeta(1/2)$
+therefore give $\Xi(0)>0$. No assertion about any noncentral
+zeta zero is used.
+
+We now compute the closures and the failure of descent in specified
+topologies. This does not identify them with $\tau$.
+Let $\kappa$ be the topology of uniform convergence on compact sets
+on the same set $\cqE$, and define
+\[
+ N_\gamma=\overline{\cqC[s]\Xi}^{\,\gamma},\qquad
+ N_\kappa=\overline{\cqC[s]\Xi}^{\,\kappa}.
+\]
+Evaluations of all derivatives are continuous in both topologies by
+Cauchy's formula. The growth topology is finer than $\kappa$, so
+$N_\gamma\subseteq N_\kappa$.
+If $\lambda$ is a zero of $\Xi$ with its actual multiplicity $m_\lambda$,
+every element of either closed subspace has vanishing derivatives
+of orders $0,\ldots,m_\lambda-1$ at $\lambda$.
+
+\begin{cqlemma}[Entire division with its growth and topology retained]
+\label{csq:thm-division}
+Let $g\in\cqE$ with $g(0)\ne0$. If $f\in\cqE$ and $h=f/g$
+extends to an entire function, then $h\in\cqE$. For $1<p<2$,
+$a>0$, put $b=a/(6\cdot2^p)$. There is the linear division estimate
+\begin{equation}\label{csq:eq-division-bound}
+ \|f/g\|_{p,a}\leq
+ \left(\frac{\max(1,\|g\|_{p,b})}{|g(0)|}\right)^3
+ \|f\|_{p,b}.
+\end{equation}
+Multiplication by $g$ is a topological linear isomorphism from
+$(\cqE,\gamma)$ onto the closed subspace of functions divisible by
+$g$, with its subspace topology. Compact-topology division is also
+continuous.
+\end{cqlemma}
+\begin{proof}
+Choose $R>0$ with no zero of $g$ on $|s|=R$. Factor its finitely
+many zeros in the disk, retaining multiplicities. The residual is
+holomorphic and zero-free there, so its log modulus is harmonic.
+For $|z|<R$ the boundary mean of $\log|Re^{i\theta}-z|$ equals
+$\log R$: expand $\log(1-(z/R)e^{-i\theta})$ in its uniformly
+convergent series and take real parts. The mean-value formula for
+the residual gives the exact Jensen identity
+\[
+ \frac1{2\pi}\int_0^{2\pi}\log|g(Re^{i\theta})|\,d\theta
+ =\log|g(0)|+\sum_{|z|<R}m_z\log(R/|z|)\geq\log|g(0)|.
+\]
+There is no zero at zero. With
+$\log^+x=\max(0,\log x)$ and $\log^-x=\max(0,-\log x)$,
+the inequality $\log^+|h|\leq\log^+|f|+\log^-|g|$ gives
+\begin{equation}\label{csq:eq-division-mean}
+ \frac1{2\pi}\int_0^{2\pi}\log^+|h(Re^{i\theta})|\,d\theta
+ \leq\log^+M_f(R)+\log^+M_g(R)-\log|g(0)|.
+\end{equation}
+The right side is nonnegative since $M_g(R)\geq|g(0)|$.
+The harmonic Poisson extension of the continuous nonnegative boundary
+function $\log^+|h|$ majorizes $\log|h|$ by the maximum principle
+and is nonnegative; hence it majorizes $\log^+|h|$ in the disk.
+For $|s|\leq r<R$ the Poisson kernel is at most $(R+r)/(R-r)$.
+Take $R\downarrow2r$ through circles avoiding zeros. Continuity of
+the two maximum functions gives, for every $r>0$,
+\begin{equation}\label{csq:eq-division-radial}
+ \log^+M_h(r)\leq
+ 3\bigl(\log^+M_f(2r)+\log^+M_g(2r)-\log|g(0)|\bigr).
+\end{equation}
+No pointwise lower bound for $g$ on a large circle has been assumed.
+For $f\ne0$, put $F=\|f\|_{p,b}>0$ and apply this to $f/F,h/F$.
+Then $\log^+M_{f/F}(2r)\leq b(2r)^p$, and
+$\log^+M_g(2r)\leq\log\max(1,\|g\|_{p,b})+b(2r)^p$.
+The coefficient of $r^p$ is $6b2^p=a$, giving
+\eqref{csq:eq-division-bound}; continuity fills in $r=0$.
+The zero numerator is immediate. All $p,a$ are allowed, so $h$
+belongs to the original order class and division is continuous.
+Multiplication is continuous by Lemma~\ref{thm:cq-density}.
+The requisite vanishing jets at every zero are closed conditions;
+local Taylor division identifies them with entire divisibility.
+The estimate proves this closed set is exactly $g\cqE$.
+For the compact topology choose $R>r$ with no boundary zero and
+$\delta=\min_{|s|=R}|g(s)|>0$. The maximum principle for the filled
+entire quotient gives $M_h(r)\leq\delta^{-1}M_f(R)$, proving
+compact continuity too.
+\end{proof}
+
+For general nonzero $g\in\cqE$, choose and retain a point $c$ with
+$g(c)\ne0$ and use disks centered at $c$. The functions and spectral
+coordinate remain unchanged. The bound
+$|s+c|^p\leq2^{p-1}(|s|^p+|c|^p)$ proves continuity of translations
+by $c$ and $-c$ in $\gamma$; compact containment proves it in
+$\kappa$. Thus all conclusions hold with the stated translated
+estimates. The original center $c=0$ already applies to $\Xi$.
+
+\begin{cqproposition}[The computed closures are the same subspace]
+\label{csq:thm-equalclosures}
+With their definitions unchanged,
+\begin{equation}\label{csq:eq-equalclosures}
+ \begin{aligned}
+ N_\gamma=N_\kappa&=\Xi\cqE\\
+ &=\{f\in\cqE:D^hf(\lambda)=0\text{ for every }\Xi(\lambda)=0,
+                                      \ 0\leq h<m_\lambda\}.
+ \end{aligned}
+\end{equation}
+This is equality of subsets of the original ring, not an
+identification of $\gamma$, $\kappa$, or $\tau$.
+\end{cqproposition}
+\begin{proof}
+Jet continuity puts both closures inside the displayed vanishing
+set and gives $N_\gamma\subseteq N_\kappa$. Local Taylor division
+makes $h=f/\Xi$ entire for any $f$ in that set; the division lemma
+then puts $h$ in $\cqE$. Its Taylor polynomials $p_n$ converge in
+$\gamma$, and multiplication gives $p_n\Xi\to f$ there. Thus the
+vanishing set is contained in $N_\gamma$, proving all equalities.
+The algebraic-ideal equality is the conclusion of this argument;
+it was not substituted for an unevaluated closure.
+\end{proof}
+
+
+\subsection{Translation, heat, and the original spectral generator}
+
+For $a,\theta\in\mathbb C$ define, with the input coordinate $s$ and
+output coordinate $\zeta$ retained,
+\[
+ (T_ah)(\zeta)=h(\zeta+a),\qquad
+ V_{\theta,a}=T_aU_\theta:\cqE\longrightarrow\cqE.
+\]
+The derivative is the complex derivative in the displayed coordinate.
+Translation preserves the original order class. More precisely, for
+$1<p<2$ and $c>0$ the already defined growth seminorms satisfy
+\[
+ \|T_ah\|_{p,c}\leq
+ e^{c|a|^p}\|h\|_{p,c\,2^{1-p}},
+\]
+because $|\zeta+a|^p\leq2^{p-1}(|\zeta|^p+|a|^p)$.
+Thus $T_a$ and $T_{-a}$ are continuous for $\gamma$. Ordinary
+differentiation gives $DT_a=T_aD$; continuity and the convergent
+heat series give $T_aU_\theta=U_\theta T_a$. Consequently
+\[
+ V_{\theta,a}^{-1}=U_{-\theta}T_{-a},\qquad
+ V_{\theta,a}D=DV_{\theta,a}.
+\]
+These assertions hold on all of $\cqE$ and do not impose continuity
+of translation or differentiation for the unnamed source topology.
+
+Retain the actual $\tau$, $\cqN$ and $\cqQ$, and define their exact
+transported presentations
+\begin{equation}
+ \tau_{\theta,a}=(V_{\theta,a})_*\tau,\qquad
+ N_{\theta,a}=V_{\theta,a}\cqN,\qquad
+ Q_{\theta,a}=(\cqE,\tau_{\theta,a})/N_{\theta,a}.
+ \label{csq:eq-flow-moving-source}
+\end{equation}
+Then $N_{\theta,a}$ is closed, and
+\[
+ \overline V_{\theta,a}:\cqQ\longrightarrow Q_{\theta,a},
+ \qquad[h]\longmapsto[V_{\theta,a}h]
+\]
+is a complex-linear homeomorphism. Its inverse is induced by the
+displayed inverse on representatives. The original arithmetic
+multiplication has the exact conjugate
+\begin{equation}
+ B_{\theta,a}=V_{\theta,a}sV_{\theta,a}^{-1}
+              =\zeta+a-\frac{\theta}{2}D_\zeta .
+ \label{csq:eq-flow-spectral-generator}
+\end{equation}
+Indeed the previous heat commutator gives
+$U_\theta sU_{-\theta}=s-\theta D/2$; translation sends multiplication
+by $s$ to multiplication by $\zeta+a$ and commutes with $D$.
+This full combination preserves $N_{\theta,a}$ and is continuous for
+$\tau_{\theta,a}$ by its conjugacy. The induced quotient operator is
+similar through $\overline V_{\theta,a}$ to the source $S$, so its
+spectrum is exactly the original $s$-spectrum. To verify both
+directions, conjugate a continuous two-sided inverse of $S-\lambda$
+by $\overline V_{\theta,a}$, or conjugate an inverse of the transported
+operator back. At $\theta=0$, multiplication by $\zeta$ itself
+descends, and its spectrum is $\operatorname{Spec}(S)-a$ because
+$B_{0,a}=\zeta+a$.
+
+Along the retained real flow let
+\[
+ a_j(t,q)=S_j(X_t(q)),\qquad
+ v_j(t,q)=\partial_ta_j(t,q),\qquad
+ \Psi_j(t,q,\zeta)=V_{\vartheta(t),a_j(t,q)}\Xi(\zeta).
+\]
+Here $S_j$ denotes the original polynomial target component, whereas
+the unindexed $S$ above denotes the arithmetic quotient operator.
+The source quotient is taken fibre by fibre at each fixed $(t,q,j)$.
+If a topology on the whole family of quotient fibres is needed, give
+their disjoint union the topology transported from
+$\mathbb C^2\times\cqQ$ by
+$((\theta,a),[h])\mapsto((\theta,a),[V_{\theta,a}h])$.
+This specifies joint continuity by an exact trivialization and does
+not assert joint parameter continuity for the untransported $\tau$.
+
+Because $\Xi\in\cqN$, every profile represents zero in its actual
+transported quotient:
+\begin{equation}
+ [\Psi_j]_{Q_{\vartheta,a_j}}=0.
+ \label{csq:eq-flow-profile-zero}
+\end{equation}
+Its temporal defect is nevertheless a specific full representative,
+\[
+ \mathcal D_j=\partial_t\Psi_j+
+              \frac{\vartheta'}4D_\zeta^2\Psi_j
+             =v_jV_{\vartheta,a_j}\Xi'.
+\]
+This is the complete chain rule with the original heat coefficient.
+Write
+\[
+ \beta=[\Xi']_{\cqQ},\qquad
+ \mathfrak a_\beta=\{c\in\mathbb C:c\Xi'\in\cqN\}.
+\]
+Then the exact quotient statement and its scalar kernel are
+\begin{equation}
+ [\mathcal D_j]_{Q_{\vartheta,a_j}}
+    =\overline V_{\vartheta,a_j}(v_j\beta),\qquad
+ \ker(c\mapsto c\beta)=\mathfrak a_\beta .
+ \label{csq:eq-flow-source-beta}
+\end{equation}
+The set $\mathfrak a_\beta$ is a closed complex linear subspace:
+it is the inverse image of the closed $\cqN$ under the continuous
+scalar map $c\mapsto c\Xi'$ into $(\cqE,\tau)$.
+Its equality with $\{0\}$ or $\mathbb C$ is precisely the unresolved
+membership question $\Xi'\notin\cqN$ or $\Xi'\in\cqN$.
+No evaluation functional on the source quotient is used to decide it.
+
+At a fixed physical point $x=X_t(q)$, retain
+$v=J(x)u(t,x)$ and the full inverse
+$J^{-1}(x)=[2W_1(x)\ W_2(x)\ W_3(x)]$. Thus the exact kernel of
+the complexified velocity-to-source-class map is
+\[
+ J(x)^{-1}(\mathfrak a_\beta^3)\subseteq\mathbb C^3;
+\]
+for real velocities take its intersection with $\mathbb R^3$.
+This follows componentwise from \eqref{csq:eq-flow-source-beta} and
+the invertibility of the unchanged $J$.
+
+The derivative relation explains why a zero profile class does not
+determine its representative derivative. At a fixed $(\theta,a)$ put
+\[
+ \mathfrak D_{\theta,a}
+ =\{([h],[Dh]):h\in\cqE\}\subset Q_{\theta,a}^2,\qquad
+ \mathcal W_{\theta,a}
+ =(DN_{\theta,a}+N_{\theta,a})/N_{\theta,a}.
+\]
+It has full domain and output fibre $[Dh]+\mathcal W_{\theta,a}$
+at $[h]$: replace $h$ by every $h+n$ with $n\in N_{\theta,a}$.
+Its presenting map has kernel
+$\{h\in N_{\theta,a}:Dh\in N_{\theta,a}\}$.
+Since $D$ commutes with $V_{\theta,a}$, conjugating both components
+by $\overline V_{\theta,a}$ gives exactly the previous source
+derivative relation and its ambiguity space. In particular
+$\overline V_{\theta,a}\beta$ is an actual element of its
+multivalued part at zero. The displayed temporal connection is an
+identity on the full smooth profiles; a derivative on all
+untransported source quotient representatives is not presumed.
+
+\subsection{An exact information-preserving refinement and its residue projection}
+
+Retain the explicit analytic ideal $I=\Xi\cqE$, already proved closed
+for $\gamma$ by the full division estimate, and put
+\begin{equation}
+ H_\cap=\cqN\cap I,\qquad
+ C_\cap=(\cqE,\tau\vee\gamma)/H_\cap,\qquad
+ Q_I=(\cqE,\gamma)/I .
+ \label{csq:eq-flow-meet-quotient}
+\end{equation}
+The join topology is precisely the topology induced by
+$h\mapsto(h,h)$ into $(\cqE,\tau)\times(\cqE,\gamma)$.
+Both subspaces in the intersection are closed in this join, so
+$C_\cap$ is Hausdorff. The identity on representatives induces
+continuous surjections
+\begin{equation}
+ p_N:C_\cap\longrightarrow\cqQ,\qquad
+ p_I:C_\cap\longrightarrow Q_I,\qquad
+ \ker p_N=\cqN/H_\cap,\quad
+ \ker p_I=I/H_\cap .
+ \label{csq:eq-flow-meet-maps}
+\end{equation}
+The kernel assertions are direct membership tests; continuity follows
+from the quotient universal property. These kernel identifications
+are also homeomorphisms when $\cqN$ and $I$ have their subspace
+topologies from $\tau\vee\gamma$. To prove this, let $q_\cap$ be
+the open quotient map and let $A$ denote either subspace.
+Because $H_\cap\subset A$,
+$q_\cap(A\cap O)=q_\cap(A)\cap q_\cap(O)$ for every open ambient
+$O$. Thus its restriction to $A$ is an open quotient map onto
+the corresponding kernel with its subspace topology.
+The joint map $(p_N,p_I)$ is continuous and injective since its
+kernel is zero. No inference of a topological embedding from those
+two properties is needed.
+
+Let $\lambda$ be any actual zero of $\Xi$, with its actual
+multiplicity $m_\lambda\geq1$. Choose a disk containing no other zero
+and retain the full unit
+\[
+ \Xi(s)=(s-\lambda)^{m_\lambda}A_\lambda(s),
+ \qquad A_\lambda(\lambda)\ne0.
+\]
+For $h\in\cqE$ define
+\begin{equation}
+ R_\lambda(h)
+ =\operatorname{Res}_{s=\lambda}\frac{h(s)}{\Xi(s)}
+ =\frac1{2\pi i}\int_{|s-\lambda|=r}
+                    \frac{h(s)}{\Xi(s)}\,ds ,
+ \label{csq:eq-flow-residue-functional}
+\end{equation}
+where the circle has positive orientation and lies in this disk.
+The integral is independent of the permitted $r$ by Laurent
+expansion. It is continuous for $\gamma$: its absolute value is
+at most $r\sup_{|s-\lambda|=r}|h(s)|/
+\min_{|s-\lambda|=r}|\Xi(s)|$, and a compact supremum is bounded
+by a fixed growth seminorm times the maximum of its exponential
+weight on the circle. It annihilates $I$, since $h/\Xi$ is entire
+there, and therefore annihilates $H_\cap$.
+
+Logarithmic differentiation of the full local factor gives
+\begin{equation}
+ \frac{c\Xi'(s)}{\Xi(s)}
+ =\frac{m_\lambda c}{s-\lambda}
+        +c\frac{A_\lambda'(s)}{A_\lambda(s)},\qquad
+ R_\lambda(c\Xi')=m_\lambda c .
+ \label{csq:eq-flow-logarithmic-unit}
+\end{equation}
+In particular $\Xi'\notin I$: the displayed pole is nonzero.
+Thus $\beta_I=[\Xi']_{Q_I}\ne0$, and
+$\widetilde\beta=[\Xi']_{C_\cap}\ne0$ as well, independent of the
+status of $\beta$ in the actual source quotient.
+The residue functional factors continuously through $C_\cap$; write
+its induced functional as $\widetilde R_\lambda$.
+The formula
+\begin{equation}
+ \Pi_\lambda(c)
+  =\frac{\widetilde R_\lambda(c)}{m_\lambda}\,
+                  \widetilde\beta,\qquad c\in C_\cap
+ \label{csq:eq-flow-meet-projection}
+\end{equation}
+defines a continuous projection onto the line
+$\mathbb C\widetilde\beta$. Indeed its square is itself by
+$\widetilde R_\lambda(\widetilde\beta)=m_\lambda$, and scalar
+multiplication on the quotient is continuous. Its inverse coordinate
+on that line is $\widetilde R_\lambda/m_\lambda$, while
+$c\mapsto c\widetilde\beta$ is its continuous inverse.
+Consequently this line has exactly the ordinary complex topology,
+and
+$C_\cap=\mathbb C\widetilde\beta\oplus
+\ker\widetilde R_\lambda$ is a continuous direct sum.
+This proves an information-preserving refinement of the actual
+source map, including a continuous recovery coordinate.
+
+The full principal-part map
+$h\mapsto(\operatorname{PP}_\lambda(h/\Xi))_{\lambda\in Z(\Xi)}$
+has kernel exactly $I$. Vanishing of every negative Laurent
+coefficient makes $h/\Xi$ entire at every zero; it is already
+holomorphic elsewhere, and the proved entire division bound
+puts it in $\cqE$. The reverse inclusion is immediate.
+Each finite principal-part coordinate is continuous by the same
+circle integral with the appropriate power of $s-\lambda$.
+On the velocity line its entire image at every actual zero is
+the single term $m_\lambda c/(s-\lambda)$ from
+\eqref{csq:eq-flow-logarithmic-unit}, with the unchanged analytic
+unit in the regular part.
+
+For general $(\theta,a)$ let
+$I_{\theta,a}=V_{\theta,a}I$ and transport
+\eqref{csq:eq-flow-meet-quotient} by $V_{\theta,a}$.
+Its ambient topology is
+$\tau_{\theta,a}\vee\gamma$, since $V_{\theta,a}$ is a
+$\gamma$-homeomorphism, and its relation is
+$N_{\theta,a}\cap I_{\theta,a}=V_{\theta,a}H_\cap$.
+Every map, kernel and projection above is transported exactly.
+In particular the transported residue coordinate is
+\[
+ R_{\lambda;\theta,a}(h)
+ =\operatorname{Res}_{s=\lambda}
+           \frac{(U_{-\theta}T_{-a}h)(s)}{\Xi(s)}.
+\]
+For the actual temporal defect it gives
+$R_{\lambda;\vartheta,a_j}(\mathcal D_j)=m_\lambda v_j$.
+The pair of source and analytic classes therefore has the
+explicit injective common lift
+$v_j[V_{\vartheta,a_j}\Xi']$ in this transported refinement.
+For nonzero heat time this formula retains the inverse heat
+operator; it does not replace $V_{\theta,a}I$ by an unproved
+ordinary ideal generated by $T_aZ_\theta$.
+
+\subsection{The logarithmic connection and the public blowup residue field}
+
+Take the explicit Newman-time choice $\vartheta(t)=0$.
+For the original real flow set
+\[
+ \Psi_j(t,q,\zeta)=\Xi(\zeta+a_j(t,q)),\qquad
+ \mathcal D_j=\partial_t\Psi_j
+             =v_j(t,q)\Xi'(\zeta+a_j(t,q)).
+\]
+At every actual zero $\lambda$ the translated divisor is
+$\zeta_{\lambda,j}(t,q)=\lambda-a_j(t,q)$, and the full factorization
+is
+\[
+ \Psi_j=
+ (\zeta-\zeta_{\lambda,j})^{m_\lambda}
+ A_\lambda(\zeta+a_j).
+\]
+Thus all multiplicities and the actual analytic unit are retained.
+Since $a_j$ is real, its imaginary coordinate is exactly
+$\operatorname{Im}\lambda$. Differentiating its location gives
+$\partial_t\zeta_{\lambda,j}=-v_j$.
+
+On the complement of the divisor in
+$[0,T)\times\mathbb R^3_q\times\mathbb C_\zeta$, define the
+complex-valued differential form, smooth in the real variables and
+holomorphic in $\zeta$,
+\begin{equation}
+ \omega_j=\frac{d\Psi_j}{\Psi_j}
+ =\frac{\Xi'(\zeta+a_j)}{\Xi(\zeta+a_j)}
+                         (d\zeta+da_j),\qquad
+ da_j=v_j\,dt+\sum_b\partial_{q_b}a_j\,dq_b .
+ \label{csq:eq-flow-logarithmic-connection}
+\end{equation}
+All label and time coefficients are displayed. Put $s=\zeta+a_j$.
+Direct exterior differentiation gives
+$d\omega_j=(\Xi'/\Xi)'(s)\,ds\wedge ds+
+(\Xi'/\Xi)(s)d^2s=0$.
+Equivalently the connection $d-\omega_j$ on the trivial complex
+line has zero curvature and annihilates the section $\Psi_j$.
+This calculation is on the complement of its zeros and retains
+the singular divisor explicitly.
+
+At fixed $(t,q)$ a sufficiently small positively oriented circle
+around $\zeta_{\lambda,j}$ has
+\[
+ \frac1{2\pi i}\int\omega_j=m_\lambda,
+\]
+where only its $d\zeta$ restriction is integrated. The pole term in
+\eqref{csq:eq-flow-logarithmic-unit} gives this integral; the
+holomorphic unit term has zero integral by Cauchy's theorem.
+The time component and its residue are exactly
+\begin{align}
+ \omega_j(\partial_t)
+ &=\frac{\mathcal D_j}{\Psi_j}
+ =\frac{m_\lambda v_j}{\zeta-\zeta_{\lambda,j}}
+       +v_j\frac{A_\lambda'(\zeta+a_j)}
+                       {A_\lambda(\zeta+a_j)},\notag\\
+ r_j(t,q)
+ &:=\operatorname{Res}_{\zeta=\zeta_{\lambda,j}}
+                    \frac{\mathcal D_j}{\Psi_j}
+ =m_\lambda v_j
+ =-m_\lambda\partial_t\zeta_{\lambda,j}.
+ \label{csq:eq-flow-temporal-residue}
+\end{align}
+The coordinate change $s=\zeta+a_j$ has differential $ds=d\zeta$
+on each spectral fibre, so this is precisely
+$R_{\lambda;0,a_j}(\mathcal D_j)$, including its orientation
+and multiplicity factor.
+
+Write $r=(r_1,r_2,r_3)^{\mathsf T}$, and retain the full original
+polynomial target and its matrix inverse:
+\[
+ S=(F_1/2,F_2,F_3)^{\mathsf T},\quad
+ J=DS=\operatorname{diag}(1/2,1,1)DF,\quad
+ J^{-1}=[2W_1\ W_2\ W_3].
+\]
+The literal recovery and pointwise norm identities are
+\begin{equation}
+ \begin{aligned}
+ u(t,X_t(q))
+ &=\frac{2W_1(X_t(q))r_1+
+              W_2(X_t(q))r_2+W_3(X_t(q))r_3}{m_\lambda},\\
+ |r(t,q)|^2&=m_\lambda^2|J(X_t(q))u(t,X_t(q))|^2 .
+ \end{aligned}
+ \label{csq:eq-flow-residue-velocity-recovery}
+\end{equation}
+They follow by $r=m_\lambda v$, $v=Ju$ and the stated matrix
+inverse, with no selection of a global inverse sheet of $S$.
+The flow $X_t$ is retained as part of the data.
+
+For the nonempty compact velocity support $K$ put
+\[
+ M_K=\max_K\|J\|_{\mathrm{op}},\qquad
+ N_K=\max_K\|J^{-1}\|_{\mathrm{op}}.
+\]
+They are finite and positive by compactness and $\det J=-1$.
+Since $X_t(K)=K$, $X_t$ is onto, and $u,v,r$ vanish outside
+the corresponding compact labels, \eqref{csq:eq-flow-residue-velocity-recovery}
+gives
+\begin{equation}
+ \frac{m_\lambda}{N_K}\|u(t)\|_\infty
+ \leq\sup_q|r(t,q)|
+ \leq m_\lambda M_K\|u(t)\|_\infty .
+ \label{csq:eq-flow-residue-supremum}
+\end{equation}
+The volume-preserving change of variables $x=X_t(q)$ gives
+\begin{equation}
+ \int_{\mathbb R^3}|r(t,q)|^2\,dq
+ =m_\lambda^2\int_{\mathbb R^3}|J(x)u(t,x)|^2\,dx,
+ \label{csq:eq-flow-residue-energy}
+\end{equation}
+whose square root is between
+$(m_\lambda/N_K)\|u(t)\|_2$ and
+$m_\lambda M_K\|u(t)\|_2$.
+These are exact spatial estimates for the arithmetic residues.
+With the previously proved spectral normalization
+$d_Z(0)^2=\int_{\mathbb R}|\Xi'(s)|^2ds>0$, the unchanged
+real translations also give
+\[
+ |r(t,q)|
+ =\frac{m_\lambda}{d_Z(0)}
+       \left(\sum_j\|\mathcal D_j(t,q,\cdot)\|_{L^2(\mathbb R)}^2
+       \right)^{1/2}.
+\]
+
+\begin{cqproposition}[Application of the cited public Navier--Stokes theorem]
+For every $\nu>0$, take the velocity, pressure and force supplied by
+the public Theorem~1.1 of \cite{openaiNS2026release}. The construction above,
+with $\vartheta=0$, gives arithmetic logarithmic residue fields
+satisfying
+\[
+ \sup_{0\leq t<1}\int_{\mathbb R^3}|r(t,q)|^2\,dq<\infty,
+ \qquad
+ \limsup_{t\uparrow1}\sup_q|r(t,q)|=\infty .
+\]
+Every residue recovers the full physical velocity by
+\eqref{csq:eq-flow-residue-velocity-recovery}, and each translated
+arithmetic divisor has the same imaginary coordinates as the
+original zero divisor of $\Xi$.
+\end{cqproposition}
+\begin{proof}
+The cited theorem supplies a smooth incompressible velocity on
+$[0,1)\times\mathbb R^3$, a fixed compact support, zero initial
+velocity, a uniform kinetic-energy bound, and unbounded terminal
+velocity supremum, with its stated smooth compactly supported force
+and its pressure. These are the inputs of the proved preterminal
+flow construction, so its volume and inverse statements apply
+on every $[0,T_0]$ with $T_0<1$. Formula
+\eqref{csq:eq-flow-residue-energy} and the upper bound using $M_K$
+prove the uniform residue energy bound. The lower bound in
+\eqref{csq:eq-flow-residue-supremum} proves the unbounded terminal
+supremum. Recovery and imaginary-coordinate preservation were
+proved above for the actual same fields. The existence step in
+this corollary is exactly the cited Theorem~1.1; the correspondence
+and every displayed estimate are proved here.
+\end{proof}
+
+\subsection{The published witness's exact growing residue}
+
+Take the particular corrected field of the public construction, with
+the source's fixed $h\in(0,1/100)$, $X_{\rm in}>0$, $e_0>0$,
+and remainder $R_*(\tau)$. Its closing formulas
+\cite[equations (10.20)--(10.22), p.~124]{openaiNS2026release}, as imported in \eqref{naw:actualswirl}, are
+\[
+ |R_*(\tau)|\leq C_*\tau^{2h}\quad(0<\tau<\tau_*),\qquad
+ (u_\nu)_2(1-\tau,x_{\nu,\tau})
+   =\sqrt\nu\,\tau^{-1/2-h}(e_0+R_*(\tau)),
+\]
+\[
+ r_{\nu,\tau}=\sqrt{2\nu X_{\rm in}\tau},\quad
+ x_{\nu,\tau}=(r_{\nu,\tau},0,0),\quad
+ q_{\nu,\tau}=X_{\nu,1-\tau}^{-1}(x_{\nu,\tau}).
+\]
+The remainder is the actual source remainder, including its corrected
+fields. The parameter $h$ is the one chosen in that construction.
+The quantity $r_{\nu,\tau}$ here is the displayed physical radius;
+the map to the original polynomial target is retained below.
+The labels $q_{\nu,\tau}$ vary with $\tau$ according to the exact
+material inverse just displayed.
+
+Substitution into the full original polynomials gives
+\[
+ S(r,0,0)=(0,0,2r),\qquad
+ J(r,0,0)=
+ \begin{pmatrix}
+ 0&0&1/2\\
+ 0&1&3r\\
+ 2&-3r^2&-r^3
+ \end{pmatrix}.
+\]
+Here the same original formulas are
+\[
+ F_1=Q^3w+y^2Q(4+3xy),\quad
+ F_2=y+3xQ^2w+3xy^2(4+3xy),\quad
+ F_3=2x-3x^2y-x^3w,\quad Q=1+xy.
+\]
+Differentiating $S=(F_1/2,F_2,F_3)$ and setting $(x,y,w)=(r,0,0)$
+gives each matrix entry. Its componentwise inverse gives
+$u_3=2v_1$ and $u_2=v_2-6rv_1$, retaining the off-diagonal $3r$.
+The first two arithmetic shifts at $(1-\tau,q_{\nu,\tau})$ are zero.
+Consequently, as an identity of full entire functions of $\zeta$,
+\begin{equation}
+\begin{split}
+ \mathcal E_{\nu,\tau}(\zeta)
+ &:=\mathcal D_{\nu,2}(1-\tau,q_{\nu,\tau},\zeta)
+       -6r_{\nu,\tau}
+          \mathcal D_{\nu,1}(1-\tau,q_{\nu,\tau},\zeta)\\
+ &=\sqrt\nu\,\tau^{-1/2-h}
+                    (e_0+R_*(\tau))\Xi'(\zeta).
+\end{split}
+ \label{csq:eq-actual-witness-entire-defect}
+\end{equation}
+Indeed each defect is $v_j\Xi'$ because its shift is zero, so their
+combination is $(u_\nu)_2\Xi'$, and the stated source identity applies.
+
+For every actual zero $\lambda$ of multiplicity $m_\lambda$, its
+complete local logarithmic image is
+\begin{equation}
+ \frac{\mathcal E_{\nu,\tau}(\zeta)}{\Xi(\zeta)}
+ =\sqrt\nu\,\tau^{-1/2-h}(e_0+R_*(\tau))
+     \left(\frac{m_\lambda}{\zeta-\lambda}
+                    +\frac{A_\lambda'(\zeta)}{A_\lambda(\zeta)}\right).
+ \label{csq:eq-actual-witness-meromorphic-defect}
+\end{equation}
+Therefore the actual unshifted arithmetic residue at the source
+sample is exactly
+\begin{equation}
+ \operatorname{Res}_{\zeta=\lambda}
+       \frac{\mathcal E_{\nu,\tau}(\zeta)}{\Xi(\zeta)}
+ =m_\lambda\sqrt\nu\,\tau^{-1/2-h}
+                           (e_0+R_*(\tau)).
+ \label{csq:eq-actual-witness-residue-growth}
+\end{equation}
+All multiplicities, the whole analytic unit, the positive viscosity,
+the original remainder and the exact material labels remain present.
+Choose $\tau_{**}>0$ within the source interval and its cutoff region
+with $C_*\tau_{**}^{2h}\leq e_0/2$. For $0<\tau<\tau_{**}$ the
+absolute value of \eqref{csq:eq-actual-witness-residue-growth} is at
+least $m_\lambda\sqrt\nu\,e_0\tau^{-1/2-h}/2$, which diverges.
+This is an explicit pole-coefficient singularity of the published
+constructed field's arithmetic image.
+
+For the three residue channels $r_{\nu,j}$ of
+\eqref{csq:eq-flow-temporal-residue}, the same evaluation and the
+two-component Cauchy--Schwarz inequality give the quantitative bound
+\begin{equation}
+ |r_\nu(1-\tau,q_{\nu,\tau})|
+ \geq
+ \frac{m_\lambda\sqrt\nu\,e_0}
+             {2\sqrt{1+72\nu X_{\rm in}\tau}}\,
+                   \tau^{-1/2-h}.
+ \label{csq:eq-actual-witness-residue-vector-growth}
+\end{equation}
+To verify the denominator, the coefficient vector
+$(-6r_{\nu,\tau},1)$ has squared norm
+$1+36r_{\nu,\tau}^2=1+72\nu X_{\rm in}\tau$.
+Its product with the first two residue coordinates is exactly
+the residue in \eqref{csq:eq-actual-witness-residue-growth}; the
+third coordinate can only increase the Euclidean norm on the left.
+If $E_\nu=\nu^{5/4}F_*(1)$ is the full source force-integral energy
+bound and $M_\nu=\max_{K_\nu}\|J\|_{\mathrm{op}}$, the earlier
+volume identity simultaneously gives
+\[
+ \int_{\mathbb R^3}|r_\nu(t,q)|^2dq
+ \leq m_\lambda^2M_\nu^2E_\nu^2
+ =m_\lambda^2M_\nu^2\nu^{5/2}F_*(1)^2\quad(t<1).
+\]
+
+At these particular first two channels, their zero shifts mean the
+source quotient is the original $\cqQ$ itself. The exact classes are
+\[
+ [\mathcal E_{\nu,\tau}]_{\cqQ}
+ =\sqrt\nu\,\tau^{-1/2-h}(e_0+R_*(\tau))\beta,\qquad
+ [\mathcal E_{\nu,\tau}]_{C_\cap}
+ =\sqrt\nu\,\tau^{-1/2-h}(e_0+R_*(\tau))\widetilde\beta.
+\]
+The latter line has the explicitly proved continuous inverse
+$\widetilde R_\lambda/m_\lambda$, so its scalar coordinate has
+exactly the displayed singularity. In particular these common
+classes leave every bounded subset of $C_\cap$: a continuous linear
+functional sends bounded sets to bounded scalar sets, whereas their
+$\widetilde R_\lambda$ values diverge. Their projection to the
+actual source quotient and its exact kernel remain
+\eqref{csq:eq-flow-meet-maps}; the undecided source membership is
+not replaced by an identification with the analytic ideal.
+
+The source class has an exact two-case classification as well.
+If $\beta=0$, every displayed class in $\cqQ$ is zero.
+If $\beta\ne0$, the line $\mathbb C\beta$ has exactly the ordinary
+complex topology, and these source classes leave every bounded
+subset of $\cqQ$. Here is the complete topological argument,
+which does not require a residue functional on $\cqQ$.
+The closed relation makes $\cqQ$ a Hausdorff topological vector
+space. The compact circle $\{c\beta:|c|=1\}$ omits zero, so it
+has a disjoint balanced zero-neighborhood $U$. If $c\beta\in U$
+and $|c|\geq1$, multiplying by $1/|c|$ contradicts this
+disjointness. Thus $c\beta\in U$ implies $|c|<1$; scaling $U$
+proves continuity of the inverse scalar coordinate on the line.
+For a bounded subset $B$ there is $t>0$ with $B\subset tU$,
+so $c\beta\in B$ implies $|c|<t$. The source lower bound makes
+the displayed scalar tend to infinity, proving the asserted escape.
+The source membership of $\Xi'$ decides which case occurs; this
+argument does not decide that membership. In the same two cases
+the full complexified velocity map has respectively rank zero or
+rank three, by the exact kernel $J^{-1}(\mathfrak a_\beta^3)$.
+There is no intermediate loss of one component in this common-$\beta$
+construction.
+
+There is also an exact relation between the changing sample labels
+and the time component of the flat logarithmic connection.
+Let $A_\tau=D_qX_{\nu,1-\tau}(q_{\nu,\tau})$. Differentiating
+$X_{\nu,1-\tau}(q_{\nu,\tau})=x_{\nu,\tau}$ gives
+\[
+ A_\tau\,\frac{dq_{\nu,\tau}}{d\tau}
+ =\frac{dx_{\nu,\tau}}{d\tau}
+       +u_\nu(1-\tau,x_{\nu,\tau}),\qquad
+ \frac{dx_{\nu,\tau}}{d\tau}
+       =\frac{r_{\nu,\tau}}{2\tau}(1,0,0).
+\]
+The sign follows from $d(1-\tau)/d\tau=-1$.
+Since $\nabla_q a_j$ is the $j$th row of $J(x_{\nu,\tau})A_\tau$,
+and the first two rows of $J(r,0,0)$ have zero first component,
+\[
+ \nabla_q a_j\cdot\frac{dq_{\nu,\tau}}{d\tau}=v_j,\qquad j=1,2.
+\]
+Thus $a_j(1-\tau,q_{\nu,\tau})=0$ has total derivative
+$-v_j+\nabla_q a_j\cdot dq_{\nu,\tau}/d\tau=0$, exactly as required.
+On the spectral complement of the zeros, the pullback of
+\eqref{csq:eq-flow-logarithmic-connection} to this curve and fixed
+$\zeta$ is zero in the $\tau$ direction, while its original
+$\partial_t$ component has the residue
+\eqref{csq:eq-flow-temporal-residue}. These statements are related
+by the displayed full tangent-vector identity; the sample is not
+silently treated as one fixed material label.
+
+For the full four-term profile $K_\theta=U_\theta K_0$ of
+\eqref{nfl:m:K}, the corresponding
+actual source classes are instead
+\[
+ \kappa=[K_0]_{\cqQ},\qquad \beta_K=[K_0']_{\cqQ},\qquad
+ [T_aK_\theta]=\overline V_{\theta,a}\kappa,\qquad
+ [vT_aK_\theta']=\overline V_{\theta,a}(v\beta_K).
+\]
+These follow by the same commuting translation, heat and derivative
+maps and retain $\kappa$ without assigning it the value zero.
+The residue corollary above uses the actual $\Xi$ profile.
+The displayed four-term quotient formulas concern the whole $K$
+profile and its derivative; they do not identify individual zeros
+of $K$ with zeros of $\Xi$.
+
+\subsection{The translated modular double}
+
+Define $C_Eh(s)=\overline{h(\overline s)}$,
+$\tau^c=(C_E)_*\tau$ and $N^c=C_E\cqN$.
+This is an antilinear involution of the original order class,
+since conjugating the Taylor coefficients gives an entire function
+with exactly the same maximum modulus on each centered disk.
+Also $\|C_Eh\|_{p,a}=\|h\|_{p,a}$, so it is a $\gamma$-homeomorphism.
+By definition it is a homeomorphism from $(\cqE,\tau)$ to
+$(\cqE,\tau^c)$, with inverse itself. Applying it to the convergent
+heat series gives $C_EU_\theta=U_{\overline\theta}C_E$ with the
+coefficient $-1/4$ retained. Direct conjugation gives
+$C_ET_a=T_{\overline a}C_E$, and the established heat identity gives
+$C_EU_\theta=U_{\overline\theta}C_E$.
+On the two entire sectors define
+\[
+ \widehat V_{\theta,a}
+   =\operatorname{diag}(T_aU_\theta,T_aU_{-\theta}),\qquad
+ \mathcal J(h,k)=(C_Ek,C_Eh).
+\]
+Then the exact all-parameter identity is
+\begin{equation}
+ \mathcal J\widehat V_{\theta,a}
+ =\widehat V_{-\overline\theta,\overline a}\mathcal J .
+ \label{csq:eq-flow-translated-cartan}
+\end{equation}
+Indeed its first component is
+$C_ET_aU_{-\theta}k=T_{\overline a}U_{-\overline\theta}C_Ek$,
+and its second component is the same calculation with $\theta$.
+For the actual real flow, $a\in\mathbb R$; for real Newman time it
+therefore sends $(\theta,a)$ to $(-\theta,a)$.
+
+Give the two ambient sectors the topologies
+$(T_aU_\theta)_*\tau$ and $(T_aU_{-\theta})_*\tau^c$, and quotient
+by the closed relation
+\[
+ \widehat N_{\theta,a}
+   =T_aU_\theta\cqN\oplus T_aU_{-\theta}N^c .
+\]
+Applying \eqref{csq:eq-flow-translated-cartan} both to these relation
+spaces and to the definitions of their transported topologies proves
+an antilinear homeomorphism from this actual doubled quotient to
+the one indexed by $(-\overline\theta,\overline a)$.
+Its square is the identity, and its conjugacy with the quotient heat
+and translation maps follows on representatives from the same
+displayed equality. Thus the Cartan reversal retains the full real
+flow translation while reversing the radial heat parameter, with
+both original source and conjugate-source sectors specified.
+
+\section{The exact strength of the frozen source spectral information}
+\label{csq:sec-source-spectral-strength}
+
+The primary spectrum statement in \cite[Proposition~3.6(ii)]{ccmProlate2024}
+specifies the actual zero set as the spectrum of the Hadamard
+quotient's multiplication operator. It gives no multiplicity
+assertion. The cited \cite[Proposition~2.24]{connesMarcolli2008} computes the
+finite Hermite polynomial image; the discussion after its proof
+explicitly treats function-space choices. The finite multiplicity
+calculation in \cite[Theorem~2.47 and equations (2.447)--(2.449)]{connesMarcolli2008}
+belongs to the separately specified weighted Hilbert quotient.
+The following exact algebra records both the obstruction available
+from such data and the limits of transferring a spectrum set alone.
+
+\subsection{Exact algebraic spectral defects of the source relation}
+\label{csq:sec-sourcealgebra}
+These calculations keep the actual $\cqN$ and require only the
+already proved $M\cqN\subseteq\cqN$. For every $\lambda\in\cqC$,
+division by $x=s-\lambda$ gives the algebraic identities
+\begin{equation}\label{csq:eq-source-kercoker}
+ \begin{aligned}
+ \operatorname{coker}_{\rm alg}(S-\lambda)
+     &=\cqE/(\cqN+x\cqE),\\
+ \ker(S-\lambda)&\simeq
+        (\cqN\cap x\cqE)/(x\cqN),
+        & [n]&\longmapsto[n/x].
+ \end{aligned}
+\end{equation}
+Division belongs to the original order class: if $f(\lambda)=0$,
+the filled quotient is entire, is bounded on a fixed disk, and
+outside $|s|\geq2|\lambda|+1$ its modulus is at most $2|f(s)|$.
+Thus $x\cqE$ is exactly the kernel of evaluation at $\lambda$.
+The cokernel identity follows from the image of the induced
+multiplication. For the second identity, changing $n$ by $xn_0$
+changes $n/x$ by $n_0\in\cqN$; its image is in the stated
+kernel. Conversely any kernel representative $f$ has
+$xf\in\cqN\cap x\cqE$. Finally $[n/x]=0$ exactly when
+$n\in x\cqN$. This proves every asserted kernel and image.
+
+The cokernel has only two possibilities. When every $n\in\cqN$
+vanishes at $\lambda$, it is one-dimensional, with its exact
+identification given by evaluation. Otherwise retain any
+$h_\lambda\in\cqN$ with $h_\lambda(\lambda)\ne0$. Then
+\begin{equation}\label{csq:eq-source-division}
+ \begin{aligned}
+ A_\lambda f(s)&=
+  \frac{f(s)-f(\lambda)h_\lambda(s)/h_\lambda(\lambda)}{s-\lambda},\\
+ f&=\frac{f(\lambda)}{h_\lambda(\lambda)}h_\lambda
+                                      +(s-\lambda)A_\lambda f
+ \end{aligned}
+\end{equation}
+proves surjectivity of $S-\lambda$, and its exact remaining kernel is
+\begin{equation}\label{csq:eq-source-splitting}
+ \ker(S-\lambda)\simeq
+ \cqN/\bigl((s-\lambda)\cqN\oplus\cqC h_\lambda\bigr),
+ \qquad n\longmapsto[A_\lambda n].
+\end{equation}
+The map is onto because a kernel class $[g]$ is the image of
+$n=(s-\lambda)g\in\cqN$. Its kernel consists exactly of
+$n=(s-\lambda)n_0+c h_\lambda$, $n_0\in\cqN$, by
+\eqref{csq:eq-source-division}. The sum is direct by evaluation.
+In this second case algebraic invertibility is therefore equivalent
+to the exact identity
+$\cqN=(s-\lambda)\cqN\oplus\cqC h_\lambda$.
+On that locus the representative formula $[f]\mapsto[A_\lambda f]$
+is independent of representatives, since $A_\lambda\cqN\subseteq
+\cqN$; multiplication in \eqref{csq:eq-source-division} proves the
+right inverse, and $A_\lambda((s-\lambda)f)=f$ proves the left
+inverse. These are algebraic statements; continuity of this inverse
+in $\tau$ has not been inserted.
+
+The first derivative and the heat generator have exactly the same
+frozen invariance question for the source subspace:
+\begin{equation}\label{csq:eq-source-D-equivalence}
+ D\cqN\subseteq\cqN
+ \quad\Longleftrightarrow\quad D^2\cqN\subseteq\cqN
+ \quad\Longleftrightarrow\quad -\tfrac14D^2\cqN\subseteq\cqN.
+\end{equation}
+Indeed the product rule is
+$D^2(sn)-sD^2n=2Dn$. Since $sn\in\cqN$, second-derivative
+invariance puts both terms on the left in $\cqN$, proving
+first-derivative invariance. Iteration proves the reverse implication;
+the retained nonzero scalar $-1/4$ proves the last equivalence.
+If these equivalent inclusions hold, all $D^j\Xi$ belong to
+$\cqN$. At each $\lambda$ at least one is nonzero: otherwise
+the Taylor series would make $\Xi$ identically zero. Thus every
+$S-\lambda$ is then algebraically surjective by
+\eqref{csq:eq-source-division}. Its prescribed topological spectral
+points would be represented entirely by the kernel
+\eqref{csq:eq-source-splitting} or a noncontinuous algebraic inverse.
+This computes the precise alternatives without assigning either
+one to the source's stated spectral set.
+
+There is also a full multiplicity consequence of algebraic derivative
+descent. Writing $d[f]=[Df]$ on its exact descent locus, the product
+rule gives $[d,S]=I$. For $0\ne v\in\ker(S-\lambda)$,
+\begin{equation}\label{csq:eq-source-weylladder}
+ (S-\lambda)d^kv=-k d^{k-1}v,
+ \qquad (S-\lambda)^kd^kv=(-1)^k k!v\quad(k\geq0),
+\end{equation}
+with zero right side in the first identity at $k=0$.
+To prove induction, commute the next $d$ using
+$(S-\lambda)d=d(S-\lambda)-I$; the coefficient $-k$ becomes
+$-(k+1)$. Iteration proves the second identity. A finite linear
+dependence among $v,dv,\ldots,d^nv$, with largest nonzero
+coefficient at index $j$, becomes that coefficient times
+$(-1)^j j!v$ after applying $(S-\lambda)^j$, a contradiction.
+Thus every such eigenvector generates an infinite independent
+generalized eigenvector sequence. No finite source multiplicity
+assertion has been assumed.
+
+Finally even a single forward nonzero heat inclusion has a calculated
+consequence. Fix $t\ne0$ and $c=t/2$, and define
+\begin{equation}\label{csq:eq-source-heatcommutator}
+ \begin{gathered}
+ A_0=U_t,\qquad A_{k+1}=MA_k-A_kM,\qquad A_k=P_k(D)U_t,\\
+ P_0(X)=1,\qquad P_{k+1}(X)=cX P_k(X)-P_k'(X).
+ \end{gathered}
+\end{equation}
+The identity follows by induction from $[M,U_t]=cDU_t$ and
+$[M,D^j]=-jD^{j-1}$: commuting $M$ through $P_k(D)U_t$
+contributes $-P_k'(D)U_t+cP_k(D)DU_t$.
+The degree of $P_k$ is exactly $k$, with leading coefficient
+$c^k\ne0$. Under $U_t\cqN\subseteq\cqN$, induction with
+$M\cqN\subseteq\cqN$ gives $A_k\cqN\subseteq\cqN$;
+subtracting the lower-degree terms of $P_k$ then gives exactly
+\begin{equation}\label{csq:eq-source-heatconsequence}
+ D^kU_t\cqN\subseteq\cqN\quad(k\geq0).
+\end{equation}
+In particular every derivative of the nonzero $Z_t=U_t\Xi$ lies
+in $\cqN$. At every point one derivative is nonzero by the entire
+Taylor theorem, so every $S-\lambda$ is algebraically surjective
+in this case too. This proof uses only the one forward inclusion.
+For the stronger equality $U_t\cqN=\cqN$, it also proves
+$D\cqN\subseteq\cqN$, by writing each $n\in\cqN$ as
+$U_tm$ in \eqref{csq:eq-source-heatconsequence}. None of these
+exact implications presumes the inclusion or equality for the actual
+source closure. The explicit obstruction spaces above remain the
+calculated source question.
+
+\subsection{One-sided heat inclusion and the full generalized chain}
+
+The already proved commutator identity
+\eqref{csq:eq-source-D-equivalence} and its following heat calculation
+show that $D\cqN\subseteq\cqN$ makes every $S-\lambda$ algebraically
+onto. The single inclusion $U_t\cqN\subseteq\cqN$ at any $t\ne0$
+also makes every $S-\lambda$ onto, using every derivative
+of $U_t\Xi$ and the exact source division map.
+Here is a stronger consequence that needs no descended derivative.
+
+\begin{cqlemma}
+Let $T:V\to V$ be a surjective endomorphism of a complex vector
+space and let $0\ne v_0\in\ker T$. Then for every integer $k\geq1$,
+$\dim\ker T^k\geq k$. More precisely one can choose
+$Tv_j=v_{j-1}$ for every $j\geq1$, and the vectors
+$v_0,\ldots,v_n$ are linearly independent for every $n$.
+\end{cqlemma}
+\begin{proof}
+Surjectivity gives the successive preimages. It follows inductively
+that $T^jv_j=v_0$ and $T^{j+1}v_j=0$. Applying $T^n$ to a relation
+$\sum_{j=0}^n c_jv_j=0$ gives $c_nv_0=0$, hence $c_n=0$.
+Repeating with the remaining highest index gives every coefficient
+zero. The first $k$ vectors lie in $\ker T^k$, proving the bound.
+\end{proof}
+
+Applied to $T=S-\lambda$, this proves that either frozen
+inclusion just stated is incompatible with any nonzero
+finite-dimensional generalized eigenspace of the actual source
+operator. The source-independent implication is
+\begin{equation}
+\begin{gathered}
+ U_t\cqN\subseteq\cqN,\quad t\ne0,\quad
+                  0\ne v_0\in\ker(S-\lambda)
+ \quad\Longrightarrow\quad
+ \dim\ker(S-\lambda)^k\geq k\quad(k\geq1).
+\end{gathered}
+\label{csq:eq-source-surjective-chain}
+\end{equation}
+With a descended $d[f]=[Df]$, its more specific ladder is
+$v_j=(-1)^jd^jv_0/j!$; indeed
+$[d,S]=I$ gives $(S-\lambda)d^jv_0=-j d^{j-1}v_0$.
+Thus the complete factorial and sign agree with the general
+preimage construction. This is a proved algebraic incompatibility;
+it does not assert that the unnamed source quotient has the
+finite generalized block needed to apply the incompatibility.
+
+\subsection{The source Sobolev cokernel and an exact common test-space map}
+\label{csq:sec-sobolev-comparison}
+The Sobolev construction cited immediately after Connes--Marcolli
+Proposition 2.24 is specified in Chapter 2, Section 9. It is a different,
+explicitly defined quotient, and supplies a useful exact comparison.
+We retain its weight, its generator, and its limited set of detected jets.
+The primary locators are Connes--Marcolli, printed pp.407--408 and
+416--420 \cite{connesMarcolli2008}, and Connes, Section III, pp.10--15 and
+Appendix I, pp.62--67 of the author PDF \cite{connesSelecta1999}.
+Here and below $\delta>1$.
+
+For the rational field, choose the splitting
+$C_{\mathbb Q}=C_{\mathbb Q,1}\times\mathbb R_+^*$ used in the source,
+give the compact factor Haar mass one, and put $x=e^u$ on the second
+factor. Its trivial-character component is the Hilbert space
+\[
+ B_\delta=L^2\bigl(\mathbb R,(1+u^2)^{\delta/2}\,du\bigr),
+ \qquad
+ \|f\|_\delta^2=\int_{\mathbb R}|f(u)|^2(1+u^2)^{\delta/2}\,du.
+\]
+The source adelic map is
+\[
+ E_{\rm ad}\psi(g)=|g|^{1/2}\sum_{q\in\mathbb Q^*}\psi(qg),
+ \quad
+ \psi\in\mathcal S(\mathbb A_{\mathbb Q})_0
+ =\{\psi:\psi(0)=0,\ \int\psi\,dx=0\}.
+\]
+Let $P_1$ denote averaging over $C_{\mathbb Q,1}$, and define
+\[
+ R_\delta=\overline{P_1E_{\rm ad}
+             (\mathcal S(\mathbb A_{\mathbb Q})_0)}^{\,B_\delta},
+ \qquad H_{\delta,1}=B_\delta/R_\delta.
+\]
+These are exactly the trivial-character relation space and cokernel
+of the source. Indeed the source completion uses the norm of its image,
+so the extended isometry has closed range equal to the closure of the
+uncompleted image. Compact averaging commutes with that equivariant
+closed range. If $b$ is a limit of image vectors and satisfies $P_1b=b$,
+averaging an approximating sequence gives a sequence in the averaged
+image converging to $b$. This proves that the displayed closure is the
+trivial-character part of the full relation space, without replacing
+any source relation by an orthogonal complement as a definition.
+
+We import explicitly the following result of the source proof:
+under the bilinear pairing $\langle f,\eta\rangle=\int f(u)\eta(u)\,du$,
+the annihilator of $R_\delta$ in
+$B_{-\delta}=L^2(\mathbb R,(1+u^2)^{-\delta/2}\,du)$ is the closed
+linear span of
+\begin{equation}\label{csq:eq-sobolev-source-annihilator}
+ u^a e^{itu},\qquad
+ \zeta(\tfrac12+it)=0,\quad t\in\mathbb R,\quad
+ 0\leq a<m_{-t},\quad a<\frac{\delta-1}{2}.
+\end{equation}
+Here $m_{-t}$ is the original multiplicity of the zero $-t$ of
+$\Xi$, equal to that of $\tfrac12+it$ by the retained reflected
+Mellin coordinate. The source proves the finite combinations after a
+compact Fourier cutoff and proves that the cutoff vectors are dense
+by uniformly bounded approximate units. Thus the closed span, not
+only its finite-dimensional projections, is the imported statement.
+No such annihilator statement is imported for the unnamed topology
+$\tau$ of the entire-function ring.
+
+The precise cutoff can also be checked directly from the defined norm:
+\[
+ \|u^a e^{itu}\|_{-\delta}^2
+   =\int_{\mathbb R}|u|^{2a}(1+u^2)^{-\delta/2}\,du<\infty
+ \quad\Longleftrightarrow\quad 2a-\delta<-1.
+\]
+Near zero the integrand is locally integrable for every integer $a\geq0$;
+for $|u|\geq1$ it is bounded above and below by positive constants
+times $|u|^{2a-\delta}$. Integration of this power proves the strict
+inequality and the logarithmic divergence at equality. Hence set
+\begin{equation}\label{csq:eq-sobolev-jetcount}
+ q_\delta=\left\lceil\frac{\delta-1}{2}\right\rceil,
+ \qquad n_{\delta,\lambda}=\min(m_\lambda,q_\delta).
+\end{equation}
+There are exactly $n_{\delta,\lambda}$ allowed degrees at a real zero
+$\lambda$. The original Connes Theorem 1, Section III, p.13, states
+the equivalent multiplicity bound $n<(1+\delta)/2$, $n\leq m_\lambda$.
+The inspected Connes--Marcolli printed p.408 instead displays
+$n<1+\delta/2$ in Theorem 2.47; its proof, pp.419--420,
+equations (2.444) and (2.448), gives precisely the stricter bound
+proved above. This records the primary discrepancy rather than
+silently identifying the two printed formulas. No assumption that
+an actual zeta zero has multiplicity greater than one is used.
+
+Let $\mathcal E=C_c^\infty(\mathbb R;\mathbb C)$ retain its usual
+fixed-support smooth-function inductive-limit topology, and let
+$\mathscr Ff(s)=\int f(u)e^{-ius}\,du$ as above. Define
+\begin{align}
+ K_{\rm full}
+   &=\{f\in\mathcal E:\ D^a\mathscr Ff(\lambda)=0
+               \text{ for every zero }\lambda\text{ of }\Xi,
+                         \ 0\leq a<m_\lambda\},
+       \label{csq:eq-sobolev-full-kernel}\\
+ K_\delta
+   &=\{f\in\mathcal E:\ D^a\mathscr Ff(\lambda)=0
+               \text{ for every real zero }\lambda\text{ of }\Xi,
+                         \ 0\leq a<n_{\delta,\lambda}\}.
+       \label{csq:eq-sobolev-kernel}
+\end{align}
+The already proved entire division theorem identifies
+$K_{\rm full}=\{f:\mathscr Ff\in\Xi\cqE\}$ exactly.
+
+\begin{cqtheorem}[Exact dense test ingress into the source Sobolev cokernel]
+\label{csq:thm-sobolev-ingress}
+The map $j_\delta:\mathcal E\to H_{\delta,1}$ sending a test function
+to its Hilbert quotient class is continuous, has dense image, and
+has kernel exactly $K_\delta$. It induces the continuous map
+\begin{equation}\label{csq:eq-sobolev-quotient-map}
+ J_\delta:\mathcal E/K_{\rm full}\longrightarrow H_{\delta,1},
+ \qquad [f]\longmapsto[f],
+ \qquad \ker J_\delta=K_\delta/K_{\rm full}.
+\end{equation}
+Its image is dense. These statements neither assert surjectivity
+nor identify the topology of its image with a quotient topology.
+For the source translation generator $D_1$, this ingress retains
+the original spectral coordinate through
+\begin{equation}\label{csq:eq-sobolev-generator}
+ j_\delta(Tf)=iD_1j_\delta(f),
+ \qquad T=-i\partial_u,\qquad \mathscr F(Tf)=s\mathscr Ff.
+\end{equation}
+\end{cqtheorem}
+\begin{proof}
+The inclusion $\mathcal E\to B_\delta$ is continuous on every
+fixed-support space: on $[-L,L]$,
+\[
+ \|f\|_\delta^2\leq
+   \left(\int_{-L}^L(1+u^2)^{\delta/2}\,du\right)\sup|f|^2.
+\]
+The inductive-limit universal property and the continuous Hilbert
+quotient map give continuity of $j_\delta$.
+Smooth compactly supported functions are dense in $B_\delta$:
+truncate an arbitrary $f$ outside $[-L,L]$, whose squared norm tail
+tends to zero by integrability; on the enlarged interval
+$[-L-1,L+1]$, the weight is bounded above and below by positive
+constants, and convolution with a smooth compactly supported
+approximate identity approximates the truncation in ordinary $L^2$
+and therefore in the weighted norm. These convolutions have compact
+support and are smooth. Consequently their quotient images are dense.
+
+The continuous dual of $B_\delta$ is exactly $B_{-\delta}$ under
+the displayed bilinear pairing. To check this, multiply by
+$(1+u^2)^{\delta/4}$ to identify $B_\delta$ isometrically with
+ordinary $L^2$; the Riesz representation there, with complex
+conjugation absorbed in the representing function, gives exactly
+the inverse-weight dual and its norm. Since $R_\delta$ is closed,
+a vector belongs to it exactly when every member of its annihilator
+vanishes on that vector. One direction is the definition. For the
+other, a vector outside a closed Hilbert subspace has a nonzero
+orthogonal component, and its inner product defines a continuous
+separating functional. By the explicitly imported closed-span
+description \eqref{csq:eq-sobolev-source-annihilator}, it is enough
+to test the listed log-monomial characters. But
+\[
+ D^a\mathscr Ff(-t)=(-i)^a\int u^a e^{itu}f(u)\,du,
+ \qquad
+ \int u^a e^{itu}f(u)\,du=i^aD^a\mathscr Ff(-t).
+\]
+Every factor $i^a$ is nonzero. The coordinate $\lambda=-t$ and
+the proved count \eqref{csq:eq-sobolev-jetcount} now give
+$\ker j_\delta=K_\delta$. Every equation defining $K_\delta$
+appears among the equations defining $K_{\rm full}$, proving
+$K_{\rm full}\subseteq K_\delta$. Thus
+\eqref{csq:eq-sobolev-quotient-map} is well defined and continuous
+by the quotient universal property; changing the representative
+changes its image by zero exactly for a member of $K_\delta$.
+This proves the kernel and the dense-image assertion.
+
+Finally the source left translation is
+$(V(e^\varepsilon)f)(u)=f(u-\varepsilon)$, so its infinitesimal
+generator on $\mathcal E$ is $-\partial_u$. The difference quotient
+converges in $B_\delta$ because the supports remain in a fixed
+compact set and the smooth-function difference quotient converges
+uniformly there. Passing to the quotient proves that
+$j_\delta(f)$ belongs to the domain of $D_1$ and
+$D_1j_\delta(f)=j_\delta(-f')$. Multiplication by $i$ gives the
+first equation of \eqref{csq:eq-sobolev-generator}. Integration by
+parts in the compactly supported Fourier integral gives the second.
+In particular the source eigenparameter $it$ becomes $-t$ under
+$iD_1$, exactly the same $s$ coordinate used in the jet equations;
+no sign change is absorbed into the source operator.
+\end{proof}
+
+For completeness the unspecified source topology also has an exact
+comparison, requiring no unproved inclusion of its kernel in
+$K_\delta$. Retain
+\[
+ K_\tau=\{f\in\mathcal E:\mathscr Ff\in\cqN\},
+ \qquad L_{\tau,\delta}=K_\tau\cap K_\delta.
+\]
+Give $\mathcal E$ the join of its usual test topology, the
+inverse-image topology $\mathscr F^{-1}\tau$, and the seminorm
+$\|\cdot\|_\delta$. The last seminorm is already continuous in
+the test topology, but is displayed to specify every target map.
+Then $K_\tau$, $K_\delta$ and $L_{\tau,\delta}$ are closed, and
+there are continuous maps
+\begin{equation}\label{csq:eq-sobolev-source-span}
+ \cqQ\ \longleftarrow\
+ \mathcal E/L_{\tau,\delta}
+ \ \longrightarrow\ H_{\delta,1},
+ \qquad
+ [f]\longmapsto[\mathscr Ff],\quad [f]\longmapsto[f].
+\end{equation}
+Their respective kernels are exactly
+$K_\tau/L_{\tau,\delta}$ and $K_\delta/L_{\tau,\delta}$;
+the right image is dense. Indeed each composite on $\mathcal E$
+is continuous by definition, vanishes on the intersection, and
+has the asserted kernel before quotienting. The quotient universal
+property proves the assertions, and density follows from the same
+set of compact tests as above. The map to the product of the two
+targets is injective because its kernel is precisely the
+intersection already divided out. No topological embedding of that
+image is inferred from injectivity. This is a proved relation to
+the actual source quotient while its named topology remains retained.
+The comparison also intertwines the coordinate operators: $T$
+preserves $K_\tau$ because $\mathscr F(Tf)=s\mathscr Ff$ and
+$M\cqN\subset\cqN$; it preserves $K_\delta$ because
+\[
+ D^a(sF)(\lambda)=\lambda D^aF(\lambda)
+                              +aD^{a-1}F(\lambda),
+\]
+where the second term is zero for $a=0$ and otherwise uses an
+already imposed lower jet. Thus $T$ descends to the common span,
+whose left map intertwines it with $S$ and whose right map
+intertwines it with $iD_1$ on the proved domain of the ingress.
+
+There is also a literal compatibility of the original finite Hermite
+traces with the adelic map. For the source's even $\psi$, put
+$\psi_{\rm ad}=\psi\otimes\mathbf1_{\widehat{\mathbb Z}}$.
+It lies in $\mathcal S(\mathbb A_{\mathbb Q})_0$ because its value
+and additive integral are the two original zero constraints.
+On the idele represented by $(x,1,1,\ldots)$, a rational number
+belongs to every $\mathbb Z_p$ exactly when it is an integer:
+write it in lowest terms and use any prime dividing its denominator
+for the reverse implication. Therefore
+\[
+ E_{\rm ad}\psi_{\rm ad}(x)
+   =x^{1/2}\sum_{n\in\mathbb Z\setminus\{0\}}\psi(nx)
+   =2\mathcal E\psi(x).
+\]
+Every norm-one rational idele class has a representative consisting
+of a real sign and finite units. Indeed, for an idele $g$ put
+$q=\prod_p p^{v_p(g_p)}\in\mathbb Q_{>0}$, a finite product.
+Then $g_p/q\in\mathbb Z_p^*$ for every prime, while the
+norm-one identity gives $|g_\infty|=q$. Dividing by the diagonal
+rational $q$ gives the asserted representative. The function
+is unchanged by the finite units; evenness removes the real sign.
+It therefore lies in the entire trivial-character component.
+The Fourier transform in $u=\log x$ is thus exactly twice the
+original source trace, retaining the factor $2$. In particular the
+finite Hermite generators yield $2R_\ell^\pm(s)\Xi(s)$ in this
+explicit realization. Their logarithmic representatives lie in
+every $B_\delta$ by their proved rapid decay. This proves a concrete
+arithmetic compatibility as well as the quotient comparison; it
+does not identify a Sobolev topology with the topology on all of
+$\cqE$.
+
+
+\subsection{The actual finite block in the specified Sobolev source}
+
+Retain the source's real frequency $t$, compact character $\chi_0$,
+weight $\delta>1$, and actual zero multiplicity $m$.
+The vectors in the dual block of the specified source are
+\[
+ \eta_{t,a}(x)=\chi_0(x)|x|^{it}(\log|x|)^a,\qquad
+ a\in\mathbb Z_{\geq0},\quad a<m,\quad a<(\delta-1)/2 .
+\]
+The last strict bound is exactly integrability of
+$u^{2a}(1+u^2)^{-\delta/2}$ on $\mathbb R$: at infinity
+its power is $2a-\delta$, integrable precisely when it is
+less than $-1$; near zero it is locally integrable for all
+these $a$. Let $r$ be the number of permitted integers.
+The source representation at $\lambda>0$ acts by
+\[
+ \vartheta_m^{\rm tr}(\lambda)\eta_{t,a}
+ =\lambda^{it}\sum_{b=0}^a\binom ab(\log\lambda)^b\eta_{t,a-b}.
+\]
+Differentiating at $\lambda=e^\epsilon$, $\epsilon=0$, proves
+\begin{equation}
+ (D_{\chi_0}^{\rm tr}-it)\eta_{t,a}=a\eta_{t,a-1},\qquad
+ (D_{\chi_0}^{\rm tr}-it)^k\eta_{t,a}
+ =\frac{a!}{(a-k)!}\eta_{t,a-k}\quad(0\leq k\leq a).
+ \label{csq:eq-source-Sobolev-Jordan-block}
+\end{equation}
+For $k>a$ the expression is zero. These vectors are independent:
+divide a proposed relation by the nonzero character and use
+that $\log|x|$ ranges over $\mathbb R$, making the remaining
+polynomial identically zero. Thus the block has dimension
+$r$, one-dimensional ordinary eigenspace, and nilpotence
+index $r$. Its multiplicity is generalized multiplicity.
+The common-test morphism to the actual Hadamard source is
+\eqref{csq:eq-sobolev-source-span}, with its exact two kernels; this finite
+block is not silently identified with a block in that
+different quotient.
+
+\subsection{An explicit spectral model and the inverse at zero}
+
+Let $\Lambda=Z(\Xi)$ be the actual zero set. On the complex
+vector space
+\[
+ V_\Lambda=\bigoplus_{\lambda\in\Lambda}
+                   \bigoplus_{n\geq0}\mathbb C e_{\lambda,n}
+\]
+every vector has finite support. Give it the finest locally
+convex topology, defined by all seminorms on this vector space.
+Coordinate functionals separate points, so it is Hausdorff.
+Every linear map from it to any locally convex space is
+continuous: each pullback of a continuous seminorm is among
+these defining seminorms.
+With $e_{\lambda,-1}=0$ set
+\[
+ S_\Lambda e_{\lambda,n}=\lambda e_{\lambda,n}+e_{\lambda,n-1},
+ \qquad d_\Lambda e_{\lambda,n}=-(n+1)e_{\lambda,n+1}.
+\]
+Both are continuous, everywhere-defined, and direct evaluation
+on the basis proves $[d_\Lambda,S_\Lambda]=I$.
+For $\mu\notin\Lambda$ the full continuous inverse is
+\begin{equation}
+ (S_\Lambda-\mu)^{-1}e_{\lambda,n}
+ =\sum_{j=0}^n
+       \frac{(-1)^j}{(\lambda-\mu)^{j+1}}e_{\lambda,n-j}.
+ \label{csq:eq-source-model-resolvent}
+\end{equation}
+Multiplication in either order cancels adjacent terms of
+this finite sum and leaves the basis vector. The formula
+preserves finite support, so it defines an inverse on
+the whole space, continuous by its topology.
+For $\mu\in\Lambda$, the $\mu$-summand is a surjective
+backward shift and every other summand uses the same finite
+inverse formula. Thus $S_\Lambda-\mu$ is onto, its kernel
+is exactly $\mathbb C e_{\mu,0}$, and
+\begin{equation}
+ \ker(S_\Lambda-\lambda)^k
+   =\operatorname{span}\{e_{\lambda,0},\ldots,e_{\lambda,k-1}\},
+ \quad
+ \operatorname{Spec}_{\rm alg}S_\Lambda
+  =\operatorname{Spec}_{\rm end}S_\Lambda
+  =\operatorname{Spec}_{\rm point}S_\Lambda=\Lambda .
+ \label{csq:eq-source-model-spectrum}
+\end{equation}
+Here $\operatorname{Spec}_{\rm end}$ means failure of a
+continuous two-sided inverse in the algebra of continuous
+endomorphisms, not the Hilbert spectral subdivision called
+continuous spectrum. Since $\Xi(0)\ne0$, this $S_\Lambda$
+has a continuous inverse at zero.
+
+There is an exact principal-part realization of the model:
+send $e_{\lambda,n}$ to the class of $w^{-n-1}$ in
+$\mathbb C[w,w^{-1}]/\mathbb C[w]$ in its $\lambda$-summand.
+The finite negative Laurent coefficients give its inverse.
+Multiplication by $\lambda+w$ is $S_\Lambda$ and
+differentiation in $w$ is $d_\Lambda$, as evaluation on
+each monomial proves.
+This complete model shows that the correct zero set as
+spectrum, geometric multiplicity one, and a continuous
+inverse at zero can coexist with a continuous Weyl pair.
+It does not identify this model with $\cqQ$.
+
+For the actual quotient, injectivity of $S$ gives exactly
+$\cqN\cap s\cqE=s\cqN$: if $sf\in\cqN$, then
+$S[f]=0$, so $f\in\cqN$; the converse is polynomial invariance.
+The original source inverse at zero is explicitly
+\begin{equation}
+ S^{-1}[f]=\left[
+ \frac{f(s)-f(0)\Xi(s)/\Xi(0)}{s}\right].
+ \label{csq:eq-source-explicit-zero-resolvent}
+\end{equation}
+The singularity is removable, and division by a degree-one
+polynomial preserves the original order class. Multiplication
+by $s$ gives $[f]$, and injectivity gives its unique inverse.
+If $f$ is changed by $n\in\cqN$, the numerator difference
+belongs to $\cqN\cap s\cqE=s\cqN$, proving representative
+independence directly. The usual topological reading of
+the source resolvent also supplies continuity of this
+quotient inverse, not continuity of its chosen lift.
+More generally,
+\[
+ S-\lambda\text{ injective}\quad\Longleftrightarrow\quad
+ \cqN\cap(s-\lambda)\cqE=(s-\lambda)\cqN
+\]
+by the same calculation. Saturation at zero does not prove
+saturation at other points.
+The missing frozen-descent decision can therefore be
+approached through an actual finite generalized source block
+or a range obstruction, as well as through identification
+of the topology. Neither has been supplied by the primary
+Hadamard spectrum clauses inspected here.
+

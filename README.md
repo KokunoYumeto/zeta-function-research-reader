@@ -1,10 +1,18 @@
 # Riemann Zeta Function: Research Reader
 
-[What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
+## Current calculations: theta norms, kernel layers and symmetric control
+
+Start with the [current research guide](CURRENT_RESEARCH.md), which explains the objects, the motivation for each attempt and what it produced. Read the [complete 216-page continuation](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) with its [proofs and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/), or the [425-page main research reader](reader.pdf). Earlier frozen editions below are preserved.
 
 [What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
 
-[What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
+## New: SplitZero, theta cohomology and weight control
+
+**Read the new calculation edition:** [separate PDFs and source packages](calculation_edition_20260912/) · [Zenodo DOI](https://zenodo.org/records/22727889). The earlier edition below is preserved.
+
+The September 12 calculations develop support-preserving arithmetic coefficients, the quotient of rapidly decreasing functions by theta-function relations, and finite spectral data attached to zeta's zeros. They calculate explicit comparison maps, homotopies and rank-two matrices in an attempt to obtain the kind of weight control that makes Deligne's Weil II machinery effective. They do not yet establish the needed uniform estimate.
+
+Start with [the research-programme guide](RESEARCH_PROGRAMMES.md): it defines the objects and explains what each attempt was for, what worked and what remains unfinished. Then follow the full proofs and executable checks in each linked workbench. [Machine-readable routes and versions](WORKBENCHES.json) · [September 12 checking and source report](INTEGRATION_REVIEW_20260912.md).
 
 ## Six-reader collection
 
@@ -23,7 +31,7 @@ This GitHub repository is the living research repository. The frozen 2026-09-09 
 | Geometric complexity | [GCT PDF](zenodo_collection_20260909_main411/05-gct-reader.pdf) | 174 |
 | Vacuum and gravity | [Vacuum PDF](zenodo_collection_20260909_main411/06-vacuum-reader.pdf) | 37 |
 
-The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The older root-level mirror is retained below. The separate [corrected Navier–Stokes edition](https://doi.org/10.5281/zenodo.22678406) and its [reading guide](https://github.com/KokunoYumeto/yang-mills-interacting-workbench/tree/main/navier-stokes) are related work, not the DOI for this collection. The [earlier Navier–Stokes edition](https://doi.org/10.5281/zenodo.22667379) remains available; neither replaces the frozen fluid PDF above. No Millennium-problem resolution is claimed.
+The six-reader collection is a frozen, paired edition, not a claim that every working file below is at the same revision. The current root-level main reader is listed below; the frozen collection remains unchanged. The separate [corrected Navier–Stokes edition](https://doi.org/10.5281/zenodo.22678406) and its [reading guide](https://github.com/KokunoYumeto/yang-mills-interacting-workbench/tree/main/navier-stokes) are related work, not the DOI for this collection. The [earlier Navier–Stokes edition](https://doi.org/10.5281/zenodo.22667379) remains available; neither replaces the frozen fluid PDF above. No Millennium-problem resolution is claimed.
 
 <!-- END COLLECTION -->
 
@@ -35,7 +43,7 @@ Mirroring is not a mathematical audit or an endorsement of an endpoint claim.
 
 | Reader | PDF | Pages in this snapshot |
 |---|---|---:|
-| main | [Read PDF](reader.pdf) | 377 |
+| main | [Read PDF](reader.pdf) | 425 |
 | fluid | [Read PDF](sidebar/fluid/reader.pdf) | 208 |
 | heat | [Read PDF](sidebar/heat/reader.pdf) | 120 |
 | connes | [Read PDF](sidebar/connes/reader.pdf) | 82 |
@@ -71,7 +79,7 @@ Build the main reader from repository root with `pdflatex main.tex` twice;
 follow each sidebar's README for its own entrypoint and mathematical checks.
 Some administrative seal scripts refer to private continuity/provenance files
 that are deliberately not included and are not required to read the proofs.
-No proof checks were rerun as part of this mirror publication.
+That statement of the original mirror's scope remains historical. The September 12 workbench integration separately replayed its finite tests and checked the exact successful Lean source run; see [the checking report](INTEGRATION_REVIEW_20260912.md). These checks do not retroactively certify all frozen readers.
 
 ## Rights and privacy
 

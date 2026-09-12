@@ -18,14 +18,15 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - name: Manifests and checking harness
+      - name: All manifests and checking-harness tests
         run: |
           set -euo pipefail
           python3 check_tau_recovery.py --prepare
           python3 check_boundary.py
+          python3 check_boundary_integration.py --prepare
           python3 check_frontier.py
-          python3 -m unittest -v test_tau_recovery.py test_derived_checker.py
-          python3 -O -m unittest -v test_tau_recovery.py test_derived_checker.py
+          python3 -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+          python3 -O -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
       - name: Install original pinned toolchain
         run: |
           set -euo pipefail
@@ -38,14 +39,15 @@ jobs:
           lake update >FrontierSetup.log 2>&1 || { tail -80 FrontierSetup.log; exit 1; }
           test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
           lake exe cache get >>FrontierSetup.log 2>&1 || { tail -80 FrontierSetup.log; exit 1; }
-      - name: Rebuild prior sources
+      - name: Rebuild prior and completed Codex sources
         run: |
           set -euo pipefail
           lake -KmaxJobs=2 build >FrontierPrior.log 2>&1 || { cat FrontierPrior.log; exit 1; }
-          tail -20 FrontierPrior.log
-          for list in TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt; do
+          tail -25 FrontierPrior.log
+          for list in TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt BOUNDARY_INTEGRATION_MODULES.txt; do
             while IFS= read -r name; do
               test -n "$name" || continue
+              echo "=== inherited $name ==="
               lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
             done < "$list"
           done
@@ -59,11 +61,18 @@ jobs:
             if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
           done < FRONTIER_MODULES.txt
           exit "$status"
-      - name: Exact transitive axiom reports
+      - name: Joint imports in one Lean environment
+        run: |
+          set -euo pipefail
+          cat TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt BOUNDARY_INTEGRATION_MODULES.txt FRONTIER_MODULES.txt | awk 'NF && !seen[$0]++ {print "import " $0}' > JointFrontierIntegration.lean
+          lake env lean --trust=0 -DwarningAsError=true JointFrontierIntegration.lean
+      - name: Exact frontier and Codex transitive axiom reports
         run: |
           set -euo pipefail
           lake env lean --trust=0 -DwarningAsError=true AuditFrontier.lean | tee AuditFrontier.log
           python3 check_frontier.py AuditFrontier.log
+          lake env lean --trust=0 -DwarningAsError=true AuditBoundaryIntegration.lean >AuditBoundaryIntegration.log
+          python3 check_boundary_integration.py AuditBoundaryIntegration.log
           lake env lean --trust=0 -DwarningAsError=true AuditBoundary.lean >AuditBoundary.log
           python3 check_boundary.py AuditBoundary.log
           lake env lean --trust=0 -DwarningAsError=true AuditTauRecovery.lean >AuditTauRecovery.log

@@ -46,7 +46,7 @@ theorem radius_bound (a P M Q z e : ℝ)
     dsimp [b]
     simp only [div_pow, mul_pow, Real.sq_sqrt ha, Real.sq_sqrt hpq.le]
     norm_num
-    <;> ring
+    ring
   change e ≤ b
   nlinarith
 

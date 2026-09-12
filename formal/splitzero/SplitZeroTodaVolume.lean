@@ -36,7 +36,7 @@ theorem square_bound (a P M Q z e : ℝ)
 /-- The upper estimate in the source note, in original volume coordinates. -/
 theorem radius_bound (a P M Q z e : ℝ)
     (ha : 0 ≤ a) (hP : 0 < P) (hQ : 0 < Q) (hQP : Q ≤ P)
-    (he0 : 0 ≤ e) (he : e ^ 2 = energy a P M Q z) :
+    (_he0 : 0 ≤ e) (he : e ^ 2 = energy a P M Q z) :
     e ≤ Real.sqrt a * (P - Q) / (2 * Real.sqrt (P * Q)) := by
   have hb := square_bound a P M Q z e ha hP hQ he
   have hpq : 0 < P * Q := mul_pos hP hQ
@@ -48,7 +48,7 @@ theorem radius_bound (a P M Q z e : ℝ)
     norm_num
     <;> ring
   change e ≤ b
-  nlinarith [he0]
+  nlinarith
 
 /-- Every established spectral lower allowance constrains the actual volumes. -/
 theorem lower_forces_volume (a P M Q z e L : ℝ)

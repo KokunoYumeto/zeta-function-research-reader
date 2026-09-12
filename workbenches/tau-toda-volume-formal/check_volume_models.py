@@ -40,7 +40,7 @@ class VolumeModels(unittest.TestCase):
             self.assertEqual(energy(Q(5),6*c,4*c,2*c,Q(1,3)),energy(Q(5),Q(6),Q(4),Q(2),Q(1,3)))
 
     def test_04_trace_forces_volume(self):
-        # Exact nonnormal rank-two example: eigenvalue excess 2, allowance 3.
+        # Exact nonnormal control: spectral excess 2, squared allowance 41/4.
         a=t.matrix([[Q(3,2),Q(5,2)],[0,Q(-1,2)]])
         h=t.control(a,t.eye(2),1)
         self.assertEqual(t.tr(h),0)
@@ -108,6 +108,47 @@ class VolumeModels(unittest.TestCase):
         source=t.matrix([[2,1],[1,3]])
         self.assertEqual(t.det(source)/t.det(source),1)
         self.assertNotEqual(t.det(source),0)
+
+    def test_11_overlapping_endpoints(self):
+        v=[Q(1,math.factorial(j+1)) for j in range(20)]
+        w=[Q(math.factorial(j+1)**2) for j in range(20)]
+        for n in range(1,5):
+            for r in range(1,8):
+                vp=math.prod(v[n+j-1]/v[n+j+1] for j in range(r))
+                wp=math.prod(w[n+j+1]/w[n+j] for j in range(r))
+                self.assertEqual(vp,v[n-1]*v[n]/(v[n+r-1]*v[n+r]))
+                self.assertEqual(wp,w[n+r]/w[n])
+
+    def test_12_geometric_recurrence_window(self):
+        # Rational exponentials make the entire finite Jensen calibration exact.
+        for r in range(1,8):
+            tvals=[Q(2)**(2*j+2) for j in range(r)]
+            gmean=Q(2)**(r+1)
+            sinh=[(tval-1/tval)/2 for tval in tvals]
+            sinhmean=(gmean-1/gmean)/2
+            self.assertEqual(math.prod(tvals),gmean**r)
+            self.assertLessEqual(math.prod(sinh),sinhmean**r)
+            for direction in [-1,1]:
+                recurrence=[Q(3)**(direction*(2*j+1)) for j in range(r)]
+                ageo=Q(3)**(direction*r)
+                self.assertEqual(math.prod(recurrence),ageo**r)
+                allowances=[a*s for a,s in zip(recurrence,sinh)]
+                self.assertLessEqual(min(allowances),ageo*sinhmean)
+
+    def test_13_iterated_exterior_capacity(self):
+        for dimension in range(2,6):
+            original=[1]+[0]*(dimension-2)+[-1]
+            for p in range(1,dimension+1):
+                first=[sum(original[i] for i in inds)
+                       for inds in itertools.combinations(range(dimension),p)]
+                rankplus=math.comb(dimension-2,p-1) if p-1<=dimension-2 else 0
+                self.assertEqual(first.count(1),rankplus)
+                self.assertEqual(first.count(-1),rankplus)
+                total=len(first)
+                for s in range(total+1):
+                    second=[sum(first[i] for i in inds)
+                            for inds in itertools.combinations(range(total),s)]
+                    self.assertEqual(max(map(abs,second)),min(s,rankplus,total-s))
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)

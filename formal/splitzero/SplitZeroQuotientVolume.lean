@@ -34,7 +34,7 @@ theorem residual_orthogonal (C : Matrix j n ℂ) (B : Matrix j m ℂ)
       simp only [residual, Matrix.mul_sub, Matrix.mul_assoc]
     _ = 0 := by rw [hH, Matrix.one_mul, sub_self]
 
-omit [DecidableEq n] in
+omit [Fintype n] [DecidableEq n] in
 /-- Complete residual Gram, retaining all cross terms in the Schur complement. -/
 theorem residual_gram (C : Matrix j n ℂ) (B : Matrix j m ℂ)
     (H : Matrix m m ℂ) (hH : (B.conjTranspose * B) * H = 1) :

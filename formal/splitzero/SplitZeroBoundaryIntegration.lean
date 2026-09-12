@@ -106,8 +106,9 @@ theorem quotientTransport_not_absent (U W : Submodule R B) (h : U ≤ W)
   rw [quotientTransport_fibre_zero U W h A x hx]
   apply LinearDiagram.fibre_zero_ne_global
   intro hs
-  apply hA
-  exact le_antisymm (by simpa only [hs] using le_sync A) bot_le
+  classical
+  change syncIndex A = (∅ : Mask) at hs
+  simpa [syncIndex, hA] using hs
 
 end SupportedQuotient
 

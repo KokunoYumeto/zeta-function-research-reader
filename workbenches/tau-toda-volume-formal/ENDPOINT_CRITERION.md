@@ -69,7 +69,7 @@ A proof that the right side is o(k*q_k) along admitted n=n(k), r=r(k) would excl
 
 for c_h>0. Indeed B/(2r)=o(log k), so sinh(B/(2r))<=exp(o(log k))=k^(o(1)), and the ratio to k*q_k tends to zero. These are candidate arithmetic estimates, not consequences of the formal telescope, positivity, the Toda equation, or Deligne's finite-field hypotheses.
 
-The weighted endpoint criterion is sharp as an abstract sequence inequality: equality can occur when all x_j are equal and every A_j sinh(x_j) equals the same allowance. For arbitrary recurrence sequences it is strictly preferable to replacing A_(n,r) by the largest A_j.
+The weighted endpoint criterion is sharp as an abstract sequence inequality: equality can occur when all x_j are equal and every A_j sinh(x_j) equals the same allowance. For arbitrary recurrence sequences the bound is never larger, and potentially strictly smaller, than the bound obtained by replacing A_(n,r) by the largest A_j.
 
 ## 3. A useful boundary on further exterior amplification
 
@@ -83,7 +83,7 @@ On the actual p-th exterior power, 1<=p<=q, the additive control has +epsilon an
 
     r_p=binomial(q-2,p-1),
 
-and zero with multiplicity binomial(q-2,p)+binomial(q-2,p-2). This follows by the unscaled wedge basis: select the positive direction but not the negative, the negative but not the positive, or both/neither. In particular its operator norm is still epsilon, but its rank is 2r_p, not generally two.
+and zero with multiplicity binomial(q-2,p)+binomial(q-2,p-2). This follows by the unscaled wedge basis: select the positive direction but not the negative, the negative but not the positive, or both/neither. In particular its operator norm is at most epsilon: it equals epsilon for 1<=p<=q-1 and is zero for p=q. Its rank is 2r_p, not generally two.
 
 Apply an s-th exterior power to that whole space, whose dimension is D_p=binomial(q,p). Its largest absolute additive-control eigenvalue is exactly
 

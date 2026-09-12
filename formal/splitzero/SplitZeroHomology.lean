@@ -30,7 +30,7 @@ abbrev OldRelations := P.comap (Killing Q f).subtype
 def kernelRepresentative : Killing Q f →ₗ[R] LinearMap.ker (P.mapQ Q f hf) where
   toFun x := ⟨P.mkQ x.val, by
     change (Q.mkQ (f x.val)) = 0
-    exact Submodule.Quotient.mk_eq_zero.mpr x.property⟩
+    exact (Submodule.Quotient.mk_eq_zero _).mpr x.property⟩
   map_add' x y := Subtype.ext (P.mkQ.map_add x.val y.val)
   map_smul' r x := Subtype.ext (P.mkQ.map_smul r x.val)
 
@@ -40,7 +40,7 @@ def kernelDescent : (Killing Q f ⧸ OldRelations P Q f) →ₗ[R]
   (OldRelations P Q f).liftQ (kernelRepresentative P Q f hf) (by
     intro x hx
     apply Subtype.ext
-    exact Submodule.Quotient.mk_eq_zero.mpr hx)
+    exact (Submodule.Quotient.mk_eq_zero _).mpr hx)
 
 theorem kernelDescent_bijective : Function.Bijective (kernelDescent P Q f hf) := by
   constructor
@@ -57,7 +57,7 @@ theorem kernelDescent_bijective : Function.Bijective (kernelDescent P Q f hf) :=
     obtain ⟨m, rfl⟩ := Submodule.Quotient.mk_surjective P x
     have hm : m ∈ Killing Q f := by
       change (Q.mkQ (f m)) = 0 at hx
-      exact Submodule.Quotient.mk_eq_zero.mp hx
+      exact (Submodule.Quotient.mk_eq_zero _).mp hx
     exact ⟨Submodule.Quotient.mk (⟨m, hm⟩ : Killing Q f), Subtype.ext rfl⟩
 
 /-- Exact kernel formula, as a linear equivalence with specified forward map. -/

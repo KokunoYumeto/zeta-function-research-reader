@@ -75,7 +75,7 @@ theorem quotient_same_label_iff (i : L) (x y : D.V i) :
 theorem relation_maps_to_fibre_zero (i : L) (x : D.V i) (hx : x ∈ B.fibre i) :
     B.quotientMap.total ⟨i, x⟩ = ⟨i, 0⟩ := by
   change (⟨i, Submodule.Quotient.mk x⟩ : B.quotientDiagram.Total) = ⟨i, 0⟩
-  rw [Submodule.Quotient.mk_eq_zero.mpr hx]
+  rw [(Submodule.Quotient.mk_eq_zero _).mpr hx]
 
 section Universal
 variable {M : Type w} [AddCommMonoid M] [Module (G R) M]
@@ -137,5 +137,116 @@ theorem quotient_universal : ∃! g : B.quotientDiagram.Total →ₗ[G R] M,
       (B.descend_quotient f hf x).symm
 
 end Universal
+
+/-- The diagram of relation submodules itself, with its actual transition maps. -/
+def relationDiagram : LinearDiagram R L where
+  V i := B.fibre i
+  map h :=
+    { toFun := fun x => ⟨D.map h x.val, B.stable h x.property⟩
+      map_add' := fun x y => Subtype.ext (map_add (D.map h) x.val y.val)
+      map_smul' := fun r x => Subtype.ext (map_smul (D.map h) r x.val) }
+  map_id i := by
+    ext x
+    exact D.map_self i x.val
+  map_comp h h' := by
+    ext x
+    exact D.map_map h h' x.val
+
+def relationInclusion : Hom B.relationDiagram D where
+  app i := (B.fibre i).subtype
+  naturality _ _ := rfl
+
+/-- Zero in each original fibre, as opposed to the constant globally absent map. -/
+def relationZero : Hom B.relationDiagram D where
+  app _ := 0
+  naturality _ _ := by simp
+
+theorem coequalizes :
+    B.quotientMap.total.comp B.relationInclusion.total =
+      B.quotientMap.total.comp B.relationZero.total := by
+  apply LinearMap.ext
+  rintro ⟨i, x⟩
+  change (⟨i, (B.fibre i).mkQ x.val⟩ : B.quotientDiagram.Total) =
+    ⟨i, (B.fibre i).mkQ 0⟩
+  have hx : (B.fibre i).mkQ x.val = 0 := (Submodule.Quotient.mk_eq_zero _).mpr x.property
+  rw [hx, map_zero]
+
+/-- The full (unbundled) categorical coequalizer universal property. -/
+theorem coequalizer_universal {M : Type w} [AddCommMonoid M] [Module (G R) M]
+    (f : D.Total →ₗ[G R] M)
+    (hf : f.comp B.relationInclusion.total = f.comp B.relationZero.total) :
+    ∃! g : B.quotientDiagram.Total →ₗ[G R] M, g.comp B.quotientMap.total = f := by
+  apply B.quotient_universal f
+  intro i x hx
+  exact congrArg (fun g : B.relationDiagram.Total →ₗ[G R] M => g ⟨i, ⟨x, hx⟩⟩) hf
+
 end Relations
 end SplitZero.Reconstruction
+
+namespace SplitZero.InternalHomology
+open SplitZero.Reconstruction SplitZero.Homology
+
+universe u v w
+variable {R : Type u} [CommRing R] {L : Type v} [SemilatticeSup L] [OrderBot L]
+
+/-- Coherent support-indexed chain windows. These assumptions are chain-level
+coherence, not conclusions about their homology. -/
+structure ComplexDiagram (R : Type u) (L : Type v) [CommRing R]
+    [SemilatticeSup L] [OrderBot L] where
+  obj : L → Window.{u,w} R
+  arrow : {i j : L} → i ≤ j → ChainMap (obj i) (obj j)
+  arrow_id : ∀ i, arrow (le_refl i) = ChainMap.id (obj i)
+  arrow_comp : ∀ {i j k} (h : i ≤ j) (h' : j ≤ k),
+    ChainMap.comp (arrow h') (arrow h) = arrow (le_trans h h')
+
+namespace ComplexDiagram
+variable (C : ComplexDiagram R L)
+
+def cycles : LinearDiagram R L where
+  V i := (C.obj i).Cycles
+  map h := (C.arrow h).cyclesMap
+  map_id i := by rw [C.arrow_id]; rfl
+  map_comp h h' := congrArg ChainMap.cyclesMap (C.arrow_comp h h')
+
+def boundaries : Relations C.cycles where
+  fibre i := (C.obj i).boundaries
+  stable h hx := (C.arrow h).maps_boundaries hx
+
+/-- Actual fibrewise cycle quotient, already equipped with its semimodule structure. -/
+def homology : LinearDiagram R L := C.boundaries.quotientDiagram
+
+def project : C.cycles.Total →ₗ[G R] C.homology.Total := C.boundaries.quotientMap.total
+
+theorem project_surjective : Function.Surjective C.project := C.boundaries.quotient_surjective
+
+theorem project_eq_iff (i : L) (x y : (C.obj i).Cycles) :
+    C.project ⟨i, x⟩ = C.project ⟨i, y⟩ ↔ x - y ∈ (C.obj i).boundaries :=
+  C.boundaries.quotient_same_label_iff i x y
+
+theorem transition_is_induced {i j : L} (h : i ≤ j) :
+    C.homology.map h = (C.arrow h).onHomology := rfl
+
+/-- A retained class dies exactly when its transported representative is a boundary. -/
+theorem transition_kills_iff {i j : L} (h : i ≤ j) (z : (C.obj i).Cycles) :
+    C.homology.map h ((C.obj i).classOf z) = 0 ↔
+      ∃ y, (C.obj j).prev y = (C.arrow h).mid z.val :=
+  (C.arrow h).mapped_class_zero_iff z
+
+/-- No source class is forgotten in advance of the chosen projection. -/
+theorem retained_class_nonzero (i : L) (z : (C.obj i).Cycles)
+    (hz : ¬ ∃ x, (C.obj i).prev x = z.val) :
+    (⟨i, (C.obj i).classOf z⟩ : C.homology.Total) ≠ ⟨i, 0⟩ := by
+  intro h
+  have he := (C.homology.same_label_eq i _ _).mp h
+  exact hz ((C.obj i).class_zero_iff_boundary z |>.mp he)
+
+/-- Coequalizer property for the internal boundary quotient against every target. -/
+theorem homology_universal {M : Type*} [AddCommMonoid M] [Module (G R) M]
+    (f : C.cycles.Total →ₗ[G R] M)
+    (hf : f.comp C.boundaries.relationInclusion.total =
+      f.comp C.boundaries.relationZero.total) :
+    ∃! g : C.homology.Total →ₗ[G R] M, g.comp C.project = f :=
+  C.boundaries.coequalizer_universal f hf
+
+end ComplexDiagram
+end SplitZero.InternalHomology

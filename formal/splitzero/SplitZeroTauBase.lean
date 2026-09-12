@@ -21,7 +21,11 @@ def structural (M : Type*) [MulZeroOneClass M] : F1 →*₀ M where
   map_zero' := rfl
   map_one' := rfl
   map_mul' x y := by
-    rcases x with _ | ⟨⟩ <;> rcases y with _ | ⟨⟩ <;> simp
+    rcases x with _ | x <;> rcases y with _ | y
+    · change (0 : M) = 0 * 0; rw [zero_mul]
+    · change (0 : M) = 0 * 1; rw [zero_mul]
+    · change (0 : M) = 1 * 0; rw [mul_zero]
+    · change (1 : M) = 1 * 1; rw [one_mul]
 
 @[simp] theorem structural_zero (M : Type*) [MulZeroOneClass M] :
     structural M 0 = 0 := rfl
@@ -30,7 +34,8 @@ def structural (M : Type*) [MulZeroOneClass M] : F1 →*₀ M where
 
 theorem structural_unique {M : Type*} [MulZeroOneClass M] (f : F1 →*₀ M) :
     f = structural M := by
-  ext x
+  apply DFunLike.ext
+  intro x
   cases x with
   | none => exact f.map_zero
   | some u => cases u; exact f.map_one
@@ -83,8 +88,13 @@ theorem prime_inverse_image {S : Type*} [CommSemiring S] (I : Ideal S)
     (hI : (1 : S) ∉ I) : (structural S) ⁻¹' (I : Set S) = {0} := by
   ext x
   cases x with
-  | none => simp [I.zero_mem]
-  | some u => cases u; simp [hI]
+  | none =>
+    change (0 : S) ∈ I ↔ (0 : F1) = 0
+    simp
+  | some u =>
+    cases u
+    change (1 : S) ∈ I ↔ (1 : F1) = 0
+    simp [hI]
 
 /-- Finite additive words. No addition is installed on F1. -/
 def wordValue (w : List F1) : ℕ := (w.map (structural ℕ)).sum
@@ -99,7 +109,9 @@ def Related (v w : List F1) : Prop := wordValue v = wordValue w
 
 theorem related_empty_tau : Related [] [0] := rfl
 
-theorem units_not_idempotent : ¬ Related [1, 1] [1] := by decide
+theorem units_not_idempotent : ¬ Related [1, 1] [1] := by
+  change ¬ (2 : ℕ) = 1
+  decide
 
 /-- The structural map preserves every relation of the base preaddition. -/
 theorem structural_word_sum {S : Type*} [Semiring S] (w : List F1) :
@@ -111,7 +123,9 @@ theorem structural_word_sum {S : Type*} [Semiring S] (w : List F1) :
       ((structural ℕ x + wordValue w : ℕ) : S)
     rw [Nat.cast_add, ih]
     congr 1
-    cases x <;> simp [structural]
+    cases x with
+    | none => exact Nat.cast_zero.symm
+    | some x => exact Nat.cast_one.symm
 
 theorem structural_preserves_preaddition {S : Type*} [Semiring S]
     {v w : List F1} (h : Related v w) :

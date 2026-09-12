@@ -45,7 +45,6 @@ theorem evaluate_natural (f : A →ₗ[R] B) :
 
 variable (P : Submodule R A)
 
-/-- Functionals vanishing on the ORIGINAL relation module. -/
 def annihilator : Submodule R (A →ₗ[R] W) where
   carrier := {ℓ | ∀ x ∈ P, ℓ x = 0}
   zero_mem' := by simp
@@ -84,7 +83,7 @@ section Diagrams
 variable {L : Type v} [Lattice L] [BoundedOrder L]
 variable (D : LinearDiagram R L) (W : Type w) [AddCommGroup W] [Module R W]
 
-def opposite : LinearDiagram R Lᵒᵈ where
+abbrev opposite : LinearDiagram R Lᵒᵈ where
   V i := D.V (OrderDual.ofDual i) →ₗ[R] W
   map h := precompose (D.map h)
   map_id i := by ext ℓ x; simp [precompose]

@@ -70,7 +70,6 @@ variable (F G H : Diagram R)
 abbrev MapTuple := (F.plus →ₗ[R] G.plus) × (F.minus →ₗ[R] G.minus) ×
   (F.eta →ₗ[R] G.eta) × (F.sigma →ₗ[R] G.sigma)
 
-/-- Naturality along exactly the three generating arrows. -/
 def compatibleMaps : Submodule R (MapTuple F G) where
   carrier := {f | (∀ x, G.left (f.1 x) = f.2.2.1 (F.left x)) ∧
     (∀ y, G.right (f.2.1 y) = f.2.2.1 (F.right y)) ∧
@@ -103,10 +102,15 @@ def compatibleMaps : Submodule R (MapTuple F G) where
       change G.tail (a • f.2.2.1 x) = a • f.2.2.2 (F.tail x)
       rw [map_smul, hf.2.2]
 
-abbrev Hom := compatibleMaps F G
+/-- A type-level wrapper retains the diagram parameters during elaboration. -/
+def Hom : Type u := ↥(compatibleMaps F G)
+
+instance : AddCommGroup (Hom F G) := inferInstanceAs (AddCommGroup ↥(compatibleMaps F G))
+instance : Module R (Hom F G) := inferInstanceAs (Module R ↥(compatibleMaps F G))
 
 namespace Hom
 variable {F G H}
+abbrev val (f : Hom F G) : MapTuple F G := (show ↥(compatibleMaps F G) from f).val
 abbrev plus (f : Hom F G) := f.val.1
 abbrev minus (f : Hom F G) := f.val.2.1
 abbrev eta (f : Hom F G) := f.val.2.2.1
@@ -117,14 +121,13 @@ abbrev sigma (f : Hom F G) := f.val.2.2.2
   Subtype.ext (Prod.ext hp (Prod.ext hm (Prod.ext he hs)))
 
 @[simp] theorem left_naturality (f : Hom F G) (x : F.plus) :
-    G.left (f.plus x) = f.eta (F.left x) := f.property.1 x
+    G.left (f.plus x) = f.eta (F.left x) := (show ↥(compatibleMaps F G) from f).property.1 x
 @[simp] theorem right_naturality (f : Hom F G) (x : F.minus) :
-    G.right (f.minus x) = f.eta (F.right x) := f.property.2.1 x
+    G.right (f.minus x) = f.eta (F.right x) := (show ↥(compatibleMaps F G) from f).property.2.1 x
 @[simp] theorem tail_naturality (f : Hom F G) (x : F.eta) :
-    G.tail (f.eta x) = f.sigma (F.tail x) := f.property.2.2 x
+    G.tail (f.eta x) = f.sigma (F.tail x) := (show ↥(compatibleMaps F G) from f).property.2.2 x
 end Hom
 
-/-- A typed constructor for a natural transformation. -/
 def mkHom (p : F.plus →ₗ[R] G.plus) (m : F.minus →ₗ[R] G.minus)
     (e : F.eta →ₗ[R] G.eta) (s : F.sigma →ₗ[R] G.sigma)
     (hp : ∀ x, G.left (p x) = e (F.left x))
@@ -149,7 +152,6 @@ theorem compose_assoc {K : Diagram R} (f : Hom F G) (g : Hom G H) (h : Hom H K) 
     compose F H K (compose F G H f g) h = compose F G K f (compose G H K g h) := by
   apply Hom.ext <;> apply LinearMap.ext <;> intro x <;> rfl
 
-/-- The original signed two-term differential. -/
 def differential : (F.plus × F.minus) →ₗ[R] F.eta :=
   F.left.comp (LinearMap.fst R F.plus F.minus) -
     F.right.comp (LinearMap.snd R F.plus F.minus)
@@ -159,7 +161,6 @@ def differential : (F.plus × F.minus) →ₗ[R] F.eta :=
 
 abbrev Sections := LinearMap.ker F.differential
 
-/-- A compatible pair uniquely extends to all four chart stalks. -/
 theorem sections_extend_iff (x : F.plus) (y : F.minus) :
     F.differential (x,y) = 0 ↔
       ∃! z : F.eta × F.sigma, F.left x = z.1 ∧ F.right y = z.1 ∧ F.tail z.1 = z.2 := by
@@ -170,7 +171,7 @@ theorem sections_extend_iff (x : F.plus) (y : F.minus) :
     rintro ⟨z,s⟩ ⟨hx, _, hs⟩
     apply Prod.ext
     · exact hx.symm
-    · simpa only [← hx] using hs.symm
+    · exact hs.symm.trans (congrArg F.tail hx.symm)
   · rintro ⟨z, hz, _⟩
     exact sub_eq_zero.mpr (hz.1.trans hz.2.1.symm)
 

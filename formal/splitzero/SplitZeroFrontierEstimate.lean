@@ -18,13 +18,13 @@ local notation "⟪" x ", " y "⟫" => inner ℂ x y
 /-- Cauchy--Schwarz with the Hermitian cross term, without losing its sign. -/
 theorem cross_abs (x y : H) :
     |(⟪x, y⟫ + ⟪y, x⟫).re| ≤ 2 * (‖x‖ * ‖y‖) := by
-  have h := (Complex.abs_re_le_norm (⟪x, y⟫)).trans (norm_inner_le_norm x y)
-  have hs : (⟪y, x⟫).re = (⟪x, y⟫).re :=
-    congrArg Complex.re (inner_conj_symm x y)
-  rw [Complex.add_re, hs]
+  have hxy := (Complex.abs_re_le_norm (⟪x, y⟫)).trans (norm_inner_le_norm x y)
+  have hyx := (Complex.abs_re_le_norm (⟪y, x⟫)).trans (norm_inner_le_norm y x)
+  rw [Complex.add_re]
   apply abs_le.mpr
-  rcases abs_le.mp h with ⟨hl, hu⟩
-  constructor <;> linarith
+  rcases abs_le.mp hxy with ⟨hxyL, hxyU⟩
+  rcases abs_le.mp hyx with ⟨hyxL, hyxU⟩
+  constructor <;> nlinarith
 
 /-- The finite bound includes zero costs and zero quadratic values. -/
 theorem cross_bound (x y : H) {q gamma lam : ℝ}

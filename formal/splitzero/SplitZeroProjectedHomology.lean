@@ -18,8 +18,17 @@ variable {R : Type u} [CommRing R]
 def fixed {M : Type v} [AddCommGroup M] [Module R M] (p : M →ₗ[R] M) : Submodule R M where
   carrier := {x | p x = x}
   zero_mem' := p.map_zero
-  add_mem' hx hy := by rw [map_add, hx, hy]
-  smul_mem' r x hx := by rw [map_smul, hx]
+  add_mem' := by
+    intro x y hx hy
+    change p (x + y) = x + y
+    have hx' : p x = x := hx
+    have hy' : p y = y := hy
+    rw [map_add, hx', hy']
+  smul_mem' := by
+    intro r x hx
+    change p (r • x) = r • x
+    have hx' : p x = x := hx
+    rw [map_smul, hx']
 
 structure Data (C : Window.{u,v} R) where
   p : ChainMap C C
@@ -52,7 +61,8 @@ def window : Window R where
       map_add' := fun x y => Subtype.ext (C.next.map_add x.val y.val)
       map_smul' := fun r x => Subtype.ext (C.next.map_smul r x.val) }
   square_zero := by
-    ext x
+    apply LinearMap.ext
+    intro x
     apply Subtype.ext
     exact LinearMap.congr_fun C.square_zero x.val
 
@@ -79,25 +89,29 @@ def projection : ChainMap C S.window where
       map_add' := fun x y => Subtype.ext (S.p.right.map_add x y)
       map_smul' := fun r x => Subtype.ext (S.p.right.map_smul r x) }
   prev_comm := by
-    ext x
+    apply LinearMap.ext
+    intro x
     apply Subtype.ext
     exact LinearMap.congr_fun S.p.prev_comm x
   next_comm := by
-    ext x
+    apply LinearMap.ext
+    intro x
     apply Subtype.ext
     exact LinearMap.congr_fun S.p.next_comm x
 
 /-- Inclusion after projection is the original induced homology operator. -/
 theorem include_project :
     S.inclusion.onHomology.comp S.projection.onHomology = S.p.onHomology := by
-  ext x
+  apply LinearMap.ext
+  intro x
   induction x using Submodule.Quotient.induction_on with
   | _ z => rfl
 
 /-- Projection after inclusion is identity, proved on the actual cycle quotient. -/
 theorem project_include :
     S.projection.onHomology.comp S.inclusion.onHomology = LinearMap.id := by
-  ext x
+  apply LinearMap.ext
+  intro x
   induction x using Submodule.Quotient.induction_on with
   | _ z =>
     change S.window.classOf (S.projection.cyclesMap (S.inclusion.cyclesMap z)) =

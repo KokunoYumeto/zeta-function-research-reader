@@ -1,4 +1,4 @@
-import SplitZeroFrontierEstimate
+import Mathlib
 
 /-!
 # The lowering-incidence estimate before arithmetic specialization
@@ -39,20 +39,25 @@ theorem raising_lowering_identity (u : ι → H) (v : ι → K)
   have hv : ‖∑ i, v i‖ ^ 2 = ∑ i, ∑ j, inner ℝ (v i) (v j) := by
     rw [← real_inner_self_eq_norm_sq]
     simp only [sum_inner, inner_sum]
-  rw [hu, hv, ← Finset.sum_sub_distrib, ← Finset.sum_sub_distrib]
-  apply Finset.sum_congr rfl
-  intro i _
-  rw [← Finset.sum_sub_distrib]
   calc
-    (∑ j, (inner ℝ (u i) (u j) - inner ℝ (v i) (v j))) =
-        inner ℝ (u i) (u i) - inner ℝ (v i) (v i) := by
-      apply Finset.sum_eq_single i
-      · intro j _ hji
-        rw [hc i j (Ne.symm hji), sub_self]
-      · intro hi
-        exact (hi (Finset.mem_univ i)).elim
-    _ = ‖u i‖ ^ 2 - ‖v i‖ ^ 2 := by
-      rw [real_inner_self_eq_norm_sq, real_inner_self_eq_norm_sq]
+    ‖∑ i, u i‖ ^ 2 - ‖∑ i, v i‖ ^ 2 =
+        ∑ i, ((∑ j, inner ℝ (u i) (u j)) - ∑ j, inner ℝ (v i) (v j)) := by
+      rw [hu, hv, Finset.sum_sub_distrib]
+    _ = ∑ i, (‖u i‖ ^ 2 - ‖v i‖ ^ 2) := by
+      apply Finset.sum_congr rfl
+      intro i _
+      rw [← Finset.sum_sub_distrib]
+      calc
+        (∑ j, (inner ℝ (u i) (u j) - inner ℝ (v i) (v j))) =
+            inner ℝ (u i) (u i) - inner ℝ (v i) (v i) := by
+          apply Finset.sum_eq_single i
+          · intro j _ hji
+            rw [hc i j (Ne.symm hji), sub_self]
+          · intro hi
+            exact (hi (Finset.mem_univ i)).elim
+        _ = ‖u i‖ ^ 2 - ‖v i‖ ^ 2 := by
+          rw [real_inner_self_eq_norm_sq, real_inner_self_eq_norm_sq]
+    _ = (∑ i, ‖u i‖ ^ 2) - ∑ i, ‖v i‖ ^ 2 := Finset.sum_sub_distrib
 
 /-- This is the source's k-1 lowering cost, not k times the raising norm. -/
 theorem raising_bound (u : ι → H) (v : ι → K)

@@ -43,3 +43,7 @@ These are successive parts of the same programme. The full notes preserve equati
 ## Contributing without losing the research history
 
 Start from the full note and its exact version. Briefly record the question, why the approach was chosen, the maps or estimates attempted, what succeeded, corrections, and what is still unfinished. Keep source citations and the distinction between written proof, finite regression, numerical evidence and Lean verification. [Web sessions and local agents can both contribute](POLYCLANK_PARTICIPATION.md).
+
+## Complete tandem continuation: source metrics and Mellin jets
+
+The [separate 88-page continuation](workbenches/splitzero-tandem/) provides full TeX proofs and checking code for the exact source-metric image, the confluent Christoffel kernel of the actual theta measure, rank-two boundary formulas and weighted Mellin-jet topology. Its reading guide states the motivation and results of each calculation. It is a separately hash-pinned September 12b contribution, not an unrecorded change to the earlier workbench sources or a completed arithmetic weight estimate.

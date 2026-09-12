@@ -44,7 +44,7 @@ def ringHomEquiv : (G R →+* A) ≃ (R →+* A) where
     ext x
     obtain ⟨_ | r⟩ := x
     · change h (ofR 0) = h 0
-      rw [hom_kills_e h, h.map_zero]
+      exact (hom_kills_e h).trans h.map_zero.symm
     · rfl
   right_inv f := by ext r; rfl
 
@@ -109,7 +109,7 @@ theorem support_eq_self_iff (m : M) : support (R := R) m = m ↔ m + m = m := by
 /-- In a cancellative ambient additive monoid, support necessarily vanishes. -/
 theorem support_eq_zero_of_cancel [IsCancelAdd M] (m : M) : support (R := R) m = 0 := by
   apply add_left_cancel (a := m)
-  simpa using add_support (R := R) m
+  exact (add_support (R := R) m).trans (add_zero m).symm
 
 /-- A split-linear map commutes with the support operation. -/
 theorem map_support {N : Type*} [AddCommMonoid N] [Module (G R) N]
@@ -172,8 +172,7 @@ theorem lift_lowerIdeal (J : Ideal (G R)) (he : (e : G R) ∈ J) :
     liftIdeal (lowerIdeal J he) = J := by
   ext x
   obtain ⟨_ | r⟩ := x
-  · change (0 : G R) ∈ liftIdeal (lowerIdeal J he) ↔ (0 : G R) ∈ J
-    simp
+  · exact ⟨fun _ => J.zero_mem, fun _ => (liftIdeal (lowerIdeal J he)).zero_mem⟩
   · rfl
 
 /-- The complete, disjoint ideal classification. -/

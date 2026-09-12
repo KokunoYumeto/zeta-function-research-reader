@@ -39,7 +39,9 @@ variable (D : LinearDiagram R L)
   congrArg (fun f => f x) (D.map_comp h h')
 
 /-- Dependent disjoint union; the global zero is `(bottom,0)`. -/
-def Total := Σ i, D.V i
+structure Total where
+  fst : L
+  snd : D.V fst
 
 instance totalZero : Zero D.Total := ⟨⟨⊥, 0⟩⟩
 instance totalAdd : Add D.Total := ⟨fun x y =>
@@ -145,7 +147,7 @@ instance totalModule : Module (G R) D.Total where
 
 theorem fibre_zero_ne_global {i : L} (h : i ≠ ⊥) : (⟨i, 0⟩ : D.Total) ≠ 0 := by
   intro he
-  exact h (congrArg Sigma.fst he)
+  exact h (congrArg (fun x : D.Total => x.fst) he)
 
 /-- An ordinary module-valued observation at a chosen terminal label. -/
 def observe [OrderTop L] (x : D.Total) : D.V ⊤ := D.map le_top x.2

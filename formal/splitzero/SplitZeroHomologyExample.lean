@@ -25,7 +25,7 @@ def source : Window k where
   Mnext := k
   prev := 0
   next := 0
-  square_zero := by ext x; rfl
+  square_zero := by apply LinearMap.ext; intro x; rfl
 
 def target : Window k where
   Mprev := k
@@ -33,23 +33,23 @@ def target : Window k where
   Mnext := k
   prev := first k
   next := 0
-  square_zero := by ext x; rfl
+  square_zero := by apply LinearMap.ext; intro x; rfl
 
 def killed : ChainMap (source k) (target k) where
   left := 0
   mid := first k
   right := 0
-  prev_comm := by ext x <;> simp [source, target, first]
-  next_comm := by ext x; rfl
+  prev_comm := by apply LinearMap.ext; intro x; rfl
+  next_comm := by apply LinearMap.ext; intro x; rfl
 
 def surviving : ChainMap (source k) (target k) where
   left := 0
   mid := second k
   right := 0
-  prev_comm := by ext x <;> simp [source, target, first, second]
-  next_comm := by ext x; rfl
+  prev_comm := by apply LinearMap.ext; intro x; rfl
+  next_comm := by apply LinearMap.ext; intro x; rfl
 
-def unitCycle : (source k).Cycles := ⟨1, rfl⟩
+def unitCycle : (source k).Cycles := ⟨(1 : k), rfl⟩
 
 theorem unit_class_nonzero [Nontrivial k] : (source k).classOf (unitCycle k) ≠ 0 := by
   intro h

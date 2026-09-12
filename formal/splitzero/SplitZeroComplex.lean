@@ -56,6 +56,7 @@ theorem differential_square :
     (C.obj i).square_zero
   change (C.obj i).next ((C.obj i).prev x) = 0 at h
   rw [h]
+  rfl
 
 /-- The supported differential equation is genuinely distinct from constant absence
 whenever the index contains a non-bottom support. -/
@@ -72,6 +73,7 @@ theorem cycle_condition (i : L) (x : (C.obj i).M) :
   change (⟨i, (C.obj i).next x⟩ : C.following.Total) =
     (e : G R) • (⟨i, (C.obj i).next x⟩ : C.following.Total) ↔ _
   rw [C.following.supported_zero_action, C.following.same_label_eq]
+  rfl
 
 def boundary : Hom C.previous C.cycles where
   app i := (C.obj i).boundaryToCycles

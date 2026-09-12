@@ -197,5 +197,57 @@ theorem onHomology_comp (g : ChainMap D E) (f : ChainMap C D) :
   induction x using Submodule.Quotient.induction_on with
   | _ x => rfl
 
+
+/-- A commuting chain-level action descends with its exact intertwining equation. -/
+theorem homology_intertwines (f : ChainMap C D) (a : ChainMap C C) (b : ChainMap D D)
+    (h : comp f a = comp b f) :
+    f.onHomology.comp a.onHomology = b.onHomology.comp f.onHomology := by
+  rw [← onHomology_comp f a, ← onHomology_comp b f, h]
+
+/-- The comparison kernel retains the action; it is not discarded after projection. -/
+def kernelAction (f : ChainMap C D) (a : ChainMap C C) (b : ChainMap D D)
+    (h : comp f a = comp b f) :
+    LinearMap.ker f.onHomology →ₗ[R] LinearMap.ker f.onHomology where
+  toFun x := ⟨a.onHomology x.val, by
+    have he := congrArg (fun k : C.H →ₗ[R] D.H => k x.val)
+      (homology_intertwines f a b h)
+    change f.onHomology (a.onHomology x.val) = b.onHomology (f.onHomology x.val) at he
+    rw [x.property, map_zero] at he
+    exact he⟩
+  map_add' x y := Subtype.ext (a.onHomology.map_add x.val y.val)
+  map_smul' r x := Subtype.ext (a.onHomology.map_smul r x.val)
+
+end ChainMap
+
+open CategoryTheory
+
+namespace Window
+
+/-- Every degree of an actual Mathlib cochain complex supplies this homology window. -/
+def ofCochain (C : CochainComplex (ModuleCat.{v} R) ℤ) (i : ℤ) : Window R where
+  Mprev := C.X (i - 1)
+  M := C.X i
+  Mnext := C.X (i + 1)
+  prev := (C.d (i - 1) i).hom
+  next := (C.d i (i + 1)).hom
+  square_zero := congrArg
+    (fun f : C.X (i - 1) ⟶ C.X (i + 1) => f.hom)
+    (C.d_comp_d (i - 1) i (i + 1))
+
+end Window
+
+namespace ChainMap
+
+/-- Restriction of any Mathlib cochain map; no replacement of its differential. -/
+def ofCochain {C D : CochainComplex (ModuleCat.{v} R) ℤ} (f : C ⟶ D) (i : ℤ) :
+    ChainMap (Window.ofCochain C i) (Window.ofCochain D i) where
+  left := (f.f (i - 1)).hom
+  mid := (f.f i).hom
+  right := (f.f (i + 1)).hom
+  prev_comm := (congrArg (fun g : C.X (i - 1) ⟶ D.X i => g.hom)
+    (f.comm (i - 1) i)).symm
+  next_comm := congrArg (fun g : C.X i ⟶ D.X (i + 1) => g.hom)
+    (f.comm i (i + 1))
+
 end ChainMap
 end SplitZero.Homology

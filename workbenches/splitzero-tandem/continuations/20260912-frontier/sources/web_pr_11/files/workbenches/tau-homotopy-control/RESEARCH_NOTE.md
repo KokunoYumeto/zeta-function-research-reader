@@ -1,0 +1,221 @@
+# Homotopy choices and source-preserving arithmetic control
+
+Owner-directed SplitZero continuation, 12 September 2026. Base: PR #10, d26c283c2a58da57bb5a5a4d4bc8669019f6ebb7. This integration note records the new derivations; the conversation delivery also contains a longer equation-by-equation exposition. No original scalar definitions or formal modules are changed.
+
+## 1. Reviewed theorem and analytic specialization
+
+The supplied other-session proof classifies all homotopies for
+
+$$C=[V\oplus V\xrightarrow d B],\qquad d(v,w)=\Theta(v-\mathcal Fw),\qquad Q=B/\Theta V,$$
+
+where Theta is injective and F is an R-linear automorphism. For a fixed kappa:B->V with kappa Theta=0, every solution of BOTH equations
+
+$$dH=\Theta\kappa,\qquad Hd=0$$
+
+has the unique form
+
+$$H_\alpha(b)=(\kappa b+\alpha qb,\mathcal F^{-1}\alpha qb),\qquad\alpha:Q\to_R V.$$
+
+Proof: writing H=(u,v), injectivity gives u-Fv=kappa. Since d(x,0)=Theta x, Hd=0 gives H Theta=0. Hence Fv factors uniquely through q, and supplies alpha. Conversely substitution proves both equations. The reference solution is H_0=(kappa,0); the family is an affine space under Hom_R(Q,V), relative to that reference.
+
+Let gamma(v)=(v,F^-1 v). Then
+
+$$H_\alpha-H_\beta=\gamma(\alpha-\beta)q.$$
+
+The difference is a map H1(C)->H0(C). There are no degree-minus-two endomorphisms of this two-term coefficient complex. Thus it is a genuine degree-minus-one Hom-complex class, not an erased difference.
+
+The supplied theorem is mathematically correct. Its Lean draft explicitly remains uncompiled, and its earlier failed chart build is not relabelled successful. No Lean or Lake executable is installed in the review environment.
+
+For the actual analytic spaces instantiate R=C. With the quotient topology on Q, the continuous version follows: alpha q=F pr2 H is continuous, so the quotient property makes alpha continuous. Conversely the displayed formula sends continuous alpha to continuous H.
+
+For the polynomial action A0=C[t], Fourier has the exact type
+
+$$\mathcal F:V^{\jmath}\xrightarrow{\sim}V,\qquad t\cdot_{V^\jmath}v=(1-D)v,\qquad\jmath(t)=1-t,$$
+
+because F D=(1-D)F. Thus d is A0-linear from V+V^j to B. A complex-linear homotopy is not automatically A0-linear. The reflected module above is the actual comparison, not a change to the Fourier definition.
+
+## 2. Original split support on every homotopy
+
+Retain the base b_tau and the square G(Z)->G(C) over Z->C. The quotient G(Z)->Z remains infinite. Both lifted coefficient maps preserve tau and the supported scalar e separately.
+
+Use the original support lattice L={bottom,+,-,J}, J={+,-}. Degree-zero fibres are 0,V,V,V+V with the coordinate inclusions. Degree-one active fibres are all B, with identity transports. Their differentials are Theta, -Theta F and d. Retain zero modules in the other degrees; their reconstructed zero map is z(lambda,x)=(lambda,0).
+
+Literal multiplication by E_sync=(1,e) induces
+
+$$r^0(a,b)=(a+eb,b+ea),\qquad r_L(\bot)=\bot,\quad r_L(\lambda)=J\ (\lambda\ne\bot).$$
+
+Every homotopy lifts by
+
+$$\widetilde H_\alpha(\lambda,b)=\bigl(J,(\kappa b+\alpha qb,\mathcal F^{-1}\alpha qb)\bigr),\quad\lambda\ne\bot;\qquad\widetilde H_\alpha(\tau)=\tau.$$
+
+This is split-linear: two active inputs add at their joined label, both outputs add at J, and their amplitudes obey the two displayed linear formulas. A supported scalar zero gives (J,(0,0)); external tau gives the global zero. Therefore
+
+$$\widetilde d\widetilde H_\alpha+\widetilde H_\alpha\widetilde d=r\widetilde\Delta.$$
+
+The difference is (J,gamma(alpha-beta)qb), retaining its degree-zero class. For this chart, the pair (support(x),r(x)) is injective. No such injectivity is assumed for arbitrary diagrams with noninjective transports. For a smaller relation space W, keep Q_W->Q with kernel Theta V/Theta W; q in the formulas means the displayed quotient by the full admitted V.
+
+## 3. Coherence for all dilations
+
+Let S_a=U_a on V, T_a=U_a on B, U_a F(x)=F(x/a), and Tbar_a the quotient action. The actual cochain action is
+
+$$\mathsf T_a^0=(S_a,\mathcal F^{-1}S_a\mathcal F)=(U_a,aU_{1/a}),\qquad\mathsf T_a^1=T_a.$$
+
+It satisfies T_a^0 gamma=gamma S_a and qT_a=Tbar_aq. With the PR #10 section s, take P=(0,sq), and write
+
+$$[\mathsf T_a,P]^1=\Theta\kappa_a,\qquad\kappa_a=k_aq,\qquad T_as-s\overline T_a=\Theta k_a.$$
+
+The commutator product identity gives kappa_ab=S_a kappa_b+kappa_a T_b. The family of homotopies is composition-coherent,
+
+$$H_{ab}=\mathsf T_aH_b+H_a\mathsf T_b,$$
+
+exactly when
+
+$$\boxed{\alpha_{ab}=S_a\alpha_b+\alpha_a\overline T_b.}$$
+
+Proof: the reference family (kappa_a,0) is coherent. Subtract it and use injectivity of gamma and surjectivity of q. No action or boundary is omitted.
+
+For a smoothly parameterized continuous-linear family with L=(d/dt)|_0 alpha_(e^t), the exact formula is
+
+$$\alpha_{e^t}=\int_0^t S_{e^{t-r}}L\overline T_{e^r}\,dr.$$
+
+This is a vectorwise integral in the complete Frechet source, with the original oriented integral for negative t. Differentiating the composition equation gives the formula; splitting the integral proves its converse. In particular alpha_a=S_a b-b Tbar_a has infinitesimal parameter D_V b-bD_Q.
+
+## 4. A homotopy parameter leaves the control form fixed
+
+Fix an actual finite arithmetic packet with full multiplicities,
+
+$$h_Z(t)=\prod_{\rho\in Z}(t-\rho)^{m_\rho},\qquad E_Z=\mathbb C[t]/(h_Z),\qquad A=M_t.$$
+
+Use the existing R:E_Z->B and J_Z:B->E_Z with
+
+$$qR=\sigma_Z,\quad J_ZR=1,\quad J_Z\Theta=0,\quad J_ZD=AJ_Z,\quad DR-RA=\Theta k.$$
+
+The cochain projector P_R=(0,RJ_Z) has commutator (0,Theta kJ_Z), so the reviewed theorem applies with kappa=kJ_Z. The quotient jet Jbar_Z satisfies Jbar_Z sigma_Z=1, hence any alpha_E:E_Z->V extends to alpha_E Jbar_Z on Q. Restriction to R gives
+
+$$\boxed{H_{\alpha_E}R=(k+\alpha_E,\mathcal F^{-1}\alpha_E),\qquad dH_{\alpha_E}R=\Theta k.}$$
+
+Take H=L2(R_+,dx) with the original inner product, conjugate-linear in the first variable. Define
+
+$$G_R=R^*R,\qquad B_R=\Theta k,\qquad W_R=-(R^*B_R+B_R^*R).$$
+
+The composite of actual maps
+
+$$\operatorname{Hom}_{\mathbb C}(E_Z,V)\longrightarrow\operatorname{Hom}(E_Z,V^2)\xrightarrow{d\circ(-)}\operatorname{Hom}(E_Z,H)\xrightarrow{B\mapsto-(R^*B+B^*R)}\operatorname{Herm}(E_Z)$$
+
+is constant at W_R. Its last map is real-linear. The retained H0 ambiguity does not change this boundary contraction.
+
+Integration by parts on the actual source functions gives
+
+$$\boxed{A^*G_R+G_RA-G_R=W_R.}$$
+
+The boundary term [x conjugate(F)H]_0^infinity vanishes by the stated decay. No claim that a theta boundary is orthogonal to a representative is used.
+
+## 5. The actual representative-change family
+
+Every representative of the same inclusion sigma_Z is uniquely
+
+$$R_b=R+\Theta b,\qquad b:E_Z\to_{\mathbb C}V.$$
+
+Indeed q(R'-R)=0 gives values in Theta V, and the PR #10 retraction gives the unique b=Lambda(R'-R). Finite source dimension gives continuity. Global continuous sections have the identical formula with b:Q->V continuous.
+
+The complete changes are
+
+$$k_b=k+D_Vb-bA,$$
+
+$$\delta G_b=R^*\Theta b+(\Theta b)^*R+(\Theta b)^*\Theta b,$$
+
+$$\boxed{W_{R_b}-W_R=A^*\delta G_b+\delta G_bA-\delta G_b.}$$
+
+Their extension-coordinate map is U_b(v,u)=(v+bu,u), and
+
+$$U_b^{-1}\begin{pmatrix}D_V&k\\0&A\end{pmatrix}U_b=\begin{pmatrix}D_V&k+D_Vb-bA\\0&A\end{pmatrix}.$$
+
+Lift that automorphism on the common active fibre (V+E_Z)^tau. For the original masks, first keep the pair (support(x),r(x)); apply the shear on the joint fibre, and recover the original amplitudes by U_b^-1 and the original mask by its recorded component. No inverse to the unrecorded support collapse is asserted.
+
+The projectors obey P_(R_b)-P_R=partial L_b with L_b^1(F)=(bJ_ZF,0). Their finite cochain traces agree because
+
+$$\operatorname{Tr}(\Theta bJ_ZH_f)=\operatorname{Tr}(J_ZH_f\Theta b)=0.$$
+
+The cochain supertrace sign remains -1 in degree one. The arithmetic extension class changes by h_Z(D)b(1), so its class in V/h_Z(D)V remains epsilon_Z=j_h(h_Z/(2xi)). The residue/Jacobian trace form is consequently unchanged.
+
+## 6. Finite actual source ansatz and one master Gram matrix
+
+Retain phi_*=(4pi^2 x^4-6pi x^2)exp(-pi x^2), phi_j=D^j phi_*, and
+
+$$\Phi_m:\mathbb C^{m+1}\to V,\qquad(c_j)\mapsto\sum_{j=0}^m c_j\phi_j.$$
+
+Their actual Mellin identities are M Theta phi_j(s)=2xi(s)s^j. They remain in the original two-moment source and are linearly independent. The source section R_0=s_Z has the exact rank-one defect DR_0-R_0A=Theta phi_* ell_Z, with the unchanged arithmetic remainder functional ell_Z.
+
+Define maps, including the target enlargement,
+
+$$I_m e_j=e_j,\qquad S_m e_j=e_{j+1},\qquad I_m,S_m:\mathbb C^{m+1}\to\mathbb C^{m+2},\qquad D\Phi_m=\Phi_{m+1}S_m.$$
+
+For B in Mat_((m+1) x d)(C), d=dim E_Z, put
+
+$$R_B=R_0+\Theta\Phi_mB,\qquad K_B=e_0\ell_Z+S_mB-I_mBA.$$
+
+Then
+
+$$DR_B-R_BA=\Theta\Phi_{m+1}K_B,\qquad qR_B=\sigma_Z,\qquad J_ZR_B=1.$$
+
+Take the actual column map and its Gram matrix
+
+$$\mathcal T_m:E_Z\oplus\mathbb C^{m+2}\to L^2(\mathbb R_+,dx),\qquad(u,c)\mapsto R_0u+\Theta\Phi_{m+1}c,\qquad M_m=\mathcal T_m^*\mathcal T_m.$$
+
+M_m is positive definite. Applying J_Z to a vanishing combination gives u=0; Mellin then gives c=0. Its entries are the convergent integrals of the displayed arithmetic functions, with the original measure.
+
+Define
+
+$$X_B=\begin{pmatrix}I_d\\I_mB\end{pmatrix},\qquad Y_B=\begin{pmatrix}0\\K_B\end{pmatrix}.$$
+
+The complete control calculation is
+
+$$\boxed{G_B=X_B^*M_mX_B,\qquad W_B=-(X_B^*M_mY_B+Y_B^*M_mX_B)=A^*G_B+G_BA-G_B.}$$
+
+This restricts representative choice to an actual finite family of theta boundaries. It is not an arbitrary positive matrix ansatz, and it is not asserted to exhaust all continuous source corrections. All packet coordinates, multiplicities, local units and finite source-degree changes are retained.
+
+## 7. Error transport, duality, and the remaining estimate
+
+With actual enclosures ||M-Mhat||<=eta_M, ||X-Xhat||<=eta_X, ||Y-Yhat||<=eta_Y, put x=||Xhat||, y=||Yhat||, m0=||Mhat||. Product estimates give
+
+$$\eta_G=\eta_M(x+\eta_X)^2+m_0(2x\eta_X+\eta_X^2),$$
+
+$$\eta_W=2[\eta_M(x+\eta_X)(y+\eta_Y)+m_0(x\eta_Y+y\eta_X+\eta_X\eta_Y)].$$
+
+These include coefficient errors, not just quadrature errors. Exact certificates for Ghat-eta_G I>0 and
+
+$$\epsilon\widehat G\pm\widehat W-(\epsilon\eta_G+\eta_W)I\succeq0$$
+
+imply the actual two-sided control. This is an error-transfer theorem; arithmetic enclosures have not been computed here.
+
+The unchanged residue matrix S satisfies S*=-S and A*S+SA=S. Its exact dual transport is
+
+$$G_B^{\mathrm D}=S^*G_B^{-1}S,\qquad W_B^{\mathrm D}=-S^*G_B^{-1}W_BG_B^{-1}S.$$
+
+Thus an upper certificate gives a lower certificate on the same arithmetic packet. The Weil form stays S J_g, with metric comparison G_B^-1 S J_g; no positivity is assigned by choosing G_B.
+
+For tensor degree n, retain A_n=sum_j 1 tensor A tensor 1 and G_(B,n)=G_B^(tensor n). The product control is sum_j G_B tensor W_B tensor G_B. Changing a homotopy by gamma alpha q changes the tensor homotopy by its Koszul-signed insertions; its differential is zero, hence it does not change that control form.
+
+The existing orbit construction on this actual tensor image gives
+
+$$G_{B,n,T}=\int_0^T e^{-nt}e^{tA_n^*}G_{B,n}e^{tA_n}\,dt,$$
+
+$$A_n^*G_{B,n,T}+G_{B,n,T}A_n-nG_{B,n,T}=e^{-nT}e^{TA_n^*}G_{B,n}e^{TA_n}-G_{B,n}.$$
+
+Every occurrence of G_(B,n) now has the explicitly constrained source in section 6.
+
+A nonzero boundary need not have nonzero control. The exact calibration D_amb=diag(1/2+i,1/2+2i), Theta(v)=(v,0), A=1/2+2i, R(u)=(u,u) has boundary Theta(-i), Gram 2, and control zero. It is an algebraic calibration, not a zeta packet. The real-linear map B->-(R*B+B*R) explains which nonzero boundaries can have zero control.
+
+Conversely every eigenvector Av=rho v obeys
+
+$$\frac{v^*W_Bv}{v^*G_Bv}=2\Re\rho-1.$$
+
+This ensures that changing representatives has not changed a spectral coordinate. The analytic target is now to bound the actual matrices from section 6, or their tensor-orbit endpoints, with all packet and tensor dependence retained. No uniform purity estimate, RH, GRH, or global spectral-kernel vanishing is proved here.
+
+## 8. Validation and attribution
+
+The attachment supplies the homotopy-classification theorem and the uncompiled draft. This note verifies its proof and adds the continuous/twisted interface, supported reconstruction, coherent-family condition, and the connection to the actual control matrices. The original owner-directed SplitZero construction remains the source.
+
+The independent checker has sixteen exact unittest methods, including finite parameter families. They passed normally and under python -O with identical successful JSON records. Intentional negative controls failed in both modes. The previous control checker also passed its sixteen methods. These finite checks cover algebraic models and polynomial-times-exponential integral calibrations, not evaluated zeta packets or analytic/Lean certification.
+
+General references: The Stacks Project, Tags 0A8H and 0115 for the Hom-complex differential and homotopy, and 010I and 06XP for extension classes. The formulas above are proved on the specified programme objects; those references are not imported as a number-field weight theorem. Only authored notes, test code and validation records are published; no private transcript, source-literature corpus, or font files are included.

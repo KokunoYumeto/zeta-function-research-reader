@@ -57,7 +57,7 @@ theorem kernelDescent_bijective : Function.Bijective (kernelDescent P Q f hf) :=
     obtain ⟨m, rfl⟩ := Submodule.Quotient.mk_surjective P x
     have hm : m ∈ Killing Q f := by
       change (Q.mkQ (f m)) = 0 at hx
-      exact (Submodule.Quotient.mk_eq_zero _).mp hx
+      exact (Submodule.Quotient.mk_eq_zero Q).mp hx
     exact ⟨Submodule.Quotient.mk (⟨m, hm⟩ : Killing Q f), Subtype.ext rfl⟩
 
 /-- Exact kernel formula, as a linear equivalence with specified forward map. -/

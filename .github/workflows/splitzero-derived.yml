@@ -21,6 +21,11 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
+      - name: Enumerate required sources and test the audit checker
+        run: |
+          set -euo pipefail
+          python3 check_derived.py --prepare
+          python3 -m unittest -v test_derived_checker.py
       - name: Install pinned environment
         run: |
           set -euo pipefail
@@ -33,20 +38,20 @@ jobs:
           lake update >DerivedSetup.log 2>&1 || { tail -60 DerivedSetup.log; exit 1; }
           test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
           lake exe cache get >>DerivedSetup.log 2>&1 || { tail -60 DerivedSetup.log; exit 1; }
-      - name: Compile original package and derived sources
+      - name: Build all original and derived libraries
         run: |
           set -euo pipefail
           lake -KmaxJobs=1 build >DerivedBuild.log 2>&1 || { cat DerivedBuild.log; exit 1; }
-          tail -30 DerivedBuild.log
-          for name in SplitZeroReconstruction SplitZeroHomology SplitZeroInternalQuotient SplitZeroHomologyExample SplitZeroFiniteJets; do
-            if test -f "$name.lean"; then
-              lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
-            fi
+          cat DerivedBuild.log
+      - name: Recheck all new sources and transitive axiom reports
+        run: |
+          set -euo pipefail
+          lake env lean --trust=0 SplitZero.lean
+          for name in SplitZeroReconstruction SplitZeroRecovery SplitZeroHomology SplitZeroInternalQuotient SplitZeroComplex SplitZeroHomologyExample SplitZeroFiniteJets; do
+            lake env lean --trust=0 -DwarningAsError=true "$name.lean"
           done
           lake env lean --trust=0 -DwarningAsError=true Audit.lean >Audit.log
           python3 check_axioms.py Audit.log
           python3 test_axioms.py -v
-          if test -f AuditDerived.lean; then
-            lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean | tee AuditDerived.log
-            python3 check_derived.py AuditDerived.log
-          fi
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean | tee AuditDerived.log
+          python3 check_derived.py AuditDerived.log

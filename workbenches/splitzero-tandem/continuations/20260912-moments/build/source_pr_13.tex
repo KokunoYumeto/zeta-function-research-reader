@@ -1,0 +1,397 @@
+\subsection{Orthogonal theta boundaries and rank-two arithmetic
+control}\label{pr_13:orthogonal-theta-boundaries-and-rank-two-arithmetic-control}
+
+Owner-directed SplitZero continuation, 12 September 2026. Base: PR \#11,
+\nolinkurl{d37eade4f9e6a82c1a88aeff710a3b851a34eb49}. This is an additive research contribution with written
+proofs for review, not a new Lean certificate for the analytic results. The conversation delivery
+contains a longer numbered LaTeX/HTML version, the full reading record, and exploratory arithmetic
+moments.
+
+\subsubsection{1. Reviewed input and exact types}\label{pr_13:reviewed-input-and-exact-types}
+
+The supplied other-session theorem is correct: for injective Theta:V-\textgreater B, an R-linear
+automorphism F, Q=B/Theta V, and kappa:B-\textgreater V with kappa Theta=0, all homotopies
+satisfying BOTH dH=Theta kappa and Hd=0, for d(v,w)=Theta(v-Fw), are
+
+\begin{verbatim}
+H_alpha(b)=(kappa b+alpha qb, F^-1 alpha qb),   alpha:Q->R V.
+\end{verbatim}
+
+Writing H=(u,v) gives u-Fv=kappa. Since d(x,0)=Theta x, Hd=0 gives H Theta=0; hence Fv descends
+uniquely to alpha. Substitution proves the converse. The difference is gamma(alpha-beta)q with
+gamma(v)=(v,F\^{}-1v). The solution set is affine relative to H\_0, not generally a vector space
+with the zero homotopy as origin.
+
+The attachment's uncompiled-draft status has now been superseded by the other session's successful
+PR \#12 at \nolinkurl{5d2772ea0a16d177ac3e01ff70394b90ba95a232}. The actual
+\nolinkurl{SplitZeroTauHomotopy.lean}, completed job \nolinkurl{103535438942}, and its full log were read.
+Both cochain equations and the inverse equivalence passed the specified kernel checks. Retraction
+and quotient-topology interfaces also passed with their explicit hypotheses. This is the other
+session's formalization; neither the actual analytic theta construction nor the new Gram/control
+results below are certified by it. No local Lean/Lake execution is claimed. See
+\nolinkurl{COORDINATION_UPDATE.md} for exact scope. PR \#11 already supplies the continuous
+specialization, the Fourier twist over C{[}t{]}, support-changing lifts, coherent dilations and
+representative-change formulas. Those are retained inputs, not new results here.
+
+Keep the original tau base and the square G(Z)-\textgreater G(C) over Z-\textgreater C, with
+p:G(Z)-\textgreater Z still infinite, e=ofR(0), and tau the external scalar zero. No Boolean
+localization replaces the base quotient. All quotient relations below use the original internal
+coequalizer and preserve the support label.
+
+Retain V, B and the actual operators of PRs \#8-\#11:
+
+\begin{verbatim}
+V={even Schwartz phi on R: phi(0)=0 and integral(phi)=0};
+B={smooth F on R_+: sup x^b |D^k F(x)|<infinity for all integer b and k>=0};
+D=-x d/dx; Theta phi(x)=2 sum_(n>=1) phi(nx);
+M F(s)=integral_0^infinity F(x)x^s dx/x;
+phi_*=(4 pi^2 x^4-6 pi x^2)exp(-pi x^2);
+phi_j=D^j phi_*; f_j=Theta phi_j=D^j f_0;
+M f_j(s)=s^j g(s), g=2 xi.
+\end{verbatim}
+
+The Hilbert observation is H=L2(R\_+,dx), conjugate-linear in the first argument. Polynomial packet
+coordinates are retained, not changed to orthonormal coordinates.
+
+For an actual finite packet with all multiplicities, let E=C{[}t{]}/h\_Z, A=M\_t. The previous
+analytic constructions supply
+
+\begin{verbatim}
+R_0:E->B, J_Z:B->E, qR_0=sigma_Z, J_ZR_0=1, J_ZTheta=0,
+DR_0-R_0 A=f_0 ell_Z.
+\end{verbatim}
+
+The exact ell\_Z comes from epsilon\_Z=j\_h(h/(2 xi)); at a simple zero its value on 1 is 1/(2
+xi'(rho)). These analytic constructions remain the cited research-proof dependencies, not theorems
+certified by the finite tests here.
+
+\subsubsection{2. An actual minimum over the admitted theta
+relations}\label{pr_13:an-actual-minimum-over-the-admitted-theta-relations}
+
+For m\textgreater=0 define
+
+\begin{verbatim}
+W_m=span(phi_0,...,phi_m);
+Phi_m:C^(m+1)->V, c |-> sum c_j phi_j;
+F_m=Theta Phi_m:C^(m+1)->H;
+H_m=F_m* F_m; C_m=F_m* R_0; G_0=R_0*R_0.
+\end{verbatim}
+
+The f\_j are independent: Mellin sends a relation to g(s)P(s)=0. Thus H\_m is positive definite.
+Here C\_m is a cross-Gram matrix E-\textgreater C\^{}(m+1), not the complex of that name in the
+endpoint workbench.
+
+Set
+
+\begin{verbatim}
+B_m=-H_m^-1 C_m;
+Pi_m=F_m H_m^-1 F_m*;
+R_m=R_0+Theta Phi_m B_m=(1-Pi_m)R_0.
+\end{verbatim}
+
+The correction is a finite original theta boundary, so R\_m lands in B, qR\_m=sigma\_Z, and
+J\_ZR\_m=1 at every m. Direct multiplication proves
+
+\begin{verbatim}
+F_m*R_m=0;
+G_m=R_m*R_m=G_0-C_m*H_m^-1 C_m >0.
+\end{verbatim}
+
+Positive definiteness follows from J\_ZR\_m=1. For any B:E-\textgreater C\^{}(m+1),
+
+\begin{verbatim}
+(R_0+F_m B)*(R_0+F_m B)
+  =G_m+(B-B_m)*H_m(B-B_m).
+\end{verbatim}
+
+This is the minimum of the Hilbert Gram within the stated source family, not yet a minimum of its
+relative weight error. Also (1-Pi\_m)(R\_0+F\_m B')=R\_m: changing the initial representative by a
+relation already in W\_m leaves the result unchanged.
+
+\subsubsection{3. The complete control form has rank at most
+two}\label{pr_13:the-complete-control-form-has-rank-at-most-two}
+
+Let I\_m,S\_m:C\^{}(m+1)-\textgreater C\^{}(m+2) be I\_m e\_j=e\_j and S\_m e\_j=e\_(j+1). Define
+
+\begin{verbatim}
+K_m=e_0 ell_Z+S_m B_m-I_m B_m A.
+\end{verbatim}
+
+Then
+
+\begin{verbatim}
+DR_m-R_m A=F_(m+1)K_m=Theta(Phi_(m+1)K_m).
+\end{verbatim}
+
+No boundary component is discarded in this identity. Put b\_m=e\_m*B\_m:E-\textgreater C, and
+z\_m=R\_m*f\_(m+1):C-\textgreater E. Integration by parts on the stated source functions gives
+
+\begin{verbatim}
+<DF,H>+<F,DH>=<F,H>,
+\end{verbatim}
+
+with vanishing boundary term {[}x conjugate(F)H{]}\_0\^{}infinity. Hence
+
+\begin{verbatim}
+W_m=A*G_m+G_m A-G_m
+   =-(R_m*F_(m+1)K_m+K_m*F_(m+1)*R_m)
+   =-z_m b_m-b_m*z_m*.
+\end{verbatim}
+
+The last equality uses F\_m*R\_m=0 and the exact last row of K\_m, which is b\_m. Thus
+rank(W\_m)\textless=2 for every packet dimension and every finite m. The pairings with the first m+1
+theta directions vanish; those supported vectors themselves are retained.
+
+Define the actual scalar quantities
+
+\begin{verbatim}
+u_m=z_m*G_m^-1 z_m >=0;
+v_m=b_m G_m^-1 b_m* >=0;
+c_m=b_m G_m^-1 z_m.
+\end{verbatim}
+
+The nonzero spectrum of G\_m\^{}-1 W\_m is the nonzero spectrum of
+
+\begin{verbatim}
+-[[c_m,v_m],[u_m,conjugate(c_m)]].
+\end{verbatim}
+
+This follows by factoring through the two-column map {[}z\_m,b\_m*{]} and using the equality of
+nonzero spectra of the two compositions. Its trace is -2 Re(c\_m), determinant
+\textbar c\_m\textbar\^{}2-u\_m v\_m. Therefore the least symmetric control allowance is
+
+\begin{verbatim}
+epsilon_m=|Re(c_m)|+sqrt(u_m v_m-(Im(c_m))^2),
+-epsilon_m G_m <= W_m <= epsilon_m G_m.
+\end{verbatim}
+
+Cauchy-Schwarz makes the radicand nonnegative. The formula also covers rank one. A reflection-stable
+full packet has
+
+\begin{verbatim}
+trace(G_m^-1 W_m)=2 Re(trace A)-dim E=0,
+\end{verbatim}
+
+so Re(c\_m)=0. This is an exact trace identity, not a choice of coordinates. For every eigenvector
+Av=rho v,
+
+\begin{verbatim}
+(v*W_m v)/(v*G_m v)=2 Re(rho)-1.
+\end{verbatim}
+
+Thus the relative control still detects precisely the original spectral weight.
+
+\subsubsection{4. The next relation is a rank-one update with its own retained
+coordinate}\label{pr_13:the-next-relation-is-a-rank-one-update-with-its-own-retained-coordinate}
+
+Set
+
+\begin{verbatim}
+a_(m+1)=(1-Pi_m)f_(m+1)=Theta psi_(m+1),
+psi_(m+1)=phi_(m+1)-Phi_m H_m^-1 F_m*f_(m+1),
+eta_(m+1)=||a_(m+1)||^2 >0.
+\end{verbatim}
+
+Then R\_m*a\_(m+1)=z\_m, and orthogonal decomposition gives
+
+\begin{verbatim}
+Pi_(m+1)=Pi_m+a_(m+1) eta_(m+1)^-1 a_(m+1)*;
+R_(m+1)=R_m-a_(m+1) eta_(m+1)^-1 z_m*;
+G_(m+1)=G_m-eta_(m+1)^-1 z_m z_m*.
+\end{verbatim}
+
+The control update is obtained by applying the same real-linear operator X \textbar-\textgreater{}
+A*X+XA-X to the last identity.
+
+The original quotient transport is
+
+\begin{verbatim}
+Q_Wm=B/Theta W_m -> Q_W(m+1)=B/Theta W_(m+1),
+kernel=Theta W_(m+1)/Theta W_m ~= W_(m+1)/W_m.
+\end{verbatim}
+
+That kernel is one-dimensional. The square E-\textgreater Q\_Wm by R\_m and E-\textgreater Q\_W(m+1)
+by R\_(m+1) commutes. The new relation becomes the supported zero only through the actual next-level
+quotient; it is not another scalar adjunction at the bottom.
+
+There is a form on the entire quotient:
+
+\begin{verbatim}
+Hcal_m([F],[G])=<(1-Pi_m)F,(1-Pi_m)G>.
+\end{verbatim}
+
+It is positive definite since the kernel of 1-Pi\_m in B is exactly Theta W\_m. Let
+lambda\_(m+1){[}F{]}=\textless a\_(m+1),F\textgreater. This is well defined on Q\_Wm and
+
+\begin{verbatim}
+Hcal_m(x,y)=Hcal_(m+1)(qx,qy)
+            +eta_(m+1)^-1 conjugate(lambda(x))lambda(y).
+\end{verbatim}
+
+The map (q,lambda):Q\_Wm -\textgreater{} Q\_W(m+1) plus C is a linear isomorphism. Its inverse is
+
+\begin{verbatim}
+([F],c) |-> [F-a eta^-1<a,F>+a eta^-1 c]_Wm.
+\end{verbatim}
+
+Changing F by a relation at level m+1 changes this expression only by a relation at level m. This
+supplies the exact metric comparison between levels instead of treating the quotient transports as
+isometries.
+
+Every displayed linear map has its original fixed-support lift. On the full source chain,
+reconstructed addition uses the join max(m,n) and the above transports. The scalar e sends
+(m,{[}F{]}) to (m,{[}0{]}); tau sends it to external absence. The two-leg primitives are (k\_m u,0)
+and (0,-Fourier\^{}-1 k\_m u), where k\_m=Phi\_(m+1)K\_m. Synchronization by the original
+E\_sync=(1,e) supplies their common joint support. Their difference remains the H0 cycle (k\_m
+u,Fourier\^{}-1 k\_m u). The other session's Hom(Q,H0) freedom leaves their differential and hence
+W\_m unchanged.
+
+\subsubsection{5. Actual arithmetic moments and their truncation
+allowance}\label{pr_13:actual-arithmetic-moments-and-their-truncation-allowance}
+
+The matrices H\_m come from the original arithmetic functions. Since JF(x)=x\^{}-1 F(1/x) is unitary
+on L2(dx), Jf\_0=f\_0 and JD=(1-D)J,
+
+\begin{verbatim}
+H_ij=integral_1^infinity [conjugate(f_i)f_j
+             +conjugate(f_i^ref)f_j^ref] dx,
+f_j^ref=(1-D)^j f_0.
+\end{verbatim}
+
+This retains both multiplicative ends and permits absolutely convergent Gaussian sums on
+x\textgreater=1. Write
+
+\begin{verbatim}
+phi_j(x)=P_j(x)exp(-pi x^2),
+P_0=4 pi^2 x^4-6 pi x^2,
+P_(j+1)=2 pi x^2 P_j-x P_j',
+P_j=sum_r c_(j,r)x^(2r),
+c_(j+1,r)=2 pi c_(j,r-1)-2r c_(j,r).
+\end{verbatim}
+
+For f\_j\^{}\href{x}{N}=2 sum\_(n=1)\^{}N P\_j(nx)exp(-pi n\^{}2x\^{}2), put
+
+\begin{verbatim}
+C_j=sum_r |c_(j,r)|sqrt(Gamma(2r+1/2)/(2 pi^(2r+1/2))).
+\end{verbatim}
+
+Then
+
+\begin{verbatim}
+||f_j-f_j^[N]||_L2([1,infinity))
+  <= 2 C_j (N+1)^(-1/2) exp(-pi(N+1)^2/2)
+     /[1-exp(-pi(2N+3)/2)].
+\end{verbatim}
+
+Proof: on x\textgreater=1, 2 pi n\^{}2x\^{}2 \textgreater= pi n\^{}2+pi n\^{}2x\^{}2. Integrating
+each monomial's squared bound gives n\^{}-1/2 exp(-pi n\^{}2/2) times the displayed gamma constant.
+Minkowski and a geometric bound on consecutive n terms give the formula. The reflected derivative
+retains the absolute binomial sum of these allowances.
+
+The finite integral entries use exactly
+
+\begin{verbatim}
+integral_1^infinity x^(2k)exp(-c x^2) dx
+  =Gamma(k+1/2,c)/(2 c^(k+1/2)), c=pi(n^2+n'^2).
+\end{verbatim}
+
+For truncation tail norms delta\_i,delta\_j, each inner-product error is bounded by
+delta\_i\textbar\textbar f\_j\^{}{[}N{]}\textbar\textbar+\textbar\textbar f\_i\^{}{[}N{]}\textbar\textbar delta\_j+delta\_i
+delta\_j, plus its reflected contribution. Numerical evaluation errors for the finite expression
+still require their own enclosure. The optional conversation computation is explicitly exploratory,
+not interval-certified.
+
+The exact consistency check is H\_(i+1,j)+H\_(i,j+1)=H\_ij. Cross-Gram columns F\_m*R\_0 remain
+their actual source integrals and are not replaced by arbitrary matrices.
+
+\subsubsection{6. The same source proves a strong topology
+comparison}\label{pr_13:the-same-source-proves-a-strong-topology-comparison}
+
+For this actual f\_0,
+
+\begin{verbatim}
+closure span{D^j f_0:j>=0} in L2(R_+,dx) = H.
+\end{verbatim}
+
+Proof. The explicit unitary Mellin-line map sends F to M F(1/2+it) in L2(R,dt/(2 pi)). It sends D to
+1/2+it and f\_j to (1/2+it)\^{}j g(1/2+it). The log-space function h(z)=exp(z/2) f\_0(exp z) is
+holomorphic in \textbar Im z\textbar\textless pi/4 by its Gaussian series. For \textbar Im
+z\textbar\textless=a\textless pi/4 it decays superexponentially as Re z tends to positive infinity.
+Poisson gives h(z)=h(-z), so the same holds at the other end. Fourier contour displacement therefore
+gives \textbar g(1/2+it)\textbar\textless=C\_a exp(-a\textbar t\textbar).
+
+The measure dmu=\textbar g(1/2+it)\textbar\^{}2dt/(2 pi) has a positive exponential moment. If an
+L2(mu) function is orthogonal to all polynomials, multiplying mu by its conjugate gives a finite
+complex measure with a smaller positive exponential moment. Its Fourier transform is analytic in a
+strip and all derivatives at zero vanish. Analyticity and uniqueness of the Fourier transform imply
+that measure is zero. Thus polynomials are dense in L2(mu). Multiplication by g is unitary from this
+weighted space onto L2(dt/(2 pi)), because the nonzero analytic function g on the line is nonzero
+almost everywhere. This proves the assertion without RH.
+
+As a result, for a fixed finite packet,
+
+\begin{verbatim}
+R_m -> 0 in Hom(E,H), G_m -> 0 and W_m -> 0,
+while qR_m=sigma_Z and J_ZR_m=1 for every m.
+\end{verbatim}
+
+This specifies why unscaled smallness of W\_m cannot be used alone as weight control: its
+denominator G\_m is also shrinking. The exact relative formula in section 3 must be retained.
+
+The corrective map is the Hilbert/jet graph:
+
+\begin{verbatim}
+closure{(F,J_ZF):F in B} = H plus E;
+closure{(Theta phi,0):phi in V} = H plus 0.
+\end{verbatim}
+
+Indeed finite theta polynomials give every (h,0) in the closure, and the sequence (R\_m u,u) gives
+(0,u). For a specified positive metric on E, completion in
+\textbar\textbar F\textbar\textbar\_2\^{}2+\textbar\textbar J\_ZF\textbar\textbar\_E\^{}2 is this
+graph closure, and the quotient by the boundary closure is E by {[}(h,u){]}\textbar-\textgreater u.
+The added metric is retained supplied data, not an implied positivity theorem for the Weil pairing.
+
+Its split observation is
+
+\begin{verbatim}
+((R_m u)^bullet,u^bullet) -> (e_H,u^bullet)
+\end{verbatim}
+
+in the product of the stated support-fibre topologies. The arithmetic component survives above a
+supported Hilbert zero. External absence is (tau,tau).
+
+\subsubsection{7. Duality, trace and scope}\label{pr_13:duality-trace-and-scope}
+
+The original residue map has matrix S with S*=-S and A*S+SA=S. Its pullback of the dual metric is
+
+\begin{verbatim}
+G_m^D=S*G_m^-1 S,
+W_m^D=-S*G_m^-1 W_m G_m^-1 S.
+\end{verbatim}
+
+Thus the upper-to-lower comparison is retained on the same arithmetic packet. The Weil pairing stays
+S J\_g, with explicit metric comparison G\_m\^{}-1 S J\_g. Its positivity is not imposed by choosing
+a positive Gram matrix.
+
+All representative changes above are original theta boundaries. Their extension class j\_h(h/(2 xi))
+is unchanged; the induced finite cochain projectors differ by the homotopy (bJ\_Z,0). The trace
+difference is zero because J\_ZTheta=0. Degree-one and tensor Koszul signs remain those of the
+source complex. On a raw tensor metric, the inserted W\_m terms give the copied allowance n
+epsilon\_m; tensoring alone does not improve it.
+
+The new results are the actual orthogonal source choice, rank-two boundary formula, exact relative
+certificate, rank-one source-kernel recurrence, arithmetic moment tail bound, and the full
+Hilbert/jet topology comparison. No uniform arithmetic purity estimate, global spectral-kernel
+vanishing, RH or GRH is asserted.
+
+The thirteen finite exact tests check the encoded algebra and declared calibration models, not
+infinite analytic arguments or actual zeta zeros. The complete cochain-homotopy theorem remains the
+other session's result, now supported by the independently inspected successful PR \#12 run. Its
+certificate does not extend to the new analytic control results. Existing Lean modules and earlier
+validation receipts are untouched.
+
+References: live PR \#11 at the pinned head; successful PR \#12 and source/job references in
+COORDINATION\_UPDATE.md; the supplied Tau\_Deligne\_Control and Tau\_Global\_Comparison source
+notes; the supplied other-session homotopy proof; the previously retained Weil II 3.3.4-3.3.6 and
+6.2 duality excerpts. Standard orthogonal-polynomial context is NIST DLMF 18.2; the density argument
+needed here is proved above for the actual arithmetic measure.

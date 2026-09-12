@@ -18,11 +18,13 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- Squared Hilbert--Schmidt norm in the displayed coordinates. -/
 def hsSq (M : Matrix n n ℂ) : ℝ := (Matrix.trace (M.conjTranspose * M)).re
 
+omit [DecidableEq n] in
 theorem hsSq_nonneg (M : Matrix n n ℂ) : 0 ≤ hsSq M := by
   exact (RCLike.nonneg_iff.mp
     (Matrix.posSemidef_conjTranspose_mul_self M).trace_nonneg).1
 
 /-- The overlap of two orthogonal projections is a squared norm. -/
+omit [DecidableEq n] in
 theorem projection_overlap_eq (P F : Matrix n n ℂ)
     (hP : P * P = P) (hPs : P.conjTranspose = P)
     (hF : F * F = F) (hFs : F.conjTranspose = F) :
@@ -75,7 +77,7 @@ def signedControl (e : ℝ) (Fplus Fminus : Matrix n n ℂ) : Matrix n n ℂ :=
 theorem signed_trace_formula (P Fplus Fminus : Matrix n n ℂ) (e : ℝ) :
     (Matrix.trace (P * signedControl e Fplus Fminus)).re =
       e * ((Matrix.trace (P * Fplus)).re - (Matrix.trace (P * Fminus)).re) := by
-  simp [signedControl, Matrix.mul_smul, mul_sub, Complex.mul_re]
+  simp [signedControl, mul_sub, Complex.mul_re]
 
 /-- The allowance is e, independently of the dimension of the selected space. -/
 theorem signed_trace_bound (P Fplus Fminus : Matrix n n ℂ) (e : ℝ)
@@ -120,14 +122,14 @@ theorem projector_trace_comparison (P Q A : Matrix n n ℂ)
     Matrix.trace (P * A) = Matrix.trace (Q * A) := by
   calc
     _ = Matrix.trace ((Q * P) * A) := by rw [hQP]
-    _ = Matrix.trace ((P * A) * Q) := by
-      rw [Matrix.trace_mul_comm, Matrix.mul_assoc]
+    _ = Matrix.trace ((P * A) * Q) := (Matrix.trace_mul_cycle P A Q).symm
     _ = Matrix.trace (P * (A * Q)) := by rw [Matrix.mul_assoc]
     _ = Matrix.trace (P * (Q * A)) := by rw [hAQ]
     _ = Matrix.trace ((P * Q) * A) := by rw [Matrix.mul_assoc]
     _ = Matrix.trace (Q * A) := by rw [hPQ]
 
 /-- Trace of the actual compression, using inclusion and coefficient extraction. -/
+omit [DecidableEq n] in
 theorem invariant_trace {d : Type*} [Fintype d] [DecidableEq d]
     (A : Matrix n n ℂ) (B : Matrix n d ℂ) (L : Matrix d n ℂ)
     (a : Matrix d d ℂ) (hLB : L * B = 1) (hAB : A * B = B * a) :
@@ -172,7 +174,7 @@ theorem invariant_excess_bound {d : Type*} [Fintype d] [DecidableEq d]
   have hPP : (B * L) * (B * L) = B * L := by
     calc
       _ = B * (L * B) * L := by simp only [Matrix.mul_assoc]
-      _ = B * L := by rw [hLB, mul_one]
+      _ = B * L := by rw [hLB, Matrix.mul_one]
   have ht : (Matrix.trace (B * L)).re = (Fintype.card d : ℝ) := by
     rw [Matrix.trace_mul_comm, hLB, Matrix.trace_one]
     simp

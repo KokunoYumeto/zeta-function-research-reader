@@ -20,7 +20,8 @@ theorem overlap_sum (Q : ι → Matrix n n ℂ) (F : Matrix n n ℂ)
     (∑ i, (Matrix.trace (Q i * F)).re) = (Matrix.trace F).re := by
   calc
     _ = (Matrix.trace ((∑ i, Q i) * F)).re := by
-      simp only [Matrix.sum_mul, Matrix.trace_sum, Complex.sum_re]
+      simp only [Matrix.sum_mul, Matrix.trace_sum]
+      exact (map_sum Complex.reAddGroupHom (fun i => Matrix.trace (Q i * F)) Finset.univ).symm
     _ = (Matrix.trace F).re := by rw [hQ, one_mul]
 
 /-- Full absolute budget, retaining both signed overlap distributions. -/

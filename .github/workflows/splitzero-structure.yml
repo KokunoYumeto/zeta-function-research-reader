@@ -6,6 +6,9 @@ on:
     paths: ['formal/splitzero/**', '.github/workflows/splitzero-structure.yml']
 permissions:
   contents: read
+concurrency:
+  group: splitzero-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -34,11 +37,26 @@ jobs:
           lake update
           test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
           lake exe cache get
-      - name: Build and kernel-check extension
+      - name: Build and kernel-check every extension source
         run: |
           set -euo pipefail
-          lake -KmaxJobs=1 build
+          lake -KmaxJobs=1 build 2>&1 | tee Build.log
           lake env lean --trust=0 SplitZero.lean
-          lake env lean --trust=0 -DwarningAsError=true SplitZeroExtension.lean
+          for source in SplitZeroExtension.lean SplitZeroFibres.lean SplitZeroPresentation.lean; do
+            lake env lean --trust=0 -DwarningAsError=true "$source"
+          done
           lake env lean --trust=0 -DwarningAsError=true Audit.lean | tee Audit.log
           python3 check_axioms.py Audit.log
+      - name: Retain source and validation artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: splitzero-source-and-checks
+          path: |
+            formal/splitzero/*.lean
+            formal/splitzero/*.log
+            formal/splitzero/*.py
+            formal/splitzero/*.md
+            formal/splitzero/*.toml
+            formal/splitzero/*.json
+            formal/splitzero/lean-toolchain

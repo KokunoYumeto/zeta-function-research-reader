@@ -20,6 +20,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
+      - name: Source manifest and audit-checker tests
+        run: |
+          set -euo pipefail
+          python3 check_tau_recovery.py --prepare
+          python3 -m unittest -v test_tau_recovery.py test_derived_checker.py
+          python3 -O -m unittest -v test_tau_recovery.py test_derived_checker.py
       - name: Install pinned environment
         run: |
           set -euo pipefail
@@ -47,3 +53,13 @@ jobs:
             if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
           done < TAU_RECOVERY_MODULES.txt
           exit "$status"
+      - name: Audit transitive proof dependencies
+        run: |
+          set -euo pipefail
+          lake env lean --trust=0 -DwarningAsError=true AuditTauRecovery.lean | tee AuditTauRecovery.log
+          python3 check_tau_recovery.py AuditTauRecovery.log
+          python3 check_derived.py --prepare
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean >AuditDerived.log
+          python3 check_derived.py AuditDerived.log
+          lake env lean --trust=0 -DwarningAsError=true Audit.lean >Audit.log
+          python3 check_axioms.py Audit.log

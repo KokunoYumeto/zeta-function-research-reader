@@ -110,7 +110,7 @@ def postcompose {F G H : Diagram R} (g : Diagram.Hom G H) :
 def dualDifferential (F : Diagram R) (W : ModuleCat.{u} R) :
     (F.eta →ₗ[R] W) →ₗ[R] ((F.plus →ₗ[R] W) × (F.minus →ₗ[R] W)) where
   toFun ℓ := (ℓ.comp F.left, -(ℓ.comp F.right))
-  map_add' f g := by ext x <;> simp
+  map_add' f g := by ext x <;> simp <;> abel
   map_smul' a f := by ext x <;> simp
 
 /-- The two Hom descriptions have exactly the same signed differential. -/
@@ -167,10 +167,13 @@ theorem dualDifferential_zero_iff (F : Diagram R) (W : ModuleCat.{u} R)
     rw [map_sub, hp, hm, sub_self]
   · intro h
     apply Prod.ext <;> apply LinearMap.ext <;> intro x
-    · have hh := h (F.differential (x,0)) ⟨(x,0),rfl⟩
+    · change ℓ (F.left x) = 0
+      have hh := h (F.differential (x,0)) ⟨(x,0),rfl⟩
       simpa using hh
-    · have hh := h (F.differential (0,x)) ⟨(0,x),rfl⟩
-      simpa using hh
+    · change -ℓ (F.right x) = 0
+      have hh := h (F.differential (0,x)) ⟨(0,x),rfl⟩
+      have hz : ℓ (F.right x) = 0 := by simpa using hh
+      rw [hz, neg_zero]
 
 def annihilatorKernelEquiv (F : Diagram R) (W : ModuleCat.{u} R) :
     annihilator (W := W) (LinearMap.range F.differential) ≃ₗ[R]

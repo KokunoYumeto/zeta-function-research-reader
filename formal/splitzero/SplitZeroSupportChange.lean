@@ -17,13 +17,19 @@ variable {R : Type u} [CommRing R]
 variable {L : Type v} {K : Type v'}
   [SemilatticeSup L] [OrderBot L] [SemilatticeSup K] [OrderBot K]
 
+/-- Join preservation supplies the monotonicity needed for the transport square. -/
+theorem supportIndex_monotone (f : SupBotHom L K) : Monotone f := by
+  intro i j hij
+  apply sup_eq_right.mp
+  rw [← map_sup f, sup_eq_right.mpr hij]
+
 /-- A morphism with its support-index map explicitly retained. -/
 structure ReindexedHom (D : LinearDiagram.{u,v,w} R L)
     (E : LinearDiagram.{u,v',w'} R K) where
   index : SupBotHom L K
   app : ∀ i, D.V i →ₗ[R] E.V (index i)
   naturality : ∀ {i j} (h : i ≤ j) (x : D.V i),
-    app j (D.map h x) = E.map (index.monotone h) (app i x)
+    app j (D.map h x) = E.map (supportIndex_monotone index h) (app i x)
 
 namespace ReindexedHom
 
@@ -36,7 +42,7 @@ def total (f : ReindexedHom D E) : D.Total →ₗ[G R] E.Total where
   map_add' x y := by
     rcases x with ⟨i, x⟩
     rcases y with ⟨j, y⟩
-    apply E.total_ext (f.index.map_sup i j)
+    apply E.total_ext (map_sup f.index i j)
     change E.map _ (f.app _ (D.map _ x + D.map _ y)) =
       E.map _ (f.app i x) + E.map _ (f.app j y)
     rw [map_add, f.naturality, f.naturality, map_add]
@@ -44,7 +50,7 @@ def total (f : ReindexedHom D E) : D.Total →ₗ[G R] E.Total where
   map_smul' a x := by
     obtain ⟨_ | a⟩ := a
     · change (⟨f.index ⊥, f.app ⊥ 0⟩ : E.Total) = ⟨⊥, 0⟩
-      apply E.total_ext f.index.map_bot
+      apply E.total_ext (map_bot f.index)
       simp only [map_zero]
     · rcases x with ⟨i, x⟩
       change (⟨f.index i, f.app i (a • x)⟩ : E.Total) =

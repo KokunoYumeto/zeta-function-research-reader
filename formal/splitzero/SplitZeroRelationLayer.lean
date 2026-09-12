@@ -47,7 +47,8 @@ def derivative (U W : Submodule R B) (D : B →ₗ[R] B)
 theorem boundary_class (U : Submodule R B) (old u : B) (a : R)
     (ho : old ∈ U) :
     U.mkQ (old - a • u) = -(a • U.mkQ u) := by
-  rw [map_sub, map_smul, (Submodule.Quotient.mk_eq_zero U).mpr ho, zero_sub]
+  have hz : U.mkQ old = 0 := (Submodule.Quotient.mk_eq_zero U).mpr ho
+  rw [map_sub, map_smul, hz, zero_sub]
 
 theorem boundary_dies_next (U W : Submodule R B) (h : U ≤ W)
     (old u : B) (a : R) (ho : old ∈ U) (hu : u ∈ W) :
@@ -71,8 +72,14 @@ def scalarKernel (U W : Submodule k M) (h : U ≤ W) (u : M) (hu : u ∈ W) :
     k →ₗ[k] LinearMap.ker (transport U W h) where
   toFun a := ⟨U.mkQ (a • u),
     (transport_kills_iff U W h _).mpr (W.smul_mem a hu)⟩
-  map_add' a b := by apply Subtype.ext; simp only [add_smul, map_add]
-  map_smul' a b := by apply Subtype.ext; simp only [smul_eq_mul, mul_smul, map_smul]
+  map_add' a b := by
+    apply Subtype.ext
+    change U.mkQ ((a+b) • u) = U.mkQ (a • u) + U.mkQ (b • u)
+    rw [add_smul, map_add]
+  map_smul' a b := by
+    apply Subtype.ext
+    change U.mkQ ((a*b) • u) = a • U.mkQ (b • u)
+    rw [mul_smul, map_smul]
 
 theorem scalarKernel_bijective (U W : Submodule k M) (h : U ≤ W)
     (u : M) (hu : u ∈ W) (hnot : u ∉ U)
@@ -94,7 +101,8 @@ theorem scalarKernel_bijective (U W : Submodule k M) (h : U ≤ W)
     refine ⟨a, ?_⟩
     apply Subtype.ext
     change U.mkQ (a • u) = U.mkQ y
-    rw [← hy, map_add, (Submodule.Quotient.mk_eq_zero U).mpr hl, zero_add]
+    have hlq : U.mkQ l = 0 := (Submodule.Quotient.mk_eq_zero U).mpr hl
+    rw [← hy, map_add, hlq, zero_add]
 
 /-- The entire kernel is one scalar coordinate, with both inverse laws. -/
 def oneNewRelationEquiv (U W : Submodule k M) (h : U ≤ W)
@@ -125,7 +133,9 @@ def residual : W →ₗ[ℂ] (W ⊓ Uᗮ : Submodule ℂ H) where
     abel
   map_smul' a x := by
     apply Subtype.ext
-    simp only [Submodule.coe_smul, map_smul, smul_sub]
+    change a • x.val - U.starProjection (a • x.val) =
+      a • (x.val - U.starProjection x.val)
+    rw [map_smul, smul_sub]
 
 def layerMap :
     (W ⧸ U.comap W.subtype) →ₗ[ℂ] (W ⊓ Uᗮ : Submodule ℂ H) :=
@@ -133,6 +143,7 @@ def layerMap :
     intro z hz
     apply Subtype.ext
     change z.val - U.starProjection z.val = 0
+    change z.val ∈ U at hz
     rw [U.starProjection_eq_self_iff.mpr hz, sub_self])
 
 theorem layerMap_bijective : Function.Bijective (layerMap U W h) := by
@@ -148,10 +159,12 @@ theorem layerMap_bijective : Function.Bijective (layerMap U W h) := by
         have he' := congrArg (fun z : (W ⊓ Uᗮ : Submodule ℂ H) => U.mkQ z.val) he
         change U.mkQ (x.val - U.starProjection x.val) =
           U.mkQ (y.val - U.starProjection y.val) at he'
-        simpa only [map_sub,
-          (Submodule.Quotient.mk_eq_zero U).mpr (U.starProjection_apply_mem x.val),
-          (Submodule.Quotient.mk_eq_zero U).mpr (U.starProjection_apply_mem y.val),
-          sub_zero] using he'
+        have hx0 : U.mkQ (U.starProjection x.val) = 0 :=
+          (Submodule.Quotient.mk_eq_zero U).mpr (U.starProjection_apply_mem x.val)
+        have hy0 : U.mkQ (U.starProjection y.val) = 0 :=
+          (Submodule.Quotient.mk_eq_zero U).mpr (U.starProjection_apply_mem y.val)
+        rw [map_sub, map_sub, hx0, hy0, sub_zero, sub_zero] at he'
+        exact he'
   · intro z
     refine ⟨Submodule.Quotient.mk (⟨z.val, z.property.1⟩ : W), ?_⟩
     apply Subtype.ext

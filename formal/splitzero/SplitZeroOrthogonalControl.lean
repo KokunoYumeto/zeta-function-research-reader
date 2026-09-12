@@ -1,5 +1,6 @@
 import SplitZeroRankTwoControl
 import Mathlib.Analysis.InnerProductSpace.Projection.Basic
+import Mathlib.Analysis.InnerProductSpace.GramMatrix
 import Mathlib.Tactic.Abel
 import Mathlib.Tactic.LinearCombination
 
@@ -14,7 +15,7 @@ The integration-by-parts input is kept explicit as a Green identity.
 noncomputable section
 namespace SplitZero.OrthogonalControl
 
-open scoped ComplexConjugate Matrix
+open scoped ComplexConjugate Matrix ComplexOrder
 universe u v
 variable {I : Type u} [Fintype I]
   {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
@@ -145,5 +146,41 @@ theorem green_identity (A : Matrix I I ℂ) (R B : I → H)
     -(inner ℂ (R i) (B j)+inner ℂ (B i) (R j))
   simp only [mul_comm (A _ _) (inner ℂ _ _)] at he
   linear_combination he
+
+
+/-- The minimum identity implies a genuine positive-semidefinite Gram difference. -/
+theorem gram_minimum_posSemidef (U : Submodule ℂ H) [U.HasOrthogonalProjection]
+    (R C : I → H) (hC : ∀ i, C i ∈ U) :
+    (gram (fun i => R i+C i) - gram (fun i => residual U (R i))).PosSemidef := by
+  rw [gram_minimum_decomposition U R C hC, add_sub_cancel_left]
+  exact Matrix.posSemidef_gram ℂ _
+
+/-- Jets live on the original test space, not on an assumed Hilbert extension. -/
+theorem gram_posDef_of_source_jets {B : Type*} [AddCommGroup B] [Module ℂ B]
+    [DecidableEq I] (observe : B →ₗ[ℂ] H) (ho : Function.Injective observe)
+    (rep : I → B) (jet : B →ₗ[ℂ] (I → ℂ))
+    (hj : ∀ i, jet (rep i) = Pi.single i 1) :
+    (gram (fun i => observe (rep i))).PosDef := by
+  apply Matrix.posDef_gram_of_linearIndependent
+  rw [Fintype.linearIndependent_iff]
+  intro c hc i
+  have hs : observe (∑ j, c j • rep j) = observe 0 := by
+    simpa only [map_sum, map_smul, map_zero] using hc
+  have hz := congrArg (fun x => jet x i) (ho hs)
+  simpa [map_sum, map_smul, hj, Pi.single_apply] using hz
+
+/-- The actual Green identity and the one-layer boundary give the rank-two weight formula. -/
+theorem weight_defect_one_layer (A : Matrix I I ℂ) (R old : I → H)
+    (u : H) (r s : I → ℂ) (h : ℝ)
+    (ho : ∀ i j, inner ℂ (R i) (old j) = 0)
+    (hr : ∀ i, inner ℂ u (R i) = (h : ℂ)*s i)
+    (hgreen : ∀ i j,
+      inner ℂ ((∑ k, A k i • R k)+(old i-r i • u)) (R j) +
+      inner ℂ (R i) ((∑ k, A k j • R k)+(old j-r j • u)) =
+      inner ℂ (R i) (R j)) :
+    A.conjTranspose * gram R + gram R * A - gram R =
+      SplitZero.RankTwoControl.control h r s := by
+  rw [green_identity A R _ hgreen]
+  exact one_new_relation_control R old u r s h ho hr
 
 end SplitZero.OrthogonalControl

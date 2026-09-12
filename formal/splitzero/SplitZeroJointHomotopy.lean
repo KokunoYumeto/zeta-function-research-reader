@@ -30,7 +30,10 @@ def syncIndex : SupBotHom Mask Mask := by
 
 theorem le_sync (A : Mask) : A ≤ syncIndex A := by
   classical
-  by_cases h : A = ∅ <;> simp [syncIndex, h]
+  change A ⊆ (if A = ∅ then ∅ else Set.univ)
+  split_ifs with h
+  · exact le_of_eq h
+  · exact Set.subset_univ A
 
 def activeFibre (A : Mask) : Submodule R B where
   carrier := {b | A = ∅ → b = 0}
@@ -48,8 +51,16 @@ def active_le {A C : Mask} (h : A ≤ C) : activeFibre (R := R) (B := B) A ≤ a
 def activeDiagram : LinearDiagram R Mask where
   V A := activeFibre (R := R) (B := B) A
   map h := Submodule.inclusion (active_le h)
-  map_id _ := by ext x; rfl
-  map_comp _ _ := by ext x; rfl
+  map_id _ := by
+    apply LinearMap.ext
+    intro x
+    apply Subtype.ext
+    rfl
+  map_comp _ _ := by
+    apply LinearMap.ext
+    intro x
+    apply Subtype.ext
+    rfl
 
 def legFibre (A : Mask) : Submodule R (V × V) where
   carrier := {v | (false ∉ A → v.1 = 0) ∧ (true ∉ A → v.2 = 0)}
@@ -70,8 +81,16 @@ def leg_le {A C : Mask} (h : A ≤ C) :
 def legDiagram : LinearDiagram R Mask where
   V A := legFibre (R := R) (V := V) A
   map h := Submodule.inclusion (leg_le h)
-  map_id _ := by ext x; rfl
-  map_comp _ _ := by ext x; rfl
+  map_id _ := by
+    apply LinearMap.ext
+    intro x
+    apply Subtype.ext
+    rfl
+  map_comp _ _ := by
+    apply LinearMap.ext
+    intro x
+    apply Subtype.ext
+    rfl
 
 variable (theta : V →ₗ[R] B) (F : V ≃ₗ[R] V)
 
@@ -134,8 +153,8 @@ theorem lifted_boundary (kappa : B →ₗ[R] V)
       (syncActive (R := R) (B := B)).total.comp (activeEnd (theta.comp kappa)).total := by
   apply LinearMap.ext
   rintro ⟨A, b⟩
-  apply LinearDiagram.total_ext _ rfl
-  rw [LinearDiagram.map_self]
+  apply congrArg (fun x : activeFibre (R := R) (B := B) (syncIndex A) =>
+    (⟨syncIndex A, x⟩ : (activeDiagram (R := R) (B := B)).Total))
   apply Subtype.ext
   exact LinearMap.congr_fun H.property.1 b.val
 
@@ -146,8 +165,8 @@ theorem lifted_cycle (kappa : B →ₗ[R] V)
       (syncLeg (R := R) (V := V)).total.comp (legZero (R := R) (V := V)).total := by
   apply LinearMap.ext
   rintro ⟨A, v⟩
-  apply LinearDiagram.total_ext _ rfl
-  rw [LinearDiagram.map_self]
+  apply congrArg (fun x : legFibre (R := R) (V := V) (syncIndex A) =>
+    (⟨syncIndex A, x⟩ : (legDiagram (R := R) (V := V)).Total))
   apply Subtype.ext
   exact H.property.2 (v.val.1-F v.val.2)
 

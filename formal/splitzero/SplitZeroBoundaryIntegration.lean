@@ -1,5 +1,6 @@
 import SplitZeroTauHomotopy
 import SplitZeroSupportChange
+import SplitZeroJointHomotopy
 import SplitZeroRelationLayer
 import SplitZeroOrthogonalControl
 
@@ -66,5 +67,48 @@ theorem representative_jets (theta : V →ₗ[R] B) (rep : E →ₗ[R] B)
     jet ((rep - theta.comp b) x) = x := by
   change jet (rep x-theta (b x)) = x
   rw [map_sub, hr, hj, sub_zero]
+
+
+section SupportedQuotient
+open SplitZero.Reconstruction SplitZero.JointHomotopy
+
+/-- The original quotient transport with its change to the next active support. -/
+def quotientTransportLift (U W : Submodule R B) (h : U ≤ W) :
+    ReindexedHom (activeDiagram (R := R) (B := B ⧸ U))
+      (activeDiagram (R := R) (B := B ⧸ W)) where
+  index := syncIndex
+  app A :=
+    { toFun x := ⟨SplitZero.RelationLayer.transport U W h x.val, by
+        intro hs
+        have ha : A = ∅ := le_antisymm
+          (by simpa only [hs] using le_sync A) bot_le
+        rw [x.property ha, map_zero]⟩
+      map_add' x y := Subtype.ext
+        ((SplitZero.RelationLayer.transport U W h).map_add x.val y.val)
+      map_smul' a x := Subtype.ext
+        ((SplitZero.RelationLayer.transport U W h).map_smul a x.val) }
+  naturality _ _ := rfl
+
+/-- The new relation is killed at its specified target label, not sent to tau. -/
+theorem quotientTransport_fibre_zero (U W : Submodule R B) (h : U ≤ W)
+    (A : Mask) (x : activeFibre (R := R) (B := B ⧸ U) A)
+    (hx : SplitZero.RelationLayer.transport U W h x.val = 0) :
+    (quotientTransportLift U W h).total ⟨A, x⟩ =
+      (⟨syncIndex A, 0⟩ : (activeDiagram (R := R) (B := B ⧸ W)).Total) := by
+  apply ReindexedHom.killed_fibre
+  apply Subtype.ext
+  exact hx
+
+theorem quotientTransport_not_absent (U W : Submodule R B) (h : U ≤ W)
+    (A : Mask) (hA : A ≠ ∅) (x : activeFibre (R := R) (B := B ⧸ U) A)
+    (hx : SplitZero.RelationLayer.transport U W h x.val = 0) :
+    (quotientTransportLift U W h).total ⟨A, x⟩ ≠ 0 := by
+  rw [quotientTransport_fibre_zero U W h A x hx]
+  apply LinearDiagram.fibre_zero_ne_global
+  intro hs
+  apply hA
+  exact le_antisymm (by simpa only [hs] using le_sync A) bot_le
+
+end SupportedQuotient
 
 end SplitZero.BoundaryIntegration

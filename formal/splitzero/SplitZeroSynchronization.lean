@@ -14,6 +14,8 @@ applies to every level of any amplitude-pullback filtration. No general Rees
 module, analytic theorem, or unrelated comparison map is certified here.
 -/
 
+noncomputable section
+
 namespace SplitZero.Synchronization
 
 abbrev Mixed (A : Type*) := G A × G A
@@ -31,7 +33,7 @@ def syncIdempotent : Mixed A := (1, e)
 def synchronize (x : Mixed A) : Mixed A :=
   (x.1 + (e : G A) * x.2, x.2 + (e : G A) * x.1)
 
-theorem synchronize_absent : synchronize (tau, tau : G A) = (tau, tau) := rfl
+theorem synchronize_absent : synchronize ((tau : G A), tau) = (tau, tau) := rfl
 
 theorem synchronize_supported (a b : A) :
     synchronize (ofR a, ofR b) = (ofR a, ofR b) := by
@@ -56,7 +58,7 @@ theorem synchronize_idempotent (x : Mixed A) : synchronize (synchronize x) = syn
       ((synchronize_supported (0 : A) b).trans (synchronize_absent_left b).symm)
   · exact (congrArg synchronize (synchronize_absent_right a)).trans
       ((synchronize_supported a (0 : A)).trans (synchronize_absent_right a).symm)
-  · exact (congrArg synchronize (synchronize_supported a b)).trans (synchronize_supported a b)
+  · exact congrArg synchronize (synchronize_supported a b)
 
 /-- This is multiplication by the source's specific element E = (1,e). -/
 theorem synchronize_eq_mul (x : Mixed A) : synchronize x = mixedMul syncIdempotent x := by

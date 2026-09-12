@@ -70,7 +70,7 @@ def ringHomEquiv : (G R →+* A) ≃ (R →+* A) where
     ext x
     obtain ⟨_ | a⟩ := x
     · change (toRing f) 0 = f 0
-      simp
+      simp only [map_zero]
     · rfl
   right_inv f := by ext r; rfl
 
@@ -116,7 +116,7 @@ def homEquiv : (R →+* S) ≃ (G R →+* G S) where
     ext x
     obtain ⟨_ | r⟩ := x
     · change (0 : G S) = f 0
-      simp
+      exact f.map_zero.symm
     · change ofR (reflect (f (ofR r))) = f (ofR r)
       exact ofR_reflect_of_ne_zero _ (hom_ofR_ne_zero f r)
 

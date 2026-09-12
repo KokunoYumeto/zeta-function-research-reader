@@ -49,6 +49,7 @@ instance : Mul (G R) := ⟨SplitZero.mul⟩
 instance : Zero (G R) := ⟨tau⟩
 instance : One (G R) := ⟨ofR 1⟩
 
+omit [CommSemiring R] in
 @[simp] theorem zero_eq : (0 : G R) = ⟨none⟩ := rfl
 @[simp] theorem one_eq : (1 : G R) = ⟨some 1⟩ := rfl
 @[simp] theorem mk_none_add (y : G R) : (⟨none⟩ : G R) + y = y := rfl
@@ -64,24 +65,24 @@ instance instAddCommMonoid : AddCommMonoid (G R) where
   add := (· + ·)
   add_assoc a b c := by
     obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> obtain ⟨_ | c⟩ := c <;>
-      simp [G.mk.injEq, add_assoc]
+      simp [add_assoc]
   zero := 0
   zero_add a := by simp
   add_zero a := by simp
   add_comm a b := by
-    obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> simp [G.mk.injEq, add_comm]
+    obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> simp [add_comm]
   nsmul := nsmulRec
 
 instance instCommMonoid : CommMonoid (G R) where
   mul := (· * ·)
   mul_assoc a b c := by
     obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> obtain ⟨_ | c⟩ := c <;>
-      simp [G.mk.injEq, mul_assoc]
+      simp [mul_assoc]
   one := 1
   one_mul a := by obtain ⟨_ | a⟩ := a <;> simp
   mul_one a := by obtain ⟨_ | a⟩ := a <;> simp
   mul_comm a b := by
-    obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> simp [G.mk.injEq, mul_comm]
+    obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> simp [mul_comm]
   npow := npowRec
 
 instance instCommSemiring : CommSemiring (G R) :=
@@ -89,11 +90,11 @@ instance instCommSemiring : CommSemiring (G R) :=
     left_distrib := by
       intro a b c
       obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> obtain ⟨_ | c⟩ := c <;>
-        simp [G.mk.injEq, mul_add]
+        simp [mul_add]
     right_distrib := by
       intro a b c
       obtain ⟨_ | a⟩ := a <;> obtain ⟨_ | b⟩ := b <;> obtain ⟨_ | c⟩ := c <;>
-        simp [G.mk.injEq, add_mul]
+        simp [add_mul]
     zero_mul := by intro a; simp
     mul_zero := by intro a; simp }
 

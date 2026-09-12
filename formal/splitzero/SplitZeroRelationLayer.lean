@@ -10,9 +10,9 @@ has source B/L and target B/M; it is not made an endomorphism of B/L.
 -/
 noncomputable section
 namespace SplitZero.RelationLayer
-universe u
+universe u v
 
-structure Data (R B : Type u) [CommRing R] [AddCommGroup B] [Module R B] where
+structure Data (R : Type u) (B : Type v) [CommRing R] [AddCommGroup B] [Module R B] where
   lower : Submodule R B
   upper : Submodule R B
   inclusion : lower ≤ upper
@@ -20,7 +20,7 @@ structure Data (R B : Type u) [CommRing R] [AddCommGroup B] [Module R B] where
   project_mem : ∀ b, project b ∈ lower
   project_fix : ∀ b ∈ lower, project b = b
 
-variable {R B : Type u} [CommRing R] [AddCommGroup B] [Module R B]
+variable {R : Type u} {B : Type v} [CommRing R] [AddCommGroup B] [Module R B]
 namespace Data
 variable (S : Data R B)
 
@@ -111,11 +111,12 @@ theorem retained_then_killed (u : B) (huM : u ∈ S.upper) (huL : u ∉ S.lower)
 /-- The boundary identity is retained in the old, not the final, quotient. -/
 theorem defect_class (b l u : B) (a : R) (hl : l ∈ S.lower)
     (hb : b = l - a • u) : S.lower.mkQ b = -(a • S.lower.mkQ u) := by
-  rw [hb, map_sub, map_smul, (Submodule.Quotient.mk_eq_zero S.lower).mpr hl, zero_sub]
+  have hz : S.lower.mkQ l = 0 := (Submodule.Quotient.mk_eq_zero S.lower).mpr hl
+  rw [hb, map_sub, map_smul, hz, zero_sub]
 end Data
 
 section Orthogonal
-variable {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+variable {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
 def orthogonalData (L M : Submodule ℂ H) [L.HasOrthogonalProjection] (hLM : L ≤ M) :
     Data ℂ H where

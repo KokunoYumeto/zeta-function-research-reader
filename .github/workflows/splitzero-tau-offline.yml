@@ -1,0 +1,72 @@
+name: SplitZero tau offline environment parts
+on:
+  push:
+    branches: [codex/splitzero-tau-base-20260912]
+    paths: ['.github/workflows/splitzero-tau-offline.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  parts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Split the existing pinned public environment archive
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" https://api.github.com/repos/KokunoYumeto/zeta-function-research-reader/actions/artifacts/10292237743/zip -o "$RUNNER_TEMP/environment.zip"
+          unzip -q "$RUNNER_TEMP/environment.zip" -d "$RUNNER_TEMP/environment"
+          cd "$RUNNER_TEMP/environment"
+          split -b 400M -d -a 2 tau-lean-env.tar.zst part-
+          sha256sum part-* > PARTS.sha256
+          sha256sum tau-lean-env.tar.zst
+          cat PARTS.sha256
+          ls -lh part-*
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env-00
+          path: |
+            ${{ runner.temp }}/environment/part-00
+            ${{ runner.temp }}/environment/PARTS.sha256
+            ${{ runner.temp }}/environment/tau-lean-env.sha256
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env-01
+          path: ${{ runner.temp }}/environment/part-01
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env-02
+          path: ${{ runner.temp }}/environment/part-02
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env-03
+          path: ${{ runner.temp }}/environment/part-03
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env-04
+          path: ${{ runner.temp }}/environment/part-04
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: tau-lean-env-05
+          path: ${{ runner.temp }}/environment/part-05
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error

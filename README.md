@@ -2,9 +2,11 @@
 
 ## Current calculations: theta norms, kernel layers and symmetric control
 
-**Published:** [Zenodo DOI 10.5281/zenodo.22728704](https://doi.org/10.5281/zenodo.22728704) · [separate PDFs and matching source packages](calculation_edition_20260912b/). The current edition includes the completed integrations through PR #19, including repaired #16.
+**Published:** [Zenodo DOI 10.5281/zenodo.22728704](https://doi.org/10.5281/zenodo.22728704) · [separate PDFs and matching source packages](calculation_edition_20260912b/). That frozen edition includes PRs #14–17 and #19, including repaired #16. PR #18 and the exterior-packet continuation are newer current-repository work.
 
-Start with the [current research guide](CURRENT_RESEARCH.md), which explains the objects, the motivation for each attempt and what it produced. Read the [complete 216-page continuation](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) with its [proofs and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/), or the [425-page main research reader](reader.pdf). Earlier frozen editions below are preserved.
+Start with the [current research guide](CURRENT_RESEARCH.md), which explains the objects, the motivation for each attempt and what it produced. Read the [complete 216-page continuation](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) with its [proofs and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/), or the [433-page main research reader](reader.pdf). Earlier frozen editions below are preserved.
+
+The current reader now includes [alternating/exterior packet-cost calculations](workbenches/exterior-packet-cost/) in Section 38, pages 397–404, with full proof source and exact checkers. This continuing-reader update leaves the frozen DOI edition unchanged.
 
 [What we tried and why](ATTEMPTS.md) · [Structured attempt records](ATTEMPTS.json)
 
@@ -45,7 +47,7 @@ Mirroring is not a mathematical audit or an endorsement of an endpoint claim.
 
 | Reader | PDF | Pages in this snapshot |
 |---|---|---:|
-| main | [Read PDF](reader.pdf) | 425 |
+| main | [Read PDF](reader.pdf) | 433 |
 | fluid | [Read PDF](sidebar/fluid/reader.pdf) | 208 |
 | heat | [Read PDF](sidebar/heat/reader.pdf) | 120 |
 | connes | [Read PDF](sidebar/connes/reader.pdf) | 82 |
@@ -64,7 +66,7 @@ confirmed Overleaf main build had 272 pages; current
 Overleaf synchronization must not be inferred from this GitHub commit.
 See [MIRROR_STATUS.json](MIRROR_STATUS.json) for exact snapshot status.
 
-The recurring Overleaf mirror timer was removed on 9 September 2026 at the owner’s request. Updates are manual for now. The latest manual connection attempt could not access an authenticated browser, so no newer Overleaf synchronization is claimed.
+The recurring Overleaf mirror timer was removed on 9 September 2026 at the owner’s request. Updates are manual for now. The latest manual attempt returned an unavailable browser connection; no visible window opened and no newer Overleaf synchronization is claimed.
 
 ## References and provenance
 
@@ -77,7 +79,7 @@ substitute for human-source citations or authorship responsibility.
 ## Checking and building
 
 The TeX, bibliographies, authored code and permitted certificates are included.
-Build the main reader from repository root with `pdflatex main.tex` twice;
+Build the main reader from repository root with `pdflatex main.tex` until cross-references and contents page numbers stabilize (normally three passes from clean auxiliary files);
 follow each sidebar's README for its own entrypoint and mathematical checks.
 Some administrative seal scripts refer to private continuity/provenance files
 that are deliberately not included and are not required to read the proofs.

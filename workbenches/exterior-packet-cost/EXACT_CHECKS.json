@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "run_utc": "2026-09-12T18:59:56Z",
+  "checker_sha256": "a9fec3b94d6e106d021841a7d94deb2bd581416f3143bbe24d0c44a3d2a47baa",
+  "commands": ["python check_alternating.py", "python -O check_alternating.py"],
+  "runs": [
+    {"python_optimization": 0, "exit_code": 0, "status": "passed", "positive_exact_cases": 8173, "negative_controls_rejected": 4},
+    {"python_optimization": 1, "exit_code": 0, "status": "passed", "positive_exact_cases": 8173, "negative_controls_rejected": 4}
+  ],
+  "failure_mechanism": "Every positive test uses require(condition,label), which raises CheckFailure on false under both ordinary and optimized Python. Negative controls catch only CheckFailure. No assert statement remains.",
+  "arithmetic": "Python exact integer and fractions.Fraction calculations",
+  "counts": {
+    "moments": 135,
+    "nilpotent_blocks": 65,
+    "factorial_minors": 65,
+    "additive_orbit_columns": 26,
+    "gram_inverse_cases": 21,
+    "layer_dimensions": 147,
+    "surviving_nilpotent_capacity_cases": 7714
+  },
+  "total_exact_cases": 8173,
+  "negative_controls_rejected": [
+    {"label": "omitted orbit factorial in inverse compression", "fixture": "d=k=2, G=id, I*GI=2", "invalid_claim": "I*G^-1 I=2 is the inverse of 2", "observed_product": "4, not 1"},
+    {"label": "wrong subset second-moment coefficient", "fixture": "d=4, k=2, delta=(1,0,0,0)", "invalid_claim": "replace beta by alpha", "observed_second_moment": 3, "bad_formula_value": 4},
+    {"label": "tensor-height index incorrectly used for exterior nilpotent", "fixture": "m=4, r=2; all exterior basis columns iterated", "observed_index": 5, "bad_tensor_height_index": 7},
+    {"label": "inverse compression wrongly extended to noninvariant Gram", "fixture": "G=diag(1,2,3,4), I=(0,1,-1,0)^T", "restricted_gram": "5", "true_inverse": "1/5", "invalid_compressed_inverse": "5/24"}
+  ],
+  "negative_control_count": 4,
+  "limitations": "Independent finite test fixtures supplement the general proofs; no arithmetic upper estimate or RH implication is inferred. Test Grams never replace original arithmetic metrics."
+}

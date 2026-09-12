@@ -13,9 +13,11 @@ proves the Riemann hypothesis.
 
 Start with the [216-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf).
 Its [complete proof sources, appendices and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/)
-are directly readable on GitHub. The broader [425-page zeta research reader](reader.pdf)
+are directly readable on GitHub. The broader [433-page zeta research reader](reader.pdf)
 contains the literature reconstruction, CUE random-matrix calculations,
 arithmetic transforms, and the source-directed fluid calculations.
+
+The continuing main reader now includes [alternating/exterior packet costs](workbenches/exterior-packet-cost/) in Section 38, pages 397–404. [PR #18's finite frontier formalization](workbenches/tau-frontier-formal/) is also merged and checked. These current-repository updates do not change the frozen 425/216-page DOI edition linked above.
 
 ## What the objects mean
 
@@ -46,6 +48,8 @@ arithmetic transforms, and the source-directed fluid calculations.
 | [Theta norms and kernel layers](workbenches/splitzero-tandem/continuations/20260912-frontier/tex/kernel_layer_continuation.tex) | Connect the packet-dependent interpolation problem to the original theta norm sequence and track the next relation. | Complete norm/Gram-volume identities, a full relation-layer graph and derivative quotient, retaining initial indices and cross terms. See the cumulative reader's named kernel-layer sections for the complete formulas. |
 | [Symmetric arithmetic frontier](workbenches/splitzero-tandem/continuations/20260912-frontier/) | Use the original conjugation/reflection symmetries to sharpen the actual control estimate. | Quartet parity removes the general factor two in the stated finite-stage bound. Literal orbit sums transport it to signed symmetric cohomology, retaining orbit multiplicities and zero cases. An asymptotic vanishing estimate is not asserted. |
 | [Spectral-sum pushforward](workbenches/tau-spectral-sum/) | Carry a tensor calculation onto one spectral coordinate without discarding the relative directions. | One-variable matrix weights, exact Jacobians, duality, traces and complete nilpotent sum fibres. The original filtered image and arithmetic metric are retained. |
+| [Alternating/exterior packet costs](workbenches/exterior-packet-cost/) | Determine what alternating projection retains from full spectral multiplicities, original metrics and repeated-root directions. | Exact subset moments, determinant-line cancellation and surviving proper-degree nilpotent sectors; complete EA.1–38 proofs and 8,173 combinatorial/coordinate plus 26 metric cases, normal and optimized. Test matrices are fixtures, not arithmetic upper estimates; no new Lean certification is claimed. |
+| [Finite frontier formalization](workbenches/tau-frontier-formal/) | Check the cross estimates, signed averages and projected homology maps inside the existing formal library. | PR #18 is merged: five modules/40 selected reports, with 68 integration targets and the inherited libraries passing the combined strict checks. All original maps and finite hypotheses remain; analytic instantiations are not inferred. |
 | [Axial source-to-arithmetic transport](satellites/29s_ns_axial_branch_radius.tex) | Determine exactly which singularity information from the specified fluid source survives its arithmetic transform. | The broad reader's Sections 35–37 give all-axis Mellin data, four complex branch points, the sharp moving radius and an invertible endpoint-residue map. This is a calculation on the stated source patch, not a new zeta-zero witness or independent certification of the imported fluid existence theorem. |
 
 The full proofs, rather than this summary, fix domains, signs, coordinate

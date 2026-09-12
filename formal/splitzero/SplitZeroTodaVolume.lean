@@ -21,7 +21,7 @@ theorem two_losses (a P M Q z : ℝ) (hP : P ≠ 0) (hQ : Q ≠ 0) :
       a * (2 * M - P - Q) ^ 2 / (4 * P * Q) - z ^ 2 := by
   unfold energy
   field_simp
-  <;> ring
+  ring
 
 /-- The source control is bounded by the full two-step volume ratio. -/
 theorem square_bound (a P M Q z e : ℝ)
@@ -48,7 +48,7 @@ theorem radius_bound (a P M Q z e : ℝ)
     norm_num
     <;> ring
   change e ≤ b
-  nlinarith
+  nlinarith [he0]
 
 /-- Every established spectral lower allowance constrains the actual volumes. -/
 theorem lower_forces_volume (a P M Q z e L : ℝ)
@@ -111,8 +111,8 @@ theorem log_volume_telescope (V : ℕ → ℝ) (hV : ∀ n, 0 < V n) (r : ℕ) :
     Real.log_div (ne_of_gt (hV _)) (ne_of_gt (hV _))
   simp_rw [hlog]
   rw [Real.log_div (ne_of_gt (hV _)) (ne_of_gt (hV _))]
-  convert sum_differences (fun j => Real.log (V (2*j))) r using 1 <;>
-    simp [Nat.mul_add]
+  convert sum_differences (fun j => Real.log (V (2*j))) r using 1
+  simp [Nat.mul_add]
 
 /-- A common rescaling of the same quotient volumes cancels explicitly. -/
 theorem mass_scaling (a P M Q z c : ℝ) (hc : c ≠ 0) :

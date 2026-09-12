@@ -24,7 +24,7 @@ def sourceGram (C : Matrix j n ℂ) (B : Matrix j m ℂ) :
   Matrix.fromBlocks (C.conjTranspose * C) (C.conjTranspose * B)
     (B.conjTranspose * C) (B.conjTranspose * B)
 
-omit [DecidableEq n] in
+omit [Fintype n] [DecidableEq n] in
 theorem residual_orthogonal (C : Matrix j n ℂ) (B : Matrix j m ℂ)
     (H : Matrix m m ℂ) (hH : (B.conjTranspose * B) * H = 1) :
     B.conjTranspose * residual C B H = 0 := by
@@ -70,7 +70,7 @@ theorem determinant_ratio (C : Matrix j n ℂ) (B : Matrix j m ℂ)
   apply (eq_div_iff hdet).mpr
   simpa only [mul_comm] using (determinant_factor C B).symm
 
-omit [DecidableEq n] [DecidableEq m] in
+omit [Fintype n] [DecidableEq n] [DecidableEq m] in
 /-- Any observation killing precisely these supplied relation columns is unchanged. -/
 theorem residual_observation {d : Type*} [Fintype d]
     (J : Matrix d j ℂ) (C : Matrix j n ℂ) (B : Matrix j m ℂ)

@@ -8,6 +8,7 @@ on:
       - 'formal/splitzero/SplitZeroCyclicDepth.lean'
       - 'formal/splitzero/CONORMAL_CYCLIC_TARGETS.json'
       - 'formal/splitzero/check_conormal_cyclic.py'
+      - 'workbenches/tau-conormal-cyclic-formal/check_depth_models.py'
       - '.github/workflows/splitzero-conormal-cyclic.yml'
 permissions:
   contents: read
@@ -35,6 +36,21 @@ jobs:
           python3 check_conormal_cyclic.py
           python3 -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
           python3 -O -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+      - name: Exact local monomial and polynomial calibrations
+        run: |
+          set -euo pipefail
+          checker=../../workbenches/tau-conormal-cyclic-formal/check_depth_models.py
+          python3 "$checker" --json DepthModels.normal.json
+          python3 -O "$checker" --json DepthModels.optimized.json
+          cmp DepthModels.normal.json DepthModels.optimized.json
+          if python3 "$checker" --self-test-failure >DepthModels.negative.log 2>&1; then
+            echo 'negative control unexpectedly passed'; exit 1
+          fi
+          if python3 -O "$checker" --self-test-failure >DepthModels.negative.optimized.log 2>&1; then
+            echo 'optimized negative control unexpectedly passed'; exit 1
+          fi
+          grep 'intentional negative control' DepthModels.negative.log
+          grep 'intentional negative control' DepthModels.negative.optimized.log
       - name: Install unchanged pinned environment
         run: |
           set -euo pipefail

@@ -98,21 +98,20 @@ theorem top_level_zero (r : ℕ) (x : A) :
     (level (R := R) (⊤ : Ideal A) r).mkQ x = 0 := by
   apply (Submodule.Quotient.mk_eq_zero _).mpr
   change x ∈ (⊤ : Ideal A) ^ r
-  have h : (⊤ : Ideal A) ^ r = ⊤ := by
-    simpa using (Ideal.span_singleton_pow (1 : A) r)
+  have h : (⊤ : Ideal A) ^ r = ⊤ := by simp
   rw [h]
   exact Submodule.mem_top
 
 /-- Literal pullback of the r-th multivariable relation along S. -/
-def cyclicLevel (S : A) (I : Ideal A) (r : ℕ) : Submodule R R[X] :=
+def cyclicLevel (S : A) (I : Ideal A) (r : ℕ) : Submodule R (Polynomial R) :=
   (level I r).comap (Polynomial.aeval S).toLinearMap
 
 /-- Evaluation embeds the cyclic quotient in the original quotient. -/
 def evaluation (S : A) (I : Ideal A) (r : ℕ) :
-    (R[X] ⧸ cyclicLevel S I r) →ₗ[R] (A ⧸ level I r) :=
+    (Polynomial R ⧸ cyclicLevel S I r) →ₗ[R] (A ⧸ level I r) :=
   (cyclicLevel S I r).mapQ (level I r) (Polynomial.aeval S).toLinearMap le_rfl
 
-@[simp] theorem evaluation_mk (S : A) (I : Ideal A) (r : ℕ) (p : R[X]) :
+@[simp] theorem evaluation_mk (S : A) (I : Ideal A) (r : ℕ) (p : Polynomial R) :
     evaluation S I r ((cyclicLevel S I r).mkQ p) =
       (level I r).mkQ (Polynomial.aeval S p) := rfl
 
@@ -129,7 +128,7 @@ theorem evaluation_injective (S : A) (I : Ideal A) (r : ℕ) :
   simpa only [map_sub] using hm
 
 theorem polynomial_chain_rule (D : Derivation R A A) (S : A)
-    (hS : D S = 1) (p : R[X]) :
+    (hS : D S = 1) (p : Polynomial R) :
     D (Polynomial.aeval S p) = Polynomial.aeval S (Polynomial.derivative p) := by
   rw [D.map_aeval, hS]
   exact mul_one _
@@ -137,7 +136,7 @@ theorem polynomial_chain_rule (D : Derivation R A A) (S : A)
 /-- Formal differentiation on the exact cyclic relation tower. -/
 def cyclicDerivative (D : Derivation R A A) (S : A) (hS : D S = 1)
     (I : Ideal A) (r : ℕ) :
-    (R[X] ⧸ cyclicLevel S I (r + 1)) →ₗ[R] (R[X] ⧸ cyclicLevel S I r) :=
+    (Polynomial R ⧸ cyclicLevel S I (r + 1)) →ₗ[R] (Polynomial R ⧸ cyclicLevel S I r) :=
   SplitZero.RelationLayer.derivative (cyclicLevel S I (r + 1))
     (cyclicLevel S I r) Polynomial.derivative (by
       intro p hp
@@ -146,7 +145,7 @@ def cyclicDerivative (D : Derivation R A A) (S : A) (hS : D S = 1)
       exact deriv_mem_pow D I r hp)
 
 @[simp] theorem cyclicDerivative_mk (D : Derivation R A A) (S : A)
-    (hS : D S = 1) (I : Ideal A) (r : ℕ) (p : R[X]) :
+    (hS : D S = 1) (I : Ideal A) (r : ℕ) (p : Polynomial R) :
     cyclicDerivative D S hS I r ((cyclicLevel S I (r + 1)).mkQ p) =
       (cyclicLevel S I r).mkQ (Polynomial.derivative p) := rfl
 
@@ -164,7 +163,7 @@ theorem cyclic_square (D : Derivation R A A) (S : A) (hS : D S = 1)
 
 /-- The extra unit-derivative term is retained before the arithmetic quotient. -/
 theorem cyclic_unit_rule (D : Derivation R A A) (S : A) (hS : D S = 1)
-    (I : Ideal A) (r : ℕ) (u : A) (p : R[X]) :
+    (I : Ideal A) (r : ℕ) (u : A) (p : Polynomial R) :
     descended D I r ((level I (r + 1)).mkQ (u * Polynomial.aeval S p)) =
       (level I r).mkQ (u * Polynomial.aeval S (Polynomial.derivative p)) +
       (level I r).mkQ (Polynomial.aeval S p * D u) := by

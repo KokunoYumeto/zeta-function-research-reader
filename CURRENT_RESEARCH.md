@@ -1,6 +1,6 @@
 # Zeta, theta cohomology and arithmetic weight control
 
-[Read the published edition](https://doi.org/10.5281/zenodo.22728704) · [PDFs and matching source packages](calculation_edition_20260912b/)
+[Read the published edition](https://doi.org/10.5281/zenodo.22729194) · [PDFs and matching source packages](calculation_edition_20260912c/)
 
 This research collection develops explicit calculations about the Riemann zeta
 function and the operators that encode it. The current focus is the
@@ -11,13 +11,13 @@ Deligne's approach to weights in Weil II; the present work constructs and
 calculates its own analytic objects rather than claiming that analogy alone
 proves the Riemann hypothesis.
 
-Start with the [216-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-frontier/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf).
-Its [complete proof sources, appendices and checks](workbenches/splitzero-tandem/continuations/20260912-frontier/)
+Start with the [292-page cumulative calculation reader](workbenches/splitzero-tandem/continuations/20260912-stieltjes/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf).
+Its [complete proof sources, appendices and checks](workbenches/splitzero-tandem/continuations/20260912-stieltjes/)
 are directly readable on GitHub. The broader [433-page zeta research reader](reader.pdf)
 contains the literature reconstruction, CUE random-matrix calculations,
 arithmetic transforms, and the source-directed fluid calculations.
 
-The continuing main reader now includes [alternating/exterior packet costs](workbenches/exterior-packet-cost/) in Section 38, pages 397–404. [PR #18's finite frontier formalization](workbenches/tau-frontier-formal/) is also merged and checked. These current-repository updates do not change the frozen 425/216-page DOI edition linked above.
+The continuing main reader now includes [alternating/exterior packet costs](workbenches/exterior-packet-cost/) in Section 38, pages 397–404. [PR #18's finite frontier formalization](workbenches/tau-frontier-formal/) is also merged and checked. The current DOI includes those calculations, the merged PR #20 sum-connection note, and the new 292-page tandem continuation. The [older 425/216-page edition](calculation_edition_20260912b/) remains unchanged.
 
 ## What the objects mean
 
@@ -48,13 +48,15 @@ The continuing main reader now includes [alternating/exterior packet costs](work
 | [Theta norms and kernel layers](workbenches/splitzero-tandem/continuations/20260912-frontier/tex/kernel_layer_continuation.tex) | Connect the packet-dependent interpolation problem to the original theta norm sequence and track the next relation. | Complete norm/Gram-volume identities, a full relation-layer graph and derivative quotient, retaining initial indices and cross terms. See the cumulative reader's named kernel-layer sections for the complete formulas. |
 | [Symmetric arithmetic frontier](workbenches/splitzero-tandem/continuations/20260912-frontier/) | Use the original conjugation/reflection symmetries to sharpen the actual control estimate. | Quartet parity removes the general factor two in the stated finite-stage bound. Literal orbit sums transport it to signed symmetric cohomology, retaining orbit multiplicities and zero cases. An asymptotic vanishing estimate is not asserted. |
 | [Spectral-sum pushforward](workbenches/tau-spectral-sum/) | Carry a tensor calculation onto one spectral coordinate without discarding the relative directions. | One-variable matrix weights, exact Jacobians, duality, traces and complete nilpotent sum fibres. The original filtered image and arithmetic metric are retained. |
+| [Stieltjes branches and arithmetic Gram determinants](workbenches/splitzero-tandem/continuations/20260912-stieltjes/) | Express the original theta norms on the positive half-line while keeping both reflection branches, local units and multiplicities. | Exact gamma-reference norm formulas and arithmetic determinant ratios; quartet derivative-energy/volume identities. Full written proofs retain the original arithmetic zeros and show the precise limitations of the cited exponential-weight results. |
+| [Sum connection and conormal trace](workbenches/tau-sum-connection/) | Calculate what differentiation of the actual sum pushforward retains beyond its scalar density. | Full tangential connection, normal energy and conormal response into the residue trace; original mass, Jacobian drift and both half-line boundary traces retained. The shorter public note and complete source appendix are separately identified. Finite checks pass; no new Lean certificate is asserted. |
 | [Alternating/exterior packet costs](workbenches/exterior-packet-cost/) | Determine what alternating projection retains from full spectral multiplicities, original metrics and repeated-root directions. | Exact subset moments, determinant-line cancellation and surviving proper-degree nilpotent sectors; complete EA.1–38 proofs and 8,173 combinatorial/coordinate plus 26 metric cases, normal and optimized. Test matrices are fixtures, not arithmetic upper estimates; no new Lean certification is claimed. |
 | [Finite frontier formalization](workbenches/tau-frontier-formal/) | Check the cross estimates, signed averages and projected homology maps inside the existing formal library. | PR #18 is merged: five modules/40 selected reports, with 68 integration targets and the inherited libraries passing the combined strict checks. All original maps and finite hypotheses remain; analytic instantiations are not inferred. |
 | [Axial source-to-arithmetic transport](satellites/29s_ns_axial_branch_radius.tex) | Determine exactly which singularity information from the specified fluid source survives its arithmetic transform. | The broad reader's Sections 35–37 give all-axis Mellin data, four complex branch points, the sharp moving radius and an invertible endpoint-residue map. This is a calculation on the stated source patch, not a new zeta-zero witness or independent certification of the imported fluid existence theorem. |
 
 The full proofs, rather than this summary, fix domains, signs, coordinate
-changes and the scope of each conclusion. The cumulative reader contains 22
-proof sections and nine complete source appendices. Its checks include exact
+changes and the scope of each conclusion. The cumulative reader contains 28
+proof sections and 12 complete source appendices. Its checks include exact
 finite regressions and separately identified arithmetic enclosures. The
 publication does not conflate those checks with the complete written proofs.
 
@@ -73,3 +75,5 @@ Frozen older editions remain linked in the repository. The current edition's
 PDFs are separate readable files, with paired source packages and publication
 identities. Raw conversation transcripts and local literature archives are
 research references, not public payload.
+
+The [current twenty-file Zenodo record](https://zenodo.org/records/22729194#files) retains the earlier sixteen downloads. The [four new edition files and prior-download links](calculation_edition_20260912c/README.md) distinguish those preserved readers from the current 292/433-page pair.

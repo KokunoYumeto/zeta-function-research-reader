@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Coherent arithmetic interpolation and joint tensor boundary control</title>
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+<style>
+  :root{--ink:#192734;--muted:#526472;--accent:#0f646c;--line:#d7e2e4;--paper:#ffffff;--wash:#f0f5f5}
+  html{scroll-behavior:smooth;background:var(--wash)}
+  body{font:17px/1.66 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);max-width:1000px;margin:0 auto;padding:34px 48px 80px;background:var(--paper)}
+  h1{font-size:2.2rem;line-height:1.18;border-bottom:5px solid var(--accent);padding-bottom:20px;margin:12px 0 25px}
+  h2{font-size:1.4rem;line-height:1.3;margin-top:2.8rem;padding-top:1rem;border-top:1px solid var(--line)}
+  h3{font-size:1.15rem}a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+  p{margin:1rem 0}strong{font-weight:670}code{font-size:.88em;background:var(--wash);padding:.1em .25em;border-radius:3px;overflow-wrap:anywhere}
+  pre{white-space:pre-wrap;background:var(--wash);padding:18px;overflow:auto}
+  .math.display{display:block;overflow-x:auto;overflow-y:hidden;padding:15px 6px;margin:18px 0;border-left:3px solid var(--line)}
+  math{font-size:1.08em}math[display="block"]{margin:0;min-width:min-content}
+  #TOC{background:var(--wash);border:1px solid var(--line);padding:16px 22px;margin:26px 0;font-size:.9rem}#TOC ul{padding-left:20px;margin:.3em 0}#TOC a{text-decoration:none}
+  .kicker{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}.navigation{border:1px solid var(--line);border-radius:4px;padding:13px 17px;font-size:.9rem;background:var(--wash)}
+  @media(max-width:650px){body{padding:20px 18px 50px;font-size:16px}h1{font-size:1.7rem}h2{font-size:1.25rem}.math.display{margin-left:-5px;margin-right:-5px}}
+  </style>
+<style>
+.equation{display:flex;align-items:center;gap:14px;border-left:3px solid var(--line);padding:15px 8px;margin:20px 0;max-width:100%;box-sizing:border-box}
+.equation-scroll{overflow-x:auto;overflow-y:hidden;min-width:0;flex:1;padding:4px 0}
+.equation-label{color:var(--muted);font:13px system-ui,sans-serif;flex:none;align-self:center}
+.equation math{display:block;width:max-content;min-width:0;max-width:none;margin:auto}
+body{box-sizing:border-box}p{overflow-wrap:break-word}#TOC{overflow-wrap:anywhere}
+</style></head>
+<body>
+<div class="kicker">Split-zero research • 12 September 2026</div>
+<div class="navigation"><a href="NOTE.tex">LaTeX source</a> · <a href="RESEARCH_NOTE.md">Markdown</a> · <a href="HANDOFF.md">Formalization handoff</a> · <a href="PROGRAMME_STATE.md">Programme state</a> · <a href="check-results.json">Exact check results</a></div>
+<header id="title-block-header">
+<h1 class="title" id="coherent-arithmetic-interpolation-and-joint-tensor-boundary-control">Coherent arithmetic interpolation and joint tensor
+boundary control</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#coherent-arithmetic-interpolation-and-joint-tensor-boundary-control" id="toc-coherent-arithmetic-interpolation-and-joint-tensor-boundary-control">Coherent
+arithmetic interpolation and joint tensor boundary control</a>
+<ul>
+<li><a href="#accepted-inputs-and-the-change-in-the-continuation" id="toc-accepted-inputs-and-the-change-in-the-continuation">0. Accepted
+inputs and the change in the continuation</a></li>
+<li><a href="#fixed-scalar-cochain-and-arithmetic-maps" id="toc-fixed-scalar-cochain-and-arithmetic-maps">1. Fixed scalar,
+cochain, and arithmetic maps</a></li>
+<li><a href="#a-polynomial-presentation-of-the-actual-finite-representatives" id="toc-a-polynomial-presentation-of-the-actual-finite-representatives">2.
+A polynomial presentation of the actual finite representatives</a></li>
+<li><a href="#exact-arithmetic-moment-matrices-and-the-full-jet-interpolation-formula" id="toc-exact-arithmetic-moment-matrices-and-the-full-jet-interpolation-formula">3.
+Exact arithmetic moment matrices and the full-jet interpolation
+formula</a></li>
+<li><a href="#all-finite-packets-fit-the-same-source-filtration" id="toc-all-finite-packets-fit-the-same-source-filtration">4. All finite
+packets fit the same source filtration</a></li>
+<li><a href="#a-global-density-result-with-its-precise-cohomological-consequence" id="toc-a-global-density-result-with-its-precise-cohomological-consequence">5.
+A global density result, with its precise cohomological
+consequence</a></li>
+<li><a href="#tail-representation-and-same-metric-reflection-control" id="toc-tail-representation-and-same-metric-reflection-control">6. Tail
+representation and same-metric reflection control</a></li>
+<li><a href="#joint-total-degree-control-on-the-actual-product-complex" id="toc-joint-total-degree-control-on-the-actual-product-complex">7.
+Joint total-degree control on the actual product complex</a></li>
+<li><a href="#the-product-error-is-one-new-total-degree-layer" id="toc-the-product-error-is-one-new-total-degree-layer">8. The product
+error is one new total-degree layer</a></li>
+<li><a href="#same-metric-reflection-and-residue-duality-on-the-product" id="toc-same-metric-reflection-and-residue-duality-on-the-product">9.
+Same-metric reflection and residue duality on the product</a></li>
+<li><a href="#quantitative-certificate-and-the-deligne-comparison" id="toc-quantitative-certificate-and-the-deligne-comparison">10.
+Quantitative certificate and the Deligne comparison</a></li>
+<li><a href="#reading-provenance-and-validation" id="toc-reading-provenance-and-validation">11. Reading, provenance, and
+validation</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>Owner-directed continuation, 12 September 2026. Written mathematical
+arguments for review; the new analytic and matrix results in this note
+have not been Lean-checked.</p>
+<h2 id="accepted-inputs-and-the-change-in-the-continuation">0. Accepted
+inputs and the change in the continuation</h2>
+<p>The new formalization receipt reports—and the repository metadata and
+workflow step summaries confirm—a successful check at
+<code>5d2772ea0a16d177ac3e01ff70394b90ba95a232</code> in PR #12. That
+certificate covers the specified retraction’s algebraic/topological
+consequences, the complete coefficient homotopy family, and the stated
+finite-chart dual maps. It does not certify the analytic construction of
+the theta retraction, support-changing synchronization homotopies, or
+the matrix estimates developed here. Its branch is left untouched.</p>
+<p>The second attachment proves, for an unrestricted finite correction
+matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>,
+the exact formula</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>B</mi></msub><mo>=</mo><msub><mi>G</mi><mrow><mo>⊥</mo><mo>,</mo><mi>m</mi></mrow></msub><mo>+</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>B</mi><mo>+</mo><msubsup><mi>H</mi><mi>m</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mi>C</mi><mi>m</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>H</mi><mi>m</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>B</mi><mo>+</mo><msubsup><mi>H</mi><mi>m</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mi>C</mi><mi>m</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">G_B=G_{\perp,m}+(B+H_m^{-1}C_m)^*H_m(B+H_m^{-1}C_m).\tag{0.1}</annotation></semantics></math></div><span class="equation-label">(0.1)</span></div>
+<p>Once
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>+</mo><mn>1</mn><mo>≥</mo><mo>dim</mo><msub><mi>E</mi><mi>Z</mi></msub></mrow><annotation encoding="application/x-tex">m+1\ge\dim E_Z</annotation></semantics></math>,
+every positive metric ray is realized by an actual theta-boundary
+correction, with the arithmetic jets unchanged. Its further
+conclusion</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>inf</mo><mi>B</mi></munder><msub><mi>ϵ</mi><mi>A</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>G</mi><mi>B</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><munder><mo>max</mo><mrow><mi>ρ</mi><mo>∈</mo><mi>Z</mi></mrow></munder><mrow><mo form="prefix" stretchy="true">|</mo><mn>2</mn><mi>ℜ</mi><mi>ρ</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">|</mo></mrow></mrow><annotation encoding="application/x-tex">\inf_B\epsilon_A(G_B)=\max_{\rho\in Z}|2\Re\rho-1|\tag{0.2}</annotation></semantics></math></div><span class="equation-label">(0.2)</span></div>
+<p>therefore has to be retained. This note does not count unrestricted
+metric optimization as a new arithmetic estimate. It instead uses the
+unique least-norm representative for a fixed, increasing space of the
+original arithmetic boundaries. It proves compatibility of these
+representatives for all finite packets, an exact full-jet moment-matrix
+formula, and a joint total-degree tensor construction.</p>
+<p>All conclusions are derived on the existing characteristic-zero theta
+complex over the marked tau-base. None is asserted to be an application
+of finite-field purity to a space merely renamed tau.</p>
+<h2 id="fixed-scalar-cochain-and-arithmetic-maps">1. Fixed scalar,
+cochain, and arithmetic maps</h2>
+<p>Retain the original scalar construction</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>R</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mo form="prefix" stretchy="false">{</mo><mi>τ</mi><mo form="postfix" stretchy="false">}</mo><mo>⊔</mo><mo form="prefix" stretchy="false">{</mo><msup><mi>r</mi><mo>•</mo></msup><mo>:</mo><mi>r</mi><mo>∈</mo><mi>R</mi><mo form="postfix" stretchy="false">}</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>e</mi><mi>R</mi></msub><mo>=</mo><msubsup><mn>0</mn><mi>R</mi><mo>•</mo></msubsup><mo>,</mo></mrow><annotation encoding="application/x-tex">G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\qquad e_R=0_R^\bullet,</annotation></semantics></math></div></div>
+<p>and the entire square</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℤ</mi><mo form="postfix" stretchy="true">)</mo></mrow></mtd><mtd columnalign="center" style="text-align: center"><mover><mo>→</mo><mrow><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>j</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow></mover></mtd><mtd columnalign="center" style="text-align: center"><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℂ</mi><mo form="postfix" stretchy="true">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>p</mi><mi>ℤ</mi></msub><mo>↓</mo></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="center" style="text-align: center"><mo>↓</mo><msub><mi>p</mi><mi>ℂ</mi></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>ℤ</mi></mtd><mtd columnalign="center" style="text-align: center"><mover><mo>→</mo><mi>j</mi></mover></mtd><mtd columnalign="center" style="text-align: center"><mi>ℂ</mi><mi>.</mi></mtd></mtr></mtable></menclose><annotation encoding="application/x-tex">\boxed{\begin{array}{ccc}
+G(\mathbb Z)&amp;\xrightarrow{G(j)}&amp;G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&amp;&amp;\downarrow p_{\mathbb C}\\
+\mathbb Z&amp;\xrightarrow{j}&amp;\mathbb C.
+\end{array}}\tag{1.1}</annotation></semantics></math></div><span class="equation-label">(1.1)</span></div>
+<p>The target of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mi>ℤ</mi></msub><annotation encoding="application/x-tex">p_{\mathbb Z}</annotation></semantics></math>
+is infinite. This quotient remains part of the marked geometry over
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝔟</mi><mi>τ</mi></msub><annotation encoding="application/x-tex">\mathfrak b_\tau</annotation></semantics></math>.
+Coefficient maps below fix external absence and carry a represented
+scalar zero to the represented scalar zero of the target.</p>
+<p>Use the unchanged spaces</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mo form="prefix" stretchy="false">{</mo><mi>ϕ</mi><mo>∈</mo><mi>𝒮</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℝ</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>:</mo><mi>ϕ</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> even</mtext></mrow><mo>,</mo><mspace width="0.222em"></mspace><mi>ϕ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="0.222em"></mspace><msub><mo>∫</mo><mi>ℝ</mi></msub><mi>ϕ</mi><mo>=</mo><mn>0</mn><mo form="postfix" stretchy="false">}</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">V=\{\phi\in\mathcal S(\mathbb R):\phi\text{ even},\ \phi(0)=0,\ \int_{\mathbb R}\phi=0\},</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℬ</mi><mo>=</mo><mo form="prefix" stretchy="false">{</mo><mi>F</mi><mo>∈</mo><msup><mi>C</mi><mi>∞</mi></msup><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>ℝ</mi><mrow><mo>&gt;</mo><mn>0</mn></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>:</mo><munder><mo>sup</mo><mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></munder><msup><mi>x</mi><mi>b</mi></msup><mrow><mo form="prefix" stretchy="true">|</mo><msup><mi>D</mi><mi>k</mi></msup><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mo>&lt;</mo><mi>∞</mi><mspace width="0.222em"></mspace><mo>∀</mo><mi>b</mi><mo>∈</mo><mi>ℤ</mi><mo>,</mo><mi>k</mi><mo>≥</mo><mn>0</mn><mo form="postfix" stretchy="false">}</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>D</mi><mo>=</mo><mi>−</mi><mi>x</mi><msub><mi>∂</mi><mi>x</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathscr B=\{F\in C^\infty(\mathbb R_{&gt;0}):\sup_{x&gt;0}x^b|D^kF(x)|&lt;\infty\ \forall b\in\mathbb Z,k\ge0\},\qquad D=-x\partial_x,</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Θ</mi><mi>ϕ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><munder><mo>∑</mo><mrow><mi>m</mi><mo>≠</mo><mn>0</mn></mrow></munder><mi>ϕ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>m</mi><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>C</mi><mo>+</mo></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">[</mo><mi>V</mi><mover><mo>→</mo><mi>Θ</mi></mover><mi>ℬ</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>Q</mi><mo>=</mo><mi>ℬ</mi><mi>/</mi><mi>Θ</mi><mi>V</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\Theta\phi(x)=\sum_{m\ne0}\phi(mx),\quad C_+=[V\xrightarrow{\Theta}\mathscr B],\quad Q=\mathscr B/\Theta V.</annotation></semantics></math></div></div>
+<p>The complex is in degrees
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0,1</annotation></semantics></math>.
+Write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>:</mo><mi>ℬ</mi><mo>→</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">q:\mathscr B\to Q</annotation></semantics></math>.
+Its action is by the original
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>,
+not a shifted operator. Let</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>∞</mi></msubsup><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>x</mi><mi>s</mi></msup><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mi>x</mi></mfrac><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>ϕ</mi><mo>*</mo></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>4</mn><msup><mi>π</mi><mn>2</mn></msup><msup><mi>x</mi><mn>4</mn></msup><mo>−</mo><mn>6</mn><mi>π</mi><msup><mi>x</mi><mn>2</mn></msup><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>e</mi><mrow><mi>−</mi><mi>π</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></msup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>f</mi><mn>0</mn></msub><mo>=</mo><mi>Θ</mi><msub><mi>ϕ</mi><mo>*</mo></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathcal MF(s)=\int_0^\infty F(x)x^s\frac{dx}{x},\quad
+\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad f_0=\Theta\phi_*,</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mn>2</mn><mi>ξ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>s</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>π</mi><mrow><mi>−</mi><mi>s</mi><mi>/</mi><mn>2</mn></mrow></msup><mi>Γ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mi>/</mi><mn>2</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>ζ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>ℳ</mi><msub><mi>f</mi><mn>0</mn></msub><mo>=</mo><mi>g</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad\mathcal Mf_0=g.\tag{1.2}</annotation></semantics></math></div><span class="equation-label">(1.2)</span></div>
+<p>The established range identities are used with these exact constants.
+They give
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi><mi>Θ</mi><mi>ϕ</mi><mo>=</mo><mi>g</mi><msub><mi>H</mi><mi>ϕ</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal M\Theta\phi=gH_\phi</annotation></semantics></math>,
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mi>ϕ</mi></msub><annotation encoding="application/x-tex">H_\phi</annotation></semantics></math>
+entire. In particular every finite jet map used below annihilates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Θ</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">\Theta V</annotation></semantics></math>.</p>
+<p>For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n\ge0</annotation></semantics></math>,
+retain</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>n</mi></msub><mo>=</mo><mo>span</mo><mo form="prefix" stretchy="false">{</mo><msub><mi>ϕ</mi><mo>*</mo></msub><mo>,</mo><mi>D</mi><msub><mi>ϕ</mi><mo>*</mo></msub><mo>,</mo><mi>…</mi><mo>,</mo><msup><mi>D</mi><mi>n</mi></msup><msub><mi>ϕ</mi><mo>*</mo></msub><mo form="postfix" stretchy="false">}</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>L</mi><mi>n</mi></msub><mo>=</mo><mi>Θ</mi><msub><mi>V</mi><mi>n</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">V_n=\operatorname{span}\{\phi_*,D\phi_*,\ldots,D^n\phi_*\},\qquad L_n=\Theta V_n,</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>n</mi></msub><mo>=</mo><mi>ℬ</mi><mi>/</mi><msub><mi>L</mi><mi>n</mi></msub><mo>→</mo><msub><mi>Q</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mo>ker</mo><mo>=</mo><msub><mi>L</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi>/</mi><msub><mi>L</mi><mi>n</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">Q_n=\mathscr B/L_n\longrightarrow Q_{n+1},\qquad\ker= L_{n+1}/L_n.\tag{1.3}</annotation></semantics></math></div><span class="equation-label">(1.3)</span></div>
+<p>Their split reconstructions have labels
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mi>n</mi></msub><annotation encoding="application/x-tex">V_n</annotation></semantics></math>.
+The transport of a class in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi>/</mi><msub><mi>L</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">L_{n+1}/L_n</annotation></semantics></math>
+is the supported zero at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">V_{n+1}</annotation></semantics></math>;
+it is not external absence. The derivative has type
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>n</mi></msub><mo>→</mo><msub><mi>Q</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">Q_n\to Q_{n+1}</annotation></semantics></math>
+because
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><msub><mi>L</mi><mi>n</mi></msub><mo>⊆</mo><msub><mi>L</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">DL_n\subseteq L_{n+1}</annotation></semantics></math>.</p>
+<h2 id="a-polynomial-presentation-of-the-actual-finite-representatives">2. A
+polynomial presentation of the actual finite representatives</h2>
+<p>Take a nonempty finite set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
+of actual zeros of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>,
+with their complete orders
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>ρ</mi></msub><annotation encoding="application/x-tex">m_\rho</annotation></semantics></math>,
+and put</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><munder><mo>∏</mo><mrow><mi>ρ</mi><mo>∈</mo><mi>Z</mi></mrow></munder><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo>−</mo><mi>ρ</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>m</mi><mi>ρ</mi></msub></msup><mo>,</mo><mspace width="1.0em"></mspace><mi>d</mi><mo>=</mo><mo>deg</mo><mi>h</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>E</mi><mi>h</mi></msub><mo>=</mo><mi>ℂ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>h</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>v</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">h(t)=\prod_{\rho\in Z}(t-\rho)^{m_\rho},\quad d=\deg h,\quad E_h=\mathbb C[t]/(h),\quad v_h(s)=g(s)/h(s).\tag{2.1}</annotation></semantics></math></div><span class="equation-label">(2.1)</span></div>
+<p>The polynomial variable
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+acts on the source by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>
+and is evaluated at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>
+by Mellin transformation. Full orders make
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>h</mi></msub><annotation encoding="application/x-tex">v_h</annotation></semantics></math>
+nonzero at all selected centres. Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>j</mi><mi>h</mi></msub><annotation encoding="application/x-tex">j_h</annotation></semantics></math>
+be the complete Hermite-jet/Chinese-remainder map into
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>h</mi></msub><annotation encoding="application/x-tex">E_h</annotation></semantics></math>
+and retain</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>υ</mi><mi>h</mi></msub><mo>=</mo><msub><mi>j</mi><mi>h</mi></msub><msub><mi>v</mi><mi>h</mi></msub><mo>∈</mo><msubsup><mi>E</mi><mi>h</mi><mo>×</mo></msubsup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>ε</mi><mi>h</mi></msub><mo>=</mo><msubsup><mi>υ</mi><mi>h</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">\upsilon_h=j_hv_h\in E_h^\times,\qquad\varepsilon_h=\upsilon_h^{-1}.\tag{2.2}</annotation></semantics></math></div><span class="equation-label">(2.2)</span></div>
+<p>The unit
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ε</mi><mi>h</mi></msub><annotation encoding="application/x-tex">\varepsilon_h</annotation></semantics></math>
+is not the scalar
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>.
+Its split scalar is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>ε</mi><mi>h</mi><mo>•</mo></msubsup><annotation encoding="application/x-tex">\varepsilon_h^\bullet</annotation></semantics></math>.</p>
+<p>There is an actual
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>h</mi></msub><mo>∈</mo><mi>ℬ</mi></mrow><annotation encoding="application/x-tex">F_h\in\mathscr B</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>D</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>F</mi><mi>h</mi></msub><mo>=</mo><msub><mi>f</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">h(D)F_h=f_0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi><msub><mi>F</mi><mi>h</mi></msub><mo>=</mo><msub><mi>v</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal MF_h=v_h</annotation></semantics></math>.
+It can be obtained successively from</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>ρ</mi></msub><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mi>x</mi><mrow><mi>−</mi><mi>ρ</mi></mrow></msup><msubsup><mo>∫</mo><mi>x</mi><mi>∞</mi></msubsup><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>y</mi><mrow><mi>ρ</mi><mo>−</mo><mn>1</mn></mrow></msup><mspace width="0.167em"></mspace><mi>d</mi><mi>y</mi><mo>,</mo><mspace width="2.0em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mi>D</mi><mo>−</mo><mi>ρ</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>S</mi><mi>ρ</mi></msub><mi>F</mi><mo>=</mo><mi>F</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">S_\rho F(x)=x^{-\rho}\int_x^\infty F(y)y^{\rho-1}\,dy,\qquad(D-\rho)S_\rho F=F,\tag{2.3}</annotation></semantics></math></div><span class="equation-label">(2.3)</span></div>
+<p>whenever the required Mellin value vanishes. At zero, replace the
+integral by its negative from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>,
+using that vanishing; at infinity use the displayed integral. The
+defining estimates of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℬ</mi><annotation encoding="application/x-tex">\mathscr B</annotation></semantics></math>
+prove rapid decay of every scaling derivative at both ends. Repeated
+zero jets permit iteration. Uniqueness follows from injectivity of
+Mellin and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mi>ℳ</mi><mi>F</mi><mo>=</mo><mn>0</mn><mo>⇒</mo><mi>F</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">h\mathcal MF=0\Rightarrow F=0</annotation></semantics></math>.</p>
+<p>Define the linear map</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>𝒯</mi><mi>h</mi></msub><mo>:</mo><mi>ℂ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>→</mo><mi>ℬ</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>P</mi><mo>↦</mo><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>D</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>F</mi><mi>h</mi></msub><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{\mathcal T_h:\mathbb C[t]\longrightarrow\mathscr B,\qquad P\longmapsto P(D)F_h.}\tag{2.4}</annotation></semantics></math></div><span class="equation-label">(2.4)</span></div>
+<p>It is injective and satisfies</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi><msub><mi>𝒯</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mfrac><mi>g</mi><mi>h</mi></mfrac><mi>P</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>𝒯</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>h</mi><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>Θ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>D</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>ϕ</mi><mo>*</mo></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>J</mi><mi>h</mi></msub><msub><mi>𝒯</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>υ</mi><mi>h</mi></msub><msub><mrow><mo form="prefix" stretchy="true">[</mo><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>h</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal M\mathcal T_h(P)=\frac gh P,\quad
+\mathcal T_h(hP)=\Theta(P(D)\phi_*),\quad
+J_h\mathcal T_h(P)=\upsilon_h[P]_h.\tag{2.5}</annotation></semantics></math></div><span class="equation-label">(2.5)</span></div>
+<p>Here
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>J</mi><mi>h</mi></msub><mi>F</mi><mo>=</mo><msub><mi>j</mi><mi>h</mi></msub><mi>ℳ</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">J_hF=j_h\mathcal MF</annotation></semantics></math>.
+The first equation retains the whole completed function, not its values
+only on the critical line.</p>
+<p>For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mi>n</mi><mo>+</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">N=n+d</annotation></semantics></math>,
+let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒫</mi><mi>N</mi></msub><mo>=</mo><mi>ℂ</mi><msub><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mrow><mo>≤</mo><mi>N</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal P_N=\mathbb C[t]_{\le N}</annotation></semantics></math>,
+and define</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒥</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mo>:</mo><msub><mi>𝒫</mi><mi>N</mi></msub><mo>↠</mo><msub><mi>E</mi><mi>h</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>P</mi><mo>↦</mo><msub><mi>υ</mi><mi>h</mi></msub><msub><mrow><mo form="prefix" stretchy="true">[</mo><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>h</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal J_{h,N}:\mathcal P_N\twoheadrightarrow E_h,\qquad P\longmapsto\upsilon_h[P]_h.</annotation></semantics></math></div></div>
+<p>Its exact sequence is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mn>0</mn><mo>→</mo><msub><mi>𝒫</mi><mi>n</mi></msub><mover><mo>→</mo><mrow><mi>×</mi><mi>h</mi></mrow></mover><msub><mi>𝒫</mi><mrow><mi>n</mi><mo>+</mo><mi>d</mi></mrow></msub><mover><mo>→</mo><msub><mi>𝒥</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi><mo>+</mo><mi>d</mi></mrow></msub></mover><msub><mi>E</mi><mi>h</mi></msub><mo>→</mo><mn>0</mn><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{0\longrightarrow\mathcal P_n\xrightarrow{\times h}\mathcal P_{n+d}
+\xrightarrow{\mathcal J_{h,n+d}}E_h\longrightarrow0.}\tag{2.6}</annotation></semantics></math></div><span class="equation-label">(2.6)</span></div>
+<p>Applying
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒯</mi><mi>h</mi></msub><annotation encoding="application/x-tex">\mathcal T_h</annotation></semantics></math>
+sends the left map to the original theta relations
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mi>n</mi></msub><annotation encoding="application/x-tex">L_n</annotation></semantics></math>.
+Thus its split internal quotient has exactly the relation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>−</mo><mi>P</mi><mi>′</mi><mo>∈</mo><mi>h</mi><msub><mi>𝒫</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">P-P'\in h\mathcal P_n</annotation></semantics></math>,
+with the support label retained.</p>
+<p>The original source section is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>𝒯</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mo>rem</mo><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>ε</mi><mi>h</mi></msub><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>J</mi><mi>h</mi></msub><msub><mi>s</mi><mi>h</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="1.0em"></mspace><mi>q</mi><msub><mi>s</mi><mi>h</mi></msub><mo>=</mo><msub><mi>σ</mi><mi>h</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">s_h(u)=\mathcal T_h(\operatorname{rem}_h(\varepsilon_hu)),\quad J_hs_h=1,\quad qs_h=\sigma_h.\tag{2.7}</annotation></semantics></math></div><span class="equation-label">(2.7)</span></div>
+<p>No arbitrary metric or section has entered (2.6).</p>
+<h2 id="exact-arithmetic-moment-matrices-and-the-full-jet-interpolation-formula">3.
+Exact arithmetic moment matrices and the full-jet interpolation
+formula</h2>
+<p>The Hilbert observation is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi><mo>=</mo><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo>,</mo><mi>∞</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mi>d</mi><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathcal H=L^2((0,\infty),dx)</annotation></semantics></math>.
+The precise transform map is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi><mover><mo>→</mo><mi>ℒ</mi></mover><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℝ</mi><mo>,</mo><mi>d</mi><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mover><mo>→</mo><msub><mi>ℱ</mi><mo>+</mo></msub></mover><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℝ</mi><mo>,</mo><mi>d</mi><mi>t</mi><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathcal H\xrightarrow{\mathcal L}L^2(\mathbb R,dy)
+\xrightarrow{\mathcal F_+}L^2(\mathbb R,dt/(2\pi)),</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>y</mi><mi>/</mi><mn>2</mn></mrow></msup><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>e</mi><mi>y</mi></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>ℱ</mi><mo>+</mo></msub><mi>ψ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>∫</mo><mi>ℝ</mi></msub><mi>ψ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>t</mi><mi>y</mi></mrow></msup><mi>d</mi><mi>y</mi><mo>,</mo><mspace width="1.0em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>ℱ</mi><mo>+</mo></msub><mi>ℒ</mi><mi>F</mi><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>ℳ</mi><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal LF(y)=e^{y/2}F(e^y),\quad
+\mathcal F_+\psi(t)=\int_{\mathbb R}\psi(y)e^{ity}dy,\quad
+(\mathcal F_+\mathcal LF)(t)=\mathcal MF(\tfrac12+it).\tag{3.1}</annotation></semantics></math></div><span class="equation-label">(3.1)</span></div>
+<p>Both arrows are unitary with these measures. The inverse Fourier
+factor is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">1/(2\pi)</annotation></semantics></math>;
+no mass of a measure below is set equal to one. The same map carries
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>
+to multiplication by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn><mi>/</mi><mn>2</mn><mo>+</mo><mi>i</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">s_t=1/2+it</annotation></semantics></math>.</p>
+<p>Define the finite positive measure</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>d</mi><msub><mi>ν</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">|</mo><mfrac><mrow><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mrow><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow></mfrac><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup><mfrac><mrow><mi>d</mi><mi>t</mi></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{d\nu_h(t)=\left|\frac{g(\tfrac12+it)}{h(\tfrac12+it)}\right|^2\frac{dt}{2\pi}.}\tag{3.2}</annotation></semantics></math></div><span class="equation-label">(3.2)</span></div>
+<p>Any apparent singularity at a selected critical-line zero is removed
+by the entire function
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>h</mi></msub><annotation encoding="application/x-tex">v_h</annotation></semantics></math>.
+All moments are finite. In the fixed basis
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mi>t</mi><mo>,</mo><mi>…</mi><mo>,</mo><msup><mi>t</mi><mi>N</mi></msup></mrow><annotation encoding="application/x-tex">1,t,\ldots,t^N</annotation></semantics></math>
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒫</mi><mi>N</mi></msub><annotation encoding="application/x-tex">\mathcal P_N</annotation></semantics></math>,
+put</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>M</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msub><mo>∫</mo><mi>ℝ</mi></msub><mover><msubsup><mi>s</mi><mi>t</mi><mi>i</mi></msubsup><mo accent="true">¯</mo></mover><msubsup><mi>s</mi><mi>t</mi><mi>j</mi></msubsup><mspace width="0.167em"></mspace><mi>d</mi><msub><mi>ν</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mn>0</mn><mo>≤</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>≤</mo><mi>N</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">(M_{h,N})_{ij}=\int_{\mathbb R}\overline{s_t^i}s_t^j\,d\nu_h(t),\qquad 0\le i,j\le N.\tag{3.3}</annotation></semantics></math></div><span class="equation-label">(3.3)</span></div>
+<p>In the integrand
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+is the real integration variable; the polynomial basis is evaluated at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>s</mi><mi>t</mi></msub><annotation encoding="application/x-tex">s_t</annotation></semantics></math>.
+This prevents the polynomial variable from being confused with the
+spectral-height coordinate.</p>
+<p>The matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>M</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><annotation encoding="application/x-tex">M_{h,N}</annotation></semantics></math>
+is positive definite. A polynomial with zero norm vanishes almost
+everywhere on a line on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>h</mi></msub><annotation encoding="application/x-tex">v_h</annotation></semantics></math>
+is nonzero almost everywhere, hence is zero. Write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><annotation encoding="application/x-tex">J_{h,N}</annotation></semantics></math>
+for the matrix of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝒥</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><annotation encoding="application/x-tex">\mathcal J_{h,N}</annotation></semantics></math>
+in the fixed quotient basis
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mi>t</mi><mo>,</mo><mi>…</mi><mo>,</mo><msup><mi>t</mi><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1,t,\ldots,t^{d-1}</annotation></semantics></math>.
+It includes multiplication by the actual unit
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>υ</mi><mi>h</mi></msub><annotation encoding="application/x-tex">\upsilon_h</annotation></semantics></math>.</p>
+<p>Set</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>𝒞</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mo>=</mo><msub><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><msubsup><mi>M</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mo>*</mo></msubsup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>C</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mo>=</mo><msubsup><mi>M</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mo>*</mo></msubsup><msubsup><mi>𝒞</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{\mathcal C_{h,N}=J_{h,N}M_{h,N}^{-1}J_{h,N}^*,\qquad
+C_{h,N}=M_{h,N}^{-1}J_{h,N}^*\mathcal C_{h,N}^{-1}.}\tag{3.4}</annotation></semantics></math></div><span class="equation-label">(3.4)</span></div>
+<p>These are finite matrices on declared coordinate spaces.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><msub><mi>C</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">J_{h,N}C_{h,N}=1</annotation></semantics></math>.
+The actual test-function map is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>𝒯</mi><mi>h</mi></msub><msub><mi>C</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi><mo>+</mo><mi>d</mi></mrow></msub><mo>:</mo><msub><mi>E</mi><mi>h</mi></msub><mo>→</mo><mi>ℬ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">R_{h,n}=\mathcal T_h C_{h,n+d}:E_h\longrightarrow\mathscr B.\tag{3.5}</annotation></semantics></math></div><span class="equation-label">(3.5)</span></div>
+<p><strong>Theorem.</strong> This is precisely the preceding orthogonal
+representative
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><mi>n</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>s</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">(1-P_n)s_h</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mi>n</mi></msub><annotation encoding="application/x-tex">P_n</annotation></semantics></math>
+is the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">L^2(dx)</annotation></semantics></math>
+orthogonal projection onto
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mi>n</mi></msub><annotation encoding="application/x-tex">L_n</annotation></semantics></math>.
+In particular,</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>q</mi><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>σ</mi><mi>h</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>J</mi><mi>h</mi></msub><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>:=</mo><msubsup><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mo>*</mo></msubsup><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msubsup><mi>𝒞</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi><mo>+</mo><mi>d</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{qR_{h,n}=\sigma_h,\quad J_hR_{h,n}=1,\quad
+G_{h,n}:=R_{h,n}^*R_{h,n}=\mathcal C_{h,n+d}^{-1}.}\tag{3.6}</annotation></semantics></math></div><span class="equation-label">(3.6)</span></div>
+<p><strong>Proof.</strong> Every polynomial with jet
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mi>u</mi><mo>+</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">C_{h,N}u+z</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mi>z</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">J_{h,N}z=0</annotation></semantics></math>.
+The cross term vanishes because</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>z</mi><mo>*</mo></msup><msub><mi>M</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><msub><mi>C</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mi>u</mi><mo>=</mo><msup><mi>z</mi><mo>*</mo></msup><msubsup><mi>J</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mo>*</mo></msubsup><msubsup><mi>𝒞</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mi>u</mi><mo>=</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">z^*M_{h,N}C_{h,N}u=z^*J_{h,N}^*\mathcal C_{h,N}^{-1}u=0.</annotation></semantics></math></div></div>
+<p>Its norm is therefore
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>u</mi><mo>*</mo></msup><msubsup><mi>𝒞</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mi>u</mi><mo>+</mo><msup><mi>z</mi><mo>*</mo></msup><msub><mi>M</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi></mrow></msub><mi>z</mi></mrow><annotation encoding="application/x-tex">u^*\mathcal C_{h,N}^{-1}u+z^*M_{h,N}z</annotation></semantics></math>.
+This proves the unique minimizer. By (2.6), its difference from the
+degree-below-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+lift (2.7) is exactly a member of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mi>n</mi></msub><annotation encoding="application/x-tex">L_n</annotation></semantics></math>.
+It must be
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><mi>n</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>s</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">(1-P_n)s_h</annotation></semantics></math>.
+This also proves (3.6).</p>
+<p>Thus the subtraction-of-nearby-Grams formula of the previous note has
+the exact alternative (3.6): invert the full-jet interpolation matrix.
+This is a matrix-valued Christoffel construction with the arithmetic
+local unit retained. The finite least-norm identity itself is standard
+linear algebra; its application here identifies the actual original
+representative, source relation, and completed multiplier.</p>
+<p>For one simple zero
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>,
+the same formula is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mrow><mi>ρ</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mrow><msup><mrow><mo form="prefix" stretchy="true">|</mo><mi>g</mi><mi>′</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ρ</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup><mspace width="0.167em"></mspace><msub><mi>𝒦</mi><mrow><msub><mi>ν</mi><mi>ρ</mi></msub><mo>,</mo><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>ρ</mi><mo>,</mo><mi>ρ</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow></mfrac><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>𝒦</mi><mrow><mi>ν</mi><mo>,</mo><mi>N</mi></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>z</mi><mo>,</mo><mi>w</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>,</mo><mi>z</mi><mo>,</mo><mi>…</mi><mo>,</mo><msup><mi>z</mi><mi>N</mi></msup><mo form="postfix" stretchy="true">)</mo></mrow><msubsup><mi>M</mi><mi>N</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>,</mo><mi>w</mi><mo>,</mo><mi>…</mi><mo>,</mo><msup><mi>w</mi><mi>N</mi></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">G_{\rho,n}=\frac{1}{|g'(\rho)|^2\,\mathcal K_{\nu_\rho,n+1}(\rho,\rho)},\quad
+\mathcal K_{\nu,N}(z,w)=(1,z,\ldots,z^N)M_N^{-1}(1,w,\ldots,w^N)^*.\tag{3.7}</annotation></semantics></math></div><span class="equation-label">(3.7)</span></div>
+<p>The complex conjugate in the second evaluation is part of the
+displayed kernel. Higher orders use (3.4), not just point evaluations.
+The factor
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>′</mi><mo>=</mo><mn>2</mn><mi>ξ</mi><mi>′</mi></mrow><annotation encoding="application/x-tex">g'=2\xi'</annotation></semantics></math>
+is retained.</p>
+<h2 id="all-finite-packets-fit-the-same-source-filtration">4. All finite
+packets fit the same source filtration</h2>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>∣</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">h\mid H</annotation></semantics></math>
+be polynomials for nested packets with full orders and set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mi>H</mi><mi>/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">m=H/h</annotation></semantics></math>.
+Since the newly added centres are disjoint,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+are coprime. There is a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbb C[t]</annotation></semantics></math>-linear
+CRT injection</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mo>:</mo><msub><mi>E</mi><mi>h</mi></msub><mo>↪</mo><msub><mi>E</mi><mi>H</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\iota_{hH}:E_h\hookrightarrow E_H,</annotation></semantics></math></div></div>
+<p>which inserts zero jets at the new centres. It is multiplication by
+the appropriate CRT idempotent after lifting a residue; it sends the
+unit of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>h</mi></msub><annotation encoding="application/x-tex">E_h</annotation></semantics></math>
+to that idempotent, so it is not being asserted to be a unital ring
+map.</p>
+<p>The polynomial map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>↦</mo><mi>m</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P\mapsto mP</annotation></semantics></math>
+has the exact properties</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒯</mi><mi>H</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>m</mi><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>𝒯</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>J</mi><mi>H</mi></msub><msub><mi>𝒯</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><msub><mi>𝒥</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathcal T_H(mP)=\mathcal T_h(P),\qquad
+J_H\mathcal T_h(P)=\iota_{hH}\mathcal J_h(P),\tag{4.1}</annotation></semantics></math></div><span class="equation-label">(4.1)</span></div>
+<p>and is isometric from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ν</mi><mi>h</mi></msub><annotation encoding="application/x-tex">\nu_h</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ν</mi><mi>H</mi></msub><annotation encoding="application/x-tex">\nu_H</annotation></semantics></math>
+because
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">|</mo><msub><mi>v</mi><mi>H</mi></msub><mi>m</mi><mi>P</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo>=</mo><mrow><mo form="prefix" stretchy="true">|</mo><msub><mi>v</mi><mi>h</mi></msub><mi>P</mi><mo form="postfix" stretchy="true">|</mo></mrow></mrow><annotation encoding="application/x-tex">|v_HmP|=|v_hP|</annotation></semantics></math>.
+The CRT equations and degree bounds prove</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>H</mi></msub><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mo>=</mo><msub><mi>s</mi><mi>h</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">s_H\iota_{hH}=s_h.</annotation></semantics></math></div></div>
+<p>The original
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mi>n</mi></msub><annotation encoding="application/x-tex">L_n</annotation></semantics></math>
+is independent of the packet, so</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>R</mi><mrow><mi>H</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mo>=</mo><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><msubsup><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow><mo>*</mo></msubsup><msub><mi>G</mi><mrow><mi>H</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mo>=</mo><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><msubsup><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow><mo>*</mo></msubsup><msub><mi>W</mi><mrow><mi>H</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mo>=</mo><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{R_{H,n}\iota_{hH}=R_{h,n},\quad
+\iota_{hH}^*G_{H,n}\iota_{hH}=G_{h,n},\quad
+\iota_{hH}^*W_{H,n}\iota_{hH}=W_{h,n}.}\tag{4.2}</annotation></semantics></math></div><span class="equation-label">(4.2)</span></div>
+<p>The action also intertwines:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>H</mi></msub><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mo>=</mo><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><msub><mi>A</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">A_H\iota_{hH}=\iota_{hH}A_h</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>h</mi></msub><mo>=</mo><msub><mi>M</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">A_h=M_t</annotation></semantics></math>.
+Thus a certificate on the larger packet restricts by this actual
+congruence to the smaller packet. The inverse interpolation matrices
+satisfy the corresponding inverse-compression formula; inverse and
+compression are not commuted.</p>
+<p>The finite sections consequently glue on the algebraic direct limit
+of the actual packet injections. This statement does not assert
+convergence of an infinite sum of packet projectors or identify the
+whole
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+with that direct limit.</p>
+<p>At every support label, lift these maps as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>,</mo><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>↦</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>,</mo><msub><mi>ι</mi><mrow><mi>h</mi><mi>H</mi></mrow></msub><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">(\lambda,u)\mapsto(\lambda,\iota_{hH}u)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>,</mo><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>↦</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>,</mo><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">(\lambda,u)\mapsto(\lambda,R_{h,n}u)</annotation></semantics></math>.
+Added zero jets remain represented zeros. The label map in (1.3) is
+still the map that admits one more source relation.</p>
+<h2 id="a-global-density-result-with-its-precise-cohomological-consequence">5.
+A global density result, with its precise cohomological consequence</h2>
+<p>The single derivative family
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="prefix" stretchy="false">{</mo><msup><mi>D</mi><mi>n</mi></msup><msub><mi>f</mi><mn>0</mn></msub><mo>:</mo><mi>n</mi><mo>≥</mo><mn>0</mn><mo form="postfix" stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{D^nf_0:n\ge0\}</annotation></semantics></math>
+is already dense in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℋ</mi><annotation encoding="application/x-tex">\mathcal H</annotation></semantics></math>.</p>
+<p><strong>Proof.</strong> Put
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>ν</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">|</mo><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mi>/</mi><mn>2</mn><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup><mi>d</mi><mi>t</mi><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">d\nu(t)=|g(1/2+it)|^2dt/(2\pi)</annotation></semantics></math>.
+It has an exponential moment of every order
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>&lt;</mo><mi>π</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">c&lt;\pi/2</annotation></semantics></math>.
+To verify this, the alternating-series formula and partial summation
+give</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">|</mo><mi>ζ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mo>≤</mo><mfrac><mrow><mn>2</mn><mrow><mo form="prefix" stretchy="true">|</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">|</mo></mrow></mrow><mrow><msqrt><mn>2</mn></msqrt><mo>−</mo><mn>1</mn></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">|\zeta(\tfrac12+it)|\le\frac{2|\tfrac12+it|}{\sqrt2-1}.</annotation></semantics></math></div></div>
+<p>The gamma vertical-line asymptotic gives, for sufficiently large
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="prefix" stretchy="true">|</mo><mi>t</mi><mo form="postfix" stretchy="true">|</mo></mrow><annotation encoding="application/x-tex">|t|</annotation></semantics></math>,</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo form="prefix" stretchy="true">|</mo><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup><mo>≤</mo><mi>C</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>+</mo><mrow><mo form="prefix" stretchy="true">|</mo><mi>t</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mn>11</mn><mi>/</mi><mn>2</mn></mrow></msup><msup><mi>e</mi><mrow><mi>−</mi><mi>π</mi><mrow><mo form="prefix" stretchy="true">|</mo><mi>t</mi><mo form="postfix" stretchy="true">|</mo></mrow><mi>/</mi><mn>2</mn></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">|g(\tfrac12+it)|^2\le C(1+|t|)^{11/2}e^{-\pi|t|/2}.</annotation></semantics></math></div></div>
+<p>The constant
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+is a fixed bound, not a numerical enclosure claimed here. The gamma fact
+used is NIST DLMF 5.11.9. The same exponential-moment property holds for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ν</mi><mi>h</mi></msub><annotation encoding="application/x-tex">\nu_h</annotation></semantics></math>,
+since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>v</mi><mi>h</mi></msub><annotation encoding="application/x-tex">v_h</annotation></semantics></math>
+is entire at the finitely many possible denominator zeros and has
+polynomially modified tails.</p>
+<p>If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∈</mo><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ν</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">f\in L^2(\nu)</annotation></semantics></math>
+is orthogonal to every polynomial, the finite measure
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo accent="true">¯</mo></mover><mspace width="0.167em"></mspace><mi>d</mi><mi>ν</mi></mrow><annotation encoding="application/x-tex">\overline f\,d\nu</annotation></semantics></math>
+has a holomorphic Fourier transform in a nonempty horizontal strip, by
+Cauchy–Schwarz and the exponential moment. All derivatives at the origin
+vanish. Analytic uniqueness makes its transform zero; Fourier uniqueness
+for finite measures makes the measure zero. Thus polynomials are dense
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ν</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">L^2(\nu)</annotation></semantics></math>.</p>
+<p>Multiplication by the actual function
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mi>/</mi><mn>2</mn><mo>+</mo><mi>i</mi><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">g(1/2+it)</annotation></semantics></math>
+is a unitary map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ν</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>→</mo><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mi>t</mi><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">L^2(\nu)\to L^2(dt/(2\pi))</annotation></semantics></math>:
+its inverse divides by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
+away from its measure-zero set of real-line zeros. The inverse is a map
+of weighted
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>L</mi><mn>2</mn></msup><annotation encoding="application/x-tex">L^2</annotation></semantics></math>
+spaces, not holomorphic division through an arithmetic zero. Combining
+it with (3.1) sends polynomials to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>D</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>f</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">P(D)f_0</annotation></semantics></math>.
+This proves the assertion.</p>
+<p>It follows for each fixed packet that</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>→</mo><mn>0</mn><mspace width="1.0em"></mspace><mtext mathvariant="normal">in every matrix entry and in operator norm</mtext><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{G_{h,n}\longrightarrow0\quad\text{in every matrix entry and in operator norm}.}\tag{5.1}</annotation></semantics></math></div><span class="equation-label">(5.1)</span></div>
+<p>Indeed
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P_n\to1</annotation></semantics></math>
+strongly on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℋ</mi><annotation encoding="application/x-tex">\mathcal H</annotation></semantics></math>,
+and the finite number of columns of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>s</mi><mi>h</mi></msub><annotation encoding="application/x-tex">s_h</annotation></semantics></math>
+is fixed. Since each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><annotation encoding="application/x-tex">G_{h,n}</annotation></semantics></math>
+is positive definite, the least eigenvalue of its inverse tends to
+infinity. Every nonzero arithmetic row functional
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>ℓ</mo><mo>:</mo><msub><mi>E</mi><mi>h</mi></msub><mo>→</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\ell:E_h\to\mathbb C</annotation></semantics></math>
+therefore has</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo form="postfix" stretchy="false">∥</mo><mo>ℓ</mo><msubsup><mo form="postfix" stretchy="false">∥</mo><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mo>∨</mo></msubsup><mn>2</mn></msubsup><mo>=</mo><mo>ℓ</mo><msub><mi>𝒞</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi><mo>+</mo><mi>d</mi></mrow></msub><msup><mo>ℓ</mo><mo>*</mo></msup><mo>→</mo><mi>∞</mi><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{\|\ell\|_{G_{h,n}^{\vee}}^2=
+\ell\mathcal C_{h,n+d}\ell^*\longrightarrow\infty.}\tag{5.2}</annotation></semantics></math></div><span class="equation-label">(5.2)</span></div>
+<p>These facts do not kill a cohomology class. The actual maps are</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℬ</mi><mi>/</mi><msub><mi>L</mi><mi>n</mi></msub><mo>→</mo><mi>ℋ</mi><mi>/</mi><msub><mi>L</mi><mi>n</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>Q</mi><mo>=</mo><mi>ℬ</mi><mi>/</mi><mi>Θ</mi><mi>V</mi><mo>→</mo><mi>ℋ</mi><mi>/</mi><msup><mover><mrow><mi>Θ</mi><mi>V</mi></mrow><mo accent="true">¯</mo></mover><mi>ℋ</mi></msup><mo>=</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathscr B/L_n\longrightarrow\mathcal H/L_n,\qquad
+Q=\mathscr B/\Theta V\longrightarrow\mathcal H/\overline{\Theta V}^{\mathcal H}=0.\tag{5.3}</annotation></semantics></math></div><span class="equation-label">(5.3)</span></div>
+<p>The first map is injective because
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mi>n</mi></msub><annotation encoding="application/x-tex">L_n</annotation></semantics></math>
+is finite-dimensional and consists of the same smooth functions in both
+spaces. The second map forgets the stronger topology and has the whole
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+as kernel. Its split lift lands at the represented zero in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">G(0)</annotation></semantics></math>,
+not at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">G(0)</annotation></semantics></math>
+retains both elements. An active class may therefore tend to zero under
+the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>L</mi><mn>2</mn></msup><annotation encoding="application/x-tex">L^2</annotation></semantics></math>
+observation while remaining fixed by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>σ</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">qR_{h,n}=\sigma_h</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>J</mi><mi>h</mi></msub><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">J_hR_{h,n}=1</annotation></semantics></math>.</p>
+<p>The constructive consequence is to estimate relative boundary flux
+against the complete interpolation cost (3.4), not to use the absolute
+smallness of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><annotation encoding="application/x-tex">G_{h,n}</annotation></semantics></math>
+as a weight bound.</p>
+<h2 id="tail-representation-and-same-metric-reflection-control">6. Tail
+representation and same-metric reflection control</h2>
+<p>Retain the unscaled orthogonal vectors from the previous
+calculation:</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>0</mn></msub><mo>=</mo><msub><mi>f</mi><mn>0</mn></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>u</mi><mi>n</mi></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>D</mi><mi>n</mi></msup><msub><mi>f</mi><mn>0</mn></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>𝔥</mi><mi>n</mi></msub><mo>=</mo><mo form="postfix" stretchy="false">∥</mo><msub><mi>u</mi><mi>n</mi></msub><msup><mo form="postfix" stretchy="false">∥</mo><mn>2</mn></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">u_0=f_0,\quad u_n=(1-P_{n-1})D^nf_0,\quad\mathfrak h_n=\|u_n\|^2,</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><msub><mi>u</mi><mi>n</mi></msub><mo>=</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>+</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><msub><mi>u</mi><mi>n</mi></msub><mo>−</mo><mfrac><msub><mi>𝔥</mi><mi>n</mi></msub><msub><mi>𝔥</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mfrac><msub><mi>u</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mspace width="1.0em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mi>n</mi><mo>≥</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">Du_n=u_{n+1}+\tfrac12u_n-\frac{\mathfrak h_n}{\mathfrak h_{n-1}}u_{n-1}\quad(n\ge1).\tag{6.1}</annotation></semantics></math></div><span class="equation-label">(6.1)</span></div>
+<p>The diagonal
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math>
+and the negative last coefficient follow from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>D</mi><mo>*</mo></msup><mo>=</mo><mn>1</mn><mo>−</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">D^*=1-D</annotation></semantics></math>
+on these functions. Neither the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>u</mi><mi>n</mi></msub><annotation encoding="application/x-tex">u_n</annotation></semantics></math>
+nor their norms are rescaled. Define
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>n</mi></msub><mo>=</mo><msubsup><mi>𝔥</mi><mi>n</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>u</mi><mi>n</mi><mo>*</mo></msubsup><msub><mi>s</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">r_n=\mathfrak h_n^{-1}u_n^*s_h</annotation></semantics></math>.
+The new density result makes the entire tail formula exact:</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo>&gt;</mo><mi>n</mi></mrow></munder><msub><mi>𝔥</mi><mi>j</mi></msub><msubsup><mi>r</mi><mi>j</mi><mo>*</mo></msubsup><msub><mi>r</mi><mi>j</mi></msub><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{G_{h,n}=\sum_{j&gt;n}\mathfrak h_j r_j^*r_j.}\tag{6.2}</annotation></semantics></math></div><span class="equation-label">(6.2)</span></div>
+<p>This series converges in finite matrix norm. Its source map is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>↦</mo><msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>r</mi><mi>j</mi></msub><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>j</mi><mo>&gt;</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">u\mapsto(r_j u)_{j&gt;n}</annotation></semantics></math>
+into the weighted sequence space with norm
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∑</mo><mrow><mi>j</mi><mo>&gt;</mo><mi>n</mi></mrow></msub><msub><mi>𝔥</mi><mi>j</mi></msub><msup><mrow><mo form="prefix" stretchy="true">|</mo><msub><mi>c</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sum_{j&gt;n}\mathfrak h_j|c_j|^2</annotation></semantics></math>.
+The map retains every coefficient; it is an isometry for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><annotation encoding="application/x-tex">G_{h,n}</annotation></semantics></math>.</p>
+<p>The previous boundary calculation, or telescoping (6.1), gives</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msubsup><mi>A</mi><mi>h</mi><mo>*</mo></msubsup><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>A</mi><mi>h</mi></msub><mo>−</mo><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>𝔥</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo>*</mo></msubsup><msub><mi>r</mi><mi>n</mi></msub><mo>+</mo><msubsup><mi>r</mi><mi>n</mi><mo>*</mo></msubsup><msub><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{W_{h,n}=A_h^*G_{h,n}+G_{h,n}A_h-G_{h,n}
+=\mathfrak h_{n+1}(r_{n+1}^*r_n+r_n^*r_{n+1}).}\tag{6.3}</annotation></semantics></math></div><span class="equation-label">(6.3)</span></div>
+<p>It pairs two explicit maps into
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi>/</mi><msub><mi>L</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">L_{n+1}/L_n</annotation></semantics></math>.
+At the original support
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mi>n</mi></msub><annotation encoding="application/x-tex">V_n</annotation></semantics></math>
+the derivative defect is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mrow><mo form="prefix" stretchy="true">[</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo form="postfix" stretchy="true">]</mo></mrow><msub><mi>r</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">-[u_{n+1}]r_n</annotation></semantics></math>;
+at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>V</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">V_{n+1}</annotation></semantics></math>
+it becomes the supported zero. This is also the input to the now-checked
+coefficient homotopy family, with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>κ</mi><mi>n</mi></msub><mo>=</mo><msub><mi>K</mi><mi>n</mi></msub><msub><mi>J</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">\kappa_n=K_nJ_h</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>κ</mi><mi>n</mi></msub><mi>Θ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\kappa_n\Theta=0</annotation></semantics></math>.</p>
+<p>For a reflection-stable packet define the actual antilinear
+involution</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>h</mi></msub><mi>u</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>s</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mover><mrow><mi>u</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><mover><mi>s</mi><mo accent="true">‾</mo></mover><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mo accent="true">¯</mo></mover><mrow><mspace width="0.222em"></mspace><mo form="prefix" stretchy="false">(</mo><mo>mod</mo><mspace width="0.222em"></mspace><mi>h</mi><mo form="postfix" stretchy="false">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">j_hu(s)=\overline{u(1-\bar s)}\pmod h.</annotation></semantics></math></div></div>
+<p>On functions use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>B</mi></msub><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mi>x</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mover><mrow><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mi>/</mi><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">j_BF(x)=x^{-1}\overline{F(1/x)}</annotation></semantics></math>.
+It is antiunitary on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℋ</mi><annotation encoding="application/x-tex">\mathcal H</annotation></semantics></math>
+and satisfies
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><msub><mi>j</mi><mi>B</mi></msub><mo>=</mo><msub><mi>j</mi><mi>B</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">Dj_B=j_B(1-D)</annotation></semantics></math>.
+The specific section (2.7) satisfies
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>B</mi></msub><msub><mi>s</mi><mi>h</mi></msub><mo>=</mo><msub><mi>s</mi><mi>h</mi></msub><msub><mi>j</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">j_Bs_h=s_hj_h</annotation></semantics></math>:
+since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>h</mi><mo>†</mo></msup><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>d</mi></msup><mi>h</mi></mrow><annotation encoding="application/x-tex">h^\dagger=(-1)^dh</annotation></semantics></math>,
+both the unit and the numerator have the corresponding
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>d</mi></msup><annotation encoding="application/x-tex">(-1)^d</annotation></semantics></math>
+factor. Also
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>B</mi></msub><msub><mi>L</mi><mi>n</mi></msub><mo>=</mo><msub><mi>L</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">j_BL_n=L_n</annotation></semantics></math>,
+so uniqueness of orthogonal projection gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>B</mi></msub><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>R</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>j</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">j_BR_{h,n}=R_{h,n}j_h</annotation></semantics></math>.</p>
+<p>Write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>h</mi></msub><mi>u</mi><mo>=</mo><msub><mi>C</mi><mi>h</mi></msub><mover><mi>u</mi><mo accent="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">j_hu=C_h\bar u</annotation></semantics></math>
+in the retained coordinates. Then</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msubsup><mi>C</mi><mi>h</mi><mo>*</mo></msubsup><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>C</mi><mi>h</mi></msub><mo>=</mo><mover><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo accent="true">¯</mo></mover><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>A</mi><mi>h</mi></msub><msub><mi>C</mi><mi>h</mi></msub><mo>=</mo><msub><mi>C</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>I</mi><mo>−</mo><mover><msub><mi>A</mi><mi>h</mi></msub><mo accent="true">¯</mo></mover><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msubsup><mi>C</mi><mi>h</mi><mo>*</mo></msubsup><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><msub><mi>C</mi><mi>h</mi></msub><mo>=</mo><mi>−</mi><mover><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo accent="true">¯</mo></mover><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{C_h^*G_{h,n}C_h=\overline{G_{h,n}},\quad
+A_hC_h=C_h(I-\overline{A_h}),\quad
+C_h^*W_{h,n}C_h=-\overline{W_{h,n}}.}\tag{6.4}</annotation></semantics></math></div><span class="equation-label">(6.4)</span></div>
+<p>Consequently the generalized spectrum of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>,</mo><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><annotation encoding="application/x-tex">(W_{h,n},G_{h,n})</annotation></semantics></math>
+is symmetric under
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>↦</mo><mi>−</mi><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda\mapsto-\lambda</annotation></semantics></math>
+<strong>for this same canonical metric</strong>, with full
+multiplicities retained. An upper inequality
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>≼</mo><mi>ϵ</mi><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{h,n}\preceq\epsilon G_{h,n}</annotation></semantics></math>
+therefore implies the lower inequality
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>≽</mo><mi>−</mi><mi>ϵ</mi><msub><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{h,n}\succeq-\epsilon G_{h,n}</annotation></semantics></math>
+by applying
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>j</mi><mi>h</mi></msub><annotation encoding="application/x-tex">j_h</annotation></semantics></math>
+to the input vector.</p>
+<p>The residue duality is still the separate explicit morphism with
+matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>S</mi><mi>h</mi></msub><annotation encoding="application/x-tex">S_h</annotation></semantics></math>,
+and its pulled-back metric is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>S</mi><mi>h</mi><mo>*</mo></msubsup><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mi>S</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">S_h^*G_{h,n}^{-1}S_h</annotation></semantics></math>.
+The relation to the current metric is the linear map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mi>S</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">G_{h,n}^{-1}S_h</annotation></semantics></math>
+into its antilinear dual coordinates. The arithmetic Weil form remains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>h</mi></msub><msub><mi>J</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_hJ_g</annotation></semantics></math>;
+no positivity is supplied merely by (6.4).</p>
+<p>For completeness, retain the full rank-two formula</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><msub><mi>r</mi><mi>n</mi></msub><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>r</mi><mi>n</mi><mo>*</mo></msubsup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>b</mi><mi>n</mi></msub><mo>=</mo><msub><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo>*</mo></msubsup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>c</mi><mi>n</mi></msub><mo>=</mo><msub><mi>r</mi><mi>n</mi></msub><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo>*</mo></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">a_n=r_nG_{h,n}^{-1}r_n^*,\quad b_n=r_{n+1}G_{h,n}^{-1}r_{n+1}^*,\quad c_n=r_nG_{h,n}^{-1}r_{n+1}^*.</annotation></semantics></math></div></div>
+<p>The least control excess is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϵ</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>𝔥</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mrow><mo form="prefix" stretchy="true">|</mo><mi>ℜ</mi><msub><mi>c</mi><mi>n</mi></msub><mo form="postfix" stretchy="true">|</mo></mrow><mo>+</mo><msqrt><mrow><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℑ</mi><msub><mi>c</mi><mi>n</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mn>2</mn></msup></mrow></msqrt><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\epsilon_{h,n}=\mathfrak h_{n+1}\left(|\Re c_n|+\sqrt{a_nb_n-(\Im c_n)^2}\right).\tag{6.5}</annotation></semantics></math></div><span class="equation-label">(6.5)</span></div>
+<p>For reflection-stable
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>,
+the additional proved identity is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℜ</mi><msub><mi>c</mi><mi>n</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Re c_n=0</annotation></semantics></math>:
+take the trace of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mi>W</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">G_{h,n}^{-1}W_{h,n}</annotation></semantics></math>,
+which is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>ℜ</mi><mo>Tr</mo><msub><mi>A</mi><mi>h</mi></msub><mo>−</mo><mi>d</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">2\Re\operatorname{Tr}A_h-d=0</annotation></semantics></math>.
+Thus (6.5) also equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔥</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><msqrt><mrow><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo>−</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℑ</mi><msub><mi>c</mi><mi>n</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\mathfrak h_{n+1}\sqrt{a_nb_n-(\Im c_n)^2}</annotation></semantics></math>.
+Both equations are retained. Equation (3.6) supplies every occurrence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>n</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><annotation encoding="application/x-tex">G_{h,n}^{-1}</annotation></semantics></math>
+without a difference of nearly equal Gram matrices.</p>
+<h2 id="joint-total-degree-control-on-the-actual-product-complex">7.
+Joint total-degree control on the actual product complex</h2>
+<p>The tensor degree will be denoted
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>,
+independently of the relation degree
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+and the packet multiplicities. Put</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>E</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>=</mo><msubsup><mi>E</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo>,</mo><mspace width="1.0em"></mspace><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><msup><mi>I</mi><mrow><mi>⊗</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow></mrow></msup><mo>⊗</mo><msub><mi>A</mi><mi>h</mi></msub><mo>⊗</mo><msup><mi>I</mi><mrow><mi>⊗</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo>−</mo><mi>j</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">E_h^{(k)}=E_h^{\otimes k},\quad
+A_h^{(k)}=\sum_{j=1}^k I^{\otimes(j-1)}\otimes A_h\otimes I^{\otimes(k-j)}.</annotation></semantics></math></div></div>
+<p>The existing product complex over
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝔟</mi><mi>τ</mi></msub><annotation encoding="application/x-tex">\mathfrak b_\tau</annotation></semantics></math>
+has differential</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>⊗</mo><mi>⋯</mi><mo>⊗</mo><msub><mi>x</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow></munder><mrow><mo form="prefix" stretchy="true">|</mo><msub><mi>x</mi><mi>i</mi></msub><mo form="postfix" stretchy="true">|</mo></mrow></mrow></msup><msub><mi>x</mi><mn>1</mn></msub><mo>⊗</mo><mi>⋯</mi><mo>⊗</mo><mi>d</mi><msub><mi>x</mi><mi>j</mi></msub><mo>⊗</mo><mi>⋯</mi><mo>⊗</mo><msub><mi>x</mi><mi>k</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">d(x_1\otimes\cdots\otimes x_k)=\sum_j(-1)^{\sum_{i&lt;j}|x_i|}x_1\otimes\cdots\otimes dx_j\otimes\cdots\otimes x_k.</annotation></semantics></math></div></div>
+<p>Define
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>𝒫</mi><mi>M</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>=</mo><mi>ℂ</mi><msub><mrow><mo form="prefix" stretchy="true">[</mo><msub><mi>t</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>t</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">]</mo></mrow><mrow><mtext mathvariant="normal">total degree</mtext><mo>≤</mo><mi>M</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal P_M^{(k)}=\mathbb C[t_1,\ldots,t_k]_{\text{total degree}\le M}</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>≥</mo><mi>k</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">M\ge k(d-1)</annotation></semantics></math>
+and</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>𝒯</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mi>P</mi><mo>=</mo><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>D</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>D</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>F</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal T_h^{(k)}P=P(D_1,\ldots,D_k)(F_h^{\otimes k}).\tag{7.1}</annotation></semantics></math></div><span class="equation-label">(7.1)</span></div>
+<p>Its Mellin transform is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>s</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mo>∏</mo><mi>j</mi></msub><mi>g</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">P(s_1,\ldots,s_k)\prod_j g(s_j)/h(s_j)</annotation></semantics></math>.
+Its full jet map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>J</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><annotation encoding="application/x-tex">J_{k,M}</annotation></semantics></math>
+is reduction modulo each
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>t</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">h(t_j)</annotation></semantics></math>
+followed by multiplication by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>υ</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><annotation encoding="application/x-tex">\upsilon_h^{\otimes k}</annotation></semantics></math>.
+The target is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>E</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><annotation encoding="application/x-tex">E_h^{(k)}</annotation></semantics></math>
+and this map is surjective. The tensor remainder basis has total degree
+at most
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">k(d-1)</annotation></semantics></math>.</p>
+<p>The exact relation space is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℐ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><msubsup><mi>𝒫</mi><mi>M</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>∩</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>t</mi><mn>1</mn></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mi>…</mi><mo>,</mo><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>t</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal I_{k,M}=\mathcal P_M^{(k)}\cap(h(t_1),\ldots,h(t_k)).\tag{7.2}</annotation></semantics></math></div><span class="equation-label">(7.2)</span></div>
+<p>Polynomial division in the fixed order
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>t</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">t_1,\ldots,t_k</annotation></semantics></math>
+represents each member as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∑</mo><mi>j</mi></msub><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>t</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>P</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\sum_j h(t_j)P_j</annotation></semantics></math>,
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>deg</mo><msub><mi>P</mi><mi>j</mi></msub><mo>≤</mo><mi>M</mi><mo>−</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">\deg P_j\le M-d</annotation></semantics></math>.
+It terminates because every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>
+is monic and replacing a leading power lowers total degree. Under (7.1),
+each term is an actual top cochain boundary: in the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>-th
+source factor use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mo>*</mo></msub><annotation encoding="application/x-tex">\phi_*</annotation></semantics></math>
+in place of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>h</mi></msub><annotation encoding="application/x-tex">F_h</annotation></semantics></math>
+and give its primitive the factor
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">(-1)^{j-1}</annotation></semantics></math>.
+The differential contributes the second
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">(-1)^{j-1}</annotation></semantics></math>.
+The resulting boundary is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>t</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>P</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">+h(t_j)P_j</annotation></semantics></math>
+with no removed sign.</p>
+<p>Thus these joint corrections are maps in the original product
+complex, not freely chosen positive tensor metrics. Set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><msubsup><mi>𝒯</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><msub><mi>ℐ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal B_{k,M}=\mathcal T_h^{(k)}\mathcal I_{k,M}</annotation></semantics></math>.</p>
+<p>The moment matrix on the monomials of total degree at most
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>M</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>α</mi><mi>β</mi></mrow></msub><mo>=</mo><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mo>∫</mo><mover><msubsup><mi>s</mi><mi>t</mi><msub><mi>α</mi><mi>j</mi></msub></msubsup><mo accent="true">¯</mo></mover><msubsup><mi>s</mi><mi>t</mi><msub><mi>β</mi><mi>j</mi></msub></msubsup><mspace width="0.167em"></mspace><mi>d</mi><msub><mi>ν</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{(M_{k,M})_{\alpha\beta}=\prod_{j=1}^k\int\overline{s_t^{\alpha_j}}s_t^{\beta_j}\,d\nu_h(t).}\tag{7.3}</annotation></semantics></math></div><span class="equation-label">(7.3)</span></div>
+<p>Its positive definiteness follows because a polynomial cannot vanish
+almost everywhere on the full real product unless it is zero. It is a
+principal submatrix of the stated product moment matrix, not a
+declaration that the total-degree space is a tensor product of smaller
+univariate spaces.</p>
+<p>The actual joint least-norm representative and its metric are</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><msubsup><mi>𝒯</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><msubsup><mi>M</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>J</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mo>*</mo></msubsup><msup><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>J</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msubsup><mi>M</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>J</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mo>*</mo></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>,</mo></mrow></menclose><annotation encoding="application/x-tex">\boxed{R_{k,M}=\mathcal T_h^{(k)}M_{k,M}^{-1}J_{k,M}^*
+(J_{k,M}M_{k,M}^{-1}J_{k,M}^*)^{-1},}</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>J</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msubsup><mi>M</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>J</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mo>*</mo></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{G_{k,M}=(J_{k,M}M_{k,M}^{-1}J_{k,M}^*)^{-1}.}\tag{7.4}</annotation></semantics></math></div><span class="equation-label">(7.4)</span></div>
+<p>The proof is the same explicit constrained-minimum calculation as
+(3.6), now with the relation ideal (7.2). In particular its arithmetic
+class is exactly
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>σ</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><annotation encoding="application/x-tex">\sigma_h^{\otimes k}</annotation></semantics></math>
+and every jet is fixed.</p>
+<p>For a rectangular degree budget
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+one has the actual inclusion</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>𝒫</mi><mi>N</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo>↪</mo><msubsup><mi>𝒫</mi><mrow><mi>k</mi><mi>N</mi></mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal P_N^{\otimes k}\hookrightarrow\mathcal P_{kN}^{(k)}.</annotation></semantics></math></div></div>
+<p>It carries the old product representative into the feasible set of
+the new problem. Therefore</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>k</mi><mi>N</mi></mrow></msub><mo>≼</mo><msubsup><mi>G</mi><mrow><mi>h</mi><mo>,</mo><mi>N</mi><mo>−</mo><mi>d</mi></mrow><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mspace width="2.0em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mi>N</mi><mo>≥</mo><mi>d</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">G_{k,kN}\preceq G_{h,N-d}^{\otimes k}\qquad(N\ge d).\tag{7.5}</annotation></semantics></math></div><span class="equation-label">(7.5)</span></div>
+<p>This is an inequality from an inclusion of admissible original
+boundaries. It is not asserted to imply the same ordering of control
+forms, whose dependence on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is retained separately.</p>
+<h2 id="the-product-error-is-one-new-total-degree-layer">8. The product
+error is one new total-degree layer</h2>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℋ</mi><mi>k</mi></msub><mo>=</mo><msup><mi>L</mi><mn>2</mn></msup><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>ℝ</mi><mrow><mo>&gt;</mo><mn>0</mn></mrow><mi>k</mi></msubsup><mo>,</mo><msup><mi>d</mi><mi>k</mi></msup><mi>x</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathcal H_k=L^2(\mathbb R_{&gt;0}^k,d^kx)</annotation></semantics></math>,
+and let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></msub><annotation encoding="application/x-tex">P_{\mathcal B_{k,M}}</annotation></semantics></math>
+be its orthogonal projection onto the finite-dimensional actual boundary
+space. With the fixed low-degree section
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>s</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><annotation encoding="application/x-tex">s_h^{\otimes k}</annotation></semantics></math>,</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></msub><mo form="postfix" stretchy="true">)</mo></mrow><msubsup><mi>s</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">R_{k,M}=(1-P_{\mathcal B_{k,M}})s_h^{\otimes k}.</annotation></semantics></math></div></div>
+<p>Put</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi><mo>+</mo><mn>1</mn></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal E_{k,M}=(1-P_{\mathcal B_{k,M}})\mathcal B_{k,M+1}.</annotation></semantics></math></div></div>
+<p>Because the jet map is already onto at both degrees,</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo>dim</mo><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mfrac linethickness="0"><mrow><mi>M</mi><mo>+</mo><mi>k</mi></mrow><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{\dim\mathcal E_{k,M}=\binom{M+k}{k-1}.}\tag{8.1}</annotation></semantics></math></div><span class="equation-label">(8.1)</span></div>
+<p>This is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>dim</mo><msubsup><mi>𝒫</mi><mrow><mi>M</mi><mo>+</mo><mn>1</mn></mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>−</mo><mo>dim</mo><msubsup><mi>𝒫</mi><mi>M</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\dim\mathcal P_{M+1}^{(k)}-\dim\mathcal P_M^{(k)}</annotation></semantics></math>;
+the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>d</mi><mi>k</mi></msup><annotation encoding="application/x-tex">d^k</annotation></semantics></math>
+jet constraints cancel from the dimension difference.</p>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mo>=</mo><msub><mo>∑</mo><mi>j</mi></msub><msub><mi>D</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">D^{(k)}=\sum_jD_j</annotation></semantics></math>.
+Its induced action on jets is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><annotation encoding="application/x-tex">A_h^{(k)}</annotation></semantics></math>.
+The actual derivative defect lies in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi><mo>+</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\mathcal B_{k,M+1}</annotation></semantics></math>:</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>−</mo><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">B_{k,M}=D^{(k)}R_{k,M}-R_{k,M}A_h^{(k)}.</annotation></semantics></math></div></div>
+<p>Define the two explicitly typed maps into the same new relation
+layer</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></msub><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>:</mo><msubsup><mi>E</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>→</mo><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">Y_{k,M}=P_{\mathcal E_{k,M}}R_{k,M}:E_h^{(k)}\to\mathcal E_{k,M},</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></msub><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>B</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>:</mo><msubsup><mi>E</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>→</mo><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">C_{k,M}=(1-P_{\mathcal B_{k,M}})B_{k,M}:E_h^{(k)}\to\mathcal E_{k,M}.</annotation></semantics></math></div></div>
+<p>Integration by parts gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><mo>+</mo><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mo>=</mo><mi>k</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">(D^{(k)})^*+D^{(k)}=kI</annotation></semantics></math>
+on these functions. Orthogonality then proves</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>W</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>:=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>+</mo><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>−</mo><mi>k</mi><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>=</mo><mi>−</mi><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mo>*</mo></msubsup><msub><mi>C</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>+</mo><msubsup><mi>C</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mo>*</mo></msubsup><msub><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mrow></menclose><annotation encoding="application/x-tex">\boxed{W_{k,M}:=(A_h^{(k)})^*G_{k,M}+G_{k,M}A_h^{(k)}-kG_{k,M}
+=-(Y_{k,M}^*C_{k,M}+C_{k,M}^*Y_{k,M}),}\tag{8.2}</annotation></semantics></math></div><span class="equation-label">(8.2)</span></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>−</mo><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msubsup><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mo>*</mo></msubsup><msub><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mo>rank</mo><msub><mi>W</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>≤</mo><mn>2</mn><mrow><mo form="prefix" stretchy="true">(</mo><mfrac linethickness="0"><mrow><mi>M</mi><mo>+</mo><mi>k</mi></mrow><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">\boxed{G_{k,M}-G_{k,M+1}=Y_{k,M}^*Y_{k,M},\qquad
+\operatorname{rank}W_{k,M}\le2\binom{M+k}{k-1}.}\tag{8.3}</annotation></semantics></math></div><span class="equation-label">(8.3)</span></div>
+<p>For (8.3), use the orthogonal decomposition
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>⊕</mo><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal B_{k,M+1}=\mathcal B_{k,M}\oplus\mathcal E_{k,M}</annotation></semantics></math>.
+Its projection sends
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><annotation encoding="application/x-tex">R_{k,M}</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><annotation encoding="application/x-tex">Y_{k,M}</annotation></semantics></math>
+and the new representative is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>−</mo><msub><mi>Y</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{k,M}-Y_{k,M}</annotation></semantics></math>.</p>
+<p>The source quotient map is the same degree transport as before:</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi><mo>+</mo><mn>1</mn></mrow></msub><mi>/</mi><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mover><mo>→</mo><mo accent="false">∼</mo></mover><msub><mi>ℰ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><mrow><mo form="prefix" stretchy="true">[</mo><mi>z</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>↦</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><msub><mi>P</mi><msub><mi>ℬ</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>z</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal B_{k,M+1}/\mathcal B_{k,M}\xrightarrow{\sim}\mathcal E_{k,M},\quad[z]\mapsto(1-P_{\mathcal B_{k,M}})z.</annotation></semantics></math></div></div>
+<p>A derivative class in this kernel becomes the supported zero only at
+the next total-degree label. The primitive retains which tensor factor
+supplied the theta boundary and its cochain sign. Synchronization by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>,</mo><mi>e</mi><mo form="postfix" stretchy="true">)</mo></mrow><annotation encoding="application/x-tex">(1,e)</annotation></semantics></math>
+in each required two-leg factor supplies the common joint support, while
+the original mask remains recorded.</p>
+<p>Thus the product estimate need not simply copy
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+identical one-factor errors: (8.2) gives a new jointly optimized
+boundary-layer expression with completely specified moment data and
+maps. Its rank bound alone does not bound its generalized
+eigenvalues.</p>
+<h2 id="same-metric-reflection-and-residue-duality-on-the-product">9.
+Same-metric reflection and residue duality on the product</h2>
+<p>For a reflection-stable packet,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>j</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><annotation encoding="application/x-tex">j_h^{\otimes k}</annotation></semantics></math>
+is the antilinear involution on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>E</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><annotation encoding="application/x-tex">E_h^{(k)}</annotation></semantics></math>,
+defined on pure tensors by applying
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>j</mi><mi>h</mi></msub><annotation encoding="application/x-tex">j_h</annotation></semantics></math>
+to every factor. The corresponding function reflection is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>↦</mo><msub><mo>∏</mo><mi>j</mi></msub><msubsup><mi>x</mi><mi>j</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mover><mrow><mi>F</mi><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>x</mi><mn>1</mn><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mo>,</mo><mi>…</mi><mo>,</mo><msubsup><mi>x</mi><mi>k</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mo accent="true">¯</mo></mover></mrow><annotation encoding="application/x-tex">F(x_1,\ldots,x_k)\mapsto\prod_jx_j^{-1}\overline{F(x_1^{-1},\ldots,x_k^{-1})}</annotation></semantics></math>.</p>
+<p>It preserves both the total-degree numerator space and its relation
+ideal. Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>g</mi><mi>/</mi><mi>h</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>†</mo></msup><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>d</mi></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>g</mi><mi>/</mi><mi>h</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">(g/h)^\dagger=(-1)^d(g/h)</annotation></semantics></math>,
+its action on a numerator is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>k</mi><mi>d</mi></mrow></msup><msup><mi>P</mi><mo>†</mo></msup></mrow><annotation encoding="application/x-tex">(-1)^{kd}P^\dagger</annotation></semantics></math>;
+this factor is retained. Uniqueness of the minimum in (7.4) proves
+reflection compatibility of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><annotation encoding="application/x-tex">R_{k,M}</annotation></semantics></math>.
+Therefore the analogue of (6.4) gives symmetry of the generalized
+spectrum of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>W</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo>,</mo><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><annotation encoding="application/x-tex">(W_{k,M},G_{k,M})</annotation></semantics></math>
+on the same metric.</p>
+<p>Residue duality remains the explicitly specified map with matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><annotation encoding="application/x-tex">S_h^{\otimes k}</annotation></semantics></math>
+and target line
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mi>k</mi></msub><annotation encoding="application/x-tex">\mathcal L_k</annotation></semantics></math>,
+on which dilation acts by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>a</mi><mi>k</mi></msup><annotation encoding="application/x-tex">a^k</annotation></semantics></math>.
+It satisfies</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo>+</mo><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><msubsup><mi>A</mi><mi>h</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>=</mo><mi>k</mi><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">(A_h^{(k)})^*S_h^{\otimes k}+S_h^{\otimes k}A_h^{(k)}=kS_h^{\otimes k}.</annotation></semantics></math></div></div>
+<p>Any fixed degree-orientation scalar in the cochain evaluation is
+retained separately; the ordered product of the scalar residue pairings
+here has matrix exactly
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><annotation encoding="application/x-tex">S_h^{\otimes k}</annotation></semantics></math>.</p>
+<p>Its dual metric and control are</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mi mathvariant="normal">D</mi></msubsup><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msubsup><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo>,</mo></mrow><annotation encoding="application/x-tex">G_{k,M}^{\mathrm D}=(S_h^{\otimes k})^*G_{k,M}^{-1}S_h^{\otimes k},</annotation></semantics></math></div></div>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>W</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mi mathvariant="normal">D</mi></msubsup><mo>=</mo><mi>−</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msubsup><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mi>W</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msubsup><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>S</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">W_{k,M}^{\mathrm D}=-(S_h^{\otimes k})^*G_{k,M}^{-1}W_{k,M}G_{k,M}^{-1}S_h^{\otimes k}.\tag{9.1}</annotation></semantics></math></div><span class="equation-label">(9.1)</span></div>
+<p>The Jacobian contraction is still the original multiplication trace,
+with every multiplicity, and is unchanged by the source boundaries used
+to construct (7.4). Neither (9.1) nor reflection alone establishes an
+arithmetic upper bound.</p>
+<h2 id="quantitative-certificate-and-the-deligne-comparison">10.
+Quantitative certificate and the Deligne comparison</h2>
+<p>For one or several variables write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math>
+for the positive moment matrix,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>
+for its fixed full-jet map, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>=</mo><mi>J</mi><msup><mi>M</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><msup><mi>J</mi><mo>*</mo></msup></mrow><annotation encoding="application/x-tex">\mathcal C=JM^{-1}J^*</annotation></semantics></math>.
+These actual matrices now replace an unrestricted metric search.</p>
+<p>A useful deterministic enclosure is as follows. Suppose a Hermitian
+approximation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>M</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat M</annotation></semantics></math>
+has a verified bound
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="postfix" stretchy="false">∥</mo><mi>M</mi><mo>−</mo><mover><mi>M</mi><mo accent="true">̂</mo></mover><mo form="postfix" stretchy="false">∥</mo><mo>≤</mo><mi>η</mi></mrow><annotation encoding="application/x-tex">\|M-\widehat M\|\le\eta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>M</mi><mo accent="true">̂</mo></mover><mo>≽</mo><mi>μ</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\widehat M\succeq\mu I</annotation></semantics></math>
+for a retained
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>&gt;</mo><mi>η</mi></mrow><annotation encoding="application/x-tex">\mu&gt;\eta</annotation></semantics></math>.
+Then</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="postfix" stretchy="false">∥</mo><msup><mi>M</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>−</mo><msup><mover><mi>M</mi><mo accent="true">̂</mo></mover><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo form="postfix" stretchy="false">∥</mo><mo>≤</mo><mfrac><mi>η</mi><mrow><mi>μ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>μ</mi><mo>−</mo><mi>η</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow></mfrac><mo>,</mo><mspace width="1.0em"></mspace><mo form="postfix" stretchy="false">∥</mo><mi>𝒞</mi><mo>−</mo><mi>J</mi><msup><mover><mi>M</mi><mo accent="true">̂</mo></mover><mrow><mi>−</mi><mn>1</mn></mrow></msup><msup><mi>J</mi><mo>*</mo></msup><mo form="postfix" stretchy="false">∥</mo><mo>≤</mo><mo form="postfix" stretchy="false">∥</mo><mi>J</mi><msup><mo form="postfix" stretchy="false">∥</mo><mn>2</mn></msup><mfrac><mi>η</mi><mrow><mi>μ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>μ</mi><mo>−</mo><mi>η</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\|M^{-1}-\widehat M^{-1}\|\le\frac{\eta}{\mu(\mu-\eta)},\quad
+\|\mathcal C-J\widehat M^{-1}J^*\|\le\|J\|^2\frac{\eta}{\mu(\mu-\eta)}.\tag{10.1}</annotation></semantics></math></div><span class="equation-label">(10.1)</span></div>
+<p>This is the resolvent identity for inverses. The positive lower bound
+on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒞</mi><annotation encoding="application/x-tex">\mathcal C</annotation></semantics></math>
+must also be retained before a second inversion. With
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>G</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat G</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>W</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat W</annotation></semantics></math>
+and verified errors
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi><mi>G</mi></msub><mo>,</mo><msub><mi>η</mi><mi>W</mi></msub></mrow><annotation encoding="application/x-tex">\eta_G,\eta_W</annotation></semantics></math>,
+the sufficient matrix certificate is</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>G</mi><mo accent="true">̂</mo></mover><mo>−</mo><msub><mi>η</mi><mi>G</mi></msub><mi>I</mi><mo>≻</mo><mn>0</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>ϵ</mi><mover><mi>G</mi><mo accent="true">̂</mo></mover><mo>±</mo><mover><mi>W</mi><mo accent="true">̂</mo></mover><mo>−</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>ϵ</mi><msub><mi>η</mi><mi>G</mi></msub><mo>+</mo><msub><mi>η</mi><mi>W</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>I</mi><mo>≽</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\widehat G-\eta_GI\succ0,\qquad
+\epsilon\widehat G\pm\widehat W-(\epsilon\eta_G+\eta_W)I\succeq0.\tag{10.2}</annotation></semantics></math></div><span class="equation-label">(10.2)</span></div>
+<p>No numerical interval enclosure for the actual infinite arithmetic
+moments is claimed merely from a floating-point calculation. The
+previous exterior-theta sums give another exact representation of their
+one-variable inputs; all tails and roundoff must be supplied to
+(10.1).</p>
+<p>Deligne’s retained Corollaries 3.3.4–3.3.6 place upper and dual lower
+bounds on the same compact-to-ordinary image; the tensor step in 3.2.13
+improves an estimate only after additional geometric control. This note
+supplies a canonical coherent family, its exact source relation ideal on
+products, and the same-metric reflection/dual operations with which such
+an upper estimate can now be tested. It does not import finite-field
+hypotheses into the tau chart.</p>
+<p>For an actual eigenvector
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>h</mi></msub><mi>v</mi><mo>=</mo><mi>ρ</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">A_hv=\rho v</annotation></semantics></math>,
+every constructed tensor metric still has the exact diagnostic</p>
+<div class="equation"><div class="equation-scroll"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>v</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>W</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msup><mi>v</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msup></mrow><mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>v</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>G</mi><mrow><mi>k</mi><mo>,</mo><mi>M</mi></mrow></msub><msup><mi>v</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msup></mrow></mfrac><mo>=</mo><mi>k</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>ℜ</mi><mi>ρ</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{(v^{\otimes k})^*W_{k,M}v^{\otimes k}}
+{(v^{\otimes k})^*G_{k,M}v^{\otimes k}}
+=k(2\Re\rho-1).\tag{10.3}</annotation></semantics></math></div><span class="equation-label">(10.3)</span></div>
+<p>The quantity to bound is therefore the generalized boundary form
+(8.2) relative to (7.4). A dimension/rank estimate, a decrease of a Gram
+matrix, or unrestricted metric realizability is not substituted for that
+relative estimate. The new constructive route is the exact finite
+full-jet moment problem together with its next-layer flux, not another
+homotopy choice.</p>
+<h2 id="reading-provenance-and-validation">11. Reading, provenance, and
+validation</h2>
+<p>Newly read: both supplied formalization/control notes in full; the
+preceding local <code>Tau_Homotopy_Boundary_Control/NOTE.tex</code>,
+especially sections 4–10; the retained Deligne English TeX excerpt
+3.3.4–3.3.6 and French 6.2.4–6.2.7. This is not a new audit of every
+page of Weil II. No OCR or PDF extraction was used. Source hashes are in
+the package reading record.</p>
+<p>External context checked: NIST DLMF 5.11.9 for the gamma bound;
+Connes–Consani–Moscovici, arXiv:2403.01247, abstract, for prior
+moment/Jacobi constructions from squared absolute local factors; Romik,
+arXiv:1902.06330, abstract, for prior orthogonal-polynomial expansions
+of Xi; Lasserre–Pauwels, arXiv:1606.03858, abstract, for
+inverse-moment/Christoffel context. Only the gamma asymptotic is used as
+an external estimate; the other papers are priority/context references,
+not sources of an unread theorem. The arguments above prove the specific
+maps used here.</p>
+<p>The accompanying exact checker uses declared finite discrete
+calibration measures and rational complex polynomial data. It checks the
+general finite matrix identities, joint relation ranks, signs, full
+repeated-root reductions, reflection, naturality, and comparison
+metrics. Its model polynomial is never labelled an arithmetic zeta
+counterexample. Analytic density, asymptotic gamma bounds, and the
+original theta range identities are written arguments, not certified by
+those finite tests. No new Lean execution is claimed. No RH or GRH
+conclusion is claimed.</p>
+</body>
+</html>

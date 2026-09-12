@@ -1,0 +1,410 @@
+\section{The full jet kernel, finite resolvents, and the actual analytic tail}
+\label{sec:kernel-resolvent}
+
+Retain the arithmetic measure, coordinates and maps of
+Section~\ref{sec:tau-boundary-kernel}:
+\[
+ s=\tfrac12+it,\qquad d\nu_Z(t)=|g(s)/h(s)|^2\frac{dt}{2\pi},
+ \quad E=\mathbb C[s]/(h),\quad A=M_s,\quad c=j_h1.
+\]
+In particular, every selected zero has its complete multiplicity in
+\(h\), and \(c\) is the coordinate column of the unit in the retained
+monomial basis of \(E\).  Write \(q_k\) for the monic orthogonal
+polynomials of \(\nu_Z\), \(\kappa_k=\|q_k\|_{\nu_Z}^2\), and
+\(a_k=\kappa_k/\kappa_{k-1}>0\) for \(k\geq1\).  The exact recurrence
+is
+\[
+ sq_k=q_{k+1}+b_kq_k-a_kq_{k-1},\qquad
+ b_k+\overline b_k=1,                                    \tag{KR.1}
+\]
+where the last term is omitted at \(k=0\).
+
+\subsection{A finite compression in the original Mellin coordinate}
+
+Fix \(n\geq d\), so \(N=n-1\) is the degree bound in the preceding
+kernel construction.  On the coefficient space with basis
+\(q_0,\ldots,q_{n-1}\), put
+\[
+ H_n=\operatorname{diag}(\kappa_0,\ldots,\kappa_{n-1}),
+ \quad (J_n)_{k,k}=b_k,\quad
+ (J_n)_{k+1,k}=1,\quad (J_n)_{k,k+1}=-a_{k+1}.             \tag{KR.2}
+\]
+All unspecified entries are zero, and indices start at zero.
+Multiplication of the displayed matrices proves
+\[
+ J_n^*H_n+H_nJ_n=H_n.                                    \tag{KR.3}
+\]
+The isometry from this coefficient space to its polynomial image is
+\(u\mapsto\sum_kq_ku_k\).  For a standard coefficient Hermitian form,
+the corresponding isometry is
+\[
+ \mathcal I_n u=\sum_{k=0}^{n-1}\frac{q_k}{\sqrt{\kappa_k}}u_k,
+ \qquad B_n=H_n^{1/2}J_nH_n^{-1/2}.                       \tag{KR.4}
+\]
+This explicitly stated auxiliary coordinate map leaves \(A\), the
+packet coordinates, \(q_k\), and \(\kappa_k\) unchanged.
+The matrix \(B_n\) has lower off-diagonal entry \(\sqrt{a_{k+1}}\),
+upper off-diagonal entry \(-\sqrt{a_{k+1}}\), and satisfies
+\(B_n^*+B_n=I\).
+
+\begin{lemma}[Nodes and endpoint resolvents]
+The characteristic polynomial of \(J_n\), and hence of \(B_n\), is
+\(q_n(z)\).  Its roots \(\lambda_{n,1},\ldots,\lambda_{n,n}\)
+are distinct and lie on \(\operatorname{Re}z=1/2\).  There are positive
+numbers \(\omega_{n,j}\) and \(\sigma_{n,j}\) such that
+\[
+ \begin{aligned}
+ m_n(z)&=\kappa_0e_0^*(zI-B_n)^{-1}e_0
+          =\sum_{j=1}^n\frac{\omega_{n,j}}{z-\lambda_{n,j}},\\
+ \sum_j\omega_{n,j}&=\kappa_0,\\
+ F_n(z)&=e_{n-1}^*(zI-B_n)^{-1}e_{n-1}
+          =\frac{q_{n-1}(z)}{q_n(z)}
+          =\sum_{j=1}^n\frac{\sigma_{n,j}}{z-\lambda_{n,j}},\\
+ \sum_j\sigma_{n,j}&=1.
+ \end{aligned}
+ \tag{KR.5}
+\]
+Here \(m_n\) and \(F_n\) are respectively the initial and terminal
+observations of the same finite compression.
+\end{lemma}
+
+\begin{proof}
+Expanding the tridiagonal determinant along its last row gives
+\(D_{k+1}(z)=(z-b_k)D_k(z)+a_kD_{k-1}(z)\), with
+\(D_0=1,D_1=z-b_0\).  This is (KR.1), proving \(D_n=q_n\).
+The matrix \((B_n-\tfrac12I)/i\) is Hermitian.  If an eigenvector
+has first coordinate zero, its first row equation forces its second
+coordinate to be zero; recurrence through the rows forces every
+coordinate to vanish.  Thus each eigenspace has dimension at most
+one.  Hermitian diagonalization gives a complete eigenbasis, hence
+all eigenvalues are simple.  The same argument beginning at the last
+row shows every eigenvector has nonzero last coordinate.
+If \(P_j\) are its rank-one orthogonal eigenprojections, set
+\(\omega_{n,j}=\kappa_0e_0^*P_je_0>0\) and
+\(\sigma_{n,j}=e_{n-1}^*P_je_{n-1}>0\).
+Their sums and the two spectral expansions follow from
+\(\sum_jP_j=I\).  The last diagonal cofactor of \(zI-B_n\) is
+\(q_{n-1}(z)\), proving the ratio in (KR.5).
+\end{proof}
+
+Define \(\delta(z)=|\operatorname{Re}z-1/2|\).
+For \(\delta(z)>0\), (KR.3)--(KR.4) give
+\(\|(zI-B_n)^{-1}\|\leq\delta(z)^{-1}\): for a vector \(u\),
+the real part of \(u^*(zI-B_n)u\) is
+\((\operatorname{Re}z-1/2)\|u\|^2\), and Cauchy--Schwarz
+then gives the lower singular-value bound.  In particular
+\(|F_n(z)|\leq\delta(z)^{-1}\), and
+\[
+ \operatorname{Re}F_n(z)
+  =(\operatorname{Re}z-\tfrac12)
+          \sum_j\frac{\sigma_{n,j}}{|z-\lambda_{n,j}|^2}. \tag{KR.6}
+\]
+
+\subsection{Exact quadrature and the full confluent kernel}
+
+\begin{theorem}[A polynomial formula valid at every packet centre]
+Put
+\[
+ L_{n,j}(z)=\frac{q_n(z)}{(z-\lambda_{n,j})q_n'(\lambda_{n,j})}.
+                                                                    \tag{KR.7}
+\]
+This denotes the polynomial obtained by cancelling the displayed
+linear factor.  For every polynomial \(P\) of degree at most
+\(2n-1\),
+\[
+ \int P(s)\,d\nu_Z=\sum_j\omega_{n,j}P(\lambda_{n,j}).     \tag{KR.8}
+\]
+Consequently the complete arithmetic kernel is
+\[
+ \boxed{K_{n-1}
+   =\sum_{j=1}^n\frac{L_{n,j}(A)cc^*L_{n,j}(A)^*}
+                           {\omega_{n,j}}.}             \tag{KR.9}
+\]
+Formula (KR.9) includes all Taylor derivatives at all selected
+zeros, even when a selected critical zero equals a quadrature node.
+\end{theorem}
+
+\begin{proof}
+For degree below \(n\), the vector \(P(J_n)e_0\) records exactly
+the coefficients of \(P\) in the monic orthogonal basis: in the
+successive multiplications no term of degree \(n\) occurs.
+Its initial coefficient is \(\kappa_0^{-1}\int P\,d\nu_Z\).
+Thus the spectral expansion in (KR.5) proves (KR.8) in that degree
+range.  For a general \(P\) in the asserted range, polynomial
+division gives \(P=q_nU+R\), where \(\deg U\leq n-1\) and
+\(\deg R<n\).  On the line, the conjugate of \(U(s)\) is again a
+polynomial in \(s\), namely \(\overline{U(1-\overline s)}\).
+Orthogonality therefore gives \(\int q_nU\,d\nu_Z=0\).
+The same multiple vanishes at all the nodes, proving (KR.8).
+
+The polynomials \(L_{n,j}\) form the interpolation basis of
+\(\mathcal P_{n-1}\).  Apply (KR.8) to
+\(\overline{L_{n,j}(s)}L_{n,k}(s)\), interpreted as a polynomial
+on the line; its degree is at most \(2n-2\).  Their Gram matrix is
+\(\operatorname{diag}(\omega_{n,j})\).  In this basis the residue
+map has column \(j_hL_{n,j}=L_{n,j}(A)c\).  The definition
+\(K=C H^{-1}C^*\) now proves (KR.9).  This is a basis change in
+the polynomial source only.  Polynomial evaluation at \(A\)
+retains its nilpotent powers, so the formula gives the complete
+jets without any distinct-centre or simple-zero assumption.
+\end{proof}
+
+To identify the quadrature endpoints exactly, one has
+\[
+ \sigma_{n,j}
+   =\frac{\omega_{n,j}|q_{n-1}(\lambda_{n,j})|^2}
+           {\kappa_{n-1}}
+   =\frac{\kappa_{n-1}}
+           {\omega_{n,j}|q_n'(\lambda_{n,j})|^2}.          \tag{KR.10}
+\]
+Indeed an eigenvector of \(B_n\) at \(\lambda\) has coordinates
+proportional to
+\(\overline{q_k(\lambda)}/\sqrt{\kappa_k}\): substitution into
+the recurrence proves this assertion, including the endpoint row.
+The squared ratio of its last and first coordinates proves the
+first equality.  The preceding polynomial kernel formula gives
+\(\mathcal K_{n-1}(\lambda_{n,j},\lambda_{n,j})=1/\omega_{n,j}\).
+In the original Christoffel--Darboux polynomial identity, set
+\(w=\lambda_{n,j}\), divide its common polynomial factor
+\(z-\lambda_{n,j}\), then evaluate at that point.  This gives
+\[
+ \frac1{\omega_{n,j}}
+  =\frac{q_n'(\lambda_{n,j})
+           \overline{q_{n-1}(\lambda_{n,j})}}{\kappa_{n-1}}.
+\]
+Its squared modulus gives the second equality in (KR.10).
+
+\begin{theorem}[The exact resolvent metric for the packet]
+Suppose, for this formula, that no selected centre equals one of
+the specified \(n\) quadrature nodes.  Define maps on the original
+space \(E\) by
+\[
+ Q_n=q_n(A),\qquad X_{n,j}=(A-\lambda_{n,j}I)^{-1}c,
+ \quad S_n=\sum_j\sigma_{n,j}X_{n,j}X_{n,j}^*,
+ \quad r_n=F_n(A)c.                                      \tag{KR.11}
+\]
+Then \(Q_n\) is invertible, \(S_n>0\), and
+\[
+ \boxed{K_{n-1}=\kappa_{n-1}^{-1}Q_nS_nQ_n^*,\qquad
+ AS_n+S_nA^*-S_n=cr_n^*+r_nc^*.}                         \tag{KR.12}
+\]
+In particular, the original relative-control quantity at
+\(m=n-1-d\) is exactly
+\[
+ \epsilon_m=
+ \sup_{y\ne0}\frac{|y^*(cr_n^*+r_nc^*)y|}{y^*S_ny}.       \tag{KR.13}
+\]
+The identity is valid whenever that index belongs to the original
+source sequence; \(m=-1\) is its already specified fixed-section
+extension.  Every off-line packet obeys the nonintersection
+condition for every \(n\).  At an intersecting critical centre,
+(KR.9) gives the exact polynomial continuation, with no deletion
+of that centre or its jets.
+\end{theorem}
+
+\begin{proof}
+The finite algebra \(E\) has an inverse for a polynomial precisely
+when the polynomial is nonzero at every centre: the Euclidean
+algorithm gives an inverse modulo \(h\), or, equivalently, the
+finite Taylor inverse at each centre gives the inverse under the
+complete Chinese-remainder map.  This proves the asserted
+invertibilities.  Substitution of (KR.7) and (KR.10) into (KR.9)
+proves the first identity in (KR.12).  It proves \(S_n>0\), since
+the residue map is onto at \(n\geq d\), hence \(K_{n-1}>0\).
+The identity
+\(AX_{n,j}=\lambda_{n,j}X_{n,j}+c\), together with
+\(\lambda_{n,j}+\overline\lambda_{n,j}=1\), proves
+\[
+ AS_n+S_nA^*-S_n
+ =c\left(\sum_j\sigma_{n,j}X_{n,j}\right)^*
+  +\left(\sum_j\sigma_{n,j}X_{n,j}\right)c^*.
+\]
+The partial fractions in (KR.5), evaluated in the finite algebra,
+identify the sum with \(F_n(A)c\).
+Because \(Q_n\) commutes with \(A\), both kernel and its weight
+form are congruent, with the same factor \(\kappa_{n-1}^{-1}\),
+to \(S_n\) and its displayed weight form.  The invertible change
+\(y=Q_n^*x\) proves equality of their Rayleigh suprema.  The
+previous exact map from \(K_{n-1}\) to \(G_m\) then proves
+(KR.13).  All of these maps are stated in the original quotient
+coordinates; the Taylor expansion of each rational factor includes
+every power through \(m_\rho-1\).
+\end{proof}
+
+The scalar form of (KR.13), with every inverse taken on the same
+retained packet coordinates, is
+\[
+ \alpha_n=r_n^*S_n^{-1}r_n,\qquad
+ \beta_n=c^*S_n^{-1}c,\qquad
+ \gamma_n=c^*S_n^{-1}r_n,
+\]
+\[
+ \boxed{\epsilon_m=|\operatorname{Re}\gamma_n|
+      +\sqrt{\alpha_n\beta_n-(\operatorname{Im}\gamma_n)^2}.}
+                                                               \tag{KR.13a}
+\]
+Indeed the nonzero eigenvalues of
+\(S_n^{-1/2}(cr_n^*+r_nc^*)S_n^{-1/2}\) coincide, with
+multiplicities, with the nonzero eigenvalues of
+\(\left(\begin{smallmatrix}\gamma_n&\beta_n\\
+\alpha_n&\overline\gamma_n\end{smallmatrix}\right)\): factor
+the former through its two displayed vectors and interchange the
+two rectangular factors.  Its characteristic polynomial gives
+\(\operatorname{Re}\gamma_n\pm
+\sqrt{\alpha_n\beta_n-(\operatorname{Im}\gamma_n)^2}\).
+Cauchy--Schwarz gives \(|\gamma_n|^2\leq\alpha_n\beta_n\),
+so their greatest absolute value is (KR.13a), including zero or
+one-dimensional rank.  The full congruence (KR.12) specifies
+exactly how the original \(q_n\), \(\kappa_{n-1}\) and local
+unit enter the metric whose relative form is evaluated here.
+
+\subsection{The infinite multiplication operator and its genuine tail}
+
+Let \(\mathscr L=L^2(\nu_Z)\), and let \(M\) be multiplication by
+\(s\), with domain \(\{f:sf\in\mathscr L\}\).  It is a closed
+operator and \(M^*=I-M\).  These statements follow directly from
+the multiplication formula; its resolvent off the line is
+multiplication by \((z-s)^{-1}\), of norm at most
+\(\delta(z)^{-1}\).  The auxiliary vectors
+\(\psi_k=q_k/\sqrt{\kappa_k}\) form a complete orthonormal
+basis.  Completeness follows from the positive exponential moment
+of the actual arithmetic measure by the Fourier-annihilator proof
+already given for the theta measures.
+
+Let \(P_n\) project onto \(\psi_0,\ldots,\psi_{n-1}\), and put
+\(Q_n^{\rm tail}=I-P_n\); this projection is distinct from the
+polynomial map \(Q_n=q_n(A)\) in (KR.11).  Define
+\[
+ M_n^{\rm tail}=Q_n^{\rm tail}M Q_n^{\rm tail}
+     \quad\hbox{on }Q_n^{\rm tail}\operatorname{Dom}M,
+ \qquad
+ \zeta_n(z)=\langle\psi_n,(z-M_n^{\rm tail})^{-1}\psi_n\rangle.
+                                                               \tag{KR.14}
+\]
+This tail resolvent exists at every off-line \(z\), with norm at
+most \(\delta(z)^{-1}\).  Here is the domain justification.
+Every polynomial belongs to \(\operatorname{Dom}M\), so
+\(P_n\) preserves that domain and
+\(Q_n^{\rm tail}\operatorname{Dom}M
+=\operatorname{Dom}M\cap Q_n^{\rm tail}\mathscr L\).
+The operator \((M-\tfrac12I)/i\) is self-adjoint multiplication
+by \(t\).  Its off-diagonal blocks for \(P_n\oplus Q_n^{\rm tail}\)
+extend to a bounded, finite-rank self-adjoint operator, by (KR.1).
+Subtracting this operator preserves self-adjointness: for a
+self-adjoint \(T\) and bounded self-adjoint \(C\), the definition
+of the adjoint gives \((T-C)^*=T^*-C\) on exactly
+\(\operatorname{Dom}T^*\).  The resulting diagonal operator
+reduces the two projections.  Its tail block is therefore
+self-adjoint on the displayed tail domain.  Multiplication by
+\(i\) and addition of \(1/2\) gives the claimed tail resolvent.
+
+\begin{theorem}[Exact finite-section, terminal, and tail comparison]
+For \(\delta(z)>0\), let
+\[
+ m(z)=\int\frac{d\nu_Z(t)}{z-s},\qquad
+ H_n^{\rm obs}(z)=\frac1{\kappa_n}
+                   \int\frac{|q_n(s)|^2}{z-s}\,d\nu_Z(t).
+\]
+Then
+\[
+ \boxed{H_n^{\rm obs}(z)
+       =\frac{\zeta_n(z)}{1+a_nF_n(z)\zeta_n(z)},}         \tag{KR.15}
+\]
+\[
+ \boxed{m(z)-m_n(z)
+   =\frac{(-1)^n\kappa_n\zeta_n(z)}
+       {q_n(z)^2[1+a_nF_n(z)\zeta_n(z)]}
+   =\frac{(-1)^n}{q_n(z)^2}
+                   \int\frac{|q_n(s)|^2}{z-s}\,d\nu_Z(t).} \tag{KR.16}
+\]
+Every denominator in these formulas is nonzero off the original
+Mellin line.  The terminal finite observations additionally obey
+the exact Schur recurrence
+\[
+ F_1(z)=\frac1{z-b_0},\qquad
+ F_{n+1}(z)=\frac1{z-b_n+a_nF_n(z)}.                      \tag{KR.17}
+\]
+\end{theorem}
+
+\begin{proof}
+Under \(\mathcal I_n\oplus I\), the block operator \(M\) is
+\[
+ \begin{pmatrix}
+ B_n&-\sqrt{a_n}\,e_{n-1}\langle\psi_n,\cdot\rangle\\
+ \sqrt{a_n}\,\psi_ne_{n-1}^*&M_n^{\rm tail}
+ \end{pmatrix}.                                         \tag{KR.18}
+\]
+The signs follow directly from (KR.1); both coupling maps are
+bounded on the displayed summands.  Eliminate the tail component
+in \(z-M\).  The finite Schur complement is
+\(zI-B_n+a_n\zeta_n(z)e_{n-1}e_{n-1}^*\).
+For \(\operatorname{Re}z>1/2\), the real part of its quadratic
+form is at least \(\delta(z)\|u\|^2\), because
+\(\operatorname{Re}\zeta_n(z)>0\); on the other side all signs
+reverse.  The sign of this scalar real part follows either from
+the self-adjoint tail resolvent or from the resolvent identity
+\(\operatorname{Re}\langle v,(z-M_n^{\rm tail})^{-1}v\rangle
+=(\operatorname{Re}z-1/2)\|(z-M_n^{\rm tail})^{-1}v\|^2\).
+Thus the Schur complement is invertible and
+\(1+a_n\zeta_nF_n\ne0\).
+Direct multiplication verifies the rank-one inverse formula
+\[
+ R_n-\frac{a_n\zeta_n}{1+a_n\zeta_nF_n}
+                   R_ne_{n-1}e_{n-1}^*R_n,
+ \qquad R_n=(zI-B_n)^{-1}.                               \tag{KR.19}
+\]
+The analogous bottom Schur calculation, paired against
+\(\psi_n\), gives (KR.15), since
+\(\langle\psi_n,(z-M)^{-1}\psi_n\rangle=H_n^{\rm obs}(z)\).
+
+The two endpoint cofactors of \(zI-B_n\) give
+\[
+ e_0^*R_ne_{n-1}
+   =\frac{(-1)^{n-1}\sqrt{\kappa_{n-1}/\kappa_0}}{q_n(z)},
+ \qquad
+ e_{n-1}^*R_ne_0
+   =\frac{\sqrt{\kappa_{n-1}/\kappa_0}}{q_n(z)}.           \tag{KR.20}
+\]
+These cofactors are the products of the successive upper and
+lower entries, respectively; the formula also covers \(n=1\).
+Pair (KR.19) against \(\sqrt{\kappa_0}e_0\), the coefficient
+vector of the unchanged function \(1\).  Substitute (KR.20)
+and \(a_n\kappa_{n-1}=\kappa_n\).  This proves the first
+equality in (KR.16); (KR.15) proves the second.
+Finally (KR.17) is (KR.1) divided by \(q_{n+1}\), equivalently
+the last-coordinate finite Schur complement.
+\end{proof}
+
+There is also a direct polynomial check on every factor in
+(KR.16).  The polynomial
+\[
+ p_n(z)=\int\frac{q_n(z)-q_n(s)}{z-s}\,d\nu_Z(t)
+\]
+has degree below \(n\).  At a quadrature node its ratio residue
+is \(p_n(\lambda_{n,j})/q_n'(\lambda_{n,j})
+=\int L_{n,j}\,d\nu_Z=\omega_{n,j}\), so \(m_n=p_n/q_n\).
+Orthogonality to the polynomial
+\((q_n(z)-q_n(s))/(z-s)\) gives
+\[
+ m-m_n=\frac1{q_n(z)^2}
+                       \int\frac{q_n(s)^2}{z-s}\,d\nu_Z.
+\]
+The polynomial
+\((-1)^n\overline{q_n(1-\overline s)}\) is monic and has
+the same orthogonality conditions as \(q_n\); uniqueness makes
+it equal to \(q_n\).  On the line this says
+\(q_n(s)^2=(-1)^n|q_n(s)|^2\), giving (KR.16) again.
+In particular the explicit error inequality is
+\[
+ |m(z)-m_n(z)|\leq
+       \frac{\kappa_n}{\delta(z)|q_n(z)|^2}.              \tag{KR.21}
+\]
+
+The initial and terminal observations have now been related by
+the actual block maps (KR.18)--(KR.20), the tail (KR.14), and the
+exact remainder (KR.16).  The relative form uses the terminal
+observation through (KR.11)--(KR.13).  An estimate for the initial
+observation can be propagated through these equalities while
+retaining the factors \(q_n\), \(\kappa_n\), \(a_n\), and the
+tail denominator.  None of those arithmetic quantities is
+discarded in passing from one observation to the other.

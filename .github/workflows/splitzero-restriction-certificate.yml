@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - 'formal/splitzero/SplitZeroRestriction*.lean'
-      - 'formal/splitzero/AuditRestrictionCertificate.lean'
+      - 'formal/splitzero/AuditRestriction*.lean'
       - 'workbenches/tau-restriction-certificate-formal/**'
       - '.github/workflows/splitzero-restriction-certificate.yml'
 permissions:
@@ -59,7 +59,7 @@ jobs:
           set -uo pipefail
           mkdir -p .lake/build/lib/lean
           status=0
-          for name in SplitZeroTodaVolume SplitZeroConsecutiveWindow SplitZeroWindowProduct SplitZeroWindowForcing SplitZeroNormEnvelope SplitZeroRestrictionTransport SplitZeroRestrictionSource SplitZeroRestrictionLogCertificate; do
+          for name in SplitZeroTodaVolume SplitZeroConsecutiveWindow SplitZeroWindowProduct SplitZeroWindowForcing SplitZeroNormEnvelope SplitZeroRestrictionTransport SplitZeroRestrictionSource SplitZeroRestrictionLogCertificate SplitZeroRestrictionSpectrum; do
             echo "=== $name ==="
             if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
           done
@@ -67,10 +67,12 @@ jobs:
       - name: Joint import and fail-closed transitive axiom audits
         run: |
           set -euo pipefail
-          printf 'import SplitZeroNormEnvelope\nimport SplitZeroRestrictionSource\nimport SplitZeroRestrictionLogCertificate\n' >JointRestriction.lean
+          printf 'import SplitZeroNormEnvelope\nimport SplitZeroRestrictionSource\nimport SplitZeroRestrictionSpectrum\n' >JointRestriction.lean
           lake env lean --trust=0 -DwarningAsError=true JointRestriction.lean
           lake env lean --trust=0 -DwarningAsError=true AuditRestrictionCertificate.lean | tee AuditRestrictionCertificate.log
           "$RUNNER_TEMP/restriction-checks/bin/python" ../../workbenches/tau-restriction-certificate-formal/check_restriction.py --audit AuditRestrictionCertificate.log
+          lake env lean --trust=0 -DwarningAsError=true AuditRestrictionSpectrum.lean | tee AuditRestrictionSpectrum.log
+          "$RUNNER_TEMP/restriction-checks/bin/python" ../../workbenches/tau-restriction-certificate-formal/check_spectrum_audit.py AuditRestrictionSpectrum.log
           lake env lean --trust=0 -DwarningAsError=true AuditConsecutiveWindow.lean >AuditConsecutiveWindow.log
           python3 ../../workbenches/tau-consecutive-window-formal/check_window.py --audit AuditConsecutiveWindow.log
           python3 ../../workbenches/tau-consecutive-window-formal/check_window.py

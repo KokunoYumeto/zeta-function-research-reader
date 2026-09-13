@@ -1,0 +1,9 @@
+import SplitZeroRestrictionSpectrum
+
+#print axioms SplitZero.RestrictionSpectrum.conjugate_power
+#print axioms SplitZero.RestrictionSpectrum.moment_eq
+#print axioms SplitZero.RestrictionSpectrum.prefix_eq
+#print axioms SplitZero.RestrictionSpectrum.determinant_eq
+#print axioms SplitZero.RestrictionSpectrum.log_volume_eq
+#print axioms SplitZero.RestrictionSpectrum.matrix_certificate
+#print axioms SplitZero.RestrictionSpectrum.matrix_stopping_degree

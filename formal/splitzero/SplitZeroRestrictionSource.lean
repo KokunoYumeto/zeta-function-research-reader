@@ -17,12 +17,14 @@ def sourceKernel (B : Matrix ι σ ℂ) (Oinv : Matrix σ σ ℂ) : Matrix ι ι
 def representative (B : Matrix ι σ ℂ) (Oinv : Matrix σ σ ℂ)
     (G : Matrix ι ι ℂ) : Matrix σ ι ℂ := Oinv * B.conjTranspose * G
 
+omit [DecidableEq σ] in
 /-- Surjectivity is verified by the original kernel/Gram inverse equation. -/
 theorem representative_section (B : Matrix ι σ ℂ) (Oinv : Matrix σ σ ℂ)
     (G : Matrix ι ι ℂ) (h : sourceKernel B Oinv * G = 1) :
     B * representative B Oinv G = 1 := by
   simpa only [sourceKernel, representative, Matrix.mul_assoc] using h
 
+omit [DecidableEq ι] in
 /-- The least-norm dual identity, in the original source metric O. -/
 theorem representative_adjoint (B : Matrix ι σ ℂ) (O Oinv : Matrix σ σ ℂ)
     (G : Matrix ι ι ℂ) (hInv : Oinv * O = 1)
@@ -41,6 +43,7 @@ theorem representative_gram (B : Matrix ι σ ℂ) (O Oinv : Matrix σ σ ℂ)
   rw [representative_adjoint B O Oinv G hInv hOi hG, Matrix.mul_assoc,
     representative_section B Oinv G hKG, Matrix.mul_one]
 
+omit [DecidableEq σ] [DecidableEq τ] in
 /-- Restriction of dual columns yields restriction of the canonical source lift.
 The cutoff identity is an identity of the raw weighted columns, not the conclusion.
 For diagonal monic norms it is literal extraction of the first source coordinates.
@@ -76,6 +79,7 @@ theorem relation_observations (B : Matrix ι σ ℂ) (X R : Matrix σ ι ℂ)
       ← Matrix.mul_assoc, hR, hX, Matrix.one_mul]
   · simp only [Matrix.mul_sub, hX, hR, sub_self]
 
+omit [DecidableEq σ] in
 /-- Difference-of-representatives energy is the canonical metric loss.
 The cross Gram is derived from the source dual equation and original observations.
 -/
@@ -101,6 +105,7 @@ theorem relation_gram (B : Matrix ι σ ℂ) (O : Matrix σ σ ℂ)
       abel
     _ = Gi - Gj := by rw [hGram, hXR, hRX, hRR]; abel
 
+omit [Fintype ι] [DecidableEq ι] [Fintype σ] [DecidableEq σ] in
 /-- Three stages retain the additive relation itself, not just its determinant. -/
 theorem relation_cocycle (X Y Z : Matrix σ ι ℂ) :
     X - Z = (X - Y) + (Y - Z) := by abel

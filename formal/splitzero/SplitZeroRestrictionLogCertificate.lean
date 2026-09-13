@@ -11,21 +11,21 @@ namespace SplitZero.RestrictionLog
 open scoped BigOperators
 open Filter
 
- def term (x : ℝ) (n : ℕ) : ℝ := x ^ (n+1) / ((n : ℝ)+1)
- def prefix (x : ℝ) (p : ℕ) : ℝ := ∑ n ∈ Finset.range p, term x n
- def remainder (x : ℝ) (p : ℕ) : ℝ := -Real.log (1-x) - prefix x p
+def term (x : ℝ) (n : ℕ) : ℝ := x ^ (n+1) / ((n : ℝ)+1)
+def logPrefix (x : ℝ) (p : ℕ) : ℝ := ∑ n ∈ Finset.range p, term x n
+def remainder (x : ℝ) (p : ℕ) : ℝ := -Real.log (1-x) - logPrefix x p
 
- theorem hasSum_remainder (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1) (p : ℕ) :
+theorem hasSum_remainder (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1) (p : ℕ) :
     HasSum (fun n : ℕ => term x (n+p)) (remainder x p) := by
   have hs := Real.hasSum_pow_div_log_of_abs_lt_one (by rwa [abs_of_nonneg hx0])
-  exact (hasSum_nat_add_iff' p).2 hs
+  simpa only [term, logPrefix, remainder] using (hasSum_nat_add_iff' p).2 hs
 
- theorem remainder_nonneg (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1) (p : ℕ) :
+theorem remainder_nonneg (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1) (p : ℕ) :
     0 ≤ remainder x p :=
   (hasSum_remainder x hx0 hx1 p).nonneg (fun n => by unfold term; positivity)
 
 /-- The full remaining series after another block is controlled by x^p. -/
- theorem double_remainder_le (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1) (p : ℕ) :
+theorem double_remainder_le (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1) (p : ℕ) :
     remainder x (2*p) ≤ x^p * remainder x p := by
   apply hasSum_le _ (hasSum_remainder x hx0 hx1 (2*p))
     ((hasSum_remainder x hx0 hx1 p).mul_left (x^p))
@@ -43,7 +43,7 @@ open Filter
       ring
 
 /-- The source's sharp coefficient c_p(r), with r>0 and all zero x cases retained. -/
- theorem sharp_remainder_le (x r : ℝ) (hx0 : 0 ≤ x) (hxr : x ≤ r)
+theorem sharp_remainder_le (x r : ℝ) (hx0 : 0 ≤ x) (hxr : x ≤ r)
     (hr0 : 0 < r) (hr1 : r < 1) (p : ℕ) :
     remainder x p ≤ (remainder r p / r^(p+1)) * x^(p+1) := by
   have hx1 := lt_of_le_of_lt hxr hr1
@@ -56,20 +56,29 @@ open Filter
       (mul_nonneg (pow_nonneg hx0 (p+1)) (pow_nonneg hr0.le (p+1)))
     have hd : (0 : ℝ) < ((n+p : ℕ) : ℝ)+1 := by positivity
     have hh := div_le_div_of_nonneg_right ht hd.le
-    simpa only [term, show n+p+1 = n+(p+1) by omega, pow_add,
-      mul_div_assoc, div_mul_eq_mul_div, mul_assoc, mul_left_comm, mul_comm] using hh
+    calc
+      term x (n+p) * r^(p+1) =
+          (x^n * (x^(p+1)*r^(p+1))) / (((n+p : ℕ) : ℝ)+1) := by
+        unfold term
+        rw [show n+p+1 = n+(p+1) by omega, pow_add]
+        ring
+      _ ≤ (r^n * (x^(p+1)*r^(p+1))) / (((n+p : ℕ) : ℝ)+1) := hh
+      _ = term r (n+p) * x^(p+1) := by
+        unfold term
+        rw [show n+p+1 = n+(p+1) by omega, pow_add]
+        ring
   have hd : 0 < r^(p+1) := pow_pos hr0 _
   have hh := (le_div_iff₀ hd).mpr hm
   simpa only [div_mul_eq_mul_div] using hh
 
 /-- A rational certificate with no externally supplied spectral gap. -/
- theorem adaptive_scalar (x s : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1)
+theorem adaptive_scalar (x s : ℝ) (hx0 : 0 ≤ x) (hx1 : x < 1)
     (p : ℕ) (hxs : x^p ≤ s) (hs : s < 1) :
-    -Real.log (1-x) ≤ prefix x p + (prefix x (2*p)-prefix x p)/(1-s) := by
+    -Real.log (1-x) ≤ logPrefix x p + (logPrefix x (2*p)-logPrefix x p)/(1-s) := by
   have hr := remainder_nonneg x hx0 hx1 p
   have hd := double_remainder_le x hx0 hx1 p
   have hm := mul_le_mul_of_nonneg_right hxs hr
-  have htail : remainder x p ≤ (prefix x (2*p)-prefix x p)/(1-s) := by
+  have htail : remainder x p ≤ (logPrefix x (2*p)-logPrefix x p)/(1-s) := by
     apply (le_div_iff₀ (by linarith : 0 < 1-s)).mpr
     unfold remainder at hd hm ⊢
     nlinarith
@@ -77,19 +86,20 @@ open Filter
   linarith
 
 variable {ι : Type*} [Fintype ι]
- def powerTrace (x : ι → ℝ) (p : ℕ) : ℝ := ∑ a, x a ^ p
- def prefixTrace (x : ι → ℝ) (p : ℕ) : ℝ := ∑ a, prefix (x a) p
- def logVolume (x : ι → ℝ) : ℝ := ∑ a, -Real.log (1-x a)
+def powerTrace (x : ι → ℝ) (p : ℕ) : ℝ := ∑ a, x a ^ p
+def prefixTrace (x : ι → ℝ) (p : ℕ) : ℝ := ∑ a, logPrefix (x a) p
+def logVolume (x : ι → ℝ) : ℝ := ∑ a, -Real.log (1-x a)
 
 /-- Prefixes are computed directly from the trace moments. -/
- theorem prefix_as_moments (x : ι → ℝ) (p : ℕ) :
+theorem prefix_as_moments (x : ι → ℝ) (p : ℕ) :
     prefixTrace x p = ∑ n ∈ Finset.range p, powerTrace x (n+1)/((n : ℝ)+1) := by
-  unfold prefixTrace prefix powerTrace term
+  unfold prefixTrace logPrefix powerTrace term
   simp_rw [Finset.sum_div]
   exact Finset.sum_comm
 
- theorem prefix_lower (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
+theorem prefix_lower (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
     (hx1 : ∀ a, x a < 1) (p : ℕ) : prefixTrace x p ≤ logVolume x := by
+  unfold prefixTrace logVolume
   apply Finset.sum_le_sum
   intro a _ha
   have := remainder_nonneg (x a) (hx0 a) (hx1 a) p
@@ -97,7 +107,7 @@ variable {ι : Type*} [Fintype ι]
   linarith
 
 /-- The source's sharp finite enclosure, evaluated on every retained direction. -/
- theorem sharp_trace_upper (x : ι → ℝ) (r : ℝ)
+theorem sharp_trace_upper (x : ι → ℝ) (r : ℝ)
     (hx0 : ∀ a, 0 ≤ x a) (hxr : ∀ a, x a ≤ r)
     (hr0 : 0 < r) (hr1 : r < 1) (p : ℕ) :
     logVolume x ≤ prefixTrace x p +
@@ -108,7 +118,7 @@ variable {ι : Type*} [Fintype ι]
     logVolume, prefixTrace, powerTrace, sub_le_iff_le_add, add_comm] using hh
 
 /-- The first 2p trace moments alone give a finite upper certificate once s_p<1. -/
- theorem adaptive_trace_upper (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
+theorem adaptive_trace_upper (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
     (hx1 : ∀ a, x a < 1) (p : ℕ) (hs : powerTrace x p < 1) :
     logVolume x ≤ prefixTrace x p +
       (prefixTrace x (2*p)-prefixTrace x p)/(1-powerTrace x p) := by
@@ -121,13 +131,14 @@ variable {ι : Type*} [Fintype ι]
     prefixTrace, logVolume] using hh
 
 /-- Every fixed finite restriction admits a successful adaptive stopping degree. -/
- theorem powerTrace_tendsto_zero (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
+theorem powerTrace_tendsto_zero (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
     (hx1 : ∀ a, x a < 1) : Tendsto (powerTrace x) atTop (nhds 0) := by
-  have hh := tendsto_finset_sum Finset.univ
+  change Tendsto (fun p : ℕ => ∑ a, x a ^ p) atTop (nhds 0)
+  have hh := tendsto_finsetSum Finset.univ
     (fun a _ha => tendsto_pow_atTop_nhds_zero_of_lt_one (hx0 a) (hx1 a))
-  simpa only [powerTrace, Finset.sum_const_zero] using hh
+  simpa only [Finset.sum_const_zero] using hh
 
- theorem exists_stopping_degree (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
+theorem exists_stopping_degree (x : ι → ℝ) (hx0 : ∀ a, 0 ≤ x a)
     (hx1 : ∀ a, x a < 1) : ∃ p : ℕ, 0 < p ∧ powerTrace x p < 1 := by
   have he : ∀ᶠ p in atTop, powerTrace x p < 1 :=
     (tendsto_order.1 (powerTrace_tendsto_zero x hx0 hx1)).2 1 zero_lt_one

@@ -10,7 +10,7 @@ import unittest
 
 NAMES = ('exact_step', 'radius_step', 'exact_product', 'product_bound',
          'lower_bound_propagates', 'first_radius_step',
-         'norm_bound_forces_volume', 'log_volume_forcing')
+         'norm_bound_forces_volume', 'log_volume_forcing', 'doubling_from_envelope')
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 
 def audit(text):
@@ -48,9 +48,7 @@ class Tests(unittest.TestCase):
     def test_mass(self):
         for q in range(1, 6):
             for c in (F(1,7), F(3), F(11)):
-                original = (F(29)/F(5))*(F(7)/F(2))
-                scaled = (c*29/(c*5))*(c**q*7/(c**q*2))
-                self.assertEqual(original, scaled)
+                self.assertEqual((F(29)/5)*(F(7)/2), (c*29/(c*5))*(c**q*7/(c**q*2)))
     def test_first_degree(self):
         w, wn, nu, v = F(7), F(14), F(42), F(9)
         vn = v*wn/nu
@@ -65,6 +63,10 @@ class Tests(unittest.TestCase):
             self.assertEqual(r0, t**(2*q))
             self.assertEqual(r1, t**(2*q))
             self.assertEqual(r0*r1, t**(4*q))
+    def test_doubling_identity(self):
+        for n in range(1, 10):
+            lo, up = F(2,7), F(5,3)
+            self.assertEqual((up*2*n)**(4*n), (4*up**2/lo*n)**(2*n)*(lo*n)**(2*n))
     def test_audit_valid(self):
         text = '\n'.join("'SplitZero.ConsecutiveWindow.%s' depends on axioms: [propext, Classical.choice, Quot.sound]" % n for n in NAMES)
         self.assertEqual(len(audit(text)), len(NAMES))

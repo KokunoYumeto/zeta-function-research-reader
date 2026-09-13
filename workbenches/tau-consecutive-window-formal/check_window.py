@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Finite algebra checks; not zeta data or an analytic norm certificate."""
+import argparse
+from fractions import Fraction as F
+from functools import reduce
+from operator import mul
+from pathlib import Path
+import re
+import unittest
+
+NAMES = ('exact_step', 'radius_step', 'exact_product', 'product_bound',
+         'lower_bound_propagates', 'first_radius_step',
+         'norm_bound_forces_volume', 'log_volume_forcing')
+ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
+
+def audit(text):
+    found = {}
+    pattern = r"'([^']+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)"
+    for match in re.finditer(pattern, text, re.S):
+        name = match.group(1)
+        if name in found:
+            raise ValueError('duplicate report')
+        axioms = {s.strip() for s in (match.group(2) or '').split(',') if s.strip()}
+        if not axioms <= ALLOWED:
+            raise ValueError('unexpected axiom: ' + repr(axioms))
+        found[name] = sorted(axioms)
+    expected = {'SplitZero.ConsecutiveWindow.' + n for n in NAMES}
+    if set(found) != expected:
+        raise ValueError('wrong target set: ' + repr(set(found) ^ expected))
+    return found
+
+def product(xs):
+    return reduce(mul, xs, F(1))
+
+class Tests(unittest.TestCase):
+    def test_exact_product(self):
+        for r in range(1, 13):
+            d = [F(j+1, j+3) for j in range(r+1)]
+            w = [F((j+2)**3, 7) for j in range(r+1)]
+            v = [F(13)]
+            for j in range(r):
+                v.append(v[-1] * d[j+1])
+            f = [(w[j+1]/w[j])*(1-d[j])*(1/d[j+1]-1) for j in range(r)]
+            rhs = (w[-1]/w[0])*(v[0]/v[-1])*(1-d[0])*(1-d[-1])
+            rhs *= product(1-x for x in d[1:-1])**2
+            self.assertEqual(product(f), rhs)
+            self.assertLessEqual(product(f), (w[-1]/w[0])*(v[0]/v[-1]))
+    def test_mass(self):
+        for q in range(1, 6):
+            for c in (F(1,7), F(3), F(11)):
+                original = (F(29)/F(5))*(F(7)/F(2))
+                scaled = (c*29/(c*5))*(c**q*7/(c**q*2))
+                self.assertEqual(original, scaled)
+    def test_first_degree(self):
+        w, wn, nu, v = F(7), F(14), F(42), F(9)
+        vn = v*wn/nu
+        e2 = (nu-wn)/w
+        self.assertLessEqual(e2*w/v, wn/vn)
+    def test_four_threshold(self):
+        for q in range(2, 12):
+            t = F(3)
+            v = lambda j: t**(-2*j)
+            r0 = v(q-1)/v(2*q-1)
+            r1 = v(q)/v(2*q)
+            self.assertEqual(r0, t**(2*q))
+            self.assertEqual(r1, t**(2*q))
+            self.assertEqual(r0*r1, t**(4*q))
+    def test_audit_valid(self):
+        text = '\n'.join("'SplitZero.ConsecutiveWindow.%s' depends on axioms: [propext, Classical.choice, Quot.sound]" % n for n in NAMES)
+        self.assertEqual(len(audit(text)), len(NAMES))
+    def test_audit_bad(self):
+        with self.assertRaises(ValueError):
+            audit('')
+        text = '\n'.join("'SplitZero.ConsecutiveWindow.%s' depends on axioms: [sorryAx]" % n for n in NAMES)
+        with self.assertRaises(ValueError):
+            audit(text)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--audit')
+    parser.add_argument('--negative', action='store_true')
+    args = parser.parse_args()
+    if args.negative:
+        raise SystemExit('intentional negative control')
+    if args.audit:
+        reports = audit(Path(args.audit).read_text())
+        print('Accepted transitive reports:', len(reports))
+    else:
+        suite = unittest.defaultTestLoader.loadTestsFromTestCase(Tests)
+        result = unittest.TextTestRunner(verbosity=2).run(suite)
+        raise SystemExit(0 if result.wasSuccessful() else 1)

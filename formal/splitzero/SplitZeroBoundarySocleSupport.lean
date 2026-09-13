@@ -66,6 +66,7 @@ theorem range_iff_supported_killed (f : Hom D D) (v : R)
         (targetRelations f v).quotientDiagram.Total) =
         (e : G R) • ⟨i, BoundarySocle.comparison v (f.app i) x⟩
     rw [LinearDiagram.supported_zero_action, BoundarySocle.comparison_killed]
+    rfl
   · rcases y with ⟨i,y⟩
     intro h
     rw [LinearDiagram.ofR_smul, LinearDiagram.supported_zero_action] at h

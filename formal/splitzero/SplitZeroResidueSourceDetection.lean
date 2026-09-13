@@ -24,6 +24,7 @@ variable {K : Type u} [Field K] {h : K[X]}
 def sourcePacketClass (x : AdjoinRoot h) : B.quotientDiagram.Total :=
   B.quotientMap.total ⟨i, r x⟩
 
+include hr hB in
 /-- Equality is checked in the original relation quotient, before further observations. -/
 theorem sourcePacketClass_eq_iff (x y : AdjoinRoot h) :
     sourcePacketClass B i r x = sourcePacketClass B i r y ↔ x = y := by
@@ -48,18 +49,21 @@ theorem sourcePacketClass_not_absent (x : AdjoinRoot h) (hi : i ≠ ⊥) :
 def sourceResidueOperator (hh : h.Monic) : D.V i →ₗ[K] D.V i :=
   r.comp ((SplitZero.Integration.residueInsertion 1 (residue hh)).comp J)
 
- theorem sourceResidueOperator_section (hh : h.Monic) (x : AdjoinRoot h) :
+include hr in
+theorem sourceResidueOperator_section (hh : h.Monic) (x : AdjoinRoot h) :
     sourceResidueOperator i J r hh (r x) =
       r (residue hh x • (1 : AdjoinRoot h)) := by
   change r (residue hh (J (r x)) • (1 : AdjoinRoot h)) = _
   rw [hr]
 
+include hB in
 /-- The original source boundary is still killed by the lifted operation. -/
 theorem sourceResidueOperator_boundary (hh : h.Monic) (x : D.V i)
     (hx : x ∈ B.fibre i) : sourceResidueOperator i J r hh x = 0 := by
   change r (residue hh (J x) • (1 : AdjoinRoot h)) = 0
   rw [hB x hx, map_zero, zero_smul, map_zero]
 
+include hr hB in
 /-- Every nonzero packet class has a nonzero original supported residue response
     after an explicitly bounded power of the actual multiplication generator. -/
 theorem source_residue_detects (hh : h.Monic) (hd : 0 < h.natDegree)
@@ -83,6 +87,7 @@ theorem source_residue_detects (hh : h.Monic) (hd : 0 < h.natDegree)
     exact hdet (by rw [hzero, map_zero])
   exact hdet ((smul_eq_zero.mp hz).resolve_right hnontriv)
 
+include hr in
 /-- The source observation of the constituent response is the proved transverse map. -/
 theorem source_transverse_square (hh : h.Monic)
     (F : Submodule K (AdjoinRoot h)) (x : F) :

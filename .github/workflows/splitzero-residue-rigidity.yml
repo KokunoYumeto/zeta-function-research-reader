@@ -40,6 +40,23 @@ jobs:
           python3 -O ../../workbenches/tau-split-integration/run_integration.py --selftest
           python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
           python3 -O -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+      - name: Exact residue and source-variation regressions in both Python modes
+        run: |
+          set -euo pipefail
+          CHECK=../../workbenches/tau-residue-rigidity/check_exact.py
+          python3 "$CHECK" > /tmp/residue-exact-normal.json
+          python3 -O "$CHECK" > /tmp/residue-exact-optimized.json
+          cmp /tmp/residue-exact-normal.json /tmp/residue-exact-optimized.json
+          cat /tmp/residue-exact-normal.json
+          for FLAG in rank source-sign; do
+            for MODE in normal optimized; do
+              if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+              if "${PY[@]}" "$CHECK" --negative "$FLAG" > /tmp/residue-exact-$FLAG-$MODE.log 2>&1; then
+                echo 'A false formula was accepted'; exit 1
+              fi
+              grep -q 'deliberate false' /tmp/residue-exact-$FLAG-$MODE.log
+            done
+          done
       - name: Install unchanged Lean toolchain
         run: |
           set -euo pipefail

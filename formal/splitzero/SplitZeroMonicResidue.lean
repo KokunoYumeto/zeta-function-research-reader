@@ -82,14 +82,14 @@ def residueDual (hh : h.Monic) :
   toFun x :=
     { toFun := fun y => residue hh (y * x)
       map_add' := by intros; simp [add_mul]
-      map_smul' := by intros; simp [smul_mul_assoc] }
+      map_smul' := by intros; simp }
   map_add' := by intros; ext y; simp [mul_add]
-  map_smul' := by intros; ext y; simp [mul_smul_comm]
+  map_smul' := by intros; ext y; simp
 
 @[simp] theorem residueDual_apply (hh : h.Monic) (x y : AdjoinRoot h) :
     residueDual hh x y = residue hh (y * x) := rfl
 
- theorem residueDual_injective (hh : h.Monic) (hd : 0 < h.natDegree) :
+theorem residueDual_injective (hh : h.Monic) (hd : 0 < h.natDegree) :
     Function.Injective (residueDual hh) := by
   intro x y hxy
   apply sub_eq_zero.mp
@@ -97,7 +97,7 @@ def residueDual (hh : h.Monic) :
   intro z
   have hz := LinearMap.congr_fun hxy z
   change residue hh (z * x) = residue hh (z * y) at hz
-  simpa only [mul_sub, map_sub, hz, sub_self]
+  simp only [mul_sub, map_sub, hz, sub_self]
 
 /-- The proved residue pairing as an actual linear equivalence with the dual. -/
 def residueEquiv (hh : h.Monic) (hd : 0 < h.natDegree) :

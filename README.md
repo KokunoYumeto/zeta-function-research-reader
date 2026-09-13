@@ -1,42 +1,41 @@
 # Split-Zero cohomology and arithmetic weight control
 
-Start with [the complete 715-page Split-Zero paper](workbenches/splitzero-tandem/continuations/20260913-deligne/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf).
-Its [editable source and build guide](workbenches/splitzero-tandem/continuations/20260913-deligne/README.md)
-include the full cumulative argument and original source witnesses, through the
-13 September Deligne endpoint continuation. The [research guide](CURRENT_RESEARCH.md)
-explains where this cut fits among the working calculations.
+Start with [the complete 715-page Split-Zero paper](https://zenodo.org/api/records/22732414/files/33-splitzero-period-deligne-continuation-715p.pdf/content).
+[Published edition, DOI 10.5281/zenodo.22732414](https://doi.org/10.5281/zenodo.22732414) ·
+[All 34 separately downloadable files](calculation_edition_20260913_deligne/README.md) ·
+[Editable source and build guide](workbenches/splitzero-tandem/continuations/20260913-deligne/README.md).
 
-The paper studies the Riemann xi function through its original theta-function
-source, finite zero packets, and the least-norm representatives of their
-arithmetic quotient classes. It retains zero multiplicities, the source's full
-mass, the coordinate `S=k/2+iu`, and the canonical quotient metric. The new
-chapters calculate endpoint and relation-moment estimates, consecutive degree
-windows, cohomological comparisons with Deligne's constructions, and the complete
-polynomial-exponential period determinant. The opposing arithmetic volume upper
-bound remains unresolved; the paper does not claim an RH proof or disproof.
+The paper studies the zeros of the Riemann xi function using its original theta-function
+source and the least-norm representatives of finite arithmetic quotient classes.
+It retains zero multiplicities, the source's full mass, the coordinate `S=k/2+iu`,
+and the canonical quotient metric. The cumulative argument calculates endpoint and
+relation-moment estimates, consecutive degree windows, Deligne cohomological
+comparison maps and the complete polynomial-exponential period determinant.
+The opposing arithmetic volume upper estimate remains unresolved; this is not
+a claimed RH proof or disproof. The [research guide](CURRENT_RESEARCH.md) explains
+the calculations, their motivations, and what remains unfinished.
 
-This source release is an [explicit public derivative](workbenches/splitzero-tandem/continuations/20260913-deligne/PUBLIC_DERIVATION.md):
-mathematical texts, PDF and delivery archives retain their exact bytes; private
-workstation prefixes in historical evidence are aliased, and a reference-only
-cache of copied literature pages is replaced by bibliographic/hash provenance.
-Every change is recorded. Historical checks keep their original scope; source
-publication is not a new Lean or analytic verification.
+The [public source ZIP](https://zenodo.org/api/records/22732414/files/34-splitzero-period-deligne-public-sources.zip/content) is an offline download; the readable preview is
+the Split-Zero PDF above. Its [public-derivative ledger](workbenches/splitzero-tandem/continuations/20260913-deligne/PUBLIC_DERIVATION.md)
+records private-workstation locator aliases and the omission of a reference-only
+cache of copied literature pages. Mathematical texts, PDFs and nested delivery
+archives retain their exact bytes. The [source commit](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/8572a3a05be6cbcb935b05262bafef9d686072ef/workbenches/splitzero-tandem/continuations/20260913-deligne)
+and archive hashes identify the same 3,954-file public source selection.
 
-The [512-page integrated reader](reader.pdf) remains separately readable.
-[DOI 10.5281/zenodo.22731295](https://doi.org/10.5281/zenodo.22731295) is the older
-frozen 478/512-page edition, with [its exact PDFs and source ZIPs](calculation_edition_20260913_endpoint_gamma/README.md).
-It does **not** contain the new 715-page cut. Its 32 downloads and all older
-source releases remain unchanged. The new large source ZIP is kept outside
-ordinary Git files; a successor DOI is not claimed here before verification.
+This edition preserves every one of the preceding 32 downloads and adds the
+715-page paper and its public source ZIP. The [512-page integrated reader](reader.pdf)
+and [older 478/512-page DOI edition](https://doi.org/10.5281/zenodo.22731295)
+remain separately readable and unchanged. No large wrapper ZIP is duplicated in Git.
 
-The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md),
-and [Polyclank participation guide](POLYCLANK_PARTICIPATION.md) retain the
-motivations, partial successes and unfinished routes. Overleaf confirmations
-remain historical and timers remain paused.
+The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md), and
+[Polyclank participation guide](POLYCLANK_PARTICIPATION.md) record the motivations,
+partial successes and unfinished routes. Overleaf confirmations remain historical;
+timers remain paused.
 
 ## Current working sources
 
-The working GitHub sources have advanced beyond the frozen DOI edition:
+
+These working-source records retain their separately stated proof and CI scopes:
 
 - [Canonical restriction and finite volume certificates](workbenches/tau-restriction-certificate-formal/RESEARCH_NOTE.md)
   compute how least-norm polynomial representatives change with degree and bound
@@ -56,5 +55,4 @@ PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
 revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
-These continuations are **not included in the frozen DOI PDFs or ZIPs**.
-The frozen DOI preview remains its 478-page Split-Zero cohomology paper; the current GitHub front is the 715-page cut above.
+The later PR27 continuation and SGA/Hochschild SC/CC reader increment are outside the frozen 715-page PDF/source cut. The Zenodo preview and GitHub front now show the same 715-page Split-Zero paper.

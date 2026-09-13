@@ -13,7 +13,7 @@ theorem exact_step (P M Q w wnext z e : ℝ)
   rw [he]
   unfold TodaVolume.energy
   field_simp
-  <;> ring
+  ring
 
 /-- Derive a consecutive Lambda=omega/V bound from the original identity. -/
 theorem radius_step (P M Q w wnext z e : ℝ)

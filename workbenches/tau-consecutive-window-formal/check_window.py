@@ -10,7 +10,8 @@ import unittest
 
 NAMES = ('exact_step', 'radius_step', 'exact_product', 'product_bound',
          'lower_bound_propagates', 'first_radius_step',
-         'norm_bound_forces_volume', 'log_volume_forcing', 'doubling_from_envelope')
+         'norm_bound_forces_volume', 'log_volume_forcing', 'doubling_from_envelope',
+         'canonical_norm_volume')
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 
 def audit(text):

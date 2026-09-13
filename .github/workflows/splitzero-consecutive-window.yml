@@ -62,5 +62,26 @@ jobs:
           checker=../../workbenches/tau-consecutive-window-formal/check_window.py
           python3 "$checker"
           python3 -O "$checker"
-          if python3 "$checker" --negative; then exit 1; fi
-          if python3 -O "$checker" --negative; then exit 1; fi
+          if python3 "$checker" --negative >neg.log 2>&1; then exit 1; fi
+          grep -q 'intentional negative control' neg.log
+          if python3 -O "$checker" --negative >neg.log 2>&1; then exit 1; fi
+          grep -q 'intentional negative control' neg.log
+      - name: Replay unchanged published arithmetic-source regressions
+        run: |
+          set -euo pipefail
+          src=../../workbenches/tau-arithmetic-endpoint-bounds
+          test "$(git hash-object "$src/check_endpoint_bounds.py")" = 5f9e027c0906bf667eebcda1a6de04c131442674
+          test "$(git hash-object "$src/check_balanced_window.py")" = 0d168be17ce9f44ba9761c4810ff73cc2cd66033
+          python3 -m venv "$RUNNER_TEMP/window-checks"
+          py="$RUNNER_TEMP/window-checks/bin/python"
+          "$py" -m pip install 'sympy==1.14.0' 'mpmath==1.3.0' >SourceTestSetup.log 2>&1 || { cat SourceTestSetup.log; exit 1; }
+          for checker in check_endpoint_bounds.py check_balanced_window.py; do
+            "$py" "$src/$checker" >"$checker.normal.json"
+            "$py" -O "$src/$checker" >"$checker.optimized.json"
+            cmp "$checker.normal.json" "$checker.optimized.json"
+            cat "$checker.normal.json"
+            if "$py" "$src/$checker" --fail-control >source-negative.log 2>&1; then exit 1; fi
+            grep -q 'intentional' source-negative.log
+            if "$py" -O "$src/$checker" --fail-control >source-negative.log 2>&1; then exit 1; fi
+            grep -q 'intentional' source-negative.log
+          done

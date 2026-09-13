@@ -9,3 +9,4 @@ import SplitZeroNormEnvelope
 #print axioms SplitZero.ConsecutiveWindow.norm_bound_forces_volume
 #print axioms SplitZero.ConsecutiveWindow.log_volume_forcing
 #print axioms SplitZero.ConsecutiveWindow.doubling_from_envelope
+#print axioms SplitZero.ConsecutiveWindow.canonical_norm_volume

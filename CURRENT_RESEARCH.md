@@ -1,8 +1,10 @@
 # Latest complete reader: Split-Zero cohomology, 715 pages
 
-[Read the paper](workbenches/splitzero-tandem/continuations/20260913-deligne/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+[Read the paper](https://zenodo.org/api/records/22732414/files/33-splitzero-period-deligne-continuation-715p.pdf/content)
 · [Edit or rebuild its source](workbenches/splitzero-tandem/continuations/20260913-deligne/README.md)
 · [Exact publication provenance](workbenches/splitzero-tandem/continuations/20260913-deligne/PUBLIC_DERIVATION.md)
+
+[Published DOI 10.5281/zenodo.22732414](https://doi.org/10.5281/zenodo.22732414) · [All 34 files](calculation_edition_20260913_deligne/README.md). The 715-page PDF is the actual Zenodo preview; its matching public source archive is an offline download.
 
 The aim is to relate the zeros of the Riemann xi function to the metric size of
 their actual arithmetic quotient classes. The source is
@@ -41,8 +43,7 @@ full-page cache omission affect the public selection. The current manifest
 describes the derivative, while inherited receipts and manifests retain their
 historical scope. The original private source archive is not a public payload.
 
-The following guide describes **the earlier frozen DOI edition**. Its 478/512-page
-downloads remain intact; they do not contain the new 715-page reader.
+The following historical guide describes **the earlier DOI 10.5281/zenodo.22731295 edition**. Its 478/512-page downloads remain unchanged and are also retained among the new edition's 34 files. That earlier record does not contain the new 715-page reader.
 
 ---
 

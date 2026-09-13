@@ -35,8 +35,10 @@ theorem norm_bound_forces_volume (L C vstart vend wstart wend : ℝ) (r : ℕ)
   have h5 : (L ^ 2) ^ r * vend ≤ (C ^ 2) ^ r * vstart := by
     nlinarith
   have hd : 0 < (C ^ 2) ^ r := by positivity
-  have hh := (div_le_iff₀ hd).mpr h5
-  simpa only [div_pow, mul_div_assoc, div_mul_eq_mul_div] using hh
+  have hh : ((L ^ 2) ^ r * vend) / (C ^ 2) ^ r ≤ vstart := by
+    apply (div_le_iff₀ hd).mpr
+    simpa only [mul_comm] using h5
+  simpa only [div_pow, div_mul_eq_mul_div] using hh
 
 /-- Convert the positive-endpoint power inequality to its logarithmic budget. -/
 theorem log_volume_forcing (t vstart vend : ℝ) (r : ℕ)
@@ -46,6 +48,7 @@ theorem log_volume_forcing (t vstart vend : ℝ) (r : ℕ)
   have hp : 0 < (t ^ 2) ^ r * vend := by positivity
   have hlog := Real.log_le_log hp h
   rw [Real.log_mul (by positivity) (ne_of_gt hve), Real.log_pow, Real.log_pow] at hlog
+  norm_num only [Nat.cast_ofNat] at hlog
   rw [Real.log_div (ne_of_gt hvs) (ne_of_gt hve)]
   nlinarith
 

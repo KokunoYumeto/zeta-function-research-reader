@@ -72,7 +72,7 @@ Therefore the source's SAME four-volume budget satisfies the stronger implicatio
        >=4q_k log(D_h k),
     liminf B_(h,k)/(q_k log k)>=4.                 (8)
 
-The source's threshold 2 remains correct but is not optimal after retaining the adjacency of the exact radius equations. This is a new deduction, not a correction falsely attributed to its original proof. No upper estimate below 4 is claimed. Either one-block upper limsup below 2 would already suffice for contradiction, while a total upper limsup below 4 would also suffice. Multiplicities remain in q_k.
+The source's threshold 2 remains correct but is not optimal after retaining the adjacency of the exact radius equations. The limiting factor four is shared with the concurrent FOUR_VOLUME_THRESHOLD.md continuation, as recorded in COORDINATION.md; the per-block proof here uses the separate first-degree input. No upper estimate below 4 is claimed. Either one-block upper limsup below 2 would already suffice for contradiction, while a total upper limsup below 4 would also suffice. Multiplicities remain in q_k.
 
 ## 3. Relation-layer meaning
 
@@ -80,13 +80,15 @@ For the original block (i,j), put F=[b_(i+1),...,b_j], Omega=diag(omega_(i+1),..
 
     V_i/V_j=det(I+Omega^(-1)F*G_iF).
 
-Take the positive generalized eigenvalues lambda_a of (F*G_iF,Omega). The two blocks (q-1,2q-1) and (q,2q) each have q source coordinates. Equations (7) imply, for each block separately,
+Take the NONNEGATIVE generalized eigenvalues lambda_a of (F*G_iF,Omega), counted with all q multiplicities INCLUDING ZEROS. Omega is positive definite, but F*G_iF can be singular. The two blocks (q-1,2q-1) and (q,2q) each have q source coordinates. Equations (7) imply, for each block separately,
 
     product_(a=1..q)(1+lambda_a)>=(D_h k)^(2q),
     geometric_mean(1+lambda_a)>=(D_h k)^2,
     (1/q) sum_a lambda_a>=(D_h k)^2-1.             (9)
 
-The arithmetic-geometric mean inequality proves the last line. This does NOT force every lambda_a to grow. Their multiplicity and rank profile remain. On the split lift the actual final quotient sends each retained relation to the receiving label's supported zero, not to external tau. Its source Gram is measured before that map.
+The arithmetic-geometric mean inequality proves the last line. This does NOT force every lambda_a to grow or even to be nonzero. Their multiplicity and rank profile remain. On the split lift the actual final quotient sends each retained relation to the receiving label's supported zero, not to external tau. Its source Gram is measured before that map.
+
+The correction is substantive for the intended family: at theta=0, for even k in the exact quartet, q_k is odd and the centered full-order cyclic polynomial is odd. Reduction preserves parity. In Q_q,...,Q_(2q-1), (q+1)/2 odd columns land in an odd quotient subspace of dimension (q-1)/2, so F has a kernel. The original coordinate S=k/2+iu and its i^j phases preserve rank. Keeping the resulting zero eigenvalues leaves all displayed determinant, mean and threshold conclusions unchanged. The independent review and its exact q=3 calibration are recorded in PR25 comment 5649747922 and the restriction-certificate workbench.
 
 ## 4. Constant and source accounting
 

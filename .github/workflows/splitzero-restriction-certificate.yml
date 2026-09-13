@@ -1,7 +1,12 @@
 name: SplitZero restriction certificate integration
 on:
   push:
-    branches: [astra/restriction-certificate-formal-20260913]
+    branches: [main, astra/restriction-certificate-formal-20260913]
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-restriction-certificate-formal/**'
+      - 'workbenches/tau-consecutive-window-formal/**'
+      - '.github/workflows/splitzero-restriction-certificate.yml'
   pull_request:
     paths:
       - 'formal/splitzero/SplitZeroRestriction*.lean'
@@ -47,6 +52,15 @@ jobs:
           "$py" -O "$example" >Restriction.example.optimized.json
           cmp Restriction.example.json Restriction.example.optimized.json
           cat Restriction.example.json
+          zero=../../workbenches/tau-restriction-certificate-formal/check_zero_mode.py
+          "$py" "$zero" >Restriction.zero.json
+          "$py" -O "$zero" >Restriction.zero.optimized.json
+          cmp Restriction.zero.json Restriction.zero.optimized.json
+          cat Restriction.zero.json
+          if "$py" "$zero" --negative >Restriction.zero.negative.log 2>&1; then exit 1; fi
+          grep 'intentional zero-mode negative control' Restriction.zero.negative.log
+          if "$py" -O "$zero" --negative >Restriction.zero.negative.optimized.log 2>&1; then exit 1; fi
+          grep 'intentional zero-mode negative control' Restriction.zero.negative.optimized.log
       - name: Original scalar and unchanged pinned Lean environment
         run: |
           set -euo pipefail

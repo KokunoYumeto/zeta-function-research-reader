@@ -1,0 +1,58 @@
+name: SplitZero consecutive window integration
+on:
+  push:
+    branches: [astra/consecutive-window-norm-20260913]
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroConsecutiveWindow.lean'
+      - 'formal/splitzero/SplitZeroWindowProduct.lean'
+      - 'formal/splitzero/SplitZeroWindowForcing.lean'
+      - 'workbenches/tau-consecutive-window-formal/**'
+      - '.github/workflows/splitzero-consecutive-window.yml'
+permissions:
+  contents: read
+jobs:
+  window:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Original core and unchanged pinned environment
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lean --version
+          lake update >WindowSetup.log 2>&1 || { tail -80 WindowSetup.log; exit 1; }
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get >>WindowSetup.log 2>&1 || { tail -80 WindowSetup.log; exit 1; }
+      - name: Strict source checks
+        run: |
+          set -euo pipefail
+          mkdir -p .lake/build/lib/lean
+          for name in SplitZeroTodaVolume SplitZeroConsecutiveWindow SplitZeroWindowProduct SplitZeroWindowForcing; do
+            echo "=== $name ==="
+            lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
+          done
+      - name: Transitive axiom reports
+        run: |
+          set -euo pipefail
+          lake env lean --trust=0 -DwarningAsError=true AuditConsecutiveWindow.lean | tee AuditConsecutiveWindow.log
+          python3 ../../workbenches/tau-consecutive-window-formal/check_window.py --audit AuditConsecutiveWindow.log
+      - name: Exact regressions and optimized negative controls
+        run: |
+          set -euo pipefail
+          checker=../../workbenches/tau-consecutive-window-formal/check_window.py
+          python3 "$checker"
+          python3 -O "$checker"
+          if python3 "$checker" --negative; then exit 1; fi
+          if python3 -O "$checker" --negative; then exit 1; fi

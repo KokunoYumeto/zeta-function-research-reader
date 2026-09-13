@@ -108,3 +108,74 @@ No opposing arithmetic volume upper bound or RH conclusion is established.
 The actual PR26 merge includes its PR25 ancestor with the reviewed corrections;
 GitHub closed PR25 through that ancestry, not through a separate merge action.
 These working sources are not included in the frozen 512/478-page DOI edition.
+
+## Specialization, Hochschild trace and the Laplacian
+
+[PR27](https://github.com/KokunoYumeto/zeta-function-research-reader/pull/27)
+continues the same polynomial source and quotient, with multiplication by the
+original coordinate represented by `A=M_S`. The purpose is to calculate how
+source relations, boundary specialization and arithmetic action interact, so
+that geometric information can be used in the existing volume estimate.
+
+The [specialization calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8/workbenches/tau-specialization-curvature-formal/RESEARCH_NOTE.md)
+joins two actual representatives by `R(z)=R_j+z delta R`.
+Their source orthogonality gives `G(z)=G_j+|z|^2(G_i-G_j)`, with the same
+quotient class throughout. At the boundary `w=1/z=0`, the local map
+`(a,b)->(a,w b)` has both a kernel and a cokernel equal to the modified
+summand. The transported action retains its possible `w^(-1)` term.
+The least action-invariant enlargement is computed in `C[S]/(chi)` by a
+polynomial gcd; the resulting metric pole contributes a signed curvature
+atom at infinity. That atom accounts for the degree change rather than
+silently cancelling the source's positive curvature density.
+
+For the original restriction operators, `Z=K_j(G_i-G_j)` and `H=I-K_i G_j`,
+the exact relation is `H=Z(I+Z)^(-1)`. Thus each cost eigenvalue `lambda`
+has coordinate `x=lambda/(1+lambda)`, including zero modes. The curvature
+coefficients recover `Tr(H^m)` by finite telescoping. This feeds the preceding
+finite volume certificate; it does not establish a bound uniform in packet size.
+
+The [Hochschild comparison](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8/workbenches/tau-specialization-curvature-formal/HOCHSCHILD_COMPARISON.md)
+places the original theta sum `Theta phi(x)=2 sum_(n>=1) phi(nx)` in the
+specified trace image of the adele crossed product. Its trace equals `Theta`
+exactly. The half-density map `U F(x)=x^(1/2)F(x)` preserves the original
+half-line norm and gives the chapter's map as `E=(1/2)U Theta`.
+The Gaussian identity `(D^2-D) exp(-pi x^2)=phi_*`, with `D=-x d/dx`,
+therefore reproduces the unchanged arithmetic seed `Theta phi_*` and its
+Mellin transform `2xi`.
+
+Restriction of the Mellin transform to `s=1/2+it` induces an explicit map
+from the full arithmetic quotient to a Schwartz-function quotient on the
+critical line. On each actual finite packet, its kernel is exactly the sum
+of the off-critical generalized blocks. The critical blocks have a jet
+recovery map with all factors `i^(-j)/j!` retained. This calculates the map's
+failure of injectivity; it does not infer that the killed blocks are absent.
+
+The same note checks a literal boundary issue in Connes--Consani's printed
+zero-mode formula: the seed's raw coefficient is `xi(1/2)L^(-1/2)`, which
+is nonzero and singular at length `L=0`. An augmented Fourier object retains
+that line, with an explicit reconstruction of the raw coefficient. Gaussian
+averaging of the original source then places the line in the closed
+source-generated submodule, justifying its subsequent quotient. The result
+is a written local smooth-flat comparison; no uniform source norm bound in
+the growing heat parameter is claimed.
+
+Finally, the [Laplacian estimate](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8/workbenches/tau-specialization-curvature-formal/LAPLACIAN_PARABOLA.md)
+uses the original `G`, `A` and action defect `W=A*G+GA-kG`.
+For `L=A^2-kA`, the exact adjoint defect is `L*G-GL=A*W-WA`.
+If `epsilon` is the actual two-sided bound `-epsilon G <= W <= epsilon G`,
+every numerical-range value `z=<v,Lv>_G/||v||_G^2` satisfies
+`Re z <= (epsilon^2-k^2)/4` and
+`(Im z)^2 <= epsilon^2((epsilon^2-k^2)/4-Re z)`.
+This enclosure retains non-real values at positive error and the full
+quadratic nilpotent term on repeated-zero blocks. The required arithmetic
+limit `epsilon_k/k -> 0` is not proved here.
+
+The five new Lean modules check their stated finite/local interfaces and
+38 selected declarations, alongside 33 inherited declarations. The exact
+17- and 10-method Python suites are separate finite calibrations, not Lean
+proofs of Schwartz-space closure, heat limits, sheaf globalization or the
+numerical-range estimate. These written arguments received a separate
+mathematical review. The original source checkpoint remains unchanged;
+current-head and actual-merge CI observations are recorded separately in
+the publication metadata. No local Lean execution or RH conclusion is claimed.
+All of this PR27 continuation remains outside the frozen 512/478-page DOI edition.

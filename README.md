@@ -30,8 +30,25 @@ historical, and timers remain paused. Source ZIPs are offline downloads.
 
 ## Current working sources
 
-[PR26: canonical restriction and finite quotient-volume certificates](workbenches/tau-restriction-certificate-formal/RESEARCH_NOTE.md)
-is now merged into GitHub. It computes how the original least-norm polynomial
-representatives restrict to lower degree and certifies their finite quotient-volume
-loss using traces. This continuation is **not included in the frozen DOI PDFs or ZIPs**;
-the current 478-page Split-Zero paper remains the published preview.
+The working GitHub sources have advanced beyond the frozen DOI edition:
+
+- [Canonical restriction and finite volume certificates](workbenches/tau-restriction-certificate-formal/RESEARCH_NOTE.md)
+  compute how least-norm polynomial representatives change with degree and bound
+  the resulting quotient-volume loss using finite matrix traces.
+- [Specialization and curvature](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8/workbenches/tau-specialization-curvature-formal/RESEARCH_NOTE.md)
+  interpolate those same representatives, retain the kernel and cokernel at the
+  boundary, and turn determinant curvature into the finite trace certificate.
+- [Theta source and Hochschild trace](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8/workbenches/tau-specialization-curvature-formal/HOCHSCHILD_COMPARISON.md)
+  give the exact trace factorization, calculate which finite spectral blocks
+  survive restriction to the critical line, and repair the boundary zero Fourier
+  mode by retaining it before taking the explicit source-generated quotient.
+- [Laplacian numerical-range bound](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8/workbenches/tau-specialization-curvature-formal/LAPLACIAN_PARABOLA.md)
+  turns the original metric's measured action defect into a parabolic enclosure,
+  without assuming an invariant metric or discarding repeated-zero jets.
+
+PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
+revision; its historical status files describe their original checkpoint.
+Written analytic arguments and the selected Lean/finite checks have distinct
+scopes. No uniform arithmetic upper estimate or RH conclusion is established.
+These continuations are **not included in the frozen DOI PDFs or ZIPs**.
+The published preview remains the current 478-page Split-Zero cohomology paper.

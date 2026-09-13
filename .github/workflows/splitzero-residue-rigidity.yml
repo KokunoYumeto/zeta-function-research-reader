@@ -1,0 +1,78 @@
+name: SplitZero residue rigidity
+
+on:
+  push:
+    branches: [main, 'astra/residue-rigidity-source-20260913']
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-residue-rigidity/**'
+      - '.github/workflows/splitzero-residue-rigidity.yml'
+  pull_request:
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-residue-rigidity/**'
+      - '.github/workflows/splitzero-residue-rigidity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: splitzero-residue-rigidity-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Recover the original scalar and verify inherited parser
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          python3 ../../workbenches/tau-split-integration/run_integration.py --selftest
+          python3 -O ../../workbenches/tau-split-integration/run_integration.py --selftest
+          python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+          python3 -O -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+      - name: Install unchanged Lean toolchain
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch unchanged Mathlib and cache
+        run: |
+          set -euo pipefail
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+          lake build
+      - name: Strictly compile the integrated residue development and audit every selected declaration
+        run: python3 ../../workbenches/tau-residue-rigidity/verify.py
+      - name: Replay original reconstruction and internal homology audit
+        run: |
+          set -euo pipefail
+          python3 check_derived.py --prepare
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean > /tmp/residue-derived.log
+          python3 check_derived.py /tmp/residue-derived.log
+      - name: Reject false equality of supported zero and absence
+        run: |
+          set -euo pipefail
+          printf 'import SplitZeroResidueSourceDetection\nexample : (SplitZero.e : SplitZero.G ℤ) = SplitZero.tau := by rfl\n' > ResidueMustFail.lean
+          if lake env lean --trust=0 -DwarningAsError=true ResidueMustFail.lean > /tmp/residue-negative.log 2>&1; then
+            echo 'False zero identification was accepted'; exit 1
+          fi
+          cat /tmp/residue-negative.log
+          grep -qi 'rfl.*failed\|failed.*rfl' /tmp/residue-negative.log
+          if grep -qi 'unknown module\|unknown identifier\|failed to synthesize' /tmp/residue-negative.log; then exit 1; fi
+      - name: Report execution checkpoint
+        run: |
+          git rev-parse HEAD
+          lake env lean --version
+          cat .residue-rigidity-logs/receipt.json

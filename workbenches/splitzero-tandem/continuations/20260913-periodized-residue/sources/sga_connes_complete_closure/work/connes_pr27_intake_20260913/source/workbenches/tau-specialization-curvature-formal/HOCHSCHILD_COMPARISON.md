@@ -1,0 +1,430 @@
+# The original theta complex inside the Hochschild trace realization
+
+Research continuation, 13 September 2026. Source attribution: the split-support arithmetic programme and its representative maps are the owner's construction. The literature comparison uses Connes and Consani (2023), printed pp. 83–101. This note gives written proofs of the comparison and its boundary qualification. It does not claim a formalization of the adele crossed product, Schwartz analysis, sheaf cohomology, or a uniform arithmetic weight estimate.
+
+## 1. Fix the objects before comparing them
+
+Use the original spaces
+
+\[
+V=\{\phi\in\mathcal S(\mathbb R)_{\rm ev}:\phi(0)=0,\ \int_{\mathbb R}\phi=0\},\qquad
+\mathscr B=\{F:\sup_{x>0}x^b|D^mF(x)|<\infty\ \forall b\in\mathbb Z,m\ge0\},\quad D=-x\partial_x.
+\tag{H1}
+\]
+
+The arithmetic map and its original quotient are
+
+\[
+\Theta:V\longrightarrow\mathscr B,\quad \Theta\phi(x)=2\sum_{n\ge1}\phi(nx),\qquad Q=\mathscr B/\Theta V.
+\tag{H2}
+\]
+
+The factor two, the quotient topology, and the original supported coefficient square remain
+
+\[
+\begin{array}{ccc}G(\mathbb Z)&\longrightarrow&G(\mathbb C)\\p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\\mathbb Z&\longrightarrow&\mathbb C.\end{array}
+\tag{H3}
+\]
+
+Here the supported scalar zero is \(e=0^\bullet\), not the absent scalar \(\tau\). Every linear comparison below is a comparison of coefficient fibres; its split lift sends \((\lambda,v)\) to \((\lambda,fv)\), and sends external absence to external absence. In particular an amplitude killed by a comparison remains \((\lambda,0)\). We do not apply ordinary Hochschild homology directly to the split semiring and assert that additive completion preserves its support masks.
+
+## 2. The theta map is the actual Hochschild trace
+
+Let
+
+\[
+\mathcal A=\mathcal S(\mathbb A_{\mathbb Q})\rtimes\mathbb Q^\times,\qquad
+j(f)=[(1_{\widehat{\mathbb Z}}\otimes f)U(1)]\in HH_0(\mathcal A).
+\tag{H4}
+\]
+
+Connes and Consani, Proposition 3.1, identify the kernel of the inclusion-induced map \(\pi_!\) with the span of the differences \(f-f^q\). Proposition 3.3 identifies even Schwartz functions with the specified finite-unit-invariant **image of \(\pi_!\)**. This is not an identification with every sector of \(HH_0(\mathcal A)\).
+
+Their orbit-trace calculation, Lemma 3.2(ii), gives
+
+\[
+\operatorname{Tr}j(f)(u)=2\sum_{n\ge1}f(nu).
+\tag{H5}
+\]
+
+Consequently the following is a literal factorization of the original arithmetic map:
+
+\[
+V\xrightarrow{j}HH_0(\mathcal A)\xrightarrow{\operatorname{Tr}}\mathscr B,
+\qquad \operatorname{Tr}\circ j|_V=\Theta.
+\tag{H6}
+\]
+
+The last arrow in (H6) is understood on the displayed subspace, where its trace has the stated strong-Schwartz range; an unrestricted trace on all crossed-product classes is not asserted.
+
+The book's normalized map is
+
+\[
+\mathcal E f(u)=u^{1/2}\sum_{n\ge1}f(nu)=\tfrac12\mathcal U\Theta f(u),\qquad \mathcal UF(u)=u^{1/2}F(u).
+\tag{H7}
+\]
+
+The map \(\mathcal U:L^2(\mathbb R_{>0},du)\to L^2(\mathbb R_{>0},du/u)\) is an isometry, since its squared norm is exactly \(\int|F|^2du\). This assertion uses the positive half-line. An even full-line realization has its separately retained factor two.
+
+## 3. The source Gaussian is exactly a Laplacian preimage
+
+Write the book's generator as \(H=x\partial_x=-D\), and distinguish its Laplacian from a representative increment:
+
+\[
+\mathscr L=H(1+H)=D^2-D.
+\tag{H8}
+\]
+
+For the unchanged Gaussian \(g_0(x)=e^{-\pi x^2}\), direct differentiation gives
+
+\[
+\boxed{\mathscr Lg_0=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}=\phi_*.}
+\tag{H9}
+\]
+
+Thus the original source function has the exact homological expression
+
+\[
+f_0=\Theta\phi_*=\operatorname{Tr}j(\mathscr Lg_0),\qquad \mathcal Mf_0(s)=2\xi(s).
+\tag{H10}
+\]
+
+For example, Mellin integration by parts gives
+
+\[
+\mathcal M\phi_*(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),
+\tag{H11}
+\]
+
+initially in a common convergence half-plane and then by continuation. Multiplication by \(2\zeta(s)\) gives \(2\xi(s)\), not \(\xi(s)\). No change of seed or leading coefficient is involved.
+
+Lemma 4.1(iii) of the chapter gives a bijection \(\mathscr L:\mathcal S(\mathbb R)_{\rm ev}\to V\). The differential operator is continuous. The two moment constraints define a closed Frechet subspace, so the open mapping theorem also gives a continuous inverse. We obtain a topological cochain isomorphism
+
+\[
+[\mathcal S(\mathbb R)_{\rm ev}\xrightarrow{\Theta\mathscr L}\mathscr B]
+\xrightarrow{(\mathscr L,1)}[V\xrightarrow\Theta\mathscr B].
+\tag{H12}
+\]
+
+It commutes with the polynomial action of \(D\). Moreover \(\mathcal FD=(1-D)\mathcal F\), so \(\mathcal F\mathscr L=\mathscr L\mathcal F\). Hence the same comparison on both ordered legs gives
+
+\[
+[\mathcal S_{\rm ev}^2\xrightarrow{\Theta\mathscr L(1,-\mathcal F)}\mathscr B]
+\xrightarrow{(\mathscr L\oplus\mathscr L,1)}
+[V^2\xrightarrow{\Theta(1,-\mathcal F)}\mathscr B].
+\tag{H13}
+\]
+
+The degree-zero cycle \((v,\mathcal F^{-1}v)\) is transported, not removed. The fibrewise lifts of (H12)–(H13) preserve the original labels and commute with synchronization into the joint label.
+
+## 4. Keep the closure comparison as an arrow
+
+The quotient in Proposition 4.2 is, on the specified trace image,
+
+\[
+Q_{\rm CC}=\mathscr B/\overline{\operatorname{Tr}j(\mathscr L\mathcal S_{\rm ev})}
+=\mathscr B/\overline{\Theta V}.
+\tag{H14}
+\]
+
+There is always a canonical continuous map
+
+\[
+Q\longrightarrow Q_{\rm CC},\qquad
+\ker=\overline{\Theta V}/\Theta V.
+\tag{H15}
+\]
+
+Under the prior global-retraction theorem \(\Lambda\Theta=1_V\), the image \(\Theta V\) is closed: it is the range of the continuous idempotent \(\Theta\Lambda\), equivalently the kernel of \(1-\Theta\Lambda\). Then (H15) is a topological isomorphism. This use of the prior analytic theorem is explicit; a finite matrix computation does not prove it.
+
+The chapter's full spectral statement concerns \(Q_{\rm CC}\): the Laplacian eigenvalues are \(\rho(\rho-1)\) for all nontrivial zeros, with their jets. Its critical-only construction later in the chapter is a different quotient. The following calculation supplies a map between the two kinds of coefficient object without presuming injectivity.
+
+## 5. A specified critical-line comparison and its exact finite kernel
+
+Choose the plus-sign Mellin restriction
+
+\[
+J_{\rm crit}:\mathscr B\longrightarrow\mathcal S(\mathbb R),\qquad
+J_{\rm crit}F(t)=\mathcal MF(\tfrac12+it).
+\tag{H16}
+\]
+
+This is continuous: in logarithmic coordinates, \(e^{y/2}F(e^y)\) and all derivatives have faster-than-polynomial decay, with bounds controlled by finitely many defining seminorms of \(\mathscr B\). Fourier transformation therefore lands continuously in Schwartz space. The plus sign is deliberate; the chapter's displayed Fourier transform uses the opposite sign, related by \(t\mapsto-t\).
+
+Put
+
+\[
+z_c(t)=\zeta(\tfrac12+it),\qquad
+Q_{\rm crit}=\mathcal S(\mathbb R)/\overline{z_c\mathcal S(\mathbb R)}.
+\tag{H17}
+\]
+
+For \(\phi\in V\), Mellin factorization gives
+
+\[
+J_{\rm crit}(\Theta\phi)(t)=2z_c(t)\mathcal M\phi(\tfrac12+it).
+\tag{H18}
+\]
+
+The remaining Mellin factor is Schwartz: at the origin \(\phi(u)=O(u^2)\), and at infinity it is Schwartz; repeated logarithmic differentiation and integration by parts control every Fourier seminorm. The zeta factor is a Schwartz multiplier, as used in the chapter's Section 5. Thus (H18) induces an actual continuous linear map
+
+\[
+\boxed{\Gamma:Q\longrightarrow Q_{\rm crit},\quad [F]\longmapsto[J_{\rm crit}F].}
+\tag{H19}
+\]
+
+It also factors through (H15), by continuity and the closed target relation space. Its operator equations are
+
+\[
+\Gamma D_Q=M_{1/2+it}\Gamma,\qquad
+\Gamma(a^{-1/2}\overline U_a)=M_{a^{it}}\Gamma.
+\tag{H20}
+\]
+
+Theorem 5.4 identifies the target coefficient quotient with global sections of the Scaling Site quotient sheaf. Section 7 below records a zero-mode qualification needed before using the printed raw-section formula at the boundary \(L=0\).
+
+Now let \(Z\) be a finite packet of actual zeros, with the retained multiplicities, and use the previously constructed inclusion
+
+\[
+\sigma_Z:E_Z=\mathbb C[s]/(h_Z)\hookrightarrow Q,\qquad
+D_Q\sigma_Z=\sigma_ZA_Z,\quad A_Z=M_s.
+\tag{H21}
+\]
+
+Chinese remainders give the specified decomposition \(E_Z=E_{Z,\rm crit}\oplus E_{Z,\rm off}\), according to whether \(\Re\rho=1/2\). Then
+
+\[
+\boxed{\ker(\Gamma\sigma_Z)=E_{Z,\rm off}.}
+\tag{H22}
+\]
+
+**Proof on the off-critical blocks.** For \(\Re\rho\ne1/2\), the function \((1/2+it-\rho)^{-1}\) is smooth on the real line and all its derivatives are polynomially bounded. It is a continuous Schwartz multiplier, commutes with \(z_c\), and preserves both the ideal and its closure. Therefore \(M_{1/2+it}-\rho\) is invertible on \(Q_{\rm crit}\). If \((A_Z-\rho)^m v=0\), (H20) gives
+
+\[
+(M_{1/2+it}-\rho)^m\Gamma\sigma_Zv=0,
+\]
+
+and hence \(\Gamma\sigma_Zv=0\). This kills the full generalized block under this particular map, not just its reduced eigenline.
+
+**Proof on a critical block.** Let \(\rho=1/2+i\gamma\) have order \(m\). The continuous derivative evaluations descend to
+
+\[
+\Xi_\rho:Q_{\rm crit}\longrightarrow\mathbb C[\epsilon]/(\epsilon^m),\qquad
+\Xi_\rho[f]=\sum_{j=0}^{m-1}\frac{i^{-j}}{j!}f^{(j)}(\gamma)\epsilon^j.
+\tag{H23}
+\]
+
+Indeed these functionals vanish on \(z_c\mathcal S\), and hence on its closure. The chain rule gives
+
+\[
+\Xi_\rho\Gamma[F]=\sum_{j<m}\frac{(\mathcal MF)^{(j)}(\rho)}{j!}\epsilon^j.
+\tag{H24}
+\]
+
+The right side is exactly the original Mellin-jet observation. Its composite with \(\sigma_Z\) is the Chinese-remainder projection to the \(\rho\)-block, by \(J_Z\sigma_Z=1\). Taking all critical blocks provides a left inverse on \(E_{Z,\rm crit}\), proving (H22).
+
+In split coordinates, (H22) says
+
+\[
+\widetilde\Gamma(\lambda,\sigma_Zv)=(\lambda,0)
+\quad(v\in E_{Z,\rm off}),
+\tag{H25}
+\]
+
+not external absence. The critical quotient's spectral location does not establish injectivity of (H19). Formula (H22) calculates the exact finite failure of injectivity that a comparison argument would have to address.
+
+## 6. The original metric supplies the Laplacian defect, not an assumed Hodge star
+
+Fix an original representative \(R:E_Z\to\mathscr B\) with
+
+\[
+DR-RA=\Theta K,\quad G=R^*R,\quad W=A^*G+GA-G.
+\tag{H26}
+\]
+
+The normalized representative \(\widehat R=\mathcal UR\) has the same Gram matrix. With \(D_\times=-u\partial_u\) acting in multiplicative coordinates,
+
+\[
+D_\times\widehat R-\widehat R(A-\tfrac12I)=\mathcal U\Theta K=2\mathcal EK,
+\qquad
+W=(A-\tfrac12I)^*G+G(A-\tfrac12I).
+\tag{H27}
+\]
+
+Thus the shift and the source boundary are both accounted for. In particular applying \(\mathcal U\) to the entire relation curve \(R_j+z\,\delta R\) leaves its Gram matrix, restriction return, determinant ratio, and curvature cost unchanged.
+
+For the tensor-weight algebraic formula, let \(k\in\mathbb R\), keep the original \(A,G\), and put
+
+\[
+L_k=A^2-kA,\qquad W_k=A^*G+GA-kG.
+\tag{H28}
+\]
+
+Expansion proves
+
+\[
+\boxed{L_k^*G-GL_k=A^*W_k-W_kA,}\qquad
+\boxed{GL_k=W_kA-A^*GA.}
+\tag{H29}
+\]
+
+Writing \(B=A-kI/2\) gives the equivalent centered energy identity
+
+\[
+\boxed{GL_k=W_kB-B^*GB-\tfrac{k^2}{4}G.}
+\tag{H30}
+\]
+
+For (H29), expand \(A^*(A^*G+GA-kG)-(A^*G+GA-kG)A\); the middle \(A^*GA\) terms cancel and the remaining expression is \(L_k^*G-GL_k\). For (H30), substitute \(GA=W_k-A^*G+kG\), or expand with \(A=B+kI/2\). These are exact identities before any estimate. The real part of the first term on the right of (H30) is the retained error in the expected negative energy inequality.
+
+The existing rank-two source formula for \(W_n\) consequently gives a rank-at-most-four formula for \(L^*G-GL\). This rank fact alone bounds neither its relative norm nor its effect on the growing arithmetic packet.
+
+An actual constituent inclusion \(J\) with \(AJ=JA_F\) satisfies \(L_kJ=J(A_F^2-kA_F)\). No commutation of \(A\) with a metric restriction-loss operator is required.
+
+The full jet formula is
+
+\[
+\boxed{L_k|_{E_\rho}=\rho(\rho-k)I+(2\rho-k)N_\rho+N_\rho^2.}
+\tag{H31}
+\]
+
+When \(2\rho-k\ne0\), the nilpotent factor \((2\rho-k)I+N_\rho\) is invertible and commutes with \(N_\rho\). Therefore the powers of the nilpotent part have exactly the same kernels as \(N_\rho^j\): Jordan lengths remain unchanged. In particular negative real diagonal spectrum is not the same as self-adjointness on a positive Hilbert metric. Requiring exact self-adjointness on a multiple-zero packet would also force semisimplicity. The chapter itself retains nontrivial Jordan actions in Remark 5.5.
+
+## 7. The boundary zero mode needs to be retained separately
+
+There is a concrete qualification in the printed Section 5 construction. Proposition 5.2(iii), p. 94, places the raw family \(\Sigma_{e^L}\mathcal E\phi\) in the smooth-section sheaf vanishing at \(L=0\). But the same proof, p. 95, explicitly gives its zeroth normalized Fourier coefficient as
+
+\[
+\widehat{\Sigma_{e^L}\mathcal E\phi}(0)
+=L^{-1/2}a_\phi,\qquad
+a_\phi=\int_0^\infty\mathcal E\phi(u)\,\frac{du}{u}
+=\zeta(\tfrac12)\mathcal M\phi(\tfrac12).
+\tag{H32}
+\]
+
+For the original seed (H9) this is
+
+\[
+\boxed{a_{\phi_*}=\xi(\tfrac12)\ne0.}
+\tag{H33}
+\]
+
+The nonvanishing is exact, not inferred from numerics. In (H11) the gamma factor is nonzero at \(1/2\); and \(\zeta(s)=\eta(s)/(1-2^{1-s})<0\) for real \(0<s<1\), since the paired alternating series for \(\eta(s)\) is strictly positive. Thus the raw coefficient \(\xi(1/2)L^{-1/2}\) does not extend continuously to zero, let alone vanish to all orders. This calculation concerns the literal raw-section assertion, not the validity of the preceding Hochschild trace and all-zero quotient statements.
+
+A support-retaining repair is to use the augmented Fourier-coordinate object
+
+\[
+\mathcal H^\#(U)=C^\infty_{\rm flat}(U,\ell^2(\mathbb Z\setminus\{0\}))\oplus C^\infty(U),
+\tag{H34}
+\]
+
+where flatness is imposed at zero when it belongs to \(U\). Map a source function to
+
+\[
+\Sigma^\#\mathcal E\phi=
+\bigl(\Pi_{\ne0}\widehat{\Sigma\mathcal E\phi},a_\phi\bigr).
+\tag{H35}
+\]
+
+For \(L>0\), reconstruct the full raw Fourier vector by
+
+\[
+(\eta(L),a(L))\longmapsto\eta(L)+L^{-1/2}a(L)e_0.
+\tag{H36}
+\]
+
+In the circle's function coordinates, the added constant function has value \(a(L)/L\). The different powers in these two coordinate systems are forced by the unitary normalization of the Fourier basis.
+
+The covering transfer satisfies
+
+\[
+\widehat{\sigma_n\xi}(L,j)=\sqrt n\,\widehat\xi(nL,nj).
+\tag{H37}
+\]
+
+Accordingly the renormalized zero-line coordinate transforms by \(a(L)\mapsto a(nL)\). The two components in (H34) therefore have genuine compatible \(\mathbb N^\times\)-actions. Normalized scaling is trivial on the zero line. Nothing has been silently discarded.
+
+### The extra zero line is an actual closed boundary
+
+Here is an explicit source proof of its fate in the quotient. For \(T>0\), form in the original Frechet space
+
+\[
+\phi_T(x)=\frac1{\sqrt{4\pi T}}\int_{\mathbb R}
+ e^{-r^2/(4T)}e^{-r/2}\phi_*(e^{-r}x)\,dr.
+\tag{H38}
+\]
+
+For every fixed Schwartz seminorm the seminorm of the integrand's dilated factor is bounded by a constant times \(e^{C|r|}\). Hence the Gaussian integral converges in Schwartz space. Parity and both original moment conditions persist, so \(\phi_T\in V\). This does not assert uniform source seminorm bounds as \(T\to\infty\).
+
+The normalized dilation identity
+
+\[
+\mathcal E(e^{-r/2}\phi_*(e^{-r}\,\cdot))(u)=\mathcal E\phi_*(e^{-r}u)
+\]
+
+and Fourier transformation give
+
+\[
+\widehat{\mathcal E\phi_T}(s)=e^{-Ts^2}\widehat{\mathcal E\phi_*}(s),\qquad
+a_{\phi_T}=a_{\phi_*}.
+\tag{H39}
+\]
+
+On every compact interval \(0\le L\le M\), all nonzero frequencies have magnitude at least \(2\pi/M\). Differentiating their Fourier coefficients produces only finite sums of powers of \(T\), frequency, and \(L^{-1}\), times the Gaussian and derivatives of a Schwartz function. Splitting the Gaussian into two equal factors yields, for each flat-section seminorm of derivative order \(m\), a bound
+
+\[
+p_{N,m,[0,M]}\bigl(\Pi_{\ne0}\widehat{\Sigma\mathcal E\phi_T}\bigr)
+\le C_{N,m,M}(1+T)^m e^{-2\pi^2T/M^2}\longrightarrow0
+\quad(T\ge1).
+\tag{H40}
+\]
+
+To see the uniformity at \(L=0\), replace every negative power of \(L\) by a corresponding power of \(|s|/(2\pi|n|)\), use the second Gaussian to absorb frequency powers, and sum an arbitrarily high negative power of \(|n|\). The required constants depend on finitely many Schwartz seminorms of \(\widehat{\mathcal E\phi_*}\).
+
+Thus
+
+\[
+\Sigma^\#\mathcal E\phi_T\longrightarrow(0,\xi(1/2)).
+\tag{H41}
+\]
+
+Since the last scalar is nonzero, the closed source-generated module in (H34) contains the entire renormalized zero line. Multiplication by local smooth functions gives the corresponding sheaf statement. Once this line is retained, its removal from the quotient is justified by a displayed family of original source relations. Algebraically, if \(N\subset M\oplus\mathcal O\) is the closed source module and \(0\oplus\mathcal O\subset N\), then \(N=\overline{\operatorname{pr}_M N}\oplus\mathcal O\), and the quotient is the nonzero-mode quotient. The split lift makes the zero line a supported boundary, not absence.
+
+This is a written repair and comparison, not a completed Lean proof of the heat-limit or sheaf assertion. It supplies the missing zero-mode convention without adding an artificial third vanishing condition to the original \(V\).
+
+A separate local typo on p. 100 is also relevant when reading the quotient argument: \(\zeta(1/2\mp2\pi i/L)\) tends to \(\zeta(1/2)\ne0\) as \(L\to\infty\), not as \(L\to0\). We use the former limit. The published page and the supplied scan were inspected; this is not an OCR substitution.
+
+## 8. What has and has not been identified
+
+The established chain is
+
+\[
+\text{original theta source}
+\xleftrightarrow{\mathscr L}
+\text{specified Hochschild trace image}
+\longrightarrow Q_{\rm CC}
+\xrightarrow{\Gamma}Q_{\rm crit},
+\tag{H42}
+\]
+
+where the first comparison is the actual two-term-complex isomorphism (H12), not a degree-forgetting isomorphism of every displayed space. On finite arithmetic packets the last arrow has the calculated kernel (H22), and every surviving critical jet has the explicit recovery (H23).
+
+The polynomial Laplacian uses the actual arithmetic action \(A\). The curvature restriction-loss operator uses the actual source metrics. They are not identified with one another, and their eigenspaces are not presumed to agree. Equations (H27)–(H31) give the actual connection through the original boundary form \(W\).
+
+The chapter's Hodge dictionary is explicitly heuristic on p. 91. Its Corollary 4.3 makes a negative-spectrum statement equivalent to RH; it does not prove that statement by declaring the displayed star to be the adjoint for the original Gram metric. Here (H29) computes that adjoint defect instead.
+
+## 9. Formal and computational scope
+
+`SplitZeroLaplacianControl.lean` formalizes the matrix identities (H29), constituent intertwining, the full quadratic jet (H31), and the general lemma that an intertwiner sends a nilpotent block to zero when the corresponding shifted target operator is injective. The actual target multiplier's invertibility and the critical-jet recovery are the analytic written proof in Section 5, not assumed custom Lean axioms.
+
+The four preceding new modules formalize the relation Gram curve, polynomial local specialization sequence, least invariant hull, and curvature/restriction scalar identities. Their scope and the cyclic gcd/metric-pole consequences are recorded in `RESEARCH_NOTE.md`. The strict workflow checks individual sources at `--trust=0`, treats warnings as errors, and audits the selected 29+9 new declarations against `propext`, `Classical.choice`, and `Quot.sound`. Actual run status is recorded separately after execution; source text alone is not a successful certificate.
+
+The exact Python checks include the original Gaussian differentiation, all factors in (H11), the non-Euclidean polynomial-source Gram metric, generalized jets, the derivative phase \(i^{-j}/j!\), and the renormalized covering coefficient. The finite critical/off-critical polynomial calibration is expressly not a set of asserted zeta zeros. Neither those checks nor the Lean algebra prove a uniform arithmetic nonconcentration bound.
+
+## References and reading scope
+
+Connes, A., & Consani, C. (2023). Hochschild homology, trace map and \(\zeta\)-cycles. In A. Connes, C. Consani, B. I. Dundas, M. Khalkhali, & H. Moscovici (Eds.), *Cyclic cohomology at 40: Achievements and future prospects* (Proceedings of Symposia in Pure Mathematics, Vol. 105, pp. 83–101). American Mathematical Society. https://doi.org/10.1090/pspum/105/01896
+
+The complete nineteen-page chapter was read in the uploaded volume. The exact trace factor, Laplacian lemma, Hodge dictionary, and zero-mode passage were also inspected as rendered pages. The p. 100 limit and Jordan remark were checked in the author's published offprint. This does not claim reading the full proceedings volume or formal verification of the chapter.
+
+Prior programme inputs: the owner's `Tau_Chain_Descent`, `Tau_Global_Comparison`, `Tau_Homotopy_Boundary_Control`, and the 13 September 2026 specialization/curvature note; the existing reader's restriction formalization at PR26 commit `e382e4f61aa4a61b621a8f064dfefc1ab80640d8`. The present branch also retains main commit `1f7e7c02343884a17df9873566e81a9083c70951` without changing the frozen publication sources.

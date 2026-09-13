@@ -1,4 +1,31 @@
-# Current R57 Split-Zero source: what was calculated and why
+# Current R62 Split-Zero source: recovery, curvature and the active growth problem
+
+[Read the 821-page paper](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)
+· [Historical 765-page DOI](https://doi.org/10.5281/zenodo.22736292)
+
+The 821-page R62 Split-Zero reader develops periodized source recovery and density, finite-circle curvature with quotient compensation, the circle/critical-observation diamond, and residue-constituent derivative and curvature formulas. It keeps the original theta-function source, zero multiplicities, source mass, coordinate S=k/2+iu and least-norm quotient metric. The uniform arithmetic growth estimate remains an active unresolved problem; no RH proof or closure is claimed.
+
+The periodized-source chapters reconstruct the specified arithmetic source from
+its observations and establish the density/completion statements needed for
+the original norm. Finite-circle curvature is computed together with the
+quotient compensation terms, so the comparison retains the actual change of
+least-norm representatives. The circle/critical-observation diamond makes the
+two observation routes and their maps explicit. Residue-constituent formulas
+then track first derivatives and curvature with multiplicities and orientations
+still present. Their purpose is to expose the finite quantities that the
+remaining uniform arithmetic growth estimate must control, not to assume that
+estimate or replace the source metric.
+
+The full R62 proof dependencies, original notes and 47 complete source witnesses
+remain available. Historical numerical, build and Lean records keep their
+recorded dates and scope; this publication step does not replay them.
+
+This fixed PDF/public-source cut ends at R62. Later holonomy, TA, AT, AW and original-theta certification work is excluded. Separately indexed GitHub working sources retain their own proof and CI scopes. The following earlier guide is explicitly historical. Its DOI remains
+the 765-page record until a new edition is actually published and verified.
+
+## Earlier 765-page edition and research guide (historical)
+
+# Historical R57 Split-Zero source: what was calculated and why
 
 [Read the 765-page paper](https://zenodo.org/api/records/22736292/files/35-splitzero-sga-connes-continuation-765p.pdf/content) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-sga-connes/README.md) · [Published DOI 10.5281/zenodo.22736292](https://doi.org/10.5281/zenodo.22736292) · [All 36 files](calculation_edition_20260913_sga_connes/README.md)
 

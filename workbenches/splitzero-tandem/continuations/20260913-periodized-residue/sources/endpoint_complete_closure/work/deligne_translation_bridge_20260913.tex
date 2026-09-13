@@ -1,0 +1,320 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\id}{\operatorname{id}}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\begin{document}
+\title{Translation of the exponential comparison:\\full coefficient, period, metric, and finite-field maps}
+\author{}
+\date{13 September 2026}
+\maketitle
+
+\section{The original fibre and the auxiliary translation}
+The September 13 exponential comparison starts with the actual arithmetic
+polynomial and sum operator
+\[
+ \chi(S)=S^q+\sum_{b=0}^{q-1}c_bS^b,\quad q>0,\qquad
+ E=\mathbb C[S]/(\chi),\qquad A=M_S,
+\]
+and the specified primitive
+\[
+ \Phi(S)=\frac{S^{q+1}}{q+1}
+       +\sum_{b=0}^{q-1}\frac{c_bS^{b+1}}{b+1}.
+\]
+Its cohomology is the cokernel of
+\(D_{u,t}=u\partial_S+\chi(S)-t\), with the omitted differential symbol
+understood as the coefficient identification with one-forms. All formulas
+below retain this original object at \(a=0\). The parameter \(a\in\mathbb C\)
+defines an auxiliary comparison family; a translated polynomial is not
+asserted to be a new zeta zero packet.
+
+Set
+\begin{equation}\tag{DT.1}
+ \chi_a(S)=\chi(S-a),\qquad
+ \Phi_a(S)=\Phi(S-a)-\Phi(-a),\qquad
+ T_aP(X)=P(X+a).
+\end{equation}
+Thus \(\Phi_a(0)=0\), and no additive constant in the potential is lost.
+Use the same substitution on coefficients of one-forms, with \(dS=dX\).
+
+\begin{proposition}[The coefficient and connection maps]
+The map \(T_a\) is an isomorphism of the two-term polynomial complexes
+for \(\chi_a\) and \(\chi\), over \(\mathbb C[u,t]\). It induces an
+isomorphism of their free rank-\(q\) cohomology modules. On the special
+fibre \((u,t)=(0,0)\),
+\begin{equation}\tag{DT.2}
+ T_a:E_a=\mathbb C[S]/(\chi_a)\xrightarrow{\sim}E,
+ \qquad T_aA_aT_a^{-1}=A+aI.
+\end{equation}
+Every primary multiplicity and nilpotent Jordan block is retained.
+For \(u\ne0\), the descended parameter connections satisfy
+\begin{equation}\tag{DT.3}
+ T_a\nabla_t^a T_a^{-1}=\nabla_t-\frac a u I,
+ \qquad \nabla_t=\partial_t-\frac{A(t)}u,
+\end{equation}
+where \(A(t)\) is the original companion matrix for \(\chi-t\).
+\end{proposition}
+\begin{proof}
+Substitution gives, for every polynomial \(P\),
+\[
+ T_a\bigl(uP'+(\chi_a-t)P\bigr)
+   =u\partial_X(T_aP)+(\chi(X)-t)T_aP.
+\]
+The inverse is substitution by \(-a\). A polynomial of degree \(n\)
+with leading coefficient \(b\ne0\) is sent by either differential to
+a polynomial of degree \(n+q\) with the same leading coefficient.
+Successive subtraction of such images therefore gives a unique
+representative of degree less than \(q\), over the coefficient ring.
+This proves the stated freeness and the base-change identification.
+On the special fibre, \(T_a(SP)=(X+a)T_aP\), which proves DT.2.
+In particular, \((A_a-(\lambda+a)I)^m\) is conjugate to
+\((A-\lambda I)^m\) for every \(m\), proving the multiplicity statement
+without discarding the nilpotent part. On arbitrary polynomial
+representatives, the connection is \(\partial_t-S/u\). Since \(T_a\)
+is independent of \(t\), its conjugate is
+\(\partial_t-(X+a)/u\). The commutator with the differential vanishes,
+so this equality descends and yields DT.3.
+\end{proof}
+
+In the fixed bases \(1,S,\ldots,S^{q-1}\) and
+\(1,X,\ldots,X^{q-1}\), the matrix of \(T_a\) is
+\begin{equation}\tag{DT.4}
+ (C_a)_{rb}=\begin{cases}\binom br a^{b-r},&0\le r\le b<q,\\
+                  0,&r>b,\end{cases}
+ \qquad C_a^{-1}=C_{-a},\qquad \det C_a=1.
+\end{equation}
+The inverse and composition rules follow by composing the literal
+substitutions. In particular,
+\(C_aA_a(t)C_a^{-1}=A(t)+aI\).
+
+\section{Periods and the retained exponential factor}
+Fix \(u\ne0\), put \(d=q+1\), and use the original rays
+\[
+ \theta_j=\frac{\arg u+\pi}{d}+\frac{2\pi j}{d},\qquad
+ \Gamma_j=-\ell_0+\ell_j,\qquad 1\le j\le q,
+\]
+oriented as in the exponential comparison. Let \(\Pi(u,t)\) denote its
+period matrix, whose \((j,b)\) entry is
+\(\int_{\Gamma_j}e^{(\Phi(X)-tX)/u}X^b\,dX\).
+Let \(\Pi_a\) use the identical labelled ray prescription for \(\Phi_a\)
+in the \(S\)-plane.
+
+\begin{proposition}[Exact period translation]
+Define
+\begin{equation}\tag{DT.5}
+ h_a(t)=-\Phi(-a)-ta,\qquad f_a(u,t)=\exp\bigl(h_a(t)/u\bigr).
+\end{equation}
+Then
+\begin{equation}\tag{DT.6}
+ \Pi_a(u,t)=f_a(u,t)\Pi(u,t)C_a.
+\end{equation}
+The map \(f_aT_a\) intertwines the two parameter connections in DT.3.
+\end{proposition}
+\begin{proof}
+The substitution \(S=X+a\) gives the exact identity
+\[
+ \Phi_a(S)-tS=\Phi(X)-tX+h_a(t).
+\]
+It changes the contour to \(\Gamma_j-a\). This translated contour
+may be moved to \(\Gamma_j\) without changing the integral. Indeed,
+truncate the two rays at radius \(R\), join their translated endpoints
+by segments of length \(|a|\), and apply Cauchy's theorem to the
+resulting closed path. The entire integrand has no finite singularity.
+On each joining segment its leading exponent is
+\(-R^d/(d|u|)+O(R^{d-1})\), uniformly along that segment; a polynomial
+factor grows at most polynomially. Its integral tends to zero.
+The two portions at the finite starting point have opposite orientation
+and cancel. Absolute convergence on the original and translated rays
+follows from the same estimate. Finally, \((X+a)^b\) is the column
+expansion DT.4. This proves DT.6 including the scalar and all phases.
+
+Since \(\partial_tf_a=-(a/u)f_a\), for every section \(v\) one has
+\[
+ \nabla_t(f_aT_av)
+  =f_a\left(\nabla_tT_av-\frac a uT_av\right)
+  =f_aT_a\nabla_t^av.
+\]
+The scalar \(f_a\) is nonzero on \(u\ne0\); no extension of this
+exponential gauge to \(u=0\) is used. DT.2 is the separately proved
+coefficient specialization at that fibre.
+\end{proof}
+
+\section{The original positive forms and their control operators}
+The period matrices used below are invertible on the stated domain
+\(u\ne0\). Here is a complete verification needed for the determinant
+ratios. At the monomial potential, the substitution
+\(x=r^d/(d|u|)\) in the absolutely convergent ray integral gives
+\[
+ \Pi^{\rm mon}_{j,b}
+ =\frac{(d|u|)^{(b+1)/d}}d\,
+   \Gamma\!\left(\frac{b+1}{d}\right)e^{i(b+1)\theta_0}
+   (\zeta^{j(b+1)}-1),\quad \zeta=e^{2\pi i/d},
+\]
+where \(\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}\,dx>0\) for
+\(s>0\). The column factors are all nonzero. A dependence among
+the remaining columns would give a polynomial
+\(\sum_{l=1}^q b_l(Z^l-1)\) of degree at most \(q\), vanishing
+at all \(q+1\) roots of unity, including \(1\). This polynomial
+is zero, so every \(b_l=0\).
+
+Join the monomial coefficients to the given \((c,t)\) by a straight
+path with real parameter \(s\in[0,1]\), keeping \(u\) fixed.
+On this compact coefficient path the leading negative ray term
+dominates all lower terms uniformly: for sufficiently large \(r\)
+the absolute value of any fixed coefficient derivative of the
+integrand is at most \(Cr^L\exp[-r^d/(2d|u|)]\).
+This is integrable by the same gamma substitution; hence
+differentiation under every contour integral is valid. A derivative
+in \(c_b\) multiplies the integrand by
+\(S^{b+1}/((b+1)u)\), and one in \(t\) multiplies it by \(-S/u\).
+The unique reduction proved above, together with the vanishing of
+\(\int_{\Gamma_j}e^{(\Phi-tS)/u}D_{u,t}P\,dS\), thus gives
+\(\Pi'(s)=\Pi(s)B(s)\) with a continuous matrix \(B(s)\).
+That integral vanishes because it is \(u\) times an exact derivative;
+both infinite endpoint values are zero and the two finite endpoint
+values cancel with the specified contour signs. The determinant
+identity
+\[
+ \frac d{ds}\det\Pi
+ =\Tr\bigl(\operatorname{adj}(\Pi)\Pi B\bigr)
+ =(\det\Pi)\Tr B
+\]
+holds also at singular matrices. Therefore
+\(\det\Pi(s)=\det\Pi(0)\exp(\int_0^s\Tr B(v)\,dv)\ne0\).
+This proves invertibility without removing repeated-root parameters.
+Equation DT.6 proves it for the translated matrix as well.
+
+Let \(G_N\) be any one of the original canonical arithmetic Gram
+matrices, and retain its index \(N\), cochain degree \(k\), and control
+form \(W_N=A^*G_N+G_NA-kG_N\). The exact pullback along DT.2 is
+\begin{equation}\tag{DT.7}
+ G_N^{[a]}=C_a^*G_NC_a.
+\end{equation}
+This is a transported specified form. No claim identifies it with a
+newly computed canonical theta form for a translated polynomial.
+
+\begin{proposition}[Control and determinant transport]
+For the transported form and the original value of \(k\),
+\begin{align}
+ W_N^{[a]}&=A_a^*G_N^{[a]}+G_N^{[a]}A_a-kG_N^{[a]}
+       =C_a^*\bigl(W_N+(a+\bar a)G_N\bigr)C_a,\tag{DT.8}\\
+ \Tr\bigl((G_N^{[a]})^{-1}W_N^{[a]}\bigr)
+       &=\Tr(G_N^{-1}W_N)+2q\operatorname{Re}a.\tag{DT.9}
+\end{align}
+Write \(H_\Pi=\Pi^*\Pi\) and
+\(B_N^{\mathrm{per}}=G_N^{-1}H_\Pi\). Then
+\begin{equation}\tag{DT.10}
+ B_N^{\mathrm{per},[a]}
+  :=(G_N^{[a]})^{-1}\Pi_a^*\Pi_a
+   =|f_a|^2 C_a^{-1}B_N^{\mathrm{per}}C_a.
+\end{equation}
+Consequently, for the same \((u,t)\) and the same original indices,
+\begin{equation}\tag{DT.11}
+ \frac{\det B_j^{\mathrm{per},[a]}}{\det B_i^{\mathrm{per},[a]}}
+   =\frac{\det B_j^{\mathrm{per}}}{\det B_i^{\mathrm{per}}}
+   =\frac{\det G_i}{\det G_j}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Insert \(C_aA_aC_a^{-1}=A+aI\) into the first definition of DT.8.
+Taking the inverse Gram and using invariance of trace under similarity
+gives DT.9. Equation DT.6 gives
+\(\Pi_a^*\Pi_a=|f_a|^2C_a^*H_\Pi C_a\), proving DT.10.
+Its determinant contains the factor \(|f_a|^{2q}\); this same factor
+occurs at both indices and cancels in their ratio. The remaining period
+Gram also cancels, giving DT.11. Thus the original endpoint determinant
+cost is retained by this exact comparison.
+\end{proof}
+
+\section{The finite-field comparison with its scalar character}
+Let \(R_0\subset\mathbb C\) be the finitely generated coefficient ring
+of the original exponential construction, and adjoin \(a\). For a
+specified map \(R_0[a]\to\mathbb F_Q\) of characteristic \(p>d\),
+and specified \(u_0\in\mathbb F_Q^\times\), \(t_0\in\mathbb F_Q\),
+reduce every displayed coefficient through that map. Put
+\[
+ f(X)=\frac{\Phi(X)-t_0X}{u_0},\qquad
+ \gamma_a=\frac{-\Phi(-a)-t_0a}{u_0}\in\mathbb F_Q.
+\]
+Use the Artin--Schreier rank-one sheaf convention in which the
+geometric-Frobenius trace at \(x\in\mathbb F_{Q^n}\) is
+\(\psi(\Tr_{\mathbb F_{Q^n}/\mathbb F_p}f(x))\), for a fixed
+nontrivial additive character \(\psi\) valued in
+\(\overline{\mathbb Q}_\ell\), \(\ell\ne p\).
+
+\begin{proposition}[Translation and the constant character line]
+For the isomorphism \(\sigma_a:X\mapsto S=X+a\),
+\begin{equation}\tag{DT.12}
+ \sigma_a^*\mathcal L_\psi((\Phi_a-t_0S)/u_0)
+   \simeq\mathcal L_\psi(f)\otimes\mathcal L_\psi(\gamma_a).
+\end{equation}
+Hence compactly supported cohomology in every degree is identified
+with that of \(\mathcal L_\psi(f)\), tensored with the displayed
+constant character line. Each geometric-Frobenius eigenvalue is
+multiplied by
+\begin{equation}\tag{DT.13}
+ \zeta_a=\psi(\Tr_{\mathbb F_Q/\mathbb F_p}\gamma_a).
+\end{equation}
+This is a root of unity, so it preserves each complex absolute value
+and hence the purity weights of this finite-field realization.
+\end{proposition}
+\begin{proof}
+The potential identity in the period proof holds after the specified
+coefficient reduction. The tensor identity of Artin--Schreier character
+sheaves can be obtained directly from their covers: if
+\(y_1^p-y_1=f\) and \(y_2^p-y_2=\gamma_a\), then
+\((y_1+y_2)^p-(y_1+y_2)=f+\gamma_a\). The addition map identifies
+the contracted product of the two \(\mathbb F_p\)-torsors with the
+third torsor. On the character lines, the addition action becomes the
+product of their characters, which gives DT.12. Pullback by the
+base-defined isomorphism \(\sigma_a\) preserves compact supports
+and commutes with Frobenius. Tensoring with a line pulled back from
+the base tensors the compact-support complex with that line: this
+can be checked on a cochain resolution before taking cohomology.
+Our stated trace convention makes its Frobenius scalar DT.13.
+The additive group of \(\mathbb F_p\) has exponent \(p\), so
+\(\zeta_a^p=1\), proving the absolute-value assertion.
+\end{proof}
+
+These formulas compose with the exponential-family application of
+Deligne, \emph{La conjecture de Weil II}, \S\S3.7.2--3.7.4, to the
+degree-\(d\) polynomial with nonzero leading coefficient. The source
+for that application, including the boundary chart and its hypotheses,
+is retained in the exponential comparison note; the present proof
+establishes the additional translation maps themselves.
+
+\section{Specialization and split support}
+The polynomial chain isomorphism \(T_a\) is defined before either
+complex or finite-field realization. Its coefficient map, the
+specialization \(u=t=0\), and the inclusion of the original fibre
+\(a=0\) induce maps under the same split-zero functor \(G\).
+For a ring map \(\varphi:B\to B'\), this functor acts by
+\[
+ G(\varphi)(\tau)=\tau,\qquad
+ G(\varphi)(b^\bullet)=\varphi(b)^\bullet.
+\]
+Therefore a supported coefficient specialized to zero maps to
+\(e=0^\bullet\), and an absent coefficient maps to \(\tau\).
+The square with the amplitude maps \(p_B,p_{B'}\) commutes, since
+both composites take \(\tau\) to zero and \(b^\bullet\) to
+\(\varphi(b)\). On each already specified receiving module fibre,
+the coefficient chain relation specializes to the relation
+\(\chi P=0\) without changing its label. The functorial map thus
+retains both the supported kernel and external absence.
+
+The translation formulas specify exactly how the two realizations
+respond to the same coefficient operation: DT.2 shifts the arithmetic
+sum operator, DT.9 changes its metric trace by \(2q\operatorname{Re}a\),
+DT.10 retains the analytic exponential scalar, and DT.13 supplies the
+finite-field character scalar. These are complete comparison maps.
+They do not identify a finite-field Frobenius with \(A\), and they
+leave the original theta metric estimate as the same determinant
+quantity in DT.11. The original arithmetic construction remains
+the specified fibre \(a=0\) throughout.
+\end{document}

@@ -1,0 +1,669 @@
+\textbf{One of the analytic estimates in the new endpoint criterion is now proved for the actual arithmetic measure.} For a fixed packet \(h\), retaining all its selected zero orders, I obtain
+
+\[
+\boxed{
+\left(
+\frac{\omega_{h,k,2n}}{\omega_{h,k,n}}
+\right)^{1/(2n)}
+\le C_h n,
+\qquad n\ge k\ge3,
+}
+\]
+
+where \(C_h<\infty\) depends on \(h\), but \textbf{not} on the tensor degree \(k\) or polynomial degree \(n\).
+
+This establishes the \(O_h(q_k)\) polynomial-norm input proposed in the formalization session's handoff, on the explicit window \(q_k\le N<2q_k\). That handoff had correctly left this arithmetic estimate unproved.
+
+Combining the bound with its endpoint-selection theorem gives a sharper statement about the remaining source--relation volumes: \textbf{an off-line quartet would force}
+
+\[
+\boxed{
+\liminf_{k\to\infty}
+\frac{
+\log\!\left(
+V_{q_k-1}V_{q_k}/(V_{2q_k-1}V_{2q_k})
+\right)
+}{
+q_k\log k
+}
+\ge2.
+}
+\]
+
+The upper bound excluding that volume growth is not proved here. The norm factor in this particular criterion, however, is no longer an assumed estimate.
+
+\href{sources/web_arithmetic_endpoint_delivery/Tau_Arithmetic_Endpoint_Bounds/index.html}{\textbf{Full derivation in the HTML reader}} · \href{sources/web_arithmetic_endpoint_delivery/Tau_Arithmetic_Endpoint_Bounds/NOTE.tex}{\textbf{LaTeX}} · \href{sources/web_arithmetic_endpoint_delivery/Tau_Arithmetic_Endpoint_Bounds/HANDOFF.md}{\textbf{Formalization handoff}} · \href{sources/original_archives/Tau_Arithmetic_Endpoint_Bounds_2026-09-13.zip}{\textbf{Complete package}}
+
+\subsubsection{1. The estimate concerns the original arithmetic source}\label{endpoint-user_norm_original--the-estimate-concerns-the-original-arithmetic-source}
+
+I read the current main revision, which now includes the exterior/trace formalization, and the endpoint and confluent-transfer developments in PRs \#23 and \#24. Their source maps remain the inputs here; I have not replaced them with another positive metric.
+
+The base remains \(\mathfrak b_\tau\), carrying
+
+\[
+\boxed{
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{j}&\mathbb C.
+\end{array}
+}
+\]
+
+The target of \(p_{\mathbb Z}\) remains infinite. The maps preserve \(e=0^\bullet\) and external absence \(\tau\) separately before the arithmetic observation.
+
+Retain
+
+\[
+C_+=[V\xrightarrow{\Theta}\mathscr B],
+\qquad
+Q=\mathscr B/\Theta V,
+\qquad
+D=-x\partial_x,
+\qquad
+g=2\xi.
+\]
+
+For the fixed packet,
+
+\[
+h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},
+\qquad
+v_h=\frac gh,
+\]
+
+define the same density and convolution as before:
+
+\[
+\boxed{
+w_h(t)=\frac{|v_h(\tfrac12+it)|^2}{2\pi},
+\qquad
+m_{h,k}=w_h^{*k},
+\qquad
+\int_{\mathbb R}m_{h,k}=\mu_h^k.
+}
+\]
+
+The source map is
+
+\[
+\mathcal V_{h,k}P
+=
+P(D_1+\cdots+D_k)(F_h^{\otimes k}),
+\qquad
+\mathcal MF_h=v_h.
+\]
+
+Its norm is exactly
+
+\[
+\|\mathcal V_{h,k}P\|^2
+=
+\int_{\mathbb R}
+|P(k/2+iu)|^2m_{h,k}(u)\,du.
+\]
+
+The arithmetic observation still satisfies
+
+\[
+\boxed{
+J^{(k)}\mathcal V_{h,k}
+=
+\eta_{h,k}\pi_\chi,
+}
+\]
+
+where
+
+\[
+\eta_{h,k}[P]
+=
+\upsilon_h^{\otimes k}P(A_k)1,
+\qquad
+\upsilon_h=j_h(g/h).
+\]
+
+Thus the full arithmetic Taylor unit stays in the map.
+
+The norm \(\omega_{h,k,n}\) is the infimum over \textbf{monic degree-\(n\) polynomials in this source}. It belongs to the leading-coefficient quotient
+
+\[
+\mathcal P_n/\mathcal P_{n-1}.
+\]
+
+The arithmetic quotient is connected through the other exact sequence
+
+\[
+\boxed{
+0\longrightarrow\mathcal P_{n-q}
+\xrightarrow{\times\chi}
+\mathcal P_n
+\xrightarrow{\pi_\chi}
+\mathbb C[S]/(\chi)
+\longrightarrow0.
+}
+\]
+
+Multiplication by monic \(\chi\) carries the leading-coefficient line at degree \(n-q\) to the one at degree \(n\). The arithmetic quotient sends that same relation to its supported zero. These maps connect the two norm calculations without identifying them. The original internal quotient retains labels and identifies precisely differences lying in the specified relation submodule.
+
+\subsubsection{2. The new analytic input is a lower bound after three actual convolutions}\label{endpoint-user_norm_original--the-new-analytic-input-is-a-lower-bound-after-three-actual-convolutions}
+
+The earlier gamma comparison supplied an upper envelope. For the endpoint norm ratio, I constructed a lower envelope for the \textbf{unchanged arithmetic density}.
+
+The starting lemma is
+
+\[
+\boxed{
+\int_{T-1}^{T+1}
+|\zeta(\tfrac12+it)|^2\,dt
+\ge c_\zeta(1+|T|)^{-42},
+\qquad T\in\mathbb R,
+}
+\]
+
+for a fixed positive constant \(c_\zeta\). The exponent \(42\) is a sufficient explicit exponent; no optimal local mean-square estimate is claimed.
+
+\paragraph{The local-mass proof}\label{endpoint-user_norm_original--the-local-mass-proof}
+
+For \(|T|\ge10\), put
+
+\[
+f_T(z)=\zeta(\tfrac12+iT+iz).
+\]
+
+On the ellipse
+
+\[
+z=\frac12(w+w^{-1}),
+\qquad |w|=8,
+\]
+
+the functional equation and the vertical-strip gamma estimate give
+
+\[
+|f_T(z)|\le M_T=C_0(1+|T|)^6.
+\]
+
+The relevant strip is fixed, and the zeta pole lies outside the ellipse. For the part with positive real component, the direct identity
+
+\[
+\zeta(s)=\frac{s}{s-1}
+-s\int_1^\infty\{x\}x^{-s-1}\,dx
+\]
+
+gives the needed polynomial growth; reflection handles the remaining part. These use the classical zeta functional equation and gamma estimates, without RH. (\href{https://dlmf.nist.gov/25.4}{DLMF})
+
+The absolutely convergent reciprocal Dirichlet series gives
+
+\[
+|\zeta(2+iT)|\ge\zeta(2)^{-1}.
+\]
+
+Let
+
+\[
+r_*=\frac{3+\sqrt{13}}2<4.
+\]
+
+Then
+
+\[
+\frac12\left(-ir_*+\frac1{-ir_*}\right)=-\frac{3i}{2},
+\]
+
+so \(f_T\) at this point is \(\zeta(2+iT)\).
+
+Write
+
+\[
+m_T=\max_{x\in[-1,1]}|f_T(x)|.
+\]
+
+The maximum principle on the annulus \(1\le|w|\le8\), applied through the displayed coordinate map, gives
+
+\[
+\zeta(2)^{-1}
+\le
+m_T^\vartheta M_T^{1-\vartheta},
+\qquad
+\vartheta
+=
+1-\frac{\log r_*}{\log8}
+>\frac13.
+\]
+
+Hence
+
+\[
+m_T\ge\zeta(2)^{-3}M_T^{-2}.
+\]
+
+Cauchy's estimate also gives
+
+\[
+\sup_{[-1,1]}|f_T'|\le M_T.
+\]
+
+Around a point attaining \(m_T\), there is a one-sided interval of length \(m_T/(2M_T)\) on which \(|f_T|\ge m_T/2\). Therefore
+
+\[
+\int_{T-1}^{T+1}|\zeta(\tfrac12+it)|^2\,dt
+\ge
+\frac{m_T^3}{8M_T}
+\ge
+\frac{\zeta(2)^{-9}}{8C_0^7}(1+|T|)^{-42}.
+\]
+
+On the remaining compact range of \(T\), the integral is continuous and strictly positive. Its minimum supplies the remaining positive constant.
+
+\paragraph{\texorpdfstring{Carry the bound through \(g/h\)}{Carry the bound through }}\label{endpoint-user_norm_original--carry-the-bound-through-gh}
+
+The original gamma factor and the elementary polynomial bound for \(h\) imply
+
+\[
+w_h(t)
+\ge
+c_h^{(0)}
+e^{-\pi|t|/2}(1+|t|)^{-2\deg h}
+|\zeta(\tfrac12+it)|^2.
+\]
+
+This inequality is valid at selected centres through the entire identity \(g=hv_h\); it does not divide by an unevaluated zero.
+
+Consequently,
+
+\[
+\boxed{
+\int_{T-1}^{T+1}w_h(t)\,dt
+\ge
+c_h^{(1)}
+e^{-\pi|T|/2}(1+|T|)^{-B_h},
+\qquad
+B_h=42+2\deg h.
+}
+\]
+
+Now \(w_h\) is continuous, integrable, and positive outside a discrete set. Thus \(w_h*w_h\) is continuous and strictly positive everywhere. Define the actual compact quantities
+
+\[
+b_h=\min_{|v|\le1}(w_h*w_h)(v)>0,
+\qquad
+\vartheta_h=\int_{-1}^{1}w_h(v)\,dv>0.
+\]
+
+Restricting a nonnegative convolution integral gives
+
+\[
+m_{h,3}(u)
+\ge
+b_h\int_{u-1}^{u+1}w_h(t)\,dt.
+\]
+
+For the remaining \(k-3\) factors, restrict their integration variables to \([-1,1]\). Their sum has absolute value at most \(k-3\). This proves
+
+\[
+\boxed{
+m_{h,k}(u)
+\ge
+c_h\vartheta_h^{\,k-3}
+e^{-\frac\pi2(|u|+k-3)}
+(1+|u|+k-3)^{-B_h},
+\qquad k\ge3.
+}
+\]
+
+\textbf{The original mass has not been changed.} The complementary integration regions remain part of \(m_{h,k}\); this is a lower bound obtained from one positive contribution to that same density.
+
+\subsubsection{3. This proves the required endpoint norm bound}\label{endpoint-user_norm_original--this-proves-the-required-endpoint-norm-bound}
+
+Fix \(0<b<\pi/2\), and retain the two original Laplace values
+
+\[
+M_h(\pm b)=\int_{\mathbb R}e^{\pm bt}w_h(t)\,dt.
+\]
+
+The exponential-series inequality and convolution identity give
+
+\[
+\boxed{
+\omega_{h,k,j}
+\le
+(2j)!b^{-2j}
+\bigl(M_h(b)^k+M_h(-b)^k\bigr).
+}
+\]
+
+The trial polynomial is \((S-k/2)^j\), whose value on the original integration line is \(i^ju^j\). The operator remains multiplication by \(S\).
+
+For the lower estimate, the exact least squared norm of a monic polynomial of degree \(n\) on \([-L,L]\) is
+
+\[
+\boxed{
+\mathfrak l_n(L)
+=
+\frac{2L^{2n+1}}{2n+1}
+\left(\frac{2^n(n!)^2}{(2n)!}\right)^2.
+}
+\]
+
+This follows from the leading coefficient and orthogonality of the Legendre polynomial. Under \(S=k/2+iu\), the retained leading phase is \(i^n\), whose squared modulus is one. (\href{https://dlmf.nist.gov/18.3}{DLMF})
+
+Applying the lower convolution envelope on \([-L,L]\) yields
+
+\[
+\boxed{
+\omega_{h,k,n}
+\ge
+c_h\vartheta_h^{\,k-3}
+e^{-\frac\pi2(L+k-3)}
+(1+L+k-3)^{-B_h}\,
+\mathfrak l_n(L).
+}
+\]
+
+Set \(L=n\), and apply the upper estimate at degree \(2n\). The exact finite bound is
+
+\[
+\boxed{
+\begin{aligned}
+\left(\frac{\omega_{h,k,2n}}{\omega_{h,k,n}}\right)^{1/(2n)}
+\le
+\left[
+\frac{
+(4n)!b^{-4n}
+\bigl(M_h(b)^k+M_h(-b)^k\bigr)
+e^{\frac\pi2(n+k-3)}
+(1+n+k-3)^{B_h}
+}{
+c_h\vartheta_h^{\,k-3}\mathfrak l_n(n)
+}
+\right]^{1/(2n)}.
+\end{aligned}
+}
+\]
+
+For \(n\ge k\ge3\), this is at most \(C_hn\).
+
+The degree dependence follows directly from
+
+\[
+\binom{2n}{n}\le4^n,
+\qquad
+(4n)!\le(4n)^{4n},
+\qquad
+n+k-3\le2n.
+\]
+
+The factorial and monic-norm factors contribute \(O(n)\) after taking the \(2n\)-th root. The retained mass factors contribute bounded factors of the form \(\exp(O_h(k/n))\). The polynomial lower-envelope factor contributes
+
+\[
+(2n)^{B_h/(2n)},
+\]
+
+which is uniformly bounded.
+
+Equation (36) of the note gives a literal sufficient \(C_h\), retaining all these constants. It is deliberately not optimized or presented as a numerically certified constant.
+
+\textbf{This establishes a bound on the actual arithmetic norm sequence, uniformly in the required tensor and polynomial degrees.}
+
+\subsubsection{4. The endpoint criterion now leaves a precise four-volume threshold}\label{endpoint-user_norm_original--the-endpoint-criterion-now-leaves-a-precise-four-volume-threshold}
+
+The formalization session's theorem is
+
+\[
+\boxed{
+\min_{0\le j<r}\epsilon_{h,k,n+j}
+\le
+\left(\frac{\omega_{h,k,n+r}}{\omega_{h,k,n}}\right)^{1/(2r)}
+\sinh\!\left(
+\frac1{2r}
+\log\frac{V_{n-1}V_n}{V_{n+r-1}V_{n+r}}
+\right).
+}
+\]
+
+It selects a member of the existing canonical family. Its proof retains both telescopes and the zero-contraction case; the report distinguishes its checked finite components from the written Jensen assembly.
+
+Taking \(r=n\ge\max(q,k)\) now gives
+
+\[
+\boxed{
+\min_{n\le N<2n}\epsilon_{h,k,N}
+\le
+C_hn\,
+\sinh\!\left(
+\frac1{2n}
+\log\frac{V_{n-1}V_n}{V_{2n-1}V_{2n}}
+\right).
+}
+\]
+
+For the packet \textbf{consisting exactly of} an off-line quartet
+
+\[
+\tfrac12\pm\delta\pm i\gamma,
+\qquad \delta,\gamma>0,
+\]
+
+with common multiplicity \(m\), retain
+
+\[
+q_k=[1+k(m-1)](k+1)^2
+\]
+
+and the existing aggregate defect
+
+\[
+L_{h,k}
+=
+2\delta[1+k(m-1)](k+1)
+\left\lfloor\frac{(k+1)^2}{4}\right\rfloor.
+\]
+
+Here \(q_k\ge k\), and
+
+\[
+\frac{L_{h,k}}{q_k}\ge\frac{\delta k}{2}.
+\]
+
+The exterior theorem bounds \(L_{h,k}\) by every admitted allowance, including the degree selected above.
+
+Define
+
+\[
+\mathcal B_{h,k}
+=
+\log\frac{V_{q_k-1}V_{q_k}}{V_{2q_k-1}V_{2q_k}}.
+\]
+
+Then
+
+\[
+\boxed{
+\frac{\delta k}{2}
+\le
+C_h\sinh\!\left(\frac{\mathcal B_{h,k}}{2q_k}\right),
+}
+\]
+
+and therefore
+
+\[
+\boxed{
+\mathcal B_{h,k}
+\ge
+2q_k\operatorname{arsinh}\!\left(\frac{\delta k}{2C_h}\right).
+}
+\]
+
+Since \(h\) is fixed,
+
+\[
+\operatorname{arsinh}\!\left(\frac{\delta k}{2C_h}\right)
+=
+\log k+O_h(1).
+\]
+
+This proves the threshold
+
+\[
+\boxed{
+\liminf_{k\to\infty}
+\frac{\mathcal B_{h,k}}{q_k\log k}\ge2.
+}
+\]
+
+The remaining upper estimate in this endpoint criterion is therefore sharply specified. The previously proposed
+
+\[
+\mathcal B_{h,k}=o_h(q_k\log k)
+\]
+
+would suffice; an upper limit strictly below \(2\) would already contradict the displayed lower threshold. \textbf{Neither upper estimate is being claimed here.}
+
+No second cost-free exterior iteration is used. The formalization session's correction to that iteration's multiplicity cost remains intact.
+
+\subsubsection{\texorpdfstring{5. Those four volumes are two explicit costs of retained \(e\)-relations}{5. Those four volumes are two explicit costs of retained -relations}}\label{endpoint-user_norm_original--those-four-volumes-are-two-explicit-costs-of-retained-e-relations}
+
+I also expressed the remaining volume quantity directly through the original relation layers.
+
+For admitted degrees \(i<j\), put
+
+\[
+F_{i,j}=[b_{i+1},\ldots,b_j],
+\qquad
+\Omega_{i,j}
+=
+\operatorname{diag}(\omega_{i+1},\ldots,\omega_j),
+\]
+
+where \(b_a=[p_a]_\chi\) retains all quotient coordinates.
+
+The existing full-jet kernel has the exact update
+
+\[
+K_j=K_i+F_{i,j}\Omega_{i,j}^{-1}F_{i,j}^*,
+\qquad K_i=G_i^{-1}.
+\]
+
+Thus
+
+\[
+\boxed{
+\frac{V_i}{V_j}
+=
+\det\!\left(
+I+\Omega_{i,j}^{-1}F_{i,j}^*G_iF_{i,j}
+\right).
+}
+\]
+
+The source map behind this determinant is
+
+\[
+\boxed{
+\mathfrak b_{i,j}
+=
+T_{i,j}-R_iF_{i,j}:
+\mathbb C^{j-i}
+\xrightarrow{\sim}
+\mathcal D_j\cap\mathcal D_i^\perp,
+}
+\]
+
+where \(T_{i,j}\) has the actual source columns \(\mathcal V_{h,k}p_{i+1},\ldots,\mathcal V_{h,k}p_j\).
+
+Its jets vanish, its highest polynomial coefficients give the inverse onto the new relation layer, and its Gram is
+
+\[
+\boxed{
+\mathfrak b_{i,j}^*\mathfrak b_{i,j}
+=
+\Omega_{i,j}+F_{i,j}^*G_iF_{i,j}.
+}
+\]
+
+The representative update remains
+
+\[
+\boxed{
+R_j
+=
+R_i+
+\mathfrak b_{i,j}
+\bigl(\Omega_{i,j}+F_{i,j}^*G_iF_{i,j}\bigr)^{-1}
+F_{i,j}^*G_i.
+}
+\]
+
+Every correction is an original theta boundary. The complete transport is
+
+\[
+\mathbb C^{j-i}
+\xrightarrow{\mathfrak b_{i,j}}
+\mathcal D_j/\mathcal D_i
+\hookrightarrow
+\mathscr B^{\widehat\otimes k}/\mathcal D_i
+\longrightarrow
+\mathscr B^{\widehat\otimes k}/\mathcal D_j.
+\]
+
+Its final composite is zero. In the original split lift, it is the receiving fibre's \textbf{supported zero}, not \(\tau\).
+
+Applying this to
+
+\[
+(i,j)=(q_k-1,2q_k-1),
+\qquad
+(i,j)=(q_k,2q_k)
+\]
+
+gives
+
+\[
+\boxed{
+\mathcal B_{h,k}
+=
+\sum_a\log(1+\lambda_a^{(0)})
++
+\sum_a\log(1+\lambda_a^{(1)}),
+}
+\]
+
+where each \(\lambda_a^{(\ell)}\ge0\) is a generalized eigenvalue of the corresponding explicit pair
+
+\[
+\bigl(F_{i,j}^*G_iF_{i,j},\,\Omega_{i,j}\bigr).
+\]
+
+\textbf{This is the remaining volume cost in terms of the relations that become \(e\)-zero.} Their source norms and cross-pairings are still present before that quotient.
+
+The PR \#24 transfer coordinates provide another exact calculation of the same four endpoints. Only its matrices at indices
+
+\[
+0,\quad1,\quad q_k,\quad q_k+1
+\]
+
+are needed, together with the specified products of \(\omega_j\). The common confluent Vandermonde cancels only in the displayed endpoint ratio; its raw-derivative factorials remain in the underlying maps. The note spells out that formula.
+
+\subsubsection{6. The Deligne reading is now tied to this estimate}\label{endpoint-user_norm_original--the-deligne-reading-is-now-tied-to-this-estimate}
+
+I reassembled the six supplied S20 parts and verified their chunk hashes and the full archive hash. I then read the TeX passages for Definition 1.3.5, Lemmas 3.2.10--3.2.12, the tensor step 3.2.13, and Corollary 3.3.6, comparing them with the archive's current page-local French and English records.
+
+There is a genuine inherited transcription trap: the older French TeX gives \(\le2\) in Lemma 3.2.10, while the current page record gives \textbf{\(<2\)}. The subsequent use of integral weights requires the strict inequality to conclude \(\le1\). The older TeX also corrupts the explicit squared-eigenvalue step in 3.2.13. Both discrepancies are recorded; the old files were not overwritten.
+
+The relevant operation remains the one identified in the other session's reading: \textbf{an additional estimate before tensor amplification improves the weight bound}. The determinant/exterior map itself does not supply that estimate.
+
+This continuation supplies a characteristic-zero estimate for the actual source---the norm-window bound above---and composes it with the endpoint criterion. It does not import finite-field purity hypotheses onto \(\mathfrak b_\tau\).
+
+\href{sources/web_arithmetic_endpoint_delivery/Tau_Arithmetic_Endpoint_Bounds/SOURCE_REVIEW.md}{\textbf{Source reading and discrepancy record}}
+
+\paragraph{Verification and handoff}\label{endpoint-user_norm_original--verification-and-handoff}
+
+The new checker passed \textbf{18 exact finite test methods} normally and under \texttt{python\ -O}, with identical successful records; deliberately failing controls failed in both modes. All \textbf{37 entries} of the preceding gamma package's manifest verified, and its \textbf{17-method suite} passed fresh normal and optimized runs.
+
+The analytic theorem has a written proof. These finite checks are not a Lean certificate, a numerical enclosure of \(C_h\), or a proof of the remaining volume estimate.
+
+The \href{sources/web_arithmetic_endpoint_delivery/Tau_Arithmetic_Endpoint_Bounds/INTEGRATION.patch}{add-only integration patch} adds fifteen files and passed local application and byte-for-byte checks. No remote branch was changed.
+
+\textbf{The completed advance is the required \(O_h(q_k)\) norm estimate on the actual quartet window. The remaining endpoint-volume problem is now a concrete two-block cost of the original supported relations, with a proved off-line threshold of \(2q_k\log k\).}

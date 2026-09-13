@@ -1,0 +1,3 @@
+## SGA trace and complete Connes comparison
+
+The full SGA note supplies finite-free residue/trace and period comparison. SC1–37 supplies the exact rank-one constituent curvature, derived collision Tor map and neighboring volumes. The complete public PR27 notes retain H1–42, P1–8 and S1–28 once, with the original metric, nilpotents, local flat topology, primary-source correction and all proof prose. R53–55 propagates these maps. PC1–41 and LC1–16 provide the full critical-kernel period, original-metric Laplacian transport and exact curvature/control-radius comparison; R56–57 propagates them.

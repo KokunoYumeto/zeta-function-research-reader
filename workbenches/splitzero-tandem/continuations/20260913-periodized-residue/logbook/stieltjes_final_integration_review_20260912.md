@@ -1,0 +1,26 @@
+# Final integration review for the Stieltjes and sum-connection continuation
+
+The complete reader has 28 mathematical sections and 12 complete source appendices. This review identifies the assembled proof scope; all definitions, equations and proofs are in the retained TeX. The original 216-page edition remains frozen.
+
+Root read the complete SSP.1–37 and CW.1–52 proof bodies, the complete new FC.21–36 strictness and reconstruction, and all 839 lines of the longer spectral-sum source. Earlier full QD/SP/TG reviews and the independent source/checker reviews remain included. The following exact bridges are integrated:
+
+- QD.1–15: actual quartet derivative cost, trace/operator cost, determinant update, all zero cases and the one-factor equality epsilon²=(1−pi)chi.
+- SP.1–35: full paired algebra with both original branches and nilpotents, exact half-line measures and unit; rank-one difference of the two complete kernels and original cost/volume formulas.
+- TG.1–28: gamma reference proved by beta/Fourier integrals, exact monic norms, retained arithmetic multiplier and full Gram determinants, confluent jets and the precise classical-family transformations. The original external literature PDFs remain local; the public route gives URLs and hashes. No gamma-reference asymptotic is substituted for the original arithmetic determinant.
+- SSP.1–37: complete symmetric sum-coordinate relation ideals, unequal parity modules, both exact sequences to the full paired packet, original unit V², full defect ideal multiplication, actual matrix norm and minimum, and every primitive and orbit factor.
+- FC.1–36: original-mass Fisher identity; full connection and normal Gram; general non-even two-branch metric, Jacobian drift and derivative-domain joining; strict normal matrix using the retained infinite critical zero set; actual finite normal-image inverse, full graph reconstruction and arithmetic derivative observation. The original source norm, normal norm and graph norm are separately defined and related by proved operators.
+- CW.1–52: full conormal thickening and dual-number algebra map, exact kernel/image/cokernel, complete local orders, canonical and actual minimum-section commutators, explicit projectors and ranks, full arithmetic unit and first derivative, exact residue/partial-residue maps and their tensor product, and fixed-support lifts.
+
+The root independently checked the new strictness argument with each zero's original leading coefficient and order, including the countable exceptional set for two factors and its actual zero fibre. It checked the normal-image reconstruction by its finite Gram left inverse and the exact source-column formula for the logarithmic arithmetic observation. It checked the conormal row rank separately from the section correction rank through their displayed composite, and the complete partial-residue factorization through the full product unit.
+
+The cumulative conclusion R15–25 now gives these exact constructions and their proofs or precise full-proof locators. Earlier kernel, frontier and parity sections point to the new calculations. No conditional theorem or assumed asymptotic supplies an RH endpoint.
+
+Both the public PR17 note at its verified head and its longer 35,213-byte delivered TeX witness are included. The latter retains SI−A, Ext1, algebraic dual/antidual, resolvent residues, constrained Schur isometry, all sum nilpotents, and the full relative matrix measure. The PR20 public note and full longer TeX witness retain their distinct byte identities. The raw delivery ZIP and every one of its 51 members are preserved.
+
+PR20 correction scope is recorded exactly in the accompanying source audit: the input-constant to socle map, associated-graded module rank and graph-pair map are proved in the local continuation; the archived witness remains unchanged. The original public note requires an explicit positive-degree freeness scope if its finite packet includes h=1. The owner has the concrete replacement text and is repairing that public head separately. Public source provenance remains pinned to the head actually read.
+
+Independent finite checks supplement the full proofs: SP892, SSP644, TG344, additional repeated-root SSP86, CW1076, FC847 records in each ordinary and optimized mode, with deliberate failure controls; the exact delivered PR20 source checker passes20 methods in each mode and rejects its deliberate21st failure. Each checker report states its actual fixture/runtime scope. Gaussian or prescribed-unit models are not asserted to be the actual theta measure.
+
+The final source audit verifies all 29 TeX inputs including main and every full source witness against their build hashes. All source mathematical spans remain exact under extraction. The two wide delivered displays use only external font-size wrappers. Typesetting repairs preserve symbols/constants and have explicit before/after hashes. The FC.4 prose specifies each diagonal summand before its common k^-2 factor.
+
+This is a completed proof/source integration tranche. The broader durable research goal remains active; no vanishing asymptotic for the actual arithmetic allowance or proof of RH is claimed.

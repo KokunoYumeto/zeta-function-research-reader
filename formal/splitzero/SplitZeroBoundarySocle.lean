@@ -34,7 +34,8 @@ def comparison (v : R) (f : M →ₗ[R] M) :
 theorem comparison_killed (v : R) (f : M →ₗ[R] M)
     (x : M ⧸ sourceRel (M := M) v) : v • comparison v f x = 0 := by
   obtain ⟨x, rfl⟩ := Submodule.Quotient.mk_surjective (sourceRel v) x
-  rw [comparison_mk, ← map_smul]
+  change v • (targetRel v f).mkQ (f x) = 0
+  rw [← map_smul]
   exact (Submodule.Quotient.mk_eq_zero _).mpr ⟨x, rfl⟩
 
 def socle (v : R) (f : M →ₗ[R] M) : Submodule R (M ⧸ targetRel v f) :=
@@ -63,11 +64,13 @@ theorem toSocle_surjective (v : R) (f : M →ₗ[R] M)
     Function.Surjective (toSocle v f) := by
   intro y
   obtain ⟨z, hz⟩ := Submodule.Quotient.mk_surjective (targetRel v f) y.val
+  change (targetRel v f).mkQ z = y.val at hz
   have hy : v • (targetRel v f).mkQ z = 0 := by
     rw [hz]
     exact y.property
   have hm : v • z ∈ targetRel v f := by
     apply (Submodule.Quotient.mk_eq_zero _).mp
+    change (targetRel v f).mkQ (v • z) = 0
     rw [map_smul]
     exact hy
   obtain ⟨x, hx⟩ := hm
@@ -82,7 +85,7 @@ def socleEquiv (v : R) (f : M →ₗ[R] M)
     (hv : Function.Injective (fun x : M => v • x)) :
     (M ⧸ sourceRel (M := M) v) ≃ₗ[R] socle v f :=
   LinearEquiv.ofBijective (toSocle v f)
-    ⟨fun x y h => comparison_injective v f hf (congrArg Subtype.val h),
+    ⟨fun _ _ h => comparison_injective v f hf (congrArg Subtype.val h),
       toSocle_surjective v f hv⟩
 
 /-- Naturality through a specified commuting source map, with no injectivity of it. -/
@@ -126,6 +129,7 @@ theorem divide_intertwiner (v : R) (f A B : M →ₗ[R] M)
     ∀ x, B (f x) = f (A x) := by
   intro x
   apply hv
+  change v • B (f x) = v • f (A x)
   rw [← B.map_smul]
   exact h x
 
@@ -135,7 +139,10 @@ variable {ι : Type*}
 def powerDiagonal (v : R) (n : ι → ℕ) : (ι → R) →ₗ[R] (ι → R) where
   toFun x i := v ^ n i * x i
   map_add' x y := by ext i; exact mul_add _ _ _
-  map_smul' a x := by ext i; simp only [Pi.smul_apply, smul_eq_mul]; ring
+  map_smul' a x := by
+    ext i
+    change v ^ n i * (a * x i) = a * (v ^ n i * x i)
+    ring
 
 @[simp] theorem powerDiagonal_apply (v : R) (n : ι → ℕ) (x : ι → R) (i : ι) :
     powerDiagonal v n x i = v ^ n i * x i := rfl

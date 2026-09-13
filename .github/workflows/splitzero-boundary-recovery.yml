@@ -84,10 +84,18 @@ jobs:
             cmp /tmp/$PACKAGE-normal.json /tmp/$PACKAGE-optimized.json
             cat /tmp/$PACKAGE-normal.json
           done
+          python3 workbenches/tau-mixed-boundary-formal/check_boundary.py > /tmp/boundary-normal.json
+          python3 -O workbenches/tau-mixed-boundary-formal/check_boundary.py > /tmp/boundary-optimized.json
+          cmp /tmp/boundary-normal.json /tmp/boundary-optimized.json
+          cat /tmp/boundary-normal.json
           for MODE in normal optimized; do
             if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
             for CONTROL in diagonal-only absent-join omit-boundary; do
               if "${PY[@]}" workbenches/tau-mixed-metric-integration/check_exact.py --negative "$CONTROL" > /tmp/$MODE-$CONTROL.log 2>&1; then exit 1; fi
+              grep -q '"false_claim_accepted": false' /tmp/$MODE-$CONTROL.log
+            done
+            for CONTROL in nilpotent-zero omit-jacobian empty-absence diagonal-gram; do
+              if "${PY[@]}" workbenches/tau-mixed-boundary-formal/check_boundary.py --negative "$CONTROL" > /tmp/$MODE-$CONTROL.log 2>&1; then exit 1; fi
               grep -q '"false_claim_accepted": false' /tmp/$MODE-$CONTROL.log
             done
           done

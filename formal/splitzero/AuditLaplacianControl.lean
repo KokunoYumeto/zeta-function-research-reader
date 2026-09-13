@@ -1,0 +1,15 @@
+import SplitZeroLaplacianControl
+import SplitZeroRelationCurve
+import SplitZeroSpecializationChart
+import SplitZeroActionHull
+import SplitZeroCurvatureRestriction
+
+#print axioms SplitZero.LaplacianControl.adjoint_defect
+#print axioms SplitZero.LaplacianControl.energy_identity
+#print axioms SplitZero.LaplacianControl.symmetric_of_zero_defect
+#print axioms SplitZero.LaplacianControl.constituent
+#print axioms SplitZero.LaplacianControl.jet_expansion
+#print axioms SplitZero.LaplacianControl.intertwining_power
+#print axioms SplitZero.LaplacianControl.injective_power
+#print axioms SplitZero.LaplacianControl.nilpotent_image_zero
+#print axioms SplitZero.LaplacianControl.shifted_nilpotent_image_zero

@@ -12,7 +12,9 @@ on:
       - 'formal/splitzero/SplitZeroSpecializationChart.lean'
       - 'formal/splitzero/SplitZeroActionHull.lean'
       - 'formal/splitzero/SplitZeroCurvatureRestriction.lean'
+      - 'formal/splitzero/SplitZeroLaplacianControl.lean'
       - 'formal/splitzero/AuditSpecializationCurvature.lean'
+      - 'formal/splitzero/AuditLaplacianControl.lean'
       - 'workbenches/tau-specialization-curvature-formal/**'
       - '.github/workflows/splitzero-specialization-curvature.yml'
 permissions:
@@ -40,14 +42,16 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/specialization-tests"
           py="$RUNNER_TEMP/specialization-tests/bin/python"
           "$py" -m pip install 'sympy==1.14.0' 'mpmath==1.3.0' >SpecializationTestSetup.log 2>&1
-          test=../../workbenches/tau-specialization-curvature-formal/check_specialization.py
-          "$py" "$test" >Specialization.normal.json || { cat Specialization.normal.json; exit 1; }
-          "$py" -O "$test" >Specialization.optimized.json || { cat Specialization.optimized.json; exit 1; }
-          cmp Specialization.normal.json Specialization.optimized.json
-          cat Specialization.normal.json
-          for opt in '' '-O'; do
-            if "$py" $opt "$test" --negative >Specialization.negative.log 2>&1; then exit 1; fi
-            grep 'intentional specialization negative control' Specialization.negative.log
+          src=../../workbenches/tau-specialization-curvature-formal
+          for name in specialization laplacian; do
+            "$py" "$src/check_$name.py" >"$name.normal.json" || { cat "$name.normal.json"; exit 1; }
+            "$py" -O "$src/check_$name.py" >"$name.optimized.json" || { cat "$name.optimized.json"; exit 1; }
+            cmp "$name.normal.json" "$name.optimized.json"
+            cat "$name.normal.json"
+            for opt in '' '-O'; do
+              if "$py" $opt "$src/check_$name.py" --negative >"$name.negative.log" 2>&1; then exit 1; fi
+              grep 'intentional .* negative control' "$name.negative.log"
+            done
           done
       - name: Unchanged original scalar and pinned environment
         run: |
@@ -66,7 +70,7 @@ jobs:
           set -uo pipefail
           mkdir -p .lake/build/lib/lean
           status=0
-          for name in SplitZeroRestrictionTransport SplitZeroRestrictionSource SplitZeroRestrictionLogCertificate SplitZeroRestrictionSpectrum SplitZeroRelationCurve SplitZeroSpecializationChart SplitZeroActionHull SplitZeroCurvatureRestriction; do
+          for name in SplitZeroRestrictionTransport SplitZeroRestrictionSource SplitZeroRestrictionLogCertificate SplitZeroRestrictionSpectrum SplitZeroRelationCurve SplitZeroSpecializationChart SplitZeroActionHull SplitZeroCurvatureRestriction SplitZeroLaplacianControl; do
             echo "=== $name ==="
             if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
           done
@@ -77,6 +81,8 @@ jobs:
           py="$RUNNER_TEMP/specialization-tests/bin/python"
           lake env lean --trust=0 -DwarningAsError=true AuditSpecializationCurvature.lean | tee AuditSpecializationCurvature.log
           "$py" ../../workbenches/tau-specialization-curvature-formal/check_specialization.py --audit AuditSpecializationCurvature.log
+          lake env lean --trust=0 -DwarningAsError=true AuditLaplacianControl.lean | tee AuditLaplacianControl.log
+          "$py" ../../workbenches/tau-specialization-curvature-formal/check_laplacian.py --audit AuditLaplacianControl.log
           lake env lean --trust=0 -DwarningAsError=true AuditRestrictionCertificate.lean | tee AuditRestrictionCertificate.log
           "$py" ../../workbenches/tau-restriction-certificate-formal/check_restriction.py --audit AuditRestrictionCertificate.log
           lake env lean --trust=0 -DwarningAsError=true AuditRestrictionSpectrum.lean | tee AuditRestrictionSpectrum.log

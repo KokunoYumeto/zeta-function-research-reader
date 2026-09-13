@@ -26,11 +26,11 @@ def boundary : ((ι → K[X]) × (σ → K[X])) →ₗ[K] (σ → K) where
 theorem local_injective : Function.Injective (localMap (K := K) (ι := ι) (σ := σ)) := by
   rintro ⟨a,b⟩ ⟨c,d⟩ h
   change (a, fun i => X * b i) = (c, fun i => X * d i) at h
-  apply Prod.ext
-  · exact congrArg Prod.fst h
-  · funext i
-    have hi := congrFun (congrArg Prod.snd h) i
-    exact mul_left_cancel₀ (Polynomial.X_ne_zero) hi
+  obtain ⟨ha,hb⟩ := Prod.mk.inj h
+  apply Prod.ext ha
+  funext i
+  have hi := congrFun hb i
+  exact mul_left_cancel₀ (Polynomial.X_ne_zero) hi
 
 /-- Exactness uses the actual polynomial division by the local equation. -/
 theorem local_exact (v : (ι → K[X]) × (σ → K[X])) :

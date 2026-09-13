@@ -74,7 +74,6 @@ theorem density_change (l t : ℝ) (hl : 0 ≤ l) (ht : 0 ≤ t) :
   unfold density loss
   rw [div_pow]
   field_simp [h1, h2]
-  ring
 
 /-- Rational normalized curvature-jet coefficient at t=1. -/
 theorem jet_scalar (l : ℝ) (hl : 0 ≤ l) (n : ℕ) :

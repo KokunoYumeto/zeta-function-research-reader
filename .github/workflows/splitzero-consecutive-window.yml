@@ -2,15 +2,23 @@ name: SplitZero consecutive window integration
 on:
   push:
     branches: [astra/consecutive-window-norm-20260913]
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-consecutive-window-formal/**'
+      - '.github/workflows/splitzero-consecutive-window.yml'
   pull_request:
     paths:
       - 'formal/splitzero/SplitZeroConsecutiveWindow.lean'
       - 'formal/splitzero/SplitZeroWindowProduct.lean'
       - 'formal/splitzero/SplitZeroWindowForcing.lean'
+      - 'formal/splitzero/SplitZeroNormEnvelope.lean'
       - 'workbenches/tau-consecutive-window-formal/**'
       - '.github/workflows/splitzero-consecutive-window.yml'
 permissions:
   contents: read
+concurrency:
+  group: consecutive-window-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   window:
     runs-on: ubuntu-latest
@@ -39,7 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .lake/build/lib/lean
-          for name in SplitZeroTodaVolume SplitZeroConsecutiveWindow SplitZeroWindowProduct SplitZeroWindowForcing; do
+          for name in SplitZeroTodaVolume SplitZeroConsecutiveWindow SplitZeroWindowProduct SplitZeroWindowForcing SplitZeroNormEnvelope; do
             echo "=== $name ==="
             lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
           done

@@ -72,6 +72,7 @@ theorem period_preserves_support (x : E.Total) :
 theorem period_supported_zero (i : L) :
     periodTotalEquiv E W Phi (⟨i, 0⟩ : E.Total) = ⟨i, 0⟩ := by
   rw [periodTotal_apply, map_zero]
+  rfl
 
 theorem period_absence :
     periodTotalEquiv E W Phi 0 = 0 := (periodTotalEquiv E W Phi).map_zero

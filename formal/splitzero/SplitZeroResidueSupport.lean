@@ -85,7 +85,7 @@ theorem quotient_operator_square
   rw [observed_class, observed_class]
   change (⟨i, J.app i (r i (A.app i (J.app i x)))⟩ : E.Total) =
     ⟨i, A.app i (J.app i x)⟩
-  rw [hr]
+  exact congrArg (fun y => (⟨i, y⟩ : E.Total)) (hr i _)
 
 /-- The operator keeps the zero of each original quotient fibre. -/
 theorem quotient_operator_supported_zero (A : Hom E E) (i : L) :
@@ -93,7 +93,8 @@ theorem quotient_operator_supported_zero (A : Hom E E) (i : L) :
       (⟨i, 0⟩ : B.quotientDiagram.Total) = ⟨i, 0⟩ := by
   change (⟨i, (quotientLiftOperator J r B hB hdef A).app i 0⟩ :
     B.quotientDiagram.Total) = ⟨i, 0⟩
-  rw [map_zero]
+  exact congrArg (fun y => (⟨i, y⟩ : B.quotientDiagram.Total))
+    ((quotientLiftOperator J r B hB hdef A).app i).map_zero
 
 end QuotientAction
 

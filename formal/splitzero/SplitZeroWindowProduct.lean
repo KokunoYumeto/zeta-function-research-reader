@@ -16,11 +16,18 @@ theorem exact_product (f lam loss : ℕ → ℝ)
   | zero => simpa using hstep n
   | succ r ih =>
     have hs := hstep (n+r+1)
+    have hf : (∏ j ∈ Finset.range (r+1+1), f (n+j)) =
+        (∏ j ∈ Finset.range (r+1), f (n+j)) * f (n+r+1) := by
+      rw [Finset.prod_range_succ]
+      simp only [Nat.add_assoc]
+    have hl : (∏ j ∈ Finset.range (r+1), loss (n+j+1)) =
+        (∏ j ∈ Finset.range r, loss (n+j+1)) * loss (n+r+1) := by
+      rw [Finset.prod_range_succ]
+    change (∏ j ∈ Finset.range (r+1+1), f (n+j)) * lam n =
+      lam (n+r+1+1) * loss n * loss (n+r+1+1) *
+        (∏ j ∈ Finset.range (r+1), loss (n+j+1)) ^ 2
     apply mul_right_cancel₀ (hlam (n+r+1))
-    rw [Finset.prod_range_succ, Finset.prod_range_succ]
-    have hi : n + (r + 1) = n+r+1 := by omega
-    have hi2 : n + (r + 1) + 1 = n+r+1+1 := by omega
-    simp only [hi, hi2]
+    rw [hf, hl]
     calc
       _ = ((∏ j ∈ Finset.range (r+1), f (n+j)) * lam n) *
           (f (n+r+1) * lam (n+r+1)) := by ring
@@ -43,7 +50,7 @@ theorem product_bound (f lam : ℕ → ℝ)
       _ = f (n+r) * ((∏ j ∈ Finset.range r, f (n+j)) * lam n) := by ring
       _ ≤ f (n+r) * lam (n+r) := mul_le_mul_of_nonneg_left ih (hf _)
       _ ≤ lam (n+r+1) := hstep _
-      _ = _ := by congr 1; omega
+      _ = _ := by simp only [Nat.add_assoc]
 
 /-- The same proven spectral lower allowance persists at every degree. -/
 theorem lower_bound_propagates (e lam : ℕ → ℝ) (L : ℝ)

@@ -34,7 +34,8 @@ theorem stable_mul_mem (F : Submodule K (AdjoinRoot h)) (hF : RootStable F)
     | add p q hp hq => simpa only [map_add, add_mul] using F.add_mem hp hq
     | monomial n a =>
       rw [← Polynomial.C_mul_X_pow_eq_monomial, map_mul, map_pow, AdjoinRoot.mk_X]
-      simpa only [Algebra.smul_def, mul_assoc] using
+      simpa only [Algebra.smul_def, AdjoinRoot.algebraMap_eq, AdjoinRoot.of,
+        RingHom.comp_apply, mul_assoc] using
         F.smul_mem a (root_pow_mul_mem F hF hx n)
 
 /-- A proper original invariant constituent does not contain the cyclic unit. -/

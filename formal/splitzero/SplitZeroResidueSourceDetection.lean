@@ -95,4 +95,40 @@ theorem source_transverse_square (hh : h.Monic)
   rw [sourceResidueOperator_section i J r hr, hr]
   rfl
 
+section ActualGenerator
+variable (P : Module.End K (D.V i))
+    (hP : ∀ x, J (P x) = AdjoinRoot.root h * J x)
+
+include hP in
+/-- Every power of the specified source generator has its original arithmetic observation. -/
+theorem observed_generator_power (n : ℕ) (x : D.V i) :
+    J ((P ^ n) x) = (AdjoinRoot.root h)^n * J x := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    calc
+      J ((P ^ (n + 1)) x) = J (P ((P ^ n) x)) := by rw [pow_succ']
+      _ = AdjoinRoot.root h * J ((P ^ n) x) := hP _
+      _ = (AdjoinRoot.root h)^(n + 1) * J x := by rw [ih, pow_succ', mul_assoc]
+
+include hr hB hP in
+/-- Detection along powers of the actual source generator, not a replacement source operator. -/
+theorem actual_source_residue_detects (hh : h.Monic) (hd : 0 < h.natDegree)
+    (x : AdjoinRoot h) (hx : x ≠ 0) :
+    ∃ n : ℕ, n < h.natDegree ∧
+      B.quotientMap.total
+        ⟨i, sourceResidueOperator i J r hh ((P ^ n) (r x))⟩ ≠
+          (⟨i, 0⟩ : B.quotientDiagram.Total) := by
+  obtain ⟨n, hn, hdet⟩ := source_residue_detects
+    (B := B) (i := i) (J := J) (r := r) (hr := hr) (hB := hB) hh hd x hx
+  refine ⟨n, hn, ?_⟩
+  have he : sourceResidueOperator i J r hh ((P ^ n) (r x)) =
+      sourceResidueOperator i J r hh (r ((AdjoinRoot.root h)^n * x)) := by
+    change r (residue hh (J ((P ^ n) (r x))) • (1 : AdjoinRoot h)) =
+      r (residue hh (J (r ((AdjoinRoot.root h)^n * x))) • (1 : AdjoinRoot h))
+    simp only [observed_generator_power i J P hP, hr]
+  rw [he]
+  exact hdet
+
+end ActualGenerator
 end SplitZero.MonicResidue

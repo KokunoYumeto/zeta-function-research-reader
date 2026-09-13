@@ -57,6 +57,11 @@ jobs:
               grep -q 'deliberate false' /tmp/residue-exact-$FLAG-$MODE.log
             done
           done
+          ADAPT=../../workbenches/tau-residue-rigidity/check_adaptive.py
+          python3 "$ADAPT" > /tmp/residue-adaptive-normal.json
+          python3 -O "$ADAPT" > /tmp/residue-adaptive-optimized.json
+          cmp /tmp/residue-adaptive-normal.json /tmp/residue-adaptive-optimized.json
+          cat /tmp/residue-adaptive-normal.json
       - name: Install unchanged Lean toolchain
         run: |
           set -euo pipefail

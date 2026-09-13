@@ -18,7 +18,7 @@ variable {K : Type*} [Field K] {h : K[X]}
 def RootStable (F : Submodule K (AdjoinRoot h)) : Prop :=
   ∀ x, x ∈ F → AdjoinRoot.root h * x ∈ F
 
- theorem root_pow_mul_mem (F : Submodule K (AdjoinRoot h)) (hF : RootStable F)
+theorem root_pow_mul_mem (F : Submodule K (AdjoinRoot h)) (hF : RootStable F)
     {x : AdjoinRoot h} (hx : x ∈ F) (n : ℕ) :
     (AdjoinRoot.root h) ^ n * x ∈ F := by
   induction n with
@@ -33,7 +33,7 @@ theorem stable_mul_mem (F : Submodule K (AdjoinRoot h)) (hF : RootStable F)
     induction p using Polynomial.induction_on' with
     | add p q hp hq => simpa only [map_add, add_mul] using F.add_mem hp hq
     | monomial n a =>
-      rw [Polynomial.monomial_eq_C_mul_X, map_mul, map_pow, AdjoinRoot.mk_X]
+      rw [← Polynomial.C_mul_X_pow_eq_monomial, map_mul, map_pow, AdjoinRoot.mk_X]
       simpa only [Algebra.smul_def, mul_assoc] using
         F.smul_mem a (root_pow_mul_mem F hF hx n)
 
@@ -68,7 +68,7 @@ theorem exists_residue_one (hh : h.Monic) (hd : 0 < h.natDegree)
   have hne := restricted_residue_ne_zero hh hd F hF hbot
   have hex : ∃ v : F, residue hh (v : AdjoinRoot h) ≠ 0 := by
     by_contra hn
-    push_neg at hn
+    push Not at hn
     apply hne
     ext v
     exact hn v
@@ -86,7 +86,7 @@ def transverse (hh : h.Monic) (F : Submodule K (AdjoinRoot h)) :
   change F.mkQ (residue hh (v : AdjoinRoot h) • (1 : AdjoinRoot h)) = _
   exact F.mkQ.map_smul _ _
 
- theorem quotient_unit_ne_zero (F : Submodule K (AdjoinRoot h))
+theorem quotient_unit_ne_zero (F : Submodule K (AdjoinRoot h))
     (hF : RootStable F) (htop : F ≠ ⊤) : F.mkQ 1 ≠ 0 := by
   intro hz
   exact unit_not_mem F hF htop ((Submodule.Quotient.mk_eq_zero F).mp hz)

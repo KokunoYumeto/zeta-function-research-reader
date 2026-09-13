@@ -20,8 +20,7 @@ if SPEC is None or SPEC.loader is None:
     raise RuntimeError('missing original integration runner')
 original = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(original)
-JOINT = ['SplitZeroPeriodTransport', 'SplitZeroResidueSupport', 'SplitZeroJointHomotopy',
-         'SplitZeroConormalTower', 'SplitZeroLaplacianControl', 'SplitZeroHomologyExample']
+JOINT = list(original.JOINT) + ['SplitZeroPeriodTransport', 'SplitZeroResidueSupport']
 
 
 def main() -> None:
@@ -37,6 +36,11 @@ def main() -> None:
     spec = json.loads((HERE / 'TARGETS.json').read_text())
     if set(spec) != {'SplitZeroMetricVariation', 'SplitZeroArithmeticLogTransfer', 'SplitZeroMetricVariationSupport'}:
         raise ValueError('unexpected source set')
+    rescued = json.loads((REPO / 'workbenches/tau-residue-rigidity/TARGETS.json').read_text())
+    if set(rescued) != {'SplitZeroMonicResidue', 'SplitZeroResidueConstituent', 'SplitZeroResidueSourceDetection'}:
+        raise ValueError('unexpected recovered source set')
+    spec.update({module: ['SplitZero.MonicResidue.' + name for name in suffixes]
+                 for module, suffixes in rescued.items()})
     names = []
     for module, declarations in spec.items():
         code = strip_comments((ROOT / (module + '.lean')).read_text())
@@ -70,7 +74,7 @@ def main() -> None:
         'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'strict_modules': modules, 'new_modules': list(spec), 'selected_targets': len(names),
         'axioms': reports, 'source_sha256': {m: hashlib.sha256((ROOT/(m+'.lean')).read_bytes()).hexdigest() for m in modules},
-        'scope': 'Source secants, signed finite log certificate, original support quotient. No arithmetic integral or uniform tensor estimate certified.',
+        'scope': 'Completed residue duality and original source detection; canonical metric secants; signed finite log certificate; original support quotient. No arithmetic integral or uniform tensor estimate certified.',
     }
     (logs / 'receipt.json').write_text(json.dumps(record, indent=2, sort_keys=True)+'\n')
     print(json.dumps(record, indent=2, sort_keys=True), flush=True)

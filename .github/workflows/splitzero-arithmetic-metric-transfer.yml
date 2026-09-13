@@ -7,12 +7,14 @@ on:
       - 'formal/splitzero/**'
       - 'workbenches/tau-arithmetic-metric-transfer/**'
       - 'workbenches/tau-split-integration/**'
+      - 'workbenches/tau-residue-rigidity/**'
       - '.github/workflows/splitzero-arithmetic-metric-transfer.yml'
   pull_request:
     paths:
       - 'formal/splitzero/**'
       - 'workbenches/tau-arithmetic-metric-transfer/**'
       - 'workbenches/tau-split-integration/**'
+      - 'workbenches/tau-residue-rigidity/**'
       - '.github/workflows/splitzero-arithmetic-metric-transfer.yml'
   workflow_dispatch:
 
@@ -77,6 +79,23 @@ jobs:
             for CONTROL in omit-boundary-loss reverse-signed-log; do
               if "${PY[@]}" "$SCRIPT" --negative-control "$CONTROL" > /tmp/metric-$MODE-$CONTROL.log 2>&1; then exit 1; fi
               grep -q '"false_claim_accepted": false' /tmp/metric-$MODE-$CONTROL.log
+            done
+          done
+          RESIDUE=../../workbenches/tau-residue-rigidity/check_exact.py
+          ADAPTIVE=../../workbenches/tau-residue-rigidity/check_adaptive.py
+          python3 "$RESIDUE" > /tmp/residue-normal.json
+          python3 -O "$RESIDUE" > /tmp/residue-optimized.json
+          cmp /tmp/residue-normal.json /tmp/residue-optimized.json
+          cat /tmp/residue-normal.json
+          python3 "$ADAPTIVE" > /tmp/adaptive-normal.json
+          python3 -O "$ADAPTIVE" > /tmp/adaptive-optimized.json
+          cmp /tmp/adaptive-normal.json /tmp/adaptive-optimized.json
+          cat /tmp/adaptive-normal.json
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            for CONTROL in rank source-sign; do
+              if "${PY[@]}" "$RESIDUE" --negative "$CONTROL" > /tmp/residue-$MODE-$CONTROL.log 2>&1; then exit 1; fi
+              grep -q 'deliberate false' /tmp/residue-$MODE-$CONTROL.log
             done
           done
           python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery

@@ -25,11 +25,11 @@ structure LossWitness (H : Matrix ι ι ℂ) where
   nonnegative : ∀ a, 0 ≤ x a
   below_one : ∀ a, x a < 1
 
-def prefix (H : Matrix ι ι ℂ) (p : ℕ) : ℝ :=
+def partialLog (H : Matrix ι ι ℂ) (p : ℕ) : ℝ :=
   RestrictionSpectrum.matrixPrefix H p
 
 def upper (H : Matrix ι ι ℂ) (p : ℕ) : ℝ :=
-  prefix H p + (prefix H (2*p)-prefix H p)/(1-RestrictionSpectrum.moment H p)
+  partialLog H p + (partialLog H (2*p)-partialLog H p)/(1-RestrictionSpectrum.moment H p)
 
 def logDet (A : Matrix ι ι ℂ) : ℝ := Real.log A.det.re
 
@@ -46,12 +46,12 @@ theorem det_positive (w : LossWitness H) : 0 < (1-H).det.re := by
 
 theorem bounds (w : LossWitness H) (p : ℕ)
     (hs : RestrictionSpectrum.moment H p < 1) :
-    prefix H p ≤ -Real.log (1-H).det.re ∧
+    partialLog H p ≤ -Real.log (1-H).det.re ∧
     -Real.log (1-H).det.re ≤ upper H p := by
   constructor
   · rw [RestrictionSpectrum.log_volume_eq H w.U w.V w.x
       w.left_inverse w.diagonalization w.below_one]
-    rw [show prefix H p = RestrictionLog.prefixTrace w.x p from
+    rw [show partialLog H p = RestrictionLog.prefixTrace w.x p from
       RestrictionSpectrum.prefix_eq H w.U w.V w.x
         w.left_inverse w.right_inverse w.diagonalization p]
     exact RestrictionLog.prefix_lower w.x w.nonnegative w.below_one p
@@ -76,6 +76,7 @@ theorem comparison_det (G₀ G₁ K₀ : Matrix ι ι ℂ)
     K₀.det * G₁.det * G₀.det = (K₀.det * G₀.det) * G₁.det := by ring
     _ = G₁.det := by rw [h, one_mul]
 
+omit [Fintype ι] in
 theorem normalized_reconstruction (A : Matrix ι ι ℂ) (c : ℝ) (hc : c ≠ 0) :
     A = (c : ℂ) • (1 - (1 - (c : ℂ)⁻¹ • A)) := by
   rw [sub_sub_cancel, smul_smul, mul_inv_cancel₀ (by exact_mod_cast hc), one_smul]
@@ -95,7 +96,7 @@ theorem scaled_interval (A H : Matrix ι ι ℂ) (c : ℝ) (hc : 0 < c)
     (hA : A = (c : ℂ) • (1-H)) (w : LossWitness H) (p : ℕ)
     (hs : RestrictionSpectrum.moment H p < 1) :
     (Fintype.card ι : ℝ)*Real.log c - upper H p ≤ logDet A ∧
-    logDet A ≤ (Fintype.card ι : ℝ)*Real.log c - prefix H p := by
+    logDet A ≤ (Fintype.card ι : ℝ)*Real.log c - partialLog H p := by
   rw [scaled_log A H c hc hA w.det_positive]
   obtain ⟨hl,hu⟩ := w.bounds p hs
   constructor <;> linarith
@@ -107,10 +108,10 @@ theorem signed_four_certificate
     (hA : ∀ a, A a = (c : ℂ) • (1-H a))
     (w : ∀ a, LossWitness (H a)) (p : Fin 4 → ℕ)
     (hs : ∀ a, RestrictionSpectrum.moment (H a) (p a) < 1) :
-    prefix (H 2) (p 2) + prefix (H 3) (p 3) - upper (H 0) (p 0) -
+    partialLog (H 2) (p 2) + partialLog (H 3) (p 3) - upper (H 0) (p 0) -
       upper (H 1) (p 1) ≤ signedLog A ∧
     signedLog A ≤ upper (H 2) (p 2) + upper (H 3) (p 3) -
-      prefix (H 0) (p 0) - prefix (H 1) (p 1) := by
+      partialLog (H 0) (p 0) - partialLog (H 1) (p 1) := by
   have h0 := scaled_interval (A 0) (H 0) c hc (hA 0) (w 0) (p 0) (hs 0)
   have h1 := scaled_interval (A 1) (H 1) c hc (hA 1) (w 1) (p 1) (hs 1)
   have h2 := scaled_interval (A 2) (H 2) c hc (hA 2) (w 2) (p 2) (hs 2)
@@ -130,7 +131,7 @@ theorem certified_negative (A H : Fin 4 → Matrix ι ι ℂ) (c : ℝ) (hc : 0 
     (w : ∀ a, LossWitness (H a)) (p : Fin 4 → ℕ)
     (hs : ∀ a, RestrictionSpectrum.moment (H a) (p a) < 1)
     (η : ℝ) (hu : upper (H 2) (p 2) + upper (H 3) (p 3) -
-      prefix (H 0) (p 0) - prefix (H 1) (p 1) ≤ -η) :
+      partialLog (H 0) (p 0) - partialLog (H 1) (p 1) ≤ -η) :
     signedLog A ≤ -η :=
   (signed_four_certificate A H c hc hA w p hs).2.trans hu
 

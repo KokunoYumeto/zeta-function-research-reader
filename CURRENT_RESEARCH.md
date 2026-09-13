@@ -331,3 +331,64 @@ was added. This HTML/TeX working edition creates no PDF solely for a preview and
 does not replace the [current 765-page R57 DOI edition](https://doi.org/10.5281/zenodo.22736292),
 its preview, any of its 36 downloads, or its reading links. Its rendered-reader
 link belongs in a later frozen edition only after a real route is verified.
+
+## Supplementary accepted research sources: finite certification and mixed control
+
+These two source packages supplement the ongoing research. They are outside the
+fixed 821-page R62 paper and are not silently assigned to the historical 765-page
+DOI. The main Split-Zero reading front remains unchanged.
+
+### Original theta moments and finite Hankel certification
+
+[Read the unchanged 47-page paper](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/Tau_Theta_Hankel_Complete_Proofs.pdf) · [Distribution and scope](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/PUBLIC_DISTRIBUTION.md)
+· [Source and reproduction guide](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/README.md)
+
+The original theta integral, its mass, signed summands and both factors of two
+are retained through the moment and logarithmic-coefficient maps. The supplied
+certificate reports positive lower endpoints for all 32 pivots and 32 leading
+determinants of the original 16-by-16 H15 and first-shift matrices. It uses 33
+even moments M0 through M64, N=20, L=4, 1024-bit ball integration and the
+independent 2^4096 integer grid with 1,400 endpoint pairs. The
+[TC proof](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/proofs/TC.tex), [nine supporting proof bodies](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/support_reader/main.tex),
+[analytic tail/integration contract](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/calculation/CERTIFIED_ORIGINAL_THETA_HANKEL.md)
+and [exact replay source](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/verify_exact_rational.py) remain complete.
+The finite certificate does not establish all-dimension positivity or RH;
+this publication step does not rerun its mathematical checks.
+
+All 111 owner-archive files remain byte-exact. The full 114-file
+[public distribution](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/DERIVATIVE_MANIFEST.json) preserves the original proofs
+and evidence with [disclosed provenance](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/original-theta-certification/PUBLIC_PROVENANCE.json).
+
+### Deligne mixed-control continuation
+
+[Read the Markdown overview](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/DELIGNE_USAGE_OVERVIEW.md) · [Complete editable LaTeX reader](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/COMPLETE_CONTROL_WORK.tex)
+· [Source guide](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/README.md) · [Public derivation](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/PUBLIC_DERIVATION.md)
+
+The complete seven-body reader develops [coefficient-face attachment](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/MCF.tex),
+[spectral-jet tensor and dual filtrations](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/MW.tex),
+the [length-two relative extension](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/MRE.tex), and the
+[singular boundary connection and exact period determinant](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/BC.tex).
+Each coefficient records absence separately from a supported zero; the maps
+attach those masks to the original theta complex, retaining its boundary
+primitives and the proper-source V/W kernel.
+The arithmetic extension remains nonsplit; the added diagonal splitting is
+not substituted for the original arithmetic action. The connection keeps both
+polar orders and the metric comparison uses the original theta-source Gram.
+
+The earlier [AW1--23](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/AW.tex) is included in full: AW7 gives the
+window spectra, AW14 the final (2q-1) log kappa bound, and AW13 the stronger
+full-spectrum expression. [SP8--10](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/SP.tex) gives the complementary
+projection-overlap/common-range refinement, not a replacement claim of novelty
+or universal dominance. The same-source operator correspondence, original
+masses and separately typed AW isometry remain explicit. PR29's existing
+secants, relation-valued derivatives and signed trace-power controls retain
+their attribution. The [original marked-product note](workbenches/splitzero-tandem/continuations/20260913-accepted-followups/deligne-mixed-control/sources/MARKED_PRODUCT_ORIGINAL_NOTE.tex)
+is preserved, with errata stated outside it.
+
+Actual inertia, Stokes/extension maps and growing-family arithmetic estimates
+remain work to do; no uniform bound or RH conclusion follows. All 36 accepted
+public files are retained, with six disclosed locator-only evidence derivatives.
+This is a source-only edition: no PDF is supplied or created, and no fresh
+compilation or visual QA is claimed. Use the direct Markdown/LaTeX links above
+for reading; its ZIP is an offline source archive, not a preview. Existing
+rights, notices, earlier publications and reader roles remain unchanged.

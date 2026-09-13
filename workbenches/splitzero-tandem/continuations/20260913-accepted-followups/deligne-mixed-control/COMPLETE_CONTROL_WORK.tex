@@ -1,0 +1,3833 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[margin=18mm]{geometry}
+\usepackage[bookmarks=false]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{6em}
+\title{Continuing the Deligne programme over the marked $\tau$ base\\
+Complete mixed-support, extension, boundary and source-control calculations}
+\author{}
+\date{13 September 2026}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\rem}{rem}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\C}{\mathbb C}
+\newcommand{\F}{\mathbb F}
+\newcommand{\A}{\mathbb A}
+\newcommand{\Gm}{{\mathbb G_m}}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\BB}{\mathscr B}
+\newcommand{\cP}{\mathcal P}
+\begin{document}
+\maketitle
+\section*{Reading scope and retained dependencies}
+This reader contains the complete calculation bodies MCF, MW, MRE, SP,
+BC and the earlier AW calculation, followed by the complete mathematical body of the original
+marked-product continuation. Read the accompanying \texttt{PROMPT.md}
+for the continuation task and \texttt{DELIGNE\_USAGE\_OVERVIEW.md} for the
+source-grounded assessment of the Deligne machinery used so far.
+The local \texttt{sources} directory preserves exact source copies and
+their SHA256 manifest; the \texttt{evidence} directory preserves the
+independent reviews and finite checks.
+
+The inherited theta range and packet identities AG and CAU, their original
+spaces and Euler inverses, and the cited Deligne statements remain named
+inputs at their stated types. The new proofs retain those inputs and
+construct their displayed maps explicitly. This document does not claim
+to contain a proof of RH or a completed general six-operation formalism
+for the marked support category. It gives calculations from which that
+programme continues, including the actual mixed faces, their source
+attachments, the singular boundary family, and its finite analytic forms.
+
+The arbitrary length-two algebra in MRE is an explicit extension
+calculation. Its use does not assert that an actual zero of $2\xi$ has
+multiplicity two. The centered spectral nilpotent filtration and the
+boundary inertia filtration are related only by maps constructed at
+their specified types; their notation alone supplies no identification.
+
+\paragraph{Exact attribution and correspondence with the earlier AW calculation.}
+The earlier AW1--AW23 source is included in full below. Its AW7 already
+proves the two complete window spectra, and AW14 already proves the
+bound $(2q-1)\log\kappa$ together with the stronger full-spectrum
+expression AW13. The corresponding spectra and final bound in SP
+reproduce those earlier results. The overlap and common-range refinement
+SP8--SP10 supplies additional control alongside AW13.
+
+Here is the exact identification on the retained objects. Write
+$u_{\rm AW}$ for AW's integration frequency, $t$ for its interpolation
+parameter, and $y,x$ for the respective SP variables. Put
+$y=u_{\rm AW}$ and $x=t$, retaining the deformation parameter $u$ of BC
+as its independently defined parameter. Both sources are
+$H=\mathcal P_{2q}$ with $S=k/2+iy$ and the same monic $\chi$.
+Original equation (47) gives
+\[
+ r_{1/4}^{*k}(y)
+  =\frac{c_{1/4}^{\,k}}{c_{k/4}}r_{k/4}(y)
+  =\frac{(\sqrt{2\pi})^k}{c_{k/4}}
+     \frac{|\Gamma(k/4+iy/2)|^2}{2\pi},
+ \qquad c_{1/4}=\sqrt{2\pi}.
+\]
+Thus AW's $m_0,m_1$ are the same reference and arithmetic densities
+used in SP, including their masses. Integration of the unchanged
+monomial products gives
+\[
+ M_{\rm AW}(t)=M_{\rm SP}(x),\qquad
+ M_{N,\rm AW}=I_N^*M_{\rm SP}I_N,\qquad
+ B_{N,\rm SP}=I_N B_{N,\rm AW}.
+\]
+Substitution of these identities into AW4 and SP2 proves equality
+of their source projections $P_N$ and relation projections $Q_N$.
+The zero relation space gives $Q_{q-1}=0$ on both sides. Therefore
+their actual endomorphisms satisfy
+\[
+ \begin{aligned}
+ \mathcal R_{\rm SP}
+ &=Q_{2q-1}+Q_{2q}-Q_q
+   =(Q_{2q-1}-Q_{q-1})+(Q_{2q}-Q_q)=U_{\rm AW},\\
+ \mathcal P_{\rm SP}
+ &=(P_{2q-1}-P_{q-1})+(P_{2q}-P_q)=W_{\rm AW},\\
+ T_{\rm SP}&=M_x^{-1}(M_1-M_0)=C_{\rm AW}(t).
+ \end{aligned}
+\]
+AW's separately constructed isometry, denoted $T_{\rm AW}^{\rm iso}$
+here, retains the exact relations
+\[
+ (T_{\rm AW}^{\rm iso})^*M_xT_{\rm AW}^{\rm iso}=M_x,
+ \qquad
+ \mathcal R_{\rm SP}
+   =T_{\rm AW}^{\rm iso}\mathcal P_{\rm SP}
+                (T_{\rm AW}^{\rm iso})^{-1}.
+\]
+It follows by cyclicity of the original finite trace that
+\[
+ \operatorname{Tr}((\mathcal R_{\rm SP}-\mathcal P_{\rm SP})T_{\rm SP})
+  =\operatorname{Tr}\bigl(\mathcal P_{\rm SP}
+       (T_{\rm AW}^{\rm iso})^{-1}[T_{\rm SP},T_{\rm AW}^{\rm iso}]\bigr),
+\]
+which is AW11 at the displayed original types. This records both
+operators and their exact relation without assigning the isometry's
+role to the metric derivative. The complete AW source also preserves
+its cohomology observation and defect, and its $q=1$ refinements.
+At MW10, the combined arithmetic and coefficient action is
+$T_{a,q}=A_a\Psi_q$: on the stated $\Psi_q$-eigenspace its graded
+eigenvalue is $\omega a^\rho$. This names that product explicitly;
+the independently typed $T_{\rm AW}^{\rm iso}$ and $T_{\rm SP}$ retain
+their definitions above. The original MW and SP source bodies are
+preserved without alteration.
+
+\tableofcontents
+\clearpage
+
+% BEGIN EXACT PROOF BODY: MCF.tex
+% Complete additive module. Requires amsmath, amssymb, mathrsfs.
+% Original coordinates, Fourier sign, Euler action and full arithmetic units
+% are retained. No changes to the counterfactual owner's source files.
+\section{All independent coefficient faces attached to the original theta source}
+\label{sec:tau-mixed-coefficient-faces}
+
+This construction attaches the independent coefficient masks of the original
+mixed-support algebra to the actual theta complexes.  It retains the original
+outer source label and leg mask independently of the coefficient mask.
+A further slot-local leg diagram and its exact comparison with that outer
+diagram are constructed explicitly.  The source-level maps,
+their cohomology, and the full arithmetic boundary of the finite section are
+computed below.  Every tensor operation already present in the ambient
+programme keeps its original tensor variables; the finite direct sums in
+this section are explicitly coefficient-slot observations.
+
+\subsection{The original source and its full finite arithmetic sections}
+
+Retain
+\[
+\begin{split}
+V&=\{\phi\in\mathcal S(\mathbb R):\phi(-x)=\phi(x),\
+                  \phi(0)=0,\ \int_{\mathbb R}\phi(x)\,dx=0\},\\
+\mathscr B&=\{F\in C^\infty(\mathbb R_+):
+ \sup_{x>0}x^b|D^jF(x)|<\infty\quad(b\in\mathbb Z,j\geq0)\},\\
+D&=-x\partial_x,\qquad
+\widehat\phi(\nu)=\int_{\mathbb R}\phi(x)e^{-2\pi ix\nu}\,dx,\\
+\Theta\phi(x)&=2\sum_{n\geq1}\phi(nx),\qquad
+Q=\mathscr B/\Theta V,\qquad q:\mathscr B\longrightarrow Q.
+\end{split}
+\tag{MCF1}
+\]
+The letter $q$ in (MCF1) denotes the quotient map; a coefficient Frobenius
+prime power will be denoted $q_0$ below.  Put
+\[
+\begin{gathered}
+U=\{s:0<\Re s<1,\ \Re s\ne\tfrac12\},\qquad
+T_UQ=\bigcup_p\ker(p(D):Q\to Q),\\
+\mathscr B_U=q^{-1}(T_UQ),\qquad
+C_U=[V\xrightarrow\Theta\mathscr B_U],
+\end{gathered}
+\tag{MCF2}
+\]
+where $p$ ranges over all monic polynomials with roots in $U$, including $1$.
+The original source calculation proves injectivity of $\Theta$,
+$D\Theta=\Theta D$, and injectivity of every nonzero polynomial $p(D)$
+on $V$ and $\mathscr B$.  We use its exact range identities
+\[
+\begin{gathered}
+p(D)V=\ker(j_pH),\qquad
+p(D)\mathscr B=\ker(j_p\mathcal M),\\
+\mathcal MF(s)=\int_0^\infty F(x)x^s\frac{dx}{x},\qquad
+\mathcal M\Theta\phi=gH_\phi,\qquad g=2\xi,\\
+H_{P(D)\phi_*}=P,\qquad
+\phi_*=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}.
+\end{gathered}
+\tag{MCF3}
+\]
+These are the original arithmetic identities (AG1) and (CAU1), with their
+full-plane Euler inverses.  The attachment below uses their stated domains;
+it does not introduce a different test-function completion.  For example,
+the last identity follows from
+\[
+M_+\phi_*(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\qquad
+H_\phi=\frac{2\pi^{s/2}M_+\phi}{s(s-1)\Gamma(s/2)}.
+\]
+The displayed Mellin formula is obtained by integrating the two Gaussian
+monomials and using $\Gamma(z+1)=z\Gamma(z)$; the apparent exceptional
+values are handled by the original entire continuation.  The moments of
+$\phi_*$ are zero because $\phi_*(0)=0$ and
+$4\pi^2\int x^4e^{-\pi x^2}dx-6\pi\int x^2e^{-\pi x^2}dx=3-3=0$.
+
+For a nonempty finite full-order packet in $U$, write
+\[
+\begin{gathered}
+h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\qquad
+m_\rho=\operatorname{ord}_\rho g,\qquad d_h=\deg h,\\
+E_h=\mathbb C[s]/h,\quad A_h=M_s,\quad v_h=g/h,\quad
+\upsilon_h=j_hv_h,\quad\varepsilon_h=\upsilon_h^{-1},\\
+F_h=S_h^{\mathscr B}\Theta\phi_*,\qquad
+P_h(u)=r_h(\varepsilon_hu),\qquad
+s_hu=P_h(u)(D)F_h,\quad \sigma_h=qs_h.
+\end{gathered}
+\tag{MCF4}
+\]
+Here $r_h$ is the unique polynomial representative of degree less than
+$d_h$, and $S_h^{\mathscr B}$ is the inverse of $h(D)$ on the exact range
+in (MCF3).  Every actual multiplicity is retained, so $v_h$ is nonzero
+at each packet centre and $\upsilon_h$ is a unit in the full local algebra.
+Every packet index and directed limit in this module also includes the
+empty packet $h=1$, with $E_1=0$, $s_1=\sigma_1=\ell_1=0$, and
+$\mathscr B_1=\Theta V$.  Its maps into other packet stages are zero
+on $E_1$ and the original inclusion on $\Theta V$.  No inverse unit
+at this zero-vector-space stage is used.  Thus the directed systems
+are defined even when there is no nonempty packet in $U$.
+The equalities
+\[
+\begin{gathered}
+h(D)F_h=\Theta\phi_*,\qquad \mathcal MF_h=v_h,\qquad
+J_hs_h=1,\quad J_h=j_h\mathcal M,\qquad J_h\Theta=0,\\
+h(D)s_hu=\Theta(P_h(u)(D)\phi_*),\\
+Ds_h-s_hA_h=\Theta\phi_*\ell_h,\qquad
+\ell_h(u)=[s^{d_h-1}]P_h(u)
+\end{gathered}
+\tag{MCF5}
+\]
+have the original source types.  To verify the last equality in full,
+$sP_h(u)-P_h(A_hu)$ has zero $h$-jet, degree at most $d_h$, and leading
+coefficient $\ell_h(u)$.  Monicity gives
+$sP_h(u)-P_h(A_hu)=h\ell_h(u)$.  Apply this polynomial in $D$ to $F_h$
+and use the first equality.  The other identities follow directly from
+(MCF3)--(MCF4) and retain the entire multiplier $v_h$.
+
+For completeness the finite arithmetic image is exactly
+$\sigma_hE_h=Q[h(D)]$.  If $h(D)F=\Theta\phi$, the assignment
+$[F]\mapsto j_hH_\phi$ is well-defined because replacing $F$ by
+$F+\Theta\psi$ replaces $\phi$ by $\phi+h(D)\psi$.  A zero jet makes
+$\phi=h(D)\psi$ by (MCF3), and injectivity of $h(D)$ gives
+$F=\Theta\psi$.  Every jet represented by a polynomial $P$ is obtained
+from $S_h^{\mathscr B}\Theta(P(D)\phi_*)$, since $j_h(gP)=0$.
+Thus this assignment is an isomorphism.  Applied to $s_hu$ it gives
+$\varepsilon_hu$ by (MCF5), an invertible change of full jet coordinates.
+In particular $\sigma_h$ is injective and has the asserted image.
+
+\subsection{The independent coefficient face category and its exact quotient}
+
+Fix $n\geq1$ and $I_n=\{0,\ldots,n-1\}$.  For every subset
+$A\subseteq I_n$, including the empty subset, put
+\[
+C_U[A]=\bigoplus_{i\in A}C_U
+ =[V^A\xrightarrow{(\phi_i)\mapsto(\Theta\phi_i)}\mathscr B_U^A],
+\qquad E_h[A]=E_h^A.
+\tag{MCF6}
+\]
+Empty direct sums are zero vector spaces.  If $A\subseteq B$, define
+$z_{AB}$ by the identity in each old coordinate and by the typed zero in
+every coordinate of $B\setminus A$, in both degrees and in $E_h[A]$.
+Then $d z_{AB}=z_{AB}d$ coordinate by coordinate, and
+$z_{BC}z_{AB}=z_{AC}$.  This is a functor from the inclusion category
+$\mathcal P(I_n)$ to complexes.  The complete face diagram is retained;
+no colimit is taken that would identify its different masks.
+
+For a complex vector space $X$, set
+$G(X)=\{\tau\}\sqcup\{x^\bullet:x\in X\}$, with the original supported
+addition and scalar action.  The degree-$j$ mixed carrier is
+\[
+\mathscr D_n^j=\prod_{i\in I_n}G(C_U^j)
+\simeq\coprod_{A\subseteq I_n}\{A\}\times(C_U^j)^A.
+\tag{MCF7}
+\]
+The empty term on the right is one point, corresponding to the all-absent
+tuple.  The bijection sends each present coordinate to its original
+amplitude and records every present zero in $A$.  Its inverse puts those
+amplitudes in the coordinates of $A$ as supported values and puts $\tau$
+in the other coordinates.  Thus all $2^n$ masks, including the proper
+nonempty faces, are present.  A face arrow $z_{AB}$ changes the recorded
+mask from $A$ to $B$ and fills the new coordinates with supported zeros.
+It is an arrow between labelled faces, not an identification of them.
+
+The differential preserves the original mask of its input and applies
+$\Theta$ independently in every present coordinate.  A source vector
+annihilated by its amplitude differential reaches the supported zero at
+the same mask.  In the internal split cycle and boundary construction,
+$\epsilon(A,x)=(A,0)$ and
+$Z=\operatorname{Eq}(d,\epsilon d)$; boundary relations are the
+coequalizer of $b$ and $\epsilon b$ within each labelled fibre.
+Consequently the exact cohomology and quotient are
+\[
+\begin{gathered}
+H^0(C_U[A])=0,\qquad H^1(C_U[A])=(T_UQ)^A,\\
+\mathscr D_n^1\longrightarrow\prod_iG(T_UQ),\qquad
+F_i^\bullet\longmapsto(qF_i)^\bullet,\quad\tau\longmapsto\tau.
+\end{gathered}
+\tag{MCF8}
+\]
+Indeed $\Theta$ is injective in every active coordinate, and the image
+in degree one is exactly $(\Theta V)^A$.  Two amplitudes at mask $A$
+are identified precisely when their coordinate differences belong to
+$(\Theta V)^A$.  The fibre over the supported zero at $A$ is
+$\{A\}\times(\Theta V)^A$; it is not combined with any other mask.
+More generally, choosing any lift $F$ of an amplitude in $(T_UQ)^A$
+gives its entire fibre as $F+(\Theta V)^A$ at that same mask.
+
+The full finite arithmetic attachment is
+\[
+\begin{array}{ccccc}
+E_h[A]&\xrightarrow{\ s_h^A\ }&\mathscr B_U^A
+       &\xrightarrow{\ q^A\ }&(T_UQ)^A\\
+z_{AB}\downarrow&&z_{AB}\downarrow&&\downarrow z_{AB}\\
+E_h[B]&\xrightarrow{\ s_h^B\ }&\mathscr B_U^B
+       &\xrightarrow{\ q^B\ }&(T_UQ)^B.
+\end{array}
+\tag{MCF9}
+\]
+All squares commute because every displayed map is applied independently
+to the unchanged old coordinates and is linear on the inserted zeros.
+Every $\sigma_h^A=q^As_h^A$ is injective by (MCF5).  In every active
+coordinate its exact Euler boundary is
+\[
+(D^As_h^A-s_h^AA_h^A)(u_i)_{i\in A}
+ =(\Theta\phi_*\ell_h(u_i))_{i\in A}.
+\tag{MCF10}
+\]
+This is an equality of actual functions, whose primitive is
+$(\phi_*\ell_h(u_i))_{i\in A}\in V^A$.
+After the original quotient it proves $D^A\sigma_h^A=\sigma_h^AA_h^A$.
+Thus every proper coefficient face carries the same full arithmetic
+boundary calculation, with its mask still specified.
+
+\subsection{Independent slot-local leg presentations}
+
+There is also a slot-local copy of the original two-leg presentation at
+every active coefficient.  This auxiliary indexing does not replace the
+original outer leg label: its exact attachment, including empty coefficient
+support, is (MCF34)--(MCF40) below.  Its objects are
+\[
+\lambda=(A,(S_i)_{i\in A}),\qquad
+A\subseteq I_n,\quad\varnothing\ne S_i\subseteq\{+,-\}.
+\tag{MCF11}
+\]
+For empty $A$ the family is empty.  Order these objects by
+$\lambda\leq\lambda'$ when $A\subseteq A'$ and $S_i\subseteq S'_i$
+for every $i\in A$.  Thus each coefficient slot has four states: absent,
+plus only, minus only, or both.  There are exactly $4^n$ slot-local masks.
+
+At $\lambda$ put
+\[
+\begin{split}
+C_\lambda^0&=\bigoplus_{i\in A}
+   \left(\bigoplus_{+\in S_i}V_+\ \oplus\!
+                         \bigoplus_{-\in S_i}V_-\right),\\
+C_\lambda^1&=\mathscr B_U^A,\qquad
+d_\lambda(\phi_i,\psi_i)_i
+       =(\Theta\phi_i-\Theta\widehat\psi_i)_i.
+\end{split}
+\tag{MCF12}
+\]
+A coordinate of a missing leg in the displayed formula is its typed zero;
+that convention evaluates the formula without adjoining that leg to the
+mask.  The plus and target actions of $t\in\mathbb C[t]$ are $D$; the
+minus action is $1-D$.  The Fourier identity
+$\widehat{D\phi}=(1-D)\widehat\phi$ proves that this is a complex of
+$\mathbb C[t]$-modules.  For $\lambda\leq\lambda'$, retain every old
+source leg and coefficient, insert typed zeros in the new legs and slots,
+and use zero insertion in degree one.  Both differentials then agree
+term by term, proving a strictly composing cochain map.  The actual
+supported arrow changes the label from $\lambda$ to $\lambda'$ and
+retains every newly supported zero as such.
+
+The natural comparison with (MCF6) is the cochain map
+\[
+p_\lambda:C_\lambda\longrightarrow C_U[A],\qquad
+p_\lambda^0(\phi_i,\psi_i)_i
+       =(\phi_i-\widehat\psi_i)_i,\qquad
+p_\lambda^1=1.
+\tag{MCF13}
+\]
+It commutes with every zero-insertion transition.  In a plus-only slot
+its degree-zero map is the identity, in a minus-only slot it is
+$-\widehat{\phantom\phi}$, and in a joint slot it has the exact inverse
+coordinates
+\[
+u=\phi-\widehat\psi,\quad v=\tfrac12(\phi+\widehat\psi),\qquad
+\phi=v+\tfrac12u,\quad\psi=\widehat v-\tfrac12\widehat u.
+\tag{MCF14}
+\]
+Fourier squares to the identity on $V$, so every displayed map and
+inverse has its stated domain.  Write
+$J(\lambda)=\{i\in A:S_i=\{+,-\}\}$.  The exact kernel and cohomology are
+\[
+\begin{gathered}
+0\longrightarrow V^{J(\lambda)}[0]
+\xrightarrow{\delta_\lambda} C_\lambda
+\xrightarrow{p_\lambda} C_U[A]\longrightarrow0,\\
+\delta(v)_i=(v_i,\widehat v_i)\quad(i\in J(\lambda)),\\
+H^0(C_\lambda)=V^{J(\lambda)},\qquad
+H^1(C_\lambda)=(T_UQ)^A.
+\end{gathered}
+\tag{MCF15}
+\]
+Surjectivity of $p^0$ follows from the single-leg formulas and (MCF14).
+Its kernel in a joint slot is exactly the displayed diagonal, and its
+degree-one kernel is zero.  Its differential on $(u,v)$ is $\Theta u$.
+Injectivity of $\Theta$ now proves the cohomology statement directly.
+Thus the two-leg diagonal remains present at every relevant independent
+coefficient; it is not removed when the arithmetic degree-one quotient
+is observed.
+
+The slot-local cohomology carrier is the following.  The separate outer
+label is retained in (MCF34).
+\[
+\widetilde H_n^1
+=\{\tau_n\}\sqcup
+ \coprod_{\substack{\lambda=(A,S)\\ A\ne\varnothing}}
+               \{\lambda\}\times(T_UQ)^A.
+\tag{MCF16}
+\]
+Forgetting only the leg masks gives a pointed map to $\prod_iG(T_UQ)$.
+Over a specified tuple of coefficient mask $A$ it has exactly
+$3^{|A|}$ labelled preimages, one for every nonempty $S_i$; the amplitudes
+are fixed.  Over the all-absent tuple its fibre is the single $\tau_n$.
+A specified section takes the joint leg mask at every active coefficient.
+These formulas prove the exact relationship between the combined support
+diagram and the coefficient-mask observation; neither is silently used
+in place of the other.  The maps $s_h^A$ and $\sigma_h^A$ of (MCF9)
+give their source and arithmetic amplitudes at every $\lambda$, with the
+same recorded coefficient and leg masks.
+
+One can also lift each original one-leg complex into its selected leg
+presentation.  At a single slot the degree-zero section of $p_\lambda$ is
+\[
+j_+(u)=u,\qquad j_-(u)=-\widehat u,\qquad
+j_{+-}(u)=(u/2,-\widehat u/2),
+\tag{MCF17}
+\]
+and degree one is the identity.  They are $\mathbb C[t]$-linear cochain
+maps by the Fourier identity.  For the two inclusions into the joint
+slot their precise difference is
+\[
+\operatorname{inc}_+j_+-j_{+-}=\delta(u/2),\qquad
+\operatorname{inc}_-j_--j_{+-}=-\delta(u/2)
+\quad\hbox{in degree zero},
+\tag{MCF18}
+\]
+and zero in degree one.  These retain the original diagonal; a claim of
+strict naturality for these three chosen sections would omit it.
+There is also an explicit complex-linear homotopy.  The coherent original
+sections give $\mathscr B_U=\Theta V\oplus s_UE_U$, with
+$E_U=\varinjlim_hE_h$; define $t_U(\Theta\phi+s_Uu)=\phi$.
+Then $t_U\Theta=1$.  The degree-minus-one maps
+$H_\pm(F)=\pm\delta(t_UF)/2$ obey $dH_\pm=0$ and
+$H_\pm\Theta=\pm\delta/2$, so $dH_\pm+H_\pm d$ equals (MCF18).
+This is the exact homotopy of the chosen sections.  No equivariance of
+$t_U$ or $H_\pm$ is asserted.  Existence of the coherent $s_U$ and its
+original unit is checked in the divisor calculation below.
+
+\subsection{Arithmetic dilation on every face and its full source boundary}
+
+For $a>0$ write $\mathcal R_aF(x)=F(x/a)$, with the same formula on $V$.
+Changing variables shows that it preserves the original spaces, preserves
+the value-zero condition, and multiplies the source integral by $a$.
+Direct substitution gives
+\[
+\Theta\mathcal R_a=\mathcal R_a\Theta,\qquad
+\widehat{\mathcal R_a\phi}=a\mathcal R_{1/a}\widehat\phi,\qquad
+\mathcal M\mathcal R_aF=a^s\mathcal MF.
+\tag{MCF19}
+\]
+It commutes with $D$ and hence preserves $T_UQ$ and its inverse image
+$\mathscr B_U$.  On every combined face its action is
+\[
+(\phi_i,\psi_i)_i\longmapsto
+ (\mathcal R_a\phi_i,a\mathcal R_{1/a}\psi_i)_i,\qquad
+F_i\longmapsto\mathcal R_aF_i.
+\tag{MCF20}
+\]
+The coefficient and leg masks are unchanged.  The Fourier formula in
+(MCF19) makes the two differentials commute exactly.  These actions
+also commute with every face inclusion and with $p_\lambda$, since
+\[
+\mathcal R_a\phi-\widehat{a\mathcal R_{1/a}\psi}
+      =\mathcal R_a(\phi-\widehat\psi).
+\]
+On the diagonal the action is $v\mapsto\mathcal R_av$, because its
+minus coordinate becomes $a\mathcal R_{1/a}\widehat v
+=\widehat{\mathcal R_av}$.  Thus (MCF15) is an equivariant exact sequence.
+
+The finite arithmetic action is
+\[
+A_{a,h}=M_{j_h(a^s)}:E_h\longrightarrow E_h,\qquad
+A_{a,h}|_\rho=a^\rho\sum_{j=0}^{m_\rho-1}
+             \frac{(\log a)^j}{j!}N_\rho^j,\quad N_\rho=M_{s-\rho}.
+\tag{MCF21}
+\]
+The complete nilpotent Taylor polynomial is displayed.  Mellin and (MCF19)
+give $J_h\mathcal R_a=A_{a,h}J_h$.  Dilation preserves $Q[h(D)]$, and
+$J_h$ is the inverse of $\sigma_h$ there by (MCF5).  Therefore
+$\overline{\mathcal R}_a\sigma_h=\sigma_hA_{a,h}$, an exact equality
+on the original arithmetic quotient.
+
+The source defect has a full original primitive, rather than an assumed
+equivariant lift.  Define
+\[
+\begin{split}
+\chi_{a,h}(u)&=\mathcal R_a(P_h(u)(D)\phi_*)
+                       -P_h(A_{a,h}u)(D)\phi_*\in V,\\
+\Psi_{a,h}(u)&=S_h^V\chi_{a,h}(u),
+\end{split}
+\tag{MCF22}
+\]
+where $S_h^V$ is the inverse of $h(D)$ on $\ker(j_hH)$ from (MCF3).
+This inverse is applied on its proved domain: the Mellin calculation gives
+\[
+H_{\chi_{a,h}(u)}=a^sP_h(u)-P_h(A_{a,h}u),\qquad
+j_hH_{\chi_{a,h}(u)}
+ =j_h(a^s)\varepsilon_hu-\varepsilon_hA_{a,h}u=0.
+\tag{MCF23}
+\]
+The complete $\varepsilon_h=j_h(g/h)^{-1}$ occurs in both terms.
+Applying $h(D)$ to the two sides and using (MCF5), (MCF19), and
+$h(D)\Psi=\chi$, gives
+\[
+\mathcal R_as_hu-s_hA_{a,h}u=\Theta\Psi_{a,h}(u).
+\tag{MCF24}
+\]
+Indeed the difference after application of $h(D)$ is zero, and its
+injectivity on $\mathscr B$ proves the displayed equality.  In every
+coefficient face this equality is applied separately to each $u_i$.
+In a combined leg presentation an actual degree-zero primitive is
+$j_{S_i}(\Psi_{a,h}(u_i))$ from (MCF17).  Its differential is precisely
+the corresponding coordinate of (MCF24).  The alternative single-leg
+and joint-leg primitives differ by the diagonal terms of (MCF18),
+which remain recorded in (MCF15).
+
+The primitives themselves have the exact composition law
+\[
+\Psi_{ab,h}(u)=\mathcal R_a\Psi_{b,h}(u)
+                         +\Psi_{a,h}(A_{b,h}u).
+\tag{MCF25}
+\]
+Expand $\mathcal R_{ab}s_h-s_hA_{a,h}A_{b,h}$ as
+$\mathcal R_a(\mathcal R_bs_h-s_hA_{b,h})
+ +(\mathcal R_as_h-s_hA_{a,h})A_{b,h}$, apply (MCF24), and cancel the
+injective $\Theta$.  This proves the law with the original dilation
+order, source action, and full arithmetic multiplier.
+
+\subsection{Packet enlargement with every coefficient face retained}
+
+For full-order packets $h\mid H$, put $b=H/h$.  Their supports differ by
+whole local factors, so $b$ and $h$ are coprime.  Let
+$\iota_{hH}:E_h\to E_H$ insert the old full jets and zero jets at every
+added centre.  CRT gives this injective $\mathbb C[s]$-linear map and
+the restriction left inverse.  At old centres $\upsilon_H=b^{-1}\upsilon_h$
+and $\varepsilon_H=b\varepsilon_h$.  At added centres $b$ vanishes to
+the full required order.  Hence
+\[
+r_H(\varepsilon_H\iota_{hH}u)=b\,r_h(\varepsilon_hu),\qquad
+b(D)F_H=F_h,\qquad s_H\iota_{hH}=s_h.
+\tag{MCF26}
+\]
+The first identity holds in every full local factor and both polynomials
+have degree less than $\deg H$; uniqueness of the remainder proves it.
+For the second identity, apply $h(D)$ and use the injectivity in (MCF3).
+Together they prove the third.  Monicity of $b$ preserves the highest
+coefficient of the remainders in the first identity, giving
+\[
+\ell_H\iota_{hH}=\ell_h,\qquad
+A_{a,H}\iota_{hH}=\iota_{hH}A_{a,h},\qquad
+\Psi_{a,H}\iota_{hH}=\Psi_{a,h}.
+\tag{MCF27}
+\]
+The action identity follows in the unchanged old jets and the zero added
+jets.  The primitive identity follows from (MCF24), the section identity,
+and injectivity of $\Theta$.  All statements hold coordinatewise in
+$E_h[A]$ and commute with every coefficient and combined-leg face map.
+Thus the finite face attachments glue by literal source equalities.
+Their directed union supplies the coherent $s_U$ used in (MCF18).
+The decomposition $\mathscr B_U=\Theta V\oplus s_UE_U$ follows from
+surjectivity onto $T_UQ$ and injectivity of each $\sigma_h$; every vector
+and every finite relation occurs in a common full packet.  The original
+all-polynomial calculation (CAU5)--(CAU13) proves that these packets
+exhaust $T_UQ$, retaining every local zero order.
+
+\subsection{The original negacyclic masks and coefficient Frobenius}
+
+At its finite arithmetic-algebra vertex, the complete independent carrier
+is the original
+\[
+D_{E_h,n}=G(E_h)^n,\qquad B_{h,n}=E_h[t]/(t^n+1),\qquad
+\pi_n(c)=\sum_{i=0}^{n-1}p(c_i)t^i.
+\tag{MCF28}
+\]
+The variable $t$ here is the additional coefficient variable of this
+finite observation.  The spectral variable in $E_h$ is still $s$.
+The negacyclic product, its original unit, and its mask law are
+\[
+\begin{gathered}
+(c\star d)_k=\mathop{\bigoplus}_{i+j=k}c_id_j\ \oplus\!
+             \mathop{\bigoplus}_{i+j=k+n}(-1)^\bullet c_id_j,
+\qquad 1_D=(1^\bullet,\tau,\ldots,\tau),\\
+\operatorname{mask}(c+d)=\operatorname{mask}(c)\cup\operatorname{mask}(d),\qquad
+\operatorname{mask}(c\star d)
+ =\operatorname{mask}(c)+\operatorname{mask}(d)\quad(\bmod n).
+\end{gathered}
+\tag{MCF29}
+\]
+For the product, an output is supported exactly when at least one pair
+of supported input indices sums to it.  Wrap signs are supported and a
+nonempty sum of supported summands remains supported even when its
+coefficient cancels.  This proves the stated law with every mixed face.
+Monic remainder in $t$ gives the unique coefficients of $\pi_n(c)$;
+the mask then distinguishes each coefficient zero from absence.  Thus
+$(\operatorname{mask},\pi_n)$ is injective.  Its facewise source and
+cohomology attachment is exactly (MCF9), or (MCF16) when leg masks are
+also retained.  The product in (MCF29) belongs to this finite algebra
+vertex.  The source maps $s_h^A$ have their stated linear types; no
+unproved ring multiplication on the original source is inserted.
+
+Let $q_0$ be an odd prime power with $\gcd(q_0,n)=1$, and put
+$\kappa(i)=q_0i\bmod n$ and
+$\epsilon_i=(-1)^{\lfloor q_0i/n\rfloor}$.  The coefficient Frobenius
+lift on the entire independent object is
+\[
+c_i\longmapsto\epsilon_i^\bullet c_i
+       \quad\hbox{in slot }\kappa(i),\qquad
+A\longmapsto\kappa(A).
+\tag{MCF30}
+\]
+An absent coordinate stays absent.  On a combined label it sends
+$S_i$ to $S'_{\kappa(i)}=S_i$ and multiplies every present source-leg
+and target amplitude in that coefficient by $\epsilon_i$.  It commutes
+with the differential because it uses the same coefficient sign in
+each term of that differential.  It commutes with face inclusion,
+the maps $p_\lambda$, $s_h^A$, $\sigma_h^A$, and all arithmetic dilations
+by coordinate permutation and complex linearity.
+
+On the integral coefficient ring $\mathbb Z[t]/(t^n+1)$ this is the
+matrix of $t\mapsto t^{q_0}$.  It is well-defined since
+$(t^{q_0})^n=-1$, and choosing $r$ with $q_0^r\equiv1\pmod{2n}$
+proves its $r$th power is the identity.  Reduction to $\mathbb F_{q_0}$
+is exactly coefficient Frobenius; extension to $\mathbb C$ retains the
+same integral signed-permutation matrix.  On supported monomials,
+reducing the exponent before or after substitution gives the same
+wrap sign, since $q_0$ is odd.  Distributivity and the absent cases
+therefore prove multiplicativity on (MCF29), before synchronization.
+In particular its support action is the exact permutation in (MCF30),
+rather than an observation of one global Boolean support bit.
+
+The synchronization arrow is also retained explicitly:
+\[
+\mathsf E_n=(1^\bullet,e,\ldots,e),\qquad
+\mathsf E_nD_{E_h,n}\simeq G(B_{h,n}),\qquad
+D_{E_h,n}[\mathsf E_n^{-1}]\simeq\mathsf E_nD_{E_h,n}.
+\tag{MCF31}
+\]
+Its multiplication fills every missing coordinate of an active input
+with a supported zero while leaving all ordinary coefficients unchanged;
+every output has a supported summand using any chosen active input
+coordinate.  Hence $\mathsf E_n^2=\mathsf E_n$.  A unital map making
+this idempotent invertible sends it to 1 and identifies $c$ with
+$\mathsf E_nc$, proving the localization universal property.
+If $f=\sum f_it^i$ and $J(f)=\{i:f_i\ne0\}$, its fibre over
+$f^\bullet$ consists of one original vector for each nonempty mask
+$A$ with $J(f)\subseteq A\subseteq I_n$.  The fibre over $\tau$ is
+the all-absent vector alone.  In particular a supported zero has
+$2^n-1$ distinct independent-mask preimages.  These exact fibres remain
+attached; the synchronized observation does not replace (MCF28).
+
+Finally the original arithmetic coefficients have an exact retract
+\[
+\iota_n:E_h\longrightarrow B_{h,n},\quad f\mapsto f,
+\qquad r_n:B_{h,n}\longrightarrow E_h,
+\quad r_n(b)=\frac1n\operatorname{Tr}_{B_{h,n}/E_h}(M_b),
+\qquad r_n\iota_n=1.
+\tag{MCF32}
+\]
+In the basis $1,t,\ldots,t^{n-1}$, multiplication by $t^i$ has no
+diagonal entries for $1\leq i<n$, while multiplication by $b_0$
+has $n$ diagonal entries $b_0$.  Thus $r_n(\sum b_it^i)=b_0$ and
+its kernel is exactly $\bigoplus_{i=1}^{n-1}E_ht^i$.
+Writing $\Psi_{q_0}$ for (MCF30) on coefficients, it fixes $\iota_n$
+and preserves $r_n$.  The coefficientwise extension of $A_{a,h}$
+commutes with it and intertwines both arrows in (MCF32).  On a coefficient
+eigenspace of eigenvalue $\omega$, the actual full local action is
+\[
+\omega a^\rho\sum_{j=0}^{m_\rho-1}
+          \frac{(\log a)^j}{j!}N_\rho^j.
+\tag{MCF33}
+\]
+Every $\omega$ is a root of unity by the proved finite order, and the
+original arithmetic action is recovered on the constant-coefficient
+retract.  This completes the attachment of independent mixed coefficient
+support to the original theta source, its combined leg diagram, and its
+actual arithmetic operators.  All masks, source diagonals, full units,
+nilpotents, and comparison fibres have their displayed maps.
+
+\subsection{The independent outer source label, including empty coefficient support}
+
+The original outer source label is $(W,S)$, with $W\subseteq V$ a
+complex linear $D$-invariant subspace and
+$\varnothing\ne S\subseteq\{+,-\}$.  It is independent
+of the coefficient mask $A\subseteq I_n$.  Denote the set of those subspaces
+$W$ by $\mathcal W_D$.  Its exact coefficient diagram is
+\[
+\begin{split}
+\mathcal J_n^{\rm out}&=\{(W,S;A): W\in\mathcal W_D,
+       \ \varnothing\ne S\subseteq\{+,-\},\ A\subseteq I_n\},\\
+C_{W,S;A}^0&=
+ \left(\bigoplus_{+\in S}W\ \oplus\!
+                          \bigoplus_{-\in S}\widehat W\right)^A,
+\qquad C_{W,S;A}^1=\mathscr B_U^A,\\
+d_{W,S;A}(\phi_i,\psi_i)_i
+      &=(\Theta\phi_i-\Theta\widehat\psi_i)_i.
+\end{split}
+\tag{MCF34}
+\]
+The minus leg is exactly $\widehat W$; it is not replaced by $W$ unless
+the two spaces are equal.  Its action is $1-D$, preserving that space
+by the Fourier identity.  The target restriction $\mathscr B_U\subseteq
+\mathscr B$ is an injective cochain map to the original outer complex,
+since $\Theta W\subseteq\Theta V\subseteq\mathscr B_U$.
+For $W\subseteq W'$, $S\subseteq S'$ and $A\subseteq A'$, the
+transition includes the old source subspaces and coordinates and inserts
+the typed zeros in new legs and coefficient slots.  The degree-one
+transition is zero insertion.  These are cochain maps, by substitution
+in the displayed differential, and compose literally.
+
+At $A=\varnothing$ this is a zero complex \emph{at its retained outer
+label $(W,S)$}.  Its single coefficient value has empty coefficient
+support; the outer leg mask is still $S$.  In the represented carrier
+one retains all triples $(W,S;A,x)$ and separately adjoins a global
+external point $\tau_{\rm out}$.  In particular
+\[
+(W,S;\varnothing,0)\ne\tau_{\rm out},\qquad
+(W,S;A,0)\ne(W,S;A',0)\quad\text{if }A\ne A'.
+\tag{MCF35}
+\]
+These are explicit distinct elements of the disjoint labelled carrier;
+they do not assert a nonzero amplitude in a zero complex.  Taking a
+colimit over coefficient masks would identify these zero insertions
+with their images in the terminal full face.  That colimit is not part
+of this construction.
+
+Define $Q_{W,U}=\mathscr B_U/\Theta W$ and
+$\eta_W:V/W\to Q_{W,U}$ by $[v]\mapsto[\Theta v]_W$.
+The complete arithmetic quotient and kernel are
+\[
+\begin{gathered}
+0\longrightarrow(V/W)^A\xrightarrow{\eta_W^A}Q_{W,U}^A
+       \xrightarrow{\pi_W^A}(T_UQ)^A\longrightarrow0,\\
+H^0(C_{W,S;A})=
+ \begin{cases}W^A,&S=\{+,-\},\\0,&|S|=1,\end{cases}
+\qquad H^1(C_{W,S;A})=Q_{W,U}^A.
+\end{gathered}
+\tag{MCF36}
+\]
+For the kernel sequence, injectivity of $\Theta$ proves that
+$\Theta v\in\Theta W$ exactly when $v\in W$.  A class of
+$\mathscr B_U/\Theta W$ maps to zero modulo $\Theta V$ exactly when
+it is represented by $\Theta v$ for some $v\in V$.  Surjectivity
+follows from the definition of $\mathscr B_U$.  Applying this proof
+independently in the coordinates proves the exact sequence.
+For the cohomology calculation, a joint slot has the reversible
+coordinates (MCF14) with $u,v\in W$, since $\psi\in\widehat W$.
+Its differential is $\Theta u$ and its diagonal is $W$.
+A single-leg differential is injective with image $\Theta W$.
+This proves every case, including the zero coefficient vector spaces
+at empty $A$.  For $W\subseteq W'$ the transition on degree one has
+kernel exactly $(W'/W)^A$ under the same original map $[v]\mapsto
+[\Theta v]_W$.  The outer-label kernel is thus fully retained.
+
+The exact relation to the slot-local diagram is an enlarged index
+\[
+(W,S;A,(T_i)_{i\in A}),\qquad
+\varnothing\ne T_i\subseteq S.
+\tag{MCF37}
+\]
+Its source uses $W$ on the present plus legs and $\widehat W$ on the
+present minus legs, according to $T_i$, and its target is
+$\mathscr B_U^A$.  Every differential is the original signed theta
+differential in that coordinate.  The outer diagram (MCF34) embeds
+by $T_i=S$ for every $i\in A$, with the identity on its coefficient
+spaces.  This embedding remains injective on the index when $A$ is
+empty because $W$ and $S$ are retained separately.
+Forgetting $W,S$ and including $W,\widehat W$ into $V$ gives the
+explicit cochain comparison to (MCF12); its target map is the identity
+on $\mathscr B_U^A$.  Its induced map on $H^1$ is precisely $\pi_W^A$ in
+(MCF36), and its induced map on $H^0$ is the diagonal inclusion
+$W^{\{i:T_i=\{+,-\}\}}\subseteq V^{\{i:T_i=\{+,-\}\}}$.
+For fixed $W=V$, forgetting only the outer $S$ has exactly three
+labelled preimages over the empty slot-local mask, two when the union
+of the nonempty $T_i$ is a single leg, and one when that union contains
+both legs.  Indeed these are exactly the nonempty subsets
+$S\subseteq\{+,-\}$ containing $\bigcup_iT_i$.
+This computes the lost outer information of that specified forgetting
+map; its empty coefficient value is not identified with global
+absence in (MCF35).
+
+There is a useful original-outer-source retract, which also checks the
+empty coefficient endpoint without changing the label.  At a fixed
+$(W,S)$, write $C_{W,S}^U$ for its one-coefficient original complex
+with central term $\mathscr B_U$, and take the constant coefficient map
+\[
+c_0:C_{W,S;A}\longrightarrow C_{W,S}^U,\qquad
+c_0(x)=\begin{cases}x_0,&0\in A,\\0,&0\notin A,
+\end{cases}
+\qquad
+i_0:C_{W,S}^U\longrightarrow C_{W,S;\{0\}},\quad x\longmapsto(x)_0.
+\tag{MCF38}
+\]
+Here $i_0$ includes the original outer complex as the coefficient-face
+vertex $A=\{0\}$ in the full represented diagram.  This notation does
+not assert an inclusion into every other face.  Each $c_0$ is a cochain
+map and commutes with all coefficient zero insertions, since a newly
+inserted coordinate has zero amplitude.  On the represented carrier
+it sends $(W,S;\varnothing,0)$ to the supported outer zero at
+$(W,S)$.  On global $\tau_{\rm out}$ the pointed extension
+has value $\tau_{\rm out}$.  Its composite with the selected $i_0$
+is the identity on the original outer coefficient amplitude and label.
+The coefficient Frobenius fixes index zero and its sign is one, so
+$c_0\Psi_{q_0}=c_0$.  This proves an actual outer-label-preserving
+comparison, rather than identifying the original outer label with a
+slot-local mask.
+
+The finite arithmetic section at a proper outer source is
+$\sigma_{h,W}(u)=[s_hu]_W\in Q_{W,U}$.  It is injective because
+$\pi_W\sigma_{h,W}=\sigma_h$ and $\sigma_h$ is injective.
+Its exact retained defects are
+\[
+\begin{gathered}
+D\sigma_{h,W}-\sigma_{h,W}A_h
+       =\eta_W([\phi_*\ell_h(\,\cdot\,)]_W),\\
+\overline{\mathcal R}_a^{\,W\to\mathcal R_aW}\sigma_{h,W}
+       -\sigma_{h,\mathcal R_aW}A_{a,h}
+       =\eta_{\mathcal R_aW}([\Psi_{a,h}(\,\cdot\,)]_{\mathcal R_aW}).
+\end{gathered}
+\tag{MCF39}
+\]
+The first is (MCF5) in the quotient by $\Theta W$ and the second is
+(MCF24) in the quotient by $\Theta\mathcal R_aW$.  Dilation transports
+the outer label to $\mathcal R_aW$, as required by (MCF19); it need
+not fix an arbitrary $D$-invariant $W$.  On the minus source it maps
+$\widehat W$ to $a\mathcal R_{1/a}\widehat W=
+\widehat{\mathcal R_aW}$.  This proves that every arrow in (MCF39)
+has the stated domain and codomain.  The original primitives belong
+to $V$; their possibly nonzero classes in $V/W$ or
+$V/\mathcal R_aW$ are retained in (MCF36).  No primitive in $V$ has
+been declared to be a boundary in a smaller source $W$.
+For the full outer source $W=V$, both kernel classes are zero and
+(MCF39) recovers the proved full-source intertwining.
+
+Apply (MCF39) coordinatewise on every $A$, keeping all outer and
+slot-local labels.  Packet inclusion, zero insertion, and coefficient
+Frobenius commute with these defects by (MCF27), linearity and the
+permutation (MCF30).  In particular the complete retained data form
+the commuting represented diagram
+\[
+\{C_{W,S;A}\}_{W,S,A} \longrightarrow\
+\{Q_{W,U}^A[-1]\}_{W,S,A}\ \xrightarrow{\{\pi_W^A\}}\
+\{(T_UQ)^A[-1]\}_{W,S,A},\qquad
+\ker\pi_W^A=\eta_W^A((V/W)^A),
+\tag{MCF40}
+\]
+with the enriched slot-local faces and their inclusion and forgetting
+maps specified in (MCF37).  The first arrow is the actual cochain map
+to $Q_{W,U}^A[-1]$ given by zero in degree zero and the original
+quotient in degree one.  Its exact kernel complex is also retained:
+\[
+K_{W,S;A}=[C_{W,S;A}^0\xrightarrow{d}(\Theta W)^A],\qquad
+0\longrightarrow K_{W,S;A}\longrightarrow C_{W,S;A}
+\longrightarrow Q_{W,U}^A[-1]\longrightarrow0.
+\tag{MCF40a}
+\]
+Degreewise kernel computation proves this short exact sequence.
+The single-leg differential onto $\Theta W$ is an isomorphism, and
+the joint differential in (MCF14) has kernel the full $W$ diagonal.
+Thus $K_{W,S;A}$ retains exactly the degree-zero diagonal specified
+in (MCF36), including its zero-insertion and source-inclusion maps.
+The original outer source,
+every coefficient mask including the empty one, every present source
+leg, and the exact arithmetic comparison kernel are simultaneously
+specified by this diagram.
+
+\subsection{Exact enlargement from offcritical support to all nontrivial packets}
+
+The offcritical region $U$ throughout the preceding construction remains
+unchanged.  A packet containing critical-line zeros has a larger original
+source domain, which we now attach by its exact inclusions.  Put
+\[
+\begin{gathered}
+\Omega=\{s\in\mathbb C:0<\Re s<1\},\qquad
+L=\Omega\setminus U=\{s:\Re s=\tfrac12\},\\
+T_XQ=\bigcup_{p\in\mathcal P_X}\ker(p(D):Q\to Q),\qquad
+\mathscr B_X=q^{-1}(T_XQ),\qquad
+C_X=[V\xrightarrow\Theta\mathscr B_X]\quad(X=U,\Omega,L),\\
+\mathcal P_X=\{p\text{ monic}:\text{every root of }p\text{ belongs to }X\},
+\qquad C_+=[V\xrightarrow\Theta\mathscr B].
+\end{gathered}
+\tag{MCF41}
+\]
+The polynomial $1$ is in every $\mathcal P_X$.  The notation $C_L$
+denotes an algebraic source complex; no openness of the line $L$
+or sheaf restriction to an open $L$ is required.  The same polynomial
+range identities (MCF3) hold for every root in the open strip
+$\Omega$, including its critical line.
+
+The exact source inclusions, with their original degree-zero maps, are
+\[
+C_U[A]\xrightarrow{(1,\,\mathrm{inc})}C_\Omega[A]
+       \xrightarrow{(1,\,\mathrm{inc})}C_+[A].
+\tag{MCF41a}
+\]
+Indeed $\mathcal P_U\subseteq\mathcal P_\Omega$ gives
+$T_UQ\subseteq T_\Omega Q$ and then
+$\mathscr B_U\subseteq\mathscr B_\Omega\subseteq\mathscr B$.
+All differentials are the same original $\Theta$ and the degree-zero
+maps are the identity on $V^A$, proving both cochain identities.
+Injectivity holds in each degree.  Cohomology in degree zero is zero
+by injectivity of $\Theta$, and the induced degree-one sequence is
+the literal sequence of submodules
+$ (T_UQ)^A\hookrightarrow(T_\Omega Q)^A\hookrightarrow Q^A$.
+
+Its full quotient has the exact arithmetic meaning
+\[
+T_\Omega Q=T_UQ\oplus T_LQ,\qquad
+T_\Omega Q/T_UQ\xrightarrow{\sim}T_LQ.
+\tag{MCF41b}
+\]
+Here is a direct proof without presuming a list of existing zeros.
+For $u\in T_\Omega Q$, choose an annihilator $p$ in
+$\mathcal P_\Omega$ and factor it as $p=p_Up_L$, retaining every
+multiplicity, with roots of $p_U$ in $U$ and roots of $p_L$ in $L$.
+Either factor can be $1$.  The factors have disjoint roots, so there
+are polynomials $a,b$ with $ap_U+bp_L=1$.  Then
+\[
+u_U=b(D)p_L(D)u,\qquad u_L=a(D)p_U(D)u,
+\qquad u=u_U+u_L,
+\tag{MCF41c}
+\]
+and multiplication shows $p_U(D)u_U=p_L(D)u_L=0$.
+If a vector is killed by a polynomial rooted in $U$ and by a
+polynomial rooted in $L$, the same Bezout identity makes that vector
+zero.  Thus the two submodules intersect in zero and the decomposition
+is unique, independent of the chosen annihilator and Bezout
+polynomials.  This proves (MCF41b), including its inverse: include
+$T_LQ$ in $T_\Omega Q$ and take its class modulo $T_UQ$.
+
+There is an exact original Mellin description of this quotient as well:
+\[
+T_XQ\xrightarrow{\sim}
+\bigoplus_{\substack{\rho\in X\\g(\rho)=0}}
+                     \mathcal O_\rho/(g),\qquad
+[F]\longmapsto([\mathcal MF]_\rho)_\rho,
+\quad X=U,L,\Omega.
+\tag{MCF41d}
+\]
+To check the map, write $p(D)F=\Theta\phi$.  Then
+$p(s)\mathcal MF(s)=g(s)H_\phi(s)$, so the Mellin class is zero
+at every zero of $g$ outside the finite root set of $p$.  Replacing
+$F$ by a theta boundary changes its Mellin transform by $gH$ and
+does not change a local class.  For injectivity, suppose all local
+classes at roots of $p$ vanish.  At a root with $g$ nonzero, $g$ is
+a local unit; at a root of $g$, the vanishing class says that
+$\mathcal MF$ is a multiple of $g$.  In either case write
+$\mathcal MF=gB$ locally.  Cancellation in the local analytic domain
+gives $H_\phi=pB$, so $j_pH_\phi=0$ at every required order.
+By (MCF3), $\phi=p(D)\psi$ with $\psi\in V$.  Injectivity of $p(D)$
+on $\mathscr B$ then yields $F=\Theta\psi$.
+
+For surjectivity, take a finitely supported family of full local jets
+$\alpha_\rho$ at actual zeros in $X$.  For its finite support $Z$ put
+$h=\prod_{\rho\in Z}(s-\rho)^{m_\rho}$ with the complete actual
+orders and choose the unique polynomial $P$ of degree less than
+$\deg h$ with
+$j_hP=j_h(g/h)^{-1}\alpha$.  The complete unit exists at each
+specified centre and CRT supplies that polynomial.  The original
+Euler range identity gives
+\[
+F_\alpha=S_h^{\mathscr B}\Theta(P(D)\phi_*),\qquad
+\mathcal MF_\alpha=(g/h)P,\qquad h(D)F_\alpha\in\Theta V.
+\tag{MCF41e}
+\]
+These equations give the specified full jets and zero classes at all
+other zeros of $g$.  The empty family uses the stage $h=1$ and the
+zero class.  Changing $P$ by $hR$ changes $F_\alpha$ by the original
+boundary $\Theta(R(D)\phi_*)$.  This proves both inverse identities
+in (MCF41d), retaining the entire $g/h$, every coordinate $s-\rho$,
+and every multiplicity.  Under this isomorphism the decomposition
+(MCF41b) is exactly zero insertion and restriction to the disjoint
+offcritical and critical-line sets of full local factors.
+
+Degreewise quotients of the actual complexes now give
+\[
+\begin{gathered}
+0\longrightarrow C_U[A]\longrightarrow C_\Omega[A]
+\longrightarrow (T_\Omega Q/T_UQ)^A[-1]\longrightarrow0,\\
+0\longrightarrow C_\Omega[A]\longrightarrow C_+[A]
+\longrightarrow (Q/T_\Omega Q)^A[-1]\longrightarrow0.
+\end{gathered}
+\tag{MCF41f}
+\]
+Their degree-zero quotients vanish because both inclusions are the
+identity on $V^A$.  For the first degree-one quotient, the map
+$\mathscr B_\Omega/\mathscr B_U\to T_\Omega Q/T_UQ$ induced by $q$
+is onto, and has zero kernel because $qF\in T_UQ$ is exactly
+$F\in\mathscr B_U$.  The second quotient is proved by the identical
+calculation with $\mathscr B/\mathscr B_\Omega$ and $Q/T_\Omega Q$.
+These prove the displayed short exact sequences on the original
+source domains.  In particular a nonzero critical local factor
+survives in the first quotient; it has not been discarded by working
+with the original offcritical subcomplex.
+
+For every actual nontrivial full packet $h$ in $\Omega$, including a
+critical pair or a mixture of critical and offcritical centres,
+the formulas (MCF4)--(MCF5) and (MCF22)--(MCF27) have their unchanged
+values and their source now lies in $\mathscr B_\Omega$ because
+$h(D)s_hu\in\Theta V$.  Their proofs used (MCF3) in the open strip
+and the full local unit; they did not use $\Re\rho\ne1/2$.
+Thus they apply to that precise larger domain.  Their restriction
+to packets rooted in $U$ agrees literally with the earlier formulas
+through (MCF41a).  Every packet system includes $h=1$ with $E_1=0$;
+no nonempty offcritical packet is assumed to make the enlarged
+construction or its embeddings.
+
+Finally retain every coefficient and outer label in this enlargement.
+Replacing only the central term of (MCF34) by $\mathscr B_X^A$
+defines $C^X_{W,S;A}$ and $Q_{W,X}=\mathscr B_X/\Theta W$.
+The maps from $X=U$ to $X=\Omega$ are the identity on the original
+source legs and the inclusion on the central term, and their
+degree-one quotient is again $(T_\Omega Q/T_UQ)^A$:
+\[
+0\longrightarrow Q_{W,U}^A\longrightarrow Q_{W,\Omega}^A
+  \longrightarrow (T_\Omega Q/T_UQ)^A\longrightarrow0.
+\tag{MCF41g}
+\]
+Indeed $\Theta W\subseteq\mathscr B_U$; quotienting the two nested
+central subspaces by that same subspace proves injectivity and the
+stated quotient.  The proper-source kernel $(V/W)^A$ of (MCF36)
+remains attached on each side.  Empty coefficient support still
+retains $(W,S)$ as in (MCF35).  The enlarged maps commute with zero
+insertion, the specified slot-local comparisons, dilation and its
+proper-source transport, and coefficient Frobenius, since their
+source maps are identities and their central maps are the original
+coordinatewise inclusions.  This attaches all actual nontrivial
+packets while preserving the original offcritical construction and
+its full comparison quotient.
+
+% END EXACT PROOF BODY: MCF.tex
+\clearpage
+
+% BEGIN EXACT PROOF BODY: MW.tex
+% Additive proof module. Original arithmetic coordinates and operators are retained.
+% Source comparison: Deligne, Weil II, 1.6.1, 1.6.9, 1.7.2, 1.8.4--1.8.5.
+\section{The nilpotent filtration on every independent arithmetic face}
+\label{sec:mixed-face-monodromy}
+
+This construction applies Deligne's nilpotent-filtration linear algebra to the
+actual arithmetic packets and to every independent coefficient face. It does
+not assert an arithmetic purity estimate. Every formula below retains the
+original arithmetic dilation, its scalar eigenvalue, and all its nilpotent
+terms. The additional grading operator is recorded as an additional operator.
+
+\subsection{Original packets and the filtration}
+
+Let \(Z\) be a finite set of distinct zeros of the original function
+\(g(s)=2\xi(s)\), with their full orders \(m_\rho\geq1\). Put
+\[
+ h_Z(x)=\prod_{\rho\in Z}(x-\rho)^{m_\rho},\qquad
+ E_Z=\mathbb C[x]/(h_Z),\qquad
+ E_\rho=e_\rho E_Z.
+ \tag{MW1}
+\]
+Here \(e_\rho\) is the Chinese-remainder idempotent, and
+\(u_\rho=e_\rho(x-\rho)\) is an element of this algebra, with local unit
+\(e_\rho\). Write \(v_{\rho,r}=e_\rho(x-\rho)^r\), for
+\(0\leq r<m_\rho\). These vectors are the original local jet basis.
+The nilpotent operator \(N_\rho\) is multiplication by \(u_\rho\):
+\[
+ N_\rho v_{\rho,r}=v_{\rho,r+1}\quad(r<m_\rho-1),\qquad
+ N_\rho v_{\rho,m_\rho-1}=0.
+ \tag{MW2}
+\]
+For an integer \(j\), define the increasing filtration
+\[
+ M_jE_\rho
+ =\operatorname{span}_{\mathbb C}
+   \{v_{\rho,r}:m_\rho-1-2r\leq j\},\qquad
+ M_jE_Z=\bigoplus_{\rho\in Z}M_jE_\rho .
+ \tag{MW3}
+\]
+In particular a zero vector in \(M_jE_\rho\) remains the zero of its specified
+coefficient face when this filtration is split-lifted.
+
+\paragraph{Filtration calculation.}
+Multiplication by \(u_\rho\) lowers the displayed index by exactly two,
+so \(N_\rho M_j\subseteq M_{j-2}\). For \(k\geq0\), the only way
+\(\operatorname{Gr}_k^M E_\rho\) is nonzero is
+\[
+ k=m_\rho-1-2r\geq0,\qquad 0\leq r<m_\rho .
+\]
+It is then one dimensional with basis the class of \(v_{\rho,r}\).
+The map induced by \(N_\rho^k\) sends this basis vector to the class of
+\(v_{\rho,r+k}\), whose index is \(-k\) and whose exponent
+\(r+k=m_\rho-1-r\) lies between zero and \(m_\rho-1\).
+Its coefficient is exactly one. Thus
+\[
+ N_\rho^k:\operatorname{Gr}_k^M E_\rho
+       \xrightarrow{\;\sim\;}\operatorname{Gr}_{-k}^M E_\rho .
+ \tag{MW4}
+\]
+When the source graded space is zero, the target is zero by the same
+index calculation. Direct sums prove the corresponding assertion for
+\(N=\bigoplus_\rho N_\rho\) on \(E_Z\).
+This is precisely the centered nilpotent filtration characterized in
+Weil II, Proposition 1.6.1.
+
+There is an intrinsic formula which also proves functoriality without
+choosing a new jet basis:
+\[
+ M_jV=\sum_{i\geq0}
+       \left(\ker N^{i+1}\cap
+                    \operatorname{im}N^{\max(0,i-j)}\right),
+ \qquad V=E_Z .
+ \tag{MW5}
+\]
+To verify it on a block of length \(m\), both spaces in each intersection
+are terminal spans of the original basis. Their intersection starts at
+exponent \(\max(0,m-1-i,i-j)\). The sum over \(i\) starts at the smallest
+such exponent, namely
+\(\max(0,-j,\lceil(m-1-j)/2\rceil)\); an exponent at least \(m\) denotes the
+zero space. When the extra term \(-j\) exceeds the other terms,
+\(j<1-m\) and both spans are zero. Otherwise the starting exponents
+agree with MW3. Kernels and images commute with the
+finite direct-sum decomposition, proving MW5. A linear map commuting
+with the nilpotent operators carries each kernel and each image into
+the corresponding kernel and image. It therefore preserves MW5.
+
+\subsection{Independent masks and the arithmetic action}
+
+For \(n\geq1\), retain the independent carrier
+\[
+ D_{E_Z,n}=G(E_Z)^n,\qquad
+ G(E_Z)=\{\tau\}\sqcup\{b^\bullet:b\in E_Z\}.
+ \tag{MW6}
+\]
+For each \(A\subseteq I_n=\{0,\ldots,n-1\}\), its face is
+\(\{A\}\times E_Z^A\), with the empty face a single absent point.
+The filtration on the entire carrier is the collection
+\[
+ \widetilde M_jD_{E_Z,n}
+   =\{\boldsymbol\tau\}\sqcup
+     \coprod_{\varnothing\ne A\subseteq I_n}
+           \{A\}\times(M_jE_Z)^A .
+ \tag{MW7}
+\]
+This notation specifies additive faces and their filtrations. No assertion
+that each \(\widetilde M_j\) is a unital subsemiring is made.
+Every present face has its own zero \((A,0)\) in every filtration step;
+the filtration does not turn any of these zeros into absence.
+The zero-insertion maps for \(A\subseteq B\) preserve MW7 because they
+insert the original zero of \(M_jE_Z\).
+
+The original arithmetic operator, for real \(a>0\), is multiplication by
+the full jet of \(a^s=\exp(s\log a)\). On a local block it is
+\[
+ A_a|_{E_\rho}
+ =a^\rho\sum_{r=0}^{m_\rho-1}
+       \frac{(\log a)^r}{r!}N_\rho^r .
+ \tag{MW8}
+\]
+It preserves MW3, and its induced action on every nonzero graded
+piece of that block is exactly \(a^\rho\), since all terms with
+\(r>0\) lower the filtration index. Its inverse is \(A_{a^{-1}}\).
+Thus the split lift preserves every independent mask, including
+the zero in each active slot.
+
+For an odd prime power \(q\) with \(\gcd(q,n)=1\), retain the coefficient
+Frobenius from the original negacyclic algebra:
+\[
+ \Psi_q(v\,t^i)
+   =(-1)^{\lfloor qi/n\rfloor}v\,t^{qi\bmod n},
+ \qquad B_n=E_Z[t]/(t^n+1).
+ \tag{MW9}
+\]
+It sends \(A\) to \(qA\) and leaves the jet index unchanged.
+Consequently it preserves the full filtered face diagram, with its
+specified permutation of face labels and its original signs. It
+commutes with \(N\) and \(A_a\). Since \(q\) is a unit modulo \(2n\),
+some power of this signed permutation is the identity. On a
+\(\Psi_q\)-eigenspace of eigenvalue \(\omega\), the action on each
+nonzero \(M\)-graded \(\rho\)-piece is therefore
+\[
+       \omega a^\rho,\qquad |\omega|=1 .
+ \tag{MW10}
+\]
+This computes its modulus as \(a^{\operatorname{Re}\rho}\); no bound
+on \(\operatorname{Re}\rho\) has been inserted.
+
+\subsection{Tensor products with every coefficient and sign retained}
+
+The following proof supplies the tensor compatibility on these blocks,
+including its constants. On a block of length \(m\), define auxiliary
+operators
+\[
+ H v_r=(m-1-2r)v_r,\qquad
+ L v_r=v_{r+1},\qquad
+ E v_r=r(m-r)v_{r-1}.
+ \tag{MW11}
+\]
+The formulas at the endpoints use \(v_{-1}=v_m=0\); \(L\) is precisely
+the original nilpotent \(N_\rho\). Direct subtraction on each basis
+vector gives
+\[
+ [H,L]=-2L,\qquad [H,E]=2E,\qquad [E,L]=H .
+ \tag{MW12}
+\]
+For example the coefficient in the last commutator is
+\((r+1)(m-r-1)-r(m-r)=m-1-2r\).
+For this algebraic proof alone equip this basis with the auxiliary
+positive Hermitian form having squared lengths
+\[
+ c_r=\frac{r!(m-1)!}{(m-1-r)!},\qquad c_0=1 .
+ \tag{MW13}
+\]
+This is an explicitly specified additional form, not a replacement
+for a source norm or an arithmetic positivity assertion.
+The identity
+\(c_{r+1}=(r+1)(m-r-1)c_r\) proves \(L^*=E\), and \(H^*=H\).
+
+On any finite tensor product of blocks, retain the original tensor
+basis and define \(L_{\rm tot},E_{\rm tot},H_{\rm tot}\) as the sums
+of these operators acting in the individual factors. Operators on
+different factors commute, so MW12 still holds. With the product
+form from MW13, \(L_{\rm tot}^*=E_{\rm tot}\) and
+\(H_{\rm tot}^*=H_{\rm tot}\).
+
+Here is a direct proof of the needed graded isomorphisms.
+Choose a nonzero vector \(v\) of maximal \(H_{\rm tot}\)-eigenvalue
+\(d\). Then \(E_{\rm tot}v=0\), because \(E_{\rm tot}\) raises that
+eigenvalue by two. Induction using MW12 gives
+\[
+ E_{\rm tot}L_{\rm tot}^r v
+       =r(d-r+1)L_{\rm tot}^{r-1}v .
+ \tag{MW14}
+\]
+The operator \(L_{\rm tot}\) is nilpotent. Let \(\ell\) be the
+largest exponent for which \(L_{\rm tot}^\ell v\ne0\).
+Applying MW14 at \(r=\ell+1\) gives
+\((\ell+1)(d-\ell)L_{\rm tot}^\ell v=0\), hence \(d=\ell\).
+Thus \(d\) is a nonnegative integer and the chain has weights
+\(d,d-2,\ldots,-d\).
+Its span is invariant under \(L_{\rm tot},E_{\rm tot},H_{\rm tot}\).
+Its orthogonal complement is invariant too, because the first two
+are adjoints and the third is self-adjoint. Induction on dimension
+decomposes the entire tensor space into such chains.
+On each chain \(L_{\rm tot}^k\) identifies weight \(k\) with weight
+\(-k\) exactly as in MW4. Therefore the filtration by sums of
+\(H_{\rm tot}\)-eigenspaces of index at most \(j\) is the centered
+nilpotent filtration. In the original tensor coordinates it is
+\[
+ M_j\left(\bigotimes_{\nu=1}^k E_{\rho_\nu}\right)
+   =\sum_{j_1+\cdots+j_k\leq j}
+        M_{j_1}E_{\rho_1}\otimes\cdots\otimes M_{j_k}E_{\rho_k}.
+ \tag{MW15}
+\]
+This also proves the precise relation to Weil II 1.6.9 on these
+actual blocks. Tensoring labelled faces retains the ordered tuple
+of their masks; MW15 operates on their amplitude fibres.
+
+The original arithmetic tensor operator is, without dropping any term,
+\[
+ \bigotimes_{\nu=1}^k A_a|_{E_{\rho_\nu}}
+  =a^{\rho_1+\cdots+\rho_k}
+     \exp\!\left((\log a)\sum_{\nu=1}^k N_{\rho_\nu}\right).
+ \tag{MW16}
+\]
+The exponential is finite and the equality follows by expanding
+the product of commuting finite exponentials. On the \(M\)-graded
+pieces its eigenvalue is \(a^{\rho_1+\cdots+\rho_k}\).
+For identical packets its modulus is \(a^{k\operatorname{Re}\rho}\).
+In particular the original arithmetic weight survives this complete
+nilpotent-filtration construction.
+
+\subsection{The exact Tate-scaling comparison}
+
+Deligne's local-monodromy operator has type \(N:V(1)\to V\).
+For geometric Frobenius over \(\mathbb F_q\), the Tate line has
+Frobenius eigenvalue \(q^{-1}\). After recording a generator of
+that line, equivariance has the precise matrix form
+\[
+             FNF^{-1}=q^{-1}N .
+ \tag{MW17}
+\]
+For the original arithmetic action MW8 one instead calculates
+\(A_aN_\rho A_a^{-1}=N_\rho\). The exact relation between these
+operator presentations can be constructed on the same jet space.
+For real \(q>1\) define
+\[
+ \Gamma_{q,\rho}v_{\rho,r}
+   =q^{(m_\rho-1)/2-r}v_{\rho,r},\qquad
+ F_{q,\rho}=q^\rho\Gamma_{q,\rho}.
+ \tag{MW18}
+\]
+Both are invertible and retain every original basis vector.
+The quotient of successive diagonal entries is \(q^{-1}\), so
+\[
+ F_{q,\rho}N_\rho F_{q,\rho}^{-1}=q^{-1}N_\rho,\qquad
+ A_q=F_{q,\rho}\Gamma_{q,\rho}^{-1}
+                     \exp((\log q)N_\rho).
+ \tag{MW19}
+\]
+The second equality is obtained by multiplying the first two
+diagonal operators, giving exactly \(q^\rho I\), and then retaining
+the complete exponential MW8. It proves reconstruction of the
+original arithmetic action from the added operators.
+Moreover, if \(U(z)=\exp(zN_\rho)\), then
+\[
+ F_{q,\rho}U(z)F_{q,\rho}^{-1}=U(q^{-1}z).
+ \tag{MW20}
+\]
+Thus these explicit matrices define a complex representation of the
+group generated by the additive one-parameter operators \(U(z)\)
+and an invertible element acting on the parameter by \(z\mapsto
+q^{-1}z\). This statement is at the displayed complex-linear
+type; it does not assert that these matrices arise from an
+arithmetic lisse sheaf.
+
+On the graded piece of index \(j=m_\rho-1-2r\), the eigenvalue
+of the added \(F_{q,\rho}\) is \(q^{\rho+j/2}\), with
+\[
+ 2\log_q|q^{\rho+j/2}|=2\operatorname{Re}\rho+j .
+ \tag{MW21}
+\]
+This gives exactly the index shift \(\beta+j\) in Weil II 1.8.4,
+with the explicitly computed \(\beta=2\operatorname{Re}\rho\).
+It does not determine \(\beta\). The two-sided boundary estimate in
+Deligne's theorem comes from the pure lisse source, the trace and
+Euler-product bound, and its tensor and dual arguments. MW18
+constructs the matrix relation and MW21 computes every graded
+modulus; neither computation supplies that geometric input.
+All operators MW18 act coefficientwise on MW7, preserve its masks,
+and commute with the coefficient permutation MW9.
+
+For completeness, duality at the vector-space level also retains
+its signs. On \(V^\vee\), use \(N^\vee=-N^{\mathsf T}\) and
+\(M_jV^\vee=(M_{-j-1}V)^\perp\). The dual of a basis vector of
+index \(d\) has index \(-d\), and \(N^\vee\) lowers that index
+by two with coefficient \(-1\). Its iterated graded isomorphisms
+have the nonzero coefficient \((-1)^k\).
+The original contragredient arithmetic action is
+\[
+ (A_a^{-1})^{\mathsf T}
+       =a^{-\rho}\exp(-(\log a)N^{\mathsf T}),
+ \tag{MW22}
+\]
+so its graded eigenvalue is exactly \(a^{-\rho}\).
+These formulas establish the tensor, dual and Tate-scaling
+comparisons on every arithmetic amplitude fibre while retaining
+the separate mixed-support labels.
+
+\paragraph{Status of the geometric control.}
+The construction proves MW1--MW22 on the original finite packets.
+It explicitly supplies the nilpotent filtration and its tensor
+and dual compatibility, and it reconstructs the unchanged arithmetic
+operator from a Tate-scaling operator. No theorem here identifies
+the resulting complex representation with a pure lisse sheaf over
+the absolute \(\tau\)-base. In particular it proves no numerical
+restriction on \(2\operatorname{Re}\rho\). The relevant further
+comparison is with the actual hypotheses and proof of Weil II
+1.8.4--1.8.5 and the compact-support pushforward estimate 3.3.1;
+the finite-poset section functor by itself has not supplied those
+estimates.
+
+% END EXACT PROOF BODY: MW.tex
+\clearpage
+
+% BEGIN EXACT PROOF BODY: MRE.tex
+% Additive standalone proof fragment for the original length-two jet extension.
+% Every original arithmetic scalar, jet coefficient, and extension map is retained.
+% Source comparison: Weil II 1.6.1, 1.6.5, 1.6.13, 1.7.2, and 1.8.5.
+\section{Strict filtered control of the original length-two jet extension}
+\label{sec:tau-mixed-relative-extension-control}
+
+This calculation constructs the induced filtrations and exact operator maps
+on a specified arithmetic jet extension. It includes the uniqueness proof
+for the centered nilpotent filtration, the translation to a specified
+constituent degree, and the relative filtration on this extension.
+The original arithmetic action and the added Tate-scaling action are both
+retained as separate, explicitly related operators.
+
+\subsection{Uniqueness of the centered nilpotent filtration}
+
+Let \(V\) be a finite-dimensional complex vector space and \(N\) a nilpotent
+endomorphism. A finite increasing filtration in this paragraph means
+subspaces \(M_jV\), indexed by \(j\in\mathbb Z\), which are zero for all
+sufficiently negative \(j\) and equal to \(V\) for all sufficiently positive
+\(j\). Suppose it has the centered nilpotent properties
+\[
+ NM_jV\subseteq M_{j-2}V,\qquad
+ N^k:\operatorname{Gr}_k^M V\xrightarrow{\sim}
+                    \operatorname{Gr}_{-k}^M V\quad(k\geq0).
+ \tag{MRE1}
+\]
+Here and below an isomorphism from the zero vector space to itself is
+included in the assertion.
+
+We prove that these properties determine \(M\) uniquely. Choose \(d\geq0\)
+with \(N^{d+1}=0\). For \(k>d\), the isomorphism in MRE1 is the zero map;
+its source and target therefore vanish. Exhaustiveness and finiteness give
+\(M_dV=V\) and \(M_{-d-1}V=0\). The isomorphism for \(k=d\) is induced by
+\(N^d\) from \(V/M_{d-1}V\) to \(M_{-d}V\). Consequently
+\[
+ M_{d-1}V=\ker N^d,\qquad M_{-d}V=\operatorname{im}N^d.
+ \tag{MRE2}
+\]
+For \(d=0\), this says that the only possibly nonzero graded piece is
+degree zero, and determines the filtration completely.
+
+For \(d\geq1\), the subspace \(\operatorname{im}N^d\) lies in
+\(\ker N^d\), because \(N^{2d}=0\). The induced operator on
+\[
+ K_d=\ker N^d/\operatorname{im}N^d
+ \tag{MRE3}
+\]
+satisfies \(N^d=0\). The filtration induced on \(K_d\) has the same graded
+pieces as \(V\) for \(-d<j<d\), and zero graded pieces outside this range.
+Thus MRE1 descends to this quotient: for \(0\leq k<d\) its maps are the
+original graded maps, and for \(k\geq d\) both sides vanish. Induction on
+\(d\) determines the filtration on \(K_d\). Every intermediate step on
+\(V\) is its inverse image under the quotient
+\(\ker N^d\longrightarrow K_d\); MRE2 fixes the endpoints. This proves
+uniqueness.
+
+For the original length-\(m\) jet basis \(v_r\), \(0\leq r<m\), with
+\(Nv_r=v_{r+1}\) and \(Nv_{m-1}=0\), existence is explicit:
+\[
+ M_jV=\operatorname{span}\{v_r:m-1-2r\leq j\}.
+ \tag{MRE4}
+\]
+The operator lowers the displayed index by two. When index \(k\geq0\)
+occurs, its basis vector has exponent \(r=(m-1-k)/2\); applying \(N^k\)
+gives the index-\(-k\) vector \(v_{r+k}\), with coefficient one and
+\(r+k=m-1-r\). If index \(k\) is absent, index \(-k\) is absent as well.
+This proves MRE1. Taking direct sums proves existence on any finite packet
+of these original blocks. The preceding uniqueness proof identifies this
+explicit filtration with the centered nilpotent filtration.
+
+\subsection{Translation to a specified constituent degree}
+
+For an integer \(b\), put a given original block in the one-step filtration
+\[
+ W_i^{[b]}V=
+ \begin{cases}0&i<b,\\ V&i\geq b,\end{cases}
+ \qquad
+ M_j^{[b]}V=M_{j-b}V.
+ \tag{MRE5}
+\]
+The relative nilpotent-filtration identities for this specified \(W^{[b]}\)
+are
+\[
+ NM_j^{[b]}\subseteq M_{j-2}^{[b]},\qquad
+ N^k:\operatorname{Gr}_{i+k}^{M^{[b]}}
+             \operatorname{Gr}_i^{W^{[b]}}V
+ \xrightarrow{\sim}
+       \operatorname{Gr}_{i-k}^{M^{[b]}}
+             \operatorname{Gr}_i^{W^{[b]}}V.
+ \tag{MRE6}
+\]
+For \(i\ne b\), both sides of the second map vanish. For \(i=b\), that
+map is exactly the already proved
+\(N^k:\operatorname{Gr}_k^M V\to\operatorname{Gr}_{-k}^M V\).
+The first inclusion follows directly by shifting both indices in MRE1.
+This proves the relative-filtration translation for every integer \(b\).
+The construction of these filtrations assigns the displayed degree; it
+does not change or determine any arithmetic eigenvalue.
+
+\subsection{The original extension and its arithmetic action}
+
+Fix \(\rho\in\mathbb C\), retain the local coordinate \(u=x-\rho\), and
+define the length-two jet algebra and its nilpotent operator by
+\[
+ V_2=\mathbb C[u]/(u^2),\qquad
+ v_0=1,\quad v_1=u,\qquad
+ Nv_0=v_1,\quad Nv_1=0.
+ \tag{MRE7}
+\]
+In this entire calculation these are the fixed original basis vectors
+and the coefficient of \(Nv_0\) remains exactly one.
+Let \(K=\mathbb C u\subset V_2\), let \(Q=V_2/K\), and write
+\(\overline{1}\) for the class of \(1\) in \(Q\). The maps
+\[
+ i:K\longrightarrow V_2,\quad i(cu)=cu,
+ \qquad
+ p:V_2\longrightarrow Q,\quad p(a+bu)=a\overline{1}
+ \tag{MRE8}
+\]
+give the exact sequence
+\[
+ 0\longrightarrow K\xrightarrow{i}V_2\xrightarrow{p}Q
+   \longrightarrow0.
+ \tag{MRE9}
+\]
+Indeed, \(i\) is injective, \(p\) is surjective, and
+\(\ker p=\mathbb C u=\operatorname{im}i\). The restricted operator on
+\(K\) and the induced operator on \(Q\) are both zero.
+
+For real \(a>0\), retain the original arithmetic action
+\[
+ A_{a,2}=a^\rho\bigl(I+(\log a)N\bigr),\qquad
+ A_{a,K}=a^\rho I_K,\qquad A_{a,Q}=a^\rho I_Q,
+ \quad a^\rho=\exp(\rho\log a).
+ \tag{MRE10}
+\]
+Since \(N^2=0\), this is exactly the complete original finite exponential.
+It gives
+\[
+ A_{a,2}(c+du)=a^\rho\bigl(c+(d+c\log a)u\bigr).
+ \tag{MRE11}
+\]
+The restriction to \(K\) and the induced quotient action are therefore
+the displayed scalars. In particular
+\[
+ A_{a,2}i=iA_{a,K},\qquad pA_{a,2}=A_{a,Q}p.
+ \tag{MRE12}
+\]
+All maps in MRE9 preserve these original arithmetic actions.
+
+\subsection{Induced subobject and quotient filtrations}
+
+The centered filtration MRE4 on \(V_2\) is
+\[
+ M_jV_2=
+ \begin{cases}
+ 0&j<-1,\\
+ K&-1\leq j<1,\\
+ V_2&j\geq1.
+ \end{cases}
+ \tag{MRE13}
+\]
+Give the subobject and quotient their actual induced filtrations:
+\[
+ M_j^K=K\cap M_jV_2=
+ \begin{cases}0&j<-1,\\K&j\geq-1,\end{cases}
+ \qquad
+ M_j^Q=p(M_jV_2)=
+ \begin{cases}0&j<1,\\Q&j\geq1.\end{cases}
+ \tag{MRE14}
+\]
+Let \(C_jK\) and \(C_jQ\) denote the centered filtrations of the zero
+nilpotent on these one-dimensional spaces: each is zero for \(j<0\)
+and the whole space for \(j\geq0\). Then the precise shifts are
+\[
+ M_j^K=C_{j+1}K,\qquad M_j^Q=C_{j-1}Q.
+ \tag{MRE15}
+\]
+Thus the subobject retains degree \(-1\), the quotient retains degree
+\(+1\), and the middle object's filtration remains MRE13.
+
+For every integer \(j\), the sequence
+\[
+ 0\longrightarrow M_j^K\xrightarrow{i}M_jV_2
+     \xrightarrow{p}M_j^Q\longrightarrow0
+ \tag{MRE16}
+\]
+is exact. For \(j<-1\), all three spaces are zero. For
+\(-1\leq j<1\), it is \(0\to K\xrightarrow{1}K\to0\to0\).
+For \(j\geq1\), it is MRE9. This exhaustive calculation also proves
+strictness: the image of the filtered inclusion is exactly
+\(\operatorname{im}i\cap M_jV_2\), and \(p(M_jV_2)=M_j^Q\).
+On associated graded, the inclusion identifies the two degree-\(-1\)
+spaces, the quotient identifies the two degree-\(+1\) spaces, and all
+other graded spaces vanish.
+
+The relation to the separately centered one-dimensional filtrations is
+also explicit. Their step \(-1\) is zero, whereas
+\(K\cap M_{-1}V_2=K\). Therefore the original inclusion with the separately
+centered filtration is filtration preserving but is not strict. Formula
+MRE15 supplies the exact shifted subobject and quotient filtrations
+which restore the strict filtered exact sequence MRE16.
+
+\subsection{Added Frobenius and the exact shifted intertwiners}
+
+For real \(q>1\), use the additional diagonal operators
+\[
+ \Gamma_{q,2}v_0=q^{1/2}v_0,\qquad
+ \Gamma_{q,2}v_1=q^{-1/2}v_1,\qquad
+ F_{q,2}=q^\rho\Gamma_{q,2}.
+ \tag{MRE17}
+\]
+Their induced operators on MRE9 are
+\[
+ \begin{aligned}
+ \Gamma_{q,K}&=q^{-1/2}I_K,&
+ F_{q,K}&=q^{\rho-1/2}I_K,\\
+ \Gamma_{q,Q}&=q^{1/2}I_Q,&
+ F_{q,Q}&=q^{\rho+1/2}I_Q.
+ \end{aligned}
+ \tag{MRE18}
+\]
+Every displayed operator preserves the indicated filtration. Directly on
+\(u\) and \(\overline{1}\), the inclusion and quotient satisfy
+\[
+ F_{q,2}i=iF_{q,K},\qquad pF_{q,2}=F_{q,Q}p,
+ \qquad
+ \Gamma_{q,2}i=i\Gamma_{q,K},\qquad
+ p\Gamma_{q,2}=\Gamma_{q,Q}p.
+ \tag{MRE19}
+\]
+This proves exact filtered intertwining with the unchanged extension maps.
+If \(F_{q,K}^{\rm cen}=q^\rho I_K\) and
+\(F_{q,Q}^{\rm cen}=q^\rho I_Q\) are the operators obtained by assigning
+the one-dimensional spaces their separate centered degree zero, the
+same equations read
+\[
+ F_{q,2}i=q^{-1/2}iF_{q,K}^{\rm cen},\qquad
+ pF_{q,2}=q^{1/2}F_{q,Q}^{\rm cen}p.
+ \tag{MRE20}
+\]
+The degree shifts and the scalar factors are therefore exactly the same
+correction, in filtration and operator form respectively.
+
+The original arithmetic operators are reconstructed without replacing
+their eigenvalues:
+\[
+ \begin{aligned}
+ A_{q,2}&=F_{q,2}\Gamma_{q,2}^{-1}
+                       \bigl(I+(\log q)N\bigr),\\
+ A_{q,K}&=F_{q,K}\Gamma_{q,K}^{-1}=q^\rho I_K,\\
+ A_{q,Q}&=F_{q,Q}\Gamma_{q,Q}^{-1}=q^\rho I_Q.
+ \end{aligned}
+ \tag{MRE21}
+\]
+The first line has the displayed multiplication order. In all three
+lines \(F\Gamma^{-1}\) is exactly \(q^\rho\) times the identity.
+Thus the shifted added eigenvalues retain, through these exact formulas,
+the original arithmetic scalar and its complete nilpotent term.
+
+The added graded moduli are fully determined:
+\[
+ 2\log_q|F_{q,K}|=2\operatorname{Re}\rho-1,\qquad
+ 2\log_q|F_{q,Q}|=2\operatorname{Re}\rho+1.
+ \tag{MRE22}
+\]
+Here \(|F|\) means the modulus of the displayed one-dimensional
+eigenvalue. Equation MRE22 records the exact shift; it imposes no
+restriction on \(\operatorname{Re}\rho\).
+
+\subsection{The nilpotent link and its Tate-typed isomorphism}
+
+Since \(N\) vanishes on \(K\) and maps \(V_2\) into \(K\), it factors
+uniquely through the quotient as
+\[
+ N=i\,\overline N\,p,
+ \qquad
+ \overline N:Q\xrightarrow{\sim}K,
+ \quad\overline N(\overline{1})=u.
+ \tag{MRE23}
+\]
+The factorization follows by applying both sides to \(a+bu\), where
+both sides give \(au\). The factor map is bijective because it sends
+the specified basis vector to the specified basis vector with
+coefficient one. It lowers the induced filtration degree by exactly two.
+It commutes with the original arithmetic scalars and satisfies the exact
+added-operator relation
+\[
+ A_{a,K}\overline N=\overline N A_{a,Q},\qquad
+ F_{q,K}\overline N=q^{-1}\overline N F_{q,Q}.
+ \tag{MRE24}
+\]
+The second equality follows from
+\(q^{\rho-1/2}=q^{-1}q^{\rho+1/2}\).
+
+Define the explicit one-dimensional complex character \(T_q=\mathbb C t\)
+with its chosen generator \(t\), filtration concentrated in degree
+\(-2\), and operators
+\[
+ F_{q,T}t=q^{-1}t,\qquad
+ \Gamma_{q,T}t=q^{-1}t,\qquad
+ A_{a,T}t=t\quad(a>0).
+ \tag{MRE25}
+\]
+The added eigenvalue is the geometric-Frobenius Tate character. At this
+stage \(T_q\) is the displayed complex filtered line; no arithmetic
+sheaf realization is required for the following proved matrix map.
+Give tensor products the sum filtration and tensor product operators.
+Then \(Q\otimes T_q\) is concentrated in degree \(1-2=-1\), with added
+eigenvalue \(q^{\rho+1/2}q^{-1}=q^{\rho-1/2}\) and original arithmetic
+eigenvalue \(a^\rho\). Therefore
+\[
+ \nu:Q\otimes T_q\xrightarrow{\sim}K,
+ \qquad \nu(\overline{1}\otimes t)=u
+ \tag{MRE26}
+\]
+is a strict filtered isomorphism intertwining \(F_q\), \(\Gamma_q\), and
+every \(A_a\). Its inverse sends \(u\) to \(\overline{1}\otimes t\),
+so these claims include both inverse maps. Formula MRE26 is the exact
+Tate-typed form of the original nilpotent link MRE23.
+
+The map \(N\) itself has the same strict filtered type. On
+\(V_2\otimes T_q\), define \(\mathcal N(v\otimes t)=Nv\).
+The domain filtration is \(M_j(V_2\otimes T_q)=M_{j+2}V_2\otimes T_q\).
+For every \(j\),
+\[
+ N(M_{j+2}V_2)=\operatorname{im}N\cap M_jV_2.
+ \tag{MRE27}
+\]
+For \(j<-1\), both sides vanish: the domain step is at most \(K\),
+which \(N\) kills. For \(j\geq-1\), the domain step is \(V_2\), its
+image is \(K\), and the right side is also \(K\). This proves strictness.
+The relation \(F_{q,2}NF_{q,2}^{-1}=q^{-1}N\), checked on \(v_0,v_1\),
+proves \(F_q\)-equivariance of \(\mathcal N\). The corresponding relation
+for \(\Gamma_q\) proves its equivariance, and \(A_{a,2}N=NA_{a,2}\)
+proves equivariance for every original arithmetic action.
+
+\subsection{The explicit relative filtration on this extension}
+
+Retain the extension filtration with its two induced constituent degrees:
+\[
+ W_jV_2=
+ \begin{cases}
+ 0&j<-1,\\K&-1\leq j<1,\\V_2&j\geq1.
+ \end{cases}
+ \tag{MRE28}
+\]
+This is a specified filtered extension, with degree-\(-1\) constituent
+\(K\) and degree-\(+1\) constituent \(Q\). Set \(R_jV_2=M_jV_2\), with
+\(M\) as in MRE13. Then \(R=W\) as displayed filtrations, and \(R\) is
+the relative nilpotent filtration for this specified \(W\).
+
+Here is the complete verification. Multiplication by \(u\) gives
+\(NR_j\subseteq R_{j-2}\). The only nonzero \(W\)-graded pieces are
+\(\operatorname{Gr}_{-1}^W V_2=K\) and
+\(\operatorname{Gr}_{1}^W V_2=Q\). The operator induced by \(N\) on
+each of these pieces is zero. The filtration induced by \(R\) on the
+first piece is concentrated in degree \(-1\), and on the second in
+degree \(+1\), as proved in MRE14. Consequently, for every integer
+\(i\) and every \(k\geq0\),
+\[
+ N^k:\operatorname{Gr}_{i+k}^R\operatorname{Gr}_i^W V_2
+ \xrightarrow{\sim}
+       \operatorname{Gr}_{i-k}^R\operatorname{Gr}_i^W V_2.
+ \tag{MRE29}
+\]
+For \(k=0\), this is the identity. For \(k>0\), both source and target
+are zero, including when \(i=-1\) or \(i=1\). For other \(i\), the
+\(W\)-graded piece is itself zero. This proves every case of the
+relative-filtration identities.
+
+In this two-dimensional extension uniqueness can also be proved directly.
+Any relative filtration \(R'\) induces the degree-\(-1\) one-step
+filtration on \(K\), and the degree-\(+1\) one-step filtration on \(Q\),
+because the induced nilpotent on each is zero and the relative graded
+isomorphisms force all other degrees to vanish. If \(j<-1\), then
+\(R'_j\cap K=0\) and its image in \(Q\) is zero, so \(R'_j=0\).
+If \(-1\leq j<1\), it contains \(K\) and its image in \(Q\) is zero,
+so \(R'_j=K\). If \(j\geq1\), it contains \(K\) and surjects onto
+\(Q\), so it equals \(V_2\). Thus \(R'=R\), with every step determined.
+
+This proves a relative filtration on the displayed original extension.
+Its additional eigenvalue shifts are MRE18 and MRE22. The proof assigns
+no independent geometric purity assertion to these constituents.
+
+\subsection{The original extension class is retained}
+
+Every linear section \(s:Q\to V_2\) of \(p\) has the form
+\[
+ s(\overline{1})=1+c u\quad(c\in\mathbb C).
+ \tag{MRE30}
+\]
+For each such section,
+\[
+ Ns(\overline{1})=u,\qquad sN_Q(\overline{1})=0.
+ \tag{MRE31}
+\]
+Hence no section intertwines the nilpotent operators: MRE9 is a
+non-split extension of nilpotent representations. The fixed nonzero map
+\(\overline N\) of MRE23 records its extension coupling, and the
+Tate-typed isomorphism MRE26 retains that same coefficient-one coupling.
+
+The arithmetic non-splitting is equally explicit. For every \(a>0\),
+\[
+ \bigl(A_{a,2}s-sA_{a,Q}\bigr)(\overline{1})
+       =a^\rho(\log a)u.
+ \tag{MRE32}
+\]
+The scalar is nonzero when \(a\ne1\), because \(a^\rho\ne0\) and
+\(\log a\ne0\). Thus no section intertwines even one fixed original
+arithmetic operator with \(a\ne1\), and no section intertwines the
+whole arithmetic family. The strict filtered exact sequence has
+therefore preserved the complete original arithmetic extension.
+
+For the added diagonal operator alone, \(s_0(\overline{1})=1\) is a
+filtered \(F_q\)-equivariant section. It is the only such section:
+equivariance for MRE30 forces
+\(c q^{\rho-1/2}=c q^{\rho+1/2}\), and \(q>1\) forces \(c=0\).
+Equations MRE31--MRE32 calculate precisely how this additional
+diagonal splitting fails to split the original nilpotent and arithmetic
+actions. All three operator structures, their maps, and their difference
+are explicit on the original basis.
+
+Their interaction also has an exact formula. Conjugating MRE10 gives
+\[
+ F_{q,2}A_{a,2}F_{q,2}^{-1}
+   =a^\rho\bigl(I+q^{-1}(\log a)N\bigr),\qquad
+ F_{q,2}A_{a,2}F_{q,2}^{-1}-A_{a,2}
+   =a^\rho(q^{-1}-1)(\log a)N.
+ \tag{MRE33}
+\]
+Every coefficient follows from \(F_{q,2}NF_{q,2}^{-1}=q^{-1}N\).
+For \(a\ne1\), the last operator is nonzero, so the two retained
+actions do not commute. Equation MRE33 records their full interaction;
+no commuting-action assumption has been used in the filtered exact
+sequence or its twisted nilpotent maps.
+
+\paragraph{Proved control and continuing scope.}
+The calculation constructs the strict filtered exact sequence on the
+length-two arithmetic extension, its exact shifted added eigenvalues,
+the Tate-typed nilpotent isomorphism, and its relative filtration.
+Every original arithmetic scalar and nilpotent coefficient survives.
+These results supply this local extension control within the program.
+They do not determine \(2\operatorname{Re}\rho\), establish a pure lisse
+source, or supply the analytic upper estimate used in Weil II 1.8.1.
+Those numerical and geometric controls remain separate constructions
+to be carried out on the original arithmetic sources.
+
+% END EXACT PROOF BODY: MRE.tex
+\clearpage
+
+% BEGIN EXACT PROOF BODY: SP.tex
+\section{Joint trace control on the original source and relation spaces}
+\label{sec:signed-projection-control}
+
+Retain \(h,k,\chi=\chi_{h,k}\) from the marked-product note. Here
+\(q=\deg\chi\geq1\) denotes the polynomial degree. Use the original
+coordinate \(S=k/2+iy\), the densities \(m=w_h^{*k}\) and
+\(r=r_{1/4}^{*k}\) with their literal masses, and
+\(\mu_x=((1-x)r+xm)\,dy\) for \(0\leq x\leq1\).
+The common source is \(H=\mathcal P_{2q}\) in the retained monomial basis.
+Its positive definite Gram and its original metric derivative are
+\[
+ M_x=M_0+x\dot M,\quad M_0=M^\Gamma_{2q},\quad
+ \dot M=M^{\rm ar}_{2q}-M^\Gamma_{2q},\quad
+ T_x=M_x^{-1}\dot M .
+ \tag{SP1}
+\]
+The equality \(M_xT_x=\dot M=\dot M^*\) proves that \(T_x\) is
+self-adjoint in the \(M_x\) inner product. It is not asserted positive.
+
+\subsection{All four endpoints as operators on one source}
+Let \(I_N:\mathcal P_N\to H\) be literal coefficient inclusion, and
+let \(B_N:\mathcal P_{N-q}\to H\) be multiplication by the original
+monic \(\chi\), followed by coefficient inclusion. Define
+\[
+ P_N=I_N(I_N^*M_xI_N)^{-1}I_N^*M_x,\qquad
+ Q_N=B_N(B_N^*M_xB_N)^{-1}B_N^*M_x,\quad Q_{q-1}=0 .
+ \tag{SP2}
+\]
+The second formula is used for \(N\geq q\); its Gram is invertible
+because multiplication by \(\chi\) is injective on polynomials.
+Direct multiplication proves that these are the \(M_x\)-orthogonal
+projections onto the original source and relation subspaces.
+Within either family the subspaces are nested, so their orthogonal
+projections commute and their product is the smaller projection.
+Indeed the smaller subspace, its orthogonal complement inside the
+larger one, and the orthogonal complement of the larger one give
+three invariant summands on which this statement is immediate.
+
+Let \(V_N(x)\) be the original canonical quotient volume. In the
+fixed quotient-lift and monic-relation coordinates, block determinant
+gives
+\[
+ \log V_N(x)=\log\det(I_N^*M_xI_N)
+                  -\log\det(B_N^*M_xB_N).
+ \tag{SP3}
+\]
+The relation determinant is one when its dimension is zero.
+The fixed monic change-of-basis determinant has modulus one, so
+SP3 retains every volume factor. Differentiation and cyclicity of
+finite matrix trace give
+\[
+ (\log V_N)'=\operatorname{Tr}(T_x(P_N-Q_N)).
+ \tag{SP4}
+\]
+For example
+\(\operatorname{Tr}(T_xP_N)=
+\operatorname{Tr}((I_N^*M_xI_N)^{-1}I_N^*\dot M I_N)\);
+the relation formula uses precisely the same calculation.
+Set
+\[
+ F(x)=\log\frac{V_{q-1}(x)V_q(x)}
+                      {V_{2q-1}(x)V_{2q}(x)},\qquad
+ \Delta_{h,k}=F(1)-F(0),
+ \tag{SP5}
+\]
+and define two positive operators on this same source:
+\[
+ \mathcal R_x=Q_{2q-1}+Q_{2q}-Q_q,\qquad
+ \mathcal P_x=(P_{2q-1}-P_{q-1})+(P_{2q}-P_q),\qquad
+ \mathcal A_x=\mathcal R_x-\mathcal P_x .
+ \tag{SP6}
+\]
+The four original signs in SP4 give
+\[
+                  F'(x)=\operatorname{Tr}(T_x\mathcal A_x).
+ \tag{SP7}
+\]
+For the original row \(v=v_{2q}(y)\), the density identity has the exact
+metric factor
+\[
+ \mathsf R_x(y)-\mathsf P_x(y)=v\,\mathcal A_xM_x^{-1}v^* .
+\]
+Indeed \(P_NM_x^{-1}=I_N(I_N^*M_xI_N)^{-1}I_N^*\),
+and the same identity holds with \(B_N,Q_N\). This recovers the
+marked-product kernels and proves the common-source matrix comparison.
+
+\subsection{Ranks, multiplicities and the retained overlap}
+The nested relation spaces in SP6 have dimensions \(1,q,q+1\).
+On the first space \(\mathcal R_x\) has eigenvalue one; on the next
+orthogonal increment it has eigenvalue two with multiplicity \(q-1\);
+on the last increment it has eigenvalue one; elsewhere it is zero.
+The nested source increments in \(\mathcal P_x\) give the same list.
+When \(q=1\), the multiplicity \(q-1\) is zero. Consequently
+\[
+ \begin{gathered}
+ \operatorname{rank}\mathcal R_x=\operatorname{rank}\mathcal P_x=q+1,
+ \quad
+ \operatorname{Tr}\mathcal R_x=\operatorname{Tr}\mathcal P_x=2q,\\
+ \operatorname{Tr}\mathcal R_x^2
+       =\operatorname{Tr}\mathcal P_x^2=4q-2,\quad
+ \operatorname{Tr}\mathcal A_x=0,\\
+ \operatorname{Tr}\mathcal A_x^2
+       =8q-4-2\operatorname{Tr}(\mathcal R_x\mathcal P_x).
+ \end{gathered}
+ \tag{SP8}
+\]
+The equal kernel masses \(2q\) are traces. The two positive operators
+have rank \(q+1\), with their multiplicity-two directions retained.
+
+The overlap in SP8 is at least one. Each positive operator is at
+least the orthogonal projection onto its range, since its nonzero
+eigenvalues are one and two. The two ranges each have dimension
+\(q+1\) in dimension \(2q+1\), so their intersection has dimension at
+least one. Choose a unit vector in this intersection and complete
+it to an orthonormal basis of the first range. The trace of the
+product of the two range projections is the sum of squared norms
+of the second projection on this basis, hence at least one.
+For positive operators, replacing one factor by a larger positive
+factor cannot decrease the trace of the product: the difference
+is \(\operatorname{Tr}(B^{1/2}(A'-A)B^{1/2})\geq0\).
+Applying this twice proves the stated bound for the actual operators.
+
+\subsection{A bound that uses cancellation before estimating}
+Write
+\(d_x=\lambda_{\max}(T_x)-\lambda_{\min}(T_x)\).
+Since \(\operatorname{Tr}\mathcal A_x=0\), for every real \(c\)
+\[
+       F'(x)=\operatorname{Tr}((T_x-cI)\mathcal A_x).
+ \tag{SP9}
+\]
+Choose \(c\) to be the midpoint of the two extreme eigenvalues.
+In an \(M_x\)-orthonormal eigenbasis \(e_j\) of \(\mathcal A_x\),
+with real eigenvalues \(\alpha_j\), one obtains
+\[
+ |F'(x)|
+ \leq\sum_j|\alpha_j|\,
+       |\langle e_j,(T_x-cI)e_j\rangle_{M_x}|
+ \leq\tfrac12d_x\sum_j|\alpha_j|.
+\]
+This proves the trace-norm bound directly. Let \(L_x\) be the
+intersection of the two ranges in SP6, with \(s_x=\dim L_x\geq1\),
+and let \(E_{L_x}\) be its orthogonal projection in \(M_x\).
+Each of \(\mathcal R_x,\mathcal P_x\) is at least \(E_{L_x}\).
+Thus
+\(\mathcal A_x=(\mathcal R_x-E_{L_x})-(\mathcal P_x-E_{L_x})\)
+is a difference of two positive operators of trace \(2q-s_x\).
+The triangle inequality for trace norm gives
+\(\|\mathcal A_x\|_1\leq4q-2s_x\leq4q-2\).
+Cauchy--Schwarz on its at most \(2q+1\) eigenvalues gives the refinement
+\[
+ \boxed{
+ |F'(x)|\leq\frac{d_x}{2}
+ \min\left\{4q-2s_x,\
+ \sqrt{(2q+1)
+     (8q-4-2\operatorname{Tr}(\mathcal R_x\mathcal P_x))}
+     \right\}.}
+ \tag{SP10}
+\]
+The overlap is calculated from the unchanged source and relation
+Grams in SP2. Every cross-pairing remains in that expression.
+
+There is a closed integrated bound. Set \(R=M_0^{-1}M^{\rm ar}_{2q}\).
+It is positive and self-adjoint in the \(M_0\) inner product, since
+\(\langle v,Rv\rangle_{M_0}=\langle v,v\rangle_{M^{\rm ar}_{2q}}>0\).
+Let its smallest and largest eigenvalues be \(r_{\min},r_{\max}>0\).
+The literal factorization of \(M_x\) gives
+\[
+ T_x=(I+x(R-I))^{-1}(R-I),\qquad
+ d_x=\frac{r_{\max}-1}{1+x(r_{\max}-1)}
+           -\frac{r_{\min}-1}{1+x(r_{\min}-1)} .
+ \tag{SP11}
+\]
+For fixed \(x\), the function \((r-1)/(1+x(r-1))\) is increasing
+on \(r>0\), its derivative being \((1+x(r-1))^{-2}>0\).
+This proves the extreme-eigenvalue formula even though the inner
+product varies. Integration, including the identically zero
+integrand when an eigenvalue equals one, yields
+\[
+       \int_0^1d_x\,dx=\log(r_{\max}/r_{\min}).
+ \tag{SP12}
+\]
+Combining SP7--SP12 proves
+\[
+ \boxed{
+ |\Delta_{h,k}|
+ \leq\frac12\int_0^1d_x
+          \|\mathcal R_x-\mathcal P_x\|_1\,dx
+ \leq(2q-1)\log\frac{r_{\max}}{r_{\min}} .}
+ \tag{SP13}
+\]
+The first bound and its overlap refinement SP10 retain more
+information than the last bound. When the two Grams are proportional,
+\(r_{\max}=r_{\min}\) and the correction is exactly zero, with no
+rescaling of their original masses.
+
+SP1--SP13 give finite two-sided control on every original packet.
+They do not bound the displayed condition number or projection
+overlap along the growing arithmetic family. The next calculation
+can use these exact quantities, their original moment formulae,
+and the newly retained singular-boundary geometry; none has been
+replaced by an assumed asymptotic estimate or an RH verdict.
+
+% END EXACT PROOF BODY: SP.tex
+\clearpage
+
+% BEGIN COMPLETE BOUNDARY SOURCE BODY
+\begingroup
+\renewcommand{\theequation}{BC\arabic{equation}}
+\renewcommand{\theHequation}{BC.\arabic{equation}}
+\setcounter{equation}{0}
+\section*{The original marked product at its boundary}
+\addcontentsline{toc}{section}{The original marked product at its boundary}
+
+
+
+\begin{abstract}
+For the original monic packet polynomial, retaining all selected zero
+multiplicities, we calculate the missing $u$-connection of its polynomial
+exponential complex in the original monomial lattice.  The connection has
+an explicit second-order coefficient, a first-order coefficient of trace
+$d/2$, and a degree-correct chain realization.  We calculate its full
+tensor version and the exact period determinant, including its gamma
+factors and ordered contour phase.  We also apply Deligne's lissity and
+local-monodromy theorems to the actual finite-field family on $u\ne0$,
+obtaining a genuine mixed boundary extension there.  The original theta
+source, its Taylor unit, and its metric enter through explicit maps.
+Neither a Stokes matrix nor an arithmetic uniform four-volume estimate is
+asserted.  The calculations identify and begin the intervening boundary
+work rather than declaring the marked programme closed.
+\end{abstract}
+
+\section{Fixed objects and original source maps}
+
+Let $Z$ be the original nonempty finite set of selected zeros of
+$g=2\xi$, with the complete selected orders $m_\rho$, and put
+\begin{equation}
+ h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho}
+     =s^d+\sum_{b=0}^{d-1}h_bs^b,
+ \qquad d=\sum_{\rho\in Z}m_\rho\ge1.
+ \label{BC:eq:h}
+\end{equation}
+The primitive and its constant are fixed as
+\begin{equation}
+ \Phi_h(s)=\frac{s^{d+1}}{d+1}
+       +\sum_{b=0}^{d-1}\frac{h_bs^{b+1}}{b+1},
+ \qquad \Phi_h(0)=0,
+ \qquad f_t(s)=\Phi_h(s)-ts.
+ \label{BC:eq:phase}
+\end{equation}
+Retain the original source spaces, Fourier convention, and operators
+\begin{align}
+ V&=\{\phi\in\mathcal S(\mathbb R)_{\rm ev}:
+          \phi(0)=0,\ \int_{\mathbb R}\phi=0\},\nonumber\\
+ \BB&=\{F\in C^\infty(\mathbb R_{>0}):
+      \sup_{x>0}x^b|D^mF(x)|<\infty
+              \text{ for all }b\in\mathbb Z,m\ge0\},\nonumber\\
+ D&=-x\partial_x,\qquad
+ \Theta\phi(x)=2\sum_{n\ge1}\phi(nx),\qquad
+ \mathcal MF(s)=\int_0^\infty F(x)x^s\frac{dx}{x},
+ \label{BC:eq:source}\\
+ \widehat\phi(\xi)&=\int_{\mathbb R}\phi(x)e^{-2\pi ix\xi}\,dx.
+ \nonumber
+\end{align}
+The seed is
+\begin{equation}
+ \phi_*=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},
+ \qquad \mathcal M\Theta\phi_*=g.
+\end{equation}
+The inherited Euler inverses supply the original $F_h\in\BB$ with
+$\mathcal MF_h=v_h=g/h$.  Define
+\begin{equation}
+ E_h=\C[s]/h,\quad A_h=M_s,\quad
+ \upsilon_h=j_hv_h\in E_h^\times,\quad
+ \alpha_h(P)=P(D)\phi_*,\quad \mathcal T_h(P)=P(D)F_h.
+ \label{BC:eq:maps}
+\end{equation}
+The original identities are
+\begin{equation}
+ \Theta\alpha_h(P)=\mathcal T_h(hP),\qquad
+ J_h\mathcal T_h(P)=\upsilon_h[P]_h.
+ \label{BC:eq:source-square}
+\end{equation}
+Thus $[\C[s]\xrightarrow{h}\C[s]ds]$ maps to
+$[V\xrightarrow{\Theta}\BB]$ by $(\alpha_h,\mathcal T_h)$.
+Its degree-one map is exactly $\sigma_hM_{\upsilon_h}$ into
+$Q=\BB/\Theta V$.  The linear source section is not asserted to be a
+ring homomorphism.  Tensoring these chain maps preserves the full factor
+$\upsilon_h^{\otimes k}$ and the original ordered exterior signs.
+
+\section{The full lattice and its marked fibre}
+
+For $R_k=\C[u,t_1,\ldots,t_k]$ set
+\begin{equation}
+ \mathcal C_k^j=R_k[s_1,\ldots,s_k]\otimes
+                  \bigwedge^j(ds_1,\ldots,ds_k),\qquad
+ \mathcal D=\sum_{i=1}^k L_i\,ds_i\wedge(-),\qquad
+ L_i=u\partial_{s_i}+h(s_i)-t_i.
+ \label{BC:eq:complex}
+\end{equation}
+The $L_i$ commute, so the exterior signs give $\mathcal D^2=0$.
+
+\begin{proposition}[The original complete lattice]
+The complex \eqref{BC:eq:complex} has cohomology only in degree $k$, with
+\begin{equation}
+ \HH_k:=H^k(\mathcal C_k)
+   =\bigoplus_{0\le a_i<d}R_k
+       [s_1^{a_1}\cdots s_k^{a_k}ds_1\wedge\cdots\wedge ds_k].
+ \label{BC:eq:lattice}
+\end{equation}
+Specialization at $u=t_1=\cdots=t_k=0$ identifies this displayed
+module with $E_h^{\otimes k}$, retaining every primary jet.
+\end{proposition}
+\begin{proof}
+In one factor $L=u\partial_s+h-t$ increases the degree of a nonzero
+polynomial by exactly $d$ and retains its leading coefficient.
+Consequently $L$ is injective.  Subtracting $L(as^j)$ at each highest
+degree gives a remainder of degree below $d$.  A polynomial of degree
+below $d$ in the image of $L$ must be zero by the same degree identity.
+This proves the direct module decomposition
+\[
+ R[s]=L(R[s])\oplus R[s]_{<d},\qquad R=\C[u,t].
+\]
+The inverse of $L$ on its image is $R$-linear and contracts the image
+two-term complex.  Tensor the direct decompositions in the specified
+factor order.  Every tensor summand with a contractible factor contracts
+by that factor's homotopy with the sign contributed by preceding degrees;
+the cross terms cancel by the tensor differential rule.  Only the top
+remainder summand remains.  The splitting is over $R_k$, so it remains a
+splitting after the stated coefficient specialization.
+\end{proof}
+
+The family is a literal deformation of the original finite polynomial
+source images: with $V_* =\alpha_h(\C[s])$ and
+$\BB_h=\mathcal T_h(\C[s])$, its one-factor differential is
+\begin{equation}
+ d^\theta_{u,t}=\Theta|_{V_*}
+       +u\mathcal T_h\partial_s\alpha_h^{-1}
+       -t\mathcal T_h\alpha_h^{-1}.
+\end{equation}
+The inverse maps here are defined on the displayed injective images.
+Equation \eqref{BC:eq:source-square} gives
+$d^\theta_{u,t}\alpha_h=\mathcal T_hL$.
+The derivative term is also the original function-space commutator
+\[
+ \mathcal T_h(P')=(\log x)P(D)F_h-P(D)((\log x)F_h),
+\]
+because $[\log x,D]=1$.  In Mellin coordinates this subtraction
+retains and cancels the two equal $v_h'P$ terms, leaving $v_hP'$.
+
+If $\chi$ is the minimal polynomial of $S=\sum_i s_i$ on
+$E_h^{\otimes k}$, the weighted cyclic injection is
+\begin{equation}
+ \eta:\C[S]/\chi\hookrightarrow E_h^{\otimes k},\qquad
+ \eta[P]=\upsilon_h^{\otimes k}P\Bigl(\sum_i s_i\Bigr)1.
+ \label{BC:eq:eta}
+\end{equation}
+For fixed-order monic division
+$\chi(S)P(S)=\sum_i h(s_i)Q_i(\mathbf s)$, the ordered primitive
+$\sum_i(-1)^{i-1}Q_i\,ds_1\wedge\cdots\widehat{ds_i}\cdots\wedge ds_k$
+has image $\sum_i(h_iQ_i-t_iQ_i+u\partial_iQ_i)$.
+It follows that
+\begin{equation}
+ [\chi(S)P(S)]_{\HH_k}
+    =\sum_i[t_iQ_i-u\partial_{s_i}Q_i]_{\HH_k}.
+ \label{BC:eq:cyclic-defect}
+\end{equation}
+The quotient by the cyclic image and this parameter defect remain in
+the full family.
+
+\section{A genuine finite-field mixed extension}
+
+Choose the same finitely generated coefficient ring $R_0\subset\C$
+containing the coefficients of $h$, the matrices of the complete
+$\upsilon_h$ and its inverse, and $1/(d+1)!$.  Fix a specified
+finite-field point $R_0\to\kappa=\F_Q$ of characteristic $p>d+1$.
+For the rest of this section polynomial coefficients mean their images
+under this specified map.  Let
+\begin{align}
+ S&=\Gm_u\times\A^k_{\mathbf t},\qquad
+ \pi:\A^k_{\mathbf s}\times S\longrightarrow S,\nonumber\\
+ \mathcal L&=\mathcal L_\psi
+       \left(\frac{\sum_i\Phi_h(s_i)-\sum_i t_i s_i}{u}\right),
+       \qquad \mathcal F=R^k\pi_!\mathcal L.
+ \label{BC:eq:finite-family}
+\end{align}
+Here $\psi$ is a fixed nontrivial additive character with values in the
+chosen $\ell$-adic coefficient field, $\ell\ne p$.
+
+\begin{proposition}[The actual open family and boundary stalk]
+The sheaf $\mathcal F$ in \eqref{BC:eq:finite-family} is lisse, of rank
+$d^k$, and pointwise pure of weight $k$; all $R^j\pi_!\mathcal L$ with
+$j\ne k$ vanish.  Fix any finite-field parameter value
+$\mathbf t=\mathbf t_0$, after a residue-field extension when necessary,
+and write $\mathcal F_{\mathbf t_0}$ for its pullback to $\Gm$.
+For $j:\Gm\hookrightarrow\A^1_u$ and $i:\{0\}\hookrightarrow\A^1_u$
+there is an exact sequence
+\begin{equation}
+ 0\longrightarrow j_!\mathcal F_{\mathbf t_0}
+  \longrightarrow j_*\mathcal F_{\mathbf t_0}
+  \longrightarrow i_*(V^I)\longrightarrow0,                \label{BC:eq:boundary-sequence}
+\end{equation}
+where $V$ is the local geometric generic representation and $I$ its
+inertia group.  The boundary stalk $V^I$ is mixed of weights at most $k$.
+\end{proposition}
+\begin{proof}
+The highest homogeneous phase is
+$\sum_i s_i^{d+1}/((d+1)u)$.  Its partial derivatives $s_i^d/u$
+cannot vanish simultaneously at a projective point.  Therefore the
+explicit coefficient map from $S$ to the universal degree-$(d+1)$
+polynomial parameter space lands entirely in Deligne's good open.
+Weil II, Lemma 3.7.3, proves lissity of the universal proper-support
+cohomology sheaves there.  Proper-support base change pulls these sheaves
+to \eqref{BC:eq:finite-family}.  Statement 3.7.2.3, with polynomial degree
+$d+1$ and affine dimension $k$, proves the asserted concentration, rank,
+and weight.  This check uses no simplicity assumption on finite critical
+roots.
+
+The stalk of $j_*\mathcal F_{\mathbf t_0}$ at zero is $V^I$; the stalk
+of $j_!\mathcal F_{\mathbf t_0}$ there is zero.  On the open the map is
+the identity, proving \eqref{BC:eq:boundary-sequence} on every geometric
+stalk.  The extension by zero is mixed of weight $k$.
+
+On an open finite-index inertia subgroup with unipotent action, let $N$
+be the actual logarithmic monodromy operator and $M$ its monodromy
+filtration.  Weil II 1.8.4 applies to the lisse pointwise pure
+$\mathcal F_{\mathbf t_0}$ and proves that
+$\operatorname{Gr}_r^M V$ is pure of weight $k+r$.
+By 1.8.8, $V^I$ is obtained from $\ker N$ by finite-group invariants;
+the filtration it inherits has no graded pieces with $r>0$.
+Its nonzero graded pieces therefore have weights at most $k$.
+No graded rank or numerical matrix for $N$ is inserted in this argument.
+\end{proof}
+
+This supplies an actual use of Deligne's mixed-boundary machinery on
+the finite-field branch.  The coefficient specialization of
+\eqref{BC:eq:lattice}, and the theta source map
+\eqref{BC:eq:source-square}, are separately explicit.  A comparison from
+their marked complex fibre to the local representation in
+\eqref{BC:eq:boundary-sequence} has not been proved by these constructions.
+The complex boundary data relevant to such a comparison are calculated
+next, with all original coefficients retained.
+
+\section{Exact division and the full boundary connection}
+
+For $0\le b<d$ perform monic division in the original variable $s$:
+\begin{equation}
+ f_t(s)s^b=(h(s)-t)q_b(s,t)+r_b(s,t),\qquad
+ \deg_s r_b<d,\quad \deg_s q_b\le b+1\le d.
+ \label{BC:eq:division}
+\end{equation}
+Let $C_h(t)$ and $B_h(t)$ be the matrices whose $b$th columns are the
+coefficients of $r_b$ and $\partial_s q_b$, respectively, in the
+ascending monomial basis $1,s,\ldots,s^{d-1}$.
+
+\begin{lemma}[Exact differential remainder]
+In the one-factor top lattice,
+\begin{equation}
+ [f_t s^b]=[r_b-u\partial_s q_b].
+ \label{BC:eq:reduction}
+\end{equation}
+There is no further reduction of the displayed quotient derivative.
+\end{lemma}
+\begin{proof}
+Subtract $Lq_b=(h-t)q_b+u\partial_s q_b$ from
+\eqref{BC:eq:division}.  The derivative has degree below $d$, so the
+right side is already in the retained remainder basis.
+\end{proof}
+
+\begin{theorem}[Degree-correct flat connection]
+On the one-factor complex localized at $u$, the degree-one and
+degree-zero connections in the $u$ direction are
+\begin{equation}
+ \nabla_u^1=\partial_u-\frac{f_t}{u^2},\qquad
+ \nabla_u^0=\partial_u-\frac{f_t}{u^2}+\frac1u.
+ \label{BC:eq:chain-one}
+\end{equation}
+The induced top connection in the original monomial lattice is exactly
+\begin{equation}
+ \boxed{\nabla_u=\partial_u-\frac{C_h(t)}{u^2}
+                                  +\frac{B_h(t)}u.}
+ \label{BC:eq:connection-one}
+\end{equation}
+On the ordered $k$-factor complex the degree-$j$ operator and its top
+cohomology operator are
+\begin{align}
+ \nabla_u^{(j)}&=\partial_u-
+       \frac{\sum_i f_{t_i}(s_i)}{u^2}+\frac{k-j}{u},
+       \label{BC:eq:chain-all}\\
+ \boxed{\nabla_u}&=\boxed{\partial_u-
+       \frac{\sum_i C_{h,i}(t_i)}{u^2}
+                +\frac{\sum_i B_{h,i}(t_i)}u.}
+       \label{BC:eq:connection-all}
+\end{align}
+These commute with the existing parameter connections
+$\nabla_{t_i}=\partial_{t_i}-s_i/u$ and are compatible with the
+original complex differential.
+\end{theorem}
+\begin{proof}
+The commutators on polynomial coefficients are
+\[
+ [L,\partial_u]=-\partial_s,\qquad
+ [L,-f_t/u^2]=-(h-t)/u,
+\]
+so $[L,\nabla_u^1]=-L/u$ and
+$\nabla_u^1L=L(\nabla_u^1+1/u)=L\nabla_u^0$.
+This proves the chain identity, including the degree-zero correction.
+The differential remainder \eqref{BC:eq:reduction} proves
+\eqref{BC:eq:connection-one}.
+
+For \eqref{BC:eq:chain-all}, the commutator with each $L_i$ is
+$-L_i/u$, and the scalar difference between adjacent exterior degrees
+contributes $+L_i/u$.  Their cancellation proves chain compatibility
+in the original order.  Top cohomology and
+\eqref{BC:eq:reduction} give \eqref{BC:eq:connection-all}.
+Finally, differentiating $-s_i/u$ in $u$ gives $+s_i/u^2$, whereas
+the commutator of $-\sum f_{t_l}/u^2$ with $\partial_{t_i}$ is
+$-s_i/u^2$.  All other terms commute.  This proves the asserted
+flatness.
+\end{proof}
+
+\begin{proposition}[The exact first-order trace]
+$B_h(t)$ is independent of $t$.  In the unchanged ascending monomial
+basis it is upper triangular and satisfies
+\begin{equation}
+ (B_h)_{bb}=\frac{b+1}{d+1},\qquad
+ \boxed{\Tr B_h=\frac d2.}
+ \label{BC:eq:trace}
+\end{equation}
+\end{proposition}
+\begin{proof}
+In \eqref{BC:eq:division}, compare coefficients of degrees greater than
+$d$.  The perturbation $-ts^{b+1}$ and the product $-tq_b$ both have
+degree at most $d$.  All coefficients of $q_b$ except possibly its
+constant coefficient are therefore determined independently of $t$.
+Differentiation removes that constant.  The leading term of $q_b$ is
+$s^{b+1}/(d+1)$, so its derivative has degree $b$ and leading coefficient
+$(b+1)/(d+1)$.  Summing those diagonal entries proves
+\eqref{BC:eq:trace}.
+\end{proof}
+
+The matrix $B_h$ alone is not asserted to be the local monodromy
+residue: the order-two coefficient $C_h(t)$ is present and generally
+does not commute with $B_h$.  Equations \eqref{BC:eq:connection-one} and
+\eqref{BC:eq:connection-all} retain their exact relationship.
+
+\section{The full primary jets at the boundary}
+
+\begin{proposition}[Leading coefficient on every original primary block]
+Retain the Chinese-remainder summands
+$E_\rho=\C[s]/(s-\rho)^{m_\rho}$ and their projectors.  At $t=0$,
+\begin{equation}
+ C_h(0)|_{E_\rho}=\Phi_h(\rho)I_{E_\rho},\qquad
+ A_h|_{E_\rho}=\rho I_{E_\rho}+N_\rho,\qquad
+ \dim E_\rho=m_\rho.
+ \label{BC:eq:critical-block}
+\end{equation}
+For the ordered tuple $(\rho_1,\ldots,\rho_k)$ the leading matrix in
+\eqref{BC:eq:connection-all} is scalar
+$\sum_i\Phi_h(\rho_i)$ on a block of dimension
+$\prod_i m_{\rho_i}$.
+\end{proposition}
+\begin{proof}
+Write $h(s)=(s-\rho)^{m_\rho}a_\rho(s)$, where
+$a_\rho(\rho)\ne0$.  Integration of its Taylor polynomial, with the
+original constant retained, gives the exact identity
+\begin{equation}
+ \Phi_h(s)-\Phi_h(\rho)=
+ \sum_{j\ge0}\frac{a_\rho^{(j)}(\rho)}{j!}
+       \frac{(s-\rho)^{m_\rho+j+1}}{m_\rho+j+1}.
+ \label{BC:eq:full-taylor}
+\end{equation}
+The sum is finite.  Every term is divisible by
+$(s-\rho)^{m_\rho+1}$.  The matrix $C_h(0)$ is multiplication by
+$[\Phi_h]_h$, by its definition in \eqref{BC:eq:division}; hence its
+restriction is the first expression in \eqref{BC:eq:critical-block}.
+Multiplication by $s$ remains $\rho+N_\rho$ on that same full module.
+The tensor statement follows by applying the sum of these matrices
+to the ordered tensor projectors.
+\end{proof}
+
+Equal sums of critical values retain their separate original projectors
+and source labels.  The scalar exponential factors for two tuples have
+the exact modulus ratio
+\begin{equation}
+ \exp\!\left(\operatorname{Re}
+      \frac{\sum_i\Phi_h(\rho_i)-\sum_i\Phi_h(\rho_i')}{u}\right).
+ \label{BC:eq:directions}
+\end{equation}
+For a nonzero difference, equal modulus occurs on
+$\arg u=\arg(\text{difference})+\pi/2\pmod\pi$.
+These are candidate Stokes directions of the displayed exponential
+factors.  Equation \eqref{BC:eq:directions} supplies no assertion that a
+particular Stokes entry is nonzero, and does not replace the calculation
+of the matrices for \eqref{BC:eq:connection-all}.
+
+\section{Exact ordered period determinant}
+
+Keep the original rays and contours
+\begin{equation}
+ \vartheta_j=\frac{\arg u+\pi}{d+1}+\frac{2\pi j}{d+1},
+ \qquad \Gamma_j=-\ell_0+\ell_j\quad(1\le j\le d),
+ \qquad
+ (\Pi_h)_{jb}=\int_{\Gamma_j}e^{f_t(s)/u}s^b\,ds.
+ \label{BC:eq:period}
+\end{equation}
+The leading radial exponent is
+$-r^{d+1}/((d+1)|u|)$; it proves absolute convergence and
+coefficient differentiation on compact parameter sets.  Contours on
+nearby parameters deform within the same decaying sectors, with their
+original orientations.  Every formula below uses a fixed retained
+branch for $u$ and the ordered rays.
+
+\begin{theorem}[Full period determinant, including its constant]
+Let $c_h(t)=\Tr C_h(t)$, and put
+\begin{align}
+ \zeta&=e^{2\pi i/(d+1)},\qquad \beta_b=\frac{b+1}{d+1},
+       \nonumber\\
+ W_{jb}&=\zeta^{j(b+1)}-1
+       \quad(1\le j\le d,\ 0\le b<d),\nonumber\\
+ K_d&=(d+1)^{-d/2}e^{\pi i d/2}
+           \left(\prod_{b=0}^{d-1}\Gamma(\beta_b)\right)\det W.
+       \label{BC:eq:constant}
+\end{align}
+Then $K_d\ne0$ and
+\begin{equation}
+ \boxed{\det\Pi_h(u,t)=K_d u^{d/2}e^{c_h(t)/u}.}
+ \label{BC:eq:det-one}
+\end{equation}
+For the ordered external product $\Pi_k=\bigotimes_i\Pi_h(u,t_i)$,
+\begin{equation}
+ \boxed{\det\Pi_k
+   =K_d^{k d^{k-1}}u^{k d^k/2}
+         \exp\!\left(\frac{d^{k-1}\sum_i c_h(t_i)}u\right).}
+ \label{BC:eq:det-all}
+\end{equation}
+Both identities retain all lower coefficients of $h$ and extend across
+critical-root collisions.
+\end{theorem}
+\begin{proof}
+Differentiating \eqref{BC:eq:period} in $u$ inserts $-f_t/u^2$.
+The exact reduction \eqref{BC:eq:reduction} gives
+\[
+ \partial_u\Pi_h=\Pi_h\left(-\frac{C_h(t)}{u^2}
+                                    +\frac{B_h}u\right).
+\]
+The determinant equation, valid as the exterior-power equation even
+before invertibility is known, is
+\begin{equation}
+ \partial_u\det\Pi_h=
+     \left(-\frac{c_h(t)}{u^2}+\frac d{2u}\right)\det\Pi_h.
+ \label{BC:eq:det-ode}
+\end{equation}
+Thus the remaining factor after division by $u^{d/2}e^{c_h(t)/u}$
+is independent of $u$ on a contour branch.
+
+We prove its independence of $t$ and all lower coefficients without
+deleting their effects.  On the dense open of simple roots of $h-t$,
+\[
+ c_h(t)=\sum_{h(\rho)=t}f_t(\rho),\qquad
+ \partial_t c_h(t)=-\sum_{h(\rho)=t}\rho=-\Tr A_h(t).
+\]
+The terms containing derivatives of the roots vanish because
+$f_t'(\rho)=0$.  Both sides are polynomial expressions in the
+coefficients and $t$, so this identity holds across collisions too.
+The period equation
+$\partial_t\Pi_h=\Pi_h(-A_h(t)/u)$ cancels the derivative of
+$e^{c_h(t)/u}$, proving that the remaining factor is independent of $t$.
+
+Differentiation in $h_b$ inserts $s^{b+1}/((b+1)u)$.  For a column
+$s^j$, its numerator has degree $j+b+1\le2d-1$.
+In division by $h-t$ the quotient derivative has degree at most
+$j+b-d<j$.  Consequently the differential-reduction correction has
+zero trace.  The determinant logarithmic derivative in $h_b$ is
+$\Tr M_{s^{b+1}}/((b+1)u)$.  On the simple-root open this equals
+$(\partial_{h_b}c_h(t))/u$, since again the root derivative is multiplied
+by $f_t'(\rho)=0$.  Polynomial continuation proves the identity for all
+coefficients.  Therefore the remaining factor has zero derivative in
+every lower coefficient.
+
+It remains to compute that factor at $h=s^d,t=0$, with the original
+contours.  Substitution $v=r^{d+1}/((d+1)|u|)$ on each ray gives
+\begin{equation}
+ (\Pi_h)_{jb}
+  =[(d+1)u]^{\beta_b}e^{\pi i\beta_b}
+        \frac{\Gamma(\beta_b)}{d+1}
+             (\zeta^{j(b+1)}-1).
+ \label{BC:eq:gamma-columns}
+\end{equation}
+The sum of the $\beta_b$ is $d/2$, so taking determinants gives
+exactly \eqref{BC:eq:constant} and \eqref{BC:eq:det-one}.
+For invertibility of $W$, suppose
+$\sum_{r=1}^d a_r(z^r-1)$ vanishes at the $d$ nontrivial roots of
+$z^{d+1}=1$.  It also vanishes at $z=1$.  Its degree is at most $d$,
+so it is identically zero and every $a_r=0$.  All gamma factors are
+nonzero, proving $K_d\ne0$.
+
+The periods and their parameter derivatives are entire in the lower
+coefficients on compact sets by the fixed leading radial decay.
+This justifies the coefficient continuation used above and proves the
+identities also at collisions.  Finally,
+$\det(A\otimes B)=(\det A)^{\dim B}(\det B)^{\dim A}$ in the
+retained ordered product bases gives \eqref{BC:eq:det-all}.
+\end{proof}
+
+\section{Exact comparison with the original source metric}
+
+The period Gram determinant following from \eqref{BC:eq:det-all} is
+\begin{equation}
+ \det(\Pi_k^*\Pi_k)=|K_d|^{2k d^{k-1}}|u|^{k d^k}
+    \exp\!\left(2d^{k-1}\operatorname{Re}
+                    \frac{\sum_i c_h(t_i)}u\right).
+ \label{BC:eq:period-gram}
+\end{equation}
+Retain, independently, the actual one-factor source Gram
+\begin{equation}
+ (G_\theta)_{ab}=\frac1{2\pi}\int_{\mathbb R}
+     \overline{(1/2+iy)}^{a}(1/2+iy)^b
+       |v_h(1/2+iy)|^2\,dy,\qquad 0\le a,b<d.
+ \label{BC:eq:theta-gram}
+\end{equation}
+This is the Gram of $\mathcal T_h(s^b)=D^bF_h$ in the original
+$L^2(dx)$ source norm by Mellin--Plancherel.  Its complete multiplier is
+$v_h=g/h$.  It is positive definite: a zero norm forces the continuous
+source function $\mathcal T_h(P)$ to vanish; its Mellin transform
+$Pv_h$ is then zero, and the nonzero entire $v_h$ forces $P=0$.
+The original ordered tensor source Gram is $G_\theta^{\otimes k}$.
+
+The exact comparison of the two finite forms is the endomorphism
+\begin{equation}
+ T_{\rm per}=(G_\theta^{\otimes k})^{-1}(\Pi_k^*\Pi_k).
+ \label{BC:eq:metric-map}
+\end{equation}
+It is self-adjoint and positive in the original source metric, since
+\[
+ \langle v,T_{\rm per}w\rangle_{G_\theta^{\otimes k}}
+     =v^*\Pi_k^*\Pi_k w,
+ \qquad
+ \langle v,T_{\rm per}v\rangle_{G_\theta^{\otimes k}}
+     =\|\Pi_kv\|^2>0\quad(v\ne0).
+\]
+Its determinant is exactly \eqref{BC:eq:period-gram} divided by
+$(\det G_\theta)^{k d^{k-1}}$.  This preserves both metrics rather
+than identifying them.
+
+On the weighted cyclic image \eqref{BC:eq:eta}, the period form is
+$\eta^*\Pi_k^*\Pi_k\eta$.  Its relation to the original cyclic
+source metric retains the rectangular map $\Pi_k\eta$, the complement
+of $\eta$, and the transverse map
+\[
+ E\xrightarrow{\eta}E_h^{\otimes k}
+ \xrightarrow{\sum_i\mathcal R_{h,i}}E_h^{\otimes k}
+ \longrightarrow E_h^{\otimes k}/\eta E.
+\]
+The full determinant \eqref{BC:eq:period-gram} does not determine the
+singular values of this rectangular restriction.  The displayed maps
+are the exact relationship; no original relation norm has been set to
+zero.
+
+\section{Compatibility with independently retained mixed faces}
+
+For an original coefficient mask $A$, retain its $A$-indexed coefficient
+complex and the original outer theta-leg label.  Let
+$j_A^B$ be the specified constant zero-insertion linear map for
+$A\subseteq B$.  It inserts represented zero in each added slot.
+The preceding complex differential and connection act with the same
+coefficients in each slot.  Therefore
+\begin{equation}
+ j_A^B\mathcal D_A=\mathcal D_Bj_A^B,
+ \qquad j_A^B\nabla_A=\nabla_Bj_A^B.
+ \label{BC:eq:faces}
+\end{equation}
+These equations hold componentwise on retained coordinates; on the
+inserted coordinates each derivative and matrix coefficient sends zero
+to zero.  Since $j_A^B$ is constant in all parameters, differentiation
+commutes with it as well.
+
+On the carrier retaining its mask, a vector killed by an observation
+therefore remains the receiving represented zero with that mask.
+The empty coefficient face maps to the zero vector in the receiving
+face under zero insertion; this face-group map is not a
+$\tau$-preserving pointed lift.  A nonempty outer theta-leg label
+remains present when the coefficient mask is empty.  No colimit over
+the entire mask poset is taken, since its terminal full face would
+discard the independent face labels.
+
+The scalar structural specialization is still
+\[
+ \mathbb F_{1,\tau}\longrightarrow G(\C[u,\mathbf t])
+       \xrightarrow{G(\operatorname{ev}_0)}G(\C).
+\]
+It sends represented $u,t_i$ to represented zero $e$, and $\tau$ to
+$\tau$.  The original absolute point, its source, and the coefficient
+specialization are retained.  Equation \eqref{BC:eq:faces} is an explicit
+compatibility with the mixed face maps; it supplies no claim that a
+Boolean mask itself is a Deligne weight.
+
+\section{What follows in the programme}
+
+The $u$-connection, critical-block coefficients, determinant and metric
+map above are completed calculations on the original family.  The
+finite-field lisse family and its invariant boundary weight bound are
+actual applications of Deligne's machinery.  The next calculations
+are the local extensions and Stokes or inertia matrices for this phase,
+their maps through the original mixed faces, and the induced original
+relation forms on the weighted cyclic image.  The parameter defect
+\eqref{BC:eq:cyclic-defect}, the transverse map, and all source
+cross-pairings remain in that task.  No uniform four-volume upper bound,
+arithmetic Frobenius comparison, or failure theorem for the programme
+is asserted here.
+
+\section*{Source and verification record}
+The original packet-family inputs are those of
+\emph{Tau Marked Product Four Endpoint}, 13 September 2026,
+\texttt{NOTE.tex}, read in full, with SHA256
+\begin{center}\ttfamily\small
+40749e2a9d599a322e7b125eb43ad0878\\
+a066a51b61da52cc3bb2ffb94cbd841.
+\end{center}
+The relevant primary source is Pierre Deligne,
+\emph{La conjecture de Weil II}, Publications math\'ematiques de
+l'IH\'ES 52 (1980), 137--252: 1.8.4, 1.8.8, 3.3.1--3.3.6,
+3.7.2.3, 3.7.3, 6.1.13 and 6.2.1--6.2.6.  The local typed text of
+those statements and surrounding proofs was read for this audit.
+
+The companion exact symbolic checker verifies differential reduction,
+flatness, $\partial_tB_h=0$, the trace and diagonal of $B_h$, the
+critical-value trace derivative, and complete jet divisibility for four
+polynomial fixtures of degrees 1 through 4, including repeated roots.
+All passed.  These fixtures are explicitly not asserted to be
+arithmetic zero packets; the proofs here apply to the original $h$.
+
+\endgroup
+% END COMPLETE BOUNDARY SOURCE BODY
+\clearpage
+
+% BEGIN COMPLETE EARLIER AW SOURCE BODY
+\section*{Earlier AW calculation: the exact relation-window spectrum}
+\addcontentsline{toc}{section}{Earlier AW calculation: the exact relation-window spectrum}
+
+
+
+This calculation continues arithmetic determinant transport on its original
+finite source over the absolute tau base. It computes the full spectra of
+the two retained window operators, constructs an isometry intertwining
+them in the actual source metric, and strengthens the signed determinant
+bound. The source measures, their masses, the cyclic polynomial, the
+Taylor unit, and the cohomology observation remain fixed.
+
+\section{The original source and its four windows}
+
+Use a full actual packet $h$ for $g=2\xi$, an integer $k\ge1$, and the
+original cyclic polynomial $\chi=\chi_{h,k}$ of degree $q\ge1$.
+Let $E=\C[S]/(\chi)$, $E_h=\C[s]/(h)$, and
+$\upsilon_h=j_h(g/h)\in E_h^\times$.
+The original tensor-sum observation is
+\[
+ \eta:E\hookrightarrow E_h^{\otimes k},\qquad
+ \eta[P]=\upsilon_h^{\otimes k}P(A_h^{(k)})1.
+ \tag{AW1}
+\]
+The original section $\sigma_h:E_h\hookrightarrow
+Q=\mathscr B/\Theta V$ gives the separate injection
+$\sigma_h^{\otimes k}\eta:E\hookrightarrow Q^{\otimes k}$.
+Here $Q^{\otimes k}$ is the top cohomology of the original tensor
+pushforward over $\mathbf F_{1,\tau}=\{\tau,1\}$; the one-factor
+complex is $[V\oplus V\xrightarrow{\Theta(\phi-\widehat\psi)}
+\mathscr B]$. The complete Tau Base and cyclic source proofs accompany
+the preceding arithmetic determinant transport calculation (AT).
+
+For $N\ge q-1$, retain the increasing-power spaces and maps
+\[
+ 0\longrightarrow\cP_{N-q}\xrightarrow{B_N=\times\chi}
+ \cP_N\xrightarrow{J_N}E\longrightarrow0,
+ \qquad \cP_{-1}=0.
+ \tag{AW2}
+\]
+The common source is $H=\cP_{2q}$, of dimension $n=2q+1$.
+Its original coordinate on the integration line is $S=k/2+iu$.
+Set $v_N(u)=(1,S(u),\ldots,S(u)^N)$ and retain the two densities
+\[
+ \begin{aligned}
+ m_1(u)&=w_h^{*k}(u),&
+ w_h(u)&=\frac{|(g/h)(1/2+iu)|^2}{2\pi},\\
+ m_0(u)&=\frac{(\sqrt{2\pi})^k}{c_{k/4}}
+              \frac{|\Gamma(k/4+iu/2)|^2}{2\pi},&
+ c_a&=2^{1-2a}\Gamma(2a).
+ \end{aligned}
+ \tag{AW3}
+\]
+Their actual masses are $\mu_h^k$ and $(2\pi)^{k/2}$.
+For the real parameter $0\le t\le1$, put
+$m_t=(1-t)m_0+tm_1$, $M_N(t)=\int v_N^*v_Nm_t$, and
+$M(t)=M_{2q}(t)$. The source density proofs give all finite moments
+and positivity almost everywhere, so all these finite Grams are
+positive definite. We use the original form
+$\langle x,y\rangle_t=x^*M(t)y$ on $H$.
+
+Let $P_N(t)$ be the orthogonal projection onto $\cP_N\subset H$,
+and $Q_N(t)$ the projection onto $\chi\cP_{N-q}\subset H$.
+Set $Q_{q-1}=0$. For the coefficient inclusion $I_N:\cP_N\to H$,
+their fully typed coefficient formulas are
+\[
+ \begin{aligned}
+ P_N&=I_NM_N^{-1}I_N^*M,\\
+ Q_N&=I_NB_N(B_N^*M_NB_N)^{-1}B_N^*I_N^*M.
+ \end{aligned}
+ \tag{AW4}
+\]
+The zero relation domain at $N=q-1$ contributes the zero operator.
+Let $G_N(t)$ be the minimum-lift Gram on $E$ from (AW2) and
+$V_N(t)=\det G_N(t)$. Retain
+\[
+ \begin{aligned}
+ \mathcal B(t)&=\log\frac{V_{q-1}(t)V_q(t)}
+                              {V_{2q-1}(t)V_{2q}(t)},\\
+ C(t)&=M(t)^{-1}(M(1)-M(0)),\\
+ U(t)&=(Q_{2q-1}-Q_{q-1})+(Q_{2q}-Q_q),\\
+ W(t)&=(P_{2q-1}-P_{q-1})+(P_{2q}-P_q).
+ \end{aligned}
+ \tag{AW5}
+\]
+The AT proof, included in full, establishes
+$V_N=\det M_N/\det(B_N^*M_NB_N)$ with the original orientation
+$(-1)^{q(N-q+1)}$, and
+\[
+ \Delta\mathcal B=\mathcal B(1)-\mathcal B(0)
+       =\int_0^1\Tr((U(t)-W(t))C(t))\,dt.
+ \tag{AW6}
+\]
+Thus the following computation evaluates the operators in the
+already proved signed arithmetic correction.
+
+\section{Full spectra and an explicit source isometry}
+
+\begin{theorem}
+In the original $M(t)$ metric, both $U(t)$ and $W(t)$ have spectrum
+\[
+ 0\text{ with multiplicity }q,\qquad
+ 1\text{ with multiplicity }2,\qquad
+ 2\text{ with multiplicity }q-1.
+ \tag{AW7}
+\]
+The last multiplicity is zero when $q=1$. There is an explicitly
+constructed smooth $M(t)$-unitary $T(t):H\to H$ such that
+$U(t)=T(t)W(t)T(t)^{-1}$.
+\end{theorem}
+\begin{proof}
+Every subspace in either of the following flags is the literal
+displayed polynomial subspace, with its original coefficient inclusion.
+For the relation flag use
+\[
+ F_0=\chi\cP_0\subset F_1=\chi\cP_{q-1}
+            \subset F_2=\chi\cP_q\subset H.
+ \tag{AW8}
+\]
+Their dimensions are $1,q,q+1$, since multiplication by $\chi$ is
+injective. When $q=1$, $F_0=F_1$ is retained as that equality.
+Projections of nested subspaces commute and their products equal
+the projection of the smaller subspace: each larger space is the
+orthogonal direct sum of the smaller space and its orthogonal
+complement within the larger space. On the original orthogonal
+decomposition
+$F_0\oplus(F_1\cap F_0^\perp)\oplus
+(F_2\cap F_1^\perp)\oplus F_2^\perp$, the operator
+$U=Q_{F_1}+Q_{F_2}-Q_{F_0}$ acts respectively by $1,2,1,0$.
+The dimensions are respectively $1,q-1,1,q$.
+
+For $W$ use
+$\cP_{q-1}\subset\cP_q\subset\cP_{2q-1}\subset\cP_{2q}=H$.
+On the four corresponding orthogonal pieces, $W$ acts by
+$0,1,2,1$, with dimensions $q,1,q-1,1$. This proves (AW7),
+including the repeated middle subspaces at $q=1$.
+
+For an explicit intertwiner retain every Gram factor as follows.
+For any specified ordered independent list $z_0,\ldots,z_d$,
+apply the recursion
+\[
+ y_j=z_j-\sum_{i<j}e_i\langle e_i,z_j\rangle_t,
+ \qquad a_j=(y_j^*M(t)y_j)^{1/2}>0,
+ \qquad e_j=y_j/a_j.
+ \tag{AW9}
+\]
+The positive real square root fixes its phase. No source density or
+mass is changed; each $a_j$ is the norm in the original form.
+Independence proves $y_j\ne0$ at every step, so this recursion is
+defined and smooth on the entire parameter interval.
+
+First use $z_j=S^j$, $0\le j\le2q$, obtaining $p_0,\ldots,p_{2q}$.
+Next use $z_j=\chi S^j$, $0\le j\le q$, obtaining
+$r_0,\ldots,r_q$. These lie in the successive relation spaces
+in (AW8). Finally let $R_{2q}(t):E\to H$ be the original minimum
+section from AT6 and apply (AW9) to
+$R_{2q}(t)[1],\ldots,R_{2q}(t)[S^{q-1}]$, obtaining
+$c_0,\ldots,c_{q-1}$. The relation orthogonality in AT6 puts this
+entire list in $F_2^\perp$. Since $J_{2q}R_{2q}=I_E$, the list
+is independent and spans that $q$-dimensional complement.
+
+Define $T$ on the first orthonormal basis by
+\[
+ \begin{aligned}
+ Tp_j&=c_j&& (0\le j\le q-1),\\
+ Tp_q&=r_0,&\quad Tp_{2q}&=r_q,\\
+ Tp_{q+j}&=r_j&& (1\le j\le q-1).
+ \end{aligned}
+ \tag{AW10}
+\]
+The middle range is empty for $q=1$, with $p_q$ and $p_{2q}$
+still distinct. The target list is an orthonormal basis. Thus this
+linear map is invertible and $T^*MT=M$. The spectral actions
+already calculated agree on each indicated basis vector, proving
+$UT=TW$. The recursion, the smooth minimum section and the positive
+norms prove the asserted smoothness. This completes the construction.
+\end{proof}
+
+The exact isometry gives a commutator form of the signed integrand:
+\[
+ \Tr((U-W)C)=\Tr\bigl(WT^{-1}[C,T]\bigr),
+ \qquad [C,T]=CT-TC.
+ \tag{AW11}
+\]
+Indeed cyclicity moves $T$ in $\Tr(TWT^{-1}C)$ to the right,
+and subtraction then gives the displayed product.
+This $T$ is an isometry of the original source; its cohomology
+observation is computed, rather than silently assigned an
+intertwining property. The unchanged arithmetic observation
+$\mathcal O=\sigma_h^{\otimes k}\eta J_{2q}:H\to Q^{\otimes k}$
+satisfies
+\[
+ \mathcal O T=\sigma_h^{\otimes k}\eta J_{2q}T,
+ \quad \mathcal O T-\mathcal O
+       =\sigma_h^{\otimes k}\eta J_{2q}(T-I),
+ \quad \ker(\mathcal O T)=T^{-1}F_2.
+ \tag{AW12}
+\]
+The last identity follows from both injections in (AW1) and
+$\ker J_{2q}=F_2$. By (AW10), $T^{-1}F_2$ is exactly
+$\operatorname{span}\{p_q,\ldots,p_{2q}\}
+=\cP_{q-1}^{\perp}$ in $H$.
+At any fixed nonempty support label $A$, lift every displayed
+linear map by $(A,x)\mapsto(A,fx)$ and send $\tau$ to $\tau$.
+Consequently the supported-zero inverse image of the lifted
+$\mathcal O T$ at $A$ is the full set
+$\{A\}\times\cP_{q-1}^{\perp}$. The Taylor unit in (AW1)
+and the defect in (AW12) remain present.
+
+\section{The spectral bound with every eigenvalue retained}
+
+Let $b_1\le\cdots\le b_n$ be all eigenvalues, counted with
+multiplicity, of $D=M(0)^{-1}M(1)$ on its original $M(0)$
+Hilbert space. All are positive. Define
+\[
+ \mathcal L_q(D)=\log\frac{b_{q+2}}{b_q}
+       +2\sum_{j=1}^{q-1}\log\frac{b_{2q+2-j}}{b_j},
+ \qquad \kappa(D)=b_n/b_1.
+ \tag{AW13}
+\]
+For $q=1$ the sum is empty and $\mathcal L_1(D)=\log(b_3/b_1)$.
+
+\begin{theorem}
+On the unchanged arithmetic source,
+\[
+ |\Delta\mathcal B|\le\mathcal L_q(D)
+                  \le(2q-1)\log\kappa(D).
+ \tag{AW14}
+\]
+In particular the coefficient $2q$ in AT18 can be improved to
+$2q-1$, while the first bound retains the full relative spectrum.
+\end{theorem}
+\begin{proof}
+We first prove the needed finite spectral trace inequality.
+Let $C$ be self-adjoint in a finite Hilbert space with eigenvalues
+$c_1\le\cdots\le c_n$. If $P$ is an orthogonal projection of
+rank $r$, let $e_j$ be an orthonormal eigenbasis of $C$ and
+$d_j=\langle e_j,Pe_j\rangle$. Then $0\le d_j\le1$ and
+$\sum_jd_j=r$, since $d_j=\|Pe_j\|^2$ and $\Tr P=r$.
+Thus $\Tr(PC)=\sum_jc_jd_j$.
+Its upper bound by $\sum_{j=n-r+1}^n c_j$ follows by subtracting
+the two expressions: the mass $\sum_{j\le n-r}d_j$ equals
+$\sum_{j>n-r}(1-d_j)$, and every coefficient in the latter
+group is at least every coefficient in the former. Pairing the
+same nonnegative mass, or bounding both groups by $c_{n-r+1}$,
+proves the inequality. Applying this argument to $-C$ proves
+the lower bound $\sum_{j=1}^r c_j$. This proof includes repeated
+eigenvalues and the ranks zero and $n$.
+
+For an operator $Z$ with spectrum (AW7), its spectral projection
+$A_Z$ onto eigenvalues $1,2$ has rank $q+1$, and its spectral
+projection $B_Z$ onto eigenvalue $2$ has rank $q-1$.
+The exact decomposition is $Z=A_Z+B_Z$. Applying the proved
+projection bounds gives
+\[
+ \sum_{j=1}^{q+1}c_j+\sum_{j=1}^{q-1}c_j
+ \ \le\ \Tr(ZC)\ \le\
+ \sum_{j=q+1}^{2q+1}c_j+\sum_{j=q+3}^{2q+1}c_j.
+ \tag{AW15}
+\]
+Each bound is attained for an abstract operator of this spectrum
+by assigning its eigenspaces to the appropriate eigenvectors
+of $C$. This attainment statement is only about the displayed
+spectral constraint; it assigns no freely chosen orientation
+to the actual polynomial relation spaces.
+Both $U$ and $W$ satisfy (AW15). Subtract their bounds and cancel
+the common $c_{q+1}$ term only after writing both complete sums:
+\[
+ |\Tr((U-W)C)|
+ \le c_{q+2}-c_q
+       +2\sum_{j=1}^{q-1}(c_{2q+2-j}-c_j).
+ \tag{AW16}
+\]
+No mutual commutation of $U,W,C$ is used.
+
+For the actual interpolated metric,
+$C(t)=((1-t)I+tD)^{-1}(D-I)$, so its eigenvalues in increasing
+order are
+\[
+ c_j(t)=\frac{b_j-1}{1-t+tb_j}.
+ \tag{AW17}
+\]
+The denominator is positive and the derivative with respect
+to $b_j$ is $(1-t+tb_j)^{-2}>0$. Thus the ordering is valid
+for the entire closed interval. Each $c_j(t)$ is the derivative
+of $\log(1-t+tb_j)$ and has integral $\log b_j$.
+Integrating (AW16) in the exact signed identity (AW6) proves
+the first inequality of (AW14). Every ratio in (AW13) lies
+between $1$ and $b_n/b_1$, so retaining its coefficient gives
+$1+2(q-1)=2q-1$ times $\log\kappa(D)$ for the second bound.
+This proves the theorem for all $q\ge1$.
+\end{proof}
+
+All bounds retain the literal source masses. If $M(1)=cM(0)$,
+every $b_j=c$, so (AW13) is zero. Directly each original
+quotient determinant is multiplied at time $t$ by
+$(1-t+tc)^q$, and the four displayed factors in (AW5) cancel.
+For a fixed invertible source-coordinate arrow $F$, the transported
+forms are $M'=F^*MF$, all subspaces have their $F^{-1}$ images,
+and $D'=F^{-1}DF$. Hence the eigenvalues, (AW6) and (AW13)
+are unchanged under this explicit map.
+
+The original quartet Gamma theorem, when applied to the actual
+full quartet packet with displacement $\delta>0$ and common
+order $m$, retains $q=[1+k(m-1)](k+1)^2$ and gives
+\[
+ \mathcal B^{\rm ar}_{h,k}
+ \ge4q\log\!\left(\frac{\delta k}{2\sqrt5}\right)
+             -\mathcal L_q(D).
+ \tag{AW18}
+\]
+This is substitution of the complete supplied Gamma theorem
+into the proved first inequality of (AW14). It proves no
+uniform estimate for the eigenvalues $b_j$, and asserts no
+existence of an off-line packet. The new computed objects are
+the exact window spectra, their source isometry, its arithmetic
+observation and commutator, and the strengthened finite bound.
+
+\section{The one-dimensional quotient: exact angle and nonlinear transport}
+
+When $q=1$, the same four endpoints are $0,1,1,2$. Their
+middle factors cancel in the specified ratio, leaving
+$\mathcal B(t)=\log(V_0(t)/V_2(t))$ with both original masses
+still present. Write $\chi=S-a$. The actual operators now are
+$U=Q_2$ and $W=I-P_0$. If $\mathcal N=(\chi\cP_1)^\perp$
+and $P_{\mathcal N}=I-Q_2$, then
+$U-W=P_0-P_{\mathcal N}$. Both projections have rank one.
+
+Let $e=1\in H$, $z=R_2(t)[1]$, and retain their actual norms
+$\langle e,e\rangle_t=V_0(t)$ and
+$\langle z,z\rangle_t=V_2(t)$. The source splitting gives
+$z=P_{\mathcal N}e$, since $J_2e=1$. Thus
+$\langle e,z\rangle_t=V_2(t)$, and the angle between the
+two lines has the exact value
+\[
+ \cos^2\theta(t)=\frac{|\langle e,z\rangle_t|^2}
+                         {\langle e,e\rangle_t\langle z,z\rangle_t}
+       =\frac{V_2(t)}{V_0(t)}=e^{-\mathcal B(t)}.
+ \tag{AW19}
+\]
+Both Grams are positive, so the cosine is positive. It is
+strictly less than one for the actual measure (AW3).
+Otherwise $e\in\mathcal N$, implying
+$\int\chi(S)m_t=0$ and $\int S\chi(S)m_t=0$.
+On the unchanged line $\overline S=k-S$, and consequently
+$|\chi(S)|^2=((k-\overline a)-S)\chi(S)$.
+The two equalities would force $\int|\chi(S)|^2m_t=0$,
+contrary to the positive Gram of this nonzero polynomial.
+Hence $0<\theta(t)<\pi/2$ and $\mathcal B(t)>0$ on the
+whole closed interval.
+
+For completeness, take the unit vector $p=e/\sqrt{V_0}$
+and write $z/\sqrt{V_2}=\cos\theta\,p+\sin\theta\,r$,
+where $r$ is the resulting unit vector orthogonal to $p$.
+The phase is already fixed since $\langle e,z\rangle_t=V_2>0$.
+In this orthonormal pair the exact difference of projections is
+\[
+ \left.(P_0-P_{\mathcal N})\right|_{\operatorname{span}(p,r)}
+ =\begin{pmatrix}
+   \sin^2\theta&-\sin\theta\cos\theta\\
+   -\sin\theta\cos\theta&-\sin^2\theta
+  \end{pmatrix}.
+ \tag{AW20}
+\]
+Its trace is zero and its determinant is $-\sin^2\theta$.
+It vanishes on the remaining one-dimensional orthogonal
+complement. Thus its full eigenvalues are
+$\sin\theta,0,-\sin\theta$.
+Applying the proved rank-one spectral trace bounds to its
+positive and negative eigenprojections yields
+\[
+ |\dot{\mathcal B}(t)|
+ \le\sqrt{1-e^{-\mathcal B(t)}}\,(c_3(t)-c_1(t)).
+ \tag{AW21}
+\]
+This retains the actual alignment of the two lines.
+
+The function $\Phi(B)=2\operatorname{arcosh}(e^{B/2})$
+for $B>0$ has derivative
+$\Phi'(B)=1/\sqrt{1-e^{-B}}$, by differentiating the
+inverse of the hyperbolic cosine on its positive branch.
+The preceding strict positivity on the compact interval
+justifies its smooth composition with $\mathcal B(t)$.
+Divide (AW21) by its positive square-root factor and
+integrate (AW17). The exact nonlinear endpoint bound is
+\[
+ \left|2\operatorname{arcosh}(e^{\mathcal B(1)/2})
+       -2\operatorname{arcosh}(e^{\mathcal B(0)/2})\right|
+       \le\log(b_3/b_1).
+ \tag{AW22}
+\]
+Equivalently, with the original values
+$A_0=\operatorname{arcosh}(e^{\mathcal B(0)/2})$
+and $L=\tfrac12\log(b_3/b_1)$, monotonicity of
+$2\log\cosh A$ for $A\ge0$ gives
+\[
+ 2\log\cosh(\max\{0,A_0-L\})
+ \le\mathcal B(1)\le2\log\cosh(A_0+L).
+ \tag{AW23}
+\]
+This last lower bound can be zero although the actual
+$\mathcal B(1)$ is strictly positive, as proved above.
+Every step concerns the original $q=1$ quotient and its
+degree-two source. No extension of that dimension restriction
+to a quartet quotient is asserted.
+
+\section{Complete proof dependencies}
+
+The complete AT calculation accompanies this note, together with its
+29 complete source dependencies and independent proof review. Those
+sources prove the original pushforward, tensor signs, full Taylor-unit
+injections, theta primitive, positive arithmetic and Gamma moments,
+and the quartet application. Every new assertion (AW7)--(AW23) is
+proved above on those unchanged finite objects. A separate independent
+review supplies the spectral calculation and its edge-case checks.
+
+% END COMPLETE EARLIER AW SOURCE BODY
+\clearpage
+\clearpage
+\appendix
+\section*{Original marked-product note: literal source and reading corrections}
+\addcontentsline{toc}{section}{Original marked-product note and literal corrections}
+The following appendix preserves the complete original body, including
+its abstract and scope statements. Only its document wrapper,
+\verb|\maketitle| and \verb|\tableofcontents| controls are removed here.
+The separate \texttt{MARKED\_PRODUCT\_ORIGINAL\_NOTE.tex} is byte exact.
+The original frequency symbol is $y$ in $S=k/2+iy$; the deformation
+parameter is $u$. In the original analytic displays, the measure
+written $du$ after defining a density in $y$ is read as $dy$, and the
+frequency arguments written $c+iu$ are read as $c+iy$.
+These are distinct original variables, and this correction does not
+specialize or replace either one.
+
+The sentence following original equation (64) overstates positivity
+of the relative derivative. For the literal positive source Grams
+$M(0)$ and $M(1)$, the identities
+\[
+ M(0)\bigl(M(0)^{-1}M(1)\bigr)=M(1),\qquad
+ M(0)\bigl(M(0)^{-1}(M(1)-M(0))\bigr)=M(1)-M(0)
+\]
+prove that the first endomorphism is positive and self-adjoint in the
+$M(0)$ metric and that the second is self-adjoint. The second need
+not be positive: when $M(1)=M(0)/2$, it equals $-I/2$.
+Its original operator norm and the resulting midpoint enclosure
+remain meaningful without the extra positivity assertion.
+
+The two nonnegative source/relation operators whose densities occur
+in the signed four-endpoint cancellation each have trace $2q$.
+Their rank is $q+1$, with spectrum $1,2,\ldots,2,1$ on their range
+(the multiplicity of $2$ is $q-1$). The earlier AW7 proves this from the
+actual nested source and relation projections; SP6--SP8 reproduce
+that spectrum on the identical operators proved above. Thus a kernel mass
+$2q$ is read as that trace, not as rank $2q$. The complete exact
+cancellation is retained in SP1--SP13. Its final bound is the earlier
+AW14, whose full-spectrum refinement AW13 is also included; the
+additional overlap and common-range refinement is SP8--SP10.
+
+\begin{center}\large
+The marked $\tau$-base, weight-matched external products,\\
+and the signed arithmetic four-endpoint correction
+\end{center}
+
+% BEGIN COMPLETE ORIGINAL NOTE BODY
+
+
+\begin{abstract}
+We continue the original marked Split-Zero construction, retaining its absolute pointed base, supported zero, amplitude and support observations, full theta complex, and prequotient norms. We construct the external product of the original packet's polynomial-exponential complex. Its top cohomology has rank $d^k$, its special fibre is the full tensor packet, and its diagonal parameter operator specializes to the original sum action. Its finite-field realization has weight $k$ under Deligne's actual hypotheses. An explicit coefficient and source diagram connects this family to the original theta complex; no Frobenius intertwiner is assumed. We then calculate the signed arithmetic/Gamma correction simultaneously at all four original endpoints. The result is a single integral of the actual multiplier against a signed difference of two equal-rank source/relation projection densities. Its differentiated sections are original relations, their complete quadratic contribution is calculated, and a finite quadrature error bound is proved. A closed formula for the first conjugate-pair calculation retains the exact cancellation $|h|^2w_h=|2\xi|^2/(2\pi)$. These results do not prove the remaining uniform upper bound.
+\end{abstract}
+
+
+\section{Scope and fixed inputs}
+The earlier audit constrains particular auxiliary implications. It is not a no-go theorem for geometry over $\mathbb F_1$ or for this marked $\tau$-base. We retain its valid examples and its exact arithmetic/Gamma decomposition. We do not use an arbitrary test polynomial as an arithmetic zero packet. Everywhere below, an arithmetic packet means a nonempty finite set of actual nontrivial zeros of $g=2\xi$, with each selected zero included to its complete order.
+
+The current formal integration distinguishes an original relation module from the larger kernel of a finite observation, and distinguishes a source-section defect from a coefficient-action defect. Those distinctions are used below. Analytic period invertibility and the analytic theta constructions remain written results, not assertions of a new Lean run.
+
+\section{The original absolute base and its actual fibres}
+For a commutative ring $R$, retain the semiring
+\[
+ G(R)=\{\tau\}\sqcup R^\bullet,\qquad e_R=0_R^\bullet,
+ \quad \tau+x=x,\quad r^\bullet+s^\bullet=(r+s)^\bullet,
+ \quad \tau x=\tau,\quad r^\bullet s^\bullet=(rs)^\bullet.
+ \tag{1}
+\]
+The multiplicative unit is $1_R^\bullet$, including when $R$ is the zero ring. Define
+\[
+ p_R(\tau)=0,\quad p_R(r^\bullet)=r,\qquad
+ b_R(\tau)=0,\quad b_R(r^\bullet)=1\in\mathbb B.
+ \tag{2}
+\]
+Both are semiring maps. The pair $(p_R,b_R)$ is injective: support distinguishes $\tau$ from every represented element, and amplitude distinguishes represented elements. In particular $e_R$ has observations $(0,1)$, while $\tau$ has observations $(0,0)$.
+
+Let $\mathbb F_{1,\tau}=\{\tau_0,1_0\}$ be the pointed commutative monoid. Its finite-word preaddition identifies precisely words having the same number of $1_0$ terms; $\tau_0$ terms can be deleted. Thus $[]\sim[\tau_0]$, but $[1_0,1_0]\not\sim[1_0]$. There is a unique pointed multiplicative structural map
+\[
+ \jmath_R:\mathbb F_{1,\tau}\longrightarrow G(R),
+ \qquad \tau_0\mapsto\tau,\quad1_0\mapsto1_R^\bullet.
+ \tag{3}
+\]
+It preserves the preaddition because the image of a word is its integer number of units in $G(R)$. Its base spectrum $\mathfrak b_\tau$ has exactly one multiplicative prime, $\{\tau_0\}$.
+
+We work in marked monoidal spaces carrying their original semiring sheaf and the two observations (2), and in their specified coefficient-support diagrams. The structural maps are local pointed-monoid maps. This declares the category actually used; it does not identify a finite chart with a finite-type arithmetic scheme or assume a general six-functor formalism for semirings.
+
+For a nonzero integral domain $R$, the semiring prime ideals are
+\[
+ P_\tau=\{\tau\},\qquad
+ P_{\mathfrak p}=\{\tau\}\sqcup\mathfrak p^\bullet
+ \quad(\mathfrak p\in\operatorname{Spec}R).
+ \tag{4}
+\]
+Indeed, an ideal containing any $a^\bullet$ contains $e_R=a^\bullet+(-a)^\bullet$. Its represented part is a ring ideal, and primality reduces to ring primality. The remaining ideal $\{\tau\}$ is prime since a product of represented elements is represented. Thus
+\[
+ P_e=\{\tau,e_R\},\qquad
+ V(e_R)\simeq\operatorname{Spec}R,\qquad D(e_R)=\{P_\tau\}.
+ \tag{5}
+\]
+Here $P_e$ is the supported-zero prime, $P_\tau$ is a point in the enlarged source, and the unique point of $\mathfrak b_\tau$ is the structural target. Their connecting maps are the closed inclusion induced by $p_R$, the inclusion of $D(e_R)$, and the structural map $a_R:X_R\to\mathfrak b_\tau$.
+
+One explicit sheaf presentation is obtained by adjoining $P_\tau$ to every nonempty open of $\operatorname{Spec}R$. On $U\cup\{P_\tau\}$ its value is $G(\mathcal O_R(U))$, and on $\{P_\tau\}$ its value is $G(0)\simeq\mathbb B$. The restriction to that point is $b_R$. Compatible sections on a cover have the same support because all opens meet at $P_\tau$; represented amplitudes then glue by the ring sheaf, and absent sections glue to $\tau$. This proves the sheaf property. It agrees with the displayed localizations on principal opens, including localization at $e_R$.
+
+Consequently the direct image and its further restriction are
+\[
+ (a_{R*}\mathcal S_R)(\mathfrak b_\tau)=G(R)
+ \xrightarrow{\ b_R\ }G(R)[e_R^{-1}]\simeq\mathbb B.
+ \tag{6}
+\]
+We retain the left-hand object. The absolute structural fibre is the whole marked source; it is not replaced by the Boolean stalk. The original arithmetic square is
+\[
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(\iota)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{\iota}&\mathbb C.
+\end{array}
+\tag{7}
+\]
+Its integer target is infinite. For every ring ideal $I$, the square with $G(R/I)$ commutes; $G(R\to R/I)^{-1}(e_{R/I})=I^\bullet$ and its inverse image of $\tau$ is $\{\tau\}$. In particular the ordinary finite ideal norms $|R/I|$ are retained by the arithmetic observation; no finite Euler factor is assigned to the infinite quotient by the zero ideal.
+
+For a coefficient vector space $V$, write $\mathsf S(V)=\{\tau\}\sqcup V^\bullet$. A linear map lifts by $\tau\mapsto\tau$ and $v^\bullet\mapsto f(v)^\bullet$. For an original join-support diagram, the same formula is applied fibrewise and uses its specified transport maps. On fixed nonbottom labels,
+\[
+ \widetilde f^{-1}(e)= (\ker f)^\bullet,
+ \qquad\widetilde f^{-1}(\tau)=\{\tau\}.
+ \tag{8}
+\]
+For general support-changing maps, this nonabsence assertion is made only when the receiving label is nonbottom. The current reconstruction allows nontrivial bottom coefficient fibres; that case is not silently treated as the disjoint single-fibre model.
+
+\section{The theta complex over the marked point}
+Retain the original Fr\'echet spaces and seminorms
+\[
+ V=\{\phi\in\mathcal S(\mathbb R)_{\rm ev}:\phi(0)=0,
+                   \ \int_{\mathbb R}\phi=0\},
+\]
+\[
+ \mathscr B=\{F\in C^\infty(\mathbb R_{>0}):
+ \sup_{x>0}x^b|D^mF(x)|<\infty\ \text{for every }b\in\mathbb Z,m\ge0\},
+ \qquad D=-x\partial_x.
+ \tag{9}
+\]
+The Fourier and Mellin maps are
+\[
+ \widehat\phi(\xi)=\int_{\mathbb R}\phi(x)e^{-2\pi ix\xi}\,dx,
+ \quad\Theta\phi(x)=2\sum_{n\ge1}\phi(nx),
+ \quad\mathcal MF(s)=\int_0^\infty F(x)x^s\,\frac{dx}{x}.
+ \tag{10}
+\]
+The original source proofs establish continuity and injectivity of $\Theta$, $D\Theta=\Theta D$, and
+\[
+ \Theta\widehat\phi(x)=x^{-1}\Theta\phi(1/x),\qquad
+ \mathcal M\Theta\phi=gH_\phi,
+ \quad g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).
+ \tag{11}
+\]
+Here
+\[
+ H_\phi(s)=\frac{2\pi^{s/2}}{s(s-1)\Gamma(s/2)}
+                 \int_0^\infty\phi(x)x^s\frac{dx}{x},
+ \quad
+ \phi_*=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad H_{\phi_*}=1.
+ \tag{12}
+\]
+Every constant in (10)--(12) is retained.
+
+The four-point chart $P$ has $+<\eta<\sigma$ and $-<\eta<\sigma$. Its coefficient sheaf has values $V,V,\mathscr B,0$, restrictions $\Theta,\Theta\mathcal F$ into $\eta$, and zero restrictions into $\sigma$. Its structural map to $X_{\mathbb C}$ sends the first three points to $P_e$ and $\sigma$ to $P_\tau$, then to $\mathfrak b_\tau$. The coefficient scalar restriction at $\sigma$ is the specified $G(\mathbb C)\to\mathbb B$; reconstructing the zero coefficient fibre leaves its supported zero and absence.
+
+The projective-diagram resolution
+\[
+0\to P_\eta\xrightarrow{x\mapsto(x,-x)}P_+\oplus P_-
+  \xrightarrow{(x,y)\mapsto x+y}\underline{\mathbb C}\to0
+\tag{13}
+\]
+is exact at every chart point. Applying the sheaf Hom functor gives the actual global-coefficient complex
+\[
+ C_{+-}=[V\oplus V\xrightarrow{\Theta(v-\widehat w)}\mathscr B].
+ \tag{14}
+\]
+The map $(v,w)\mapsto(v-\widehat w,w)$ with inverse $(a,w)\mapsto(a+\widehat w,w)$ identifies it with $C_+\oplus V[0]$, where $C_+=[V\xrightarrow\Theta\mathscr B]$. Thus $H^1(C_+)=Q=\mathscr B/\Theta V$, while the entire additional degree-zero cycle is retained in (14). This is a coefficient-complex calculation over the marked base, not a replacement of that base by $\operatorname{Spec}\mathbb C$.
+
+\subsection{Actual packets and the finite observation kernel}
+For $h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho}$, with the stipulated full orders, set
+\[
+ E_h=\mathbb C[s]/h,\quad A_h=M_s,\quad v_h=g/h,\quad
+ \upsilon_h=j_hv_h\in E_h^\times.
+ \tag{15}
+\]
+The original Euler inverse
+\[
+ S_\rho F(x)=x^{-\rho}\int_x^\infty F(y)y^{\rho-1}\,dy
+ \tag{16}
+\]
+on its zero-Mellin-value domain is continuous in the stated spaces. Its iterations supply $F_h=S_h(\Theta\phi_*)\in\mathscr B$ with $\mathcal MF_h=v_h$. They give the actual square and exact sequence
+\[
+\begin{array}{ccc}
+V/h(D)V&\xrightarrow\Theta&\mathscr B/h(D)\mathscr B\\
+j_hH\downarrow\wr&&\wr\downarrow j_h\mathcal M\\
+E_h&\xrightarrow{\times j_hg}&E_h,
+\end{array}
+\qquad
+0\to Q[h(D)]\to E_h\xrightarrow{\times j_hg}E_h\to Q/h(D)Q\to0.
+\tag{17}
+\]
+For the actual packet $j_hg=0$ and $\upsilon_h$ is a unit. The canonical finite observation $J_hF=j_h\mathcal MF$ and source section
+\[
+ r_hu=\mathcal T_h\bigl(\operatorname{rem}_h(\upsilon_h^{-1}u)\bigr),
+ \quad \mathcal T_hP=P(D)F_h,
+ \quad \alpha_hP=P(D)\phi_*
+ \tag{18}
+\]
+satisfy
+\[
+ \mathcal T_h(hP)=\Theta\alpha_hP,\quad
+ J_h\mathcal T_hP=\upsilon_h[P]_h,\quad J_hr_h=1,\quad J_h\Theta=0.
+ \tag{19}
+\]
+Thus the coefficient complex $[\mathbb C[s]\xrightarrow{h}\mathbb C[s]ds]$ maps to the original $C_+$ by $(\alpha_h,\mathcal T_h)$. Its $H^1$ map is $\sigma_hM_{\upsilon_h}:E_h\hookrightarrow Q$, where $\sigma_h=[r_h]$. Its cone retains $Q/\sigma_hE_h$ in degree one. On the entire source the observation kernel remains $\ker J_h/\Theta V$; equality with zero is asserted only on the stated finite packet image.
+
+\section{The complete dilation and relation action}
+For $a>0$ retain $U_aF(x)=F(x/a)$. Mellin transformation gives $\mathcal MU_aF(s)=a^s\mathcal MF(s)$ and $U_a\Theta=\Theta U_a$. Fourier transformation gives
+\[
+ \widehat{U_a\phi}=aU_{1/a}\widehat\phi.
+ \tag{20}
+\]
+Therefore the two-leg action is $(U_a,aU_{1/a})$ and its generators are $(D,1-D)$. On $E_h$ the exact action is multiplication by $j_h(a^s)$; on a primary block it is
+\[
+ a^{A_h}|_{E_\rho}=a^\rho
+ \sum_{j=0}^{m_\rho-1}\frac{(\log a)^j}{j!}N_\rho^j.
+ \tag{21}
+\]
+The full $\upsilon_h$ commutes with this multiplication. Thus $J_hU_a=a^{A_h}J_h$ and the finite inclusion into $Q$ intertwines the same action.
+
+There is a source primitive for the representative defect. Put $P_u=\operatorname{rem}_h(\upsilon_h^{-1}u)$ and $\widetilde P_u=\operatorname{rem}_h(j_h(a^s)P_u)$. Then
+\[
+ K_a u=S_h^V\bigl(U_a\alpha_hP_u-\alpha_h\widetilde P_u\bigr),
+ \qquad U_ar_h-r_ha^{A_h}=\Theta K_a.
+ \tag{22}
+\]
+The input to $S_h^V$ has every required zero jet by construction. Applying the injective $h(D)$ proves the second equation. Injectivity of $\Theta$ also proves
+\[
+ K_{ab}=U_aK_b+K_a b^{A_h}.
+ \tag{23}
+\]
+Polynomial source spans are preserved by $D$, not generally by every $U_a$; (22) is the explicit map into the full original source which supplies the latter comparison.
+
+On the ordered $k$-fold tensor complex, $D^{(k)}=\sum_iD_i$, the finite action is $A_k=\sum_iA_{h,i}$, and
+\[
+ a^{A_k}=\bigotimes_{i=1}^k a^{A_h}.
+ \tag{24}
+\]
+This retains every term in the exponential of $N_1+\cdots+N_k$. A primitive for the tensor difference is the sum whose $i$-th term is
+\[
+ (-1)^{i-1}(U_ar_h)^{\otimes(i-1)}\otimes K_a
+          \otimes(r_ha^{A_h})^{\otimes(k-i)}.
+ \tag{25}
+\]
+The tensor differential contributes the second $(-1)^{i-1}$, giving the positive telescoping difference. All primitives remain in their original tensor support labels, with the specified join when terms are added.
+
+\section{The weight-matched external family over the same base}
+Write $d=\deg h$ and $h(s)=s^d+\sum_{b<d}h_bs^b$. Define
+\[
+ \Phi_h(s)=\frac{s^{d+1}}{d+1}+
+           \sum_{b=0}^{d-1}\frac{h_bs^{b+1}}{b+1}.
+ \tag{26}
+\]
+Its constant is fixed to zero; $\Phi_h'=h$. Let $R=\mathbb C[u,t_1,\ldots,t_k]$. On $R[s_1,\ldots,s_k]\otimes\bigwedge^\bullet(ds_1,\ldots,ds_k)$ define
+\[
+ \mathcal D=\sum_{i=1}^k
+       (u\partial_{s_i}+h(s_i)-t_i)\,ds_i\wedge(-).
+ \tag{27}
+\]
+The coefficient operators commute, and the wedge signs give $\mathcal D^2=0$.
+
+\begin{theorem}[The full external-product fibre]
+The complex (27) has cohomology only in degree $k$. That cohomology is free over $R$ with the retained basis $s_1^{a_1}\cdots s_k^{a_k}ds_1\wedge\cdots\wedge ds_k$, $0\le a_i<d$, and has rank $d^k$. At the coefficient specialization $u=t_1=\cdots=t_k=0$, it is $E_h^{\otimes k}$ with its full nilpotent structure.
+\end{theorem}
+\begin{proof}
+In one variable, $(u\partial_s+h-t)P$ has degree $\deg P+d$ and the same leading coefficient as $P$. It is injective, and successive leading-term subtraction gives a unique remainder of degree below $d$. This splits the one-factor complex, as an $R$-module complex, into its free remainder in degree one and a contractible pair. Tensor those explicit splittings. Every summand having a contractible factor is contractible, with the usual tensor-homotopy signs. The sole remaining summand is the stated tensor remainder in degree $k$. Since all splittings are over $R$, the result survives the displayed coefficient specialization, without a derived-fibre Tor term.
+\end{proof}
+
+This family has an explicit original-source realization. The coefficient maps $\alpha_h$ and $\mathcal T_h$ are injective; denote their images by $V_*$ and $\mathscr B_h$. Transport the one-variable family differential to them:
+\[
+ d^{\theta}_{u,t}
+ =\Theta|_{V_*}
+  +u\mathcal T_h\partial_s\alpha_h^{-1}
+  -t\mathcal T_h\alpha_h^{-1}:V_*[u,t]\to\mathscr B_h[u,t].
+ \tag{28}
+\]
+Then $d^{\theta}_{u,t}\alpha_h=\mathcal T_h(u\partial_s+h-t)$. Thus (28), not an asserted unidentified complex, is a deformation of the original polynomial subcomplex. The derivative is also realized by the original logarithmic multiplier:
+\[
+ \mathcal T_h(P')=(\log x)P(D)F_h-P(D)((\log x)F_h).
+ \tag{29}
+\]
+This follows from $[\log x,D]=1$. Its Mellin proof retains both terms $v_h'P+v_hP'$; the $v_h'P$ term is not dropped.
+
+Tensor (28) in the original order and then include at the marked specialization in $C_+^{\otimes k}$. The resulting cohomology map is
+\[
+ E_h^{\otimes k}
+ \xrightarrow{M_{\upsilon_h^{\otimes k}}}E_h^{\otimes k}
+ \xrightarrow{\sigma_h^{\otimes k}}Q^{\otimes k}.
+ \tag{30}
+\]
+Over $\mathbb C$ these are literal algebraic tensor complexes. On the inherited completed projective tensor realization, the same maps apply to the finite packet and its continuous sections. A new exactness theorem for arbitrary completed tensor products is not assumed.
+
+The scalar structural maps and specialization are
+\[
+ \mathbb F_{1,\tau}\to G(R),\qquad
+ G(R)\xrightarrow{G(\operatorname{ev}_{0})}G(\mathbb C).
+ \tag{31}
+\]
+They commute with (7). The images of the represented $u,t_i$ are $e$, while $\tau$ maps to $\tau$. The original source chart, the family, and the marked fibre remain over the same unique point of $\mathfrak b_\tau$. Evaluation in (31) is a coefficient specialization over that point; it does not identify the absolute base with an extra complex parameter value.
+
+\subsection{The cyclic inclusion and its complete family defect}
+Let $\chi=\chi_{h,k}$ be the minimal polynomial of the sum on $E_h^{\otimes k}$ and let $E=\mathbb C[S]/\chi$. The algebra injection $\alpha[P]=P(\sum_i s_i)1$ and weighted module injection
+\[
+ \eta=M_{\upsilon_h^{\otimes k}}\alpha:E\hookrightarrow E_h^{\otimes k}
+ \tag{32}
+\]
+are retained. Their sum actions intertwine. The quotient $E_h^{\otimes k}/\eta E$ and its induced marked action remain; the word ``cyclic'' is not a deletion of this quotient.
+
+Fixed-order monic division gives, for each $P(S)$,
+\[
+ \chi(S)P(S)=\sum_{i=1}^k h(s_i)Q_i(\mathbf s),\qquad S=\sum_i s_i.
+ \tag{33}
+\]
+At the special fibre its actual primitive is $\sum_i(-1)^{i-1}Q_i\,ds_1\wedge\cdots\widehat{ds_i}\cdots\wedge ds_k$. At general parameters (27) gives instead the exact equation
+\[
+ [\chi(S)P(S)]_{\mathcal H}
+   =\sum_i[t_iQ_i-u\partial_{s_i}Q_i]_{\mathcal H}.
+ \tag{34}
+\]
+Thus the original cyclic annihilator is a marked-fibre relation. The full free family retains the correction (34), rather than declaring that annihilator constant throughout the family.
+
+\section{Deligne's step, with the actual parameter and action maps}
+For $u\ne0$, the one-factor connection is
+\[
+ \nabla_{t_i}=\partial_{t_i}-\frac{A_{h,i}(t_i)}u,
+ \quad A_h(t)=A_h+t\mathcal R_h,
+ \quad\mathcal R_h=1\otimes[S^{d-1}]\operatorname{rem}_h.
+ \tag{35}
+\]
+On the diagonal $t_i=t$, the operator is
+\[
+ \nabla_t=\partial_t-\frac{A_k+t\sum_i\mathcal R_{h,i}}u,
+ \qquad (-u\nabla_t)\bmod(u,t)=A_k.
+ \tag{36}
+\]
+The coefficient commutators prove descent of (35): $[u\partial_s+h-t,\partial_t]=1$ and $[u\partial_s+h-t,-s/u]=-1$. Formula (36) is an operator on the full tensor coefficient module; on $\eta E$ its transverse term is the explicitly retained composite
+\[
+ E\xrightarrow{\eta}E_h^{\otimes k}
+ \xrightarrow{\sum_i\mathcal R_{h,i}}E_h^{\otimes k}
+ \xrightarrow{\pi_\eta}E_h^{\otimes k}/\eta E.
+ \tag{37}
+\]
+It is not presumed zero.
+
+Let $R_0\subset\mathbb C$ be the finitely generated coefficient ring containing the coefficients of $h$, the finitely many coefficients of $\upsilon_h$ and its inverse in the retained remainder basis, and $1/(d+1)!$. Thus the finite Taylor-unit multiplication and its inverse also specialize through this same coefficient model; no finite-field interpretation of the entire analytic function $g$ is asserted. At a specified finite-field specialization of characteristic $p>d+1$, and $u\ne0$, take
+\[
+ \mathcal L_\psi\!\left(
+   \frac{\sum_i\Phi_h(s_i)-\sum_it_is_i}{u}\right)
+ \quad\text{on }\mathbb A^k.
+ \tag{38}
+\]
+Its highest homogeneous part is $\sum_i s_i^{d+1}/((d+1)u)$. The projective hypersurface is smooth: its partial derivatives are $s_i^d/u$, which cannot vanish simultaneously at a projective point. Deligne's exponential-sum theorem, Weil II 3.7.2.3, therefore gives compact-support cohomology only in degree $k$, of dimension $d^k$, pure of weight $k$. Equivalently, the actual external-product sheaf and compact K\"unneth map give the tensor product of the $k$ degree-one, weight-one factors. Repeated critical roots do not remove smoothness of the leading homogeneous part.
+
+This uses the product of the original degree-$d$ packet family. The rank-$q$, weight-one exponential family constructed from the sum annihilator has a different specified map and is not substituted for (38). The current correction resolves the citation as Roman I.8.11 to Weil I, retains strict $<2$, and retains lisse/mixed hypotheses for propagation. The algebraic fibre (31) is not automatically a lisse fibre of the $u\ne0$ exponential system.
+
+For completeness the complex periods use the original ordered rays
+\[
+ \vartheta_j=\frac{\arg u+\pi}{d+1}+\frac{2\pi j}{d+1},
+ \quad\Gamma_j=-\ell_0+\ell_j,\quad 1\le j\le d,
+\]
+\[
+ (\Pi_h)_{jb}(u,t)
+  =\int_{\Gamma_j}e^{(\Phi_h(s)-ts)/u}s^b\,ds,
+ \quad 0\le b<d.
+ \tag{39}
+\]
+The leading exponent is $-r^{d+1}/((d+1)|u|)$, proving absolute convergence on those rays and differentiation on compact parameter sets. At the monomial member the matrix is a nonzero gamma-column factor times $(\exp(2\pi ij(b+1)/(d+1))-1)_{jb}$. A polynomial of degree at most $d$ vanishing at all $d+1$ roots of unity proves that last matrix invertible. Coefficient differentiation and unique differential remainder yield a matrix equation $\Pi'=\Pi B$ along a coefficient path; hence $(\det\Pi)'=\operatorname{Tr}(B)\det\Pi$, proving invertibility at every parameter, including collisions.
+
+The ordered external period map is exactly
+\[
+ \Pi_k(u,\mathbf t)=\bigotimes_i\Pi_h(u,t_i):\mathcal H_{u,\mathbf t}^k
+       \xrightarrow{\sim}\mathbb C^{d^k}.
+ \tag{40}
+\]
+Fubini proves the product formula with the ordered product contours and $ds_1\wedge\cdots\wedge ds_k$. The cyclic map is the actual rectangular map $\Pi_k\eta$. On its image it has the inverse induced by $\eta^{-1}\Pi_k^{-1}$. On the full source its observation kernel is unchanged by invertibility of $\Pi_k$.
+
+In particular the complete base diagram is the split lift of
+\[
+ \mathcal H^k/(u,\mathbf t)\mathcal H^k
+ \simeq E_h^{\otimes k}
+ \xrightarrow{\sigma_h^{\otimes k}M_{\upsilon_h^{\otimes k}}}
+ Q^{\otimes k},
+ \qquad E\xrightarrow{\eta}E_h^{\otimes k}
+ \xrightarrow{\Pi_k}\mathbb C^{d^k}.
+ \tag{41}
+\]
+Every arrow is defined above, and (21), (24), (35)--(37) specify its action. The finite-field branch of (38) has its own Frobenius on that realization. No faithful Frobenius comparison with $a^{A_k}$ is added to (41).
+
+\section{The original boundary pairing, before its supported quotient}
+For the canonical cyclic section $r_N=\mathcal VC_N:E\to\mathscr B^{\widehat\otimes k}$, retain
+\[
+ J^{(k)}r_N=\eta,\quad [r_N]=\sigma_h^{\otimes k}\eta,
+ \quad D^{(k)}r_N-r_NA=dK_N,
+ \quad G_N=r_N^*r_N.
+ \tag{42}
+\]
+Here $C_N$ is the coefficient minimum for the actual source norm. Integration by parts, including the vanishing endpoint $[x\overline FH]_0^\infty$, proves
+\[
+ W_N=A^*G_N+G_NA-kG_N
+       =-r_N^*dK_N-(dK_N)^*r_N.
+ \tag{43}
+\]
+For $a=e^t$ the original dilation defect is the convergent finite-interval source integral
+\[
+ U_a^{\otimes k}r_N-r_Na^A
+  =d\int_0^t U_{e^{t-v}}^{\otimes k}K_Ne^{vA}\,dv.
+ \tag{44}
+\]
+Differentiation of $U_{e^{t-v}}r_Ne^{vA}$ verifies the sign and both endpoints. All factors in $e^{vA}$ on every nilpotent block remain as in (21).
+
+The new tensor family uses (42) through the finite source deformation $D_{\mathbf t}=D^{(k)}+\sum_it_i\,r_{\rm full}\mathcal R_{h,i}j_{\rm full}$ on the full packet presentation. Its finite observation is $A_k+\sum_it_i\mathcal R_{h,i}$; its representative theta primitive is unchanged. For a cyclic restriction the additional term (37) remains in the full quotient. On changing packet or support, the current integration's exact identity is used:
+\[
+ D(h)\widehat a_i-\widehat a_jD(h)
+  =\Delta_h a_iJ_i+r_j(E(h)a_i-a_jE(h))J_i.
+ \tag{45}
+\]
+Thus neither equal finite jets nor a coefficient basis change is used to manufacture source naturality.
+
+The arithmetic content of the relation norm is more explicit than positivity. From (33), let $s_l=1/2+it_l$ and put
+\[
+ Z_i(P;\mathbf t)=
+    g(s_i)\prod_{l\ne i}v_h(s_l)Q_i(P;\mathbf s).
+\]
+Then full Mellin--Plancherel gives
+\[
+ \boxed{\|\mathcal V(\chi P)\|^2
+   =\frac1{(2\pi)^k}\sum_{i,j=1}^k
+       \int_{\mathbb R^k}\overline{Z_i(P;\mathbf t)}Z_j(P;\mathbf t)\,d\mathbf t.}
+ \tag{46}
+\]
+For two different inputs use the corresponding polarized formula. The terms $i\ne j$ are retained. This formula uses the actual identities $hv_h=g$ and $j_hg=0$. It does not replace $g/h$ by a generic bounded function. All its integrals converge, since each displayed multiplier is the Mellin transform of its specified original theta-source function.
+
+\section{One common source for the signed arithmetic/Gamma correction}
+Use the original sum-frequency coordinate $S=k/2+iy$ in the analytic calculation. The Gamma reference is the retained density
+\[
+ r_\lambda(t)=\frac{|\Gamma(\lambda+it/2)|^2}{2\pi},
+ \quad c_\lambda=2^{1-2\lambda}\Gamma(2\lambda),\quad
+ r_{\lambda,k}=r_\lambda^{*k}=\frac{c_\lambda^k}{c_{k\lambda}}r_{k\lambda}.
+ \tag{47}
+\]
+We use $\lambda=1/4$ for the original reference, keeping $\int r_{1/4,k}=(2\pi)^{k/2}$. An explicit half-line reference vector is
+\[
+ F_\lambda^\Gamma(x)=2x^{2\lambda-1/2}e^{-x^2},\qquad
+ \mathcal MF_\lambda^\Gamma(1/2+it)=\Gamma(\lambda+it/2),\qquad
+ \|F_\lambda^\Gamma\|_{L^2(dx)}^2=c_\lambda.
+ \tag{47a}
+\]
+Substitution $y=x^2$ proves the Mellin identity and the norm, including their factors two. It is an auxiliary weighted $L^2$ reference, mapped to the same polynomial coefficient source; it is not declared an element of the original strong-Schwartz space. Its polynomial-dilation columns have the weighted $x^{\pm2a}$ norms needed for holonomy comparison whenever $0<a<2\lambda$. The actual density is
+\[
+ w_h(t)=\frac{|v_h(1/2+it)|^2}{2\pi},
+ \qquad m(y)=w_h^{*k}(y),\qquad r(y)=r_{1/4,k}(y).
+ \tag{48}
+\]
+No mass is set to one. The ratio $b(y)=m(y)/r(y)$ is the actual arithmetic multiplier. For $k=1$ its isolated zeros are retained; for $k\ge2$ its convolution is positive everywhere.
+
+Let $c=k/2$ and use the common source $\mathcal P_{2q}$, $q=\deg\chi$. For $0\le x\le1$ set
+\[
+ d\mu_x(y)=\bigl((1-x)r(y)+xm(y)\bigr)du,
+ \qquad\dot\mu(y)=m(y)-r(y).
+ \tag{49}
+\]
+This is the Gram of the explicit map
+\[
+ P\longmapsto\bigl(\sqrt{1-x}\,P(c+iu),
+                    \sqrt{x}\,\mathcal VP\bigr)
+\tag{50}
+\]
+into the direct sum of the Gamma reference Hilbert space and the original arithmetic source Hilbert space. Their original norms are used. All finite source Grams $M_N(x)$ are positive definite, including the endpoints: a nonzero polynomial cannot vanish on a positive-measure part of either original measure.
+
+Every quotient map $J_N:\mathcal P_N\to E$ and every relation inclusion $B_N= M_\chi:\mathcal P_{N-q}\to\mathcal P_N$ is unchanged as $x$ varies. Define
+\[
+ G_N(x)=(J_NM_N(x)^{-1}J_N^*)^{-1},
+ \quad C_N(x)=M_N(x)^{-1}J_N^*G_N(x),
+ \quad V_N(x)=\det G_N(x).
+ \tag{51}
+\]
+At $x=0,1$ these are precisely the reference and arithmetic canonical objects, not just matrices chosen to have their dimensions.
+
+The underlying coefficient complex $[B_N\hookrightarrow\mathcal P_N]$ over $\mathfrak b_\tau$ is constant in (49). Its degree-one image is always the same supported $E$. The Hermitian forms in (50) are varying observations of that common source; they do not change the cochain relations.
+
+\section{An exact signed four-endpoint calculation}
+Let $v_N(y)$ be the row $(1,c+iu,\ldots,(c+iu)^N)$. Define the source and original-relation projection densities
+\[
+ K_N(x,y)=v_N(y)M_N(x)^{-1}v_N(y)^*,
+\]
+\[
+ K_N^{\rm rel}(x,y)
+ =v_N(y)B_N(B_N^*M_N(x)B_N)^{-1}B_N^*v_N(y)^*,
+ \tag{52}
+\]
+with the second expression zero at $N=q-1$. Their residual is
+\[
+ L_N(x,y)=K_N-K_N^{\rm rel}
+  =v_NC_NG_N^{-1}C_N^*v_N^*\ge0.
+ \tag{53}
+\]
+The inverse identity in (53) follows by block inversion in the retained basis of quotient lifts followed by the relation columns. In that ordering the monic relation matrix has determinant one. Passing to the conventional relation-first determinant order would contribute $(-1)^{q(N-q+1)}$; its phase is not a change of metric.
+
+\begin{theorem}[Signed arithmetic correction on a common source]
+Define
+\[
+ F(x)=\log\frac{V_{q-1}(x)V_q(x)}{V_{2q-1}(x)V_{2q}(x)},
+ \quad \Delta_{h,k}=F(1)-F(0).
+\]
+Then
+\[
+ \boxed{\Delta_{h,k}
+   =\int_0^1\!\int_{\mathbb R}\dot\mu(y)
+       \bigl(L_{q-1}+L_q-L_{2q-1}-L_{2q}\bigr)(x,y)\,dy\,dx.}
+ \tag{54}
+\]
+This is exactly
+\[
+ \mathcal B^{\rm ar}_{h,k}-\mathcal B^\Gamma_{h,k}
+ =\log\frac{T_{k,q-1}T_{k,q}}{T_{k,2q-1}T_{k,2q}},
+ \qquad T_{k,N}=V_N(1)/V_N(0).
+ \tag{55}
+\]
+\end{theorem}
+\begin{proof}
+Differentiate $J_NC_N=I$ and $B_N^*M_NC_N=0$. Since $C_N'$ lies in the original kernel of $J_N$,
+\[
+ C_N'=-B_N(B_N^*M_NB_N)^{-1}B_N^*\dot M_NC_N.
+ \tag{56}
+\]
+All derivatives are in the fixed original coordinates. Orthogonality eliminates both derivative-section cross terms in $G_N=C_N^*M_NC_N$, so
+\[
+ G_N'=C_N^*\dot M_NC_N,
+ \quad(\log V_N)'=\operatorname{Tr}(G_N^{-1}C_N^*\dot M_NC_N)
+                 =\int\dot\mu\,L_N.
+ \tag{57}
+\]
+The four finite matrices are smooth on the compact interval and have positive minimum eigenvalues; their polynomial integrands have the moments supplied by (48). This justifies the finite differentiation and integrations. Add the four expressions with their displayed signs and integrate in $x$.
+\end{proof}
+
+The derivative section (56) is not merely killed by the finite observation: it is explicitly in $\chi\mathcal P_{N-q}$. Equation (33) supplies its theta primitive. The lift sends this derivative relation to the receiving supported zero while retaining its original source norm.
+
+\subsection{The equal-rank cancellation is calculated before estimation}
+Let $K_n^{\chi}(x,y)$ denote the ordinary polynomial kernel of degree at most $n$ for the measure $|\chi(c+iu)|^2d\mu_x$. Set
+\[
+ \mathsf R_x(y)=|\chi(c+iu)|^2
+       (K_{q-1}^{\chi}+K_q^{\chi}-K_0^{\chi})(x,y),
+\]
+\[
+ \mathsf P_x(y)=
+       (K_{2q-1}-K_{q-1}+K_{2q}-K_q)(x,y).
+ \tag{58}
+\]
+Both are nonnegative. Differences of consecutive polynomial-kernel projections are positive, so the first is the sum of the degree-$0$ through degree-$(q-1)$ relation kernel and the degree-$1$ through degree-$q$ relation kernel. Their exact integrals are
+\[
+ \int\mathsf R_x\,d\mu_x=2q,
+ \qquad\int\mathsf P_x\,d\mu_x=2q.
+ \tag{59}
+\]
+Substitution in (53) proves, without estimating the terms independently,
+\[
+ L_{q-1}+L_q-L_{2q-1}-L_{2q}=\mathsf R_x-\mathsf P_x.
+ \tag{60}
+\]
+In particular every constant contrast cancels from the signed derivative. More explicitly, put $f_x=(m-r)/((1-x)r+x m)$ where defined. The endpoint values at isolated zeros are read in the integrable products, not by an assumed bounded pointwise logarithmic derivative. Then
+\[
+ F'(x)=\frac1{2q}\iint
+       (f_x(y)-f_x(v))\mathsf R_x(y)\mathsf P_x(v)
+       \,d\mu_x(y)d\mu_x(v).
+ \tag{61}
+\]
+The factor $1/(2q)$ follows from the two actual masses in (59); neither source measure is rescaled. Formulas (46), (54), and (58) calculate this signed term using the original $g/h$, its convolution, and the relation multiplication by $g$.
+
+\section{The retained quadratic term and a finite upper certificate}
+Set $H_N=B_N^*M_NB_N$. A second derivative of (57) gives the exact matrix equation
+\[
+ \boxed{G_N''=-2C_N^*\dot M_NB_NH_N^{-1}B_N^*\dot M_NC_N.}
+ \tag{62}
+\]
+Thus
+\[
+ (\log V_N)''
+ =-\operatorname{Tr}((G_N^{-1}G_N')^2)
+  -2\operatorname{Tr}(G_N^{-1}C_N^*\dot M_NB_NH_N^{-1}
+                     B_N^*\dot M_NC_N).
+ \tag{63}
+\]
+Both terms are nonnegative before their minus signs. The second is the squared norm of the literal original relation correction (56). The signed four-endpoint sum contains all four occurrences with their original signs; separate concavity does not assert a sign for that sum.
+
+There is a fully finite error bound for calculating (54), including all inverses. Work in the original top-source metric $M_{2q}(0)$. Let
+\[
+ \delta=\|M_{2q}(0)^{-1}(M_{2q}(1)-M_{2q}(0))\|_{M_{2q}(0)},
+ \quad a=\min\{1,\lambda_{\min}(M_{2q}(0)^{-1}M_{2q}(1))\}>0.
+ \tag{64}
+\]
+The indicated endomorphism is positive self-adjoint for the stated metric; (64) does not choose a new metric. Every source and relation restriction inherits $M(x)\succeq aM(0)$ and relative derivative norm at most $\delta/a$.
+
+For a fixed full-column-rank inclusion $U$, its Gram $H(x)=U^*M(x)U$ is affine in $x$, and
+\[
+ \frac{d^3}{dx^3}\log\det H(x)
+   =2\operatorname{Tr}((H(x)^{-1}H'(x))^3).
+ \tag{65}
+\]
+The four source ranks sum to $6q+2$, and their four relation ranks sum to $2q+2$. Therefore
+\[
+ |F'''(x)|\le2(8q+4)(\delta/a)^3.
+ \tag{66}
+\]
+Composite midpoint quadrature applied to $F'$ proves the explicit two-sided enclosure
+\[
+ \boxed{\left|\Delta_{h,k}
+ -\frac1m\sum_{j=0}^{m-1}F'\!\left(\frac{j+1/2}{m}\right)\right|
+ \le\frac{8q+4}{12m^2}(\delta/a)^3.}
+ \tag{67}
+\]
+The proof of the midpoint constant is the second-order Taylor integral remainder on each interval of length $1/m$: its absolute integral is at most $\sup|F'''|/(24m^3)$, then sum the $m$ intervals. Arithmetic moment enclosures must still be propagated into (64) and the sampled traces. Formula (67) is a finite analytic certificate, not a uniform asymptotic bound on its constants.
+
+\section{All inputs are the actual one-factor arithmetic moments}
+Define without rescaling
+\[
+ \mu_{h,n}=\frac1{2\pi}\int_{\mathbb R}
+       t^n|g(1/2+it)/h(1/2+it)|^2\,dt.
+ \tag{68}
+\]
+Every selected apparent singularity is filled by the entire quotient $g/h$, using the stipulated full multiplicity. Exponential Gamma decay and polynomial bounds for $\zeta$ give convergence of every finite moment. For the sum density,
+\[
+ \int y^n m_{h,k}(y)\,dy
+ =\sum_{n_1+\cdots+n_k=n}
+      \frac{n!}{\prod_i n_i!}\prod_i\mu_{h,n_i}.
+ \tag{69}
+\]
+The source entries in the retained $S$-basis are
+\[
+ (M_N^{\rm ar})_{ab}
+ =\sum_{r=0}^a\sum_{s=0}^b
+   \binom ar\binom bs c^{a+b-r-s}(-i)^ri^s
+                      \int y^{r+s}m_{h,k}(y)\,dy.
+ \tag{70}
+\]
+Relation matrices are $B_N^*M_N^{\rm ar}B_N$, with $B_N$ the actual coefficient matrix of multiplication by $\chi$. The four endpoints use the single moment list through degree $4q$. Equation (46) is the additional, arithmetic source identity behind those relation entries; their interpretation is not supplied by generic positivity.
+
+The Gamma input has the exact Laplace transform
+\[
+ \int e^{\theta y}r_{1/4,k}(y)\,dy
+    =(2\pi)^{k/2}(\cos\theta)^{-k/2},\qquad |\theta|<\pi/2.
+ \tag{71}
+\]
+Its derivatives supply the other entries in the same common matrix. Thus (54)--(67) are executable using one original arithmetic moment list, the same $\chi$ and unit, and exact Gamma moments.
+
+\subsection{A closed first-pair calculation with the original relation cancellation}
+Take $k=1$ and an actual simple conjugate pair $1/2\pm i\gamma$. Then
+\[
+ h(S)=(S-1/2)^2+\gamma^2,\qquad
+ |h(1/2+it)|^2w_h(t)=w_1(t)=|g(1/2+it)|^2/(2\pi).
+ \tag{72}
+\]
+Let $a_j=\mu_{h,2j}$, $0\le j\le4$, and $b_j=\mu_{1,2j}$, $0\le j\le2$. They satisfy the exact arithmetic identities
+\[
+ b_0=\gamma^4a_0-2\gamma^2a_1+a_2,
+ \quad b_1=\gamma^4a_1-2\gamma^2a_2+a_3,
+ \quad b_2=\gamma^4a_2-2\gamma^2a_3+a_4.
+ \tag{73}
+\]
+Put
+\[
+ E_3=\det\begin{pmatrix}a_0&a_1&a_2\\a_1&a_2&a_3\\a_2&a_3&a_4\end{pmatrix}.
+\]
+Parity separates the source Hankel matrices into their even and odd blocks. Their Schur quotient by the original relation gives
+\[
+ \boxed{\exp(\mathcal B^{\rm ar}_{h,1})
+ =\frac{a_0a_1^2b_1^2(b_0b_2-b_1^2)}
+              {E_3(a_1a_3-a_2^2)^2}.}
+ \tag{74}
+\]
+For example the four individual volumes are
+\[
+ V_1=a_0a_1,\quad
+ V_2=\frac{a_1(a_0a_2-a_1^2)}{b_0},\quad
+ V_3=\frac{(a_0a_2-a_1^2)(a_1a_3-a_2^2)}{b_0b_1},
+\]
+\[
+ V_4=\frac{E_3(a_1a_3-a_2^2)}{b_1(b_0b_2-b_1^2)}.
+ \tag{75}
+\]
+Substitution proves (74), including every mass factor. The Gamma comparison uses the same $h$ and (73), but the actual reference moment list is
+\[
+ (a_0^\Gamma,a_1^\Gamma,a_2^\Gamma,a_3^\Gamma,a_4^\Gamma)
+ =\sqrt{2\pi}\left(1,\frac12,\frac74,\frac{139}{8},\frac{5473}{16}\right).
+ \tag{76}
+\]
+The difference of the logarithms of (74) for these two inputs is the original signed four-endpoint correction. The supplied numerical script evaluates (68) for an approximation to the first actual pair, keeping the removable value and the unmodified $2\xi$. It is a numerical evaluation, not an interval proof of the root, its simplicity, the infinite tail, or the final sign. A number is not promoted from an unfinished earlier run into a proved result.
+
+\section{Holonomy recovery and the exact original metric correction}
+The retained all-holonomy transform is
+\[
+ (\mathcal Z_{L,\theta}\psi)(r)
+   =\sum_{a\in\mathbb Z}e^{ia\theta}\psi(r+aL),
+ \quad\widehat{\mathcal Z_{L,\theta}\psi}(n)
+   =L^{-1/2}\widehat\psi((2\pi n+\theta)/L).
+ \tag{77}
+\]
+It uses the original half-density map and all relative variables. Fourier inversion in $a$ gives an exact unitary direct integral, hence the original source mean $\int M_\theta d\theta/(2\pi)=M$. The zero mode is retained.
+
+For the same finite $J$ and relation columns $B$, the existing sections obey
+\[
+ C-C_\theta=BX_\theta,\quad
+ G=\overline G+\int X_\theta^*B^*M_\theta BX_\theta\frac{d\theta}{2\pi}.
+ \tag{78}
+\]
+Thus no interchange of quotient minimization with phase averaging is made in (54). At each interpolation value $x$, the same formula applies to the direct-sum source (50). Its discrepancy is again an explicit original relation. If the already calculated source-relative holonomy errors are at most $\eta<1$, the established quadratic comparison gives $(1-\eta^2)G_N(x)\preceq\overline G_N(x)\preceq G_N(x)$. Applying determinant bounds at both endpoints of (54) supplies a total signed-correction error at most
+\[
+ 4q\log\frac1{1-\eta^2}.
+ \tag{79}
+\]
+This is a proved finite transport allowance once the original weighted-source constants and sampling errors have been evaluated. It is not the missing asymptotic estimate. Completing a fixed-phase Hilbert quotient first remains a further map with kernel $(p_{L,\theta})/(\chi)$; that operation is not used here.
+
+\section{What is newly established and what remains}
+The marked-base and scalar inputs are retained, and the new constructions are (27)--(41), the original-source relation norm (46), the signed common-source formula (54)--(61), its complete differentiated relation cost (62)--(63), the finite enclosure (67), and the arithmetic first-pair formula (72)--(76). They use actual packets rather than arbitrary polynomials as arithmetic data. The Gamma model remains a specified norm comparison of the same coefficient source.
+
+Deligne's theorem now applies to a concrete external family with degree, rank, and finite-field weight matched to the original tensor packet. Its special-fibre arrow and the cyclic transverse correction are calculated. This is an additional geometric construction over the original $\tau$-base, not a deduction of arithmetic purity from the word ``absolute'' or from auxiliary finite-field purity.
+
+The retained audit shows that auxiliary purity alone is insufficient; it does not establish failure of the marked programme. The original endpoint identity is still
+\[
+ \mathcal B^{\rm ar}_{h,k}=\mathcal B^\Gamma_{h,k}+\Delta_{h,k}.
+ \tag{80}
+\]
+The signed term is now a single explicit arithmetic source/relation integral and admits finite error control. What remains unproved is a uniform upper estimate on (80) below the inherited off-line quartet threshold $4q_k\log k$ along the required growing packet/tensor family, or an independently proved faithful action-and-metric transfer producing that estimate. Neither a numerical first-pair calculation nor the finite-field weight-$k$ statement is represented as that result.
+
+\section*{Source and execution scope}
+The owner's uploaded \texttt{arithmetic\_input.tex}, \texttt{coherent\_tensor\_integration.tex}, \texttt{toda\_cv\_exact\_bridge.tex}, SGA trace/period note, marked-base recovery, holonomy note, and dated Deligne primary-source correction supply the specified inherited inputs. The repo's \texttt{tau-split-integration/RESEARCH\_NOTE.md} supplies the current source/coefficient-defect distinction. The current work preserves those meanings and does not claim a new Lean or full-primary-source audit.
+
+Deligne, \emph{La conjecture de Weil II}, Publ. Math. IHES 52 (1980), especially 3.3.6 and 3.7.2--3.7.4, supplies the cited finite-field statements at their actual hypotheses. Standard finite-dimensional Schur complements, determinant differentiation, tensor-complex signs, and polynomial moment facts are proved here at the displayed map types; no general novelty claim is made for them.
+
+The package's symbolic checks are finite regression tests. Numerical quadrature is separately labelled and is not an interval certificate. The execution record, rather than this prose, reports which supplied scripts actually ran.
+
+% END COMPLETE ORIGINAL NOTE BODY
+\end{document}

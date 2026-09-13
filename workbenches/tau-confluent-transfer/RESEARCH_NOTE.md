@@ -8,7 +8,7 @@ The source is the delivered Toda-volume continuation, following the cyclic and e
 
 Keep G(Z)->Z, with its infinite target, and its coefficient square to G(C)->C. The structural base remains b_tau. Every supported coefficient map below retains e=0^bullet and external tau separately. The original theta complex is C_+=[V --Theta--> B], with D=-x d/dx, Q=B/Theta V and g=2 xi. No scalar, source function or measure is assigned a new normalization.
 
-For a nonempty finite packet h of actual zeros with full orders, retain F_h with Mellin transform g/h. At tensor degree k, keep the actual cyclic sum module
+For a nonempty finite packet h of actual zeros with full orders, retain F_h with Mellin transform g/h. For the doubled-original-root transfer below, require the same dagger stability as the original source: its cyclic annihilator satisfies the polynomial identity conj(chi)(k-S)=(-1)^q chi(S). The complete reflection-stable quartet packets used in the final target satisfy this hypothesis. It does not follow from being an arbitrary finite subpacket of zeros. At tensor degree k>=1, keep the actual cyclic sum module
 
     C=C[S]/(chi),  q=deg chi>=1,  c=k/2,  A=M_S,
     eta[P]=upsilon_h^(tensor k) P(sum_i M_(s_i))1,
@@ -46,6 +46,8 @@ Its leading coefficient is literally (-i)^q i^q=1. It is real and nonnegative on
 The factor i^q remains in the source multiplication map. For distinct roots lambda_a of chi, of complete lengths ell_a, put
 
     zeta_a=(lambda_a-c)/i,  r_a=2 ell_a,  r=sum r_a=2q.
+
+Explicitly, the coordinate isomorphism Psi induces C[S]/chi^2 -> C[u]/Pi because Psi(chi^2)=i^(2q)Pi, and the raw jet conversion is (d_u^d Psi(P))(zeta_a)=i^d P^(d)(lambda_a). This is the actual map used below, including every derivative factor. Without the displayed dagger identity, Pi need not equal psi^2 and its roots need not be the original zeta_a with doubled orders; that unsupported general-packet version is not asserted here.
 
 Define raw, NOT factorial-divided, derivative coordinates
 

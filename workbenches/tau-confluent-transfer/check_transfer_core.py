@@ -26,7 +26,9 @@ class System:
         self.psi=s.expand(s.prod((x-z)**m for z,m in roots));self.Pi=s.expand(self.psi**2)
         self.q=s.degree(self.psi,x);self.r=2*self.q
         if atomic:
-            nodes=list(range(-9,10));weights=[2+(j*j+3*j)%7 for j in range(19)]
+            nodes=list(range(-9,10))
+            # Strictly positive, genuinely asymmetric weights: 10+t ranges from 1 to 19.
+            weights=[(10+t)*(2+(j*j+3*j)%7) for j,t in enumerate(nodes)]
             self.m=[sum(s.Integer(w)*t**d for w,t in zip(weights,nodes)) for d in range(32)]
         else:self.m=[s.Integer(0) if d%2 else s.Integer(mass)*s.factorial2(d-1) for d in range(32)]
         self.p=[s.Integer(1)];self.w=[];self.a=[s.Integer(0)];self.b=[]
@@ -100,12 +102,17 @@ class Checks(unittest.TestCase):
             gap=z.psi*z.Q(j)-z.p[j+z.q]
             eq(z.integral(gap*gap),z.w[j]*z.t(j)-z.w[j+z.q])
     def test_phase_and_control(self):
-        for z in [model(),System(((s.I,1),(-s.I,1)),atomic=True)]:
+        for z,nonzero_phase in [(model(),False),(System(((s.I,1),(-s.I,1)),atomic=True),True)]:
             n=2;N=n+z.q-1;G,T,lp,eps=z.gram(N)
-            phase=sum(z.b[n:n+z.q])+z.a[n]*(inv(z.F(n))*z.jet(z.p[n-1]))[0]
-            eq(lp,phase)
+            log_volume_derivative=sum(z.b[n:n+z.q])+z.a[n]*(inv(z.F(n))*z.jet(z.p[n-1]))[0]
+            eq(lp,log_volume_derivative)
+            phase=s.cancel(s.trace(T)-lp)
+            if nonzero_phase:require(phase!=0,'asymmetric fixture must retain a nonzero phase')
             nu0=z.w[n-1]*z.t(n-1);nu1=z.w[n]*z.t(n)
-            eq(eps,(nu0-z.w[N])*(nu1-z.w[N+1])/(nu0*z.w[N])-(s.trace(T)-lp)**2)
+            eq(eps,(nu0-z.w[N])*(nu1-z.w[N+1])/(nu0*z.w[N])-phase**2)
+            P=z.gram(N-1)[0].det();M=G.det();Q=z.gram(N+1)[0].det()
+            alpha=z.w[N+1]/z.w[N]
+            eq(eps,alpha*(P-Q)**2/(4*P*Q)-alpha*(2*M-P-Q)**2/(4*P*Q)-phase**2)
     def test_mass_and_supported_depth(self):
         z=model();v=System(((s.I,1),(-s.I,1)),mass=21)
         eq(v.t(2),z.t(2));eq(v.gram(3)[0],3*z.gram(3)[0]);eq(v.gram(3)[3],z.gram(3)[3])

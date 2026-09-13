@@ -1,3 +1,13 @@
+## Later working sources: arithmetic endpoint norms and exact window products
+
+[Read the working-source guide](workbenches/tau-arithmetic-endpoint-bounds/README.md) · [Four-volume proof](workbenches/tau-arithmetic-endpoint-bounds/FOUR_VOLUME_THRESHOLD.md) · [Exact product](workbenches/tau-arithmetic-endpoint-bounds/window/WINDOW_PRODUCT_PROOF.md)
+
+For the original theta-function source, the written proof bounds endpoint monic norm ratios by a fixed-packet constant times the degree, including balanced windows. Keeping every interior volume contraction twice yields a sharper exact product and necessary normalized four-volume growth of at least four for any exact off-line quartet packet. The remaining analytic question is an opposing arithmetic volume upper estimate; none is proved here.
+
+These are later GitHub working proofs, not additions to DOI [10.5281/zenodo.22730756](https://doi.org/10.5281/zenodo.22730756). The [frozen 482-page main reader](reader.pdf), [424-page companion](calculation_edition_20260912e/26-splitzero-toda-continuation-424p.pdf) and [published source archives](calculation_edition_20260912e/README.md) remain unchanged. The guide states the degree-endpoint and dagger-stability qualifications and distinguishes written analytic arguments from finite checks.
+
+## Frozen Toda--Gamma edition and its reading routes
+
 [Published DOI 10.5281/zenodo.22730756](https://doi.org/10.5281/zenodo.22730756) · [Paired PDFs and source downloads](calculation_edition_20260912e/README.md)
 
 # Arithmetic zeta packets: quotient volumes, Toda control and gamma convolution

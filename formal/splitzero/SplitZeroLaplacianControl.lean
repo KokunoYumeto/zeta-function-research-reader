@@ -4,21 +4,21 @@ import Mathlib
 Finite consequences of the Connes--Consani Laplacian comparison.
 The analytic trace, Schwartz quotient, and periodization comparison are proved
 in the accompanying written note, not postulated as Lean axioms here.
-The statements below keep the original Gram matrix, action, and nilpotent jets.
+The statements keep the original Gram matrix, action, and nilpotent jets.
 -/
 noncomputable section
 namespace SplitZero.LaplacianControl
 open Matrix
 
 section Matrices
-variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+variable {ι : Type*} [Fintype ι]
 
 def weightDefect (k : ℂ) (A G : Matrix ι ι ℂ) : Matrix ι ι ℂ :=
   A.conjTranspose * G + G * A - k • G
 
 def laplacian (k : ℂ) (A : Matrix ι ι ℂ) : Matrix ι ι ℂ := A*A-k • A
 
-/-- The defect of Laplacian symmetry is determined by the original weight defect. -/
+/-- The original weight defect determines the Laplacian adjoint defect. -/
 theorem adjoint_defect (k : ℂ) (hk : star k = k) (A G : Matrix ι ι ℂ) :
     (laplacian k A).conjTranspose * G - G * laplacian k A =
       A.conjTranspose * weightDefect k A G - weightDefect k A G * A := by
@@ -35,7 +35,7 @@ theorem energy_identity (k : ℂ) (A G : Matrix ι ι ℂ) :
     Matrix.add_mul, Matrix.smul_mul, Matrix.mul_smul, Matrix.mul_assoc]
   abel
 
-/-- This is a conditional symmetry implication, not a purity assumption. -/
+/-- A conditional symmetry implication, not a purity assumption. -/
 theorem symmetric_of_zero_defect (k : ℂ) (hk : star k = k)
     (A G : Matrix ι ι ℂ) (hW : weightDefect k A G = 0) :
     (laplacian k A).conjTranspose * G = G * laplacian k A := by
@@ -49,6 +49,8 @@ theorem constituent {κ : Type*} [Fintype κ]
   unfold laplacian
   rw [Matrix.sub_mul, Matrix.mul_sub, Matrix.smul_mul, Matrix.mul_smul]
   rw [Matrix.mul_assoc A A J, h, ← Matrix.mul_assoc A J B, h, Matrix.mul_assoc]
+
+variable [DecidableEq ι]
 
 /-- The complete quadratic jet, not just its diagonal eigenvalue. -/
 theorem jet_expansion (k rho : ℂ) (N : Matrix ι ι ℂ) :
@@ -74,24 +76,31 @@ theorem intertwining_power (f : E →ₗ[K] F) (A : Module.End K E)
 theorem injective_power (B : Module.End K F) (hB : Function.Injective B) (m : ℕ) :
     Function.Injective (B^m) := by
   induction m with
-  | zero => simpa only [pow_zero, Module.End.one_apply] using (Function.injective_id : Function.Injective (id : F → F))
+  | zero =>
+      intro x y h
+      change x=y at h
+      exact h
   | succ m ih =>
-      simpa only [pow_succ', Module.End.mul_apply, Function.comp_def] using hB.comp ih
+      intro x y h
+      apply ih
+      apply hB
+      simpa only [pow_succ', Module.End.mul_apply] using h
 
-/-- An injective target operator kills no vector, so an intertwined nilpotent vector maps to zero. -/
+/-- An injective target operator kills no vector; the intertwined nilpotent image is zero. -/
 theorem nilpotent_image_zero (f : E →ₗ[K] F) (A : Module.End K E)
     (B : Module.End K F) (h : ∀ x, f (A x) = B (f x))
     (hB : Function.Injective B) (m : ℕ) (x : E) (hx : (A^m) x=0) : f x=0 := by
   apply injective_power B hB m
   rw [← intertwining_power f A B h m x, hx, map_zero, map_zero]
 
-/-- The full generalized eigenspace is retained until this specified comparison kills it. -/
+/-- Retain the whole generalized eigenspace until the specified comparison kills it. -/
 theorem shifted_nilpotent_image_zero (f : E →ₗ[K] F)
     (A : Module.End K E) (B : Module.End K F) (rho : K)
     (h : ∀ x, f (A x) = B (f x))
-    (hB : Function.Injective (B-rho • 1))
-    (m : ℕ) (x : E) (hx : ((A-rho • 1)^m) x=0) : f x=0 := by
-  apply nilpotent_image_zero f (A-rho • 1) (B-rho • 1) _ hB m x hx
+    (hB : Function.Injective (B-rho • (1 : Module.End K F)))
+    (m : ℕ) (x : E) (hx : ((A-rho • (1 : Module.End K E))^m) x=0) : f x=0 := by
+  refine nilpotent_image_zero f (A-rho • (1 : Module.End K E))
+    (B-rho • (1 : Module.End K F)) ?_ hB m x hx
   intro y
   simp only [LinearMap.sub_apply, LinearMap.smul_apply, Module.End.one_apply,
     map_sub, map_smul, h]

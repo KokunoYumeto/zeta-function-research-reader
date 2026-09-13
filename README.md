@@ -1,35 +1,35 @@
 # Split-Zero cohomology and arithmetic weight control
 
-Start with [the complete 821-page R62 Split-Zero paper](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
-and its [editable source and build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md).
+Start with [the 821-page R62 Split-Zero paper](https://zenodo.org/api/records/22738226/files/37-splitzero-periodized-residue-continuation-821p.pdf/content),
+[published DOI 10.5281/zenodo.22738226](https://doi.org/10.5281/zenodo.22738226), and
+[all 38 separate downloads](calculation_edition_20260913_periodized_residue/README.md).
+The pertinent PDF is the actual Zenodo browser preview; the matching
+[public source ZIP](https://zenodo.org/api/records/22738226/files/38-splitzero-periodized-residue-public-sources.zip/content) is an offline download, not a preview.
 
 The 821-page R62 Split-Zero reader develops periodized source recovery and density, finite-circle curvature with quotient compensation, the circle/critical-observation diamond, and residue-constituent derivative and curvature formulas. It keeps the original theta-function source, zero multiplicities, source mass, coordinate S=k/2+iu and least-norm quotient metric. The uniform arithmetic growth estimate remains an active unresolved problem; no RH proof or closure is claimed.
 
-Periodized observations recover the specified arithmetic source; the density
-arguments identify the relevant completed spaces. The finite-circle formulas
-calculate curvature and the compensating quotient terms. The observation
-diamond compares the circle and critical-line maps, while the residue formulas
-track constituent derivatives and curvature without dropping multiplicities,
-source mass, signs or orientations. These finite calculations clarify the
-remaining growth problem; they do not supply its unresolved uniform bound.
+Periodized observations recover the specified arithmetic source and identify
+the relevant completed spaces. The finite-circle formulas calculate curvature
+with the compensating quotient terms; the observation diamond compares circle
+and critical-line maps. Residue-constituent formulas track derivatives and
+curvature without dropping multiplicities, full source mass, signs or
+orientations. These calculations expose what the remaining uniform arithmetic
+growth estimate must control; they do not supply that unresolved bound.
 
-The [research guide](CURRENT_RESEARCH.md) explains the steps and active problem.
-The [public-derivative ledger](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/PUBLIC_DERIVATION.md) discloses historical
-locator aliases, narrow internal-coordination excisions and the reference-only
-exclusion. The PDF, complete mathematical texts and nested delivery archives
-retain their exact accepted bytes. The raw owner ZIP is not a public payload;
-no wrapper ZIP is duplicated in ordinary Git blobs.
+The [research guide](CURRENT_RESEARCH.md), [editable source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)
+and [public-derivative ledger](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/PUBLIC_DERIVATION.md) retain the
+proof dependencies, 47 complete source witnesses and exact privacy disclosures.
+The source contains 4,926 files. Mathematical texts, the PDF and nested delivery
+archives keep their accepted bytes. The raw owner ZIP is not a public payload.
 
-The [historical 765-page DOI](https://doi.org/10.5281/zenodo.22736292) and its
-[36 separate downloads](calculation_edition_20260913_sga_connes/README.md) remain
-unchanged. This source-promotion commit does not claim a new DOI.
+This fixed PDF/public-source cut ends at R62. Later holonomy, mixed-control (TA/AT/AW), and original-theta certification cuts are separate and excluded. Separately indexed GitHub working sources, including PR29 and the marked-product continuation, retain their own proof, finite-check and CI scopes; their presence in this repository does not confer certification by this DOI.
 
-This fixed PDF/public-source cut ends at R62. Later holonomy, TA, AT, AW and original-theta certification work is excluded. Separately indexed GitHub working sources retain their own proof and CI scopes.
-
-The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md) and
-[participation guide](POLYCLANK_PARTICIPATION.md) retain motivations, partial
-results and unfinished routes. Overleaf confirmations remain historical and
-timers remain paused.
+The [historical 765-page DOI](https://doi.org/10.5281/zenodo.22736292) and all its 36
+downloads remain unchanged; this successor adds only PDF37 and ZIP38.
+The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md)
+and [participation guide](POLYCLANK_PARTICIPATION.md) retain earlier routes,
+partial results and active problems. Overleaf confirmations remain historical
+and timers remain paused.
 
 ## Current working sources
 
@@ -59,7 +59,7 @@ PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
 revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
-The GitHub front now shows the 821-page R62 PDF/source cut. The frozen DOI remains its historical 765-page edition until a later actual publication. Later work is outside the fixed R62 cut.
+The GitHub front and current DOI now share the 821-page R62 PDF/source cut. The 765-page DOI remains historical. Later work is outside the fixed R62 cut.
 
 
 ## PR29: original residue detection and signed metric transfer
@@ -111,7 +111,7 @@ integration patch; both mathematical scripts and the full note remain included.
 No existing GitHub Pages site was verified. The HTML link above is a source
 file, not a claimed rendered online reader; no hosting provider or configuration
 was added. This HTML/TeX working edition creates no PDF solely for a preview and
-does not replace the [current 765-page R57 DOI edition](https://doi.org/10.5281/zenodo.22736292),
+does not replace the [historical 765-page R57 DOI edition at the marked-source publication checkpoint](https://doi.org/10.5281/zenodo.22736292),
 its preview, any of its 36 downloads, or its reading links. Its rendered-reader
 link belongs in a later frozen edition only after a real route is verified.
 

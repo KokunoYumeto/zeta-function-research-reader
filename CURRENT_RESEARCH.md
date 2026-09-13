@@ -1,7 +1,9 @@
 # Current R62 Split-Zero source: recovery, curvature and the active growth problem
 
-[Read the 821-page paper](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)
-· [Historical 765-page DOI](https://doi.org/10.5281/zenodo.22736292)
+[Read the 821-page paper](https://zenodo.org/api/records/22738226/files/37-splitzero-periodized-residue-continuation-821p.pdf/content) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)
+· [Published DOI 10.5281/zenodo.22738226](https://doi.org/10.5281/zenodo.22738226) · [All 38 files](calculation_edition_20260913_periodized_residue/README.md)
+
+The actual Zenodo preview is the 821-page R62 Split-Zero PDF. Its matching source ZIP is an offline download; the 765-page DOI remains historical and unchanged.
 
 The 821-page R62 Split-Zero reader develops periodized source recovery and density, finite-circle curvature with quotient compensation, the circle/critical-observation diamond, and residue-constituent derivative and curvature formulas. It keeps the original theta-function source, zero multiplicities, source mass, coordinate S=k/2+iu and least-norm quotient metric. The uniform arithmetic growth estimate remains an active unresolved problem; no RH proof or closure is claimed.
 
@@ -20,8 +22,7 @@ The full R62 proof dependencies, original notes and 47 complete source witnesses
 remain available. Historical numerical, build and Lean records keep their
 recorded dates and scope; this publication step does not replay them.
 
-This fixed PDF/public-source cut ends at R62. Later holonomy, TA, AT, AW and original-theta certification work is excluded. Separately indexed GitHub working sources retain their own proof and CI scopes. The following earlier guide is explicitly historical. Its DOI remains
-the 765-page record until a new edition is actually published and verified.
+This fixed PDF/public-source cut ends at R62. Later holonomy, mixed-control (TA/AT/AW), and original-theta certification cuts are separate and excluded. Separately indexed GitHub working sources, including PR29 and the marked-product continuation, retain their own proof, finite-check and CI scopes; their presence in this repository does not confer certification by this DOI. The following earlier 765-page guide and its DOI are historical, not the current edition.
 
 ## Earlier 765-page edition and research guide (historical)
 

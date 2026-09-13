@@ -1,122 +1,110 @@
-# Arithmetic zeta packets: current integrated proofs
+[Published DOI 10.5281/zenodo.22731295](https://doi.org/10.5281/zenodo.22731295) · [Paired PDFs and sources](calculation_edition_20260913_endpoint_gamma/README.md)
 
-[Read the 512-page main reader](reader.pdf) · [Read the frozen 478-page Gamma companion](workbenches/splitzero-tandem/continuations/20260913-gamma/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) · [Complete endpoint proof guide](workbenches/tau-arithmetic-endpoint-bounds/README.md)
+# Arithmetic zeta packets: endpoint norms, exact window products and gamma source control
 
-The original theta-function density is `w_h(t)=|(2xi/h)(1/2+it)|^2/(2pi)`. Its convolution retains mass `mu_h^k`, and monic norms use `S=k/2+iu`. The main reader joins the complete arithmetic local-mass and convolution argument, diagonal and balanced-window norm bounds, the phase-retaining exact product, four-volume synthesis, and corrected confluent-transfer proof. Every interior volume contraction occurs twice. For a full off-line quartet with common zero order `m`, put `q=[1+k(m-1)](k+1)^2` and `B_k=log(V_(q-1)V_q/(V_(2q-1)V_(2q)))`, where `V_N=det G_N` is the original arithmetic quotient volume at degree `N`. The proved requirement is `liminf B_k/(q log k) >= 4` as the tensor degree `k` grows. An opposing arithmetic upper estimate remains unproved, so no RH conclusion follows.
+This edition joins the full arithmetic endpoint argument to the earlier
+Toda--Gamma research synthesis. Its main reader keeps the original
+theta-function source and its total mass, proves the diagonal and balanced
+monic norm bounds, and retains every phase and repeated interior contraction
+in the exact degree-window product. For any exact off-line quartet packet,
+write `B_k = log(V_(q_k-1) V_(q_k) / (V_(2q_k-1) V_(2q_k)))`, where the
+`V_j` are its canonical quotient volumes and `q_k=[1+k(m-1)](k+1)^2` retains
+the quartet multiplicity `m`. The proved bound is
+`liminf B_k/(q_k log k) >= 4`: for each positive epsilon, this logarithmic
+volume ratio eventually grows at least `(4-epsilon) q_k log k`.
+An opposing arithmetic volume upper estimate remains unproved; no RH
+conclusion follows.
 
-The full-quotient and consecutive-ratio degree endpoints remain distinct. The squared transfer retains dagger stability, the induced quotient, raw derivative phases and factorials. Written analytic arguments, finite regressions, numerical enclosures and Lean checks retain their separate recorded scopes. No unmerged PR25 material is included.
+The source is the actual density
+`w_h(t)=|(2xi/h)(1/2+it)|^2/(2pi)`, with convolution `w_h^{*k}` and mass
+`mu_h^k`. Monic norms are measured in the original coordinate `S=k/2+iu`.
+The quotient volumes come from the canonical least-norm representatives,
+not a replacement metric. Keeping multiplicities and source factors is why
+the endpoint calculation provides meaningful arithmetic control.
 
-The separately frozen Gamma companion develops exact coefficient joining, seed intervals and source costs, finite metric transfer, and complex phase/fibre transport. It does not silently acquire the later endpoint chapters. [Its complete source inventory](workbenches/splitzero-tandem/continuations/20260913-gamma/PUBLIC_SOURCE_MANIFEST.json) and [main source/PDF evidence](edition/endpoint-gamma/README.md) preserve the distinct input roles.
+The main reader includes the complete arithmetic local-mass and convolution
+proof, balanced-window extension, exact product with phase and zero cases,
+four-volume synthesis, and corrected confluent-transfer proof. The
+leading-coefficient isomorphism begins at n>=q. The squared transfer uses
+dagger stability and the induced S=c+iu quotient with raw derivative phases
+and factorials. Those qualifications are not omitted in the integrated text.
 
-[Research programmes](RESEARCH_PROGRAMMES.md) · [Attempts and motivations](ATTEMPTS.md) · [How to contribute](POLYCLANK_PARTICIPATION.md)
+The separately paired 478-page Gamma companion has its own exact source
+archive and review. It develops the coefficient join, seed intervals and
+source costs, finite metric transfer, and phase/fibre transport on top of
+the cumulative Toda source. Its scope is not silently enlarged to assert
+that every newer endpoint chapter also appears there. Its contributed PDF
+and independently rebuilt comparison PDF are distinct byte objects.
 
-These are successor GitHub sources. A new DOI is not asserted here. The preceding [DOI 10.5281/zenodo.22730756](https://doi.org/10.5281/zenodo.22730756), [frozen 482-page reader](calculation_edition_20260912e/25-main-reader-482p.pdf), and all earlier editions remain unchanged.
+## Reading and reproducibility
 
-## Historical E edition and earlier working-source record
+- Begin with [Split-Zero Cohomology and Arithmetic Weight Control, the current 478-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0e11075765b6e0f4de2beb7d392e2ace94df0ffa/workbenches/splitzero-tandem/continuations/20260913-gamma/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf),
+  distributed as `30-splitzero-gamma-continuation-478p.pdf` and shown as the Zenodo PDF preview.
+- The [current 512-page integrated reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/reader.pdf),
+  distributed as `29-main-reader-gamma-endpoint-control.pdf`, contains the broader research synthesis.
+- This complete main source archive contains `main.tex`, its full recorded
+  TeX closure, all previously selected authored work, and the complete
+  [endpoint working-source guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/workbenches/tau-arithmetic-endpoint-bounds/README.md).
+- The [original arithmetic note](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/workbenches/tau-arithmetic-endpoint-bounds/delivery/RESEARCH_NOTE.md),
+  [exact product proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/workbenches/tau-arithmetic-endpoint-bounds/window/WINDOW_PRODUCT_PROOF.md),
+  [four-volume synthesis](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/workbenches/tau-arithmetic-endpoint-bounds/FOUR_VOLUME_THRESHOLD.md),
+  and [corrected transfer note](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/workbenches/tau-confluent-transfer/RESEARCH_NOTE.md)
+  are complete texts, not replaced by this guide.
+- The separate companion source ZIP retains the exact accepted frozen owner
+  release and its declared verification closure.
+- The broader [research attempts](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/ATTEMPTS.md),
+  [research programmes](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/RESEARCH_PROGRAMMES.md),
+  and [Polyclank participation guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/POLYCLANK_PARTICIPATION.md)
+  remain part of the cumulative project, beyond this reader's endpoint focus.
 
-The following retained account describes the preceding frozen edition and its contemporary working sources.
+Written analytic proofs, finite regressions, interval enclosures and Lean
+checks keep their separate recorded scopes. The new analytic constants are
+finite specified source quantities, not numerically enclosed constants.
+The source inventory names every retained file and binds the PDF/build
+identity; post-promotion source-commit binding remains an external receipt,
+not a fabricated future hash embedded in its own source archive.
+`EDITION_SOURCE_SELECTION.json` is the current archive inventory; retained
+earlier public-file manifests are explicitly historical provenance. Full
+original proof notes and portable mathematical checkers are included.
+Private intake text, raw environment logs, source images, and local-only
+integration scripts are excluded; selected review evidence retains its full
+scope with private machine locators replaced by public aliases.
 
-## Later working sources: arithmetic endpoint norms and exact window products
+The preceding [Toda--Gamma edition](https://doi.org/10.5281/zenodo.22730756)
+and all earlier downloads remain immutable. The
+[versioned research collection](https://doi.org/10.5281/zenodo.22678085)
+provides archived editions. This edition is published as DOI 10.5281/zenodo.22731295. Source ZIPs are offline downloads; the current 478-page Split-Zero
+cohomology paper is the preview, not the main reader or either ZIP.
 
-[Read the working-source guide](workbenches/tau-arithmetic-endpoint-bounds/README.md) · [Four-volume proof](workbenches/tau-arithmetic-endpoint-bounds/FOUR_VOLUME_THRESHOLD.md) · [Exact product](workbenches/tau-arithmetic-endpoint-bounds/window/WINDOW_PRODUCT_PROOF.md)
+## Working sources after the frozen edition
 
-For the original theta-function source, the written proof bounds endpoint monic norm ratios by a fixed-packet constant times the degree, including balanced windows. Keeping every interior volume contraction twice yields a sharper exact product and necessary normalized four-volume growth of at least four for any exact off-line quartet packet. The remaining analytic question is an opposing arithmetic volume upper estimate; none is proved here.
+The [restriction and trace-certificate calculation](workbenches/tau-restriction-certificate-formal/RESEARCH_NOTE.md)
+continues the [consecutive-window argument](workbenches/tau-consecutive-window-formal/RESEARCH_NOTE.md).
+The arithmetic source consists of polynomials measured by
+`integral |P(k/2+iu)|^2 w_h^{*k}(u) du`, with its original mass retained.
+Here `w_h(t)=|(2xi/h)(1/2+it)|^2/(2pi)`: xi is the completed Riemann
+xi-function, h retains the selected zeros with their full orders, and `*k`
+means k-fold convolution of that same density.
+The quotient identifies polynomials whose difference belongs to the original
+relation ideal `(chi_(h,k))`. Each quotient class has a canonical least-norm
+representative at degree N; its Gram matrix is `G_N`, and `V_N=det G_N` is
+the corresponding quotient volume.
 
-These are later GitHub working proofs, not additions to DOI [10.5281/zenodo.22730756](https://doi.org/10.5281/zenodo.22730756). The [frozen 482-page main reader](calculation_edition_20260912e/25-main-reader-482p.pdf), [424-page companion](calculation_edition_20260912e/26-splitzero-toda-continuation-424p.pdf) and [published source archives](calculation_edition_20260912e/README.md) remain unchanged. The guide states the degree-endpoint and dagger-stability qualifications and distinguishes written analytic arguments from finite checks.
+PR26 writes the degree-j to degree-i restriction exactly as `T_ij=K_i G_j`,
+where `K_i=G_i^(-1)`, and proves the commuting source-cutoff identity for
+the representatives themselves. It retains the quotient coordinates, weighted
+source columns and all q modes, including zero modes of `H=I-T_ij`.
+Traces of powers of this finite matrix give a checkable logarithm bound:
+with `P_p=sum_(m=1)^p Tr(H^m)/m` and `s_p=Tr(H^p)<1`,
+`P_p <= log(V_i/V_j) <= P_p+(P_(2p)-P_p)/(1-s_p)`.
+This turns the existing finite volume loss into a trace-only certificate.
+For each fixed finite matrix the calculation reaches a stopping degree; it
+does not establish a bound uniform in tensor degree k.
 
-## Frozen Toda--Gamma edition and its reading routes
-
-[Published DOI 10.5281/zenodo.22730756](https://doi.org/10.5281/zenodo.22730756) · [Paired PDFs and source downloads](calculation_edition_20260912e/README.md)
-
-# Arithmetic zeta packets: quotient volumes, Toda control and gamma convolution
-
-This research edition studies a concrete finite part of the Riemann zeta
-function's spectral data. A **packet** is a chosen finite collection of its
-zeros, with every selected multiplicity retained. Its polynomial h divides
-the completed function g=2xi. The original theta-function source has Mellin
-transform g/h. Tensor products of this source represent sums of the selected
-zero jets, including their full repeated-root structure.
-
-The purpose is to calculate the cost of those spectral configurations in
-the original arithmetic source norm. It is not to choose a favorable new
-metric or to assert that an off-critical-line zero exists.
-
-## What to read
-
-- **Main research reader, 482 pages.** The complete literature-and-proof
-  synthesis now includes Section 41 on arithmetic source/relation volumes
-  and Section 42 on gamma convolution descent. The end of Section 42 proves
-  the direct analytic generating-function map into the same Toda input.
-- **Split-Zero/Toda companion, 424 pages.** A cumulative, more focused account
-  of the source, its cohomological quotient and finite spectral controls,
-  with 38 proof chapters and 18 complete source appendices. The new chapters
-  calculate the separate source and relation curvature terms, certified
-  theta-seed inputs, and an exact Gaussian calibration.
-- **Separate full source ZIPs.** These retain the mathematical texts,
-  formalization sources and scoped checking records for each reader.
-  Earlier published PDFs and archives remain separate downloads.
-- **Gamma and endpoint workbenches.** The delivered HTML/Markdown/LaTeX
-  argument and its finite checker remain readable separately. The endpoint
-  criterion and its gamma-coordinate substitution explain a finite-window
-  way to choose one of the existing canonical representatives.
-
-## The attempts, their motivation and their results
-
-| Calculation | Why it was tried | What it establishes |
-| --- | --- | --- |
-| Exterior trace control | A single-vector bound can miss the combined displacement of many spectral directions. | The finite exterior calculation bounds their aggregate positive trace defect using the same rank-two allowance, with multiplicities and source factors retained. |
-| Source and relation volumes | Relations vanish in the quotient, but their source norms still affect the least-norm representatives. | The determinant of the canonical quotient metric is exactly a source Hankel determinant divided by a relation Hankel determinant. |
-| Two Toda flows | Both determinant sequences come from exponential deformation of the original arithmetic measure. | Their derivative formulas calculate the source/relation curvature and the original complex cross term. The finite upper estimate retains explicit nonnegative losses. |
-| Gamma convolution descent | Computing a new high-dimensional convolution integral for each tensor degree is expensive. | A classical gamma reference, multiplied by the actual arithmetic amplitude, gives an exact all-tensor coefficient formula and an explicit tail majorant. Its relative-fibre component is retained. |
-| Analytic generating-function map | The coefficient expansion and the Toda moment function appeared as separate descriptions of the same source. | They are linked by an explicit analytic map and inverse. A degree-N Gram matrix differentiated j times uses only the one-factor coefficients through degree 2N+j. |
-| Endpoint degree selection | Bounding every recurrence coefficient in a whole degree window is stronger than selecting one useful canonical degree. | The written finite Jensen argument uses four endpoint quotient volumes and two endpoint polynomial norms. The gamma-coordinate version retains the exact reference and arithmetic correction factors. |
-
-## The quantities are attached to explicit maps
-
-At degree N the source is the original polynomial space, mapped to the cyclic
-algebra C[S]/(chi). The relation columns are multiplication by the original
-monic polynomial chi. The canonical representative is the unique least-norm
-lift for the arithmetic moment matrix. Its correction from a reference lift
-is a literal relation; its image is an actual theta boundary, with an explicit
-tensor-cochain primitive. The quotient sends `(lambda_N,P)` to
-`(lambda_N,[P]_chi)`: the fibre label remains even when the polynomial class
-is zero. The unit, all signs, the centre k/2, the total mass and the
-repeated-root orders remain in these formulas.
-
-The gamma density is therefore a computational reference, not a substitute
-for the zeta-derived measure. The arithmetic amplitude and its phase remain
-in the multiplication map. The coefficient transform computes observations
-of that same source and retains the orthogonal component removed by the sum
-projection.
-
-## Verification and the present quantitative boundary
-
-Written proofs, exact finite regression checks, interval enclosures and Lean
-checks have different stated scopes in the accompanying records. The gamma
-delivery passed its 17 finite methods normally and under optimization;
-independent fixtures also rejected altered mass, multiplicity, conjugation
-and relation formulas. These are not interval certificates for arbitrary
-arithmetic packets.
-
-PR #22 supplies the checked finite original-Gram trace and projection
-formalization: four modules and 50 selected transitive-axiom reports. The
-exact reviewed revision was merged, and its three post-merge workflows
-passed. PR #23 adds five strictly kernel-checked Toda modules and 30 selected
-transitive-axiom reports. It has been merged; its exact source and checking
-records accompany the edition. The Jensen/root assembly of its endpoint criterion
-is a written proof, not an additional claimed Lean theorem.
-
-The companion's certified numerical inputs concern the **unmodified analytic
-seed h=1**, not a nonempty zero packet. This seed has nonzero mass while its
-finite arithmetic quotient is zero-dimensional. The Gaussian example is an
-explicit calibration, not zeta-zero data.
-
-The outstanding quantitative problem is an upper estimate for the specified
-arithmetic determinant/endpoint ratios as tensor and polynomial degrees
-grow. The present identities do not prove that estimate. In particular, a
-one-sided bound on individual positive correction factors does not bound
-their consecutive ratios. No proof or disproof of the Riemann hypothesis is
-claimed by this edition.
-
-
-The exact current assets and retained previous downloads are listed in the [edition index](calculation_edition_20260912e/README.md). The immutable source commit is `a3f7aa023b59e2ecd4d0a590aad912f2ecd86ec7`.
+Lean checks cover the stated finite matrix and scalar-log identities; exact
+fixtures and the written arithmetic application retain their documented scopes.
+The finite fixtures do not certify unevaluated arithmetic moment integrals.
+No opposing arithmetic volume upper bound or RH conclusion is established.
+The actual PR26 merge includes its PR25 ancestor with the reviewed corrections;
+GitHub closed PR25 through that ancestry, not through a separate merge action.
+These working sources are not included in the frozen 512/478-page DOI edition.

@@ -11,16 +11,17 @@ namespace SplitZero.MetricResolventSupport
 open Matrix
 open SplitZero.Reconstruction
 open MetricVariation
-variable {j n m : Type*} [Fintype j] [Fintype n] [Fintype m] [DecidableEq m]
+variable {j n m : Type*} [Fintype j] [Fintype m] [DecidableEq m]
 variable {B : Matrix j m ℂ}
 
 /-- Exact path composition of the old-relation coefficients. -/
-omit [Fintype n] in
 theorem primitive_cocycle (M₀ M₁ M₂ : Metric B) (C : Matrix j n ℂ) :
     MetricResolvent.primitive M₀ M₂ C = MetricResolvent.primitive M₀ M₁ C +
       MetricResolvent.primitive M₁ M₂ C := by
   simp only [MetricResolvent.primitive_eq_correction]
   abel
+
+variable [Fintype n]
 
 /-- Retain the entire change in the actual source-generator comparison. -/
 theorem generator_defect (M₀ M₁ : Metric B) (C : Matrix j n ℂ)

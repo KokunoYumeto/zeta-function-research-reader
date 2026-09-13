@@ -30,6 +30,18 @@ theorem sum_support (s : Finset ι) (x : ι → D.Total) :
     change (x a).fst ⊔ (∑ b ∈ s, x b).fst = _
     rw [ih]
 
+/-- Even a zero supported coefficient retains its input support. -/
+theorem supported_scalar_label (r : R) (x : D.Total) :
+    ((ofR r : G R) • x).fst = x.fst := by
+  rcases x with ⟨i,v⟩
+  rfl
+
+/-- Original coefficient signs and zeros cannot delete a support slot. -/
+theorem weighted_sum_support (s : Finset ι) (x : ι → D.Total) (c : ι → R) :
+    (∑ a ∈ s, (ofR (c a) : G R) • x a).fst = s.sup (fun a => (x a).fst) := by
+  rw [sum_support]
+  exact Finset.sup_congr rfl (fun a _ha => supported_scalar_label (c a) (x a))
+
 /-- A sum of fibre zeros retains the join, not external absence. -/
 theorem sum_fibre_zeros (s : Finset ι) (i : ι → L) :
     (∑ a ∈ s, (⟨i a, 0⟩ : D.Total)) = ⟨s.sup i, 0⟩ := by
@@ -53,6 +65,15 @@ theorem quotient_sum_relations (B : Relations D) (s : Finset ι) (i : ι → L)
       intro a ha
       exact B.relation_maps_to_fibre_zero (i a) (v a) (hv a ha)
     _ = _ := sum_fibre_zeros s i
+
+/-- The same joined quotient equation for the original signed scalar action. -/
+theorem weighted_relation_sum (B : Relations D) (s : Finset ι) (i : ι → L)
+    (v : ∀ a, D.V (i a)) (c : ι → R)
+    (hv : ∀ a ∈ s, v a ∈ B.fibre (i a)) :
+    B.quotientMap.total (∑ a ∈ s, (ofR (c a) : G R) • (⟨i a,v a⟩ : D.Total)) =
+      (⟨s.sup i,0⟩ : B.quotientDiagram.Total) :=
+  quotient_sum_relations B s i (fun a => c a • v a)
+    (fun a ha => (B.fibre (i a)).smul_mem (c a) (hv a ha))
 
 /-- A nonbottom mixed join is not made absent even if every amplitude cancels. -/
 theorem quotient_sum_not_absent (B : Relations D) (s : Finset ι) (i : ι → L)
@@ -80,6 +101,15 @@ theorem transported_relation_sum (B : Relations D) (s : Finset ι) (i : ι → L
     (∑ a ∈ s, D.map (h a) (v a)) ∈ B.fibre J := by
   exact (B.fibre J).sum_mem (fun a ha => B.stable (h a) (hv a ha))
 
+/-- The exact zero criterion tests the transported SUM, not its summands separately. -/
+theorem gathered_zero_iff (B : Relations D) (s : Finset ι) (i : ι → L)
+    (J : L) (h : ∀ a, i a ≤ J) (v : ∀ a, D.V (i a)) :
+    B.quotientMap.total (⟨J,∑ a ∈ s, D.map (h a) (v a)⟩ : D.Total) =
+      B.quotientMap.total (⟨J,0⟩ : D.Total) ↔
+      (∑ a ∈ s, D.map (h a) (v a)) ∈ B.fibre J := by
+  simpa only [sub_zero] using
+    B.quotient_same_label_iff J (∑ a ∈ s, D.map (h a) (v a)) 0
+
 end Supports
 
 section Grams
@@ -106,6 +136,7 @@ def gatheredColumns (s : Finset ι) (i : ι → L) (J : L) (h : ∀ a, i a ≤ J
     (coord : D.V J ≃ₗ[ℂ] (j → ℂ)) (F : ∀ a, n → D.V (i a)) : Matrix j n ℂ :=
   fun row col => coord (∑ a ∈ s, D.map (h a) (F a col)) row
 
+omit [Fintype j] in
 theorem gathered_eq_sum (s : Finset ι) (i : ι → L) (J : L) (h : ∀ a, i a ≤ J)
     (coord : D.V J ≃ₗ[ℂ] (j → ℂ)) (F : ∀ a, n → D.V (i a)) :
     gatheredColumns s i J h coord F = ∑ a ∈ s, transportedColumns i J h coord F a := by

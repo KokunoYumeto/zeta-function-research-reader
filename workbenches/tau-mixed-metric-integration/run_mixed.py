@@ -37,7 +37,7 @@ def main():
     legacy = prior.load_previous()
     targets = json.loads((HERE / 'TARGETS.json').read_text())
     expected = {'SplitZeroMetricSandwich', 'SplitZeroMixedSupportMetric',
-                'SplitZeroSourceProjectorContrast'}
+                'SplitZeroSourceProjectorContrast', 'SplitZeroCanonicalSourceContrast'}
     if set(targets) != expected:
         raise ValueError('unexpected source target set')
     names = []
@@ -61,13 +61,33 @@ def main():
     out = ROOT / '.lake/build/lib/lean'
     prior_record = json.loads((ROOT / '.source-resolvent-logs/receipt.json').read_text())
     checked = list(prior_record['strict_modules'])
+    failures = []
+    blocked = set()
     for module in closure:
         if module in checked:
             continue
-        legacy.original.run(['lake', 'env', 'lean', '--trust=0', '-DwarningAsError=true',
-                             '-o', str(out / (module + '.olean')), module + '.lean'],
-                            logs / (module + '.log'))
-        checked.append(module)
+        code = strip_comments((ROOT / (module + '.lean')).read_text())
+        dependencies = set(re.findall(r'^import\s+(SplitZero\w*)', code, re.M))
+        if dependencies & blocked:
+            print('BLOCKED dependency:', module, sorted(dependencies & blocked), flush=True)
+            blocked.add(module)
+            continue
+        ole = out / (module + '.olean')
+        ole.unlink(missing_ok=True)
+        try:
+            legacy.original.run(['lake', 'env', 'lean', '--trust=0', '-DwarningAsError=true',
+                                 '-o', str(ole), module + '.lean'], logs / (module + '.log'))
+        except RuntimeError as exc:
+            # Gather independent diagnostics, but never emit a passing certificate.
+            failures.append({'module': module, 'error': str(exc)})
+            blocked.add(module)
+            ole.unlink(missing_ok=True)
+        else:
+            checked.append(module)
+    if failures or blocked:
+        detail = {'failures': failures, 'blocked': sorted(blocked), 'success': False}
+        (logs / 'failure.json').write_text(json.dumps(detail, indent=2) + '\n')
+        raise RuntimeError('strict closure failed: ' + json.dumps(detail))
     body = ''.join('import ' + m + '\n' for m in joint)
     body += '\n' + ''.join('#print axioms ' + n + '\n' for n in names)
     (ROOT / 'AuditMixedSourceMetric.lean').write_text(body)
@@ -86,7 +106,7 @@ def main():
         'axioms': reports,
         'source_sha256': {m: hashlib.sha256((ROOT / (m + '.lean')).read_bytes()).hexdigest()
                           for m in checked},
-        'scope': 'Original canonical metric sandwiches, actual mixed-support joins and boundary quotients, full Gram cross terms, and common-source projector trace identities. No arithmetic integral, tensor-uniform upper bound or complete external-product formalization is certified.'
+        'scope': 'Canonical metric sandwiches, original mixed-support joins and boundary quotients, full Gram cross terms, and the four-endpoint canonical-source projector composition. No arithmetic integral, tensor-uniform upper bound or complete external-product formalization is certified.'
     }
     (logs / 'receipt.json').write_text(json.dumps(record, indent=2, sort_keys=True) + '\n')
     print(json.dumps(record, indent=2, sort_keys=True), flush=True)

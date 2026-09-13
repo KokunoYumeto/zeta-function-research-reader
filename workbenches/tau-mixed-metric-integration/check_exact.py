@@ -83,7 +83,7 @@ class Tests(unittest.TestCase):
                 need(equal(P.H*M,M*P),'weighted adjoint')
                 need(s.trace(P)==2,'trace is quotient dimension')
                 need(s.cancel(s.trace(X*P)-s.trace(G.inv()*rho.H*E*rho))==0,'finite tangent pairing')
-            need(not equal(M,E*M*E.inv()) if E.det()!=0 else True,'noncommuting fixture')
+            need(not equal(M*E,E*M),'noncommuting fixture')
     def test_nested_overlap_and_loss(self):
         chi,M0,M1=matrices()
         M=(2*M0+M1)/3
@@ -122,7 +122,8 @@ class Tests(unittest.TestCase):
         need(not equal(cross,diagonal),'different labels do not imply orthogonality')
         u=s.Matrix([1,s.I]);v=-u
         need(equal((u+v).H*M*(u+v),s.zeros(1,1)),'cancellation after common transport')
-        need((u.H*M*u+v.H*M*v)[0,0]>0,'diagonal-only false formula detectable')
+        diagonal_value=s.simplify((u.H*M*u+v.H*M*v)[0,0])
+        need(diagonal_value==10 and diagonal_value>0,'exact positive diagonal loss; false formula detectable')
     def test_join_and_receiving_zero(self):
         # Exact finite calibration of an allowed diagram with identity transports
         # on three active one-dimensional fibres and the zero bottom fibre.
@@ -137,6 +138,9 @@ class Tests(unittest.TestCase):
             need(quotient(total)==qtotal==(join,0),'sum of original boundary images')
             if join:need(qtotal!=(0,0),'nonbottom fibre zero is not absence')
         need(add((1,1),(2,-1))==(3,0),'mixed cancellation retains joint label')
+        for mask in [1,2,3]:
+            for coefficient in [-1,0,1]:
+                need((mask,coefficient*0)==(mask,0),'supported zero coefficient does not delete label')
     def test_mass_and_common_source(self):
         chi,M0,M1=matrices()
         E0=endpoints(M0,chi);E1=endpoints(5*M0,chi)

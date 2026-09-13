@@ -75,3 +75,36 @@ and all earlier downloads remain immutable. The
 [versioned research collection](https://doi.org/10.5281/zenodo.22678085)
 provides archived editions. This edition is published as DOI 10.5281/zenodo.22731295. Source ZIPs are offline downloads; the current 478-page Split-Zero
 cohomology paper is the preview, not the main reader or either ZIP.
+
+## Working sources after the frozen edition
+
+The [restriction and trace-certificate calculation](workbenches/tau-restriction-certificate-formal/RESEARCH_NOTE.md)
+continues the [consecutive-window argument](workbenches/tau-consecutive-window-formal/RESEARCH_NOTE.md).
+The arithmetic source consists of polynomials measured by
+`integral |P(k/2+iu)|^2 w_h^{*k}(u) du`, with its original mass retained.
+Here `w_h(t)=|(2xi/h)(1/2+it)|^2/(2pi)`: xi is the completed Riemann
+xi-function, h retains the selected zeros with their full orders, and `*k`
+means k-fold convolution of that same density.
+The quotient identifies polynomials whose difference belongs to the original
+relation ideal `(chi_(h,k))`. Each quotient class has a canonical least-norm
+representative at degree N; its Gram matrix is `G_N`, and `V_N=det G_N` is
+the corresponding quotient volume.
+
+PR26 writes the degree-j to degree-i restriction exactly as `T_ij=K_i G_j`,
+where `K_i=G_i^(-1)`, and proves the commuting source-cutoff identity for
+the representatives themselves. It retains the quotient coordinates, weighted
+source columns and all q modes, including zero modes of `H=I-T_ij`.
+Traces of powers of this finite matrix give a checkable logarithm bound:
+with `P_p=sum_(m=1)^p Tr(H^m)/m` and `s_p=Tr(H^p)<1`,
+`P_p <= log(V_i/V_j) <= P_p+(P_(2p)-P_p)/(1-s_p)`.
+This turns the existing finite volume loss into a trace-only certificate.
+For each fixed finite matrix the calculation reaches a stopping degree; it
+does not establish a bound uniform in tensor degree k.
+
+Lean checks cover the stated finite matrix and scalar-log identities; exact
+fixtures and the written arithmetic application retain their documented scopes.
+The finite fixtures do not certify unevaluated arithmetic moment integrals.
+No opposing arithmetic volume upper bound or RH conclusion is established.
+The actual PR26 merge includes its PR25 ancestor with the reviewed corrections;
+GitHub closed PR25 through that ancestry, not through a separate merge action.
+These working sources are not included in the frozen 512/478-page DOI edition.

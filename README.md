@@ -27,3 +27,11 @@ The [previous frozen edition](calculation_edition_20260912e/README.md) is unchan
 Written analytic proofs, finite checks, interval enclosures and strict Lean
 results have their separately recorded scopes. Overleaf confirmations remain
 historical, and timers remain paused. Source ZIPs are offline downloads.
+
+## Current working sources
+
+[PR26: canonical restriction and finite quotient-volume certificates](workbenches/tau-restriction-certificate-formal/RESEARCH_NOTE.md)
+is now merged into GitHub. It computes how the original least-norm polynomial
+representatives restrict to lower degree and certifies their finite quotient-volume
+loss using traces. This continuation is **not included in the frozen DOI PDFs or ZIPs**;
+the current 478-page Split-Zero paper remains the published preview.

@@ -12,6 +12,7 @@ maps on totals. The matrix theorem uses the primitive from MetricVariation.
 noncomputable section
 namespace SplitZero.MetricVariationSupport
 open SplitZero.Reconstruction
+open scoped Matrix
 universe u v
 variable {R : Type u} [CommRing R] {L : Type v}
   [SemilatticeSup L] [OrderBot L] {D E : LinearDiagram R L}

@@ -12,6 +12,9 @@ variable {ι σ : Type*}
 
 def curve (R D : Matrix σ ι ℂ) (z : ℂ) : Matrix σ ι ℂ := R + z • D
 
+@[simp] theorem at_zero (R D : Matrix σ ι ℂ) : curve R D 0 = R := by simp [curve]
+@[simp] theorem at_one (X R : Matrix σ ι ℂ) : curve R (X-R) 1 = X := by simp [curve]
+
 section Source
 variable [Fintype σ]
 
@@ -22,14 +25,6 @@ theorem opposite_cross (R D : Matrix σ ι ℂ) (O : Matrix σ σ ℂ)
   simpa only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,
     Matrix.conjTranspose_zero, hO, Matrix.mul_assoc] using hh
 
-variable [DecidableEq ι]
-
-theorem observation (B : Matrix ι σ ℂ) (R D : Matrix σ ι ℂ)
-    (hR : B * R = 1) (hD : B * D = 0) (z : ℂ) :
-    B * curve R D z = 1 := by
-  simp [curve, Matrix.mul_add, Matrix.mul_smul, hR, hD]
-
-omit [DecidableEq ι] in
 theorem gram (R D : Matrix σ ι ℂ) (O : Matrix σ σ ℂ)
     (G C : Matrix ι ι ℂ) (hO : O.conjTranspose = O)
     (hR : R.conjTranspose * O * R = G)
@@ -40,7 +35,16 @@ theorem gram (R D : Matrix σ ι ℂ) (O : Matrix σ σ ℂ)
   have hop := opposite_cross R D O hO hcross
   simp [curve, Matrix.conjTranspose_add, Matrix.conjTranspose_smul,
     Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul,
-    smul_smul, hR, hD, hcross, hop]
+    smul_smul, hR, hD, hcross, hop, mul_comm]
+
+variable [DecidableEq ι]
+
+theorem observation (B : Matrix ι σ ℂ) (R D : Matrix σ ι ℂ)
+    (hR : B * R = 1) (hD : B * D = 0) (z : ℂ) :
+    B * curve R D z = 1 := by
+  simp [curve, Matrix.mul_add, Matrix.mul_smul, hR, hD]
+
+variable [Fintype ι]
 
 /-- Orthogonality of the actual difference follows from the later dual equation. -/
 theorem difference_cross (B : Matrix ι σ ℂ) (X R : Matrix σ ι ℂ)
@@ -64,13 +68,10 @@ theorem canonical_gram (B : Matrix ι σ ℂ) (X R : Matrix σ ι ℂ)
   exact gram R (X-R) O Gj (Gi-Gj) hO hg
     (SplitZero.Restriction.relation_gram B O X R Gi Gj hO hGj hX hR hGram hDual)
     (difference_cross B X R O Gj hX hR hDual) z
-
-@[simp] theorem at_zero (R D : Matrix σ ι ℂ) : curve R D 0 = R := by simp [curve]
-@[simp] theorem at_one (X R : Matrix σ ι ℂ) : curve R (X-R) 1 = X := by simp [curve]
 end Source
 
 section Coordinate
-variable [Fintype ι] [Fintype σ]
+variable [Fintype ι]
 
 /-- Restricting to a specified constituent keeps the actual source inclusion. -/
 theorem constituent {κ : Type*} (R D : Matrix σ ι ℂ)
@@ -78,7 +79,7 @@ theorem constituent {κ : Type*} (R D : Matrix σ ι ℂ)
     curve R D z * J = curve (R*J) (D*J) z := by
   simp [curve, Matrix.add_mul, Matrix.smul_mul]
 
-/-- The Gram curve is the original metric change; its action defect is affine in it. -/
+/-- The original action defect is affine in the actual metric increment. -/
 theorem control (A Gi Gj : Matrix ι ι ℂ) (weight : ℂ) (t : ℂ) :
     A.conjTranspose * (Gj + t • (Gi-Gj)) +
       (Gj + t • (Gi-Gj)) * A - weight • (Gj + t • (Gi-Gj)) =

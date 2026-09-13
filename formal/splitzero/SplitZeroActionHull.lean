@@ -3,7 +3,7 @@ import Mathlib
 /-!
 The smallest invariant enlargement is constructed, not selected by a new
 metric. This module is independent of finite dimension; the cyclic gcd
-and finite Cayley-Hamilton descriptions are proved in the accompanying note.
+and finite Cayley-Hamilton descriptions belong to the accompanying written note.
 -/
 noncomputable section
 namespace SplitZero.ActionHull
@@ -38,6 +38,7 @@ theorem least (A : Module.End K E) (U W : Submodule K E)
     (hUW : U ≤ W) (hW : ∀ x ∈ W, A x ∈ W) : hull A U ≤ W := by
   apply Submodule.span_le.mpr
   rintro y ⟨n,x,hx,rfl⟩
+  change (A^n) x ∈ W
   induction n with
   | zero => simpa only [pow_zero, Module.End.one_apply] using hUW hx
   | succ n ih =>
@@ -62,7 +63,7 @@ theorem eq_self_iff (A : Module.End K E) (U : Submodule K E) :
   · intro h
     exact le_antisymm (least A U U le_rfl h) (contains A U)
 
-/-- The action on a retained initial vector never leaves the constructed hull. -/
+/-- The action never leaves the constructed hull. -/
 theorem all_iterates (A : Module.End K E) (U : Submodule K E)
     (n : ℕ) (x : E) (hx : x ∈ hull A U) : (A^n) x ∈ hull A U := by
   induction n with

@@ -1,0 +1,805 @@
+# Density of the actual relative frames and the limiting derivative graph
+
+This file contains the entire proof, mechanically rendered from the companion TeX continuation. It is a new local working result; no frozen release or publication was changed. Equation numbers ND.1–34 identify the exact formulas. The accompanying JSON records all source hashes.
+
+This working continuation proves the nested-frame limit for the original
+arithmetic amplitude. The input is the sum-connection construction
+(FC.1)--(FC.36), retained at the source hash recorded in the accompanying
+receipt. All statements below use the original measure, full packet,
+relative coordinates, polynomial source, and derivative. The proof uses
+an exponential moment that is established directly from the arithmetic
+amplitude. No recurrence or Christoffel asymptotic is assumed.
+
+## An exponential bound with the original arithmetic factors
+
+Let
+$$
+ \begin{gathered}
+ g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad
+ h(s)=\prod_{\rho\in\mathcal Z}(s-\rho)^{m_\rho},\\
+ d=\deg h,\quad v_h(s)=g(s)/h(s),\qquad
+ a(t)=\frac{v_h(1/2+it)}{\sqrt{2\pi}},\quad
+ w(t)=|a(t)|^2,\quad \mu_h=\int_{\mathbb R}w(t)\,dt.
+ \end{gathered}
+ \tag{ND.1}
+$$
+Here the set of selected zeros is finite and each selected multiplicity
+is the full multiplicity in $g$. The quotient is its entire extension
+at those zeros. The empty product $h=1$ is allowed. The packet is
+stable under $\rho\mapsto1-\overline\rho$, as in FC.1. For a
+monic polynomial this says
+$h(1-\overline s)=(-1)^d\overline{h(s)}$; the corresponding
+identity for $g$ has factor one. Hence on the original line
+$$
+ \overline{a(t)}=(-1)^d a(t),\qquad
+ \overline{a^{(j)}(t)}=(-1)^d a^{(j)}(t).
+ \tag{ND.2}
+$$
+There is no change of phase or division by the mass $\mu_h$.
+
+**Theorem (Actual amplitude and all derivative tails).**
+For every integer $j\ge0$ and every real $b$ with
+$0<b<\pi/4$, there is a finite constant $C_{h,j,b}$ such that
+$$
+ |a^{(j)}(t)|\le C_{h,j,b}e^{-b|t|}\qquad(t\in\mathbb R).
+ \tag{ND.3}
+$$
+The amplitude is a nonzero entire function of $t$. In particular
+$0<\mu_h<\infty$, all polynomially weighted derivative integrals
+used below exist, and its real zero set is discrete.
+
+
+**Proof.**
+We give the tail argument, including the gamma factor. For
+$\lambda>0$, $\tau\in\mathbb R$, and
+$0<\phi<\pi/2$, rotate Euler's gamma integral in the sector with
+angle $\theta=\operatorname{sgn}(\tau)\phi$, taking $\theta=0$
+when $\tau=0$. The principal power is holomorphic on the open
+sector. On the circle of radius $R$ the exponential has modulus at
+most $e^{-R\cos\phi}$; its product with the power and arc length
+tends to zero as $R\to\infty$. The small circular contribution
+is bounded by a constant times $\varepsilon^\lambda$ and tends
+to zero. Cauchy's theorem therefore gives
+$$
+ \begin{aligned}
+ \Gamma(\lambda+i\tau)
+ &=e^{i\theta(\lambda+i\tau)}
+       \int_0^\infty r^{\lambda+i\tau-1}e^{-e^{i\theta}r}\,dr,\\
+ |\Gamma(\lambda+i\tau)|
+ &\le e^{-\phi|\tau|}\Gamma(\lambda)(\cos\phi)^{-\lambda}.
+ \end{aligned}
+ \tag{ND.4}
+$$
+At $\tau=0$ the second bound follows directly from Euler's
+integral. Its constant is bounded when $\lambda$ ranges over a
+compact subinterval of $(0,\infty)$.
+
+For completeness, summing the counting function $\lfloor x\rfloor$
+on $\Re s>1$ gives
+$\zeta(s)=s\int_1^\infty\lfloor x\rfloor x^{-s-1}\,dx$.
+Splitting $\lfloor x\rfloor=x-\{x\}$ yields
+$$
+ \zeta(s)=\frac{s}{s-1}
+           -s\int_1^\infty\{x\}x^{-s-1}\,dx.
+ \tag{ND.5}
+$$
+The last integral is absolutely and locally uniformly convergent on
+$\Re s>0$; its differentiated integrals converge on compact
+subsets because $\int_1^\infty x^{-1-\sigma}(\log x)^n dx$
+is finite for every $\sigma>0$. Thus (ND.5) continues the same
+zeta function to that half-plane away from $s=1$.
+For $s=\sigma+it$, $1/4\le\sigma\le3/4$, we have
+$|s/(s-1)|\le5$, $|s|/\sigma\le1+4|t|$, and consequently
+$|\zeta(s)|\le6+4|t|$.
+
+Write $z=t+iv$ with $|v|\le1/4$, so that
+$s=1/2+iz=(1/2-v)+it$. In (ND.4) take
+$\lambda=(1/2-v)/2\in[1/8,3/8]$ and $\tau=t/2$.
+The modulus of $\pi^{-s/2}$ is exactly $\pi^{-(1/2-v)/2}$.
+The two polynomial factors in $g$, followed by (ND.5), therefore
+give the bound
+$$
+ |g(1/2+iz)|\le C_\phi(1+|t|)^3 e^{-\phi|t|/2}
+       \qquad(|\Im z|\le1/4).
+ \tag{ND.6}
+$$
+For $|t|\ge\max(1,2\max_{\rho\in\mathcal Z}|\Im\rho|)$,
+each factor $|s-\rho|$ is at least $|t|/2$. Thus
+$|h(s)|\ge2^{-d}|t|^d$; for the empty product the lower bound
+is one and the maximum over roots is unnecessary. Division by this
+original polynomial, without removing its remaining unit, bounds
+$v_h$ on the unbounded part of the strip. The complementary
+closed rectangle is compact and the entire quotient is bounded there,
+including every cancelled root. Choose $2b<\phi<\pi/2$.
+The polynomial factor times $e^{-(\phi/2-b)|t|}$ is bounded.
+It follows that
+$|a(z)|\le C_{h,b}e^{-b|\Re z|}$ on this strip, with the
+original factor $1/\sqrt{2\pi}$ included in $C_{h,b}$.
+The Cauchy estimate on the circle of radius $1/8$ about a real
+$t$ now gives
+$$
+ |a^{(j)}(t)|\le j!8^j C_{h,b}e^{b/8}e^{-b|t|}.
+$$
+This proves (ND.3). Entirety follows from cancellation at the specified
+finite roots. The function cannot vanish identically: the formula for
+$g$ is nonzero on the real interval $s>1$, and division by a
+nonzero polynomial preserves nonidentity. The identity theorem makes
+the real zeros isolated. Positivity and finiteness of the mass follow
+from nonidentity and (ND.3).
+∎
+
+## Every centred fibre and its exponential moment
+
+Fix $k\ge2$, put $r=k-1$, and retain the real coordinates
+$$
+ \begin{gathered}
+ u=\sum_{i=1}^k t_i,\quad y_i=t_i-u/k\ (1\le i\le r),\quad
+ y_k=-\sum_{i=1}^r y_i,\quad t_i=u/k+y_i,\\
+ S=k/2+iu,\quad z_i=s_i-S/k=iy_i,\qquad
+ \Psi_u(y)=\prod_{i=1}^k a(u/k+y_i),\quad
+ d\mu_u(y)=|\Psi_u(y)|^2\,dy.
+ \end{gathered}
+ \tag{ND.7}
+$$
+The independent relative variables are $y_1,\ldots,y_r$.
+The determinant of the map with ordered variables
+$(u,y_1,\ldots,y_r)\mapsto(t_1,\ldots,t_k)$ is
+$(-1)^r$. Indeed moving the first column to the last contributes
+$(-1)^r$, and the resulting block determinant is
+$\det\left(\begin{smallmatrix}I_r&\mathbf1/k\\
+-\mathbf1^T&1/k\end{smallmatrix}\right)=1/k+r/k=1$.
+In particular the original product measure is exactly $du\,dy$.
+For $k=2$, $v=t_1-t_2=2y_1$ gives $du\,dv/2$.
+Neither the centre $k/2$ nor this Jacobian is changed.
+
+For every fixed $u$, each of the $k$ affine functions
+$y\mapsto u/k+y_i$ is nonconstant. The inverse image of a
+real zero of $a$ is a proper affine hyperplane. There are at
+most countably many such hyperplanes, each of Lebesgue measure zero.
+Consequently $\Psi_u\ne0$ almost everywhere for every $u$,
+including any fibre on which a particular normal derivative vanishes.
+The orders of the zeros remain the orders of the original product;
+the measure assertion does not modify the product on a hyperplane.
+
+For every $0<\eta<\pi/2$, choose $b$ so that
+$\eta<2b<\pi/2$. Since
+$\sum_{i=1}^k|t_i|\ge\|y\|_1-r|u|/k$, (ND.3) proves
+the explicit bound
+$$
+ \begin{aligned}
+ \int_{\mathbb R^r}e^{\eta\|y\|_1}\,d\mu_u(y)
+ &\le C_{h,0,b}^{2k}e^{2br|u|/k}
+       \int_{\mathbb R^r}e^{-(2b-\eta)\|y\|_1}\,dy\\
+ &=C_{h,0,b}^{2k}e^{2br|u|/k}
+       \left(\frac{2}{2b-\eta}\right)^r<\infty.
+ \end{aligned}
+ \tag{ND.8}
+$$
+This bound is uniform on compact $u$-intervals. It proves both
+finite moments and $0<m_k(u):=\mu_u(\mathbb R^r)<\infty$
+for every $u$. The coordinate change and Tonelli's theorem retain
+the full mass identity
+$$
+ \int_{\mathbb R}m_k(u)\,du=\mu_h^k.
+ \tag{ND.9}
+$$
+At fixed relative coordinate the exact derivative is
+$$
+ \Psi'_u(y)=\frac1k\sum_{i=1}^k a'(u/k+y_i)
+                         \prod_{j\ne i}a(u/k+y_j).
+ \tag{ND.10}
+$$
+Every derivative of this product, multiplied by any polynomial in
+$(u,y)$, is square integrable in $du\,dy$. To verify this
+claim directly, every derivative is a finite sum of products of
+derivatives of the original $a(t_i)$, with the powers of $1/k$
+from (ND.7) retained. Each product is bounded by a constant times
+$e^{-b\sum|t_i|}$ by (ND.3). A polynomial in $(u,y)$
+becomes a polynomial in $t_1,\ldots,t_k$ under the displayed
+invertible linear map; each of its monomials is integrable against
+$e^{-2b\sum|t_i|}$. The same bound on a compact $u$-interval
+proves continuity, and all orders of differentiation, of the relevant
+functions with values in $L^2(dy)$, by dominated convergence.
+
+## A complete weighted polynomial density proof
+
+**Theorem (Exponential moments imply the required density).**
+Let $\mu$ be a finite positive Borel measure on $\mathbb R^r$
+such that $\int e^{\eta\|y\|_1}d\mu(y)<\infty$ for some
+$\eta>0$. Complex polynomials in all $r$ coordinates are
+dense in $L^2(\mu)$.
+
+
+**Proof.**
+All polynomials belong to this space by the exponential moment. Suppose
+$f\in L^2(\mu)$ is orthogonal to every polynomial, using inner
+products conjugate linear in the first entry, and define the finite
+complex measure $d\nu=\overline f\,d\mu$. For $0\le2\tau<\eta$,
+Cauchy--Schwarz gives
+$$
+ \int e^{\tau\|y\|_1}d|\nu|(y)
+ \le\|f\|_{L^2(\mu)}
+       \left(\int e^{2\tau\|y\|_1}d\mu(y)\right)^{1/2}<\infty.
+ \tag{ND.11}
+$$
+Every monomial moment of $\nu$ is zero. Fix
+$\xi\in\mathbb R^r\setminus\{0\}$. The function
+$$
+ F_\xi(z)=\int e^{iz\xi\cdot y}\,d\nu(y)
+$$
+is holomorphic on the connected strip
+$|\Im z|\|\xi\|_\infty<\eta/2$. To see the differentiability,
+restrict to a compact substrip and choose $\tau<\eta/2$ strictly
+larger than its bound on $|\Im z|\|\xi\|_\infty$. Every
+polynomial factor from differentiation is bounded by the remaining
+exponential slack in (ND.11), which justifies differentiation under
+the integral. In a disc about zero, the exponential series is
+absolutely integrable by the same bound. Its $n$-th coefficient
+is $i^n\int(\xi\cdot y)^n d\nu(y)/n!=0$, since this is a
+polynomial moment. Thus $F_\xi$ vanishes near zero and throughout
+the strip by the holomorphic identity theorem. In particular
+$\widehat\nu(\xi)=F_\xi(1)=0$. The zero moment also gives
+$\widehat\nu(0)=0$.
+
+Here is the Fourier uniqueness argument needed for this finite complex
+measure. For $\varepsilon>0$ put
+$$
+ G_\varepsilon(x)=(4\pi\varepsilon)^{-r/2}
+                  e^{-|x|^2/(4\varepsilon)}
+  =(2\pi)^{-r}\int_{\mathbb R^r}
+                  e^{-\varepsilon|\xi|^2}e^{i\xi\cdot x}\,d\xi.
+ \tag{ND.12}
+$$
+The equality follows in one variable by differentiating the Gaussian
+Fourier integral and integrating by parts: its derivative is
+$-x/(2\varepsilon)$ times itself and its value at zero is
+$\sqrt{\pi/\varepsilon}$. The latter Gaussian integral follows
+by squaring it and using polar coordinates. Taking products gives
+(ND.12). Since $\nu$ is finite and the frequency Gaussian is
+integrable, Fubini's theorem gives, with the same positive Fourier sign,
+$$
+ (G_\varepsilon*\nu)(x)=(2\pi)^{-r}\int_{\mathbb R^r}
+ e^{-\varepsilon|\xi|^2}e^{i\xi\cdot x}\widehat\nu(-\xi)\,d\xi=0.
+$$
+For every bounded uniformly
+continuous function $b$, another absolutely convergent Fubini
+integral yields $\int(b*G_\varepsilon)d\nu=0$. Moreover
+$b*G_\varepsilon\to b$ uniformly: in its difference from $b$,
+the integration over $|x|<\delta$ is bounded by the uniform
+modulus of continuity at $\delta$, while the complementary
+integral is at most $2\|b\|_\infty\int_{|x|\ge\delta}G_\varepsilon$,
+which tends to zero after the substitution $x=\sqrt\varepsilon z$.
+Thus $\int b\,d\nu=0$ for all such $b$.
+
+For each nonempty closed set $F\subset\mathbb R^r$, the bounded
+Lipschitz functions
+$b_n(x)=\max(0,1-n\operatorname{dist}(x,F))$ converge pointwise
+to $1_F$. Dominated convergence against $|\nu|$ proves
+$\nu(F)=0$; this also holds for the empty closed set. In particular
+$\nu(\mathbb R^r)=0$. The Borel sets with zero $\nu$-measure
+form a Dynkin system: complements have measure zero by this total
+mass identity, and countable disjoint unions have measure zero by
+countable additivity. Closed sets form a pi-system generating the
+Borel sigma-algebra. The pi--lambda theorem therefore gives
+$\nu(A)=0$ for every Borel set $A$. Applying this to the
+positive and negative level sets of $\Re f$ and $\Im f$
+shows $f=0$ almost everywhere. Finally, the orthogonal complement
+of the closed polynomial span is zero, so the Hilbert orthogonal
+decomposition proves that span is all of $L^2(\mu)$.
+∎
+
+## The multiplier, literal frames, and their strong limit
+
+Let $\mathscr H=L^2(\mathbb R^r,dy)$. For each fixed $u$,
+the exact multiplication map is
+$$
+ \begin{aligned}
+ \mathcal M_u:L^2(\mu_u)&\longrightarrow\mathscr H,
+       &q&\longmapsto\Psi_u q,\\
+ \mathcal M_u^{-1}F(y)&=
+ \begin{cases}F(y)/\Psi_u(y),&\Psi_u(y)\ne0,\\
+ 0,&\Psi_u(y)=0.
+ \end{cases}
+ \end{aligned}
+ \tag{ND.13}
+$$
+It is a unitary map: its squared norm is exactly
+$\int|q|^2|\Psi_u|^2dy$, and the inverse has weighted squared
+norm $\int|F|^2dy$ because the zero set is null. These are maps
+between the displayed weighted and unweighted spaces. No claim of
+bounded multiplication by $1/\Psi_u$ on unweighted
+$\mathscr H$ is made or used. Assigning zero on null hyperplanes
+only selects a representative of a Hilbert class; every analytic
+amplitude and all of its pointwise zero orders remain those of (ND.7).
+
+For $m\ge0$ use the full monomial family
+$$
+ \begin{gathered}
+ \mathcal A_m=\{\alpha\in\mathbb N^r:|\alpha|\le m\},\quad
+ \theta_\alpha(z)=z^\alpha,\quad
+ \theta_\alpha(iy)=i^{|\alpha|}y^\alpha,\\
+ j_m(u):\mathbb C^{\mathcal A_m}\to\mathscr H,\quad
+ j_m(u)c=\Psi_u\sum_{\alpha\in\mathcal A_m}
+                         i^{|\alpha|}y^\alpha c_\alpha,\\
+ V_m(u)=\operatorname{ran}j_m(u),\quad W_m(u)=j_m(u)^*j_m(u),
+ \quad \Pi_m(u)=j_m(u)W_m(u)^{-1}j_m(u)^*.
+ \end{gathered}
+ \tag{ND.14}
+$$
+All moments defining these matrices are finite by (ND.8). If $c\ne0$,
+its displayed polynomial is nonzero. By continuity it is nonzero in a
+nonempty open set, which has positive $\mu_u$-measure because
+the density is positive almost everywhere. Thus $W_m(u)>0$
+for every $u$. Multiplication proves that $\Pi_m$ is
+self-adjoint, idempotent, and has range $V_m$, so it is precisely
+the orthogonal projection onto that range. The inverse here is the
+positive source Gram $W_m^{-1}$; no inverse of a possibly zero
+normal Gram is used.
+
+For $n\ge m$, let $E_{nm}$ be literal zero-padding of the
+coefficient array. The complete inclusion and Gram maps are
+$$
+ \begin{gathered}
+ j_n E_{nm}=j_m,\quad W_m=E_{nm}^*W_n E_{nm},\quad
+ E_{\ell n}E_{nm}=E_{\ell m},\\
+ V_m\subset V_n,\qquad
+ \Pi_n\Pi_m=\Pi_m\Pi_n=\Pi_m.
+ \end{gathered}
+ \tag{ND.15}
+$$
+The first line follows term by term in the original polynomial sum.
+The second line follows from the nested ranges and orthogonal
+complements. In particular $\Pi_n-\Pi_m$ is the orthogonal
+projection onto $V_n\cap V_m^\perp$.
+
+**Theorem (Full relative frames on every actual fibre).**
+For every $u\in\mathbb R$ and every $F\in\mathscr H$,
+$$
+ \lim_{m\to\infty}\|F-\Pi_m(u)F\|_{\mathscr H}=0.
+ \tag{ND.16}
+$$
+For every finite $m$, however,
+$\|I-\Pi_m(u)\|_{\mathscr H\to\mathscr H}=1$.
+
+
+**Proof.**
+The density theorem applies to $\mu_u$ by (ND.8), separately
+for each real $u$. The phases $i^{|\alpha|}$ are nonzero
+constants and hence the literal monomials in (ND.14) have precisely
+the full polynomial span. Applying the onto isometry (ND.13) proves
+$\overline{\bigcup_m V_m(u)}=\mathscr H$. Given $F$ and
+$\varepsilon>0$, choose $v\in V_M(u)$ with
+$\|F-v\|<\varepsilon$. For $m\ge M$, orthogonal
+projection minimizes distance, so
+$\|F-\Pi_mF\|\le\|F-v\|<\varepsilon$.
+This proves (ND.16).
+The Hilbert space $L^2(\mathbb R^r)$ is infinite dimensional:
+indicators of infinitely many disjoint finite positive-measure balls
+are linearly independent. Each $V_m$ has finite dimension.
+Its orthogonal complement therefore contains a unit vector, on which
+$I-\Pi_m$ has norm one. Orthogonal projection contraction gives
+the opposite inequality, proving the asserted operator norm exactly.
+∎
+
+## A fixed original source and the complete derivative domain
+
+Fix one original polynomial $P(s_1,\ldots,s_k)$ of total degree
+$D$. In the exact linear coordinates
+$S=\sum s_i$, $z_i=s_i-S/k$, $\sum z_i=0$, it has
+the unique expansion
+$$
+ P=\sum_{|\alpha|\le D}z^\alpha f_\alpha(S),\qquad
+ \deg f_\alpha\le D-|\alpha|.
+ \tag{ND.17}
+$$
+Uniqueness is coefficient comparison in the independent variables
+$(S,z_1,\ldots,z_r)$; substitution by an invertible linear
+map preserves total degree. For $m\ge D$, retain an admitted
+source degree $M_m\ge\max(D,m)$ and the full relative family
+$\mathcal A_m$. The fixed source has coefficient column
+$$
+ c_{P,m}(u)_\alpha=
+ \begin{cases}f_\alpha(k/2+iu),&|\alpha|\le D,\\
+ 0,&D<|\alpha|\le m.
+ \end{cases}
+ \qquad c_{P,n}=E_{nm}c_{P,m}.
+ \tag{ND.18}
+$$
+Every original constraint $\deg f_\alpha\le M_m-|\alpha|$
+is respected; neither the fixed polynomial nor its coefficient degree
+is changed as the frame grows. One may in particular take $M_m=m$
+for all $m\ge D$, which is the full degree-$m$ source of FC.28.
+
+Put
+$$
+ \begin{gathered}
+ p_u(y)=P(k/2+iu,iy_1,\ldots,iy_r),\quad
+ A_P(u,y)=\Psi_u(y)p_u(y)=j_m(u)c_{P,m}(u),\\
+ \partial_S^{\rm rel}=\frac1k\sum_{i=1}^k\partial_{s_i},\quad
+ F_P(u,y)=\Psi'_u(y)p_u(y),\\
+ \partial_u A_P=F_P+i\Psi_u(\partial_S^{\rm rel}P)_u.
+ \end{gathered}
+ \tag{ND.19}
+$$
+The notation $P(S,z)$ in these formulas denotes the exact
+substitution $s_i=S/k+z_i$; $z_k=-\sum_{i<k}z_i$.
+At fixed relative coordinates $dS/du=i$, so the displayed
+derivative includes exactly the factor $i/k$ on the sum of
+the original coordinate derivatives. By (ND.3) and (ND.10),
+$A_P,F_P,\partial_uA_P$ belong to
+$\mathscr K=L^2(\mathbb R_u;\mathscr H)$.
+In fact all their polynomially weighted derivatives belong to
+$\mathscr K$. In particular $A_P$ lies in the actual
+derivative domain
+$$
+ \mathcal D_u=\{A\in\mathscr K:\partial_uA\in\mathscr K
+                         \text{ in the distributional sense}\}.
+ \tag{ND.20}
+$$
+The smooth derivative in (ND.19) equals the distributional derivative,
+as follows by integration by parts against compactly supported test
+functions and the preceding integrability bounds.
+
+We also retain its original Mellin realization and sign. If
+$\mathcal M f(s)=\int_0^\infty f(x)x^{s-1}dx$, the original
+test vector $F_h$ has $\mathcal M F_h=v_h$, and the
+polynomial source is
+$\mathcal T_h^{(k)}P=P(D_1,\ldots,D_k)F_h^{\otimes k}$,
+where $D_i=-x_i\partial_{x_i}$. The normalized critical-line
+transform has factor $(2\pi)^{-k/2}$, followed by (ND.7).
+Integration by parts gives $\mathcal M(D_i f)=s_i\mathcal M f$,
+so its image is exactly $A_P$, with the original product of
+$a$'s. Writing $x_i=e^{q_i}$, the Mellin integral becomes
+the Fourier transform with kernel $e^{it_iq_i}$ of
+$e^{(q_1+\cdots+q_k)/2}f(e^{q_1},\ldots,e^{q_k})$.
+The change of variable has squared norm exactly $\int|f|^2d\mathbf x$;
+Fourier Plancherel and the Jacobian one in (ND.7) give the isometry
+$\mathscr U_k$ in FC.9. On this original test domain,
+$$
+ \begin{gathered}
+ \mathscr U_k\mathcal T_h^{(k)}P=A_P,\qquad
+ \mathscr U_kD^{(k)}=S\mathscr U_k,\qquad
+ \partial_u\mathscr U_k=i\mathscr U_k\mathscr L_k,\\
+ D^{(k)}=\sum_iD_i,\qquad
+ \mathscr L_k=\frac1k\sum_i\log x_i,\qquad
+ [D^{(k)},\mathscr L_k]=-I.
+ \end{gathered}
+ \tag{ND.21}
+$$
+The second derivative identity follows by differentiating the Fourier
+integral with $\partial t_i/\partial u=1/k$; the commutator
+follows from $-x_i\partial_{x_i}\log x_i=-1$, summed with
+the displayed coefficient $1/k$. All these operations are on
+the original test vectors and their logarithmic derivatives. Their
+spectral images have the established $L^2$ derivatives, so no
+new domain or arbitrary assignment of an arithmetic jet is introduced.
+
+In the degree-$m$ frame define the original matrices and maps
+$$
+ \begin{gathered}
+ B_m=j_m^*j_m',\quad \Gamma_m=W_m^{-1}B_m,\quad
+ N_m=(I-\Pi_m)j_m',\quad \mathcal N_m=N_m^*N_m,\\
+ t_m(P)=j_m(c_{P,m}'+\Gamma_m c_{P,m}),\qquad
+ r_m(P)=N_m c_{P,m}.
+ \end{gathered}
+ \tag{ND.22}
+$$
+Every term is the FC.6 term in the literal enlarged frame. Since
+$j_m\Gamma_m=\Pi_mj_m'$, the product rule gives
+$$
+ \begin{gathered}
+ t_m(P)=\Pi_m\partial_uA_P,\qquad
+ r_m(P)=(I-\Pi_m)\partial_uA_P=(I-\Pi_m)F_P,\\
+ \partial_uA_P=t_m(P)+r_m(P),\quad
+ \langle t_m(P,u),r_m(P,u)\rangle_{\mathscr H}=0,\\
+ \|\partial_uA_P\|_{\mathscr K}^2
+     =\|t_m(P)\|_{\mathscr K}^2+\|r_m(P)\|_{\mathscr K}^2.
+ \end{gathered}
+ \tag{ND.23}
+$$
+For the second equality, the coefficient derivative in (ND.19) belongs
+to $V_m(u)$, so its orthogonal complement is zero. This equality
+identifies a single fixed function $F_P$, independent of frame
+degree, which controls every residual.
+
+**Theorem (Vanishing of the fixed-source actual normal residual).**
+For every fixed original polynomial $P$ and every real $u$,
+$$
+ \begin{gathered}
+ \|r_m(P,u)\|_{\mathscr H}\longrightarrow0,\qquad
+ \|t_m(P,u)-\partial_uA_P(u)\|_{\mathscr H}\longrightarrow0,\\
+ \|r_m(P)\|_{\mathscr K}\longrightarrow0,\qquad
+ \|t_m(P)-\partial_uA_P\|_{\mathscr K}\longrightarrow0.
+ \end{gathered}
+ \tag{ND.24}
+$$
+The fibre convergence of both norms is uniform on compact
+$u$-intervals. The derivative graph converges, in the original
+$\mathscr K\oplus\mathscr K$ norm, to
+$(\partial_uA_P,0)$, while its sum is exactly $\partial_uA_P$
+at every degree.
+
+
+**Proof.**
+For each $u$, $F_P(u)\in\mathscr H$, and (ND.16)
+applied to this vector gives the first limit through (ND.23).
+Furthermore,
+$$
+ 0\le\|r_m(P,u)\|^2\le\|F_P(u)\|^2,
+ \qquad \int_{\mathbb R}\|F_P(u)\|^2du<\infty.
+ \tag{ND.25}
+$$
+All functions here are measurable; in fact $j_m,j_m',W_m$ are
+smooth in $u$ by the compact-interval bounds after (ND.10),
+and $W_m^{-1}$ is smooth since its determinant is everywhere
+positive. The dominated convergence theorem proves the integrated
+residual limit. Since $t_m-\partial_uA_P=-r_m$, it proves
+the two tangential limits and the asserted graph convergence as well.
+
+For $n\ge m$, (ND.15) gives the exact orthogonal decomposition
+$$
+ \begin{gathered}
+ r_m(P,u)=r_n(P,u)+(\Pi_n-\Pi_m)F_P(u),\\
+ \|r_m(P,u)\|^2-\|r_n(P,u)\|^2
+              =\|(\Pi_n-\Pi_m)F_P(u)\|^2\ge0.
+ \end{gathered}
+ \tag{ND.26}
+$$
+The two terms are orthogonal because the first lies in $V_n^\perp$
+and the second in $V_n$. Each squared residual is continuous
+by the same smoothness argument. On a compact set $K$ the open
+sets $\{u:\|r_m(P,u)\|^2<\varepsilon\}$ are increasing and
+cover $K$. A finite subcover, followed by taking its largest
+index, makes the squared residual less than $\varepsilon$
+everywhere on $K$. This proves compact uniform convergence
+without a global uniform-in-source assertion.
+∎
+
+For a fixed finite source core $\operatorname{span}\{P_1,\ldots,P_q\}$
+let $R_m c=\sum_j c_jr_m(P_j)$. Cauchy--Schwarz gives
+$$
+ \|R_m\|^2\le\sum_{j=1}^q\|r_m(P_j)\|_{\mathscr K}^2\to0,
+ \quad \|R_m^*R_m\|\to0,\quad
+ R_m^*R_m-R_n^*R_n\succeq0\ (n\ge m).
+ \tag{ND.27}
+$$
+The last inequality is (ND.26) integrated for each linear combination
+of the fixed sources. These are exactly the normal Gram matrices
+restricted by literal inclusion of that source core. The core and its
+coefficient norm are fixed in this statement. The full degree-varying
+source dimension, its minimum arithmetic norm, and the size of its
+normal-image inverse are not replaced by this finite-core limit.
+
+The exact translation to the original source-amplitude metric is also
+available on this same fixed core. For an independent core put
+$(G_0)_{ij}=\langle A_{P_i},A_{P_j}\rangle_{\mathscr K}$.
+It is independent of $m$ and strictly positive: a nonzero linear
+combination of the original polynomials is nonzero on an open subset
+of the real critical-line coordinates, and the original product
+amplitude is nonzero almost everywhere there. Its squared integral
+is therefore positive. With $H_m=R_m^*R_m$, define
+$$
+ K_m=G_0^{-1}H_m,\quad K_m^*G_0=G_0K_m=H_m,\quad
+ \|R_m\|_{G_0\to\mathscr K}^2
+ \le\lambda_{\min}(G_0)^{-1}
+                \sum_j\|r_m(P_j)\|_{\mathscr K}^2\longrightarrow0.
+$$
+The first equalities follow by matrix multiplication, and the bound
+follows from $c^*G_0c\ge\lambda_{\min}(G_0)\|c\|^2$ and
+the same column Cauchy--Schwarz inequality. Multiplication by the
+positive square root $G_0^{1/2}$ is the isometry from this original
+coefficient metric to the Euclidean metric. It carries $K_m$ to
+the positive matrix $G_0^{-1/2}H_mG_0^{-1/2}$; its largest
+eigenvalue is exactly $\|R_m\|_{G_0\to\mathscr K}^2$.
+Thus $K_m$ also tends to zero in its original metric operator
+norm. These explicit congruence and comparison maps preserve both
+the source-amplitude metric and the normal metric.
+
+The arithmetic maps themselves are retained by the same inclusions.
+For a nonempty packet set
+$I=(h(s_1),\ldots,h(s_k))$, let $j_I$ denote the full finite
+jet map, and put $U(\mathbf s)=\prod_i v_h(s_i)$.
+At every selected root $v_h(\rho)\ne0$, since its full zero
+order has been divided out; hence $\upsilon=j_IU$ is a unit
+in the full tensor jet algebra. The original source and logarithmic
+derivative observations are
+$$
+ J(\mathcal T_h^{(k)}P)=\upsilon[P],\qquad
+ J\mathscr L_k\mathcal T_h^{(k)}P
+              =j_I\bigl(\partial_S^{\rm rel}(UP)\bigr).
+ \tag{ND.28}
+$$
+Indeed the Mellin transform of $\mathcal T_h^{(k)}P$ is $UP$;
+insertion of $k^{-1}\sum\log x_i$ differentiates it by
+$\partial_S^{\rm rel}$. At a selected tuple the algebra of
+germs modulo the full powers is finite; a germ with nonzero constant
+term is invertible by its finite geometric expansion in the nilpotent
+maximal ideal. This proves the asserted unit property including all
+mixed jet orders. Since (ND.18) is the identity on $P$, both
+quantities in (ND.28) are identical at every degree. No passage of
+this jet map through a Hilbert-space limit is required for, or asserted
+by, the density theorem. If $h=1$, the quotient by $I=(1)$
+is the zero algebra and both finite arithmetic targets are zero.
+
+## Invariant frames, sparse frames, and all original zero cases
+
+Let $G$ be any fixed subgroup of the factor permutation group
+$S_k$. Its action on $\sum y_i=0$, expressed in the first
+$r$ coordinates, is real linear with determinant of absolute value
+one. To check the determinant, the action on the full $t$ variables
+is a permutation matrix with determinant $\pm1$; conjugating by
+(ND.7) leaves $u$ fixed and acts linearly on $y$, so the
+remaining block has determinant $\pm1$. The product $\Psi_u$
+is unchanged by this action. Therefore
+$$
+ (\mathsf U_gF)(y)=F(g^{-1}y),\qquad
+ \mathsf R_G=\frac1{|G|}\sum_{g\in G}\mathsf U_g
+ \tag{ND.29}
+$$
+defines unitary group actions on both $\mathscr H$ and
+$L^2(\mu_u)$; they are intertwined by $\mathcal M_u$.
+The adjoint of $\mathsf U_g$ is $\mathsf U_{g^{-1}}$, so
+$\mathsf R_G^*=\mathsf R_G$. Counting the $|G|$ products
+$gh=\ell$ for each $\ell$ gives $\mathsf R_G^2=\mathsf R_G$.
+Its image is the invariant subspace: its image is fixed under every
+group element, and its value on a fixed vector is that vector.
+Thus it is exactly the invariant orthogonal projection.
+
+Let $V_m^G(u)$ be $\Psi_u$ times all $G$-invariant
+relative polynomials of degree at most $m$, using any full
+independent basis of that space with its original coefficients.
+The degree is preserved by the linear action and by its finite average.
+Applying $\mathsf R_G$ to polynomial approximants in the density
+theorem proves density in the invariant weighted subspace. Intertwining
+by (ND.13) therefore gives
+$$
+ \overline{\bigcup_m V_m^G(u)}=\mathscr H^G,\qquad
+ \Pi_m^G(u)\xrightarrow[\text{strongly}]{}\mathsf R_G.
+ \tag{ND.30}
+$$
+To verify the second formula for an arbitrary $F$, decompose it
+as $\mathsf R_GF+(I-\mathsf R_G)F$. The second part is
+orthogonal to every $V_m^G$, and the first is approximated by
+their dense union by the same best-approximation argument as (ND.16).
+If the original polynomial $P$ is $G$-invariant, then
+$A_P,F_P,\partial_uA_P$ are invariant, since the group fixes
+$u$ and $\Psi_u$. Its expansion in a full homogeneous
+invariant basis retains the bound $\deg f_\alpha\le D-\ell_\alpha$:
+apply coefficient comparison in powers of $S$ and the homogeneous
+relative grading to (ND.17). Consequently (ND.23)--(ND.27) hold
+for these actual invariant frames, with $\Pi_m^G$ in place of
+$\Pi_m$. In particular their fixed-source residual also tends
+to zero pointwise, on compact $u$-intervals, and in $\mathscr K$.
+This includes full symmetric orbit frames without changing the
+unscaled orbit coefficients.
+
+For an arbitrary nested family of finite polynomial spaces
+$E_m$, let $V_m^E(u)=\mathcal M_uE_m$ and
+$V_\infty^E(u)=\overline{\bigcup_m V_m^E(u)}$. Its exact
+strong projection limit is
+$$
+ \Pi_m^E(u)\xrightarrow[\text{strongly}]{}
+           Q_u^E:=\operatorname{proj}_{V_\infty^E(u)}.
+ \tag{ND.31}
+$$
+Here is a proof requiring no density assumption. For $n\ge m$,
+orthogonality of the nested projections gives
+$\|\Pi_n^EF-\Pi_m^EF\|^2=\|\Pi_n^EF\|^2-\|\Pi_m^EF\|^2$.
+The squared norms increase and are bounded by $\|F\|^2$.
+Thus the projections applied to $F$ are Cauchy. Their limit
+belongs to $V_\infty^E$, and its difference from $F$ is
+orthogonal to each $V_m^E$, hence to their closure. This proves
+(ND.31) and identifies the exact projection map. A fixed source
+admitted from some level onward is a sum of fixed members of that
+relative polynomial space times polynomials in $S$. Its coefficient
+derivative replaces each such polynomial by $i$ times its
+$S$-derivative and therefore belongs to the same relative space.
+The residual limit is consequently precisely
+$(I-Q_u^E)\partial_uA_P=(I-Q_u^E)F_P$. This convergence is
+also in $\mathscr K$, by pointwise strong convergence and the
+integrable bound $4\|F_P(u)\|^2$ for the squared difference
+from its limiting residual. The limit field is measurable as a
+pointwise norm limit of measurable projection fields.
+
+The projection in (ND.31) need not be the identity. A concrete actual
+example uses $E_m=\mathbb C$ at every level. Set
+$b_u=m_k(u)^{-1}\int y_1d\mu_u(y)$, which is finite by (ND.8).
+The nonzero vector $F=\Psi_u(y)(y_1-b_u)$ has zero inner product
+with $\Psi_u$, so every $\Pi_m^EF=0$. It is nonzero because
+$\mu_u$ has positive density almost everywhere and the affine
+hyperplane $y_1=b_u$ is null. This gives the exact projection
+and an explicit failed approximation, without asserting that the
+sparse space is unrelated to the full one.
+
+All zero and empty cases have concrete maps. The zero source has
+$A_P=F_P=t_m=r_m=0$ at every degree. A nonzero source whose
+arithmetic class $[P]$ or $\upsilon[P]$ vanishes is still the
+same nonzero polynomial in (ND.17), with the same amplitude and
+convergence; (ND.28) retains its full arithmetic class. The packet
+$h=1$ gives the actual $2\xi/\sqrt{2\pi}$ amplitude and
+satisfies every analytic estimate above. No actual fibre has zero
+mass for $k\ge2$, by the hyperplane argument following (ND.7).
+One may append an initial empty frame $V_{-1}=\{0\}$ with
+$\Pi_{-1}=0$; the full nonempty sequence starts with the constant
+frame at degree zero. Empty source arrays have the unique zero maps.
+
+The original exceptional two-factor fibre is retained. If the packet
+makes $a$ even, as for the quartet in FC.27, then $a'$ is odd
+and (ND.10) gives
+$$
+ \Psi'_0(y)=\tfrac12\bigl(a'(y)a(-y)+a(y)a'(-y)\bigr)=0,
+ \quad j_m'(0)=0,\quad N_m(0)=0,\quad r_m(P,0)=0.
+ \tag{ND.32}
+$$
+The derivative of the coefficient polynomial may be nonzero; (ND.23)
+keeps that term in the tangential component. The density proof and
+the limiting derivative graph require no positive inverse for
+$\mathcal N_m(0)$. Their only fibre inverse is $W_m^{-1}$,
+which remains strictly positive there. No conclusion about one-factor
+relative frames is hidden in the assumption $k\ge2$: for $k=1$
+the relative coordinate space has one point, the multiplication image
+is one-dimensional when $a(u)\ne0$ and is zero when $a(u)=0$.
+At such a zero it is not onto the scalar ambient Hilbert space, and
+the pointwise density-to-identity assertion (ND.16) was explicitly
+proved only for $k\ge2$.
+
+## Frame covariance and the exact half-line transport
+
+Let $C_m(u)$ be any smooth invertible change of relative frame.
+Use $\widetilde j_m=j_m C_m$ and
+$\widetilde c_{P,m}=C_m^{-1}c_{P,m}$. The product and projection
+remain the same, while the complete connection and normal formulas are
+$$
+ \begin{gathered}
+ \widetilde W_m=C_m^*W_mC_m,\quad
+ \widetilde B_m=C_m^*B_mC_m+C_m^*W_mC_m',\\
+ \widetilde\Gamma_m=C_m^{-1}\Gamma_mC_m+C_m^{-1}C_m',\quad
+ \widetilde N_m=N_mC_m,\quad
+ \widetilde N_m\widetilde c_{P,m}=r_m(P),\\
+ \widetilde j_m(\widetilde c_{P,m}'
+                +\widetilde\Gamma_m\widetilde c_{P,m})=t_m(P),
+ \quad \widetilde E_{nm}=C_n^{-1}E_{nm}C_m.
+ \end{gathered}
+ \tag{ND.33}
+$$
+The first two lines follow by differentiating $j_mC_m$ and
+using the unchanged projection image; its complementary projection
+annihilates $j_mC_m'$. Differentiating
+$C_m^{-1}c_{P,m}$ cancels the $C_m^{-1}C_m'$ term and
+proves the tangential identity. Finally
+$\widetilde j_n\widetilde E_{nm}=\widetilde j_m$, so these
+are the exact typed inclusion maps for the same nested images.
+Arbitrary growth of $C_m$ is not used to assign an independent
+coefficient domain: the admitted columns are precisely the pullbacks
+of (ND.18), and the actual amplitudes and graph norms remain unchanged.
+
+For clarity the residual limit can also be transported into the original
+two-branch half-line representation without an evenness assumption.
+For $R\in\mathscr K$, let $x=u^2>0$, $v=\sqrt x$, and set
+$$
+ \begin{gathered}
+ R_+(x)=R(v),\quad R_-(x)=R(-v),\quad
+ e_R(x)=\tfrac12(R_+(x)+R_-(x)),\quad
+ o_R(x)=\frac{R_+(x)-R_-(x)}{2i\sqrt x},\\
+ R_+=e_R+i\sqrt x\,o_R,\qquad R_-=e_R-i\sqrt x\,o_R,\\
+ \|R\|_{\mathscr K}^2
+ =\int_0^\infty\frac{\|R_+\|^2+\|R_-\|^2}{2\sqrt x}\,dx
+ =\int_0^\infty\left(\frac{\|e_R\|^2}{\sqrt x}
+                        +\sqrt x\,\|o_R\|^2\right)dx.
+ \end{gathered}
+ \tag{ND.34}
+$$
+The first equality is the positive Jacobian on each branch; the second
+is the parallelogram identity after the displayed exact inverse.
+These formulas define an onto isometry between the full-line space
+and the displayed two weighted half-line spaces. Thus (ND.24) carries
+the actual residual to zero in the sum of both original weighted
+norms, and carries the full derivative graph to the same transported
+derivative. Pointwise fibre convergence holds at every $x>0$ on
+both branches. At the meeting point $u=0$, the original smooth
+amplitudes have their original trace; no new independent half-line
+boundary values are introduced. The proof does not assert convergence
+of $\partial_u r_m$, which would require control of a different
+derivative. It proves exactly the fixed-source convergence of the
+normal and tangential parts of the original first derivative, with
+their sum and arithmetic source fixed at every degree.

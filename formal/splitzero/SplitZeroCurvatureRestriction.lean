@@ -4,9 +4,9 @@ import SplitZeroRestrictionTransport
 /-!
 The curvature cost and the bounded restriction loss use different coordinates:
 lambda >= 0 and x=lambda/(1+lambda). Both are retained explicitly.
-The normalized coefficients below are the rational expressions in the source's
-all-order curvature-jet formula; their derivative interpretation beyond first
-order is a written theorem, not a hidden formal premise.
+The normalized coefficients are the rational expressions in the source's
+all-order curvature-jet formula. Derivative interpretation beyond first
+order remains a written theorem, not a hidden formal premise.
 -/
 noncomputable section
 namespace SplitZero.CurvatureRestriction
@@ -31,12 +31,15 @@ theorem one_sub_loss (l : ℝ) (hl : 0 ≤ l) : 1-loss l = (1+l)⁻¹ := by
   field_simp
   ring
 
-/-- A genuine scalar derivative of the cumulative radial curvature. -/
+/-- A genuine derivative of cumulative radial curvature. -/
 theorem radialMass_deriv (l t : ℝ) (h : 1+t*l ≠ 0) :
     HasDerivAt (radialMass l) (density l t) t := by
   have hd := (((hasDerivAt_id t).mul_const l).div
     ((hasDerivAt_const t 1).add ((hasDerivAt_id t).mul_const l)) h)
-  convert hd using 1 <;> dsimp [radialMass, density] <;> field_simp <;> ring
+  change HasDerivAt (radialMass l) _ t at hd
+  convert hd using 1
+  dsimp [density]
+  ring
 
 /-- The first derivative retains the factor two and the cubic denominator. -/
 theorem density_deriv (l t : ℝ) (h : 1+t*l ≠ 0) :
@@ -44,7 +47,11 @@ theorem density_deriv (l t : ℝ) (h : 1+t*l ≠ 0) :
   have hd := ((hasDerivAt_const t l).div
     (((hasDerivAt_const t 1).add ((hasDerivAt_id t).mul_const l)).pow 2)
     (pow_ne_zero 2 h))
-  convert hd using 1 <;> dsimp [density] <;> field_simp <;> ring
+  change HasDerivAt (density l) _ t at hd
+  convert hd using 1
+  dsimp
+  field_simp [h]
+  ring
 
 theorem density_at_one (l : ℝ) (hl : 0 ≤ l) :
     density l 1 = loss l - (loss l)^2 := by
@@ -54,13 +61,19 @@ theorem density_at_one (l : ℝ) (hl : 0 ≤ l) :
   field_simp
   ring
 
-/-- Change from the positive cost spectrum to the bounded return-loss spectrum. -/
+/-- Exact change to the bounded return-loss spectrum. -/
 theorem density_change (l t : ℝ) (hl : 0 ≤ l) (ht : 0 ≤ t) :
     density l t = loss l * (1-loss l) / (1-(1-t)*loss l)^2 := by
   have h1 : 1+l ≠ 0 := by linarith
   have h2 : 1+t*l ≠ 0 := ne_of_gt (by positivity : 0 < 1+t*l)
+  have he : 1-(1-t)*loss l = (1+t*l)/(1+l) := by
+    unfold loss
+    field_simp
+    ring
+  rw [he, one_sub_loss l hl]
   unfold density loss
-  field_simp
+  rw [div_pow]
+  field_simp [h1, h2]
   ring
 
 /-- Rational normalized curvature-jet coefficient at t=1. -/
@@ -96,7 +109,7 @@ theorem jet_as_difference (l : ι → ℝ) (hl : ∀ a, 0 ≤ l a) (n : ℕ) :
   simp only [normalizedJet, jet_scalar _ (hl _) n, Finset.sum_sub_distrib,
     RestrictionLog.powerTrace]
 
-/-- All bounded trace powers are recovered without discarding the boundary mass. -/
+/-- All bounded trace powers are recovered with the radial mass retained. -/
 theorem recover_moment (l : ι → ℝ) (hl : ∀ a, 0 ≤ l a) (p : ℕ) :
     RestrictionLog.powerTrace (fun a => loss (l a)) (p+1) =
       cumulative l 1 - ∑ n ∈ Finset.range p, normalizedJet l n := by
@@ -107,7 +120,6 @@ theorem recover_moment (l : ι → ℝ) (hl : ∀ a, 0 ≤ l a) (p : ℕ) :
       rw [show p+1+1=p+2 by omega]
       linarith
 
-/-- The geometric logarithmic moment equals the earlier restriction logarithm. -/
 theorem cost_eq (l : ι → ℝ) (hl : ∀ a, 0 ≤ l a) :
     cost l = RestrictionLog.logVolume (fun a => loss (l a)) := by
   unfold cost RestrictionLog.logVolume
@@ -115,7 +127,7 @@ theorem cost_eq (l : ι → ℝ) (hl : ∀ a, 0 ≤ l a) :
   intro a _ha
   rw [one_sub_loss (l a) (hl a), Real.log_inv, neg_neg]
 
-/-- Compose with the proved adaptive theorem on the same spectrum. -/
+/-- Compose the curvature cost with the previously proved adaptive certificate. -/
 theorem curvature_certificate (l : ι → ℝ) (hl : ∀ a, 0 ≤ l a)
     (p : ℕ) (hp : RestrictionLog.powerTrace (fun a => loss (l a)) p < 1) :
     cost l ≤ RestrictionLog.prefixTrace (fun a => loss (l a)) p +
@@ -135,13 +147,12 @@ end Spectrum
 section Matrices
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- Both formulas for the original cost Z coincide by the actual inverse equations. -/
 theorem cost_operator (Ki Gi Kj Gj : Matrix ι ι ℂ)
     (hi : Ki*Gi=1) (hj : Kj*Gj=1) :
     Kj*(Gi-Gj) = (Kj-Ki)*Gi := by
   rw [Matrix.mul_sub, Matrix.sub_mul, hi, hj]
 
-/-- I+Z is precisely the inverse of the previously constructed return. -/
+/-- I+Z is the inverse of the original return. -/
 theorem return_cost (Ki Gi Kj Gj : Matrix ι ι ℂ)
     (hGi : Gi*Ki=1) (hGj : Gj*Kj=1) (hi : Ki*Gi=1) (hj : Kj*Gj=1) :
     (1+Kj*(Gi-Gj))*(Ki*Gj)=1 ∧ (Ki*Gj)*(1+Kj*(Gi-Gj))=1 := by
@@ -155,7 +166,7 @@ theorem return_cost (Ki Gi Kj Gj : Matrix ι ι ℂ)
       _ = Ki*(Gj*Kj)*Gi := by simp only [Matrix.mul_assoc]
       _ = 1 := by rw [hGj, Matrix.mul_one, hi]
 
-/-- Actual complex matrix traces evaluate the curvature certificate through its witness. -/
+/-- Actual complex matrix traces evaluate the certificate through a spectral witness. -/
 theorem matrix_curvature_certificate (H U V : Matrix ι ι ℂ) (l : ι → ℝ)
     (hUV : U*V=1) (hVU : V*U=1)
     (hH : H=U*(Matrix.diagonal (fun a => (loss (l a) : ℂ)))*V)

@@ -1,0 +1,164 @@
+% Complete mechanical source transfer; source SHA-256 a3bb84329d384071b4ac4829731e26dbe2586b719548a660bae6eefb34f5e00c
+\section{Balanced arithmetic norm windows and the strengthened endpoint threshold}\label{balanced-window-balanced-arithmetic-norm-windows-and-the-strengthened-endpoint-threshold}
+
+\textbf{Purpose and result.}
+This independently reviewed derivation extends the original arithmetic monic-norm estimate to every balanced degree window. It retains the exact Legendre factor and each mass-dependent constant, then records its composition with the exact window-product corollary. The complete derivation is retained here even where the subsequent threshold chapter presents the same implication.
+
+\textbf{Source and reading boundary.}
+The complete proof body of \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/952ef9fee1e1419b6858d920354de8fa99430b7d/workbenches/tau-arithmetic-endpoint-bounds/BALANCED_WINDOW_PROOF.md}{the pinned source note} follows, with subordinate headings and BV equation prefixes. No proof, constant, phase term, or source-scope statement has been abridged. Statements below about GitHub-only working sources, a next integration cut, or exclusion from the frozen DOI edition describe the historical source publication boundary; they do not exclude these proofs from this integrated reader. The frozen edition itself is not retroactively changed.
+
+\begingroup
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% BEGIN FULL SOURCE BODY
+This is a written analytic extension of the supplied arithmetic endpoint note, not a Lean certificate or a numerical enclosure. The fixed packet, original source, Taylor unit, measure and total mass are unchanged. It is intended for the next integration cut, not the already frozen E publication.
+
+\subsection[\hspace{0.4em}Original measure and constants]{Original measure and constants}\label{balanced-window-original-measure-and-constants}
+
+Fix a monic finite divisor h of \(g=2\xi\), removing its selected zeros with their full orders, and put \(d=\deg h\). On the original line \(S=k/2+iu\), use
+
+\[
+\begin{aligned}
+w_h(t)&=\frac{|(g/h)(1/2+it)|^2}{2\pi},\qquad m_{h,k}=w_h^{*k},\\
+\omega_{h,k,j}&=\inf_{\substack{P\text{ monic}\\\deg P=j}}
+\int |P(k/2+iu)|^2m_{h,k}(u)\,du.
+\end{aligned}
+\]
+
+The mass is \(\mu_h^k\), not one. The original note proves, for \(a=\pi/2\) and \(B=42+2d\),
+
+\[
+m_{h,k}(u)\ge c_h\vartheta_h^{k-3}
+\exp[-a(|u|+k-3)](1+|u|+k-3)^{-B},\qquad k\ge3,
+\]
+
+where \(c_h=b_hc_h^{(1)}>0\), \(b_h=\min_{|v|\le1}(w_h*w_h)(v)>0\), and \(\vartheta_h=\int_{[-1,1]}w_h>0\). Fix \(0<b<a\) and retain both actual finite exponential moments \(M_+=\int\exp(bt)w_h(t)\,dt\) and \(M_-=\int\exp(-bt)w_h(t)\,dt\). Define \(X=\max(1,M_+,M_-)\) and \(K=\max(1,\vartheta_h^{-1})\). None of these definitions normalizes the source.
+
+\subsection[\hspace{0.4em}Exact preceding estimate]{Exact preceding estimate}\label{balanced-window-exact-preceding-estimate}
+
+The monic Lebesgue minimum, allowing any leading coefficient of modulus one, is
+
+\[
+\ell_n(L)=\frac{2L^{2n+1}}{2n+1}
+\left[\frac{2^n(n!)^2}{(2n)!}\right]^2.
+\]
+
+This includes the original leading phase \(i^n\) under \(S=k/2+iu\). For integers \(n\ge0\), \(r\ge1\), \(k\ge3\) and any \(L>0\), the trial-monomial exponential upper bound and interval Legendre lower bound give
+
+\[
+\begin{aligned}
+A_{h,k,n,r}&:=\left(\frac{\omega_{h,k,n+r}}{\omega_{h,k,n}}\right)^{1/(2r)}\\
+&\le\left[
+\frac{(2(n+r))!b^{-2(n+r)}(M_+^k+M_-^k)
+\exp[a(L+k-3)](1+L+k-3)^B}
+{c_h\vartheta_h^{k-3}\ell_n(L)}\right]^{1/(2r)}.
+\end{aligned}\tag{BV.1}
+\]
+
+For the balanced-window theorem take integers \(n\ge k\ge3\) and \(n/2\le r\le n\), and set \(L=n\). Then
+
+\[
+A_{h,k,n,r}\le\mathrm{Cbal}_h n,\tag{BV.2}
+\]
+\[
+\mathrm{Cbal}_h=256\exp(\pi)\max(1,3/c_h)XK
+\max(1,b^{-3})6^{B/3}.\tag{BV.3}
+\]
+
+\subsubsection[\hspace{0.4em}Proof of the uniform constant]{Proof of the uniform constant}\label{balanced-window-proof-of-the-uniform-constant}
+
+The central-binomial bound gives \(\ell_n(n)\ge2n^{2n+1}/[(2n+1)4^n]\). Also \((2(n+r))!\le(4n)^{2(n+r)}\) and \(M_+^k+M_-^k\le2X^k\). Combining these before taking roots cancels the factor two. The factorial, Legendre and \(c_h\) factors after the 2r-th root are at most
+
+\[
+n\cdot4\cdot8^{n/r}\left[\frac{2n+1}{c_hn}\right]^{1/(2r)}
+\le256n\max(1,3/c_h).
+\]
+
+Here \(n/r\le2\), \((2n+1)/n\le3\), and \(0<1/(2r)\le1\). The remaining factors obey
+
+\[
+\begin{aligned}
+X^{k/(2r)}&\le X,\\
+\vartheta_h^{-(k-3)/(2r)}&\le K,\\
+b^{-(n+r)/r}&\le\max(1,b^{-3}),\\
+\exp[a(n+k-3)/(2r)]&\le\exp(2a)=\exp(\pi).
+\end{aligned}
+\]
+
+Finally \(1+n+k-3\le2n\) and \(2r\ge n\). The function \(\log(2x)/x\) decreases for \(x\ge3\), since its derivative is \([1-\log(2x)]/x^2<0\). Hence
+
+\[
+(1+n+k-3)^{B/(2r)}\le(2n)^{B/n}\le6^{B/3}.
+\]
+
+Multiplication proves BV.2-BV.3. This proof works for the original arithmetic density without an evenness hypothesis. The constants depend on fixed h and b only, never n,k,r.
+
+\subsection[\hspace{0.4em}Composition with the exact consecutive-window product]{Composition with the exact consecutive-window product}\label{balanced-window-composition-with-the-exact-consecutive-window-product}
+
+This paragraph assumes the separately reviewed exact-window theorem for the original canonical quotient family, including its nonnegative contractions and zero-contraction cases. Write \(V_N=\det G_N>0\) and \(\Lambda_N=\omega_N/V_N\). Its simple product corollary is
+
+\[
+\begin{aligned}
+\min_{n\le N<n+r}\epsilon_N
+&\le\left(\frac{\Lambda_{n+r}}{\Lambda_n}\right)^{1/(2r)}\\
+&=A_{h,k,n,r}\left(\frac{V_n}{V_{n+r}}\right)^{1/(2r)}.
+\end{aligned}\tag{BV.4}
+\]
+
+Do not infer BV.4 from BV.1 alone. It uses the original rank-two Toda identities and the retained source/quotient maps. If every allowance on the window has the exterior lower bound \(L_{h,k}\), BV.2-BV.4 imply
+
+\[
+\log\frac{V_n}{V_{n+r}}\ge2r\log\left[\frac{L_{h,k}}{\mathrm{Cbal}_hn}\right].\tag{BV.5}
+\]
+
+This holds even if the right side is negative; canonical volume monotonicity independently gives a nonnegative left side.
+
+For the packet consisting exactly of the hypothetical off-line quartet \(1/2\pm\delta\pm i\gamma\), with fixed \(\delta,\gamma>0\) and common multiplicity \(m\ge1\), retain
+
+\[
+\begin{aligned}
+q=q_k&=[1+k(m-1)](k+1)^2,\\
+L_{h,k}&=2\delta[1+k(m-1)](k+1)
+\left\lfloor\frac{(k+1)^2}{4}\right\rfloor,\\
+q&\ge k\ge3,\qquad L_{h,k}/q\ge\delta k/2.
+\end{aligned}
+\]
+
+Take \(n=q\) and \(r=q-1\). Since \(q\ge3\), \(q/2\le q-1\le q\); the degrees \(q,\ldots,2q-2\) are admitted and the norm endpoint is 2q-1, not 2q. Define the central two-volume cost
+
+\[
+C_k=\log\frac{V_q}{V_{2q-1}}.
+\]
+
+Then
+
+\[
+C_k\ge2(q-1)\log\left[\frac{\delta k}{2\mathrm{Cbal}_h}\right].\tag{BV.6}
+\]
+
+Canonical monotonicity gives \(V_{q-1}\ge V_q\) and \(V_{2q-1}\ge V_{2q}\). Consequently each outer cost dominates this same central cost:
+
+\[
+\log\frac{V_{q-1}}{V_{2q-1}}\ge C_k,\qquad
+\log\frac{V_q}{V_{2q}}\ge C_k.
+\]
+
+For the original four-volume budget \(B_k=\log[V_{q-1}V_q/(V_{2q-1}V_{2q})]\),
+
+\[
+\begin{aligned}
+B_k&\ge2C_k\ge4(q-1)\log\left[\frac{\delta k}{2\mathrm{Cbal}_h}\right],\\
+\liminf_{k\to\infty}\frac{B_k}{q_k\log k}&\ge4.
+\end{aligned}\tag{BV.7}
+\]
+
+Indeed \(q_k\ge(k+1)^2\) tends to infinity, so \((q_k-1)/q_k\) tends to one; fixed positive \(\delta/(2\mathrm{Cbal}_h)\) contributes only \(O_h(q_k)\). The diagonal choice \(r=q\) also yields \(\log(V_q/V_{2q})\ge2q\log[\delta k/(2\mathrm{Cbal}_h)]\), but the overlapping shorter window proves the stronger four-volume threshold.
+
+The supplied note's older threshold 2 remains correct under its weaker sinh endpoint estimate. BV.7 is a strengthened synthesis using BV.4, not a correction to that valid implication. No upper estimate on \(B_k\) or \(C_k\) follows. A separately proved \(\limsup B_k/(q_k\log k)<4\) would contradict this quartet; no such upper estimate and no RH proof is asserted here.
+
+\subsection[\hspace{0.4em}Reference and evidence boundary]{Reference and evidence boundary}\label{balanced-window-reference-and-evidence-boundary}
+
+The analytic ingredients are the zeta reflection formula (\href{https://dlmf.nist.gov/25.4.E2}{DLMF 25.4.2}), the gamma vertical-strip estimate, uniform for bounded real part (\href{https://dlmf.nist.gov/5.11.E9}{DLMF 5.11.9}), and the Legendre orthogonality/leading coefficient (\href{https://dlmf.nist.gov/18.3}{DLMF 18.3}). The annulus propagation, convolution restriction, BV.1-BV.3 and BV.5-BV.7 are written derivations. Finite regression checks support algebraic fixtures only, not the analytic quantifiers or arithmetic zero hypotheses.
+% END FULL SOURCE BODY
+\endgroup

@@ -96,4 +96,36 @@ theorem quotient_operator_supported_zero (A : Hom E E) (i : L) :
   rw [map_zero]
 
 end QuotientAction
+
+section FullDefect
+variable (J : Hom D E) (r : ∀ i, E.V i →ₗ[R] D.V i)
+  (a : ∀ i, E.V i →ₗ[R] E.V i)
+
+/-- Arbitrary fibrewise operations need not respect packet or support transports. -/
+def coefficientDefect {i j : L} (h : i ≤ j) : E.V i →ₗ[R] E.V j :=
+  (E.map h).comp (a i) - (a j).comp (E.map h)
+
+def fibreLiftOperator (i : L) : D.V i →ₗ[R] D.V i :=
+  (r i).comp ((a i).comp (J.app i))
+
+/-- Both the source-section error and the coefficient-operation error remain. -/
+theorem fibreLiftOperator_transition {i j : L} (h : i ≤ j) (x : D.V i) :
+    D.map h (fibreLiftOperator J r a i x) -
+      fibreLiftOperator J r a j (D.map h x) =
+    sectionDefect r h (a i (J.app i x)) + r j (coefficientDefect a h (J.app i x)) := by
+  change D.map h (r i (a i (J.app i x))) - r j (a j (J.app j (D.map h x))) =
+    (D.map h (r i (a i (J.app i x))) - r j (E.map h (a i (J.app i x)))) +
+      r j (E.map h (a i (J.app i x)) - a j (E.map h (J.app i x)))
+  rw [J.naturality, map_sub]
+  abel
+
+/-- The simpler source formula is recovered only for an actual natural action. -/
+theorem coefficientDefect_of_natural (A : Hom E E) {i j : L} (h : i ≤ j) :
+    coefficientDefect A.app h = 0 := by
+  apply LinearMap.ext
+  intro x
+  change E.map h (A.app i x) - A.app j (E.map h x) = 0
+  rw [A.naturality, sub_self]
+
+end FullDefect
 end SplitZero.Integration

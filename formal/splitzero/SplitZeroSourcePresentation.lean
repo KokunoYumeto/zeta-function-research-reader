@@ -87,6 +87,7 @@ variable (J : Hom D E) (r : ∀ i, E.V i →ₗ[R] D.V i)
 def sectionDefect {i j : L} (h : i ≤ j) : E.V i →ₗ[R] D.V j :=
   (D.map h).comp (r i) - (r j).comp (E.map h)
 
+include hr in
 theorem sectionDefect_killed {i j : L} (h : i ≤ j) (v : E.V i) :
     J.app j (sectionDefect r h v) = 0 := by
   change J.app j (D.map h (r i v) - r j (E.map h v)) = 0
@@ -114,6 +115,7 @@ theorem section_natural_mod (B : Relations D) {i j : L} (h : i ≤ j)
 def liftOperator (A : Hom E E) (i : L) : D.V i →ₗ[R] D.V i :=
   (r i).comp ((A.app i).comp (J.app i))
 
+include hr in
 theorem liftOperator_observed (A : Hom E E) (i : L) (x : D.V i) :
     J.app i (liftOperator J r A i x) = A.app i (J.app i x) :=
   hr i _

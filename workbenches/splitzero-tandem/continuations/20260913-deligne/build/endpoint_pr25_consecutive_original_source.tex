@@ -1,0 +1,121 @@
+\subsection{Consecutive losses and the arithmetic endpoint threshold}\label{endpoint-pr25_consecutive_original--consecutive-losses-and-the-arithmetic-endpoint-threshold}
+
+\subsubsection{Source, scope, and notation}\label{endpoint-pr25_consecutive_original--source-scope-and-notation}
+
+This add-only continuation starts from main 7ea0a49945390eae14d3160a5730858899768b5f. The source is the owner's arithmetic endpoint note dated 2026-09-13 and the previously supplied exact Toda and exterior formulas. NORM\_REVIEW.md audits its analytic proof and establishes the comparable-window extension used below. Those analytic results have written proofs, not a new Lean certificate. The Lean files prove the finite propagation independently of assuming RH, normality of the arithmetic action, or an estimate for the quotient volume.
+
+Keep the original packet h, g=2xi, theta source, full Taylor unit, canonical representatives R\_N, and arithmetic cyclic module C{[}S{]}/chi\_(h,k). Write q=dim C. The norms omega\_N are the unscaled monic source norms; V\_N=det G\_N are its canonical quotient volumes. The phase is phi\_N=sigma-partial\_theta log V\_N. Lambda\_N below is omega\_N/V\_N, NOT the global theta retraction denoted Lambda in earlier notes.
+
+\subsubsection{1. Exact consecutive product}\label{endpoint-pr25_consecutive_original--exact-consecutive-product}
+
+For N\textgreater=q the existing identity is
+
+\begin{verbatim}
+epsilon_N^2+phi_N^2
+  =(omega_(N+1)/omega_N)(1-delta_N)(delta_(N+1)^(-1)-1),
+delta_N=V_N/V_(N-1) in (0,1].
+\end{verbatim}
+
+Rearrange it as
+
+\begin{verbatim}
+(epsilon_N^2+phi_N^2) Lambda_N
+   =Lambda_(N+1)(1-delta_N)(1-delta_(N+1)).       (1)
+\end{verbatim}
+
+For n\textgreater=q and r\textgreater=1, multiplication and cancellation of positive Lambda-values gives
+
+\begin{verbatim}
+product_(j<r)(epsilon_(n+j)^2+phi_(n+j)^2)
+  = (omega_(n+r)V_n)/(omega_n V_(n+r))
+    (1-delta_n)(1-delta_(n+r))
+    product_(0<j<r)(1-delta_(n+j))^2.            (2)
+\end{verbatim}
+
+Every interior contraction occurs twice. This is an exact phase-retaining identity; the Lean theorem exact\_product proves its general algebraic form. In particular,
+
+\begin{verbatim}
+min_(j<r) epsilon_(n+j)
+   <= [(omega_(n+r)V_n)/(omega_n V_(n+r))]^(1/(2r)). (3)
+\end{verbatim}
+
+The finite minimum exists. Equation (3) follows by bounding each factor 1-delta by one, comparing the product with the minimum's 2r-th power, and taking a nonnegative root. This proof does not require Jensen or the earlier four-endpoint hyperbolic-sine bound. It need not be sharper when contractions are small.
+
+The local coarse bound epsilon\_N\^{}2 Lambda\_N\textless=Lambda\_(N+1) also holds at N=q-1. Use the separate first-degree identity
+
+\begin{verbatim}
+epsilon_(q-1)^2+phi_(q-1)^2=(nu_0-omega_q)/omega_(q-1),
+V_q/V_(q-1)=omega_q/nu_0.
+\end{verbatim}
+
+It follows that epsilon\_(q-1)\^{}2 Lambda\_(q-1)\textless=Lambda\_q. No inverse at degree q-2 is introduced. Thus (3) and the lower-allowance consequence below apply to windows starting at q-1, although the exact two-contraction identity (2) is used only from q onward.
+
+\subsubsection{2. The actual spectral lower allowance forces each single block}\label{endpoint-pr25_consecutive_original--the-actual-spectral-lower-allowance-forces-each-single-block}
+
+The existing original-Gram exterior/trace theorem gives L\_(h,k)\textless=epsilon\_N for every admitted N. Iterating the coarse local inequality proves
+
+\begin{verbatim}
+L_(h,k)^(2r) Lambda_n <= Lambda_(n+r).          (4)
+\end{verbatim}
+
+If the actual norm bound gives omega\_(n+r)/omega\_n\textless=C\^{}(2r), then
+
+\begin{verbatim}
+(L_(h,k)/C)^(2r) V_(n+r)<=V_n.                 (5)
+\end{verbatim}
+
+For L\textgreater0,C\textgreater0 this is
+
+\begin{verbatim}
+log(V_n/V_(n+r)) >= 2r log(L_(h,k)/C).          (6)
+\end{verbatim}
+
+The formal propagation, norm comparison, and log conversion have separate declarations, so the analytic premise is explicit.
+
+For the exact hypothetical quartet, retain
+
+\begin{verbatim}
+q_k=[1+k(m-1)](k+1)^2,
+L_(h,k)>=delta*k*q_k/2, delta>0.
+\end{verbatim}
+
+By NORM\_REVIEW.md, both windows (n,r)=(q\_k,q\_k) and (q\_k-1,q\_k) have norm factors at most C\_h q\_k. Indeed q\_k-1\textgreater=k for k\textgreater=3, and r is between n/2 and 2n. The first window uses only regular local degrees; the second begins at the separately checked first degree. Let D\_h=delta/(2C\_h)\textgreater0. Then
+
+\begin{verbatim}
+log(V_(q_k)/V_(2q_k)) >= 2q_k log(D_h k),
+log(V_(q_k-1)/V_(2q_k-1)) >= 2q_k log(D_h k).  (7)
+\end{verbatim}
+
+Therefore the source's SAME four-volume budget satisfies the stronger implication
+
+\begin{verbatim}
+B_(h,k)=log[V_(q_k-1)V_(q_k)/(V_(2q_k-1)V_(2q_k))]
+   >=4q_k log(D_h k),
+liminf B_(h,k)/(q_k log k)>=4.                 (8)
+\end{verbatim}
+
+The source's threshold 2 remains correct but is not optimal after retaining the adjacency of the exact radius equations. This is a new deduction, not a correction falsely attributed to its original proof. No upper estimate below 4 is claimed. Either one-block upper limsup below 2 would already suffice for contradiction, while a total upper limsup below 4 would also suffice. Multiplicities remain in q\_k.
+
+\subsubsection{3. Relation-layer meaning}\label{endpoint-pr25_consecutive_original--relation-layer-meaning}
+
+For the original block (i,j), put F={[}b\_(i+1),\ldots,b\_j{]}, Omega=diag(omega\_(i+1),\ldots,omega\_j). The supplied map b=T-R\_iF is an isomorphism onto D\_j intersect D\_i-perp, with Gram Omega+F*G\_iF, and original quotient value zero. Hence
+
+\begin{verbatim}
+V_i/V_j=det(I+Omega^(-1)F*G_iF).
+\end{verbatim}
+
+Take the positive generalized eigenvalues lambda\_a of (F*G\_iF,Omega). The two blocks (q-1,2q-1) and (q,2q) each have q source coordinates. Equations (7) imply, for each block separately,
+
+\begin{verbatim}
+product_(a=1..q)(1+lambda_a)>=(D_h k)^(2q),
+geometric_mean(1+lambda_a)>=(D_h k)^2,
+(1/q) sum_a lambda_a>=(D_h k)^2-1.             (9)
+\end{verbatim}
+
+The arithmetic-geometric mean inequality proves the last line. This does NOT force every lambda\_a to grow. Their multiplicity and rank profile remain. On the split lift the actual final quotient sends each retained relation to the receiving label's supported zero, not to external tau. Its source Gram is measured before that map.
+
+\subsubsection{4. Constant and source accounting}\label{endpoint-pr25_consecutive_original--constant-and-source-accounting}
+
+No measure is normalized. The original mass omega\_0=mu\_h\^{}k remains, and its effect is in the explicit constants of NORM\_REVIEW.md. The Taylor multiplier and its derivative are not omitted. The norm leading-coefficient quotient is not identified with the arithmetic quotient. No complementary arithmetic block, nilpotent direction, or cochain sign is removed.
+
+The analytic proof and the asymptotic consequence (8) are written mathematics. The new Lean run, when successful, certifies the finite local/product/forcing interfaces named in AuditConsecutiveWindow.lean; it does not certify the complex-analytic zeta argument, the arithmetic integrals, or a new weight theorem. Consult the PR for the exact completed run rather than treating this source note as an execution receipt.

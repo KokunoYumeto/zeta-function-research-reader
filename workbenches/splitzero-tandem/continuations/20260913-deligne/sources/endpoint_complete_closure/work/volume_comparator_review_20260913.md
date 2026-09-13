@@ -1,0 +1,444 @@
+# An explicit scalar comparison for the original arithmetic quotient volumes
+
+Date: 13 September 2026. This is the independent scalar comparison requested by the arithmetic volume upper-estimate lane. All inequalities below concern the original source and its original monic quotient. The displayed coordinate maps are invertible maps used in the proof; their Jacobians, phases, and the quotient units are retained.
+
+## 1. Original data and the finite answer
+
+Let the fixed packet be a complete off-line quartet
+\(1/2\pm\delta\pm i\gamma\), with \(\delta,\gamma>0\) and common order \(m\ge1\). Put
+
+\[
+ c=k/2,\quad \ell=1+k(m-1),\quad q=\ell(k+1)^2,\quad
+ R_0=\sqrt{\delta^2+\gamma^2},\qquad k\ge3.
+\tag{VC.1}
+\]
+
+Keep the given monic annihilator \(\chi\in\mathbb C[S]\) of degree \(q\), with all its original local lengths. Its roots in the chart \(S=c+iu\) have absolute value at most \(\rho=kR_0\). The source is
+
+\[
+ w_h(t)=\frac{|(2\xi/h)(1/2+it)|^2}{2\pi},\quad
+ m_k=w_h^{*k},\quad
+ \mu_h=\int_{\mathbb R}w_h(t)\,dt,\quad
+ M_h(a)=\int_{\mathbb R}e^{at}w_h(t)\,dt.
+\tag{VC.2}
+\]
+
+The proved arithmetic density estimate supplies its actual constants \(c_h>0\), \(\vartheta_h>0\), \(B_h=42+2\deg h\), and \(\alpha=\pi/2\):
+
+\[
+ m_k(u)\ge c_h\vartheta_h^{k-3}
+ e^{-\alpha(|u|+k-3)}(1+|u|+k-3)^{-B_h}.
+\tag{VC.3}
+\]
+
+Choose any \(0<b<\alpha\). These are the established analytic inputs of the supplied Arithmetic Endpoint Bounds note, rather than added estimates on its unknown coefficients. Define the following literal finite numbers:
+
+\[
+\begin{gathered}
+ D=\max\{1,2/b,2R_0\},\quad T=Dq,\quad r=\rho/T,\quad N=2q-1,\\
+ \lambda_k(T)=c_h\vartheta_h^{k-3}e^{-\alpha(T+k-3)}
+                   (1+T+k-3)^{-B_h},\\
+ U_k(T)=\mu_h^k+
+ \frac{(2q-2)!}{(bT)^{2q-2}}
+              \bigl(M_h(b)^k+M_h(-b)^k\bigr),\\
+ A_N=\sqrt{\frac{2N+1}{2}}\frac{4^{N+1}-1}{3},
+ \qquad B_q(r)=\left(\frac{1+r}{1-r}\right)^q,\\
+ C_{k,q}=\frac{U_k(T)A_{2q-1}^{2}B_q(r)^2}{T\lambda_k(T)}.
+\end{gathered}
+\tag{VC.4}
+\]
+
+Here \(q\ge k\), so \(0\le r\le1/2\), and all denominators are strictly positive. The formula for \(U_k\) uses the usual \(0!=1\) convention, although the quartet has \(q\ge16\).
+
+For every source degree \(j\ge q-1\), let \(H_j\) be the positive definite Gram matrix in the original ordered monomials \(1,S,\ldots,S^j\), let \(J_j\) be the coefficient matrix of remainder modulo the original \(\chi\), and set
+
+\[
+ K_j=J_jH_j^{-1}J_j^*,\qquad G_j=K_j^{-1},\qquad V_j=\det G_j.
+\tag{VC.5}
+\]
+
+The finite Hermitian comparison is
+
+\[
+ \boxed{K_q\preceq K_{2q-1}\preceq C_{k,q}K_q,\qquad
+ 0\le\log\frac{V_q}{V_{2q-1}}\le q\log C_{k,q}.}
+\tag{VC.6}
+\]
+
+The proof below establishes every algebraic and comparison step in (VC.6). In particular it proves \(C_{k,q}\ge1\), since the matrices in (VC.6) are positive definite.
+
+## 2. Exact source, quotient, and raw-jet maps
+
+For each finite degree define the complex-linear isomorphism
+
+\[
+ \Psi_T:\mathbb C[S]_{\le j}\longrightarrow\mathbb C[x]_{\le j},
+ \qquad (\Psi_TP)(x)=P(c+iTx).
+\tag{VC.7}
+\]
+
+Its inverse is \(f\mapsto f((S-c)/(iT))\). A change of real variable gives the equality of the original norms
+
+\[
+ \int_{\mathbb R}|P(c+iu)|^2m_k(u)\,du
+ =\int_{\mathbb R}|(\Psi_TP)(x)|^2T m_k(Tx)\,dx.
+\tag{VC.8}
+\]
+
+Thus the target measure in this equality has mass exactly \(\mu_h^k\). There is no mass divisor in the map. Define
+
+\[
+ \chi_T(x)=(iT)^{-q}\chi(c+iTx).
+\tag{VC.9}
+\]
+
+Its leading coefficient is one, its roots are the original \(u\)-chart roots divided by \(T\), with the same multiplicities, and their absolute values are at most \(r\). For every polynomial \(Q\),
+
+\[
+ \Psi_T(\chi Q)=(iT)^q\chi_T\Psi_TQ.
+\tag{VC.10}
+\]
+
+The nonzero scalar \((iT)^q\) is the exact unit connecting the two displayed generators. Consequently (VC.7) induces a quotient isomorphism
+
+\[
+ \overline\Psi_T:\mathbb C[S]/(\chi)\longrightarrow
+                         \mathbb C[x]/(\chi_T),\qquad
+ [P]\longmapsto[P(c+iTx)].
+\tag{VC.11}
+\]
+
+Division is compatible with this map. Indeed, if \(P=\chi Q+R\) with \(\deg R<q\), then (VC.10) gives \(\Psi_TP=(iT)^q\chi_T\Psi_TQ+\Psi_TR\), and \(\deg\Psi_TR<q\); uniqueness of division proves
+
+\[
+ \operatorname{rem}_{\chi_T}\Psi_TP=
+                         \Psi_T\operatorname{rem}_{\chi}P.
+\tag{VC.12}
+\]
+
+If \(\lambda\) is a root in the original \(S\) chart and \(z=(\lambda-c)/(iT)\), the raw derivative of order \(d\) obeys
+
+\[
+ (\Psi_TP)^{(d)}(z)=(iT)^dP^{(d)}(\lambda),
+ \qquad 0\le d<\operatorname{ord}_{\lambda}\chi.
+\tag{VC.13}
+\]
+
+This follows by differentiating the affine composition \(d\) times. In local Taylor coordinates \(P^{(d)}(\lambda)/d!\), the multiplier is still \((iT)^d\), while the factorial stays \(d!\). The derivative phase has therefore been specified for every retained local length.
+
+For precision at the matrix level, let \(\mathsf A_j\) be the coefficient matrix of \(\Psi_T\) in increasing monomial degrees. Its columns are the coefficient vectors of \((c+iTx)^a\), \(0\le a\le j\); its diagonal is \((iT)^a\). Thus it is invertible and
+
+\[
+ \det\mathsf A_j=(iT)^{j(j+1)/2}.
+\tag{VC.14}
+\]
+
+Let tildes denote the target-coordinate Gram and remainder matrices. Equations (VC.8) and (VC.12) give
+
+\[
+ H_j=\mathsf A_j^*\widetilde H_j\mathsf A_j,
+ \qquad \widetilde J_j\mathsf A_j=\mathsf A_{q-1}J_j,
+ \qquad \widetilde K_j=\mathsf A_{q-1}K_j\mathsf A_{q-1}^*.
+\tag{VC.15}
+\]
+
+The third equality follows by inserting the first two into \(\widetilde J_j\widetilde H_j^{-1}\widetilde J_j^*\). Hence \(\widetilde G_j=\mathsf A_{q-1}^{-*}G_j\mathsf A_{q-1}^{-1}\) and \(\det\widetilde G_j=T^{-q(q-1)}V_j\). The exact determinant factor is independent of \(j\) and cancels in the ratio in (VC.6). All subsequent norm estimates can therefore be pulled back to the original matrices by this proved congruence.
+
+To state the same comparison in the original raw-jet coordinates, list the distinct roots of \(\chi\) as \(\lambda_\nu\) with full lengths \(d_\nu\), \(\sum_\nu d_\nu=q\). In the fixed ordering of pairs \((\nu,a)\), \(0\le a<d_\nu\), define the square matrix
+
+\[
+ E_{(\nu,a),j}=
+ \begin{cases}
+ \dfrac{j!}{(j-a)!}\lambda_\nu^{j-a},&j\ge a,\\
+ 0,&j<a,
+ \end{cases}
+ \qquad 0\le j<q.
+\tag{VC.15a}
+\]
+
+Its action is the raw-derivative map on polynomials of degree below \(q\). The exact Taylor formula shows that a polynomial has all these derivatives zero if and only if it is divisible by each \((S-\lambda_\nu)^{d_\nu}\), hence by their product \(\chi\). For degree below \(q\), such a polynomial is zero. Thus \(E\) is injective, and equality of its domain and codomain dimensions proves that it is invertible. Every polynomial and its remainder differ by a multiple of \(\chi\), so their listed raw derivatives agree. Therefore the degree-\(j\) raw-jet matrix is exactly \(F_j=EJ_j\), and
+
+\[
+ K_j^{\mathrm{raw}}=F_jH_j^{-1}F_j^*=EK_jE^*,\quad
+ G_j^{\mathrm{raw}}=E^{-*}G_jE^{-1},\quad
+ \det G_j^{\mathrm{raw}}=|\det E|^{-2}V_j.
+\tag{VC.15b}
+\]
+
+The multiplier \(|\det E|^{-2}\) is independent of source degree. Consequently (VC.6) holds with the same constant in raw-jet coordinates and has the same determinant ratio. Equation (VC.13) gives the exact phase for each component when those raw jets are expressed in the affine chart. This is the direct typed relation between the remainder-kernel estimate and the raw-jet determinant calculation.
+
+## 3. The Legendre coefficient bound, proved in full
+
+For a polynomial \(f(x)=\sum a_jx^j\), write \(\|f\|_{\mathrm{coeff},1}=\sum|a_j|\). We prove
+
+\[
+ \|f\|_{\mathrm{coeff},1}\le A_N\|f\|_{L^2([-1,1],dx)},
+ \qquad \deg f\le N.
+\tag{VC.16}
+\]
+
+Define
+
+\[
+ L_j(x)=\frac{1}{2^jj!}\frac{d^j}{dx^j}(x^2-1)^j.
+\tag{VC.17}
+\]
+
+The leading coefficient is \(\kappa_j=(2j)!/(2^j(j!)^2)\). Repeated integration by parts, with every boundary term zero because \((x^2-1)^j\) has zeros of order \(j\) at both endpoints, proves that \(L_j\) is orthogonal to every polynomial of degree below \(j\). The same integration by parts gives
+
+\[
+ \int_{-1}^1L_j(x)^2dx
+ =\frac{\kappa_j}{2^j}\int_{-1}^1(1-x^2)^jdx
+ =\frac{2}{2j+1}.
+\tag{VC.18}
+\]
+
+Here the intermediate integral is \(2^{2j+1}(j!)^2/(2j+1)!\). To verify that expression without any special-function identity, substitute \(x=2t-1\), obtaining \(2\,4^j\int_0^1t^j(1-t)^jdt\). Repeated integration by parts proves \(\int_0^1t^a(1-t)^bdt=a!b!/(a+b+1)!\) for nonnegative integers \(a,b\): integration by parts with antiderivative \(t^{a+1}/(a+1)\) reduces \(b\) by one and increases \(a\) by one, and the case \(b=0\) is \(1/(a+1)\). This proves (VC.18).
+
+Leibniz's rule applied to \((x-1)^j(x+1)^j\) proves the exact finite formula
+
+\[
+ L_j(x)=2^{-j}\sum_{a=0}^j\binom ja^2
+                           (x-1)^{j-a}(x+1)^a.
+\tag{VC.19}
+\]
+
+The coefficient norm of a product is at most the product of its coefficient norms, by the triangle inequality for each convolution coefficient. The binomial theorem gives \(\|(x\pm1)^a\|_{\mathrm{coeff},1}=2^a\). Therefore
+
+\[
+ \|L_j\|_{\mathrm{coeff},1}\le\sum_{a=0}^j\binom ja^2
+ =\binom{2j}{j}\le4^j.
+\tag{VC.20}
+\]
+
+The middle equality is the coefficient of \(z^j\) in \((1+z)^j(1+z)^j\); the last inequality bounds one coefficient by the sum of all positive coefficients. The degrees and nonzero leading coefficients show that \(L_0,\ldots,L_N\) are a basis. Write \(f=\sum_{j=0}^Na_jL_j\). By orthogonality and Cauchy--Schwarz,
+
+\[
+ |a_j|=\frac{2j+1}{2}\left|\int_{-1}^1 L_j(x)f(x)dx\right|
+ \le\sqrt{\frac{2j+1}{2}}\|f\|_{L^2([-1,1])}.
+\tag{VC.21}
+\]
+
+This formula is valid for complex coefficients because \(L_j\) is real. Combining (VC.20)--(VC.21), bounding \(2j+1\) by \(2N+1\), and summing the geometric series \(\sum_{j=0}^N4^j=(4^{N+1}-1)/3\) proves (VC.16).
+
+## 4. The complete monic-division bound
+
+Write the roots of \(\chi_T\), with repetitions, as \(z_1,\ldots,z_q\), where \(|z_a|\le r<1\). Define the elementary symmetric polynomials \(e_a\) and complete homogeneous polynomials \(h_j\) by the finite coefficient identities
+
+\[
+ \prod_{a=1}^q(1-z_at)=\sum_{a=0}^q(-1)^ae_at^a,
+ \qquad
+ \prod_{a=1}^q(1-z_at)^{-1}=\sum_{j\ge0}h_jt^j.
+\tag{VC.22}
+\]
+
+The second identity is a formal power-series identity: \(h_j\) is the sum of all monomials \(z_1^{a_1}\cdots z_q^{a_q}\) with nonnegative \(a_i\) and \(\sum a_i=j\). There are \(\binom{q+j-1}{j}\) such monomials: placing \(q-1\) separators among \(j+q-1\) positions gives a bijection with the exponent lists. Consequently
+
+\[
+ |e_a|\le\binom qa r^a,\qquad
+ |h_j|\le\binom{q+j-1}{j}r^j.
+\tag{VC.23}
+\]
+
+For \(0\le s\le q-1\), set \(Q_s(x)=\sum_{j=0}^sh_jx^{s-j}\). Multiplying the two series in (VC.22) shows that every coefficient of degrees \(q+s-1,q+s-2,\ldots,q\) in \(\chi_TQ_s\) is zero, while its coefficient of degree \(q+s\) is one. It follows that
+
+\[
+ \operatorname{rem}_{\chi_T}x^{q+s}=x^{q+s}-\chi_TQ_s,
+ \qquad \deg\bigl(x^{q+s}-\chi_TQ_s\bigr)<q.
+\tag{VC.24}
+\]
+
+The leading coefficient of \(\chi_TQ_s\) is exactly one, so removing its leading term reduces its coefficient norm by exactly one. All remaining terms are the negative of the remainder. Thus
+
+\[
+\begin{split}
+ \|\operatorname{rem}_{\chi_T}x^{q+s}\|_{\mathrm{coeff},1}
+ &=\|\chi_TQ_s\|_{\mathrm{coeff},1}-1\\
+ &\le(1+r)^q\sum_{j=0}^s\binom{q+j-1}{j}r^j-1
+ \le\left(\frac{1+r}{1-r}\right)^q.
+\end{split}
+\tag{VC.25}
+\]
+
+For the last inequality, the convergent geometric-series product at real \(r<1\) gives \(\sum_{j\ge0}\binom{q+j-1}{j}r^j=(1-r)^{-q}\). For \(0\le j<q\), the remainder of \(x^j\) is \(x^j\) and its coefficient norm is one, also at most \(B_q(r)\). Linearity and the triangle inequality now give the exact finite operator estimate
+
+\[
+ \|\operatorname{rem}_{\chi_T}f\|_{\mathrm{coeff},1}
+ \le B_q(r)\|f\|_{\mathrm{coeff},1},\qquad \deg f\le2q-1.
+\tag{VC.26}
+\]
+
+Multiplicity was retained throughout the root list; no distinct-root interpolation or inverse Vandermonde estimate occurs here. If desired, the smaller literal finite constant
+
+\[
+ \max\left\{1,(1+r)^q
+       \sum_{j=0}^{q-1}\binom{q+j-1}{j}r^j-1\right\}
+\tag{VC.27}
+\]
+
+can replace \(B_q(r)\) in (VC.4), by the preceding proof.
+
+## 5. Original moment control and the remainder's source norm
+
+For every nonnegative integer \(a\) and real \(u\), the nonnegative Taylor terms of \(e^{b|u|}\) imply
+
+\[
+ |u|^{2a}\le(2a)!b^{-2a}e^{b|u|}
+ \le(2a)!b^{-2a}(e^{bu}+e^{-bu}).
+\tag{VC.28}
+\]
+
+Tonelli's theorem applied to the nonnegative product density and the identity \(e^{b(t_1+\cdots+t_k)}=\prod e^{bt_i}\) gives
+
+\[
+ \int e^{\pm bu}m_k(u)du=M_h(\pm b)^k,
+ \qquad \int m_k(u)du=\mu_h^k.
+\tag{VC.29}
+\]
+
+Consequently the actual \(2a\)-th moment is at most the right side of (VC.28) integrated using (VC.29). If \(v\) has degree at most \(q-1\), each monomial has absolute value at most \(\max\{1,|x|^{q-1}\}\). This gives
+
+\[
+\begin{split}
+ \int_{\mathbb R}|v(u/T)|^2m_k(u)du
+ &\le \|v\|_{\mathrm{coeff},1}^{2}
+          \int\max\{1,|u/T|^{2q-2}\}m_k(u)du\\
+ &\le U_k(T)\|v\|_{\mathrm{coeff},1}^{2}.
+\end{split}
+\tag{VC.30}
+\]
+
+The second inequality uses \(\max\{1,t\}\le1+t\) for \(t\ge0\), and the proved moment bound with \(a=q-1\). On the other hand, (VC.3) on \([-T,T]\) gives
+
+\[
+ \|P\|_{H_N}^{2}\ge
+       T\lambda_k(T)\|\Psi_TP\|_{L^2([-1,1])}^{2}.
+\tag{VC.31}
+\]
+
+Set \(f=\Psi_TP\) and \(v=\operatorname{rem}_{\chi_T}f\). Equations (VC.8), (VC.12), (VC.16), (VC.26), (VC.30), and (VC.31), in that order, prove
+
+\[
+ \|\operatorname{rem}_{\chi}P\|_{H_{q-1}}^{2}
+ \le U_k(T)B_q(r)^2A_N^2
+                      \|\Psi_TP\|_{L^2([-1,1])}^{2}
+ \le C_{k,q}\|P\|_{H_N}^{2}.
+\tag{VC.32}
+\]
+
+To specify the map's type, let \(\iota_j:\mathbb C^{j+1}\to\mathcal P_j\) be \(\iota_j(a)=\sum_{d=0}^ja_dS^d\), and let \(\kappa:\mathbb C[S]/(\chi)\to\mathbb C^q\) send a class to the coefficient vector of its unique degree-below-\(q\) representative. Write \(\mathcal J_j=J_j\iota_j^{-1}:\mathcal P_j\to\mathbb C^q\), and \(s:\mathbb C^q\to\mathcal P_{q-1}\), \(s(y)=\sum_{d=0}^{q-1}y_dS^d\). Then \(\mathcal J_{q-1}s=I_{\mathbb C^q}\), and the original abstract quotient map \(\pi\) satisfies \(\pi s=\kappa^{-1}\). The operator estimated in (VC.32) is exactly \(s\mathcal J_N:\mathcal P_N\to\mathcal P_{q-1}\). Its restriction to \(\mathcal P_{q-1}\) is the identity. In the formulas that follow, coefficient vectors and polynomials are identified only by the displayed \(\iota_j\).
+
+## 6. From the bounded remainder to the kernel inequality
+
+The positive density in (VC.3) makes every polynomial Gram matrix positive definite. The remainder map \(J_j\) is surjective because its restriction to degrees below \(q\) is the identity. Thus \(K_j\) is positive definite. For completeness, define
+
+\[
+ R_j=H_j^{-1}J_j^*K_j^{-1}.
+\tag{VC.33}
+\]
+
+Then \(J_jR_j=I\) by the definition of \(K_j\). For \(J_jz=0\),
+\(z^*H_jR_j=z^*J_j^*K_j^{-1}=0\). Every lift of a quotient vector \(y\) is uniquely \(R_jy+z\), \(J_jz=0\), so
+
+\[
+ \|R_jy+z\|_{H_j}^2=y^*K_j^{-1}y+z^*H_jz.
+\tag{VC.34}
+\]
+
+The minimum lift norm is therefore exactly \(y^*G_jy\). Degree inclusion enlarges the set of lifts and gives \(G_{j+1}\preceq G_j\). Taking \(P=R_Ny\) in (VC.32), the degree-\((q-1)\) remainder is a lift of the same \(y\), so
+
+\[
+ y^*G_qy\le y^*G_{q-1}y
+ \le\|\operatorname{rem}_{\chi}R_Ny\|_{H_{q-1}}^2
+ \le C_{k,q}y^*G_Ny.
+\tag{VC.35}
+\]
+
+Together with \(G_N\preceq G_q\), this gives
+\(C_{k,q}^{-1}G_q\preceq G_N\preceq G_q\). Congruence by \(G_q^{-1/2}\) bounds every eigenvalue of the middle matrix between \(C_{k,q}^{-1}\) and one. Inversion reverses these positive eigenvalue inequalities; conjugating back proves the first inequality chain in (VC.6). Taking products of the same \(q\) eigenvalues proves its determinant statement. This proves the finite answer.
+
+## 7. The complete growth calculation and its exact gap
+
+Let
+
+\[
+ X=\max\{1,M_h(b),M_h(-b)\},\quad
+ K=\max\{1,\vartheta_h^{-1}\},\quad
+ C_0=\max\{1,2/(3c_hD)\}.
+\tag{VC.36}
+\]
+
+These are bounding constants for the unchanged source. Since \(bT\ge2q\),
+\((2q-2)!/(bT)^{2q-2}\le1\). Also
+\(M_h(b)^k+M_h(-b)^k=\int 2\cosh(bu)m_k(u)du\ge2\mu_h^k\).
+It follows that
+
+\[
+ U_k(T)\le\tfrac32\bigl(M_h(b)^k+M_h(-b)^k\bigr)\le3X^k.
+\tag{VC.37}
+\]
+
+The constants in (VC.4) further satisfy
+
+\[
+ A_{2q-1}^{2}\le\frac{2q}{9}\,256^q,
+ \qquad \vartheta_h^{-(k-3)}\le K^k.
+\tag{VC.38}
+\]
+
+On \([0,1/2]\), the derivative of \(\log((1+t)/(1-t))\) is \(2/(1-t^2)\le8/3\). Integration from zero to \(r\) gives
+
+\[
+ \log B_q(r)^2\le\frac{16}{3}qr
+                  =\frac{16R_0}{3D}k.
+\tag{VC.39}
+\]
+
+Finally \(1+Dq+k-3\le1+(D+1)q\), and \(e^{-3\alpha}\le1\). Substituting (VC.37)--(VC.39) into the literal constant in (VC.4), and using \(T=Dq\), yields
+
+\[
+\begin{split}
+ \log C_{k,q}\le{}& (\alpha D+\log256)q
+ +\left(\log(XK)+\alpha+\frac{16R_0}{3D}\right)k\\
+ &+B_h\log\bigl(1+(D+1)q\bigr)+\log C_0.
+\end{split}
+\tag{VC.40}
+\]
+
+Thus an explicit upper bound on the requested original central volume is
+
+\[
+\boxed{
+\begin{split}
+ 0\le\log\frac{V_q}{V_{2q-1}}\le{}&
+ (\alpha D+\log256)q^2\\
+ &+\left(\log(XK)+\alpha+\frac{16R_0}{3D}\right)kq\\
+ &+B_hq\log\bigl(1+(D+1)q\bigr)+q\log C_0.
+\end{split}}
+\tag{VC.41}
+\]
+
+All constants in (VC.41) depend only on the fixed packet and the chosen \(b\); no constant depends on \(k\) or \(q\). Since \(q=[1+k(m-1)](k+1)^2\), one has \(k/q\to0\) and \((\log q)/q\to0\). In particular
+
+\[
+ \limsup_{k\to\infty}\frac{1}{q_k^2}
+        \log\frac{V_{q_k}}{V_{2q_k-1}}
+ \le\alpha D+\log256.
+\tag{VC.42}
+\]
+
+The proved central-window lower estimate in the companion factor-four note is
+
+\[
+ \log\frac{V_q}{V_{2q-1}}
+ \ge2(q-1)\left(\log k+\log\frac{\delta}{2C_h^{\rm bal}}\right).
+\tag{VC.43}
+\]
+
+The precise comparison between (VC.41) and (VC.43) is therefore an interval of admissible growth, not an RH contradiction. After division by \(q\log k\), the leading term of the upper bound is \((\alpha D+\log256)q/\log k\). This diverges like \((\alpha D+\log256)k^2/\log k\) when \(m=1\), and like \((\alpha D+\log256)(m-1)k^3/\log k\) when \(m>1\). The upper bound is larger than the lower scale by those explicit factors. This calculation locates exactly the loss in this scalar route: (VC.16) controls every coefficient of a degree-\((2q-1)\) polynomial, and (VC.31) replaces the full source by its least value on a length-\(2Dq\) interval. The remainder step itself has only \(O(k)\) logarithmic cost by (VC.39).
+
+The sharper raw-jet matrix determinant comparison in the parent lane retains the directional dependence discarded by the scalar estimates (VC.16) and (VC.31). Equations (VC.7)--(VC.15) and (VC.33)--(VC.35) give the exact maps through which the present scalar estimate bounds that same original quotient. No claim about the sharper determinant's asymptotic size is made here.
+
+## 8. Provenance and verification boundary
+
+The inherited analytic input is (VC.3) and the finiteness of \(M_h(\pm b)\), proved in the complete supplied `Tau_Arithmetic_Endpoint_Bounds/NOTE.tex`. The central lower bound (VC.43) is proved in the owner's complete `FOUR_VOLUME_THRESHOLD.md` continuation. This note proves (VC.4)--(VC.42) directly from those established input theorems, with full finite calculations. It does not replace the arithmetic weight, discard the mass, erase a raw-jet phase, shorten a local length, postulate the desired upper estimate, or assert RH. Any finite symbolic test accompanying this note tests the algebraic maps and constants; the written argument proves the estimates for all the indicated degrees.

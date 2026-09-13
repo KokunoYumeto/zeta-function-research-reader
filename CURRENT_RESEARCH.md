@@ -1,6 +1,54 @@
-[Published DOI 10.5281/zenodo.22731295](https://doi.org/10.5281/zenodo.22731295) · [Paired PDFs and sources](calculation_edition_20260913_endpoint_gamma/README.md)
+# Latest complete reader: Split-Zero cohomology, 715 pages
 
-# Arithmetic zeta packets: endpoint norms, exact window products and gamma source control
+[Read the paper](workbenches/splitzero-tandem/continuations/20260913-deligne/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+· [Edit or rebuild its source](workbenches/splitzero-tandem/continuations/20260913-deligne/README.md)
+· [Exact publication provenance](workbenches/splitzero-tandem/continuations/20260913-deligne/PUBLIC_DERIVATION.md)
+
+The aim is to relate the zeros of the Riemann xi function to the metric size of
+their actual arithmetic quotient classes. The source is
+`w_h(t)=|(2xi/h)(1/2+it)|^2/(2pi)`, where `h` retains every selected zero order;
+tensor degree `k` uses its literal convolution `w_h^{*k}` and full mass. Polynomial
+representatives are measured in `S=k/2+iu`, then mapped to the specified cyclic
+arithmetic quotient. Its least-norm metric is retained throughout.
+
+The cumulative calculation first expresses the metric and its phase in source
+and relation determinant volumes. It then develops arithmetic endpoint norm
+bounds, the exact product over consecutive degree windows, and the volume
+contraction required by an off-line quartet. These are useful finite and
+asymptotic comparisons; the opposing arithmetic volume upper estimate has not
+been completed.
+
+The new complete cut adds the endpoint optimizer, reflected relation fibres,
+relation-moment comparison, and the next restriction/window calculations. Its
+Deligne chapters supply the stated cohomological comparison maps, logarithmic
+specialization and invariant-subspace coupling, polynomial-exponential
+cohomology, a complete period determinant, and translation back to the original
+arithmetic operator and metric. Source hypotheses, domains, codomains, measures,
+phases and zero orders remain in the full proofs. The closing account runs
+through R52 and retains 41 complete source witnesses. The primary-source
+correction and execution-provenance correction are included, not hidden.
+
+The 715-page PDF ends before the later SGA/Hochschild SC/CC increment. PR26 and
+PR27 also remain separately available as working-source records below; their
+own review/CI scope is not silently assigned to every analytic chapter here.
+No RH conclusion, new Lean execution or fresh mathematical test replay follows
+from this publication step.
+
+The public source is a disclosed derivative of the completed owner cut. All
+mathematical TeX/Lean/HTML, PDFs, images and ten delivery ZIPs retain their exact
+bytes. Only recorded private-locator metadata/helper edits and a reference-only
+full-page cache omission affect the public selection. The current manifest
+describes the derivative, while inherited receipts and manifests retain their
+historical scope. The original private source archive is not a public payload.
+
+The following guide describes **the earlier frozen DOI edition**. Its 478/512-page
+downloads remain intact; they do not contain the new 715-page reader.
+
+---
+
+[Earlier frozen DOI 10.5281/zenodo.22731295](https://doi.org/10.5281/zenodo.22731295) · [Paired PDFs and sources](calculation_edition_20260913_endpoint_gamma/README.md)
+
+# Earlier frozen edition: arithmetic zeta packets: endpoint norms, exact window products and gamma source control
 
 This edition joins the full arithmetic endpoint argument to the earlier
 Toda--Gamma research synthesis. Its main reader keeps the original
@@ -38,9 +86,9 @@ and independently rebuilt comparison PDF are distinct byte objects.
 
 ## Reading and reproducibility
 
-- Begin with [Split-Zero Cohomology and Arithmetic Weight Control, the current 478-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0e11075765b6e0f4de2beb7d392e2ace94df0ffa/workbenches/splitzero-tandem/continuations/20260913-gamma/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf),
+- Begin with [Split-Zero Cohomology and Arithmetic Weight Control, the frozen 478-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0e11075765b6e0f4de2beb7d392e2ace94df0ffa/workbenches/splitzero-tandem/continuations/20260913-gamma/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf),
   distributed as `30-splitzero-gamma-continuation-478p.pdf` and shown as the Zenodo PDF preview.
-- The [current 512-page integrated reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/reader.pdf),
+- The [frozen 512-page integrated reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/reader.pdf),
   distributed as `29-main-reader-gamma-endpoint-control.pdf`, contains the broader research synthesis.
 - This complete main source archive contains `main.tex`, its full recorded
   TeX closure, all previously selected authored work, and the complete

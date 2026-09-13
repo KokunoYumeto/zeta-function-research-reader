@@ -1,0 +1,299 @@
+# Exact transitions between nested relative frames
+
+12 September 2026.
+
+This continuation starts with the original amplitude, relative coordinates, finite source powers, graph and arithmetic observation of FC.1--36. It proves the maps produced when the relative frame is enlarged. Every finite weight, original source coefficient and normal component is retained. The published source is used unchanged.
+
+# Original sources and coefficient inclusions
+
+Fix the original packet polynomial $h$, $g=2\xi$, the full entire quotient $v_h=g/h$, and the integer $k\ge2$. Keep $$a(t)=\frac{v_h(1/2+it)}{\sqrt{2\pi}},\quad
+ u=\sum_{i=1}^k t_i,\quad t_i=u/k+y_i,\quad
+ y_k=-\sum_{i<k}y_i,\quad
+ \Psi(u,\mathbf y)=\prod_{i=1}^k a(u/k+y_i).
+ \tag{NT.1}$$ The ambient fibre is $\mathscr H=L^2(\mathbb R^{k-1},d\mathbf y)$, and the full ambient space is $\mathscr K=L^2(\mathbb R,du;\mathscr H)$. Thus the original Jacobian $du\,d\mathbf y$ and the amplitude mass are unchanged. The original relative variables are $z_i=s_i-S/k$, $S=\sum_i s_i$, so $z_i=iy_i$ on this fibre.
+
+Let the finite independent homogeneous relative families at levels $M\le L$ have column counts $r_M,r_L$ and degrees $\ell^{M}_{\alpha},\ell^{L}_{\beta}$. Their inclusion is the literal constant matrix $E=E_{LM}:\mathbb C^{r_M}\to\mathbb C^{r_L}$ satisfying $$\theta^M_\alpha(\mathbf z)
+  =\sum_\beta\theta^L_\beta(\mathbf z)E_{\beta\alpha},\qquad
+ j_M(u)=j_L(u)E,
+ \quad j_a(u)c=\Psi(u,\mathbf y)
+                    \sum_\alpha\theta^a_\alpha(i\mathbf y)c_\alpha.
+ \tag{NT.2}$$ Comparison of homogeneous components gives $E_{\beta\alpha}=0$ unless $\ell^L_\beta=\ell^M_\alpha$. Independence of the smaller family makes $E$ injective. For an actual nested monomial family, $E$ is its original zero-extension matrix; no scaling of columns is introduced.
+
+For $a=M,L$ retain the complete admitted source index set and its literal coefficient matrix, $$\begin{gathered}
+ \mathcal I_a=\{(\alpha,n):0\le n\le a-\ell^a_\alpha\},\qquad
+ q_a=|\mathcal I_a|,\\
+ P^a_p=\sum_{(\alpha,n)\in\mathcal I_a}
+                  p_{\alpha,n}\theta^a_\alpha(\mathbf z)S^n,\qquad
+ (C_a(u))_{\beta,(\alpha,n)}
+       =\delta_{\alpha\beta}(k/2+iu)^n.
+ \end{gathered}
+ \tag{NT.3}$$ Define the source inclusion $F=F_{LM}:\mathbb C^{q_M}\to
+\mathbb C^{q_L}$ by $F_{(\beta,m),(\alpha,n)}=E_{\beta\alpha}\delta_{mn}$. Every nonzero entry is admitted since $L\ge M$ and the relative degrees agree. Direct expansion gives the exact identities $$P^L_{Fp}=P^M_p,\qquad C_LF=EC_M,\qquad C_L'F=EC_M'.
+ \tag{NT.4}$$ Uniqueness of the relative-polynomial expansion and of each power of $S$ proves that $F$ is injective. Every factor $(k/2+iu)^n$ and its derivative $in(k/2+iu)^{n-1}$ is retained.
+
+# The original weights and their orthogonal transition
+
+At every real $u$ define, with the ambient Hilbert adjoint, $$\begin{gathered}
+ W_a=j_a^*j_a>0,\quad B_a=j_a^*j_a',\quad
+ \Gamma_a=W_a^{-1}B_a,\quad
+ \Pi_a=j_aW_a^{-1}j_a^*,\\
+ N_a=(I-\Pi_a)j_a',\quad \mathcal N_a=N_a^*N_a,
+ \qquad a=M,L.
+ \end{gathered}
+ \tag{NT.5}$$ These are the original FC matrices. Their positivity and smoothness follow from independence of the relative family and the original Schwartz amplitude: a nonzero relative polynomial cannot vanish almost everywhere where $\Psi$ is nonzero. The inverse matrices therefore exist at every real $u$, including $u=0$.
+
+The weighted coefficient retraction and coefficient projection are $$R=W_M^{-1}E^*W_L:\mathbb C^{r_L}\to\mathbb C^{r_M},\qquad
+ Q=ER:\mathbb C^{r_L}\to\mathbb C^{r_L}.
+ \tag{NT.6}$$ The symbol $Q$ here is a coefficient projection; $\Pi_a$ remains the ambient orthogonal projection. From (NT.2), $$\begin{gathered}
+ W_M=E^*W_LE,\quad B_M=E^*B_LE,\quad
+ R E=I,\quad Q^2=Q,\quad Q^*W_L=W_LQ,\\
+ \Gamma_M=R\Gamma_LE,\qquad
+ \Pi_L\Pi_M=\Pi_M\Pi_L=\Pi_M.
+ \end{gathered}
+ \tag{NT.7}$$ The first identities follow by multiplication of $j_M=j_LE$ and $j_M'=j_L'E$. For the projection identities, $\Pi_a$ is self-adjoint, idempotent and has image $V_a=\operatorname{ran}j_a$; $V_M\subseteq V_L$ implies that $\Pi_L$ fixes $\operatorname{ran}\Pi_M$, and taking adjoints proves the other order.
+
+**Theorem 1** (The complete connection transition). *Define the coefficient transition and its ambient image by $$K=K_{LM}=\Gamma_LE-E\Gamma_M=(I-Q)\Gamma_LE,
+ \qquad A=A_{LM}=j_LK.
+ \tag{NT.8}$$ Then $K:\mathbb C^{r_M}\to\mathbb C^{r_L}$ has image in the $W_L$-orthogonal complement of $\operatorname{ran}E$, and $$\begin{gathered}
+ E^*W_LK=0,\qquad
+ A=(\Pi_L-\Pi_M)j_M',\qquad
+ N_M=A+N_LE,\\
+ \operatorname{ran}A\subseteq V_L\cap V_M^\perp,\qquad
+ \operatorname{ran}(N_LE)\subseteq V_L^\perp,\qquad A^*N_LE=0.
+ \end{gathered}
+ \tag{NT.9}$$ Consequently the exact positive transition form is $$\boxed{\mathcal N_M=E^*\mathcal N_LE+\Delta_{LM}},\qquad
+ \begin{aligned}
+ \Delta_{LM}&=A^*A=K^*W_LK\succeq0\\
+ &=E^*\Gamma_L^*W_L\Gamma_LE
+                           -\Gamma_M^*W_M\Gamma_M.
+ \end{aligned}
+ \tag{NT.10}$$ For each $c\in\mathbb C^{r_M}$ the following equivalences and rank bound are exact: $$c^*\Delta_{LM}c=0\ \Longleftrightarrow\ Kc=0
+ \ \Longleftrightarrow\ Ac=0,\qquad
+ \operatorname{rank}\Delta_{LM}=\operatorname{rank}K\le\min(r_M,r_L-r_M).
+ \tag{NT.11}$$*
+
+*Proof.* Equation (NT.7) gives $E^*W_L\Gamma_LE=W_M\Gamma_M$; subtracting $E^*W_LE\Gamma_M$ proves $E^*W_LK=0$. The original identity $j_a\Gamma_a=\Pi_a j_a'$ gives $j_LK=\Pi_Lj_L'E-\Pi_Mj_M'=(\Pi_L-\Pi_M)j_M'$. Splitting $I-\Pi_M=(\Pi_L-\Pi_M)+(I-\Pi_L)$ and using $j_M'=j_L'E$ proves $N_M=A+N_LE$. The commuting projection identities show that $\Pi_L-\Pi_M$ is the orthogonal projection onto $V_L\cap V_M^\perp$. This proves the two range statements and their orthogonality. Taking the Gram of this orthogonal sum proves the first line of (NT.10). Expanding $K=\Gamma_LE-E\Gamma_M$, using $E^*W_L\Gamma_LE=W_M\Gamma_M$ and its adjoint, gives the second line. Positivity of $W_L$ implies that the quadratic form of $K^*W_LK$ vanishes exactly on $\ker K$. Injectivity of $j_L$ gives $\ker A=\ker K$. The image of $K$ lies in a space of dimension $r_L-r_M$; rank-nullity now proves (NT.11). ◻
+
+For a locally absolutely continuous original coefficient $c(u)$, write $\nabla_a=\partial_u+\Gamma_a$. The full derivative has the three mutually orthogonal components $$\begin{aligned}
+ \nabla_L(Ec)&=E\nabla_Mc+Kc,\\
+ \partial_u(j_Mc)&=j_M\nabla_Mc+Ac+N_LEc,\\
+ \|\partial_u(j_Mc)\|^2
+ &=\|\nabla_Mc\|_{W_M}^2+c^*\Delta_{LM}c
+                               +c^*E^*\mathcal N_LEc,\\
+ \|\nabla_L(Ec)\|_{W_L}^2
+ &=\|\nabla_Mc\|_{W_M}^2+c^*\Delta_{LM}c.
+ \end{aligned}
+ \tag{NT.12}$$ The first equality is the product rule with constant $E$ and (NT.8). The derivative formula follows from (NT.9) and the original connection decomposition. The image of its first term lies in $V_M$, the second in $V_L\cap V_M^\perp$, and the third in $V_L^\perp$. Their orthogonality proves every energy identity without discarding any coefficient derivative.
+
+# Full source matrices, graph maps and arithmetic observation
+
+Define the actual maps on the original coefficient bases by $$\begin{gathered}
+ \mathbf N_a p=N_aC_ap,\qquad
+ \mathbf T_a p=j_a(C_a'+\Gamma_a C_a)p,\qquad
+ \mathbf A_{LM}p=A_{LM}C_Mp,\\
+ H_a^0=\int C_a^*W_aC_a\,du,\qquad
+ H_a^N=\mathbf N_a^*\mathbf N_a,\qquad
+ H_a^\partial=\mathbf T_a^*\mathbf T_a+H_a^N,\\
+ H_{LM}^{\rm tr}=\mathbf A_{LM}^*\mathbf A_{LM}
+                    =\int C_M^*\Delta_{LM}C_M\,du.
+ \end{gathered}
+ \tag{NT.13}$$ Here the displayed equalities of functions take place in $\mathscr K$. All integrals are finite: each term is an orthogonal projection of an original polynomially weighted derivative amplitude, and the FC Schwartz estimates apply before any projection. Equations (NT.4), (NT.9), and (NT.12) give $$\begin{gathered}
+ \mathbf N_M=\mathbf A_{LM}+\mathbf N_LF,\qquad
+ \mathbf T_LF=\mathbf T_M+\mathbf A_{LM},\\
+ \mathbf T_M^*\mathbf A_{LM}=0,\quad
+ \mathbf A_{LM}^*\mathbf N_LF=0,\quad
+ \mathbf T_M^*\mathbf N_LF=0,\\
+ H_M^0=F^*H_L^0F,\quad
+ H_M^N=F^*H_L^NF+H_{LM}^{\rm tr},\quad
+ F^*\mathbf T_L^*\mathbf T_LF
+        =\mathbf T_M^*\mathbf T_M+H_{LM}^{\rm tr},\quad
+ H_M^\partial=F^*H_L^\partial F.
+ \end{gathered}
+ \tag{NT.14}$$ These identities follow first pointwise, then by integration. In particular, the positive amount transferred into the larger tangential image is precisely the amount removed from the normal form for the same original polynomial.
+
+Let $\widehat\Pi_a$ denote the bounded orthogonal projection on $\mathscr K$ obtained by applying $\Pi_a(u)$ pointwise. Measurability follows from smoothness, and contraction follows by integrating the pointwise contraction. Define $$\begin{aligned}
+ \mathcal U_{LM}(t,n)
+    &=(t+\widehat\Pi_Ln,(I-\widehat\Pi_L)n),\quad
+       t\in\operatorname{ran}\widehat\Pi_M,\quad n\in\ker\widehat\Pi_M,\\
+ \mathcal U_{LM}^{-1}(t_L,n_L)
+    &=(\widehat\Pi_Mt_L,
+           (I-\widehat\Pi_M)t_L+n_L).
+ \end{aligned}
+ \tag{NT.15}$$ The domain and codomain are respectively the orthogonal decompositions of $\mathscr K$ at levels $M$ and $L$. The inverse formula is verified by the nested projection identities. Orthogonality of $t$, $\widehat\Pi_Ln$ and $(I-\widehat\Pi_L)n$ shows that $\mathcal U_{LM}$ is unitary between these sum spaces. On the actual finite derivative graph it is exactly $$\mathcal U_{LM}(\mathbf T_Mp,\mathbf N_Mp)
+       =(\mathbf T_LFp,\mathbf N_LFp).
+ \tag{NT.16}$$ Graph addition on either side is the same original function $\partial_u(j_MC_Mp)=\partial_u(j_LC_LFp)$, so (NT.16) also supplies the exact map between the two presentations.
+
+For completeness the finite normal maps are injective on nonempty actual polynomial sources. The FC.21--27 proof uses the infinite discrete set $\mathcal Z_h$ of unremoved critical-line zeros, retaining each original order $\ell_T$ and coefficient $c_T=a^{(\ell_T)}(T)/\ell_T!$. If $N_a(u)c=0$, then $\Psi'\vartheta_c=\Psi\vartheta_d$ with finite relative polynomials and $d=\Gamma_ac$. On a fibre through $t_1=T$ where all other amplitude factors are nonzero, the leading terms in the original transverse coordinate $\delta$ are $$\Psi=c_TA_b\delta^{\ell_T}+O(\delta^{\ell_T+1}),\qquad
+ \Psi'=\frac{\ell_T}{k}c_TA_b\delta^{\ell_T-1}
+                                      +O(\delta^{\ell_T}).
+ \tag{NT.17}$$ Thus $\vartheta_c$ vanishes on that hyperplane. When $k\ge3$ the other nonzero factors can be chosen in a dense subset of each hyperplane, so polynomial continuity gives vanishing on every such hyperplane; infinitely many distinct $T$ force $\vartheta_c=0$. For $k=2$ and $u\notin\mathcal Z_h+\mathcal Z_h$, every remaining second factor $a(u-T)$ is nonzero; infinitely many distinct univariate roots give the same conclusion. Since $\mathcal Z_h+\mathcal Z_h$ is countable, $\mathcal N_a>0$ almost everywhere for every finite nonempty frame. A nonzero vector polynomial $C_ap$ is nonzero outside a finite set: one nonzero component polynomial suffices to bound its common real zero set. Integrating proves $H_a^N>0$. This argument also includes nonzero source relations whose arithmetic class is zero.
+
+Set $\mathscr R_M^N=\operatorname{ran}\mathbf N_M$ and $\mathscr R_{L|M}^N=\operatorname{ran}(\mathbf N_LF)$. The concrete normal transition and its inverse on these specified images are $$\begin{gathered}
+ \mathcal Q_{LM}:\mathscr R_M^N\longrightarrow\mathscr R_{L|M}^N,
+ \qquad \mathcal Q_{LM}r=(I-\widehat\Pi_L)r,\qquad
+ \mathcal Q_{LM}\mathbf N_Mp=\mathbf N_LFp,\\
+ H_{L|M}^N=F^*H_L^NF>0,\qquad
+ \mathcal Q_{LM}^{-1}r_L
+      =\mathbf N_M(H_{L|M}^N)^{-1}F^*\mathbf N_L^*r_L,\\
+ \|r\|^2-\|\mathcal Q_{LM}r\|^2
+       =\|\mathbf A_{LM}p\|^2\quad(r=\mathbf N_Mp).
+ \end{gathered}
+ \tag{NT.18}$$ Positivity of $H_{L|M}^N$ follows from injectivity of $F$ and of $\mathbf N_L$. Substitution of $r_L=\mathbf N_LFp$ proves the inverse formula in both orders. Thus $\mathcal Q_{LM}$ is a contraction and a linear isomorphism between these finite images, with its complete norm loss specified. No inverse bound independent of the frame level is inserted.
+
+The bounded ambient extension obtained from the exact smaller normal image inverse is $$\begin{gathered}
+ V_{LM}=\mathbf N_LF(H_M^N)^{-1}\mathbf N_M^*
+       =(I-\widehat\Pi_L)\Pi_M^N:\mathscr K\to\mathscr K,\\
+ \Pi_M^N=\mathbf N_M(H_M^N)^{-1}\mathbf N_M^*,\qquad
+ \|V_{LM}\|\le1,\qquad
+ V_{LM}|_{\mathscr R_M^N}=\mathcal Q_{LM}.
+ \end{gathered}
+ \tag{NT.18a}$$ The equality follows by multiplying the first line of (NT.18) by $(H_M^N)^{-1}\mathbf N_M^*$. The two factors on the right are orthogonal projections and hence contractions. The smaller normal image is fixed by $\Pi_M^N$, proving the restriction statement. For $L=M$ this ambient extension is $\Pi_M^N$ and restricts to the identity precisely on its declared image.
+
+Retain the original arithmetic target, full quotient unit and derivative, $$\begin{gathered}
+ \mathfrak A_h=\mathbb C[s_1,\ldots,s_k]/(h(s_1),\ldots,h(s_k)),\\
+ U=\prod_i v_h(s_i),\quad \upsilon=[U],\quad
+ \delta=\frac1k\sum_i\partial_{s_i},\quad
+ \beta=\upsilon^{-1}[\delta U],\\
+ (\mathsf J_a^{\log})_{\alpha,n}
+  =n\upsilon[\theta^a_\alpha S^{n-1}]
+        +\beta\upsilon[\theta^a_\alpha S^n].
+ \end{gathered}
+ \tag{NT.19}$$ At $n=0$ the first term is zero; no negative power is taken. The full Hermite class, multiplicities, $g=2\xi$ and unit derivatives are retained. The identity $\delta S=1$, $\delta z_i=0$ proves these columns by the product rule applied before taking the quotient. Equation (NT.4) then proves $\mathsf J_L^{\log}F=\mathsf J_M^{\log}$ entry by entry. On the actual normal image put $\mathsf{Obs}_a^{\log}r=
+\mathsf J_a^{\log}(H_a^N)^{-1}\mathbf N_a^*r$. The exact arithmetic transition is $$\boxed{\mathsf{Obs}_L^{\log}\mathcal Q_{LM}
+              =\mathsf{Obs}_M^{\log}
+                 \quad\hbox{on }\mathscr R_M^N.}
+ \tag{NT.20}$$ Indeed both sides on $r=\mathbf N_Mp$ are $\mathsf J_M^{\log}p$ by (NT.18)--(NT.19). Their original source path is graph addition, followed by $-i\mathscr U_k^{-1}$ and the complete original arithmetic jet; (NT.16) preserves that path exactly. For $h=1$ the arithmetic target is the zero algebra and the observation is its unique zero map; every analytic identity above continues unchanged.
+
+To retain any declared target metric as well, choose its fixed original quotient basis and let $G_M^{\rm tar},G_L^{\rm tar}>0$ be the two declared Hermitian matrices in that same basis. The coordinate identity $\tau_{LM}:\mathfrak A_h\to\mathfrak A_h$ has the exact comparison operator $$\begin{gathered}
+ D_{LM}^{\rm tar}=(G_M^{\rm tar})^{-1}G_L^{\rm tar},\qquad
+ (D_{LM}^{\rm tar})^*G_M^{\rm tar}
+       =G_M^{\rm tar}D_{LM}^{\rm tar}=G_L^{\rm tar},\\
+ \|\mathsf{Obs}_L^{\log}\mathcal Q_{LM}\mathbf N_Mp\|_{G_L^{\rm tar}}^2
+    =p^*(\mathsf J_M^{\log})^*G_L^{\rm tar}\mathsf J_M^{\log}p,\\
+ \|\mathsf{Obs}_L^{\log}\mathcal Q_{LM}\mathbf N_Mp\|_{G_L^{\rm tar}}^2
+  -\|\mathsf{Obs}_M^{\log}\mathbf N_Mp\|_{G_M^{\rm tar}}^2
+    =p^*(\mathsf J_M^{\log})^*(G_L^{\rm tar}-G_M^{\rm tar})
+                                     \mathsf J_M^{\log}p.
+ \end{gathered}
+ \tag{NT.20a}$$ Direct multiplication proves the comparison identities, and (NT.20) proves the two observed-form identities. This specifies both target forms through the actual coordinate map without assigning a sign to their difference. In the zero target all these are the unique zero forms and maps, with no positive-dimensional inverse needed.
+
+# Every variable-frame term
+
+Let $G_M(u),G_L(u)$ be smooth invertible matrices of their declared sizes. The changed frame and coefficients are $j_a^G=j_aG_a$, $c_a^G=G_a^{-1}c_a$. The same inclusion now has the generally variable matrix $$E^G=G_L^{-1}EG_M,\qquad
+ R^G=G_M^{-1}RG_L,\qquad
+ \Gamma_a^G=G_a^{-1}\Gamma_aG_a+G_a^{-1}G_a'.
+ \tag{NT.21}$$ For any such variable inclusion the exact formulas are $$\begin{gathered}
+ \Gamma_M^G=R^G(\Gamma_L^GE^G+(E^G)'),\qquad
+ K^G=(E^G)'+\Gamma_L^GE^G-E^G\Gamma_M^G,\\
+ K^G=G_L^{-1}KG_M,\quad
+ A^G=AG_M,\quad N_a^G=N_aG_a,\quad
+ \Delta_{LM}^G=G_M^*\Delta_{LM}G_M.
+ \end{gathered}
+ \tag{NT.22}$$ To prove the first equality, differentiate $j_M^G=j_L^GE^G$ before taking its mixed Gram: $B_M^G=(E^G)^*B_L^GE^G+(E^G)^*W_L^G(E^G)'$. Multiplication by $(W_M^G)^{-1}$ gives it. In the second line, differentiate $G_L^{-1}EG_M$ and substitute both transformed connections. The terms containing $G_L'$ and $G_M'$ cancel separately, leaving $G_L^{-1}KG_M$. The original projection images are unchanged; applying $I-\Pi_a$ to $(j_aG_a)'$ therefore gives $N_aG_a$. This proves the remaining statements and every variable-inclusion version of (NT.9)--(NT.12). In particular the term $(E^G)'$ cannot be deleted from the transition.
+
+For the same original polynomial source, $C_a^G=G_a^{-1}C_a$ and $C_L^GF=E^GC_M^G$. Its tangential and normal amplitudes obey $$\mathbf N_a^G=\mathbf N_a,\quad
+ \mathbf T_a^G=\mathbf T_a,\quad
+ \mathbf A_{LM}^G=\mathbf A_{LM}.
+ \tag{NT.23}$$ The first and third follow from (NT.22); in the second, the derivative of $G_a^{-1}$ cancels the connection term $G_a^{-1}G_a'$. Thus the literal source matrices in (NT.14), the normal-image transition, its inverse and the arithmetic observation are all the same maps after their explicit coefficient transport. The transformed coefficient functions are exactly this image of the original filtered source; their degree bounds are not replaced by a new polynomial frame convention.
+
+# Nested chains and both quadratic branches
+
+For a third level $T\ge L$ retain $E_{TM}=E_{TL}E_{LM}$ and $F_{TM}=F_{TL}F_{LM}$. Expansion of (NT.8) proves $$\begin{gathered}
+ K_{TM}=K_{TL}E_{LM}+E_{TL}K_{LM},\qquad
+ A_{TM}=A_{TL}E_{LM}+A_{LM},\\
+ \Delta_{TM}=\Delta_{LM}+E_{LM}^*\Delta_{TL}E_{LM},\qquad
+ H_{TM}^{\rm tr}=H_{LM}^{\rm tr}+F_{LM}^*H_{TL}^{\rm tr}F_{LM}.
+ \end{gathered}
+ \tag{NT.24}$$ The two ambient summands of $A_{TM}$ lie in $V_T\cap V_L^\perp$ and $V_L\cap V_M^\perp$; they are orthogonal. Taking their Gram proves the third identity, and integration with (NT.4) proves the fourth. Induction gives the same mutually orthogonal sum and positive telescoping formula along every finite nested chain. The actual graph maps and normal maps compose: $$\mathcal U_{TL}\mathcal U_{LM}=\mathcal U_{TM},\qquad
+ \mathcal Q_{TL}\mathcal Q_{LM}=\mathcal Q_{TM}
+            \quad\hbox{on the corresponding original source image}.
+ \tag{NT.25}$$ For the normal maps this follows directly from $(I-\widehat\Pi_T)(I-\widehat\Pi_L)=I-\widehat\Pi_T$. For the graph maps, both compositions are the two orthogonal projections of the same graph-added vector. These proofs retain the intermediate positive transition forms. The ambient normal extensions also compose on all of $\mathscr K$: $V_{TL}V_{LM}=V_{TM}$. Indeed their matrix product contains $(H_L^N)^{-1}\mathbf N_L^*\mathbf N_L=I_{q_L}$, leaving $\mathbf N_TF_{TL}F_{LM}(H_M^N)^{-1}\mathbf N_M^*$.
+
+Now put $x=u^2>0$, $v=\sqrt x$ and, at each level, keep $$M_a=\begin{pmatrix}I&ivI\\ I&-ivI\end{pmatrix},\quad
+ H_a=M_a^*\frac{\operatorname{diag}(W_a(v),W_a(-v))}{2v}M_a,\quad
+ Q_a^{\rm n}=M_a^*\frac{\operatorname{diag}(\mathcal N_a(v),\mathcal N_a(-v))}{2v}M_a.
+ \tag{NT.26}$$ Let $\mathscr A_a=M_a^{-1}
+\operatorname{diag}(\Gamma_a(v)/(2v),-\Gamma_a(-v)/(2v))M_a+M_a^{-1}M_a'$ be the complete paired connection. Its derivative includes the original $M_a^{-1}M_a'=\operatorname{diag}(0,I/(2x))$. Write $\widetilde E=\operatorname{diag}(E,E)$ and $$\begin{gathered}
+ \mathscr K_{LM}=\mathscr A_L\widetilde E
+                       -\widetilde E\mathscr A_M
+   =M_L^{-1}\operatorname{diag}\left(\frac{K(v)}{2v},
+                            -\frac{K(-v)}{2v}\right)M_M,\\
+ H_M=\widetilde E^*H_L\widetilde E,\qquad
+ \widetilde E^*H_L\mathscr K_{LM}=0,\\
+ \boxed{Q_M^{\rm n}=\widetilde E^*Q_L^{\rm n}\widetilde E
+                   +4x\mathscr K_{LM}^*H_L\mathscr K_{LM}.}
+ \end{gathered}
+ \tag{NT.27}$$ The identity $M_L\widetilde E=\operatorname{diag}(E,E)M_M$ proves the first two transport assertions by substitution. Applying (NT.10) on both branches gives the normal identity: multiplication by $4x=4v^2$ cancels precisely the squares of $1/(2v)$ in $\mathscr K_{LM}$, leaving $M_M^*\operatorname{diag}(\Delta_{LM}(v),\Delta_{LM}(-v))M_M/(2v)$. Thus both original signs and both Jacobian factors are retained. For $\boldsymbol\eta_M=(a_M,b_M)^t$ the paired inclusion is $\boldsymbol\eta_L=\widetilde E\boldsymbol\eta_M$ and $$(\partial_x+\mathscr A_L)\widetilde E\boldsymbol\eta_M
+   =\widetilde E(\partial_x+\mathscr A_M)\boldsymbol\eta_M
+                               +\mathscr K_{LM}\boldsymbol\eta_M.
+ \tag{NT.28}$$ Weighted orthogonality in (NT.27) shows that its tangential energy gain is exactly the normal energy loss in that equation. It follows pointwise, before integration, that the complete FC.15 energy is the same on the two included presentations.
+
+In variable frames the paired inclusion is instead $\mathscr E(x)=M_L^{-1}\operatorname{diag}(E^G(v),E^G(-v))M_M$. The corresponding transition is exactly $\mathscr E'+\mathscr A_L^G\mathscr E-
+\mathscr E\mathscr A_M^G$; applying (NT.22) on both branches and the product rule proves this formula, including its derivative. The transported original density retains $(\mathscr A_a)^*H_a+H_a\mathscr A_a=H_a'+H_a/(2x)$ at both levels, since this identity is obtained by differentiating the same two original branch densities. No evenness assumption is used in (NT.26)--(NT.28).
+
+# Exact zero and endpoint scopes
+
+The identities above hold at every real $u$. If a coefficient vector or admitted polynomial is zero, each displayed linear map sends it to its corresponding zero. If the smaller frame is empty, its coefficient and source spaces are zero and each inclusion, transition and inverse-on-zero-image is the unique such map. For equal frames with an invertible constant $E$, the weighted projection $Q$ is the identity, so $K=A=\Delta_{LM}=0$; the normal map is transported exactly by $E$. For unequal frames, (NT.11) is the precise equality criterion; strict positivity of the actual finite $\mathcal N_L$ does not force strict positivity of $\Delta_{LM}$. The maps in (NT.9) and their Gram identity give the exact relation in every such case.
+
+For a quartet packet and $k=2$, the original amplitude is even. At $u=0$ its product derivative is $\tfrac12(a'(y)a(-y)+a(y)a'(-y))=0$. Every fixed relative frame therefore has $j_a'(0)=\Gamma_a(0)=N_a(0)=0$ and $K_{LM}(0)=A_{LM}(0)=\Delta_{LM}(0)=0$. Under a smooth variable frame, $\Gamma_a^G(0)$ can have the retained term $G_a(0)^{-1}G_a'(0)$; (NT.22) still gives $K^G(0)=N_a^G(0)=0$. The integrated finite-source normal inverse in (NT.18) remains valid because its positivity is an almost-everywhere and integrated assertion, proved in (NT.17).
+
+Let $\mathcal D_a$ denote the coefficient functions locally absolutely continuous on $\mathbb R$ for which $\int c^*W_ac$ and $\int\|\partial_u(j_ac)\|^2$ are finite. For the constant inclusion, the exact domain correspondence is $$E\mathcal D_M=\mathcal D_L\cap
+ \{c_L:c_L(u)\in\operatorname{ran}E\text{ for almost every }u\}.
+ \tag{NT.29}$$ The forward inclusion follows from $j_LEc=j_Mc$ and constant $E$. Conversely, use any constant left inverse of $E$, for example $(E^*E)^{-1}E^*$, to obtain a locally absolutely continuous $c_M$ from $c_L$. The closed fixed subspace condition and continuity give $c_L=Ec_M$ everywhere. The same amplitude and derivative identities then give both required finite integrals. This proves both inclusions without identifying distinct coefficient metrics.
+
+On the quadratic branches the original domain has the exact trace condition $$\lim_{x\downarrow0}(a_M(x)+i\sqrt x\,b_M(x))
+ =\lim_{x\downarrow0}(a_M(x)-i\sqrt x\,b_M(x)).
+ \tag{NT.30}$$ The analogous condition after $\widetilde E$ is equivalent because $E$ is injective. The finite norm and energy on each open branch give finite traces: near zero, $W_M$ has positive upper and lower bounds and $\Gamma_M$ is bounded, so the coefficient and its ordinary derivative are both locally square-integrable. The fundamental theorem and Cauchy--Schwarz give the one-sided limits. Integration by parts then shows that unequal limits give their jump times $\delta_0$, whereas equality joins them into the original weak-derivative domain. This proves the trace assertion. For smooth invertible gauges through zero the matching condition is transported by their common value at zero. For gauges specified only on the punctured branches one must retain the original condition with $G_M(v)c_M^G(v)$ and $G_M(-v)c_M^G(-v)$; it is exactly (NT.30) applied to the original coefficient. No new endpoint value is assigned by the half-line formulas alone.
+
+Finally every displayed linear source, graph and observation map has the original fixed-support lift: on a fixed support label it acts by the proved linear map, preserves a supported zero as a supported zero, and sends external absence to external absence. Its additivity and scalar laws follow directly from linearity. In particular a nonzero polynomial relation is carried by $P^L_{Fp}=P^M_p$ before any full Hermite quotient, and its arithmetic derivative is the unchanged value (NT.19)--(NT.20).
+
+# One independent exact original-coordinate calibration
+
+This finite calibration has ambient space $\mathbb C^5$ with its standard Hermitian form. It checks the proved transition using literal polynomial matrices, without identifying this finite model with the arithmetic amplitude (NT.1). Keep $$\begin{gathered}
+ p(u)=1+u,\quad q(u)=1+u+u^2,\quad
+ j_L(u)=\begin{pmatrix}
+ 1&0&0\\0&1&0\\0&0&1\\p&2p&-p\\2q&-q&q
+ \end{pmatrix},\quad
+ E=\begin{pmatrix}1&0\\0&1\\1&1\end{pmatrix},\\
+ j_M(u)=j_L(u)E=\begin{pmatrix}1&0\\0&1\\1&1\\0&p\\3q&0\end{pmatrix}.
+ \end{gathered}
+ \tag{NT.31}$$ The first three rows make $j_L$ injective, and $E$ is injective. For $a=(1,2,-1)^t$ and $b=(2,-1,1)^t$, direct multiplication gives $$\begin{gathered}
+ W_L=I_3+p^2aa^t+q^2bb^t>0,\quad
+ W_M=\begin{pmatrix}2+9q^2&1\\1&2+p^2\end{pmatrix}>0,\\
+ B_L=pp'aa^t+qq'bb^t=W_L'/2,\quad
+ B_M=\operatorname{diag}(9qq',pp')=W_M'/2,\\
+ W_M(1)-W_M(-1)=\begin{pmatrix}72&0\\0&4\end{pmatrix},\quad
+ [W_M(0),W_M(1)]=\begin{pmatrix}0&-69\\69&0\end{pmatrix},\\
+ W_L(1)-W_L(-1)=4aa^t+8bb^t,\quad
+ [W_L(0),W_L(1)]=\begin{pmatrix}0&25&-15\\-25&0&-5\\15&5&0\end{pmatrix}.
+ \end{gathered}
+ \tag{NT.32}$$ Positivity follows from the squared norm of the injective original maps. Every displayed difference is nonzero, so both original weights are non-even and have noncommuting values.
+
+At $u=1$, put $J=j_L(1)$ and $D=j_M'(1)$. Their matrices and the actual smaller connection are $$\begin{gathered}
+ J=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\\2&4&-2\\6&-3&3\end{pmatrix},\quad
+ D=\begin{pmatrix}0&0\\0&0\\0&0\\0&1\\9&0\end{pmatrix},\\
+ W_L(1)=\begin{pmatrix}41&-10&14\\-10&26&-17\\14&-17&14\end{pmatrix},\quad
+ W_M(1)=\begin{pmatrix}83&1\\1&6\end{pmatrix},\quad
+ \Gamma_M(1)=\frac1{497}\begin{pmatrix}486&-2\\-81&166\end{pmatrix}.
+ \end{gathered}
+ \tag{NT.33}$$ An independent construction of the transition projection starts with $$v=(171,-277,-603,440,48)^t.$$ Multiplication verifies $v=J(171,-277,-603)^t$, $(JE)^*v=0$, and $v^*v=665483$. The larger and smaller column spaces have dimensions three and two. Their orthogonal difference is therefore exactly the line spanned by $v$, so $$\begin{gathered}
+ \Pi_L(1)-\Pi_M(1)=\frac{vv^*}{665483},\quad
+ A(1)=\frac8{665483}v\begin{pmatrix}54&55\end{pmatrix},\\
+ N_L(1)E=\frac1{1339}
+ \begin{pmatrix}-1458&-146\\459&-202\\-567&92\\54&55\\225&6\end{pmatrix}.
+ \end{gathered}
+ \tag{NT.34}$$ For the last matrix define $T=1339^{-1}\left(\begin{smallmatrix}1458&146\\-459&202\\567&-92\end{smallmatrix}\right)$. Direct multiplication gives $W_L(1)T=J^*D=\left(\begin{smallmatrix}54&2\\-27&4\\27&-2\end{smallmatrix}\right)$. Thus $D-JT$ is exactly the displayed matrix $N_L(1)E$. It is orthogonal to every column of $J$ and hence to $v$. This verifies both normal components independently of the proposed connection difference. Their full Grams are $$A(1)^*A(1)=\frac1{665483}
+ \begin{pmatrix}186624&190080\\190080&193600\end{pmatrix},\qquad
+ E^*\mathcal N_L(1)E=\frac1{1339}
+ \begin{pmatrix}2025&54\\54&55\end{pmatrix}.
+ \tag{NT.35}$$ Take the original coefficient curve $c(u)=(1+iu,u^2-i)^t$. Its directly differentiated vector at one is $$w=Dc(1)+JEc'(1)=(i,2,2+i,5-i,9+18i)^t,\qquad w^*w=441.
+ \tag{NT.36}$$ The three components in (NT.12), with their original values, are $$\begin{gathered}
+ t=\frac1{497}\begin{pmatrix}484+985i\\1079-247i\\1563+738i\\2158-494i\\4356+8865i\end{pmatrix},\qquad
+ N_L(1)Ec(1)=\frac1{1339}\begin{pmatrix}-1604-1312i\\257+661i\\-475-659i\\109-i\\231+219i\end{pmatrix},\\
+ A(1)c(1)=\frac{8(109-i)}{665483}v,\\
+ w=t+A(1)c(1)+N_L(1)Ec(1),\qquad
+ \boxed{441=\frac{217065}{497}+\frac{58496}{51191}+\frac{320}{103}.}
+ \end{gathered}
+ \tag{NT.37}$$ Multiplication of the explicit vectors proves their sum and their squared norms; their orthogonality was proved from the original column spaces above. All three energies are strictly positive. The number $441$ is this pointwise original energy. Multiplying $c$ by any smooth compactly supported scalar function equal to one near $u=1$ retains the same pointwise value and derivative and makes the corresponding integrated energy finite.
+
+The companion exact script `nested_relative_frame_fixture_20260912.py` retains these original matrices and verifies 24 rational-function identities and nonzero witnesses, with identical successful records in ordinary and optimized Python. Its full matrix receipts and independent sample review are pinned in `nested_relative_frame_fixture_20260912_manifest.json`. The full general proof is (NT.1)--(NT.30); the single concrete family above supplies an independent nonzero calculation of the transition and the surviving normal component.

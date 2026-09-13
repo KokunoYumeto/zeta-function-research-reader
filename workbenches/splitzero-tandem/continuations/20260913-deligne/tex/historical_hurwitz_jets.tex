@@ -1,0 +1,877 @@
+% Complete audited historical proof report; all mathematical definitions and proofs retained.
+% Initially staged from the full historical report; reviewed mathematical additions follow.
+% Staged original proof excerpts and exact source locators: sources/historical/hurwitz_laurent/PROVENANCE.json
+\section{Historical Hurwitz reconstruction and the complete Laurent jet bridge}\label{historical-hurwitz-reconstruction-and-the-complete-laurent-jet-bridge}
+
+This section reconstructs a compact probability measure from the complete local Hurwitz zero cluster at any nontrivial zeta zero. It also proves the complete finite-jet relation with the marked Laurent period, including the involution coefficients and the exact collision quotient. Two distinct prime periods recover the entire finite spectral algebra with every multiplicity retained.
+
+\subsection{Source receipts and exact locators}\label{source-receipts-and-exact-locators}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The original \emph{Split-Zero CUE Hurwitz phase space} source has SHA256 \nolinkurl{95CCA3275F2012E32F9E506EC0211273D5E7DA1FD72AD90F7167AA37094E94CC}. Its exact excerpts accompany this edition in \path{sources/historical/hurwitz_laurent/}: \path{compact_hurwitz_and_residues.tex} reproduces source lines 722--856; \path{zero_motion_and_bernstein.tex} reproduces lines 1110--1257; and \path{all_moments_claim.tex} reproduces lines 1907--1912. The statements below retain the original coordinate \(s\), displacement \(t\), support coordinate \(y\), support bound \(L\), and moments \(m_n(\mu)\).
+\item
+  The \emph{Mathematical Functor Construction} transcript has SHA256 \nolinkurl{8F94D3A8172F8585837A4E4F6060B5F8DAC38CF627C9689335F13792B7710D85}. Its complete mathematical proof block, source lines 14142--15894, is retained as \path{sources/historical/hurwitz_laurent/marked_period_laurent_conormal_proofs.md}. Theorems 3, 7, 11 and 13 give the marked Laurent augmentation and period maps; Theorems 15--18 give the packet and Laurent involution; Theorems 20--25 give the marked conormal chart. Within that source, lines 15143--15227 prove \(J_u^*=J_{-u}\), lines 15397--15502 give the \(d\log|a_\infty|\) chart, and lines 15504--15631 give the augmentation-conormal diagram.
+\item
+  The corresponding standalone \emph{Terzo--CC--CVS--JT deformation intertwiner} witness has SHA256 \nolinkurl{BAF7DB6506710CA9AA5B7705C7D5687B4E66536C08A9FE77549ABBC041BC9044}. Its Laurent deformation appears at source lines 490--542 and its conormal calculation at lines 638--760. The complete proofs needed here are reproduced below and in the accompanying transcript excerpt.
+\end{enumerate}
+
+The historical source gives the forward zero-motion recursion and the marked conormal map. The proofs below give the inverse moment recursion, the complete multiple-zero version, the full nilpotent Laurent isomorphism, and its collision quotient. Source line numbers and hashes identify the particular source editions; these comparisons make no claim of global mathematical priority.
+
+\subsection{Every compact Hurwitz input is determined by one simple-zero germ}\label{every-compact-hurwitz-input-is-determined-by-one-simple-zero-germ}
+
+Keep the original family
+
+\[
+Z_{\mu,t}(s)=\int_{[0,L]}\zeta(s,1+ty)\,d\mu(y),\qquad
+m_n(\mu)=\int_{[0,L]}y^n\,d\mu(y),\qquad m_0(\mu)=1.
+\]
+
+Here \(\mu\) is a Borel probability measure, \(L\) is any finite support bound, and \(t\) is the original displacement; no rescaling of either variable is made. For \(|t|L<1\), put
+
+\[
+b_n(s)=\frac{(-1)^n}{n!}(s)_n\zeta(s+n),\qquad
+Z_{\mu,t}(s)=\sum_{n\ge0}m_n(\mu)b_n(s)t^n.
+\tag{H1}
+\]
+
+The expansion is the source's compact Taylor formula. To verify its analytic scope directly, for \(\operatorname{Re} s>1\) expand each \((k+ty)^{-s}\) in its binomial Taylor series. On compact \(s\)-sets and \(|t|L\le r<1\), the ratios \(|ty|/k\le r\) give normally convergent double sums. Integration is termwise valid. The identity extends meromorphically in \(s\); near a nontrivial zero \(\rho\) all displayed coefficients are holomorphic. Joint holomorphicity and normal convergence in the strip can be checked directly: for a compact set \(K\) in \(0<\operatorname{Re} s<1\), the product
+
+\[
+\left|\frac{(s)_n}{n!}\right|
+=\prod_{j=1}^n\left|1+\frac{s-1}{j}\right|
+\le\prod_{j=1}^n\left(1+\frac{C_K}{j}\right)
+\le e^{C_K}(n+1)^{C_K}
+\]
+
+is polynomially bounded uniformly in \(s\in K\). The factor \(\zeta (s+n)\) is uniformly bounded for \(n\ge 1\) by the absolutely convergent Dirichlet series at \(1+\min_{s\in K}\operatorname{Re} s\). Since \(m_n\le L^n\), the terms of (H1) are bounded by a constant times \((n+1)^{C_K}(L|t|)^n\). Thus the series is normally convergent when \(L|t|<1\), including on a surrounding compact annulus for any contour used below. Cauchy estimates give the same local derivative control. For \(n\ge 1\), \(\operatorname{Re}(\rho +n)>1\) and none of \(\rho ,\rho +1,\ldots ,\rho +n-1\) is zero, so
+
+\[
+b_n(\rho)\ne0.\tag{H2}
+\]
+
+The zeta factor in (H2) is nonzero because on \(\operatorname{Re} z>1\) the logarithmic Euler-product series
+
+\[
+\sum_{p\text{ prime}}\sum_{k\ge1}\frac{p^{-kz}}{k}
+\]
+
+converges absolutely, and its exponential is \(\zeta (z)\) there. This conclusion uses the actual zero's strip \(0<\operatorname{Re} \rho <1\); it does not assume RH.
+
+Fix a simple nontrivial zero \(\rho\), so \(\zeta (\rho )=0\) and \(\zeta '(\rho )\ne 0\). The analytic implicit function theorem produces the unique local holomorphic germ
+
+\[
+\rho_\mu(t)=\rho+w_\mu(t),\qquad
+w_\mu(t)=\sum_{j\ge1}c_j(\mu)t^j,\qquad
+Z_{\mu,t}(\rho_\mu(t))=0.
+\tag{H3}
+\]
+
+This is the existing source theorem. Its simplicity hypothesis is retained explicitly, rather than silently extending a scalar branch through a multiple zero.
+
+\textbf{The inverse recurrence.} For each integer \(N\ge 1\), the input moment is recovered by the exact finite formula
+
+\[
+\boxed{
+m_N(\mu)=-\frac{1}{b_N(\rho)}
+\sum_{n=0}^{N-1}m_n(\mu)
+[t^{N-n}]\,b_n\!\left(\rho+\sum_{j=1}^{N}c_j(\mu)t^j\right).
+}\tag{H4}
+\]
+
+Thus \((c_1,\ldots ,c_N)\) determines \((m_1,\ldots ,m_N)\) and conversely. In particular, two compact probability inputs have the same zero-trajectory jet through order \(N\) exactly when their first \(N\) moments agree.
+
+\textbf{Proof.} Substitute (H3) in (H1). Its coefficient of \(t^N\) is
+
+\[
+0=\sum_{n=0}^{N}m_n(\mu)
+[t^{N-n}]b_n(\rho+w_\mu(t)).
+\]
+
+The \(n=N\) summand is exactly \(m_N(\mu )b_N(\rho )\). It contains no positive-order coefficient of \(w\). Every other summand uses only \(m_0,\ldots ,m_{N-1}\) and \(c_1,\ldots ,c_N\). Division is legitimate by (H2), proving (H4). In the same coefficient equation the only occurrence of \(c_N\) is \(\zeta '(\rho )c_N\), from the \(n=0\) summand, because every other Taylor term has either a positive power of \(t\) already or at least two positive-order factors of \(w\). This proves the forward triangular recurrence and both directions of the finite-jet assertion by induction. \(\square\)
+
+The first two inverse formulas, with every sign retained, are
+
+\[
+m_1=\frac{\zeta'(\rho)c_1}{\rho\zeta(\rho+1)},
+\tag{H5}
+\]
+
+\[
+m_2=-\frac{2}{\rho(\rho+1)\zeta(\rho+2)}
+\left[
+\zeta'(\rho)c_2+\frac{\zeta''(\rho)}2c_1^2
+-m_1\bigl(\zeta(\rho+1)+\rho\zeta'(\rho+1)\bigr)c_1
+\right].\tag{H6}
+\]
+
+These follow by \(b_1(s)=-s\zeta (s+1)\) and \(b_2(s)=s(s+1)\zeta (s+2)/2\), not by changing the Hurwitz convention.
+
+\textbf{Exact measure reconstruction on the original interval.} Assume \(L>0\). For every integer \(M\ge 1\) and \(0\le j\le M\), set
+
+\[
+\lambda_{M,j}
+=\binom Mj\sum_{k=0}^{M-j}(-1)^k\binom{M-j}{k}
+\frac{m_{j+k}(\mu)}{L^{j+k}},\qquad
+\mu_M=\sum_{j=0}^M\lambda_{M,j}\delta_{Lj/M}.
+\tag{H7}
+\]
+
+Then every \(\lambda _{M,j}\ge 0\), their sum is one, and \(\mu _M\) converges weakly to \(\mu\). Thus (H4) and (H7) give an explicit reconstruction of the entire input from the zero germ, with the original support coordinate and bound present in every formula.
+
+\textbf{Proof.} Expanding \((1-y/L)^{M-j}\) proves
+
+\[
+\lambda_{M,j}=\int_{[0,L]}\binom Mj
+(y/L)^j(1-y/L)^{M-j}\,d\mu(y).
+\]
+
+This proves positivity, and the binomial theorem proves the sum is one. At fixed original \(y\), let \(J\) have binomial law with \(M\) trials and success probability \(y/L\). Its original-coordinate variable \(LJ/M\) has mean \(y\) and variance
+
+\[
+\mathbb E\bigl[(LJ/M-y)^2\bigr]
+=\frac{y(L-y)}M\le\frac{L^2}{4M}.
+\tag{H8}
+\]
+
+For continuous \(f\) on \([0,L]\) and any \(\delta >0\), split the expectation according to \(|LJ/M-y|\le \delta\). Uniform continuity and Chebyshev's inequality give
+
+\[
+\left|\mathbb E f(LJ/M)-f(y)\right|
+\le\omega_f(\delta)+2\|f\|_\infty\frac{L^2}{4M\delta^2},
+\]
+
+uniformly in \(y\). First take \(M\longrightarrow \infty\), then \(\delta \longrightarrow 0\), and integrate against \(\mu\). This is weak convergence. For Lipschitz \(f\), Cauchy--Schwarz gives the explicit bound \(\operatorname{Lip}(f)L/(2\sqrt M)\). If \(L=0\), the input is exactly \(\delta _0\), all positive moments vanish, and the original zero branch is constant; this exceptional fibre is retained separately. \(\square\)
+
+\textbf{Injectivity without a prespecified common support bound.} If two compactly supported probability measures have the same zero germ at the chosen simple \(\rho\), (H4) gives equal moments. Choose any common finite support bound for the two measures. Their measures (H7) are identical at every \(M\), and their weak limits are therefore identical. Hence the map
+
+\[
+\begin{gathered}
+\left\{\begin{gathered}\text{compact probability measures}\\
+\text{on }[0,\infty)\end{gathered}\right\}
+\longrightarrow
+\left\{\begin{gathered}\text{holomorphic zero germs}\\
+\text{at the fixed simple }\rho\end{gathered}\right\},\\[3pt]
+\mu\longmapsto\rho_\mu
+\end{gathered}
+\]
+
+is injective onto its actual image. This statement asserts no surjectivity onto arbitrary holomorphic germs.
+
+The exact support endpoint is also recovered:
+
+\[
+\sup\operatorname{supp}\mu=\lim_{n\to\infty}m_n(\mu)^{1/n}.
+\tag{H9}
+\]
+
+Indeed, if the endpoint is \(L_\mu\), then \(m_n\le L_\mu ^n\). For any \(0<a<L_\mu\), positive mass lies in \((a,L_\mu ]\), so \(m_n\ge a^n \mu ((a,L_\mu ])\). Taking \(n\)th roots and then \(a\uparrow L_\mu\) proves the claim. The zero endpoint gives \(\delta _0\) and both sides zero.
+
+The completed residue comparison has its own exact factorization. Define
+\[
+ \Lambda_{\mu,t}(s)=\pi^{-s/2}\Gamma(s/2)Z_{\mu,t}(s).
+\]
+Then, for the same displacement domain \(|t|L<1\),
+\[
+ \operatorname{Res}_{s=1}\Lambda_{\mu,t}=1,\qquad
+ \operatorname{Res}_{s=0}\Lambda_{\mu,t}=-1-2t m_1(\mu),
+ \tag{HRes1}
+\]
+and consequently
+\[
+ \mathfrak B(\mu,t):=
+ \operatorname{Res}_{s=0}\Lambda_{\mu,t}
+ +\operatorname{Res}_{s=1}\Lambda_{\mu,t}
+ =-2t m_1(\mu).
+ \tag{HRes2}
+\]
+\begin{proof}
+For \(\operatorname{Re}\mathfrak a>0\) and \(\operatorname{Re}s>1\),
+termwise integration of the absolutely convergent geometric series gives
+\[
+ \Gamma(s)\zeta(s,\mathfrak a)
+ =\int_0^\infty x^{s-1}
+       \frac{e^{-\mathfrak a x}}{1-e^{-x}}\,dx.
+\]
+At zero the integrand's second factor is
+\(x^{-1}+(1/2-\mathfrak a)+O(x)\), uniformly on compact
+subsets of the indicated parameter half-plane. Subtract these two
+terms on \((0,1)\). The remaining integrals define a function
+\(H(s,\mathfrak a)\) holomorphic for \(\operatorname{Re}s>-1\), and
+\[
+ \Gamma(s)\zeta(s,\mathfrak a)
+ =\frac1{s-1}+\frac{1/2-\mathfrak a}{s}
+      +H(s,\mathfrak a).
+\]
+The tail integral is holomorphic there because of exponential decay.
+Since \(\Gamma(1)=1\) and \(\Gamma(s)=s^{-1}+O(1)\), the formula
+proves \(\operatorname{Res}_{s=1}\zeta(s,\mathfrak a)=1\) and
+\(\zeta(0,\mathfrak a)=1/2-\mathfrak a\).
+For \(\mathfrak a=1+ty\), the parameters stay in a compact subset
+of that half-plane as \(y\) ranges over the original support.
+Uniformity therefore permits integration of both coefficients against
+the probability measure. It gives residue one at \(s=1\) and
+\(Z_{\mu,t}(0)=-1/2-tm_1(\mu)\).
+Finally \(\pi^{-1/2}\Gamma(1/2)=1\),
+\(\Gamma(s/2)=2/s+O(1)\), and \(\pi^{-s/2}=1+O(s)\)
+give (HRes1) and their sum (HRes2).
+\end{proof}
+Thus the residue map factors through the explicitly recovered first
+moment:
+\[
+ \rho_\mu\longmapsto
+ \frac{\zeta'(\rho)c_1(\mu)}{\rho\zeta(\rho+1)}
+ =m_1(\mu)\longmapsto -2t m_1(\mu).
+\]
+The full germ retains every higher moment through (H4), with measure
+reconstruction given by (H7).
+
+\subsection{The complete zero cluster removes the simplicity restriction}\label{the-complete-zero-cluster-removes-the-simplicity-restriction}
+
+The preceding source theorem used a simple scalar branch. The full cluster gives an inverse for \textbf{every} nontrivial zero, with its original multiplicity retained. Fix a nontrivial zero \(\rho\) of exact order \(r\ge 1\). Choose a closed disc about \(\rho\) entirely inside \(0<\operatorname{Re} s<1\), whose boundary \(\Gamma\) contains no zero and whose interior contains no zero of \(\zeta\) other than \(\rho\). Thus the entire disc also excludes the pole at \(1\). Shrink the complex \(t\)-disc so \(Z_{\mu ,t}\) is nonzero on \(\Gamma\) and has exactly \(r\) zeros inside, with multiplicity. The normal-convergence estimate following (H1) supplies joint holomorphicity and uniform convergence to \(\zeta\) on \(\Gamma\); Rouché's theorem then proves the exact zero count.
+
+For \(1\le j\le r\) define the holomorphic power-sum germs
+
+\[
+q_j(t)=\frac{1}{2\pi i}\oint_\Gamma
+(s-\rho)^j\frac{\partial_s Z_{\mu,t}(s)}{Z_{\mu,t}(s)}\,ds.
+\]
+
+They are exactly the sums of the \(j\)th powers of the displacements of the \(r\) zeros, counted with multiplicity, by the residue theorem. Set \(e_0(t)=1\) and recursively
+
+\[
+j e_j(t)=\sum_{i=1}^j(-1)^{i-1}e_{j-i}(t)q_i(t).
+\]
+
+Newton's identities show that the polynomial
+
+\[
+P_\mu(s,t)=\sum_{j=0}^r(-1)^je_j(t)(s-\rho)^{r-j}
+=(s-\rho)^r+\sum_{N\ge1}P_N(s)t^N
+\tag{H10}
+\]
+
+has precisely the full zero cluster as its divisor, and every \(P_N(s)\) has degree at most \(r-1\) in the original displacement \(s-\rho\). The original point \(\rho\) and monic leading coefficient one are both retained. The polynomial is independent of any enumeration or Puiseux branch choices.
+
+There is a jointly holomorphic unit \(U_\mu (s,t)\) on a smaller disc such that
+
+\[
+Z_{\mu,t}(s)=U_\mu(s,t)P_\mu(s,t),\qquad
+U_\mu(s,t)=\sum_{N\ge0}U_N(s)t^N,
+\qquad U_0(s)=\frac{\zeta(s)}{(s-\rho)^r}.
+\tag{H11}
+\]
+
+For completeness, joint holomorphicity does not need to be assumed from the root parametrization. Choose an inner circle still enclosing all zeros for small \(t\); on that circle the quotient \(Z/P\) has nonzero denominator. Its Cauchy integral against \(1/(\zeta-s)\) defines a jointly holomorphic function of \((s,t)\) inside, since the integrand is jointly holomorphic on the fixed contour. For each fixed \(t\), the zeros of \(Z\) and \(P\) agree with their exact multiplicities, so the quotient has removable singularities at the roots and the Cauchy integral equals \(Z/P\). The quotient has no zero, because the two divisors already coincide. This proves (H11). The contour variable \(\zeta\) here denotes a complex integration variable, not the Riemann zeta function.
+
+Now the input moments have the exact recursive recovery
+
+\[
+\boxed{
+m_N(\mu)=\frac{1}{b_N(\rho)}
+\sum_{k=1}^{N}U_{N-k}(\rho)P_k(\rho),
+}\tag{H12}
+\]
+
+followed by the exact analytic division
+
+\[
+\boxed{
+U_N(s)=\frac{
+m_N(\mu)b_N(s)-\sum_{k=1}^NU_{N-k}(s)P_k(s)
+}{(s-\rho)^r}.
+}\tag{H13}
+\]
+
+In (H13) the numerator vanishes to order at least \(r\); its holomorphic extension at \(\rho\) has value equal to its \(r\)th derivative there divided by \(r!\). Thus the formula retains every derivative needed by a multiple zero, rather than dividing a nonvanishing germ by a zero.
+
+\textbf{Proof.} Comparing the coefficient of \(t^N\) in (H1) and (H11) gives
+
+\[
+m_N(\mu)b_N(s)
+=U_N(s)(s-\rho)^r+\sum_{k=1}^{N}U_{N-k}(s)P_k(s).
+\]
+
+Evaluation at \(s=\rho\) and the nonvanishing (H2) prove (H12). Rearranging the same analytic equality proves (H13), including the divisibility and the value at the centre. Starting from the completely known \(U_0\), the pair (H12)--(H13) is triangular and recovers every moment from the polynomial-cluster germ.
+
+Two measures with the same polynomial-cluster jet through order \(N\) therefore have the same moments through \(N\), by induction. Conversely, equal moments through \(N\) give \(Z_{\mu ,t}-Z_{\nu ,t}=O(t^{N+1})\) as holomorphic functions on the fixed circle. Since both denominators remain nonzero there, their logarithmic derivatives, contour power sums, Newton coefficients and hence polynomials (H10) agree through order \(N\). This proves the converse without choosing scalar zero branches. Finally (H7) reconstructs the measure, so the cluster germ at any nontrivial zero determines the entire compact probability input. \(\square\)
+
+For \(r=1\), \(P_N(s)=-c_N\), so (H12)--(H13) reduce to the inverse branch recurrence. For \(r>1\), the contour construction keeps all \(r\) zeros and their multiplicities even when individual zeros have fractional-power trajectories. This is a fully proved extension of the historical source's simple-zero statement.
+
+\subsection{The historical period map preserves every finite spectral jet}\label{the-historical-period-map-preserves-every-finite-spectral-jet}
+
+The transcript's marked Frobenius character is
+
+\[
+z_{p,\omega}(s)=\omega p^{s-1/2},\qquad
+p>1,\quad\omega\in S^1,\quad a=\log p>0.
+\tag{J1}
+\]
+
+For the original prime-circle construction, \(p\) is a rational prime and \(\omega=\psi(\operatorname{Frob}_p)\); the proof below only uses the displayed positive \(a\) and unit-modulus \(\omega\). It retains the mark and phase.
+
+Fix \(\rho\in\mathbb C\) and an integer multiplicity \(m\ge 1\), and write
+
+\[
+z=\omega p^{\rho-1/2},\qquad
+E_{\rho,m}=\mathbb C[X]/(X-\rho)^m,
+\qquad
+L_{z,m}=\mathbb C[U,U^{-1}]/(U-z)^m.
+\]
+
+The original spectral coordinate remains \(X\), and the original Laurent period generator remains \(U\).
+
+\textbf{Exact jet isomorphism.} There is a complex-algebra isomorphism
+
+\[
+\Phi_{\rho,m}:L_{z,m}\xrightarrow{\sim}E_{\rho,m},
+\qquad
+[U]\longmapsto z\sum_{k=0}^{m-1}\frac{a^k(X-\rho)^k}{k!}.
+\tag{J2}
+\]
+
+Its inverse is
+
+\[
+[X]\longmapsto\rho+
+\frac1a\sum_{k=1}^{m-1}\frac{(-1)^{k+1}}k
+\left(\frac{U-z}{z}\right)^k.
+\tag{J3}
+\]
+
+For every \(0\le k<m\), (J2) induces on the \(k\)th associated conormal grade the exact multiplier
+
+\[
+[(U-z)^k]\longmapsto (za)^k[(X-\rho)^k].
+\tag{J4}
+\]
+
+\textbf{Proof.} The target of (J2) is a unit: it is \(z\) times a polynomial with constant term one and nilpotent remaining part. Its difference from \(z\) lies in \((X-\rho )\), so its \(m\)th power vanishes. The Laurent universal property and the quotient therefore define (J2). In \(\mathbb C[t]/t^m\), truncated \(\exp(t)\) and \(\log(1+t)\) are inverse operations. This identity can be proved without convergence: formal differentiation shows \((\log(\exp t))'=1\) and its constant term is zero; likewise \(\exp(\log(1+t))/(1+t)\) has derivative zero and constant term one. Reducing the resulting formal identities modulo \(t^m\) gives (J3) and both composites. Finally
+
+\[
+\Phi(U-z)=za(X-\rho)+(X-\rho)^2
+\left(z\sum_{j=2}^{m-1}\frac{a^j(X-\rho)^{j-2}}{j!}\right),
+\]
+
+so its \(k\)th power modulo \((X-\rho )^{k+1}\) is exactly \((za)^k(X-\rho )^k\). For \(m=1\), the sums in (J3) are empty and both rings are the specified scalar fibres, as required. \(\square\)
+
+For a finite primary spectral block \(A=\rho I+N\) with \(N^m=0\), this means that its actual period operator is exactly
+
+\[
+\omega\exp\bigl(a(A-\tfrac12I)\bigr)
+=z\sum_{k=0}^{m-1}\frac{a^kN^k}{k!}.
+\tag{J5}
+\]
+
+There is no deletion of nilpotent multiplicity in this map. Indeed, \(\exp(aN)-I=N(aI+N B(N))\); its second factor is an invertible polynomial in \(N\), so its powers have exactly the same kernels as the corresponding powers of \(N\). This proves preservation of all Jordan block lengths locally.
+
+\subsection{Exact conjugate-reciprocal involution on the jets and conormal}\label{exact-conjugate-reciprocal-involution-on-the-jets-and-conormal}
+
+Define the original spectral involution
+
+\[
+\rho^\dagger=1-\overline\rho,
+\qquad z^\dagger=\omega p^{\rho^\dagger-1/2}=1/\overline z.
+\tag{J6}
+\]
+
+On polynomial classes define the conjugate-linear algebra isomorphism
+
+\[
+\mathcal S_E:E_{\rho,m}\longrightarrow E_{\rho^\dagger,m},
+\qquad[f(X)]\longmapsto[\overline f(1-X)].
+\tag{J7}
+\]
+
+On Laurent classes define
+
+\[
+\mathcal S_L:L_{z,m}\longrightarrow L_{z^\dagger,m},
+\qquad\left[\sum c_nU^n\right]\longmapsto
+\left[\sum\overline{c_n}U^{-n}\right].
+\tag{J8}
+\]
+
+Both have square the identity after returning to the original labelled block, and the full finite-jet diagram commutes:
+
+\[
+\boxed{
+\mathcal S_E\Phi_{\rho,m}
+=\Phi_{\rho^\dagger,m}\mathcal S_L.
+}\tag{J9}
+\]
+
+\textbf{Proof.} The polynomial generator transforms by
+
+\[
+X-\rho\longmapsto1-X-\overline\rho
+=-(X-\rho^\dagger).
+\]
+
+The Laurent generator transforms by the exact identity
+
+\[
+U-z\longmapsto U^{-1}-\overline z
+=-\overline z\,U^{-1}(U-z^\dagger).
+\tag{J10}
+\]
+
+The factor \(-\overline z U^{-1}\) is a unit, so the respective \(m\)th-power ideals map to one another and both maps are defined. Applying each twice fixes constants and the original generator. To check (J9), it suffices to check the Laurent generator and constants. Its left image is
+
+\[
+\overline z\sum_{k=0}^{m-1}
+\frac{(-a)^k(X-\rho^\dagger)^k}{k!},
+\]
+
+which is the inverse of \(z^\dagger  \exp(a(X-\rho ^\dagger ))\) modulo \((X-\rho ^\dagger )^m\) and hence the right image. \(\square\)
+
+For clarity, the entire nonlinear mixing of Laurent Taylor coefficients under (J8) is explicit. With \(t'=U-z^\dagger\), for \(1\le k<m\) one has
+
+\[
+\boxed{
+\mathcal S_L\bigl((U-z)^k\bigr)
+=\sum_{\ell=k}^{m-1}(-1)^\ell
+\binom{\ell-1}{\ell-k}
+\overline z^{\,k+\ell}(t')^\ell.
+}\tag{J11}
+\]
+
+\textbf{Proof.} By (J10), the expression is
+
+\[
+(-\overline z)^k U^{-k}(t')^k
+=(-1)^k\overline z^{2k}(t')^k(1+\overline z t')^{-k}.
+\]
+
+The formal binomial expansion \((1+v)^{-k}=\sum_{j\ge0}(-1)^j\binom{k+j-1}{j}v^j\), truncated when the total degree reaches \(m\), gives (J11). The constant basis vector maps to one separately. \(\square\)
+
+In particular, the conormal maps are
+
+\[
+[X-\rho]\longmapsto-[X-\rho^\dagger],
+\qquad
+[U-z]\longmapsto-\overline z^{\,2}[U-z^\dagger],
+\tag{J12}
+\]
+
+and their compatibility with \((J4)\) is an exact equality of coefficients:
+
+\[
+-\overline z^{\,2}\,(z^\dagger a)
+=-\overline z a
+=\overline{za}\,(-1).
+\]
+
+The higher grade \(k\) has factors \((-1)^k\) and \((-1)^k\overline z^{2k}\) respectively, with the corresponding \((za)^k\) comparison. This supplies the all-order anti-involution/conormal morphism requested by the historical construction; it does not erase the higher terms in (J11).
+
+On the real analytic radial chart \(s=\beta +i\gamma\), the same exact map gives
+
+\[
+\nu=\log|z|=(\beta-\tfrac12)\log p,
+\qquad d\nu=(\log p)d\beta,
+\qquad c_{-+}=4(\beta-\tfrac12),
+\qquad\nu=\frac{\log p}{4}c_{-+}.
+\tag{J13}
+\]
+
+The source's marked transverse chart \(j_S(\nu )=[((e^\nu ,1,\ldots ,1),0)]\) pulls its displayed form \(\alpha =d \log|a_\infty |\) back to \(d\nu\), since \(\log(e^\nu )=\nu\). Thus the composite character→radial chart has pullback \(\alpha =(\log p)d\beta\), with the original prime and tesserine factor retained. The local identity requires no conjecture about zeros. A global identification with any separately defined Weil quadratic form is not asserted by this local chart calculation; the exact algebraic and chart maps proved here are the morphisms actually available from this source block.
+
+\subsection{Period collisions: the exact unlabelled image and its missing fibres}\label{period-collisions-the-exact-unlabelled-image-and-its-missing-fibres}
+
+Let \(Z\) be a finite set of distinct spectral points \(\rho\), with original multiplicities \(m_\rho \ge 1\), and
+
+\[
+h(X)=\prod_{\rho\in Z}(X-\rho)^{m_\rho},\qquad
+E_h=\mathbb C[X]/h(X)
+\cong\prod_{\rho\in Z}E_{\rho,m_\rho}.
+\]
+
+The last map is the CRT map \(f\longmapsto\bigl(f\bmod(X-\rho)^{m_\rho}\bigr)\); pairwise coprimality gives its inverse by the Bezout identity. No multiplicity is discarded.
+
+Set \(z_\rho =\omega  p^{\rho -1/2}\). The equality of two period values is exactly
+
+\[
+z_\rho=z_\sigma
+\quad\Longleftrightarrow\quad
+\rho-\sigma\in\frac{2\pi i}{\log p}\mathbb Z.
+\tag{J14}
+\]
+
+The proof is the exact kernel \(2\pi i\mathbb Z\) of the complex exponential. In particular, a fixed prime's character cannot automatically be treated as globally injective on a zero packet. No noncollision claim for actual zeta zeros is inserted here.
+
+For each distinct period value \(z\), put \(M_z=\max_{\rho :z_\rho =z}m_\rho\) and
+
+\[
+P(U)=\prod_z(U-z)^{M_z},\qquad
+L_P=\mathbb C[U,U^{-1}]/P(U).
+\]
+
+There is an injective algebra map
+
+\[
+\Phi_Z:L_P\hookrightarrow E_h
+\tag{J15}
+\]
+
+whose \(\rho\)th component is Laurent reduction modulo \((U-z_\rho )^{m_\rho }\) followed by (J2). Its image consists exactly of the tuples which, after (J3) on each labelled primary block, have the same Laurent Taylor coefficients at a common period value through every order visible in both blocks. More explicitly, if \(a_\rho \in E_{\rho ,m_\rho }\), write
+
+\[
+\Phi_{\rho,m_\rho}^{-1}(a_\rho)
+=\sum_{k=0}^{m_\rho-1}b_{\rho,k}(U-z_\rho)^k.
+\]
+
+Then \((a_\rho )\) lies in the image exactly when
+
+\[
+b_{\rho,k}=b_{\sigma,k}
+\quad\text{whenever }z_\rho=z_\sigma
+\text{ and }0\le k<\min(m_\rho,m_\sigma).
+\tag{J16}
+\]
+
+The exact dimension and cokernel dimension as complex vector spaces are
+
+\[
+\dim\operatorname{im}\Phi_Z=\sum_zM_z,
+\qquad
+\dim\operatorname{coker}\Phi_Z
+=\sum_\rho m_\rho-\sum_zM_z.
+\tag{J17}
+\]
+
+\textbf{Proof.} Use CRT also on \(P\). For a fixed common value \(z\), a Laurent polynomial vanishes on every corresponding spectral block exactly when it is divisible by \((U-z)^{m_\rho }\) for every such \(\rho\), which is equivalent to divisibility by \((U-z)^{M_z}\). Therefore the kernel of the original Laurent evaluation map is exactly \((P)\), giving (J15). Reduction of one degree-\(<M_z\) polynomial to each smaller truncation gives (J16). Conversely choose any one block of maximal multiplicity \(M_z\); its Laurent coefficients define the common polynomial, and (J16) forces all other components to be its truncations. These constructions prove the image equality, while the dimensions follow from the explicit polynomial bases. \(\square\)
+
+Keeping the labels restores a full exact isomorphism:
+
+\[
+\prod_{\rho\in Z}L_{z_\rho,m_\rho}
+\xrightarrow{\prod\Phi_{\rho,m_\rho}}
+E_h.
+\tag{J18}
+\]
+
+Thus the historical period map and the current finite arithmetic jet object have a proved relation at both the labelled and unlabelled levels. The collision compatibility space is exactly the image (J16). An explicit quotient records every lost independent coefficient: choose one maximal block \(\rho _z\) over each \(z\), with \(m_{\rho _z}=M_z\), and define the complex-linear map
+
+\[
+\Delta_Z:E_h\longrightarrow
+\bigoplus_z\ \bigoplus_{\substack{\rho:z_\rho=z\\\rho\ne\rho_z}}
+\mathbb C^{m_\rho},\qquad
+(a_\rho)\longmapsto
+\left(b_{\rho,k}-b_{\rho_z,k}\right)_{
+\substack{z,\rho\ne\rho_z\\0\le k<m_\rho}}.
+\tag{J19}
+\]
+
+It is surjective: set all maximal-block coefficients to zero and prescribe each remaining block's coefficients to be the desired output. Its kernel is exactly (J16). Consequently
+
+\[
+0\longrightarrow L_P\xrightarrow{\Phi_Z}E_h
+\xrightarrow{\Delta_Z}
+\bigoplus_z\ \bigoplus_{\substack{\rho:z_\rho=z\\\rho\ne\rho_z}}
+\mathbb C^{m_\rho}\longrightarrow0
+\tag{J20}
+\]
+
+is an exact sequence of complex vector spaces. The first map is an algebra homomorphism; the last map is explicitly linear and is not incorrectly promoted to a ring homomorphism. Its target has the cokernel dimension in (J17).
+
+If \(Z\) is stable under \(\rho\longmapsto1-\overline\rho\) with the same multiplicities, the maps (J7) and (J8), together with permutation of the labelled factors, give conjugate-linear involutions on both sides of (J18). Formula (J9) proves that (J18) intertwines them. The unlabelled construction (J15) is also stable: \(z\longmapsto1/\overline z\) permutes the common period values and preserves \(M_z\); (J10) carries the defining ideal of one value to that of the paired value.
+
+\subsection{Two prime periods recover the complete finite spectral algebra}
+\label{sec:two-prime-complete-jets}
+
+Retain a finite nonempty set \(Z\) of distinct spectral points with
+the original orders \(m_\rho\geq1\), and
+\(E_h=\mathbb C[X]/h(X)\), where
+\(h(X)=\prod_{\rho\in Z}(X-\rho)^{m_\rho}\).
+Choose distinct rational primes \(p,q\) and fixed marks
+\(\omega_p,\omega_q\in S^1\). Put
+\[
+ a=\log p,\quad b=\log q,\quad
+ u_\rho=\omega_p e^{a(\rho-1/2)},\quad
+ v_\rho=\omega_q e^{b(\rho-1/2)}.
+\]
+Define the units \(\mathfrak A_p,\mathfrak A_q\in E_h\) by their
+complete original spectral CRT components:
+\[
+ \begin{aligned}
+ (\mathfrak A_p)_\rho
+   &=u_\rho\sum_{k=0}^{m_\rho-1}
+               \frac{a^k(X-\rho)^k}{k!},\\
+ (\mathfrak A_q)_\rho
+   &=v_\rho\sum_{k=0}^{m_\rho-1}
+               \frac{b^k(X-\rho)^k}{k!}.
+ \end{aligned}
+ \tag{P1}
+\]
+The period-algebra map therefore has the exact type
+\[
+ \mathscr P_{p,q}:\mathbb C[U^{\pm1},V^{\pm1}]
+       \longrightarrow E_h,
+ \qquad U\longmapsto\mathfrak A_p,\quad
+ V\longmapsto\mathfrak A_q.
+ \tag{P2}
+\]
+This map uses the actual periods of the original generator; the
+notation \(\mathscr P_{p,q}\) leaves the theta map \(\Theta\) unchanged.
+
+\begin{theorem}[Complete two-prime Laurent presentation]
+\label{thm:two-prime-laurent-presentation}
+The map (P2) is surjective, with every local order retained. More
+precisely, in \(\mathscr L=\mathbb C[U^{\pm1},V^{\pm1}]\), put
+\[
+ \begin{aligned}
+ B_\rho(U)&=v_\rho\sum_{j=0}^{m_\rho-1}
+     \binom{b/a}{j}\left(\frac{U-u_\rho}{u_\rho}\right)^j,
+ \\
+ I_\rho&=\big((U-u_\rho)^{m_\rho},\,V-B_\rho(U)\big).
+ \end{aligned}
+ \tag{P3}
+\]
+Here \(\binom{b/a}{0}=1\), and for \(j\geq1\) the coefficient is
+\((b/a)(b/a-1)\cdots(b/a-j+1)/j!\).
+The ideals \(I_\rho\) are pairwise comaximal, and
+\[
+ \begin{gathered}
+ \ker\mathscr P_{p,q}
+       =\bigcap_{\rho\in Z}I_\rho
+       =\prod_{\rho\in Z}I_\rho,\\
+ \mathscr L\Big/\bigcap_{\rho\in Z}I_\rho
+       \xrightarrow{\ \sim\ }E_h.
+ \end{gathered}
+ \tag{P4}
+\]
+The map on each primary quotient is the original finite exponential
+map (J2), with the second generator determined by (P3).
+\end{theorem}
+\begin{proof}
+First the two marked periods separate distinct complex points.
+If their values at \(\rho,\sigma\) agree, there exist integers
+\(k,l\) with
+\[
+ a(\rho-\sigma)=2\pi i k,\qquad
+ b(\rho-\sigma)=2\pi i l.
+\]
+Eliminating \(\rho-\sigma\) gives \(k\log q=l\log p\), hence
+\(q^k=p^l\). Prime valuations in the positive rationals give
+\(k=l=0\), including negative integer exponents. Thus
+\(\rho=\sigma\). Each fixed phase cancels only within its own
+prime character; neither mark was changed.
+
+For a fixed \(\rho\), set \(y=(U-u_\rho)/u_\rho\). The quotient
+\(\mathscr L/I_\rho\) is exactly \(\mathbb C[y]/y^{m_\rho}\):
+its generators satisfy
+\[
+ U=u_\rho(1+y),\qquad
+ V=v_\rho\sum_{j=0}^{m_\rho-1}\binom{b/a}{j}y^j.
+\]
+Both expressions are units, since their constant terms are nonzero
+and their remaining parts are nilpotent. The Laurent inverses
+therefore impose no extra relation. These expressions give a map
+from the Laurent quotient to \(\mathbb C[y]/y^{m_\rho}\), whose
+inverse sends \(y\) to \((U-u_\rho)/u_\rho\); their composites
+fix the displayed generators.
+
+The map to \(E_{\rho,m_\rho}\) is
+\[
+ y\longmapsto\sum_{k=1}^{m_\rho-1}
+              \frac{a^k(X-\rho)^k}{k!},
+ \qquad
+ X\longmapsto\rho+\frac1a\sum_{j=1}^{m_\rho-1}
+                         \frac{(-1)^{j+1}}j y^j
+ \tag{P5}
+\]
+for it and its inverse, respectively. The finite logarithm and
+exponential identities proved in (J2)--(J3) verify both composites.
+The identity
+\((1+y)^{b/a}=\exp((b/a)\log(1+y))\), reduced modulo
+\(y^{m_\rho}\), verifies the prescribed \(V\)-image. For
+completeness its binomial coefficients are fixed by the formal
+differential equation \((1+y)F'=(b/a)F\), \(F(0)=1\):
+\((j+1)[y^{j+1}]F=(b/a-j)[y^j]F\). This recurrence gives
+exactly the coefficients in (P3). Thus \(I_\rho\) is precisely
+the kernel of the \(\rho\)-component of (P2), including order one.
+
+For two different labels, either \(u_\rho\ne u_\sigma\), or their
+\(v\)-values differ by the separation already proved. In the
+first case the powers of the two distinct linear \(U\)-factors
+have a polynomial Bezout identity, proving
+\(I_\rho+I_\sigma=\mathscr L\). In the second case,
+\((V-v_\rho)^{m_\rho}\in I_\rho\): modulo \(I_\rho\),
+\(V-v_\rho=B_\rho(U)-v_\rho\) is a multiple of
+\(U-u_\rho\). The corresponding powers of the two distinct
+linear \(V\)-factors again give a Bezout identity.
+Hence all primary kernels are pairwise comaximal.
+
+The Chinese-remainder map now gives
+\[
+ \mathscr L\Big/\bigcap_\rho I_\rho
+    \xrightarrow{\ \sim\ }\prod_{\rho\in Z}\mathscr L/I_\rho
+    \xrightarrow{\ \sim\ }\prod_{\rho\in Z}E_{\rho,m_\rho}
+    \xleftarrow{\ \sim\ }E_h.
+ \tag{P6}
+\]
+For clarity, the first map is onto because Bezout identities give
+classes \(\epsilon_\rho\) equal to one in factor \(\rho\) and
+zero in every other factor; summing \(\epsilon_\rho\) times
+prescribed representatives recovers any tuple. Its kernel is the
+intersection by definition. Pairwise comaximality also gives
+intersection equal to product, first for two ideals by multiplying
+a Bezout identity by an element of the intersection, and then by
+induction. These arguments prove every assertion in (P4).
+
+The original coordinate itself has the explicit inverse image
+\[
+ [X]\longmapsto\sum_{\rho\in Z}\epsilon_\rho
+ \left(\rho+\frac1a\sum_{j=1}^{m_\rho-1}
+       \frac{(-1)^{j+1}}j
+       \left(\frac{U-u_\rho}{u_\rho}\right)^j\right).
+ \tag{P7}
+\]
+Each term is exactly (P5) in its own primary factor; the other
+factors vanish through \(\epsilon_\rho\). Thus the inverse
+retains the original generator and all of its nilpotent jets.
+\end{proof}
+
+This presentation is an exact statement for each finite packet.
+The single-prime collision quotient (J20) and the two-prime map
+(P6) specify their respective information. The factorwise split
+lifts below retain their individual support labels.
+
+\subsection{Split-Zero support is preserved by the exact maps}\label{split-zero-support-is-preserved-by-the-exact-maps}
+
+For any ring \(R\), keep the original \(G(R)=\{\tau\}\sqcup R^\bullet\), global zero \(\tau\), and supported zero \(e_R=0_R^\bullet\). Every ring map \(f:R\longrightarrow S\) gives
+
+\[
+G(f)(\tau)=\tau,\qquad G(f)(r^\bullet)=f(r)^\bullet.
+\tag{S1}
+\]
+
+This preserves addition and multiplication: if one input is \(\tau\), use its defining identity/absorber laws, and if both are supported, use the ring homomorphism identities with the supported tag retained. In particular \(G(f)(e_R)=e_S\ne \tau\), even if \(f\) has a nontrivial kernel.
+
+Apply (S1) separately to each map (J2), and then take the product of
+these lifted semiring isomorphisms. The resulting map is
+
+\[
+\prod_{\rho\in Z}G(L_{z_\rho,m_\rho})
+\xrightarrow{\sim}
+\prod_{\rho\in Z}G(E_{\rho,m_\rho}).
+\tag{S2}
+\]
+
+Every individual supported-zero coordinate is retained. The support map on both sides is the full vector of presence indicators in \(\{0,1\}^Z\); under (S2) it is unchanged.
+
+For a finite nonempty index set \(\mathcal I\), the comparison with
+applying \(G\) once to a product ring is the map
+\[
+ \begin{gathered}
+ \iota_R:G\left(\prod_{i\in\mathcal I}R_i\right)
+       \longrightarrow\prod_{i\in\mathcal I}G(R_i),\\
+ \tau\longmapsto(\tau)_i,\quad
+ (r_i)_i^\bullet\longmapsto(r_i^\bullet)_i.
+ \end{gathered}
+ \tag{S4}
+\]
+It is an injective unital semiring homomorphism. For two supported
+inputs, the operations agree coordinate by coordinate by the ring
+laws. When a \(\tau\) occurs, its additive-identity and
+multiplicative-absorber laws also agree coordinate by coordinate.
+The two sorts of image are disjoint because \(\mathcal I\) is
+nonempty; equality of supported images recovers every \(r_i\).
+Its support image is exactly the empty and full support vectors.
+For ring maps \(f_i:R_i\to S_i\), direct evaluation proves
+\[
+ \left(\prod_iG(f_i)\right)\iota_R
+       =\iota_S G\left(\prod_i f_i\right).
+ \tag{S5}
+\]
+This is the exact natural comparison with the factorwise map (S2).
+If \(\mathcal I\) is empty, the same comparison has the two-element
+semiring \(G(0)\) as source and the one-element empty product as
+target, so it is not injective; its unique map identifies \(e\)
+and \(\tau\). The product map (S2) itself remains the identity
+between empty products in that case.
+
+For the unlabelled map, a source factor \(G(L_{z,M_z})\) maps to all spectral factors over \(z\), using (J2) after the quotient \(L_{z,M_z}\longrightarrow L_{z,m_\rho }\). This is injective because one target block has multiplicity \(M_z\). Its support image consists exactly of the vectors which are constant on every collision class \(q^{-1}(z)\), where \(q:Z\longrightarrow\{z_\rho\}\) is \(\rho \longmapsto z_\rho\). A source \(\tau\) gives \(\tau\) in every such factor, while a supported element gives a supported element in every factor, including factors in which its amplitude becomes zero. The support embedding is exactly
+
+\[
+q^{-1}:\mathcal P(\{z_\rho\})\hookrightarrow\mathcal P(Z),
+\tag{S3}
+\]
+
+which preserves empty set, unions and intersections. The direct-image map \(q_*:\mathcal P(Z)\longrightarrow\mathcal P(\{z_\rho\})\) preserves unions and has \(q_*q^{-1}=\mathrm{id}\), but need not preserve intersections. For two distinct labels \(\rho ,\sigma\) in the same collision class, \(\{\rho\}\cap\{\sigma\}=\varnothing\) while \(q_*\{\rho\}\cap q_*\{\sigma\}=\{z\}\). Thus (S3), rather than an unsupported lattice quotient isomorphism, is the exact support relation; the amplitude compatibility is (J16).
+
+For a same-centre truncation \(m'\le m\), the quotient
+
+\[
+L_{z,m}\twoheadrightarrow L_{z,m'},\qquad
+E_{\rho,m}\twoheadrightarrow E_{\rho,m'}
+\]
+
+commutes with (J2) because the finite power series simply reduce to the corresponding lower nilpotence order. Its lifted map sends the supported nonzero class \((U-z)^{m'}\) to \(e\) when \(m'<m\), and never to \(\tau\). This supplies a concrete example of the original distinction between a vanished jet amplitude and absent support, inside the current arithmetic finite-jet packet.
+
+\subsection{All-order Hurwitz motion transported to the period and tesserine coordinates}\label{all-order-hurwitz-motion-transported-to-the-period-and-tesserine-coordinates}
+
+For the actual zero branch (H3), the exact period germ is
+
+\[
+z_\mu(t)=\omega p^{\rho_\mu(t)-1/2}
+=z_\rho\exp\left((\log p)\sum_{n\ge1}c_n(\mu)t^n\right).
+\tag{C1}
+\]
+
+Its \(N\)th coefficient is
+
+\[
+[t^N]z_\mu(t)=z_\rho
+\sum_{k=1}^N\frac{(\log p)^k}{k!}
+\sum_{\substack{n_1+\cdots+n_k=N\\n_j\ge1}}
+\prod_{j=1}^kc_{n_j}(\mu)
+\quad(N\ge1).
+\tag{C2}
+\]
+
+The empty coefficient is \(z_\rho\). Conversely, using the unique logarithm germ vanishing at \(z_\mu /z_\rho =1\),
+
+\[
+c_N(\mu)=\frac1{\log p}[t^N]
+\log\left(z_\mu(t)/z_\rho\right).
+\tag{C3}
+\]
+
+Equations (C2)--(C3) are inverse because the same formal exponential/logarithm calculation used in (J2)--(J3) applies at every finite order. Combining (C3) with (H4) proves that the marked local period germ also determines the entire compact Hurwitz input.
+
+For real \(t\) in the germ's domain,
+
+\[
+\log|z_\mu(t)|
+=(\log p)\left(\operatorname{Re}\rho-\tfrac12+
+\sum_{n\ge1}\operatorname{Re}c_n(\mu)t^n\right),
+\]
+
+\[
+c_{-+}(\rho_\mu(t))=4\left(\operatorname{Re}\rho-\tfrac12+
+\sum_{n\ge1}\operatorname{Re}c_n(\mu)t^n\right).
+\tag{C4}
+\]
+
+All coefficients, including tangential ones, are retained in (C1)--(C3). The real projection in (C4) is explicitly the radial/tesserine observable; its loss of imaginary coefficients is a specified map. For \(t\ne 0\), the Hurwitz family generally lacks the original functional equation, so \(1-\rho _\mu (t)\) is not asserted to be another zero of that family. The tesserine coordinate formula is the proved coordinate map evaluated at the actual branch, with this spectral distinction preserved.
+
+\subsection{Mathematical scope}\label{handoff-and-scope}
+
+The maps (J2)--(J20) identify the full finite arithmetic algebra with
+its labelled Laurent jets and calculate the exact quotient of
+unlabelled single-prime observations. Equations (H12)--(H13) recover
+all moments from the actual zero cluster, and (H7) reconstructs the
+entire measure. These statements retain the original multiplicities,
+support coordinates and marked periods.
+
+The constructions give exact algebraic and analytic comparison maps.
+They do not supply the uniform estimate on the arithmetic moment
+matrices required by the weight-control calculation elsewhere in
+this reader.
+
+The accompanying source records retain the historical locators and
+independent proof reviews. The proofs in this section specify their
+own hypotheses and maps in full.

@@ -46,7 +46,7 @@ The complete source order, dependency hashes and axiom reports were emitted into
 
 ## Finite job
 
-The 11-method recovered source-resolvent suite, 15-method recovered mixed-metric suite, and nine new ordered lattice/socle cases passed normally and under `python -O`; their successful JSON outputs matched byte-for-byte. Twenty-four inherited checker unittests passed in each mode.
+The 9-method recovered source-resolvent suite, 8-method recovered mixed-metric suite, and nine new ordered lattice/socle cases passed normally and under `python -O`; their successful JSON outputs matched byte-for-byte. Twenty-four inherited checker unittests passed in each mode.
 
 The three recovered false controls `diagonal-only`, `absent-join`, and `omit-boundary` and four new controls `nilpotent-zero`, `omit-jacobian`, `empty-absence`, and `diagonal-gram` were rejected in both modes. Each emitted `false_claim_accepted: false`; a generic crash was not accepted instead.
 

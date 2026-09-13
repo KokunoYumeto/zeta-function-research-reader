@@ -1,0 +1,900 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[margin=24mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\setlength{\emergencystretch}{3em}
+\title{The exact arithmetic coefficient and theta-generating join}
+\author{}
+\date{13 September 2026}
+\begin{document}
+\maketitle
+
+\section{Source, attribution, and original coordinates}
+
+This chapter proves the coefficient and cochain maps needed to integrate
+\emph{Tau Gamma Convolution Descent}, whose original
+\texttt{NOTE.tex} has SHA256
+\begin{center}\footnotesize
+\texttt{7cf984d87de405b815250b44454c4ee27c8ab46574da245b377ebc6e49327fa2}.
+\end{center}
+The analytic generating identities (GC.24)--(GC.26) were supplied by
+the \emph{Zeta Function Literature \& Local Corpus Foundation} task on
+13 September 2026. The proofs here verify and integrate that supplied
+join; they do not claim its discovery. The original gamma generating
+integral and monic family are the existing TG construction, with the
+classical Meixner--Pollaczek parameters retained.
+
+All scalar source coordinates remain
+\[
+ s=\tfrac12+it,\qquad S=s_1+\cdots+s_k=\tfrac k2+iu,
+ \qquad u=t_1+\cdots+t_k.                                      \tag{GC.1}
+\]
+Here $k\ge1$ is an integer. We use inner products conjugate-linear in
+the first argument. For a polynomial, an overline over its name means
+coefficientwise conjugation. In particular
+$\overline{P(c+iu)}=\overline P(c-iu)$ when $c,u$ are real.
+
+\subsection{The analytic source and its actual theta boundary}
+
+Let $D=-x\partial_x$. Let $V$ be the complex vector space of even
+Schwartz functions $\phi$ on $\mathbb R$ with
+$\phi(0)=0$ and $\int_{\mathbb R}\phi(x)\,dx=0$. Let $\mathscr B$ be
+the smooth functions on $\mathbb R_{>0}$ such that for every
+$a>0$ and every integer $j\ge0$,
+\[
+ D^jF(x)=O(x^a)\quad(x\downarrow0),\qquad
+ D^jF(x)=O(x^{-a})\quad(x\to\infty).
+\]
+The original theta map and cochain grading are
+\[
+ \Theta:V\longrightarrow\mathscr B,\quad
+ \Theta\phi(x)=\sum_{n\ne0}\phi(nx),\qquad
+ [V\xrightarrow{\Theta}\mathscr B]\text{ in degrees }0,1.
+                                                               \tag{GC.2}
+\]
+The sum and its differentiated sums converge at infinity by the
+Schwartz bounds. Poisson summation gives its corresponding bounds at
+zero: the zero Fourier coefficient vanishes by $\int\phi=0$, and
+the original zero term vanishes by $\phi(0)=0$. Differentiation
+preserves both conditions, because $D\phi(0)=0$ and integration by
+parts gives $\int D\phi=\int\phi=0$. Thus $D\Theta=\Theta D$ on
+these spaces. The rapid bounds make the Mellin integral
+\[
+ \mathcal MF(s)=\int_0^\infty F(x)x^{s-1}\,dx
+\]
+entire for $F\in\mathscr B$ and give
+$\mathcal M(DF)(s)=s\mathcal MF(s)$, including the vanished endpoint
+terms.
+
+For clarity the seed and all its constants can be constructed directly.
+Put
+\[
+ \phi_0(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+ \vartheta(z)=\sum_{n\in\mathbb Z}e^{-\pi n^2z^2},\qquad
+ f_0=D(D-1)\vartheta=\Theta\phi_0.                              \tag{GC.3}
+\]
+Gaussian integration gives $\int4\pi^2x^4e^{-\pi x^2}\,dx=3$ and
+$\int6\pi x^2e^{-\pi x^2}\,dx=3$ on $\mathbb R$, and
+$\phi_0(0)=0$, so $\phi_0\in V$. The Gaussian Fourier transform
+in the convention $\widehat f(y)=\int f(x)e^{-2\pi ixy}\,dx$ is
+$e^{-\pi y^2}$: differentiation under the integral and integration by
+parts give $\widehat f'=-2\pi y\widehat f$, and the integral at zero
+is one. Periodizing this Gaussian gives an absolutely convergent
+Fourier series with those computed coefficients. Evaluating it at zero
+proves $\vartheta(1/x)=x\vartheta(x)$ for $x>0$. Holomorphic
+continuation gives the same identity for $|\arg z|<\pi/4$, where
+both theta series converge normally on compact subsets.
+
+For $RF(x)=x^{-1}F(1/x)$, direct differentiation gives
+$DR=R(1-D)$. Hence $D(D-1)$ commutes with $R$ and
+\[
+ f_0(1/z)=z f_0(z).                                             \tag{GC.4}
+\]
+On every closed narrower sector, each derivative of $f_0$ at infinity
+is bounded by a polynomial times $e^{-c|z|^2}$ for some $c>0$.
+Equation (GC.4), differentiated finitely many times, proves rapid
+decay at zero too. In particular $f_0\in\mathscr B$.
+
+For $\Re s>1$, absolute convergence permits termwise Mellin integration
+of $2\sum_{n\ge1}\phi_0(nx)$. The change $y=\pi n^2x^2$ gives
+\[
+ \begin{split}
+ \mathcal Mf_0(s)
+ &=\pi^{-s/2}\zeta(s)
+       \{4\Gamma(s/2+2)-6\Gamma(s/2+1)\}\\
+ &=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)=:g(s)=2\xi(s).
+ \end{split}                                                   \tag{GC.5}
+\]
+The first line retains the theta factor two and the integration
+Jacobian $1/2$. The gamma recurrence proves the second line. The
+Mellin integral gives its entire continuation.
+
+Let $h(s)=\prod_\rho(s-\rho)^{m_\rho}$ be a finite monic packet of
+actual nontrivial zeros of $g$, each selected with its complete order.
+The empty packet is $h=1$. Write $d=\deg h$ and $v_h=g/h$.
+At each selected centre, cancelling its exact local factor constructs
+the analytic value of $v_h$; hence $v_h$ is entire. It is nonzero at
+each selected centre and is not identically zero.
+
+We record the bounds that justify the integrals below. For any closed
+real interval of $\sigma$, any $0<\beta<\pi/4$, and any $j\ge0$,
+\[
+ |v_h(\sigma+it)|\le C_{j,\beta,h}(1+|t|)^{-j}e^{-\beta|t|}.
+                                                               \tag{GC.6}
+\]
+To prove this first for $g$, rotate its Mellin contour to
+$z=e^{i\beta}x$ for $t\ge0$ and to $z=e^{-i\beta}x$ for $t<0$.
+The sector estimates after (GC.4) make the two closing arcs vanish,
+uniformly for the stated $\sigma$ interval. The rotation contributes
+$e^{\mp\beta t}$ and a unit-modulus factor depending on $\sigma$.
+Repeated integration by parts along that ray gives every displayed
+power of $(1+|t|)^{-1}$; all ray endpoint terms vanish by the same
+estimates. For $|t|$ larger than twice the moduli of all packet
+centres relative to that $\sigma$ interval, monicity gives a lower
+bound for $|h(\sigma+it)|$ by a positive constant times $|t|^d$.
+On the remaining compact rectangle the cancelled entire quotient is
+bounded. This proves (GC.6) for $v_h$.
+
+For any real $\sigma$ define
+\[
+ F_h(x)=\frac1{2\pi}\int_{\mathbb R}
+              v_h(\sigma+it)x^{-\sigma-it}\,dt.                \tag{GC.7}
+\]
+Horizontal rectangle estimates from (GC.6) prove independence of
+$\sigma$. Differentiating in $x$ multiplies the integrand by a
+power of $\sigma+it$ and remains absolutely convergent. Choosing
+$\sigma$ arbitrarily large positive at infinity and arbitrarily
+large negative at zero proves $F_h\in\mathscr B$. Fourier inversion
+in $\log x$, with the displayed $1/(2\pi)$ constant, gives
+$\mathcal MF_h=v_h$. Consequently Mellin injectivity gives
+\[
+ h(D)F_h=f_0=\Theta\phi_0.                                    \tag{GC.8}
+\]
+Define the actual density, mass, and Laplace integral by
+\[
+ w_h(t)=\frac{|v_h(1/2+it)|^2}{2\pi},\quad
+ \mu_h=\int_{\mathbb R}w_h(t)\,dt,\quad
+ M_h(\theta)=\int_{\mathbb R}e^{\theta t}w_h(t)\,dt.
+                                                               \tag{GC.9}
+\]
+Equation (GC.6) proves holomorphy of $M_h$ on
+$|\Re\theta|<\pi/2$, with
+$M_h^{(j)}(\theta)=\int t^je^{\theta t}w_h(t)\,dt$ there.
+Indeed any compact substrip is dominated using a $\beta$ for which
+$2\beta$ is larger than its real width. The mass is positive because
+$v_h$ is a nonzero analytic function; its real-line zeros are discrete.
+Every original spectral moment and its $2\pi$ factor are retained.
+
+\section{The gamma reference with its actual mass}
+
+Fix $\lambda>0$ and write $\alpha=2\lambda$. Define
+\[
+ d\sigma_\lambda(t)=r_\lambda(t)\,dt,
+ \quad r_\lambda(t)=\frac{|\Gamma(\lambda+it/2)|^2}{2\pi},
+ \quad c_\lambda=2^{1-2\lambda}\Gamma(2\lambda).
+                                                               \tag{GC.10}
+\]
+The product of two gamma integrals, changed by
+$(a,b)=(ry,(1-r)y)$ with Jacobian $y$, proves the beta integral.
+Its substitution $r/(1-r)=e^x$ gives
+\[
+ \int_{\mathbb R}(2\cosh(x/2))^{-2\lambda}e^{ivx}\,dx
+ =\frac{\Gamma(\lambda+iv)\Gamma(\lambda-iv)}{\Gamma(2\lambda)}.
+\]
+The integrand before Fourier transformation and its second derivative
+are integrable. Two integrations by parts make its transform
+integrable, so Fourier inversion is valid. Alternatively, multiplying
+that transform by $e^{-\varepsilon v^2}$ gives an absolutely
+integrable Gaussian approximation and proves the same inversion by
+dominated convergence. The substitution $t=2v$, with Jacobian two,
+therefore proves
+\[
+ \int_{\mathbb R}e^{iyt}r_\lambda(t)\,dt
+       =c_\lambda(\cosh y)^{-2\lambda}.                        \tag{GC.11}
+\]
+The beta integrand extends holomorphically to $|\Im x|<\pi$ using
+the branch positive on $\mathbb R$. On every closed narrower strip
+it is bounded by a constant times $e^{-\lambda|\Re x|}$.
+Shifting the contour up for $v>0$ and down for $v<0$ proves
+$|\Gamma(\lambda+iv)|^2\le C_{\lambda,b}e^{-b|v|}$ for every
+$b<\pi$. Thus $\sigma_\lambda$ has exponential moments of every
+order less than $\pi/2$ in the original $t$ variable.
+
+Fourier uniqueness for finite measures and multiplication of (GC.11)
+give the literal sum density
+\[
+ r_{\lambda,k}:=r_\lambda^{*k}
+   =\frac{c_\lambda^k}{c_{k\lambda}}r_{k\lambda},\qquad
+ \frac{c_\lambda^k}{c_{k\lambda}}
+   =2^{k-1}\frac{\Gamma(2\lambda)^k}{\Gamma(2k\lambda)}.
+                                                               \tag{GC.12}
+\]
+Its mass is $c_\lambda^k$. Analytic continuation justified by the
+proved exponential moments gives
+\[
+ Z_{\lambda,k}^\Gamma(\theta)
+ =\int e^{\theta u}r_{\lambda,k}(u)\,du
+ =c_\lambda^k(\cos\theta)^{-k\alpha},
+ \qquad |\Re\theta|<\pi/2.                                   \tag{GC.13}
+\]
+The power uses the analytic logarithm of $\cos\theta$ equal to zero
+at zero; this cosine has no zeros on the stated strip.
+
+For $|z|<1$, let
+\[
+ \begin{split}
+ \mathcal G_\lambda(z,t)
+  &=(1-iz)^{-\lambda+it/2}(1+iz)^{-\lambda-it/2}\\
+  &=\sum_{n\ge0}\frac{b_n^{(\lambda)}(t)}{n!}z^n.
+ \end{split}                                                   \tag{GC.14}
+\]
+Both logarithms are the principal logarithms and vanish at zero,
+since $1\pm iz$ have positive real part. For real $z,w$ near zero,
+the Laplace transform and the elementary cosine addition identity give
+\[
+ \int\mathcal G_\lambda(z,t)\mathcal G_\lambda(w,t)
+              \,d\sigma_\lambda(t)
+ =c_\lambda(1-zw)^{-\alpha}.
+\]
+On a sufficiently small closed bidisc all derivatives of the
+integrands are bounded by a polynomial times $e^{a|t|}$ with
+$a<\pi/2$. The exponential moment proof permits their integration.
+Coefficient comparison then proves, with the monic leading
+coefficient obtained from $\arctan z=z+O(z^3)$,
+\[
+ \begin{split}
+ \int b_n^{(\lambda)}b_j^{(\lambda)}\,d\sigma_\lambda
+   &=c_\lambda n!(\alpha)_n\,\delta_{nj},\\
+ b_0^{(\lambda)}=1,\quad b_1^{(\lambda)}=t,\quad
+ b_{n+1}^{(\lambda)}
+   &=t b_n^{(\lambda)}-n(n+\alpha-1)b_{n-1}^{(\lambda)}.
+ \end{split}                                                   \tag{GC.15}
+\]
+The recurrence follows directly by differentiating (GC.14):
+$(1+z^2)\partial_z\mathcal G_\lambda=(t-\alpha z)\mathcal G_\lambda$.
+The polynomials have real coefficients.
+
+They are complete in $L^2(r_{\lambda,k}\,du)$ at parameter $k\lambda$.
+In fact, an orthogonal vector $f$ defines the finite complex measure
+$f(u)r_{\lambda,k}(u)\,du$. Cauchy--Schwarz and exponential
+integrability give its Fourier transform on a nonempty complex strip.
+All derivatives at zero vanish by polynomial orthogonality, so
+analytic uniqueness and Fourier uniqueness imply $f=0$ almost
+everywhere. This argument uses the full measure mass.
+
+\section{The sum projection and exact coefficient powers}
+
+On the actual spaces
+\[
+ \mathcal H_k=L^2(\mathbb R^k,\prod_i d\sigma_\lambda(t_i)),
+ \qquad\mathcal H_\Sigma=L^2(\mathbb R,r_{\lambda,k}(u)\,du),
+\]
+let $U_\Sigma f(\mathbf t)=f(\sum_i t_i)$. Fubini and (GC.12)
+prove that it is an isometry. The affine fibre chart has Jacobian one,
+so its adjoint for $k\ge2$ is
+\[
+ (C_\Sigma F)(u)=\frac1{r_{\lambda,k}(u)}
+ \int_{\mathbb R^{k-1}}F(t_1,\ldots,t_{k-1},u-\sum_{i<k}t_i)
+ \prod_{i<k}r_\lambda(t_i)r_\lambda(u-\sum_{i<k}t_i)
+ \,d^{k-1}t.                                                  \tag{GC.16}
+\]
+The denominator is positive everywhere. Fibre Cauchy--Schwarz and
+Fubini give $\|C_\Sigma F\|\le\|F\|$, so the formula defines
+the indicated adjoint on all of $\mathcal H_k$. When $k=1$, both
+maps are the identity. In every case $C_\Sigma U_\Sigma=1$ and
+$P_\Sigma=U_\Sigma C_\Sigma$ is the orthogonal projection. The maps
+\[
+ F\mapsto(C_\Sigma F,(1-P_\Sigma)F),\qquad
+ (f,n)\mapsto U_\Sigma f+n,\quad n\in\ker C_\Sigma              \tag{GC.17}
+\]
+are inverse Hilbert isometries. This retains the entire relative fibre.
+
+Multiplying the $k$ generating functions gives a finite identity at
+each coefficient:
+\[
+ b_n^{(k\lambda)}(\sum_i t_i)=
+ \sum_{n_1+\cdots+n_k=n}\frac{n!}{\prod_i n_i!}
+                    \prod_i b_{n_i}^{(\lambda)}(t_i).
+                                                               \tag{GC.18}
+\]
+Pairing it with a product polynomial and using (GC.15) leaves only
+its total degree $n=\sum_i n_i$. The pairing at that degree is
+$c_\lambda^k n!\prod_i(\alpha)_{n_i}$ and the sum norm is
+$c_\lambda^k n!(k\alpha)_n$. Completeness therefore proves
+\[
+ C_\Sigma\prod_i b_{n_i}^{(\lambda)}
+   =\frac{\prod_i(\alpha)_{n_i}}{(k\alpha)_n}b_n^{(k\lambda)}.
+                                                               \tag{GC.19}
+\]
+The squared norm of the retained complementary polynomial is exactly
+\[
+ c_\lambda^k\left[
+  \prod_i n_i!(\alpha)_{n_i}
+  -\frac{n!\prod_i(\alpha)_{n_i}^2}{(k\alpha)_n}\right],
+                                                               \tag{GC.20}
+\]
+by the orthogonal decomposition (GC.17).
+
+For the original arithmetic density define, for every $\lambda>0$,
+\[
+ \begin{split}
+ A_{h,\lambda}(t)&=\frac{v_h(1/2+it)}{\Gamma(\lambda+it/2)},
+ \quad B_{h,\lambda}=|A_{h,\lambda}|^2,
+ \quad w_h=B_{h,\lambda}r_\lambda,\\
+ c_{h,n}&=\frac{\int b_n^{(\lambda)}(t)w_h(t)\,dt}
+                 {c_\lambda n!(\alpha)_n},
+ \quad\mathcal A_h(z)=\sum_{n\ge0}(\alpha)_nc_{h,n}z^n,\\
+ d_{h,k,n}&=[z^n]\mathcal A_h(z)^k.
+ \end{split}                                                   \tag{GC.21}
+\]
+The notation $\mathcal A_h$ retains the fixed parameter $\lambda$.
+The complex amplitude $A_{h,\lambda}$ and the generating function
+$\mathcal A_h$ are different specified maps. The integrals in
+(GC.21) converge by (GC.6), before any convergence claim about the
+power series. Each $d_{h,k,n}$ is the finite expression
+\[
+ d_{h,k,n}=\sum_{n_1+\cdots+n_k=n}
+                   \prod_i(\alpha)_{n_i}c_{h,n_i}.             \tag{GC.22}
+\]
+
+Let $m_{h,k}=w_h^{*k}$. Absolute moments and Fubini give, by (GC.18),
+\[
+ \int_{\mathbb R}b_n^{(k\lambda)}(u)m_{h,k}(u)\,du
+       =c_\lambda^k n!d_{h,k,n}.                              \tag{GC.23}
+\]
+This finite identity holds for every $\lambda>0$ and every $n$;
+it does not require an infinite product to be interchanged with an
+integral. In particular $c_{h,0}=\mu_h/c_\lambda$ and the total
+mass is $\mu_h^k$.
+
+\section{The supplied analytic generating join, with its branches}
+
+\begin{theorem}[The exact analytic generating function]
+For the original arithmetic measure and every $\lambda>0$, the series
+in (GC.21) converges holomorphically on $|z|<1$ and is exactly
+\[
+ \boxed{\mathcal A_h(z)=\frac1{c_\lambda}
+            (1+z^2)^{-\lambda}M_h(\arctan z).}                 \tag{GC.24}
+\]
+Here
+$\arctan z=(\log(1+iz)-\log(1-iz))/(2i)$, and every logarithm
+is the branch inherited from zero. For real $|\theta|<\pi/4$,
+\[
+ \boxed{M_h(\theta)=c_\lambda\sec^{2\lambda}\theta\,
+                        \mathcal A_h(\tan\theta).}             \tag{GC.25}
+\]
+With the original tensor mass and reference mass,
+\[
+ \boxed{\frac{Z_{h,k}(\theta)}{Z_{\lambda,k}^\Gamma(\theta)}
+       =\mathcal A_h(\tan\theta)^k,\quad
+ Z_{h,k}(\theta)=\int e^{\theta u}m_{h,k}(u)\,du=M_h(\theta)^k.}
+                                                               \tag{GC.26}
+\]
+\end{theorem}
+\begin{proof}
+For $|z|<1$, both $1\pm iz$ have positive real part. Their principal
+logs are analytic, and their sum is the analytic logarithm of
+$1+z^2$ vanishing at zero. Direct substitution in (GC.14) gives
+\[
+ \mathcal G_\lambda(z,t)=(1+z^2)^{-\lambda}
+                              e^{t\arctan z}.                 \tag{GC.27}
+\]
+There is no omitted phase in this identity: the $it/2$ coefficient
+multiplies $\log(1-iz)-\log(1+iz)=-2i\arctan z$.
+
+The ratio $w=(1+iz)/(1-iz)$ has
+\[
+ \Re w=\frac{1-|z|^2}{|1-iz|^2}>0,\qquad
+ \tan(2\Re\arctan z)=\frac{2\Re z}{1-|z|^2}.
+\]
+The argument of $w$ lies in $(-\pi/2,\pi/2)$ and equals
+$2\Re\arctan z$. Thus for every $0\le r<1$,
+\[
+ |z|\le r\quad\Longrightarrow\quad
+ |\Re\arctan z|\le\arctan r<\pi/4,
+ \qquad
+ |\mathcal G_\lambda(z,t)|
+ \le(1-r^2)^{-\lambda}e^{\arctan(r)|t|}.                       \tag{GC.28}
+\]
+For the angle inequality use monotonicity of arctangent and
+$2|\Re z|/(1-|z|^2)\le2r/(1-r^2)$, together with
+$2\arctan r\in[0,\pi/2)$. For the modulus inequality use
+$|1+z^2|\ge1-r^2$ and real $\lambda>0$.
+
+Equation (GC.6) makes the right side of (GC.28) integrable against
+$w_h(t)\,dt$, uniformly on every compact subdisc. Dominated
+integration therefore defines a holomorphic function
+$c_\lambda^{-1}\int\mathcal G_\lambda(z,t)w_h(t)\,dt$ on the
+whole unit disc. One explicit justification is Morera's theorem:
+domination permits exchanging the integral with each triangle
+contour, and the inner holomorphic contour integral is zero.
+For its derivatives on $|z|\le r$, choose $r<R<1$ and apply
+Cauchy's derivative formula on circles of radius $R-r$; the
+kernel derivative $|\partial_z^n\mathcal G_\lambda(z,t)|$ is bounded by
+$n!(R-r)^{-n}(1-R^2)^{-\lambda}e^{\arctan(R)|t|}$.
+This integrable bound justifies every derivative interchange.
+
+At zero, (GC.14) now gives
+\[
+ \mathcal A_h^{(n)}(0)=\frac1{c_\lambda}
+               \int b_n^{(\lambda)}(t)w_h(t)\,dt
+           =n!(\alpha)_nc_{h,n}.                              \tag{GC.29}
+\]
+Thus the Taylor series of this holomorphic integral is exactly the
+original coefficient series. Substitution of (GC.27) in the integral
+proves (GC.24). All its constants occur before the integration.
+
+For real $|\theta|<\pi/4$, $|\tan\theta|<1$,
+$\arctan(\tan\theta)=\theta$ on the specified branch, and
+$1+\tan^2\theta=\sec^2\theta>0$. Solving (GC.24) for
+$M_h(\theta)$ gives (GC.25). Finally the absolute integral of
+$\prod_i e^{\theta t_i}w_h(t_i)$ is finite throughout
+$|\Re\theta|<\pi/2$. Fubini gives $Z_{h,k}=M_h^k$ with no
+mass division. Divide the kth power of (GC.25) by (GC.13) to
+obtain (GC.26). At zero this ratio is explicitly
+$(\mu_h/c_\lambda)^k$.
+\end{proof}
+
+The inverse also has a precise complex domain. If
+$|\Re\theta|<\pi/4$, then
+\[
+ |\tan\theta|^2=
+ \frac{\cosh(2\Im\theta)-\cos(2\Re\theta)}
+      {\cosh(2\Im\theta)+\cos(2\Re\theta)}<1.
+\]
+The denominator is positive and the branch satisfies
+$\arctan(\tan\theta)=\theta$, first on a neighbourhood of zero
+and then on this connected strip by analytic uniqueness. Hence
+(GC.25)--(GC.26) extend to that strip with the analytic branch of
+the cosine power in (GC.13). No logarithm of $\mathcal A_h$ is
+asserted: it can have complex zeros, whereas all real-tilt integrals
+$M_h(\theta)$ are strictly positive.
+
+For each finite derivative there is also an exact moment formula.
+Write $b_n^{(\lambda)}(t)=\sum_{j=0}^n b_{n,j}t^j$. Then
+\[
+ n!(\alpha)_nc_{h,n}
+  =\frac1{c_\lambda}\sum_{j=0}^n b_{n,j}M_h^{(j)}(0),\qquad
+ d_{h,k,n}=\frac1{n!}
+      \left.\frac{d^n}{dz^n}\mathcal A_h(z)^k\right|_{z=0}.
+                                                               \tag{GC.30}
+\]
+The first identity follows by the finite polynomial expansion and
+(GC.9); the second is Taylor's formula, whose Leibniz sum is
+exactly (GC.22). The triangular coefficients $b_{n,n}=1$ give an
+invertible finite map between moments through degree n and coefficients
+through degree n, with the full diagonal factors
+$c_\lambda n!(\alpha)_n$ retained.
+
+\section{The complete density expansion for the original bounded references}
+
+The finite identities and analytic join above hold for every
+$\lambda>0$. For the original full-quartet reference choose
+$\lambda=1/4$. More generally choose the actual shifted reference
+\[
+ \lambda=\tfrac14+L,\qquad
+ L\text{ an integer},\quad L\ge\max(0,3-d).                    \tag{GC.31}
+\]
+These choices admit the following proved bounded multiplier and hence
+the complete $L^2$ density expansion.
+
+Indeed at $s=1/2+it$ the defining g identity gives
+\[
+ A_{h,1/4}(t)=
+ \frac{-\pi^{-1/4}(t^2+1/4)e^{-it\log\pi/2}
+                  \zeta(1/2+it)}{h(1/2+it)}.                  \tag{GC.32}
+\]
+This expression is continued through each selected zero by the
+already defined entire quotient. Integrating the step function
+$\lfloor x\rfloor$, initially for $\Re s>1$, gives
+$\zeta(s)=s/(s-1)-s\int_1^\infty\{x\}x^{-s-1}\,dx$.
+The last integral is holomorphic for $\Re s>0$, so the identity
+continues there away from 1. On the original line it gives
+$|\zeta(s)|\le1+2\sqrt{t^2+1/4}\le2(1+|t|)$.
+For a nonempty packet put
+$T_h=\max(1,2\max_\rho|\rho-1/2|)$; for $h=1$ put $T_h=1$.
+For $|t|\ge T_h$, every original packet factor has modulus at
+least $|t|/2$. Gamma recurrence then gives
+\[
+ \begin{split}
+ A_{h,1/4+L}(t)&=
+   \frac{A_{h,1/4}(t)}{\prod_{j=0}^{L-1}(j+1/4+it/2)},\\
+ B_{h,1/4+L}(t)&\le
+       \frac{25\,2^{2(d+L)}}{\sqrt\pi}|t|^{6-2d-2L}.
+ \end{split}                                                   \tag{GC.33}
+\]
+For the constant 25, the two squared numerator estimates at $|t|\ge1$
+are $(t^2+1/4)^2\le25t^4/16$ and
+$|\zeta(s)|^2\le16t^2$. Each shift factor has modulus at least
+$|t|/2$. The exponent in (GC.33) is nonpositive for (GC.31).
+Thus a completely specified finite bound is
+\[
+ C_{h,L}=\max\left\{
+ \sup_{|t|\le T_h}B_{h,1/4+L}(t),
+ \frac{25\,2^{2(d+L)}}{\sqrt\pi}T_h^{6-2d-2L}\right\}>0.
+                                                               \tag{GC.34}
+\]
+The compact term is finite by continuity of the cancelled multiplier.
+This is a mathematical bound with a specified supremum, not a claim
+that a numerical packet supremum has already been enclosed.
+
+For these references $B\in L^2(d\sigma_\lambda)$, because the
+reference has finite mass and $0\le B\le C_{h,L}$. Fibre integration
+of $w_h=Br_\lambda$ proves
+\[
+ B_{h,\lambda;k}=C_\Sigma(B^{\otimes k}),\qquad
+ m_{h,k}=r_{\lambda,k}B_{h,\lambda;k},\qquad
+ 0\le B_{h,\lambda;k}\le C_{h,L}^k.                            \tag{GC.35}
+\]
+For $k\ge2$ it is positive at every sum coordinate: the zeros of B
+form a countable discrete set, and their forbidden fibre coordinates
+are a countable union of affine hyperplanes of measure zero. Every
+remaining reference factor is positive. For $k=1$ the original
+isolated zeros remain.
+
+Combining (GC.23), completeness, and the sum norm in (GC.15) gives
+the full, convergent $L^2(r_{\lambda,k}\,du)$ identity
+\[
+ B_{h,\lambda;k}(u)=\sum_{n\ge0}
+                \frac{d_{h,k,n}}{(k\alpha)_n}b_n^{(k\lambda)}(u).
+                                                               \tag{GC.36}
+\]
+In particular the norm of the retained relative density vector is
+\[
+ \left\|B^{\otimes k}-U_\Sigma B_{h,\lambda;k}\right\|^2
+   =\left(\int B^2d\sigma_\lambda\right)^k
+      -c_\lambda^k\sum_{n\ge0}
+                       \frac{n!}{(k\alpha)_n}|d_{h,k,n}|^2.
+                                                               \tag{GC.37}
+\]
+This is Pythagoras for (GC.17), so every norm and mass factor is
+retained. A truncation of (GC.36) is not asserted pointwise positive.
+
+\section{Original-coordinate finite Grams and every tilt derivative}
+
+Let $\mathcal P_N=\mathbb C[S]_{\le N}$ for $N\ge0$, with original
+ordered basis $1,S,\ldots,S^N$, and set $c=k/2$. The arithmetic
+source Gram and its reference are
+\[
+ \begin{split}
+ (\mathsf M_{h,k,N}(\theta))_{ij}
+   &=\int(c-iu)^i(c+iu)^j e^{\theta u}m_{h,k}(u)\,du,\\
+ (\mathsf M_{\lambda,k,N}^\Gamma(\theta))_{ij}
+   &=\int(c-iu)^i(c+iu)^j e^{\theta u}r_{\lambda,k}(u)\,du,
+ \qquad 0\le i,j\le N. 
+ \end{split}                                                   \tag{GC.38}
+\]
+They are holomorphic entrywise for $|\Re\theta|<\pi/2$ and
+positive definite at every real tilt in that strip: a nonzero
+polynomial has only finitely many real-line roots and each measure
+is positive almost everywhere. Let $\mathsf H_{h,k,N}$ denote
+the corresponding real-u monomial Hankel matrix. The exact matrix
+of the unchanged coordinate substitution is
+\[
+ (\mathsf L_{N+1})_{aj}=
+ \begin{cases}\binom ja c^{j-a}i^a,&0\le a\le j\le N,\\
+ 0,&a>j,
+ \end{cases}\qquad
+ \det\mathsf L_{N+1}=i^{N(N+1)/2}.                            \tag{GC.39}
+\]
+Expanding each original S monomial proves
+\[
+ \mathsf M_{h,k,N}=\mathsf L_{N+1}^*\mathsf H_{h,k,N}
+                                     \mathsf L_{N+1}            \tag{GC.40}
+\]
+and the identical congruence for the reference. Since the displayed
+determinant has modulus one, it also proves exact equality of the
+two coordinate determinants. The congruence, rather than a relabeling
+of a matrix, preserves every complex phase in its entries.
+
+For an integer $r\ge0$, expand the specified polynomial uniquely as
+\[
+ u^r(c-iu)^i(c+iu)^j
+ =\sum_{n=0}^{i+j+r}e_{ijr,n}^{(k,\lambda)}b_n^{(k\lambda)}(u).
+                                                               \tag{GC.41}
+\]
+The monic triangular basis makes these coefficients finite, unique,
+and computable by polynomial subtraction in the written order.
+Differentiation of (GC.38) and (GC.23) now give the exact formula
+\[
+ \boxed{\left.\partial_\theta^r
+      (\mathsf M_{h,k,N})_{ij}\right|_{\theta=0}
+ =c_\lambda^k\sum_{n=0}^{i+j+r}
+                 e_{ijr,n}^{(k,\lambda)}n!d_{h,k,n}.}           \tag{GC.42}
+\]
+The derivative interchange is justified by the exponential bounds
+after (GC.9), or directly by Fubini on the k-fold product. Since
+$d_{h,k,n}$ uses exactly the finite coefficient power (GC.22), the
+entire rth derivative matrix is determined by
+$c_{h,0},\ldots,c_{h,2N+r}$. At zero tilt $r=0$, the list ends at
+$2N$. There is no truncation error in this finite statement.
+
+Equation (GC.42) supplies each derivative at zero from its stated
+finite coefficient list. Evaluation at a nonzero tilt is related to
+those derivatives by the following exact analytic Taylor identity,
+valid for $|\theta|<\pi/2$:
+\[
+ (\mathsf M_{h,k,N}(\theta))_{ij}
+ =\sum_{r\ge0}\frac{\theta^r}{r!}
+       c_\lambda^k\sum_{n=0}^{i+j+r}
+                    e_{ijr,n}^{(k,\lambda)}n!d_{h,k,n}.        \tag{GC.43}
+\]
+Absolute convergence follows by bounding the absolute exponential
+series by $e^{|\theta||u|}$ times the original polynomial modulus.
+For larger imaginary components within the full holomorphic strip,
+analytic continuation of these entries is the defined original
+Laplace integral (GC.38). This specifies the relation between all
+finite coefficient jets and the full tilted metric.
+
+\section{The original cyclic quotient and the exact cochain correction}
+
+For a nonempty packet let $E_h=\mathbb C[s]/(h)$ and
+$\mathcal E_h=E_h^{\otimes k}$. Let $a$ be the element
+$s_1+\cdots+s_k$ of this finite algebra. The kernel of
+$\mathbb C[S]\to\mathcal E_h$, $P\mapsto P(a)$, is generated by
+its unique monic polynomial $\chi$. It is nonzero since the powers
+of $a$ lie in a finite-dimensional vector space. Put
+$q=\deg\chi\ge1$, $C=\mathbb C[S]/(\chi)$, and $A=M_S:C\to C$.
+The induced map $C\to\mathcal E_h$ is injective by the definition
+of the kernel. For each selected zero, the complete Taylor value of
+$g/h$ is nonzero at its centre; its residue
+$\upsilon_h=j_h(g/h)\in E_h$ is consequently a unit in every
+local factor and in $E_h$. Thus the original arithmetic injection
+\[
+ \eta_{h,k}:C\hookrightarrow\mathcal E_h,\qquad
+ [P]\mapsto\upsilon_h^{\otimes k}P(a)                           \tag{GC.44}
+\]
+retains the entire local unit and every selected multiplicity.
+
+The original analytic polynomial map is
+\[
+ \mathcal V_{h,k}P=P(D_1+\cdots+D_k)F_h^{\otimes k}.             \tag{GC.45}
+\]
+Its tensor Mellin transform is
+$P(s_1+\cdots+s_k)\prod_i v_h(s_i)$. Taking complete selected
+jets gives precisely (GC.44) after the quotient $\pi_\chi$.
+No modulus operation has been applied to that arithmetic jet map.
+
+Successive monic divisions, in the order $s_1,\ldots,s_k$, provide
+specific polynomials $Q_i(s_1,\ldots,s_k)$ with
+\[
+ \chi(s_1+\cdots+s_k)=\sum_{i=1}^k h(s_i)Q_i(s_1,\ldots,s_k).
+                                                               \tag{GC.46}
+\]
+To prove this, divide in $s_1$, retain its remainder, divide that
+remainder in $s_2$, and continue. The final remainder has degree
+less than d in every coordinate. Its residue in $\mathcal E_h$ is
+zero by the defining property of $\chi$, and the tensor remainder
+monomials form a basis, so every coefficient is zero. This proves
+the displayed identity and fixes the division order.
+
+The operators $D_i$ commute on the tensor complex. For a polynomial
+$P$, define the actual cochain of degree $k-1$ by
+\[
+ \begin{split}
+ \mathcal P_{\chi,h,k}(P)=
+ \sum_{i=1}^k(-1)^{i-1}Q_i(D_1,\ldots,D_k)
+ P(D_1+\cdots+D_k)\quad\quad\quad\quad\quad\quad\quad\\[-4pt]
+ \cdot\bigl(F_h^{\otimes(i-1)}\otimes\phi_0
+                                \otimes F_h^{\otimes(k-i)}\bigr).
+ \end{split}                                                   \tag{GC.47}
+\]
+Every summand belongs to the indicated tensor source, since D
+preserves V and $\mathscr B$. The first $i-1$ factors have cochain
+degree one. The tensor differential on the ith factor contributes
+$(-1)^{i-1}$, cancelling the written sign. The other factors have
+zero differential. Equations (GC.8) and (GC.46) therefore give
+\[
+ d_{\rm tot}\mathcal P_{\chi,h,k}(P)
+       =\mathcal V_{h,k}(\chi P).                             \tag{GC.48}
+\]
+This identifies the cochain primitive, its sign, and its boundary in
+their different cochain degrees.
+
+For the full quotient at finite source degree take $N\ge q-1$ and
+$m=N-q+1$. With $\mathcal P_{-1}=0$, monic division gives the
+exact sequence in original coordinates
+\[
+ 0\longrightarrow\mathcal P_{m-1}
+ \xrightarrow{M_\chi}\mathcal P_N
+ \xrightarrow{J_N}C\longrightarrow0,
+ \quad M_\chi P=\chi P,\quad J_NP=[P]_\chi.                    \tag{GC.49}
+\]
+The kernel assertion is divisibility, and the first q monomial
+columns prove surjectivity. Let $B_\chi$ be the $(N+1)\times m$
+matrix of $M_\chi$ in the original ordered bases. Its entries are
+$[S^i](\chi(S)S^j)$; it is independent of the metric and tilt.
+The relation Gram and every zero-tilt derivative are therefore
+\[
+ \mathsf B_{h,k,N}(\theta)=B_\chi^*\mathsf M_{h,k,N}(\theta)B_\chi,
+ \qquad
+ \mathsf B_{h,k,N}^{(r)}(0)=B_\chi^*\mathsf M_{h,k,N}^{(r)}(0)B_\chi.
+                                                               \tag{GC.50}
+\]
+Equivalently its polynomial integrand is
+$u^r|\chi(c+iu)|^2(c-iu)^i(c+iu)^j$, where $0\le i,j<m$.
+Its degree is at most $r+2q+2(m-1)=r+2N$, so the relation derivative
+uses the same list through $2N+r$ as the source derivative. Both
+complex polynomial factors, their conjugates, and all $\chi$ coefficients
+remain in this formula.
+
+For a fixed real admitted tilt write $M_h=\mathsf M_{h,k,N}(\theta)$
+and $M_\Gamma=\mathsf M_{\lambda,k,N}^\Gamma(\theta)$.
+Their canonical quotient Grams and minimum lifts are
+\[
+ G_h=(J_NM_h^{-1}J_N^*)^{-1},\quad
+ R_h=M_h^{-1}J_N^*G_h,
+\qquad
+ G_\Gamma=(J_NM_\Gamma^{-1}J_N^*)^{-1},\quad
+ R_\Gamma=M_\Gamma^{-1}J_N^*G_\Gamma.                           \tag{GC.51}
+\]
+Surjectivity of J and positivity of the source Grams prove every
+inverse exists. These formulas give $JR_h=JR_\Gamma=I_C$ and
+make each lift orthogonal to $\ker J$ in its own metric, proving
+its minimum property by the orthogonal Pythagorean identity.
+For $m>0$ put
+\[
+ K=(B_\chi^*M_hB_\chi)^{-1}B_\chi^*M_hR_\Gamma:
+                         C\longrightarrow\mathbb C^m.
+                                                               \tag{GC.52}
+\]
+The relation Gram is positive definite because $B_\chi$ is
+injective. The section $R_\Gamma-B_\chi K$ still has quotient
+identity and is orthogonal to the relation space in $M_h$.
+The preceding uniqueness gives the exact section map
+\[
+ \boxed{R_h=R_\Gamma-B_\chi K.}                               \tag{GC.53}
+\]
+At $N=q-1$, $m=0$, take K to be the zero map to the zero vector
+space and omit the inverse in (GC.52); (GC.53) remains the identity
+of the unique degree-less-than-q representatives.
+
+For $u_0\in C$, let $\kappa_{u_0}(S)$ be the polynomial whose
+coefficient vector is $Ku_0$. Combining (GC.48) and (GC.53) proves
+the exact cochain correction
+\[
+ \boxed{\mathcal V_{h,k}(R_hu_0-R_\Gamma u_0)
+  =-\mathcal V_{h,k}(\chi\kappa_{u_0})
+  =d_{\rm tot}\bigl(-\mathcal P_{\chi,h,k}(\kappa_{u_0})\bigr).}
+                                                               \tag{GC.54}
+\]
+Thus applying $\mathcal V$ gives the boundary in degree k; the
+explicit negative cochain on the right is its primitive in degree
+$k-1$. Passing to the original arithmetic quotient sends this
+boundary to zero. Explicitly, for the original set of labels
+$\mathcal L$ and vector spaces $E_\ell$, write the supplied carrier
+as $\{\tau\}\sqcup\bigsqcup_{\ell\in\mathcal L}(\{\ell\}\times E_\ell)$.
+A family of linear maps $L_\ell:E_\ell\to F_\ell$ has the exact
+support lift $\tau\mapsto\tau$ and
+$(\ell,v)\mapsto(\ell,L_\ell v)$, with
+$e_\ell=(\ell,0)$ in each target fibre. Substitution proves that
+these lifts preserve identities and composition. Applied to the
+original quotient, the relation boundary in (GC.54) therefore has
+image $e_\ell$, while the external $\tau$ has image $\tau$.
+The source vector and its primitive remain available before that
+quotient.
+
+\section{Determinant indices and the original Toda substitution}
+
+For real admitted $\theta$, write $\mathfrak D_n$ for the original
+degree-less-than-n source Gram determinant and $\mathfrak B_m$ for
+the relation Gram determinant on m multiplication columns. Empty
+determinants are one. The analogous reference determinants carry
+the superscript $\Gamma$. For $N\ge q-1$, set
+\[
+ V_N=\det G_h,\quad V_N^\Gamma=\det G_\Gamma,
+ \quad X_n=\mathfrak D_n/\mathfrak D_n^\Gamma,
+ \quad Y_m=\mathfrak B_m/\mathfrak B_m^\Gamma.
+\]
+The quotient-first coefficient matrix with columns
+$1,S,\ldots,S^{q-1},\chi,\chi S,\ldots,\chi S^{m-1}$
+has determinant one: its columns have successively distinct degrees
+and all their leading coefficients are one. Replacing its first q
+columns by the corresponding minimum sections only subtracts
+relation columns, so it still has determinant one. Orthogonality
+then gives the exact block determinant formula
+\[
+ V_N=\frac{\mathfrak D_{N+1}}{\mathfrak B_{N-q+1}}
+     =V_N^\Gamma T_N,\qquad
+ T_N=\frac{X_{N+1}}{Y_{N-q+1}},\quad N\ge q-1.                  \tag{GC.55}
+\]
+In particular the first full quotient has denominator
+$\mathfrak B_0=1$ and requires no relation inverse.
+
+For completeness the reference source determinant is
+\[
+ \mathfrak D_n^\Gamma(\theta)=c_\lambda^{kn}
+  \prod_{j=0}^{n-1}j!(k\alpha)_j
+             (\cos\theta)^{-n(k\alpha+n-1)},
+ \qquad
+ a_n^\Gamma(\theta)=n(n+k\alpha-1)\sec^2\theta.                \tag{GC.56}
+\]
+Here $a_n$ is the ratio of consecutive monic squared norms in the
+real-u coordinate; the norm-preserving phase of (GC.39) gives the
+same ratios in the original S coordinate. A direct proof of the
+Hankel identity used to obtain (GC.56) is as follows. Let $p_j$ be
+the monic orthogonal polynomials for an $e^{\theta u}$-tilted
+positive measure, let $h_j$ be their squared norms, and write
+$up_j=p_{j+1}+b_jp_j+a_jp_{j-1}$, with $p_{-1}=0$ and $a_0=0$.
+For $j\ge1$, pairing with $p_{j-1}$ gives
+$a_j=h_j/h_{j-1}$, and pairing with $p_j$ gives $h_j'=b_jh_j$
+for every $j\ge0$. Differentiating orthogonality for $j\ge1$ shows
+$\partial_\theta p_j=-a_jp_{j-1}$: its pairings with degrees at
+most $j-2$ vanish, and the remaining pairing is $-h_j$.
+For $j\ge1$, write $p_j=u^j+c_ju^{j-1}+\cdots$, and set
+$c_0=0$ for $p_0=1$. The derivative statement for $p_0$ is
+$\partial_\theta p_0=0$. Thus $c_j'=-a_j$ and
+$b_j=c_j-c_{j+1}$ hold for every $j\ge0$, and consequently
+$b_j'=a_{j+1}-a_j$.
+Since $\mathfrak D_n=\prod_{j<n}h_j$,
+\[
+ (\log\mathfrak D_n)''=\sum_{j<n}b_j'=a_n
+   =\mathfrak D_{n+1}\mathfrak D_{n-1}/\mathfrak D_n^2,
+   \qquad n\ge1.
+\]
+For the reference, the determinant values at n=0 and n=1 are 1
+and (GC.13). The right side of the proposed formula (GC.56) has
+second logarithmic derivative $n(k\alpha+n-1)\sec^2\theta$.
+Its consecutive ratio has exactly the same value, with constants
+$n!(k\alpha)_n/((n-1)!(k\alpha)_{n-1})$ and cosine exponent
+$-2$. Positive induction in the displayed determinant identity
+proves (GC.56) for every n.
+
+The reference relation determinant is the determinant of the
+moment matrix with entries
+\[
+ \partial_\theta^{i+j}\left\{
+  \overline\chi(c-i\partial_\theta)\chi(c+i\partial_\theta)
+                  Z_{\lambda,k}^\Gamma(\theta)\right\},
+       \qquad0\le i,j<m.                                     \tag{GC.57}
+\]
+Differentiation under the integral gives the unchanged weight
+$|\chi(c+iu)|^2r_{\lambda,k}(u)$ in this u-coordinate matrix.
+The relation version of (GC.39)--(GC.40) has determinant of modulus
+one, proving that (GC.57) is the original S-coordinate relation
+determinant as stated. It contains the actual $\chi$ with all coefficients.
+
+At $\theta=0$ put
+\[
+ Q_N=\frac{X_{N+2}X_N}{X_{N+1}^2},\qquad
+ \mathcal R_N^\Gamma=\frac{V_{N-1}^\Gamma}{V_{N+1}^\Gamma}.
+\]
+The consecutive full-quotient formulas have domain $N\ge q$ and
+give, by literal substitution in (GC.55)--(GC.56),
+\[
+ a_{N+1}=(N+1)(N+k\alpha)Q_N,\qquad
+ \frac{V_{N-1}}{V_{N+1}}
+     =\mathcal R_N^\Gamma\frac{T_{N-1}}{T_{N+1}}.
+                                                               \tag{GC.58}
+\]
+The domain $N\ge q$ is necessary because $V_{N-1}$ occurs. The
+separate original endpoint at $N=q-1$ is not replaced by a
+q-dimensional metric at degree $q-2$. At every fixed admissible
+real tilt the phase derivative remains the exact equality
+\[
+ \partial_\theta\log V_N
+   =\partial_\theta\log V_N^\Gamma+
+                              \partial_\theta\log T_N,
+                       \qquad N\ge q-1.                       \tag{GC.59}
+\]
+All these derivatives are of positive real-tilt determinants. Formula
+(GC.42) gives their underlying source and relation entry derivatives
+with the precise finite coefficient indices; their quotient and
+determinant operations use those original matrices.
+
+For $h=1$ the finite arithmetic quotient is zero and $\chi=1$.
+Its relation and source spaces coincide at every degree N, so
+$\mathfrak B_{N+1}=\mathfrak D_{N+1}$,
+$V_N=V_N^\Gamma=T_N=1$. The quotient lift has zero-dimensional
+domain and the cochain correction (GC.54) is the zero map on that
+domain. The nonzero analytic density, its mass $\mu_1^k$, its
+coefficient series and (GC.24)--(GC.43) remain as constructed.
+The support lift is $G(0)=\{\tau,e\}$; it does not produce a
+nonzero finite spectral quotient from the analytic seed.
+
+\end{document}

@@ -1,0 +1,135 @@
+\section{Shifted zeta sheets and all-order Hurwitz deformation}
+
+\subsection{The universal shifted operator}
+
+Let \(T\) denote the shift operator on meromorphic functions,
+\[
+   (Tf)(s)=f(s+1),
+\]
+and define
+\[
+   D=sT.
+\]
+For an ordinary Dirichlet series
+\[
+   L(s)=\sum_{n\ge1}a_n n^{-s}
+\]
+that converges in some right half-plane, define the formal shifted flow
+\[
+   L_t(s)=e^{-tD}L(s).
+\]
+Whenever the series below converges, this is
+\[
+   L_t(s)=\sum_{m=0}^\infty (-t)^m\frac{(s)_m}{m!}L(s+m),
+\]
+where \((s)_m=s(s+1)\cdots(s+m-1)\).
+
+\begin{proposition}[Universal jet identity]\label{prop:universal-jet}
+For every \(n\ge0\),
+\[
+   \partial_t^nL_t(s)=(-1)^n(s)_nL_t(s+n).
+\]
+\end{proposition}
+
+\begin{proof}
+Since \(L_t=e^{-tD}L\), we have \(\partial_t^nL_t=(-D)^ne^{-tD}L\).  It remains to compute \(D^n\).  Since \(D=sT\),
+\[
+   D^2 f(s)=sT(sf(s+1))=s(s+1)f(s+2),
+\]
+and induction gives
+\[
+   D^n f(s)=(s)_n f(s+n).
+\]
+Applying this to \(f=L_t\) proves the formula.
+\end{proof}
+
+For the Riemann zeta function, the shifted endpoint \(t=1\) is
+\[
+   \zeta_1(s)=\zeta(s,2)=\zeta(s)-1.
+\]
+This is the analytic avatar of the separated quotient-size sheet for \(G(\Z)\), where the refined quotient size \(|G(\Z/n\Z)|=n+1\) produces
+\[
+   \sum_{n\ge1}(n+1)^{-s}=\zeta(s)-1.
+\]
+
+\subsection{Compact Hurwitz averages}
+
+Let \(\mu\) be a compactly supported probability measure on \([0,\infty)\), and let
+\[
+   m_n(\mu)=\int_0^\infty y^n\,d\mu(y).
+\]
+Define
+\[
+   Z_{\mu,t}(s)=\int_0^\infty \zeta(s,1+ty)\,d\mu(y),
+\]
+and its completion
+\[
+   \Lambda_{\mu,t}(s)=\pi^{-s/2}\Gamma(s/2)Z_{\mu,t}(s).
+\]
+
+\begin{proposition}[All-order compact expansion]\label{prop:compact-expansion}
+Suppose \(\mu\) is supported in \([0,L]\).  For \(|t|L<1\),
+\[
+   Z_{\mu,t}(s)=\sum_{n=0}^\infty
+   (-t)^n\frac{(s)_n}{n!}m_n(\mu)\zeta(s+n),
+\]
+initially away from the pole locus, and then by meromorphic continuation.
+\end{proposition}
+
+\begin{proof}
+For \(|ty|<1\), the Taylor expansion of \(a\mapsto \zeta(s,a)\) at \(a=1\) gives
+\[
+   \zeta(s,1+ty)=\sum_{n=0}^\infty
+   \frac{(ty)^n}{n!}\frac{\partial^n}{\partial a^n}\zeta(s,a)\Big|_{a=1}.
+\]
+The standard derivative identity
+\[
+   \frac{\partial^n}{\partial a^n}\zeta(s,a)=(-1)^n(s)_n\zeta(s+n,a)
+\]
+gives the displayed series.  Uniform convergence for \(|t|L<1\) on compact subsets away from the poles permits termwise integration.  Meromorphic continuation follows from the meromorphic continuation of the zeta factors.
+\end{proof}
+
+\begin{theorem}[Completed residues]\label{thm:completed-residues}
+For the completed average \(\Lambda_{\mu,t}\),
+\[
+   \Res_{s=1}\Lambda_{\mu,t}=1,
+\]
+and
+\[
+   \Res_{s=0}\Lambda_{\mu,t}=-1-2t m_1(\mu).
+\]
+Hence the finite two-end residue defect is
+\[
+   \mathfrak B(\mu,t):=\Res_{s=0}\Lambda_{\mu,t}+\Res_{s=1}\Lambda_{\mu,t}
+   =-2t m_1(\mu).
+\]
+\end{theorem}
+
+\begin{proof}
+The Hurwitz zeta function has residue \(1\) at \(s=1\), independently of its second argument.  Since \(\mu\) is a probability measure, \(Z_{\mu,t}\) has residue \(1\) at \(s=1\).  Also
+\[
+   \pi^{-1/2}\Gamma(1/2)=1,
+\]
+so \(\Res_{s=1}\Lambda_{\mu,t}=1\).
+
+At \(s=0\), one has
+\[
+   \zeta(0,a)=\frac12-a.
+\]
+Thus
+\[
+   Z_{\mu,t}(0)=\int\left(\frac12-(1+ty)\right)d\mu(y)
+   =-\frac12-tm_1(\mu).
+\]
+Since
+\[
+   \Gamma(s/2)=\frac2s+O(1),
+   \qquad
+   \pi^{-s/2}=1+O(s),
+\]
+we get
+\[
+   \Res_{s=0}\Lambda_{\mu,t}=2Z_{\mu,t}(0)=-1-2tm_1(\mu).
+\]
+Adding the two residues gives the stated defect.
+\end{proof}

@@ -1,0 +1,260 @@
+\subsection{Specialization, invariant hulls, and the original curvature cost}\label{endpoint-cc_specialization--specialization-invariant-hulls-and-the-original-curvature-cost}
+
+13 September 2026. This note continues the owner's supplied specialization/curvature construction and the verified restriction work of PR26. It records the written geometric consequences and the precise scope of the four new coefficient-level Lean modules. The companion \nolinkurl{HOCHSCHILD_COMPARISON.md} uses the newly supplied Connes--Consani chapter without replacing these source metrics.
+
+\subsubsection{1. Source and finite observation}\label{endpoint-cc_specialization--source-and-finite-observation}
+
+Fix one of the original blocks \(i<j\), its full quotient \(E=\mathbb C[S]/(\chi)\), and its original action \(A=M_S\). Work in the specified polynomial-source coordinates, with positive Gram matrix \(O_j\). Pad the earlier representative into the later source and call it \(X\). Keep
+
+\[
+B_jX=B_jR_j=1_E,\qquad G_i=X^*O_jX,\qquad R_j^*O_j=G_jB_j.
+\tag{S1}
+\]
+
+Put \(\delta R=X-R_j\). The original observation gives \(B_j\delta R=0\), while the dual equation gives
+
+\[
+R_j^*O_j\delta R=0,\qquad
+C:=\delta R^*O_j\delta R=G_i-G_j\succeq0.
+\tag{S2}
+\]
+
+For \(R(z)=R_j+z\delta R\), expansion therefore yields
+
+\[
+B_jR(z)=1_E,\qquad R(z)^*O_jR(z)=G_j+|z|^2C.
+\tag{S3}
+\]
+
+The original action defect obeys
+
+\[
+W(z)=A^*G(z)+G(z)A-kG(z)=W_j+|z|^2(W_i-W_j).
+\tag{S4}
+\]
+
+All of (S2)--(S4) are composed with the previously verified relation-Gram theorem in \nolinkurl{SplitZeroRelationCurve.lean}. A specified constituent \(I_F:F\to E\) is carried by \(R(z)I_F\), not by an unrelated spectral model.
+
+\subsubsection{2. The actual local equation and the derived fibre}\label{endpoint-cc_specialization--the-actual-local-equation-and-the-derived-fibre}
+
+Let \(E_0=\ker\delta R\) and let \(E_1\) be its \(G_j\)-orthogonal complement. Write \(P_0,P_1\) for these projections and \(r=\dim E_1=\operatorname{rank}C\). The source bundle on \(\mathbb P^1\) is
+
+\[
+\mathscr M=(E_0\otimes\mathcal O)\oplus(E_1\otimes\mathcal O(-1)).
+\tag{S5}
+\]
+
+On the infinity chart \(w=1/z\), its inclusion into the trivial quotient bundle is
+
+\[
+\alpha(w)=P_0+wP_1.
+\tag{S6}
+\]
+
+The polynomial local presentation is not merely a pointwise matrix: on free coefficient modules over \(K[w]\),
+
+\[
+(a(w),b(w))\longmapsto(a(w),wb(w)),\qquad
+(a(w),b(w))\longmapsto b(0)
+\tag{S7}
+\]
+
+is an injective map followed by a surjective map, with the image of the first equal to the kernel of the second. The proof divides every zero-constant-coefficient polynomial by \(w\). \nolinkurl{SplitZeroSpecializationChart.lean} constructs these linear maps and proves all three assertions.
+
+After specialization at \(w=0\), the two-term map is \(\operatorname{diag}(1,0)\), not an injective map. Its kernel is the full modified summand \(E_1\), and second projection identifies its cokernel with \(E_1\). Globally, the degree-minus-one fibre is \(E_1\otimes\mathcal O(-1)|_\infty\); choosing the local generator in (S7) trivializes that line, but does not erase its transition factor. The local Lean statements prove the kernel/image calculations; they do not construct the derived category of coherent sheaves or an Ext duality functor.
+
+The actual source map on this chart is
+
+\[
+\Psi_\infty(w)=R_jP_0+wR_jP_1+\delta RP_1,\qquad
+B_j\Psi_\infty(w)=P_0+wP_1.
+\tag{S8}
+\]
+
+It is injective. For \(w\ne0\), apply the observation and the invertibility of (S6). At \(w=0\), a relation \(R_jx_0+\delta Rx_1=0\) first gives \(x_0=0\) under \(B_j\), then \(x_1=0\) because \(\delta R|_{E_1}\) is injective. The induced metric on (S5) is thus smooth and positive at infinity even though the quotient comparison has the exceptional fibre above.
+
+\subsubsection{3. The action pole and the least invariant repair}\label{endpoint-cc_specialization--the-action-pole-and-the-least-invariant-repair}
+
+On the overlap, every action block is retained:
+
+\[
+\alpha(w)^{-1}A\alpha(w)
+=P_0AP_0+wP_0AP_1+w^{-1}P_1AP_0+P_1AP_1.
+\tag{S9}
+\]
+
+The polar coefficient vanishes exactly when \(AE_0\subseteq E_0\). This is not assumed. The formal chart theorem proves (S9) and its invariance criterion.
+
+The least action-invariant subspace containing \(E_0\) is
+
+\[
+F_A=\operatorname{span}\{A^nv:n\ge0,v\in E_0\}.
+\tag{S10}
+\]
+
+\nolinkurl{SplitZeroActionHull.lean} constructs (S10) as a submodule and proves containment, invariance, its universal minimality, monotonicity, idempotence, and the criterion \(F_A=E_0\) iff \(E_0\) is invariant. These assertions do not require finite dimension.
+
+When \(\dim E=q\), Cayley--Hamilton expresses \(A^q\) as a linear combination of the preceding powers. Multiplying this relation by further powers and inducting gives
+
+\[
+F_A=E_0+AE_0+\cdots+A^{q-1}E_0.
+\tag{S11}
+\]
+
+This finite truncation is a written consequence, not an additional claimed Lean target in this package.
+
+\paragraph{Compute the repair directly in the original cyclic quotient}\label{endpoint-cc_specialization--compute-the-repair-directly-in-the-original-cyclic-quotient}
+
+Let \(p_1,\ldots,p_m\) be the polynomial representatives of any basis of \(E_0\), retaining all multiplicities in \(\chi\). Define the monic polynomial
+
+\[
+d=\gcd(\chi,p_1,\ldots,p_m).
+\tag{S12}
+\]
+
+The full inverse image of \(F_A\) under \(\mathbb C[S]\to E\) is the ideal generated by \(\chi,p_1,\ldots,p_m\). Indeed invariance under \(A=M_S\) is precisely closure under polynomial multiplication. The principal ideal theorem in \(\mathbb C[S]\) identifies this ideal with \((d)\). Therefore
+
+\[
+\boxed{F_A=(d)/(\chi),\qquad E/F_A\cong\mathbb C[S]/(d).}
+\tag{S13}
+\]
+
+Multiplication by \(d\) gives the additional module isomorphism
+
+\[
+\mathbb C[S]/(\chi/d)\xrightarrow{\sim}F_A.
+\tag{S14}
+\]
+
+Surjectivity is immediate from the ideal description. If \(df\in(\chi)=(d(\chi/d))\), cancellation in the polynomial domain gives \(f\in(\chi/d)\), proving injectivity. The formula also handles \(E_0=0\), where \(d=\chi\), and \(d=1\), where the repair is all of \(E\).
+
+In particular, with \(s_A=\dim F_A-\dim E_0\),
+
+\[
+\boxed{s_A=r-\deg d,\qquad \dim(E/F_A)=\deg d.}
+\tag{S15}
+\]
+
+This computes which arithmetic constituents remain at the boundary of the action-stable repair. It does not identify that boundary with the full original quotient.
+
+\subsubsection{4. The repair's metric pole has a signed curvature contribution}\label{endpoint-cc_specialization--the-repairs-metric-pole-has-a-signed-curvature-contribution}
+
+The repaired lattice is the preimage of \(F_A\) under specialization of \(E\otimes\mathcal O\) at infinity. It contains \(\mathscr M\), with torsion quotient of length \(s_A\). In compatible local frames the inclusion determinant vanishes to exactly order \(s_A\). Hence the metric transported from the same source satisfies
+
+\[
+\det G_A(w)=|w|^{-2s_A}\det G_{\mathscr M}(w).
+\tag{S16}
+\]
+
+The determinant metric was not replaced by a newly selected smooth metric on the larger lattice. With \(dd^c=(i/2\pi)\partial\bar\partial\), the dual determinant's curvature current is
+
+\[
+\boxed{\mu_A=\mu_{\mathscr M}-s_A\delta_\infty.}
+\tag{S17}
+\]
+
+To verify the sign, take logarithms in (S16) and use \(dd^c\log|w|^2=\delta_0\). The latter normalization follows from Green's identity on a punctured disk: its shrinking boundary integral is the test function's value at the origin. The smooth part is unchanged off infinity, and the polar logarithm contributes a negative atom to the dual determinant curvature.
+
+The total degree is correspondingly
+
+\[
+\deg\det(\mathscr M_A)^\vee=r-s_A=\deg d.
+\tag{S18}
+\]
+
+Thus an action-stable repair can have degree zero while retaining a nonzero positive curvature density on the affine chart, compensated by a negative atom at infinity. Degree zero does not force the original curvature cost to vanish. This is an exact account of the metric pole, not a counterexample to an unproved arithmetic estimate.
+
+For the declared Gaussian polynomial fixture \(\psi(u)=u^3+u\), \((i,j)=(2,5)\), the retained zero mode generates the whole cyclic module: its polynomial is coprime to \(\psi\). Then \(r=s_A=2\) and \(d=1\). The initial curvature has degree two, while the repaired current has a negative atom of mass two and total degree zero. This fixture uses the monic Hermite norms with mass seven and the literal phase \(i^n\); it is not asserted to be an arithmetic zero packet.
+
+\subsubsection{5. Curvature and the existing restriction certificate are the same cost}\label{endpoint-cc_specialization--curvature-and-the-existing-restriction-certificate-are-the-same-cost}
+
+Let \(K_i=G_i^{-1}\), \(K_j=G_j^{-1}\), and retain the two distinct operators
+
+\[
+Z=K_j(G_i-G_j)=(K_j-K_i)G_i,\qquad T=K_iG_j,\qquad H=1-T.
+\tag{S19}
+\]
+
+The original inverse equations give
+
+\[
+(1+Z)T=T(1+Z)=1,\qquad H=Z(1+Z)^{-1}.
+\tag{S20}
+\]
+
+These identities are formalized directly, without imposing Euclidean Hermitian symmetry on either operator. The cost spectrum of \(Z\) is nonnegative because \(Z\) is similar, via the original positive Gram matrix, to \(G_j^{-1/2}CG_j^{-1/2}\). If \(\lambda\ge0\) is a cost eigenvalue, its return-loss coordinate is
+
+\[
+x=\lambda/(1+\lambda)\in[0,1).
+\tag{S21}
+\]
+
+Every zero mode remains in this finite spectrum. For \(t=|z|^2\), radial determinant curvature and cumulative mass are
+
+\[
+\kappa(t)=\sum_a\frac{\lambda_a}{(1+t\lambda_a)^2},\qquad
+M(t)=\sum_a\frac{t\lambda_a}{1+t\lambda_a},\qquad M'(t)=\kappa(t).
+\tag{S22}
+\]
+
+The scalar derivative and its first derivative are checked in Lean. Changing to the bounded spectrum gives
+
+\[
+\kappa(t)=\sum_a\frac{x_a(1-x_a)}{[1-(1-t)x_a]^2}.
+\tag{S23}
+\]
+
+The original logarithmic moment is
+
+\[
+\mathcal L=\int_0^1\log(1/t)\kappa(t)\,dt
+=\sum_a\log(1+\lambda_a)=\sum_a-\log(1-x_a).
+\tag{S24}
+\]
+
+For completeness, integrate by parts using (S22). At zero the boundary term \(M(t)\log(1/t)\) vanishes since \(M(t)=O(t)\) for each fixed finite block; it also vanishes at one. The remaining integral is \(\sum_a\int_0^1\lambda_a/(1+t\lambda_a)\,dt\), giving (S24). This integral argument is written analysis; the equality between the two finite logarithmic sums is formalized.
+
+Write \(s_m=\operatorname{Tr}(H^m)=\sum_a x_a^m\). At \(t=1\),
+
+\[
+M(1)=s_1,\qquad \kappa(1)=s_1-s_2.
+\tag{S25}
+\]
+
+More generally the rational normalized coefficients are
+
+\[
+b_n=\sum_a\frac{\lambda_a^{n+1}}{(1+\lambda_a)^{n+2}}
+=s_{n+1}-s_{n+2}.
+\tag{S26}
+\]
+
+Direct repeated differentiation gives \(b_n=(-1)^n\kappa^{(n)}(1)/(n+1)!\). The all-order differentiation interpretation is written, whereas (S26) itself and its telescoping consequence are formalized:
+
+\[
+\boxed{s_{p+1}=M(1)-\sum_{n=0}^{p-1}b_n.}
+\tag{S27}
+\]
+
+Thus the curvature data feed the already verified trace-only certificate. Put \(P_p=\sum_{m=1}^p s_m/m\). Once \(s_p<1\),
+
+\[
+\boxed{P_p\le\mathcal L\le P_p+\frac{P_{2p}-P_p}{1-s_p}.}
+\tag{S28}
+\]
+
+The upper formula is evaluated on actual complex matrix traces via the previously formalized spectral witness, not by pretending that the original \(H\) is Euclidean Hermitian. Every fixed finite block has some successful stopping degree, since \(s_p\to0\). This is not a uniform stopping-degree or arithmetic upper-growth theorem as the packet grows.
+
+\subsubsection{6. Integration with the new source}\label{endpoint-cc_specialization--integration-with-the-new-source}
+
+The normalized Hochschild trace comparison \(\mathcal U\) in \nolinkurl{HOCHSCHILD_COMPARISON.md} is isometric on the original half-line source. Applying it to (S3) therefore leaves (S19)--(S28) unchanged. Its arithmetic Laplacian is \(A^2-kA\), not the metric loss \(H\). The exact connection is through \(W=A^*G+GA-kG\), whose Laplacian adjoint defect is \(A^*W-WA\). The two spectra have different meanings and have not been identified.
+
+The original supported lifts of all coefficient maps are retained. The ordinary local chart \(w=0\), an amplitude killed by critical-line observation, and the structural absence scalar \(\tau\) are three different data. None is substituted for another.
+
+\subsubsection{Verification boundary}\label{endpoint-cc_specialization--verification-boundary}
+
+The workflow compiles five new Lean modules individually at \texttt{-\/-trust=0} with warnings as errors. Its selected new transitive audits have 29 specialization/curvature declarations and nine Laplacian/intertwiner declarations. It also replays the inherited restriction declarations and regressions. Actual status is recorded in \nolinkurl{STATUS.md} after observing the run; this note is not itself a compiler certificate.
+
+The general source construction, coherent-sheaf globalizations, metric current (S17), cyclic gcd description (S13), all-order derivative formula, and integral (S24) have written proofs above. They are not silently included in the Lean scope. The original source note's 23-method archive was not re-executed in the unavailable local runtime; the new repository's 17-method exact checker is a separate suite, and the companion Laplacian checker has ten methods.
+
+The publication sources in main \nolinkurl{1f7e7c02343884a17df9873566e81a9083c70951} and every PR26 addition at \nolinkurl{e382e4f61aa4a61b621a8f064dfefc1ab80640d8} remain intact on the integration branch. No frozen reader, dependency pin, inherited mathematical source, or main branch is changed by this work.

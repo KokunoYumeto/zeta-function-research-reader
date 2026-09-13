@@ -1,3 +1,23 @@
+# Current R57 Split-Zero source: what was calculated and why
+
+[Read the 765-page paper](workbenches/splitzero-tandem/continuations/20260913-sga-connes/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-sga-connes/README.md) · [Earlier frozen DOI](https://doi.org/10.5281/zenodo.22732414)
+
+The 765-page Split-Zero paper retains the original theta-function source, zero multiplicities, full source mass, the coordinate S=k/2+iu and the least-norm quotient metric. Through R57 it adds the explicit Hochschild comparison kernel, constituent curvature and Laplacian control to the endpoint, period and determinant calculations. A uniform arithmetic upper estimate is not established; no RH conclusion is claimed.
+
+For a selected zero packet h, the input is 2ξ/h, where ξ is the completed Riemann xi-function and h retains every selected zero order. At tensor degree k, the polynomial source has norm
+
+$$\|\mathcal V_{h,k}P\|^2=\int_{\mathbb R}|P(k/2+iu)|^2m_{h,k}(u)\,du,$$
+
+where w_h(t)=|(2ξ/h)(1/2+it)|²/(2π), m_{h,k}=w_h^{*k}, and *k means k-fold convolution. Its mass is not normalized away. The canonical quotient metric is obtained by minimizing this same norm among representatives of a polynomial class modulo its actual relation polynomial.
+
+The reason to compute the comparison kernel is to know exactly which generalized zero blocks a trace observation retains. The R53–R57 continuation then computes constituent curvature and controls the Laplacian action in the original source-induced metric. The finite maps and defects are explicit; they do not supply the still-missing uniform arithmetic upper estimate. Both the historical damaged source paragraph after SGA50 and its complete SGAC7 correction remain disclosed in the source appendix.
+
+[PR28](workbenches/tau-split-integration/RESEARCH_NOTE.md) independently integrates the original quotient, observation, residue and period-coordinate maps, including both transition defects. Lean checks cover the stated finite map identities; exact fixtures and the written arithmetic application retain their documented scopes. All eight actual merge-push workflow statuses were successful at the recorded observation; no new full postmerge log review is claimed here.
+
+This fixed PDF/source cut ends at R57. Later R58–R62/FC/HG/HD work is not included. The following earlier guide is retained as a historical description of the 715-page DOI and preceding work, not relabelled as a newly published edition.
+
+## Earlier edition and research guide (historical)
+
 # Latest complete reader: Split-Zero cohomology, 715 pages
 
 [Read the paper](https://zenodo.org/api/records/22732414/files/33-splitzero-period-deligne-continuation-715p.pdf/content)

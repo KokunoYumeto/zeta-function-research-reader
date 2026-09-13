@@ -1,0 +1,100 @@
+name: SplitZero specialization curvature
+on:
+  push:
+    branches: [main, astra/specialization-curvature-20260913]
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-specialization-curvature-formal/**'
+      - '.github/workflows/splitzero-specialization-curvature.yml'
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroRelationCurve.lean'
+      - 'formal/splitzero/SplitZeroSpecializationChart.lean'
+      - 'formal/splitzero/SplitZeroActionHull.lean'
+      - 'formal/splitzero/SplitZeroCurvatureRestriction.lean'
+      - 'formal/splitzero/SplitZeroLaplacianControl.lean'
+      - 'formal/splitzero/AuditSpecializationCurvature.lean'
+      - 'formal/splitzero/AuditLaplacianControl.lean'
+      - 'workbenches/tau-specialization-curvature-formal/**'
+      - '.github/workflows/splitzero-specialization-curvature.yml'
+permissions:
+  contents: read
+concurrency:
+  group: specialization-curvature-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  specialization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Exact original-source calibrations
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/specialization-tests"
+          py="$RUNNER_TEMP/specialization-tests/bin/python"
+          "$py" -m pip install 'sympy==1.14.0' 'mpmath==1.3.0' >SpecializationTestSetup.log 2>&1
+          src=../../workbenches/tau-specialization-curvature-formal
+          for name in specialization laplacian; do
+            "$py" "$src/check_$name.py" >"$name.normal.json" || { cat "$name.normal.json"; exit 1; }
+            "$py" -O "$src/check_$name.py" >"$name.optimized.json" || { cat "$name.optimized.json"; exit 1; }
+            cmp "$name.normal.json" "$name.optimized.json"
+            cat "$name.normal.json"
+            for opt in '' '-O'; do
+              if "$py" $opt "$src/check_$name.py" --negative >"$name.negative.log" 2>&1; then exit 1; fi
+              grep 'intentional .* negative control' "$name.negative.log"
+            done
+          done
+      - name: Unchanged original scalar and pinned environment
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lean --version
+          lake update >SpecializationSetup.log 2>&1 || { tail -80 SpecializationSetup.log; exit 1; }
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get >>SpecializationSetup.log 2>&1 || { tail -80 SpecializationSetup.log; exit 1; }
+      - name: Strict individual source checks
+        run: |
+          set -uo pipefail
+          mkdir -p .lake/build/lib/lean
+          status=0
+          for name in SplitZeroRestrictionTransport SplitZeroRestrictionSource SplitZeroRestrictionLogCertificate SplitZeroRestrictionSpectrum SplitZeroRelationCurve SplitZeroSpecializationChart SplitZeroActionHull SplitZeroCurvatureRestriction SplitZeroLaplacianControl; do
+            echo "=== $name ==="
+            if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
+          done
+          test "$status" = 0 || exit "$status"
+      - name: Joint import and transitive audits
+        run: |
+          set -euo pipefail
+          py="$RUNNER_TEMP/specialization-tests/bin/python"
+          lake env lean --trust=0 -DwarningAsError=true AuditSpecializationCurvature.lean | tee AuditSpecializationCurvature.log
+          "$py" ../../workbenches/tau-specialization-curvature-formal/check_specialization.py --audit AuditSpecializationCurvature.log
+          lake env lean --trust=0 -DwarningAsError=true AuditLaplacianControl.lean | tee AuditLaplacianControl.log
+          "$py" ../../workbenches/tau-specialization-curvature-formal/check_laplacian.py --audit AuditLaplacianControl.log
+          lake env lean --trust=0 -DwarningAsError=true AuditRestrictionCertificate.lean | tee AuditRestrictionCertificate.log
+          "$py" ../../workbenches/tau-restriction-certificate-formal/check_restriction.py --audit AuditRestrictionCertificate.log
+          lake env lean --trust=0 -DwarningAsError=true AuditRestrictionSpectrum.lean | tee AuditRestrictionSpectrum.log
+          "$py" ../../workbenches/tau-restriction-certificate-formal/check_spectrum_audit.py AuditRestrictionSpectrum.log
+      - name: Replay unchanged restriction regressions
+        run: |
+          set -euo pipefail
+          py="$RUNNER_TEMP/specialization-tests/bin/python"
+          src=../../workbenches/tau-restriction-certificate-formal
+          for f in check_restriction.py certificate_example.py check_zero_mode.py; do
+            "$py" "$src/$f" >"$f.normal.json"
+            "$py" -O "$src/$f" >"$f.optimized.json"
+            cmp "$f.normal.json" "$f.optimized.json"
+            cat "$f.normal.json"
+          done

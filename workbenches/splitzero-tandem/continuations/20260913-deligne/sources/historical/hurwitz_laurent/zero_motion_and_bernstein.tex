@@ -1,0 +1,148 @@
+\section{All-order zero deformation and finite reconstruction}
+
+\begin{theorem}[All-order motion of a simple zero]\label{thm:zero-motion}
+Let \(\mu\) be supported in \([0,L]\), and let \(\rho\) be a simple nontrivial zero of \(\zeta(s)\).  Define
+\[
+   F_n(s)=(-1)^n\frac{(s)_n}{n!}m_n(\mu)\zeta(s+n).
+\]
+Then for sufficiently small \(t\) there is a unique holomorphic branch
+\[
+   \rho_\mu(t)=\rho+\sum_{N\ge1}c_Nt^N
+\]
+such that
+\[
+   Z_{\mu,t}(\rho_\mu(t))=0.
+\]
+Writing
+\[
+   a_{n,j}=\frac1{j!}F_n^{(j)}(\rho),
+\]
+one has \(a_{0,1}=\zeta'(\rho)\ne0\), and
+\[
+ c_N=-\frac1{\zeta'(\rho)}
+ \sum_{\substack{n,j\ge0\\(n,j)\ne(0,1)}}
+ a_{n,j}\,[t^N]\left(t^n\left(\sum_{m=1}^{N-1}c_mt^m\right)^j\right).
+\]
+In particular,
+\[
+   c_1=m_1(\mu)\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)}.
+\]
+\end{theorem}
+
+\begin{proof}
+For \(|t|L<1\), Proposition \ref{prop:compact-expansion} gives
+\[
+   Z_{\mu,t}(s)=\sum_{n\ge0}t^nF_n(s)
+\]
+near \((s,t)=(\rho,0)\), and all \(F_n\) are holomorphic at a nontrivial zero \(\rho\).  Since
+\[
+   Z_{\mu,0}(s)=\zeta(s),
+   \qquad
+   \partial_s Z_{\mu,0}(\rho)=\zeta'(\rho)\ne0,
+\]
+the analytic implicit function theorem gives a unique holomorphic zero branch.
+
+Let
+\[
+   w(t)=\rho_\mu(t)-\rho=\sum_{N\ge1}c_Nt^N.
+\]
+Then
+\[
+   0=Z_{\mu,t}(\rho+w(t))=\sum_{n,j\ge0}a_{n,j}t^n w(t)^j.
+\]
+The coefficient of \(t^N\) contains the term \(a_{0,1}c_N=\zeta'(\rho)c_N\).  Every other contribution involves only \(c_1,\ldots,c_{N-1}\).  Solving for \(c_N\) gives the recursion.  For \(N=1\), only \(F_1(\rho)\) contributes besides \(\zeta'(\rho)c_1\), and
+\[
+   F_1(\rho)=-\rho m_1(\mu)\zeta(\rho+1),
+\]
+which gives the displayed formula for \(c_1\).
+\end{proof}
+
+\begin{proposition}[Second coefficient]\label{prop:second-coeff}
+With the notation of Theorem \ref{thm:zero-motion},
+\[
+   c_2=-\frac{\frac12\zeta''(\rho)c_1^2+F_1'(\rho)c_1+F_2(\rho)}{\zeta'(\rho)},
+\]
+where
+\[
+   F_1(s)=-s m_1(\mu)\zeta(s+1),
+   \qquad
+   F_2(s)=\frac{s(s+1)}2m_2(\mu)\zeta(s+2).
+\]
+\end{proposition}
+
+\begin{proof}
+Extract the coefficient of \(t^2\) in
+\[
+   \sum_{n,j\ge0}a_{n,j}t^n w(t)^j=0.
+\]
+It is
+\[
+   \zeta'(\rho)c_2+\frac12\zeta''(\rho)c_1^2+F_1'(\rho)c_1+F_2(\rho)=0.
+\]
+Solving gives the formula.
+\end{proof}
+
+\subsection{Bernstein-Hausdorff finite zero-count approximants}
+
+Let \(\nu\) be a compactly supported probability measure on \([0,L]\), and let \(\widetilde\nu\) be its pushforward under \(x\mapsto x/L\).  Set
+\[
+   c_n=\int_0^1x^n\,d\widetilde\nu(x).
+\]
+For \(m\ge0\), define
+\[
+   \lambda_{m,j}=\binom mj\int_0^1 x^j(1-x)^{m-j}\,d\widetilde\nu(x)
+   \qquad(0\le j\le m),
+\]
+and
+\[
+   \widetilde\nu_m=\sum_{j=0}^m\lambda_{m,j}\delta_{j/m}.
+\]
+
+\begin{proposition}[Finite Bernstein approximants]\label{prop:bernstein}
+The weights satisfy
+\[
+   \lambda_{m,j}\ge0,
+   \qquad
+   \sum_{j=0}^m\lambda_{m,j}=1.
+\]
+Moreover
+\[
+   \widetilde\nu_m\Rightarrow \widetilde\nu
+\]
+weakly.
+\end{proposition}
+
+\begin{proof}
+Nonnegativity is immediate.  Summing over \(j\) gives
+\[
+   \sum_{j=0}^m\lambda_{m,j}
+   =\int_0^1\sum_{j=0}^m\binom mjx^j(1-x)^{m-j}\,d\widetilde\nu(x)=1.
+\]
+For every continuous \(f\) on \([0,1]\),
+\[
+   \int f\,d\widetilde\nu_m
+   =\int_0^1\left(\sum_{j=0}^m f(j/m)\binom mjx^j(1-x)^{m-j}\right)d\widetilde\nu(x).
+\]
+The expression in parentheses is the Bernstein polynomial \(B_m(f)(x)\), which converges uniformly to \(f\).  Hence the integrals converge to \(\int f\,d\widetilde\nu\).
+\end{proof}
+
+Define the finite Hurwitz approximants
+\[
+   Z_{\nu,t}^{[m]}(s)=\sum_{j=0}^m\lambda_{m,j}\zeta\left(s,1+tL\frac jm\right).
+\]
+
+\begin{theorem}[Finite zero-count convergence]\label{thm:finite-zero-stack}
+For fixed \(t\ge0\),
+\[
+   Z_{\nu,t}^{[m]}(s)\to Z_{\nu,t}(s)
+\]
+locally uniformly on compact subsets of \(\C\setminus\{1\}\).  If \(\Omega\subset\C\setminus\{1\}\) is bounded with piecewise smooth boundary and \(Z_{\nu,t}\) has no zeros on \(\partial\Omega\), then for all sufficiently large \(m\), the number of zeros of \(Z_{\nu,t}^{[m]}\) in \(\Omega\), counted with multiplicity, equals that of \(Z_{\nu,t}\).
+\end{theorem}
+
+\begin{proof}
+For \(s\) in a compact \(K\subset\C\setminus\{1\}\), the function
+\[
+   x\mapsto \zeta(s,1+tLx)
+\]
+is continuous on \([0,1]\) uniformly in \(s\in K\), and holomorphic in \(s\).  Weak convergence of \(\widetilde\nu_m\) gives uniform convergence of the integrals on \(K\).  This proves local uniform convergence.  The zero-counting statement follows from Hurwitz's theorem, equivalently from Rouche's theorem applied on \(\partial\Omega\).
+\end{proof}

@@ -1,0 +1,9 @@
+# Concurrent-source integration and attribution
+
+The implementation began on main 7ea0a49945390eae14d3160a5730858899768b5f. During its first strict runs, main advanced to 952ef9fee1e1419b6858d920354de8fa99430b7d and published the owner-supplied arithmetic norm note, the exact consecutive product, a balanced-window proof, and FOUR_VOLUME_THRESHOLD.md. I read those current files and their degree/dagger qualifications. They are incorporated unchanged into this review branch using GitHub's conflict-free combined tree. Main itself and the analytic branch were not changed.
+
+The factor-four limiting threshold and the balanced-window idea are therefore SHARED continuation results, not claimed as a separate discovery of this formalization. The new main proof takes the central window n=q,r=q-1 and uses monotonicity to recover the four endpoints. Our NORM_REVIEW.md gives a two-sided monic-norm envelope and comparable windows n/2<=r<=2n. Our finite formalization additionally handles the first admitted degree via its separate identity. This permits both length-q blocks and their individual finite lower budgets. Both routes preserve the original relation spaces and lead to the same limiting constant four.
+
+The principal new contribution is Lean verification of the phase-retaining local/product identities, propagation of an existing spectral lower bound, norm-to-volume comparison, first-degree case, and finite norm-envelope implication. The analytic zeta argument, its integrals, the asymptotic limit, and the relation-block eigenvalue interpretation retain their written-proof status. The posted PR24 comment identifies this division of work.
+
+No manuscript, frozen DOI file, existing dependency pin, original scalar, existing workflow, or inherited proof has been modified. Reproduction and the final execution scope belong to PR25's exact head and CI record. A failed development run is not a completed certificate.

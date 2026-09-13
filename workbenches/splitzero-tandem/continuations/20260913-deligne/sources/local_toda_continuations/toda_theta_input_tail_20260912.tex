@@ -1,0 +1,520 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=25mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{longtable}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\M}{\mathcal M}
+\newcommand{\F}{\mathcal F}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\dd}{\,\mathrm d}
+\setlength{\emergencystretch}{3em}
+\title{The original theta input: exact analytic maps, integer tails, and certified Toda seed data}
+\author{}
+\date{12 September 2026; certificate completed 13 September 2026}
+\begin{document}
+\maketitle
+
+This continuation supplies the omitted-tail and ball-arithmetic certificate
+for the analytic input of Section 9 of \emph{Source--boundary volume
+dynamics for the arithmetic control}. Every theta coefficient, Fourier
+factor, conjugation, and complex branch used below is specified. The
+original seed has total mass $M_1(0)$; the measure is never divided by
+that mass. The result computes analytic input of the source determinant
+flow. Its exact connection with a finite zero packet is given below by
+Mellin division and the multiplier $h(1/2+\ii t)$.
+
+\section{The original theta function and its Mellin transform}
+
+Put $D=-z\partial_z$, let
+$\mathcal S_{\pi/4}=\{z\in\mathbb C\setminus\{0\}:|\arg z|<\pi/4\}$,
+and use the restriction of the principal logarithm to this sector. Define
+\begin{align}
+ \vartheta(z)&=\sum_{n\in\mathbb Z}e^{-\pi n^2z^2},\tag{TI.1}\\
+ f_0(z)&=D(D-1)\vartheta(z)
+ =2\sum_{n=1}^\infty(4\pi^2n^4z^4-6\pi n^2z^2)e^{-\pi n^2z^2}.
+ \tag{TI.2}
+\end{align}
+On a compact subset of the sector, each differentiated summand is
+bounded by a polynomial in $n$ times $e^{-a n^2}$ with $a>0$.
+Consequently both series define holomorphic functions there, and all
+the displayed derivatives are termwise valid.
+
+\begin{lemma}[The exact theta inversion]
+On $\mathcal S_{\pi/4}$,
+\begin{equation}
+ \vartheta(z)=z^{-1}\vartheta(1/z),\qquad
+ f_0(z)=z^{-1}f_0(1/z),\qquad
+ f_0(\bar z)=\overline{f_0(z)}. \tag{TI.3}
+\end{equation}
+For each $0\le\alpha<\pi/4$, every integer $j\ge0$, and every real
+$A>0$, $D^jf_0(z)=O(|z|^{-A})$ as $|z|\to\infty$ and
+$D^jf_0(z)=O(|z|^A)$ as $|z|\to0$, uniformly for $|\arg z|\le\alpha$.
+\end{lemma}
+\begin{proof}
+For $x>0$, the Fourier transform with kernel $e^{-2\pi\ii\xi t}$
+of $e^{-\pi x^2t^2}$ is $x^{-1}e^{-\pi\xi^2/x^2}$.
+For completeness, the value at $\xi=0$ follows from
+$\int_{\mathbb R}e^{-\pi t^2}\dd t=1$, whose square is evaluated in
+polar coordinates. Differentiation in $\xi$ and integration by parts
+give the differential equation $I'(\xi)=-2\pi\xi I(\xi)/x^2$;
+the stated transform is its solution with the stated initial value.
+Periodize the Gaussian over integer translates. The resulting smooth
+periodic function has the absolutely convergent Fourier series with
+coefficients $x^{-1}e^{-\pi n^2/x^2}$. Evaluation at zero gives
+$\vartheta(x)=x^{-1}\vartheta(1/x)$. Both sides are holomorphic in
+the connected sector, so the identity theorem gives the first equation
+in (TI.3).
+
+For the linear involution $(Rf)(z)=z^{-1}f(1/z)$, direct differentiation
+gives $DR=R(1-D)$ and hence $D(D-1)R=RD(D-1)$. Applying this identity
+to $\vartheta=R\vartheta$ proves the second equation. The real
+coefficients in (TI.2) give the third. On a closed subsector,
+$\Re(z^2)\ge |z|^2\cos(2\alpha)>0$; the series and each derivative
+therefore have Gaussian decay at infinity, with a fixed polynomial
+factor. The second equation in (TI.3), differentiated using $DR=R(1-D)$,
+transports that bound to zero and proves all the endpoint assertions.
+\end{proof}
+
+For functions with these endpoint bounds set
+\begin{equation}
+ (\M F)(s)=\int_0^\infty F(x)x^{s-1}\dd x,
+ \qquad (\F_+u)(t)=\int_{\mathbb R}u(y)e^{\ii ty}\dd y.
+ \tag{TI.4}
+\end{equation}
+The Mellin integral is entire. When $\Re s>1$, the sum of the absolute
+integrals of the terms in (TI.2) is finite, because it is bounded by a
+constant depending on $s$ times $\sum n^{-\Re s}$. Thus
+\begin{align}
+ (\M f_0)(s)
+ &=\pi^{-s/2}\zeta(s)
+ \left(4\Gamma(s/2+2)-6\Gamma(s/2+1)\right)\notag\\
+ &=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)=:g(s). \tag{TI.5}
+\end{align}
+The first line contains the factor $2$ of (TI.2) and the factor $1/2$
+from the substitution $u=\pi n^2x^2$. The second follows from
+$\Gamma(z+1)=z\Gamma(z)$, which follows by integration by parts.
+Equation (TI.5) gives the entire continuation of its right side. In
+particular $g=2\xi$ with the original convention in the source note.
+Substituting $x\mapsto1/x$ in (TI.4), using (TI.3), proves
+\begin{equation}
+ g(1-s)=g(s),\qquad \overline{g(\bar s)}=g(s).
+ \tag{TI.6}
+\end{equation}
+
+\section{Mellin division, the dagger sign, and the tilted observation}
+
+Let $h(s)=\prod_\rho(s-\rho)^{m_\rho}$ be a monic finite product of
+actual zeros of $g$, with the selected orders at most their actual
+orders and with the selected multiset invariant under
+$\rho\mapsto1-\bar\rho$. The complete-order packets used in the source
+note satisfy these conditions. Write $d=\deg h$ and
+\begin{equation}
+ v_h=g/h,\qquad h^\dagger(s)=\overline{h(1-\bar s)},\qquad
+ v_h^\dagger(s)=\overline{v_h(1-\bar s)}.
+ \tag{TI.7}
+\end{equation}
+Removable singularities are filled in. The leading coefficient of
+$h^\dagger$ is $(-1)^d$, and its zero multiset is that of $h$; therefore
+\begin{equation}
+ h^\dagger=(-1)^d h,\qquad v_h^\dagger=(-1)^d v_h.
+ \tag{TI.8}
+\end{equation}
+
+\begin{proposition}[Construction without an endpoint assumption]
+For every $\sigma\in\mathbb R$ the integral
+\begin{equation}
+ F_h(z)=\frac1{2\pi\ii}\int_{\sigma-\ii\infty}^{\sigma+\ii\infty}
+ v_h(s)z^{-s}\dd s \tag{TI.9}
+\end{equation}
+converges on the sector, is independent of $\sigma$, defines a
+holomorphic function there, and has the rapid endpoint bounds in the
+first lemma on each closed subsector. It satisfies
+\begin{equation}
+ \M F_h=v_h,\qquad h(D)F_h=f_0,\qquad
+ F_h(1/\bar z)=(-1)^d\bar z\,\overline{F_h(z)}. \tag{TI.10}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Rotate the Mellin integral of $f_0$ to the ray $e^{\ii\beta}\mathbb R_{>0}$,
+where $|\beta|<\pi/4$. The endpoint estimates make both closing arcs
+vanish, and give
+\[
+ g(s)=e^{\ii\beta s}\int_0^\infty f_0(e^{\ii\beta}x)x^{s-1}\dd x.
+\]
+For $\sigma$ in any compact interval, the absolute integral on the
+right is uniformly bounded. Choosing the sign of $\beta$ to be that
+of $t$ proves $|g(\sigma+\ii t)|\le C e^{-|\beta||t|}$.
+For sufficiently large $|t|$, the explicit finite product $h$ is
+bounded below by $c(1+|t|)^d$ on the same strip. On the remaining
+compact rectangle, $v_h$ is bounded because its singularities are
+removable. These facts give the same exponential estimate for $v_h$,
+with a different constant. It is valid for every
+$|\beta|<\pi/4$ and every compact interval of $\sigma$.
+
+In (TI.9), choose $|\beta|>|\arg z|$. Absolute convergence and local
+uniform convergence of every differentiated integral follow.
+Horizontal contour segments tend to zero by the same estimate, proving
+independence of $\sigma$. Multiplication by $s^j$ computes $D^jF_h$;
+moving $\sigma$ arbitrarily far to the right or left gives respectively
+the asserted infinity or zero bounds.
+
+The change $x=e^y$ turns (TI.9) on the line $\Re s=\sigma$ into Fourier
+inversion for $e^{\sigma y}F_h(e^y)$. The exponentially decreasing
+function $v_h(\sigma+\ii t)$ and its derivatives have the required
+integrability, and inversion gives $\M F_h=v_h$. The Fourier inversion
+and Plancherel conventions here can be verified by inserting
+$e^{-\varepsilon t^2}$ in the inverse integral: Fubini gives convolution
+with the Gaussian approximate identity of integral one; letting
+$\varepsilon\downarrow0$ gives inversion, and applying the same
+calculation to the inner product gives the factor $1/(2\pi)$ in
+Plancherel. Thus no change of Fourier normalization is implicit.
+Multiplication by $h(s)$ in (TI.9) is $h(D)$ on the source. Fourier
+inversion of (TI.5) proves $h(D)F_h=f_0$.
+
+For the conjugate-linear involution
+$({\cal R}F)(x)=x^{-1}\overline{F(1/x)}$, substitution gives
+$\M({\cal R}F)(s)=\overline{\M F(1-\bar s)}$. Equations (TI.8) and
+Mellin uniqueness imply ${\cal R}F_h=(-1)^dF_h$ on the positive axis.
+Both sides extend holomorphically to the sector as
+$z^{-1}\overline{F_h(1/\bar z)}$ and $(-1)^dF_h(z)$.
+Conjugating the resulting identity gives the last equation in (TI.10).
+\end{proof}
+
+Here are the exact Hilbert-space maps. The change of variables
+\begin{equation}
+ U:L^2(\mathbb R_{>0},\dd x)\longrightarrow L^2(\mathbb R,\dd y),
+ \qquad (UF)(y)=e^{y/2}F(e^y) \tag{TI.11}
+\end{equation}
+is unitary, with inverse $u\mapsto[x\mapsto x^{-1/2}u(\log x)]$.
+On the rapid sector functions constructed above define, for real
+$|\theta|<\pi/2$,
+\begin{equation}
+ (E_\theta F)(y)=e^{(y+\ii\theta/2)/2}
+ F(e^{y+\ii\theta/2}). \tag{TI.12}
+\end{equation}
+This map has codomain $L^2(\mathbb R,\dd y)$; it is the analytic
+translation of $UF$ on this specified domain. Its norm is not asserted
+to equal the untilted norm. Shifting the $y$ contour by $\ii\theta/2$
+in (TI.4), with the closing vertical edges vanishing by the proved
+endpoint bounds, gives
+\begin{equation}
+ \F_+(E_\theta F_h)(t)=e^{\theta t/2}v_h(1/2+\ii t). \tag{TI.13}
+\end{equation}
+Indeed $y=z-\ii\theta/2$ contributes
+$e^{\ii ty}=e^{\theta t/2}e^{\ii tz}$. In the source expression
+the factor $e^{\ii\theta/4}$ remains present.
+
+Define the original, unscaled density and its mass by
+\begin{equation}
+ w_h(t)=\frac{|v_h(1/2+\ii t)|^2}{2\pi},\qquad
+ M_h(\theta)=\int_{\mathbb R}e^{\theta t}w_h(t)\dd t,
+ \qquad \mu_h=M_h(0). \tag{TI.14}
+\end{equation}
+The exponential estimate above proves that the integral defining
+$M_h$ and each of its derivatives converge locally uniformly on
+$|\Re\theta|<\pi/2$: for a compact substrip choose
+$2|\beta|>\sup|\Re\theta|$. By (TI.11)--(TI.13) and Plancherel,
+\begin{equation}
+ M_h(\theta)=\int_0^\infty|F_h(e^{\ii\theta/2}x)|^2\dd x
+ =2\int_1^\infty|F_h(e^{\ii\theta/2}x)|^2\dd x
+ \quad (\theta\text{ real}). \tag{TI.15}
+\end{equation}
+For the second equality the last identity in (TI.10) gives
+\[
+ F_h(e^{\ii\theta/2}/x)=(-1)^d e^{-\ii\theta/2}x
+ \overline{F_h(e^{\ii\theta/2}x)}.
+\]
+After taking absolute squares, the factor $x^2$ cancels the Jacobian
+of $x\mapsto1/x$. The dagger sign is retained before that operation.
+Dagger stability alone gives this endpoint identity. If the selected
+multiset is additionally stable under ordinary conjugation, then
+$v_h(\bar s)=\overline{v_h(s)}$, so $w_h(-t)=w_h(t)$ and
+$M_h(-\theta)=M_h(\theta)$. This proves the precise extra symmetry
+needed for evenness.
+
+The typed relation between seed and packet input is also explicit:
+\begin{equation}
+ F_h\xmapsto{\;h(D)\;}f_0
+ \qquad
+ v_h(1/2+\ii t)\xmapsto{\;h(1/2+\ii t)\;}
+ g(1/2+\ii t),\qquad
+ w_1(t)=|h(1/2+\ii t)|^2w_h(t). \tag{TI.16}
+\end{equation}
+The arrow in the first display means the linear differential map on
+the rapid sector-function space; (TI.10) and (TI.13) prove its
+commutation with the transform. The scalar equality of densities
+holds even at selected line zeros by continuity; it does not require
+division of a measured zero value by zero.
+
+\section{The complete double series and an explicit omitted tail}
+
+For $h=1$ we have $F_1=f_0$. Set $c_1=-6$, $c_2=4$ and, for real
+$\theta$ first,
+\begin{equation}
+ C_{mn}(\theta)=\pi(m^2e^{\ii\theta}+n^2e^{-\ii\theta}),\qquad
+ \alpha_{rs}=r+s+\tfrac12. \tag{TI.17}
+\end{equation}
+For $\Re C>0$ define
+\begin{equation}
+ I_p(C)=\int_1^\infty x^p e^{-Cx^2}\dd x
+ =\frac{\Gamma((p+1)/2,C)}{2C^{(p+1)/2}}. \tag{TI.18}
+\end{equation}
+The power uses the holomorphic logarithm of the right half-plane,
+real on its positive axis. To check (TI.18), first substitute $u=Cx^2$
+for positive real $C$. Both sides extend holomorphically to the right
+half-plane: the integral by dominated convergence and the right side
+by the same continued incomplete gamma integral with its ray deformable
+inside that half-plane. The identity theorem then gives (TI.18)
+there with the stated branch.
+
+\begin{theorem}[The retained factor and the locally uniform tail]
+For every $\theta$ with $|\Re\theta|<\pi/2$,
+\begin{equation}
+ M_1(\theta)=4\sum_{m,n\ge1}\sum_{r,s=1}^2
+ c_rc_s(\pi m^2)^r(\pi n^2)^s e^{\ii\theta(r-s)}
+ \frac{\Gamma(\alpha_{rs},C_{mn}(\theta))}
+ {C_{mn}(\theta)^{\alpha_{rs}}}. \tag{TI.19}
+\end{equation}
+Let $M_{1,J}$ be exactly this sum with $1\le m,n\le J$, for an integer
+$J\ge0$. Fix $0\le\theta_0<\pi/2$ and $B\ge0$, and put
+\begin{align}
+ d_0&=\pi e^{-B}\cos\theta_0,\qquad L=J+1,
+ \qquad \rho_a=e^{-d_0(2a+1)},\tag{TI.20}\\
+ H_p(a,d_0)&=\sum_{j=0}^p\binom pj a^{p-j}
+ \sum_{b=0}^j \genfrac{\{}{\}}{0pt}{}{j}{b}\,
+ \frac{b!\rho_a^b}{(1-\rho_a)^{b+1}},\tag{TI.21}\\
+ A_a(d_0,B)&=6\pi e^B H_2(a,d_0)+4\pi^2e^{2B}H_4(a,d_0).
+ \tag{TI.22}
+\end{align}
+Here $\genfrac{\{}{\}}{0pt}{}{j}{b}$ is determined by $\genfrac{\{}{\}}{0pt}{}{0}{0}=1$,
+$\genfrac{\{}{\}}{0pt}{}{j}{0}=0$ for $j>0$, $\genfrac{\{}{\}}{0pt}{}{0}{b}=0$ for $b>0$, and
+$\genfrac{\{}{\}}{0pt}{}{j+1}{b}=b\genfrac{\{}{\}}{0pt}{}{j}{b}+\genfrac{\{}{\}}{0pt}{}{j}{b-1}$, with out-of-range
+indices zero. For every $|\Re\theta|\le\theta_0$ and
+$|\Im\theta|\le B$,
+\begin{equation}
+ |M_1(\theta)-M_{1,J}(\theta)|
+ \le \mathcal E_J(\theta_0,B):=
+ 16A_1(d_0,B)A_L(d_0,B)I_8(d_0(1+L^2)). \tag{TI.23}
+\end{equation}
+Every quantity on the right is explicit and positive. It tends to zero
+as $J\to\infty$. In particular (TI.23) supplies the requested locally
+uniform real-tilt bound by taking $B=0$.
+\end{theorem}
+\begin{proof}
+For real $\theta$, substitute (TI.2) into the last expression in
+(TI.15). A product contributes $2\cdot2\cdot2=8$ before integration:
+the endpoint factor $2$ and the two original theta coefficients $2$.
+Equation (TI.18) contributes $1/2$. The remaining factor is precisely
+$4$, and the powers of the two dilations give
+$e^{\ii\theta r}e^{-\ii\theta s}$. This establishes the coefficients
+and phases in (TI.19), subject to the absolute convergence now proved.
+
+For integers $a\ge1$, $p\ge0$, and $x\ge1$,
+\begin{align*}
+ \sum_{n\ge a}n^p e^{-d_0n^2x^2}
+ &\le e^{-d_0a^2x^2}\sum_{j\ge0}(a+j)^p
+          e^{-d_0(2a+1)j}\\
+ &=e^{-d_0a^2x^2}H_p(a,d_0).
+\end{align*}
+The inequality uses $(a+j)^2-a^2=2aj+j^2\ge(2a+1)j$ and $x^2\ge1$.
+For the equality expand $(a+j)^p$ by the binomial theorem and use
+$j^r=\sum_b\genfrac{\{}{\}}{0pt}{}{r}{b}(j)_b$. That last identity follows inductively
+from $j(j)_b=(j)_{b+1}+b(j)_b$ and the displayed recurrence.
+Differentiating the geometric series $b$ times gives
+$\sum_{j\ge0}(j)_b\rho^j=b!\rho^b/(1-\rho)^{b+1}$.
+Thus (TI.21) is a finite positive rational function, not an unevaluated
+infinite sum.
+
+For complex $\theta$ in the rectangle, let
+$f^\pm(x)=f_0(e^{\pm\ii\theta/2}x)$ and let $f_J^\pm$ contain only
+$1\le n\le J$ in the original series. Since
+\[
+ \Re(\pi n^2e^{\pm\ii\theta})
+ =\pi n^2e^{\mp\Im\theta}\cos(\Re\theta)\ge d_0n^2,
+\]
+and $|e^{\pm\ii r\theta}|\le e^{rB}$, the positive bound just proved
+implies
+\begin{align*}
+ |f^\pm(x)|, |f_J^\pm(x)|
+ &\le2A_1(d_0,B)x^4e^{-d_0x^2},\\
+ |f^\pm(x)-f_J^\pm(x)|
+ &\le2A_L(d_0,B)x^4e^{-d_0L^2x^2}.
+\end{align*}
+Here $x^2\le x^4$ retains a bound for the original $-6$ term;
+no coefficient of the exact series is changed. These inequalities
+prove absolute integrability of the full expanded double series,
+locally uniformly on the rectangle. They also prove
+\[
+ 2\int_1^\infty
+ |f^+(x)f^-(x)-f_J^+(x)f_J^-(x)|\dd x
+ \le16A_1(d_0,B)A_L(d_0,B)
+ \int_1^\infty x^8e^{-d_0(1+L^2)x^2}\dd x,
+\]
+because the product difference is
+$(f^+-f_J^+)f^-+f_J^+(f^--f_J^-)$.
+The right side is (TI.23). For fixed $d_0>0$, formula (TI.21) bounds
+$H_p(L,d_0)$ by a fixed constant times $(1+L)^p$: its denominators
+are bounded away from zero uniformly for $L\ge1$. Moreover
+$I_8(b)\le e^{-b}\int_1^\infty x^8e^{-d_0(x^2-1)}\dd x$ for
+$b\ge d_0$. Hence (TI.23) tends to zero exponentially in $L^2$.
+
+For complex $\theta$, $C_{mn}(\theta)$ stays in the right half-plane
+by the displayed inequality. The integral
+$2\int_1^\infty f^+(x)f^-(x)\dd x$ is holomorphic on the whole strip.
+It equals $M_1$ on the real interval by (TI.15) and conjugation of
+$f_0$. Holomorphic uniqueness proves equality on the strip. The same
+locally uniform bounds justify (TI.19) there and finish the proof.
+\end{proof}
+
+The tail controls differentiated moments as well. If the closed disc
+$\{z:|z-\theta|\le r\}$ lies in the rectangle of the theorem, Cauchy's
+integral formula gives, for every integer $j\ge0$,
+\begin{equation}
+ |M_1^{(j)}(\theta)-M_{1,J}^{(j)}(\theta)|
+ \le \frac{j!}{r^j}{\cal E}_J(\theta_0,B). \tag{TI.24}
+\end{equation}
+The bound includes arbitrary finite derivative orders used by a Hankel
+determinant. It does not assert a useful estimate when the derivative
+order or determinant dimension itself grows without bound.
+
+\section{The second moment and the first tensor coefficient}
+
+Let $H=(D-1/2)f_0$. With $y=\pi n^2x^2$ and
+$P(y)=8y^2-12y$, literal differentiation gives
+\begin{align}
+ (D-1/2)(P(y)e^{-y})
+ &=\left(-2yP'(y)+2yP(y)-P(y)/2\right)e^{-y}\notag\\
+ &=(16y^3-60y^2+30y)e^{-y}. \tag{TI.25}
+\end{align}
+Thus
+\begin{equation}
+ H(x)=\sum_{n\ge1}\sum_{r=1}^3d_r(\pi n^2)^r x^{2r}e^{-\pi n^2x^2},
+ \qquad(d_1,d_2,d_3)=(30,-60,16). \tag{TI.26}
+\end{equation}
+The unitary map (TI.11) satisfies
+$U(D-1/2)F=-(UF)'$ by differentiation. Integration by parts in the
+Fourier transform therefore gives
+$\F_+(UH)(t)=\ii t\,g(1/2+\ii t)$. It follows, with the original
+$1/(2\pi)$ factor, that
+\begin{equation}
+ M_1''(0)=\frac1{2\pi}\int_{\mathbb R}t^2|g(1/2+\ii t)|^2\dd t
+ =\int_0^\infty |H(x)|^2\dd x=2\int_1^\infty H(x)^2\dd x.
+ \tag{TI.27}
+\end{equation}
+For the last equality, $DR=R(1-D)$ and $Rf_0=f_0$ give
+$RH=-H$, that is $H(1/x)=-xH(x)$. Its square gives precisely the
+same Jacobian cancellation as before, with the new minus sign retained
+before squaring.
+
+Let $H_J$ restrict (TI.26) to $n\le J$ and put
+$T_J=2\int_1^\infty H_J(x)^2\dd x$. Then
+\begin{equation}
+ T_J=\sum_{m,n=1}^J\sum_{r,s=1}^3
+ d_rd_s(\pi m^2)^r(\pi n^2)^s
+ \frac{\Gamma(r+s+1/2,\pi(m^2+n^2))}
+ {\bigl(\pi(m^2+n^2)\bigr)^{r+s+1/2}}. \tag{TI.28}
+\end{equation}
+There is no coefficient $4$ in this last expression: (TI.26) already
+contains its fully differentiated coefficients, and the endpoint
+factor $2$ cancels the $1/2$ in (TI.18).
+Set
+\begin{equation}
+ B_a=30\pi H_2(a,\pi)+60\pi^2H_4(a,\pi)+16\pi^3H_6(a,\pi).
+ \tag{TI.29}
+\end{equation}
+The proof of (TI.23), now with degree six in $x$, gives
+\begin{equation}
+ |M_1''(0)-T_J|
+ \le \mathcal T_J:=4B_1B_{J+1}I_{12}(\pi(1+(J+1)^2)). \tag{TI.30}
+\end{equation}
+In detail, $|H|,|H_J|\le B_1x^6e^{-\pi x^2}$ and
+$|H-H_J|\le B_{J+1}x^6e^{-\pi(J+1)^2x^2}$; apply
+$|H^2-H_J^2|\le|H-H_J|(|H|+|H_J|)$ and the factor $2$ of (TI.27).
+
+For tensor degree $k\ge1$, let $m_k=w_1^{*k}$ with its total mass
+$\mu_1^k$, where $\mu_1=M_1(0)$. Absolute integrability and Fubini give
+$Z_k(\theta)=\int e^{\theta u}m_k(u)\dd u=M_1(\theta)^k$.
+The function $w_1$ is even by (TI.6), so $Z_k'(0)=M_1'(0)=0$.
+The degree-zero monic source polynomial is $1$, of squared norm
+$h_0=\mu_1^k$, and its monic degree-one orthogonal polynomial in
+the original sum variable $u$ is $u$, of squared norm
+$h_1=Z_k''(0)=k\mu_1^{k-1}M_1''(0)$. Therefore the first recurrence
+coefficient is exactly
+\begin{equation}
+ a_1^{(k)}=\frac{h_1}{h_0}
+ =k\frac{M_1''(0)}{M_1(0)}. \tag{TI.31}
+\end{equation}
+The quotient of norms in (TI.31) is the coefficient in the monic
+three-term recurrence. It leaves both norms and the measure mass
+specified, and performs no replacement of $m_k$ by a probability law.
+
+\section{Certified numerical enclosures and their executable scope}
+
+The accompanying script
+\texttt{toda\_theta\_input\_tail\_check\_20260912.py} evaluates
+(TI.19), (TI.28), (TI.23), and (TI.30) at $J=8$ with
+\texttt{python-flint 0.9.0}, using Arb real balls and Acb rectangular
+complex balls at 256-bit precision and one arithmetic thread.
+All integer and rational input, including $\theta=1/10$, is supplied
+exactly; $\pi$, exponentials, powers, and incomplete gamma functions
+are enclosed by those ball operations. The incomplete gamma call has
+argument $C$ and parameter $\alpha$, that is
+\texttt{C.gamma\_upper(alpha)}. Its branch is the one in (TI.18).
+The documented ball and endpoint semantics used here are in
+\href{https://python-flint.readthedocs.io/en/latest/arb.html}{the Arb interface}
+and
+\href{https://python-flint.readthedocs.io/en/latest/acb.html}{the Acb interface}.
+
+The script adds a symmetric error ball whose radius is the upward
+rounded upper endpoint of the proved tail bound. Thus the result
+encloses the infinite sum, rather than only its finite arithmetic.
+The finite real-tilt sum is real by the proved conjugation identity;
+the script additionally checks that its imaginary ball contains zero.
+The positive real mass enclosure is then used in interval division
+for (TI.31). The following are rational decimal intervals:
+\begin{align*}
+ M_1(0)&\in[
+ 1.2790072478464851404795335922671932744916,\\[-2pt]
+ &\hspace{39mm}1.2790072478464851404795335922671932744919],\\
+ M_1(1/10)&\in[
+ 1.3459071784582497969682205923576298051604,\\[-2pt]
+ &\hspace{39mm}1.3459071784582497969682205923576298051607],\\
+ M_1''(0)&\in[
+ 13.0555493025705584353926846581231936824343,\\[-2pt]
+ &\hspace{39mm}13.0555493025705584353926846581231936824346],\\
+ a_1^{(k)}/k&\in[
+ 10.2075647534857216888657612522375551749964,\\[-2pt]
+ &\hspace{39mm}10.2075647534857216888657612522375551749967].
+\end{align*}
+Every width is $3\cdot10^{-40}$. The computed positive tail bounds
+satisfy, respectively,
+\begin{equation}
+ {\cal E}_8(0,0)<7\cdot10^{-107},\qquad
+ {\cal E}_8(1/10,0)<3\cdot10^{-106},\qquad
+ {\cal T}_8<4\cdot10^{-103}. \tag{TI.32}
+\end{equation}
+The receipt preserves both the displayed decimal intervals and exact
+rational dyadic lower and upper endpoints of each resulting ball.
+Its decimal endpoints are generated by outward rounding at 40 decimal
+places, with one additional unit on each side, and are subsequently
+checked by rigorous ball comparisons. Normal and optimized execution
+produce identical mathematical records. The requested negative-control
+mode inserts the false inequality $a_1^{(k)}/k<1$ and must raise an
+error; it uses an explicit checked exception rather than a Python
+assertion, so optimization cannot remove that check.
+
+The numerical certificate uses the standard correctness contract of
+Arb/Acb ball arithmetic together with the written infinite-tail proof.
+It is not inferred from agreement of two numerical precisions. Its
+output concerns the three specified infinite analytic-seed quantities
+and their recurrence ratio. For $h=1$ the cyclic arithmetic quotient
+is $\mathbb C[S]/(1)=0$: the actual quotient map sends each polynomial
+to zero, while the positive seed source norm and (TI.31) remain.
+For a selected packet $h$, the precise passage from the present input
+to $w_h$ is (TI.16), obtained from the globally defined Mellin division
+$g/h$. No packet determinant or bound as $k$ tends to infinity is
+certified by these four scalar intervals.
+\end{document}

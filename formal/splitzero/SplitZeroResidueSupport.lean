@@ -50,15 +50,17 @@ theorem residue_image_line (one : V) (ell : V →ₗ[R] R)
 end LocalResidue
 
 section QuotientAction
-variable (J : Hom D E) (r : ∀ i, E.V i →ₗ[R] D.V i)
-  (B : Relations D)
-  (hB : ∀ i x, x ∈ B.fibre i → J.app i x = 0)
-  (hdef : ∀ {i j} (h : i ≤ j) v, sectionDefect r h v ∈ B.fibre j)
 
 /-- Actual operator on the already constructed internal quotient. -/
-def quotientLiftOperator (A : Hom E E) : Hom B.quotientDiagram B.quotientDiagram where
+def quotientLiftOperator
+    (J : Hom D E) (r : ∀ i, E.V i →ₗ[R] D.V i)
+    (B : Relations D)
+    (hB : ∀ i x, x ∈ B.fibre i → J.app i x = 0)
+    (hdef : ∀ {i j} (h : i ≤ j) v, sectionDefect r h v ∈ B.fibre j)
+    (A : Hom E E) : Hom B.quotientDiagram B.quotientDiagram where
   app i := (B.fibre i).mapQ (B.fibre i) (liftOperator J r A i) (by
     intro x hx
+    change liftOperator J r A i x ∈ B.fibre i
     rw [liftOperator_kills_kernel J r A i x (hB i x hx)]
     exact (B.fibre i).zero_mem)
   naturality {i j} h x := by
@@ -70,6 +72,11 @@ def quotientLiftOperator (A : Hom E E) : Hom B.quotientDiagram B.quotientDiagram
       apply (Submodule.Quotient.eq (B.fibre j)).mpr
       rw [liftOperator_transition J r A h x]
       exact hdef h _
+
+variable (J : Hom D E) (r : ∀ i, E.V i →ₗ[R] D.V i)
+  (B : Relations D)
+  (hB : ∀ i x, x ∈ B.fibre i → J.app i x = 0)
+  (hdef : ∀ {i j} (h : i ≤ j) v, sectionDefect r h v ∈ B.fibre j)
 
 /-- Operator and original observation commute on the reconstructed totals. -/
 theorem quotient_operator_square

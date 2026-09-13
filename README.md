@@ -1,32 +1,38 @@
-# Arithmetic zeta packets: endpoint norms, exact window products and gamma source control
+# Split-Zero cohomology and arithmetic weight control
 
-[Published edition](https://doi.org/10.5281/zenodo.22731295) · [Research guide](CURRENT_RESEARCH.md) · [Exact 32-file inventory](calculation_edition_20260913_endpoint_gamma/ALL_ZENODO_FILES.json)
+Start with [the complete 715-page Split-Zero paper](workbenches/splitzero-tandem/continuations/20260913-deligne/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf).
+Its [editable source and build guide](workbenches/splitzero-tandem/continuations/20260913-deligne/README.md)
+include the full cumulative argument and original source witnesses, through the
+13 September Deligne endpoint continuation. The [research guide](CURRENT_RESEARCH.md)
+explains where this cut fits among the working calculations.
 
-Start with [Split-Zero Cohomology and Arithmetic Weight Control, the current
-478-page paper](calculation_edition_20260913_endpoint_gamma/30-splitzero-gamma-continuation-478p.pdf), which is the default Zenodo PDF preview.
-It retains the complete cumulative source/cohomology calculations. The
-separately readable [512-page integrated reader](reader.pdf) contains the broader
-research synthesis. The
-[edition page](calculation_edition_20260913_endpoint_gamma/README.md) pairs both PDFs with their exact source ZIPs.
+The paper studies the Riemann xi function through its original theta-function
+source, finite zero packets, and the least-norm representatives of their
+arithmetic quotient classes. It retains zero multiplicities, the source's full
+mass, the coordinate `S=k/2+iu`, and the canonical quotient metric. The new
+chapters calculate endpoint and relation-moment estimates, consecutive degree
+windows, cohomological comparisons with Deligne's constructions, and the complete
+polynomial-exponential period determinant. The opposing arithmetic volume upper
+bound remains unresolved; the paper does not claim an RH proof or disproof.
 
-The new calculations keep the original theta-function source, its full mass,
-the coordinate `S=k/2+iu`, phases and zero multiplicities. They prove arithmetic
-endpoint norm bounds, an exact degree-window product, and a four-volume growth
-lower bound for any off-line quartet. An opposing arithmetic volume upper bound
-has not been proved; no RH conclusion is claimed.
+This source release is an [explicit public derivative](workbenches/splitzero-tandem/continuations/20260913-deligne/PUBLIC_DERIVATION.md):
+mathematical texts, PDF and delivery archives retain their exact bytes; private
+workstation prefixes in historical evidence are aliased, and a reference-only
+cache of copied literature pages is replaced by bibliographic/hash provenance.
+Every change is recorded. Historical checks keep their original scope; source
+publication is not a new Lean or analytic verification.
 
-Read the [complete endpoint proof sources](workbenches/tau-arithmetic-endpoint-bounds/README.md),
-[corrected confluent-transfer note](workbenches/tau-confluent-transfer/RESEARCH_NOTE.md),
-and [Gamma companion source guide](workbenches/splitzero-tandem/continuations/20260913-gamma/README.md).
+The [512-page integrated reader](reader.pdf) remains separately readable.
+[DOI 10.5281/zenodo.22731295](https://doi.org/10.5281/zenodo.22731295) is the older
+frozen 478/512-page edition, with [its exact PDFs and source ZIPs](calculation_edition_20260913_endpoint_gamma/README.md).
+It does **not** contain the new 715-page cut. Its 32 downloads and all older
+source releases remain unchanged. The new large source ZIP is kept outside
+ordinary Git files; a successor DOI is not claimed here before verification.
+
 The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md),
 and [Polyclank participation guide](POLYCLANK_PARTICIPATION.md) retain the
-broader motivations and the distinction between completed and unfinished routes.
-
-All 28 earlier downloads remain in the [32-file DOI record](https://zenodo.org/records/22731295#files).
-The [previous frozen edition](calculation_edition_20260912e/README.md) is unchanged.
-Written analytic proofs, finite checks, interval enclosures and strict Lean
-results have their separately recorded scopes. Overleaf confirmations remain
-historical, and timers remain paused. Source ZIPs are offline downloads.
+motivations, partial successes and unfinished routes. Overleaf confirmations
+remain historical and timers remain paused.
 
 ## Current working sources
 
@@ -51,4 +57,4 @@ revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
 These continuations are **not included in the frozen DOI PDFs or ZIPs**.
-The published preview remains the current 478-page Split-Zero cohomology paper.
+The frozen DOI preview remains its 478-page Split-Zero cohomology paper; the current GitHub front is the 715-page cut above.

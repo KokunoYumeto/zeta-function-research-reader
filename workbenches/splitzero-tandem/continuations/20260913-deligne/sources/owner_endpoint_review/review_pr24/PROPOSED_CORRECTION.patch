@@ -1,0 +1,55 @@
+--- a/workbenches/tau-confluent-transfer/RESEARCH_NOTE.md
++++ b/workbenches/tau-confluent-transfer/RESEARCH_NOTE.md
+@@ -8,7 +8,7 @@
+ 
+ Keep G(Z)->Z, with its infinite target, and its coefficient square to G(C)->C. The structural base remains b_tau. Every supported coefficient map below retains e=0^bullet and external tau separately. The original theta complex is C_+=[V --Theta--> B], with D=-x d/dx, Q=B/Theta V and g=2 xi. No scalar, source function or measure is assigned a new normalization.
+ 
+-For a nonempty finite packet h of actual zeros with full orders, retain F_h with Mellin transform g/h. At tensor degree k, keep the actual cyclic sum module
++For a nonempty finite packet h of actual zeros with full orders, retain F_h with Mellin transform g/h. For the doubled-original-root transfer below, require the same dagger stability as the original source: its cyclic annihilator satisfies the polynomial identity conj(chi)(k-S)=(-1)^q chi(S). The complete reflection-stable quartet packets used in the final target satisfy this hypothesis. It does not follow from being an arbitrary finite subpacket of zeros. At tensor degree k>=1, keep the actual cyclic sum module
+ 
+     C=C[S]/(chi),  q=deg chi>=1,  c=k/2,  A=M_S,
+     eta[P]=upsilon_h^(tensor k) P(sum_i M_(s_i))1,
+@@ -46,6 +46,8 @@
+ The factor i^q remains in the source multiplication map. For distinct roots lambda_a of chi, of complete lengths ell_a, put
+ 
+     zeta_a=(lambda_a-c)/i,  r_a=2 ell_a,  r=sum r_a=2q.
++
++Explicitly, the coordinate isomorphism Psi induces C[S]/chi^2 -> C[u]/Pi because Psi(chi^2)=i^(2q)Pi, and the raw jet conversion is (d_u^d Psi(P))(zeta_a)=i^d P^(d)(lambda_a). This is the actual map used below, including every derivative factor. Without the displayed dagger identity, Pi need not equal psi^2 and its roots need not be the original zeta_a with doubled orders; that unsupported general-packet version is not asserted here.
+ 
+ Define raw, NOT factorial-divided, derivative coordinates
+ 
+--- a/workbenches/tau-confluent-transfer/check_transfer_core.py
++++ b/workbenches/tau-confluent-transfer/check_transfer_core.py
+@@ -26,7 +26,9 @@
+         self.psi=s.expand(s.prod((x-z)**m for z,m in roots));self.Pi=s.expand(self.psi**2)
+         self.q=s.degree(self.psi,x);self.r=2*self.q
+         if atomic:
+-            nodes=list(range(-9,10));weights=[2+(j*j+3*j)%7 for j in range(19)]
++            nodes=list(range(-9,10))
++            # Strictly positive, genuinely asymmetric weights: 10+t ranges from 1 to 19.
++            weights=[(10+t)*(2+(j*j+3*j)%7) for j,t in enumerate(nodes)]
+             self.m=[sum(s.Integer(w)*t**d for w,t in zip(weights,nodes)) for d in range(32)]
+         else:self.m=[s.Integer(0) if d%2 else s.Integer(mass)*s.factorial2(d-1) for d in range(32)]
+         self.p=[s.Integer(1)];self.w=[];self.a=[s.Integer(0)];self.b=[]
+@@ -100,12 +102,17 @@
+             gap=z.psi*z.Q(j)-z.p[j+z.q]
+             eq(z.integral(gap*gap),z.w[j]*z.t(j)-z.w[j+z.q])
+     def test_phase_and_control(self):
+-        for z in [model(),System(((s.I,1),(-s.I,1)),atomic=True)]:
++        for z,nonzero_phase in [(model(),False),(System(((s.I,1),(-s.I,1)),atomic=True),True)]:
+             n=2;N=n+z.q-1;G,T,lp,eps=z.gram(N)
+-            phase=sum(z.b[n:n+z.q])+z.a[n]*(inv(z.F(n))*z.jet(z.p[n-1]))[0]
+-            eq(lp,phase)
++            log_volume_derivative=sum(z.b[n:n+z.q])+z.a[n]*(inv(z.F(n))*z.jet(z.p[n-1]))[0]
++            eq(lp,log_volume_derivative)
++            phase=s.cancel(s.trace(T)-lp)
++            if nonzero_phase:require(phase!=0,'asymmetric fixture must retain a nonzero phase')
+             nu0=z.w[n-1]*z.t(n-1);nu1=z.w[n]*z.t(n)
+-            eq(eps,(nu0-z.w[N])*(nu1-z.w[N+1])/(nu0*z.w[N])-(s.trace(T)-lp)**2)
++            eq(eps,(nu0-z.w[N])*(nu1-z.w[N+1])/(nu0*z.w[N])-phase**2)
++            P=z.gram(N-1)[0].det();M=G.det();Q=z.gram(N+1)[0].det()
++            alpha=z.w[N+1]/z.w[N]
++            eq(eps,alpha*(P-Q)**2/(4*P*Q)-alpha*(2*M-P-Q)**2/(4*P*Q)-phase**2)
+     def test_mass_and_supported_depth(self):
+         z=model();v=System(((s.I,1),(-s.I,1)),mass=21)
+         eq(v.t(2),z.t(2));eq(v.gram(3)[0],3*z.gram(3)[0]);eq(v.gram(3)[3],z.gram(3)[3])

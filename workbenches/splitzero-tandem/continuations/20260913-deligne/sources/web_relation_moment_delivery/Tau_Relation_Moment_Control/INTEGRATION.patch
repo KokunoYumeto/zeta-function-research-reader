@@ -1,0 +1,2187 @@
+diff --git a/workbenches/tau-relation-moment-control/README.md b/workbenches/tau-relation-moment-control/README.md
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/README.md
+@@ -0,0 +1,25 @@
++# Tau Relation Moment Control
++
++Continuation of the original canonical endpoint restriction calculation.
++
++Open `index.html` for a self-contained MathML reader. `NOTE.tex` and
++`RESEARCH_NOTE.md` contain the complete derivation. `HANDOFF.md` specifies finite
++formalization targets and their actual source maps. `PROGRAMME_STATE.md` records
++what has advanced and what has not been proved.
++
++The main finite upper bound uses two traces of the original source cost and
++requires no independently supplied lower restriction gap. The generic optimal
++determinant inequality is classical; this contribution applies it to the
++unchanged arithmetic source, relation layers, and consecutive-window theorem.
++
++Run the finite checks:
++
++```sh
++python check_relation_moments.py --json checks/replay.json
++python -O check_relation_moments.py --json checks/replay-optimized.json
++python check_relation_moments.py --negative-control
++```
++
++The final command must fail: it intentionally omits an actual cross-pairing.
++These checks are finite algebraic calibrations, not new Lean or arithmetic
++quadrature certificates. No remote repository change was performed.
+diff --git a/workbenches/tau-relation-moment-control/RESEARCH_NOTE.md b/workbenches/tau-relation-moment-control/RESEARCH_NOTE.md
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/RESEARCH_NOTE.md
+@@ -0,0 +1,607 @@
++---
++title: "Two-moment control of the original arithmetic relation blocks"
++subtitle: "An upper determinant certificate without a separately supplied restriction gap"
++author: "Owner-directed SplitZero analytic continuation"
++date: "13 September 2026"
++---
++
++## 1. Result and the current inherited theorem
++
++This note continues the canonical endpoint-restriction construction. It does not choose a different positive metric or replace the arithmetic source by a comparison measure. Its new application is an upper bound for each original relation-block volume from two source-derived traces, together with a complete positive remainder and a source interpretation of the second trace as exterior area.
++
++The general sharp determinant optimization with prescribed dimension, trace, and squared trace is classical; Grone, Johnson, Marques de Sá, and Wolkowicz (1984) study precisely that optimization. The proof below is included in full, using a scalar Hermite interpolation identity. No priority claim is made for the general inequality. The work here is its composition with the actual arithmetic representative, internal quotient, inverse restriction, exterior source maps, and consecutive-window theorem.
++
++For one original block, the output is
++
++$$
++ \boxed{\frac{V_i}{V_j}\le(1+a_{i,j})(1+b_{i,j})^{q-1}.}                 \tag{1}
++$$
++
++Both $a_{i,j}$ and $b_{i,j}$ are calculated from the first two traces of a specified endomorphism. There is no assumption that the arithmetic action is normal, no assumption that a restriction eigenspace is invariant under it, and no independently supplied lower gap for the restriction.
++
++### Integration of the two new reports
++
++The attachment reporting PR #25 supplies the phase-retaining consecutive product, the separate first-admissible-degree step, a two-sided written arithmetic norm envelope, and its comparable-window consequence. Its resulting off-line-quartet lower budgets are
++
++$$
++ \log(V_q/V_{2q})\ge2q\log(D_hk),\qquad
++ \log(V_{q-1}/V_{2q-1})\ge2q\log(D_hk),                         \tag{2}
++$$
++
++for a fixed positive $D_h$, hence the four-volume lower threshold is **four**, not merely the earlier sufficient lower threshold two. This is inherited from the parallel contributions, not claimed as a discovery of this note. The source explicitly distinguishes its checked finite implications from the written analytic estimates and the asymptotic conclusion.
++
++Its regularity clarification is retained: the actual arithmetic density is in $L^1\cap L^\infty$, and
++
++$$
++ \|(\tau_aw_h-w_h)*w_h\|_\infty
++ \le\|\tau_aw_h-w_h\|_1\|w_h\|_\infty\longrightarrow0.
++$$
++
++Here $\tau_a$ denotes translation of a function, not the split scalar $\tau$; its definition is $(\tau_af)(t)=f(t-a)$. This supplies continuity of the convolution used in the source's lower-envelope argument.
++
++The second attachment is a working transcript reporting further Gamma, coefficient-error, endpoint, and reflected-algebra work. Its reported moment certificates and unpublished upper-bound details are not independently reproduced here or silently made premises. In particular, this note does not duplicate its claimed fixed-budget extremizer or claim to have executed its local Windows commands.
++
++GitHub main was read at `952ef9fee1e1419b6858d920354de8fa99430b7d`. PR #25 was read at its reported verified head `66fac5e7885a40cd4873e74b754907320f05b067`, including its full `RESEARCH_NOTE.md`. Its CI status is a source report; this session did not execute Lean.
++
++## 2. Original arithmetic source and support
++
++Retain the original scalar object and amplitude map
++
++$$
++ G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\qquad
++ e_R=0_R^\bullet,\qquad
++ p_R(\tau)=0_R,\quad p_R(r^\bullet)=r.
++$$
++
++The original coefficient square remains
++
++$$
++ \begin{array}{ccc}
++ G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
++ p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
++ \mathbb Z&\xrightarrow{j}&\mathbb C.
++ \end{array}                                                     \tag{3}
++$$
++
++Its arithmetic target $\mathbb Z$ is infinite. The geometric base remains $\mathfrak b_\tau$. The square does not replace the internal support fibres by the ordinary amplitude observation.
++
++Keep the original theta complex and generator
++
++$$
++ C_+=[V\xrightarrow{\Theta}\mathscr B],\qquad
++ Q=\mathscr B/\Theta V,\qquad D=-x\partial_x,\qquad g=2\xi.
++$$
++
++For a nonempty full packet $h$ of actual zeros and tensor degree $k$, retain the cyclic module and its action
++
++$$
++ E=\mathbb C[S]/(\chi_{h,k}),\quad q=\deg\chi_{h,k},\quad A=M_S,
++ \quad S=s_1+\cdots+s_k.
++$$
++
++The source and arithmetic inclusion are the constructed maps
++
++$$
++ \mathcal VP=P(D_1+\cdots+D_k)(F_h^{\otimes k}),\qquad
++ \mathcal MF_h=g/h,
++$$
++
++$$
++ \eta[P]=\upsilon_h^{\otimes k}P(A_k)1,\qquad
++ \upsilon_h=j_h(g/h),                                             \tag{4}
++$$
++
++$$
++ J^{(k)}\mathcal V=\eta\pi_\chi,\qquad
++ q^{(k)}\mathcal V=\sigma_h^{\otimes k}\eta\pi_\chi.
++$$
++
++The original norm is the integral against $m_{h,k}=w_h^{*k}$ on $S=k/2+iu$, where
++
++$$
++ w_h(t)=\frac{|(g/h)(1/2+it)|^2}{2\pi},\qquad
++ \int m_{h,k}=\mu_h^k.
++$$
++
++No mass is assigned a new value. All nilpotent jet orders and the unit in (4) remain in the arithmetic maps.
++
++For $h=1$ the finite packet is the zero coefficient module. Its determinant is the empty determinant one, its log-volume is zero, and $G(0)$ still contains the two split elements. The analytic theta seed remains nonzero. Positive-dimensional formulas below use $q\ge1$; the divisions by $q-1$ use $q\ge2$.
++
++### Fixed polynomial coordinates
++
++Let $p_0,p_1,\ldots$ be the original monic orthogonal polynomials and $\omega_n>0$ their actual squared norms. Keep $\omega_0=\mu_h^k$. In fixed remainder coordinates on $E$, set
++
++$$
++ b_n=[p_n]_\chi,\quad B_N=[b_0,\ldots,b_N],\quad
++ O_N=\operatorname{diag}(\omega_0,\ldots,\omega_N).
++$$
++
++For every admitted $N\ge q-1$,
++
++$$
++ K_N=B_NO_N^{-1}B_N^*,\quad G_N=K_N^{-1},\quad
++ R_N=O_N^{-1}B_N^*G_N,\quad V_N=\det G_N.                         \tag{5}
++$$
++
++Thus $B_NR_N=I$ and $R_N^*O_NR_N=G_N$. The actual test-function representative is obtained by the specified polynomial-column realization $\mathcal V$, not by treating a coefficient vector as a function without that map.
++
++## 3. The positive cost operator comes from the original restriction
++
++Fix $q-1\le i\le j$. Set $r=j-i$ and retain the new columns and their norms
++
++$$
++ F=F_{i,j}=[b_{i+1},\ldots,b_j]:\mathbb C^r\to E,\qquad
++ \Omega=\operatorname{diag}(\omega_{i+1},\ldots,\omega_j),
++$$
++
++$$
++ D_{i,j}=K_j-K_i=F\Omega^{-1}F^*.                                \tag{6}
++$$
++
++The Hilbert spaces $E_i=(E,G_i)$ and $E_j=(E,G_j)$ are connected by the actual forward transport $I_{i,j}:E_i\to E_j$, identity on the fixed coefficient space. Its adjoint is
++
++$$
++ T_{i,j}=I_{i,j}^{\dagger}=K_iG_j:E_j\to E_i.
++$$
++
++To form an endomorphism of one specified Hilbert object, compose first:
++
++$$
++ Q_{i,j}=T_{i,j}I_{i,j}:E_i\to E_i.
++$$
++
++The coefficient matrix of $Q_{i,j}$ is $K_iG_j$. Define
++
++$$
++ \boxed{Z_{i,j}=Q_{i,j}^{-1}-I_E=(K_j-K_i)G_i=D_{i,j}G_i.}       \tag{7}
++$$
++
++It is positive self-adjoint on $E_i$, because
++
++$$
++ G_iZ_{i,j}=G_iD_{i,j}G_i\succeq0.
++$$
++
++Its eigenvalues $\lambda_a$ are nonnegative. The restriction eigenvalues in the preceding note are precisely
++
++$$
++ g_a=\frac1{1+\lambda_a},\qquad
++ \frac{V_i}{V_j}=\det(I_E+Z_{i,j}),\qquad
++ \log(V_i/V_j)=\sum_{a=1}^{q}\log(1+\lambda_a).                 \tag{8}
++$$
++
++No inverse-square-root transformation changes the canonical arithmetic metric. Equation (7) is a typed inverse of the already-constructed restriction endomorphism.
++
++### Source and action maps remain attached
++
++The source map $F:(\mathbb C^r,\Omega)\to(E,G_i)$ has adjoint
++
++$$
++ F^{\dagger}=\Omega^{-1}F^*G_i,
++ \qquad Z_{i,j}=FF^{\dagger}.                                   \tag{9}
++$$
++
++Let $\mathsf H_N=G_N^{-1}(A^*G_N+G_NA-kG_N)$ be the inherited control endomorphism. Put $\widehat{\mathsf H}_j=I_{i,j}^{-1}\mathsf H_jI_{i,j}$ on $E_i$. The previous action defect and inversion give
++
++$$
++ \boxed{[A,Z_{i,j}]=
++ \widehat{\mathsf H}_j(I+Z_{i,j})-(I+Z_{i,j})\mathsf H_i.}        \tag{10}
++$$
++
++Indeed $[A,Q]=\mathsf H_iQ-Q\widehat{\mathsf H}_j$ and
++$[A,Q^{-1}]=-Q^{-1}[A,Q]Q^{-1}$. This is the actual relation between the cost operator and the arithmetic generator. A cost eigenspace is not presumed invariant for $A$.
++
++## 4. The two input traces are norms of actual source maps
++
++Write
++
++$$
++ t_1=\operatorname{Tr}Z_{i,j},\qquad
++ t_2=\operatorname{Tr}(Z_{i,j}^2),\qquad
++ \mathcal A_2=\frac{t_1^2-t_2}{2}.                                      \tag{11}
++$$
++
++The scalar $\mathcal A_2$ is the second exterior coefficient of this cost operator. Its split observation is $\mathcal A_2^\bullet\in G(\mathbb R)$; a vanishing value maps to the represented scalar $e$.
++
++From (6) and cyclicity of the finite trace,
++
++$$
++ \boxed{t_1=\sum_{n=i+1}^{j}\frac{b_n^*G_ib_n}{\omega_n},}
++$$
++
++$$
++ \boxed{t_2=\sum_{n,m=i+1}^{j}
++ \frac{|b_n^*G_ib_m|^2}{\omega_n\omega_m},}                      \tag{12}
++$$
++
++$$
++ \boxed{\mathcal A_2=\sum_{i<n<m\le j}
++ \frac{(b_n^*G_ib_n)(b_m^*G_ib_m)-|b_n^*G_ib_m|^2}
++ {\omega_n\omega_m}.}                                          \tag{13}
++$$
++
++The off-diagonal pairings in (12)--(13) are essential.
++
++Let $\Phi=R_iF$ with its actual degree-$i$ source norm. Then $t_1=\|\Phi\|_{\mathrm{HS}}^2$. Equip unscaled exterior bases with determinant Grams. The precise second identity is
++
++$$
++ \boxed{\mathcal A_2=\|\bigwedge^2\Phi\|_{\mathrm{HS}}^2.}               \tag{14}
++$$
++
++Proof: in the coordinate wedge indexed by $n<m$, the squared source norm is $\omega_n\omega_m$. Its image squared norm is the two-by-two Gram determinant in (13). Summing proves (14). An alternating-tensor realization instead has its literal factor $2!$ in each wedge Gram; this statement uses the specified exterior quotient, so no factorial is dropped.
++
++Let $T_{\mathrm{new}}$ denote the actual newly admitted orthogonal polynomial columns in the degree-$j$ source. The source relation is
++
++$$
++ \mathfrak b_{i,j}=T_{\mathrm{new}}-L_{i,j}R_iF,
++ \qquad
++ B_j\mathfrak b_{i,j}=0,
++$$
++
++$$
++ \boxed{\mathfrak b_{i,j}^*O_j\mathfrak b_{i,j}
++ =\Omega+F^*G_iF.}                                             \tag{15}
++$$
++
++Thus (12)--(14) measure the old representative components needed to cancel the new columns' jets. The relation itself maps to the receiving supported zero through the original coequalizer. Neither component is declared absent.
++
++An admitted pair with dependent images has zero exterior area in (13), a represented zero. The pair and its original support label remain available. A pair outside the degree-indexing object is absent. No statement that these two cases have the same upstream datum is used.
++
++## 5. A sharp two-trace upper bound, with a complete proof
++
++Suppose $q\ge2$. Define
++
++$$
++ d=\sqrt{\frac{qt_2-t_1^2}{q-1}},\qquad
++ a=\frac{t_1+(q-1)d}{q},\qquad
++ b=\frac{t_1-d}{q}.                                            \tag{16}
++$$
++
++Both discriminants and signs come from the actual positive spectrum:
++
++$$
++ \frac{t_1^2}{q}\le t_2\le t_1^2,
++ \qquad 0\le b\le a,
++$$
++
++$$
++ a+(q-1)b=t_1,\qquad a^2+(q-1)b^2=t_2.                         \tag{17}
++$$
++
++### The spectral cap is proved, not supplied
++
++For any eigenvalue $x$ of $Z$, Cauchy--Schwarz on the other $q-1$ eigenvalues gives
++
++$$
++ t_2\ge x^2+\frac{(t_1-x)^2}{q-1}.
++$$
++
++Solving this quadratic yields $x\le a$. Hence the same two traces also produce the actual restriction-gap bound
++
++$$
++ \boxed{Q_{i,j}\succeq\frac1{1+a}I_E
++ \quad\text{in the original metric }G_i.}                      \tag{18}
++$$
++
++This is a finite derived bound, not a uniform estimate in $k$.
++
++### The optimal determinant bound from these two traces
++
++The result is
++
++$$
++ \boxed{
++ \log\det(I+Z)\le U_2(Z):=\log(1+a)+(q-1)\log(1+b).
++ }                                                             \tag{19}
++$$
++
++For $a>b$, define the quadratic
++
++$$
++ P_{a,b}(x)=\log(1+b)+\frac{x-b}{1+b}+c_{a,b}(x-b)^2,
++$$
++
++$$
++ c_{a,b}=
++ \frac{\log(1+a)-\log(1+b)-(a-b)/(1+b)}{(a-b)^2}<0.              \tag{20}
++$$
++
++It matches $\log(1+x)$ and its derivative at $b$, and the value at $a$. For $0\le x\le a$ the exact remainder is
++
++$$
++ \boxed{
++ P_{a,b}(x)-\log(1+x)
++ =(a-x)(x-b)^2
++ \int_1^\infty\frac{ds}{(s+x)(s+b)^2(s+a)}\ge0.
++ }                                                             \tag{21}
++$$
++
++Proof of (21): use
++$\log(1+x)=\int_1^\infty(1/s-1/(s+x))\,ds$ and the exact third divided difference of $1/(s+x)$. Interpolation at the repeated point $b$ and at $a$ gives the displayed rational denominator. The integral converges as $s^{-4}$; all factors have their shown positive signs. This also directly proves the Hermite remainder without an unspecified intermediate point.
++
++Sum (21) over the actual eigenvalues. Since a quadratic trace depends only on $q,t_1,t_2$, equations (17) give
++
++$$
++ \operatorname{Tr}P_{a,b}(Z)=P_{a,b}(a)+(q-1)P_{a,b}(b)=U_2(Z).
++$$
++
++This proves (19) and (1).
++
++If $a=b$, equality in $qt_2\ge t_1^2$ forces every eigenvalue to equal $b$, so (19) is equality without the quotient in (20). If $q=1$, the exact answer is $\log(1+t_1)$. If $t_1=0$, positivity gives $Z=0$ and the volume is zero. If $q=0$, use the empty determinant, without forming (16).
++
++For $a>b$, the integrand in (21) is strictly positive except at $x=a,b$. Equality in (19) therefore holds exactly when the spectrum consists of one $a$ and $q-1$ copies of $b$. These values have the original two traces by (17), so the bound is best possible given only those traces and the dimension. This does not assert that every such extremizer arises from an arithmetic packet.
++
++The general optimization is classical. The source application uses precisely $Z=(K_j-K_i)G_i$, not an independently chosen Hermitian matrix.
++
++## 6. Retain the complete remainder; a third trace improves the bound
++
++Let
++
++$$
++ C_3=\operatorname{Tr}\bigl((aI-Z)(Z-bI)^2\bigr)
++ =-t_3+(a+2b)t_2-(2ab+b^2)t_1+qa b^2,
++$$
++
++where $t_3=\operatorname{Tr}Z^3$. Positivity on the spectrum proves $C_3\ge0$.
++
++The full loss in the upper bound is
++
++$$
++ \boxed{
++ U_2(Z)-\log\det(I+Z)
++ =\int_1^\infty
++ \frac{\operatorname{Tr}((aI-Z)(Z-bI)^2(sI+Z)^{-1})}
++ {(s+b)^2(s+a)}\,ds.
++ }                                                             \tag{22}
++$$
++
++All four operator factors commute because they are functions of this same $G_i$-self-adjoint $Z$. The expression is positive in that same metric. No claim about commutation with $A$ replaces (10).
++
++Since $0\le x,b\le a$, the integrand denominator in (21) is at most $(s+a)^4$. Therefore
++
++$$
++ \boxed{\log\det(I+Z)
++ \le U_2(Z)-\frac{C_3}{3(1+a)^3}.}                              \tag{23}
++$$
++
++This retains a concrete part of the higher-spectrum correction. It requires one further trace of the same source cost, not a new spectral gap or arithmetic realization.
++
++Equation (19) is always at least as sharp as the trace-only bound
++
++$$
++ U_2(Z)\le q\log(1+t_1/q),                                     \tag{24}
++$$
++
++by scalar concavity and (17). Equality in (24), apart from a zero-dimensional case, requires $a=b$. It is not asserted to dominate every higher-moment certificate from the previous note; those can be retained and their certified upper bounds compared.
++
++## 7. The simplest bound exposes independent pair growth
++
++For $q\ge2$ and $t_1>0$, (17) implies
++
++$$
++ \mathcal A_2=(q-1)b\left(t_1-\frac q2b\right).
++$$
++
++Because $0\le b\le t_1/q$,
++
++$$
++ \frac{\mathcal A_2}{(q-1)t_1}\le b
++ \le\frac{2\mathcal A_2}{(q-1)t_1},\qquad a\le t_1.
++$$
++
++Consequently there is a radical-free finite upper bound
++
++$$
++ \boxed{
++ \frac{V_i}{V_j}
++ \le(1+t_1)
++ \left(1+\frac{2\mathcal A_2}{(q-1)t_1}\right)^{q-1}.
++ }                                                             \tag{25}
++$$
++
++The quantity $\mathcal A_2$ is exactly the sum of the original two-column exterior areas (13), including every cross-pairing. The first trace alone cannot distinguish nearly parallel old representative corrections from many independent ones; (13) does make that distinction quantitatively.
++
++If $\mathcal A_2=0$ and $t_1>0$, the positive operator has rank one, and the sharper formula (19) is the exact value $\log(1+t_1)$. This is a statement about the rank of this specified comparison map, not a claim about uniqueness of the original scalar support or about the number of higher support fibres.
++
++## 8. Compose with the new consecutive-window theorem
++
++The inherited phase-retaining product implies for every original admitted window $i,\ldots,j-1$, $r=j-i$, including $i=q-1$ through its separately proved first-degree step,
++
++$$
++ \min_{i\le N<j}\epsilon_N
++ \le\left(\frac{\omega_j}{\omega_i}\right)^{1/(2r)}
++ \left(\frac{V_i}{V_j}\right)^{1/(2r)}.                         \tag{26}
++$$
++
++This is credited to PR #25 and its source continuation. It uses the original norm and volume sequence. It does not require constructing an inverse before the first admissible degree.
++
++Combining (1) and (26) proves the finite upper certificate
++
++$$
++ \boxed{
++ \min_{i\le N<j}\epsilon_N
++ \le\left(\frac{\omega_j}{\omega_i}\right)^{1/(2r)}
++ \bigl((1+a)(1+b)^{q-1}\bigr)^{1/(2r)}.
++ }                                                             \tag{27}
++$$
++
++For either quartet block $(i,j)=(q,2q)$ or $(q-1,2q-1)$, the reviewed comparable-window norm bound supplies an inherited constant $C_h^{\mathrm{win}}$ independent of $k$. Enlarge it once to account for $i=q-1$. Then
++
++$$
++ \boxed{
++ \min_{i\le N<j}\epsilon_N
++ \le C_h^{\mathrm{win}}q
++ (1+a)^{1/(2q)}(1+b)^{(q-1)/(2q)}.
++ }                                                             \tag{28}
++$$
++
++The selected member is still a canonical degree in the original window. Its source relation, arithmetic unit, and action are not chosen again after selecting the degree.
++
++### Quantitative consequence of the already established off-line lower bound
++
++For the packet consisting exactly of an off-line quartet with full common multiplicity, retain
++
++$$
++ q_k=[1+k(m-1)](k+1)^2,\qquad L_{h,k}\ge\delta kq_k/2.
++$$
++
++Let $D_h>0$ be the fixed constant in the inherited per-block lower inequality (2). The new upper bound implies, on each original block,
++
++$$
++ \boxed{(D_hk)^{2q}\le(1+a)(1+b)^{q-1}.}                        \tag{29}
++$$
++
++In the source area quantities it implies
++
++$$
++ \boxed{
++ \frac{2\mathcal A_2}{(q-1)t_1}
++ \ge\left(\frac{(D_hk)^{2q}}{1+t_1}\right)^{1/(q-1)}-1,
++ }                                                             \tag{30}
++$$
++
++whenever that hypothetical lower budget is positive, so $t_1>0$. When the right side is negative the inequality remains valid but has no positive force.
++
++This strengthens the earlier statement that the mean relation cost must grow: unless the total cost has an extremely large individual scale, there must also be substantial *two-direction exterior area* in the original correction map. It is not a lower bound on every correction eigenvalue.
++
++For example, along such a family, a proved estimate
++$\log(1+t_1)=o(q\log k)$ would turn (30) into the necessary lower exponent
++
++$$
++ \liminf\frac{\log(1+2\mathcal A_2/((q-1)t_1))}{\log k}\ge2.
++$$
++
++This last statement is a consequence with that displayed premise, not a claimed arithmetic estimate. The actual unresolved calculation is to bound the explicit sums (12)--(13) along the required growing-degree quartet family. Their uniform size has not been established in this note.
++
++For the two-block total, (19) yields
++
++$$
++ \mathcal B_{h,k}\le U_2(Z^{(0)})+U_2(Z^{(1)}).
++$$
++
++The inherited lower threshold remains four. No new purity conclusion is inferred from finite positivity or the optimality of a generic determinant inequality.
++
++## 9. A finite certificate robust to moment enclosures
++
++The sharp formula (16) uses exact traces. One must not insert uncertified decimal traces into it and call the result an upper certificate.
++
++There is a direct error-aware alternative. Suppose proved enclosures give $t_1\in[t_1^-,t_1^+]$ and $t_2\in[t_2^-,t_2^+]$. A rational cap $A_0\ge t_1^+$ bounds every nonnegative eigenvalue. Choose a rational $0\le B_0<A_0$ and use the explicit polynomial $P_{A_0,B_0}$ in (20).
++
++The same positive remainder proves
++
++$$
++ \log\det(I+Z)\le
++ q\log(1+B_0)+\frac{t_1-qB_0}{1+B_0}
++ +c_{A_0,B_0}(t_2-2B_0t_1+qB_0^2).                            \tag{31}
++$$
++
++Every coefficient in (31) is a rational combination of two logarithms of positive rationals. Rational interval arithmetic, including all products, gives a valid upper enclosure from the two trace intervals. It needs no separately certified bound $K_i\succeq g_0K_j$.
++
++The checker encloses $\log x$ by writing $x=2^ey$, $1\le y<2$, and retaining both factors in
++
++$$
++ \log y=2\sum_{n=0}^{M-1}\frac{z^{2n+1}}{2n+1}+R_M,
++ \quad z=\frac{y-1}{y+1},\quad
++ 0\le R_M\le\frac{2z^{2M+1}}{(2M+1)(1-z^2)}.
++$$
++
++The same formula encloses $\log2$; reciprocation handles $x<1$. These finite interval checks certify their supplied rational data only. An arithmetic application must supply certified moment/jet enclosures and hence valid trace intervals.
++
++### Arithmetic input size remains explicit
++
++For a direct construction through degree $j$, the source monic coefficients
++and norms are determined by the original convolution moments through degree
++$2j$, and the quotient columns retain the full coefficients of $\chi$ and the
++specified arithmetic inclusion. The sums (12)--(13) use $G_i$; they do not require
++a second inverse $G_j$ or an independent spectral-gap proof. This is not a claim
++that the required source moments are low-order or uniformly bounded. In the two
++length-$q$ endpoint blocks, this direct route can require moments through
++$4q$. The parallel session's separate lower-input upper-volume comparison is
++not being replaced or credited as proved here.
++
++### Coordinate and mass propagation
++
++Under a fixed invertible quotient-coordinate map $C$, the actual data become
++
++$$
++ F\mapsto CF,\quad G_i\mapsto C^{-*}G_iC^{-1},\quad
++ Z\mapsto CZC^{-1}.
++$$
++
++Thus both traces, $\mathcal A_2$, and the bound remain unchanged through that similarity. Raw confluent derivative coordinates keep their factorials in $C$; the map is not silently made unitary.
++
++A common source mass multiplier $c>0$ gives
++
++$$
++ \Omega\mapsto c\Omega,\quad K_N\mapsto c^{-1}K_N,\quad
++ G_N\mapsto cG_N,
++$$
++
++so $Z,t_1,t_2,\mathcal A_2$ are unchanged by these displayed composites. The original mass has not been reset. An ambient rectangular arithmetic inclusion $\eta$ is retained as an injection, not used as an invertible square coordinate map.
++
++## 10. Exact source calibrations
++
++These are declared Gaussian polynomial fixtures, not asserted zeta packets. Use original coordinate $S=1+ix$, literal Gaussian mass seven, variance one, and quotient $\chi=(S-1)^q$. The monic source recurrence and norms are
++
++$$
++ p_0=1,\ p_1=S-1,\quad p_{n+1}=(S-1)p_n+np_{n-1},\quad
++ \omega_n=7n!.
++$$
++
++All quotient matrices below are computed in the original remainder basis $1,S,\ldots,S^{q-1}$.
++
++For $q=2$, the blocks $(1,3)$ and $(2,4)$ give
++
++$$
++ (t_1,t_2)=\left(2,\frac52\right),\qquad
++ (t_1,t_2)=\left(\frac74,\frac{37}{16}\right).
++$$
++
++Their exact two-trace factors are $(a,b)=(3/2,1/2)$ and $(3/2,1/4)$, so
++
++$$
++ \frac{V_1}{V_3}=\frac{15}{4},\quad
++ \frac{V_2}{V_4}=\frac{25}{8},\quad
++ \mathcal B=\log(375/32).
++$$
++
++The two-moment upper bound is exact in dimension two. This matches the preceding restriction example without supplying a spectral gap.
++
++For $q=3$, the original block $(3,6)$ has
++
++$$
++ t_1=11,\quad t_2=\frac{3365}{32},\quad
++ \mathcal A_2=\frac{507}{64},\quad \frac{V_3}{V_6}=\frac{5145}{256},
++$$
++
++$$
++ a=\frac{11}{3}+\frac{7\sqrt{127}}{12},\qquad
++ b=\frac{11}{3}-\frac{7\sqrt{127}}{24}.
++$$
++
++Numerical evaluations of these exact expressions are
++
++$$
++ \log(V_3/V_6)\approx3.000603203789,\quad
++ U_2\approx3.063328308618,\quad
++ 3\log(1+t_1/3)\approx4.621335122841.
++$$
++
++The exact checks use rational enclosures and polynomial identities, not these decimals as proof. The original operator has its full nonzero nilpotent jets. No inference from a restriction eigenvalue to an off-line arithmetic zero is made.
++
++## 11. What is established and what is handed onward
++
++Established here are the source cost map (7)--(10), the first and second exterior source norms (12)--(15), the sharp two-trace upper bound with a proved cap (16)--(21), its positive remainder and third-trace refinement, the area-only upper certificate, and their composition with the current first-degree-correct consecutive theorem. These are written finite theorems; exact algebraic regression checks support their implementation. They are not additional Lean certificates.
++
++The same canonical arithmetic volume is now bounded without a separate restriction-gap premise. Estimating the growing arithmetic values of (12)--(13) remains a real analytic task. This note does not assert a uniform bound completing RH, does not erase a non-radical packet, and does not turn an $e$-valued quotient observation into absence.
++
++No remote branch, publication cut, or formalization source was changed. The handoff lists bounded reusable targets for the parallel session and leaves its own interval-moment and fixed-budget work untouched.
++
++## References and source locators
++
++- Owner-supplied *Tau Endpoint Restriction Control*, `NOTE.tex` and original checker in the 13 September 2026 ZIP. Read as source; its finite map definitions are inputs here.
++- Owner-supplied `Pasted markdown(20260913-004825).md`: PR #25 report, norm-review clarification, exact product, first-degree step, and threshold-four result. Source claims are distinguished from this session's executions.
++- Owner-supplied `Pasted markdown (2)(5).md`: ongoing collaboration transcript; partial reported results are not substituted for their missing full proofs.
++- GitHub `KokunoYumeto/zeta-function-research-reader`, main `952ef9fee1e1419b6858d920354de8fa99430b7d`; PR #25 `66fac5e7885a40cd4873e74b754907320f05b067`, `workbenches/tau-consecutive-window-formal/RESEARCH_NOTE.md`.
++- Grone, B., Johnson, C. R., Marques de Sá, E., and Wolkowicz, H. (1984). *Improving Hadamard's inequality*. Linear and Multilinear Algebra 16(1--4), 305--322. DOI: 10.1080/03081088408817634. The publisher abstract and author-hosted bibliography were inspected; the present proof is given explicitly rather than attributed to an unread theorem number.
++- NIST Digital Library of Mathematical Functions, §3.3, especially the divided-difference and confluent interpolation formulas. https://dlmf.nist.gov/3.3
+diff --git a/workbenches/tau-relation-moment-control/NOTE.tex b/workbenches/tau-relation-moment-control/NOTE.tex
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/NOTE.tex
+@@ -0,0 +1,905 @@
++% Options for packages loaded elsewhere
++\PassOptionsToPackage{unicode}{hyperref}
++\PassOptionsToPackage{hyphens}{url}
++%
++\documentclass[
++  11pt,
++]{article}
++\usepackage{amsmath,amssymb}
++\usepackage{iftex}
++\ifPDFTeX
++  \usepackage[T1]{fontenc}
++  \usepackage[utf8]{inputenc}
++  \usepackage{textcomp} % provide euro and other symbols
++\else % if luatex or xetex
++  \usepackage{unicode-math} % this also loads fontspec
++  \defaultfontfeatures{Scale=MatchLowercase}
++  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
++\fi
++\usepackage{lmodern}
++\ifPDFTeX\else
++  % xetex/luatex font selection
++\fi
++% Use upquote if available, for straight quotes in verbatim environments
++\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
++\IfFileExists{microtype.sty}{% use microtype if available
++  \usepackage[]{microtype}
++  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
++}{}
++\makeatletter
++\@ifundefined{KOMAClassName}{% if non-KOMA class
++  \IfFileExists{parskip.sty}{%
++    \usepackage{parskip}
++  }{% else
++    \setlength{\parindent}{0pt}
++    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
++}{% if KOMA class
++  \KOMAoptions{parskip=half}}
++\makeatother
++\usepackage{xcolor}
++\usepackage[margin=24mm]{geometry}
++\setlength{\emergencystretch}{3em} % prevent overfull lines
++\providecommand{\tightlist}{%
++  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
++\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
++\ifLuaTeX
++  \usepackage{selnolig}  % disable illegal ligatures
++\fi
++\usepackage{bookmark}
++\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
++\urlstyle{same}
++\hypersetup{
++  pdftitle={Two-moment control of the original arithmetic relation blocks},
++  pdfauthor={Owner-directed SplitZero analytic continuation},
++  hidelinks,
++  pdfcreator={LaTeX via pandoc}}
++
++\title{Two-moment control of the original arithmetic relation blocks}
++\usepackage{etoolbox}
++\makeatletter
++\providecommand{\subtitle}[1]{% add subtitle to \maketitle
++  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
++}
++\makeatother
++\subtitle{An upper determinant certificate without a separately supplied
++restriction gap}
++\author{Owner-directed SplitZero analytic continuation}
++\date{13 September 2026}
++
++\begin{document}
++\maketitle
++
++{
++\setcounter{tocdepth}{3}
++\tableofcontents
++}
++\subsection{1. Result and the current inherited
++theorem}\label{result-and-the-current-inherited-theorem}
++
++This note continues the canonical endpoint-restriction construction. It
++does not choose a different positive metric or replace the arithmetic
++source by a comparison measure. Its new application is an upper bound
++for each original relation-block volume from two source-derived traces,
++together with a complete positive remainder and a source interpretation
++of the second trace as exterior area.
++
++The general sharp determinant optimization with prescribed dimension,
++trace, and squared trace is classical; Grone, Johnson, Marques de Sá,
++and Wolkowicz (1984) study precisely that optimization. The proof below
++is included in full, using a scalar Hermite interpolation identity. No
++priority claim is made for the general inequality. The work here is its
++composition with the actual arithmetic representative, internal
++quotient, inverse restriction, exterior source maps, and
++consecutive-window theorem.
++
++For one original block, the output is
++
++\[
++ \boxed{\frac{V_i}{V_j}\le(1+a_{i,j})(1+b_{i,j})^{q-1}.}                 \tag{1}
++\]
++
++Both \(a_{i,j}\) and \(b_{i,j}\) are calculated from the first two
++traces of a specified endomorphism. There is no assumption that the
++arithmetic action is normal, no assumption that a restriction eigenspace
++is invariant under it, and no independently supplied lower gap for the
++restriction.
++
++\subsubsection{Integration of the two new
++reports}\label{integration-of-the-two-new-reports}
++
++The attachment reporting PR \#25 supplies the phase-retaining
++consecutive product, the separate first-admissible-degree step, a
++two-sided written arithmetic norm envelope, and its comparable-window
++consequence. Its resulting off-line-quartet lower budgets are
++
++\[
++ \log(V_q/V_{2q})\ge2q\log(D_hk),\qquad
++ \log(V_{q-1}/V_{2q-1})\ge2q\log(D_hk),                         \tag{2}
++\]
++
++for a fixed positive \(D_h\), hence the four-volume lower threshold is
++\textbf{four}, not merely the earlier sufficient lower threshold two.
++This is inherited from the parallel contributions, not claimed as a
++discovery of this note. The source explicitly distinguishes its checked
++finite implications from the written analytic estimates and the
++asymptotic conclusion.
++
++Its regularity clarification is retained: the actual arithmetic density
++is in \(L^1\cap L^\infty\), and
++
++\[
++ \|(\tau_aw_h-w_h)*w_h\|_\infty
++ \le\|\tau_aw_h-w_h\|_1\|w_h\|_\infty\longrightarrow0.
++\]
++
++Here \(\tau_a\) denotes translation of a function, not the split scalar
++\(\tau\); its definition is \((\tau_af)(t)=f(t-a)\). This supplies
++continuity of the convolution used in the source's lower-envelope
++argument.
++
++The second attachment is a working transcript reporting further Gamma,
++coefficient-error, endpoint, and reflected-algebra work. Its reported
++moment certificates and unpublished upper-bound details are not
++independently reproduced here or silently made premises. In particular,
++this note does not duplicate its claimed fixed-budget extremizer or
++claim to have executed its local Windows commands.
++
++GitHub main was read at
++\texttt{952ef9fee1e1419b6858d920354de8fa99430b7d}. PR \#25 was read at
++its reported verified head
++\texttt{66fac5e7885a40cd4873e74b754907320f05b067}, including its full
++\texttt{RESEARCH\_NOTE.md}. Its CI status is a source report; this
++session did not execute Lean.
++
++\subsection{2. Original arithmetic source and
++support}\label{original-arithmetic-source-and-support}
++
++Retain the original scalar object and amplitude map
++
++\[
++ G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\qquad
++ e_R=0_R^\bullet,\qquad
++ p_R(\tau)=0_R,\quad p_R(r^\bullet)=r.
++\]
++
++The original coefficient square remains
++
++\[
++ \begin{array}{ccc}
++ G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
++ p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
++ \mathbb Z&\xrightarrow{j}&\mathbb C.
++ \end{array}                                                     \tag{3}
++\]
++
++Its arithmetic target \(\mathbb Z\) is infinite. The geometric base
++remains \(\mathfrak b_\tau\). The square does not replace the internal
++support fibres by the ordinary amplitude observation.
++
++Keep the original theta complex and generator
++
++\[
++ C_+=[V\xrightarrow{\Theta}\mathscr B],\qquad
++ Q=\mathscr B/\Theta V,\qquad D=-x\partial_x,\qquad g=2\xi.
++\]
++
++For a nonempty full packet \(h\) of actual zeros and tensor degree
++\(k\), retain the cyclic module and its action
++
++\[
++ E=\mathbb C[S]/(\chi_{h,k}),\quad q=\deg\chi_{h,k},\quad A=M_S,
++ \quad S=s_1+\cdots+s_k.
++\]
++
++The source and arithmetic inclusion are the constructed maps
++
++\[
++ \mathcal VP=P(D_1+\cdots+D_k)(F_h^{\otimes k}),\qquad
++ \mathcal MF_h=g/h,
++\]
++
++\[
++ \eta[P]=\upsilon_h^{\otimes k}P(A_k)1,\qquad
++ \upsilon_h=j_h(g/h),                                             \tag{4}
++\]
++
++\[
++ J^{(k)}\mathcal V=\eta\pi_\chi,\qquad
++ q^{(k)}\mathcal V=\sigma_h^{\otimes k}\eta\pi_\chi.
++\]
++
++The original norm is the integral against \(m_{h,k}=w_h^{*k}\) on
++\(S=k/2+iu\), where
++
++\[
++ w_h(t)=\frac{|(g/h)(1/2+it)|^2}{2\pi},\qquad
++ \int m_{h,k}=\mu_h^k.
++\]
++
++No mass is assigned a new value. All nilpotent jet orders and the unit
++in (4) remain in the arithmetic maps.
++
++For \(h=1\) the finite packet is the zero coefficient module. Its
++determinant is the empty determinant one, its log-volume is zero, and
++\(G(0)\) still contains the two split elements. The analytic theta seed
++remains nonzero. Positive-dimensional formulas below use \(q\ge1\); the
++divisions by \(q-1\) use \(q\ge2\).
++
++\subsubsection{Fixed polynomial
++coordinates}\label{fixed-polynomial-coordinates}
++
++Let \(p_0,p_1,\ldots\) be the original monic orthogonal polynomials and
++\(\omega_n>0\) their actual squared norms. Keep \(\omega_0=\mu_h^k\). In
++fixed remainder coordinates on \(E\), set
++
++\[
++ b_n=[p_n]_\chi,\quad B_N=[b_0,\ldots,b_N],\quad
++ O_N=\operatorname{diag}(\omega_0,\ldots,\omega_N).
++\]
++
++For every admitted \(N\ge q-1\),
++
++\[
++ K_N=B_NO_N^{-1}B_N^*,\quad G_N=K_N^{-1},\quad
++ R_N=O_N^{-1}B_N^*G_N,\quad V_N=\det G_N.                         \tag{5}
++\]
++
++Thus \(B_NR_N=I\) and \(R_N^*O_NR_N=G_N\). The actual test-function
++representative is obtained by the specified polynomial-column
++realization \(\mathcal V\), not by treating a coefficient vector as a
++function without that map.
++
++\subsection{3. The positive cost operator comes from the original
++restriction}\label{the-positive-cost-operator-comes-from-the-original-restriction}
++
++Fix \(q-1\le i\le j\). Set \(r=j-i\) and retain the new columns and
++their norms
++
++\[
++ F=F_{i,j}=[b_{i+1},\ldots,b_j]:\mathbb C^r\to E,\qquad
++ \Omega=\operatorname{diag}(\omega_{i+1},\ldots,\omega_j),
++\]
++
++\[
++ D_{i,j}=K_j-K_i=F\Omega^{-1}F^*.                                \tag{6}
++\]
++
++The Hilbert spaces \(E_i=(E,G_i)\) and \(E_j=(E,G_j)\) are connected by
++the actual forward transport \(I_{i,j}:E_i\to E_j\), identity on the
++fixed coefficient space. Its adjoint is
++
++\[
++ T_{i,j}=I_{i,j}^{\dagger}=K_iG_j:E_j\to E_i.
++\]
++
++To form an endomorphism of one specified Hilbert object, compose first:
++
++\[
++ Q_{i,j}=T_{i,j}I_{i,j}:E_i\to E_i.
++\]
++
++The coefficient matrix of \(Q_{i,j}\) is \(K_iG_j\). Define
++
++\[
++ \boxed{Z_{i,j}=Q_{i,j}^{-1}-I_E=(K_j-K_i)G_i=D_{i,j}G_i.}       \tag{7}
++\]
++
++It is positive self-adjoint on \(E_i\), because
++
++\[
++ G_iZ_{i,j}=G_iD_{i,j}G_i\succeq0.
++\]
++
++Its eigenvalues \(\lambda_a\) are nonnegative. The restriction
++eigenvalues in the preceding note are precisely
++
++\[
++ g_a=\frac1{1+\lambda_a},\qquad
++ \frac{V_i}{V_j}=\det(I_E+Z_{i,j}),\qquad
++ \log(V_i/V_j)=\sum_{a=1}^{q}\log(1+\lambda_a).                 \tag{8}
++\]
++
++No inverse-square-root transformation changes the canonical arithmetic
++metric. Equation (7) is a typed inverse of the already-constructed
++restriction endomorphism.
++
++\subsubsection{Source and action maps remain
++attached}\label{source-and-action-maps-remain-attached}
++
++The source map \(F:(\mathbb C^r,\Omega)\to(E,G_i)\) has adjoint
++
++\[
++ F^{\dagger}=\Omega^{-1}F^*G_i,
++ \qquad Z_{i,j}=FF^{\dagger}.                                   \tag{9}
++\]
++
++Let \(\mathsf H_N=G_N^{-1}(A^*G_N+G_NA-kG_N)\) be the inherited control
++endomorphism. Put
++\(\widehat{\mathsf H}_j=I_{i,j}^{-1}\mathsf H_jI_{i,j}\) on \(E_i\). The
++previous action defect and inversion give
++
++\[
++ \boxed{[A,Z_{i,j}]=
++ \widehat{\mathsf H}_j(I+Z_{i,j})-(I+Z_{i,j})\mathsf H_i.}        \tag{10}
++\]
++
++Indeed \([A,Q]=\mathsf H_iQ-Q\widehat{\mathsf H}_j\) and
++\([A,Q^{-1}]=-Q^{-1}[A,Q]Q^{-1}\). This is the actual relation between
++the cost operator and the arithmetic generator. A cost eigenspace is not
++presumed invariant for \(A\).
++
++\subsection{4. The two input traces are norms of actual source
++maps}\label{the-two-input-traces-are-norms-of-actual-source-maps}
++
++Write
++
++\[
++ t_1=\operatorname{Tr}Z_{i,j},\qquad
++ t_2=\operatorname{Tr}(Z_{i,j}^2),\qquad
++ \mathcal A_2=\frac{t_1^2-t_2}{2}.                                      \tag{11}
++\]
++
++The scalar \(\mathcal A_2\) is the second exterior coefficient of this
++cost operator. Its split observation is
++\(\mathcal A_2^\bullet\in G(\mathbb R)\); a vanishing value maps to the
++represented scalar \(e\).
++
++From (6) and cyclicity of the finite trace,
++
++\[
++ \boxed{t_1=\sum_{n=i+1}^{j}\frac{b_n^*G_ib_n}{\omega_n},}
++\]
++
++\[
++ \boxed{t_2=\sum_{n,m=i+1}^{j}
++ \frac{|b_n^*G_ib_m|^2}{\omega_n\omega_m},}                      \tag{12}
++\]
++
++\[
++ \boxed{\mathcal A_2=\sum_{i<n<m\le j}
++ \frac{(b_n^*G_ib_n)(b_m^*G_ib_m)-|b_n^*G_ib_m|^2}
++ {\omega_n\omega_m}.}                                          \tag{13}
++\]
++
++The off-diagonal pairings in (12)--(13) are essential.
++
++Let \(\Phi=R_iF\) with its actual degree-\(i\) source norm. Then
++\(t_1=\|\Phi\|_{\mathrm{HS}}^2\). Equip unscaled exterior bases with
++determinant Grams. The precise second identity is
++
++\[
++ \boxed{\mathcal A_2=\|\bigwedge^2\Phi\|_{\mathrm{HS}}^2.}               \tag{14}
++\]
++
++Proof: in the coordinate wedge indexed by \(n<m\), the squared source
++norm is \(\omega_n\omega_m\). Its image squared norm is the two-by-two
++Gram determinant in (13). Summing proves (14). An alternating-tensor
++realization instead has its literal factor \(2!\) in each wedge Gram;
++this statement uses the specified exterior quotient, so no factorial is
++dropped.
++
++Let \(T_{\mathrm{new}}\) denote the actual newly admitted orthogonal
++polynomial columns in the degree-\(j\) source. The source relation is
++
++\[
++ \mathfrak b_{i,j}=T_{\mathrm{new}}-L_{i,j}R_iF,
++ \qquad
++ B_j\mathfrak b_{i,j}=0,
++\]
++
++\[
++ \boxed{\mathfrak b_{i,j}^*O_j\mathfrak b_{i,j}
++ =\Omega+F^*G_iF.}                                             \tag{15}
++\]
++
++Thus (12)--(14) measure the old representative components needed to
++cancel the new columns' jets. The relation itself maps to the receiving
++supported zero through the original coequalizer. Neither component is
++declared absent.
++
++An admitted pair with dependent images has zero exterior area in (13), a
++represented zero. The pair and its original support label remain
++available. A pair outside the degree-indexing object is absent. No
++statement that these two cases have the same upstream datum is used.
++
++\subsection{5. A sharp two-trace upper bound, with a complete
++proof}\label{a-sharp-two-trace-upper-bound-with-a-complete-proof}
++
++Suppose \(q\ge2\). Define
++
++\[
++ d=\sqrt{\frac{qt_2-t_1^2}{q-1}},\qquad
++ a=\frac{t_1+(q-1)d}{q},\qquad
++ b=\frac{t_1-d}{q}.                                            \tag{16}
++\]
++
++Both discriminants and signs come from the actual positive spectrum:
++
++\[
++ \frac{t_1^2}{q}\le t_2\le t_1^2,
++ \qquad 0\le b\le a,
++\]
++
++\[
++ a+(q-1)b=t_1,\qquad a^2+(q-1)b^2=t_2.                         \tag{17}
++\]
++
++\subsubsection{The spectral cap is proved, not
++supplied}\label{the-spectral-cap-is-proved-not-supplied}
++
++For any eigenvalue \(x\) of \(Z\), Cauchy--Schwarz on the other \(q-1\)
++eigenvalues gives
++
++\[
++ t_2\ge x^2+\frac{(t_1-x)^2}{q-1}.
++\]
++
++Solving this quadratic yields \(x\le a\). Hence the same two traces also
++produce the actual restriction-gap bound
++
++\[
++ \boxed{Q_{i,j}\succeq\frac1{1+a}I_E
++ \quad\text{in the original metric }G_i.}                      \tag{18}
++\]
++
++This is a finite derived bound, not a uniform estimate in \(k\).
++
++\subsubsection{The optimal determinant bound from these two
++traces}\label{the-optimal-determinant-bound-from-these-two-traces}
++
++The result is
++
++\[
++ \boxed{
++ \log\det(I+Z)\le U_2(Z):=\log(1+a)+(q-1)\log(1+b).
++ }                                                             \tag{19}
++\]
++
++For \(a>b\), define the quadratic
++
++\[
++ P_{a,b}(x)=\log(1+b)+\frac{x-b}{1+b}+c_{a,b}(x-b)^2,
++\]
++
++\[
++ c_{a,b}=
++ \frac{\log(1+a)-\log(1+b)-(a-b)/(1+b)}{(a-b)^2}<0.              \tag{20}
++\]
++
++It matches \(\log(1+x)\) and its derivative at \(b\), and the value at
++\(a\). For \(0\le x\le a\) the exact remainder is
++
++\[
++ \boxed{
++ P_{a,b}(x)-\log(1+x)
++ =(a-x)(x-b)^2
++ \int_1^\infty\frac{ds}{(s+x)(s+b)^2(s+a)}\ge0.
++ }                                                             \tag{21}
++\]
++
++Proof of (21): use \(\log(1+x)=\int_1^\infty(1/s-1/(s+x))\,ds\) and the
++exact third divided difference of \(1/(s+x)\). Interpolation at the
++repeated point \(b\) and at \(a\) gives the displayed rational
++denominator. The integral converges as \(s^{-4}\); all factors have
++their shown positive signs. This also directly proves the Hermite
++remainder without an unspecified intermediate point.
++
++Sum (21) over the actual eigenvalues. Since a quadratic trace depends
++only on \(q,t_1,t_2\), equations (17) give
++
++\[
++ \operatorname{Tr}P_{a,b}(Z)=P_{a,b}(a)+(q-1)P_{a,b}(b)=U_2(Z).
++\]
++
++This proves (19) and (1).
++
++If \(a=b\), equality in \(qt_2\ge t_1^2\) forces every eigenvalue to
++equal \(b\), so (19) is equality without the quotient in (20). If
++\(q=1\), the exact answer is \(\log(1+t_1)\). If \(t_1=0\), positivity
++gives \(Z=0\) and the volume is zero. If \(q=0\), use the empty
++determinant, without forming (16).
++
++For \(a>b\), the integrand in (21) is strictly positive except at
++\(x=a,b\). Equality in (19) therefore holds exactly when the spectrum
++consists of one \(a\) and \(q-1\) copies of \(b\). These values have the
++original two traces by (17), so the bound is best possible given only
++those traces and the dimension. This does not assert that every such
++extremizer arises from an arithmetic packet.
++
++The general optimization is classical. The source application uses
++precisely \(Z=(K_j-K_i)G_i\), not an independently chosen Hermitian
++matrix.
++
++\subsection{6. Retain the complete remainder; a third trace improves the
++bound}\label{retain-the-complete-remainder-a-third-trace-improves-the-bound}
++
++Let
++
++\[
++ C_3=\operatorname{Tr}\bigl((aI-Z)(Z-bI)^2\bigr)
++ =-t_3+(a+2b)t_2-(2ab+b^2)t_1+qa b^2,
++\]
++
++where \(t_3=\operatorname{Tr}Z^3\). Positivity on the spectrum proves
++\(C_3\ge0\).
++
++The full loss in the upper bound is
++
++\[
++ \boxed{
++ U_2(Z)-\log\det(I+Z)
++ =\int_1^\infty
++ \frac{\operatorname{Tr}((aI-Z)(Z-bI)^2(sI+Z)^{-1})}
++ {(s+b)^2(s+a)}\,ds.
++ }                                                             \tag{22}
++\]
++
++All four operator factors commute because they are functions of this
++same \(G_i\)-self-adjoint \(Z\). The expression is positive in that same
++metric. No claim about commutation with \(A\) replaces (10).
++
++Since \(0\le x,b\le a\), the integrand denominator in (21) is at most
++\((s+a)^4\). Therefore
++
++\[
++ \boxed{\log\det(I+Z)
++ \le U_2(Z)-\frac{C_3}{3(1+a)^3}.}                              \tag{23}
++\]
++
++This retains a concrete part of the higher-spectrum correction. It
++requires one further trace of the same source cost, not a new spectral
++gap or arithmetic realization.
++
++Equation (19) is always at least as sharp as the trace-only bound
++
++\[
++ U_2(Z)\le q\log(1+t_1/q),                                     \tag{24}
++\]
++
++by scalar concavity and (17). Equality in (24), apart from a
++zero-dimensional case, requires \(a=b\). It is not asserted to dominate
++every higher-moment certificate from the previous note; those can be
++retained and their certified upper bounds compared.
++
++\subsection{7. The simplest bound exposes independent pair
++growth}\label{the-simplest-bound-exposes-independent-pair-growth}
++
++For \(q\ge2\) and \(t_1>0\), (17) implies
++
++\[
++ \mathcal A_2=(q-1)b\left(t_1-\frac q2b\right).
++\]
++
++Because \(0\le b\le t_1/q\),
++
++\[
++ \frac{\mathcal A_2}{(q-1)t_1}\le b
++ \le\frac{2\mathcal A_2}{(q-1)t_1},\qquad a\le t_1.
++\]
++
++Consequently there is a radical-free finite upper bound
++
++\[
++ \boxed{
++ \frac{V_i}{V_j}
++ \le(1+t_1)
++ \left(1+\frac{2\mathcal A_2}{(q-1)t_1}\right)^{q-1}.
++ }                                                             \tag{25}
++\]
++
++The quantity \(\mathcal A_2\) is exactly the sum of the original
++two-column exterior areas (13), including every cross-pairing. The first
++trace alone cannot distinguish nearly parallel old representative
++corrections from many independent ones; (13) does make that distinction
++quantitatively.
++
++If \(\mathcal A_2=0\) and \(t_1>0\), the positive operator has rank one,
++and the sharper formula (19) is the exact value \(\log(1+t_1)\). This is
++a statement about the rank of this specified comparison map, not a claim
++about uniqueness of the original scalar support or about the number of
++higher support fibres.
++
++\subsection{8. Compose with the new consecutive-window
++theorem}\label{compose-with-the-new-consecutive-window-theorem}
++
++The inherited phase-retaining product implies for every original
++admitted window \(i,\ldots,j-1\), \(r=j-i\), including \(i=q-1\) through
++its separately proved first-degree step,
++
++\[
++ \min_{i\le N<j}\epsilon_N
++ \le\left(\frac{\omega_j}{\omega_i}\right)^{1/(2r)}
++ \left(\frac{V_i}{V_j}\right)^{1/(2r)}.                         \tag{26}
++\]
++
++This is credited to PR \#25 and its source continuation. It uses the
++original norm and volume sequence. It does not require constructing an
++inverse before the first admissible degree.
++
++Combining (1) and (26) proves the finite upper certificate
++
++\[
++ \boxed{
++ \min_{i\le N<j}\epsilon_N
++ \le\left(\frac{\omega_j}{\omega_i}\right)^{1/(2r)}
++ \bigl((1+a)(1+b)^{q-1}\bigr)^{1/(2r)}.
++ }                                                             \tag{27}
++\]
++
++For either quartet block \((i,j)=(q,2q)\) or \((q-1,2q-1)\), the
++reviewed comparable-window norm bound supplies an inherited constant
++\(C_h^{\mathrm{win}}\) independent of \(k\). Enlarge it once to account
++for \(i=q-1\). Then
++
++\[
++ \boxed{
++ \min_{i\le N<j}\epsilon_N
++ \le C_h^{\mathrm{win}}q
++ (1+a)^{1/(2q)}(1+b)^{(q-1)/(2q)}.
++ }                                                             \tag{28}
++\]
++
++The selected member is still a canonical degree in the original window.
++Its source relation, arithmetic unit, and action are not chosen again
++after selecting the degree.
++
++\subsubsection{Quantitative consequence of the already established
++off-line lower
++bound}\label{quantitative-consequence-of-the-already-established-off-line-lower-bound}
++
++For the packet consisting exactly of an off-line quartet with full
++common multiplicity, retain
++
++\[
++ q_k=[1+k(m-1)](k+1)^2,\qquad L_{h,k}\ge\delta kq_k/2.
++\]
++
++Let \(D_h>0\) be the fixed constant in the inherited per-block lower
++inequality (2). The new upper bound implies, on each original block,
++
++\[
++ \boxed{(D_hk)^{2q}\le(1+a)(1+b)^{q-1}.}                        \tag{29}
++\]
++
++In the source area quantities it implies
++
++\[
++ \boxed{
++ \frac{2\mathcal A_2}{(q-1)t_1}
++ \ge\left(\frac{(D_hk)^{2q}}{1+t_1}\right)^{1/(q-1)}-1,
++ }                                                             \tag{30}
++\]
++
++whenever that hypothetical lower budget is positive, so \(t_1>0\). When
++the right side is negative the inequality remains valid but has no
++positive force.
++
++This strengthens the earlier statement that the mean relation cost must
++grow: unless the total cost has an extremely large individual scale,
++there must also be substantial \emph{two-direction exterior area} in the
++original correction map. It is not a lower bound on every correction
++eigenvalue.
++
++For example, along such a family, a proved estimate
++\(\log(1+t_1)=o(q\log k)\) would turn (30) into the necessary lower
++exponent
++
++\[
++ \liminf\frac{\log(1+2\mathcal A_2/((q-1)t_1))}{\log k}\ge2.
++\]
++
++This last statement is a consequence with that displayed premise, not a
++claimed arithmetic estimate. The actual unresolved calculation is to
++bound the explicit sums (12)--(13) along the required growing-degree
++quartet family. Their uniform size has not been established in this
++note.
++
++For the two-block total, (19) yields
++
++\[
++ \mathcal B_{h,k}\le U_2(Z^{(0)})+U_2(Z^{(1)}).
++\]
++
++The inherited lower threshold remains four. No new purity conclusion is
++inferred from finite positivity or the optimality of a generic
++determinant inequality.
++
++\subsection{9. A finite certificate robust to moment
++enclosures}\label{a-finite-certificate-robust-to-moment-enclosures}
++
++The sharp formula (16) uses exact traces. One must not insert
++uncertified decimal traces into it and call the result an upper
++certificate.
++
++There is a direct error-aware alternative. Suppose proved enclosures
++give \(t_1\in[t_1^-,t_1^+]\) and \(t_2\in[t_2^-,t_2^+]\). A rational cap
++\(A_0\ge t_1^+\) bounds every nonnegative eigenvalue. Choose a rational
++\(0\le B_0<A_0\) and use the explicit polynomial \(P_{A_0,B_0}\) in
++(20).
++
++The same positive remainder proves
++
++\[
++ \log\det(I+Z)\le
++ q\log(1+B_0)+\frac{t_1-qB_0}{1+B_0}
++ +c_{A_0,B_0}(t_2-2B_0t_1+qB_0^2).                            \tag{31}
++\]
++
++Every coefficient in (31) is a rational combination of two logarithms of
++positive rationals. Rational interval arithmetic, including all
++products, gives a valid upper enclosure from the two trace intervals. It
++needs no separately certified bound \(K_i\succeq g_0K_j\).
++
++The checker encloses \(\log x\) by writing \(x=2^ey\), \(1\le y<2\), and
++retaining both factors in
++
++\[
++ \log y=2\sum_{n=0}^{M-1}\frac{z^{2n+1}}{2n+1}+R_M,
++ \quad z=\frac{y-1}{y+1},\quad
++ 0\le R_M\le\frac{2z^{2M+1}}{(2M+1)(1-z^2)}.
++\]
++
++The same formula encloses \(\log2\); reciprocation handles \(x<1\).
++These finite interval checks certify their supplied rational data only.
++An arithmetic application must supply certified moment/jet enclosures
++and hence valid trace intervals.
++
++\subsubsection{Arithmetic input size remains
++explicit}\label{arithmetic-input-size-remains-explicit}
++
++For a direct construction through degree \(j\), the source monic
++coefficients and norms are determined by the original convolution
++moments through degree \(2j\), and the quotient columns retain the full
++coefficients of \(\chi\) and the specified arithmetic inclusion. The
++sums (12)--(13) use \(G_i\); they do not require a second inverse
++\(G_j\) or an independent spectral-gap proof. This is not a claim that
++the required source moments are low-order or uniformly bounded. In the
++two length-\(q\) endpoint blocks, this direct route can require moments
++through \(4q\). The parallel session's separate lower-input upper-volume
++comparison is not being replaced or credited as proved here.
++
++\subsubsection{Coordinate and mass
++propagation}\label{coordinate-and-mass-propagation}
++
++Under a fixed invertible quotient-coordinate map \(C\), the actual data
++become
++
++\[
++ F\mapsto CF,\quad G_i\mapsto C^{-*}G_iC^{-1},\quad
++ Z\mapsto CZC^{-1}.
++\]
++
++Thus both traces, \(\mathcal A_2\), and the bound remain unchanged
++through that similarity. Raw confluent derivative coordinates keep their
++factorials in \(C\); the map is not silently made unitary.
++
++A common source mass multiplier \(c>0\) gives
++
++\[
++ \Omega\mapsto c\Omega,\quad K_N\mapsto c^{-1}K_N,\quad
++ G_N\mapsto cG_N,
++\]
++
++so \(Z,t_1,t_2,\mathcal A_2\) are unchanged by these displayed
++composites. The original mass has not been reset. An ambient rectangular
++arithmetic inclusion \(\eta\) is retained as an injection, not used as
++an invertible square coordinate map.
++
++\subsection{10. Exact source
++calibrations}\label{exact-source-calibrations}
++
++These are declared Gaussian polynomial fixtures, not asserted zeta
++packets. Use original coordinate \(S=1+ix\), literal Gaussian mass
++seven, variance one, and quotient \(\chi=(S-1)^q\). The monic source
++recurrence and norms are
++
++\[
++ p_0=1,\ p_1=S-1,\quad p_{n+1}=(S-1)p_n+np_{n-1},\quad
++ \omega_n=7n!.
++\]
++
++All quotient matrices below are computed in the original remainder basis
++\(1,S,\ldots,S^{q-1}\).
++
++For \(q=2\), the blocks \((1,3)\) and \((2,4)\) give
++
++\[
++ (t_1,t_2)=\left(2,\frac52\right),\qquad
++ (t_1,t_2)=\left(\frac74,\frac{37}{16}\right).
++\]
++
++Their exact two-trace factors are \((a,b)=(3/2,1/2)\) and \((3/2,1/4)\),
++so
++
++\[
++ \frac{V_1}{V_3}=\frac{15}{4},\quad
++ \frac{V_2}{V_4}=\frac{25}{8},\quad
++ \mathcal B=\log(375/32).
++\]
++
++The two-moment upper bound is exact in dimension two. This matches the
++preceding restriction example without supplying a spectral gap.
++
++For \(q=3\), the original block \((3,6)\) has
++
++\[
++ t_1=11,\quad t_2=\frac{3365}{32},\quad
++ \mathcal A_2=\frac{507}{64},\quad \frac{V_3}{V_6}=\frac{5145}{256},
++\]
++
++\[
++ a=\frac{11}{3}+\frac{7\sqrt{127}}{12},\qquad
++ b=\frac{11}{3}-\frac{7\sqrt{127}}{24}.
++\]
++
++Numerical evaluations of these exact expressions are
++
++\[
++ \log(V_3/V_6)\approx3.000603203789,\quad
++ U_2\approx3.063328308618,\quad
++ 3\log(1+t_1/3)\approx4.621335122841.
++\]
++
++The exact checks use rational enclosures and polynomial identities, not
++these decimals as proof. The original operator has its full nonzero
++nilpotent jets. No inference from a restriction eigenvalue to an
++off-line arithmetic zero is made.
++
++\subsection{11. What is established and what is handed
++onward}\label{what-is-established-and-what-is-handed-onward}
++
++Established here are the source cost map (7)--(10), the first and second
++exterior source norms (12)--(15), the sharp two-trace upper bound with a
++proved cap (16)--(21), its positive remainder and third-trace
++refinement, the area-only upper certificate, and their composition with
++the current first-degree-correct consecutive theorem. These are written
++finite theorems; exact algebraic regression checks support their
++implementation. They are not additional Lean certificates.
++
++The same canonical arithmetic volume is now bounded without a separate
++restriction-gap premise. Estimating the growing arithmetic values of
++(12)--(13) remains a real analytic task. This note does not assert a
++uniform bound completing RH, does not erase a non-radical packet, and
++does not turn an \(e\)-valued quotient observation into absence.
++
++No remote branch, publication cut, or formalization source was changed.
++The handoff lists bounded reusable targets for the parallel session and
++leaves its own interval-moment and fixed-budget work untouched.
++
++\subsection{References and source
++locators}\label{references-and-source-locators}
++
++\begin{itemize}
++\tightlist
++\item
++  Owner-supplied \emph{Tau Endpoint Restriction Control},
++  \texttt{NOTE.tex} and original checker in the 13 September 2026 ZIP.
++  Read as source; its finite map definitions are inputs here.
++\item
++  Owner-supplied \texttt{Pasted\ markdown(20260913-004825).md}: PR \#25
++  report, norm-review clarification, exact product, first-degree step,
++  and threshold-four result. Source claims are distinguished from this
++  session's executions.
++\item
++  Owner-supplied \texttt{Pasted\ markdown\ (2)(5).md}: ongoing
++  collaboration transcript; partial reported results are not substituted
++  for their missing full proofs.
++\item
++  GitHub \texttt{KokunoYumeto/zeta-function-research-reader}, main
++  \texttt{952ef9fee1e1419b6858d920354de8fa99430b7d}; PR \#25
++  \texttt{66fac5e7885a40cd4873e74b754907320f05b067},
++  \texttt{workbenches/tau-consecutive-window-formal/RESEARCH\_NOTE.md}.
++\item
++  Grone, B., Johnson, C. R., Marques de Sá, E., and Wolkowicz, H.
++  (1984). \emph{Improving Hadamard's inequality}. Linear and Multilinear
++  Algebra 16(1--4), 305--322. DOI: 10.1080/03081088408817634. The
++  publisher abstract and author-hosted bibliography were inspected; the
++  present proof is given explicitly rather than attributed to an unread
++  theorem number.
++\item
++  NIST Digital Library of Mathematical Functions, §3.3, especially the
++  divided-difference and confluent interpolation formulas.
++  https://dlmf.nist.gov/3.3
++\end{itemize}
++
++\end{document}
+diff --git a/workbenches/tau-relation-moment-control/HANDOFF.md b/workbenches/tau-relation-moment-control/HANDOFF.md
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/HANDOFF.md
+@@ -0,0 +1,156 @@
++# Handoff: two source moments bound the original relation-block volume
++
++## Parallel integration
++
++Read main `952ef9fee1e1419b6858d920354de8fa99430b7d` and PR #25 at
++`66fac5e7885a40cd4873e74b754907320f05b067`, including its full research note.
++Retain its phase-dependent exact product, the independent first-degree theorem,
++the written comparable norm-window theorem, and per-block threshold 2 / combined
++threshold 4. This contribution does not redo those formalizations or claim new
++Lean executions. No remote branch has been modified.
++
++The general trace / trace-square determinant optimization is classical (Grone,
++Johnson, Marques de Sá, Wolkowicz, 1984). The new application carries the actual
++source, theta relations, supported quotient, and arithmetic action into it.
++
++## 1. Existing library inputs
++
++For the unchanged fixed arithmetic quotient E of dimension q, use
++
++    B_N=[b_0,...,b_N], O_N=diag(omega_0,...,omega_N),
++    K_N=B_N O_N^-1 B_N*, G_N=K_N^-1,
++    R_N=O_N^-1 B_N* G_N.
++
++The original remainder B_N and ambient arithmetic inclusion eta remain attached.
++For q-1<=i<=j put
++
++    F=[b_(i+1),...,b_j], Omega=diag(omega_(i+1),...,omega_j),
++    D=K_j-K_i=F Omega^-1 F*.
++
++Keep e / tau via the existing reconstruction and internal coequalizer. Do not
++introduce another scalar core. Empty arithmetic packet is q=0, det=1; q=1 has a
++separate exact scalar log bound. Main moment formulas with q-1 denominators use
++q>=2.
++
++## 2. Source cost and its operator type
++
++I_ij:(E,G_i)->(E,G_j) is the coordinate identity. Its adjoint T=K_i G_j has
++reverse Hilbert type. Form Q=T I_ij as an endomorphism of (E,G_i), then
++
++    Z=Q^-1-I=D G_i=F Fdagger,
++    Fdagger=Omega^-1 F* G_i.
++
++Z is positive G_i-self-adjoint. Its spectrum is lambda>=0 and the old restriction
++spectrum is g=1/(1+lambda). The ratio is det(I+Z)=V_i/V_j.
++
++Do not assert A-normality or A-invariance of a Z-eigenspace. With the original
++control H_i and H_j transported by the actual identity,
++
++    [A,Z]=Hhat_j(I+Z)-(I+Z)H_i.
++
++This follows by inversion of the existing return commutator.
++
++## 3. Two source moments and the exact exterior map
++
++    t1=tr Z=sum_n b_n*G_i b_n/omega_n,
++    t2=tr Z^2=sum_(n,m) |b_n*G_i b_m|^2/(omega_n omega_m),
++    area2=(t1^2-t2)/2
++          =sum_(n<m) det Gram_Gi(b_n,b_m)/(omega_n omega_m).
++
++The actual map Phi=R_i F goes from (C^(j-i),Omega) to the earlier source.
++Then t1=HS(Phi)^2 and area2=HS(wedge^2 Phi)^2, using unscaled exterior bases
++with determinant Grams. A tensor alternation has its literal 2! and must be
++related by the quotient / alternating map, not called an identical metric.
++
++The source relation is b=T_new-L_ij R_i F, with
++
++    B_j b=0, b* O_j b=Omega+F*G_iF.
++
++Both norm contributions are evaluated before b maps to the receiving fibre zero.
++An admitted dependent exterior pair has represented zero area; its index is not
++external absence.
++
++## 4. New bounded theorem for the same cost
++
++For q>=2 define
++
++    d=sqrt((q*t2-t1^2)/(q-1)),
++    a=(t1+(q-1)*d)/q, b=(t1-d)/q.
++
++Positivity gives 0<=b<=a and the identities
++
++    a+(q-1)b=t1, a^2+(q-1)b^2=t2.
++
++Cauchy--Schwarz on all other eigenvalues proves lambda_max<=a. Therefore the
++restriction gap g_min>=1/(1+a) is a derived quantity, not an extra premise.
++
++The sharp bound with only the two traces is
++
++    det(I+Z)<=(1+a)(1+b)^(q-1).
++
++Complete proof in NOTE: the quadratic matching log(1+x), its derivative at b,
++and its value at a majorizes log(1+x) on [0,a]. The exact positive error is
++
++    (a-x)(x-b)^2 int_(1,infinity)
++        1/((s+x)(s+b)^2(s+a)) ds.
++
++A quadratic trace is fixed by q,t1,t2. Equality has one a and q-1 copies of b;
++the zero-variance case is all b. This is the classical optimal moment problem,
++not a new universal determinant theorem.
++
++The full remainder is retained at the actual metric type. A bounded further
++consequence is
++
++    C3=tr((aI-Z)(Z-bI)^2)>=0,
++    log det(I+Z)<=log(1+a)+(q-1)log(1+b)-C3/(3(1+a)^3).
++
++## 5. Finite certificate with no independent gap
++
++A proved trace upper cap A0>=t1^+ bounds the nonnegative spectrum. Choose rational
++0<=B0<A0 and use the same Hermite polynomial with nodes A0,B0. Its trace is a
++rational combination of q,t1,t2,log(1+A0),log(1+B0). Rational interval arithmetic
++bounds it from enclosures for t1,t2. The executable helper retains every sign and
++uses a rational logarithm enclosure. It does not certify omitted arithmetic
++moment errors.
++
++## 6. Composition with the new consecutive theorem
++
++Its original local propagation gives, r=j-i,
++
++    min_(i<=N<j) epsilon_N
++       <=(omega_j/omega_i)^(1/(2r)) (V_i/V_j)^(1/(2r)).
++
++Our direct composition replaces the last factor by
++
++    [(1+a)(1+b)^(q-1)]^(1/(2r)).
++
++For the two length-q quartet blocks, the supplied norm bound gives a fixed
++C_h^win q. The existing lower budget therefore requires
++
++    (D_h k)^(2q) <= (1+a)(1+b)^(q-1)
++
++on each block. Do not claim its opposing arithmetic estimate yet.
++
++A simple original-area upper bound avoids the square root entirely:
++
++    det(I+Z)<=(1+t1)(1+2 area2/((q-1)t1))^(q-1), t1>0.
++
++The forced lower counterpart is
++
++    2 area2/((q-1)t1)
++       >= [(D_h k)^(2q)/(1+t1)]^(1/(q-1))-1.
++
++This turns the remaining problem into control of actual independent pair areas,
++not just the largest correction or an independently chosen positive metric.
++It is not a bound on every eigenvalue and not a new RH theorem.
++
++## 7. Execution scope
++
++The 22 new exact finite methods pass normally and with -O, including deliberate
++failure of a formula omitting the cross-pairing. The 31 inherited manifest
++entries verify; the prior 19-method restriction checker passes both modes.
++No new Lean runtime, zeta-zero certificate, or arithmetic quadrature enclosure
++was executed. An initial overly tight numerical calibration expectation was
++repaired by using the actual trace-derived cap and a better specified rational
++interpolation node; theorem statements were not weakened. Exported rational
++intervals are outward rounded to a stated dyadic precision.
+diff --git a/workbenches/tau-relation-moment-control/PROGRAMME_STATE.md b/workbenches/tau-relation-moment-control/PROGRAMME_STATE.md
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/PROGRAMME_STATE.md
+@@ -0,0 +1,45 @@
++# Programme state — 13 September 2026
++
++The source remains the original split-supported arithmetic theta complex over
++b_tau, with G(Z)->Z of infinite target, its coefficient map to G(C), its original
++internal relations, and the actual cyclic sum packet. No source metric is freely
++selected.
++
++## Inherited update now used
++
++PR #25 and concurrent main strengthen the two-block lower threshold to 4. Each
++length-q block has a lower log volume of 2q log(D_h k), under the hypothetical
++exact off-line quartet. The first degree q-1 has its own local theorem. The
++norm-window envelope is a written analytic result; the formal finite propagation
++has the source's reported Lean receipt.
++
++## Added this turn
++
++1. The positive inverse-restriction cost Z=(K_j-K_i)G_i with its exact source
++   adjoint and retained arithmetic commutator.
++2. Source formulas for tr Z, tr Z^2, and the second exterior area, including all
++   cross-pairings and norms of the original correction map.
++3. The classical sharp two-trace determinant bound applied to this same cost,
++   with a complete positive remainder, equality characterization, and a third-
++   trace improvement. Its finite spectral cap is derived from the same traces.
++4. A rational-enclosure certificate needing no separate minimum-restriction-gap
++   premise, and the direct composition with the current two-volume window bound.
++5. A necessary independent-area growth inequality in the off-line branch, on
++   each original relation block. Its opposing arithmetic growth bound is open
++   in this work; no uniform upper estimate is asserted.
++
++## Quantities for the next analytic calculation
++
++For the two fixed degree blocks, estimate the actual sums
++
++    t1=sum b_n*G_i b_n/omega_n,
++    area2=sum_(n<m) det Gram_Gi(b_n,b_m)/(omega_n omega_m).
++
++The exact two-trace cap retains covariance rather than replacing it by independent
++column magnitudes. Existing gamma moment enclosures and the parallel session's
++finite-metric error bounds may supply certified inputs; their use must retain
++the actual jet unit and the original inverse G_i. The present note supplies no
++new uniform control of those inputs.
++
++No remote branch or frozen publication was modified. Package proofs and bounded
++finite targets can be integrated additively by the existing publication owner.
+diff --git a/workbenches/tau-relation-moment-control/SOURCE_REVIEW.md b/workbenches/tau-relation-moment-control/SOURCE_REVIEW.md
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/SOURCE_REVIEW.md
+@@ -0,0 +1,35 @@
++# Source review and actual execution scope
++
++## Owner-delivered inputs read
++
++- `Tau_Endpoint_Restriction_Control_2026-09-13.zip`: all 31 manifest entries were checked against the extracted bytes. Its `NOTE.tex`, handoff, and relevant checker were read. Its 19-method checker was executed afresh normally and with `python -O`; the result records agree.
++- `Pasted markdown(20260913-004825).md`: the PR #25 report, including the norm-review clarification, two-sided envelope, exact consecutive product, separate first-admissible-degree step, and the two-block threshold four. Its formal-execution claims are source reports, not this session's Lean execution.
++- `Pasted markdown (2)(5).md`: the complete available collaboration transcript was read using the supplied text and its continuation. It reports ongoing coefficient intervals, Gamma metrics, fixed-budget optimization, and restriction-gap work. Those reports do not contain all the underlying proofs; they are not silently made mathematical premises here.
++
++## GitHub reads
++
++- Main branch read returned `952ef9fee1e1419b6858d920354de8fa99430b7d`.
++- PR #25 metadata read returned head `66fac5e7885a40cd4873e74b754907320f05b067`.
++- Read `workbenches/tau-consecutive-window-formal/RESEARCH_NOTE.md` at that exact head (Git blob `18e523241ea2b79d1deb323f5929531a62daf2e2`).
++
++The new contribution credits the stronger per-block and total volume thresholds to that work. It uses the separate q-1 step instead of introducing a rank-deficient predecessor. It does not repeat the first exterior operation with a spurious rank-two premise after iteration. No remote branch was modified.
++
++## Outside mathematical sources
++
++- Grone, Johnson, Marques de Sá, Wolkowicz, *Improving Hadamard's inequality*, 1984, DOI 10.1080/03081088408817634. The publisher's abstract and the author-hosted bibliography were inspected. They identify the classical optimization with fixed dimension, trace and squared trace. No claim is made to have read an inaccessible numbered theorem. The complete direct proof used in this note is written out and independently checked at its finite algebraic identities.
++- NIST DLMF §3.3: the divided-difference interpolation and confluent-node discussion were read. The note gives its own explicit Stieltjes integral remainder for log(1+x).
++
++The Deligne role is inherited from the programme's same-image two-sided estimate and determinant-line accounting. No new reading or full audit of the S20 archive was performed this turn; no finite-field purity theorem is imported onto the theta object by citation.
++
++## New claims and proof status
++
++The source maps, area formulas, positive remainder, spectral cap, and composition with the supplied window theorem have complete written proofs in this note. The generic best two-moment determinant inequality is classical. No global novelty claim is made. No arithmetic moment integral, actual zeta-zero packet, or uniform asymptotic estimate was numerically certified here.
++
++## Executed finite checks
++
++- New 22-method exact suite passed normally and optimized; successful JSON records agree.
++- A deliberately incorrect exterior-area formula omitting the cross-pairing was rejected in both modes.
++- The supplied 31-entry manifest verified.
++- The inherited 19-method suite passed normally and optimized; successful JSON records agree.
++
++The initial development run had an overoptimistic numerical expectation for a deliberately loose auxiliary interpolation cap, and an integer-to-string limit when exporting large rational interval endpoints. The cap and node were replaced by their explicitly better rational choices, without changing the determinant theorem or weakening the tested 3.3 bound. Interval output is now outward rounded to 180 dyadic bits. The initial failure log is retained in `checks/development-initial.log`.
+diff --git a/workbenches/tau-relation-moment-control/CHECKS.md b/workbenches/tau-relation-moment-control/CHECKS.md
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/CHECKS.md
+@@ -0,0 +1,11 @@
++# Verification
++
++`check_relation_moments.py` contains 22 named exact finite methods. They test the actual original-source restriction and cost, weighted adjoints, canonical relation Gram, first/second traces with all cross terms, exterior area, action commutator, nonunitary coordinate covariance, literal mass, the sharp moment extremizers, rational area bound, exact reciprocal Hermite remainder, third-order remainder, rational interval certificates, and represented-zero versus absence examples.
++
++The Gaussian source fixtures have literal mass seven and the unshifted spectral coordinate stated in the note. They are not called zeta packets. Several fixtures keep repeated quotient roots and nonnormal coefficient matrices; no numerical eigenvalue test is accepted as a proof of a matrix inequality.
++
++The final normal and optimized JSON records agree and report 22 successes. Both mathematical negative controls fail with a nonzero exit code. The prior archive's 31 manifest entries verify and its 19-method checker passes again in both modes.
++
++The complete written determinant inequality is not proved merely by these examples. Its proof is the spectral cap plus the explicitly positive scalar interpolation remainder and moment identities in the note. The tests check implementations and finite specializations, not the analytic premises of the broader RH programme.
++
++Rational interval exports are outward rounded to a stated 180-bit dyadic denominator. That rounding widens an existing proved rational enclosure; it is not a floating-point certificate. No bound is claimed for errors in unsupplied arithmetic moments.
+diff --git a/workbenches/tau-relation-moment-control/VALIDATION.json b/workbenches/tau-relation-moment-control/VALIDATION.json
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/VALIDATION.json
+@@ -0,0 +1,69 @@
++{
++  "new_suite": {
++    "passed": true,
++    "test_methods": 22,
++    "names": [
++      "test_01_inverse_restriction_source",
++      "test_02_actual_source_adjoint",
++      "test_03_trace_cross_pairings",
++      "test_04_exterior_area",
++      "test_05_original_relation",
++      "test_06_action_defect",
++      "test_07_coordinate_transport",
++      "test_08_literal_mass",
++      "test_09_dimension_two_exact",
++      "test_10_exact_extremizers",
++      "test_11_rational_area_upper",
++      "test_12_scalar_remainder_identity",
++      "test_13_third_remainder_positive",
++      "test_14_sharp_interval_fixture",
++      "test_15_error_aware_certificate",
++      "test_16_log_interval_arithmetic",
++      "test_17_cap_from_moments",
++      "test_18_rank_one_source",
++      "test_19_supported_relation_and_area",
++      "test_20_two_trace_gap",
++      "test_21_zero_cases",
++      "test_22_extremal_formula_majorant"
++    ],
++    "failures": 0,
++    "errors": 0,
++    "scope": "finite exact matrix, polynomial, scalar, and rational-enclosure checks; not Lean or arithmetic quadrature"
++  },
++  "normal_optimized_records_equal": true,
++  "negative_controls": [
++    {
++      "mode": "normal",
++      "returncode": 1,
++      "expected_rejection": true
++    },
++    {
++      "mode": "optimized",
++      "returncode": 1,
++      "expected_rejection": true
++    }
++  ],
++  "inherited_suite": {
++    "tests_run": 19,
++    "failures": 0,
++    "errors": 0,
++    "passed": true,
++    "scope": "exact finite polynomial/matrix fixtures; no arithmetic integral certification"
++  },
++  "inherited_normal_optimized_records_equal": true,
++  "inherited_manifest_entries": 31,
++  "lean_execution": false,
++  "arithmetic_quadrature_certificate": false,
++  "uniform_RH_bound": false,
++  "remote_changes": false,
++  "checker_sha256": "507f1711227c6041ad36af51fc9ae1234a286ac0e492b449e64a9d095ab6972d",
++  "reader": {
++    "mathml_elements": 209,
++    "desktop_document_overflow": false,
++    "desktop_main_left": 342.59375,
++    "mobile_document_overflow": false,
++    "page_errors": [],
++    "browser": "/usr/bin/chromium",
++    "render_input": "exact self-contained HTML via set_content; file URLs blocked by browser policy"
++  }
++}
+diff --git a/workbenches/tau-relation-moment-control/check_relation_moments.py b/workbenches/tau-relation-moment-control/check_relation_moments.py
+new file mode 100644
+--- /dev/null
++++ b/workbenches/tau-relation-moment-control/check_relation_moments.py
+@@ -0,0 +1,289 @@
++#!/usr/bin/env python3
++"""Exact finite checks for the original-source two-moment determinant bound.
++No numerical arithmetic-zero input and no Lean certificate are supplied here.
++"""
++from __future__ import annotations
++import argparse
++from fractions import Fraction as F
++from functools import lru_cache
++from itertools import combinations
++from math import isqrt
++from pathlib import Path
++import json
++import sys
++import unittest
++import sympy as s
++
++S = s.symbols('S')
++
++def require(p: bool, message: str) -> None:
++    if not p:
++        raise AssertionError(message)
++
++def eq(a, b) -> bool:
++    if isinstance(a, s.MatrixBase) or isinstance(b, s.MatrixBase):
++        return (a-b).applyfunc(s.simplify) == s.zeros(*a.shape)
++    return s.simplify(a-b) == 0
++
++def frac(x) -> F:
++    x=s.Rational(x)
++    return F(int(x.p), int(x.q))
++
++class Interval:
++    def __init__(self, lo, hi=None):
++        self.lo=F(lo); self.hi=F(lo if hi is None else hi)
++        require(self.lo<=self.hi, 'reversed interval')
++    @staticmethod
++    def cast(x): return x if isinstance(x,Interval) else Interval(x)
++    def __add__(self,y):
++        y=self.cast(y); return Interval(self.lo+y.lo,self.hi+y.hi)
++    __radd__=__add__
++    def __neg__(self): return Interval(-self.hi,-self.lo)
++    def __sub__(self,y): return self+-self.cast(y)
++    def __rsub__(self,y): return self.cast(y)+-self
++    def __mul__(self,y):
++        y=self.cast(y); v=[a*b for a in (self.lo,self.hi) for b in (y.lo,y.hi)]
++        return Interval(min(v),max(v))
++    __rmul__=__mul__
++    def __truediv__(self,y):
++        y=self.cast(y);require(not y.lo<=0<=y.hi,'division across zero')
++        return self*Interval(1/y.hi,1/y.lo)
++    def __rtruediv__(self,y):return self.cast(y)/self
++    def power(self,n:int):
++        require(n>=0,'negative power');out=Interval(1)
++        for _ in range(n):out=out*self
++        return out
++    def json(self):
++        scale=1<<180
++        lo=F((self.lo.numerator*scale)//self.lo.denominator,scale)
++        hi=F(-((-self.hi.numerator*scale)//self.hi.denominator),scale)
++        return {'lower':str(lo),'upper':str(hi),'outward_dyadic_bits':180}
++
++def log_fraction(x:F,terms:int=42)->Interval:
++    x=F(x);require(x>0,'nonpositive logarithm')
++    if x<1:return -log_fraction(1/x,terms)
++    e=0;y=x
++    while y>=2:y/=2;e+=1
++    def series(y):
++        z=(y-1)/(y+1);p=z;v=F(0)
++        for n in range(terms):v+=2*p/(2*n+1);p*=z*z
++        err=2*p/((2*terms+1)*(1-z*z))
++        return Interval(v,v+err)
++    return series(y)+e*series(F(2))
++
++def log_interval(x:Interval)->Interval:
++    return Interval(log_fraction(x.lo).lo,log_fraction(x.hi).hi)
++
++def sqrt_fraction(x:F,bits:int=90)->Interval:
++    x=F(x);require(x>=0,'negative square root')
++    scale=1<<bits;n=isqrt((x.numerator*scale*scale)//x.denominator)
++    lo=F(n,scale)
++    if lo*lo==x:return Interval(lo)
++    return Interval(lo,F(n+1,scale))
++
++def two_moment_parameters(q:int,t1,t2):
++    require(q>=2,'parameters require q>=2')
++    d=s.sqrt((q*t2-t1*t1)/s.Integer(q-1))
++    return s.simplify((t1+(q-1)*d)/q),s.simplify((t1-d)/q)
++
++def sharp_upper_interval(q:int,t1:F,t2:F)->Interval:
++    d=sqrt_fraction((q*t2-t1*t1)/F(q-1))
++    a=(Interval(t1)+(q-1)*d)/q;b=(Interval(t1)-d)/q
++    return log_interval(1+a)+(q-1)*log_interval(1+b)
++
++def hermite_certificate(q:int,t1:Interval,t2:Interval,cap:F,tangent:F)->Interval:
++    require(F(0)<=tangent<cap,'invalid nodes')
++    require(cap>=t1.hi,'cap not established by trace upper bound')
++    la=log_fraction(1+cap);lb=log_fraction(1+tangent)
++    c=(la-lb-(cap-tangent)/(1+tangent))/((cap-tangent)**2)
++    return q*lb+(t1-q*tangent)/(1+tangent)+c*(t2-2*tangent*t1+q*tangent*tangent)
++
++@lru_cache(None)
++def fixture(q:int,last:int,c=s.Integer(1),mass=s.Integer(7)):
++    chi=(S-c)**q;p=[s.Integer(1)]
++    if last:p.append(S-c)
++    for n in range(1,last):p.append(s.expand((S-c)*p[-1]+n*p[-2]))
++    cols=[]
++    for v in p:
++        rem=s.Poly(s.rem(v,chi,S),S)
++        cols.append(s.Matrix([rem.nth(a) for a in range(q)]))
++    def at(n):
++        B=s.Matrix.hstack(*cols[:n+1]);O=s.diag(*[mass*s.factorial(a) for a in range(n+1)])
++        K=B*O.inv()*B.H;G=K.inv();R=O.inv()*B.H*G
++        return B,O,K,G,R
++    acols=[]
++    for a in range(q):
++        v=s.Poly(s.rem(S**(a+1),chi,S),S);acols.append(s.Matrix([v.nth(r) for r in range(q)]))
++    A=s.Matrix.hstack(*acols)
++    return p,cols,at,A
++
++def block(q:int,i:int,j:int):
++    p,cols,at,A=fixture(q,j)
++    Bi,Oi,Ki,Gi,Ri=at(i);Bj,Oj,Kj,Gj,Rj=at(j)
++    Fc=s.Matrix.hstack(*cols[i+1:j+1]) if j>i else s.zeros(q,0)
++    Om=s.diag(*[7*s.factorial(n) for n in range(i+1,j+1)]) if j>i else s.zeros(0)
++    D=Kj-Ki;Z=D*Gi;T=Ki*Gj
++    t1=s.trace(Z);t2=s.trace(Z*Z);e2=s.factor((t1*t1-t2)/2)
++    return locals()
++
++class Tests(unittest.TestCase):
++    def test_01_inverse_restriction_source(self):
++        b=block(3,3,6);I=s.eye(3)
++        self.assertTrue(eq(b['Z'],b['T'].inv()-I))
++        self.assertTrue(eq(b['Gi']*b['Z'],b['Z'].H*b['Gi']))
++        L=s.zeros(7,4);L[:4,:4]=s.eye(4);P=L*L.T
++        self.assertTrue(eq(L*b['Ri']*b['T'],P*b['Rj']))
++    def test_02_actual_source_adjoint(self):
++        b=block(3,3,6);Fd=b['Om'].inv()*b['Fc'].H*b['Gi']
++        self.assertTrue(eq(b['Z'],b['Fc']*Fd))
++        self.assertTrue(eq((b['Ri']*b['Fc']).H*b['Oi']*(b['Ri']*b['Fc']),b['Fc'].H*b['Gi']*b['Fc']))
++    def test_03_trace_cross_pairings(self):
++        b=block(3,3,6);F0=b['Fc'];G=b['Gi'];weights=list(b['Om'].diagonal())
++        t1=sum((F0[:,a].H*G*F0[:,a])[0]/weights[a] for a in range(F0.cols))
++        t2=sum((F0[:,a].H*G*F0[:,c])[0]*s.conjugate((F0[:,a].H*G*F0[:,c])[0])/(weights[a]*weights[c]) for a in range(F0.cols) for c in range(F0.cols))
++        self.assertTrue(eq(t1,b['t1']));self.assertTrue(eq(t2,b['t2']))
++    def test_04_exterior_area(self):
++        b=block(3,3,6);Gram=b['Fc'].H*b['Gi']*b['Fc'];weights=list(b['Om'].diagonal())
++        e2=sum(Gram.extract([a,c],[a,c]).det()/(weights[a]*weights[c]) for a,c in combinations(range(Gram.rows),2))
++        self.assertTrue(eq(e2,b['e2']));self.assertEqual(e2,s.Rational(507,64))
++    def test_05_original_relation(self):
++        b=block(3,3,6);L=s.zeros(7,4);L[:4,:4]=s.eye(4)
++        new=s.zeros(7,3);new[4:7,:]=s.eye(3)
++        rel=new-L*b['Ri']*b['Fc']
++        self.assertTrue(eq(b['Bj']*rel,s.zeros(3)))
++        self.assertTrue(eq(rel.H*b['Oj']*rel,b['Om']+b['Fc'].H*b['Gi']*b['Fc']))
++    def test_06_action_defect(self):
++        b=block(3,3,6);A=b['A'];I=s.eye(3)
++        H1=b['Ki']*(A.H*b['Gi']+b['Gi']*A-2*b['Gi'])
++        H2=b['Kj']*(A.H*b['Gj']+b['Gj']*A-2*b['Gj'])
++        self.assertTrue(eq(A*b['Z']-b['Z']*A,H2*(I+b['Z'])-(I+b['Z'])*H1))
++    def test_07_coordinate_transport(self):
++        b=block(3,3,6);C=s.Matrix([[1,s.I,0],[0,2,1],[1,0,1]])
++        self.assertNotEqual(C.det(),0)
++        F1=C*b['Fc'];G1=C.inv().H*b['Gi']*C.inv()
++        Z1=F1*b['Om'].inv()*F1.H*G1
++        self.assertTrue(eq(Z1,C*b['Z']*C.inv()))
++        self.assertTrue(eq(s.trace(Z1**2),b['t2']))
++    def test_08_literal_mass(self):
++        b=block(3,3,6);mass=s.Rational(11,7)
++        Z1=b['Fc']*(mass*b['Om']).inv()*b['Fc'].H*(mass*b['Gi'])
++        self.assertTrue(eq(Z1,b['Z']))
++    def test_09_dimension_two_exact(self):
++        totals=s.Integer(1)
++        for i,j in [(1,3),(2,4)]:
++            b=block(2,i,j);a,c=two_moment_parameters(2,b['t1'],b['t2'])
++            det=(s.eye(2)+b['Z']).det();self.assertTrue(eq(det,(1+a)*(1+c)));totals*=det
++        self.assertEqual(totals,s.Rational(375,32))
++    def test_10_exact_extremizers(self):
++        for q,a,b in [(4,9,2),(5,20,1),(3,7,0),(4,2,2)]:
++            vals=[s.Integer(a)]+[s.Integer(b)]*(q-1)
++            t1=sum(vals);t2=sum(x*x for x in vals);aa,bb=two_moment_parameters(q,t1,t2)
++            self.assertTrue(eq(aa,a));self.assertTrue(eq(bb,b))
++            self.assertTrue(eq(s.prod(1+x for x in vals),(1+aa)*(1+bb)**(q-1)))
++    def test_11_rational_area_upper(self):
++        for vals in [(0,1,2),(1,3,6),(1,2,3,4),(0,0,9,12),(1,1,1,5,100)]:
++            q=len(vals);t1=s.Integer(sum(vals));t2=s.Integer(sum(x*x for x in vals));e2=(t1*t1-t2)/2
++            upper=(1+t1)*(1+2*e2/((q-1)*t1))**(q-1)
++            self.assertGreaterEqual(upper,s.prod(1+x for x in vals))
++    def test_12_scalar_remainder_identity(self):
++        x,b,a,t=s.symbols('x b a t');g=lambda y:1/(t+y)
++        c=(g(a)-g(b)+(a-b)/(t+b)**2)/(a-b)**2
++        interp=g(b)-(x-b)/(t+b)**2+c*(x-b)**2
++        exact=(a-x)*(x-b)**2/((t+x)*(t+b)**2*(t+a))
++        # Reciprocal minus its interpolant has the same nonnegative sign.
++        self.assertTrue(eq(g(x)-interp,exact))
++    def test_13_third_remainder_positive(self):
++        b0=block(3,2,5);Z=b0['Z'];a,b=two_moment_parameters(3,b0['t1'],b0['t2'])
++        C3=s.trace((a*s.eye(3)-Z)*(Z-b*s.eye(3))**2)
++        self.assertGreater(C3,0)
++        self.assertTrue(eq(C3,-s.trace(Z**3)+(a+2*b)*b0['t2']-(2*a*b+b*b)*b0['t1']+3*a*b*b))
++    def test_14_sharp_interval_fixture(self):
++        b0=block(3,3,6);U=sharp_upper_interval(3,frac(b0['t1']),frac(b0['t2']))
++        actual=log_fraction(frac((s.eye(3)+b0['Z']).det()))
++        self.assertLess(actual.hi,U.lo)
++        self.assertLess(U.hi,F(30634,10000))
++        coarse=3*log_fraction(1+frac(b0['t1'])/3)
++        self.assertLess(U.hi,coarse.lo)
++    def test_15_error_aware_certificate(self):
++        b0=block(3,3,6);e=F(1,10**10)
++        U=hermite_certificate(3,Interval(F(11)-e,F(11)+e),Interval(F(3365,32)-e,F(3365,32)+e),F(11)+e,F(29,40))
++        exact=log_fraction(F(5145,256))
++        self.assertLess(exact.hi,U.lo)
++        self.assertLess(U.hi,F(33,10))
++    def test_16_log_interval_arithmetic(self):
++        for a,b in [(F(7),F(3,8)),(F(1,99),F(27)),(F(15,4),F(25,8))]:
++            x=log_fraction(a)+log_fraction(b);y=log_fraction(a*b)
++            self.assertLessEqual(max(x.lo,y.lo),min(x.hi,y.hi))
++        self.assertEqual(log_fraction(F(1)).lo,0)
++    def test_17_cap_from_moments(self):
++        for vals in [(0,1,2),(1,2,3,4),(1,1,1,5,100)]:
++            q=len(vals);t1=s.Integer(sum(vals));t2=s.Integer(sum(x*x for x in vals));a,b=two_moment_parameters(q,t1,t2)
++            self.assertTrue(bool(a>=max(vals)));self.assertTrue(bool(b>=0))
++            self.assertTrue(eq(a+(q-1)*b,t1));self.assertTrue(eq(a*a+(q-1)*b*b,t2))
++    def test_18_rank_one_source(self):
++        G=s.Matrix([[2,1],[1,3]]);F0=s.Matrix([[1,2],[1,2]]);O=s.diag(7,11)
++        Z=F0*O.inv()*F0.H*G;t=s.trace(Z)
++        self.assertEqual(Z.rank(),1);self.assertTrue(eq(s.trace(Z**2),t*t))
++        self.assertTrue(eq((s.eye(2)+Z).det(),1+t))
++    def test_19_supported_relation_and_area(self):
++        tau=('absent',None)
++        def lift(fn,x):return tau if x[0]=='absent' else (x[0],fn(x[1]))
++        rel=('degree-j',s.Poly((S-1)**2,S))
++        image=lift(lambda x:s.rem(x.as_expr(),(S-1)**2,S),rel)
++        self.assertEqual(image,('degree-j',0));self.assertNotEqual(image,tau)
++        self.assertEqual(lift(lambda x:0,tau),tau)
++        admitted=('pair-(0,2)',s.det(s.Matrix([[1,2],[0,0]])))
++        self.assertEqual(admitted[1],0);self.assertNotEqual(admitted,tau)
++    def test_20_two_trace_gap(self):
++        q=4;a=s.Integer(9);b=s.Integer(2);J=s.diag(a,b,b,b)
++        T=(s.eye(q)+J).inv();self.assertEqual(min(T.diagonal()),1/(1+a))
++    def test_21_zero_cases(self):
++        Z=s.zeros(3);self.assertEqual(s.trace(Z),0);self.assertEqual((s.eye(3)+Z).det(),1)
++        self.assertEqual(s.zeros(0).det(),1)
++        a=s.Rational(7,3);self.assertEqual((s.eye(1)+s.Matrix([[a]])).det(),1+a)
++    def test_22_extremal_formula_majorant(self):
++        # Rational nodes give an exact bound on every diagonal spectrum here.
++        vals=[s.Rational(0),s.Rational(9,4),s.Rational(9,2)]
++        q=3;t1=sum(vals);t2=sum(x*x for x in vals)
++        a,b=two_moment_parameters(q,t1,t2)
++        if a.is_Rational and b.is_Rational:
++            self.assertGreaterEqual((1+a)*(1+b)**(q-1),s.prod(1+x for x in vals))
++        else:
++            ui=sharp_upper_interval(q,frac(t1),frac(t2))
++            li=log_fraction(frac(s.prod(1+x for x in vals)))
++            self.assertLessEqual(li.hi,ui.lo)
++
++def run_negative():
++    G=s.eye(2);F0=s.Matrix([[1,1],[0,1]])
++    Z=F0*F0.H*G
++    exact=(s.trace(Z)**2-s.trace(Z**2))/2
++    omitted=(F0[:,0].H*G*F0[:,0])[0]*(F0[:,1].H*G*F0[:,1])[0]
++    require(eq(exact,omitted),'negative control rejected: omitted cross-pairing changes exterior area')
++
++def calibration():
++    records=[]
++    for q,i,j in [(2,1,3),(2,2,4),(3,2,5),(3,3,6)]:
++        b0=block(q,i,j);a,b=two_moment_parameters(q,b0['t1'],b0['t2'])
++        det=s.factor((s.eye(q)+b0['Z']).det())
++        records.append({'q':q,'i':i,'j':j,'t1':str(b0['t1']),'t2':str(b0['t2']),'e2':str(b0['e2']),
++          'determinant_ratio':str(det),'a':str(a),'b':str(b),
++          'actual_log_interval':log_fraction(frac(det)).json(),
++          'two_moment_log_interval':sharp_upper_interval(q,frac(b0['t1']),frac(b0['t2'])).json()})
++    return {'scope':'exact Gaussian polynomial fixtures; no actual zeta-zero certificate','records':records}
++
++def main():
++    p=argparse.ArgumentParser();p.add_argument('--json');p.add_argument('--calibration');p.add_argument('--negative-control',action='store_true');args=p.parse_args()
++    if args.negative_control:
++        try:run_negative()
++        except AssertionError as e:print(str(e),file=sys.stderr);return 1
++        return 0
++    suite=unittest.defaultTestLoader.loadTestsFromTestCase(Tests)
++    names=[t.id().split('.')[-1] for t in suite]
++    result=unittest.TextTestRunner(verbosity=2).run(suite)
++    data={'passed':result.wasSuccessful(),'test_methods':result.testsRun,'names':names,
++          'failures':len(result.failures),'errors':len(result.errors),
++          'scope':'finite exact matrix, polynomial, scalar, and rational-enclosure checks; not Lean or arithmetic quadrature'}
++    if args.json:Path(args.json).write_text(json.dumps(data,indent=2)+'\n')
++    if args.calibration:Path(args.calibration).write_text(json.dumps(calibration(),indent=2)+'\n')
++    return 0 if result.wasSuccessful() else 1
++if __name__=='__main__':raise SystemExit(main())

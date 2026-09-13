@@ -250,3 +250,57 @@ mathematical review. The original source checkpoint remains unchanged;
 current-head and actual-merge CI observations are recorded separately in
 the publication metadata. No local Lean execution or RH conclusion is claimed.
 All of this PR27 continuation remains outside the frozen 512/478-page DOI edition.
+
+
+## PR29: original residue detection and signed metric transfer
+
+[PR29](https://github.com/KokunoYumeto/zeta-function-research-reader/pull/29) is normally merged at
+`baef5c29f2bc36101eb74e7fe95c2d8c9e44bb8c`. Its 21 complete contributed files are verified,
+and all 14,416 prior leaves, including the DOI mirror, remain unchanged.
+The [signed metric-transfer note](workbenches/tau-arithmetic-metric-transfer/RESEARCH_NOTE.md)
+and [residue guide](workbenches/tau-residue-rigidity/README.md) calculate
+residue detection using the actual source generator, original relation-valued
+metric variation, and the signed arithmetic log transfer. All fourteen
+reviewed premerge checks and all ten actual merge-push runs were successful.
+At the 18:36:16 UTC observation, the two new workflows also had complete
+log/source/axiom and negative-control reconciliation: [metric transfer](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34774694650)
+covered 35 strict modules and 60 selected transitive axiom targets;
+[residue rigidity](https://github.com/KokunoYumeto/zeta-function-research-reader/actions/runs/34774694642) covered
+28 modules and 34 selected targets. The other eight runs have successful
+conclusion observations, not a newly claimed full-log or mathematical audit.
+These finite identities do not establish a uniform arithmetic bound, and the
+contribution remains outside the frozen R57 DOI edition.
+
+## Marked-product and signed four-endpoint working continuation
+
+[Source guide](workbenches/tau-marked-product-four-endpoint/README.md) · [complete mathematical TeX](workbenches/tau-marked-product-four-endpoint/NOTE.tex) · [HTML source](workbenches/tau-marked-product-four-endpoint/index.html) · [provenance and exact changes](workbenches/tau-marked-product-four-endpoint/PUBLIC_PROVENANCE.md)
+
+The aim is to calculate the actual arithmetic/Gamma correction on one common
+source and connect the complete tensor packet to an explicit external family.
+The reason for retaining the source maps is that auxiliary purity alone does
+not control the original theta-source norm. The new note constructs the
+rank-d^k external family and its marked-fibre map, retains the cyclic parameter
+defect, derives the signed integral and its full relation-valued derivatives,
+and proves a finite midpoint error bound. Full mass, Taylor units, repeated-zero
+jets, supported zero versus absence, and the ordinary four endpoint degrees
+are retained.
+
+The positive endpoint-shell operators each have trace 2q, rank q+1, and
+spectrum 1, 2 with multiplicity q-1, 1. The trace is not a rank-2q assertion.
+The sealed source is unchanged; this clarification makes the operator meaning
+explicit in this guide. A uniform arithmetic upper estimate remains unproved.
+No RH/GRH conclusion, faithful Frobenius/metric transfer, or programme-wide
+failure theorem is claimed.
+
+[Fresh finite-check receipts](workbenches/tau-marked-product-four-endpoint/checks/PUBLIC_REPLAY.json) record 14 tests
+passing in both Python modes and the intended negative controls. They are not
+Lean or interval certificates. The [complete source/hash ledger](workbenches/tau-marked-product-four-endpoint/PUBLIC_FILE_CHANGES.json)
+retains the public-privacy changes and discloses exclusion of the unreviewed
+integration patch; both mathematical scripts and the full note remain included.
+
+No existing GitHub Pages site was verified. The HTML link above is a source
+file, not a claimed rendered online reader; no hosting provider or configuration
+was added. This HTML/TeX working edition creates no PDF solely for a preview and
+does not replace the [current 765-page R57 DOI edition](https://doi.org/10.5281/zenodo.22736292),
+its preview, any of its 36 downloads, or its reading links. Its rendered-reader
+link belongs in a later frozen edition only after a real route is verified.

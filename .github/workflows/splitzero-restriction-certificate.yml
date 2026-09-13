@@ -42,6 +42,11 @@ jobs:
           grep 'intentional restriction-certificate negative control' Restriction.negative.log
           if "$py" -O "$checker" --negative >Restriction.negative.optimized.log 2>&1; then exit 1; fi
           grep 'intentional restriction-certificate negative control' Restriction.negative.optimized.log
+          example=../../workbenches/tau-restriction-certificate-formal/certificate_example.py
+          "$py" "$example" >Restriction.example.json
+          "$py" -O "$example" >Restriction.example.optimized.json
+          cmp Restriction.example.json Restriction.example.optimized.json
+          cat Restriction.example.json
       - name: Original scalar and unchanged pinned Lean environment
         run: |
           set -euo pipefail

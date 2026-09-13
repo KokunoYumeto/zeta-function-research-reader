@@ -39,7 +39,7 @@ theorem moment_eq (H U V : Matrix ι ι ℂ) (x : ι → ℝ)
     Matrix.trace_mul_comm (U * (Matrix.diagonal (fun a => (x a : ℂ)))^n) V,
     ← Matrix.mul_assoc, hVU, Matrix.one_mul, Matrix.diagonal_pow,
     Matrix.trace_diagonal]
-  simp [RestrictionLog.powerTrace]
+  simp [RestrictionLog.powerTrace, ← Complex.ofReal_pow]
 
 /-- Prefix sums need only original trace powers, not computed eigenvectors. -/
 theorem prefix_eq (H U V : Matrix ι ι ℂ) (x : ι → ℝ)
@@ -58,7 +58,7 @@ theorem determinant_eq (H U V : Matrix ι ι ℂ) (x : ι → ℝ)
   have hd : Matrix.diagonal (fun a => (1 : ℂ)-(x a : ℂ)) =
       1-Matrix.diagonal (fun a => (x a : ℂ)) := by
     ext a b
-    by_cases h : a=b <;> simp [Matrix.diagonal_apply, Matrix.one_apply, h]
+    by_cases h : a=b <;> simp [h]
   have hc : 1-H = U*(Matrix.diagonal (fun a => (1 : ℂ)-(x a : ℂ)))*V := by
     rw [hd, Matrix.mul_sub, Matrix.mul_one, Matrix.sub_mul, hUV, hH]
   have he : (1-H).det = ∏ a, ((1 : ℂ)-(x a : ℂ)) := by

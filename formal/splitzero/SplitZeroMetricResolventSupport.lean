@@ -28,8 +28,7 @@ theorem generator_defect (M₀ M₁ : Metric B) (C : Matrix j n ℂ)
       (D * M₀.sectionMap C - M₀.sectionMap C * A) =
       -(D * (B * MetricResolvent.primitive M₀ M₁ C)) +
         (B * MetricResolvent.primitive M₀ M₁ C) * A := by
-  rw [MetricResolvent.section_update]
-  simp only [Matrix.mul_sub, Matrix.sub_mul]
+  simp only [MetricResolvent.section_update M₀ M₁ C, Matrix.mul_sub, Matrix.sub_mul]
   abel
 
 variable {L : Type*} [SemilatticeSup L] [OrderBot L]

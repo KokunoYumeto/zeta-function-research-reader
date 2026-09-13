@@ -1,6 +1,8 @@
 # Current R57 Split-Zero source: what was calculated and why
 
-[Read the 765-page paper](workbenches/splitzero-tandem/continuations/20260913-sga-connes/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-sga-connes/README.md) · [Earlier frozen DOI](https://doi.org/10.5281/zenodo.22732414)
+[Read the 765-page paper](https://zenodo.org/api/records/22736292/files/35-splitzero-sga-connes-continuation-765p.pdf/content) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-sga-connes/README.md) · [Published DOI 10.5281/zenodo.22736292](https://doi.org/10.5281/zenodo.22736292) · [All 36 files](calculation_edition_20260913_sga_connes/README.md)
+
+The actual Zenodo preview is the 765-page R57 Split-Zero PDF. Its matching public source ZIP is an offline download. The [historical 715-page DOI](https://doi.org/10.5281/zenodo.22732414) remains unchanged.
 
 The 765-page Split-Zero paper retains the original theta-function source, zero multiplicities, full source mass, the coordinate S=k/2+iu and the least-norm quotient metric. Through R57 it adds the explicit Hochschild comparison kernel, constituent curvature and Laplacian control to the endpoint, period and determinant calculations. A uniform arithmetic upper estimate is not established; no RH conclusion is claimed.
 
@@ -14,17 +16,17 @@ The reason to compute the comparison kernel is to know exactly which generalized
 
 [PR28](workbenches/tau-split-integration/RESEARCH_NOTE.md) independently integrates the original quotient, observation, residue and period-coordinate maps, including both transition defects. Lean checks cover the stated finite map identities; exact fixtures and the written arithmetic application retain their documented scopes. All eight actual merge-push workflow statuses were successful at the recorded observation; no new full postmerge log review is claimed here.
 
-This fixed PDF/source cut ends at R57. Later R58–R62/FC/HG/HD work is not included. The following earlier guide is retained as a historical description of the 715-page DOI and preceding work, not relabelled as a newly published edition.
+The frozen PDF and public source ZIP end at R57. Later R58-R62/FC/HG/HD work and the 821-page continuation are excluded. The separately indexed PR26, PR27 and PR28 working sources retain their own proof and CI scopes; this DOI does not certify those workflows or include later pull requests. The following earlier guide describes the historical 715-page DOI and preceding work; it is not the current edition.
 
 ## Earlier edition and research guide (historical)
 
-# Latest complete reader: Split-Zero cohomology, 715 pages
+# Historical R52 reader: Split-Zero cohomology, 715 pages
 
 [Read the paper](https://zenodo.org/api/records/22732414/files/33-splitzero-period-deligne-continuation-715p.pdf/content)
 · [Edit or rebuild its source](workbenches/splitzero-tandem/continuations/20260913-deligne/README.md)
 · [Exact publication provenance](workbenches/splitzero-tandem/continuations/20260913-deligne/PUBLIC_DERIVATION.md)
 
-[Published DOI 10.5281/zenodo.22732414](https://doi.org/10.5281/zenodo.22732414) · [All 34 files](calculation_edition_20260913_deligne/README.md). The 715-page PDF is the actual Zenodo preview; its matching public source archive is an offline download.
+[Published DOI 10.5281/zenodo.22732414](https://doi.org/10.5281/zenodo.22732414) · [All 34 files](calculation_edition_20260913_deligne/README.md). The 715-page PDF remains the preview of that historical DOI record; the current R57 record fronts the 765-page PDF. The historical matching source archive remains an offline download.
 
 The aim is to relate the zeros of the Riemann xi function to the metric size of
 their actual arithmetic quotient classes. The source is

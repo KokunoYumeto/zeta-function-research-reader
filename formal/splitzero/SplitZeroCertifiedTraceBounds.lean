@@ -65,7 +65,7 @@ theorem spectral_interval (x : ι → ℝ)
       (RestrictionLog.prefixTrace x (2*p)-RestrictionLog.prefixTrace x p)/(1-hi p) := by
     simpa only [Finset.sum_add_distrib, ← Finset.sum_div, Finset.sum_sub_distrib,
       RestrictionLog.prefixTrace, RestrictionLog.logVolume] using hh
-  rw [prefix_block, prefix_block, block_split, add_sub_cancel_left] at hu
+  simp only [prefix_block, block_split, add_sub_cancel_left] at hu
   have hpre : block (RestrictionLog.powerTrace x) 0 p ≤ block hi 0 p :=
     block_mono _ _ 0 p (fun n hn hn' => hhi n (by omega) (by omega))
   have htail : block (RestrictionLog.powerTrace x) p p ≤ block hi p p :=

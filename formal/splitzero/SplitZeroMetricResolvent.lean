@@ -27,7 +27,7 @@ def primitive (M₀ M₁ : Metric B) (C : Matrix j n ℂ) : Matrix m n ℂ :=
 
 theorem inverse_left (M : Metric B) :
     M.relInv * (B.conjTranspose * M.form * B) = 1 :=
-  Matrix.mul_eq_one_comm.mp M.inverse_right
+  mul_eq_one_comm.mp M.inverse_right
 
 theorem inverse_hermitian (M : Metric B) : M.relInv.conjTranspose = M.relInv := by
   have hQ : (B.conjTranspose * M.form * B).conjTranspose =
@@ -68,7 +68,7 @@ theorem section_update (M₀ M₁ : Metric B) (C : Matrix j n ℂ) :
 
 theorem section_difference (M₀ M₁ : Metric B) (C : Matrix j n ℂ) :
     M₁.sectionMap C - M₀.sectionMap C = -(B * primitive M₀ M₁ C) := by
-  rw [section_update]
+  rw [section_update M₀ M₁ C]
   abel
 
 /-- Solve the actual perturbed normal equation on the relation columns. -/
@@ -107,9 +107,15 @@ theorem quotient_resolvent (M₀ M₁ : Metric B) (C : Matrix j n ℂ) :
   have hb := boundary_loss M₀ M₁ C
   unfold gram at hb
   rw [hb] at h
-  unfold gram
-  abel_nf at h ⊢
-  exact h
+  change M₁.quotientGram C - M₀.quotientGram C =
+    gram (M₁.form-M₀.form) (M₀.sectionMap C) -
+      (cross M₀ M₁ C).conjTranspose * M₁.relInv * cross M₀ M₁ C at h
+  calc
+    _ = M₀.quotientGram C + (M₁.quotientGram C - M₀.quotientGram C) := by abel
+    _ = M₀.quotientGram C +
+        (gram (M₁.form-M₀.form) (M₀.sectionMap C) -
+          (cross M₀ M₁ C).conjTranspose * M₁.relInv * cross M₀ M₁ C) := by rw [h]
+    _ = _ := by abel
 
 theorem loss_posSemidef [Fintype n] (M₀ M₁ : Metric B) (C : Matrix j n ℂ)
     (hM : M₁.form.PosSemidef) :
@@ -125,7 +131,7 @@ theorem section_unchanged_iff (M₀ M₁ : Metric B) (C : Matrix j n ℂ) :
   · intro h
     rw [cross_normal, ← h, M₁.orthogonal C]
   · intro h
-    rw [section_update]
+    rw [section_update M₀ M₁ C]
     simp only [primitive, h, Matrix.mul_zero, sub_zero]
 
 end SplitZero.MetricResolvent

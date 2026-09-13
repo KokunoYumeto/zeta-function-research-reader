@@ -4,7 +4,6 @@ from __future__ import annotations
 from fractions import Fraction as F
 import argparse
 import json
-import math
 import sys
 import unittest
 import sympy as s
@@ -110,7 +109,16 @@ class Tests(unittest.TestCase):
         B,C,Ms,ds=data(4)
         H0,Z0,R0,G0=ds[0];H1,Z1,R1,G1=ds[1]
         need(not equal(G0*G1,G1*G0),'fixture must not commute')
-        need(any(v.has(s.I) for v in Ms[0]),'original complex S coordinate')
+        # Even densities have real Grams despite the complex S coordinate.
+        # This separate strictly positive asymmetric density has nonreal entries.
+        complexM=gram(2,1+(X+1)**2)
+        need(any(v.has(s.I) for v in complexM),'nonreal original-coordinate Gram')
+        Bc,Cc=presentation(2,s.expand((S-HALF)**2+1))
+        Mc=gram(2,1+(X-2)**2)
+        h0,z0,r0,g0=canonical(complexM,Bc,Cc)
+        h1,z1,r1,g1=canonical(Mc,Bc,Cc)
+        cross=clean(Bc.H*(Mc-complexM)*r0)
+        need(equal(g1,g0+r0.H*(Mc-complexM)*r0-cross.H*h1*cross),'nonreal resolvent')
     def test_primitive_cocycle(self):
         B,C,Ms,ds=data()
         def prim(i,j):return clean(ds[j][0]*B.H*(Ms[j]-Ms[i])*ds[i][2])

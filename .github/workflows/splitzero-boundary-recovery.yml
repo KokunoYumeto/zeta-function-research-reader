@@ -43,8 +43,12 @@ jobs:
           test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
           lake exe cache get
           lake build
+      - name: Construct and strictly check the retained boundary kernel
+        run: python3 ../../workbenches/tau-mixed-boundary-formal/run_boundary.py
       - name: Strict recovered closure and all selected audits
         run: python3 ../../workbenches/tau-mixed-metric-integration/run_mixed.py
+      - name: Joint import of boundary, metric, synchronization and conormal maps
+        run: python3 ../../workbenches/tau-mixed-boundary-formal/run_boundary.py --joint
       - name: Original derived audit and false-zero control
         run: |
           set -euo pipefail
@@ -61,6 +65,7 @@ jobs:
           git rev-parse HEAD
           lake env lean --version
           cat .mixed-metric-logs/receipt.json
+          cat .boundary-socle-logs/joint.json
   finite:
     runs-on: ubuntu-latest
     timeout-minutes: 20

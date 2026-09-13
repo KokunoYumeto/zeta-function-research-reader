@@ -122,6 +122,7 @@ theorem gram_finite_sum (M : Matrix j j ℂ) (s : Finset ι)
     MetricVariation.gram M (∑ a ∈ s, F a) =
       ∑ a ∈ s, ∑ b ∈ s, (F a).conjTranspose * M * F b := by
   simp only [MetricVariation.gram, Matrix.conjTranspose_sum, Matrix.sum_mul, Matrix.mul_sum]
+  rw [Finset.sum_comm]
 
 variable {L : Type*} [SemilatticeSup L] [OrderBot L] {D : LinearDiagram ℂ L}
 
@@ -141,7 +142,7 @@ theorem gathered_eq_sum (s : Finset ι) (i : ι → L) (J : L) (h : ∀ a, i a �
     (coord : D.V J ≃ₗ[ℂ] (j → ℂ)) (F : ∀ a, n → D.V (i a)) :
     gatheredColumns s i J h coord F = ∑ a ∈ s, transportedColumns i J h coord F a := by
   ext row col
-  simp [gatheredColumns, transportedColumns]
+  simp only [gatheredColumns, map_sum, Matrix.sum_apply, Finset.sum_apply, transportedColumns]
 
 /-- Formula for the actual mixed-source observation, not just independent fibre Grams. -/
 theorem gathered_gram (M : Matrix j j ℂ) (s : Finset ι) (i : ι → L) (J : L)

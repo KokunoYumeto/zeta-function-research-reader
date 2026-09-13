@@ -23,7 +23,7 @@ theorem canonical_frame {m : Type*} [Fintype m] [DecidableEq m]
       M.form * projector M.form (M.sectionMap C) K ∧
     Matrix.trace (projector M.form (M.sectionMap C) K) = (Fintype.card n : ℂ) := by
   have hG : (M.quotientGram C).conjTranspose = M.quotientGram C := by
-    simp only [Metric.quotientGram, gram, Matrix.conjTranspose_mul,
+    simp only [Metric.quotientGram, MetricVariation.gram, Matrix.conjTranspose_mul,
       Matrix.conjTranspose_conjTranspose, M.hermitian, Matrix.mul_assoc]
   have hkprod : K.conjTranspose * M.quotientGram C = 1 := by
     simpa only [Matrix.conjTranspose_mul, hG, Matrix.conjTranspose_one] using

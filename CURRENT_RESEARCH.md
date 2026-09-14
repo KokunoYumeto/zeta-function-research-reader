@@ -1,5 +1,60 @@
 # Split-Zero cohomology: Gamma growth and arithmetic return
 
+[Read the 37-page Gamma-growth paper](https://zenodo.org/api/records/22755297/files/49-gamma-growth-arithmetic-return-reader.pdf/content) · [Published DOI 10.5281/zenodo.22755297](https://doi.org/10.5281/zenodo.22755297).
+
+- [37-page gamma growth arithmetic return](https://zenodo.org/api/records/22755297/files/49-gamma-growth-arithmetic-return-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth) · [offline source ZIP](https://zenodo.org/api/records/22755297/files/50-gamma-growth-public-sources.zip/content).
+
+The complete 37-page Gamma-growth paper retains the earlier LET/PHT/HCT proofs and the new WGP/RWB/EIQ/GEL/WGR proofs. It proves finite bounds for the original Gamma comparison W, its positive leading equilibrium integral and its signed arithmetic return through the original maps.
+
+Here k=4l+1 is the tensor degree, m is the primary multiplicity,
+e=1+k(m-1), and q=e(k+1)^2=2n is the finite cyclic quotient dimension.
+W_k is the original logarithmic Gamma determinant/product comparison.
+Its finite bounds and leading growth are now proved:
+
+    lq/64 <= W_k <= 6lq,
+    W_k/(lq) -> C_Gamma > 0,
+    C_Gamma = 2 integral log(x) d rho_(2,pi)(x) - 4(2 log 2 - 1).
+
+The paper defines the exact equilibrium density rho_(2,pi), its unit mass,
+support and global minimizer. It retains the source determinant integral,
+the t=q^2 x coordinate map, every Jacobian and original arithmetic receiver.
+In the original coordinates its signed return satisfies
+
+    Delta_k^Gamma = -W_k + e_0 - e_q - e_(q+1) + delta_k^sigma,
+    Delta_k^Gamma/(kq) -> -C_Gamma/4.
+
+The leading W calculation is completed. The next calculations are the original baseline B_k^0 at its actual four degrees and the finite q-scale Gamma Hankel correction. The proved leading remainder is o(lq), not an o(q) Hankel remainder; no completed endpoint conclusion is asserted.
+
+The original product also has a sharper signed expansion through the constant
+scale. Its surviving terms and the original arithmetic allowances remain in
+the next baseline and finite-q calculation; no leading W task is being repeated.
+
+## Earlier complete sources
+
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [earlier 48-download edition](https://doi.org/10.5281/zenodo.22754516) remains frozen.
+Its 15-, 33- and 46-page papers and the 1929-page compendium remain unchanged.
+This edition adds PDF49 and ZIP50; PDF49 is the actual browser preview.
+ZIPs are complete offline sources, not readable previews.
+
+[All 50 downloads and source identities](calculation_edition_20260914_gamma_growth/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from before this DOI was issued.
+References to “current”, “front” or exclusion from the frozen DOI describe
+the explicitly linked earlier editions, including DOI 22754516, not the
+new 50-download edition above. Older statements that leading W remains open
+are historical: that calculation is proved in the 37-page paper. The original
+baseline and finite q-scale remainder are the remaining calculations.
+All mathematical bodies, source links, paper identities and proof/CI scopes
+remain unchanged.
+
+# Split-Zero cohomology: Gamma growth and arithmetic return
+
 [Read the new 37-page Gamma growth paper](workbenches/splitzero-tandem/continuations/20260914-gamma-growth/Gamma_Growth_and_Arithmetic_Return.pdf) · [Complete editable sources](workbenches/splitzero-tandem/continuations/20260914-gamma-growth/README.md).
 
 The leading Gamma calculation is now proved. The paper preserves the original

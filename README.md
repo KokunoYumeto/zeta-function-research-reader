@@ -1,5 +1,24 @@
 # Split-Zero arithmetic cohomology
 
+## New working supplement: Joint Gamma Schur Return
+
+[Read the complete 46-page paper](workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur/Joint_Gamma_Schur_Continuation.pdf) · [Editable sources and definitions](workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur/README.md).
+
+This supplement compares the original theta-function source and its zero-jet
+quotient with an explicit Gamma measure. The Gamma multiplication map, the full
+mixed Schur block and its relation-valued minimum-section correction are retained.
+The signed four-endpoint calculation returns the comparison to the original
+arithmetic metric, including both asymmetric error allowances. Exact rational
+finite-input certificates and the evaluated free determinant contribution are
+included; the high relation-Gram and arithmetic growing-family estimate remains
+open. PR31 material is a source snapshot, not a merge or new Lean-check claim.
+
+This working supplement is **not included in the frozen [DOI 10.5281/zenodo.22753338](https://doi.org/10.5281/zenodo.22753338)**.
+That published 1,929-page edition, its PDF preview and all 42 downloads remain
+unchanged. The source guide states the precise maps, hypotheses, tests and
+remaining calculation; this sharing step performs no new mathematics or build.
+
+
 Start with [the accepted 1929-page public Split-Zero reader](https://zenodo.org/api/records/22753338/files/41-splitzero-cumulative-graph-public-reader.pdf/content)
 and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/README.md).
 

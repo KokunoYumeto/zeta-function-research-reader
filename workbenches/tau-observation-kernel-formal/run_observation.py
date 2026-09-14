@@ -13,8 +13,9 @@ ROOT = Path(__file__).resolve().parents[2]
 FORMAL = ROOT / 'formal/splitzero'
 LOGS = FORMAL / '.observation-kernel-logs'
 MODULES = ['SplitZeroObservationMetric', 'SplitZeroObservedIterates',
-           'SplitZeroObservedIteratesSupport', 'SplitZeroCanonicalSignedResolvent',
-           'SplitZeroBoundarySocleSupport', 'SplitZeroConormalTower']
+           'SplitZeroObservedIteratesSupport', 'SplitZeroResidueObservation',
+           'SplitZeroCanonicalSignedResolvent', 'SplitZeroBoundarySocleSupport',
+           'SplitZeroConormalTower']
 TARGETS = {
  'SplitZero.ObservationMetric.Data': ['sectionMap', 'section_observation',
    'section_adjoint', 'section_gram', 'metric_section', 'residual',
@@ -29,6 +30,9 @@ TARGETS = {
    'forgetIterates', 'action_square', 'observation_square', 'forget_square',
    'transient_kernel_retained', 'observed_zero_iff', 'observed_output_not_absent',
    'present_empty_face'],
+ 'SplitZero.ResidueObservation': ['rootAction', 'root_pow_apply', 'observation',
+   'rowCoefficient', 'row_formula', 'annihilator_kills_iterate', 'finite_kernel_iff',
+   'invisible_kernel_iff', 'original_finite_determination', 'injective_of_bezout'],
  'SplitZero.RestrictedBoundary': ['original_square', 'range_iff_supported_zero', 'proper_residual'],
  'SplitZero.SignedTraceEnclosure': ['weighted_schwarz', 'signed_interval'],
 }
@@ -78,9 +82,15 @@ def main() -> None:
         visit(name)
     output = FORMAL / '.lake/build/lib/lean'
     output.mkdir(parents=True, exist_ok=True)
+    failures = []
     for name in order:
-        run(['lake', 'env', 'lean', '--trust=0', '-DwarningAsError=true',
-             '-o', str(output / (name + '.olean')), name + '.lean'], name)
+        try:
+            run(['lake', 'env', 'lean', '--trust=0', '-DwarningAsError=true',
+                 '-o', str(output / (name + '.olean')), name + '.lean'], name)
+        except RuntimeError as exc:
+            failures.append(str(exc))
+    if failures:
+        raise RuntimeError('; '.join(failures))
     targets = [ns + '.' + t for ns, ts in TARGETS.items() for t in ts]
     if len(targets) != len(set(targets)):
         raise ValueError('Duplicate audit target')
@@ -101,9 +111,9 @@ def main() -> None:
       'strict_modules': order, 'selected_targets': len(targets), 'axioms': axioms,
       'sha256': {m: hashlib.sha256((FORMAL / (m + '.lean')).read_bytes()).hexdigest() for m in order},
       'scope': 'Constructed canonical observation section, full corrected kernel Gram, '
-               'finite observed-iterate kernel, largest invariant submodule and original '
-               'support quotient maps. No arithmetic periods, moment quadrature or '
-               'tensor-uniform spectral estimate.'}
+               'finite observed-iterate kernel, largest invariant submodule, residue '
+               'annihilator detection and original support quotient maps. No arithmetic '
+               'periods, moment quadrature or tensor-uniform spectral estimate.'}
     (LOGS / 'receipt.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
     print(json.dumps(receipt, indent=2, sort_keys=True), flush=True)
 

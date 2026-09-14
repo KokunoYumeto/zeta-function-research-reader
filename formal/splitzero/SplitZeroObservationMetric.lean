@@ -1,5 +1,5 @@
 import SplitZeroRestrictionSource
-import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.Analysis.Matrix.Order
 
 /-!
 # OPR1--4: the original observation section and its retained kernel
@@ -12,6 +12,7 @@ columns keep every mixed Gram entry; the boundary image may be empty.
 noncomputable section
 namespace SplitZero.ObservationMetric
 open Matrix
+open scoped ComplexOrder
 
 variable {e b : Type*} [Fintype e] [DecidableEq e]
   [Fintype b] [DecidableEq b]
@@ -79,10 +80,11 @@ theorem residual_gram {t : Type*} (X : Matrix e t ℂ) :
     rw [Matrix.mul_assoc, ← Matrix.mul_assoc O.G, O.metric_section]
     simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc]
   have hTX : T.conjTranspose * O.G * X = Z.conjTranspose * O.Q * Z := by
-    dsimp [T]
-    rw [Matrix.conjTranspose_mul, Matrix.mul_assoc,
-      ← Matrix.mul_assoc O.sectionMap.conjTranspose, O.section_adjoint]
-    simp only [Z, Matrix.mul_assoc]
+    calc
+      _ = Z.conjTranspose * (O.sectionMap.conjTranspose * O.G) * X := by
+        simp only [T, Matrix.conjTranspose_mul, Matrix.mul_assoc]
+      _ = Z.conjTranspose * (O.Q * O.obs) * X := by rw [O.section_adjoint]
+      _ = _ := by simp only [Z, Matrix.mul_assoc]
   have hTT : T.conjTranspose * O.G * T = Z.conjTranspose * O.Q * Z := by
     dsimp [T]
     rw [Matrix.conjTranspose_mul]
@@ -97,9 +99,9 @@ theorem residual_gram {t : Type*} (X : Matrix e t ℂ) :
           (T.conjTranspose * O.G * X - T.conjTranspose * O.G * T) := by
         simp only [Matrix.conjTranspose_sub, Matrix.sub_mul, Matrix.mul_sub]
         abel
-    _ = _ := by rw [hXT, hTX, hTT]; rfl
+    _ = _ := by rw [hXT, hTX, hTT]; dsimp [Z]; abel
 
-theorem residual_difference_positive {t : Type*} (X : Matrix e t ℂ) :
+theorem residual_difference_positive {t : Type*} [Fintype t] (X : Matrix e t ℂ) :
     (X.conjTranspose * O.G * X -
       (O.obs * X).conjTranspose * O.Q * (O.obs * X)).PosSemidef := by
   rw [← O.residual_gram X]
@@ -113,11 +115,13 @@ theorem fixed_section_correction {r t : Type*} [Fintype r]
   have hkS : I * kap * O.sectionMap = O.sectionMap - S := by
     rw [hsplit, Matrix.sub_mul, Matrix.one_mul, Matrix.mul_assoc,
       O.section_observation, Matrix.mul_one]
-  rw [Matrix.mul_sub, ← Matrix.mul_assoc I kap X,
-    ← Matrix.mul_assoc I (kap * O.sectionMap), ← Matrix.mul_assoc I kap,
-    hsplit, hkS]
-  simp only [Matrix.sub_mul, Matrix.one_mul, Matrix.mul_assoc, residual]
-  abel
+  calc
+    _ = (1 - S * O.obs) * X - (O.sectionMap - S) * (O.obs * X) := by
+      simp only [Matrix.sub_mul, Matrix.one_mul, Matrix.mul_assoc, residual]
+      abel
+    _ = (I * kap) * X - (I * kap * O.sectionMap) * (O.obs * X) := by
+      rw [hkS, hsplit]
+    _ = _ := by simp only [Matrix.mul_sub, Matrix.mul_assoc]
 
 /-- A further corrected kernel basis has the original restricted Gram. -/
 theorem corrected_kernel_gram {r t : Type*} [Fintype r]
@@ -139,6 +143,6 @@ theorem ordered_factors (t xi : ℝ) (hxi : 0 ≤ xi) (hres : xi ≤ t) :
   refine ⟨hp, ?_, ?_⟩
   · exact le_add_of_nonneg_right (div_nonneg (sub_nonneg.mpr hres) hp.le)
   · field_simp
-    <;> ring
+    ring
 
 end SplitZero.ObservationMetric

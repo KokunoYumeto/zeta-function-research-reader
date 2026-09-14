@@ -1,0 +1,474 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{longtable,booktabs}
+\usepackage[unicode,hidelinks]{hyperref}
+\providecommand{\C}{\mathbb C}
+\providecommand{\R}{\mathbb R}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\allowdisplaybreaks
+\emergencystretch=3em
+\makeatletter
+\renewcommand\@pnumwidth{2.5em}
+\renewcommand\@tocrmarg{3.5em}
+\makeatother
+\title{The Original Kernel Volume Bound}
+\author{Split-Zero research programme}
+\date{14 September 2026}
+\begin{document}
+\maketitle
+\paragraph{Portable source edition.}
+Every TeX input used by this entry is expanded below. Historical file
+and directory names in the preserved text are source locators; the
+exact origin paths and hashes are recorded in \texttt{11\_SOURCE\_MAP.json}.
+The other numbered proof files in this flat handoff supply the
+accompanying complete calculations.\par
+
+% Complete finite estimate on the original m=1 packet and its actual kernel.
+% Original source and quotient providers: IFB1--11 and GMB1--16.
+\section{A finite bound for the original kernel volume from its actual dimension}
+\label{sec:OKV}
+
+\paragraph{The original packet, sources, and exact coordinate map.}
+Throughout this calculation the original multiplicity is $m=1$ and
+\[
+ k=4l+1,\quad l\ge1,\quad q=(k+1)^2\ge36,\quad c=k/2,
+ \qquad 0<\delta<1/2,\quad\gamma>2.
+ \tag{OKV1}
+\]
+Retain every original root and its two coordinates:
+\[
+\begin{split}
+ \chi(S)&=\prod_{a,b=0}^k
+  [S-c-(2a-k)\delta-i(2b-k)\gamma],\\
+ \omega_{ab}&=(2b-k)\gamma-i(2a-k)\delta,\\
+ P(y)&=i^{-q}\chi(c+iy)=\prod_{a,b=0}^k(y-\omega_{ab}).
+\end{split}
+ \tag{OKV2}
+\]
+The identity follows factor by factor from
+$iy-(2a-k)\delta-i(2b-k)\gamma=i(y-\omega_{ab})$;
+it retains the full phase $i^q$. The algebra map
+\[
+ \Phi:\mathbb C[y]/(P)\longrightarrow E_\chi:=\mathbb C[S]/(\chi),
+ \qquad [r(y)]\longmapsto[r((S-c)/i)]
+ \tag{OKV3}
+\]
+is well defined because $P((S-c)/i)=i^{-q}\chi(S)$.
+Its inverse is $[f(S)]\mapsto[f(c+iy)]$, as verified by substitution.
+Both maps preserve degrees and are inverse on each polynomial ring
+before taking the quotients. In particular division by $P$ is the
+original remainder operation through this exact coordinate map.
+
+Use only the two original source orders $s\in\{1,k\}$ and write
+\[
+ b_s=s/2,\qquad M_s=(2\pi)^{s/2},\qquad
+ dm_{0,s}(y)=\frac{M_s2^{b_s-2}}{\pi\Gamma(b_s)}
+     \left|\Gamma\left(\frac{b_s}{2}+\frac{iy}{2}\right)\right|^2dy.
+ \tag{OKV4}
+\]
+The exact source calculation IFB2--5 supplies mass $M_s$, the transform
+$\int e^{ty}dm_{0,s}=M_s(\cos t)^{-b_s}$ for $|t|<\pi/2$, and
+the original monic orthogonal polynomials and norms
+\[
+\begin{gathered}
+ p_0=1,\quad p_1=y,\qquad
+ p_{d+1}=yp_d-d(b_s+d-1)p_{d-1},\\
+ h_d^{(s)}=\int|p_d|^2dm_{0,s}=M_s d!(b_s)_d,\qquad
+ \varphi_d(y)=p_d(y)/\sqrt{h_d^{(s)}},\qquad
+ u_d(S)=\varphi_d((S-c)/i).
+\end{gathered}
+ \tag{OKV5}
+\]
+All these integrals are on the same real line, with the original
+source mass. For example the stated orthogonality and norms also
+follow directly from its transform and the exact generating function
+\[
+ \sum_{d\ge0}p_d(y)\frac{z^d}{d!}
+       =(1+z^2)^{-b_s/2}e^{y\arctan z}.
+\]
+Indeed the source integral of the product at sufficiently small real
+$z,w$ is $M_s(1-zw)^{-b_s}$. The cosine addition identity and the
+displayed transform give this equality; the source exponential bound
+justifies each finite coefficient derivative under the integral.
+The coefficients of $z^dw^e$ then give zero for $d\ne e$ and
+$M_s d!(b_s)_d$ for $d=e$. The initial coefficients are $1,y$,
+and differentiating the generating function gives precisely the
+recurrence in OKV5. Thus the source norms used below retain their
+original constants and all finite-degree factors.
+
+Let $C_s:\mathbb C^q\to E_\chi$ have columns $[u_0],\ldots,[u_{q-1}]$
+in the original frame $(1,S,\ldots,S^{q-1})$. Its exact leading
+coefficients give
+\[
+ \det C_s=i^{-q(q-1)/2}\prod_{d=0}^{q-1}(h_d^{(s)})^{-1/2}\ne0.
+\]
+Retain the original GMB vectors and matrices, including the last row:
+\[
+ v_j=C_s^{-1}[u_{q+j}],\qquad
+ K_j=I_q+\sum_{a=0}^{j-1}v_av_a^*,\qquad 0\le j\le q+1.
+ \tag{OKV6}
+\]
+The vector $v_q$ has original polynomial degree $2q$.
+
+\paragraph{Exact remainder coefficients in all original roots.}
+Index the full list in OKV2 by $\omega_1,\ldots,\omega_q$, with
+each pair $(a,b)$ occurring exactly once. Define the elementary and
+complete homogeneous polynomials by their finite sums
+\[
+ e_h(\omega)=\sum_{1\le a_1<\cdots<a_h\le q}
+                      \omega_{a_1}\cdots\omega_{a_h},\qquad
+ h_t(\omega)=\sum_{n_1+\cdots+n_q=t}\prod_{a=1}^q\omega_a^{n_a},
+ \tag{OKV7}
+\]
+with $e_0=h_0=1$, $e_h=0$ outside $0\le h\le q$, and
+nonnegative integer $n_a$ in the second sum. The notation $h_t(\omega)$
+in this paragraph is a polynomial in the roots; the original squared
+norm continues to be $h_d^{(s)}$ of OKV5. Multiplication of formal
+power series gives the exact identity
+\[
+ \left(\sum_{h=0}^q(-1)^he_h(\omega)z^h\right)
+ \left(\sum_{t\ge0}h_t(\omega)z^t\right)=1,
+\]
+because each geometric series $(1-\omega_a z)^{-1}$ multiplies its
+own factor $1-\omega_a z$. Consequently, for $D=q+j$ with $0\le j\le q$,
+the quotient and remainder of $y^D$ upon division by $P$ are exactly
+\[
+\begin{split}
+ Q_D(y)&=\sum_{t=0}^jh_t(\omega)y^{j-t},\qquad
+ \operatorname{rem}_P(y^D)=y^D-P(y)Q_D(y),\\
+ [y^a]\operatorname{rem}_P(y^D)
+   &=-\sum_{t=0}^j h_t(\omega)(-1)^{D-t-a}e_{D-t-a}(\omega),
+       \qquad 0\le a<q.
+\end{split}
+ \tag{OKV8}
+\]
+To verify the quotient assertion, the power-series identity makes
+the coefficients of $y^D,y^{D-1},\ldots,y^q$ in $P Q_D$ equal
+to those of $y^D$. The remaining coefficients are exactly the last
+line of OKV8. Their degree is less than $q$, so uniqueness of monic
+polynomial division proves both assertions. For $0\le D<q$ the
+remainder is $y^D$ itself.
+
+The actual maximal root modulus is
+\[
+ R=k\sqrt{\delta^2+\gamma^2},\qquad
+ D_*:=\max\{3,\sqrt{\delta^2+\gamma^2}\},\qquad T_*:=D_*q.
+ \tag{OKV9}
+\]
+Every $|\omega_{ab}|\le R$, and equality holds at each corner,
+so this expression for $R$ is exact. In particular $R\le T_*$.
+Counting the summands of OKV7 proves
+\[
+ |e_h(\omega)|\le\binom qh R^h,\qquad
+ |h_t(\omega)|\le\binom{q+t-1}{t}R^t.
+\]
+The second count follows by placing $q-1$ separators among $t+q-1$
+positions to encode $(n_1,\ldots,n_q)$. For fixed $j$, the binomial
+$\binom{q+t-1}{t}$ is increasing in $0\le t\le j$, because its
+successive ratio is $(q+t)/(t+1)\ge1$. In each nonzero summand
+of OKV8 the total root exponent is $(D-t-a)+t=D-a$.
+As $t$ varies the indices $D-t-a$ are distinct, so the sum of
+their $\binom q{D-t-a}$ is at most $2^q$. It follows that
+\[
+ \left|[y^a]\operatorname{rem}_P(y^{q+j})\right|
+ \le2^q\binom{q+j-1}{j}R^{q+j-a}
+ \le2^{3q-1}R^{q+j-a},\qquad 0\le a<q,\quad0\le j\le q.
+ \tag{OKV10}
+\]
+For the last inequality use
+$\binom{q+j-1}{j}\le2^{q+j-1}\le2^{2q-1}$, by the binomial
+expansion of $(1+1)^{q+j-1}$. These estimates retain the exact
+coefficient formula OKV8, including every signed cancellation.
+
+\paragraph{Original Gamma norms of the low monomials.}
+The same recurrence and norms in OKV5 give, without changing the measure,
+\[
+ y\varphi_a=\sqrt{(a+1)(b_s+a)}\,\varphi_{a+1}
+          +\sqrt{a(b_s+a-1)}\,\varphi_{a-1},
+ \quad \varphi_{-1}=0.
+ \tag{OKV11}
+\]
+For a polynomial of degree at most $q-2$, its orthonormal coefficient
+vector is therefore sent by multiplication by $y$ to the sum of
+one upward and one downward weighted shift, with output degree at most
+$q-1$. Each shift has operator norm at most
+$\sqrt{q(b_s+q)}$: the squared norm of its coefficient vector is
+bounded by the largest squared weight times the input squared norm.
+Since $s\le k<q$ gives $b_s\le q/2$, the triangle inequality yields
+\[
+ \|yf\|_{L^2(m_{0,s})}
+       \le2\sqrt{q(b_s+q)}\,\|f\|_{L^2(m_{0,s})}
+       \le3q\,\|f\|_{L^2(m_{0,s})}
+       \le T_*\|f\|_{L^2(m_{0,s})}.
+\]
+Here $2\sqrt{3/2}=\sqrt6<3$. Starting from
+$\|1\|_{L^2(m_{0,s})}=\sqrt{M_s}$ and applying this inequality
+to $1,y,\ldots,y^{a-1}$ proves
+\[
+ \boxed{\|y^a\|_{L^2(m_{0,s})}\le\sqrt{M_s}\,T_*^a,
+                      \qquad0\le a<q.}
+ \tag{OKV12}
+\]
+All intermediate polynomial degrees satisfy the stated operator domain.
+
+For any polynomial $f=\sum_a f_a y^a$, write
+$\mathfrak c_{T_*}(f)=\sum_a|f_a|T_*^a$. This is a finite
+coefficient sum, not a change of source or quotient norm.
+The exact original recurrence gives
+\[
+ \mathfrak c_{T_*}(p_{d+1})
+ \le T_*\mathfrak c_{T_*}(p_d)
+       +d(b_s+d-1)\mathfrak c_{T_*}(p_{d-1}).
+\]
+For $1\le d<2q$ its actual positive coefficient is bounded by
+$d(b_s+d-1)\le2q(b_s+2q)\le5q^2\le T_*^2$.
+The initial values are $1,T_*$. Induction now proves
+\[
+ \boxed{\mathfrak c_{T_*}(p_d)\le(2T_*)^d,
+                            \qquad0\le d\le2q.}
+ \tag{OKV13}
+\]
+Indeed substituting the two preceding bounds in the recurrence gives
+$T_*(2T_*)^d+T_*^2(2T_*)^{d-1}
+ =\tfrac34(2T_*)^{d+1}\le(2T_*)^{d+1}$.
+
+Combining all $q$ coefficients of OKV10 with OKV12, by the triangle
+inequality in the original $L^2$ space, gives
+\[
+ \|\operatorname{rem}_P(y^D)\|_{L^2(m_{0,s})}
+           \le\sqrt{M_s}\,q2^{3q}T_*^D\quad(0\le D\le2q).
+\]
+For $D\ge q$, each summand is bounded by
+$\sqrt{M_s}2^{3q-1}R^{D-a}T_*^a
+ \le\sqrt{M_s}2^{3q-1}T_*^D$ and there are $q$ summands.
+For $D<q$, the assertion follows from OKV12 and $q2^{3q}\ge1$.
+Linearity of the exact remainder map, followed by OKV13, proves
+\[
+ \boxed{\|\operatorname{rem}_P(p_d)\|_{L^2(m_{0,s})}
+         \le\sqrt{M_s}\,q2^{3q}(2T_*)^d,
+                           \qquad0\le d\le2q.}
+ \tag{OKV14}
+\]
+
+\paragraph{The original remainder vectors and the full matrix norm.}
+The polynomial $\operatorname{rem}_P(p_d)$ has degree less than $q$.
+Its expansion in the orthonormal basis
+$\varphi_0,\ldots,\varphi_{q-1}$ has squared coefficient norm equal
+to its squared original $L^2(m_{0,s})$ norm, by expanding the finite
+inner product and using OKV5. The exact quotient map OKV3 and
+definition OKV6 therefore give, for $d=q+j$, $0\le j\le q$,
+\[
+ \|v_j\|_2^2
+   =\frac{\|\operatorname{rem}_P(p_{q+j})\|_{L^2(m_{0,s})}^2}
+                 {M_s(q+j)!(b_s)_{q+j}}
+   \le\frac{q^22^{6q}(2T_*)^{2(q+j)}}{(q+j)!(b_s)_{q+j}}.
+ \tag{OKV15}
+\]
+This equality is the actual map of the original quotient coordinates
+to the remainder polynomial. The full source factor $M_s$ occurs in
+both the numerator bound and its original norm denominator before
+the displayed cancellation. No estimate on the conditioning of
+$C_s$ or a companion matrix is used.
+
+Since $b_s\ge1/2$, for each integer $d\ge1$ the first factor of
+$(b_s)_d$ is at least $1/2$ and every subsequent factor is at least
+one. Thus $d!(b_s)_d\ge1/2$. Also $T_*\ge1$ and $q+j\le2q$.
+Consequently
+\[
+ \|v_j\|_2^2\le2q^22^{6q}(2D_*q)^{4q},\qquad0\le j\le q,
+\]
+and the original complete matrix obeys
+\[
+ \boxed{1\le\|K_{q+1}\|_2\le
+   1+2(q+1)q^22^{6q}(2D_*q)^{4q}.}
+ \tag{OKV16}
+\]
+To check its norm bound, $\|v_jv_j^*\|_2=\|v_j\|_2^2$
+follows directly from Cauchy--Schwarz, with equality on a nonzero
+$v_j$; it is zero for a zero vector. Add all $q+1$ summands of
+OKV6 and the norm of $I_q$. Positivity also proves its lower bound.
+
+Here is an explicit bound of the requested scale, with constants
+depending only on the original two root coordinates:
+\[
+ \boxed{\log\|K_{q+1}\|_2
+       \le C(\delta,\gamma)\,q\log(q+1),\qquad
+ C(\delta,\gamma)=12+4\log(2D_*).}
+ \tag{OKV17}
+\]
+For a direct verification, put
+$U=2(q+1)q^22^{6q}(2D_*q)^{4q}\ge1$ and use
+$\log(1+U)\le\log(2U)$. This upper bound is exactly
+\[
+ \log4+\log(q+1)+2\log q+6q\log2
+       +4q\log(2D_*)+4q\log q.
+\]
+Write $L=\log(q+1)$. Since $q\ge36$, one has
+$\log4\le L$, $\log q\le L$, $6\log2\le2L$, and $L\ge1$.
+The last inequality follows already from
+$\log4=\int_1^4dt/t>1$, by bounding the integrand below by
+$1/2$ on $[1,2]$ and $1/4$ on $[2,4]$.
+The preceding display is therefore at most
+$4L+6qL+4\log(2D_*)qL$, which is bounded by the right side
+of OKV17. The completely finite and sharper bound OKV16 remains
+available before this logarithmic estimate.
+
+\paragraph{The four original kernel Grams with their full coefficient frame.}
+Retain the original surjection $\Lambda:E_\chi\to B_{\rm obs}$,
+the actual subspace $\mathcal K_\Lambda=\ker\Lambda$, and its original
+inclusion $I:\mathcal K_\Lambda\hookrightarrow E_\chi$. Put
+$r_K=\dim\mathcal K_\Lambda$; no separate formula or upper bound
+for this actual dimension is needed here. Use its fixed original
+coefficient frame and write
+\[
+ T_s=C_s^{-1}I,\qquad
+ G_{q+j-1}^{(s)}=C_s^{-*}K_j^{-1}C_s^{-1},\qquad
+ H_j^{(s)}=I^*G_{q+j-1}^{(s)}I=T_s^*K_j^{-1}T_s,
+             \qquad0\le j\le q+1.
+ \tag{OKV18}
+\]
+For completeness, the quotient metric in this identity follows from
+the original orthonormal source-coordinate map
+$A_j=[I_q,v_0,\ldots,v_{j-1}]$.
+It obeys $A_jA_j^*=K_j$. The minimum norm solution of $A_jz=x$
+is $z=A_j^*K_j^{-1}x$: it has the required image and is orthogonal
+to $\ker A_j$. Every other solution differs by such a kernel vector,
+so the Pythagorean identity gives minimum squared norm $x^*K_j^{-1}x$.
+The actual remainder is $C_sx$. Substitution proves the original
+quotient Gram and then its full restriction in OKV18.
+
+Let $\lambda_s=\|K_{q+1}\|_2$. The original update chain gives
+$I_q=K_0\preceq K_j\preceq K_{q+1}\preceq\lambda_s I_q$.
+For positive definite matrices, inversion reverses the order:
+if $A\preceq B$, conjugate by $A^{-1/2}$ to obtain a matrix
+with eigenvalues at least one, invert those eigenvalues and conjugate
+back. Thus the full original kernel forms satisfy
+\[
+ \lambda_s^{-1}H_0^{(s)}\preceq H_j^{(s)}\preceq H_0^{(s)},
+ \qquad H_0^{(s)}=T_s^*T_s,
+ \qquad H_{j+1}^{(s)}\preceq H_j^{(s)}.
+ \tag{OKV19}
+\]
+For $r_K>0$, the matrix $T_s$ is injective, so $H_0^{(s)}$ is
+positive definite. Conjugation in OKV19 by its inverse square root
+gives eigenvalues in $[\lambda_s^{-1},1]$. The determinant identity
+for that exact congruence is
+\[
+ \det\bigl[(H_0^{(s)})^{-1/2}H_j^{(s)}(H_0^{(s)})^{-1/2}\bigr]
+       =\frac{\det H_j^{(s)}}{\det(T_s^*T_s)}.
+\]
+Therefore
+\[
+ -r_K\log\lambda_s
+ \le\log\det H_j^{(s)}-\log\det(T_s^*T_s)\le0.
+ \tag{OKV20}
+\]
+In particular the determinant and conditioning of the actual
+$T_s^*T_s$ are retained in this identity; no new kernel basis is
+substituted for its original frame.
+
+Define the original four-endpoint kernel volume, with its literal
+degrees $q-1,q,2q-1,2q$, by
+\[
+ F_K^{(s)}=
+ \log\det H_0^{(s)}+\log\det H_1^{(s)}
+       -\log\det H_q^{(s)}-\log\det H_{q+1}^{(s)}.
+ \tag{OKV21}
+\]
+Monotonicity in OKV19 makes each of
+$\log\det H_0^{(s)}-\log\det H_q^{(s)}$ and
+$\log\det H_1^{(s)}-\log\det H_{q+1}^{(s)}$ nonnegative.
+Each is at most $r_K\log\lambda_s$ by OKV20. Consequently the
+actual kernel volume satisfies the complete finite estimates
+\[
+ \boxed{\begin{split}
+ 0\le F_K^{(s)}
+ &\le2r_K\log\|K_{q+1}\|_2\\
+ &\le2r_K\log\left[1+2(q+1)q^22^{6q}(2D_*q)^{4q}\right]\\
+ &\le2r_K C(\delta,\gamma)q\log(q+1),
+                    \qquad s\in\{1,k\}.
+ \end{split}}
+ \tag{OKV22}
+\]
+For $r_K=0$, every kernel determinant has its original empty value
+one, and $F_K^{(s)}=0$. Hence OKV22 includes this case.
+The four copies of $\log\det(T_s^*T_s)$ in OKV21 have coefficients
+$+1,+1,-1,-1$ and cancel exactly only after their presence in
+OKV20 has been recorded.
+
+\paragraph{The original boundary and arithmetic transitions.}
+At each original degree set
+\[
+ Q_j^{(s)}=
+   \left(\Lambda (G_{q+j-1}^{(s)})^{-1}\Lambda^*\right)^{-1},
+ \qquad
+ S_j^{(s)}=(G_{q+j-1}^{(s)})^{-1}\Lambda^*Q_j^{(s)}.
+ \tag{OKV23}
+\]
+Their zero dimensional cases have their empty meaning. Surjectivity
+of $\Lambda$ and positivity give the displayed inverses. Direct
+multiplication proves $\Lambda S_j^{(s)}=I$ and
+$I^*G_{q+j-1}^{(s)}S_j^{(s)}=0$.
+For any fixed original section $S_*$ of $\Lambda$, the map $[I,S_*]$
+is bijective: its inverse records $\Lambda z$ and the unique kernel
+coordinate of $z-S_*\Lambda z$. The minimum section differs from
+$S_*$ by a kernel column. The two frames therefore differ by a
+block triangular matrix with identity diagonal and determinant one.
+Taking the determinant of the full metric in the orthogonal frame
+$[I,S_j^{(s)}]$ gives
+\[
+ \det H_j^{(s)}\det Q_j^{(s)}
+       =|\det[I,S_*]|^2\det G_{q+j-1}^{(s)}.
+ \tag{OKV24}
+\]
+This proves the exact relation with all kernel and boundary directions
+retained. The same frame factor occurs at all four endpoints.
+Their signed sum is consequently
+\[
+ F_K^{(s)}+F_B^{(s)}=\mathcal B_k^{(s)},\qquad
+ F_B^{(s)}=\log\det Q_0^{(s)}+\log\det Q_1^{(s)}
+               -\log\det Q_q^{(s)}-\log\det Q_{q+1}^{(s)}.
+ \tag{OKV25}
+\]
+The original matrices $G_{q+j-1}^{(s)}$ decrease with $j$, so their
+inverse forms increase. Compression by $\Lambda$ and inversion then
+show that $Q_j^{(s)}$ decreases as well. Thus $F_B^{(s)}\ge0$,
+and the finite companion bound is
+\[
+ \max\{0,\mathcal B_k^{(s)}-2r_K C(\delta,\gamma)q\log(q+1)\}
+       \le F_B^{(s)}\le\mathcal B_k^{(s)}.
+ \tag{OKV26}
+\]
+Here the finer middle bound in OKV22 can be used in place of its
+last line, with the same proof.
+
+Finally the original source identifications are
+$\mathcal B_k^{(1)}=\mathcal B_k^\sigma$ and
+$\mathcal B_k^{(k)}=\mathcal B_k^0$. Their already proved full
+source transition is $\mathcal H_k=\mathcal B_k^\sigma-\mathcal B_k^0$,
+and the original arithmetic transition is
+$\mathcal B_k^{\rm ar}=\mathcal B_k^\sigma+\delta_k^\sigma$,
+with its original finite signed allowance for $\delta_k^\sigma$.
+Substitution of the proved exact splitting OKV25 gives, with every
+source and arithmetic term still present,
+\[
+ \boxed{\mathcal B_k^{\rm ar}
+   =F_K^{(k)}+F_B^{(k)}+\mathcal H_k+\delta_k^\sigma
+   =F_K^{(1)}+F_B^{(1)}+\delta_k^\sigma.}
+ \tag{OKV27}
+\]
+Thus OKV22 controls the original Gamma kernel summands in this
+same arithmetic identity. It keeps the separate source transition
+and arithmetic scalar with their established signs and bounds.
+The result is finite for the actual $r_K=\dim\ker\Lambda$ and
+uses no additional asserted dimension estimate or replacement source.
+
+\end{document}

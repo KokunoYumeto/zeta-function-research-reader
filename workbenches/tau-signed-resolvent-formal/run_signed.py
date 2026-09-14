@@ -28,6 +28,65 @@ TARGETS = {
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 
 
+EXTRA_MODULES = {
+    'SplitZeroCanonicalSignedResolvent', 'SplitZeroSpectralResidual',
+    'SplitZeroBoundarySocleSupport', 'SplitZeroSynchronization',
+    'SplitZeroConormalTower', 'SplitZeroTauHomotopy',
+}
+EXTRA_TARGETS = {
+    'SplitZero.CanonicalSignedResolvent': {
+        'weighted_mul', 'weighted_pow', 'weighted_partialSum',
+        'canonical_properties', 'canonical_interval',
+        'canonical_resolvent_interval', 'canonical_tangent',
+    },
+    'SplitZero.SpectralResidual': {
+        'frame_one', 'frame_sub', 'frame_smul', 'frame_pow', 'frame_center',
+        'realTrace_diagonal', 'center_diagonal', 'residual_diagonal',
+        'residual_energy', 'spectral_radius_bound', 'signed_error',
+    },
+}
+
+
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('Duplicate configuration key: ' + key)
+        result[key] = value
+    return result
+
+
+def load_scope(path: pathlib.Path):
+    """Require the complete advertised scope before invoking any compiler."""
+    raw = path.read_bytes()  # Missing configuration must not select a smaller run.
+    config = json.loads(raw.decode('utf-8'), object_pairs_hook=unique_object)
+    if not isinstance(config, dict) or set(config) != {'modules', 'targets'}:
+        raise ValueError('Expected modules and targets configuration')
+    modules = config['modules']
+    if (not isinstance(modules, list)
+            or any(not isinstance(m, str) for m in modules)
+            or len(modules) != len(EXTRA_MODULES)
+            or set(modules) != EXTRA_MODULES):
+        raise ValueError('Missing, duplicate, or unexpected extra module')
+    extra = config['targets']
+    if not isinstance(extra, dict) or set(extra) != set(EXTRA_TARGETS):
+        raise ValueError('Missing or unexpected extra namespace')
+    for namespace, expected in EXTRA_TARGETS.items():
+        names = extra[namespace]
+        if (not isinstance(names, list)
+                or any(not isinstance(name, str) for name in names)
+                or len(names) != len(expected) or set(names) != expected):
+            raise ValueError('Incomplete or unexpected target scope: ' + namespace)
+    # Do not mutate the base lists: repeated calls have the same 9-root/60-target scope.
+    all_modules = list(MODULES) + modules
+    all_targets = {ns: list(names) for ns, names in TARGETS.items()}
+    all_targets.update({ns: list(names) for ns, names in extra.items()})
+    targets = [ns + '.' + name for ns, names in all_targets.items() for name in names]
+    if len(all_modules) != 9 or len(targets) != 60 or len(set(targets)) != 60:
+        raise ValueError('Advertised signed verification scope changed')
+    return all_modules, all_targets, hashlib.sha256(raw).hexdigest()
+
+
 def code_only(source: str) -> str:
     """Remove nested comments and strings before screening Lean tokens."""
     out: list[str] = []
@@ -63,12 +122,11 @@ def run(args: list[str], name: str) -> str:
 
 
 def main() -> None:
-    LOGS.mkdir(exist_ok=True)
+    # A failed new invocation must not leave an old passing receipt at this path.
+    (LOGS / 'receipt.json').unlink(missing_ok=True)
     extra = pathlib.Path(__file__).with_name('EXTRA_TARGETS.json')
-    if extra.exists():
-        config = json.loads(extra.read_text(encoding='utf-8'))
-        MODULES.extend(config['modules'])
-        TARGETS.update(config['targets'])
+    modules, target_groups, config_sha256 = load_scope(extra)
+    LOGS.mkdir(exist_ok=True)
     order: list[str] = []
     active: set[str] = set()
     seen: set[str] = set()
@@ -84,7 +142,7 @@ def main() -> None:
                 for dependency in line.split()[1:]:
                     if (FORMAL / (dependency + '.lean')).exists(): visit(dependency)
         active.remove(module); seen.add(module); order.append(module)
-    for module in MODULES: visit(module)
+    for module in modules: visit(module)
     output = FORMAL / '.lake' / 'build' / 'lib' / 'lean'
     output.mkdir(parents=True, exist_ok=True)
     failures = []
@@ -94,8 +152,8 @@ def main() -> None:
                  '-o', str(output / (module + '.olean')), module + '.lean'], module)
         except RuntimeError as exc: failures.append(str(exc))
     if failures: raise RuntimeError('; '.join(failures))
-    targets = [ns + '.' + name for ns, names in TARGETS.items() for name in names]
-    audit = '\n'.join(['import ' + m for m in MODULES] +
+    targets = [ns + '.' + name for ns, names in target_groups.items() for name in names]
+    audit = '\n'.join(['import ' + m for m in modules] +
                       ['#print axioms ' + target for target in targets]) + '\n'
     (FORMAL / 'AuditSignedResolvent.lean').write_text(audit, encoding='utf-8')
     text = run(['lake', 'env', 'lean', '--trust=0', '-DwarningAsError=true',
@@ -110,7 +168,9 @@ def main() -> None:
         if not set(names) <= ALLOWED: raise ValueError(f'Unapproved axioms: {name}: {names}')
     receipt = {
       'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-      'strict_modules': order, 'targets': len(targets), 'axioms': axioms,
+      'strict_modules': order, 'root_modules': modules,
+      'configuration_sha256': config_sha256,
+      'targets': len(targets), 'axioms': axioms,
       'sha256': {m: hashlib.sha256((FORMAL / (m + '.lean')).read_bytes()).hexdigest() for m in order},
       'scope': 'Constructed finite resolvent and fixed-pair spectral residual; centered signed '
                'trace enclosure in the original source metric; natural proper-boundary '

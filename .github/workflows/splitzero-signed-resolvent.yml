@@ -1,0 +1,57 @@
+name: SplitZero signed resolvent
+on:
+  push:
+    branches: [astra/signed-resolvent-checkin-20260914]
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroResolventSeries.lean'
+      - 'formal/splitzero/SplitZeroSignedTraceEnclosure.lean'
+      - 'formal/splitzero/SplitZeroCanonicalSignedResolvent.lean'
+      - 'formal/splitzero/SplitZeroRestrictedBoundary.lean'
+      - 'workbenches/tau-signed-resolvent-formal/**'
+      - '.github/workflows/splitzero-signed-resolvent.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        shell: bash
+        working-directory: formal/splitzero
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            formal/splitzero
+            workbenches/tau-signed-resolvent-formal
+            workbenches/tau-mixed-boundary-formal
+            workbenches/tau-mixed-metric-integration
+            workbenches/tau-source-resolvent
+            workbenches/tau-arithmetic-metric-transfer
+      - name: Recover unchanged scalar
+        run: python3 prepare.py
+      - name: Install unchanged Lean toolchain
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve pinned Mathlib
+        run: |
+          set -euo pipefail
+          test "$(cat lean-toolchain)" = leanprover/lean4:v4.31.0
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+      - name: Strict source closure and transitive audits
+        run: python3 ../../workbenches/tau-signed-resolvent-formal/run_signed.py
+      - name: Record exact execution
+        run: |
+          git rev-parse HEAD
+          lake env lean --version
+          cat .signed-resolvent-logs/receipt.json

@@ -1,5 +1,88 @@
 # Split-Zero cohomology: original Gamma volumes and intrinsic spectral sums
 
+[Read the 75-page Original Volumes paper](https://zenodo.org/api/records/22757268/files/51-original-gamma-volumes-reader.pdf/content) · [Published DOI 10.5281/zenodo.22757268](https://doi.org/10.5281/zenodo.22757268).
+
+- [75-page original gamma volumes](https://zenodo.org/api/records/22757268/files/51-original-gamma-volumes-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes) · [offline source ZIP](https://zenodo.org/api/records/22757268/files/52-original-gamma-volumes-public-sources.zip/content).
+
+The complete 75-page Original Volumes paper prints all fifteen providers in full: the original q-squared baseline, quantitative Gamma return, intrinsic full polynomial-times-Gamma density, exact endpoint masses and GMB original mixed-row map. Its complete source package additionally contains the separate full OPG/OPR original-observation continuation and the restored twelve-body dependency closure.
+
+The paper retains the original packet, coordinate, roots, multiplicities,
+dimensions and four endpoint roles. Here k=4l+1 is the tensor degree,
+m is the primary multiplicity and `q=[1+k(m-1)](k+1)^2` is the finite cyclic
+quotient dimension. The canonical Gamma source orders remain s=1 and s=k.
+The independently proved K=q+1 family is exploratory, not a rule selecting
+or replacing an order in the original construction.
+
+The original fixed-source, tensor-source and arithmetic baseline has positive
+q-squared coefficient C_B=9-8 log(2)+F(2,pi)>769/17010. The full Schur determinant
+returns this to the combined original kernel/boundary volume; the individual
+mixed terms are not separately assigned their sum's coefficient.
+
+W is the original logarithmic Gamma determinant/product comparison. Its
+quantitative return retains explicit asymmetric finite intervals and proves
+
+    W = C_Gamma lq + O(l sqrt(q) + l^2),
+    C_Gamma = 2 integral log(x) d rho_(2,pi)(x) - 4(2 log 2 - 1).
+
+The complete preceding source defines the equilibrium density rho_(2,pi),
+support and global minimizer. For fixed m>=2 the quantitative remainder is
+o(q). At m=1 the actual finite centre is retained:
+
+    (V^c-lq C_Gamma)/q -> partial_alpha L(2,pi)/8 - log(2)/4.
+
+This centre is not set to zero. The actual centred quotient retains its proved
+limsup radius A/sqrt(2), with the source's explicit L and A; no vanishing radius
+is asserted. QRI9 retains the opposite sign to H and the arithmetic transition.
+
+The intrinsic exterior/sum construction keeps the full polynomial-times-Gamma
+density, coefficients, masses, centres and sum-fibre kernel. The exact endpoint
+calculation identifies the exterior masses with original relation Grams. GMB
+gives the original mixed-row and kernel maps with endpoint weights 1,2,...,2,1.
+The full density is not replaced by its Gamma exponent alone.
+
+## Complete editable continuation and source closure
+
+[Original Observation Addendum (TeX)](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes/next_original_observation/Original_Observation_Addendum.tex) gives the complete OPG/OPR
+continuation, actual period Gram matrices and section-corrected kernel formulas,
+with its declared dependencies. It is **not inside the 75-page PDF**.
+[The cumulative editable entry](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes/Cumulative_Original_Gamma_Proofs.tex) retains the complete preceding
+proof closure. [Public source provenance](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes/PUBLIC_DERIVATION.json) records the twelve
+complete dependency bodies restored here, including TW and FPK, which the
+preceding sealed source package omitted. The older edition is unchanged;
+its earlier completeness statements are not silently adopted for those omissions.
+
+The original baseline and quantitative Gamma return are completed at their stated scales. The actual m=1 finite centre and nonzero limsup radius are retained. The next calculations concern the specified original period Grams, section-corrected kernel residuals and full polynomial-density contributions. Canonical orders remain s=1 and s=k; independent K=q+1 is exploratory, not an order-selection rule.
+
+[The cut22 continuation prompt](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes/00_CONTINUE_THE_PROGRAMME.md) is preserved as that source
+edition's exact provenance. This reading index does not issue a new or competing
+continuation prompt; the mathematical owner maintains successor instructions.
+
+## Earlier complete sources
+
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [earlier 50-download edition](https://doi.org/10.5281/zenodo.22755297) remains frozen.
+Its 37-, 15-, 33- and 46-page papers, the 1929-page compendium and complete source
+snapshots retain their identities. This edition adds PDF51 and ZIP52; PDF51 is
+the actual browser preview. ZIP52 is the complete offline source package,
+including the separate source-only continuation, not a readable preview.
+
+[All 52 downloads and source identities](calculation_edition_20260914_original_volumes/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from before this DOI was issued.
+References to current or front readers, exclusion from a frozen DOI and next
+calculations describe their linked earlier source editions, including DOI
+22755297, not the new 52-download edition above. The original baseline and
+quantitative Gamma return are completed at the scopes stated above. Earlier
+source-time proof/CI records and all mathematical bodies remain unchanged.
+
+# Split-Zero cohomology: original Gamma volumes and intrinsic spectral sums
+
 [Read the new 75-page Original Volumes paper](workbenches/splitzero-tandem/continuations/20260914-original-volumes/Original_Gamma_Volumes_and_Intrinsic_Spectral_Sums.pdf) · [Complete editable sources](workbenches/splitzero-tandem/continuations/20260914-original-volumes/README.md).
 
 The paper prints all fifteen providers in full, retaining the original packet,

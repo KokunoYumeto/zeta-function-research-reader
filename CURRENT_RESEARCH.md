@@ -1,3 +1,44 @@
+# Split-Zero cohomology: complete Gamma return and original relation bounds
+
+[Read the 15-page complete Gamma return](https://zenodo.org/api/records/22754516/files/47-complete-gamma-return-reader.pdf/content) · [Published DOI 10.5281/zenodo.22754516](https://doi.org/10.5281/zenodo.22754516).
+
+- [15-page complete gamma return](https://zenodo.org/api/records/22754516/files/47-complete-gamma-return-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return) · [offline source ZIP](https://zenodo.org/api/records/22754516/files/48-complete-gamma-return-public-sources.zip/content).
+- [33-page original relation bulk](https://zenodo.org/api/records/22754516/files/45-original-relation-bulk-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk) · [offline source ZIP](https://zenodo.org/api/records/22754516/files/46-original-relation-bulk-public-sources.zip/content).
+- [46-page joint gamma schur](https://zenodo.org/api/records/22754516/files/43-joint-gamma-schur-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur) · [offline source ZIP](https://zenodo.org/api/records/22754516/files/44-joint-gamma-schur-public-sources.zip/content).
+
+Three complete source snapshots develop Joint Gamma Schur continuation, original relation bulk control, and complete Gamma return. Their original definitions, proved finite estimates, receiving maps and recorded proof scopes remain in the separate editable sources.
+
+The 15-page continuation is read first, followed by the 33-page bulk-control paper and the 46-page Joint Gamma Schur paper. Evaluating the positive product at the original growing indices, with finite remainders and the separately retained arithmetic allowances, remains unfinished; no leading W asymptotic or endpoint conclusion is asserted.
+
+Here k is the tensor degree and q is the dimension of the finite cyclic
+quotient. W is the remaining logarithmic Gamma determinant/product comparison:
+the positive recurrence computes exp(W), but its growth at the original
+indices still has to be evaluated. Hstar is the finite-input endpoint
+expression returned by that comparison. The papers give the exact source
+matrices, indices and endpoint maps, without changing these coordinates.
+
+The exact relation is Hstar = -W + e0, with e0 in [-a0,b0]. The universal
+interval contains the earlier exact-low interval; it does not tighten the
+existing finite intersection. The positive recurrence computes exp(W) exactly.
+The separate signed Gamma comparison has O(k)=o(q) error for each stated
+fixed packet, and O(1) error for fixed multiplicity at least two.
+The three papers retain their own complete proofs.
+
+The [older 42-download edition](https://doi.org/10.5281/zenodo.22753338) remains frozen.
+Its 1929-page compendium is retained, not replaced by a shorter summary.
+The current edition adds PDF43/ZIP44, PDF45/ZIP46 and PDF47/ZIP48; PDF47 is
+the actual browser preview. ZIPs are complete offline sources, not previews.
+
+[All 48 downloads and source identities](calculation_edition_20260914_gamma_return/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the source-sharing snapshot before
+the current DOI was issued. Its references to “current”, “front” and “outside
+the frozen DOI” describe that earlier state and specifically DOI 22753338,
+not the new 48-download edition above. The mathematical bodies, source links,
+proof/CI scopes and older edition identities are unchanged.
+
 # Current Split-Zero source: graph completion and signed arithmetic return
 
 ## Complete Gamma return and original relation bulk calculations

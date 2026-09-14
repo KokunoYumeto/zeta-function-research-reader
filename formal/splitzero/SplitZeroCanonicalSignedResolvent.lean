@@ -3,11 +3,10 @@ import SplitZeroResolventSeries
 import SplitZeroSignedTraceEnclosure
 
 /-!
-# The signed finite resolvent on the original canonical source columns
+# Signed finite resolvents on the original canonical source columns
 
-All four projectors below are constructed from the existing canonical sections
-and their actual inverse Grams. Relation ranks may differ between endpoints.
-The comparison is on one common positive source form, with every cross term.
+The four projectors come from the existing canonical sections and their actual
+inverse Grams. Relation ranks can differ. All pairings use one original form.
 -/
 noncomputable section
 namespace SplitZero.CanonicalSignedResolvent
@@ -16,7 +15,7 @@ open scoped ComplexOrder MatrixOrder BigOperators
 variable {j n : Type*} [Fintype j] [DecidableEq j] [Fintype n] [DecidableEq n]
 
 section Algebra
-omit [Fintype n] [DecidableEq n] in
+omit [Fintype n] [DecidableEq n] [DecidableEq j] in
 theorem weighted_mul (M A B : Matrix j j ℂ)
     (ha : A.conjTranspose * M = M * A) (hb : B.conjTranspose * M = M * B)
     (hc : A * B = B * A) :
@@ -35,7 +34,7 @@ theorem weighted_pow (M H : Matrix j j ℂ)
   | zero => simp
   | succ p ih =>
     rw [pow_succ]
-    exact weighted_mul M (H ^ p) H ih hh (pow_mul_comm H p)
+    exact weighted_mul M (H ^ p) H ih hh (by simpa only [pow_one] using pow_mul_comm H p 1)
 
 omit [Fintype n] [DecidableEq n] in
 theorem weighted_partialSum (M H T X : Matrix j j ℂ)
@@ -48,7 +47,8 @@ theorem weighted_partialSum (M H T X : Matrix j j ℂ)
     (hcomm.pow_left (L + 1)).eq
   have he : ResolventSeries.partialSum H T L = X - H ^ (L + 1) * X := by
     have h := ResolventSeries.residual_exact H T X L hsolve
-    noncomm_ring [h]
+    rw [← h]
+    abel
   rw [he]
   simp only [Matrix.conjTranspose_sub, Matrix.sub_mul, Matrix.mul_sub, hx, hr]
 end Algebra
@@ -63,6 +63,7 @@ def canonicalContrast : Matrix j j ℂ :=
   contrast (fun a => projector source ((M a).sectionMap (C a)) (K a))
 
 include hcommon hK in
+omit [DecidableEq j] in
 theorem canonical_properties :
     Matrix.trace (canonicalContrast m B M C K source) = 0 ∧
       (canonicalContrast m B M C K source).conjTranspose * source =
@@ -77,7 +78,6 @@ theorem canonical_properties :
     Matrix.sub_mul, Matrix.add_mul, Matrix.mul_sub, Matrix.mul_add, hp]
 
 include hcommon hK in
-/-- Compose the matrix estimate with the actual original canonical residuals. -/
 theorem canonical_interval (hsource : source.PosDef) (X Y : Matrix j j ℂ)
     (hx : X.conjTranspose * source = source * X)
     (hy : Y.conjTranspose * source = source * Y) :
@@ -90,7 +90,7 @@ theorem canonical_interval (hsource : source.PosDef) (X Y : Matrix j j ℂ)
   exact signed_interval source X Y _ hsource hx hy hp.2 hp.1
 
 include hcommon hK in
-/-- The exact finite Neumann residual replaces the abstract approximation error. -/
+/-- The approximation error is the constructed finite Neumann residual. -/
 theorem canonical_resolvent_interval (hsource : source.PosDef) (H T X : Matrix j j ℂ)
     (hh : H.conjTranspose * source = source * H)
     (hx : X.conjTranspose * source = source * X)
@@ -108,7 +108,6 @@ theorem canonical_resolvent_interval (hsource : source.PosDef) (H T X : Matrix j
   exact h
 
 include hcommon hK in
-/-- The numerical pairing still equals the four actual canonical Gram tangents. -/
 theorem canonical_tangent (J E : Matrix j j ℂ) (hJ : source * J = 1) :
     Matrix.trace ((J * E) * canonicalContrast m B M C K source) =
       Matrix.trace (K 0 * (((M 0).sectionMap (C 0)).conjTranspose * E * (M 0).sectionMap (C 0))) +

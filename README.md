@@ -1,6 +1,6 @@
 # Split-Zero arithmetic cohomology
 
-Start with [the accepted 1929-page public Split-Zero reader](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+Start with [the accepted 1929-page public Split-Zero reader](https://zenodo.org/api/records/22753338/files/41-splitzero-cumulative-graph-public-reader.pdf/content)
 and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/README.md).
 
 The cumulative Split-Zero manuscript studies the original theta-function source, finite zero-jet algebras and source relations. It calculates the nonzero graph completion, the injective mixed quotient, two inverse corrections, relation-row bounds and the signed return to the original four-endpoint arithmetic determinant. Full zero multiplicities, original norms and maps are retained. The upper growth estimate as tensor degree increases remains unresolved; no proof of the Riemann hypothesis or new Lean kernel verification is claimed.
@@ -14,7 +14,9 @@ Raw private session records, reference-only literature and the raw owner ZIP
 are not public payloads. Wrapper ZIPs are not duplicated as ordinary Git blobs.
 
 The [preceding published recursive source-relations edition](https://doi.org/10.5281/zenodo.22739630) retains its PDF
-preview and all 40 downloads. This source-promotion commit claims no new DOI.
+preview and all 40 downloads. The [new published DOI 10.5281/zenodo.22753338](https://doi.org/10.5281/zenodo.22753338)
+now provides [all 42 separate downloads](calculation_edition_20260914_cumulative_graph/README.md). The public Split-Zero PDF
+is the actual browser preview; the [matching source ZIP](https://zenodo.org/api/records/22753338/files/42-splitzero-cumulative-graph-public-sources.zip/content) is an offline download.
 
 The later mixed-boundary snapshot and unsealed later global manuscripts are outside this fixed cumulative graph source cut. Independently indexed working-source contributions retain their own proof and CI scopes. An unmerged contribution and its CI results are not silently assigned to this PDF.
 
@@ -48,7 +50,7 @@ PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
 revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
-The GitHub front now shows the accepted cumulative graph public reader. The frozen DOI retains the preceding recursive source-relations cut and all 40 downloads. No successor DOI is claimed by this source commit. Independent working sources retain their own proof and CI scopes.
+The GitHub front and current DOI now share the accepted cumulative graph public PDF/source cut. The preceding recursive source-relations DOI and all 40 earlier downloads remain unchanged. Independent working sources retain their own proof and CI scopes.
 
 
 ## PR29: original residue detection and signed metric transfer

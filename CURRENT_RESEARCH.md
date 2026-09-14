@@ -1,6 +1,6 @@
 # Current Split-Zero source: graph completion and signed arithmetic return
 
-[Read the accepted 1929-page public paper](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) ·
+[Read the accepted 1929-page public paper](https://zenodo.org/api/records/22753338/files/41-splitzero-cumulative-graph-public-reader.pdf/content) · [Published DOI 10.5281/zenodo.22753338](https://doi.org/10.5281/zenodo.22753338) · [All 42 files](calculation_edition_20260914_cumulative_graph/README.md) ·
 [Editable source/build guide](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/README.md) ·
 [Preceding published recursive source-relations edition](https://doi.org/10.5281/zenodo.22739630)
 

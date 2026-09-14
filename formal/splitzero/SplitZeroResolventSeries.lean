@@ -3,10 +3,9 @@ import Mathlib
 /-!
 # Finite source resolvents, with a fixed-pair convergence certificate
 
-The construction formalizes the finite algebra and spectral estimates in
-ISM28--ISM34 and the fixed-pair stopping step of ISM37. The matrix source and
-signed projector comparison are connected in the companion module. No
-uniformity over changing arithmetic packets or tensor orders is asserted.
+Finite algebra and spectral estimates in ISM28--ISM34 and the fixed-pair
+stopping step of ISM37. No uniformity over changing arithmetic packets or
+tensor orders is asserted. The constant term and the last power are retained.
 -/
 noncomputable section
 namespace SplitZero.ResolventSeries
@@ -16,7 +15,6 @@ open Filter
 section Ring
 variable {A : Type*} [Ring A]
 
-/-- A finite polynomial, including its constant term and its last power. -/
 def partialSum (H T : A) (L : ℕ) : A :=
   (∑ r ∈ Finset.range (L + 1), H ^ r) * T
 
@@ -28,20 +26,19 @@ theorem geometric_right (H : A) (n : ℕ) :
     rw [Finset.sum_range_succ, add_mul, ih, mul_sub, mul_one, ← pow_succ]
     noncomm_ring
 
-/-- No commutation of the observable with H or X is required. -/
+/-- No commutation with the observable is required. -/
 theorem residual_exact (H T X : A) (L : ℕ) (hX : (1 - H) * X = T) :
     X - partialSum H T L = H ^ (L + 1) * X := by
   rw [partialSum, ← hX, ← mul_assoc, geometric_right]
   noncomm_ring
 
-/-- Scalar endpoint pairs have no omitted remainder, including L=0. -/
 theorem partialSum_zero (T : A) (L : ℕ) : partialSum 0 T L = T := by
   have h := residual_exact (0 : A) T T L (by simp)
-  simpa using h
+  have hz : T - partialSum 0 T L = 0 := by simpa using h
+  exact (sub_eq_zero.mp hz).symm
 end Ring
 
 section Scalar
-/-- The eigenvalue of the original affine metric path. -/
 def blend (b x : ℝ) : ℝ := 1 - x + x * b
 
 theorem blend_lower (b x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
@@ -69,19 +66,17 @@ theorem tangent_bound (b x : ℝ) (hb : 0 < b) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
   exact div_le_div_of_nonneg_left (abs_nonneg _) (lt_min zero_lt_one hb)
     (blend_lower b x hx0 hx1)
 
-/-- The exact symmetric normalization of a positive interval. -/
 theorem midpoint_deviation (lo hi t : ℝ) (hlo : 0 < lo)
     (hlt : lo ≤ t) (hth : t ≤ hi) :
     |1 - 2 * t / (lo + hi)| ≤ (hi - lo) / (lo + hi) := by
   have hs : 0 < lo + hi := by linarith
   have he : 1 - 2 * t / (lo + hi) = (lo + hi - 2 * t) / (lo + hi) := by
     field_simp
-    <;> ring
   rw [he, abs_div, abs_of_pos hs]
   apply div_le_div_of_nonneg_right _ hs.le
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
-/-- Uniformity is on x in [0,1] for this one fixed positive endpoint pair. -/
+/-- Uniformity is only on x in [0,1] for this fixed positive endpoint pair. -/
 theorem blend_contraction (lo hi b x : ℝ) (hlo : 0 < lo)
     (hlb : lo ≤ b) (hbh : b ≤ hi) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     |1 - 2 * blend b x / (blend lo x + blend hi x)| ≤ (hi - lo) / (lo + hi) := by
@@ -116,9 +111,9 @@ theorem centered_sum (f : ι → ℝ) : ∑ i, (f i - mean f) = 0 := by
   simp only [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   unfold mean
   field_simp
-  <;> ring
+  ring
 
-/-- This is the centered residual, not the larger uncentered energy. -/
+/-- The exact centered energy retains the subtracted mean-square term. -/
 theorem variance_formula (f : ι → ℝ) :
     variance f = (∑ i, f i ^ 2) - (∑ i, f i) ^ 2 / (Fintype.card ι : ℝ) := by
   have hn : (Fintype.card ι : ℝ) ≠ 0 := by exact_mod_cast Fintype.card_ne_zero
@@ -126,12 +121,14 @@ theorem variance_formula (f : ι → ℝ) :
       (Fintype.card ι : ℝ) * (mean f) ^ 2 := by
     unfold variance
     simp only [sub_sq, Finset.sum_add_distrib, Finset.sum_sub_distrib,
-      Finset.sum_mul, ← Finset.mul_sum, Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
+      Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
+    rw [← Finset.sum_mul, ← Finset.mul_sum]
   rw [he]
   unfold mean
   field_simp
-  <;> ring
+  ring
 
+omit [Nonempty ι] in
 theorem variance_nonneg (f : ι → ℝ) : 0 ≤ variance f :=
   Finset.sum_nonneg fun _ _ => sq_nonneg _
 
@@ -140,7 +137,6 @@ theorem variance_le_energy (f : ι → ℝ) : variance f ≤ ∑ i, f i ^ 2 := b
   have hd : 0 ≤ (∑ i, f i) ^ 2 / (Fintype.card ι : ℝ) := by positivity
   linarith
 
-/-- Every eigenvalue, including its sign and multiplicity, is retained. -/
 def residualSpectrum (h g : ι → ℝ) (L : ℕ) : ι → ℝ :=
   fun i => h i ^ (L + 1) * g i
 
@@ -162,14 +158,14 @@ theorem residual_variance_bound (h g a : ι → ℝ) (θ : ℝ) (hθ : 0 ≤ θ)
     (mul_nonneg (pow_nonneg hθ _) ha)).mpr hm
   simpa only [sq_abs, mul_pow, residualSpectrum] using hs
 
-/-- The stated fixed-pair error radius, with the source-dependent constant intact. -/
 def radius (θ K Z : ℝ) (L : ℕ) : ℝ := θ ^ (L + 1) * Real.sqrt (K * Z)
 
 theorem radius_tendsto_zero (θ K Z : ℝ) (hθ0 : 0 ≤ θ) (hθ1 : θ < 1) :
     Tendsto (radius θ K Z) atTop (nhds 0) := by
+  change Tendsto (fun L : ℕ => θ ^ (L + 1) * Real.sqrt (K * Z)) atTop (nhds 0)
   have hp := (tendsto_pow_atTop_nhds_zero_of_lt_one hθ0 hθ1).mul_const
     (θ * Real.sqrt (K * Z))
-  simpa only [radius, pow_succ, mul_assoc, zero_mul] using hp
+  simpa only [pow_succ, mul_assoc, zero_mul] using hp
 
 theorem exists_stopping_degree (θ K Z ε : ℝ) (hθ0 : 0 ≤ θ) (hθ1 : θ < 1)
     (hε : 0 < ε) : ∃ L : ℕ, radius θ K Z L < ε := by

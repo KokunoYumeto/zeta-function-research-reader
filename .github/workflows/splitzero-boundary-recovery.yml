@@ -1,0 +1,117 @@
+name: SplitZero mixed-boundary recovery
+on:
+  push:
+    branches: ['main', 'astra/mixed-boundary-recovery-20260913']
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-mixed-metric-integration/**'
+      - 'workbenches/tau-mixed-boundary-formal/**'
+      - 'workbenches/tau-source-resolvent/**'
+      - 'workbenches/tau-arithmetic-metric-transfer/**'
+      - 'workbenches/tau-split-integration/**'
+      - 'workbenches/tau-residue-rigidity/**'
+      - '.github/workflows/splitzero-boundary-recovery.yml'
+  pull_request:
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-mixed-metric-integration/**'
+      - 'workbenches/tau-mixed-boundary-formal/**'
+      - 'workbenches/tau-source-resolvent/**'
+      - 'workbenches/tau-arithmetic-metric-transfer/**'
+      - 'workbenches/tau-split-integration/**'
+      - 'workbenches/tau-residue-rigidity/**'
+      - '.github/workflows/splitzero-boundary-recovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: splitzero-boundary-recovery-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Recover unchanged scalar
+        run: python3 prepare.py
+      - name: Install unchanged Lean toolchain
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve pinned Mathlib and build original library
+        run: |
+          set -euo pipefail
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+          lake build
+      - name: Construct and strictly check the retained boundary kernel
+        run: python3 ../../workbenches/tau-mixed-boundary-formal/run_boundary.py
+      - name: Strict recovered closure and all selected audits
+        run: python3 ../../workbenches/tau-mixed-metric-integration/run_mixed.py
+      - name: Joint import of boundary, metric, synchronization and conormal maps
+        run: python3 ../../workbenches/tau-mixed-boundary-formal/run_boundary.py --joint
+      - name: Original derived audit and false-zero control
+        run: |
+          set -euo pipefail
+          python3 check_derived.py --prepare
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean > /tmp/derived.log
+          python3 check_derived.py /tmp/derived.log
+          printf 'import SplitZeroMixedSupportMetric\nexample : (SplitZero.e : SplitZero.G ℤ) = SplitZero.tau := by rfl\n' > BoundaryMustFail.lean
+          if lake env lean --trust=0 -DwarningAsError=true BoundaryMustFail.lean > /tmp/negative.log 2>&1; then exit 1; fi
+          grep -qi 'rfl.*failed\|failed.*rfl' /tmp/negative.log
+          if grep -qi 'unknown module\|unknown identifier\|failed to synthesize' /tmp/negative.log; then exit 1; fi
+          cat /tmp/negative.log
+      - name: Record exact execution
+        run: |
+          git rev-parse HEAD
+          lake env lean --version
+          cat .mixed-metric-logs/receipt.json
+          cat .boundary-socle-logs/joint.json
+  finite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: python3 -m pip install sympy==1.14.0
+      - name: Exact finite regressions in both Python modes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for PACKAGE in tau-source-resolvent tau-mixed-metric-integration; do
+            python3 workbenches/$PACKAGE/check_exact.py > /tmp/$PACKAGE-normal.json
+            python3 -O workbenches/$PACKAGE/check_exact.py > /tmp/$PACKAGE-optimized.json
+            cmp /tmp/$PACKAGE-normal.json /tmp/$PACKAGE-optimized.json
+            cat /tmp/$PACKAGE-normal.json
+          done
+          python3 workbenches/tau-mixed-boundary-formal/check_boundary.py > /tmp/boundary-normal.json
+          python3 -O workbenches/tau-mixed-boundary-formal/check_boundary.py > /tmp/boundary-optimized.json
+          cmp /tmp/boundary-normal.json /tmp/boundary-optimized.json
+          cat /tmp/boundary-normal.json
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            for CONTROL in diagonal-only absent-join omit-boundary; do
+              if "${PY[@]}" workbenches/tau-mixed-metric-integration/check_exact.py --negative "$CONTROL" > /tmp/$MODE-$CONTROL.log 2>&1; then exit 1; fi
+              grep -q '"false_claim_accepted": false' /tmp/$MODE-$CONTROL.log
+            done
+            for CONTROL in nilpotent-zero omit-jacobian empty-absence diagonal-gram; do
+              if "${PY[@]}" workbenches/tau-mixed-boundary-formal/check_boundary.py --negative "$CONTROL" > /tmp/$MODE-$CONTROL.log 2>&1; then exit 1; fi
+              grep -q '"false_claim_accepted": false' /tmp/$MODE-$CONTROL.log
+            done
+          done
+          cd formal/splitzero
+          python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+          python3 -O -m unittest test_derived_checker test_synchronization_checker test_tau_recovery

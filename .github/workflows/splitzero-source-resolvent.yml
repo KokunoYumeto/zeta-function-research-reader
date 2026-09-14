@@ -1,0 +1,104 @@
+name: SplitZero source resolvent and certified inputs
+on:
+  push:
+    branches: [main, 'astra/source-resolvent-certificates-20260913']
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-source-resolvent/**'
+      - 'workbenches/tau-arithmetic-metric-transfer/**'
+      - 'workbenches/tau-split-integration/**'
+      - 'workbenches/tau-residue-rigidity/**'
+      - '.github/workflows/splitzero-source-resolvent.yml'
+  pull_request:
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-source-resolvent/**'
+      - 'workbenches/tau-arithmetic-metric-transfer/**'
+      - '.github/workflows/splitzero-source-resolvent.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: splitzero-source-resolvent-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Recover the unchanged scalar and check the inherited parser
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          SCRIPT=../../workbenches/tau-source-resolvent/run_resolvent.py
+          python3 "$SCRIPT" --selftest > /tmp/parser-normal.json
+          python3 -O "$SCRIPT" --selftest > /tmp/parser-optimized.json
+          cmp /tmp/parser-normal.json /tmp/parser-optimized.json
+          cat /tmp/parser-normal.json
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            if "${PY[@]}" "$SCRIPT" --negative > /tmp/parser-negative-$MODE.log 2>&1; then exit 1; fi
+            grep -q 'nonstandard axioms' /tmp/parser-negative-$MODE.log
+          done
+      - name: Install the unchanged Lean toolchain
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve the unchanged Mathlib pin and cache
+        run: |
+          set -euo pipefail
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+          lake build
+      - name: Strictly compile and audit inherited and new integrated sources
+        run: python3 ../../workbenches/tau-source-resolvent/run_resolvent.py
+      - name: Exact source and certified-error regressions in both Python modes
+        run: |
+          set -euo pipefail
+          python3 -m pip install sympy==1.14.0
+          SCRIPT=../../workbenches/tau-source-resolvent/check_exact.py
+          python3 "$SCRIPT" > /tmp/resolvent-normal.json
+          python3 -O "$SCRIPT" > /tmp/resolvent-optimized.json
+          cmp /tmp/resolvent-normal.json /tmp/resolvent-optimized.json
+          cat /tmp/resolvent-normal.json
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            for CONTROL in omit-loss subtract-upper-prefixes; do
+              if "${PY[@]}" "$SCRIPT" --negative "$CONTROL" > /tmp/resolvent-$MODE-$CONTROL.log 2>&1; then exit 1; fi
+              grep -q '"false_claim_accepted": false' /tmp/resolvent-$MODE-$CONTROL.log
+            done
+          done
+          OLD=../../workbenches/tau-arithmetic-metric-transfer/check_metric_transfer.py
+          python3 "$OLD" --output /tmp/old-metric-normal.json
+          python3 -O "$OLD" --output /tmp/old-metric-optimized.json
+          cmp /tmp/old-metric-normal.json /tmp/old-metric-optimized.json
+          python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+          python3 -O -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+      - name: Retain the original derived audit and distinct supported zero
+        run: |
+          set -euo pipefail
+          python3 check_derived.py --prepare
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean > /tmp/resolvent-derived.log
+          python3 check_derived.py /tmp/resolvent-derived.log
+          printf 'import SplitZeroMetricResolventSupport\nexample : (SplitZero.e : SplitZero.G ℤ) = SplitZero.tau := by rfl\n' > ResolventMustFail.lean
+          if lake env lean --trust=0 -DwarningAsError=true ResolventMustFail.lean > /tmp/resolvent-must-fail.log 2>&1; then exit 1; fi
+          grep -qi 'rfl.*failed\|failed.*rfl' /tmp/resolvent-must-fail.log
+          if grep -qi 'unknown module\|unknown identifier\|failed to synthesize' /tmp/resolvent-must-fail.log; then exit 1; fi
+          cat /tmp/resolvent-must-fail.log
+      - name: Record exact observed source scope
+        run: |
+          git rev-parse HEAD
+          lake env lean --version
+          cat .source-resolvent-logs/receipt.json

@@ -1,0 +1,239 @@
+\section{An exact low-height exclusion from the original theta boundary}
+\label{sec:quartet-low-height-theta}
+
+This calculation keeps the original boundary $f_0=\Theta\phi_*$,
+its Mellin transform $g=2\xi$, and its unscaled positive kernel
+$\psi$.  In particular, the constant $g(1)=1$ below is a value
+calculated from that boundary, not a normalization imposed on $g$.
+Every estimate is an inequality of actual integrals.  The numerical
+lower bound at the end is a rational number proved positive by exact
+arithmetic.
+
+\subsection{The original source and its exact endpoint mass}
+
+Use the functions and coordinates in (HCA.1)--(HCA.2):
+\[
+\begin{gathered}
+ \vartheta(x)=\sum_{n\in\mathbb Z}e^{-\pi n^2x^2}
+       =1+2\sum_{n\geq1}e^{-\pi n^2x^2},\\
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\\
+ f_0(x)=\Theta\phi_*(x)=2\sum_{n\geq1}\phi_*(nx),\\
+ \psi(y)=e^{y/2}f_0(e^y),\\
+ g(s)=\mathcal M f_0(s)=\int_0^\infty f_0(x)x^s\frac{dx}{x}
+     =\int_{\mathbb{R}}e^{(s-1/2)y}\psi(y)\,dy.
+\end{gathered}
+\tag{LHT.1}
+\]
+Here $x>0$ and $y=\log x\in\mathbb{R}$.  The original theta identity
+is $\vartheta(x)=x^{-1}\vartheta(x^{-1})$.  This is the same Gaussian
+theta identity used in the source proof of
+$\psi(-y)=\psi(y)$ in (HCA.1); no different theta function is
+introduced here.  Its series and every differentiated series converge
+uniformly on compact subsets of $x>0$.  Differentiating them gives
+\[
+ \begin{split}
+ \vartheta'(x)&=-4\pi x\sum_{n\geq1}n^2e^{-\pi n^2x^2},\\
+ (x^2\vartheta'(x))'
+ &=8\pi^2x^4\sum_{n\geq1}n^4e^{-\pi n^2x^2}
+       -12\pi x^2\sum_{n\geq1}n^2e^{-\pi n^2x^2}
+ =f_0(x).
+ \end{split}
+\tag{LHT.2}
+\]
+For $x\geq1$, every term of $f_0(x)$ is positive, since
+$4\pi^2n^4x^4-6\pi n^2x^2
+=2\pi n^2x^2(2\pi n^2x^2-3)>0$.  The evenness of $\psi$ therefore
+gives $\psi(y)>0$ for every real $y$.  On $y\geq0$ we retain the
+termwise upper bound
+\[
+ 0<\psi(y)\leq
+ 8\pi^2\sum_{n\geq1}n^4
+       \exp\bigl(\tfrac92y-\pi n^2e^{2y}\bigr).
+\tag{LHT.3}
+\]
+Together with evenness, this is an integrable majorant after
+multiplication by any fixed polynomial in $y$ and any fixed
+$e^{b|y|}$.  For example, for $y\geq0$ the sum is bounded by
+$\bigl(\sum_{n\geq1}n^4e^{-\pi(n^2-1)}\bigr)
+e^{9y/2-\pi e^{2y}}$ times $8\pi^2$.
+All Mellin integrals and differentiations below consequently converge
+absolutely; termwise upper bounds on their nonnegative integrands
+also follow directly from monotone convergence.
+
+The limits in (LHT.2) can be evaluated before integrating.
+At $x\to\infty$, the differentiated theta series gives
+$x^2\vartheta'(x)\to0$.  Differentiating the theta identity itself
+gives the exact equation
+\[
+ x^2\vartheta'(x)
+       =-\vartheta(x^{-1})-x^{-1}\vartheta'(x^{-1}).
+\tag{LHT.4}
+\]
+As $x\to0^+$ the two terms on the right tend to $-1$ and $0$,
+respectively.  Integrating (LHT.2) first on a compact interval and
+then taking its endpoints to $0$ and $\infty$ is justified by the
+absolute convergence just proved.  It follows that
+\[
+ g(1)=\int_0^\infty f_0(x)\,dx
+     =\bigl[x^2\vartheta'(x)\bigr]_{0^+}^{\infty}=1.
+\tag{LHT.5}
+\]
+This calculation does not interchange the integrals of the signed
+individual theta terms on the whole positive axis.
+
+Define two actual, unscaled source moments
+\[
+ \begin{split}
+ M_0&=\int_{\mathbb{R}}\psi(y)\,dy=g(1/2),\\
+ G_2&=\int_{\mathbb{R}}y^2e^{y/2}\psi(y)\,dy
+       =2\int_0^\infty y^2\cosh(y/2)\psi(y)\,dy=g''(1).
+ \end{split}
+\tag{LHT.6}
+\]
+Both numbers are strictly positive.  For real $z$,
+$\cosh z-1\leq \frac12 z^2\cosh z$: for $z\geq0$ this follows from
+$\cosh z-1=\int_0^z(z-v)\cosh v\,dv
+\leq\cosh z\int_0^z(z-v)\,dv$, and both sides are even.
+Equations (LHT.5)--(LHT.6) therefore imply
+\[
+ 1-M_0
+ =2\int_0^\infty (\cosh(y/2)-1)\psi(y)\,dy
+ \leq \frac18 G_2,
+ \qquad M_0\geq1-\frac18G_2.
+\tag{LHT.7}
+\]
+
+\subsection{A rational upper bound on the unscaled second moment}
+
+We now bound $G_2$ without a floating-point computation or a
+zero-location theorem.  For $y\geq0$ use
+$\cosh(y/2)\leq e^{y/2}$ in (LHT.3), and then put $x=e^y$.
+The resulting nonnegative sum and integrals give
+\[
+ \begin{split}
+ G_2
+ &\leq16\pi^2\sum_{n\geq1}n^4
+      \int_0^\infty y^2e^{5y-\pi n^2e^{2y}}\,dy\\
+ &=16\pi^2\sum_{n\geq1}n^4
+      \int_1^\infty (\log x)^2x^4e^{-\pi n^2x^2}\,dx.
+ \end{split}
+\tag{LHT.8}
+\]
+For $x\geq1$, $\log x\leq x-1$.  Set $v=x-1\geq0$ and use
+$(1+v)^2\geq1+2v$.  Expanding the remaining polynomial, with no
+change to the coordinate or the original moment, yields
+\[
+ \begin{split}
+ G_2
+ &\leq16\pi^2\sum_{n\geq1}n^4e^{-\pi n^2}
+         \int_0^\infty v^2(1+v)^4e^{-2\pi n^2v}\,dv\\
+ &=\sum_{n\geq1}e^{-\pi n^2}
+     \sum_{r=0}^{4}
+       \frac{16\binom4r(r+2)!}
+          {2^{r+3}\pi^{r+1}n^{2r+2}}.
+ \end{split}
+\tag{LHT.9}
+\]
+The integral identity used here is
+$\int_0^\infty v^j e^{-av}\,dv=j!a^{-j-1}$ for $a>0$ and
+nonnegative integer $j$; it follows by $j$ integrations by parts,
+with base integral $1/a$ and zero endpoint terms.
+
+The elementary inequality $\pi>3$ and $n\geq1$ bound the five
+terms of the inner sum, respectively, by
+\[
+ \frac43,\qquad \frac83,\qquad \frac83,
+ \qquad \frac{40}{27},\qquad \frac{10}{27};
+ \qquad
+ \frac43+\frac83+\frac83+\frac{40}{27}+\frac{10}{27}
+       =\frac{230}{27}.
+\tag{LHT.10}
+\]
+For the exponential bound, the exact finite Taylor sum gives
+\[
+ e^3>\sum_{j=0}^{8}\frac{3^j}{j!}
+      =\frac{89641}{4480}>\frac{89600}{4480}=20.
+\tag{LHT.11}
+\]
+Thus $e^{-\pi n^2}<20^{-n^2}\leq20^{-n}$ for $n\geq1$, and
+\[
+ \sum_{n\geq1}e^{-\pi n^2}<
+ \sum_{n\geq1}20^{-n}=\frac1{19}.
+ \tag{LHT.12}
+\]
+Combining (LHT.9)--(LHT.12) proves the entirely rational bound
+\[
+ 0<G_2=g''(1)<\frac{230}{27\cdot19}
+                  =\frac{230}{513}.
+\tag{LHT.13}
+\]
+In particular this proof includes every $n\geq1$ and the entire
+positive integration axis.  There is no unestimated theta tail.
+
+\subsection{Uniform exclusion in the closed low-height rectangle}
+
+Write $s=\frac12+a+it$, where $a,t\in\mathbb{R}$.
+Evenness and reality of $\psi$ in (LHT.1) give
+\[
+ \operatorname{Re}g(\tfrac12+a+it)
+ =2\int_0^\infty\psi(y)\cosh(ay)\cos(ty)\,dy.
+\tag{LHT.14}
+\]
+The real inequality $\cos z\geq1-z^2/2$ follows from
+$1-\cos z=2\sin^2(z/2)\leq z^2/2$.  If $|a|\leq1/2$, then
+$1\leq\cosh(ay)\leq\cosh(y/2)$ for $y\geq0$.
+Since every factor $\psi(y)\cosh(ay)$ is nonnegative, substitution
+of this cosine inequality in (LHT.14) gives
+\[
+ \begin{split}
+ \operatorname{Re}g(\tfrac12+a+it)
+ &\geq 2\int_0^\infty\psi(y)\cosh(ay)\,dy
+       -t^2\int_0^\infty y^2\psi(y)\cosh(ay)\,dy\\
+ &\geq M_0-\frac{t^2}{2}G_2.
+ \end{split}
+\tag{LHT.15}
+\]
+For $|t|\leq2$, equations (LHT.7) and (LHT.13) now imply
+\[
+ \boxed{\quad
+ \operatorname{Re}g(s)
+ \geq1-\frac{17}{8}G_2
+ >1-\frac{17}{8}\frac{230}{513}
+ =\frac{97}{2052}>0,
+ \qquad 0\leq\operatorname{Re}s\leq1,
+ \quad |\operatorname{Im}s|\leq2.
+ \quad}
+\tag{LHT.16}
+\]
+Consequently $g(s)=2\xi(s)$ has no zero in that closed rectangle.
+This is proved directly from the actual theta source, without
+assuming the Riemann hypothesis or using numerical verification
+of its low zeros.
+
+The resulting map on the programme's original local packet objects
+is also explicit.  At every point $s_0$ of this rectangle,
+$g(s_0)\ne0$, so multiplication by $g$ on the local holomorphic
+ring $\mathcal O_{\mathbb{C},s_0}$ is an isomorphism with inverse
+multiplication by the holomorphic germ $1/g$.  On the rectangle
+itself the preceding calculation proves
+\[
+ |1/g(s)|\leq\frac1{\operatorname{Re}g(s)}
+                  <\frac{2052}{97}.
+\tag{LHT.17}
+\]
+It follows that
+$\mathcal O_{\mathbb{C},s_0}/(g)=0$ at every such $s_0$.
+Under the programme's already constructed Mellin--jet isomorphism
+to the actual packet summands, each of these local summands therefore
+vanishes.  No proper-source kernel is quotiented out by
+this argument.  In particular an actual upper-half-plane offcritical
+centre obeys
+\[
+ g(\rho)=0,\quad
+ \rho=\frac12+\delta+i\gamma,\quad
+ 0<\delta<\frac12,\quad \gamma>0
+ \quad\Longrightarrow\quad \gamma>2.
+\tag{LHT.18}
+\]
+Its reflected and conjugate centres retain their original orders,
+jets, and Taylor units.

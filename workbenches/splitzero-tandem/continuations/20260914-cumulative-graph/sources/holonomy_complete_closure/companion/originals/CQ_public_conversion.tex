@@ -1,0 +1,341 @@
+\section{Independent completed-phase quotient review}\label{independent-completed-phase-quotient-review}
+
+Date: 2026-09-13. Scope: the polynomial-density, completed-relation, kernel, and direct-integral assertions in H64. No source file was edited; no scans, program tests, Lean runs, or commutator calculations were performed.
+
+\subsection{Reviewed text and conclusion}\label{reviewed-text-and-conclusion}
+
+The review uses the following complete supplied sources. The original relative source names below are retained for provenance; their delivered locations and full source hashes are recorded in the companion source manifest.
+
+The relevant fixed text is:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{web\_holonomy\_descent\_delivery/Tau\_Holonomy\_Descent\_Control/NOTE.md}, lines 67--90: the complete selected orders, original cyclic polynomial, and Taylor unit; lines 166--177: H17 and positivity for tensor degree at least two; lines 703--715: H64, the asserted kernel, and the almost-everywhere direct-integral statement.
+\item
+  \texttt{web\_holonomy\_descent\_delivery/Tau\_Holonomy\_Descent\_Control/SOURCE\_REVIEW.md}: the source-reading scope was read. This review adds no primary-source scan claim.
+\item
+  \texttt{web\_periodized\_source\_delivery/Tau\_Periodized\_Source\_Control/RESEARCH\_NOTE.md}, lines 88--113: the full-order packet and original cyclic source; lines 564--584: P53--P54 and the exponential-tail density argument; lines 586--612: P55--P57, the target metric, and the closure calculation; line 633: the positive-support qualification for tensor degree one.
+\item
+  \texttt{web\_cyclic\_sum\_delivery/Tau\_Cyclic\_Sum\_Control/RESEARCH\_NOTE.md}, lines 31--34: the full-order packet and unit \texttt{j\_h(g/h)}; lines 54--70: the cyclic minimal polynomial and inclusion.
+\item
+  \texttt{web\_arithmetic\_endpoint\_delivery/Tau\_Arithmetic\_Endpoint\_Bounds/RESEARCH\_NOTE.md}, lines 95--105: the full-order packet and the entire quotient defining the actual density.
+\end{itemize}
+
+\textbf{Conclusion.} H64 and its kernel are correct for the stated original full-order arithmetic source at every integer tensor degree \texttt{k\ \textgreater{}=\ 1}. For a general nonnegative sampled density, its right side must include only positive-mass sampled roots. At \texttt{k\ =\ 1}, this qualification makes no change to H64 for the actual source: the ideals \texttt{(chi\_\{h,1\})=(h)} agree, and every sampled root has positive mass by full-order cancellation with the original leading coefficient \texttt{a\_h} retained. The direct-integral target is zero, with source kernel all of \texttt{E}, in both the general positive-support formulation and its arithmetic specialization. The proof below supplies the explicit metric and the density argument that are abbreviated in H64.
+
+\subsection{1. Coordinates, mass, and exponential moments}\label{coordinates-mass-and-exponential-moments}
+
+Fix the original integer \texttt{k\ \textgreater{}=\ 1}, period \texttt{L\ \textgreater{}\ 0}, phase \texttt{0\ \textless{}=\ theta\ \textless{}\ 2\ pi}, and the original nonempty full-order packet \texttt{h}. Throughout,
+
+\[
+c=k/2,\qquad
+u_{n,\theta}=\frac{2\pi n+\theta}{L},\qquad
+S_{n,\theta}=c+i u_{n,\theta},\qquad n\in\mathbb Z,
+\tag{CQ1}
+\]
+
+\[
+v_h=g/h,\qquad g=2\xi,\qquad
+w_h(t)=\frac{|v_h(1/2+it)|^2}{2\pi},\qquad
+m_{h,k}=w_h^{*k},\qquad
+\nu_{n,\theta}=\frac{2\pi}{L}m_{h,k}(u_{n,\theta}).
+\tag{CQ2}
+\]
+
+No mass is divided out. Put
+
+\[
+I_\theta=\{n\in\mathbb Z:\nu_{n,\theta}>0\},\qquad
+\mathcal H_\theta=\ell^2(I_\theta,\nu_\theta).
+\tag{CQ3}
+\]
+
+The notation \texttt{ell\^{}2(nu)} on all integers means this same Hilbert space after quotienting the zero seminorm coordinates. A zero-mass coordinate is not an evaluation functional on that Hilbert space.
+
+The predecessor's actual-source input, explicitly recorded immediately before P54, is that for each \texttt{0\ \textless{}\ b\ \textless{}\ pi/2},
+
+\[
+f_b(t)=e^{b|t|}w_h(t)\in L^1(\mathbb R)\cap L^\infty(\mathbb R).
+\tag{CQ4}
+\]
+
+This is an inherited estimate for the specified entire quotient, not an extra assumption about a new density. Its consequence for sampled measures is proved here. In the convolution integral, \texttt{\textbar{}t\_1+...+t\_k\textbar{}\ \textless{}=\ \textbar{}t\_1\textbar{}+...+\textbar{}t\_k\textbar{}}, so
+
+\[
+e^{b|u|}m_{h,k}(u)
+\le f_b^{*k}(u)
+\le C_{b,h,k},\qquad
+C_{b,h,k}:=\|f_b\|_\infty\|f_b\|_1^{k-1}.
+\tag{CQ5}
+\]
+
+The second inequality follows by integrating one bounded factor and the remaining \texttt{k-1} factors in \texttt{L\^{}1}. It includes \texttt{k=1}. For any \texttt{0\ \textless{}=\ a\ \textless{}\ b}, the literal sum satisfies
+
+\[
+\begin{aligned}
+\sum_{n\in I_\theta}\nu_{n,\theta}e^{a|u_{n,\theta}|}
+&\le\frac{2\pi C_{b,h,k}}L
+\sum_{n\in\mathbb Z}e^{-(b-a)|2\pi n+\theta|/L}\\
+&=\frac{2\pi C_{b,h,k}}L
+\frac{e^{-(b-a)\theta/L}+e^{-(b-a)(2\pi-\theta)/L}}
+{1-e^{-2\pi(b-a)/L}}<\infty.
+\end{aligned}
+\tag{CQ6}
+\]
+
+The two series use \texttt{n\ \textgreater{}=\ 0} and \texttt{n\ \textless{}=\ -1}, respectively. Formula CQ6 also includes \texttt{theta=0} without deleting its zeroth term.
+
+Let \texttt{chi(S)=sum\_\{j=0\}\^{}q\ chi\_j\ S\^{}j} be the literal monic original polynomial, of degree \texttt{q\textgreater{}0}. For real \texttt{u},
+
+\[
+|\chi(c+iu)|\le
+C_\chi(1+|u|)^q,\qquad
+C_\chi=\sum_{j=0}^q|\chi_j|\max(1,c)^j.
+\tag{CQ7}
+\]
+
+Choose \texttt{0\ \textless{}\ a\_1\ \textless{}\ a\_2\ \textless{}\ b}. The continuous function \texttt{(1+t)\^{}\{2q\}\ exp(-(a\_2-a\_1)t)} is bounded on \texttt{t\ \textgreater{}=\ 0}, since it tends to zero at infinity. Multiplying CQ7 by the exponential and using CQ6 proves
+
+\[
+\sum_{n\in I_\theta}
+|\chi(S_{n,\theta})|^2\nu_{n,\theta}
+e^{a_1|u_{n,\theta}|}<\infty.
+\tag{CQ8}
+\]
+
+Thus the original discrete measure and its \texttt{\textbar{}chi\textbar{}\^{}2} multiple each have a finite positive exponential moment. All their polynomial moments exist.
+
+\subsection{2. A complete polynomial-density proof on the shifted lattice}\label{a-complete-polynomial-density-proof-on-the-shifted-lattice}
+
+The following argument applies to either measure. Retain the shifted lattice CQ1, a subset \texttt{I} of its indices, and positive masses \texttt{mu\_n} such that
+
+\[
+\sum_{n\in I}\mu_ne^{a|u_{n,\theta}|}<\infty
+\quad\text{for some }a>0.
+\tag{CQ9}
+\]
+
+Suppose \texttt{f} in \texttt{ell\^{}2(I,mu)} is orthogonal to all polynomial evaluation vectors. Since \texttt{u=(S-c)/i}, the evaluations of polynomials in \texttt{S} and in the real coordinate \texttt{u} span the same subspace. Conjugating the orthogonality equations if necessary gives
+
+\[
+\sum_{n\in I}f_n\mu_nu_{n,\theta}^{j}=0
+\quad(j=0,1,2,\ldots).
+\tag{CQ10}
+\]
+
+Define
+
+\[
+F(z)=\sum_{n\in I}f_n\mu_ne^{zu_{n,\theta}},
+\qquad |\Re z|<a/2.
+\tag{CQ11}
+\]
+
+For \texttt{0\ \textless{}=\ t\ \textless{}\ a/2}, Cauchy--Schwarz gives
+
+\[
+\sum_{n\in I}|f_n|\mu_ne^{t|u_{n,\theta}|}
+\le\|f\|_{\ell^2(\mu)}
+\left(\sum_{n\in I}\mu_ne^{2t|u_{n,\theta}|}\right)^{1/2}<\infty.
+\tag{CQ12}
+\]
+
+This proves locally uniform absolute convergence on the open strip in CQ11. For every derivative order \texttt{j} and every smaller closed strip, choose \texttt{t\textquotesingle{}} strictly between its width and \texttt{a/2}. The bound
+
+\texttt{sup\_\{x\ \textgreater{}=\ 0\}\ x\^{}j\ exp(-(t\textquotesingle{}-t)x)\ \textless{}\ infinity}
+
+and CQ12 at \texttt{t\textquotesingle{}} prove locally uniform absolute convergence of the derivative series. Hence \texttt{F} is holomorphic and CQ10 says that all its derivatives at zero vanish. Its convergent Taylor series is zero on a disk about zero. Holomorphic uniqueness on the connected strip therefore gives \texttt{F(z)=0} on that entire strip.
+
+There is no need to appeal to an unproved general Fourier-measure uniqueness statement here. CQ12 at \texttt{t=0} allows termwise integration, and for each \texttt{m\ in\ I},
+
+\[
+\begin{aligned}
+0&=\frac1L\int_0^L F(it)e^{-it u_{m,\theta}}\,dt\\
+&=\sum_{n\in I}f_n\mu_n
+\frac1L\int_0^L e^{2\pi i(n-m)t/L}\,dt
+=f_m\mu_m.
+\end{aligned}
+\tag{CQ13}
+\]
+
+Because \texttt{mu\_m\textgreater{}0}, every coordinate \texttt{f\_m} vanishes. The orthogonal complement of the polynomial span is zero, so that span is dense. CQ6 proves density in \texttt{H\_theta}; CQ8 proves density in the Hilbert space for the positive atoms of \texttt{\textbar{}chi\textbar{}\^{}2\ nu\_theta}.
+
+\subsection{3. The closed relation space, exact map, metric, and kernel}\label{the-closed-relation-space-exact-map-metric-and-kernel}
+
+Define
+
+\[
+Z_\theta=\{n\in I_\theta:\chi(S_{n,\theta})=0\},\qquad
+p_\theta(S)=\prod_{n\in Z_\theta}(S-S_{n,\theta}),
+\tag{CQ14}
+\]
+
+where an empty product is \texttt{1}. The sample points are distinct, so \texttt{Z\_theta} has at most \texttt{q} members and \texttt{p\_theta} is a squarefree divisor of \texttt{chi}.
+
+Let \texttt{R\_theta} be the closure in \texttt{H\_theta} of the evaluation vectors of \texttt{chi\ C{[}S{]}}. Every such vector vanishes at all indices in \texttt{Z\_theta}. Each of those coordinates is continuous, since
+
+\[
+|f_n|\le\nu_{n,\theta}^{-1/2}\|f\|_{\mathcal H_\theta}
+\qquad(n\in Z_\theta).
+\tag{CQ15}
+\]
+
+It follows that \texttt{R\_theta} is contained in the subspace of vectors vanishing on \texttt{Z\_theta}. For the reverse inclusion, let \texttt{f} vanish there and set
+
+\[
+g_n=\frac{f_n}{\chi(S_{n,\theta})}
+\quad(n\in I_\theta\setminus Z_\theta).
+\tag{CQ16}
+\]
+
+This vector is square-integrable for the weighted masses
+
+\texttt{mu\_n\ =\ \textbar{}chi(S\_\{n,theta\})\textbar{}\^{}2\ nu\_\{n,theta\}},
+
+because its squared norm is exactly \texttt{sum\_\{I\_theta\textbackslash{}Z\_theta\}\ \textbar{}f\_n\textbar{}\^{}2\ nu\_\{n,theta\}}. By Section 2 there are polynomials \texttt{P\_j} tending to \texttt{g} in that weighted norm. Multiplication by the literal \texttt{chi} gives
+
+\[
+\|\chi P_j-f\|_{\mathcal H_\theta}^2
+=\sum_{n\in I_\theta\setminus Z_\theta}
+|P_j(S_{n,\theta})-g_n|^2
+|\chi(S_{n,\theta})|^2\nu_{n,\theta}\longrightarrow0.
+\tag{CQ17}
+\]
+
+At indices in \texttt{Z\_theta}, both terms on the left vanish. Consequently
+
+\[
+\mathcal R_\theta
+=\{f\in\mathcal H_\theta:f_n=0\text{ for all }n\in Z_\theta\}.
+\tag{CQ18}
+\]
+
+Restriction to \texttt{Z\_theta} therefore induces the exact isometric isomorphism
+
+\[
+\mathcal H_\theta/\mathcal R_\theta
+\xrightarrow{\sim}
+\left(\mathbb C^{Z_\theta},
+\ \|(v_n)\|^2=\sum_{n\in Z_\theta}\nu_{n,\theta}|v_n|^2\right).
+\tag{CQ19}
+\]
+
+The quotient norm is exactly the displayed norm: the coordinate projection onto \texttt{Z\_theta} is orthogonal, and the complementary projection has range \texttt{R\_theta}.
+
+Since adding \texttt{chi\ Q} to a polynomial changes its evaluation vector by an element of \texttt{R\_theta}, there is a well-defined linear comparison
+
+\[
+T_\theta:E=\mathbb C[S]/(\chi)
+\longrightarrow\mathcal H_\theta/\mathcal R_\theta,
+\qquad
+[P]\longmapsto(P(S_{n,\theta}))_{n\in Z_\theta}.
+\tag{CQ20}
+\]
+
+It is surjective. When \texttt{Z\_theta} is nonempty, the literal Lagrange polynomials
+
+\[
+L_n(S)=\prod_{m\in Z_\theta\setminus\{n\}}
+\frac{S-S_{m,\theta}}{S_{n,\theta}-S_{m,\theta}}
+\tag{CQ21}
+\]
+
+map to its coordinate basis; when it is empty, the target is zero. A polynomial vanishes at every distinct point indexed by \texttt{Z\_theta} if and only if it is divisible by their squarefree product. Hence the exact kernel is
+
+\[
+\ker T_\theta=(p_\theta)/(\chi)\subseteq E.
+\tag{CQ22}
+\]
+
+This retains the multiplicities in \texttt{chi}. In the primary decomposition of \texttt{E}, each unsampled primary block lies in the kernel; at a sampled root of multiplicity \texttt{m}, the kernel is the maximal ideal \texttt{(S-rho)/(S-rho)\^{}m}, while its scalar value survives. CQ20 is a linear map to a Hilbert quotient; no multiplication of arbitrary square-summable sequences is required.
+
+\subsection{4. Why the original arithmetic source needs no extra positivity hypothesis}\label{why-the-original-arithmetic-source-needs-no-extra-positivity-hypothesis}
+
+For \texttt{k\ \textgreater{}=\ 2}, the actual entire nonzero function \texttt{v\_h} has isolated zeros. Thus \texttt{w\_h(t)\textgreater{}0} off a discrete subset of the real axis. For fixed \texttt{u}, both \texttt{w\_h(t)} and \texttt{w\_h(u-t)} are positive for almost every \texttt{t}; their product is integrable by boundedness and integrability from CQ4. Its integral is strictly positive. Thus \texttt{m\_\{h,2\}(u)\textgreater{}0} for every real \texttt{u}. Inductively, convolving the everywhere-positive \texttt{m\_\{h,k-1\}} with the almost-everywhere-positive nonzero \texttt{w\_h} gives \texttt{m\_\{h,k\}(u)\textgreater{}0}. CQ5 makes the integrals finite. Therefore \texttt{I\_theta=Z} for \texttt{k\ \textgreater{}=\ 2} and CQ14 is exactly the index set displayed in H64.
+
+For \texttt{k=1}, the original cyclic algebra is \texttt{C{[}S{]}/(h)}, with generator multiplication by \texttt{S}. Its annihilator ideal is exactly \texttt{(h)}: \texttt{h(M\_S)=0}, and any polynomial annihilating \texttt{M\_S} also annihilates \texttt{1}, so is divisible by the unchanged \texttt{h}. Consequently \texttt{(chi\_\{h,1\})=(h)}. If \texttt{chi\_\{h,1\}} denotes the monic minimal polynomial and \texttt{a\_h} is the original leading coefficient of \texttt{h}, then \texttt{chi\_\{h,1\}=h/a\_h}; this identifies the ideal generator and does not replace the original source \texttt{v\_h=g/h}. Equality \texttt{chi\_\{h,1\}=h} is asserted only when the source separately fixes \texttt{a\_h=1}.
+
+Write the unchanged packet as
+
+\[
+h(S)=a_h\prod_{\rho\in Z_h}(S-\rho)^{m_\rho},
+\qquad a_h\ne0,\qquad m_\rho=\operatorname{ord}_\rho g.
+\tag{CQ23}
+\]
+
+For a selected root \texttt{rho}, full-order removal gives the exact nonzero value
+
+\[
+v_h(\rho)=
+\frac{g^{(m_\rho)}(\rho)}{h^{(m_\rho)}(\rho)}=
+\frac{g^{(m_\rho)}(\rho)}
+{a_hm_\rho!\prod_{\sigma\in Z_h\setminus\{\rho\}}
+(\rho-\sigma)^{m_\sigma}}\ne0.
+\tag{CQ24}
+\]
+
+This follows by factoring \texttt{(S-rho)\^{}\{m\_rho\}} from both \texttt{g} and the unchanged \texttt{h}; the numerator derivative, original leading coefficient \texttt{a\_h}, and every denominator factor are nonzero by their definitions. If a sample satisfies \texttt{S\_\{n,theta\}=rho}, then \texttt{Re\ rho=1/2} and
+
+\[
+\nu_{n,\theta}
+=\frac{2\pi}L w_h(\Im\rho)
+=\frac1L|v_h(\rho)|^2
+=\frac{|g^{(m_\rho)}(\rho)|^2}
+{L|a_h|^2(m_\rho!)^2\prod_{\sigma\in Z_h\setminus\{\rho\}}|\rho-\sigma|^{2m_\sigma}}>0.
+\tag{CQ25}
+\]
+
+Thus every root appearing in H64 has positive mass also at \texttt{k=1}. Other zero-mass lattice coordinates are discarded by the Hilbert-space definition CQ3, but none removes a summand from H64. The full-order hypothesis at NOTE.md line 67 and the preserved unit at lines 85--90 already supply the needed fact. A useful exposition repair is to define \texttt{I\_theta} and then state CQ25; it does not change H64's conclusion for this source.
+
+For comparison, outside this arithmetic domain the omission of positive support can change the theorem. With \texttt{nu\_0=0}, \texttt{nu\_n=e\^{}\{-\textbar{}n\textbar{}\}} for \texttt{n\ !=\ 0}, and \texttt{chi(S)=S-S\_\{0,theta\}}, Section 3 gives zero completed quotient, whereas a sum over all sampled polynomial roots would give one copy of \texttt{C}. This example establishes why the general formula must use CQ14; it is not a counterexample to the full-order arithmetic result.
+
+\subsection{5. The direct-integral target and its exact zero map}\label{the-direct-integral-target-and-its-exact-zero-map}
+
+Retain the fixed polynomial \texttt{chi} and \texttt{c=k/2}. Let
+
+\[
+\mathcal F=
+\{\theta\in[0,2\pi):
+\theta\equiv L\Im\rho\pmod{2\pi}
+\text{ for some root }\rho\text{ of }\chi
+\text{ with }\Re\rho=c\}.
+\tag{CQ26}
+\]
+
+Each such root specifies exactly one phase in the chosen half-open interval, and then exactly one integer \texttt{n} with \texttt{rho=S\_\{n,theta\}}. Therefore \texttt{F} is finite, with at most \texttt{q} elements. For \texttt{theta} outside \texttt{F}, the index set \texttt{Z\_theta} is empty, so CQ19 is the zero Hilbert space.
+
+A concrete measurable realization prevents ambiguity about the field of targets. Map CQ19 into the fixed Hilbert space \texttt{ell\^{}2(Z)} by
+
+\[
+(v_n)_{n\in Z_\theta}\longmapsto
+\left(\mathbf1_{n\in Z_\theta}\sqrt{\nu_{n,\theta}}v_n\right)_{n\in\mathbb Z}.
+\tag{CQ27}
+\]
+
+This is an isometry onto the range of the diagonal orthogonal projection with diagonal entries \texttt{1\_\{nu\_\{n,theta\}\textgreater{}0\}\ 1\_\{chi(S\_\{n,theta\})=0\}}. Those entries are measurable: the first condition is measurable for the original continuous density, and the second is the zero set of a continuous function of \texttt{theta}. Hence these ranges define a measurable Hilbert field. Their direct integral has norm
+
+\[
+\int_0^{2\pi}\sum_{n\in Z_\theta}
+\nu_{n,\theta}|v_n(\theta)|^2\,\frac{d\theta}{2\pi}.
+\tag{CQ28}
+\]
+
+Every section is zero outside the finite set \texttt{F}; its norm in CQ28 is zero. The direct integral is therefore the zero Hilbert space. For each \texttt{{[}P{]}\ in\ E}, the evaluation sections of CQ20 are measurable through CQ27 and supported in \texttt{F}. They consequently define the zero class in the direct integral. The induced map and its exact kernel are
+
+\[
+E\longrightarrow
+\int_{[0,2\pi)}^\oplus
+(\mathcal H_\theta/\mathcal R_\theta)\,\frac{d\theta}{2\pi}
+=0,
+\qquad \ker=E.
+\tag{CQ29}
+\]
+
+Individual exceptional fibres can remain nonzero and carry the positive masses in CQ19; a finite set has zero measure for the actual phase measure \texttt{dtheta/(2\ pi)}. CQ29 proves precisely the completed-target claim at NOTE.md line 715. It does not change the source isometry H13 or the finite quotient H24.
+
+On a retained split support label \texttt{ell}, the actual induced map is \texttt{(ell,v)\ -\textgreater{}\ (ell,0)}, while external absence maps to external absence. This is the lift of CQ29 by the stated H4; its coefficient kernel is all of \texttt{E}, exactly as CQ29 records.
+
+\subsection{Review disposition}\label{review-disposition}
+
+Accept H64, its displayed squarefree kernel, and the zero direct-integral conclusion for the original full-order packet. The recommended addition is explanatory: define the positive support and retained metric by CQ3, CQ14, CQ19; explicitly record the degree-one identity and positive sampled-root value CQ25. The unrestricted all-atom version is not justified for arbitrary other nonnegative densities. No source edit or mathematical test result is claimed by this review.

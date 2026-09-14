@@ -1,0 +1,14 @@
+# Later-control bounded audit log
+
+Task: audit U0049–U0054 in full against complete Tau Base NOTE.md; own later_control.md/json and this log. No Lean, shared master, or remote work.
+
+Parent task verbatim:
+Independently audit FULL U0049-U0054 portion of output/tau_f1_transcript_audit_2026-09-13/sources/audit_segment_U0041_U0054.md (lines3596-end) plus complete Tau_Base_Cohomology NOTE.md retained source. Read all chunks. For every user-response episode capture exact U/A locator,node id,short exact passages,what proved/omitted,scope of obstructions and later completion. Focus norms,masses,metrics,analytic boundaries,actual theta relations,source substitutions. Distinguish legitimate partial constructions from abandoned requested bound. Write only work/tau_f1_transcript_audit_20260913/audit_actual_tau/later_control.md and .json; your own logs beneath that directory. No other edits/master/remote/Lean. Parent reads early episodes and combines; primary root is calculating res_sigma fibre and coordinating canonical arithmetic/Gamma interpolation elsewhere. Suggest one tractable disjoint calculation if evident but focus audit.
+
+Progress: AGENTS.md fully read. Will read Tau Base completely and target transcript continuously, record exact node IDs, and verify claims before classification.
+
+Completion: read Tau Base NOTE.md completely; verified retained hash d03e71ad18f187bd89880cb8ca6fc9c5d6f260b3de8e8e5702c27db97e7b63c3. Read segment lines3596–7811 continuously; verified segment hash 4f6b4fd318308e561710bb24cd0f35b1b70b6507ba6be54b6f6d9b044ddbd1c4. Audited all six users and fifteen assistants (21 retained turns). Wrote later_control.md/json and exact later_control_user_inputs.md. JSON parsed and six episode text fields, all input strings, final node IDs and complete retained turn count validated. Supplemental sum-connection proof windows recorded in report; no full-package replay claim.
+
+Finding: substantial genuine mathematics was completed in each episode, but actual all-direction arithmetic sublinear W bound remains explicitly unproved. Exact mass 1/k Fisher formula is proved only for constant relative column; matrix connection/normal energy identities are present but transfer to full original filtered interpolation extremum is uncompleted. No generic-stalk collapse or blanket F1 failure appears within this bounded segment.
+
+Completed small audit calculations: full continuous action-equivariant C_tau splitting into C_+ and retained V[0]; continuous global nu=q(log x)Theta and exact finite-jet socle image, including equivariance, local units, multiplicities and trace. Parent notified of report paths and hashes. No shared master, remote or Lean mutations occurred. Main continuation belongs to parent: integrate audit and finish original arithmetic matrix estimate without duplicating coordinated root lanes.

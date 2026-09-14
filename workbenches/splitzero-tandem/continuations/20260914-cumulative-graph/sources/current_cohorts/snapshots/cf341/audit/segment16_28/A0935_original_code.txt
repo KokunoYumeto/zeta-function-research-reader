@@ -1,0 +1,39 @@
+bash -lc cat > /mnt/data/Deligne_source_audit/build_reading_record.py <<'PY'
+from pathlib import Path
+import json,html,hashlib
+B=Path(__file__).resolve().parent
+source=B/'extracted/source/20_AUTHORITY_DELIGNE_D032_WEIL_II_NUMDAM_117PP.pdf'
+fr={r['printed_page']:r for r in map(json.loads,(B/'extracted/edition/source_language.ndjson').read_text().splitlines())}
+en={r['printed_page']:r for r in map(json.loads,(B/'extracted/edition/english_standalone.ndjson').read_text().splitlines())}
+read_pages=[138,139,140,153,154,155,164,165,170,171,172,175,176,200,201,202,203,204,205,206,207,208,209,243,244,247,248]
+visual=[153,203,206,247,248]
+record={'date':'2026-09-11','source':'Pierre Deligne, La conjecture de Weil. II, Publ. Math. IHES 52 (1980), pp. 137–252',
+ 'assembly':'Six uploaded ZIPs each contain one consecutive binary chunk; offsets, all chunk digests, combined size and combined digest verified.',
+ 'assembled_bytes':216580466,'assembled_sha256':hashlib.sha256((B/'DELIGNE_D032_WEIL_II_S20_CUMULATIVE_FULL_STATE.zip').read_bytes()).hexdigest(),
+ 'authority_pdf_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+ 'authority_physical_pages':117,'article_printed_pages':'137–252',
+ 'supplied_english_page_records_read':read_pages,
+ 'french_facsimile_pages_visually_inspected':visual,
+ 'limits':['The packet contains an inherited full cold-audit report. That report was read as provenance, not claimed as an audit performed by this session.',
+ 'No claim of a complete new reading of all 116 article pages.',
+ 'The English text is the supplied edition, not a fresh translation.',
+ 'No GRH proof, full Deligne proof verification, upstream Navier–Stokes verification, or new Lean execution is claimed.'],
+ 'additional_source_read':{'repository':'KokunoYumeto/JT','commit':'0d48e30dea4046a40a3016feb18f1e343b8f7167','file':'05_agent_runs/2026-07-13_jt_visualization_studio_r1/nullity_k4_complete/immutable/nullity_k4_illustrated_mathematics_20260713/06_atlas/nullity_k4_illustrated_atlas.tex','ranges':'1–210, 250–480','relevant_section':'The mixed quadratic double'},
+ 'note':'These are recorded reads, not purported original research-session transcripts.'}
+(B/'reading_record.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
+lead='''<h1>Deligne: actual source reading</h1><p>11 September 2026. This view preserves the supplied French and English page records of <em>La conjecture de Weil. II</em>. The original NUMDAM PDF is the controlling source. This is a source-access and reading record, not a new proof or a full re-audit of the edition.</p><p><a href="reading_record.json">What was read</a> · <a href="assembly.json">Binary reassembly record</a> · <a href="extracted/source/20_AUTHORITY_DELIGNE_D032_WEIL_II_NUMDAM_117PP.pdf">Original 117-page PDF</a></p><h2>Useful entrypoints</h2><p><a href="#p153">Definitions 1.2.1–1.2.2</a> · <a href="#p164">Purity criterion 1.5.1</a> · <a href="#p171">Monodromy logarithm</a> · <a href="#p201">Weight-error induction</a> · <a href="#p203">Tensor-square improvement</a> · <a href="#p206">Pure image 3.3.6</a> · <a href="#p208">Extension groups</a> · <a href="#p247">Pure complexes and duality</a> · <a href="#p248">Proper pushforward and invariant cycles</a></p><p>The remaining page records are included for inspection. Inclusion of a page here does not assert that it was read in this session. See the explicit reading record.</p>'''
+style='''body{max-width:1040px;margin:auto;padding:35px 24px 80px;font:17px/1.65 system-ui,sans-serif;background:#fcfbf6;color:#25323a}h1{font-size:36px;line-height:1.15}h2{margin:40px 0 15px}a{color:#006b68;text-underline-offset:3px}section{border-top:1px solid #cbd8d5;padding-top:20px;margin-top:35px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.65 "Cambria Math",Georgia,serif;background:white;padding:22px;border:1px solid #dde4df}details{margin:14px 0}summary{cursor:pointer;color:#006b68}img{max-width:100%;height:auto}small{color:#586b71}.tag{font-size:12px;border:1px solid #ccd7d3;padding:3px 7px;border-radius:3px} @media(max-width:600px){body{padding:25px 15px;font-size:15px}h1{font-size:28px}pre{padding:15px;font-size:14px}}'''
+parts=[]
+for p in range(137,253):
+ physical=fr[p]['physical_page']; tags=[]
+ if p in read_pages:tags.append('English page read in this pass')
+ if p in visual:tags.append('French facsimile visually inspected')
+ entry=f'<section id="p{p}"><h2>Printed page {p} <small>· PDF page {physical}</small></h2><p>'+''.join('<span class="tag">'+x+'</span> ' for x in tags)+f'</p><p><a href="extracted/source/20_AUTHORITY_DELIGNE_D032_WEIL_II_NUMDAM_117PP.pdf#page={physical}">Open this original PDF page</a></p>'
+ entry+='<details><summary>Original French transcription</summary><pre>'+html.escape(fr[p]['text'])+'</pre></details>'
+ entry+='<details'+(' open' if p in read_pages else '')+'><summary>Supplied English edition</summary><pre>'+html.escape(en[p]['text'])+'</pre></details>'
+ if p in visual:entry+=f'<details><summary>Original French page image</summary><img src="checked_pages/printed_{p}.png" alt="Original printed page {p}"></details>'
+ parts.append(entry+'</section>')
+(B/'index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deligne — actual source reading</title><style>'+style+'</style></head><body>'+lead+''.join(parts)+'</body></html>')
+print('reading record:',len(read_pages),'English pages;',len(visual),'original page images inspected; HTML', (B/'index.html').stat().st_size,'bytes')
+PY
+python /mnt/data/Deligne_source_audit/build_reading_record.py

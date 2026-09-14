@@ -1,0 +1,68 @@
+U0065/A2470 promised a resolvent derived from theta boundaries. The subsequent A2497 and its retained note calculate the first- and second-order source defects. This note completes the resolvent calculation from those exact defects, including the resonant case. It makes no purity inference from the circle spectrum.
+
+# Original operator and its domain
+
+Fix $k\ge1$, $L>0$, $c=k/2$, and the relative Hilbert space $\mathcal K=L^2(\mathbb R^{k-1})$; for $k=1$ use $\mathcal K=\mathbb C$. The scalar holonomy phase is $0\le\theta<2\pi$. Let $$\mathscr H=L^2([0,L];\mathcal K),\quad
+ \mathscr D=-\partial_r+c,\quad
+ \operatorname{Dom}\mathscr D=
+ \{f\in H^1([0,L];\mathcal K):f(L)=e^{-i\theta}f(0)\}.
+ \tag{1}$$ The original orthonormal scalar functions are $e_n(r)=L^{-1/2}e^{-i\omega_nr}$, $\omega_n=(2\pi n+\theta)/L$. Fourier series, including $n=0$, identify (1) with the diagonal $$\mathscr D(e_n\otimes v)=(c+i\omega_n)e_n\otimes v,
+ \qquad
+ \sum_n(1+\omega_n^2)\|f_n\|_{\mathcal K}^2<\infty.
+ \tag{2}$$ In particular (1) is closed and normal: the adjoint of the diagonal has conjugate entries and the same domain. Its spectrum is exactly $\{c+i\omega_n:n\in\mathbb Z\}$. To check the last assertion, each listed value has its nonzero eigenvectors, while at any other complex number $z$ the inverse diagonal is bounded and maps onto the stated domain. Its exact operator norm is $$\|T(z)\|=\delta(z)^{-1},\qquad
+ T(z)=(\mathscr D-z)^{-1},\qquad
+ \delta(z)=\min_{n\in\mathbb Z}|c+i\omega_n-z|>0.
+ \tag{3}$$ The minimum exists because the distances tend to infinity. Equality in the norm follows by taking any unit vector in a minimizing mode.
+
+Retain the actual cyclic packet $E=\mathbb C[S]/(\chi_{h,k})$, $A=M_S$, and the phase-periodized canonical representative $R:E\to\mathscr H$. Its source is still $P(D_1+\cdots+D_k)F_h^{\otimes k}$, with $\mathcal MF_h=2\xi/h$, and full arithmetic observation $\upsilon_h^{\otimes k}P(A_h^{(k)})1$. Use an admitted finite degree $N\ge\deg\chi_{h,k}-1$. For this source comparison choose the circle length by the proved formula (17) of `shifted_mellin_source_constants.tex`, with $a=1$ and $\eta_1=1/2$: thus $L\ge\log(1+2\mathfrak k_{1,N})$. Its phase source Gram is at least one half of the positive original Gram. Periodization is therefore injective on the admitted polynomial source; composing with the canonical section proves that $R$ is injective. It has values in every twisted Sobolev domain, and the actual theta boundary is $$B=\mathscr D R-RA.
+ \tag{4}$$ It is the scalar-holonomy periodization of the retained source vector $D^{(k)}r_N-r_NA=dK_N^{\mathrm{prim}}$, not the zero vector obtained after applying its arithmetic quotient.
+
+# The resolvent comparison and the complete nonresonant packet
+
+For $z$ outside both spectra, the exact comparison is $$T(z)R-R(A-z)^{-1}=-T(z)B(A-z)^{-1}.
+ \tag{5}$$ Indeed, (4) says $(\mathscr D-z)R=R(A-z)+B$. Multiplying on the left by $T(z)$ and on the right by $(A-z)^{-1}$ gives (5), including its minus sign. All products are defined because $E$ is finite dimensional and $R(E)\subset\operatorname{Dom}\mathscr D$.
+
+For a complete primary block $E_\lambda\subset E$, put $N_\lambda=(A-\lambda)|_{E_\lambda}$ and retain its full length $r$, so $N_\lambda^r=0$. Restrict (4) to that block. If $\lambda\notin\operatorname{Spec}\mathscr D$, it gives $R_\lambda=T(\lambda)R_\lambda N_\lambda+T(\lambda)B_\lambda$. Substitute this expression successively $r$ times. Its last term contains $N_\lambda^r$ and vanishes, giving the finite formula $$\boxed{R_\lambda=
+ \sum_{j=0}^{r-1}T(\lambda)^{j+1}B_\lambda N_\lambda^j.}
+ \tag{6}$$ No jet was discarded: all $r$ powers occur. Conversely the right side satisfies (4) on $E_\lambda$, by telescoping after multiplication by $\mathscr D-\lambda$; the last nilpotent term is zero. It is the unique such solution, because the same iteration applied to a homogeneous solution makes that solution zero. For the original finite coefficient norm, (3) also proves $$\|R_\lambda\|
+ \le\sum_{j=0}^{r-1}\delta(\lambda)^{-j-1}
+                     \|B_\lambda N_\lambda^j\|.
+ \tag{7}$$ Thus the displayed map is a calculated reconstruction from the retained boundary, not a vanishing assertion.
+
+In particular, for an actual eigenvector $0\ne v\in E_\lambda$ with $N_\lambda v=0$, $$Rv=T(\lambda)Bv,\qquad
+ \frac{\|Bv\|}{\|Rv\|}\ge\delta(\lambda)
+ \ge|\Re\lambda-k/2|.
+ \tag{8}$$ The denominator is positive by the injectivity of the canonical source. The first inequality follows either from (3) or directly from (2). Every off-weight primary block is nonresonant, regardless of its imaginary part. Hence making its quotient boundary zero does not make its source boundary zero.
+
+# The resonant block with its full kernel and nilpotents
+
+Suppose $\lambda=c+i\omega_{n_0}$. Let $P$ be the orthogonal projection onto $e_{n_0}\otimes\mathcal K$, and write $Q=I-P$. On $Q\mathscr H$, the inverse $$T_Q=(\mathscr D-\lambda)^{-1}|_{Q\mathscr H}
+ \quad\text{has norm }L/(2\pi).
+ \tag{9}$$ This follows from the nonzero distances $|\omega_n-\omega_{n_0}|=2\pi|n-n_0|/L$. Projection of (4) and the same nilpotent iteration now yield $$QR_\lambda=\sum_{j=0}^{r-1}T_Q^{j+1}QB_\lambda N_\lambda^j,
+ \qquad
+ PB_\lambda=-PR_\lambda N_\lambda.
+ \tag{10}$$ These are all components of the comparison; (9) has not been used on the resonant mode.
+
+For clarity, write $\chi_{h,k}=(S-\lambda)^r h_\lambda$. The two displayed factors are relatively prime. Choose polynomials $a_\lambda,b_\lambda$ with $a_\lambda(S-\lambda)^r+b_\lambda h_\lambda=1$, and set $\varepsilon_\lambda=[b_\lambda h_\lambda]_{\chi_{h,k}}$. Its residues are one in the $\lambda$-local factor and zero in every other primary factor. The Chinese remainder map and its inverse therefore identify $E_\lambda=\varepsilon_\lambda E$ with $\mathbb C[S-\lambda]/((S-\lambda)^r)$. The actual embedded increasing power basis is $e_j=\varepsilon_\lambda(S-\lambda)^j$. Thus $N_\lambda e_j=e_{j+1}$ for $j<r-1$, and $N_\lambda e_{r-1}=0$. Write $X=PR_\lambda$, $Y=PB_\lambda$. Equation (10) says exactly $$Ye_{r-1}=0,\qquad
+ Xe_{j+1}=-Ye_j\quad(0\le j<r-1),\qquad
+ Xe_0\text{ is free in }P\mathscr H.
+ \tag{11}$$ Necessity follows by applying $Y=-XN_\lambda$ to every basis vector. Conversely the values in (11) define a linear map satisfying that equation. Hence (11) proves both sufficiency and the complete freedom, with no assumed semisimplicity. The actual source supplies its particular $Xe_0$. A squarefree sampled-value quotient would retain only a further observation of this data; it is not the map in (10)--(11).
+
+# The original Laplacian, including its two boundary terms
+
+Set $$\mathscr L=\mathscr D^2-k\mathscr D
+ =\partial_r^2-k^2/4,
+ \qquad A^{\mathrm{lap}}=A^2-kA,
+ \qquad C=(\mathscr D-k)B+BA.
+ \tag{12}$$ The domain of $\mathscr L$ is exactly $$\{f\in H^2([0,L];\mathcal K):
+ f(L)=e^{-i\theta}f(0),\ f'(L)=e^{-i\theta}f'(0)\},$$ equivalently the Fourier Sobolev domain of order two. Its eigenvalues are exactly $-\omega_n^2-k^2/4$; the zeroth Fourier index remains included. Applying $\mathscr D$ to (4) and subtracting $k$ times (4) proves $$\mathscr L R-RA^{\mathrm{lap}}=C.
+ \tag{13}$$ In particular both terms of $C$ in (12) are necessary. For $z$ outside both relevant spectra, exactly the proof of (5) gives $$(\mathscr L-z)^{-1}R-R(A^{\mathrm{lap}}-z)^{-1}
+ =-(\mathscr L-z)^{-1}C(A^{\mathrm{lap}}-z)^{-1}.
+ \tag{14}$$ On $E_\lambda$, retain $$\mu=\lambda^2-k\lambda,\qquad
+ M_\lambda=(2\lambda-k)N_\lambda+N_\lambda^2,
+ \quad M_\lambda^r=0.
+ \tag{15}$$ If $\mu\notin\operatorname{Spec}\mathscr L$, (13) gives the complete finite reconstruction $$R_\lambda=\sum_{j=0}^{r-1}
+       (\mathscr L-\mu)^{-j-1}C_\lambda M_\lambda^j.
+ \tag{16}$$ The proof is the same finite substitution as (6). Formula (15) retains the exceptional coefficient $2\lambda-k$, including the case where it is zero, and retains the $N_\lambda^2$ term; it does not replace the original primary block by a simple root.
+
+The linear source maps in (4)--(16) lift at each original support label as $(\ell,v)\mapsto(\ell,fv)$, with $\tau\mapsto\tau$. A source theta boundary has a supported-zero image under the original arithmetic quotient and retains its Hilbert vector in (6) or (10). Its necessary nonvanishing on each nonresonant eigenvector is proved by (8); the resonant boundary can vanish, with its full freedom given by (10)--(11). This resolves the promised resolvent calculation while proving its precise scope: a negative circle Laplacian controls its own resolvent and leaves the displayed arithmetic boundary terms. No bound for the four arithmetic quotient volumes follows by deleting those terms.

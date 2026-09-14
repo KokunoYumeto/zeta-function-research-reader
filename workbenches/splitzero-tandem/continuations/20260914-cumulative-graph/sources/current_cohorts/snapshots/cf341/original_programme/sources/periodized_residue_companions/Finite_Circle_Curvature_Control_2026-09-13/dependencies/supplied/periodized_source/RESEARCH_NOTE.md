@@ -1,0 +1,723 @@
+---
+title: "Periodized theta-source recovery and arithmetic endpoint control"
+author: "Owner-directed SplitZero research continuation"
+date: "2026-09-13"
+---
+
+# Result and scope
+
+This continuation joins the newly supplied Connes–Consani comparison to the original source-constrained arithmetic metrics. It proves a quantitative finite-period realization of those metrics, carries the original relation quotient through that realization, and calculates the unchanged boundary term between the circle Laplacian and the arithmetic Laplacian.
+
+The principal estimate is on an explicitly specified finite source, not on a freely chosen quotient metric. Write \(M\) for its original Gram and \(M(L)\) for the Gram of its full periodization, including the zeroth Fourier coefficient. For the two original exponential-weight Grams \(M_{a,+},M_{a,-}\),
+
+$$
+-\frac{M_{a,+}+M_{a,-}}{e^{aL}-1}
+\preceq M(L)-M
+\preceq\frac{M_{a,+}+M_{a,-}}{e^{aL}-1},\qquad a,L>0. \tag{P1}
+$$
+
+All matrices in (P1) are integrals of the actual source functions. For any fixed finite degree, this supplies a finite period at which the original full-jet quotient can be reconstructed with certified relative error. The four endpoint volumes acquire an error at most
+
+$$
+2q\log\frac{1+\eta}{1-\eta},\qquad 0<\eta<1. \tag{P2}
+$$
+
+For fixed \(\eta\), this is \(O(q)\), below the existing \(q\log k\) scale. The transfer estimate does not itself bound the periodized endpoint volumes as \(k\) grows. It is a quantitative, source-faithful realization of that remaining question.
+
+A second theorem gives an exact weighted recovery from all nonzero circle modes. It retains a compensating Riemann-zeta factor because the Fourier lattice is summed literally, not counted once.
+
+The present results have written proofs. The included exact algebraic regressions and numerical calibrations have narrower, separately recorded scopes. No RH conclusion, new Lean certificate, or novelty claim for Parseval, periodization, or positive-form comparison is made.
+
+# 1. Source intake and the Deligne operation
+
+The new pasted note reports the original identities
+
+$$
+\Theta\phi(x)=2\sum_{n\ge1}\phi(nx),\qquad
+\mathcal E\phi=\tfrac12\mathcal U\Theta\phi,\qquad
+(\mathcal UF)(x)=x^{1/2}F(x), \tag{P3}
+$$
+
+and the critical comparison
+
+$$
+\Gamma:Q=\mathscr B/\Theta V\longrightarrow
+\mathcal S(\mathbb R)/\overline{\zeta(1/2+it)\mathcal S(\mathbb R)}.
+\tag{P4}
+$$
+
+Its finite-packet kernel is the full off-critical generalized block. We retain that theorem and its original jet retractions; we do not infer injectivity from the target's spectral location. We use its augmented zeroth-mode object without asserting a new independent audit of the printed Proposition 5.2.
+
+The supplied `Deligne_FR.tex` is a multi-work corpus. Its selected D022 passage, *Poids dans la cohomologie des variétés algébriques*, states strict compatibility of geometric weight filtrations with the actual maps. It also retains the Thom–Gysin twist. The inline-work list in this uploaded file omits D032 (*Weil II*). For *Weil II* we separately reassembled the previously supplied S20 archive and read its current French page-local records, notably pp. 178, 203 and 206. The input archive and exact selected records are identified in `SOURCE_REVIEW.md`.
+
+The operation used here is the one emphasized by *Weil II* 3.3.4–3.3.6: establish the estimates on a specified comparison image, retaining its kernel, duality and action. No geometric weight filtration is assigned to the analytical circle spaces below. Instead we construct the missing norm comparison and propagate it to the same original quotient; this avoids replacing a full packet by the image of (P4).
+
+# 2. Retain the split coefficients and arithmetic source
+
+The scalar construction and its arithmetic observation remain
+
+$$
+G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\quad e_R=0_R^\bullet,
+\qquad
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(\jmath)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{\jmath}&\mathbb C.
+\end{array} \tag{P5}
+$$
+
+The target of \(p_{\mathbb Z}\) stays infinite. A coefficient-linear map \(f\) is lifted on a retained support fibre by
+
+$$
+(\ell,v)\longmapsto(\ell,fv),\qquad \tau\longmapsto\tau. \tag{P6}
+$$
+
+If \(fv=0\), its image is the receiving fibre zero \((\ell,0)\). No new scalar zero is adjoined when a source degree, relation depth or tensor degree changes.
+
+Keep the original spaces
+
+$$
+V=\{\phi\in\mathcal S(\mathbb R)_{\mathrm{ev}}:
+\phi(0)=0,\ \int\phi=0\},\quad
+D=-x\partial_x,\quad C_+=[V\xrightarrow\Theta\mathscr B],
+\quad g(s)=2\xi(s). \tag{P7}
+$$
+
+On the finite sources used here, all functions are finite linear combinations of tensors of strong-Schwartz functions and their logarithmic derivatives. In particular every integral below, with any fixed real exponential weight in a logarithmic variable, is finite.
+
+For a fixed nonempty packet polynomial \(h\) containing the full orders of its selected zeros, retain
+
+$$
+\mathcal MF_h=g/h,\quad
+\phi_*=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad
+h(D)F_h=\Theta\phi_* . \tag{P8}
+$$
+
+At tensor degree \(k\ge1\), the cyclic source and full arithmetic observation are
+
+$$
+\mathcal V_{h,k}P=P(D_1+\cdots+D_k)F_h^{\otimes k},
+\quad E=\mathbb C[S]/(\chi_{h,k}),\quad A=M_S,
+\tag{P9}
+$$
+
+$$
+J^{(k)}\mathcal V_{h,k}=\eta\pi_\chi,
+\qquad q^{(k)}\mathcal V_{h,k}
+=\sigma_h^{\otimes k}\eta\pi_\chi,
+\qquad
+\eta[P]=\upsilon_h^{\otimes k}P(A_k)1,
+\quad\upsilon_h=j_h(g/h). \tag{P10}
+$$
+
+These are inputs from the existing programme. The present proofs of norm transfer require no assumption about the location of the roots of \(h\) or \(\chi\). The entire quotient \(g/h\), its unit and the original source remain fixed.
+
+# 3. An exact diagonal logarithmic coordinate map
+
+For \(k=1\), put \(\mathcal K=\mathbb C\). For \(k>1\), put
+\(\mathcal K=L^2(\mathbb R^{k-1},d\mathbf z)\). Set
+
+$$
+x_i=e^{r+z_i}\ (i<k),\qquad x_k=e^r.
+\tag{P11}
+$$
+
+Thus \(r=\log x_k\), \(z_i=\log x_i-\log x_k\). The map from \((r,\mathbf z)\) to \((\log x_1,\ldots,\log x_k)\) has determinant of absolute value one. The exact Hilbert isometry is
+
+$$
+(\mathcal U_kF)(r,\mathbf z)
+=e^{(kr+\sum_{i<k}z_i)/2}
+F(e^{r+z_1},\ldots,e^{r+z_{k-1}},e^r).
+\tag{P12}
+$$
+
+Its inverse substitutes (P11) and multiplies by
+\(e^{-(kr+\sum z_i)/2}\). Direct change of variables proves
+
+$$
+\|\mathcal U_kF\|^2_{L^2(dr;\mathcal K)}
+=\|F\|^2_{L^2(d^kx)},\qquad
+\mathcal U_kD^{(k)}F=(-\partial_r+k/2)\mathcal U_kF,
+\quad D^{(k)}=\sum_iD_i.
+\tag{P13}
+$$
+
+The fixed Fourier transform is
+
+$$
+\widehat\psi(u)=\int_{\mathbb R}\psi(r)e^{iur}\,dr,
+\qquad
+\|\psi\|^2=\frac1{2\pi}\int_{\mathbb R}\|\widehat\psi(u)\|_{\mathcal K}^2du.
+\tag{P14}
+$$
+
+Then \(-\partial_r+k/2\) is carried to multiplication by \(k/2+iu\). The tensor-sum coordinate is still \(S\), not its average.
+
+For each finite source, \(\psi\) and its derivatives are \(\mathcal K\)-valued Schwartz functions. For example weighted Cauchy–Schwarz and the original separate strong-Schwartz bounds show
+\(\int e^{2a|r|}\|\partial_r^j\psi(r)\|_{\mathcal K}^2dr<\infty\)
+for every fixed \(a>0,j\). One-dimensional Sobolev estimates then give the corresponding pointwise decay. These facts justify the Hilbert-valued Fourier and periodization manipulations below.
+
+# 4. Periodization and the full zeroth-mode map
+
+For \(L>0\), define
+
+$$
+\mathcal P_L\psi(r)=\sum_{m\in\mathbb Z}\psi(r+mL),\quad 0\le r<L.
+\tag{P15}
+$$
+
+The series and its derivatives converge normally on the circle for the stated source. In the orthonormal Fourier basis
+\(L^{-1/2}e^{-2\pi i nr/L}\), unfolding the integral gives
+
+$$
+\widehat{\mathcal P_L\psi}(n)
+=L^{-1/2}\widehat\psi(2\pi n/L).
+\tag{P16}
+$$
+
+The zeroth coefficient is \(L^{-1/2}\widehat\psi(0)\); the corresponding constant function has value \(L^{-1}\widehat\psi(0)\).
+
+The source-preserving augmented map is
+
+$$
+\mathcal A_L\psi=
+\left((L^{-1/2}\widehat\psi(2\pi n/L))_{n\ne0},\widehat\psi(0)\right).
+\tag{P17}
+$$
+
+Its target metric is the direct sum of the ordinary sequence metric and
+\(L^{-1}\langle\ ,\ \rangle_{\mathcal K}\) on the last component. Reconstruction inserts \(L^{-1/2}\widehat\psi(0)\) at index zero. Thus (P17), with that target metric, has exactly the same Gram as the full periodization. The coefficient object at \(L=0\) may retain the last coordinate, as in the supplied repair; no finite limit of its raw metric at \(L=0\) is asserted.
+
+For \(k=1,F=\Theta\phi\), (P3) gives
+
+$$
+\Sigma_{e^L}\mathcal E\phi
+=\tfrac12\mathcal P_L\mathcal U_1\Theta\phi,
+\qquad
+\widehat{\Sigma_{e^L}\mathcal E\phi}(0)
+=\frac{\mathcal M\Theta\phi(1/2)}{2\sqrt L}.
+\tag{P18}
+$$
+
+For the unchanged \(\phi_*\), the right side is \(\xi(1/2)/\sqrt L\), exactly the new note's retained mode. Working with \(\mathcal E\) rather than the original theta map would multiply its Gram by \(1/4\); this factor is not assigned the value one.
+
+# 5. The original Gram is recovered with an exponential error
+
+Fix any specified finite source map \(T:\mathbb C^d\to\mathscr B^{\otimes k}\), and write \(\Psi=\mathcal U_kT\). All matrices use its unchanged coefficient basis. Define
+
+$$
+M=\Psi^*\Psi,\qquad M(L)=(\mathcal P_L\Psi)^*\mathcal P_L\Psi,
+\qquad Z_0c=\widehat{\Psi c}(0),
+\tag{P19}
+$$
+
+$$
+M_{a,\pm}=(e^{\pm ar}\Psi)^*(e^{\pm ar}\Psi).
+\tag{P20}
+$$
+
+In original coordinates these are exactly
+
+$$
+c^*M_{a,\pm}c=\int_{(0,\infty)^k}x_k^{\pm2a}|Tc(\mathbf x)|^2d^kx.
+\tag{P21}
+$$
+
+Both weights remain; they are auxiliary observations of the same functions.
+
+Define the matrix-valued correlation by
+
+$$
+c^*\mathcal C(s)d
+=\int_{\mathbb R}\langle\Psi c(r),\Psi d(r+s)\rangle_{\mathcal K}dr.
+\tag{P22}
+$$
+
+Unfolding one period, with absolutely convergent products, proves
+
+$$
+M(L)=\sum_{m\in\mathbb Z}\mathcal C(mL),\qquad \mathcal C(0)=M.
+\tag{P23}
+$$
+
+For \(s>0\), weighted Cauchy–Schwarz gives, for the same coefficient vector \(c\),
+
+$$
+|c^*\mathcal C(s)c|
+\le e^{-as}
+\sqrt{(c^*M_{a,-}c)(c^*M_{a,+}c)}.
+\tag{P24}
+$$
+
+Indeed the product of \(e^{-ar}\Psi c(r)\) and
+\(e^{a(r+s)}\Psi c(r+s)\) is \(e^{as}\) times the original integrand. For negative \(s\), exchange the two weights. Summing (P24) over both nonzero lattice directions gives
+
+$$
+|c^*(M(L)-M)c|
+\le\frac{2}{e^{aL}-1}
+\sqrt{(c^*M_{a,-}c)(c^*M_{a,+}c)}
+\le\frac{c^*(M_{a,-}+M_{a,+})c}{e^{aL}-1}.
+\tag{P25}
+$$
+
+The polarization is not used to replace the cross-pairings by diagonal entries: the last quadratic inequality for every \(c\) is precisely the matrix statement (P1).
+
+Parseval also gives the exact sampled formula
+
+$$
+M(L)_{ij}
+=\frac1L\sum_{n\in\mathbb Z}
+\left\langle\widehat{\Psi e_i}(2\pi n/L),
+\widehat{\Psi e_j}(2\pi n/L)\right\rangle_{\mathcal K}.
+\tag{P26}
+$$
+
+For the actual cyclic source with polynomial columns \(P_a(S)\), this Hilbert-valued formula becomes a scalar sampled arithmetic moment matrix. Partial Fourier Plancherel in the retained relative variables gives
+
+$$
+\|\widehat{\mathcal U_kF_h^{\otimes k}}(u)\|_{\mathcal K}^2
+=2\pi\,m_{h,k}(u),\qquad m_{h,k}=w_h^{*k}.
+\tag{P26a}
+$$
+
+Indeed the full Fourier amplitude is \(\prod_i v_h(1/2+it_i)\); integrating its squared modulus over the \(k-1\) relative Fourier variables contributes \((2\pi)^{-(k-1)}\), whereas the convolution uses \((2\pi)^{-k}\). Their ratio is precisely \(2\pi\).
+
+Consequently
+
+$$
+M_N(L)_{ab}=\frac{2\pi}{L}\sum_{n\in\mathbb Z}
+m_{h,k}(2\pi n/L)
+\overline{P_a(k/2+2\pi i n/L)}P_b(k/2+2\pi i n/L).
+\tag{P26b}
+$$
+
+For \(k\ge2\), this matrix is positive definite for every finite degree and every \(L>0\). The original \(w_h\) is nonnegative and positive off a discrete set. Its convolution \(w_h*w_h\) is strictly positive everywhere, and further convolutions preserve strict positivity. A nonzero polynomial cannot vanish at all the infinitely many distinct points \(k/2+2\pi i n/L\). Every sampled weight is positive, proving the assertion. The large-\(L\) estimate is still needed for quantitative comparison with the original Gram, even though invertibility in these tensor degrees holds at all \(L>0\).
+
+The nonzero-mode observation is related by
+
+$$
+M^\times(L)=M(L)-\frac1LZ_0^*Z_0.
+\tag{P27}
+$$
+
+This is a rank-at-most-\(d\) correction; for \(k=1\) its rank is at most one. Subtracting it is not the same operation as forgetting an absent source. The map (P17) retains its entire coefficient.
+
+# 6. Exact recovery from all nonzero modes
+
+For \(\delta>0\), define
+
+$$
+M_\delta=\frac1{2\pi}\int_{\mathbb R}|u|^\delta
+\widehat\Psi(u)^*\widehat\Psi(u)\,du.
+\tag{P28}
+$$
+
+Then
+
+$$
+\boxed{M_\delta=
+\frac{(2\pi)^\delta}{\zeta(1+\delta)}
+\int_0^\infty L^{-1-\delta}M^\times(L)\,dL.}
+\tag{P29}
+$$
+
+Proof: evaluate the quadratic form on any \(c\), use Tonelli on its nonnegative Fourier sum, and put \(u=2\pi n/L\) for \(n>0\). The resulting integral is
+
+$$
+\int_0^\infty L^{-2-\delta}
+\|\widehat{\Psi c}(2\pi n/L)\|^2dL
+=(2\pi n)^{-1-\delta}
+\int_0^\infty u^\delta\|\widehat{\Psi c}(u)\|^2du.
+\tag{P30}
+$$
+
+The negative indices give the integral on the negative half-line. Summing \(n^{-1-\delta}\) gives the displayed \(\zeta(1+\delta)\); multiplication by \((2\pi)^\delta\) leaves the original \(1/(2\pi)\). Equality of all quadratic forms proves (P29). The integral is taken on source Grams before applying the nonlinear map \(M\mapsto(J_NM^{-1}J_N^*)^{-1}\). No identity obtained by averaging already-formed quotient Grams is claimed.
+
+Dominated convergence gives \(M_\delta\to M\) as \(\delta\downarrow0\). The zero mode stays in (P17); its isolated frequency does not contribute to the continuous Lebesgue integral. Inserting the raw zero-mode summand into (P29) instead would make its small-\(L\) integral diverge. This is why the explicit separation and reconstruction are necessary.
+
+There is a finite-source rate. For any fixed \(\delta_0>0\), set
+
+$$
+\mathcal L_{\delta_0}=\frac1{2\pi}\int
+|\log|u||\,(1+|u|^{\delta_0})
+\widehat\Psi(u)^*\widehat\Psi(u)\,du.
+\tag{P31}
+$$
+
+The logarithm is integrable at the origin and the tails are controlled by Schwartz decay. For \(0<\delta\le\delta_0\), the mean value formula for \(|u|^\delta\) proves
+
+$$
+-\delta\mathcal L_{\delta_0}\preceq M_\delta-M
+\preceq\delta\mathcal L_{\delta_0}.
+\tag{P32}
+$$
+
+The zeta factor in (P29) counts nonzero Fourier lattice points on a positive real half-plane. It is not substituted for the source function \(g=2\xi\), and it supplies no assertion about the zero set of \(g\).
+
+# 7. Transfer through the same full-jet quotient
+
+Now specialize \(T\) to the actual polynomial source at degree \(N\), with its specified basis. Let
+\(J_N:\mathcal P_N\twoheadrightarrow E\)
+be the unchanged full remainder map \(\pi_\chi\), followed by the retained inclusion \(\eta\) whenever the larger arithmetic target is used. Work in remainder coordinates on \(E\); \(\eta\) is not discarded or inverted as a rectangular determinant.
+
+For \(N\ge q-1\), \(M_N\succ0\). Set
+
+$$
+\kappa_{a,N}=
+\max_{c\ne0}\frac{c^*(M_{a,+,N}+M_{a,-,N})c}{c^*M_Nc}.
+\tag{P33}
+$$
+
+It is finite. Given \(0<\eta_0<1\), the explicit choice
+
+$$
+L\ge\frac1a\log\left(1+\frac{\kappa_{a,N}}{\eta_0}\right)
+\tag{P34}
+$$
+
+implies
+
+$$
+(1-\eta_0)M_N\preceq M_N(L)\preceq(1+\eta_0)M_N.
+\tag{P35}
+$$
+
+In particular periodization is injective on this finite source. All hypotheses needed to take the inverse in the next equation have now been verified.
+
+For either source metric, use the same constrained minimum:
+
+$$
+K_N(L)=J_NM_N(L)^{-1}J_N^*,\quad
+G_N(L)=K_N(L)^{-1},\quad
+C_N(L)=M_N(L)^{-1}J_N^*G_N(L).
+\tag{P36}
+$$
+
+Here \(J_NC_N(L)=I_E\). At the original observation write \(G_N,C_N\) without \(L\). Applying (P35) to every representative with a fixed remainder and then taking the infimum proves
+
+$$
+\boxed{(1-\eta_0)G_N\preceq G_N(L)\preceq(1+\eta_0)G_N.}
+\tag{P37}
+$$
+
+This proof compares the actual same constrained representative sets; it does not infer a form estimate from an arbitrary inverse compression.
+
+The representative correction is explicitly
+
+$$
+C_N(L)-C_N\in\ker J_N=\chi\mathcal P_{N-q},
+\quad
+C_N(L)-C_N=M_\chi\,\operatorname{div}_\chi(C_N(L)-C_N).
+\tag{P38}
+$$
+
+Its original theta primitive is also retained. Since \(\chi(S)Q(S)\) belongs to the original ideal \((h(s_1),\ldots,h(s_k))\), fixed-order monic division gives
+\(\chi(S)Q(S)=\sum_i h(s_i)Q_i(\mathbf s)\).
+Replace \(F_h\) in slot \(i\) by \(\phi_*\), apply \(Q_i(D_1,\ldots,D_k)\), and give that primitive coefficient \((-1)^{i-1}\). The tensor differential contributes a second \((-1)^{i-1}\), giving the indicated positive relation. After reconstruction its quotient value is the receiving supported zero. The relation itself, its coefficient, and its support label remain available upstream.
+
+A common period works on all degrees up to an admitted \(D\). Use \(\kappa_{a,D}\) in (P34): all smaller source forms are restrictions through the actual polynomial inclusions, so their Rayleigh quotients are no larger. Taking \(D=2q+2\) also covers the one- and two-degree raises used by the scaling and Laplacian maps.
+
+# 8. The four-volume coefficient is preserved up to a calculated error
+
+Write \(V_N=\det G_N\), \(V_N(L)=\det G_N(L)\). Then (P37) proves
+
+$$
+q\log(1-\eta_0)\le
+\log V_N(L)-\log V_N
+\le q\log(1+\eta_0).
+\tag{P39}
+$$
+
+For a common period valid at all four endpoints, set
+
+$$
+\mathcal B_{h,k}(L)=
+\log\frac{V_{q-1}(L)V_q(L)}{V_{2q-1}(L)V_{2q}(L)}.
+\tag{P40}
+$$
+
+The coefficients of the two numerator errors and the two denominator errors give exactly
+
+$$
+\boxed{\left|\mathcal B_{h,k}(L)-\mathcal B_{h,k}\right|
+\le2q\log\frac{1+\eta_0}{1-\eta_0}.}
+\tag{P41}
+$$
+
+For each tensor degree choose the displayed \(L(k)\) from the degree-\(2q_k+2\) source. A fixed \(\eta_0\in(0,1)\) then gives the equality of asymptotic lower/upper thresholds whenever either is read in the extended real sense:
+
+$$
+\frac{\mathcal B_{h,k}(L(k))-\mathcal B_{h,k}}
+{q_k\log k}\longrightarrow0.
+\tag{P42}
+$$
+
+Thus the inherited necessary threshold four for an exact off-line quartet is transferred to these specified finite-period source quotients. No bound on the growth of \(\kappa_{a,2q_k+2}\) is asserted; it is the explicit cost entering the required circle size. The remaining upper estimate concerns the constructed \(\mathcal B_{h,k}(L(k))\), not the unconstrained eigenvalue spacing of a free circle operator.
+
+# 9. The periodic Laplacian and its exact arithmetic boundary
+
+The circle operator on \(L^2(\mathbb R/L\mathbb Z;\mathcal K)\) is
+
+$$
+D_L^{(k)}=-\partial_r+k/2,\qquad
+\mathscr L_{L,k}=(D_L^{(k)})^2-kD_L^{(k)}
+=\partial_r^2-k^2/4.
+\tag{P43}
+$$
+
+On periodic Sobolev domains, \(-i\partial_r\) is self-adjoint; equivalently its Fourier diagonal is the real sequence \(-2\pi n/L\). The displayed Laplacian is self-adjoint and has eigenvalues
+
+$$
+-\left(\frac{2\pi n}{L}\right)^2-\frac{k^2}{4},\qquad n\in\mathbb Z.
+\tag{P44}
+$$
+
+The full zeroth mode is retained at \(-k^2/4\).
+
+Let \(r_N(L)=\mathcal V_{h,k}C_N(L)\) be the coefficient representative and let
+
+$$
+R_{N,L}=\mathcal P_L\mathcal U_k r_N(L),\qquad
+B_{N,L}=\mathcal P_L\mathcal U_k
+\bigl(D^{(k)}r_N(L)-r_N(L)A\bigr).
+\tag{P45}
+$$
+
+The second map is the periodization of the original theta boundary, with its primitive supplied in (P38) and the original derivative comparison. Both maps have finite domain \(E\); their adjoints require no bounded extension of the global theta operator.
+
+Direct intertwining gives
+
+$$
+D_L^{(k)}R_{N,L}-R_{N,L}A=B_{N,L},
+\quad R_{N,L}^*R_{N,L}=G_N(L),
+\tag{P46}
+$$
+
+$$
+A^*G_N(L)+G_N(L)A-kG_N(L)
+=-(R_{N,L}^*B_{N,L}+B_{N,L}^*R_{N,L}).
+\tag{P47}
+$$
+
+The second-order equation is
+
+$$
+\boxed{\mathscr L_{L,k}R_{N,L}-R_{N,L}(A^2-kA)
+=(D_L^{(k)}-k)B_{N,L}+B_{N,L}A.}
+\tag{P48}
+$$
+
+Proof: apply \(D_L^{(k)}\) to (P46), replace \(D_L^{(k)}R_{N,L}\) by \(R_{N,L}A+B_{N,L}\), and subtract \(k\) times (P46). Every term remains in its stated periodic smooth domain.
+
+Equation (P48) is the actual relation between the negative circle spectrum and the arithmetic Laplacian. It contains two boundary terms. Their quotient values vanish, but their representative norms and cross-pairings are not set to zero.
+
+For example, on an arithmetic eigenvector \(Av=\rho v\), the Fourier diagonal of (P43) proves
+
+$$
+\left\|((D_L^{(k)}-k)B_{N,L}+B_{N,L}A)v\right\|
+\ge |\operatorname{Im}(\rho(\rho-k))|\,\|R_{N,L}v\|.
+\tag{P49}
+$$
+
+This is a lower test for the retained boundary, not an upper estimate. It follows from
+\(\| (T-z)y\|\ge|\operatorname{Im}z|\|y\|\) for the displayed self-adjoint Fourier diagonal \(T=\mathscr L_{L,k}\).
+
+The coefficient arithmetic action has type
+\(\mathcal J_{N+1,L}D_L^{(k)}R_{N,L}:E\to E\)
+through the recovered original source coordinates. The finite periodic source itself is mapped to degree \(N+1\) by \(D_L^{(k)}\). It is not asserted to be an invariant spectral subspace of the circle operator.
+
+# 10. Retain the critical comparison kernel and its cone
+
+The supplied comparison theorem (P4) gives, on a packet with its full multiplicities,
+
+$$
+\ker(\Gamma\sigma_Z)=E_{Z,\mathrm{off}}.
+\tag{P50}
+$$
+
+Its critical jet maps contain the explicit coefficients \(i^{-j}/j!\). On the exact finite image the resulting sequence is
+
+$$
+0\to E_{Z,\mathrm{off}}\to E_Z
+\xrightarrow{\Gamma\sigma_Z}\operatorname{im}(\Gamma\sigma_Z)\to0.
+\tag{P51}
+$$
+
+The two-term cone \([E_Z\to\operatorname{im}(\Gamma\sigma_Z)]\), in degrees \(-1,0\), retains \(E_{Z,\mathrm{off}}\) in degree \(-1\). The arithmetic generator restricts to it. A represented off-critical class maps to a supported zero under this particular comparison, not to external absence.
+
+For the finite-period construction, the original source map
+\(\Phi_{N,L}=\mathcal P_L\mathcal U_k\mathcal V_{h,k}|_{\mathcal P_N}\)
+is injective when (P34) holds. Hence it has the actual inverse onto its image and the observation
+
+$$
+\mathcal J_{N,L}:\operatorname{im}\Phi_{N,L}\to E,
+\qquad \mathcal J_{N,L}=J_N\Phi_{N,L}^{-1}.
+\tag{P52}
+$$
+
+The quotient of this image by \(\Phi_{N,L}(\ker J_N)\) is exactly \(E\), by (P52). This supplies the source-faithful norm computation. Mapping further to the critical-only quotient for \(k=1\) composes with (P4) and again has the kernel (P50); it cannot be omitted from the diagram.
+
+The new theorem therefore does not infer RH by declaring every circle mode real. It retains the complete original packet before applying that further spectral quotient, and gives the exact boundary and metric costs of the comparison.
+
+# 11. The exact fixed-circle completion and its lost packet directions
+
+The preceding source-faithful quotient has a further completion map which can be calculated exactly. Fix \(k\ge2\), \(L>0\), and set
+
+$$
+S_n=k/2+2\pi i n/L,\qquad
+\nu_n=\frac{2\pi}{L}m_{h,k}(2\pi n/L)>0.
+\tag{P53}
+$$
+
+The closure of the cyclic polynomial source is
+\(\mathcal H_{\mathrm{cyc},L}=\ell^2(\mathbb Z,\nu)\), through
+\(P\mapsto(P(S_n))_n\). To prove density, use the retained exponential tail of \(w_h\): for every \(0<b<\pi/2\), \(e^{b|t|}w_h(t)\in L^1\cap L^\infty\). The triangle inequality inside convolution gives
+
+$$
+e^{b|u|}m_{h,k}(u)
+\le(e^{b|\cdot|}w_h)^{*k}(u)
+\le\|e^{b|\cdot|}w_h\|_\infty
+\|e^{b|\cdot|}w_h\|_1^{k-1}.
+\tag{P54}
+$$
+
+Thus the discrete measure and its polynomially weighted variants have a finite exponential moment. If an element is orthogonal to every polynomial, its associated finite complex measure has Fourier transform analytic in a strip, with every derivative zero at zero. The identity theorem and uniqueness of Fourier transforms force that measure to be zero. This proves density, and applies unchanged after multiplying the measure by \(|\chi|^2\) away from its zero atoms.
+
+Define the finite index set and squarefree polynomial
+
+$$
+\mathcal Z_L=\{n\in\mathbb Z:\chi(S_n)=0\},\qquad
+p_L(S)=\prod_{n\in\mathcal Z_L}(S-S_n).
+\tag{P55}
+$$
+
+The empty product is \(1\). Since \(p_L\mid\chi\), the actual completion comparison is
+
+$$
+\boxed{
+E=\mathbb C[S]/\chi
+\xrightarrow{\theta_L}
+\mathcal H_{\mathrm{cyc},L}/\overline{\chi\mathbb C[S]}
+\xrightarrow{\sim}\bigoplus_{n\in\mathcal Z_L}\mathbb C,
+\qquad [P]\longmapsto(P(S_n))_{n\in\mathcal Z_L}.}
+\tag{P56}
+$$
+
+Its target has the metric \(\sum_{n\in\mathcal Z_L}\nu_n|v_n|^2\), and
+
+$$
+\boxed{\ker\theta_L=(p_L)/(\chi).}\tag{P57}
+$$
+
+Proof of the Hilbert quotient: every \(\chi P\) vanishes at \(\mathcal Z_L\), so its closure is contained in that vanishing subspace. Conversely let \(f\) vanish at those atoms and put \(g_n=f_n/\chi(S_n)\) elsewhere. Then \(g\) is square-integrable for \(|\chi|^2\nu\). Polynomial density for that weighted measure approximates \(g\), and multiplication by \(\chi\) approximates \(f\) in the original norm. Thus the closure is exactly the stated vanishing subspace. The algebraic kernel is divisibility by the squarefree \(p_L\).
+
+This comparison retains only the reduced values at those roots actually sampled by this circle. Its kernel contains all unsampled primary blocks and every nonconstant jet in a sampled multiple-root block. It is related to the supplied Schwartz critical-line comparison (P50), not identified with it: that comparison has a continuous range of critical frequencies and continuous derivative-evaluation retractions, whereas (P56) is a discrete Hilbert completion with the explicit kernel (P57).
+
+There is also an exact endpoint limit for the same canonical periodic metrics. Let \(E\) use its fixed remainder basis and let \(J_{\mathcal Z_L}\) be evaluation in that basis. Then
+
+$$
+\boxed{
+G_N(L)\ \downarrow\
+J_{\mathcal Z_L}^*\operatorname{diag}(\nu_n)_{n\in\mathcal Z_L}
+J_{\mathcal Z_L}
+\quad\text{as }N\to\infty.}
+\tag{P58}
+$$
+
+For a given remainder class, the infimum over all polynomial representatives is the squared distance to the closure of \(\chi\mathbb C[S]\), which is exactly its sampled value norm by (P56). The admitted relation spaces increase with degree, so these infima decrease to that distance. Polarization gives entrywise convergence, and finite dimensionality gives convergence of the matrices. Their limiting radical is the kernel in (P57).
+
+The original \(e\)-lift of \(\theta_L\) sends a killed represented class to \((\ell,0)\). The class remains in \((p_L)/(\chi)\) before this quotient. The same single scalar construction supports these several kernels.
+
+This determines the order-of-limits issue rather than ignoring it. Increasing the circle size according to (P34) before comparing a prescribed finite degree gives the original metric within (P37). Keeping \(L\) fixed and completing in polynomial degree gives (P58), which generally loses arithmetic directions. A proof cannot replace the former family by the latter completion while keeping the full packet unchanged.
+
+For \(k=1\), the same argument applies on the positive support atoms \(\{n:w_h(2\pi n/L)>0\}\); the clean all-integer statement above is explicitly restricted to \(k\ge2\). The seed with \(h=1\) remains an analytic calibration, not a nonempty quotient.
+
+# 12. A finite Fourier cutoff with an explicit source-side error
+
+The fixed-circle Gram still has an infinite Fourier sum. That sum also admits a certified finite truncation without choosing a different source. For an integer \(p\ge1\), define the actual derivative Gram
+
+$$
+H_{p,N}=\int_{\mathbb R}(1+r^2)
+(\partial_r^p\Psi_N(r))^*\partial_r^p\Psi_N(r)\,dr.
+\tag{P59}
+$$
+
+The source comparison is
+\(\partial_r^p\mathcal U_k=(-1)^p\mathcal U_k(D^{(k)}-k/2)^p\).
+Consequently (P59) is the original integral with factor
+\(1+(\log x_k)^2\) and the displayed polynomial of the original generator; the sign \((-1)^p\) appears in the map and has squared modulus one in its Gram.
+
+Integration by parts and weighted Cauchy–Schwarz give
+
+$$
+\|\widehat{\Psi_Nc}(u)\|_{\mathcal K}^2
+\le \pi |u|^{-2p}c^*H_{p,N}c\quad(u\ne0).
+\tag{P60}
+$$
+
+Here \(\int_{\mathbb R}(1+r^2)^{-1}dr=\pi\); no Fourier factor is absorbed into \(H_{p,N}\).
+
+For \(J\ge1\), let \(M_N(L,J)\) be (P26) summed only over \(|n|\le J\), including \(n=0\). Every omitted matrix summand is positive, and
+
+$$
+\boxed{
+0\preceq M_N(L)-M_N(L,J)
+\preceq\frac1{2p-1}
+\left(\frac{L}{2\pi J}\right)^{2p-1}H_{p,N}.}
+\tag{P61}
+$$
+
+Indeed the prefactor before the remaining series is
+\((2\pi/L)(L/(2\pi))^{2p}\); the estimate
+\(\sum_{n>J}n^{-2p}\le J^{1-2p}/(2p-1)\)
+gives exactly the displayed coefficient.
+
+On the common degree-\(D\) source set
+
+$$
+\lambda_{p,D}=\max_{c\ne0}\frac{c^*H_{p,D}c}{c^*M_Dc},\quad
+\eta_{\mathrm{per}}=\frac{\kappa_{a,D}}{e^{aL}-1},\quad
+\eta_{\mathrm{tail}}=\frac{\lambda_{p,D}}{2p-1}
+\left(\frac{L}{2\pi J}\right)^{2p-1}.
+\tag{P62}
+$$
+
+Both constants come from the unchanged finite source. When their sum
+\(\eta=\eta_{\mathrm{per}}+\eta_{\mathrm{tail}}<1\), the established inequalities prove, simultaneously for all \(N\le D\),
+
+$$
+(1-\eta)M_N\preceq M_N(L,J)\preceq(1+\eta)M_N.
+\tag{P63}
+$$
+
+Both \(L\) and \(J\) can be selected explicitly. For positive budgets
+\(\eta_P+\eta_T<1\), take
+
+$$
+L\ge\frac1a\log(1+\kappa_{a,D}/\eta_P),\qquad
+J\ge\max\left\{1,D,
+\frac L{2\pi}
+\left(\frac{\lambda_{p,D}}{(2p-1)\eta_T}\right)^{1/(2p-1)}
+\right\},\quad J\in\mathbb Z.
+\tag{P64}
+$$
+
+The same constrained-minimum and determinant arguments now apply to a genuinely finite sum of the original spectral-amplitude Grams. Its four-volume comparison still has the error in (P41), with the total \(\eta\). Rounding of the sampled arithmetic values is a further input: its matrix enclosure must be added to (P63) before treating a numerical calculation as a certificate. No such high-degree arithmetic enclosure is claimed in this delivery.
+
+# 13. What has and has not been added
+
+The contribution consists of: the diagonal multi-variable coordinate map; the full augmented periodic metric; the exponentially controlled original-source Gram recovery; the exact all-period nonzero-mode identity with its lattice factor; the source-preserving minimum-norm quotient transfer; its \(O(q)\) four-volume error; and the exact periodic-to-arithmetic Laplacian boundary.
+
+The predecessor period determinant, residue trace, Deligne exponential family, scalar Laplacian and critical-kernel constructions are retained as inputs, not recounted as newly proved results. The new finite-period estimates act on the same \(G_N\) that those constructions must compare.
+
+The quantitative upper problem remains the growth of the periodized quotient volumes, equivalently the original endpoint volumes by (P41). A bound contradicting the inherited threshold four is not proved here. The supplied negative circle operator alone does not give such a bound because (P48) retains the original nonzero representative-level boundary.
+
+# References and evidence
+
+- User-supplied `Pasted text(3).txt`, and PR27 `HOCHSCHILD_COMPARISON.md`, inspected at head `a4a87844c257485ae6d669f5b3eb6d96b9e8b8d8`. The precise finite-kernel, zeroth-mode and Laplacian statements retain their reported analytic versus Lean scopes.
+- Connes and Consani, *Hochschild homology, trace map and zeta-cycles*, arXiv:2207.10419. Its abstract explicitly distinguishes its all-zero Laplacian realization and critical-only sheaf realization. No new erratum claim is made by this continuation.
+- Deligne, *Poids dans la cohomologie des variétés algébriques*, selected D022 text in the newly supplied French corpus, especially the strictness statement and the displayed Thom–Gysin twist.
+- Deligne, *La conjecture de Weil II*, the previously supplied S20 current French page-local records, pp. 178, 203 and 206. The archive's exact reconstructed SHA-256 and reading scope are recorded separately.
+- The periodization, Parseval and quadratic-form comparison ingredients are classical. All source-specific identities and estimates used above have proofs in the displayed coordinates.
+
+The generated package contains no copies of the supplied literary corpus and no fonts. Its checks report exactly what was executed. It contains no proof-assistant claim for the analytical statements.

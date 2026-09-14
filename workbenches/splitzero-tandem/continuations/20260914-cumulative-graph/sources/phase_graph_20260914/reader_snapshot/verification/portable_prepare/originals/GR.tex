@@ -1,0 +1,823 @@
+\begingroup
+
+\section{Complete Gamma-reference lower bound and arithmetic determinant comparison}
+
+
+\begingroup
+\sloppy
+\small
+
+\noindent\textbf{Source role.} Complete written proof, with original source bytes and reversible notation/publication mapping retained.\par
+\noindent\textbf{Exact revision.} \nolinkurl{830fbfe19d688b1e138b41ea4a784c662629dfecc71812627b66927f91ce468f}\par
+\noindent\textbf{Complete source.} \path{sources/next_edition/actual_tau_conversions_v1/sources/gamma_review/deligne_bound_gamma_independent_review_20260913.md}\par
+\noindent\textbf{Source SHA-256.} \nolinkurl{830fbfe19d688b1e138b41ea4a784c662629dfecc71812627b66927f91ce468f}\par\medskip
+\subsubsection{Independent proof audit of the Gamma-reference lower bound}\label{endpoint-gamma_review--independent-proof-audit-of-the-gamma-reference-lower-bound}
+
+Date: 13 September 2026. Status: the Gamma theorem and the signed arithmetic comparison are accepted with the domains proved below. This review gives the complete calculation for delivered equations (28)--(43) and (51)--(56). Its appended Gamma derivation is part of this proof body.
+
+\subsubsection{Sources and reading scope}\label{endpoint-gamma_review--sources-and-reading-scope}
+
+Paths below are relative to the mathematical workspace. The delivered files have not been changed.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Bytes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SHA-256
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reading scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\nolinkurl{output/split_zero_rh_tandem_2026-09-12/sources/web_deligne_bound_audit_delivery/Tau_Deligne_Bound_Audit/NOTE.tex} & 35701 & \nolinkurl{bfe63094ec360b6059f2936e5e456c6c0fd08db144bbabc29621a527b89c13c6} & Complete note \\
+The same delivery's verify.py & 11159 & \nolinkurl{fb39ffeeec2de6002cd477e92ab2db1e52eddfdd945f8596f1570263cf9c2cb0} & Complete code; no execution of this old suite is claimed here \\
+The same delivery's SOURCES.json & 3582 & \nolinkurl{6edb542a72730aa6ba05db9f37700b65a50e345e96fdc5f48bf623e9e47b2286} & Complete source record \\
+\nolinkurl{output/split_zero_rh_tandem_2026-09-12/tex/arithmetic_input.tex} & 14644 & \nolinkurl{a50b0fb587b644c4ea94dba45b2b423d038f2bfbe7fef188543939ba850e58d2} & Complete A1--A19 and proofs \\
+\nolinkurl{output/split_zero_rh_tandem_2026-09-12/tex/toda_cv_exact_bridge.tex} & 45603 & \nolinkurl{c9629b11d4b4a173dd52bdf75fafb437883a85aba05e598c637f390386d45512} & Lines 682--1098: separate first degree, phase term, spectral projection, consecutive estimates, and scope \\
+\nolinkurl{output/split_zero_rh_tandem_2026-09-12/sources/web_gamma_convolution_delivery/Tau_Gamma_Convolution_Descent/NOTE.tex} & 34859 & \nolinkurl{7cf984d87de405b815250b44454c4ee27c8ab46574da245b377ebc6e49327fa2} & Opening and Sections 2--6.1: literal measure, sum coordinate, amplitude, conditional multiplier and bounds \\
+\nolinkurl{work/deligne_bound_gamma_generating_subreview_20260913.md} & 11155 & \nolinkurl{d4dfa59e923e7c7223b31396e84dc17b595f2fdd5eeddbadb63f3d11aec971cb} & Complete independent Gamma derivation; appended verbatim below \\
+\end{longtable}
+}
+
+This is an all-degree written proof. No fresh Lean execution, complete Deligne scan audit, interval certification of arithmetic moments, or remote publication is claimed by this review. The purity/operator branch is being audited separately.
+
+\subsubsection{1. Literal norms and their coordinate map}\label{endpoint-gamma_review--literal-norms-and-their-coordinate-map}
+
+The complete Beta/Fourier calculation in the appended proof derives, for \(a>0\),
+
+\[
+r_a(x)=\frac{|\Gamma(a+ix/2)|^2}{2\pi},\qquad
+c_a=2^{1-2a}\Gamma(2a),\qquad
+\int e^{iyx}r_a(x)\,dx=c_a(\cosh y)^{-2a}.
+\tag{GR1}
+\]
+
+In particular \(c_a\) is the original mass. The literal substitution \(t=e^{2y}\) in the Beta integral gives the factor \(2^{1-2a}\). Exponential moments exist for \(|\theta|<\pi/2\), and the same calculation gives \(c_a(\cos\theta)^{-2a}\). Fourier uniqueness for finite measures then gives
+
+\[
+r_a^{*k}(x)=\frac{c_a^k}{c_{ka}}r_{ka}(x).
+\tag{GR2}
+\]
+
+The coordinate is the original sum \(x=x_1+\cdots+x_k\). At \(a=1/4\), \(c_{1/4}=\sqrt{2\pi}\), so the mass is \((2\pi)^{k/2}\).
+
+The printed generating function, with branches equal to one at zero, is
+
+\[
+F_a(z,x)=(1-iz)^{-a+ix/2}(1+iz)^{-a-ix/2}
+=\sum_{n\ge0}b_n^{(a)}(x)\frac{z^n}{n!}.
+\tag{GR3}
+\]
+
+For real small \(z\), it is \((1+z^2)^{-a}\exp(x\arctan z)\). Thus \(b_1=x\), with the positive sign. The appended proof shows
+
+\[
+\int F_a(z,x)F_a(w,x)r_a(x)\,dx=c_a(1-zw)^{-2a}.
+\tag{GR4}
+\]
+
+All coefficient extractions are justified by exponential moments on a larger neighborhood. Thus the real, monic polynomials have orthogonal norms \(c_a n!(2a)_n\). Their recurrence follows from \((1+z^2)\partial_zF_a=(x-2az)F_a\):
+
+\[
+b_{n+1}^{(a)}=xb_n^{(a)}-n(n+2a-1)b_{n-1}^{(a)},\quad
+b_0=1,\ b_1=x.
+\tag{GR5}
+\]
+
+Keep \(S=k/2+ix\) and define
+
+\[
+p_n(S)=i^n b_n^{(k/4)}((S-k/2)/i).
+\tag{GR6}
+\]
+
+The leading coefficient is \(i^ni^{-n}=1\). On the integration line the factor \(i^n\) has squared modulus one. Substituting in GR5 and using \(i^2=-1\) gives, with the actual original Gamma sum measure,
+
+\[
+\begin{aligned}
+\omega_{k,n}^{\Gamma}
+&=\int|p_n(k/2+ix)|^2r_{1/4}^{*k}(x)\,dx
+=(2\pi)^{k/2}n!(k/2)_n,\\
+Sp_n&=p_{n+1}+\frac{k}{2}p_n-n(n+k/2-1)p_{n-1}.
+\end{aligned}
+\tag{GR7}
+\]
+
+At \(n=0\) the last term is absent. Thus delivered (28), (29), and (35) have the correct masses, monic convention, and negative recurrence sign.
+
+\subsubsection{2. The complete cyclic polynomial for every multiplicity}\label{endpoint-gamma_review--the-complete-cyclic-polynomial-for-every-multiplicity}
+
+Write
+
+\[
+h_*(S)=\prod_{\epsilon,\eta\in\{\pm1\}}
+(S-1/2-\epsilon/4-i\eta).
+\tag{GR8}
+\]
+
+For \(Z=S-1/2\), multiplying conjugate factors gives \(h_*=Z^4+(15/8)Z^2+289/256\). It is monic, real, and fixed by \(S\mapsto1-S\).
+
+Fix integers \(m\ge1,k\ge1\). Consider the full tensor algebra of \(k\) copies of \(\mathbb C[S]/(h_*^m)\), the sum multiplication operator, and cyclic vector \(1^{\otimes k}\). Chinese remainders decompose each factor into four local algebras \(\mathbb C[n]/(n^m)\). Every tensor occupation therefore has local algebra
+
+\[
+\mathbb C[n_1,\ldots,n_k]/(n_1^m,\ldots,n_k^m)
+\]
+
+and sum operator equal to its center plus \(n_1+\cdots+n_k\). Its power of degree \(k(m-1)+1\) vanishes because every monomial then has some exponent at least \(m\). Its power of degree \(k(m-1)\) is exactly
+
+\[
+\frac{(k(m-1))!}{((m-1)!)^k}\prod_{j=1}^kn_j^{m-1}\ne0.
+\tag{GR9}
+\]
+
+For \(m=1\) this is the zeroth power \(1\), giving the same length-one result. The coefficient is nonzero in characteristic zero. The cyclic vector projects to the unit in every local algebra, so this full nilpotency length also occurs in its cyclic minimal polynomial.
+
+For margins \(0\le a,b\le k\), the center is
+
+\[
+\lambda_{a,b}=k/2+(2a-k)/4+i(2b-k).
+\tag{GR10}
+\]
+
+All margin pairs occur. Indeed, \(t=\max(0,a+b-k)\) gives nonnegative occupations \(t,a-t,b-t,k-a-b+t\), with total \(k\) and the required two margins. Distinct margins have distinct centers because both coordinate coefficients are nonzero. Repeated occurrences of the same center take the maximum of their identical nilpotency lengths in the minimal polynomial, not their sum. Therefore exactly
+
+\[
+\ell_k=1+k(m-1),\quad
+\chi_k(S)=\prod_{a,b=0}^k(S-\lambda_{a,b})^{\ell_k},\quad
+q_k=\ell_k(k+1)^2
+\tag{GR11}
+\]
+
+is the cyclic minimal polynomial. Each primary summand in \(\mathbb C[S]/(\chi_k)\) has dimension and block length \(\ell_k\). This proves delivered (30), including all \(m>1\).
+
+\subsubsection{3. Canonical quotient metric and the complete boundary identity}\label{endpoint-gamma_review--canonical-quotient-metric-and-the-complete-boundary-identity}
+
+Fix \(k,m\) and abbreviate \(q=q_k,\chi=\chi_k,c=k/2\). Use the ordered remainder basis \(1,S,\ldots,S^{q-1}\) of \(E=\mathbb C[S]/(\chi)\), and let \(A:E\to E\) be multiplication by \(S\). Write \(b_n=[p_n]_\chi\).
+
+For \(N\ge q-1\), the first \(q\) monic remainder columns are a basis. In the source basis \(p_0,\ldots,p_N\), the source Gram is \(O_N=\operatorname{diag}(\omega_0,\ldots,\omega_N)\), and the remainder matrix is \(J_N=[b_0\ \cdots\ b_N]\). Hence
+
+\[
+K_N=J_NO_N^{-1}J_N^*=\sum_{n=0}^N\frac{b_nb_n^*}{\omega_n}>0.
+\tag{GR12}
+\]
+
+The coefficient matrix of the canonical minimum section is
+
+\[
+C_N=O_N^{-1}J_N^*K_N^{-1}.
+\tag{GR13}
+\]
+
+One has \(J_NC_N=I_E\). If \(z\in\ker J_N\), then \(z^*O_NC_Nv=z^*J_N^*K_N^{-1}v=0\). Every other representative is \(C_Nv+z\), whose squared norm is \(\|C_Nv\|^2+\|z\|^2\). Thus the actual minimum quotient Gram and volume are
+
+\[
+G_N=K_N^{-1},\qquad V_N=\det G_N>0.
+\tag{GR14}
+\]
+
+Put \(\alpha_n=n(n+k/2-1)\). GR7 gives \(\omega_n/\omega_{n-1}=\alpha_n\), and reduction gives \(Ab_n=b_{n+1}+cb_n-\alpha_nb_{n-1}\). Substitution in \(AK_N+K_NA^*-kK_N\) cancels each interior pair: the term \((b_{n+1}b_n^*+b_nb_{n+1}^*)/\omega_n\) is cancelled by the next negative term because \(\alpha_{n+1}/\omega_{n+1}=1/\omega_n\). No lower term occurs at zero. Therefore
+
+\[
+AK_N+K_NA^*-kK_N
+=\frac{b_{N+1}b_N^*+b_Nb_{N+1}^*}{\omega_N}.
+\tag{GR15}
+\]
+
+Multiplication by \(G_N\) on both sides gives
+
+\[
+W_N:=A^*G_N+G_NA-kG_N
+=G_N\frac{b_{N+1}b_N^*+b_Nb_{N+1}^*}{\omega_N}G_N.
+\tag{GR16}
+\]
+
+Thus \(\mathsf H_N=G_N^{-1}W_N\) is self-adjoint in the original \(G_N\) inner product and has rank at most two. Its trace is \(2\Re\operatorname{Tr}A-kq=0\): reflection \((a,b)\leftrightarrow(k-a,b)\) pairs real parts with sum \(k\), retaining equal full multiplicities. Its possible nonzero eigenvalues are \(+\epsilon_N,-\epsilon_N\), with \(\epsilon_N\ge0\).
+
+To preserve the whole complex cross term, apply the exact isometry \(G_N^{1/2}:(E,G_N)\to(\mathbb C^q,I)\). Put \(u=G_N^{1/2}b_N\), \(v=G_N^{1/2}b_{N+1}\), and \(z_N=u^*v=b_N^*G_Nb_{N+1}\). The conjugated matrix is \((vu^*+uv^*)/\omega_N\). Its zero trace says \(\Re z_N=0\). Direct multiplication gives trace of its square equal to
+
+\[
+\frac{2\|u\|^2\|v\|^2+2\Re(z_N^2)}{\omega_N^2}
+=\frac{2(\|u\|^2\|v\|^2-|z_N|^2)}{\omega_N^2}.
+\]
+
+This trace is also \(2\epsilon_N^2\), including the zero-rank case. Consequently
+
+\[
+\epsilon_N^2=
+\frac{(b_N^*G_Nb_N)(b_{N+1}^*G_Nb_{N+1})-|z_N|^2}{\omega_N^2}.
+\tag{GR17}
+\]
+
+The isometry does not assign a different metric to either source. The phase term remains present before every ensuing inequality.
+
+\subsubsection{4. The reflected generalized trace and its exact count}\label{endpoint-gamma_review--the-reflected-generalized-trace-and-its-exact-count}
+
+Let \(E_>\subset E\) be the sum of all primary spaces with \(\Re\lambda>k/2\), retaining every power in GR11. It is \(A\)-invariant. Let \(P_>\) be its \(G_N\)-orthogonal projection. In \(E_>\oplus E_>^{\perp_{G_N}}\), the lower-left block of \(A\) vanishes. Taking the first diagonal block of \(A^{\dagger_{G_N}}+A-kI\) proves
+
+\[
+\operatorname{Tr}(P_>\mathsf H_N)
+=2\Re\operatorname{Tr}(A|_{E_>})-k\dim E_>.
+\tag{GR18}
+\]
+
+If \(\epsilon_N>0\), choose unit eigenvectors \(u_+,u_-\) at its two nonzero eigenvalues. Its spectral expansion gives \(\operatorname{Tr}(P_>\mathsf H_N)=\epsilon_N\|P_>u_+\|^2-\epsilon_N\|P_>u_-\|^2\le\epsilon_N\). If \(\epsilon_N=0\), the same trace is zero. This uses the actual orthogonal projection and does not silently identify it with a generally nonorthogonal algebraic spectral projector.
+
+The exact count is
+
+\[
+\sum_{a>k/2}(2a-k)=\left\lfloor\frac{(k+1)^2}{4}\right\rfloor.
+\tag{GR19}
+\]
+
+For \(k=2r\) it is \(2+4+\cdots+2r=r(r+1)\); for \(k=2r+1\) it is \(1+3+\cdots+(2r+1)=(r+1)^2\). There are \(k+1\) choices of imaginary margin and multiplicity \(\ell_k\) at each center. Thus
+
+\[
+L_k:=\operatorname{Tr}(P_>\mathsf H_N)
+=\frac12\ell_k(k+1)\left\lfloor\frac{(k+1)^2}{4}\right\rfloor
+\le\epsilon_N.
+\tag{GR20}
+\]
+
+The two parity formulas also prove \(\lfloor(k+1)^2/4\rfloor\ge k(k+1)/4\), so
+
+\[
+L_k\ge kq_k/8>0.
+\tag{GR21}
+\]
+
+The trace retains the full generalized dimensions for every \(m\).
+
+\subsubsection{5. Consecutive degrees and the separate first degree}\label{endpoint-gamma_review--consecutive-degrees-and-the-separate-first-degree}
+
+For \(N\ge q\), the update is \(K_N=K_{N-1}+b_Nb_N^*/\omega_N\). If \(t=b_N^*G_{N-1}b_N/\omega_N\ge0\), the determinant lemma gives \(\delta_N:=V_N/V_{N-1}=(1+t)^{-1}\in(0,1]\). Multiplying the rank-one inverse formula verifies \(b_N^*G_Nb_N=\omega_Nt/(1+t)\). The next determinant update uses this same \(G_N\). Hence
+
+\[
+\begin{aligned}
+b_N^*G_Nb_N&=\omega_N(1-\delta_N),\\
+b_{N+1}^*G_Nb_{N+1}&=\omega_{N+1}(\delta_{N+1}^{-1}-1).
+\end{aligned}
+\tag{GR22}
+\]
+
+Substitution in GR17 yields
+
+\[
+\epsilon_N^2=
+\frac{\omega_{N+1}}{\omega_N}(1-\delta_N)(\delta_{N+1}^{-1}-1)
+-\frac{|z_N|^2}{\omega_N^2}.
+\tag{GR23}
+\]
+
+Because \(0\le1-\delta_N\le1\) and \(0\le\delta_{N+1}^{-1}-1\le\delta_{N+1}^{-1}\), this gives
+
+\[
+\epsilon_N^2\le
+\frac{\omega_{N+1}}{\omega_N}\frac{V_N}{V_{N+1}}
+=\frac{\Lambda_{N+1}}{\Lambda_N},
+\qquad \Lambda_N=\omega_N/V_N.
+\tag{GR24}
+\]
+
+At \(N=q-1\), do not invert a preceding rank-deficient Gram. Expand the original monic relation
+
+\[
+\chi=p_q+\sum_{j=0}^{q-1}\gamma_jp_j,\qquad
+\nu_0=\|\chi\|_\Gamma^2=\omega_q+\sum_{j<q}|\gamma_j|^2\omega_j.
+\tag{GR25}
+\]
+
+The degree-\((q-1)\) remainder map is an isomorphism, so its canonical metric satisfies \(b_i^*G_{q-1}b_j=\delta_{ij}\omega_j\) for \(i,j<q\). Reducing GR25 gives \(b_q=-\sum_{j<q}\gamma_jb_j\). Therefore
+
+\[
+\begin{aligned}
+b_{q-1}^*G_{q-1}b_{q-1}&=\omega_{q-1},\\
+b_q^*G_{q-1}b_q&=\nu_0-\omega_q,\\
+z_{q-1}&=-\gamma_{q-1}\omega_{q-1},\\
+V_q/V_{q-1}&=\omega_q/\nu_0.
+\end{aligned}
+\tag{GR26}
+\]
+
+The final equality is the forward determinant lemma at \(K_q\). Substitution in GR17 proves the stronger exact endpoint identity
+
+\[
+\begin{aligned}
+\epsilon_{q-1}^2
+&=\frac{\sum_{j=0}^{q-2}|\gamma_j|^2\omega_j}{\omega_{q-1}}\\
+&=\frac{\nu_0-\omega_q}{\omega_{q-1}}-|\gamma_{q-1}|^2\\
+&\le\frac{\nu_0}{\omega_{q-1}}
+=\frac{\Lambda_q}{\Lambda_{q-1}}.
+\end{aligned}
+\tag{GR27}
+\]
+
+Thus delivered (41) is valid. No \(G_{q-2}\), \(K_{q-2}^{-1}\), or \(V_{q-2}\) is used. The endpoint phase term is present before the inequality.
+
+\subsubsection{6. Both windows and the literal constant}\label{endpoint-gamma_review--both-windows-and-the-literal-constant}
+
+For either \(i=q-1\) or \(i=q\), let \(j=i+q\). For each \(n=i,\ldots,j-1\), GR20 gives \(L_k^2\le\epsilon_n^2\), and GR24 or its one initial instance GR27 gives \(\epsilon_n^2\le\Lambda_{n+1}/\Lambda_n\). Multiplication of these \(q\) inequalities telescopes:
+
+\[
+L_k^{2q}\le\frac{\Lambda_j}{\Lambda_i}
+=\frac{\omega_j}{\omega_i}\frac{V_i}{V_j}.
+\tag{GR28}
+\]
+
+The indices in \(\omega_j/\omega_i\) are \(n=i+1,\ldots,j\), all at most \(2q\). Also \(k\le q\) by GR11. Every positive recurrence factor therefore satisfies
+
+\[
+n(n+k/2-1)\le2q(2q+q/2-1)\le5q^2.
+\tag{GR29}
+\]
+
+Thus, cancelling the common mass only in the displayed ratio,
+
+\[
+\frac{\omega_j}{\omega_i}
+=\prod_{n=i+1}^{j}n(n+k/2-1)\le(5q^2)^q.
+\tag{GR30}
+\]
+
+Combining GR21, GR28, and GR30 yields, at each of the two windows,
+
+\[
+\frac{V_i}{V_j}\ge\left(\frac{k}{8\sqrt5}\right)^{2q},
+\qquad
+\log(V_i/V_j)\ge2q\log\left(\frac{k}{8\sqrt5}\right).
+\tag{GR31}
+\]
+
+Their final degrees are respectively \(2q-1\) and \(2q\). Addition proves
+
+\[
+\boxed{\mathcal B_k^\Gamma
+=\log\frac{V_{q-1}V_q}{V_{2q-1}V_{2q}}
+\ge4q_k\log\left(\frac{k}{8\sqrt5}\right).}
+\tag{GR32}
+\]
+
+When the right side is negative the inequality remains valid; the separate monotonicity \(V_i/V_j\ge1\) does not conflict with it. For \(k>1\), division by \(q_k\log k\) gives \(4-4\log(8\sqrt5)/\log k\), tending to four. This proves the claimed liminf for every fixed \(m\ge1\).
+
+For centers \(1/2\pm\delta\pm i\gamma\) with fixed \(\delta>0,\gamma\ne0\), the same occupation calculation is valid because both margins remain distinct. Its trace is \(L=2\delta\ell_k(k+1)\lfloor(k+1)^2/4\rfloor\ge\delta kq/2\). The identical two windows therefore give
+
+\[
+\mathcal B_{h,k}^{\Gamma}\ge4q_k\log\left(\frac{\delta k}{2\sqrt5}\right).
+\tag{GR33}
+\]
+
+This proves delivered (55) for its stipulated quartet geometry. It does not assert that an off-line zeta quartet exists.
+
+The optional Gaussian comparison also checks exactly. Its mass and monic norms are \(7^k\) and \(7^kk^nn!\), so the ratio at index \(n\le2q\) is \(kn\le2kq\). The same \(L\ge kq/8\) gives each window at least \(q\log(kq/128)\). At \(m=1\), \(q=(k+1)^2\), making this \(3q\log k+q(2\log(1+1/k)-\log128)\). The combined liminf is at least six. The mass remains in each norm and cancels only from the ratio. This calibration does not change either the Gamma source or the original zeta source.
+
+\subsubsection{7. The actual arithmetic source and the exact determinant correction}\label{endpoint-gamma_review--the-actual-arithmetic-source-and-the-exact-determinant-correction}
+
+Now fix an actual finite packet \(h\) of zeros of \(g=2\xi\) with its complete selected orders. Retain its actual cyclic polynomial \(\chi=\chi_{h,k}\), quotient \(E\), and full observation
+
+\[
+\begin{gathered}
+\mathcal V_{h,k}P=P(D_1+\cdots+D_k)F_h^{\otimes k},\qquad
+\mathcal MF_h=g/h,\\
+J^{(k)}\mathcal V_{h,k}=\eta_{h,k}\pi_\chi,\qquad
+\eta_{h,k}[P]=\upsilon_h^{\otimes k}P(A_h^{(k)})1,\quad
+\upsilon_h=j_h(g/h).
+\end{gathered}
+\tag{GR34}
+\]
+
+The actual amplitude and scalar norm observation are
+
+\[
+\begin{aligned}
+A_h(t)&=\frac{(g/h)(1/2+it)}{\Gamma(1/4+it/2)},&
+B_h(t)&=|A_h(t)|^2,\\
+w_h(t)&=B_h(t)r_{1/4}(t),&
+B_{h;k}(u)&=C_\Sigma(B_h^{\otimes k})(u),\\
+m_{h,k}(u)&=r_{1/4,k}(u)B_{h;k}(u).
+\end{aligned}
+\tag{GR35}
+\]
+
+Here \(C_\Sigma\) is the original conditional integral on \(u=t_1+\cdots+t_k\), with denominator the actual fibre mass \(r_{1/4,k}(u)\). Fubini proves the last equality by testing against an arbitrary nonnegative measurable function of that sum. The full complex amplitude multiplies the Gamma tensor amplitude before taking its squared norm; GR35 therefore does not replace that source vector or its phase by a real scalar.
+
+At every degree \(N\ge q-1\), use the same monomial coefficient space \(\mathcal P_N\), remainder map \(J_N\), and relation injection
+
+\[
+B_N:\mathcal P_{N-q}\longrightarrow\mathcal P_N,\qquad Q\longmapsto\chi Q.
+\tag{GR36}
+\]
+
+At \(N=q-1\), the domain is zero. Let \(M_N^\Gamma,M_N^{\rm ar}\) be the original two source Grams. Each is positive: Gamma has positive density; the nonzero entire function \(g/h\) vanishes at a discrete subset of the line, so no nonzero polynomial has zero arithmetic norm. The convolution retains positivity. Every moment is finite in the original source; for a quartet the proved \(B_{h;k}\le C_h^k\) and Gamma moments also prove finiteness.
+
+The coefficient identity \(I_N:P\mapsto P\), from \((\mathcal P_N,M_N^\Gamma)\) to \((\mathcal P_N,M_N^{\rm ar})\), intertwines both \(J_N\) and \(B_N\). Its induced quotient map is the identity on \(E\) with the two stated metrics.
+
+Let \(R_N^\Gamma\) be the Gamma minimum section. Every arithmetic representative of a class \(v\) is uniquely \(R_N^\Gamma v+B_Nz\). Orthogonality to the arithmetic relation subspace gives \((B_N^*M_N^{\rm ar}B_N)z=-B_N^*M_N^{\rm ar}R_N^\Gamma v\). The relation Gram is positive on its actual domain. Thus
+
+\[
+R_N^{\rm ar}
+=R_N^\Gamma-
+B_N(B_N^*M_N^{\rm ar}B_N)^{-1}B_N^*M_N^{\rm ar}R_N^\Gamma.
+\tag{GR37}
+\]
+
+At zero relation dimension, the inverse is the unique automorphism of the zero space; the composite is the zero map \(E\to\mathcal P_N\). Applying the actual source map \(\mathcal V_{h,k}\) to the difference gives an original relation and its theta primitive, while GR34 keeps the full arithmetic jet unchanged. This proves delivered (53) with its exact source, codomain, and original unit.
+
+There is a full determinant formula. Define
+
+\[
+L_N:E\oplus\mathcal P_{N-q}\longrightarrow\mathcal P_N,\qquad
+([P],Q)\longmapsto\operatorname{rem}_\chi(P)+\chi Q.
+\tag{GR38}
+\]
+
+In the ordered monomial bases, the first columns are \(1,S,\ldots,S^{q-1}\); each later \(\chi S^j\) has coefficient one at degree \(q+j\) and zero above. The matrix is triangular with determinant one. Its inverse is monic polynomial division into the remainder and quotient. For either source Gram \(M\), \(L_N^*ML_N\) has lower-right block \(H=B_N^*MB_N\). The triangular change of coefficients determined by GR37 completes the square, with determinant one, and its other diagonal block is the minimum quotient Gram \(G\). Hence
+
+\[
+\det M=(\det G)(\det H),\qquad
+V_N=\frac{\det M_N}{\det(B_N^*M_NB_N)}.
+\tag{GR39}
+\]
+
+At \(N=q-1\), the relation determinant is the empty determinant one. Therefore the positive quotient-volume correction \(T_{k,N}=V_{k,N}^{\rm ar}/V_{k,N}^\Gamma\) is exactly
+
+\[
+T_{k,N}=
+\frac{\det M_N^{\rm ar}}{\det M_N^\Gamma}
+\frac{\det(B_N^*M_N^\Gamma B_N)}
+{\det(B_N^*M_N^{\rm ar}B_N)}.
+\tag{GR40}
+\]
+
+Taking the four literal endpoint ratios gives
+
+\[
+\mathcal B_{h,k}^{\rm ar}-\mathcal B_{h,k}^\Gamma
+=\log T_{k,q-1}+\log T_{k,q}
+-\log T_{k,2q-1}-\log T_{k,2q}.
+\tag{GR41}
+\]
+
+This proves delivered (54). The final two minus signs are essential. An individual upper bound on each positive \(T_{k,N}\) provides no lower bound for those denominator factors. On the reference itself, \(B_{h;k}=1\) is realized, all \(T_{k,N}=1\), and the correction is zero while GR32 holds. Positivity and the assertion that the multiplier is bounded, without other restrictions, include this reference calibration.
+
+For the stipulated actual off-line quartet displacement \(\delta>0\), an arithmetic upper estimate \((4-\varepsilon)q\log k\), together with the proved GR33, would force exactly
+
+\[
+\log\frac{T_{k,q-1}T_{k,q}}{T_{k,2q-1}T_{k,2q}}
+\le-\varepsilon q\log k
+-4q\log\left(\frac{\delta}{2\sqrt5}\right).
+\tag{GR42}
+\]
+
+The last term supplies the complete constant represented by the delivered \(O_h(q)\). This is the necessary consequence of the displayed estimates, not an assertion that the arithmetic upper estimate has been proved.
+
+\subsubsection{8. What this establishes about the broader program}\label{endpoint-gamma_review--what-this-establishes-about-the-broader-program}
+
+For any monic test polynomial \(h_0\) with centers in the open critical strip, the original theta source proves the exact quotient square
+
+\[
+\begin{array}{ccc}
+V/h_0(D)V&\xrightarrow{\Theta}&\mathscr B/h_0(D)\mathscr B\\
+j_{h_0}H\downarrow\wr&&\wr\downarrow j_{h_0}\mathcal M\\
+E_{h_0}&\xrightarrow{\times j_{h_0}g}&E_{h_0}.
+\end{array}
+\tag{GR43}
+\]
+
+These are the full Taylor-jet maps. The original Euler inverses prove their kernels to be \(h_0(D)V\) and \(h_0(D)\mathscr B\); the seed \(H_{P(D)\phi_*}=P\) gives source surjectivity, and the inverse Gram of the independent functions \(y^je^{\rho y}/j!\) against an interval bump gives target surjectivity. The literal identity \(\mathcal M\Theta\phi=gH_\phi\) proves commutativity.
+
+The associated exact sequence is
+
+\[
+0\longrightarrow Q[h_0(D)]\longrightarrow E_{h_0}
+\xrightarrow{\times j_{h_0}g}E_{h_0}
+\longrightarrow Q/h_0(D)Q\longrightarrow0.
+\tag{GR44}
+\]
+
+Its first arrow has an explicit inverse on the kernel. If \(h_0(D)[F]=0\), write \(h_0(D)F=\Theta\phi\), uniquely by theta injectivity, and send the class to \(j_{h_0}H_\phi\). A change by a theta relation changes \(\phi\) by \(h_0(D)V\), proving well-definedness. Zero image permits \(\phi=h_0(D)\psi\); injectivity of \(h_0(D)\) on \(\mathscr B\) gives \(F=\Theta\psi\). Conversely, a polynomial representative \(P\) killed by \(j_{h_0}g\) gives the class of \(S_{h_0}^{\mathscr B}\Theta(P(D)\phi_*)\), defined by the original Euler inverse and the range identity. Changing \(P\) by \(h_0T\) changes this by \(\Theta(T(D)\phi_*)\), so its class is independent and maps back to \(P\). Quotienting the square proves the final cokernel statement.
+
+For an actual full packet \(h\), \(j_hg=0\), \(g/h\) is entire, and \(j_h(g/h)\) is a unit because the exact zero orders were used. These are additional properties of the original source. They have not been established for \(h_*\), and none is assumed in GR8--GR32. Choosing an invertible observation on a calibration model preserves its feasible coefficient sets; it does not identify that observation with the actual Taylor unit.
+
+On each fixed support fibre, all the linear arrows above lift by \((\ell,v)\mapsto(\ell,fv)\), with \(\tau\mapsto\tau\). The preimage of the supported zero is exactly \(\{(\ell,v):v\in\ker f\}\). In particular the support lift records the actual kernel of multiplication by \(j_{h_0}g\); it does not replace that map by zero.
+
+The Gamma obstruction invalidates the universal sub-threshold estimate using only the generic Gamma source and displayed quotient identities. When the same auxiliary purity is available for these calibration polynomials, adjoining that fact cannot restore this universal implication. The original arithmetic restrictions, full theta primitive, and signed correction GR41 remain present through the proved maps GR34--GR44. No result here states that all F1 geometry or split-base constructions fail, that the desired estimate for the actual arithmetic source is false, or that an off-critical zero of \(2\xi\) exists.
+
+\subsubsection{9. Audit findings and verification scope}\label{endpoint-gamma_review--audit-findings-and-verification-scope}
+
+No correction is required to the Gamma constants, monic recurrence, full multiplicity \(q_k\), reflected rank-two trace, first admitted degree, two consecutive windows, the \(8\sqrt5\) constant, or the signs of the arithmetic correction. GR27 and GR40 expand portions of the supplied argument into explicit identities.
+
+The delivered verifier's complete canonical-volume calculations are at \(m=1,k=1\). Its separate repeated-primary check verifies a nonzero nilpotent with square zero. The all-\(m\), all-\(k\) statement rests on the written proof GR9--GR33. Its negative-control flag rejects the scalar equality \(3/4=1/2\); that flag alone does not replay or certify the full auxiliary-purity argument. These scope limits do not affect the proof above.
+
+\subsubsection{Appendix: Complete independent Gamma derivation}\label{endpoint-gamma_review--appendix-complete-independent-gamma-derivation}
+
+The following complete proof is appended from the pinned generating-function subreview. It preserves its equation labels G1--G28 and original measures.
+
+\subsubsection{Independent Gamma generating-function calculation}\label{endpoint-gamma_review--independent-gamma-generating-function-calculation}
+
+Date: 2026-09-13. Scope: the Gamma source, its exact mass and convolution, and the polynomial generating function and recurrence in equations (28), (29), (31), and (35) of the delivered \nolinkurl{Tau_Deligne_Bound_Audit/NOTE.tex}. The source SHA-256 is \nolinkurl{bfe63094ec360b6059f2936e5e456c6c0fd08db144bbabc29621a527b89c13c6}. The source remains unchanged. The quotient, trace, and determinant estimates are reviewed separately.
+
+\textbf{Finding.} The printed generating function has linear coefficient \(+x\), and its exponential generating coefficients are literally monic polynomials in \(x\). The printed substitution produces literally monic polynomials in \(S\), and produces the negative last term of recurrence (35). The constants and convolution mass in (28)--(29) are also correct. No sign or mass correction is required for these formulas.
+
+The proof below retains the original density, coordinate \(S=k/2+ix\), positive integer \(k\), and all factors of \(2\), \(i\), and \(\pi\). Euler's Beta integral is recorded in \href{https://dlmf.nist.gov/5.12.E1}{DLMF 5.12.1} and \href{https://dlmf.nist.gov/5.12.E3}{DLMF 5.12.3}. The Fourier, convolution, and polynomial calculations here are derived explicitly from that integral.
+
+\subsubsection{1. Fourier transform of the unchanged Gamma density}\label{endpoint-gamma_review--fourier-transform-of-the-unchanged-gamma-density}
+
+Let \(a>0\), and define
+
+\[
+r_a(x)=\frac{|\Gamma(a+ix/2)|^2}{2\pi},\qquad
+c_a=2^{1-2a}\Gamma(2a),\qquad x\in\mathbb R.
+\tag{G1}
+\]
+
+We use the convention
+
+\[
+\mathcal F_+ f(t)=\int_{\mathbb R} f(x)e^{itx}\,dx.
+\tag{G2}
+\]
+
+The Beta identity with arguments \(a+iu,a-iu\), followed by \(v=e^y\), gives
+
+\[
+\begin{aligned}
+\frac{\Gamma(a+iu)\Gamma(a-iu)}{\Gamma(2a)}
+&=\int_0^\infty\frac{v^{a+iu-1}}{(1+v)^{2a}}\,dv\\
+&=\int_{\mathbb R}\frac{e^{ay}}{(1+e^y)^{2a}}e^{iuy}\,dy\\
+&=\int_{\mathbb R} f_a(y)e^{iuy}\,dy,
+\qquad f_a(y)=(2\cosh(y/2))^{-2a}.
+\end{aligned}
+\tag{G3}
+\]
+
+The function \(f_a\) and all its derivatives decay exponentially as \(y\to\pm\infty\). In particular, \(f_a,f_a''\in L^1(\mathbb R)\); integration by parts twice shows that its Fourier transform is \(O((1+|u|)^{-2})\). Fourier inversion therefore applies as an absolutely convergent integral. Write the left side of (G3) as \(F_a(u)\). Then
+
+\[
+f_a(y)=\frac1{2\pi}\int_{\mathbb R}F_a(u)e^{-iuy}\,du.
+\tag{G4}
+\]
+
+Since \(r_a(x)=\Gamma(2a)F_a(x/2)/(2\pi)\), the change of variables \(x=2u\) in the original density gives
+
+\[
+\begin{aligned}
+\mathcal F_+r_a(t)
+&=\frac{\Gamma(2a)}{\pi}\int_{\mathbb R}F_a(u)e^{2itu}\,du\\
+&=2\Gamma(2a)f_a(-2t)\\
+&=2\Gamma(2a)(2\cosh t)^{-2a}
+=c_a(\cosh t)^{-2a}.
+\end{aligned}
+\tag{G5}
+\]
+
+Every integral used in (G5) is absolutely convergent. In particular, its value at \(t=0\) proves the original mass
+
+\[
+\int_{\mathbb R}r_a(x)\,dx=c_a.
+\tag{G6}
+\]
+
+For later coefficient extraction we also prove the exponential moments, rather than assuming them. The expression \(f_a(z)=(2\cosh(z/2))^{-2a}\) has the analytic branch positive on the real axis throughout \(|\operatorname{Im}z|<\pi\). For \(|\sigma|<\pi\),
+
+\[
+|\cosh((y+i\sigma)/2)|^2
+=\sinh^2(y/2)+\cos^2(\sigma/2)
+\ge\cos^2(\sigma/2)\cosh^2(y/2).
+\tag{G7}
+\]
+
+Consequently \(f_a(y+i\sigma)\) is integrable in \(y\), uniformly when \(\sigma\) ranges in a closed smaller strip. The vertical sides of the contour rectangle in (G3) tend to zero because \(f_a\) decays exponentially in the real direction. Shifting the contour upward for \(u\ge0\) and downward for \(u<0\) therefore proves, for each \(0<\sigma<\pi\),
+
+\[
+|F_a(u)|\le
+e^{-\sigma|u|}\int_{\mathbb R}|f_a(y+i\sigma)|\,dy.
+\tag{G8}
+\]
+
+For \(u<0\) the integral along \(-i\sigma\) has the same bound by conjugation. Inserting \(u=x/2\) proves that \(r_a(x)\) is bounded by a constant times \(e^{-\sigma|x|/2}\). Thus every exponential moment of order strictly less than \(\pi/2\) is finite. Both sides of (G5) extend holomorphically to \(|\operatorname{Im}t|<\pi/2\); the right side uses the branch equal to the positive real value on the real axis. Equality on the real axis and the identity theorem imply
+
+\[
+\int_{\mathbb R}e^{vx}r_a(x)\,dx
+=c_a(\cos v)^{-2a},\qquad v\in\mathbb R,\quad |v|<\pi/2.
+\tag{G9}
+\]
+
+This is the exact moment generating function of the density with mass \(c_a\); no mass has been divided out.
+
+\subsubsection{\texorpdfstring{2. The \(k\)-fold convolution and its mass}{2. The -fold convolution and its mass}}\label{endpoint-gamma_review--the-k-fold-convolution-and-its-mass}
+
+Fix the original value \(a=1/4\). Since \(\Gamma(1/2)=\sqrt\pi\), (G1) gives
+
+\[
+c_{1/4}=2^{1/2}\Gamma(1/2)=\sqrt{2\pi}.
+\tag{G10}
+\]
+
+For every positive integer \(k\), the convolution theorem for the integrable functions in (G1) and formula (G5) give
+
+\[
+\begin{aligned}
+\mathcal F_+(r_{1/4}^{*k})(t)
+&=c_{1/4}^{k}(\cosh t)^{-k/2}\\
+&=\mathcal F_+\left(\frac{c_{1/4}^{k}}{c_{k/4}}r_{k/4}\right)(t).
+\end{aligned}
+\tag{G11}
+\]
+
+Fourier uniqueness proves equality almost everywhere. The densities here are continuous: each \(r_a\) is continuous, bounded, and integrable, and convolution of an integrable function with a bounded uniformly continuous function is continuous. The required uniform continuity of \(r_a\) follows either from (G4) and the exponential estimate (G8), or directly by dominated differentiation there. Hence the equality holds at every real \(x\):
+
+\[
+r_{1/4,k}(x)=r_{1/4}^{*k}(x)
+=\frac{c_{1/4}^{k}}{c_{k/4}}
+\frac{|\Gamma(k/4+ix/2)|^2}{2\pi}.
+\tag{G12}
+\]
+
+At \(t=0\), or by Tonelli's theorem in the original \(k\) variables,
+
+\[
+\int_{\mathbb R}r_{1/4,k}(x)\,dx
+=c_{1/4}^{k}=(2\pi)^{k/2}.
+\tag{G13}
+\]
+
+These are exactly equations (28)--(29) of the delivered note, including the coefficient \(c_{1/4}^{\,k}/c_{k/4}\).
+
+\subsubsection{\texorpdfstring{3. The printed generating function has \(+x\), not \(-x\)}{3. The printed generating function has , not }}\label{endpoint-gamma_review--the-printed-generating-function-has-x-not--x}
+
+The printed function is, for \(z\) near zero,
+
+\[
+F_a(z,x)=(1-iz)^{-a+ix/2}(1+iz)^{-a-ix/2}
+=\sum_{n=0}^{\infty}b_n^{(a)}(x)\frac{z^n}{n!}.
+\tag{G14}
+\]
+
+Use the logarithms vanishing at \(z=0\). Their exact derivatives give
+
+\[
+\begin{aligned}
+\partial_z\log F_a(z,x)
+&=\frac{(-a+ix/2)(-i)}{1-iz}
++\frac{(-a-ix/2)i}{1+iz}\\
+&=\frac{x-2az}{1+z^2}.
+\end{aligned}
+\tag{G15}
+\]
+
+In particular \(F_a(0,x)=1\) and \(\partial_zF_a(0,x)=x\). For real \(z\) near zero the same branches give the exact expression
+
+\[
+F_a(z,x)=(1+z^2)^{-a}\exp(x\arctan z).
+\tag{G16}
+\]
+
+The sign in the exponential is positive because
+
+\[
+\log(1-iz)-\log(1+iz)=-2i\arctan z,
+\quad
+\frac{ix}{2}(-2i\arctan z)=x\arctan z.
+\tag{G17}
+\]
+
+Multiply the differential equation (G15) by \(F_a\) and compare the coefficient of \(z^n/n!\). For \(n\ge1\), the coefficient contributed by \(z^2\partial_zF_a\) is \(n(n-1)b_{n-1}^{(a)}\), and that contributed by \(2azF_a\) is \(2an b_{n-1}^{(a)}\). Therefore
+
+\[
+b_0^{(a)}=1,\quad b_1^{(a)}=x,\quad
+b_{n+1}^{(a)}(x)=x b_n^{(a)}(x)-n(n+2a-1)b_{n-1}^{(a)}(x).
+\tag{G18}
+\]
+
+For \(n=0\), the same equation reads \(b_1^{(a)}=x b_0^{(a)}\), with the last term omitted. Induction in (G18) proves that \(b_n^{(a)}\in\mathbb R[x]\) has degree \(n\) and leading coefficient exactly \(1\). For example, the first values are
+
+\[
+\begin{aligned}
+b_0^{(a)}&=1,& b_1^{(a)}&=x,\\
+b_2^{(a)}&=x^2-2a,&
+b_3^{(a)}&=x^3-(6a+2)x.
+\end{aligned}
+\tag{G19}
+\]
+
+Thus no replacement of \(z\), \(x\), or either exponent is needed to obtain monicity.
+
+\subsubsection{4. Exact orthogonality and norms}\label{endpoint-gamma_review--exact-orthogonality-and-norms}
+
+Take real \(z,w\) in a neighborhood of zero sufficiently small that \(|\arctan z+\arctan w|<\pi/2\). Equations (G9) and (G16) give
+
+\[
+\begin{aligned}
+\int_{\mathbb R}F_a(z,x)F_a(w,x)r_a(x)\,dx
+&=c_a(1+z^2)^{-a}(1+w^2)^{-a}
+\bigl(\cos(\arctan z+\arctan w)\bigr)^{-2a}\\
+&=c_a(1-zw)^{-2a}.
+\end{aligned}
+\tag{G20}
+\]
+
+The last equality uses the exact identity
+
+\[
+\cos(\arctan z+\arctan w)
+=\frac{1-zw}{\sqrt{1+z^2}\sqrt{1+w^2}}.
+\tag{G21}
+\]
+
+On a sufficiently small closed complex bidisc around \(z=w=0\), the absolute value of the integrand in (G20) is bounded by a constant times \(r_a(x)e^{v_0|x|}\) for some \(v_0<\pi/2\). This follows directly from the analytic logarithms in (G14). That dominating function is integrable by (G8). Consequently the integral is holomorphic on the open bidisc. The real identity (G20) extends there by applying the one-variable identity theorem first in \(z\), then in \(w\). Differentiation under the integral at zero is justified by Cauchy's formula and the same domination.
+
+The coefficient of \(z^n w^m\) on the left side of (G20) is
+
+\[
+\frac1{n!m!}\int_{\mathbb R}b_n^{(a)}(x)b_m^{(a)}(x)r_a(x)\,dx.
+\]
+
+The binomial series on the right side is \(c_a\sum_{j\ge0}(2a)_j(zw)^j/j!\). Comparing coefficients yields
+
+\[
+\int_{\mathbb R}b_n^{(a)}(x)b_m^{(a)}(x)r_a(x)\,dx
+=\mathbf1_{n=m}\,c_a n!(2a)_n.
+\tag{G22}
+\]
+
+The polynomials have real coefficients, so (G22) is also their Hermitian orthogonality relation. In particular it is the norm of the original monic polynomial, with mass \(c_a\) retained.
+
+\subsubsection{\texorpdfstring{5. Exact transport to \(S=k/2+ix\)}{5. Exact transport to }}\label{endpoint-gamma_review--exact-transport-to-sk2ix}
+
+Set \(a=k/4\) and \(c=k/2\). Define the polynomial in the original complex variable \(S\) by
+
+\[
+p_n(S)=i^n b_n^{(k/4)}((S-c)/i).
+\tag{G23}
+\]
+
+The coefficient of \(S^n\) is \(i^n i^{-n}=1\); hence this is literally monic in \(S\). The lower coefficients are obtained by the displayed affine substitution, with no change to the source norm or its mass. On the source line, \(S=c+ix\), equation (G23) gives \(p_n(c+ix)=i^n b_n^{(k/4)}(x)\). Therefore (G12) and (G22) imply
+
+\[
+\begin{aligned}
+\int_{\mathbb R}\overline{p_n(c+ix)}p_m(c+ix)r_{1/4,k}(x)\,dx
+&=\frac{c_{1/4}^{k}}{c_{k/4}}(-i)^n i^m
+\int_{\mathbb R}b_n^{(k/4)}(x)b_m^{(k/4)}(x)r_{k/4}(x)\,dx\\
+&=\mathbf1_{n=m}\,(2\pi)^{k/2}n!(k/2)_n.
+\end{aligned}
+\tag{G24}
+\]
+
+In the surviving term \(m=n\), the phase is \((-i)^n i^n=1\). This proves the exact norm \(\omega_{k,n}^{\Gamma}\) printed in (35).
+
+To transport the recurrence, multiply (G18), in its form \(x b_n=b_{n+1}+n(n+2a-1)b_{n-1}\), by \(i^{n+1}\). Since \(S-c=ix\), the result is
+
+\[
+\begin{aligned}
+(S-c)p_n(S)
+&=p_{n+1}(S)
++n(n+k/2-1)i^{n+1}b_{n-1}^{(k/4)}((S-c)/i)\\
+&=p_{n+1}(S)-n(n+k/2-1)p_{n-1}(S).
+\end{aligned}
+\tag{G25}
+\]
+
+The minus sign is exactly \(i^{n+1}/i^{n-1}=i^2=-1\). Restoring \(c=k/2\) proves
+
+\[
+Sp_n=p_{n+1}+\frac{k}{2}p_n-n(n+k/2-1)p_{n-1},
+\qquad
+\omega_{k,n}^{\Gamma}=(2\pi)^{k/2}n!(k/2)_n.
+\tag{G26}
+\]
+
+The last term is omitted at \(n=0\). The first polynomials in the original coordinate are
+
+\[
+p_0=1,\qquad
+p_1=S-k/2,\qquad
+p_2=(S-k/2)^2+k/2,\qquad
+p_3=(S-k/2)^3+(3k/2+2)(S-k/2).
+\tag{G27}
+\]
+
+Finally, consecutive norm ratios retain the same constants before their displayed cancellation:
+
+\[
+\frac{\omega_{k,n}^{\Gamma}}{\omega_{k,n-1}^{\Gamma}}
+=\frac{(2\pi)^{k/2}n!(k/2)_n}
+{(2\pi)^{k/2}(n-1)!(k/2)_{n-1}}
+=n(n+k/2-1),\qquad n\ge1.
+\tag{G28}
+\]
+
+This supplies precisely the coefficient needed for the interior cancellation following equation (36). The derivation establishes the Gamma formulas and their original polynomial coordinates; it does not by itself assert the later determinant bound or a comparison with the arithmetic theta source.
+
+\endgroup
+
+
+\endgroup

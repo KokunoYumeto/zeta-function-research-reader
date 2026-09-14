@@ -1,0 +1,623 @@
+# Actual tau-base scaling and its exponential cohomology flow
+
+Independent local calculation, 2026-09-13. The starting point is the
+specified \(\mathbb F_{1,\tau}\)-based arithmetic cohomology, not a replacement
+finite-field geometry or localization at the generic support point.
+The construction below applies its actual theta action, full jet maps,
+right-adjoint pairing, and polynomial-exponential deformation. All
+source support masks, scalar factors, Taylor units, and multiplicities
+are retained. No source-owner file or public object is changed.
+
+## 1. Outcome: the existing arithmetic action has a concrete lift
+
+The source already defines \(U_p F(x)=F(x/p)\) over the absolute tau-base.
+It induces \(p^A\) on the full finite arithmetic quotient. The forward
+dilation \(L_p F(x)=F(px)=U_{1/p}F(x)\) induces \(p^{-A}\). Their exact
+finite block formulas, theta-boundary corrections, and tau-base dual
+maps are given below.
+
+More than a fixed-basis operator is available on the existing exponential
+deformation. Write
+
+\(D_{u,t}=u \partial_S+\chi(S)-t\), \(L=u \partial_t-S\).
+
+Then \([D_{u,t},L]=0\). The formal cochain automorphism
+
+**\(\exp(a L)P(u,t,S)=\exp(-aS) P(u,t+ua,S)\)**
+
+preserves the special-fibre ideal \((u,t)\) and induces \(\exp(-aA)\) there.
+On its finite free cohomology it has an entire, explicitly computed
+matrix \(C_a(u,t)\); for \(u\ne 0\) the actual oriented period matrices give
+
+**\(C_a(u,t)=\Pi(u,t)^{-1}\Pi(u,t+ua)\).**
+
+At \(u=t=0\), this is exactly \(p^{-A}\) when \(a=\log p\). The inverse
+parameter \(a=-\log p\) realizes the source's \(p^A\). Thus the arithmetic
+scaling acts through the actual cohomological family with its full
+nilpotent coefficients. Formal polynomial complexes, evaluated finite
+matrices, and nonpolynomial contour integrands are distinguished below;
+no nonpolynomial expression is silently treated as a polynomial map.
+
+The same reduced algebraic connection also supplies an explicit
+characteristic-r power operator, its r-curvature. The finite-field
+Artin--Schreier Frobenius and its character-twist map are computed in
+Section 7 as separate operations on the same potential data. This is
+a positive comparison of actual maps, not a generic failure argument
+about the tau-base program.
+
+## 2. Dilation on the original source and both tau-base legs
+
+Fix \(p>0\), \(a=\log p\), and use the positive real logarithm. The source
+spaces are exactly those of `arithmetic_input.tex`, A1, and
+`Tau_Base_Cohomology/NOTE.md`, equations (10)--(14):
+
+\(V=\{\text{even Schwartz }\phi:\phi(0)=0,\ \int_{\mathbb R}\phi=0\}\),
+
+\(B=\{F:\sup_{x>0}x^b|D^jF(x)|<\infty\text{ for every }b\in\mathbb Z\text{ and }j\ge 0\}\),
+with \(D=-x \partial_x\),
+
+\(\Theta \phi(x)=2 \sum_{n\ge 1}\phi(nx)\),
+\(MF(s)=\int_0^\infty F(x)x^s dx/x\).
+
+Let \(L_p \phi(x)=\phi(px)\) and \(L_p F(x)=F(px)\). Dilation preserves
+evenness, Schwartz regularity, and the two source moments:
+
+\((L_p \phi)(0)=\phi(0)\), \(\int L_p \phi=p^{-1} \int \phi\).
+
+For the target seminorms,
+\(\sup x^b|D^j L_pF(x)|=p^{-b}\sup y^b|D^jF(y)|\).
+Thus these are continuous invertible source maps, with inverse \(L_{1/p}\).
+Termwise theta evaluation and change of Mellin variable give
+
+**\(\Theta L_p=L_p \Theta\), \(D L_p=L_pD\), \(M L_pF(s)=p^{-s}MF(s)\).**
+
+The theta identity uses the original convergent series, including its
+factor two. The Mellin identity holds on the entire transform of \(B\);
+the source identity \(H_{L_p \phi}(s)=p^{-s}H_\phi(s)\) follows on its
+specified strip from the same change of variables. Hence \(\Theta V\)
+is stable and there is an induced invertible action on \(Q=B/\Theta V\).
+The group law is literal: \(L_p L_q=L_{pq}\).
+
+The Fourier transform satisfies
+\(\operatorname{Fourier}(L_p \phi)=p^{-1}L_{1/p} \operatorname{Fourier}(\phi)\). The tau-base joint
+pushforward is the two-leg complex
+
+\(A_\tau(T)=[V_{+}\oplus V_{-}\to B]\),
+\(d(\phi,\psi)=\Theta(\phi-\operatorname{Fourier}(\psi))\).
+
+Its correct forward dilation is
+
+**\((\phi,\psi) \to  (L_p \phi,p^{-1}L_{1/p}\psi)\), \(F \to  L_pF\).**
+
+Indeed \(\operatorname{Fourier}(p^{-1}L_{1/p}\psi)=L_p \operatorname{Fourier}(\psi)\), proving the
+cochain equality with both signs and the factor \(p^{-1}\). On the
+original convention \(U_p=L_{1/p}\), this becomes
+
+\((\phi,\psi)\to (U_p \phi,p U_{1/p}\psi)\), \(F\to U_pF\),
+
+exactly tau-base equations (32)--(35). The joint degree-zero cycle
+\((\operatorname{Fourier}(\psi),\psi)\) is sent to the cycle indexed by
+\(p U_{1/p}\psi\). The single-leg degree-zero groups stay zero.
+
+These are actual sheaf automorphisms on the four-point chart model:
+the displayed maps act at \(+,-,\eta\), and the identity acts on every
+support mask at \(\sigma\). They commute with restriction, with support
+inclusions, and with the projective-resolution differential (18).
+Consequently they induce the stated action on \(\mathrm R\Gamma(P,T)\) over
+the actual one-point \(\mathbb F_{1,\tau}\) base. No localization
+\(G(R)[e^{-1}]=B_{\mathrm{boolean}}\) is performed. The infinite scalar map
+\(G(\mathbb Z)\to\mathbb Z\) remains in the original structural square.
+
+## 3. Full jets, the Taylor unit, and an explicit source boundary
+
+### Full finite action
+
+For the original full-order packet polynomial \(h\) and full jet map
+\(J_ZF=j_h MF\), let \(A=M_s\) on \(E_h=\mathbb C[s]/(h)\). Taylor expansion at
+a root \(\rho\) of its actual order \(m_\rho\) gives
+
+\(j_\rho(p^{-s})=p^{-\rho} \sum_{j=0}^{m_\rho-1}(-\log p)^j z_\rho^j/j!\).
+
+Therefore
+
+**\(J_Z L_p=F_p^- J_Z\),
+\(F_p^-=p^{-A}=\exp(-(\log p)A)\).**
+
+On the block where \(A=\rho I+N_\rho\), the entire matrix is
+
+\(\left.F_p^-\right|_\rho=p^{-\rho}\sum_{j=0}^{m_\rho-1}(-\log p)^j N_\rho^j/j!\).
+
+The inverse is \(F_p^+=p^A\) with all signs positive in the nilpotent
+sum. No Jordan level or exponential phase is dropped. Equivalently
+there is a unique degree-below-\(\deg h\) Hermite remainder whose full
+jets are those of \(p^{-s}\), and multiplication by that remainder is
+the same matrix. This is a linear module automorphism, not a claim
+that multiplying every class by a unit is a unital ring homomorphism.
+
+The finite source/target square A8 has arrows \(\times j_hg\). Multiplication
+by \(j_h(p^{-s})\) commutes with this arrow. Dilation also commutes with
+\(h(D)\) and its unique inverse on its range. Hence every map, kernel,
+and quotient in A7--10 is equivariant. In particular the original
+packet summand \(Q[h(D)]\) and its complementary \(h(D)Q\) remain distinct
+invariant subspaces with the same original projector.
+
+Write \(v=g/h\), \(\upsilon=j_hv\), \(\epsilon=\upsilon^{-1}=j_h(h/g)\).
+These are the full original Taylor units, not just their residue values.
+The specified representative is
+
+\(R_{\mathrm{ref}} x=S_h^B \Theta(R_Z(x)(D)\phi_*)\),
+\(R_Z(x)=\operatorname{rem}_h(\epsilon x)\).
+
+Since \(j_h(p^{-s})\) commutes with both \(\upsilon\) and \(\epsilon\),
+the same unit remains in this representation after either dilation.
+In the cyclic tensor source the already specified inclusion
+
+\(\eta[P]=\upsilon^{\otimes k} P(A_k)1\), \(A_k=\sum_i A_i\),
+
+obeys \(\exp(-aA_k)\eta=\eta \exp(-aA)\), where \(A\) is the original
+cyclic sum action on \(\mathbb C[S]/(\chi_{h,k})\). This follows directly by
+commuting multiplication operators. The existing equivariant cyclic
+retraction has the same exponential intertwining. This is only the
+inherited tensor-source action, not a second construction of an
+external-product exponential family.
+
+### The boundary correction is an actual element of V
+
+A11 supplies the unchanged finite-rank defect
+
+\(D R_{\mathrm{ref}}-R_{\mathrm{ref}} A=\Theta(\phi_*) \ell\),
+\(\ell(x)=[s^{\deg h-1}]R_Z(x)\).
+
+Define the finite-interval vector-valued integral
+
+\(K_a x=-\int_0^a L_{\exp(a-r)}\phi_* \cdot  \ell(\exp(-rA)x) dr\).
+
+Every integrand is in the original \(V\); dependence on \(r\) is smooth
+in its Schwartz topology, so the integral is in \(V\), including for
+negative \(a\) with the usual oriented integral. Differentiate
+\(L_{\exp(a-r)} R_{\mathrm{ref}} \exp(-rA)\) with respect to \(r\). Since the
+derivative of \(L_{\exp(a-r)}\) is \(D L_{\exp(a-r)}\), one obtains
+\(L_{\exp(a-r)}(D R_{\mathrm{ref}}-R_{\mathrm{ref}} A)\exp(-rA)\). Integration from zero
+to \(a\) gives the exact sign and boundary formula
+
+**\(L_p R_{\mathrm{ref}}-R_{\mathrm{ref}} p^{-A}=\Theta K_{\log p}\).**
+
+Its Mellin expression retains the entire unit and polynomial remainder:
+
+\(H_{K_a x}(s)=[\exp(-as)R_Z(x)(s)-R_Z(\exp(-aA)x)(s)]/h(s)\).
+
+The numerator has all zero jets required by \(h\), because
+\(R_Z=\operatorname{rem}_h(\epsilon\times\mathord{-})\) and the two finite multipliers commute.
+The expression is thus holomorphic at every selected root, with its
+full order. The integral, rather than divisibility alone, establishes
+that it is the transform of an admitted original \(V\) element.
+
+In the exact extension coordinates \(B_Z=\Theta V+R_{\mathrm{ref}} E\), dilation is
+
+\((v,x)\to (L_p v+K_a x,p^{-A}x)\).
+
+The complete cocycle identity is
+\(K_{a+b}=L_{\exp a}K_b+K_a \exp(-bA)\).
+It follows by composing the displayed source action, or by splitting
+its integral. Thus the equivariant roof A13 is equivariant for this
+actual multiplicative group, not merely for its infinitesimal generator.
+
+For any already specified representative \(r_N\) with
+\(D^{(k)}r_N-r_NA=dK_N\), the identical finite-interval argument gives
+
+\(L_p^{\otimes k}r_N-r_Np^{-A}\)
+
+\( =-d \int_0^{\log p} L_{\exp(\log p-r)} K_N \exp(-rA)dr\).
+
+Here dilation is the chain action on every term containing \(K_N\);
+its commutation with \(d\) is the tensor cochain rule. The correction
+remains an original relation with its specified primitive. The finite
+representative image need not be invariant as a subspace of the source.
+
+## 4. Tau-base right adjoint and the existing holonomy observer
+
+The tau-base note computes, with its original signs,
+
+\(K_\tau(W)=[I_\eta(W) \to  I_+(W) \oplus I_-(W)]\),
+
+in degrees \(-1,0\), and
+\(\operatorname{RHom}(T,K_\tau(W))=\operatorname{RHom}(A_\tau(T),W)\).
+
+The source's second-moment line \(L_1\) has \(U_p\) action \(p\), since
+\(\int U_p \phi=p \int \phi\). Naturality of that right-adjoint
+calculation gives the exact action on a dual functional
+
+**\((U_p \ell)(v)=p \ell(U_p^{-1}v)\).**
+
+For forward dilation it is \(p^{-1}\ell(L_p^{-1}v)\). This factor
+comes from the retained moment representation, not the cardinality
+of the absolute base. On finite coefficient duals the inverse-dilation
+action is \(p^{I-A^T}\); the forward action is \(p^{-(I-A^T)}\).
+
+The actual injection from the conjugate finite packet into the
+degree-minus-one right-adjoint cohomology is tau-base equation (43):
+
+\(\overline f\mapsto [F]\mapsto\sum_\rho\operatorname{Res}_\rho f^\dagger(s)MF(s)\,ds/g(s)\),
+
+where \(f^\dagger(s)=\overline{f(1-\overline{s})}\) retains the Taylor
+coefficient signs \((-1)^j\). Since \((p^s)^\dagger=p^{1-s}\),
+
+\(R_Z(p^A f,p^A h)=p R_Z(f,h)\).
+
+This proves equivariance with the just-computed dual action, at every
+nilpotent order. For forward dilation the factor is \(p^{-1}\).
+Changing a source representative by \(\Theta \phi\) adds a holomorphic
+residue, exactly as in the original right-adjoint construction.
+
+The Taylor unit is visible in the residue join to the exponential
+special fibre. In the monic packet case \(\chi=h\), let \(S_\chi\) denote
+the full bilinear polynomial residue pairing with denominator \(\chi\).
+Then
+
+\(R_Z(f,h)=S_\chi(f^\dagger,\epsilon h)\), \(\epsilon=j_h(h/g)\).
+
+Indeed \(1/g=(1/h)(1/v)\) locally, and multiplying by the complete
+jet \(\epsilon\) leaves the same residues. Replacing this unit by its
+constant term would generally change the pairing on higher jets;
+no such replacement occurs here. The exponential special-fibre
+coefficient identification therefore receives the same finite packet
+and this exact unit-bearing pairing.
+
+There is also a direct join to the already written sector holonomy.
+The original \(L^2(dx)\) norm obeys
+\(\lVert U_pF\rVert^2=p\lVert F\rVert^2\). Hence \(p^{-1/2}U_p\) is the normalized
+source dilation, and on an actual eigenvector at \(\rho\) its finite
+jet value is \(p^{\rho-1/2}\). Including the source's retained unit
+phase \(\omega\) gives exactly
+
+\(z_{p,\omega}(\rho)=\omega p^{\rho-1/2}\)
+
+in `split_zero_carriers.tex`, not merely an unrelated scalar analogy.
+Its full block extension is
+
+\(\omega p^{\rho-1/2} \sum_{j<m_\rho}(\log p)^j N_\rho^j/j!\).
+
+For the original k-fold source the literal norm factor is \(p^k\),
+and the corresponding normalization is \(p^{-k/2}U_p^{\otimes k}\).
+This records an exact source isometry and its algebraic quotient map;
+it does not set an original finite canonical Gram equal to a new
+unitarizing metric. The source relation correction in Section 3 stays
+part of the comparison.
+
+## 5. Exact cochain scaling flow on the original exponential family
+
+Keep the original \(\chi(S)\), all its coefficients, and the potential
+
+\(\Phi_t(S)=S^{q+1}/(q+1)+\sum_{b=0}^{q-1} c_b S^{b+1}/(b+1)-tS\).
+
+DS66--69 and the original exponential note use the complex
+
+\(C_{u,t}=[\mathbb C[u,t,S]\xrightarrow{D_{u,t}}\mathbb C[u,t,S]dS]\),
+\(D_{u,t}P=u P_S+(\chi-t)P\).
+
+Its differential is injective and has the unique degree-below-q
+remainder, by its monic leading term. Thus its first cohomology is
+free with the unchanged basis \(1,S,\ldots,S^{q-1}\), and its special
+fibre \(u=t=0\) is exactly \(E=\mathbb C[S]/(\chi)\), with full multiplicities.
+
+Define \(L=u \partial_t-M_S\) on the coefficient in each cochain degree.
+The individual commutators are
+
+\([D,u \partial_t]=u I\), \( [D,-M_S]=-u I\).
+
+They cancel, so \(D L=L D\). In the formal \(a\)-adic completion over
+characteristic zero this proves that \(\exp(aL)\) is a cochain
+automorphism with inverse \(\exp(-aL)\). Since \(u \partial_t\) commutes
+with \(M_S\), each coefficient of its formal series is exactly that of
+
+\(\exp(-aS)P(u,t+ua,S)\).
+
+At every fixed order in \(a\), only finitely many polynomial operations
+occur. The differential and this formula are therefore well defined
+on the formal completion; no analytic function has been substituted
+into the uncompleted polynomial ring. The map is semilinear for the
+base translation \(t\to t+ua\), while \(u\) is fixed.
+The monic direct-sum reduction commutes coefficientwise with this
+formal completion, so its cohomology is the corresponding completed
+free rank-q module; no unproved interchange with an infinite quotient
+is involved.
+
+The ideal \((u,t)\) is stable: \(L(uP)\) is a multiple of \(u\), and
+\(L(tP)=uP+tu P_t-tSP\) lies in \((u,t)\). Thus formal specialization
+gives \(\exp(-aS)\) on the polynomial quotient, or precisely
+\(\exp(-aA)\) on its finite coefficient module.
+
+### Entire finite-cohomology evaluation and the exact periods
+
+The descended generator in the retained basis is
+
+\(L_H=u \partial_t-A(t)\), \(A(t)=A+tR\), \(R=e_0 e_{q-1}^T\).
+
+For all complex \(u,t,a\), define \(C_a(u,t)\) by the finite matrix ODE
+
+**\(\partial_a C_a=-C_a A(t+ua)\), \(C_0=I\).**
+
+Its solution is entire in these parameters. One direct verification
+is the iterated-integral series: on any compact parameter set the
+coefficient matrix is bounded along the segment from \(0\) to \(a\);
+the n-th term is bounded by \((|a|M)^n/n!\). The series converges
+locally uniformly and differentiates to the ODE. Uniqueness follows
+by the same integral equation. Solving the reverse ODE gives its
+inverse, so this entire matrix is nonsingular.
+
+The induced action on coefficient sections is
+
+\(v(u,t) \to  C_a(u,t) v(u,t+ua)\).
+
+To check the generator, the ODE and parameter differentiation give
+\(\partial_a C_a=u \partial_t C_a-A(t)C_a\); equivalently this follows
+from uniqueness of the differential equation for the flow. At \(a=0\)
+the derivative of the displayed section is exactly
+\(u \partial_t v-A(t)v\). Uniqueness therefore identifies its Taylor
+series with the formal \(\exp(aL_H)\) induced above. Alternatively for
+\(u\ne 0\), the following period formula proves both differential
+identities directly, and their entire extension proves them at \(u=0\).
+
+XD12 gives \(\partial_t \Pi(u,t)=-\Pi(u,t)A(t)/u\). The actual periods
+are invertible, with their original ray orientations and monomial
+factors, by XD19--21. Therefore
+
+\(\Pi(u,t)^{-1}\Pi(u,t+ua)\)
+
+satisfies precisely the defining ODE and initial condition. This
+proves the formula in Section 1 and retains every period coefficient.
+It also gives the exact cocycle, first for \(u\ne 0\) and then by entire
+continuation,
+
+\(C_a(u,t) C_b(u,t+ua)=C_{a+b}(u,t)\).
+
+At \(u=0\) the ODE is constant, so
+
+**\(C_a(0,t)=\exp(-a A(t))\), \(C_{\log p}(0,0)=p^{-A}\).**
+
+In particular evaluation at \(a=\log p\) is legitimate for this entire
+finite matrix, although the corresponding \(\exp(-aS)\) is not a
+polynomial cochain map after numerical evaluation. This distinction
+is not removable by writing an exponential symbol alone.
+
+At \(u\ne 0\), an equally explicit contour identity is
+
+\(\int_\Gamma \exp(\Phi_t(S)/u) \exp(-aS) P(S)dS\)
+
+\( =\int_\Gamma \exp(\Phi_{t+ua}(S)/u) P(S)dS\).
+
+Both integrals converge for every complex \(a\): the original leading
+negative degree-\(q+1\ge 2\) ray term dominates the additional linear
+exponent. Furthermore
+
+\(D_{u,t}(\exp(-aS)P)=\exp(-aS)D_{u,t+ua}P\).
+
+This identity has the correct source direction: the multiplier takes
+relations at \(t+ua\) to analytic integrands at \(t\), not polynomial
+relations in an unchanged fibre. On the finite cohomology the actual
+map from the fibre at \(t+ua\) to the fibre at \(t\) is \(C_a(u,t)\).
+No quotient by all entire functions is used or asserted.
+
+The distinction from a frozen endomorphism is exactly evaluable:
+
+\(C_a(u,t)=I-aA(t)+a^2(A(t)^2-uR)/2+O(a^3)\).
+
+The second derivative follows by differentiating its ODE once.
+Thus the first correction to \(\exp(-aA(t))\) is \(-a^2uR/2\).
+The residue map here is exactly the original coefficient map
+\(R=e_0 e_{q-1}^T\), including \(q=1\); it is not discarded.
+
+### Fixed-fibre source-to-period action
+
+For any one already specified \((u,t)\) with \(u\ne 0\), the original
+coefficient comparison \(E \to  H_{u,t}\) and XD22 also transport the
+fixed original theta action to the concrete period-coordinate matrix
+
+\(F_{p;u,t}^{\mathrm{per}}=\Pi(u,t) p^{-A} \Pi(u,t)^{-1}\).
+
+Indeed \(\Pi j_E L_p=F_{p;u,t}^{\mathrm{per}} \Pi j_E\) on the admitted original
+test-function domain, using its full equivariant jet observation.
+The kernel is exactly \(\ker j_E\); on the canonical representative
+image the inverse comparison is \(r_N \Pi^{-1}\). The difference of
+source representatives is the theta boundary computed in Section 3.
+This fixed-fibre conjugate and the base-translating \(C_a(u,t)\) are
+both actual maps, with different domains. Their coincidence at the
+coefficient special fibre does not identify them elsewhere.
+
+## 6. The existing logarithmic comparison receives the same action
+
+DS31 defines \(F_A=\sum_{j=0}^{q-1}A^j E_0\), with its actual invariant
+lattice \(M_A=F_A O+E O(-D)\). Every polynomial in \(A\), and therefore
+its finite-matrix exponential, preserves \(F_A\) and induces an
+operator on \(E/F_A\). Hence the same \(p^{\pm A}\) acts on the
+computed complex and its cohomology:
+
+\(H^0(K_A)=F_A\), action \(p^{\pm\left.A\right|_{F_A}}\);
+
+\(H^2(K_A)=(E/F_A) \otimes T\), action
+\(p^{\pm\overline A}\otimes I_T\).
+
+The dual action for ordinary evaluation is the inverse transpose;
+the tau-base moment-line choice multiplies it by the retained \(p\)
+(or \(p^k\) on the inherited tensor moment line). Thus DS34's
+annihilator lattice and the full boundary quotient also carry these
+actions. The trace across the two retained groups is the trace of
+the original finite action, by a basis adapted to \(F_A\).
+
+The separately existing parameter power map \(z\to z^p\) on the
+comparison curve has a different explicit action:
+\(dz/z \to  p dz/z\), and pulls divisor depth one to depth \(p\).
+It acts on the curve coordinate \(z\), not the Mellin coordinate \(S\)
+or the original positive variable \(x\). Both operations are therefore
+available in the actual construction without conflating them.
+
+## 7. Actual finite-field power maps of this same potential
+
+This section applies the already specified coefficient realization in
+the original exponential note, equations (47)--(49), retaining its
+privileged characteristic-zero tau-base branch. Use \(r\) for residue
+characteristic to distinguish it from the positive theta-dilation
+parameter \(p\), and put \(Q=r^f\). The source ring is
+
+\(R_0=\mathbb Z[c_0,\ldots,c_{q-1},1/(q+1)!]\subset\mathbb C\).
+
+Under any of the original specified maps \(R_0\to\mathbb F_Q\) with
+\(r>q+1\), the same polynomial differential and coefficient basis
+base-change literally. This is a map from \(R_0\), not a field map
+from \(\mathbb C\). No value of the transcendental parameter \(\log p\) is
+silently assigned a residue-field value.
+
+### A computed characteristic-r power operator from the connection
+
+Over the reduced coefficient ring, the polynomial derivation obeys
+\(\partial_t^r=0\): the r-th derivative of every monomial contains
+a product of r consecutive integers. Since \(u \partial_t\) and
+\(M_S\) commute, their characteristic-r binomial expansion gives
+
+\((u \partial_t-M_S)^r=-M_{S^r}\).
+
+Moreover \([D_{u,t},M_{S^r}]=r u M_{S^{r-1}}=0\). Thus multiplication
+by \(S^r\), unlike multiplication by \(S\) at nonzero \(u\), genuinely
+descends to the reduced polynomial cohomology. This gives the
+following completely specified matrix in its original basis:
+
+**\(\Psi_r(\partial_t)=-u^{-r} (\operatorname{red}_{u,t}(S^{r+b}))_{0\le b<q}\).**
+
+The notation means column \(b\) is the indicated remainder vector.
+It is the r-curvature of \(\nabla_t=\partial_t-S/u\), because the
+restricted r-th power of the base derivation is zero. Multiplying
+by \(-u^r\) gives a regular coefficient endomorphism which at
+\(u=t=0\) is exactly \(A^r\) in the reduced full quotient. Every
+coefficient is obtained by the same monic reduction algorithm.
+This is a computed power map supplied by the actual deformation,
+without attempting to reduce an infinite exponential series with
+factorial denominators in characteristic r.
+
+### The cover Frobenius and the character-twist comparison
+
+For the source's specified \(u_0\ne 0,t_0\) in \(\mathbb F_Q\), write
+
+\(f_t(S)=(\Phi(S)-t_0S)/u_0\).
+
+Its actual Artin--Schreier cover is
+
+\(Y^r-Y=f_t(S)\).
+
+The arithmetic Q-power operation on its geometric coordinates is
+\((S,Y)\to (S^Q,Y^Q)\). It preserves the cover because coefficients
+are in \(\mathbb F_Q\) and
+\((Y^Q)^r-Y^Q=(Y^r-Y)^Q=f_t(S)^Q=f_t(S^Q)\).
+It commutes with every deck transformation \(Y\to Y+c\), \(c\in\mathbb F_r\).
+The chosen additive-character eigensheaf is consequently stable.
+Geometric Frobenius uses the inverse Galois action convention,
+as fixed in the original DT.12--13 trace statement.
+
+With that convention, its exact trace on the existing compact-support
+degree-one cohomology is
+
+\(\operatorname{Tr}(\operatorname{Frob}_Q^n|H_c^1)=-\sum_{s\in\mathbb F_{Q^n}}\)
+\(\psi(\operatorname{Tr}_{\mathbb F_{Q^n}/\mathbb F_r}f_t(s))\).
+
+This follows from the trace formula with its degree-one sign and the
+concentration theorem already applied in the original source. Its
+degree is \(q+1\), the leading coefficient \(1/((q+1)u_0)\) is a
+unit, and the leading projective zero locus in \(\mathbb P^0\) is empty and
+smooth. The retained Deligne theorem therefore applies to these
+actual fibres: dimension \(q\) and weight one, including repeated
+critical roots. This is the finite-field application already present
+in the program, not a claim that such a realization has failed.
+
+The exact finite-field operation corresponding to the exponential
+linear multiplier is also calculable. For a specified scalar \(b\)
+in the residue field,
+
+\(f_{t_0+u_0 b}(S)=f_{t_0}(S)-bS\),
+
+so the actual sheaves obey
+
+**\(L_\psi(f_{t_0+u_0b})=L_\psi(f_{t_0}) \otimes L_\psi(-bS)\).**
+
+The cover proof is addition: if \(Y_1^r-Y_1=f_t(S)\) and
+\(Y_2^r-Y_2=-bS\), then \(Y_1+Y_2\) satisfies the equation with
+right side \(f_t-bS\). On character eigenspaces, addition tensors
+the character lines. This is the precise analogue of
+\(\exp(\Phi_t/u)\exp(-aS)=\exp(\Phi_{t+ua}/u)\): it is parameter
+translation with a linear character twist, not the Q-power
+Frobenius operation on the cover.
+
+The existing DT.12 comparison under coordinate translation \(S=X+b\)
+is a further, different map and retains its original constant line
+\(L_\psi((-\Phi(-b)-t_0b)/u_0)\). Its Frobenius scalar is the exact
+root of unity in DT.13, not a real theta-dilation mass. Thus the
+coefficient translation, linear character twist, r-curvature, and
+cover Frobenius have separately computed coordinates. The matrix
+\(p^{\pm A}\) remains the action from the original theta sheaf over
+the tau-base throughout this comparison.
+
+## 8. Support reconstruction at every arrow
+
+At every retained nonempty support mask \(\Lambda\), every displayed
+linear/cochain map \(f\) has the original lift
+
+\((\Lambda,v)\to (\Lambda,f(v))\), \(\tau\to \tau\).
+
+For invertible dilations the inverse image of the labelled zero is
+the labelled zero; for the quotient observation it is its full
+displayed kernel at the same label. Scalar coefficient specialization
+uses \(G(R_0)\to G(\mathbb F_Q)\) and carries a represented coefficient
+specializing to zero to \(e\), while external \(\tau\) stays \(\tau\).
+Dual label arrows are the original precomposition maps in the
+opposite support-index category, as in tau-base equation (31).
+
+Consequently the calculation composes the actual diagram
+
+\(\tau\text{-based theta sheaf}\to\mathrm R\Gamma\text{ over }\tau\to\text{full finite jets}\)
+
+\(\to\text{exponential special fibre}\to\text{finite exponential cohomology / periods}\),
+
+together with its computed tau-base right-adjoint morphism. It does
+not replace global cohomology over the tau-base by restriction to
+the support skeleton, or replace the full packet by reduced values.
+
+## 9. Source pins and exact read scope
+
+Read in full before completing this calculation:
+
+- `workspace:/output/split_zero_rh_tandem_2026-09-12/sources/Tau_Base_Cohomology_2026-09-12/NOTE.md`:
+  SHA-256 `D03E71AD18F187BD89880CB8CA6FC9C5D6F260B3DE8E8E5702C27DB97E7B63C3`;
+  source equations (18)--(22), (27)--(43), (47)--(50) anchor the
+  actual base, pushforward, adjoint, scaling, and residue morphism.
+- `workspace:/output/split_zero_rh_tandem_2026-09-12/tex/arithmetic_input.tex`:
+  SHA-256 `A50B0FB587B644C4EA94DBA45B2B423D038F2BFBE7FEF188543939BA850E58D2`;
+  A1 at line 43, A7--10 at 186--231, A11--13 at 265--295.
+- `workspace:/work/deligne_split_sidebar_20260913.tex`:
+  SHA-256 `8601C882177ECBF64A374BDED1641573F7CBBA4D950DD8786E23D15B64307384`;
+  DS31--34 at 496--531, DS44 at 665, DS66--69 at 1014--1078.
+- `workspace:/work/deligne_exponential_determinant_extension_20260913.tex`:
+  SHA-256 `4A6B6C237CA3CFF29ABCEBA6CB5F8285E080B080C5F923F0E09D6F130A30DFE8`;
+  XD12 at 131, XD19--22 at 208--246. Its determinant proof is
+  used only to justify the actual period inverse, not to audit a
+  signed Gamma allowance or claim a new upper bound.
+- `workspace:/output/split_zero_rh_tandem_2026-09-12/sources/web_deligne_exponential_delivery/Tau_Deligne_Exponential_Comparison/RESEARCH_NOTE.md`:
+  SHA-256 `C2246C9F6046347BBD246890DB88B1676B1A53487D66583A13B5883528BC0402`;
+  equations (5), (24)--(36j.1), (37)--(49) provide the original
+  unit-bearing cyclic inclusion, polynomial cohomology, connection,
+  periods, residue pairing, coefficient realization, and cover.
+- `workspace:/output/split_zero_rh_tandem_2026-09-12/tex/deligne_translation_bridge.tex`:
+  SHA-256 `7DC6C73941A3EA30B141E7FB1110D6FB7B688AF8A9C79A996ACCE31F9086611D`;
+  DT.12--13 at lines 247--255 give the original character convention.
+- `workspace:/output/split_zero_rh_tandem_2026-09-12/tex/deligne_primary_source_correction.tex`:
+  SHA-256 `B12BF0C1FF1175DE1099075F0DA66CF51996ACC43B2ACC5D0ED01523DC05C001`;
+  the corrected source-theorem application begins at line 58. The
+  historical citation correction supersedes the older mismatch
+  report preserved in the original exponential delivery.
+
+Additionally read the exact carrier definitions and the complete
+sector/holonomy/positive-moment section of
+`workspace:/output/split_zero_rh_tandem_2026-09-12/tex/split_zero_carriers.tex`,
+SHA-256 `49ED53151068F726E5E392A36D076C95E4E050E163C204D85FD3B179A4A25805`;
+the sector-to-holonomy proposition is at lines 197--218.
+
+Only this independent review artifact is authored here. No remote
+operation, public publication, new Lean execution, signed Gamma audit,
+or claim of a tensor-degree upper estimate accompanies it.

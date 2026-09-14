@@ -1,0 +1,259 @@
+# Exact fluid-cutoff transport into the retained theta complex
+
+This is a completed calculation prompted by A0618, node `ba85139d-2899-4a3b-b05e-9f30a7341c82`, chain 1146, transcript-segment lines 2698–2818. That answer constructed an admissible cutoff test but left its equivariance and quotient class uncalculated. We calculate the exact scaling morphism and its image in the original theta complex; we do not assert a sign for its arithmetic pairing or replace the original fluid by a self-similar ansatz.
+
+The arithmetic target is the original `Tau_Base_Cohomology_2026-09-12/NOTE.md`, SHA256 `d03e71ad18f187bd89880cb8ca6fc9c5d6f260b3de8e8e5702c27db97e7b63c3`: equations (10)–(14), (19)–(22), (32)–(45). All spaces and actions below retain those definitions. The factor connecting the early centered test with this target is an explicit invertible multiplication map, not an identification of their coordinates.
+
+## 1. Original spaces and the cutoff map
+
+Fix viscosity \(\nu>0\), a time interval \(I\), and a smooth real vector field \(u\) on \(\mathbb R^3\times I\). Define \(e_\theta=(-\sin\theta,\cos\theta,0)\) and retain the **unaveraged** angular-momentum integral
+\[
+a_u(r,t)=\int_0^{2\pi}r e_\theta\cdot u(r\cos\theta,r\sin\theta,0,t)\,d\theta.
+\]
+Let \(\chi(r,t)\) be a smooth cutoff whose radial support is compact in \((0,\infty)\), locally uniformly in \(t\). Set
+\[
+D=r\partial_r,\qquad b(r,t)=\chi(r,t)a_u(r,t),\qquad
+g(r,t)=(D^2-\tfrac14)b(r,t).
+\]
+For every fixed \(t\), \(g_t\in C_c^\infty(\mathbb R_{>0})\). Define the original centered admissible space
+\[
+\mathscr T=\{g\in C_c^\infty(\mathbb R_{>0}):\int_0^\infty g(r)r^{1/2}\,dr/r=\int_0^\infty g(r)r^{-1/2}\,dr/r=0\}.
+\]
+The Mellin transform used in the tau source is
+\(\mathcal M h(s)=\int_0^\infty h(r)r^s\,dr/r\).
+The support of \(b_t\) lies in some \([\alpha,\beta]\subset(0,\infty)\); it and every derivative vanish near both integration endpoints. Therefore, for every complex \(s\),
+\[
+\mathcal M(Db)(s)=[b(r)r^s]_0^\infty-s\mathcal Mb(s)=-s\mathcal Mb(s),
+\]
+and a second integration by parts gives
+\[
+\mathcal Mg(s)=(s^2-\tfrac14)\mathcal Mb(s).
+\tag{1}
+\]
+At \(s=\pm\tfrac12\), this proves both admissibility equations, with all boundary terms zero for the stated support reason. Smooth parameter dependence follows by differentiation under the integral on each common compact support interval.
+
+## 2. The explicit map to the original uncentered theta target
+
+Retain the tau source's space
+\[
+\mathscr B=\{F\in C^\infty(\mathbb R_{>0}):\sup_{r>0}r^j|(-r\partial_r)^kF(r)|<\infty\text{ for all }j\in\mathbb Z,k\ge0\}.
+\]
+Multiplication defines a linear injection
+\[
+\mathcal C:\mathscr T\longrightarrow\mathscr B,\qquad (\mathcal Cg)(r)=r^{-1/2}g(r).
+\tag{2}
+\]
+Its image lies in \(C_c^\infty\subset\mathscr B\), and its inverse on that image is multiplication by \(r^{1/2}\). No endpoint extension is used. For \(F=\mathcal Cg\), equation (1) gives the exact entire identity
+\[
+\boxed{\mathcal MF(s)=s(s-1)\mathcal Mb(s-\tfrac12).}
+\tag{3}
+\]
+Thus the early two centered moment cancellations become the uncentered zeros at \(s=0,1\), through the stated multiplication map.
+
+The test space retains its usual inductive-limit topology over compact support intervals. On each such interval the multiplier \(r^{-1/2}\) and all its derivatives are bounded; the product rule therefore bounds every displayed \(\mathscr B\) seminorm by finitely many test-function seminorms. Thus (2) is continuous into \(\mathscr B\). The quotient and adjoint calculations below retain the source's algebraic quotient and algebraic dual; they make no assertion that \(\Theta V\) is closed or that this dual is the continuous dual of a completed quotient.
+
+Retain the actual source spaces \(V\), its Fourier transform with exponent \(-2\pi i x\xi\),
+\(\Theta\phi(r)=\sum_{n\ne0}\phi(nr)\),
+\(JF(r)=r^{-1}F(1/r)\), and
+\[
+\mathsf A_\tau(\mathcal T)=[V\oplus V\xrightarrow{d}\mathscr B],\qquad
+d(\phi,\psi)=\Theta\phi-J\Theta\psi,
+\qquad Q=\mathscr B/\Theta V.
+\]
+Formula (2) followed by the quotient map gives a concrete linear map
+\(\mathscr T\to H^1\mathsf A_\tau(\mathcal T)=Q\).
+It does not say that every input class is nonzero. Equation (3), and the full jet formula below, compute its actual finite arithmetic observations without making that assumption.
+
+### The early theta background and its exact factor of two
+
+A0598 used \(\mathcal E\phi(r)=r^{1/2}\sum_{n\ge1}\phi(nr)\), whereas the retained tau source uses \(\Theta\phi(r)=\sum_{n\ne0}\phi(nr)\). For an even \(\phi\in V\), pairing the terms \(n,-n\) gives the exact identity
+\[
+\mathcal C(\mathcal E\phi)=\tfrac12\Theta\phi.
+\tag{3a}
+\]
+Here multiplication \(\mathcal C\) extends to the displayed smooth functions by its same formula; this sentence does not assert that the uncut \(\mathcal E\phi\) belongs to the compactly supported domain \(\mathscr T\).
+On every compact positive \(r\)-interval the Schwartz bounds permit termwise differentiation of the theta sum, giving \(D\Theta\phi=\Theta(D\phi)\). The operator \(D\) preserves even Schwartz functions and \(\phi(0)=0\); integration by parts gives \(\int_\mathbb R D\phi=-\int_\mathbb R\phi=0\). It therefore preserves \(V\). Direct differentiation of \(r^{1/2}h\) gives
+\[
+r^{-1/2}(D^2-\tfrac14)(r^{1/2}h)=(D^2+D)h.
+\]
+Consequently the uncut background maps to the original theta relation
+\[
+\mathcal C(D^2-\tfrac14)\mathcal E\phi=\tfrac12\Theta((D^2+D)\phi)\in\Theta V.
+\tag{3b}
+\]
+For a compact cutoff \(\chi\), the exact image instead is
+\[
+\begin{aligned}
+\mathcal C(D^2-\tfrac14)(\chi\mathcal E\phi)
+={}&\tfrac12\chi\Theta((D^2+D)\phi)
++(D\chi)\Theta(D\phi)\\
+&+\tfrac12(D^2\chi+D\chi)\Theta\phi.
+\end{aligned}
+\tag{3c}
+\]
+The first term still contains its cutoff; membership of the uncut theta image does not erase that factor. Thus (3c) retains all three pieces of the actual early cutoff background in the original \(Q\), without assuming that any one belongs to the relation space.
+
+## 3. Constant parabolic scaling, with the same viscosity
+
+For a constant \(\lambda>0\), put
+\[
+u_\lambda(x,t)=\lambda u(\lambda x,\lambda^2t),\quad
+p_\lambda(x,t)=\lambda^2p(\lambda x,\lambda^2t),\quad
+f_\lambda(x,t)=\lambda^3f(\lambda x,\lambda^2t),
+\quad I_\lambda=\{t:\lambda^2t\in I\}.
+\]
+Differentiating each component gives
+\[
+\partial_tu_\lambda=\lambda^3\partial_tu,\quad
+(u_\lambda\cdot\nabla)u_\lambda=\lambda^3(u\cdot\nabla)u,\quad
+\nabla p_\lambda=\lambda^3\nabla p,\quad
+\Delta u_\lambda=\lambda^3\Delta u,
+\quad \nabla\cdot u_\lambda=\lambda^2\nabla\cdot u,
+\]
+where the right sides are evaluated at \((\lambda x,\lambda^2t)\). Consequently the forced equation
+\(\partial_tu+(u\cdot\nabla)u=-\nabla p+\nu\Delta u+f\)
+is carried to that same equation with exactly the same \(\nu\). This is a map between fields at different coordinates, not an assertion that one fixed solution obeys a self-similarity identity.
+
+Set \(\chi_\lambda(r,t)=\chi(\lambda r,\lambda^2t)\). Substitution in the unaveraged angular integral gives
+\[
+a_{u_\lambda}(r,t)=\int_0^{2\pi}(\lambda r)e_\theta\cdot u(\lambda r\cos\theta,\lambda r\sin\theta,0,\lambda^2t)\,d\theta
+=a_u(\lambda r,\lambda^2t).
+\]
+The operator \(D\) commutes with \(R_\lambda h(r)=h(\lambda r)\). Thus
+\[
+b_\lambda(r,t)=b(\lambda r,\lambda^2t),\qquad
+g_\lambda(r,t)=g(\lambda r,\lambda^2t).
+\tag{4}
+\]
+At corresponding times the theta target satisfies
+\[
+\boxed{F_\lambda=\lambda^{1/2}U_{1/\lambda}F,\qquad
+\mathcal MF_\lambda(s)=\lambda^{1/2-s}\mathcal MF(s),}
+\tag{5}
+\]
+where the source's action remains \(U_aF(r)=F(r/a)\). Indeed
+\(r^{-1/2}g(\lambda r)=\lambda^{1/2}(\lambda r)^{-1/2}g(\lambda r)\).
+
+Equation (5) lifts to the **original two-leg chain map**
+\[
+(\phi,\psi)\longmapsto
+(\lambda^{1/2}U_{1/\lambda}\phi,\lambda^{-1/2}U_\lambda\psi),\qquad
+F\longmapsto\lambda^{1/2}U_{1/\lambda}F.
+\tag{6}
+\]
+The first leg follows from \(\Theta U_a=U_a\Theta\). On the second leg the source identity \(U_aJ=aJU_{1/a}\) gives
+\(\lambda^{1/2}U_{1/\lambda}J\Theta=\lambda^{-1/2}J\Theta U_\lambda\).
+Both are therefore precisely the two terms of \(d\), with the original minus sign retained. Each scaling preserves \(V\), since the zero value and zero integral remain zero, and fixes every support mask. It consequently descends to \(Q\). At \(\sigma\) the coefficient map remains the zero map on the zero coefficient space, with the original labelled support skeleton fixed; no class is deleted by this comparison.
+
+## 4. Full actual-zero jets and the right-adjoint dual
+
+Let \(G(s)=2\xi(s)\), and retain a finite reflection-stable set \(Z\) of actual zeros, with actual orders \(m_\rho\). Write \(z_\rho=s-\rho\),
+\(A_Z=\bigoplus_{\rho\in Z}\mathcal O_\rho/(G)\), and let \(N_\rho\) denote multiplication by \(z_\rho\). The finite observation is the source's map
+\[
+(J_ZF)_\rho=\sum_{j=0}^{m_\rho-1}\frac{(\mathcal MF)^{(j)}(\rho)}{j!}z_\rho^j.
+\]
+Equation (3) supplies every coefficient of this polynomial from the original cutoff \(b\). In particular no unproved nonvanishing or simplicity assertion enters its definition. Expanding the exponential multiplier in (5) gives
+\[
+\boxed{(J_ZF_\lambda)_\rho=\lambda^{1/2-\rho}
+\sum_{k=0}^{m_\rho-1}\frac{(-\log\lambda)^k}{k!}N_\rho^k(J_ZF)_\rho.}
+\tag{7}
+\]
+Equivalently, coefficient \(j\) is
+\[
+\lambda^{1/2-\rho}\sum_{k=0}^j
+\frac{(-\log\lambda)^k}{k!}
+\frac{(\mathcal MF)^{(j-k)}(\rho)}{(j-k)!}.
+\]
+This retains all nilpotent jets, not only the residue-value eigenline.
+
+The source computes
+\(K_\tau(\mathcal L_1)=[I_\eta(\mathcal L_1)\to I_+(\mathcal L_1)\oplus I_-(\mathcal L_1)]\)
+in degrees \(-1,0\), with differential \((+\mathrm{res},-\mathrm{res})\), and
+\(H^{-1}R\operatorname{Hom}(\mathcal T,K_\tau(\mathcal L_1))=\operatorname{Hom}(Q,\mathcal L_1)\).
+Thus the retained residue injection evaluates the computed class by
+\[
+\overline h\longmapsto\ell_h,\qquad
+\ell_h([F])=\sum_{\rho\in Z}\operatorname{Res}_\rho
+\frac{h^\dagger(s)\mathcal MF(s)}{G(s)}\,ds,
+\quad h^\dagger(s)=\overline{h(1-\bar s)}.
+\tag{8}
+\]
+For a scaling packet \(T_\lambda h(s)=\lambda^{1/2-s}h(s)\) in each local algebra,
+\[
+(T_\lambda h)^\dagger(s)=\lambda^{s-1/2}h^\dagger(s).
+\]
+Multiplying by the multiplier in (5) cancels these two displayed factors exactly. Hence the original residue pairing and its trace contraction are invariant:
+\[
+R_Z(T_\lambda h,T_\lambda k)=R_Z(h,k),\qquad
+R_Z(T_\lambda h,G'T_\lambda k)=R_Z(h,G'k).
+\tag{9}
+\]
+The derivative multiplier \(G'\) commutes with \(T_\lambda\), since both act by multiplication in the same local algebra. No phase changes the source's raw skew-Hermitian residue orientation; \(\mathcal L_1\) has not been replaced by a different coefficient line.
+In particular (9) concerns the explicitly displayed transport \(T_\lambda=\lambda^{1/2}U_{1/\lambda}\). The original uncentered action still has \(R_Z(U_ah,U_ak)=aR_Z(h,k)\); here its factor \(a=1/\lambda\) cancels the two real scalar factors \(\lambda^{1/2}\) carried by the two inputs.
+
+## 5. The unchanged source Weil scalar is invariant under this transport
+
+Retain exactly
+\[
+(g_1*g_2)(x)=\int_0^\infty g_1(y)g_2(x/y)\,dy/y,
+\qquad g^*(x)=\overline{g(x^{-1})}.
+\]
+Then
+\[
+(g*g^*)(x)=\int_0^\infty g(y)\overline{g(y/x)}\,dy/y.
+\]
+For \(g_\lambda=R_\lambda g\), substitute \(v=\lambda y\) to obtain
+\[
+\boxed{(g_\lambda*g_\lambda^*)(x)=\int_0^\infty g(v)\overline{g(v/x)}\,dv/v=(g*g^*)(x).}
+\tag{10}
+\]
+This is equality of the entire test function, before any arithmetic functional is applied. In particular it retains every prime term and the complete archimedean subtraction in
+\[
+W_p(f)=(\log p)\sum_{m\ge1}p^{-m/2}(f(p^m)+f(p^{-m})),
+\]
+\[
+W_{\mathbb R}(f)=(\log4\pi+\gamma)f(1)+
+\int_1^\infty\bigl(f(x)+f(x^{-1})-2x^{-1/2}f(1)\bigr)
+\frac{x^{1/2}}{x-x^{-1}}\frac{dx}{x}.
+\]
+Therefore the source scalar \(\sum_vW_v(g*g^*)\), whose required sign in A0618 is nonpositive under RH, is unchanged by (4) at corresponding times. No estimate, omitted boundary term, discarded prime or replacement norm proves this: equation (10) does.
+
+## 6. Time-dependent concentration and its exact extra force
+
+Let \(\lambda(t)>0\) and \(s(t)\in I\) be smooth. Define
+\[
+u^\#(x,t)=\lambda(t)u(\lambda(t)x,s(t)),\qquad
+p^\#(x,t)=\lambda(t)^2p(\lambda(t)x,s(t)),
+\]
+and transport \(\chi\) by the same arguments. Equations (4)–(10) still hold instantaneously with source time \(s(t)\). They do not by themselves claim a fluid-equation intertwiner for this varying parameter.
+
+Write \(X=\lambda(t)x\) and \(\mathcal N(u,p)= (u\cdot\nabla_X)u+\nabla_Xp-\nu\Delta_Xu\). Direct differentiation, using the original equation \(\partial_su+\mathcal N(u,p)=f\), yields the complete transformed force
+\[
+\boxed{\partial_tu^\#+(u^\#\cdot\nabla_x)u^\#+\nabla_xp^\#-\nu\Delta_xu^\#
+=\lambda s'f(X,s)+(\lambda^3-\lambda s')\mathcal N(u,p)(X,s)
++\frac{\lambda'}{\lambda}(u^\#+x\cdot\nabla_xu^\#).}
+\tag{11}
+\]
+Indeed \(\partial_tu^\#=(\lambda'/\lambda)(u^\#+x\cdot\nabla_xu^\#)+\lambda s'\partial_su\), whereas each nonlinear, pressure and viscosity term carries \(\lambda^3\). This proves (11) term by term. Divergence is \(\lambda^2\nabla_X\cdot u\), so incompressibility is retained. If \(s'=\lambda^2\), the middle term cancels and the remaining force is
+\[
+\lambda^3 f(X,s)+\frac{\lambda'}{\lambda}(u^\#+x\cdot\nabla_xu^\#).
+\tag{12}
+\]
+The second summand is a calculated force contribution; its endpoint regularity cannot be inferred from the original force's regularity.
+
+For the test and theta amplitude, direct differentiation gives
+\[
+\partial_tg^\#=\frac{\lambda'}{\lambda}Dg^\#+s'R_\lambda\partial_sg,
+\]
+\[
+\partial_tF^\#=\frac{\lambda'}{\lambda}(D+\tfrac12)F^\#+s'\lambda^{1/2}U_{1/\lambda}\partial_sF.
+\tag{13}
+\]
+Writing \(w\) for the Mellin variable in this sentence, to distinguish it from the source-time function \(s(t)\), the first transformed generator is exactly
+\((\lambda'/\lambda)(\tfrac12-w)\); on the \(\rho\)-jet it is
+\((\lambda'/\lambda)((\tfrac12-\rho)I-N_\rho)\).
+Equation (10) shows at each time that the transported Weil scalar equals the source scalar at \(s(t)\). Thus parameter variation in \(\lambda\) alone contributes zero to that scalar, whereas changes in the actual source profile or a cutoff not transported by this formula need their own calculation.
+
+## Proven scope
+
+We have completed the exact transport of A0618's cutoff construction into the original \(\mathsf A_\tau\) complex, \(Q\), the full actual-zero jets and the retained right-adjoint dual. Pure transported parabolic concentration preserves the entire autocorrelation and the source Weil scalar; this does not rule out effects from the actual NS solution's changing anisotropic profile, interactions or cutoff. The explicit extra force in (11)–(12) shows why a time-dependent coordinate transport cannot be called a new smooth-forced solution without calculating that term. Neither a vanished supported quotient kernel nor a global weight estimate has been assumed.

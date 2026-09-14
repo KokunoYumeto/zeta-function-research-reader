@@ -1,0 +1,653 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Counterfactual RH search on the original split-supported theta
+input}\label{counterfactual-rh-search-on-the-original-split-supported-theta-input}
+
+\subsection{Scope}\label{scope}
+
+The preceding Deligne-bound audit is not a no-go theorem for geometry
+over F1, for the monoidal base tau, or for a future purity construction
+using the full arithmetic input. Its stated conclusion concerns a
+particular inference from an auxiliary exponential family's Frobenius
+purity to a bound for the original theta metric. Its examples do not
+assert that their chosen polynomials divide the original function
+\(g=2\xi\).
+
+This continuation takes the counterexample search as an independent
+research objective. It proves a finite-sign certificate for a
+counterexample to RH, directly from derivatives of the original theta
+function. It also proves that an actual counterexample would eventually
+supply such a certificate. The finite calculation reported below found
+no negative witness. No counterexample to RH is claimed.
+
+The power-sum/moment method belongs to established zero-positivity
+methods; see Zhang (2015). The derivation below gives all its maps,
+signs, and constants for the present source, rather than claiming a new
+general RH criterion.
+
+\subsection{1. Original input and
+support}\label{original-input-and-support}
+
+Retain
+
+\[
+G(R)=\{\tau\}\sqcup R^\bullet,\qquad e_R=0_R^\bullet,
+\qquad p_R(\tau)=0,\quad p_R(r^\bullet)=r,
+\]
+
+and the coefficient square
+
+\[
+\begin{array}{ccc}
+G(\mathbb Z)&\longrightarrow&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\longrightarrow&\mathbb C.
+\end{array}
+\]
+
+The support observation sends \(\tau\) to Boolean zero and every
+represented coefficient to Boolean one. On the original support-labelled
+coefficient fibres, a linear map lifts as \((\ell,v)\mapsto(\ell,fv)\),
+with external absence fixed. A killed coefficient therefore reaches
+\((\ell,0)\), not external absence. No conclusion about the sign of an
+arithmetic functional follows just from that support value.
+
+Use the unchanged source
+
+\[
+\Theta\phi(x)=2\sum_{n\ge1}\phi(nx),\qquad
+\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},
+\]
+
+\[
+f_0=\Theta\phi_*,\qquad
+\mathcal Mf_0(s)=g(s)=2\xi(s)
+=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\]
+
+These are the arithmetic-input equations (A1)--(A3), also identified
+with the specified Hochschild trace in
+\texttt{HOCHSCHILD\_COMPARISON.md}, equations (H4)--(H10). Define the
+explicit logarithmic-coordinate function
+
+\[
+\psi(y)=e^{y/2}f_0(e^y).
+\tag{1}
+\]
+
+Mellin substitution gives
+
+\[
+g(1/2+iz)=\int_{\mathbb R}\psi(y)e^{izy}\,dy.
+\tag{2}
+\]
+
+The original reflection \(f_0(x)=x^{-1}f_0(1/x)\) gives
+\(\psi(-y)=\psi(y)\). This reflection also follows by applying the
+source Fourier identity to \(\phi_*\): Fourier sends \(D\) to \(1-D\),
+so it fixes \((D^2-D)e^{-\pi x^2}=\phi_*\).
+
+For \(x\ge1\), every summand in \(f_0(x)\) is positive, since
+
+\[
+4\pi^2n^4x^4-6\pi n^2x^2
+=2\pi n^2x^2(2\pi n^2x^2-3)>0.
+\]
+
+Reflection proves positivity for all \(x>0\). The Gaussian series also
+gives a constant \(C\) such that
+
+\[
+0<\psi(y)\le C\exp(9|y|/2-\pi e^{2|y|}).
+\tag{3}
+\]
+
+For \(y\ge0\), bound the convergent sum of \(n^4e^{-\pi(n^2-1)e^{2y}}\)
+by its value at \(y=0\); reflection supplies the other half-line. Thus
+all differentiations and all moments below converge absolutely.
+
+\subsection{2. Coefficients with the original mass
+retained}\label{coefficients-with-the-original-mass-retained}
+
+Put
+
+\[
+M_{2j}=\int_{\mathbb R}y^{2j}\psi(y)\,dy
+=g^{(2j)}(1/2),\qquad
+ a_j=\frac{(-1)^jM_{2j}}{(2j)!}.
+\tag{4}
+\]
+
+Define the entire function \(F\) by its specified coefficients:
+
+\[
+F(w)=\sum_{j\ge0}a_jw^j,
+\qquad F(z^2)=g(1/2+iz),\qquad a_0=g(1/2)>0.
+\tag{5}
+\]
+
+No square-root branch is part of the definition, and \(a_0\) is not
+assigned the value one. The map \(z\mapsto z^2\) identifies the two
+reflected coordinates only at this scalar-function observation; the
+original packet modules are retained in Section 5.
+
+Define \(b_n\) by the analytic logarithmic derivative near zero:
+
+\[
+-\frac{F'(w)}{F(w)}=\sum_{n\ge0}b_nw^n.
+\tag{6}
+\]
+
+The complete finite coefficient map is
+
+\[
+\boxed{
+ b_n=\frac{-(n+1)a_{n+1}-\sum_{j=1}^{n}a_jb_{n-j}}{a_0}.
+}
+\tag{7}
+\]
+
+It follows by multiplying (6) by \(F\) and extracting the coefficient of
+\(w^n\). For example,
+
+\[
+ b_0=-\frac{a_1}{a_0},\qquad
+ b_1=\frac{a_1^2}{a_0^2}-\frac{2a_2}{a_0},\qquad
+ b_2=-\frac{a_1^3}{a_0^3}+\frac{3a_1a_2}{a_0^2}-\frac{3a_3}{a_0}.
+\tag{8}
+\]
+
+This operation need not preserve positivity of arbitrary coefficient
+sequences. The matrices used below are not positive by their definition.
+
+\subsection{3. A finite certificate contradicting
+RH}\label{a-finite-certificate-contradicting-rh}
+
+Let \(\alpha_j\) be the distinct zeros of \(F\), with their
+multiplicities \(m_j\), and put \(\beta_j=\alpha_j^{-1}\). These symbols
+are used to prove the test, not supplied to its numerical
+implementation.
+
+Estimate (3), followed by \(t=e^{2|y|}\), bounds the maximum modulus of
+\(g\) by an exponential of \(O(R\log R)\). The maximum modulus of \(F\)
+at radius \(R\) is consequently bounded by an exponential of
+\(O(\sqrt R\log R)\). Its order is at most \(1/2<1\). Genus-zero
+Hadamard factorization therefore gives
+
+\[
+F(w)=a_0\prod_j(1-\beta_jw)^{m_j},
+\qquad \sum_jm_j|\beta_j|<\infty.
+\tag{9}
+\]
+
+There is no nonconstant exponential factor of integer degree at this
+order. Differentiating locally uniformly away from zeros proves
+
+\[
+\boxed{b_n=\sum_jm_j\beta_j^{n+1}.}
+\tag{10}
+\]
+
+The exact coordinate of a zeta zero \(\rho=1/2+\delta+i\gamma\) is
+
+\[
+ z=-i(\rho-1/2)=\gamma-i\delta,\quad
+ \alpha=z^2=\gamma^2-\delta^2-2i\gamma\delta,
+\]
+
+\[
+\boxed{
+ \beta=-\frac1{(\rho-1/2)^2}
+ =\frac{\gamma^2-\delta^2+2i\gamma\delta}
+ {(\gamma^2+\delta^2)^2}.
+}
+\tag{11}
+\]
+
+The two reflected roots \(\rho,1-\rho\) give one zero \(\alpha\) of the
+same multiplicity in \(F\). Conjugation gives the conjugate \(\alpha\)
+and \(\beta\).
+
+For every real \(s\), (1)--(3) give
+\(g(s)=\int\psi(y)e^{(s-1/2)y}dy>0\). Hence \(F\) has no nonpositive
+real zeros: \(F(-v^2)=g(1/2-v)>0\). Thus RH is equivalent to every
+\(\beta_j\) being positive real.
+
+For \(d\ge0\), define the actual Hankel coefficient matrix
+
+\[
+\mathsf H_d=(b_{r+s})_{0\le r,s\le d}.
+\tag{12}
+\]
+
+For \(P(X)=\sum_{r=0}^d c_rX^r\) with real coefficients, the exact value
+is
+
+\[
+\boxed{
+ c^T\mathsf H_dc
+ =\sum_jm_j\beta_jP(\beta_j)^2.
+}
+\tag{13}
+\]
+
+Absolute convergence follows from (9) and boundedness of the polynomial
+on the compact set of reciprocal zeros and zero. Conjugate pairs make
+(13) real.
+
+Under RH, each term is nonnegative. Therefore
+
+\[
+\boxed{
+ c^T\mathsf H_dc<0\quad\Longrightarrow\quad\text{RH is false}.
+}
+\tag{14}
+\]
+
+The certificate may use \(c\in\mathbb Q^{d+1}\): a strict negative value
+persists under sufficiently small rational coefficient perturbations.
+With validated enclosures \(b_n\in[\underline b_n,\overline b_n]\),
+exact rational interval arithmetic on \(\sum c_rc_sb_{r+s}\) is enough
+to certify that its upper endpoint is negative.
+
+A second necessary family is \(\mathsf H_d^{(1)}=(b_{r+s+1})\). Under RH
+its quadratic form is \(\sum_jm_j\beta_j^2P(\beta_j)^2\ge0\). We tested
+both, though the unshifted family alone is complete by the next
+construction.
+
+\subsection{4. Work through the off-line counterfactual: construct its
+negative
+direction}\label{work-through-the-off-line-counterfactual-construct-its-negative-direction}
+
+Assume for this argument that RH is false. Equation (11) supplies a
+nonreal reciprocal zero \(\beta\) and its conjugate, each of
+multiplicity \(m\). They are nonreal because \(g\) has no real zeros, so
+both \(\gamma\) and \(\delta\) are nonzero.
+
+Put \(r=|\beta|/2\). There are finitely many distinct reciprocal zeros
+of modulus at least \(r\). Remove \(\beta,\overline\beta\) from that
+finite set and call the remaining set \(\mathcal A\). It is closed under
+conjugation. Define the real polynomial
+
+\[
+B(X)=\prod_{\gamma\in\mathcal A}(X-\gamma).
+\tag{15}
+\]
+
+Choose \(c\in\mathbb C\) satisfying \(\beta c^2=-1\); either of the two
+choices works. For an integer \(N\ge0\), put
+
+\[
+w_N=\frac{c}{\beta^NB(\beta)},\qquad
+v_N=\frac{\operatorname{Im}w_N}{\operatorname{Im}\beta},\qquad
+u_N=\operatorname{Re}w_N-\operatorname{Re}\beta\,v_N,
+\]
+
+\[
+\boxed{P_N(X)=X^NB(X)(\nu_N+v_NX).}
+\tag{16}
+\]
+
+The coefficients are real. At the two target points,
+
+\[
+P_N(\beta)=c,\qquad P_N(\overline\beta)=\overline c.
+\]
+
+At every other point of modulus at least \(r\), \(P_N\) vanishes. The
+two target contributions to (13) are exactly
+
+\[
+m\beta c^2+m\overline\beta\,\overline c^{\,2}=-2m.
+\tag{17}
+\]
+
+Here is an explicit bound on everything else. Let
+
+\[
+B_0=\prod_{\gamma\in\mathcal A}(r+|\gamma|),\qquad
+C=\frac{|c|B_0}{|B(\beta)|}
+\left(1+\frac{|\operatorname{Re}\beta|+r}{|\operatorname{Im}\beta|}\right),
+\]
+
+\[
+T=\sum_{|\beta_j|<r}m_j|\beta_j|<\infty.
+\]
+
+For \(|X|\le r\), the coefficient definitions imply
+
+\[
+|P_N(X)|\le C\left(\frac r{|\beta|}\right)^N=C2^{-N}.
+\]
+
+Consequently the complete, real quadratic form satisfies
+
+\[
+\boxed{
+\mathcal L(P_N^2)
+:=\sum_jm_j\beta_jP_N(\beta_j)^2
+\le -2m+C^2T4^{-N}.
+}
+\tag{18}
+\]
+
+For all sufficiently large \(N\) the right side is strictly negative.
+Every omitted reciprocal zero is included in the tail estimate, and
+every multiplicity is retained. This proves
+
+\[
+\boxed{\mathrm{RH}\ \Longleftrightarrow\ \mathsf H_d\succeq0
+\text{ for every }d\ge0.}
+\tag{19}
+\]
+
+It also explains the limitations of a finite search. The degree needed
+in (16) depends on the location of the off-line pair, the other larger
+reciprocal zeros, and the tail. The proof does not say that a
+counterexample must be visible in a small matrix. The polynomial (16) is
+a counterfactual construction; no actual off-line pair has been used to
+instantiate it.
+
+\subsection{5. Connect the witness to the original finite packet,
+including its
+jets}\label{connect-the-witness-to-the-original-finite-packet-including-its-jets}
+
+For a finite conjugation- and reflection-stable packet of actual zeros,
+retain the original inclusion
+
+\[
+\sigma_h:E_h=\mathbb C[s]/(h)\hookrightarrow Q,
+\qquad D_Q\sigma_h=\sigma_hA_h.
+\]
+
+The original arithmetic input constructs this through the kernel of
+multiplication by \(j_hg\). An arbitrary polynomial example is not
+automatically such a packet.
+
+Because \(g(1/2)>0\), the operator \(A_h-\tfrac12I\) is invertible on
+every actual packet. Define the specified rational functional calculus
+
+\[
+T_h=-(A_h-\tfrac12I)^{-2},\qquad
+\mathbb C[X]\longrightarrow\operatorname{End}_{\mathbb C}(E_h),
+\quad P\longmapsto P(T_h).
+\tag{20}
+\]
+
+On a full local block \(A_h=\rho I+N_\rho\), \(N_\rho^m=0\), the matrix
+is exactly
+
+\[
+\boxed{
+T_h=\sum_{j=0}^{m-1}(-1)^{j+1}(j+1)
+(\rho-1/2)^{-j-2}N_\rho^j.
+}
+\tag{21}
+\]
+
+The coefficient of \(N_\rho\) is \(2(\rho-1/2)^{-3}\ne0\), so this local
+coordinate change retains the nilpotent length. The two reflected
+primary modules can have the same \(T_h\) eigenvalue, but they remain
+separate in \(E_h\).
+
+The packet contribution to (13) is
+
+\[
+\boxed{\mathcal L_h(P^2)=\tfrac12
+\operatorname{Tr}_{E_h}\bigl(T_hP(T_h)^2\bigr).}
+\tag{22}
+\]
+
+The factor \(1/2\) counts each reflected pair once, matching (5). The
+trace records algebraic multiplicities, while the full operators and
+their nilpotent coefficients remain upstream of the trace map. Absolute
+convergence in (9) makes the full functional the limit over packets
+exhausting the actual zero set.
+
+The existing critical-line comparison satisfies
+
+\[
+\ker(\Gamma\sigma_h)=E_{h,\mathrm{off}}.
+\]
+
+Equation (22) is evaluated on the source packet before applying that
+map. An off-critical class maps to \((\ell,0)\) under the split lift of
+\(\Gamma\), but is not deleted from the source on which the trace and
+negative witness are evaluated. This is why the search does not obtain a
+false positive or a false proof by restricting to the critical-only
+target.
+
+\subsection{6. The performed search uses the original theta seed, not
+zero
+ordinates}\label{the-performed-search-uses-the-original-theta-seed-not-zero-ordinates}
+
+The numerical calculation uses (4), in the explicit form
+
+\[
+M_{2j}=4\sum_{n\ge1}\int_0^\infty
+ y^{2j}\left(4\pi^2n^4e^{9y/2}-6\pi n^2e^{5y/2}\right)
+ e^{-\pi n^2e^{2y}}\,dy.
+\tag{23}
+\]
+
+The factor four consists of the source theta factor two and the
+reflection factor two. The implementation computes
+\(M_0,\ldots,M_{64}\), forms (7), and tests both matrix families through
+dimension 16 by an unpivoted \(LDL^T\) calculation in their original
+monomial coordinates. No rescaling or preconditioning is used. No zero
+ordinate is supplied.
+
+Two runs were completed:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1765}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2353}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2353}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1765}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1765}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Working decimal precision
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Gauss--Legendre nodes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Retained theta terms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+y interval
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Outcome
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+120 & 384 & 12 & {[}0,4{]} & All 16 pivots positive numerically, in both
+families \\
+180 & 768 & 14 & {[}0,4{]} & Same outcome \\
+\end{longtable}
+
+Selected values are
+
+\[
+a_0=0.9942415563766282198255474793707954396\ldots,
+\]
+
+\[
+b_0=0.0231049931154189707889338104303390140\ldots,
+\qquad
+b_1=0.00003717259928526968616486626247174057845\ldots,
+\]
+
+\[
+b_2=0.0000001441739314009732796953815560948209\ldots,
+\]
+
+\[
+\det\mathsf H_1
+=b_0b_2-b_1^2
+=1.949335554819142214739878219172139506\times10^{-9}\ldots.
+\]
+
+The largest relative difference between the two runs' stored pivot
+values is below \(3\times10^{-79}\). Those stored values contain 80
+significant digits, so the comparison does not support a stronger
+precision claim. The scripts report the input choices and complete pivot
+sequences.
+
+These are exploratory multiple-precision quadratures, not
+interval-certified integrations. A failed attempt to install an
+interval-arithmetic backend did not produce an interval certificate;
+only the documented mpmath computations are reported. Positive numerical
+pivots do not prove the corresponding signs, and a negative numerical
+pivot would require certified analytic enclosures before it could count
+as a disproof. No negative numerical pivot was found.
+
+\subsection{7. Finite verification and the next decisive
+object}\label{finite-verification-and-the-next-decisive-object}
+
+Six standard-library exact rational checks passed in normal and
+optimized Python. They verify the logarithmic recurrence, positive-node
+identity, an explicit nonreal-pair negative control, and a rational
+interval evaluator that cannot call an interval containing zero strictly
+negative. The negative control is expressly an auxiliary polynomial, not
+an actual zeta packet.
+
+The interval evaluator's contract is limited: it checks the quadratic
+form from supplied valid intervals. Establishing that those intervals
+enclose the actual \(b_n\) remains an analytic task. No Lean certificate
+is claimed.
+
+The decisive counterexample object in this branch is now a finite tuple
+
+\[
+(d,c_0,\ldots,c_d,
+[\underline b_0,\overline b_0],\ldots,
+[\underline b_{2d},\overline b_{2d}])
+\]
+
+with rational \(c_r\), rigorously justified coefficient enclosures from
+the original theta input, and a strictly negative upper bound for
+\(\sum_{r,s}c_rc_sb_{r+s}\). Equation (14) proves exactly what that
+tuple would establish. Equation (18) proves that every actual off-line
+counterexample has a finite witness of this type at some degree.
+
+The calculation performed here did not find that tuple. The failure of
+the previous auxiliary-purity inference is not used as evidence that one
+exists. Geometry over the original absolute base remains a separate
+possible source of further constraints; this note establishes no
+impossibility theorem about it.
+
+\subsection{Source and execution
+record}\label{source-and-execution-record}
+
+\begin{itemize}
+\tightlist
+\item
+  Original arithmetic source: supplied \texttt{arithmetic\_input.tex},
+  equations (A1)--(A10), including the actual multiplication-by-\(j_hg\)
+  kernel sequence.
+\item
+  Original support reconstruction and internal homology: supplied
+  SplitZero reconstruction record, Sections 1--4. The source-labelled
+  zero and the external absent value are kept distinct throughout.
+\item
+  Original critical comparison: supplied
+  \texttt{HOCHSCHILD\_COMPARISON.md}, equations (H16)--(H25). The
+  visible text supplies the exact off-critical kernel and critical-jet
+  retractions.
+\item
+  Prior scope: supplied \texttt{Tau\_Deligne\_Bound\_Audit/NOTE.tex},
+  ``Result and scope''. It explicitly does not refute the split-zero
+  construction or establish falsity of the arithmetic estimate for
+  \(2\xi\).
+\item
+  Classical context: R. Zhang, \emph{On Power Sums of Positive Numbers},
+  arXiv:1510.03420 (2015). Its abstract documents moment-theoretic
+  positivity criteria for genus-zero entire functions and applications
+  to RH. The concrete criterion and separation proof above are proved
+  here, not attributed as a verbatim theorem from an uninspected full
+  text.
+\item
+  Classical background: Hadamard factorization for entire functions of
+  order less than one; the functional equation and completed-zeta
+  notation are also recorded in NIST DLMF Section 25.4. The source
+  Gaussian estimate above supplies the order bound needed for this
+  application.
+\item
+  Computation: mpmath 1.3.0. Results are in \texttt{probe\_120dps.json}
+  and \texttt{probe\_180dps.json}; reproduction script is
+  \texttt{search\_theta\_moments.py}. Exact finite checks and the
+  interval-input verifier are in \texttt{exact\_witness\_checks.py}.
+\end{itemize}
+
+No GitHub file, branch, comment, or remote publication was changed in
+this continuation.
+
+\end{document}

@@ -1,0 +1,1098 @@
+\begingroup
+\def\C{\mathbb{C}}
+\def\R{\mathbb{R}}
+\def\tr{\operatorname{Tr}}
+\def\Span{\operatorname{span}}
+\def\im{\operatorname{im}}
+\def\Alt{\operatorname{Alt}}
+\section{The original source and relation Toda flows with their exact control maps}
+
+
+
+This is a standalone continuation of the identities CV.1--CV.12. It
+retains the original polynomial quotient, arithmetic measure, monic
+coordinates, arithmetic unit, source relations and complex phase. The
+delivered \texttt{Tau\_Toda\_Volume\_Control/NOTE.tex} was read in full
+from its original archive; its SHA256 is
+\begin{center}\footnotesize
+\nolinkurl{027cd27a5fc104c5ebdf0102ee43aafd7b6218da4929ceb1b8913e3448cd2375}.
+\end{center}
+The calculations below prove the exact maps underlying the determinant
+quotient, its first and second tilt derivatives, the omitted-direction
+determinant, the positive minor sum and the finite upper bound. No
+asymptotic arithmetic estimate is asserted.
+
+\subsection{Original arithmetic objects and the strip of real tilts}
+
+The original spaces and transforms are
+\[
+ \begin{split}
+ V&=\{\phi\in\mathcal S(\R):\phi\text{ is even},\quad
+                     \phi(0)=\int_{\R}\phi(x)\,dx=0\},\\
+ \mathscr B&=\{F\in C^\infty(\R_{>0}):
+       \sup_{x>0}x^b|D^jF(x)|<\infty
+           \text{ for every }b\in\mathbb Z,\ j\ge0\},\\
+ D&=-x\partial_x,\qquad
+ \Theta\phi(x)=\sum_{n\ne0}\phi(nx)=2\sum_{n\ge1}\phi(nx),\\
+ \mathcal MF(s)&=\int_0^\infty F(x)x^{s-1}\,dx.
+ \end{split}
+\]
+The series and its Euler derivatives converge uniformly at large
+$x$ with every power of decay. For small $x$, Poisson summation
+with Fourier kernel $e^{-2\pi ixy}$ gives
+$\Theta\phi(x)=x^{-1}\Theta\widehat\phi(1/x)$; both zero terms
+vanish because $\phi(0)=\widehat\phi(0)=0$.
+The Fourier transform preserves the stated two zero constraints
+and evenness. This formula proves every small-$x$ seminorm after
+Euler differentiation, hence $\Theta:V\to\mathscr B$.
+It also commutes with $D$ on these spaces by termwise differentiation.
+Mellin transforms of elements of $\mathscr B$ are entire, and
+integration by parts gives $\mathcal M(DF)(s)=s\mathcal MF(s)$;
+both endpoint terms vanish with their original coefficients.
+
+Let $h$ be a monic, nonempty packet of actual nontrivial zeros of
+\[
+ g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\]
+with their complete orders. Assume the packet is stable under
+$\rho\mapsto1-\bar\rho$. Set $d=\deg h$ and retain
+\[
+ v_h=g/h,\quad E_h=\C[s]/(h),\quad
+ \upsilon_h=[v_h]_h\in E_h^\times,\quad
+ w_h(t)=\frac{|v_h(1/2+it)|^2}{2\pi}.
+ \tag{TVB.1}
+\]
+Here the jet of an entire function $f$ means its unique polynomial
+Hermite remainder of degree less than $d$: in the local factor
+$\C[t]/(t^{m_\rho})$, it is
+$\sum_{j<m_\rho}f^{(j)}(\rho)t^j/j!$, with $t=s-\rho$.
+The coprime factors of $h$ give the isomorphism to their product
+by monic division and Bezout's identity, which supplies the
+unique global remainder. The constant $v_h(\rho)$ is nonzero
+at each selected zero because its full order was divided out.
+If the local jet is $\sum a_jt^j$, its inverse coefficients are
+$b_0=a_0^{-1}$ and
+$b_n=-a_0^{-1}\sum_{j=1}^n a_jb_{n-j}$ for $n<m_\rho$.
+Multiplication verifies this inverse in every local factor,
+and the product isomorphism gives the inverse of $\upsilon_h$.
+
+The original $F_h$ has a construction within $\mathscr B$.
+For $F\in\mathscr B$ with $\mathcal MF(\rho)=0$, define
+\[
+ S_\rho F(x)=x^{-\rho}\int_x^\infty F(y)y^{\rho-1}\,dy
+           =-x^{-\rho}\int_0^x F(y)y^{\rho-1}\,dy.
+\]
+The equality is the vanishing Mellin value. For any desired
+power bound at infinity choose $A>\Re\rho$ with
+$|F(y)|\le C_Ay^{-A}$ for $y\ge1$; the first integral is bounded
+by $C_Ax^{-A}/(A-\Re\rho)$ there. At zero choose $B$ with
+$B+\Re\rho>0$ and $|F(y)|\le C_By^B$ for $0<y\le1$;
+the second integral is bounded by $C_Bx^B/(B+\Re\rho)$.
+The exact identity $(D-\rho)S_\rho F=F$ now gives all Euler
+derivative bounds inductively, so $S_\rho F\in\mathscr B$.
+Mellin integration by parts proves
+$\mathcal M(S_\rho F)=\mathcal MF/(s-\rho)$, with its removable
+value at $s=\rho$ supplied by the derivative of the numerator.
+For the original seed
+$\phi_0=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}\in V$,
+direct substitution $y=\pi x^2$ gives
+\[
+ \mathcal M\phi_0(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),
+ \qquad \Re s>-2.
+\]
+For $\Re s>1$, absolute convergence permits the two-sided theta
+sum to be integrated termwise, yielding
+$\mathcal M(\Theta\phi_0)=2\zeta(s)\mathcal M\phi_0(s)=g(s)$;
+both sides continue to the same entire function. Apply $S_\rho$
+successively to $\Theta\phi_0$ over the full list of roots of $h$,
+including each repeated occurrence. At every stage the next
+vanishing Mellin value holds by its remaining order. This constructs
+$F_h\in\mathscr B$ with $\mathcal MF_h=g/h$ and
+$h(D)F_h=\Theta\phi_0$; the latter also follows by Mellin
+injectivity, which is Fourier injectivity after $x=e^y$.
+Fix $k\ge1$, set $c=k/2$, $S=s_1+\cdots+s_k$, and put
+$I=(h(s_1),\ldots,h(s_k))\subset\C[s_1,\ldots,s_k]$.
+Let $\chi$ be the original monic generator of
+$\{P\in\C[S]:P(S)\in I\}$. Its degree is $q\ge1$ and
+\[
+ C=\C[S]/(\chi),\qquad A=M_S:C\longrightarrow C.
+ \tag{TVB.2}
+\]
+The coordinate basis of $C$ is always $1,S,\ldots,S^{q-1}$.
+The polynomial exists because multiplication by $S$ on the finite
+algebra $\C[s_1,\ldots,s_k]/I$ has an annihilating polynomial.
+Division by its least-degree monic annihilator proves that its entire
+annihilating ideal is $(\chi)$. In particular the injection
+\[
+ \eta:C\longrightarrow(E_h^{\otimes k})^{\mathfrak S_k},\qquad
+ [P]\longmapsto\upsilon_h^{\otimes k}[P(S)]_I
+ \tag{TVB.3}
+\]
+has exactly zero kernel: multiplication by the displayed unit is
+invertible and the preceding annihilator ideal describes the other
+factor's kernel. The original tensor source map is
+\[
+ \mathcal V P=P(D_1+\cdots+D_k)F_h^{\otimes k},\qquad
+ D=-x\partial_x,\qquad \mathcal MF_h=v_h.
+\]
+On the original Mellin line its scalar observation has squared norm
+\[
+ \|\mathcal VP\|^2=\int_{\R} |P(c+iu)|^2m_k(u)\,du,
+ \qquad m_k=w_h^{*k},\quad
+ \int m_k=\mu_h^k,\quad\mu_h=\int w_h.
+ \tag{TVB.4}
+\]
+Indeed the tensor Mellin--Plancherel density is
+$\prod_iw_h(t_i)\,d^kt$. In coordinates
+$u=\sum_i t_i$, $y=(t_1,\ldots,t_{k-1})$, the inverse is
+$(y,u)\mapsto(y_1,\ldots,y_{k-1},u-\sum y_i)$.
+With $(y,u)$ in this order its determinant is $1$; with $(u,y)$
+its determinant is $(-1)^{k-1}$. Integrating the original density
+over $y$ gives (TVB.4), with no scalar divisor.
+
+For every compact substrip $|\Re\theta|\le r<\pi/2$, all integrals
+\[
+ M_h(\theta)=\int e^{\theta t}w_h(t)\,dt,\qquad
+ Z(\theta)=M_h(\theta)^k=\int e^{\theta u}m_k(u)\,du
+ \tag{TVB.5}
+\]
+and all their polynomially weighted derivatives converge locally
+uniformly. Here is an elementary sufficient bound. Summation by parts
+for the alternating Dirichlet series, whose partial sums have modulus
+at most one, gives $|\eta(s)|\le |s|/\Re s$ when $\Re s>0$.
+On $\Re s=1/2$, the denominator in
+$\zeta(s)=\eta(s)/(1-2^{1-s})$ has modulus at least $\sqrt2-1$.
+For $0<\varphi<\pi/2$, rotate the defining gamma integral to the
+ray with argument $\operatorname{sgn}(t)\varphi$. The large arc
+vanishes by $e^{-R\cos\varphi}$ and the small arc by the positive
+real part $1/4$ of its exponent. Its absolute value is bounded by
+\[
+ |\Gamma(1/4+it/2)|
+ \le\Gamma(1/4)(\cos\varphi)^{-1/4}e^{-\varphi|t|/2}.
+\]
+For sufficiently large $|t|$, the monic polynomial $h$ satisfies
+$|h(1/2+it)|\ge C_h(1+|t|)^d$ with $C_h>0$.
+The two factors $s,s-1$, the preceding zeta bound and the gamma
+bound consequently give
+\[
+ w_h(t)\le C_{h,\varphi}(1+|t|)^{6-2d}e^{-\varphi|t|}
+\]
+outside a compact interval. On that interval $v_h$ is entire, since
+the selected orders are complete. Choose $r<\varphi<\pi/2$ and
+absorb every fixed polynomial in the remaining exponential decay.
+This proves the asserted domination and differentiation under the
+integral. Fubini gives the exact product $M_h^k$ in (TVB.5).
+The nonzero entire function $v_h$ has a discrete real-line zero set;
+therefore $w_h>0$ almost everywhere. Its convolutions are positive
+almost everywhere (in fact at every $u$ for $k\ge2$), since their
+fibre integrands are positive off a finite union of measure-zero
+inverse images of this discrete set. Thus the norm of every nonzero
+polynomial is positive.
+
+In what follows $\theta$ is real, $|\theta|<\pi/2$, and the source
+pairing, conjugate-linear in its first argument, is exactly
+\[
+ \langle P,Q\rangle_\theta
+ =\int_{\R}\overline{P(c+iu)}Q(c+iu)e^{\theta u}m_k(u)\,du.
+ \tag{TVB.6}
+\]
+The map $f(u)\mapsto e^{\theta u/2}f(u)$ is an onto isometry from
+$L^2(e^{\theta u}m_k\,du)$ to $L^2(m_k\,du)$, with inverse
+$f\mapsto e^{-\theta u/2}f$. It commutes with multiplication by
+$c+iu$. This specifies the exact Hilbert comparison for the tilt.
+The polynomial algebra, its reduction and $\eta$ are unchanged.
+When the target of $\mathcal V$ is observed at this tilt, its declared
+tensor norm is
+\[
+ \|F\|_{k,\theta}^2=\int_{\R^k}
+ e^{\theta\sum_i t_i}|\mathcal M_{\rm unit}F(t_1,\ldots,t_k)|^2\,d^kt,
+\]
+where $\mathcal M_{\rm unit}$ is the original Mellin--Plancherel map
+with a factor $(2\pi)^{-1/2}$ in each coordinate. The map
+$f(t)\mapsto e^{\theta\sum_i t_i/2}f(t)$ is an onto isometry from
+this weighted Mellin Hilbert space to the original one, with the
+opposite exponential as inverse. The restriction to $\mathcal V P$
+is exactly (TVB.6), by the same sum-fibre integral as (TVB.4).
+Thus every tilted exterior norm below has a specified target norm;
+at $\theta=0$ it is the original tensor-source norm.
+
+\subsection{The source relation and its Laplace observation}
+
+Write $\mathcal P_j=\C[S]_{\le j}$, with $\mathcal P_{-1}=0$.
+For $N\ge q-1$, put $n=N+1$, $m=N-q+1$. Literal monic division
+gives the exact sequence
+\[
+ 0\longrightarrow\mathcal P_{m-1}
+ \xrightarrow{M_\chi}\mathcal P_N
+ \xrightarrow{T_N}C\longrightarrow0,
+ \qquad M_\chi Q=\chi Q,\quad T_NP=[P]_\chi.
+ \tag{TVB.7}
+\]
+Its kernel is precisely the indicated image, and its first $q$
+monomial columns prove surjectivity. Denote that kernel by
+$\mathcal D_N=\chi\mathcal P_{m-1}$.
+
+This sequence has an explicit map to the original theta boundaries.
+To see every sign, choose the quotients $Q_i$ from successive monic
+division, in the order $s_1,\ldots,s_k$, so that
+\[
+ \chi(S)=\sum_{i=1}^k h(s_i)Q_i(s_1,\ldots,s_k).
+ \tag{TVB.8}
+\]
+The remainder is zero by the definition of $\chi$ and uniqueness of
+the tensor remainder basis. Put
+$\phi_0(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}$.
+It is even, vanishes at zero and has integral zero. Direct gamma
+integration of its two terms gives
+$\mathcal M(\Theta\phi_0)=g$, hence
+$h(D)F_h=\Theta\phi_0$ by Mellin injectivity on the original
+rapidly decreasing source. For every polynomial $P$, an actual
+primitive of $\mathcal V(\chi P)$ in the tensor complex
+$(V\xrightarrow{\Theta}\mathscr B)^{\otimes k}$ is
+\[
+ \sum_{i=1}^k(-1)^{i-1}Q_i(D_1,\ldots,D_k)P(D_1+\cdots+D_k)
+ \bigl(F_h^{\otimes(i-1)}\otimes\phi_0
+             \otimes F_h^{\otimes(k-i)}\bigr).
+ \tag{TVB.9}
+\]
+The preceding $i-1$ factors have cochain degree one. The tensor
+differential therefore contributes $(-1)^{i-1}$ at the $i$th
+factor, cancelling the written sign and yielding (TVB.8).
+Euler differentiation preserves the source conditions and commutes
+with $\Theta$, so all terms have the indicated domains. Conversely
+the full jet of $\mathcal VP$ is $\eta T_NP$; injectivity in
+(TVB.3) shows that the admitted polynomial source has no further
+zero-jet elements. In particular every boundary vector in (TVB.7)
+retains its positive source norm before the quotient sends it to
+represented zero.
+
+For any polynomial $P$, define its Laplace observation by
+\[
+ \mathscr L(P)(\theta)=\int P(c+iu)e^{\theta u}m_k(u)\,du.
+\]
+Differentiation under (TVB.5) proves the typed intertwining
+$\mathscr L(SP)=(c+i\partial_\theta)\mathscr L(P)$.
+Coefficientwise conjugation gives the exact Gram observation
+\[
+ Z_\chi
+ =\overline\chi(c-i\partial_\theta)\chi(c+i\partial_\theta)Z
+ =\int|\chi(c+iu)|^2e^{\theta u}m_k(u)\,du>0.
+ \tag{TVB.10}
+\]
+Thus the two signs and both polynomial factors arise from
+$\langle M_\chi1,M_\chi1\rangle_\theta$.
+This is a map on source functions, with no replacement of the
+higher contracted ideal by a power of $\chi$.
+
+\subsection{Both monic determinants and their exact determinant-line map}
+
+Set
+\[
+ \mathfrak D_j=\det[Z^{(a+b)}]_{a,b=0}^{j-1},\quad
+ \mathfrak B_j=\det[Z_\chi^{(a+b)}]_{a,b=0}^{j-1},\quad
+ \mathfrak D_0=\mathfrak B_0=1.
+ \tag{TVB.11}
+\]
+All nonempty determinants are positive by polynomial positivity.
+The coefficient map from $1,S,\ldots,S^{j-1}$ to
+$1,u,\ldots,u^{j-1}$ is explicitly
+\[
+ S^a=(c+iu)^a=\sum_{b=0}^a\binom ab c^{a-b}i^b u^b.
+ \tag{TVB.12}
+\]
+Its determinant is $i^{j(j-1)/2}$ and its Gram determinant
+multiplier is exactly one. Therefore $\mathfrak D_j$ is also
+the original $S$-monomial Gram determinant. The same calculation
+applies to the relation-weight pairing
+$\langle P,Q\rangle_{\chi,\theta}=\langle\chi P,\chi Q\rangle_\theta$
+and $\mathfrak B_j$. This proves the coordinate correspondence
+without changing the original monic polynomial.
+
+Let $p_j(S;\theta)$ be the monic source orthogonal polynomials,
+and $r_j(S;\theta)$ the monic polynomials for this relation-weight
+pairing. Retain their original squared norms
+\[
+ \omega_j=\|p_j\|_\theta^2=\mathfrak D_{j+1}/\mathfrak D_j,
+ \qquad\nu_j=\|\chi r_j\|_\theta^2
+               =\mathfrak B_{j+1}/\mathfrak B_j.
+ \tag{TVB.13}
+\]
+The equations follow by triangular monic Gram elimination, whose
+diagonal change is one. In particular $\omega_0=M_h(\theta)^k$.
+The full mass has not been divided out.
+
+Give $C$ its written coordinate Euclidean pairing only when
+specifying adjoints. Let $M_N$ be the original monomial source
+Gram, and $J_N$ its reduction matrix. The minimum lift is
+\[
+ K_N=J_NM_N^{-1}J_N^*,\quad G_N=K_N^{-1},\quad
+ R_N=M_N^{-1}J_N^*G_N:C\longrightarrow\mathcal P_N.
+ \tag{TVB.14}
+\]
+Here the last expression specifies polynomial coefficients.
+It satisfies $T_NR_N=I$, $\im R_N\perp\mathcal D_N$ and
+$R_N^*R_N=G_N$ in the original source pairing. Indeed the first
+equality is matrix multiplication, and pairing with any vector
+in $\ker J_N$ gives zero. Every other lift is $R_Nx+B$ for
+$B\in\mathcal D_N$, so its squared norm is
+$x^*G_Nx+\|B\|^2$. This proves the minimum assertion and
+uniqueness.
+
+Use the source basis
+$1,S,\ldots,S^{q-1},\chi,\chi S,\ldots,\chi S^{m-1}$.
+Its change from the $n$ source monomials is triangular with
+diagonal one. Replacing its first $q$ columns by $R_N[1],
+\ldots,R_N[S^{q-1}]$ adds boundary columns and again has
+determinant one. The resulting Gram is the direct sum of $G_N$
+and the relation monomial Gram. Consequently
+\[
+ V_N:=\det G_N=\frac{\mathfrak D_{N+1}}{\mathfrak B_m},
+ \qquad D_N^{\rm CV}:=\det K_N=V_N^{-1}.
+ \tag{TVB.15}
+\]
+More precisely the map
+$\det C\otimes\det\mathcal P_{m-1}\to\det\mathcal P_N$
+sends the written coordinate wedges to the wedge of these quotient
+lifts followed by $M_\chi$ of the relation monomials; its coordinate
+determinant is $1$. Putting the kernel wedge first instead contributes
+the explicit sign $(-1)^{qm}$. Its norm identity is
+$\det G_N\,\mathfrak B_m=\mathfrak D_n$.
+Composing the wedge with $\mathcal V^{\otimes n}\Alt_n$
+multiplies its squared norm by exactly $n!$: expanding the unscaled
+alternating tensor sum gives $n!$ copies of the Gram determinant.
+The original tensor target is $\mathscr B^{\widehat\otimes kn}$
+in cochain degree $kn$.
+
+\subsection{Toda derivatives and the full curvature operators}
+
+For either positive real $u$-weight in (TVB.11), write $Q_j(u)$
+for its real monic orthogonal polynomials and $h_j$ for their
+norms. Orthogonality and leading coefficients prove
+\[
+ uQ_j=Q_{j+1}+b_jQ_j+a_jQ_{j-1},\qquad
+ a_j=h_j/h_{j-1}\ (j\ge1),\quad a_0=0.
+\]
+For $i\le j-2$, differentiating $\langle Q_i,Q_j\rangle=0$
+shows that $\partial_\theta Q_j$ is orthogonal to $Q_i$, because
+$uQ_i$ and $\partial_\theta Q_i$ have degree at most $j-1$.
+For $i=j-1$ the same identity gives its coefficient $-a_j$.
+Thus $\partial_\theta Q_j=-a_jQ_{j-1}$ and $h_j'=b_jh_j$.
+To compute $b_j'$, differentiate $h_jb_j=\langle Q_j,uQ_j\rangle$.
+The two polynomial derivative terms contribute $-2a_jh_j$.
+The derivative of the measure contributes
+$\|uQ_j\|^2=h_j(a_{j+1}+b_j^2+a_j)$.
+After subtracting $h_j'b_j$ this gives $b_j'=a_{j+1}-a_j$.
+The monic Gram determinant is $\prod_{j<n}h_j$, hence
+\[
+ (\log\mathfrak D_n)''
+ =\frac{\omega_n}{\omega_{n-1}}\quad(n\ge1),\qquad
+ (\log\mathfrak B_m)''=\frac{\nu_m}{\nu_{m-1}}\quad(m\ge1).
+ \tag{TVB.16}
+\]
+Both $0$th logarithms have second derivative zero.
+Multiplication by the square of the determinant proves each
+Hankel--Toda equation with coefficient one.
+Set
+\[
+ \alpha_{N+1}=\omega_{N+1}/\omega_N,\quad
+ \beta_m=\nu_m/\nu_{m-1}\ (m\ge1),\quad\beta_0=0,
+ \qquad\ell_N=\log V_N.
+\]
+Then $\ell_N''=\alpha_{N+1}-\beta_m$.
+
+There is a finer exact source-map identity. Let $X=(S-c)/i$,
+which is multiplication by the real variable $u$ in (TVB.6).
+Let $P_N$ project to $\mathcal P_N$ and $P_{\mathcal D_N}$ to
+$\mathcal D_N$ in that pairing. Differentiating $T_NR_N=I$
+gives $R_N'x\in\mathcal D_N$. Differentiating orthogonality
+against each fixed boundary polynomial gives
+\[
+ R_N'=-P_{\mathcal D_N}XR_N=:-I_N,
+ \qquad O_N:=(1-P_N)XR_N.
+ \tag{TVB.17}
+\]
+Every derivative is an actual boundary with the primitive
+(TVB.9). Differentiating its norm, including the derivative of
+the measure, gives
+\[
+ G_N'=R_N^*XR_N,\quad
+ G_N''=R_N^*X^2R_N-2R_N^*XP_{\mathcal D_N}XR_N.
+\]
+The projection to $\im R_N$ is $R_NG_N^{-1}R_N^*$ and,
+together with $P_{\mathcal D_N}$, sums to $P_N$.
+Subtracting the square of the first derivative therefore proves
+\[
+ G_N''-G_N'G_N^{-1}G_N'=O_N^*O_N-I_N^*I_N.
+ \tag{TVB.18}
+\]
+This is an equality of maps $C\to C^{\mathrm{anti}*}$, where
+$C^{\mathrm{anti}*}$ consists of conjugate-linear functionals on $C$.
+For example $O_N^*O_N$ sends $x$ to the functional
+$y\mapsto\langle O_Ny,O_Nx\rangle_\theta$; this assignment is
+complex-linear in $x$. The fixed coordinate Euclidean pairing
+identifies that antidual with the written matrix coordinates.
+
+Write $b_j=[p_j]_\chi$, and
+$a=b_N^*G_Nb_N$, $d_+=b_{N+1}^*G_Nb_{N+1}$.
+The canonical next boundary has the particularly exact factorization
+\[
+ \mathfrak b_N:=p_{N+1}-R_Nb_{N+1}=\chi r_m,
+ \qquad \nu_m=\omega_{N+1}+d_+.
+ \tag{TVB.19}
+\]
+To prove it, $\chi r_m$ is monic of degree $N+1$ and orthogonal
+to $\mathcal D_N$. Subtract $p_{N+1}$; the difference lies in
+$\mathcal P_N\cap\mathcal D_N^\perp$ and has reduction
+$-b_{N+1}$. Uniqueness of $R_N$ proves the first equality;
+the two terms in its definition are orthogonal, giving the second.
+The coefficient of $p_N$ in $R_Nx$ is $b_N^*G_Nx/\omega_N$.
+The leading coefficient of $X$ as an $S$-polynomial is $1/i=-i$.
+Consequently the full maps are
+\[
+ O_Nx=-i\,p_{N+1}\frac{b_N^*G_Nx}{\omega_N},\qquad
+ I_Nx=-i\,\chi r_{m-1}\frac{b_{N+1}^*G_Nx}{\nu_{m-1}}
+ \quad(m\ge1),\qquad I_N=0\ (m=0).
+ \tag{TVB.20}
+\]
+For the second equation, $X\chi r_j$ is an old boundary if
+$j\le m-2$. For $j=m-1$ its coefficient of $\chi r_m$ is
+$-i$. Moving $X$ across the pairing conjugates this coefficient
+to $i$, and $\langle\chi r_m,R_Nx\rangle
+=-b_{N+1}^*G_Nx$ by (TVB.19). Division by the original norm
+$\nu_{m-1}$ gives exactly the second sign in (TVB.20).
+
+Both maps have rank at most one. For $N\ge q$, put
+$\delta_N=V_N/V_{N-1}$. The rank-one calculation in the next
+section gives $a/\omega_N=1-\delta_N$ and
+$\delta_N=\omega_N/\nu_{m-1}$. Taking traces in (TVB.20) gives
+the separate, positive source costs
+\[
+ \begin{split}
+ \tr(G_N^{-1}O_N^*O_N)&=\alpha_{N+1}(1-\delta_N),\\
+ \tr(G_N^{-1}I_N^*I_N)&=\beta_m-\alpha_{N+1}\delta_N
+                   =\frac{\nu_m-\omega_{N+1}}{\nu_{m-1}}.
+ \end{split}
+ \tag{TVB.21}
+\]
+Their difference is $\alpha_{N+1}-\beta_m$ as required.
+Thus the individual positive map costs each retain the common
+quantity $\alpha_{N+1}\delta_N$; assigning them separately
+the two Toda coefficients would lose this quantity.
+At $N=q-1$, the outer cost is $\alpha_q$ and the inner cost is
+zero. If a single notation for the cost identities is wanted at
+this endpoint, define only the scalar convention
+$\delta_{q-1}^{\rm end}:=\det K_{q-2}/\det K_{q-1}=0$;
+the included column has leverage $a/\omega_{q-1}=1$.
+Together with $\beta_0=0$ the cost identities are
+$\alpha_q(1-\delta_{q-1}^{\rm end})=\alpha_q$ and
+$\beta_0-\alpha_q\delta_{q-1}^{\rm end}=0$.
+This convention is not a quotient involving $V_{q-2}$ and does
+not introduce an inverse for $K_{q-2}$ or a norm $\nu_{-1}$.
+All statements concern the original polynomial source and its
+original boundary subspace.
+
+\subsection{The rank-one update, trace phase and original rank-two radius}
+
+The source-orthogonal basis gives
+\[
+ K_N=\sum_{j=0}^N\frac{b_jb_j^*}{\omega_j},\qquad
+ K_{N+1}=K_N+\frac{b_{N+1}b_{N+1}^*}{\omega_{N+1}}.
+ \tag{TVB.22}
+\]
+The first $q$ monic remainder columns are a triangular basis;
+$K_N$ is positive definite precisely in the admitted range.
+Block elimination of
+$\left(\begin{smallmatrix}K&U\\-V^*&I\end{smallmatrix}\right)$
+in either order proves
+$\det(K+UV^*)=\det K\det(I+V^*K^{-1}U)$.
+Applying it to the positive update and the subtraction of $b_N$
+from $K_N$ yields, for $N\ge q$,
+\[
+ \frac a{\omega_N}=1-\delta_N,\quad
+ \frac{d_+}{\omega_{N+1}}=\delta_{N+1}^{-1}-1,\qquad
+ \delta_N=\frac{\omega_N}{\nu_{m-1}},\quad
+ \delta_{N+1}=\frac{\omega_{N+1}}{\nu_m}.
+ \tag{TVB.23}
+\]
+The last two identities also follow directly from (TVB.15).
+Each $\delta$ is positive and at most one, since increasing the
+source space weakly decreases every minimum squared norm.
+The exact inverse update is
+\[
+ G_{N+1}=G_N-
+ \frac{G_Nb_{N+1}b_{N+1}^*G_N}{\omega_{N+1}+d_+}.
+ \tag{TVB.24}
+\]
+Multiplying this expression by $K_{N+1}$ proves it directly;
+the denominator is $\nu_m>0$ by (TVB.19).
+
+Reflection of the tensor algebra sends $S$ to $k-\bar S$ and
+preserves its annihilator ideal. Monicity gives
+$\overline\chi(k-S)=(-1)^q\chi(S)$. Hence
+$\widehat\chi(u)=i^{-q}\chi(c+iu)$ is real monic. The exact
+algebra isomorphism
+\[
+ \Phi:C\longrightarrow\C[u]/(\widehat\chi),\quad
+ [P(S)]\longmapsto[P(c+iu)],\qquad
+ \Phi^{-1}[Q(u)]=[Q((S-c)/i)]
+ \tag{TVB.25}
+\]
+transports the original ideal by its leading unit $i^q$.
+Its coefficient matrix $E$ is (TVB.12) in dimension $q$.
+Thus $A$ transports to $cI+iT$, where $T=M_u$ in the real
+quotient. Its Gram transports to $E^{-*}G_NE^{-1}$,
+its kernel to $EK_NE^*$, and $\det G_N$ is unchanged because
+$|\det E|=1$. Write
+\[
+ \sigma=\tr T=\frac{\tr A-cq}{i}\in\R,
+ \qquad\psi_N=\sigma-\ell_N'.
+\]
+Reality of $\widehat\chi$, the weight and its monic orthogonal
+polynomials makes all the $u$-coordinate source and quotient
+Grams real. Let $Q_j(u)=i^{-j}p_j(c+iu)$ and $d_j=[Q_j]$.
+Then $Eb_j=i^jd_j$ and both source norms are $\omega_j$.
+
+The leading coefficient of the $u$-polynomial minimum lift of
+$x$ is $d_N^*G_Nx/\omega_N$, where in this calculation $G_N$
+denotes the transported real-coordinate Gram. The difference
+$XR_N-R_NT$ has zero reduction, and subtracting
+$(Q_{N+1}-R_Nd_{N+1})d_N^*G_N/\omega_N$ cancels its highest
+coefficient. Its remainder is an old boundary. Pair with $R_N$;
+old boundaries vanish and
+$R_N^*(Q_{N+1}-R_Nd_{N+1})=-G_Nd_{N+1}$.
+Taking the trace after multiplication by $G_N^{-1}$ proves
+\[
+ \ell_N'=\sigma-
+           \frac{d_N^*G_Nd_{N+1}}{\omega_N},\qquad
+ \frac{b_N^*G_Nb_{N+1}}{\omega_N}=i\psi_N.
+ \tag{TVB.26}
+\]
+The second equation is back in the fixed original $S$ coordinates:
+the phase is $\overline{i^N}i^{N+1}=i$. Both signs are retained.
+
+For completeness, the $u$ recurrence proved above transports to
+$Sp_j=p_{j+1}+(c+ib_j^{\rm rec})p_j
+-\alpha_jp_{j-1}$ in the original source coordinates.
+Inserting this in (TVB.22) telescopes all interior terms and gives
+\[
+ AK_N+K_NA^*-kK_N
+ =\frac{b_{N+1}b_N^*+b_Nb_{N+1}^*}{\omega_N}.
+\]
+For $W_N=A^*G_N+G_NA-kG_N$, multiplication on both sides by
+$G_N$ gives the corresponding identity for $W_N$.
+Its Hermitian relative operator is
+$H_N=G_N^{-1/2}W_NG_N^{-1/2}$.
+It has rank at most two and trace
+$2\Re\tr A-kq=0$. The sum of the squares of its eigenvalues
+is $2(ad_+-|z_N|^2)/\omega_N^2$, where
+$z_N=b_N^*G_Nb_{N+1}=i\omega_N\psi_N$.
+This last assertion follows by expanding the square of
+$(xy^*+yx^*)/\omega_N$ for
+$x=G_N^{1/2}b_N$, $y=G_N^{1/2}b_{N+1}$; its trace is
+$[2ad_++2\Re(z_N^2)]/\omega_N^2$.
+Its nonzero eigenvalues are therefore $\epsilon_N,-\epsilon_N$,
+with
+\[
+ \epsilon_N^2=\frac{ad_+-|z_N|^2}{\omega_N^2}
+ =\alpha_{N+1}(1-\delta_N)(\delta_{N+1}^{-1}-1)-\psi_N^2.
+ \tag{TVB.27}
+\]
+The first expression is valid already at $N=q-1$.
+
+\subsection{Exact maps to the CV omitted determinant and positive minors}
+
+Retain $D_j^{\rm CV}=\det K_j$, put $K_{-1}=0$, and form
+\[
+ \widetilde K_N=K_{N-1}
+        +\frac{b_{N+1}b_{N+1}^*}{\omega_{N+1}},\quad
+ \widetilde D_N=\det\widetilde K_N,\quad
+ \Delta_N=D_{N+1}^{\rm CV}+D_{N-1}^{\rm CV}
+                         -D_N^{\rm CV}-\widetilde D_N.
+\]
+This is the actual quotient kernel of the source with $p_N$
+omitted and $p_{N+1}$ included. No inverse of it is used.
+The two-column determinant formula preceding (TVB.23), with one
+negative and one positive update, proves
+\[
+ \frac{\widetilde D_N}{D_N^{\rm CV}}
+ =\left(1-\frac a{\omega_N}\right)
+       \left(1+\frac{d_+}{\omega_{N+1}}\right)
+        +\frac{|z_N|^2}{\omega_N\omega_{N+1}},\qquad
+ \epsilon_N^2=\alpha_{N+1}\frac{\Delta_N}{D_N^{\rm CV}}.
+ \tag{TVB.28}
+\]
+In particular, for $N\ge q$, the complete phase map is the exact
+nonnegative difference
+\[
+ \frac{\widetilde D_N}{D_N^{\rm CV}}
+ -\frac{\delta_N}{\delta_{N+1}}
+ =\frac{\psi_N^2}{\alpha_{N+1}}.
+ \tag{TVB.29}
+\]
+The sign of $\psi_N$ is retained by the first derivative in
+(TVB.26); the omitted determinant observes its square.
+
+For any finite column set $L$, determinant multilinearity gives
+\[
+ \det\left(\sum_{j\in L}\frac{b_jb_j^*}{\omega_j}\right)
+ =\sum_{\substack{J\subseteq L\\|J|=q}}
+       \frac{|\det B_J|^2}{\prod_{j\in J}\omega_j},
+ \qquad B_J=[b_j]_{j\in J\text{ increasing}}.
+\]
+Terms with repeated indices vanish. The $q!$ remaining
+permutations of a fixed increasing index set yield its determinant
+times its conjugate, which proves the displayed identity including
+singular kernels. Apply it to the four column sets defining
+$\Delta_N$. A set containing neither of the two last indices has
+coefficient $1+1-1-1=0$; one containing exactly one has coefficient
+$1-1=0$; one containing both has coefficient one. Hence
+\[
+ \Delta_N=
+ \sum_{\substack{I\subseteq\{0,\ldots,N-1\}\\|I|=q-2}}
+ \frac{|\det B_{I\cup\{N,N+1\}}|^2}
+      {\omega_N\omega_{N+1}\prod_{i\in I}\omega_i}
+ \quad(q\ge2).
+ \tag{TVB.30}
+\]
+For $q=1$ it is zero. This proof applies at $N=q-1$.
+For $q\ge2$ define the actual source subspace
+$\mathcal E_N=(\bigwedge^{q-2}\mathcal P_{N-1})\wedge p_N\wedge p_{N+1}$
+and $\Lambda_N=(\bigwedge^qT_{N+1})|_{\mathcal E_N}$.
+For the fixed coordinate wedge $e_C=1\wedge S\wedge\cdots\wedge S^{q-1}$,
+whose coordinate Euclidean squared norm is one, the adjoint is
+\[
+ \zeta_N:=\Lambda_N^*e_C
+ =\sum_{|I|=q-2}
+ \frac{\overline{\det B_{I\cup\{N,N+1\}}}}
+      {\omega_N\omega_{N+1}\prod_{i\in I}\omega_i}
+ \left(\bigwedge_{i\in I}p_i\right)\wedge p_N\wedge p_{N+1}.
+ \tag{TVB.31}
+\]
+The displayed source wedges are orthogonal with the written full
+product norms. Therefore
+$\|\zeta_N\|_\theta^2=\Delta_N$ and
+$\Lambda_N\zeta_N=\Delta_Ne_C$.
+At $\theta=0$ its literal original tensor-source image has squared
+norm $q!\Delta_N$ under $\mathcal V^{\otimes q}\Alt_q$.
+At other real tilts use the onto Hilbert comparison after (TVB.6)
+on each scalar source factor; the same determinant norm and factorial
+hold in that specified tilted observation. For $q=1$ set
+$\mathcal E_N=0$, $\Lambda_N=0$, $\zeta_N=0$.
+
+\subsection{Both exact losses, their equality cases and the telescope}
+
+For $N\ge q$ define
+\[
+ v_N=-\log\delta_N,\quad
+ s_N=(v_N+v_{N+1})/2,\quad t_N=(v_{N+1}-v_N)/2,\quad
+ \mathcal R_N=e^{2s_N}=\frac{V_{N-1}}{V_{N+1}}\ge1.
+\]
+Expanding $(1-e^{-v_N})(e^{v_{N+1}}-1)$ gives
+$2e^{t_N}\cosh s_N-e^{2t_N}-1$.
+Completing this scalar square, with both terms retained, yields
+\[
+ \boxed{\epsilon_N^2
+ =\alpha_{N+1}\sinh^2s_N
+ -\alpha_{N+1}(e^{t_N}-\cosh s_N)^2-\psi_N^2.}
+ \tag{TVB.32}
+\]
+Thus the exact upper bound and its equality conditions are
+\[
+ \epsilon_N\le\sqrt{\alpha_{N+1}}
+                 \frac{\mathcal R_N-1}{2\sqrt{\mathcal R_N}},
+ \quad
+ \text{equality}\iff
+ \psi_N=0\ \text{and}\ \delta_N(2-\delta_{N+1})=1.
+ \tag{TVB.33}
+\]
+Indeed $\alpha_{N+1}>0$ and both lost squares in (TVB.32) are
+nonnegative. Multiplication of
+$e^{t_N}=\cosh s_N$ by $2\sqrt{\delta_N\delta_{N+1}}$
+gives precisely the displayed equation. This includes the case
+$\mathcal R_N=1$, when both contractions equal one and
+$\epsilon_N=\psi_N=0$ by (TVB.27).
+The corresponding equality with the full positive minor source is
+\[
+ \frac{(\mathcal R_N-1)^2}{4\mathcal R_N}
+ -\frac{\|\zeta_N\|_\theta^2}{D_N^{\rm CV}}
+ =(e^{t_N}-\cosh s_N)^2+\frac{\psi_N^2}{\alpha_{N+1}}.
+ \tag{TVB.34}
+\]
+It follows from (TVB.28), (TVB.31) and (TVB.32), so its
+minor equality has the same two necessary and sufficient conditions.
+In particular equality is a fully specified source-volume equation,
+not a consequence of positivity alone.
+
+There is a direct formulation in the actual volumes, without
+logarithmic variables. Put $U_N=\sqrt{\alpha_{N+1}}
+(\mathcal R_N-1)/(2\sqrt{\mathcal R_N})$. Since
+\[
+ e^{t_N}=\frac{V_N}{\sqrt{V_{N-1}V_{N+1}}},\qquad
+ \cosh s_N=\frac{V_{N-1}+V_{N+1}}
+                    {2\sqrt{V_{N-1}V_{N+1}}},
+\]
+equation (TVB.32) gives the exact two losses
+\[
+ U_N^2-\epsilon_N^2
+ =\alpha_{N+1}
+   \frac{(2V_N-V_{N-1}-V_{N+1})^2}{4V_{N-1}V_{N+1}}
+  +\frac{|z_N|^2}{\omega_N^2}.
+ \tag{TVB.34a}
+\]
+Thus the volume equality is the arithmetic midpoint
+$2V_N=V_{N-1}+V_{N+1}$ together with $z_N=0$.
+Equal consecutive logarithmic contractions alone do not give this
+midpoint: their extra equation $V_N^2=V_{N-1}V_{N+1}$ implies it
+only if all three positive volumes are equal, by the square
+$(\sqrt{V_{N-1}}-\sqrt{V_{N+1}})^2$.
+In the original inverse-volume coordinates
+$D_-=D_{N-1}^{\rm CV}$, $D_0=D_N^{\rm CV}$,
+$D_+=D_{N+1}^{\rm CV}$ and $E_N=\widetilde D_N$, the same
+identities become
+\[
+ \begin{gathered}
+ E_ND_0-D_-D_+
+     =\frac{D_0^2|z_N|^2}{\omega_N\omega_{N+1}},\\
+ \frac{D_0(D_+-D_-)^2}{4D_-D_+}-\Delta_N
+ =\frac{(2D_-D_+-D_0(D_-+D_+))^2}{4D_0D_-D_+}
+       +E_N-\frac{D_-D_+}{D_0}.
+ \end{gathered}
+ \tag{TVB.34b}
+\]
+Substitute $D_j=V_j^{-1}$ in (TVB.34a), or multiply out its two
+squares, to verify every denominator. Both terms on the right
+are nonnegative by the first equation. Equality is equivalently
+$D_0=2D_-D_+/(D_-+D_+)$ and
+$E_N=(D_-+D_+)/2$; it then gives $\Delta_N=E_N-D_0$.
+In particular phase zero at these degrees records a positive
+omitted-direction determinant $E_N=D_-D_+/D_0$, with its exact
+map specified in (TVB.28), rather than a zero determinant.
+
+The algebraic exterior lower bound applies at each real tilt as
+well as at zero. Here is a direct proof. In the Hermitian matrix
+$H_N$ above let $P$ be the orthogonal projection to the image,
+under $G_N^{1/2}$, of the sum of all full generalized eigenspaces
+of $A$ with $\Re\lambda>c$. Invariance of that subspace makes
+the transformed $A$ upper triangular in its orthogonal direct sum
+with the complement, without asserting that the spectral projection
+itself is orthogonal. Taking the trace of its first diagonal block
+gives
+\[
+ \tr(PH_N)=
+ L:=\sum_{\Re\lambda>c}\ell_\lambda(2\Re\lambda-k).
+\]
+Since $H_N$ has eigenvalues $\epsilon_N,-\epsilon_N$ and zeros,
+$\tr(PH_N)\le\epsilon_N$: its positive eigenline contributes
+at most $\epsilon_N$ and its negative eigenline contributes a
+nonpositive number. All algebraic multiplicities
+$\ell_\lambda$ are retained. Thus $L\le\epsilon_N$ for the
+same tilted minimum metric, without choosing another quotient
+metric.
+
+Combining this with (TVB.33), using monotonicity of $\sinh$ on
+$[0,\infty)$ and its inverse, proves
+\[
+ \log\frac{V_{N-1}}{V_{N+1}}
+ \ge2\operatorname{arsinh}\left(\frac{L}{\sqrt{\alpha_{N+1}}}\right).
+ \tag{TVB.35}
+\]
+For $N=N_0+2j$, $0\le j<r$, with $N_0\ge q$, every denominator
+in one logarithm is the numerator in the next. Summing the exact
+logs and then their lower bounds proves
+\[
+ \log\frac{V_{N_0-1}}{V_{N_0+2r-1}}
+ \ge2\sum_{j=0}^{r-1}
+       \operatorname{arsinh}\left(
+       \frac{L}{\sqrt{\alpha_{N_0+2j+1}}}\right),\qquad r\ge1.
+ \tag{TVB.36}
+\]
+Every term is at the same fixed real tilt, packet and tensor degree.
+No relation between different $k$ or a limiting value of either
+determinant is used. Under $\mathcal V$ the minimum representatives
+at all degrees retain jets $\eta$ and their original quotient
+classes; each difference of two such lifts is the explicit boundary
+in (TVB.7)--(TVB.9).
+
+\subsection{The first admitted degree and the empty quotient}
+
+At $N=q-1$, the first $q$ monic remainder columns are a basis,
+so $b_i^*G_{q-1}b_j=\delta_{ij}\omega_j$ for $i,j<q$.
+Expand the original polynomial, with its coefficients retained,
+\[
+ \chi=p_q+\sum_{j=0}^{q-1}\gamma_jp_j,\qquad
+ \gamma_j=\frac{\langle p_j,\chi\rangle_\theta}{\omega_j}.
+ \tag{TVB.37}
+\]
+Reduction gives $b_q=-\sum_{j<q}\gamma_jb_j$. Hence
+\[
+ a=\omega_{q-1},\quad z_{q-1}=-\gamma_{q-1}\omega_{q-1},\quad
+ d_+=\sum_{j<q}|\gamma_j|^2\omega_j=\nu_0-\omega_q,
+ \qquad\gamma_{q-1}=-i\psi_{q-1}.
+\]
+The last equality follows from (TVB.26), which does not require
+$K_{q-2}^{-1}$. Substitution gives the exact CV.12--Toda endpoint
+\[
+ \boxed{\epsilon_{q-1}^2
+ =\frac{\sum_{j=0}^{q-2}|\gamma_j|^2\omega_j}{\omega_{q-1}}
+ =\frac{\nu_0-\omega_q}{\omega_{q-1}}-\psi_{q-1}^2.}
+ \tag{TVB.38}
+\]
+There is no $V_{q-2}$ here. The omitted determinant instead records
+$\widetilde D_{q-1}/D_{q-1}^{\rm CV}=\psi_{q-1}^2/\alpha_q$.
+The polynomial projection
+$\mathsf P_{q-2}\chi=\sum_{j<q-1}\gamma_jp_j$ has the actual
+jet $\eta\sum_{j<q-1}\gamma_jb_j$, whereas $\chi$ itself has
+zero jet and primitive (TVB.9). Its squared source norm in (TVB.6)
+is the numerator in (TVB.38). This is the exact map from the
+whole relation to its lower orthogonal projection, including the
+possibly nonzero resulting observation.
+For $q=1$, the sum is empty, the lower source is $\mathcal P_{-1}=0$,
+and $\epsilon_N=0$ at every admitted degree because its one-dimensional
+relative control is trace zero.
+
+The endpoint projection and the minor vector have a stronger exact
+typed correspondence. Assume $q\ge2$, let
+$D=D_{q-1}^{\rm CV}=\prod_{j<q}\omega_j^{-1}$, and set
+$I_j=\{0,\ldots,q-2\}\setminus\{j\}$ for $0\le j\le q-2$.
+The determinant of the first $q$ monic remainder columns is $1$.
+Substituting $b_q=-\sum_{l<q}\gamma_lb_l$ in the minor with columns
+$I_j\cup\{q-1,q\}$ leaves only $l=j$. Moving $b_j$ from its
+last position to position $j$ takes $q-1-j$ transpositions; with
+the preceding minus sign this proves
+\[
+ \det B_{I_j\cup\{q-1,q\}}=(-1)^{q-j}\gamma_j.
+ \tag{TVB.38a}
+\]
+Write
+$e_j=(\bigwedge_{i\in I_j}p_i)\wedge p_{q-1}\wedge p_q$.
+The explicit conjugate-linear isomorphism
+\[
+ \mathcal H:\mathcal P_{q-2}\longrightarrow\mathcal E_{q-1},\qquad
+ \mathcal H\left(\sum_{j<q-1}a_jp_j\right)
+   =\sum_{j<q-1}(-1)^{q-j}\overline{a_j}
+                 \frac{\omega_jD}{\omega_q}e_j
+ \tag{TVB.38b}
+\]
+has inverse $\sum t_je_j\mapsto
+\sum(-1)^{q-j}\omega_q\overline{t_j}p_j/(\omega_jD)$.
+The source and target basis vectors are orthogonal and
+$\|e_j\|_\theta^2=\omega_q/(D\omega_j)$. Consequently
+\[
+ \|\mathcal HP\|_\theta^2=\frac D{\omega_q}\|P\|_\theta^2,
+ \qquad\zeta_{q-1}=\mathcal H(\mathsf P_{q-2}\chi),\qquad
+ \Delta_{q-1}=\frac D{\omega_q}\|\mathsf P_{q-2}\chi\|_\theta^2.
+ \tag{TVB.38c}
+\]
+This follows term by term from (TVB.31) and (TVB.38a).
+The actual alternating tensor image has squared norm
+$q!D\|\mathsf P_{q-2}\chi\|_\theta^2/\omega_q$ in the
+specified tilted tensor observation, and in the original source
+norm at $\theta=0$. The top coefficient is retained separately:
+$\widetilde D_{q-1}
+ =D|\gamma_{q-1}|^2\omega_{q-1}/\omega_q$.
+For $q=1$ the map $\mathcal H$ is the unique map between zero
+spaces, with the same zero identities; the top-coefficient formula
+still records the entire omitted determinant.
+
+For completeness the finite upper bound is strict when $q=1$ and
+$N\ge1$. Consecutive source polynomials have no common root:
+their three-term recurrence with its nonzero coefficient
+$\alpha_j>0$ would propagate such a root backwards to $p_0=1$.
+For any nonzero quotient $q\ge1$, both $b_N,b_{N+1}$ therefore
+cannot vanish, since a root of $\chi$ would then be common to
+both polynomials. When $N\ge q$, $K_{N-1}$ is positive definite
+and $K_{N+1}-K_{N-1}$ is a nonzero positive semidefinite matrix.
+Conjugating by $K_{N-1}^{-1/2}$ and multiplying its eigenvalues
+proves $D_{N+1}^{\rm CV}>D_{N-1}^{\rm CV}$, hence
+$\mathcal R_N>1$ and $U_N>0$. At $q=1$ this is strictly larger
+than the already proved $\epsilon_N=0$.
+
+Finally let $h=1$, so $\chi=1$, $q=0$, and $C=0$.
+The analytic function $g$, $w_1$ and all source norms still exist.
+For every $N\ge0$ the source sequence is multiplication by one
+from $\mathcal P_N$ onto itself followed by the zero quotient.
+Then $m=N+1$, $Z_\chi=Z$, $\mathfrak B_m=\mathfrak D_m$,
+and the determinant of the zero-dimensional Gram is the empty
+determinant $V_N=1$. Its logarithm and derivatives are zero.
+The minimum lift, its curvature maps, and the relative control
+are the unique zero maps, with $\epsilon_N=L=0$.
+The two Toda coefficients in their curvature difference are equal,
+so that difference is zero. No positive-dimensional inverse is
+introduced. The support lift retains $G(0)=\{\tau,e\}$:
+every represented polynomial, including each nonzero source
+relation, maps to $e$, while $\tau$ maps to $\tau$.
+
+\subsection{The complete join with the original spectral coupling}
+
+This section is the exact join supplied in
+\texttt{PARENT\_EXACT\_JOIN.md}, SHA256
+\begin{center}\footnotesize
+\nolinkurl{71e275a8543448e57bcfafc5ead8cf3c7f98d594ae994582d1180999d98c6370}.
+\end{center}
+Its two inputs are the delivered Toda equation (28), proved here
+as (TVB.32), and the complete original-metric exterior identity E8.
+The latter source is retained in the cyclic companion at commit
+\nolinkurl{161089942cce70a09fbe441d08ba4d36c1fd810c}. We reproduce
+the finite identity and its typed coupling map here to make the
+join complete; no novelty or limiting estimate is claimed.
+
+All quantities in this section are at the original observation
+$\theta=0$, with $N\ge q$. Write
+$A^\sharp=G_N^{-1}A^*G_N$ and
+$\mathcal H_N=A^\sharp+A-kI$, acting on the original $(C,G_N)$.
+Let $C_+$ be the full generalized spectral subspace with
+$\Re\lambda>c$, let $C_-=C_+^{\perp_{G_N}}$, and let
+$\mathsf P:C\to C$ be their orthogonal projection onto $C_+$.
+Suppose first $C_+\ne0$. Its trace $L$ from (TVB.35) is positive,
+so $\epsilon_N>0$. Choose $G_N$-unit eigenvectors $u_+,u_-$
+of $\mathcal H_N$ at $\epsilon_N,-\epsilon_N$; selfadjointness
+makes them orthogonal. They specify only the coefficient injection
+\[
+ E:\C^2\longrightarrow C,\quad E(z_+,z_-)=z_+u_++z_-u_-,
+ \qquad E^\sharp E=I_2,\qquad M=E^\sharp\mathsf P E.
+ \tag{TVB.39}
+\]
+Both $M$ and $I_2-M$ are positive semidefinite, since their
+quadratic forms are respectively the squared original norms of
+$\mathsf PEz$ and $(1-\mathsf P)Ez$.
+In the original orthogonal decomposition define
+\[
+ B=A|_{C_+},\quad D^{\rm op}=(1-\mathsf P)A|_{C_-},\quad
+ \mathsf C=\mathsf PA|_{C_-}:C_-\longrightarrow C_+.
+\]
+Invariance of $C_+$ gives
+$A=\left(\begin{smallmatrix}B&\mathsf C\\0&D^{\rm op}\end{smallmatrix}\right)$.
+Its adjoint has the conjugate-transpose blocks in the original
+restricted metrics, so
+$\mathsf P\mathcal H_N|_{C_-}=\mathsf C$ exactly.
+
+Put $a_+=\|\mathsf Pu_+\|^2$, $a_-=\|\mathsf Pu_-\|^2$,
+and $z=\langle\mathsf Pu_+,\mathsf Pu_-\rangle_{G_N}$.
+The compression $M$ has these two diagonal entries and off-diagonal
+entries $z,\bar z$. The original rank-two spectral expansion gives
+$L=\epsilon_N(a_+-a_-)$ and
+\[
+ \begin{split}
+ \|\mathsf C\|_{\mathrm{HS},G_N}^2
+ &=\tr(\mathsf P\mathcal H_N^2\mathsf P)
+                 -\tr((\mathsf P\mathcal H_N\mathsf P)^2)\\
+ &=\epsilon_N^2(a_++a_--a_+^2-a_-^2+2|z|^2).
+ \end{split}
+\]
+The cross trace in the second equation is $|\langle v,w\rangle|^2$
+for the two rank-one maps $v\langle v,\cdot\rangle$ and
+$w\langle w,\cdot\rangle$, as follows by composing them.
+Subtract the displayed norm and $\epsilon_N^2(a_+-a_-)^2$
+from $\epsilon_N^2$; direct expansion proves
+\[
+ \epsilon_N^2-L^2
+ =\|\mathsf C\|_{\mathrm{HS},G_N}^2
+       +\epsilon_N^2\{\det M+\det(I_2-M)\}.
+ \tag{TVB.40}
+\]
+Both determinants are nonnegative by the quadratic forms after
+(TVB.39). Adding (TVB.40) to (TVB.32) cancels precisely the
+intermediate $\epsilon_N^2$ and gives all four nonnegative losses
+\[
+ \boxed{\begin{aligned}
+ \alpha_{N+1}\sinh^2s_N-L^2
+ ={}&\alpha_{N+1}(e^{t_N}-\cosh s_N)^2+\psi_N^2\\
+ &+\|\mathsf C\|_{\mathrm{HS},G_N}^2
+       +\epsilon_N^2\{\det M+\det(I_2-M)\}.
+ \end{aligned}}
+ \tag{TVB.41}
+\]
+Every adjoint, projection, norm and coefficient is for the same
+original minimum metric as the Toda volumes.
+
+The spectral projector has an exact map to the coupling.
+Factor the minimal polynomial of $A$ as $m_+m_-$ over the
+selected and remaining full generalized blocks, with their
+original exponents. Bezout polynomials $a,b$ with
+$am_++bm_-=1$ give $Q=b(A)m_-(A)$: it is identity on each
+selected block and zero on each other block. Thus $Q^2=Q$,
+$AQ=QA$, and in the preceding orthogonal decomposition
+$Q=\left(\begin{smallmatrix}I&Y\\0&0\end{smallmatrix}\right)$
+for a unique map $Y:C_-\to C_+$. Block multiplication proves
+\[
+ \mathscr S:\operatorname{Hom}(C_-,C_+)
+       \longrightarrow\operatorname{Hom}(C_-,C_+),\quad
+ \mathscr S(Y)=BY-YD^{\rm op}=\mathsf C,
+ \qquad Q-\mathsf P=
+ \begin{pmatrix}0&Y\\0&0\end{pmatrix}.
+ \tag{TVB.42}
+\]
+This morphism is invertible with its full original nilpotent parts:
+\[
+ \mathscr S^{-1}(Z)=\int_0^\infty e^{-tB}Ze^{tD^{\rm op}}\,dt.
+ \tag{TVB.43}
+\]
+Indeed every selected eigenvalue has real part greater than $c$
+and every remaining one has real part at most $c$. On a full
+block at $\lambda$ the first exponential is exactly
+$e^{-t\lambda}\sum_{j<\ell_\lambda}(-t)^j(B-\lambda I)^j/j!$,
+with its corresponding projector, and the second has the same
+formula with positive $t$ on its remaining blocks. Summing these
+finite expressions gives a polynomial times a strictly decaying
+exponential for their product in (TVB.43). This proves convergence
+in the original operator norm. Differentiating the integrand gives
+$-B e^{-tB}Ze^{tD^{\rm op}}+e^{-tB}Ze^{tD^{\rm op}}D^{\rm op}$.
+Its integral has lower endpoint $Z$ and zero upper endpoint,
+proving the inverse identity. If $BY-YD^{\rm op}=0$, the same
+product with $Z=Y$ is constant and decays to zero, hence $Y=0$.
+This proves uniqueness as well. The space $C_-$ is nonzero:
+otherwise $C_+=C$ and $L=\tr\mathcal H_N=0$, contradicting $L>0$.
+Together with $C_+\ne0$ this makes the unit sphere in
+$\operatorname{Hom}(C_-,C_+)$ nonempty. The actual smallest singular
+value $s_{B,D}>0$ of $\mathscr S$ in the original Hilbert--Schmidt
+pairing exists by compactness of its unit sphere and injectivity.
+Consequently
+$\|\mathsf C\|_{\mathrm{HS},G_N}
+ \ge s_{B,D}\|Q-\mathsf P\|_{\mathrm{HS},G_N}$.
+No bound on $s_{B,D}$ independent of the arithmetic inputs is used.
+
+Retaining the phase and coupling in (TVB.41) gives the finite
+strengthening
+\[
+ \log\frac{V_{N-1}}{V_{N+1}}
+ \ge2\operatorname{arsinh}\left(
+ \frac{\sqrt{L^2+\psi_N^2+\|\mathsf C\|_{\mathrm{HS},G_N}^2}}
+      {\sqrt{\alpha_{N+1}}}\right).
+ \tag{TVB.44}
+\]
+It follows by subtracting only the nonnegative imbalance and
+compression-determinant terms and applying the same inverse
+$\sinh$ as in (TVB.35). Summation over the disjoint indices
+$N=N_0+2j$ has the same exact endpoints as (TVB.36), with this
+degree-dependent square root in each summand. If $C_+=0$, use
+(TVB.32) directly; no positive-eigenline compression is asserted
+when $\epsilon_N=0$. At $N=q-1$, the scalar term instead uses
+the separate endpoint expression (TVB.38). These identities supply
+no asymptotic estimate and change no arithmetic class.
+
+\subsection{Crosswalk and exact continuing arithmetic quantity}
+
+CV.1--CV.3 are (TVB.22)--(TVB.24), with the additional proved
+identification $D_N^{\rm CV}=\mathfrak B_m/\mathfrak D_{N+1}$.
+CV.4--CV.5 become (TVB.27)--(TVB.29), where the whole complex
+cross term is $i\omega_N(\sigma-\ell_N')$.
+CV.6 is the minimum lift (TVB.14) and its determinant-line map
+after (TVB.15). CV.10--CV.10a are (TVB.30)--(TVB.31), now with
+the exact two-loss identity (TVB.34). CV.11--CV.12 are precisely
+(TVB.37)--(TVB.38). The new operator refinement is (TVB.20)--(TVB.21):
+it computes both individual rank-one curvature costs, including
+their shared retained quantity $\alpha_{N+1}\delta_N$.
+
+For an actual quartet polynomial the exterior multiplicities and
+their lower trace $L$ remain those of that exact polynomial; for a
+larger packet they remain a lower contribution to its actual full
+trace. All admission thresholds here use its actual $q=\deg\chi$.
+The finite formulas prove an upper estimate by the exact source and
+relation determinants and prove the telescope (TVB.36). They do not
+estimate the growth of $\alpha_{N+1}$ or the joint determinant
+ratio as $k$ and $N$ grow. That continuing arithmetic question is
+the original expression (TVB.27), equivalently the positive-minor
+source norm in (TVB.28)--(TVB.31), with both losses (TVB.32)
+available without changing any of its inputs.
+
+\endgroup

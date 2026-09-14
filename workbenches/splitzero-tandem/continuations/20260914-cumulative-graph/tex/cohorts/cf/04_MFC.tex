@@ -1,0 +1,983 @@
+% Full proof attachment. Owned by counterfactual_algebra. Labels: MFC.
+% Original sources: mixed_support_ledger.tex (ML), lines 182--338;
+% split_support_absolute_arithmetic_curve_v5.tex (V5), lines 591--659
+% and 1316--1556. All carriers and operations below are explicit.
+\providecommand{\Chi}{\mathrm{X}}
+\section{Full mixed carriers, their faces, prime branches, and depth maps}
+\label{CFStage:sec:MFC}
+
+\paragraph{MFC.1. Conventions and the original split scalar.}
+All rings in this attachment are commutative with identity and are nonzero.
+All semiring homomorphisms preserve the specified zero and unit unless a
+different category is explicitly named. A semiring ideal contains zero, is
+closed under addition, and absorbs multiplication by arbitrary elements;
+no subtractivity requirement is imposed. A prime ideal is a proper ideal
+whose complement is multiplicatively closed. The length of a strict prime
+chain is its number of strict inclusions.
+For a ring \(R\), write
+\[
+ G(R)=\{\tau_R\}\sqcup\{r^\bullet:r\in R\},\qquad
+ e_R=0_R^\bullet,\qquad 1_{G(R)}=1_R^\bullet.                 \tag{MFC.1}
+\]
+The union is disjoint. Its operations are
+\[
+ r^\bullet+s^\bullet=(r+s)^\bullet,\quad
+ r^\bullet s^\bullet=(rs)^\bullet,\quad
+ \tau_R+x=x,\quad \tau_Rx=\tau_R.
+                                                               \tag{MFC.2}
+\]
+In particular, a cancellation of supported amplitudes produces \(e_R\),
+not \(\tau_R\).
+These operations make a commutative semiring. On supported entries the
+laws are the ring laws. In a sum an occurrence of \(\tau_R\) can be deleted,
+and a product with an occurrence of \(\tau_R\) equals \(\tau_R\); these
+observations prove both associativities in every other case. For
+distributivity the new cases are
+\(\tau_R(x+y)=\tau_R=\tau_Rx+\tau_Ry\) and
+\(x(\tau_R+y)=xy=x\tau_R+xy\).
+The amplitude and support maps
+\[
+ \begin{aligned}
+ p_R:G(R)&\longrightarrow R,&
+ p_R(\tau_R)&=0_R,& p_R(r^\bullet)&=r,\\
+ \chi_R:G(R)&\longrightarrow\mathbb B,&
+ \chi_R(\tau_R)&=0,&\chi_R(r^\bullet)&=1
+ \end{aligned}                                           \tag{MFC.3}
+\]
+are unital semiring homomorphisms; here
+\(\mathbb B=\{0,1\}\) has join as addition and meet as multiplication.
+Indeed (MFC.2) proves the amplitude identities, and a sum is absent
+exactly when both terms are absent, whereas a product is absent exactly
+when at least one factor is absent.
+
+\paragraph{MFC.2. Independent Cartesian faces and their entire fibres.}
+Let \(I\) be a nonempty finite set and \(R_i\) a nonzero ring for each
+\(i\in I\). Put
+\[
+ P_I=\prod_{i\in I}G(R_i),\qquad R_I=\prod_{i\in I}R_i,\qquad
+ p=\prod_i p_{R_i},\qquad
+ s(x)=\{i:x_i\ne\tau_{R_i}\}.                              \tag{MFC.4}
+\]
+Both operations of \(P_I\) are coordinatewise. The map
+\(s:P_I\to\mathcal P(I)\) is a unital semiring homomorphism for
+union and intersection on \(\mathcal P(I)\), by the last two assertions
+of MFC.1 in each coordinate. Its exact face over \(A\subseteq I\) is
+\[
+ s^{-1}(A)=
+ \prod_{i\in A}\{r_i^\bullet:r_i\in R_i\}
+ \times\prod_{i\notin A}\{\tau_{R_i}\}.                      \tag{MFC.5}
+\]
+The ordering of factors is the original ordering indexed by \(I\);
+the displayed expression specifies each coordinate rather than changing
+that ordering.
+For \(r=(r_i)\in R_I\), put \(J(r)=\{i:r_i\ne0_{R_i}\}\). For each
+\(A\supseteq J(r)\) define
+\[
+ x(r,A)_i=
+ \begin{cases}r_i^\bullet&i\in A,\\
+               \tau_{R_i}&i\notin A.
+ \end{cases}
+ \qquad
+ p^{-1}(r)=\{x(r,A):J(r)\subseteq A\subseteq I\}.             \tag{MFC.6}
+\]
+To prove equality, an absent coordinate of any preimage must have zero
+amplitude; hence its mask contains \(J(r)\). At an active coordinate its
+amplitude forces the unique supported entry \(r_i^\bullet\).
+Conversely each displayed tuple has amplitude \(r\). Distinct masks give
+distinct tuples, including at zero amplitude. Consequently
+\[
+ |p^{-1}(r)|=2^{|I|-|J(r)|},\qquad
+ (p,s):P_I\hookrightarrow R_I\times\mathcal P(I)
+ \text{ has image }\{(r,A):J(r)\subseteq A\}.                \tag{MFC.7}
+\]
+In particular the amplitude-zero fibre has all \(2^{|I|}\) faces.
+These statements retain supported zeros on every proper face.
+
+\paragraph{MFC.3. Synchronized inclusion and the precise failed collapse.}
+The original synchronized inclusion is
+\[
+ j:G(R_I)\hookrightarrow P_I,\qquad
+ j(\tau_{R_I})=(\tau_{R_i})_i,\qquad
+ j(r^\bullet)=(r_i^\bullet)_i.                             \tag{MFC.8}
+\]
+It is injective: the absent image differs from every fully supported
+image, and amplitudes distinguish fully supported images. Applying
+(MFC.2) coordinatewise proves preservation of sum, product, zero, and
+unit. Its image is exactly \(s^{-1}(\{\varnothing,I\})\).
+Thus the square
+\[
+ \begin{array}{ccc}
+ G(R_I)&\xrightarrow{\ j\ }&P_I\\
+ {\scriptstyle\chi_{R_I}}\downarrow&&\downarrow{\scriptstyle s}\\
+ \mathbb B&\xrightarrow{\ \delta\ }&\mathcal P(I)
+ \end{array}
+ \qquad \delta(0)=\varnothing,\quad\delta(1)=I              \tag{MFC.9}
+\]
+is a pullback of semirings. Explicitly, an element of the fibre product
+is a pair \((\epsilon,x)\) with mask empty when \(\epsilon=0\) and full
+when \(\epsilon=1\). In the first case it comes uniquely from
+\(\tau_{R_I}\); in the second case its amplitudes give its unique
+preimage \(r^\bullet\). This bijection respects all operations by
+(MFC.8), proving the asserted universal property. Also \(p j=p_{R_I}\).
+
+For \(I=\{1,2\}\), there is no semiring homomorphism
+\[
+ q:P_I\longrightarrow G(R_1\times R_2),\qquad
+ p_{R_1\times R_2}q=p,
+ \quad q(x)\text{ supported whenever }s(x)\ne\varnothing.
+                                                               \tag{MFC.10}
+\]
+Indeed let \(x=(1_{R_1}^\bullet,\tau_{R_2})\) and
+\(y=(\tau_{R_1},1_{R_2}^\bullet)\). Their product is the specified zero
+of \(P_I\). The stipulated images are \((1,0)^\bullet\) and
+\((0,1)^\bullet\), whose product is \(e_{R_1\times R_2}\), distinct
+from \(q(0_{P_I})=\tau_{R_1\times R_2}\). This contradicts
+multiplicativity and zero preservation. The statement concerns exactly
+the map in (MFC.10); it leaves the proven maps \(j,p,s\) intact.
+
+\paragraph{MFC.4. The original quadratic convolution carrier.}
+Fix a nonzero ring \(A\), set \(S=G(A)\),
+\(u=(-1_A)^\bullet\), and put
+\[
+ D_A=S\oplus S,\qquad
+ (a,b)\star(c,d)=(ac+ubd,\ ad+bc),\qquad
+ \mathbf0=(\tau_A,\tau_A),\quad
+ X_1=(1_A^\bullet,\tau_A).                                \tag{MFC.11}
+\]
+Addition remains coordinatewise. In this formula \(a,b,c,d\) lie in
+\(S\), so every sum and product on the right is the original split
+operation. Set
+\[
+ B=A[t]/(t^2+1),\qquad
+ X_a=(a^\bullet,\tau_A),\quad
+ Y_b=(\tau_A,b^\bullet),\quad
+ Z_{a+tb}=(a^\bullet,b^\bullet).                            \tag{MFC.12}
+\]
+Division by the monic polynomial \(t^2+1\) gives every element of \(B\)
+a unique expression \(a+tb\). For completeness, repeated subtraction
+of the leading monomial times \(t^2+1\) reduces a polynomial to degree
+at most one. A nonzero multiple of this monic polynomial has degree
+at least two, since its leading coefficient equals the nonzero leading
+coefficient of the multiplier. Therefore two reduced expressions cannot
+differ by a nonzero multiple. In particular \(A\hookrightarrow B\),
+\(B\ne0\), and \(t\) is a unit with inverse \(-t\). No assumption on
+the characteristic or on the invertibility of \(2\) is used.
+
+The multiplication in (MFC.11) is associative. For
+\((a,b),(c,d),(h,k)\in S^2\), the first coordinate in either
+association is
+\[
+ ach+ubdh+uadk+ubck,
+ \qquad\text{and the second is}\qquad
+ ack+ubdk+adh+bch.                                       \tag{MFC.13}
+\]
+This follows by distributing each of the two products; commutativity
+of \(S\) puts the resulting four terms in the displayed order.
+Commutativity follows directly from (MFC.11). Distributing its two
+coordinates proves distributivity over coordinatewise addition.
+Substitution gives the stated zero and unit, so \(D_A\) is a
+commutative semiring. Substitution also gives every nonempty-face
+product:
+\[
+ \begin{array}{lll}
+ X_aX_c=X_{ac},&X_aY_b=Y_{ab},&Y_bY_d=X_{-bd},\\
+ X_aZ_z=Z_{az},&Y_bZ_z=Z_{tbz},&Z_zZ_w=Z_{zw}.
+ \end{array}                                             \tag{MFC.14}
+\]
+For example, for \(z=c+td\), \(Y_bZ_z\) has coordinates
+\((-bd)^\bullet,(bc)^\bullet\), which are exactly those of \(tbz\).
+Products of two full faces similarly have coordinates
+\((ac-bd)^\bullet,(ad+bc)^\bullet\).
+The four elements \(\mathbf0,X_0,Y_0,Z_0\) are distinct.
+Unlike \(P_{\{1,2\}}\), the carrier \(D_A\) uses convolution
+multiplication; (MFC.14) specifies the difference without identifying
+the two semiring structures.
+
+\paragraph{MFC.5. Four support fibres and the scalar character.}
+Write \(\mathbb B[C_2]\) for the semiring of pairs of bits with
+coordinatewise join and
+\[
+ (p,q)(r,s)=(pr\vee qs,\ ps\vee qr).
+ \qquad
+ \Chi:D_A\longrightarrow\mathbb B[C_2],\quad
+ \Chi(a,b)=(\chi_A(a),\chi_A(b)).                          \tag{MFC.15}
+\]
+Here \(pr\) means Boolean meet. Applying \(\chi_A\) to (MFC.11),
+and using \(\chi_A(u)=1\), proves the multiplication formula;
+addition, zero, and unit are also preserved. The support semiring
+laws can alternatively be verified by distributing Boolean products
+as in (MFC.13). The fibres over \((0,0),(1,0),(0,1),(1,1)\)
+are respectively \(\{\mathbf0\},\{X_a:a\in A\},
+\{Y_b:b\in A\},\{Z_z:z\in B\}\). Every one retains its zero-amplitude
+entry. The amplitude map
+\(\pi:D_A\to B\), obtained by replacing absent coordinates by zero,
+preserves all operations by (MFC.11). The map \((\pi,\Chi)\) is
+injective: support determines which coordinates are absent, and the
+unique coordinates of \(\pi(x)\) determine all active entries.
+
+There is exactly one unital semiring homomorphism \(f:D_A\to\mathbb B\):
+it sends \(\mathbf0\) to \(0\) and every nonempty face to \(1\).
+To prove uniqueness, \(f(X_1)=1\) and
+\(X_1+X_{-1}=X_0\) imply \(f(X_0)=1\).
+The equality \(X_0X_a=X_0\) then forces \(f(X_a)=1\) for every \(a\).
+Next \(Y_1^2=X_{-1}\) forces \(f(Y_1)=1\), and
+\(Y_a=X_aY_1\) forces \(f(Y_a)=1\).
+Finally \(Z_{a+tb}=X_a+Y_b\) forces \(f(Z_{a+tb})=1\).
+Existence follows because a sum or product of two nonempty faces
+is nonempty, as follows respectively from coordinate addition and
+(MFC.14); the cases with \(\mathbf0\) are the zero laws.
+Thus scalar support is an exact further observation of the four
+fibres, and does not replace (MFC.15).
+
+\paragraph{MFC.6. The quadratic synchronization quotient and all fibres.}
+Define
+\[
+ q_D:D_A\longrightarrow G(B),\quad
+ \mathbf0\longmapsto\tau_B,\quad X_a\longmapsto a^\bullet,\quad
+ Y_b\longmapsto(tb)^\bullet,\quad Z_z\longmapsto z^\bullet.
+                                                               \tag{MFC.16}
+\]
+This is a surjective unital semiring homomorphism. Surjectivity follows
+from the \(Z\)-face and \(\mathbf0\). A sum of two nonempty faces is
+nonempty and has amplitude equal to the sum in \(B\). The same assertion
+for multiplication follows from the six products in (MFC.14).
+Thus both operations are preserved, even when the resulting amplitude
+is zero. Operations with \(\mathbf0\) obey the zero laws, and
+\(q_D(X_1)=1_B^\bullet\).
+Its complete fibre list, in the unique coordinates \(z=a+tb\), is
+\[
+ \begin{array}{c|c}
+ \text{target}&\text{fibre}\\ \hline
+ \tau_B&\{\mathbf0\}\\
+ e_B&\{X_0,Y_0,Z_0\}\\
+ (a+tb)^\bullet,\ a\ne0,\ b\ne0&\{Z_{a+tb}\}\\
+ a^\bullet,\ a\ne0&\{X_a,Z_a\}\\
+ (tb)^\bullet,\ b\ne0&\{Y_b,Z_{tb}\}.
+ \end{array}                                             \tag{MFC.17}
+\]
+Indeed an \(X\)-preimage requires second coordinate zero, a
+\(Y\)-preimage requires first coordinate zero, and the \(Z\)-preimage
+always exists uniquely. These alternatives exhaust the four faces.
+
+The kernel congruence of \(q_D\) is generated by \(X_0\sim Y_0\).
+Adding \(X_0\) and then \(Y_0\) to this relation shows
+\(X_0\sim Z_0\sim Y_0\). Adding \(X_a\) to \(X_0\sim Y_0\)
+gives \(X_a\sim Z_a\); adding \(Y_b\) gives
+\(Z_{tb}\sim Y_b\). Hence each fibre in (MFC.17) is identified.
+Conversely the kernel of the proved homomorphism \(q_D\) is a
+congruence containing the generator, so no generated identification
+can connect distinct fibres. This proves the equality of congruences.
+
+\paragraph{MFC.7. The full section, its unit, and the localization.}
+There is a zero-preserving additive and multiplicative section
+\[
+ \iota:G(B)\longrightarrow D_A,\qquad
+ \iota(\tau_B)=\mathbf0,\quad \iota(z^\bullet)=Z_z,\qquad
+ q_D\iota=\operatorname{id}_{G(B)}.                        \tag{MFC.18}
+\]
+Addition within the \(Z\)-face is \(Z_z+Z_w=Z_{z+w}\);
+multiplication is (MFC.14), and \(\mathbf0\) obeys the required
+zero laws. These prove every asserted property. This section is
+not unital as a map to \(D_A\), since
+\(\iota(1_B^\bullet)=Z_1=(1_A^\bullet,0_A^\bullet)\ne X_1\).
+
+In fact no unital semiring section \(\sigma\) of \(q_D\) exists.
+The equality \(1_B^\bullet+e_B=1_B^\bullet\) forces
+\(X_1+\sigma(e_B)=X_1\). Among the three possibilities in the
+\(e_B\)-fibre, only \(X_0\) satisfies this equality: adding \(Y_0\)
+or \(Z_0\) gives \(Z_1\). Thus \(\sigma(e_B)=X_0\).
+The \(t^\bullet\)-fibre is \(\{Y_1,Z_t\}\), using \(1_A\ne0_A\).
+But \(e_Bt^\bullet=e_B\), while
+\(X_0Y_1=Y_0\ne X_0\) and \(X_0Z_t=Z_0\ne X_0\).
+Both possibilities contradict multiplicativity.
+
+The element \(Z_1\) is idempotent, and its corner is
+\[
+ Z_1D_A=\{\mathbf0\}\sqcup\{Z_z:z\in B\},\qquad
+ D_A[Z_1^{-1}]\ \cong\ Z_1D_A\ \cong\ G(B).               \tag{MFC.19}
+\]
+The corner has unit \(Z_1\). The map \(d\mapsto Z_1d\)
+is a unital homomorphism to that corner: idempotence gives
+\((Z_1d)(Z_1d')=Z_1dd'\), and distributivity gives additivity.
+It equals \(\iota q_D\) with this codomain, by (MFC.14).
+To prove the localization universal property, let \(f:D_A\to T\)
+be a unital homomorphism for which \(f(Z_1)\) is invertible.
+An invertible idempotent is \(1_T\), since multiplying
+\(f(Z_1)^2=f(Z_1)\) by its inverse gives that equality.
+Therefore \(f(d)=f(Z_1d)\). Restricting \(f\) to the corner gives
+the unique unital homomorphism through which \(f\) factors; it is
+unital because \(f(Z_1)=1_T\), and uniqueness follows from
+surjectivity of \(d\mapsto Z_1d\).
+This proves (MFC.19), retaining both the full fibres of \(q_D\)
+and the exact category of its section.
+
+\paragraph{MFC.8. All ordinary semiring ideals of \(D_A\).}
+For ring ideals \(H\triangleleft B\), \(J\triangleleft A\), define
+\[
+ \begin{aligned}
+ M_H&=\{\mathbf0\}\cup\{Z_z:z\in H\},\qquad M=M_B,\\
+ I_{J,H}&=M_H\cup\{X_a:a\in J\}\cup\{Y_a:a\in J\},
+               \qquad JB\subseteq H .
+ \end{aligned}                                           \tag{MFC.20}
+\]
+Here \(JB\) is the ideal of \(B\) generated by the image of \(J\).
+Every ideal of \(D_A\) is exactly one of
+\[
+ \{\mathbf0\},\qquad M_H,\qquad I_{J,H}
+ \quad(H\triangleleft B,\ J\triangleleft A,\ JB\subseteq H).
+                                                               \tag{MFC.21}
+\]
+We prove the statement for the ordinary ideal convention in MFC.1.
+Let \(\mathcal I\) be such an ideal. If it has no \(X\)- or \(Y\)-entry
+and is not \(\{\mathbf0\}\), it contains some \(Z_z\). The set
+\(H=\{z:Z_z\in\mathcal I\}\) is nonempty. Multiplication by
+\(Z_0\) shows \(0\in H\), multiplication by \(Z_{-1}\) gives
+additive inverses, addition gives closure under sums, and
+multiplication by \(Z_w\) for arbitrary \(w\in B\) gives absorption.
+Hence \(H\) is a ring ideal and \(\mathcal I=M_H\).
+
+If \(\mathcal I\) has an \(X\)- or \(Y\)-entry, put
+\(J_X=\{a:X_a\in\mathcal I\}\) and \(J_Y=\{a:Y_a\in\mathcal I\}\).
+The identities \(X_aY_1=Y_a\) and \(Y_aY_{-1}=X_a\)
+give \(J_X=J_Y=:J\), and this common set is nonempty.
+Multiplication of an \(X\)-entry by \(X_0\) puts \(0\) in \(J\);
+addition, multiplication by \(X_{-1}\), and multiplication by
+arbitrary \(X_r\) prove respectively closure under sums, additive
+inverses, and absorption by \(A\). Thus \(J\triangleleft A\).
+Multiplying an \(X\)-entry by \(Z_0\) puts \(Z_0\) in
+\(\mathcal I\), and the preceding \(Z\)-face argument proves that
+\(H=\{z:Z_z\in\mathcal I\}\) is a ring ideal of \(B\).
+For \(a\in J,w\in B\), \(X_aZ_w=Z_{aw}\) puts \(aw\) in \(H\);
+closure under finite sums proves \(JB\subseteq H\).
+The definitions now give \(\mathcal I=I_{J,H}\).
+
+Conversely \(M_H\) is closed under addition, and every nonempty face
+multiplied by \(Z_h\), \(h\in H\), remains a \(Z\)-entry with
+amplitude in \(H\), by (MFC.14). The absent face multiplies
+it to \(\mathbf0\), which is also in \(M_H\). Thus \(M_H\) is an ideal.
+For \(I_{J,H}\), same-face sums stay in \(J\) or \(H\).
+Cross-face sums have the precise forms
+\[
+ X_a+Y_b=Z_{a+tb},\qquad X_a+Z_h=Z_{a+h},\qquad
+ Y_b+Z_h=Z_{tb+h}.                                       \tag{MFC.22}
+\]
+When \(a,b\in J\) and \(h\in H\), these amplitudes lie in \(H\)
+because \(JB\subseteq H\). Multiplication of an \(X\)- or
+\(Y\)-entry of \(I_{J,H}\) by an \(X\)- or \(Y\)-entry of \(D_A\)
+has coefficient in \(J\), and its product with a \(Z\)-entry
+has amplitude in \(JB\). A \(Z\)-entry of \(I_{J,H}\) multiplied
+by any face remains in \(M_H\). Products with \(\mathbf0\)
+are \(\mathbf0\). This verifies absorption in every case.
+Each listed family is therefore an ideal. Their descriptions
+are unique by reading the amplitudes in each face. The three
+families are disjoint: \(M_H\) contains \(Z_0\) but no \(X\)- or
+\(Y\)-entry, while \(I_{J,H}\) contains \(X_0,Y_0,Z_0\).
+
+Their complete inclusion rules, aside from the least ideal
+\(\{\mathbf0\}\), are
+\[
+ \begin{aligned}
+ M_H\subseteq M_{H'}&\iff H\subseteq H',\\
+ M_H\subseteq I_{J',H'}&\iff H\subseteq H',\\
+ I_{J,H}\subseteq I_{J',H'}&\iff J\subseteq J'
+                                      \text{ and }H\subseteq H'.
+ \end{aligned}                                           \tag{MFC.23}
+\]
+No \(I_{J,H}\) is contained in an \(M_{H'}\), since it contains
+\(X_0\). Each equivalence follows by inspecting the relevant
+faces in (MFC.20), which are disjoint.
+
+\paragraph{MFC.9. All prime branches and their exact inclusions.}
+For \(\mathfrak q\in\operatorname{Spec}B\) and
+\(\mathfrak p\in\operatorname{Spec}A\), put
+\[
+ P_\tau=\{\mathbf0\},\qquad
+ Q_{\mathfrak q}=I_{\mathfrak q\cap A,\mathfrak q},
+ \qquad T_{\mathfrak p}=I_{\mathfrak p,B}.
+ \qquad
+ \operatorname{Spec}D_A=
+ \{P_\tau,M\}\sqcup\{Q_{\mathfrak q}\}\sqcup\{T_{\mathfrak p}\}.
+                                                               \tag{MFC.24}
+\]
+We prove exhaustion and primality, rather than imposing a subtractive
+prime convention. The complement of \(P_\tau\) is closed under
+multiplication by (MFC.14). The complement of \(M\) consists
+of all \(X\)- and \(Y\)-entries, and is also closed under
+multiplication. Both ideals are proper, so both are prime.
+If \(H\subsetneq B\), choose \(z\notin H\).
+Then \(X_0,Z_z\notin M_H\) but \(X_0Z_z=Z_0\in M_H\);
+thus \(M_H\) is not prime.
+
+Suppose \(I_{J,H}\) is prime and \(H\subsetneq B\).
+The rule \(Z_zZ_w=Z_{zw}\) shows that \(H\) is prime in \(B\).
+The condition \(JB\subseteq H\) gives \(J\subseteq H\cap A\).
+If \(a\in H\cap A\), then \(X_aZ_1=Z_a\in I_{J,H}\)
+while \(Z_1\notin I_{J,H}\), so primality gives \(a\in J\).
+Thus \(I_{J,H}=Q_H\).
+Conversely take a prime \(\mathfrak q\) in \(B\), and let
+\(\mathfrak p=\mathfrak q\cap A\). This contraction is proper
+and prime: \(1\notin\mathfrak q\), and \(ab\in\mathfrak q\)
+forces \(a\in\mathfrak q\) or \(b\in\mathfrak q\).
+Two \(X\)- or \(Y\)-entries outside \(Q_{\mathfrak q}\)
+have coefficients outside \(\mathfrak p\), so their product
+coefficient, with either sign, remains outside \(\mathfrak p\).
+An \(X_a\) outside this ideal and a \(Z_z\) outside it have
+\(a,z\notin\mathfrak q\), so \(az\notin\mathfrak q\).
+For \(Y_aZ_z\), the same holds for \(taz\), since \(t\) is a
+unit and cannot lie in a proper prime. Two \(Z\)-entries outside
+the ideal have product outside by primality of \(\mathfrak q\).
+These are all products in its complement, proving primality.
+
+If \(H=B\), the ideal \(I_{J,B}\) is proper precisely when
+\(J\subsetneq A\). Its complement consists of \(X_a,Y_a\)
+with \(a\notin J\). It is multiplicatively closed when \(J\)
+is prime, by the first row of (MFC.14). Conversely, if it is
+multiplicatively closed and \(ab\in J\), the product
+\(X_aX_b\) belongs to the ideal, so at least one factor does,
+proving that \(J\) is prime. This gives exactly the
+\(T_{\mathfrak p}\)-family. Together with (MFC.21), it proves
+(MFC.24).
+
+The complete prime inclusion rules are
+\[
+ \begin{aligned}
+ &P_\tau\subsetneq M,\quad
+ P_\tau\subsetneq Q_{\mathfrak q},\quad
+ P_\tau\subsetneq T_{\mathfrak p},\quad
+ M\subsetneq T_{\mathfrak p},\\
+ &Q_{\mathfrak q}\subseteq Q_{\mathfrak q'}
+       \iff\mathfrak q\subseteq\mathfrak q',\qquad
+ T_{\mathfrak p}\subseteq T_{\mathfrak p'}
+       \iff\mathfrak p\subseteq\mathfrak p',\\
+ &Q_{\mathfrak q}\subseteq T_{\mathfrak p}
+       \iff\mathfrak q\cap A\subseteq\mathfrak p .
+ \end{aligned}                                           \tag{MFC.25}
+\]
+Every inclusion of a \(Q\)-prime in a \(T\)-prime is strict,
+because \(Z_1\) lies only in the latter.
+The prime \(M\) is incomparable with each \(Q_{\mathfrak q}\):
+\(Z_1\in M\setminus Q_{\mathfrak q}\) and
+\(X_0\in Q_{\mathfrak q}\setminus M\).
+No \(T\)-prime is contained in a \(Q\)-prime, because it contains
+\(Z_1\); no \(T\)-prime is contained in \(M\), because it contains
+\(X_0\). These assertions and (MFC.25) follow directly from
+(MFC.23), and exhaust the possible pairs of families.
+The ordinary ideal convention matters here. Each \(M_H\)
+is non-subtractive: \(Z_0\in M_H\) and
+\(Z_0+X_0=Z_0\in M_H\), whereas \(X_0\notin M_H\).
+Each \(T_{\mathfrak p}\) is likewise non-subtractive:
+\(Z_0,Z_0+X_1=Z_1\in T_{\mathfrak p}\), whereas
+\(X_1\notin T_{\mathfrak p}\) because \(\mathfrak p\) is proper.
+Thus restricting to subtractive primes would remove
+original prime branches occurring in (MFC.24).
+
+\paragraph{MFC.10. The dimension calculation, including incomparability.}
+If \(A\ne0\) and its Krull dimension is \(\dim A=d<\infty\), then
+\[
+                     \dim D_A=d+2.                       \tag{MFC.26}
+\]
+Here dimension means the ideal-theoretic prime-chain dimension
+of MFC.1. We give the integral-extension argument needed for
+the upper bound in full.
+The ring \(B=A[t]/(t^2+1)\) is integral over its embedded copy
+of \(A\), since every \(b=a+tc\) satisfies
+\[
+             b^2-2ab+(a^2+c^2)=0.                        \tag{MFC.27}
+\]
+Suppose primes \(\mathfrak q\subsetneq\mathfrak q'\) of \(B\)
+had the same contraction \(\mathfrak p\) in \(A\).
+Then \(R=A/\mathfrak p\) embeds in the domain
+\(C=B/\mathfrak q\), and \(C\) is integral over \(R\):
+reduce any monic equation over \(A\) modulo these ideals.
+The nonzero prime \(\mathfrak r=\mathfrak q'/\mathfrak q\)
+of \(C\) has zero contraction in \(R\).
+Let \(S=R\setminus\{0\}\) and \(K=S^{-1}R\).
+The localization \(S^{-1}C\) is a domain, and every \(c/s\)
+in it is integral over the field \(K\). Indeed, dividing a
+monic equation for \(c\) by the corresponding power of \(s\)
+produces a monic equation for \(c/s\) with coefficients in \(K\).
+A domain integral over a field is a field: for a nonzero
+element \(v\), choose a monic relation of least degree over
+that field. Its constant coefficient is nonzero, because
+otherwise division by \(v\) in the domain would give a monic
+relation of lower degree. Rearranging the relation expresses
+\(v^{-1}\) as a polynomial in \(v\) divided by that nonzero
+constant coefficient. Thus \(S^{-1}C\) is a field.
+Since \(\mathfrak r\cap S=\varnothing\), its localization is
+a proper prime ideal of this field: if \(1=c/s\) with
+\(c\in\mathfrak r,s\in S\), clearing the equality gives
+\(v(c-s)=0\) for some \(v\in S\), and the domain property
+implies \(s=c\in\mathfrak r\), a contradiction.
+It follows that \(S^{-1}\mathfrak r=0\). But a nonzero
+\(c\in\mathfrak r\) remains nonzero after localization,
+since \(sc=0\), \(s\in S\), is impossible in the domain.
+This contradiction proves that strict prime inclusions in
+\(B\) have strict contractions in \(A\).
+
+The ring \(A\ne0\) has a maximal proper ideal: the union of
+a chain of proper ideals is proper, since otherwise it
+contains \(1\) at some stage, and Zorn's lemma applies.
+A maximal ideal is prime because its quotient is a field:
+if the class of \(a\) is nonzero, maximality of the ideal
+generated by that class supplies its multiplicative inverse.
+Thus \(d\ge0\), and a chain of length \(d\) exists. Indeed the
+supremum of a nonempty set of nonnegative integer lengths,
+when finite, is attained. Choose
+\(\mathfrak p_0\subsetneq\cdots\subsetneq\mathfrak p_d\).
+Then (MFC.25) gives the strict chain
+\[
+ P_\tau\subsetneq M\subsetneq T_{\mathfrak p_0}
+       \subsetneq\cdots\subsetneq T_{\mathfrak p_d},        \tag{MFC.28}
+\]
+of length \(d+2\).
+
+For the upper bound, it suffices to bound every finite strict
+chain, since an infinite chain would contain finite chains
+of arbitrarily large length. Adjoin \(P_\tau\) at its beginning
+if it is missing. By (MFC.25), a chain containing \(M\) contains
+no \(Q\)-prime, and after \(M\) contains only a \(T\)-chain.
+If that \(T\)-chain has \(\ell\) entries, then
+\(\ell-1\le d\), and the full chain has length at most
+\(\ell+1\le d+2\). A chain with no \(Q\)- or \(T\)-entries
+has length at most one.
+A chain with \(Q\)-entries and no \(M\) has a \(Q\)-chain
+of \(k\ge1\) entries followed by a \(T\)-chain of
+\(\ell\ge0\) entries. The contractions of the \(Q\)-entries
+are strictly increasing by the preceding proof. If
+\(\ell\ge1\), they are followed by the strictly increasing
+\(T\)-indices, with at most one equality, at the junction.
+Therefore this chain in \(\operatorname{Spec}A\) has at least
+\(k+\ell-1\) distinct entries, so \(k+\ell-2\le d\).
+The original chain, including \(P_\tau\), has length
+\(k+\ell\le d+2\). If \(\ell=0\), then \(k-1\le d\) and
+its length is \(k\le d+1\). A chain having \(T\)-entries
+but neither \(Q\)-entries nor \(M\) has length at most \(d+1\).
+These cases exhaust (MFC.24), proving the upper bound and
+therefore (MFC.26).
+
+\paragraph{MFC.11. Higher distributive-lattice zero fibres.}
+Let \(L\) be a bounded distributive lattice, with bottom \(0_L\)
+and top \(1_L\), and let \(R\ne0\) be a ring. The original carrier is
+\[
+ \begin{split}
+ G_L(R)&=\{(0_R,\lambda):\lambda\in L\}
+                \cup\{(r,1_L):r\in R\}\subseteq R\times L,\\
+ (r,\lambda)+(s,\mu)&=(r+s,\lambda\vee\mu),\\
+ (r,\lambda)(s,\mu)&=(rs,\lambda\wedge\mu),\\
+ 0_{G_L(R)}&=(0_R,0_L),\qquad1_{G_L(R)}=(1_R,1_L).
+ \end{split}                                             \tag{MFC.29}
+\]
+This is a union inside a product; the two descriptions of
+\((0_R,1_L)\) denote one element. A nonzero amplitude is
+permitted only at top support.
+The operations are closed. If \(r+s\ne0\), at least one
+summand has nonzero amplitude and hence top support, so the
+sum has top support. If \(rs\ne0\), both amplitudes are nonzero
+and both supports are top. Zero-amplitude results allow any
+support. Associativity and commutativity follow in each
+coordinate from the ring and lattice laws. Distributivity
+follows from ring distributivity and distributivity of meet
+over join in \(L\). The displayed zero and unit satisfy their
+laws in each coordinate. Thus (MFC.29) is a semiring.
+
+The projections
+\[
+ p_L:G_L(R)\to R,\quad(r,\lambda)\mapsto r,\qquad
+ \chi_L:G_L(R)\to L,\quad(r,\lambda)\mapsto\lambda,
+ \quad p_L^{-1}(0_R)=\{(0_R,\lambda):\lambda\in L\}         \tag{MFC.30}
+\]
+are unital semiring homomorphisms, where \(L\) has join
+and meet as its operations. The last fibre is exactly
+the entire original lattice.
+Moreover \(p_L\) is the universal unital homomorphism
+from \(G_L(R)\) to a ring. To prove this, write
+\(z_\lambda=(0_R,\lambda)\) and \(e=(0_R,1_L)\).
+For any homomorphism \(f:G_L(R)\to T\) to a ring,
+\(e+z_\lambda=e\) gives \(f(z_\lambda)=0_T\) by
+additive cancellation in \(T\).
+The function \(\bar f:R\to T\), \(r\mapsto f(r,1_L)\),
+therefore preserves zero, addition, multiplication, and unit,
+so is a ring homomorphism. Every element of \(G_L(R)\)
+is a \(z_\lambda\) or a \((r,1_L)\), proving
+\(f=\bar f p_L\), and the surjectivity of \(p_L\) proves
+uniqueness. If \(L\) is the one-element lattice, the carrier
+is \(R\) itself; the distinct absent and supported-zero
+elements occur precisely when \(0_L\ne1_L\).
+
+\paragraph{MFC.12. All lattice-localization fibres and the universal map.}
+For every \(\lambda\in L\), the element \(z_\lambda\)
+is idempotent and
+\[
+ z_\lambda G_L(R)=\{z_\nu:\nu\le\lambda\},\qquad
+ G_L(R)[z_\lambda^{-1}]\cong\downarrow\lambda,\qquad
+ \ell_\lambda:G_L(R)\to\downarrow\lambda,\quad
+ (r,\mu)\mapsto\lambda\wedge\mu.                           \tag{MFC.31}
+\]
+Here \(\downarrow\lambda\) has join and meet, bottom \(0_L\),
+and unit \(\lambda\). Multiplying in (MFC.29) gives
+\(z_\lambda(r,\mu)=z_{\lambda\wedge\mu}\);
+every \(\nu\le\lambda\) occurs by taking \((0_R,\nu)\).
+This proves the corner equality and its identification
+with \(\downarrow\lambda\), including its unit.
+Distributivity of \(L\) proves that \(\ell_\lambda\)
+preserves addition, and associativity and idempotence of
+meet prove that it preserves multiplication. It sends
+the original zero to \(0_L\), the original unit to
+\(\lambda\), and \(z_\lambda\) to that unit.
+For a unital map \(f\) making \(z_\lambda\) invertible,
+idempotence forces \(f(z_\lambda)=1\). Hence
+\(f(x)=f(z_\lambda x)\), and restriction to the corner
+gives its unique factorization through \(\ell_\lambda\).
+This is the required localization universal property.
+At \(\lambda=0_L\) the localization is the one-element
+semiring; the universal statement allows that zero semiring.
+Its exact fibres are
+\[
+ \ell_\lambda^{-1}(\nu)
+ =\{(r,\mu)\in G_L(R):\lambda\wedge\mu=\nu\},
+ \qquad \nu\le\lambda.                                   \tag{MFC.32}
+\]
+Thus every top-supported amplitude, including every nonzero
+amplitude, maps to the unit \(\lambda\) of the localized
+interval. The formula specifies every erased amplitude
+and every identified support stratum.
+
+\paragraph{MFC.13. The higher-zero carrier inside the full independent cube.}
+Take \(R=R_I\) and \(L=\mathcal P(I)\). Define
+\[
+ J:G_{\mathcal P(I)}(R_I)\hookrightarrow P_I,\qquad
+ J(r,I)=(r_i^\bullet)_i,\qquad
+ J(0,A)=x(0,A).                                          \tag{MFC.33}
+\]
+The two formulas agree at \((0,I)\).
+Two full-support entries add and multiply by the ring
+operations in every coordinate, so \(J\) preserves their
+sum and product. Two zero-amplitude entries have support
+union under addition and intersection under multiplication,
+by (MFC.5), again as in (MFC.29).
+A full entry plus a zero-amplitude entry stays full with
+the original amplitude; a full entry multiplied by a
+zero-amplitude entry gives the same zero-amplitude face,
+because supported multiplication by zero gives supported
+zero in exactly the active coordinates of that face.
+These cases exhaust all pairs and prove preservation
+of addition and multiplication. The bottom entry maps
+to the all-absent zero and \((1,I)\) to the unit.
+Recovering amplitude and support proves injectivity.
+Its exact image is all full-support tuples together
+with all zero-amplitude faces. Proper faces with nonzero
+amplitude are the additional elements of \(P_I\).
+The synchronized inclusion factors as
+\[
+ G(R_I)\xrightarrow{\ k\ }G_{\mathcal P(I)}(R_I)
+                 \xrightarrow{\ J\ }P_I,\qquad
+ k(\tau_{R_I})=(0,\varnothing),\quad
+ k(r^\bullet)=(r,I),\quad Jk=j.                           \tag{MFC.34}
+\]
+The formulas prove that \(k\) is injective and unital,
+using (MFC.2) and (MFC.29). Both maps also commute
+with amplitude and support, since those coordinates
+are the coordinates used in their definitions.
+
+\paragraph{MFC.14. Every original chain stratum and each threshold fibre.}
+Let \(n\ge1\) and \(C_n=\{0<1<\cdots<n\}\).
+In \(G_{C_n}(R)\) put
+\[
+ \begin{gathered}
+ e=(0_R,n),\qquad \tau_i=(0_R,n-i)\quad(1\le i\le n),\\
+ \tau_0=e\quad\text{when indexing formulas},\\
+ \tau_i+\tau_j=\tau_{\min(i,j)},\qquad
+ \tau_i\tau_j=\tau_{\max(i,j)} .
+ \end{gathered}                                          \tag{MFC.35}
+\]
+These equalities follow from join \(=\max\) and meet \(=\min\)
+in (MFC.29). For every \(r\in R\),
+\((r,n)+\tau_i=(r,n)\) and \((r,n)\tau_i=\tau_i\).
+The carrier consists of the full ring copy
+\(\{(r,n):r\in R\}\), with its zero \(e\), and the
+\(n\) further distinct entries \(\tau_1,\ldots,\tau_n\).
+In particular its amplitude-zero fibre has \(n+1\) entries.
+
+For \(1\le k\le n\), the original threshold and induced map are
+\[
+ \begin{gathered}
+ \alpha_k:C_n\to\mathbb B,\qquad
+ \alpha_k(j)=
+ \begin{cases}0&j<k,\\1&j\ge k,\end{cases}\\
+ T_k:G_{C_n}(R)\to G(R),\qquad T_k(r,n)=r^\bullet,\qquad
+ T_k(0_R,j)=
+ \begin{cases}\tau_R&j<k,\\e_R&j\ge k.\end{cases}
+ \end{gathered}                                          \tag{MFC.36}
+\]
+The formulas agree at \((0_R,n)\).
+The threshold sends bottom to zero and top to one.
+The maximum of two indices is at least \(k\) precisely
+when at least one is, and the minimum is at least \(k\)
+precisely when both are. Thus it preserves join and meet.
+For two zero-amplitude entries this proves both laws
+for \(T_k\). Two full entries use the original ring
+operations and stay full, even upon amplitude cancellation.
+A full entry plus any zero-amplitude entry stays full;
+its image plus either \(\tau_R\) or \(e_R\) is the same
+supported image. A full entry times \((0_R,j)\) equals
+\((0_R,j)\); its supported image times the prescribed
+image of that entry is respectively \(\tau_R\) or \(e_R\).
+These are all cases, proving that \(T_k\) is a unital
+semiring homomorphism.
+Its entire fibres are
+\[
+ \begin{aligned}
+ T_k^{-1}(\tau_R)&=\{(0_R,j):0\le j<k\},\\
+ T_k^{-1}(e_R)&=\{(0_R,j):k\le j\le n\},\\
+ T_k^{-1}(r^\bullet)&=\{(r,n)\}\quad(r\ne0_R).
+ \end{aligned}                                           \tag{MFC.37}
+\]
+They have respectively \(k,n-k+1,1\) entries. These formulas
+retain the exact depth lost under every binary threshold.
+
+\paragraph{MFC.15. The all-ideal chain for the original two arithmetic rings.}
+Let \(p\) be a prime integer, let \(k\) now denote a field,
+and let \(n\ge1\). Define the two rings and their ideals by
+\[
+ R_{p,n}=\mathbb Z/p^n\mathbb Z,\quad
+ I_a=p^aR_{p,n},\qquad
+ R_{k,n}=k[\epsilon]/(\epsilon^n),\quad
+ J_a=\epsilon^aR_{k,n},\qquad 0\le a\le n.                \tag{MFC.38}
+\]
+In particular \(I_0=R_{p,n}\), \(I_n=(0)\),
+\(J_0=R_{k,n}\), and \(J_n=(0)\).
+We prove that these are all ideals, not a selected subfamily.
+
+For a nonzero element of \(R_{p,n}\), take its representative
+between \(1\) and \(p^n-1\). Its exact power of \(p\)
+is \(p^a\) with \(0\le a<n\); thus the element is \(p^a u\)
+with \(u\) prime to \(p\). The class of \(u\) is a unit:
+the Euclidean algorithm applied to \(u,p^n\), whose greatest
+common divisor is \(1\), supplies integers \(v,w\) with
+\(uv+p^nw=1\). Let \(\mathfrak a\) be a nonzero ideal,
+and choose among its nonzero elements one with least
+exponent \(a\). Multiplying this element by \(u^{-1}\)
+puts \(p^a\) in \(\mathfrak a\), so \(I_a\subseteq\mathfrak a\).
+Every other nonzero element has exponent at least \(a\)
+and is therefore a multiple of \(p^a\); zero also lies
+in \(I_a\). Hence \(\mathfrak a=I_a\). The zero ideal
+is \(I_n\). The ideals are distinct: for \(a<n\),
+an equality \(p^a=p^{a+1}b\) modulo \(p^n\) would imply
+that \(p^{n-a}\) divides \(1-pb\), impossible upon
+reduction modulo \(p\).
+
+Every element of \(R_{k,n}\) has a unique polynomial
+representative of degree less than \(n\), by division
+by the monic polynomial \(\epsilon^n\). A nonzero
+representative with least nonzero degree \(a\) is
+\(\epsilon^a u\), where \(u=u_0(1+v)\), \(u_0\in k^\times\),
+and \(v\in(\epsilon)\). Since \(v^n=0\),
+\[
+        u^{-1}=u_0^{-1}\sum_{j=0}^{n-1}(-v)^j             \tag{MFC.39}
+\]
+is an inverse: multiplication by \(1+v\) gives
+\(1-(-v)^n=1\).
+In a nonzero ideal choose an element with least such
+degree \(a\). Multiplication by \(u^{-1}\) puts
+\(\epsilon^a\) in the ideal, while every other element
+has degree at least \(a\) and is divisible by
+\(\epsilon^a\). Thus the ideal is \(J_a\); the zero
+ideal is \(J_n\). Uniqueness of the degree-less-than-\(n\)
+representative shows that
+\(\epsilon^a\notin J_{a+1}\) for \(a<n\), proving that
+these \(n+1\) ideals are distinct.
+
+In both rings the ideals are nested by reversed exponent.
+Consequently their sums and intersections are
+\[
+ I_a+I_b=I_{\min(a,b)},\quad I_a\cap I_b=I_{\max(a,b)},
+ \qquad
+ J_a+J_b=J_{\min(a,b)},\quad J_a\cap J_b=J_{\max(a,b)}.
+                                                               \tag{MFC.40}
+\]
+For instance, if \(a\le b\), then \(I_b\subseteq I_a\),
+so the sum is \(I_a\) and the intersection is \(I_b\);
+the other cases are the same two inclusions with indices
+interchanged. It follows that the explicit bijections
+\[
+ C_n\xrightarrow{\ \theta_p\ }\operatorname{Id}(R_{p,n}),
+       \quad j\mapsto I_{n-j},\qquad
+ C_n\xrightarrow{\ \theta_k\ }\operatorname{Id}(R_{k,n}),
+       \quad j\mapsto J_{n-j}                             \tag{MFC.41}
+\]
+preserve bottom, top, join, and meet, with ideal sum as
+join and ideal intersection as meet. Surjectivity here is
+the all-ideal statement just proved; injectivity is the
+strictness proved above. Thus these are isomorphisms of
+the bounded-lattice semirings, preserving every stratum.
+
+\paragraph{MFC.16. The separate, complete ideal-product law.}
+The very same ideal carriers also retain ordinary ideal
+multiplication, with its different operation:
+\[
+ \begin{gathered}
+ I_aI_b=I_{\min(n,a+b)},\qquad
+ J_aJ_b=J_{\min(n,a+b)},\\
+ V_n=\bigl(\{0,\ldots,n\},\ \min,\ (a,b)\mapsto
+                   \min(n,a+b),\ 0_{V_n}=n,\ 1_{V_n}=0\bigr).
+ \end{gathered}                                          \tag{MFC.42}
+\]
+Indeed the product of the principal ideals generated by
+\(x,y\) is generated by \(xy\): every finite sum of
+products \(xr\cdot ys\) is a multiple of \(xy\), and
+\(xy\) itself is one of the generating products.
+Applying this fact to \(p^a,p^b\), and to
+\(\epsilon^a,\epsilon^b\), proves the displayed laws,
+including the vanishing for \(a+b\ge n\).
+The maps \(a\mapsto I_a\) and \(a\mapsto J_a\) are
+therefore bijective semiring homomorphisms from \(V_n\)
+to the respective all-ideal carriers with sum and
+ordinary ideal product. For completeness, associativity
+of the operation on exponents follows from
+\(\min(n,\min(n,a+b)+c)=\min(n,a+b+c)\);
+its unit and absorbing zero are \(0\) and \(n\).
+The identity
+\[
+ \min(n,a+\min(b,c))
+       =\min\bigl(\min(n,a+b),\,\min(n,a+c)\bigr)
+                                                               \tag{MFC.43}
+\]
+proves distributivity over the addition \(\min\).
+This also checks all semiring laws directly on \(V_n\).
+
+Under the order-preserving coordinates of (MFC.41),
+ordinary ideal multiplication is the operation
+\[
+             j\mathbin{\odot}\ell=\max(0,j+\ell-n)
+             \quad\text{on }C_n,                         \tag{MFC.44}
+\]
+because \(n-\min(n,(n-j)+(n-\ell))=\max(0,j+\ell-n)\).
+It is distinct from the meet \(\min(j,\ell)\) when
+\(n\ge2\): for \(j=\ell=n-1\), their values are
+\(\max(0,n-2)\) and \(n-1\). Equivalently,
+\(I_1^2=I_2\) whereas \(I_1\cap I_1=I_1\), with
+the convention \(I_2=0\) when \(n=2\), and the
+same distinction holds for \(J_1\).
+The identity map on either all-ideal carrier preserves
+the carrier, order, zero, unit, and addition between
+these two presentations, but does not in general
+preserve multiplication. Equations (MFC.40)--(MFC.44)
+give its exact transported operations. No identification
+of the two underlying arithmetic rings is asserted.
+
+\paragraph{MFC.17. Coefficient transport, support preservation, and prime maps.}
+The preceding constructions are accompanied by their original
+coefficient maps; they are not merely lists of properties.
+For a unital ring homomorphism \(f:R\to R'\), define
+\[
+ G(f)(\tau_R)=\tau_{R'},\qquad
+ G(f)(r^\bullet)=f(r)^\bullet.                             \tag{MFC.45}
+\]
+Equation (MFC.2) proves that this is a unital semiring
+homomorphism, including when a nonzero \(r\) has
+\(f(r)=0\): that entry is still supported.
+For a family \(f_i:R_i\to R_i'\), the product map
+\(\prod_iG(f_i)\) preserves each mask exactly, has
+amplitude \(\prod_i f_i\), and commutes with \(j\)
+and \(J\) in (MFC.8) and (MFC.33).
+Each assertion follows by substituting into one
+coordinate of the displayed formulas; inactive
+coordinates stay absent and active ones stay supported.
+Thus the support square and every independent face
+remain part of the transported diagram.
+
+For \(f:A\to A'\), let
+\(\bar f:A[t]/(t^2+1)\to A'[t]/(t^2+1)\) be
+\(\bar f(a+tb)=f(a)+tf(b)\). This is well-defined
+and a unital ring homomorphism: applying \(f\) to
+the two coefficients of a product
+\((ac-bd)+t(ad+bc)\) gives exactly the corresponding
+product of the two images. Define
+\[
+ D(f)(a,b)=(G(f)(a),G(f)(b)),\quad
+ q_{D_{A'}}D(f)=G(\bar f)q_{D_A},\quad
+ D(f)\iota_A=\iota_{A'}G(\bar f).                          \tag{MFC.46}
+\]
+The equality \(G(f)(u)=(-1_{A'})^\bullet\) and
+(MFC.11) prove that \(D(f)\) is a unital semiring
+homomorphism. It sends \(X_a,Y_b,Z_z\) respectively
+to \(X_{f(a)},Y_{f(b)},Z_{\bar f(z)}\), so it
+preserves each of the four faces exactly and proves
+both commuting identities in (MFC.46). It sends
+\(Z_1\) to \(Z_1\), hence also induces the corner
+and localization map already represented by \(G(\bar f)\).
+
+For ideals in the primed rings its inverse-image formulas are
+\[
+ \begin{aligned}
+ D(f)^{-1}(M_{H'})&=M_{\bar f^{-1}(H')},\\
+ D(f)^{-1}(I_{J',H'})&=I_{f^{-1}(J'),\,\bar f^{-1}(H')},\\
+ D(f)^{-1}(P_\tau)&=P_\tau,\qquad D(f)^{-1}(M)=M,\\
+ D(f)^{-1}(Q_{\mathfrak q'})
+      &=Q_{\bar f^{-1}(\mathfrak q')},\qquad
+ D(f)^{-1}(T_{\mathfrak p'})
+      =T_{f^{-1}(\mathfrak p')}.
+ \end{aligned}                                           \tag{MFC.47}
+\]
+The first two formulas follow by the exact face images,
+and the required condition on the second ideal pair holds:
+if \(a\in f^{-1}(J')\) and \(b\in B\), then
+\(\bar f(ab)=f(a)\bar f(b)\in J'B'\subseteq H'\).
+Closure under sums gives
+\(f^{-1}(J')B\subseteq\bar f^{-1}(H')\).
+The two constant-family formulas follow because nonempty
+faces and full faces remain in precisely those classes.
+For the \(Q\)-formula the contraction identity
+\(\bar f^{-1}(\mathfrak q')\cap A
+=f^{-1}(\mathfrak q'\cap A')\) proves agreement of both
+indices. Inverse images of proper prime ideals under
+unital ring maps are proper primes, because they omit
+the unit and satisfy the prime product implication.
+This proves the typing and the final two formulas.
+These maps are continuous on ideal-theoretic spectra:
+for any ideal \(\mathcal I\subseteq D_A\), the inverse
+image, under prime contraction, of the closed set of
+primes containing \(\mathcal I\) is the set of primes
+of \(D_{A'}\) containing the ideal generated by
+\(D(f)(\mathcal I)\). The two containment conditions
+are equivalent by the definition of inverse image.
+
+Finally, for a bounded-lattice homomorphism
+\(\beta:L\to L'\) preserving bottom, top, joins, and meets and a
+unital ring homomorphism \(f:R\to R'\), the map
+\[
+ G_\beta(f):G_L(R)\to G_{L'}(R'),\quad
+ (r,\lambda)\mapsto(f(r),\beta(\lambda))                  \tag{MFC.48}
+\]
+is well-defined: a nonzero target amplitude comes
+from a nonzero source amplitude, hence from
+\(\lambda=1_L\), whose image is \(1_{L'}\).
+The two operations in (MFC.29) and the hypotheses
+on \(f,\beta\) prove preservation of sum, product,
+zero, and unit. It commutes with amplitude and
+support via \(f,\beta\), and sends \(z_\lambda\)
+to \(z_{\beta(\lambda)}\).
+Its localization transport is the map
+\(\downarrow\lambda\to\downarrow\beta(\lambda)\),
+\(\nu\mapsto\beta(\nu)\), because
+\[
+ \beta\bigl(\ell_\lambda(r,\mu)\bigr)
+ =\beta(\lambda\wedge\mu)
+ =\beta(\lambda)\wedge\beta(\mu)
+ =\ell_{\beta(\lambda)}
+       \bigl(G_\beta(f)(r,\mu)\bigr).                      \tag{MFC.49}
+\]
+It preserves the interval unit and bottom.
+The threshold maps of MFC.14 are exactly this
+construction for \(f=\operatorname{id}_R\) and
+\(\beta=\alpha_k\), after the isomorphism
+\(G_{\mathbb B}(R)\cong G(R)\) sending
+\((0_R,0)\) to \(\tau_R\) and \((r,1)\) to
+\(r^\bullet\). Substitution in (MFC.29) and (MFC.2)
+proves that this last bijection is a unital
+semiring isomorphism.
+All maps in this attachment preserve their stated
+source indices and codomains. Their exact fibres
+identify the information forgotten by a specified
+observation while retaining the full carriers to
+which the observation is attached.

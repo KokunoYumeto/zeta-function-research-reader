@@ -1,0 +1,23 @@
+# Split-Zero Cohomology and Arithmetic Weight Control
+
+This cumulative edition contains the complete 387-page reader, with 35 proof chapters and 16 complete source appendices.
+
+[Read the complete PDF](Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+
+The new chapters construct the exact transitions between the original relative polynomial frames, prove density in the retained arithmetic fibre measures, and carry the full derivative graph through those transitions. They calculate the normal-image limits and the subsequent arithmetic observation. Estimates on a fixed original source or a fixed target metric are stated with those metrics; the changing actual metrics retain their explicit transition maps, inverse costs and source coefficients.
+
+The cyclic arithmetic continuation retains the original sum S, every collided sum eigenvalue, its maximal nilpotent length at each ideal power, the full arithmetic unit and the complementary symmetric module. Its source norm is the original convolution measure. The minimum interpolation Gram, rank-two defect, derivative moment cross terms and comparison with the full source minimum are written in the complete proofs. All original masses, Jacobians, orientations, signs and tensor factors remain attached. No uniform arithmetic estimate or proof of RH is asserted by these finite identities and source-limit results.
+
+The full supplied Cyclic Sum Control TeX note is printed as a complete source appendix. Its original ZIP has 443,378 bytes, 43 members and SHA256 e0e4d0ecda69e4738dcb4cdd3b750e623d863eac8b44f353737393e720a840a7; all members are included unchanged. Its 42-entry manifest excludes itself. Seven prior Sum Connection files are retained inside that ZIP; its reference to 48 prior manifest entries concerns the separate earlier archive. The complete inherited packages remain available from the F edition included here.
+
+The separately supplied conormal-tower mathematical continuation is preserved byte-for-byte and printed in full, including both Lean code blocks. Its SHA256 is 18f86ad411d0dfafc003aabddf25bccae2d38dcc4006c4d27e5be8aece9347b8. The proposed Lean continuation is explicitly uncompiled. Its historical reports about repository status, Mathlib inspection and Wolfram checks are source statements, not additional verification attributed to this edition. The integrated treatment specifies the positive-degree and empty-packet cases and retains the original unit and reflection hypotheses.
+
+The complete Exterior Trace Amplification source note is also printed in full. Its original 35-member ZIP has SHA256 168f977a9b54cf461f564e099fe55dc7b8feffbc09c563f541e0be2bb5746a94. The source retains the original Gram adjoint, additive exterior action, factorial tensor inclusion, full generalized eigenspaces and quartet multiplicities. Its amplification lower bound leaves the actual arithmetic upper estimate to the continuing calculation. The independent source review and finite-check receipts state their precise scopes.
+
+PR 21's complete mathematical note is included at implementation commit 2abc351424ba87aeda948a5cfb846e15ed9373d1, with all eight added Git source blobs and separately recorded remote CI evidence. This later repository implementation and the earlier uncompiled pasted draft retain their respective revisions. No new local Lean run is attributed to this edition.
+
+The independently replayed cyclic checker passes all 24 methods normally and under optimized Python with SymPy 1.14.0; each deliberate-failure run rejects exactly one of the same 24 methods. Original-coordinate nested-frame fixtures and their exact reviewed scopes accompany the new proofs. The complete check and proof/source inventories are in checks/cyclic_integration_manifest.json. These finite calibrations supplement the written proofs and do not certify arithmetic zero locations, Lean compilation or an analytic asymptotic estimate.
+
+To rebuild the reader, install Python, XeLaTeX and the packages/fonts declared in tex/main.tex, then run `python scripts/build_reader.py` from this directory. Every converted source body is included. Portable finite checkers retain their original relative paths. The original cyclic source replay driver accepts explicit `--source`, `--archive` and `--output` paths and requires SymPy 1.14.0.
+
+PDF SHA256: 1a23b8b967029d3452ab3be77bbcd178d77a9c8fd546e783c2fe13052ca5b4dd. PUBLIC_SOURCE_MANIFEST.json records original/public file hashes and the metadata-alias policy. Earlier moments, coherent, frontier and Stieltjes continuation directories remain unchanged. The complete contributed PDF and final review receipts identify this edition; local rebuilds may differ in PDF metadata.

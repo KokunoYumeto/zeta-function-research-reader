@@ -1,0 +1,800 @@
+\section{Source enclosures and convergent signed projector control}
+\label{sec:incoming-source-metric-control}
+
+This chapter incorporates the complete written derivations in the
+user-supplied continuation following merged PR29.  The canonical
+secant and quotient-variation identities already occur in that PR.
+The four-projector pairing is the same pairing as AW and SP, with
+the exact coordinate correspondence proved below.  The source
+sandwich, restriction-loss expression for its Hilbert--Schmidt
+size, and centered signed enclosure are retained in their full
+forms.  We additionally construct the approximating operator in
+that enclosure and prove an explicit convergent residual bound.
+The supplied Lean draft is preserved separately as uncompiled;
+the mathematical scope here is the written proof.
+
+\subsection{The unchanged polynomial and arithmetic source}
+
+Fix the actual full packet \(h\), tensor order \(k\geq1\), and
+its monic cyclic polynomial \(\chi=\chi_{h,k}\) of degree \(q\geq1\).
+Put \(E=\mathbb{C}[S]/(\chi)\), \(H=\mathcal P_{2q}\), and \(n=2q+1\).
+All coordinates are the original ascending monomial coordinates.
+The original analytic source and observation are
+\[
+ \begin{gathered}
+ g=2\xi,\qquad \mathcal M F_h=g/h,\qquad
+ \mathcal V P=P(D_1+\cdots+D_k)F_h^{\otimes k},\\
+ J^{(k)}\mathcal VP=\eta_{h,k}\pi_\chi P,\qquad
+ \eta_{h,k}[P]=\upsilon_h^{\otimes k}P(A_h^{(k)})1,\quad
+ \upsilon_h=j_h(g/h),\quad A_h^{(k)}=\sum_{i=1}^k A_{h,i}.
+ \end{gathered}
+ \tag{ISM1}
+\]
+Here \(A_h\) is multiplication by the original coordinate on
+\(E_h=\mathbb{C}[s]/(h)\).  Thus the domain of \(\eta_{h,k}\)
+is \(E\), its codomain is \(E_h^{\otimes k}\), and its full
+unit is retained.  The minimal polynomial definition of \(\chi\)
+on the cyclic vector \(1\) proves that \([P]\mapsto
+P(A_h^{(k)})1\) is injective; multiplication by the invertible
+\(\upsilon_h^{\otimes k}\) preserves injectivity.
+
+For \(N\in\{q-1,q,2q-1,2q\}\), let
+\(I_N:\mathcal P_N\hookrightarrow H\) be coefficient inclusion,
+\(B_N:\mathcal P_{N-q}\to H\) multiplication by \(\chi\) followed
+by inclusion, and \(C:E\to H\) the degree-less-than-\(q\)
+remainder lift in the retained quotient basis.  The relation
+space is zero when \(N=q-1\).  Polynomial division by the
+monic \(\chi\) proves the exact sequence
+\[
+ 0\longrightarrow\mathcal P_{N-q}
+ \xrightarrow{\ \times\chi\ }\mathcal P_N
+ \xrightarrow{\ \pi_\chi\ }E\longrightarrow0.
+ \tag{ISM2}
+\]
+Indeed division writes every polynomial uniquely as
+\(\chi Q+r\), \(\deg r<q\); if its class is zero, \(r=0\).
+This also proves injectivity of the relation map and every
+dimension used below.
+
+Let \(M_0,M_1\) be the actual positive definite Hermitian forms
+on this same \(H\).  In the arithmetic comparison these are the
+moments of \(r_{1/4}^{*k}(y)\,dy\) and \(w_h^{*k}(y)\,dy\) in
+\(S=k/2+iy\), with \(w_h(y)=|(g/h)(1/2+iy)|^2/(2\pi)\).
+The finite identities below also hold for any two positive
+forms on this unchanged presentation.  The canonical section,
+its relation coefficient, and its positive quotient Gram are
+\[
+ \begin{split}
+ Z_N(M)&=(B_N^*MB_N)^{-1}B_N^*MC,\\
+ \rho_N(M)&=C-B_NZ_N(M):E\longrightarrow H,\\
+ G_N(M)&=\rho_N(M)^*M\rho_N(M),\qquad
+ V_N(M)=\det G_N(M)>0.
+ \end{split}
+ \tag{ISM3}
+\]
+At \(N=q-1\) the first map is the unique map to the zero
+space and \(B_NZ_N=0\); no preceding inverse is used.
+For every other degree, injectivity of \(B_N\) and positivity
+of \(M\) make its relation Gram positive definite.  Direct
+substitution gives \(B_N^*M\rho_N=0\) and
+\(\pi_\chi\rho_N=1_E\).  Hence \(\rho_N\) is injective,
+which proves positivity of \(G_N\).
+
+\subsection{Both scaled secants, with the original boundary terms}
+
+Fix one admitted \(N\), write \(\rho_a=\rho_N(M_a)\), and put
+\[
+ \Delta=\rho_1-\rho_0=B_N(Z_N(M_0)-Z_N(M_1)).
+ \tag{ISM4}
+\]
+For every coefficient map \(Z:E\to\mathcal P_{N-q}\),
+the two cross terms in the Gram expansion vanish by
+\(B_N^*M_a\rho_a=0\), giving
+\[
+ (\rho_a+B_NZ)^*M_a(\rho_a+B_NZ)
+   =G_N(M_a)+(B_NZ)^*M_a(B_NZ).
+ \tag{ISM5}
+\]
+Taking \(a=0,B_NZ=\Delta\), and then \(a=1,B_NZ=-\Delta\),
+proves
+\[
+ \rho_1^*M_0\rho_1=G_0+\Delta^*M_0\Delta,\qquad
+ \rho_0^*M_1\rho_0=G_1+\Delta^*M_1\Delta.
+ \tag{ISM6}
+\]
+Here \(G_a=G_N(M_a)\).  Subtracting the displayed matrices
+without deleting either boundary term yields, for real \(a,b\),
+\[
+ \begin{split}
+ G_1-aG_0
+ &=\rho_1^*(M_1-aM_0)\rho_1+a\Delta^*M_0\Delta,\\
+ bG_0-G_1
+ &=\rho_0^*(bM_0-M_1)\rho_0+\Delta^*M_1\Delta.
+ \end{split}
+ \tag{ISM7}
+\]
+In particular both boundary terms have the positive signs
+shown.  For \(0<a\leq b\) and
+\(aM_0\preceq M_1\preceq bM_0\), congruence of positive
+matrices and (ISM7) give
+\[
+ aG_N(M_0)\preceq G_N(M_1)\preceq bG_N(M_0)
+ \quad\hbox{at every one of the four degrees.}
+ \tag{ISM8}
+\]
+Such finite endpoints always exist: they may be taken to be
+the smallest and largest eigenvalues of \(M_0^{-1}M_1\),
+which is positive self-adjoint in the original \(M_0\) metric.
+
+Conjugating (ISM8) by \(G_N(M_0)^{-1/2}\) places every
+eigenvalue of the conjugated positive matrix in \([a,b]\).
+The determinant is its product and logarithm is the sum of
+the real logarithms, so
+\[
+ q\log a\leq\log\frac{V_N(M_1)}{V_N(M_0)}
+       \leq q\log b.
+ \tag{ISM9}
+\]
+Set
+\[
+ \mathcal B(M)=
+ \log\frac{V_{q-1}(M)V_q(M)}{V_{2q-1}(M)V_{2q}(M)},
+ \qquad \mathcal C=\mathcal B(M_1)-\mathcal B(M_0).
+ \tag{ISM10}
+\]
+There are exactly two positive and two negative terms in
+\(\mathcal C\).  Applying the upper endpoint in (ISM9) to
+the positive terms and the lower endpoint to the negative
+ones, and then reversing these choices, proves
+\[
+ |\mathcal C|\leq2q\log(b/a).
+ \tag{ISM11}
+\]
+Consequently a certified common source enclosure
+\((1-\varepsilon)\widehat M\preceq M\preceq
+(1+\varepsilon)\widehat M\), \(0\leq\varepsilon<1\), gives
+\[
+ |\mathcal B(M)-\mathcal B(\widehat M)|
+ \leq2q\log\frac{1+\varepsilon}{1-\varepsilon}.
+ \tag{ISM12}
+\]
+These are the supplied source-error estimates in their
+original forms.  At these same use sites the stronger
+previously proved AW/SP estimate must also be retained.
+For all ordered eigenvalues
+\(\beta_1\leq\cdots\leq\beta_{2q+1}\) of
+\(D=M_0^{-1}M_1\), define its full existing expression
+\[
+ \mathcal L_q(D)=\log\frac{\beta_{q+2}}{\beta_q}
+       +2\sum_{j=1}^{q-1}
+              \log\frac{\beta_{2q+2-j}}{\beta_j}.
+\]
+The sum is empty at \(q=1\).  AW's two nested-flag
+trace estimates, with the exact operator identification
+(ISM16)--(ISM19), give
+\[
+ |\mathcal C|\leq\mathcal L_q(D)
+             \leq(2q-1)\log(b/a).
+\]
+For the last inequality every displayed eigenvalue ratio
+is at most \(b/a\), and its total coefficient is
+\(1+2(q-1)=2q-1\).  Thus the same source enclosure in
+(ISM12) also gives the stronger
+\((2q-1)\log((1+\varepsilon)/(1-\varepsilon))\)
+bound.
+
+For the actual moment paths of RMT, let \(J_q\) be its
+integral of the pointwise minimum of the full-spectrum,
+exact trace-norm, overlap, centered Hilbert--Schmidt,
+and angle bounds.  Each bounds the identical derivative
+(ISM19); the Hilbert--Schmidt member is (ISM26).
+Taking their pointwise minimum before integrating gives
+the recursively refined source-error statement
+\[
+ \begin{gathered}
+ |\mathcal C|\leq
+ \min\{J_q,\mathcal L_q(D),(2q-1)\log(b/a)\},\\
+ \mathcal C\in
+ [J_L-\epsilon_L,J_L+\epsilon_L]\cap[-J_q,J_q]
+ \qquad(L\geq0).
+ \end{gathered}
+\]
+Here \(J_L,\epsilon_L\) are the fully constructed signed
+center and residual in (ISM31)--(ISM37).  Their interval
+therefore retains its original orientation in this earlier
+source-error calculation.  For generic positive coefficient
+forms, the full-spectrum, trace-norm, overlap,
+Hilbert--Schmidt and signed bounds still apply, but the
+moment-specific angle improvement and its strict
+moment-positivity proof are used only on the original
+moment paths.  The exact primitive and coefficient
+support are established in (ISM38)--(ISM43).
+Scaling a source by \(c>0\) leaves \(Z_N,\rho_N\) unchanged
+and multiplies \(G_N,V_N\) by \(c,c^q\), respectively,
+directly by (ISM3).  Thus its four \(q\log c\) terms cancel
+in (ISM10); this proves the scalar invariance without
+altering any source form.
+
+\subsection{The canonical projector is exactly the original difference}
+
+Use \(x\in[0,1]\) for the comparison path, retaining the
+frequency \(y\) and all other deformation parameters.
+Write
+\[
+ M_x=(1-x)M_0+xM_1,\quad \dot M=M_1-M_0,\quad
+ X_x=M_x^{-1}\dot M.
+ \tag{ISM13}
+\]
+Since \(M_xX_x=\dot M=\dot M^*\), this is self-adjoint in
+the original \(M_x\) inner product.  Define
+\[
+ \begin{split}
+ P_N&=I_N(I_N^*M_xI_N)^{-1}I_N^*M_x,\\
+ Q_N&=B_N(B_N^*M_xB_N)^{-1}B_N^*M_x,\qquad Q_{q-1}=0,\\
+ \Pi_N&=\rho_NG_N^{-1}\rho_N^*M_x.
+ \end{split}
+ \tag{ISM14}
+\]
+Each formula squares to itself and has \(M_x\)-self-adjoint
+adjoint law.  The ranges of the first two are
+\(\mathcal P_N\) and \(B_N\mathcal P_{N-q}\); the range of
+the third is \(\rho_NE\).  By (ISM2)--(ISM3),
+\[
+ \mathcal P_N=\rho_NE\mathbin{\perp_{M_x}}B_N\mathcal P_{N-q}.
+ \tag{ISM15}
+\]
+To prove the equality, subtract \(\rho_N\pi_\chi p\) from
+any \(p\in\mathcal P_N\); (ISM2) puts the result in the
+relation range, and (ISM3) proves orthogonality.  Therefore
+the original \(P_N,Q_N\) commute with product \(Q_N\), and
+their orthogonal range decomposition proves the exact
+operator identity
+\[
+ \Pi_N=P_N-Q_N,\qquad \operatorname{Tr}\Pi_N=q.
+ \tag{ISM16}
+\]
+The inverse of the range parametrization
+\(\rho_N:E\to\operatorname{ran}\Pi_N\) is the literal
+\(\pi_\chi\) restricted to that range; both composites are
+identities by (ISM3).  Thus (ISM16) identifies actual maps
+and their domains, not only their traces.
+
+Define
+\[
+ \begin{split}
+ \mathcal A_x&=\Pi_{q-1}+\Pi_q-\Pi_{2q-1}-\Pi_{2q},\\
+ U_x&=Q_{2q-1}+Q_{2q}-Q_q,\\
+ W_x&=(P_{2q-1}-P_{q-1})+(P_{2q}-P_q).
+ \end{split}
+ \tag{ISM17}
+\]
+Substitution of (ISM16), with \(Q_{q-1}=0\), gives
+\(\mathcal A_x=U_x-W_x\) and
+\(\operatorname{Tr}\mathcal A_x=0\).
+These \(U_x,W_x\) are AW's \(U,W\) and SP's
+\(\mathcal R,\mathcal P\), respectively.  The source
+relation matrix is related to AW's unpadded matrix by
+\(B_N=I_NB_N^{\rm AW}\), so (ISM14) reproduces its
+actual projections with no sign or metric change.
+
+Differentiating \(\pi_\chi\rho_N=1\) shows that \(\rho_N'\)
+has image in the original relation space.  More explicitly,
+differentiation of \(B_N^*M_x\rho_N=0\) gives
+\[
+ \rho_N'=-B_N(B_N^*M_xB_N)^{-1}B_N^*\dot M\rho_N,\qquad
+ G_N'=\rho_N^*\dot M\rho_N.
+ \tag{ISM18}
+\]
+The second identity follows because the two cross terms
+containing \(\rho_N'\) vanish by the same orthogonality.
+All these matrices are smooth on the closed interval,
+since their positive Gram inverses exist there.
+Jacobi differentiation and cyclicity of finite trace prove
+\[
+ \frac{d}{dx}\log V_N=\operatorname{Tr}(X_x\Pi_N),\qquad
+ \mathcal B'(x)=\operatorname{Tr}(X_x\mathcal A_x),\qquad
+ \mathcal C=\int_0^1\operatorname{Tr}(X_x\mathcal A_x)\,dx.
+ \tag{ISM19}
+\]
+For the original row \(v(y)=(1,S,\ldots,S^{2q})\),
+\(\Pi_NM_x^{-1}=\rho_NG_N^{-1}\rho_N^*\).  Thus the
+signed density in PR29 is exactly
+\[
+ \kappa_x(y)=v(y)\mathcal A_xM_x^{-1}v(y)^*,\qquad
+ \int\kappa_x\,d\mu_x=\operatorname{Tr}\mathcal A_x=0.
+ \tag{ISM20}
+\]
+The first equality keeps the inverse metric that is
+required by the original coordinate kernel.  Integrating
+against the original signed measure \(\mu_1-\mu_0\)
+gives precisely (ISM19).
+
+\subsection{Restriction losses and the full cross trace}
+
+Fix \(i\leq j\) among admitted degrees.  The map
+\(\rho_i-\rho_j:E\to\mathcal P_j\) has zero remainder,
+so (ISM2) makes it an original degree-\(j\) relation.
+Orthogonality of \(\rho_j\) therefore gives the cross-Grams
+\[
+ \rho_j^*M_x\rho_i=G_j,\qquad
+ \rho_i^*M_x\rho_j=G_j,\qquad
+ G_i-G_j=(\rho_i-\rho_j)^*M_x(\rho_i-\rho_j).
+ \tag{ISM21}
+\]
+The exact reverse restriction on \(E\) is
+\(T_{i,j}=G_i^{-1}G_j\).  It is positive self-adjoint
+in \(G_i\), with spectrum in \((0,1]\), by the last
+identity.  Cyclic trace and the first two identities give
+\[
+ \begin{split}
+ \operatorname{Tr}(\Pi_i\Pi_j)
+ &=\operatorname{Tr}
+ (G_i^{-1}(\rho_i^*M_x\rho_j)G_j^{-1}
+                  (\rho_j^*M_x\rho_i))\\
+ &=\operatorname{Tr}(G_i^{-1}G_j),\\
+ \operatorname{Tr}((\Pi_i-\Pi_j)^2)
+ &=2\operatorname{Tr}(1-T_{i,j}).
+ \end{split}
+ \tag{ISM22}
+\]
+All traces are finite traces of the original coordinate
+operators.  In particular their spectra are not declared
+to be arithmetic invariant summands.
+
+Set
+\[
+ \begin{gathered}
+ A_0=\Pi_{q-1}-\Pi_{2q-1},\quad
+ A_1=\Pi_q-\Pi_{2q},\\
+ \ell_0=\operatorname{Tr}(1-T_{q-1,2q-1}),\quad
+ \ell_1=\operatorname{Tr}(1-T_{q,2q}),\\
+ Z_x=\operatorname{Tr}(\mathcal A_x^2)
+       =2\ell_0+2\ell_1+2\operatorname{Tr}(A_0A_1).
+ \end{gathered}
+ \tag{ISM23}
+\]
+This retains the cross term with its actual sign.
+On the full algebra \(\operatorname{End}(H)\), the map
+\(L\mapsto M_x^{1/2}LM_x^{-1/2}\) is an algebra
+isomorphism with inverse \(K\mapsto M_x^{-1/2}KM_x^{1/2}\).
+It sends the \(M_x\)-self-adjoint operators to Hermitian
+operators, and cyclicity preserves traces of every
+product.  This proves \(Z_x\geq0\) and, from
+\(\|A_0+A_1\|_{\rm HS}^2\leq
+2\|A_0\|_{\rm HS}^2+2\|A_1\|_{\rm HS}^2\), proves
+\[
+ 0\leq Z_x\leq4(\ell_0+\ell_1).
+ \tag{ISM24}
+\]
+Here and below the Hilbert--Schmidt norm is computed after
+this exact metric isomorphism; no new source metric is used.
+
+Put
+\[
+ c_x=\frac{\operatorname{Tr}X_x}{n},\qquad
+ \Sigma_x=\operatorname{Tr}(X_x^2)
+              -\frac{(\operatorname{Tr}X_x)^2}{n}.
+ \tag{ISM25}
+\]
+The trace is real by self-adjointness.  Expanding
+\(\operatorname{Tr}((X_x-c_xI)^2)\) proves its equality
+with \(\Sigma_x\), hence its nonnegativity.
+Trace zero of \(\mathcal A_x\), and Cauchy--Schwarz for
+the two Hermitian images in the preceding isomorphism, give
+\[
+ |\mathcal B'(x)|
+ \leq S_q(x):=\sqrt{\Sigma_xZ_x}
+ \leq2\sqrt{\Sigma_x(\ell_0+\ell_1)}.
+ \tag{ISM26}
+\]
+This bound can be combined pointwise with the existing
+full-spectrum, exact trace-norm, overlap, and angle
+bounds on the same \(\mathcal B'\).  It does not replace
+any smaller available bound.
+
+\subsection{A specified signed approximation and its exact residual}
+
+For an \(M_x\)-self-adjoint, continuous operator \(Y_x\)
+define \(E_x=X_x-c_xI-Y_x\).  It is self-adjoint too.
+Expanding the trace and applying the same Cauchy--Schwarz
+inequality proves the two signed inequalities
+\[
+ \operatorname{Tr}(Y_x\mathcal A_x)
+       -\sqrt{\operatorname{Tr}(E_x^2)Z_x}
+ \leq\mathcal B'(x)\leq
+ \operatorname{Tr}(Y_x\mathcal A_x)
+       +\sqrt{\operatorname{Tr}(E_x^2)Z_x}.
+ \tag{ISM27}
+\]
+Every term is real.  Integration is legitimate by
+continuity on the compact interval.  We now construct
+such a \(Y_x\), with its residual controlled from the
+actual two endpoint forms.
+
+Let \(D=M_0^{-1}M_1\), with ordered positive eigenvalues
+\(b_1\leq\cdots\leq b_n\), counted with multiplicity.
+For this subsection write \(B_x^\circ=(1-x)I+xD\),
+to distinguish it from every original relation matrix.
+Since \(M_x=M_0B_x^\circ\), direct inversion gives
+\[
+ X_x=(B_x^\circ)^{-1}(D-I),\qquad
+ \lambda_j(x)=1-x+xb_j,\qquad
+ \gamma_j(x)=\frac{b_j-1}{1-x+xb_j}.
+ \tag{ISM28}
+\]
+Take an \(M_0\)-orthogonal eigenbasis of \(D\).
+It is also \(M_x\)-orthogonal, since on its \(j\)-th
+line \(M_x\) multiplies \(M_0\) by \(\lambda_j(x)>0\).
+Therefore (ISM28) gives the full spectrum of \(X_x\)
+in the original varying metric.
+
+Define the positive scalar and commuting operator
+\[
+ a_x=\frac{\lambda_1(x)+\lambda_n(x)}2,\qquad
+ H_x=I-B_x^\circ/a_x.
+ \tag{ISM29}
+\]
+Their use does not rescale \(M_x\), its moments, or
+its quotient Grams.  The eigenvalues of \(H_x\) are
+\(\zeta_j(x)=1-\lambda_j(x)/a_x\), and
+\[
+ \|H_x\|_{M_x}
+ =\frac{x(b_n-b_1)}{2(1-x)+x(b_1+b_n)}
+ \leq\vartheta:=\frac{b_n-b_1}{b_n+b_1}<1.
+ \tag{ISM30}
+\]
+Indeed the extrema of \(1-\lambda/a_x\) are equal
+and opposite at the two endpoints.  The displayed
+scalar function of \(x\) has derivative
+\(2(b_n-b_1)/(2(1-x)+x(b_1+b_n))^2\geq0\).
+This proves the uniform bound, including \(x=0\).
+
+For every integer \(L\geq0\), form the finite matrix
+polynomial and its centered version
+\[
+ \begin{split}
+ X_x^{[L]}&=a_x^{-1}
+        \sum_{r=0}^L H_x^r(D-I),\\
+ Y_x^{[L]}&=X_x^{[L]}
+               -\frac{\operatorname{Tr}X_x^{[L]}}n I.
+ \end{split}
+ \tag{ISM31}
+\]
+All factors commute with \(D\) and are real functions of
+its self-adjoint operator.  They are consequently
+self-adjoint in both \(M_0\) and \(M_x\).
+The exact finite geometric-series identity
+\((I-H_x)\sum_{r=0}^L H_x^r=I-H_x^{L+1}\),
+together with \(B_x^\circ=a_x(I-H_x)\), proves
+\[
+ \begin{split}
+ R_x^{[L]}&:=X_x-X_x^{[L]}=H_x^{L+1}X_x,\\
+ E_x^{[L]}&:=X_x-c_xI-Y_x^{[L]}
+     =R_x^{[L]}-\frac{\operatorname{Tr}R_x^{[L]}}n I.
+ \end{split}
+ \tag{ISM32}
+\]
+No infinite-series interchange is used in this identity.
+In the original eigenbasis the residual eigenvalues
+are \(\delta_j(x)=\zeta_j(x)^{L+1}\gamma_j(x)\).
+Thus its exact centered squared size is
+\[
+ \operatorname{Tr}((E_x^{[L]})^2)
+   =\sum_{j=1}^n\delta_j(x)^2
+       -\frac{(\sum_{j=1}^n\delta_j(x))^2}{n}.
+ \tag{ISM33}
+\]
+Both sides are nonnegative, and all multiplicities
+and signs of the residual eigenvalues are retained.
+The signed center is
+\(\operatorname{Tr}(Y_x^{[L]}\mathcal A_x)
+=\operatorname{Tr}(X_x^{[L]}\mathcal A_x)\)
+by \(\operatorname{Tr}\mathcal A_x=0\).
+Equations (ISM27), (ISM31)--(ISM33) therefore provide
+a finite constructed signed center and its exact error.
+
+There is also a uniform elementary error bound for
+this fixed original pair of forms.  Define
+\[
+ K_D=\sum_{j=1}^n
+       \left(\frac{|b_j-1|}{\min\{1,b_j\}}\right)^2.
+ \tag{ISM34}
+\]
+The denominator of \(\gamma_j(x)\) is at least
+\(\min\{1,b_j\}\), so (ISM30)--(ISM33) imply
+\(\operatorname{Tr}((E_x^{[L]})^2)
+\leq\vartheta^{2L+2}K_D\).
+The nested relation and source flags in (ISM17)
+give both \(U_x,W_x\) eigenvalues
+\(0^{[q]},1^{[2]},2^{[q-1]}\): the first relation
+line contributes one, its next \(q-1\) increments
+contribute two, and the final increment contributes
+one; the source increments give the same list.
+In particular both have rank \(q+1\), and each
+dominates its range projection.  Their ranges in
+dimension \(2q+1\) intersect in dimension at least one.
+The trace product of the two range projections is
+at least that intersection dimension, by summing
+squared projected lengths in an orthonormal basis.
+For positive operators, increasing a factor cannot
+decrease the product trace, since
+\(\operatorname{Tr}(T^{1/2}(S'-S)T^{1/2})\geq0\).
+It follows that \(\operatorname{Tr}(U_xW_x)\geq1\).
+Using their complete spectra, we obtain
+\[
+ Z_x=8q-4-2\operatorname{Tr}(U_xW_x)\leq8q-6.
+ \tag{ISM35}
+\]
+This proof includes \(q=1\), where the multiplicity
+\(q-1\) is zero.
+
+Set
+\[
+ \begin{split}
+ J_L&=\int_0^1
+          \operatorname{Tr}(X_x^{[L]}\mathcal A_x)\,dx,\\
+ \epsilon_L&=\int_0^1
+       \sqrt{\operatorname{Tr}((E_x^{[L]})^2)Z_x}\,dx.
+ \end{split}
+ \tag{ISM36}
+\]
+Every integrand is a specified continuous finite
+matrix expression on the original source path.
+Integrating (ISM27) with the constructed (ISM31)
+and the established uniform bound gives
+\[
+ J_L-\epsilon_L\leq\mathcal C\leq J_L+\epsilon_L,
+ \qquad
+ 0\leq\epsilon_L\leq
+       \vartheta^{L+1}\sqrt{K_D(8q-6)}
+       \xrightarrow[L\to\infty]{}0.
+ \tag{ISM37}
+\]
+Thus the supplied signed enclosure now has an
+explicit convergent residual on every fixed
+original finite source.  It retains the arithmetic
+correlation in its center.  The evaluation of the
+center integral still uses the specified arithmetic
+entries and a controlled integration method; this
+calculation supplies no uniform estimate in \(k\).
+If \(b_n=b_1\), then \(D=b_1I\), \(H_x=0\),
+the residual and \(\mathcal C\) vanish exactly,
+and every formula above remains valid.
+
+\subsection{The original primitive and the residual at a proper support}
+
+We finally prove the source comparison underlying
+all these metric changes.  In the original
+one-factor complex \(V\xrightarrow{\Theta}\mathscr B\),
+retain \(h(D)F_h=\Theta\phi_*\), with the original
+\(D\) action commuting with \(\Theta\).
+For \(v\in E\), the polynomial
+\((\rho_1-\rho_0)v=\chi Q_v\) has the coefficient
+\(Q_v=(Z_N(M_0)-Z_N(M_1))v\) by (ISM4).
+In the multivariate polynomial ring put
+\[
+ f_v(s_1,\ldots,s_k)
+  =\chi(s_1+\cdots+s_k)Q_v(s_1+\cdots+s_k).
+ \tag{ISM38}
+\]
+Its image in \(E_h^{\otimes k}\) is zero, because
+\(\chi(A_h^{(k)})1=0\).  Successive monic division
+in \(s_1,\ldots,s_k\) constructs specific polynomials
+\(Q_{v,i}\) as follows.  Let \(f_{v,0}=f_v\) and write
+\(f_{v,i-1}=h(s_i)Q_{v,i}+f_{v,i}\), where
+\(\deg_{s_i}f_{v,i}<\deg h\).  Earlier remainder
+degree bounds are preserved because \(h(s_i)\)
+uses only \(s_i\).  The final remainder \(f_{v,k}\)
+has degree below \(\deg h\) in every variable and
+zero class in the quotient, so it is zero by the
+tensor monomial basis.  Telescoping proves
+\[
+ f_v=\sum_{i=1}^kh(s_i)Q_{v,i}.
+ \tag{ISM39}
+\]
+This constructs a primitive using precisely the
+original relations, without replacing them by a
+larger observation kernel.
+
+In the tensor complex
+\(\mathsf C^\bullet=[V\xrightarrow{\Theta}\mathscr B]^{\otimes k}\)
+define
+\[
+ K_v=\sum_{i=1}^k(-1)^{i-1}Q_{v,i}(D_1,\ldots,D_k)
+  \bigl(F_h^{\otimes(i-1)}\otimes\phi_*
+                   \otimes F_h^{\otimes(k-i)}\bigr)
+       \in\mathsf C^{k-1}.
+ \tag{ISM40}
+\]
+The displayed source tensor has exactly \(i-1\)
+preceding factors of degree one.  Its differential
+therefore has sign \((-1)^{i-1}\); multiplying by
+the sign in (ISM40) gives \(+1\).  The source
+operators commute with the differential.  Applying
+\(h(D_i)F_h=\Theta\phi_*\) to (ISM39) now proves
+\[
+ dK_v=\mathcal V((\rho_1-\rho_0)v).
+ \tag{ISM41}
+\]
+Consequently the two canonical sections have the
+same class in the original full-source quotient;
+their common arithmetic observation is exactly
+\(\eta_{h,k}v\) by (ISM1).  Composing with the
+original full-source quotient \(q^{(k)}\) gives
+the already constructed map
+\(\sigma_h^{\otimes k}\eta_{h,k}:E\hookrightarrow Q^{\otimes k}\).
+Here no map was made natural merely by changing
+its metric; the actual primitive (ISM40) is the
+comparison.
+
+To express the full two-leg source without deleting
+its diagonal, retain the labelled Fourier copy
+\(\widehat V\), with the original isomorphism
+\(\mathcal F:V\to\widehat V\), and the complex
+\(\mathsf T^\bullet=
+[V\oplus\widehat V\to\mathscr B]\), whose differential
+is \((\phi,\widehat\psi)\mapsto
+\Theta(\phi-\mathcal F^{-1}\widehat\psi)\).
+There are exact cochain maps from the one-leg complex
+to this complex with degree-one map identity and
+degree-zero maps
+\[
+ j_+(v)=(v,0),\qquad j_-(v)=(0,-\mathcal Fv).
+\]
+Indeed either differential equals \(\Theta v\).
+The reverse cochain map has degree-one map identity
+and degree-zero map
+\(p(\phi,\widehat\psi)=\phi-\mathcal F^{-1}\widehat\psi\).
+Thus \(pj_+=pj_-=1\), whereas
+\((j_+-j_-)(v)=(v,\mathcal Fv)\) is the full
+degree-zero diagonal kernel.  These formulas prove
+both composites and retain that kernel explicitly.
+Tensoring specified choices of these degree-zero
+maps with their degree-one identities gives cochain
+maps, since the displayed differential identities
+preserve each original tensor sign.  Apply one such
+map to (ISM40) to obtain
+\(\widetilde K_v\in(\mathsf T^{\otimes k})^{k-1}\).
+Its top differential is still (ISM41).
+
+For precision at a proper declared support
+\(\lambda=(W,S;A)\), let
+\(\mathscr I\) be the specified finite carrier of
+coefficient positions with \(A\subseteq\mathscr I\).
+Put
+\(\mathsf C_{\rm full}^\bullet=
+(\mathsf T^{\otimes k})^{\oplus\mathscr I}\),
+with the original differential on each coordinate.
+Insert the active \(A\)-coordinates by literal zero
+insertion into this fixed full carrier.  Let
+\(\mathsf C_\lambda^\bullet\subseteq
+\mathsf C_{\rm full}^\bullet\)
+be its declared subcomplex, retaining its independent
+outer label and coefficient mask.  The same source
+primitive is taken in the indicated coefficient copy.
+When the compared top source representatives lie
+in \(\mathsf C_\lambda^k\), their difference has
+the exact residual
+\[
+ [d\widetilde K_v]_\lambda\in
+ \frac{d\mathsf C_{\rm full}^{k-1}\cap\mathsf C_\lambda^k}
+      {d\mathsf C_\lambda^{k-1}}.
+ \tag{ISM42}
+\]
+This quotient is the kernel of the natural map
+\(\mathsf C_\lambda^k/d\mathsf C_\lambda^{k-1}
+\to\mathsf C_{\rm full}^k/d\mathsf C_{\rm full}^{k-1}\):
+a class maps
+to zero exactly when its representative is a
+full-source boundary.  The inclusion of the
+displayed numerator therefore induces the
+kernel isomorphism, with inverse obtained by
+using the same representative.  These two maps
+are well-defined since differences in
+\(d\mathsf C_\lambda^{k-1}\) are precisely the
+equivalence relation on both sides.
+Thus (ISM41) kills the class at this support
+exactly when \(d\widetilde K_v\in d\mathsf C_\lambda^{k-1}\).
+Membership \(\widetilde K_v\in\mathsf C_\lambda^{k-1}\)
+is one explicit sufficient witness, not an
+assumption made for arbitrary \(W\).
+
+First specialize to \(k=1\) and the single coefficient
+carrier \(\mathscr I=\{i_0\}\), with active face
+\(A=\{i_0\}\).  The coordinate projection onto \(i_0\)
+and its inverse coordinate insertion identify this
+one-coordinate carrier with the original one-factor
+complex.  In these specified coordinates put
+\(\mathscr B_\lambda=\mathsf C_\lambda^1
+\subseteq\mathscr B\).  Suppose the admitted source
+image under \(p\) is \(W\subseteq V\), so its
+boundary range is exactly \(\Theta W\), and retain
+\(\Theta V\subseteq\mathscr B_\lambda\).
+The precise kernel map in this single coordinate is
+\[
+ V/W\longrightarrow\mathscr B_\lambda/\Theta W,
+ \qquad [v]\longmapsto[\Theta v]_W.
+ \tag{ISM43}
+\]
+It is injective because \(\Theta\) is injective:
+\(\Theta v=\Theta w\), \(w\in W\), forces \(v=w\).
+Its range is the kernel of the map to the full
+quotient \(\mathscr B/\Theta V\), since being in
+that kernel means being represented by
+\(\Theta v\).  In this case (ISM42) is exactly
+the class of the original one-factor primitive
+in \(V/W\).
+
+For an arbitrary admitted face \(A\subseteq\mathscr I\),
+restore the original coordinate injections
+\(\iota_a:\mathscr B\to\mathscr B^{\oplus\mathscr I}\)
+and projections
+\(\operatorname{pr}_a:\mathscr B^{\oplus\mathscr I}
+\to\mathscr B\).  They satisfy
+\(\operatorname{pr}_b\iota_a=\delta_{ab}1\) and
+\(\sum_{a\in A}\iota_a\operatorname{pr}_a=1\)
+on the \(A\)-supported subspace.
+Let the degree-one source at this face be
+\(\mathscr B_\lambda^{\oplus A}\), inserted in the
+fixed carrier by these \(\iota_a\), and retain the
+degree-zero source image \(W^{\oplus A}\) and
+boundary \((\Theta W)^{\oplus A}\).  Its kernel map is
+\[
+ (V/W)^{\oplus A}\longrightarrow
+ \mathscr B_\lambda^{\oplus A}/(\Theta W)^{\oplus A},
+ \qquad
+ ([v_a])_{a\in A}\longmapsto
+ \left[\sum_{a\in A}\iota_a\Theta v_a\right].
+\]
+Replacing \(v_a\) by \(v_a+w_a\), \(w_a\in W\),
+changes the displayed sum by the specified
+boundary, so the map is well-defined.  If its
+image is zero, projection by each
+\(\operatorname{pr}_a\) gives
+\(\Theta v_a\in\Theta W\), whence \(v_a\in W\)
+by injectivity of \(\Theta\).  Thus the map is
+injective.  A representative in its codomain maps
+to zero in
+\((\mathscr B/\Theta V)^{\oplus\mathscr I}\)
+exactly when each active coordinate is
+\(\Theta v_a\) for some \(v_a\in V\).
+Its inverse on that kernel takes these unique
+preimages modulo \(W\).  Changing a representative
+by an element of \((\Theta W)^{\oplus A}\)
+changes each preimage by an element of \(W\).
+The coordinate identities above then prove both
+inverse composites.  This is the exact
+\((V/W)^{\oplus A}\) residual, with its full
+ambient carrier specified.
+
+For \(A\subseteq A'\), zero insertion sends the
+tuple \(([v_a])_{a\in A}\) to the same tuple
+extended by zero; both orders of this insertion
+and the kernel map give
+\(\sum_{a\in A}\iota_a\Theta v_a\).
+A signed coefficient permutation sends that sum
+to \(\sum_{a\in A}\epsilon_a
+\iota_{\sigma(a)}\Theta v_a
+=\sum_{a\in A}\iota_{\sigma(a)}
+\Theta(\epsilon_a v_a)\), which proves the
+same commuting identity with every sign retained.
+When \(A=\varnothing\), the two displayed direct
+sums and their unique map are zero vector spaces
+and a zero map at the retained outer label
+\((W,S;\varnothing)\); the coordinate calculation
+does not identify that label with external
+absence.  This proves
+the typed relation to the existing mixed-support
+quotients while retaining every proper-source
+residual.
+
+All source identities, projector equalities,
+scaled comparison signs, and signed estimates
+above use the same original finite polynomial
+presentation.  Their full primitive and proper
+support kernel have now been exhibited, so
+backward and forward propagation can replace
+weaker metric bounds at their earlier use sites
+without erasing the older sources or claiming
+that the arbitrary proper-support residual
+vanishes.

@@ -1,0 +1,9 @@
+# Arithmetic determinant transport in the original tau-based cohomology
+
+This folder supplies the complete arithmetic determinant transport calculation as a readable PDF and editable LaTeX. The main text includes AT1Ã¢â‚¬â€œ22 and AT2a in full, retaining the original coefficient complex, arithmetic observation and cohomology maps, all density constants, determinant orientation, and both relation and polynomial projection windows.
+
+The editable entry point is `Tau_Arithmetic_Determinant_Transport.tex`, with the complete body in `proofs/AT.tex`. `originals/AT_original.tex` preserves the accepted source. The shared wrapper supplies the missing script-font package and document layout; `evidence/LAYOUT.json` records the reversible equation-tag placements and determinant-line wrap. No formula, coordinate, sign or source mass is changed by those typography repairs.
+
+The complete supporting mathematical sources are in `dependencies/`. Their source guide records exact editions and SHA-256 hashes, each proofÃ¢â‚¬â„¢s role, and any historical provenance limitation. These are full proofs rather than excerpts. The accepted complete independent review RV1â€“RV28 is retained under `evidence/`, together with its acceptance receipt and the complete source and result of its 98 exact finite calibration checks. The five-page PDF contains all 23 AT equation tags; every page was visually inspected and the final build reports no warnings. The calibration checks supplement the written proof and do not assert a zeta zero packet.
+
+To rebuild, use a LaTeX distribution with the packages named in the main preamble and run `python build.py`. The build performs three pdfLaTeX passes and runs no mathematical checker or Lean process. Final compilation, visual inspection, formula-presence and source-inverse receipts accompany the artifact. `MANIFEST.json` lists every delivered payload except itself using relative paths, byte counts and SHA-256 hashes.

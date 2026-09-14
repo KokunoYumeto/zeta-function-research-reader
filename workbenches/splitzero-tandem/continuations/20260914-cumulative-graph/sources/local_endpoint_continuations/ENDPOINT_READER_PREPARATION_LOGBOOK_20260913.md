@@ -1,0 +1,23 @@
+# Endpoint reader preparation logbook
+
+The parent task assigns preparation of the next endpoint cumulative edition while the current 478-page Gamma edition is completed. This lane may write preparation artifacts under `work`. It may not edit the cumulative TeX, build the reader, change a publication stage, execute mathematical checkers, or publish. The root maintains the full user-input ledger; its two complete new mathematical pastes are retained verbatim in `logbook/ARITHMETIC_ENDPOINT_USER_SOURCE_1_20260913.txt` and `logbook/ARITHMETIC_ENDPOINT_USER_SOURCE_2_20260913.txt` of the cumulative source repository.
+
+The finite assigned sources are the 32-member Arithmetic Endpoint Bounds archive, both complete pastes, the complete EW chapter and its final manifest, the incoming endpoint product proof and intake audit, the owner's full balanced four-volume proof, and the sealed PR24 source/correction package. All mathematical bodies are to be retained in full. Existing Gamma dependencies need exact inherited locators, not a repeated broad source scan.
+
+## Completed reading and decisions
+
+- Read all 840 lines of the original `NOTE.tex`, including equations 1–48 and the complete norm proof, relation-layer construction, and source report. Read both full mathematical pastes. The Markdown remains the original reader witness; its supplied HTML has a separate intake receipt for 225 ordered body math nodes, the one table-of-contents repeat, and all 48 displays.
+- Read the complete 1,235-line EW TeX, including the original source/cochain maps, every finite interval step, both strengthened sensitivity comparisons, all boundary cases, and complete rational examples through EW.59. Its 12,460-byte Markdown is shorter than its 54,563-byte TeX and is not the full reader input.
+- Read the complete immutable PR23 criterion and full arithmetic intake proof/audit. The exact typed correction is the domain of the graded multiplication isomorphism: `n >= q`, with the separate zero-source endpoint at `n=q-1`. The root-requested full AL.1–11 chapter now proves the line map, adjoint, source correction, boundary map, and empty packet; its final author seal is pending.
+- A delegated full owner-source reading preserves the original and corrected PR24 sources separately. Its sealed 62-file review package does not cover the actively changing implementation directory. The balanced proof currently has no owner seal, so a final integration recheck is required. The owner window checker and receipt changed during reading; fixed snapshots distinguish generations.
+- The PR24 positivity proof uses the actual two facts `Pi > 0` off its finite roots and `m_h,k > 0` almost everywhere. The original weight at `k=1` may have an infinite discrete zero set. The full proof witnesses stay unmodified; an audited reader formulation must state the exact two properties.
+
+## Prepared EW public replay adapter
+
+`prepare_endpoint_ew_adapter_plan_20260913.py` writes only its dedicated preparation directory and `endpoint_ew_public_adapter_plan_20260913.json`. It makes two derivative metadata copies: the fixture and supplement historical replay receipts. Only `/python_executable` and each job's interpreter/script command locations are aliased. Every job's complete mathematical `result`, original checker/input hashes, optimization flag, mutant argument, and all other receipt data remain equal.
+
+The original checker bytes remain unchanged. A separate supplement copy changes only the assigned `SAVED_SHA` literal to the public fixture receipt hash. A separate final numeric reviewer copy changes only `RECEIPT_HASH` to the public supplement receipt hash. Both full ASTs compare equal after reversing that one literal. These are prepared public adapters, not executed checkers. Historical receipts retain original execution identities; later adapted execution must report its actual code and public companion hashes separately. Direct per-mode jobs avoid overwriting a required historical companion by dispatching `--replay` in its source directory.
+
+## Pending finite closure
+
+Await the final product proof/checker manifest, arithmetic intake/AL manifest, owner source inventory, and the immutable Gamma-I base handoff. Generate the explicit next-cut source list and portable jobs from those exact manifests. Include all complete new mathematical bodies and source witnesses; exclude native build logs where public build/visual receipts cover them. The original source archive remains byte-exact. Root owns conclusion/crosswalk propagation, cumulative typesetting, final visual inspection, publication, and any later replay execution.

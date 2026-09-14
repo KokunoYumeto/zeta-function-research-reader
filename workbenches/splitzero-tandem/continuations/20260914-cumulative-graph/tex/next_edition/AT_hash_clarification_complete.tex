@@ -1,0 +1,65 @@
+\begingroup
+\small
+\section{Exact identification of the retained AT extraction hash}
+This additive record identifies the processing frame of a retained metadata
+hash. The entire accepted AT proof source and reader, including the original
+preamble and all 23 equation tags, remain unchanged.
+
+\subsection{The exact identified value}
+The value in the sealed
+\nolinkurl{evidence/BODY_EXTRACTION.json} field
+\nolinkurl{pre_layout_reader_body_sha256} is
+\nolinkurl{42b97470bfe0f67e0a0247e5cefcb95609c487b8ff20c275457aeebc02b7b706}.
+It identifies the complete final \emph{post-layout} reader body in LF
+encoding, with 17149 bytes. Replacing each CRLF in the 17558-byte accepted
+reader by LF gives this value exactly. The retained field name and its
+explanatory note name the wrong processing stage. The four exact frames are:
+
+\begin{longtable}{@{}p{.23\linewidth}r p{.57\linewidth}@{}}
+\toprule Complete body frame & Bytes & SHA-256 \\
+\midrule
+pre layout LF & 17113 & \nolinkurl{5ccb346f20b37ea30a40491a9c6ec84e7121869816efbb081007ae8f64cc9116} \\
+pre layout CRLF & 17520 & \nolinkurl{3ed5d0dbedbcaffdaa8949a4dc6108e99546acd3023c32c4785388860a5d1815} \\
+post layout LF & 17149 & \nolinkurl{42b97470bfe0f67e0a0247e5cefcb95609c487b8ff20c275457aeebc02b7b706} \\
+post layout CRLF & 17558 & \nolinkurl{9fa19a509edf91f5aa0a9cb4762485449196d0b1ff521f2445f791fa3290cc75} \\
+\bottomrule
+\end{longtable}
+
+\subsection{Complete forward and inverse reconstruction}
+Read the pinned original source, extraction record and ten-entry layout
+record. The exact original body begins with the 13-byte sequence whose
+base64 representation is \nolinkurl{ClxtYWtldGl0bGUKCg==}.
+Remove exactly that title prefix; no proof prose is removed.
+The remaining complete LF body has 17113 bytes. Replacing each LF by CRLF
+gives its 17520-byte CRLF representation.
+
+Apply all ten ordered old/new pairs from the sealed layout map. In the
+CRLF representation, convert every LF in both sides of each pair to CRLF.
+Each old payload occurs exactly once at its recorded byte span. The final
+LF and CRLF results are the complete final bodies identified above.
+The full payloads, source spans and before/after hashes for every step are
+retained in \nolinkurl{CLARIFICATION.json}.
+
+For the inverse, start with the accepted CRLF reader and reverse all ten
+pairs in reverse order, replacing each unique new payload by the complete
+old payload. This recovers the entire pre-layout CRLF body. Replace each
+CRLF by LF and restore the exact removed title prefix. Then concatenate
+the original preamble, the literal begin-document boundary, the restored
+complete body, the literal end-document boundary and the original
+postamble. The result is every byte of the pinned original source,
+whose SHA-256 is
+\nolinkurl{24cf7ce5be6a43cc656641b516185df10b2e4d7824600ece657120d1c549deae}.
+The JSON record gives exact zero-based byte intervals and hashes for all
+five original-file components, and retains the complete original preamble
+and postamble literally. The source itself retains every proof paragraph.
+
+\subsection{Complete byte-verification program}
+The following standard-library program checks the five sealed input pins,
+the exact source spans and every intermediate hash in both representations,
+the ten reverse transformations and all original-file components. It
+writes no source file, imports no mathematical program and performs no
+document build. Invoke it with \nolinkurl{--artifact-root} naming the
+sealed artifact directory. Its complete JSON recipe accompanies this file.
+\VerbatimInput[fontsize=\footnotesize,breaklines=true,breakanywhere=true]{sources/next_edition/at_hash_clarification_v1/verify_reconstruction.py}
+
+\endgroup

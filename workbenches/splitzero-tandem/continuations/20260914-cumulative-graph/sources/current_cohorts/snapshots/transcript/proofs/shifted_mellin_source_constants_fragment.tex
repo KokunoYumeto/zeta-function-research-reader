@@ -1,0 +1,345 @@
+% Requires amsmath, amssymb, amsthm, mathrsfs in the parent preamble.
+\begingroup
+\def\LCSB{\mathscr B}
+\def\LCSV{\mathcal V}
+\def\LCSM{\mathcal M}
+\def\LCStr{\operatorname{Tr}}
+\newtheorem{latecontroltheorem}{Theorem}[section]
+\section{Exact weighted theta-source constants}
+This calculation finishes the finite moment reduction left explicit in
+U0065/A2497 and U0066/A2559 of the retained transcript. It calculates the
+weighted-source Grams controlling the circle length, and the derivative
+Grams controlling its Fourier cutoff, on the original theta source.
+It supplies no asymptotic bound on their growing-degree inverses.
+
+\subsection{Original objects and domains}
+Retain the source's actual finite packet polynomial
+\(h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho}\), with the full selected
+orders, \(g=2\xi\), and its specified inverse Mellin representative
+\(F_h\in\LCSB\), where
+\[
+ \LCSB=\{F\in C^\infty(\mathbb R_{>0}):
+ \sup_{x>0}x^b|(-x\partial_x)^jF(x)|<\infty
+ \text{ for every }b\in\mathbb Z,j\ge0\}.
+\]
+Write \(v_h(s)=\LCSM F_h(s)=g(s)/h(s)\),
+\(\LCSM F(s)=\int_0^\infty F(x)x^s\,dx/x\), and
+\(D=-x\partial_x\). For \(k\ge1\), set
+\[
+ c=k/2,\quad D^{(k)}=\sum_{j=1}^kD_j,\quad
+ \LCSV P=P(D^{(k)})F_h^{\otimes k},\quad S=\sum_{j=1}^ks_j.
+ \tag{1}
+\]
+The polynomial source of degree at most \(N\) is \(\mathcal P_N\),
+with the original basis \(1,S,\ldots,S^N\). Its arithmetic quotient
+map is the unchanged remainder map
+\(J_N:\mathcal P_N\to E=\mathbb C[S]/(\chi_{h,k})\).
+Its full observation is
+\[
+ J^{(k)}\LCSV=\eta_{h,k}J_N,\qquad
+ \eta_{h,k}[P]=\upsilon_h^{\otimes k}P(A_h^{(k)})1,\qquad
+ \upsilon_h=j_h(g/h).
+ \tag{2}
+\]
+No coefficient of this unit is changed by the calculations below.
+
+The original half-density coordinates are
+\[
+ r=\log x_k,\qquad z_i=\log x_i-\log x_k\ (i<k),
+ \tag{3}
+\]
+and
+\[
+ (\mathcal U_kF)(r,\mathbf z)
+ =e^{(kr+\sum_{i<k}z_i)/2}
+ F(e^{r+z_1},\ldots,e^{r+z_{k-1}},e^r).
+ \tag{4}
+\]
+The coordinate inverse in (3) has determinant one in logarithmic
+coordinates. Consequently (4) is an isometry from
+\(L^2((0,\infty)^k,d^kx)\) to
+\(L^2(\mathbb R,dr;L^2(\mathbb R^{k-1},d\mathbf z))\), and
+\(\partial_r\mathcal U_k=-\mathcal U_k(D^{(k)}-c)\).
+These statements follow by substitution in the measure and by the chain
+rule, respectively; for \(k=1\) the relative space is \(\mathbb C\).
+
+\subsection{Weighted lines and exact finite moments}
+For every real \(a\), define
+\[
+ w_a(t)=\frac{|v_h(1/2+a+it)|^2}{2\pi},\quad
+ \mu_j(a)=\int_{\mathbb R}t^j w_a(t)\,dt,\quad
+ \mathcal M_a(z)=\sum_{j\ge0}\mu_j(a)\frac{z^j}{j!}.
+ \tag{5}
+\]
+The last expression is a formal series: each coefficient below uses
+only finitely many of its entries. No analytic convergence assertion
+about that series is needed.
+
+All the integrals in (5) are finite. Indeed, for any real \(\sigma\)
+and nonnegative integers \(b,j\),
+\(y^b\partial_y^j(e^{\sigma y}F_h(e^y))\) decays exponentially at
+both ends. To check this, expand the derivative into finitely many
+terms \(e^{\sigma y}D^lF_h(e^y)\), use a positive integer exponent
+larger than \(\sigma\) at \(+\infty\), and an integer exponent less
+than \(\sigma\) at \(-\infty\) in the definition of \(\LCSB\).
+Any polynomial in \(y\) is absorbed by the resulting strict
+exponential margins. Thus \(e^{\sigma y}F_h(e^y)\) is Schwartz.
+Its Fourier transform with kernel \(e^{ity}\) is exactly
+\(v_h(\sigma+it)\), which is therefore Schwartz on that line.
+
+Let
+\[
+ m_{k,a}=w_0^{*(k-1)}*w_a,\qquad
+ \mu^{(k,a)}_j=j![z^j]\mathcal M_0(z)^{k-1}\mathcal M_a(z),
+ \tag{6}
+\]
+where the exponent zero in the case \(k=1\) means the identity for
+convolution. Expansion of \((t_1+\cdots+t_k)^j\), with Fubini
+justified by absolute polynomial moments, proves
+\(\mu^{(k,a)}_j=\int t^jm_{k,a}(t)\,dt\).
+
+\begin{latecontroltheorem}[The actual weighted source Gram]
+For \(P,Q\in\mathcal P_N\), the original weighted observation is
+\[
+ \begin{split}
+ M_{k,N}(a)(P,Q)
+ &:=\int_{(0,\infty)^k}x_k^{2a}
+                 \overline{\LCSV P(\mathbf x)}\LCSV Q(\mathbf x)\,d^kx\\
+ &=\int_{\mathbb R}\overline{P(c+a+iu)}Q(c+a+iu)
+                 m_{k,a}(u)\,du.
+ \end{split}
+ \tag{7}
+\]
+In the unchanged basis \(1,S,\ldots,S^N\), its entries are exactly
+\[
+ [M_{k,N}(a)]_{b,d}
+ =\sum_{r=0}^b\sum_{s=0}^d
+ \binom br\binom ds(c+a)^{b+d-r-s}(-i)^ri^s
+ (r+s)![z^{r+s}]\mathcal M_0^{k-1}\mathcal M_a.
+ \tag{8}
+\]
+In particular these matrices require only \(\mu_j(0),\mu_j(a)\)
+for \(0\le j\le2N\). Their masses are
+\[
+ [M_{k,N}(a)]_{0,0}=\mu_0(0)^{k-1}\mu_0(a).
+ \tag{9}
+\]
+\end{latecontroltheorem}
+\begin{proof}
+Put \(y_j=\log x_j\), use \(\sigma_j=1/2\) for \(j<k\) and
+\(\sigma_k=1/2+a\), and apply ordinary Fourier Plancherel to
+\(e^{\sum_j\sigma_jy_j}\LCSV P(e^{\mathbf y})\). Integration by
+parts has no boundary term by the estimates just proved. It sends each
+\(D_j\) to multiplication by \(s_j=\sigma_j+it_j\). Hence its
+Fourier transform is
+\[
+ P(c+a+i\textstyle\sum_jt_j)
+ \prod_{j<k}v_h(1/2+it_j)\,v_h(1/2+a+it_k).
+\]
+The factor \((2\pi)^{-k}\) in Plancherel is exactly the product of
+the \((2\pi)^{-1}\) factors in (5). Expanding the complex inner
+product and integrating over the sum coordinate proves (7). The
+binomial formula for each original monomial gives (8), including both
+phases. Formula (9) is its constant entry. In particular the shift
+\(c+a\) has not been replaced by \(c\), and the sum has not been
+replaced by an average.
+\end{proof}
+
+Each matrix \(M_{k,N}(a)\) is positive definite. The entire nonzero
+Mellin function \(v_h\) has isolated zeros on each vertical line, so
+\(w_a>0\) almost everywhere. For \(k\ge2\), a convolution in (6)
+is positive at every real sum: for almost every choice of the first
+\(k-1\) variables all factors of its integrand are positive. For
+\(k=1\), the almost-everywhere positivity suffices. A nonzero
+polynomial has only finitely many zeros on the integration line in
+(7), so its squared norm is strictly positive.
+
+Let \(M=M_{k,N}(0)\). The constants required by A2497 and A2559 are
+therefore the explicitly defined finite-matrix values
+\[
+ \kappa_{a,N}=\lambda_{\max}
+       \bigl(M^{-1}(M_{k,N}(a)+M_{k,N}(-a))\bigr),\qquad a>0,
+ \tag{10}
+\]
+where eigenvalues are understood in the positive inner product \(M\).
+In particular there is a fully specified upper value avoiding an
+additional extreme-eigenvalue calculation:
+\[
+ 0<\kappa_{a,N}\le
+ \mathfrak k_{a,N}:=
+ \LCStr\bigl(M^{-1}(M_{k,N}(a)+M_{k,N}(-a))\bigr).
+ \tag{11}
+\]
+To prove (11), conjugate by \(M^{1/2}\); the resulting matrix is
+positive, and each eigenvalue is at most the sum of its eigenvalues.
+The congruence is used to prove the inequality, not to replace the
+source basis or its metric. With
+\(\kappa_\pm=\lambda_{\max}(M^{-1}M_{k,N}(\pm a))\), the same
+argument gives the individual upper values
+\(\LCStr(M^{-1}M_{k,N}(\pm a))\).
+
+\subsection{Derivative and Fourier-cutoff Grams, including the cross terms}
+Write
+\[
+ a_h(t)=v_h(1/2+it)/\sqrt{2\pi},\qquad
+ n(t)=|a_h'(t)|^2,\qquad
+ b(t)=\overline{a_h'(t)}a_h(t).
+ \tag{12}
+\]
+All three measures \(w_0(t)dt,n(t)dt,b(t)dt\) have finite absolute
+polynomial moments by the same Schwartz argument. The last is a
+complex measure; it is not replaced by a positive one. Define
+\[
+ \begin{array}{lll}
+ m_k=w_0^{*k},&n_k=w_0^{*(k-1)}*n,&b_k=w_0^{*(k-1)}*b,\\
+ \mathcal N(z)=\sum_{j\ge0}\int t^jn(t)dt\ z^j/j!,&&
+ \mathcal C(z)=\sum_{j\ge0}\int t^jb(t)dt\ z^j/j!.
+ \end{array}
+ \tag{13}
+\]
+Let \(p\ge1\), \(R_P(S)=(S-c)^pP(S)\), and let primes on
+\(R_P\) mean polynomial derivatives in the unchanged coordinate
+\(S\). The derivative Gram in A2497/A2559 is
+\[
+ H_{p,N}(P,Q)=\int_{\mathbb R\times\mathbb R^{k-1}}
+ (1+r^2)\overline{\partial_r^p\mathcal U_k\LCSV P}\,
+                    \partial_r^p\mathcal U_k\LCSV Q\,dr\,d\mathbf z.
+ \tag{14}
+\]
+\begin{latecontroltheorem}[Complete derivative Gram]
+With all polynomials in the following formula evaluated at \(c+iu\),
+\[
+ \begin{split}
+ H_{p,N}(P,Q)=\int_{\mathbb R}\bigl(&
+ \overline{R_P}R_Q(m_k+n_k)
+ +\overline{R_P'}R_Q'm_k\\
+ &+i\overline{R_P}R_Q'b_k
+ -i\overline{R_P'}R_Q\overline{b_k}\bigr)(u)\,du.
+ \end{split}
+ \tag{15}
+\]
+Every entry is a finite expression in the moments encoded by
+\(\mathcal M_0^k\), \(\mathcal M_0^{k-1}\mathcal N\), and
+\(\mathcal M_0^{k-1}\mathcal C\), through degree \(2(N+p)\).
+\end{latecontroltheorem}
+\begin{proof}
+The chain rule in (4) gives
+\(\partial_r^p\mathcal U_k\LCSV P=(-1)^p\mathcal U_k\LCSV R_P\).
+The two occurrences of \((-1)^p\) cancel in (14). The term without
+\(r^2\) is (7) at \(a=0\), with polynomial \(R_P\).
+For the second term return to the independent logarithmic coordinates
+\(y_1,\ldots,y_k\); its multiplier is exactly \(r=y_k\).
+For the Fourier kernel \(e^{i\sum t_jy_j}\), multiplication by
+\(y_k\) transforms to \(-i\partial_{t_k}\). The factor \(-i\)
+cancels against its conjugate in the inner product. After retaining
+the Plancherel constants in the product of the \(a_h\)'s, the
+differentiated last factor is
+\[
+ a_h'(t_k)R_P(c+i\textstyle\sum_jt_j)
+ +i a_h(t_k)R_P'(c+i\textstyle\sum_jt_j).
+\]
+Multiplication by its conjugate for \(P\) and by the displayed
+expression for \(Q\) gives, respectively, the \(n_k\) term, the
+derivative \(m_k\) term, and the cross terms
+\(+i\overline{R_P}R_Q'b_k\) and
+\(-i\overline{R_P'}R_Q\overline{b_k}\). Integrating the other
+variables gives (15). Expansion in powers of the sum and Fubini prove
+the stated coefficient products. The largest degree occurs in
+\(\overline{R_P}R_Q\) and is at most \(2(N+p)\).
+\end{proof}
+
+\subsection{A finite choice of comparison parameters and its exact scope}
+Set
+\[
+ \mathfrak h_{p,N}=\LCStr(M^{-1}H_{p,N})\ge0.
+ \tag{16}
+\]
+Both sides in (16) are defined on the original coefficient space.
+The same positive-matrix argument used for (11) gives
+\(H_{p,N}\preceq\mathfrak h_{p,N}M\).
+Here are the explicit parameters obtained from these completed
+calculations. For prescribed positive error contributions
+\(\eta_1,\eta_2\), choose
+\[
+ L\ge a^{-1}\log(1+\mathfrak k_{a,N}/\eta_1),
+ \tag{17}
+\]
+and, for the twisted lattice used by all scalar holonomy phases, take an integer
+\[
+ J\ge\max\left\{2,\,
+ 1+\frac L{2\pi}
+ \left(\frac{\mathfrak h_{p,N}}{(2p-1)\eta_2}\right)^{1/(2p-1)}
+ \right\}.
+ \tag{18}
+\]
+The ordinary lattice can omit the extra one; it has denominator
+\(J\) instead of \(J-1\).
+
+For completeness, the source estimates underlying this parameter
+choice have direct proofs. Write \(\Psi=\mathcal U_k\LCSV\) and
+\(\mathcal C(s)=\int\Psi(r)^*\Psi(r+s)dr\). Weighted
+Cauchy--Schwarz gives, for \(s>0\),
+\[
+ |v^*\mathcal C(s)v|
+ \le e^{-as}\sqrt{v^*M_{k,N}(-a)v\ v^*M_{k,N}(a)v}.
+\]
+The negative shifts exchange the two weights. Unfolding one period
+gives the Gram difference as the sum of the nonzero correlations
+at shifts \(mL\); holonomy only multiplies each by a unit complex
+number. Summing the geometric series and using \(2\sqrt{xy}\le x+y\)
+proves its absolute quadratic-form bound
+\((M_{k,N}(a)+M_{k,N}(-a))/(e^{aL}-1)\).
+This is at most \(\eta_1M\) by (11) and (17).
+
+Integration by parts \(p\) times in the retained Fourier transform,
+then Cauchy--Schwarz with
+\(\int(1+r^2)^{-1}dr=\pi\), gives
+\(\|\widehat{\Psi v}(u)\|^2\le
+\pi |u|^{-2p}v^*H_{p,N}v\).
+For the ordinary lattice, summing \(|n|>J\) and bounding
+\(\sum_{n>J}n^{-2p}\le J^{1-2p}/(2p-1)\) gives
+\[
+ 0\preceq M(L)-M(L,J)
+ \preceq\frac1{2p-1}\left(\frac L{2\pi J}\right)^{2p-1}H_{p,N}.
+ \tag{19}
+\]
+The constants arise from \(\pi/L\) in each Fourier coefficient and
+the two lattice directions; thus the factor in (19) is literal.
+For phases \(0\le\theta<2\pi\),
+\(|n+\theta/(2\pi)|\ge |n|-1\) for the omitted indices. Repeating
+the integral bound replaces \(J\) by \(J-1\), and (18) makes this
+at most \(\eta_2M\). With \(\eta_1+\eta_2<1\), the resulting
+finite source Gram lies between
+\((1-\eta_1-\eta_2)M\) and
+\((1+\eta_1+\eta_2)M\).
+
+For this quotient conclusion put \(q=\deg\chi_{h,k}\) and take
+\(N\ge q-1\), so the unchanged remainder map is onto \(E\).
+Taking the infimum over the unchanged affine sets
+\(\{P:J_NP=v\}\) gives the same inequalities for the canonical
+quotient Grams. Their sections differ by the original
+\(\ker J_N=\chi_{h,k}\mathcal P_{N-q}\), with
+\(\mathcal P_{-1}=0\), hence by the original theta
+relations under (1)--(2). At a retained support label that correction
+maps to its supported zero; it never becomes external absence.
+
+These estimates compute the finite error parameters from the actual
+one-factor shifted Mellin moments and their full derivative cross
+terms. They do not bound \(\mathfrak k_{a,N}\) or
+\(\mathfrak h_{p,N}\) uniformly as \(k,N\) grow. For the original
+four endpoints, one may use \(N=2q_k+2\) in (17)--(18), exactly as
+in A2497; all smaller polynomial spaces are restrictions of that
+single source. The inverse \(M^{-1}\) and every original mass remain
+visible, so this result cannot be mistaken for the missing
+sub-threshold determinant estimate.
+
+Finally, the weighted observations are norms of the already specified
+representatives, not new maps identifying the arithmetic cohomology
+with the Boolean stalk. In the primary Tau Base source the cohomology
+is \(\mathsf A_\tau=R\Gamma(P,-)\), its right adjoint is
+\(K_\tau(W)\simeq S_\eta W[1]\), and its actual top tensor quotient
+is \(Q^{\otimes k}\). Equations (1)--(2) remain the same finite source
+and full arithmetic observation into that construction. Multiplying
+the source norm by \(x_k^{2a}\) has not been asserted to descend as
+an endomorphism of \(Q^{\otimes k}\).
+\endgroup

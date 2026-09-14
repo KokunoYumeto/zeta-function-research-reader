@@ -1,0 +1,703 @@
+\begingroup
+\def\C{\mathbb{C}}
+\def\R{\mathbb{R}}
+\def\av{\operatorname{av}}
+\def\im{\operatorname{im}}
+\section{Continuous holonomy cochains and the original relation metric}
+
+
+
+This continuation proves the continuous-phase version of H29--H31
+and the exact maps to the completed targets in H64 of the delivered
+\emph{All-holonomy descent of the original theta quotient}.
+The delivered NOTE.tex was read completely, all 1152 lines;
+its SHA-256 is
+\begin{center}\small
+\nolinkurl{444f82a8fa420e6f471ef448442085f3a93acb137069e1505d155faab051b881}.
+\end{center}
+The archive SHA-256 is
+\begin{center}\small
+\nolinkurl{f0506a27cd4c9012f43fa70c3d1f8f996bbb6db01b0eea2944b34dcf290ca8f0}.
+\end{center}
+All source coordinates, masses, phases, relation columns, and full
+primary multiplicities below are retained. No finite test or Lean
+execution is used as a proof.
+The sampled-density argument uses the full analytic proof
+\emph{Periodized source density review}, PSD8--PSD14,
+whose TeX SHA-256 is
+\begin{center}\small
+\nolinkurl{51102189bcc7a45610464143a5c0bee21c08059c317024e6e856bc7de993fe74}.
+\end{center}
+The completed-fibre calculation develops H64 and is also proved
+in the companion completed-quotient and holonomy-intake derivations.
+Its repetition here supplies the maps needed for this continuous
+common-image complex, including the mean-zero contraction and
+the precise weighted relation gap.
+
+\subsection{Original coefficient spaces and actual phase norms}
+
+Fix the original monic polynomial $\chi$, its full degree $q\ge1$,
+and an integer $N\ge q-1$. Put
+\[
+ \begin{gathered}
+ E=\C[S]/(\chi),\quad P_N=\C[S]_{\le N},\quad
+ J=J_N:P_N\longrightarrow E,\quad\\
+ B_N=\ker J=\chi P_{N-q},\quad A=M_S:E\longrightarrow E,
+ \end{gathered}
+ \tag{HCD1}
+\]
+where $P_{-1}=0$. Use the original increasing-power coefficient
+bases. Let $B:\C^r\to P_N$, $r=N-q+1$, be multiplication by
+the literal $\chi$, so that $\im B=B_N$. At $r=0$ it is the
+unique map from the zero coefficient space.
+
+Let $\Theta=[0,2\pi)$ carry its actual Fourier phase measure
+$d\mu(\theta)=d\theta/(2\pi)$. Retain the measurable Hermitian
+phase source matrices $M_\theta$ and their mean
+\[
+ M=\int_\Theta M_\theta\,d\mu,\qquad
+ 0<a I_{P_N}\preceq M_\theta\preceq b I_{P_N}<\infty
+ \quad\text{almost everywhere},\qquad a,b>0.
+ \tag{HCD2}
+\]
+The original source isometry H13--H17 identifies $M$ with the
+original source Gram, including its full constant mass.
+For the actual source, the bounds in (HCD2) are obtained from
+H39--H41, also proved in HG3, as follows. Let
+$\Psi_N:P_N\to L^2(\R;\mathcal K)$ be the original finite
+source columns after the half-density map, with
+$\mathcal K=L^2(\R^{k-1},dz)$. Fix $\beta>0$ for the retained
+weighted source Grams, whose finite entries are supplied by
+the original source regularity:
+\[
+ M_{\beta,\pm}=(e^{\pm\beta r}\Psi_N)^*
+                    (e^{\pm\beta r}\Psi_N),\qquad
+ \kappa_{\beta,N}=
+ \max_{v\ne0}\frac{v^*(M_{\beta,+}+M_{\beta,-})v}{v^*Mv}.
+ \tag{HCD2a}
+\]
+These are the original weights $x_k^{\pm2\beta}$; all original
+source measures remain present. The maximum is finite and positive
+because $M>0$ and the two weighted Grams are finite positive forms.
+For $\mathcal C(s)=\int\Psi_N(r)^*\Psi_N(r+s)\,dr$ and $s\ge0$,
+write the integrand at $v$ as the inner product of
+$e^{-\beta r}\Psi_N(r)v$ and
+$e^{\beta(r+s)}\Psi_N(r+s)v$, multiplied by $e^{-\beta s}$.
+Cauchy--Schwarz, followed by translation in the second integral,
+gives
+\[
+ |v^*\mathcal C(s)v|
+ \le e^{-\beta s}
+ \sqrt{(v^*M_{\beta,-}v)(v^*M_{\beta,+}v)} .
+\]
+For $-s$ the same bound follows from
+$\mathcal C(-s)=\mathcal C(s)^*$.
+Unfolding the literal Zak sum gives
+$M_\theta=\sum_{j\in\mathbb Z}e^{ij\theta}\mathcal C(jL)$.
+The correlation bound and polarization give absolute convergence
+of each matrix entry, uniformly in phase. Pairing $j$ and $-j$,
+using $2\sqrt{uv}\le u+v$, and summing the geometric series prove
+\[
+ -\delta_LM\preceq M_\theta-M\preceq\delta_LM,\qquad
+ \delta_L=\frac{\kappa_{\beta,N}}{e^{\beta L}-1}.
+ \tag{HCD2b}
+\]
+For any chosen $0<\eta<1$, the explicit finite circumference
+\[
+ L\ge\frac1\beta\log(1+\kappa_{\beta,N}/\eta)
+ \quad\Longrightarrow\quad
+ \delta_L\le\eta<1
+ \tag{HCD2c}
+\]
+therefore supplies (HCD2), with
+$a=(1-\delta_L)\lambda_{\min}(M)$ and
+$b=(1+\delta_L)\lambda_{\max}(M)$ in the original coefficient
+frame. The phase mean is still exactly $M$: every nonzero
+Fourier mode integrates to zero against $d\theta/(2\pi)$.
+The concrete choice $\eta=1/2$ gives
+$L=\beta^{-1}\log(1+2\kappa_{\beta,N})$ and $\delta_L=1/2$.
+These are actual finite-source bounds at the stated cutoff;
+no bound uniform in $N$ or the arithmetic packet is asserted.
+The argument below also applies to any fixed $L$ for which
+(HCD2) is already established.
+
+Define the Hilbert space
+\[
+ \mathscr P=L^2(\Theta;P_N,M_\theta\,d\mu),\qquad
+ \|P\|_{\mathscr P}^2=\int_\Theta P(\theta)^*M_\theta
+ P(\theta)\,d\mu.
+\]
+By (HCD2), its elements are exactly coefficientwise $L^2$
+functions, with equivalent norms. Equality means equality
+almost everywhere. The coefficientwise Bochner integral
+$\av P=\int P\,d\mu$ exists, since coefficientwise $L^2$
+implies $L^1$ on this finite phase measure. Every fixed
+coefficient map commutes with this integral, entry by entry.
+
+The closed relation space and common-image space are
+\[
+ \mathscr B=L^2(\Theta;B_N),\qquad
+ \mathscr P^{\rm eq}
+ =\{P\in\mathscr P:JP(\theta)=x\text{ a.e. for a fixed }x\in E\}.
+ \tag{HCD3}
+\]
+They carry the restricted source norms. They are closed:
+$J$ is continuous on coefficientwise $L^2$, $B_N=\ker J$
+is closed, and constant $E$-valued functions form a closed
+subspace. For the last assertion, averaging followed by
+repetition is a bounded idempotent with precisely that image.
+
+\subsection{The continuous cochain splitting and its full contraction}
+
+Use complexes in degrees $0,1$ with actual inclusion differentials:
+\[
+ \mathcal C_N=[B_N\hookrightarrow P_N],\qquad
+ \mathscr C_N=[\mathscr B\hookrightarrow\mathscr P^{\rm eq}].
+ \tag{HCD4}
+\]
+Repetition $\Delta v(\theta)=v$ and averaging $\av$ are cochain
+maps. In degree one, $J\av P=\int JP\,d\mu=x$; in degree
+zero the mean belongs to $B_N$. The equality $\av\Delta=I$
+uses the literal phase measure. Repetition is an isometry:
+\[
+ \|\Delta v\|_{\mathscr P}^2
+ =v^*\left(\int M_\theta\,d\mu\right)v=v^*Mv.
+\]
+Averaging is bounded with the explicit estimate
+\[
+ \|\av P\|_M^2
+ \le b\|\av P\|_{\rm coeff}^2
+ \le b\int\|P(\theta)\|_{\rm coeff}^2\,d\mu
+ \le (b/a)\|P\|_{\mathscr P}^2.
+ \tag{HCD5}
+\]
+This uses scalar Cauchy--Schwarz for the coefficient vector
+and does not replace the arithmetic mass by one.
+
+Put $\mathscr B^0=\{b\in\mathscr B:\av b=0\}$. The inverse
+continuous coefficient maps of complexes are
+\[
+ \begin{gathered}
+ \mathscr C_N\simeq
+ \mathcal C_N\oplus[\mathscr B^0\xrightarrow{I}\mathscr B^0],\\
+ P\longmapsto(\av P,P-\Delta\av P),\qquad
+ (v,b^0)\longmapsto\Delta v+b^0.
+ \end{gathered}
+ \tag{HCD6}
+\]
+In degree one, $J(P-\Delta\av P)=x-x=0$ and its mean is
+zero. In degree zero every value already belongs to $B_N$.
+Both composites restore the original vector. Inclusion
+carries these components to inclusion and identity,
+respectively, proving the isomorphism of complexes.
+
+The degree-minus-one map
+\[
+ h:\mathscr P^{\rm eq}\longrightarrow\mathscr B,\qquad
+ hP=P-\Delta\av P
+ \tag{HCD7}
+\]
+satisfies $dh+hd=I-\Delta\av$. In degree one this is
+$dhP=P-\Delta\av P$; in degree zero it is
+$hd b=b-\Delta\av b$. On the complementary complex it
+is the identity from degree one to degree zero. Boundedness
+follows from (HCD5) and the isometry of repetition.
+It is not asserted orthogonal or isometric.
+
+The common quotient map is
+\[
+ \mathfrak j:\mathscr P^{\rm eq}\longrightarrow E,\qquad
+ P\longmapsto JP(\theta)\text{ a.e.}
+ \tag{HCD8}
+\]
+It is onto by repeating a right inverse of $J$, and its
+kernel is exactly $\mathscr B$. Inclusion is injective.
+Therefore $H^0(\mathscr C_N)=0$ and $H^1(\mathscr C_N)=E$,
+with the isomorphism induced by the original full $J$.
+Repetition and averaging induce the identity on this $E$.
+
+Multiplication by $S$ maps $P_N$ to $P_{N+1}$ and $B_N$
+to $B_{N+1}$. Applied pointwise, it sends common image $x$
+to common image $Ax$ and commutes with repetition, mean
+and $h$. These are maps between the stated cutoffs.
+On degree-one cohomology the action is the full companion
+$A$, including its nilpotent primary parts. No trace of
+the infinite-dimensional contractible complement is assumed.
+
+\subsection{The minimum norm of the common image}
+
+Retain the original and phasewise minimum sections
+\[
+ \begin{aligned}
+ G&=(JM^{-1}J^*)^{-1},& C&=M^{-1}J^*G,\\
+ G_\theta&=(JM_\theta^{-1}J^*)^{-1},&
+ C_\theta&=M_\theta^{-1}J^*G_\theta,\qquad\\
+ &&\overline G&=\int G_\theta\,d\mu.
+ \end{aligned}
+ \tag{HCD9}
+\]
+Surjectivity and positivity make every inverse defined.
+Continuity of matrix inversion proves measurability.
+For any fixed coefficient right inverse $C_{\rm ref}$ of $J$,
+\[
+ \frac{a}{\|J\|_{\rm coeff}^2}I_E
+ \preceq G_\theta
+ \preceq b\|C_{\rm ref}\|_{\rm coeff}^2I_E.
+ \tag{HCD10}
+\]
+Indeed any lift $p$ of $x$ has
+$\|x\|\le\|J\|\|p\|$, proving the lower bound, and the
+particular lift $C_{\rm ref}x$ proves the upper bound.
+The formula for $C_\theta$ then also gives boundedness.
+All following integrals and sections are consequently defined.
+
+Direct multiplication gives $JC_\theta=I$, and for $b_0\in B_N$,
+\[
+ b_0^*M_\theta C_\theta=b_0^*J^*G_\theta=0.
+ \tag{HCD11}
+\]
+The section $\mathscr Sx(\theta)=C_\theta x$ has common image
+$x$. Any other $P$ with that image has
+$P-\mathscr Sx\in\mathscr B$. Phasewise orthogonality gives
+\[
+ \|P\|_{\mathscr P}^2
+ =x^*\overline Gx+\|P-\mathscr Sx\|_{\mathscr P}^2.
+ \tag{HCD12}
+\]
+Thus the quotient metric of the continuous complex is exactly
+$\overline G>0$ on its full $E$. For the constant-source
+complex the identical argument gives $G$. Repetition is
+isometric on sources, and its induced identity
+$(E,G)\to(E,\overline G)$ has the additional continuous
+relation directions available in the target.
+
+\subsection{The positive relation gap and its mean-zero decomposition}
+
+For $r>0$, put
+$X_\theta=(B^*M_\theta B)^{-1}B^*M_\theta C$.
+Both sections have right-inverse image $I_E$, so their difference
+lies in $B_N$ and equals $BX_\theta$; multiplication by
+$B^*M_\theta$ proves the formula and uniqueness.
+At $r=0$, both sections equal the unique inverse of $J$ and
+$X_\theta$ is the zero map into the zero space.
+Expanding $C=C_\theta+BX_\theta$ and using (HCD11) proves
+\[
+ \boxed{
+ \begin{aligned}
+ G-\overline G=\mathscr D
+ &=\int(C-C_\theta)^*M_\theta(C-C_\theta)\,d\mu\\
+ &=\int X_\theta^*(B^*M_\theta B)X_\theta\,d\mu\succeq0.
+ \end{aligned}}
+ \tag{HCD13}
+\]
+The integral of $C^*M_\theta C$ is $C^*MC=G$.
+Every term is the norm of a field in the original relation
+image. Multiplication by the literal $\chi$, followed by
+the inherited finite tensor theta primitive, realizes
+that field in the original cochain complex.
+
+The relation to the particular mean-zero contraction is also exact.
+Define
+\[
+ \overline C=\int C_\theta\,d\mu,\quad
+ a_C=C-\overline C:E\to B_N,\quad
+ h_\theta=C_\theta-\overline C:E\to B_N.
+ \tag{HCD14}
+\]
+Then $\int h_\theta\,d\mu=0$, and $h\mathscr S$ is precisely
+the field $h_\theta$. The original discrepancy is
+$C-C_\theta=a_C-h_\theta$ and need not have mean zero.
+Since $a_C$ has relation-valued columns, phase and
+common-source orthogonality give
+\[
+ \begin{split}
+ \int a_C^*M_\theta h_\theta\,d\mu
+ &=-a_C^*M\overline C\\
+ &=-a_C^*M(C-a_C)=a_C^*Ma_C.
+ \end{split}
+ \tag{HCD15}
+\]
+The adjoint cross term is the same Hermitian matrix.
+Expanding all terms of (HCD13) therefore proves
+\[
+ \boxed{\mathscr D
+ =\int h_\theta^*M_\theta h_\theta\,d\mu-a_C^*Ma_C.}
+ \tag{HCD16}
+\]
+This retains the positive relation norm and the complete
+weighted cross terms. A mean-zero coefficient field is
+not presumed orthogonal to constant relations for the
+varying metric. At $N=q-1$, $B_N=0$,
+$C_\theta=C=J^{-1}$, $a_C=h_\theta=0$ and $\overline G=G$.
+
+\subsection{Actual sampled Hilbert spaces, including zero weights}
+
+Fix the original circumference $L>0$, tensor degree $k\ge1$,
+and $c=k/2$. Retain
+\[
+ \begin{gathered}
+ u_n(\theta)=(2\pi n+\theta)/L,\qquad
+ s_n(\theta)=c+iu_n(\theta),\\
+ w_n(\theta)=\frac{2\pi}{L}m_{h,k}(u_n(\theta))\ge0,
+ \qquad n\in\mathbb Z.
+ \end{gathered}
+ \tag{HCD17}
+\]
+The Fourier coefficient is literally $2\pi/L$, with
+$m_{h,k}=w_h^{*k}$, $w_h=|(g/h)(1/2+iu)|^2/(2\pi)$
+and $g=2\xi$. Sampling gives
+\[
+ \mathsf T_\theta P=(P(s_n(\theta)))_n,\qquad
+ \|\mathsf T_\theta P\|_\theta^2
+ =\sum_n w_n(\theta)|P(s_n(\theta))|^2=P^*M_\theta P.
+ \tag{HCD18}
+\]
+This is the actual phase source Gram H17.
+
+Define $\mathcal H_\theta$ to be weighted square-summable
+sequences modulo sequences supported where $w_n(\theta)=0$.
+Thus zero weights, possible when $k=1$, have an explicit
+null subspace. For $k\ge2$, positivity of the original
+convolution makes every sample weight positive.
+At $k=1$, retain the exact ideal equality
+$(\chi_{h,1})=(h)$. If $a_h\ne0$ is the original leading
+coefficient of $h$, then $\chi_{h,1}=h/a_h$ is its monic
+generator, and $\chi_{h,1}=h$ in the original monic packet
+convention. Indeed a polynomial annihilates multiplication by
+$S$ on $\C[S]/(h)$ if and only if its action on $[1]$ is
+zero, which is equivalent to belonging to $(h)$.
+The analytic source remains the original $g/h$, with
+the factor $a_h$ retained in that quotient and its norm.
+Now take a complete selected root
+$\rho=1/2+iu_n(\theta)$ whose common order in $g$ and $h$
+is $m$. The two Taylor expansions have leading coefficients
+$g^{(m)}(\rho)/m!$ and $h^{(m)}(\rho)/m!$, so the canceled
+entire quotient has the exact nonzero value
+\[
+ (g/h)(\rho)=\frac{g^{(m)}(\rho)}{h^{(m)}(\rho)},\qquad
+ w_n(\theta)=\frac1L
+ \left|\frac{g^{(m)}(\rho)}{h^{(m)}(\rho)}\right|^2>0.
+ \tag{HCD18a}
+\]
+This retains both cancellation factorials and the full
+Fourier mass $(2\pi/L)(1/(2\pi))$. It is the selected-root
+calculation PSD5 and PSD41. Other $k=1$ coordinates where
+$g/h$ vanishes still give the explicit null subspace above.
+For a concrete measurable realization use the isometry
+$v\mapsto(\sqrt{w_n(\theta)}v_n)_n$ into ordinary
+$\ell^2(\mathbb Z)$, with zero coordinates at zero weights.
+Its inverse on its range is
+$v_n=y_n/\sqrt{w_n(\theta)}$ at positive weights; other
+coordinates give the null class. This specifies the norm
+map without changing a mass. The range projections are
+measurable diagonal matrices; their images of the countable
+standard basis give a measurable field.
+
+The original gamma-contour and alternating-zeta calculation
+PSD8--PSD13 proves, for every $0<\gamma<\pi/2$, the finite
+constants
+\[
+ A_\gamma=\|e^{\gamma|\cdot|}w_h\|_\infty,\qquad
+ B_\gamma=\|e^{\gamma|\cdot|}w_h\|_1.
+\]
+That calculation retains the leading coefficient of $h$,
+its full degree, and the continuous canceled values on the
+compact interval containing its selected roots. With
+$f_\gamma(v)=e^{\gamma|v|}w_h(v)$, the ordinary triangle
+inequality on the convolution variables and integration
+of the remaining factors give, for every real $u$,
+\[
+ e^{\gamma|u|}m_{h,k}(u)
+ \le f_\gamma^{*k}(u)
+ \le A_\gamma B_\gamma^{k-1}.
+ \tag{HCD19a}
+\]
+For the second inequality bound one factor by $A_\gamma$
+and integrate each of the other $k-1$ factors with its
+literal Lebesgue measure. For $k=1$ the expression is
+$A_\gamma$, with $B_\gamma^0=1$.
+For any $0<2\epsilon<\gamma$,
+\[
+ \sup_{0\le\theta<2\pi}
+ \sum_nw_n(\theta)e^{2\epsilon|u_n(\theta)|}<\infty.
+ \tag{HCD19}
+\]
+Indeed $|u_n(\theta)|\ge(2\pi/L)(|n|-1)$, so with
+$d=\gamma-2\epsilon>0$ the sum is at most
+\[
+ \frac{2\pi}{L}A_\gamma B_\gamma^{k-1}
+ e^{2\pi d/L}
+ \left(1+\frac{2e^{-2\pi d/L}}{1-e^{-2\pi d/L}}\right).
+\]
+For every fixed polynomial $Q$, the constant
+$\sup_{u\in\R}|Q(c+iu)|^2e^{-d|u|/2}$ is finite.
+Inserting it into the same geometric estimate, with
+$d/2$ in place of $d$, proves uniform exponential
+summability of $w_n(\theta)|Q(s_n(\theta))|^2$.
+This includes $Q=\chi$ and every fixed polynomial
+relation used below. All original constants in the
+weights are unchanged. The full source proof of
+PSD8--PSD14 is a dependency of this continuation;
+the remaining discrete density argument is given
+explicitly here with its shifted Fourier phase.
+
+\subsection{Density and the complete fibrewise Hilbert quotient}
+
+Here is a direct density proof with the zero weights retained.
+If $f\in\mathcal H_\theta$ is orthogonal to all polynomials,
+put $a_n=w_n(\theta)\overline{f_n}$. Cauchy--Schwarz and
+(HCD19) give $\sum|a_n|e^{\epsilon|u_n|}<\infty$.
+Hence $F(z)=\sum_n a_ne^{zu_n}$ is holomorphic on
+$|\Re z|<\epsilon$, with termwise derivatives on smaller
+closed strips. Every derivative at zero is zero, since
+polynomials in $S$ and in $(S-c)/i$ span the same space.
+The Taylor series and the identity theorem give $F=0$
+on the connected strip. On the imaginary axis,
+\[
+ F(it)=e^{it\theta/L}\sum_n a_ne^{2\pi int/L}.
+\]
+The series is absolutely uniformly convergent.
+Multiplication by $e^{-it\theta/L}e^{-2\pi imt/L}$ and
+integration over $0\le t\le L$ give $a_m=0$.
+At positive weights this implies $f_m=0$; at zero weights
+the class is already null. Thus polynomials are dense.
+The identical argument proves polynomial density for
+the weights $w_n|\chi(s_n)|^2$.
+
+Multiplication by the original polynomial is the isometry
+\[
+ U_\chi:\ell^2(w_n|\chi(s_n)|^2)\longrightarrow\mathcal H_\theta,
+ \qquad f\longmapsto(\chi(s_n)f_n)_n.
+ \tag{HCD20}
+\]
+Its image is precisely the sequences vanishing at the
+positive-weight sampled roots of $\chi$. To prove the
+converse inclusion, take such a sequence $v$ and set
+$f_n=v_n/\chi(s_n)$ when $\chi(s_n)\ne0$, and zero
+elsewhere. Its squared domain norm equals $\|v\|_\theta^2$.
+Thus the image is closed. Polynomial density in the domain
+now proves
+\[
+ \mathcal R_\theta:=
+ \overline{\chi\C[S]}^{\,\mathcal H_\theta}
+ =\{v:v_n=0\text{ if }w_n(\theta)>0,\ \chi(s_n(\theta))=0\}.
+ \tag{HCD21}
+\]
+The receiving Hilbert quotient is exactly
+\[
+ \begin{gathered}
+ \mathcal Q_\theta=\mathcal H_\theta/\mathcal R_\theta
+ \simeq
+ \bigoplus_{\substack{n:\chi(s_n(\theta))=0\\w_n(\theta)>0}}\C,\\
+ \|v\|_{\mathcal Q_\theta}^2
+ =\sum_{\rm displayed\ n}w_n(\theta)|v_n|^2.
+ \end{gathered}
+ \tag{HCD22}
+\]
+The quotient map is orthogonal coordinate restriction.
+No weight equal to zero is inverted.
+
+\subsection{The complete primary kernel before phase integration}
+
+Let $\Lambda_\theta^+$ be the distinct sampled roots of
+$\chi$ with positive weight, and set
+$p_\theta(S)=\prod_{\lambda\in\Lambda_\theta^+}(S-\lambda)$,
+using $p_\theta=1$ for an empty product.
+The finite map is
+\[
+ \rho_\theta:E\longrightarrow\mathcal Q_\theta,\qquad
+ [P]_\chi\longmapsto(P(\lambda))_{\lambda\in\Lambda_\theta^+}.
+ \tag{HCD23}
+\]
+It is well defined, and is onto by Lagrange interpolation
+at these distinct points, using degree less than
+$|\Lambda_\theta^+|\le q$. Vanishing at all those points
+is equivalent to divisibility by $p_\theta$. Since
+$p_\theta\mid\chi$,
+\[
+ \ker\rho_\theta=(p_\theta)/(\chi)\subset E.
+ \tag{HCD24}
+\]
+This specifies the zero-weight-corrected kernel in H64:
+a root at a zero-mass coordinate contributes no receiving
+Hilbert line.
+
+Write the full original factorization as
+$\chi=\prod_{\lambda\in\Lambda}(S-\lambda)^{m_\lambda}$.
+The complete Taylor map is
+\[
+ \begin{split}
+ E&\longrightarrow\prod_{\lambda\in\Lambda}
+ \C[\varepsilon_\lambda]/(\varepsilon_\lambda^{m_\lambda}),\\
+ [P]&\longmapsto\left(
+ \sum_{j=0}^{m_\lambda-1}\frac{P^{(j)}(\lambda)}{j!}
+ \varepsilon_\lambda^j\right)_\lambda.
+ \end{split}
+ \tag{HCD25}
+\]
+For an explicit inverse, let
+$q_\lambda=\chi/(S-\lambda)^{m_\lambda}$ and let
+$u_\lambda$ be the Taylor polynomial of $1/q_\lambda$
+at $\lambda$ through degree $m_\lambda-1$.
+Then $e_\lambda=[u_\lambda q_\lambda]_\chi$ is one
+in the $\lambda$ factor and zero in every other factor,
+by divisibility by each original prime power. It follows
+that $\sum e_\lambda=1$ and the factors are orthogonal
+idempotents. The inverse is
+$\sum_\lambda e_\lambda\sum_j a_{\lambda,j}(S-\lambda)^j$.
+
+In these full primary coordinates, $\rho_\theta$ takes
+the constant coefficient of each active sampled factor.
+Its kernel in that factor is $(\varepsilon_\lambda)$,
+retaining every order $1,\ldots,m_\lambda-1$.
+For an unsampled factor or a zero-weight sampled factor,
+the kernel is the entire primary algebra, including
+its constant term. The original action is multiplication
+by $\lambda+\varepsilon_\lambda$; the receiving action
+is the simple scalar $\lambda$. Evaluation intertwines
+these actions with the displayed nilpotent kernel.
+
+\subsection{The measurable completed field and its vanishing map}
+
+Every sampled root has real part $c$. For a fixed root $\lambda$
+with $\Re\lambda=c$, its only possible phase is
+\[
+ \theta_\lambda=L\Im\lambda\pmod{2\pi},\quad
+ 0\le\theta_\lambda<2\pi,\qquad
+ n_\lambda=(L\Im\lambda-\theta_\lambda)/(2\pi)\in\mathbb Z.
+\]
+Thus the set $\Theta_\chi$ of possible phases is finite.
+For $\theta\notin\Theta_\chi$, $\mathcal Q_\theta=0$.
+At an exceptional phase the positive-weight condition
+in (HCD22) is still retained.
+
+In the measurable realization after (HCD18), the projection
+onto $\mathcal Q_\theta$ has diagonal entries
+\[
+ {\bf1}_{\{w_n(\theta)>0\}}
+ {\bf1}_{\{\chi(s_n(\theta))=0\}},\qquad n\in\mathbb Z.
+\]
+These are measurable and give an explicit field of projections.
+The direct integral satisfies
+\[
+ \mathscr Q=\int_\Theta^\oplus\mathcal Q_\theta\,d\mu=0,
+ \tag{HCD26}
+\]
+because every measurable section has squared norm supported
+on the finite measure-zero set $\Theta_\chi$.
+This is an almost-everywhere assertion; each exceptional
+nonzero receiving line is still exactly the weighted line
+in (HCD22).
+
+For $x\in E$, the section $\theta\mapsto\rho_\theta x$
+is measurable: it is given by polynomial evaluations and
+the displayed coordinate masks. It defines
+\[
+ \rho:E\longrightarrow\mathscr Q,\qquad
+ x\longmapsto[\theta\mapsto\rho_\theta x]_{\rm a.e.},
+ \qquad \ker\rho=E.
+ \tag{HCD27}
+\]
+Every pointwise exceptional value has zero direct-integral
+class. This does not assert that those pointwise maps vanish,
+or that the original nonreduced coefficient algebra was zero.
+
+\subsection{The source-to-completion cochain map}
+
+The direct-integral source is the weighted space with squared
+norm $\int_\Theta\sum_n w_n(\theta)|v_n(\theta)|^2\,d\mu$.
+Let $\mathscr H$ denote this space, and let $\mathscr R$
+be its closed subspace of sections belonging to
+$\mathcal R_\theta$ almost everywhere. The coordinate
+projection above has kernel $\mathscr R$.
+
+The measurable evaluation map is
+\[
+ \mathsf T:\mathscr P\longrightarrow\mathscr H,\qquad
+ P\longmapsto(P(\theta,s_n(\theta)))_{\theta,n}.
+\]
+The integrated identity (HCD18) proves it is an isometry.
+Evaluation of a relation-valued section is in $\mathscr R$,
+because the original section is a multiple of the literal
+$\chi$. Hence there is a cochain map
+\[
+ [\mathscr B\hookrightarrow\mathscr P^{\rm eq}]
+ \longrightarrow[\mathscr R\hookrightarrow\mathscr H],
+ \tag{HCD28}
+\]
+using evaluation in both degrees. On a common image $x$,
+the receiving quotient value is $\rho_\theta x$, since
+representatives differ by an original relation.
+The induced degree-one map is exactly (HCD27).
+
+The global relation subspace is also the closure of measurable
+finite polynomial relation sections. To prove this without
+a measurable choice of approximating polynomials, suppose
+$v\in\mathscr H$ is orthogonal to every section
+$\mathbf1_U(\theta)\chi(S)S^j$, for measurable $U$ and $j\ge0$.
+Its fibre inner product with $\chi S^j$ is integrable by
+Cauchy--Schwarz, and its integral over every $U$ is zero,
+so that inner product is zero almost everywhere.
+The original exponential sample bounds make every fixed
+polynomial section square-integrable.
+Intersecting the countably many resulting full-measure sets,
+(HCD21) gives $v(\theta)\in\mathcal Q_\theta$ there.
+Conversely every such section is orthogonal to the relations.
+The orthogonal-complement characterization proves that their
+closed span is exactly $\mathscr R$.
+
+Since $\mathscr Q=0$, $\mathscr R=\mathscr H$ as Hilbert
+spaces, and the completed complex is the identity complex.
+Its degree-one cohomology is zero. The finite continuous
+common-image complex has positive Gram $\overline G$
+on its full $E$ by (HCD8)--(HCD12).
+The intervening map and its whole kernel are precisely
+(HCD23)--(HCD28).
+
+\subsection{The receiving supported zero and all marked fibres}
+
+Integrate in the stated coefficient fibre, then apply the
+original marked support construction. At a fixed original
+label $\ell$, a linear map $f$ has the lift
+\[
+ (\ell,x)\longmapsto(\ell,f(x)),\qquad
+ \tau\longmapsto\tau.
+ \tag{HCD29}
+\]
+For (HCD27), every represented input maps to the receiving
+supported zero $(\ell,0)$, and external absence maps to
+external absence $\tau$. Their inverse images are respectively
+the full represented fibre and the singleton external absence.
+At a fixed phase, the represented kernel is the entire
+ideal (HCD24), with its full primary decomposition (HCD25).
+No integral on arbitrary mixed-support totals is presumed.
+
+If the empty-packet case $q=0$ is separately admitted,
+$E=0$, $B_N=P_N$, and the finite and continuous coefficient
+complexes are identity complexes. The quotient Gram
+determinant is the empty determinant one. The analytic
+source and its literal norm remain present before the
+quotient. Its marked receiving object still has $\tau$
+and the represented zero, with the same maps (HCD29).
+
+\subsection{Exact outcome and scope}
+
+The continuous common-image complex has the explicit bounded
+cochain contraction (HCD7) on its complement and retains
+the whole nonreduced quotient in degree one.
+Its minimum metric is $\overline G$, and its difference
+from the constant-source metric is the positive original
+relation norm (HCD13). The mean-zero decomposition retains
+the weighted cross term (HCD15), giving (HCD16).
+
+The subsequent completion has receiving weighted value
+spaces (HCD22), primary kernels (HCD24)--(HCD25), measurable
+field (HCD26), and actual cochain map (HCD28).
+Its receiving coefficient direct integral is zero because
+only finitely many phases can sample a fixed polynomial root.
+Every exceptional phase, nilpotent component and zero-weight
+coordinate remains in the stated maps and kernels.
+No arithmetic volume asymptotic or RH conclusion is inferred.
+
+
+\endgroup

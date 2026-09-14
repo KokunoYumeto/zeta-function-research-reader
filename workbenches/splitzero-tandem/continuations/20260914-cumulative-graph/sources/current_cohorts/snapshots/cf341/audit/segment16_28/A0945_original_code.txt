@@ -1,0 +1,140 @@
+bash -lc mkdir -p /mnt/data/Deligne_Mixed_Support_TeX_Study/{sources,checks,audit,source_views}; cat > /mnt/data/Deligne_Mixed_Support_TeX_Study/checks/check_exact.py <<'PY'
+#!/usr/bin/env python3
+"""Finite checks for the supplied mixed-support law and the explicit extensions.
+None denotes tau; integer 0 is a supported amplitude.  The analytic arguments
+and source theorems are not certified by this script. Requires Python and SymPy.
+"""
+from __future__ import annotations
+import argparse, itertools, json, math, platform, random
+from pathlib import Path
+import sympy as sp
+
+records=[]
+def record(name, count):
+    records.append({'name':name, 'instances':count, 'status':'pass'})
+
+def s_add(a,b,p=None):
+    if a is None: return b
+    if b is None: return a
+    return (a+b)%p if p else a+b
+
+def s_mul(a,b,p=None):
+    if a is None or b is None: return None
+    return (a*b)%p if p else a*b
+
+def plus(a,b,p=None): return tuple(s_add(x,y,p) for x,y in zip(a,b))
+def mult(a,b,p=None):
+    n=len(a); out=[None]*n
+    for i,x in enumerate(a):
+        for j,y in enumerate(b):
+            v=s_mul(x,y,p)
+            if i+j>=n: v=s_mul(-1 if p is None else p-1,v,p)
+            out[(i+j)%n]=s_add(out[(i+j)%n],v,p)
+    return tuple(out)
+def mask(a): return tuple(x is not None for x in a)
+def amp(a): return tuple(0 if x is None else x for x in a)
+def saturated(a): return tuple(None for x in a) if all(x is None for x in a) else amp(a)
+def ring_mult(a,b,p=None): return amp(mult(amp(a),amp(b),p))
+def support_mult(a,b):
+    n=len(a); out=[False]*n
+    for i,x in enumerate(a):
+        for j,y in enumerate(b): out[(i+j)%n] |= x and y
+    return tuple(out)
+def frob(a,q):
+    n=len(a);out=[None]*n
+    for i,v in enumerate(a):
+        out[(q*i)%n]=None if v is None else ((-1)**((q*i)//n)*pow(v,q,q))%q
+    return tuple(out)
+
+rng=random.Random(20260911)
+count=0
+for n in range(1,7):
+    E=(1,)+(0,)*(n-1)
+    z=(None,)*n; unit=(1,)+(None,)*(n-1)
+    values=list(itertools.product([None,-1,0,1],repeat=n)) if n<=3 else [tuple(rng.choice([None,-1,0,1]) for _ in range(n)) for _ in range(150)]
+    assert len({(mask(a),amp(a)) for a in values})==len(set(values))
+    for a in values:
+        assert mult(E,a)==saturated(a)
+        assert mult(unit,a)==a and mult(z,a)==z
+        assert mult(E,E)==E
+        count+=4
+    for _ in range(350):
+        a,b,c=[rng.choice(values) for _ in range(3)]
+        assert mult(mult(a,b),c)==mult(a,mult(b,c))
+        assert mult(a,plus(b,c))==plus(mult(a,b),mult(a,c))
+        assert amp(mult(a,b))==ring_mult(a,b)
+        assert mask(mult(a,b))==support_mult(mask(a),mask(b))
+        assert mult(E,mult(a,b))==mult(mult(E,a),mult(E,b))
+        count+=5
+record('mixed law, joint mask/amplitude, synchronization idempotent n=1..6',count)
+
+count=0
+for q in [3,5,7]:
+    for n in range(1,8):
+        if math.gcd(q,n)!=1: continue
+        E=(1,)+(0,)*(n-1)
+        assert frob(E,q)==E
+        for _ in range(150):
+            a,b=[tuple(rng.choice([None]+list(range(q))) for _ in range(n)) for _ in range(2)]
+            assert frob(mult(a,b,q),q)==mult(frob(a,q),frob(b,q),q)
+            assert frob(plus(a,b,q),q)==plus(frob(a,q),frob(b,q),q)
+            v=amp(a);r=(1,)+(0,)*(n-1)
+            for k in range(q): r=ring_mult(r,v,q)
+            assert amp(frob(a,q))==r
+            assert mult(E,frob(a,q),q)==frob(mult(E,a,q),q)
+            count+=4
+record('support-compatible q-Frobenius and quotient equivariance',count)
+
+T=sp.symbols('T');count=0
+for q in [3,5,7]:
+    for n in range(1,10):
+        if math.gcd(q,n)!=1:continue
+        perm=[(q*j+(q-1)//2)%n for j in range(n)]
+        assert sorted(perm)==list(range(n))
+        M=sp.zeros(n)
+        for j,i in enumerate(perm):M[i,j]=1
+        remaining=set(range(n));cycles=[]
+        while remaining:
+            start=min(remaining);j=start;size=0
+            while j in remaining:
+                remaining.remove(j);size+=1;j=perm[j]
+            cycles.append(size)
+        assert sp.expand((sp.eye(n)-T*M).det()-sp.prod(1-T**d for d in cycles))==0
+        count+=1
+record('finite-etale geometric/arithmetic Frobenius determinant via inverse cycles',count)
+
+q,c=sp.symbols('q c',positive=True);count=0
+for d in range(0,9):
+    F=sp.diag(*[c*q**j for j in range(d+1)])
+    N=sp.zeros(d+1)
+    for j in range(1,d+1):N[j-1,j]=1
+    assert F*N*F.inv()==N/q
+    assert N**(d+1)==sp.zeros(d+1)
+    if d: assert N**d!=sp.zeros(d+1)
+    # M has grades 2j-d; all grading shifts are recorded rather than removed.
+    for j in range(d+1): assert (2*j-d)+(d)==2*j
+    count+=d+4
+record('nilpotent monodromy blocks of every tested length, absolute factor retained',count)
+
+n,i,d=sp.symbols('n i d')
+assert sp.expand(-(-n+2*d-i)+2*d-(n+i))==0
+record('duality plus Tate(-d) converts upper compact weight to lower ordinary weight',1)
+
+# Translation identity on a nontrivial divergence-free polynomial velocity.
+x,y,z,b1,b2,b3,t,nu=sp.symbols('x y z b1 b2 b3 t nu')
+coords=sp.Matrix([x,y,z]);b=sp.Matrix([b1,b2,b3])
+U=sp.Matrix([y*t+x*z,-x*t+y*z,-z*z]);p=x*y*t+z**3
+R=lambda V,P:V.diff(t)+V.jacobian(coords)*V-nu*V.applyfunc(lambda f:sum(sp.diff(f,a,2) for a in coords))+sp.Matrix([sp.diff(P,a) for a in coords])
+sub={x:x-b1,y:y-b2,z:z-b3}
+res=R(U.subs(sub,simultaneous=True),p.subs(sub,simultaneous=True))-R(U,p).subs(sub,simultaneous=True)
+assert all(sp.expand(v)==0 for v in res)
+assert sp.trace(U.jacobian(coords))==0
+record('NS translation intertwining instance, viscosity retained',4)
+
+report={'status':'pass','python':platform.python_version(),'sympy':sp.__version__,'records':records,'scope':'Finite sampled/exact algebra checks only. General assertions are proved in the written note; no Deligne, upstream NS, etale cohomology or Lean verification is claimed.'}
+parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path);args=parser.parse_args()
+text=json.dumps(report,indent=2)+'\n'
+if args.output:args.output.write_text(text)
+print(text)
+PY
+python /mnt/data/Deligne_Mixed_Support_TeX_Study/checks/check_exact.py --output /mnt/data/Deligne_Mixed_Support_TeX_Study/audit/checks.json

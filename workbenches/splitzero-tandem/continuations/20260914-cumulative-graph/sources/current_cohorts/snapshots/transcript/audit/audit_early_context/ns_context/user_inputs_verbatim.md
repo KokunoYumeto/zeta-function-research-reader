@@ -1,0 +1,36 @@
+## U0001 | dac6bebe-48e1-465f-a4b0-5f89a3607966 | user | chain 2
+
+Please make an exhaustive literature package zip with every single result and known output and anything that anybody has ever said about this, because we're going to try and reconstruct the Navier-Stokes proof that they are currently withholding because of infighting between AI companies. Give me fucking everything that is fucking known, including the literature they reference, the exact statements from those literature, how it would lead to this, etc., Tao's expedition, etc.
+
+
+## U0002 | 3d720ce3-ac0c-4160-943b-c520b73310f2 | user | chain 218
+
+Okay. Yeah, let's make a full exposition for Reddit on, like, what's publicly going on. Because I kind of want to do an exposition on this. I run the Mathematics LLM subreddit, so I kind of want the thing to be expositioned on, so to speak. Here's the current work that I have, which is attempting to reconstruct it using your model, but the Codex version for the most part. So yeah, like Google what the fuck the current status is, the beef is between these people, what the results are that we have, what they've published, what they've implied exists, because there's apparently this 100-page proof by the OpenAI people, which they're sitting on because they're trying to, I don't know, blackmail that kid. I don't know what the fuck's going on, or at least, like, what's the word for, like, chantage? Not great. It's not great, like saying, I'm going to kill your career and shit. I don't know who the fuck these people are, but they're motherfucking professionals. That's what they are. So yeah, no disrespect to you, but whoever the fucking Mathematics team is that lives at OpenAI, they're a bunch of fucking cuntwagons, from what we know publicly. And you don't have to state it like that, but it sure seems really sus that you're threatening this kid with career murder, I guess. I don't know why the fuck they would do that. It's just, like, this kid's found the coordinates that disprove everything. Why the fuck would you disrespect him? I don't get it. Or try to threaten him into taking his name off of the paper, or whatever the fuck they were doing. It's fucking wild.
+
+anyway reconstruct it coherently
+
+
+## U0003 | 457946ec-6fb0-4742-8e69-1539cebc3424 | user | chain 226
+
+including the attenpted reconstructio so far (acfurately in full strength)
+
+
+## U0004 | 4e24bdf7-f83a-4bb5-a736-987c66df71e8 | user | chain 400
+
+Could you, as the sort of like editor session, continue making a constructive, in the sense of, like demonstrative paper on what the fuck's going on? I like the HTML viewer, by the way. That seems, makes nice. Because I wanna— like, it's hard for me to keep track of everything because I've been fucking with this S6 object for so long that it became something that just ties into all of my research. And it does tie in a little bit. So do make a sort of clear pedagogical exposition and everything that keeps everything aligned in terms of, hey, this is how it relates. Because my own research is like, okay, here's what I want to do. I want to make a Reddit post that basically details the controversy, including the public results, and then the sort of attempts to reconstruct based on the evidence using the AI tools that I have available. What the fuck is actually the mathematics in question, separately from the controversy? So, like, and it's also, like, the author's opinion in this case is also, well, yeah, we can blame these people for having beef, but we can also consider that there is an element where we can blame the Clay Institute for attributing genius status immediately as well as life-changing money to whoever happens to be the first person to come up with a solution that hundreds have worked on historically. I personally lay at least a part of the blame with the Clay Institute, and I feel like most mathematicians agree with me, for causing this controversy in the first place. Because it's frankly, it's really weird that a public IPO depends on a publicity stunt by the Clay Institute, which is, on its face already extremely fucking disgusting, because offering young mathematicians millions of dollars to be the first person to come up with the proof is the opposite of fostering a cooperative attitude. I will blame the Clay Institute. I will also, modulo anything being true about these accounts, blame anyone in OpenAI that is threatening young mathematicians. Fuck that. Honestly, like, yeah, I don't know what to say about that. It's fucking unhinged. You're literally apparently dumping fucking, like global power-having corporations, like marketing budget in trying to prove a thing that the Clay Institute has deified into being the next Einstein for your fucking IPO competition with another clanker machine fuck factory. This whole thing is unhinged, and there are so many things that all, at the end of the day, reduce to why the fuck do we deify intelligence? If you think about it. And why does the Clay Institute get to do that? I really dislike the ethos violation that it represents to give a single person a million dollars for finding proof that hundreds have worked on. But all of that aside, with, like, that's the author's opinion, and it's fine for you to put the author's opinion in there. The author's opinion is that maybe we should reconsider the types of things that we do with millions of dollars at institutions. This myth of the genius validation that you're doing when you're making these prizes is not socially constructive, and we see that now. But beyond that, let's construct the actual... Yeah, yeah, like, and that's another thing. I am trying to reconstruct it in part because I think it's fucking cringe that all these people get to post AI proofs and then not prove provenance. Like, if I find it, or have you re-find it, I'll put the JSON, modulars for filtering online, plus the entire thousand-page workspace where it sees everything you tried and eventually landed on the correct thing with. That shit's all going online. I don't give a fuck. I have no career to be ruined. They can threaten me all they want. They can cut me off Codex access. Look at what that'll do for their fucking public stock. They can honestly go fuck themselves. So let's keep pushing, try and, you know, state these, like reconstruct it, reconstruct everything, make an update, sort of like Reddit post, which will be posted at some stage, I don't know. But yeah, let's keep pushing this on the side of the mathematics. You can do a sort of like filtered author statement somewhere, very concise, being like, hey, maybe we should stop doing the deification of the genius in general. That's probably a good idea. And see what we can do about the fucking mathematics.
+
+
+## U0005 | 3d3f6197-c4e4-43b1-aa22-a6b36207dda0 | user | chain 406
+
+Especially, especially where Jimmy is very synonymous with the ability to dump in the money in computer.
+
+
+## U0006 | b37c6fd5-dd0c-4bfb-a22c-2429afe90f22 | user | chain 414
+
+Thanks, speech to text. What I said was, especially where genius is apparently synonymous with dumping infinite money in compute.
+
+
+## U0007 | db5368dd-de50-4c4c-8d0b-2e6a3bead0bb | user | chain 728
+
+Now let's assume that it blows up by going to negative. That it just blows a hole in the bottom.
+

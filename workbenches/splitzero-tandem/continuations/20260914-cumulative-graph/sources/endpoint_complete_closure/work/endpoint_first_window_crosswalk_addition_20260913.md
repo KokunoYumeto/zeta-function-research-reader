@@ -1,0 +1,7 @@
+## Full first-window propagation and PR25 exact source
+
+The original11 PR25 files at66fac5e7885a40cd4873e74b754907320f05b067 were verified individually against both the owner'sSHA256 and Git blob identities. The20-file dependency collection retains those files, full owner review, scoped proposed correction and original CI logs. The PR was OPEN at the root observation. The strict-positive generalized-eigenvalue wording and workflow triggers remain correction items; the complete proposed nonnegative/parity proof is explicitly a proposal, not relabelled as merged source. No root Lean or historical checker replay is claimed.
+
+The full root chapter `consecutive_first_window_join_20260913.tex`, CJ.1–CJ.22, supplies the actualsource first-degree radius/phase transition, the complete first-window phase product, both finite phase/contraction penalties, the comparable norm envelope with original constants, each length-q block's2q logarithmic budget, exact relation Gram/isomorphism and every positive inverse-restriction trace bound. R49 points to this complete chapter.
+
+The phase product CJ.9 has one terminal contraction and two copies of every interior contraction; its first step contains no fictitious degree-q−2 inverse. The original parity proof retains zero cost eigenvalues, including full quotient multiplicities and nilpotent directions. The constants and finite penalties strengthen the written interface without assigning new formal execution status to the analytic proof.

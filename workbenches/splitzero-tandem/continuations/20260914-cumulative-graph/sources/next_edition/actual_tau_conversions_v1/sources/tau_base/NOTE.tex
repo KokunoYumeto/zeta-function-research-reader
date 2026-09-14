@@ -1,0 +1,905 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Arithmetic cohomology over the tau-base},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Arithmetic cohomology over the tau-base}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Arithmetic cohomology over the
+τ-base}\label{arithmetic-cohomology-over-the-ux3c4-base}
+
+\subsection{Scope and result}\label{scope-and-result}
+
+This note changes the geometric base of the existing arithmetic theta
+model to a one-point absolute base with distinguished absorbing element
+τ. It does \textbf{not} start with a variety over a finite field and
+then relabel its coefficients.
+
+The main calculation is the right adjoint to the actual global-section
+functor on this τ-based model. A projective resolution computes the
+arithmetic cohomology; a dual injective complex computes its
+right-adjoint object. These are then linked to the existing finite
+Mellin-jet quotients, including the full nilpotent jets and the original
+e/τ distinction.
+
+This is an algebraic, finite-chart realization. No assertion is made
+that the chart model is an arithmetic scheme, that its topology already
+supplies all prime correspondences, that the right-adjoint object is an
+involutive Verdier duality on every sheaf, or that the calculation
+proves a weight estimate. Each operation used below has its stated
+category. In particular the algebraic dual is not an assertion about the
+continuous dual of the Schwartz quotient.
+
+The supplied SplitZero results are the source for the scalar operations,
+support fibres and transports. The new constructions and proofs below
+are calculations in this note; they have not been Lean-formalized.
+
+\subsection{1. An actual base whose structural zero is
+τ}\label{an-actual-base-whose-structural-zero-is-ux3c4}
+
+Let
+
+\[
+\mathbf F_{1,\tau}=\{\tau,1\}
+\]
+
+be the pointed multiplicative monoid with identity 1 and absorbing
+element τ. As a blueprint, its only additional zero relation is that the
+empty sum represents τ. No additive equation \(1+1=1\) is imposed. Its
+spectrum \(\mathfrak b_\tau\) has the one prime \(\{\tau\}\).
+
+For every nonzero commutative ring R, retain
+
+\[
+G(R)=\{\tau\}\sqcup\{r^\bullet:r\in R\},\qquad e_R=0_R^\bullet.
+\tag{1}
+\]
+
+Let \(B_R\) be its associated blueprint: the original multiplicative
+pointed monoid, with all its original finite additive relations. In
+particular retain \([\tau]=0\), in agreement with the presentation
+correction in the supplied formalization note. There is a blueprint
+morphism
+
+\[
+\jmath_R:\mathbf F_{1,\tau}\longrightarrow B_R,
+\qquad \tau\mapsto\tau,\quad1\mapsto1_R^\bullet.
+\tag{2}
+\]
+
+On spectra it gives a genuine structural morphism
+
+\[
+a_R:\operatorname{Spec}B_R\longrightarrow\mathfrak b_\tau.
+\tag{3}
+\]
+
+Every prime has inverse image \(\{\tau\}\) under (2). Thus every
+arithmetic point lies over the single base point, by a specific
+inverse-image operation on prime ideals.
+
+The arithmetic quotient stays attached:
+
+\[
+p_R:G(R)\longrightarrow R,
+\quad p_R(\tau)=0_R,\quad p_R(r^\bullet)=r.
+\tag{4}
+\]
+
+For a domain,
+
+\[
+P_\tau=\{\tau\},\qquad P_0=\{\tau,e_R\},\qquad
+\operatorname{Spec}R\xrightarrow{i_R}\operatorname{Spec}_{\rm sr}G(R),
+\quad\mathfrak p\mapsto\mathfrak p\sqcup\{\tau\}.
+\tag{5}
+\]
+
+Here \(i_R(\operatorname{Spec}R)=V(e_R)=\overline{\{P_0\}}\). These maps
+carry the source's infinite quotient when \(R=\mathbb Z\). They do not
+assign an additional finite norm to either bottom ideal.
+
+There is a second, different-direction morphism in the same diagram:
+
+\[
+\operatorname{Spec}\mathbb B\xrightarrow{\operatorname{Spec}\chi_R}
+\operatorname{Spec}_{\rm sr}G(R)\xrightarrow{a_R}\mathfrak b_\tau,
+\quad
+\chi_R(\tau)=0,\quad\chi_R(r^\bullet)=1.
+\tag{6}
+\]
+
+The first arrow lands at \(P_\tau\). The original localization
+calculation is
+
+\[
+G(R)[e_R^{-1}]\cong\mathbb B.
+\tag{7}
+\]
+
+Indeed invertibility and \(e_R^2=e_R\) force \(e_R=1\), and
+\(e_Rr^\bullet=e_R\) then forces every supported scalar to equal 1.
+External absence remains distinct. We use (3), not localization (7), for
+the change of base. The arithmetic structure and its quotient remain
+upstream of (6).
+
+For \(R=\mathbb Z\), the source's infinite target is retained in the
+square
+
+\[
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(j)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\hookrightarrow&\mathbb C.
+\end{array}
+\tag{8}
+\]
+
+Here \(j:\mathbb Z\hookrightarrow\mathbb C\) is the specified unital
+embedding, and \(G(j)\) is its split lift.
+
+\subsection{2. The arithmetic theta chart space over that
+base}\label{the-arithmetic-theta-chart-space-over-that-base}
+
+Fix \(E=\mathbb C\). Let P be the four-point poset
+
+\[
++<\eta<\sigma,\qquad -<\eta<\sigma,
+\tag{9}
+\]
+
+with + and − incomparable. Give P the upper-set topology. Its proper
+nonempty opens are
+
+\[
+\{\sigma\},\quad\{\eta,\sigma\},\quad
+\{+,\eta,\sigma\},\quad\{-,\eta,\sigma\}.
+\]
+
+The structural sheaf \(\mathcal S\) has value \(G(E)\) on every open
+containing an arithmetic chart point and value \(\mathbb B\) on
+\(\{\sigma\}\). Restriction to \(\sigma\) is \(\chi_E\); other
+nontrivial restrictions are identities. Compatible supported local
+amplitudes glue, and compatibility at σ distinguishes an absent family
+from a supported one. This proves the sheaf assertion directly.
+
+Together with (2), this defines a space with a sheaf of blueprints over
+\(\mathfrak b_\tau\). There is also the explicit structural morphism to
+\(\operatorname{Spec}_{\rm sr}G(E)\), sending \(+, -,\eta\) to \(P_0\)
+and σ to \(P_\tau\), followed by the morphism induced by \(G(j)\) to
+\(\operatorname{Spec}_{\rm sr}G(\mathbb Z)\). On arithmetic stalks its
+map is \(G(\mathbb Q)\to G(E)\); at σ it is \(\mathbb B\to\mathbb B\).
+Thus the infinite quotient is still in a commuting structural diagram.
+This particular chart model maps to the arithmetic generic point; its
+finite-prime geometry is not being claimed to cover the closed prime
+fibres. Arithmetic prime information in the present realization enters
+through the theta map and its Euler/explicit formula, not through extra
+chart points invented here.
+
+The coefficient spaces are exactly
+
+\[
+V=\{\phi\in\mathcal S(\mathbb R):\phi\text{ even},\ \phi(0)=0,\ \widehat\phi(0)=0\},
+\quad
+\widehat\phi(\xi)=\int_{\mathbb R}\phi(x)e^{-2\pi i x\xi}\,dx,
+\tag{10}
+\]
+
+and
+
+\[
+\mathscr B=\{F\in C^\infty(\mathbb R_{>0}):
+\sup_{x>0}x^b|(-x\partial_x)^kF(x)|<\infty
+\ \text{for every }b\in\mathbb Z,k\ge0\}.
+\tag{11}
+\]
+
+Define
+
+\[
+\Theta\phi(x)=\sum_{n\in\mathbb Z\setminus\{0\}}\phi(nx),
+\qquad JF(x)=x^{-1}F(1/x).
+\tag{12}
+\]
+
+The retained Poisson identity gives
+
+\[
+J\Theta\psi=\Theta\widehat\psi.
+\tag{13}
+\]
+
+The arithmetic coefficient sheaf is the covariant diagram
+
+\[
+\mathcal T_+=V,\quad\mathcal T_-=V,\quad
+\mathcal T_\eta=\mathscr B,\quad\mathcal T_\sigma=0,
+\quad r_+=\Theta,\quad r_-=J\Theta=\Theta\mathcal F.
+\tag{14}
+\]
+
+This use of a zero vector space at σ will not identify the supported
+zero with τ. It is reconstructed as the support skeleton in the next
+paragraph.
+
+\subsubsection{All original two-leg support
+faces}\label{all-original-two-leg-support-faces}
+
+Set \(L=\mathcal P(\{+,-\})\). For nonempty \(A\subseteq\{+,-\}\),
+define a sheaf \(\mathcal T_A\) by
+
+\[
+(\mathcal T_A)_+=\begin{cases}V&+\in A\\0&+\notin A,\end{cases}
+\quad
+(\mathcal T_A)_-=\begin{cases}V&-\in A\\0&-\notin A,\end{cases}
+\quad
+(\mathcal T_A)_\eta=\mathscr B,\quad
+(\mathcal T_A)_\sigma=0.
+\tag{15}
+\]
+
+The nonzero restriction maps are those in (14); put
+\(\mathcal T_\varnothing=0\). Transports for \(A\subseteq A'\) are
+coordinate inclusions at + and − and the identity at η. These form a
+strict diagram.
+
+Reconstruct the supplied SplitZero semimodule sheaf
+
+\[
+\widetilde{\mathcal T}
+=\{\tau\}\sqcup\bigsqcup_{A\ne\varnothing}\{A\}\times\mathcal T_A.
+\tag{16}
+\]
+
+At σ its stalk is the semilattice L, with Boolean scalar action. At an
+arithmetic chart the scalar action is by \(G(E)\). Restrictions to σ are
+semilinear along \(\chi_E\). In particular \(e_E(A,v)=(A,0)\), which
+restricts to A at σ, while τ restricts to the empty label. The original
+distinction is present at the new base boundary.
+
+The additive module in degree zero is exactly the original two-leg
+carrier \((V^\tau)^2\): a missing leg is absent, and a supported zero in
+that leg is present. Formula (15) records a missing leg as a zero
+coefficient space \textbf{with its separate mask A retained}. Thus no
+new support is inserted into the original missing leg.
+
+\subsection{3. Compute global cohomology over the
+τ-base}\label{compute-global-cohomology-over-the-ux3c4-base}
+
+We now use the explicitly declared linear-fibre category
+
+\[
+\mathcal A=\operatorname{Fun}(P,\operatorname{Vect}_E).
+\]
+
+This is a realization category of the marked blueprint space, not an
+asserted category of étale sheaves on a new arithmetic scheme. Its
+passage to the original supported sheaves is (15)--(16), with kernels
+and quotients reconstructed fibrewise.
+
+For \(x\in P\), let \(P_x\) be the projective diagram
+
+\[
+P_x(y)=\begin{cases}E&x\le y\\0&\text{otherwise}.\end{cases}
+\quad
+\operatorname{Hom}_{\mathcal A}(P_x,F)=F_x.
+\tag{17}
+\]
+
+The constant diagram \(\mathbf E\) has the exact projective resolution
+
+\[
+0\longrightarrow P_\eta
+\xrightarrow{v\mapsto(v,-v)}P_+\oplus P_-
+\xrightarrow{(u,v)\mapsto u+v}\mathbf E\longrightarrow0.
+\tag{18}
+\]
+
+At + and − the last map is identity. At η and σ it is addition with
+kernel the displayed anti-diagonal. This checks every stalk and every
+arrow.
+
+Consequently the base pushforward is
+
+\[
+\mathsf A_\tau(F):=R\Gamma(P,F)
+\simeq[F_+\oplus F_-\xrightarrow{r_+-r_-}F_\eta],
+\quad\text{degrees }0,1.
+\tag{19}
+\]
+
+This is global cohomology over the base point, rather than restriction
+to the added generic point. The typed comparison to the latter is
+
+\[
+\operatorname{res}_\sigma:\mathsf A_\tau(F)\longrightarrow F_\sigma[0].
+\tag{20}
+\]
+
+Two chain representatives of (20) in degree zero are
+\((x,y)\mapsto r_{+\sigma}x\) and \((x,y)\mapsto r_{-\sigma}y\). Their
+difference is
+
+\[
+r_{\eta\sigma}(r_+x-r_-y),
+\]
+
+so they are chain homotopic, with homotopy
+\(r_{\eta\sigma}:F_\eta\to F_\sigma\). Thus (20) is canonical in the
+derived category.
+
+On the actual joint arithmetic sheaf,
+
+\[
+\mathsf A_\tau(\mathcal T)
+=[V\oplus V\xrightarrow{\Theta(\phi-\widehat\psi)}\mathscr B],
+\tag{21}
+\]
+
+\[
+H^0\mathsf A_\tau(\mathcal T)\cong V,
+\quad \psi\mapsto(\widehat\psi,\psi),
+\qquad
+H^1\mathsf A_\tau(\mathcal T)=Q:=\mathscr B/\Theta V.
+\tag{22}
+\]
+
+Injectivity of Θ follows from its Mellin transform on \(\Re s>1\), the
+nonvanishing Euler product there, and Mellin uniqueness. This is the
+existing source proof, not an assumption about zeros in the critical
+strip.
+
+The actual supported differential is
+
+\[
+\widetilde d(\phi,\psi)
+=(A,\Theta p(\phi)-J\Theta p(\psi)),
+\tag{23}
+\]
+
+where A is the set of present legs; the absent pair maps to τ. Its
+cohomology uses
+
+\[
+Z^i_{\rm sp}=\operatorname{Eq}(d,\epsilon d),
+\qquad
+H^i_{\rm sp}=\operatorname{coeq}(b,\epsilon b),
+\quad\epsilon(x)=ex.
+\tag{24}
+\]
+
+For every nonempty A, \(H^1(\mathcal T_A)=Q\). For a single-leg A,
+\(H^0=0\); for the joint A, \(H^0=V\). Therefore
+
+\[
+\widetilde H^1_\tau
+=\{\tau\}\sqcup\bigsqcup_{A\ne\varnothing}\{A\}\times Q.
+\tag{25}
+\]
+
+Restriction (20) sends each of these arithmetic classes to the supported
+zero at its own label in the σ skeleton. Their global cohomology classes
+in (25) remain present. This is the exact answer to what remains when
+all geometric points lie over the τ-base.
+
+\subsection{4. Compute the right adjoint on this
+base}\label{compute-the-right-adjoint-on-this-base}
+
+Deligne defines a dualizing object through a right adjoint and then
+proves weight bounds. Here we compute the right adjoint to our stated
+functor (19), rather than importing a dualizing complex from a
+finite-field variety.
+
+For \(x\in P\) and a vector space W, define
+
+\[
+I_x(W)(y)=\begin{cases}W&y\le x\\0&\text{otherwise}.\end{cases}
+\quad
+\operatorname{Hom}_{\mathcal A}(F,I_x(W))
+=\operatorname{Hom}_E(F_x,W).
+\tag{26}
+\]
+
+Because evaluation at x is exact and W is an injective E-module,
+\(I_x(W)\) is injective. The right-adjoint object is
+
+\[
+\boxed{
+K_\tau(W)=
+[I_\eta(W)\xrightarrow{(+\mathrm{res},-\mathrm{res})}
+ I_+(W)\oplus I_-(W)],
+\quad\text{degrees }-1,0.
+}
+\tag{27}
+\]
+
+For every sheaf F,
+
+\[
+\begin{aligned}
+R\operatorname{Hom}_{\mathcal A}(F,K_\tau(W))
+&=[\operatorname{Hom}(F_\eta,W)
+ \longrightarrow\operatorname{Hom}(F_+,W)\oplus\operatorname{Hom}(F_-,W)]\\
+&\cong R\operatorname{Hom}_E(\mathsf A_\tau(F),W).
+\end{aligned}
+\tag{28}
+\]
+
+The differential is \(\ell\mapsto(\ell r_+,-\ell r_-)\). This proves the
+adjunction, with its signs. For a bounded complex W, totalize the same
+formula with its original differential.
+
+Let \(S_\eta W\) denote the diagram with W at η and zero at the other
+three points. Calculation of the four stalk complexes gives
+
+\[
+K_\tau(W)_+=[W\xrightarrow{1}W],\quad
+K_\tau(W)_-=[W\xrightarrow{-1}W],\quad
+K_\tau(W)_\eta=W[1],\quad K_\tau(W)_\sigma=0.
+\tag{29}
+\]
+
+Thus
+
+\[
+\boxed{K_\tau(W)\simeq S_\eta W[1].}
+\tag{30}
+\]
+
+The symbol \([1]\) means W is in cohomological degree −1. It is obtained
+from (18) and (27). The functor is a right adjoint to \(R\Gamma\) on
+this model; no assertion that it is the extraordinary pullback for an
+unconstructed proper arithmetic morphism is made. In particular, an
+involutive local Verdier duality or a finite-field purity theorem has
+not been obtained just from (28).
+
+Apply (27) componentwise to support diagrams. Every zero coefficient
+stalk reconstructs as its labelled zero, including at σ. Dual transports
+are actual precomposition maps
+
+\[
+\rho_{AB}^{\vee}:\operatorname{Hom}(H_B,W)\longrightarrow
+\operatorname{Hom}(H_A,W),\quad\ell\mapsto\ell\rho_{AB}.
+\tag{31}
+\]
+
+They therefore have index category \(L^{\mathrm{op}}\); the label arrows
+have not been reversed without retaining the precomposition operation.
+
+\subsection{5. Retain the actual characteristic-zero arithmetic
+action}\label{retain-the-actual-characteristic-zero-arithmetic-action}
+
+For a positive real a, use
+
+\[
+U_aF(x)=F(x/a),\qquad
+\mathcal M F(s)=\int_0^\infty F(x)x^s\,\frac{dx}{x}.
+\tag{32}
+\]
+
+Then
+
+\[
+\mathcal M U_aF(s)=a^s\mathcal MF(s),\qquad
+\widehat{U_a\phi}=aU_{1/a}\widehat\phi.
+\tag{33}
+\]
+
+The action on the two source charts is consequently
+
+\[
+(\phi,\psi)\longmapsto(U_a\phi,\ aU_{1/a}\psi),
+\quad
+F\longmapsto U_aF\text{ at }\eta.
+\tag{34}
+\]
+
+Using the same \(U_a\) on both source charts would fail the required
+intertwining. Direct calculation gives
+
+\[
+U_aJ=aJU_{1/a},\qquad d(U_a\phi,aU_{1/a}\psi)=U_a d(\phi,\psi).
+\tag{35}
+\]
+
+It fixes every support mask. At σ it fixes the support skeleton. The new
+base remains the same point; the induced action on its pushforward
+remains the arithmetic action (33).
+
+The source's moment map gives the two coefficient lines
+
+\[
+\mathcal L_0=E\text{ with action }1,\quad
+\mathcal L_1=E\text{ with action }a,
+\quad
+m(\phi)=(\phi(0),\int_{\mathbb R}\phi(x)\,dx),
+\tag{36}
+\]
+
+\[
+mU_a=\operatorname{diag}(1,a)m.
+\]
+
+Both choices \(K_\tau(\mathcal L_0)\) and \(K_\tau(\mathcal L_1)\)
+exist. The latter produces, on dual functionals, the action
+
+\[
+(U_a\ell)(v)=a\,\ell(U_a^{-1}v).
+\tag{37}
+\]
+
+The factor a is carried from the actual second moment representation. It
+is not set to one or inferred from the cardinality of a base point.
+
+\subsection{6. An actual morphism from arithmetic cohomology to its
+τ-base
+dual}\label{an-actual-morphism-from-arithmetic-cohomology-to-its-ux3c4-base-dual}
+
+Put \(g=2\xi\). Retain a finite reflection-stable set Z of actual zeros,
+with actual multiplicities. Define
+
+\[
+A_Z=\bigoplus_{\rho\in Z}\mathcal O_\rho/(g),
+\qquad
+(J_ZF)_\rho=\sum_{j<m_\rho}
+\frac{(\mathcal MF)^{(j)}(\rho)}{j!}z_\rho^j.
+\tag{38}
+\]
+
+The source identity \(\mathcal M\Theta\phi=gH_\phi\), with \(H_\phi\)
+entire, proves that the maps
+
+\[
+\mathcal T\longrightarrow S_\eta A_Z,
+\quad 0\text{ on }+, -,\sigma,\quad J_Z\text{ on }\eta,
+\tag{39}
+\]
+
+are a sheaf morphism. Applying \(\mathsf A_\tau\) gives precisely the
+already-specified map \(Q\to A_Z\) in degree one. This finite jet map is
+onto; the source proof is independence of the finite family
+\(e^{\rho y}y^j/j!\) on any nonempty interval, followed by a compactly
+supported smooth right inverse.
+
+On \(A_Z\), the scaling action is
+
+\[
+U_a|_\rho=a^\rho\sum_{j<m_\rho}\frac{(\log a)^j}{j!}N_\rho^j,
+\quad N_\rho z^j=z^{j+1}.
+\tag{40}
+\]
+
+Using the reflected germ map
+
+\[
+f^\dagger(s)=\overline{f(1-\bar s)},
+\quad
+\sum c_jz_{\iota\rho}^j\mapsto\sum(-1)^j\bar c_jz_\rho^j,
+\tag{41}
+\]
+
+retain the perfect finite residue pairing
+
+\[
+R_Z(f,h)=\sum_{\rho\in Z}\operatorname{Res}_\rho
+\frac{f^\dagger(s)h(s)}{g(s)}\,ds.
+\tag{42}
+\]
+
+It has \(R_Z(U_af,U_ah)=aR_Z(f,h)\). Its raw skew-Hermitian orientation
+is retained; no multiplication by a phase is inserted to call it
+positive.
+
+Precomposing the dual map of (39) with (42) gives an explicit injective
+linear morphism from the conjugate finite packet:
+
+\[
+\boxed{
+\overline{A_Z}\longrightarrow
+H^{-1}R\operatorname{Hom}_{\mathcal A}(\mathcal T,K_\tau(\mathcal L_1)),
+\quad
+\bar f\longmapsto
+\left([F]\longmapsto\sum_{\rho\in Z}\operatorname{Res}_\rho
+\frac{f^\dagger(s)\mathcal MF(s)}{g(s)}\,ds\right).
+}
+\tag{43}
+\]
+
+The target is canonically \(\operatorname{Hom}_E(Q,\mathcal L_1)\) by
+(28). Well-definedness follows because replacing F by \(F+\Theta\phi\)
+adds the holomorphic residue expression \(f^\dagger H_\phi\).
+Injectivity follows from the surjectivity of \(J_Z\) and perfectness of
+(42). Formula (37) and covariance of (42) prove equivariance.
+
+Thus the duality here is a morphism \textbf{to the right-adjoint object
+computed on the τ-base}, not merely a pairing written separately from a
+cohomological model.
+
+The trace contraction is the specified endomorphism
+
+\[
+J_g:A_Z\to A_Z,\quad[h]\mapsto[g'h],
+\tag{44}
+\]
+
+\[
+R_Z(f,J_gh)=\sum_\rho m_\rho\overline{f(1-\bar\rho)}h(\rho)
+=\operatorname{Tr}(M_{f^\dagger h}|A_Z).
+\tag{45}
+\]
+
+At a zero of order m, write the actual \(g=u(z)z^m\). Then
+\(g'\equiv m u(z)z^{m-1}\pmod{z^m}\). The radical of (45) consists of
+the jets with zero residue value. They map to e under the original
+internal quotient, while (42) retains their full pairing before that
+observation.
+
+All maps in (38)--(45) lift to supported fibres. At label A the map is
+\((A,[F])\mapsto(A,J_ZF)\). A zero functional obtained in (43) or (45)
+is the supported zero functional at that label, not τ. For inclusions of
+admitted source labels the resulting squares commute, and the dual
+arrows are the precomposition arrows (31).
+
+\subsection{7. The tensor-amplification operation on the changed
+base}\label{the-tensor-amplification-operation-on-the-changed-base}
+
+For the joint arithmetic fibre, take products of the actual chart space
+P over the underlying point of \(\mathfrak b_\tau\), and external
+products of its coefficient sheaf. This is the ordinary product of the
+declared finite topological models with external coefficient tensors. It
+is not a claim that its structure-sheaf product has already been
+identified with the schematic square of the full arithmetic space.
+
+The projective resolution for \(P^r\) is the external tensor product of
+(18). Its differential on homogeneous factors is
+
+\[
+d(x_1\otimes\cdots\otimes x_r)=
+\sum_{j=1}^r(-1)^{\sum_{k<j}|x_k|}
+ x_1\otimes\cdots\otimes dx_j\otimes\cdots\otimes x_r.
+\tag{46}
+\]
+
+Because the tensor product is over the field E, this yields the explicit
+Künneth map and, at the top degree,
+
+\[
+\boxed{
+H^r\mathsf A_{\tau,r}(\mathcal T^{\boxtimes r})\cong Q^{\otimes_E r}.
+}
+\tag{47}
+\]
+
+Indeed the numerator of top cohomology is \(\mathscr B^{\otimes r}\);
+its relations are the sum of all subspaces obtained by putting
+\(\Theta V\) in at least one factor. The quotient is exactly the
+displayed tensor quotient. The joint-support evaluation is a stated
+functor from the full retained support diagram. Other original support
+fibres are not removed; their cochain complexes and transports remain in
+that diagram.
+
+The top-degree kernel relation is again quotiented internally in its
+supported scalar fibre. Pure external absence is absorbing. A supported
+tensor whose amplitude becomes a tensor relation maps to the supported
+zero of that tensor fibre. We do not identify a coefficient external
+tensor with the Cartesian product of support labels; such a tensor has
+its specified absorbing basepoint and balancing relations.
+
+The dual right-adjoint object on the product is computed from the dual
+tensor resolution:
+
+\[
+K_{\tau,r}(W)\simeq S_{(\eta,\ldots,\eta)}W[r].
+\tag{48}
+\]
+
+For \(r=2\), the degree −2 term and both degree −1 terms occur in that
+resolution with the signs from (46). The shift {[}2{]} is obtained by
+this actual product calculation, not inserted into (30).
+
+For a residue-value eigenvector at an actual zero \(\rho\), the action
+in (47) on its r-fold tensor is
+
+\[
+a^{r\rho}.
+\tag{49}
+\]
+
+In particular the exact modulus defect relative to r copies of
+\(\mathcal L_1^{1/2}\), expressed without rescaling the action, is
+
+\[
+\log\frac{|a^{r\rho}|^2}{a^r}
+=r(2\Re\rho-1)\log a\quad(a>1).
+\tag{50}
+\]
+
+This performs the amplification operation on the actual arithmetic
+spectral quotient over the new base. It does not prove a bound on the
+left-hand side. Deligne's geometric upper estimate is additional
+information in his setting; it has not been derived for (47).
+
+\subsection{8. What a map to the base does, and what deleting a spectral
+packet
+does}\label{what-a-map-to-the-base-does-and-what-deleting-a-spectral-packet-does}
+
+The structural map (3) sends every point to the base point. The derived
+pushforward (19) carries its coefficient relations and arithmetic
+operators along with it. Restriction (20), by contrast, has value the
+support skeleton on our sheaf. These are two explicitly compared
+operations on the same model.
+
+For clarity about the proposed ``exceptions land in τ,'' let W and W' be
+ordinary vector spaces and use their single-active-fibre split lifts. If
+a \(G(E)\)-linear map
+
+\[
+f:W^\tau\to(W')^\tau
+\]
+
+sends one supported vector v to τ, then it sends every supported vector
+to τ. Proof: \(f(0_W^\bullet)=f(ev)=ef(v)=\tau\). For every w,
+\(ef(w)=f(ew)=\tau\). In \((W')^\tau\), the only element whose
+e-multiple is τ is τ itself. This result is for this specified target;
+it is not asserted for arbitrary semimodules with a nontrivial bottom
+group fibre.
+
+A labelled projection can delete a whole packet while retaining other
+labels, but it has a calculable cohomological contribution. For a
+reflection-stable finite set Z split into C and B, the actual projection
+is
+
+\[
+A_Z\twoheadrightarrow A_C,\qquad\ker=A_B.
+\tag{51}
+\]
+
+The difference of convolution traces is
+
+\[
+\operatorname{Tr}(H_h|A_Z)-\operatorname{Tr}(H_h|A_C)
+=\sum_{\rho\in B}m_\rho\mathcal Mh(\rho).
+\tag{52}
+\]
+
+This is nonzero for some admissible compactly supported smooth h
+whenever B is nonempty, by finite Mellin interpolation. Its split value
+for that test is a supported nonzero number. The cone of the projection
+\(A_Z[-1]\to A_C[-1]\) has \(H^0=A_B\); that is the precise
+cohomological trace lost by deletion.
+
+Consequently a structural projection of the entire geometry to the
+τ-base does not delete a packet. A packet deletion is (51), with the
+separate kernel and trace (52). Establishing that all actual exceptional
+contributions are absent requires this kernel or its full trace
+contribution to vanish by arithmetic geometry, not merely by relabelling
+its support.
+
+\subsection{9. Result and next mathematically defined
+target}\label{result-and-next-mathematically-defined-target}
+
+The completed construction in this note is
+
+\[
+\widetilde{\mathcal T}\text{ over }\mathfrak b_\tau
+\ \xrightarrow{\ \mathsf A_\tau\ }\
+\widetilde H^1_\tau
+\ \xrightarrow{\ J_Z\ }\
+A_Z^\tau,
+\]
+
+with the computed adjoint object \(K_\tau(\mathcal L_1)\), the dual
+morphism (43), the trace contraction (45), and all tensor powers (47).
+It is a characteristic-zero scaling calculation, not a purity
+calculation on a finite-field curve.
+
+The arithmetic quotient \(G(\mathbb Z)\to\mathbb Z\) is kept in the
+structural map (8). The current theta chart model sees its generic
+arithmetic image; a global prime-sensitive geometric realization with a
+Lefschetz theorem and two-sided weight estimates is not obtained from
+this finite chart topology alone. The specific remaining quantity in
+this model is the tensor-growth defect (50), or equivalently the sign of
+the full trace pairing (45) after its global arithmetic realization.
+Neither is set to zero in the note.
+
+The new work is the actual change of base, the computed right adjoint,
+and the cohomological placement of the finite arithmetic duality maps on
+that base. It narrows the task to a property of these explicit objects
+rather than repeating the assertion that a shared support should imply
+purity.
+
+\subsection{Sources read for this
+calculation}\label{sources-read-for-this-calculation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{globalization\_note.tex}: lines 432--563 (localizations and
+  stalks), 673--751 (contracted monoid algebra and blueprint remark).
+  The separate supplied Lean-summary note provides the correction
+  \texttt{{[}tau{]}=0} and the implemented support-fibre operations.
+  Those source results are not claimed as new.
+\item
+  Retained \texttt{Split\_Support\_Actual\_Comparison/CONTINUATION.tex}:
+  test spaces, Fourier and theta maps, the arithmetic quotient and
+  finite jet realization. This is an earlier research derivation, not an
+  independent verification of every global statement in its package.
+\item
+  The supplied French Weil II TeX excerpts, original §6.2.1--6.2.7 and
+  §3.3: the right-adjoint definition of a dualizing complex, opposite
+  dual-weight bounds, proper pushforward, and the arithmetic-base
+  twist/degree equation. The excerpts' historical-transcription status
+  remains recorded. Reading these windows is not a claim to read or
+  audit the whole paper in this turn.
+\item
+  O. Lorscheid, \emph{The geometry of blueprints. Part I}
+  (arXiv:1103.1745): external framework for the declared blueprint base.
+  The finite-chart model and adjoint calculation above are proved here;
+  they are not attributed to that paper.
+\end{enumerate}
+
+\subsection{Checks}\label{checks}
+
+The accompanying executable checks finite instances of the stated poset
+resolution, dual complex, internal support differential, action
+compatibility, tensor differentials and trace deletion. They use
+explicit exceptions rather than optimizable \texttt{assert} statements.
+They are regression checks of these identities, not a formal proof of
+RH, of Deligne's theorem, or of a global arithmetic realization.
+
+\end{document}

@@ -1,0 +1,729 @@
+# Finite dilation of the original arithmetic packet over the tau base
+
+## 0. Scope and exact source correspondence
+
+This calculation continues the original two-leg theta complex. The retained infinitesimal identity is (A11) of `arithmetic_input.tex`; the absolute-base pushforward, its two-leg action, and its tensor differential are (19), (21), (34), and (46) of *Arithmetic cohomology over the tau-base*. The full global retraction and its cocycle were already constructed in transcript turn **A1694**, node `1fa0ebbc-f569-40c1-b7ac-b523da19a5f0`, chain position 3576, and in *Tau_Global_Comparison*, equations (16), (19), (29)–(35), and (41). Those results are retained as prior work, not reported as newly discovered here.
+
+The additional calculation is the explicit finite-packet dilation cocycle for every positive real dilation, its full Taylor-unit and nilpotent coefficients, convergent source-space integral, incomplete-gamma evaluation, exact finite/global change of representatives, two-leg homotopies, and tensor and boundary formulas. These formulas perform the group-level continuation of the existing infinitesimal extension. They do not assign positivity to a representative pairing.
+
+The source bytes used are pinned at the end. Every integral on the positive half-line keeps the displayed measure. In particular the Hilbert pairing below uses **$dx$**, and its dilation mass is $a$, not $1$. The notation $t=\log a$ is a real time parameter; the polynomial coordinate in $\mathbb C[X]/(h)$ is written $X$ to avoid confusing it with that time. Thus $A=M_X$ here is exactly the source operator denoted $M_t$.
+
+## 1. The original spaces, maps, and topology
+
+Work over $\mathbb C$. Let
+
+$$
+V=\left\{\phi\in\mathcal S(\mathbb R):
+\phi(-x)=\phi(x),\quad \phi(0)=0,\quad
+\int_{\mathbb R}\phi(x)\,dx=0\right\},
+$$
+
+$$
+\mathscr B=\left\{F\in C^\infty(\mathbb R_{>0}):
+p_{b,k}(F)=\sup_{x>0}x^b|D^kF(x)|<\infty
+\quad(b\in\mathbb Z,\ k\geq0)\right\},\qquad D=-x\partial_x.
+$$
+
+Use the Schwartz seminorms
+
+$$q_{N,k}(\phi)=\sup_{x\in\mathbb R}(1+|x|)^N|\partial_x^k\phi(x)|,
+\qquad N,k\geq0.$$
+
+The space $V$ is a closed subspace of the complete Schwartz space: parity, value at zero, and integration are continuous. For example
+$|\int\phi|\leq q_{2,0}(\phi)\int_{\mathbb R}(1+|x|)^{-2}dx$.
+The space $\mathscr B$ is complete because a Cauchy sequence in all $p_{b,k}$ converges with all derivatives on compact subsets after $x=e^y$; the weighted uniform bounds pass to its limit. These observations justify limits of Riemann sums in the actual spaces below.
+
+Retain
+
+$$
+\widehat\phi(\xi)=\int_{\mathbb R}\phi(x)e^{-2\pi ix\xi}\,dx,
+\quad \Theta\phi(x)=2\sum_{n\geq1}\phi(nx),
+\quad JF(x)=x^{-1}F(1/x),
+$$
+
+$$\mathcal MF(s)=\int_0^\infty F(x)x^s\,\frac{dx}{x}.$$
+
+Schwartz estimates, followed by the original Poisson identity, give
+
+$$\Theta:V\longrightarrow\mathscr B,\qquad
+\Theta\widehat\phi=J\Theta\phi,\qquad D\Theta=\Theta D.$$
+
+Here is the continuity argument. At $x\geq1$, each $D^k\phi(nx)$ is bounded by a finite sum of Schwartz seminorms times $(nx)^{-M}$, where $M$ can be any sufficiently large positive integer. Summing $n^{-M}$ gives every required bound at infinity. The Fourier transform preserves Schwartz seminorms continuously, preserves evenness, and interchanges the two vanishing moments. Poisson summation therefore gives $\Theta\phi(x)=x^{-1}\Theta\widehat\phi(1/x)$; applying $D^k$ and the preceding bounds gives every required estimate at zero. Each resulting estimate involves finitely many source seminorms. Termwise differentiation is justified uniformly on every $x\geq\delta>0$ by the same summable majorants.
+
+The theta map is injective. For fixed $x>0$, absolute convergence permits
+
+$$
+\frac12\sum_{m\geq1}\mu(m)\Theta\phi(mx)
+=\sum_{r\geq1}\left(\sum_{m\mid r}\mu(m)\right)\phi(rx)=\phi(x).
+$$
+
+Indeed the rearranged absolute sum is bounded by
+$\sum_{r\geq1}d(r)|\phi(rx)|<\infty$, since $d(r)\leq r$ and $\phi$ is Schwartz. Thus no theta relation is lost when its source is recovered.
+
+For $a>0$ define $U_aF(x)=F(x/a)$, and use the same formula on $V$. Direct substitutions give
+
+$$
+p_{b,k}(U_aF)=a^b p_{b,k}(F),\qquad
+q_{N,k}(U_a\phi)\leq a^{-k}\max(1,a)^Nq_{N,k}(\phi),
+\tag{1}
+$$
+
+$$
+\mathcal MU_aF(s)=a^s\mathcal MF(s),\quad
+\widehat{U_a\phi}=aU_{1/a}\widehat\phi,\quad
+\Theta U_a=U_a\Theta.\tag{2}
+$$
+
+The two moments of $U_a\phi$ are $\phi(0)$ and $a\int\phi$, so $V$ is invariant. Differentiating the defining formula gives
+
+$$\frac{d}{dt}U_{e^t}\phi=DU_{e^t}\phi=U_{e^t}D\phi.$$
+
+This is a derivative in every Schwartz seminorm. To verify it, apply the ordinary Taylor formula with integral remainder to $U_{e^{t+h}}\phi$; its second derivative is $U_{e^{t+h}}D^2\phi$, uniformly bounded on each compact time interval by (1). The same argument, using the exact first identity in (1), proves smoothness in $\mathscr B$. Repeating with $D^j\phi$ proves derivatives of all orders. In particular this is a smooth group action on the retained Frechet spaces.
+
+The four-point source poset is
+
+$$+<\eta<\sigma,\qquad -<\eta<\sigma.$$
+
+For the sheaf with stalks $V,V,\mathscr B,0$ and restriction maps $\Theta,\Theta\mathcal F$, the source projective resolution computes
+
+$$
+C=\mathsf A_\tau(\mathcal T)
+=\left[V\oplus V\xrightarrow{d}\mathscr B\right],
+\quad d(v,w)=\Theta(v-\widehat w),\quad |V\oplus V|=0,\ |\mathscr B|=1.
+\tag{3}
+$$
+
+Its actual chain action is
+
+$$
+\mathcal U_a^0(v,w)=(U_av,aU_{1/a}w),\qquad
+\mathcal U_a^1F=U_aF.\tag{4}
+$$
+
+Equation (2) proves $d\mathcal U_a^0=\mathcal U_a^1d$. On even Schwartz functions $\mathcal F^2=1$, so the exact degree-zero cycle inclusion is
+
+$$i_0(w)=(\widehat w,w),\qquad
+\mathcal U_ai_0(w)=i_0(aU_{1/a}w).\tag{5}$$
+
+It follows from theta injectivity that $H^0(C)=i_0(V)$ and $H^1(C)=Q=\mathscr B/\Theta V$. These are the original global cohomology groups over the absolute tau base.
+
+## 2. The finite arithmetic packet and its unchanged Taylor unit
+
+Retain the original Gaussian source
+
+$$\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad f_0=\Theta\phi_*.$$
+
+It has value zero at zero, and direct Gaussian integration gives zero integral. More precisely, with $M_+\phi(s)=\int_0^\infty\phi(x)x^s\,dx/x$,
+
+$$
+M_+\phi_*(s)=\pi^{-s/2}\bigl(2\Gamma(s/2+2)-3\Gamma(s/2+1)\bigr)
+=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2).\tag{6}
+$$
+
+Consequently the entire function $g=\mathcal Mf_0$ agrees, first by absolutely convergent integration in a right half-plane and then by continuation, with the original function
+
+$$g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).$$
+
+Entireness of the Mellin transform of $f_0\in\mathscr B$ follows directly from the bounds in $\mathscr B$. For $0<\operatorname{Re}s<1$, set
+
+$$H_\phi(s)=\frac{2\pi^{s/2}}{s(s-1)\Gamma(s/2)}M_+\phi(s).$$
+
+Then
+
+$$\mathcal M\Theta\phi=gH_\phi,\qquad H_{\phi_*}=1,\qquad
+H_{P(D)\phi_*}(s)=P(s).\tag{7}$$
+
+For completeness, $M_+\phi$ is holomorphic on $\operatorname{Re}s>-2$, since smooth evenness and $\phi(0)=0$ give $\phi(x)=O(x^2)$. In $\operatorname{Re}s>1$, interchanging its theta series and Mellin integral gives $\mathcal M\Theta\phi=2\zeta(s)M_+\phi(s)$. Continue to the indicated strip to obtain the first equality in (7). Integrating $D\phi$ by parts proves $H_{D\phi}=sH_\phi$; the endpoint term $[x^s\phi(x)]_0^\infty$ vanishes on that strip. Equation (6) then proves the other two equalities.
+
+Fix the original nonempty finite packet $Z$ of actual nontrivial zeros, each with its complete order $m_\rho$, and put
+
+$$
+h(X)=\prod_{\rho\in Z}(X-\rho)^{m_\rho},\quad d_h=\deg h,
+\quad E=\mathbb C[X]/(h),\quad A=M_X,
+$$
+
+$$v(s)=g(s)/h(s),\qquad \varepsilon=j_h(h/g)\in E^\times.$$
+
+The quotient $h/g$ here is taken as a germ at each selected zero; these germs are holomorphic and nonzero because the complete multiplicity has been retained. The local unit is **not** replaced by $1$. For $u\in E$, let $R_Z(u)$ be the unique polynomial of degree less than $d_h$ representing $\varepsilon u$, and put
+
+$$\ell(u)=[X^{d_h-1}]R_Z(u).\tag{8}$$
+
+We record the inverse used to define the source section, rather than taking an unproved inverse as an extra hypothesis. On $F\in\mathscr B$ satisfying $\mathcal MF(\rho)=0$, define
+
+$$S_\rho F(x)=x^{-\rho}\int_x^\infty F(y)y^{\rho-1}\,dy.$$
+
+Differentiation gives $(D-\rho)S_\rho F=F$. The moment condition makes the upper integral the negative lower integral. If $\sigma=\operatorname{Re}\rho$, the upper estimate, for $N>\sigma$, is
+
+$$|S_\rho F(x)|\leq \frac{p_{N,0}(F)}{N-\sigma}x^{-N}.$$
+
+The lower estimate, for $N+\sigma>0$, is
+
+$$|S_\rho F(x)|\leq \frac{p_{-N,0}(F)}{N+\sigma}x^{N}.$$
+
+Using the upper estimate on $x\geq1$ and the lower estimate on $x\leq1$ gives every weighted bound. The differential identity expresses $D^kS_\rho F$ as $\rho^kS_\rho F$ plus a finite linear combination of $D^jF$, proving all derivative bounds and continuity. The homogeneous solution $cx^{-\rho}$ cannot belong to $\mathscr B$ unless $c=0$, so the inverse is unique. Integration by parts gives
+
+$$\mathcal MS_\rho F(s)=\frac{\mathcal MF(s)}{s-\rho},$$
+
+with the removable value filled in. Iterating this construction, removing one vanishing factor at a time, defines the continuous inverse $S_h$ of $h(D)$ on $\ker(j_h\mathcal M)$. The operation preserves the remaining zeros and lowers the order at the chosen zero by exactly one at each step. Conversely any $h(D)F$ has those vanishing jets. This proves
+
+$$h(D)\mathscr B=\ker(j_h\mathcal M),\qquad h(D)\text{ is injective}.\tag{9}$$
+
+The section in the question is therefore the actual well-defined map
+
+$$R=R_{\rm ref}:E\longrightarrow\mathscr B,\qquad
+Ru=S_h\Theta\bigl(R_Z(u)(D)\phi_*\bigr).\tag{10}$$
+
+Indeed its input has Mellin transform $gR_Z(u)$, which vanishes to all the required orders. Equations (7) and (9) give
+
+$$\mathcal MRu=vR_Z(u),\qquad
+J_ZR=1_E,\qquad J_Z=j_h\mathcal M,\qquad J_Z\Theta=0.\tag{11}$$
+
+The Mellin-jet map is continuous: split its integral at $1$, dominate the logarithmic factors at zero by a sufficiently negative weight and those at infinity by a sufficiently positive weight. This yields a finite sum of seminorm bounds for each derivative at each $\rho$. In (11), $j_h(v)\varepsilon=1$ proves the middle identity. Hence $R$ and $\sigma=qR:E\to Q$ are injective, since $J_Z$ descends to $Q$.
+
+The infinitesimal boundary is precisely the retained one:
+
+$$DR-RA=\Theta\phi_*\ell=f_0\ell.\tag{12}$$
+
+To prove it without losing its coefficient, the polynomial
+$XR_Z(u)-R_Z(Au)$ vanishes modulo $h$ and has degree at most $d_h$. Since $h$ is monic, its quotient by $h$ is exactly $\ell(u)$. Apply $h(D)$ to (12), use (10), $D\Theta=\Theta D$, and that polynomial identity. Injectivity of $h(D)$ from (9) proves (12). For a single simple zero, $R_Z(u)=u/g'(\rho)$ and $\ell(u)=u/(2\xi'(\rho))$, with the original factor of two.
+
+## 3. The finite dilation cocycle as an actual convergent source integral
+
+For every real $t$, define $T_t=e^{tA}$ and
+
+$$
+c_t(u)=\int_0^t U_{e^{t-r}}\phi_*\,\ell(T_ru)\,dr\in V.
+\tag{13}
+$$
+
+If $t<0$, $\int_0^t=-\int_t^0$; no orientation is changed. Write $c_a=c_{\log a}$ and $a^A=T_{\log a}$ when using the multiplicative parameter.
+
+**Convergence and continuity.** Fix any norm on the finite-dimensional coefficient space, solely for estimates, and its induced operator norms. On the oriented interval between $0$ and $t$, both $|r|$ and $|t-r|$ are at most $|t|$. Equation (1) and $\|T_r\|\leq e^{|r|\|A\|}$ yield
+
+$$
+q_{N,k}(c_tu)
+\leq |t|e^{(N+k+\|A\|)|t|}\,
+q_{N,k}(\phi_*)\,\|\ell\|\,\|u\|.\tag{14}
+$$
+
+The integrand is continuous in every seminorm. Its Riemann sums are Cauchy in every seminorm by uniform continuity on the compact interval. Completeness of $V$ proves their common limit exists in $V$, and the inequality follows first for sums and then for their limit. Thus the integral is an actual source vector with the two original zero moments and even Schwartz regularity. It is not merely an integral in a weak dual or in $L^2$.
+
+Smoothness in $t$ follows either by the differentiable compact-interval rule justified by the same estimates for all time derivatives, or by writing (13) as
+$t\int_0^1 U_{e^{t(1-r)}}\phi_*\ell(T_{tr}u)dr$.
+This latter formula works without a sign convention change for negative $t$. Every derivative has a finite sum of terms involving $D^j\phi_*$, powers of $A$, and bounded polynomial factors in $r$. Inequality (14) with those finitely many seminorms proves local uniform convergence of the differentiated Riemann sums. Therefore $t\mapsto c_t$ is smooth as a map to continuous linear maps $E\to V$, with their bounded-set topology. Finite dimensionality of $E$ makes the preceding uniform estimates on its unit ball sufficient for this statement.
+
+**The exact dilation identity.** For all $t\in\mathbb R$,
+
+$$\boxed{U_{e^t}R-RT_t=\Theta c_t.}\tag{15}$$
+
+For fixed $u$, differentiate in the Frechet space $\mathscr B$:
+
+$$
+\frac{d}{dr}\bigl(U_{e^{t-r}}RT_ru\bigr)
+=-U_{e^{t-r}}(DR-RA)T_ru
+=-\Theta U_{e^{t-r}}\phi_*\ell(T_ru).
+$$
+
+The fundamental theorem of calculus follows in every defining seminorm from the same Riemann-sum argument; integrating with the indicated orientation proves (15), including $t<0$. Continuity of $\Theta$ permits moving it through the integral.
+
+**Cocycle and derivative.** Directly splitting the defect in (15) gives
+
+$$
+\boxed{c_{t+s}=U_{e^t}c_s+c_tT_s,\qquad
+c_0=0,\qquad
+c_{-t}=-U_{e^{-t}}c_tT_{-t}.}\tag{16}
+$$
+
+Indeed applying $\Theta$ to the asserted first equality yields the identity obtained by inserting $U_{e^t}RT_s$ in
+$U_{e^{t+s}}R-RT_{t+s}$. Injectivity of $\Theta$ proves equality in the actual source $V$. The other two statements follow by setting $t=s=0$ and $s=-t$. Differentiating (13), or the cocycle in either variable, gives the two equal expressions
+
+$$
+\boxed{\partial_tc_t=Dc_t+\phi_*\ell T_t
+=U_{e^t}\phi_*\ell+c_tA,\qquad
+\partial_tc_t|_{t=0}=\phi_*\ell.}\tag{17}
+$$
+
+All derivatives are in $V$. In multiplicative notation (16) is
+
+$$c_{ab}=U_a\circ c_b+c_a\circ b^A,$$
+
+where the final product means the map $c_a\circ b^A$; to remove any typographical ambiguity it can also be written $c_{ab}(u)=U_a(c_b(u))+c_a(b^Au)$.
+
+The space $\mathscr B_Z=\Theta V+RE$ is a direct topological sum with coordinates $(\phi,u)\mapsto\Theta\phi+Ru$. Its inverse on that subspace is $(\Theta^{-1}(F-RJ_ZF),J_ZF)$; continuity of the inverse theta map is also proved in Section 6 below. Equations (15) and (16) integrate the source block operator to the exact group representation
+
+$$
+U_a\big|_{\mathscr B_Z}
+=\begin{pmatrix}U_a|_V&c_a\\0&a^A\end{pmatrix}.\tag{18}
+$$
+
+This is the explicit group-level form of the already known extension (A12). In particular (15) proves the true quotient intertwining
+$\overline U_a\sigma=\sigma a^A$.
+
+## 4. All nilpotents, the Mellin multiplier, and an incomplete-gamma evaluation
+
+The Chinese remainder decomposition is
+
+$$E=\bigoplus_{\rho\in Z}\mathbb C[z_\rho]/(z_\rho^{m_\rho}),\qquad
+A|_\rho=\rho I+N_\rho,$$
+
+where $N_\rho z_\rho^j=z_\rho^{j+1}$ and $N_\rho^{m_\rho}=0$. Denote the summand projector by $P_\rho$, extending $N_\rho$ by zero on other summands. These are the actual full local algebras. They can be constructed explicitly: if $H_\rho(X)=h(X)/(X-\rho)^{m_\rho}$, then $P_\rho$ is multiplication by the remainder modulo $h$ of
+
+$$H_\rho(X)\sum_{j=0}^{m_\rho-1}
+\frac{(H_\rho^{-1})^{(j)}(\rho)}{j!}(X-\rho)^j.$$
+
+At every other centre this has all required zero jets; at $\rho$ it has jet $1$. This verifies all its projector identities by the Chinese remainder map.
+
+The action and the entire boundary integral therefore contain the full expressions
+
+$$
+T_t=\sum_{\rho\in Z}e^{t\rho}
+\sum_{j=0}^{m_\rho-1}\frac{t^j}{j!}N_\rho^jP_\rho,\tag{19}
+$$
+
+$$
+c_tu=\sum_{\rho\in Z}\sum_{j=0}^{m_\rho-1}
+\ell(N_\rho^jP_\rho u)
+\int_0^t U_{e^{t-r}}\phi_*\,e^{r\rho}\frac{r^j}{j!}\,dr.
+\tag{20}
+$$
+
+The unit entering every coefficient is still $\varepsilon=j_h(h/g)$ through (8). If the packet has one zero of order $m$, and
+$\varepsilon=\sum_{i<m}\varepsilon_i z^i$, $u=\sum_{i<m}u_i z^i$, then
+$\ell(u)=\sum_{i=0}^{m-1}\varepsilon_i u_{m-1-i}$.
+This follows because the top coefficient of a polynomial of degree less than $m$ is the same in the $X$ and $z=X-\rho$ bases. Thus even the functional $\ell$ retains the lower coefficients of the Taylor unit, rather than only its nonzero constant value.
+
+There is a closed expression for the integral kernels in (20). For $x>0$ let
+
+$$
+K_{\rho,t}(x)=\int_0^t e^{r\rho}\phi_*(xe^{r-t})\,dr.
+$$
+
+Define the oriented incomplete-gamma interval by
+
+$$\Gamma_{[L,H]}(w)=\int_L^H y^{w-1}e^{-y}\,dy\qquad(L,H>0),$$
+
+where $y^{w-1}=\exp((w-1)\log y)$ uses the real logarithm. Then substitution first of $y=xe^{r-t}$ and then of $z=\pi y^2$ gives
+
+$$
+\begin{aligned}
+K_{\rho,t}(x)
+={}& e^{t\rho}x^{-\rho}\pi^{-\rho/2}
+\left[
+2\Gamma_{[\pi x^2e^{-2t},\,\pi x^2]}(\rho/2+2)
+-3\Gamma_{[\pi x^2e^{-2t},\,\pi x^2]}(\rho/2+1)
+\right].
+\end{aligned}\tag{21}
+$$
+
+Both substitutions preserve orientation when $t<0$. The coefficients $2$ and $-3$ come respectively from $4\pi^2x^4$ and $-6\pi x^2$, including $dy/y=dz/(2z)$. No Gaussian constant is removed.
+
+Differentiation under the compact oriented $r$-integral now gives the finite formula
+
+$$\boxed{c_tu=\sum_{\rho\in Z}\sum_{j=0}^{m_\rho-1}
+\frac{\ell(N_\rho^jP_\rho u)}{j!}\,
+\partial_\rho^jK_{\rho,t}.}\tag{22}$$
+
+The derivative here acts on the complex parameter in the entire kernel $K_{\rho,t}$ before evaluation at the indicated centre, not on the arithmetic zero or on the coefficient $\ell(N_\rho^jP_\rho u)$. The formula on $x>0$ is extended evenly to $\mathbb R$, with its smooth value at $0$ supplied by the integral defining $K$. That integral and Section 3 prove smoothness and both zero moments, so no regularity is inferred from cancelling the separate singular-looking factors in (21).
+
+The full Mellin multiplier of the source boundary is also explicit:
+
+$$
+\boxed{H_{c_tu}(s)=\int_0^t e^{(t-r)s}\ell(T_ru)\,dr
+=\frac{e^{ts}R_Z(u)(s)-R_Z(T_tu)(s)}{h(s)}.}\tag{23}
+$$
+
+For the first equality in the original strip, use (7), $H_{U_a\phi_*}=a^s$, and the continuous source integral. For the second, differentiate
+$e^{(t-r)s}R_Z(T_ru)(s)$ in $r$. The polynomial identity proving (12) says its derivative is
+$-e^{(t-r)s}h(s)\ell(T_ru)$. Integration proves (23) wherever $h(s)\ne0$.
+The numerator has every required vanishing jet: in the local algebra its jet is
+$e^{tA}\varepsilon u-\varepsilon T_tu=0$.
+Hence the quotient in (23) has removable singularities at every chosen zero and is entire. This entire expression extends the original source multiplier; it is not a replacement of $h$ or $g$.
+
+For every integer $n\geq0$ its actual Taylor coefficient at any complex centre $s_0$ is
+
+$$
+\frac{H_{c_tu}^{(n)}(s_0)}{n!}
+=\int_0^t e^{(t-r)s_0}\frac{(t-r)^n}{n!}\ell(T_ru)\,dr.
+\tag{24}
+$$
+
+Inserting (19) gives every mixed coefficient in $(t-r)^n r^j/(n!j!)$ and keeps all nilpotent terms. This is also a direct convergence proof for every jet, since the parameter interval is compact.
+
+## 5. Actual two-leg homotopies and the support-face comparison
+
+Regard $E[-1]$ as the complex with $E$ in degree $1$ and zero elsewhere. The finite section defines a degree-zero cochain map $r:E[-1]\to C$, with $r^1=R$. The maps $\mathcal U_a r$ and $r a^A$ have homotopies
+
+$$
+H_a^{+}:E[-1]\longrightarrow C[-1],\quad
+(H_a^{+})^1u=(c_au,0),
+$$
+
+$$
+H_a^{-}:E[-1]\longrightarrow C[-1],\quad
+(H_a^{-})^1u=(0,-\widehat{c_au}).\tag{25}
+$$
+
+Here the notation records maps of cohomological degree $-1$; the source only has degree $1$. In ordinary component notation the exact identity is
+
+$$\boxed{\mathcal U_ar-ra^A=dH_a^\pm+H_a^\pm d_{E[-1]}=dH_a^\pm.}\tag{26}$$
+
+Indeed $d(c_au,0)=\Theta c_au$, whereas
+$d(0,-\widehat{c_au})=\Theta\mathcal F^2c_au=\Theta c_au$.
+This verifies the minus sign using the original differential. Equation (2) also gives the homotopy cocycle itself:
+
+$$H_{ab}^\pm=\mathcal U_a^0H_b^\pm+H_a^\pm b^A.\tag{27}$$
+
+No extra Fourier scalar is inserted: $\widehat{U_ac}=aU_{1/a}\widehat c$ is exactly the second-leg action in (4).
+
+The original support masks are $\lambda\in\{\{+\},\{-\},\{+,-\}\}$. The fibre $C_\lambda^0$ consists of the legs present in $\lambda$, $C_\lambda^1=\mathscr B$, with the same differential. The $+$ homotopy in (25) is defined on $\{+\}$ and on the joint face. The $-$ homotopy is defined on $\{-\}$ and on the joint face. On the joint face their difference is the precisely retained cycle
+
+$$H_a^+-H_a^-=(c_a,\widehat c_a)=i_0(\widehat c_a).\tag{28}$$
+
+It lies in $H^0(C)$ by (5) and theta injectivity. There is no term in degree $-1$ of $C$, so a nonzero such cycle is not a boundary in $C$.
+
+The two singleton homotopies are forced. On $\{+\}$, injectivity of theta forces the first one; on $\{-\}$ it forces the second. Consequently a single homotopy that is strictly natural for both singleton-to-joint inclusions would require
+$(c_a,0)=(0,-\widehat c_a)$, which is equivalent to $c_a=0$. This is the exact scope of the support-naturality obstruction; it does not remove the homotopies in (25), their difference (28), or the resulting quotient action.
+
+For completeness, $c_a$ as a linear map is nonzero for every $a\ne1$. If $c_a=0$, (15) would make the nonzero finite-dimensional subspace $RE$ invariant under $U_a$, with invertible action $a^A$. It therefore has a nonzero eigenvector $F\in\mathscr B$ with $U_aF=\lambda F$, $\lambda\ne0$. Replacing $a$ by $a^{-1}$ if needed, take $a>1$. Choose $x_0>0$ with $F(x_0)\ne0$. Iteration gives
+$F(a^nx_0)=\lambda^{-n}F(x_0)$ for $n\geq0$.
+The bound $p_{N,0}(F)<\infty$ implies
+$a^{nN}|\lambda|^{-n}|F(x_0)|\leq x_0^{-N}p_{N,0}(F)$.
+Choose $N$ with $a^N>|\lambda|$ and let $n\to\infty$ to obtain a contradiction. Thus no such finite invariant subspace exists. This extends the previously proved failure of a strict equivariant section by giving its exact nonzero finite-dilation defect; the failure itself was already present in (A12).
+
+At a fixed admitted mask the split lift of every displayed map is
+
+$$\widetilde f(\lambda,u)=(\lambda,f(u)),\qquad \widetilde f(\tau)=\tau.$$
+
+An amplitude $f(u)=0$ has value $(\lambda,0)$, the supported zero, including at $a=1$. All homotopy identities are interpreted using addition and the supported scalar $(-1)^\bullet$ in that fibre. No absent leg is inserted by the face-specific formulas.
+
+The known synchronization comparison can be retained explicitly when a common joint target is desired. Send every active degree-one mask to $(\{+,-\},F)$ and send the degree-zero pair to its joint-supported pair with the same two amplitudes, putting a supported zero in a formerly missing coordinate. Denote this operation by $\mathfrak r$. It is the source map $(a,b)\mapsto(a+eb,b+ea)$, because multiplication by $e$ gives a supported zero at a present coordinate. It preserves the differential, fixes joint masks, and is idempotent. The pair $(\operatorname{supp}x,\mathfrak r x)$ recovers the original element by selecting the originally present coordinates, proving injectivity of that comparison. After this explicit synchronization, (25)–(28) hold in the common joint fibre. The original mask must stay attached to the comparison; forgetting it is not part of the homotopy calculation.
+
+One can also see the extra degree-zero group in an exact equivariant roof. Let
+$C_Z=[V\oplus V\to\mathscr B_Z]$ with the same differential, and define
+
+$$p_Z^0(v,w)=w,\qquad p_Z^1=J_Z.$$
+
+This is a cochain map to $V[0]\oplus E[-1]$. It is equivariant for the action $aU_{1/a}$ on $V$ and $a^A$ on $E$, and induces isomorphisms on both cohomology groups: the degree-zero assertion follows from (5), while the degree-one assertion follows from the direct sum $\mathscr B_Z=\Theta V\oplus RE$ and (11). Thus the exact two-leg version of the source roof is
+
+$$V[0]\oplus E[-1]\ \xleftarrow{\ p_Z\ }\ C_Z\ \longrightarrow\ C.$$
+
+Its ordinary cochain section is $i_Z^0(w)=(\widehat w,w)$ and $i_Z^1=R$. If $F=\Theta\phi+Ru$, the map $h_Z^1(F)=(\phi,0)$ obeys
+$1-i_Zp_Z=dh_Z+h_Zd$: in degree zero it returns $(v-\widehat w,0)$ and in degree one it returns $\Theta\phi$. Its failure of equivariance in degree one is exactly (25). This proves the replacement on the entire original two-leg complex, retaining its $V[0]$ summand.
+
+### The transported minus face has an explicitly nonzero extension component
+
+The preceding roof also computes what happens to the original support arrows when the action is retained. Work over $\mathbb C[X]$, with $X=D$ on $\mathscr B_Z$, $X=A$ on $E$, and $X=1-D$ on the degree-zero second-leg module, denoted $V_-$. Let $r(X)=R_Z(1)$ and $\psi=r(D)\phi_*$. Then
+
+$$h(D)R(1)=\Theta\psi.$$
+
+The class of $\psi$ in $V/h(D)V$ is nonzero: applying $j_hH$ gives $j_hr=\varepsilon\ne0$, whereas $j_hH$ vanishes on $h(D)V$ by (7). The Fourier map carries this quotient isomorphically onto $V/h(1-D)V$, since differentiating (2) gives $\mathcal F D=(1-D)\mathcal F$.
+
+For the minus-face extension the injection is $i_-=-\Theta\mathcal F$. Its extension representative, with the convention $h(D)R(1)=i_-(w)$, is therefore
+
+$$w=-\widehat\psi\quad\text{in }V/h(1-D)V.$$
+
+The component of the minus support arrow in the $V_-[0]$ summand of the joint roof has the opposite sign to this extension representative. Here is the exact shifted-resolution calculation. The free cochain resolution of $E$ in degrees $-1,0$ has differential $h$. We use $(C[n])^j=C^{j+n}$ and $d_{C[n]}=(-1)^nd_C$; after shifting by $-1$, that resolution is in degrees $0,1$ with differential $-h$. Its degree-one lift to the minus-face complex sends $1$ to $R(1)$, extended $\mathbb C[X]$-linearly. Its degree-zero lift must send $1$ to $-w$, because $i_-(-w)=-h(D)R(1)$. Projection to $V_-[0]$ is identity in degree zero. Thus the induced derived map $E[-1]\to V_-[0]$ represents exactly
+
+$$
+[-w]=[\widehat\psi]
+\quad\text{in}\quad
+\operatorname{Ext}^1_{\mathbb C[X]}(E,V_-)
+\cong V/h(1-D)V.\tag{28a}
+$$
+
+The isomorphism here follows by applying $\operatorname{Hom}_{\mathbb C[X]}(-,V_-)$ to that two-term free resolution; its cokernel is the stated quotient. The class (28a) is nonzero by the preceding source-jet calculation. The same arrow has identity as its $E[-1]$ component. By contrast, the plus support arrow has zero $V_-[0]$ component and identity $E[-1]$ component, because its degree-zero image has second coordinate zero. Consequently the two support arrows in the equivariant derived category do not both become inclusion of the $E[-1]$ summand: the exact difference carries (28a), with the original Taylor unit. The strict original cochain support diagram remains available before passage through the roof.
+
+## 6. The exact bridge to the already constructed global section
+
+We recall the global section in a form that makes its use here mathematically explicit. Choose the same fixed even real cutoffs $\alpha,\beta\in C_c^\infty(\mathbb R)$, with $0\leq\alpha,\beta\leq1$, equal to $1$ near zero. For $x\ne0$ define
+
+$$\mathcal UF(x)=\tfrac12\sum_{n\geq1}\mu(n)F(n|x|).$$
+
+If $P_j(D)=(-1)^jD(D+1)\cdots(D+j-1)=x^j\partial_x^j$, and $C_{N,j}(F)$ is the sum of $p_{N,k}(F)$ weighted by the absolute coefficients of $P_j$, then for $x>0$, $N>1$,
+
+$$|\partial_x^j\mathcal UF(x)|\leq\tfrac12\zeta(N)C_{N,j}(F)x^{-N-j}.\tag{29}$$
+
+Each summand is bounded by $\tfrac12C_{N,j}(F)n^{-N}x^{-N-j}$; summation proves the estimate and local uniform convergence of every derivative. Thus the cutoff exterior functions
+$(1-\alpha)\mathcal UF$ and $(1-\beta)\mathcal UJF$, extended by zero near zero, are continuous Schwartz-valued maps. The theta inversion in Section 1 and Poisson give
+$\mathcal U\Theta\phi=\phi$ and $\mathcal UJ\Theta\phi=\widehat\phi$ away from zero.
+
+On $L^2(\mathbb R,dx)$ define
+
+$$T=M_\alpha\mathcal F^{-1}M_\beta\mathcal F,
+\qquad
+YF=(1-\alpha)\mathcal UF+
+\alpha\mathcal F^{-1}((1-\beta)\mathcal UJF).$$
+
+The kernel of $T$ is $\alpha(x)\check\beta(x-y)$; its squared integral is $\|\alpha\|_2^2\|\beta\|_2^2$, so $T$ is compact. Its norm $c$ is strictly less than $1$. Otherwise compactness would give a unit vector attaining norm $1$. Equality in the two contraction inequalities forces its Fourier transform to be supported where $\beta=1$, and then the vector itself to be supported where $\alpha=1$. A compactly supported Fourier transform in $L^2$ is in $L^1$, and its inverse Fourier transform extends to an entire function by its finite-interval integral. That entire function would vanish on a real open interval because of the compact spatial support, hence vanish identically, a contradiction.
+
+Thus $(1-T)^{-1}=\sum_{n\geq0}T^n$ in operator norm, with bound $(1-c)^{-1}$. The operator $T:L^2\to\mathcal S$ is continuous: Cauchy–Schwarz on the compact Fourier support bounds every derivative of $\mathcal F^{-1}(\beta\widehat f)$ by a constant times $\|f\|_2$, and multiplication by $\alpha$ gives compact spatial support and every Schwartz seminorm. It follows that $\Phi=(1-T)^{-1}Y$ is Schwartz-valued and continuous; the explicit identity $\Phi=Y+T\Phi$ gives
+
+$$q_{N,k}(\Phi F)\leq q_{N,k}(YF)+\frac{C_{N,k}}{1-c}\|YF\|_2.$$
+
+No uniform lower bound for $1-c$ as cutoffs vary is used. On a theta input,
+$Y\Theta\phi=(1-T)\phi$, so $\Phi\Theta\phi=\phi$.
+The range of $\Phi$ is the even Schwartz space $\mathcal S(\mathbb R)^{\rm even}$. To check this exact domain, $\mathcal UF$ is even because its defining series uses $|x|$, and the same is true of $\mathcal UJF$. The cutoffs $\alpha,\beta$ are even, and Fourier transformation and inverse Fourier transformation preserve evenness, so $YF$ is even. Reflection $\phi(x)\mapsto\phi(-x)$ commutes with $T$; hence it commutes with every partial sum of the norm-convergent inverse $(1-T)^{-1}$ and with its limit. Thus $\Phi F$ is even as an $L^2$ vector, and its Schwartz representative is even pointwise by continuity. With the original Gaussian moment corrections, define the map on this precise domain by
+
+$$
+P_V\phi=\phi-\phi(0)e^{-\pi x^2}
+-\left(\int_{\mathbb R}\phi-\phi(0)\right)2\pi x^2e^{-\pi x^2},
+\qquad \Lambda=P_V\Phi.
+$$
+
+The moment columns of the two displayed Gaussians are $(1,1)$ and $(0,1)$ by direct Gaussian integration. The two subtractions therefore set the value at zero and the integral to zero, while preserving evenness. On $V$ both correction coefficients vanish. Consequently
+$P_V:\mathcal S(\mathbb R)^{\rm even}\to V$ is a continuous projection and $P_V|_V=1$. This is its stated domain; no projection of the entire Schwartz space onto the even subspace is asserted by that formula. It follows that
+
+$$\Lambda\Theta=1_V,\quad K=1-\Theta\Lambda,\quad
+s:Q\to\mathscr B,\quad s[F]=KF.\tag{30}$$
+
+This proves all needed existence and continuity claims for the particular global construction used in A1694. Since $\ker K=\Theta V$, that image is closed. The expression for $s$ is well-defined, $qs=1$, $\Lambda s=0$, and it is continuous by the definition of the quotient topology. In particular $\Theta^{-1}$ on its image is $\Lambda$, verifying the topological inverse asserted after (17).
+
+The already existing global cocycle is $k_a=\Lambda U_as$, with
+
+$$U_as-s\overline U_a=\Theta k_a.$$
+
+This follows by applying $1=K+\Theta\Lambda$ to $U_as$. The finite/global comparison is now fully determined, with no new choice of arithmetic unit:
+
+$$b_Z=\Lambda R:E\to V,\qquad R^s=s\sigma=R-\Theta b_Z.\tag{31}$$
+
+Define $c_a^s=k_a\sigma$. Substitution in (15) yields
+
+$$
+\boxed{c_a^s=c_a-U_ab_Z+b_Za^A.}\tag{32}
+$$
+
+To verify the equality in $V$, use $\overline U_a\sigma=\sigma a^A$ from (18) to compute
+
+$$
+\begin{aligned}
+U_aR^s-R^sa^A
+&=U_aR-Ra^A-\Theta U_ab_Z+\Theta b_Za^A\\
+&=\Theta(c_a-U_ab_Z+b_Za^A)=\Theta k_a\sigma.
+\end{aligned}
+$$
+
+Theta injectivity proves (32). Its derivative is the exact infinitesimal bridge
+
+$$\boxed{k_D\sigma=\phi_*\ell-Db_Z+b_ZA,\qquad k_D=\Lambda Ds.}\tag{33}$$
+
+All terms are defined continuous maps; differentiation is allowed by Section 1. This proves that the explicitly evaluated Duhamel integral and the transcript's global continuous cocycle represent the same actual arithmetic extension, through the displayed coboundary.
+
+The full extension class is unchanged. Applying $h(D)$ to (31) gives
+
+$$h(D)R^s(u)=\Theta\left(R_Z(u)(D)\phi_*-h(D)b_Zu\right).$$
+
+Modulo $h(D)V$, its source class equals that of $R_Z(u)(D)\phi_*$. Under $j_hH$ its value is exactly $\varepsilon u$, by (7). There is no quotient operation that discards the nonconstant coefficients of $\varepsilon$.
+
+At cochain level the two finite representative maps $r^s$ and $r$ have the difference
+
+$$r^s-r=dL^\pm,\qquad
+L^+(u)=(-b_Zu,0),\qquad L^-(u)=(0,\widehat{b_Zu}).\tag{34}$$
+
+The minus-face sign follows by applying $d(0,\widehat b)=-\Theta b$. Equations (25), (32), and (34) give the exact homotopy comparison
+
+$$H_a^{s,\pm}=H_a^\pm+\mathcal U_a^0L^\pm-L^\pm a^A.$$
+
+These identities retain the joint degree-zero difference as in (28), rather than asserting strict agreement of the two face homotopies.
+
+## 7. Tensor powers with every cohomological sign and jet coefficient
+
+Let $k\geq1$. On the original ordered tensor complex $C^{\otimes k}$ use
+
+$$
+d(x_1\otimes\cdots\otimes x_k)
+=\sum_{j=1}^k(-1)^{\sum_{i<j}|x_i|}
+x_1\otimes\cdots\otimes dx_j\otimes\cdots\otimes x_k.
+\tag{35}
+$$
+
+This is exactly the tau-base product resolution differential. It squares to zero because the two orders of applying differentials in different factors have opposite signs; a repeated differential in one factor is zero.
+
+Write $f_a=U_aR:E\to C^1$, $g_a=Ra^A:E\to C^1$, and $h_a=H_a^\pm:E\to C^0$ for any admitted choice of face in each factor. The explicit degree-$-1$ homotopy on the top packet is
+
+$$
+\begin{aligned}
+\mathcal H_{a,k}(u_1\otimes\cdots\otimes u_k)
+=\sum_{j=1}^k(-1)^{j-1}
+f_au_1\otimes\cdots\otimes f_au_{j-1}
+\otimes h_au_j\otimes
+g_au_{j+1}\otimes\cdots\otimes g_au_k.
+\end{aligned}\tag{36}
+$$
+
+In this evaluated formula the factor $(-1)^{j-1}$ is displayed exactly once. If the same formula is instead written as a tensor of graded linear maps, it is the Koszul evaluation sign of the degree-$-1$ map in slot $j$ crossing the preceding $j-1$ inputs, each of degree $1$; it must not be inserted a second time.
+
+Only the slot containing $h_au_j$ contributes to the differential, because the other slots are already in top degree. Its differential sign from (35) is $(-1)^{j-1}$, which cancels the prefactor. Since $dh_a=f_a-g_a$, the result is the telescoping identity
+
+$$
+\boxed{d\mathcal H_{a,k}
+=(U_aR)^{\otimes k}-(Ra^A)^{\otimes k}.}\tag{37}
+$$
+
+For $k=2$ this reads
+$\mathcal H_{a,2}=h_a\otimes g_a-f_a\otimes h_a$ on evaluated inputs, and its differential is
+$(f_a-g_a)\otimes g_a+f_a\otimes(f_a-g_a)$.
+This displays the original minus sign without relying on an implicit convention.
+
+Define
+
+$$R_k=R^{\otimes k},\qquad
+A_k=\sum_{j=1}^k1^{\otimes(j-1)}\otimes A\otimes1^{\otimes(k-j)},
+\qquad T_{t,k}=T_t^{\otimes k}=e^{tA_k}.$$
+
+For the ordered local block $(\rho_1,\ldots,\rho_k)$ the action is exactly
+
+$$
+T_{t,k}
+=e^{t\sum_i\rho_i}
+\sum_{0\leq j_i<m_{\rho_i}}
+\frac{t^{j_1+\cdots+j_k}}{j_1!\cdots j_k!}
+N_{\rho_1}^{j_1}\otimes\cdots\otimes N_{\rho_k}^{j_k}.
+\tag{38}
+$$
+
+The formula follows by multiplying (19); the nilpotents in different factors commute, and no term has been discarded. The representative is still the tensor of the maps using $\varepsilon$ in (10), hence the coefficient unit is $\varepsilon^{\otimes k}$ in the ordered local algebra.
+
+For the multivariable Mellin transform $\mathcal M_k$ with measure $\prod_i dx_i/x_i$, the top boundary $B_{a,k}=d\mathcal H_{a,k}$ has, on a pure coefficient tensor, the exact expression
+
+$$
+\begin{aligned}
+\mathcal M_kB_{a,k}(\mathbf s)
+={}&\prod_{i=1}^k\left[a^{s_i}v(s_i)R_Z(u_i)(s_i)\right]\\
+&-\prod_{i=1}^k\left[v(s_i)R_Z(a^Au_i)(s_i)\right].
+\end{aligned}\tag{39}
+$$
+
+All integrals factor by absolute convergence of the Schwartz Mellin integrals. Applying the full packet jet in each factor gives zero, as also follows from (37). The homotopy (36) exhibits the actual tensor relation giving that zero. It is not inferred from a dimension count or an assumed vanishing tensor kernel.
+
+Every map in (36) is continuous. More explicitly, for seminorms $p_1,\ldots,p_k$ on the appropriate target factors, the projective tensor seminorm of one summand on a pure input is bounded by the product of the corresponding operator bounds from (1), (10), and (14), times $\prod_i\|u_i\|$. Sum over the $k$ terms and use the defining infimum for the projective seminorm on arbitrary finite sums. Thus all maps extend to completed projective tensor products, and (37) persists by density and continuity. The coefficient domain $E^{\otimes k}$ is finite dimensional, but this continuity statement identifies its targets in the same completed topology used by the original global construction.
+
+The support rule is applied to each admitted factor before the tensor balancing quotient: an external absent factor is absorbing, while a zero amplitude in an active factor remains its supported tensor zero. The chosen face in that factor determines which of (25) occurs. Changing that face replaces its homotopy by (28); substitution into (36) gives an explicit tensor of the retained $H^0$ cycle with the other degree-one factors. No identification of external tensor support with a Cartesian product of labels is needed or asserted.
+
+This tensor homotopy difference can be detected without discarding a possible lower-degree boundary. Define cochain maps $\pi_0:C\to V[0]$ by $\pi_0^0(v,w)=w$, $\pi_0^1=0$, and $\pi_1:C\to Q[-1]$ by $\pi_1^0=0$, $\pi_1^1=q$. In the difference between the all-plus and all-minus versions of (36), apply $\pi_0$ in slot $j$ and $\pi_1$ in the others. Every summand but the $j$-th vanishes. The result is
+
+$$(-1)^{j-1}(\sigma a^A)^{\otimes(j-1)}\otimes\widehat c_a
+\otimes(\sigma a^A)^{\otimes(k-j)}.$$
+
+It is a nonzero map whenever $a\ne1$: $\sigma a^A$ is injective by (11), $\widehat c_a$ is nonzero by Section 5, and a tensor of nonzero vectors over $\mathbb C$ is nonzero, as witnessed by a tensor of linear functionals nonzero on those vectors. The target complex has zero differential, so the detected class cannot be a boundary. This proves the exact survival of the homotopy difference in degree $k-1$, where one factor carries the original $H^0(C)$ and the others carry $Q$.
+
+## 8. The complete $dx$ boundary pairing, its derivative, and tensor mass
+
+The inclusion $\mathscr B\hookrightarrow L^2(\mathbb R_{>0},dx)$ is continuous. For example on $(0,1)$ use $|F(x)|\leq p_{-1,0}(F)x$, and on $(1,\infty)$ use $|F(x)|\leq p_{1,0}(F)x^{-1}$. Both squared majorants are integrable. Use the inner product conjugate-linear in its first argument. Direct substitution, retaining $dx$, gives
+
+$$\langle U_aF,U_aG\rangle=a\langle F,G\rangle.\tag{40}$$
+
+Let $G=R^*R$ in the retained coefficient basis and let $B_a=\Theta c_a:E\to L^2(dx)$. Since $J_ZR=1$, $G$ is positive definite. Equation (15), $U_aR=Ra^A+B_a$, gives the exact finite boundary identity
+
+$$
+\boxed{
+(a^A)^*Ga^A-aG
+=-(U_aR)^*B_a-B_a^*(U_aR)+B_a^*B_a.
+}\tag{41}
+$$
+
+On vectors $u,w$, its right side is
+
+$$-\langle U_aRu,\Theta c_aw\rangle
+-\langle\Theta c_au,U_aRw\rangle
++\langle\Theta c_au,\Theta c_aw\rangle.$$
+
+To check the signs, solve $Ra^A=U_aR-B_a$ and expand its squared pairing. Equation (40) supplies $aG$. Equivalently the right side is
+$-(Ra^A)^*B_a-B_a^*Ra^A-B_a^*B_a$; these two forms agree by (15). Thus the positive sign in the version using $U_aR$ is forced by the expansion, not a sign choice.
+
+Every term is finite and depends smoothly on $a$, by the Frechet bounds already proved and the continuous Hilbert inclusion. For a full generalized packet vector $u$, the left side is evaluated using (19), retaining every power of $\log a$. For a true eigenvector $Au=\rho u$ it is
+$(a^{2\operatorname{Re}\rho}-a)\,u^*Gu$.
+
+The infinitesimal identity obtained by differentiating (41) at $t=\log a=0$ is
+
+$$
+W=A^*G+GA-G
+=-R^*f_0\ell-\ell^*f_0^*R.\tag{42}
+$$
+
+This agrees exactly with (12) and the original integration by parts. Indeed for $F,H\in\mathscr B$,
+
+$$\langle DF,H\rangle+\langle F,DH\rangle
+=-\int_0^\infty x(\overline FH)'dx
+=\langle F,H\rangle,$$
+
+since the endpoint term $[x\overline F(x)H(x)]_0^\infty$ vanishes by the displayed weighted bounds. This independently verifies the mass term $-G$ and the two negative boundary cross terms in (42).
+
+The finite defect is exactly the integrated infinitesimal one:
+
+$$
+\boxed{T_t^*GT_t-e^tG
+=\int_0^t e^{t-r}T_r^*WT_r\,dr.}\tag{43}
+$$
+
+Set $F(t)=T_t^*GT_t-e^tG$. Direct differentiation gives $F'(t)=F(t)+T_t^*WT_t$ and $F(0)=0$. Multiplying by $e^{-t}$ and integrating proves (43) with the original orientation for $t<0$. This is a finite-dimensional exact matrix integration, valid with all the nilpotents in (19).
+
+For the global representative $R^s$ from (31), replace $R$ by $R^s$ and $c_a$ by the fully computed $c_a^s$ in (32). The finite expansion (41) then holds with
+
+$$
+G^s=(R-\Theta b_Z)^*(R-\Theta b_Z),\quad
+\Theta c_a^s=\Theta(c_a-U_ab_Z+b_Za^A).
+$$
+
+Its infinitesimal boundary is the changed map
+
+$$
+B_D^s=\Theta k_D\sigma
+=\Theta(\phi_*\ell-Db_Z+b_ZA).
+\tag{43a}
+$$
+
+Indeed differentiating the explicit $c_{e^t}^s$ at $t=0$ gives $k_D\sigma$ by (33), and direct differentiation of $R^s=R-\Theta b_Z$ gives $DR^s-R^sA=B_D^s$ by (12). Apply the same $dx$ integration-by-parts identity to $R^su,R^sw$ for arbitrary coefficient vectors. Substituting $DR^s=R^sA+B_D^s$ and moving the two boundary terms to the other side proves exactly
+
+$$
+W^s=A^*G^s+G^sA-G^s
+=-(R^s)^*B_D^s-(B_D^s)^*R^s.
+\tag{43b}
+$$
+
+Thus the factor $f_0\ell$ in (42) is replaced by $B_D^s$, not retained as the old infinitesimal source boundary. Finally differentiating $T_t^*G^sT_t-e^tG^s$ as in the proof of (43) gives $F_s'(t)=F_s(t)+T_t^*W^sT_t$, $F_s(0)=0$, and therefore
+
+$$T_t^*G^sT_t-e^tG^s=\int_0^t e^{t-r}T_r^*W^sT_r\,dr.\tag{43c}$$
+
+This is exactly the restriction of the A1694 global pairing identity to the actual packet $\sigma E$. It proves the finite/global relationship between both the cocycle and its boundary pairings, without assuming an unproved vanishing of either cross term.
+
+For $k$ factors use the Hilbert pairing with measure $dx_1\cdots dx_k$. Fubini gives its value on pure tensors as the product of the original pairings, hence
+
+$$\langle U_a^{\otimes k}F,U_a^{\otimes k}H\rangle
+=a^k\langle F,H\rangle.$$
+
+Let $G_k=G^{\otimes k}$, $B_{a,k}$ be the actual boundary (37), and $\mathcal R_a=(U_aR)^{\otimes k}$. Then the exact tensor version of (41) is
+
+$$
+\boxed{(a^A)^{*\otimes k}G_k(a^A)^{\otimes k}-a^kG_k
+=-\mathcal R_a^*B_{a,k}-B_{a,k}^*\mathcal R_a+B_{a,k}^*B_{a,k}.}\tag{44}
+$$
+
+Indeed $R_k(a^A)^{\otimes k}=\mathcal R_a-B_{a,k}$ by (37), and expansion proves the formula. Its derivative has the exact ordered sum
+
+$$
+W_k=A_k^*G_k+G_kA_k-kG_k
+=\sum_{j=1}^kG^{\otimes(j-1)}\otimes W\otimes G^{\otimes(k-j)},
+\tag{45}
+$$
+
+because each of the $k$ copies of the term $-G$ in (42) contributes one copy of $-G_k$. The finite integral is
+
+$$T_{t,k}^*G_kT_{t,k}-e^{kt}G_k
+=\int_0^t e^{k(t-r)}T_{r,k}^*W_kT_{r,k}\,dr.\tag{46}$$
+
+The proof differentiates the left side exactly as in (43), with mass exponent $k$. Equations (38) and (46) retain all tensor nilpotents. They are actual formulas for the original representative boundary contribution on the original tau-base tensor complex.
+
+\clearpage
+
+## 9. Source pins and status of the calculation
+
+The complete input files read for this calculation were:
+
+- `arithmetic_input.tex` (original September 12 cumulative source), SHA256 `a50b0fb587b644c4ea94dba45b2b423d038f2bfbe7fef188543939ba850e58d2`.
+- *Tau_Base_Cohomology*, `NOTE.md`, SHA256 `d03e71ad18f187bd89880cb8ca6fc9c5d6f260b3de8e8e5702c27db97e7b63c3`.
+- Original transcript turn `A1694.md`, SHA256 `a87bff4960c0a1742734e9e711780e0533ea76ba6f46ceab1fea115a2fd66f18`; its original locator is recorded in Section 0.
+- *Tau_Global_Comparison*, `NOTE.tex`, SHA256 `50284fcebae0dc859ac398a00839a29e15be60c008e02314ac1f35c31950ed01`; its equations are cited at the beginning.
+
+The completed new formulas are (13)–(24), their exact finite/global comparison (31)–(34), the evaluated tensor homotopy and jets (36)–(39), and the integrated finite and tensor boundary expressions (43)–(46). Sections 1, 2, 5, 6, and the unintegrated boundary pairing explicitly reprove the source interfaces needed to type and verify those formulas. The global retraction, global cocycle, and support comparison in A1694 remain credited to that earlier calculation.
+
+The resulting boundary terms have been computed, including their orientations, topologies, full arithmetic coefficients, and product masses. None has been set to zero by calling it a theta boundary. No estimate forcing the sign or vanishing of the original global weight defect is asserted by these identities. That precise limit on the conclusion does not delete the displayed maps, the full quotient $Q$, or the original tau-base construction.

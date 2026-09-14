@@ -1,26 +1,25 @@
 # Split-Zero arithmetic cohomology
 
-Start with [the accepted 1624-page public Split-Zero reader](https://zenodo.org/api/records/22739630/files/39-splitzero-recursive-source-relations-public-reader.pdf/content)
-and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/README.md).
+Start with [the accepted 1929-page public Split-Zero reader](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/README.md).
 
-Split-Zero arithmetic cohomology studies the original theta-function source of finite zero packets, explicit source relations, signed metric control, restricted support and boundary propagation. The construction retains zero multiplicities, original source masses, coordinates and quotient maps. The signed finite approximation converges for each fixed source pair; tensor-uniform arithmetic control remains an active calculation. No proof of the Riemann hypothesis or new Lean kernel verification is claimed.
+The cumulative Split-Zero manuscript studies the original theta-function source, finite zero-jet algebras and source relations. It calculates the nonzero graph completion, the injective mixed quotient, two inverse corrections, relation-row bounds and the signed return to the original four-endpoint arithmetic determinant. Full zero multiplicities, original norms and maps are retained. The upper growth estimate as tensor degree increases remains unresolved; no proof of the Riemann hypothesis or new Lean kernel verification is claimed.
 
 The [research guide](CURRENT_RESEARCH.md) explains the construction and next
-arithmetic calculation. The [public-derivation ledger](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/PUBLIC_DERIVATION.md)
+arithmetic calculation. The [public-derivation ledger](workbenches/splitzero-tandem/continuations/20260914-cumulative-graph/PUBLIC_DERIVATION.md)
 records locator-only presentation changes and exclusions. The public PDF was
 rebuilt and reviewed as a derivative; it is not described as byte-identical to
 the private delivery PDF. Complete mathematical source proofs remain preserved.
 Raw private session records, reference-only literature and the raw owner ZIP
 are not public payloads. Wrapper ZIPs are not duplicated as ordinary Git blobs.
 
-The [preceding published R62 edition](https://doi.org/10.5281/zenodo.22738226) retains its PDF
-preview and all 38 downloads. The [new published DOI 10.5281/zenodo.22739630](https://doi.org/10.5281/zenodo.22739630)
-now provides [all 40 separate downloads](calculation_edition_20260914_recursive_source_relations/README.md). The public Split-Zero PDF
-is the actual browser preview; the [matching source ZIP](https://zenodo.org/api/records/22739630/files/40-splitzero-recursive-public-sources.zip/content) is an offline download.
+The [preceding published recursive source-relations edition](https://doi.org/10.5281/zenodo.22739630) retains its PDF
+preview and all 40 downloads. This source-promotion commit claims no new DOI.
 
-Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
+The later mixed-boundary snapshot and unsealed later global manuscripts are outside this fixed cumulative graph source cut. Independently indexed working-source contributions retain their own proof and CI scopes. An unmerged contribution and its CI results are not silently assigned to this PDF.
 
 ## Current working sources
+
 
 
 
@@ -49,7 +48,7 @@ PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
 revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
-The GitHub front and current DOI now share the accepted recursive source-relations public PDF/source cut. The preceding R62 DOI and all 38 earlier downloads remain unchanged. Independent working sources retain their own proof and CI scopes.
+The GitHub front now shows the accepted cumulative graph public reader. The frozen DOI retains the preceding recursive source-relations cut and all 40 downloads. No successor DOI is claimed by this source commit. Independent working sources retain their own proof and CI scopes.
 
 
 ## PR29: original residue detection and signed metric transfer
@@ -204,4 +203,33 @@ The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md)
 and [participation guide](POLYCLANK_PARTICIPATION.md) retain earlier routes,
 partial results and active problems. Overleaf confirmations remain historical
 and timers remain paused.
+
+
+
+## Earlier published reader introduction (historical)
+
+The following earlier introduction records its own fixed source cut and DOI;
+its use of “current” belongs to that historical edition.
+
+# Split-Zero arithmetic cohomology
+
+Start with [the accepted 1624-page public Split-Zero reader](https://zenodo.org/api/records/22739630/files/39-splitzero-recursive-source-relations-public-reader.pdf/content)
+and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/README.md).
+
+Split-Zero arithmetic cohomology studies the original theta-function source of finite zero packets, explicit source relations, signed metric control, restricted support and boundary propagation. The construction retains zero multiplicities, original source masses, coordinates and quotient maps. The signed finite approximation converges for each fixed source pair; tensor-uniform arithmetic control remains an active calculation. No proof of the Riemann hypothesis or new Lean kernel verification is claimed.
+
+The [research guide](CURRENT_RESEARCH.md) explains the construction and next
+arithmetic calculation. The [public-derivation ledger](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/PUBLIC_DERIVATION.md)
+records locator-only presentation changes and exclusions. The public PDF was
+rebuilt and reviewed as a derivative; it is not described as byte-identical to
+the private delivery PDF. Complete mathematical source proofs remain preserved.
+Raw private session records, reference-only literature and the raw owner ZIP
+are not public payloads. Wrapper ZIPs are not duplicated as ordinary Git blobs.
+
+The [preceding published R62 edition](https://doi.org/10.5281/zenodo.22738226) retains its PDF
+preview and all 38 downloads. The [new published DOI 10.5281/zenodo.22739630](https://doi.org/10.5281/zenodo.22739630)
+now provides [all 40 separate downloads](calculation_edition_20260914_recursive_source_relations/README.md). The public Split-Zero PDF
+is the actual browser preview; the [matching source ZIP](https://zenodo.org/api/records/22739630/files/40-splitzero-recursive-public-sources.zip/content) is an offline download.
+
+Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
 

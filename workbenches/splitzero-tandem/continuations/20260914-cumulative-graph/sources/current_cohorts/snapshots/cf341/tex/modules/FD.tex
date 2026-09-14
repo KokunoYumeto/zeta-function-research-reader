@@ -1,0 +1,804 @@
+\section{Arithmetic symmetric frontier cost and determinant growth}
+\label{FD:FD:section}
+
+This section proves finite restrictions on the spectral positions of the
+original arithmetic packet.  It retains the actual theta source, the measure
+\(\lvert 2\xi/h\rvert^2dy/(2\pi)\), all zero multiplicities, and the unscaled
+orbit coordinates.  No purity assertion is used.
+Stars denote conjugate transpose in the displayed finite coefficient
+bases, and Hilbert adjoint for maps into the source Hilbert space.
+For Hermitian matrices, \(U\preceq V\) means that \(V-U\) is positive
+semidefinite.  The one-factor quotient coefficient basis is always
+\([1]_h,[t]_h,\ldots,[t^{d-1}]_h\), with its specified tensor and orbit
+inclusions below.
+
+\paragraph{Authoritative source pins.}
+The retained construction is in the original messages A1829 and A1859 of
+\texttt{audit\_segment\_U0041\_U0054.md}.  The line numbers here are literal
+lines in that source, whose SHA-256 is recorded in the accompanying audit.
+A1829, lines 4956--5071, specifies the source, the arithmetic function,
+the full-jet map, and its exact polynomial kernel; lines 5073--5169 give
+the canonical minimum and its metric; lines 5383--5561 give the joint
+tensor source and actual next relation layer.  A1859, lines 5693--5874,
+gives the unscaled polynomial coordinates, the relation isomorphism,
+and the exact metric update; lines 5876--6040 give the recurrence and
+finite lowering bound; lines 6042--6197 give the signed symmetric
+summand and its unscaled orbit factors.  The aggregate inequalities
+proved below are new consequences of those retained objects.
+
+\subsection{The retained arithmetic source and its canonical finite metric}
+
+Keep the original operator, theta map, and arithmetic function
+\begin{equation}
+\begin{gathered}
+D=-x\partial_x,\qquad
+\Theta\phi(x)=\sum_{m\ne0}\phi(mx),\\
+\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+f_0=\Theta\phi_*,\\
+g(s)=\mathcal Mf_0(s)=2\xi(s)
+=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\end{gathered}
+\tag{FD.1}\label{FD:FD:arithmetic}
+\end{equation}
+Here \(\mathcal MF(s)=\int_0^\infty F(x)x^{s-1}\,dx\), on its original
+source domain.  Choose a nonempty finite packet of actual zeros and retain
+the full order \(m_\rho\) at every selected centre:
+\begin{equation}
+\begin{gathered}
+h(t)=\prod_{\rho\in Z}(t-\rho)^{m_\rho},\qquad d=\deg h,\\
+E_h=\mathbb C[t]/(h),\qquad\upsilon_h=[g/h]_h\in E_h^\times.
+\end{gathered}
+\tag{FD.2}\label{FD:FD:packet}
+\end{equation}
+The bracket \([\cdot]_h\) means the complete local Taylor jets modulo
+\(h\); it includes every nilpotent jet at a multiple zero.  Since each
+selected order is the full order of that zero, \(g/h\) is nonzero at every
+selected centre, proving that \(\upsilon_h\) is a unit in the finite
+quotient.  Let \(A_h\) be multiplication by \([t]_h\) on \(E_h\).
+
+The retained actual source inverse supplies \(F_h\) with
+\begin{equation}
+h(D)F_h=f_0,\qquad \mathcal MF_h=g/h,\qquad
+\mathcal T_h(P)=P(D)F_h.
+\tag{FD.3}\label{FD:FD:source}
+\end{equation}
+Its exact identities, retained from the original source construction, are
+\begin{equation}
+\mathcal M\mathcal T_h(P)=(g/h)P,\qquad
+\mathcal T_h(hP)=\Theta(P(D)\phi_*),\qquad
+J_h\mathcal T_h(P)=\upsilon_h[P]_h.
+\tag{FD.4}\label{FD:FD:source-identities}
+\end{equation}
+Here \(J_hF=[\mathcal MF]_h\) is the full Mellin-jet map on the original
+analytic source.  The second identity gives an actual theta primitive, and the last identity
+includes the arithmetic coefficient \(\upsilon_h\).  The map
+\(\mathcal T_h\) is linear and injective: a zero image has identically
+zero Mellin transform \((g/h)P\), which forces \(P=0\).
+
+The Hilbert observation remains
+\(\mathcal H=L^2((0,\infty),dx)\).  The exact change of variables and
+Fourier map
+\[
+F\longmapsto \bigl(y\longmapsto e^{y/2}F(e^y)\bigr)
+\longmapsto\left(t\longmapsto\int_{\mathbb R}e^{y/2}F(e^y)e^{ity}\,dy\right)
+\]
+have target measure \(dt/(2\pi)\) and composite
+\(F\mapsto\mathcal MF(1/2+it)\).  Consequently the arithmetic polynomial
+measure is exactly
+\begin{equation}
+d\nu_h(y)=\left|\frac{g(\tfrac12+iy)}{h(\tfrac12+iy)}\right|^2
+\frac{dy}{2\pi}.
+\tag{FD.5}\label{FD:FD:measure}
+\end{equation}
+At selected zeros on the integration line, the quotient is evaluated as
+the entire function \(g/h\).  The finiteness of every polynomial moment
+can also be checked directly from the retained factors.  If
+\(\eta(s)=\sum_{n\ge1}(-1)^{n-1}n^{-s}\), its alternating coefficient
+partial sums have absolute value at most one.  Partial summation gives
+\(\lvert\eta(s)\rvert\le\lvert s\rvert/\Re s\) for \(\Re s>0\).
+The identity
+\(\eta(s)=(1-2^{1-s})\zeta(s)\), first obtained by splitting the
+absolutely convergent series and then continued analytically, implies
+\[
+|\zeta(\tfrac12+iy)|
+\le\frac{2|\tfrac12+iy|}{\sqrt2-1},
+\]
+because \(|1-2^{1/2-iy}|\ge\sqrt2-1\).
+Fix \(0<\theta<\pi/2\).  Rotating the Euler gamma integral through
+angle \(\operatorname{sgn}(y)\theta\) gives
+\[
+|\Gamma(\tfrac14+iy/2)|
+\le\Gamma(\tfrac14)(\cos\theta)^{-1/4}e^{-\theta|y|/2}.
+\]
+For \(y=0\), the same bound follows from the unrotated integral.
+The rotation follows by integrating
+\(z^{1/4+iy/2-1}e^{-z}\) around a truncated sector using its continuous
+logarithm there.  The small circular arc tends to zero as its radius
+to the power \(1/4\); the large arc tends to zero because
+\(\cos\theta>0\).  Taking absolute values on the rotated ray yields
+the displayed bound.  Retaining the factors in \eqref{FD:FD:arithmetic}
+therefore gives
+\[
+|g(\tfrac12+iy)|^2
+\le
+\frac{4\pi^{-1/2}\Gamma(\tfrac14)^2}
+{(\sqrt2-1)^2\sqrt{\cos\theta}}\,
+(\tfrac14+y^2)^3e^{-\theta|y|}.
+\]
+Monicity of the fixed degree-\(d\) polynomial \(h\) gives
+\(|h(\tfrac12+iy)|\ge c_h(1+|y|)^d\) for some \(c_h>0\) outside
+a sufficiently large interval: divide its value by
+\((\tfrac12+iy)^d\), whose quotient tends to one.  On the remaining
+compact interval, the entire function \(g/h\) is bounded.
+These estimates prove finiteness of every moment of \(\nu_h\).
+The measure is positive away from a discrete set.
+Therefore the norm of a nonzero polynomial is
+strictly positive: zero norm would make the polynomial vanish almost
+everywhere on a line and hence identically.
+
+Fix \(k\ge1\), and let
+\begin{equation}
+\begin{gathered}
+E^{(k)}=E_h^{\otimes k},\qquad
+A_k=\sum_{j=1}^k A_{h,j},\qquad D^{(k)}=\sum_{j=1}^kD_j,\\
+\mathcal P_M^{(k)}=\mathbb C[t_1,\ldots,t_k]_{\deg\le M},\qquad
+\mathcal T^{(k)}(P)=P(D_1,\ldots,D_k)F_h^{\otimes k},\\
+\mathcal J(P)=\upsilon_h^{\otimes k}
+[P]_{(h(t_1),\ldots,h(t_k))}.
+\end{gathered}
+\tag{FD.6}\label{FD:FD:tensor-source}
+\end{equation}
+All tensor generators in this section are additive sums, as displayed in
+\eqref{FD:FD:tensor-source}.  The multiplicative symmetric power of a linear
+map is a different construction and is not used here.
+
+For \(M\ge k(d-1)\), the map \(\mathcal J\) on
+\(\mathcal P_M^{(k)}\) is onto: each reduced monomial has each coordinate
+degree below \(d\), hence total degree at most \(k(d-1)\), and multiplication
+by \(\upsilon_h^{\otimes k}\) is invertible.  Its kernel and its actual
+theta image are
+\begin{equation}
+\mathcal I_M=\mathcal P_M^{(k)}\cap(h(t_1),\ldots,h(t_k)),\qquad
+\mathcal B_M=\mathcal T^{(k)}\mathcal I_M.
+\tag{FD.7}\label{FD:FD:relations}
+\end{equation}
+Successive monic division in the variables expresses every polynomial in
+the kernel as \(\sum_jh(t_j)P_j\).  Under \(\mathcal T^{(k)}\), each
+summand is an actual theta boundary in factor \(j\), by
+\eqref{FD:FD:source-identities}.  Its cochain primitive has coefficient
+\((-1)^{j-1}\); the tensor differential has the same coefficient, so their
+product gives the displayed positive summand \(+h(t_j)P_j\).
+
+Let \(R_M:E^{(k)}\to\mathcal T^{(k)}\mathcal P_M^{(k)}\) be the unique
+least-norm lift of the full jet, using the product measure induced by
+\eqref{FD:FD:measure}, and write
+\(G_M=R_M^*R_M\), \(\mathcal C_M=G_M^{-1}\).
+The existence, uniqueness, and inverse are also obtained directly below.
+The minimum is orthogonal to the specified \(\mathcal B_M\), and its
+full jet is identity.  Its arithmetic class is that of the original
+product source lift with the specified jet, since all admissible
+changes are the actual boundaries in \eqref{FD:FD:relations}.
+
+Start with the monic, unscaled orthogonal polynomials and their actual
+norms
+\begin{equation}
+p_0=1,\quad
+p_n=t^n-\operatorname{proj}_{\mathbb C[t]_{\le n-1}}t^n,
+\quad \omega_n=\int|p_n(\tfrac12+iy)|^2\,d\nu_h(y)>0.
+\tag{FD.8}\label{FD:FD:polynomials}
+\end{equation}
+For a multi-index \(\alpha\in\mathbb N_0^k\), set
+\begin{equation}
+p_\alpha=\prod_{j=1}^kp_{\alpha_j}(t_j),\qquad
+\omega_\alpha=\prod_{j=1}^k\omega_{\alpha_j},\qquad
+z_\alpha=\mathcal J(p_\alpha).
+\tag{FD.9}\label{FD:FD:product-jets}
+\end{equation}
+Let \(T_M\) have columns \(\mathcal T^{(k)}p_\alpha\) for
+\(|\alpha|\le M\), let \(J_M=[z_\alpha]_{|\alpha|\le M}\), and let
+\(\Omega_{\le M}=\operatorname{diag}_{|\alpha|\le M}\omega_\alpha\).
+Product orthogonality gives \(T_M^*T_M=\Omega_{\le M}\).
+Surjectivity of \(J_M\) implies
+\begin{equation}
+\begin{gathered}
+\mathcal C_M=J_M\Omega_{\le M}^{-1}J_M^*
+=\sum_{|\alpha|\le M}\frac{z_\alpha z_\alpha^*}{\omega_\alpha}>0,\\
+G_M=\mathcal C_M^{-1},\qquad
+R_M=T_M\Omega_{\le M}^{-1}J_M^*G_M.
+\end{gathered}
+\tag{FD.10}\label{FD:FD:minimum}
+\end{equation}
+Indeed \(J_M\Omega_{\le M}^{-1}J_M^*G_M=I\).  Any other coefficient
+vector with jet \(u\) is \(\Omega_{\le M}^{-1}J_M^*G_Mu+w\), where
+\(J_Mw=0\).  Its cross term with the first vector is
+\(w^*J_M^*G_Mu=0\), so its squared norm is exactly
+\(u^*G_Mu+w^*\Omega_{\le M}w\).  This proves the unique minimum,
+its orthogonality to \(\mathcal B_M\), and \(R_M^*R_M=G_M\).
+
+\subsection{The actual next relation and its recurrence bound}
+
+For \(|\beta|=M+1\), define the frontier matrices
+\begin{equation}
+\Omega=\operatorname{diag}_{|\beta|=M+1}\omega_\beta,\qquad
+F=[z_\beta]_{|\beta|=M+1},\qquad
+T_+=[\mathcal T^{(k)}p_\beta]_{|\beta|=M+1}.
+\tag{FD.11}\label{FD:FD:frontier}
+\end{equation}
+There are \(r=\binom{M+k}{k-1}\) columns.  They are orthogonal to the
+entire degree-\(M\) source image.  If \(P_{\mathcal B_M}\) denotes
+orthogonal projection onto the actual boundary space, put
+\begin{equation}
+\mathcal E_M=(1-P_{\mathcal B_M})\mathcal B_{M+1},\qquad
+b_M=T_+-R_MF:\mathbb C^r\longrightarrow\mathcal E_M.
+\tag{FD.12}\label{FD:FD:boundary-map}
+\end{equation}
+The full jet of \(b_M\) is \(F-F=0\), and its two terms are orthogonal
+to \(\mathcal B_M\), so its range is contained in \(\mathcal E_M\).
+Its highest orthogonal polynomial component is \(T_+\), proving
+injectivity.  Conversely, extract the highest component of a member of
+\(\mathcal E_M\) and subtract its corresponding \(b_M\)-image.  The
+remainder is simultaneously in \(\mathcal B_M\) and orthogonal to
+\(\mathcal B_M\), and is therefore zero.  This proves that \(b_M\) is
+an isomorphism and constructs its inverse.
+
+The exact Gram and cross-pairing are
+\begin{equation}
+H_M^{\mathrm{rel}}:=b_M^*b_M=\Omega+F^*G_MF,
+\qquad b_M^*R_M=-F^*G_M.
+\tag{FD.13}\label{FD:FD:relation-gram}
+\end{equation}
+The superscript distinguishes this relation Gram from the Hermitian
+control matrix introduced later.  The projection of \(R_M\) onto the
+new layer and the updated representative are
+\begin{equation}
+Y_M=-b_M(H_M^{\mathrm{rel}})^{-1}F^*G_M,
+\qquad R_{M+1}=R_M-Y_M.
+\tag{FD.14}\label{FD:FD:representative-update}
+\end{equation}
+These corrections are actual boundaries.  In particular, the full jet and
+the original arithmetic class stay fixed.  The quotient-layer map
+\[
+\mathcal B_{M+1}/\mathcal B_M\longrightarrow\mathcal E_M,
+\qquad [z]\longmapsto(1-P_{\mathcal B_M})z
+\]
+is an isomorphism, whose inverse is the inclusion followed by quotient.
+Its further map into the quotient by \(\mathcal B_{M+1}\) is zero.
+Write \(\lambda_M\) for the specified original joint support label
+recording the relation space \(\mathcal B_M\), and write \(0\) for
+the zero amplitude in that support fibre.  On the original supported
+reconstruction this is
+\((\lambda_M,u)\mapsto(\lambda_{M+1},0)\).  For \(u\ne0\) the preceding
+class is nonzero.  The final class is the supported zero of that fibre;
+it is distinct from \(\tau\), the original external-absence element.
+The notation \(e=0^\bullet\) denotes the nonabsent represented scalar
+zero in the original scalar reconstruction.  Thus the relation Gram
+in \eqref{FD:FD:relation-gram} measures the actual relations becoming
+represented zero at the next support.
+
+Orthogonal projection and the finite sum in \eqref{FD:FD:minimum} give
+\begin{equation}
+\begin{gathered}
+G_{M+1}=G_M-G_MF(\Omega+F^*G_MF)^{-1}F^*G_M,\\
+\mathcal C_{M+1}-\mathcal C_M=F\Omega^{-1}F^*.
+\end{gathered}
+\tag{FD.15}\label{FD:FD:full-update}
+\end{equation}
+The second equality also follows simply by adding the degree-\(M+1\)
+terms to \eqref{FD:FD:minimum}; it does not require a limiting argument.
+
+Set \(p_{-1}=0\).  Multiplication by \(t\) on the integration line has adjoint multiplication
+by \(1-t\).  Orthogonality and monicity therefore give
+\begin{equation}
+\begin{gathered}
+tp_n=p_{n+1}+b_np_n-a_np_{n-1},\qquad
+a_n=\omega_n/\omega_{n-1}\ (n\ge1),\quad a_0=0,\\
+b_n=\frac{\int(\tfrac12+iy)|p_n(\tfrac12+iy)|^2d\nu_h(y)}{\omega_n},
+\qquad \Re b_n=\tfrac12.
+\end{gathered}
+\tag{FD.16}\label{FD:FD:recurrence}
+\end{equation}
+For \(n\ge1\), pairing against a polynomial of degree below \(n-1\)
+in the expansion of \(tp_n\)
+vanishes by the adjoint identity.  Pairing against \(p_{n-1}\) gives
+\(-\omega_n/\omega_{n-1}\), and pairing against \(p_n\) gives the
+displayed \(b_n\).  For \(n=0\), monicity gives
+\(tp_0=p_1+b_0p_0\), and the term \(a_0p_{-1}=0\) is exactly the
+declared zero term.  This proves every coefficient in the recurrence.
+The minus sign and the possibly nonzero imaginary part of \(b_n\) are
+retained.
+
+Define
+\begin{equation}
+w_\beta=\sum_{j:\beta_j>0}a_{\beta_j}z_{\beta-e_j},\qquad
+E_+=[w_\beta]_{|\beta|=M+1}.
+\tag{FD.17}\label{FD:FD:lowering-jets}
+\end{equation}
+Here \(e_j\) is the standard multi-index vector; it is not the supported
+scalar \(e=0^\bullet\).  The full arithmetic jet is a module map, so
+\(\mathcal J((\sum_jt_j)P)=A_k\mathcal J(P)\).  Inserting
+\eqref{FD:FD:recurrence} into \eqref{FD:FD:minimum} proves
+\begin{equation}
+\mathcal Z_M:=A_k\mathcal C_M+\mathcal C_MA_k^*-k\mathcal C_M
+=F\Omega^{-1}E_+^*+E_+\Omega^{-1}F^*.
+\tag{FD.18}\label{FD:FD:full-frontier-identity}
+\end{equation}
+To verify the cancellation explicitly, for every internal edge
+\(\alpha\to\alpha+e_j\), the raising term has coefficient
+\(1/\omega_\alpha\), while the lowering term has coefficient
+\(-a_{\alpha_j+1}/\omega_{\alpha+e_j}=-1/\omega_\alpha\).
+Their adjoints cancel as well.  The diagonal contribution is
+\(2\sum_j\Re b_{\alpha_j}=k\).  The only uncancelled edges have
+\(|\alpha|=M\) and \(|\alpha+e_j|=M+1\), and their coefficients are
+exactly those in the right side of \eqref{FD:FD:full-frontier-identity}.
+
+For completeness, the arithmetic derivative defect has the same actual
+relation coordinates.  Set
+\[
+B_M^{\mathrm{der}}=D^{(k)}R_M-R_MA_k,
+\qquad C_M^{\mathrm{rel}}=(1-P_{\mathcal B_M})B_M^{\mathrm{der}}.
+\]
+Its full jet is zero, and its highest polynomial component is
+\(T_+\Omega^{-1}E_+^*G_M\).  The latter assertion follows from the
+coefficient of \(p_\beta\) in \((\sum_jt_j)R_M\): it is
+\(\sum_{j:\beta_j>0}z_{\beta-e_j}^*G_M/\omega_{\beta-e_j}
+=w_\beta^*G_M/\omega_\beta\).  The layer isomorphism
+\eqref{FD:FD:boundary-map} therefore proves
+\begin{equation}
+\begin{gathered}
+C_M^{\mathrm{rel}}=b_M\Omega^{-1}E_+^*G_M,\\
+\begin{aligned}
+W_M&:=A_k^*G_M+G_MA_k-kG_M\\
+&=G_M\mathcal Z_MG_M\\
+&=-(Y_M^*C_M^{\mathrm{rel}}+(C_M^{\mathrm{rel}})^*Y_M).
+\end{aligned}
+\end{gathered}
+\tag{FD.19}\label{FD:FD:actual-control}
+\end{equation}
+The last equality follows by substituting
+\eqref{FD:FD:relation-gram} and \eqref{FD:FD:representative-update}; in
+particular its minus sign is retained.
+
+The recurrence constant is
+\begin{equation}
+\Gamma_{k,M}=\max_{|\alpha|=M}\sum_{j=1}^k
+\bigl(a_{\alpha_j+1}+(k-1)a_{\alpha_j}\bigr)>0.
+\tag{FD.20}\label{FD:FD:Gamma}
+\end{equation}
+Strict positivity follows from \(a_{n+1}>0\) for every \(n\ge0\).
+We now prove its complete lowering estimate.
+
+For coefficient calculations only, use the exact coordinate map that
+divides the basis vector \(p_\alpha\) by \(\sqrt{\omega_\alpha}\).
+Its inverse multiplies by \(\sqrt{\omega_\alpha}\); the original
+polynomials, their norms, and the measure are unchanged.
+The degree-\((-1)\) coefficient space is by definition \(\{0\}\);
+in particular every lowering map from degree zero has that zero
+codomain.  This retains the admitted endpoint \(d=1,M=0\).
+In these coefficient spaces let \(R_j\) be the raising map
+\(e_\alpha\mapsto\sqrt{a_{\alpha_j+1}}e_{\alpha+e_j}\), and let
+\(R_j^*\) be its lowering adjoint.  Put
+\[
+Q_M^{\mathrm{jet}}=[z_\alpha/\sqrt{\omega_\alpha}]_{|\alpha|=M},
+\qquad B^{\mathrm{inc}}=(\textstyle\sum_jR_j)^*\big|_{M+1\to M}.
+\]
+The retained coefficients in \eqref{FD:FD:lowering-jets} give exactly
+\(E_+\Omega^{-1/2}=Q_M^{\mathrm{jet}}B^{\mathrm{inc}}\).
+Raising and lowering in distinct coordinates commute.  Hence, on the
+degree-\(M\) coefficient space,
+\[
+B^{\mathrm{inc}}(B^{\mathrm{inc}})^*
+=\operatorname{diag}_{|\alpha|=M}\sum_j
+(a_{\alpha_j+1}-a_{\alpha_j})+L^*L,
+\qquad L=\textstyle\sum_j R_j^*\big|_{M\to M-1}.
+\]
+For every coefficient vector \(c\), Cauchy--Schwarz gives
+\(\|Lc\|^2\le k\sum_j\|R_j^*c\|^2\).  Thus
+\[
+L^*L\preceq k\operatorname{diag}_{|\alpha|=M}\sum_ja_{\alpha_j},
+\qquad
+B^{\mathrm{inc}}(B^{\mathrm{inc}})^*\preceq\Gamma_{k,M}I.
+\]
+Multiplication by \(Q_M^{\mathrm{jet}}\) and its adjoint, followed by
+inclusion of the positive degree-\(M\) sum in \eqref{FD:FD:minimum}, proves
+\begin{equation}
+E_+\Omega^{-1}E_+^*\preceq
+\Gamma_{k,M}Q_M^{\mathrm{jet}}(Q_M^{\mathrm{jet}})^*
+\preceq\Gamma_{k,M}\mathcal C_M.
+\tag{FD.21}\label{FD:FD:lowering-bound}
+\end{equation}
+
+\subsection{Exact symmetric restriction with every orbit factor}
+
+Let \(P_\pi\) be ordinary factor permutation.  The relevant module is
+\[
+E_k^{\mathrm{sym}}=(E_h^{\otimes k})^{S_k},\qquad
+N=\dim E_k^{\mathrm{sym}}=\binom{k+d-1}{d-1}.
+\]
+It is the actual top-degree summand selected on the original cochain
+tensor product by
+\(\mathsf S_k=(1/k!)\sum_{\pi\in S_k}\operatorname{sgn}(\pi)T_\pi\),
+where \(T_\pi\) is permutation with its Koszul sign.
+In top degree \(T_\pi=\operatorname{sgn}(\pi)P_\pi\), so the two signs
+cancel.  The numerator squares to \(k!\) times itself, proving the
+idempotent with its literal coefficient \(1/k!\).  In particular,
+every repeated tensor \(v^{\otimes k}\) remains in this summand.
+
+Use the quotient basis formed by the unscaled orbit sums of
+\([t^{a_1}]\otimes\cdots\otimes[t^{a_k}]\), \(0\le a_i<d\).
+Let \(I_k\) be its coefficient inclusion in the full tensor basis.
+If \(n_j\) counts factors with exponent \(j\), its orbit size is
+\(k!/\prod_{j=0}^{d-1}n_j!\).  The orbit supports are disjoint, so
+\begin{equation}
+D_k=I_k^*I_k
+=\operatorname{diag}\left(\frac{k!}{\prod_{j=0}^{d-1}n_j!}\right),
+\qquad L_k=D_k^{-1}I_k^*,\qquad L_kI_k=I.
+\tag{FD.22}\label{FD:FD:orbit-coordinates}
+\end{equation}
+The projector onto invariant coefficient vectors is \(\Pi_k=I_kL_k\).
+Permutations preserve the source, the relation ideal, the product
+measure, and \(\upsilon_h^{\otimes k}\).  Uniqueness of the minimum
+therefore gives equivariance of \(R_M\), and consequently of \(G_M\)
+and \(\mathcal C_M\).  The exact restricted matrices are
+\begin{equation}
+G_M^{\mathrm{sym}}=I_k^*G_MI_k,\qquad
+\mathcal C_M^{\mathrm{sym}}=L_k\mathcal C_ML_k^*,\qquad
+A_kI_k=I_kA_k^{\mathrm{sym}}.
+\tag{FD.23}\label{FD:FD:symmetric-matrices}
+\end{equation}
+The first two matrices are inverse.  For example,
+\[
+G_M^{\mathrm{sym}}\mathcal C_M^{\mathrm{sym}}
+=I_k^*G_M\Pi_k\mathcal C_ML_k^*
+=I_k^*\Pi_kL_k^*=I,
+\]
+because both \(G_M\) and \(\mathcal C_M\) commute with \(\Pi_k\),
+their product is identity, \(\Pi_kL_k^*=L_k^*\), and
+\(I_k^*L_k^*=(L_kI_k)^*=I\).
+
+In the source frontier let \(Q_+\) be the coefficient inclusion matrix
+whose columns are the \(0/1\) orbit indicators in the ordered basis
+\((p_\beta)_{|\beta|=M+1}\).  Thus each column represents the
+unscaled orbit sum of those \(p_\beta\).  If \(m_j(\beta)\)
+counts the entries of \(\beta\) equal to \(j\), the corresponding
+source orbit norm is exactly
+\begin{equation}
+\omega_{[\beta]}=
+\frac{k!}{\prod_{j\ge0}m_j(\beta)!}\prod_{i=1}^k\omega_{\beta_i}.
+\tag{FD.24}\label{FD:FD:source-orbit-norm}
+\end{equation}
+This is a sum of equal squared norms of pairwise orthogonal distinct
+product polynomials.  Define the actual restricted frontier matrices
+\begin{equation}
+\Omega_s=Q_+^*\Omega Q_+,\qquad
+F_s=L_kFQ_+,\qquad E_s=L_kE_+Q_+.
+\tag{FD.25}\label{FD:FD:symmetric-frontier}
+\end{equation}
+Thus \(\Omega_s\) is the positive diagonal matrix with entries
+\eqref{FD:FD:source-orbit-norm}; none of its orbit factors are suppressed.
+
+The source invariant projector is
+\(\Pi_+=Q_+(Q_+^*Q_+)^{-1}Q_+^*\).  Since \(\Omega\) is constant
+on each orbit, it commutes with \(\Pi_+\), and direct calculation in
+one orbit gives
+\[
+Q_+\Omega_s^{-1}Q_+^*=\Omega^{-1}\Pi_+.
+\]
+Indeed, on an orbit of size \(m\) and weight \(\omega\), the left
+side is the all-ones matrix divided by \(m\omega\); this is precisely
+\(\omega^{-1}\Pi_+\) there.  Equivariance implies
+\(L_kF=L_kF\Pi_+\) and \(L_kE_+=L_kE_+\Pi_+\): averaging any
+source vector before applying an equivariant map has the same invariant
+component as applying the map first.  Congruence of
+\eqref{FD:FD:full-update}, \eqref{FD:FD:full-frontier-identity}, and
+\eqref{FD:FD:lowering-bound} therefore gives, with
+\begin{equation}
+\begin{gathered}
+\mathcal C=\mathcal C_M^{\mathrm{sym}},\quad
+G=G_M^{\mathrm{sym}}=\mathcal C^{-1},\quad A=A_k^{\mathrm{sym}},\\
+\Delta\mathcal C=\mathcal C_{M+1}^{\mathrm{sym}}-
+\mathcal C_M^{\mathrm{sym}},\qquad
+\mathcal Z=A\mathcal C+\mathcal CA^*-k\mathcal C,
+\end{gathered}
+\tag{FD.26}\label{FD:FD:abbreviations}
+\end{equation}
+the exact formulas
+\begin{equation}
+\begin{gathered}
+\Delta\mathcal C=F_s\Omega_s^{-1}F_s^*,\\
+\mathcal Z=F_s\Omega_s^{-1}E_s^*+E_s\Omega_s^{-1}F_s^*,\\
+E_s\Omega_s^{-1}E_s^*\preceq\Gamma_{k,M}\mathcal C.
+\end{gathered}
+\tag{FD.27}\label{FD:FD:restricted-identities}
+\end{equation}
+For the operator term, equivariance also gives
+\(L_kA_k=A_k^{\mathrm{sym}}L_k\), proving that the congruence of
+\(A_k\mathcal C_M+\mathcal C_MA_k^*-k\mathcal C_M\) is exactly the
+\(\mathcal Z\) in \eqref{FD:FD:abbreviations}.
+
+\subsection{The aggregate spectral-position restriction}
+
+Positive square roots below are the unique positive square roots of the
+retained positive matrices.  They are used as explicit comparison maps;
+their inverses are retained, and neither the source measure nor the
+arithmetic metric is redefined.  Set
+\begin{equation}
+\begin{gathered}
+X=G^{1/2}F_s\Omega_s^{-1/2},\qquad
+Y=G^{1/2}E_s\Omega_s^{-1/2},\\
+K=XX^*=G^{1/2}\Delta\mathcal C G^{1/2},\qquad
+H=G^{1/2}\mathcal ZG^{1/2}=XY^*+YX^*.
+\end{gathered}
+\tag{FD.28}\label{FD:FD:comparison-maps}
+\end{equation}
+The last inequality of \eqref{FD:FD:restricted-identities} gives
+\(YY^*\preceq\Gamma_{k,M}I\), and hence
+\(Y^*Y\preceq\Gamma_{k,M}I\) on its own coefficient space.  Here the
+latter statement follows from \(\|Y\|_{\mathrm{op}}^2
+=\|YY^*\|_{\mathrm{op}}\), or directly from the singular values.
+For the Frobenius norm \(\|T\|_F^2=\operatorname{tr}(T^*T)\),
+\[
+\|XY^*\|_F^2
+=\operatorname{tr}(X^*X\,Y^*Y)
+\le\Gamma_{k,M}\operatorname{tr}(X^*X).
+\]
+The norm of a matrix equals the norm of its adjoint, so the triangle
+inequality gives the proved upper estimate
+\begin{equation}
+\|H\|_F^2\le4\Gamma_{k,M}\operatorname{tr}K.
+\tag{FD.29}\label{FD:FD:Frobenius-upper}
+\end{equation}
+
+List the roots of \(h\), repeated with their original algebraic
+multiplicities, as \(\rho_1,\ldots,\rho_d\), and put
+\begin{equation}
+\delta_i=\Re\rho_i-\tfrac12,\qquad
+\eta_{\mathbf n}=\sum_{i=1}^dn_i\rho_i,
+\quad \mathbf n\in\mathbb N_0^d,\quad |\mathbf n|=k.
+\tag{FD.30}\label{FD:FD:spectral-positions}
+\end{equation}
+The eigenvalues of \(A\), with algebraic multiplicity, are exactly the
+\(\eta_{\mathbf n}\).  To prove this while retaining nilpotents,
+triangularize \(A_h\) by induction using an eigenvector and the induced
+operator on the quotient.  In a basis with
+\(A_he_j=\rho_je_j+\sum_{i<j}c_{ij}e_i\), applying the additive
+generator to a symmetric monomial of occupations \(\mathbf n\) gives
+diagonal coefficient \(\sum_jn_j\rho_j\).  Every other term replaces
+an index \(j\) by \(i<j\), reducing the sum of the indices.  Ordering
+monomials by that sum, and resolving ties arbitrarily, makes the
+operator triangular with precisely the displayed diagonal.  Each weak
+composition contributes once; equal eigenvalues remain repeated with
+their algebraic multiplicities.  The triangular off-diagonal entries
+are retained, including those caused by nontrivial Jordan blocks.
+
+Let \(B=G^{1/2}AG^{-1/2}\).  Substitution into
+\eqref{FD:FD:abbreviations} gives \(H=B+B^*-kI\).
+Unitary Schur triangularization gives \(T=U^*BU\), upper triangular
+with diagonal entries \(\eta_{\mathbf n}\).  Such a triangularization
+is obtained inductively by taking a unit eigenvector as the first basis
+vector and applying the induction to the compression on its orthogonal
+complement.  Unitary conjugation preserves the Frobenius norm.  Its
+diagonal and off-diagonal entries give the exact identity
+\begin{equation}
+\|H\|_F^2
+=\sum_{|\mathbf n|=k}(2\Re\eta_{\mathbf n}-k)^2
++2\sum_{i<j}|T_{ij}|^2
+\ge4\sum_{|\mathbf n|=k}\left(\sum_i n_i\delta_i\right)^2.
+\tag{FD.31}\label{FD:FD:Schur-exact}
+\end{equation}
+For \(i<j\), the two corresponding entries of \(T+T^*-kI\) are
+\(T_{ij}\) and \(\overline{T_{ij}}\); this proves the factor two.
+Thus the retained nilpotent and nonnormal contributions cannot weaken
+the displayed lower bound.
+
+We evaluate its sum exactly.  For \(d\ge2\), the ordinary generating
+functions for weak compositions give
+\begin{equation}
+\begin{aligned}
+\sum_{|\mathbf n|=k}n_1&=\binom{k+d-1}{d},\\
+\sum_{|\mathbf n|=k}n_1(n_1-1)&=2\binom{k+d-1}{d+1},\\
+\sum_{|\mathbf n|=k}n_1n_2&=\binom{k+d-1}{d+1}.
+\end{aligned}
+\tag{FD.32}\label{FD:FD:composition-moments}
+\end{equation}
+Indeed their generating functions are respectively
+\[
+z(1-z)^{-d-1},\qquad
+2z^2(1-z)^{-d-2},\qquad
+z^2(1-z)^{-d-2}.
+\]
+These follow by differentiating the appropriate geometric-series
+factors.  Extracting the coefficient of \(z^k\)
+gives \eqref{FD:FD:composition-moments}.  Write
+\(a=\binom{k+d-1}{d}\) and \(b=\binom{k+d-1}{d+1}\).
+Then the square expands as
+\[
+(a+2b)\sum_i\delta_i^2+2b\sum_{i<j}\delta_i\delta_j
+=(a+b)\sum_i\delta_i^2+b\left(\sum_i\delta_i\right)^2.
+\]
+Pascal's identity therefore proves
+\begin{equation}
+\begin{aligned}
+\mathcal S_{h,k}
+&:=\sum_{|\mathbf n|=k}\left(\sum_i n_i\delta_i\right)^2\\
+&=\binom{k+d}{d+1}\sum_i\delta_i^2
++\binom{k+d-1}{d+1}\left(\sum_i\delta_i\right)^2.
+\end{aligned}
+\tag{FD.33}\label{FD:FD:composition-sum}
+\end{equation}
+Binomial coefficients with smaller upper than nonnegative lower index
+are zero.  For \(d=1\), direct evaluation gives \(k^2\delta_1^2\);
+the right side of \eqref{FD:FD:composition-sum} is
+\([\binom{k+1}{2}+\binom{k}{2}]\delta_1^2=k^2\delta_1^2\), so the
+same formula holds in that case.
+
+Combining \eqref{FD:FD:Frobenius-upper}, \eqref{FD:FD:Schur-exact}, and
+\eqref{FD:FD:composition-sum} proves the aggregate arithmetic restriction
+\begin{equation}
+\boxed{\Gamma_{k,M}\operatorname{tr}\!\left(
+G_M^{\mathrm{sym}}\bigl(\mathcal C_{M+1}^{\mathrm{sym}}
+-\mathcal C_M^{\mathrm{sym}}\bigr)\right)\ge\mathcal S_{h,k}.}
+\tag{FD.34}\label{FD:FD:aggregate-bound}
+\end{equation}
+The trace in this formula is exactly \(\operatorname{tr}K\), by
+cyclicity.  All its matrices were defined from the actual measure,
+complete arithmetic jet unit, and unscaled orbit norms.
+
+\subsection{Coordinate invariance and determinant growth}
+
+The comparison maps have an exact coordinate-invariance statement.
+For invertible changes \(S\) in quotient coordinates and \(R\) in
+frontier coordinates, set
+\begin{equation}
+\begin{gathered}
+A'=SAS^{-1},\quad \mathcal C'=S\mathcal CS^*,\quad
+G'=S^{-*}GS^{-1},\\
+F_s'=SF_sR,\quad E_s'=SE_sR,\quad
+\Omega_s'=R^*\Omega_sR.
+\end{gathered}
+\tag{FD.35}\label{FD:FD:coordinate-change}
+\end{equation}
+Here \(S^{-*}=(S^{-1})^*\).  Cancellation of \(R,R^{-1}\) in the
+factorizations proves \(\Delta\mathcal C'=S\Delta\mathcal CS^*\),
+and substitution in the generator identity gives
+\(\mathcal Z'=S\mathcal ZS^*\).  The lowering inequality is carried
+through the same congruence.  Direct cyclic cancellation and determinant
+multiplicativity give
+\begin{equation}
+\begin{gathered}
+\operatorname{tr}(G'\Delta\mathcal C')
+=\operatorname{tr}(G\Delta\mathcal C),\\
+\frac{\det(\mathcal C'+\Delta\mathcal C')}{\det\mathcal C'}
+=\frac{\det(\mathcal C+\Delta\mathcal C)}{\det\mathcal C}.
+\end{gathered}
+\tag{FD.36}\label{FD:FD:coordinate-invariants}
+\end{equation}
+Furthermore
+\(U_S=(\mathcal C')^{-1/2}S\mathcal C^{1/2}\) satisfies
+\(U_SU_S^*=I\), and hence is unitary, with
+\(H'=U_SHU_S^*\).  This follows by substituting
+\(\mathcal C'=S\mathcal CS^*\) and
+\(\mathcal Z'=S\mathcal ZS^*\).
+Thus the exact trace, determinant ratio, and Frobenius quantity are
+preserved by the comparison-coordinate maps; no arithmetic
+normalization has been imposed.
+
+The exact update and \eqref{FD:FD:comparison-maps} give
+\begin{equation}
+\frac{\det\mathcal C_{M+1}^{\mathrm{sym}}}
+{\det\mathcal C_M^{\mathrm{sym}}}=\det(I+K).
+\tag{FD.37}\label{FD:FD:determinant-identity}
+\end{equation}
+Indeed congruence by \(\mathcal C^{-1/2}=G^{1/2}\) takes
+\(\mathcal C+\Delta\mathcal C\) to \(I+K\), and its determinant
+multiplier is \(1/\det\mathcal C\).  If
+\(\kappa_1,\ldots,\kappa_N\ge0\) are the eigenvalues of \(K\),
+expanding \(\prod_j(1+\kappa_j)\) gives
+\(\det(I+K)\ge1+\sum_j\kappa_j=1+\operatorname{tr}K\).
+Since \(\Gamma_{k,M}>0\) was proved in \eqref{FD:FD:Gamma},
+\eqref{FD:FD:aggregate-bound} now proves
+\begin{equation}
+\boxed{\frac{\det\mathcal C_{M+1}^{\mathrm{sym}}}
+{\det\mathcal C_M^{\mathrm{sym}}}
+\ge1+\frac{\mathcal S_{h,k}}{\Gamma_{k,M}}.}
+\tag{FD.38}\label{FD:FD:determinant-step}
+\end{equation}
+For any integers \(M_1>M_0\ge k(d-1)\), multiplying the finitely many
+positive inequalities \eqref{FD:FD:determinant-step} telescopes to
+\begin{equation}
+\boxed{\frac{\det\mathcal C_{M_1}^{\mathrm{sym}}}
+{\det\mathcal C_{M_0}^{\mathrm{sym}}}
+\ge\prod_{M=M_0}^{M_1-1}
+\left(1+\frac{\mathcal S_{h,k}}{\Gamma_{k,M}}\right).}
+\tag{FD.39}\label{FD:FD:determinant-product}
+\end{equation}
+This is a finite product over the specified actual support degrees.
+It requires no limit or unproved asymptotic estimate.
+
+For a reflection-stable packet, the original reflection maps each zero
+\(\rho\) to \(1-\overline\rho\), retaining its full order.  Each
+paired displacement \(\delta_i\) is sent to \(-\delta_i\), so
+\(\sum_i\delta_i=0\).  Hence the exact coefficient becomes
+\begin{equation}
+\boxed{\mathcal S_{h,k}=\binom{k+d}{d+1}
+\sum_{i=1}^d(\Re\rho_i-\tfrac12)^2.}
+\tag{FD.40}\label{FD:FD:reflection-coefficient}
+\end{equation}
+In particular, the presence of any actual off-axis zero makes this
+coefficient strictly positive.  It forces a positive relative frontier
+increment and the determinant lower bound at every admitted support
+degree, within the actual symmetric summand.
+
+\subsection{The exact signed eigenline witness}
+
+Let \(v\ne0\) be an actual eigenvector of \(A_h\), with
+\(A_hv=\rho v\).  In the unscaled symmetric quotient coordinates put
+\(u=L_k(v^{\otimes k})\), so \(I_ku=v^{\otimes k}\).
+This vector is nonzero: choose a linear functional \(\ell\) with
+\(\ell v=1\); then \(\ell^{\otimes k}(v^{\otimes k})=1\).
+The additive generator satisfies \(Au=k\rho u\).  With the exact
+positive number \(q=u^*Gu\), put
+\begin{equation}
+x=\Omega_s^{-1/2}F_s^*Gu,\qquad
+y=\Omega_s^{-1/2}E_s^*Gu.
+\tag{FD.41}\label{FD:FD:witness-frontier-vectors}
+\end{equation}
+The symmetric restriction of \eqref{FD:FD:actual-control} is
+\(W=A^*G+GA-kG=G\mathcal ZG\).  On the eigenvector,
+\[
+u^*Wu=k(2\Re\rho-1)q.
+\]
+On the other hand, \eqref{FD:FD:restricted-identities} and
+\eqref{FD:FD:witness-frontier-vectors} give
+\(u^*G\mathcal ZGu=x^*y+y^*x=2\Re(x^*y)\).
+Equating these two exact expressions proves the signed identity
+\begin{equation}
+\boxed{\Re(x^*y)=k(\Re\rho-\tfrac12)q.}
+\tag{FD.42}\label{FD:FD:signed-witness}
+\end{equation}
+Thus this correlation has the retained sign of the actual real-part
+displacement.  No absolute-value estimate was used in obtaining it.
+
+Define the two directional costs and the actual symmetric maximum cost
+\begin{equation}
+\alpha=\frac{\|x\|^2}{q},\qquad
+\beta=\frac{\|y\|^2}{q},\qquad
+\lambda_{k,M}^{\mathrm{sym}}
+=\max_{w\ne0}\frac{w^*\Delta\mathcal Cw}{w^*\mathcal Cw}
+=\lambda_{\max}(K).
+\tag{FD.43}\label{FD:FD:relative-costs}
+\end{equation}
+The last equality follows by the invertible substitution
+\(w=\mathcal C^{-1/2}z\) in the Rayleigh quotient.  The lowering
+estimate in \eqref{FD:FD:restricted-identities}, evaluated at \(Gu\),
+gives \(\beta\le\Gamma_{k,M}\), because
+\((Gu)^*\mathcal C(Gu)=q\).  The same substitution into the
+maximum defining \(\lambda_{k,M}^{\mathrm{sym}}\) gives
+\(\alpha\le\lambda_{k,M}^{\mathrm{sym}}\).  Cauchy--Schwarz applied
+to \eqref{FD:FD:signed-witness} gives
+\[
+\alpha\beta\ge k^2(\Re\rho-\tfrac12)^2.
+\]
+Consequently the actual arithmetic costs satisfy
+\begin{equation}
+\boxed{\Gamma_{k,M}\lambda_{k,M}^{\mathrm{sym}}
+\ge k^2(\Re\rho-\tfrac12)^2.}
+\tag{FD.44}\label{FD:FD:quadratic-cost}
+\end{equation}
+Every term in the signed identity and this bound is attached to the
+actual next original relation through \eqref{FD:FD:boundary-map},
+\eqref{FD:FD:actual-control}, and the exact symmetric restrictions.
+
+\paragraph{Exact scope of the resulting restriction.}
+Equations \eqref{FD:FD:aggregate-bound}--\eqref{FD:FD:reflection-coefficient}
+and \eqref{FD:FD:signed-witness}--\eqref{FD:FD:quadratic-cost} prove the stated
+frontier and determinant restrictions for the original arithmetic
+family, including all multiplicities and nilpotent actions.  The source
+explicitly records the unestimated quantity: A1829, line 5580, states
+that no uniform sublinear excess was established; A1859, line 6013,
+states that the finite bound's constants were not bounded sublinearly in
+tensor degree; A1859, line 6327, states that the uniform sublinear
+estimate for the actual arithmetic family was not proved.  No upper
+estimate incompatible with \eqref{FD:FD:determinant-step} or
+\eqref{FD:FD:quadratic-cost} is asserted here.  These are proved necessary
+restrictions on an actual RH counterexample, not an assertion that their
+arithmetic values cannot satisfy them.

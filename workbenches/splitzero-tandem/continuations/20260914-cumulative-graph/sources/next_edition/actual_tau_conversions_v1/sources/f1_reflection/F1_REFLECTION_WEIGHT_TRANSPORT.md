@@ -1,0 +1,339 @@
+# The original tau-base weight line in the exponential reflection flow
+
+13 September 2026. This is a calculation on the existing Split-Zero arithmetic
+construction, not a replacement finite-field model and not a weight estimate.
+It joins the original moment line in the tau-base right adjoint to an exact
+reflection and flow on the already constructed polynomial-exponential family.
+The finite transport identity extends through the special fibre even though
+the corresponding contour gauge contains an essential exponential in \(1/u\).
+
+## 1. Retained source and conventions
+
+The controlling source is `Tau_Base_Cohomology_2026-09-12/NOTE.md`, SHA256
+`d03e71ad18f187bd89880cb8ca6fc9c5d6f260b3de8e8e5702c27db97e7b63c3`.
+Its whole body was read. Sections 3–7 supply, respectively,
+
+\[
+\mathsf A_\tau(\mathcal T)
+=[V\oplus V\xrightarrow{\Theta(\phi-\widehat\psi)}\mathscr B],
+\quad H^1=Q=\mathscr B/\Theta V,
+\quad K_\tau(W)\simeq S_\eta W[1].
+\tag{RW1}
+\]
+
+The original action is \(U_p F(x)=F(x/p)\). Its two source legs are
+\((U_p\phi,pU_{1/p}\psi)\), not two copies of \(U_p\). Its Mellin multiplier
+is \(p^s\). The actual second moment \(\int\phi(x)\,dx\) has multiplier \(p\);
+its k-fold tensor is the specified line \(L_k\) with multiplier \(p^k\).
+The dual action is consequently \(p^k\) times precomposition by \(U_p^{-1}\).
+All these maps fix support masks and carry supported zero to supported zero,
+with external absence tau carried to tau.
+
+Use an actual full quartet packet and its original cyclic tensor module,
+
+\[
+E=\mathbb C[S]/(\chi),\quad q=\deg\chi,\quad A=M_S,
+\quad S=s_1+\cdots+s_k.
+\tag{RW2}
+\]
+
+Here the retained quartet and its complete multiplicities give
+
+\[
+\overline\chi=\chi,\qquad
+\chi(k-S)=\varepsilon\chi(S),\qquad\varepsilon=(-1)^q.
+\tag{RW3}
+\]
+
+Indeed complex conjugation and reflection permute the tensor-sum roots with
+their original multiplicities; the leading coefficient of the reflected
+monic degree-q polynomial is \((-1)^q\). This statement is about those actual
+symmetry-stable packets. It does not invent an off-line zero or discard a
+nilpotent direction. The arithmetic inclusion remains
+\(\eta[P]=\upsilon_h^{\otimes k}P(A_h^{(k)})1\). In particular its full Taylor unit
+is not absorbed into a scalar or removed from the comparison.
+
+The existing exponential family uses the antiderivative with \(\Phi(0)=0\),
+
+\[
+\Phi'=\chi,\quad\Phi_t(S)=\Phi(S)-tS,\quad
+D_{u,t}=u\partial_S+\chi(S)-t,
+\quad\mathcal H=\operatorname{coker}D_{u,t}.
+\tag{RW4}
+\]
+
+Leading-term division makes H free of rank q over \(\mathbb C[u,t]\), with basis
+\(1,S,\ldots,S^{q-1}\). In that basis the already proved connection is
+
+\[
+\nabla_t=\partial_t-\frac{A(t)}u,\qquad
+A(t)=A+t\mathcal R,
+\quad\mathcal R=1\otimes\ell_{q-1}.
+\tag{RW5}
+\]
+
+The matrix \(A(t)\) is multiplication by S in \(\mathbb C[S]/(\chi-t)\) on these
+representatives. Multiplication by an arbitrary S-polynomial is not thereby
+asserted to descend to the full u-deformed differential cokernel. The
+connection and the chain maps below supply the actual descended operators.
+
+## 2. Reflection is a cochain map of the actual family
+
+Let \(RP(S)=P(k-S)\) and
+
+\[
+r(u,t)=(-\varepsilon u,\varepsilon t)=(u',t').
+\tag{RW6}
+\]
+
+The matrix R on degree-below-q representatives has the explicit entries
+
+\[
+R_{ij}=\begin{cases}\binom ji k^{j-i}(-1)^i&i\le j,\\0&i>j,
+\end{cases}\qquad R^2=I.
+\tag{RW7}
+\]
+
+For every polynomial P, differentiation and (RW3) give
+
+\[
+D_{u',t'}(\varepsilon RP)=R(D_{u,t}P).
+\tag{RW8}
+\]
+
+In detail, the derivative term on the left is
+\((-\varepsilon u)\varepsilon(-RP')=uRP'\); its remaining term is
+\(\varepsilon(\chi-\varepsilon t)RP=(\varepsilon\chi-t)RP\), which is exactly the
+reflected right side. Thus degree-zero map \(\varepsilon R\) and degree-one map R
+give a cochain isomorphism, with its inverse given by the same reflection.
+This extends over \((u,t)=(0,0)\), where it is the original polynomial
+reflection on E. Adding coefficient conjugation gives the actual dagger
+operation, with parameter map
+\((u,t)\mapsto(-\varepsilon\overline u,\varepsilon\overline t)\).
+
+On the companion matrices the same calculation is
+
+\[
+R A(t)R=kI-A(\varepsilon t).
+\tag{RW9}
+\]
+
+This follows either by reducing \((k-S)P(k-S)\) modulo \(\chi-\varepsilon t\),
+or by using the algebra isomorphism defined by (RW3). All entries and
+all repeated-root blocks remain; no diagonalization is used.
+
+## 3. The weight twist is the original potential's constant, not a choice
+
+Integrating (RW3) with the original endpoint gives
+
+\[
+\Phi(k-S)=\Phi(k)-\varepsilon\Phi(S),
+\]
+\[
+\boxed{\frac{\Phi_t(k-S)}u
+=\frac{\Phi_{\varepsilon t}(S)}{-\varepsilon u}
+ +\frac{\Phi(k)-kt}{u}.}
+\tag{RW10}
+\]
+
+Neither \(\Phi(k)\) nor \(k\) is set to zero. Pull the target connection back
+along r, keeping u fixed while differentiating t. Since \(dt'=\varepsilon\,dt\),
+
+\[
+r^*\nabla_t=\partial_t+\frac{A(\varepsilon t)}u,
+\quad
+(r^*\nabla_t)(Rv)-R\nabla_tv=\frac ku Rv.
+\tag{RW11}
+\]
+
+Consequently the exact horizontal map on \(u\ne0\) is
+
+\[
+\boxed{\mathcal F(u,t)
+=\exp\!\left(\frac{\Phi(k)-kt}{u}\right)R.}
+\tag{RW12}
+\]
+
+Its logarithmic t-derivative is \(-k/u\), so substituting (RW11) proves
+\((r^*\nabla)(\mathcal Fv)=\mathcal F\nabla v\). This uses the full constant supplied by
+the original potential. It does not select a new norm on H.
+
+For an oriented rapid-decay contour Gamma, its reflected contour is the
+pushforward \(\Gamma'=k-\Gamma\) with that orientation. The substitution
+\(S_{\mathrm{old}}=k-S_{\mathrm{new}}\) has \(dS_{\mathrm{old}}=-dS_{\mathrm{new}}\). Therefore the actual integrals satisfy
+
+\[
+\int_\Gamma e^{\Phi_t(S)/u}P(S)\,dS
+=-\exp\!\left(\frac{\Phi(k)-kt}{u}\right)
+\int_{\Gamma'} e^{\Phi_{t'}(S)/u'}(RP)(S)\,dS.
+\tag{RW13}
+\]
+
+The minus sign is the one-form pullback. The constant exponential is retained.
+The exponential identity also carries the original decay along Gamma to
+Gamma', so this substitution does not postulate a different contour class.
+
+## 4. A regular finite flow identity through the special fibre
+
+The scaling calculation computes the regular lift of forward theta dilation from
+\(L=u\partial_t-S\). Its coefficient transport C_a is characterized by
+
+\[
+\frac{d}{da}C_a(u,t)=-C_a(u,t)A(t+ua),\qquad C_0=I.
+\tag{RW14}
+\]
+
+This linear matrix equation, with polynomial coefficients, has a unique
+entire solution in a, depending holomorphically on u,t. Its local power
+series recursion is explicit. It obeys
+
+\[
+C_{a+b}(u,t)=C_a(u,t)C_b(u,t+ua),
+\quad C_a^{-1}(u,t)=C_{-a}(u,t+ua).
+\tag{RW15}
+\]
+
+To prove the product law, differentiate its right side in b and compare its
+initial value at b=0 with \(C_{a+b}\) in (RW14). Uniqueness gives equality.
+In particular this finite transport is invertible even at u=0; there
+\(C_a(0,t)=\exp(-aA(t))\).
+
+Its reflection is the new exact formula
+
+\[
+\boxed{R C_a(u,t)R=e^{-ka}C_{-a}(-\varepsilon u,\varepsilon t).}
+\tag{RW16}
+\]
+
+Proof: write the left side as B_a. By (RW9),
+
+\[
+B_a'=-kB_a+B_aA(\varepsilon t+\varepsilon ua).
+\]
+
+For \(u'=-\varepsilon u\), \(t'=\varepsilon t\), the derivative of \(C_{-a}(u',t')\)
+is \(C_{-a}(u',t')A(t'-u' a)\). Thus the right side of (RW16) obeys this
+same equation and has the same initial value I. This proves (RW16) for
+all parameters, without dividing by u. It is not an attempt to evaluate
+the singular exponential (RW12) at u=0.
+
+Along \(t\mapsto t+ua\), the ratio of the two full scalar factors in (RW12) is
+exactly \(\exp(-ka)\). At \(a=\log p\), forward theta dilation has moment line
+\(p^{-k}\); inverse dilation U_p has moment line \(p^k\). Thus the very same
+factor appears both in the actual tau-base adjunction and in the exact
+exponential-family reflection flow. It is not a finite-field cardinality
+assigned to the absolute base point.
+
+Specializing (RW16) gives the full arithmetic identity
+
+\[
+R p^{-A} R=p^{-k}p^A,
+\qquad R p^A R=p^k p^{-A}.
+\tag{RW17}
+\]
+
+Every block is retained:
+
+\[
+p^{\pm A}|_{\lambda}
+=p^{\pm\lambda}\sum_{j=0}^{\ell_\lambda-1}
+\frac{(\pm\log p)^j}{j!}N_\lambda^j.
+\tag{RW18}
+\]
+
+## 5. The computed adjoint transport and its exact evaluation
+
+On coefficient sections the scaling operator is semilinear:
+\(T_av(t)=C_a(u,t)v(t+ua)\). The k-fold moment line has
+\(T_a^Lz(t)=\exp(-ka)z(t+ua)\). Therefore the actual twisted dual is
+
+\[
+\boxed{T_a^\vee\ell(t)
+=e^{-ka}C_a(u,t)^{-T}\ell(t+ua).}
+\tag{RW19}
+\]
+
+Substitution proves, with no omitted scalar,
+
+\[
+(T_a^\vee\ell)(t)^T(T_av)(t)
+=e^{-ka}\ell(t+ua)^Tv(t+ua).
+\tag{RW20}
+\]
+
+The product rule (RW15) proves the composition law for (RW19). Its
+infinitesimal generator is
+
+\[
+u\partial_t+A(t)^T-kI.
+\tag{RW21}
+\]
+
+At the actual special fibre and inverse dilation it becomes
+\(p^k(p^A)^{-T}\). This is precisely the action obtained by applying the
+right adjoint \(K_{(\tau,k)}(L_k)\) in the original source, then precomposing
+finite jet evaluation. In the conjugate packet, the source's dagger and
+residue pairing give its specified linear map to this twisted dual.
+No Hermitian positivity has been inferred from this bilinear calculation.
+
+For completeness, the existing constant residue matrix
+
+\[
+\mathsf S_{ij}=[S^{-1}]\frac{S^{i+j}}{\chi(S)-t}
+=[S^{-1}]\frac{S^{i+j}}{\chi(S)}
+\quad(0\le i,j<q)
+\tag{RW22}
+\]
+
+has determinant \((-1)^{q(q-1)/2}\) and satisfies
+\(A(t)^T\mathsf S=\mathsf SA(t)\). Its t-independence follows because the difference
+of the two fractions starts at degree at most \(S^{-2}\). With \(J=R^T\mathsf S\),
+the computed two-parameter pairing identity is
+
+\[
+\boxed{A(t)^T J+J A(\varepsilon t)=kJ.}
+\tag{RW23}
+\]
+
+Indeed transpose \(RA(t)=(kI-A(\varepsilon t))R\) and apply the residue
+self-adjointness of \(A(\varepsilon t)\). At t=0 this recovers the additive
+weight relation. For the actual arithmetic residue with denominator g,
+one must additionally retain the existing full unit \(j_h(g/h)\) and the
+actual arithmetic inclusion eta; the polynomial chi residue is not
+silently substituted for that pairing. No extension of that arithmetic
+unit as a globally invertible operator on every deformed fibre is claimed.
+
+## 6. Position in Deligne's argument and in the current program
+
+The printed primary text of Weil II, pp. 178, 202, 203 and 206, was read
+in the supplied S20 source-language records together with the existing
+primary-scan correction. In (3.3.5), the dual degree and Tate twist give
+\(-n+(2N-i)-2N=-n-i\). In (3.3.6), opposite bounds then constrain the
+image of the actual compact-support comparison. Page 203 (3.2.13)
+tensors the same eigenvalue with itself; its square is not replaced by
+an unspecified tensor constituent.
+
+Our computation supplies a concrete part of the analogous tau-base
+diagram: the original moment-weight dual action has been transported
+through the exact exponential deformation and its reflection, including
+the full special-fibre blocks. It has not supplied Deligne's geometric
+upper weight bound for the theta quotient. The canonical arithmetic
+metrics G_N and their original relation volumes remain unchanged.
+
+The next use of this result is to transport the original residue-dual
+map and its arithmetic norm comparison along this explicit flow; the
+factor and parameter shift are now calculated, so they need not be
+guessed or replaced by a generic purity assertion. The external-product construction and signed determinant calculation are the continuations on those two sides.
+
+## Provenance and verification scope
+
+- Full controlling tau-base note as pinned above; no whole-paper Lean claim.
+- Existing exponential delivery `Tau_Deligne_Exponential_Comparison/RESEARCH_NOTE.md`,
+  section 7 (37)–(42), read in full for the constant residue duality;
+  DS66–69 supply the previously constructed family and original theta map.
+- The scaling calculation supplies the independent chain-level lift underlying
+  (RW14). Formulas (RW6)–(RW13), (RW16), and their joining to the actual
+  weight line are derived here, with their complete algebra above.
+- Exact finite fixtures are supporting checks, not replacements for these
+  general proofs. No new Lean execution, RH proof, or remote publication
+  is claimed by this note.

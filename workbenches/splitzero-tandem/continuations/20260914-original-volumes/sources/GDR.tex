@@ -1,0 +1,244 @@
+% New proof fragment; no historical source is modified.
+% Derived directly from the original Gamma series in recurrence_bounds.tex,
+% RWB3--4. The derivation of that series is reproduced below.
+% Scope: explicit Gamma logarithmic-derivative refinement only.
+\section{An explicit remainder for the original Gamma logarithmic derivative}
+\label{sec:GDR}
+
+Retain the original density and its logarithmic derivative:
+\[
+ \sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\qquad
+ L(y)=-\frac{\sigma'(y)}{\sigma(y)},\qquad y\in\mathbb R.
+ \tag{GDR1}
+\]
+For every real $y\ne0$, define
+\[
+ \epsilon(y)=yL(y)-\frac\pi2|y|-\frac12.
+ \tag{GDR2}
+\]
+The following two estimates hold on this entire punctured real line:
+\[
+ \boxed{\displaystyle
+ |\epsilon(y)|\le
+ \left(\frac18+\frac{\sqrt3}{9}\right)\frac1{y^2}
+ <\frac1{3y^2},}
+ \tag{GDR3}
+\]
+\[
+ \boxed{\displaystyle
+ \left|\epsilon(y)-\frac1{8y^2}\right|
+ \le\left(\frac5{32}+\frac7{12\sqrt3}\right)\frac1{y^4}
+ <\frac1{2y^4}.}
+ \tag{GDR4}
+\]
+In particular, the coefficient of the inverse-square term is positive
+and exactly $1/8$. Both bounds are global inequalities with explicit
+constants; no unspecified asymptotic remainder is used. The density
+and $yL(y)$ have their original values at zero, namely
+$\sigma(0)=|\Gamma(1/4)|^2/(2\pi)$ and $yL(y)=0$ at $y=0$.
+Equations GDR3--4 make no assertion at that excluded point.
+
+\paragraph{The exact convergent series.}
+For $\Re z>0$, repeated integration by parts in the beta integral gives
+\[
+ G_N(z):=\frac{N!N^z}{z(z+1)\cdots(z+N)}
+ =\int_0^N u^{z-1}(1-u/N)^N\,du.
+ \tag{GDR5}
+\]
+The factor $(1-u/N)^N$ is interpreted as zero above $N$ and is
+bounded by $e^{-u}$ on $[0,N]$. On a compact subset of $\Re z>0$,
+use its least real part below $u=1$ and its greatest real part above
+$u=1$. The resulting integrable majorants, also multiplied by
+$|\log u|$, prove locally uniform convergence of both $G_N$ and
+$G_N'$ to $\Gamma$ and $\Gamma'$. For $\alpha>0$ and $v\in\mathbb R$,
+\[
+ \frac{|\Gamma(\alpha+iv)|}{\Gamma(\alpha)}
+ =\lim_{N\to\infty}\prod_{r=0}^N
+ \left(1+\frac{v^2}{(r+\alpha)^2}\right)^{-1/2}>0.
+ \tag{GDR6}
+\]
+The strict positivity follows because the sum of the logarithms of
+the positive factors converges absolutely, by comparison with
+$\sum_r v^2/(r+\alpha)^2$. Logarithmic differentiation of GDR5,
+taking its imaginary part and then the limit, therefore proves
+\[
+ \operatorname{Im}\frac{\Gamma'(\alpha+iv)}{\Gamma(\alpha+iv)}
+ =\sum_{r=0}^{\infty}\frac{v}{(r+\alpha)^2+v^2}.
+ \tag{GDR7}
+\]
+Indeed, the real term $\log N$ contributes zero imaginary part.
+Differentiating the two original conjugate Gamma factors in GDR1
+shows that $L(y)$ equals the left side of GDR7 with
+$\alpha=1/4$ and $v=y/2$. Consequently, for $y=2v>0$,
+\[
+ yL(y)=2\sum_{r=0}^{\infty}F_v(r+1/4),\qquad
+ F_v(x)=\frac{v^2}{x^2+v^2},\quad x\ge0.
+ \tag{GDR8}
+\]
+In particular the original quarter-shift has been retained exactly.
+
+\paragraph{Shifted summation with its signed remainder.}
+We prove the needed summation identity instead of invoking an
+asymptotic Gamma expansion. Define the following polynomials on
+$[0,1]$:
+\[
+\begin{aligned}
+ B_1(t)&=t-\tfrac12,\qquad
+ B_2(t)=t^2-t+\tfrac16,\\
+ B_3(t)&=t^3-\tfrac32t^2+\tfrac12t,\\
+ B_4(t)&=t^4-2t^3+t^2-\tfrac1{30},\\
+ B_5(t)&=t^5-\tfrac52t^4+\tfrac53t^3-\tfrac16t.
+\end{aligned}
+ \tag{GDR9}
+\]
+Direct differentiation and evaluation give
+$B_j'=jB_{j-1}$ for $2\le j\le5$,
+$B_j(1)=B_j(0)$ for $2\le j\le5$, and
+$B_j(1-t)=(-1)^jB_j(t)$ for $1\le j\le5$.
+For $0<\alpha<1$, let
+\[
+ P_j(x)=\frac{B_j(\{x-\alpha\})}{j!},\qquad x\ge0,
+ \tag{GDR10}
+\]
+where $\{u\}=u-\lfloor u\rfloor$. The functions $P_j$ are
+bounded; those with $j\ge2$ are continuous. Between successive
+points $r+\alpha$, $P_1'=1$, and at every such point $P_1$ has
+a downward jump of size one. For a continuously differentiable
+function $f$ for which the expressions converge, integration on
+each interval and addition of the jump contributions give
+\[
+ \sum_{r\ge0}f(r+\alpha)
+ =\int_0^\infty f(x)\,dx
+   +f(0)P_1(0)+\int_0^\infty f'(x)P_1(x)\,dx.
+ \tag{GDR11}
+\]
+One can first make this calculation on $[0,M]$, where $M$ is an
+integer. The right boundary term is $-f(M)P_1(M)$ and tends to zero
+when $f(M)\to0$. The left boundary is not a jump, since
+$0<\alpha<1$, and
+$P_j(0)=B_j(1-\alpha)/j!=(-1)^jB_j(\alpha)/j!$.
+The derivative identity for $P_j$ holds almost everywhere and
+$P_j$ is locally absolutely continuous for $j\ge2$. Repeated
+ordinary integration by parts in the last integral of GDR11
+therefore yields, for either $p=3$ or $p=5$,
+\[
+ \sum_{r\ge0}f(r+\alpha)
+ =\int_0^\infty f(x)\,dx
+  -\sum_{j=1}^{p}\frac{B_j(\alpha)}{j!}f^{(j-1)}(0)
+  +\frac{(-1)^{p-1}}{p!}
+   \int_0^\infty B_p(\{x-\alpha\})f^{(p)}(x)\,dx.
+ \tag{GDR12}
+\]
+For the actual function $f=F_v$, every derivative in question
+tends to zero at infinity and is integrable on $[0,\infty)$.
+Thus every boundary passage and integral in this proof is justified
+for the function to which GDR12 will be applied. In particular,
+the remainder sign is positive for both odd values of $p$ used here.
+
+\paragraph{The reciprocal-square bound.}
+Put $H(u)=(1+u^2)^{-1}$, so that
+$F_v^{(r)}(x)=v^{-r}H^{(r)}(x/v)$. The necessary derivatives are
+\[
+ H''(u)=\frac{6u^2-2}{(1+u^2)^3},\qquad
+ H'''(u)=\frac{24u(1-u^2)}{(1+u^2)^4}.
+ \tag{GDR13}
+\]
+The second derivative increases from $-2$ to $1/2$ on $[0,1]$
+and decreases from $1/2$ to $0$ on $[1,\infty)$. It follows exactly
+that
+\[
+ \int_0^\infty|F_v'''(x)|\,dx=\frac3{v^2}.
+ \tag{GDR14}
+\]
+Writing $s=t-1/2$ gives $B_3(t)=s(s^2-1/4)$. On
+$-1/2\le s\le1/2$, differentiating this cubic shows that its
+largest absolute value is attained at $s=\pm1/(2\sqrt3)$ and equals
+\[
+ \max_{0\le t\le1}|B_3(t)|=\frac1{12\sqrt3}
+ =\frac{\sqrt3}{36}.
+ \tag{GDR15}
+\]
+At the original shift $\alpha=1/4$,
+$B_1(1/4)=-1/4$, $B_3(1/4)=3/64$, while
+$F_v'(0)=0$ and $F_v''(0)=-2/v^2$. Since
+$\int_0^\infty F_v(x)\,dx=\pi v/2$, GDR12 with $p=3$ becomes
+\[
+ \sum_{r\ge0}F_v(r+1/4)
+ =\frac{\pi v}{2}+\frac14+\frac1{64v^2}+R_3(v),
+ \qquad
+ |R_3(v)|\le\frac{\sqrt3}{72v^2}.
+ \tag{GDR16}
+\]
+Multiply this equality by two and put $v=y/2$ as in GDR8.
+This proves the non-strict inequality in GDR3 for $y>0$.
+The stated strict comparison of constants is equivalent to
+$\sqrt3/9<5/24$, whose square is $64<75$ after multiplying
+by the positive common factors.
+
+\paragraph{The inverse-fourth remainder after the exact coefficient.}
+For the same $H$, direct differentiation gives
+\[
+ H^{(4)}(u)=\frac{24(1-10u^2+5u^4)}{(1+u^2)^5},\qquad
+ H^{(5)}(u)=\frac{-240u(3-10u^2+3u^4)}{(1+u^2)^6}.
+ \tag{GDR17}
+\]
+The fourth derivative decreases on $[0,1/\sqrt3]$, increases on
+$[1/\sqrt3,\sqrt3]$, and decreases on $[\sqrt3,\infty)$.
+Its endpoint values in that order are
+\[
+ 24,\qquad-\frac{81}{8},\qquad\frac38,\qquad0.
+\]
+Its total variation is therefore
+$(24+81/8)+(81/8+3/8)+3/8=45$, and scaling back to $F_v$ yields
+\[
+ \int_0^\infty|F_v^{(5)}(x)|\,dx=\frac{45}{v^4}.
+ \tag{GDR18}
+\]
+The exact factorization
+\[
+ B_5(t)=t(t-1)(t-1/2)(t^2-t-1/3)
+       =s(s^2-1/4)(s^2-7/12),\qquad s=t-1/2,
+ \tag{GDR19}
+\]
+implies, using the maximization already proved in GDR15,
+\[
+ |B_5(t)|
+ =|s|(1/4-s^2)(7/12-s^2)
+ \le\frac7{12}\,\frac1{12\sqrt3}
+ =\frac7{144\sqrt3},\qquad 0\le t\le1.
+ \tag{GDR20}
+\]
+The remaining original-shift values are
+$B_5(1/4)=-25/1024$, $F_v'''(0)=0$, and
+$F_v^{(4)}(0)=24/v^4$. Thus the exact $p=5$ equality from GDR12 is
+\[
+\begin{split}
+ \sum_{r\ge0}F_v(r+1/4)
+ &=\frac{\pi v}{2}+\frac14+\frac1{64v^2}
+       +\frac5{1024v^4}+R_5(v),\\
+ R_5(v)&=\frac1{120}\int_0^\infty
+ B_5(\{x-1/4\})F_v^{(5)}(x)\,dx,\qquad
+ |R_5(v)|\le\frac7{384\sqrt3\,v^4}.
+\end{split}
+ \tag{GDR21}
+\]
+Equivalently, the exact signed remainder in the original coordinate is
+\[
+ \epsilon(y)=\frac1{8y^2}+\frac5{32y^4}
+ +\frac1{60}\int_0^\infty
+  B_5(\{x-1/4\})F_{y/2}^{(5)}(x)\,dx,
+ \qquad y>0.
+ \tag{GDR22}
+\]
+The last integral, including its factor $1/60$, has absolute value
+at most $7/(12\sqrt3\,y^4)$. This proves the non-strict inequality
+in GDR4. For its strict comparison of constants, observe that
+$7/(12\sqrt3)<11/32$ is equivalent to $56<33\sqrt3$; squaring
+both positive sides gives $3136<3267$.
+
+Finally, $\Gamma(1/4-iy/2)$ is the conjugate of
+$\Gamma(1/4+iy/2)$ by the original defining integral. Hence $\sigma$
+is even, $L$ is odd, and $yL(y)$ is even. This proves GDR3--4
+on the full stated domain $y\in\mathbb R\setminus\{0\}$.
+Every occurrence of $y/2$, the quarter-shift, the original density
+constant $1/(2\pi)$, and the remainder orientation is retained.

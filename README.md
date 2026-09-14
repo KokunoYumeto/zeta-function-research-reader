@@ -1,3 +1,79 @@
+# Split-Zero cohomology: original Gamma volumes and intrinsic spectral sums
+
+[Read the new 75-page Original Volumes paper](workbenches/splitzero-tandem/continuations/20260914-original-volumes/Original_Gamma_Volumes_and_Intrinsic_Spectral_Sums.pdf) · [Complete editable sources](workbenches/splitzero-tandem/continuations/20260914-original-volumes/README.md).
+
+The paper prints all fifteen providers in full, retaining the original packet,
+coordinate, roots, multiplicities, dimensions and four endpoint roles.
+The original q-squared baseline and quantitative Gamma return are now evaluated;
+the calculation proceeds to the actual original observation, rather than
+repeating the leading Gamma-growth calculation.
+
+Here k=4l+1 is the tensor degree, m is the primary multiplicity and
+q=[1+k(m-1)](k+1)^2 is the finite cyclic quotient dimension. The canonical Gamma
+source orders remain s=1 and s=k. The separately proved comparison family
+K=q+1 is exploratory; it does not select or replace an order in the original
+construction.
+
+The fixed-source, tensor-source and arithmetic baseline has positive
+q-squared coefficient C_B=9-8 log(2)+F(2,pi)>769/17010. The full Schur determinant
+returns it to the combined original kernel/boundary volume; the coefficient is
+not assigned separately to individual mixed terms.
+
+For the original logarithmic Gamma comparison, the quantitative return gives
+
+    W = C_Gamma lq + O(l sqrt(q) + l^2),
+
+with explicit asymmetric finite intervals. For fixed m>=2 the remainder is
+o(q). At m=1 the actual finite centre satisfies
+
+    (V^c-lq C_Gamma)/q -> partial_alpha L(2,pi)/8 - log(2)/4.
+
+This nonzero centre is retained. The actual centred quotient has proved
+limsup radius A/sqrt(2), using the paper's explicit L and A; that radius is
+not asserted to vanish. QRI9 carries the opposite sign to H and retains the
+arithmetic transition scalar.
+
+The intrinsic exterior/sum construction retains the full polynomial-times-Gamma
+density, its coefficients, masses, centres and sum-fibre kernel. The endpoint
+calculation identifies the exterior masses with original relation Grams.
+GMB supplies the exact original mixed-row and kernel maps, including the
+retained endpoint weights 1,2,...,2,1; a Gamma exponent alone is not substituted
+for the complete density.
+
+## Complete source-only continuation
+
+[Original Observation Addendum (editable TeX)](workbenches/splitzero-tandem/continuations/20260914-original-volumes/next_original_observation/Original_Observation_Addendum.tex)
+contains the complete OPG/OPR continuation and its dependency closure. It
+computes actual observation columns, their coupled recurrence, the original
+period Gram matrices and the section-corrected kernel residuals.
+This addendum is **not inside the 75-page PDF** and is not advertised as a
+second public PDF. [The cumulative editable entry](workbenches/splitzero-tandem/continuations/20260914-original-volumes/Cumulative_Original_Gamma_Proofs.tex)
+also retains the complete preceding proof closure.
+
+The complete source package retains the twelve restored full dependency
+bodies, including TW and FPK, together with the restoration provenance.
+These bodies are not replaced by excerpt summaries.
+
+Next are quantitative bounds for the specified original period Grams and
+their section-corrected kernel residuals, plus the full polynomial-density
+contribution at ranks 0,1,q,q+1. The literal cyclic average, original period
+matrix, full amplitude/Taylor unit and primary nilpotents remain attached
+to these maps. No arbitrary projection, hand-selected order, vanishing
+m=1 radius, completed endpoint conclusion or new Lean result is substituted.
+
+This new source snapshot is **outside the frozen
+[DOI 10.5281/zenodo.22755297](https://doi.org/10.5281/zenodo.22755297)**. That edition retains its 37-page preview
+and all 50 downloads. Every earlier mathematical/source leaf and programme
+entry remains unchanged; the new paper and complete addendum sources are added.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the earlier source/edition state.
+Its baseline and finite-error tasks describe that earlier cut, not the
+completed calculations above. Publication claims refer to their explicit
+frozen editions. Older proof/CI scopes and exploratory comparisons retain
+their source-time identities.
+
 # Split-Zero cohomology: Gamma growth and arithmetic return
 
 [Read the 37-page Gamma-growth paper](https://zenodo.org/api/records/22755297/files/49-gamma-growth-arithmetic-return-reader.pdf/content) · [Published DOI 10.5281/zenodo.22755297](https://doi.org/10.5281/zenodo.22755297).

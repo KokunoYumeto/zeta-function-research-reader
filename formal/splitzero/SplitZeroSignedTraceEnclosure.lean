@@ -3,12 +3,7 @@ import Mathlib.Analysis.Matrix.Order
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Tactic
 
-/-!
-# Centered signed trace enclosures in a specified positive source metric
-
-A constructed isometry transports Hilbert--Schmidt Cauchy--Schwarz back to
-traces of the original coordinate operators. No matrix entry is discarded.
--/
+/-! Centered signed trace enclosures in the original positive source form. -/
 noncomputable section
 namespace SplitZero.SignedTraceEnclosure
 open Matrix
@@ -53,22 +48,23 @@ theorem hermitian_conjugate (A : Matrix j j ℂ)
     _ = F.conjugate A := by
       simp only [← F.gram, conjugate, ← Matrix.mul_assoc, hs, Matrix.one_mul]
 
-/-- Positive definiteness supplies an isometry out of this form, not a new form. -/
+/-- Positive definiteness constructs the frame, with both inverse laws. -/
 def ofPosDef (M : Matrix j j ℂ) (hM : M.PosDef) : MetricFrame M := by
+  refine Classical.choice ?_
   obtain ⟨W, hW, he⟩ :=
     (CStarAlgebra.isStrictlyPositive_iff_eq_star_mul_self (a := M)).mp hM.isStrictlyPositive
   obtain ⟨u, rfl⟩ := hW
-  refine ⟨(u : Matrix j j ℂ), (↑(u⁻¹) : Matrix j j ℂ), by simp, by simp, ?_⟩
+  refine ⟨⟨(u : Matrix j j ℂ), (↑(u⁻¹) : Matrix j j ℂ), by simp, by simp, ?_⟩⟩
   simpa only [star_eq_conjTranspose] using he.symm
 end MetricFrame
 
+omit [DecidableEq j] in
 theorem hermitian_square_nonneg (A : Matrix j j ℂ)
     (hA : A.conjTranspose = A) : 0 ≤ realTrace (A * A) := by
   have hp := (Matrix.posSemidef_conjTranspose_mul_self A).trace_nonneg
   have hr := (RCLike.nonneg_iff.mp hp).1
   simpa only [RCLike.re_to_complex, realTrace, hA] using hr
 
-/-- The full Hilbert--Schmidt trace inequality. -/
 theorem hermitian_schwarz_sq (A B : Matrix j j ℂ)
     (hA : A.conjTranspose = A) (hB : B.conjTranspose = B) :
     (realTrace (A * B)) ^ 2 ≤ realTrace (A * A) * realTrace (B * B) := by
@@ -95,7 +91,6 @@ theorem hermitian_schwarz_sq (A B : Matrix j j ℂ)
     (mul_nonneg (norm_nonneg A) (norm_nonneg B))).mpr hd
   simpa only [sq_abs, mul_pow, ha, hb] using hsq
 
-/-- Both operators are self-adjoint for the same original positive source form. -/
 theorem weighted_schwarz (M A B : Matrix j j ℂ) (hM : M.PosDef)
     (hA : A.conjTranspose * M = M * A) (hB : B.conjTranspose * M = M * B) :
     |realTrace (A * B)| ≤ Real.sqrt (realTrace (A * A) * realTrace (B * B)) := by
@@ -130,7 +125,7 @@ theorem weighted_center (M A : Matrix j j ℂ)
     (center A).conjTranspose * M = M * center A := by
   simp [center, Matrix.sub_mul, Matrix.mul_sub, hA]
 
-/-- The two-sided estimate keeps its signed center. -/
+/-- The signed center is retained rather than bounded by its absolute value. -/
 theorem signed_interval (M X Y Q : Matrix j j ℂ) (hM : M.PosDef)
     (hX : X.conjTranspose * M = M * X) (hY : Y.conjTranspose * M = M * Y)
     (hQ : Q.conjTranspose * M = M * Q) (htQ : Matrix.trace Q = 0) :

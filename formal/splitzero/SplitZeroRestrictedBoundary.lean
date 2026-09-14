@@ -4,9 +4,8 @@ import Mathlib.Data.Finset.Lattice.Fold
 /-!
 # Full-source boundaries retained at a proper support
 
-ISM42--ISM43 use the original quotient-kernel theorem fibrewise. This file
-assembles those actual quotients into natural SplitZero diagrams, constructs
-both inverse maps, and proves the exact supported-zero image condition.
+ISM42--43: the original quotient-kernel equivalence assembled into natural
+SplitZero diagrams, with both inverse total maps and the supported image.
 No transport or source comparison is assumed injective.
 -/
 noncomputable section
@@ -15,7 +14,6 @@ open SplitZero.Reconstruction
 variable {R L : Type*} [CommRing R] [SemilatticeSup L] [OrderBot L]
 variable {D E : LinearDiagram R L}
 
-/-- Full-source boundaries pulled back to the declared coefficient source. -/
 def killedRelations (f : Hom D E) (C : Relations E) : Relations D where
   fibre i := (C.fibre i).comap (f.app i)
   stable := by
@@ -24,7 +22,6 @@ def killedRelations (f : Hom D E) (C : Relations E) : Relations D where
     rw [f.naturality]
     exact C.stable h hx
 
-/-- Quotient only by boundaries already admitted at the proper support. -/
 def residualRelations (f : Hom D E) (B : Relations D) (C : Relations E) :
     Relations (killedRelations f C).relationDiagram where
   fibre i := (B.fibre i).comap ((killedRelations f C).fibre i).subtype
@@ -33,7 +30,6 @@ def residualRelations (f : Hom D E) (B : Relations D) (C : Relations E) :
     change D.map h x.val ∈ B.fibre j
     exact B.stable h hx
 
-/-- The original comparison descends through its two specified relation modules. -/
 def quotientHom (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i)) :
     Hom B.quotientDiagram C.quotientDiagram where
@@ -45,7 +41,6 @@ def quotientHom (f : Hom D E) (B : Relations D) (C : Relations E)
       (C.fibre j).mkQ (E.map h (f.app i x))
     rw [f.naturality]
 
-/-- The kernel carries the actual quotient transports, including their possible kernels. -/
 def kernelDiagram (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i)) : LinearDiagram R L where
   V i := LinearMap.ker ((quotientHom f B C hf).app i)
@@ -62,14 +57,13 @@ def kernelDiagram (f : Hom D E) (B : Relations D) (C : Relations E)
     ext x
     exact B.quotientDiagram.map_map h h' x.val
 
-/-- Reuse the proved quotient-kernel equivalence on these literal fibres. -/
+/-- Reuse the original proved coefficient equivalence on the literal fibres. -/
 def residualEquiv (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i)) (i : L) :
     (residualRelations f B C).quotientDiagram.V i ≃ₗ[R]
       (kernelDiagram f B C hf).V i :=
   SplitZero.Homology.quotientKernelEquiv (B.fibre i) (C.fibre i) (f.app i) (hf i)
 
-/-- The kernel equivalences are a natural map, not just equal fibre dimensions. -/
 def kernelComparison (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i)) :
     Hom (residualRelations f B C).quotientDiagram (kernelDiagram f B C hf) where
@@ -80,7 +74,6 @@ def kernelComparison (f : Hom D E) (B : Relations D) (C : Relations E)
     apply Subtype.ext
     rfl
 
-/-- The specified inverse also commutes with every original transport. -/
 def kernelInverse (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i)) :
     Hom (kernelDiagram f B C hf) (residualRelations f B C).quotientDiagram where
@@ -125,7 +118,6 @@ def residualInclusion (f : Hom D E) (B : Relations D) (C : Relations E)
     Hom (residualRelations f B C).quotientDiagram B.quotientDiagram :=
   Hom.comp (kernelInclusion f B C hf) (kernelComparison f B C hf)
 
-/-- The representative square is an equality of original G(R)-linear maps. -/
 theorem original_square (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i)) :
     (residualInclusion f B C hf).total.comp (residualRelations f B C).quotientMap.total =
@@ -134,7 +126,7 @@ theorem original_square (f : Hom D E) (B : Relations D) (C : Relations E)
   rcases x with ⟨i, x⟩
   rfl
 
-/-- The full source kills exactly this retained residual, at its SAME support. -/
+/-- Full-source vanishing compares to zero at the same fibre, not absence. -/
 theorem range_iff_supported_zero (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i))
     (y : B.quotientDiagram.Total) :
@@ -159,9 +151,7 @@ theorem range_iff_supported_zero (f : Hom D E) (B : Relations D) (C : Relations 
     change (⟨i, (residualEquiv f B C hf i ((residualEquiv f B C hf i).symm z)).val⟩ :
       B.quotientDiagram.Total) = ⟨i, y⟩
     rw [LinearEquiv.apply_symm_apply]
-    rfl
 
-/-- Full-source boundary membership does not imply proper-source boundary membership. -/
 theorem proper_residual (f : Hom D E) (B : Relations D) (C : Relations E)
     (hf : ∀ i, B.fibre i ≤ (C.fibre i).comap (f.app i))
     (i : L) (x : D.V i) (hfull : f.app i x ∈ C.fibre i) (hproper : x ∉ B.fibre i) :
@@ -175,7 +165,6 @@ theorem proper_residual (f : Hom D E) (B : Relations D) (C : Relations E)
   · apply (C.quotientDiagram.same_label_eq i _ _).mpr
     exact (Submodule.Quotient.mk_eq_zero _).mpr hfull
 
-/-- Even the zero residual at a present empty face is not external absence. -/
 theorem present_empty_residual {J : Type*} [DecidableEq J]
     (F : LinearDiagram R (L × Finset J)) (i : L) (hi : i ≠ ⊥) :
     (⟨(i, ∅), 0⟩ : F.Total) ≠ 0 := by

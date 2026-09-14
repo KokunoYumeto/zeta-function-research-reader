@@ -1,0 +1,165 @@
+\section{Independent verification of the positive theta tails}\label{C47stage:TT:independent-verification-of-the-positive-theta-tails}
+
+Date: 2026-09-13. The complete file theta\_certified\_hankel\_20260913/certify\_theta\_hankel.py was read. Its SHA-256 is a97486edc2fc1f05f155a9539ad280433be39a8f6924efbc8c1c1c4d71033950. This review verifies the two formulas in positive\_tails and the finite integration callback's analyticity. It does not rerun integration or review the separately assigned logarithmic recurrence, dyadic export, and LDL calculation.
+
+\textbf{Finding:} both tail bounds are valid upper bounds with the printed constants, and the omitted integrand is nonnegative. For \(N=20,L=4,J\in\{0,2,\ldots,64\}\), all three denominator signs are strictly positive. No correction is required.
+
+\subsection{1. Exact integrand and the disjoint omitted regions}\label{C47stage:TT:exact-integrand-and-the-disjoint-omitted-regions}
+
+For \(y\ge0\), \(n\ge1\), and nonnegative integer \(J\), write
+
+\[
+x_n(y)=\pi n^2e^{2y},\qquad
+f_{J,n}(y)=y^Je^{y/2}(16x_n(y)^2-24x_n(y))e^{-x_n(y)}.
+\tag{TT1}
+\]
+
+For \(J=0\), the polynomial \(y^0\) is identically one, including at zero. The finite callback integrates \(\sum_{n=1}^{N-1}f_{J,n}\) on \([0,L]\). Its omitted part is exactly
+
+\[
+\int_0^L\sum_{n=N}^{\infty}f_{J,n}(y)\,dy
++\int_L^\infty\sum_{n=1}^{\infty}f_{J,n}(y)\,dy.
+\tag{TT2}
+\]
+
+The shared boundary has measure zero. There is no extra multiplicity or factor of two in this decomposition of the literal half-line integral.
+
+Since \(x_n(y)\ge\pi>3/2\), \[
+0<16x_n(y)^2-24x_n(y)\le16x_n(y)^2.
+\] Consequently
+
+\[
+0\le f_{J,n}(y)
+\le16\pi^2 n^4 y^J
+\exp\!\left(\frac92y-\pi n^2e^{2y}\right).
+\tag{TT3}
+\]
+
+The factor \(9/2\) is the exact sum \(4+1/2\) coming from \(x_n(y)^2\) and \(e^{y/2}\). The negative \(-24x_n\) is retained in the finite callback; dropping it only increases the omitted-tail majorant.
+
+\subsection{\texorpdfstring{2. Omitted \(n\)-sum on \(0\le y\le L\)}{2. Omitted n-sum on 0\textbackslash le y\textbackslash le L}}\label{C47stage:TT:omitted-n-sum-on-0le-yle-l}
+
+On this interval, \(y^J\le L^J\), \(e^{9y/2}\le e^{9L/2}\), and \(e^{-\pi n^2e^{2y}}\le e^{-\pi n^2}\). Therefore the first term in (TT2) is at most
+
+\[
+16\pi^2L^{J+1}e^{9L/2}
+\sum_{n=N}^\infty n^4e^{-\pi n^2}.
+\tag{TT4}
+\]
+
+For \(a_n=n^4e^{-\pi n^2}\), the exact ratio and its majorant satisfy, for every \(n\ge N\),
+
+\[
+\begin{aligned}
+\frac{a_{n+1}}{a_n}
+&=(1+1/n)^4e^{-\pi(2n+1)}\\
+&\le e^{4/n-\pi(2n+1)}
+\le e^{4/N-2\pi N}=:\rho_n.
+\end{aligned}
+\tag{TT5}
+\]
+
+The first inequality uses \(\log(1+1/n)\le1/n\). The second drops the additional negative term \(-\pi\) and uses \(1/n\le1/N\) and \(n\ge N\). If \(\rho_n<1\), induction gives \(a_{N+j}\le a_N\rho_n^j\), hence
+
+\[
+\boxed{
+0\le\int_0^L\sum_{n=N}^{\infty}f_{J,n}(y)\,dy
+\le
+\frac{16\pi^2L^{J+1}e^{9L/2}N^4e^{-\pi N^2}}
+{1-e^{4/N-2\pi N}}
+=:T_n.}
+\tag{TT6}
+\]
+
+This is exactly the returned expression tn, including its first omitted index \(N\) and denominator.
+
+\subsection{\texorpdfstring{3. Omitted \(y\)-interval, including every \(n\ge1\)}{3. Omitted y-interval, including every n\textbackslash ge1}}\label{C47stage:TT:omitted-y-interval-including-every-nge1}
+
+For fixed \(y\ge0\), let \(a_n(y)=n^4e^{-\pi n^2e^{2y}}\). For every \(n\ge1\),
+
+\[
+\begin{aligned}
+\frac{a_{n+1}(y)}{a_n(y)}
+&=(1+1/n)^4e^{-\pi(2n+1)e^{2y}}\\
+&\le e^{4/n-2\pi n e^{2y}}
+\le e^{4-2\pi e^{2y}}
+\le e^{4-2\pi}=:\rho_y.
+\end{aligned}
+\tag{TT7}
+\]
+
+Thus \[
+\sum_{n=1}^{\infty}n^4e^{-\pi n^2e^{2y}}
+\le \frac{e^{-\pi e^{2y}}}{1-\rho_y}.
+\] Combining this with (TT3), the second omitted integral in (TT2) is at most
+
+\[
+\frac{16\pi^2}{1-\rho_y}
+\int_L^\infty F_J(y)\,dy,\qquad
+F_J(y)=y^Je^{9y/2-\pi e^{2y}}.
+\tag{TT8}
+\]
+
+For \(L>0\), \(F_J\) is positive on \([L,\infty)\). Its logarithmic derivative is exactly
+
+\[
+\frac{F_J'(y)}{F_J(y)}
+=\frac Jy+\frac92-2\pi e^{2y}
+\le\frac JL+\frac92-2\pi e^{2L}
+=-\delta,\qquad
+\delta:=2\pi e^{2L}-\frac92-\frac JL.
+\tag{TT9}
+\]
+
+Both inequalities have the displayed direction because \(J\ge0\), \(y\ge L>0\), and the exponential is increasing. When \(\delta>0\), integrating (TT9) from \(L\) to \(y\) gives \(F_J(y)\le F_J(L)e^{-\delta(y-L)}\). Integrating this inequality proves
+
+\[
+\boxed{
+0\le\int_L^\infty\sum_{n=1}^{\infty}f_{J,n}(y)\,dy
+\le
+\frac{16\pi^2L^Je^{9L/2-\pi e^{2L}}}
+{(1-e^{4-2\pi})(2\pi e^{2L}-9/2-J/L)}
+=:T_y.}
+\tag{TT10}
+\]
+
+This is exactly ty and its returned decay denominator. The constant geometric majorant \(\rho_y\) is deliberately larger than the \(y\)-dependent ratio; using it cannot underestimate the tail.
+
+The bounds also justify integrability of the positive series. Tonelli's theorem permits the nonnegative sums and integrals throughout; (TT6) and (TT10), together with the finite continuous integral, show their total is finite.
+
+\subsection{4. Denominator signs at the actual parameters}\label{C47stage:TT:denominator-signs-at-the-actual-parameters}
+
+For \(N=20,L=4\), and every stated \(J\le64\), the elementary inequalities \(\pi>3\) and \(e^8>1+8=9\) give
+
+\[
+\begin{aligned}
+\frac4N-2\pi N&<\frac15-120=-\frac{599}{5},\\
+4-2\pi&<-2,\\
+\delta
+&=2\pi e^8-\frac92-\frac J4
+>54-\frac92-16=\frac{67}{2}>0.
+\end{aligned}
+\tag{TT11}
+\]
+
+Hence \(1-\rho_n>1-e^{-599/5}>0\), \(1-\rho_y>1-e^{-2}>0\), and \(\delta>67/2\). These are proved lower bounds for the exact denominators at every required even \(J\); evenness is not needed for the estimates.
+
+The code independently requires the Arb comparisons for those signs to succeed. All quantities in \(T_n,T_y\) are nonnegative, and the omitted part lies in \([0,T_n+T_y]\). Therefore using the upper endpoint of the computed enclosure of tn+ty and taking its interval hull with zero gives the correct one-sided tail enclosure. This conclusion uses the printed real interval operations and the exact inequalities above; it does not assert that this review executed those operations.
+
+\subsection{5. Callback analyticity}\label{C47stage:TT:callback-analyticity}
+
+The finite callback, as a function of complex \(y\), is
+
+\[
+y^Je^{y/2}
+\sum_{n=1}^{N-1}
+\left(16\pi^2n^4e^{4y}-24\pi n^2e^{2y}\right)
+\exp(-\pi n^2e^{2y}).
+\tag{TT12}
+\]
+
+Every power \(y^J\) has a nonnegative integer exponent. All other operations are finite sums, products, and compositions of exponential functions. The function is therefore entire, including at \(y=0\) and for \(J=0\). It uses no conjugation, absolute value, logarithm, division by \(y\), or noninteger power. Accordingly the analytic=True callback branch requires no restriction of its complex domain.
+
+The value returned for a complex ball encloses the expression using the real Arb enclosure of \(\pi\). For each fixed coefficient value within that enclosure, the same finite expression is entire; in particular the target with the exact constant \(\pi\) is entire. Possible nonfinite numerical enclosures do not create an analytic singularity, and the caller separately rejects a nonfinite integration result.
+
+The program partitions \([0,4]\) into the eight exact half-unit subintervals with endpoints \(j/2,(j+1)/2\). The omitted regions and the denominators proved above match that finite integration interval and the loop n=1,\ldots,19 exactly. This review accepts the tail formulas and callback analyticity without rerunning that integration.

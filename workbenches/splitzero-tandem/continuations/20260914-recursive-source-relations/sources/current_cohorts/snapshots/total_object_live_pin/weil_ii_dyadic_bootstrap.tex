@@ -1,0 +1,882 @@
+\section{The actual final bootstrap in Weil II}
+\label{weil-ii-dyadic-bootstrap}
+
+The proof of the curve theorem in \emph{Weil II}, 3.2.3--3.2.15,
+uses a more specific mechanism than tensor amplification alone. A local
+calculation makes the weights of every relevant nonconstant constituent
+integral. An earlier analytic theorem excludes weight \(2\) and all larger
+weights. Consequently these integral weights are at most \(1\). The
+remaining constituents are geometrically constant on the projective
+line, where their first cohomology vanishes. These two exclusions make a
+product-square argument improve a universal error \(e\) to \(e/2\).
+The proof below retains the schemes, coefficient sheaves, boundary
+terms, maps, twists, and indices which make that improvement possible.
+
+The primary source is Pierre Deligne,
+\href{https://www.numdam.org/item/PMIHES_1980__52__137_0/}
+{\emph{La conjecture de Weil II}}, Publications math\'ematiques de
+l'IH\'ES 52 (1980), 137--252: the introduction, printed pp.~140--141;
+1.8.4, pp.~175--176; 2.2.10, p.~196; 3.1, pp.~197--200;
+3.2, pp.~200--204; and 3.3, pp.~204--207. All numbered results cited
+in this section are Deligne's published results unless a displayed tag
+begins with WDB. The local current S20 English and French texts were
+read alongside the controlling published French scan. This section is
+an exposition of that proof and its exact algebraic steps, not a claim
+that a construction over the absolute base has already acquired the
+finite-field sheaves in this proof.
+
+\subsection{Conventions, original weight, and the universal assertion}
+
+Fix a finite field \(\mathbb F_q\), an algebraic closure
+\(\overline{\mathbb F}_q\), a prime \(\ell\ne\operatorname{char}
+\mathbb F_q\), and Deligne's coefficient isomorphism
+\(\iota:\overline{\mathbb Q}_\ell\longrightarrow\mathbb C\).
+For a scheme or sheaf with subscript \(0\), omission of that subscript
+means extension to \(\overline{\mathbb F}_q\). Use geometric
+Frobenius and the weight convention
+\[
+ w_q(\alpha)=2\log_q|\iota\alpha|,
+ \qquad w_{q^d}(\alpha^d)=w_q(\alpha),
+ \qquad w_q(\alpha^r)=r w_q(\alpha).
+ \tag{WDB1}
+\]
+A Tate twist \((a)\) multiplies Frobenius eigenvalues by
+\(q^{-a}\) and lowers their weights by \(2a\).
+
+Let \(U_0\) be a smooth curve and let \(\mathcal F_0\) be a lisse
+pointwise \(\iota\)-pure sheaf of weight \(\beta\) on \(U_0\).
+Deligne proves the universal assertions
+\[
+ \mathsf B_k:\quad
+ w_q(\alpha)\le \beta+1+2^{-k}
+ \quad\text{for every eigenvalue of }F
+ \text{ on }H_c^1(U,\mathcal F),
+ \qquad k=0,1,2,\ldots .
+ \tag{WDB2}
+\]
+The quantifiers range over all such curves, sheaves, weights, and finite
+fields. This universality is used when the induction is applied to new
+coefficient sheaves on the base of a pencil, rather than only to the
+original \(\mathcal F_0\).
+
+Here is the precise relation to the weight-zero formulation of 3.2.4.
+Choose \(c\in\overline{\mathbb Q}_\ell^*\) with
+\(\iota(c)=q^{-\beta/2}\), and let \(\mathcal L_c\) be the
+constant geometric Weil sheaf whose arithmetic datum is Frobenius
+\(c\). Deligne's twisting operation 1.2.7 gives
+\[
+ \mathcal F_0^{[0]}=\mathcal F_0\otimes\mathcal L_c,
+ \quad
+ H_c^1(U,\mathcal F^{[0]})
+   =H_c^1(U,\mathcal F)\otimes\mathcal L_c,
+ \quad
+ \alpha^{[0]}=c\alpha,
+ \quad w_q(\alpha^{[0]})=w_q(\alpha)-\beta.
+ \tag{WDB3}
+\]
+Thus the original weight and eigenvalue are recovered by tensoring with
+\(\mathcal L_{c^{-1}}\) and multiplying by \(c^{-1}\). We use
+\(\mathcal F_0^{[0]}\), not a change in the meaning of
+\(\mathcal F_0\), for the auxiliary weight-zero proof. This twist is
+made in the Weil-sheaf setting allowed by Deligne; it is not an assertion
+that every such character extends to an \(\ell\)-adically continuous
+character of the profinite arithmetic Galois group.
+
+We will repeatedly use the following elementary linear algebra. If a
+linear automorphism preserves a finite filtration, a basis adapted to
+the filtration makes its matrix block triangular. Its characteristic
+polynomial is the product of the characteristic polynomials on the
+successive quotients. Hence a uniform upper weight bound is inherited
+by subspaces, quotients, and finite extensions. For a convergent
+Frobenius-equivariant spectral sequence, each term on a later page is
+a subquotient of an earlier term; the abutment has a filtration with
+the \(E_\infty\) terms as successive quotients. These facts prove the
+weight comparisons below without assuming spectral-sequence
+degeneration or Frobenius semisimplicity.
+
+\subsection{The two earlier inputs: a strict bound and local integral shifts}
+
+Deligne's 1.8.2 supplies the initial estimate
+\(w_q(\alpha)\le\beta+2\), hence \(\mathsf B_0\).
+For a smooth affine curve it applies directly with the open immersion
+in 1.8.2 taken to be the identity: the Euler product and the
+\(H_c^2\) denominator have no zero in
+\(|t|<q^{-(\beta+2)/2}\), so the numerator has none there.
+For a projective component, remove a closed point and use the
+surjection from the compactly supported first cohomology of the
+remaining affine curve, proved explicitly in (WDB7)--(WDB8) below.
+Connected components are handled by a finite extension and (WDB1).
+
+The stronger earlier result used in the induction is 2.2.10:
+\[
+ \alpha\in\operatorname{Spec}
+   \bigl(F;H_c^1(U,\mathcal F)\bigr)
+ \quad\Longrightarrow\quad w_q(\alpha)<\beta+2.
+ \tag{WDB4}
+\]
+The inequality is strict. Deligne proves it in Section 2 using the
+Hadamard--de la Vall\'ee-Poussin method and the cohomological expression
+for the relevant \(L\)-function. After weight-zero twisting and
+reduction to an irreducible representation, 2.2.9 excludes zeros on
+the boundary line \(\operatorname{Re}s=1\); 2.2.8 and 2.2.9.1
+identify this with the absence of the corresponding numerator roots
+on \(|t|=q^{-1}\). The possible geometrically constant character is
+accounted for by the simple pole stated there, rather than discarded.
+Its pole order equals the order of the \(H_c^2\) denominator zero,
+so a numerator zero at that point would contradict the exact simple
+pole and is excluded as well.
+Since a reciprocal root \(t=\iota(\alpha)^{-1}\) has modulus
+\(q^{-w_q(\alpha)/2}\), the absence of numerator roots for
+\(|t|\le q^{-1}\) is exactly \(w_q(\alpha)<2\) in weight zero.
+This is an earlier proved input in the order of the paper; it is not
+deduced by assuming the conclusion of 3.2.3.
+
+The second earlier result is local monodromy purity, 1.8.4. If a lisse
+sheaf on a punctured smooth curve is pointwise \(\iota\)-pure of
+weight \(b\), and \(M\) is the centered local monodromy filtration
+on its geometric generic stalk \(V\), then
+\[
+ \operatorname{Gr}_j^M V\text{ is }\iota\text{-pure of weight }b+j,
+ \qquad j\in\mathbb Z.
+ \tag{WDB5}
+\]
+In particular every Frobenius eigenvalue of the local Weil
+representation has weight in \(b+\mathbb Z\). Under unipotent
+inertia the graded pieces have trivial inertia: writing
+\(\rho(\sigma)=\exp(t_\ell(\sigma)N)\), the operator \(N\)
+lowers \(M\) by two, so its exponential acts as the identity on
+every \(\operatorname{Gr}_j^M\).
+
+The weight shift in (WDB5) is itself proved in 1.8.4, not read off
+from the existence of a nilpotent operator. To recall its numerical
+content, twist to weight zero and use a finite covering so that all
+inertia is unipotent. Then \(\ker N=V^I\), and 1.8.1 says its
+eigenvalues have modulus at most \(1\). For a primitive bottom
+piece \(P_{-j}V\), Deligne's tensor decomposition 1.6.14.4 makes
+\[
+ P_{-j}V\otimes P_{-j}V(-j)
+ \quad\text{a direct summand of}\quad P_0(V\otimes V).
+ \tag{WDB6}
+\]
+If \(\alpha\) occurs in \(P_{-j}V\), the resulting eigenvalue
+\(\alpha^2q^j\) therefore has modulus at most \(1\), giving
+\(|\iota\alpha|\le q^{-j/2}\). Applying the same argument to
+the dual primitive piece, whose corresponding eigenvalue is
+\(\alpha^{-1}q^{-j}\) by 1.6.14.5, gives
+\(|\iota\alpha|\ge q^{-j/2}\). Equality follows. The primitive
+decomposition 1.6.14.3 and the Tate shifts on its strings give (WDB5).
+Thus the integral shifts later used by the pencil argument have
+already been tied to the actual local Weil action.
+
+\subsection{The exact open-extension map used by the induction}
+
+Let \(j:W_0\hookrightarrow C_0\) be a dense open immersion of
+curves, with finite complement, and let \(\mathcal K_0\) be a
+constructible sheaf on \(C_0\). Extension by zero gives the short
+exact sequence
+\[
+ 0\longrightarrow j_!j^*\mathcal K_0
+ \longrightarrow\mathcal K_0
+ \longrightarrow \mathcal K_0/j_!j^*\mathcal K_0
+ \longrightarrow0.
+ \tag{WDB7}
+\]
+The quotient is supported on finitely many points. Over the algebraic
+closure its positive-degree compactly supported cohomology vanishes:
+each geometric point has only degree-zero cohomology and a finite
+disjoint union has the direct sum of those cohomologies. The long
+exact sequence of (WDB7) consequently gives the Frobenius-equivariant
+surjection
+\[
+ H_c^1(W,j^*\mathcal K)
+ \twoheadrightarrow H_c^1(C,\mathcal K).
+ \tag{WDB8}
+\]
+If \(W_0\) is smooth and \(j^*\mathcal K_0\) is lisse and
+pointwise pure of weight \(b\), assertion \(\mathsf B_k\)
+applied to the source proves that every eigenvalue of the target has
+weight at most \(b+1+2^{-k}\). This is precisely 3.2.5\((k)\).
+No purity of the possibly singular boundary stalks of
+\(\mathcal K_0\) is assumed in this step.
+
+\subsection{The product and pencil, with all three reduction hypotheses}
+
+Assume \(\mathsf B_k\). Initially impose the three hypotheses of
+3.2.6 on the auxiliary sheaf \(\mathcal F_0^{[0]}\).
+
+\begin{enumerate}
+\item[(A)] If \(X_0\) is the smooth projective compactification of
+\(U_0\), the local monodromy of \(\mathcal F^{[0]}\) at
+\(X-U\) is tame and unipotent.
+\item[(B)] Put \(S_0=X_0\times X_0\),
+\(V_0=U_0\times U_0\), and \(D_0=S_0-V_0\). Choose a projective
+embedding and a hyperplane pencil with axis \(A_0\) satisfying
+3.1.1(A)--(D): the axis is transverse to \(S\) and disjoint from
+\(D\); the only singularities of the pencil on \(S\) are ordinary
+quadratic points outside \(D\); its only singularities on the
+normalization of \(D\) are ordinary quadratic points away from the
+preimages of the nodes of \(D\); and each exceptional fibre contains
+exactly one exceptional point.
+\item[(C)] These exceptional points are defined over \(\mathbb F_q\).
+\end{enumerate}
+
+Write \(P_0=A_0^*\simeq\mathbb P^1_{\mathbb F_q}\) for the
+parameter line of the pencil, and use the incidence surface
+\[
+ \widetilde S_0=\{(s,t)\in S_0\times P_0:s\in H_t\},
+ \quad \pi:\widetilde S_0\longrightarrow S_0,
+ \quad\bar f:\widetilde S_0\longrightarrow P_0.
+ \tag{WDB9}
+\]
+It is the blow-up at the finite set \(S_0\cap A_0\). Put
+\(\widetilde V_0=\pi^{-1}(V_0)\), let
+\(\widetilde j:\widetilde V_0\hookrightarrow\widetilde S_0\)
+be the open immersion, and set \(f=\bar f\widetilde j\).
+The actual coefficient sheaf is
+\[
+ \mathcal G_0
+ =\operatorname{pr}_1^*\mathcal F_0^{[0]}
+   \otimes\operatorname{pr}_2^*\mathcal F_0^{[0]}
+ \quad\text{on }V_0.
+ \tag{WDB10}
+\]
+Both tensor factors are retained. In terms of the original sheaf this
+is \((\mathcal F_0\boxtimes\mathcal F_0)\otimes\mathcal L_{c^2}\),
+so its original weight \(2\beta\) has been recorded by an explicit
+invertible twist. Its auxiliary weight is zero.
+
+Let \(T_0\subset P_0\) be the finite set of exceptional values,
+\(W_0=P_0-T_0\), and \(w:W_0\hookrightarrow P_0\). Define
+\[
+ \mathcal R^b_0=R^b f_!\pi^*\mathcal G_0
+   =R^b\bar f_*\widetilde j_!\pi^*\mathcal G_0.
+ \tag{WDB11}
+\]
+These sheaves are lisse over \(W_0\). The compact-support Leray
+spectral sequence is Frobenius-equivariant:
+\[
+ E_2^{ab}=H^a(P,\mathcal R^b)
+ \ \Longrightarrow\ H_c^{a+b}(\widetilde V,\pi^*\mathcal G).
+ \tag{WDB12}
+\]
+Since both the base and the fibres have dimension one, total degree
+two has only the terms \((a,b)=(0,2),(1,1),(2,0)\).
+
+\subsection{Why the middle coefficient sheaf has pure constituents}
+
+Let \(x\in|W_0|\). Denote the proper fibre of \(\bar f\) by
+\(\widetilde S_x\), its open part by \(Y_x\), and the open
+immersion by \(j_x:Y_x\hookrightarrow\widetilde S_x\). Proper
+base change applied to (WDB11) gives the exact stalk identification
+\[
+ (\mathcal R^b_0)_{\bar x}
+ \simeq H^b(\widetilde S_{\bar x},
+                j_{x!}\pi^*\mathcal G)
+ \simeq H_c^b(Y_{\bar x},\pi^*\mathcal G).
+ \tag{WDB13}
+\]
+These are identifications of representations of geometric Frobenius
+over \(\kappa(x)\). The open fibre is a smooth curve for
+\(x\in W_0\); it need not be connected.
+
+There is a notation defect in the published display 3.2.7.1, printed
+p.~202: it writes ordinary \(H^1(Y,\pi^*\mathcal H)\) for an
+open fibre while the left side is \(R^1f_!\). The controlling French
+scan and both current S20 transcriptions show the same display.
+Equation (WDB13) states the corrected support convention and its
+base-change proof. Ordinary cohomology of the open fibre is not used
+in place of compactly supported cohomology.
+
+Set \(\mathcal H_0=\mathcal G_0\oplus\mathcal G_0^\vee\).
+At a closed point the eigenvalues of \(\mathcal G_0\) have
+\(\iota\)-modulus one. The images of the eigenvalues of its dual
+are their inverses, hence their complex conjugates. Therefore the
+characteristic polynomial of the direct sum has real coefficients,
+and \(\mathcal H_0\) is pointwise pure of weight zero and
+\(\iota\)-real. Deligne's 3.2.1--3.2.2 applied to the smooth fibre
+in (WDB13) shows that
+\(w^*R^1f_!\pi^*\mathcal H_0\) is \(\iota\)-real.
+The sheaf \(w^*\mathcal R^1_0\) is an actual direct summand of
+it because pullback and \(R^1f_!\) preserve finite direct sums.
+The purity criterion 1.5.1 now gives a finite filtration of
+\(w^*\mathcal R^1_0\) whose successive quotients are lisse and
+pointwise \(\iota\)-pure. This proves 3.2.7 with its coefficient
+and support maps specified.
+
+To make this use of 3.2.1 explicit, let \(\mathcal E_0\) be
+pointwise \(\iota\)-pure of weight \(b\) and \(\iota\)-real on
+a smooth geometrically connected curve \(C_0\). Put
+\(P_a(t)=\iota\det(1-Ft,H_c^a(C,\mathcal E))\).
+Grothendieck's formula says that \(P_1/(P_0P_2)\) has real Taylor
+coefficients and hence is a real rational function. The roots of
+\(P_2\) all have modulus \(q^{-(b+2)/2}\) by 1.4.3; those of
+\(P_0\), if any, have modulus \(q^{-b/2}\); and (WDB4) excludes
+roots of \(P_1\) on the former circle. Consequently the poles on
+that circle, with their multiplicities, are exactly the roots of
+\(P_2\). They are stable under complex conjugation, so \(P_2\)
+has real coefficients and constant term one. If \(C\) is affine,
+\(P_0=1\). If it is projective, the correct scalar duality is
+\[
+ H^0(C,\mathcal E)^\vee
+    \simeq H_c^2(C,\mathcal E^\vee(1)).
+ \tag{WDB13a}
+\]
+The coefficient sheaf on the right is again \(\iota\)-real and
+pure, so the just-proved degree-two argument and inversion of
+eigenvalues show that \(P_0\) is real. It follows that \(P_1\)
+is real. If geometric components are permuted in a cycle of length
+\(d\), their cohomological characteristic polynomial is
+\(\det(1-F^d t^d,H_c^a(C',\mathcal E))\) for one component
+\(C'\); the preceding argument over \(\mathbb F_{q^d}\)
+makes this polynomial real, proving the extension 3.2.2.
+
+There is a second printed notation defect in the proof of 3.2.1,
+p.~200: it writes \(\mathcal E^\vee(-1)\) in place of the
+\(\mathcal E^\vee(1)\) in (WDB13a). The printed group equals
+\(H^0(C,\mathcal E)^\vee(-2)\), so it still implies the required
+reality after the real scalar factor \(q^2\) is retained. Formula
+(WDB13a) records the exact untwisted duality used here; the later
+3.2.15 itself has the correct \((1)\) twist.
+
+\subsection{Vanishing cycles detect the nonconstant weights}
+
+The calculation in 3.1 treats exactly three exceptional geometries:
+an ordinary node of the fibre away from \(D\), tangency of the fibre
+to one smooth branch of \(D\), and passage of the fibre through a
+node of \(D\). Let \(\bar t\in T\) and \(\bar x\) be its
+unique exceptional point. The vanishing-cycle sheaves are supported
+at \(\bar x\) and vanish in every degree other than one. If
+\(\varepsilon(B)\) is the one-dimensional sign representation
+of the two branches or two local sheets, the calculation is
+\[
+ \begin{array}{ll}
+ \text{node outside }D:&
+  \Phi^1_{\bar x}=\mathcal G_{\bar x}(-1)
+                                  \otimes\varepsilon(B),\\[2mm]
+ \text{tangency to }D:&
+  \operatorname{Gr}^a\Phi^1_{\bar x}
+      =\operatorname{Gr}^a\mathcal G_{\bar x}^{\rm loc}
+                                  \otimes\varepsilon(B),\\[2mm]
+ \text{node of }D:&
+  \operatorname{Gr}^a\Phi^1_{\bar x}
+      =\operatorname{Gr}^a\mathcal G_{\bar x}^{\rm loc}
+                                  \otimes\varepsilon(B).
+ \end{array}
+ \tag{WDB14}
+\]
+Here the latter two expressions mean the stalks of the constant
+extensions of the local graded sheaves of 3.1.2; they do not mean
+that the original sheaf was defined at a deleted boundary point.
+For the first case the Picard--Lefschetz vanishing cycle supplies
+the twist \((-1)\). For tangency, apply vanishing cycles to
+\(0\to j_!\overline{\mathbb Q}_\ell\to
+\overline{\mathbb Q}_\ell\to
+\overline{\mathbb Q}_{\ell D}\to0\): the constant ambient
+term has no vanishing cycles, which shifts the divisor computation
+by one. At a node of \(D\), the corresponding two-step exact
+sequence through the normalization of \(D\) shifts the computation
+by two and gives the same degree-one sign representation. These are
+3.1.3.1--3.1.5.4.
+
+For each original boundary point of \(X-U\), (WDB5) applied to
+\(\mathcal F_0^{[0]}\) gives integral local weights. Hypothesis
+(A) makes its graded sheaves locally constant across the puncture.
+Taking their external tensor product gives the local filtration of
+\(\mathcal G_0\) used in (WDB14); its weights are sums of
+integers. At an interior point the weight is zero. The sign
+representation has Frobenius eigenvalue \(1\) or \(-1\) and
+weight zero, and \((-1)\) adds two to the weight. Every case of
+(WDB14) therefore proves
+\[
+ \text{all Frobenius eigenvalues of }\Phi^1_{\bar x}
+ \text{ have integral weights.}
+ \tag{WDB15}
+\]
+The proof retains the distinction between the three geometric
+supports while obtaining the same integrality conclusion from them.
+
+Let \(\bar\eta\) be the local geometric generic point at
+\(\bar t\). The vanishing of \(\Phi^a\) for \(a\ne1\)
+gives the exact sequence 3.2.9.1
+\[
+ 0\to\mathcal R^1_{\bar t}
+   \to\mathcal R^1_{\bar\eta}
+   \to\Phi^1_{\bar x}
+   \to\mathcal R^2_{\bar t}
+   \to\mathcal R^2_{\bar\eta}\to0.
+ \tag{WDB16}
+\]
+In particular \(\mathcal R^1\) has no sections supported at
+\(\bar t\). Varying \(\bar t\) gives the injective sheaf map
+\(\mathcal R^1_0\hookrightarrow w_*w^*\mathcal R^1_0\)
+of 3.2.8.
+
+Choose the finite pure-constituent filtration \(G\) on
+\(w^*\mathcal R^1_0\) obtained above and extend it by intersection:
+\[
+ G^a\mathcal R^1_0
+ =\mathcal R^1_0\cap w_*G^a(w^*\mathcal R^1_0),
+ \qquad \mathcal K_{a,0}=\operatorname{Gr}_G^a\mathcal R^1_0.
+ \tag{WDB17}
+\]
+The intersection is in \(w_*w^*\mathcal R^1_0\).
+Write \(b_a\) for the pure weight of \(w^*\mathcal K_{a,0}\).
+At \(\bar t\), this is the filtration induced by intersection
+with the subspace in (WDB16); consequently taking its associated
+graded sequence gives
+\[
+ 0\to (\mathcal K_{a,0})_{\bar t}
+ \to (\mathcal K_{a,0})_{\bar\eta}
+ \to A_{a,\bar t}\to0,
+ \qquad A_{a,\bar t}
+      \text{ a subquotient of }\Phi^1_{\bar x}.
+ \tag{WDB18}
+\]
+For completeness, this subquotient statement is elementary for an
+inclusion \(E\hookrightarrow V\) and a filtration of \(V\):
+filter \(E\) by \(E\cap G^aV\) and \(V/E\) by the images
+of \(G^aV\). The associated graded sequence is exact, so the
+cokernel in degree \(a\) is a graded piece of \(V/E\).
+Here \(V/E\) injects into \(\Phi^1_{\bar x}\) by (WDB16).
+
+If \(A_{a,\bar t}\ne0\), select any one of its Frobenius
+eigenvalues \(\lambda\). As a subquotient of the vanishing cycle
+it has an integral weight by (WDB15). As a quotient of the local
+Weil stalk of the pure sheaf \(w^*\mathcal K_{a,0}\), its weight
+lies in \(b_a+\mathbb Z\) by (WDB5). Thus
+\[
+ A_{a,\bar t}\ne0\quad\Longrightarrow\quad
+ w_{N(t)}(\lambda)\in\mathbb Z\cap(b_a+\mathbb Z)
+ \quad\Longrightarrow\quad b_a\in\mathbb Z.
+ \tag{WDB19}
+\]
+If instead every \(A_{a,\bar t}\) vanishes, (WDB18) identifies
+the special stalk with the entire generic stalk at every boundary
+point. The image of specialization is inertia invariant, so inertia
+acts trivially and the sheaf is lisse across every such point. It is
+therefore lisse on \(P\simeq\mathbb P^1\); its geometric monodromy
+is trivial because \(\mathbb P^1\) over an algebraically closed
+field is simply connected. It follows that \(\mathcal K_a\) is
+geometrically constant. Frobenius on its constant fibre can still
+be nontrivial. We have proved the exact alternative of 3.2.9:
+\[
+ \mathcal K_a\text{ is geometrically constant on }P,
+ \quad\text{or}\quad b_a\in\mathbb Z.
+ \tag{WDB20}
+\]
+
+The pure weight \(b_a\) can be measured at any closed point of
+\(W_0\). There its eigenvalues are among those of (WDB13) with
+\(b=1\). Applying the strict bound (WDB4) to the weight-zero
+coefficient sheaf on that smooth fibre proves \(b_a<2\), which
+is 3.2.10. Combining this with (WDB20) gives
+\[
+ \mathcal K_a\text{ not geometrically constant}
+ \quad\Longrightarrow\quad b_a\in\mathbb Z,\quad b_a<2,
+ \quad\Longrightarrow\quad b_a\le1.
+ \tag{WDB21}
+\]
+This is the decisive return to the earlier exclusion. A weak bound
+\(b_a\le2\) would leave the integer \(2\) available and would
+not start the improvement from \(k=0\).
+
+\subsection{Leray transfers the surviving error only once}
+
+If \(\mathcal K_a\) is geometrically constant with fibre \(L_a\),
+then
+\[
+ H^1(P,\mathcal K_a)
+   =H^1(\mathbb P^1,\overline{\mathbb Q}_\ell)\otimes L_a=0.
+ \tag{WDB22}
+\]
+The equality is Frobenius-equivariant and holds for every Frobenius
+action on \(L_a\). No numerical weight bound for \(L_a\) is
+required. In the other case, (WDB8), \(\mathsf B_k\), and (WDB21)
+give
+\[
+ \alpha\in\operatorname{Spec}(F;H^1(P,\mathcal K_a))
+ \quad\Longrightarrow\quad
+ w_q(\alpha)\le b_a+1+2^{-k}\le2+2^{-k}.
+ \tag{WDB23}
+\]
+The long exact sequences of the finite filtration (WDB17) and the
+block-triangular argument following (WDB3) now give
+\[
+ w_q(\alpha)\le2+2^{-k}
+ \quad\text{on }E_2^{11}=H^1(P,\mathcal R^1).
+ \tag{WDB24}
+\]
+
+For the two outer terms, 3.2.12 uses the elementary degree-zero and
+degree-two cohomology of curves from 1.4, not the theorem being
+proved. On any fibre, \(H_c^0\) is a space of sections of the
+weight-zero lisse sheaf and its eigenvalues have weight zero.
+For \(H_c^2\), remove the finitely many singular points and pass
+to smooth connected components. Formula 1.4.1.3 identifies the
+top cohomology with geometric coinvariants of a stalk, followed by
+the twist \((-1)\); its eigenvalues have weight two. If components
+are permuted, a finite extension makes them individually defined,
+and the weight identity (WDB1) descends the same bound. Hence the
+stalk weights of \(\mathcal R^0_0\) and \(\mathcal R^2_0\)
+are respectively at most \(0\) and \(2\).
+
+Applying the same elementary curve statements on the base proves
+\[
+ w_q(\alpha)\le2
+ \quad\text{on }E_2^{02}=H^0(P,\mathcal R^2)
+ \text{ and }E_2^{20}=H^2(P,\mathcal R^0).
+ \tag{WDB25}
+\]
+For the first assertion, a nonzero global eigensection is nonzero
+at some closed-point stalk; Frobenius there acts by the corresponding
+power of its global eigenvalue. For the second, removal of finitely
+many points does not change \(H_c^2\); on a dense lisse open,
+1.4.1.3 expresses it as coinvariants of a stalk with weights at most
+zero, twisted by \((-1)\). This adds exactly two. These arguments
+also cover constructible sheaves on the base with singular boundary
+stalks. The \(\beta\) in the printed explanation of 3.2.12 is
+specialized here to the auxiliary weight zero of \(\mathcal G_0\).
+
+Equations (WDB24)--(WDB25) and the spectral sequence (WDB12) prove
+\[
+ w_q(\mu)\le2+2^{-k}
+ \quad\text{for every eigenvalue on }
+ H_c^2(\widetilde V,\pi^*\mathcal G).
+ \tag{WDB26}
+\]
+Only one error \(2^{-k}\) has appeared: it enters through the
+base cohomology in (WDB23). The fibre coefficient weight has already
+been reduced to at most one by the separate integer and strict-bound
+argument. Applying \(\mathsf B_k\) twice without that reduction
+would instead give \(2+2\cdot2^{-k}\) and no improvement after
+taking a square root.
+
+\subsection{The nonzero class survives the two exact injections}
+
+K\"unneth gives a Frobenius-equivariant direct-sum decomposition in
+degree two. Its \((1,1)\) summand provides the first map below;
+the second is pullback along the blow-up:
+\[
+ \begin{split}
+ H_c^1(U,\mathcal F^{[0]})\otimes
+ H_c^1(U,\mathcal F^{[0]})
+ &\lhook\joinrel\longrightarrow H_c^2(V,\mathcal G)\\
+ &\lhook\joinrel\longrightarrow
+ H_c^2(\widetilde V,\pi^*\mathcal G).
+ \end{split}
+ \tag{WDB27}
+\]
+The second injection is 3.1.1.4. More precisely 3.1.1.3 identifies
+\[
+ H_c^2(\widetilde V,\pi^*\mathcal G)
+ \simeq H_c^2(V,\mathcal G)
+       \oplus H^0(V\cap A,\mathcal G)(-1),
+ \tag{WDB28}
+\]
+with pullback as the inclusion of the first summand. The center is
+disjoint from \(D\) by (B), so these are the actual blow-up centers
+in the open surface. Equivalently the Poincar\'e-dual transpose
+described in 3.1.1.4 supplies a retraction. The extra summand in
+(WDB28) is retained rather than identified with zero.
+
+If \(v\ne0\) is an eigenvector of \(F\) with eigenvalue
+\(\alpha^{[0]}\) in the original degree-one space, choose a
+linear functional \(\lambda\) with \(\lambda(v)=1\). Then
+\((\lambda\otimes\lambda)(v\otimes v)=1\), so
+\(v\otimes v\ne0\). Both maps in (WDB27) are injective, hence
+their composite carries it to a nonzero eigenvector with eigenvalue
+\((\alpha^{[0]})^2\). No exterior square is being taken:
+the product is on two copies of the curve, so the odd cohomological
+degree does not force this tensor to vanish. Invertibility and the
+existence of an eigenvector hold over \(\overline{\mathbb Q}_\ell\)
+without any diagonalizability assumption.
+
+Applying (WDB26) to this specific image gives
+\[
+ \begin{split}
+ 2\bigl(w_q(\alpha)-\beta\bigr)
+ &=w_q\bigl((c\alpha)^2\bigr)\le2+2^{-k},\\
+ w_q(\alpha)&\le\beta+1+2^{-(k+1)}.
+ \end{split}
+ \tag{WDB29}
+\]
+This proves \(\mathsf B_{k+1}\) under (A)--(C), with the original
+eigenvalue and original coefficient weight restored exactly.
+
+\subsection{Removing the reduction hypotheses preserves the offending eigenvalue}
+
+For a finite extension \(\mathbb F_{q^d}/\mathbb F_q\), the
+geometric cohomology space is unchanged and \(F\) is replaced by
+\(F^d\). Thus an eigenvalue \(\alpha\) is replaced by
+\(\alpha^d\), and (WDB1) proves equality of its old and new
+weights. A bound over the extension gives the identical bound over
+the original field. Deligne uses this operation in 3.2.14 to define
+over a finite field an embedding and a general-position pencil that
+exist over the algebraic closure, and then to make their finitely
+many exceptional points rational. This removes (B) and (C). It does
+not itself divide any exponent error by \(d\).
+
+To remove (A), the monodromy theorem supplies a finite surjective
+cover \(g:U'_0\to U_0\), with \(U'_0\) smooth, for which
+\(g^*\mathcal F_0^{[0]}\) has tame unipotent boundary monodromy.
+Purity is preserved by pullback: if \(x'\) lies over \(x\) with
+residue degree \(e\), its Frobenius eigenvalues are the \(e\)-th
+powers of those at \(x\), and \(N(x')=N(x)^e\).
+The exact map used to retain cohomology is
+\[
+ g^*:H_c^a(U,\mathcal F^{[0]})
+        \lhook\joinrel\longrightarrow
+        H_c^a(U',g^*\mathcal F^{[0]}).
+ \tag{WDB30}
+\]
+Here is a trace construction which includes the multiplicities at
+ramification points. On a connected smooth target curve the finite
+surjective map is flat of constant degree \(d_g>0\): its finite
+local modules are torsion-free over the discrete valuation rings
+of the target and hence free. At a geometric point \(u\), the
+trace of the constant coefficient sheaf \(E=\overline{\mathbb Q}_\ell\)
+is
+\[
+ \operatorname{Tr}_{g,u}:\bigoplus_{u'\mid u}E\longrightarrow E,
+ \qquad(a_{u'})\longmapsto
+ \sum_{u'\mid u}
+    \operatorname{length}(\mathcal O_{g^{-1}(u),u'})a_{u'}.
+ \tag{WDB30a}
+\]
+The sum of these lengths is \(d_g\). Compatibility with restriction
+follows by decomposing the inverse image of an \'etale neighborhood
+into open and closed pieces: each piece is finite flat and its
+rank is locally constant. Thus (WDB30a) is a sheaf morphism
+\(g_*E\to E\), with the unit followed by trace equal to
+\(d_g\,\mathrm{id}\). The projection formula tensors this
+identity with \(\mathcal F^{[0]}\). Finite maps are proper and
+their geometric fibres have no higher \'etale cohomology, so
+\(Rg_*=g_*=g_!\). Taking compact-support cohomology gives the
+map (WDB30) with retraction \(d_g^{-1}\operatorname{Tr}_g\).
+The coefficient field has characteristic zero, so the inverse
+\(d_g^{-1}\) exists even if \(\ell\) divides \(d_g\).
+The formula includes inseparable lengths as well. Because these
+maps are Frobenius-equivariant, they retain the same eigenvalue.
+Connected components can be treated after a finite base extension
+and descended by (WDB1). The universal \(\mathsf B_{k+1}\) follows.
+
+\subsection{A finite contradiction, followed by the exact dual lower bound}
+
+Induction now proves (WDB2) for every integer \(k\ge0\). Suppose
+an actual eigenvalue had
+\(w_q(\alpha)=\beta+1+\varepsilon\) with \(\varepsilon>0\).
+The specific finite integer
+\[
+ K=\max\{0,\lfloor\log_2(1/\varepsilon)\rfloor+1\}
+ \quad\text{satisfies}\quad 2^{-K}<\varepsilon.
+ \tag{WDB31}
+\]
+Indeed if \(\varepsilon>1\), \(K=0\) works; otherwise
+\(K>\log_2(1/\varepsilon)\). At this finite stage (WDB2)
+would say
+\(\beta+1+\varepsilon\le\beta+1+2^{-K}\), a contradiction.
+Consequently
+\[
+ w_q(\alpha)\le\beta+1
+ \quad\text{on }H_c^1(U,\mathcal F).
+ \tag{WDB32}
+\]
+This is the dyadic \(2^{-k}\) bootstrap in Weil II, not the
+\(1/k\) error obtained from arbitrarily large products in the
+earlier proof of Weil I. Both retain the offending eigenvalue, but
+their geometric estimates and induction parameters differ.
+
+Let now \(j:U_0\hookrightarrow X_0\) with \(X_0\) smooth
+projective. Equation (WDB8) transfers (WDB32) to
+\(H^1(X,j_*\mathcal F)\). Deligne's duality in 3.2.15 is the
+perfect Frobenius-equivariant pairing with values in the trivial
+coefficient field
+\[
+ H^1(X,j_*\mathcal F)\ \otimes\
+ H^1(X,j_*\mathcal F^\vee(1))
+ \longrightarrow\overline{\mathbb Q}_\ell.
+\tag{WDB33}
+\]
+Its perfectness on these actual image groups can also be seen
+directly from Poincar\'e duality on \(U\). The compact-to-ordinary
+maps for \(\mathcal F\) and \(\mathcal F^\vee(1)\) are
+transposes, up to the degree-one cup-product sign. The kernel of
+either transpose is the annihilator of the other image. Quotienting
+the compactly supported groups by these kernels therefore induces
+a nondegenerate pairing on the two images. Their identification
+with the two \(j_*\) cohomology groups gives (WDB33), including
+its scalar target.
+The dual coefficient sheaf has weight \(-\beta-2\). For an
+eigenvalue \(\alpha\) of the first factor, \(\alpha^{-1}\)
+occurs in the second, whether or not Frobenius is semisimple.
+Applying the already proved upper bound to that factor gives
+\[
+ -w_q(\alpha)=w_q(\alpha^{-1})
+ \le(-\beta-2)+1=-\beta-1.
+ \tag{WDB34}
+\]
+Together with the upper bound this proves
+\(w_q(\alpha)=\beta+1\). In degrees zero and two, the invariant
+and coinvariant descriptions of 1.4, with the Tate twist \((-1)\)
+in degree two, give weights \(\beta\) and \(\beta+2\).
+Thus all three degrees give 3.2.3:
+\[
+ w_q(\alpha)=\beta+i
+ \quad\text{on }H^i(X,j_*\mathcal F).
+ \tag{WDB35}
+\]
+For degree one this group is also the image of
+\(H_c^1(U,\mathcal F)\to H^1(U,\mathcal F)\), as stated at
+the start of 3.2.3. Purity is being asserted for this actual image;
+the mixed boundary part of all of \(H_c^1(U,\mathcal F)\) has
+not been declared pure.
+
+\subsection{The mixed-sheaf theorem retains and controls the boundary}
+
+Theorem 3.3.1 concerns a morphism \(f:X\to Y\) of schemes of
+finite type over \(\mathbb Z\), with \(\ell\) invertible as
+in Deligne's conventions. It asserts that a mixed constructible
+sheaf \(\mathcal F\) of weights at most \(n\) has
+\(R^if_!\mathcal F\) mixed of weights at most \(n+i\).
+Deligne proves it by reduction to the curve theorem together with
+the local boundary calculation. The reductions are by exact
+sequences in the sheaf; decomposition into an open set and its
+closed complement; base change on the target; and the
+Frobenius-equivariant Leray spectral sequence for a composition.
+For the sheaf reduction involving a kernel, the preceding term in
+the long exact sequence has bound \(n+i-1\), which is at most
+\(n+i\); thus that reduction also preserves the claimed bound.
+Relative dimension zero contributes only degree zero and preserves
+the pointwise weight. Universal homeomorphisms preserve the
+\(\acute etale\) theory. Stratification and composition reduce
+to relative curves and then to a lisse pure coefficient sheaf.
+These are the explicit reductions 3.3.1(a)--(f).
+
+On the generic relative curve one removes finitely many singular
+points, takes a finite covering with tame ramification at infinity,
+and uses the trace splitting of its coefficient sheaf. A purely
+inseparable field extension is allowed in making the smooth
+compactification. Deligne then spreads this finite geometric data
+over a neighborhood of the generic point of the reduced target.
+Reductions 3.3.1(c),(e) make this neighborhood the whole reduced
+target and allow the smooth reduced target used in Deligne's
+relative boundary calculation; the target reduction handles its
+complement. The resulting
+relative geometry is
+\[
+ \begin{gathered}
+ X\xrightarrow{j}\overline X\xleftarrow{i}D,
+ \qquad f=\bar f j,\\
+ \bar f:\overline X\longrightarrow Y
+ \text{ smooth projective of relative dimension }1,\\
+ D\longrightarrow Y\text{ finite \'etale}.
+ \end{gathered}
+ \tag{WDB36}
+\]
+Here \(\mathcal F\) is lisse pure of weight \(n\) on \(X\)
+and tamely ramified along \(D\). There is an actual short exact
+sequence on the compactification
+\[
+ 0\to j_!\mathcal F\to j_*\mathcal F
+   \to i_*B\to0,
+ \qquad B=i^*j_*\mathcal F.
+ \tag{WDB37}
+\]
+The boundary stalk is inertia invariants, not the entire generic
+stalk. By 1.8.6--1.8.8 its induced monodromy filtration satisfies
+\[
+ \operatorname{Gr}_a^M B=0\ (a>0),
+ \qquad \operatorname{Gr}_a^M B
+     \text{ pure of weight }n+a\ (a\le0).
+ \tag{WDB38}
+\]
+The signs here follow from \(V^I\subset\ker N\subset M_0V\);
+when a finite residual inertia group remains, its invariant functor
+is exact in characteristic zero and retains the same upper indices.
+These sheaves and their filtrations commute with passage to the
+fibres in (WDB36).
+
+Applying 3.2.3 on each fibre, and for every coefficient embedding
+\(\iota\), proves that \(R^a\bar f_*j_*\mathcal F\) is
+pointwise pure of weight \(n+a\). Because \(D\to Y\) is finite,
+its higher direct images vanish and its direct image carries the
+finite filtration (WDB38) to weights at most \(n\). The long exact
+sequence of (WDB37) contains, in degrees zero and one,
+\[
+ \begin{split}
+ 0&\to f_!\mathcal F\to\bar f_*j_*\mathcal F
+   \to(\bar f i)_*B\to R^1f_!\mathcal F\\
+  &\to R^1\bar f_*j_*\mathcal F\to0,
+ \end{split}
+ \tag{WDB39}
+\]
+and in degrees \(a\ge2\) gives
+\(R^af_!\mathcal F\simeq R^a\bar f_*j_*\mathcal F\).
+Thus degree zero has weights at most \(n\); degree one is an
+extension of the pure sheaf \(R^1\bar f_*j_*\mathcal F\), of
+weight \(n+1\), by the boundary quotient
+\(\operatorname{coker}(\bar f_*j_*\mathcal F\to(\bar f i)_*B)\),
+of weights at most \(n\); and degree two has weight \(n+2\).
+This proves the desired upper bound in the reduced
+relative-curve case, and the exact reductions give 3.3.1. Boundary
+contributions have been included through (WDB37)--(WDB39), with
+their weights and maps specified.
+
+For a finite-type \(\mathbb F_q\)-scheme this gives 3.3.4:
+\(H_c^i(X,\mathcal F)\) has weights at most \(n+i\) when
+\(\mathcal F_0\) is mixed of weights at most \(n\). If in
+addition \(X_0\) is smooth of pure dimension \(d\) and
+\(\mathcal F_0\) is lisse and mixed of weights at least \(n\),
+then \(\mathcal F_0^\vee\) has weights at most \(-n\).
+Apply the upper bound to the exact Poincar\'e dual:
+\[
+ H^i(X,\mathcal F)^\vee
+ \simeq H_c^{2d-i}(X,\mathcal F^\vee)(d),
+ \qquad
+ -n+(2d-i)-2d=-n-i.
+ \tag{WDB40}
+\]
+Duality reverses weights, giving the lower bound \(n+i\) for
+\(H^i(X,\mathcal F)\), which is 3.3.5. For a lisse pure sheaf
+of weight \(n\), the natural map from compactly supported to
+ordinary cohomology is Frobenius-equivariant, and its image is both
+a quotient of a space of weights at most \(n+i\) and a subspace
+of one of weights at least \(n+i\). The characteristic-polynomial
+argument after (WDB3) then proves the exact conclusion 3.3.6:
+\[
+ \operatorname{im}\bigl(H_c^i(X,\mathcal F)
+                 \longrightarrow H^i(X,\mathcal F)\bigr)
+ \quad\text{is pure of weight }n+i.
+ \tag{WDB41}
+\]
+The original compact-support and ordinary cohomology groups are
+preserved in this statement; purity is proved for their specified
+common image.
+
+\subsection{The exact contradiction mechanism available for comparison}
+
+The decisive numerical chain in this proof is
+\[
+ \begin{gathered}
+ \text{nonzero local boundary quotient}
+ \ \xRightarrow{\text{(WDB14)--(WDB19)}}\ b_a\in\mathbb Z,\\
+ \{b_a\in\mathbb Z,\ b_a<2\}
+ \ \Longrightarrow\ b_a\le1,\\
+ \text{all local boundary quotients zero}
+ \ \xRightarrow{\text{(WDB18)--(WDB22)}}\ H^1(P,\mathcal K_a)=0,\\
+ \mathsf B_k\ \xRightarrow{\text{(WDB23)--(WDB26)}}\
+   w_q(\mu)\le2+2^{-k},\\
+ \alpha^{[0]}\ \xmapsto{\text{(WDB27)}}\ (\alpha^{[0]})^2
+ \ \Longrightarrow\ \mathsf B_{k+1}.
+ \end{gathered}
+ \tag{WDB42}
+\]
+The word ``boundary'' in this chain names the actual
+specialization-cokernel map (WDB18) into vanishing cycles, and the
+constant alternative has the actual cohomology-vanishing map
+(WDB22). The improvement is proved only after both alternatives
+have been treated. The finite integer (WDB31) then excludes every
+strict upper violation, and (WDB33)--(WDB34) exclude every strict
+lower violation of the pure image weight. Equations
+(WDB37)--(WDB41) extend this calculation to mixed coefficients
+without deleting their boundary-supported pieces.

@@ -1,0 +1,62 @@
+name: SplitZero structural formalization
+on:
+  push:
+    branches: [codex/splitzero-structure-20260912]
+  pull_request:
+    paths: ['formal/splitzero/**', '.github/workflows/splitzero-structure.yml']
+permissions:
+  contents: read
+concurrency:
+  group: splitzero-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      LEAN_NUM_THREADS: 1
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Retrieve and verify the original core
+        run: python3 prepare.py
+      - name: Install Lean
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lean" --version
+      - name: Resolve pinned Mathlib and cache
+        run: |
+          set -euo pipefail
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+      - name: Build and kernel-check every extension source
+        run: |
+          set -euo pipefail
+          lake -KmaxJobs=1 build 2>&1 | tee Build.log
+          lake env lean --trust=0 SplitZero.lean
+          for source in SplitZeroExtension.lean SplitZeroFibres.lean SplitZeroPresentation.lean SplitZeroMaps.lean; do
+            lake env lean --trust=0 -DwarningAsError=true "$source"
+          done
+          lake env lean --trust=0 -DwarningAsError=true Audit.lean | tee Audit.log
+          python3 check_axioms.py Audit.log
+      - name: Retain source and validation artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: splitzero-source-and-checks
+          path: |
+            formal/splitzero/*.lean
+            formal/splitzero/*.log
+            formal/splitzero/*.py
+            formal/splitzero/*.md
+            formal/splitzero/*.toml
+            formal/splitzero/*.json
+            formal/splitzero/lean-toolchain

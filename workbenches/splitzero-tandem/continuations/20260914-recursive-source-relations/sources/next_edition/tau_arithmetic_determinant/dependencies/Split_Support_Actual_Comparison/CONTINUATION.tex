@@ -1,0 +1,987 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={The actual theta comparison: supported cohomology and spectral jets},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{The actual theta comparison: supported cohomology and spectral
+jets}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{The actual theta comparison: split-supported cohomology,
+completed L-functions, and spectral
+jets}\label{the-actual-theta-comparison-split-supported-cohomology-completed-l-functions-and-spectral-jets}
+
+Research continuation --- 11 September 2026.
+
+\subsection{0. What is constructed}\label{what-is-constructed}
+
+This note replaces the preceding uniformly shifted zeta ratio by the
+actual summation operator already used in chapter 25 of the Zeta
+workbench. It constructs its split-supported two-chart sheaf, computes
+the extension-by-zero/ordinary cohomology map, and sends that map to a
+sheaf presented by multiplication by the \emph{actual} completed
+arithmetic function. Every finite spectral-jet observation is surjective
+and intertwines dilation and its infinitesimal generator.
+
+The cohomology calculation is algebraic sheaf cohomology on the
+explicitly defined finite chart space. The analytic realization is an
+explicit pushout of its presentation. These words specify operations;
+they do not assert an unproved equivalence with the unnamed Hadamard
+topology recorded in chapter 25 or with a new Weil cohomology of an
+arithmetic surface. The kernel of the analytic pushout is retained
+below. Ordinary and Hausdorff quotients are also distinguished by an
+explicit quotient map.
+
+The classical inputs are the Schwartz Fourier transform, Poisson
+summation, primitive Dirichlet characters and their Gauss sums, and the
+source's E-map. The work here is the assembled comparison, its
+support-diagram functor, analytic pushout, and exact cutoff metric on
+its finite spectral observations. Novelty is not asserted. During this
+calculation draft PR \#3 acquired ACTUAL\_ADELIC\_COMPARISON.md at
+commit 9103a500c37c83534493c202db4fc6a96aa2a073. That complete addition
+was read. It already supplies the actual adelic restriction trace, the
+full-plane principal image, finite-jet surjectivity, and residue/trace
+maps. Those overlapping results are treated as shared input rather than
+an additional discovery. The present add-on supplies the explicit
+extension-by-zero sheaf realization, its pushout/kernel, the
+character-twisted chart action, and the cutoff quotient metric. The
+factor-two comparison below relates both notes.
+
+\subsection{1. Fixed scalar support and the source
+diagram}\label{fixed-scalar-support-and-the-source-diagram}
+
+Retain one scalar semiring
+
+\[
+S=G(\mathbb C)=\mathbb C\sqcup\{\tau\},\qquad e=0_{\mathbb C}\in S,\qquad 0_S=\tau.
+\]
+
+Chapter 14 supplies the equivalence between \(S\)-semimodules and linear
+join diagrams. Write an input as \((L,W,\rho)\): \(L\) is a
+join-semilattice with least element, \(W_l\) a complex vector space, and
+\(\rho_{l,m}:W_l\to W_m\) coherent for \(l\le m\). Its carrier is
+\(\bigsqcup_l W_l\), with
+
+\[
+x\boxplus y=\rho_{l,l\vee m}x+\rho_{m,l\vee m}y,\quad ex=0_{W_l},\quad \tau x=0_{W_{0_L}}.
+\]
+
+All constructions below act on every \(W_l\) and every transport. No
+iteration of scalar zero-adjunction is used to create higher labels. For
+the mixed double's additive module, \(L=\mathcal P(\{1,2\})\),
+\(W_I=\mathbb C^I\), and transports insert ordinary coefficient zeros.
+Its four labelled origins are retained. Multiplication in the mixed
+double is additional structure; the sheaf construction here uses its
+stated additive semimodule, not a claim that Fourier transformation
+preserves that multiplication.
+
+\subsection{2. Test spaces, Fourier transform and
+summation}\label{test-spaces-fourier-transform-and-summation}
+
+Put \(D=-x\partial_x\) and fix
+
+\[
+\widehat\phi(\xi)=\int_{\mathbb R}\phi(x)e^{-2\pi i x\xi}\,dx.
+\]
+
+The overlap test space is the Frechet space
+
+\[
+\mathscr B=\{F\in C^\infty(\mathbb R_{>0}):\sup_{x>0}x^b|D^kF(x)|<\infty\ \text{for every }b\in\mathbb Z,\ k\ge0\}.
+\]
+
+Its Mellin transform is
+
+\[
+\mathcal MF(s)=\int_0^\infty F(x)x^s\,\frac{dx}{x}.
+\]
+
+It is entire. Its derivatives are obtained by inserting \((\log x)^j\);
+the defining seminorms give absolute locally uniform domination.
+Integration by parts gives \(\mathcal M(DF)=s\mathcal MF\) and rapid
+decay on vertical strips after any fixed finite number of
+differentiations.
+
+\subsubsection{2.1 Rational sector and the two boundary
+observations}\label{rational-sector-and-the-two-boundary-observations}
+
+Use
+
+\[
+\mathscr V_0=\{\phi\in\mathscr S(\mathbb R):\phi(-x)=\phi(x),\ \phi(0)=0,\ \widehat\phi(0)=0\},
+\qquad E_0\phi(x)=\sum_{n\ge1}\phi(nx).
+\]
+
+Fourier transformation preserves \(\mathscr V_0\) and squares to the
+identity there. Poisson summation gives the literal equality
+
+\[
+E_0\phi(x)=x^{-1}E_0\widehat\phi(1/x). \tag{2.1}
+\]
+
+For \(x\ge1\), differentiating the sum and using a Schwartz bound of
+order \(N>1\) gives a bound by a constant times \(x^{-N}\sum n^{-N}\).
+Equation (2.1), with the chain and product rules, gives arbitrarily high
+positive powers at zero. Thus \(E_0:\mathscr V_0\to\mathscr B\) is
+continuous.
+
+The source's map is \(\mathcal E\phi=x^{1/2}E_0\phi\). The exact
+comparison is
+
+\[
+W_{1/2}:\mathscr B\to\mathscr B,\quad F(x)\mapsto x^{1/2}F(x),
+\quad
+\mathcal F_\mu W_{1/2}F(z)=\mathcal MF(1/2-iz). \tag{2.2}
+\]
+
+No half-density factor or exponent sign is removed.
+
+At the adelic level, for
+\(\Phi=\phi\otimes\mathbf1_{\widehat{\mathbb Z}}\) and the idele with
+positive real component \(x\) and all finite components one,
+
+\[
+\sum_{q\in\mathbb Q^\times}\Phi(qx,q_f)=2E_0\phi(x). \tag{2.3}
+\]
+
+The finite condition selects \(q\in\mathbb Z\); parity accounts for the
+displayed factor two.
+
+The current draft's framed arithmetic input makes (2.3) a section-count
+observation. For an idele \(a=(a_f,a_\infty)\) set
+
+\[
+L_a=\{r\in\mathbb Q:a_fr\in\widehat{\mathbb Z}\},\qquad
+h_a(r)=a_\infty r,\qquad
+c_a=\prod_p p^{-v_p(a_p)},\quad \lambda_a=|a_\infty|c_a.
+\]
+
+Then \(L_a=c_a\mathbb Z\). Its bounded-section count is
+
+\[
+N_a(R)=\#\{r\in L_a:|h_a(r)|\le R\}=1+2\lfloor R/\lambda_a\rfloor.
+\]
+
+For an even Schwartz test \(\phi\), the exact weighted observation is
+
+\[
+\int_{(0,\infty)}\phi(tr)\,d(N_a(r)-1)
+=\sum_{v\in L_a\setminus\{0\}}\phi(th_a(v))
+=2E_0\phi(t\lambda_a).
+\]
+
+For \(q\in\mathbb Q^\times\), the map \(L_{qa}\to L_a\),
+\(r\mapsto qr\), intertwines \(h_{qa}\) and \(h_a\); its split extension
+fixes external absence. Thus the observation is compatible with the
+actual principal-action arrows, not an unrelated theta function adjoined
+afterward. This framed-module construction and its sheaf are source
+inputs from the live appendix, not newly asserted here.
+
+The exact boundary sequence is
+
+\[
+0\to\mathscr V_0\to\mathscr S(\mathbb R)^{\mathrm{ev}}
+\xrightarrow{\partial}\mathbb C^2\to0,
+\qquad \partial\phi=(\phi(0),\widehat\phi(0)). \tag{2.4}
+\]
+
+Surjectivity follows from \(g(x)=e^{-\pi x^2}\) and \(x^2g(x)\): their
+images are \((1,1)\) and \((0,1/(2\pi))\). Dilation
+\(\phi(x)\mapsto\phi(ax)\) acts on the boundary by
+\((u,v)\mapsto(u,a^{-1}v)\); Fourier transformation swaps the two
+coordinates. These are the retained pole modes at spectral parameters
+zero and one.
+
+\subsubsection{2.2 Every primitive Dirichlet
+character}\label{every-primitive-dirichlet-character}
+
+Let \(\chi\) be a primitive nonprincipal character modulo \(q>1\),
+extended by zero on nonunits, and put \(\chi(-1)=(-1)^\epsilon\),
+\(\epsilon\in\{0,1\}\). Set
+
+\[
+\mathscr V_\chi=\{\phi\in\mathscr S(\mathbb R):\phi(-x)=(-1)^\epsilon\phi(x)\},
+\quad E_\chi\phi(x)=\sum_{n\ge1}\chi(n)\phi(nx).
+\]
+
+Retain \(\mathfrak g(\chi)=\sum_{a\bmod q}\chi(a)e^{2\pi i a/q}\).
+Twisted Poisson summation is
+
+\[
+E_\chi\phi(x)=\frac{\mathfrak g(\chi)}{qx}
+E_{\bar\chi}\widehat\phi\!\left(\frac1{qx}\right). \tag{2.5}
+\]
+
+To derive it, split the sum over all integers into residues
+\(a\bmod q\), apply Poisson summation to each arithmetic progression,
+and use \(\sum_a\chi(a)e^{2\pi i ma/q}=\bar\chi(m)\mathfrak g(\chi)\).
+Parity makes each full sum twice its positive-index half; the factors
+two cancel. The \(m=0\) Fourier coefficient is zero because \(\chi\) is
+nonprincipal. Equation (2.5) proves \(E_\chi\phi\in\mathscr B\) exactly
+as in the rational sector.
+
+For completeness, the finite Gauss identity used here holds also for
+nonunit \(m\). If \(d=\gcd(m,q)>1\), primitivity supplies a unit
+\(u\equiv1\pmod{q/d}\) with \(\chi(u)\ne1\); invariance under
+\(a\mapsto ua\) forces that Fourier sum to be zero. For unit \(m\),
+substitution gives the stated \(\bar\chi(m)\) factor. Parseval for the
+finite Fourier matrix then gives \(|\mathfrak g(\chi)|^2=q\), since
+exactly \(\varphi(q)\) of these Fourier sums are nonzero and
+\(\sum_a|\chi(a)|^2=\varphi(q)\).
+
+Define
+
+\[
+J_qF(x)=\frac1{\sqrt q\,x}F\!\left(\frac1{qx}\right),\qquad J_q^2=1,
+\]
+
+and
+
+\[
+r_+=E_\chi,\qquad r_- =\frac{\mathfrak g(\chi)}{\sqrt q}J_qE_{\bar\chi}.
+\]
+
+Then \(r_-\widehat\phi=E_\chi\phi\), so \(r_-=E_\chi\mathcal F^{-1}\).
+For the rational sector use \(q=1\), \(\mathfrak g=1\), \(r_-=J_1E_0\).
+
+Every \(E_\chi\) here is injective: on \(\Re s>1\), absolute convergence
+gives
+
+\[
+\mathcal M(E_\chi\phi)(s)=L(s,\chi)\mathcal M\phi(s). \tag{2.6}
+\]
+
+The Euler product is nonzero there. Vanishing of \(E_\chi\phi\)
+therefore makes \(\mathcal M\phi\) zero on a vertical line, and Fourier
+uniqueness in \(\log x\) gives \(\phi=0\). The rational case uses
+\(L(s,1)=\zeta(s)\).
+
+\subsection{3. A computed sheaf comparison, not a free spectral
+shift}\label{a-computed-sheaf-comparison-not-a-free-spectral-shift}
+
+Let \(X_\theta=\{0,\eta,\infty\}\) with opens \(\varnothing\),
+\(\{\eta\}\), \(U_+=\{0,\eta\}\), \(U_-=\{\eta,\infty\}\), and
+\(X_\theta\). This is an auxiliary two-chart space. The labels
+\(0,\infty\) here identify charts; the scalar \(\tau\) is not being
+substituted for either label.
+
+Define a sheaf \(\mathcal T_\chi\) of complex vector spaces by
+
+\[
+\mathcal T_\chi(U_+)=\mathscr V_\chi,
+\quad\mathcal T_\chi(U_-)=\mathscr V_{\bar\chi},
+\quad\mathcal T_\chi(\{\eta\})=\mathscr B,
+\]
+
+with restrictions \(r_+,r_-\). On the full space its sections are
+compatible pairs. This is a sheaf by its explicit gluing rule.
+
+Sections over each of the three proper nonempty opens are evaluation at
+a least point and are exact for sheaves of vector spaces on that open.
+Consequently the two-open Cech complex computes sheaf cohomology:
+
+\[
+C_\chi^\bullet:
+\mathscr V_\chi\oplus\mathscr V_{\bar\chi}
+\xrightarrow{d_\chi}\mathscr B,
+\quad d_\chi(\phi,\psi)=E_\chi\phi-r_-\psi
+=E_\chi(\phi-\mathcal F^{-1}\psi). \tag{3.1}
+\]
+
+It follows that
+
+\[
+H^0(X_\theta,\mathcal T_\chi)=\{(\phi,\widehat\phi):\phi\in\mathscr V_\chi\},
+\quad H^1(X_\theta,\mathcal T_\chi)=Q_\chi:=\mathscr B/E_\chi\mathscr V_\chi. \tag{3.2}
+\]
+
+Let \(j:U_+\hookrightarrow X_\theta\). The extension by zero
+\(j_!j^*\mathcal T_\chi\) has values \(\mathscr V_\chi\) on \(U_+\),
+zero on \(U_-\), and \(\mathscr B\) on their intersection. Its complex
+is
+
+\[
+C_{+,\chi}^\bullet=[\mathscr V_\chi\xrightarrow{E_\chi}\mathscr B].
+\]
+
+The actual map \(j_!j^*\mathcal T_\chi\to\mathcal T_\chi\) is
+
+\[
+c^0(\phi)=(\phi,0),\qquad c^1(F)=F. \tag{3.3}
+\]
+
+\textbf{Theorem 3.1.} The induced map
+
+\[
+H^1(X_\theta,j_!j^*\mathcal T_\chi)\xrightarrow{c^1}H^1(X_\theta,\mathcal T_\chi)
+\]
+
+is the identity of \(Q_\chi\) and is therefore an isomorphism.
+
+\textbf{Proof.} Equation (2.5) identifies the two restriction images, so
+both cokernels equal \(\mathscr B/E_\chi\mathscr V_\chi\). More
+explicitly, the change of chain coordinates
+\((\phi,\psi)\mapsto(\phi-\mathcal F^{-1}\psi,\psi)\) writes
+\(C_\chi^\bullet\) as \(C_{+,\chi}^\bullet\) plus
+\(\mathscr V_{\bar\chi}\) in degree zero. This also proves the assertion
+without any closure assumption. \(\square\)
+
+This is extension-by-zero cohomology relative to the specified
+compactification \(X_\theta\). It is not asserted to be the ordinary
+compact-support cohomology of the real half-line.
+
+The Frechet topology on \(\mathscr B\) also defines the Hausdorff
+quotient
+
+\[
+Q_\chi\twoheadrightarrow Q_\chi^{\mathrm{H}}:=\mathscr B/\overline{E_\chi\mathscr V_\chi}.
+\]
+
+All finite spectral observations below factor through both quotients. No
+equality of these two quotients or with the chapter-25 unspecified
+topology is assumed.
+
+The current draft uses \(\Theta=2E_0\) and seminorms
+\(\sup_{x>0}(x^N+x^{-N})|(x\partial_x)^jF(x)|\). These define precisely
+the same Frechet space \(\mathscr B\): each of its two summands is a
+defining seminorm above, and for \(|b|\le N\) one has
+\(x^b\le x^N+x^{-N}\). Since \(2E_0\mathscr V_0=E_0\mathscr V_0\), their
+closed images also agree. The chain map
+
+\[
+[\mathscr V_0\xrightarrow{E_0}\mathscr B]
+\xrightarrow{(\frac12\operatorname{id},\operatorname{id})}
+[\mathscr V_0\xrightarrow{\Theta}\mathscr B]
+\]
+
+is an isomorphism, with inverse
+\((2\operatorname{id},\operatorname{id})\). It induces the identity from
+\(Q_0^{\mathrm H}\) to the actual \(Q_\Theta\) in that appendix. This
+identifies our target topology with a specified workbench quotient, not
+with the source's unnamed Hadamard topology.
+
+\subsubsection{3.2 Dilation and the generator on this
+comparison}\label{dilation-and-the-generator-on-this-comparison}
+
+For \(a>0\), let \(R_aF(x)=F(ax)\). The left-chart action is
+\(\phi(x)\mapsto\phi(ax)\); the right-chart action is
+\(\psi(x)\mapsto a^{-1}\psi(x/a)\). Direct substitution proves
+\(r_+R_a=R_ar_+\) and \(r_-\rho_a^-=R_ar_-\). Thus (3.3) intertwines
+this action.
+
+The target infinitesimal operator is \(D=-x\partial_x\). The left
+operator is \(D\) and the right operator is \(1-D\). Fourier
+transformation satisfies \(\mathcal F D=(1-D)\mathcal F\). Every sign
+and the right-chart factor \(a^{-1}\) are retained.
+
+\subsection{4. Lift this same comparison through every supported
+fibre}\label{lift-this-same-comparison-through-every-supported-fibre}
+
+For an input diagram \((L,W,\rho)\), define
+
+\[
+\mathcal T_{\chi,l}=W_l\otimes_{\mathbb C}\mathcal T_\chi,
+\qquad \rho_{l,m}\otimes1:\mathcal T_{\chi,l}\to\mathcal T_{\chi,m}.
+\]
+
+This defines a functor from linear join diagrams to diagrams of sheaves
+on \(X_\theta\). Over a field, tensoring by \(W_l\) is exact, so
+
+\[
+H^1(X_\theta,\mathcal T_{\chi,l})=W_l\otimes Q_\chi,
+\quad H^1(c_l)=1_{W_l}\otimes1_{Q_\chi}. \tag{4.1}
+\]
+
+Reconstruct the supported carrier
+
+\[
+\widetilde H^1_\chi(M)=\bigsqcup_{l\in L}(W_l\otimes Q_\chi).
+\]
+
+The original join transports define its addition. The one scalar \(e\)
+sends an element in label \(l\) to \(0_{W_l\otimes Q_\chi}\); \(\tau\)
+sends it to the least-label origin. Higher labels have not been
+identified. An arbitrary diagram morphism \((\varphi,f_l)\) is carried
+to the maps \(f_l\otimes1\), and the original naturality squares remain
+commutative.
+
+For the two chart coefficients themselves the supported differential is
+
+\[
+\widetilde d(a,b)=\widetilde E_\chi(a)\oplus(-1)\widetilde r_-(b).
+\]
+
+Here each tilde is the linear-map extension sending external absence to
+external absence. Both inputs absent gives \(\tau\). An active pair with
+\(\phi=\mathcal F^{-1}\psi\) gives the supported zero of \(\mathscr B\).
+The zero-amplitude fibre therefore retains the chart mask and the full
+compatible pair.
+
+The construction covers every finite cyclic-degree coefficient fibre
+\(W_l\), and every compatible tower of such fibres, by the same formula
+(4.1). It imposes no identification between the index of a character, a
+dimension, and a support label.
+
+\subsection{5. The spectral factor is obtained from an actual test
+function}\label{the-spectral-factor-is-obtained-from-an-actual-test-function}
+
+Start on the open strip \(\Omega=\{s:0<\Re s<1\}\), and then extend the
+following multiplier maps to the whole plane as proved in section 5.3.
+In that section \(\mathcal O=\mathcal O_{\mathbb C}\). The strip
+restriction is available by pullback throughout.
+
+\subsubsection{5.1 Rational generator}\label{rational-generator}
+
+For \(g(x)=e^{-\pi x^2}\) put
+
+\[
+\phi_0(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}.
+\]
+
+This is \(D(D-1)g\). It is even, has value zero at the origin, and has
+zero integral, so it belongs to \(\mathscr V_0\). Mellin integration
+gives
+
+\[
+\mathcal M\phi_0(s)=\frac12s(s-1)\pi^{-s/2}\Gamma(s/2).
+\]
+
+Consequently,
+
+\[
+\boxed{\mathcal M(E_0\phi_0)(s)=\xi(s),\quad
+\xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).} \tag{5.1}
+\]
+
+This is an equality of entire functions, proved first on \(\Re s>1\) by
+absolute convergence and then by analytic continuation. The Gaussian
+Hermite-image result in chapter 25 is the source precedent; (5.1) is
+used here to compute the sheaf image, not claimed as a new identity.
+
+\subsubsection{5.2 Every primitive nonprincipal
+character}\label{every-primitive-nonprincipal-character}
+
+Retain the standard completed function
+
+\[
+\Lambda_\chi(s)=\left(\frac q\pi\right)^{(s+\epsilon)/2}
+\Gamma\!\left(\frac{s+\epsilon}{2}\right)L(s,\chi).
+\]
+
+Take the actual Schwartz function
+
+\[
+\phi_\chi(x)=2x^\epsilon e^{-\pi x^2/q}.
+\]
+
+Then
+
+\[
+\boxed{\mathcal M(E_\chi\phi_\chi)(s)=\Lambda_\chi(s).} \tag{5.2}
+\]
+
+The integral is \(\int_0^\infty2x^{s+\epsilon-1}e^{-\pi x^2/q}dx\).
+Substituting \(u=\pi x^2/q\) gives exactly the displayed conductor and
+gamma factors. No local factors at divisors of \(q\) are reinserted:
+\(\chi(n)=0\) there is part of the primitive L-function.
+
+Write \(\mathscr L_0=\xi\), \(\mathscr L_\chi=\Lambda_\chi\), and
+\(m_\chi=\mathcal M\phi_\chi\). Each \(m_\chi\) is holomorphic and
+nowhere zero on \(\Omega\).
+
+\subsubsection{5.3 The sheaf map and its calculated
+cokernel}\label{the-sheaf-map-and-its-calculated-cokernel}
+
+The quotient \(\mathcal M\phi/m_\chi\) extends to an entire function.
+Here is the needed continuation, retaining the apparent poles. For a
+parity-\(\epsilon\) Schwartz function, Taylor subtraction at the real
+origin continues \(\mathcal M\phi\) meromorphically, with possible
+simple poles at \(s=-\epsilon-2j\). The simple zeros of
+\(1/\Gamma((s+\epsilon)/2)\) cancel exactly those possible poles. In the
+rational moment-zero space, the value condition removes the pole at
+\(s=0\), while \(\int_0^\infty\phi=0\) gives \(\mathcal M\phi(1)=0\). In
+
+\[
+\frac{\mathcal M\phi}{m_0}
+=\frac{2\pi^{s/2}\mathcal M\phi(s)}{s(s-1)\Gamma(s/2)},
+\]
+
+the simple zero of \(1/\Gamma(s/2)\) cancels the explicit denominator
+\(s\); the moment condition cancels \(s-1\). For nonprincipal
+characters, the reciprocal gamma factor alone handles all possible
+poles, and the conductor exponential is entire and nonvanishing. This
+proves the full-plane extension and agrees with the multiplier
+calculation in the live arithmetic appendix. It does not divide by
+\(\xi\) or \(\Lambda_\chi\) at a zero.
+
+There is a commutative square of \(\mathcal O\)-module sheaves
+
+\[
+\begin{array}{ccc}
+\mathcal O\otimes_{\mathbb C}\mathscr V_\chi&\xrightarrow{1\otimes E_\chi}&\mathcal O\otimes_{\mathbb C}\mathscr B\\
+\alpha_\chi\downarrow&&\downarrow\beta\\
+\mathcal O&\xrightarrow{\times\mathscr L_\chi}&\mathcal O,
+\end{array} \tag{5.3}
+\]
+
+where
+
+\[
+\alpha_\chi(h\otimes\phi)=h\frac{\mathcal M\phi}{m_\chi},
+\qquad\beta(h\otimes F)=h\mathcal MF.
+\]
+
+Equation (2.6) proves commutativity. The left map is surjective because
+\(\alpha_\chi(1\otimes\phi_\chi)=1\). The right map is locally
+surjective. Choose a nonnegative, nonzero
+\(\psi\in C_c^\infty(\mathbb R)\) and set \(F(e^y)=e^{-s_0y}\psi(y)\).
+Then \(\mathcal MF(s_0)=\int\psi(y)dy>0\), so its Mellin germ is locally
+invertible. No unit-integral choice is required.
+
+\textbf{Theorem 5.1 (actual analytic presentation).} The image sheaf of
+the composite \(\mathcal M E_\chi\) is exactly \((\mathscr L_\chi)\).
+Therefore its presentation cokernel is
+
+\[
+\boxed{\mathcal Q_\chi=\mathcal O/(\mathscr L_\chi).} \tag{5.4}
+\]
+
+No zero locations are inserted in constructing the map. They are the
+support of its calculated cokernel.
+
+The analytic realization of the cohomology is the surjection
+
+\[
+\mathcal O\otimes Q_\chi\twoheadrightarrow\mathcal Q_\chi,
+\qquad h\otimes[F]\mapsto[h\mathcal MF]. \tag{5.5}
+\]
+
+Its kernel is explicitly
+
+\[
+\boxed{\ker\beta\,/\,(1\otimes E_\chi)(\ker\alpha_\chi).} \tag{5.6}
+\]
+
+To verify (5.6), an element \(b\) with \(\beta b=\mathscr L_\chi h\) can
+be replaced by \(b-(1\otimes E_\chi)(h\otimes\phi_\chi)\), which lies in
+\(\ker\beta\). The intersection of \(\ker\beta\) with the image of
+\(1\otimes E_\chi\) equals the image of \(\ker\alpha_\chi\), since
+multiplication by \(\mathscr L_\chi\) is injective on \(\mathcal O\).
+The precise pushout square is
+
+\[
+\begin{array}{ccc}
+\mathcal O\otimes\mathscr B&\longrightarrow&\mathcal O\otimes Q_\chi\\
+\beta\downarrow&&\downarrow\\
+\mathcal O&\longrightarrow&\mathcal O/(\mathscr L_\chi).
+\end{array}
+\]
+
+Indeed a map from \(\mathcal O\) compatible with a map from
+\(\mathcal O\otimes Q_\chi\) must kill
+\(\beta((1\otimes E_\chi)(\mathcal O\otimes\mathscr V_\chi))=(\mathscr L_\chi)\),
+and hence factors uniquely through the lower-right quotient. Thus the
+analytic realization is a computed pushout of the cokernel presentation,
+not an assertion that extension of scalars alone lost no relations.
+
+All these maps tensor by \(W_l\) and commute with every support
+transport. This is the promised map from the support-retaining theta
+cohomology to the actual completed spectral sheaf.
+
+\subsection{6. Every finite spectral jet is reached, with no zero table
+as
+input}\label{every-finite-spectral-jet-is-reached-with-no-zero-table-as-input}
+
+Let \(Z\) be any finite collection of zeros of \(\mathscr L_\chi\) in
+\(\Omega\), and retain their actual orders \(m_\rho\). Define
+
+\[
+A_Z=\bigoplus_{\rho\in Z}\mathcal O_\rho/(\mathscr L_\chi),
+\quad
+J_Z(F)=\left(\frac{(\mathcal MF)^{(j)}(\rho)}{j!}\right)_{\rho\in Z,\,0\le j<m_\rho}.
+\]
+
+This is the local expansion in \(t=s-\rho\). Writing
+\(\mathscr L_\chi=t^{m_\rho}U_\rho(t)\) identifies the ideal with
+\((t^{m_\rho})\) because \(U_\rho\) is a unit. The unit is not discarded
+from the residue pairing in section 7.
+
+\textbf{Theorem 6.1.} For every \(R>0\), the map \(J_Z\) on
+\(C_c^\infty((e^{-R},e^R))\) is surjective. It annihilates
+\(E_\chi\mathscr V_\chi\) as a map on \(\mathscr B\), and factors
+continuously through its closure quotient.
+
+\textbf{Proof.} The vanishing follows from (5.3). The component
+functionals are continuous on \(\mathscr B\). If a linear combination of
+their restrictions to the compact interval vanished, changing to
+\(y=\log x\) would make the analytic exponential polynomial
+
+\[
+\sum_{\rho,j}c_{\rho,j}e^{\rho y}y^j/j!
+\]
+
+zero throughout \((-R,R)\). Exponential polynomials with distinct
+exponents are independent. One proof applies
+\(\prod_{\eta\ne\rho}(\partial_y-\eta)^{m_\eta}\): it kills the other
+blocks, while each operator \(\partial_y+\rho-\eta\) is invertible on
+finite-degree polynomials. The remaining polynomial must vanish. Thus
+the functionals are linearly independent and their finite-dimensional
+joint map is onto. Continuity then gives vanishing on the closure.
+\(\square\)
+
+The surjectivity has a smooth, finite formula, not only a rank argument.
+Fix
+
+\[
+\eta_R(y)=
+\begin{cases}
+\exp[-1/(R^2-y^2)],&|y|<R,\\
+0,&|y|\ge R.
+\end{cases}
+\]
+
+Index the finite jets by \(\alpha=(\rho,j)\) and put
+\(r_\alpha(x)=x^{\bar\rho-1}(\log x)^j/j!\). The matrix
+
+\[
+B^R_{\alpha\beta}
+=\ell_\alpha(\eta_R(\log x)r_\beta(x))
+=\frac1{j!k!}\int_{-R}^R
+\eta_R(y)e^{(\rho+\bar\sigma-1)y}y^{j+k}\,dy
+\]
+
+is positive definite by the same exponential-polynomial independence.
+For a prescribed jet vector \(v\), the formula
+
+\[
+\boxed{F_v(x)=\eta_R(\log x)\sum_\beta((B^R)^{-1}v)_\beta r_\beta(x)}
+\]
+
+gives a function smooth on \(\mathbb R_{>0}\), supported in
+\([e^{-R},e^R]\), and \(J_Z(F_v)=v\). This formula lies in
+\(\mathscr B\). For support strictly inside \((e^{-R},e^R)\), replace
+\(\eta_R\) by \(\eta_{R'}\) for any explicitly chosen \(0<R'<R\); the
+same matrix argument applies. No infinite interpolation or selected zero
+table is assumed.
+
+On the local module, the arithmetic generator and dilation are exactly
+
+\[
+D\longmapsto M_s=\rho I+N,\qquad N(t^j)=t^{j+1},\quad N^{m_\rho}=0,
+\]
+
+\[
+\boxed{R_a\longmapsto a^{-\rho}\exp(-(\log a)N).} \tag{6.1}
+\]
+
+Indeed \(\mathcal M(DF)=s\mathcal MF\) and
+\(\mathcal M(R_aF)=a^{-s}\mathcal MF\). Consequently
+
+\[
+\operatorname{Tr}(h(M_s))=m_\rho h(\rho),
+\qquad\operatorname{Tr}(R_a)=m_\rho a^{-\rho}.
+\]
+
+The entire nilpotent jet is retained by (6.1), even when an ordinary
+trace sees only its multiplicity.
+
+\subsection{7. Duality on the actual local
+image}\label{duality-on-the-actual-local-image}
+
+There is a canonical perfect residue pairing
+
+\[
+\mathcal O_\rho/(\mathscr L_\chi)\ \times\
+\bigl(\mathscr L_\chi^{-1}\mathcal O_\rho\,ds/\mathcal O_\rho\,ds\bigr)
+\longrightarrow\mathbb C,
+\quad([a],[b\,ds/\mathscr L_\chi])\mapsto\operatorname{Res}_\rho\frac{ab}{\mathscr L_\chi}\,ds. \tag{7.1}
+\]
+
+If \(\mathscr L_\chi=t^mU(t)\), the matrix in the monomial numerator
+bases is
+
+\[
+G_{ij}=[t^{m-1-i-j}]U(t)^{-1},\qquad0\le i,j<m.
+\]
+
+Entries with negative coefficient index are zero. Its anti-diagonal
+equals \(U(0)^{-1}\), so
+
+\[
+\det G=(-1)^{m(m-1)/2}U(0)^{-m}.
+\]
+
+This proves nondegeneracy, including multiple zeros and the exact
+analytic unit.
+
+For an actual finite divisor invariant under \(s\mapsto1-\bar s\),
+define \(b^\#(s)=\overline{b(1-\bar s)}\). The finite trace pairing is
+
+\[
+\operatorname{Tr}(M_{ab^\#})
+=\sum_\rho m_\rho a(\rho)\overline{b(1-\bar\rho)}. \tag{7.2}
+\]
+
+For a non-real character, conjugation and reflection separately
+interchange the character with its conjugate; their composition
+\(s\mapsto1-\bar s\) preserves its zero divisor. Thus the stated
+stable-divisor hypothesis specifies the sector of (7.2). Equation (7.2)
+states the full finite test pairing; positivity is not inserted into
+(7.1), whose perfectness is bilinear duality rather than a sign
+assertion.
+
+For an abelian extension \(K/\mathbb Q\), let \(\chi\) run through its
+primitive associated Dirichlet characters, with conductors \(q_\chi\)
+and parities \(\epsilon_\chi\). With
+\(\Gamma_{\mathbb R}(s)=\pi^{-s/2}\Gamma(s/2)\) and
+\(\Gamma_{\mathbb C}(s)=2(2\pi)^{-s}\Gamma(s)\), the exact completion
+relation is
+
+\[
+\prod_\chi\Lambda_\chi(s)
+=\left(\prod_\chi q_\chi^{\epsilon_\chi/2}\right)
+|D_K|^{s/2}\Gamma_{\mathbb R}(s)^{r_1}\Gamma_{\mathbb C}(s)^{r_2}\zeta_K(s). \tag{7.3}
+\]
+
+The ordinary trivial factor in (7.3) is
+\(\Lambda_0=\Gamma_{\mathbb R}\zeta\), not \(\xi\). Replacing it by the
+sheaf generator \(\xi\) multiplies the product by \(s(s-1)/2\). Formula
+(7.3) uses the full primitive Euler factors and conductor-discriminant
+formula;
+\(\Gamma_{\mathbb R}(s)\Gamma_{\mathbb R}(s+1)=\Gamma_{\mathbb C}(s)\)
+retains the complex-place factor two. General number-field Hecke
+characters require their own adelic test spaces; that extension is not
+claimed from the rational-character calculation.
+
+\subsection{8. The actual finite-cutoff metric on this
+map}\label{the-actual-finite-cutoff-metric-on-this-map}
+
+The preceding finite-jet map gives a concrete metric computation. On the
+interval \(I_R=(e^{-R},e^R)\) use exactly
+
+\[
+\mathcal H_R=L^2(I_R,dx),\qquad \langle F,G\rangle=\int_{I_R}F\bar G\,dx.
+\]
+
+This measure is tied to the retained source half-density map, not chosen
+to manufacture a critical line: the map
+
+\[
+W_{1/2}:L^2(I_R,dx)\longrightarrow L^2(I_R,dx/x),\qquad F\mapsto x^{1/2}F
+\]
+
+is unitary because \(\int|x^{1/2}F|^2dx/x=\int|F|^2dx\). Equation (2.2)
+is its Mellin/Fourier intertwining formula.
+
+For the value functional \(\ell_\rho(F)=\mathcal MF(\rho)\), the Riesz
+vector is \(x^{\bar\rho-1}\). Put \(\kappa=2\Re\rho-1\). Direct
+integration gives
+
+\[
+\boxed{
+\|\ell_\rho\|_{\mathcal H_R^*}^2
+=\int_{-R}^R e^{\kappa y}\,dy
+=\begin{cases}
+(e^{\kappa R}-e^{-\kappa R})/\kappa,&\kappa\ne0,\\
+2R,&\kappa=0.
+\end{cases}} \tag{8.1}
+\]
+
+All constants are retained. Therefore
+
+\[
+\boxed{\lim_{R\to\infty}\frac1R\log\|\ell_\rho\|=|\Re\rho-\tfrac12|.} \tag{8.2}
+\]
+
+For a derivative jet,
+
+\[
+\ell_{\rho,j}(F)=\frac1{j!}\int_{I_R}F(x)x^{\rho-1}(\log x)^j\,dx,
+\]
+
+and, writing \(r_{\sigma,k}(x)=x^{\bar\sigma-1}(\log x)^k/k!\) for the
+Riesz vector, the Gram entry \(\ell_{\rho,j}(r_{\sigma,k})\) is
+
+\[
+\boxed{
+\frac1{j!k!}\int_{-R}^R e^{(\rho+\bar\sigma-1)y}y^{j+k}\,dy.
+} \tag{8.3}
+\]
+
+The formula is entire in the combined exponent, with its value at zero
+obtained from the integral. Linear independence from Theorem 6.1 makes
+the finite Gram matrix positive definite. Writing
+\(A_{\alpha\beta}=\ell_\alpha(r_\beta)\) for (8.3), the least-norm lift
+in \(\mathcal H_R\) is
+
+\[
+F_v^{\min}=\sum_\beta(A^{-1}v)_\beta r_\beta,
+\qquad \|F_v^{\min}\|^2=\bar v^{\mathsf T}A^{-1}v.
+\]
+
+It need not vanish at the interval endpoints, so it is not asserted to
+belong to the original compactly supported smooth class. The infimum
+over smooth compactly supported exact lifts is the same: approximate
+\(F_v^{\min}\) in \(\mathcal H_R\) by smooth compactly supported
+functions, and correct their finite jet errors using the fixed smooth
+right inverse in section 6. That correction tends to zero in norm. Thus
+this is a calculated quotient metric of the actual test functions, not a
+claimed Hilbert norm on the complete arithmetic cohomology.
+
+Equations (8.1)-(8.3) replace an unspecified weight comparison by an
+exact metric of the map now constructed. Chen--Moriwaki's
+HN-to-one-place comparison controls the degree of specified adelic
+vector bundles. It has not been applied to these cutoff quotient norms:
+the necessary adelic norm family and the relevant global two-sided
+estimate are not supplied by that theorem. The local growth in (8.2) is
+exactly what such a comparison would have to control, without replacing
+an eigenvalue by its imaginary part.
+
+\subsection{9. Connection to the preceding Rees
+calculation}\label{connection-to-the-preceding-rees-calculation}
+
+The comparison (3.3) is an explicit map; its analytic realization is
+(5.3)-(5.6). On any common filtration pulled back from \(\mathscr B\),
+Theorem 3.1 is strict because both images carry the same quotient
+filtration. Thus its Rees defect vanishes for that \emph{particular}
+filtration, regardless of the locations of zeros. That computation is
+not a weight-purity assertion.
+
+The local order filtration \(t^j\mathcal O_\rho/(t^m)\) has generator
+(6.1), and the residue pairing (7.1) retains its analytic unit. The
+metric (8.3) supplies an independent, explicitly defined cutoff
+filtration/norm input. Constructing the two-sided global weight estimate
+for this arithmetic realization remains the live step; the arithmetic
+map, its local cokernel, its finite observations and its cutoff metric
+have now been given.
+
+The previous uniform-shift family was a scalar trace model. The map here
+uses \(E_\chi\), two actual Fourier-related chart restrictions, and
+their sheaf cohomology before any zero is specified. Its theta/Mellin
+generator is derived from explicit test functions. This is the
+distinction in what has been constructed, not a claim to have proved RH
+or a new general form of Weil II.
+
+\subsection{10. Sources, scope and
+integration}\label{sources-scope-and-integration}
+
+\begin{itemize}
+\item
+  Zeta workbench, pinned base
+  \texttt{42d00e359b16d52ca71568ce5e3db5341949d929}, chapter 14: the
+  semimodule/linear-join-diagram equivalence, definitions and fibre
+  transports. Read via connected GitHub and the uploaded TeX copy.
+\item
+  Same workbench, chapter 25, lines 1-220 and 260-460: the actual E-map,
+  polynomial multiples of Xi, source topology warning, heat transport
+  and existing compact analytic quotient. The present note does not
+  equate a principal analytic ideal with the source's unspecified closed
+  Hadamard subspace.
+\item
+  Same workbench, chapter 15, beginning and sheaf/jet portions:
+  already-existing divisor and jet notation. These are integrated, not
+  counted as a newly discovered divisor construction.
+\item
+  Connes--Consani, \emph{BC-system, absolute cyclotomy and the quantized
+  calculus}, supplied \texttt{arXiv-2112.08820v1.tar.gz},
+  \texttt{SullivanRH.tex}, particularly lines 691-705: the E-map and
+  Poisson/radical relation. Original LaTeX read, not OCR.
+\item
+  Meyer, \emph{A spectral interpretation for the zeros of the Riemann
+  zeta function}, arXiv:math/0412277, and \emph{On a representation of
+  the idele class group related to primes and zeros of L-functions},
+  arXiv:math/0311468: outside-source abstracts checked for historical
+  attribution only. Full papers were not retrieved and their uninspected
+  technical theorems are not used as proofs here.
+\item
+  Connes--Consani, \emph{Schemes over F1 and zeta functions},
+  arXiv:0903.2024: bibliographic precedent for projective-line/adelic
+  spectral sheaf constructions; the finite-space sheaf used here is
+  defined and computed in this note rather than attributed
+  formula-for-formula to an unread full text.
+\item
+  Cogdell, \emph{On Artin L-functions}: supplied character factorization
+  and completion conventions support the explicit arithmetic assembly
+  (7.3).
+\item
+  Chen--Moriwaki, \emph{Positivity in Arakelov Geometry over Adelic
+  Curves} (2024), supplied corrected edition: HN casting and its
+  retained degree error. That estimate is not silently transferred to a
+  different map.
+\item
+  Live draft PR \#3 at commit
+  \texttt{9103a500c37c83534493c202db4fc6a96aa2a073},
+  \texttt{workbenches/split-support-rees-trace/ACTUAL\_ADELIC\_COMPARISON.md},
+  all returned sections 1-10 read in two range fetches. It was added
+  during this session. Its actual section-count/trace model, multiplier
+  continuation, finite jets and pairing calculations overlap this work
+  and are explicitly integrated. No independent audit of its checker was
+  performed. The prepared patch only adds a separate subdirectory and
+  does not replace this file.
+\end{itemize}
+
+Authored continuation: research direction and split-support framework by
+the repository owner; derivations, exposition and tests produced in this
+ChatGPT session. No independent review or novelty claim. The checks are
+finite tests of the algebraic formulas; they do not certify the analytic
+theorems, the imported literature, or RH. No protected source text is
+included in the public GitHub addition.
+
+\end{document}

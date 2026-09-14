@@ -1,0 +1,841 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable,array,enumitem,hyperref}
+\usepackage[T1]{fontenc}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{problem}[definition]{Research Problem}
+\newtheorem{remark}[definition]{Remark}
+\newcommand{\B}{\mathbb B}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\ldim}{\operatorname{ldim}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\Exp}{\operatorname{Exp}}
+\title{Cumulative theorem ledger for the nullity-adjunction and derived-layer program}
+\author{Reconstructed from the 2026-07-10/11 working corpus}
+\date{11 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document records the mathematical content reconstructed from the split-zero, nullity-adjunction, mixed-support, Cayley--Dickson, Terzo exponential-algebra, Apollonian, and Connes--Consani working files.  A theorem is included only when a proof is supplied here or a precise literature theorem is cited.  Statements proved only in finite models are labelled as finite certificates.  Statements in exponential algebra that use Schanuel's conjecture are stated as theorems of the theory $\mathrm{ZFC}+\mathrm{SC}$.  The proposed Schanuel--Riemann bridge, the global $K=4$ operation, the Connes--Consani pullback, and anomaly/Ricci-flow interpretations remain research problems, not conclusions.
+\end{abstract}
+
+\noindent\textbf{Standing conventions.}
+All rings are commutative with identity.  A semiring is commutative and unital and has a specified additive identity.  Prime spectra of semirings are ideal-theoretic unless otherwise stated.  The symbols $0_A$ and $0_B$ are typed elements of different carriers; the invariant statement for a morphism $f:A\to B$ is $f(0_A)=0_B$.  The symbol $\tau$ denotes a newly adjoined global zero, while $e$ denotes a supported zero inherited from the preceding layer.  No equality $\tau=e$ is imposed.
+
+\begin{definition}[Zero-forgotten rigs]
+Let $\mathbf{Rig}^{\neg0}$ be the category whose objects are tuples
+\[
+A=(|A|,+,\cdot,1_A)
+\]
+for which $(|A|,+)$ is a commutative semigroup, $(|A|,\cdot,1_A)$ is a commutative monoid, and multiplication distributes over addition.  The signature contains no nullary additive symbol.  Morphisms preserve $+$, $\cdot$, and $1$.  Let
+\[
+U:\mathbf{Rig}\longrightarrow\mathbf{Rig}^{\neg0}
+\]
+be the reduct functor that forgets the distinguished zero of a commutative semiring.
+\end{definition}
+
+\begin{definition}[Nullity adjunction]
+For $A\in\mathbf{Rig}^{\neg0}$ define
+\[
+\mathfrak Z(A):=A\sqcup\{\tau_A\},
+\]
+where the union is disjoint, and extend the operations by
+\[
+\tau_A+a=a+\tau_A=a,\qquad \tau_Aa=a\tau_A=\tau_A.
+\]
+Set $0_{\mathfrak Z(A)}=\tau_A$ and $1_{\mathfrak Z(A)}=1_A$.  For $f:A\to B$, put $\mathfrak Z(f)|_A=f$ and $\mathfrak Z(f)(\tau_A)=\tau_B$.
+\end{definition}
+
+\begin{theorem}[Zero-adjunction]
+The functor $\mathfrak Z$ is left adjoint to $U$:
+\[
+\mathfrak Z\dashv U.
+\]
+For every $A\in\mathbf{Rig}^{\neg0}$ and $S\in\mathbf{Rig}$, restriction induces a natural bijection
+\[
+\Hom_{\mathbf{Rig}}(\mathfrak Z(A),S)
+\cong
+\Hom_{\mathbf{Rig}^{\neg0}}(A,U(S)).
+\]
+\end{theorem}
+
+\begin{proof}
+Associativity and commutativity of addition and multiplication on supported elements are inherited from $A$.  If an additive expression contains $\tau_A$, deleting that occurrence leaves the same value; this proves associativity in every remaining case.  If a product contains $\tau_A$, both associations equal $\tau_A$.  For distributivity, the only new cases are
+\[
+\tau_A(y+z)=\tau_A=\tau_Ay+\tau_Az
+\]
+and
+\[
+x(\tau_A+z)=xz=x\tau_A+xz=\tau_A+xz.
+\]
+Thus $\mathfrak Z(A)$ is a semiring.  The formula for $\mathfrak Z(f)$ preserves the operations by the same cases, so $\mathfrak Z$ is a functor.
+
+Given $g:A\to U(S)$, define $\widetilde g:\mathfrak Z(A)\to S$ by
+\[
+\widetilde g(a)=g(a),\qquad \widetilde g(\tau_A)=0_S.
+\]
+The identities $0_S+s=s$ and $0_Ss=0_S$ show that $\widetilde g$ is a semiring morphism.  Conversely, every semiring morphism $h:\mathfrak Z(A)\to S$ sends $\tau_A$ to $0_S$, and its restriction to $A$ lies in the right-hand Hom-set.  Extension and restriction are inverse.  Their formulas commute with precomposition in $A$ and postcomposition in $S$, proving naturality.
+\end{proof}
+
+\begin{corollary}[Unit and counit]
+The unit is the inclusion
+\[
+\eta_A:A\hookrightarrow U\mathfrak Z(A).
+\]
+The counit
+\[
+\varepsilon_S:\mathfrak ZU(S)\to S
+\]
+is the identity on the supported copy of $S$ and sends the new element $\tau$ to $0_S$.  If $S$ already has a supported zero $e=0_S$, then $\varepsilon_S$ identifies the two distinct elements $e$ and $\tau$.
+\end{corollary}
+
+\begin{definition}[Origin relation]
+For a map of sets $i:L\to X$ and $x\in X$, define
+\[
+\operatorname{Orig}_i(x):=
+\Hom_{\mathbf{Set}/X}(\widehat x,i),
+\]
+where $\widehat x:\mathbf1\to X$ is the point $x$.
+\end{definition}
+
+\begin{theorem}[Empty origin fibre]
+There is a canonical bijection
+\[
+\operatorname{Orig}_i(x)\cong i^{-1}(x).
+\]
+For the unit $\eta_A:A\hookrightarrow A\sqcup\{\tau_A\}$,
+\[
+\operatorname{Orig}_{\eta_A}(a)\cong\mathbf1\quad(a\in A),
+\qquad
+\operatorname{Orig}_{\eta_A}(\tau_A)=\varnothing.
+\]
+Thus the empty set is the value of the local-origin relation at the new global point; it is not an additional numerical element.
+\end{theorem}
+
+\begin{proof}
+A morphism $\widehat x\to i$ over $X$ is a map $u:\mathbf1\to L$ satisfying $i(u(*))=x$.  It is therefore exactly an element of the fibre $i^{-1}(x)$.  The second assertion follows because $\eta_A$ is a disjoint inclusion.
+\end{proof}
+
+\begin{definition}[Split globalization]
+For a nonzero commutative ring $A$, put
+\[
+G(A):=A\sqcup\{\tau\}=\mathfrak ZU(A).
+\]
+Write $e:=0_A\in A\subset G(A)$.  Then $\tau=0_{G(A)}$ and $e\ne\tau$.
+\end{definition}
+
+\begin{theorem}[Ideals and primes of a split globalization]
+For every ideal $I\triangleleft A$, put $I^\sharp=I\cup\{\tau\}$.  Then
+\[
+\operatorname{Id}(G(A))=\{\{\tau\}\}\cup\{I^\sharp:I\triangleleft A\},
+\]
+and
+\[
+\Spec G(A)=\{P_\tau\}\sqcup\{\mathfrak p^\sharp:\mathfrak p\in\Spec A\},
+\qquad P_\tau=\{\tau\}.
+\]
+If $\dim A<\infty$, then
+\[
+\dim G(A)=\dim A+1.
+\]
+\end{theorem}
+
+\begin{proof}
+Every ideal of $G(A)$ contains the semiring zero $\tau$.  Let $J$ be an ideal.  If $J\cap A=\varnothing$, then $J=\{\tau\}$.  Otherwise choose $a\in J\cap A$.  Since $0_Aa=0_A$, one has $0_A\in J\cap A$.  Closure under addition and multiplication by supported elements shows that $I=J\cap A$ is an ideal of $A$, and $J=I^\sharp$.  Conversely, every $I^\sharp$ is directly checked to be an ideal.
+
+The ideal $P_\tau$ is prime because a product of two supported elements is supported, even when its amplitude is $0_A$.  Thus a product equals $\tau$ only if one factor is $\tau$.  For $I^\sharp$, primality is equivalent to primality of $I$, since products of supported elements are computed in $A$.
+
+Every prime chain in $G(A)$ contains at most the initial prime $P_\tau$ followed by a chain $\mathfrak p_0^\sharp\subsetneq\cdots\subsetneq\mathfrak p_r^\sharp$ coming from $A$.  Conversely, adjoining $P_\tau$ below any prime chain of $A$ gives a chain one step longer.  The dimension formula follows.
+\end{proof}
+
+\begin{corollary}[Coordinate-algebra interpretation of the complex layer]
+For
+\[
+A_{\C}:=\R[x,y],
+\]
+one has
+\[
+\dim A_{\C}=2,
+\qquad
+\dim G(A_{\C})=3.
+\]
+The origin $0_{\C}=(0,0)$ corresponds to the maximal ideal $(x,y)$ of the coordinate algebra, the supported zero amplitude is the element $e=0_{A_{\C}}$, and global absence is $\tau$.  These are three differently typed data.
+\end{corollary}
+
+\begin{definition}[Mixed-support quadratic double]
+Let $A$ be a nonzero commutative ring, $S=G(A)$, and $u=-1_A\in A\subset S$.  Define
+\[
+D_A:=S\oplus S
+\]
+with coordinatewise addition and multiplication
+\[
+(a,b)\star(c,d)=\bigl(ac+ubd,\ ad+bc\bigr).
+\]
+Write
+\[
+\mathbf0=(\tau,\tau),\quad X_a=(a,\tau),\quad Y_a=(\tau,a),
+\]
+and, for $B=A[t]/(t^2+1)$,
+\[
+Z_{a+tb}=(a,b).
+\]
+\end{definition}
+
+\begin{theorem}[Semiring law for the mixed double]
+$D_A$ is a commutative semiring with zero $\mathbf0$ and unit $X_1$.  Its face products are
+\[
+X_aX_b=X_{ab},\quad X_aY_b=Y_{ab},\quad Y_aY_b=X_{-ab},
+\]
+\[
+X_aZ_z=Z_{az},\quad Y_aZ_z=Z_{taz},\quad Z_zZ_w=Z_{zw}.
+\]
+\end{theorem}
+
+\begin{proof}
+Coordinatewise addition is a commutative monoid.  Commutativity of $\star$ follows from commutativity of $S$.  For associativity, the first coordinate of $((a,b)\star(c,d))\star(e,f)$ is
+\[
+ace+ubde+uadf+ubcf,
+\]
+which equals the first coordinate of $(a,b)\star((c,d)\star(e,f))$.  The second coordinates are both
+\[
+acf+ubdf+ade+bce.
+\]
+Distributivity is the bilinearity of the displayed formula.  Since $u^2=1$, the stated unit and face products follow by substitution.
+\end{proof}
+
+\begin{definition}[Mixed-double ideal families]
+For $H\triangleleft B$, put
+\[
+M_H=\{\mathbf0\}\cup\{Z_z:z\in H\}.
+\]
+For $J\triangleleft A$ and $H\triangleleft B$ satisfying $JB\subseteq H$, put
+\[
+I_{J,H}=M_H\cup\{X_a:a\in J\}\cup\{Y_a:a\in J\}.
+\]
+Let
+\[
+M=\{\mathbf0\}\cup\{Z_z:z\in B\}.
+\]
+\end{definition}
+
+\begin{theorem}[Complete ideal classification]
+Every ideal of $D_A$ is exactly one of
+\[
+\{\mathbf0\},\qquad M_H,\qquad I_{J,H},
+\]
+with the conditions of the preceding definition.
+\end{theorem}
+
+\begin{proof}
+Let $I\triangleleft D_A$.  If $I$ contains no mixed element $X_a$ or $Y_a$, then $I\subseteq M$.  The set
+\[
+H=\{z\in B:Z_z\in I\}
+\]
+is an ideal of $B$, because addition and multiplication inside the synchronized face are the operations of $B$, and multiplication by arbitrary faces preserves synchronization.  Thus $I=M_H$, unless $I=\{\mathbf0\}$.
+
+Suppose $I$ contains a mixed element.  Define
+\[
+J_X=\{a:X_a\in I\},\qquad J_Y=\{a:Y_a\in I\}.
+\]
+The identities $X_aY_1=Y_a$ and $Y_aY_{-1}=X_a$ imply $J_X=J_Y=:J$.  Addition and multiplication by $X_r$ show that $J\triangleleft A$.  Define $H$ as above; then $H\triangleleft B$.  Since $X_aZ_z=Z_{az}$, one has $JB\subseteq H$.  Every element of $I$ belongs to $I_{J,H}$ and the reverse inclusion holds by definition.  Conversely, the face multiplication table verifies directly that every $M_H$ and $I_{J,H}$ is an ideal.
+\end{proof}
+
+\begin{theorem}[Complete prime classification]
+For $\mathfrak q\in\Spec B$ and $\mathfrak p\in\Spec A$, define
+\[
+Q_{\mathfrak q}:=I_{\mathfrak q\cap A,\mathfrak q},
+\qquad
+T_{\mathfrak p}:=I_{\mathfrak p,B}.
+\]
+Then
+\[
+\Spec D_A=
+\{P_\tau,M\}
+\sqcup\{Q_{\mathfrak q}:\mathfrak q\in\Spec B\}
+\sqcup\{T_{\mathfrak p}:\mathfrak p\in\Spec A\},
+\]
+where $P_\tau=\{\mathbf0\}$.  The prime $M$ is incomparable with every $Q_{\mathfrak q}$, and
+\[
+Q_{\mathfrak q}\subseteq T_{\mathfrak p}
+\iff
+\mathfrak q\cap A\subseteq\mathfrak p.
+\]
+\end{theorem}
+
+\begin{proof}
+The complement of $P_\tau$ is multiplicatively closed because the product of two nonzero support faces is nonzero.  The complement of $M$ consists of mixed faces and is closed under multiplication, so $M$ is prime.
+
+If $H\subsetneq B$, the ideal $M_H$ is not prime: choose $z\notin H$.  Then $X_0,Z_z\notin M_H$, but $X_0Z_z=Z_0\in M_H$.
+
+Suppose $I_{J,H}$ with $H\subsetneq B$ is prime.  Synchronized products show that $H$ is prime.  The inclusion $JB\subseteq H$ gives $J\subseteq H\cap A$.  Conversely, if $a\in H\cap A$, then $Z_a=X_aZ_1\in I_{J,H}$ while $Z_1\notin I_{J,H}$, so primality gives $X_a\in I_{J,H}$ and $a\in J$.  Thus $J=H\cap A$, yielding $Q_H$.
+
+Conversely, let $\mathfrak q\in\Spec B$ and $\mathfrak p=\mathfrak q\cap A$.  The complement of $Q_{\mathfrak q}$ is closed under all products listed in the face table: synchronized products use primality of $\mathfrak q$; mixed--synchronized products use that $t$ is a unit in $B$; mixed--mixed products use primality of $\mathfrak p$.  Hence $Q_{\mathfrak q}$ is prime.
+
+When $H=B$, the complement of $I_{J,B}$ consists of mixed faces with coefficients outside $J$.  It is multiplicatively closed exactly when $J$ is prime, giving the $T_{\mathfrak p}$.  The inclusion relations and the incomparability of $M$ and $Q_{\mathfrak q}$ follow from their support faces.
+\end{proof}
+
+\begin{theorem}[Dimension of the mixed double]
+If $\dim A=d<\infty$, then
+\[
+\dim D_A=d+2.
+\]
+\end{theorem}
+
+\begin{proof}
+A prime chain $\mathfrak p_0\subsetneq\cdots\subsetneq\mathfrak p_d$ in $A$ gives
+\[
+P_\tau\subsetneq M\subsetneq T_{\mathfrak p_0}\subsetneq\cdots\subsetneq T_{\mathfrak p_d},
+\]
+so $\dim D_A\ge d+2$.
+
+Put $B=A[t]/(t^2+1)$.  This is finite integral over $A$.  By incomparability for integral extensions, strict chains in $\Spec B$ contract to strict chains in $\Spec A$.  A chain in $\Spec D_A$ cannot contain both $M$ and a $Q$-prime.  After $P_\tau$, it is therefore either an $M$ followed by a $T$-chain, or a $Q$-chain followed by a $T$-chain.  Contracting the $Q$-chain and adjoining the $T$-chain produces a chain in $A$, with at most one repeated prime at the junction.  Counting the initial $P_\tau$ and the one possible junction step shows that the original chain has length at most $d+2$.
+\end{proof}
+
+\begin{corollary}[A derived ideal-theoretic $K=4$ candidate]
+For $A=\R[x,y]$,
+\[
+\dim D(G(A))=4.
+\]
+An explicit chain is
+\[
+P_\tau\subsetneq M\subsetneq T_{(0)}\subsetneq T_{(x)}\subsetneq T_{(x,y)}.
+\]
+This establishes existence of a four-dimensional mixed-support globalization in the stated ideal-theoretic convention.  It does not prove uniqueness of a fourth layer or identify its characteristic operation.
+\end{corollary}
+
+\begin{proposition}[Boolean support shadow]
+Let $\chi:G(A)\to\B$ be $\chi(\tau)=0$ and $\chi(a)=1$ for $a\in A$.  Then
+\[
+\Chi:D_A\to\B[C_2],\qquad \Chi(a,b)=(\chi(a),\chi(b)),
+\]
+is a semiring homomorphism.  Its four values distinguish absence, first-leg support, second-leg support, and synchronized support.  Every scalar semiring morphism $D_A\to\B$ is the single map sending $\mathbf0$ to $0$ and every other element to $1$.
+\end{proposition}
+
+\begin{proof}
+The support of a sum is the Boolean join of supports, and the multiplication formula induces the Boolean convolution
+\[
+(p,q)(r,s)=(pr\vee qs,\ ps\vee qr).
+\]
+Thus $\Chi$ is a homomorphism.
+
+Let $f:D_A\to\B$ be scalar-valued.  Since $X_1$ is the unit, $f(X_1)=1$.  The ring identity $1+(-1)=0_A$ gives $X_1+X_{-1}=X_0$, so $f(X_0)=1$.  Since $X_0X_a=X_0$, one obtains $f(X_a)=1$ for every $a$.  Now $Y_1^2=X_{-1}$ forces $f(Y_1)=1$, and $Y_a=X_aY_1$ gives $f(Y_a)=1$.  Finally $Z_{a+tb}=X_a+Y_b$ has value $1$.  Hence the character is unique.
+\end{proof}
+
+\begin{definition}[Square-annihilator recovery datum]
+Let $K$ be a field of characteristic $0$, let $A$ be a unital, not necessarily associative, $K$-algebra, let $x\in A$, and let $\lambda\in K^\times$ satisfy
+\[
+x^2=-\lambda1_A.
+\]
+Put
+\[
+N_x=\Ann_r(x)=\{z\in A:xz=0\}.
+\]
+For the associator
+\[
+[a,b,c]=(ab)c-a(bc),
+\]
+define
+\[
+R_x:A\to A,\qquad R_x(z)=-\lambda^{-1}[x,x,z].
+\]
+\end{definition}
+
+\begin{theorem}[Binary nullity and ternary recovery]
+One has
+\[
+R_x(1_A)=0,
+\]
+and
+\[
+R_x|_{N_x}=\id_{N_x}.
+\]
+Thus old multiplication is zero on $N_x$, while the normalized repeated-input associator is the identity on precisely that annihilator module.
+\end{theorem}
+
+\begin{proof}
+Unitality gives
+\[
+[x,x,1_A]=x^2-x^2=0.
+\]
+If $z\in N_x$, then $xz=0$, whence
+\[
+[x,x,z]=(x^2)z-x(xz)=-\lambda z.
+\]
+Multiplication by $-\lambda^{-1}$ gives $R_x(z)=z$.
+\end{proof}
+
+\begin{proposition}[Associative obstruction]
+If $A$ is associative and $x^2=-\lambda1_A$ with $\lambda\ne0$, then $N_x=0$.
+\end{proposition}
+
+\begin{proof}
+The element $x$ is invertible with inverse $-\lambda^{-1}x$.  Hence $xz=0$ implies $z=x^{-1}xz=0$.
+\end{proof}
+
+\begin{definition}[Three-dimensional local model]
+Let $V=Ku\oplus Kv$ and let $B$ be the symmetric bilinear form
+\[
+B(u,u)=B(v,v)=-\lambda,\qquad B(u,v)=0.
+\]
+On $J_\lambda=K1\oplus V$, define
+\[
+(a+p)(b+q)=(ab+B(p,q))1+aq+bp.
+\]
+\end{definition}
+
+\begin{theorem}[Full ternary tensor]
+For $a+p,b+q,c+r\in J_\lambda$,
+\[
+[a+p,b+q,c+r]=B(p,q)r-B(q,r)p.
+\]
+In the basis $(1,u,v)$, the only nonzero basis associators are
+\[
+[u,u,v]=-\lambda v,\quad [u,v,v]=\lambda u,
+\]
+\[
+[v,u,u]=\lambda v,\quad [v,v,u]=-\lambda u.
+\]
+Consequently $R_u(v)=v$, $R_v(u)=u$, and the defining datum is a trilinear tensor with $3^3$ input cells, not a $2\times2$ characteristic polynomial.
+\end{theorem}
+
+\begin{proof}
+Multiplying twice, the scalar parts of $(xy)z$ and $x(yz)$ are both
+\[
+abc+cB(p,q)+aB(q,r)+bB(p,r).
+\]
+Their vector parts differ by
+\[
+B(p,q)r-B(q,r)p.
+\]
+Substitution of $p,q,r\in\{0,u,v\}$ gives the displayed table.
+\end{proof}
+
+\begin{proposition}[Loss under the ghost contraction]
+Define
+\[
+\mathcal C_{u,v}(T)(w)=T(v,u,w)-T(u,v,w)
+\]
+for trilinear $T$.  Then
+\[
+[L_u,L_v]=\mathcal C_{u,v}([\ ,\ ,\ ]).
+\]
+The map $\mathcal C_{u,v}$ is not injective and does not determine the repeated-slot component $[u,u,v]$.
+\end{proposition}
+
+\begin{proof}
+Since $uv=vu=0$,
+\[
+[v,u,w]-[u,v,w]=u(vw)-v(uw)=[L_u,L_v](w).
+\]
+Let $\beta$ be the trilinear map with $\beta(u,u,v)=v$ and zero on all other basis triples.  Then $\beta\ne0$, but $\mathcal C_{u,v}(\beta)=0$.  Hence the contraction and every invariant factoring through it lose the recovery component.
+\end{proof}
+
+\begin{theorem}[Moufang boundary in the signed Cayley--Dickson bases]
+The signed quaternion basis is an associative group of order $8$.  The signed octonion basis is a Moufang loop of order $16$ and is not associative.  The signed sedenion basis is a loop of order $32$ but is not Moufang; in the standard binary-index convention the triple $(e_1,e_2,e_{12})$ violates
+\[
+(xy)(zx)=(x(yz))x.
+\]
+\end{theorem}
+
+\begin{proof}
+The quaternion assertion is standard.  The nonzero octonions form an alternative division algebra; the invertible elements of every alternative algebra form a Moufang loop, and the signed basis is closed.  Nonassociativity is witnessed by $(e_1e_2)e_4=-e_1(e_2e_4)$ in the standard convention.  For the signed sedenion basis, Cayley--Dickson multiplication is closed and every row and column of its multiplication table is a permutation, so it is a loop.  Direct exact multiplication at the displayed triple gives opposite signs in the Moufang identity.  The complete finite table is reproduced by \texttt{verify\_moufang\_ladder.py}.
+\end{proof}
+
+\begin{definition}[Period-labelled recovery]
+Let $(K,E)$ be an exponential field and let
+\[
+\Pi_E=\ker(E:(K,+)\to(K^\times,\cdot)).
+\]
+For $\theta\in K$, define
+\[
+\mathcal M_{4,\theta}(a,b,c)=E(\theta)(-\lambda^{-1}[a,b,c])
+\]
+and retain the label:
+\[
+\widetilde{\mathcal M}_4(\theta;a,b,c)
+=(\theta,\mathcal M_{4,\theta}(a,b,c)).
+\]
+\end{definition}
+
+\begin{theorem}[The local $0/1$ register]
+For every $z\in N_x$ and $\omega\in\Pi_E$,
+\[
+xz=0,
+\qquad
+\widetilde{\mathcal M}_4(\omega;x,x,z)=(\omega,z).
+\]
+At the endomorphism level,
+\[
+\left(L_x|_{N_x},\ \omega,\ \mathcal M_{4,\omega}(x,x,-)|_{N_x}\right)
+=
+\left(0,\ \omega,\ 1_{\End_K(N_x)}\right).
+\]
+The projection that forgets $\omega$ sends every period lift to the same identity endomorphism, so no characteristic polynomial of the projected operator can recover the winding label.
+\end{theorem}
+
+\begin{proof}
+The first equality is the definition of $N_x$.  The recovery theorem gives $-\lambda^{-1}[x,x,z]=z$, and $E(\omega)=1$.  Hence the labelled output is $(\omega,z)$.  The endomorphism identity follows.  Every period projects to $\id_{N_x}$, whose characteristic polynomial is $(T-1)^{\dim N_x}$ independently of the period.
+\end{proof}
+
+\begin{theorem}[Terzo, in $\mathrm{ZFC}+\mathrm{SC}$]
+Let $[p,j]^E$ be the free $E$-ring on two generators and let
+\[
+\psi_{\pi,i}:[p,j]^E\to(\C,\exp),\qquad p\mapsto\pi,\quad j\mapsto i.
+\]
+In the theory $\mathrm{ZFC}+\mathrm{SC}$,
+\[
+\ker\psi_{\pi,i}=\langle j^2+1,\ E(pj)+1\rangle_E,
+\]
+and this $E$-ideal is not principal.
+\end{theorem}
+
+\begin{proof}
+This is Terzo's kernel theorem and nonprincipality theorem in Chapter 2, Section 2.4 of \emph{Consequences of Schanuel's Conjecture in Exponential Algebra}.  The proof is not reproduced here; the dependence on Schanuel's conjecture is part of the theorem's ambient theory.
+\end{proof}
+
+\begin{definition}[Relative $E$-generator number]
+For $E$-ideals $\mathfrak a\subseteq\mathfrak k$ in an $E$-ring, define
+\[
+\mu_E(\mathfrak k\mid\mathfrak a)
+:=
+\min\bigl\{|S|:\mathfrak k=\langle\mathfrak a\cup S\rangle_E\bigr\},
+\]
+when a finite generating set exists.  This counts generators relative to the relations already contained in $\mathfrak a$; it is not asserted to be a vector-space dimension.
+\end{definition}
+
+\begin{corollary}[One relative exponential generator]
+Let
+\[
+\mathfrak a=\langle j^2+1\rangle_E,
+\qquad
+\mathfrak k=\ker\psi_{\pi,i}.
+\]
+In $\mathrm{ZFC}+\mathrm{SC}$,
+\[
+\mu_E(\mathfrak k\mid\mathfrak a)=1.
+\]
+A possible relative generator is $E(pj)+1$.  Thus the marked pair has one additional $E$-ideal generator beyond its forced algebraic rotation relation, whereas the full kernel is nonprincipal.
+\end{corollary}
+
+\begin{proof}
+Terzo's theorem gives
+\[
+\mathfrak k=\langle\mathfrak a,E(pj)+1\rangle_E,
+\]
+so $\mu_E(\mathfrak k\mid\mathfrak a)\le1$.  If the relative generator number were zero, then $\mathfrak k=\mathfrak a=\langle j^2+1\rangle_E$ would be principal, contradicting Terzo's nonprincipality theorem.  Hence it equals one.
+\end{proof}
+
+\begin{corollary}[Period element in the Terzo quotient]
+In
+\[
+\overline F=[p,j]^E/\langle j^2+1,E(pj)+1\rangle_E,
+\]
+put $\varpi=2\bar p\bar j$.  Then
+\[
+E(\varpi)=1.
+\]
+In $\mathrm{ZFC}+\mathrm{SC}$, $\overline F$ embeds as the $E$-subring of $\C$ generated by $\pi$ and $i$, $\varpi$ maps to $2\pi i$, and
+\[
+\ker(E|_{\overline F})=\Z\varpi.
+\]
+Moreover the two terms in the Schanuel predimension are both one:
+\[
+\trdeg_{\Q}\Q(\varpi,E(\varpi))=1,
+\qquad
+\ldim_{\Q}\langle\varpi\rangle_{\Q}=1,
+\]
+and therefore
+\[
+\delta(\varpi)=1-1=0.
+\]
+\end{corollary}
+
+\begin{proof}
+Since $E(\bar p\bar j)=-1$,
+\[
+E(2\bar p\bar j)=E(\bar p\bar j)^2=1.
+\]
+Terzo's kernel theorem identifies the quotient with the marked $E$-subring, and the kernel of the complex exponential is $2\pi i\Z$.  The element $2\pi i$ is transcendental, so the transcendence degree and the rational linear dimension in the predimension formula are both one.
+\end{proof}
+
+\begin{corollary}[Tagged sedenion realization]
+For the tagged sedenion pair
+\[
+X=o_1[\bar0]-o_{1234}[\bar1],
+\qquad
+Y=o_2[\bar0]+o_{34}[\bar1],
+\]
+one has
+\[
+XY=YX=0,\qquad X^2=Y^2=-2.
+\]
+Hence
+\[
+-\tfrac12[X,X,z]=z\quad(z\in\Ann_r(X)),
+\]
+and, after complexification,
+\[
+\widetilde{\mathcal M}_4(2\pi i;X,X,z)=(2\pi i,z).
+\]
+The right annihilator has real dimension $8$ in the tagged algebra.  These identities are exact finite calculations; they do not prove that this local operation is the unique global fourth-layer functor.
+\end{corollary}
+
+\begin{theorem}[Ford--Farey equivalence]
+For reduced fractions $p/q$ and $r/s$ with $q,s>0$, let $C(p/q)$ and $C(r/s)$ be the Ford circles of radii $1/(2q^2)$ and $1/(2s^2)$.  Then
+\[
+\operatorname{dist}^2-(r_1+r_2)^2
+=
+\frac{(ps-qr)^2-1}{q^2s^2}.
+\]
+Consequently the circles are externally tangent if and only if $|ps-qr|=1$.
+\end{theorem}
+
+\begin{proof}
+The horizontal displacement is $(ps-qr)/(qs)$ and the vertical displacement is $1/(2q^2)-1/(2s^2)$.  Subtracting $(r_1+r_2)^2$ cancels the square terms in the radii and leaves the displayed expression.  Since $q,s>0$, equality to zero is equivalent to $(ps-qr)^2=1$.
+\end{proof}
+
+\begin{theorem}[Two-slot Erd\H{o}s--Straus obstruction for primes]
+For an odd prime $p$, the equation
+\[
+\frac4p=\frac1a+\frac1b
+\]
+has a solution in positive integers if and only if $p\equiv3\pmod4$.  In that case
+\[
+a=\frac{p+1}{4},\qquad b=\frac{p(p+1)}4
+\]
+is a solution.
+\end{theorem}
+
+\begin{proof}
+Clearing denominators and completing the product gives
+\[
+(4a-p)(4b-p)=p^2.
+\]
+Both factors are positive and congruent to $-p$ modulo $4$.  The positive factor pairs of $p^2$ are $(1,p^2)$ and $(p,p)$.  The second would require $p\equiv-p\pmod4$, impossible for odd $p$.  The first is admissible exactly when $1\equiv-p\pmod4$, namely $p\equiv3\pmod4$, and yields the displayed denominators.
+\end{proof}
+
+\begin{corollary}[Signed dissolution on the hard congruence class]
+If $n\equiv1\pmod4$ and $a=(n-1)/4$, then
+\[
+\frac4n
+=
+\frac1{a+1}+\frac1{a(a+1)}-\frac1{na}.
+\]
+\end{corollary}
+
+\begin{proof}
+The identity
+\[
+\frac1a=\frac1{a+1}+\frac1{a(a+1)}
+\]
+and the equality
+\[
+\frac1a-\frac1{na}=\frac{n-1}{na}=\frac4n
+\]
+prove the formula.
+\end{proof}
+
+\begin{theorem}[Kocik outer-corona residue theorem]
+For the outer corona of the curvature $-1$ circle in the Apollonian Window, Kocik's primitive-spinor parametrization gives curvatures
+\[
+\mathcal C=\{m^2+n^2+1:\gcd(m,n)=1\},
+\]
+up to the finite geometric symmetries of the corona.  Their residue sets are
+\[
+\mathcal C\bmod8=\{2,3,6\},
+\qquad
+\mathcal C\bmod3=\{0,2\},
+\]
+and therefore
+\[
+\mathcal C\bmod24=\{2,3,6,11,14,18\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Kocik's parametrization is the cited geometric input.  For the residue computation, primitivity excludes $m,n$ both even.  Odd squares are $1$ modulo $8$, while even squares are $0$ or $4$.  Thus the three possible values of $m^2+n^2+1$ modulo $8$ are $3,2,6$, and each occurs.  Modulo $3$, primitivity excludes simultaneous divisibility by $3$; if exactly one coordinate is divisible by $3$ the value is $2$, and if neither is divisible the value is $0$.  The Chinese remainder theorem gives the six displayed classes.  They are all realized, for example by primitive pairs $(1,0),(1,1),(1,2),(1,3),(1,6),(1,4)$.
+\end{proof}
+
+\begin{theorem}[Universal quadratic conductor]
+The largest positive integer $n$ for which every unit modulo $n$ has square $1$ is $24$.  Moreover
+\[
+U_{24}:=(\Z/24\Z)^\times\cong(\Z/2\Z)^3
+\]
+through the three quadratic characters $\chi_4,\chi_8,\chi_3$.
+\end{theorem}
+
+\begin{proof}
+If an odd prime $p$ divides $n$, reduction to $U_p$ shows that $p-1\le2$, so $p=3$.  If $3^2\mid n$, the unit $1+3$ has order $3$ modulo $9$, impossible; hence the $3$-part is at most $3$.  If $2^a\mid n$ with $a\ge4$, the unit $5$ has order at least $4$ modulo $16$, impossible; hence the $2$-part is at most $8$.  Therefore $n\mid24$.  Directly every unit modulo $24$ squares to $1$, proving maximality.
+
+The characters are multiplicative and their values on the eight units are distinct.  Hence their product map is a bijective homomorphism from $U_{24}$ to $\{\pm1\}^3$.
+\end{proof}
+
+\begin{theorem}[Marked conductor--octonion bridge]
+Let $V=(\F_2)^3$ grade a fixed standard octonion basis $\{e_v:v\in V\}$, with
+\[
+e_ue_v=\varepsilon(u,v)e_{u+v}.
+\]
+The diagonal algebra automorphism group is
+\[
+\operatorname{Aut}_{\mathrm{diag}}(\mathbb O)\cong V^\vee.
+\]
+After choosing the dot-product identification $V\cong V^\vee$, the character isomorphism of the preceding theorem gives a marked isomorphism
+\[
+U_{24}\xrightarrow{\sim}\operatorname{Aut}_{\mathrm{diag}}(\mathbb O).
+\]
+The sign function $\varepsilon$ is a normalized $2$-cochain but not a group $2$-cocycle.
+\end{theorem}
+
+\begin{proof}
+If $T(e_v)=\lambda(v)e_v$ is multiplicative, cancellation of the nonzero scalar $\varepsilon(u,v)$ gives
+\[
+\lambda(u+v)=\lambda(u)\lambda(v).
+\]
+Thus $\lambda\in V^\vee$.  Conversely every character defines a diagonal automorphism.  The marked isomorphism follows from $U_{24}\cong V$ and the chosen self-duality.
+
+If $\varepsilon$ were a $2$-cocycle, then homogeneous basis multiplication would be associative.  The standard octonion identity $(e_1e_2)e_4=-e_1(e_2e_4)$ contradicts this.  The appropriate structure is the cochain-twisted quasialgebra of Albuquerque--Majid.
+\end{proof}
+
+\begin{theorem}[The conductor-$35$ extension]
+Let $S_{840}=U_{840}^2$ and
+\[
+G_{840}^{\square35}=\{g\in U_{840}:g\bmod35\in U_{35}^2\}.
+\]
+Then
+\[
+1\to S_{840}\to G_{840}^{\square35}\to U_{24}\to1
+\]
+is split exact and
+\[
+G_{840}^{\square35}\cong U_{24}\times U_{35}^2
+\cong(\Z/2)^3\times C_2\times C_3.
+\]
+\end{theorem}
+
+\begin{proof}
+Since $840=24\cdot35$ and $\gcd(24,35)=1$, the Chinese remainder theorem gives $U_{840}\cong U_{24}\times U_{35}$.  Squaring is trivial on $U_{24}$, so $S_{840}\cong\{1\}\times U_{35}^2$.  Since $U_{35}\cong U_5\times U_7\cong C_4\times C_6$, its square subgroup is $C_2\times C_3$.  Projection to $U_{24}$ has the stated kernel, and the CRT lift that is $1$ modulo $35$ gives a section.
+\end{proof}
+
+\begin{proposition}[Finite full-packing certificate]
+For the Descartes seed $(-1,2,3,6)$, the orbit of the four Descartes reflections modulo $24$ contains exactly $40$ ordered states and has coordinate residues
+\[
+\{2,3,6,11,14,15,18,23\}.
+\]
+The outer-corona residue set is the proper subset obtained by deleting $15$ and $23$.  This is a finite theorem certified by the explicit predecessor-word and closure file \texttt{jt\_full\_packing\_mod24\_orbit\_certificate.txt}.
+\end{proposition}
+
+\begin{proof}
+The certificate lists a word in the four reflection generators reaching every one of the forty states.  It also records that applying every generator to every listed state remains in the list.  Reachability and closure prove that the list is exactly the orbit.  Reading all coordinates gives the displayed residue set.  Comparison with the preceding corona theorem gives the strict difference.
+\end{proof}
+
+\begin{theorem}[Carath\'eodory--Fej\'er corank-one circle theorem]
+Let $T\in M_n(\C)$ be Hermitian, positive semidefinite, Toeplitz, and of rank $n-1$.  If $0\ne\xi=(\xi_0,\ldots,\xi_{n-1})\in\ker T$, then
+\[
+P_\xi(z)=\sum_{k=0}^{n-1}\xi_kz^k
+\]
+has all its zeros on the unit circle.
+\end{theorem}
+
+\begin{proof}
+By the Carath\'eodory--Fej\'er structure theorem, there exist $n-1$ distinct points $z_j$ on the unit circle and positive weights $\alpha_j$ such that
+\[
+T=\sum_{j=1}^{n-1}\alpha_jv(z_j)v(z_j)^*,
+\qquad
+v(z)=(1,z,\ldots,z^{n-1})^t.
+\]
+If $\xi\in\ker T$, positivity gives $v(z_j)^*\xi=0$ for every $j$, hence
+\[
+P_\xi(\overline{z_j})=0.
+\]
+The polynomial has degree at most $n-1$ and has $n-1$ distinct roots on the unit circle.  Since it is nonzero, these are all its roots.
+\end{proof}
+
+\begin{remark}[Higher corank]
+When the kernel has dimension greater than one, an individual kernel polynomial may have additional off-circle zeros.  The common zero set of the full kernel is the circle-point support of the Carath\'eodory--Fej\'er decomposition.  The exact $5\times5$ corank-two example and its off-circle root $2$ are checked in \texttt{verify\_schanuel\_circle\_bridge.py}.
+\end{remark}
+
+\begin{definition}[The three rigorously distinct ``one'' registers]
+In $\mathrm{ZFC}+\mathrm{SC}$, define the relative exponential relation number of the marked pair $(\pi,i)$ to be $\mu_E(\mathfrak k\mid\mathfrak a)$; it equals $1$.  For a positive Toeplitz datum, the spectral one is the corank of the simple minimal eigenspace; it equals $1$ in the hypotheses of the preceding theorem.  In the Connes classifying-space construction, the geometric one is the codimension of the lamination whose leaf space is the adele class space; it is $1$ by construction.
+\end{definition}
+
+\begin{proposition}[No established equality of the three registers]
+The numerical equalities
+\[
+1_{\mathrm{relation}}=1_{\mathrm{corank}}=1_{\mathrm{codimension}}
+\]
+do not, by themselves, define a morphism, natural transformation, isomorphism, or implication between Schanuel's conjecture and the Riemann hypothesis.  None of the source theorems supplies a map from the relative $E$-ideal generator to the kernel line of the Weil form or to the transverse line of the adele-class lamination.
+\end{proposition}
+
+\begin{proof}
+The three objects live respectively in a quotient category of $E$-ideals, a Hilbert-space or Toeplitz-kernel category, and a geometric foliation/groupoid category.  Equality of their dimensions is not a morphism between their carriers.  Inspection of Terzo's theorem, the Carath\'eodory--Fej\'er theorem, the Connes--van Suijlekom construction, the Connes--Consani class-field covers, and the CCM spectral triples shows that no functor with the required source and target is defined there.  Therefore no implication is licensed by the cited results alone.
+\end{proof}
+
+\begin{problem}[Hard Schanuel--Riemann bridge]
+Construct, or prove the obstruction to constructing, a compatible system of maps
+\[
+\Phi_{\lambda,N}:
+(\mathfrak k/\mathfrak a,\,[E(pj)+1])
+\longrightarrow
+\bigl(\ker(QW_{\lambda,N}-\epsilon_{\lambda,N}I),\,\xi_{\lambda,N}\bigr)
+\]
+with the following properties:
+\begin{enumerate}[label=(\roman*)]
+\item $\Phi_{\lambda,N}$ sends the relative Euler relation class to a generator of the simple minimal eigenspace;
+\item the maps are compatible with the truncation maps in $N$ and scaling maps in $\lambda$;
+\item the period lattice $2\pi i\Z$ is intertwined with the winding/Frobenius monodromy of the Connes--Consani periodic-orbit covers;
+\item the regularized determinants of the resulting self-adjoint operators converge to the Riemann $\Xi$-function in a topology strong enough to pass zeros.
+\end{enumerate}
+This is a hard mathematical construction problem.  Its solution would provide an actual bridge; the present ledger proves only the relative one-generator statement on the exponential side and the corank-one statement on the spectral side.
+\end{problem}
+
+\begin{problem}[Core fourth-layer problem]
+Let $\mathcal C_3$ be a rigorously specified category containing the globalized complex coordinate algebra $G(\R[x,y])$.  Define a category $\mathcal C_4$, a reduct functor
+\[
+U_3:\mathcal C_4\to\mathcal C_3,
+\]
+and a left adjoint $F_3$, then compute $F_3(G(\R[x,y]))$.  The construction must retain the old binary nullity $xz=0$, supply a new operation whose annihilator restriction is the identity, preserve the unit through every reduct, and account for the fourth ideal-theoretic rank.  The mixed double supplies the rank and support branching; the period-labelled associator supplies a local $0/1$ operation.  A global theorem identifying them has not been proved.
+\end{problem}
+
+\noindent\textbf{Retractions and quarantines.}
+The following statements are excluded from the theorem record: (i) literal equality of zeros in different typed carriers; (ii) definition of the fourth-layer operation by conjugation; (iii) definition of the full ternary datum by $[L_X,L_Y]$ or its characteristic polynomial; (iv) use of Euler's identity inside an algebra containing $\C$ as evidence selecting that algebra; (v) treatment of the octonion sign cochain as an associative group $2$-cocycle; (vi) promotion of a bounded search to an unbounded classification; (vii) assertion of a Schanuel--RH equivalence without the bridge of the preceding problem.
+
+\noindent\textbf{Finite and formal verification record.}
+The reconstructed workspace contains independent programs for the zero-adjunction, mixed double, prime spectra, ternary recovery, Moufang boundary, supersignum shell, Apollonian residues, JT finite orbit, and the exact Toeplitz microcosm.  Their clean-subprocess summary is \texttt{fresh\_verification\_summary.tsv}.  \texttt{SplitZero.lean} formalizes the split-zero commutative-semiring core and ring reflection; it does not formalize every theorem in this ledger.
+
+\noindent\textbf{Reflections.}
+The stable mathematical core is now separated into four layers.  The nullity adjunction proves that the new global zero has an empty local-origin fibre.  The split and mixed spectra prove actual one-step rank increases.  The repeated-input associator proves a local operation satisfying the required $0/1$ law while its ghost commutator is only a lossy shadow.  Terzo, Carath\'eodory--Fej\'er, and Connes supply respectively a relative one-generator datum, a corank-one kernel, and a codimension-one geometry; the equality of the three integers is not yet the sought functor.  The next nontrivial theorem is therefore an intertwiner theorem: first between the mixed-support prime branch and the ternary annihilator bundle, and then between the pointed Terzo relation object and the Weil/adele-class kernel object.
+
+\begin{thebibliography}{99}
+\bibitem{Lawvere} F. W. Lawvere, \emph{Functorial Semantics of Algebraic Theories}, 1963; TAC Reprint 5.
+\bibitem{Golan} J. S. Golan, \emph{Semirings and their Applications}, Kluwer, 1999.
+\bibitem{AM} M. F. Atiyah and I. G. Macdonald, \emph{Introduction to Commutative Algebra}, Addison--Wesley, 1969.
+\bibitem{Terzo} G. Terzo, \emph{Consequences of Schanuel's Conjecture in Exponential Algebra}, doctoral thesis, 2008; local file \texttt{terzo\_schanuel\_exponential\_algebra.pdf}.
+\bibitem{Baez} J. C. Baez, \emph{The Octonions}, Bull. Amer. Math. Soc. 39 (2002), 145--205.
+\bibitem{Moreno} G. Moreno, \emph{The zero divisors of the Cayley--Dickson algebras over the real numbers}, arXiv:q-alg/9710013.
+\bibitem{AMajid} H. Albuquerque and S. Majid, \emph{Quasialgebra structure of the octonions}, J. Algebra 220 (1999), 188--224.
+\bibitem{Kocik} J. Kocik, \emph{Apollonian coronas and a new zeta function}, arXiv:1909.09941.
+\bibitem{Sarnak} P. Sarnak, \emph{Letter to J. Lagarias about Integral Apollonian Packings}, June 2007.
+\bibitem{CvS} A. Connes and W. van Suijlekom, \emph{Quadratic forms, real zeros and echoes of the spectral action}, arXiv:2511.23257; local TeX source.
+\bibitem{CCM} A. Connes, C. Consani and H. Moscovici, \emph{Zeta Spectral Triples}, arXiv:2511.22755.
+\bibitem{CC} A. Connes and C. Consani, class-field-cover manuscript arXiv:2501.06560; local TeX source.
+\bibitem{Pila} J. Pila, \emph{Point-Counting and the Zilber--Pink Conjecture}, Cambridge Tracts in Mathematics 228, 2022.
+\bibitem{Wilmot} G. P. Wilmot, \emph{Structure of the Cayley--Dickson algebras}, arXiv:2505.11747.
+\end{thebibliography}
+\end{document}

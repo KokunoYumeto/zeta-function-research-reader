@@ -1,0 +1,468 @@
+bash -lc cat > /mnt/data/Deligne_Mixed_Support_TeX_Study/STUDY.md <<'EOF'
+# Mixed support, Frobenius, and the two proposed GRH routes
+
+## Reading basis and what is established here
+
+This note starts from the supplied LaTeX, not from PDF extraction. The six Deligne wrapper ZIPs were joined in their declared order. The resulting archive has SHA-256 `e2005bf31e1fcf362765f73c315c855e0f504f24f34d3a0ab188049da522b7c8`, matching the supplied part metadata. The actual mathematical TeX lies in its nested historical-source archive.
+
+There is an important provenance limitation. The current S20 package records **zero accepted salvage members**. Its accepted current edition is stored separately as page-local text records. The French `fr_seg1.tex`, `fr_seg2.tex`, `fr_seg3.tex` and English Weil II TeX are retained historical witnesses, not a fresh verified transcription of Deligne. This note reads those TeX files, records their disagreements, and does not relabel them as a checked original. No PDF or page image was opened, and no OCR was run. The source inventory and reading ranges are in `READING_RECORD.md`.
+
+The constructive results proved here are: an idempotent localization of the actual mixed-support double; its all-degree cyclic extension over one shared split support; the reduction and Frobenius maps on that extension; explicit finite-field pure coefficient realizations; exact nilpotent/Frobenius blocks of arbitrary length; and translation and disjoint-support identities for the supplied NS class. They do not establish GRH or independently certify the upstream NS construction.
+
+The two proposed routes are examined separately: (A) derive arithmetic purity from mixed support, using Deligne's actual mechanisms; (B) transfer the NS singularity through a distinguished supported origin. The single bottom support is retained throughout. Higher coordinate or monodromy data are not identified with additional bottom supports.
+
+## 1. Read the actual mixed-support object first
+
+Let $A$ be a nonzero commutative ring and use the source globalization
+
+$$S=G(A)=A\sqcup\{\tau\},\qquad e=0_A\in S,\qquad u=-1_A\in S.$$
+
+Here $\tau$ is the additive identity and multiplicative absorber of $S$. The element $e$ is the old supported ring zero. Addition and multiplication of two supported elements remain the original ring operations, including when their result is $e$.
+
+The supplied cumulative ledger defines
+
+$$D_A=S\oplus S,$$
+
+with coordinatewise addition and
+
+$$
+(a,b)\star(c,d)=(ac\oplus ubd,\ ad\oplus bc).
+$$
+
+Its global zero is $\mathbf0=(\tau,\tau)$; its unit is $X_1=(1,\tau)$. Put
+
+$$
+X_a=(a,\tau),\qquad Y_b=(\tau,b),\qquad
+B=A[t]/(t^2+1),\qquad Z_{a+tb}=(a,b).
+$$
+
+In particular $X_e,Y_e,Z_{0_B}$ retain different leg-support data even though all have zero ordinary amplitude. The source multiplication table is
+
+$$
+X_aX_b=X_{ab},\quad X_aY_b=Y_{ab},\quad Y_aY_b=X_{-ab},
+$$
+
+$$
+X_aZ_z=Z_{az},\quad Y_aZ_z=Z_{taz},\quad Z_zZ_w=Z_{zw}.
+$$
+
+The Boolean support map is
+
+$$
+\Chi:D_A\longrightarrow\mathbb B[C_2],\qquad
+(a,b)\longmapsto(\chi(a),\chi(b)),
+$$
+
+where $\chi(\tau)=0$ and $\chi(a)=1$ for $a\in A$. Boolean multiplication is
+
+$$
+(p,q)(r,s)=(pr\vee qs,ps\vee qr).
+$$
+
+The scalar augmentation $(p,q)\mapsto p\vee q$ forgets which leg is supported. It does not identify the original mixed-support objects. These definitions and their semiring and ideal proofs are in the retained `mixed_support_ledger.tex`, lines 182–349.
+
+### 1.1 Joint support and amplitude recover the entire input
+
+Let $p_A:S\to A$ send $\tau$ and $e$ to $0_A$ and preserve supported amplitudes. Define
+
+$$
+\pi:D_A\to B,\qquad \pi(a,b)=p_A(a)+t\,p_A(b).
+$$
+
+It is a unital semiring homomorphism. Multiplication follows directly from $t^2=-1$ and the displayed source law; addition is coordinatewise.
+
+The map
+
+$$
+(\Chi,\pi):D_A\longrightarrow\mathbb B[C_2]\times B
+$$
+
+is injective. The residue classes $1,t$ form a free $A$-basis of $B$, so $\pi$ recovers the two ordinary coefficients. The mask says whether each coefficient came from $\tau$ or from the supported ring copy. A zero coefficient with mask one is $e$; the same coefficient with mask zero is $\tau$.
+
+This gives an exact recovery map on the constrained image. It does not replace mixed support by a single Boolean.
+
+### 1.2 The synchronization idempotent and its localization
+
+Define
+
+$$E=Z_{1_B}=(1,e).$$
+
+Then
+
+$$E^2=E,\qquad EX_a=Z_a,\qquad EY_b=Z_{tb},\qquad EZ_z=Z_z,\qquad E\mathbf0=\mathbf0.$$
+
+Thus $\mu_E(x)=Ex$ has image
+
+$$ED_A=\{\mathbf0\}\cup\{Z_z:z\in B\}.$$
+
+Give this image its actual unit $E$, not $X_1$. The map
+
+$$G(B)\longrightarrow ED_A,\qquad \tau_B\mapsto\mathbf0,\quad z\mapsto Z_z$$
+
+is a unital semiring isomorphism. Moreover,
+
+$$\boxed{D_A[E^{-1}]\cong G(B).}$$
+
+**Proof.** Multiplication by an idempotent is multiplicative: $(Ex)(Ey)=E^2xy=Exy$; it is additive by distributivity. For any unital semiring map $f:D_A\to T$ making $f(E)$ invertible, $f(E)^2=f(E)$ implies $f(E)=1_T$. Therefore $f(x)=f(Ex)$ and $f$ factors uniquely through $ED_A$. This is the localization universal property.
+
+This is not an additional split of the scalar zero. $E$ is the explicit synchronized-face idempotent in the already constructed double. Its action saturates leg support while preserving the ordinary amplitude. The factorization is
+
+$$D_A\xrightarrow{\mu_E}G(B)\xrightarrow{p_B}B,\qquad p_B\mu_E=\pi.$$
+
+In the source's prime classification, $\pi^{-1}(\mathfrak q)=Q_{\mathfrak q}$. The open locus where $E$ is invertible consists of $P_\tau$ and the $Q_{\mathfrak q}$ branches; the source's $M$ and $T_{\mathfrak p}$ primes contain $E$. This identifies the localization on the actual source spectrum.
+
+## 2. An all-degree extension with the same bottom support
+
+The following is a new extension of the source double, with the same fixed $S=G(A)$. For every integer $n\ge1$, define $D_{A,n}=S^n$. Its addition is coordinatewise and its product is
+
+$$
+(a\star b)_k=
+\bigoplus_{i+j=k}a_ib_j
+\ \oplus\!
+\bigoplus_{i+j=k+n}u\,a_ib_j,
+\qquad 0\le k<n.
+$$
+
+Every empty sum is $\tau$. The unit is $(1,\tau,\ldots,\tau)$. For $n=2$, this is exactly the supplied double, not a new replacement of it.
+
+### 2.1 Associativity in every degree
+
+Use the formal relation $t^n=u$ and the representative degrees $0,\ldots,n-1$. A monomial product with indices $i,j,k$ acquires total scalar factor
+
+$$u^{\lfloor(i+j+k)/n\rfloor}.$$
+
+Both parenthesizations give this factor because
+
+$$
+\left\lfloor\frac{i+j}{n}\right\rfloor+
+\left\lfloor\frac{(i+j)\bmod n+k}{n}\right\rfloor
+=\left\lfloor\frac{i+j+k}{n}\right\rfloor.
+$$
+
+Multiplication of the scalar coefficients is associative in $S$. Finite distributivity then proves associativity for all vectors, including absent coordinates. Commutativity and the unit follow from the same formula. No binomial cancellation involving $e$ and $\tau$ has been assumed.
+
+### 2.2 Amplitude, full masks, and synchronization
+
+Put
+
+$$B_{A,n}=A[t]/(t^n+1),\qquad
+\pi_n(a)=\sum_{i=0}^{n-1}p_A(a_i)t^i.$$
+
+The full support map is
+
+$$\Chi_n:D_{A,n}\to\mathbb B[C_n],\qquad
+\Chi_n(a)_i=\chi(a_i).$$
+
+It retains all $2^n$ masks. Addition is union of masks, and multiplication is addition of their indices modulo $n$. The sign $u$ is a supported scalar, so it has Boolean value one.
+
+As above, $(\Chi_n,\pi_n)$ is injective: the monic polynomial gives a free coefficient basis and the mask distinguishes absent from supported zero coefficients.
+
+Define
+
+$$E_n=(1,e,\ldots,e).$$
+
+Then $E_n^2=E_n$. Multiplication by $E_n$ sends the globally absent vector to itself and every other vector to the fully supported vector with the same ordinary coefficients. Consequently,
+
+$$\boxed{D_{A,n}[E_n^{-1}]\cong G(B_{A,n}).}$$
+
+The universal-property proof is exactly the idempotent-factorization proof of Section 1.2, now with $n$ retained legs.
+
+For $n\mid m$, put $k=m/n$ and define
+
+$$\iota_{n,m}:D_{A,n}\to D_{A,m}$$
+
+by placing $a_i$ in coefficient $ki$ and $\tau$ elsewhere. Its amplitude map is induced by $t_n\mapsto t_m^k$, since $(t_m^k)^n=-1$. This preserves products, additions and units. The map need not send $E_n$ to $E_m$; the exact identity is
+
+$$E_m\iota_{n,m}(E_n)=E_m.$$
+
+It therefore induces the corresponding map after synchronization. This retains what the interlevel operation actually does to masks.
+
+## 3. Frobenius on the actual mixed-support coordinates
+
+Let $A$ be an algebra over $\mathbb F_q$, with $q$ odd and $\gcd(n,q)=1$. Define
+
+$$F_S(\tau)=\tau,\qquad F_S(a)=a^q\quad(a\in A).$$
+
+Define $\Phi_q:D_{A,n}\to D_{A,n}$ by
+
+$$
+\boxed{
+(\Phi_q(a))_{qi\bmod n}
+=u^{\lfloor qi/n\rfloor}F_S(a_i),\qquad0\le i<n.
+}
+$$
+
+The index map is a permutation; absent inputs stay absent. For the original $n=2$ double this reads
+
+$$\Phi_q(a,b)=(F_S(a),\,(-1)^{(q-1)/2}F_S(b)).$$
+
+### 3.1 Exact semiring and amplitude equivariance
+
+The coefficient Frobenius preserves $\oplus$: for supported inputs this is the ordinary characteristic-$p$ identity, and the cases containing $\tau$ follow from its additive-identity rule. It preserves multiplication by the same cases.
+
+For products of basis monomials, reducing the index either before or after multiplication gives the exponent $\lfloor q(i+j)/n\rfloor$. On the coefficient side $F_S(u)=u^q=u$ because $q$ is odd and $u^2=1$. These identities prove multiplication preservation. Additivity then proves it for all vectors.
+
+Let $F_{B,q}(z)=z^q$ on $B_{A,n}$. Then
+
+$$\boxed{\pi_n\Phi_q=F_{B,q}\pi_n.}$$
+
+The mask is transported by the explicit permutation $i\mapsto qi\bmod n$. Also
+
+$$\Phi_q(E_n)=E_n,\qquad
+\Phi_q(E_na)=E_n\Phi_q(a).$$
+
+Thus Frobenius respects the localization just proved.
+
+### 3.2 Reduction from the number-field globalization
+
+For a nonzero prime $\mathfrak p\subset\mathcal O_K$, put
+
+$$k_{\mathfrak p}=\mathcal O_K/\mathfrak p,\qquad q_{\mathfrak p}=N\mathfrak p.$$
+
+Coefficient reduction gives the commuting square
+
+$$
+\begin{array}{ccc}
+D_{\mathcal O_K,n}&\longrightarrow&D_{k_{\mathfrak p},n}\\
+\downarrow\pi_n&&\downarrow\pi_n\\
+\mathcal O_K[t]/(t^n+1)&\longrightarrow&k_{\mathfrak p}[t]/(t^n+1).
+\end{array}
+$$
+
+The upper map sends $\tau$ to $\tau$. A supported coefficient divisible by $\mathfrak p$ goes to the supported residue zero, not to $\tau$. Thus the whole mask is retained under reduction, even when amplitudes vanish.
+
+The displayed Frobenius is available at $\mathfrak p\nmid2n$. Those excluded primes have not been omitted from a claimed global Euler product; this paragraph only constructs the stated finite-etale comparison at the stated primes. The original equality $\zeta_{G(\mathcal O_K)}=\zeta_K$ remains the source's equality through its ideal-norm maps, not a new assertion that $B_{\mathcal O_K,n}$ has the same zeta function.
+
+### 3.3 A completed finite-field purity calculation
+
+Take $A=\mathbb F_q$ and
+
+$$Y_n=\operatorname{Spec}\bigl(\mathbb F_q[t]/(t^n+1)\bigr).$$
+
+For $\gcd(q,2n)=1$, the polynomial is separable. Choose a primitive $2n$-th root $\zeta$ in $\overline{\mathbb F}_q$. The geometric points are
+
+$$r_j=\zeta^{2j+1},\qquad0\le j<n.$$
+
+Arithmetic Frobenius sends them by the exact affine permutation
+
+$$j\longmapsto qj+\frac{q-1}{2}\pmod n.$$
+
+The geometric Frobenius in Deligne's definitions is its inverse. If its cycle lengths are $d_1,\ldots,d_s$, both permutations have the same cycle lengths and
+
+$$\det(1-TF\mid H^0(Y_{n,\overline{\mathbb F}_q},\overline{\mathbb Q}_\ell))
+=\prod_{j=1}^s(1-T^{d_j}).$$
+
+Every eigenvalue is a root of unity, so every complex embedding has absolute value one: this coefficient object is pure of weight zero. For $n=2$, the determinant is $(1-T)^2$ if $q\equiv1\pmod4$, and $1-T^2$ if $q\equiv3\pmod4$.
+
+This is a genuine realization of Frobenius and purity reached through the actual mixed-support maps. The purity follows from the calculated finite Frobenius permutation. It is not inferred from the word “support,” nor is weight-zero local coefficient purity a proof of the global number-field GRH.
+
+## 4. What Deligne's LaTeX calls mixed and pure
+
+In the TeX's finite-field setup, geometric Frobenius is the inverse of $x\mapsto x^q$. The Tate object $\overline{\mathbb Q}_\ell(1)$ therefore has Frobenius eigenvalue $q^{-1}$ and weight $-2$.
+
+A sheaf is pointwise pure of weight $w$ when each nonzero Frobenius eigenvalue $\alpha$ at a closed point $x$ satisfies
+
+$$|\iota\alpha|=N(x)^{w/2}$$
+
+for the embeddings specified in the purity notion. A mixed sheaf has a finite filtration with pointwise pure graded quotients. These definitions appear in §1.2 of the witnesses. They do not discard multiplicity, Galois conjugates, or Tate factors.
+
+### 4.1 The proof mechanism in §1.5
+
+For a lisse $\iota$-real sheaf on a smooth absolutely irreducible curve, let $r$ be its largest determinantal weight. Deligne's TeX proof examines every even tensor power $\mathcal F^{\otimes2k}$. For a local Frobenius power,
+
+$$\operatorname{Tr}(F_x^m\mid\mathcal F^{\otimes2k})
+=\operatorname{Tr}(F_x^m\mid\mathcal F)^{2k}\ge0.$$
+
+That produces nonnegative coefficients in the corresponding reciprocal determinant series. The trace formula is
+
+$$
+\prod_x\det(1-F_xt^{\deg x}\mid\mathcal F^{\otimes2k})^{-1}
+=
+\frac{\det(1-Ft\mid H_c^1(X,\mathcal F^{\otimes2k}))}
+{\det(1-Ft\mid H_c^2(X,\mathcal F^{\otimes2k}))}.
+$$
+
+The geometric estimate on $H_c^2$ bounds the pole-free disk by the exact exponent $kr+1$. Positivity of coefficients prevents a local factor with a smaller convergence radius from being hidden by the remaining factors. For an eigenvalue $\alpha$ at a point of degree $d$, the displayed conclusion is
+
+$$|\iota\alpha|^{-2k/d}\ge q^{-kr-1},$$
+
+so
+
+$$\frac{2\log|\iota\alpha|}{d\log q}\le r+\frac1k.$$
+
+The argument uses all positive integers $k$. Letting $k$ increase gives the upper weight bound $r$. Exterior powers isolate each determinantal-weight block. Its sum of eigenvalue weights is already exactly its rank times its determinantal weight. If every term is at most that weight and their sum is equal to the prescribed sum, every term equals it. This is the source's actual tensor-amplification and determinant rigidity mechanism (§1.5.2–1.5.3), not the claim that integrality alone implies purity.
+
+The geometric curve input and the cohomological pole estimate are indispensable parts of this argument. The source transcript has several defects elsewhere, documented in the reading record; this explanation uses the displayed §1.5 inequalities and their explicit algebra rather than treating the entire historical witness as independently verified.
+
+### 4.2 The exact supported-image purity map
+
+The TeX's §3.3.4 gives
+
+$$\text{weights }H_c^i(X,\mathcal F)\le w+i$$
+
+for $\mathcal F$ of weights at most $w$. For smooth $X$ of pure dimension $d$ and lisse pure $\mathcal F$, duality gives
+
+$$
+H^i(X,\mathcal F)
+\cong
+H_c^{2d-i}(X,\mathcal F^\vee)^\vee(-d).
+$$
+
+The compactly supported group on the right has weights at most $-w+2d-i$. Dualizing reverses signs. The retained Tate factor $(-d)$ adds $2d$ to the weight. Thus ordinary cohomology has weights at least $w+i$.
+
+Now take the actual natural map
+
+$$c_i:H_c^i(X,\mathcal F)\longrightarrow H^i(X,\mathcal F).$$
+
+Its image is a Frobenius-equivariant quotient of the first group and a Frobenius-equivariant subspace of the second. Every eigenvalue in the image therefore has both bounds:
+
+$$\boxed{
+\operatorname{im}c_i\text{ is pure of weight }w+i.
+}$$
+
+This is §3.3.6. It is a particularly concrete candidate for the “supported object that becomes pure” in the proposed route. It does not assert that every stalk, boundary class or kernel over a distinguished point is pure.
+
+For an open immersion $j:U\hookrightarrow X$ and closed complementary immersion $i:Z\hookrightarrow X$, the source's underived exact sequence is
+
+$$0\to j_!\mathcal F\to j_*\mathcal F\to i_*i^*j_*\mathcal F\to0.$$
+
+The boundary term and the arrows must remain. For a smooth projective curve, the target theorem is purity of $H^i(X,j_*\mathcal F)$; replacing $j_*$ by $j_!$ changes the statement.
+
+### 4.3 Pure complexes require the dual bound with its minus sign
+
+The French witness §6.2.1 defines
+
+$$K_X=Ra^!\overline{\mathbb Q}_\ell,
+\qquad D_XK=R\mathcal Hom(K,K_X).$$
+
+For smooth $X$ of dimension $d$,
+
+$$K_X=\overline{\mathbb Q}_\ell(d)[2d].$$
+
+Its §6.2.4 says that $K$ is pure of weight $w$ precisely when
+
+$$\boxed{K\text{ has weights }\le w,
+\qquad D_XK\text{ has weights }\le -w.}$$
+
+The English historical witness instead gives an incompatible same-weight formulation at this point. It is not used as the definition in this note. On a point, $K=\overline{\mathbb Q}_\ell(-1)$ has eigenvalue $q$ and weight $2$, whereas its dual has eigenvalue $q^{-1}$ and weight $-2$. This directly tests the sign.
+
+The proper-pushforward argument retains the typed duality identity
+
+$$D_YRf_*K\cong Rf_!D_XK.$$
+
+For proper $f$, $Rf_!=Rf_*$. Applying the upper-weight theorem to $K$ and separately to $D_XK$ proves both bounds and hence purity of $Rf_*K$. Properness supplies the equality of the two direct-image functors. An infinite arithmetic quotient at a point does not supply this functor identity by its cardinality.
+
+### 4.4 Recovering the critical line without changing coordinates
+
+For a Frobenius eigenvalue $\alpha$, a root of the factor $1-q^{-s}\alpha$ satisfies
+
+$$q^{-\Re s}|\alpha|=1.$$
+
+If $|\alpha|=q^{w/2}$, then $\Re s=w/2$. Weight-one $H^1$ therefore produces $\Re s=1/2$ in the unchanged variable $s$.
+
+This also records the eigenvalue/reciprocal-root distinction: eigenvalues of weight one have size $q^{1/2}$, whereas roots $T=\alpha^{-1}$ of $\det(1-TF)$ have size $q^{-1/2}$. The English witness interchanges these at its paragraph after §3.3.6; that sentence is not silently imported.
+
+The split-zero norm bijection preserves the number-field ideal Dirichlet series. The finite-field calculation in Section 3 constructs actual pure coefficient objects. Neither result identifies the global number-field zero space with the pure image of $c_1$ above. Such an identification is not claimed in the supplied Deligne text.
+
+## 5. Unipotent local support and weights: every block length retained
+
+The local-monodromy part of the TeX begins with a nilpotent operator
+
+$$N:V(1)\longrightarrow V.$$
+
+In a basis with geometric Frobenius $F$, its underlying matrix relation is
+
+$$\boxed{FNF^{-1}=q^{-1}N.}$$
+
+The monodromy filtration has
+
+$$NM_i\subset M_{i-2},\qquad
+N^k:\operatorname{Gr}_k^M V\xrightarrow{\sim}
+\operatorname{Gr}_{-k}^M V(-k).$$
+
+The twist $(-k)$ is required for Frobenius equivariance. For a generically pure sheaf of weight $w$, the source local-monodromy theorem gives weight $w+i$ on $\operatorname{Gr}_i^M V$. The nonzero grades at a boundary are part of that theorem, not a failure of it.
+
+Here is an exact calculation for every block length $d+1$. Take a basis $v_0,\ldots,v_d$ and set
+
+$$Nv_0=0,\quad Nv_j=v_{j-1},\qquad
+Fv_j=cq^jv_j.$$
+
+Then $N^{d+1}=0$, $N^d\ne0$ for $d>0$, and $FNF^{-1}=q^{-1}N$. The monodromy grade of $v_j$ is $2j-d$. If $c$ is pure of weight $\gamma$, the eigenvalue on this vector has weight $\gamma+2j$:
+
+$$\gamma+2j=(\gamma+d)+(2j-d).$$
+
+Thus the center weight is $\gamma+d$. The block length determines the relative ladder; the factor $c$ fixes its center. No factor was set to one in deriving the relationship.
+
+Already $F=\operatorname{diag}(1,q)$ and $N=\begin{psmallmatrix}0&1\\0&0\end{psmallmatrix}$ have unipotent local transformation $\exp(N)=I+N$ and weights $0,2$. The same origin and same nilpotent operator are compatible with those two grades. Replacing $F$ by $qF$ preserves the relation and the nilpotent operator, while adding two to both weights.
+
+This provides a fully explicit relationship between local unipotence, directional nilpotent length, and the weight filtration. It does not identify the scalar idempotent $e\in G(A)$ with the additive operator $N$. The relevant comparison takes place through a specified realization carrying these operators, not through the spelling of “zero.”
+
+## 6. The NS route: translate and glue the actual source class
+
+The retained NS LaTeX is a source-dependent continuation and endpoint derivation. It is not the original author's TeX for the entire released proof. The calculations here use its stated smooth preterminal velocity, pressure, force, fixed spatial support and terminal growth; they do not independently establish those input properties.
+
+Retain the full residual
+
+$$\mathcal R_\nu(u,p)=\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p.$$
+
+For $b\in\mathbb R^3$, define
+
+$$\mathsf T_b(u,p,f)(x,t)=(u(x-b,t),p(x-b,t),f(x-b,t)).$$
+
+Every derivative commutes with this translation, and the pointwise nonlinear product is also transported. Consequently,
+
+$$\boxed{\mathcal R_\nu(\mathsf T_bu,\mathsf T_bp)=\mathsf T_b\mathcal R_\nu(u,p),
+\qquad \nabla\cdot\mathsf T_bu=\mathsf T_b(\nabla\cdot u).}$$
+
+The change of variables $y=x-b$ preserves $L^2$ and $L^\infty$ norms. Rest initial data, smooth compact forcing, and all derivative regularity of the residual are preserved. A growth path approaching $(0,1)$ maps to one approaching $(b,1)$.
+
+The force is translated along with the velocity. This does not claim multiple solutions with an unchanged prescribed force. It proves that the equation and source construction do not distinguish the coordinate origin from an arbitrary translated center.
+
+### 6.1 Several concentrating centers with one smooth force
+
+The source has velocity and pressure supported in a fixed compact set $K$ before time one. Choose finitely many translations $b_j$ so the sets $K+b_j$ are pairwise disjoint, and put
+
+$$u_\Sigma=\sum_j\mathsf T_{b_j}u,\quad
+p_\Sigma=\sum_j\mathsf T_{b_j}p,\quad
+f_\Sigma=\sum_j\mathsf T_{b_j}f.$$
+
+For $j\ne k$,
+
+$$((\mathsf T_{b_j}u)\cdot\nabla)(\mathsf T_{b_k}u)=0$$
+
+because the spatial supports are disjoint. Therefore
+
+$$\boxed{\mathcal R_\nu(u_\Sigma,p_\Sigma)=f_\Sigma,\qquad
+\|u_\Sigma(t)\|_2^2=\sum_j\|u(t)\|_2^2.}$$
+
+The force is smooth and compactly supported, and rest initial data are unchanged. The individual growth paths yield multiple marked terminal centers. This construction follows from the supplied compact-support input by an exact operation, not an appeal to unknown NS behavior.
+
+A coordinate-centered construction can be fully coherent. The source does not prove that only one physical coordinate point can ever carry its cancellation mechanism. A distinguished arithmetic support point cannot be selected solely from the assertion that one source presentation placed a singularity at $x=0$.
+
+### 6.2 Residual regularity is the exact quantity being canceled
+
+The source endpoint argument extends the residual smoothly while retaining unbounded velocity. It does not cancel the velocity singularity. Its similarity-coordinate map collapses an approach family onto a marked endpoint, while the pulled-back velocity keeps its explicit negative powers of the concentration variable.
+
+The Deligne monodromy operator in Section 5 is obtained from an actual local-system action, with the relation $FNF^{-1}=q^{-1}N$. The NS endpoint LaTeX does not supply such an operator or an intertwining into the arithmetic cohomology. Reading all the derivatives in the NS residual does not automatically produce that local-system action.
+
+What can be retained in a comparison is exact: (i) the chosen marked center and its translation action; (ii) the residual operator and its all-order estimates; (iii) the full concentrating field; and (iv) any separately constructed monodromy/Frobenius realization. The first three are source fluid data. The fourth has been explicitly constructed here only for the mixed-support finite-field model, not for the singular fluid itself.
+
+## 7. The outcome for the two routes
+
+**Purity route.** The actual mixed-support object has a synchronization idempotent, a proved localization, and an amplitude-plus-mask reconstruction. It admits the all-degree characteristic-$p$ Frobenius lift constructed here. That gives finite-etale pure coefficient objects with exact determinants. Deligne's stronger global purity mechanism uses tensor powers, cohomological pole bounds, and the two-sided compact/ordinary cohomology comparison. The precise pure-image map is $H_c^i\to H^i$; proper pushforward is a second precise mechanism. A single support idempotent does not supply the duality or cohomological trace maps simply by shifting prime-chain length.
+
+**NS route.** The source class transports to every spatial center and supports finite disjoint sums. Its controlled residual singularity does not establish a unique universal geometric origin. Deligne's local-monodromy theory explains how unipotent behavior can coexist with several boundary grades, and the explicit block calculation shows all those grades and their absolute center. The manuscript's fluid equations have not been shown to determine those arithmetic operators.
+
+Neither route is presented as a proof of GRH. The progress consists of actual maps and proofs using the supplied mixed support, an exact reading of the Deligne operations relevant to the proposal, and a test of the origin-uniqueness premise against the full source equation. The finite computations in `checks/` test these formulas; they do not replace any source theorem or analytic proof.
+
+## Source locators
+
+- `sources/mixed_support_ledger.tex`: the supplied cumulative nullity ledger; mixed double, ideal and prime classifications, masks and dimension.
+- `sources/globalization_note.tex`: original split-zero operations and exact finite-norm ideal correspondence.
+- `sources/deligne_fr_seg1.tex`: historical French witness; §§1.2, 1.5, 1.6–1.8.
+- `sources/deligne_fr_seg2.tex`: historical French witness; curve/cohomological arguments, with the source disagreements recorded separately.
+- `sources/deligne_fr_seg3.tex`: historical French witness; §6.2 pure complexes and the minus sign in the dual bound.
+- `sources/deligne_en_witness.tex`: historical English witness; §§1.5, 3.2–3.4, 6.2. Known discrepancies are not silently treated as valid statements.
+- `sources/ns_endpoint_derivation.tex`: supplied continuation of the NS endpoint argument; all uses of the global solution are imported from that source scope.
+- `sources/ns_terminal_trace_body.tex`: supplied trace/smooth-gluing continuation, retained without claiming a new formal replay.
+EOF

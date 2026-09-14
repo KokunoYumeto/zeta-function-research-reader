@@ -1,0 +1,612 @@
+\section{The actual theta minimum as a confluent arithmetic kernel}
+\label{sec:tau-boundary-kernel}
+
+This section continues the orthogonal-boundary construction of the
+12 September 2026 tau workbench, through PR~13.  Its new calculation
+identifies the permitted finite source corrections with a constrained
+polynomial minimum, evaluates that minimum by a complete jet kernel,
+and proves the exact two-vector boundary formula for that kernel.
+The arithmetic packet, Euler operator, local units, and multiplicities
+are retained throughout.
+
+\subsection{Original functions, maps, coordinates, and measures}
+
+Let
+\[
+ V=\{\phi\in\mathcal S(\mathbb R):
+       \phi(-x)=\phi(x),\ \phi(0)=0,\ \textstyle\int_{\mathbb R}\phi=0\},
+ \qquad D=-x\partial_x.
+\]
+Let \(\mathscr B\) be the space of smooth functions on \(\mathbb R_{>0}\)
+such that
+\(\sup_{x>0}x^b|D^kF(x)|<\infty\) for every integer \(b\) and
+every \(k\geq0\).  The original maps and function are
+\[
+ \Theta\phi(x)=2\sum_{n\geq1}\phi(nx),\qquad
+ \mathcal MF(s)=\int_0^\infty F(x)x^s\,\frac{dx}{x},
+\]
+\[
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},
+ \quad f_0=\Theta\phi_*,
+ \quad g(s)=2\xi(s),\quad \mathcal Mf_0=g.
+\]
+Write \(\phi_j=D^j\phi_*\) and \(f_j=D^jf_0=\Theta\phi_j\).
+The Hilbert observation is \(\mathcal H=L^2(\mathbb R_{>0},dx)\);
+the first argument of every inner product is conjugate-linear.
+The actual Mellin-line map
+\[
+ \mathcal U:\mathcal H\longrightarrow
+ L^2(\mathbb R,dt/(2\pi)),\qquad
+ \mathcal UF(t)=\mathcal MF(1/2+it)
+\]
+is unitary.  Indeed \(x=e^y\) gives the unitary map
+\(F\mapsto e^{y/2}F(e^y)\) to \(L^2(dy)\), and the displayed Mellin
+transform is its Fourier transform with the positive exponential
+\(e^{ity}\).  Plancherel has measure \(dt/(2\pi)\) in this convention.
+Integration by parts on \(\mathscr B\) gives
+\(\mathcal UDF=(1/2+it)\mathcal UF\).
+
+Fix a nonempty finite packet \(Z\) of actual nontrivial zeros of \(g\),
+including the full multiplicity \(m_\rho\) of each selected zero.  Put
+\[
+ h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\quad
+ d=\deg h,\quad E=\mathbb C[s]/(h),\quad A=M_s:E\longrightarrow E.
+\]
+The basis of \(E\) remains \(1,s,\ldots,s^{d-1}\).
+Let \(j_h\) denote polynomial remainder together with its equivalent
+complete Taylor-jet description.  Set
+\[
+ v(s)=\frac{g(s)}{h(s)},\qquad
+ \varepsilon=(j_hv)^{-1}\in E^\times,\qquad U_\varepsilon=M_\varepsilon.
+\]
+The function \(v\) is entire and has nonzero value at each selected
+centre after the corresponding cancellation.  The matrix
+\(U_\varepsilon\) retains all derivatives of \(g/h\), including the
+factor \(2\) in \(g=2\xi\).  It commutes with \(A\).
+For \(u\in E\), let \(R_Z(u)\) be the unique polynomial of degree below
+\(d\) representing \(\varepsilon u\).
+Write \(R_{\mathrm{ref}}:E\to\mathscr B\) for the source note's
+fixed finite section \(R_0\).  This alias records its identity
+and avoids colliding with the \(m=0\) corrected member of the
+sequence \(R_m\).  The fixed section is characterized by
+\[
+ \mathcal M R_{\mathrm{ref}}u=vR_Z(u),\qquad
+ J_ZR_{\mathrm{ref}}=I_E,\qquad J_Z\Theta=0.
+ \tag{TB.1}
+\]
+These are the actual finite section and jets of the tau construction;
+the proofs below do not replace them with a finite model.
+
+Introduce the two specified measures on the same Mellin line
+\[
+ d\mu(t)=|g(1/2+it)|^2\frac{dt}{2\pi},\qquad
+ d\nu_Z(t)=|v(1/2+it)|^2\frac{dt}{2\pi}.
+ \tag{TB.2}
+\]
+Both have every polynomial moment.  For \(\mu\) this follows from
+the Gaussian-series Mellin decay proved in PR~13; division by the
+fixed polynomial \(h\) preserves that decay outside a compact set,
+and the removable values of \(v\) are bounded on the compact set.
+The densities are positive except on discrete sets, because \(g\)
+and \(v\) are nonzero entire functions.  Consequently the squared
+norm of every nonzero polynomial in either measure is strictly
+positive.  No positive arithmetic residue or Weil pairing has
+been inserted in (TB.2).
+
+\subsection{Exact constrained minimum over the admitted source}
+
+For \(m\geq0\), the original permitted changes of representative are
+\[
+ R_Bu=R_{\mathrm{ref}}u+\sum_{j=0}^m f_j(Bu)_j,\qquad
+ B:E\longrightarrow\mathbb C^{m+1}.
+ \tag{TB.3}
+\]
+Set \(N=d+m\).  Denote by \(\mathcal P_N\) the polynomials of degree
+at most \(N\), with their coefficient columns in the monomial basis,
+and define the surjection
+\[
+ C_N:\mathcal P_N\longrightarrow E,\qquad C_NP=j_hP.
+ \tag{TB.4}
+\]
+Let \(H_N^\nu\) be its actual moment Gram matrix:
+\[
+ (H_N^\nu)_{ij}
+ =\int_{\mathbb R}\overline{(1/2+it)^i}(1/2+it)^j\,d\nu_Z(t),
+ \qquad 0\leq i,j\leq N.
+ \tag{TB.5}
+\]
+It is positive definite by (TB.2).  Define
+\[
+ K_N=C_N(H_N^\nu)^{-1}C_N^*.
+ \tag{TB.6}
+\]
+This is positive definite: \(C_N\) is onto, so \(C_N^*\) is
+injective, and its nonzero vectors have positive quadratic form
+under \((H_N^\nu)^{-1}\).
+
+\begin{theorem}[The actual source minimum]
+The orthogonally corrected representative \(R_m\) of PR~13 has
+the following explicit numerator and Gram matrix:
+\[
+ p_{N,u}=(H_N^\nu)^{-1}C_N^*K_N^{-1}U_\varepsilon u,\qquad
+ \mathcal MR_mu=v\,p_{N,u},
+ \tag{TB.7}
+\]
+\[
+ \boxed{G_m=R_m^*R_m=U_\varepsilon^*K_N^{-1}U_\varepsilon.}
+ \tag{TB.8}
+\]
+The polynomial correction
+\[
+ B_m(u)(s)=\frac{p_{N,u}(s)-R_Z(u)(s)}{h(s)}
+ \tag{TB.9}
+\]
+has degree at most \(m\).  Its coefficients give exactly the
+map \(B_m:E\to\mathbb C^{m+1}\) in the original source family
+(TB.3).  Thus (TB.7) specifies the original theta boundary itself.
+\end{theorem}
+
+\begin{proof}
+Taking Mellin transforms in (TB.3) gives
+\[
+ \mathcal MR_Bu
+ =v(s)\left(R_Z(u)(s)+h(s)\sum_{j=0}^m(Bu)_js^j\right).
+\]
+The expressions in parentheses range over precisely
+\[
+ \{P\in\mathcal P_N:C_NP=U_\varepsilon u\}.
+ \tag{TB.10}
+\]
+Indeed the displayed expressions have the required residue.
+Conversely the difference between a polynomial in (TB.10) and
+\(R_Z(u)\) is divisible by \(h\), and the degree bound makes its
+quotient a polynomial of degree at most \(m\).
+Mellin Plancherel identifies its squared Hilbert norm with
+\(P^*H_N^\nu P\); this equality includes the measure \(dt/(2\pi)\).
+
+The vector \(p=p_{N,u}\) in (TB.7) obeys \(C_Np=U_\varepsilon u\).
+For \(z\in\ker C_N\),
+\[
+ z^*H_N^\nu p
+ =z^*C_N^*K_N^{-1}U_\varepsilon u=0.
+\]
+Therefore every competitor \(p+z\) has the exact squared norm
+\[
+ (p+z)^*H_N^\nu(p+z)
+ =u^*U_\varepsilon^*K_N^{-1}U_\varepsilon u+z^*H_N^\nu z.
+ \tag{TB.11}
+\]
+Positivity proves uniqueness of the minimum.  The original
+orthogonal projection construction is the unique minimum over
+the same affine source family, so its representative is (TB.7).
+Polarization proves (TB.8), while (TB.10) proves (TB.9).
+Every equality has been proved before application of the quotient;
+after applying \(q\) and \(J_Z\) one still has
+\(qR_m=\sigma_Z\) and \(J_ZR_m=I_E\).
+\end{proof}
+
+The formula also extends to \(m=-1\), \(N=d-1\), with no allowed
+source correction: \(C_{d-1}\) is the identity in the retained
+polynomial coordinates, and (TB.7) is precisely \(R_Z(u)\).
+
+\subsection{Monic arithmetic polynomials and their exact recurrence}
+
+For this subsection use \(\nu_Z\), with no symmetry assumption on
+the selected packet.  Let \(q_n\) be its monic polynomial of degree
+\(n\) orthogonal to all smaller degrees, and let
+\(\kappa_n=\|q_n\|_{\nu_Z}^2>0\).
+The polynomials are explicitly the result of subtracting the
+projection of \(s^n\) onto smaller monomials.  This is a specified
+unitriangular change of auxiliary polynomial basis; no coordinate
+of \(E\), no arithmetic operator, and no polynomial coefficient
+has been replaced by an orthonormal coordinate.
+
+\begin{lemma}[The retained vertical-line recurrence]
+There are \(b_n\in\mathbb C\), with \(b_n+\overline b_n=1\), such that
+\[
+ s q_0=q_1+b_0q_0,\qquad
+ s q_n=q_{n+1}+b_nq_n-\frac{\kappa_n}{\kappa_{n-1}}q_{n-1}
+ \quad(n\geq1).
+ \tag{TB.12}
+\]
+\end{lemma}
+
+\begin{proof}
+On the original line \(s=1/2+it\), one has \(\overline s=1-s\).
+Thus multiplication by \(s\) has adjoint multiplication by \(1-s\)
+on polynomial arguments.  The coefficient of \(q_{n+1}\) in
+\(sq_n\) is one because both are monic.  If \(j\leq n-2\), then
+\[
+ \langle q_j,sq_n\rangle_{\nu_Z}
+ =\langle(1-s)q_j,q_n\rangle_{\nu_Z}=0,
+\]
+since the first polynomial has degree at most \(n-1\).
+For \(j=n-1\) the same identity is \(-\kappa_n\);
+division by \(\kappa_{n-1}\) gives the displayed negative coefficient.
+Finally
+\[
+ (b_n+\overline b_n)\kappa_n
+ =\langle q_n,sq_n\rangle+
+   \langle sq_n,q_n\rangle=\kappa_n.
+ \]
+This proves all coefficients, including their signs.  No assertion
+that \(b_n=1/2\) is needed for a general packet.
+\end{proof}
+
+Define the retained complete residue columns
+\[
+ v_n=j_hq_n\in E.
+ \tag{TB.13}
+\]
+Changing the auxiliary monomial basis in (TB.6) to the stated
+monic basis and retaining its diagonal Gram matrix gives
+\[
+ K_N=\sum_{n=0}^N\frac{v_nv_n^*}{\kappa_n}.
+ \tag{TB.14}
+\]
+Equivalently, this is the complete jet of the polynomial kernel
+\[
+ \mathcal K_N(z,w)=
+ \sum_{n=0}^N\frac{q_n(z)\overline{q_n(w)}}{\kappa_n}.
+ \tag{TB.15}
+\]
+In Taylor-jet coordinates at each centre, \(v_n\) has entries
+\(q_n^{(k)}(\rho)/k!\) for \(0\leq k<m_\rho\).
+The map from these entries to the retained basis of \(E\) is
+the inverse confluent Vandermonde/Chinese-remainder map.
+In particular the factorials and all repeated-root derivatives
+remain in the construction.
+
+\begin{theorem}[Confluent kernel boundary formula]
+For every \(N\geq d-1\),
+\[
+ \boxed{A K_N+K_NA^*-K_N
+  =\frac{v_{N+1}v_N^*+v_Nv_{N+1}^*}{\kappa_N}.}
+ \tag{TB.16}
+\]
+Before taking any jets the corresponding polynomial identity is
+\[
+ (z+\overline w-1)\mathcal K_N(z,w)
+ =\frac{q_{N+1}(z)\overline{q_N(w)}
+        +q_N(z)\overline{q_{N+1}(w)}}{\kappa_N}.
+ \tag{TB.17}
+\]
+\end{theorem}
+
+\begin{proof}
+Apply \(j_h\) to (TB.12).  The result replaces its left side by
+\(Av_n\), because \(j_h(sq_n)=A(j_hq_n)\).  Substitute these
+relations into
+\[
+ AK_N+K_NA^*-K_N
+ =\sum_{n=0}^N
+ \frac{(Av_n)v_n^*+v_n(Av_n)^*-v_nv_n^*}{\kappa_n}.
+\]
+The diagonal terms vanish by \(b_n+\overline b_n=1\).
+The negative contribution involving \(v_{n-1}\) has coefficient
+\(-1/\kappa_{n-1}\), and cancels exactly the preceding positive
+contribution.  The sole uncancelled term is the \(n=N\) upper
+edge, giving (TB.16).  The identical substitution before applying
+\(j_h\) proves (TB.17) for all complex \(z,w\).  This is a polynomial
+identity; no division by \(z+\overline w-1\) is performed at its
+zero set, and differentiating it proves the full confluent version.
+\end{proof}
+
+\subsection{Exact relative weight control from the same kernel}
+
+The original integration-by-parts form remains
+\[
+ W_m=A^*G_m+G_mA-G_m
+ =-\{R_m^*(DR_m-R_mA)+(DR_m-R_mA)^*R_m\}.
+ \tag{TB.18}
+\]
+The boundary term \([x\overline F H]_0^\infty\) vanishes for
+\(F,H\in\mathscr B\).  Put
+\[
+ L_N=AK_N+K_NA^*-K_N.
+\]
+Commutation of \(A\) with \(U_\varepsilon\) in (TB.8) proves the
+exact comparison
+\[
+ \boxed{W_m=U_\varepsilon^*K_N^{-1}L_NK_N^{-1}U_\varepsilon.}
+ \tag{TB.19}
+\]
+For clarity, multiplication gives
+\[
+ K_N^{-1}L_NK_N^{-1}
+ =K_N^{-1}A+A^*K_N^{-1}-K_N^{-1},
+\]
+which is exactly the middle factor in (TB.18).  This proves the
+morphism between the inverse-kernel and original Hilbert metrics.
+
+Define the actual real and complex numbers
+\[
+ \alpha_N=v_{N+1}^*K_N^{-1}v_{N+1},\qquad
+ \beta_N=v_N^*K_N^{-1}v_N,\qquad
+ \gamma_N=v_N^*K_N^{-1}v_{N+1}.
+ \tag{TB.20}
+\]
+Then the least symmetric allowance for the actual pair
+\((G_m,W_m)\) is
+\[
+ \boxed{\epsilon_m=
+ \frac{|\operatorname{Re}\gamma_N|
+  +\sqrt{\alpha_N\beta_N-(\operatorname{Im}\gamma_N)^2}}{\kappa_N}.}
+ \tag{TB.21}
+\]
+Here \(-\epsilon_mG_m\preceq W_m\preceq\epsilon_mG_m\).
+To prove minimality, the invertible change \(y=K_N^{-1}U_\varepsilon u\)
+turns its Rayleigh quotient into \(y^*L_Ny/(y^*K_Ny)\).
+By (TB.16) the nonzero eigenvalues of this Hermitian comparison
+are the eigenvalues of the two-by-two matrix
+\[
+ \frac1{\kappa_N}
+ \begin{pmatrix}\gamma_N&\beta_N\\
+                 \alpha_N&\overline{\gamma_N}\end{pmatrix}.
+\]
+Its trace and determinant give
+\[
+ \lambda_\pm=\frac{\operatorname{Re}\gamma_N
+ \ \pm\sqrt{\alpha_N\beta_N-(\operatorname{Im}\gamma_N)^2}}{\kappa_N}.
+\]
+Cauchy--Schwarz in \(K_N^{-1}\) gives
+\(|\gamma_N|^2\leq\alpha_N\beta_N\), so the radicand is
+nonnegative; its square root is at least
+\(|\operatorname{Re}\gamma_N|\).  The maximum absolute eigenvalue
+is therefore (TB.21), including rank-one and zero cases.
+
+For a packet closed under \(\rho\mapsto1-\overline\rho\), with
+the multiplicities retained, \(2\operatorname{Re}\operatorname{tr}A=d\).
+Taking the trace in (TB.16) after multiplying by \(K_N^{-1}\) gives
+\[
+ 0=\operatorname{tr}(K_N^{-1}L_N)
+   =\frac{2\operatorname{Re}\gamma_N}{\kappa_N}.
+ \tag{TB.22}
+\]
+Thus its real part is zero without any coordinate choice.
+Every eigenvector \(Au=\rho u\) still satisfies
+\[
+ \frac{u^*W_mu}{u^*G_mu}=2\operatorname{Re}\rho-1.
+ \tag{TB.23}
+\]
+In particular (TB.21) has the intrinsic lower bound
+\(\epsilon_m\geq\max_{\rho\in Z}|2\operatorname{Re}\rho-1|\).
+All of its quantities are now specified by arithmetic moments,
+complete jets, and the original local unit.
+
+\subsection{Exact change when one more theta direction is admitted}
+
+The step \(m\mapsto m+1\) means \(N\mapsto N+1\).
+Set \(w=v_{N+1}\), \(k=\kappa_{N+1}\), and
+\(\theta=w^*K_N^{-1}w\geq0\).  Formula (TB.14) gives
+\[
+ K_{N+1}=K_N+\frac{ww^*}{k}.
+ \tag{TB.24}
+\]
+Multiplication directly verifies the inverse identity
+\[
+ K_{N+1}^{-1}
+ =K_N^{-1}
+ -\frac{K_N^{-1}ww^*K_N^{-1}}{k+\theta}.
+\]
+Consequently
+\[
+ G_{m+1}=G_m-
+ \frac{U_\varepsilon^*K_N^{-1}ww^*K_N^{-1}U_\varepsilon}
+      {k+\theta},
+ \tag{TB.25}
+\]
+\[
+ \frac{\det G_{m+1}}{\det G_m}=\frac{k}{k+\theta}>0.
+ \tag{TB.26}
+\]
+The inverse formula follows by multiplying by (TB.24);
+If \(w=0\), both updates are identities and the determinant
+ratio is one.  For \(w\ne0\), the determinant formula follows by
+extending \(K_N^{-1}w\)
+to a basis, in which the rank-one map
+\(K_N^{-1}ww^*/k\) has one possible nonzero eigenvalue
+\(\theta/k\).  Hence the determinant factor of \(K_{N+1}\)
+relative to \(K_N\) is \(1+\theta/k\).
+
+These are the same Hilbert metrics at adjacent relation levels.
+Subtract the two polynomial numerators in (TB.7) and divide
+their difference by \(h\), as in (TB.9).  This gives a source
+polynomial \(P_u\) of degree at most \(m+1\).
+The actual representative difference is
+\(R_{m+1}u-R_mu=\Theta(P_u(D)\phi_*)\), an element
+of \(\Theta W_{m+1}\), where
+\(W_{m+1}=\operatorname{span}(\phi_*,D\phi_*,\ldots,D^{m+1}\phi_*)\).
+The quotient map
+\(\mathscr B/\Theta W_m\to\mathscr B/\Theta W_{m+1}\)
+has kernel \(\Theta W_{m+1}/\Theta W_m\);
+injectivity of \(\Theta\) identifies this kernel with the original
+one-dimensional space \(W_{m+1}/W_m\).
+The scalar \(e\) sends a class to the zero in its same support
+fibre, while \(\tau\) sends it to external absence.  None of
+(TB.24)--(TB.26) changes those maps.
+
+\subsection{The original measure supplies a full tail recurrence}
+
+There is a second exact description which uses the unchanged
+measure \(\mu\) of (TB.2).  Let \(Q_n\) denote its monic orthogonal
+polynomials and \(h_n=\|Q_n\|_\mu^2\).
+The reality and functional equation of \(g\) make this measure
+invariant under \(s\mapsto1-s\); uniqueness of the monic
+orthogonal polynomial then proves
+\(Q_n(1-s)=(-1)^nQ_n(s)\).
+The recurrence proof above therefore gives
+\[
+ sQ_n=Q_{n+1}+\tfrac12Q_n-\frac{h_n}{h_{n-1}}Q_{n-1}
+ \quad(n\geq1).
+ \tag{TB.27}
+\]
+For \(n=0\), omit the last term.
+
+Define the rational function-valued map and coefficient rows
+\[
+ r(u)(s)=\frac{R_Z(u)(s)}{h(s)},\qquad
+ d_nu=\frac1{h_n}\int_{\mathbb R}
+       \overline{Q_n(1/2+it)}r(u)(1/2+it)\,d\mu(t).
+ \tag{TB.28}
+\]
+At an actual line zero a rational pole in this expression is
+interpreted in \(L^2(\mu)\); its product with \(g\) is the entire
+function \(vR_Z(u)\).  In particular its norm and every displayed
+pairing are finite.  Polynomials are dense in \(L^2(\mu)\):
+the positive exponential moment from PR~13 makes the Fourier
+transform of an orthogonal annihilator analytic in a strip,
+and all its derivatives vanish at zero, so Fourier uniqueness
+annihilates it.  Therefore Parseval gives
+\[
+ \mathcal UR_mu=g\sum_{n>m}Q_nd_nu,\qquad
+ \boxed{G_m=\sum_{n>m}h_nd_n^*d_n.}
+ \tag{TB.29}
+\]
+The series is a norm-convergent positive matrix series.
+
+Let \(\ell_Z(u)=[s^{d-1}]R_Z(u)\) be the original rank-one
+extension coefficient.  Polynomial division gives the exact
+identity \(sr-rA=\ell_Z\).  Pair it with \(Q_n\), and use
+the adjoint relation \(s^*=1-s\) and (TB.27).  With \(d_{-1}=0\),
+the result is
+\[
+ \boxed{\frac{h_{n+1}}{h_n}d_{n+1}
+ =d_{n-1}+d_n(\tfrac12 I-A)-\delta_{n0}\ell_Z.}
+ \tag{TB.30}
+\]
+This computation uses only finite pairings of the rational
+function and polynomials; it does not differentiate an
+unproved termwise infinite expansion.
+
+The polynomial correction in (TB.3) has last row
+\(b_m=-d_m\), since its polynomial is
+\(-\sum_{j=0}^mQ_jd_j\) and \(Q_m\) is monic.
+Furthermore
+\(R_m^*f_{m+1}=h_{m+1}d_{m+1}^*\).
+Substitution in the exact PR~13 boundary contraction gives
+\[
+ \boxed{W_m=h_{m+1}
+       (d_{m+1}^*d_m+d_m^*d_{m+1}).}
+ \tag{TB.31}
+\]
+Thus the moment-kernel description (TB.16)--(TB.21) and the
+full tail description (TB.29)--(TB.31) calculate the same
+operator and metric through explicitly proved maps.
+
+\begin{theorem}[The full source defect and its observation of the packet]
+The entire original derivative boundary, including its
+orthogonal lower source term, is
+\[
+ \boxed{\begin{aligned}
+ DR_m-R_mA
+ ={}&-\frac{h_{m+1}}{h_m}Q_m(D)f_0\,d_{m+1}\\
+    &-Q_{m+1}(D)f_0\,d_m .
+ \end{aligned}}
+ \tag{TB.35}
+\]
+An exact primitive in \(V\) is obtained by replacing \(f_0\)
+with \(\phi_*\) in this formula.  The finite observation
+\[
+ \mathcal O_m:E\longrightarrow\mathbb C^{2d},\qquad
+ u\longmapsto(d_mA^ku,d_{m+1}A^ku)_{k=0}^{d-1}
+ \tag{TB.36}
+\]
+is injective.  In particular, its two retained source rows,
+together with the unchanged arithmetic action, distinguish
+every vector and every nilpotent jet in the original packet.
+\end{theorem}
+
+\begin{proof}
+Use the finite expression
+\(r_m=r-\sum_{j=0}^mQ_jd_j\) and compute
+\[
+ sr_m-r_mA
+ =\ell_Z-\sum_{j=0}^m(sQ_jd_j-Q_jd_jA).
+\]
+Insert (TB.27) and group coefficients of \(Q_j\).
+For \(0\leq j<m\) the coefficient is zero by (TB.30);
+the \(j=0\) equation includes precisely the term \(\ell_Z\).
+The coefficient at \(Q_m\) is
+\(-h_{m+1}d_{m+1}/h_m\), and that at \(Q_{m+1}\) is
+\(-d_m\).  Multiplying by \(g\) and applying the inverse
+Mellin map proves (TB.35).  Its displayed primitive belongs
+to \(V\), since every \(D^j\phi_*\) does, and its theta
+image is the entire right side.  Thus the term \(Q_m(D)f_0\)
+remains an actual supported boundary even though its pairing
+with \(R_m\) vanishes.
+
+Suppose that \(\mathcal O_mu=0\).  Since \(h(A)=0\),
+polynomial division by \(h\) proves
+\(d_mA^ku=d_{m+1}A^ku=0\) for every \(k\geq0\).
+Equation (TB.30) for \(n=m+1\), applied to each \(A^ku\),
+gives \(d_{m+2}A^ku=0\) for every \(k\).
+Induction with the same recurrence gives
+\(d_nA^ku=0\) for all \(n>m\) and \(k\geq0\).
+In particular every term of the positive series in (TB.29)
+vanishes on \(u\), so \(u^*G_mu=0\).
+The exact left inverse \(J_ZR_m=I_E\) makes \(G_m\)
+positive definite, hence \(u=0\).
+This proves injectivity without assuming distinct roots
+or removing a Jordan direction.
+\end{proof}
+
+\subsection{Metric dependence and the precise mathematical gain}
+
+Positivity in (TB.8) is the positivity of the original
+\(L^2(dx)\) norm on an injective representative map.
+For the same-packet residue and dual-metric comparisons
+(TB.32)--(TB.33), assume explicitly that
+\(Z=Z^\dagger\) under \(\rho\mapsto1-\overline\rho\),
+with every full order retained. The preceding Christoffel-kernel
+and source-boundary results allow arbitrary packets. Reflection
+on a general packet is the conjugate-linear map
+\(E_Z\to E_{Z^\dagger}\) defined in Section~\ref{sec:research-state}.
+The original arithmetic residue matrix \(S\), satisfying
+\(S^*=-S\) and \(A^*S+SA=S\), is still related to its dual metric by
+\[
+ G_m^{\mathrm D}=S^*G_m^{-1}S,\qquad
+ W_m^{\mathrm D}=-S^*G_m^{-1}W_mG_m^{-1}S.
+ \tag{TB.32}
+\]
+The original arithmetic Weil form, with \(J_g=M_{j_hg'}\), is
+\[
+ u^*SJ_gv=\langle u,(G_m^{-1}SJ_g)v\rangle_{G_m}.
+ \tag{TB.33}
+\]
+Thus the map relating the positive source metric to the arithmetic
+form is explicitly \(G_m^{-1}SJ_g\).  A positive matrix
+\(G_m\) does not supply its positivity.
+
+For each fixed packet, the original polynomial theta span is
+dense in \(\mathcal H\), as proved in PR~13.  Hence \(G_m\to0\).
+Equations (TB.8) and (TB.26) then imply
+\[
+ \lambda_{\min}(K_{d+m})\longrightarrow+\infty,\qquad
+ \prod_{m=m_0}^{M}\frac{\kappa_{d+m+1}}
+ {\kappa_{d+m+1}+v_{d+m+1}^*K_{d+m}^{-1}v_{d+m+1}}
+ \longrightarrow0.
+ \tag{TB.34}
+\]
+Indeed \(K^{-1}=U_\varepsilon^{-*}G_mU_\varepsilon^{-1}\to0\),
+and the product telescopes to the positive determinant ratio.
+Absolute decay of the Gram matrix thus has a specified
+arithmetic-kernel counterpart.  The relative quantity remains
+the exact expression (TB.21), with the spectral lower bound
+(TB.23).
+
+The new result is a source-constrained, multiplicity-preserving
+arithmetic kernel formula and its exact finite relative control.
+It makes the next calculation depend on the concrete
+\(\nu_Z\)-moments and the two retained complete jet vectors,
+rather than on freely selected positive matrices.
+No estimate that makes (TB.21) tend to zero for all actual
+packets has been proved here.  A claim of spectral purity would
+require proving that estimate on these arithmetic quantities;
+(TB.23) identifies exactly what such a result would establish.
+
+For standard background on orthogonal polynomial recurrence and
+kernel identities, see NIST DLMF, Section~18.2,
+\url{https://dlmf.nist.gov/18.2}.  All identities used above,
+including the vertical-line signs, full jet maps, and metric
+comparisons, have been proved here for the retained objects.

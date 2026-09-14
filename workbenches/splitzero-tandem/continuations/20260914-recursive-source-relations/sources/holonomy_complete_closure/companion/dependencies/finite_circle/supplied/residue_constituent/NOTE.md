@@ -1,0 +1,771 @@
+---
+title: "Residue-driven constituent curvature and the original arithmetic Laplacian"
+subtitle: "Exact rank-one transport, a source-sensitive curvature coefficient, and the retained period correction"
+author: "Research continuation"
+date: "13 September 2026"
+---
+
+# Scope and source identifications
+
+This note continues the supplied *Deligne Split Cohomology* sidebar (DS1–69),
+*Exponential Period Determinant* (XD1–26), *Exponential Translation Comparison*
+(DT1–13), and the pasted SGA trace/period continuation. It uses their explicit
+coefficient and period maps. The additional results proved here concern the
+rank-one deformation on every nonzero proper invariant constituent, its exact
+period curvature, the change of that coefficient between the original source
+metrics, and the second-order realization of the arithmetic Laplacian. These
+are written proofs, supplemented by the included exact finite checker. They
+are not new Lean certificates or a proof of a uniform arithmetic endpoint bound.
+
+Keep the original nonempty cyclic object, including its full multiplicities,
+
+$$
+E=\mathbb C[S]/(\chi),\qquad
+\chi(S)=S^q+\sum_{a=0}^{q-1}c_aS^a,\qquad q\geq1,
+\qquad A=M_S.
+\tag{RC1}
+$$
+
+The coordinate basis is $1,S,\ldots,S^{q-1}$. When $E=E_{h,k}$ is the arithmetic
+packet, the source retains $g=2\xi$, $\mathcal MF_h=g/h$, the full arithmetic
+Taylor unit in $\eta$, and the original source/relation norm. In particular,
+retain the specified maps on the admitted strong-Schwartz tensor domain
+$\mathscr X$:
+
+$$
+r_N:E\longrightarrow\mathscr X,\quad j_E:\mathscr X\longrightarrow E,
+\qquad j_Er_N=I_E,\quad j_ED^{(k)}=Aj_E,\quad j_Ed=0,
+\qquad G_N=r_N^*r_N\succ0.
+\tag{RC2}
+$$
+
+Here $d$ is the original cochain differential and $D^{(k)}$ the original sum
+of scaling generators. Equation (RC2) is the supplied source comparison,
+not an assertion that the full-jet observation extends boundedly to the
+unweighted Hilbert completion (see *Exponential Intake*, §§4–5).
+
+There are three distinct parameters. $S$ is the arithmetic spectral
+coordinate; $z$ is the earlier representative-curve parameter; $t$ below
+is the exponential deformation parameter. The metric curve of DS13–14 is
+$G(z)=G_j+|z|^2(G_i-G_j)$. None of its radial derivatives is substituted for
+an exponential $t$-derivative.
+
+For fixed $u\in\mathbb C^\times$, the supplied polynomial complex is
+
+$$
+\mathcal C_{u,t}=
+[\mathbb C[S]\xrightarrow{\mathcal D_{u,t}}\mathbb C[S]dS],
+\qquad \mathcal D_{u,t}P=(uP'+(\chi-t)P)dS.
+\tag{RC3}
+$$
+
+Its degree-one cohomology is a coefficient-vector-space quotient with the
+specified degree-below-$q$ frame. Multiplication by $S$ does not descend
+as an algebra operation on this general fibre: the supplied identities
+$[\chi-t]=0$ and $[S(\chi-t)]=-u[1]$ rule out that interpretation. The
+parameter connection does descend, and in the retained frame it is
+
+$$
+\nabla_t=\partial_t-\frac{A(t)}u,\qquad
+A(t)=A+t\mathcal R,\qquad
+\mathcal R=e_0e_{q-1}^{T}.
+\tag{RC4}
+$$
+
+At $u=t=0$ the complex specializes to the original quotient by $\chi$.
+The regular operator $-u\nabla_t$ induces $A$ on that special fibre;
+this is the type-correct specialization in DS68.
+
+The fixed oriented contours of XD2 give a period matrix
+$\Pi(t)=\Pi(u,\mathbf c,t)$ satisfying
+
+$$
+\Pi'(t)=-\frac1u\Pi(t)A(t),\qquad
+\det\Pi(t)=\det\Pi_{\mathrm{mon}}(u)
+\exp\left(\frac{\mathcal F(\mathbf c,t)}u\right),
+\quad \mathcal F=\operatorname{Tr}\Phi_t(A(t)).
+\tag{RC5}
+$$
+
+XD4–7 supply the uniform contour estimates that justify holomorphy and
+differentiation. XD16–20 supply the nonzero monomial initial determinant
+and an adjugate proof valid even at a hypothetical singular matrix. Thus
+$\Pi(t)$ is invertible for every complex $t$, without deleting repeated-root
+fibres. The gamma multiplication formula simplifies XD18 to
+
+$$
+\det(\Pi(t)^*\Pi(t))=(2\pi|u|)^q
+\exp\left(2\operatorname{Re}\frac{\mathcal F(\mathbf c,t)}u\right).
+\tag{RC6}
+$$
+
+This last simplification is already in the supplied SGA continuation. It is
+not a new result of the present note. Bloch and Esnault (1999, §5) study
+period determinants of this polynomial-exponential type; the literal
+normalizations used here are the ones proved in XD1–26.
+
+# The deformation is the residue rank-one map
+
+Define the original residue functional and its bilinear pairing by
+
+$$
+\ell([P])=[S^{q-1}]\operatorname{rem}_\chi P,
+\qquad \beta(x,y)=\ell(xy).
+\tag{RC7}
+$$
+
+In the power basis, $\beta(S^i,S^j)$ is zero for $i+j<q-1$ and one for
+$i+j=q-1$. Reversing its columns therefore produces a triangular matrix
+with diagonal one. Consequently
+
+$$
+\det\beta=(-1)^{q(q-1)/2},\qquad
+\beta^\flat:E\xrightarrow{\sim}E^\vee.
+\tag{RC8}
+$$
+
+This proof inverts no discriminant. It is the perfect residue pairing
+in the supplied finite-flat SGA calculation. Its contraction with
+multiplication by $\chi'$ gives the separate, potentially degenerate trace
+pairing:
+
+$$
+\operatorname{Tr}_E M_P=\ell(\chi'P).
+\tag{RC9}
+$$
+
+For completeness, the divided difference
+$\mathcal C_\chi(X,Y)=(\chi(X)-\chi(Y))/(X-Y)$ is the coevaluation tensor
+for (RC8): $(\ell\otimes1)((P\otimes1)\mathcal C_\chi)=P$ and its image
+under multiplication is $\chi'$. The finite-dimensional evaluation–coevaluation
+trace then proves (RC9). Neither (RC8) nor (RC9) identifies the bilinear
+residue form with the positive Hermitian source form $G_N$.
+
+In the fixed remainder frame the perturbation in (RC4) is exactly
+
+$$
+\boxed{\mathcal R(v)=\ell(v)\,1_E,
+\qquad \mathcal R=1_E\otimes\ell.}
+\tag{RC10}
+$$
+
+It follows that the pair $(A,\mathcal R)$ generates every coefficient
+endomorphism:
+
+$$
+\boxed{\mathbb C\langle A,\mathcal R\rangle
+=\operatorname{End}_{\mathbb C}(E).}
+\tag{RC11}
+$$
+
+**Proof.** The vectors $A^i1_E$, $0\leq i<q$, are the power basis.
+By (RC8), the functionals $\ell\circ A^j$, $0\leq j<q$, are a basis
+of $E^\vee$. Therefore the $q^2$ operators
+
+$$
+A^i\mathcal R A^j=(A^i1_E)\otimes(\ell\circ A^j)
+\tag{RC12}
+$$
+
+are a vector-space basis of $\operatorname{End}_{\mathbb C}(E)$.
+Every one belongs to the algebra generated by $A$ and $\mathcal R$.
+
+Now fix an actual nonzero proper invariant constituent, with its full maps,
+
+$$
+0\longrightarrow F\xrightarrow{\iota}E
+\xrightarrow{\pi}E/F\longrightarrow0,
+\qquad A\iota=\iota A_F,
+\qquad 0<p:=\dim F<q.
+\tag{RC13}
+$$
+
+The deformation has a specified transverse map
+
+$$
+\boxed{\pi\mathcal R\iota
+=(\pi1_E)\otimes\ell_F:F\longrightarrow E/F,
+\qquad \ell_F=\ell\circ\iota.}
+\tag{RC14}
+$$
+
+Both tensor factors are nonzero. If $1_E$ belonged to $F$, its entire
+$A$-orbit would belong to $F$, contradicting $F\ne E$. If $\ell_F=0$,
+then for $v\in F$, invariance would give $\ell(A^jv)=0$ for every $j$.
+Nondegeneracy of (RC8) would force every $v\in F$ to be zero. Thus
+
+$$
+\boxed{\operatorname{rank}(\pi\mathcal R\iota)=1,
+\quad \ker(\pi\mathcal R\iota)=\ker\ell_F,
+\quad \operatorname{im}(\pi\mathcal R\iota)=\mathbb C\,\pi1_E.}
+\tag{RC15}
+$$
+
+In particular the kernel has dimension $p-1$. This is the strengthening
+of the supplied rank-at-most-one statement. It holds with all nilpotent
+jets retained. Equivalently, an invariant subspace is an ideal
+$(a)/(\chi)$ for a monic divisor $a\mid\chi$; the polynomial
+$S^{q-1-\deg a}a$ witnesses that $\ell_F$ is nonzero whenever
+$0<\deg a<q$.
+
+No nonzero proper *constant remainder-coordinate* subspace is invariant
+under $A(t)$ for every $t$. This assertion must not be called differential
+irreducibility: moving horizontal subbundles do exist. For example,
+$\Pi(t)^{-1}\Pi(0)F$ is horizontal. It is a different marked family from
+the fixed original constituent in (RC13).
+
+# Exact constituent-period curvature
+
+Keep $F$ and its inclusion fixed as in (RC13), and put
+
+$$
+P_F(t)=\Pi(t)\iota,\qquad
+H(t)=\Pi(t)^*\Pi(t),\qquad
+H_F(t)=P_F(t)^*P_F(t)=\iota^*H(t)\iota.
+\tag{RC16}
+$$
+
+The target metric in this section is exactly the fixed coordinate metric
+$I_q$ of the period construction. Since $\Pi(t)$ is invertible, $P_F(t)$
+has rank $p$ everywhere. Its orthogonal projector is
+
+$$
+\mathsf P_F(t)=P_F(t)H_F(t)^{-1}P_F(t)^*.
+\tag{RC17}
+$$
+
+Use (RC4) and $A\iota=\iota A_F$ before projecting:
+
+$$
+P_F'(t)=-\frac1uP_F(t)A_F
+-\frac t u\Pi(t)\mathcal R\iota.
+\tag{RC18}
+$$
+
+The first term is tangent to the same period subspace. Thus its complete
+normal derivative is
+
+$$
+\boxed{\mathcal N_F(t):=(I-\mathsf P_F(t))P_F'(t)
+=-\frac t u (I-\mathsf P_F(t))\Pi(t)1_E\,\ell_F.}
+\tag{RC19}
+$$
+
+The column $(I-\mathsf P_F(t))\Pi(t)1_E$ never vanishes: vanishing would
+imply $1_E\in F$. Equations (RC15) and (RC19) prove that this normal
+map is zero at $t=0$ and has rank exactly one at every $t\ne0$.
+Its kernel for $t\ne0$ is $\ker\ell_F$. At the marked fibre,
+
+$$
+\boxed{(I-\mathsf P_F(0))P_F'(0)=0,
+\qquad (I-\mathsf P_F(0))P_F''(0)
+=-\frac1u(I-\mathsf P_F(0))\Pi(0)1_E\,\ell_F\ne0.}
+\tag{RC20}
+$$
+
+The second identity follows by differentiating (RC5):
+$\Pi''=\Pi A(t)^2/u^2-\Pi\mathcal R/u$. At zero,
+$A^2\iota=\iota A_F^2$, so the $A^2$ term vanishes under the stated
+normal projection. The surviving map has rank one.
+
+## The exact coefficient of curvature
+
+For any positive Hermitian matrix $M$ on $E$, define
+
+$$
+q_{M,F}([1_E])=\min_{f\in F}\|1_E-\iota f\|_M^2,
+\qquad M_F=\iota^*M\iota,
+\tag{RC21}
+$$
+
+and
+
+$$
+\boxed{\mathfrak c_F(M)
+=q_{M,F}([1_E])\,\ell_F M_F^{-1}\ell_F^*.}
+\tag{RC22}
+$$
+
+This scalar is strictly positive for (RC13). It is independent of the basis
+chosen in $F$, but it retains the marked quotient vector $[1_E]$ and the
+marked residue functional $\ell_F$. The two factors are the actual quotient
+norm and the actual dual norm, not arbitrary positive constants.
+
+Let $\psi_F(t)=\log\det H_F(t)$, where the determinant is of the
+$p\times p$ positive Gram. No rectangular determinant is used. Ordinary
+matrix differentiation, using holomorphy of $P_F$, gives
+
+$$
+\begin{split}
+\partial_t\partial_{\bar t}\psi_F
+&=\operatorname{Tr}\left[
+H_F^{-1}P_F'^*P_F'
+-H_F^{-1}P_F'^*P_FH_F^{-1}P_F^*P_F'
+\right]\\
+&=\operatorname{Tr}\left[H_F^{-1}\mathcal N_F^*\mathcal N_F\right].
+\end{split}
+\tag{RC23}
+$$
+
+The projector in (RC17) is self-adjoint and idempotent, which justifies the
+last equality. Further,
+
+$$
+q_{H(t),F}([1_E])
+=\|(I-\mathsf P_F(t))\Pi(t)1_E\|^2.
+\tag{RC24}
+$$
+
+Substitute (RC19) and take the trace of its rank-one product. This yields
+an exact identity for all complex $t$:
+
+$$
+\boxed{\partial_t\partial_{\bar t}\log\det H_F(t)
+=\frac{|t|^2}{|u|^2}\,\mathfrak c_F(H(t)).}
+\tag{RC25}
+$$
+
+Thus the dual determinant line of the period-image subbundle, with its
+specified induced metric, has Chern form
+
+$$
+c_1((\det\mathscr F_{\rm per})^\vee)
+=\frac{i}{2\pi}\frac{|t|^2}{|u|^2}
+\mathfrak c_F(H(t))\,dt\wedge d\bar t.
+\tag{RC26}
+$$
+
+It is strictly positive away from $t=0$ and has quadratic vanishing there.
+Equivalently,
+
+$$
+\boxed{\left.\partial_t^2\partial_{\bar t}^2
+\log\det H_F(t)\right|_{t=0}
+=\frac{\mathfrak c_F(H(0))}{|u|^2}>0.}
+\tag{RC27}
+$$
+
+The coefficient of $t^2\bar t^2$ in $\log\det H_F$ is therefore
+$\mathfrak c_F(H(0))/(4|u|^2)$; the factor four comes from $2!2!$.
+This mixed derivative is not the second derivative along the real axis.
+For $F=0$ or $F=E$, the relevant curvature is identically zero; (RC13)
+is essential for strict positivity.
+
+## The first derivative still records the aggregate defect
+
+At $t=0$ and real $u>0$, (RC18) gives
+
+$$
+-u\left.\frac{d}{dt}
+\log\frac{\det H_F(t)}{\det G_{N,F}}\right|_{t=0}-kp
+=2\operatorname{Re}\operatorname{Tr}A_F-kp,
+\qquad G_{N,F}=\iota^*G_N\iota.
+\tag{RC28}
+$$
+
+This is the supplied constituent-minor observer, not a new estimate.
+Taking $F=E_>$, the complete positive-real-defect generalized eigenspace,
+gives the existing aggregate spectral defect. Equations (RC25)–(RC27)
+add the exact transverse curvature carried by that same marked
+constituent. A derivative of the full determinant alone sees only the
+balanced total trace on a reflection-stable packet.
+
+# Transfer to the original theta metric
+
+## A source-space expression for the coefficient
+
+Using (RC2), the same coefficient for the actual arithmetic metric is
+
+$$
+\boxed{\mathfrak c_F(G_N)=
+\left(\min_{f\in F}\|r_N(1_E-\iota f)\|^2\right)
+\left(\sup_{0\ne f\in F}
+\frac{|\ell_F(f)|^2}{\|r_N\iota f\|^2}\right).}
+\tag{RC29}
+$$
+
+The supremum equals the finite dual norm in (RC22). Every source norm,
+the arithmetic unit implicit in $r_N$, and every allowed theta correction
+remain in this expression.
+
+The isometry from the original source metric into period coordinates is
+not $E\xrightarrow{\Pi}(\mathbb C^q,I_q)$. It is
+
+$$
+(E,G_N)\xrightarrow{\Pi(t)}
+(\mathbb C^q,\widetilde G_N(t)),
+\qquad \widetilde G_N(t)=\Pi(t)^{-*}G_N\Pi(t)^{-1}.
+\tag{RC30}
+$$
+
+Consequently the corresponding quotient-unit/residue product is invariant
+when the subspace, unit, functional, and metric are all transported:
+$F\mapsto\Pi F$, $1_E\mapsto\Pi1_E$, and
+$\ell\mapsto\ell\Pi^{-1}$. In particular it equals
+$\mathfrak c_F(G_N)$, independently of $t$. This does not identify the
+Chern form for a varying target metric with the fixed-target-metric
+form (RC26).
+
+## A finite condition-number bridge
+
+Let $a_N(t)>0$ and $b_N(t)>0$ be the least and greatest eigenvalues of
+
+$$
+B_N^{\rm per}(t)=G_N^{-1}H(t).
+\tag{RC31}
+$$
+
+This operator is positive and self-adjoint in $G_N$, so
+$a_NG_N\preceq H(t)\preceq b_NG_N$. Minimizing a quadratic form over
+a fixed coset preserves this order, whereas inversion of the restricted
+positive form reverses it. Therefore
+
+$$
+\frac{a_N}{b_N}\mathfrak c_F(G_N)
+\leq\mathfrak c_F(H(t))
+\leq\frac{b_N}{a_N}\mathfrak c_F(G_N).
+\tag{RC32}
+$$
+
+Writing $\mathcal K_N=b_N/a_N$, the exact curvature has the two-sided
+source-sensitive enclosure
+
+$$
+\boxed{\frac{|t|^2}{|u|^2\mathcal K_N(t)}\mathfrak c_F(G_N)
+\leq\partial_t\partial_{\bar t}\log\det H_F(t)
+\leq\frac{|t|^2\mathcal K_N(t)}{|u|^2}\mathfrak c_F(G_N).}
+\tag{RC33}
+$$
+
+The calculated determinant of $B_N^{\rm per}$ determines its eigenvalue
+product, not $\mathcal K_N$. Equation (RC33) keeps the precise additional
+metric quantity required to compare the two curvature observations.
+
+## The existing endpoint certificate controls variation of this coefficient
+
+For the original nested source degrees $i\leq j$, let
+$G_i\succeq G_j\succ0$, $V_n=\det G_n$, and
+
+$$
+\theta=\lambda_{\min}(G_i^{-1}G_j)\in(0,1].
+\tag{RC34}
+$$
+
+Then $\theta G_i\preceq G_j\preceq G_i$. The quotient norms satisfy
+$\theta q_{G_i,F}\leq q_{G_j,F}\leq q_{G_i,F}$, and the squared
+restricted dual norms satisfy
+$\|\ell_F\|_{G_i^{-1}}^2\leq\|\ell_F\|_{G_j^{-1}}^2
+\leq\theta^{-1}\|\ell_F\|_{G_i^{-1}}^2$, with each inverse taken
+on the restricted form. Multiplying gives
+
+$$
+\theta\mathfrak c_F(G_i)\leq\mathfrak c_F(G_j)
+\leq\theta^{-1}\mathfrak c_F(G_i).
+\tag{RC35}
+$$
+
+Every eigenvalue of $G_i^{-1}G_j$ lies in $(0,1]$, and one equals
+$\theta$. Their product is at most $\theta$. Hence
+
+$$
+\boxed{\left|\log\frac{\mathfrak c_F(G_j)}{\mathfrak c_F(G_i)}\right|
+\leq-\log\theta\leq\log\frac{V_i}{V_j}.}
+\tag{RC36}
+$$
+
+This is a new use of the existing endpoint quantity. Any certified upper
+bound for the original $\log(V_i/V_j)$ immediately bounds the change of
+the specified residue/quotient coupling, without a separately assumed
+uniform spectral gap. It does not reverse into an upper bound for
+$\log(V_i/V_j)$ from the coupling alone.
+
+# The period realization of the arithmetic Laplacian
+
+The quadratic polynomial of the original arithmetic generator is
+
+$$
+\mathsf L_k=A^2-kA.
+\tag{RC37}
+$$
+
+For $k=1$ this is the polynomial corresponding to Connes–Consani's
+$H(1+H)$ under $H=-D$. A nonconstant parameter connection introduces
+an exact additional term at second order. From (RC5),
+
+$$
+\Pi''(t)=\frac1{u^2}\Pi(t)A(t)^2
+-\frac1u\Pi(t)\mathcal R.
+\tag{RC38}
+$$
+
+Thus, on every fibre,
+
+$$
+\boxed{u^2\Pi''(t)+ku\Pi'(t)+u\Pi(t)\mathcal R
+=\Pi(t)(A(t)^2-kA(t)).}
+\tag{RC39}
+$$
+
+At zero this is the exact period comparison for (RC37). Omitting
+$u\Pi\mathcal R$ would give a false equation. The correction is the
+same residue map that supplies (RC15) and (RC25).
+
+The original source lift of this correction is
+
+$$
+\mathcal R_N^{\rm src}=r_N\mathcal Rj_E:\mathscr X\to\mathscr X,
+\qquad j_E\mathcal R_N^{\rm src}=\mathcal Rj_E,
+\qquad \mathcal R_N^{\rm src}d=0.
+\tag{RC40}
+$$
+
+It is defined on the specified source domain. For a fixed $x\in\mathscr X$
+let $Y_x(t)=\Pi(t)j_Ex$. Applying (RC39) at zero and using (RC2) gives
+
+$$
+\begin{split}
+\left.(u^2\partial_t^2+ku\partial_t)Y_x\right|_{0}
++u\Pi(0)j_E\mathcal R_N^{\rm src}x
+=\Pi(0)j_E\bigl((D^{(k)})^2-kD^{(k)}\bigr)x.
+\end{split}
+\tag{RC41}
+$$
+
+The original primitive for $D^{(k)}r_N-r_NA=dK_N$ is still present;
+the perturbed source operator $D^{(k)}+t\mathcal R_N^{\rm src}$ has
+the same primitive, exactly as in DS69.
+
+For the original Gram, retain
+
+$$
+W_N=A^*G_N+G_NA-kG_N.
+\tag{RC42}
+$$
+
+Direct expansion proves
+
+$$
+\mathsf L_k^*G_N-G_N\mathsf L_k=A^*W_N-W_NA,
+\qquad G_N\mathsf L_k=W_NA-A^*G_NA.
+\tag{RC43}
+$$
+
+These are the preceding Laplacian-control identities, included here to
+fix the map to the present period calculation. Under (RC30), put
+$\widetilde A=\Pi A\Pi^{-1}$,
+$\widetilde{\mathsf L}_k=\Pi\mathsf L_k\Pi^{-1}$, and
+$\widetilde W_N=\Pi^{-*}W_N\Pi^{-1}$. Substitution gives
+
+$$
+\widetilde A^*\widetilde G_N+
+\widetilde G_N\widetilde A-k\widetilde G_N=\widetilde W_N,
+\tag{RC44}
+$$
+
+and the two identities (RC43) in precisely the transported metric.
+Thus every original numerical-range/control estimate is transported
+by an actual isometry, not by exchanging $G_N$ for $H(t)$.
+
+The full primary action is retained:
+
+$$
+\mathsf L_k|_{E_\rho}
+=\rho(\rho-k)I+(2\rho-k)N_\rho+N_\rho^2.
+\tag{RC45}
+$$
+
+The finite residue algebra and the adelic Hochschild source are not being
+declared isomorphic. The latter reaches these finite coefficients through
+the original theta complex, its quotient, and $j_E$. In particular a theta
+boundary is killed by $j_E$; the differentiated original relation producing
+the Jacobian trace is taken before that quotient. The finite algebra's
+higher Hochschild modules from the supplied periodic resolution,
+$HH_{2a+1}=E/(\chi')$ and $HH_{2a+2}=\operatorname{ann}_E(\chi')$,
+remain separate from the operator $\mathcal R$ and from the adelic
+Hochschild groups.
+
+# Translation, cohomological support, and exact scope
+
+## Translation preserves curvature but changes the marked trace
+
+The supplied DT1–13 comparison is
+
+$$
+\chi_a(S)=\chi(S-a),\quad
+\Phi_a(S)=\Phi(S-a)-\Phi(-a),\quad
+\Pi_a(t)=f_a(t)\Pi(t)C_a,
+\quad f_a(t)=e^{(-\Phi(-a)-ta)/u},
+\tag{RC46}
+$$
+
+where $C_a$ is the Pascal substitution matrix, $\det C_a=1$, and
+$C_aA_aC_a^{-1}=A+aI$. Transport the same constituent by
+$\iota_a=C_a^{-1}\iota$. Then
+
+$$
+P_{F,a}(t)=f_a(t)P_F(t),\qquad
+\det H_{F,a}(t)=|f_a(t)|^{2p}\det H_F(t).
+\tag{RC47}
+$$
+
+Since $f_a$ is nowhere zero and holomorphic,
+
+$$
+\boxed{\partial_t\partial_{\bar t}\log\det H_{F,a}(t)
+=\partial_t\partial_{\bar t}\log\det H_F(t).}
+\tag{RC48}
+$$
+
+But, with the original $k$ fixed,
+
+$$
+2\operatorname{Re}\operatorname{Tr}(A_F+aI)-kp
+=(2\operatorname{Re}\operatorname{Tr}A_F-kp)+2p\operatorname{Re}a.
+\tag{RC49}
+$$
+
+Thus curvature, unlike the first-derivative observer, does not retain
+this scalar normalization by itself. The exact scalar $f_a$ and the marked
+arithmetic fibre $a=0$ remain necessary parts of the comparison. This is
+not an assertion that translated polynomials are actual zeta packets.
+In the specified finite-field realization DT12–13 instead tensors with
+the constant Artin–Schreier character line, whose geometric-Frobenius
+scalar is a root of unity. The finite-field weights are preserved by that
+operation; it does not identify that Frobenius with $A$.
+
+## Cohomological degrees and supported-zero maps
+
+For an invariant $F$, the supplied logarithmic lattice
+$\mathcal M_F=F\mathcal O+E\mathcal O(-D)$ gives
+
+$$
+\mathbb H^0(\mathcal K_F)=F,\quad
+\mathbb H^1(\mathcal K_F)=0,\quad
+\mathbb H^2(\mathcal K_F)=(E/F)\otimes\mathbb T.
+\tag{RC50}
+$$
+
+Its support-compatible dual is
+$\mathcal M_F^\vee(-D)=F^{\rm ann}\mathcal O+E^\vee\mathcal O(-D)$.
+The evaluation target includes that divisor twist. The full coefficient
+extension $0\to F\to E\to E/F\to0$ is retained through the outer
+comparison complexes; it is not reconstructed from the two middle
+cohomology groups alone. These are the corrected distinctions in DS25–34
+and DS66–69.
+
+The new transverse map (RC14) is therefore a specified map
+$\mathbb H^0(\mathcal K_F)\to E/F$, with the latter connected to degree two
+by the retained line $\mathbb T$. It is not silently a degree-zero chain
+endomorphism of $\mathcal K_F$. In particular, $\mathcal R$ need not
+preserve its lattice; (RC15) quantifies the failure.
+
+Lift every coefficient map by the original support reconstruction,
+retaining the structural square
+
+$$
+\begin{array}{ccc}
+G(\mathbb Z)&\longrightarrow&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\longrightarrow&\mathbb C.
+\end{array}
+\tag{RC51}
+$$
+
+For each support label $\lambda$, the new map is
+
+$$
+(\lambda,v)\longmapsto
+(\lambda,(\pi1_E)\ell_F(v)),\qquad \tau\longmapsto\tau.
+\tag{RC52}
+$$
+
+If $v\in\ker\ell_F$, its receiving value is the supported zero at
+$\lambda$, not external absence. For the single active fibre,
+
+$$
+\mathsf S(f)^{-1}(\tau)=\{\tau\},\qquad
+\mathsf S(f)^{-1}(e)=(\ker f)^\bullet,
+\qquad p^{-1}(\ker f)=\{\tau\}\sqcup(\ker f)^\bullet.
+\tag{RC53}
+$$
+
+This uses the corrected split-kernel formula in the supplied review.
+The original infinite arithmetic quotient, support transitions, and all
+source boundaries remain attached.
+
+# Verification and provenance
+
+The included checker contains twelve independent finite test methods.
+Its fixtures are monic polynomials with rational coefficients, including
+repeated roots, and exact complex-rational matrices. It checks the residue
+pairing and trace, the $q^2$ endomorphism basis, the exact transverse rank
+and kernel, the curvature factorization, a bivariate fourth-order log-Gram
+jet with its factorial, the metric enclosures, the forced Laplacian equation,
+and the constituent translation comparison. The normal and optimized runs
+have their actual command and output records in `checks/`. Three deliberately
+false formulas are tested separately: zero transverse rank, omitted Laplacian
+forcing, and omitted $|t|^2$ in the curvature. These must fail in both modes.
+
+The finite tests do not prove improper-integral convergence, the global
+analytic period theorem, Deligne's theorem, or uniform growth on arithmetic
+packets. Those parts have their written source proofs and stated hypotheses.
+No predecessor checker or Lean build is claimed as a new execution here.
+No remote repository or publication is modified by this package.
+
+The dated *Deligne Primary Source Correction* supersedes the historical
+unresolved-citation claim in *Exponential Intake*: the reference is
+Roman **(I.8.11)** to Weil I, printed page 306. The strict weight inequality,
+the tensor square of the same eigenvalue, and the lisse/mixed hypotheses
+are retained. This note relies on that supplied correction for those
+printed-page identifications; it does not claim a fresh full audit of Weil II.
+
+The intake receipt records the hashes actually measured from the uploaded
+files. All nine files listed in the manifest's `copies` array match their
+output hashes. The currently supplied README is newer than the README hash
+recorded in that manifest. The independent review also pins translation
+TeX hash `39163624...`, whereas the delivered translation source and the
+manifest agree on `bd1831cd...`. The review's source-byte identity must
+therefore be reconciled before its acceptance is attributed to those
+exact delivered translation bytes; this discrepancy does not itself show
+that a displayed mathematical formula is false.
+
+# References and supplied-source locators
+
+Bloch, S., & Esnault, H. (1999). *Gauß–Manin determinant connections and
+periods for irregular connections* [Preprint]. arXiv, math/9912095.
+The inspected §5 supplies the polynomial-exponential period context,
+not the new assertions (RC11), (RC15), (RC25), or (RC36).
+
+Connes, A., & Consani, C. (2023). Hochschild homology, trace map and
+$\zeta$-cycles. In A. Connes, C. Consani, B. I. Dundas, M. Khalkhali,
+& H. Moscovici (Eds.), *Cyclic cohomology at 40: Achievements and future
+prospects* (Proceedings of Symposia in Pure Mathematics, Vol. 105,
+pp. 83–101). American Mathematical Society. DOI: 10.1090/pspum/105/01896.
+
+Deligne, P. (1980). La conjecture de Weil: II. *Publications Mathématiques
+de l'IHÉS, 52*, 137–252. DOI: 10.1007/BF02684780. The present note does
+not infer characteristic-zero spectral purity from finite-field purity.
+
+National Institute of Standards and Technology. (n.d.). §5.5: Functional
+relations. In *Digital Library of Mathematical Functions*. Equation 5.5.6,
+Gauss's gamma multiplication formula, gives the constant in (RC6).
+
+*Deligne Split Cohomology*. (2026, September 13). Supplied research sidebar,
+DS1–69. Source: `deligne_split_sidebar_20260913.tex`; relevant maps
+DS12–14, DS25–34, DS53–69.
+
+*Exponential Period Determinant*. (2026, September 13). Supplied research
+note, XD1–26. Source: `deligne_exponential_determinant_extension_20260913.tex`.
+
+*Exponential Translation Comparison*. (2026, September 13). Supplied
+research note, DT1–13. Source: `Exponential_Translation_Comparison.tex`.
+
+*Pasted markdown (20260913-034115)*. (2026, September 13). Supplied SGA
+trace/period continuation. Sections 2–3 give the residue coevaluation and
+periodic resolution; §§4–5 evaluate and differentiate the determinant;
+§§6–7 identify the constituent minor and transport the original metric.
+
+*Independent Deligne Review*, *Exponential Intake*, and *Deligne Primary
+Source Correction*. (2026, September 13). Supplied review and correction
+records. Their historical execution and source-reading claims are not
+relabeled as new executions in this note.

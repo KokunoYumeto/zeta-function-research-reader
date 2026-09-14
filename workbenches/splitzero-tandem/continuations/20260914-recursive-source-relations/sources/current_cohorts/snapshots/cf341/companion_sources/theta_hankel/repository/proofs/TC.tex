@@ -1,0 +1,425 @@
+
+
+
+This calculation continues the supplied \emph{RH Counterfactual Workbench}.
+It keeps its original $g=2\xi$, theta source, Fourier coordinate,
+unscaled mass, reciprocal-zero multiplicities, and monomial matrices.
+The accompanying workbench gives the full arithmetic packet and support
+comparison. Here the infinite theta integral receives explicit truncation
+bounds, and the negative-witness construction receives quantitative
+rational approximation and finite interval verification.
+The computational certificate uses these bounds to prove positivity of
+both original matrices of dimension $16$. This finite result has the
+same matrix definitions as the workbench's exploratory calculation.
+
+\section{The original integral and its two omitted regions}
+Retain
+\[
+\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+f_0(x)=2\sum_{n\ge1}\phi_*(nx),\qquad
+\psi(y)=e^{y/2}f_0(e^y).
+\tag{TC1}
+\]
+The original reflection and Mellin calculation give
+$\psi(-y)=\psi(y)$ and
+$g(1/2+iz)=\int_{\R}\psi(y)e^{izy}\,dy$.
+For every even integer $J\ge0$, write $M_J=\int_{\R}y^J\psi(y)\,dy$.
+Substitution of (TC1), with its theta factor two and reflection factor
+two, gives
+\[
+M_J=\int_0^\infty I_J(y)\,dy,\qquad
+I_J(y)=4y^J\sum_{n\ge1}
+\left(4\pi^2n^4e^{9y/2}-6\pi n^2e^{5y/2}\right)
+e^{-\pi n^2e^{2y}} .
+\tag{TC2}
+\]
+At $y\ge0$, each summand is nonnegative; it is strictly positive at
+$y>0$, because $2\pi n^2e^{2y}-3>0$. This also proves positivity of
+every $M_J$ once convergence is established below.
+
+For an integer $N\ge1$ and a real $L>0$, retain exactly the terms
+$1\le n<N$ on $0\le y\le L$. Denote their integral by $M_J^{N,L}$.
+Thus $N$ is the first omitted integer. Set
+\[
+r_N=e^{4/N-2\pi N},\qquad r_1=e^{4-2\pi},\qquad
+\lambda_J(L)=2\pi e^{2L}-\frac92-\frac{J}{L}.
+\tag{TC3}
+\]
+Both $r_N$ and $r_1$ lie strictly between zero and one.
+
+\begin{theorem}[Two explicit positive tails]
+For $\lambda_J(L)>0$ the full original moment satisfies
+\[
+0\le M_J-M_J^{N,L}\le T_{J,N,L}+Y_{J,L},
+\tag{TC4}
+\]
+where every factor is retained in
+\[
+T_{J,N,L}
+=\frac{16\pi^2L^{J+1}e^{9L/2}N^4e^{-\pi N^2}}{1-r_N},
+\qquad
+Y_{J,L}
+=\frac{16\pi^2L^Je^{9L/2-\pi e^{2L}}}
+{(1-r_1)\lambda_J(L)}.
+\tag{TC5}
+\]
+\end{theorem}
+\begin{proof}
+For $n=N+\ell$, $\ell\ge0$, use
+$(N+\ell)^4\le N^4e^{4\ell/N}$, which follows from
+$\log(1+x)\le x$ for $x\ge0$, and
+$(N+\ell)^2\ge N^2+2N\ell$. For $y\ge0$ these imply
+\[
+\sum_{n\ge N}n^4e^{-\pi n^2e^{2y}}
+\le
+\frac{N^4e^{-\pi N^2e^{2y}}}
+{1-e^{4/N-2\pi Ne^{2y}}}
+\le\frac{N^4e^{-\pi N^2}}{1-r_N}.
+\tag{TC6}
+\]
+The negative term in each parenthesis of (TC2) can be dropped for
+an upper bound. On $[0,L]$ one has $y^J\le L^J$ and
+$e^{9y/2}\le e^{9L/2}$. Integrating that bound over an interval
+of length $L$ proves the first expression in (TC5).
+
+For the second region, apply the first bound in (TC6) with $N=1$,
+retaining its numerator's dependence on $y$ and bounding its
+denominator below by $1-r_1$. Consequently
+\[
+0\le I_J(y)\le
+\frac{16\pi^2}{1-r_1}y^Je^{9y/2-\pi e^{2y}}
+\qquad(y\ge0).
+\tag{TC7}
+\]
+Write $y=L+v$ with $v\ge0$. The elementary inequalities
+$(L+v)^J\le L^Je^{Jv/L}$ and
+$e^{2(L+v)}\ge e^{2L}(1+2v)$ yield
+\[
+y^Je^{9y/2-\pi e^{2y}}
+\le L^Je^{9L/2-\pi e^{2L}}e^{-\lambda_J(L)v}.
+\tag{TC8}
+\]
+Its integral for $v\ge0$ is the numerator divided by
+$\lambda_J(L)$, proving the second bound.
+The two omitted regions are disjoint: the first has $0\le y\le L$
+and $n\ge N$; the second has $y>L$ and every $n\ge1$.
+Every omitted summand is nonnegative. Tonelli's theorem therefore
+justifies all exchanges before convergence is known; the finite
+upper bounds then prove convergence and (TC4).
+\end{proof}
+
+For every fixed $J$, the bounds tend to zero by first increasing $L$
+and then increasing $N$. Indeed (TC8) is dominated by the negative
+double exponential as $L\to\infty$, while for fixed $L$ the factor
+$N^4e^{-\pi N^2}$ tends to zero and $r_N\to0$.
+The finite integrand
+\[
+y^J e^{y/2}\sum_{n=1}^{N-1}(16x_n(y)^2-24x_n(y))e^{-x_n(y)},
+\qquad x_n(y)=\pi n^2e^{2y},
+\tag{TC9}
+\]
+is entire as a function of the original complex coordinate $y$.
+Expanding $x_n$ shows that it is exactly the retained integrand
+of (TC2); no scalar factor or negative term has been changed.
+This entire extension supplies the analyticity condition for
+validated complex-ball quadrature on the finite real intervals.
+
+\section{Exact propagation to the original Hankel matrices}
+Define, in the original coefficient convention,
+\[
+a_j=\frac{(-1)^jM_{2j}}{(2j)!},\qquad
+F(w)=\sum_{j\ge0}a_jw^j,\qquad
+-\frac{F'(w)}{F(w)}=\sum_{n\ge0}b_nw^n.
+\tag{TC10}
+\]
+The original entire-function comparison is
+$F(z^2)=g(1/2+iz)$, and $a_0=M_0>0$. Multiplication of the
+last identity by $F$ and extraction of the coefficient of $w^n$
+prove the complete recurrence
+\[
+b_n=
+\frac{-(n+1)a_{n+1}-\sum_{j=1}^na_jb_{n-j}}{a_0}.
+\tag{TC11}
+\]
+In particular the original mass remains in every division by $a_0$.
+The two real symmetric matrices of dimension $d+1$ are
+\[
+H_d=(b_{r+s})_{0\le r,s\le d},\qquad
+H_d^{(1)}=(b_{r+s+1})_{0\le r,s\le d}.
+\tag{TC12}
+\]
+
+\begin{proposition}[Finite enclosures and signs]
+Suppose that closed rational intervals enclose the finite integrals
+and upper bounds in (TC4)--(TC5). Adding the interval
+$[0,T_{J,N,L}+Y_{J,L}]$ with outward upper endpoints gives rational
+enclosures of the full moments. Applying (TC10)--(TC11) by interval
+arithmetic, with an enclosure of $a_0$ having positive lower
+endpoint, gives enclosures of every required $b_n$.
+An interval $LDL^{\mathsf T}$ recursion whose every pivot has
+positive lower endpoint proves positive definiteness of the
+original matrix in (TC12).
+\end{proposition}
+\begin{proof}
+Addition, subtraction, multiplication and division by an interval
+excluding zero each contain the exact operation on contained
+arguments. This follows for multiplication from the extrema of a
+bilinear function on a rectangle; division reduces to multiplication
+by the interval reciprocal. Induction in (TC11) proves the assertion.
+No independence of the interval arguments is required for enclosure.
+
+For a symmetric matrix $A$, the exact recursion in the unchanged
+coordinate order is
+\[
+\begin{split}
+D_j&=A_{jj}-\sum_{k<j}L_{jk}^2D_k,\\
+L_{jj}&=1,\qquad
+L_{ij}=\frac{A_{ij}-\sum_{k<j}L_{ik}L_{jk}D_k}{D_j}
+\quad(i>j),\qquad L_{ij}=0\quad(i<j).
+\end{split}
+\tag{TC13}
+\]
+If the interval pivots have positive lower endpoints, induction
+shows that every exact $D_j$ is positive and every division is
+defined. Formula (TC13) makes $A_{ij}=\sum_kL_{ik}D_kL_{jk}$
+for all $i\ge j$; symmetry gives the remaining entries.
+Thus $A=LDL^{\mathsf T}$. The triangular $L$ is invertible with
+determinant one. For every nonzero real vector $v$,
+$v^{\mathsf T}Av=\sum_jD_j((L^{\mathsf T}v)_j)^2>0$.
+The same equality for complex vectors uses the conjugate transpose
+and squared moduli and proves Hermitian positive definiteness.
+\end{proof}
+
+For a specified rational vector $c=(c_0,\ldots,c_d)$ let
+$\gamma_n=\sum_{r+s=n}c_rc_s\in\Q$. The exact signed witness is
+\[
+c^{\mathsf T}H_dc=\sum_{n=0}^{2d}\gamma_nb_n.
+\tag{TC14}
+\]
+If $b_n\in[\ell_n,u_n]$, its upper endpoint is
+\[
+U(c)=
+\sum_{\gamma_n\ge0}\gamma_nu_n
++\sum_{\gamma_n<0}\gamma_n\ell_n.
+\tag{TC15}
+\]
+Every comparison here is rational. A strict inequality $U(c)<0$
+is a finite negative certificate. If $\widehat b_n$ have errors
+$|b_n-\widehat b_n|\le\epsilon_n$, the exact error in (TC14)
+is at most $\sum_n|\gamma_n|\epsilon_n$, by the triangle
+inequality. These statements include all mixed matrix entries.
+
+\section{Quantitative rational form of the counterfactual separator}
+We record the full argument to show precisely how a negative
+counterfactual form becomes a rational certificate. The entire
+factorization in the supplied workbench gives the distinct reciprocal
+zeros $\beta_j$ of $F$, with positive integer multiplicities $m_j$,
+and
+\[
+\sum_jm_j|\beta_j|<\infty,\qquad
+b_n=\sum_jm_j\beta_j^{n+1}.
+\tag{TC16}
+\]
+No reciprocal zero is zero. The multiset is stable under complex
+conjugation. The actual map from a zeta zero
+$\rho=1/2+\delta+i\gamma$ is
+\[
+\beta=-\frac{1}{(\rho-1/2)^2}
+=\frac{\gamma^2-\delta^2+2i\gamma\delta}
+{(\gamma^2+\delta^2)^2}.
+\tag{TC17}
+\]
+The reflected pair $\rho,1-\rho$ corresponds to a single zero of
+$F$ with the same multiplicity. Both primary blocks remain in
+the original packet before taking its half-trace.
+
+Let
+\[
+S_*=\sum_jm_j|\beta_j|,\qquad
+R_*=\max\{1,\sup_j|\beta_j|\}<\infty,\qquad
+\|P\|_{R_*}=\sum_{r=0}^{\deg P}|p_r|R_*^r
+\tag{TC18}
+\]
+for $P(X)=\sum p_rX^r$. This coefficient norm is an explicit
+error-control map; it changes neither $P$ nor the original Hankel
+form. Define
+\[
+\mathcal Q(P)=\sum_jm_j\beta_jP(\beta_j)^2
+=p^{\mathsf T}H_{\deg P}p.
+\tag{TC19}
+\]
+Absolute convergence follows from
+$|P(\beta_j)|\le\|P\|_{R_*}$ and (TC16). The sum is real for
+real $P$ because conjugate terms pair, and real reciprocal terms
+are real. The equality with the finite matrix follows by expanding
+the finite polynomial product and using (TC16).
+
+\begin{lemma}[Coefficient perturbation with the full reciprocal tail]
+For real polynomials $P,E$ one has
+\[
+|\mathcal Q(P+E)-\mathcal Q(P)|
+\le S_*\|E\|_{R_*}\bigl(2\|P\|_{R_*}+\|E\|_{R_*}\bigr).
+\tag{TC20}
+\]
+\end{lemma}
+\begin{proof}
+The polynomial identity $(P+E)^2-P^2=2PE+E^2$ holds at every
+$\beta_j$ including every multiplicity. Take absolute values
+term by term in the absolutely convergent series (TC19), bound
+$|P(\beta_j)|$ and $|E(\beta_j)|$ by (TC18), and sum
+$m_j|\beta_j|$. This gives (TC20).
+\end{proof}
+
+\begin{theorem}[Explicit finite degree and rational coefficient accuracy]
+Choose any nonreal reciprocal zero $\beta$ and its conjugate of
+multiplicity $m$. Put $r=|\beta|/2$. Let $\mathcal A$ be the finite
+set of all other distinct reciprocal zeros of modulus at least
+$r$, and set
+\[
+B(X)=\prod_{\alpha\in\mathcal A}(X-\alpha),\quad
+B_0=\prod_{\alpha\in\mathcal A}(r+|\alpha|),\quad
+T_*=\sum_{|\beta_j|<r}m_j|\beta_j|.
+\tag{TC21}
+\]
+Choose either $c\in\C$ satisfying $\beta c^2=-1$ and define
+\[
+C_*=\frac{|c|B_0}{|B(\beta)|}
+\left(1+\frac{|\Re\beta|+r}{|\Im\beta|}\right).
+\tag{TC22}
+\]
+If $T_*=0$, take $N_*=0$. Otherwise take the explicit integer
+\[
+N_*=\max\left\{0,\,
+1+\left\lfloor\frac{\log(C_*^2T_*/m)}{\log4}\right\rfloor\right\}.
+\tag{TC23}
+\]
+For any integer $N\ge N_*$ put
+\[
+w_N=\frac{c}{\beta^NB(\beta)},\qquad
+v_N=\frac{\Im w_N}{\Im\beta},\quad
+u_N=\Re w_N-(\Re\beta)v_N,\quad
+P_N(X)=X^NB(X)(u_N+v_NX).
+\tag{TC24}
+\]
+Then $\mathcal Q(P_N)\le-m$. A rational polynomial
+$\widetilde P_N$ of degree at most
+$D=N+\#\mathcal A+1$ can be obtained by rounding each of the
+$D+1$ original coefficients to a nearest multiple of $1/H$,
+with either choice allowed at a tie, for any
+positive integer $H$ with
+\[
+\frac{\sum_{r'=0}^D R_*^{r'}}{2H}
+\le
+\min\left\{1,\frac{m}{2S_*(2\|P_N\|_{R_*}+1)}\right\}.
+\tag{TC25}
+\]
+Every such rounding satisfies
+$\mathcal Q(\widetilde P_N)\le-m/2<0$.
+\end{theorem}
+\begin{proof}
+Absolute summability in (TC16) makes $\mathcal A$ finite.
+It is conjugation stable; hence $B$ has real coefficients,
+$B(\beta)\ne0$, and $u_N,v_N$ are real. Evaluation of their
+formulas gives $u_N+v_N\beta=w_N$ and therefore
+$P_N(\beta)=c$ and $P_N(\overline\beta)=\overline c$.
+The selected two terms of (TC19) sum to $-2m$ exactly.
+All other terms with modulus at least $r$ vanish.
+
+For $|X|\le r$, one has $|B(X)|\le B_0$ and
+\[
+|u_N+v_NX|
+\le |w_N|\left(1+\frac{|\Re\beta|+r}{|\Im\beta|}\right).
+\]
+Consequently $|P_N(X)|\le C_*2^{-N}$. The absolute sum of
+all remaining terms is at most $C_*^2T_*4^{-N}$, so
+\[
+\mathcal Q(P_N)\le-2m+C_*^2T_*4^{-N}.
+\tag{TC26}
+\]
+The chosen integer (TC23) makes the last summand at most $m$;
+if $T_*=0$ it is zero. This proves the first assertion.
+The coefficient rounding error $E=\widetilde P_N-P_N$ has
+each coefficient at most $1/(2H)$ in absolute value.
+Thus $\|E\|_{R_*}\le\sum_{r'=0}^DR_*^{r'}/(2H)$.
+The bound in (TC25) and (TC20) make the change in the quadratic
+form at most $m/2$, proving the strict negative result.
+Every original coefficient slot is included in the error bound.
+A nonzero coefficient may round to zero; an original zero
+coefficient remains an exact zero.
+\end{proof}
+
+All constants in this counterfactual degree bound retain their
+dependence on the chosen actual zero and on the full reciprocal
+set. It supplies no universal dimension for an off-critical
+witness. Once a rational polynomial is specified, however,
+(TC14)--(TC15) require only finitely many original moments.
+As their enclosing intervals shrink, their propagated intervals
+shrink to the exact coefficients: (TC11) is a finite composition
+of continuous rational operations with denominator $a_0>0$.
+The strict margin in (TC25) therefore eventually yields a strictly
+negative rational upper bound in (TC15).
+
+\section{The completed finite certificate}
+The supplied computation uses $N=20$, $L=4$, and $J=0,2,\ldots,64$.
+It keeps all nineteen original theta terms on each of the eight
+intervals $[j/2,(j+1)/2]$, $0\le j<8$. The omitted two regions
+are enclosed by (TC5). For these parameters every
+$\lambda_J(L)$ is positive: already $\pi>3$ and
+$e^8>1+8+8^2/2=41$ give
+$2\pi e^8-9/2-J/4>246-9/2-16>0$.
+The actual computation retains ball enclosures of the complete
+expressions, rather than replacing them by that rough inequality.
+
+The finite integrations use python-flint 0.9.0's validated
+\texttt{acb.integral}, at $1024$ bits and target $850$ bits.
+The callback is exactly (TC9); its entire expression satisfies
+the integration routine's analytic-ball contract. Each returned
+real interval is enlarged by the positive tails. All endpoints
+are exported as exact dyadic rational numerators and denominators.
+The complete $a_j,b_n,L_{ij},D_j$ enclosures and the individual
+integration intervals are retained in the machine-readable
+certificate. All thirty-two computed pivots have strictly
+positive lower endpoints, proving
+\[
+H_{15}>0,\qquad H_{15}^{(1)}>0.
+\tag{TC27}
+\]
+Every smaller leading principal matrix inherits positivity.
+For orientation, the readable enclosures include
+\[
+\det H_1\in
+\left[1.9493355548191422147398782191721395\times10^{-9}
+\ \mathbin{\pm}\ 5.60\times10^{-45}\right].
+\tag{TC28}
+\]
+The actual certificate contains the more precise exact rational
+endpoints. Its last pivots are positive intervals centered at
+$6.1698420811114408502314906319786538\times10^{-107}$
+and
+$7.1026100619440799659087832255229554\times10^{-111}$,
+respectively. The original $a_0$ remains centered at
+$0.99424155637662821982554747937079544$.
+These values are given to identify the checked objects; the
+strict signs are decided by the enclosing rational endpoints.
+
+The complete workbench proves that positivity for every
+unshifted dimension is equivalent to RH. Equation (TC27)
+settles the displayed finite dimensions and makes no assertion
+about larger dimensions. The packet trace still evaluates
+the retained arithmetic source before any critical-only
+comparison, and its support maps retain $\tau$ and every
+receiving supported zero exactly as in the included packet
+proofs.
+
+\begin{thebibliography}{9}
+\bibitem{workbench}
+\emph{RH Counterfactual Workbench}, original supplied package,
+13 September 2026, complete note and calculation sources.
+\bibitem{flint}
+The python-flint developers,
+\emph{acb: complex ball arithmetic and validated integration},
+\url{https://python-flint.readthedocs.io/en/latest/acb.html}.
+\bibitem{zhang}
+R. Zhang, \emph{On Power Sums of Positive Numbers},\par
+\url{https://arxiv.org/abs/1510.03420}.
+\end{thebibliography}

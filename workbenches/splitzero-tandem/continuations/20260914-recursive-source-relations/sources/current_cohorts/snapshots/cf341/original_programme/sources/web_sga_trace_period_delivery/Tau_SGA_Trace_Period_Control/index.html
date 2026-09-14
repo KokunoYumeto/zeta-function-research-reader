@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Owner-directed SplitZero research continuation" name="author"/>
+<meta content="2026-09-13" name="dcterms.date"/>
+<title>SGA trace, the retained diagonal, and the arithmetic period determinant</title>
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+<style>
+  :root{color-scheme:light;--ink:#162a36;--muted:#526372;--line:#dbe3e7;--accent:#125a63;--paper:#fff;--ground:#eef3f5}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--ground);margin:0;line-height:1.62;font-size:17px}body>header,body>nav,body>section,body>h2,body>h3,body>p,body>div,body>ul,body>ol,body>table{max-width:1020px;margin-left:auto;margin-right:auto}body{padding:38px 46px 80px}header{background:var(--ink);color:white;padding:32px 42px;border-radius:12px}header h1{font-size:2rem;line-height:1.22;margin:0 0 16px}header p{margin:8px 0}header .subtitle{font-size:1.14rem;color:#d4e9ec}#TOC{background:white;padding:24px 36px;margin-top:25px;border:1px solid var(--line);border-radius:10px}#TOC ul{list-style:none;padding-left:0}#TOC ul ul{padding-left:20px;font-size:.92rem}#TOC a{color:var(--accent);text-decoration:none}h2{margin-top:2.8rem!important;padding-top:1rem;border-top:2px solid var(--line);font-size:1.45rem;line-height:1.3}h3{margin-top:1.8rem!important;font-size:1.15rem;color:var(--accent)}p,li{overflow-wrap:anywhere}a{color:var(--accent)}.math.display{display:block;overflow-x:auto;max-width:100%;padding:20px 18px;margin:18px 0;background:white;border:1px solid var(--line);border-radius:8px;overflow-y:hidden}math{font-size:1.07em}code{font-size:.87em;background:#e3ebee;padding:2px 5px;border-radius:4px}pre{white-space:pre-wrap;background:white;padding:16px;border:1px solid var(--line)}table{display:block;overflow:auto;border-collapse:collapse}td,th{border:1px solid var(--line);padding:8px 12px}blockquote{border-left:4px solid var(--accent);padding:5px 20px;margin:20px 0}p strong{font-weight:700}.note-bar{background:#e1edf0;border-left:5px solid var(--accent);padding:15px 20px;margin-top:20px}.download-bar{display:flex;gap:18px;flex-wrap:wrap;font-size:.95rem;padding:14px 0}footer{max-width:1020px;margin:45px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:15px} @media(max-width:650px){body{padding:16px 16px 50px;font-size:16px}header{padding:24px 22px}header h1{font-size:1.6rem}#TOC{padding:18px 22px}.math.display{padding:15px 10px;font-size:.94em}h2{font-size:1.28rem}}
+  /* Pandoc MathML uses math[display=block], not a MathJax class. */
+  body{max-width:none}.equation-block{position:relative;max-width:1020px;margin:18px auto;padding:20px 54px 20px 18px;background:white;border:1px solid var(--line);border-radius:8px;overflow-x:auto;overflow-y:hidden}.equation-block math{min-width:max-content}.equation-number{display:block;text-align:right;color:var(--muted);font-size:.84em;margin-top:10px}p:has(>math[display="block"]){overflow-x:auto;overflow-y:hidden;max-width:100%}@media(max-width:650px){.equation-block{padding:16px 12px;font-size:.94em}}
+
+  </style>
+</head>
+<body>
+<div class="download-bar"><a href="NOTE.tex">LaTeX source</a><a href="HANDOFF.md">Formalization handoff</a><a href="SOURCE_REVIEW.md">SGA reading record</a><a href="CHECKS.md">Executed checks</a></div>
+<header id="title-block-header">
+<h1 class="title">SGA trace, the retained diagonal, and the arithmetic
+period determinant</h1>
+<p class="author">Owner-directed SplitZero research continuation</p>
+<p class="date">13 September 2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#the-completed-calculation-and-its-role" id="toc-the-completed-calculation-and-its-role">1. The completed
+calculation and its role</a></li>
+<li><a href="#source-intake-and-mathematical-categories" id="toc-source-intake-and-mathematical-categories">2. Source intake and
+mathematical categories</a></li>
+<li><a href="#the-arithmetic-object-that-is-retained" id="toc-the-arithmetic-object-that-is-retained">3. The arithmetic object
+that is retained</a></li>
+<li><a href="#sga-5s-relative-duality-calculated-on-this-polynomial-algebra" id="toc-sga-5s-relative-duality-calculated-on-this-polynomial-algebra">4.
+SGA 5’s relative duality, calculated on this polynomial algebra</a>
+<ul>
+<li><a href="#the-actual-diagonal-class" id="toc-the-actual-diagonal-class">4.1 The actual diagonal
+class</a></li>
+<li><a href="#the-sources-supported-relation-maps-to-this-same-class" id="toc-the-sources-supported-relation-maps-to-this-same-class">4.2 The
+source’s supported relation maps to this same class</a></li>
+</ul></li>
+<li><a href="#the-whole-derived-diagonal-is-retained" id="toc-the-whole-derived-diagonal-is-retained">5. The whole derived
+diagonal is retained</a></li>
+<li><a href="#the-preceding-exponential-family-and-its-exact-coefficient-connections" id="toc-the-preceding-exponential-family-and-its-exact-coefficient-connections">6.
+The preceding exponential family and its exact coefficient
+connections</a>
+<ul>
+<li><a href="#the-trace-of-the-reduced-multiplication-is-exactly-classical" id="toc-the-trace-of-the-reduced-multiplication-is-exactly-classical">6.1
+The trace of the reduced multiplication is exactly classical</a></li>
+</ul></li>
+<li><a href="#complete-evaluation-of-the-determinant-of-periods" id="toc-complete-evaluation-of-the-determinant-of-periods">7. Complete
+evaluation of the determinant of periods</a></li>
+<li><a href="#recover-the-complete-cyclic-spectrum-from-that-determinant-family" id="toc-recover-the-complete-cyclic-spectrum-from-that-determinant-family">8.
+Recover the complete cyclic spectrum from that determinant
+family</a></li>
+<li><a href="#two-explicit-calibrations" id="toc-two-explicit-calibrations">9. Two explicit calibrations</a></li>
+<li><a href="#transport-the-original-metric-and-control-through-the-same-periods" id="toc-transport-the-original-metric-and-control-through-the-same-periods">10.
+Transport the original metric and control through the same periods</a>
+<ul>
+<li><a href="#the-constituent-period-minor-detects-the-arithmetic-defect" id="toc-the-constituent-period-minor-detects-the-arithmetic-defect">10.1
+The constituent period minor detects the arithmetic defect</a></li>
+</ul></li>
+<li><a href="#the-source-specific-remaining-term-stays-explicit" id="toc-the-source-specific-remaining-term-stays-explicit">11. The
+source-specific remaining term stays explicit</a></li>
+<li><a href="#relation-to-delignes-finite-field-family" id="toc-relation-to-delignes-finite-field-family">12. Relation to
+Deligne’s finite-field family</a></li>
+<li><a href="#verification-and-reproducibility" id="toc-verification-and-reproducibility">13. Verification and
+reproducibility</a></li>
+<li><a href="#references-and-source-status" id="toc-references-and-source-status">References and source
+status</a></li>
+</ul>
+</nav>
+<h1 id="the-completed-calculation-and-its-role">1. The completed
+calculation and its role</h1>
+<p>This continuation uses the <strong>actual inline text in the supplied
+SGA 5 master</strong>, especially Exposé III, §6.8, together with the
+preceding polynomial-exponential construction. It calculates, rather
+than postulates, the relative duality and diagonal class of the current
+cyclic arithmetic module. That class then evaluates the determinant of
+the entire exponential period matrix.</p>
+<p>The principal formulas are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>Tr</mo><mrow><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>R</mi></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>M</mi><mi>P</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>res</mo><mrow><mi>χ</mi><mo>−</mo><mi>t</mi></mrow></msub><mo form="prefix" maxsize="1.2" minsize="1.2" stretchy="false">(</mo><mi>χ</mi><mi>′</mi><mi>P</mi><mo form="postfix" maxsize="1.2" minsize="1.2" stretchy="false">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mo>det</mo><mi>Π</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mo>det</mo><msub><mi>Π</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>exp</mo><mspace width="-0.167em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mfrac><mrow><mi>ℱ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mi>u</mi></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">
+\operatorname{Tr}_{E_t/R}(M_P)
+ =\operatorname{res}_{\chi-t}\bigl(\chi'P\bigr),
+\qquad
+\det\Pi(\mathbf c,u,t)
+ =\det\Pi_{\mathrm{mon}}(u)\exp\!\left(\frac{\mathcal F(\mathbf c,t)}u\right),
+\tag{1}
+</annotation></semantics></math><span class="equation-number">(1)</span></div>
+<p>where every symbol and map is specified below. In particular,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>Tr</mo><mrow><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>ℂ</mi></mrow></msub><mo form="prefix" maxsize="1.2" minsize="1.2" stretchy="false">(</mo><msub><mi>M</mi><msub><mi>Φ</mi><mi>t</mi></msub></msub><mo form="postfix" maxsize="1.2" minsize="1.2" stretchy="false">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mo>det</mo><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>Π</mi><mo>*</mo></msup><mi>Π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mrow><mo form="prefix" stretchy="true">|</mo><mi>u</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mi>q</mi></msup><mo>exp</mo><mspace width="-0.167em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>ℜ</mi><mfrac><mrow><mi>ℱ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mi>u</mi></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathcal F(\mathbf c,t)
+ =\operatorname{Tr}_{E_t/\mathbb C}\bigl(M_{\Phi_t}\bigr),
+\qquad
+\det(\Pi^*\Pi)
+ =(2\pi|u|)^q\exp\!\left(2\Re\frac{\mathcal F(\mathbf c,t)}u\right).
+\tag{2}
+</annotation></semantics></math><span class="equation-number">(2)</span></div>
+<p>This evaluates a previously unspecified analytic determinant. Its
+coefficient derivatives recover <strong>all the first q power traces of
+the original companion operator</strong>, and hence its whole
+characteristic polynomial, including multiplicities. The original theta
+metric is not changed. Its comparison with this calculated determinant
+is carried through in §§10–12.</p>
+<p>These are explicit applications and extensions of classical
+residue/trace and irregular-period methods; no global priority claim is
+made. SGA 5 supplies the residue/trace operation, not a Hermitian
+positivity theorem for the theta quotient. Bloch–Esnault study
+determinants and periods for irregular connections, including the exp(f)
+case; their abstract was inspected, but their full article was not
+successfully retrieved in this execution. The proof here is supplied in
+full at the types used here.</p>
+<h1 id="source-intake-and-mathematical-categories">2. Source intake and
+mathematical categories</h1>
+<p>The nine uploaded files are LaTeX masters. SGA 5 contains 15,818
+lines of substantive inline material. The other masters have differing
+amounts of inline material and refer to further component files; for
+example the SGA 4½ master consists of its preamble and eight component
+inputs. The absent component contents are not counted as read.
+<code>SOURCE_REVIEW.md</code> and
+<code>checks/source-inventory.json</code> give the exact reading and
+dependency inventory.</p>
+<p>The key supplied statement is SGA 5, Exposé III, (6.8.5): the residue
+of a function multiplied by the regular-immersion class equals the trace
+of its multiplication endomorphism on a finite flat algebra. The
+preceding paragraph constructs the class from the conormal differential.
+The source explicitly records a qualification about the proof/reference
+of this compatibility. We retain that qualification and prove its
+one-variable instance directly below.</p>
+<p>The appendix works with coherent complexes over a noetherian scheme,
+with the indicated finite Tor-dimension, properness, and
+Tor-independence hypotheses. Here the finite map is finite free, so
+properness and flatness are actual properties of the displayed algebra.
+Its dual is computed directly as a finite module dual. No general
+six-operation formalism on semiring schemes is assumed.</p>
+<p>Keep the programme’s one scalar construction</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>R</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mo form="prefix" stretchy="false">{</mo><mi>τ</mi><mo form="postfix" stretchy="false">}</mo><mo>⊔</mo><mo form="prefix" stretchy="false">{</mo><msup><mi>a</mi><mo>•</mo></msup><mo>:</mo><mi>a</mi><mo>∈</mo><mi>R</mi><mo form="postfix" stretchy="false">}</mo><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>e</mi><mi>R</mi></msub><mo>=</mo><msubsup><mn>0</mn><mi>R</mi><mo>•</mo></msubsup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>p</mi><mi>R</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>τ</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mn>0</mn><mi>R</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>p</mi><mi>R</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>a</mi><mo>•</mo></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>a</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+G(R)=\{\tau\}\sqcup\{a^\bullet:a\in R\},
+\quad e_R=0_R^\bullet,
+\quad p_R(\tau)=0_R,\quad p_R(a^\bullet)=a.
+\tag{3}
+</annotation></semantics></math><span class="equation-number">(3)</span></div>
+<p>Its support observation is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>R</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>τ</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b_R(\tau)=0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>R</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>a</mi><mo>•</mo></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">b_R(a^\bullet)=1</annotation></semantics></math>.
+The pair
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>p</mi><mi>R</mi></msub><mo>,</mo><msub><mi>b</mi><mi>R</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><annotation encoding="application/x-tex">(p_R,b_R)</annotation></semantics></math>
+retains the whole scalar. For every ring map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math>,
+its split lift fixes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+and sends
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>a</mi><mo>•</mo></msup><annotation encoding="application/x-tex">a^\bullet</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>a</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>•</mo></msup></mrow><annotation encoding="application/x-tex">f(a)^\bullet</annotation></semantics></math>.
+In particular</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℤ</mi><mo form="postfix" stretchy="true">)</mo></mrow></mtd><mtd columnalign="center" style="text-align: center"><mover><mo>→</mo><mrow><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mo>ȷ</mo><mo form="postfix" stretchy="true">)</mo></mrow></mrow></mover></mtd><mtd columnalign="center" style="text-align: center"><mi>G</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℂ</mi><mo form="postfix" stretchy="true">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>p</mi><mi>ℤ</mi></msub><mo>↓</mo></mtd><mtd columnalign="center" style="text-align: center"></mtd><mtd columnalign="center" style="text-align: center"><mo>↓</mo><msub><mi>p</mi><mi>ℂ</mi></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>ℤ</mi></mtd><mtd columnalign="center" style="text-align: center"><mover><mo>→</mo><mo accent="false">ȷ</mo></mover></mtd><mtd columnalign="center" style="text-align: center"><mi>ℂ</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{array}{ccc}
+G(\mathbb Z)&amp;\xrightarrow{G(\jmath)}&amp;G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&amp;&amp;\downarrow p_{\mathbb C}\\
+\mathbb Z&amp;\xrightarrow{\jmath}&amp;\mathbb C
+\end{array}
+\tag{4}
+</annotation></semantics></math><span class="equation-number">(4)</span></div>
+<p>remains the original arithmetic square with an infinite left target.
+All calculations below first specify coefficient maps and then lift them
+fibrewise through the original support reconstruction. The ordinary
+coherent realization is connected to that richer object by p, not
+substituted for the complete split object.</p>
+<p>At a label ℓ, an R-linear map f lifts as (ℓ,x) ↦ (ℓ,f(x)); a
+coefficient zero remains (ℓ,0). External absence maps to absence.
+Kernels and quotients below are the original coefficient kernels and
+quotients before that reconstruction. No new scalar zero is adjoined for
+a diagonal homology degree or a deformation parameter.</p>
+<h1 id="the-arithmetic-object-that-is-retained">3. The arithmetic object
+that is retained</h1>
+<p>Fix the original finite packet h, with complete orders, and tensor
+degree k. Retain</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mn>2</mn><mi>ξ</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>v</mi><mi>h</mi></msub><mo>=</mo><mi>g</mi><mi>/</mi><mi>h</mi><mo>,</mo><mspace width="1.0em"></mspace><mi>ℳ</mi><msub><mi>F</mi><mi>h</mi></msub><mo>=</mo><msub><mi>v</mi><mi>h</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><mi>E</mi><mo>=</mo><mi>ℂ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>S</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>A</mi><mo>=</mo><msub><mi>M</mi><mi>S</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><mi>χ</mi><mo>=</mo><msub><mi>χ</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><mi>q</mi><mo>=</mo><mo>deg</mo><mi>χ</mi><mo>&gt;</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+g=2\xi,\quad v_h=g/h,\quad \mathcal MF_h=v_h,
+\quad E=\mathbb C[S]/(\chi),\quad A=M_S,
+\quad\chi=\chi_{h,k},\quad q=\deg\chi&gt;0.
+\tag{5}
+</annotation></semantics></math><span class="equation-number">(5)</span></div>
+<p>The source and actual weighted inclusion are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi><mi>P</mi><mo>=</mo><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>D</mi><mn>1</mn></msub><mo>+</mo><mi>⋯</mi><mo>+</mo><msub><mi>D</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><msubsup><mi>F</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mo>,</mo><mspace width="2.0em"></mspace><mi>η</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>=</mo><msubsup><mi>υ</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>A</mi><mi>k</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mn>1</mn><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>υ</mi><mi>h</mi></msub><mo>=</mo><msub><mi>j</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>g</mi><mi>/</mi><mi>h</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathcal V P=P(D_1+\cdots+D_k)F_h^{\otimes k},
+\qquad
+\eta[P]=\upsilon_h^{\otimes k}P(A_k)1,
+\quad \upsilon_h=j_h(g/h).
+\tag{6}
+</annotation></semantics></math><span class="equation-number">(6)</span></div>
+<p>The retained source identities are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mi>𝒱</mi><mo>=</mo><mi>η</mi><msub><mi>π</mi><mi>χ</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><msup><mi>q</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mi>𝒱</mi><mo>=</mo><msubsup><mi>σ</mi><mi>h</mi><mrow><mi>⊗</mi><mi>k</mi></mrow></msubsup><mi>η</mi><msub><mi>π</mi><mi>χ</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+J^{(k)}\mathcal V=\eta\pi_\chi,
+\qquad q^{(k)}\mathcal V
+ =\sigma_h^{\otimes k}\eta\pi_\chi.
+\tag{7}
+</annotation></semantics></math><span class="equation-number">(7)</span></div>
+<p>The original scalar measure is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mfrac><msup><mrow><mo form="prefix" stretchy="true">|</mo><msub><mi>v</mi><mi>h</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mi>/</mi><mn>2</mn><mo>+</mo><mi>i</mi><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup><mrow><mn>2</mn><mi>π</mi></mrow></mfrac><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>m</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>=</mo><msubsup><mi>w</mi><mi>h</mi><mrow><mi>*</mi><mi>k</mi></mrow></msubsup><mo>,</mo><mspace width="1.0em"></mspace><mo>∫</mo><msub><mi>m</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>=</mo><msubsup><mi>μ</mi><mi>h</mi><mi>k</mi></msubsup><mo>,</mo></mrow><annotation encoding="application/x-tex">
+w_h(y)=\frac{|v_h(1/2+iy)|^2}{2\pi},\quad
+m_{h,k}=w_h^{*k},\quad\int m_{h,k}=\mu_h^k,
+\tag{8}
+</annotation></semantics></math><span class="equation-number">(8)</span></div>
+<p>and the norm is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo form="postfix" stretchy="false">∥</mo><mi>𝒱</mi><mi>P</mi><msup><mo form="postfix" stretchy="false">∥</mo><mn>2</mn></msup><mo>=</mo><msub><mo>∫</mo><mi>ℝ</mi></msub><msup><mrow><mo form="prefix" stretchy="true">|</mo><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mi>/</mi><mn>2</mn><mo>+</mo><mi>i</mi><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">|</mo></mrow><mn>2</mn></msup><msub><mi>m</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mspace width="0.167em"></mspace><mi>d</mi><mi>y</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\|\mathcal VP\|^2
+ =\int_{\mathbb R}|P(k/2+iy)|^2m_{h,k}(y)\,dy.
+\tag{9}
+</annotation></semantics></math><span class="equation-number">(9)</span></div>
+<p>For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≥</mo><mi>q</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N\ge q-1</annotation></semantics></math>,
+the canonical matrix and source section remain</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>N</mi></msub><mo>=</mo><msub><mi>B</mi><mi>N</mi></msub><msubsup><mi>O</mi><mi>N</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>B</mi><mi>N</mi><mo>*</mo></msubsup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>G</mi><mi>N</mi></msub><mo>=</mo><msubsup><mi>K</mi><mi>N</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>R</mi><mi>N</mi></msub><mo>=</mo><msubsup><mi>O</mi><mi>N</mi><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>B</mi><mi>N</mi><mo>*</mo></msubsup><msub><mi>G</mi><mi>N</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>V</mi><mi>N</mi></msub><mo>=</mo><mo>det</mo><msub><mi>G</mi><mi>N</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+K_N=B_NO_N^{-1}B_N^*,\quad G_N=K_N^{-1},\quad
+R_N=O_N^{-1}B_N^*G_N,\quad V_N=\det G_N.
+\tag{10}
+</annotation></semantics></math><span class="equation-number">(10)</span></div>
+<p>Write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>N</mi></msub><mo>=</mo><mi>𝒱</mi><msub><mi>R</mi><mi>N</mi></msub></mrow><annotation encoding="application/x-tex">r_N=\mathcal V R_N</annotation></semantics></math>.
+The established cyclic retraction composed with the full jet map gives
+j_E on the stated test-function domain, with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>E</mi></msub><msub><mi>r</mi><mi>N</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">j_Er_N=1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi><mi>E</mi></msub><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mo>=</mo><mi>A</mi><msub><mi>j</mi><mi>E</mi></msub></mrow><annotation encoding="application/x-tex">j_ED^{(k)}=Aj_E</annotation></semantics></math>.
+The source relation is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><msub><mi>r</mi><mi>N</mi></msub><mo>−</mo><msub><mi>r</mi><mi>N</mi></msub><mi>A</mi><mo>=</mo><mi>d</mi><msubsup><mi>K</mi><mi>N</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+D^{(k)}r_N-r_NA=dK_N^{\mathrm{prim}}.
+\tag{11}
+</annotation></semantics></math><span class="equation-number">(11)</span></div>
+<p>These are inherited interfaces, not analytic theorems re-proved by
+the finite tests of this note. The empty packet E=0 has the empty
+determinant one; all q-positive constructions below concern q&gt;0.</p>
+<h1 id="sga-5s-relative-duality-calculated-on-this-polynomial-algebra">4.
+SGA 5’s relative duality, calculated on this polynomial algebra</h1>
+<p>Let R be a commutative ring, let χ be monic of degree q, and put</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>χ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>−</mo><mi>t</mi><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>E</mi><mi>t</mi></msub><mo>=</mo><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo>,</mo><mi>S</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>H</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>f</mi><mo>:</mo><mo>Spec</mo><msub><mi>E</mi><mi>t</mi></msub><mo>→</mo><mo>Spec</mo><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+H(S)=\chi(S)-t,\qquad E_t=R[t,S]/(H),\qquad
+f:\operatorname{Spec}E_t\longrightarrow\operatorname{Spec}R[t].
+\tag{12}
+</annotation></semantics></math><span class="equation-number">(12)</span></div>
+<p>The basis 1,S,…,S^(q−1) proves f finite free of degree q. Set</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mrow><mo form="prefix" stretchy="true">[</mo><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mrow><mo form="prefix" stretchy="true">[</mo><msup><mi>S</mi><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msup><mo form="postfix" stretchy="true">]</mo></mrow><msub><mo>rem</mo><mi>H</mi></msub><mi>P</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\lambda_t([P])=[S^{q-1}]\operatorname{rem}_{H}P.
+\tag{13}
+</annotation></semantics></math><span class="equation-number">(13)</span></div>
+<p>Here [S^(q−1)] means coefficient extraction in the actual monic
+remainder. Over ℂ it equals the sum of finite residues of P(S)dS/H(S),
+with the positive finite-residue orientation. Equivalently it is the
+coefficient of S^(−1) in P/H, which is the negative of the residue at
+infinity.</p>
+<p>The bilinear form</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>λ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mi>β</mi><mi>t</mi><mi>♭</mi></msubsup><mo>:</mo><msub><mi>E</mi><mi>t</mi></msub><mo>→</mo><msub><mo>Hom</mo><mrow><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>E</mi><mi>t</mi></msub><mo>,</mo><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\beta_t(x,y)=\lambda_t(xy),\qquad
+\beta_t^\flat:E_t\longrightarrow\operatorname{Hom}_{R[t]}(E_t,R[t])
+\tag{14}
+</annotation></semantics></math><span class="equation-number">(14)</span></div>
+<p>is perfect. Its Gram in the unchanged power basis has zeros below
+total exponent q−1 and ones on that antidiagonal. Thus</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>det</mo><msub><mi>β</mi><mi>t</mi></msub><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>q</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>q</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mn>2</mn></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\det\beta_t=(-1)^{q(q-1)/2}.
+\tag{15}
+</annotation></semantics></math><span class="equation-number">(15)</span></div>
+<p>This proves perfection over the original coefficient ring, without
+dividing by a discriminant. The finite duality functor is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mi>!</mi></msup><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>=</mo><msub><mo>Hom</mo><mrow><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>E</mi><mi>t</mi></msub><mo>,</mo><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">
+f^!R[t]=\operatorname{Hom}_{R[t]}(E_t,R[t]),
+\tag{16}
+</annotation></semantics></math><span class="equation-number">(16)</span></div>
+<p>in degree zero. Equation (14) is its explicit trivialization;
+evaluation at 1 is its counit. The factor dS/H and the conormal
+generator [H] account for the smooth dimension-one and regular
+codimension-one shifts, which cancel in this finite relative
+dimension-zero calculation.</p>
+<h2 id="the-actual-diagonal-class">4.1 The actual diagonal class</h2>
+<p>In B_t=E_t⊗_(R[t])E_t, with coordinates X,Y, define</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi><mi>H</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mfrac><mrow><mi>H</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>X</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>−</mo><mi>H</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>Y</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mrow><mi>X</mi><mo>−</mo><mi>Y</mi></mrow></mfrac><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mi>q</mi></munderover><msub><mi>c</mi><mi>n</mi></msub><munderover><mo>∑</mo><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover><msup><mi>X</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn><mo>−</mo><mi>a</mi></mrow></msup><msup><mi>Y</mi><mi>a</mi></msup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>c</mi><mi>q</mi></msub><mo>=</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathcal C_H(X,Y)=\frac{H(X)-H(Y)}{X-Y}
+ =\sum_{n=1}^{q}c_n\sum_{a=0}^{n-1}X^{n-1-a}Y^a,
+\quad c_q=1.
+\tag{17}
+</annotation></semantics></math><span class="equation-number">(17)</span></div>
+<p>The fraction denotes polynomial division with zero remainder; there
+is no localization at X−Y. Its defining identities are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>X</mi><mo>−</mo><mi>Y</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>𝒞</mi><mi>H</mi></msub><mo>=</mo><mn>0</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">in </mtext><mspace width="0.333em"></mspace></mrow><msub><mi>B</mi><mi>t</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>μ</mi><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>𝒞</mi><mi>H</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>χ</mi><mi>′</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">
+(X-Y)\mathcal C_H=0\ \text{in }B_t,
+\qquad \mu(\mathcal C_H)=\chi'(S),
+\tag{18}
+</annotation></semantics></math><span class="equation-number">(18)</span></div>
+<p>where μ is multiplication E_t⊗E_t→E_t.</p>
+<p>The first identity shows the class is supported on the diagonal.
+Moreover</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>λ</mi><mi>t</mi></msub><mo>⊗</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mo form="prefix" stretchy="true">(</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo>⊗</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>𝒞</mi><mi>H</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>P</mi><mspace width="1.0em"></mspace><mrow><mtext mathvariant="normal">in </mtext><mspace width="0.333em"></mspace></mrow><msub><mi>E</mi><mi>t</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+(\lambda_t\otimes1)((P\otimes1)\mathcal C_H)=P
+\quad\text{in }E_t.
+\tag{19}
+</annotation></semantics></math><span class="equation-number">(19)</span></div>
+<p>To prove it, first take P=1: the coefficient of X^(q−1) in (17) is 1.
+The identity (X−Y)𝒞_H=0 then gives (P(X)−P(Y))𝒞_H=0 for every polynomial
+P, proving (19). This also proves that 𝒞_H is the coevaluation tensor
+inverse to (14).</p>
+<p>Taking the categorical trace of multiplication gives the complete
+composite</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mover><mo>→</mo><mrow><mn>1</mn><mo>↦</mo><msub><mi>𝒞</mi><mi>H</mi></msub></mrow></mover><msub><mi>E</mi><mi>t</mi></msub><mo>⊗</mo><msub><mi>E</mi><mi>t</mi></msub><mover><mo>→</mo><mrow><msub><mi>M</mi><mi>P</mi></msub><mo>⊗</mo><mn>1</mn></mrow></mover><msub><mi>E</mi><mi>t</mi></msub><mo>⊗</mo><msub><mi>E</mi><mi>t</mi></msub><mover><mo>→</mo><mi>μ</mi></mover><msub><mi>E</mi><mi>t</mi></msub><mover><mo>→</mo><msub><mi>λ</mi><mi>t</mi></msub></mover><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+R[t]\xrightarrow{1\mapsto\mathcal C_H}E_t\otimes E_t
+\xrightarrow{M_P\otimes1}E_t\otimes E_t
+\xrightarrow{\mu}E_t\xrightarrow{\lambda_t}R[t].
+\tag{20}
+</annotation></semantics></math><span class="equation-number">(20)</span></div>
+<p>Consequently</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mo>Tr</mo><mrow><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow></mrow></msub><msub><mi>M</mi><mi>P</mi></msub><mo>=</mo><msub><mi>λ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>′</mi><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{\operatorname{Tr}_{E_t/R[t]}M_P
+ =\lambda_t(\chi'P).}
+\tag{21}
+</annotation></semantics></math><span class="equation-number">(21)</span></div>
+<p>This proves the one-variable instance of the supplied SGA 5 III
+(6.8.5). In that statement the regular-immersion class is the conormal
+differential [H]↦χ’dS. Its trace map is exactly (20), not an additional
+sign-free identification.</p>
+<p>The bilinear trace form is connected to the perfect residue form by
+the exact map</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>τ</mi><mi>t</mi><mi>♭</mi></msubsup><mo>=</mo><msubsup><mi>β</mi><mi>t</mi><mi>♭</mi></msubsup><mo>∘</mo><msub><mi>M</mi><mrow><mi>χ</mi><mi>′</mi></mrow></msub><mo>:</mo><msub><mi>E</mi><mi>t</mi></msub><mo>→</mo><msubsup><mi>E</mi><mi>t</mi><mo>∨</mo></msubsup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>τ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mo>Tr</mo><msub><mi>M</mi><mrow><mi>x</mi><mi>y</mi></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mo>ker</mo><msubsup><mi>τ</mi><mi>t</mi><mi>♭</mi></msubsup><mo>=</mo><msub><mo>ann</mo><msub><mi>E</mi><mi>t</mi></msub></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>′</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\tau_t^\flat=\beta_t^\flat\circ M_{\chi'}:E_t\longrightarrow E_t^\vee,
+\qquad \tau_t(x,y)=\operatorname{Tr}M_{xy},
+\qquad \ker\tau_t^\flat=\operatorname{ann}_{E_t}(\chi').
+\tag{21a}
+</annotation></semantics></math><span class="equation-number">(21a)</span></div>
+<p>This proves the complete radical statement for this finite trace
+form. At a complex root of multiplicity m its radical has dimension m−1;
+the perfect residue form itself remains nondegenerate. It is not the
+assertion of positivity for the original sesquilinear Weil form. Their
+connection is the retained reflection and Jacobian composite (24).</p>
+<p>All maps (12)–(21) commute with coefficient base change: their
+entries are polynomial expressions in the coefficients and monic
+remainders. For tensor products, the coevaluation is the external
+product of the displayed tensors; the diagonal Jacobian is the product
+of the χ_i’. If the coefficient object is placed in degree k, its
+supertrace is (−1)^k times (21). No geometric weight is inferred from
+that cohomological sign.</p>
+<h2 id="the-sources-supported-relation-maps-to-this-same-class">4.2 The
+source’s supported relation maps to this same class</h2>
+<p>At t=0, the original sum-direction logarithm operator is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mi>k</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><munder><mo>∑</mo><mi>i</mi></munder><mo>log</mo><msub><mi>x</mi><mi>i</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><msubsup><mi>∂</mi><mi>S</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow></msubsup><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>∂</mi><msub><mi>s</mi><mi>i</mi></msub></msub><mo>,</mo><mspace width="1.0em"></mspace><msubsup><mi>∂</mi><mi>S</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow></msubsup><mi>S</mi><mo>=</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathscr L_k=\frac1k\sum_i\log x_i,
+\quad
+\partial_S^{\mathrm{rel}}=\frac1k\sum_i\partial_{s_i},
+\quad\partial_S^{\mathrm{rel}}S=1.
+\tag{22}
+</annotation></semantics></math><span class="equation-number">(22)</span></div>
+<p>Differentiating the full Mellin amplitude 𝒰(𝐬)P(S), where
+𝒰=∏v_h(s_i), gives both 𝒰P′ and (∂𝒰)P. Applied to an original relation
+χP, the latter contains χ and is killed by the original arithmetic
+quotient. Therefore</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>j</mi><mi>E</mi></msub><msub><mi>ℒ</mi><mi>k</mi></msub><mi>𝒱</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mrow><mo form="prefix" stretchy="true">[</mo><mi>χ</mi><mi>′</mi><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>χ</mi></msub><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{j_E\mathscr L_k\mathcal V(\chi P)=[\chi'P]_\chi.}
+\tag{23}
+</annotation></semantics></math><span class="equation-number">(23)</span></div>
+<p>The arithmetic unit is retained in the map before j_E; it is removed
+only by the specified inverse/retraction in j_E. Formula (23) does not
+differentiate an already-formed scalar e. It differentiates an actual
+source relation before that relation is sent to its supported quotient
+zero.</p>
+<p>The composition of (23) with λ_0 is the trace (21). More generally,
+with the original reflection f^dagger_k(S)=overline(f(k−overline
+S)),</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mn>0</mn></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>′</mi><msup><mi>f</mi><msub><mo>†</mo><mi>k</mi></msub></msup><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>Tr</mo><mi>E</mi></msub><msub><mi>M</mi><mrow><msup><mi>f</mi><msub><mo>†</mo><mi>k</mi></msub></msup><mi>P</mi></mrow></msub><mo>=</mo><munder><mo>∑</mo><mi>λ</mi></munder><msub><mo>ℓ</mo><mi>λ</mi></msub><mover><mrow><mi>f</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo>−</mo><mover><mi>λ</mi><mo accent="true">‾</mo></mover><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mo accent="true">¯</mo></mover><mi>P</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\lambda_0(\chi' f^{\dagger_k}P)
+ =\operatorname{Tr}_E M_{f^{\dagger_k}P}
+ =\sum_\lambda\ell_\lambda\overline{f(k-\bar\lambda)}P(\lambda).
+\tag{24}
+</annotation></semantics></math><span class="equation-number">(24)</span></div>
+<p>The induced trace in the full arithmetic module still uses η and its
+retained complement. It is not equated with the cyclic trace without
+that inclusion and complement.</p>
+<p>The conormal lift C[S]/(χ²) used to compute (23) maps surjectively to
+the actual contracted level C[S]/(χ_2), because (χ²)⊆I²∩C[S]=(χ_2). No
+equality of these ideals is asserted. This keeps the formalization
+session’s correction to higher relation depth.</p>
+<h1 id="the-whole-derived-diagonal-is-retained">5. The whole derived
+diagonal is retained</h1>
+<p>There is a complete explicit resolution behind (18). Put d=X−Y and
+b=𝒞_H. Over B_t it is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mover><mo>→</mo><mi>d</mi></mover><msub><mi>B</mi><mi>t</mi></msub><mover><mo>→</mo><mi>b</mi></mover><msub><mi>B</mi><mi>t</mi></msub><mover><mo>→</mo><mi>d</mi></mover><msub><mi>B</mi><mi>t</mi></msub><mover><mo>→</mo><mi>μ</mi></mover><msub><mi>E</mi><mi>t</mi></msub><mo>→</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\cdots\xrightarrow{d}B_t\xrightarrow{b}B_t
+\xrightarrow{d}B_t\xrightarrow{\mu}E_t\longrightarrow0.
+\tag{25}
+</annotation></semantics></math><span class="equation-number">(25)</span></div>
+<p><strong>Exactness.</strong> Work first in T=(R[t,Y]/(H(Y)))[X]. Then
+B_t=T/(db). Both d and b are monic polynomials in X, hence
+non-zero-divisors in T even when the coefficient algebra has nilpotents.
+If da∈(db), cancellation of d in T gives a∈(b). If ba∈(db), cancellation
+of b gives a∈(d). These are precisely the alternating kernel–image
+identities in (25); B_t/(d)=E_t supplies the augmentation.</p>
+<p>Pullback to the diagonal is tensoring (25) by μ. The two
+differentials become 0 and multiplication by χ′. It follows that</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><msub><mi>H</mi><mn>0</mn></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>E</mi><mi>t</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><mi>H</mi><msub><mi>H</mi><mrow><mn>2</mn><mi>a</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>′</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>H</mi><msub><mi>H</mi><mrow><mn>2</mn><mi>a</mi><mo>+</mo><mn>2</mn></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>R</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>t</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>ann</mo><msub><mi>E</mi><mi>t</mi></msub></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>′</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>a</mi><mo>≥</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+HH_0(E_t/R[t])=E_t,
+\quad HH_{2a+1}(E_t/R[t])=E_t/(\chi'),
+\quad HH_{2a+2}(E_t/R[t])=\operatorname{ann}_{E_t}(\chi'),
+\quad a\ge0.
+\tag{26}
+</annotation></semantics></math><span class="equation-number">(26)</span></div>
+<p>These are module identifications; no multiplication or shuffle
+structure is silently included. Multiplication by X commutes with every
+map of (25) and specializes to the original S-action on (26).</p>
+<p>At a complex root of multiplicity m, χ′ is the product of
+m(S−λ)^(m−1) with the actual nonzero local unit. Both positive-degree
+modules have dimension m−1. For m=1 they vanish. For m&gt;1 the higher
+classes are retained as distinct cohomological degrees over the same
+split scalar support.</p>
+<p>This is a classical hypersurface calculation performed here on the
+exact polynomial. It computes the derived diagonal; it does not assert
+that these HH degrees equal the separately indexed original nullity
+ladder. The map linking this calculation to that ladder is the shared
+conormal differential (23), together with the displayed quotient from
+the original contracted relation levels.</p>
+<h1 id="the-preceding-exponential-family-and-its-exact-coefficient-connections">6.
+The preceding exponential family and its exact coefficient
+connections</h1>
+<p>Now work over ℂ and write</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>χ</mi><mi>𝐜</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mi>S</mi><mi>q</mi></msup><mo>+</mo><munderover><mo>∑</mo><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>c</mi><mi>a</mi></msub><msup><mi>S</mi><mi>a</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>Φ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mfrac><msup><mi>S</mi><mrow><mi>q</mi><mo>+</mo><mn>1</mn></mrow></msup><mrow><mi>q</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo>+</mo><munderover><mo>∑</mo><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></munderover><mfrac><mrow><msub><mi>c</mi><mi>a</mi></msub><msup><mi>S</mi><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo>−</mo><mi>t</mi><mi>S</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\chi_{\mathbf c}(S)=S^q+\sum_{a=0}^{q-1}c_aS^a,
+\qquad
+\Phi_t(S)=\frac{S^{q+1}}{q+1}
+ +\sum_{a=0}^{q-1}\frac{c_aS^{a+1}}{a+1}-tS.
+\tag{27}
+</annotation></semantics></math><span class="equation-number">(27)</span></div>
+<p>The original polynomial is the marked coefficient value 𝐜=𝐜_h,k. None
+of its coefficients is shifted or rescaled.</p>
+<p>The previous two-term coefficient complex is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi><mrow><mi>u</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">[</mo><mi>ℂ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo>,</mo><mi>S</mi><mo form="postfix" stretchy="true">]</mo></mrow><mover><mo>→</mo><mi>D</mi></mover><mi>ℂ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo>,</mo><mi>S</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>d</mi><mi>S</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mi>P</mi><mi>′</mi><mo>+</mo><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>χ</mi><mi>𝐜</mi></msub><mo>−</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>d</mi><mi>S</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathcal C_{u,t}=[\mathbb C[u,t,S]\xrightarrow{D}\mathbb C[u,t,S]dS],
+\quad D(P)=(uP'+(\chi_{\mathbf c}-t)P)dS.
+\tag{28}
+</annotation></semantics></math><span class="equation-number">(28)</span></div>
+<p>Its unique degree-&lt;q remainder gives a free degree-one module. At
+u=t=0 it is E. The classical finite algebra and this differential
+quotient have the explicit coefficient-linear inverse maps</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mrow><mi>u</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>:</mo><msub><mi>E</mi><mi>t</mi></msub><mo>→</mo><msub><mi>ℋ</mi><mrow><mi>u</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mrow><mo form="prefix" stretchy="true">[</mo><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>H</mi></msub><mo>↦</mo><msub><mrow><mo form="prefix" stretchy="true">[</mo><msub><mo>rem</mo><mi>H</mi></msub><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>D</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mi>ρ</mi><mrow><mi>u</mi><mo>,</mo><mi>t</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msub><mrow><mo form="prefix" stretchy="true">[</mo><mi>Q</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>D</mi></msub><mo>=</mo><msub><mrow><mo form="prefix" stretchy="true">[</mo><msub><mo>rem</mo><mi>D</mi></msub><mi>Q</mi><mo form="postfix" stretchy="true">]</mo></mrow><mi>H</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\rho_{u,t}:E_t\longrightarrow\mathcal H_{u,t},\quad
+[P]_H\longmapsto[\operatorname{rem}_H P]_D,
+\qquad
+\rho_{u,t}^{-1}[Q]_D=[\operatorname{rem}_D Q]_H.
+\tag{28a}
+</annotation></semantics></math><span class="equation-number">(28a)</span></div>
+<p>Both normal-form operations fix every degree-&lt;q polynomial,
+proving the inverse laws. The map is a coefficient-module isomorphism,
+not a declaration that multiplication descends through D. For u≠0 its
+connections are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∇</mi><mi>t</mi></msub><mo>=</mo><msub><mi>∂</mi><mi>t</mi></msub><mo>−</mo><mi>S</mi><mi>/</mi><mi>u</mi><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>∇</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mo>=</mo><msub><mi>∂</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mo>+</mo><msup><mi>S</mi><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>a</mi><mo>+</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\nabla_t=\partial_t-S/u,
+\qquad
+\nabla_{c_a}=\partial_{c_a}+S^{a+1}/((a+1)u).
+\tag{29}
+</annotation></semantics></math><span class="equation-number">(29)</span></div>
+<p>The commutators with D vanish term by term. The quotient is by the
+linear range of D, not an algebra ideal: [S(χ−t)]=−u[1]. The previous
+note’s source deformation</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>D</mi><mi>t</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msubsup><mo>=</mo><msup><mi>D</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>k</mi><mo form="postfix" stretchy="true">)</mo></mrow></msup><mo>+</mo><mi>t</mi><msub><mi>r</mi><mi>N</mi></msub><mi>ℛ</mi><msub><mi>j</mi><mi>E</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><mi>ℛ</mi><mrow><mo form="prefix" stretchy="true">[</mo><mi>P</mi><mo form="postfix" stretchy="true">]</mo></mrow><mo>=</mo><mrow><mo form="prefix" stretchy="true">[</mo><msup><mi>S</mi><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msup><mo form="postfix" stretchy="true">]</mo></mrow><msub><mo>rem</mo><mi>χ</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mspace width="0.167em"></mspace><mrow><mo form="prefix" stretchy="true">[</mo><mn>1</mn><mo form="postfix" stretchy="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+D_t^{(k)}=D^{(k)}+t r_N\mathcal R j_E,
+\quad\mathcal R[P]=[S^{q-1}]\operatorname{rem}_\chi(P)\,[1]
+\tag{30}
+</annotation></semantics></math><span class="equation-number">(30)</span></div>
+<p>satisfies j_ED_t^(k)=A(t)j_E and
+D_t<sup>(k)r_N−r_NA(t)=dK_N</sup>prim, with A(t)=A+t𝓡. Its original
+source relation is unchanged.</p>
+<p>Let C_a be the degree-&lt;q matrix for reduction of S^(a+1) times a
+representative by D/dS, and let A(t) be the usual companion matrix for
+χ−t. The period matrix obeys</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mi>Π</mi><mo>=</mo><mi>Π</mi><msub><mi>C</mi><mi>a</mi></msub><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>a</mi><mo>+</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>∂</mi><mi>t</mi></msub><mi>Π</mi><mo>=</mo><mi>−</mi><mi>Π</mi><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>u</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\partial_{c_a}\Pi=\Pi C_a/((a+1)u),
+\qquad \partial_t\Pi=-\Pi A(t)/u.
+\tag{31}
+</annotation></semantics></math><span class="equation-number">(31)</span></div>
+<h2 id="the-trace-of-the-reduced-multiplication-is-exactly-classical">6.1
+The trace of the reduced multiplication is exactly classical</h2>
+<p>Although C_a need not equal A(t)^(a+1),</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo>Tr</mo><msub><mi>C</mi><mi>a</mi></msub><mo>=</mo><mo>Tr</mo><mi>A</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{\operatorname{Tr}C_a=\operatorname{Tr}A(t)^{a+1}.}
+\tag{32}
+</annotation></semantics></math><span class="equation-number">(32)</span></div>
+<p>Here is the explicit comparison. Reducing S^(b+a+1), with 0≤b≤q−1 and
+0≤a≤q−1, starts with degree at most 2q−1. Every term introduced by the
+uP′ part has degree at most b+a−q≤b−1. Later reductions only lower
+degree. Thus C_a−A(t)^(a+1) is strictly upper triangular in the fixed
+increasing-power frame: its row indices are strictly below its column
+index. Its diagonal entries vanish, proving (32). No u-dependent
+coefficient is discarded from the full matrix.</p>
+<h1 id="complete-evaluation-of-the-determinant-of-periods">7. Complete
+evaluation of the determinant of periods</h1>
+<p>Set d=q+1. Fix u≠0 and a choice of arg u on a sector. Retain the
+rays</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mi>j</mi></msub><mo>=</mo><mrow><mo form="prefix" stretchy="true">(</mo><mo>arg</mo><mi>u</mi><mo>+</mo><mi>π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>d</mi><mo>+</mo><mn>2</mn><mi>π</mi><mi>j</mi><mi>/</mi><mi>d</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mo>ℓ</mo><mi>j</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>r</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>r</mi><msup><mi>e</mi><mrow><mi>i</mi><msub><mi>θ</mi><mi>j</mi></msub></mrow></msup><mo>,</mo><mspace width="1.0em"></mspace><mi>r</mi><mo>≥</mo><mn>0</mn><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>Γ</mi><mi>j</mi></msub><mo>=</mo><mi>−</mi><msub><mo>ℓ</mo><mn>0</mn></msub><mo>+</mo><msub><mo>ℓ</mo><mi>j</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><mn>1</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>q</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\theta_j=(\arg u+\pi)/d+2\pi j/d,
+\quad\ell_j(r)=re^{i\theta_j},\quad r\ge0,
+\quad\Gamma_j=-\ell_0+\ell_j,\quad1\le j\le q.
+\tag{33}
+</annotation></semantics></math><span class="equation-number">(33)</span></div>
+<p>The periods are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi><mrow><mi>j</mi><mi>b</mi></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>∫</mo><msub><mi>Γ</mi><mi>j</mi></msub></msub><msup><mi>e</mi><mrow><msub><mi>Φ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>u</mi></mrow></msup><msup><mi>S</mi><mi>b</mi></msup><mspace width="0.167em"></mspace><mi>d</mi><mi>S</mi><mo>,</mo><mspace width="2.0em"></mspace><mn>0</mn><mo>≤</mo><mi>b</mi><mo>&lt;</mo><mi>q</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\Pi_{jb}(\mathbf c,u,t)=\int_{\Gamma_j}e^{\Phi_t(S)/u}S^b\,dS,
+\qquad0\le b&lt;q.
+\tag{34}
+</annotation></semantics></math><span class="equation-number">(34)</span></div>
+<p>The leading exponent on each ray is −r^d/(d|u|). Lower-degree terms
+are uniformly dominated on compact coefficient sets. This proves
+convergence and all coefficient differentiations in (31). Integrating
+D(P)e^(Φ_t/u) gives a total derivative whose endpoints at infinity
+vanish and whose two origin values cancel with the stated
+orientations.</p>
+<p>Define the polynomial</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>ℱ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mo>Tr</mo><mrow><msub><mi>E</mi><mi>t</mi></msub><mi>/</mi><mi>ℂ</mi></mrow></msub><msub><mi>M</mi><msub><mi>Φ</mi><mi>t</mi></msub></msub><mo>=</mo><msub><mi>λ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>χ</mi><mi>′</mi><msub><mi>Φ</mi><mi>t</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{\mathcal F(\mathbf c,t)
+ =\operatorname{Tr}_{E_t/\mathbb C}M_{\Phi_t}
+ =\lambda_t(\chi'\Phi_t).}
+\tag{35}
+</annotation></semantics></math><span class="equation-number">(35)</span></div>
+<p>Both descriptions are finite coefficient calculations. At a complex
+fibre it is the sum of all critical values Φ_t(λ), counted with the
+multiplicity of each root of χ−t.</p>
+<p>Its gradients are</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><msub><mi>∂</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mi>ℱ</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo>Tr</mo><mi>A</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>∂</mi><mi>t</mi></msub><mi>ℱ</mi><mo>=</mo><mi>−</mi><mo>Tr</mo><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{
+\partial_{c_a}\mathcal F
+ =\frac1{a+1}\operatorname{Tr}A(t)^{a+1},
+\qquad
+\partial_t\mathcal F=-\operatorname{Tr}A(t).
+}
+\tag{36}
+</annotation></semantics></math><span class="equation-number">(36)</span></div>
+<p><strong>Proof.</strong> On the open set of simple roots α_j,
+differentiate ∑Φ_t(α_j). The α_j derivatives are multiplied by
+Φ_t′(α_j)=χ(α_j)−t=0. The remaining terms are exactly (36). Both sides
+of (36) are polynomials in the coefficients, obtained by companion
+traces. Their equality on the nonempty simple-root open set proves the
+polynomial identity everywhere, including all collisions. This extension
+does not replace the fibres by their reductions: their ranks and traces
+retain multiplicities.</p>
+<p>Equations (31), (32), and Jacobi’s determinant derivative give</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mrow><mo form="prefix" stretchy="true">(</mo><mo>det</mo><mi>Π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mfrac><mrow><msub><mi>∂</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mi>ℱ</mi></mrow><mi>u</mi></mfrac><mo>det</mo><mi>Π</mi><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>∂</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mo>det</mo><mi>Π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mfrac><mrow><msub><mi>∂</mi><mi>t</mi></msub><mi>ℱ</mi></mrow><mi>u</mi></mfrac><mo>det</mo><mi>Π</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\partial_{c_a}(\det\Pi)
+ =\frac{\partial_{c_a}\mathcal F}u\det\Pi,
+\qquad
+\partial_t(\det\Pi)
+ =\frac{\partial_t\mathcal F}u\det\Pi.
+\tag{37}
+</annotation></semantics></math><span class="equation-number">(37)</span></div>
+<p>These determinant equations hold even before invertibility is known,
+by the adjugate identity. At the monomial member 𝐜=0,t=0, 𝔽=0 and direct
+integration gives</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>Π</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow></msub><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>j</mi><mi>b</mi></mrow></msub><mo>=</mo><mfrac><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mrow><mo form="prefix" stretchy="true">|</mo><mi>u</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>b</mi><mo>+</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>d</mi></mrow></msup><mi>d</mi></mfrac><mi>Γ</mi><mspace width="-0.167em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mfrac><mrow><mi>b</mi><mo>+</mo><mn>1</mn></mrow><mi>d</mi></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>e</mi><mrow><mi>i</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>b</mi><mo>+</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>θ</mi><mn>0</mn></msub></mrow></msup><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>e</mi><mrow><mn>2</mn><mi>π</mi><mi>i</mi><mi>j</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>b</mi><mo>+</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>d</mi></mrow></msup><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+(\Pi_{\mathrm{mon}})_{jb}
+ =\frac{(d|u|)^{(b+1)/d}}d
+ \Gamma\!\left(\frac{b+1}d\right)
+ e^{i(b+1)\theta_0}
+ (e^{2\pi i j(b+1)/d}-1).
+\tag{38}
+</annotation></semantics></math><span class="equation-number">(38)</span></div>
+<p>The last matrix F_d has Gram F_d^*F_d=d(I_q+J_q), where J_q is the
+all-ones matrix. Indeed expansion of the finite geometric sums gives
+diagonal 2d and off-diagonal d. Hence |detF_d|²=d^(q+1), in particular
+it is nonzero.</p>
+<p>Along the straight coefficient path from the monomial member to any
+chosen (𝐜,t), (37) is a scalar differential equation. Integrating it
+with its actual initial value proves</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo>det</mo><mi>Π</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mo>det</mo><msub><mi>Π</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>exp</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℱ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>𝐜</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{
+\det\Pi(\mathbf c,u,t)
+ =\det\Pi_{\mathrm{mon}}(u)\exp(\mathcal F(\mathbf c,t)/u).
+}
+\tag{39}
+</annotation></semantics></math><span class="equation-number">(39)</span></div>
+<p>There is no path-dependent logarithm in this equation. In particular
+the period matrix is invertible for every u≠0, at repeated as well as
+simple critical points.</p>
+<p>The complete unsquared constant is retained by (38), its determinant,
+the ray ordering, and the choice of arg u. Taking squared moduli and
+using the gamma multiplication identity</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∏</mo><mrow><mi>l</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow></munderover><mi>Γ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>l</mi><mi>/</mi><mi>d</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>/</mi><mn>2</mn></mrow></msup><msup><mi>d</mi><mrow><mi>−</mi><mn>1</mn><mi>/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">
+\prod_{l=1}^{d-1}\Gamma(l/d)=(2\pi)^{(d-1)/2}d^{-1/2}
+\tag{40}
+</annotation></semantics></math><span class="equation-number">(40)</span></div>
+<p>gives</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo>det</mo><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>Π</mi><mo>*</mo></msup><mi>Π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mrow><mo form="prefix" stretchy="true">|</mo><mi>u</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mi>q</mi></msup><mo>exp</mo><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>ℜ</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℱ</mi><mi>/</mi><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{\det(\Pi^*\Pi)
+ =(2\pi|u|)^q\exp(2\Re(\mathcal F/u)).}
+\tag{41}
+</annotation></semantics></math><span class="equation-number">(41)</span></div>
+<p>The factor (2π|u|)^q is calculated from (38)–(40); it is not assigned
+a value by choosing a new basis. Formula (38) remains the authoritative
+phase-containing version.</p>
+<p>This explicitly finishes the determinant calculation for the
+previously constructed exponential comparison. It is consistent with the
+classical exp(f) determinant theory; it is not a claim that the full
+period matrix, or its arithmetic condition number, is determined by its
+determinant.</p>
+<h1 id="recover-the-complete-cyclic-spectrum-from-that-determinant-family">8.
+Recover the complete cyclic spectrum from that determinant family</h1>
+<p>For 1≤r≤q, equation (37) gives the logarithmic derivative without
+choosing a logarithm branch:</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>r</mi></msub><mo>:=</mo><mi>r</mi><mi>u</mi><mfrac><mrow><msub><mi>∂</mi><msub><mi>c</mi><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow></msub></msub><mo>det</mo><mi>Π</mi></mrow><mrow><mo>det</mo><mi>Π</mi></mrow></mfrac><mo>=</mo><mo>Tr</mo><mi>A</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>r</mi></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+p_r:=r u\frac{\partial_{c_{r-1}}\det\Pi}{\det\Pi}
+ =\operatorname{Tr}A(t)^r.
+\tag{42}
+</annotation></semantics></math><span class="equation-number">(42)</span></div>
+<p>Put d_0=1 and recursively define</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>n</mi></msub><mo>=</mo><mi>−</mi><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>d</mi><mrow><mi>n</mi><mo>−</mo><mi>r</mi></mrow></msub><msub><mi>p</mi><mi>r</mi></msub><mo>,</mo><mspace width="1.0em"></mspace><mn>1</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mi>q</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+d_n=-\frac1n\sum_{r=1}^n d_{n-r}p_r,
+\quad1\le n\le q.
+\tag{43}
+</annotation></semantics></math><span class="equation-number">(43)</span></div>
+<p>Then</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo>det</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>X</mi><mi>I</mi><mo>−</mo><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mi>X</mi><mi>q</mi></msup><mo>+</mo><msub><mi>d</mi><mn>1</mn></msub><msup><mi>X</mi><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>+</mo><mi>⋯</mi><mo>+</mo><msub><mi>d</mi><mi>q</mi></msub><mo>=</mo><msub><mi>χ</mi><mi>𝐜</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>X</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>−</mo><mi>t</mi><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{\det(XI-A(t))=X^q+d_1X^{q-1}+\cdots+d_q
+ =\chi_{\mathbf c}(X)-t.}
+\tag{44}
+</annotation></semantics></math><span class="equation-number">(44)</span></div>
+<p><strong>Proof.</strong> In the formal variable z,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>d</mi><mrow><mi>d</mi><mi>z</mi></mrow></mfrac><mo>log</mo><mo>det</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>I</mi><mo>−</mo><mi>z</mi><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>−</mi><mo>Tr</mo><mo form="prefix" maxsize="1.2" minsize="1.2" stretchy="false">(</mo><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>I</mi><mo>−</mo><mi>z</mi><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo form="postfix" maxsize="1.2" minsize="1.2" stretchy="false">)</mo><mo>=</mo><mi>−</mi><munder><mo>∑</mo><mrow><mi>r</mi><mo>≥</mo><mn>1</mn></mrow></munder><msub><mi>p</mi><mi>r</mi></msub><msup><mi>z</mi><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\frac{d}{dz}\log\det(I-zA(t))
+ =-\operatorname{Tr}\bigl(A(t)(I-zA(t))^{-1}\bigr)
+ =-\sum_{r\ge1}p_rz^{r-1}.
+\tag{45}
+</annotation></semantics></math><span class="equation-number">(45)</span></div>
+<p>Coefficient extraction gives (43), and the determinant is a degree-q
+polynomial. Because A(t) is the specified cyclic companion action, its
+characteristic polynomial is also its minimal polynomial. Thus this
+recovery retains one complete length-m block at every root of
+multiplicity m. For a general noncyclic larger arithmetic module, traces
+do not classify all Jordan blocks; its inclusion η and complementary
+module stay in the source programme.</p>
+<p>The precise map chain is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℋ</mi><mo>,</mo><msub><mi>∇</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>→</mo><mrow><mo form="prefix" stretchy="true">(</mo><mo>det</mo><mi>ℋ</mi><mo>,</mo><mo>det</mo><msub><mi>∇</mi><msub><mi>c</mi><mi>a</mi></msub></msub><mo form="postfix" stretchy="true">)</mo></mrow><mover><mo>→</mo><mtext mathvariant="normal">(42)</mtext></mover><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>p</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>p</mi><mi>q</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mover><mo>→</mo><mtext mathvariant="normal">(43)</mtext></mover><mi>χ</mi><mo>−</mo><mi>t</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+(\mathcal H,\nabla_{c_a})\longrightarrow
+(\det\mathcal H,\det\nabla_{c_a})
+\xrightarrow{\text{(42)}}(p_1,\ldots,p_q)
+\xrightarrow{\text{(43)}}\chi-t.
+\tag{46}
+</annotation></semantics></math><span class="equation-number">(46)</span></div>
+<p>Only the full coefficient-family derivatives in (42), not a single
+determinant value, give the recovery.</p>
+<h1 id="two-explicit-calibrations">9. Two explicit calibrations</h1>
+<p>For χ(S)=S−λ,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mi>/</mi><mn>2</mn><mo>−</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>+</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>S</mi><mo>,</mo><mspace width="1.0em"></mspace><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>λ</mi><mo>+</mo><mi>t</mi><mo>,</mo><mspace width="1.0em"></mspace><mi>ℱ</mi><mo>=</mo><mi>−</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>+</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mn>2</mn></msup><mi>/</mi><mn>2</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\Phi_t(S)=S^2/2-(\lambda+t)S,
+\quad A(t)=\lambda+t,
+\quad\mathcal F=-(\lambda+t)^2/2.
+\tag{47}
+</annotation></semantics></math><span class="equation-number">(47)</span></div>
+<p>For u&gt;0, with the original contour oriented upwards on iℝ,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>i</mi><msqrt><mrow><mn>2</mn><mi>π</mi><mi>u</mi></mrow></msqrt><mo>exp</mo><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>λ</mi><mo>+</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mn>2</mn></msup><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\Pi(u,t)=i\sqrt{2\pi u}\exp(-(\lambda+t)^2/(2u)).
+\tag{48}
+</annotation></semantics></math><span class="equation-number">(48)</span></div>
+<p>In the ordering (33), q=1 gives Γ₁ oriented downwards, so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Γ</mi><mrow><mi mathvariant="normal">u</mi><mi mathvariant="normal">p</mi></mrow></msub><mo>=</mo><mi>−</mi><msub><mi>Γ</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\Gamma_{\mathrm{up}}=-\Gamma_1</annotation></semantics></math>
+and the period in (48) is the negative of the sole entry of (34). This
+is the exact orientation map; the squared determinant is unchanged. The
+full nonzero λ remains; a cohomological dimension or pure finite-field
+weight does not set it to a critical-line value.</p>
+<p>For χ(S)=S²+c_1S+c_0,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mo>=</mo><msubsup><mi>c</mi><mn>1</mn><mn>3</mn></msubsup><mi>/</mi><mn>6</mn><mo>−</mo><msub><mi>c</mi><mn>1</mn></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo>−</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mo>det</mo><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>Π</mi><mo>*</mo></msup><mi>Π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mrow><mo form="prefix" stretchy="true">|</mo><mi>u</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mn>2</mn></msup><mo>exp</mo><mspace width="-0.167em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>ℜ</mi><mfrac><mrow><msubsup><mi>c</mi><mn>1</mn><mn>3</mn></msubsup><mi>/</mi><mn>6</mn><mo>−</mo><msub><mi>c</mi><mn>1</mn></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo>−</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mi>u</mi></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathcal F=c_1^3/6-c_1(c_0-t),
+\qquad
+\det(\Pi^*\Pi)
+ =(2\pi|u|)^2
+ \exp\!\left(2\Re\frac{c_1^3/6-c_1(c_0-t)}u\right).
+\tag{49}
+</annotation></semantics></math><span class="equation-number">(49)</span></div>
+<p>At the discriminant c_1²−4(c_0−t)=0 the formula stays unchanged and
+the fibre retains its double-root algebra. This is tested symbolically.
+Independent ray quadrature for small declared complex coefficient
+fixtures is reported separately, without an interval-certification
+claim.</p>
+<h1 id="transport-the-original-metric-and-control-through-the-same-periods">10.
+Transport the original metric and control through the same periods</h1>
+<p>At the actual marked coefficients, use the original arithmetic G_N of
+(10). On the period-coordinate target define the <strong>transported
+original metric</strong></p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>N</mi></msub><mo>=</mo><msup><mi>Π</mi><mrow><mi>−</mi><mo>*</mo></mrow></msup><msub><mi>G</mi><mi>N</mi></msub><msup><mi>Π</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><msup><mi>Π</mi><mrow><mi>−</mi><mo>*</mo></mrow></msup><mo>:=</mo><msup><mrow><mo form="prefix" stretchy="true">(</mo><msup><mi>Π</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\widetilde G_N=\Pi^{-*}G_N\Pi^{-1},
+\qquad
+\Pi^{-*}:=(\Pi^{-1})^*.
+\tag{50}
+</annotation></semantics></math><span class="equation-number">(50)</span></div>
+<p>The map Π:(E,G_N)→(ℂ^q,G_N) is an isometry by this explicit formula,
+not by an assignment of the original metric to I_q. Conversely Π^<em>Π
+is the Gram for the separately specified coordinate metric I_q, and its
+comparison operator is G_N<sup>(−1)Π</sup></em>Π.</p>
+<p>The exact determinant formula is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mo>det</mo><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>N</mi></msub><mo>=</mo><mfrac><msub><mi>V</mi><mi>N</mi></msub><msup><mrow><mo form="prefix" stretchy="true">(</mo><mn>2</mn><mi>π</mi><mrow><mo form="prefix" stretchy="true">|</mo><mi>u</mi><mo form="postfix" stretchy="true">|</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><mi>q</mi></msup></mfrac><mo>exp</mo><mspace width="-0.167em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mi>−</mi><mn>2</mn><mi>ℜ</mi><mfrac><mi>ℱ</mi><mi>u</mi></mfrac><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{
+\det\widetilde G_N
+ =\frac{V_N}{(2\pi|u|)^q}
+ \exp\!\left(-2\Re\frac{\mathcal F}u\right).
+}
+\tag{51}
+</annotation></semantics></math><span class="equation-number">(51)</span></div>
+<p>At a common (𝐜,u,t), the complete marked endpoint ratio satisfies</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mfrac><mrow><mo>det</mo><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>i</mi></msub></mrow><mrow><mo>det</mo><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>j</mi></msub></mrow></mfrac><mo>=</mo><mfrac><msub><mi>V</mi><mi>i</mi></msub><msub><mi>V</mi><mi>j</mi></msub></mfrac><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{
+\frac{\det\widetilde G_i}{\det\widetilde G_j}
+ =\frac{V_i}{V_j}.
+}
+\tag{52}
+</annotation></semantics></math><span class="equation-number">(52)</span></div>
+<p>Thus every common period determinant factor in that ratio is now
+explicitly known and cancels by (51), with no remaining unknown
+proportionality constant. This identifies exactly which information the
+period determinant does and does not add to the endpoint estimate.</p>
+<p>For fixed u&gt;0 and real t, differentiate (50), retaining the
+original G_N fixed and using Π′=−ΠA(t)/u. One obtains</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mfrac><mi>d</mi><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>N</mi></msub><mo>=</mo><msup><mi>Π</mi><mrow><mi>−</mi><mo>*</mo></mrow></msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>A</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>G</mi><mi>N</mi></msub><mo>+</mo><msub><mi>G</mi><mi>N</mi></msub><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>Π</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">
+u\frac{d}{dt}\widetilde G_N
+ =\Pi^{-*}(A(t)^*G_N+G_NA(t))\Pi^{-1},
+\tag{53}
+</annotation></semantics></math><span class="equation-number">(53)</span></div>
+<p>and therefore</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mi>u</mi><mfrac><mi>d</mi><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>N</mi></msub><mo>−</mo><mi>k</mi><msub><mover><mi>G</mi><mo accent="true">̃</mo></mover><mi>N</mi></msub><mo>=</mo><msup><mi>Π</mi><mrow><mi>−</mi><mo>*</mo></mrow></msup><msub><mi>W</mi><mi>N</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><msup><mi>Π</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>W</mi><mi>N</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>A</mi><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>G</mi><mi>N</mi></msub><mo>+</mo><msub><mi>G</mi><mi>N</mi></msub><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>−</mo><mi>k</mi><msub><mi>G</mi><mi>N</mi></msub><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{
+ u\frac{d}{dt}\widetilde G_N-k\widetilde G_N
+ =\Pi^{-*}W_N(t)\Pi^{-1},
+\quad W_N(t)=A(t)^*G_N+G_NA(t)-kG_N.
+}
+\tag{54}
+</annotation></semantics></math><span class="equation-number">(54)</span></div>
+<p>At
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t=0</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>N</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">W_N(t)</annotation></semantics></math>
+is the original arithmetic control. For any vector x, the coordinate
+change
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>Π</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">x=\Pi v</annotation></semantics></math>
+carries both numerator and denominator of its generalized Rayleigh
+quotient exactly. Equations (30) and (11) show that the source theta
+primitive remains the same along this specific t-deformation.</p>
+<p>This is a differential-metric reformulation of the same problem. The
+finite-field pure cohomology of the auxiliary family controls its
+Frobenius, not automatically the right side of (54). The required
+relation between those operators has not been supplied by taking a
+determinant.</p>
+<h2 id="the-constituent-period-minor-detects-the-arithmetic-defect">10.1
+The constituent period minor detects the arithmetic defect</h2>
+<p>The full determinant is sensitive to all coefficient derivatives by
+(42), but along the original t-direction it sees only Tr A. In a
+reflection-stable arithmetic packet of dimension q,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>ℜ</mi><mo>Tr</mo><mi>A</mi><mo>=</mo><mi>k</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">2\Re\operatorname{Tr}A=kq</annotation></semantics></math>.
+For the full conjugation-stable quartet packet,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Tr</mo><mi>A</mi><mo>=</mo><mi>k</mi><mi>q</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\operatorname{Tr}A=kq/2</annotation></semantics></math>
+exactly. This is already the total weight balance; an off-line pair can
+retain that same real trace.</p>
+<p>The correct retained subobject is an actual
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>-invariant
+inclusion
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>F</mi></msub><mo>:</mo><mi>F</mi><mo>↪</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">I_F:F\hookrightarrow E</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>I</mi><mi>F</mi></msub><mo>=</mo><msub><mi>I</mi><mi>F</mi></msub><msub><mi>A</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">AI_F=I_FA_F</annotation></semantics></math>.
+Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mo>dim</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">p=\dim F</annotation></semantics></math>
+and define the <strong>rectangular</strong> period map and its two
+Grams</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>F</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>Π</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>I</mi><mi>F</mi></msub><mo>:</mo><mi>F</mi><mo>→</mo><msup><mi>ℂ</mi><mi>q</mi></msup><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>H</mi><mi>F</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><msub><mi>P</mi><mi>F</mi></msub><msup><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>*</mo></msup><msub><mi>P</mi><mi>F</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>G</mi><mrow><mi>N</mi><mo>,</mo><mi>F</mi></mrow></msub><mo>=</mo><msubsup><mi>I</mi><mi>F</mi><mo>*</mo></msubsup><msub><mi>G</mi><mi>N</mi></msub><msub><mi>I</mi><mi>F</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+P_F(t)=\Pi(u,t)I_F:F\longrightarrow\mathbb C^q,
+\quad H_F(t)=P_F(t)^*P_F(t),
+\quad G_{N,F}=I_F^*G_NI_F.
+\tag{54a}
+</annotation></semantics></math><span class="equation-number">(54a)</span></div>
+<p>The determinant here is the norm of the actual exterior map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>⋀</mo><mi>p</mi></msup><msub><mi>P</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">\bigwedge^p P_F</annotation></semantics></math>
+on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>det</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">\det F</annotation></semantics></math>;
+no determinant of a rectangular matrix is taken. The domain Gram retains
+the theta-source inclusion
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>N</mi></msub><msub><mi>I</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">r_NI_F</annotation></semantics></math>
+and all its jets. For real
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">u&gt;0</annotation></semantics></math>,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>F</mi></msub><mi>′</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>−</mi><msub><mi>P</mi><mi>F</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>A</mi><mi>F</mi></msub><mi>/</mi><mi>u</mi><mo>,</mo><mspace width="2.0em"></mspace><menclose notation="box"><mrow><mi>−</mi><mi>u</mi><msub><mrow><mfrac><mi>d</mi><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>log</mo><mfrac><mrow><mo>det</mo><msub><mi>H</mi><mi>F</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mrow><mo>det</mo><msub><mi>G</mi><mrow><mi>N</mi><mo>,</mo><mi>F</mi></mrow></msub></mrow></mfrac><mo form="postfix" stretchy="true">|</mo></mrow><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow></msub><mo>−</mo><mi>k</mi><mi>p</mi><mo>=</mo><mn>2</mn><mi>ℜ</mi><mo>Tr</mo><msub><mi>A</mi><mi>F</mi></msub><mo>−</mo><mi>k</mi><mi>p</mi><mi>.</mi></mrow></menclose></mrow><annotation encoding="application/x-tex">
+P_F'(0)=-P_F(0)A_F/u,
+\qquad
+\boxed{-u\left.\frac d{dt}\log\frac{\det H_F(t)}{\det G_{N,F}}\right|_{t=0}-kp
+ =2\Re\operatorname{Tr}A_F-kp.}
+\tag{54b}
+</annotation></semantics></math><span class="equation-number">(54b)</span></div>
+<p>This follows by differentiating the displayed Gram and taking its
+trace. It is not a purity assumption on F. For the full
+positive-real-defect generalized eigenspace
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>=</mo><msub><mi>E</mi><mo>&gt;</mo></msub></mrow><annotation encoding="application/x-tex">F=E_&gt;</annotation></semantics></math>,
+the right side is the exact aggregate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>L</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><annotation encoding="application/x-tex">L_{h,k}</annotation></semantics></math>
+already used by the exterior theorem. Thus the period family has an
+explicit observable for the original off-line defect, not just for its
+already-balanced total trace.</p>
+<p>The original extension to the other constituents is present as well.
+Let P be the orthogonal projection in the specified period-coordinate
+metric onto
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>im</mo><msub><mi>P</mi><mi>F</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{im}P_F(0)</annotation></semantics></math>.
+Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>A</mi><mo>+</mo><mi>t</mi><mi>ℛ</mi></mrow><annotation encoding="application/x-tex">A(t)=A+t\mathcal R</annotation></semantics></math>,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><menclose notation="box"><mrow><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>P</mi><mi>F</mi></msub><mi>′</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="2.0em"></mspace><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><msub><mi>P</mi><mi>F</mi></msub><mi>″</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mi>−</mi><mfrac><mn>1</mn><mi>u</mi></mfrac><mrow><mo form="prefix" stretchy="true">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo form="postfix" stretchy="true">)</mo></mrow><mi>Π</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>u</mi><mo>,</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><mi>ℛ</mi><msub><mi>I</mi><mi>F</mi></msub><mi>.</mi></mrow></menclose><annotation encoding="application/x-tex">
+\boxed{(1-P)P_F'(0)=0,\qquad
+(1-P)P_F''(0)=-\frac1u(1-P)\Pi(u,0)\mathcal R I_F.}
+\tag{54c}
+</annotation></semantics></math><span class="equation-number">(54c)</span></div>
+<p>Both identities are direct differentiations. The first derivative is
+internal to F; the first possible normal acceleration is the exact
+rank-at-most-one map on the right. Its kernel, image, and norm remain
+available. A repeated-root primary subspace is allowed; no eigenspace
+basis or semisimple replacement is used.</p>
+<p>Equations (54a)–(54c) specify the constituent period object that can
+be estimated next. Formula (41) finishes the full determinant, but does
+not by itself bound these minor norms or their comparison with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>G</mi><mrow><mi>N</mi><mo>,</mo><mi>F</mi></mrow></msub><annotation encoding="application/x-tex">G_{N,F}</annotation></semantics></math>.
+The preceding logarithmic-constituent extension and its coupling
+subtraction remain the source-specific metric input.</p>
+<h1 id="the-source-specific-remaining-term-stays-explicit">11. The
+source-specific remaining term stays explicit</h1>
+<p>For the current programme, the original endpoint cost is</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℬ</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>=</mo><mo>log</mo><mfrac><mrow><msub><mi>V</mi><mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msub><msub><mi>V</mi><mi>q</mi></msub></mrow><mrow><msub><mi>V</mi><mrow><mn>2</mn><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msub><msub><mi>V</mi><mrow><mn>2</mn><mi>q</mi></mrow></msub></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathcal B_{h,k}
+ =\log\frac{V_{q-1}V_q}{V_{2q-1}V_{2q}}.
+\tag{55}
+</annotation></semantics></math><span class="equation-number">(55)</span></div>
+<p>The preceding logarithmic-constituent calculation already supplies a
+genuine source upper certificate. For an A-invariant inclusion I:F→E and
+its G_j-orthogonal coefficient lift H_0 of E/F, let C=G_i−G_j and</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mrow><mi>F</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>=</mo><msup><mi>I</mi><mo>*</mo></msup><msub><mi>G</mi><mi>j</mi></msub><mi>I</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>C</mi><mi>F</mi></msub><mo>=</mo><msup><mi>I</mi><mo>*</mo></msup><mi>C</mi><mi>I</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>D</mi><mi>F</mi></msub><mo>=</mo><msup><mi>I</mi><mo>*</mo></msup><mi>C</mi><msub><mi>H</mi><mn>0</mn></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>Q</mi><mn>0</mn></msub><mo>=</mo><msubsup><mi>H</mi><mn>0</mn><mo>*</mo></msubsup><msub><mi>G</mi><mi>j</mi></msub><msub><mi>H</mi><mn>0</mn></msub><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>C</mi><mi>Q</mi></msub><mo>=</mo><msubsup><mi>H</mi><mn>0</mn><mo>*</mo></msubsup><mi>C</mi><msub><mi>H</mi><mn>0</mn></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+G_{F,0}=I^*G_jI,\quad C_F=I^*CI,\quad
+D_F=I^*CH_0,\quad Q_0=H_0^*G_jH_0,\quad C_Q=H_0^*CH_0.
+\tag{56}
+</annotation></semantics></math><span class="equation-number">(56)</span></div>
+<p>Put Q_+=Q_0+C_Q and</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ξ</mi><mi>F</mi></msub><mo>=</mo><msubsup><mi>Q</mi><mo>+</mo><mrow><mi>−</mi><mn>1</mn></mrow></msubsup><msubsup><mi>D</mi><mi>F</mi><mo>*</mo></msubsup><msup><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>G</mi><mrow><mi>F</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>+</mo><msub><mi>C</mi><mi>F</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><msub><mi>D</mi><mi>F</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\Xi_F=Q_+^{-1}D_F^*(G_{F,0}+C_F)^{-1}D_F.
+\tag{57}
+</annotation></semantics></math><span class="equation-number">(57)</span></div>
+<p>That construction proves the exact decomposition</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mo>log</mo><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>V</mi><mi>i</mi></msub><mi>/</mi><msub><mi>V</mi><mi>j</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mrow></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>log</mo><mfrac><mrow><mo>det</mo><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>G</mi><mrow><mi>F</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>+</mo><msub><mi>C</mi><mi>F</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mrow><mo>det</mo><msub><mi>G</mi><mrow><mi>F</mi><mo>,</mo><mn>0</mn></mrow></msub></mrow></mfrac><mo>+</mo><mo>log</mo><mfrac><mrow><mo>det</mo><msub><mi>Q</mi><mo>+</mo></msub></mrow><mrow><mo>det</mo><msub><mi>Q</mi><mn>0</mn></msub></mrow></mfrac></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mi>−</mi><munder><mo>∑</mo><mrow><mi>a</mi><mo>≥</mo><mn>1</mn></mrow></munder><mfrac><mrow><mo>Tr</mo><mrow><mo form="prefix" stretchy="true">(</mo><msubsup><mi>Ξ</mi><mi>F</mi><mi>a</mi></msubsup><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mi>a</mi></mfrac><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+\log(V_i/V_j)
+={}&amp;\log\frac{\det(G_{F,0}+C_F)}{\det G_{F,0}}
+ +\log\frac{\det Q_+}{\det Q_0}\\
+&amp;-\sum_{a\ge1}\frac{\operatorname{Tr}(\Xi_F^a)}a.
+\end{aligned}
+\tag{58}
+</annotation></semantics></math><span class="equation-number">(58)</span></div>
+<p>These are the source matrices that still require uniform control.
+Under the coordinate change Π, all inclusions, quotient lifts, metrics
+and D_F are transported together; (58) retains the same values. A period
+basis does not eliminate the coupling or the theta mass.</p>
+<p>The current GitHub statement retains the already derived
+off-line-quartet consequence</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>liminf</mo><mrow><mi>k</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><msub><mi>ℬ</mi><mrow><mi>h</mi><mo>,</mo><mi>k</mi></mrow></msub><mrow><msub><mi>q</mi><mi>k</mi></msub><mo>log</mo><mi>k</mi></mrow></mfrac><mo>≥</mo><mn>4</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\liminf_{k\to\infty}\frac{\mathcal B_{h,k}}{q_k\log k}\ge4.
+\tag{59}
+</annotation></semantics></math><span class="equation-number">(59)</span></div>
+<p>This note does not establish a contradictory upper estimate. It
+finishes the diagonal trace and the determinant-period calculation,
+recovers all cyclic power traces from that determinant family, and gives
+the exact unchanged theta-metric comparison (51)–(54). The quantitative
+focus remains a bound on (58), or equivalently on the same original
+generalized control in (54), rather than another uncomputed determinant
+or an assumption that local support entails metric purity.</p>
+<h1 id="relation-to-delignes-finite-field-family">12. Relation to
+Deligne’s finite-field family</h1>
+<p>The previous construction takes the finitely generated coefficient
+ring R_0 containing the actual c_a and 1/(q+1)!, and for a specified
+finite-field specialization of characteristic p&gt;q+1 obtains</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Y</mi><mi>p</mi></msup><mo>−</mo><mi>Y</mi><mo>=</mo><mfrac><mrow><msub><mi>Φ</mi><mi>t</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><mi>S</mi><mo form="postfix" stretchy="true">)</mo></mrow></mrow><mi>u</mi></mfrac><mo>,</mo><mspace width="1.0em"></mspace><mi>u</mi><mo>≠</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+Y^p-Y=\frac{\Phi_t(S)}u,\quad u\ne0.
+\tag{60}
+</annotation></semantics></math><span class="equation-number">(60)</span></div>
+<p>Its infinity chart is the original one: with w=1/S,</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi><mi>t</mi></msub><mi>/</mi><mi>u</mi><mo>=</mo><msup><mi>w</mi><mrow><mi>−</mi><mi>d</mi></mrow></msup><mi>b</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>w</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>b</mi><mrow><mo form="prefix" stretchy="true">(</mo><mn>0</mn><mo form="postfix" stretchy="true">)</mo></mrow><mo>=</mo><mn>1</mn><mi>/</mi><mrow><mo form="prefix" stretchy="true">(</mo><mi>d</mi><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>b</mi><msup><mi>v</mi><mi>d</mi></msup><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>x</mi><mi>∞</mi></msub><mo>=</mo><mi>w</mi><mi>v</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>Φ</mi><mi>t</mi></msub><mi>/</mi><mi>u</mi><mo>=</mo><msubsup><mi>x</mi><mi>∞</mi><mrow><mi>−</mi><mi>d</mi></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\Phi_t/u=w^{-d}b(w),\quad b(0)=1/(du),\quad
+b v^d=1,\quad x_\infty=wv,\quad \Phi_t/u=x_\infty^{-d}.
+\tag{61}
+</annotation></semantics></math><span class="equation-number">(61)</span></div>
+<p>The derivative in v has the specified inverse v/d. This is the
+retained local model for applying Deligne’s exponential-sum/lissity
+theorem over u≠0. The generic polynomial has rank-q degree-one compact
+cohomology and weight-one Frobenius under those hypotheses. Those are
+the inherited cited Deligne results, not fresh analytic conclusions of
+this note.</p>
+<p>The maps are the span</p>
+<div class="equation-block"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>R</mi><mn>0</mn></msub><mo>,</mo><mi>Φ</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>t</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>→</mo><mrow><mo form="prefix" stretchy="true">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mrow><mo form="prefix" stretchy="true">(</mo><mi>ℂ</mi><mo>,</mo><msub><mi>𝒞</mi><mrow><mi>u</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo><mi>∇</mi><mo>,</mo><mi>Π</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>𝔽</mi><mi>Q</mi></msub><mo>,</mo><msub><mi>ℒ</mi><mi>ψ</mi></msub><mrow><mo form="prefix" stretchy="true">(</mo><msub><mi>Φ</mi><mi>t</mi></msub><mi>/</mi><mi>u</mi><mo form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><msup><mi>R</mi><mn>1</mn></msup><msub><mi>f</mi><mi>!</mi></msub><mo form="postfix" stretchy="true">)</mo></mrow><mi>.</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+(R_0,\Phi,u,t)\longrightarrow
+\begin{cases}
+(\mathbb C,\mathcal C_{u,t},\nabla,\Pi),\\
+(\mathbb F_Q,\mathcal L_\psi(\Phi_t/u),R^1f_!).
+\end{cases}
+\tag{62}
+</annotation></semantics></math><span class="equation-number">(62)</span></div>
+<p>The SGA trace formalism applies in each specified coefficient
+realization with its own endomorphism. It does not supply a homomorphism
+ℂ→𝔽_Q or an intertwiner from the auxiliary Frobenius to the original A.
+The actual complex source/operator comparison is (30), (31), and (54).
+This keeps the two realizations connected at their common coefficient
+model without filling the missing operator comparison with an
+unsupported equality.</p>
+<h1 id="verification-and-reproducibility">13. Verification and
+reproducibility</h1>
+<p><code>check_trace_period.py</code> contains eighteen finite exact
+regression methods: residue duality, the diagonal tensor, the
+trace/Jacobian composite, repeated-root fibres, periodic diagonal
+resolution, coefficient-base-change identities, quantum-reduction
+traces, critical-value gradients, Newton recovery, source conormal
+response, full metric congruences, and split quotient labels. Separate
+negative controls alter the Jacobian, discard the quantum derivative, or
+erase multiplicity; each must fail in both normal and optimized
+Python.</p>
+<p>The period convergence, determinant formula for arbitrary q, and
+all-general resolution exactness have written proofs above. Finite
+symbolic or numerical tests are not replacements for those proofs.
+<code>period_numerics.py</code> performs additional explicitly
+non-certified contour comparisons on declared small fixtures. No new
+Lean execution, arithmetic zero location, interval certificate, or
+uniform purity theorem is claimed.</p>
+<p>The package does not redistribute the uploaded SGA corpus. The source
+inventory retains hashes, original paths and read ranges. The GitHub
+read was pinned to c05c709d707bacda335deff70fbb5b841a751d1f. No remote
+file is changed by building this package.</p>
+<h1 id="references-and-source-status">References and source status</h1>
+<ol type="1">
+<li>A. Grothendieck, written up by L. Illusie, <em>SGA 5, Exposé III:
+Lefschetz Formula</em>, §§4.1, 4.7–4.8, and coherent appendix §§6.1–6.8,
+especially (6.8.5). Basis: the user’s supplied English master, read
+directly as LaTeX. Source wording and qualifications are recorded
+separately.</li>
+<li>P. Deligne, <em>La conjecture de Weil II</em>, Publications
+Mathématiques de l’IHÉS 52 (1980), 137–252. The previous source-reviewed
+construction uses §§3.7.2–3.7.4. This execution reads that predecessor’s
+TeX and preserves its stated scope, rather than claiming a new complete
+scan verification.</li>
+<li>S. Bloch and H. Esnault, <em>Gauß–Manin determinant connections and
+periods for irregular connections</em>, arXiv:math/9912095 (1999). The
+abstract was inspected for attribution; its TeX download failed, so no
+detailed theorem of that article is asserted as independently read
+here.</li>
+<li>NIST Digital Library of Mathematical Functions, §5.5(iii), gamma
+multiplication formula. It is used only to evaluate the explicit product
+in (38); the full product and phases remain available.</li>
+<li>Parent programme sources:
+<em>Tau_Deligne_Exponential_Comparison</em> and
+<em>Tau_Deligne_Logarithmic_Constituent_Control</em>, 13 September 2026.
+Their original sections, arithmetic source maps, metric definitions, and
+verification scopes are retained. General source and analytic
+constructions are inherited where expressly marked above.</li>
+</ol>
+</body>
+</html>

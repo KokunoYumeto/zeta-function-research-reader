@@ -1,0 +1,274 @@
+\section{Independent theta-tail proof and certificate code review}\label{independent-theta-tail-proof-and-certificate-code-review}
+
+Date: 2026-09-13.
+
+This review concerns the exact original theta integrand, its omitted tails, and the complete code path that produces the dimension-16 logarithmic Hankel certificate. It retains every coefficient in the integrand. The parent is independently replaying the rational interval arithmetic; this review supplies the analytic proof and an independent complete source read.
+
+\subsection{1. Exact objects and retained integral}\label{exact-objects-and-retained-integral}
+
+Let \(J\) be a nonnegative integer, \(N\) a positive integer, and \(L>0\). For \(n\geq1\) and real \(y\geq0\), set \[
+ f_{J,n}(y)=y^J
+ \left(16\pi^2n^4e^{9y/2}-24\pi n^2e^{5y/2}\right)
+ e^{-\pi n^2e^{2y}},
+ \qquad F_J(y)=\sum_{n=1}^{\infty}f_{J,n}(y).
+ \tag{TR1}
+\] When \(J=0\), the factor \(y^0\) is the constant function \(1\), including at zero. The intended integral and retained part are \[
+ I_J=\int_0^\infty F_J(y)\,dy,\qquad
+ I_{J,N,L}^{\mathrm{fin}}=\int_0^L\sum_{n=1}^{N-1}f_{J,n}(y)\,dy.
+ \tag{TR2}
+\] For \(N=1\), the finite sum is empty and its integral is zero. The actual run uses \(N=20\), \(L=4\), and \(J=0,2,\ldots,64\); it therefore retains precisely \(n=1,\ldots,19\).
+
+\subsection{2. Positivity and the exact majorant}\label{positivity-and-the-exact-majorant}
+
+The identity \[
+ 16\pi^2n^4e^{9y/2}-24\pi n^2e^{5y/2}
+ =8\pi n^2e^{5y/2}(2\pi n^2e^{2y}-3)
+ \tag{TR3}
+\] proves that the parenthesis in (TR1) is strictly positive, since \(2\pi n^2e^{2y}-3\geq2\pi-3>0\). Thus \[
+ 0\leq f_{J,n}(y)
+ \leq16\pi^2y^Je^{9y/2}n^4e^{-\pi n^2e^{2y}}.
+ \tag{TR4}
+\] The upper estimate discards a nonnegative subtracted term only in the estimate. Both terms remain in the actual finite integral.
+
+For every \(N\geq1\), \[
+ 0<r_N:=e^{4/N-2\pi N}
+ \leq r_*:=e^{4-2\pi}<1.
+ \tag{TR5}
+\] Here \(4/N\leq4\), \(N\geq1\), and \(\pi>3\).
+
+\subsection{3. Omitted summands on the retained interval}\label{omitted-summands-on-the-retained-interval}
+
+Put \(a_n=n^4e^{-\pi n^2}\). Its exact consecutive-term ratio is \[
+ \frac{a_{n+1}}{a_n}
+ =\left(1+\frac1n\right)^4e^{-\pi(2n+1)}.
+ \tag{TR6}
+\] For \(x\geq0\), \(\log(1+x)\leq x\): the difference \(x-\log(1+x)\) is zero at zero and has derivative \(x/(1+x)\geq0\). Consequently, for \(n\geq N\), \[
+ \begin{aligned}
+ \log\frac{a_{n+1}}{a_n}
+ &=4\log(1+1/n)-2\pi n-\pi\\
+ &\leq4/n-2\pi n-\pi\\
+ &\leq4/N-2\pi N-\pi
+ \leq4/N-2\pi N=\log r_N.
+ \end{aligned}
+ \tag{TR7}
+\] It follows by induction that \(a_{N+j}\leq a_Nr_N^j\) for every integer \(j\geq0\), and hence \[
+ \sum_{n=N}^{\infty}n^4e^{-\pi n^2}
+ \leq \frac{N^4e^{-\pi N^2}}{1-r_N}.
+ \tag{TR8}
+\] On \(0\leq y\leq L\), use \(y^J\leq L^J\), \(e^{9y/2}\leq e^{9L/2}\), and \(e^{-\pi n^2e^{2y}}\leq e^{-\pi n^2}\). Equations (TR4) and (TR8) then give \[
+ \begin{aligned}
+ 0\leq E_{J,N,L}^{(n)}
+ &:=\int_0^L\sum_{n=N}^{\infty}f_{J,n}(y)\,dy\\
+ &\leq
+ \frac{16\pi^2L^{J+1}e^{9L/2}N^4e^{-\pi N^2}}
+ {1-e^{4/N-2\pi N}}
+ =:T_n(J,N,L).
+ \end{aligned}
+ \tag{TR9}
+\] The extra negative term \(-\pi\) in (TR7) was discarded in the direction that enlarges the upper bound. This proves the proposed expression with its stated denominator.
+
+The same argument with \(N=1\) gives a summable uniform majorant on each compact interval \([0,L]\). The series defining \(F_J\) is therefore uniformly convergent there and continuous. Its summands are nonnegative, so monotone convergence also justifies the sum-integral interchanges above and below.
+
+\subsection{4. The complete integration tail}\label{the-complete-integration-tail}
+
+For fixed \(y\geq0\), write \(a_n(y)=n^4e^{-\pi n^2e^{2y}}\). Then \[
+ \begin{aligned}
+ \log\frac{a_{n+1}(y)}{a_n(y)}
+ &=4\log(1+1/n)-\pi(2n+1)e^{2y}\\
+ &\leq4/n-2\pi ne^{2y}-\pi e^{2y}\\
+ &\leq4-2\pi=\log r_*.
+ \end{aligned}
+ \tag{TR10}
+\] The last inequality uses \(1/n\leq1\), \(ne^{2y}\geq1\), and \(-\pi e^{2y}\leq0\). Since \(a_1(y)=e^{-\pi e^{2y}}\), the geometric-series estimate is \[
+ \sum_{n=1}^{\infty}n^4e^{-\pi n^2e^{2y}}
+ \leq\frac{e^{-\pi e^{2y}}}{1-e^{4-2\pi}}.
+ \tag{TR11}
+\] Therefore \[
+ 0\leq F_J(y)
+ \leq \frac{16\pi^2}{1-e^{4-2\pi}}
+ y^Je^{9y/2-\pi e^{2y}}.
+ \tag{TR12}
+\] Define \[
+ A_{J,L}=2\pi e^{2L}-\frac92-\frac JL.
+ \tag{TR13}
+\] When \(A_{J,L}>0\), the positive function \(q_J(y)=y^Je^{9y/2-\pi e^{2y}}\), for \(y\geq L>0\), satisfies \[
+ \frac{q'_J(y)}{q_J(y)}
+ =\frac Jy+\frac92-2\pi e^{2y}
+ \leq\frac JL+\frac92-2\pi e^{2L}
+ =-A_{J,L}.
+ \tag{TR14}
+\] The first summand is identically zero for \(J=0\). Integrating this differential inequality gives \(q_J(y)\leq q_J(L)e^{-A_{J,L}(y-L)}\). Thus \[
+ \begin{aligned}
+ 0\leq E_{J,L}^{(y)}
+ &:=\int_L^\infty\sum_{n=1}^{\infty}f_{J,n}(y)\,dy\\
+ &\leq
+ \frac{16\pi^2L^Je^{9L/2-\pi e^{2L}}}
+ {(1-e^{4-2\pi})(2\pi e^{2L}-9/2-J/L)}
+ =:T_y(J,L).
+ \end{aligned}
+ \tag{TR15}
+\] This integral includes every \(n\geq1\), including all omitted summands \(n\geq N\) beyond \(L\).
+
+\subsection{5. The exact remainder and interval addition}\label{the-exact-remainder-and-interval-addition}
+
+The omitted domain is the disjoint union, up to the measure-zero endpoint slice, of \[
+ \{(n,y):n\geq N,\ 0\leq y<L\}
+ \quad\text{and}\quad
+ \{(n,y):n\geq1,\ L\leq y<\infty\}.
+ \tag{TR16}
+\] The two integrals are nonnegative and finite by (TR9) and (TR15). They therefore give the exact identity and enclosure \[
+ I_J=I_{J,N,L}^{\mathrm{fin}}+E_{J,N,L}^{(n)}+E_{J,L}^{(y)},
+ \qquad
+ I_J-I_{J,N,L}^{\mathrm{fin}}\in[0,T_n+T_y].
+ \tag{TR17}
+\] There is no double counting of \(n\geq N\) beyond \(L\): that region occurs only in \(E^{(y)}\). If \([a,b]\) encloses the finite integral and \(\overline T\geq T_n+T_y\), then \[
+ I_J\in[a,b]+[0,\overline T]=[a,b+\overline T].
+ \tag{TR18}
+\] The entire interval \([0,\overline T]\), rather than a tail midpoint, is what must be added.
+
+For the actual parameters the formulas are \[
+ \begin{aligned}
+ T_n(J,20,4)&=
+ \frac{16\pi^2\,4^{J+1}e^{18}\,20^4e^{-400\pi}}
+ {1-e^{1/5-40\pi}},\\
+ T_y(J,4)&=
+ \frac{16\pi^2\,4^Je^{18-\pi e^8}}
+ {(1-e^{4-2\pi})(2\pi e^8-9/2-J/4)}.
+ \end{aligned}
+ \tag{TR19}
+\] All denominator signs are proved exactly for \(0\leq J\leq64\): \[
+ 1/5-40\pi<-599/5<0,\qquad4-2\pi<-2<0,
+ \tag{TR20}
+\] and \(e^8>1+8=9\) gives \[
+ 2\pi e^8-\frac92-\frac J4
+ >6\cdot9-\frac92-16=\frac{67}{2}>0.
+ \tag{TR21}
+\] Thus the claimed tail hypotheses are verified for every actual moment in the run, without a floating-point sign assumption.
+
+\subsection{6. Entire finite integrand and its literal code expression}\label{entire-finite-integrand-and-its-literal-code-expression}
+
+For each nonnegative integer \(J\), the function \[
+ z\longmapsto z^J\sum_{n=1}^{N-1}
+ (16\pi^2n^4e^{9z/2}-24\pi n^2e^{5z/2})
+ e^{-\pi n^2e^{2z}}
+ \tag{TR22}
+\] is entire on \(\mathbb C\): the only operations are a polynomial, exponentials and their compositions, and finite sums and products. The code sets \(x=\pi n^2e^{2z}\) and evaluates \[
+ z^Je^{z/2}\sum_{n=1}^{N-1}(16x^2-24x)e^{-x}.
+ \tag{TR23}
+\] The exact identities \[
+ 16x^2e^{z/2}=16\pi^2n^4e^{9z/2},
+ \qquad24xe^{z/2}=24\pi n^2e^{5z/2}
+ \tag{TR24}
+\] prove equality of (TR23) and (TR22). This rewrite retains the subtracted term and all original coefficients.
+
+The installed python-flint 0.9.0 documentation for acb.integral was read directly. Its callback receives a complex ball and an analytic flag. When that flag is true, the callback must establish analyticity on the ball or return a nonfinite ball. The entire function (TR22) meets this requirement on every complex ball, so ignoring that flag in this particular callback is justified by the proof above. There are no fractional powers, logarithms, branches, or pole-containing denominators in the callback.
+
+The code uses arb.pi() and integer arithmetic for its coefficients. Every division appearing in the callback or integration endpoints is performed on an Arb/Acb object and an exact integer. The finite path is partitioned into the eight consecutive exact intervals \([j/2,(j+1)/2]\), \(j=0,\ldots,7\). Their union is exactly \([0,4]\). The code rejects nonfinite integrals and any reported imaginary enclosure excluding zero, then sums the complex balls. Since the exact integral is real, its real-part enclosure contains (TR2). The tolerance is an exact dyadic \(2^{-850}\); the working precision is 1024 bits. The elapsed-time floats do not enter the mathematics.
+
+\subsection{7. Complete tail-code and exact-export review}\label{complete-tail-code-and-exact-export-review}
+
+The function positive\_tails computes precisely (TR9), (TR15), and (TR13), with outward-rounded Arb operations. It explicitly rejects any run that fails to certify \(1-r_N>0\), \(1-r_*>0\), or \(A_{J,L}>0\). It uses the original factor \(16\pi^2\) in each tail.
+
+The function compute\_moment takes the outward upper endpoint of the sum of the two tail balls, forms the ball union of that endpoint with zero, and adds that union to the real finite-integral ball. An enclosing ball union can slightly enlarge the endpoint interval, but it contains the whole interval required by (TR18). It does not replace the nonnegative tail interval with its midpoint. The final strict-positive comparison certifies positivity of the whole resulting moment ball.
+
+The installed arb.lower and arb.upper documentation was also read directly. These methods return exact finite floating-point numbers rounded respectively toward negative and positive infinity at the active precision. The installed arb.man\_exp documentation says it requires an exact finite input and returns an integer mantissa \(m\) and integer exponent \(e\). Therefore the exported endpoint is exactly \[
+ m2^e=
+ \begin{cases}
+ (m\,2^e)/1,&e\geq0,\\
+ m/(2^{-e}),&e<0.
+ \end{cases}
+ \tag{TR25}
+\] This is precisely the case distinction in exact\_dyadic. Python integers and their decimal strings retain these numerators and denominators exactly. They need not be reduced to lowest terms to represent the same rational endpoint. The enclosing real interval exported by enclosure consequently retains a certified lower and upper rational bound; its shorter decimal display is additional presentation data.
+
+The helper from\_enclosure parses both endpoint fractions through Arb and unions their enclosures. This remains sound if rounding enlarges them. It is unused in the original integration and LDL run and therefore does not participate in the output's arithmetic chain.
+
+\subsection{8. Original logarithmic coefficient recurrence}\label{original-logarithmic-coefficient-recurrence}
+
+Write \(M_{2j}=I_{2j}\) for the original moments defined by (TR2). Define the exact formal series \[
+ A(z)=\sum_{j\geq0}a_jz^j,\qquad
+ a_j=\frac{(-1)^jM_{2j}}{(2j)!},\qquad
+ B(z)=-\frac{A'(z)}{A(z)}=\sum_{n\geq0}b_nz^n.
+ \tag{TR26}
+\] The nonzero constant term \(a_0=I_0>0\) is proved by (TR1), (TR3), and integration over any interval of positive length. Thus the formal division in (TR26) is uniquely defined, and no convergence assumption is needed to compute its finite jet. The identity \(A(z)B(z)=-A'(z)\), in degree \(n\), is \[
+ a_0b_n+\sum_{j=1}^na_jb_{n-j}=-(n+1)a_{n+1}.
+ \tag{TR27}
+\] Solving for \(b_n\) gives exactly the recurrence in logarithmic\_coefficients: \[
+ b_n=\frac{-(n+1)a_{n+1}-\sum_{j=1}^na_jb_{n-j}}{a_0}.
+ \tag{TR28}
+\] The factorials and signs are Python integers; the divisions and sums occur in Arb arithmetic. Starting from enclosing moment balls, induction on \(n\) proves that the computed \(a_j\) and \(b_n\) balls contain the exact coefficients (TR26). The denominator ball is certified positive before division. Correlations between occurrences of earlier balls can enlarge the resulting intervals but cannot invalidate their containment.
+
+For dimension \(d=16\), the loop integrates \(J=0,2,\ldots,4d\), giving \(2d+1=33\) moments and \(a_0,\ldots,a_{32}\). The recurrence produces \(b_0,\ldots,b_{31}\). Both Hankel matrices \[
+ H^{(r)}=(b_{i+j+r})_{0\leq i,j<16},\qquad r\in\{0,1\},
+ \tag{TR29}
+\] are therefore completely specified: their largest needed indices are 30 and 31. The code uses these exact indices. It introduces no rescaling of the coefficient sequence or matrix.
+
+\subsection{9. Unpivoted LDL proof and the meaning of positivity}\label{unpivoted-ldl-proof-and-the-meaning-of-positivity}
+
+Fix \(r\in\{0,1\}\). For the exact real symmetric matrix \(H^{(r)}\), let \(L\) be lower triangular with diagonal entries 1 and define, in increasing order of \(j\), \[
+ \begin{aligned}
+ d_j&=H^{(r)}_{jj}-\sum_{k=0}^{j-1}L_{jk}^{\,2}d_k,\\
+ L_{ij}&=\frac{H^{(r)}_{ij}
+ -\sum_{k=0}^{j-1}L_{ik}L_{jk}d_k}{d_j},
+ \qquad i>j.
+ \end{aligned}
+ \tag{TR30}
+\] The code implements these exact ordered recurrences. At step \(j\), every lower entry used in the sums was computed at an earlier step. Induction on \(j\) proves that the stored balls enclose the exact values: the initial coefficient balls enclose \(H^{(r)}\); sums and products preserve enclosure; and every divisor interval is certified strictly positive before its use. Hence each exact \(d_j>0\).
+
+To establish the matrix identity, for \(i=j\), the first recurrence in (TR30) gives \((LDL^{\mathsf T})_{jj}=H^{(r)}_{jj}\); for \(i>j\), the second gives \((LDL^{\mathsf T})_{ij}=H^{(r)}_{ij}\). Symmetry supplies the entries \(i<j\). Thus \[
+ H^{(r)}=L\,\operatorname{diag}(d_0,\ldots,d_{15})L^{\mathsf T}.
+ \tag{TR31}
+\] Since \(L\) is unit lower triangular it is invertible. For every nonzero \(v\in\mathbb R^{16}\), the vector \(L^{\mathsf T}v\) is nonzero, and \[
+ v^{\mathsf T}H^{(r)}v
+ =\sum_{j=0}^{15}d_j(L^{\mathsf T}v)_j^2>0.
+ \tag{TR32}
+\] This proves positive definiteness of each original unscaled matrix, once all 16 pivot intervals are positive. Restricting (TR31) to the first \(s\) indices gives the exact leading determinant \[
+ \det H^{(r)}_{[0,s)}
+ =\prod_{j=0}^{s-1}d_j,\qquad1\leq s\leq16,
+ \tag{TR33}
+\] which is the interval product saved in each row. The unsuccessful branch reports positivity\_not\_certified rather than asserting that the matrix is indefinite. A finite useful certificate is produced only after all divisions used in it have positive divisor intervals.
+
+\subsection{10. Reviewed source and observed certificate}\label{reviewed-source-and-observed-certificate}
+
+The complete 163-line source was read, including argument validation, partial-file writes, numerical functions, serialization, final status, and both matrix calls. The file reviewed is certify\_theta\_hankel.py, SHA-256:
+
+\begin{lstlisting}
+a97486edc2fc1f05f155a9539ad280433be39a8f6924efbc8c1c1c4d71033950
+\end{lstlisting}
+
+The inspected certificate is certificate\_dimension16\_1024.json, SHA-256:
+
+\begin{lstlisting}
+869ebacd3f82e46c3fe5fac1f07bcbaae7f4c333e1a5ba2e0ffcb1f91884a0fc
+\end{lstlisting}
+
+Its source\_sha256 equals the independently hashed reviewed source. It records python-flint 0.9.0, 1024-bit working precision, 850 target bits, dimension 16, \(N=20\), and \(L=4\). It contains all 33 required moments, eight finite-integration pieces per moment, 33 coefficient \(a\) intervals, 32 coefficient \(b\) intervals, and 16 successful pivot rows for each \(r=0,1\). Its final status is positive\_definite\_certified.
+
+The certificate's displayed dimension-16 endpoints, quoted here only as orientation while exact dyadic endpoints remain authoritative, are approximately:
+
+{\scriptsize\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2727}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Matrix
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Last pivot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Full determinant
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(H^{(0)}\) & \(6.1698420811114408502314906319786538\times10^{-107}\) & \(9.2735841166129968999872729909592731\times10^{-822}\) \\
+\(H^{(1)}\) & \(7.1026100619440799659087832255229554\times10^{-111}\) & \(6.3606810193647631787476650057683745\times10^{-878}\) \\
+\end{longtable}
+}
+
+\subsection{11. Acceptance and scope of the completed proof}\label{acceptance-and-scope-of-the-completed-proof}
+
+Both proposed tail formulas are valid with every original constant. The analytic callback meets its contract, the retained summand matches the original expression exactly, the code adds the required nonnegative tail interval, the endpoint export is exact rational, the logarithmic recurrence has the correct signs and indices, and the LDL recurrences certify the original two matrices. This review found no formula/code mismatch and no correction necessary for the inspected dimension-16 run.
+
+The exact objects certified are the moments (TR2), the finite logarithmic jet (TR26), and the two finite matrices (TR29). Their positive definiteness gives every leading determinant through dimension 16 by (TR33). Identifying a separately defined zeta function with \(A\), or passing from these finite matrices to an assertion covering every dimension, requires the corresponding exact map and argument in the surrounding research; neither further statement is silently inserted into this certificate. The completed tail and finite-matrix calculations themselves use no zero ordinates, off-line zero assumption, or unproved infinite-dimensional positivity assertion.

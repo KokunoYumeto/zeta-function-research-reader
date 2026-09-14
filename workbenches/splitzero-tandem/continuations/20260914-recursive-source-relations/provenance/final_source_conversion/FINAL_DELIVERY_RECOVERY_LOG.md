@@ -1,0 +1,9 @@
+# Final recursive edition delivery continuation
+
+The mathematical edition cut remains the accepted metric, support, boundary and complete conclusion revision. PGS, PGD, PGM, PGB and later phase-graph bridge work belong to the next edition and are excluded here. No remote publication occurs in this task.
+
+On 14 September 2026 the saved local compiler worker was absent. The process inspection found no local TeX build; a separate publication worker was preserved. The complete previous BUILD_LOG, compiler, package script, evidence collector, and original-source correction replay were read. The incomplete seventeen-term preparation script was superseded by the already complete independent nineteen-term replay, which also restores two ledger formulas swallowed as hyperlinks.
+
+The nineteen exact original-source corrections have now been applied to both staging and delivery, guarded by all six prior file hashes. Each full corrected body was inverted byte-for-byte to its input. Exact operations and before copies are in `cohort_staging/ledger_exponent_correction/final_application/`. The previous candidate PDFs, source pins and build receipts were preserved in `page_qa/pre_final_converter_build/`. The earlier two BF12 exponent corrections and TCL.2 display repair remain recorded at their original receipts.
+
+Next actions: finish the live authoring compilation; transfer its source pins to the identical delivery source; execute the ordinary standalone build; compare every corrected PDF page against the actually reviewed candidate by exact cross-page body pixels and verified page furniture; inspect every changed page; bind the independent source-correction review; collect the current evidence; seal the source ZIP with complete-byte and CRC verification; provide the final delivery receipt to the root and designated publication owner. Preserve the three user drag-ready root files.

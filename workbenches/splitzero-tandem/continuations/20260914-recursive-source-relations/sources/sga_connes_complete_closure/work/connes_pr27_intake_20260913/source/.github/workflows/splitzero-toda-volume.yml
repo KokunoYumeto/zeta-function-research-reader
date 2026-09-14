@@ -1,0 +1,116 @@
+name: SplitZero Toda volume integration
+on:
+  push:
+    branches: [main, astra/toda-volume-integration-20260913]
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-toda-volume-formal/**'
+      - 'workbenches/tau-exterior-trace-formal/**'
+      - '.github/workflows/splitzero-toda-volume.yml'
+  pull_request:
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-toda-volume-formal/**'
+      - '.github/workflows/splitzero-toda-volume.yml'
+permissions:
+  contents: read
+jobs:
+  toda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Source manifests and checking-harness tests
+        run: |
+          set -euo pipefail
+          python3 check_tau_recovery.py --prepare
+          python3 check_boundary.py
+          python3 check_boundary_integration.py --prepare
+          python3 check_frontier.py
+          python3 check_conormal_cyclic.py
+          python3 check_exterior_trace.py
+          python3 check_toda_volume.py
+          python3 -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+          python3 -O -m unittest -v test_boundary_integration.py test_tau_recovery.py test_derived_checker.py
+      - name: Exact finite volume and retained-source regressions
+        run: |
+          set -euo pipefail
+          checker=../../workbenches/tau-toda-volume-formal/check_volume_models.py
+          python3 "$checker" --json TodaModels.normal.json
+          python3 -O "$checker" --json TodaModels.optimized.json
+          cmp TodaModels.normal.json TodaModels.optimized.json
+          if python3 "$checker" --self-test-failure >TodaModels.negative.log 2>&1; then exit 1; fi
+          if python3 -O "$checker" --self-test-failure >TodaModels.negative.optimized.log 2>&1; then exit 1; fi
+          grep 'intentional negative control' TodaModels.negative.log
+          grep 'intentional negative control' TodaModels.negative.optimized.log
+      - name: Unchanged pinned environment
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lean --version
+          lake update >TodaSetup.log 2>&1 || { tail -80 TodaSetup.log; exit 1; }
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get >>TodaSetup.log 2>&1 || { tail -80 TodaSetup.log; exit 1; }
+      - name: Strict new modules and original-Gram trace dependencies
+        run: |
+          set -uo pipefail
+          mkdir -p .lake/build/lib/lean
+          lake env lean --trust=0 -DwarningAsError=true -o .lake/build/lib/lean/SplitZeroMetricRestriction.olean SplitZeroMetricRestriction.lean || exit 1
+          status=0
+          for list in EXTERIOR_TRACE_MODULES.txt TODA_VOLUME_MODULES.txt; do
+            while IFS= read -r name; do
+              test -n "$name" || continue
+              echo "=== $name ==="
+              if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
+            done < "$list"
+          done
+          test "$status" = 0 || exit "$status"
+          set -e
+          lake env lean --trust=0 -DwarningAsError=true AuditTodaVolume.lean | tee AuditTodaVolume.log
+          python3 check_toda_volume.py AuditTodaVolume.log
+          lake env lean --trust=0 -DwarningAsError=true AuditExteriorTrace.lean >AuditExteriorTrace.log
+          python3 check_exterior_trace.py AuditExteriorTrace.log
+      - name: Rebuild all inherited sources
+        run: |
+          set -euo pipefail
+          lake -KmaxJobs=2 build >TodaPrior.log 2>&1 || { cat TodaPrior.log; exit 1; }
+          tail -20 TodaPrior.log
+          for list in TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt BOUNDARY_INTEGRATION_MODULES.txt FRONTIER_MODULES.txt CONORMAL_CYCLIC_MODULES.txt; do
+            while IFS= read -r name; do
+              test -n "$name" || continue
+              echo "=== inherited $name ==="
+              lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"
+            done < "$list"
+          done
+      - name: Combined import and inherited transitive audits
+        run: |
+          set -euo pipefail
+          cat TAU_RECOVERY_MODULES.txt BOUNDARY_MODULES.txt BOUNDARY_INTEGRATION_MODULES.txt FRONTIER_MODULES.txt CONORMAL_CYCLIC_MODULES.txt EXTERIOR_TRACE_MODULES.txt TODA_VOLUME_MODULES.txt | awk 'NF && !seen[$0]++ {print "import " $0}' > JointTodaVolume.lean
+          lake env lean --trust=0 -DwarningAsError=true JointTodaVolume.lean
+          lake env lean --trust=0 -DwarningAsError=true AuditConormalCyclic.lean >AuditConormalCyclic.log
+          python3 check_conormal_cyclic.py AuditConormalCyclic.log
+          lake env lean --trust=0 -DwarningAsError=true AuditFrontier.lean >AuditFrontier.log
+          python3 check_frontier.py AuditFrontier.log
+          lake env lean --trust=0 -DwarningAsError=true AuditBoundaryIntegration.lean >AuditBoundaryIntegration.log
+          python3 check_boundary_integration.py AuditBoundaryIntegration.log
+          lake env lean --trust=0 -DwarningAsError=true AuditBoundary.lean >AuditBoundary.log
+          python3 check_boundary.py AuditBoundary.log
+          lake env lean --trust=0 -DwarningAsError=true AuditTauRecovery.lean >AuditTauRecovery.log
+          python3 check_tau_recovery.py AuditTauRecovery.log
+          python3 check_derived.py --prepare
+          lake env lean --trust=0 -DwarningAsError=true AuditDerived.lean >AuditDerived.log
+          python3 check_derived.py AuditDerived.log
+          lake env lean --trust=0 -DwarningAsError=true Audit.lean >Audit.log
+          python3 check_axioms.py Audit.log

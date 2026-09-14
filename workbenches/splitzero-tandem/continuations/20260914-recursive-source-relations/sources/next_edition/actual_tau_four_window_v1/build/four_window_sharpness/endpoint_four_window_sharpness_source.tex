@@ -1,0 +1,438 @@
+\subsection{Four-window projection spectra and the exact polynomial-flag sharpness calculation}\label{endpoint-four_window_sharpness--four-window-projection-spectra-and-the-exact-polynomial-flag-sharpness-calculation}
+
+13 September 2026. Independent written calculation for the common finite source in the arithmetic determinant transport. The original monic polynomial, coefficient frame, relation maps, and masses remain explicit.
+
+The source \nolinkurl{work/tau_arithmetic_determinant_transport_20260913.tex} was consulted through its first 190 lines, including AT1--AT10. Its SHA-256 at consultation was \nolinkurl{24cf7ce5be6a43cc656641b516185df10b2e4d7824600ece657120d1c549deae}. The present calculation proves the projection statements below directly. It does not edit that source, run Lean, or assert that an arbitrary positive coefficient Gram is an arithmetic moment Gram.
+
+\subsubsection{1. Original flag spaces and exact spectra}\label{endpoint-four_window_sharpness--original-flag-spaces-and-exact-spectra}
+
+Fix the original monic polynomial \(\chi\in\mathbb C[S]\) of degree \(q\ge1\). Work on
+
+\[
+\mathcal H=\mathcal P_{2q}=\mathbb C[S]_{\le2q},\qquad n=2q+1,
+\qquad \langle x,y\rangle_M=x^*My,
+\quad M>0.
+\tag{FS1}
+\]
+
+The inner product is conjugate-linear in its first slot. Let \(P_N\) be the \(M\)-orthogonal projection of \(\mathcal H\) onto \(\mathcal P_N\). Let \(Q_N\) be the \(M\)-orthogonal projection onto the literal relation space \(\chi\mathcal P_{N-q}\), with \(Q_{q-1}=0\). In particular \(P_{2q}=I\). Define
+
+\[
+U=Q_{2q-1}+Q_{2q}-Q_q,
+\qquad
+W=P_{2q-1}-P_{q-1}+P_{2q}-P_q,
+\qquad D=U-W.
+\tag{FS2}
+\]
+
+All projections in each one of the two displayed flags commute: if \(A\subset B\), their orthogonal projections satisfy \(P_AP_B=P_BP_A=P_A\), as follows by decomposing into \(A\oplus(B\cap A^\perp)\oplus B^\perp\).
+
+Write
+
+\[
+B_0=\mathbb C\chi,\qquad
+B_1=\chi\mathcal P_{q-1},\qquad
+B_2=\chi\mathcal P_q.
+\tag{FS3}
+\]
+
+Their dimensions are \(1,q,q+1\), respectively, because multiplication by the nonzero polynomial \(\chi\) is injective. The exact eigenspaces of \(U\) are
+
+\[
+\begin{array}{c|c|c}
+\text{eigenvalue}&\text{eigenspace}&\text{dimension}\\\hline
+0&B_2^\perp&q\\
+1&B_0\oplus(B_2\cap B_1^\perp)&2\\
+2&B_1\cap B_0^\perp&q-1.
+\end{array}
+\tag{FS4}
+\]
+
+Every direct sum in (FS4) is orthogonal. Applying the three projections of (FS2) to each of these spaces gives the stated eigenvalue, and the dimensions sum to \(2q+1\). For \(q=1\), \(B_0=B_1\), the last space is zero, and \(U=Q_2\).
+
+The exact eigenspaces of \(W\) are
+
+\[
+\begin{array}{c|c|c}
+\text{eigenvalue}&\text{eigenspace}&\text{dimension}\\\hline
+0&\mathcal P_{q-1}&q\\
+1&(\mathcal P_q\cap\mathcal P_{q-1}^\perp)\oplus\mathcal P_{2q-1}^\perp&2\\
+2&\mathcal P_{2q-1}\cap\mathcal P_q^\perp&q-1.
+\end{array}
+\tag{FS5}
+\]
+
+This follows by the same nested decomposition of the degree flag. Thus both operators have precisely the spectrum
+
+\[
+0^{[q]},\quad1^{[2]},\quad2^{[q-1]},
+\qquad \operatorname{Tr}U=\operatorname{Tr}W=2q,
+\quad \operatorname{Tr}D=0.
+\tag{FS6}
+\]
+
+The notation \(a^{[r]}\) means an eigenvalue \(a\) of multiplicity \(r\). No claim that the spectrum of their difference is fixed by these two individual spectra is made.
+
+\subsubsection{2. Best bound from the two individual spectra alone}\label{endpoint-four_window_sharpness--best-bound-from-the-two-individual-spectra-alone}
+
+Let \(C\) be any \(M\)-self-adjoint endomorphism with eigenvalues
+
+\[
+c_1\le c_2\le\cdots\le c_{2q+1}.
+\tag{FS7}
+\]
+
+For a rank-\(r\) orthogonal projection \(E\), choose an orthonormal eigenbasis \(v_i\) of \(C\), and put \(a_i=\langle v_i,Ev_i\rangle\). Then \(0\le a_i\le1\), \(\sum a_i=r\), and
+
+\[
+\operatorname{Tr}(EC)=\sum_i c_i a_i.
+\]
+
+Transferring any positive weight from a lower coefficient to an available higher coefficient does not decrease this sum. Repeating gives the exact two-sided inequality
+
+\[
+\sum_{i=1}^r c_i\le\operatorname{Tr}(EC)
+\le\sum_{i=n-r+1}^n c_i.
+\tag{FS8}
+\]
+
+If the eigenvalues of \(C\) are distinct, equality on either side forces the corresponding spectral projection: a non-extremal weight transfer would otherwise strictly improve the sum, and a diagonal projection value zero or one forces the corresponding basis vector into its kernel or image.
+
+For any self-adjoint operator with spectrum (FS6), its spectral projections satisfy
+
+\[
+U=E_{\{U\ge1\}}+E_{\{U=2\}},
+\qquad \operatorname{rank}E_{\{U\ge1\}}=q+1,
+\quad\operatorname{rank}E_{\{U=2\}}=q-1.
+\tag{FS9}
+\]
+
+Applying (FS8) twice gives
+
+\[
+\begin{aligned}
+\operatorname{Tr}(UC)
+&\le c_{q+1}+c_{q+2}+2\sum_{i=q+3}^{2q+1}c_i,\\
+\operatorname{Tr}(WC)
+&\ge c_q+c_{q+1}+2\sum_{i=1}^{q-1}c_i.
+\end{aligned}
+\tag{FS10}
+\]
+
+Subtracting, and then applying the same reasoning with \(U,W\) interchanged, proves
+
+\[
+\boxed{
+\left|\operatorname{Tr}((U-W)C)\right|
+\le B_q(c):=
+c_{q+2}-c_q+
+2\sum_{j=1}^{q-1}\bigl(c_{2q+2-j}-c_j\bigr).
+}
+\tag{FS11}
+\]
+
+For \(q=1\), the sum is empty and the right side is exactly \(c_3-c_1\).
+
+This is the best bound that uses only the individual spectra. To prove sharpness in that class, use the eigenbasis of \(C\), put
+
+\[
+u_i=\begin{cases}
+0&i\le q,\\1&i=q+1,q+2,\\2&i\ge q+3,
+\end{cases}
+\qquad
+U_*=\operatorname{diag}(u_1,\ldots,u_n),
+\quad W_*=\operatorname{diag}(u_n,\ldots,u_1).
+\tag{FS12}
+\]
+
+Both have spectrum (FS6), and direct multiplication gives \(\operatorname{Tr}((U_*-W_*)C)=B_q(c)\). Swapping them gives the negative equality. Their difference has the ordered spectrum
+
+\[
+\lambda^*=(-2^{[q-1]},-1,0,1,2^{[q-1]}).
+\tag{FS13}
+\]
+
+These are exact independent-unitary-orbit equality fixtures. They do not yet assert realization by the two literal polynomial flags in (FS1)--(FS3).
+
+\subsubsection{3. Why the literal polynomial flags cannot attain nontrivial equality}\label{endpoint-four_window_sharpness--why-the-literal-polynomial-flags-cannot-attain-nontrivial-equality}
+
+Two exact polynomial identities govern the flag positions:
+
+\[
+\mathcal P_{q-1}\cap B_2=0,
+\qquad \mathcal P_q+B_2=\mathcal P_{2q}.
+\tag{FS14}
+\]
+
+The first follows because a nonzero multiple of a degree-\(q\) polynomial has degree at least \(q\). For the second, \(B_2\cap\mathcal P_q=\mathbb C\chi\): a nonconstant multiplier has degree above \(q\). Thus the sum has dimension \((q+1)+(q+1)-1=2q+1\), and is the whole space.
+
+Let \(U_2=\ker(U-2I)\), \(W_2=\ker(W-2I)\), \(U_0=\ker U\), and \(W_0=\ker W\). Equations (FS4)--(FS5) and (FS14) imply
+
+\[
+U_2\cap W_0=0,
+\qquad W_2\cap U_0=0.
+\tag{FS15}
+\]
+
+For the first, \(U_2\subset B_1\subset B_2\) whereas \(W_0=\mathcal P_{q-1}\). For the second, a vector in \(W_2\cap U_0\) is orthogonal to both \(\mathcal P_q\) and \(B_2\); their sum is the whole space by (FS14).
+
+Here is the requested simple-spectrum obstruction. If equality held in the positive version of (FS11) with distinct \(c_i\), both bounds in (FS10) would have to be equalities. The \(U=2\) eigenspace would be the span of the highest \(q-1\) eigenvectors of \(C\), and the kernel of \(W\) would be the span of the highest \(q\). For \(q\ge2\), this contradicts the first equation in (FS15). For \(q=1\), the image of \(U\) would contain the highest eigenline, which is \(\ker W=\mathcal P_0\). That would put the constant polynomial in \(B_2=\chi\mathcal P_1\), contrary to (FS14). The negative equality is treated by applying the same argument to \(-C\).
+
+In fact the inequality is strict for every nonscalar \(C\), even when its spectrum has repeated eigenvalues. A full proof follows, retaining the spectral gaps rather than assuming they are nonzero individually.
+
+For \(1\le r<n\), let \(a_r\) be the sum of the largest \(r\) entries in (FS13). Applying (FS8) to \(U\) and \(W\), with a rank-\(r\) projection \(E\) as the variable, gives
+
+\[
+\operatorname{Tr}(DE)
+\le \sum_{i=n-r+1}^n u_i-\sum_{i=1}^r u_i=a_r.
+\tag{FS16}
+\]
+
+Equality is impossible in every nontrivial rank:
+
+\begin{itemize}
+\tightlist
+\item
+  For \(1\le r\le q-1\), equality requires \(\operatorname{im}E\subset U_2\) and \(\operatorname{im}E\subset W_0\), contradicting (FS15).
+\item
+  For \(r=q\) and \(q\ge2\), minimization of \(\operatorname{Tr}(WE)\) forces \(\operatorname{im}E=W_0\); maximization of \(\operatorname{Tr}(UE)\) forces that image to contain all of \(U_2\). Again (FS15) excludes it. If \(q=r=1\), the same equality instead forces \(\mathcal P_0\subset B_2\), excluded by (FS14).
+\item
+  For \(r=q+1\), the maximum of \(\operatorname{Tr}(UE)\) forces \(\operatorname{im}E=B_2\), since this is its complete positive spectral space. The minimum of \(\operatorname{Tr}(WE)\) forces \(\operatorname{im}E\) to contain \(W_0=\mathcal P_{q-1}\). Their intersection in (FS14) is zero, so this is impossible.
+\item
+  For \(q+2\le r\le2q\), use the complementary projection \(I-E\), whose rank is between one and \(q-1\). Since \(\operatorname{Tr}D=0\), equality would require \(\operatorname{im}(I-E)\subset W_2\cap U_0\), excluded by (FS15).
+\end{itemize}
+
+These equality conditions use only the spectral levels zero, one, and two of \(U,W\); their eigenspace descriptions follow by the same projection-weight argument proving (FS8).
+
+The set of rank-\(r\) orthogonal projections is compact in finite dimension: it is closed and bounded in the matrix space by the equations \(E^*=E\), \(E^2=E\), and \(\operatorname{Tr}E=r\). Hence the maximum in (FS16) is attained, and its failure to equal \(a_r\) proves strict inequality for that maximum. If \(d_1\le\cdots\le d_n\) are the actual eigenvalues of \(D\), (FS8) applied to \(D\) identifies this maximum. Therefore
+
+\[
+\sum_{i=n-r+1}^n d_i<a_r
+\qquad(1\le r<n),\qquad \sum_i d_i=0.
+\tag{FS17}
+\]
+
+For completeness, trace rearrangement for two arbitrary self-adjoint matrices follows by the same projection argument. In an eigenbasis of \(C\), write
+
+\[
+C=c_1I+\sum_{r=1}^{n-1}(c_{n-r+1}-c_{n-r})E_r,
+\]
+
+where \(E_r\) projects onto its highest \(r\) eigenvectors, with any fixed choice inside a repeated eigenspace. The trace of the scalar term against \(D\) is zero, so (FS17) gives
+
+\[
+\begin{aligned}
+\operatorname{Tr}(DC)
+&\le\sum_{r=1}^{n-1}(c_{n-r+1}-c_{n-r})
+       \sum_{i=n-r+1}^n d_i\\
+&<\sum_{r=1}^{n-1}(c_{n-r+1}-c_{n-r})a_r
+=B_q(c)
+\end{aligned}
+\tag{FS18}
+\]
+
+whenever \(C\) is nonscalar. At least one spectral gap is then positive, so the second inequality is strict. Applying the same proof to \(-C\) gives
+
+\[
+\boxed{\quad |\operatorname{Tr}(DC)|<B_q(c)
+\quad\text{for every nonscalar }C\text{ and every fixed }M>0
+\text{ on the literal polynomial flags}.\quad}
+\tag{FS19}
+\]
+
+For scalar \(C\), both sides of (FS11) are zero and equality holds. This completely identifies actual finite positive-metric equality, while allowing the sharp supremum described next.
+
+\subsubsection{4. Explicit positive metrics approaching the bound on the unchanged polynomial flags}\label{endpoint-four_window_sharpness--explicit-positive-metrics-approaching-the-bound-on-the-unchanged-polynomial-flags}
+
+Keep the same original monic \(\chi\). The following ordered list is a basis of \(\mathcal P_{2q}\):
+
+\[
+b_i=S^i\ (0\le i<q),\qquad
+b_q=\chi,\qquad
+b_{q+j}=\chi S^j\ (1\le j\le q).
+\tag{FS20}
+\]
+
+Its elements have strictly increasing degrees with leading coefficient one. Thus their first \(N+1\) spans equal the original \(\mathcal P_N\). Neither \(\chi\) nor its coefficients have been changed.
+
+Choose any retained positive mass \(\mu>0\) and any \(\epsilon>0\). Let \(e_0,\ldots,e_{2q}\) be the standard coordinate vectors, and define the actual linear isomorphism
+
+\[
+\begin{aligned}
+T_\epsilon b_i&=e_i &&(0\le i\le q),\\
+T_\epsilon b_{q+j}&=e_{j-1}+\epsilon e_{q+j}
+&&(1\le j\le q).
+\end{aligned}
+\tag{FS21}
+\]
+
+Its diagonal in the ordered basis is \(1\) on the first \(q+1\) entries and \(\epsilon\) on the last \(q\), so its determinant is \(\epsilon^q\). Its inverse sends
+
+\[
+e_i\longmapsto b_i\quad(0\le i\le q),\qquad
+e_{q+j}\longmapsto\epsilon^{-1}(b_{q+j}-b_{j-1}).
+\tag{FS22}
+\]
+
+Prescribe the positive coefficient metric by
+
+\[
+\langle P,R\rangle_{M_\epsilon}
+=\mu\,\langle T_\epsilon P,T_\epsilon R\rangle_{\rm Euclidean}.
+\tag{FS23}
+\]
+
+The map \(\sqrt\mu\,T_\epsilon\) is its displayed isometry to the Euclidean space. In the original polynomial coefficients \(P=\sum x_i b_i\), its complete norm is
+
+\[
+\boxed{
+\|P\|_{M_\epsilon}^2
+=\mu\left(|x_q|^2+
+\sum_{j=1}^q|x_{j-1}+x_{q+j}|^2+
+\epsilon^2\sum_{j=1}^q|x_{q+j}|^2\right).
+}
+\tag{FS24}
+\]
+
+In particular \(\|1\|^2=\|\chi\|^2=\mu\), \(\|\chi S^j\|^2=\mu(1+\epsilon^2)\), and \(\langle S^{j-1},\chi S^j\rangle=\mu\). Every unlisted cross pairing between the distinct two-coordinate blocks and \(b_q\) is zero. Each two-coordinate block has Gram
+
+\[
+\mu\begin{pmatrix}1&1\\1&1+\epsilon^2\end{pmatrix},
+\tag{FS25}
+\]
+
+whose determinant is \(\mu^2\epsilon^2>0\). The total Gram determinant in (FS20) is exactly \(\mu^{2q+1}\epsilon^{2q}\). As (FS20) has determinant one relative to the increasing monomial basis, that is also the determinant there. The mass \(\mu\), all cross terms, and all powers of \(\epsilon\) remain present.
+
+Because (FS21) is triangular by degree, every transformed degree flag is the standard coordinate flag. Hence \(W\), in these isometric coordinates, has value zero on \(e_0,\ldots,e_{q-1}\), value one on \(e_q,e_{2q}\), and value two on \(e_{q+1},\ldots,e_{2q-1}\). Put
+
+\[
+v_j=\frac{e_{j-1}+\epsilon e_{q+j}}{\sqrt{1+\epsilon^2}}
+\quad(1\le j\le q).
+\tag{FS26}
+\]
+
+These vectors are orthonormal and orthogonal to \(e_q\). The transformed relation flag has \(B_0=\mathbb C e_q\), \(B_1=\operatorname{span}(e_q,v_1,\ldots,v_{q-1})\), and \(B_2=\operatorname{span}(e_q,v_1,\ldots,v_q)\). Thus the exact transformed operator is
+
+\[
+U=|e_q\rangle\langle e_q|
++2\sum_{j=1}^{q-1}|v_j\rangle\langle v_j|
++|v_q\rangle\langle v_q|.
+\tag{FS27}
+\]
+
+Here the normalization in (FS26) states an orthonormal coordinate map inside the specified metric; the original norms remain (FS24)--(FS25).
+
+\subsubsection{5. Fixed-spectrum self-adjoint control and its exact trace}\label{endpoint-four_window_sharpness--fixed-spectrum-self-adjoint-control-and-its-exact-trace}
+
+For the prescribed ordered numbers in (FS7), define a diagonal operator \(C_0\) in the transformed coordinates by
+
+\[
+\begin{aligned}
+C_0e_{j-1}&=c_{2q+2-j}e_{j-1},&
+C_0e_{q+j}&=c_j e_{q+j}&&(1\le j<q),\\
+C_0e_{q-1}&=c_{q+2}e_{q-1},&
+C_0e_{2q}&=c_qe_{2q},&
+C_0e_q&=c_{q+1}e_q.
+\end{aligned}
+\tag{FS28}
+\]
+
+This lists each eigenvalue exactly once. Define \(C_\epsilon=T_\epsilon^{-1}C_0T_\epsilon\), an endomorphism of the original polynomial space. Equation (FS23) proves it is \(M_\epsilon\)-self-adjoint with exactly those eigenvalues. Its polynomial-coordinate formula is also explicit. Set
+
+\[
+a_j=c_{2q+2-j},\ b_j'=c_j\quad(1\le j<q),
+\qquad a_q=c_{q+2},\ b_q'=c_q.
+\]
+
+Then
+
+\[
+\begin{aligned}
+C_\epsilon b_{j-1}&=a_j b_{j-1},\\
+C_\epsilon b_{q+j}&=b_j' b_{q+j}+(a_j-b_j')b_{j-1}
+\quad(1\le j\le q),\\
+C_\epsilon b_q&=c_{q+1}b_q.
+\end{aligned}
+\tag{FS29}
+\]
+
+In fact this endomorphism in the original basis is independent of \(\epsilon\). Its self-adjointness for every metric (FS25) can be verified by multiplying each block: the product of its Gram with its matrix is \(\mu\bigl(\begin{smallmatrix}a_j&a_j\\a_j&a_j+\epsilon^2 b_j'\end{smallmatrix}\bigr)\), which is Hermitian.
+
+Using (FS26)--(FS28), each of the first \(q-1\) two-coordinate blocks contributes
+
+\[
+2\frac{a_j+\epsilon^2b_j'}{1+\epsilon^2}-2b_j'
+=\frac{2(a_j-b_j')}{1+\epsilon^2},
+\]
+
+and the last contributes \((a_q-b_q')/(1+\epsilon^2)\). The \(e_q\) terms cancel with their equal coefficient one. Therefore the complete trace is
+
+\[
+\boxed{
+\operatorname{Tr}((U_\epsilon-W_\epsilon)C_\epsilon)
+=\frac{B_q(c)}{1+\epsilon^2}.
+}
+\tag{FS30}
+\]
+
+This proves that (FS11) is a sharp supremum even with the original polynomial and relation flags held fixed, when arbitrary positive coefficient metrics are allowed to vary. For nonscalar \(C\), it is never an attained maximum at a finite positive metric by (FS19). The limit \(\epsilon=0\) has Gram determinant zero by (FS25), so it is not an admissible equality metric.
+
+The case \(q=1\) is present literally: \(b_0=1,b_1=\chi,b_2=\chi S\), \(T_\epsilon b_2=e_0+\epsilon e_2\), \(W=I-|e_0\rangle\langle e_0|\), \(U=|e_1\rangle\langle e_1|+|v_1\rangle\langle v_1|\), and (FS30) is \((c_3-c_1)/(1+\epsilon^2)\).
+
+The difference operator in this family has the exact spectrum
+
+\[
+\left(
+-\frac2{\sqrt{1+\epsilon^2}}^{[q-1]},
+-\frac1{\sqrt{1+\epsilon^2}},0,
+\frac1{\sqrt{1+\epsilon^2}},
+\frac2{\sqrt{1+\epsilon^2}}^{[q-1]}
+\right).
+\tag{FS31}
+\]
+
+To verify it, each first pair in (FS27) gives twice the difference of the rank-one projection onto \(v_j\) and that onto \(e_{q+j}\). Its matrix has trace zero and determinant \(-1/(1+\epsilon^2)\), so its eigenvalues are \(\pm1/\sqrt{1+\epsilon^2}\), before multiplication by two. The last pair has the same matrix without the factor two. The common vector \(e_q\) is in the zero eigenspace. This also shows directly how the extremal vector (FS13) is approached.
+
+If it is desired that the chosen \(C_\epsilon\) be an actual logarithmic derivative of a positive metric path, retain the same coefficient frame and define
+
+\[
+M_\epsilon(t)
+=e^{tC_\epsilon^*/2}M_\epsilon e^{tC_\epsilon/2}
+=M_\epsilon e^{tC_\epsilon}.
+\tag{FS32}
+\]
+
+The first expression is positive for every real \(t\). The equality follows from \(C_\epsilon^*M_\epsilon=M_\epsilon C_\epsilon\), term by term in the exponential series. Differentiation gives \(M_\epsilon(t)^{-1}\dot M_\epsilon(t)=C_\epsilon\), with no rescaling of its eigenvalues. A locally affine path \(M_\epsilon+tM_\epsilon C_\epsilon\) gives the same derivative at zero and is positive whenever all \(1+tc_i\) are positive.
+
+\subsubsection{6. The moment-Gram class remains a stricter class}\label{endpoint-four_window_sharpness--the-moment-gram-class-remains-a-stricter-class}
+
+The original arithmetic and Gamma norms have the additional form
+
+\[
+\langle P,R\rangle_m
+=\int_{\mathbb R}\overline{P(k/2+iu)}R(k/2+iu)m(u)\,du.
+\tag{FS33}
+\]
+
+For all polynomials for which the displayed products belong to the finite space, the literal vertical coordinate forces
+
+\[
+\langle SP,R\rangle_m+\langle P,SR\rangle_m
+=k\langle P,R\rangle_m.
+\tag{FS34}
+\]
+
+Indeed the integrands on the left add the factor \(\overline{k/2+iu}+(k/2+iu)=k\). The original mass is the value at \(P=R=1\). These relations are extra linear constraints on the coefficient Gram; positive definiteness by itself does not supply them.
+
+The family (FS24) does not satisfy these moment constraints. Set \(P=\chi\), \(R=1\); then \(SP\) has degree \(q+1\le2q\). The exact family gives
+
+\[
+\langle\chi,1\rangle_{M_\epsilon}=0,
+\qquad
+\langle S\chi,1\rangle_{M_\epsilon}=\mu.
+\tag{FS35}
+\]
+
+If \(q\ge2\), \(S\in\mathcal P_{q-1}\) and its image under (FS21) is a coordinate vector orthogonal to \(e_q=T_\epsilon\chi\); hence \(\langle\chi,S\rangle=0\). If \(q=1\), monicity writes \(S=\chi-\chi(0)\), and \(\langle\chi,S\rangle=\mu\). Thus the left side of (FS34) is \(\mu\) for \(q\ge2\), and \(2\mu\) for \(q=1\), whereas its right side is zero. Since \(\mu>0\), neither case can be a moment Gram of the form (FS33), for any real vertical centre.
+
+Consequently the family proves sharpness for arbitrary finite positive coefficient metrics and for the literal polynomial flags. It does not prove sharpness within the original arithmetic or Gamma moment-Gram class. The exact map (FS23) and the explicit violated relation (FS34) identify the relation between those classes, while preserving the original polynomial and its full relation space. No estimate on the original source multiplier, and no arithmetic equality fixture, is inferred from the larger class.

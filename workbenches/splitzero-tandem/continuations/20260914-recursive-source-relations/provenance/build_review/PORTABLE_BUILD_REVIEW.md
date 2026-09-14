@@ -1,0 +1,17 @@
+# Independent fixed-source build review
+
+Review date: 13 September 2026. This is a bounded workflow review. No mathematical source was changed, no TeX engine was run, and no manuscript PDF or final visual acceptance is asserted here.
+
+I read the complete current compiler, default entrypoint, README, and entrypoint succession record. The exact reviewed compiler SHA-256 is **b7a0cace558f4bfe79e7e79bf52135a594145b61e31619975a1caa48bd1696d5**. The default entrypoint SHA-256 is **f7c5a38fea66af3d4f8e2fe9aa6ddf2ef1a6d6cb79da84af138d2e6a26e75f8f**.
+
+The default build delegates directly to the current compiler through runpy. The compiler verifies fixed source bytes, runs XeLaTeX three times, reads its recorder, and copies the resulting PDF. It does not execute the historical preparation adapters or reconstruct the prepared chapters. The complete old build implementation is preserved with SHA-256 **7a44b82a6cc4a865b14c4ade43f5bd93631178e407f8ad96f0f81ffebd3e4b34**, matching the succession record.
+
+Relative recorder INPUT paths are resolved against the repository root. This is the exact working directory supplied to the compiler, so prepared sources under build/ are interpreted at their actual compilation location. Absolute paths are resolved before repository containment checks. Generated auxiliary files are excluded from the fixed proof-source set. Repository inputs are recorded with their relative paths, byte counts, and SHA-256 hashes. External authored TeX inputs are rejected; TeX distribution resources remain runtime dependencies.
+
+Default mode checks every sealed input before compilation. After compilation it reconstructs the entire recorded source dictionary and compares it with the sealed dictionary. This second comparison checks both membership and contents, despite the exception's shorter membership wording. It rejects a source changed during compilation and an additional compiled input. It therefore does more than compare a precompile list or hash the entrypoint alone.
+
+The isolated checks in check_portable_builder.py exercised six cases: unchanged default sources with both relative and absolute recorder entries; changed bytes before compilation; changed bytes during compilation; a new compiled dependency; an external authored TeX dependency; and explicit authoring-mode recording of current relative inputs. All six passed. Compiler calls were mocked, all fixtures lived in automatically cleaned temporary directories below this review directory, and actual TeX runs numbered zero. The receipt is PORTABLE_BUILDER_CHECKS.json, SHA-256 **93743f58d4ef89d8cccf4117b9b5ab8ee78e325ca7d6736af56462683d41265e**.
+
+At the time of review, the final CURRENT_COMPILED_SOURCE_PINS.json and reader.fls were not yet present in the cumulative stage. Accordingly, this receipt approves the reviewed workflow, not a completed source seal. The parent build must finish explicit authoring-mode compilation, inspect the actual recorder/source pins and compile receipt, and carry out its final layout and visual review. Authoring mode deliberately permits creation of new source pins and is not the default rebuild path.
+
+No builder repair was required for the reviewed fixed-source/default-rebuild behavior. Source preparation, mathematical revision, and PDF acceptance remain separate recorded operations; this workflow does not itself assert that every historical claim has been propagated.

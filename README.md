@@ -1,37 +1,25 @@
-# Split-Zero cohomology and arithmetic weight control
+# Split-Zero arithmetic cohomology
 
-Start with [the 821-page R62 Split-Zero paper](https://zenodo.org/api/records/22738226/files/37-splitzero-periodized-residue-continuation-821p.pdf/content),
-[published DOI 10.5281/zenodo.22738226](https://doi.org/10.5281/zenodo.22738226), and
-[all 38 separate downloads](calculation_edition_20260913_periodized_residue/README.md).
-The pertinent PDF is the actual Zenodo browser preview; the matching
-[public source ZIP](https://zenodo.org/api/records/22738226/files/38-splitzero-periodized-residue-public-sources.zip/content) is an offline download, not a preview.
+Start with [the accepted 1624-page public Split-Zero reader](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/README.md).
 
-The 821-page R62 Split-Zero reader develops periodized source recovery and density, finite-circle curvature with quotient compensation, the circle/critical-observation diamond, and residue-constituent derivative and curvature formulas. It keeps the original theta-function source, zero multiplicities, source mass, coordinate S=k/2+iu and least-norm quotient metric. The uniform arithmetic growth estimate remains an active unresolved problem; no RH proof or closure is claimed.
+Split-Zero arithmetic cohomology studies the original theta-function source of finite zero packets, explicit source relations, signed metric control, restricted support and boundary propagation. The construction retains zero multiplicities, original source masses, coordinates and quotient maps. The signed finite approximation converges for each fixed source pair; tensor-uniform arithmetic control remains an active calculation. No proof of the Riemann hypothesis or new Lean kernel verification is claimed.
 
-Periodized observations recover the specified arithmetic source and identify
-the relevant completed spaces. The finite-circle formulas calculate curvature
-with the compensating quotient terms; the observation diamond compares circle
-and critical-line maps. Residue-constituent formulas track derivatives and
-curvature without dropping multiplicities, full source mass, signs or
-orientations. These calculations expose what the remaining uniform arithmetic
-growth estimate must control; they do not supply that unresolved bound.
+The [research guide](CURRENT_RESEARCH.md) explains the construction and next
+arithmetic calculation. The [public-derivation ledger](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/PUBLIC_DERIVATION.md)
+records locator-only presentation changes and exclusions. The public PDF was
+rebuilt and reviewed as a derivative; it is not described as byte-identical to
+the private delivery PDF. Complete mathematical source proofs remain preserved.
+Raw private session records, reference-only literature and the raw owner ZIP
+are not public payloads. Wrapper ZIPs are not duplicated as ordinary Git blobs.
 
-The [research guide](CURRENT_RESEARCH.md), [editable source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)
-and [public-derivative ledger](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/PUBLIC_DERIVATION.md) retain the
-proof dependencies, 47 complete source witnesses and exact privacy disclosures.
-The source contains 4,926 files. Mathematical texts, the PDF and nested delivery
-archives keep their accepted bytes. The raw owner ZIP is not a public payload.
+The [preceding published R62 edition](https://doi.org/10.5281/zenodo.22738226) retains its PDF
+preview and all 38 downloads. This source-promotion commit claims no new DOI.
 
-This fixed PDF/public-source cut ends at R62. Later holonomy, mixed-control (TA/AT/AW), and original-theta certification cuts are separate and excluded. Separately indexed GitHub working sources, including PR29 and the marked-product continuation, retain their own proof, finite-check and CI scopes; their presence in this repository does not confer certification by this DOI.
-
-The [historical 765-page DOI](https://doi.org/10.5281/zenodo.22736292) and all its 36
-downloads remain unchanged; this successor adds only PDF37 and ZIP38.
-The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md)
-and [participation guide](POLYCLANK_PARTICIPATION.md) retain earlier routes,
-partial results and active problems. Overleaf confirmations remain historical
-and timers remain paused.
+Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
 
 ## Current working sources
+
 
 
 
@@ -59,7 +47,7 @@ PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
 revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
-The GitHub front and current DOI now share the 821-page R62 PDF/source cut. The 765-page DOI remains historical. Later work is outside the fixed R62 cut.
+The GitHub front now shows the accepted recursive source-relations public reader. The frozen DOI retains the preceding R62 PDF/source cut and all 38 downloads. No successor DOI is claimed by this source-promotion commit.
 
 
 ## PR29: original residue detection and signed metric transfer
@@ -175,3 +163,43 @@ This is a source-only edition: no PDF is supplied or created, and no fresh
 compilation or visual QA is claimed. Use the direct Markdown/LaTeX links above
 for reading; its ZIP is an offline source archive, not a preview. Existing
 rights, notices, earlier publications and reader roles remain unchanged.
+
+
+## Earlier published reader introduction (historical)
+
+The following earlier introduction records its own fixed source cut and DOI;
+its use of “current” belongs to that historical edition.
+
+# Split-Zero cohomology and arithmetic weight control
+
+Start with [the 821-page R62 Split-Zero paper](https://zenodo.org/api/records/22738226/files/37-splitzero-periodized-residue-continuation-821p.pdf/content),
+[published DOI 10.5281/zenodo.22738226](https://doi.org/10.5281/zenodo.22738226), and
+[all 38 separate downloads](calculation_edition_20260913_periodized_residue/README.md).
+The pertinent PDF is the actual Zenodo browser preview; the matching
+[public source ZIP](https://zenodo.org/api/records/22738226/files/38-splitzero-periodized-residue-public-sources.zip/content) is an offline download, not a preview.
+
+The 821-page R62 Split-Zero reader develops periodized source recovery and density, finite-circle curvature with quotient compensation, the circle/critical-observation diamond, and residue-constituent derivative and curvature formulas. It keeps the original theta-function source, zero multiplicities, source mass, coordinate S=k/2+iu and least-norm quotient metric. The uniform arithmetic growth estimate remains an active unresolved problem; no RH proof or closure is claimed.
+
+Periodized observations recover the specified arithmetic source and identify
+the relevant completed spaces. The finite-circle formulas calculate curvature
+with the compensating quotient terms; the observation diamond compares circle
+and critical-line maps. Residue-constituent formulas track derivatives and
+curvature without dropping multiplicities, full source mass, signs or
+orientations. These calculations expose what the remaining uniform arithmetic
+growth estimate must control; they do not supply that unresolved bound.
+
+The [research guide](CURRENT_RESEARCH.md), [editable source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)
+and [public-derivative ledger](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/PUBLIC_DERIVATION.md) retain the
+proof dependencies, 47 complete source witnesses and exact privacy disclosures.
+The source contains 4,926 files. Mathematical texts, the PDF and nested delivery
+archives keep their accepted bytes. The raw owner ZIP is not a public payload.
+
+This fixed PDF/public-source cut ends at R62. Later holonomy, mixed-control (TA/AT/AW), and original-theta certification cuts are separate and excluded. Separately indexed GitHub working sources, including PR29 and the marked-product continuation, retain their own proof, finite-check and CI scopes; their presence in this repository does not confer certification by this DOI.
+
+The [historical 765-page DOI](https://doi.org/10.5281/zenodo.22736292) and all its 36
+downloads remain unchanged; this successor adds only PDF37 and ZIP38.
+The [attempt log](ATTEMPTS.md), [research programmes](RESEARCH_PROGRAMMES.md)
+and [participation guide](POLYCLANK_PARTICIPATION.md) retain earlier routes,
+partial results and active problems. Overleaf confirmations remain historical
+and timers remain paused.
+

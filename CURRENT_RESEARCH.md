@@ -1,3 +1,57 @@
+# Current Split-Zero source: relations, signed metric control and boundary propagation
+
+[Read the accepted 1624-page public paper](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) ·
+[Editable source/build guide](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/README.md) ·
+[Preceding published R62 edition](https://doi.org/10.5281/zenodo.22738226)
+
+# Split-Zero arithmetic cohomology
+
+This research manuscript develops the Split-Zero programme: an arithmetic
+cohomology construction whose scalar bookkeeping distinguishes a zero
+coefficient at a present support from absence of that support. It applies
+that construction to finite zero packets of the Riemann xi function,
+using their original theta-function and Mellin-transform representatives.
+
+The aim is to calculate how those arithmetic classes, their source relations
+and their norms behave under tensor products, restricted support and passage
+to a boundary. The construction keeps the zero multiplicities, source masses,
+coordinates and quotient maps. Relations are compared by explicit source
+primitives, rather than by dropping the terms that vanish in a quotient.
+
+This edition incorporates new calculations into the earlier proofs and their
+dependent conclusions:
+
+- **Signed metric control:** five estimates bound the change of the same
+  four quotient volumes. A finite matrix expansion gives a signed interval
+  with an explicit residual that tends to zero for each fixed source pair.
+- **Restricted support:** the construction calculates which full-source
+  boundaries cease to be boundaries when the admitted source is smaller,
+  including their exact remaining classes and comparison maps.
+- **Boundary propagation:** revised filtration, tensor-constituent,
+  connection and residue calculations retain the terms needed by the
+  downstream arithmetic estimates.
+
+The complete proofs and their source history accompany the reader. The
+delivery records independent proof reviews and 1,841 exact checks; its new
+Lean draft is uncompiled. The next calculation is a certified signed estimate
+from the original arithmetic moments, with its dependence on tensor order
+tracked explicitly. Fixed-source convergence is not asserted to be uniform
+in tensor order, and this edition does not claim a proof of the Riemann
+hypothesis.
+
+The public edition substitutes non-personal source locators for workstation
+paths. Its derivation manifest identifies those presentation-only changes;
+the mathematical expressions and proofs are retained. Private raw session
+records and reference-only literature are not public downloads.
+
+
+Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
+
+## Earlier research guide (historical)
+
+The earlier guide below retains its own source cut, proof/CI scope and DOI.
+Any “current” reader language below refers to that earlier edition.
+
 # Current R62 Split-Zero source: recovery, curvature and the active growth problem
 
 [Read the 821-page paper](https://zenodo.org/api/records/22738226/files/37-splitzero-periodized-residue-continuation-821p.pdf/content) · [Source/build guide](workbenches/splitzero-tandem/continuations/20260913-periodized-residue/README.md)

@@ -1,0 +1,1118 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=24mm]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={SGA trace, the retained diagonal, and the arithmetic period determinant},
+  pdfauthor={Owner-directed SplitZero research continuation},
+  pdflang={en},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{SGA trace, the retained diagonal, and the arithmetic period
+determinant}
+\author{Owner-directed SplitZero research continuation}
+\date{13 September 2026}
+
+\begin{document}
+\maketitle
+
+\section{1. The completed calculation and its
+role}\label{the-completed-calculation-and-its-role}
+
+This continuation uses the \textbf{actual inline text in the supplied
+SGA 5 master}, especially Exposé III, §6.8, together with the preceding
+polynomial-exponential construction. It calculates, rather than
+postulates, the relative duality and diagonal class of the current
+cyclic arithmetic module. That class then evaluates the determinant of
+the entire exponential period matrix.
+
+The principal formulas are
+
+\[
+\operatorname{Tr}_{E_t/R}(M_P)
+ =\operatorname{res}_{\chi-t}\bigl(\chi'P\bigr),
+\qquad
+\det\Pi(\mathbf c,u,t)
+ =\det\Pi_{\mathrm{mon}}(u)\exp\!\left(\frac{\mathcal F(\mathbf c,t)}u\right),
+\tag{1}
+\]
+
+where every symbol and map is specified below. In particular,
+
+\[
+\mathcal F(\mathbf c,t)
+ =\operatorname{Tr}_{E_t/\mathbb C}\bigl(M_{\Phi_t}\bigr),
+\qquad
+\det(\Pi^*\Pi)
+ =(2\pi|u|)^q\exp\!\left(2\Re\frac{\mathcal F(\mathbf c,t)}u\right).
+\tag{2}
+\]
+
+This evaluates a previously unspecified analytic determinant. Its
+coefficient derivatives recover \textbf{all the first q power traces of
+the original companion operator}, and hence its whole characteristic
+polynomial, including multiplicities. The original theta metric is not
+changed. Its comparison with this calculated determinant is carried
+through in §§10--12.
+
+These are explicit applications and extensions of classical
+residue/trace and irregular-period methods; no global priority claim is
+made. SGA 5 supplies the residue/trace operation, not a Hermitian
+positivity theorem for the theta quotient. Bloch--Esnault study
+determinants and periods for irregular connections, including the exp(f)
+case; their abstract was inspected, but their full article was not
+successfully retrieved in this execution. The proof here is supplied in
+full at the types used here.
+
+\section{2. Source intake and mathematical
+categories}\label{source-intake-and-mathematical-categories}
+
+The nine uploaded files are LaTeX masters. SGA 5 contains 15,818 lines
+of substantive inline material. The other masters have differing amounts
+of inline material and refer to further component files; for example the
+SGA 4½ master consists of its preamble and eight component inputs. The
+absent component contents are not counted as read.
+\texttt{SOURCE\_REVIEW.md} and \texttt{checks/source-inventory.json}
+give the exact reading and dependency inventory.
+
+The key supplied statement is SGA 5, Exposé III, (6.8.5): the residue of
+a function multiplied by the regular-immersion class equals the trace of
+its multiplication endomorphism on a finite flat algebra. The preceding
+paragraph constructs the class from the conormal differential. The
+source explicitly records a qualification about the proof/reference of
+this compatibility. We retain that qualification and prove its
+one-variable instance directly below.
+
+The appendix works with coherent complexes over a noetherian scheme,
+with the indicated finite Tor-dimension, properness, and
+Tor-independence hypotheses. Here the finite map is finite free, so
+properness and flatness are actual properties of the displayed algebra.
+Its dual is computed directly as a finite module dual. No general
+six-operation formalism on semiring schemes is assumed.
+
+Keep the programme's one scalar construction
+
+\[
+G(R)=\{\tau\}\sqcup\{a^\bullet:a\in R\},
+\quad e_R=0_R^\bullet,
+\quad p_R(\tau)=0_R,\quad p_R(a^\bullet)=a.
+\tag{3}
+\]
+
+Its support observation is \(b_R(\tau)=0\) and \(b_R(a^\bullet)=1\). The
+pair \((p_R,b_R)\) retains the whole scalar. For every ring map \(f\),
+its split lift fixes \(\tau\) and sends \(a^\bullet\) to
+\(f(a)^\bullet\). In particular
+
+\[
+\begin{array}{ccc}
+G(\mathbb Z)&\xrightarrow{G(\jmath)}&G(\mathbb C)\\
+p_{\mathbb Z}\downarrow&&\downarrow p_{\mathbb C}\\
+\mathbb Z&\xrightarrow{\jmath}&\mathbb C
+\end{array}
+\tag{4}
+\]
+
+remains the original arithmetic square with an infinite left target. All
+calculations below first specify coefficient maps and then lift them
+fibrewise through the original support reconstruction. The ordinary
+coherent realization is connected to that richer object by p, not
+substituted for the complete split object.
+
+At a label ℓ, an R-linear map f lifts as (ℓ,x) ↦ (ℓ,f(x)); a coefficient
+zero remains (ℓ,0). External absence maps to absence. Kernels and
+quotients below are the original coefficient kernels and quotients
+before that reconstruction. No new scalar zero is adjoined for a
+diagonal homology degree or a deformation parameter.
+
+\section{3. The arithmetic object that is
+retained}\label{the-arithmetic-object-that-is-retained}
+
+Fix the original finite packet h, with complete orders, and tensor
+degree k. Retain
+
+\[
+g=2\xi,\quad v_h=g/h,\quad \mathcal MF_h=v_h,
+\quad E=\mathbb C[S]/(\chi),\quad A=M_S,
+\quad\chi=\chi_{h,k},\quad q=\deg\chi>0.
+\tag{5}
+\]
+
+The source and actual weighted inclusion are
+
+\[
+\mathcal V P=P(D_1+\cdots+D_k)F_h^{\otimes k},
+\qquad
+\eta[P]=\upsilon_h^{\otimes k}P(A_k)1,
+\quad \upsilon_h=j_h(g/h).
+\tag{6}
+\]
+
+The retained source identities are
+
+\[
+J^{(k)}\mathcal V=\eta\pi_\chi,
+\qquad q^{(k)}\mathcal V
+ =\sigma_h^{\otimes k}\eta\pi_\chi.
+\tag{7}
+\]
+
+The original scalar measure is
+
+\[
+w_h(y)=\frac{|v_h(1/2+iy)|^2}{2\pi},\quad
+m_{h,k}=w_h^{*k},\quad\int m_{h,k}=\mu_h^k,
+\tag{8}
+\]
+
+and the norm is
+
+\[
+\|\mathcal VP\|^2
+ =\int_{\mathbb R}|P(k/2+iy)|^2m_{h,k}(y)\,dy.
+\tag{9}
+\]
+
+For \(N\ge q-1\), the canonical matrix and source section remain
+
+\[
+K_N=B_NO_N^{-1}B_N^*,\quad G_N=K_N^{-1},\quad
+R_N=O_N^{-1}B_N^*G_N,\quad V_N=\det G_N.
+\tag{10}
+\]
+
+Write \(r_N=\mathcal V R_N\). The established cyclic retraction composed
+with the full jet map gives j\_E on the stated test-function domain,
+with \(j_Er_N=1\) and \(j_ED^{(k)}=Aj_E\). The source relation is
+
+\[
+D^{(k)}r_N-r_NA=dK_N^{\mathrm{prim}}.
+\tag{11}
+\]
+
+These are inherited interfaces, not analytic theorems re-proved by the
+finite tests of this note. The empty packet E=0 has the empty
+determinant one; all q-positive constructions below concern
+q\textgreater0.
+
+\section{4. SGA 5's relative duality, calculated on this polynomial
+algebra}\label{sga-5s-relative-duality-calculated-on-this-polynomial-algebra}
+
+Let R be a commutative ring, let χ be monic of degree q, and put
+
+\[
+H(S)=\chi(S)-t,\qquad E_t=R[t,S]/(H),\qquad
+f:\operatorname{Spec}E_t\longrightarrow\operatorname{Spec}R[t].
+\tag{12}
+\]
+
+The basis 1,S,\ldots,S\^{}(q−1) proves f finite free of degree q. Set
+
+\[
+\lambda_t([P])=[S^{q-1}]\operatorname{rem}_{H}P.
+\tag{13}
+\]
+
+Here {[}S\^{}(q−1){]} means coefficient extraction in the actual monic
+remainder. Over ℂ it equals the sum of finite residues of P(S)dS/H(S),
+with the positive finite-residue orientation. Equivalently it is the
+coefficient of S\^{}(−1) in P/H, which is the negative of the residue at
+infinity.
+
+The bilinear form
+
+\[
+\beta_t(x,y)=\lambda_t(xy),\qquad
+\beta_t^\flat:E_t\longrightarrow\operatorname{Hom}_{R[t]}(E_t,R[t])
+\tag{14}
+\]
+
+is perfect. Its Gram in the unchanged power basis has zeros below total
+exponent q−1 and ones on that antidiagonal. Thus
+
+\[
+\det\beta_t=(-1)^{q(q-1)/2}.
+\tag{15}
+\]
+
+This proves perfection over the original coefficient ring, without
+dividing by a discriminant. The finite duality functor is
+
+\[
+f^!R[t]=\operatorname{Hom}_{R[t]}(E_t,R[t]),
+\tag{16}
+\]
+
+in degree zero. Equation (14) is its explicit trivialization; evaluation
+at 1 is its counit. The factor dS/H and the conormal generator {[}H{]}
+account for the smooth dimension-one and regular codimension-one shifts,
+which cancel in this finite relative dimension-zero calculation.
+
+\subsection{4.1 The actual diagonal
+class}\label{the-actual-diagonal-class}
+
+In B\_t=E\_t⊗\_(R{[}t{]})E\_t, with coordinates X,Y, define
+
+\[
+\mathcal C_H(X,Y)=\frac{H(X)-H(Y)}{X-Y}
+ =\sum_{n=1}^{q}c_n\sum_{a=0}^{n-1}X^{n-1-a}Y^a,
+\quad c_q=1.
+\tag{17}
+\]
+
+The fraction denotes polynomial division with zero remainder; there is
+no localization at X−Y. Its defining identities are
+
+\[
+(X-Y)\mathcal C_H=0\ \text{in }B_t,
+\qquad \mu(\mathcal C_H)=\chi'(S),
+\tag{18}
+\]
+
+where μ is multiplication E\_t⊗E\_t→E\_t.
+
+The first identity shows the class is supported on the diagonal.
+Moreover
+
+\[
+(\lambda_t\otimes1)((P\otimes1)\mathcal C_H)=P
+\quad\text{in }E_t.
+\tag{19}
+\]
+
+To prove it, first take P=1: the coefficient of X\^{}(q−1) in (17) is 1.
+The identity (X−Y)𝒞\_H=0 then gives (P(X)−P(Y))𝒞\_H=0 for every
+polynomial P, proving (19). This also proves that 𝒞\_H is the
+coevaluation tensor inverse to (14).
+
+Taking the categorical trace of multiplication gives the complete
+composite
+
+\[
+R[t]\xrightarrow{1\mapsto\mathcal C_H}E_t\otimes E_t
+\xrightarrow{M_P\otimes1}E_t\otimes E_t
+\xrightarrow{\mu}E_t\xrightarrow{\lambda_t}R[t].
+\tag{20}
+\]
+
+Consequently
+
+\[
+\boxed{\operatorname{Tr}_{E_t/R[t]}M_P
+ =\lambda_t(\chi'P).}
+\tag{21}
+\]
+
+This proves the one-variable instance of the supplied SGA 5 III (6.8.5).
+In that statement the regular-immersion class is the conormal
+differential {[}H{]}↦χ'dS. Its trace map is exactly (20), not an
+additional sign-free identification.
+
+The bilinear trace form is connected to the perfect residue form by the
+exact map
+
+\[
+\tau_t^\flat=\beta_t^\flat\circ M_{\chi'}:E_t\longrightarrow E_t^\vee,
+\qquad \tau_t(x,y)=\operatorname{Tr}M_{xy},
+\qquad \ker\tau_t^\flat=\operatorname{ann}_{E_t}(\chi').
+\tag{21a}
+\]
+
+This proves the complete radical statement for this finite trace form.
+At a complex root of multiplicity m its radical has dimension m−1; the
+perfect residue form itself remains nondegenerate. It is not the
+assertion of positivity for the original sesquilinear Weil form. Their
+connection is the retained reflection and Jacobian composite (24).
+
+All maps (12)--(21) commute with coefficient base change: their entries
+are polynomial expressions in the coefficients and monic remainders. For
+tensor products, the coevaluation is the external product of the
+displayed tensors; the diagonal Jacobian is the product of the χ\_i'. If
+the coefficient object is placed in degree k, its supertrace is
+(−1)\^{}k times (21). No geometric weight is inferred from that
+cohomological sign.
+
+\subsection{4.2 The source's supported relation maps to this same
+class}\label{the-sources-supported-relation-maps-to-this-same-class}
+
+At t=0, the original sum-direction logarithm operator is
+
+\[
+\mathscr L_k=\frac1k\sum_i\log x_i,
+\quad
+\partial_S^{\mathrm{rel}}=\frac1k\sum_i\partial_{s_i},
+\quad\partial_S^{\mathrm{rel}}S=1.
+\tag{22}
+\]
+
+Differentiating the full Mellin amplitude 𝒰(𝐬)P(S), where 𝒰=∏v\_h(s\_i),
+gives both 𝒰P′ and (∂𝒰)P. Applied to an original relation χP, the latter
+contains χ and is killed by the original arithmetic quotient. Therefore
+
+\[
+\boxed{j_E\mathscr L_k\mathcal V(\chi P)=[\chi'P]_\chi.}
+\tag{23}
+\]
+
+The arithmetic unit is retained in the map before j\_E; it is removed
+only by the specified inverse/retraction in j\_E. Formula (23) does not
+differentiate an already-formed scalar e. It differentiates an actual
+source relation before that relation is sent to its supported quotient
+zero.
+
+The composition of (23) with λ\_0 is the trace (21). More generally,
+with the original reflection f\^{}dagger\_k(S)=overline(f(k−overline
+S)),
+
+\[
+\lambda_0(\chi' f^{\dagger_k}P)
+ =\operatorname{Tr}_E M_{f^{\dagger_k}P}
+ =\sum_\lambda\ell_\lambda\overline{f(k-\bar\lambda)}P(\lambda).
+\tag{24}
+\]
+
+The induced trace in the full arithmetic module still uses η and its
+retained complement. It is not equated with the cyclic trace without
+that inclusion and complement.
+
+The conormal lift C{[}S{]}/(χ²) used to compute (23) maps surjectively
+to the actual contracted level C{[}S{]}/(χ\_2), because
+(χ²)⊆I²∩C{[}S{]}=(χ\_2). No equality of these ideals is asserted. This
+keeps the formalization session's correction to higher relation depth.
+
+\section{5. The whole derived diagonal is
+retained}\label{the-whole-derived-diagonal-is-retained}
+
+There is a complete explicit resolution behind (18). Put d=X−Y and
+b=𝒞\_H. Over B\_t it is
+
+\[
+\cdots\xrightarrow{d}B_t\xrightarrow{b}B_t
+\xrightarrow{d}B_t\xrightarrow{\mu}E_t\longrightarrow0.
+\tag{25}
+\]
+
+\textbf{Exactness.} Work first in T=(R{[}t,Y{]}/(H(Y))){[}X{]}. Then
+B\_t=T/(db). Both d and b are monic polynomials in X, hence
+non-zero-divisors in T even when the coefficient algebra has nilpotents.
+If da∈(db), cancellation of d in T gives a∈(b). If ba∈(db), cancellation
+of b gives a∈(d). These are precisely the alternating kernel--image
+identities in (25); B\_t/(d)=E\_t supplies the augmentation.
+
+Pullback to the diagonal is tensoring (25) by μ. The two differentials
+become 0 and multiplication by χ′. It follows that
+
+\[
+HH_0(E_t/R[t])=E_t,
+\quad HH_{2a+1}(E_t/R[t])=E_t/(\chi'),
+\quad HH_{2a+2}(E_t/R[t])=\operatorname{ann}_{E_t}(\chi'),
+\quad a\ge0.
+\tag{26}
+\]
+
+These are module identifications; no multiplication or shuffle structure
+is silently included. Multiplication by X commutes with every map of
+(25) and specializes to the original S-action on (26).
+
+At a complex root of multiplicity m, χ′ is the product of
+m(S−λ)\^{}(m−1) with the actual nonzero local unit. Both positive-degree
+modules have dimension m−1. For m=1 they vanish. For m\textgreater1 the
+higher classes are retained as distinct cohomological degrees over the
+same split scalar support.
+
+This is a classical hypersurface calculation performed here on the exact
+polynomial. It computes the derived diagonal; it does not assert that
+these HH degrees equal the separately indexed original nullity ladder.
+The map linking this calculation to that ladder is the shared conormal
+differential (23), together with the displayed quotient from the
+original contracted relation levels.
+
+\section{6. The preceding exponential family and its exact coefficient
+connections}\label{the-preceding-exponential-family-and-its-exact-coefficient-connections}
+
+Now work over ℂ and write
+
+\[
+\chi_{\mathbf c}(S)=S^q+\sum_{a=0}^{q-1}c_aS^a,
+\qquad
+\Phi_t(S)=\frac{S^{q+1}}{q+1}
+ +\sum_{a=0}^{q-1}\frac{c_aS^{a+1}}{a+1}-tS.
+\tag{27}
+\]
+
+The original polynomial is the marked coefficient value 𝐜=𝐜\_h,k. None
+of its coefficients is shifted or rescaled.
+
+The previous two-term coefficient complex is
+
+\[
+\mathcal C_{u,t}=[\mathbb C[u,t,S]\xrightarrow{D}\mathbb C[u,t,S]dS],
+\quad D(P)=(uP'+(\chi_{\mathbf c}-t)P)dS.
+\tag{28}
+\]
+
+Its unique degree-\textless q remainder gives a free degree-one module.
+At u=t=0 it is E. The classical finite algebra and this differential
+quotient have the explicit coefficient-linear inverse maps
+
+\[
+\rho_{u,t}:E_t\longrightarrow\mathcal H_{u,t},\quad
+[P]_H\longmapsto[\operatorname{rem}_H P]_D,
+\qquad
+\rho_{u,t}^{-1}[Q]_D=[\operatorname{rem}_D Q]_H.
+\tag{28a}
+\]
+
+Both normal-form operations fix every degree-\textless q polynomial,
+proving the inverse laws. The map is a coefficient-module isomorphism,
+not a declaration that multiplication descends through D. For u≠0 its
+connections are
+
+\[
+\nabla_t=\partial_t-S/u,
+\qquad
+\nabla_{c_a}=\partial_{c_a}+S^{a+1}/((a+1)u).
+\tag{29}
+\]
+
+The commutators with D vanish term by term. The quotient is by the
+linear range of D, not an algebra ideal: {[}S(χ−t){]}=−u{[}1{]}. The
+previous note's source deformation
+
+\[
+D_t^{(k)}=D^{(k)}+t r_N\mathcal R j_E,
+\quad\mathcal R[P]=[S^{q-1}]\operatorname{rem}_\chi(P)\,[1]
+\tag{30}
+\]
+
+satisfies j\_ED\_t\^{}(k)=A(t)j\_E and
+D\_t\textsuperscript{(k)r\_N−r\_NA(t)=dK\_N}prim, with A(t)=A+t𝓡. Its
+original source relation is unchanged.
+
+Let C\_a be the degree-\textless q matrix for reduction of S\^{}(a+1)
+times a representative by D/dS, and let A(t) be the usual companion
+matrix for χ−t. The period matrix obeys
+
+\[
+\partial_{c_a}\Pi=\Pi C_a/((a+1)u),
+\qquad \partial_t\Pi=-\Pi A(t)/u.
+\tag{31}
+\]
+
+\subsection{6.1 The trace of the reduced multiplication is exactly
+classical}\label{the-trace-of-the-reduced-multiplication-is-exactly-classical}
+
+Although C\_a need not equal A(t)\^{}(a+1),
+
+\[
+\boxed{\operatorname{Tr}C_a=\operatorname{Tr}A(t)^{a+1}.}
+\tag{32}
+\]
+
+Here is the explicit comparison. Reducing S\^{}(b+a+1), with 0≤b≤q−1 and
+0≤a≤q−1, starts with degree at most 2q−1. Every term introduced by the
+uP′ part has degree at most b+a−q≤b−1. Later reductions only lower
+degree. Thus C\_a−A(t)\^{}(a+1) is strictly upper triangular in the
+fixed increasing-power frame: its row indices are strictly below its
+column index. Its diagonal entries vanish, proving (32). No u-dependent
+coefficient is discarded from the full matrix.
+
+\section{7. Complete evaluation of the determinant of
+periods}\label{complete-evaluation-of-the-determinant-of-periods}
+
+Set d=q+1. Fix u≠0 and a choice of arg u on a sector. Retain the rays
+
+\[
+\theta_j=(\arg u+\pi)/d+2\pi j/d,
+\quad\ell_j(r)=re^{i\theta_j},\quad r\ge0,
+\quad\Gamma_j=-\ell_0+\ell_j,\quad1\le j\le q.
+\tag{33}
+\]
+
+The periods are
+
+\[
+\Pi_{jb}(\mathbf c,u,t)=\int_{\Gamma_j}e^{\Phi_t(S)/u}S^b\,dS,
+\qquad0\le b<q.
+\tag{34}
+\]
+
+The leading exponent on each ray is −r\^{}d/(d\textbar u\textbar).
+Lower-degree terms are uniformly dominated on compact coefficient sets.
+This proves convergence and all coefficient differentiations in (31).
+Integrating D(P)e\^{}(Φ\_t/u) gives a total derivative whose endpoints
+at infinity vanish and whose two origin values cancel with the stated
+orientations.
+
+Define the polynomial
+
+\[
+\boxed{\mathcal F(\mathbf c,t)
+ =\operatorname{Tr}_{E_t/\mathbb C}M_{\Phi_t}
+ =\lambda_t(\chi'\Phi_t).}
+\tag{35}
+\]
+
+Both descriptions are finite coefficient calculations. At a complex
+fibre it is the sum of all critical values Φ\_t(λ), counted with the
+multiplicity of each root of χ−t.
+
+Its gradients are
+
+\[
+\boxed{
+\partial_{c_a}\mathcal F
+ =\frac1{a+1}\operatorname{Tr}A(t)^{a+1},
+\qquad
+\partial_t\mathcal F=-\operatorname{Tr}A(t).
+}
+\tag{36}
+\]
+
+\textbf{Proof.} On the open set of simple roots α\_j, differentiate
+∑Φ\_t(α\_j). The α\_j derivatives are multiplied by
+Φ\_t′(α\_j)=χ(α\_j)−t=0. The remaining terms are exactly (36). Both
+sides of (36) are polynomials in the coefficients, obtained by companion
+traces. Their equality on the nonempty simple-root open set proves the
+polynomial identity everywhere, including all collisions. This extension
+does not replace the fibres by their reductions: their ranks and traces
+retain multiplicities.
+
+Equations (31), (32), and Jacobi's determinant derivative give
+
+\[
+\partial_{c_a}(\det\Pi)
+ =\frac{\partial_{c_a}\mathcal F}u\det\Pi,
+\qquad
+\partial_t(\det\Pi)
+ =\frac{\partial_t\mathcal F}u\det\Pi.
+\tag{37}
+\]
+
+These determinant equations hold even before invertibility is known, by
+the adjugate identity. At the monomial member 𝐜=0,t=0, 𝔽=0 and direct
+integration gives
+
+\[
+(\Pi_{\mathrm{mon}})_{jb}
+ =\frac{(d|u|)^{(b+1)/d}}d
+ \Gamma\!\left(\frac{b+1}d\right)
+ e^{i(b+1)\theta_0}
+ (e^{2\pi i j(b+1)/d}-1).
+\tag{38}
+\]
+
+The last matrix F\_d has Gram F\_d\^{}*F\_d=d(I\_q+J\_q), where J\_q is
+the all-ones matrix. Indeed expansion of the finite geometric sums gives
+diagonal 2d and off-diagonal d.~Hence
+\textbar detF\_d\textbar²=d\^{}(q+1), in particular it is nonzero.
+
+Along the straight coefficient path from the monomial member to any
+chosen (𝐜,t), (37) is a scalar differential equation. Integrating it
+with its actual initial value proves
+
+\[
+\boxed{
+\det\Pi(\mathbf c,u,t)
+ =\det\Pi_{\mathrm{mon}}(u)\exp(\mathcal F(\mathbf c,t)/u).
+}
+\tag{39}
+\]
+
+There is no path-dependent logarithm in this equation. In particular the
+period matrix is invertible for every u≠0, at repeated as well as simple
+critical points.
+
+The complete unsquared constant is retained by (38), its determinant,
+the ray ordering, and the choice of arg u. Taking squared moduli and
+using the gamma multiplication identity
+
+\[
+\prod_{l=1}^{d-1}\Gamma(l/d)=(2\pi)^{(d-1)/2}d^{-1/2}
+\tag{40}
+\]
+
+gives
+
+\[
+\boxed{\det(\Pi^*\Pi)
+ =(2\pi|u|)^q\exp(2\Re(\mathcal F/u)).}
+\tag{41}
+\]
+
+The factor (2π\textbar u\textbar)\^{}q is calculated from (38)--(40); it
+is not assigned a value by choosing a new basis. Formula (38) remains
+the authoritative phase-containing version.
+
+This explicitly finishes the determinant calculation for the previously
+constructed exponential comparison. It is consistent with the classical
+exp(f) determinant theory; it is not a claim that the full period
+matrix, or its arithmetic condition number, is determined by its
+determinant.
+
+\section{8. Recover the complete cyclic spectrum from that determinant
+family}\label{recover-the-complete-cyclic-spectrum-from-that-determinant-family}
+
+For 1≤r≤q, equation (37) gives the logarithmic derivative without
+choosing a logarithm branch:
+
+\[
+p_r:=r u\frac{\partial_{c_{r-1}}\det\Pi}{\det\Pi}
+ =\operatorname{Tr}A(t)^r.
+\tag{42}
+\]
+
+Put d\_0=1 and recursively define
+
+\[
+d_n=-\frac1n\sum_{r=1}^n d_{n-r}p_r,
+\quad1\le n\le q.
+\tag{43}
+\]
+
+Then
+
+\[
+\boxed{\det(XI-A(t))=X^q+d_1X^{q-1}+\cdots+d_q
+ =\chi_{\mathbf c}(X)-t.}
+\tag{44}
+\]
+
+\textbf{Proof.} In the formal variable z,
+
+\[
+\frac{d}{dz}\log\det(I-zA(t))
+ =-\operatorname{Tr}\bigl(A(t)(I-zA(t))^{-1}\bigr)
+ =-\sum_{r\ge1}p_rz^{r-1}.
+\tag{45}
+\]
+
+Coefficient extraction gives (43), and the determinant is a degree-q
+polynomial. Because A(t) is the specified cyclic companion action, its
+characteristic polynomial is also its minimal polynomial. Thus this
+recovery retains one complete length-m block at every root of
+multiplicity m. For a general noncyclic larger arithmetic module, traces
+do not classify all Jordan blocks; its inclusion η and complementary
+module stay in the source programme.
+
+The precise map chain is
+
+\[
+(\mathcal H,\nabla_{c_a})\longrightarrow
+(\det\mathcal H,\det\nabla_{c_a})
+\xrightarrow{\text{(42)}}(p_1,\ldots,p_q)
+\xrightarrow{\text{(43)}}\chi-t.
+\tag{46}
+\]
+
+Only the full coefficient-family derivatives in (42), not a single
+determinant value, give the recovery.
+
+\section{9. Two explicit calibrations}\label{two-explicit-calibrations}
+
+For χ(S)=S−λ,
+
+\[
+\Phi_t(S)=S^2/2-(\lambda+t)S,
+\quad A(t)=\lambda+t,
+\quad\mathcal F=-(\lambda+t)^2/2.
+\tag{47}
+\]
+
+For u\textgreater0, with the original contour oriented upwards on iℝ,
+
+\[
+\Pi(u,t)=i\sqrt{2\pi u}\exp(-(\lambda+t)^2/(2u)).
+\tag{48}
+\]
+
+In the ordering (33), q=1 gives Γ₁ oriented downwards, so
+\(\Gamma_{\mathrm{up}}=-\Gamma_1\) and the period in (48) is the
+negative of the sole entry of (34). This is the exact orientation map;
+the squared determinant is unchanged. The full nonzero λ remains; a
+cohomological dimension or pure finite-field weight does not set it to a
+critical-line value.
+
+For χ(S)=S²+c\_1S+c\_0,
+
+\[
+\mathcal F=c_1^3/6-c_1(c_0-t),
+\qquad
+\det(\Pi^*\Pi)
+ =(2\pi|u|)^2
+ \exp\!\left(2\Re\frac{c_1^3/6-c_1(c_0-t)}u\right).
+\tag{49}
+\]
+
+At the discriminant c\_1²−4(c\_0−t)=0 the formula stays unchanged and
+the fibre retains its double-root algebra. This is tested symbolically.
+Independent ray quadrature for small declared complex coefficient
+fixtures is reported separately, without an interval-certification
+claim.
+
+\section{10. Transport the original metric and control through the same
+periods}\label{transport-the-original-metric-and-control-through-the-same-periods}
+
+At the actual marked coefficients, use the original arithmetic G\_N of
+(10). On the period-coordinate target define the \textbf{transported
+original metric}
+
+\[
+\widetilde G_N=\Pi^{-*}G_N\Pi^{-1},
+\qquad
+\Pi^{-*}:=(\Pi^{-1})^*.
+\tag{50}
+\]
+
+The map Π:(E,G\_N)→(ℂ\^{}q,\widetilde G\_N) is an isometry by this
+explicit formula, not by an assignment of the original metric to I\_q.
+Conversely Π\^{}\emph{Π is the Gram for the separately specified
+coordinate metric I\_q, and its comparison operator is
+G\_N\textsuperscript{(−1)Π}}Π.
+
+The exact determinant formula is
+
+\[
+\boxed{
+\det\widetilde G_N
+ =\frac{V_N}{(2\pi|u|)^q}
+ \exp\!\left(-2\Re\frac{\mathcal F}u\right).
+}
+\tag{51}
+\]
+
+At a common (𝐜,u,t), the complete marked endpoint ratio satisfies
+
+\[
+\boxed{
+\frac{\det\widetilde G_i}{\det\widetilde G_j}
+ =\frac{V_i}{V_j}.
+}
+\tag{52}
+\]
+
+Thus every common period determinant factor in that ratio is now
+explicitly known and cancels by (51), with no remaining unknown
+proportionality constant. This identifies exactly which information the
+period determinant does and does not add to the endpoint estimate.
+
+For fixed u\textgreater0 and real t, differentiate (50), retaining the
+original G\_N fixed and using Π′=−ΠA(t)/u. One obtains
+
+\[
+u\frac{d}{dt}\widetilde G_N
+ =\Pi^{-*}(A(t)^*G_N+G_NA(t))\Pi^{-1},
+\tag{53}
+\]
+
+and therefore
+
+\[
+\boxed{
+ u\frac{d}{dt}\widetilde G_N-k\widetilde G_N
+ =\Pi^{-*}W_N(t)\Pi^{-1},
+\quad W_N(t)=A(t)^*G_N+G_NA(t)-kG_N.
+}
+\tag{54}
+\]
+
+At \(t=0\), \(W_N(t)\) is the original arithmetic control. For any
+vector x, the coordinate change \(x=\Pi v\) carries both numerator and
+denominator of its generalized Rayleigh quotient exactly. Equations (30)
+and (11) show that the source theta primitive remains the same along
+this specific t-deformation.
+
+This is a differential-metric reformulation of the same problem. The
+finite-field pure cohomology of the auxiliary family controls its
+Frobenius, not automatically the right side of (54). The required
+relation between those operators has not been supplied by taking a
+determinant.
+
+\subsection{10.1 The constituent period minor detects the arithmetic
+defect}\label{the-constituent-period-minor-detects-the-arithmetic-defect}
+
+The full determinant is sensitive to all coefficient derivatives by
+(42), but along the original t-direction it sees only Tr A. In a
+reflection-stable arithmetic packet of dimension q,
+\(2\Re\operatorname{Tr}A=kq\). For the full conjugation-stable quartet
+packet, \(\operatorname{Tr}A=kq/2\) exactly. This is already the total
+weight balance; an off-line pair can retain that same real trace.
+
+The correct retained subobject is an actual \(A\)-invariant inclusion
+\(I_F:F\hookrightarrow E\), \(AI_F=I_FA_F\). Let \(p=\dim F\) and define
+the \textbf{rectangular} period map and its two Grams
+
+\[
+P_F(t)=\Pi(u,t)I_F:F\longrightarrow\mathbb C^q,
+\quad H_F(t)=P_F(t)^*P_F(t),
+\quad G_{N,F}=I_F^*G_NI_F.
+\tag{54a}
+\]
+
+The determinant here is the norm of the actual exterior map
+\(\bigwedge^p P_F\) on \(\det F\); no determinant of a rectangular
+matrix is taken. The domain Gram retains the theta-source inclusion
+\(r_NI_F\) and all its jets. For real \(t\) and \(u>0\),
+
+\[
+P_F'(0)=-P_F(0)A_F/u,
+\qquad
+\boxed{-u\left.\frac d{dt}\log\frac{\det H_F(t)}{\det G_{N,F}}\right|_{t=0}-kp
+ =2\Re\operatorname{Tr}A_F-kp.}
+\tag{54b}
+\]
+
+This follows by differentiating the displayed Gram and taking its trace.
+It is not a purity assumption on F. For the full positive-real-defect
+generalized eigenspace \(F=E_>\), the right side is the exact aggregate
+\(L_{h,k}\) already used by the exterior theorem. Thus the period family
+has an explicit observable for the original off-line defect, not just
+for its already-balanced total trace.
+
+The original extension to the other constituents is present as well. Let
+P be the orthogonal projection in the specified period-coordinate metric
+onto \(\operatorname{im}P_F(0)\). Since \(A(t)=A+t\mathcal R\),
+
+\[
+\boxed{(1-P)P_F'(0)=0,\qquad
+(1-P)P_F''(0)=-\frac1u(1-P)\Pi(u,0)\mathcal R I_F.}
+\tag{54c}
+\]
+
+Both identities are direct differentiations. The first derivative is
+internal to F; the first possible normal acceleration is the exact
+rank-at-most-one map on the right. Its kernel, image, and norm remain
+available. A repeated-root primary subspace is allowed; no eigenspace
+basis or semisimple replacement is used.
+
+Equations (54a)--(54c) specify the constituent period object that can be
+estimated next. Formula (41) finishes the full determinant, but does not
+by itself bound these minor norms or their comparison with \(G_{N,F}\).
+The preceding logarithmic-constituent extension and its coupling
+subtraction remain the source-specific metric input.
+
+\section{11. The source-specific remaining term stays
+explicit}\label{the-source-specific-remaining-term-stays-explicit}
+
+For the current programme, the original endpoint cost is
+
+\[
+\mathcal B_{h,k}
+ =\log\frac{V_{q-1}V_q}{V_{2q-1}V_{2q}}.
+\tag{55}
+\]
+
+The preceding logarithmic-constituent calculation already supplies a
+genuine source upper certificate. For an A-invariant inclusion I:F→E and
+its G\_j-orthogonal coefficient lift H\_0 of E/F, let C=G\_i−G\_j and
+
+\[
+G_{F,0}=I^*G_jI,\quad C_F=I^*CI,\quad
+D_F=I^*CH_0,\quad Q_0=H_0^*G_jH_0,\quad C_Q=H_0^*CH_0.
+\tag{56}
+\]
+
+Put Q\_+=Q\_0+C\_Q and
+
+\[
+\Xi_F=Q_+^{-1}D_F^*(G_{F,0}+C_F)^{-1}D_F.
+\tag{57}
+\]
+
+That construction proves the exact decomposition
+
+\[
+\begin{aligned}
+\log(V_i/V_j)
+={}&\log\frac{\det(G_{F,0}+C_F)}{\det G_{F,0}}
+ +\log\frac{\det Q_+}{\det Q_0}\\
+&-\sum_{a\ge1}\frac{\operatorname{Tr}(\Xi_F^a)}a.
+\end{aligned}
+\tag{58}
+\]
+
+These are the source matrices that still require uniform control. Under
+the coordinate change Π, all inclusions, quotient lifts, metrics and
+D\_F are transported together; (58) retains the same values. A period
+basis does not eliminate the coupling or the theta mass.
+
+The current GitHub statement retains the already derived
+off-line-quartet consequence
+
+\[
+\liminf_{k\to\infty}\frac{\mathcal B_{h,k}}{q_k\log k}\ge4.
+\tag{59}
+\]
+
+This note does not establish a contradictory upper estimate. It finishes
+the diagonal trace and the determinant-period calculation, recovers all
+cyclic power traces from that determinant family, and gives the exact
+unchanged theta-metric comparison (51)--(54). The quantitative focus
+remains a bound on (58), or equivalently on the same original
+generalized control in (54), rather than another uncomputed determinant
+or an assumption that local support entails metric purity.
+
+\section{12. Relation to Deligne's finite-field
+family}\label{relation-to-delignes-finite-field-family}
+
+The previous construction takes the finitely generated coefficient ring
+R\_0 containing the actual c\_a and 1/(q+1)!, and for a specified
+finite-field specialization of characteristic p\textgreater q+1 obtains
+
+\[
+Y^p-Y=\frac{\Phi_t(S)}u,\quad u\ne0.
+\tag{60}
+\]
+
+Its infinity chart is the original one: with w=1/S,
+
+\[
+\Phi_t/u=w^{-d}b(w),\quad b(0)=1/(du),\quad
+b v^d=1,\quad x_\infty=wv,\quad \Phi_t/u=x_\infty^{-d}.
+\tag{61}
+\]
+
+The derivative in v has the specified inverse v/d.~This is the retained
+local model for applying Deligne's exponential-sum/lissity theorem over
+u≠0. The generic polynomial has rank-q degree-one compact cohomology and
+weight-one Frobenius under those hypotheses. Those are the inherited
+cited Deligne results, not fresh analytic conclusions of this note.
+
+The maps are the span
+
+\[
+(R_0,\Phi,u,t)\longrightarrow
+\begin{cases}
+(\mathbb C,\mathcal C_{u,t},\nabla,\Pi),\\
+(\mathbb F_Q,\mathcal L_\psi(\Phi_t/u),R^1f_!).
+\end{cases}
+\tag{62}
+\]
+
+The SGA trace formalism applies in each specified coefficient
+realization with its own endomorphism. It does not supply a homomorphism
+ℂ→𝔽\_Q or an intertwiner from the auxiliary Frobenius to the original A.
+The actual complex source/operator comparison is (30), (31), and (54).
+This keeps the two realizations connected at their common coefficient
+model without filling the missing operator comparison with an
+unsupported equality.
+
+\section{13. Verification and
+reproducibility}\label{verification-and-reproducibility}
+
+\texttt{check\_trace\_period.py} contains eighteen finite exact
+regression methods: residue duality, the diagonal tensor, the
+trace/Jacobian composite, repeated-root fibres, periodic diagonal
+resolution, coefficient-base-change identities, quantum-reduction
+traces, critical-value gradients, Newton recovery, source conormal
+response, full metric congruences, and split quotient labels. Separate
+negative controls alter the Jacobian, discard the quantum derivative, or
+erase multiplicity; each must fail in both normal and optimized Python.
+
+The period convergence, determinant formula for arbitrary q, and
+all-general resolution exactness have written proofs above. Finite
+symbolic or numerical tests are not replacements for those proofs.
+\texttt{period\_numerics.py} performs additional explicitly
+non-certified contour comparisons on declared small fixtures. No new
+Lean execution, arithmetic zero location, interval certificate, or
+uniform purity theorem is claimed.
+
+The package does not redistribute the uploaded SGA corpus. The source
+inventory retains hashes, original paths and read ranges. The GitHub
+read was pinned to c05c709d707bacda335deff70fbb5b841a751d1f. No remote
+file is changed by building this package.
+
+\section{References and source
+status}\label{references-and-source-status}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A. Grothendieck, written up by L. Illusie, \emph{SGA 5, Exposé III:
+  Lefschetz Formula}, §§4.1, 4.7--4.8, and coherent appendix §§6.1--6.8,
+  especially (6.8.5). Basis: the user's supplied English master, read
+  directly as LaTeX. Source wording and qualifications are recorded
+  separately.
+\item
+  P. Deligne, \emph{La conjecture de Weil II}, Publications
+  Mathématiques de l'IHÉS 52 (1980), 137--252. The previous
+  source-reviewed construction uses §§3.7.2--3.7.4. This execution reads
+  that predecessor's TeX and preserves its stated scope, rather than
+  claiming a new complete scan verification.
+\item
+  S. Bloch and H. Esnault, \emph{Gauß--Manin determinant connections and
+  periods for irregular connections}, arXiv:math/9912095 (1999). The
+  abstract was inspected for attribution; its TeX download failed, so no
+  detailed theorem of that article is asserted as independently read
+  here.
+\item
+  NIST Digital Library of Mathematical Functions, §5.5(iii), gamma
+  multiplication formula. It is used only to evaluate the explicit
+  product in (38); the full product and phases remain available.
+\item
+  Parent programme sources: \emph{Tau\_Deligne\_Exponential\_Comparison}
+  and \emph{Tau\_Deligne\_Logarithmic\_Constituent\_Control}, 13
+  September 2026. Their original sections, arithmetic source maps,
+  metric definitions, and verification scopes are retained. General
+  source and analytic constructions are inherited where expressly marked
+  above.
+\end{enumerate}
+
+\end{document}

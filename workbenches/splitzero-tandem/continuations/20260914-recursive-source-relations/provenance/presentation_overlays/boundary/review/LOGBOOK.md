@@ -1,0 +1,13 @@
+# Boundary typography inverse review
+
+Delegated scope (verbatim):
+
+> Bounded independent review of five proposed LaTeX typography overlays. Own only work/backpropagation_20260913/cohort_staging/typesetting_boundary/review/. Read OVERLAY_PROPOSALS.json plus before/after full displays. Independently verify every original mathematical term, number, constant, sign, equality, matrix row/column, and tag is retained. Exact byte inverse must reconstruct before files. No math changes, no edits active files, no PDFbuild. Parent doing scratchcompile/visual review; return small JSON proof-preservation receipt. Base work/backpropagation_20260913/cohort_staging/typesetting_boundary.
+
+User provenance maintained by root: `work/backpropagation_20260913/USER_DIRECTION_AND_OWNERSHIP.md` and `logbook/USER_INPUTS_VERBATIM.md`. The former was read during this review; the parent supplied both pointers. This child has received no separate user task or user steering beyond the inherited project instructions.
+
+2026-09-13: Read all five full before/after displays from OVERLAY_PROPOSALS.json and the author's preparation script. Independently implement exact byte reconstruction and an exhaustive lexical edit whitelist without importing or executing the author's script. Check complete matrix substrings byte-for-byte, and preserve them as indivisible tokens in the separate ordered-token comparison. All review writes are confined to this directory. No active source edits, build or visual-review claims.
+
+Manual display audit: SC.u5 retains every factor, exponent, sign and all five definitions; LC.u1 retains four derivative identities and factor order; DC32 retains Gram/kernel identities and both ordered derivative formulas; APU9 retains both connection definitions and both complete 2-by-2 matrices within the original box; the untagged marked-product display retains all six equality signs, powers, constants and rho signs. A read-only independent matrix/boxed-scope audit was delegated to matrix_box_audit.
+
+Completed: the independent review script passed for all five files. Exact inverse reconstruction returns every original byte, and every non-presentation token is retained in the same order. The independent matrix_box_audit returned PASS: both complete matrices are character-for-character identical, each with two column separators and one row separator; both connection definitions, the external -1/u factor, the encompassing box and outside tag APU9 are retained. No defects found. The receipt pins the proposal bytes it actually read so later metadata changes cannot be mistaken for this reviewed proposal. Deliver PROOF_PRESERVATION_RECEIPT.json to parent; source application and PDF validation remain with parent.

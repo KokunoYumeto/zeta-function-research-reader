@@ -1,0 +1,103 @@
+python-flint 0.9.0; FLINT 3.6.0
+
+acb.integral(func, a, b, params=None, rel_tol=None, abs_tol=None, deg_limit=None, eval_limit=None, depth_limit=None, use_heap=None, verbose=None)
+
+Computes the integral `\int_a^b f(x) dx` where the integrand
+*f* is defined by *func*.
+
+    >>> from flint import arb
+    >>> from flint import showgood
+    >>> showgood(lambda: acb.integral(lambda x, _: x.sin(), 0, arb.pi()), dps=25)
+    2.000000000000000000000000
+    >>> showgood(lambda: acb.integral(lambda x, _: (x + x.sin()).gamma(), 1, 1+1j), dps=25)
+    -0.2732681890680958866139676 + 0.7064496061603478580993410j
+
+The function *func* takes two parameters as input: the
+argument *x* and a boolean flag *analytic*. If *analytic*
+is False, *func* should return `f(x)`, and in this case
+there are no restrictions on *f*; for instance, the integrand
+can be discontinuous on *x*.
+If *analytic* is True, *func* must verify that *f* is analytic
+on *x*, and if not, return a non-finite ball instead of `f(x)`.
+
+The *analytic* flag can be ignored for meromorphic functions,
+because evaluation at poles automatically leads to non-finite
+balls. However, it *must* be checked for functions that are
+non-analytic in some regions (for instance, functions with
+branch cuts such as `\sqrt{x}` and `\log(x)`), even if the
+integration path does not touch any non-analytic points.
+Some methods have an *analytic* option built-in, so the user
+simply has to forward this flag:
+
+    >>> from flint import showgood
+    >>> showgood(lambda: acb.integral(lambda x, _: x.sqrt(), 1, 4), dps=25)  # WRONG!!!
+    4.669414894781006338774348
+    >>> showgood(lambda: acb.integral(lambda x, a: x.sqrt(analytic=a), 1, 4), dps=25)  # correct
+    4.666666666666666666666667
+
+The following works without handling the *analytic* flag,
+because the integrand is meromorphic:
+
+    >>> from flint import showgood
+    >>> showgood(lambda: acb.integral(lambda x, _: x.sech(), -1000, 1000), dps=25)
+    3.141592653589793238462643
+
+The options *rel_tol* and *abs_tol* specify the relative
+and absolute tolerance goal for the integration.
+Both default to `2^{-p}` where *p* is the current precision.
+
+The options *deg_limit*, *eval_limit*, *depth_limit* and
+*use_heap* allow control over the amount of work done before
+aborting; see the documentation for *acb_calc_integrate* for
+details.
+
+arb.lower(self)
+
+Lower bound for *self* (towards `-\infty`).
+The output is an *arb* holding an exact floating-point number
+that has been rounded down to the current precision.
+
+    >>> print(arb("-5 +/- 2").lower().str(5, radius=False))
+    -7.0000
+
+arb.upper(self)
+
+Upper bound for *self* (towards `+\infty`).
+The output is an *arb* holding an exact floating-point number
+that has been rounded up to the current precision.
+
+    >>> print(arb("-5 +/- 2").upper().str(5, radius=False))
+    -3.0000
+
+arb.man_exp(self)
+
+Decomposes *self* into an integer mantissa and an exponent,
+returning an *fmpz* pair. Requires that *self* is exact
+and finite.
+
+    >>> from flint import arb, ctx
+    >>> ctx.prec = 53
+    >>> arb("1.1").mid().man_exp() # doctest: +SKIP
+    (4953959590107545, -52)
+    >>> arb("1.1").rad().man_exp() # doctest: +SKIP
+    (1, -52)
+    >>> arb(0).man_exp()
+    (0, 0)
+    >>> arb("1.1").man_exp()
+    Traceback (most recent call last):
+      ...
+    ValueError: man_exp requires an exact, finite value
+    >>> arb("+inf").man_exp()
+    Traceback (most recent call last):
+      ...
+    ValueError: man_exp requires an exact, finite value
+
+arb.union(s, t)
+
+Returns a ball containing the union of *s* and *t*.
+
+    >>> from flint import arb, ctx
+    >>> ctx.prec = 53
+    >>> x = arb(3).union(5); x.lower(); x.upper()
+    [2.99999999813735 +/- 4.86e-15]
+    [5.00000000186265 +/- 4.86e-15]

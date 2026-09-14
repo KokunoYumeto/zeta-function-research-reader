@@ -1,0 +1,120 @@
+# Root acceptance of the original theta certificate and complete proof closure
+
+13 September 2026. This is the final local mathematical and execution review
+for the current finite certificate. It does not close the wider Split-Zero/RH
+research goal.
+
+## Exact accepted calculation
+
+Both original real symmetric matrices
+\[
+H_{15}=(b_{i+j})_{0\le i,j\le15},\qquad
+H_{15}^{(1)}=(b_{i+j+1})_{0\le i,j\le15}
+\]
+are positive definite. The coefficients are those of the actual
+\(-F'/F\), with \(F(z^2)=2\xi(1/2+iz)\). All 33 moments
+\(M_0,M_2,\ldots,M_{64}\) are calculated from the original theta integral.
+All 32 pivots and all 32 leading determinants have positive rigorous lower
+endpoints. The original mass and all monomial coordinates remain unchanged.
+
+The complete integrator, CH.1–19 method proof, TR1–33 analytic/code review,
+and TC1–28 root proof have been read. The two omitted regions are disjoint,
+their integrands are nonnegative, and their upper bounds retain the factor
+\(16\pi^2\), the original exponential factors and both exact denominators.
+The complex integration callback is entire. Its real ball contains the real
+integral; the positive tail interval is added with outward rounding.
+The dyadic exporter uses exact outward lower/upper endpoints and their
+integer mantissa/exponent, with no decimal conversion in the certificate.
+
+## Independent integer arithmetic and actual replay
+
+The saved independent script
+theta_certified_hankel_exact_rational_review_20260913.py was read completely.
+It imports no flint or floating-point arithmetic. It uses a fixed grid
+\(Q=2^{4096}\): an interval is the exact pair \([\ell/Q,u/Q]\) of
+integers. Addition and negation are exact; multiplication takes the
+minimum and maximum of all four integer endpoint products and rounds
+outward after division by \(Q\). Squaring uses zero as its lower endpoint
+when the interval crosses zero. For a positive interval its reciprocal
+is enclosed by
+\[
+\left[
+\frac{\lfloor Q^2/u\rfloor}{Q},
+\frac{\lceil Q^2/\ell\rceil}{Q}
+\right].
+\]
+Negative reciprocals are obtained by the exact negation map. These formulas
+prove containment of every operation, including all rounded operations.
+
+The script reconstructs each moment from the eight exported finite-piece
+intervals and the sum of the two exported tail upper bounds. It does not
+use the saved moment, coefficient or pivot values to calculate its result.
+It then propagates the original factorial/sign formula and logarithmic
+recurrence and independently performs both unscaled LDL recursions.
+Every denominator is checked positive before division. The complete
+matrix identity and positive-definiteness proof are TC13 and CH.15–17.
+
+Root ran a fresh validated integration after the independent review worker
+hit its usage limit. The fresh certificate is
+reviewer_replay_dimension16_1024.json, SHA-256
+0fcac21e20680a6d6a3fab1671b0782b56de005ce749ee33373b1193f20a0af7.
+The complete numerical payload agrees exactly with the original certificate;
+elapsed time and platform fields are excluded from that comparison.
+Root then executed the independent integer script successfully in ordinary
+Python. It validated 1,400 exact intervals, reconstructed both matrix
+certificates, and proved all 32 positive pivots and determinants. It also
+proved by exact rational comparison that the readable TC28 interval contains
+the full exported determinant interval.
+
+The original certificate SHA-256 is
+869ebacd3f82e46c3fe5fac1f07bcbaae7f4c333e1a5ba2e0ffcb1f91884a0fc.
+The reviewed integrator SHA-256 is
+a97486edc2fc1f05f155a9539ad280433be39a8f6924efbc8c1c1c4d71033950.
+The independent integer script SHA-256 is
+a181ef220578eaf232b3e01398d61b1a6f36625f056c5e6bd365453b9ebfa885.
+Its successful complete rational output is supplied alongside this proof.
+The script uses Python assertions for validation and must be run without
+the optimization switch. No optimized-mode verifier claim is made.
+
+## Written-proof corrections and closure
+
+The complete TC mathematical subreview accepted every displayed bound and
+reported two prose clarifications: coefficient rounding must mean a nearest
+multiple, with either tie choice allowed; every coefficient slot enters the
+error bound even when a nonzero coefficient rounds to zero. Both are now
+explicit in the accepted source. Its current SHA-256 is
+8dab2193a7ef3287f58ff5038fc34988883d8899dc4a2a9868098856b48772a5.
+The earlier subreview remains a record of the reviewed predecessor and its
+resolved findings. The bounds and their indices were unchanged.
+
+The complete workbench NOTE.tex and WBR1–41 independent proof were read.
+The archived separator defines \(u_N\) and then writes \(\nu_N\) in its
+boxed formula. The exact correction is the identity \(\nu_N:=u_N\);
+the archive is preserved and the consistent full formula appears in WBR16
+and TC24. The rational functional calculus has the exact full local inverse
+WBR29, and its two reflected modules remain separate through WBR33.
+The half-trace, nilradical and critical-observation defect are completely
+proved in WBR34–40.
+
+The workbench originally invokes the classical genus-zero factorization
+without including its proof. The additional complete source
+tau_genus_zero_product_proof_20260913.tex, GF1–13, now proves the precise
+case used. Root wrote and read back that whole proof. It derives the
+circle-mean zero formula, the \(O(r^\alpha)\) zero count, absolute
+reciprocal summability, uniform product convergence, a lower bound for
+the product on explicitly selected zero-avoiding circles, and constancy
+of the entire zero-free factor from its Fourier coefficients. It then
+derives the full logarithmic-derivative expansion. Taking
+\(\alpha=3/4\) applies it to WBR9's explicit theta growth bound.
+Its SHA-256 is
+9bade2c098f1b03ba4ec4e526f4dffe4ced36f70bd7a533931a16335b162c394.
+This is an included proof of a classical theorem, not a novelty claim.
+It is root-reviewed; no separate independent acceptance of GF is claimed.
+
+The finite dimension-16 certificate does not require factorization or
+any assumed zero location. Factorization belongs to the separate proof
+that positivity of the original unshifted matrices in every dimension is
+equivalent to RH. The complete finite tails and rational rounding formula
+give rigorous finite witnesses without choosing a replacement metric.
+The actual computation produced positive finite matrices and no negative
+witness. It proves no sign statement at larger dimensions.

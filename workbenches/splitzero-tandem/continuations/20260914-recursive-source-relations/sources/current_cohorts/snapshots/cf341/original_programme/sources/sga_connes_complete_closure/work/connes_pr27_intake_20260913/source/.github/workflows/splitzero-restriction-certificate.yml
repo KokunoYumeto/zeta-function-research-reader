@@ -1,0 +1,98 @@
+name: SplitZero restriction certificate integration
+on:
+  push:
+    branches: [main, astra/restriction-certificate-formal-20260913]
+    paths:
+      - 'formal/splitzero/**'
+      - 'workbenches/tau-restriction-certificate-formal/**'
+      - 'workbenches/tau-consecutive-window-formal/**'
+      - '.github/workflows/splitzero-restriction-certificate.yml'
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroRestriction*.lean'
+      - 'formal/splitzero/AuditRestriction*.lean'
+      - 'workbenches/tau-restriction-certificate-formal/**'
+      - '.github/workflows/splitzero-restriction-certificate.yml'
+permissions:
+  contents: read
+concurrency:
+  group: restriction-certificate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  restriction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        working-directory: formal/splitzero
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Exact original-source regressions and rational certificates
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/restriction-checks"
+          py="$RUNNER_TEMP/restriction-checks/bin/python"
+          "$py" -m pip install 'sympy==1.14.0' 'mpmath==1.3.0' >RestrictionTestSetup.log 2>&1
+          checker=../../workbenches/tau-restriction-certificate-formal/check_restriction.py
+          "$py" "$checker" >Restriction.normal.json || { cat Restriction.normal.json; exit 1; }
+          "$py" -O "$checker" >Restriction.optimized.json || { cat Restriction.optimized.json; exit 1; }
+          cmp Restriction.normal.json Restriction.optimized.json
+          cat Restriction.normal.json
+          if "$py" "$checker" --negative >Restriction.negative.log 2>&1; then exit 1; fi
+          grep 'intentional restriction-certificate negative control' Restriction.negative.log
+          if "$py" -O "$checker" --negative >Restriction.negative.optimized.log 2>&1; then exit 1; fi
+          grep 'intentional restriction-certificate negative control' Restriction.negative.optimized.log
+          example=../../workbenches/tau-restriction-certificate-formal/certificate_example.py
+          "$py" "$example" >Restriction.example.json
+          "$py" -O "$example" >Restriction.example.optimized.json
+          cmp Restriction.example.json Restriction.example.optimized.json
+          cat Restriction.example.json
+          zero=../../workbenches/tau-restriction-certificate-formal/check_zero_mode.py
+          "$py" "$zero" >Restriction.zero.json
+          "$py" -O "$zero" >Restriction.zero.optimized.json
+          cmp Restriction.zero.json Restriction.zero.optimized.json
+          cat Restriction.zero.json
+          if "$py" "$zero" --negative >Restriction.zero.negative.log 2>&1; then exit 1; fi
+          grep 'intentional zero-mode negative control' Restriction.zero.negative.log
+          if "$py" -O "$zero" --negative >Restriction.zero.negative.optimized.log 2>&1; then exit 1; fi
+          grep 'intentional zero-mode negative control' Restriction.zero.negative.optimized.log
+      - name: Original scalar and unchanged pinned Lean environment
+        run: |
+          set -euo pipefail
+          python3 prepare.py
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lean --version
+          lake update >RestrictionSetup.log 2>&1 || { tail -80 RestrictionSetup.log; exit 1; }
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get >>RestrictionSetup.log 2>&1 || { tail -80 RestrictionSetup.log; exit 1; }
+      - name: Strict source checks and inherited finite volume composition
+        run: |
+          set -uo pipefail
+          mkdir -p .lake/build/lib/lean
+          status=0
+          for name in SplitZeroTodaVolume SplitZeroConsecutiveWindow SplitZeroWindowProduct SplitZeroWindowForcing SplitZeroNormEnvelope SplitZeroRestrictionTransport SplitZeroRestrictionSource SplitZeroRestrictionLogCertificate SplitZeroRestrictionSpectrum; do
+            echo "=== $name ==="
+            if ! lake env lean --trust=0 -DwarningAsError=true -o ".lake/build/lib/lean/$name.olean" "$name.lean"; then status=1; fi
+          done
+          test "$status" = 0 || exit "$status"
+      - name: Joint import and fail-closed transitive axiom audits
+        run: |
+          set -euo pipefail
+          printf 'import SplitZeroNormEnvelope\nimport SplitZeroRestrictionSource\nimport SplitZeroRestrictionSpectrum\n' >JointRestriction.lean
+          lake env lean --trust=0 -DwarningAsError=true JointRestriction.lean
+          lake env lean --trust=0 -DwarningAsError=true AuditRestrictionCertificate.lean | tee AuditRestrictionCertificate.log
+          "$RUNNER_TEMP/restriction-checks/bin/python" ../../workbenches/tau-restriction-certificate-formal/check_restriction.py --audit AuditRestrictionCertificate.log
+          lake env lean --trust=0 -DwarningAsError=true AuditRestrictionSpectrum.lean | tee AuditRestrictionSpectrum.log
+          "$RUNNER_TEMP/restriction-checks/bin/python" ../../workbenches/tau-restriction-certificate-formal/check_spectrum_audit.py AuditRestrictionSpectrum.log
+          lake env lean --trust=0 -DwarningAsError=true AuditConsecutiveWindow.lean >AuditConsecutiveWindow.log
+          python3 ../../workbenches/tau-consecutive-window-formal/check_window.py --audit AuditConsecutiveWindow.log
+          python3 ../../workbenches/tau-consecutive-window-formal/check_window.py
+          python3 -O ../../workbenches/tau-consecutive-window-formal/check_window.py

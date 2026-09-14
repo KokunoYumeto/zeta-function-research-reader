@@ -1,0 +1,644 @@
+% Additive proof module. Original arithmetic coordinates and operators are retained.
+% Source comparison: Deligne, Weil II, 1.6.1, 1.6.9, 1.7.2, 1.8.4--1.8.5.
+\section{The nilpotent filtration on every independent arithmetic face}
+\label{sec:mixed-face-monodromy}
+
+This construction applies Deligne's nilpotent-filtration linear algebra to the
+actual arithmetic packets and to every independent coefficient face. It does
+not assert an arithmetic purity estimate. Every formula below retains the
+original arithmetic dilation, its scalar eigenvalue, and all its nilpotent
+terms. The additional grading operator is recorded as an additional operator.
+
+\subsection{Original packets and the filtration}
+
+Let \(Z\) be a finite set of distinct zeros of the original function
+\(g(s)=2\xi(s)\), with their full orders \(m_\rho\geq1\). Put
+\[
+ h_Z(x)=\prod_{\rho\in Z}(x-\rho)^{m_\rho},\qquad
+ E_Z=\mathbb C[x]/(h_Z),\qquad
+ E_\rho=e_\rho E_Z.
+ \tag{MW1}
+\]
+Here \(e_\rho\) is the Chinese-remainder idempotent, and
+\(u_\rho=e_\rho(x-\rho)\) is an element of this algebra, with local unit
+\(e_\rho\). Write \(v_{\rho,r}=e_\rho(x-\rho)^r\), for
+\(0\leq r<m_\rho\). These vectors are the original local jet basis.
+The nilpotent operator \(N_\rho\) is multiplication by \(u_\rho\):
+\[
+ N_\rho v_{\rho,r}=v_{\rho,r+1}\quad(r<m_\rho-1),\qquad
+ N_\rho v_{\rho,m_\rho-1}=0.
+ \tag{MW2}
+\]
+For an integer \(j\), define the increasing filtration
+\[
+ M_jE_\rho
+ =\operatorname{span}_{\mathbb C}
+   \{v_{\rho,r}:m_\rho-1-2r\leq j\},\qquad
+ M_jE_Z=\bigoplus_{\rho\in Z}M_jE_\rho .
+ \tag{MW3}
+\]
+In particular a zero vector in \(M_jE_\rho\) remains the zero of its specified
+coefficient face when this filtration is split-lifted.
+
+\paragraph{Filtration calculation.}
+Multiplication by \(u_\rho\) lowers the displayed index by exactly two.
+Thus \(N_\rho M_j\subseteq M_{j-2}\). For \(k\geq0\), the only way
+\(\operatorname{Gr}_k^M E_\rho\) is nonzero is
+\[
+ k=m_\rho-1-2r\geq0,\qquad 0\leq r<m_\rho .
+\]
+It is then one dimensional with basis the class of \(v_{\rho,r}\).
+The map induced by \(N_\rho^k\) sends this basis vector to the class of
+\(v_{\rho,r+k}\), whose index is \(-k\) and whose exponent
+\(r+k=m_\rho-1-r\) lies between zero and \(m_\rho-1\).
+Its coefficient is exactly one. Thus
+\[
+ N_\rho^k:\operatorname{Gr}_k^M E_\rho
+       \xrightarrow{\;\sim\;}\operatorname{Gr}_{-k}^M E_\rho .
+ \tag{MW4}
+\]
+When the source graded space is zero, the target is zero by the same
+index calculation. Direct sums prove the corresponding assertion for
+\(N=\bigoplus_\rho N_\rho\) on \(E_Z\).
+This is precisely the centered nilpotent filtration characterized in
+Weil II, Proposition 1.6.1.
+
+There is an intrinsic formula which also proves functoriality without
+choosing a new jet basis:
+\[
+ M_jV=\sum_{i\geq0}
+       \left(\ker N^{i+1}\cap
+                    \operatorname{im}N^{\max(0,i-j)}\right),
+ \qquad V=E_Z .
+ \tag{MW5}
+\]
+To verify it on a block of length \(m\), both spaces in each intersection
+are terminal spans of the original basis. Their intersection starts at
+exponent \(\max(0,m-1-i,i-j)\). The sum over \(i\) starts at the smallest
+such exponent, namely
+\(\max(0,-j,\lceil(m-1-j)/2\rceil)\); an exponent at least \(m\) denotes the
+zero space. When the extra term \(-j\) exceeds the other terms,
+\(j<1-m\) and both spans are zero. Otherwise the starting exponents
+agree with MW3. Kernels and images commute with the
+finite direct-sum decomposition, proving MW5. A linear map commuting
+with the nilpotent operators carries each kernel and each image into
+the corresponding kernel and image. It therefore preserves MW5.
+
+\subsection{Independent masks and the arithmetic action}
+
+For \(n\geq1\), retain the independent carrier
+\[
+ D_{E_Z,n}=G(E_Z)^n,\qquad
+ G(E_Z)=\{\tau\}\sqcup\{b^\bullet:b\in E_Z\}.
+ \tag{MW6}
+\]
+For each \(A\subseteq I_n=\{0,\ldots,n-1\}\), its face is
+\(\{A\}\times E_Z^A\), with the empty face a single absent point.
+The filtration on the entire carrier is the collection
+\[
+ \widetilde M_jD_{E_Z,n}
+   =\{\boldsymbol\tau\}\sqcup
+     \coprod_{\varnothing\ne A\subseteq I_n}
+           \{A\}\times(M_jE_Z)^A .
+ \tag{MW7}
+\]
+This notation specifies additive faces and their filtrations. No assertion
+that each \(\widetilde M_j\) is a unital subsemiring is made.
+Every present face has its own zero \((A,0)\) in every filtration step;
+the filtration does not turn any of these zeros into absence.
+The zero-insertion maps for \(A\subseteq B\) preserve MW7 because they
+insert the original zero of \(M_jE_Z\).
+
+The original arithmetic operator, for real \(a>0\), is multiplication by
+the full jet of \(a^s=\exp(s\log a)\). On a local block it is
+\[
+ A_a|_{E_\rho}
+ =a^\rho\sum_{r=0}^{m_\rho-1}
+       \frac{(\log a)^r}{r!}N_\rho^r .
+ \tag{MW8}
+\]
+It preserves MW3, and its induced action on every nonzero graded
+piece of that block is exactly \(a^\rho\), since all terms with
+\(r>0\) lower the filtration index. Its inverse is \(A_{a^{-1}}\).
+Thus the split lift preserves every independent mask, including
+the zero in each active slot.
+
+For an odd prime power \(q\) with \(\gcd(q,n)=1\), retain the coefficient
+Frobenius from the original negacyclic algebra:
+\[
+ \Psi_q(v\,t^i)
+   =(-1)^{\lfloor qi/n\rfloor}v\,t^{qi\bmod n},
+ \qquad B_n=E_Z[t]/(t^n+1).
+ \tag{MW9}
+\]
+It sends \(A\) to \(qA\) and leaves the jet index unchanged.
+Consequently it preserves the full filtered face diagram, with its
+specified permutation of face labels and its original signs. It
+commutes with \(N\) and \(A_a\). Define the combined operator, at its
+full linear coefficient-space type, by
+\[
+ \begin{gathered}
+ B_{\rho,n}=E_\rho[t]/(t^n+1),\qquad
+ M_jB_{\rho,n}=\bigoplus_{i=0}^{n-1}(M_jE_\rho)t^i,\\
+ T_{a,q}=A_a\Psi_q=\Psi_q A_a:B_n\longrightarrow B_n,\\
+ T_{a,q}(v_{\rho,r}t^i)
+ =(-1)^{\lfloor qi/n\rfloor}a^\rho
+   \sum_{\ell=0}^{m_\rho-1-r}
+      \frac{(\log a)^\ell}{\ell!}
+      v_{\rho,r+\ell}t^{qi\bmod n}.
+ \end{gathered}
+ \tag{MW9a}
+\]
+Here \(A_a\) and \(N\) act coefficientwise, and \(B_n\) is the direct
+sum of the \(B_{\rho,n}\). Applying MW8 to MW9 gives every coefficient
+in MW9a; the two orders agree because the signed permutation acts only
+on the coefficient-slot index. The split lift of \(T_{a,q}\) sends
+the face labelled \(A\) to the face labelled \(qA\), with exactly
+the displayed signs. Eigenspaces below are taken in the full linear
+space \(B_{\rho,n}\); an individual moving face need not be invariant.
+
+Since \(q\) is a unit modulo \(2n\), choose \(h\geq1\) with
+\(q^h\equiv1\pmod {2n}\). Substitution sends \(t^i\) to
+\(t^{q^hi}=t^i\), so \(\Psi_q^h=I\). The polynomial \(X^h-1\)
+has distinct complex roots, hence \(\Psi_q\) is diagonalizable and
+its eigenvalues \(\omega\) satisfy \(\omega^h=1\).
+On each nonzero graded part of its \(\omega\)-eigenspace, the three
+separate operators therefore have eigenvalues
+\[
+ \operatorname{Gr}^M(A_a):a^\rho,\qquad
+ \operatorname{Gr}^M(\Psi_q):\omega,\qquad
+ \operatorname{Gr}^M(T_{a,q}):\omega a^\rho,
+ \qquad |\omega|=1 .
+ \tag{MW10}
+\]
+The eigenspace decomposition respects the filtration. Its projection
+onto the \(\omega\)-eigenspace is
+\[
+ P_\omega=h^{-1}\sum_{d=0}^{h-1}\omega^{-d}\Psi_q^d.
+\]
+On an eigenspace with eigenvalue \(\omega'\), this sum is one if
+\(\omega'=\omega\) and zero otherwise, by the finite geometric-sum
+identity and \((\omega'/\omega)^h=1\). Every summand preserves every
+filtration step, so the projection does too. Thus the asserted
+graded eigenspaces and the restrictions of
+\(A_a\) are defined. MW10 computes the combined operator's modulus
+as \(a^{\operatorname{Re}\rho}\); no bound
+on \(\operatorname{Re}\rho\) has been inserted.
+
+\subsection{Tensor products with every coefficient and sign retained}
+
+The following proof supplies the tensor compatibility on these blocks,
+including its constants. On a block of length \(m\), define auxiliary
+operators
+\[
+ H v_r=(m-1-2r)v_r,\qquad
+ L v_r=v_{r+1},\qquad
+ E v_r=r(m-r)v_{r-1}.
+ \tag{MW11}
+\]
+The formulas at the endpoints use \(v_{-1}=v_m=0\); \(L\) is precisely
+the original nilpotent \(N_\rho\). Direct subtraction on each basis
+vector gives
+\[
+ [H,L]=-2L,\qquad [H,E]=2E,\qquad [E,L]=H .
+ \tag{MW12}
+\]
+For example the coefficient in the last commutator is
+\((r+1)(m-r-1)-r(m-r)=m-1-2r\).
+For this algebraic proof alone equip this basis with the auxiliary
+positive Hermitian form having squared lengths
+\[
+ c_r=\frac{r!(m-1)!}{(m-1-r)!},\qquad c_0=1 .
+ \tag{MW13}
+\]
+This is an explicitly specified additional form, not a replacement
+for a source norm or an arithmetic positivity assertion.
+The identity
+\(c_{r+1}=(r+1)(m-r-1)c_r\) proves \(L^*=E\), and \(H^*=H\).
+
+On any finite tensor product of blocks, retain the original tensor
+basis and define \(L_{\rm tot},E_{\rm tot},H_{\rm tot}\) as the sums
+of these operators acting in the individual factors. Operators on
+different factors commute, so MW12 still holds. With the product
+form from MW13, \(L_{\rm tot}^*=E_{\rm tot}\) and
+\(H_{\rm tot}^*=H_{\rm tot}\).
+
+Here is a direct proof of the needed graded isomorphisms.
+Choose a nonzero vector \(v\) of maximal \(H_{\rm tot}\)-eigenvalue
+\(d\). Then \(E_{\rm tot}v=0\), because \(E_{\rm tot}\) raises that
+eigenvalue by two. Induction using MW12 gives
+\[
+ E_{\rm tot}L_{\rm tot}^r v
+       =r(d-r+1)L_{\rm tot}^{r-1}v .
+ \tag{MW14}
+\]
+The operator \(L_{\rm tot}\) is nilpotent. Let \(\ell\) be the
+largest exponent for which \(L_{\rm tot}^\ell v\ne0\).
+Applying MW14 at \(r=\ell+1\) gives
+\((\ell+1)(d-\ell)L_{\rm tot}^\ell v=0\), hence \(d=\ell\).
+Thus \(d\) is a nonnegative integer and the chain has weights
+\(d,d-2,\ldots,-d\).
+Its span is invariant under \(L_{\rm tot},E_{\rm tot},H_{\rm tot}\).
+Its orthogonal complement is invariant too, because the first two
+are adjoints and the third is self-adjoint. Induction on dimension
+decomposes the entire tensor space into such chains.
+On each chain \(L_{\rm tot}^k\) identifies weight \(k\) with weight
+\(-k\) exactly as in MW4. Therefore the filtration by sums of
+\(H_{\rm tot}\)-eigenspaces of index at most \(j\) is the centered
+nilpotent filtration. In the original tensor coordinates it is
+\[
+ M_j\left(\bigotimes_{\nu=1}^k E_{\rho_\nu}\right)
+   =\sum_{j_1+\cdots+j_k\leq j}
+        M_{j_1}E_{\rho_1}\otimes\cdots\otimes M_{j_k}E_{\rho_k}.
+ \tag{MW15}
+\]
+This also proves the precise relation to Weil II 1.6.9 on these
+actual blocks. Tensoring labelled faces retains the ordered tuple
+of their masks; MW15 operates on their amplitude fibres.
+
+The original arithmetic tensor operator is, without dropping any term,
+\[
+ \bigotimes_{\nu=1}^k A_a|_{E_{\rho_\nu}}
+  =a^{\rho_1+\cdots+\rho_k}
+     \exp\!\left((\log a)\sum_{\nu=1}^k N_{\rho_\nu}\right).
+ \tag{MW16}
+\]
+The exponential is finite and the equality follows by expanding
+the product of commuting finite exponentials. On the \(M\)-graded
+pieces its eigenvalue is \(a^{\rho_1+\cdots+\rho_k}\).
+For identical packets its modulus is \(a^{k\operatorname{Re}\rho}\).
+In particular the original arithmetic weight survives this complete
+nilpotent-filtration construction.
+
+For the coefficient spaces, take \(n_\nu\geq1\), a common odd prime
+power \(q\) coprime to every \(n_\nu\), and
+\(B_\nu=E_{\rho_\nu}[t_\nu]/(t_\nu^{n_\nu}+1)\).
+Write \(N_\nu\) for the nilpotent in factor \(\nu\), extended by
+identities to the other factors. Define
+\(A_a^{\otimes}=\bigotimes_\nu A_a|_{B_\nu}\),
+\(\Psi_q^{\otimes}=\bigotimes_\nu\Psi_q|_{B_\nu}\), and
+\(T_{a,q}^{\otimes}=\bigotimes_\nu T_{a,q}|_{B_\nu}\). Then
+\[
+ \begin{aligned}
+ T_{a,q}^{\otimes}
+ &=A_a^{\otimes}\Psi_q^{\otimes}
+  =a^{\sum_\nu\rho_\nu}
+       \exp\!\left((\log a)\sum_\nu N_\nu\right)
+          \Psi_q^{\otimes},\\
+ T_{a,q}^{\otimes}\left(\bigotimes_\nu
+                         v_{\rho_\nu,r_\nu}t_\nu^{i_\nu}\right)
+ &=a^{\sum_\nu\rho_\nu}
+   \left(\prod_\nu(-1)^{\lfloor qi_\nu/n_\nu\rfloor}\right)\\
+ &\qquad{}\times
+   \sum_{\substack{0\leq\ell_\nu\leq
+                         m_{\rho_\nu}-1-r_\nu\;\text{for all }\nu}}
+   \left(\prod_\nu\frac{(\log a)^{\ell_\nu}}{\ell_\nu!}\right)
+   \bigotimes_\nu
+    v_{\rho_\nu,r_\nu+\ell_\nu}
+                      t_\nu^{qi_\nu\bmod n_\nu}.
+ \end{aligned}
+ \tag{MW16a}
+\]
+Expanding the factor formulas MW9a proves the second line, including
+every sign and every factorial. The first line follows by grouping
+the commuting operators on different tensor factors, and then using
+MW16. On the tensor of coefficient eigenspaces with eigenvalues
+\(\omega_\nu\), the three graded eigenvalues are respectively
+\[
+ A_a^{\otimes}:a^{\sum_\nu\rho_\nu},\qquad
+ \Psi_q^{\otimes}:\prod_\nu\omega_\nu,\qquad
+ T_{a,q}^{\otimes}:\left(\prod_\nu\omega_\nu\right)
+                                      a^{\sum_\nu\rho_\nu}.
+ \tag{MW16b}
+\]
+The positive nilpotent powers in MW16a decrease total degree by at
+least two, which proves this graded formula from the complete
+operator formula. Its combined modulus is
+\(a^{\sum_\nu\operatorname{Re}\rho_\nu}\). The coefficient permutation
+sends the ordered tuple \((A_\nu)_\nu\) to \((qA_\nu)_\nu\).
+
+\subsection{The exact Tate-scaling comparison}
+
+Deligne's local-monodromy operator has type \(N:V(1)\to V\).
+For geometric Frobenius over \(\mathbb F_q\), the Tate line has
+Frobenius eigenvalue \(q^{-1}\). After recording a generator of
+that line, equivariance has the precise matrix form
+\[
+             FNF^{-1}=q^{-1}N .
+ \tag{MW17}
+\]
+For the original arithmetic action MW8 one instead calculates
+\(A_aN_\rho A_a^{-1}=N_\rho\). The exact relation between these
+operator presentations can be constructed on the same jet space.
+For real \(q>1\) define
+\[
+ \Gamma_{q,\rho}v_{\rho,r}
+   =q^{(m_\rho-1)/2-r}v_{\rho,r},\qquad
+ F_{q,\rho}=q^\rho\Gamma_{q,\rho}.
+ \tag{MW18}
+\]
+Both are invertible and retain every original basis vector.
+The quotient of successive diagonal entries is \(q^{-1}\), so
+\[
+ F_{q,\rho}N_\rho F_{q,\rho}^{-1}=q^{-1}N_\rho,\qquad
+ A_q=F_{q,\rho}\Gamma_{q,\rho}^{-1}
+                     \exp((\log q)N_\rho).
+ \tag{MW19}
+\]
+The second equality is obtained by multiplying the first two
+diagonal operators, giving exactly \(q^\rho I\), and then retaining
+the complete exponential MW8. It proves reconstruction of the
+original arithmetic action from the added operators.
+Moreover, if \(U(z)=\exp(zN_\rho)\), then
+\[
+ F_{q,\rho}U(z)F_{q,\rho}^{-1}=U(q^{-1}z).
+ \tag{MW20}
+\]
+Thus these explicit matrices define a complex representation of the
+group generated by the additive one-parameter operators \(U(z)\)
+and an invertible element acting on the parameter by \(z\mapsto
+q^{-1}z\). This statement is at the displayed complex-linear
+type; it does not assert that these matrices arise from an
+arithmetic lisse sheaf.
+
+On the graded piece of index \(j=m_\rho-1-2r\), the eigenvalue
+of the added \(F_{q,\rho}\) is \(q^{\rho+j/2}\), with
+\[
+ 2\log_q|q^{\rho+j/2}|=2\operatorname{Re}\rho+j .
+ \tag{MW21}
+\]
+This gives exactly the index shift \(\beta+j\) in Weil II 1.8.4,
+with the explicitly computed \(\beta=2\operatorname{Re}\rho\).
+It does not determine \(\beta\). The two-sided boundary estimate in
+Deligne's theorem comes from the pure lisse source, the trace and
+Euler-product bound, and its tensor and dual arguments. MW18
+constructs the matrix relation and MW21 computes every graded
+modulus; neither computation supplies that geometric input.
+All operators MW18 act coefficientwise on MW7, preserve its masks,
+and commute with the coefficient permutation MW9.
+
+For admissible odd prime powers \(q\) as in MW9, retaining the
+separate coefficient operator also gives the exact reconstruction
+and its tensor version
+\[
+ \begin{aligned}
+ T_{q,q}|_{B_{\rho,n}}
+   &=F_{q,\rho}\Gamma_{q,\rho}^{-1}
+                         \exp((\log q)N_\rho)\Psi_q,\\
+ T_{q,q}^{\otimes}
+   &=F_q^{\otimes}(\Gamma_q^{\otimes})^{-1}
+           \exp\!\left((\log q)\sum_\nu N_\nu\right)
+                                      \Psi_q^{\otimes},\\
+ F_q^{\otimes}&=\bigotimes_\nu F_{q,\rho_\nu},\qquad
+ \Gamma_q^{\otimes}=\bigotimes_\nu\Gamma_{q,\rho_\nu}.
+ \end{aligned}
+ \tag{MW21a}
+\]
+The first two factors in the first line multiply to \(q^\rho I\);
+in the tensor line they multiply to \(q^{\sum_\nu\rho_\nu}I\).
+This proves both identities in their displayed order. On total degree
+\(j\), the added \(F_q^{\otimes}\) acts by
+\(q^{\sum_\nu\rho_\nu+j/2}\). Its combination with
+\(\Psi_q^{\otimes}\) acts by
+\((\prod_\nu\omega_\nu)q^{\sum_\nu\rho_\nu+j/2}\) on the indicated
+coefficient eigenspaces. These are added-operator eigenvalues; the
+unchanged arithmetic and combined eigenvalues remain MW16b.
+
+For completeness, duality at the vector-space level also retains
+its signs. On \(V^\vee\), use \(N^\vee=-N^{\mathsf T}\) and
+\(M_jV^\vee=(M_{-j-1}V)^\perp\). The dual of a basis vector of
+index \(d\) has index \(-d\), and \(N^\vee\) lowers that index
+by two with coefficient \(-1\). Its iterated graded isomorphisms
+have the nonzero coefficient \((-1)^k\).
+The original contragredient arithmetic action is
+\[
+ (A_a^{-1})^{\mathsf T}
+       =a^{-\rho}\exp(-(\log a)N^{\mathsf T}),
+ \tag{MW22}
+\]
+so its graded eigenvalue is exactly \(a^{-\rho}\).
+On the full coefficient dual put
+\(\Psi_q^\vee=(\Psi_q^{-1})^{\mathsf T}\) and
+\(T_{a,q}^\vee=(T_{a,q}^{-1})^{\mathsf T}\). Commutativity in MW9a
+and transposition of the inverse product give
+\[
+ T_{a,q}^\vee=(A_a^{-1})^{\mathsf T}
+                         (\Psi_q^{-1})^{\mathsf T}.
+ \tag{MW22a}
+\]
+The dual of the \(\omega\)-coefficient eigenspace has
+\(\Psi_q^\vee\)-eigenvalue \(\omega^{-1}\): evaluation gives
+\((\Psi_q^\vee f)(v)=f(\Psi_q^{-1}v)=\omega^{-1}f(v)\).
+Thus the three dual graded eigenvalues are \(a^{-\rho}\),
+\(\omega^{-1}\), and \(\omega^{-1}a^{-\rho}\), respectively.
+These formulas establish the tensor, dual and Tate-scaling
+comparisons on every arithmetic amplitude fibre while retaining
+the separate mixed-support labels.
+
+\subsection{The actual length-two quotient retains its induced degrees}
+
+Define \(Z_{\geq2}=\{\rho\in Z:m_\rho\geq2\}\). For each member
+of this specified subset put \(m=m_\rho\), \(b=m-2\), and
+\[
+ \begin{gathered}
+ J_\rho=u_\rho^2E_\rho
+       =\operatorname{span}\{v_{\rho,r}:2\leq r<m\},\qquad
+ C_\rho=E_\rho/J_\rho,\qquad
+ \pi_\rho:E_\rho\longrightarrow C_\rho,\\
+ w_0=\pi_\rho(v_{\rho,0}),\qquad
+ w_1=\pi_\rho(v_{\rho,1}),\qquad
+ \phi_\rho:C_\rho\longrightarrow V_2=\mathbb C[u]/(u^2),
+ \quad \phi_\rho(c_0w_0+c_1w_1)=c_0+c_1u.
+ \end{gathered}
+ \tag{MW23}
+\]
+Here \(u=x-\rho\) is the same local coordinate: the map sends the
+original local unit to \(1\) and the original first power to \(u\).
+The basis multiplication satisfies
+\(v_{\rho,r}v_{\rho,s}=v_{\rho,r+s}\) for \(r+s<m\), and zero
+otherwise. Therefore \(J_\rho\) is an ideal, \(w_0\) is the quotient
+unit, \(w_1^2=0\), and \(\phi_\rho\) is an algebra isomorphism with
+inverse \(c_0+c_1u\mapsto c_0w_0+c_1w_1\).
+For \(m=2\), the displayed span for \(J_\rho\) is zero. This
+construction is indexed by \(Z_{\geq2}\); it does not assert that
+this subset has a member. Raising an exponent preserves \(J_\rho\),
+so \(N_\rho\) induces the operator \(\overline N\) on \(C_\rho\).
+
+Give \(J_\rho\) the subspace filtration and \(C_\rho\) the quotient
+filtration of MW3. The latter is exactly
+\[
+ \begin{aligned}
+ \overline M_jC_\rho&=\pi_\rho(M_jE_\rho)
+ =\begin{cases}
+ 0&j<m-3,\\
+ \mathbb Cw_1&m-3\leq j<m-1,\\
+ C_\rho&j\geq m-1,
+ \end{cases}\\
+ \phi_\rho(\overline M_jC_\rho)&=M_{j-b}V_2.
+ \end{aligned}
+ \tag{MW24}
+\]
+Indeed, all original powers of exponent at least two vanish under
+\(\pi_\rho\); the two surviving powers have their original degrees
+\(m-1\) and \(m-3\). Substituting \(b=m-2\) into the length-two
+degrees \(1,-1\) proves the second line. For every \(j\) the kernel
+of \(M_jE_\rho\to\overline M_jC_\rho\) is
+\(J_\rho\cap M_jE_\rho\), and its image is the whole indicated
+quotient step. Hence
+\(0\to J_\rho\cap M_jE_\rho\to M_jE_\rho\to
+\overline M_jC_\rho\to0\) is exact, proving strictness of both maps.
+The quotient filtration is centered at \(b\): its only nonidentity
+graded isomorphism is
+\(\overline N:\operatorname{Gr}_{b+1}^{\overline M}C_\rho
+\to\operatorname{Gr}_{b-1}^{\overline M}C_\rho\), sending the class
+of \(w_0\) to that of \(w_1\) with coefficient one. For \(k=0\)
+the centered-at-\(b\) map is the identity, and for \(k>1\) both
+graded spaces are zero. If \(m>2\), this filtration is not centered
+at zero: \(\operatorname{Gr}_{m-1}\) is nonzero whereas
+\(\operatorname{Gr}_{-(m-1)}\) is zero. MW24 retains the quotient's
+actual degrees in every case.
+
+The ideal \(J_\rho\) is invariant under \(N_\rho\), every \(A_a\),
+and the added diagonal operators \(\Gamma_{q,\rho},F_{q,\rho}\).
+For \(N_\rho\) this follows by raising the exponent; for \(A_a\)
+it follows term by term in MW8; for the diagonals each basis line
+is invariant. Their induced quotient operators consequently satisfy
+\[
+ \begin{gathered}
+ \overline Nw_0=w_1,\quad \overline Nw_1=0,\qquad
+ \overline A_aw_0=a^\rho(w_0+(\log a)w_1),\quad
+ \overline A_aw_1=a^\rho w_1,\\
+ \overline\Gamma_qw_r=q^{(m-1)/2-r}w_r,\qquad
+ \overline F_qw_r=q^{\rho+(m-1)/2-r}w_r\quad(r=0,1),\\
+ \phi_\rho\overline N=N_2\phi_\rho,\quad
+ \phi_\rho\overline A_a=A_{a,2}\phi_\rho,\quad
+ \phi_\rho\overline\Gamma_q=q^{b/2}\Gamma_{q,2}\phi_\rho,\quad
+ \phi_\rho\overline F_q=q^{b/2}F_{q,2}\phi_\rho.
+ \end{gathered}
+ \tag{MW25}
+\]
+The subscript \(2\) specifies the fixed length-two operators
+\(N_2(1)=u\), \(N_2(u)=0\),
+\(A_{a,2}=a^\rho(I+(\log a)N_2)\),
+\(\Gamma_{q,2}(1)=q^{1/2}\), \(\Gamma_{q,2}(u)=q^{-1/2}u\),
+and \(F_{q,2}=q^\rho\Gamma_{q,2}\). Every line of MW25 follows by
+applying both sides to \(w_0,w_1\). In particular, the higher
+terms of MW8 are killed by this specified quotient map; they have
+not been discarded from the original packet.
+
+An exact filtered operator isomorphism records both the degree and
+diagonal scalar shifts. Let \(D_b=\mathbb C d_b\) have filtration
+\((D_b)_j=0\) for \(j<b\) and \((D_b)_j=D_b\) for \(j\geq b\),
+with \(N_{D_b}=0\), \(A_{a,D_b}=I\), and
+\(\Gamma_{q,D_b}=F_{q,D_b}=q^{b/2}I\). Use sum filtrations,
+tensor-sum nilpotents, and tensor-product invertible operators. Then
+\[
+ \begin{gathered}
+ \theta_\rho:C_\rho\xrightarrow{\sim}V_2\otimes D_b,
+ \quad w_r\longmapsto u^r\otimes d_b\quad(r=0,1),\\
+ \theta_\rho(\overline M_jC_\rho)
+        =M_{j-b}V_2\otimes D_b,\qquad
+ \overline A_q=\overline F_q\overline\Gamma_q^{-1}
+                              (I+(\log q)\overline N).
+ \end{gathered}
+ \tag{MW26}
+\]
+The inverse sends \(u^r\otimes d_b\) to \(w_r\), so the displayed
+filtration equality proves strictness in both directions. MW25
+proves intertwining for \(A,\Gamma,F\), and its coefficient-one
+nilpotent relation proves intertwining for \(N\). In the reconstruction,
+\(\overline F_q\overline\Gamma_q^{-1}=q^\rho I\), so the
+degree shift has changed no arithmetic scalar or logarithmic
+coefficient. The original auxiliary \(H\) in MW11 descends to
+\(H_2+bI\) under \(\phi_\rho\), where \(H_2(1)=1\) and \(H_2(u)=-u\),
+by its two diagonal entries.
+For \(m>2\), the original auxiliary \(E\) does not descend:
+\(E(v_{\rho,2})=2(m-2)v_{\rho,1}\notin J_\rho\).
+Thus MW26 is the explicitly proved filtered isomorphism for
+\(N,A,\Gamma,F\), with the exact additional relation for \(H\).
+
+The kernel also has a specified shifted comparison. For \(m>2\), let
+\(V_{m-2}=\mathbb C[u]/(u^{m-2})\) use the original powers, the
+centered filtration of a length-\(m-2\) block, and the operators
+MW8 and MW18 with the same \(\rho\). The linear map
+\(\alpha_\rho:V_{m-2}\to J_\rho\),
+\(\alpha_\rho(u^r)=v_{\rho,r+2}\), is bijective, with inverse given
+by removing these specified two powers. It is a module comparison
+for the displayed nilpotent and arithmetic operators. Its complete
+filtration and diagonal relations are
+\[
+ \begin{gathered}
+ \alpha_\rho(M_{j+2}V_{m-2})=J_\rho\cap M_jE_\rho,\qquad
+ N_\rho\alpha_\rho=\alpha_\rho N_{m-2},\qquad
+ A_a\alpha_\rho=\alpha_\rho A_{a,m-2},\\
+ \Gamma_{q,\rho}\alpha_\rho
+          =q^{-1}\alpha_\rho\Gamma_{q,m-2},\qquad
+ F_{q,\rho}\alpha_\rho=q^{-1}\alpha_\rho F_{q,m-2}.
+ \end{gathered}
+ \tag{MW26a}
+\]
+The source degree of \(u^r\) is \(m-3-2r\); the image's degree is
+\(m-1-2(r+2)=(m-3-2r)-2\), proving the first relation at every
+step. Raising the exponent proves the nilpotent relation including
+the last zero vector; expanding MW8 proves the arithmetic relation
+with all its coefficients. The diagonal exponent on the image is
+\((m-1)/2-(r+2)=((m-3)/2-r)-1\), which proves both remaining
+relations. Consequently the kernel, quotient, and their exact
+sequence all retain their actual induced shifts. For \(m=2\) the
+kernel is zero as already specified.
+
+The same quotient is available coefficientwise. Its map on each face is
+\[
+ (A,(x_i)_{i\in A})\longmapsto(A,(\pi_\rho x_i)_{i\in A}).
+\]
+Even a coefficient in \(J_\rho\)
+becomes a present zero in the same slot. Surjectivity on each
+filtered face follows by choosing, independently in each slot,
+a preimage in \(M_jE_\rho\) from MW24. Zero insertion commutes with
+this map because \(\pi_\rho(0)=0\). On the full coefficient space
+it intertwines \(\Psi_q\) since the map is linear and sends
+\((-1)^{\lfloor qi/n\rfloor}x\) to that same sign times
+\(\pi_\rho(x)\); MW25 then proves intertwining for \(T_{a,q}\).
+For a tensor of such quotient blocks the exact comparison is
+\[
+ \begin{gathered}
+ \bigotimes_\nu C_{\rho_\nu}
+ \xrightarrow{\ \bigotimes_\nu\theta_{\rho_\nu}\ }
+ \left(\bigotimes_\nu V_{2,\rho_\nu}\right)
+                         \otimes\left(\bigotimes_\nu D_{m_{\rho_\nu}-2}\right),\\
+ \text{total degree shift }\sum_\nu(m_{\rho_\nu}-2),\qquad
+ \text{added }F\text{ and }\Gamma\text{ factor }
+                      q^{\frac12\sum_\nu(m_{\rho_\nu}-2)}.
+ \end{gathered}
+ \tag{MW27}
+\]
+The tensor factors are rearranged by the explicit ordinary vector-space
+map \(\bigotimes_\nu(u^{r_\nu}\otimes d_{b_\nu})\mapsto
+(\bigotimes_\nu u^{r_\nu})\otimes(\bigotimes_\nu d_{b_\nu})\),
+with coefficient one. Degrees add and diagonal eigenvalues multiply,
+which proves both formulas and their inverse on every tensor basis
+vector. The tensor quotient is strict: a source tensor basis vector
+survives exactly when each exponent is zero or one, and the degree
+of every surviving vector is unchanged. Thus each filtered target
+step is the image of the same source step. Its kernel is spanned
+by tensors with at least one exponent at least two, giving the
+complete filtered kernel as their intersection with that step.
+The unchanged arithmetic eigenvalues and the signed coefficient
+products are precisely MW16a--MW16b, with the nilpotent powers
+transported through these actual quotient maps. The strict
+length-two subobject and quotient maps are developed with these
+induced degrees in MRE34--MRE42 below.
+
+\paragraph{Status of the geometric control.}
+The construction proves MW1--MW27, including the lettered formulas,
+on the original finite packets and the specified quotients.
+It explicitly supplies the nilpotent filtration and its tensor
+and dual compatibility, and it reconstructs the unchanged arithmetic
+operator from a Tate-scaling operator. No theorem here identifies
+the resulting complex representation with a pure lisse sheaf over
+the absolute \(\tau\)-base. In particular it proves no numerical
+restriction on \(2\operatorname{Re}\rho\). The relevant further
+comparison is with the actual hypotheses and proof of Weil II
+1.8.4--1.8.5 and the compact-support pushforward estimate 3.3.1;
+the finite-poset section functor by itself has not supplied those
+estimates.

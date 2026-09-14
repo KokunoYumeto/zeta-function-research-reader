@@ -90,8 +90,8 @@ theorem residual_energy (H X : Matrix j j ℂ) (h g : j → ℝ)
 section Bound
 variable [Nonempty j]
 
-/-- A fixed-pair geometric bound for the centered error radius. -/
 omit [DecidableEq j] in
+/-- A fixed-pair geometric bound for the centered error radius. -/
 theorem spectral_radius_bound (h g a : j → ℝ) (θ Z : ℝ) (hθ : 0 ≤ θ) (hZ : 0 ≤ Z)
     (hh : ∀ i, |h i| ≤ θ) (hg : ∀ i, |g i| ≤ a i) (L : ℕ) :
     Real.sqrt (variance (residualSpectrum h g L) * Z) ≤

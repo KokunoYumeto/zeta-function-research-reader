@@ -1,3 +1,51 @@
+# Split-Zero cohomology: Gamma growth and arithmetic return
+
+[Read the new 37-page Gamma growth paper](workbenches/splitzero-tandem/continuations/20260914-gamma-growth/Gamma_Growth_and_Arithmetic_Return.pdf) · [Complete editable sources](workbenches/splitzero-tandem/continuations/20260914-gamma-growth/README.md).
+
+The leading Gamma calculation is now proved. The paper preserves the original
+Gamma source, mass, four endpoint roles, primary multiplicities and exact
+quotient/kernel/boundary maps. It includes the earlier complete LET/PHT/HCT
+calculation and the new complete WGP/RWB/EIQ/GEL/WGR proofs.
+
+Here k=4l+1 is the tensor degree, m is the primary multiplicity,
+e=1+k(m-1), and q=e(k+1)^2=2n is the finite cyclic quotient dimension.
+For original integers l,m at least one, the logarithmic Gamma comparison W_k
+satisfies the exact finite bounds
+
+    lq/64 <= W_k <= 6lq.
+
+Its leading limit is proved, not merely observed:
+
+    W_k/(lq) -> C_Gamma > 0,
+    C_Gamma = 2 integral log(x) d rho_(2,pi)(x) - 4(2 log 2 - 1).
+
+The paper gives the exact equilibrium density, mass and support and proves
+the source determinant integral with its t=q^2 x coordinate map and Jacobian.
+The signed Gamma contribution returns through the original arithmetic maps:
+
+    Delta_k^Gamma = -W_k + e_0 - e_q - e_(q+1) + delta_k^sigma,
+    Delta_k^Gamma/(kq) -> -C_Gamma/4.
+
+The proved leading remainder is o(lq); an o(q) Hankel remainder is not claimed.
+The original P product has a sharper signed expansion through the constant
+scale. Next are the original baseline B_k^0 at its four actual degrees and the
+finite q-scale Gamma correction, followed through the same arithmetic and
+cohomology receiving maps. No completed endpoint conclusion or Lean result is
+claimed by this source update.
+
+This complete new source snapshot is **outside the frozen
+[DOI 10.5281/zenodo.22754516](https://doi.org/10.5281/zenodo.22754516)**. That edition retains its 15-page preview
+and all 48 downloads. The 15-, 33-, 46- and 1,929-page papers and their source
+trees remain unchanged; the new 37-page paper is added, not substituted for them.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim from before the Gamma-growth result.
+Its statements that leading W remains open describe the earlier source cut,
+not the completed calculation above. Earlier “current” publication claims
+refer to their explicitly linked frozen editions. All existing programme
+entries and proof/CI scopes retain their source-time identities.
+
 # Split-Zero cohomology: complete Gamma return and original relation bounds
 
 [Read the 15-page complete Gamma return](https://zenodo.org/api/records/22754516/files/47-complete-gamma-return-reader.pdf/content) · [Published DOI 10.5281/zenodo.22754516](https://doi.org/10.5281/zenodo.22754516).

@@ -1,0 +1,11 @@
+# Complete receiving sources for the universal Gamma reference
+
+This directory contains the complete current NOTE and JSR successors. The complete accepted cut19 predecessors are preserved in `predecessors/`. The script `install_universal_low_receivers.py` records twelve precise before/after spans and proves that reversing those replacements restores the exact predecessor bytes. All previous source tags, labels, arithmetic allowances and parameter branches remain present.
+
+The new complete WRC1–7 proof is embedded once in `SIGNED_RETURN_RECEIVER.tex` and retained as `spans/W_RECEIVING_PROOF.tex`. The complete NOTE independently states the scalar source maps, low error, entire universal reference, original signed return, interval containment and arithmetic receiving substitution. The literal moment dictionary is retained: LET's `m_j` is the receiving source's literal `mu_j`; the PHT even-moment index corresponds to `m_(2n)`.
+
+The exact translation is `Hstar = -W + e0`, with `e0 in [-a0,b0]`. Therefore `[-W-bminus-a0, -W+bplus+b0]` contains the prior exact-low interval `[Hstar-bminus, Hstar+bplus]`. Adding it as the fourth maximum/minimum entry leaves the current finite Gamma, arithmetic and HC endpoints exactly unchanged. Its use is the completely universal analytic centre: `exp(W)` is the original positive product of the two high Hankel ratios, scalar moment ratio and complete D-product. No leading asymptotic value or improved arithmetic allowance is asserted.
+
+All 32 complete provider/provenance files include the earlier accepted sources and final LET1–21, PHT1–23 and HCT1–39 with their source-specific acceptance records. `FULL_RECEIVING_RECEIPT.json` records the exact pins and reversible changes; `DELTA_REVIEW.md` records the bounded independent review of these changed receiving spans. The only final review correction made the prose say explicitly that W is the logarithm of the positive product, as its displayed formula already required.
+
+This task made source replacements only. It did not compile a PDF, run numerical checks, edit cut19, change earlier readers or change outer seals. The separate cut20 delivery prints the full LET/PHT/HCT proofs and includes these complete receiving sources as dependencies. No separate printing of the WRC body is requested.

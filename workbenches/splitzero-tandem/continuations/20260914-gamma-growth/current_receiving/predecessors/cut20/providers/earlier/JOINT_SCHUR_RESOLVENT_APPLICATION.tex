@@ -1,0 +1,454 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\usepackage[margin=24mm]{geometry}
+\allowdisplaybreaks
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Id}{\operatorname{id}}
+\newcommand{\trR}{\operatorname{tr}_{\R}}
+\newcommand{\rem}{\operatorname{rem}}
+\title{The signed resolvent applied to the original joint-Schur Gamma return}
+\author{Split-Zero research programme}
+\date{14 September 2026}
+\begin{document}
+\maketitle
+
+This calculation supplies the direct coefficient maps, positive metric,
+traceless observable, finite polynomial, and integrated error for the
+joint-Schur return. Its finite stopping constants are functions of the
+specified packet and degree. Every matrix below is constructed from the
+original sigma source and its full remainder map. Equation labels JRA1--JRA29
+are local to this complete calculation.
+
+\paragraph{Original objects and full coefficient maps.}
+Retain $0<\delta<1/2$, $\gamma>2$, integer $m\geq1$, and
+\begin{align}
+ k&=4l+1,\quad l\geq1,\quad c=k/2,\quad e=1+k(m-1),\quad q=(k+1)^2e,\notag\\
+ \lambda_{ab}&=c+(2a-k)\delta+i(2b-k)\gamma,\qquad
+ \chi(S)=\prod_{a,b=0}^k(S-\lambda_{ab})^e,\qquad
+ E=\C[S]/(\chi).\tag{JRA1}
+\end{align}
+The nodes are distinct: equality forces equality of their real and imaginary
+parts, hence equality of $a,b$. None is real because $k$ is odd.
+Put $\mathcal P_N=\{P\in\C[S]:\deg P\leq N\}$ with its given sigma form
+\begin{equation}
+ \langle P,Q\rangle_\sigma=\int_\R
+ \overline{P(c+iy)}Q(c+iy)
+ \frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\,dy,
+ \qquad H_N^\sigma=(\langle S^i,S^j\rangle_\sigma)_{i,j=0}^N.
+ \tag{JRA2}
+\end{equation}
+These are the finite positive source forms of the incoming joint-Schur
+construction. Positivity follows directly since their density is positive
+and a nonzero polynomial cannot vanish on the entire line; finiteness is
+the Gamma-moment property of that original source. We retain its mass
+$c_\sigma=\sqrt{2\pi}$ in every $H_N^\sigma$.
+
+The coefficient map $J_N:\mathcal P_N\to E$ is monic remainder modulo $\chi$,
+in the basis $1,S,\ldots,S^{q-1}$. It is onto for $N\geq q-1$.
+For $\alpha_j=c+2j+1/2$ and $f(S)=\prod_{j=0}^{l-1}(S-\alpha_j)$ define
+$Z_M:\mathcal P_M\to\C^l$ by $(Z_MP)_j=P(\alpha_j)$.
+For $M=N+l$ the joint map is
+\begin{equation}
+ \mathscr J_M=\binom{J_M}{Z_M}:\mathcal P_M\longrightarrow E\oplus\C^l,
+ \quad
+ \mathscr J_M(H_M^\sigma)^{-1}\mathscr J_M^*
+ =\begin{pmatrix}K_M&C_M\\C_M^*&A_M\end{pmatrix}.
+ \tag{JRA3}
+\end{equation}
+To prove surjectivity, $\chi$ and $f$ are coprime by JRA1 and the reality
+of $\alpha_j$. Their Chinese remainder map is onto and has representatives
+of degree at most $q+l-1\leq M$. Its two factors are $E$ and the evaluation
+algebra at the distinct $\alpha_j$. Thus the block covariance in JRA3 is
+positive definite: its quadratic form on $v\ne0$ is the strictly positive
+$(H_M^\sigma)^{-1}$ form on $\mathscr J_M^*v\ne0$.
+Consequently $K_M,A_M$ and both Schur complements
+\begin{equation}
+ G_M^\sigma=K_M^{-1},\qquad
+ S_M=K_M-C_M A_M^{-1}C_M^*,\qquad
+ L_M=A_M-C_M^*G_M^\sigma C_M
+ \tag{JRA4}
+\end{equation}
+are positive definite. For example, minimizing the JRA3 form over the
+first coordinate with second coordinate $z$ gives $z^*L_Mz>0$;
+minimizing over the second proves the assertion for $S_M$.
+
+Let $p_n$ be the monic orthogonal polynomials in this same sigma form,
+with squared norms $\omega_n^\sigma>0$. Orthogonal decomposition of
+$\mathcal P_{N+l}$ into $\mathcal P_N$ and its monic tail gives
+\begin{align}
+ U_N&=[Jp_{N+1},\ldots,Jp_{N+l}]:\C^l\to E,\quad
+ \Omega_N=\diag(\omega_{N+1}^\sigma,\ldots,\omega_{N+l}^\sigma),\notag\\
+ X_N&=\Omega_N^{-1}U_N^*G_N^\sigma U_N,\quad
+ Y_N=A_{N+l}^{-1}C_{N+l}^*G_{N+l}^\sigma C_{N+l}.
+ \tag{JRA5}
+\end{align}
+Thus $\Omega_NX_N=U_N^*G_N^\sigma U_N\geq0$ and
+$A_{N+l}Y_N=C_{N+l}^*G_{N+l}^\sigma C_{N+l}\geq0$.
+Moreover $A_{N+l}(I-Y_N)=L_{N+l}>0$.
+The original metrics are $\Omega_N$ on the first coefficient space and
+$A_{N+l}$ on the second. It follows, by conjugation with their positive
+square roots, that $X_N$ has nonnegative real eigenvalues and $Y_N$ has
+real eigenvalues in $[0,1)$. No cross covariance has been removed.
+
+In raw derivative coordinates the remainder coordinate map is
+\begin{equation}
+ (\mathsf E_\chi)_{(\lambda,r),n}
+ =\begin{cases}n!\lambda^{n-r}/(n-r)!,&n\geq r,\\0,&n<r,\end{cases}
+ \quad
+ \mathsf E_\chi M_f\mathsf E_\chi^{-1}
+ =\bigoplus_\lambda F_\lambda,\qquad
+ (F_\lambda)_{r,s}=
+ \begin{cases}\binom rs f^{(r-s)}(\lambda),&r\geq s,\\0,&r<s.\end{cases}
+ \tag{JRA6}
+\end{equation}
+All $0\leq r<e$ occur, and entries between different nodes are zero.
+The equality is Leibniz's formula.
+The inverse is Hermite interpolation, since vanishing of all these
+derivatives is divisibility by $\chi$ and the domain has dimension $q$.
+If an earlier file uses divided derivatives, its explicit map to JRA6 is
+$D=\diag_{\lambda,r}(r!)$: raw jets equal $D$ times divided jets, and
+the multiplication matrices obey $F_{\rm raw}=D F_{\rm div}D^{-1}$.
+This does not change the original remainder map or drop a higher jet.
+
+\paragraph{The determinant character representing the actual return.}
+Write $V_N^\sigma=\det G_N^\sigma$ and let $G_N^0$ denote the tensor-Gamma
+quotient form in the original remainder coordinates. Gamma recurrence on
+$k=4l+1$ gives exactly
+\begin{equation}
+ dm_k^0=C_k|f(c+iy)|^2d\sigma(y),\qquad
+ C_k=\frac{(\sqrt{2\pi})^k}{2^{1-k/2}\Gamma(k/2)}4^{-l}.
+ \tag{JRA7}
+\end{equation}
+Indeed the holomorphic ratio is $(i/2)^l\prod_{j=0}^{l-1}(y-i(2j+1/2))$;
+taking its real-line modulus gives JRA7, including the factor $4^{-l}$.
+Multiplication by $f$ maps $\mathcal P_N$ isomorphically onto
+$\ker Z_{N+l}$, sends its remainder $v$ to $M_fv$, and changes squared
+norms by $C_k$. Minimizing the sigma norm under the joint constraint
+$(M_fv,0)$, then inverting the positive block matrix JRA3, proves
+\begin{equation}
+ G_N^0=C_kM_f^*S_{N+l}^{-1}M_f,\qquad
+ \log V_N^0=q\log C_k+2\log|\det M_f|
+            +\log V_{N+l}^\sigma-\log\det(I-Y_N).
+ \tag{JRA8}
+\end{equation}
+For the determinant equality, Schur elimination gives
+$\det S_M\det A_M=\det K_M\det L_M$; divide by
+$\det A_M\det K_M$ and use $I-Y_N=A_M^{-1}L_M$.
+Here $M_f$ is invertible because $f,\chi$ are coprime.
+
+The tail decomposition used in JRA5 gives
+$K_{N+l}=K_N+U_N\Omega_N^{-1}U_N^*$.
+Taking determinants and using $\det(I+AB)=\det(I+BA)$ gives
+\begin{equation}
+ \log V_N^\sigma-\log V_{N+l}^\sigma=\log\det(I+X_N).
+ \tag{JRA9}
+\end{equation}
+The determinant identity follows, for instance, by computing the
+determinant of $\left(\begin{smallmatrix}I&A\\-B&I\end{smallmatrix}\right)$
+by either Schur complement.
+Set
+\begin{equation}
+ (N_0,N_1,N_2,N_3)=(q-1,q,2q-1,2q),\quad
+ (\varepsilon_0,\varepsilon_1,\varepsilon_2,\varepsilon_3)=(1,1,-1,-1).
+ \tag{JRA10}
+\end{equation}
+The signed quotient-volume difference is therefore
+\begin{equation}
+ \mathcal R:=\sum_{r=0}^3\varepsilon_r
+             (\log V_{N_r}^\sigma-\log V_{N_r}^0)
+ =\sum_{r=0}^3\varepsilon_r
+       \{\log\det(I+X_{N_r})+\log\det(I-Y_{N_r})\}.
+ \tag{JRA11}
+\end{equation}
+The $q\log C_k+2\log|\det M_f|$ terms in JRA8 cancel because
+$\sum_r\varepsilon_r=0$, after their four original appearances have
+been retained. In the incoming notation, $\mathcal R=R_k^0-R_k^\sigma$.
+
+Define the ordered direct sum and its metric by
+\begin{align}
+ \mathcal V&=\bigoplus_{r=0}^3
+             (\mathcal V_{r,+}\oplus\mathcal V_{r,-}),\qquad
+ \mathcal V_{r,\pm}=\C^l,\qquad n=8l,\notag\\
+ \mathcal M&=\diag_{r=0}^3(\Omega_{N_r},A_{N_r+l}),\notag\\
+ \mathcal B&=\diag_{r=0}^3(I+X_{N_r},I-Y_{N_r}),\qquad
+ Q=\diag_{r=0}^3(\varepsilon_r I_l,\varepsilon_r I_l).
+ \tag{JRA12}
+\end{align}
+Both $Q$ and $\mathcal B$ are $\mathcal M$-self-adjoint,
+$\mathcal M\mathcal B>0$, and direct multiplication gives
+\begin{equation}
+ Q^2=I,\qquad \Tr Q=2l\sum_r\varepsilon_r=0,
+ \qquad \Tr Q^2=n=8l.\tag{JRA13}
+\end{equation}
+The exact scalar map is the determinant character
+\begin{equation}
+ \Delta:\prod_{r,\pm}\operatorname{GL}(\mathcal V_{r,\pm})\to\C^\times,
+ \qquad (T_{r,\pm})\longmapsto
+       \prod_{r=0}^3\{\det T_{r,+}\det T_{r,-}\}^{\varepsilon_r}.
+ \tag{JRA14}
+\end{equation}
+It is multiplicative because each determinant is. Equivalently it is the
+action on $\bigotimes_r(\det\mathcal V_{r,+}\otimes
+\det\mathcal V_{r,-})^{\varepsilon_r}$, with exponent $-1$ meaning the
+dual line. On $\mathcal B$, its value is positive and
+$\log\Delta(\mathcal B)=\mathcal R=\Tr(Q\log\mathcal B)$ by JRA11.
+This is the typed map connecting the new eight coefficient summands to
+the four original quotient determinants; it does not assert that $Q$
+is the earlier four-projector contrast on the much larger source.
+
+\paragraph{A complete simultaneous spectral frame.}
+Construct $W$ as the direct sum of the positive square roots of the eight
+blocks $\Omega_{N_r},A_{N_r+l}$ of $\mathcal M$.
+Then $W^*W=\mathcal M$, $W^{-1}$ exists, and
+$\widehat B=W\mathcal BW^{-1}$ is Hermitian positive.
+Construct an orthonormal eigenbasis for $\widehat B$ separately in its
+eight invariant blocks. For completeness, a Hermitian matrix has a
+real eigenvalue by the fundamental theorem of algebra and
+$\lambda v^*v=v^*Hv=\overline{v^*Hv}$; the orthogonal complement of an
+eigenvector is invariant because $v^*Hw=(Hv)^*w$. Induction constructs
+an orthonormal eigenbasis, and positivity makes all eigenvalues positive.
+Apply the same construction to the positive matrix $\mathcal M$ to
+construct its positive square root, taking the positive square root of
+each eigenvalue. Thus both constructions and both inverse laws follow.
+If $U$ is the resulting block unitary matrix, put $F=U^*W$.
+Then, including every eigenvalue with multiplicity,
+\begin{equation}
+ F^*F=\mathcal M,\quad FF^{-1}=F^{-1}F=I,\quad
+ F\mathcal BF^{-1}=\diag(b_1,\ldots,b_n),\quad
+ FQF^{-1}=\diag(\epsilon_1,\ldots,\epsilon_n),\quad b_i>0.
+ \tag{JRA15}
+\end{equation}
+Here each $\varepsilon_r$ occurs $2l$ times. The last equality follows
+because $Q$ is scalar on each of the eight blocks, so the constructed
+block isometry commutes with its signs. Conjugation preserves products,
+powers, inverses, and traces by direct multiplication and cyclicity.
+
+\paragraph{Finite resolvent with explicit positive constants.}
+Constants requiring only the eight original matrices are
+\begin{align}
+ \mu&=\min\bigl(1,\min_{0\leq r\leq3}\det(I-Y_{N_r})\bigr)>0,
+ &\nu&=1+\sum_{r=0}^3\Tr X_{N_r}\geq1,\notag\\
+ d&=(\mu+\nu)/2>0,
+ &\theta&=(\nu-\mu)/(\nu+\mu)\in[0,1),\notag\\
+ K_0&=\mu^{-2}\Tr(\mathcal B-I)^2
+ =\mu^{-2}\sum_{r=0}^3\Tr(X_{N_r}^2+Y_{N_r}^2)\geq0.
+ \tag{JRA16}
+\end{align}
+Every eigenvalue of $I-Y_N$ lies in $(0,1]$. Its determinant, the product
+of all eigenvalues, is at most each one; hence $b_i\geq\mu$ on these
+blocks. On the other blocks $b_i\geq1\geq\mu$ and
+$b_i\leq1+\Tr X_{N_r}\leq\nu$. The minus blocks also have
+$b_i\leq1\leq\nu$. This proves $\mu\leq b_i\leq\nu$ and all
+claims in JRA16, including $\mu\leq1$ and $\mu\leq\nu$.
+
+For $0\leq t\leq1$ set
+\begin{align}
+ B_t&=(1-t)I+t\mathcal B,&a_t&=1+t(d-1)>0,\notag\\
+ X_t^{\rm res}&=B_t^{-1}(\mathcal B-I),&
+ H_t&=I-B_t/a_t=t(dI-\mathcal B)/a_t,\notag\\
+ T_t&=(\mathcal B-I)/a_t,&
+ S_L(t)&=\sum_{j=0}^L H_t^jT_t\quad(L\geq0).
+ \tag{JRA17}
+\end{align}
+All these endomorphisms are self-adjoint in the original $\mathcal M$
+and commute with each other, being real rational functions of
+$\mathcal B$ with positive denominators. In JRA15 their diagonal values are
+\begin{equation}
+ \lambda_i(t)=1+t(b_i-1),\quad
+ \gamma_i(t)=\frac{b_i-1}{\lambda_i(t)},\quad
+ h_i(t)=\frac{t(d-b_i)}{a_t}.
+ \tag{JRA18}
+\end{equation}
+These equations explicitly supply the simultaneous diagonalization
+required by the PR31 spectral-residual theorem. They follow by applying
+$F$ to each factor of JRA17; the diagonal values have not been assigned
+to an unrelated replacement matrix.
+We have $\lambda_i(t)\geq\min(1,b_i)\geq\mu$ and
+$|\gamma_i(t)|\leq|b_i-1|/\mu$.
+Since $|d-b_i|\leq(\nu-\mu)/2$ and
+$t/a_t\leq1/d$ (equivalently $td\leq1+t(d-1)$),
+\begin{equation}
+ |h_i(t)|\leq\theta<1,\qquad
+ \sum_i\gamma_i(t)^2\leq K_0.
+ \tag{JRA19}
+\end{equation}
+
+Direct multiplication gives $(I-H_t)X_t^{\rm res}=T_t$. The finite
+telescoping identity
+$\left(\sum_{j=0}^L H_t^j\right)(I-H_t)=I-H_t^{L+1}$, obtained by
+cancelling every intermediate power, therefore proves
+\begin{equation}
+ R_L(t):=X_t^{\rm res}-S_L(t)=H_t^{L+1}X_t^{\rm res},\qquad
+ E_L(t):=R_L(t)-\frac{\Tr R_L(t)}{n}I.
+ \tag{JRA20}
+\end{equation}
+The constant term in $S_L$ and the exponent $L+1$ are both retained.
+
+\paragraph{The actual centered pointwise error and its integral.}
+Under $F$, the eigenvalues of $R_L(t)$ are
+$\delta_i(t)=h_i(t)^{L+1}\gamma_i(t)$. Thus its trace is real and
+\begin{align}
+ V_L(t):=\Tr E_L(t)^2
+ &=\sum_i\delta_i(t)^2-\frac{(\sum_i\delta_i(t))^2}{n}\notag\\
+ &=\sum_i\left(\delta_i(t)-\frac1n\sum_j\delta_j(t)\right)^2\geq0,
+ &V_L(t)&\leq\theta^{2L+2}K_0.
+ \tag{JRA21}
+\end{align}
+Both equalities follow by expanding the square, and the bound follows
+from JRA19 after dropping its nonnegative subtracted scalar square.
+Scalar centering retains the signed pairing because $\Tr Q=0$:
+$\Tr(R_LQ)=\Tr(E_LQ)$. For Hermitian matrices $A,C$ the entrywise
+Cauchy--Schwarz inequality gives
+$|\Tr(AC)|\leq(\Tr A^2\Tr C^2)^{1/2}$, since
+$\Tr A^2=\sum_{i,j}|A_{ij}|^2$ and similarly for $C$.
+Apply this to $FE_LF^{-1}$ and $FQF^{-1}$; trace invariance and JRA13 give
+the full original-metric error
+\begin{equation}
+ \left|\Tr(QX_t^{\rm res})-\Tr(QS_L(t))\right|
+ \leq\sqrt{8l\,V_L(t)}
+ \leq\theta^{L+1}\sqrt{8l\,K_0}.
+ \tag{JRA22}
+\end{equation}
+This reproduces the centered PR31 estimate on the specified joint-Schur
+matrices, with its exact trace $8l$. It uses the generic signed trace
+and spectral-residual results; it does not substitute $8l$ for the
+different source-projector estimate $8q-6$.
+
+For each $i$, elementary integration yields
+$\log b_i=\int_0^1(b_i-1)/(1+t(b_i-1))\,dt$, also when $b_i=1$.
+All denominators are at least $\mu>0$, so these finite sums are continuous
+and can be integrated term by term. JRA11, JRA15 and JRA18 prove
+\begin{equation}
+ \mathcal R=\int_0^1\Tr(QX_t^{\rm res})\,dt,\qquad
+ \mathcal C_L=\int_0^1\Tr(QS_L(t))\,dt,
+ \qquad
+ |\mathcal R-\mathcal C_L|
+ \leq\int_0^1\sqrt{8l\,V_L(t)}\,dt
+ \leq\theta^{L+1}\sqrt{8l\,K_0}.
+ \tag{JRA23}
+\end{equation}
+The inequality is integration of JRA22 on a unit interval, not a
+claim that a pointwise bound automatically has been integrated.
+
+The finite center itself has a closed expression in the original
+matrix coefficients. Put $I_j(d)=\int_0^1t^j/a_t^{j+1}\,dt$. Then
+\begin{align}
+ \mathcal C_L
+ &=\sum_{j=0}^L I_j(d)\Tr\bigl(Q(dI-\mathcal B)^j(\mathcal B-I)\bigr),\notag\\
+ I_j(1)&=\frac1{j+1},\notag\\
+ I_j(d)&=\frac{\displaystyle\log d+
+       \sum_{a=1}^j(-1)^a\binom ja\frac{1-d^{-a}}a}
+       {(d-1)^{j+1}}\qquad(d\ne1).
+ \tag{JRA24}
+\end{align}
+For $d\ne1$, substitute $u=1+(d-1)t$; the integrand becomes
+$(d-1)^{-j-1}(u-1)^ju^{-j-1}du$ on the oriented interval from $1$ to $d$.
+Expand $(u-1)^j$ and integrate $u^{-1}$ and $u^{-a-1}$ to obtain JRA24,
+including the case $0<d<1$ with its orientation. For $d=1$ the integrand
+is $t^j$. Thus no unresolved matrix logarithm or path integral is needed
+to compute the finite center. Every trace in it is the signed sum of
+eight actual coefficient-matrix traces.
+
+For $\eta>0$, put $A=\sqrt{8lK_0}$. If $A=0$, then JRA16 and positivity
+of the eigenvalue squares force $\mathcal B=I$, so $\mathcal R=0$ and
+$\mathcal C_0=0$. If $\theta=0$, JRA16 forces $\mu=\nu=1$, again
+$\mathcal B=I$. Otherwise, with $A>0$ and $0<\theta<1$, the explicit
+integer
+\begin{equation}
+ L_\eta=\max\left(0,
+       \left\lceil\frac{\log(A/\eta)}{-\log\theta}\right\rceil\right)
+ \quad\hbox{satisfies}\quad
+ |\mathcal R-\mathcal C_{L_\eta}|\leq\eta.
+ \tag{JRA25}
+\end{equation}
+Indeed, if $A\leq\eta$ every $L\geq0$ works. Otherwise
+$L_\eta\geq\log(A/\eta)/(-\log\theta)$ and
+$\theta^{L_\eta+1}A\leq\theta^{L_\eta}A\leq\eta$.
+This proves an executable finite stopping rule for the given data.
+
+\paragraph{Exact replacement and support maps.}
+Section 6 of the incoming note gives its positive-tail interval
+$[L_{\rm tail},U_{\rm tail}]$ for precisely JRA11. The present completed
+calculation supplies the simultaneously valid intersection
+\begin{equation}
+ \mathcal R\in[L_{\rm tail},U_{\rm tail}]
+ \cap[\mathcal C_L-\theta^{L+1}\sqrt{8lK_0},
+       \mathcal C_L+\theta^{L+1}\sqrt{8lK_0}].
+ \tag{JRA26}
+\end{equation}
+The intersection contains $\mathcal R$ because each interval does.
+Unlike the positive-tail lower/upper sums, JRA24 forms its signed center
+before the single centered error is bounded. This is an additional
+finite certificate; no claim that its radius always beats the earlier
+interval is needed or made.
+
+The relation-valued section correction remains the same map.
+Let $B_N$ be the columns of multiplication by $\chi$ into $\mathcal P_N$,
+and $R_N^\sigma:E\to\mathcal P_N$ the sigma minimal section.
+For the tensor-Gamma form $H_N^0$, minimization over its relation fibre
+gives the actual section and exact difference
+\begin{equation}
+ R_N^0=R_N^\sigma-B_N(B_N^*H_N^0B_N)^{-1}B_N^*H_N^0R_N^\sigma,
+ \quad
+ R_N^0-R_N^\sigma\in\operatorname{Hom}(E,\chi\mathcal P_{N-q}).
+ \tag{JRA27}
+\end{equation}
+To prove the formula, write every representative of $v$ as
+$R_N^\sigma v+B_Nz$, expand its positive quadratic form, and complete
+the square in $z$. $B_N$ has independent columns, so its Gram is
+positive definite. At $N=q-1$ it is the zero-dimensional matrix and
+the correction is zero. The weighted cyclic inclusion obeys
+\begin{equation}
+ \eta M_f=M_{f(\sum s_i)}\eta,\qquad
+ \eta[P]=\upsilon_h^{\otimes k}P(\sum s_i)1.
+ \tag{JRA28}
+\end{equation}
+This equality is multiplication of commuting elements in the original
+tensor algebra; all full unit factors and nilpotents remain. Since
+$f$ is coprime to $\chi$, its Bezout inverse on $E$ intertwines the same
+way on the image of $\eta$. Thus the determinant calculation transports
+the same source classes through explicitly invertible coefficient maps.
+
+On any fixed retained face and outer label $\omega$, every coefficient
+map $T$ above acts by $(\omega,x)\mapsto(\omega,Tx)$, and external absence
+maps to external absence. The represented zero $(\omega,0)$ stays at
+that label. Composition is exact since
+$(\omega,T_2(T_1x))=(\omega,(T_2T_1)x)$.
+These statements are maps of labelled coefficient sets; they do not
+assign extra multiplicative structure to an arbitrary linear map.
+Neither the direct sum nor the determinant character deletes a
+present empty face or identifies it with $\tau$.
+
+Finally, for the existing arithmetic correction
+$\mathcal B_k^{\rm ar}=\mathcal B_k^0+\mathcal R+\delta_k^\sigma$,
+the proven interval $\delta_k^\sigma\in[a_k,b_k]$ for the arithmetic
+correction propagates literally:
+\begin{equation}
+ \mathcal B_k^{\rm ar}\in
+ [\mathcal B_k^0+\mathcal C_L+a_k-\theta^{L+1}\sqrt{8lK_0},
+  \mathcal B_k^0+\mathcal C_L+b_k+\theta^{L+1}\sqrt{8lK_0}].
+ \tag{JRA29}
+\end{equation}
+This last implication is addition of the two proved intervals; the
+arithmetic correction theorem itself remains in its original proof
+files. Every new bound through JRA25 is proved here for the actual
+joint-Schur matrices. A degree-dependent choice of $\mu,\nu,K_0$ has
+not been replaced by a degree-independent constant. The next analytic
+calculation is their behaviour, and that of the signed center, along
+the original growing family.
+
+\paragraph{Formal-source provenance.}
+The generic results used and reproved above are
+\texttt{SplitZero.ResolventSeries.residual\_exact},
+\texttt{SplitZero.SignedTraceEnclosure.signed\_interval}, and
+\texttt{SplitZero.SpectralResidual.signed\_error} at PR31 head
+\texttt{b4060b25c21f1a49a5e7730e9aff76d4c93c820d}.
+The source files and full theorem-scope review accompany this TeX.
+JRA15--JRA21 construct the required spectral equations rather than
+assuming them as unnamed inputs. JRA23--JRA25 add the path integration
+and its closed finite center. This application has a written proof;
+it is not represented as an already compiled Lean declaration.
+\end{document}

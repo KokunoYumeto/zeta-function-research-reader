@@ -1,0 +1,9 @@
+# Source identities and historical locators
+
+CURRENT_SOURCE_PINS.json binds the unchanged final 37-page PDF, its complete main/LET/PHT/HCT/WGP/RWB/EIQ/GEL/WGR source closure, five new full author originals, complete current NOTE/JSR successors and GRI1–7. Every mathematical TeX and Lean body, proof diff and calculation is preserved. Only the documented display transports already made by the owner distinguish prepared proofs from their retained author originals.
+
+In named current metadata, guides, compiler records and the output-root locator of two provenance-only packaging scripts, `[[user]]` replaces only the private account component of a historical absolute locator. It is not a working path. Inherited public metadata retains its already recorded `source-records/local-user` aliases or relative author-source locators. Embedded hashes still identify their original pre-transport owner files; PUBLIC_DERIVATION.json separately records actual public identities.
+
+provenance/public_predecessors contains unchanged public inventories, derivation ledgers and copy receipts from cuts18–20. Their paths describe those historical editions; this cut's disposition map gives the corresponding current path. Earlier guides may refer to earlier PDF/image/archive assets that the owner omitted from the text-only dependency closure; no mathematical body is replaced by those guides.
+
+The original source manifest lists 504 content files; the recorded 505-member owner archive also includes that manifest itself. This public derivative excludes the same two known private incoming pasted texts, does not open or copy the owner archive, and adds a public guide, current identity map and explicit provenance. The owner's final delivery and three already-completed visual receipt JSON records are carried separately. Existing archive/visual statements describe the owner cut, not new checks here.

@@ -1,0 +1,9 @@
+# Signed source control and proper-boundary kernels
+
+A continuation of the current ISM source-control chapter at main `331ccd30185a98bfc8fde8102cf09b9c2add4d6b`, preserving corrected PR30 ancestry and the original SplitZero quotient/metric interfaces.
+
+Read [RESEARCH_NOTE.md](RESEARCH_NOTE.md) for the complete finite resolvent, centered signed trace and natural proper-boundary constructions. [STATUS.md](STATUS.md) gives the actual checked revision, commands, source hashes, exact test counts and terminal CI evidence. [HANDOFF.md](HANDOFF.md) identifies the remaining arithmetic/spectral/integration inputs. [DEVELOPMENT.md](DEVELOPMENT.md) and [FINAL_DEVELOPMENT.md](FINAL_DEVELOPMENT.md) preserve the observed development failures and their repairs.
+
+The five Lean modules are `SplitZeroResolventSeries`, `SplitZeroSignedTraceEnclosure`, `SplitZeroCanonicalSignedResolvent`, `SplitZeroSpectralResidual`, and `SplitZeroRestrictedBoundary`, under `formal/splitzero`. The runner checks their full used local closure and imports the original boundary-socle, synchronization, conormal and homotopy modules jointly. The new ten-method exact checker retains non-diagonal complex source metrics, complete canonical columns, mixed cross terms and proper-source classes; its fixtures are not actual zeta packets.
+
+The certificate concerns a signed **finite-dimensional** approximation in the original source metric, its centered residual and fixed-data stopping, together with the exact natural kernel of a proper-source quotient comparison. The supplied simultaneous diagonalization equations are explicit inputs. Arithmetic moment evaluation, compact-path integration, the source's sharper nested-projector estimate `8q-6`, and uniform growth in tensor degree are not silently included in the formal certificate. Main, publication files and other branch refs are not changed by this contribution.

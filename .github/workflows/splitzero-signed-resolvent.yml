@@ -1,0 +1,109 @@
+name: SplitZero signed resolvent
+on:
+  push:
+    branches: [astra/signed-resolvent-checkin-20260914]
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroResolventSeries.lean'
+      - 'formal/splitzero/SplitZeroSignedTraceEnclosure.lean'
+      - 'formal/splitzero/SplitZeroCanonicalSignedResolvent.lean'
+      - 'formal/splitzero/SplitZeroSpectralResidual.lean'
+      - 'formal/splitzero/SplitZeroRestrictedBoundary.lean'
+      - 'workbenches/tau-signed-resolvent-formal/**'
+      - '.github/workflows/splitzero-signed-resolvent.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        shell: bash
+        working-directory: formal/splitzero
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            formal/splitzero
+            workbenches/tau-signed-resolvent-formal
+            workbenches/tau-mixed-boundary-formal
+            workbenches/tau-mixed-metric-integration
+            workbenches/tau-source-resolvent
+            workbenches/tau-arithmetic-metric-transfer
+      - name: Recover unchanged scalar
+        run: python3 prepare.py
+      - name: Install unchanged Lean toolchain
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve pinned Mathlib
+        run: |
+          set -euo pipefail
+          test "$(cat lean-toolchain)" = leanprover/lean4:v4.31.0
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+      - name: Strict source closure and transitive audits
+        run: python3 ../../workbenches/tau-signed-resolvent-formal/run_signed.py
+      - name: Forbidden identifications rejected at their mathematical goals
+        run: |
+          set -euo pipefail
+          printf 'import SplitZeroSpectralResidual\nexample : (SplitZero.e : SplitZero.G ℤ) = SplitZero.tau := by rfl\n' > SignedMustFail.lean
+          if lake env lean --trust=0 -DwarningAsError=true SignedMustFail.lean > /tmp/false-zero.log 2>&1; then exit 1; fi
+          grep -qi 'rfl.*failed\|failed.*rfl' /tmp/false-zero.log
+          if grep -qi 'unknown module\|unknown identifier\|failed to synthesize' /tmp/false-zero.log; then exit 1; fi
+          cat /tmp/false-zero.log
+          printf 'import SplitZeroSpectralResidual\nexample : SplitZero.ResolventSeries.partialSum (1/2 : ℚ) 1 0 = 2 := by norm_num [SplitZero.ResolventSeries.partialSum]\n' > SeriesMustFail.lean
+          if lake env lean --trust=0 -DwarningAsError=true SeriesMustFail.lean > /tmp/false-series.log 2>&1; then exit 1; fi
+          grep -qi 'unsolved goals' /tmp/false-series.log
+          if grep -qi 'unknown module\|unknown identifier\|failed to synthesize' /tmp/false-series.log; then exit 1; fi
+          cat /tmp/false-series.log
+      - name: Record exact execution
+        run: |
+          git rev-parse HEAD
+          lake env lean --version
+          cat .signed-resolvent-logs/receipt.json
+  finite:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            formal/splitzero
+            workbenches/tau-signed-resolvent-formal
+            workbenches/tau-mixed-boundary-formal
+            workbenches/tau-mixed-metric-integration
+            workbenches/tau-source-resolvent
+      - run: python3 -m pip install sympy==1.14.0
+      - name: Exact new and inherited finite regressions in both modes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for PACKAGE in tau-source-resolvent tau-mixed-metric-integration tau-signed-resolvent-formal; do
+            python3 workbenches/$PACKAGE/check_exact.py > /tmp/$PACKAGE-normal.json
+            python3 -O workbenches/$PACKAGE/check_exact.py > /tmp/$PACKAGE-optimized.json
+            cmp /tmp/$PACKAGE-normal.json /tmp/$PACKAGE-optimized.json
+            cat /tmp/$PACKAGE-normal.json
+          done
+          python3 workbenches/tau-mixed-boundary-formal/check_boundary.py > /tmp/boundary-normal.json
+          python3 -O workbenches/tau-mixed-boundary-formal/check_boundary.py > /tmp/boundary-optimized.json
+          cmp /tmp/boundary-normal.json /tmp/boundary-optimized.json
+          cat /tmp/boundary-normal.json
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            if "${PY[@]}" workbenches/tau-signed-resolvent-formal/check_exact.py --negative all > /tmp/signed-$MODE-negative.jsonl; then exit 1; fi
+            python3 -c 'import json,sys; rows=[json.loads(x) for x in open(sys.argv[1])]; expected={"wrong-power","uncentered","diagonal-only","unweighted","proper-zero"}; sys.exit(0 if len(rows)==5 and {r["control"] for r in rows}==expected and all(r["false_claim_accepted"] is False for r in rows) else 1)' /tmp/signed-$MODE-negative.jsonl
+            cat /tmp/signed-$MODE-negative.jsonl
+          done
+          cmp /tmp/signed-normal-negative.jsonl /tmp/signed-optimized-negative.jsonl
+          cd formal/splitzero
+          python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+          python3 -O -m unittest test_derived_checker test_synchronization_checker test_tau_recovery

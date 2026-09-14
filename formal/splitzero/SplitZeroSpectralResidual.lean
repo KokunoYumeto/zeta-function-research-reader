@@ -50,7 +50,7 @@ theorem center_diagonal (f : j → ℝ) :
   by_cases h : i = k
   · subst k
     simp [mean]
-  · simp [Matrix.diagonal_apply, h]
+  · simp [h]
 
 theorem residual_diagonal (H X : Matrix j j ℂ) (h g : j → ℝ)
     (hH : F.conjugate H = Matrix.diagonal (fun i => (h i : ℂ)))
@@ -91,6 +91,7 @@ section Bound
 variable [Nonempty j]
 
 /-- A fixed-pair geometric bound for the centered error radius. -/
+omit [DecidableEq j] in
 theorem spectral_radius_bound (h g a : j → ℝ) (θ Z : ℝ) (hθ : 0 ≤ θ) (hZ : 0 ≤ Z)
     (hh : ∀ i, |h i| ≤ θ) (hg : ∀ i, |g i| ≤ a i) (L : ℕ) :
     Real.sqrt (variance (residualSpectrum h g L) * Z) ≤
@@ -124,7 +125,7 @@ theorem signed_error (H T X Q : Matrix j j ℂ) (h g a : j → ℝ) (θ : ℝ)
   have hq : 0 ≤ realTrace (Q * Q) := by
     have h := hermitian_square_nonneg (F.conjugate Q) (F.hermitian_conjugate Q hQself)
     rw [← F.conjugate_mul] at h
-    exact (congrArg Complex.re (F.trace_conjugate (Q * Q))) ▸ h
+    simpa only [realTrace, F.trace_conjugate] using h
   exact hb.trans (spectral_radius_bound h g a θ _ hθ hq hh hg L)
 end Bound
 end SplitZero.SpectralResidual

@@ -1,3 +1,98 @@
+# Split-Zero cohomology: original kernel matrices and bounded control
+
+[Start here: the current continuation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/00_CONTINUE_HERE.md).
+
+[Read the current 72-page paper](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete editable proof source](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+
+This sixteen-file package continues the Split-Zero programme's study of the
+arithmetic theta source, its cohomological quotient and the actual period/unit
+observation. The research direction is to calculate metric and action data
+through those original maps, with the Deligne mixed-cohomology programme as
+motivation. No RH conclusion follows from the calculations reported here.
+
+The current prompt is the owner's exact continuation, not a new set of
+instructions. All eleven LaTeX files are directly available with their proof
+inputs inline; there is no archive or missing local provider folder to unpack.
+
+## What is being calculated
+
+Lambda_k is the specified tensor-degree-k period/unit-jet observation. Its
+kernel is the subspace sent to zero by that observation; B_k is its image.
+F_K is the signed kernel metric-volume combination at four source degrees
+q-1, q, 2q-1 and 2q. Its matrices retain the original fixed Gamma, tensor Gamma
+and arithmetic source metrics. Their masses, phases, period branches,
+minimum-section corrections, primary nilpotents and action defects remain
+in the complete proofs.
+
+The simple-quartet calculation uses m=1, k=4l+1 with l>=1, q=(k+1)^2,
+0<delta<1/2 and gamma>2. The finite R_* is calculated from the actual quartet
+and unit values. For every original branch and |u|>=R_*, its period quadric
+has five distinct cyclic orbit members and
+
+    dim B_k = k^2 - 6k + 17,     dim ker Lambda_k = 8k - 16.
+
+The canonical Gamma orders remain s=1,k. The older K=q+1 family is exploratory.
+These rank statements are not extrapolated to other multiplicities or period
+domains. The separate all-multiplicity geometry retains its original
+Segre-Veronese ideal, period/unit map, graded source-dual algebra, nilpotents,
+actual stabilizer and conductor degree 2(N-|H|), where N and H are the orbit
+order and actual stabilizer specified in that proof.
+
+## What is now complete, and what comes next
+
+The three original kernel metrics differ by o(kq), with the full finite
+signed arithmetic/Gamma comparisons retained. The new KAF calculation sharpens
+the absolute bound to O(kq), and gives, on the stated domain, for each of the
+fixed Gamma, tensor Gamma and arithmetic sources:
+
+    0 <= liminf F_K/(kq) <= limsup F_K/(kq) <= 16(4+10 log 2).
+
+The construction now supplies the fourteen-generator conductor recursion,
+the exact 8k-16-dimensional kernel frame, every Christoffel-Darboux matrix
+entry including confluent entries, the four endpoint determinant expression
+and the full surviving action defect. These are completed inputs, not proposed
+substitutes for the original observation.
+
+The next calculation is the **actual leading value of the common kernel
+F_K/(kq)** from those matrices. The completed source differences, O(kq) bound
+and frame do not need to be rederived. A unique limit has not yet been proved
+or assigned; the bound alone does not supply its value.
+
+## Full proofs and receiving documents
+
+- [14: current complete proofs](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) contains all thirteen reader chapters, including KAF, OCF, OKM, OKA and OMG.
+- [13: arithmetic mixed transfer](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/13_ARITHMETIC_MIXED_TRANSFER.tex) retains the exact transported-kernel and minimum-lift maps and signed finite comparisons.
+- [09: complete joint receiver](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/09_UPDATED_JOINT_NOTE.tex) and [10: complete signed-return receiver](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/10_UPDATED_SIGNED_RETURN.tex) now include the consequences through KAF. Each contains all 31 provider bodies at the original input locations, with reversible source transport.
+- [02: full Gamma foundations](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/02_FULL_GAMMA_PROOFS.tex) and [03: full observation foundations](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/03_FULL_OBSERVATION_PROOFS.tex) retain the preceding analytic, arithmetic and observation proofs.
+- Files04-08 retain the earlier cyclic-sector, orbit, period and mixed-control calculations; the exact current prompt maps their statements to the sharper results.
+- [01: previous 75-page Gamma reader](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/01_GAMMA_READER.pdf) is retained as background, not as the current 72-page account.
+
+[Validation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/12_VALIDATION.md) and [source map](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/11_SOURCE_MAP.json)
+record the completed owner and independent mathematical reviews and their
+domains. All 72 pages of the current reader were visually inspected by that
+team. The complete editable current reader builds to 72 pages; the two
+receivers build to 162 and 156 pages. Those receiver builds establish source
+closure and compilability, not visual approval of those longer PDFs.
+Publication reuses these acceptances; it claims no new proof audit or Lean run.
+
+Only provenance account locators in the source map were transported for public
+sharing. Original map SHA-256:
+`bef0190adf4eb6638d76e85db79247f9602c737b97bf8dd1b342057e972f83bf`.
+Public map SHA-256:
+`91511a5af94f7f5fabdbaa479b9fff801c1b846839beeba07e2927e63b1114ed`.
+714 literal private-account locator occurrences transported across 677 values and eight path-valued review keys, including eight nested-JSON occurrences. All associated review content, proof bodies, formulae, numerical values and source hashes are unchanged. Embedded source hashes identify owner-original bytes, not the transported metadata. The other fifteen files are byte-identical
+to the accepted owner delivery, including both PDFs and all eleven TeX sources.
+
+The existing [DOI 10.5281/zenodo.22757268](https://doi.org/10.5281/zenodo.22757268) retains its 52 downloads and
+75-page PDF51 preview. This successor is a current GitHub source-and-reader
+package outside that frozen DOI edition; no Zenodo file changes here.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim. Its prompts, receiver scopes and
+next-step descriptions belong to preceding editions. The current prompt and
+72-page paper above supersede that navigation without altering earlier files.
+
 # Split-Zero cohomology: original kernel control and source transport
 
 [Start here: the owner's current continuation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/00_CONTINUE_HERE.md).

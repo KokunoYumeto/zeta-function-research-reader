@@ -1,3 +1,105 @@
+# Split-Zero cohomology: original kernel control and source transport
+
+[Start here: the owner's current continuation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/00_CONTINUE_HERE.md).
+
+[Latest arithmetic/Gamma transfer and completed kernel-difference calculation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/13_ARITHMETIC_MIXED_TRANSFER.tex) · [Combined original mixed control](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/08_ORIGINAL_MIXED_CONTROL.tex).
+
+This flat fourteen-file packet is the current editable research route. The
+first link is the owner's exact single continuation prompt, not a newly
+authored substitute. Its complete proof sources are directly available without
+unpacking an archive. Earlier continuation prompts remain historical editions.
+
+## What the original kernel and observation mean here
+
+The observation Lambda_k is the actual original period/unit-jet map, with its
+specified cyclic average, tensor image and primary nilpotents. The kernel is
+the part lost by this observation. F_K and F_B are the associated original
+kernel and boundary metric-volume quantities at the four endpoint degrees
+q-1, q, 2q-1 and 2q. The source files retain the precise coefficient frames,
+minimum-section corrections, metric determinants and source masses.
+
+The fixed Gamma source, tensor Gamma source and arithmetic source keep their
+own metrics and exact transport maps. Multiplication by the specified source
+polynomial raises degree into its divisible-polynomial image; it is not
+identified with the entire higher-degree source or assumed to preserve the
+observation kernel. File13 proves the actual transported kernel, observation,
+extra constraints and finite signed comparison bounds.
+
+## Completed comparison and its exact domain
+
+All-multiplicity OCS maps remain in the sources. The new explicit quadric-rank
+and volume conclusions concern the simple quartet m=1, k=4l+1, q=(k+1)^2,
+0<delta<1/2 and gamma>2. RPC supplies a finite R_* from the original quartet
+and its actual amplitude. On every original logarithm branch, for |u|>=R_*,
+the transformed quadric has five distinct cyclic orbit members and
+
+    dim B_k = k^2 - 6k + 17,
+    dim ker Lambda_k = 8k - 16.
+
+These ranks are not assigned to higher primary multiplicities or other period
+outcomes. The separately calculated invariant-quadric outcome retains its own
+rank and test. The canonical Gamma orders remain s=1 and s=k; the earlier
+independent K=q+1 family remains exploratory, not a replacement rule.
+
+For the two Gamma sources, file13 proves the signed finite bounds for
+Delta_K=F_K^(1)-F_K^(k), retaining all beta_k source masses before their four
+signed copies cancel. It gives Delta_K=O(k^2 log q)=o(kq), uniformly on the
+proved period domain. The actual arithmetic comparison also gives
+F_K^ar-F_K^(1)=O_h(k^2), with its complete signed endpoint bounds retained.
+Thus the three original kernel metrics differ by o(kq).
+
+The exact boundary identity then yields
+
+    (F_B^(1)-F_B^(k))/(kq) -> -C_Gamma/4,
+
+and the actual arithmetic boundary has the same signed return relative to the
+tensor-Gamma boundary through the original arithmetic transition. C_Gamma is
+the positive equilibrium coefficient defined in the full Gamma sources.
+The already proved q-squared limits remain F_K/q^2 -> 0 and F_B/q^2 -> C_B,
+where C_B=9-8 log(2)+F(2,pi)>769/17010. These are the accepted source scopes,
+not a new endpoint conclusion from this reading index.
+
+The next calculation named by the owner is the **absolute common kernel
+contribution at scale kq**, starting with F_K^(1)/(kq). The existing absolute
+bound divided by kq still grows like log q. The source-difference estimate is
+completed and is not being reissued as the next task. Period dependence,
+uniformity domain and four endpoint determinants remain explicit.
+
+## Where the complete results and receiver versions are
+
+- [04: cyclic sectors and exact maps](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/04_CYCLIC_SECTORS.tex).
+- [05: orbit alternatives, rank and invariant lifting](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/05_ORBIT_CONDUCTOR.tex).
+- [06: actual period quadric and explicit orbit domain](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/06_ACTUAL_PERIOD_QUADRIC.tex).
+- [07: original kernel-volume bounds](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/07_ORIGINAL_KERNEL_VOLUME_BOUND.tex).
+- [08: combined leading mixed control](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/08_ORIGINAL_MIXED_CONTROL.tex).
+- [13: later arithmetic transfer and kernel-difference result](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/13_ARITHMETIC_MIXED_TRANSFER.tex).
+- [02: full Gamma foundations](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/02_FULL_GAMMA_PROOFS.tex) and [03: full observation foundations](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/03_FULL_OBSERVATION_PROOFS.tex).
+- [09: joint receiver](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/09_UPDATED_JOINT_NOTE.tex) and [10: signed-return receiver](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/10_UPDATED_SIGNED_RETURN.tex) are complete successors updated through OPG/OPR. The subsequent refinements are in 04-08 and 13; their propagation through all receiver statements is not claimed to be complete.
+
+[01: the previous 75-page Gamma reader](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/01_GAMMA_READER.pdf) is retained as a
+historical reading copy. **It does not contain the newer results in 04-08 and
+13.** [Validation scope](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/12_VALIDATION.md) records their source-only builds
+and exact-source checks, not a new visual PDF review or new independent
+mathematical audit. [Source map](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/11_SOURCE_MAP.json) retains original sources,
+transports and attribution. The entire fourteen-file package remains flat.
+
+Only the source map has a metadata-only privacy transport. Its owner-original
+SHA-256 is `15d459e37007018d8d22007dd6483305f671bc88914cfa0e22d12ac007950eeb`; the public map
+SHA-256 is `ae4d7ce31e63244c4297fa0477afb1c0236d17292662bb76cb8391d65d3c3b81`. The recorded scope
+is: 502 exact private-account locator components transported; no keys, numerical values, proof bodies, formulae or source hashes changed. Embedded owner receipt hashes identify the original receipt bytes, not the transported metadata copy. The other thirteen files remain
+byte-identical; the public map is not assigned its original file's hash.
+
+The frozen [DOI 10.5281/zenodo.22757268](https://doi.org/10.5281/zenodo.22757268) still has exactly 52 downloads and
+the original 75-page PDF51 preview. This new Git source packet is outside that
+frozen edition; no Zenodo file or preview is changed here.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the preceding source/edition
+state. Its continuation prompts and next-step statements describe those earlier
+cuts. The current owner prompt above supersedes those prompts for this packet;
+their exact source-time provenance and mathematical files remain unchanged.
+
 # Split-Zero cohomology: original Gamma volumes and intrinsic spectral sums
 
 [Read the 75-page Original Volumes paper](https://zenodo.org/api/records/22757268/files/51-original-gamma-volumes-reader.pdf/content) · [Published DOI 10.5281/zenodo.22757268](https://doi.org/10.5281/zenodo.22757268).

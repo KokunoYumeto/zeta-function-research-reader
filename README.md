@@ -1,6 +1,6 @@
 # Split-Zero arithmetic cohomology
 
-Start with [the accepted 1624-page public Split-Zero reader](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf)
+Start with [the accepted 1624-page public Split-Zero reader](https://zenodo.org/api/records/22739630/files/39-splitzero-recursive-source-relations-public-reader.pdf/content)
 and its [complete editable source and build guide](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/README.md).
 
 Split-Zero arithmetic cohomology studies the original theta-function source of finite zero packets, explicit source relations, signed metric control, restricted support and boundary propagation. The construction retains zero multiplicities, original source masses, coordinates and quotient maps. The signed finite approximation converges for each fixed source pair; tensor-uniform arithmetic control remains an active calculation. No proof of the Riemann hypothesis or new Lean kernel verification is claimed.
@@ -14,7 +14,9 @@ Raw private session records, reference-only literature and the raw owner ZIP
 are not public payloads. Wrapper ZIPs are not duplicated as ordinary Git blobs.
 
 The [preceding published R62 edition](https://doi.org/10.5281/zenodo.22738226) retains its PDF
-preview and all 38 downloads. This source-promotion commit claims no new DOI.
+preview and all 38 downloads. The [new published DOI 10.5281/zenodo.22739630](https://doi.org/10.5281/zenodo.22739630)
+now provides [all 40 separate downloads](calculation_edition_20260914_recursive_source_relations/README.md). The public Split-Zero PDF
+is the actual browser preview; the [matching source ZIP](https://zenodo.org/api/records/22739630/files/40-splitzero-recursive-public-sources.zip/content) is an offline download.
 
 Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
 
@@ -47,7 +49,7 @@ PR26 and PR27 are merged working sources. The links for PR27 pin its reviewed
 revision; its historical status files describe their original checkpoint.
 Written analytic arguments and the selected Lean/finite checks have distinct
 scopes. No uniform arithmetic upper estimate or RH conclusion is established.
-The GitHub front now shows the accepted recursive source-relations public reader. The frozen DOI retains the preceding R62 PDF/source cut and all 38 downloads. No successor DOI is claimed by this source-promotion commit.
+The GitHub front and current DOI now share the accepted recursive source-relations public PDF/source cut. The preceding R62 DOI and all 38 earlier downloads remain unchanged. Independent working sources retain their own proof and CI scopes.
 
 
 ## PR29: original residue detection and signed metric transfer

@@ -1,6 +1,6 @@
 # Current Split-Zero source: relations, signed metric control and boundary propagation
 
-[Read the accepted 1624-page public paper](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/Split_Zero_Cohomology_and_Arithmetic_Weight_Control.pdf) ·
+[Read the accepted 1624-page public paper](https://zenodo.org/api/records/22739630/files/39-splitzero-recursive-source-relations-public-reader.pdf/content) · [Published DOI 10.5281/zenodo.22739630](https://doi.org/10.5281/zenodo.22739630) · [All 40 files](calculation_edition_20260914_recursive_source_relations/README.md) ·
 [Editable source/build guide](workbenches/splitzero-tandem/continuations/20260914-recursive-source-relations/README.md) ·
 [Preceding published R62 edition](https://doi.org/10.5281/zenodo.22738226)
 

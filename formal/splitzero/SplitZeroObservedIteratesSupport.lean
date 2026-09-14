@@ -20,8 +20,8 @@ variable {R : Type u} [CommRing R] {L : Type v}
 /-- The original one-step observation kernel, with its actual transports. -/
 def rawRelations (obs : Hom D E) : Relations D where
   fibre i := LinearMap.ker (obs.app i)
-  stable h hx := by
-    change obs.app _ (D.map h _) = 0
+  stable {i j} h {x} hx := by
+    change obs.app j (D.map h x) = 0
     rw [obs.naturality, hx, map_zero]
 
 /-- All iterates are checked in each fibre before the original reconstruction. -/

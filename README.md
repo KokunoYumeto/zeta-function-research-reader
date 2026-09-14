@@ -1,5 +1,36 @@
 # Split-Zero arithmetic cohomology
 
+## Complete Gamma return and original relation bulk calculations
+
+[Read the latest 15-page complete Gamma return](workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return/Complete_Gamma_Return.pdf) · [Its complete editable sources](workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return/README.md).
+
+[Read the 33-page original relation bulk control](workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk/Original_Relation_Bulk_Control.pdf) · [Its complete editable sources](workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk/README.md).
+
+[Read the preceding 46-page Joint Gamma Schur paper](workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur/Joint_Gamma_Schur_Continuation.pdf) · [Its source guide](workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur/README.md).
+
+The programme compares the original theta-source arithmetic quotient with exact
+Gamma sources while retaining all primary jets, mixed cross Grams, source masses
+and four endpoint indices. The 33-page paper proves full inner/far-source control
+and the degree-l metric-contrast calculation. The 15-page continuation supplies
+the low scalar endpoint, weighted parity/Toda maps and a positive recurrence for
+the complete universal centre W through exp(W). Its comparison errors are
+O(k)=o(q), and O(1) for each fixed multiplicity at least two.
+
+The exact translation is Hstar = -W + e0, with e0 in [-a0,b0]. The universal
+interval contains the earlier exact-low interval; it does not tighten the
+existing finite intersection. Its analytic value is a universal centre with
+proved growing-family error. Evaluating the positive product at the original
+growing indices, and returning the result through the separate arithmetic
+allowances, remains the next calculation. No leading W asymptotic or endpoint
+conclusion is asserted.
+
+These are distinct complete working-source snapshots, **outside the frozen
+[DOI 10.5281/zenodo.22753338](https://doi.org/10.5281/zenodo.22753338)**. Its 1,929-page edition, PDF preview and all
+42 downloads remain unchanged. Each source tree includes its proof providers,
+receiving successors, retained predecessors and stated verification scope.
+Existing PR31 material remains a source snapshot, not a new merge or Lean claim.
+
+
 ## New working supplement: Joint Gamma Schur Return
 
 [Read the complete 46-page paper](workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur/Joint_Gamma_Schur_Continuation.pdf) · [Editable sources and definitions](workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur/README.md).

@@ -1,0 +1,306 @@
+\paragraph{Scope and provenance.}
+This is an independent proof and continuation of Section 5 of
+\texttt{Tau\_Gamma\_Joint\_Schur\_Return/NOTE.tex} in the supplied
+14 September 2026 package. Its determinant and finite bounds are correct.
+The expansion proved below strengthens that section while retaining its
+actual measure, real evaluation nodes, polynomial degree, and all four
+endpoints. It evaluates the free boundary contribution. The original
+relation-dependent Schur complement remains a separate summand in the
+exact signed return, and is not assigned the value of this contribution.
+
+\section{The actual source and its polynomial evaluation covariance}
+Let $l\ge1$, $k=4l+1$, $c=k/2$, $\vartheta=1/2$, and
+\[
+ \sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\qquad
+ c_\sigma=\sqrt{2\pi},\qquad
+ \alpha_j=c+2j+\tfrac12\quad(0\le j<l).
+\]
+The polynomial space $\mathcal P_M=\{P\in\C[S]:\deg P\le M\}$ carries
+the original inner product
+\[
+ \langle P,Q\rangle_\sigma
+ =\int_{\R}P(c+iy)\overline{Q(c+iy)}\sigma(y)\,dy.
+\]
+The evaluation map is
+$E_M:\mathcal P_M\longrightarrow\C^l$, $E_MP=(P(\alpha_j))_{j=0}^{l-1}$.
+Its covariance $A_M=E_ME_M^*$ is in the stated Euclidean target metric;
+no probability-mass rescaling is made.
+
+\begin{lemma}[The original monic system and its mass]
+The monic polynomials $p_n\in\C[S]$ obey
+\[
+ p_0=1,\quad p_1=S-c,\quad
+ p_{n+1}=(S-c)p_n+n(n-\tfrac12)p_{n-1},\qquad
+ \|p_n\|_\sigma^2=c_\sigma n!(\vartheta)_n.
+\]
+\end{lemma}
+\begin{proof}
+For $a>0$, set $f_a(t)=\exp(at-e^t)$. The substitution $r=e^t$ in
+the Gamma integral gives
+$\Gamma(a+iy/2)=\int_{\R}f_a(t)e^{iyt/2}\,dt$.
+Plancherel with this explicit frequency $y/2$ gives, for real $u$,
+\begin{align*}
+ \int_{\R}\frac{|\Gamma(a+iy/2)|^2}{2\pi}e^{iuy}\,dy
+ &=2\int_{\R}f_a(t)f_a(t+2u)\,dt\\
+ &=\frac{2\Gamma(2a)e^{2au}}{(1+e^{2u})^{2a}}
+ =2^{1-2a}\Gamma(2a)(\cosh u)^{-2a}.
+\end{align*}
+In particular the mass for $a=1/4$ is $c_\sigma=\sqrt{2\pi}$.
+Every derivative of $f_a$ belongs to $L^2(\R)$, since it is $f_a$
+times a polynomial in $e^t$; Plancherel therefore gives every required
+polynomial moment of $|\Gamma(a+iy/2)|^2$.
+
+Define, for real $z$ near zero,
+\[
+ F(x,z)=(1-z^2)^{-1/4}\exp(x\operatorname{arctanh}z)
+ =\sum_{n\ge0}p_n(c+x)\frac{z^n}{n!}.
+\]
+The identity $(1-z^2)\partial_zF=(x+z/2)F$ gives the displayed recurrence
+and monicity. For real $z,w$ near zero the Fourier formula gives
+\begin{align*}
+ \int_{\R}F(iy,z)\overline{F(iy,w)}\sigma(y)\,dy
+ &=(1-z^2)^{-1/4}(1-w^2)^{-1/4}c_\sigma
+   \bigl(\cosh(\operatorname{arctanh}z-
+                       \operatorname{arctanh}w)\bigr)^{-1/2}\\
+ &=c_\sigma(1-zw)^{-1/2}.
+\end{align*}
+Differentiating at $(z,w)=(0,0)$ is justified by the polynomial moments
+just established. It gives orthogonality and the stated norms, including
+the full factor $c_\sigma$.
+\end{proof}
+
+At $x=2j+1/2$, the same generating function is
+$(1+z)^j(1-z)^{-j-1/2}$. Consequently
+\begin{equation}\label{free:eq:eval}
+ p_n(\alpha_j)=(\vartheta)_n Q_j(n),\qquad
+ Q_j(n)=\sum_{r=0}^j\binom jr\frac{2^r n^{\underline r}}{(\vartheta)_r}.
+\end{equation}
+Indeed summing the right side divided by $n!$ gives
+\[
+ \sum_{r=0}^j\binom jr(2z)^r(1-z)^{-\vartheta-r}
+ =(1+z)^j(1-z)^{-j-\vartheta}.
+\]
+Thus $Q_j$ has degree $j$ and leading coefficient $2^j/(\vartheta)_j$,
+and the actual covariance is
+\begin{equation}\label{free:eq:cov}
+ (A_M)_{ij}=c_\sigma^{-1}\sum_{n=0}^M
+          \frac{(\vartheta)_n}{n!}Q_i(n)Q_j(n).
+\end{equation}
+
+\section{Adjoint polynomial maps in both original measures}
+For this section only, allow any $\vartheta>0$ and any integer $M\ge0$.
+Put $w_n=(\vartheta)_n/n!$ and $K_M=(\vartheta)_{M+1}/M!$.
+The discrete space uses $\sum_{n=0}^Mw_n\delta_n$ and the continuous
+space on $[0,1]$ uses $K_Mt^{\vartheta-1}dt$.
+The positive joint measure
+\[
+ K_M\binom Mn t^{n+\vartheta-1}(1-t)^{M-n}\,dt
+ \quad (0\le n\le M)
+\]
+has the continuous marginal by the binomial theorem and the discrete
+marginal because
+\[
+ K_M\binom Mn\mathrm B(n+\vartheta,M-n+1)
+ =\frac{\Gamma(n+\vartheta)}{\Gamma(\vartheta)n!}=w_n.
+\]
+Its common mass is $K_M/\vartheta$; neither measure is replaced by a
+probability measure. It gives the exact adjunction
+\begin{align*}
+ B:\C^{\{0,\ldots,M\}}&\longrightarrow L^2([0,1],K_Mt^{\vartheta-1}dt),
+ & (BP)(t)&=\sum_{n=0}^M\binom Mn t^n(1-t)^{M-n}P(n),\\
+ B^*(t^r)(n)&=\frac{(n+\vartheta)_r}{(M+\vartheta+1)_r},
+ &\langle BP,R\rangle_{\rm cont}&=\langle P,B^*R\rangle_{\rm disc}.
+\end{align*}
+The second formula follows from the ratio of the two beta integrals,
+so it proves both the map and its adjoint in the stated metrics.
+
+\begin{lemma}[Exact discrete monic norms]
+For $0\le j\le M$, the squared norm of the discrete monic orthogonal
+polynomial of degree $j$ is
+\begin{equation}\label{free:eq:norm}
+ \nu_j(M)=\frac{(\vartheta)_{M+j+1}(j!)^2}
+ {(M-j)!(2j+\vartheta)(j+\vartheta)_j^2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The continuous monic orthogonal polynomial is
+\[
+ P_j(t)=\frac{(-1)^j}{(j+\vartheta)_j}
+ t^{1-\vartheta}\frac{d^j}{dt^j}
+       \{t^{j+\vartheta-1}(1-t)^j\}.
+\]
+Its leading coefficient is one. Integration by parts $j$ times proves
+orthogonality against every smaller degree. For each derivative of
+order $s\le j-1$ of the bracket, the factor at zero is
+$O(t^{j+\vartheta-1-s})$, with exponent at least $\vartheta>0$;
+at one the remaining vanishing order is at least $j-s\ge1$.
+Every boundary term therefore vanishes. Applying the same integration
+by parts to its own norm gives
+\[
+ \|P_j\|_{\rm cont}^2
+ =\frac{K_Mj!}{(j+\vartheta)_j}
+       \mathrm B(j+\vartheta,j+1)
+ =\frac{K_M(j!)^2}{(2j+\vartheta)(j+\vartheta)_j^2}.
+\]
+Let $Q_j^{\rm mon}$ be the discrete monic polynomial. The exact identity
+$B(n^{\underline j})=M^{\underline j}t^j$ and the displayed formula
+for $B^*$ prove preservation of degrees and their leading coefficients.
+Adjunction against every lower degree then proves
+\[
+ BQ_j^{\rm mon}=M^{\underline j}P_j,\qquad
+ B^*P_j=\frac{Q_j^{\rm mon}}{(M+\vartheta+1)_j}.
+\]
+Evaluating $\langle BQ_j^{\rm mon},P_j\rangle$ on the two sides of the
+adjunction yields
+$\nu_j(M)=M^{\underline j}(M+\vartheta+1)_j\|P_j\|_{\rm cont}^2$.
+Substitution gives \eqref{free:eq:norm}, also for $j=0$.
+\end{proof}
+
+Return to $\vartheta=1/2$. The triangular change from $n^j$ to $Q_j(n)$
+in \eqref{free:eq:cov} has determinant $\prod_{j<l}2^j/(\vartheta)_j$;
+the monic orthogonal change has determinant one. For every $M\ge l-1$,
+\begin{equation}\label{free:eq:det}
+ \det A_M=c_\sigma^{-l}\prod_{j=0}^{l-1}
+ \frac{4^j(j!)^2(\vartheta)_{M+j+1}}
+ {(\vartheta)_j^2(M-j)!(2j+\vartheta)(j+\vartheta)_j^2}.
+\end{equation}
+In particular all determinants are strictly positive, and
+\begin{equation}\label{free:eq:inc}
+ \frac{\det A_{M+1}}{\det A_M}
+ =\prod_{j=0}^{l-1}\frac{M+j+\vartheta+1}{M+1-j}.
+\end{equation}
+
+\section{All four endpoints and a sharper finite expansion}
+For every integer $q\ge1$ put
+\[
+ C_{q,l}=\log\frac{\det A_{2q+l-1}\det A_{2q+l}}
+ {\det A_{q+l-1}\det A_{q+l}},\qquad B_l=l(l-\tfrac12).
+\]
+The constants in \eqref{free:eq:det} are retained until this exact signed
+combination is taken. Set $a_j=l-j$, $b_j=l+j+1/2$, and
+$f_j(x)=\log((x+b_j)/(x+a_j))$. Formula \eqref{free:eq:inc} gives
+\begin{equation}\label{free:eq:windows}
+ C_{q,l}=\sum_{j=0}^{l-1}\sum_{n=q}^{2q-1}
+                         \{f_j(n)+f_j(n+1)\}.
+\end{equation}
+All summands are positive. Applying
+$u/(1+u)\le\log(1+u)\le u$ to these exact two windows, whose upper
+denominators are at least $n+1$ and lower denominators at most
+$n+2l+1/2$, gives
+\[
+ 2B_l\log\frac{2q+2l+1/2}{q+2l+1/2}
+ \le C_{q,l}\le2B_l\log2.
+\]
+Here the decreasing-integrand comparisons are respectively
+$\sum_{n=q}^{2q-1}(n+d)^{-1}\ge\int_q^{2q}(x+d)^{-1}dx$ and
+$\sum_{n=q}^{2q-1}(n+1)^{-1}\le\int_q^{2q}x^{-1}dx$.
+These justify the incoming finite bounds without an asymptotic step.
+
+\begin{theorem}[Uniform finite signed expansion]\label{free:thm:expansion}
+For every integer $q,l\ge1$,
+\begin{equation}\label{free:eq:first}
+ C_{q,l}=2B_l\log2-\frac{B_l(l+1/4)}q+R_{q,l},\qquad
+ 0\le R_{q,l}\le\frac{B_l(14l^2+5l+3)}{16q^2}.
+\end{equation}
+There is also the exact second-order enclosure
+\begin{align}
+ C_{q,l}
+ &=2B_l\log2-\frac{B_l(l+1/4)}q
+  +\frac{l^2(2l-1)(14l+5)}{32q^2}+E_{q,l},\label{free:eq:second}\\
+ -\frac{7l(2l-1)(4l+1)(12l^2+2l-1)}{768q^3}
+ &\le E_{q,l}\le\frac{3B_l}{16q^2}.\label{free:eq:error}
+\end{align}
+\end{theorem}
+\begin{proof}
+For a twice differentiable $f$, integration by parts on one unit interval
+gives the exact trapezoidal identity
+\[
+ \frac{f(n)+f(n+1)}2-\int_n^{n+1}f(x)dx
+ =\frac12\int_0^1s(1-s)f''(n+s)ds.
+\]
+For our function
+$f_j(x)=\int_{a_j}^{b_j}(x+t)^{-1}dt$, its second derivative is positive.
+Since $s(1-s)/2\le1/8$, summing the identity and using
+\eqref{free:eq:windows} gives
+\begin{align*}
+ C_{q,l}&=2\sum_j\int_q^{2q}f_j(x)dx+T_{q,l},\\
+ 0\le T_{q,l}
+ &\le\frac14\sum_j\{f_j'(2q)-f_j'(q)\}\\
+ &=\frac14\sum_j\int_{a_j}^{b_j}
+                  \left(\frac1{(q+t)^2}-\frac1{(2q+t)^2}\right)dt
+ \le\frac{3B_l}{16q^2}.
+\end{align*}
+The final integrand decreases for $t\ge0$ and at zero equals $3/(4q^2)$;
+also $\sum_j(b_j-a_j)=B_l$. Fubini, in positive finite integrals, gives
+\[
+ 2\sum_j\int_q^{2q}f_j(x)dx
+ =2\sum_j\int_{a_j}^{b_j}g_q(t)dt,
+ \qquad g_q(t)=\log\frac{2q+t}{q+t}.
+\]
+For $t\ge0$, direct differentiation shows
+\[
+ g_q(0)=\log2,\quad g_q'(0)=-\frac1{2q},\quad
+ 0<g_q''(t)\le\frac3{4q^2},\quad
+ -\frac7{4q^3}\le g_q'''(t)<0.
+\]
+Taylor's formula with integral remainder therefore gives both
+\begin{gather*}
+ 0\le g_q(t)-\log2+\frac{t}{2q}\le\frac{3t^2}{8q^2},\\
+ -\frac{7t^3}{24q^3}
+ \le g_q(t)-\log2+\frac{t}{2q}-\frac{3t^2}{8q^2}\le0.
+\end{gather*}
+The finite power sums, obtained by expansion and
+$\sum_{j<l}j=l(l-1)/2$, $\sum_{j<l}j^2=l(l-1)(2l-1)/6$,
+$\sum_{j<l}j^3=l^2(l-1)^2/4$, are
+\begin{align*}
+ \sum_j\int_{a_j}^{b_j}t\,dt&=B_l(l+\tfrac14),\\
+ \sum_j(b_j^3-a_j^3)&=\frac{l^2(2l-1)(14l+5)}8,\\
+ \sum_j(b_j^4-a_j^4)&=
+       \frac{l(2l-1)(4l+1)(12l^2+2l-1)}{16}.
+\end{align*}
+Integration of the first Taylor enclosure, together with the bound on
+$T_{q,l}$, gives \eqref{free:eq:first}, because
+\[
+ \frac14\sum_j(b_j^3-a_j^3)+\frac{3B_l}{16}
+ =\frac{B_l(14l^2+5l+3)}{16}.
+\]
+Integration of the second enclosure gives \eqref{free:eq:second} and
+\eqref{free:eq:error}; its lower bound is
+$-7\sum_j(b_j^4-a_j^4)/(48q^3)$ and its upper bound is the retained
+positive trapezoidal error. This proves both finite formulas.
+\end{proof}
+
+\section{The stipulated packet degree is retained in the limits}
+The programme uses precisely
+\[
+ q=(4l+2)^2\bigl(1+(4l+1)(m-1)\bigr),\qquad m\ge1.
+\]
+For $m=1$, substitution into \eqref{free:eq:second} gives
+\begin{equation}\label{free:eq:simple}
+ C_{q,l}=2l^2\log2-l(\log2+\tfrac1{16})
+                 +\frac{167}{2048}+O(l^{-1}).
+\end{equation}
+Every error in this statement is bounded by \eqref{free:eq:error} and a
+rational remainder from the displayed value of $q$. In detail,
+\[
+ \frac{B_l(l+1/4)}{(4l+2)^2}
+ =\frac l{16}-\frac5{64}+O(l^{-1}),\qquad
+ \frac{l^2(2l-1)(14l+5)}{32(4l+2)^4}
+ =\frac7{2048}+O(l^{-1}),
+\]
+and \eqref{free:eq:error} is $O(l^{-1})$. Hence $C_{q,l}/q\to(\log2)/8$
+and the constant term in \eqref{free:eq:simple} is $5/64+7/2048=167/2048$.
+
+For each fixed integer $m>1$, $q/l^3\to64(m-1)$. Formula
+\eqref{free:eq:first} has $R_{q,l}=O(l^{-2})$, while
+$B_l(l+1/4)/q\to1/(64(m-1))$. Thus
+\begin{equation}\label{free:eq:multiple}
+ C_{q,l}-2l(l-\tfrac12)\log2\longrightarrow-\frac1{64(m-1)},
+ \qquad
+ \frac{lC_{q,l}}q\longrightarrow\frac{\log2}{32(m-1)}.
+\end{equation}
+The relation-dependent matrices at the same four endpoints remain in
+the exact total return. Equations \eqref{free:eq:simple}--\eqref{free:eq:multiple}
+evaluate its explicitly identified free summand, with a uniform finite
+error already proved above; they impose no value on that remaining
+summand.

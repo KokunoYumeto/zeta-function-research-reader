@@ -1,0 +1,642 @@
+This calculation supplies the exact coordinate morphisms between the
+incoming joint-Schur formula and the existing GCR and GSR formulas.
+It then uses the already exactly computable low endpoints to remove
+four unnecessary trace approximations from the incoming certificate.
+All degrees, source masses, full confluent multiplicities and mixed
+covariance factors remain present. No statement below asserts the
+existence of a zero of $\xi$ outside the critical line.
+
+\section{Original finite source and its orthogonal polynomials}
+
+Fix integers $l\geq1$, $m\geq1$ and real parameters
+$0<\delta<1/2$, $\gamma>2$. Retain
+\[
+\begin{gathered}
+ k=4l+1,\quad c=k/2,\quad e=1+k(m-1),\quad q=e(k+1)^2,\\
+ \lambda_{ab}=c+(2a-k)\delta+i(2b-k)\gamma,\qquad
+ \chi(S)=\prod_{a,b=0}^k(S-\lambda_{ab})^e,\\
+ t_j=2j+\tfrac12,\quad \alpha_j=c+t_j,\quad
+ f(S)=\prod_{j=0}^{l-1}(S-\alpha_j),\quad
+ E=\C[S]/(\chi),\quad \Pp_N=\C[S]_{\leq N}.
+\end{gathered}\tag{JSA1}
+\]
+Negative-degree polynomial spaces are zero. All quotient coordinates
+on $E$ are the original increasing monomials $1,S,\ldots,S^{q-1}$.
+Let $J_N:\Pp_N\to E$ be monic remainder. For $N\geq q-1$ it
+is onto and has kernel $\chi\Pp_{N-q}$: polynomial division proves
+both assertions, including the zero kernel at $N=q-1$.
+
+The two unchanged measures on the original line $S=c+iy$ are
+\[
+\begin{gathered}
+ d\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\,dy,
+ \quad c_\sigma=\sqrt{2\pi},\quad c_a=2^{1-2a}\Gamma(2a),\\
+ dm_0(y)=\frac{c_\sigma^k}{c_{k/4}}
+       \frac{|\Gamma(k/4+iy/2)|^2}{2\pi}\,dy,
+ \quad C_k=\frac{c_\sigma^k}{4^l c_{k/4}}
+          =\frac{(2\pi)^{k/2}}{\sqrt2\,\Gamma(k/2)}.
+\end{gathered}\tag{JSA2}
+\]
+Gamma recurrence, applied before taking an absolute value, gives
+\[
+ \frac{\Gamma(l+1/4+iy/2)}{\Gamma(1/4+iy/2)}
+  =(i/2)^l\prod_{j=0}^{l-1}(y-it_j).
+\]
+For real $y$, $f(c+iy)=i^l\prod_j(y+it_j)$, so
+\[
+ dm_0=C_k|f(c+iy)|^2d\sigma.\tag{JSA3}
+\]
+The conjugate products have been related only on this real integration
+line. Multiplication $T_{f,N}:\Pp_N\to\Pp_{N+l}$ is injective
+and satisfies $H_N^0=C_kT_{f,N}^*H_{N+l}^\sigma T_{f,N}$ in
+the increasing monomial frames. Here $H$ always denotes the actual
+Gram for its stated measure.
+
+For completeness the original mass and polynomial norms can be
+calculated directly. For $a>0$, the Euler integrals for the two Gamma
+factors, with $u+v=w$ and $r=\log(u/v)$, have Jacobian
+$w e^r/(1+e^r)^2$. Integrating $w$ therefore gives
+\[
+ |\Gamma(a+iy/2)|^2
+  =2\Gamma(2a)\int_{\mathbb R}
+       e^{iyt}(2\cosh t)^{-2a}\,dt.
+\]
+Fourier inversion gives the characteristic function
+\[
+ \int_{\mathbb R}e^{isy}
+    \frac{|\Gamma(a+iy/2)|^2}{2\pi}\,dy
+   =2\Gamma(2a)(2\cosh s)^{-2a}.\tag{JSA4}
+\]
+These integrals are absolutely convergent; the integrand on the
+right before Fourier inversion is smooth with exponentially
+decaying derivatives, so the usual Fourier inversion follows also
+by an integrable Gaussian regularization and dominated convergence.
+At $a=1/4$ this is $c_\sigma(\cosh s)^{-1/2}$.
+
+Define monic $p_n$ by
+\[
+ \sum_{n\geq0}p_n(S)\frac{z^n}{n!}
+   =(1-z^2)^{-1/4}\exp((S-c)\operatorname{arctanh}z).
+\tag{JSA5}
+\]
+For real $z,w$ sufficiently close to zero, JSA4 and
+$\cosh(\operatorname{arctanh}z-\operatorname{arctanh}w)
+=(1-zw)/\sqrt{(1-z^2)(1-w^2)}$ show that the integral of the
+first generating function times the conjugate second generating
+function is $c_\sigma(1-zw)^{-1/2}$. Differentiation under the
+integral is justified by the exponential Gamma decay and the
+bounded parameters. Comparing coefficients proves
+\[
+ \langle p_n,p_r\rangle_\sigma
+   =\boldsymbol1_{n=r}\omega_n,
+ \quad\omega_n=c_\sigma n!(1/2)_n,
+ \quad p_{n+1}=(S-c)p_n+n(n-1/2)p_{n-1}.
+\tag{JSA6}
+\]
+The recurrence also follows by differentiating JSA5. For general
+$a>0$ the generating function
+$(1-z^2)^{-a}\exp((S-c)\operatorname{arctanh}z)$ has integrated
+product $c_a(1-zw)^{-2a}$ by JSA4. Its degree-$n$ monic norm is
+therefore $c_a n!(2a)_n$. Taking $a=k/4$ and multiplying by the
+original factor $c_\sigma^k/c_{k/4}$ gives the monic norms for $dm_0$,
+\[
+ \omega_n^0=c_\sigma^k n!\frac{\Gamma(n+k/2)}{\Gamma(k/2)}.
+\]
+Every monic triangular change has determinant one. Hence
+\[
+ \frac{\det H_N^f}{\det H_N^\sigma}
+   =D_{l,N}:=\prod_{a=0}^N\prod_{r=0}^{2l-1}(a+r+1/2),
+ \quad H_N^f=T_{f,N}^*H_{N+l}^\sigma T_{f,N}.
+\tag{JSA7}
+\]
+Indeed $H_N^0=C_kH_N^f$ and
+$\omega_a^0/(C_k\omega_a)=\Gamma(a+2l+1/2)/\Gamma(a+1/2)$,
+which proves every displayed factor.
+
+\section{The exact factorial morphism on all primary jets}
+
+Order the pairs $(a,b)$ lexicographically and the derivatives within
+each root increasingly. Define
+\[
+ \mathcal E^{\rm d}_{(\lambda,r),n}
+    =\begin{cases}\binom nr\lambda^{n-r}&n\geq r,\\0&n<r,
+      \end{cases}
+ \quad
+ D_\chi=\diag_{\lambda,\,0\leq r<e}(r!),
+ \quad\mathcal E^{\rm r}=D_\chi\mathcal E^{\rm d}.
+\tag{JSA8}
+\]
+Here $\mathcal E^{\rm d}:E\to\bigoplus_\lambda\C^e$ is the
+full divided-derivative evaluation, and $\mathcal E^{\rm r}$
+is the full raw-derivative evaluation. Both are invertible:
+vanishing of all derivatives through order $e-1$ at every root
+means divisibility by the degree-$q$ polynomial $\chi$, and a
+representative of degree less than $q$ must then be zero.
+Since their source and target dimensions are $q$, injectivity
+proves surjectivity. The exact isomorphism of their targets is
+$D_\chi$, with inverse $\diag(1/r!)$; no derivative order is
+discarded.
+
+For multiplication by $f$ the two block matrices are
+\[
+ (F^{\rm d}_\lambda)_{rs}=f^{(r-s)}(\lambda)/(r-s)!,
+ \quad
+ (F^{\rm r}_\lambda)_{rs}=\binom rs f^{(r-s)}(\lambda)
+ \quad(r\geq s),
+\tag{JSA9}
+\]
+and zero above the diagonal or between different roots. The
+Taylor coefficient multiplication and the raw Leibniz rule
+prove these formulas directly. In particular
+\[
+ F^{\rm r}=D_\chi F^{\rm d}D_\chi^{-1},\qquad
+ M_f=(\mathcal E^{\rm d})^{-1}F^{\rm d}\mathcal E^{\rm d}
+    =(\mathcal E^{\rm r})^{-1}F^{\rm r}\mathcal E^{\rm r},
+ \qquad \det M_f=\prod_{a,b}f(\lambda_{ab})^e.
+\tag{JSA10}
+\]
+The imaginary parts $(2b-k)\gamma$ are nonzero because $k$ is
+odd, whereas all $\alpha_j$ are real. Every diagonal factor in
+JSA10 is therefore nonzero. The inverse of $M_f$ is the remainder
+of the Bezout inverse of $f$ modulo $\chi$. This same map obeys
+$\eta M_f=M_{f(\sum s_i)}\eta$ on the original weighted cyclic
+inclusion: evaluate the polynomial in the commuting sum operator
+and retain the commuting original factor $\upsilon_h^{\otimes k}$.
+
+For any onto observation $A$ from a source with Gram $H>0$, write
+$K=AH^{-1}A^*$. A target-coordinate change $T$ produces
+\[
+ K'=TKT^*,\quad G'=(K')^{-1}=T^{-*}K^{-1}T^{-1},\quad
+ H^{-1}(TA)^*G'T=H^{-1}A^*K^{-1}.
+\tag{JSA11}
+\]
+These identities follow by multiplying the displayed inverses.
+Thus the minimum source representative is the same vector after
+the exact target-coordinate isomorphism. Applied to JSA8, the
+joint covariance transforms by $\diag(D_\chi,I_l)$, and both
+its arithmetic Schur complement and its inverse transform by
+the corresponding congruences. In particular raw jets introduce
+no hidden factorial into the original quotient metric.
+
+\section{Joint covariance and the complete GCR cross factors}
+
+Fix $N\geq q-1$ and $M=N+l$. Define
+\[
+ Z_M:P\mapsto(P(\alpha_0),\ldots,P(\alpha_{l-1})),\quad
+ \mathscr J_M=\binom{J_M}{Z_M},\quad
+ \mathscr J_M(H_M^\sigma)^{-1}\mathscr J_M^*
+   =\begin{pmatrix}K_M&C_M\\C_M^*&A_M\end{pmatrix}.
+\tag{JSA12}
+\]
+Interpolation modulo the coprime product $\chi f$ proves that
+$\mathscr J_M$ is onto and has kernel $\chi f\Pp_{M-q-l}$.
+Its covariance is positive definite: a nonzero target covector
+pulls back to a nonzero source covector by surjectivity, and
+$H_M^{-1}>0$. Completing squares proves positivity of both
+\[
+ S_M=K_M-C_MA_M^{-1}C_M^*,\qquad
+ L_M=A_M-C_M^*K_M^{-1}C_M.
+\tag{JSA13}
+\]
+The source minimum for $Ax=v$ is
+$H^{-1}A^*(AH^{-1}A^*)^{-1}v$: it has observation $v$ and is
+$H$-orthogonal to $\ker A$, which proves its unique minimum
+property by expansion of the squared norm. The map $T_{f,N}$
+identifies the source constraint $J_NP=v$ with the joint
+constraint $(J_M(fP),Z_M(fP))=(M_fv,0)$. Conversely the latter
+constraint implies $f\mid Q$ and $Q=fP$ for a unique
+$P\in\Pp_N$; invertibility of $M_f$ then gives $J_NP=v$.
+Consequently the exact original quotient and its section are
+\[
+\begin{gathered}
+ G_N^0=C_k M_f^*S_M^{-1}M_f,\\
+ R_N^0=T_{f,N}^{-1}(H_M^\sigma)^{-1}\mathscr J_M^*
+   \begin{pmatrix}K_M&C_M\\C_M^*&A_M\end{pmatrix}^{-1}
+   \binom{M_f}{0}.
+\end{gathered}\tag{JSA14}
+\]
+The inverse $T_{f,N}^{-1}$ is used only on $\ker Z_M=f\Pp_N$.
+Direct block multiplication yields
+\[
+ G_N^0=C_kM_f^*K_M^{-1}M_f
+       +C_k(C_M^*K_M^{-1}M_f)^*L_M^{-1}
+                    (C_M^*K_M^{-1}M_f).
+\tag{JSA15}
+\]
+In particular the finite update retains the actual $C_M$ on
+both sides of the conditional inverse.
+
+To identify every GCR factor, set
+\[
+\begin{gathered}
+ U=[Jp_{N+1},\ldots,Jp_{N+l}],\quad
+ \Omega=\diag(\omega_{N+1},\ldots,\omega_{N+l}),\quad
+ G_N^\sigma=K_N^{-1},\\
+ X=\Omega^{-1}U^*G_N^\sigma U,\quad
+ Y=A_M^{-1}C_M^*K_M^{-1}C_M,\quad
+ K_M=K_N+U\Omega^{-1}U^*.
+\end{gathered}\tag{JSA16}
+\]
+The last equality is exactly the difference of the two finite
+orthogonal-polynomial covariance sums. Put $E_d=\mathcal E^{\rm d}$.
+The GCR divided-jet matrices, with their original meanings, are
+\[
+ \mathcal K_N=E_dK_NE_d^*,\quad
+ \mathcal U=E_dU\Omega^{-1/2},\quad
+ \mathcal V=E_dC_MA_M^{-1/2},\quad
+ \mathcal S=E_dS_ME_d^*.
+\tag{JSA17}
+\]
+Thus GCR's $K+\mathcal U\mathcal U^*-\mathcal V\mathcal V^*$
+is literally $\mathcal S$. Its two positive factors satisfy
+\[
+\begin{aligned}
+ \mathcal A&=I+\mathcal U^*\mathcal K_N^{-1}\mathcal U
+    =\Omega^{1/2}(I+X)\Omega^{-1/2},\\
+ \mathcal B&=I-\mathcal V^*(\mathcal K_N+
+                        \mathcal U\mathcal U^*)^{-1}\mathcal V
+    =A_M^{1/2}(I-Y)A_M^{-1/2},\\
+ \mathcal B&=I-\mathcal V^*\mathcal K_N^{-1}\mathcal V
+   +\mathcal V^*\mathcal K_N^{-1}\mathcal U\mathcal A^{-1}
+                   \mathcal U^*\mathcal K_N^{-1}\mathcal V.
+\end{aligned}\tag{JSA18}
+\]
+The last formula follows by multiplying out the inverse of
+$\mathcal K_N+\mathcal U\mathcal U^*$; the preceding equality
+proves that it is exactly the incoming mixed conditional factor.
+It contains the full cross product of the new-degree columns and
+the extra-node columns. Positivity follows from JSA13.
+Consequently $X$ is positive self-adjoint in $\Omega$, $Y$ is
+positive self-adjoint in $A_M$, and its eigenvalues are strictly
+less than one. These are metric similarities, not assertions
+that their raw matrices are Hermitian in an unspecified metric.
+
+Write $\mathcal W=(\mathcal U\ \mathcal V)$ and
+$\mathcal J=\diag(I_l,-I_l)$. Computing a block determinant
+in either order proves $\det(I+AB)=\det(I+BA)$, even for
+rectangular $A,B$. Applied here it proves
+\[
+ \mathfrak d_N:=\frac{\det S_M}{\det K_N}
+ =\det(I_{2l}+\mathcal J\mathcal W^*\mathcal K_N^{-1}\mathcal W)
+ =\det(I+X)\det(I-Y)>0.
+\tag{JSA19}
+\]
+In particular the incoming notation $d_N=\log\det(I+X)$
+is the logarithm of the degree-increase factor alone, whereas
+the GCR notation $d_N$ is the entire positive number
+$\mathfrak d_N$. Their exact relation is
+$\log\mathfrak d_N=d_N-\beta_N$ with
+$\beta_N=-\log\det(I-Y)$.
+
+\section{Original relation map and the signed endpoint equality}
+
+Let $B_N$ consist of the original columns
+$\chi,\chi S,\ldots,\chi S^{N-q}$. When $N=q-1$ it has no
+columns. The minimum sections satisfy
+\[
+\begin{gathered}
+ R_N^0=R_N^\sigma-
+ B_N(B_N^*H_N^0B_N)^{-1}B_N^*H_N^0R_N^\sigma,\\
+ (R_N^\sigma)^*H_N^0R_N^\sigma-G_N^0
+  =(R_N^\sigma-R_N^0)^*H_N^0(R_N^\sigma-R_N^0).
+\end{gathered}\tag{JSA20}
+\]
+Indeed the first vector has the same remainder and is
+$H_N^0$-orthogonal to every column of $B_N$, so it is the
+unique minimum. Expanding the square and using that
+orthogonality proves the second identity. At the empty
+relation space both correction expressions are zero.
+
+For $r_N=N+1-q$, retain the full relation determinant
+\[
+ \mathfrak R_N=
+ \frac{\det\Gr_\sigma(f\chi,f\chi S,\ldots,f\chi S^{r_N-1})}
+      {\det\Gr_\sigma(\chi,\chi S,\ldots,\chi S^{r_N-1})}.
+\tag{JSA21}
+\]
+Both empty determinants are one. The frame
+$(1,\ldots,S^{q-1},\chi,\ldots,\chi S^{N-q})$ has determinant
+one in increasing monomial coordinates because $\chi$ is monic.
+In this frame elimination of the relation cross block gives
+$\det H=\det(B_N^*HB_N)\det G$. The quotient block is $G$
+by the proved minimum property. Apply the identity to $H_N^f$
+and $H_N^\sigma$ and then use JSA7 and JSA14. This gives
+\[
+ \log\mathfrak d_N
+   =2\log|\det M_f|-\log D_{l,N}+\log\mathfrak R_N.
+\tag{JSA22}
+\]
+Thus the two $l$-dimensional determinants, the GCR $2l$ determinant,
+and the GSR determinant on the entire original relation subspace
+have exactly the same endpoint value under JSA22.
+
+Set $N_0=q-1,N_1=q,N_2=2q-1,N_3=2q$ and
+$(\epsilon_0,\epsilon_1,\epsilon_2,\epsilon_3)=(1,1,-1,-1)$.
+Taking determinants in JSA14 first gives
+\[
+ \log\det G_N^0-\log\det G_N^\sigma
+  =q\log C_k+2\log|\det M_f|-\log\mathfrak d_N.
+\tag{JSA23}
+\]
+Only after constructing all four endpoints do the first two
+terms cancel. If $\mathfrak T=\sum_r\epsilon_r
+(\log\det G_{N_r}^0-\log\det G_{N_r}^\sigma)$, the incoming
+return is consequently
+\[
+ R_k^0-R_k^\sigma=-\mathfrak T
+  =\sum_{r=0}^3\epsilon_r\log\mathfrak d_{N_r}
+  =\sum_{r=0}^3\epsilon_r
+       \{\log\det(I+X_{N_r})+\log\det(I-Y_{N_r})\}.
+\tag{JSA24}
+\]
+This verifies the four signs against the original GCR and GSR
+definitions, including the minus sign between this return and
+$\mathfrak T$.
+
+There is also an exact morphism to the incoming conditional
+evaluation covariance. The covariance of $Z_M$ restricted to
+$\ker J_M$ is $L_M$: subtract from $H_M^{-1}$ its minimum-section
+part $H_M^{-1}J_M^*K_M^{-1}J_MH_M^{-1}$ and multiply by $Z_M$
+and $Z_M^*$. The remaining operator is the inverse metric on
+the embedded subspace $\ker J_M$. Identifying that subspace by
+multiplication by $\chi$ therefore proves
+\[
+ L_M=\diag(\chi(\alpha_j))\,
+       A_{M-q}^{\chi\sigma}\,
+       \diag(\overline{\chi(\alpha_j)}).
+\tag{JSA25}
+\]
+Here $A_n^{\chi\sigma}$ uses the exact Gram of
+$|\chi(c+iy)|^2d\sigma$ on $\Pp_n$. The factors $\chi(\alpha_j)$
+are nonzero by coprimality. No cross covariance has been removed
+in identifying the restricted metric.
+
+\section{A narrower finite certificate from the two exact low endpoints}
+
+At the two low endpoints JSA21 gives, exactly,
+\[
+ \mathfrak R_{q-1}=1,\qquad
+ \mathfrak R_q=\mathfrak r_\chi:={
+    \int |f(c+iy)\chi(c+iy)|^2d\sigma(y)\over
+    \int |\chi(c+iy)|^2d\sigma(y)}>0.
+\tag{JSA26}
+\]
+These are finite original polynomial moments, whose values can
+also be calculated by expanding in the $p_n$ basis and JSA6.
+In particular no low-endpoint logarithmic series is needed.
+Their exact sum is
+\[
+ E_{\rm low}:=\log\mathfrak d_{q-1}+\log\mathfrak d_q
+  =4\log|\det M_f|-\log D_{l,q-1}-\log D_{l,q}
+                        +\log\mathfrak r_\chi.
+\tag{JSA27}
+\]
+
+For direct comparison with the incoming certificate retain its
+same common scalar
+$s=2+\sum_{r=0}^3\Tr X_{N_r}$ and put
+$Z_N=I-(I+X_N)/s$. Each $Z_N$ is positive self-adjoint in
+$\Omega_N$ and has spectrum in $[0,1)$: every eigenvalue of
+$X_N$ is nonnegative and no larger than $\Tr X_N\leq s-2$.
+Together with JSA18 this proves the same assertion for $Y_N$
+in its own metric. For any such matrix $T$ define
+\[
+ b_p(T)=\sum_{n=1}^p{\Tr T^n\over n},\quad
+ a_p(T)=\Tr T^p,\quad
+ u_p(T)=b_p(T)+{b_{2p}(T)-b_p(T)\over1-a_p(T)}.
+\tag{JSA28}
+\]
+There is a finite $p$ with $a_p(T)<1$, because if $\rho<1$ is
+the largest eigenvalue then $a_p(T)\leq l\rho^p\to0$.
+For $0\leq x<1$ put $r_p(x)=\sum_{n>p}x^n/n$. Termwise,
+$r_{2p}(x)\leq x^p r_p(x)$. Sum over the eigenvalues; the
+largest $x^p$ is at most $a_p(T)$. Writing the total tail as
+the sum from $p+1$ to $2p$ plus the tail above $2p$ yields
+\[
+ b_p(T)\leq-\log\det(I-T)\leq u_p(T),
+\tag{JSA29}
+\]
+by moving $a_p$ times the tail to the left. Both bounds converge
+to the exact value as $p\to\infty$ along admitted orders.
+
+For $r=2,3$ choose admitted orders independently on $Z_{N_r}$
+and $Y_{N_r}$ and set
+\[
+ L_r=b_{p_r}(Z_{N_r})+b_{q_r}(Y_{N_r}),\quad
+ U_r=u_{p_r}(Z_{N_r})+u_{q_r}(Y_{N_r}).
+\]
+The complete return has the following finite enclosure:
+\[
+ \boxed{
+ E_{\rm low}-2l\log s+L_2+L_3
+ \ \leq R_k^0-R_k^\sigma\leq
+ E_{\rm low}-2l\log s+U_2+U_3.}
+\tag{JSA30}
+\]
+To prove it, use
+$\log\mathfrak d_N=l\log s+
+\log\det(I-Z_N)+\log\det(I-Y_N)$
+at the two high endpoints in JSA24 and substitute JSA27 at
+the two low endpoints. JSA29 then proves both bounds. This
+uses only four trace series, each with its full specified
+original metric and mixed factor.
+
+The comparison with the incoming eight-series certificate is
+exact. If the incoming low-endpoint bounds are $[L_0,U_0]$
+and $[L_1,U_1]$ for the corresponding positive log tails, their
+true sum is $2l\log s-E_{\rm low}$. It belongs to
+$[L_0+L_1,U_0+U_1]$. Therefore both endpoints in JSA30 are
+inside the incoming interval
+$[L_2+L_3-U_0-U_1,U_2+U_3-L_0-L_1]$. Its width decreases by
+exactly $(U_0-L_0)+(U_1-L_1)$ when the same high-endpoint
+orders and exact low moments are used. If numerical moment
+values are used, their proved errors must be added to JSA30;
+the zero-width statement refers to the exact quantities JSA26.
+
+For a direct combination with the existing relation estimates,
+write
+\[
+ C_{\rm rel}=\log D_{l,q-1}+\log D_{l,q}
+       -\log\mathfrak r_\chi-\log D_{l,2q-1}-\log D_{l,2q}.
+\]
+JSA22 and JSA24 prove the exact equality
+\[
+ R_k^0-R_k^\sigma=-C_{\rm rel}
+                      -\log\mathfrak R_{2q-1}-\log\mathfrak R_{2q}.
+\tag{JSA31}
+\]
+Thus the proved GSR bounds $\ell_N\leq\log\mathfrak R_N\leq u_N$
+on these very same relation determinants give the interval
+$[-C_{\rm rel}-u_{2q-1}-u_{2q},
+  -C_{\rm rel}-\ell_{2q-1}-\ell_{2q}]$.
+Intersecting this interval with JSA30 is justified by JSA31,
+not by treating the two constructions as independent models.
+All surviving original-source error terms still enter the
+arithmetic interval with their actual proved original-degree
+estimates. A fixed-input convergent certificate alone makes
+no tensor-uniform assertion.
+
+\section{The reduced certificate also has exact rational bounds}
+
+The rational construction RGC1--11 is valid for the full original
+parameter domain. Its exact factorization is, with $d=\delta^2$
+and $g=\gamma^2$,
+\[
+ \chi(c+x)=\prod_{a,b\in\{1,3,\ldots,k\}}
+  \big((x^2+a^2d+b^2g)^2-4a^2dx^2\big)^e.
+\tag{JSA32}
+\]
+Expanding the four original factors with roots
+$a\delta+ib\gamma$, $a\delta-ib\gamma$,
+$-a\delta+ib\gamma$, $-a\delta-ib\gamma$ gives the displayed
+factor. Every quartet is included once, so its degree is
+$4((k+1)/2)^2e=q$ and its coefficients lie in $\mathbb Q[d,g]$.
+Translation by $c$ is the exact triangular binomial map with
+inverse translation by $-c$; both determinants are one.
+
+In these coordinates $p_n(c+x)\in\mathbb Q[x]$, and the
+coefficient columns of their remainders modulo JSA32 lie in
+$\mathbb Q[d,g]^q$. Their evaluation columns at $x=t_j$ lie
+in $\mathbb Q^l$. Write $h_n=\omega_n/c_\sigma=n!(1/2)_n$.
+All covariance sums are $c_\sigma^{-1}$ times rational matrices:
+\[
+\begin{gathered}
+ \widehat K_N=\sum_{n=0}^N v_nv_n^{\mathsf T}/h_n,
+ \quad\widehat C_M=\sum_{n=0}^M v_nw_n^{\mathsf T}/h_n,
+ \quad\widehat A_M=\sum_{n=0}^M w_nw_n^{\mathsf T}/h_n,\\
+ K_N=c_\sigma^{-1}\widehat K_N,\quad
+ C_M=c_\sigma^{-1}\widehat C_M,\quad
+ A_M=c_\sigma^{-1}\widehat A_M.
+\end{gathered}\tag{JSA33}
+\]
+Here the coefficient vectors are real, so transpose is their
+actual adjoint. JSA12--13 prove that the inverse denominators
+never vanish on $0<d<1/4$, $g>4$. If
+$D_N=\diag(h_{N+1},\ldots,h_{N+l})$, substituting the mass
+factors of JSA33 and $\Omega_N=c_\sigma D_N$ in JSA16 gives
+\[
+ X_N=D_N^{-1}U_N^{\mathsf T}\widehat K_N^{-1}U_N,\qquad
+ Y_N=\widehat A_M^{-1}\widehat C_M^{\mathsf T}
+                    \widehat K_M^{-1}\widehat C_M.
+\tag{JSA34}
+\]
+These are exact equalities of the original endomorphisms and
+their retained metrics; in particular their entries and all
+power traces lie in $\mathbb Q(d,g)$.
+
+The low-endpoint constant in JSA30 has the exact expression
+\[
+ E_{\rm low}-2l\log s=\log H_{\rm low},\qquad
+ H_{\rm low}=
+ \frac{|\det M_f|^4\mathfrak r_\chi}
+      {D_{l,q-1}D_{l,q}s^{2l}}\in\mathbb Q(d,g)_{>0}.
+\tag{JSA35}
+\]
+To prove rationality of each factor, $\det M_f$ is the
+determinant of polynomial multiplication in the rational
+remainder algebra of JSA32, so it is a real polynomial in
+$d,g$. It is nonzero by JSA10. The source Gram for real
+coefficient polynomials in $x$ is $c_\sigma$ times a rational
+matrix by the rational monic triangular basis and JSA6.
+Consequently the common $c_\sigma$ cancels in the moment ratio
+$\mathfrak r_\chi$, giving a positive rational function.
+The other factors are explicitly rational. Also $H_{\rm low}<1$:
+each $Z_{N_r}$ has strictly positive eigenvalues, since
+$1+\lambda_{\max}(X_{N_r})\leq s-1<s$; hence each exact
+positive tail $-\log\det(I-Z_{N_r})$ is strictly positive.
+The equality before JSA30 at $r=0,1$ gives
+$\log H_{\rm low}$ as the negative of their sum together
+with the two nonnegative $Y$ tails.
+
+Put $z=(1-H_{\rm low})/(1+H_{\rm low})\in(0,1)$ and define
+\[
+ b_p^{\rm sc}=2\sum_{j=0}^{p-1}\frac{z^{2j+1}}{2j+1},\qquad
+ e_p^{\rm sc}=\frac{2z^{2p+1}}{(2p+1)(1-z^2)}.
+\tag{JSA36}
+\]
+Integrating $2/(1-z^2)$ from zero to $z$ gives
+$-\log H_{\rm low}=2\sum_{j\geq0}z^{2j+1}/(2j+1)$.
+Bounding the denominator of every omitted term below by
+$2p+1$ and summing its geometric numerator proves
+\[
+ -b_p^{\rm sc}-e_p^{\rm sc}
+   \leq\log H_{\rm low}\leq-b_p^{\rm sc}.
+\tag{JSA37}
+\]
+All terms are rational functions in $d,g$, and $e_p^{\rm sc}$
+tends to zero. Substituting these two bounds into JSA30 gives
+the completely rational enclosure
+\[
+ \boxed{-b_p^{\rm sc}-e_p^{\rm sc}+L_2+L_3
+ \ \leq R_k^0-R_k^\sigma\leq
+ -b_p^{\rm sc}+U_2+U_3.}
+\tag{JSA38}
+\]
+At rational $d,g$ it is computable with exact rational arithmetic.
+It uses the four full high-endpoint matrix series and one scalar
+series. Its width is the exact-low-endpoint width in JSA30 plus
+the explicit scalar error $e_p^{\rm sc}$. This error can be made
+arbitrarily small; no assertion about its numerical speed is
+needed to prove termination.
+
+Finally fix a closed rectangle strictly inside
+$(0,1/4)\times(4,\infty)$. The rational denominators above are
+nonzero on that rectangle, and all matrices and positive
+metrics are continuous. Their self-adjoint similarities from
+JSA18 are continuous, so the largest eigenvalues of $Z_N,Y_N$
+have a common upper bound less than one by compactness. The
+continuous scalar $z$ has the same property. The matrix and
+scalar tail widths therefore converge uniformly to zero.
+For a fixed admitted order, rational interval evaluation on
+successively subdivided rectangles converges uniformly because
+the finitely many denominators have positive absolute minima.
+This proves finite certification to any prescribed positive
+excess over the actual variation of the return on the rectangle.
+The parameter variation is retained. A calibration at rational
+$d,g$ asserts no relation between those chosen roots and zeros
+of $2\xi$.
+
+\section{Exact coefficient map for the incoming mixed-word receiver}
+
+The incoming reduced pair receiver also has an exact dictionary
+to the existing MWR receiver. Retain the incoming nodal order
+$(c_\pm-i\gamma,c_\pm+i\gamma)$ and let
+\[
+ E_0=\begin{pmatrix}1&-i\gamma\\1&i\gamma\end{pmatrix},\qquad
+ J=\begin{pmatrix}0&-\gamma^2\\1&0\end{pmatrix},\qquad
+ z_0=A+i\gamma B,\quad A,B\in\mathbb R.
+\]
+The actual reflected unit values give
+$U_+^{\rm nod}=\diag(\overline z_0,z_0)$ and
+$U_-^{\rm nod}=\diag(z_0,\overline z_0)$. Direct multiplication
+gives the full coefficient identities
+\[
+ E_0^{-1}U_+^{\rm nod}E_0=AI+BJ,\qquad
+ E_0^{-1}U_-^{\rm nod}E_0=AI-BJ,
+ \quad\det(AI\pm BJ)=A^2+\gamma^2B^2>0.
+\tag{JSA39}
+\]
+These are the reduced matrices of the same nonzero unit; no
+independent phase for the two legs has been supplied. With the
+exact incoming translation of the oriented periods, set
+$M=W^{-1}\Pi_{\rm cen}$ and
+$F_\pm=(c_\pm^3/3+c_\pm\gamma^2)/u$. The two nodal receiver
+matrices therefore satisfy
+\[
+\begin{gathered}
+ T_\pm=e^{F_\pm}M(AI\pm BJ)E_0^{-1},\\
+ T_-T_+^{-1}=e^{F_--F_+}
+       M(AI-BJ)(AI+BJ)^{-1}M^{-1}.
+\end{gathered}\tag{JSA40}
+\]
+This proves the incoming exceptional off-diagonal equations are
+exactly the MWR equations multiplied by the same nonzero scalar.
+For a word with $a$ plus and $b$ minus factors the full tensor
+map contains the scalar $e^{aF_++bF_-}$ and the exact input map
+$(E_0^{-1})^{\otimes(a+b)}$. Restriction to the unscaled symmetric
+orbit columns gives their literal symmetric powers; their inverse
+comes from $E_0^{\otimes(a+b)}$. This transports the coefficient
+matrix and its entire kernel, with the stated scalar retained in
+every metric pullback. It identifies the incoming $k=5,(a,b)=(2,3)$
+rank calculation with that same specialization of the existing
+MWR construction rather than introducing a different mixed family.

@@ -1,0 +1,365 @@
+--- accepted/TWA.tex
++++ successor/TWA.tex
+@@ -333,10 +333,10 @@
+  =\max\{-qE_k^+,-\Xi_{k,q-1}-\Xi_{k,q}\},\\
+  \overline\delta_k^\sigma
+  =\min\{qE_k^-,\Xi_{k,2q-1}+\Xi_{k,2q}\},\\
+- |\delta_k^\sigma|\leq2\Xi_{k,2q},\qquad
++ |\delta_k^\sigma|\leq2\Xi_{k,2q}\leq2kq\Psi_k,\qquad
+  \frac{|\delta_k^\sigma|}{kq}
+- =O_h\!\left[
+- \left(\frac{\log(k+2)}{k}\right)^{(p-1)/p}\right].
++ =O_h\!\left(\frac{\log k}{k}
++       +\left(\frac{k\log k}{q}\right)^{(p-1)/p}\right).
+ \end{gathered}\tag{TWA15}
+ \]
+ Here is the determinant transport that proves the additional
+@@ -362,8 +362,43 @@
+ complete the associated Gamma-isometric injection to a
+ unitary frame and use the same positive Schur determinant.
+ Thus both endpoint sums are at most $2\Xi_{k,2q}$.
+-HMR38 and HMR44 prove the displayed rate with their actual
+-growing cutoff $R=(k/\log(k+2))^{1/p}$ and $q\geq(k+1)^2$.
++HMR38 and HMR44 prove the displayed rate with the actual
++degree-dependent cutoff $R_k^*=\max(1,z_k^{-1/p})$,
++$z_k=kT_k^{\rm deg}/q$. Here $T_k^{\rm deg}$ and every constant
++in the finite $\Psi_k,\Psi_{k,N}^{\rm deg}$ are the explicit
++unchanged DMR constants written in HMR44a--44; the complete
++ODD1--14 proof is retained as a dependency. In particular the
++degree remains $q=(k+1)^2[1+k(m-1)]$. The original finite
++source bounds give the following evaluated signed return:
++\[
++\begin{gathered}
++ D_k^-=kq(\Psi_{k,q-1}^{\rm deg}+\Psi_{k,q}^{\rm deg}),\qquad
++ D_k^+=kq(\Psi_{k,2q-1}^{\rm deg}+\Psi_{k,2q}^{\rm deg}),\\
++ \underline\delta_k^{\rm eval}=\max\{-qE_k^+,-D_k^-\},\qquad
++ \overline\delta_k^{\rm eval}=\min\{qE_k^-,D_k^+\},\\
++ \underline\delta_k^{\rm eval}\leq\underline\delta_k^\sigma
++ \leq\delta_k^\sigma\leq\overline\delta_k^\sigma
++                    \leq\overline\delta_k^{\rm eval},\\
++ -(64m+245)\leq\liminf\frac{\delta_k^\sigma}{q\log k}
++ \leq\limsup\frac{\delta_k^\sigma}{q\log k}
++ \leq128m+490\quad(m\geq2).
++\end{gathered}\tag{TWA15a}
++\]
++The first line uses precisely the two low and two high original
++source dimensions. The evaluated maximum and minimum retain the
++independent coarse estimates from TWA15. To prove their order, use
++$\Xi_{k,N}\leq kq\Psi_{k,N}^{\rm deg}$ in the respective
++endpoint sums of TWA15; its maximum and minimum retain the
++exact narrower interval. For the last line, HMR44b proves
++$k\Psi_{k,N}^{\rm deg}/\log k\to s(32m+245/2)$ when
++$N/q\to s\in\{1,2\}$ and $m\geq2$. Thus the negative
++side contains two $s=1$ terms, while the positive side
++contains two $s=2$ terms, giving the displayed constants.
++For $m=1$ one retains $q=(k+1)^2$ and the proved rate
++$O_h((\log k/k)^{5/7})$ on the $kq$ scale. The multiple-zero
++$q\log k$ bounds are not assigned to that degree regime.
++All of the original kernel and boundary signed corrections
++obey these same bounds by the complete factorization HMR42--44b.
+ The factor $q$ remains in the original coarse comparison;
+ it is the new Schur determinant calculation, with all
+ relation directions included, that improves its interval.
+@@ -542,7 +577,18 @@
+ \tag{TWA23}
+ \]
+ This is an exact finite correspondence between the FPK coordinates,
+-the original source comparison and the complete BRU sum.
++the original source comparison and the complete BRU sum. The actual
++evaluated degree-preserving interval from TWA15a also gives
++\[
++ \mathcal M_k-\mathcal R_k^\sigma+\underline\delta_k^{\rm eval}
++ \leq F_K(1)+F_B(1)
++ \leq\mathcal M_k-\mathcal R_k^\sigma+\overline\delta_k^{\rm eval}.
++ \tag{TWA23a}
++\]
++This follows by adding the same complete fixed-Gamma functional
++to both sides of TWA15a. Its exact value and every finite jet
++in $\mathcal R_k^\sigma$ are retained. The TWA23 interval with
++the actual deficits is contained in this evaluated interval.
+ 
+ The original tensor-Gamma reference at BRU $x=0$ has full mass
+ $(2\pi)^{k/2}$ and density
+@@ -582,6 +628,20 @@
+ \]
+ Thus both Gamma presentations have their exact maps to the original
+ source, with every mass factor and both signed residuals retained.
++The degree-preserving finite return at this same use site is
++\[
++ \mathcal R_k^0-\mathcal R_k^\sigma+\underline\delta_k^{\rm eval}
++ \leq\Delta_k^\Gamma
++ \leq\mathcal R_k^0-\mathcal R_k^\sigma+\overline\delta_k^{\rm eval}.
++ \tag{TWA24a}
++\]
++Add the exact difference of residuals to TWA15a to prove the
++display. For $m\geq2$, its signed $q\log k$ conclusion belongs
++to $\Delta_k^\Gamma-(\mathcal R_k^0-\mathcal R_k^\sigma)
++=\delta_k^\sigma$, whose bounds are TWA15a. On the class where
++$\mathcal R_k^0-\mathcal R_k^\sigma=-\mathfrak T_k$, this same
++quantity is $\Delta_k^\Gamma+\mathfrak T_k$. This retains the
++actual signed Gamma value throughout the return.
+ 
+ \subsection{The exact domain of the fixed-packet limit}
+ 
+@@ -757,46 +817,226 @@
+ The DMR estimate in this body has $k\geq3$, so on this tensor
+ class its asymptotic statements concern $k\geq5$.
+ 
+-For completeness its finite scalar enclosure also has
+-fully evaluated moving constants. For $l\geq1$ define
+-\[
+-\begin{gathered}
+- \mathscr U_{l,N}=\prod_{j=0}^{l-1}[4(N+j+1)^2+t_j^2],
+- \quad D_{l,N}^{\rm Chr}
+-   =\prod_{a=0}^{N}\prod_{r=0}^{2l-1}(a+r+\tfrac12),\\
++% Replace TWA.tex from "For completeness its finite scalar enclosure also has"
++% through EOF. Preserve TWA26--30, including every exact mixed determinant.
++% The complete GSR1--33 and JQR1--39 bodies are required cumulative dependencies.
++For completeness, retain the original full-vector products
++\[
++\begin{gathered}
++ \mathscr U_{l,N}=\prod_{j=0}^{l-1}[4(N+j+1)^2+t_j^2],\\
++ D_{l,N}^{\rm Chr}=\prod_{a=0}^{N}\prod_{r=0}^{2l-1}
++                              (a+r+\tfrac12),\\
+  X_{l,N}=(N+1)\log\mathscr U_{l,N}-\log D_{l,N}^{\rm Chr}\geq0,
+  \qquad Z_k=q\sum_{a=0}^3\epsilon_a\log\mathscr U_{l,N_a},\\
+  Z_k-X_{l,q-1}-X_{l,q}\leq\mathfrak T_k
+        \leq Z_k+X_{l,2q-1}+X_{l,2q}.
+ \end{gathered}\tag{TWA31}
+ \]
+-The original Gamma Jacobi coefficients are at most their
+-indices, giving $\|yP\|_\sigma\leq2(d+1)\|P\|_\sigma$
+-at degree $d$. The identity
+-$\|(y+it)P\|_\sigma^2=\|yP\|_\sigma^2+t^2\|P\|_\sigma^2$
+-therefore proves the upper full-vector factor
+-$\mathscr U_{l,N}$ by successive multiplication.
+-The ratio of the exact original monic norms is
+-$\gamma_{k,a}/(\beta_k\gamma_a)
+-=\prod_{r=0}^{2l-1}(a+r+1/2)$, so multiplying them proves
+-the determinant ratio $D_{l,N}^{\rm Chr}$ on the same
+-source dimension $N+1$. The Schur proof of TWA15 then
+-bounds its quotient deficit between zero and $X_{l,N}$.
+-Keeping the four signs proves the last line of TWA31.
+-The complete product estimates GCR34--38, with their
+-explicit remainders, give
+-$X_{l,N_a}/[2l(N_a+1)]\to1+\log2$ and
+-$Z_k/(kq)\to-\log2$. Hence along $k\equiv1\pmod4$,
+-\[
+-\begin{gathered}
+- -1-2\log2\leq\liminf\frac{\mathfrak T_k}{kq}
+-       \leq\limsup\frac{\mathfrak T_k}{kq}\leq2+\log2,\\
+- -2-\log2\leq\liminf\frac{\Delta_k^\Gamma}{kq}
+-       \leq\limsup\frac{\Delta_k^\Gamma}{kq}\leq1+2\log2.
++The Jacobi coefficients of the original Gamma source give
++$\|yP\|_\sigma\leq2(d+1)\|P\|_\sigma$ at degree $d$.
++The identity $\|(y+it)P\|_\sigma^2
++=\|yP\|_\sigma^2+t^2\|P\|_\sigma^2$ proves the upper
++factor $\mathscr U_{l,N}$ by successive multiplication.
++The exact monic ratios are
++$\gamma_{k,a}/(\beta_k\gamma_a)=\prod_{r=0}^{2l-1}(a+r+1/2)$,
++so their product is $D_{l,N}^{\rm Chr}$ on source dimension
++$N+1$. The full relation-kernel Schur complement used in TWA15
++bounds the quotient deficit between zero and $X_{l,N}$.
++Keeping the four signs proves TWA31.
++
++The complete signed relation calculation GSR1--33 now sharpens
++this enclosure at its actual two low and two high endpoints.
++For $l\geq1$, $N\geq q-1$, and $r_N=N+1-q$, put
++\[
++\begin{gathered}
++ R_N^{\rm Chr}
++ =\frac{\det\operatorname{Gram}_\sigma
++         (f_l\chi,f_l\chi S,\ldots,f_l\chi S^{r_N-1})}
++        {\det\operatorname{Gram}_\sigma
++         (\chi,\chi S,\ldots,\chi S^{r_N-1})},\\
++ \mathfrak r_\chi
++ =\frac{\displaystyle\int|f_l(c+iy)\chi(c+iy)|^2\,d\sigma(y)}
++        {\displaystyle\int|\chi(c+iy)|^2\,d\sigma(y)},\\
++ C_k^{\rm Chr}=\log D_{l,q-1}^{\rm Chr}+\log D_{l,q}^{\rm Chr}
++ -\log\mathfrak r_\chi
++ -\log D_{l,2q-1}^{\rm Chr}-\log D_{l,2q}^{\rm Chr},\\
++ \mathfrak T_k=C_k^{\rm Chr}
++                 +\log R_{2q-1}^{\rm Chr}+\log R_{2q}^{\rm Chr}.
++\end{gathered}\tag{TWA31a}
++\]
++Both empty relation determinants are one at $N=q-1$.
++At $N=q$ their ratio is precisely $\mathfrak r_\chi$.
++To prove the displayed return, the monic coefficient frame
++$(1,\ldots,S^{q-1},\chi,\ldots,\chi S^{N-q})$
++has determinant one. Its block determinant gives
++$\det G_N^f=\det H_N^f/\det H_{N-q}^{|f_l\chi|^2}$,
++and the same identity holds for the original $\sigma$ source.
++Their difference is
++$\log\det G_N^f-\log\det G_N^\sigma
++=\log D_{l,N}^{\rm Chr}-\log R_N^{\rm Chr}$.
++Insert the two exact low endpoints and retain the four signs.
++The four original $q\log\beta_k$ terms cancel, proving TWA31a.
++The original moment has the finite bounds
++$\prod_jt_j^2\leq\mathfrak r_\chi\leq\mathscr U_{l,q}$,
++from the pointwise lower factor and the full-vector upper
++bound applied to the actual polynomial $\chi$.
++
++For the finite spectral inputs, let $D=N+l+1$ and let
++$\mathcal J_D$ have zero diagonal and adjacent entries
++$\sqrt{a(a-1/2)}$ at coordinates $a-1,a$, $1\leq a<D$.
++Set $\Phi_l(x)=\prod_{j=0}^{l-1}(x^2+t_j^2)$ and order the
++positive eigenvalues of $\Phi_l(\mathcal J_D)$ as
++$\pi_{D,1}\leq\cdots\leq\pi_{D,D}$, with multiplicity.
++Define, with zero sums when $r_N=0$,
++\[
++\begin{gathered}
++ s^-_{l,N}=\sum_{i=1}^{r_N}\log\pi_{D,i},\qquad
++ s^+_{l,N}=\sum_{i=D-r_N+1}^{D}\log\pi_{D,i},\\
++ L_{l,N}^{\rm Chr}=\max\left\{s^-_{l,N},
++    \log D_{l,N}^{\rm Chr}-q\log\mathscr U_{l,N},
++    r_N\sum_{j=0}^{l-1}\log t_j^2\right\},\\
++ U_{l,N}^{\rm Chr}=\min\left\{s^+_{l,N},
++                                    r_N\log\mathscr U_{l,N}\right\},\\
++ \underline{\mathfrak T}_k=C_k^{\rm Chr}
++               +L_{l,2q-1}^{\rm Chr}+L_{l,2q}^{\rm Chr},\\
++ \overline{\mathfrak T}_k=C_k^{\rm Chr}
++               +U_{l,2q-1}^{\rm Chr}+U_{l,2q}^{\rm Chr},\\
++ \boxed{\quad\underline{\mathfrak T}_k\leq\mathfrak T_k
++                  \leq\overline{\mathfrak T}_k.\quad}
++\end{gathered}\tag{TWA31b}
++\]
++Here is the exact relation-space map underlying these bounds.
++Write $P(c+iy)=\sum_{n=0}^{D-1}z_nb_n(y)/\sqrt{\gamma_n}$
++and let $\mathcal C_D(P)=(z_n)_n$; its inverse sends $z$ to
++$\sum_nz_nb_n((S-c)/i)/\sqrt{\gamma_n}$.
++This is an isometry with the original mass $\gamma_0=\sqrt{2\pi}$.
++Let $Z_N$ have columns $\mathcal C_D(\chi S^a)$,
++$0\leq a<r_N$, and put $B_N=Z_N(Z_N^*Z_N)^{-1/2}$.
++Multiplication by $f_l$ is exactly
++$\mathcal C_D(f_lP)=i^l\prod_j(\mathcal J_D+it_jI)\mathcal C_D(P)$
++on degree at most $N$: every intermediate degree is at most
++$N+l=D-1$, so no final source coefficient is truncated.
++Consequently
++$R_N^{\rm Chr}=\det(B_N^*\Phi_l(\mathcal J_D)B_N)$.
++In an orthonormal eigenbasis its Cauchy--Binet expansion is
++$\sum_{|I|=r_N}|\det(B_N)_I|^2\prod_{i\in I}\pi_{D,i}$.
++The coefficients are nonnegative and sum to one because
++$B_N^*B_N=I$. This proves the spectral bounds in TWA31b.
++The remaining entries in its maximum and minimum follow
++from the same full-vector upper and pointwise lower bounds
++on the original relation space and from the quotient Schur
++bound in the preceding paragraph. This proves every finite
++bound in TWA31b on the same actual determinant.
++
++The complete packet remains in each coefficient: if $x_{D,i}$
++are the real eigenvalues of $\mathcal J_D$, and
++$\omega_{D,i}=\gamma_0(v_i)_0^2$ for a real unit eigenvector
++$v_i$, then the Cauchy--Binet coefficient is exactly
++\[
++ \frac{\displaystyle\prod_{i\in I}
++ \omega_{D,i}|\chi(c+ix_{D,i})|^2
++ \prod_{i<j,\ i,j\in I}(x_{D,j}-x_{D,i})^2}
++ {\displaystyle\det\operatorname{Gram}_\sigma
++                   (\chi,\chi S,\ldots,\chi S^{r_N-1})}.
++\]
++The eigenvector recurrence gives
++$(v_i)_n=\sqrt{\omega_{D,i}}b_n(x_{D,i})/\sqrt{\gamma_n}$,
++which proves this formula by evaluating the actual columns.
++The original mass is $\sum_i\omega_{D,i}=\gamma_0$.
++Furthermore
++$|\chi(c+ix)|^2=\prod_{a,b=0}^k
++(((2a-k)\delta)^2+(x-(2b-k)\gamma)^2)^{\ell_k}$,
++so all multiplicities and mixed support points occur.
++The actual source relation injection is still
++$(z_a)_a\mapsto\chi\sum_a z_aS^a$.
++Its multiplication image is $f_l\chi\mathcal P_{N-q}$.
++The proper observation kernel and its orthogonal complement
++retain the exact maps and full original unit in TWA29.
++
++TWA31b is contained in TWA31. At the two high endpoints
++its lower and upper candidates include those used in the
++original Schur bound. At the low endpoints it inserts their
++exact values. Its upper bound is strictly smaller for $l\geq1$:
++the old upper estimate of the low endpoint $N=q-1$ exceeds
++its exact value by $X_{l,q-1}>0$.
++For strictness, apply the first multiplication step to the
++constant polynomial: its $y$-norm ratio is $1/2<4q^2$.
++The remaining positive factors retain the successive upper
++bounds. The full relative source matrix is a positive
++contraction with at least one eigenvalue strictly below one,
++so its determinant is strictly below one, proving this claim.
++
++There is also the following evaluated finite interval for the
++original correction, with TWA15's existing lower and upper
++source bounds:
++\[
++ \boxed{\quad
++ \underline\delta_k^\sigma-\overline{\mathfrak T}_k
++ \leq\Delta_k^\Gamma
++ \leq\overline\delta_k^\sigma-\underline{\mathfrak T}_k.
++ \quad}\tag{TWA31c}
++\]
++It follows by subtracting TWA31b from TWA15 and using TWA30.
++TWA30 retains the sharper interval when the exact mixed
++determinants are evaluated; replacing their value by an
++enclosure does not sharpen an interval already using that value.
++
++For the moving constants, define the unique $a\in(0,2)$ and
++the real number $I$ by
++\[
++ a\operatorname{arcosh}(2/a)+2\arcsin(a/2)=\pi/2,
++ \qquad I=\frac1\pi\int_a^2\log x\,
++                              \operatorname{arcosh}(2/x)\,dx.
++\]
++The fully finite Jacobi calculation JQR1--39, retained as
++a complete dependency, proves the counting density
++$\operatorname{arcosh}(2/|x|)/(2\pi)$ on $0<|x|<2$
++for the auxiliary eigenvalue coordinate $x_{D,i}/D$.
++Its absolute-value cumulative function is
++$[t\operatorname{arcosh}(2/t)+2\arcsin(t/2)]/\pi$,
++strictly increasing from zero to one, proving uniqueness of $a$.
++JQR22 gives an explicit finite error for the top product,
++and JQR34,38,39 give the full and bottom product errors,
++including every $t_j$ and possible zero eigenvalue of
++$\mathcal J_D$. They imply, at the precise two pairs
++$(D,r_N)=(2q+l,q),(2q+l+1,q+1)$,
++\[
++ s^+_{l,N}=2lr_N\log D+2lDI+o(lD),\qquad
++ s^-_{l,N}=2lr_N\log D-2lD(1+I)+o(lD).
++\]
++Their moving domains hold because $q\geq(k+1)^2$,
++$q=O_m(k^3)$, $l=(k-1)/4$, and therefore
++$l\log[2(D+l)]/D\to0$ and $r_N/D\to1/2$.
++No fixed-packet degree limit is used.
++
++The exact source product gives
++$C_k^{\rm Chr}/(2lq)=-2\log q-4\log2+2+o(1)$;
++its finite factorial error is $O(l^2\log(q+2))$ and
++$\log\mathfrak r_\chi=O_m(k\log(k+2))=o(lq)$
++by the displayed moment bounds.
++The sum of the two top products divided by $2lq$ is
++$2\log q+2\log2+4I+o(1)$; the bottom sum is
++$2\log q+2\log2-4(1+I)+o(1)$.
++Insert these in TWA31a and use $2l/k\to1/2$.
++The resulting current moving enclosures, along $k\equiv1\pmod4$,
++are
++\[
++\begin{gathered}
++ -1-\log2-2I\leq\liminf\frac{\mathfrak T_k}{kq}
++       \leq\limsup\frac{\mathfrak T_k}{kq}\leq1-\log2+2I,\\
++ -1+\log2-2I\leq\liminf\frac{\Delta_k^\Gamma}{kq}
++       \leq\limsup\frac{\Delta_k^\Gamma}{kq}\leq1+\log2+2I.
+ \end{gathered}\tag{TWA32}
+ \]
+-The second line follows from TWA30 and the proved
+-$\delta_k^\sigma/(kq)\to0$. These are enclosures, not
+-limits or a claim of $o(kq)$ for $\mathfrak T_k$.
+-All other tensor classes retain the literal two-residual
+-identity TWA24 and the finite interval TWA15.
++The second line follows from TWA30 and
++$\delta_k^\sigma/(kq)\to0$. These sharpen the earlier GCR39--40
++constants. Indeed the upper half of the absolute counting
++measure has mass $1/2$ and the whole second moment is $2/3$.
++Concavity of $\log$ applied to $x^2$ on that half gives
++$I\leq\tfrac14\log(4/3)$, so the upper constant for
++$\mathfrak T_k$ is at most $1-\tfrac12\log3<1$.
++Both inequalities retain the exact integral $I$.
++They establish an enclosure of the actual signed value,
++without assigning it either endpoint or a vanishing leading term.
++For $l=0$ the exact return remains zero by TWA30; every
++other tensor class retains the full two-residual identity TWA24.

@@ -1,3 +1,1120 @@
+# Split-Zero cohomology: outer moments and residual observations
+
+[Start here: the exact current owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/00_CONTINUE_HERE.md).
+
+[Read the current 132-page paper on GitHub](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Read its published PDF](https://zenodo.org/api/records/22759221/files/59-quotient-moment-reader.pdf/content) · [Published DOI 10.5281/zenodo.22759221](https://doi.org/10.5281/zenodo.22759221).
+
+- [132-page quotient kernel](https://zenodo.org/api/records/22759221/files/59-quotient-moment-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation) · [offline source ZIP](https://zenodo.org/api/records/22759221/files/60-quotient-moment-sources.zip/content).
+
+The current 132-page reader adds complete CTV/ROQ/OSP/OAR/PMR proofs. The original kernel contribution is now expressed as seven same-source Gamma moment determinants minus the actual positive residual-increment sum, with two unequal o(kq) error endpoints in the stated fixed-period and eventual parameter domains. The seventeen-file package preserves the sole owner prompt, complete receiving proofs and unchanged recorded PR32 source/CI.
+
+## What this calculation studies
+
+Split-Zero follows a finite arithmetic quotient attached to a selected zeta-zero
+packet, with its original theta cohomology and mixed-support maps. A specified
+period observation loses a subspace K. The calculation measures that same
+kernel in the original source metrics at four degrees q-1, q, 2q-1 and 2q.
+The goal is its contribution to the original signed cohomological return,
+not a conclusion inferred merely from the dimension of K.
+
+The preceding conductor calculation gave a smaller root grid and controlled
+the transport error by o(kq) for each fixed actual period. This edition
+constructs the resulting outer quotient and residual observation explicitly.
+It then compares the outer quotient with same-source power-weight moments.
+The result is an explicit seven-determinant expression minus the actual
+positive residual-increment sum, with both unequal finite error endpoints.
+
+The main simple-quartet lane retains m=1, k=4l+1 with l>=1, q=(k+1)^2,
+c=k/2, 0<delta<1/2 and gamma>2, at every original branch |u|>=R_*.
+R_* is calculated from the actual quartet and full unit. The kernel dimension
+is r=8k-16 on that domain; the full all-multiplicity geometry and primary
+nilpotents remain without assigning that rank to other multiplicities.
+For k>=9, the conductor construction retains all original coefficients,
+periods and its nonzero moment denominator.
+
+## Completed outer quotient and residual observation
+
+CTV proves the original central-root factorization
+P_k=P_(k-8) P_(partial,k), with every root unchanged. Multiplication by the
+full P_(k-8) supplies the exact metric |P_(k-8)(y)|^2 dm_s(y), retaining
+the original mass. The outer quotient has rank Delta=16k-48 and source
+degrees Delta-1, Delta, q+Delta-1 and q+Delta. The lower-grid quantities
+remain k'=k-8, q'=(k-7)^2, centre c'=c-4 and source order s=1 or k.
+Every primary Vandermonde factor, affine phase, shifted endpoint and signed
+monic-norm tail is retained.
+
+ROQ builds the actual residual map Xi: V_A -> C^j, j=8k-32, from the
+original certificate rows D=F^transpose. It retains the original boundary
+basis, inherited period-word metric, pivot determinant, source metric and
+full kernel-plus-ideal graph. Its constrained covariance is
+
+    Omega_N = D [R_N - R_N C* (C R_N C*)^(-1) C R_N] D*,
+    Q_(Xi,N) = Omega_N^(-1).
+
+No generic residual matrix or rank-only volume is substituted. Its complete
+positive cutoff-increment sum is
+
+    Phi_(k,s) = F_(Xi,k)^(s)
+      = log(1+eta_(q-1))
+        + 2 sum_(N=q)^(2q-2) log(1+eta_N)
+        + log(1+eta_(2q-1)) >= 0.
+
+Each eta_N is given in the actual original coefficients and constrained
+covariance update. OAR keeps both unequal signed error endpoints:
+
+    F_K^(s) = F_(partial,k)^(s) - Phi_(k,s) + e_(k,s),
+    -e_(k,s)^- <= e_(k,s) <= e_(k,s)^+,
+    e_(k,s)^- = o(kq), e_(k,s)^+ = o(kq).
+
+The kernel caps subtract the actual first positive residual increment.
+Additional evaluated positive increments supply further finite subtractions;
+the correlated arithmetic boundary and signed return retain those same signs.
+
+## Comparison with seven original Gamma moment determinants
+
+OSP compares the full original root-polynomial norms with same-source
+power-weight norms, in every polynomial direction, including the entire
+small-real-coordinate region. Its explicit eventual domain is
+
+    epsilon = 2^(-32), k>=29,
+    k sqrt(delta^2+gamma^2) <= epsilon q/2.
+
+This domain is separate from the conductor's k>=9 domain. The original source
+orders remain s=1 and k; no zero, period or source mass is replaced. In this
+domain the proved comparison is
+
+    |F_(partial,k)^(s) - F_(0,k)^(s)|
+       <= c_k^circle = 4(q+Delta+1) E_k
+       = O_(delta,gamma)(q) = o(kq).
+
+F_(0,k)^(s) is the seven signed moment determinants written in OSP32, not seven
+scalar moments. Each is constructed from the exact same-source moments
+
+    mu_j^(s) = M_s [d^j/dz^j (cos z)^(-s/2)]_(z=0),
+    D_a(Q;s) = det [mu_(2Q+i+j)^(s)]_(0<=i,j<a).
+
+M_s is the full original source mass. OSP35 supplies the exact even/odd
+factorization. PMR carries the additional comparison error into the original
+arithmetic kernel, correlated boundary and signed mixed return:
+
+    F_K^(s) = F_(0,k)^(s) - Phi_(k,s) + e_(k,s)^0,
+    -e_(k,s)^(0,-) <= e_(k,s)^0 <= e_(k,s)^(0,+),
+    e_(k,s)^(0,-) = o(kq), e_(k,s)^(0,+) = o(kq).
+
+**The two finite error endpoints remain unequal.** PMR8 proves that interval
+intersection alone preserves the previous outer-root finite endpoints exactly.
+The moment comparison supplies a concrete analytic target; it does not by
+itself tighten that previous interval. Evaluating additional actual residual
+increments is the stated source of finite subtractions.
+
+All these conductor and residual statements retain the fixed-period scope.
+No moving-period uniformity or RH conclusion is asserted. The earlier AKS
+finite pointwise minimum with KAF and its ceiling25.02078097650 remain valid.
+
+## What remains to calculate
+
+The next calculation is the kq-scale difference between all seven determinants
+F_(0,k)^(s) and the actual residual sum Phi_(k,s). For the moment term, the
+first variation compares q'=(k-7)^2 with q=(k+1)^2 at the original source
+order. High parity blocks have dimension proportional to q; the growing low
+blocks have dimension proportional to k and a different parameter ratio;
+D_1(q;s) is scalar. The existing q^2 asymptotic alone gives no uniform
+first-variation error estimate for those different regimes.
+
+For the residual term, the exact period certificates and constrained covariance
+updates already specify the sum. The full denominator, source-ideal terms and
+kernel cross terms must remain in any estimate. **No unique limit or exact
+leading value is asserted.** Newer first-variation and fixed-module-conditioning
+drafts are not part of this sealed edition.
+
+The exact outer quotient, residual covariance and same-source moment comparison are completed. The next calculation is their kq-scale first variation and actual residual sum. PMR8 proves that interval intersection alone does not tighten the preceding outer-root finite endpoints. No leading value, moving-period uniformity or RH conclusion is asserted; newer first-variation and fixed-module-conditioning drafts are excluded.
+
+## Complete proofs, receivers and checked-source scope
+
+[File14: complete current proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) preserves the full preceding
+110-page development and adds complete CTV1-22, ROQ1-27, OSP1-35, OAR1-11
+and PMR1-8 proofs. It is the editable source of the current 132-page reader.
+[Arithmetic source transfer, file13](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/13_ARITHMETIC_MIXED_TRANSFER.tex)
+retains the original correlated source allowances and their exact maps.
+
+[Joint receiver09](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/09_UPDATED_JOINT_NOTE.tex) and
+[signed receiver10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/10_UPDATED_SIGNED_RETURN.tex) retain all 31
+preceding providers and the complete later proofs. Current receiving sites
+are MRI4e-q and BRI6c-g, with new MRI4l-q and BRI6f-g carrying the complete
+outer, moment and residual refinements. Their 249/240-page builds establish
+compilation and source closure, not visual acceptance of receiver PDFs.
+Those separate PDF builds are not delivered as visually accepted papers.
+
+The current reader's complete 132 pages have the owner's visual acceptance:
+106 body regions match the accepted predecessor; five opening pages and every
+new page112-132 were inspected individually. All 132 footers were checked
+visually and against sequential PDF text. Complete new written proofs and
+receiving replacements have independent acceptance. The declared diagnostic
+fixtures are not actual-zero or actual-period evaluations.
+
+[File16: complete PR32 formal source and proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/16_PR32_FORMAL_SOURCE_AND_PROOFS.md)
+is unchanged. It retains the four modules, full note, runner and successful
+two-job CI at implementation8e78bc7c240b04d297ade6afdadfd863e0c6db7b and
+unchanged checked source at finalhead9cec8482f2ecf978cf8bdb67b4c080b9dd74f5d6.
+The recorded scope remains 33 local modules and 56 selected transitive axiom
+targets. No new local Lean run or PR merge is claimed; the new analytic
+estimates have written-proof scope.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/12_VALIDATION.md) records these exact scopes.
+[Source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/11_SOURCE_MAP.json) distinguishes owner-original
+SHA-256 `4375c0cbad44222cdb690cf6ad6ff4335173e542bfb90688358c26528a2e0c7f` from public transported SHA-256
+`3c1f19a98303915846e65260894348f7ad6290ae7c2e1a22a3b74ee38d065a6c`. Its metadata-only transport scope is:
+777 literal historical private-account locator occurrences transported across739 values and8 path-valued keys, including nested JSON. Full mathematical bodies, original source hashes and other metadata remain unchanged. Original embedded identities still identify pre-transport sources. The other sixteen files are unchanged.
+
+This is exactly the accepted seventeen-file edition. The original owner00
+remains the sole current continuation; this index creates no competing prompt.
+The preceding 110-page, 97-page, 72-page and Gamma editions remain intact.
+
+## Earlier complete source editions
+
+- [Earlier exterior kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation).
+- [Earlier conductor kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation).
+- [Earlier original kernel matrices source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices).
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [earlier 58-download edition](https://doi.org/10.5281/zenodo.22758970) remains frozen
+with its 110-page preview. This edition adds PDF59 and ZIP60. The actual
+new browser preview is the current 132-page PDF59; ZIP60 supplies all seventeen
+flat source files for offline use, not a substitute preview. Every earlier
+mathematical/source file remains unchanged.
+
+[All 60 downloads and source identities](calculation_edition_20260915_quotient_moments/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the preceding source/publication
+state. Its current-reader and next-calculation statements describe its explicit
+edition, not this new 60-download reading route. The original outer-root
+quotient, residual covariance and moment comparison are now complete at the
+scopes above. Their next leading-value calculations remain unfinished.
+In particular, interval intersection alone does not tighten the earlier
+outer-root finite endpoints. Earlier prompts, source identities, mathematics
+and proof/CI scopes remain intact as provenance.
+
+# Split-Zero cohomology: outer moments and residual observations
+
+[Start here: the current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/00_CONTINUE_HERE.md).
+
+[Read the current 132-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete editable proof source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+
+This seventeen-file edition studies the original arithmetic theta source,
+its cohomological quotient and actual period/unit observation. Its subject
+is the common kernel volume in the original four-endpoint source metrics.
+The Deligne mixed-cohomology programme remains the research direction;
+no RH conclusion is assigned by these calculations.
+
+The exact owner prompt is the single current continuation. All eleven
+LaTeX files retain their full mathematical proof inputs inline. The complete
+110-page predecessor and its accepted proofs remain, with full CTV, ROQ,
+OSP, OAR and PMR added. File16 retains the existing PR32 formal source,
+written proofs and observed CI. No archive or missing local TeX provider
+folder must be unpacked.
+
+## Original objects and domains
+
+Lambda_k is the specified tensor-degree-k period/unit-jet observation;
+K is its kernel at the specified actual period, shared by the original
+source metrics, not an intersection across periods. The canonical source
+orders stay s=1,k. Full unit values, masses, phases, period branches,
+primary multiplicities, minimum sections and action defects are retained.
+
+The simple-quartet domain is m=1, k=4l+1 with l>=1, q=(k+1)^2,
+0<delta<1/2, gamma>2 and every original branch with |u|>=R_*.
+R_* is computed from the specified quartet and full unit. The completed
+ranks are dim K=8k-16 and dim B_k=k^2-6k+17. The conductor reduction uses
+k>=9. Separate all-multiplicity OCS/OMG maps retain their full primary
+coordinates and nilpotents without assigning these simple-quartet ranks
+to other inputs.
+
+The original four source degrees are q-1,q,2q-1,2q with signs (1,1,-1,-1).
+Their kernel metric-volume combination is
+
+    F_K^(s) = log det H_0^(s) + log det H_1^(s)
+              - log det H_q^(s) - log det H_(q+1)^(s).
+
+## Completed quotient and moment reduction
+
+CTV retains the literal real-coordinate factorization P_k=P_(k-8) P_boundary,k.
+Multiplication by the complete P_(k-8) gives the exact induced metric
+|P_(k-8)(y)|^2 dm_s(y), with the same full original mass. The outer quotient
+has rank Delta=16k-48 and source degrees Delta-1,Delta,q+Delta-1,q+Delta.
+All primary Vandermonde factors, affine phases and shifted endpoints remain.
+The conductor and monic-norm tail errors are subleading at fixed actual period.
+
+ROQ constructs the actual residual quotient Xi of rank 8k-32 from the
+original period certificates. Its constrained covariance, full inherited
+word metric, kernel-plus-ideal graph and ordered denominator remain explicit.
+Its positive residual increments give the exact sum
+
+    Phi_k,s = log(1+eta_(q-1))
+              + 2 sum_(N=q)^(2q-2) log(1+eta_N)
+              + log(1+eta_(2q-1)) >= 0.
+
+The eta_N are calculated from the actual constrained covariance updates,
+not assigned generic matrices or evaluated at invented period values.
+
+OSP proves a full-norm comparison to same-source power-weight moments,
+including the entire small-real-coordinate region. Its explicit eventual
+domain is
+
+    epsilon=2^(-32),     k>=29,
+    k sqrt(delta^2+gamma^2) <= epsilon q/2.
+
+On that domain the comparison error is O_(delta,gamma)(q)=o(kq) for the
+fixed actual quartet, in both original source orders1,k. The moment building
+blocks are
+
+    mu_j^(s) = M_s [d^j/dz^j (cos z)^(-s/2)]_(z=0),
+    D_a(Q;s) = det[mu_(2Q+i+j)^(s)]_(0<=i,j<a).
+
+F_0,k^(s) is the complete signed seven-determinant expression of OSP32.
+OSP35 supplies its exact even/odd factorization. The original source mass
+M_s and every block dimension and power shift are retained.
+
+OAR/PMR carry the unequal signed errors into the original arithmetic kernel,
+correlated boundary and signed return. The current identity is
+
+    F_K^(s) = F_0,k^(s) - Phi_k,s + e_0,k,s,
+    -e_0,k,s^- <= e_0,k,s <= e_0,k,s^+,
+    e_0,k,s^- = o(kq),     e_0,k,s^+ = o(kq).
+
+The two finite error endpoints remain unequal. No leading moment or residual
+value, unique limit or moving-period uniformity is assigned.
+
+PMR8 proves that intersecting the moment-comparison interval retains the
+previous outer-root finite endpoints exactly. That comparison alone does
+not tighten them. Evaluating additional actual positive residual increments
+does give the proved finite subtractions in OAR6-7; the current edition
+does not substitute fixture evaluations for those actual quantities.
+
+## The next calculation
+
+Evaluate the first variation of all seven same-source Gamma moment
+determinants and their difference with Phi at scale kq. Retain the original
+source order s=1 or k and OSP35 parity factors: the high blocks have dimension
+proportional to q, the growing low blocks have dimension proportional to k
+with a different power-to-dimension ratio, and D_1(q;s) is scalar. Every
+analytic estimate must match its actual parameter domain and control the
+first-variation remainder; a q^2 asymptotic alone does not do that.
+
+For the residual sum, retain ROQ's actual period coefficients, full constrained
+covariances and the complete source-ideal/kernel cross terms in its denominator.
+The previous outer-root comparison is already controlled. Establish the
+fixed-period result before any moving-period extension. Newer first-variation
+and fixed-module-conditioning drafts are separate and excluded from this
+sealed edition.
+
+## Complete proofs, receivers and verification
+
+- [14: current full proof source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) preserves every preceding chapter and adds complete CTV1-22, ROQ1-27, OSP1-35, OAR1-11 and PMR1-8.
+- [09: complete joint receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/09_UPDATED_JOINT_NOTE.tex) and [10: complete signed-return receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/10_UPDATED_SIGNED_RETURN.tex) retain every preceding full provider and the complete new bodies. Actual sites MRI4e-q and BRI6c-g carry the new intervals, arithmetic correlations, exact boundary complements and signed consequences; the recorded edits reconstruct the preceding entire sealed receiver bodies.
+- [13: arithmetic mixed transfer](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/13_ARITHMETIC_MIXED_TRANSFER.tex) retains the full original source and correlated deficits.
+- [02: Gamma foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/02_FULL_GAMMA_PROOFS.tex) and [03: observation foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/03_FULL_OBSERVATION_PROOFS.tex) retain the full dependencies; files04-08 retain the preceding cyclic, period and kernel calculations.
+- [16: PR32 formal source and written proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/16_PR32_FORMAL_SOURCE_AND_PROOFS.md) remains unchanged: four modules, complete note, runner and recorded CI at implementation8e78bc7c240b04d297ade6afdadfd863e0c6db7b and final head9cec8482f2ecf978cf8bdb67b4c080b9dd74f5d6. This is not a new Lean run or PR merge; analytic estimates retain written-proof scope.
+- [01: previous 75-page Gamma reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/01_GAMMA_READER.pdf) is background, not the current 132-page account.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/12_VALIDATION.md) records full independent proof and
+receiving acceptance. The 132-page reader's body regions on pages6-111 match
+the accepted predecessor pages5-110; pages1-5 and112-132 were individually
+inspected, and all footer numbers checked. Receiver builds249/240 have
+compilation-only status, not receiver-PDF visual approval. Exact diagnostics
+retain their stated fixture scopes, not actual-period or actual-zero
+evaluation. This source-sharing preparation performs no new mathematical,
+PDF, source or archive audit and no Lean execution.
+
+Only provenance account locators in the [source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation/11_SOURCE_MAP.json)
+were transported for public sharing. Original map SHA-256:
+4375c0cbad44222cdb690cf6ad6ff4335173e542bfb90688358c26528a2e0c7f.
+Public map SHA-256:
+3c1f19a98303915846e65260894348f7ad6290ae7c2e1a22a3b74ee38d065a6c.
+777 literal historical private-account locator occurrences transported across739 values and8 path-valued keys, including nested JSON. Full mathematical bodies, original source hashes and other metadata remain unchanged. Original embedded identities still identify pre-transport sources. The other sixteen files are
+byte-identical to the accepted delivery, including both PDFs and all eleven
+TeX files. Every preceding sealed source package is retained.
+
+The existing [DOI 10.5281/zenodo.22758970](https://doi.org/10.5281/zenodo.22758970) keeps its 58 downloads and
+110-page PDF57 preview. This current GitHub packet is outside that frozen
+edition; no Zenodo files change in this source-sharing transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide remains verbatim. Its prompts, reductions, receiver scopes
+and next steps belong to preceding editions. The exact current prompt and
+132-page paper above supersede that navigation without altering any preceding
+source file.
+
+# Split-Zero cohomology: exterior conductor control and four-endpoint determinants
+
+[Start here: the exact current owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/00_CONTINUE_HERE.md).
+
+[Read the current 110-page paper on GitHub](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Read its published PDF](https://zenodo.org/api/records/22758970/files/57-exterior-kernel-reader.pdf/content) · [Published DOI 10.5281/zenodo.22758970](https://doi.org/10.5281/zenodo.22758970).
+
+- [110-page exterior kernel](https://zenodo.org/api/records/22758970/files/57-exterior-kernel-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation) · [offline source ZIP](https://zenodo.org/api/records/22758970/files/58-exterior-kernel-sources.zip/content).
+
+The current 110-page reader adds the complete RUI/CEP exterior-conductor proofs to the original kernel, residue, finite-bound and minimum-section constructions. It proves a subleading o(kq) error for the actual conductor transport at each fixed period, all four original endpoints and all actual exterior ranks. The seventeen-file package preserves the sole owner prompt, complete updated receivers and recorded PR32 source/CI.
+
+## What this calculation studies
+
+Split-Zero follows a finite arithmetic quotient attached to a selected zeta-zero
+packet, together with its original theta cohomology and mixed-support maps.
+The specified period observation loses a subspace K. The calculation measures
+that same kernel using the original fixed-Gamma, tensor-Gamma and arithmetic
+source metrics at four degrees: q-1, q, 2q-1 and 2q. This is K at the specified
+period, not an intersection over periods.
+
+The purpose is to determine the kernel contribution to the original signed
+cohomological return. An actual conductor polynomial gives a concrete map to
+a smaller root grid. Earlier work constructed its inverse; this edition proves
+that its four-endpoint determinant error is subleading. The remaining work is
+now an explicit difference of original total determinants and an actual
+residual observation determinant, not the older conductor-conditioning problem.
+
+The main simple-quartet lane retains m=1, k=4l+1 with l>=1, q=(k+1)^2,
+c=k/2, 0<delta<1/2 and gamma>2, on each original branch |u|>=R_*.
+R_* is calculated from the actual quartet and full unit, and dim K=r=8k-16
+on this domain. The all-multiplicity geometry and primary nilpotents remain
+in the sources; this simple-quartet rank is not assigned to other multiplicities.
+For k>=9, the actual conductor uses all 81 biform coefficients, its first
+nonzero moment denominator and the exact lower grid. No generic period
+matrix or assumed nonzero minor replaces those data.
+
+## The completed conductor estimate
+
+RUI uses the original finite conductor's determinant-one property. On the
+degree-N source, its complementary exterior norms satisfy
+
+    ||wedge^t T^(-1)|| = ||wedge^(N+1-t) T||
+       <= [C_v exp(B_sh(H_N+2))]^(N+1-t),
+    T = B_(N+1)(partial).
+
+All coefficient constants and the moment denominator remain in this bound.
+CEP extends it through the original endpoint maps, the exact low-degree
+relation graph and all actual exterior ranks. The precise current identity is
+
+    F_K^(s) = T_k^(s) - F_(Xi,k)^(s) + E_(A,k)^(s),
+    |E_(A,k)^(s)| <= epsilon_k^(s) = 2 sum_N E_N^(s) = o(kq).
+
+Here s remains the original source order 1 or k, and
+
+    T_k^(s) = sum_N sigma_N
+                 (log det G_N^(s) - log det G'_(N-v)^(s)),
+    F_(Xi,k)^(s) = sum_N sigma_N log det Q_(Xi,N)^(s),
+    N = q-1, q, 2q-1, 2q; sigma = (1, 1, -1, -1).
+
+G and G' are the original upper- and lower-grid total Grams; Q_Xi is the
+actual residual observation quotient Gram. The lower grid keeps
+k'=k-8, q'=(k-7)^2, Delta=q-q'=16k-48, centre c'=c-4 and cutoffs N-v.
+Its source order is still the original s. The retained map
+Xi: V_A -> V_A/K has rank 8k-32. Its rank does not determine its volume:
+the full graph, cross terms, coefficients and original action defect remain.
+
+The estimate o(kq) holds for each fixed actual period, at all four original
+endpoints and all actual exterior ranks. It sharpens the previous AIE
+O(kq) exterior error **for this actual conductor transport**. AIE's finite
+inverse and exact quotient maps remain valid. This is not a general
+improvement for unrelated maps, nor a uniform bound for moving periods.
+
+## What remains to calculate
+
+The next two quantities are T_k^(s) and F_(Xi,k)^(s), in their displayed
+original combination. Relative to the lower grid's natural endpoints,
+the shifts are Delta-v at the lower pair and 2Delta-v at the upper pair.
+The next total-Gram calculation must retain these shifts, roots, masses and
+centres and control the first variation. The existing q^2 leading estimate
+does not itself supply that error bound.
+
+The other calculation is the actual rank-(8k-32) Xi observation determinant,
+or equivalently its full low-degree graph quotient with cross terms.
+No leading coefficient is inferred from rank alone. Bounds on the actual
+period-dependent constants would be needed for a moving-period extension;
+such uniformity is not claimed in this edition.
+
+AKS's preceding bound retains its finite pointwise minimum with the original
+KAF estimate and first actual increment:
+
+    d_1^(s) <= F_K^(s)
+       <= min(2r log Z_(k,1),
+              r(L_(s,q)+L_(s,q+1)) - d_1^(s)),
+    limsup F_K^a/(kq) <= 32 log(25 log 3/(4 pi))
+                      < 25.02078097650.
+
+Here L_(s,j) denotes AKS's actual finite covariance bound. The original
+fixed-Gamma, tensor-Gamma and arithmetic ratios share limit points.
+**No unique limit or exact leading value is asserted.** The original q^2
+baseline and finite centre with its nonzero error radius remain intact.
+
+The actual conductor error is now proved subleading. The next calculations are the shifted upper/lower total-Gram difference and the retained original rank-(8k-32) Xi observation determinant in F_K=T-F_Xi+E_A. No unique leading value, moving-period uniformity or RH conclusion is asserted; later CTV/Xi drafts are outside this edition.
+
+## Complete proofs, receivers and checked-source scope
+
+[File14: complete current proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) contains all preceding chapters
+and the complete RUI1-15 and CEP1-49 proofs; it is the editable source of the
+current 110-page reader. The source/remainder square, omitted-root products,
+determinant phase, ideal map, low-degree graph and action defect are explicit.
+[Arithmetic source transfer, file13](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/13_ARITHMETIC_MIXED_TRANSFER.tex)
+retains the finite errors, correlated arithmetic allowances and source maps.
+
+[Joint receiver09](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/09_UPDATED_JOINT_NOTE.tex) and
+[signed receiver10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/10_UPDATED_SIGNED_RETURN.tex) retain all 31
+preceding providers and the complete OCF/OKM/OKA/OMG/AKS/AKJ/AKP/AIE/RUI/CEP
+proofs. Their current receiving sites are MRI4e-k and BRI6c-e; newly installed
+MRI4g-k and BRI6e carry the refined intervals and exact signed consequences.
+The original theta primitive and corrected minimum section remain intact.
+The 226/218-page receiver builds establish compilation and source closure,
+not visual approval of receiver PDFs.
+
+The delivered reader's full 110 pages have the owner's visual acceptance:
+93 page images match the accepted predecessor, four changed earlier pages
+were inspected individually, and every new page98-110 was inspected
+individually. The complete new written proofs and receiving changes have
+independent acceptance. Finite diagnostic fixtures exercise their declared
+endpoint shapes; they are not evaluations at actual zeta zeros or periods.
+
+[File16: complete PR32 formal source and proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/16_PR32_FORMAL_SOURCE_AND_PROOFS.md)
+is unchanged. It preserves four new Lean modules, the full note, runner and
+recorded successful two-job CI at implementation
+8e78bc7c240b04d297ade6afdadfd863e0c6db7b, with unchanged checked source at final
+head9cec8482f2ecf978cf8bdb67b4c080b9dd74f5d6. Its receipt covers 33 local modules
+and 56 selected transitive axiom targets. The new analytic estimates have
+written-proof scope; no new local Lean run or PR merge is claimed here.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/12_VALIDATION.md) records these exact scopes.
+[Source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/11_SOURCE_MAP.json) distinguishes owner-original
+SHA-256 `242ff297064007ffdb435cd36f6c0884e2a50bc58797237a0840428b37b829f1` from public transported SHA-256
+`269397ca3e92a083c451cb9016cd9ccbcb1f769a455f057e3138611d547ed79c`. Its metadata-only transport scope is:
+735 literal private-account locator occurrences transported across 698 values and eight path-valued review keys, including nested JSON. Full mathematical bodies, source hashes and other metadata stay unchanged; embedded original identities still identify the original sources. The other sixteen files are unchanged.
+
+This is exactly the accepted seventeen-file edition and the sole current
+owner prompt. No competing prompt is created. Later CTV/Xi drafts are not
+included. Earlier 97-page, 72-page and Gamma editions remain immutable
+historical sources, rather than the current next-calculation statement.
+
+## Earlier complete source editions
+
+- [Earlier conductor kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation).
+- [Earlier original kernel matrices source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices).
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [earlier 56-download edition](https://doi.org/10.5281/zenodo.22758735) remains frozen
+with its 97-page preview. This edition adds PDF57 and ZIP58. The actual
+new browser preview is the current 110-page PDF57; ZIP58 supplies all seventeen
+flat source files for offline use, not a substitute preview. Every earlier
+mathematical/source file remains unchanged.
+
+[All 58 downloads and source identities](calculation_edition_20260915_exterior_kernel/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the preceding source/publication
+state. Its current-reader and next-calculation statements apply to its explicit
+edition, not this new 58-download reading route. In particular, the preceding
+97-page AIE O(kq) exterior bound is now sharpened to o(kq) for the actual
+fixed-period conductor transport at all four endpoints; its original finite
+maps remain valid. This does not assert the same refinement for other maps.
+Earlier prompts, source identities, mathematical bodies and proof/CI scopes
+remain as provenance.
+
+# Split-Zero cohomology: exterior conductor control and four-endpoint determinants
+
+[Start here: the current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/00_CONTINUE_HERE.md).
+
+[Read the current 110-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete editable proof source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+
+This seventeen-file package continues the calculation of the original
+arithmetic theta source, its cohomological quotient and the actual period/unit
+observation. The immediate subject is the volume of its common kernel in
+the original four-endpoint metrics. The Deligne mixed-cohomology programme
+remains the research direction; these calculations assert no RH conclusion.
+
+The prompt is the owner's single exact continuation. All eleven LaTeX files
+retain their complete mathematical proof inputs inline. File16 retains the
+complete PR32 formal source, written proofs and reported existing CI.
+No archive or missing local TeX provider folder must be unpacked.
+
+## Original kernel and its source metrics
+
+Lambda_k is the tensor-degree-k period/unit-jet observation at the specified
+actual period. K is its kernel, shared by the three original source metrics,
+not an intersection over different periods. B_k is its image. The source
+metrics are fixed Gamma, tensor Gamma and arithmetic; their masses, full
+unit values, phases, period branches and action defects remain.
+
+The signed kernel volume is
+
+    F_K^(s) = log det H_0^(s) + log det H_1^(s)
+              - log det H_q^(s) - log det H_(q+1)^(s).
+
+Each H_j is the compressed covariance of the actual original kernel frame.
+The four source degrees are N=q-1,q,2q-1,2q, with signs (1,1,-1,-1).
+The Gamma orders remain s=1,k.
+
+On the simple-quartet domain m=1, k=4l+1 with l>=1, q=(k+1)^2,
+0<delta<1/2, gamma>2 and every original branch with |u|>=R_*,
+
+    dim B_k = k^2 - 6k + 17,     r = dim K = 8k - 16.
+
+R_* is calculated from the specified quartet and full unit. The conductor
+reduction below uses k>=9. The separate all-multiplicity OCS/OMG maps retain
+primary coordinates, multiplicities, factorials, nilpotents and actual
+stabilizers; the displayed simple-quartet ranks are not assigned elsewhere.
+
+## Completed exterior conductor control
+
+RUI1-15 uses the actual determinant-one finite conductor and complementary
+exterior powers. CEP1-49 carries that control through the exact source/remainder
+square, high-cutoff correction, low-degree relation graph and original quotient
+metrics at all four endpoints and all actual exterior ranks. It proves
+
+    F_K^(s) = T_k^(s) - F_Xi,k^(s) + E_A,k^(s),
+    |E_A,k^(s)| <= epsilon_k^(s) = 2 sum_N E_N^(s) = o(kq).
+
+The small-error statement holds at each fixed actual period, in both unchanged
+source orders s=1,k. Every displayed coefficient constant and moment denominator
+is retained. This is the completed conductor error estimate; moving-period
+uniformity is not asserted.
+
+Here T_k is the signed upper-total minus shifted lower-total Gram determinant:
+
+    T_k^(s) = sum_N sigma_N
+              (log det G_N^(s) - log det G'_(N-v)^(s)),
+
+and F_Xi,k is the signed volume of the actual residual observation quotient
+
+    Xi : V_A -> V_A/K,     rank Xi = 8k - 32,
+    F_Xi,k^(s) = sum_N sigma_N log det Q_Xi,N^(s).
+
+The lower root grid has k'=k-8, q'=(k-7)^2, Delta=q-q'=16k-48,
+centre c'=c-4, and cutoff N-v; v is the first nonzero conductor moment order.
+The lower source keeps the original order s. The complete source/remainder
+map, omitted-root products, determinant phase, ideal graph, Gram matrices and
+actual action defect remain in CEP.
+
+The preceding three source metrics differ by o(kq). Their retained common
+limit-point ceiling is
+
+    limsup F_K/(kq) <= 32 log(25 log 3/(4 pi)) < 25.02078097650,
+
+approximately 25.02078097649. The finite first-increment and covariance bounds,
+arithmetic correlations, boundary complements and signed return are retained;
+a bound does not assign the leading value.
+
+## Next: the exact shifted totals and residual quotient
+
+The next calculation is T_k^(s)-F_Xi,k^(s) at scale kq. The lower grid's
+natural endpoints are shifted by Delta-v at the two lower cutoffs and
+2Delta-v at the two upper cutoffs. Retain these exact shifts, root polynomials,
+source masses and centres when calculating the total determinant and its
+first variation. An existing q^2 asymptotic does not itself supply the needed
+first-variation error.
+
+Calculate Xi from the actual period coefficients and residual observation
+rows, or use its proved equivalent full graph quotient with all low-degree
+cross terms. Its rank alone does not determine its volume. The conductor
+error is already o(kq) at fixed period; the remaining exact determinants are
+the current work. No unique limit, leading coefficient or moving-period
+extension has been assigned. Later CTV/Xi drafts are separate and excluded
+from this sealed edition.
+
+## Full proofs, receivers and verification
+
+- [14: current complete proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) retains all preceding chapters and adds full RUI1-15 and CEP1-49, alongside AKS1-52, AKJ1-25, AKP1-10 and AIE1-29.
+- [09: complete joint receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/09_UPDATED_JOINT_NOTE.tex) and [10: complete signed-return receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/10_UPDATED_SIGNED_RETURN.tex) retain every preceding full provider and add complete RUI/CEP. Their actual MRI4e-k and BRI6c-e sites carry the finite bounds, correlated arithmetic complements and signed consequences. The recorded edits reconstruct the preceding entire sealed receiver bodies.
+- [13: arithmetic mixed transfer](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/13_ARITHMETIC_MIXED_TRANSFER.tex) retains the original source, complete correlated deficits and signed maps.
+- [02: Gamma foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/02_FULL_GAMMA_PROOFS.tex) and [03: observation foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/03_FULL_OBSERVATION_PROOFS.tex) supply the full preceding dependencies; files04-08 retain the cyclic, period and original kernel calculations.
+- [16: PR32 formal sources and written proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/16_PR32_FORMAL_SOURCE_AND_PROOFS.md) preserves all four modules, full note, runner and existing verification record: implementation 8e78bc7c240b04d297ade6afdadfd863e0c6db7b, final head 9cec8482f2ecf978cf8bdb67b4c080b9dd74f5d6, recorded 33 modules and 56 selected transitive axiom reports. This is not a new Lean run or PR merge; analytic estimates retain written-proof scope.
+- [01: previous 75-page Gamma reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/01_GAMMA_READER.pdf) is background, not the current 110-page account.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/12_VALIDATION.md) records independent acceptance of
+the full proofs, receivers and continuation. For the 110-page reader, 93
+page images match previously accepted pages; the four changed earlier pages
+and all 13 new pages were individually inspected. Receiver builds at 226
+and 218 pages have compilation-only status, not receiver-PDF visual approval.
+The exact RUI/CEP diagnostics are finite fixtures, not actual zeta-zero or
+period evaluations. This source transport reuses the owner team's accepted
+scope without another proof audit, PDF build or Lean execution.
+
+Only provenance account locators in the [source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation/11_SOURCE_MAP.json)
+were transported for public sharing. Original map SHA-256:
+242ff297064007ffdb435cd36f6c0884e2a50bc58797237a0840428b37b829f1.
+Public map SHA-256:
+269397ca3e92a083c451cb9016cd9ccbcb1f769a455f057e3138611d547ed79c.
+735 literal private-account locator occurrences transported across 698 values and eight path-valued review keys, including nested JSON. Full mathematical bodies, source hashes and other metadata stay unchanged; embedded original identities still identify the original sources. The other sixteen files are
+byte-identical to the accepted delivery, including both PDFs and all eleven
+TeX files. Previous sealed source packages remain intact.
+
+The existing [DOI 10.5281/zenodo.22758735](https://doi.org/10.5281/zenodo.22758735) keeps its 56 downloads and
+97-page PDF55 preview. This current GitHub packet is outside that frozen
+edition; no Zenodo files change in this source-sharing transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim. Its prompts, error estimates,
+receiver scopes and next steps belong to preceding editions. The exact
+current prompt and 110-page paper above supersede that navigation without
+altering any preceding source file.
+
+# Split-Zero cohomology: conductor inverses and four-endpoint kernel control
+
+[Start here: the exact current owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/00_CONTINUE_HERE.md).
+
+[Read the current 97-page paper on GitHub](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Read its published PDF](https://zenodo.org/api/records/22758735/files/55-conductor-kernel-reader.pdf/content) · [Published DOI 10.5281/zenodo.22758735](https://doi.org/10.5281/zenodo.22758735).
+
+- [97-page conductor kernel](https://zenodo.org/api/records/22758735/files/55-conductor-kernel-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation) · [offline source ZIP](https://zenodo.org/api/records/22758735/files/56-conductor-kernel-sources.zip/content).
+
+The current 97-page reader contains complete original kernel, conductor, residue and minimum-section proofs, with the sharper finite four-endpoint control and its retained KAF minimum. The seventeen-file package includes the exact current owner prompt, complete updated receivers and the complete PR32 formal source with written proofs and observed CI records. Original source metrics, unit jets, periods and multiplicities remain.
+
+## What this calculation studies
+
+Split-Zero studies a finite arithmetic quotient built from a selected zeta-zero
+packet, together with the original theta cohomology and mixed-support maps.
+This calculation follows the part of that quotient lost by a specified period
+observation. That part is its kernel K. The same K is measured using the original
+fixed-Gamma, tensor-Gamma and arithmetic source metrics, at four source degrees
+q-1, q, 2q-1 and 2q. It is the kernel at the given period, not an intersection
+over different periods.
+
+The purpose is to calculate that kernel's contribution to the original signed
+cohomological return. A conductor polynomial supplies an explicit coefficient
+map into the kernel calculation. Here its inverse, degree information and metric
+bounds are worked out in full, then returned to the existing joint and signed
+receivers. The next step remains the actual leading determinant value, not the
+introduction of a different observation or an assumed RH counterexample.
+
+For the main simple-quartet lane, the source retains m=1, k=4l+1 with l>=1,
+q=(k+1)^2, c=k/2, 0<delta<1/2 and gamma>2, on every original period branch
+|u|>=R_*. The radius R_* is calculated from the actual quartet and full unit.
+The proved kernel dimension is r=8k-16 on this domain. The full
+all-multiplicity geometry and primary nilpotents remain in the sources;
+that simple-quartet rank is not assigned to other multiplicities.
+
+## What is now completed
+
+For each original source s, the four compressed source Grams are
+H_j^(s)=T_s^* (K_j^(s))^(-1) T_s, with T_s=C_s^(-1) I_K.
+Their signed logarithmic determinant combination is
+
+    F_K^(s) = log det H_0^(s) + log det H_1^(s)
+              - log det H_q^(s) - log det H_(q+1)^(s).
+
+AKS retains the first actual increment d_1^(s), its finite covariance bounds
+L_(s,j), and the finite pointwise minimum with the previous KAF estimate:
+
+    d_1^(s) <= F_K^(s)
+       <= min(2r log Z_(k,1),
+              r(L_(s,q)+L_(s,q+1)) - d_1^(s)).
+
+The original fixed-Gamma, tensor-Gamma and arithmetic ratios have common limit
+points and the sharper uniform upper ceiling
+
+    limsup F_K^a/(kq) <= 32 log(25 log 3/(4 pi))
+                      < 25.02078097650.
+
+The complete original finite estimate is retained, not replaced by its
+asymptotic ceiling. **No unique limit or exact leading value is asserted.**
+
+AKJ proves the exact passage between the projector determinant and the
+original conductor-frame determinant, including its endpoint-independent
+denominator. It gives the residue inverse in the actual i^D D! primary
+coefficients, the invisible primary ideals and the inclusion into K.
+For k>=9, its conductor degree flag has O(k^2) deficit. All 81 actual biform
+coefficients and the first nonzero moment denominator are retained.
+
+AKP proves the theta primitive correction when changing a polynomial lift,
+and the full corrected minimum-section/residual-Gram map. AIE gives a literal
+finite conductor inverse, its actual coefficient-dependent norm, the
+low-degree correction and exact quotient/exterior transfer. Its fixed-period
+operator-log bound is O(q); exterior power keeps its rank multiplier and gives
+O(kq), not a smaller volume error.
+
+The finite inverse acts on coefficient representatives D<=q-1. At the larger
+source endpoints, the same coefficient frame uses the original minimum-remainder
+Gram G_N. The inverse bound does not silently substitute the source cutoff N
+for the coefficient cutoff D. Original Gamma orders stay 1 and k, and source
+masses, unit jets, phases, periods and all four endpoint roles remain explicit.
+
+The conductor inverse and finite four-endpoint bounds are completed. Their operator-log O(q) estimate has a rank factor in the exterior metric, leaving O(kq) volume loss. The next calculation is the fixed-period leading common-kernel determinant in its original four minimum-remainder Grams. No unique limit, exact leading value or RH conclusion is asserted.
+
+## Complete proofs, receiving maps and checked-source scope
+
+[File14: complete current proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) contains all thirteen preceding
+chapters and the full AKS, AKJ, AKP and AIE developments; it is the editable
+source of the current 97-page reader. [Arithmetic source transfer, file13](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/13_ARITHMETIC_MIXED_TRANSFER.tex)
+retains the signed finite errors and source-comparison maps.
+[Joint receiver09](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/09_UPDATED_JOINT_NOTE.tex) and
+[signed receiver10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/10_UPDATED_SIGNED_RETURN.tex) retain all 31
+preceding full providers and append the complete OCF/OKM/OKA/OMG/AKS/AKJ/AKP/AIE
+proofs. MRI4e-f and BRI6c-d now contain the new finite bounds, correlated
+arithmetic complements and signed consequences. The 211/203-page receiver
+builds establish source closure and compilation, not visual approval of new
+receiver PDFs. All 97 pages of the delivered current reader have the owner's
+complete visual acceptance.
+
+[File16: complete PR32 formal source and proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/16_PR32_FORMAL_SOURCE_AND_PROOFS.md)
+contains the four new Lean modules, full written note, runner and recorded CI.
+The recorded strict implementation is
+8e78bc7c240b04d297ade6afdadfd863e0c6db7b; final documentation/source head
+9cec8482f2ecf978cf8bdb67b4c080b9dd74f5d6 changes no checked Lean, runner, test
+or workflow source. Both observed CI jobs passed, covering 33 local modules
+and 56 selected transitive axiom reports. The finite section, residual Gram,
+observed iterates and residue-annihilator statements have that checked scope.
+The analytic estimates and polynomial-gcd dimension result retain written-proof
+scope. No new local Lean run, actual zeta-zero evaluation or PR merge is claimed.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/12_VALIDATION.md) records these exact scopes.
+[Source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/11_SOURCE_MAP.json) distinguishes owner-original
+SHA-256 `cb9f2fb6ef611445529f7cb067d1cbec6a2edd60eb9f1b893e750787049b44c8` from public transported SHA-256
+`2f774ae49790357ea1306254d1837937c6f4386d9e571c61789aaa8f347d1cd6`. Its metadata-only transport scope is:
+722 literal private-account locator occurrences transported across 685 values and eight path-valued review keys, including nested JSON. Full mathematical bodies, source hashes and other metadata stay unchanged; embedded original identities still identify the original sources. The other sixteen files are unchanged.
+
+This is exactly the accepted seventeen-file source edition. Its single current
+prompt belongs to the mathematical owner; this index creates no competing
+continuation prompt. The earlier sixteen-file edition, 72-page reader and
+preceding Gamma reader remain intact as historical sources.
+
+## Earlier complete source editions
+
+- [Earlier original kernel matrices source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices).
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [earlier 54-download edition](https://doi.org/10.5281/zenodo.22758480) remains frozen
+with its 72-page preview. This edition adds PDF55 and ZIP56; the actual new
+browser preview is the current 97-page PDF55. ZIP56 supplies all seventeen
+flat source files for offline use, not a substitute preview. Every earlier
+mathematical/source file remains unchanged.
+
+[All 56 downloads and source identities](calculation_edition_20260914_conductor_kernel/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the preceding source/publication
+state. Its current-reader and next-calculation statements apply to its explicit
+edition, not this new 56-download reading route. The conductor inverse and
+sharper finite kernel controls are now complete; the fixed-period leading
+common-kernel determinant is the next calculation. Earlier prompts, source-map
+identities, mathematical bodies and proof/CI scopes remain as provenance.
+
+# Split-Zero cohomology: conductor kernel and sharpened arithmetic control
+
+[Start here: the current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/00_CONTINUE_HERE.md).
+
+[Read the current 97-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete editable proof source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+
+This seventeen-file package continues the Split-Zero programme's calculation
+of the original arithmetic theta source, its cohomological quotient and the
+actual period/unit observation. Its immediate subject is the metric volume
+of the common kernel. The Deligne mixed-cohomology programme remains the
+research direction; no RH conclusion follows from these calculations.
+
+The prompt is the owner's single exact continuation. All eleven LaTeX files
+are directly available with their mathematical proof inputs inline. File16
+also supplies the complete PR32 contribution with its source and verification
+record. No archive or missing local TeX provider folder must be unpacked.
+
+## The object being calculated
+
+Lambda_k is the specified tensor-degree-k period/unit-jet observation.
+Its kernel K consists of the vectors killed at the specified period; it is
+not an intersection over different periods. B_k is its image. The three
+source metrics are the original fixed Gamma, tensor Gamma and arithmetic
+metrics. Their common kernel volume is the signed four-endpoint expression
+
+    F_K = log det H_0 + log det H_1 - log det H_q - log det H_(q+1),
+
+where each compressed covariance H_j is formed from the actual original
+kernel frame and source metric. Its four source degrees are q-1, q, 2q-1, 2q.
+The full masses, unit values, phases, period branches, action defects and
+minimum-section corrections remain in those matrices.
+
+On the simple-quartet domain m=1, k=4l+1 with l>=1, q=(k+1)^2,
+0<delta<1/2, gamma>2, and every original branch with |u|>=R_*, the completed
+rank calculation gives
+
+    dim B_k = k^2 - 6k + 17,     r = dim K = 8k - 16.
+
+Here R_* is calculated from the specified quartet and full unit. The
+canonical Gamma orders remain s=1,k. These ranks are not assigned to other
+multiplicities or period domains. The all-multiplicity OCS/OMG maps retain
+their primary coordinates, multiplicities, factorials, nilpotents and actual
+stabilizers.
+
+## Completed controls and the next determinant
+
+The three original kernel metrics differ by o(kq), so their scaled values
+have common limit points. AKS sharpens the completed O(kq) estimate to
+
+    0 <= liminf F_K/(kq) <= limsup F_K/(kq)
+       <= 32 log(25 log 3/(4 pi)) < 25.02078097650.
+
+The ceiling is approximately 25.02078097649. The exact first compressed
+increment, finite covariance bounds, correlated arithmetic intervals and
+boundary complement remain; the preceding KAF estimate is still a valid
+term in the pointwise minimum.
+
+AKJ identifies the projector and original conductor-frame determinants with
+their precise endpoint-independent denominator. Its residue inverse retains
+every actual primary coefficient; it computes the permanently invisible
+primary ideals, the finite conductor inverse, the degree flag and the
+residual observation rows. Detection by all iterates does not by itself
+evaluate the one-step kernel volume.
+
+AKP supplies the actual theta primitive and corrected minimum section. For
+an entire column family X, its kernel residual is X-S_G Lambda X and its
+full Gram is X* G X - (Lambda X)* Q_G (Lambda X). The fixed-section correction
+and ordered determinant denominator remain in the calculation.
+
+AIE gives the literal finite reciprocal-symbol inverse, the actual
+coefficient-dependent operator bound, low-degree correction and the full
+quotient/exterior transfer. Its operator logarithm is O(q) at a fixed period,
+but exterior volume retains the rank multiplier r, giving O(kq). This is
+not a proved o(kq) determinant error. The finite inverse applies to coefficient
+degree D<=q-1; that cutoff must not be replaced by a larger source endpoint.
+
+The next calculation is the **fixed-period leading value of the common
+kernel F_K/(kq)** from the actual conductor and full residual observation
+matrix, using their original minimum-remainder Grams at all four source
+degrees. A unique limit and its value remain unassigned. Any extension to
+moving periods requires its own exact control.
+
+## Full proofs, receivers and formal sources
+
+- [14: current complete proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) retains the thirteen preceding full chapters and adds complete AKS1-52, AKJ1-25, AKP1-10 and AIE1-29.
+- [13: arithmetic mixed transfer](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/13_ARITHMETIC_MIXED_TRANSFER.tex) retains the full original source and correlated deficits.
+- [09: complete joint receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/09_UPDATED_JOINT_NOTE.tex) and [10: complete signed-return receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/10_UPDATED_SIGNED_RETURN.tex) contain the current MRI4e-f and BRI6c-d intervals and signed consequences. Both retain all 31 earlier full providers and append full OCF/OKM/OKA/OMG/AKS/AKJ/AKP/AIE bodies. The receiving edits are reversible.
+- [16: PR32 formal sources and written proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/16_PR32_FORMAL_SOURCE_AND_PROOFS.md) supplies all four new Lean modules, the full research note, runner and observed verification record. The implementation is pinned at 8e78bc7c240b04d297ade6afdadfd863e0c6db7b; final documentation/source head is 9cec8482f2ecf978cf8bdb67b4c080b9dd74f5d6. Both jobs were observed successful by the owner. This is reported existing CI, not a new Lean run or merge; the analytic asymptotic and polynomial-gcd dimension statements retain written-proof scope.
+- [02: Gamma foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/02_FULL_GAMMA_PROOFS.tex) and [03: observation foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/03_FULL_OBSERVATION_PROOFS.tex) retain the complete earlier dependencies. Files04-08 retain the preceding cyclic, period and kernel calculations.
+- [01: previous 75-page Gamma reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/01_GAMMA_READER.pdf) remains background, not the current 97-page account.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/12_VALIDATION.md) records completed owner and independent
+proof review and visual inspection of all 97 reader pages. The complete
+receivers built at 211 and 203 pages; those builds establish closure and
+compilability, not visual approval of receiver PDFs. This publication-side
+transport reuses those acceptances without another mathematical audit,
+PDF build or Lean execution.
+
+Only provenance account locators in the [source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation/11_SOURCE_MAP.json)
+were transported for public sharing. Original map SHA-256:
+cb9f2fb6ef611445529f7cb067d1cbec6a2edd60eb9f1b893e750787049b44c8.
+Public map SHA-256:
+2f774ae49790357ea1306254d1837937c6f4386d9e571c61789aaa8f347d1cd6.
+722 literal private-account locator occurrences transported across 685 values and eight path-valued review keys, including nested JSON. Full mathematical bodies, source hashes and other metadata stay unchanged; embedded original identities still identify the original sources. The other sixteen files are
+byte-identical to the accepted delivery, including both PDFs, all eleven
+TeX sources and the PR32 source/proof record.
+
+The existing [DOI 10.5281/zenodo.22758480](https://doi.org/10.5281/zenodo.22758480) keeps its 54 downloads and
+72-page PDF53 preview. This current GitHub packet is outside that frozen
+edition; no Zenodo files change in this source-sharing transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim. Its prompts, bounds, receiver
+scopes and next-step descriptions belong to preceding editions. The exact
+current prompt and 97-page paper above supersede that navigation without
+altering any preceding source file.
+
+# Split-Zero cohomology: original kernel matrices and bounded arithmetic control
+
+[Start here: the exact current owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/00_CONTINUE_HERE.md).
+
+[Read the current 72-page paper on GitHub](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Read its published PDF](https://zenodo.org/api/records/22758480/files/53-original-kernel-matrices-reader.pdf/content) · [Published DOI 10.5281/zenodo.22758480](https://doi.org/10.5281/zenodo.22758480).
+
+- [72-page original kernel matrices](https://zenodo.org/api/records/22758480/files/53-original-kernel-matrices-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices) · [offline source ZIP](https://zenodo.org/api/records/22758480/files/54-original-kernel-matrices-sources.zip/content).
+
+The current 72-page reader contains thirteen complete proof chapters. KAF proves the absolute O(kq) original kernel bound; OCF/OKM/OKA give its actual finite frame, all four endpoint source metrics and action defect. OMG retains the full multiplicity geometry, source-dual maps and nilpotents. The sixteen-file package includes the exact current owner prompt and complete receivers updated through KAF.
+
+The original observation Lambda retains the actual unit jets, periods, cyclic
+average, tensor coordinates and primary nilpotents. Its kernel is the lost
+part of this specified observation at the given period, not an intersection
+over different periods. The source metrics and four endpoints stay attached
+to that same kernel and its explicit action defect.
+
+The principal volume conclusion is for m=1, k=4l+1 with l>=1, q=(k+1)^2,
+0<delta<1/2 and gamma>2, on the original period domain |u|>=R_* and every
+original logarithm branch. RPC calculates R_* from the actual quartet and
+unit values. The proved five-orbit rank gives dim ker Lambda=8k-16 there.
+All-multiplicity OMG maps, nilpotents and source-dual geometry remain in the
+sources; this m=1 rank is not assigned to other multiplicities or period cases.
+
+The absolute original kernel bound is now O(kq), uniformly on that domain:
+
+    0 <= liminf F_K^a/(kq) <= limsup F_K^a/(kq) <= 16(4+10 log 2),
+    a in {fixed Gamma, tensor Gamma, arithmetic}.
+
+KAF retains the complete finite factorial bound and the arithmetic deficit
+cap. AMT retains the signed finite source-comparison errors; the Gamma
+difference is O_h(k^2 log(q+1))=o(kq), and the arithmetic/fixed-Gamma
+difference is O_h(k^2)=o(kq). Consequently the three bounded ratios have the
+same limit points along each allowed sequence. **No unique limit or exact
+leading value is asserted.**
+
+OCF/OKM/OKA construct the actual finite conductor and invariant coefficient
+matrices, all pivot charts, the ordinary-transpose primal kernel frame,
+conjugated Hermitian source metrics and complete action defect. The finite
+four-endpoint determinant is supplied, not deferred to a proposed frame.
+The canonical source orders stay s=1,k; the independent K=q+1 comparison
+remains exploratory. Source masses and metric frame factors are retained
+until their proved signed cancellations.
+
+The finite frame and O(kq) bound are completed. The next calculation is the actual leading value of the common original kernel contribution F_K/(kq), with the original period dependence retained. The bounded ratios share limit points but no unique limit is asserted. The m=1 rank and volume domain is not assigned to higher multiplicities; later AKS/AKJ work is outside this edition.
+
+## Complete current proofs and receivers
+
+[File14: all thirteen current proof chapters](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) is the complete
+editable source of the current 72-page reader. [File13: AMT source transfer](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/13_ARITHMETIC_MIXED_TRANSFER.tex)
+supplies its complete finite source comparisons. [Current joint receiver09](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/09_UPDATED_JOINT_NOTE.tex)
+and [current signed receiver10](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/10_UPDATED_SIGNED_RETURN.tex) are
+now complete successors **through KAF**, with all31 provider bodies inlined
+in each. Their 162/156-page source builds establish compilation and closure,
+not visual review of new receiver PDFs. The current reader's 72 actual pages
+have the owner's existing complete visual acceptance.
+
+[Validation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/12_VALIDATION.md) states those exact scopes.
+[Source map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/11_SOURCE_MAP.json) distinguishes owner-original
+SHA-256 `bef0190adf4eb6638d76e85db79247f9602c737b97bf8dd1b342057e972f83bf` from public transported SHA-256
+`91511a5af94f7f5fabdbaa479b9fff801c1b846839beeba07e2927e63b1114ed`. Its metadata-only transport scope is:
+714 literal private-account locator occurrences transported across 677 values and eight path-valued review keys, including eight nested-JSON occurrences. All associated review content, proof bodies, formulae, numerical values and source hashes are unchanged. Embedded source hashes identify owner-original bytes, not the transported metadata. The other fifteen files are unchanged.
+
+This is exactly the accepted sixteen-file source edition. Later AKS/AKJ
+deliveries are not included or represented as accepted here. The single
+current prompt belongs to the mathematical owner; this index creates no
+competing continuation prompt. The prior fourteen-file prompt and original
+75-page Gamma PDF remain historical sources, not the current reading route.
+
+## Earlier complete source editions
+
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [earlier 52-download edition](https://doi.org/10.5281/zenodo.22757268) remains frozen
+with its 75-page preview. This edition adds PDF53 and ZIP54; the actual new
+browser preview is the current 72-page PDF53. ZIP54 supplies all sixteen
+flat source files for offline use, not a substitute preview. Every earlier
+mathematical/source file remains unchanged.
+
+[All 54 downloads and source identities](calculation_edition_20260914_original_kernel_matrices/README.md).
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim from the preceding source/publication
+state. Its current-reader and next-calculation statements apply to its explicit
+edition, not this new 54-download reading route. The O(kq) bound and exact finite
+frame are now complete; the leading common-kernel value is the next calculation.
+Earlier prompts, source-map identities, mathematical bodies and proof/CI scopes
+remain as provenance and are not silently rewritten.
+
+# Split-Zero cohomology: original kernel matrices and bounded control
+
+[Start here: the current continuation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/00_CONTINUE_HERE.md).
+
+[Read the current 72-page paper](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete editable proof source](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+
+This sixteen-file package continues the Split-Zero programme's study of the
+arithmetic theta source, its cohomological quotient and the actual period/unit
+observation. The research direction is to calculate metric and action data
+through those original maps, with the Deligne mixed-cohomology programme as
+motivation. No RH conclusion follows from the calculations reported here.
+
+The current prompt is the owner's exact continuation, not a new set of
+instructions. All eleven LaTeX files are directly available with their proof
+inputs inline; there is no archive or missing local provider folder to unpack.
+
+## What is being calculated
+
+Lambda_k is the specified tensor-degree-k period/unit-jet observation. Its
+kernel is the subspace sent to zero by that observation; B_k is its image.
+F_K is the signed kernel metric-volume combination at four source degrees
+q-1, q, 2q-1 and 2q. Its matrices retain the original fixed Gamma, tensor Gamma
+and arithmetic source metrics. Their masses, phases, period branches,
+minimum-section corrections, primary nilpotents and action defects remain
+in the complete proofs.
+
+The simple-quartet calculation uses m=1, k=4l+1 with l>=1, q=(k+1)^2,
+0<delta<1/2 and gamma>2. The finite R_* is calculated from the actual quartet
+and unit values. For every original branch and |u|>=R_*, its period quadric
+has five distinct cyclic orbit members and
+
+    dim B_k = k^2 - 6k + 17,     dim ker Lambda_k = 8k - 16.
+
+The canonical Gamma orders remain s=1,k. The older K=q+1 family is exploratory.
+These rank statements are not extrapolated to other multiplicities or period
+domains. The separate all-multiplicity geometry retains its original
+Segre-Veronese ideal, period/unit map, graded source-dual algebra, nilpotents,
+actual stabilizer and conductor degree 2(N-|H|), where N and H are the orbit
+order and actual stabilizer specified in that proof.
+
+## What is now complete, and what comes next
+
+The three original kernel metrics differ by o(kq), with the full finite
+signed arithmetic/Gamma comparisons retained. The new KAF calculation sharpens
+the absolute bound to O(kq), and gives, on the stated domain, for each of the
+fixed Gamma, tensor Gamma and arithmetic sources:
+
+    0 <= liminf F_K/(kq) <= limsup F_K/(kq) <= 16(4+10 log 2).
+
+The construction now supplies the fourteen-generator conductor recursion,
+the exact 8k-16-dimensional kernel frame, every Christoffel-Darboux matrix
+entry including confluent entries, the four endpoint determinant expression
+and the full surviving action defect. These are completed inputs, not proposed
+substitutes for the original observation.
+
+The next calculation is the **actual leading value of the common kernel
+F_K/(kq)** from those matrices. The completed source differences, O(kq) bound
+and frame do not need to be rederived. A unique limit has not yet been proved
+or assigned; the bound alone does not supply its value.
+
+## Full proofs and receiving documents
+
+- [14: current complete proofs](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) contains all thirteen reader chapters, including KAF, OCF, OKM, OKA and OMG.
+- [13: arithmetic mixed transfer](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/13_ARITHMETIC_MIXED_TRANSFER.tex) retains the exact transported-kernel and minimum-lift maps and signed finite comparisons.
+- [09: complete joint receiver](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/09_UPDATED_JOINT_NOTE.tex) and [10: complete signed-return receiver](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/10_UPDATED_SIGNED_RETURN.tex) now include the consequences through KAF. Each contains all 31 provider bodies at the original input locations, with reversible source transport.
+- [02: full Gamma foundations](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/02_FULL_GAMMA_PROOFS.tex) and [03: full observation foundations](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/03_FULL_OBSERVATION_PROOFS.tex) retain the preceding analytic, arithmetic and observation proofs.
+- Files04-08 retain the earlier cyclic-sector, orbit, period and mixed-control calculations; the exact current prompt maps their statements to the sharper results.
+- [01: previous 75-page Gamma reader](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/01_GAMMA_READER.pdf) is retained as background, not as the current 72-page account.
+
+[Validation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/12_VALIDATION.md) and [source map](workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices/11_SOURCE_MAP.json)
+record the completed owner and independent mathematical reviews and their
+domains. All 72 pages of the current reader were visually inspected by that
+team. The complete editable current reader builds to 72 pages; the two
+receivers build to 162 and 156 pages. Those receiver builds establish source
+closure and compilability, not visual approval of those longer PDFs.
+Publication reuses these acceptances; it claims no new proof audit or Lean run.
+
+Only provenance account locators in the source map were transported for public
+sharing. Original map SHA-256:
+`bef0190adf4eb6638d76e85db79247f9602c737b97bf8dd1b342057e972f83bf`.
+Public map SHA-256:
+`91511a5af94f7f5fabdbaa479b9fff801c1b846839beeba07e2927e63b1114ed`.
+714 literal private-account locator occurrences transported across 677 values and eight path-valued review keys, including eight nested-JSON occurrences. All associated review content, proof bodies, formulae, numerical values and source hashes are unchanged. Embedded source hashes identify owner-original bytes, not the transported metadata. The other fifteen files are byte-identical
+to the accepted owner delivery, including both PDFs and all eleven TeX sources.
+
+The existing [DOI 10.5281/zenodo.22757268](https://doi.org/10.5281/zenodo.22757268) retains its 52 downloads and
+75-page PDF51 preview. This successor is a current GitHub source-and-reader
+package outside that frozen DOI edition; no Zenodo file changes here.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is retained verbatim. Its prompts, receiver scopes and
+next-step descriptions belong to preceding editions. The current prompt and
+72-page paper above supersede that navigation without altering earlier files.
+
 # Split-Zero cohomology: original kernel control and source transport
 
 [Start here: the owner's current continuation](workbenches/splitzero-tandem/continuations/20260914-original-kernel-web/00_CONTINUE_HERE.md).

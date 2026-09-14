@@ -1,0 +1,96 @@
+name: SplitZero original observation kernel
+on:
+  push:
+    branches: [astra/observation-kernel-continuation-20260914]
+  pull_request:
+    paths:
+      - 'formal/splitzero/SplitZeroObservationMetric.lean'
+      - 'formal/splitzero/SplitZeroObservedIterates.lean'
+      - 'formal/splitzero/SplitZeroObservedIteratesSupport.lean'
+      - 'workbenches/tau-observation-kernel-formal/**'
+      - '.github/workflows/splitzero-observation-kernel.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      LEAN_NUM_THREADS: 2
+    defaults:
+      run:
+        shell: bash
+        working-directory: formal/splitzero
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            formal/splitzero
+            workbenches/tau-observation-kernel-formal
+            workbenches/tau-signed-resolvent-formal
+            workbenches/tau-arithmetic-metric-transfer
+      - name: Recover unchanged original scalar
+        run: python3 prepare.py
+      - name: Install unchanged Lean toolchain
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve pinned Mathlib
+        run: |
+          set -euo pipefail
+          test "$(cat lean-toolchain)" = leanprover/lean4:v4.31.0
+          lake update
+          test "$(git -C .lake/packages/mathlib rev-parse HEAD)" = fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          lake exe cache get
+      - name: Strict original closure and all selected transitive audits
+        run: python3 ../../workbenches/tau-observation-kernel-formal/run_observation.py
+      - name: Reject the false absence identification at its actual goal
+        run: |
+          set -euo pipefail
+          printf 'import SplitZeroObservedIteratesSupport\nexample : (SplitZero.e : SplitZero.G ℤ) = SplitZero.tau := by rfl\n' > ObservationMustFail.lean
+          if lake env lean --trust=0 -DwarningAsError=true ObservationMustFail.lean > /tmp/false-observation.log 2>&1; then exit 1; fi
+          grep -qi 'rfl.*failed\|failed.*rfl' /tmp/false-observation.log
+          if grep -qi 'unknown module\|unknown identifier\|failed to synthesize' /tmp/false-observation.log; then exit 1; fi
+          cat /tmp/false-observation.log
+      - name: Record exact execution
+        run: |
+          git rev-parse HEAD
+          lake env lean --version
+          cat .observation-kernel-logs/receipt.json
+  finite:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            formal/splitzero
+            workbenches/tau-observation-kernel-formal
+            workbenches/tau-signed-resolvent-formal
+      - run: python3 -m pip install sympy==1.14.0
+      - name: Exact source and inherited regressions in both modes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 workbenches/tau-observation-kernel-formal/check_exact.py > /tmp/obs-normal.json
+          python3 -O workbenches/tau-observation-kernel-formal/check_exact.py > /tmp/obs-optimized.json
+          cmp /tmp/obs-normal.json /tmp/obs-optimized.json
+          cat /tmp/obs-normal.json
+          python3 workbenches/tau-signed-resolvent-formal/check_exact.py > /tmp/signed-normal.json
+          python3 -O workbenches/tau-signed-resolvent-formal/check_exact.py > /tmp/signed-optimized.json
+          cmp /tmp/signed-normal.json /tmp/signed-optimized.json
+          cat /tmp/signed-normal.json
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            if "${PY[@]}" workbenches/tau-observation-kernel-formal/check_exact.py --negative > /tmp/obs-$MODE-negative.jsonl; then exit 1; fi
+            python3 -c 'import json,sys; rows=[json.loads(x) for x in open(sys.argv[1])]; expected={"omit-section-correction","diagonal-only","omit-denominator","one-step-closed","always-faithful"}; sys.exit(0 if len(rows)==5 and {r["control"] for r in rows}==expected and all(r["false_claim_accepted"] is False for r in rows) else 1)' /tmp/obs-$MODE-negative.jsonl
+            cat /tmp/obs-$MODE-negative.jsonl
+          done
+          cmp /tmp/obs-normal-negative.jsonl /tmp/obs-optimized-negative.jsonl
+          cd formal/splitzero
+          python3 -m unittest test_derived_checker test_synchronization_checker test_tau_recovery
+          python3 -O -m unittest test_derived_checker test_synchronization_checker test_tau_recovery

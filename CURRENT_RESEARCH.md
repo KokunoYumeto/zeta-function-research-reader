@@ -1,3 +1,119 @@
+# Split-Zero cohomology: original operator, control budget and residual windows
+
+[Start here: current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/00_CONTINUE_HERE.md).
+
+[Read the238-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/12_VALIDATION.md).
+
+Split-Zero studies the original arithmetic theta cohomology attached to a
+selected zeta-zero packet. A specified period observation loses a common
+kernel K. The calculation measures that kernel and its boundary complement
+in their original Gamma and arithmetic metrics at degrees q-1,q,2q-1,2q,
+then carries the result through the existing cohomological signed return.
+
+The research direction is the Deligne mixed-cohomology programme. The
+simple-quartet lane retains m=1, k=4l+1 (l>=1), q=(k+1)^2, c=k/2,
+0<delta<1/2, gamma>2, the full unit2xi/h, original period branches|u|>=R_*,
+and the unchanged source orders s=1,k. R_* comes from that actual unit.
+All-multiplicity algebra is retained without assigning these ranks to it.
+
+## What this edition adds
+
+The238-page reader retains the complete161-page predecessor and fifteen new
+proof bodies: OOQ/GIP/MCE/MCP/RFX/OMR/PCL/ROG/RDS/FEX/FGC/ECL/EQR/RWC/OER.
+Its324 new tagged equations are installed in the full reader and receivers.
+
+OOQ controls every relative-operator direction of the same outer quotient,
+not just its determinant average. Its eigenvalues satisfy
+|log(lambda)-q C_partial/2|<=2 epsilon_k with
+epsilon_k=O_(delta,gamma)(q^(3/4)+k log q)=o(q), on OOQ13's stated
+eventual domain. A fixed rank-t restriction or quotient of that same target
+has four-endpoint return t q C_partial with error<=4t epsilon_k.
+
+GIP retains the entire original residual graph and relation denominator.
+FEX/FGC gives the actual factorial-scaled columns and native mixed Schur
+metric, including both low-volume corrections in
+F_K=F_((K+L)/L)+F_L-F_((K+L)/K).
+PCL/ROG gives actual coefficient/pivot maps and a controlled determinant-one
+graph shear; RDS gives the exact weighted dual-symbol realization. These
+maps do not replace the Gamma metric by a coefficient norm or drop a
+finite-window complement.
+
+ECL now evaluates the same outer first-variation coefficient:
+
+    21.66851180520 < 16 C_partial < 21.66851180521.
+
+The full moving-endpoint proof and integer outward certificate are supplied.
+EQR updates the literal original QGQ4 centre, retaining its nonzero A/sqrt2
+radius. This centre evaluation is not a limit of the actual W_k return.
+
+RWC proves invertibility of the actual consecutive q-column windows using
+the positive original quartet polynomial and Gamma orthogonality. It gives
+the complete conditioned covariance update and every exterior coefficient:
+
+    Phi_(k,s)=sum_(N=q-1,q) log(sum_(d=0)^j ||wedge^d Y_N||_HS^2).
+
+Y_N includes the full original conditioning denominator and cross terms.
+The new trace/determinant estimates strictly improve the earlier finite
+first-increment lower bound. OER installs those bounds with PMR's range,
+OAR's fallback and both unequal error endpoints. Finite strict growth has
+not supplied the individual kq-scale residual coefficient.
+
+MCE/MCP/RFX/OMR completes the same-arithmetic-class control connection.
+The original A*G_N+G_N A-kG_N has relative eigenvalues epsilon_N,-epsilon_N
+and zero. The surviving arithmetic exterior class supplies L_(h,k)<=epsilon_N.
+The exact action budget retains the boundary return, monic-norm window and
+both contraction penalties. Reflection makes the total untilted phase zero;
+the kernel and boundary pairings may still be nonzero and opposite, leaving
+the positive mixed contribution2|z_K|^2. No component or action leakage is
+discarded when returning to that same arithmetic class.
+
+The inherited OSP domain keeps epsilon=2^(-32), k>=29 and
+k sqrt(delta^2+gamma^2)<=epsilon q/2; OFV additionally requires k>=257.
+Conductor construction uses k>=9. Each theorem retains its own actual
+finite domain; fixed-period or stated bounded-stratum results are not
+asserted uniformly over arbitrary moving periods.
+
+## What remains to calculate
+
+The actual conditioned residual Phi_(k,s)/(kq) is still the next leading
+metric calculation. Estimate its complete window covariance, an exterior
+coefficient or compression, then return the full complement and induced
+bound through OER and the unchanged action budget. The exact identities and
+reductions above are completed inputs, not tasks to reconstruct again.
+
+File11 includes full RCF/RCM/DNE continuation drafts, explicitly UNREVIEWED.
+They are available for further calculation, not accepted estimates of this
+edition. External FVR TeX/PDF was absent; preserved summaries do not certify
+unseen sources. Complete local OFV/ECL/EQR/RWC proofs establish their own
+stated results. No RH conclusion or programme completion is claimed.
+
+## Reading and verification
+
+File00 is the one exact current continuation; file14 is the complete editable
+reader. Files09/10 are the complete joint/signed receivers; file02 has the
+literal QGQ4 update. All four changed full TeX bodies reverse to the complete
+161-page predecessor. File01 is historical, not the current preview.
+
+The owner records three clean reader builds and all238 rendered pages:
+156 inherited RGB body matches,21 fresh-page contact sheets, individually
+corrected page170,237 other final images unchanged, all footers checked.
+Receiver346/336-page compilations are compile-only, not visually accepted
+delivered PDFs. FEX records587 checks per mode and8 intended rejections;
+69 imported payloads remain exact. These are finite polynomial fixtures,
+not actual xi periods or infinite-family certificates. No new local Lean
+execution is asserted. Existing formalization and later merges retain their
+own revision-specific records in file16 and the repository.
+
+Publication reuses the complete owner proof/source/visual acceptance; it
+does not repeat that audit. Only private account locators in the source map
+are transported. The other16 files and all11 full TeX bodies are unchanged.
+
+The existing [DOI10.5281/zenodo.22759785](https://doi.org/10.5281/zenodo.22759785) remains the62-download161-page edition until this new source cut is separately published there. No Zenodo/Overleaf/timer changes occur in this source transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim. Its current-reader and next-task statements belong to its own edition. The238-page reader above is current.
+
 # Split-Zero cohomology: outer first variation and original residual metric
 
 [Start here: the exact current owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/af5c17948c24f43494ea76d823322e8b3924b58d/workbenches/splitzero-tandem/continuations/20260915-first-variation-continuation/00_CONTINUE_HERE.md).

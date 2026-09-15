@@ -1,5 +1,152 @@
 # Split-Zero cohomology: source-volume estimates and boundary transport
 
+[Read the delivered 549-page cumulative paper](https://zenodo.org/api/records/22773401/files/74-primitive-band-reader.pdf/content) · [Read the accepted 40-page source-band and boundary continuation](https://zenodo.org/api/records/22773401/files/75-primitive-band-supplement.pdf/content) · [DOI 10.5281/zenodo.22773401](https://doi.org/10.5281/zenodo.22773401) · [Exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/00_CONTINUE_HERE.md).
+
+- [549-page primitive_band](https://zenodo.org/api/records/22773401/files/74-primitive-band-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation) · [offline source ZIP](https://zenodo.org/api/records/22773401/files/76-primitive-band-sources.zip/content).
+- [40-page source-band and boundary supplement](https://zenodo.org/api/records/22773401/files/75-primitive-band-supplement.pdf/content) · complete accepted eight-provider continuation, separately readable.
+
+## The calculation and its purpose
+
+Split-Zero pursues a proposed cohomological approach to Riemann zeta zeros
+over tau, the programme's proposed absolute base. The calculation carries
+the original conductor relations into Gamma-function Hilbert metrics and
+the cohomological connecting map. Native refers to those original inner
+products and their induced quotient metrics. Repeated factors, branch
+intersections, coefficients, phases and fixed frames are retained.
+
+The original period observation divides into its kernel K and invariant
+residual V_A/K. Their total determinant growth is known, but the separate
+leading allocations and common long connecting/invariant loss are still
+being calculated. This edition supplies quantitative source estimates and
+an exact residual-boundary construction for that calculation; it does not
+report an exhibited off-critical-line zero.
+
+## What the accepted continuation establishes
+
+- **Complete translated relation bands (PSG/SGT).** A leading-monomial norm
+  alone did not control the translated relations. The full relation Gram
+  H_e now satisfies
+  log det H_e=log F_(k,e,s)+2 d_e q log(4/pi)+o(kq),
+  where q=(k+1)^2, d_e=8k+24+e, and F_(k,e,s) is the explicit product of
+  the original moment coefficient, mass and Gamma factorial norms. The
+  full original translation retains the explicit 2 d_e q log(4/pi)
+  contribution and the remaining o(kq) error.
+  Its complete low-degree kernel and reciprocal-symbol principal parts
+  remain; no zero-free unit disk is assumed.
+- **The original four primitive rows (PFG).** A nonzero minor from the four
+  earliest independent moment rows supplies the finite lower bound, and
+  the complete coefficient expansion supplies the upper bound. For the
+  actual matrix W and Q=(k+5)^2, this evaluates
+  log det(W* H_1 W)=4 log M_s+8 Q log Q+O_actual(Q)=o(kq).
+  The four-row determinant is calculated, not discarded because its rank
+  is small.
+- **Return through the same primitive coordinates (PSR).** The exact identity
+  Theta_e^(s)=(R_e^pol)^T diag(r!) P_e^Tay retains the full original
+  relation coefficients and prescribed Taylor complement. The native
+  coefficient matrix cancels against its actual inverse. Thus the source
+  determinant difference between the two original Gamma orders is o(kq).
+  The connecting-order difference is returned to the original compatibility
+  terms chi_X-chi_Y, with the exact source ratio and both directed errors
+  still present before the limit.
+- **The surviving boundary quotient (RQB).** Let J be the original invariant
+  source, Phi the stacked multiplication B_cof followed by the original
+  target quotient, and L=ker Phi. The computed kernels prove the maps
+  V/(J+L) -> W/W_inv -> im Phi/im(Phi J_0), taking
+  [x] to [B_cof x] and then to [Phi x], are isomorphisms.
+  Full nonreduced branch divisibility constrains L and the exact residual
+  rank. The original target minimum over W_inv gives its Gamma metric Q_b,
+  while the source minimum over J+L supplies its denominator.
+
+The boundary calculation also gives the positive four-row update
+
+    Q_b(n)=Q_b(n-1)+R_n* (I_4+L_inv,n)^(-1) R_n.
+
+Its covariance retains all preceding lower and invariant columns. The
+specified four-endpoint return yields
+
+    V_b+V_inv+V_o=4 Fhat_j,    V_b,V_inv,V_o >= 0.
+
+V_o is the remaining target quotient, not an omitted remainder. This
+provides an aggregate upper bound and directed residual interval; it does
+not assign an individual leading coefficient to V_b or V_inv.
+
+## Remaining work and full reading objects
+
+The next calculation is the common long connecting/invariant return and
+its actual kernel/residual allocation. The source estimate, four-row bound,
+coordinate maps and residual quotient above are established inputs, not
+tasks to recreate. The original Gamma orders, relation coefficients,
+quotient denominators, fixed-period restrictions and signed returns stay
+in their stated domains. A stronger comparison being investigated beyond
+the accepted source cut is not silently promoted to a proved result here.
+
+The separate 40-page reader contains all eight provider sources and 203
+original tagged equations: PDS/CIT/PDI and PSG/SGT/PFG/PSR/RQB, with full
+intervening proofs. Its accepted intake records 173 identity/tag checks
+over 55 pinned files and reuses the owner's all-40-page visual acceptance.
+Those are source-integrity and prior-review scopes, not new numerical
+experiments, PDF audits or Lean execution by this publication task.
+
+The 549-page cumulative reader and [complete delivered editable sources](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation)
+are the actual root-accepted integrated handoff. Their byte identities,
+current prompt and source membership come from its receipts; this guide
+does not substitute a research-position report for complete proofs.
+
+## Source restoration and previous editions
+
+The package has 21 physical files restoring 19 logical owner
+files. Its large source map is carried in ordered gzip parts [11_SOURCE_MAP.json.gz.part01](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/11_SOURCE_MAP.json.gz.part01), the
+[manifest](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/SOURCE_MAP_TRANSPORT.json), and the
+[decoder](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/restore_source_map.py). From the downloaded directory:
+
+```text
+python restore_source_map.py --folder RESTORED_19
+```
+
+The original logical source-map SHA-256 is `0ec0af1a8c91267390d06609d9edefac9418400b74498a199bb949ed89a1184a`;
+the public logical SHA-256 is `65ec4ff61f73090dac40b4188048169ce7d87c281d79e0515a0ee8c2cfe27167`. The manifest
+specifies exact restoration and recorded public locator transport.
+
+The original/private predecessor source map and its published locator-only
+derivative are different byte objects, recorded with different hashes. The
+previous source asset73 restores the public derivative, not the original
+private hash. Exact original predecessor restoration requires separately
+supplied historical bytes matching that original identity. The current
+decoder restores all 19 logical files independently of external
+history; it does not fetch that predecessor map. Archive history keeps its
+explicit unresolved-reference scope, and current source acceptance does
+not claim unavailable historical bytes were recovered.
+
+The [previous edition](https://doi.org/10.5281/zenodo.22772244) retains the 498-page
+paper, its 13-page supplement and all 73 downloads unchanged. This edition
+adds cumulative PDF74, separate 40-page PDF75 and complete ZIP76. All 76
+downloads remain individually clickable; PDF74 is the pertinent preview.
+
+- [Earlier 20260915 native conductor continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/28e540812ca5d45e8943395e460799888b4e5348/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation).
+- [Earlier 20260915 native boundary continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/0512b18d5479f3abc24ae654f8ffee4e5d53922e/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation).
+- [Earlier 20260915 allocation continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation).
+- [Earlier 20260915 dual metric continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/b4076eb15afd6b036a8de62d67b88eef03efeb50/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation).
+- [Earlier 20260915 operator control continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation).
+- [Earlier 20260915 first variation continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/af5c17948c24f43494ea76d823322e8b3924b58d/workbenches/splitzero-tandem/continuations/20260915-first-variation-continuation).
+- [Earlier 20260915 quotient moment continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation).
+- [Earlier exterior kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation).
+- [Earlier conductor kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation).
+- [Earlier original kernel matrices source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices).
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+[All 76 downloads and source identities](calculation_edition_20260915_primitive_band/README.md).
+
+## Earlier reading guide — preserved historical edition
+
+The following guide retains its original publication scope. The delivered
+cumulative paper and separate 40-page continuation above are the current route.
+
+# Split-Zero cohomology: source-volume estimates and boundary transport
+
 [Start here: exact owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/00_CONTINUE_HERE.md).
 
 [Read the 549-page cumulative paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/12_VALIDATION.md).

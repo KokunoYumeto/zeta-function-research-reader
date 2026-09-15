@@ -1,3 +1,175 @@
+# Split-Zero cohomology: dual reconstruction and kernel-residual row energies
+
+[Start here: exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation/00_CONTINUE_HERE.md).
+
+[Read the 293-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation/12_VALIDATION.md).
+
+Split-Zero studies the original theta cohomology of a selected zeta-zero
+packet. A specified period observation divides the original arithmetic
+source into its kernel and residual quotient. This edition calculates their
+native dual metrics and how the same Gamma rows contribute to each part.
+The Deligne mixed-cohomology programme is the research direction; tau remains
+the absolute base. No RH conclusion or programme completion is claimed.
+
+The 293-page reader retains the complete 238-page predecessor and 12 complete
+new proof bodies with 241 tagged equations: RCF/RCM/DNE/PEC/ACR/LBRE/ASR,
+PBR/LJR/LRR/HJR/HCR. The low reconstruction, compatible later jets and exact
+four-endpoint cancellation are proved. Their separate quantitative kernel
+and residual row-energy allocation is the remaining calculation.
+
+## Original objects and domains
+
+In the simple-quartet lane retain m=1, 0<delta<1/2, gamma>2, the full fixed
+amplitude unit and the specified fixed five-orbit period, with |u|>=R_*.
+Here k=4l+1>=9, q=(k+1)^2, Delta=16k-48, kernel rank r=8k-16 and residual
+rank j=8k-32. The original Gamma source orders are s=1,k. The four source
+degrees q-1,q,2q-1,2q carry signs (+,+,-,-). Every source mass, primary
+point, factorial, phase, orientation and induced metric is retained.
+
+Imported results keep their own finite domains: PMR uses k>=29 and
+k sqrt(delta^2+gamma^2)<=2^(-33)q, with OAR's outer-root fallback otherwise;
+OFV keeps its additional k>=257 requirement. Fixed-period conclusions are
+not assertions uniform over arbitrary moving periods. The complete
+all-multiplicity algebra is retained without assigning these m=1 ranks to it.
+
+## What the dual construction now proves
+
+The conductor uses all 81 actual period-dependent coefficients. Its symbol
+E_A(z)=sum a_ab exp(b_ab z) retains
+b_ab=4+(2a-8)delta+i(2b-8)gamma. If v is its first nonzero moment order,
+then v<=80, alpha_A=v!/E_A^(v)(0), and the dual quotient has dimension
+m_dual=Delta-v. DNE constructs its original metric
+
+    D_N = T_N* [I-V_N(V_N*V_N)^(-1)V_N*] T_N.
+
+The fixed reference G_exp is induced by the original coefficient form;
+it is not chosen to improve an estimate. The complete coordinate pairings,
+complex transposes and Hermitian adjoints connect this dual metric to the
+native relation quotient. PEC bounds its positive logarithmic spectrum by
+an explicit epsilon^vee_(N,s)=o(kq). Its pole-jet removal keeps the fixed
+disk, exact codimension and constants before the stated limiting sequence.
+
+Let L be the polynomials of degree below v, t0=dim(K intersect L), and
+W0=Xi(L). The kernel and residual comparisons use the original maps B_K,J0:
+
+    D_K,N = (B_K D_N^(-1) B_K*)^(-1),
+    G_K   = (B_K G_exp^(-1) B_K*)^(-1),
+    D_0,N = J0* D_N J0,       G_0 = J0* G_exp J0.
+
+Their ranks are r-t0 and j-v+t0. Their negative logarithmic spectral sums
+give nonnegative four-endpoint deficits A_K,A_0. The completed return is
+
+    F_K^(s) = A_K + o(kq),     Phi_(k,s) = A_0 + o(kq),
+    (A_K+A_0)/(kq) -> 16 C_partial,
+    21.66851180520 < 16 C_partial < 21.66851180521.
+
+The actual finite unequal error endpoints remain, rather than being replaced
+by asymptotic notation in receivers. PBR retains both low contributions
+through the exact induced-metric map (K+L)/K -> W0.
+
+ACR calculates the common divisor and exceptional ranks from the actual
+coefficient matrices. LBRE/ASR proves full support width(8,8) outside a
+finite explicitly defined set of actual periods, with a sufficient radius.
+That exception set is not declared empty. The support theorem does not
+assign t0 or either individual residual rate.
+
+## Completed reconstruction and full later-row allocation
+
+LJR reconstructs the low endpoint using the full Vandermonde/product-jet map
+V_beta^(-1) J_E B^T in the original Gamma basis, including
+h_n=M_s n!(s/2)_n and every native quotient factor. Its squared singular
+values are reciprocals of the relative dual eigenvalues. The full Jacobian
+has log J=2 m_dual q log k+R_(k,s), with R_(k,s)=O_actual(kq).
+The low reconstruction and that order estimate are completed results.
+
+HJR extends the same lower-evaluation vector through the literal original
+polynomial recurrence. Its full graph [I;H_N,s] produces
+
+    D_cal,N = D_low + C_N* C_N,
+    C_N = (I+Q_N Q_N*)^(-1/2) P_N.
+
+The lower-evaluation conditioning factor is retained; taking the kernel
+quotient retains the second Schur denominator as well. Later jets are not
+replaced by unconstrained independent rows.
+
+For each actual residual row h_M, the unchanged maps B=B_K and J=J0 give
+
+    D_B,M=(B D_cal,M^(-1) B*)^(-1),   D_J,M=J* D_cal,M J,
+    L_M=D_cal,M^(-1) B* D_B,M,
+    x_M=h_M J D_J,M^(-1) J* h_M*,
+    y_M=h_M L_M D_B,M^(-1) L_M* h_M*.
+
+These nonnegative energies allocate the exact increment:
+
+    g_R,M=log(1+x_M),
+    g_K,M=log(1+y_M/(1+x_M)),
+    g_M=g_R,M+g_K,M=log(1+x_M+y_M).
+
+Sum M=q-1,...,2q-1 with endpoint weights 1 and interior weights 2 to obtain
+S_R,S_K. Their total is already calculated:
+
+    S_K+S_R = Delta q C_partial + o(kq).
+
+The complete common low remainder and q log k term cancel in the exact
+four-sign identity. The positive spectral terms remain in A_K=S_K-P_K
+and A_0=S_R-P_0. Each compatible positive Gram increment, including actual
+paired subquotients, is bounded by the full positive return without an
+extra rank multiplier. All finite HJR24-27 endpoints are supplied.
+
+HCR carries the two sums back to the original kernel and residual:
+
+    F_K^(s)=S_K-E_s^flag+F_L^(s)-F_W0^(s),
+    Phi_(k,s)=F_W0^(s)+S_R+delta_0,k,s.
+
+Both low terms, unequal finite errors, correlated arithmetic deficits and
+the same-class action budget remain. Total reflection phase vanishes while
+the full mixed contribution 2|z_K|^2 is retained.
+
+## What remains to calculate
+
+Estimate the separate actual S_K,S_R, or a finite one-sided bound strong
+enough for the existing arithmetic action inequality. Use the original
+period/conductor coefficients, the compatible recurrence and actual x_M,y_M,
+including their coupled denominator 1+x_M and both native reference metrics.
+Their sum does not determine their individual allocation. The completed
+reconstruction and full-window identities are inputs, not tasks to redo.
+Exceptional periods and each original fixed-period domain remain explicit.
+
+## Reading and verification scope
+
+File 00 is the single exact owner continuation; file 14 is the complete
+editable reader; files 09/10 are the complete receiving sources. Each new
+proof body occurs once in each of those three sources. Their recorded
+reversals recover the complete immutable 238-page edition. Files 01-08,13,16
+retain preceding bytes; file 01 is historical, not the current paper.
+
+The owner records three reader build passes and all 293 rendered pages,
+all footer checks and no off-page text or reader diagnostics. The full
+comparison distinguishes inherited matching bodies from freshly inspected
+pages. Receiver 401/389-page builds are compile-only: their separate PDFs
+are not delivered visually accepted artifacts. File 16 retains PR32-35's
+formal sources and their revision-specific verification, not a new Lean run
+or certification of these analytic estimates.
+
+File 11 is the complete large provenance source map, not an excerpt. It
+retains proof texts, reviews, diagnostics, scripts, logs, reversible source
+transports and incoming handoffs. Its broad supplementary closure is
+provenance only; acceptance is restricted to the listed complete providers
+and precise receipts. Active allocation/energy drafts are excluded. Missing
+external FIRST_VARIATION TeX/PDF is not certified by preserved summaries;
+the supplied complete local proofs retain their own established scope.
+
+Publication reuses the owner's complete source/proof/visual acceptance.
+Only private account locators in the source map are transported; the other
+16 complete sources, both PDFs and all 11 TeX files remain byte-identical.
+No new source/PDF/mathematical audit, Lean execution or RH result is claimed.
+
+The existing [DOI 10.5281/zenodo.22760013](https://doi.org/10.5281/zenodo.22760013) remains the 64-download, 238-page edition until this new source cut is separately published there. No Zenodo/Overleaf/timer changes occur in this source transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim. Its current-reader and next-task statements belong to its own edition. The 293-page reader above is current.
+
 # Split-Zero cohomology: original operator, control budget and residual windows
 
 [Read the current 238-page paper](https://zenodo.org/api/records/22760013/files/63-operator-control-reader.pdf/content) · [Published DOI 10.5281/zenodo.22760013](https://doi.org/10.5281/zenodo.22760013) · [Complete current continuation and next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/00_CONTINUE_HERE.md).

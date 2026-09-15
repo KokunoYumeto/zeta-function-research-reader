@@ -1,5 +1,134 @@
 # Split-Zero cohomology: original operator, control budget and residual windows
 
+[Read the current 238-page paper](https://zenodo.org/api/records/22760013/files/63-operator-control-reader.pdf/content) · [Published DOI 10.5281/zenodo.22760013](https://doi.org/10.5281/zenodo.22760013) · [Complete current continuation and next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/00_CONTINUE_HERE.md).
+
+- [238-page operator control](https://zenodo.org/api/records/22760013/files/63-operator-control-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation) · [offline source ZIP](https://zenodo.org/api/records/22760013/files/64-operator-control-sources.zip/content).
+
+## What this programme is trying to calculate
+
+Split-Zero studies the arithmetic theta cohomology attached to a finite packet
+of zeros of the zeta function, with every zero multiplicity retained. A specified
+period observation sends some classes to zero. Its common kernel and boundary
+complement are measured in the original Gamma and arithmetic metrics at the
+four polynomial degrees q-1, q, 2q-1 and 2q. The kernel belongs to that original
+period observation; it is not an intersection over different periods.
+
+The research asks how these measured contributions return to the original
+cohomological class and its quantitative control form A*G+GA-kG. This is the
+concrete connection being pursued within the F1/Deligne mixed-cohomology
+programme. It is not an assertion that a determinant identity alone settles RH.
+
+The preceding 161-page edition evaluated the combined kernel-plus-residual
+outer term. This edition keeps that entire paper and adds 15 full proof bodies
+and 324 tagged equations, calculating the operator directions, residual graph,
+same-class control budget and finite residual-window improvements below.
+
+The 238-page Split-Zero reader calculates the original outer quotient in every relative-operator direction, the full residual relation graph in its native Schur metric, and the action/control budget for the same arithmetic class. It evaluates the outer coefficient, retains the nonzero original return radius and component phase terms, and proves full-rank consecutive residual windows with complete covariance and exterior expansions. All original domains, source orders, masses, phases, multiplicities and finite errors remain.
+
+## What was tried, what worked, and what remains
+
+- **Control every direction of the outer quotient (OOQ).** The scalar volume
+  estimate was strengthened to an estimate for each relative-operator
+  direction. The stated finite domain and errors are retained when this is
+  restricted or returned through the original maps.
+- **Use the actual residual relations (GIP, FEX, FGC, PCL, ROG, RDS).** The
+  full relation graph, factorial-scaled fixed columns, pivot maps and weighted
+  dual-symbol maps are explicit. Their native Schur metric retains the
+  off-diagonal blocks, complete relation denominator and both low-volume
+  corrections. Coefficient conditioning is not substituted for the Gamma metric.
+- **Return the calculation to the same arithmetic class (MCE, MCP, RFX, OMR).**
+  The original action/control budget now includes the boundary return,
+  monic-norm window, contraction penalties and action leakage. Reflection
+  cancels the total untilted phase, but the component pairings can be nonzero
+  and opposite. Their positive mixed contribution is still present.
+- **Evaluate the original outer coefficient (ECL).** The moving-endpoint
+  formula and integer outward certificate give
+  21.66851180520 &lt; 16 C_partial &lt; 21.66851180521. The coefficient belongs
+  to the original outer calculation, not to an independently chosen model.
+- **Improve the original return and residual bounds (EQR, RWC, OER).** EQR
+  evaluates the original QGQ4 centre while retaining its nonzero error radius.
+  RWC proves full rank for actual consecutive q-column windows and gives the
+  complete conditioned covariance update and every exterior coefficient.
+  OER returns the stronger finite bounds with their unequal errors. These
+  strict finite improvements do not yet determine the residual kq-scale rate.
+
+The active calculation in this edition is the actual conditioned residual
+Phi/(kq), with the complete covariance and exterior coefficients retained,
+and its contribution to the unchanged action budget. The original simple
+quartet has m=1, k=4l+1 with l at least 1, q=(k+1)^2, c=k/2,
+0&lt;delta&lt;1/2 and gamma&gt;2. Every original period branch |u| at least R_*
+and the full unit 2xi/h remain. The source orders are 1 and k, with their
+actual masses, phases, multiplicities and cross terms.
+
+The results keep their individual domains: conductor k at least 9; OSP uses
+epsilon=2^(-32), k at least 29 and k sqrt(delta^2+gamma^2) at most epsilon q/2;
+OFV additionally requires k at least 257. Fixed-period estimates are not
+asserted uniformly over arbitrary moving periods.
+
+The actual residual rate Phi/(kq) and the remaining same-class quantitative control are active calculations in this edition. Strict finite improvements and the evaluated outer coefficient are not an RH exclusion. RCF/RCM/DNE drafts in the provenance map are explicitly unreviewed; absent external FVR full sources are not certified. Later PEC and other owner successors remain outside this immutable cut. No programme completion is claimed.
+
+## Complete sources and the scope of verification
+
+The [complete reader LaTeX, file 14](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex)
+and [238-page GitHub PDF, file 15](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf)
+are the current paper. Files 02, 09 and 10 retain the complete original,
+joint and signed receiving notes. All four changed full sources can be
+reversed to the complete predecessor. File 00 is the sole current research
+continuation; this page is a reading guide, not a competing prompt.
+
+[Validation file 12](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/12_VALIDATION.md) records three clean XeLaTeX
+passes, rendering of all 238 pages, 156 inherited RGB body matches, 21 contact
+sheets for fresh pages, individual inspection of corrected page 170, and
+checks of all footers. The other 237 final page images remained unchanged.
+The 346/336-page receiver builds are compilation-only, not visually accepted
+PDF deliverables. FEX records 587 finite checks per mode and 8 intended
+rejection controls, with 69 imported payloads unchanged. These finite fixtures
+are not actual xi periods or an infinite-family numerical certificate.
+The ECL integer certificate has its stated normal/optimized replay records.
+No new local Lean run or mathematical audit is claimed by this publication.
+
+[Source map file 11](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/11_SOURCE_MAP.json) includes complete accepted
+proof/review material and separate RCF/RCM/DNE drafts explicitly marked
+unreviewed. Those drafts are not accepted estimates. The external FVR full
+TeX/PDF was absent; preserved summaries do not certify the unseen files.
+Existing formalization and PR records retain their exact revision-specific
+scope. Later owner calculations are not silently inserted into this edition.
+
+The map's original SHA-256 is `6ff6bd07a3d35dda85992865542b5e28655f2cc670263333855e4a31c7e7c92d`; its public
+SHA-256 is `417ed73665b0ada8288d413c0f77e93c78c84745d09581514a4caff580ab36d8`. Only private account locators
+were transported for public distribution. The other sixteen files, including
+both PDFs and all eleven LaTeX files, retain the exact accepted bytes.
+
+## Earlier editions and downloads
+
+- [Earlier 20260915 first variation continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/af5c17948c24f43494ea76d823322e8b3924b58d/workbenches/splitzero-tandem/continuations/20260915-first-variation-continuation).
+- [Earlier 20260915 quotient moment continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation).
+- [Earlier exterior kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation).
+- [Earlier conductor kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation).
+- [Earlier original kernel matrices source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices).
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [preceding 62-download edition](https://doi.org/10.5281/zenodo.22759785) remains
+unchanged with its 161-page preview. This edition adds PDF 63 and ZIP 64.
+All 64 downloads remain separately clickable. The current 238-page paper
+is the Zenodo preview; its ZIP contains all seventeen flat source files for
+offline use. Earlier mathematical sources and publication records are preserved.
+
+[All 64 downloads and source identities](calculation_edition_20260915_operator_control/README.md).
+
+## Earlier reading guide — preserved historical edition
+
+The following text is preserved from the previous publication. Its current
+reader and next-calculation statements belong to that earlier edition. The
+238-page guide above is the current route; historical source, proof and
+integration records retain their original scope.
+
+# Split-Zero cohomology: original operator, control budget and residual windows
+
 [Start here: current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/00_CONTINUE_HERE.md).
 
 [Read the238-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation/12_VALIDATION.md).

@@ -1,3 +1,116 @@
+# Split-Zero cohomology: source-volume estimates and boundary transport
+
+[Start here: exact owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/00_CONTINUE_HERE.md).
+
+[Read the 549-page cumulative paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/12_VALIDATION.md).
+
+[75-page reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/01_GAMMA_READER.pdf): Historical Gamma reader; retained for its original chronology, not the current cumulative paper.
+
+[40-page reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/18_PRIMITIVE_CONNECTING_READER.pdf): Separately readable complete eight-provider source-band and boundary-return proofs; the cumulative paper also carries their receiving maps. [Complete source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/17_FULL_PRIMITIVE_CONNECTING_PROOFS.tex).
+
+Split-Zero studies a proposed cohomological approach to the zeros of the
+Riemann zeta function. Tau is the programme's absolute base object. The
+calculation keeps its polynomial relations, quotient maps and original Gamma
+inner products: repeated conductor factors, masses, phases and low-degree
+kernels are not removed. The purpose of this continuation is to evaluate the
+volume of those relations and carry that value into the cohomological source
+and connecting map. No RH conclusion or programme completion is claimed.
+
+## What was tried, why it was needed, and what works
+
+The monic relation band gives a tractable starting determinant, but a leading
+monomial alone does not determine the norm of the full translated relations.
+PSG evaluates the monic relation band; SGT controls the full original conductor
+translation, including its explicit 2 d_e q log(4/pi) contribution and the
+remaining o(kq) error.
+The exact translation retains its low-degree kernel and the complete principal
+parts of its reciprocal symbol; a zero-free unit disk is not assumed.
+
+For k=4l+1, q=(k+1)^2, d_e=8k+24+e and source order s=1 or k, retain the
+actual first nonzero conductor moment mu_v and the original mass
+M_s=(2 pi)^(s/2). With n_a=q+a-v, the finite comparison product is
+
+    F_(k,e,s) = product_(a=0)^(d_e-1)
+      |mu_v binom(q+a,v)|^2 M_s n_a! (s/2)_(n_a).
+
+The full Gram of the translated relations satisfies
+
+    log det H_e = log F_(k,e,s) + 2 d_e q log(4/pi) + o(kq).
+
+The finite proofs retain the complete asymmetric error bounds and all the
+original domain conditions before passing to this limit.
+
+The primitive quotient also contains a four-row determinant. Its rank does
+not make its magnitude negligible. PFG obtains a nonzero minor from the
+earliest independent original moment rows, then bounds the complete
+coefficient expansion. For Q=(k+5)^2 it proves
+
+    log det(W* H_1 W) = 4 log M_s + 8 Q log Q + O_actual(Q).
+
+PSR carries both estimates through the actual polynomial and Taylor-coordinate
+maps. The entire native coefficient matrix cancels against its actual inverse;
+the same ordered primitive-coordinate frames therefore remain for both Gamma
+orders. The source determinant ratio has logarithm o(kq). For the connecting
+metrics, the surviving leading difference is exactly the difference of the
+original compatibility quantities X_e=chi_X-chi_Y:
+
+    log(det H_conn,e^(k,k+4) / det H_conn,e^(1,1))
+      = -X_e^(k,k+4) + X_e^(1,1) + o(kq).
+
+This is not an evaluation of those remaining compatibility determinants.
+
+## How the original geometry enters the boundary metric
+
+RQB calculates the surviving boundary quotient rather than dropping it from
+the connecting formula. For the original coefficient source V, invariant
+subspace J, stacked multiplication map B_cof and kernel L of the original
+target-quotient map Phi, it gives the exact isomorphisms
+
+    V/(J+L) -> W/W_inv -> im(Phi)/im(Phi J_0),
+    [x] -> [B_cof x] -> [Phi x].
+
+The actual branch-polynomial valuations, including repeated factors,
+determine the full kernels. The source and target quotient metrics are the
+attained minima over their original relation spaces. Their Gamma row formulas,
+fixed frames and positive four-row update are retained. The four-endpoint
+return bounds a directed residual contribution through the exact aggregate
+allocation; it does not assign either separate leading coefficient.
+
+## Next mathematical calculation
+
+Use these complete source estimates and maps in the common long connecting
+and invariant return. Calculate its actual compatibility and residual
+determinants, retaining both half-lines, every lower-evaluation minimum and
+the full proper-source factors. The established source and four-row results
+are inputs to that calculation, not proofs to recreate. The original signed
+arithmetic return and its endpoint domains remain in force.
+
+## Reading and evidence
+
+The links below identify the exact root-accepted cumulative source cut and
+each separately readable PDF with its own chronology. Full proofs remain in
+the linked complete sources; this guide is a navigation and attempt summary,
+not their replacement. Original proof-review, source-integrity, finite-test,
+build and visual records retain their stated scope. No new mathematical or
+PDF audit, arithmetic experiment or Lean execution is claimed by this source
+publication. Local reference-only literature is not added.
+
+## Reconstruct the complete logical edition
+
+The accepted manifest contains 19 logical files, carried by 21 physical GitHub files. Every non-map logical body is unchanged. The full public source map uses 1 ordered gzip parts: [11_SOURCE_MAP.json.gz.part01](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/11_SOURCE_MAP.json.gz.part01).
+
+Download the parts, [transport manifest](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/SOURCE_MAP_TRANSPORT.json), [decoder](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/restore_source_map.py) and all other declared logical files. Run `python restore_source_map.py --folder RESTORED_SOURCE` to create a separate folder with exactly the declared logical membership. The decoder verifies parts, aggregate and complete logical SHA-256 and refuses to overwrite different bytes. No excerpt replaces the complete source map.
+
+The complete current edition restores locally without fetching historical bytes. The original historical source map is an explicitly external dependency: the predecessor public package restores its separately identified public locator derivative, not the private original hash. Historical and generated nonembedded aliases keep their declared scope. The current smaller map does not silently claim those original historical bytes are embedded.
+
+[Previously published historical source package](https://zenodo.org/api/records/22772244/files/73-native-conductor-sources.zip/content) · [Its DOI record](https://zenodo.org/records/22772244). Both the original and public historical identities remain recorded in the source map.
+
+The existing [DOI 10.5281/zenodo.22772244](https://doi.org/10.5281/zenodo.22772244) remains the 73-download edition, with its 498-page cumulative reader and separate 13-page supplement, until this newer source cut is published there. This source transaction does not change Zenodo, Overleaf or timers.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim. Its reader and next-task statements belong to its own edition; the accepted reading list above is current.
+
 # Split-Zero cohomology: conductor cohomology and primitive transport
 
 [Read the 498-page cumulative paper](https://zenodo.org/api/records/22772244/files/71-native-conductor-reader.pdf/content) · [Read the later 13-page primitive/connecting supplement](https://zenodo.org/api/records/22772244/files/72-primitive-connecting-reader.pdf/content) · [DOI 10.5281/zenodo.22772244](https://doi.org/10.5281/zenodo.22772244) · [Exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/28e540812ca5d45e8943395e460799888b4e5348/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/00_CONTINUE_HERE.md).

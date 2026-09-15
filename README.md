@@ -1,3 +1,151 @@
+# Split-Zero cohomology: arithmetic row-energy allocation estimates
+
+[Start here: exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/00_CONTINUE_HERE.md).
+
+[Read the 317-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/12_VALIDATION.md).
+
+Split-Zero studies the original theta cohomology of a selected zeta-zero
+packet. Its specified period observation divides an arithmetic source into
+the observation kernel and its invariant residual quotient. Their native
+metrics give two coupled sums of Gamma row energies. This edition derives
+finite bounds and exact matrix formulas for how the already evaluated total
+is divided between those two parts. Tau remains the absolute base and the
+proposed Deligne mixed-cohomology route remains active. No RH conclusion is
+claimed.
+
+The 317-page paper retains the complete 293-page predecessor and adds six
+complete proof bodies with 113 tagged equations: ACB1-15, GPA1-23, LVM1-19,
+GVM1-10, TSR1-30 and SAR1-16. These concern the same original kernel and
+residual, not a replacement positive matrix or a freely chosen metric.
+
+## The actual allocations and their exact total
+
+Fix the actual simple quartet, five-orbit period, full amplitude unit and
+logarithm branch. Retain k=4l+1, q=(k+1)^2, q'=(k-7)^2,
+Delta=16k-48, v=ord_0 E_A and m=Delta-v. The original source orders are
+s=1,k, with h_n=M_s n!(s/2)_n and M_s=(2pi)^(s/2). The actual intersection
+t0=dim(K intersect L), every relation and residual column, factorial,
+phase and both induced-metric denominators remain.
+
+The four polynomial endpoints q-1,q,2q-1,2q have primal signs (+,+,-,-).
+The native dual determinant return has the opposite orientation. For each
+actual later row, x_M and y_M are its nonnegative residual and kernel
+energies, calculated after the whole preceding lower-evaluation minimum.
+The weighted sums are
+
+    S_K = sum_M w_M log(1+y_M/(1+x_M)),
+    S_R = sum_M w_M log(1+x_M),
+    S_K+S_R = sum_M w_M log(1+x_M+y_M).
+
+The two end rows have weight 1, the interior rows weight 2, and the total
+weight is 2q. SAR gives the complete conjugate-inverse dictionary to the
+original kernel and residual forms. The total is already evaluated:
+
+    (S_K+S_R)/(kq) -> 16 C_partial,
+    21.66851180520 < 16 C_partial < 21.66851180521.
+
+This number does not assign either separate allocation. All low-volume
+terms and unequal flag/CEP errors remain when returning to the original
+kernel determinant F_K and residual determinant Phi.
+
+## New finite estimates through full mixed volumes
+
+ACB supplies component and joint-tail controls. GPA compares the full native
+forms to an explicit factorial moment matrix through the same relation
+columns. The two source centres Q_1=q' and Q_k=q'+(k-1)/4 remain distinct;
+the signed allocation comparison has error O_actual(k log q).
+
+LVM gives the exact two-half-line map W=[A P; R A P], retaining its roots,
+phases and factorials. With the original full column matrices
+
+    X_U=U_N,   X_K=[U_N,E_m Z_k],   X_E=[U_N,E_m],
+    D_A=det((W X_A)* W X_A),
+
+the kernel and residual volumes are consecutive ratios D_K/D_U and
+|det[Z_k,C]|^2 D_E/D_K. The fixed frame scalar cancels only in the signed
+four-endpoint return. Every mixed minor remains; the maximal-minor
+comparison has an O(q) remainder.
+
+GVM constructs deterministic full-row pivot products P_A without enumerating
+all minors. At every step it uses the largest actual residual diagonal,
+its fixed tie rule and the complete rank-one update across both half-lines:
+
+    P_A <= D_A <= (2n_N)^(r_A) P_A.
+
+The consecutive signed pivot-volume sums C_K,C_R approximate S_K,S_R with
+the explicit unequal GPA/GVM errors, together of order
+O_actual(k log q+q log q)=o(kq). The pivot products already use squared
+minors; there is no extra factor 2. Their sum cancels the same intermediate
+pivot volume. These are calculated finite reductions; the separate
+large-k coefficients of the actual pivot products remain to be evaluated.
+
+TSR independently represents the same finite scalars by exact threshold
+spectral flows and supplies finite enclosures. Strict eigenvalue thresholds,
+multiplicities and the original metrics remain. An operation count is not
+a bit-complexity theorem or certification of transcendental input values.
+Artificial finite examples test identities, not the actual-period limit.
+
+## Return to the complete arithmetic quantity
+
+SAR couples every improvement in either allocation to the other through
+their evaluated total. It carries finite intervals through the original
+low metrics, unequal flag/CEP errors, finite OAR/PMR domains, correlated
+arithmetic source comparison, signed mixed return and whole-action budget.
+The earlier receiving sites BRI6s, MRI4ac and OER28 contain these intervals.
+The kernel determinant is not substituted for the complete exterior
+allowance. Both contraction penalties, all mixed pairings, leakage and the
+same nonzero arithmetic class remain.
+
+The GPA/LVM/GVM finite estimates use k>=29 and
+k sqrt(delta^2+gamma^2)<=2^(-33)q. Outside that domain the original OAR
+formulas remain available. Arithmetic statements retain |u|>=R_* and the
+original fixed actual period. No uniform moving-period assertion or
+extension of simple-quartet ranks to higher multiplicity is made.
+
+## Next calculation on these matrices
+
+Estimate the actual separate C_K,C_R from the original relation and
+invariant recursions after W is applied, including the term coupling both
+half-lines. Retain every period/conductor coefficient, factorial weight,
+mixed column and quotient denominator. An evaluated leading term or strict
+kq-scale interval for one allocation would constrain the other through the
+exact total. The completed reconstruction, matrix transports and finite
+bounds above are inputs to this calculation, not tasks to redo.
+
+## Reading and verification scope
+
+File 00 is the single exact owner continuation. File 15 is the current
+317-page paper; file 14 is its complete editable LaTeX. All six new proof
+bodies appear once in 14 and once in each complete receiving source 09/10.
+Their recorded reversal recovers every byte of the 293-page predecessor.
+Files 01-08,13,16 are unchanged; file 01 remains a historical reader.
+
+The owner records a source-stable three-pass XeLaTeX build, all 317 rendered
+pages and checked footers, and no off-page text or remaining reader issues.
+The fresh-page visual scope and unchanged-body comparisons are recorded.
+The two receiver builds are source checks: their auxiliary PDFs are not
+additional delivered visually accepted artifacts. File 16 retains the prior
+revision-specific formal source evidence; no new Lean execution or analytic
+kernel certification is claimed here.
+
+File 11 is the full large provenance source map, not an excerpt. It retains
+complete prior sources, reviews, diagnostics, reversible changes and the
+external handoffs. The complete local OFV/ECL/EQR/RWC proofs keep their own
+provenance; summaries of external FVR work do not certify missing sources.
+Later KRC/BIM/FRE/MNT/IPE/NPB are excluded from this edition. Provenance
+inclusion alone is not acceptance beyond the explicit six-provider scope.
+
+Publication reuses the owner's full proof/source/visual acceptance. Only
+private account locators in the source map are transported; the other 16
+complete files, both PDFs and all 11 TeX files stay byte-identical. This
+publication step adds no mathematical or PDF re-audit and no RH claim.
+
+The existing [DOI 10.5281/zenodo.22760598](https://doi.org/10.5281/zenodo.22760598) remains the 66-download, 293-page edition until this source cut is separately published there. No Zenodo/Overleaf/timer changes occur in this source transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim. Its current-reader and next-task statements belong to its own edition. The 317-page reader above is current.
+
 # Split-Zero cohomology: dual reconstruction and kernel-residual row energies
 
 [Read the current 293-page paper](https://zenodo.org/api/records/22760598/files/65-dual-metric-reader.pdf/content) · [Published DOI 10.5281/zenodo.22760598](https://doi.org/10.5281/zenodo.22760598) · [Exact current continuation and next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/b4076eb15afd6b036a8de62d67b88eef03efeb50/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation/00_CONTINUE_HERE.md).

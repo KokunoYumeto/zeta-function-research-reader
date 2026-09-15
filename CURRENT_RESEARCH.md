@@ -1,5 +1,149 @@
 # Split-Zero cohomology: arithmetic row-energy allocation estimates
 
+[Read the current 317-page paper](https://zenodo.org/api/records/22760901/files/67-allocation-reader.pdf/content) · [Published DOI 10.5281/zenodo.22760901](https://doi.org/10.5281/zenodo.22760901) · [Exact current continuation and next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/00_CONTINUE_HERE.md).
+
+- [317-page allocation](https://zenodo.org/api/records/22760901/files/67-allocation-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation) · [offline source ZIP](https://zenodo.org/api/records/22760901/files/68-allocation-sources.zip/content).
+
+## What is being calculated, and why
+
+Split-Zero studies arithmetic theta cohomology associated with a finite packet
+of zeta-function zeros. The original period observation has a kernel K, the
+classes it sends to zero, and an invariant residual V_A/K. The programme
+measures those two contributions in the original Gamma and arithmetic metrics
+and returns them to the same cohomological class and its quantitative action
+form A*G+GA-kG. This is the concrete F1/Deligne mixed-cohomology direction under
+investigation, not a conclusion obtained from a determinant representation alone.
+
+The current question is how an already evaluated total determinant growth
+divides between those two actual parts. The preceding 293-page paper constructed
+their dual metrics, retaining the complete lower-evaluation space L and its
+residual image W_0. The quotients K/(K intersect L) and (V_A/K)/W_0 keep their
+induced metrics, and both low terms are returned afterward. This 317-page
+edition preserves those proofs and adds six complete bodies with
+113 tagged equations and their full receiving-source integrations.
+
+The original degrees are q-1,q,2q-1,2q, where q=(k+1)^2 and k=4l+1.
+The source orders remain 1 and k. All conductor coefficients, masses, factorials,
+phases, lower evaluations, Schur denominators and mixed contributions remain.
+
+The 317-page cumulative Split-Zero reader retains the original period observation, kernel K, invariant residual V_A/K and full lower-evaluation Gamma forms. A complete factorial-form comparison gives both half-line coefficient maps and consecutive kernel/residual Gram-volume ratios. Deterministic full-row pivot products estimate those actual volumes with unequal finite errors o(kq) on the proved fixed-period domain. Exact threshold pencils and finite enclosures concern the same two allocations. Their simultaneous affine coupling uses the evaluated total and returns both bounds through original low metrics, flag/transfer errors, arithmetic comparison and the entire signed/action budget.
+
+## What was tried and what it establishes
+
+- **Control the actual coupled rows (ACB).** The residual energy x_M and kernel
+  energy y_M belong to the same preceding lower-evaluation minimum. Their
+  increments are log(1+x_M) and log(1+y_M/(1+x_M)); together they give
+  log(1+x_M+y_M). Component and joint-tail bounds retain that coupling.
+- **Pass through the full factorial observation (GPA, LVM).** The original
+  Gamma measure is compared with an explicit factorial moment matrix through
+  every relation and quotient. A map W using both half-lines gives the complete
+  Gram volumes D_U,D_K,D_E. The kernel and residual metrics use the consecutive
+  ratios D_K/D_U and |det[Z_k,C]|^2 D_E/D_K. The fixed frame factor cancels
+  only under the proved four-endpoint signs.
+- **Estimate the complete volume with actual pivots (GVM).** Deterministic
+  full-row pivot products P_A satisfy P_A<=D_A<=(2n_N)^(r_A)P_A.
+  Every row from both half-lines and the full rank-one update are used.
+  The two signed pivot-volume sums estimate the actual allocations with
+  unequal errors of order O_actual(k log q+q log q)=o(kq). These are squared
+  minors already; no extra factor 2 is inserted.
+- **Give a second finite route to the same scalars (TSR).** Original quotient
+  and restriction pencils give weighted threshold integrals and finite
+  enclosures. Their operation count neither proves bit complexity nor certifies
+  the original transcendental inputs.
+- **Return both bounds together (SAR).** The exact total couples the two
+  allocations affinely. The complete original low metrics, unequal flag and
+  transfer errors, correlated arithmetic comparison and whole signed/action
+  budget remain, including the receiving sites BRI6s, MRI4ac and OER28.
+
+With endpoint weights 1 and interior weights 2, write
+
+    S_K = sum_M w_M log(1+y_M/(1+x_M)),
+    S_R = sum_M w_M log(1+x_M).
+
+The total satisfies (S_K+S_R)/(kq) ->16 C_partial, with
+21.66851180520 <16 C_partial<21.66851180521.
+This evaluated total is not either individual coefficient.
+
+## The next calculation
+
+The sole owner prompt assigns the web lane the actual two-half-line factorial
+mixed-volume/pivot estimate: write the original row recurrence after W,
+including half-line coupling, and quantify how the relation and invariant
+columns affect successive pivots. A leading value or strict interval at
+kq scale for one allocation determines the other through the exact total.
+A local companion lane pursues the bounded-degree invariant inverse and its
+joint-compatible lower-evaluation correction; it is not an assumed estimate here.
+
+GPA/LVM/GVM retain k>=29 and k sqrt(delta^2+gamma^2)<=2^(-33)q,
+the fixed actual five-orbit period and its logarithm branch. Arithmetic
+applications retain |u|>=R_*. Outside those domains the original formulas remain;
+fixed-period estimates are not asserted uniform over moving periods.
+The complete sources retain multiplicities and their own rank statements.
+
+Six complete new proof bodies contain 113 tagged equations: ACB1-15, GPA1-23, LVM1-19, GVM1-10, TSR1-30 and SAR1-16. The next quantitative calculation is the actual two-half-line factorial mixed-volume/pivot allocation at kq scale; one coefficient and the exact total determine the other. The separate local invariant-inverse/gauge-correction lane is ongoing. Later KRC/BIM/FRE/MNT/IPE/NPB/DFX are outside this edition. Supplementary provenance is not blanket proof acceptance. The finite domains, fixed actual period, original orders 1,k and all errors remain. No moving-period uniformity, unproved inverse or programme completion is claimed.
+
+## Complete proofs and verification scope
+
+[File14, complete editable reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex)
+and [file15, 317-page GitHub PDF](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf)
+are the current paper. Files 09/10 are the complete receiving documents.
+Files 02/03 and the other supplied sources retain the preceding mathematical
+dependencies. [File00](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/00_CONTINUE_HERE.md) remains the sole current
+continuation prompt; this is a reading guide, not a competing instruction file.
+
+[Validation file12](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/12_VALIDATION.md) records independent proof
+acceptance of the six complete bodies and actual receiving spans, exact
+source reversals and the stable three-pass reader build. All 317 pages were
+rendered, with every footer and off-page span checked. The owner visually
+reviewed nine contact sheets covering fresh pages 2–10 and 294–317, including
+the LVM8 display repair at page 302; inherited bodies match the accepted 293
+reader. Auxiliary 427- and 414-page receiver PDFs are source-build checks,
+not additional delivered visual acceptances. This edition reuses those
+completed checks; no new proof review, PDF audit or Lean execution is claimed.
+
+[Source map 11](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/11_SOURCE_MAP.json) preserves complete sources,
+reviews, diagnostics, previous versions and reversible changes. Broader
+provenance does not grant blanket acceptance to historical drafts. Existing
+formalization retains its revision-specific scope. Later KRC/BIM/FRE/MNT/IPE/NPB/DFX
+work is outside this fixed edition. Preserved external FVR reports do not
+certify unavailable full sources.
+
+The original source-map SHA-256 is `6f7cc039f6e529f26a0113cc76a7d5a7578a3f14407eff1271512a63c03570c1`;
+the public SHA-256 is `8ddfc8c6f3eba2147c7aeeb942ad495413c3917c1dda709eb6f71d670317de16`.
+Only historical account locators are transported. The other sixteen files,
+both PDFs and all eleven full TeX files remain exact accepted bytes.
+
+## Earlier editions and downloads
+
+- [Earlier 20260915 dual metric continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/b4076eb15afd6b036a8de62d67b88eef03efeb50/workbenches/splitzero-tandem/continuations/20260915-dual-metric-continuation).
+- [Earlier 20260915 operator control continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/36b2654e1d3324c6de24e324ec34bb3a98f67103/workbenches/splitzero-tandem/continuations/20260915-operator-control-continuation).
+- [Earlier 20260915 first variation continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/af5c17948c24f43494ea76d823322e8b3924b58d/workbenches/splitzero-tandem/continuations/20260915-first-variation-continuation).
+- [Earlier 20260915 quotient moment continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/bf39bac055b76ce755b91401b35570bb84d76d9a/workbenches/splitzero-tandem/continuations/20260915-quotient-moment-continuation).
+- [Earlier exterior kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/dad07e28faa735104ddc0b137521620fc315e6fc/workbenches/splitzero-tandem/continuations/20260914-exterior-kernel-continuation).
+- [Earlier conductor kernel continuation source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41adc412ceb119ad9086b1f106e377f3de2d401a/workbenches/splitzero-tandem/continuations/20260914-conductor-kernel-continuation).
+- [Earlier original kernel matrices source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5817ef9027257375b6ff3de7048b3331077251e7/workbenches/splitzero-tandem/continuations/20260914-original-kernel-matrices).
+- [Earlier original volumes source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1c8ec52c85c173adc9f8403a8a26914955e2f5a9/workbenches/splitzero-tandem/continuations/20260914-original-volumes).
+- [Earlier gamma growth source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/41f020e0475429943252e69a1b4edd849393c780/workbenches/splitzero-tandem/continuations/20260914-gamma-growth).
+- [Earlier joint gamma schur source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/2be3b23974bf040f4ea06240b8a4b85372f7c71d/workbenches/splitzero-tandem/continuations/20260914-joint-gamma-schur).
+- [Earlier original relation bulk source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-original-relation-bulk).
+- [Earlier complete gamma return source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/01fc8820e3a3ea69afa22b8ab1b0b5ca61869456/workbenches/splitzero-tandem/continuations/20260914-complete-gamma-return).
+
+The [preceding 66-download edition](https://doi.org/10.5281/zenodo.22760598) retains
+its 293-page preview unchanged. This edition adds PDF 67 and ZIP 68.
+All 68 downloads remain separately clickable, with the current 317-page paper
+as the preview. The source ZIP contains all seventeen flat files for offline
+use. Every earlier mathematical source and publication record remains.
+
+[All 68 downloads and source identities](calculation_edition_20260915_allocation/README.md).
+
+## Earlier reading guide — preserved historical edition
+
+The following text belongs to the preceding publication and retains its
+historical scope. The 317-page guide above is the current route; no earlier
+mathematical source is rewritten.
+
+# Split-Zero cohomology: arithmetic row-energy allocation estimates
+
 [Start here: exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/00_CONTINUE_HERE.md).
 
 [Read the 317-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/12_VALIDATION.md).

@@ -1,0 +1,13 @@
+# Receiving interface for the concurrent original-observation lane
+
+Source pinned: main 5a2fa7d6fc2db3133601dccbeed77785792be5d4, original-volumes/next_original_observation OPG1–26 and OPR1–5. Existing formalization baseline PR31 b4060b25c21f1a49a5e7730e9aff76d4c93c820d. This additive lane preserves both ancestries and does not merge main.
+
+1. Use ObservationMetric.Data with the actual G,K,Lambda,Q, not an independently selected positive metric. Its section is the old Restriction.representative. Feed e_D or an entire block of e-columns into residual_gram. The result retains every off-diagonal pairing. Apply fixed_section_correction to the original I,kappa,S_*; do not use the uncorrected fixed kernel coordinate in place of e_D-S_G lambda_D. The ordered factor retains denominator 1+xi_D.
+
+2. Use ObservedIterates with the actual A (or Y and its original polynomial relation) to construct the largest invariant submodule inside ker Lambda. The raw kernel need not be invariant. Finite determination does not assert injectivity: it identifies the full remaining kernel. The support file constructs the quotient action, the first observation and the map forgetting iterates on existing Relations.quotientDiagram. Original theta boundaries and this new observation kernel are distinct.
+
+3. For the cyclic algebra, ResidueObservation constructs each actual observation row's coefficient a_mu from the inherited monic residue duality. The all-iterate kernel is exactly the common annihilator of these a_mu. Its injective_of_bezout theorem needs the literal sum b_mu a_mu=1 in AdjoinRoot chi. The written polynomial consequence is K_inf=(chi/d)/(chi), d=gcd(chi,a_mu), with observed quotient C[S]/(chi/d). Its primary test is whether the actual Lambda sees each primary socle line. Computing or bounding these period/unit row values remains the analytic lane; this contribution does not assert d=1.
+
+4. Further metric estimates must retain the actual inverse/reconstruction coefficient sizes. Existence of a Bezout identity or invertible observation stack does not bound its condition number. For several observation families, append their actual rows; the corresponding permanent invisible kernel is the intersection, not automatically zero.
+
+The research note provides complete proofs of the additional gcd/primary and reconstruction formulas. Current named Lean declarations and exact CI scope are listed by run_observation.py and the observed STATUS. Finite fixtures are polynomial/matrix calibrations, not zeta-zero samples, period integration or uniform-in-k arithmetic certificates. No historical priority claim is made for the observable-kernel or residue-duality mechanisms.

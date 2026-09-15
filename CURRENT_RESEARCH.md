@@ -1,3 +1,220 @@
+# Split-Zero cohomology: conductor cohomology and primitive transport
+
+[Start here: exact owner continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/00_CONTINUE_HERE.md).
+
+[Read the 498-page cumulative paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+
+[Read the separate 13-page primitive supplement](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/18_PRIMITIVE_CONNECTING_READER.pdf) · [Its complete PDS/CIT/PDI proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/17_FULL_PRIMITIVE_CONNECTING_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/12_VALIDATION.md).
+
+Split-Zero develops a proposed cohomological approach to the zeros of the
+Riemann zeta function. Tau is the programme's absolute base object; the
+proposed Deligne mixed-cohomology route remains active. Here "native" means
+the original conductor and Gamma inner products, with repeated conductor
+factors and low-degree data retained. This edition calculates the conductor's
+low cohomology, boundary volumes and invariant row control. A separate later
+supplement proves primitive-source and connecting-target transport. These
+results advance the original mixed-state calculation. No RH conclusion or
+programme completion is claimed.
+
+## Two complete readers, with their chronology retained
+
+The fixed 498-page cumulative reader adds fourteen complete providers:
+WEL1-38 including 32a, BVC1-11, GKC1-33, GVJ1-8, GGE1-23, PCJ1-18,
+CNC1-24, LCA1-41, LCC1-31, LFC1-22, ITL1-31, IRR1-27, IF1-41 and
+FAB1-15. NCR1-18 and NFR1-5 prove their receiving maps. Ten full insertion
+sources propagate the results at 30 actual sites in complete sources 09,
+10 and 14. The sealed 419-page predecessor remains part of the lineage.
+
+Files 17 and 18 separately supply all 66 numbered equations and complete
+PDS1-24, CIT1-26 and PDI1-16 proofs, with a 13-page reader. These later
+primitive and connecting results have not been silently inserted into the
+fixed 498-page source cut. Read their full definitions and providers in
+file 14 alongside the complete supplement source in file 17.
+
+## Original mixed quantities and conductor cohomology
+
+Keep the fixed actual hypothetical simple quartet, original five-orbit
+period, amplitude, unit and logarithm branch. Retain k=4l+1>=9,
+q_k=(k+1)^2, q'_k=(k-7)^2, Delta_k=16k-48, v=ord_0 E_A and
+alpha_A=v!/mu_v. The actual v remains in every matrix and factorial,
+including on the certified v<=32 locus. Gamma masses and weights remain
+M_s=(2pi)^(s/2) and h_n,s=M_s n!(s/2)_n. At target degree j=k+4,
+use the paired orders (s_0,s_1)=(1,1) or (k,j), not an unproved reuse of k.
+
+After the full lower-evaluation minimum, the actual row allocations are
+
+    S_K = sum_M w_M log(1+y_M/(1+x_M)),
+    S_R = sum_M w_M log(1+x_M),
+    S_K+S_R = sum_M w_M log(1+x_M+y_M).
+
+The two end weights are 1 and the interior weights 2, for total weight 2q_k.
+Their total is already evaluated:
+
+    (S_K+S_R)/(kq_k) -> 16 C_partial,
+    21.66851180520 < 16 C_partial < 21.66851180521.
+
+Ranks do not assign either separate allocation. The original GPA/LVM/GVM
+realization retains the two-half-line map W=[A P; R A P], cross terms,
+phases, factorial weights, source minimum and full quotient denominator.
+
+WEL/BVC evaluates the actual low enlarged-boundary volume with finite
+asymmetric errors and its centered limit. The zero low enlarged quotient
+does not remove its nonzero boundary form or the full mixed numerator
+C_D^* H_B^+ C_D. High endpoints retain their exact domains, R_cov or the
+actual edge tests; an eliminant zero alone assigns no rank.
+
+GKC/GVJ/GGE gives the signed five-term graded complex, coefficient torsion,
+Vandermonde transport and high Gamma Euler volume. CNC constructs the
+native nonreduced conductor quotient complex with its analytic division
+map and scalar alpha_A. Its own coefficient torsion is an exact determinant,
+not the full graded complex's torsion copied into a different quotient.
+PCJ/NCR retains proper-source companion corrections, source-kernel
+restrictions and every compatibility determinant.
+
+LCA/LCC computes low-cutoff cohomology, full primary-block connecting maps,
+native Grams and Schur quotients. For e=0,1 the original H^1 dimension is
+8k+24-3e+kappa_e, where kappa_e is the kernel dimension of the stated tail
+matrix. The primitive connecting part has dimension 8k+24-3e; the low
+inclusion has codimension 3+kappa_0-kappa_1, between 3 and 6. LFC proves
+the two low contraction bounds through the original flags and fixed frames.
+NCR/LCC installs them in the signed return, without assigning the surviving
+common long determinant.
+
+## Original invariant rows and simultaneous control
+
+ITL/IRR/IF/FAB and NFR supply the invariant target loss at every endpoint
+and intervening row. With d=q_j-v-1,
+
+    log omega_n-log omega_(n-1) = gamma_H,n-gamma_A,n,
+    gamma_H,n = log det(I_4+L_T,n)-log det(I_4+L_W,n) >= 0,
+    gamma_A,n = log det(I_4+L_S,n)-log det(I_4+L_K,n) >= 0,
+    L_inv = sum_(n=d+1)^(d+q_j+1) theta_n (gamma_H,n-gamma_A,n).
+
+The end weights theta_n are 1 and interior weights 2. These are the actual
+Gamma coefficient/analytic-division rows, using the entire preceding raw
+Gram of each original flag, not generic matrix fixtures.
+
+For the same ordered generalized eigenvalues lambda_i, FAB/NFR bounds
+the sum of absolute row changes in log lambda_i by beta_n, and the sum
+of absolute changes in arcosh(lambda_i^(-1/2)) by beta_n/2, where
+
+    beta_n = 4 log(1+rho_n D_0^(-1) rho_n^*/(1+zeta_n)).
+
+D_0, rho_n and zeta_n use the same full preceding lower Gram. The factor 4
+counts the original target copies; no extra image-rank factor is inserted.
+The complete signed return obeys |L_inv|<=sum theta_n beta_n. The common-
+update error is O_actual(k log q_k), but the full compatibility ratio and
+long signed return remain their original unevaluated determinants.
+
+## What the separate primitive supplement proves
+
+PDS identifies the primitive-source quotient x=C_e^T w with its full
+analytic-source kernel and native metric conjugate((C_e^* C_e)^(-1)).
+The upper primitive space has codimension three in the lower one. Its
+fixed-coordinate rank-one metric correction is bounded by the original
+finite product log U_*=O_actual(q_j)=o(kq_k), retaining all masses,
+factorials, phase-dependent nodes and conductor coefficients.
+
+CIT gives the original connecting matrix F_e, its attained lower-gauge and
+boundary minimum, and full Schur metric H_conn,e. Its low-source comparison
+keeps the exact proper-source difference -(chi_X-chi_Y) and the proved
+O_actual(k log q_k) error. The e=1 comparison retains all four polynomial
+constraints; later target rows use fixed coefficient flags.
+
+PDI proves F_1=F_0 R+B_cof A, with A the solved coefficient correction,
+and a codimension-three inclusion of the original connecting targets.
+The actual rank-one source and four-row target increments give
+
+    -log U_* <= Delta_image/source=Delta_tgt-Delta_src <= beta_next,
+    Delta_image/source=o(kq_k).
+
+The missing three-dimensional old complement stays in full low cohomology.
+PDI controls the difference of the two fixed connecting returns by
+6 log A_end=o(kq_k); CIT controls the full-low-cycle/connecting difference
+by 2 kappa_e log A_end. These short corrections are completed results.
+
+## Remaining common long loss and arithmetic allocation
+
+The common connecting quotient cross ratio omega_conn,e remains to be
+calculated. CIT24-26 relates it to the original ITL loss through the full
+common boundary chain, retaining log omega_conn,e+log omega_inv, all
+absolute Grams, the source pullback A_inv, residual quotient Q_b and fixed
+frames. Four-return signs cancel the stated frame constants, not the
+unknown common long loss.
+
+Begin with this exact factorization and the complete CIT/IRR row recurrences.
+Calculate the original full row entries and Schur pivots, retaining Q_b,
+both half-lines, every lower-evaluation minimum, multiplier kernel and
+proper-source/invariant-target determinant. Prove the transport to the
+arithmetic rows after W before estimating it. Use the evaluated low boundary,
+LFC corrections and FAB budget at their typed endpoints. An evaluated leading
+term or nontrivial kq_k-scale interval for one allocation would constrain its
+partner through the exact total. Neither a rank fraction nor an assumed small
+inverse supplies that calculation.
+
+Return each improvement through NBR/WNR, NCR/NFR, OAR/PMR and the full action
+budget. Retain opposite primal/dual signs, unequal errors, both original low
+metrics, CEP/alpha_A transfer, reference boundary, monic window, contraction
+penalties, leakage, mixed pairing and the same nonzero arithmetic class.
+Each theorem keeps its original fixed/moving-period, simple-quartet,
+polar-width and source-by-source endpoint domain. The short primitive/low
+corrections are inputs to this next calculation, not tasks to prove again.
+
+## Reading, provenance and accepted verification scope
+
+File 00 is the sole reviewed owner continuation. Files 14/15 are the fixed
+complete cumulative source and reader; files 17/18 are the complete later
+primitive source and separate reader. Complete receivers 09/10 retain all
+providers and actual insertion sites. Files 01-08, 13 and 16 are unchanged;
+file 01 remains historical. All 12 TeX files and all three PDFs stay exact
+accepted bytes in public transport.
+
+The owner records full independent proof/site reviews, build and visual
+acceptance for the exact cumulative PDF and the separate supplement. Build,
+reference, glyph and page-bound receipts retain their stated inspection
+scopes. The source handoff's 8,547 mechanical checks supplement the full
+reviews; they do not replace them. Normal/optimized finite fixtures do not
+certify an actual transcendental period. No new Lean execution or publication-
+side mathematical/PDF re-audit is claimed.
+
+Display reversal recovers the accepted canonical sources; insertion reversal
+recovers the complete sealed 419-page sources. The owner provenance map
+records 1,296 distinct byte objects and 2,591 path/role aliases, exact earlier
+deliveries, full provider wrappers, reviews, diagnostics and reversible
+changes. Repeated bytes are stored once; the inherited map remains one exact
+compressed object in the owner archive. Historical stale references remain
+explicit, not silently certified as recovered bytes. Public locator derivatives
+and any inherited public-object substitutions retain their actual recorded
+original/public identities and limited scope. Broader provenance does not
+silently add later mathematical work to this accepted edition.
+
+## Reconstruct the complete logical edition
+
+The actual accepted manifest contains 19 logical files,
+carried by 24 physical GitHub files. Every non-map
+logical file is unchanged. The complete public source map uses 4
+ordered gzip parts: [11_SOURCE_MAP.json.gz.part01](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/11_SOURCE_MAP.json.gz.part01) · [11_SOURCE_MAP.json.gz.part02](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/11_SOURCE_MAP.json.gz.part02) · [11_SOURCE_MAP.json.gz.part03](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/11_SOURCE_MAP.json.gz.part03) · [11_SOURCE_MAP.json.gz.part04](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/11_SOURCE_MAP.json.gz.part04).
+
+The [transport manifest](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/SOURCE_MAP_TRANSPORT.json) binds each part, their complete
+stream and the logical map. Download all listed parts, the manifest,
+[restore_source_map.py](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-conductor-continuation/restore_source_map.py) and the other logical files into
+one directory. Run `python restore_source_map.py --folder RESTORED_SOURCE`
+to create a separate folder with exactly the declared logical membership and
+no transport helpers. The decoder checks each part, aggregate and logical
+SHA-256 and refuses to overwrite different bytes. Its default command
+restores only the full public source map. No raw file-11 or unsplit-gzip
+GitHub leaf is claimed, and the public guide remains outside the flat folder.
+
+The existing [DOI 10.5281/zenodo.22771246](https://doi.org/10.5281/zenodo.22771246) remains the 70-download,
+419-page native-boundary edition until this source cut is separately published
+there. This source transaction makes no Zenodo, Overleaf or timer changes.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim. Its reader and next-task statements
+belong to its own edition. The cumulative paper and separate supplement above
+are the current accepted reading pair.
+
 # Split-Zero cohomology: native boundary and polar transport
 
 [Read the current 419-page paper](https://zenodo.org/api/records/22771246/files/69-native-boundary-reader.pdf/content) · [Published DOI 10.5281/zenodo.22771246](https://doi.org/10.5281/zenodo.22771246) · [Exact current continuation and next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0512b18d5479f3abc24ae654f8ffee4e5d53922e/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/00_CONTINUE_HERE.md).

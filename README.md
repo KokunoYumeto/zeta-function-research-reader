@@ -1,3 +1,192 @@
+# Split-Zero cohomology: native boundary and polar transport
+
+[Start here: exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/00_CONTINUE_HERE.md).
+
+[Read the 419-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf) · [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex) · [Verification scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/12_VALIDATION.md).
+
+Split-Zero develops a proposed cohomological approach to the zeros of the
+Riemann zeta function. A fixed period observation divides its arithmetic
+source into an observation kernel and invariant residual. Here "native"
+means the original Gamma inner products; "polar" means residues and
+higher-pole coefficients. This edition gives explicit maps between those
+descriptions while retaining every original source and quotient factor.
+Tau is the programme's absolute base object. The proposed Deligne
+mixed-cohomology route remains active. No RH conclusion or programme
+completion is claimed.
+
+The accepted 419-page cumulative reader preserves the 317-page reader lineage
+and the complete accepted 338-page source-only intermediate edition. It adds
+13 complete bodies: CFR1-45, RPK1-32, DFX1-35, BGA1-23, NBG1-32, NKC1-17,
+EBG1-33, RPB1-19, OW1-18, NW1-13, PLF1-19, WNR1-21 and NBR1-23. All occur
+once in each complete source 09, 10 and 14. Twenty-one receiving-site
+insertions carry the results through the earlier calculations. Original
+numbering conventions and all unnumbered proofs remain.
+
+## Exact quantities and native-to-polar maps
+
+Retain the fixed actual simple quartet, original five-orbit period, amplitude,
+unit and logarithm branch. Keep k=4l+1>=9, q=(k+1)^2, q'=(k-7)^2,
+Delta=16k-48, v=ord_0 E_A, alpha_A=v!/mu_v, m=Delta-v and
+t0=dim(K intersect L). Source orders remain 1 and k, with
+h_n=M_s n!(s/2)_n and M_s=(2pi)^(s/2). The four primal signs at
+q-1,q,2q-1,2q are (+,+,-,-); the complete dual transport reverses them.
+
+The actual corrected-row allocations remain
+
+    S_K = sum_M w_M log(1+y_M/(1+x_M)),
+    S_R = sum_M w_M log(1+x_M),
+    S_K+S_R = sum_M w_M log(1+x_M+y_M).
+
+Both end rows have weight 1 and the interior rows weight 2, giving total
+weight 2q. Every row uses the entire preceding lower-evaluation minimum.
+The exact total is already evaluated:
+
+    (S_K+S_R)/(kq) -> 16 C_partial,
+    21.66851180520 < 16 C_partial < 21.66851180521.
+
+This total and the individual ranks do not assign either separate allocation.
+The fully coupled GPA/LVM/GVM factorial map W=[A P; R A P] keeps both
+half-lines, their cross terms, phases and factorials. Its consecutive mixed
+volume ratios and deterministic full-row pivot bounds remain the analytic
+input, not generic positive matrices or freely chosen metrics.
+
+RPK supplies the unit-independent eliminant radius, full principal-part
+observation with all conductor multiplicities and exact action-leakage rank.
+ASR's earlier full-support result keeps its chronology. RPB identifies the
+conductor coefficient with scalar one and combines the two exterior domains
+using R_cov=min(R_supp,R_rank). Elsewhere retain the actual edge tests: an
+eliminant zero alone assigns no rank. The sharper v<=32 holds on the original
+five-orbit locus, while the actual v remains in each matrix and factorial.
+
+PLF/NBR connects the full polar observation to the same original residual
+metrics. The principal-part map Pi_k has kernel im(C_prim^T), rank Delta
+and all residue and higher-pole slots. Its fixed residual coordinates give
+
+    H_pole,N = B_pole^(-*) conjugate(Omega_N) B_pole^(-1),
+    T_pole = alpha_A P Pi_k Z_exp,k J_k,
+    H_hi,N = T_pole^* H_pole,N T_pole.
+
+The full low-flag exact sequence keeps low-observation rank v-t0 and its
+Schur factor. Thus Phi=F_W0+S_R+delta_0 retains the complete finite
+CEP/alpha_A bound. Polar coordinates do not provide an unproved uniform
+inverse. The action detector's squarefree reduction is distinct from the
+full multiplicity-preserving conductor quotient and its native metric.
+
+## Native boundary and displaced-window control
+
+The native multiplier calculation retains the full kernel of the multiplier
+sum, its image metric and all coupled low-jet relations. NW/OW/WNR controls
+all four actual source-displacement windows, including j=k-d_h. On its
+source-by-source domain j>=4096 and
+j sqrt(delta^2+gamma^2)<=2^(-33)(j+1)^2, WNR21 gives
+
+    S_K = sum_h S_R,j_h - V_ker(Psi) + n_mult + o(kq).
+
+The full coupled source-kernel return V_ker(Psi) and signed matched-relative-
+metric loss n_mult remain unevaluated finite expressions. Earlier degrees
+retain their complete outer determinant bounds. For d_max=28 the first
+eligible congruent target is 4125, with the quartet inequality still required.
+
+DFX/BGA/NBG/NKC gives the full four-component degree-four map, finite Bezout
+inverse before quotients, compatible lower gauges and full compatibility Gram.
+NBR supplies the subsequent source-kernel and invariant-target determinant
+factors. EBG/RPB/NBR gives the native enlarged-gauge square and coupled
+high-endpoint factorial bound. The low enlarged quotient is zero; no logarithm
+of that zero quotient is used. The high numerator is positive exactly off
+E_infinity, including the certified exterior domain. The boundary ranks
+24k-24-v, 24k-23-v, 26k-13, 26k-13 keep signed mass-rank jump 4k+21+2v.
+
+## Next calculation and complete arithmetic return
+
+Estimate the separate actual mixed-volume sums C_K,C_R from the full relation
+and invariant recurrences after W. Derive the actual Schur-pivot evolution,
+including both half-lines, the lower-evaluation minimum and quotient
+denominator. Use the RPK/PLF maps to locate the residual rows and mixed
+coupling. A proved leading term or nontrivial kq-scale interval for one
+allocation constrains its partner through the exact total. A failed pivot
+profile calls for its precise defect or exceptional set, not an assumed
+rank proportion or small inverse.
+
+NBR19-23 and WNR15-20 carry improvements through both original low metrics,
+unequal flag errors, CEP/alpha_A transfer, correlated arithmetic caps and
+the signed mixed return. Retain the reference boundary, monic window, both
+contraction penalties, leakage, mixed pairing and same nonzero arithmetic
+class in the whole action budget. Kernel volume is not the full exterior
+allowance. GPA/LVM/GVM retains k>=29 and its 2^(-33)q domain; EBG retains
+its complete k>=37 domain; WNR retains its source-by-source eventual domain.
+Arithmetic statements keep |u|>=R_*; polar full width uses R_cov or exact
+coefficient tests. Fixed-period and moving-period statements remain distinct.
+
+## Reading, provenance and verification scope
+
+File 00 is the sole final reviewed owner continuation. File 15 is the current
+419-page reader; file 14 is its complete editable LaTeX. Complete receivers
+09/10 retain every accepted body and receiving site. Display reversal
+recovers the accepted mathematical assembly; insertion reversal then recovers
+the entire 338-page predecessor sources. Files 01-08, 13 and 16 are unchanged;
+file 01 remains historical, not the current preview.
+
+The owner records the exact final build, all 419 rendered pages, original
+footer/page-bound checks and no unresolved visual finding. Root inspected
+sheets 18-34 and individual long displays; the independent first-half review,
+final contents-page review and inherited accepted body matches retain their
+separate scopes. A 1.74977pt path-list warning was visually accepted without
+clipping, equation collision or unreadable content. Complete source-only
+checks and their diagnostics retain their stated scope; no
+additional PDF is a visually accepted deliverable. The original RPK ZIP is
+retained locally. Its complete public derivative changes only the named
+nested predecessor locator metadata, with original/public member identities
+recorded; all other member bodies remain exact. It is one of the two approved
+container derivatives, not an unchanged opaque public archive. The loose
+source, user handoff, 91-payload manifest and normal/optimized 59-check receipts
+retain their provenance and stated scope. Finite checks do not certify an
+actual transcendental period or replace analytic proofs. No new Lean execution
+is claimed.
+
+Logical file 11 remains the complete lossless provenance map, with 482
+distinct byte objects and 734 original path/role aliases in the owner map.
+Original object identities and provenance are retained by the recorded public
+transport; the inherited map is stored once as exact compressed bytes.
+The full CFR review is distinct from the narrower earlier RPK interface
+review. Final NBR/WNR receipts retain their complete-source and receiving-site
+scope. Inclusion of provenance does not enlarge accepted mathematical scope.
+Two superseded historical byte objects remain unavailable at three old
+reference edges, as disclosed in the source seal; the current accepted sources
+and acceptance records are present. Those old gaps are not silently certified.
+Later WEL/BVC, GKC/GVJ/GGE/PCJ, CNC/LCC and ITL/IRR/IF/FAB are excluded.
+
+Publication reuses the owner's exact proof/source/visual acceptance. The
+other 16 files, including both PDFs and all 11 complete TeX files, remain
+byte-identical. Source-map public-locator transport and lossless compression
+do not add a mathematical, source or PDF re-audit, or an RH claim.
+
+## Reconstruct the complete source map
+
+This edition has 17 logical source files, carried by
+20 physical GitHub files. The other 16 logical files
+are unchanged. The complete public file 11 exceeds the single-file transport
+limit. Its gzip stream is supplied losslessly in 2 ordered
+parts: [11_SOURCE_MAP.json.gz.part01](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/11_SOURCE_MAP.json.gz.part01) · [11_SOURCE_MAP.json.gz.part02](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/11_SOURCE_MAP.json.gz.part02).
+The [reconstruction manifest](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/SOURCE_MAP_TRANSPORT.json) binds every part and the
+complete stream; [restore_source_map.py](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260915-native-boundary-continuation/restore_source_map.py) joins and checks
+them. Download all listed parts, manifest and decoder to one directory and
+follow the manifest's instructions. The result is
+the exact public 11_SOURCE_MAP.json, checked against its accepted byte count
+and SHA-256; it is not a source-map excerpt. Neither raw file 11 nor an unsplit
+gzip file is advertised as a physical GitHub leaf. With the other 16 accepted
+files also present, run `python restore_source_map.py --folder RESTORED_17`
+to create a separate folder containing exactly the 17 logical files and no
+transport helpers. The publication guide remains outside the flat folder.
+
+The existing [DOI 10.5281/zenodo.22760901](https://doi.org/10.5281/zenodo.22760901) remains the 68-download,
+317-page edition until this source cut is separately published there. No
+Zenodo, Overleaf or timer changes occur in this source transaction.
+
+## Earlier source and edition guide (historical snapshot)
+
+The following guide is preserved verbatim. Its reader and next-task statements
+belong to its own edition. The 419-page reader above is current.
+
 # Split-Zero cohomology: arithmetic row-energy allocation estimates
 
 [Read the current 317-page paper](https://zenodo.org/api/records/22760901/files/67-allocation-reader.pdf/content) · [Published DOI 10.5281/zenodo.22760901](https://doi.org/10.5281/zenodo.22760901) · [Exact current continuation and next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/88cec321ccb455d1906d4abce7dc08bea6c7676d/workbenches/splitzero-tandem/continuations/20260915-allocation-continuation/00_CONTINUE_HERE.md).

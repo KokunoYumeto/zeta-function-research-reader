@@ -1,3 +1,26 @@
+# Split-Zero cohomology: arithmetic volume estimates and shared quotient geometry
+
+This research collection develops finite, full-multiplicity packets associated with zeros of the Riemann xi function inside the original theta-source quotient. It follows the maps from that arithmetic source to polynomial relations, least-norm representatives, quotient metrics and exterior spectral estimates. The complete source masses, Taylor units, zero orders, mixed pairings and coordinate maps remain part of the calculations.
+
+The new continuation compares the original Gamma observations at different source orders, sharpens their finite comparison bounds using an explicitly derived equilibrium measure, and carries those estimates through the same connecting and invariant quotient spaces. Nested flags give a sharper finite error for the signed spectral-threshold representation while retaining the actual row contributions and complementary quotient returns.
+
+The arithmetic action calculation also determines which terms can improve the proposed upper estimate: the correlated allocation terms cancel in the complete expression. Independent coarse and sharp estimates show that the particular canonical allowance on each fixed proportional degree window grows exponentially relative to the polynomial exterior benchmark. The collection therefore records both the proved estimates and why repeating that fixed-window strategy cannot resolve the intended comparison. A root-sensitive growing-degree calculation remains a separate continuation, not a result asserted here.
+
+The cumulative PDF is the primary reading document. The downloadable source collection retains complete editable proofs, earlier receiving passages, the predecessor material and explicit provenance. Written mathematical review, exact finite checks and high-precision non-interval diagnostics are identified separately. This edition does not claim a proof or disproof of the Riemann hypothesis, an observed off-critical zero, new Lean certification or a numerical evaluation of the remaining actual-period spectra.
+
+## Read this edition
+
+[Read the complete 680-page cumulative paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation/15_CURRENT_MIXED_CONTROL_READER.pdf).
+[Complete cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex).
+[Verification record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation/12_VALIDATION.md).
+[Current continuation and research context](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation/00_CONTINUE_HERE.md).
+
+The preceding [published DOI edition](https://zenodo.org/records/22773401) remains the 76-download edition until this continuation is deposited. Earlier papers and source editions are retained.
+
+## Earlier guide (historical snapshot)
+
+The following guide is retained verbatim; the reading links above identify this newer source edition.
+
 # Split-Zero cohomology: source-volume estimates and boundary transport
 
 **16 September source update:** [Read the current results and their purpose](workbenches/tau-programme-coordination/INTEGRATION_20260916.md) · [Complete source-order and arithmetic-action proofs](workbenches/splitzero-tandem/continuations/20260916-source-order-and-action/README.md) · [Uniform contraction and canonical-band continuation](workbenches/tau-exponential-contraction/RESEARCH_NOTE.md).

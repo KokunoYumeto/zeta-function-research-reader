@@ -29,6 +29,17 @@ This continuation supplies an independent quantile argument for the needed unifo
 
 ## 1. Original quotient and adjacent factors
 
+For the sharp arithmetic transfer, retain the original tensor class `k=4l+1`, `l>=1`, the fixed quartet `0<delta<1/2`, `gamma>2`, and its complete positive integer multiplicity `m`. Besides `q>=1000` in the bulk estimate, the retained paired-root provider requires `q>=2^17 R_k`, where `R_k=k sqrt(delta^2+gamma^2)`. Its [complete proof and original definitions](PAIRED_ROOT_COMPARISON.tex) are now included, rather than silently substituting the older comparison with a different cutoff.
+
+The arithmetic comparison constant used below is exactly
+
+\[
+B_k=\log(A_kD_{2q}/a_k)+C_k^{\rm cmp},\qquad
+D_n=[1+4(n+21+4m)^2]^{21+4m}.
+\]
+
+Here `a_k,A_k` are the unchanged full-polynomial arithmetic/Gamma comparison constants, displayed with their original masses in [CAI16–18](../splitzero-tandem/continuations/20260916-source-order-and-action/COMPLETE_ACTION_PROOF.tex); `C_k^{cmp}` is the complete paired-root constant, including its inner-region term, in the supplied provider. Taking the same monic minima gives `|log T_r-log(nu_r^0/gamma_(q+r))|<=B_k` on `0<=r<=q`. This is a norm comparison through the original polynomial coordinates, not replacement of the arithmetic quotient by a monomial quotient.
+
 Keep the original arithmetic source, complete unit, multiplicities, quotient map, source mass, and polynomial coordinate. With the UCB notation,
 
 \[
@@ -176,7 +187,15 @@ Let `L_a,L_b` bound the absolute Robin derivatives on the rectangle. The paramet
 
 in `j lambda`, because `j|a-2q/r|<=401/4`, `j|b-pi q/r|<=50pi`, and `|j-r/2|<=1/2`.
 
-The preceding two norm bounds yield `|log h+j lambda|<=C_norm+4log(q+1)` for an explicit constant made from `r_-,r_+,J_*,M_*,W_+` and the minimum capacity. Stirling cancellation is exact up to its positive remainder:
+The preceding two norm bounds yield `|log h+j lambda|<=C_norm+4log(q+1)`. To retain the explicit finite choice supplied in the author's PR discussion, let `W_min>0` be the minimum support length on the same compact parameter rectangle and put
+
+\[
+c_-=r_-\pi W_{\min}/4,\qquad
+c_+=r_+J_*e^{4M_*},\qquad
+C_{\rm norm}=\max\{|\log c_-|,\ |\log c_+|+4\log(1+W_+)\}.
+\]
+
+Indeed `1+jW_+ <= (q+1)(1+W_+)` on the stated degree domain. This is a specified constant for this alternative estimate, not a claim to have checked the unavailable UCB archive's separate `C_EIQ`. Stirling cancellation is exact up to its positive remainder:
 
 \[
  \log(\nu_r^0/\gamma_{q+r})

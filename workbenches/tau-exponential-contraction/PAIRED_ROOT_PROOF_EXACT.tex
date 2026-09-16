@@ -1,0 +1,82 @@
+\section{Audit of the complete paired-root norm comparison}
+\label{sec:sr-prc}
+The incoming PRC1--31 is a working candidate. The argument below supplies the needed full proof and fixes its notation separately from $D_h$. Write
+\begin{equation}\label{eq:sr-prcconstants}
+\begin{gathered}
+ R=k\sqrt{\delta^2+\gamma^2},\quad \varepsilon=2^{-16},\quad T=\varepsilon q,
+ \quad q\ge2R/\varepsilon,\\
+ U_2=k(k+2)/3,\quad U_4=k(k+2)(3k^2+6k-4)/15,\\
+ D^{(2)}=qU_2(\gamma^2-\delta^2),\quad
+ M_4=q[(\delta^4+\gamma^4)U_4+2\delta^2\gamma^2U_2^2],\\
+ C_\sigma^{\rm in}=\sqrt{2\pi}\,\Gamma(3/4)^2/\pi,\quad
+ \eta_q=C_\sigma^{\rm in}\frac{(2q+1)^2}{q}16^{-q},\\
+ A_k^{\rm cmp}=\frac{D^{(2)}}{\varepsilon^2q^2}
+ +\frac{M_4}{2\varepsilon^4q^4(1-R^2/(\varepsilon^2q^2))},\quad
+ C_k^{\rm cmp}=A_k^{\rm cmp}-\log(1-\eta_q).
+\end{gathered}
+\end{equation}
+These are distinct from DMR's density multiplier $A_k$ and HC3's $D_h$.
+
+\begin{lemma}[Complete PRC form comparison]\label{lem:sr-prc}
+For every complex polynomial $p$ of degree at most $2q$,
+\begin{equation}\label{eq:sr-prcnorm}
+ \mathrm e^{-C_k^{\rm cmp}}\|y^qp\|_\sigma^2
+ \le\|Qp\|_\sigma^2
+ \le \mathrm e^{C_k^{\rm cmp}}\|y^qp\|_\sigma^2.
+\end{equation}
+For a fixed packet, $C_k^{\rm cmp}=O_{\delta,\gamma}(e^{-1})$. All sufficiently large orders satisfy the cutoff; $k\ge2\sqrt{\delta^2+\gamma^2}/\varepsilon$ is sufficient.
+\end{lemma}
+\begin{proof}
+The $y$-plane roots are $z_{ab}=(2b-k)\gamma-i(2a-k)\delta$. Their radius is $R$, and $i^q=1$. Pairing their two signs gives
+\[
+ Q(y)=\prod_{a,b=1,3,\ldots,k}
+ [((y-b\gamma)^2+a^2\delta^2)((y+b\gamma)^2+a^2\delta^2)]^e>0.
+\]
+The opposite and conjugate pairings cancel odd power sums and make even power sums real. The finite sums of the second and fourth centered powers give precisely $D^{(2)}$ and $M_4$ in \eqref{eq:sr-prcconstants}. Consequently, for $|y|>R$,
+\[
+ \log\frac{Q(y)^2}{y^{2q}}
+ =-\frac{D^{(2)}}{y^2}+\mathcal E(y),\qquad
+ |\mathcal E(y)|\le\frac{M_4}{2y^4(1-R^2/y^2)}.
+\]
+Indeed expand $\log(1-z/y)$ absolutely, pair the roots, and use
+$\sum e|z|^{2j}\le M_4R^{2j-4}$ and $1/j\le1/2$ for $j\ge2$.
+Positivity of $Q/y^q$ identifies the branch with the real logarithm. Thus on $|y|>T$, the norm densities are between $\mathrm e^{-A_k^{\rm cmp}}$ and $\mathrm e^{A_k^{\rm cmp}}$ times $y^{2q}d\sigma$.
+
+It remains to control the whole inner interval uniformly in $p$. Gamma duplication and reflection, followed by
+$|\Gamma(3/4+iy/2)|\le\Gamma(3/4)$, give
+\[
+ \sigma(y)\ge\frac{\pi}{\Gamma(3/4)^2}\mathrm e^{-\pi|y|},
+ \qquad\int d\sigma=\sqrt{2\pi}.
+\]
+The mass follows also by Plancherel in the Gamma integral with $t=\mathrm e^x$ and $y=2v$.
+The Legendre basis on $[q,2q]$ is
+$\sqrt{(2j+1)/q}\,P_j(2y/q-3)$. Rodrigues' formula gives its norm; its three-term recurrence gives $|P_j(t)|\le9^j$ for $|t|\le4$ by induction. Hence, for $\deg p\le n\le2q$,
+\[
+ \sup_{|y|\le T}|p(y)|^2\le\frac{(n+1)^2}{q}9^{2n}
+                         \int_q^{2q}|p(y)|^2dy.
+\]
+On that comparison interval the full monomial norm is at least
+$q^{2q}\pi\Gamma(3/4)^{-2}\mathrm e^{-2\pi q}\int_q^{2q}|p|^2$.
+On the inner interval $|Q(y)|\le(|y|+R)^q\le(2T)^q$ and $|y|^q\le(2T)^q$. Each inner integral is therefore at most
+\[
+ C_\sigma^{\rm in}\frac{(n+1)^2}{q}
+ (2\varepsilon)^{2q}\mathrm e^{2\pi q}9^{2n}\|y^qp\|_\sigma^2
+ \le\eta_q\|y^qp\|_\sigma^2.
+\]
+For the last inequality, $\pi<4$, $\mathrm e<3$, and
+$2^{-30}3^{16}<1/16$ suffice. The Gamma integral gives
+$\Gamma(3/4)<7/3$, so $C_\sigma^{\rm in}<6$ and
+$\eta_q\le54q16^{-q}<1/2$ for $q\ge2$.
+Combining the two inner estimates with the exterior comparison gives lower factor $\mathrm e^{-A_k^{\rm cmp}}(1-\eta_q)$ and upper factor $\mathrm e^{A_k^{\rm cmp}}+\eta_q\le \mathrm e^{A_k^{\rm cmp}}/(1-\eta_q)$. This proves \eqref{eq:sr-prcnorm} without assuming where a polynomial concentrates its mass.
+
+Finally $M_4\le qR^4$, the denominator guard is at least $3/4$, and
+\begin{equation}\label{eq:sr-prcrate}
+ C_k^{\rm cmp}\le
+ \frac{\gamma^2-\delta^2}{3\varepsilon^2e}
+       (1-(k+1)^{-2})
+ +\frac{2k^4(\delta^2+\gamma^2)^2}{3\varepsilon^4e^3(k+1)^6}
+ +108q16^{-q}.
+\end{equation}
+This proves the stated finite constant and rate.
+\end{proof}
+

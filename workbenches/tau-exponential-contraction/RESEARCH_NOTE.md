@@ -37,7 +37,7 @@ g_n=\sqrt{2\pi}\,n!(1/2)_n=\sqrt{2\pi}(2n)!/4^n.
 Let omega_n be the original arithmetic monic norm and define
 
 \[
-h_r^\chi=\inf_{P\ {m monic},\deg P=r}\int|\chi(c+iy)P(c+iy)|^2\mu_k(y)\,dy.
+h_r^\chi=\inf_{P\text{ monic},\deg P=r}\int|\chi(c+iy)P(c+iy)|^2\mu_k(y)\,dy.
 \]
 
 The original source/relation determinant factorization gives

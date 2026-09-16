@@ -1,5 +1,11 @@
 # Split-Zero cohomology: source-volume estimates and boundary transport
 
+**16 September source update:** [Read the current results and their purpose](workbenches/tau-programme-coordination/INTEGRATION_20260916.md) · [Complete source-order and arithmetic-action proofs](workbenches/splitzero-tandem/continuations/20260916-source-order-and-action/README.md) · [Uniform contraction and canonical-band continuation](workbenches/tau-exponential-contraction/RESEARCH_NOTE.md).
+
+The new sources compare the original Gamma observations, calculate the complete arithmetic action, and show why its present bounded-proportion degree windows do not give a small enough canonical allowance. They include the sharp minimum rate and penalty-tail calculation, with original masses, relation fibres and all finite guards retained. PRs #36 and #37 are integrated; the expanded cumulative PDF is still being assembled. The DOI-linked PDFs below are the preceding frozen edition, not a claim that this new material is already in those PDFs.
+
+## Published cumulative reader
+
 [Read the delivered 549-page cumulative paper](https://zenodo.org/api/records/22773401/files/74-primitive-band-reader.pdf/content) · [Read the accepted 40-page source-band and boundary continuation](https://zenodo.org/api/records/22773401/files/75-primitive-band-supplement.pdf/content) · [DOI 10.5281/zenodo.22773401](https://doi.org/10.5281/zenodo.22773401) · [Exact current continuation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation/00_CONTINUE_HERE.md).
 
 - [549-page primitive_band](https://zenodo.org/api/records/22773401/files/74-primitive-band-reader.pdf/content) · [complete editable source](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/02e47c28b98912d3ea1ec1bf01a3a5ba44197e9f/workbenches/splitzero-tandem/continuations/20260915-primitive-band-continuation) · [offline source ZIP](https://zenodo.org/api/records/22773401/files/76-primitive-band-sources.zip/content).
@@ -4015,4 +4021,3 @@ now provides [all 40 separate downloads](calculation_edition_20260914_recursive_
 is the actual browser preview; the [matching source ZIP](https://zenodo.org/api/records/22739630/files/40-splitzero-recursive-public-sources.zip/content) is an offline download.
 
 Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
-

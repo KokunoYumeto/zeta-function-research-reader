@@ -1,5 +1,7 @@
 # SplitZero over tau: programme reconstruction and restart map
 
+> Historical snapshot. For the subsequent source-order, complete-action and canonical-band results, read [the 16 September integration](INTEGRATION_20260916.md). The reserved source-order calculation below has since been completed; its old assignment is not a current instruction. The new action calculation also explains which allocation terms cancel together.
+
 15 September 2026. Mathematical/repository snapshot: `1efd53337561d8f67cf0ac1d119acdaa222644c3`.
 
 This is a user-requested reconstruction after a long research session exhausted its context. It is a source-grounded programme map and handoff, not a new mathematical theorem, a replacement continuation prompt, or a new independent proof audit of every cumulative page. It changes no scalar, support diagram, arithmetic source, theorem, workflow, branch owned by another worker, or dependency pin.

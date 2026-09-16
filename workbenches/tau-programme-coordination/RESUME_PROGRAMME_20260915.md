@@ -1,5 +1,7 @@
 # Resume the SplitZero/tau/RH programme
 
+> This is a dated restart map, not the live assignment. Read [the 16 September integration](INTEGRATION_20260916.md) first: source-order transport is now available, and the complete-action/canonical-band results change the next analytic target.
+
 Snapshot: 15 September 2026, main `1efd53337561d8f67cf0ac1d119acdaa222644c3`. This is a bounded restart map after context exhaustion, not a replacement for the current owner's source prompt. Read `PROGRAMME_RECONSTRUCTION_20260915.md` for the full architecture and evidence scope.
 
 ## First read

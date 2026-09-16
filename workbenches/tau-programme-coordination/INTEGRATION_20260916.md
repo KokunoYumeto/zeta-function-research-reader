@@ -1,3 +1,14 @@
+<!-- current-publication-pointer:20260916 -->
+# Current publication
+
+[Read the published 680-page cumulative paper](https://zenodo.org/api/records/22802593/files/77-splitzero-source-transport-reader.pdf/content) · [DOI 10.5281/zenodo.22802593](https://doi.org/10.5281/zenodo.22802593) · [Complete editable source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/69502d18e4da61f7248edb8cb1c491ad8ee656a0/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation) · [Public source ZIP](https://zenodo.org/api/records/22802593/files/78-splitzero-source-transport-sources.zip/content).
+
+The cumulative reader and public source edition are now published at the links above.
+
+## Earlier 16 September integration checkpoint
+
+The dated report below is preserved unchanged. Its statements about a reader still being assembled describe that earlier checkpoint, not the current publication status.
+
 # Split-Zero arithmetic estimates: 16 September continuation
 
 The programme constructs finite, full-multiplicity packets from zeros of the Riemann xi function and represents them in the original theta-source quotient. The current analytic question is whether a representative's canonical norm gives an upper allowance smaller than the same packet's exterior spectral defect. The source mass, relation space, Taylor unit, mixed pairings and original metric are part of that question—not adjustable parameters.

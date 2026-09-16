@@ -15,7 +15,7 @@ The cumulative PDF is the primary reading document. The downloadable source coll
 [Verification record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation/12_VALIDATION.md).
 [Current continuation and research context](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation/00_CONTINUE_HERE.md).
 
-The preceding [published DOI edition](https://zenodo.org/records/22773401) remains the 76-download edition until this continuation is deposited. Earlier papers and source editions are retained.
+[Read the published 680-page cumulative paper](https://zenodo.org/api/records/22802593/files/77-splitzero-source-transport-reader.pdf/content) · [DOI 10.5281/zenodo.22802593](https://doi.org/10.5281/zenodo.22802593) · [Complete public source ZIP](https://zenodo.org/api/records/22802593/files/78-splitzero-source-transport-sources.zip/content) · [All 78 individually clickable downloads](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/calculation_edition_20260916_arithmetic_source_and_flag/README.md). All 76 earlier downloads are retained unchanged.
 
 ## Earlier guide (historical snapshot)
 

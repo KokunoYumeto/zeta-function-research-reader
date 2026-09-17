@@ -1,0 +1,11 @@
+# Validation of the original-period mixed-profile edition
+
+This edition adopts the exact mathematical-owner acceptance ef1401e63429bae4ed95951a37a397dfcd698384800577eab71bcdceee069c59 and final build seal 43d129b14d074243fbb632cd7654c0b8e9914ed95f66369382545fccd2f7e22d. Six full new proof bodies, four backward receivers and eleven complete immediate prerequisite sections are supplied. The supplement states its selected-prerequisite scope; the cumulative paper supplies the remaining foundations.
+
+The cumulative reader has 765 pages, SHA256 1a529f3347e1145c1eda643b5fece4e0c0f9c3ed9a9947c948b9884487710990. The supplement has 103 pages, SHA256 7bb97823f4882f74159189338d2786124766eca57c97425f82cf0f2b7c8891b0. The build owner visually inspected all 73 changed/context cumulative pages and all 103 supplement pages. The mathematical owner separately checked twelve pages. This publisher reuses their recorded review and does not claim another independent proof audit or a full 765-page rereview.
+
+The three cumulative sources add 134,258 bytes apiece in eleven reversible insertions, preserving every predecessor byte. Five derived proof bodies have documented typography-only patches; accepted original bodies remain in provenance. Both owner build verifications passed, with no new unresolved references, missing glyphs or overflows. The 44 cumulative and two supplement warnings retain their inherited classification. No new Lean execution is claimed.
+
+Publication checks bind all sealed inputs, reconstruct the nineteen current files and exact predecessor, and compare the ZIP members byte for byte. Private source-map and task transcripts are withheld from public derivatives. The first-row audit's verbatim delegated-task section alone is omitted from its public copy; its full mathematical derivation is retained. Machine locators in public provenance are explicitly translated. These mechanical checks do not prove mathematics.
+
+The original period is fixed before the degree limit. The first-row estimate does not remove interior rows. The full interior signed profile, complementary quotient returns and complete action calculation remain unfinished; no Riemann-hypothesis resolution is claimed. Later work is not part of this sealed edition.

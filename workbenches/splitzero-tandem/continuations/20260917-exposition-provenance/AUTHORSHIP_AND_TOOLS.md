@@ -1,0 +1,15 @@
+# Human authorship, source credit, and tools
+
+The originating research programme is publicly identified by its director as **KokunoYumeto**, also appearing in source records as **Kokuno Yumeto** and **The Clankers**. The director describes the globalization-semiring notes as work written with AI assistance and does not claim novelty merely from that origin. This editorial companion follows that supplied public attribution. It does not infer a private identity or manufacture a human referee's approval.
+
+Published records retain their actual creator fields. For example, the first globalization-semiring note's deposited metadata names `ChatGPT, 5.4` and `Gemini, 2.5 DeepThink`; the secondary note names `The Clankers`. Those metadata facts and the human programme direction are separate provenance statements. They are not silently rewritten into conventional sole-human authorship. Source versions and any metadata discrepancies are described in the human-source guide.
+
+This companion was researched, drafted, and checked with OpenAI Codex and parallel AI agents under the user's editorial instructions. Tools were used for local source inspection, primary-source browsing, citation and dependency extraction, mathematical comparison, LaTeX compilation, PDF rendering, and artifact validation. Python scripts retain reproducible extraction and coverage records. Tool use and successful compilation are not evidence that every mathematical assertion is correct.
+
+Human credit follows the actual contribution. A mathematical author, coauthor, expositor, editor, translator, software author, and person merely mentioned are not interchangeable roles. A project note that uses a result from another work retains both its own provenance and the upstream human source. Where that source explicitly relies on an earlier result, the relevant dependency is followed and credited as well. A familiar eponym alone does not establish which historical publication was consulted.
+
+The accompanying audit distinguishes fresh primary-text checks, authenticated bibliographic identities, inherited source-review records, lexical discoveries, and unresolved attributions. It makes no claim to recover unobservable model-training influences. It does not convert an inaccessible source, redacted tool output, or a plausible reference into a verified theorem citation.
+
+The current mathematical edition contains written proof reviews performed by AI agents, finite and synthetic computational checks, and some separately scoped formal material. None is described here as independent human peer review. The growing-degree and moving-cutoff additions have no new Lean certificate. Synthetic Gram tests do not evaluate the original zeta-derived density. The theorem proofs and each check's exact domain remain the relevant evidence.
+
+Human readability and accurate provenance are commitments of this programme. The companion explains its mathematics, credits the human sources it uses, and records the scope and limits of the source audit.

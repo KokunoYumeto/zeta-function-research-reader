@@ -1,0 +1,466 @@
+% Standalone mathematical fragment. Requires amsmath and amsfonts (or amssymb).
+% No compilation has been performed for this audit.
+% The original constants in LRC11--LRC12 are preserved below.
+
+\subsection{A uniform midpoint-quantile logarithmic discrepancy}
+
+Let $A<B$ be real numbers, and let $\mu$ be the probability measure on
+$[A,B]$ with density
+\[
+ d\mu(y)=H(y)\sqrt{(B-y)(y-A)}\,dy,
+ \qquad H\in C^1([A,B]),\qquad H(y)>0.
+\]
+The probability normalization is part of the hypothesis; no scalar
+rescaling of $\mu$ will be made. Put
+\[
+ c=\frac{B-A}{2}>0,\qquad m=\frac{A+B}{2},\qquad
+ T(t)=m+ct\quad(-1\leq t\leq1).
+\]
+The map $T:[-1,1]\longrightarrow[A,B]$ is an increasing bijection,
+with inverse $T^{-1}(y)=(y-m)/c$. Its inverse pushforward of $\mu$ has
+the density
+\[
+ \rho(t)=h(t)\sqrt{1-t^2},\qquad h(t)=c^2H(T(t)).
+\]
+Indeed, $dy=c\,dt$ and
+$\sqrt{(B-T(t))(T(t)-A)}=c\sqrt{1-t^2}$, so
+$d\mu(T(t))=\rho(t)\,dt$. In particular,
+$\int_{-1}^1\rho(t)\,dt=1$, $h>0$, and $h\in C^1([-1,1])$.
+Define
+\[
+ F(t)=\int_{-1}^t\rho(s)\,ds\quad(-1\leq t\leq1),\qquad
+ q=F^{-1}:[0,1]\longrightarrow[-1,1],
+\]
+and the constants
+\[
+ Q_h=\frac{\max_{[-1,1]}h}{\min_{[-1,1]}h},\qquad
+ M_h=\max_{[-1,1]}\left|\frac{h'}h\right|,\qquad
+ K_h=Q_h(1+M_h).
+\]
+These constants are finite; $Q_h\geq1$ and $K_h\geq1$. The function
+$F$ is continuous and strictly increasing on $[-1,1]$, with endpoint
+values $0,1$, because $\rho>0$ on $(-1,1)$. Thus its inverse $q$ is
+well defined and continuous, and $q\in C^2((0,1))$.
+
+For an integer $n\geq1$, define the original physical midpoint
+probability quantiles by
+\[
+ u_j=\frac{j-\tfrac12}{n},\qquad y_j=T(q(u_j)),
+ \qquad 1\leq j\leq n.
+\]
+We shall prove, for every real $x$,
+\begin{equation}\label{eq:lrc-quantile-original}
+ \sum_{j=1}^n\log|x-y_j|
+ \leq n\int_A^B\log|x-y|\,d\mu(y)
+       +24K_h^2+30Q_h.
+\end{equation}
+In fact the proof yields the stronger remainder $16K_h^2+24Q_h$.
+As usual $\log0=-\infty$; the right-hand integral is finite for every
+real $x$, since the density is bounded and $\log|x-y|$ is locally
+Lebesgue integrable. Hence a coincidence $x=y_j$ immediately proves
+\eqref{eq:lrc-quantile-original} in the extended-real sense.
+
+\paragraph{Exact invariance of the discrepancy under the affine map.}
+Let $z=T^{-1}(x)=(x-m)/c$, with $x$ allowed anywhere on $\mathbb R$.
+For each $j$ and each $t$ away from the respective possible zero,
+\[
+ \log|x-y_j|=\log c+\log|z-q(u_j)|,
+ \qquad
+ \log|x-T(t)|=\log c+\log|z-t|.
+\]
+Consequently the $n\log c$ contributions to the sum and to $n$ times
+the probability integral agree exactly. The original discrepancy
+therefore equals
+\begin{equation}\label{eq:lrc-affine-exact}
+ \sum_{j=1}^n\log|z-q(u_j)|
+   -n\int_{-1}^1\log|z-t|\rho(t)\,dt.
+\end{equation}
+The correspondence also proves directly that $y_j$ are precisely
+the midpoint quantiles of the original measure. It suffices to
+bound \eqref{eq:lrc-affine-exact}; the original coordinates and
+probability normalization are recovered by the displayed exact map.
+
+\paragraph{The inverse-quantile derivative estimate.}
+For $-1<t\leq0$, write $h_{\max}=\max h$ and $h_{\min}=\min h$.
+Then
+\[
+ F(t)
+ \leq h_{\max}\sqrt2\int_{-1}^t\sqrt{1+s}\,ds
+ =\frac{2\sqrt2}{3}h_{\max}(1+t)^{3/2},
+ \qquad
+ \rho(t)\geq h_{\min}\sqrt{1+t}.
+\]
+Since $2\sqrt2/3<1$, it follows that
+\begin{equation}\label{eq:lrc-left-tail-ratio}
+ \frac{F(t)}{\rho(t)}\leq Q_h(1+t)
+ \qquad(-1<t\leq0).
+\end{equation}
+For $0\leq t<1$, integrating from $t$ to $1$ instead gives
+\[
+ 1-F(t)
+ \leq h_{\max}\sqrt2\int_t^1\sqrt{1-s}\,ds
+ =\frac{2\sqrt2}{3}h_{\max}(1-t)^{3/2},
+ \qquad \rho(t)\geq h_{\min}\sqrt{1-t},
+\]
+and hence
+\begin{equation}\label{eq:lrc-right-tail-ratio}
+ \frac{1-F(t)}{\rho(t)}\leq Q_h(1-t)
+ \qquad(0\leq t<1).
+\end{equation}
+On $(-1,1)$,
+\[
+ \frac{\rho'(t)}{\rho(t)}
+ =\frac{h'(t)}{h(t)}-\frac{t}{1-t^2}.
+\]
+For $t\leq0$, using $\min(F(t),1-F(t))\leq F(t)$ and
+\eqref{eq:lrc-left-tail-ratio}, we obtain
+\[
+ \min(F(t),1-F(t))\frac{|\rho'(t)|}{\rho(t)^2}
+ \leq Q_h\left(M_h(1+t)+\frac{-t}{1-t}\right)
+ \leq Q_h\left(M_h+\frac12\right)\leq K_h.
+\]
+For $t\geq0$, using $\min(F(t),1-F(t))\leq1-F(t)$ and
+\eqref{eq:lrc-right-tail-ratio}, the corresponding calculation is
+\[
+ \min(F(t),1-F(t))\frac{|\rho'(t)|}{\rho(t)^2}
+ \leq Q_h\left(M_h(1-t)+\frac{t}{1+t}\right)
+ \leq Q_h\left(M_h+\frac12\right)\leq K_h.
+\]
+In particular, no assumption that $F(0)=1/2$ was made. Differentiating
+$F(q(u))=u$ yields
+\[
+ q'(u)=\frac1{\rho(q(u))},\qquad
+ \frac{q''(u)}{q'(u)}
+ =-\frac{\rho'(q(u))}{\rho(q(u))^2}.
+\]
+We have therefore proved
+\begin{equation}\label{eq:lrc-log-derivative}
+ \left|\frac{d}{du}\log q'(u)\right|
+ \leq\frac{K_h}{\min(u,1-u)}\qquad(0<u<1).
+\end{equation}
+
+\paragraph{A second-derivative bound away from the singular probability.}
+Fix $z\in\mathbb R$, and put
+\[
+ v=\begin{cases}
+ 0,&z\leq-1,\\
+ F(z),&-1<z<1,\\
+ 1,&z\geq1.
+ \end{cases}
+\]
+Thus $v$ is the actual probability coordinate when $z$ is in the
+support, and the nearest probability endpoint when $z$ is exterior.
+For $u\in(0,1)\setminus\{v\}$, set
+\[
+ f(u)=\log|z-q(u)|,\qquad
+ d(u)=\min\{u,1-u,|u-v|\}>0,
+\]
+and define
+\[
+ \ell=\min\left\{|u-v|,\frac{u}{2K_h},
+                              \frac{1-u}{2K_h}\right\}>0.
+\]
+Consider the segment of length $\ell$ starting at $u$ and directed
+towards $v$. Every point $w$ of this segment satisfies
+$w\geq u/2$ and $1-w\geq(1-u)/2$, because $K_h\geq1$.
+Integrating \eqref{eq:lrc-log-derivative} along any initial part of
+this segment therefore gives
+\[
+ |\log q'(w)-\log q'(u)|
+ \leq\frac{2K_h|w-u|}{\min(u,1-u)}\leq1.
+\]
+It follows that $q'(w)\geq e^{-1}q'(u)$ on the segment.
+For $-1\leq z\leq1$, $q(v)=z$; for $z<-1$ or $z>1$,
+\[
+ |z-q(u)|\geq|q(v)-q(u)|.
+\]
+In all cases, monotonicity of $q$ shows that the distance on the
+left is at least the change of $q$ along the chosen segment.
+Consequently,
+\[
+ |z-q(u)|\geq e^{-1}q'(u)\ell,
+ \qquad
+ \frac{q'(u)}{|z-q(u)|}
+ \leq\frac e\ell
+ \leq\frac{2eK_h}{d(u)}.
+\]
+Since
+\[
+ f'(u)=-\frac{q'(u)}{z-q(u)},\qquad
+ f''(u)=-\frac{q''(u)}{z-q(u)}
+        -\frac{q'(u)^2}{(z-q(u))^2},
+\]
+equation \eqref{eq:lrc-log-derivative} gives
+\[
+ |f''(u)|
+ \leq\frac{K_h}{d(u)}\frac{2eK_h}{d(u)}
+       +\frac{4e^2K_h^2}{d(u)^2}
+ =\frac{(2e+4e^2)K_h^2}{d(u)^2}
+ \leq\frac{48K_h^2}{d(u)^2}.
+\]
+The last numerical inequality follows already from $e<3$, which
+gives $2e+4e^2<42<48$. For completeness,
+$e=\sum_{k\geq0}1/k!<1+1+\sum_{k\geq2}2^{-(k-1)}=3$.
+
+\paragraph{Precise cell selection and the inverse-square sum.}
+Let
+\[
+ I_j=\left[\frac{j-1}{n},\frac jn\right],\qquad1\leq j\leq n.
+\]
+Mark a cell if $j=1$, if $j=n$, or if
+$\operatorname{dist}(v,I_j)\leq1/n$. The endpoint equalities in
+this definition are included. With $w=nv$, the distance condition is
+equivalent to
+\[
+ j\in[w-1,w+2].
+\]
+A closed interval of length $3$ contains at most four integers.
+Together with the first and last cells, at most six distinct cells
+are marked. This also includes $n=1$, when its only cell is marked.
+
+Let $U$ be the set of unmarked indices, and for $j\in U$ write
+\[
+ e_j=\operatorname{dist}(nv,[j-1,j]),\qquad
+ m_j=n\inf_{u\in I_j}d(u)
+     =\min\{j-1,n-j,e_j\}.
+\]
+For these indices $2\leq j\leq n-1$, $e_j>1$, and $m_j>0$.
+Therefore
+\[
+ \frac1{m_j^2}
+ \leq\frac1{(j-1)^2}+\frac1{(n-j)^2}+\frac1{e_j^2}.
+\]
+The first two sums over $U$ are each at most $2$, since their
+denominators run over distinct positive integers and
+\[
+ \sum_{k=1}^{\infty}\frac1{k^2}
+ \leq1+\sum_{k=2}^{\infty}\frac1{k(k-1)}=2.
+\]
+Every unmarked cell lies strictly on one side of $nv$. On the left
+its distance is $nv-j$; on the right its distance is $j-1-nv$.
+On either side, arrange the distances in increasing order
+$a_1,\ldots,a_N$. The first is greater than $1$, and successive
+distances differ by positive integers; thus $a_k>k$.
+Each side contributes at most $2$ to $\sum_{j\in U}e_j^{-2}$.
+It follows that
+\begin{equation}\label{eq:lrc-inverse-square}
+ \sum_{j\in U}\frac1{m_j^2}\leq2+2+2+2=8.
+\end{equation}
+If there are no unmarked cells, this sum is zero and the assertion
+remains valid.
+
+\paragraph{The discrepancy on the unmarked cells.}
+For a twice continuously differentiable function on $I_j$ with
+$\sup_{I_j}|f''|\leq M$, Taylor's formula about the midpoint $u_j$
+gives
+\[
+ |f(u)-f(u_j)-f'(u_j)(u-u_j)|\leq\frac M2(u-u_j)^2.
+\]
+The linear term integrates to zero, and
+\[
+ n\int_{I_j}(u-u_j)^2\,du=\frac1{12n^2}.
+\]
+Hence
+\[
+ \left|f(u_j)-n\int_{I_j}f(u)\,du\right|
+ \leq\frac{M}{24n^2}.
+\]
+For every unmarked cell the preceding second-derivative bound
+applies on the closed cell and implies
+$M\leq48K_h^2n^2/m_j^2$. Summing and using
+\eqref{eq:lrc-inverse-square} proves
+\begin{equation}\label{eq:lrc-unmarked-total}
+ \sum_{j\in U}\left(f(u_j)-n\int_{I_j}f(u)\,du\right)
+ \leq2K_h^2\sum_{j\in U}\frac1{m_j^2}
+ \leq16K_h^2.
+\end{equation}
+
+\paragraph{Conditional physical densities on any cell.}
+For any cell, marked or otherwise, put
+\[
+ a_j=q((j-1)/n),\qquad b_j=q(j/n),\qquad L_j=b_j-a_j>0.
+\]
+Its physical probability mass is exactly $1/n$, and the conditional
+probability density on $[a_j,b_j]$ is
+\[
+ p_j(t)=n\rho(t)
+       =\frac{h(t)\sqrt{1-t^2}}
+               {\int_{a_j}^{b_j}h(s)\sqrt{1-s^2}\,ds}.
+\]
+The function $g(t)=\sqrt{1-t^2}$ is nonnegative and concave on
+$[-1,1]$: in the interior its second derivative is
+$g''(t)=-(1-t^2)^{-3/2}<0$, and it is continuous at the endpoints.
+Let $t_0\in[a_j,b_j]$ be a point at which $g$ is maximal.
+On each of $[a_j,t_0]$ and $[t_0,b_j]$, concavity places its graph
+above the chord joining the endpoint values; these chords in turn
+lie above the corresponding line segments with height zero at
+$a_j,b_j$ and height $g(t_0)$ at $t_0$. Integrating the two triangles
+(allowing a zero-length triangle when $t_0$ is an endpoint) gives
+\[
+ \int_{a_j}^{b_j}g(t)\,dt\geq\frac{L_j}2\max_{[a_j,b_j]}g.
+\]
+Since this maximum is positive, comparison of $h$ with its global
+maximum and minimum proves
+\begin{equation}\label{eq:lrc-cell-density}
+ 0\leq p_j(t)\leq\frac{2Q_h}{L_j}
+ \quad(t\in[a_j,b_j]).
+\end{equation}
+
+\paragraph{An interval-logarithm bound for every evaluation point.}
+For any $a<b$, $L=b-a$, and $z\in\mathbb R$, set
+$d=\max\{|z-a|,|z-b|\}>0$. We claim
+\begin{equation}\label{eq:lrc-interval-log}
+ \int_a^b\log\frac d{|z-t|}\,dt\leq2L.
+\end{equation}
+All these improper integrals converge, and their integrands are
+nonnegative. If $z\in[a,b]$, let $p=z-a$, $q_0=b-z$, and
+$s=\min(p,q_0)$; then $p+q_0=L$ and $d=\max(p,q_0)$.
+Using
+\[
+ \int_0^r\log(d/t)\,dt=r(1+\log(d/r))\quad(r>0)
+\]
+and its value $0$ at $r=0$, the integral equals
+\[
+ L+s\log(d/s),
+\]
+with the second summand interpreted as zero when $s=0$.
+If $s>0$, the inequality $\log z_0\leq z_0-1$ for $z_0>0$ gives
+\[
+ L+s\log(d/s)\leq L+d-s=2d\leq2L.
+\]
+That elementary logarithm inequality follows, for example, by
+minimizing $z_0-1-\log z_0$, whose derivative is $1-z_0^{-1}$.
+If $s=0$, the integral is $L$. For an exterior point, let
+$r=\operatorname{dist}(z,[a,b])>0$, so $d=r+L$. A direct integral
+of the same primitive gives
+\[
+ \int_a^b\log\frac d{|z-t|}\,dt
+ =L-r\log\frac{r+L}{r}\leq L.
+\]
+This proves \eqref{eq:lrc-interval-log} for interior, endpoint, and
+exterior points, with no restriction on how close $z$ is to the
+interval.
+
+\paragraph{The discrepancy on the marked cells and conclusion.}
+Continue with $z$ not equal to a selected quantile, since all such
+coincidences were already resolved. On a cell $I_j$ let
+$d_j=\max\{|z-a_j|,|z-b_j|\}$. Because $q(u_j)\in[a_j,b_j]$,
+$f(u_j)\leq\log d_j$. The exact change of variables $u=F(t)$ and
+the fact that $p_j$ is a probability density give
+\[
+ \begin{split}
+ f(u_j)-n\int_{I_j}f(u)\,du
+ &\leq\log d_j-\int_{a_j}^{b_j}\log|z-t|p_j(t)\,dt\\
+ &=\int_{a_j}^{b_j}\log\frac{d_j}{|z-t|}p_j(t)\,dt\\
+ &\leq\frac{2Q_h}{L_j}
+             \int_{a_j}^{b_j}\log\frac{d_j}{|z-t|}\,dt
+ \leq4Q_h.
+ \end{split}
+\]
+The penultimate inequality is legitimate because its logarithmic
+integrand is nonnegative. At most six cells are marked, so their
+total contribution is at most $24Q_h$. Combining this with
+\eqref{eq:lrc-unmarked-total} proves
+\[
+ \sum_{j=1}^nf(u_j)-n\int_0^1f(u)\,du
+ \leq16K_h^2+24Q_h\leq24K_h^2+30Q_h.
+\]
+Finally,
+$\int_0^1f(u)\,du=\int_{-1}^1\log|z-t|\rho(t)\,dt$,
+and \eqref{eq:lrc-affine-exact} returns this result to the original
+measure and original physical quantiles. This proves
+\eqref{eq:lrc-quantile-original} for every $n\geq1$ and every
+$x\in\mathbb R$, including support endpoints and exterior points.
+
+\subsection{The original EIQ density and the explicit LRC12 constant}
+
+For the original EIQ equilibrium for
+$V_{\alpha,\beta}(y)=\beta\sqrt y-\alpha\log y$, let its positive
+support endpoints be $A=u^2$ and $B=v_*^2$, with $0<A<B$ and
+$\beta>0$. The exact original density in EIQ10--EIQ11 is
+\begin{equation}\label{eq:lrc-eiq-density}
+ \frac{d\mu}{dy}=H(y)\sqrt{(B-y)(y-A)},\qquad
+ H(y)=\frac{\beta}{4\pi^2y}
+       \int_0^\infty
+       \frac{\sqrt s}{(y+s)\sqrt{(A+s)(B+s)}}\,ds.
+\end{equation}
+In the source notation the function called $h$ in EIQ10 is
+$2\pi H$; the factor $1/(2\pi)$ in EIQ11 gives exactly
+\eqref{eq:lrc-eiq-density}. No factor of $2\pi$, no mass, and no
+term of the original potential has been changed.
+
+Set
+\[
+ I(y)=\int_0^\infty
+       \frac{\sqrt s}{(y+s)\sqrt{(A+s)(B+s)}}\,ds.
+\]
+This integral is finite and positive for $y>0$. On a compact
+positive $y$ interval, its integrand is bounded near zero by a
+constant times $\sqrt s$, and near infinity by a constant times
+$s^{-3/2}$. Its derivative in $y$ is bounded on the same interval
+near zero by a constant times $\sqrt s$ and near infinity by a
+constant times $s^{-5/2}$. These bounds are integrable and uniform
+in that compact interval; differentiation under the integral is
+therefore justified and gives
+\[
+ I'(y)=-\int_0^\infty
+       \frac{\sqrt s}{(y+s)^2\sqrt{(A+s)(B+s)}}\,ds.
+\]
+One may justify this differentiation directly by applying dominated
+convergence to the difference quotient and the mean-value theorem
+on a slightly larger compact positive $y$ interval. The same
+majorants give continuity of both $I$ and $I'$. In particular
+$H>0$ and $H\in C^1([A,B])$.
+
+Define, for this calculation only, the probability measure on
+$s\in(0,\infty)$
+\[
+ d\omega_y(s)=\frac1{I(y)}
+       \frac{\sqrt s\,ds}{(y+s)\sqrt{(A+s)(B+s)}}.
+\]
+Its integral equals one by definition; it is an exact expression
+for the logarithmic derivative of the original $I$, not a change
+in the original equilibrium measure. Since $0<(y+s)^{-1}<y^{-1}$
+for $s>0$, we obtain
+\[
+ \frac{H'(y)}{H(y)}
+ =-\frac1y+\frac{I'(y)}{I(y)}
+ =-\frac1y-\int_0^\infty\frac{d\omega_y(s)}{y+s},
+ \qquad
+ -\frac2y\leq\frac{H'(y)}{H(y)}\leq-\frac1y.
+\]
+Thus $H$ is decreasing. Writing $R=B/A>1$ and integrating the
+displayed derivative bound over $[A,B]$ gives
+\[
+ \log\frac{H(A)}{H(B)}
+ =-\int_A^B\frac{H'(y)}{H(y)}\,dy
+ \leq2\log\frac BA,
+ \qquad
+ \frac{\max_{[A,B]}H}{\min_{[A,B]}H}\leq R^2.
+\]
+For the exact affine pushforward already established,
+$h(t)=c^2H(m+ct)$, and hence
+\[
+ Q_h=\frac{\max H}{\min H}\leq R^2,\qquad
+ \left|\frac{h'(t)}{h(t)}\right|
+ =c\left|\frac{H'(m+ct)}{H(m+ct)}\right|
+ \leq\frac{2c}{A}=R-1.
+\]
+It follows that
+\[
+ K_h=Q_h(1+M_h)\leq R^2(1+R-1)=R^3.
+\]
+Substitution in \eqref{eq:lrc-quantile-original} proves the exact
+constant asserted in LRC12:
+\begin{equation}\label{eq:lrc-eiq-discrepancy}
+ \sum_{j=1}^n\log|x-y_j|
+ \leq n\int_A^B\log|x-y|\,d\mu(y)
+       +C_{\mathrm{disc}},\qquad
+ C_{\mathrm{disc}}=24(B/A)^6+30(B/A)^2.
+\end{equation}
+This holds for the original EIQ measure and its original midpoint
+probability quantiles, simultaneously for every positive integer
+$n$ and every real $x$. All endpoint and exterior cases have
+already been covered by the preceding proof. The stronger constant
+$16(B/A)^6+24(B/A)^2$ is also proved, but is not needed to preserve
+the stated downstream formulas.

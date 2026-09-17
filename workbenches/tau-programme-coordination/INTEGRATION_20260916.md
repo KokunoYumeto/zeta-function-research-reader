@@ -1,9 +1,9 @@
-<!-- current-publication-pointer:20260917 -->
+<!-- current-publication-pointer:20260917-mixed-profile -->
 # Current publication
 
-[Read the published 726-page cumulative paper](https://zenodo.org/api/records/22803503/files/82-splitzero-moving-cutoff-reader.pdf/content) · [DOI 10.5281/zenodo.22803503](https://doi.org/10.5281/zenodo.22803503) · [Complete editable source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/be79088cb1fa4d79b31724856eefcdbd0839b8cc/workbenches/splitzero-tandem/continuations/20260917-moving-cutoff-growing-ratio) · [Public source ZIP](https://zenodo.org/api/records/22803503/files/83-splitzero-moving-cutoff-sources.zip/content).
+[Read the published 765-page cumulative paper](https://zenodo.org/api/records/22814080/files/89-splitzero-original-period-mixed-profile-reader.pdf/content) · [DOI 10.5281/zenodo.22814080](https://doi.org/10.5281/zenodo.22814080) · [Complete editable source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/eccd4bfddf822902f63a5c6ee50a8e8fd914da10/workbenches/splitzero-tandem/continuations/20260917-original-period-mixed-profile) · [Public source ZIP](https://zenodo.org/api/records/22814080/files/90-splitzero-original-period-mixed-profile-sources.zip/content).
 
-The cumulative reader and public source edition are now published at the links above.
+The cumulative paper, proof supplement, exposition companion and two source clarifications are published in this consolidated edition.
 
 ## Earlier 16 September integration checkpoint
 

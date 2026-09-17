@@ -12,7 +12,9 @@ The 765-page cumulative paper includes the complete proofs and updates their ear
 [Current continuation and research context](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260917-original-period-mixed-profile/00_CONTINUE_HERE.md).
 [Separate 103-page reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260917-original-period-mixed-profile/MIXED_PROFILE_PROOF_SUPPLEMENT.pdf).
 
-The preceding [published DOI edition](https://zenodo.org/records/22803503) remains the 84-download edition until this continuation is deposited. Earlier papers and source editions are retained.
+[Read the published 765-page cumulative paper](https://zenodo.org/api/records/22814080/files/89-splitzero-original-period-mixed-profile-reader.pdf/content) · [DOI 10.5281/zenodo.22814080](https://doi.org/10.5281/zenodo.22814080) · [Complete public source ZIP](https://zenodo.org/api/records/22814080/files/90-splitzero-original-period-mixed-profile-sources.zip/content) · [All 91 individually clickable downloads](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/calculation_edition_20260917_original_period_mixed_profile/README.md). All 84 earlier downloads are retained unchanged.
+
+Included reading companions: [103-page proof supplement](https://zenodo.org/api/records/22814080/files/91-splitzero-original-period-mixed-profile-supplement.pdf/content) · [36-page exposition and source provenance](https://zenodo.org/api/records/22814080/files/85-splitzero-exposition-provenance-reader.pdf/content) · [Exposition source package](https://zenodo.org/api/records/22814080/files/86-splitzero-exposition-provenance-sources.zip/content) · [Mapping-torus source clarification](https://zenodo.org/api/records/22814080/files/87-splitzero-mapping-torus-conventions.zip/content) · [Multiplier and module source clarification](https://zenodo.org/api/records/22814080/files/88-splitzero-multiplier-functoriality.zip/content).
 
 <!-- multiplier-addendum:20260917 -->
 ## Later source correction

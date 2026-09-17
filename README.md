@@ -16,7 +16,7 @@ The incoming post supplied mathematics in text, not a complete ZIP or compiled P
 [Current continuation and research context](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260917-moving-cutoff-growing-ratio/00_CONTINUE_HERE.md).
 [Separate 51-page reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260917-moving-cutoff-growing-ratio/GROWING_RATIO_PROOF_SUPPLEMENT.pdf).
 
-The preceding [published DOI edition](https://zenodo.org/records/22802593) remains the 78-download edition until this continuation is deposited. Earlier papers and source editions are retained.
+[Read the published 726-page cumulative paper](https://zenodo.org/api/records/22803503/files/82-splitzero-moving-cutoff-reader.pdf/content) · [DOI 10.5281/zenodo.22803503](https://doi.org/10.5281/zenodo.22803503) · [Complete public source ZIP](https://zenodo.org/api/records/22803503/files/83-splitzero-moving-cutoff-sources.zip/content) · [All 84 individually clickable downloads](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/calculation_edition_20260917_moving_cutoff_growing_ratio/README.md). All 78 earlier downloads are retained unchanged.
 
 ## Earlier guide (historical snapshot)
 

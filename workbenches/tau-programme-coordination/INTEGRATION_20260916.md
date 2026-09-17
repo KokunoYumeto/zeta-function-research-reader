@@ -1,7 +1,7 @@
-<!-- current-publication-pointer:20260916 -->
+<!-- current-publication-pointer:20260917 -->
 # Current publication
 
-[Read the published 680-page cumulative paper](https://zenodo.org/api/records/22802593/files/77-splitzero-source-transport-reader.pdf/content) · [DOI 10.5281/zenodo.22802593](https://doi.org/10.5281/zenodo.22802593) · [Complete editable source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/69502d18e4da61f7248edb8cb1c491ad8ee656a0/workbenches/splitzero-tandem/continuations/20260916-arithmetic-source-and-flag-continuation) · [Public source ZIP](https://zenodo.org/api/records/22802593/files/78-splitzero-source-transport-sources.zip/content).
+[Read the published 726-page cumulative paper](https://zenodo.org/api/records/22803503/files/82-splitzero-moving-cutoff-reader.pdf/content) · [DOI 10.5281/zenodo.22803503](https://doi.org/10.5281/zenodo.22803503) · [Complete editable source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/be79088cb1fa4d79b31724856eefcdbd0839b8cc/workbenches/splitzero-tandem/continuations/20260917-moving-cutoff-growing-ratio) · [Public source ZIP](https://zenodo.org/api/records/22803503/files/83-splitzero-moving-cutoff-sources.zip/content).
 
 The cumulative reader and public source edition are now published at the links above.
 

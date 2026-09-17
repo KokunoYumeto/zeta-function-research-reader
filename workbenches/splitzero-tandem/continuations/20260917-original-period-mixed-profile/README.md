@@ -13,3 +13,9 @@ The 765-page cumulative paper includes the complete proofs and updates their ear
 [Separate 103-page reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260917-original-period-mixed-profile/MIXED_PROFILE_PROOF_SUPPLEMENT.pdf).
 
 The preceding [published DOI edition](https://zenodo.org/records/22803503) remains the 84-download edition until this continuation is deposited. Earlier papers and source editions are retained.
+
+<!-- multiplier-addendum:20260917 -->
+## Later source correction
+
+[Multiplier and module source clarification](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/source-corrections/20260917-multiplier-functoriality/README.md) · [Download the eight-file supplement](https://raw.githubusercontent.com/KokunoYumeto/zeta-function-research-reader/main/workbenches/splitzero-tandem/source-corrections/20260917-multiplier-functoriality/multiplier-source-clarification-2026-09-17.zip). The supplement resolves U10 for the identified finite-corner multiplier and constant-fibre uses, with full module, multiplier and corona proofs and precisely attributed source statements. The original 36-page companion and the mapping-torus correction remain unchanged. The Mingo–Phillips original-article inspection gap is explicitly retained.
+

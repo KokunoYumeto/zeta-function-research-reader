@@ -20,4 +20,4 @@ The frozen companion's front matter contains an older administrative sentence ab
 
 [Machine-readable results and their programme roles](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260917-cited-full-tail-return/research_index/PROGRAM_INDEX.json).
 
-The preceding [DOI edition](https://zenodo.org/records/22814080) remains available unchanged. Deposition of this corrected edition is being completed; no new DOI is asserted by this source commit.
+This corrected edition is published as [DOI 10.5281/zenodo.22819902](https://zenodo.org/records/22819902), with the 837-page cumulative paper selected as its preview. The separate 263-page companion and complete source ZIP are also available in the [matching GitHub release](https://github.com/KokunoYumeto/zeta-function-research-reader/releases/tag/splitzero-cited-receiver-2026-09-17-9e3f86fa). The preceding [DOI edition](https://zenodo.org/records/22814080) remains available unchanged.

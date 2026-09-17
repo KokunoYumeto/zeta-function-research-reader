@@ -17,6 +17,12 @@ Begin with `RESEARCH_PROGRAMME.pdf` and `START_HERE.md`. The complete mathematic
 
 The preceding [published DOI edition](https://zenodo.org/records/22803503) remains the 84-download edition until this continuation is deposited. Earlier papers and source editions are retained.
 
+<!-- mapping-torus-addendum:20260917 -->
+## Later source correction
+
+[Mapping-torus convention correction](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/source-corrections/20260917-mapping-torus-conventions/README.md) · [Download the nine-file supplement](https://raw.githubusercontent.com/KokunoYumeto/zeta-function-research-reader/main/workbenches/splitzero-tandem/source-corrections/20260917-mapping-torus-conventions/mapping-torus-convention-addendum-2026-09-17.zip). The supplement resolves U09 for the identified historical catalogue entry and its inspected direct uses, with full even/odd boundary proofs and downstream reconciliation. The original 36-page companion remains unchanged as its dated edition; the other unresolved-source entries remain open.
+
+
 ## Earlier guide (historical snapshot)
 
 The following guide is retained verbatim; the reading links above identify this newer source edition.

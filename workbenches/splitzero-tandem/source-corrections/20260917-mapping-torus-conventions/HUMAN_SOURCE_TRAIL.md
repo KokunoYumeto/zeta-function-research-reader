@@ -1,0 +1,11 @@
+# Human sources behind the convention calculation
+
+The immediate mathematical source is Bruce Blackadar, *K-Theory for Operator Algebras*, first edition, 1986, [publisher DOI](https://doi.org/10.1007/978-1-4613-9572-0). The exact historical file and page locators are authenticated in the accompanying proof records. The [author-hosted corrected second edition](https://www.bruceblackadar.com/Mathematics/book6.pdf) was also checked at the corresponding definitions; its pagination must not replace the first edition's locators.
+
+Blackadar's first-edition chapter-IV notes, printed page 80 (PDF page 88), credit some exposition to **Larry Brown's unpublished lecture notes**, themselves based on **Joseph L. Taylor's** article. The same note attributes the proof of Bott periodicity presented there to **Michael F. Atiyah**. This is a checked source-to-source trail; Brown's unpublished notes and Taylor's complete chapter have not been obtained, and no theorem from either is claimed to have been independently read.
+
+- Michael F. Atiyah, *Bott periodicity and the index of elliptic operators*, The Quarterly Journal of Mathematics 19 (1968), 113–140, [DOI](https://doi.org/10.1093/qmath/19.1.113). Blackadar's reference [At 2], printed p.320, supplies the edge; the original journal's metadata authenticates the identity. Original theorem-level reinspection is not claimed here.
+- Joseph L. Taylor, *Banach algebras and topology*, in *Algebras in Analysis*, edited by **J. H. Williamson**, Academic Press, 1975, pp.118–186. Blackadar's [Ta], printed p.333, supplies the exposition edge. The [AMS bibliographic record](https://mathscinet.ams.org/mathscinet/2006/mathscinet/mrcit/individual.html?mrauthid=192641&seeall=) corroborates full author name, title and page range. Williamson's role is editor, not author of Taylor's chapter.
+- Larry Brown, unpublished lecture notes, credited by Blackadar's chapter-IV note. No invented title, date, publication identifier or independent-reading claim is attached.
+
+The eponym Bott refers to Raoul Bott; this supplement uses Blackadar's explicit definitions and theorem, and does not infer a particular original Bott paper merely from the eponym. The newly written homotopies retain the actual matrices and coordinates rather than replacing the source theorem with an unverified analogy.

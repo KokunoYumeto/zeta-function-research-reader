@@ -1,0 +1,9 @@
+# Mapping-torus conventions: an exact source correction
+
+This supplement fixes a convention mismatch in the historical source catalogue and its direct use in the nonconstant unit-fibre chapter. It retains the original endpoint relation, evaluation map and increasing suspension coordinate. Both boundary maps are derived explicitly, and time reversal supplies the exact map to the opposite-sign convention.
+
+Read [the even boundary proof](CONVENTION_CHECK.md), [the odd boundary proof](ODD_BOUNDARY.md), and [the downstream reconciliation](DOWNSTREAM_USE_RECONCILIATION.md). The latter proves why the invariant/coinvariant coordinates, finite-level multiplicities, finite and archimedean edge minus signs, and finite-set connecting square remain as written. The [machine record](CORRECTION_RECORD.json) preserves the historical source identity. The [small TeX correction](DIRECT_USE_CORRECTION.patch) corrects the affected explanatory paragraph; its [hash guard](DIRECT_USE_CORRECTION.json) pins the precise original version.
+
+Bruce Blackadar receives point-of-use credit for the K-theory definitions, suspension isomorphism and exact-sequence machinery. The [additional human-source trail](HUMAN_SOURCE_TRAIL.md) records his own acknowledgments to the antecedent authors and exposition. The explicit convention homotopies and this comparison are AI-assisted project derivations, not claims that these exact calculations are printed in Blackadar's book and not novelty claims.
+
+This resolves U09 for the identified catalogue statement and direct uses. The original 36-page companion is preserved as its dated cut; its wider unresolved-source register is not declared complete. The accepted 726-page analytic programme does not depend on this sign adjustment. The [published companion](https://github.com/KokunoYumeto/zeta-function-research-reader/releases/tag/splitzero-exposition-2026-09-17-6bd711bd) remains the entry point for the research programme.

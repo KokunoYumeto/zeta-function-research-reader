@@ -1,0 +1,633 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathcal P}\newcommand{\BB}{\mathcal B}
+\newcommand{\dd}{\,d}\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Gram}{\operatorname{Gram}}\newcommand{\rank}{\operatorname{rank}}
+\title{The retained logarithmic arithmetic tail and the nonlinear central receiver}
+\author{Split-Zero research programme: mathematical continuation}
+\date{19 September 2026}
+\begin{document}\maketitle
+\noindent This is a successor calculation. The sealed signed-arithmetic reader and
+its source bytes remain unchanged. The new tail argument is the continuation
+supplied in attachment \texttt{ab15652a}; the Gamma-band argument is supplied in
+\texttt{Untitled 1775}, final section, and the nonlinear receiving identity in
+attachment \texttt{5a756bcd}, first section. We give the full receiving proofs,
+repair the tail comparison off its stated annulus, and give finite guards for
+the growing-parameter recurrence. The previously proved arithmetic tail and
+finite-amplitude central estimates are used at precisely their original domains.
+Their full proofs are \texttt{SIGNED\_ARITHMETIC\_INTEGRATED.tex},
+\texttt{OUTER\_VALUE\_RECONSTRUCTION.tex}, and \texttt{root\_comparison.tex}
+in the preceding accepted edition; they are not new assumptions.
+
+\section{The original objects and proved inputs}
+Fix an actual stipulated zero quartet
+\[
+ \rho=\tfrac12+\delta+i\gamma,\qquad 0<\delta<\tfrac12,\quad\gamma>2,
+ \qquad m_0\in\mathbb N,
+\]
+with each quartet member a zero of $\xi$ of multiplicity at least $m_0$.
+Write $h(s)=\prod_{z\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}(s-z)^{m_0}$,
+$w_h(y)=|(2\xi/h)(1/2+iy)|^2/(2\pi)$ and $m_k=w_h^{*k}$.
+For $k=4\ell+1\ge5$ retain
+\begin{equation}\tag{SR1}
+ e=1+k(m_0-1),\quad q=e(k+1)^2,\quad c=k/2,\quad
+ \chi_k(S)=\prod_{u,v=0}^k
+ [S-c-(2u-k)\delta-i(2v-k)\gamma]^e.
+\end{equation}
+The coordinate map is $P(S)\mapsto P(c+iy)$, with inverse substitution
+$y=(S-c)/i$. Its monic relation is $Q_k(y)=i^{-q}\chi_k(c+iy)$.
+This map is invertible on every degree space and on every remainder quotient;
+no root or lower relation is discarded. Set
+\[
+ \sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\qquad
+ \int\sigma=\sqrt{2\pi},\qquad \alpha=\pi/2.
+\]
+For $J_N=\operatorname{rem}_{\chi_k}$ and the full source Gram $H_N[\nu]$,
+\begin{equation}\tag{SR2}
+ G_N[\nu]=(J_NH_N[\nu]^{-1}J_N^*)^{-1},\qquad
+ \BB_k[\nu]=\log\det G_{q-1}+\log\det G_q
+             -\log\det G_{2q-1}-\log\det G_{2q}.
+\end{equation}
+All these quotients have rank $q$. Thus $G_N[A\nu]=AG_N[\nu]$ gives
+$\BB_k[A\nu]=\BB_k[\nu]$ for every scalar $A>0$.
+In any fixed complement to $Q_k\PP_{N-q}$, completion of the square gives
+\begin{equation}\tag{SR3}
+ \log\det G_N[\nu]=\log\det H_N[\nu]
+ -\log\det\Gram_{Q_k\PP_{N-q}}[\nu]+c_N.
+\end{equation}
+Here $c_N$ is the logarithmic square of the fixed frame determinant; it cancels
+between any two densities. For $N=q-1$ the relation is empty, and for $N=q$ it
+has rank one. Formula (SR3) proves the exact map between the full source and
+the original attained metric, including their cross blocks.
+
+Put $M(\theta)=\int e^{\theta y}w_h(y)\dd y$, $\mu=(\log M)'$,
+$V=\mu'$, $\mathfrak M=M(\alpha)$, $b=\mu(\alpha)$, and
+\begin{equation}\tag{SR4}
+ I_h=\int_0^\alpha\mu(\theta)^2\dd\theta,\quad d=4m_0-2,\quad
+ c_\zeta=2\gamma_{\rm E}-\log(2\pi),\quad
+ C_\Gamma=2\mathcal L(2,\pi)-8\log2+4>0.
+\end{equation}
+All moments through order $9/4$ of the boundary-tilted probability are finite;
+in particular $M,M',M''$ extend to the closed tilt interval. The previous
+original-source proof establishes $I_h>0$.
+Let $\theta(t)=\mu^{-1}(t)$ on $[0,b]$ and
+\[
+ D(t)=\log\mathfrak M-\log M(\theta(t))-(\alpha-\theta(t))t,
+ \qquad W_k(y)=kD(|y|/k)1_{|y|\le kb}.
+\]
+The exact area is $\int W_k=k^2I_h$. Define
+\[
+ \omega_k=\sigma\quad(|y|\le kb),\qquad
+ \omega_k=\mathfrak M^{-k}m_k\quad(|y|>kb).
+\]
+The previous finite-amplitude theorem, with its full moving-family contour
+proof and the sign correction SAI1, is
+\begin{equation}\tag{SR5}
+ \left|\BB_k[m_k]-\BB_k[\omega_k]
+       -\frac{\log2}{\pi}I_hk^2\right|
+ \le E_{\rm cen}:=A_h\left[
+ \frac{k^2}{\log^3(q+2)}+k\log^2(q+2)+1+\frac{k^4}{q^2}\right].
+\end{equation}
+This evaluates a finite change of metric, not only a derivative at its first
+endpoint. Its finite Neumann guard and Robin error are SAI7--10.
+
+The proved averaged tail, in the same physical $y$ coordinate, is
+\begin{equation}\tag{SR6}
+ \int_T^{2T}\left|
+ \frac{\mathfrak M^{-k}m_k(y)}
+ {\dfrac{k}{\sqrt\pi\mathfrak M}(\log y+c_\zeta)
+ (1+y^2)^{-d}\sigma(y)}-1\right|\dd y
+ \le C_hT^{199/200},\qquad q^{9/10}\le T\le128q.
+\end{equation}
+Its proof retains both large-summand complements and the original zeta
+mean square, using Ivi\'c's established increment bound \cite{Ivic}.
+The outer-only pointwise bounds are
+\begin{equation}\tag{SR7}
+ c_-k^{-1/2}(1+y^2)^{-M_*}\le\omega_k/\sigma
+ \le c_+k^{p+1},\qquad M_*=21+4m_0,\quad p=8m_0-9/2.
+\end{equation}
+These are the proved endpoint/local-limit and full three-factor source bounds,
+not a pointwise lower bound for $|\zeta|^2$.
+
+\section{A complete transport of the logarithmic tail}
+Write $L=\log q$, $L_c=L+c_\zeta$, $\epsilon=(2L_c)^{-1}$,
+$a=d-\epsilon$, and
+\begin{equation}\tag{SR8}
+ \tau_a=(1+y^2)^{-a}\sigma,\quad
+ A_q=\frac{kL_c}{\sqrt\pi\mathfrak M}q^{-1/L_c},\quad
+ T=q/L^6,\quad \mathfrak A=\{T\le |y|\le128q\}.
+\end{equation}
+Finite guards are $L_c>1$, $6\log L+\log128\le L_c/2$,
+$T\ge\max(q^{9/10},kb,1)$, and all the prior guards of (SR5)--(SR7).
+Each holds eventually for every fixed $h$. For $y\in\mathfrak A$, put
+$x=\log(|y|/q)$. Direct cancellation, with all scalars retained, gives
+\begin{equation}\tag{SR9}
+ s_q(y):=\frac{\dfrac{k}{\sqrt\pi\mathfrak M}
+ (\log|y|+c_\zeta)\tau_d(y)}{A_q\tau_a(y)}
+ =\left(1+\frac{x}{L_c}\right)
+ \exp\left[-\frac{x}{L_c}
+ -\frac{\log(1+y^{-2})}{2L_c}\right].
+\end{equation}
+For $|z|\le1/2$, integration of $-z/(1+z)$ from zero to $z$ proves
+$-z^2\le\log(1+z)-z\le0$. Hence
+\begin{equation}\tag{SR10}
+ e^{-\eta}\le s_q\le1\quad\hbox{on }\mathfrak A,
+ \qquad \eta=\frac{(6\log L+\log128)^2}{L_c^2}
+                   +\frac1{2L_cT^2}.
+\end{equation}
+The formula is not positive on the whole real line. The globally positive
+comparison needed below is explicitly
+\begin{equation}\tag{SR11}
+ \bar s_q=s_q1_{\mathfrak A}+1_{\mathfrak A^c},\quad
+ \nu_0=A_q\bar s_q\tau_a,\quad
+ \nu_1=\omega_k1_{\mathfrak A}+A_q\tau_a1_{\mathfrak A^c}.
+\end{equation}
+Thus $e^{-\eta}\le\bar s_q\le1$ globally, and
+$\nu_1=a_k\nu_0$ with $a_k$ equal to the actual arithmetic ratio in (SR6)
+on $\mathfrak A$ and one off it. This repairs the incoming proof's unqualified
+global use of $s_q$ without changing any original density.
+
+We detail the finite-dimensional comparisons. The monic Gamma recurrence
+has off-diagonal orthonormal entries $\sqrt{n(n-1/2)}\le n$.
+Consequently $\|yP\|_\sigma\le2(D+1)\|P\|_\sigma$ on $\PP_D$.
+Jensen applied to the probability $|P|^2\sigma/\|P\|^2$ yields
+\begin{equation}\tag{SR12}
+ \int(1+y^2)^{-M}|P|^2\sigma\dd y
+ \ge[1+4(D+1)^2]^{-M}\|P\|_\sigma^2.
+\end{equation}
+Together with (SR7), $a\in[d-1/2,d]$, and the explicit $A_q$, this proves
+that for some fixed $B=B_h$ and all four measures
+$\omega_k,\nu_0,\nu_1,A_q\tau_a$,
+\begin{equation}\tag{SR13}
+ q^{-B}\|P\|_\sigma^2\le\|P\|_\nu^2\le q^B\|P\|_\sigma^2
+ \quad(\deg P\le2q),\qquad 0<\nu/\sigma\le q^B.
+\end{equation}
+Increasing $B$ absorbs fixed constants after a finite $h$-dependent threshold.
+The lower bound is an integrated form bound; the upper density bound follows
+pointwise because $a>0$. They hold for every original source and relation
+subspace and, by taking the minimum over a fixed fibre, for its attained quotient.
+
+The exact generating function, in the original convention, is
+$(1+t^2)^{-1/4}e^{z\arctan t}$ \cite{DLMF}. Cauchy's coefficient inequality
+on $|t|=D/(D+1)$, $n!/(1/2)_n\le2n+1$ and
+$|\arctan t|\le\frac12\log(2D+1)$ prove
+\begin{equation}\tag{SR14}
+ K_D^\sigma(z,\bar z)
+ \le\frac{e^2}{\sqrt{2\pi}}(D+1)^2\sqrt{2D+1}(2D+1)^{|z|}.
+\end{equation}
+Indeed $r^{-2n}\le e^2$ and
+$|1+t^2|^{-1/2}\le(D+1)/\sqrt{2D+1}$; summing $2n+1$ gives
+$(D+1)^2$. For $P\in y^r\C[y]$, the maximum principle for $P(z)/z^r$
+on $|z|=2T$, followed by integration over $[-T,T]$, gives
+\begin{equation}\tag{SR15}
+ \int_{-T}^T|P|^2\sigma\dd y
+ \le e^2(D+1)^2\sqrt{2D+1}(2D+1)^{2T}4^{-r}\|P\|_\sigma^2.
+\end{equation}
+Take $D=2q$ and
+\begin{equation}\tag{SR16}
+ r=\left\lceil\frac{
+ \log[e^2(2q+1)^2\sqrt{4q+1}]+2T\log(4q+1)+(4B+60)L}
+ {\log4}\right\rceil.
+\end{equation}
+Then $r=O_h(q/L^5)$ and the multiplier in (SR15) is at most $q^{-4B-60}$.
+The further finite guard $r+d<q$ holds eventually.
+
+For each actual space $\mathcal S=\PP_N$ or $Q_k\PP_{N-q}$ in (SR3), set
+\begin{equation}\tag{SR17}
+ \mathcal S^\circ=\mathcal S\cap(y+i)^d y^r\C[y],\qquad
+ 0\longrightarrow\mathcal S^\circ\longrightarrow\mathcal S
+ \longrightarrow\mathcal S/\mathcal S^\circ\longrightarrow0.
+\end{equation}
+The codimension is at most $r+d$: it is the rank of the remainder map modulo
+$(y+i)^dy^r$. This construction works also for the rank-one or empty relation.
+For $P\in\mathcal S^\circ$, (SR13)--(SR16) bound changes of density inside
+$[-T,T]$ relative to its full norm by $2q^{-2B-60}$.
+For the other integration region, repeated multiplication gives
+\begin{equation}\tag{SR18}
+ \int_{|y|>128q}|P|^2\sigma\dd y
+ \le\left(\frac{2(3q+1)}{128q}\right)^{2q}\|P\|_\sigma^2
+ \le256^{-q}\|P\|_\sigma^2.
+\end{equation}
+The last inequality holds for $q\ge1$. Both exterior measures are bounded
+by $q^B\sigma$, so their relative discrepancy is at most $2q^{2B}256^{-q}$.
+Let $\zeta_q=2q^{-2B-60}+2q^{2B}256^{-q}$ and impose $\zeta_q<1/2$.
+We obtain, for every $\mathcal S^\circ$,
+\begin{equation}\tag{SR19}
+ \left|\log\frac{\det\Gram_{\mathcal S^\circ}[\omega_k]}
+ {\det\Gram_{\mathcal S^\circ}[\nu_1]}\right|
+ \le2\dim(\mathcal S^\circ)\zeta_q.
+\end{equation}
+To restore the complementary directions, choose any fixed splitting of
+(SR17). The determinant factors exactly into the restricted determinant and
+the determinant of the Schur minimum on $\mathcal S/\mathcal S^\circ$.
+Taking the infimum in (SR13) preserves both form inequalities, whence the
+logarithmic determinant comparison between any two quotient metrics has
+absolute value at most $2B(r+d)L$. Thus no discarded central or tail direction
+is hidden in (SR19).
+
+Division $P=(y+i)^dR\mapsto R$ is a linear isomorphism of $\mathcal S^\circ$
+onto a fixed subspace of $\PP_{2q-d}\cap y^r\C[y]$. Under this isomorphism
+the reference density $\nu_0$ is
+$A_q\bar s_q(1+y^2)^\epsilon\sigma$. Its scalar $A_q$ cancels in the
+projection kernel. It is at least $e^{-\eta}\sigma$ globally, and at most
+$C\sigma$ on $\mathfrak A$, since
+$\epsilon\log(1+(128q)^2)\le3$ after a finite guard.
+The variational formula $K(y,y)=\sup_{P\ne0}|P(y)|^2/\|P\|^2$ and the
+already proved whole-line bound
+\begin{equation}\tag{SR20}
+ K_D^\sigma(y,y)\sigma(y)\le20\log(D+2)
+\end{equation}
+give $K_{\mathcal S^\circ}^{\nu_0}(y,y)\nu_0(y)\le C L$ on $\mathfrak A$.
+The proof of (SR20) uses Koelink--Van der Jeugt's exact Poisson kernel
+\cite{KVJ}, with $x=y/2$ and its density factor $1/2$, followed by Euler's
+hypergeometric integral; the full proof is OR18--20 in the accepted predecessor.
+
+Dyadic use of (SR6), including evenness for $y<0$, proves
+\begin{equation}\tag{SR21}
+ E_q:=\int_{\mathfrak A}|a_k-1|\dd y\le C_hq^{199/200},\qquad
+ \int_{\mathfrak A}|\log a_k|\dd y\le(2+2BL)E_q.
+\end{equation}
+For the second bound, the pointwise bounds (SR7) give
+$q^{-B}\le a_k\le q^B$ on the annulus after increasing $B$.
+On $|a_k-1|\le1/2$ use $|\log a_k|\le2|a_k-1|$; its complement has
+measure at most $2E_q$. The dyadic sum is geometric, with no extra $L$ factor.
+
+For a fixed finite space $V$ and positive reference $\nu$, in a
+$\nu$-orthonormal frame, expansion of the full determinant gives
+\[
+ \det\Gram_V[a\nu]=\frac1{t!}\int
+ |\det(P_i(y_j))|^2\prod_{j=1}^ta(y_j)\dd\nu(y_j),\quad t=\dim V.
+\]
+The same expression with $a=1$ is one. Jensen for the logarithm and
+$\log\det A\le\Tr(A-I)$ therefore prove
+\begin{equation}\tag{SR22}
+ \int\log a\,K_V^\nu\dd\nu
+ \le\log\frac{\det\Gram_V[a\nu]}{\det\Gram_V[\nu]}
+ \le\int(a-1)K_V^\nu\dd\nu.
+\end{equation}
+Applying this with (SR20)--(SR21) costs $C_hq^{199/200}L^2$ on
+$\mathcal S^\circ$. Its quotient in (SR17) costs at most $2B(r+d)L$.
+Finally (SR10)--(SR11) compare $\nu_0$ with $A_q\tau_a$ on the whole space
+with determinant cost at most $\dim\mathcal S\,\eta$. This is a uniform
+form bound and introduces no kernel logarithm.
+Summing the four full source and four full relation contributions in (SR3),
+and using $\BB_k[A_q\tau_a]=\BB_k[\tau_a]$, proves
+\begin{equation}\tag{SR23}
+ |\BB_k[\omega_k]-\BB_k[\tau_a]|
+ \le C_h\left[q\eta+q^{199/200}L^2+q/L^4+q\zeta_q\right].
+\end{equation}
+All original attained minima and both complementary integration regions have
+now been explicitly transported.
+
+\section{The moving exponent and the next coefficient}
+For a fixed integer $j\ge1$, the monic frame
+$1,\ldots,y^{j-1},(y+i)^j,y(y+i)^j,\ldots,y^{N-j}(y+i)^j$
+has determinant one. The last block with density $\tau_j$ is exactly the
+Gamma Gram through degree $N-j$, and its complementary attained jet quotient
+has fixed dimension $j$ and logarithmic determinant $O_j(\log(N+2))$.
+This last bound is the proved two-sided finite-jet estimate in OR28, derived
+from the Gamma recurrence and evaluation kernel. Therefore, with the original
+monic norms $\gamma_n=\sqrt{2\pi}(2n)!/4^n$,
+\begin{equation}\tag{SR24}
+ \log\frac{\det H_N[\tau_j]}{\det H_N[\sigma]}
+ =-j\log\gamma_N+O_j(\log(N+2)).
+\end{equation}
+The full-root comparison RC1--14 and positive-ensemble free-energy proof OR31--40
+give, at $n=q,q+1$,
+\begin{equation}\tag{SR25}
+ \log\frac{\det\Gram_{Q_k\PP_{n-1}}[\tau_j]}
+ {\det\Gram_{Q_k\PP_{n-1}}[\sigma]}
+ =-2jnL-jq\mathcal L(2,\pi)+O_{h,j}(\sqrt{qL}).
+\end{equation}
+This formula uses the actual complete polynomial $Q_k$, not the monomial
+$y^q$. Its uniform fixed-neighbourhood free-energy estimate covers all three
+integers $j=d-1,d,d+1$.
+
+For every fixed finite polynomial space $V$, define
+$f_V(a)=\log\det\Gram_V[(1+y^2)^{-a}\sigma]$.
+The full positive determinant integral shows that $f_V''$ is the variance of
+$\sum_i\log(1+y_i^2)$ and is nonnegative. Thus, for $0\le\epsilon\le1$,
+\begin{equation}\tag{SR26}
+ -\epsilon[f_V(d+1)-f_V(d)]
+ \le f_V(d-\epsilon)-f_V(d)
+ \le-\epsilon[f_V(d)-f_V(d-1)].
+\end{equation}
+Substitution of (SR24)--(SR25) proves their linear formulas at
+$a=d-\epsilon$, uniformly for $0\le\epsilon\le1/2$, with the same error
+orders. This uses convexity of the individual positive Grams before taking
+any signed difference; no error is differentiated.
+The low rank-one relation has logarithmic comparison $O_h(\log q)$ by
+(SR12) applied to $P=Q_k$; the empty relation has determinant one.
+Stirling's formula \cite{DLMFGamma} applied to the four source signs gives
+\[
+ 4aqL+(8a\log2-4a)q+O_h(L).
+\]
+The two high relations, including their subtraction in (SR3), give
+$-4aqL-2aq\mathcal L(2,\pi)+O_h(\sqrt{qL})$.
+Their sum is the exact cancellation
+\begin{equation}\tag{SR27}
+ \BB_k[\tau_{d-\epsilon}]-\BB_k[\sigma]
+ =-(d-\epsilon)C_\Gamma q+O_h(\sqrt{qL}).
+\end{equation}
+Taking $\epsilon=1/(2L_c)$, combining (SR23), (SR27) and (SR5), and using
+$q\ge(k+1)^2$, proves
+\begin{theorem}
+On the original fixed-packet domain, as $k=4\ell+1\to\infty$,
+\begin{equation}\tag{SR28}
+ \delta_{k,1}^{\rm ar}:=\BB_k[m_k]-\BB_k[\sigma]
+ =-dC_\Gamma q+\frac{\log2}{\pi}I_hk^2
+ +\frac{C_\Gamma q}{2(\log q+c_\zeta)}+R_{h,k},
+\end{equation}
+where, for all the stated finite guards,
+\begin{equation}\tag{SR29}
+ |R_{h,k}|\le E_{\rm cen}
+ +C_h\left[q\eta+q^{199/200}L^2+q/L^4+q\zeta_q+\sqrt{qL}\right].
+\end{equation}
+In particular the denominator may be replaced by $\log q$ at additional
+cost $|C_\Gamma c_\zeta|q/(2LL_c)$, and the total error is at most
+\begin{equation}\tag{SR30}
+ C_hq\left[\frac{(1+\log\log q)^2}{(\log q)^2}
+                  +q^{-1/200}(\log q)^2\right]
+ =o_h(q/\log q).
+\end{equation}
+\end{theorem}
+For $m_0=1$, set $d_0=-2C_\Gamma+(\log2/\pi)I_h$; for $m_0\ge2$ set
+$d_0=-dC_\Gamma$. Since $q-k^2=2k+1$ in the first case and
+$k^2=o(q/\log q)$ in the second,
+\begin{equation}\tag{SR31}
+ \lim\frac{\log q}{q}(\delta_{k,1}^{\rm ar}-qd_0)=C_\Gamma/2.
+\end{equation}
+The limits with $\log k$ are $C_\Gamma/4$ and $C_\Gamma/6$, respectively.
+The theta-source proof delivered with this continuation proves $d_0>1$ on
+every actual simple quartet. Thus the incoming slow-tail note's formal zero
+threshold is not attained on that original simple-source domain. Formula
+(SR31) is valid there nonetheless; it refines its positive leading value.
+
+\section{Growing Gamma bands with finite recurrence guards}
+For $s\in\{1,k\}$, retain $\lambda=s/4$, $M_s=(2\pi)^{s/2}$,
+\begin{equation}\tag{SR32}
+ w_s(y)=\frac{M_s2^{2\lambda}}{4\pi\Gamma(2\lambda)}
+ |\Gamma(\lambda+iy/2)|^2,\quad
+ p_{n,s}(y)=n!P_n^{(\lambda)}(y/2;\pi/2),\quad
+ h_{n,s}=M_s n!(2\lambda)_n.
+\end{equation}
+These retain the physical coordinate and source mass. At $s=1$,
+$M_1 2^{1/2}/(4\pi\Gamma(1/2))=1/(2\pi)$, so $w_1=\sigma$ exactly.
+The classical generating function and recurrence \cite{DLMF} give, for
+$f_n=\sqrt{w_s}p_{n,s}/\sqrt{h_{n,s}}$,
+\begin{equation}\tag{SR33}
+ a_{n+1}f_{n+1}+a_nf_{n-1}=yf_n,\qquad
+ a_n=\sqrt{n(n+2\lambda-1)},\qquad
+ \sum\frac{p_{n,s}}{n!}t^n=(1+t^2)^{-\lambda}e^{y\arctan t}.
+\end{equation}
+Hereafter $y,\lambda$ are fixed while constructing the exact solution at
+infinity; the resulting estimates have explicit uniform dependence on them.
+Set $P=1+\lambda+|y|$, $x_n=n+\lambda$, $v=-1/2-iy/2$, and
+$u_n=i^nx_n^v$. Define
+\[
+ F(z)=\sqrt{(1+z/2)^2-(\lambda-1/2)^2z^2}\,(1+z)^v.
+\]
+On $|z|\le1/(2P)$ the square root is the analytic branch equal to one at
+zero. Factoring its argument into
+$(1+(1-\lambda)z)(1+\lambda z)$ verifies that neither factor vanishes and
+that its modulus is at most two. Also
+$|(1+z)^v|\le\exp(|v||z|/(1-|z|))\le e$.
+Thus $|F(z)|\le6$ there. Its odd coefficient starts with
+$F(z)-F(-z)=(2v+1)z+\cdots=-iyz+\cdots$.
+Cauchy's coefficient bound, for $x_n\ge4P$, gives
+\begin{equation}\tag{SR34}
+ |F(x_n^{-1})-F(-x_n^{-1})+iy/x_n|
+ \le 192P^3/x_n^3,
+\end{equation}
+where the geometric odd tail is bounded by a geometric tail over all degrees.
+Since $a_{n+1}=\sqrt{(x_n+1/2)^2-(\lambda-1/2)^2}$ and the corresponding
+formula with $-1/2$ holds for $a_n$, this proves
+\[
+ |a_{n+1}u_{n+1}+a_nu_{n-1}-yu_n|
+ \le192P^3x_n^{-2}|u_n|.
+\]
+For the two-column matrix
+$U_n=\left(\begin{smallmatrix}u_n&\bar u_n\\u_{n-1}&\bar u_{n-1}\end{smallmatrix}\right)$,
+the phase difference is
+$\pi/2-(y/2)\log(x_n/(x_n-1))$. Under $x_n\ge4P$ it differs from
+$\pi/2$ by less than $1/4$. Direct inversion therefore yields
+$\|U_n\|\le3x_n^{-1/2}$ and $\|U_n^{-1}\|\le3x_n^{1/2}$.
+If $T_n$ is the exact recurrence transfer matrix, the coefficient error
+\begin{equation}\tag{SR35}
+ B_n=U_{n+1}^{-1}T_nU_n-I
+ \quad\hbox{satisfies}\quad \|B_n\|\le10^4P^3/x_n^3.
+\end{equation}
+Indeed the first row residual is divided by $a_{n+1}\ge x_n/2$, and the
+second row is exact; the displayed matrix bounds absorb the remaining factors.
+Let
+\begin{equation}\tag{SR36}
+ H_n=10^5P^3/(x_n-1)^2,\qquad x_n\ge4P,\quad H_n\le1/4.
+\end{equation}
+Then each $\|B_n\|<1/2$ and
+$2\sum_{j\ge n}\|B_j\|\le H_n$ by the integral bound for $\sum x_j^{-3}$.
+Products of $(I+B_j)^{-1}$ converge, and their deviation from identity is
+at most $e^{H_n}-1$. This constructs and bounds the exact solution with each
+prescribed limiting coefficient vector.
+
+For completeness, the limiting vector of the original polynomials follows
+from the two singular factors of (SR33):
+$(1-it)^{-\lambda+iy/2}(1+it)^{-\lambda-iy/2}$.
+At $t=i$ the analytic factor has value $2^{-\lambda+iy/2}$ and the singular
+coefficient is
+$i^{-n}n^{\lambda+iy/2-1}/\Gamma(\lambda+iy/2)$; the other endpoint is its
+conjugate. This coefficient follows directly from
+$[t^n](1-t)^{-z}=\Gamma(n+z)/(\Gamma(z)\Gamma(n+1))$ and the fixed-parameter
+Gamma ratio limit \cite{DLMFGamma}.
+Subtracting finitely many Taylor terms of each analytic factor makes the
+remaining coefficient $o(n^{\lambda-1})$: choose the subtraction order larger
+than $2\lambda+3$, and integrate the residual Fourier coefficient twice on
+the circle away from the endpoints. The subtracted endpoint terms of order
+at least one are $O(n^{\lambda-2})$. This proves the limiting vector for each
+fixed pair $(\lambda,y)$. Combining its absolute factor with (SR32) gives
+exactly $1/(2\sqrt\pi)$ in each column, with phase
+$\arg\Gamma(\lambda+iy/2)-(y/2)\log2$.
+Uniformity comes from (SR35)--(SR36), not from a fixed-parameter error term.
+In particular, with
+\[
+ g_n(y)=\frac{1}{\sqrt{\pi x_n}}
+ \cos\left(\frac{\pi n}{2}-\frac y2\log(2x_n)
+                  +\arg\Gamma(\lambda+iy/2)\right),\quad
+ E_n(y)=\frac{4(e^{H_n}-1)}{\sqrt{\pi x_n}},
+\]
+we have the finite uniform estimate
+\begin{equation}\tag{SR37}
+ |f_n-g_n|\le E_n.
+\end{equation}
+
+The original even integer $q$ has the endpoint weights
+$c_0=c_q=1$, $c_r=2$ for $0<r<q$. Define
+$\mathsf P_{q,s}(y)=\sum_{r=0}^qc_rf_{q+r}(y)^2$.
+The nonoscillatory half of $g_n^2$ equals
+$\frac1{2\pi}\sum c_r/(q+r+\lambda)$.
+The elementary trapezoid error is bounded by
+$q/[6\pi(q+\lambda)^3]$, and its integral is
+$\pi^{-1}\log((2q+\lambda)/(q+\lambda))$.
+For the oscillatory half put
+$a(x)=e^{-iy\log(2(x+\lambda))}/(x+\lambda)$.
+Exactly,
+\begin{equation}\tag{SR38}
+ \sum_{r=0}^qc_r(-1)^ra(q+r)
+ =\sum_{j=0}^{q/2-1}
+ [a(q+2j)-2a(q+2j+1)+a(q+2j+2)].
+\end{equation}
+Twice integrating $a''$ over unit intervals bounds its absolute value by
+$q(1+|y|)(2+|y|)/[2(q+\lambda)^3]$.
+Combining these finite bounds and (SR37) proves
+\begin{equation}\tag{SR39}\begin{aligned}
+ |\mathsf P_{q,s}(y)-\log2/\pi|
+ \le{}&\frac{\lambda}{\pi q}+
+ \frac{q}{6\pi(q+\lambda)^3}
+ +\frac{q(1+|y|)(2+|y|)}{4\pi(q+\lambda)^3}\\
+ &+\sum_{r=0}^qc_r\left[
+ \frac{2E_{q+r}}{\sqrt{\pi x_{q+r}}}+E_{q+r}^2\right].
+\end{aligned}\end{equation}
+For $|y|\le kb$ and $s\in\{1,k\}$ all guards (SR36) hold eventually,
+uniformly, since $P\le C_bk$ and $q\ge(k+1)^2$. The right side of (SR39) is
+\begin{equation}\tag{SR40}
+ O_b(k/q+k^3/q^2).
+\end{equation}
+This proves the entire growing-interval band assertion in the incoming note,
+including its original masses, Gamma order, coordinate and endpoint weights.
+
+\section{The combined mixed and nonlinear term}
+Use the actual logarithm
+\[
+ H_k(y)=\log\frac{m_k(y)}{\mathfrak M^k\sigma(y)},\quad
+ H_C=1_{[-kb,kb]}H_k,\quad H_O=H_k-H_C,
+ \quad F(t,r)=\BB_k[\sigma e^{tH_C+rH_O}].
+\]
+The central local-limit calculation ACW/L in the accepted provider gives
+\begin{equation}\tag{SR41}
+ H_C=-W_k+R_k,\quad \int|R_k|\dd y\le C_hk,\quad
+ \|H_C\|_\infty\le C_h(k+\log k).
+\end{equation}
+It retains the origin logarithm as $\log(|y|/k+k^{-1})$, whose integral after
+$y=kt$ is finite. Its actual complete-relation central fraction satisfies
+$\int_{-kb}^{kb}|P|^2\sigma\le\eta_{k,1}\|P\|_\sigma^2$
+for every $P\in Q_k\PP_q$, with the exponentially small original
+$\eta_{k,1}$ from the complete-root localization proof L22--35.
+Thus the trace of the entire relation band on that interval is at most
+$2(q+1)\eta_{k,1}$; no orthogonality or minimizer is changed.
+
+Differentiating the original source-minus-relation factorization (SR3) yields
+\begin{equation}\tag{SR42}
+ F_t(0,0)=\int H_C(y)
+ [\mathsf R_{q,1}(y)-\mathsf P_{q,1}(y)]\dd y
+ =\frac{\log2}{\pi}I_hk^2+e_{\rm lin}.
+\end{equation}
+To bound this derivative at finite $k$, let $\beta_{q,k}$ be the explicit
+right side of (SR39) evaluated at $s=1$, $y=kb$. Every term of that bound is
+nondecreasing in $|y|$, so this also bounds it throughout $[-kb,kb]$; there
+is no remaining optimization in this definition. Then
+\begin{equation}\tag{SR43}
+ |e_{\rm lin}|\le
+ k^2I_h\beta_{q,k}
+ +(\log2/\pi+\beta_{q,k})C_hk
+ +2(q+1)\eta_{k,1}\|H_C\|_\infty=:E_{\rm lin}.
+\end{equation}
+By (SR40), $E_{\rm lin}=O_h(k^3/q+k^5/q^2+k)+o(1)=O_h(k)$.
+Every term is a bound for an original restriction or its full preceding-relation
+Gram; this is not an absolute allocation of the native subquotients.
+
+For any fixed space $V$, if $A_V(t,r)=\Gram_V[\sigma e^{tH_C+rH_O}]$,
+the compact support of $H_C$ and the source envelopes justify two derivatives
+under each finite integral. Since $H_CH_O=0$ pointwise,
+\begin{equation}\tag{SR44}
+ \partial_t\partial_r\log\det A_V
+ =-\Tr(A_V^{-1}A_{V,C}A_V^{-1}A_{V,O}).
+\end{equation}
+The same formula holds in the fixed full relation space. It is generally
+nonzero: pointwise disjoint support does not commute through $A_V^{-1}$.
+The second central derivative is the exact projection variance
+\begin{equation}\tag{SR45}
+ \partial_t^2\log\det A_V
+ =\frac12\iint(H_C(x)-H_C(y))^2|K_V(x,y)|^2
+ \dd\nu_{t,r}(x)\dd\nu_{t,r}(y),\quad
+ \nu_{t,r}=\sigma e^{tH_C+rH_O}.
+\end{equation}
+To verify it, differentiate $\log\det A_V$ twice, obtaining
+$\Tr(A_V^{-1}A_{V,CC})-\Tr((A_V^{-1}A_{V,C})^2)$;
+write both traces in an orthonormal basis and use
+$\int|K_V(x,y)|^2\dd\nu(y)=K_V(x,x)$. These full matrix identities retain
+all cross terms. The original eight-term combination is signed.
+
+Define the actual receiver terms
+\[
+ \mathcal C_k^{\rm mixed}=\int_0^1F_{tr}(0,r)\dd r,\qquad
+ \mathcal N_k^{\rm nonlinear}=\int_0^1(1-t)F_{tt}(t,1)\dd t.
+\]
+The fundamental theorem and Taylor's integral identity give exactly
+\begin{equation}\tag{SR46}
+ \mathcal C_k^{\rm mixed}+\mathcal N_k^{\rm nonlinear}
+ =F(1,1)-F(0,1)-F_t(0,0).
+\end{equation}
+Now $F(1,1)-F(0,1)=\BB_k[m_k]-\BB_k[\omega_k]$;
+this equality uses the scalar cancellation in (SR2), not a change of endpoint.
+Substitute the already proved finite-amplitude theorem (SR5) and the newly
+proved derivative (SR42)--(SR43). The equal coefficients cancel once, giving
+\begin{equation}\tag{SR47}
+ |\mathcal C_k^{\rm mixed}+\mathcal N_k^{\rm nonlinear}|
+ \le E_{\rm cen}+E_{\rm lin}=o_h(k^2).
+\end{equation}
+In fact this is $o_h(q/\log q)$ on each fixed multiplicity stratum:
+divide its terms by $q/\log q$ and use $k^2\le q$,
+$k\log^3q/q\to0$, and $k^4\log q/q^3\to0$.
+Neither summand is separately assigned a sign or an $o(q)$ bound by this
+calculation. Equation (SR46) is the exact morphism from the path's two named
+remainders to the independently evaluated full central change.
+
+\section{Receiving formulas and scope}
+In the complete original action substitute (SR28) exactly once:
+\begin{equation}\tag{SR48}
+ J_k=\BB_k[\sigma]-dC_\Gamma q+\frac{\log2}{\pi}I_hk^2
+ +\frac{C_\Gamma q}{2(\log q+c_\zeta)}
+ +W_k^{\rm mono}-P_{k,-}-P_{k,+}+R_{h,k}.
+\end{equation}
+The full Gamma baseline and both penalties remain. This does not evaluate
+their own lower-order coefficients or the seven absolute native allocations.
+The order-$k$ comparison is exactly
+$\delta_{k,k}^{\rm ar}=\delta_{k,1}^{\rm ar}+\BB_k[\sigma]-\BB_k[w_k]$;
+no order conversion is omitted. For every invertible marked frame $\mathcal J$,
+$\det(\mathcal J^*G_N[\nu]\mathcal J)=|\det\mathcal J|^2\det G_N[\nu]$,
+so the same arithmetic--Gamma relative determinant receives (SR28) after
+its original frame factor cancels. At a singular frame parameter one first
+uses the proved regularized frame; the cancellation is not asserted for
+a zero determinant without that map.
+
+The source sign proved in the companion theta calculation sharpens the
+simple-stratum sign to $d_0>7370383/7260000>1$. For each fixed $m_0\ge2$,
+$d_0=-(4m_0-2)C_\Gamma<0$ remains. The new $q/\log q$ term is positive in
+both cases. The original projected ratios $U,V$, all complementary CPQ
+returns, and the seven absolute native quantities retain their definitions;
+no numerical value for them follows solely from this scalar determinant.
+
+\begin{thebibliography}{9}
+\bibitem{Ivic} A. Ivi\'c, \emph{On the mean square of the Riemann zeta-function
+in short intervals}, arXiv:0803.0132, version 3, Publications de l'Institut
+Math\'ematique 85(99) (2009), 1--17. The established $E(t+U)-E(t)$
+mean-square increment estimate used in the original averaged tail.
+\url{https://arxiv.org/abs/0803.0132}.
+\bibitem{KVJ} H. T. Koelink and J. Van der Jeugt,
+\emph{Bilinear generating functions for orthogonal polynomials},
+arXiv:q-alg/9704016, Proposition 2.1, equation (2.9).
+\url{https://arxiv.org/abs/q-alg/9704016}.
+\bibitem{DLMF} T. H. Koornwinder, R. Wong, R. Koekoek and R. F. Swarttouw,
+\emph{Orthogonal Polynomials}, Chapter 18 of the NIST Digital Library of
+Mathematical Functions. Equations 18.22.8 and 18.23.7 supply the classical
+Meixner--Pollaczek recurrence and generating function, with the exact
+substitution $x=y/2$, $\varphi=\pi/2$ made in (SR32)--(SR33).
+\url{https://dlmf.nist.gov/18.22.E8};
+\url{https://dlmf.nist.gov/18.23.E7}.
+\bibitem{DLMFGamma} R. A. Askey and R. Roy, \emph{Gamma Function}, Chapter 5
+of the NIST Digital Library of Mathematical Functions, equations 5.11.1 and
+5.11.13. \url{https://dlmf.nist.gov/5.11}.
+\end{thebibliography}
+\end{document}

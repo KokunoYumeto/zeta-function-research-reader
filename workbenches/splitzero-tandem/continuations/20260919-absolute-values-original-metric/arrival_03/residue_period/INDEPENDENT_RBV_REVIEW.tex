@@ -1,0 +1,495 @@
+% Independent mathematical review of RBV1--35.
+% Retains the notation and bibliography keys of RESIDUE_BOUNDARY_PROOF.tex.
+\begingroup
+\section{Independent residue--boundary verification and a sharper finite sign}
+\label{sec:RBV-independent}
+
+The scope of this derivation is RBV1--35, including the entire residue
+space, the consecutive native chart, and every complete
+conductor/native chart.  It does not assign the same witness to a
+native block obtained by deleting the conductor component in an
+arbitrary other chart. The expanded simple-root tensor calculation
+RBV31--35 is verified in the last subsection below.
+The original inputs are \texttt{02\_RESIDUE\_BOUNDARY\_VALUE.md},
+RTM1--3 and GTM1/GTM7 in \texttt{RTM\_GTM\_original\_providers.tex},
+and COB.1--14 in \texttt{COUPLED\_ORIGINAL\_CONE\_BOUNDARY.tex}.
+The calculations below independently verify all constants and maps
+used in RBV1--35. The original $7/32$ bound remains valid.
+
+\subsection{Taylor estimate, sign, and exact asymptotic}
+
+Retain $a\equiv1\pmod4$, $a\ge17$, $q=(a+1)^2$, $c=a/2$,
+$m=16a-48-v$, $0\le v\le80$, $0<\delta<1/2$ and $\gamma>2$.
+Then
+$m-1-8a=8a-49-v\ge136-129>0$, and $8a<q$.
+Thus the stated polynomial has the required degree and is nonzero.
+Let $t_0=\pi/(2\gamma)$, $r_0=t_0\delta$.
+At the original root $z=(2u-a)\delta+i(2b-a)\gamma$,
+\[
+ \cosh(t_0z)
+ =i\sin(\pi(2b-a)/2)\sinh(r_0(2u-a)).
+ \tag{RBR1}
+\]
+Both integer factors $2b-a,2u-a$ are odd.  Hence the sine has
+modulus one and the real number in the last hyperbolic sine is
+nonzero.
+Moreover $t_0|z|\le a(\pi/2)\sqrt{1+(\delta/\gamma)^2}<2a$;
+the numerical inequality follows already from
+$\pi<22/7$, $\delta/\gamma<1/4$.
+For $n=8a+1$,
+\[
+\begin{split}
+ \sum_{j\ge n}\frac{(2a)^j}{j!}
+ &\le\frac{(2a)^n e^{2a}}{n!}
+ \le e^{2a}(2ae/n)^n\\
+ &\le e^{2a}(e/4)^{8a+1}
+ =(e/4)e^{-(8\log4-10)a}
+ \le \epsilon_a .
+\end{split}                                                    \tag{RBR2}
+\]
+The even omitted tail of $P_a$ is a subset of this exponential
+tail.  The factorial bound used here follows by integrating
+$\log x$ on $[1,n]$; no parameter-dependent constant was omitted.
+
+The reflected form is Hermitian because
+$\lambda\mapsto a-\overline\lambda$ is an involution of the full
+grid.  Since $P_a$ is even with real coefficients about $c$,
+$\overline{P_a(a-\overline\lambda)}=P_a(\lambda)$.
+Conjugation also permutes the grid, so its sum of squares is real.
+Write $s_u=\sinh(r_0(2u-a))$.  The finite sums are
+\[
+\begin{split}
+ S_2:=\sum_{u=0}^a s_u^2
+ &=\frac12\left[
+ \frac{\sinh(2r_0(a+1))}{\sinh(2r_0)}-(a+1)\right],\\
+ S_1:=\sum_{u=0}^a|s_u|
+ &=\frac{\cosh(r_0(a+1))-1}{\sinh r_0}.
+\end{split}                                                    \tag{RBR3}
+\]
+For $S_2$ use $2\sinh^2x=\cosh(2x)-1$ and sum the geometric
+progression with exponents $2r_0(2u-a)$.
+For $S_1$, the positive arguments are
+$r_0,3r_0,\ldots,ar_0$ and each occurs twice in the absolute sum.
+Summing their exponentials gives
+$2\sinh^2((a+1)r_0/2)/\sinh r_0$, which is the second expression.
+
+Here is a sharper finite sign calculation.  For real $s\ne0$ and
+$|e|\le t|s|$, $0\le t\le1/2$, one has exactly
+\[
+ \sup_{|e|\le t|s|}\Re(is+e)^2=-(1-t)^2s^2 .
+ \tag{RBR4}
+\]
+To prove it write $e/s=x+iy$ with $x^2+y^2\le t^2$.
+Then
+$\Re(is+e)^2/s^2=x^2-(1+y)^2
+\le t^2-1-2y-2y^2$.
+The latter is decreasing for $y\in[-t,t]$, because its derivative
+is $-2-4y\le0$.  Its maximum is its value at $y=-t$,
+namely $-(1-t)^2$, attained by $e=-its$.
+Under the original guard $\epsilon_a\le r_0/4$ we have
+$\epsilon_a/|s_u|\le1/4$.  Applying RBR4 separately to every root
+therefore gives the optional strengthened finite endpoint
+\[
+\begin{split}
+ \mathcal W(P_a,P_a)&\le-N_a^\sharp,\\
+ N_a^\sharp
+ &=(a+1)\sum_{u=0}^a(|s_u|-\epsilon_a)^2\\
+ &=(a+1)[S_2-2\epsilon_a S_1+(a+1)\epsilon_a^2]\\
+ &\ge\frac9{16}(a+1)S_2
+ =\frac{9(a+1)}{32}
+ \left[\frac{\sinh(2r_0(a+1))}{\sinh(2r_0)}-(a+1)\right]>0 .
+\end{split}                                                    \tag{RBR5}
+\]
+In particular the simpler requested strengthening
+$\Re(is+e)^2\le-s^2/2$ also holds; its resulting coefficient in
+front of the bracket is $(a+1)/4$.  All of these imply the
+incoming conservative coefficient $7(a+1)/32$.
+
+The comparison trace is exactly $-(a+1)S_2$, and the absolute
+Taylor error is at most
+$2\epsilon_a(a+1)S_1+q\epsilon_a^2$.
+For fixed $r_0>0$, RBR3 shows its ratio to $(a+1)S_2$ tends to zero;
+the claimed looser bound
+$O_{\delta,\gamma}(a e^{-(8\log4-10+r_0)a})$ is valid.
+Expanding the numerator hyperbolic sine in $S_2$ gives precisely
+\[
+ \mathcal W(P_a,P_a)
+ =-\frac{(a+1)e^{2r_0(a+1)}}{4\sinh(2r_0)}(1+o(1)).
+ \tag{RBR6}
+\]
+
+\subsection{Original full source and its coefficient-form bound}
+
+The constants in RBV12 match RTM2 and GTM1 at the original
+multiplicity one: $B=50$, $p=7/2$, $M=B/2=25$.
+Here is a direct derivation from those original bounds.
+In the convolution of the three-factor lower bound with $a-3$
+further copies, integrate each further source variable on $[-1,1]$.
+Their sum $z$ has $|z|\le a-3$, and
+\[
+ e^{-\alpha|y-z|}\ge e^{-\alpha|y|}e^{-\alpha(a-3)},\qquad
+ 1+|y-z|\le(a-2)(1+|y|).
+\]
+This gives
+\[
+ w_h^{*a}(y)\ge
+ c_h\vartheta_h^{a-3}e^{-\alpha(a-3)}(a-2)^{-50}
+ e^{-\alpha|y|}(1+|y|)^{-50}.
+\]
+Divide by the original upper Gamma density, and use
+$(1+|y|)^{50}\le2^{25}(1+y^2)^{25}$.
+Discarding only the remaining factor $(1+|y|)^{1/2}\ge1$
+proves exactly the lower measure in RBV12 with its stated $b_a$.
+
+For the upper measure let $f(y)=e^{\alpha y}w_h(y)$.
+In its $a$-fold convolution some coordinate has
+$|y_j|\ge|y|/a$.  On that part of the integration domain,
+$f(y_j)\le C_h^{\rm tilt}a^p(1+|y|)^{-p}$.
+Integrating the other coordinates over the whole real line,
+then summing over the $a$ possible choices, gives
+$f^{*a}(y)\le C_h^{\rm tilt}a^{p+1}\mathfrak M^{a-1}
+(1+|y|)^{-p}$.
+For $y\ge0$, undo the tilt.  Evenness extends the resulting
+bound with $e^{-\alpha|y|}$ to the other half-line.
+Divide by the original lower Gamma density and use
+$p\ge1/2$.  This proves the stated $A_a$ without changing the
+full source mass.
+
+The original Gamma recurrence GTM7, with its
+Meixner--Pollaczek provenance \cite{human:dlmf18}, gives in the
+orthonormal frame a raising entry
+$\sqrt{(n+1)(n+1/2)}$ and a lowering entry
+$\sqrt{n(n-1/2)}$.
+On coefficient degree at most $D$ each shift has operator norm
+at most $D+1$.  Thus
+$\|yF\|_\sigma^2\le4(D+1)^2\|F\|_\sigma^2$.
+For $F\ne0$ integrate the tangent inequality for the convex
+function $x\mapsto(1+x)^{-25}$ against
+$|F|^2d\sigma/\|F\|_\sigma^2$.  Its second derivative is
+$25\cdot26(1+x)^{-27}>0$, so
+\[
+ \int(1+y^2)^{-25}|F|^2d\sigma
+ \ge[1+4(D+1)^2]^{-25}\|F\|_\sigma^2 .
+ \tag{RBR7}
+\]
+This scalar integration does not rescale either original form.
+At $D=2q$ it gives exactly $L_a^-$; the density upper bound gives
+$L_a^+=A_a$.  Each logarithmic source constant is fixed, the
+exponential powers have size $O_h(a)$ and the polynomial powers
+have size $O(\log q)$.  Hence
+$\log(L_a^+/L_a^-)=O_h(a+\log q)$ as claimed.
+
+\subsection{Complete relation-band concentration}
+
+Retain $Y=2^{-16}q$, $R=a\sqrt{\delta^2+\gamma^2}\le Y/4$.
+The original root factors satisfy
+$|\chi(c+iy)|\le(Y+R)^q$ on $|y|\le Y$ and
+$|\chi(c+iy)|\ge(q-R)^q$ on $[q,2q]$.
+The shifted Legendre functions
+$\sqrt{(2d+1)/q}\,L_d(2y/q-3)$, $0\le d\le q$,
+are an orthonormal basis of the entire degree-$q$ polynomial
+space on $[q,2q]$.  Their classical Rodrigues formula and norm
+have the stated NIST DLMF provenance \cite{human:dlmf18}.
+Leibniz expansion of Rodrigues' derivative gives
+\[
+ L_d(z)=2^{-d}\sum_{j=0}^d\binom dj^2
+                              (z-1)^{d-j}(z+1)^j .
+ \tag{RBR8}
+\]
+Since $|2y/q-3|<4$ centrally, each term has modulus at most
+$5^d$, and $\sum_j\binom dj^2=\binom{2d}d\le4^d$.
+This proves $|L_d|\le10^d$.
+Expansion of any complex polynomial $P(c+iy)$ of degree at most
+$q$ in that orthonormal basis, followed by Cauchy--Schwarz,
+therefore gives
+\[
+ |P(c+iy)|^2\le q^{-1}(q+1)^2 100^q
+                   \int_q^{2q}|P(c+it)|^2\,dt,\quad |y|\le Y .
+ \tag{RBR9}
+\]
+This statement quantifies arbitrary linear combinations, not
+individual relation polynomials.
+
+For $F=\chi P$, bound the central numerator using RBR9,
+$(Y+R)^{2q}$, $L_a^+$ and $\sigma(\mathbb R)=\sqrt{2\pi}$.
+Bound its full denominator below by its Gamma integral on
+$[q,2q]$, with $L_a^-$, $(q-R)^{2q}$ and
+$c_\Gamma e^{-\pi q}(1+2q)^{-1/2}$.
+Cancellation of the common integral of $|P|^2$ gives exactly
+RBV17's $\eta_a$. The zero polynomial is handled directly.
+The ratio satisfies
+\[
+ \frac{Y+R}{q-R}
+ \le\frac{(5/4)2^{-16}}{1-2^{-18}}<2^{-15}.
+ \tag{RBR10}
+\]
+Taking its $2q$-th power gives
+$-30q\log2$, hence precisely
+$c_1=30\log2-\pi-\log100>0$.
+The other displayed factors have logarithm $O_h(a+\log q)$.
+
+\subsection{Strict positivity of both original boundary forms}
+
+For the original remainder representative $P\in\mathcal P_{q-1}$,
+the entire fibre at cutoff $N$ is
+$P+\chi\mathcal P_{N-q}$.  The full minimum is
+$s_NP=P-\operatorname{Proj}_{\chi\mathcal P_{N-q}}P$.
+Thus both projection identities RBV18 and
+$G_{q-1}-G_{2q-1}=\Delta_0^*\Delta_0$,
+$G_q-G_{2q}=\Delta_1^*\Delta_1$ follow by the orthogonal
+decomposition into the nested relation subspaces. This is exactly
+the source measure and minimum in COB.3--6.
+
+Pairing the $u$ and $a-u$ root factors contributes a minus sign
+per pair. There are $q/2$ pairs, and $q/2$ is even because $a+1$
+is even. Hence the complete product on the source line is
+\[
+ \chi(c+iy)=
+ \prod_{b=0}^a\prod_{0\le u<a/2}
+ [(y-(2b-a)\gamma)^2+(2u-a)^2\delta^2]>0 .
+ \tag{RBR11}
+\]
+The strict inequality retains $\delta>0$ and the oddness of $a$.
+If $\Delta_0P=0$, its orthogonality to $\chi P$ proves
+$\int\chi(c+iy)|P(c+iy)|^2d\mu_a=0$, so $P=0$.
+For $\Delta_1P=0$, choose the scalar $b$ so that
+$F=P-b\chi$ is orthogonal to $e_0$.
+As $\chi$ is a multiple of $e_0$, $F$ is still orthogonal to
+$e_1,\ldots,e_q$. Since $\deg F\le q$,
+$\chi F$ belongs to their full span including $e_0$.
+The same strictly positive integral now proves $F=0$;
+$P=b\chi$ with $\deg P<q$ forces $P=b=0$.
+This verifies both injectivity claims without an assumed
+quantitative lower eigenvalue estimate.
+
+\subsection{Boundary energy and the relative Rayleigh bound}
+
+On the source line the original polynomial obeys
+$|P_a(c+iy)|\le e^{t_0|y|}$.
+Evenness and the exact convolution transform give
+$\|P_a\|^2\le2M_h(2t_0)^a$ and, for
+$\theta_1=(\pi/2-2t_0)/2>0$, $\theta_2=2t_0+\theta_1$,
+\[
+ \|1_{\{|y|>Y\}}P_a\|^2
+       \le2e^{-\theta_1Y}M_h(\theta_2)^a.              \tag{RBR12}
+\]
+For every unit vector $f$ in either full boundary band,
+splitting the inner product into the two original integration
+regions gives
+$|\langle f,P_a\rangle|
+\le\sqrt{\min(1,\eta_a)}\|P_a\|
++\|1_{\{|y|>Y\}}P_a\|$.
+The norm of the orthogonal projection is the supremum over
+that entire unit sphere. Squaring and applying
+$(x+y)^2\le2x^2+2y^2$ proves exactly RBV21's $B_a$, with
+no additional factor equal to the band dimension.
+
+In any stated coefficient domain with positive boundary Gram
+$G$ and reflected matrix $W$, its actual witness $z$ has
+$z^*Wz\le-N_a$ and $0<z^*Gz\le B_a$.
+For $T=G^{-1/2}WG^{-1/2}$ its Rayleigh vector is
+$G^{1/2}z$, so
+\[
+ \lambda_{\min}(T)\le
+ \frac{z^*Wz}{z^*Gz}\le-\frac{N_a}{B_a}<0,\qquad
+ \|I-T\|\ge1+\frac{N_a}{B_a}.                         \tag{RBR13}
+\]
+The sign of this division is essential and is correct in RBV22.
+One may use $N_a^\sharp$ from RBR5 instead without changing
+any map or denominator.
+For fixed actual source,
+$\log B_a\le-c_*q+O_h(a+\log q)$ with
+$c_*=\min\{c_1,2^{-16}\theta_1\}>0$,
+whereas $\log N_a=2r_0a+\log a+O_h(1)$.
+Since $a/q\to0$ this proves RBV25.
+The boundary energy is negligible relative to RBR6, and
+$2r_0=\pi\delta/\gamma$, proving the exact limit RBV23.
+
+\subsection{Every residue and conductor chart map}
+
+Write $\chi(S)=\sum_{j=0}^qc_jS^j$, $c_q=1$, and
+$p_n(S)=\sum_{j=n+1}^qc_jS^{j-n-1}$.
+For the original Vandermonde
+$V_{n,\lambda}=\lambda^n$, residues at its distinct roots show
+\[
+ [S^{-n-1}]\frac{\mathcal L\nu}{\chi}
+       =\sum_\lambda\nu_\lambda\lambda^n=(V\nu)_n .
+ \tag{RBR14}
+\]
+Also $p_n=(\chi/S^{n+1})_+$, so
+$p_n/\chi=S^{-n-1}+O(S^{-q-1})$ as a Laurent series at infinity.
+Thus the first $q$ Laurent coefficients of $p_n/\chi$ are
+exactly the column $e_n$, proving
+$F=\mathcal LV^{-1}$, $Fe_n=p_n$, and the full inverse in RBV26.
+No adjoint replaces this ordinary coefficient inverse.
+
+The original conductor moment polynomial at row $v+r$ is
+$\sum_\beta a_\beta(S'+\beta)^{v+r}$.
+Its leading nonzero coefficient is
+$\binom{v+r}{v}\mu_v(S')^r$: all higher powers have coefficients
+$\mu_0,\ldots,\mu_{v-1}=0$.
+Evaluating these polynomials at the original lower roots gives
+the consecutive minor determinant in RBV28 exactly, including
+its original Vandermonde orientation. This proves its nonvanishing.
+
+For any retained nonsingular row minor $J_I$, put
+$H_I=J_I^{-1}E_I^{\mathsf T}$ and
+$Q_I=E_{I^c}^{\mathsf T}-J_{I^c}H_I$.
+On its $I$ rows the identity
+$JH_I+E_{I^c}Q_I=I$ reads $J_IH_I=E_I^{\mathsf T}$;
+on its $I^c$ rows it is the definition of $Q_I$.
+The first $q-m=q'+v$ Laurent moments of $P_a/\chi$ vanish,
+because $\deg P_a<m$. In particular the first $v$ vanish.
+Multiplying the identity by $FP_v$ proves RBV27 exactly:
+\[
+ P_a=C_E\eta_I+L_Iz_I,\qquad
+ \eta_I=H_IP_v^{\mathsf T}F^{-1}P_a,\quad
+ z_I=Q_IP_v^{\mathsf T}F^{-1}P_a .                   \tag{RBR15}
+\]
+For the consecutive selector, the first $q'$ high moments also
+vanish, so $\eta_{I_0}=0$.
+Its native columns are $p_{v+q'},\ldots,p_{q-1}$, with distinct
+monic degrees $m-1,\ldots,0$, hence span exactly $\mathcal P_{m-1}$.
+Their coefficient inverse is precisely RBV29.
+
+For any other chart, the matrix $[J,E_{I^c}]$ is invertible:
+if $J\eta+E_{I^c}z=0$, restriction to $I$ gives
+$J_I\eta=0$, hence $\eta=0$ and then $z=0$.
+Its domain and codomain both have dimension $q-v$.
+Thus $[C_E,L_I]=FP_v[J,E_{I^c}]$ is an injection onto the
+same complete high-moment residue space.
+Its positive Gram and reflected matrix are exactly the full
+congruences in RBV30. The Rayleigh vector is
+$(\eta_I,z_I)$ from RBR15, retaining both off-diagonal blocks.
+This proves RBR13 on each complete chart.
+The native-only vector $z_I$ alone maps to
+$P_a-C_E\eta_I$; its trace and boundary energy include the
+explicit removed-conductor cross terms. Therefore this review
+makes no unproved extension of the bound to that different
+native-only restriction.
+
+\subsection{Full-unit tensor weights and the two signed pieces}
+
+For the original quartet polynomial $h$ and full unit $v_h=2\xi/h$,
+conjugation and the functional equation give
+$h(\overline s)=\overline{h(s)}$,
+$h(1-\overline s)=\overline{h(s)}$ and
+$v_h(1-\overline s)=\overline{v_h(s)}$.
+Differentiating the polynomial identity
+$h(1-s)=h(s)$ proves
+$h'(1-\overline s)=-\overline{h'(s)}$.
+At each stipulated simple root $z_{\epsilon\eta}$ both
+$v_h(z_{\epsilon\eta})$ and $h'(z_{\epsilon\eta})$ are nonzero.
+Consequently the original weights
+$w_{\epsilon\eta}=v_h(z_{\epsilon\eta})/h'(z_{\epsilon\eta})$
+obey exactly
+\[
+ w_{\epsilon,1-\eta}=\overline{w_{\epsilon\eta}},
+ \qquad
+ w_{1-\epsilon,\eta}=-\overline{w_{\epsilon\eta}} .
+ \tag{RBR16}
+\]
+There is one unchanged unit value in each weight, as in FTR.8--12,
+not its modulus or its square.
+
+Let $p(X,Y)=\sum_{\epsilon,\eta}w_{\epsilon\eta}X^\epsilon Y^\eta$,
+and $c_{u,b}=[X^uY^b]p^a$. Taking the residue at each root in
+each ordered tensor factor gives
+$\mathcal B(f,g)=\sum_{u,b}c_{u,b}
+f^{\sharp_a}(\lambda_{u,b})g(\lambda_{u,b})$.
+Indeed the exponents count the two plus choices, and multiplication
+enumerates every ordered tuple exactly once.
+Conjugation in RBR16 gives the polynomial identities
+$\overline p(X,Y)=Yp(X,Y^{-1})$ and
+$\overline p(X,Y)=-Xp(X^{-1},Y)$.
+Taking their $a$-th powers and equating coefficients yields
+\[
+ c_{u,a-b}=\overline{c_{u,b}},\qquad
+ c_{a-u,b}=(-1)^a\overline{c_{u,b}}
+                         =-\overline{c_{u,b}} .
+ \tag{RBR17}
+\]
+Thus the actual nonzero set $\mathcal D$ and zero set $\mathcal Z$
+are closed under both grid symmetries, with every possible
+interior cancellation retained.
+
+At a simple root, the cyclic residue weight is $1/\chi'(\lambda)$.
+Hence its tensor multiplier has value
+$b_{\rm ten}(\lambda_{u,b})=\chi'(\lambda_{u,b})c_{u,b}$.
+The Chinese-remainder idempotents give the explicit class
+$a_{\rm tr}=\sum_{\mathcal D}c_{u,b}^{-1}e_{u,b}$.
+Evaluating at each simple root proves
+$b_{\rm ten}a_{\rm tr}=e_{\mathcal D}\chi'$ and
+\[
+ \mathcal B(f,a_{\rm tr}g)
+   =\sum_{\mathcal D}f^{\sharp_a}(\lambda)g(\lambda),
+ \qquad
+ \mathcal W(f,g)=\mathcal B(f,a_{\rm tr}g)
+                   +\sum_{\mathcal Z}f^{\sharp_a}(\lambda)g(\lambda).
+ \tag{RBR18}
+\]
+Evaluation is an algebra isomorphism on this original simple-root
+packet, so these formulas prove the actual multiplier map.
+The underlying multiplication trace has the cited classical
+finite-algebra provenance \cite{human:stacks-trace}; the displayed
+root computation gives its full specialization.
+In particular the pairing in the first term is the form
+$\mathcal B(\,\cdot\,,a_{\rm tr}\,\cdot\,)$.
+It is not the diagonal value $\mathcal B(P_a,P_a)$ of the
+original skew-Hermitian tensor residue.
+
+For $P_a$, every term in each partial sum in RBR18 is
+$P_a(\lambda)^2$. Conjugation stability from RBR17 makes each
+partial sum real. RBR4 shows its real part is negative at
+every root. Therefore the residual on $\mathcal Z$ is zero
+when $\mathcal Z$ is empty and strictly negative otherwise;
+the tensor term on $\mathcal D$ is strictly negative.
+For its explicit finite magnitude, the edge coefficients are
+\[
+\begin{array}{ll}
+ c_{0,b}=\binom ab w_{00}^{a-b}w_{01}^{b},&
+ c_{a,b}=\binom ab w_{10}^{a-b}w_{11}^{b},\\
+ c_{u,0}=\binom au w_{00}^{a-u}w_{10}^{u},&
+ c_{u,a}=\binom au w_{01}^{a-u}w_{11}^{u}.
+\end{array}                                                     \tag{RBR19}
+\]
+All factors are nonzero. In particular $\mathcal D$ contains
+the two distinct full edges $u=0,a$, with $2(a+1)$ points.
+At each point $|s_u|=\sinh(r_0a)$. RBR4 bounds its real
+contribution by $-(\sinh(r_0a)-\epsilon_a)^2$.
+Every other point of $\mathcal D$ contributes nonpositively,
+so
+\[
+ \mathcal B(P_a,a_{\rm tr}P_a)
+ \le-2(a+1)(\sinh(r_0a)-\epsilon_a)^2<0 .
+ \tag{RBR20}
+\]
+This proves RBV35 without evaluating the interior zero set.
+Its second argument is the specific class
+$a_{\rm tr}P_a\bmod\chi$ with the full unit coefficients above;
+no membership in a selected native section is inferred.
+Transport by the already proved full-unit injection
+$\mathcal I$ gives the exact endomorphism
+$\mathcal I M_{a_{\rm tr}}\mathcal I^{-1}$ on its named
+arithmetic image. Multiplication commutes with the original
+sum action before injection, hence also after this transport.
+The proper boundary map $\Psi_2$ has its distinct original
+annihilator $\chi^{a+1}$, and its recovery composition remains
+exactly COB.12. No infinite Weil distribution or native
+minimum metric is substituted in these finite calculations.
+
+\paragraph{Source references.}
+The human orthogonal-polynomial formulas used above are cited
+through the receiving bibliography entry \texttt{human:dlmf18}.
+The relevant primary pages were inspected at
+\url{https://dlmf.nist.gov/18.5#E5},
+\url{https://dlmf.nist.gov/18.3}, and
+\url{https://dlmf.nist.gov/18.22#E8}.
+The multiplication-trace references were inspected at
+\url{https://stacks.math.columbia.edu/tag/0BVH} and
+\url{https://stacks.math.columbia.edu/tag/0BJF}.
+The source-dependent constants $c_h,C_h^{\rm tilt}$ and the two
+Gamma density constants remain those proved in RTM2; the
+derivation here carries them unchanged into the claimed full
+source and boundary estimates.
+\endgroup

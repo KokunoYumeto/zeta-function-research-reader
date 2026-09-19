@@ -1,0 +1,436 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\PF}{\operatorname{PF}}\newcommand{\dd}{\,d}
+\title{Completion of the original Montgomery--Weil finite-part identity}
+\author{Split-Zero research continuation}\date{19 September 2026}
+\begin{document}\maketitle
+\noindent The original Six Readers files are preserved unchanged. This note
+completes the scalar identity left open after
+\texttt{eq:poisson-pole-complete} in
+\texttt{proofs/B\_guinand\_weil\_montgomery\_interfaces.tex}, and in the
+Montgomery paragraph of
+\texttt{satellites/10\_literature\_foundations.tex}.
+It independently derives the new incoming note
+\texttt{03\_MONTGOMERY\_ARCHIMEDEAN\_IDENTITY.md} from the literal test and
+finite-part convention in those complete sources. The distinct false local
+Guinand--Weil residual equality is corrected in the companion derivation;
+it is not used anywhere in this proof.
+
+\section{The original parameters, transform and domain}
+Throughout retain
+\begin{equation}\tag{MA1}\begin{gathered}
+ 1<\sigma_0<2,\quad t\in\R,\quad x\ge1,\quad U=\log x,\quad
+ a=\sigma_0-\tfrac12,\\
+ F(v)=e^{-a|v-U|}e^{-it(v-U)},\quad
+ C=F(0)=x^{1/2-\sigma_0+it},\\
+ z=1-\sigma_0+it,\quad w=\sigma_0-it=1-z,\quad
+ p=\sigma_0+it,\quad A=(2\pi)^{-1}.
+\end{gathered}\end{equation}
+For every positive base, a complex power means $y^s=\exp(s\log y)$ with
+the real natural logarithm. The digamma function $\psi=\Gamma'/\Gamma$
+is meromorphic, not a chosen branch of $\log\Gamma$.
+Weil's real-place kernel and the retained finite part \cite{Weil} are
+\begin{equation}\tag{MA2}\begin{gathered}
+ K(v)=\frac{e^{|v|/2}}{|e^v-e^{-v}|},\\
+ \PF(FK)=\lim_{\Lambda\to\infty}
+ \left\{\int_\R(1-e^{-\Lambda|v|})F(v)K(v)\dd v-C\log\Lambda\right\}.
+\end{gathered}\end{equation}
+Indeed $|v|K(v)\to1/2$ and $F(v)\to C$ as $v\to0$, so the original
+subtraction $2\beta(0)\log\Lambda$ has $\beta(0)=C/2$. In particular its
+coefficient is $C$, not $2C$.
+
+The test $F$ is continuous. On the two intervals separated by $U$ its
+derivative is $(a-it)F$ and $(-a-it)F$, respectively. The average derivative
+value at the single jump is $-it$, since $F(U)=1$. These are exactly the
+first-kind jump data of Weil's test convention. For every
+$0<b<\sigma_0-1$,
+\[
+ |F(v)|+|F'(v)|\le(1+a+|t|)e^{aU}e^{-a|v|}
+ =O(e^{-(1/2+b)|v|}).
+\]
+Thus both literal conditions (A) and (B) of the recorded Weil source hold,
+including when $U=0$.
+For $1-\sigma_0<\Re s<\sigma_0$, absolute convergence permits $v=U+u$:
+\begin{equation}\tag{MA3}\begin{aligned}
+ \Phi(s)&:=\int_\R F(v)e^{(s-1/2)v}\dd v\\
+ &=x^{s-1/2}\left[
+ \int_0^\infty e^{-[a-(s-1/2-it)]u}\dd u
+ +\int_0^\infty e^{-[a+(s-1/2-it)]u}\dd u\right]\\
+ &=\frac{2a x^{s-1/2}}{a^2-(s-1/2-it)^2}.
+\end{aligned}\end{equation}
+The strip contains $s=0,1$ and the entire closed critical strip. Factoring
+the two original denominators yields
+\begin{equation}\tag{MA4}
+ \Phi(0)=-\frac{2a x^{-1/2}}{zp},\qquad
+ \Phi(1)=\frac{2a x^{1/2}}{(\sigma_0-1+it)(\sigma_0-it)}.
+\end{equation}
+There is no zero denominator on (MA1): $-1<\Re z<0$, $1<\Re w,\Re p<2$.
+
+\section{The finite part as an ordinary, convergent regularized integral}
+On $v>0$ write
+\[
+ J(v)=[F(v)+F(-v)]K(v).
+\]
+The exact kernel is $K(v)=e^{-v/2}/(1-e^{-2v})$.
+It is $1/(2v)+O(1)$ near zero, while
+$F(v)+F(-v)=2C+O(v)$ by local Lipschitz continuity, including at $U=0$.
+Consequently $J(v)=C/v+O(1)$. For $v\ge\max(1,U)$, the test has decay
+$O_{\sigma_0,t,x}(e^{-av})$ and $K(v)=O(e^{-v/2})$, giving
+$J(v)=O_{\sigma_0,t,x}(e^{-\sigma_0v})$.
+Therefore the function
+\begin{equation}\tag{MA5}
+ H(v)=J(v)-C\frac{e^{-v}}v
+\end{equation}
+is absolutely integrable on $(0,\infty)$.
+For finite $\Lambda>0$, elementary differentiation in $\Lambda$ and the
+value zero at $\Lambda=0$ prove
+\[
+ \int_0^\infty\frac{e^{-v}-e^{-(1+\Lambda)v}}v\dd v=\log(1+\Lambda).
+\]
+It follows exactly that
+\begin{equation}\tag{MA6}
+ \int_\R(1-e^{-\Lambda|v|})FK\dd v-C\log\Lambda
+ =\int_0^\infty(1-e^{-\Lambda v})H(v)\dd v
+  +C\log(1+\Lambda^{-1}).
+\end{equation}
+Dominated convergence with the proved $L^1$ function $H$ now gives
+\begin{equation}\tag{MA7}
+ \boxed{\PF(FK)=\int_0^\infty
+ \left\{[F(v)+F(-v)]K(v)-C\frac{e^{-v}}v\right\}\dd v.}
+\end{equation}
+This is an exact linear relation between the original finite-part functional
+and an ordinary regularized integral. The subtracted function and its
+constant have both been retained. The same estimates are uniform when
+$(\sigma_0,t,x)$ varies over compact subsets of the domain (MA1), so this
+functional is continuous there, including the relative endpoint $x=1$.
+
+\section{Direct integration on the two original intervals}
+The positive kernel has the geometric expansion
+\begin{equation}\tag{MA8}
+ K(v)=\sum_{m=0}^\infty e^{-(2m+1/2)v},\qquad v>0.
+\end{equation}
+For a fixed $m\ge0$ put $\lambda_m=2m+1/2$. The actual test on the two
+intervals is
+\begin{equation}\tag{MA9}\begin{aligned}
+ F(v)&=Ce^{(a-it)v}&& (0\le v\le U),\\
+ F(v)&=Cx^{2a}e^{-(a+it)v}&& (v\ge U),\\
+ F(-v)&=Ce^{-(a-it)v}&& (v\ge0).
+\end{aligned}\end{equation}
+In particular the first interval is empty when $x=1$, and remains finite
+when $m=0$ and $\Re z<0$. Direct integration gives
+\begin{equation}\tag{MA10}\begin{aligned}
+ I_m&:=\int_0^\infty[F(v)+F(-v)]e^{-\lambda_m v}\dd v\\
+ &=C\frac{1-e^{-(2m+z)U}}{2m+z}
+   +Cx^{2a}\frac{e^{-(2m+p)U}}{2m+p}
+   +\frac C{2m+w}\\
+ &=C\left(\frac1{2m+w}+\frac1{2m+z}\right)
+       -\frac{2a x^{-2m-1/2}}{(2m+z)(2m+p)}.
+\end{aligned}\end{equation}
+Here $Cx^{-(2m+z)}=Cx^{2a-(2m+p)}=x^{-2m-1/2}$ and $p-z=2a$.
+No integral of $e^{-(2m+z)v}$ over the infinite half-line was used.
+
+For finite $\Lambda>2$ all integrations and (MA8) may be exchanged in the
+regulated integral. To prove this for complex $F$, apply Tonelli to the
+absolute values: the dominating function is
+$(1-e^{-\Lambda v})(|F(v)|+|F(-v)|)K(v)$, bounded near zero and
+exponentially integrable at infinity by the estimates preceding (MA5).
+The same integration as (MA10), with every $2m$ replaced by $2m+\Lambda$,
+gives
+\begin{equation}\tag{MA11}\begin{aligned}
+ \int_\R(1-e^{-\Lambda|v|})FK\dd v
+ ={}&C\sum_{m\ge0}\left[
+ \frac1{2m+w}-\frac1{2m+w+\Lambda}
+ +\frac1{2m+z}-\frac1{2m+z+\Lambda}\right]\\
+ &-2a x^{-1/2}\sum_{m\ge0}
+ \frac{x^{-2m}}{(2m+z)(2m+p)}\\
+ &+2a x^{-1/2-\Lambda}\sum_{m\ge0}
+ \frac{x^{-2m}}{(2m+z+\Lambda)(2m+p+\Lambda)}.
+\end{aligned}\end{equation}
+Each bracketed harmonic difference is $O_{\Lambda,\sigma_0,t}(m^{-2})$;
+the two rational series are separately absolutely convergent. Thus (MA11)
+splits only convergent series, not divergent harmonic sums.
+
+\section{The exact digamma difference and its complex limit}
+Euler's locally uniformly convergent product for $1/\Gamma$, as recorded in
+DLMF 5.8.2 \cite{Gamma}, gives by local logarithmic differentiation
+\begin{equation}\tag{MA12}
+ \psi(b)-\psi(a_0)
+ =\sum_{m=0}^\infty\left(\frac1{m+a_0}-\frac1{m+b}\right),
+\end{equation}
+for $a_0,b$ away from the nonpositive integers. The differentiated differences
+converge locally uniformly since they are $O(m^{-2})$. One can first
+differentiate on the positive real half-plane and then continue meromorphically;
+this yields the same expression without imposing a logarithm branch at
+$z/2$, whose real part lies in $(-1/2,0)$.
+Applying (MA12) to (MA11) evaluates its first line exactly as
+\begin{equation}\tag{MA13}
+ \frac C2\left[
+ \psi((w+\Lambda)/2)-\psi(w/2)
+ +\psi((z+\Lambda)/2)-\psi(z/2)\right].
+\end{equation}
+
+For clarity, the limiting formula needed here follows directly from the same
+product. For real $r>0$ it gives
+$\psi(r)=\lim_{N\to\infty}[\log N-\sum_{m=0}^N(m+r)^{-1}]$.
+The decreasing-integrand sum comparison gives
+\[
+ 0\le\sum_{m=0}^N\frac1{m+r}
+      -\int_0^{N+1}\frac{du}{u+r}\le\frac1r,
+ \qquad |\psi(r)-\log r|\le\frac1r.
+\]
+For $r\ge\max(1,2|c_0|)$, (MA12) also gives
+\[
+ |\psi(r+c_0)-\psi(r)|
+ \le2|c_0|\sum_{m\ge0}(m+r)^{-2}
+ \le\frac{4|c_0|}{r}.
+\]
+Taking $r=\Lambda/2$, $c_0=s/2$ proves the complex estimate
+\begin{equation}\tag{MA14}
+ \left|\psi((\Lambda+s)/2)-\log\Lambda+\log2\right|
+ \le\frac{2+4|s|}{\Lambda},\qquad
+ \Lambda\ge\max(2,2|s|).
+\end{equation}
+Thus no passage to real parts of the complex identity is involved.
+The shifted rational series in (MA11) satisfies, for $\Lambda>2$,
+\begin{equation}\tag{MA15}
+ \left|\sum_{m\ge0}
+ \frac{x^{-2m}}{(2m+z+\Lambda)(2m+p+\Lambda)}\right|
+ \le\frac1{(\Lambda-1)^2}+\frac1{2(\Lambda-1)}.
+\end{equation}
+Indeed the real parts of the two denominator factors exceed
+$2m+\Lambda-1$, and the last bound is the sum-plus-integral bound for
+$(2u+\Lambda-1)^{-2}$. Multiplication by $x^{-\Lambda}$ makes the error
+smaller when $x>1$; (MA15) also proves its convergence to zero directly
+at $x=1$.
+
+Subtracting $C\log\Lambda$ in (MA11), then using (MA13)--(MA15), proves
+\begin{equation}\tag{MA16}\boxed{\begin{aligned}
+ \PF(FK)={}&-C\log2
+ -\frac C2[\psi(w/2)+\psi(z/2)]\\
+ &-2a x^{-1/2}\sum_{m=0}^\infty
+       \frac{x^{-2m}}{(2m+z)(2m+p)}.
+\end{aligned}}\end{equation}
+More quantitatively, for
+$\Lambda\ge\max(3,2|w|,2|z|)$ the difference between the regulated finite
+part in (MA2) and (MA16) is bounded by
+\begin{equation}\tag{MA17}
+ \frac{|C|[2+2(|w|+|z|)]}{\Lambda}
+ +2a x^{-1/2-\Lambda}
+ \left[\frac1{(\Lambda-1)^2}+\frac1{2(\Lambda-1)}\right].
+\end{equation}
+This controls the actual regulator with its original subtraction.
+For $M\ge1$, the tail of the unshifted rational series after $m=M$ satisfies
+\begin{equation}\tag{MA18}
+ \left|\sum_{m>M}\frac{x^{-2m}}{(2m+z)(2m+p)}\right|
+ \le\frac1{2M}.
+\end{equation}
+For $x>1$ it also satisfies the stronger bound
+$x^{-2M-2}/[2(M+1)^2(1-x^{-2})]$.
+To verify this, use $|2m+z|>2m-1\ge m$ and $|2m+p|>2m$ for $m\ge1$,
+then the integral or geometric bound. The separate $m=0$ term is finite
+since $z,p\ne0$.
+
+\section{Both prime orientations and the exact reflection identity}
+Let $\Lambda(n)$ be the von Mangoldt function, with $\Lambda(1)=0$.
+The two orientations are, directly from (MA9),
+\begin{equation}\tag{MA19}\begin{aligned}
+ n^{-1/2}F(\log n)
+ &=\begin{cases}
+ Cn^{\sigma_0-1-it},& n\le x,\\
+ x^{\sigma_0-1/2+it}n^{-\sigma_0-it},& n>x,
+ \end{cases}\\
+ n^{-1/2}F(-\log n)&=Cn^{-w}.
+\end{aligned}\end{equation}
+At $n=x$ the two displayed positive-orientation expressions both equal
+$n^{-1/2}$. Thus the split does not create a jump or a half-weight at
+a prime power. At $x=1$ the first sum contains only $n=1$ and is zero.
+Absolute convergence of the infinite prime sums follows from
+$0\le\Lambda(n)\le\log n$ and $\sigma_0>1$.
+
+For completeness, the Euler product for $\zeta(s)$ on $\Re s>1$
+\cite{Zeta} is nonzero and has the locally absolutely convergent logarithm
+$\sum_{\ell\ \mathrm{prime}}\sum_{r\ge1}\ell^{-rs}/r$.
+Absolute convergence follows from
+$\sum_\ell\sum_{r\ge1}\ell^{-r\sigma_0}/r<\infty$;
+local termwise differentiation is permitted by the corresponding convergent
+$\log n\,n^{-\sigma_0}$ bound. Unique prime-power factorization therefore
+gives the exact signs
+\begin{equation}\tag{MA20}
+ P_-:=\sum_{n\ge1}\Lambda(n)n^{-1/2}F(-\log n)
+ =C\sum_{n\ge1}\Lambda(n)n^{-w}
+ =-C\frac{\zeta'(w)}{\zeta(w)},\qquad
+ -P_-=+C\frac{\zeta'(w)}{\zeta(w)}.
+\end{equation}
+For example, for any integer $N$ beyond $e^{1/\sigma_0}$, the absolute tail
+of the Dirichlet sum after $N$ is at most
+\[
+ \int_N^\infty(\log u)u^{-\sigma_0}\dd u
+ =N^{1-\sigma_0}\left[\frac{\log N}{\sigma_0-1}
+                       +\frac1{(\sigma_0-1)^2}\right].
+\]
+Its outside factor $|C|$ is retained for $P_-$.
+
+Put $\mathscr L(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s)$.
+The exact zeta functional equation is $\mathscr L(s)=\mathscr L(1-s)$,
+equivalently the $\xi$ reflection with its $s(s-1)/2$ factor
+\cite{Zeta}. At $w$ the Euler product and the nonvanishing Gamma factor
+give $\mathscr L(w)\ne0$. At $z=1-w$, which has $-1<\Re z<0$,
+$\Gamma(z/2)$ is finite and nonzero, so reflection also proves
+$\zeta(z)\ne0$. Thus every logarithmic derivative below exists.
+Differentiating the equality as a meromorphic equality and dividing by its
+nonzero value gives
+\begin{equation}\tag{MA21}\begin{aligned}
+ -\tfrac12\log\pi+\tfrac12\psi(z/2)+\frac{\zeta'(z)}{\zeta(z)}
+ &=-\left[-\tfrac12\log\pi+\tfrac12\psi(w/2)
+                           +\frac{\zeta'(w)}{\zeta(w)}\right],\\
+ \frac{\zeta'(w)}{\zeta(w)}-\log\pi
+ +\tfrac12[\psi(w/2)+\psi(z/2)]
+ &=-\frac{\zeta'(z)}{\zeta(z)}.
+\end{aligned}\end{equation}
+This derivation uses ratios, not an unproved global logarithm branch.
+
+\section{Pole cancellation and the completed identity}
+Substitute (MA16) and (MA20) into the literal residual expression. Its
+constant is $\log A=-\log(2\pi)$, so $-\log(2\pi)+\log2=-\log\pi$.
+Using (MA21) only after that cancellation yields
+\begin{equation}\tag{MA22}\begin{aligned}
+ &\Phi(0)+C\log A-\PF(FK)-P_-\\
+ &=\Phi(0)+C\left\{\frac{\zeta'(w)}{\zeta(w)}-\log\pi
+              +\frac{\psi(w/2)+\psi(z/2)}2\right\}
+       +2a x^{-1/2}\sum_{m\ge0}\frac{x^{-2m}}{(2m+z)(2m+p)}\\
+ &=-C\frac{\zeta'(z)}{\zeta(z)}
+   +\underbrace{\Phi(0)+\frac{2a x^{-1/2}}{zp}}_{=0\text{ by (MA4)}}
+   +2a x^{-1/2}\sum_{m\ge1}\frac{x^{-2m}}{(2m+z)(2m+p)}.
+\end{aligned}\end{equation}
+The two denominator presentations are exactly related by
+\[
+ 2m+z=-(\sigma_0-1-it-2m),\qquad 2m+p=\sigma_0+it+2m.
+\]
+Therefore (MA22) is precisely the required complete scalar identity
+\begin{theorem}
+For every original parameter tuple (MA1), with the literal finite part
+(MA2), all the terms below exist and
+\begin{equation}\tag{MA23}\begin{aligned}
+ &\Phi(0)+C\log((2\pi)^{-1})-\PF(FK)
+   -\sum_{n\ge1}\Lambda(n)n^{-1/2}F(-\log n)\\
+ &\quad=-C\frac{\zeta'(1-\sigma_0+it)}{\zeta(1-\sigma_0+it)}
+ -x^{-1/2}\sum_{m\ge1}
+ \frac{(2\sigma_0-1)x^{-2m}}
+      {(\sigma_0-1-it-2m)(\sigma_0+it+2m)}.
+\end{aligned}\end{equation}
+\end{theorem}
+The proof has not used a zero sum, a zero-location hypothesis, or the
+incorrect printed Guinand--Weil residual equality.
+
+\section{The endpoint and the receiving Montgomery formula}
+At $x=1$, the actual test is $F(v)=e^{-a|v|}e^{-itv}$ and $C=1$.
+The direct two-interval integration was already valid with $U=0$.
+Independently, (MA12) and $p-z=2a$ give
+\[
+ 2a\sum_{m\ge0}\frac1{(2m+z)(2m+p)}
+ =\sum_{m\ge0}\left(\frac1{2m+z}-\frac1{2m+p}\right)
+ =\tfrac12[\psi(p/2)-\psi(z/2)].
+\]
+Substitution in (MA16) proves the endpoint value
+\begin{equation}\tag{MA24}
+ \boxed{\PF(FK)=-\log2-\tfrac12
+ [\psi((\sigma_0-it)/2)+\psi((\sigma_0+it)/2)]\quad(x=1).}
+\end{equation}
+All series converge directly at this endpoint by (MA18); no omitted
+limiting or prime-power convention is required.
+
+We now receive the established identity into the recorded original Weil
+formula, with its symmetric zero cutoff. Its rational trivial-character
+specialization is \cite[formula (11)]{Weil}
+\begin{equation}\tag{MA25}
+ \lim_{T\to\infty}\sum_{|\Im\rho|<T}\Phi(\rho)
+ =\Phi(0)+\Phi(1)+C\log A-P_+-P_--\PF(FK),
+\end{equation}
+where $P_+$ is the positive-orientation sum from (MA19) and all nontrivial
+zeros are counted with multiplicity. We use this classical explicit formula
+at its original test domain, whose hypotheses were verified after (MA2).
+The full source provides its literal normalization and the two prime orientations.
+Substitution of the independently proved (MA23) gives the zero-side formula
+without changing any zero coordinate.
+
+On the real-ordinate domain used in Montgomery's 1973 paper, namely RH,
+$\rho=1/2+i\gamma$ with $\gamma\in\R$ and
+\[
+ \Phi(\rho)=\frac{(2\sigma_0-1)x^{i\gamma}}
+ { (\sigma_0-1/2)^2+(t-\gamma)^2}.
+\]
+Equations (MA4), (MA19), (MA23) and (MA25) therefore produce exactly
+\begin{equation}\tag{MA26}\begin{aligned}
+ &(2\sigma_0-1)\sum_\gamma
+ \frac{x^{i\gamma}}{(\sigma_0-1/2)^2+(t-\gamma)^2}\\
+ &=-x^{-1/2}\left[
+ \sum_{n\le x}\Lambda(n)(x/n)^{1-\sigma_0+it}
+ +\sum_{n>x}\Lambda(n)(x/n)^{\sigma_0+it}\right]\\
+ &\quad-C\frac{\zeta'(1-\sigma_0+it)}{\zeta(1-\sigma_0+it)}
+ +\frac{x^{1/2}(2\sigma_0-1)}{(\sigma_0-1+it)(\sigma_0-it)}\\
+ &\quad-x^{-1/2}\sum_{m\ge1}
+ \frac{(2\sigma_0-1)x^{-2m}}
+ {(\sigma_0-1-it-2m)(\sigma_0+it+2m)}.
+\end{aligned}\end{equation}
+This is Montgomery's complete retained equation \cite[pp.~185--187]{Montgomery}.
+The sum means at least the original symmetric cutoff in (MA25); its
+convergence is supplied by that cited theorem. No later real-ordinate estimate
+is declared valid for a complex ordinate by this receiving calculation.
+The scalar (MA23) itself is unconditional on (MA1); the RH qualification in
+(MA26) belongs only to the original choice of real zero coordinates.
+
+\section{Exact backward replacement}
+In the complete Original Six Readers provider, the proved transform,
+prime-range and pole formulas remain as printed. Replace the status sentence
+``The remaining gamma/trivial-zero commutator is not claimed proved'' and
+the concluding paragraph beginning ``Still to be proved is'' in
+\texttt{proofs/B\_guinand\_weil\_montgomery\_interfaces.tex} by (MA23),
+with the proof (MA5)--(MA24). In
+\texttt{satellites/10\_literature\_foundations.tex}, replace the paragraph
+beginning ``What is still open is one explicit commutator'' by the same
+completed identity and its exact parameter domain. These are successor
+replacement instructions; no archived source bytes are changed here.
+
+The separate local labels \texttt{eq:guinand-weil-arch-map} and
+\texttt{eq:guinand-weil-residual-complete} need the nonzero correction proved
+in the companion note, not (MA23) with a discarded term. On its explicit
+common test subspace the exact additional functional is
+\[
+ \mathcal D(f)=\int_0^\infty f(v)
+       [2e^{-v/2}-\operatorname{sech}(v/2)]\dd v.
+\]
+The original right side must receive $+\mathcal D(f)$. In particular this
+change must be propagated to the asserted local subtraction proof and its
+status records; it is not a correction to Guinand's published theorem.
+The companion proves the exact test-space inclusion with decay exponent
+strictly greater than $1/2$, all jump terms, and a nonzero admissible example.
+
+\begin{thebibliography}{9}
+\bibitem{Gamma} R. A. Askey and R. Roy, \emph{Gamma Function}, NIST Digital
+Library of Mathematical Functions, Chapter 5, equation 5.8.2 (Euler product)
+and \S5.9(ii) (digamma differences).
+\url{https://dlmf.nist.gov/5.8.E2}; \url{https://dlmf.nist.gov/5.9}.
+The required difference and its complex large-argument limit are proved
+directly in (MA12)--(MA14).
+\bibitem{Zeta} T. M. Apostol, \emph{Zeta and Related Functions}, NIST DLMF,
+Chapter 25, \S25.2(iv) (Euler product), equations 25.4.3--4 (completed
+reflection and the exact $\xi$ convention).
+\url{https://dlmf.nist.gov/25.2}; \url{https://dlmf.nist.gov/25.4}.
+\bibitem{Weil} A. Weil, \emph{Sur les formules explicites de la th\'eorie
+des nombres premiers}, Communications du S\'eminaire Math\'ematique de
+l'Universit\'e de Lund, supplementary volume dedicated to Marcel Riesz
+(1952), 252--265; reprinted in \emph{Collected Papers}, vol.~II,
+Springer, 1979, 48--61, conditions (A),(B), finite part and formula (11),
+52--58. The complete original Six Readers provider records these exact
+conventions rather than substituting another finite part.
+\bibitem{Montgomery} H. L. Montgomery, \emph{The pair correlation of zeros
+of the zeta function}, Analytic Number Theory (St.~Louis, 1972),
+Proceedings of Symposia in Pure Mathematics 24, American Mathematical
+Society (1973), 181--193, equations (18)--(22).
+\url{https://doi.org/10.1090/PSPUM/024/9944}; author's primary paper:
+\url{https://websites.umich.edu/~hlm/paircor1.pdf}.
+\end{thebibliography}
+\end{document}

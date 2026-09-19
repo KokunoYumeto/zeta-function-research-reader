@@ -1,0 +1,317 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref}
+\geometry{margin=1in}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Complete finite root comparison for O32}
+\author{}
+\date{19 September 2026}
+\maketitle
+
+\paragraph{Scope and sources.}
+This calculation supplies the full polynomial quadratic-form comparison
+used between O32 and the reference-power reduction in O31 of
+\texttt{Signed\_Arithmetic\_Value\_20260918/proof/OUTER\_VALUE.md}.
+It uses the original Gamma mass and lower bound RTM1--2 in that packet's
+\texttt{sources/RTM\_GTM\_original\_providers.tex}.
+The Legendre normalization and recurrence are the classical ones recorded
+in NIST DLMF, Table 18.3.1 and Section 18.9; their use and the resulting
+finite extrapolation inequality are detailed below.
+This note establishes the root-comparison step. It makes no assertion
+that the separate reference-ensemble free-energy calculation has thereby
+been proved.
+
+\paragraph{Original objects and finite range.}
+Retain the original fixed multiplicity $m\geq1$, actual quartet parameters
+$0<\delta<1/2$, $\gamma>2$, and original orders $k\equiv1\pmod4$.
+Write
+\[
+ r_h=\sqrt{\delta^2+\gamma^2},\qquad
+ e=1+k(m-1),\qquad q=e(k+1)^2,\qquad R=kr_h,\qquad
+ c=2^{-16},\qquad Y=cq.
+\]
+The original real even monic polynomial is
+$Q(y)=i^{-q}\chi_k(k/2+iy)$, of exact degree $q$, with every
+repetition retained and every root of modulus at most $R$.
+In particular there are exactly $q/2$ opposite-root pairs.
+Set
+\[
+ \sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\quad
+ c_\Gamma=\sqrt2 e^{-7/6},\quad M_\Gamma=\sqrt{2\pi},\quad
+ B=\frac54\,2^{-28}.
+\]
+The exact mass and original lower bound are
+\[
+ \int_{\mathbb R}\sigma(y)\,dy=M_\Gamma,\qquad
+ \sigma(y)\geq c_\Gamma e^{-\pi|y|/2}(1+|y|)^{-1/2}.
+ \tag{RC1}
+\]
+For the explicit estimates below use the finite guard
+\[
+ q\geq2^{16},\qquad R\leq Y/4,\qquad
+ \frac{R^2}{q^{7/4}}\leq B.                         \tag{RC2}
+\]
+This guard is attained on every original fixed packet; it is not an
+extra asymptotic assumption. Indeed $q\geq(k+1)^2\geq k^2$, so
+\[
+ \frac RY\leq\frac{r_h}{ck},\qquad
+ \frac{R^2}{q^{7/4}}\leq r_h^2 k^{-3/2}.
+\]
+Thus (RC2) follows from the completely explicit sufficient condition
+\[
+ k\geq
+ \max\left\{256,\ 2^{18}r_h,\
+                 (r_h^2/B)^{2/3}\right\},
+ \qquad k\equiv1\pmod4.                           \tag{RC3}
+\]
+Any earlier finite guards imposed on the original packet remain in force.
+The enlargement here only makes the cofinal range explicit.
+
+\paragraph{Both full forms.}
+For every real $t\in[-1/8,1/8]$ and every complex polynomial
+$P\in\mathcal P_q$, define
+\[
+ A_t(P)=\int_{\mathbb R}|P(y)|^2|Q(y)|^2
+                    (1+y^2)^{qt}\sigma(y)\,dy,\qquad
+ B_t(P)=\int_{\mathbb R}|P(y)|^2|y|^{2q(1+t)}
+                    \sigma(y)\,dy.               \tag{RC4}
+\]
+All integrals converge, and both forms are positive definite.
+The compared linear map is the identity
+$\mathcal P_q\longrightarrow\mathcal P_q$ in the original $y$ coordinate;
+in the relation space it is the exact map
+$P\mapsto QP$, with every coefficient and root of $Q$ retained.
+The nonintegral reference power occurs only in the comparison metric.
+No relation polynomial is replaced in the original form.
+
+\begin{lemma}[Exterior comparison]
+Define
+\[
+ H_{q,h}=\frac{qR^2}{Y^2-R^2}
+                 +\frac q8\log(1+Y^{-2}).         \tag{RC5}
+\]
+For $|y|\geq Y$ and $|t|\leq1/8$ the quotient of the original weight
+in $A_t$ by the reference weight in $B_t$ belongs to
+$[e^{-H_{q,h}},e^{H_{q,h}}]$.
+Moreover
+\[
+ H_{q,h}\leq
+ c^{-2}\left(\frac{16}{15}r_h^2+\frac1{8q}\right).
+ \tag{RC6}
+\]
+\end{lemma}
+\begin{proof}
+Write $Q(y)=\prod_{j=1}^{q/2}(y^2-z_j^2)$, where
+$|z_j|\leq R$. For $|w|<1$ the absolutely convergent power series for
+$\log(1-w)$ gives
+$|\log|1-w||\leq |w|/(1-|w|)$.
+Consequently
+\[
+ \left|\log\frac{|Q(y)|^2}{|y|^{2q}}\right|
+ \leq 2\sum_{j=1}^{q/2}
+       \frac{|z_j|^2}{y^2-|z_j|^2}
+ \leq\frac{qR^2}{y^2-R^2}.
+\]
+The logarithm contributed by the other factor is exactly
+$qt\log(1+y^{-2})$.
+This proves (RC5) on each exterior half-line.
+Since $R/Y\leq1/4$, $R^2/q\leq r_h^2$, and
+$\log(1+Y^{-2})\leq Y^{-2}$, (RC6) follows.
+\end{proof}
+
+\begin{lemma}[Uniform weight bound on the retained inner interval]
+For $|y|\leq Y$ and $|t|\leq1/8$,
+\[
+ |Q(y)|^2(1+y^2)^{qt}
+       \leq B^q q^{2q(1+t)},\qquad
+ |y|^{2q(1+t)}
+       \leq B^q q^{2q(1+t)}.                     \tag{RC7}
+\]
+\end{lemma}
+\begin{proof}
+Opposite-root pairing gives $|Q(y)|^2\leq(y^2+R^2)^q$.
+For $u=y^2$, the derivative of
+$\log[(u+R^2)(1+u)^t]$ has the sign of
+$(1+t)u+1+tR^2$. Its slope is strictly positive.
+Thus its maximum on $[0,Y^2]$ occurs at an endpoint, for every allowed
+$t$; any interior stationary point is a minimum.
+At $u=0$, division by $q^{2(1+t)}$ gives at most
+$R^2/q^{7/4}\leq B$.
+At $u=Y^2$, the quotient equals
+\[
+ \frac{Y^2+R^2}{q^2}
+              \left(\frac{1+Y^2}{q^2}\right)^t .
+\]
+Here $(1+Y^2)/q^2=q^{-2}+c^2<1$ by (RC2), so this expression is largest
+at $t=-1/8$. Since $1+Y^2\geq Y^2$ and $R^2/Y^2\leq1/16$, its value is
+at most $(17/16)c^{7/4}\leq(5/4)2^{-28}=B$.
+Raising the two endpoint bounds to the $q$th power proves the first
+claim. The reference bound follows from
+$c^{2(1+t)}\leq c^{7/4}<B$.
+\end{proof}
+
+\begin{lemma}[Complete shifted-Legendre extrapolation]
+Every $P\in\mathcal P_q$ and every $|y|\leq Y$ satisfy
+\[
+ |P(y)|^2\leq\frac{(q+1)^2}{q}\,100^q
+                    \int_q^{2q}|P(u)|^2\,du.     \tag{RC8}
+\]
+\end{lemma}
+\begin{proof}
+Use the classical Legendre polynomials
+$L_j(x)=(2^j j!)^{-1}(d/dx)^j(x^2-1)^j$.
+Integration by parts $j$ times proves orthogonality to every polynomial
+of degree below $j$, because $(x^2-1)^j$ has zeros of order $j$ at both
+endpoints.
+Their leading coefficient is $(2j)!/[2^j(j!)^2]$.
+Applying the same integration by parts with $L_j$ itself gives
+\[
+ \int_{-1}^1L_j(x)^2\,dx
+ =\frac{(2j)!}{2^{2j}(j!)^2}
+                 \int_{-1}^1(1-x^2)^j\,dx
+ =\frac2{2j+1};
+\]
+the middle integral is
+$2^{2j+1}(j!)^2/(2j+1)!$, obtained by a beta integral or
+successive integration by parts.
+These are the normalizations in DLMF Table 18.3.1
+\cite{DLMF183}.
+Their recurrence
+$(j+1)L_{j+1}=(2j+1)xL_j-jL_{j-1}$
+(DLMF Section 18.9 \cite{DLMF189}) also follows directly by matching
+the leading coefficient and using the just-proved orthogonality:
+$xL_j$ has only $L_{j+1}$ and $L_{j-1}$ components by parity and
+orthogonality, and their coefficients are
+$(j+1)/(2j+1)$ and $j/(2j+1)$.
+For $|x|\leq4$ it proves $|L_j(x)|\leq10^j$ by induction:
+$L_0=1$, $|L_1|\leq4$, and the next value is at most
+$8\,10^j+10^{j-1}\leq10^{j+1}$.
+The functions
+\[
+ \ell_j(u)=\sqrt{\frac{2j+1}{q}}\,L_j(2u/q-3),
+ \qquad 0\leq j\leq q,
+\]
+are therefore a complete orthonormal basis for $\mathcal P_q$ on
+$[q,2q]$. If $|y|\leq Y$, then $|2y/q-3|<4$.
+Expanding $P$ in that entire basis and applying Cauchy--Schwarz gives
+\[
+ |P(y)|^2\leq
+ \left(\int_q^{2q}|P(u)|^2du\right)
+ \frac1q\sum_{j=0}^q(2j+1)100^j.
+\]
+Finally the sum is at most $100^q(q+1)^2$.
+All polynomial directions, including the endpoint degree $q$, were
+included in this calculation.
+\end{proof}
+
+\paragraph{The two inner integrals, with their original mass.}
+For nonzero $P$ the original Gamma lower bound on $[q,2q]$ gives
+\[
+ B_t(P)\geq
+ \frac{c_\Gamma e^{-\pi q}}{\sqrt{1+2q}}\,
+ q^{2q(1+t)}\int_q^{2q}|P(u)|^2\,du.              \tag{RC9}
+\]
+Here $2q(1+t)>0$, so its power has its minimum at $u=q$.
+Combining (RC7)--(RC9) with the entire mass $M_\Gamma$ proves
+\[
+ \begin{split}
+ \int_{-Y}^Y|P(y)|^2|Q(y)|^2(1+y^2)^{qt}\sigma(y)dy
+       &\leq\varepsilon_q B_t(P),\\
+ \int_{-Y}^Y|P(y)|^2|y|^{2q(1+t)}\sigma(y)dy
+       &\leq\varepsilon_q B_t(P),
+ \end{split}                                    \tag{RC10}
+\]
+where the same completely explicit number works for both:
+\[
+ \varepsilon_q=
+ \frac{\sqrt{2\pi}}{c_\Gamma}
+ \frac{(q+1)^2\sqrt{1+2q}}{q}
+          \left(100e^\pi B\right)^q.             \tag{RC11}
+\]
+In particular $100e^\pi B<1/16$ and
+$\sqrt{2\pi}/c_\Gamma<6$, so, for $q\geq1$,
+$\varepsilon_q\leq42q^2 16^{-q}$.
+This is less than $1/2$ throughout (RC2).
+Thus both inner intervals have been quantitatively retained.
+
+\begin{theorem}[Finite forms and full determinant return]
+Throughout (RC2), uniformly in $|t|\leq1/8$ and
+$P\in\mathcal P_q$,
+\[
+ e^{-H_{q,h}}(1-\varepsilon_q)B_t(P)
+ \leq A_t(P)\leq(e^{H_{q,h}}+\varepsilon_q)B_t(P).
+ \tag{RC12}
+\]
+For every fixed linearly independent frame $P_1,\ldots,P_n$
+in $\mathcal P_q$, the two full Gram matrices satisfy
+\[
+ \left|\log
+ \frac{\det\operatorname{Gram}_{A_t}(P_1,\ldots,P_n)}
+      {\det\operatorname{Gram}_{B_t}(P_1,\ldots,P_n)}
+ \right|
+ \leq n\{H_{q,h}-\log(1-\varepsilon_q)\}.
+ \tag{RC13}
+\]
+In particular this is $O_h(q)$ for the original frames
+$1,y,\ldots,y^{n-1}$ with $n=q$ and $n=q+1$.
+\end{theorem}
+\begin{proof}
+On the union of the two exterior half-lines use the pointwise bounds
+(RC5). For the lower bound, discard only the nonnegative original inner
+integral and retain the estimate
+$B_t(\{|y|\geq Y\})\geq(1-\varepsilon_q)B_t(P)$.
+For the upper bound, add the first inequality of (RC10) to the exterior
+upper bound. This proves (RC12), without changing either full norm.
+
+Since (RC12) holds for every linear combination of the frame, it is a
+Loewner comparison of the complete Gram matrices, including all cross
+blocks. Conjugate by the positive inverse square root of the reference
+Gram. Every eigenvalue of the resulting positive matrix lies in the
+interval from (RC12); their product is the displayed determinant ratio.
+The lower endpoint has logarithm
+$-H_{q,h}+\log(1-\varepsilon_q)$.
+The upper logarithm is
+$H_{q,h}+\log(1+\varepsilon_q e^{-H_{q,h}})$, which is at most
+$H_{q,h}-\log(1-\varepsilon_q)$.
+This proves (RC13).
+The bound (RC6) and exponentially decreasing (RC11) give the claimed
+uniform $O_h(q)$, with its finite constant and domain displayed.
+\end{proof}
+
+\paragraph{Exact consequence for O30--O31.}
+Let $D^{\rm ref}_{k,n}(t)$ denote the full Gram determinant on
+$1,y,\ldots,y^{n-1}$ for the second weight in (RC4), and put
+\[
+ F^{\rm ref}_{k,n}(t)=q^{-2}
+  \{\log D^{\rm ref}_{k,n}(t)-\log D^{\rm ref}_{k,n}(0)
+                                   -2qnt\log q\}.
+\]
+The determinant denoted $D_{k,n}(t)$ in O30 is exactly the
+$A_t$ determinant, because its columns are $QP_j$ in the original
+weighted Gamma norm.
+Applying (RC13) twice, at $t$ and at $0$, proves
+\[
+ |F_{k,n}(t)-F^{\rm ref}_{k,n}(t)|
+ \leq\frac{2n}{q^2}
+          \{H_{q,h}-\log(1-\varepsilon_q)\}
+ =O_h(q^{-1}).                                  \tag{RC14}
+\]
+This uniform finite bound proves precisely the root-comparison
+reduction required in O31, including its $q^2$ scaling.
+The zero-endpoint sentence in O32 is valid on a cofinal range, but the
+finite guard $R^2/q^{7/4}\leq B$ must be stated to use the displayed
+uniform endpoint constant. The $Y$-endpoint constant
+$[(5/4)2^{-28}]^q$ is valid, as proved above.
+
+\begin{thebibliography}{9}
+\bibitem{DLMF183}
+NIST Digital Library of Mathematical Functions, Table 18.3.1,
+\textit{Orthogonality properties for classical orthogonal polynomials},
+\url{https://dlmf.nist.gov/18.3#T1}; consulted 19 September 2026.
+\bibitem{DLMF189}
+NIST Digital Library of Mathematical Functions, Section 18.9(i),
+\textit{Recurrence relations},
+\url{https://dlmf.nist.gov/18.9#i}; consulted 19 September 2026.
+\end{thebibliography}
+\end{document}

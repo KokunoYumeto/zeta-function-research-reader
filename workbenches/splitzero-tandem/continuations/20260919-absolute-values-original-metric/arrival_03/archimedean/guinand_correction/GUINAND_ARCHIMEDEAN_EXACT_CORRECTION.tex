@@ -1,0 +1,498 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PF}{\operatorname{PF}}
+\newcommand{\sech}{\operatorname{sech}}
+\renewcommand{\theequation}{GC\arabic{equation}}
+\title{An exact correction of the printed Guinand--Weil archimedean comparison}
+\author{}
+\date{19 September 2026}
+\begin{document}
+\maketitle
+
+This note concerns the equation labelled
+\texttt{eq:guinand-weil-arch-map} and its expanded version
+\texttt{eq:guinand-weil-residual-complete} in the programme's
+\emph{Original Six Readers}.  The local equations, cosine convention and
+finite-part subtraction are retained literally.  The result is a direct
+calculation of their exact difference, with no use of RH or of a zero sum.
+The incoming note \emph{Exact correction to the archived Guinand--Weil
+comparison}, 19 September 2026, identified this difference.  Here every
+interchange and endpoint is proved, the test-domain assertion is corrected,
+and the entire exponential family is evaluated.  The result corrects the
+local transcription/comparison; it makes no assertion against Guinand's
+published theorem \cite{guinand1948} or Weil's published formula
+\cite{weil1952}.
+
+\section{The original functions and the exact domain inclusion}
+
+For $c>0$, define $\mathcal D_c$ to consist of complex continuous functions
+$f:[0,\infty)\to\C$ with a finite partition
+$0=a_0<a_1<\cdots<a_m<\infty$ such that $f$ is $C^2$ on each open piece,
+$f''$ is absolutely integrable on every piece, and $f'$ has finite
+one-sided values at the finite endpoints.  On the final unbounded piece
+require
+\begin{equation}
+ |f(x)|+|f'(x)|+|f''(x)|\le C_f e^{-cx}
+ \quad (x\ge X_f).
+ \label{gc:decay}
+\end{equation}
+At a derivative jump use its two one-sided values, and use their average
+as its assigned representative.  This representative does not change an
+integral.  Put
+\begin{equation}
+ \mathcal D_0^{\exp}=\bigcup_{c>0}\mathcal D_c,
+ \qquad \mathcal D_W^{\exp}=\bigcup_{c>1/2}\mathcal D_c.
+ \label{gc:domains}
+\end{equation}
+These are vector spaces: for addition take the common refinement of the
+two finite partitions and the smaller of the two decay exponents.
+
+The original definitions are
+\begin{align}
+ g_f(t)&=\sqrt{\frac2\pi}\int_0^\infty f(x)\cos(tx)\,dx,
+ &&t\ge0,\label{gc:cosine}\\
+ 2H_f&=\int_0^\infty f(x)
+       \left(\frac1x-\frac{e^{-x/2}}{\sinh x}\right)dx,
+ \label{gc:H}\\
+ K(x)&=\frac{e^{|x|/2}}{|e^x-e^{-x}|},\qquad x\ne0,
+ \label{gc:K}\\
+ P_f&=\lim_{\Lambda\to\infty}
+ \left\{\int_\R(1-e^{-\Lambda|x|})f(|x|)K(x)\,dx
+              -f(0)\log\Lambda\right\},
+ \label{gc:PF}\\
+ \mathscr L_f&=\sqrt{\frac2\pi}\int_0^\infty
+             g_f(t)\log\frac{t}{2\pi}\,dt,
+ \label{gc:L}\\
+ W_f&=2\int_0^\infty f(x)e^{-x/2}\,dx-P_f-f(0)\log(2\pi).
+ \label{gc:W}
+\end{align}
+In \eqref{gc:PF}, $|x|f(|x|)K(x)\to f(0)/2$, so the original
+Weil subtraction $2\beta(0)\log\Lambda$ is exactly
+$f(0)\log\Lambda$; this factor is not adjusted.
+The archived equality was $W_f=2H_f+\mathscr L_f$.
+
+\begin{proposition}[Exact inclusion in the recorded common domain]
+For every $f\in\mathcal D_W^{\exp}$ and $1<p\le2$, the function $f$
+satisfies the Guinand test conditions recorded in the source:
+it is an indefinite integral of its locally integrable derivative,
+$f(x)\to0$, and $xf'(x)\in L^p(0,\infty)$.
+The map
+\begin{equation}
+ E:\mathcal D_W^{\exp}\longrightarrow
+       \mathcal W_{\rm even}^{G,p},\qquad
+ E(f)(x)=\frac{f(|x|)}{\sqrt{2\pi}},
+ \qquad f(t)=\sqrt{2\pi}\,E(f)(t)\ (t\ge0)
+ \label{gc:E}
+\end{equation}
+is an injective linear map into the recorded Guinand--Weil common test
+space, and the displayed restriction is its inverse on its image.
+Moreover
+\begin{equation}
+ \int_\R E(f)(x)e^{itx}\,dx=g_f(t),\qquad
+ T^{1/2}f(T)\longrightarrow0.
+ \label{gc:transform-map}
+\end{equation}
+\end{proposition}
+\begin{proof}
+The integrability of $f''$ and finite derivative traces make $f'$ bounded
+on each bounded piece.  Continuity of $f$ cancels the boundary values in
+the fundamental theorem on adjacent pieces.  Thus
+$f(x)=f(0)+\int_0^x f'(u)du$ on every bounded interval.
+The exponential bound gives the limit at infinity and the $L^p$ assertion;
+near zero and each finite break the derivative is bounded.
+The even extension is continuous and piecewise continuously
+differentiable.  Its derivative at $0$ has one-sided values
+$-f'(0+)/\sqrt{2\pi}$ and $f'(0+)/\sqrt{2\pi}$; at $\pm a_j$ it
+has precisely the corresponding reflected derivative jumps.  Thus it
+satisfies the recorded Weil condition (A), including the averaged
+representatives.  Choose a decay exponent $c>1/2$ in \eqref{gc:decay} and
+put $b=c-1/2>0$.  Then both $E(f)$ and its piecewise derivative are
+$O(e^{-(1/2+b)|x|})$, which is condition (B).
+The two expressions in \eqref{gc:E} compose to the identity.  Splitting
+the integral at zero gives
+$2/\sqrt{2\pi}=\sqrt{2/\pi}$ times the cosine integral, proving
+\eqref{gc:transform-map}.  Its last limit follows directly from
+\eqref{gc:decay}.  These are the common-domain conditions recorded from
+Guinand's Theorems 3 and $3'$ and Weil's (A), (B)
+\cite[pp.~112--115]{guinand1948}\cite[Collected Papers II, pp.~52--58]{weil1952}.
+\end{proof}
+
+The same expression $E(f)$ is a defined even Fourier test for
+$f\in\mathcal D_0^{\exp}$ and satisfies the same transform identity,
+but the inclusion into Weil's (B) requires the faster exponent.
+For example $f(x)=e^{-x/4}$ belongs to $\mathcal D_0^{\exp}$, whereas
+\begin{equation}
+ e^{(1/2+b)x}|E(f)(x)|
+   =\frac{e^{(1/4+b)x}}{\sqrt{2\pi}}\longrightarrow\infty
+   \quad (b>0).
+ \label{gc:domain-counterexample}
+\end{equation}
+Consequently the incoming note's phrase ``exponential decay'' alone does
+not prove its claimed inclusion in the original common domain.  Equations
+\eqref{gc:domains}--\eqref{gc:transform-map} give the exact inclusion and
+inverse.  All functional identities below hold on
+$\mathcal D_0^{\exp}$, and their application as a correction within the
+recorded common domain is restricted to $\mathcal D_W^{\exp}$.
+
+\section{Cosine decay, inversion at zero, and the logarithmic functional}
+
+\begin{lemma}[Jump-retaining decay and the endpoint inversion]
+For $f\in\mathcal D_0^{\exp}$ set
+$\Delta_j=f'(a_j+)-f'(a_j-)$ and
+$B_f=|f'(0+)|+\sum_{j=1}^m|\Delta_j|+\int_0^\infty|f''(x)|dx$,
+where $f''$ is the piecewise derivative.  For $t>0$,
+\begin{equation}
+ g_f(t)=-\frac{\sqrt{2/\pi}}{t^2}
+ \left(f'(0+)+\sum_{j=1}^m\Delta_j\cos(ta_j)
+                   +\int_0^\infty f''(x)\cos(tx)dx\right).
+ \label{gc:IBP}
+\end{equation}
+In particular $g_f$ and $g_f(t)\log(t/(2\pi))$ are absolutely integrable,
+and
+\begin{equation}
+ \sqrt{\frac2\pi}\int_0^\infty g_f(t)dt=f(0).
+ \label{gc:inversion}
+\end{equation}
+\end{lemma}
+\begin{proof}
+First integrate $f(x)\cos(tx)$ by parts on all pieces up to a finite
+endpoint $R$ in the last piece.  Continuity makes the internal $f$
+boundary terms cancel.  The term at zero contains $\sin0=0$, and the
+term at $R$ tends to zero.  This gives
+$\int f\cos=-t^{-1}\int f'\sin$.
+On the second integration, $\sin(tx)=-t^{-1}(\cos(tx))'$.
+The endpoint at zero contributes $f'(0+)/t$; the two values at $a_j$
+give $\Delta_j\cos(ta_j)/t$; the endpoint at infinity vanishes.
+Multiplication by the first factor $-1/t$ proves \eqref{gc:IBP}.
+Thus
+$|g_f(t)|\le\sqrt{2/\pi}\min(\|f\|_1,B_f/t^2)$.
+This proves integrability of the transform and of its logarithmic weight
+both at zero and infinity.
+
+For $r>0$, absolute convergence permits the exact Laplace--cosine
+calculation
+\begin{equation}
+ \sqrt{\frac2\pi}\int_0^\infty e^{-rt}g_f(t)dt
+  =\frac2\pi\int_0^\infty f(x)\frac{r}{r^2+x^2}dx
+  =\frac2\pi\int_0^\infty\frac{f(ru)}{1+u^2}du.
+ \label{gc:Poisson}
+\end{equation}
+Indeed $\int_0^\infty e^{-rt}\cos(tx)dt$
+is the real part of $(r-ix)^{-1}$ and equals $r/(r^2+x^2)$;
+the double integral is bounded by $\|f\|_1/r$.
+The function $f$ is bounded.  Dominated convergence in the right-hand
+integral as $r\downarrow0$ gives $f(0)$, since
+$\int_0^\infty(1+u^2)^{-1}du=\pi/2$.
+Dominated convergence by $|g_f|$ in the left-hand integral proves
+\eqref{gc:inversion} without an unproved endpoint inversion assertion.
+\end{proof}
+
+\begin{theorem}[The exact cosine-log functional]
+For $f\in\mathcal D_0^{\exp}$,
+\begin{equation}
+ \boxed{\displaystyle
+ \mathscr L_f=-\int_0^\infty\frac{f(x)-f(0)e^{-x}}{x}dx
+                      -f(0)\log(2\pi).}
+ \label{gc:log-formula}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Set $h(x)=f(x)-f(0)e^{-x}$.  It belongs to $\mathcal D_0^{\exp}$,
+$h(0)=0$, and $h(x)=O(x)$ near zero because its right derivative is
+bounded there.  Its exponential decay gives
+\begin{equation}
+ \int_0^\infty\frac{|h(x)|}{x}dx<\infty,
+ \qquad \int_0^\infty g_h(t)dt=0.
+ \label{gc:h}
+\end{equation}
+For $t>0$ the Frullani identity used here has an elementary proof:
+\begin{equation}
+ \int_0^\infty\frac{e^{-r}-e^{-tr}}{r}dr
+ =\int_1^t\left(\int_0^\infty e^{-ur}dr\right)du
+ =\int_1^t\frac{du}{u}=\log t.
+ \label{gc:Frullani}
+\end{equation}
+The interval $[1,t]$ is oriented if $t<1$; absolute integrability on the
+bounded $u$ interval justifies the exchange.  For fixed $t$ the integrand
+in $r$ has constant sign.  Therefore every truncated integral
+$\ell_{\epsilon,R}(t)=\int_\epsilon^R(e^{-r}-e^{-tr})dr/r$
+satisfies $|\ell_{\epsilon,R}(t)|\le|\log t|$.
+
+At $0<\epsilon<R<\infty$, Fubini and \eqref{gc:h} give
+\begin{align}
+ \sqrt{\frac2\pi}\int_0^\infty g_h(t)\ell_{\epsilon,R}(t)dt
+ &=-\sqrt{\frac2\pi}\int_\epsilon^R\frac1r
+                        \int_0^\infty e^{-rt}g_h(t)dt\,dr\notag\\
+ &=-\frac2\pi\int_\epsilon^R\int_0^\infty
+                           \frac{h(x)}{r^2+x^2}dx\,dr.
+ \label{gc:truncated-log}
+\end{align}
+For the first exchange, $2\|g_h\|_1\log(R/\epsilon)$ is a finite
+majorant.  For inserting the cosine transform in the second line use
+$\int_\epsilon^R r^{-1}\int_0^\infty e^{-rt}dt\,dr\,\|h\|_1<\infty$.
+For the untruncated double integral, Tonelli applied to the absolute value
+gives exactly
+\begin{equation}
+ \int_0^\infty\int_0^\infty\frac{|h(x)|}{r^2+x^2}dx\,dr
+   =\frac\pi2\int_0^\infty\frac{|h(x)|}{x}dx<\infty.
+ \label{gc:absolute-double}
+\end{equation}
+The left side of \eqref{gc:truncated-log} tends to the logarithmic
+integral by the majorant $|g_h(t)\log t|$ from the lemma.  The right side
+tends by \eqref{gc:absolute-double} to $-\int h(x)/x\,dx$.
+
+For the retained reference $e^{-x}$ its transform is
+$\sqrt{2/\pi}/(1+t^2)$.  The substitution $t=1/u$ in the absolutely
+convergent integral yields
+$\int_0^\infty\log t\,(1+t^2)^{-1}dt=0$.
+Hence its $\mathscr L$ value is $-\log(2\pi)$.
+Adding $f(0)$ times this reference to the result for $h$ proves
+\eqref{gc:log-formula}, including its constant.
+\end{proof}
+
+\section{The original finite part and the defect map}
+
+\begin{theorem}[Evaluation with the original regulator]
+For $f\in\mathcal D_0^{\exp}$ the limit in \eqref{gc:PF} exists and
+\begin{equation}
+ \boxed{\displaystyle
+ P_f=\int_0^\infty\left(
+       \frac{f(x)e^{x/2}}{\sinh x}-\frac{f(0)e^{-x}}{x}\right)dx.}
+ \label{gc:PF-formula}
+\end{equation}
+The displayed combined integrand is absolutely integrable.
+\end{theorem}
+\begin{proof}
+Write $A_f(x)=f(x)e^{x/2}/\sinh x-f(0)e^{-x}/x$ for $x>0$.
+The expansions
+$e^{x/2}/\sinh x=x^{-1}+1/2+O(x)$ and
+$e^{-x}/x=x^{-1}-1+O(x)$, together with
+$f(x)=f(0)+f'(0+)x+o(x)$, show
+$A_f(x)\to f'(0+)+3f(0)/2$ at zero.
+At infinity its two terms decay exponentially.  Thus $A_f\in L^1$.
+Evenness changes the full-line regulated integral into
+$\int_0^\infty(1-e^{-\Lambda x})f(x)e^{x/2}/\sinh x\,dx$,
+with no residual factor of two.  Subtract and add the reference to obtain
+the exact finite-$\Lambda$ identity
+\begin{align}
+ &\int_\R(1-e^{-\Lambda|x|})f(|x|)K(x)dx-f(0)\log\Lambda\notag\\
+ &\qquad=\int_0^\infty(1-e^{-\Lambda x})A_f(x)dx
+              +f(0)\log(1+\Lambda^{-1}).
+ \label{gc:finite-regulator}
+\end{align}
+Here the reference integral is
+$\int_0^\infty(e^{-x}-e^{-(1+\Lambda)x})dx/x=\log(1+\Lambda)$
+by \eqref{gc:Frullani}.  Dominated convergence by $|A_f|$, and
+$\log(1+\Lambda^{-1})\to0$, prove \eqref{gc:PF-formula}.
+\end{proof}
+
+\begin{theorem}[Exact comparison and receiving map]
+Define
+\begin{equation}
+ d(x)=2e^{-x/2}-\sech(x/2)
+     =\frac{2e^{-3x/2}}{1+e^{-x}},\qquad
+ D:\mathcal D_0^{\exp}\to\C,\quad D(f)=\int_0^\infty f(x)d(x)dx.
+ \label{gc:D}
+\end{equation}
+Then the original expressions satisfy the exact identity
+\begin{equation}
+ \boxed{W_f-(2H_f+\mathscr L_f)=D(f).}
+ \label{gc:defect}
+\end{equation}
+In particular the map
+\begin{equation}
+ T:\mathcal D_0^{\exp}\to\C^3,\quad T(f)=(W_f,H_f,\mathscr L_f),
+ \qquad (1,-2,-1)\,T=D
+ \label{gc:typed}
+\end{equation}
+is the exact typed relation between the two presentations.  Its restriction
+along the inclusion $\mathcal D_W^{\exp}\hookrightarrow\mathcal D_0^{\exp}$
+is the corrected common-domain comparison.
+The defect is strictly positive on every nonzero real nonnegative test.
+\end{theorem}
+\begin{proof}
+The kernel in \eqref{gc:H} tends to $1/2$ at zero and is $O(1/x)$ at
+infinity, proving absolute convergence of $H_f$.  All other terms were
+proved convergent above.  Substitute \eqref{gc:log-formula} and
+\eqref{gc:PF-formula}; to avoid separating divergent terms, first combine
+their integrands on $[\eta,R]$ and then pass to the limits.  The
+$f(0)\log(2\pi)$ constants and the reference subtractions cancel exactly,
+as do the $f(x)/x$ terms.  The remaining kernel is
+\begin{equation}
+ 2e^{-x/2}+\frac{e^{-x/2}-e^{x/2}}{\sinh x}
+ =2e^{-x/2}-\frac1{\cosh(x/2)}=d(x).
+ \label{gc:kernel-algebra}
+\end{equation}
+It is bounded at zero and bounded by $2e^{-3x/2}$ at infinity.
+Thus the limit is $D(f)$, proving \eqref{gc:defect} and \eqref{gc:typed}.
+The second expression for $d$ in \eqref{gc:D} is strictly positive.
+A continuous nonnegative nonzero $f$ is positive on an interval, so its
+integral against $d$ is strictly positive.
+\end{proof}
+
+For an explicit receiving functional retaining all old terms, set
+\begin{align}
+ H_f^{\rm rec}&=H_f+\tfrac12D(f),\label{gc:receiving-H}\\
+ 2H_f^{\rm rec}
+ &=\int_0^\infty f(x)
+  \left(\frac1x-\frac{e^{x/2}}{\sinh x}+2e^{-x/2}\right)dx,
+ \qquad W_f=2H_f^{\rm rec}+\mathscr L_f.
+ \label{gc:receiving-kernel}
+\end{align}
+The kernel in this integral tends to $3/2$ at zero.  Equations
+\eqref{gc:receiving-H}--\eqref{gc:receiving-kernel} follow by the already
+proved identity and \eqref{gc:kernel-algebra}; they explicitly record the
+map from the archived $H_f$.  They do not rename the archived $H_f$ or
+identify $H_f^{\rm rec}$ with an uninspected historical transcription.
+
+\section{The full exponential family and the original counterexample}
+
+For $a>0$ let $f_a(x)=e^{-ax}$.  Its cosine transform, obtained by taking
+the real part of $(a-it)^{-1}$, is
+\begin{equation}
+ g_{f_a}(t)=\sqrt{\frac2\pi}\frac{a}{a^2+t^2}.
+ \label{gc:exponential-transform}
+\end{equation}
+In particular $f_a\in\mathcal D_0^{\exp}$ for all $a>0$ and
+$f_a\in\mathcal D_W^{\exp}$ for $a>1/2$.
+Put $z=a/2+1/4$ and $w=a/2+3/4$.  We obtain
+\begin{align}
+ P_{f_a}&=-\log2-\psi(z),\label{gc:exp-PF}\\
+ 2H_{f_a}&=\psi(w)+\log(2/a),\label{gc:exp-H}\\
+ \mathscr L_{f_a}&=\log(a/(2\pi)),\label{gc:exp-L}\\
+ W_{f_a}&=\frac{2}{a+1/2}+\psi(z)-\log\pi,
+ \label{gc:exp-W}\\
+ 2H_{f_a}+\mathscr L_{f_a}&=\psi(w)-\log\pi,
+ \label{gc:exp-right}\\
+ D(f_a)&=\frac{2}{a+1/2}+\psi(z)-\psi(w)
+       =\psi(z+1)-\psi(w)>0.
+ \label{gc:exp-D}
+\end{align}
+Here $\psi=\Gamma'/\Gamma$ has its usual unscaled argument.
+
+To verify every constant in these identities, use the primary special
+function formula \cite[5.9.12]{dlmf}
+\begin{equation}
+ \psi(v)=\int_0^\infty
+ \left(\frac{e^{-t}}t-\frac{e^{-vt}}{1-e^{-t}}\right)dt,
+ \qquad v>0.
+ \label{gc:digamma}
+\end{equation}
+Its integrand is $O(1)$ at zero and exponentially integrable at infinity.
+In \eqref{gc:PF-formula}, substitute $t=2x$ to get the combined
+integrand $e^{-zt}/(1-e^{-t})-e^{-t/2}/t$.
+Adding and subtracting $e^{-t}/t$ inside the combined integral gives
+$-\psi(z)$ and
+$\int_0^\infty(e^{-t}-e^{-t/2})dt/t=-\log2$ by
+\eqref{gc:Frullani}.  This proves \eqref{gc:exp-PF}.
+The same substitution in \eqref{gc:H} gives
+$e^{-at/2}/t-e^{-wt}/(1-e^{-t})$; the difference from
+\eqref{gc:digamma} integrates to $\log(2/a)$, proving
+\eqref{gc:exp-H}.
+In the transform integral put $t=au$.  The constant term integrates to
+$\log(a/(2\pi))$, while the $\log u$ term is zero by $u\mapsto1/u$.
+This proves \eqref{gc:exp-L}.  The remaining identities follow by
+substitution, using the exact recurrence
+$\psi(z+1)=\psi(z)+1/z$ \cite[5.5.2]{dlmf}; here
+$1/z=2/(a+1/2)$.  Positivity follows independently from \eqref{gc:D}.
+
+For the incoming test $a=3/2$ one has $z=1$, $w=3/2$.
+The special values
+$\psi(1)=-\gamma_E$ and $\psi(1/2)=-\gamma_E-2\log2$,
+and the recurrence at $1/2$, give
+\cite[5.4.12--13 and 5.5.2]{dlmf}
+\begin{align}
+ P_{f_{3/2}}&=\gamma_E-\log2,&
+ 2H_{f_{3/2}}&=2-\gamma_E-\log3,\notag\\
+ \mathscr L_{f_{3/2}}&=\log\frac3{4\pi},&
+ W_{f_{3/2}}&=1-\gamma_E-\log\pi,\notag\\
+ 2H_{f_{3/2}}+\mathscr L_{f_{3/2}}
+   &=2-\gamma_E-\log\pi-2\log2.
+ \label{gc:counterexample-values}
+\end{align}
+Consequently
+\begin{equation}
+ \boxed{D(f_{3/2})=2\log2-1>0.}
+ \label{gc:counterexample}
+\end{equation}
+There is also a direct evaluation independent of digamma values:
+\begin{equation}
+ D(f_{3/2})=2\int_0^\infty\frac{e^{-3x}}{1+e^{-x}}dx
+ =2\int_0^1\frac{u^2}{1+u}du
+ =2\left(\frac12-1+\log2\right).
+ \label{gc:direct-example}
+\end{equation}
+Strict positivity also follows from
+$\log2=\int_1^2dt/t>1/2$, without a numerical approximation.
+Thus the contradiction to the archived equality occurs inside its actual
+recorded common domain, and does not depend on the repaired inclusion for
+more slowly decaying functions.
+
+\section{Exact supersession and provenance}
+
+Equation \eqref{gc:defect} supersedes the claimed zero-defect equality at
+the following two archived labels:
+\texttt{eq:guinand-weil-arch-map} and
+\texttt{eq:guinand-weil-residual-complete}.
+The proof that the latter follows from the two displayed local scalar
+formulas cannot validate both scalar transcriptions with the printed
+definitions: subtracting them gives the contradicted equality.  The
+calculation here locates and evaluates the discrepancy exactly, while
+preserving both displayed functionals and all their original factors.
+It does not determine from this discrepancy alone which published formula
+was miscopied.  That would require comparing the historical formulas
+themselves, rather than using the local assertion that they were literal.
+
+The source snapshot is
+\texttt{06\_Foundations\_and\_Original\_Six\_Readers.tex}, SHA--256
+\begin{center}\small\ttfamily
+e653a19b9bfc7b4788550e59de42367d52ed666598e46540d040e06d7362cad0.
+\end{center}
+Its relevant original lines are 201784--201795 (Guinand domain and
+transform), 201798--201843 (extension), 201953--202030 (expanded false
+comparison), 202639--202660 (Weil conditions and regulator), and
+202842--202906 (printed comparison).  The incoming correction is
+\texttt{06\_PRINTED\_ARCHIMEDEAN\_CORRECTION.md}, SHA--256
+\begin{center}\small\ttfamily
+6d0f28606fe98d8ab49f25b54d94377e1481ce83a511ce8189bfebfba629dcee.
+\end{center}
+The source files are preserved unchanged.  The three functional identities
+and the admissible exponential example are established here with complete
+proofs; no zero-location conclusion, mixed-support control, or arithmetic
+allocation follows merely from this correction.
+
+\begin{thebibliography}{9}
+\bibitem{guinand1948}
+A.~P.~Guinand, ``A Summation Formula in the Theory of Prime Numbers,''
+\emph{Proceedings of the London Mathematical Society}, second series
+\textbf{50} (1948), 107--119.
+\href{https://doi.org/10.1112/plms/s2-50.2.107}{doi:10.1112/plms/s2-50.2.107}.
+The historic attribution and theorem numbers are retained from the original
+reader; the functional correction is proved directly above, rather than
+assuming that reader's scalar transcriptions.
+\bibitem{weil1952}
+A.~Weil, ``Sur les formules explicites de la th\'eorie des nombres premiers,''
+\emph{Communications du S\'eminaire Math\'ematique de l'Universit\'e de Lund},
+supplement dedicated to Marcel Riesz (1952), 252--265; reprinted in
+\emph{Collected Papers}, vol.~II, Springer, 1979, 48--61.
+Conditions (A), (B) and the finite-part convention used here are the ones
+displayed in the source snapshot.
+\bibitem{dlmf}
+F.~W.~J. Olver, A.~B. Olde Daalhuis, D.~W. Lozier, B.~I. Schneider,
+R.~F. Boisvert, C.~W. Clark, B.~R. Miller, B.~V. Saunders, H.~S. Cohl,
+and M.~A. McClain, eds., \emph{NIST Digital Library of Mathematical
+Functions}, Chapter 5.
+\href{https://dlmf.nist.gov/5.9.E12}{Equation 5.9.12},
+\href{https://dlmf.nist.gov/5.5.E2}{equation 5.5.2}, and
+\href{https://dlmf.nist.gov/5.4}{equations 5.4.12--13};
+accessed 19 September 2026.
+\end{thebibliography}
+\end{document}

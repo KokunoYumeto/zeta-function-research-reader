@@ -1,0 +1,54 @@
+name: Fable real-flow exact checks
+
+on:
+  push:
+    branches: ['astra/fable-real-flow-20260920']
+    paths:
+      - 'workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/verify_real_flow.py'
+      - '.github/workflows/fable-real-flow-exact.yml'
+  pull_request:
+    paths:
+      - 'workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/**'
+      - '.github/workflows/fable-real-flow-exact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: fable-real-flow-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install the pinned symbolic algebra dependency
+        run: python3 -m pip install sympy==1.14.0
+      - name: Exact identities in ordinary and optimized Python
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCRIPT=workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/verify_real_flow.py
+          python3 "$SCRIPT" > /tmp/fable-normal.json
+          python3 -O "$SCRIPT" > /tmp/fable-optimized.json
+          cmp /tmp/fable-normal.json /tmp/fable-optimized.json
+          cat /tmp/fable-normal.json
+      - name: Reject the reversed transverse sign and untransported diagonal action
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCRIPT=workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/verify_real_flow.py
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            for CONTROL in reverse-transverse-sign replace-transported-action; do
+              if "${PY[@]}" "$SCRIPT" --negative-control "$CONTROL" > /tmp/fable-$MODE-$CONTROL.json; then
+                cat /tmp/fable-$MODE-$CONTROL.json
+                exit 1
+              fi
+              grep -q '"false_claim_accepted": false' /tmp/fable-$MODE-$CONTROL.json
+              cat /tmp/fable-$MODE-$CONTROL.json
+            done
+          done

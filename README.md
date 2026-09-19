@@ -1,3 +1,12 @@
+<!-- exact-literature-and-signed-conductor:20260920 -->
+## Original theta topology, arithmetic metrics and signed inverse states
+
+The Split-Zero programme studies the theta source, its quotient by theta relations, and the arithmetic metric of finite observations of that quotient. The [new complete literature-derived proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-theta-arithmetic-observation/README.md) establish closure of the original full theta image in its weighted-Schwartz topology, an exact Gamma-kernel lower bound for the joint three-vector arithmetic observation, and reconstruction of the native Gram matrix with its finite Jacobi boundary correction. Each proof identifies its human source and gives the exact receiving maps. [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-theta-arithmetic-observation/LITERATURE_RECEIVERS_COMPLETE.tex) and [machine-readable proof/use index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-theta-arithmetic-observation/RESULT_INDEX.json) are included, together with the three updated full cumulative manuscripts.
+
+The [complete signed ES–Fable/conductor edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-fable-signed-states/README.md) retains its entire earlier inverse-map calculation and adds all eight signed states, their exact evaluation through the unchanged original weighted conductor, and the cover’s 192-element monodromy group. [Complete cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-fable-signed-states/FABLE_TO_ORIGINAL_CONDUCTOR.tex) and [unambiguous programme result IDs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-fable-signed-states/PROGRAMME_ALIASES.md) are available.
+
+These are complete source editions, not a proof or disproof of RH. The remaining signed arithmetic cross-product asymptotic is not evaluated by these results. This GitHub update does not claim a new Zenodo or Overleaf edition.
+
 <!-- fable-conductor:20260920 -->
 ## Four ES–Fable labels and the original weighted conductor
 

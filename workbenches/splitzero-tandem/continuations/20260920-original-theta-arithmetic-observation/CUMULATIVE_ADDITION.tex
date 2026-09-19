@@ -1,0 +1,1957 @@
+
+% BEGIN INDEXED LITERATURE EXACT RECEIVERS 20260920
+
+\clearpage\begingroup
+\part*{Exact Gamma kernel and the actual joint observed Gram}
+\newtheorem{lgammatheorem}{Theorem}
+\newtheorem{lgammalemma}[lgammatheorem]{Lemma}
+\newtheorem{lgammaproposition}[lgammatheorem]{Proposition}
+\newcommand{\lgammaC}{\mathbb C}
+\newcommand{\lgammaR}{\mathbb R}
+\newcommand{\lgammanorm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\lgammaim}{\operatorname{im}}
+\newcommand{\lgammaremm}{\operatorname{rem}}
+
+
+
+This is a standalone mathematical derivation.  All source masses,
+coordinates, physical units, observation maps, original arithmetic boundary
+vectors and affine relation spaces remain present.  The new finite Gamma
+kernel formula is transported to the arithmetic source using the already
+proved whole-polynomial comparison in CAI16--18 and OB13,18
+\cite{lgamma:CAI,lgamma:OB}.  The receiving object is the actual three-vector Gram from
+HG6--7 and HR2--5 \cite{lgamma:HG,lgamma:HR}, not a newly selected Gamma boundary triple.
+The resulting constraints retain their positive-semidefinite remainders
+and every complex cross term.  No projected current sign is assigned by
+discarding an unevaluated remainder.
+
+\section{The original Gamma measure and its exact norms}
+
+Put
+\begin{equation}\label{lgamma:eq:sigma}
+ d\sigma(y)=\frac{|\Gamma(\tfrac14+iy/2)|^2}{2\pi}\,dy,
+ \qquad M_\Gamma=\sqrt{2\pi}.
+\end{equation}
+The following calculation both fixes the mass and proves the polynomial
+identities used below; no change of measure is made.
+Euler's beta integral, with $a>0$, gives
+\[
+ |\Gamma(a+it)|^2
+ =\Gamma(2a)\int_{\lgammaR}e^{itu}(2\cosh(u/2))^{-2a}\,du.
+\]
+Indeed this is the substitution $x=e^u$ in the beta integral on
+$(0,\infty)$.  The function of $u$ is integrable.  The gamma product is
+integrable as well, since Stirling's formula gives exponential decay
+$e^{-\pi|t|}$ times a power.  Fourier inversion and evenness give
+\[
+ \int_{\lgammaR}|\Gamma(a+it)|^2e^{i\xi t}\,dt
+ =2\pi\Gamma(2a)(2\cosh(\xi/2))^{-2a}.
+\]
+At $a=1/4$, substituting $y=2t$ in this integral, with the Jacobian
+retained, proves
+\begin{equation}\label{lgamma:eq:transform}
+ \int_{\lgammaR}e^{i\xi y}\,d\sigma(y)
+ =M_\Gamma(\cosh\xi)^{-1/2}.
+\end{equation}
+This substitution proves an integral identity and does not redefine the
+measure or the polynomial coordinate.  In particular
+$\sigma(\lgammaR)=M_\Gamma$.  The same gamma decay proves exponential
+integrability for real $s$ with $|s|<\pi/2$.  Analytic continuation in
+$|\Im\xi|<\pi/2$, with the branch positive at zero, therefore gives
+\begin{equation}\label{lgamma:eq:laplace}
+ \int_{\lgammaR}e^{sy}\,d\sigma(y)=M_\Gamma(\cos s)^{-1/2}.
+\end{equation}
+
+Define the monic polynomials in the original variable by
+\begin{equation}\label{lgamma:eq:gen}
+ F(y,t)=\sum_{n\ge0}p_n^\sigma(y)\frac{t^n}{n!}
+ =(1+t^2)^{-1/4}e^{y\arctan t}.
+\end{equation}
+For sufficiently small real $t,u$, the cosine addition identity and
+\eqref{lgamma:eq:laplace} give
+\[
+ \int_{\lgammaR}F(y,t)F(y,u)\,d\sigma(y)=M_\Gamma(1-tu)^{-1/2}.
+\]
+Exponential integrability justifies every derivative at $t=u=0$.
+Comparing coefficients proves
+\begin{equation}\label{lgamma:eq:norms}
+ \int p_n^\sigma p_m^\sigma\,d\sigma
+ =\delta_{nm}\gamma_n,
+ \qquad \gamma_n=M_\Gamma n!(\tfrac12)_n.
+\end{equation}
+Also $(1+t^2)\partial_tF=(y-t/2)F$, so
+\begin{equation}\label{lgamma:eq:monicrec}
+ p_0^\sigma=1,\quad p_1^\sigma=y,\qquad
+ p_{n+1}^\sigma=yp_n^\sigma-n(n-\tfrac12)p_{n-1}^\sigma.
+\end{equation}
+Thus the Gamma polynomial formulas are proved here directly.  Their
+existing programme occurrence is CAI19 \cite{lgamma:CAI}; no result from CCM
+is used in this derivation.
+
+\section{Exact finite evaluation of the imaginary-point kernel}
+
+\begin{lgammatheorem}\label{lgamma:thm:kernel}
+For $N\ge0$, put $m_N=\lceil N/2\rceil$ and
+\[
+ \tau_m=\frac{(\tfrac12)_m(\tfrac34)_m}{m!(\tfrac14)_m}.
+\]
+For precisely the measure \eqref{lgamma:eq:sigma},
+\begin{equation}\label{lgamma:eq:exactkernel}
+ \boxed{K_N(i,i):=\sum_{n=0}^N\frac{|p_n^\sigma(i)|^2}{\gamma_n}
+       =\frac{N+1}{M_\Gamma}\tau_{m_N}.}
+\end{equation}
+In particular, the exact reciprocal scalar is
+\begin{equation}\label{lgamma:eq:beta}
+ \boxed{\beta_N=K_N(i,i)^{-1}
+ =\frac{\sqrt{2\pi}}{(N+1)\tau_{\lceil N/2\rceil}}.}
+\end{equation}
+The following explicit finite-degree bounds also hold:
+\begin{align}
+ K_N(i,i)&\le\frac{2N+1}{M_\Gamma}&& (N\ge0),\label{lgamma:eq:linear}\\
+ K_N(i,i)&\le\frac{18N+9}{10M_\Gamma}&& (N\ge2).\label{lgamma:eq:betterlinear}
+\end{align}
+\end{lgammatheorem}
+\begin{proof}
+Write $p_n^\sigma(i)=i^na_n$.  Equation \eqref{lgamma:eq:monicrec} proves
+\[
+ a_0=a_1=1,\qquad
+ a_{n+1}=a_n+n(n-\tfrac12)a_{n-1}>0.
+\]
+Inductively,
+\begin{equation}\label{lgamma:eq:alternating}
+ \frac{a_n}{a_{n-1}}=
+ \begin{cases}n,&n\text{ odd},\\n-\tfrac12,&n\text{ even}.
+ \end{cases}
+\end{equation}
+For the induction step, $a_n=na_{n-1}$ at odd $n$ gives
+$a_{n+1}=(n+1/2)a_n$, while $a_n=(n-1/2)a_{n-1}$ at even $n$
+gives $a_{n+1}=(n+1)a_n$.  The initial ratio is one.  Multiplication gives
+\[
+ a_{2m}=4^m(\tfrac12)_m(\tfrac34)_m,
+ \qquad a_{2m+1}=(2m+1)a_{2m}.
+\]
+Let $u_n=a_n/\sqrt{\gamma_n}$.  Grouping the even and odd factors
+in $(2m)!$ and $(1/2)_{2m}$ gives
+\begin{equation}\label{lgamma:eq:terms}
+ M_\Gamma u_{2m}^2=\tau_m,\qquad
+ M_\Gamma u_{2m+1}^2=\frac{2m+1}{2m+\tfrac12}\tau_m,
+ \qquad
+ \frac{\tau_{m+1}}{\tau_m}
+ =\frac{(m+\tfrac12)(m+\tfrac34)}{(m+1)(m+\tfrac14)}.
+\end{equation}
+The partial sums satisfy exactly
+\[
+ M_\Gamma K_{2m}=(2m+1)\tau_m,
+ \qquad M_\Gamma K_{2m+1}=(2m+2)\tau_{m+1}.
+\]
+To prove this, start at $K_0=M_\Gamma^{-1}$.  Adding the odd term
+in \eqref{lgamma:eq:terms} to the asserted even sum gives
+$(2m+1)(2m+3/2)\tau_m/(2m+1/2)=(2m+2)\tau_{m+1}$.
+Adding the next even term gives $(2m+3)\tau_{m+1}$.  This proves
+\eqref{lgamma:eq:exactkernel} at every degree.
+
+For the linear estimates, the exact original-coordinate coefficients are
+\[
+ b_n=\sqrt{\gamma_{n+1}/\gamma_n}=\sqrt{(n+1)(n+\tfrac12)},
+ \qquad u_{n+1}=\frac{u_n+b_{n-1}u_{n-1}}{b_n}.
+\]
+For $n\ge1$,
+\[
+ b_n^2-(1+b_{n-1})^2
+ =2n-\tfrac12-2\sqrt{n(n-\tfrac12)}>0,
+\]
+since both compared quantities are positive and
+$(2n-1/2)^2-4n(n-1/2)=1/4$.  Therefore
+\begin{equation}\label{lgamma:eq:pairmax}
+ u_{n+1}\le\frac{1+b_{n-1}}{b_n}\max(u_{n-1},u_n)
+ <\max(u_{n-1},u_n).
+\end{equation}
+The initial squares are $1/M_\Gamma$ and $2/M_\Gamma$, proving
+\eqref{lgamma:eq:linear}.  The next squares are $3/(2M_\Gamma)$ and
+$9/(5M_\Gamma)$.  Starting \eqref{lgamma:eq:pairmax} from this pair bounds
+every term from index three on by $9/(5M_\Gamma)$.  Summing gives
+$M_\Gamma K_N\le1+2+3/2+(N-2)9/5$, proving
+\eqref{lgamma:eq:betterlinear}.
+\end{proof}
+
+\section{The disk estimate and the exact coefficient-to-observation map}
+
+The imaginary-point domination is the argument in Christian Berg and
+Ryszard Szwarc's Section 3 \cite{lgamma:BS}.  Their source starts with mass one
+and $b_0=1$; the following proof retains the original finite mass and
+recurrence coefficients.  Their label \texttt{thm:lambda} is a lemma,
+not a theorem.
+
+\begin{lgammalemma}\label{lgamma:lem:disk}
+Let $m$ be a nonzero finite symmetric positive measure on $\lgammaR$, with
+moments through order $2N$ and positive definite original monomial Gram
+$H_y=(\int y^{j+\ell}\,dm)_{j,\ell=0}^N$.  If $P_n$ are its
+orthonormal polynomials with positive leading coefficient and
+$K_N^m(i,i)=\sum_{n=0}^N|P_n(i)|^2$, then
+\begin{equation}\label{lgamma:eq:diskgram}
+ |P_n(z)|\le|P_n(i)|\quad(|z|\le1),\qquad
+ H_y\succeq K_N^m(i,i)^{-1}I.
+\end{equation}
+\end{lgammalemma}
+\begin{proof}
+Symmetry gives parity $P_n(-y)=(-1)^nP_n(y)$.  Expanding $yP_n$ in
+the orthonormal basis shows that its coefficients below index $n-1$
+vanish: pair instead $P_n$ with $yP_j$ of degree at most $n-1$.
+The coefficient at index $n$ vanishes by parity.  The leading-coefficient
+ratio gives $b_n>0$ at index $n+1$; symmetry of multiplication gives
+$b_{n-1}$ at index $n-1$.  Consequently
+\[
+ yP_n=b_nP_{n+1}+b_{n-1}P_{n-1}.
+\]
+Starting at $P_0=m(\lgammaR)^{-1/2}$ and
+$P_1(y)=m(\lgammaR)^{-1/2}y/b_0$, induction gives
+$P_n(i)=i^nv_n$ with $v_n>0$ and
+$v_{n+1}=(v_n+b_{n-1}v_{n-1})/b_n$.
+The triangle inequality in the same recurrence proves disk domination
+by induction.  Degree zero is immediate.
+
+For $f(y)=\sum_{j=0}^Nc_jy^j=\sum_{n=0}^Nd_nP_n(y)$,
+Cauchy--Schwarz and disk domination give on $|z|=1$
+\[
+ |f(z)|^2\le K_N^m(i,i)\sum|d_n|^2
+ =K_N^m(i,i)c^*H_yc.
+\]
+Integrating over the circle gives exactly
+$\sum|c_j|^2\le K_N^m(i,i)c^*H_yc$ by Fourier orthogonality.
+No source mass or coordinate was changed.
+\end{proof}
+
+Let the original complex coordinate be $S=c+iy$, with the actual real
+$c$ retained.  For $F(S)=\sum a_jS^j$ and $f(y)=F(c+iy)=\sum b_ry^r$,
+binomial expansion gives $b=T_N(c)a$, with
+\begin{equation}\label{lgamma:eq:T}
+ T_{rj}=\binom jr c^{j-r}i^r,\qquad
+ (T^{-1})_{rj}=\binom jr(-c)^{j-r}i^{-j}\quad(r\le j),
+\end{equation}
+and both entries zero if $r>j$.  The inverse formula follows by
+expanding $((S-c)/i)^j$.  In particular,
+\begin{equation}\label{lgamma:eq:Tgram}
+ \det T=i^{N(N+1)/2},\quad H_S=T^*H_yT,\quad
+ H_S^{-1}=T^{-1}H_y^{-1}T^{-*},\quad \det H_S=\det H_y.
+\end{equation}
+Here $H_S$ is the literal Gram of $1,S,\ldots,S^N$, and
+$T^{-*}=(T^{-1})^*$.  Thus $H_y\succeq\beta I$ implies
+$H_S\succeq\beta T^*T$, not an unsupported bound by $\beta I$.
+
+Let $J_{S,N}$ be the actual native coefficient-to-class matrix and let
+$\Lambda$ be the original observation onto its image in its fixed frame.
+All physical-unit and divided-jet factors occurring in $J_{S,N}$ remain
+there.  Put
+\begin{equation}\label{lgamma:eq:A}
+ A_{S,N}=\Lambda J_{S,N},\quad
+ A_{y,N}=A_{S,N}T^{-1},\quad
+ \mathcal B_N=A_{S,N}T^{-1}T^{-*}A_{S,N}^*.
+\end{equation}
+Whenever the source cutoff maps onto the class space, $A_{S,N}$ has full
+row rank on the observation image, so $\mathcal B_N>0$.
+
+\begin{lgammalemma}\label{lgamma:lem:min}
+For a positive definite coefficient Gram $H$ and full-row-rank $A$,
+\begin{equation}\label{lgamma:eq:min}
+ \min_{Aa=w}a^*Ha=w^*(AH^{-1}A^*)^{-1}w,\qquad
+ a_{\min}=H^{-1}A^*(AH^{-1}A^*)^{-1}w.
+\end{equation}
+For the unchanged Gamma source at $S=c+iy$ this gives
+\begin{equation}\label{lgamma:eq:Qsigma}
+ \boxed{Q_N^\sigma=(A_{S,N}(H_S^\sigma)^{-1}A_{S,N}^*)^{-1}
+ \succeq\beta_N\mathcal B_N^{-1}.}
+\end{equation}
+\end{lgammalemma}
+\begin{proof}
+The proposed minimizer has image $w$.  Every other lift is $a_{\min}+h$
+with $Ah=0$, and $Ha_{\min}=A^*(AH^{-1}A^*)^{-1}w$ is orthogonal
+to $h$.  Its energy is the minimum in \eqref{lgamma:eq:min} plus $h^*Hh$.
+Lemma \ref{lgamma:lem:disk} and Theorem \ref{lgamma:thm:kernel} give
+$(H_y^\sigma)^{-1}\preceq\beta_N^{-1}I$.  Conjugate by
+$A_{S,N}T^{-1}$ and invert to obtain \eqref{lgamma:eq:Qsigma}.  Inversion
+reverses order because conjugating $0<X\preceq Y$ by $Y^{-1/2}$
+gives a positive matrix with eigenvalues at most one, whose inverse has
+eigenvalues at least one.
+\end{proof}
+
+For clarity, if $V_S,V_y$ are the literal derivative-jet matrices at
+$s_\ell=c+iy_\ell$ with row orders $d$, the chain rule gives
+\begin{equation}\label{lgamma:eq:jets}
+ V_yT=D V_S,\qquad D_{(\ell,d),(\ell,d)}=i^d.
+\end{equation}
+It also holds for corresponding divided derivatives.  Thus if the
+actual map is $J_{S,N}=U_{\rm phys}V_S$, its transform is
+$J_{S,N}T^{-1}=U_{\rm phys}D^{-1}V_y$: the physical unit is not removed,
+and $D^{-1}$ is not moved through it.  For square jet matrices,
+\[
+ \det V_S=i^{N(N+1)/2-\sum d}\det V_y.
+\]
+This keeps the determinant phase, including the case of zero determinants.
+
+\section{The native simple-quartet domain, weight and exact window}
+
+We now use exactly the simple-quartet domain of CAI and OB
+\cite{lgamma:CAI,lgamma:OB}: a stipulated full simple quartet of zeros of $g=2\xi$,
+\begin{equation}\label{lgamma:eq:nativedomain}
+ \rho=\tfrac12+\delta+i\gamma,\quad 0<\delta<\tfrac12,\quad\gamma>2,
+ \quad \mathcal R=\{\rho,\bar\rho,1-\rho,1-\bar\rho\},
+ \quad h(s)=\prod_{\zeta\in\mathcal R}(s-\zeta).
+\end{equation}
+Here $\xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$.
+This domain does not assert existence of an off-line quartet.
+All statements below concern the original objects on that stipulated
+domain, without adding a zero, period or phase assumption.
+Retain
+\begin{equation}\label{lgamma:eq:nativeweight}
+ v_h=g/h,\quad w_h(y)=\frac{|v_h(1/2+iy)|^2}{2\pi},\quad
+ dm_k(y)=w_h^{*k}(y)\,dy,\quad
+ \mu_h=\int w_h(y)\,dy.
+\end{equation}
+The arithmetic mass is $\mu_h^k$, not $M_\Gamma$ and not
+$M_\Gamma^k$.  Fix the original period and its admitted observation map.
+The original parameters and polynomial are
+\begin{equation}\label{lgamma:eq:chik}
+ \begin{gathered}
+ k=4\ell+1\ge9,\quad c=k/2,\quad q=(k+1)^2,\quad S=c+iy,\\
+ \chi_k(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma],\qquad E_k=\lgammaC[S]/(\chi_k).
+ \end{gathered}
+\end{equation}
+The roots are distinct since $\delta,\gamma>0$.  The exact remainder map
+is onto for $N\ge q-1$ and has kernel $\chi_k\lgammaC[S]_{\le N-q}$.
+The complete original cutoff window is
+\begin{equation}\label{lgamma:eq:window}
+ q-1\le N\le2q,
+ \qquad N_*=2q+2.
+\end{equation}
+The four return endpoints are $q-1,q,2q-1,2q$; the adjacent-current sum
+uses $N=q-1,\ldots,2q-1$ and weights $1,2,\ldots,2,1$ of total $2q$.
+The larger $N_*$ is exactly the CAI comparison degree used in OB13 and
+FW7; it is not a replacement window.
+
+\paragraph{The unit and the exact physical presentation.}
+The original local Taylor unit is $\upsilon_h=j_hv_h$, invertible
+because the full simple zeros have been divided out.  In the physical
+tensor presentation the original map is
+\[
+ \eta:E_k\longrightarrow E_h^{\otimes k},\qquad
+ \eta[P]=\upsilon_h^{\otimes k}[P(s_1+\cdots+s_k)],
+ \qquad E_h=\lgammaC[s]/(h).
+\]
+It is injective: all grid centres in \eqref{lgamma:eq:chik} occur as sums of
+the retained quartet.  For given $a,b$, choose $x=\max(0,a+b-k)$
+and quartet multiplicities $x,a-x,b-x,k-a-b+x$; these are nonnegative
+and have the required two marginal counts.  Vanishing at all tensor
+points, after multiplying
+by the invertible unit, is equivalent to divisibility by $\chi_k$.
+Thus the actual physical coefficient-to-class map is
+$J_{S,N}=\eta\circ\lgammaremm_{\chi_k}$, with codomain the original image
+$\eta(E_k)$, whenever this is the native frame used.  Its observation
+is the retained period map, whose included form is
+$P_k\Pi^{\otimes k}$ on that image.  In CAI's literal remainder
+presentation the identical composite is written
+\[
+ \jmath\Lambda_{\rm rem}
+ =P_k\Pi^{\otimes k}U^{\otimes k}\iota,
+ \qquad U=M_{j_hv_h},\qquad \iota[P]=[P(\textstyle\sum s_i)].
+\]
+These are equal maps, not a deletion of $U$.  If $R$ is the fixed
+matrix of $\eta$ between the two retained class frames, their exact
+relations are
+\begin{equation}\label{lgamma:eq:unitframe}
+ J_{S,N}=R J_{{\rm rem},N},\quad
+ \Lambda=\Lambda_{\rm rem}R^{-1},\quad
+ G_N=R^{-*}G_{{\rm rem},N}R^{-1},\quad
+ a_i=R a_{i,\rm rem},\quad v=Rv_{\rm rem}.
+\end{equation}
+Consequently $A_{S,N}$ and every observed vector below are unchanged.
+This retains the original unit, including its actual phase.  In
+particular the unit matrix $\operatorname{diag}(a,\bar a,\bar a,a)$
+of NC1--3 \cite{lgamma:NC} is not set to the identity.  Neither NC's
+proper-source kernel nor its independent target minimum is substituted
+for the present observation fibre.
+
+\paragraph{The established CAI constants in the simple domain.}
+The original constants from CAI16--18, with common multiplicity one,
+are exactly
+\begin{equation}\label{lgamma:eq:CAIconstants}
+ \begin{gathered}
+ \alpha=\pi/2,\quad p=7/2,\quad B_h=50,\quad M=25,\\
+ \vartheta_h=\int_{-1}^1w_h(y)\,dy>0,\quad
+ M_\alpha=\int_\lgammaR e^{\alpha y}w_h(y)\,dy\in(0,\infty),\\
+ c_\Gamma=\sqrt2e^{-7/6},\qquad C_\Gamma=\sqrt{2\sqrt5}\,e^{2/3},\\
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-50}}
+              {C_\Gamma2^{25}},\qquad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{9/2}M_\alpha^{k-1},\\
+ D_n=[1+4(n+25)^2]^{25},\qquad
+ \ell_k=\frac{a_k}{[1+4(2q+2+25)^2]^{25}},\qquad u_k=A_k.
+ \end{gathered}
+\end{equation}
+Here $c_h$ is the original TW7 lower-envelope constant and
+$C_h^{\rm tilt}$ the original BT12 compact/tail maximum as retained in
+CAI16--17, not newly selected constants.  The established density
+inequalities in that provider are, for every convolution order $b\ge3$,
+\begin{align}
+ w_h^{*b}(y)&\ge c_h\vartheta_h^{b-3}
+ e^{-\alpha(|y|+b-3)}(b-2+|y|)^{-50},\label{lgamma:eq:CAIlowdens}\\
+ w_h^{*b}(y)&\le bC_h^{\rm tilt}M_\alpha^{b-1}
+ e^{-\alpha|y|}(1+|y|/b)^{-7/2},\label{lgamma:eq:CAIupdens}\\
+ c_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2}
+ &\le\frac{d\sigma}{dy}
+ \le C_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2}.
+ \label{lgamma:eq:CAIgammadens}
+\end{align}
+These quoted full-density results are the native analytic input.  For
+completeness their passage to the exact polynomial receiver is as follows.
+The elementary inequalities
+$b-2+|y|\le(b-2)(1+|y|)$,
+$(1+|y|)^{50}\le2^{25}(1+y^2)^{25}$, and
+$1+|y|/b\ge(1+|y|)/b$ give
+\[
+ a_b(1+y^2)^{-25}\,d\sigma\le w_h^{*b}(y)\,dy\le A_b\,d\sigma.
+\]
+The original Gamma recurrence gives
+$\lgammanorm{yP}_\sigma\le2(n+1)\lgammanorm P_\sigma$ at degree $n$:
+its raising and lowering parts have respective norms at most $n+1$
+and $n$ on that coefficient span.  Iterating at successive degrees gives
+$\lgammanorm{y^jP}_\sigma\le[2(n+25)]^j\lgammanorm P_\sigma$ for $0\le j\le25$.
+Expand $(1+y^2)^{25}$ to obtain
+\[
+ \int|P|^2(1+y^2)^{25}\,d\sigma\le D_n\lgammanorm P_\sigma^2.
+\]
+Cauchy--Schwarz with the reciprocal weights gives
+$\int|P|^2(1+y^2)^{-25}\,d\sigma\ge D_n^{-1}\lgammanorm P_\sigma^2$.
+Thus, for every complex polynomial of degree at most $N_*=2q+2$,
+\begin{equation}\label{lgamma:eq:nativecomparison}
+ \boxed{\ell_k\lgammanorm{P}_{\sigma,c}^{2}
+       \le\lgammanorm{P}_{m_k,c}^{2}
+       \le u_k\lgammanorm{P}_{\sigma,c}^{2}.}
+\end{equation}
+Here the subscript $c$ means that the same original polynomial is
+evaluated at $S=c+iy$.  Its degree is unchanged by the explicitly
+proved map $T_N(c)$.  This is CAI18 at $N_*$, exactly as used in
+OB13 and OB18.  It does not identify $w_h^{*k}$ with $\sigma$ or with
+$\sigma^{*k}$.
+
+\section{Identical-fibre transfer to the native observed form}
+
+Let $H_{S,N}^{\rm ar}$ be the full original coefficient Gram for
+\eqref{lgamma:eq:nativeweight}, and let $G_N^{\rm ar}$ be the attained class
+form at degree $N$, including every original relation.  In the retained
+class frame,
+\[
+ (G_N^{\rm ar})^{-1}
+ =J_{S,N}(H_{S,N}^{\rm ar})^{-1}J_{S,N}^*,\quad
+ Q_N^{\rm ar}=(\Lambda(G_N^{\rm ar})^{-1}\Lambda^*)^{-1}.
+\]
+Composition therefore gives exactly
+$Q_N^{\rm ar}=(A_{S,N}(H_{S,N}^{\rm ar})^{-1}A_{S,N}^*)^{-1}$.
+All these matrices exist for \eqref{lgamma:eq:window}; the densities have
+positive norm on nonzero polynomials, the remainder map is onto, and
+the observation is taken onto its image.
+
+\begin{lgammatheorem}[Native observed lower form]\label{lgamma:thm:nativelower}
+At every original cutoff $q-1\le N\le2q$,
+\begin{equation}\label{lgamma:eq:samefibre}
+ \ell_kQ_N^\sigma\preceq Q_N^{\rm ar}\preceq u_kQ_N^\sigma,
+\end{equation}
+where the Gamma quotient uses the identical $A_{S,N}$, period,
+physical-unit factors and observation frame.  Consequently
+\begin{equation}\label{lgamma:eq:nativelower}
+ \boxed{Q_N^{\rm ar}\succeq
+ \ell_k\beta_N\left[
+ \Lambda J_{S,N}T_N(k/2)^{-1}T_N(k/2)^{-*}J_{S,N}^*\Lambda^*
+ \right]^{-1}.}
+\end{equation}
+The scalar $\beta_N$ is the exact formula \eqref{lgamma:eq:beta}.
+\end{lgammatheorem}
+\begin{proof}
+Fix an arbitrary observation vector $w$.  The candidate set in both
+minima is exactly
+\[
+ \{P\in\lgammaC[S]_{\le N}:A_{S,N}\operatorname{coeff}_S(P)=w\}.
+\]
+It is nonempty and is the same affine fibre, with every relation and
+kernel lift included.  Apply \eqref{lgamma:eq:nativecomparison} to every
+candidate.  Taking infima proves the lower inequality.  For the upper
+inequality evaluate the arithmetic norm at the Gamma minimizer;
+Lemma \ref{lgamma:lem:min} proves its existence and its exact norm.  This
+proves \eqref{lgamma:eq:samefibre} for every $w$, hence in Loewner order.
+Combine its lower inequality with \eqref{lgamma:eq:Qsigma} and retain
+$\mathcal B_N$ from \eqref{lgamma:eq:A}.  This proves \eqref{lgamma:eq:nativelower}.
+It is precisely the full-matrix version of OB18's same-class minimum
+argument.  No extra large-period or conductor-corner hypothesis from
+OB14 is needed or imposed.
+\end{proof}
+
+If the observation image has dimension zero, all observed vectors and
+forms below are zero and the same assertions hold with empty-matrix
+conventions.  Otherwise the inverses above are ordinary positive
+definite inverses.
+
+\section{The actual arithmetic boundary triple and its exact Gram}
+
+At cutoff $N$ retain the \emph{arithmetic}, $S$-monic orthogonal
+polynomials $p_n^{\rm ar}(S)$ and their full norms $\omega_n>0$.
+As in FW1--5 and HG6--7 \cite{lgamma:FW,lgamma:HG}, use the original classes
+\begin{equation}\label{lgamma:eq:nativetriple}
+ a_1=b_N=[p_N^{\rm ar}],\qquad
+ a_2=b_{N+1}=[p_{N+1}^{\rm ar}],\qquad
+ v=v_\lambda=\left[\frac{\chi_k(S)}{(S-\lambda)\chi_k'(\lambda)}\right],
+ \quad\lambda=k\rho.
+\end{equation}
+Brackets denote the original class, with the physical presentation
+\eqref{lgamma:eq:unitframe} whenever that is the retained frame.  In particular
+the complete physical unit multiplies these classes as specified there.
+The vector $a_2$ is a class represented by a degree-$N+1$ polynomial,
+but its minimum at cutoff $N$ includes all its degree-at-most-$N$
+representatives; they exist because $N\ge q-1$.  It is not replaced
+by a Gamma polynomial or by an inadmissible unreduced lift.
+
+Write $G=G_N^{\rm ar}$, $Q=Q_N^{\rm ar}$, and
+\begin{equation}\label{lgamma:eq:omegal}
+ \Omega=\Lambda^*Q\Lambda,\qquad L=G-\Omega,\qquad
+ X=(a_1,a_2,v),\qquad W=\Lambda X.
+\end{equation}
+The exact class-space minimum section is
+$S_B=G^{-1}\Lambda^*Q$.  It satisfies $\Lambda S_B=I_B$.
+Thus $P_K=I_E-S_B\Lambda$ maps onto $\ker\Lambda$, is the identity
+there, and $I_K^*GS_B=0$ for the actual kernel inclusion
+$I_K:\ker\Lambda\hookrightarrow E$.
+The resulting orthogonal decomposition proves
+\begin{equation}\label{lgamma:eq:split}
+ 0\preceq\Omega\preceq G,\quad L=GP_K\succeq0,
+ \qquad X^*GX=X^*\Omega X+X^*LX.
+\end{equation}
+This is the exact FW37--38 and HR2 minimum, now proved in the actual
+three columns.  Define all its entries without dropping any:
+\begin{equation}\label{lgamma:eq:entries}
+ \begin{gathered}
+ d_i=a_i^*Ga_i,\quad E=v^*Gv,\quad F_i=a_i^*Gv,\\
+ D_i=a_i^*\Omega a_i,\quad e=v^*\Omega v,\quad
+ B_i=a_i^*\Omega v,\quad z=a_1^*\Omega a_2,\\
+ k_i=a_i^*La_i=d_i-D_i,\quad
+ K_i=a_i^*Lv=F_i-B_i,\quad e_K=v^*Lv=E-e.
+ \end{gathered}
+\end{equation}
+The native source pairing $a_1^*Ga_2$ is zero, but the observed pairing
+$z$ need not be zero.  To verify the former assertion in the original
+objects, the exact functional equations $\xi(1-s)=\xi(s)$ and
+$h(1-s)=h(s)$ make $w_h$ even, and convolution preserves evenness.
+Evenness of $m_k$ makes $p_n^{\rm ar}(k-S)=(-1)^np_n^{\rm ar}(S)$.
+Reflection permutes the full roots of $\chi_k$ and takes each entire
+affine fibre to the reflected fibre isometrically.  Its induced map
+$\Sigma$ therefore satisfies $\Sigma^*G\Sigma=G$, while
+$\Sigma b_n=(-1)^nb_n$.  Hence
+$a_1^*Ga_2=(-1)^{2N+1}a_1^*Ga_2=0$.  The same assertion in the
+physical frame follows by the exact congruence \eqref{lgamma:eq:unitframe}.
+Consequently the complete source, observed and kernel triple Grams are
+\begin{equation}\label{lgamma:eq:threegrams}
+ \begin{gathered}
+ \mathcal F=X^*GX=
+ \begin{pmatrix}d_1&0&F_1\\0&d_2&F_2\\\bar F_1&\bar F_2&E\end{pmatrix},\\
+ \mathcal C=W^*QW=
+ \begin{pmatrix}D_1&z&B_1\\\bar z&D_2&B_2\\\bar B_1&\bar B_2&e\end{pmatrix},\qquad
+ \mathcal K=X^*LX=
+ \begin{pmatrix}k_1&-z&K_1\\-\bar z&k_2&K_2\\\bar K_1&\bar K_2&e_K\end{pmatrix},\\
+ \mathcal F=\mathcal C+\mathcal K,\qquad \mathcal C,\mathcal K\succeq0.
+ \end{gathered}
+\end{equation}
+In particular the two complementary off-diagonal boundary terms are
+$z$ and $-z$, not two separately vanishing terms.
+
+\begin{lgammatheorem}[The joint native observed constraint]\label{lgamma:thm:joint}
+Put
+\begin{equation}\label{lgamma:eq:baseline}
+ \mathfrak b_{k,N}=\ell_k\beta_N,\qquad
+ \Psi_N=W^*\mathcal B_N^{-1}W,\qquad
+ \mathcal C^{(0)}=\mathfrak b_{k,N}\Psi_N.
+\end{equation}
+Then the actual matrices in \eqref{lgamma:eq:threegrams} satisfy
+\begin{equation}\label{lgamma:eq:joint}
+ \boxed{\mathcal C\succeq\mathcal C^{(0)},\qquad
+ \mathcal R:=\mathcal C-\mathcal C^{(0)}\succeq0,\qquad
+ \mathcal F-\mathcal C^{(0)}=\mathcal K+\mathcal R,\quad
+ \mathcal K\succeq0.}
+\end{equation}
+All entries of $\Psi_N$ use the same original $\Lambda a_1$,
+$\Lambda a_2$, $\Lambda v$ and the complete original map in
+\eqref{lgamma:eq:nativelower}.
+Moreover $\ker\mathcal C=\ker\Psi_N=\ker W$; no independence of
+the three observed columns is assumed.
+\end{lgammatheorem}
+\begin{proof}
+Congruence of \eqref{lgamma:eq:nativelower} by the three-column matrix $W$
+gives the first inequality and therefore the positive remainder.
+The remaining equality follows from \eqref{lgamma:eq:threegrams}.  It
+preserves the whole native kernel remainder rather than replacing it
+with a trace or a rank.
+Finally, for $t\in\lgammaC^3$, $t^*\mathcal Ct=(Wt)^*Q(Wt)$ vanishes
+exactly when $Wt=0$, since $Q>0$.  The same argument with
+$\mathcal B_N^{-1}>0$ proves the stated kernel identities.
+\end{proof}
+
+Here are all scalar positive-semidefinite constraints in explicit form.
+Write $\psi_{ij}=(\Psi_N)_{ij}$ and set
+\begin{equation}\label{lgamma:eq:resentries}
+ \begin{gathered}
+ x=D_1-\mathfrak b_{k,N}\psi_{11},\quad
+ y=D_2-\mathfrak b_{k,N}\psi_{22},\quad
+ h_B=e-\mathfrak b_{k,N}\psi_{33},\\
+ \zeta_B=z-\mathfrak b_{k,N}\psi_{12},\qquad
+ r_1=B_1-\mathfrak b_{k,N}\psi_{13},\quad
+ r_2=B_2-\mathfrak b_{k,N}\psi_{23}.
+ \end{gathered}
+\end{equation}
+Then $\mathcal R=\left(\begin{smallmatrix}
+x&\zeta_B&r_1\\\bar\zeta_B&y&r_2\\\bar r_1&\bar r_2&h_B
+\end{smallmatrix}\right)$, and \eqref{lgamma:eq:joint} is equivalent, as far
+as its observed lower-form inequality is concerned, to the seven real
+conditions
+\begin{equation}\label{lgamma:eq:allminors}
+ \boxed{\begin{gathered}
+ x\ge0,\quad y\ge0,\quad h_B\ge0,\\
+ xy-|\zeta_B|^2\ge0,\quad xh_B-|r_1|^2\ge0,
+ \quad yh_B-|r_2|^2\ge0,\\
+ xyh_B+2\Re(\zeta_Br_2\bar r_1)
+ -x|r_2|^2-y|r_1|^2-h_B|\zeta_B|^2\ge0.
+ \end{gathered}}
+\end{equation}
+The last line is the complete determinant, including its triple product.
+Necessity follows from principal minors of a positive semidefinite
+matrix.  For sufficiency, add $\epsilon I$ with $\epsilon>0$.
+Its first and second leading principal minors are positive by the
+first two lines.  Its determinant is
+\[
+ \det(\mathcal R+\epsilon I)
+ =\det\mathcal R+
+ \epsilon\sum_{|I|=2}\det\mathcal R_{I,I}
+ +\epsilon^2\operatorname{tr}\mathcal R+\epsilon^3>0.
+\]
+Sylvester's criterion gives
+$\mathcal R+\epsilon I>0$; let $\epsilon\downarrow0$.
+Thus no positivity condition is missing at singular boundary cases.
+These are exact constraints on the native matrix; they do not assert
+that every numerical matrix satisfying them is realized by the native
+arithmetic source.
+
+For the un-subtracted observed Gram the corresponding explicit conditions
+are
+\begin{equation}\label{lgamma:eq:observedminors}
+ \begin{gathered}
+ D_1,D_2,e\ge0,\quad D_1D_2\ge|z|^2,\quad
+ D_1e\ge|B_1|^2,\quad D_2e\ge|B_2|^2,\\
+ D_1D_2e+2\Re(zB_2\bar B_1)
+ -D_1|B_2|^2-D_2|B_1|^2-e|z|^2\ge0.
+ \end{gathered}
+\end{equation}
+The kernel remainder is independently retained through
+\begin{equation}\label{lgamma:eq:kernelminors}
+ \begin{gathered}
+ k_1,k_2,e_K\ge0,\quad k_1k_2\ge|z|^2,\quad
+ k_1e_K\ge|K_1|^2,\quad k_2e_K\ge|K_2|^2,\\
+ k_1k_2e_K-2\Re(zK_2\bar K_1)
+ -k_1|K_2|^2-k_2|K_1|^2-e_K|z|^2\ge0.
+ \end{gathered}
+\end{equation}
+The sign change in the last triple product is forced by the exact
+off-diagonal $-z$ in \eqref{lgamma:eq:threegrams}.
+
+For $h_B>0$, completing the square in the last coordinate of
+$\mathcal R$ gives the equivalent two-dimensional Schur conditions
+\begin{equation}\label{lgamma:eq:resdisk}
+ x-\frac{|r_1|^2}{h_B}\ge0,\quad
+ y-\frac{|r_2|^2}{h_B}\ge0,\qquad
+ \left|\bar r_1r_2-h_B\bar\zeta_B\right|^2
+ \le(h_Bx-|r_1|^2)(h_By-|r_2|^2).
+\end{equation}
+No phase was chosen: the disk has the actual complex centre
+$h_B\bar\zeta_B$.  If $h_B=0$, \eqref{lgamma:eq:allminors} instead forces
+$r_1=r_2=0$ and leaves the exact conditions $x,y\ge0$ and
+$xy\ge|\zeta_B|^2$.  This covers the case without a division.
+Similarly, when $e>0$ the un-subtracted constraint implies
+\begin{equation}\label{lgamma:eq:Bdisk}
+ |\bar B_1B_2-e\bar z|^2
+ \le(eD_1-|B_1|^2)(eD_2-|B_2|^2).
+\end{equation}
+Here $e>0$ is equivalent to $\Lambda v\ne0$; when $e=0$, positivity
+forces $B_1=B_2=0$.  No additional period locus is silently imposed.
+
+\section{Both complementary cross products and every remainder term}
+
+Retain the native scale $\omega_N>0$ from \eqref{lgamma:eq:nativetriple}.
+The exact current formulas in HG7 \cite{lgamma:HG}, also obtained by
+substituting HR5 into the original response products \cite{lgamma:HR}, are
+\begin{equation}\label{lgamma:eq:currents}
+ \begin{aligned}
+ \Phi_{K,N}&=\frac2{\omega_N}\Re(\bar K_1K_2),\\
+ \Phi_{B,N}&=\frac2{\omega_N}\Re(\bar B_1B_2),\\
+ \Phi_{\times,N}&=\frac2{\omega_N}
+        \Re(\bar K_1B_2+\bar B_1K_2).
+ \end{aligned}
+\end{equation}
+For verification on the native nonzero-denominator domain, put
+$\mathfrak c_N=\bar F_1F_2/(\omega_NE)$, $U=K_1/F_1$ and
+$V=K_2/F_2$.  Multiplying $2E\mathfrak c_N$ respectively by
+$\bar UV$, $(1-\bar U)(1-V)$, and
+$\bar U(1-V)+(1-\bar U)V$ gives exactly
+\eqref{lgamma:eq:currents}.  The undivided right sides give their exact
+polynomial continuation across vanishing response denominators.
+
+Put, without discarding the positive remainder in \eqref{lgamma:eq:joint},
+\[
+ B_i^0=\mathfrak b_{k,N}\psi_{i3},\qquad
+ K_i^0=F_i-B_i^0,\qquad B_i=B_i^0+r_i,\quad K_i=K_i^0-r_i.
+\]
+Expansion of every product yields
+\begin{equation}\label{lgamma:eq:currentremainders}
+ \begin{aligned}
+ \frac{\omega_N}2\Phi_{B,N}
+ &=\Re\bigl(\bar B_1^0B_2^0+\bar B_1^0r_2
+              +\bar r_1B_2^0+\bar r_1r_2\bigr),\\
+ \frac{\omega_N}2\Phi_{K,N}
+ &=\Re\bigl(\bar K_1^0K_2^0-\bar K_1^0r_2
+              -\bar r_1K_2^0+\bar r_1r_2\bigr),\\
+ \frac{\omega_N}2\Phi_{\times,N}
+ &=\Re\bigl(\bar K_1^0B_2^0+\bar B_1^0K_2^0
+       +(\bar K_1^0-\bar B_1^0)r_2\\
+ &\hspace{30mm}+\bar r_1(K_2^0-B_2^0)-2\bar r_1r_2\bigr).
+ \end{aligned}
+\end{equation}
+Every linear cross term and every quadratic remainder is displayed.
+In their sum these remainder terms cancel algebraically, not by an
+estimate, giving the unchanged total
+\begin{equation}\label{lgamma:eq:currenttotal}
+ \Phi_{K,N}+\Phi_{B,N}+\Phi_{\times,N}
+ =\frac2{\omega_N}\Re(\bar F_1F_2)
+ =2E\Re\mathfrak c_N.
+\end{equation}
+The source coefficient is retained in its exact full-source definition,
+not replaced by a leading expression omitting its signed phase remainder.
+The baseline $\mathcal C^{(0)}$ is a proved lower form, not a declaration
+that $\mathcal R$ is small or zero.
+
+For example, \eqref{lgamma:eq:resdisk} supplies the exact finite enclosure
+\begin{equation}\label{lgamma:eq:currentdisk}
+ \begin{split}
+ \Big|\frac{\omega_N}2\Phi_{B,N}
+ -\Re(\bar B_1^0B_2^0+\bar B_1^0r_2+\bar r_1B_2^0
+                   +h_B\bar\zeta_B)\Big|
+ \le\sqrt{(h_Bx-|r_1|^2)(h_By-|r_2|^2)}.
+ \end{split}
+\end{equation}
+For $h_B=0$ the same formula holds because $r_1=r_2=0$.
+This is a correlated constraint retaining the actual remainder entries,
+not an assignment of unknown phases.  All identities and inequalities
+hold at every cutoff in \eqref{lgamma:eq:window}; insertion into the original
+current sum keeps its weights $1,2,\ldots,2,1$, and the original
+four-endpoint return keeps $q-1,q,2q-1,2q$.
+
+\section{The separate actual Gamma-convolution reference}
+
+For completeness let $b\ge1$ be any integer.  The same recurrence
+argument applies to the actual finite-measure convolution $\sigma^{*b}$,
+but this is not the native weight in \eqref{lgamma:eq:nativeweight}.  Its exact
+mass is $M_{\Gamma,b}=M_\Gamma^b$.  Fubini and \eqref{lgamma:eq:laplace} give
+\[
+ \int e^{sy}\,d\sigma^{*b}(y)=M_{\Gamma,b}(\cos s)^{-b/2}.
+\]
+For
+\[
+ \sum_{n\ge0}p_n^{[b]}(y)\frac{t^n}{n!}
+ =(1+t^2)^{-b/4}e^{y\arctan t},
+\]
+the same two-generating-function calculation proves
+$\gamma_n^{[b]}=M_{\Gamma,b}n!(b/2)_n$ and
+\[
+ p_{n+1}^{[b]}=yp_n^{[b]}-n(n-1+b/2)p_{n-1}^{[b]}.
+\]
+Write $\alpha_b=b/2$ and $b_n=\sqrt{(n+1)(n+\alpha_b)}$.
+For $n\ge1$,
+\[
+ b_n^2-(1+b_{n-1})^2
+ =2n+\alpha_b-1-2\sqrt{n(n+\alpha_b-1)}\ge0,
+\]
+because the first compared term is positive and its square minus the
+second square is $(\alpha_b-1)^2$.  The positive imaginary-point
+recurrence and the initial squares $M_{\Gamma,b}^{-1}$ and
+$(\alpha_bM_{\Gamma,b})^{-1}$ therefore prove
+\begin{equation}\label{lgamma:eq:conv}
+ K_N^{\sigma^{*b}}(i,i)
+ \le\frac{1+N\max(1,2/b)}{(\sqrt{2\pi})^b}.
+\end{equation}
+At $b=2$ the recurrence gives equal imaginary-point squares at every
+index, and \eqref{lgamma:eq:conv} is an equality.  No assertion in the native
+transfer used $m_k=\sigma^{*k}$.
+
+\section{Exact finite verification and provenance}
+
+The companion \texttt{verify\_exact.py} proves by exact rational
+calculation the alternating ratios, closed kernel formula and linear
+bounds through $N=512$; it checks original Gram norms, inverse traces
+and Loewner differences through $N=10$.  It checks symbolic-$c$
+coefficient inverses and determinant phases through $N=8$, a complete
+complex original-$S$ jet quotient at $N=4$, and the separate
+Gamma-convolution recurrence bounds for $1\le k\le12$, $N\le128$.
+These finite checks supplement the all-degree proofs, not replace them.
+All printed Gram factors retain their exact common scalar
+$\sqrt{2\pi}$ symbolically.  The first original kernel values multiplied
+by $\sqrt{2\pi}$ are $1,3,9/2,63/10,63/8,77/8,539/48$.
+The separate \texttt{verify\_native\_gram\_identities.py} checks the full
+Hermitian determinant, complex Schur-disk identity, singular-case
+principal-minor criterion, native source--observed--kernel decomposition,
+and all three current expansions as exact symbolic polynomial identities.
+It assigns no numerical value to a native arithmetic coefficient or
+period phase.
+
+The source-use coverage for this derivation is precise: Berg--Szwarc's
+original version-one \LaTeX, Section 3, the complete disk-domination
+and kernel-eigenvalue lemma proofs and intervening proposition; CAI's
+domain, original unit and observation definitions and CAI16--19;
+OB's full supplied text, especially OB13 and OB18; HG and HR's full
+supplied texts; FW1--7 and FW37--40; and NC's original unit/frame
+definitions and NC24--27 distinguishing its separate proper-source
+minimum.  No separate full-paper reading of Berg--Szwarc by this
+independent derivation is claimed; the parent task read that source in
+full.  No Gamma-polynomial theorem from CCM has been imported.
+
+\begin{thebibliography}{9}
+\bibitem{lgamma:BS}
+Christian Berg and Ryszard Szwarc,
+\emph{The smallest eigenvalue of Hankel matrices},
+arXiv:0906.4506v1 (2009), Section 3, original-source labels
+\texttt{thm:pni} and \texttt{thm:lambda}, both lemmas;
+\url{https://arxiv.org/abs/0906.4506v1}.
+The original author \LaTeX\ source is retained locally as
+\path{sources/0906.4506v1/original_source/main.tex}.
+
+\bibitem{lgamma:CAI}
+Split-Zero research programme,
+\emph{The complete original action relative to its arithmetic total},
+complete native CAI provider reconstructed from the delivered continuation
+of 16 September 2026, CAI1--3, CAI6--9 and CAI16--19.
+Original provider: \path{providers/CAI_COMPLETE_PREREQUISITE.tex}.
+The retained analytic constants are the source's TW7 and BT12 constants,
+as recorded in its AMT4/CAI16--17.
+
+\bibitem{lgamma:OB}
+Split-Zero research programme,
+\emph{The observed terminal class on the complete original window},
+native provider \path{OBSERVED_CLASS_RETURN.tex}, OB1--2,
+the degree-$2q+2$ comparison preceding OB13, and OB18--19.
+
+\bibitem{lgamma:FW}
+Split-Zero research programme,
+\emph{Full-window source products and the retained class:
+finite quotient comparisons in the original arithmetic metric},
+19 September 2026, FW1--7 and FW37--40.
+Original provider: \path{providers/FULL_WINDOW_SOURCE_PRODUCTS.tex}.
+
+\bibitem{lgamma:HG}
+Split-Zero research programme,
+\emph{Subexponential heat cost and the original arithmetic currents},
+19 September 2026, HG1 and HG6--11.
+Original provider: \path{providers/HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex}.
+
+\bibitem{lgamma:HR}
+Split-Zero research programme,
+\emph{Heat approximation errors for the original complex observation responses},
+19 September 2026, HR2--5 and HR8--11.
+Original provider: \path{providers/HEAT_OBSERVATION_RESPONSE_ERRORS.tex}.
+
+\bibitem{lgamma:NC}
+Split-Zero research programme,
+\emph{Vanishing of the original proper-source kernel through conductor coprimality},
+19 September 2026, NC1--3 and NC24--27.
+Original provider: \path{providers/ORIGINAL_CONDUCTOR_COPRIMALITY.tex}.
+Used here only to retain the actual unit/frame conventions and to avoid
+substituting its separate proper-source minimum for the present fibre.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Closed range of the original full theta source}
+\newtheorem{lthetatheorem}{Theorem}
+\newtheorem{lthetalemma}[lthetatheorem]{Lemma}
+\newtheorem{lthetaproposition}[lthetatheorem]{Proposition}
+\newtheorem{lthetacorollary}[lthetatheorem]{Corollary}
+\newcommand{\lthetaB}{\mathscr B}
+\newcommand{\lthetaSch}{\mathcal S}
+\newcommand{\lthetaHH}{\mathcal H}
+\newcommand{\lthetaZ}{\mathbb Z}
+\newcommand{\lthetaR}{\mathbb R}
+\newcommand{\lthetaC}{\mathbb C}
+\newcommand{\lthetaN}{\mathbb N}
+\newcommand{\lthetaid}{\operatorname{id}}
+\newcommand{\lthetacl}{\operatorname{cl}}
+\newcommand{\lthetasupp}{\operatorname{supp}}
+\newcommand{\lthetaF}{\mathcal F}
+
+
+
+\section{The fixed objects and the source theorem}
+
+Every space and map in this note is over $\lthetaC$. The original source is
+\[
+ V=\left\{\phi\in\lthetaSch(\lthetaR):\phi(-x)=\phi(x),\quad
+       \phi(0)=0,\quad \int_\lthetaR\phi(x)\,dx=0\right\},
+\]
+with the subspace topology from the ordinary Schwartz space. Put
+\[
+ D=-x\frac{d}{dx},\qquad
+ p_{b,j}(F)=\sup_{x>0}x^b|D^jF(x)|\quad(b\in\lthetaZ,\ j\in\lthetaN_0),
+\]
+\[
+ \lthetaB=\{F\in C^\infty(\lthetaR_{>0}):p_{b,j}(F)<\infty
+                     \text{ for every }b,j\}.
+\]
+The topology on $\lthetaB$ is exactly that generated by all $p_{b,j}$. The
+operators and Fourier convention are
+\begin{equation}\label{ltheta:eq:original}
+ \Theta\phi(x)=2\sum_{n=1}^{\infty}\phi(nx),\qquad
+ JF(x)=x^{-1}F(x^{-1}),\qquad
+ \widehat\phi(\xi)=\int_\lthetaR\phi(x)e^{-2\pi i x\xi}\,dx.
+\end{equation}
+No conjugation by $x^{1/2}$, renormalization of $\Theta$, change of the
+coordinate $x$, or substitution of a Hilbert norm is made here.
+
+The literature source is Ralf Meyer, \emph{A spectral interpretation for
+the zeros of the Riemann zeta function}, arXiv:math/0412277v3,
+\href{https://arxiv.org/abs/math/0412277v3}{original versioned source}.
+Its Section 2 defines
+\[
+ \lthetaHH_- =\bigcap_{s\in\lthetaR}\lthetaSch(\lthetaR_+^*)_s,\qquad
+ \lthetaSch(\lthetaR_+^*)_s=
+ \{F:x\mapsto x^sF(x)\text{ is Schwartz in }\log x\}.
+\]
+Its Section 3 defines $Z\phi(x)=\sum_{n\geq1}\phi(nx)$ and
+$\lthetaHH_\cap=\{\phi\in\lthetaSch(\lthetaR):\phi\text{ even},\,
+\phi(0)=\lthetaF\phi(0)=0\}$. Theorem 3.3, with source label
+\texttt{the:Zeta\_estimate}, proves closed range and the
+topological-isomorphism-onto-range property, including the restriction
+$Z:\lthetaHH_\cap\to\lthetaHH_-$. Its proof uses Poisson summation and
+Proposition 3.2 (label \texttt{pro:Z\_invertible}), together with
+Proposition 2.1 (label \texttt{pro:Sch\_estimates}).
+
+Meyer's Fourier kernel has the opposite sign. For an even $\phi$ the
+change of variable $x\mapsto-x$ in the defining integral proves that
+the two transforms are equal, as functions, with no scalar factor.
+Consequently $V=\lthetaHH_\cap$ with identical source topology. His $Z$ and
+the original map satisfy $\Theta=2Z$. The next sections prove the target
+topology identification and independently reconstruct the closed-range
+conclusion with explicit inverse estimates.
+
+\section{Identity equivalence of the complete seminorm systems}
+
+For $s\in\lthetaR$ and $k,j\in\lthetaN_0$ define
+\begin{equation}\label{ltheta:eq:q}
+ q_{s,k,j}(F)=\sup_{x>0}(1+|\log x|)^k
+ \left|\left(x\frac d{dx}\right)^j(x^sF(x))\right|.
+\end{equation}
+These are the ordinary Schwartz seminorms in the variable $\log x$
+after multiplication by $x^s$, expressed on the original $x$-axis. Their
+projective family generates precisely Meyer's topology on $\lthetaHH_-$.
+
+\begin{lthetatheorem}\label{ltheta:thm:topology}
+The identity on positive-axis functions is a topological linear
+isomorphism $\lthetaB=\lthetaHH_-$. More explicitly, set
+\[
+ n_-(s)=\lfloor s\rfloor-1,\qquad n_+(s)=\lceil s\rceil+1,
+ \qquad C_k=\sup_{t\geq0}(1+t)^ke^{-t}.
+\]
+Here $C_0=1$ and $C_k=k^ke^{1-k}$ for integer $k\geq1$.
+For every real $s$ and every $k,j\geq0$,
+\begin{equation}\label{ltheta:eq:q-from-p}
+ q_{s,k,j}(F)\leq C_k\sum_{\ell=0}^j\binom j\ell
+ |s|^{j-\ell}\bigl(p_{n_-(s),\ell}(F)+p_{n_+(s),\ell}(F)\bigr).
+\end{equation}
+Conversely, for every integer $b$ and $j\geq0$,
+\begin{equation}\label{ltheta:eq:p-from-q}
+ p_{b,j}(F)\leq\sum_{\ell=0}^j\binom j\ell
+ |b|^{j-\ell}q_{b,0,\ell}(F).
+\end{equation}
+In these formulas a zeroth power, including $0^0$, means $1$.
+\end{lthetatheorem}
+
+\begin{proof}
+Write $L=x\,d/dx=-D$. The Leibniz rule, iterated $j$ times, gives the
+exact operator identity
+\[
+ L^j(x^sF)=x^s(s-D)^jF
+   =x^s\sum_{\ell=0}^j\binom j\ell s^{j-\ell}(-1)^\ell D^\ell F.
+\]
+For $x\geq1$ put $t=\log x$. Since $n_+(s)-s\geq1$,
+\[
+ (1+|\log x|)^kx^s\leq C_kx^{n_+(s)}.
+\]
+For $0<x\leq1$ put $t=-\log x$. Since $s-n_-(s)\geq1$,
+\[
+ (1+|\log x|)^kx^s\leq C_kx^{n_-(s)}.
+\]
+Substitution in the displayed binomial expansion proves
+\eqref{ltheta:eq:q-from-p}. The constant follows by maximizing
+$k\log(1+t)-t$ on $t\geq0$.
+
+The conjugate identity $(b-L)(x^bF)=x^bDF$ yields
+\[
+ x^bD^jF=(b-L)^j(x^bF).
+\]
+Its binomial expansion gives \eqref{ltheta:eq:p-from-q}. Hence finiteness of
+the full $p$-family and of the full $q$-family is equivalent, and each
+seminorm of either family is bounded by a finite linear combination
+from the other. This proves equality of the sets and of their locally
+convex topologies, through the identity map.
+\end{proof}
+
+For completeness, $\lthetaB$ is a Fr\'echet space directly in the $p$-topology.
+The seminorm family is countable and separates points. If $(F_n)$ is
+Cauchy in every $p_{b,j}$, it is Cauchy in $C^\infty(K)$ for each compact
+$K\subset(0,\infty)$, because
+\begin{equation}\label{ltheta:eq:R}
+ x^m\partial_x^m=R_m(D),\qquad
+ R_m(t)=(-1)^m\prod_{r=0}^{m-1}(t+r),\qquad R_0(t)=1.
+\end{equation}
+The identity follows by induction, using
+$x^{m+1}\partial^{m+1}=(x\partial-m)x^m\partial^m$.
+Local limits therefore give a single smooth $F$. For a fixed $b,j$,
+the $p_{b,j}$-Cauchy bound on $F_n-F_m$ passes pointwise to $m\to\infty$
+and then to the supremum; thus $p_{b,j}(F_n-F)\to0$ and $F\in\lthetaB$.
+The same local-limit argument proves completeness of $\lthetaSch(\lthetaR)$.
+Parity, evaluation at zero, and integration are continuous Schwartz
+functionals/conditions (for integration use the seminorm with weight
+$(1+|x|)^2$). Therefore $V$ is a closed, complete Fr\'echet subspace.
+
+\section{Continuity, Poisson symmetry, and exact M\"obius inversion}
+
+Write
+\[
+ T_{N,j}(\psi)=\sup_{t\geq1}t^N|D^j\psi(t)|
+ \qquad(\psi\in\lthetaSch(\lthetaR)).
+\]
+Each $T_{N,j}$ is a continuous Schwartz seminorm: expanding
+$D^j=(-x\partial_x)^j$ gives a finite sum of polynomial coefficients
+times ordinary derivatives. For $N>1$, termwise differentiation of
+the theta series on every compact subset of $(0,\infty)$ is justified
+by the convergent majorant $C n^{-N}$. On $x\geq1$ it gives
+\begin{equation}\label{ltheta:eq:theta-tail}
+ |D^j\Theta\psi(x)|\leq2\zeta(N)x^{-N}T_{N,j}(\psi).
+\end{equation}
+
+The ordinary Fourier transform maps $\lthetaSch(\lthetaR)$ continuously to itself.
+Indeed, its differentiated, polynomially weighted expressions are
+Fourier transforms of finite sums of derivatives of polynomially
+weighted $\psi$, multiplied by the explicit powers of $2\pi i$ from
+the kernel in \eqref{ltheta:eq:original}; their suprema are bounded by the
+corresponding $L^1$ norms. Those norms are bounded by finitely many
+Schwartz seminorms, using the integrable weight $(1+|x|)^{-2}$.
+Fourier inversion gives $\widehat{\widehat\psi}(x)=\psi(-x)$.
+It follows that the Fourier transform is an involution of $V$:
+evenness is preserved, $\widehat\phi(0)=\int\phi=0$, and
+$\int\widehat\phi=\phi(0)=0$.
+
+Poisson summation with the exact kernel \eqref{ltheta:eq:original} says
+\[
+ \sum_{n\in\lthetaZ}\psi(nx)
+    =x^{-1}\sum_{n\in\lthetaZ}\widehat\psi(n/x).
+\]
+It follows, for example, by periodizing $t\mapsto\psi(xt)$:
+its $k$th Fourier-series coefficient is $x^{-1}\widehat\psi(k/x)$,
+and the series and all needed derivatives converge absolutely by
+Schwartz decay; evaluation at $t=0$ gives the formula.
+For even $\psi$ this is exactly
+\begin{equation}\label{ltheta:eq:poisson}
+ \psi(0)+\Theta\psi(x)
+       =x^{-1}\widehat\psi(0)+J\Theta\widehat\psi(x).
+\end{equation}
+Both endpoint terms vanish for $\phi\in V$, so
+\begin{equation}\label{ltheta:eq:symmetry}
+ \Theta\phi=J\Theta\widehat\phi,
+ \qquad J\Theta\phi=\Theta\widehat\phi.
+\end{equation}
+The second identity uses $J^2=\lthetaid$.
+
+Direct differentiation on the original axis gives
+\begin{equation}\label{ltheta:eq:J}
+ D^jJ=J(1-D)^j,\qquad
+ p_{b,j}(JF)\leq\sum_{r=0}^j\binom jr p_{1-b,r}(F).
+\end{equation}
+For $j=1$ the first identity follows from
+$-x\partial_x(x^{-1}F(x^{-1}))
+=x^{-1}F(x^{-1})+x^{-2}F'(x^{-1})$;
+induction proves the general case. In the seminorm bound substitute
+$y=x^{-1}$, so $x^b x^{-1}=y^{1-b}$, and expand $(1-D)^j$.
+In particular $J$ is a continuous involution of $\lthetaB$.
+
+Choose the integers $N=\max(2,b)$ and $N'=\max(2,1-b)$.
+Combining \eqref{ltheta:eq:theta-tail} on $x\geq1$ with
+\eqref{ltheta:eq:symmetry} and \eqref{ltheta:eq:J} on $0<x\leq1$ yields
+\begin{equation}\label{ltheta:eq:theta-continuity}
+ p_{b,j}(\Theta\phi)
+ \leq2\zeta(N)T_{N,j}(\phi)
+  +2\zeta(N')\sum_{r=0}^j\binom jrT_{N',r}(\widehat\phi).
+\end{equation}
+Thus $\Theta:V\to\lthetaB$ is well defined and continuous in the precise
+original topologies.
+
+For a positive-axis smooth function define
+$p^+_{u,j}(\psi)=\sup_{x>0}x^u|D^j\psi(x)|$ whenever finite;
+the superscript distinguishes a source estimate from the target
+seminorm notation. Let $\mu(n)$ be the M\"obius function and put
+\[
+ (MG)(x)=\sum_{n=1}^{\infty}\mu(n)G(nx).
+\]
+Whenever $p^+_{u,r}(G)<\infty$ for $u>1$ and $0\leq r\leq j$, its
+series may be differentiated $j$ times locally uniformly and
+\begin{equation}\label{ltheta:eq:mobius-bound}
+ p^+_{u,j}(MG)\leq\zeta(u)p^+_{u,j}(G).
+\end{equation}
+Here $|\mu(n)|\leq1$ and $D^j[G(nx)]=(D^jG)(nx)$ give the estimate
+term by term. In particular this applies to every $G\in\lthetaB$ and
+integer $u\geq2$.
+
+For $\phi\in V$ and fixed $x>0$, the double series
+\[
+ \sum_{n,m\geq1}|\mu(n)\phi(mnx)|
+ \leq x^{-u}p^+_{u,0}(\phi)\zeta(u)^2
+ \qquad(u>1)
+\]
+is finite. Grouping by $k=mn$ and using
+$\sum_{n\mid k}\mu(n)=1$ for $k=1$ and $0$ otherwise gives
+\begin{equation}\label{ltheta:eq:mobius-inversion}
+ M\Theta\phi=2\phi\quad\text{on }(0,\infty).
+\end{equation}
+The divisor identity follows by taking the product
+$\prod_{p\mid k}(1-1)$ when $k>1$; for $k=1$ the empty product is $1$.
+Thus $\Theta$ is injective. Writing $F=\Theta\phi$, the exact inverse
+formulas and their estimates are
+\begin{align}
+ \phi(x)&=\tfrac12\sum_{n\geq1}\mu(n)F(nx),&
+ p^+_{u,j}(\phi)&\leq\tfrac12\zeta(u)p_{u,j}(F),
+       \label{ltheta:eq:inverse-phi}\\
+ \widehat\phi(x)&=\tfrac12\sum_{n\geq1}\mu(n)(JF)(nx),&
+ p^+_{u,j}(\widehat\phi)&\leq\tfrac12\zeta(u)
+                    \sum_{\ell=0}^j\binom j\ell p_{1-u,\ell}(F),
+       \label{ltheta:eq:inverse-hat}
+\end{align}
+for $x>0$, integers $u\geq2$, and $j\geq0$. The second line uses
+\eqref{ltheta:eq:symmetry}. These are inverse formulas on the image; they
+do not assert that $MG$ extends to an element of $V$ for an arbitrary
+$G\in\lthetaB$.
+
+\section{Explicit recovery of every source Schwartz seminorm}
+
+The following estimate supplies the part of the inverse-continuity
+argument where both the function and its Fourier transform are needed.
+All $L^2$ norms in this section use ordinary Lebesgue measure $dx$ or
+$d\xi$ on $\lthetaR$, and the Fourier transform is exactly
+\eqref{ltheta:eq:original}. We use its Plancherel norm equality.
+
+\begin{lthetalemma}\label{ltheta:lem:uncertainty}
+For $h\in\lthetaSch(\lthetaR)$ and integers $M,N\geq0$,
+\begin{equation}\label{ltheta:eq:uncertainty}
+ \|h\|_2\leq2\left(4^M\|x^Mh\|_2
+                         +4^N\|\xi^N\widehat h\|_2\right).
+\end{equation}
+\end{lthetalemma}
+
+\begin{proof}
+Let $P$ and $Q$ be multiplication by the indicator of $[-1/4,1/4]$
+on the physical and Fourier sides, respectively. The operator
+$P\lthetaF^{-1}Q$ has kernel $1_{[-1/4,1/4]}(x)
+e^{2\pi i x\xi}1_{[-1/4,1/4]}(\xi)$; its Hilbert--Schmidt norm is
+$\sqrt{(1/2)(1/2)}=1/2$. Therefore, by Plancherel and the triangle
+inequality,
+\[
+ \|h\|_2\leq\|Ph\|_2+\|(1-P)h\|_2
+ \leq\tfrac12\|h\|_2+\|(1-Q)\widehat h\|_2+\|(1-P)h\|_2.
+\]
+On $|x|>1/4$, $1\leq4^M|x|^M$; the analogous statement holds in
+frequency. Moving the half-norm to the left proves the assertion.
+\end{proof}
+
+Write the exact polynomial from \eqref{ltheta:eq:R} as
+$R_m(t)=\sum_{j=0}^m r_{m,j}t^j$. No coefficient is dropped in what
+follows. For integers $c\geq3$ and $m\geq0$ put
+\begin{align}
+ E_{c,m}(F)&=\frac1{\sqrt2}\sum_{j=0}^m|r_{m,j}|
+ \left(\frac{\zeta(c-1)}{\sqrt3}p_{c-1,j}(F)
+                      +\zeta(c+1)p_{c+1,j}(F)\right),
+                     \label{ltheta:eq:E}\\
+ E^J_{c,m}(F)&=\frac1{\sqrt2}\sum_{j=0}^m|r_{m,j}|
+ \left(\frac{\zeta(c-1)}{\sqrt3}
+                     \sum_{\ell=0}^j\binom j\ell p_{2-c,\ell}(F)
+       +\zeta(c+1)\sum_{\ell=0}^j\binom j\ell p_{-c,\ell}(F)\right).
+                     \label{ltheta:eq:EJ}
+\end{align}
+For $a,b\in\lthetaN_0$ set, with $(b)_r=b!/(b-r)!$,
+\begin{multline}\label{ltheta:eq:A}
+ A_{a,b}(F)=2\left[4^{b+3}E_{a+3,b}(F)\right.\\
+ \left.{}+4^{a+3}(2\pi)^{b-a}
+ \sum_{r=0}^{\min(a,b)}\binom ar(b)_rE^J_{b+3,a-r}(F)\right].
+\end{multline}
+Every $A_{a,b}$ is explicitly a finite nonnegative linear combination
+of original $p_{b,j}$ seminorms.
+
+\begin{lthetaproposition}\label{ltheta:prop:inverse}
+For $\phi\in V$, $F=\Theta\phi$, and $a,b\in\lthetaN_0$,
+\begin{equation}\label{ltheta:eq:L2-inverse}
+ \|x^a\phi^{(b)}\|_2\leq A_{a,b}(F).
+\end{equation}
+In particular the ordinary Schwartz seminorms satisfy
+\begin{equation}\label{ltheta:eq:sup-inverse}
+ \sup_{x\in\lthetaR}|x^a\phi^{(b)}(x)|
+ \leq A_{a,b}(F)+aA_{a-1,b}(F)+A_{a,b+1}(F),
+\end{equation}
+where the middle term is omitted when $a=0$.
+\end{lthetaproposition}
+
+\begin{proof}
+For any even Schwartz $\psi$, splitting the positive-axis integral at
+$1$ gives
+\[
+ \|x^cD^j\psi\|_{L^2(\lthetaR)}
+ \leq\sqrt2\left(\frac{p^+_{c-1,j}(\psi)}{\sqrt3}
+                               +p^+_{c+1,j}(\psi)\right).
+\]
+Indeed, on $(0,1)$ the integrand's absolute value is at most
+$xp^+_{c-1,j}$, whose squared integral is $(p^+_{c-1,j})^2/3$;
+on $(1,\infty)$ it is at most $x^{-1}p^+_{c+1,j}$, whose squared
+integral is $(p^+_{c+1,j})^2$. Evenness supplies the factor $\sqrt2$;
+the square root of the sum is at most the sum of square roots.
+Using the full polynomial $R_m$ and then
+\eqref{ltheta:eq:inverse-phi}--\eqref{ltheta:eq:inverse-hat}, with $c-1\geq2$, proves
+\begin{equation}\label{ltheta:eq:U-bound}
+ \|x^cR_m(D)\phi\|_2\leq E_{c,m}(F),\qquad
+ \|x^cR_m(D)\widehat\phi\|_2\leq E^J_{c,m}(F).
+\end{equation}
+
+Apply Lemma~\ref{ltheta:lem:uncertainty} to
+$h=x^a\phi^{(b)}$, with $M=b+3$ and $N=a+3$. The first weighted
+term is, by \eqref{ltheta:eq:R},
+\[
+ x^Mh=x^{a+b+3}\phi^{(b)}=x^{a+3}R_b(D)\phi.
+\]
+The exact Fourier identities for the specified negative-sign kernel are
+\[
+ \widehat{\partial_x^b\phi}(\xi)=(2\pi i\xi)^b\widehat\phi(\xi),
+ \qquad
+ \widehat{x^a\psi}(\xi)=\left(-\frac1{2\pi i}\right)^a
+                                      \partial_\xi^a\widehat\psi(\xi).
+\]
+Their Leibniz expansion therefore gives
+\[
+ \xi^{a+3}\widehat h(\xi)
+ =\left(-\frac1{2\pi i}\right)^a(2\pi i)^b
+ \sum_{r=0}^{\min(a,b)}\binom ar(b)_r
+       \xi^{a+3+b-r}\widehat\phi^{(a-r)}(\xi).
+\]
+For each summand the final factor is exactly
+$\xi^{b+3}R_{a-r}(D)\widehat\phi(\xi)$, where
+$D=-\xi\partial_\xi$ on this axis. The scalar prefactor has modulus
+$(2\pi)^{b-a}$. Substituting \eqref{ltheta:eq:U-bound} into
+\eqref{ltheta:eq:uncertainty} proves \eqref{ltheta:eq:L2-inverse} with exactly
+\eqref{ltheta:eq:A}.
+
+For a Schwartz function $h$, integration from $-\infty$ to $x$ gives
+$|h(x)|^2\leq2\|h\|_2\|h'\|_2$, whence
+$\|h\|_\infty\leq\|h\|_2+\|h'\|_2$.
+For $h=x^a\phi^{(b)}$ its derivative is
+$a x^{a-1}\phi^{(b)}+x^a\phi^{(b+1)}$. The preceding $L^2$ estimate
+and the triangle inequality yield \eqref{ltheta:eq:sup-inverse}. The
+seminorms on its left generate the full Schwartz topology; weights
+$(1+|x|)^a$ are bounded by the finite sum
+$\sum_{r=0}^a\binom ar|x|^r$ and conversely each $|x|^a$ is bounded by
+$(1+|x|)^a$.
+\end{proof}
+
+\section{Closed image, the exact quotient, and the chain isomorphism}
+
+\begin{lthetatheorem}\label{ltheta:thm:closed}
+The original map $\Theta:V\to\lthetaB$ is a continuous linear injection,
+a topological isomorphism onto its range with the subspace topology,
+and its range is closed. In particular
+\begin{equation}\label{ltheta:eq:closed}
+ \overline{\Theta V}^{\,\lthetaB}=\Theta V.
+\end{equation}
+\end{lthetatheorem}
+
+\begin{proof}
+Continuity is \eqref{ltheta:eq:theta-continuity}, injectivity is
+\eqref{ltheta:eq:mobius-inversion}, and inverse continuity is
+\eqref{ltheta:eq:sup-inverse}. Suppose $F_n=\Theta\phi_n$ converges in $\lthetaB$
+to $F$. Applying \eqref{ltheta:eq:sup-inverse} to
+$\phi_n-\phi_m\in V$ shows that $(\phi_n)$ is Cauchy for every
+Schwartz seminorm. Completeness and closedness of $V$ give
+$\phi_n\to\phi\in V$. Continuity of $\Theta$ implies
+$\Theta\phi_n\to\Theta\phi$ in $\lthetaB$, and its Hausdorff property gives
+$F=\Theta\phi$. Thus the range is sequentially closed. Since $\lthetaB$ is
+metrizable by its countable seminorm family, it is closed.
+\end{proof}
+
+The literature application reaches the same conclusion immediately
+after Theorem~\ref{ltheta:thm:topology}: Meyer's restricted closed embedding
+is precisely $Z=\Theta/2$ with source $V=\lthetaHH_\cap$ and target
+$\lthetaHH_-=\lthetaB$. Since $2V=V$, its image equals $\Theta V$ as a subset of
+that identical target. The independent estimates above additionally
+make the inverse continuity completely explicit in original seminorms.
+
+Let $Q=\lthetaB/\Theta V$ with its quotient topology. It is Hausdorff:
+if a coset is nonzero, its representative lies outside the closed
+subspace $\Theta V$, and the quotient separates it from the zero
+coset. It is also Fr\'echet. One direct completeness argument chooses
+an increasing defining seminorm sequence for $\lthetaB$, uses the quotient
+seminorms, selects from a quotient-Cauchy sequence a subsequence with
+successive quotient distances below $2^{-n}$ in each of the first
+$n$ seminorms, and lifts each successive difference to a vector whose
+same finitely many seminorms are below $2^{1-n}$. The lifted series is
+Cauchy in each seminorm, hence converges in $\lthetaB$ and projects to the
+subsequence limit; the original Cauchy sequence has the same limit.
+The quotient is metrizable by these countably many quotient seminorms.
+
+The original algebraic exact sequence labelled (E5),
+\[
+ 0\longrightarrow
+ \overline{\Theta V}^{\,\lthetaB}/\Theta V\longrightarrow Q
+ \longrightarrow\lthetaB/\overline{\Theta V}^{\,\lthetaB}\longrightarrow0,
+\]
+therefore has its first nontrivial term equal to zero. Its last map
+is exactly
+\begin{equation}\label{ltheta:eq:E5}
+ Q\xrightarrow{\ \cong\ }\lthetaB/\overline{\Theta V}^{\,\lthetaB},
+ \qquad [F]_{\Theta V}\longmapsto[F]_{\overline{\Theta V}^{\,\lthetaB}},
+\end{equation}
+with inverse the same representative map. Both maps are continuous
+because the two equivalence relations and quotient topologies are
+identical. No new completion or representative change is involved.
+
+To retain the operator factor at the chain level, define two-term
+complexes in degrees $0,1$ by
+\[
+ C_\Theta=[V\xrightarrow{\Theta}\lthetaB],\qquad
+ C_Z=[\lthetaHH_\cap\xrightarrow{Z}\lthetaHH_-].
+\]
+The explicitly typed chain isomorphism is
+\begin{equation}\label{ltheta:eq:chain}
+ T^0=2\lthetaid:V\longrightarrow\lthetaHH_\cap,\qquad
+ T^1=\lthetaid:\lthetaB\longrightarrow\lthetaHH_-.
+\end{equation}
+Indeed $ZT^0\phi=Z(2\phi)=\Theta\phi=T^1\Theta\phi$.
+Its inverse has degree-zero map $\tfrac12\lthetaid$ and degree-one map
+$\lthetaid$. Thus the induced degree-one quotient isomorphism is
+$[F]\mapsto[F]$, and degree-zero cohomology is zero on both sides
+by injectivity. These are the range complexes associated to the
+operators; no different complex is attributed to Meyer.
+
+For the original two-leg differential the equally literal diagram is
+\[
+ [V\oplus V\xrightarrow{\,\Theta-J\Theta\,}\lthetaB]
+ \xrightarrow{\ (2\lthetaid\oplus2\lthetaid,\,\lthetaid)\ }
+ [\lthetaHH_\cap\oplus\lthetaHH_\cap\xrightarrow{\,Z-JZ\,}\lthetaHH_-].
+\]
+The equality of differentials follows separately for each signed leg.
+Its inverse scales both source coordinates by $1/2$ and fixes the
+target. Since $J\Theta=\Theta\lthetaF$ on $V$, the source map
+$(\phi_+,\phi_-)\mapsto\phi_+-\widehat\phi_-$ and the target identity
+define a surjective chain map from the original two-leg complex to
+$C_\Theta$. Its kernel is the degree-zero graph
+$\{(\widehat\psi,\psi):\psi\in V\}$ with zero degree-one term:
+both inclusions follow directly from
+$\phi_+-\widehat\phi_-=0$. In particular the two-leg degree-one image
+is also precisely $\Theta V$, not a different closure.
+
+Finally $D(V)\subset V$: it preserves evenness, $D\phi(0)=0$, and
+integration by parts gives $\int_\lthetaR D\phi=\int_\lthetaR\phi=0$.
+It acts continuously on $\lthetaB$ because $p_{b,j}(DF)=p_{b,j+1}(F)$,
+and termwise differentiation gives $D\Theta=\Theta D$. Thus the
+one-leg chain isomorphism commutes with $D$ in both degrees.
+The signs for the two-leg complex are also explicit. Integration by
+parts and differentiation of the Fourier kernel give
+\[
+ \lthetaF D\phi=(1+\xi\partial_\xi)\widehat\phi
+           =(1-D)\lthetaF\phi,
+ \qquad \lthetaF(1-D)\phi=D\lthetaF\phi.
+\]
+Consequently its source generator is $D\oplus(1-D)$ and its target
+generator is $D$: by \eqref{ltheta:eq:J},
+\[
+ D(\Theta\phi_+-J\Theta\phi_-)
+    =\Theta D\phi_+-J\Theta(1-D)\phi_-.
+\]
+The two-leg scaling isomorphism commutes with these generators.
+So does the projection to the one-leg complex, because
+$\phi_+-\widehat\phi_-$ is sent under the source generator to
+$D\phi_+-\lthetaF(1-D)\phi_-=D(\phi_+-\widehat\phi_-)$.
+No common diagonal generator on the two source legs and no sign
+change to $x\partial_x$ is silently substituted.
+
+\section{The exact scope for subspaces, finite cutoffs, and Hilbert norms}
+
+\begin{lthetaproposition}\label{ltheta:prop:subspace}
+For every linear subspace $W\subseteq V$, with closure taken in the
+indicated original spaces,
+\begin{equation}\label{ltheta:eq:W}
+ \overline{\Theta W}^{\,\lthetaB}
+       =\Theta\left(\overline W^{\,V}\right).
+\end{equation}
+The restriction of $\Theta$ induces a topological linear isomorphism
+\[
+ \overline W^{\,V}/W
+       \longrightarrow\overline{\Theta W}^{\,\lthetaB}/\Theta W,
+ \qquad[\psi]\longmapsto[\Theta\psi],
+\]
+with the respective quotient topologies, whether or not the quotients
+are Hausdorff. In particular every finite-dimensional $W$ has closed
+theta image in $\lthetaB$.
+\end{lthetaproposition}
+
+\begin{proof}
+The range $R=\Theta V$ is closed in $\lthetaB$ and $\Theta:V\to R$ is a
+homeomorphism. Therefore the closure of $\Theta W$ in $\lthetaB$ lies in
+$R$ and equals its closure in $R$. A homeomorphism carries closures
+to closures, proving \eqref{ltheta:eq:W}. Its restrictions to the closed
+subspaces in that equality are inverse homeomorphisms. They carry
+the equivalence classes modulo $W$ and $\Theta W$ to each other,
+so the quotient universal property proves both induced maps
+continuous and inverse.
+
+For the last assertion, finite-dimensional subspaces of the present
+Hausdorff locally convex space are closed. Here is a direct proof.
+For a basis $w_1,\ldots,w_d$ of $W$, the map
+$T:\lthetaC^d\to V$, $c\mapsto\sum c_iw_i$, is continuous and injective.
+For each vector on the Euclidean unit sphere choose a continuous
+seminorm positive on its image. Compactness gives finitely many
+such seminorms whose sum $p$ is positive on every image on the
+sphere; continuity and compactness give $p(Tc)\geq\delta|c|$ for
+some $\delta>0$. Thus a convergent sequence $Tc_n$ in $V$ has
+Cauchy coordinates, with limit $c$, and its limit is $Tc\in W$.
+Metrizability gives closedness of $W$. Now apply \eqref{ltheta:eq:W}.
+\end{proof}
+
+Consequently for any programme subspace denoted $W_h$, formula
+\eqref{ltheta:eq:W}, not an unproved replacement of $W_h$ by $V$, is the
+exact available assertion. It computes its closure defect as the
+source defect $\overline{W_h}^{\,V}/W_h$. For each fixed finite
+polynomial source span $W_L$, its image is closed in $\lthetaB$ by the
+finite-dimensional assertion. For a union of these spans the precise
+formula remains
+\[
+ \overline{\bigcup_L\Theta W_L}^{\,\lthetaB}
+    =\Theta\left(\overline{\bigcup_L W_L}^{\,V}\right)
+\]
+when the spans are increasing, so their union is a linear subspace.
+No assertion that this source closure is all of $V$ is made.
+
+The inclusion into the original Hilbert space
+$\lthetaHH=L^2(\lthetaR_{>0},dx)$ is a different, explicitly continuous map:
+\begin{equation}\label{ltheta:eq:Hilbert}
+ \|F\|_{\lthetaHH}^2
+ \leq p_{0,0}(F)^2\int_0^1dx
+          +p_{1,0}(F)^2\int_1^\infty x^{-2}\,dx
+ =p_{0,0}(F)^2+p_{1,0}(F)^2.
+\end{equation}
+It is injective since a continuous function zero almost everywhere
+is zero everywhere. Its inverse on its image is not continuous.
+Indeed fix $0\ne\eta\in C_c^\infty((1,2))$ and put
+$F_n(x)=n^{-1}\eta(x-n)$. Each $F_n$ belongs to $\lthetaB$;
+$\|F_n\|_{\lthetaHH}=n^{-1}\|\eta\|_2\to0$, whereas for a fixed
+$t_0\in(1,2)$ with $\eta(t_0)\ne0$,
+\[
+ p_{2,0}(F_n)\geq n^{-1}(n+t_0)^2|\eta(t_0)|\longrightarrow\infty.
+\]
+Thus Hilbert convergence does not imply convergence in the original
+target topology. In particular the closed-image theorem does not
+assert Hilbert closedness, alter any finite Hilbert Gram matrix, or
+replace a calculation of Hilbert closure. It removes exactly the
+closure defect in (E5) for the original full source $V$ and the
+original target seminorm topology.
+
+
+\endgroup
+
+\clearpage\begingroup
+\part*{The actual arithmetic Jacobi commutant and its finite boundary}
+\newtheorem{ljacobitheorem}{Theorem}
+\newtheorem{ljacobiproposition}[ljacobitheorem]{Proposition}
+\newcommand{\ljacobiR}{\mathbb R}
+\newcommand{\ljacobiC}{\mathbb C}
+\newcommand{\ljacobiN}{\mathbb N}
+\newcommand{\ljacobiJ}{\mathcal J}
+\newcommand{\ljacobiCC}{\mathcal C}
+\newcommand{\ljacobiDom}{\operatorname{Dom}}
+
+
+
+\section{Unchanged data and the proved envelope}
+
+Retain the actual original packet divisor
+\[
+ \rho=\tfrac12+\delta+i\gamma,\quad 0<\delta<\tfrac12,\quad\gamma>2,
+ \quad h(s)=\prod_{z\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}(s-z)^m,
+\]
+with its full multiplicity $m\geq1$, $g=2\xi$, and
+\[
+ w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi},\qquad
+ m_k=w_h^{*k},\qquad \mu_h=\int_\ljacobiR w_h(y)\,dy.
+\]
+Here $k=4l+1\geq9$ is the original tensor order. These are the
+original programme objects, and no existence assertion for an
+off-line packet is added. The roots of $h$ are closed under conjugation
+with unchanged multiplicities, so $h$ has real coefficients. The
+original completed zeta function satisfies
+$g(\bar s)=\overline{g(s)}$. Thus $w_h(-y)=w_h(y)$; convolution
+preserves this equality and $m_k$ is even. Put
+\[
+ c=k/2,\quad q=[1+k(m-1)](k+1)^2,\qquad
+ \chi(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma]^{1+k(m-1)}.
+\]
+The full finite quotient will use $N\geq q-1$.
+
+The reference measure and its mass are exactly
+\[
+ d\sigma(y)=\rho_\sigma(y)\,dy
+ =\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\,dy,
+ \qquad M_\sigma=\sqrt{2\pi}.
+\]
+In particular, this measure is not replaced by a probability measure.
+The already proved CAI16--18 envelope supplies
+\begin{equation}\label{ljacobi:eq:envelope}
+ a_k(1+y^2)^{-M}\rho_\sigma(y)\leq m_k(y)
+                       \leq A_k\rho_\sigma(y),\qquad M=21+4m,
+\end{equation}
+where the retained constants are
+\[
+ \alpha=\pi/2,\quad p=8m-9/2,\quad B_h=42+8m,\quad
+ \vartheta_h=\int_{-1}^1w_h(y)\,dy,
+ \quad M_\alpha=\int_\ljacobiR e^{\alpha y}w_h(y)\,dy,
+\]
+\[
+ c_\Gamma=\sqrt2e^{-7/6},\qquad C_\Gamma=\sqrt{2\sqrt5}e^{2/3},
+\]
+\[
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+              {C_\Gamma2^{B_h/2}},\qquad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{p+1}M_\alpha^{k-1}.
+\]
+The constants $c_h,C_h^{\rm tilt}$ are the original CAI lower and
+upper envelope constants. Their proof is not replaced by a hypothesis:
+the source is the retained programme provider
+\texttt{CAI\_\allowbreak COMPLETE\_\allowbreak PREREQUISITE.tex},
+equations CAI16--18.
+The all-degree consequence, with
+$\Delta_N=[1+4(N+M)^2]^M$, is
+\begin{equation}\label{ljacobi:eq:finite-envelope}
+ \frac{a_k}{\Delta_N}\|P\|_\sigma^2
+       \leq\int|P(y)|^2m_k(y)\,dy\leq A_k\|P\|_\sigma^2
+       \qquad(\deg P\leq N).
+\end{equation}
+The notation $\Delta_N$ here distinguishes the retained scalar CAI
+constant from the source-coordinate matrix $D_N$ below.
+
+The human literature input is Franti\v{s}ek \v{S}tampach and Pavel
+\v{S}\v{t}ov\'{i}\v{c}ek, \emph{Spectral representation of some
+weighted Hankel matrices and orthogonal polynomials from the Askey
+scheme}; see
+\href{https://arxiv.org/abs/1811.05820v1}{arXiv:1811.05820v1}.
+We use Theorem \texttt{thm:commut\_\allowbreak matr\_\allowbreak Jac},
+its following remark and proof,
+and Theorem \texttt{thm:def\_H}. The following is a direct reconstruction
+for the actual multiplier, including the mass absent from that
+source's probability-measure convention.
+
+\section{Gamma polynomials and the native Jacobi operator}
+
+Define the monic polynomials by
+\begin{equation}\label{ljacobi:eq:generating}
+ G(y,t)=\sum_{n\geq0}p_n(y)\frac{t^n}{n!}
+       =(1+t^2)^{-1/4}e^{y\arctan t}.
+\end{equation}
+Every branch here is its analytic branch at $t=0$. To verify the
+mass and norms directly, the beta integral gives, for $a>0$,
+\[
+ \frac{\Gamma(a+i\tau)\Gamma(a-i\tau)}{\Gamma(2a)}
+ =\int_\ljacobiR\frac{e^{i\tau v}}{(2\cosh(v/2))^{2a}}\,dv.
+\]
+This follows from $u=e^v$ in the beta integral on $(0,\infty)$.
+Fourier inversion, followed by analytic continuation in the strip
+where the Gamma envelope is integrable, gives at $a=1/4$ and $y=2\tau$
+\begin{equation}\label{ljacobi:eq:mgf-sigma}
+ \int_\ljacobiR e^{zy}\,d\sigma(y)
+ =\sqrt{2\pi}(\cos z)^{-1/2},\qquad |\Re z|<\pi/2.
+\end{equation}
+In detail, inversion gives the Fourier transform at real frequency
+$v$ as $2\Gamma(1/2)/(2\cosh v)^{1/2}$; setting $v=-iz$ yields
+$\sqrt{2\pi}(\cos z)^{-1/2}$. The CAI17 Gamma envelope bounds the
+integrand on every closed narrower strip and justifies holomorphy
+and this continuation. At zero this proves the stated mass.
+
+For sufficiently small $t,u$, the cosine addition formula and
+\eqref{ljacobi:eq:mgf-sigma} imply
+\[
+ \int_\ljacobiR G(y,t)G(y,u)\,d\sigma(y)
+ =M_\sigma(1-tu)^{-1/2}
+ =M_\sigma\sum_{n\geq0}\frac{(1/2)_n}{n!}t^nu^n.
+\]
+All coefficient extractions may be taken on fixed small complex
+circles, dominated by $Ce^{\varepsilon|y|}$ with $\varepsilon<\pi/2$.
+Consequently
+\[
+ \int p_m p_n\,d\sigma=\delta_{mn}\gamma_n,
+ \qquad\gamma_n=M_\sigma n!(1/2)_n.
+\]
+Define, without altering the measure,
+\[
+ \varphi_n=\frac{p_n}{\sqrt{\gamma_n}},\qquad
+ r_n=\sqrt{M_\sigma}\varphi_n
+     =\frac{p_n}{\sqrt{n!(1/2)_n}}.
+\]
+Thus $\varphi_0=M_\sigma^{-1/2}$, $r_0=1$, and
+$\int r_mr_n\,d\sigma=M_\sigma\delta_{mn}$.
+The $r_n$ are not orthonormal in $d\sigma$.
+
+Differentiating \eqref{ljacobi:eq:generating} gives
+$(1+t^2)\partial_tG=(y-t/2)G$ and hence
+\[
+ p_{n+1}=yp_n-n(n-1/2)p_{n-1},\qquad p_0=1,\quad p_1=y.
+\]
+Therefore
+\begin{equation}\label{ljacobi:eq:recurrence}
+ y\varphi_n=b_n\varphi_{n+1}+b_{n-1}\varphi_{n-1},\qquad
+ b_n=\sqrt{(n+1)(n+1/2)},\quad b_{-1}=0,
+\end{equation}
+and the same recurrence holds for $r_n$. Also $p_n(-y)=(-1)^np_n(y)$.
+The original source's Meixner--Pollaczek generating function gives
+the exact dictionary
+\[
+ p_n(y)=n!P_n^{(1/4)}(y/2;\pi/2),\qquad
+ r_n(y)=\sqrt{\frac{n!}{(1/2)_n}}P_n^{(1/4)}(y/2;\pi/2).
+\]
+Both the coordinate $y/2$ and every normalization factor remain.
+
+The polynomials are complete in $L^2(\sigma)$. Indeed, if $f$ is
+orthogonal to all polynomials, then $f\,d\sigma$ is a finite complex
+measure, and Cauchy--Schwarz together with
+\eqref{ljacobi:eq:mgf-sigma} shows that
+$\int f(y)e^{zy}\,d\sigma(y)$ is holomorphic for $|\Re z|<\pi/4$.
+Every derivative at zero is zero, so analytic uniqueness makes
+the transform zero throughout that connected strip. Fourier
+uniqueness on the imaginary axis makes $f\,d\sigma=0$, hence $f=0$.
+The identical argument with the finite measure $(1+y^2)d\sigma$
+proves polynomial density in that weighted space as well.
+
+It follows that
+\[
+ U_\sigma:\ell^2(\ljacobiN_0)\longrightarrow L^2(\sigma),\qquad
+ U_\sigma e_n=\varphi_n
+\]
+is unitary. The operator $J=U_\sigma^*M_yU_\sigma$ is self-adjoint,
+and its matrix $\ljacobiJ$ has the entries \eqref{ljacobi:eq:recurrence}, with zero
+diagonal. Polynomial density for $(1+y^2)d\sigma$ means that the
+polynomials are a core of $M_y$ in its graph norm. Thus the finite
+vectors are a core of $J$, so this is the unique self-adjoint closure
+of the stated Jacobi matrix on finite vectors.
+
+\section{The original bounded multiplier and exact first column}
+
+Set $R_k=m_k/\rho_\sigma$. By \eqref{ljacobi:eq:envelope},
+\[
+ 0<a_k(1+y^2)^{-M}\leq R_k(y)\leq A_k.
+\]
+Therefore multiplication by this exact density ratio is bounded,
+positive and self-adjoint on $L^2(\sigma)$, and
+\begin{equation}\label{ljacobi:eq:operator}
+ \ljacobiCC=U_\sigma^*M_{R_k}U_\sigma,\qquad
+ 0\leq\ljacobiCC\leq A_k I,\qquad
+ \ljacobiCC_{mn}=\int_\ljacobiR\varphi_m(y)\varphi_n(y)m_k(y)\,dy.
+\end{equation}
+This is not merely a formally defined matrix. The bounded multiplier
+preserves $\ljacobiDom M_y$, since
+$\|yR_k f\|_2\leq A_k\|yf\|_2$. Consequently $\ljacobiCC$ preserves
+$\ljacobiDom J$ and $J\ljacobiCC=\ljacobiCC J$ there. Entrywise the same statement is
+\[
+ b_{m-1}\ljacobiCC_{m-1,n}+b_m\ljacobiCC_{m+1,n}
+ =b_{n-1}\ljacobiCC_{m,n-1}+b_n\ljacobiCC_{m,n+1}.
+\]
+Each side is a finite sum; it also follows at once by integrating
+\eqref{ljacobi:eq:recurrence} against the other polynomial and $m_k$.
+
+Put $\alpha_j=\ljacobiCC_{j0}$. The exact native-mass expression is
+\begin{equation}\label{ljacobi:eq:alpha-moment}
+ \alpha_j=\frac1{M_\sigma}\int r_j(y)m_k(y)\,dy
+ =\frac{\int p_j(y)m_k(y)\,dy}
+             {M_\sigma\sqrt{j!(1/2)_j}}.
+\end{equation}
+In particular $\alpha_0=\mu_h^k/M_\sigma$ by Tonelli.
+
+\begin{ljacobitheorem}\label{ljacobi:thm:first}
+For every $m,n\geq0$ the complete entry is the finite sum
+\begin{equation}\label{ljacobi:eq:first}
+ \ljacobiCC_{mn}=\sum_{j=|m-n|}^{m+n}\alpha_j[r_j(\ljacobiJ)]_{mn}.
+\end{equation}
+Here $r_j(\ljacobiJ)$ is evaluated in the full Jacobi matrix, not in a
+premature finite compression.
+\end{ljacobitheorem}
+\begin{proof}
+The recurrence and $r_0=1$ give $r_n(\ljacobiJ)e_0=e_n$ by induction.
+Indeed, for $n=0$ the recurrence gives $r_1(\ljacobiJ)e_0=e_1$; if the
+assertion holds at $n,n-1$, then
+$b_n r_{n+1}(\ljacobiJ)e_0=\ljacobiJ e_n-b_{n-1}e_{n-1}=b_ne_{n+1}$.
+Expand the degree-$m+n$ polynomial $r_mr_n$ in the $r_j$ basis.
+Orthogonality shows that its coefficient at $r_j$ is
+\[
+ d_{mnj}=\frac1{M_\sigma}\int r_mr_nr_j\,d\sigma
+       =\int\varphi_m r_j\varphi_n\,d\sigma
+       =[r_j(\ljacobiJ)]_{mn}.
+\]
+The last equality follows either from the multiplication operator
+or by applying \eqref{ljacobi:eq:recurrence} finitely many times. Its
+integral is zero when $j>m+n$ by orthogonality. It is also zero
+when $m+j<n$ or $n+j<m$, by applying orthogonality to $r_n$ or
+$r_m$ respectively. Thus only $|m-n|\leq j\leq m+n$ occurs.
+Integrate this polynomial identity against $m_k/M_\sigma$ and
+use \eqref{ljacobi:eq:alpha-moment}. The result is \eqref{ljacobi:eq:first}.
+\end{proof}
+
+Evenness of the unchanged weight gives $\alpha_j=0$ for odd $j$ and
+$\ljacobiCC_{mn}=0$ for odd $m+n$. The first column also reconstructs the
+actual multiplier in $L^2(\sigma)$, with the exact mass factor:
+\begin{equation}\label{ljacobi:eq:mass-caveat}
+ U_\sigma\ljacobiCC e_0=\frac{R_k}{\sqrt{M_\sigma}},\qquad
+ R_k=\sqrt{M_\sigma}U_\sigma\ljacobiCC e_0
+       =\sum_{j\geq0}\alpha_jr_j\quad\text{in }L^2(\sigma).
+\end{equation}
+To prove the last convergence, expand the vector $\ljacobiCC e_0\in\ell^2$
+in its coordinates $\alpha_j$ and apply the unitary $U_\sigma$.
+In particular the multiplier itself is not $U_\sigma\ljacobiCC e_0$ in
+the original non-probability convention. No pointwise or
+operator-norm convergence of the displayed series is asserted.
+
+Define $M_h(z)=\int e^{zy}w_h(y)\,dy$. CAI16 gives
+$M_\alpha<\infty$. Since the weight is even,
+$\int e^{\alpha|y|}w_h\leq2M_\alpha$. Tonelli and convolution give
+\[
+ \int e^{zy}m_k(y)\,dy=M_h(z)^k,
+ \qquad |\Re z|<\alpha.
+\]
+For real $z$ this is the absolutely convergent product integral;
+the same domination gives the complex version and holomorphy.
+For $|t|\leq1/4$,
+$|\arctan t|\leq\operatorname{arctanh}(1/4)<\alpha$.
+We can therefore integrate \eqref{ljacobi:eq:generating} on any smaller
+complex circle and extract coefficients. This proves exactly
+\begin{equation}\label{ljacobi:eq:alpha-generating}
+ \boxed{\alpha_j=
+ \frac{j!}{M_\sigma\sqrt{j!(1/2)_j}}
+ [t^j]\left((1+t^2)^{-1/4}M_h(\arctan t)^k\right).}
+\end{equation}
+The factor $1/M_\sigma=1/\sqrt{2\pi}$ is necessary.
+
+\section{The finite-cutoff sign and its full boundary vector}
+
+Let $P_N$ project to $e_0,\ldots,e_N$, and write
+\[
+ C_N=P_N\ljacobiCC P_N,\quad J_N=P_N\ljacobiJ P_N,\quad
+ c_N=(\ljacobiCC_{0,N+1},\ldots,\ljacobiCC_{N,N+1})^T.
+\]
+All are now finite coordinate matrices/vectors. Compressing the
+full entrywise commutation identity gives
+\[
+ 0=[J_N,C_N]+P_N\ljacobiJ(I-P_N)\ljacobiCC P_N
+                    -P_N\ljacobiCC(I-P_N)\ljacobiJ P_N.
+\]
+The unique crossing Jacobi edge is $b_N$. Since $\ljacobiCC$ is real
+symmetric, the two extra terms are respectively $b_Ne_Nc_N^*$
+and $b_Nc_Ne_N^*$. Hence
+\begin{equation}\label{ljacobi:eq:cutoff}
+ \boxed{[J_N,C_N]=b_N(c_Ne_N^*-e_Nc_N^*).}
+\end{equation}
+This proves the stated sign. Formula \eqref{ljacobi:eq:first} computes
+$C_N$ using the coefficients through index $2N$. It computes $c_N$
+using those through index $2N+1$. Because the native odd coefficients
+vanish, $\alpha_{2N+1}$ is zero; retaining it in the index range is
+correct and harmless.
+
+In fact evenness gives $(c_N)_N=\ljacobiCC_{N,N+1}=0$, so $c_N\perp e_N$.
+If $c_N=0$, the finite matrices commute. If $c_N\ne0$, the
+commutator vanishes on the orthogonal complement of
+$\operatorname{span}\{e_N,c_N\}$ and acts on the ordered orthonormal
+basis $e_N,c_N/\|c_N\|$ there as
+\[
+ \begin{pmatrix}0&-b_N\|c_N\|\\b_N\|c_N\|&0\end{pmatrix}.
+\]
+Thus its rank is two and its norm is exactly $b_N\|c_N\|$.
+These are identities, not new estimates on the vector $c_N$.
+
+The distinction between $P_Nr_j(\ljacobiJ)P_N$ and $r_j(J_N)$ is essential.
+For example $r_2(y)=(y^2-1/2)/\sqrt{3/2}$, and at $N=1$,
+\[
+ [r_2(\ljacobiJ)]_{11}=\sqrt6,\qquad [r_2(J_1)]_{11}=0.
+\]
+Indeed $(\ljacobiJ^2)_{11}=b_0^2+b_1^2=1/2+3$, whereas
+$(J_1^2)_{11}=b_0^2=1/2$. The missing term is the path from $1$
+to $2$ and back to $1$. Accordingly
+$\ljacobiCC_{11}=\alpha_0+\sqrt6\alpha_2$, not merely $\alpha_0$.
+
+\section{Exact original source and observation coordinates}
+
+For $F(S)=\sum_{j=0}^N a_jS^j$, the monomial coefficient vector
+of the same function $F(c+iy)$ is $Ta$, where
+\[
+ T_{rj}=\binom jr c^{j-r}i^r\ (r\leq j),\qquad T_{rj}=0\ (r>j).
+\]
+This is the binomial theorem with no conjugation or mass change.
+Let $B$ have the monomial coefficient vector of $\varphi_n$ as
+column $n$. It is upper triangular with diagonal
+$1/\sqrt{\gamma_n}$, while $T$ has diagonal $i^n$.
+Both matrices are invertible. If $x$ denotes the Gamma-frame
+coefficient vector of $F(c+iy)$, equality of the two polynomial
+expansions is $Bx=Ta$. Hence
+\begin{equation}\label{ljacobi:eq:source}
+ x=D_Na,\qquad D_N=B^{-1}T,\qquad
+ (D_N)_{nn}=i^n\sqrt{\gamma_n}.
+\end{equation}
+Integration in the unchanged arithmetic measure gives
+\begin{equation}\label{ljacobi:eq:gram}
+ H_{S,N}^{\rm ar}=D_N^*C_ND_N.
+\end{equation}
+For every $x\in\ljacobiC^{N+1}$, \eqref{ljacobi:eq:finite-envelope} applied to
+$\sum x_n\varphi_n$ gives the concrete positive bounds
+\begin{equation}\label{ljacobi:eq:CN-bounds}
+ \frac{a_k}{\Delta_N}I\leq C_N\leq A_kI.
+\end{equation}
+Thus the inverse in the next formula exists for every fixed $N$.
+No positive lower bound independent of $N$ for the infinite
+operator is inferred from the decaying lower density envelope.
+
+Retain the actual observation map
+$\mathcal A_S=\Lambda\mathcal J_{S,N}$, including its full physical
+Taylor unit, in its original source and observation coordinates.
+Its codomain is the original observation image with its retained
+Hermitian structure, so it is onto. Its matrix in the Gamma-frame
+source coordinates must be
+\begin{equation}\label{ljacobi:eq:E}
+ \mathcal E_N=\mathcal A_SD_N^{-1},
+\end{equation}
+since $\mathcal A_Sa=\mathcal A_SD_N^{-1}x$. The symbol
+$\mathcal J_{S,N}$ denotes the original class map, not the Jacobi
+matrix $J_N$.
+
+\begin{ljacobitheorem}\label{ljacobi:thm:quotient}
+For every observed vector $u$ the original attained minimum is
+\begin{equation}\label{ljacobi:eq:quotient}
+ \min_{\mathcal A_Sa=u}a^*H_{S,N}^{\rm ar}a
+  =u^*Q_{B,N}u,\qquad
+ Q_{B,N}=(\mathcal E_NC_N^{-1}\mathcal E_N^*)^{-1},
+\end{equation}
+and its unique minimizing source vector is
+\begin{equation}\label{ljacobi:eq:lift}
+ a_{\min}=D_N^{-1}C_N^{-1}\mathcal E_N^*Q_{B,N}u.
+\end{equation}
+\end{ljacobitheorem}
+\begin{proof}
+Surjectivity of $\mathcal E_N$ makes its adjoint injective, so
+$K=\mathcal E_NC_N^{-1}\mathcal E_N^*$ is strictly positive on the
+observation space. Put $x_0=C_N^{-1}\mathcal E_N^*K^{-1}u$.
+Then $\mathcal E_Nx_0=u$ and
+$x_0^*C_Nx_0=u^*K^{-1}u$. Every other lift is $x_0+z$ with
+$\mathcal E_Nz=0$, and
+$z^*C_Nx_0=(\mathcal E_Nz)^*K^{-1}u=0$. Therefore its energy is
+$u^*K^{-1}u+z^*C_Nz$, strictly larger unless $z=0$.
+The bijection $x=D_Na$ and \eqref{ljacobi:eq:gram} prove both formulas in
+the original source coordinates. Equivalently,
+\[
+ H_{S,N}^{{\rm ar},-1}=D_N^{-1}C_N^{-1}(D_N^*)^{-1},\qquad
+ \mathcal A_SH_{S,N}^{{\rm ar},-1}\mathcal A_S^*
+                   =\mathcal E_NC_N^{-1}\mathcal E_N^*.
+\]
+Thus this is exactly the original quotient metric, not an auxiliary
+minimum for a changed source.
+\end{proof}
+
+For completeness, \eqref{ljacobi:eq:CN-bounds} also gives the exact matrix
+comparison
+\[
+ \frac{a_k}{\Delta_N}(\mathcal E_N\mathcal E_N^*)^{-1}
+       \leq Q_{B,N}\leq
+ A_k(\mathcal E_N\mathcal E_N^*)^{-1}.
+\]
+This follows by inverting the two positive bounds for $C_N$,
+congruence with $\mathcal E_N$, and inversion once again. It does
+not replace $\mathcal E_N$ by another observation map.
+
+\section{Explicit finite checks and retained phase problem}
+
+Write $\nu_j=\int y^jm_k(y)\,dy$ and
+$\eta_j=\int y^jw_h(y)\,dy$, so $\eta_0=\mu_h$.
+The first polynomial values from the exact recurrence are
+\[
+ p_0=1,\quad p_1=y,\quad p_2=y^2-\tfrac12,\quad
+ p_3=y^3-\tfrac72y,\quad p_4=y^4-11y^2+\tfrac{15}4.
+\]
+Consequently the first even column entries are
+\[
+ \alpha_0=\frac{\nu_0}{M_\sigma},\qquad
+ \alpha_2=\frac{\nu_2-\nu_0/2}{M_\sigma\sqrt{3/2}},\qquad
+ \alpha_4=\frac{\nu_4-11\nu_2+15\nu_0/4}
+                   {M_\sigma\sqrt{315/2}}.
+\]
+Multinomial expansion of the actual convolution, using evenness,
+gives
+\[
+ \nu_0=\mu_h^k,\quad \nu_2=k\eta_2\mu_h^{k-1},\quad
+ \nu_4=k\eta_4\mu_h^{k-1}
+              +3k(k-1)\eta_2^2\mu_h^{k-2}.
+\]
+The $3k(k-1)$ factor counts the two distinct factors contributing
+second powers: $\binom{k}{2}\binom42=3k(k-1)$.
+
+At cutoff $N=1$, evenness gives
+\[
+ C_1=\frac1{M_\sigma}\begin{pmatrix}\nu_0&0\\0&2\nu_2\end{pmatrix},
+ \quad J_1=\begin{pmatrix}0&1/\sqrt2\\1/\sqrt2&0\end{pmatrix},
+ \quad c_1=\begin{pmatrix}\alpha_2\\0\end{pmatrix},\quad b_1=\sqrt3.
+\]
+Its $(0,1)$ commutator entry is
+$(2\nu_2-\nu_0)/(\sqrt2M_\sigma)=\sqrt3\alpha_2$,
+confirming both the sign and the mass factor in \eqref{ljacobi:eq:cutoff}.
+The degree-two source change is explicitly
+\[
+ D_2=\sqrt{M_\sigma}
+ \begin{pmatrix}
+ 1&c&c^2-1/2\\
+ 0&i/\sqrt2&\sqrt2ic\\
+ 0&0&-\sqrt{3/2}
+ \end{pmatrix}.
+\]
+In particular the source constant $F=1$ has coefficient
+$x_0=\sqrt{M_\sigma}$ and energy
+$M_\sigma(C_0)_{00}=\mu_h^k$, retaining the original arithmetic mass.
+
+The companion exact symbolic script \texttt{check\_symbolic.py}
+checks \eqref{ljacobi:eq:first} for all $0\leq m,n\leq4$ (25 entries),
+checks \eqref{ljacobi:eq:cutoff} at $N=0,1,2,3$, checks the generating
+polynomials through degree six, and checks
+\eqref{ljacobi:eq:source}--\eqref{ljacobi:eq:gram} through degree two. All moment
+variables are independent real symbols; the checks even allow
+nonzero odd moments. The parameter representing $M_\sigma$ remains
+a symbolic positive mass rather than being set to one. These
+finite checks supplement, and do not replace, the general proofs.
+
+For the original classes $a_1=[p_N^{\rm ar}]_\chi$,
+$a_2=[p_{N+1}^{\rm ar}]_\chi$ and original terminal class $v$, the
+retained quantities are therefore exactly
+\[
+ B_i=(\Lambda a_i)^*Q_{B,N}\Lambda v,\qquad
+ \Phi_{B,N}=\frac{2\Re(\overline{B_1}B_2)}{\omega_{N,k}^{\rm ar}}.
+\]
+The formulas above give a finite representation of the same
+quantities and the full Jacobi compression defect. They do not
+evaluate or estimate these complex signed products. The physical
+Taylor unit, the observation map, and both original classes remain
+present; parity of $C_N$ does not remove them.
+
+
+\endgroup
+
+% END INDEXED LITERATURE EXACT RECEIVERS 20260920

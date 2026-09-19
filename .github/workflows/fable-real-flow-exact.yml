@@ -4,7 +4,7 @@ on:
   push:
     branches: ['astra/fable-real-flow-20260920']
     paths:
-      - 'workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/verify_real_flow.py'
+      - 'workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/*.py'
       - '.github/workflows/fable-real-flow-exact.yml'
   pull_request:
     paths:
@@ -27,16 +27,18 @@ jobs:
           persist-credentials: false
       - name: Install the pinned symbolic algebra dependency
         run: python3 -m pip install sympy==1.14.0
-      - name: Exact identities in ordinary and optimized Python
+      - name: Both exact suites in ordinary and optimized Python
         shell: bash
         run: |
           set -euo pipefail
-          SCRIPT=workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/verify_real_flow.py
-          python3 "$SCRIPT" > /tmp/fable-normal.json
-          python3 -O "$SCRIPT" > /tmp/fable-optimized.json
-          cmp /tmp/fable-normal.json /tmp/fable-optimized.json
-          cat /tmp/fable-normal.json
-      - name: Reject the reversed transverse sign and untransported diagonal action
+          DIR=workbenches/splitzero-tandem/continuations/20260920-fable-real-flow
+          for NAME in verify_real_flow verify_completion; do
+            python3 "$DIR/$NAME.py" > "/tmp/$NAME-normal.json"
+            python3 -O "$DIR/$NAME.py" > "/tmp/$NAME-optimized.json"
+            cmp "/tmp/$NAME-normal.json" "/tmp/$NAME-optimized.json"
+            cat "/tmp/$NAME-normal.json"
+          done
+      - name: Reject reversed transverse sign and untransported diagonal action
         shell: bash
         run: |
           set -euo pipefail
@@ -51,4 +53,18 @@ jobs:
               grep -q '"false_claim_accepted": false' /tmp/fable-$MODE-$CONTROL.json
               cat /tmp/fable-$MODE-$CONTROL.json
             done
+          done
+      - name: Reject loss of the full resultant factor
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCRIPT=workbenches/splitzero-tandem/continuations/20260920-fable-real-flow/verify_completion.py
+          for MODE in normal optimized; do
+            if [ "$MODE" = normal ]; then PY=(python3); else PY=(python3 -O); fi
+            if "${PY[@]}" "$SCRIPT" --negative-control omit-resultant-square > /tmp/completion-$MODE-negative.json; then
+              cat /tmp/completion-$MODE-negative.json
+              exit 1
+            fi
+            grep -q '"false_claim_accepted": false' /tmp/completion-$MODE-negative.json
+            cat /tmp/completion-$MODE-negative.json
           done

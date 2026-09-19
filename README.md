@@ -1,3 +1,21 @@
+<!-- native-precision-leakage:20260919 -->
+## Native precision and quantitative kernel leakage
+
+This seven-page proof sharpens the displaced covariance and complete
+correlated return through the q/log q scale, computes the first marked
+discrepancy on each admitted original period stratum, and gives an explicit
+positive lower bound for leakage measured in the original kernel metric.
+The inverse and all feedback blocks are retained. It also evaluates the
+integer heat depth and its degree cost. The target Schur spectrum,
+absolute allocations and individual projected signs remain unevaluated.
+
+[Read the seven-page proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-precision-leakage/NATIVE_PRECISION_AND_LEAKAGE.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-precision-leakage/NATIVE_PRECISION_AND_LEAKAGE.tex) · [Four mathematical results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-precision-leakage/NEW_RESULTS_2026-09-19.md) · [Complete source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-precision-leakage/README.md) · [Next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-precision-leakage/CONTINUATION.md).
+
+The package retains complete cited providers, three cumulative LaTeX
+successors and 427 finite diagnostic checks. Analytic inputs retain
+their cited proof status; the finite tests are not evaluations of
+hypothetical zeta zeros. Human citations remain at their uses.
+
 <!-- native-conductor-coprimality:20260919 -->
 ## Original conductor coprimality and the proper-source kernel
 

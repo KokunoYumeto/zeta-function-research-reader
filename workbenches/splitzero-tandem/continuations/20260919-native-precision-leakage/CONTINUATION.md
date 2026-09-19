@@ -1,0 +1,3 @@
+# Continue the original metric calculation
+
+Read NP1–31 and the new dated results. The covariance and correlated sum are controlled through q/log q. Use the exact marked order and quantitative kernel leakage bound. Proper-source E=0 is now proved on the NC domain, so retain the resulting original source form and evaluate the target J-minimum in NP30–31. Keep the remaining actual observation angles and current signs. The newer Research Program Audit continuation (exported 19 September 22:48) is being integrated separately; its claimed subexponential heat constant and endpoint metric should be received through these same maps. Do not reconstruct a missing coprimality or rank result already proved in NC. Cite human authors wherever used.

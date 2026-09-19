@@ -1,3 +1,23 @@
+<!-- native-conductor-coprimality:20260919 -->
+## Original conductor coprimality and the proper-source kernel
+
+This seven-page proof shows that the original proper-source kernel
+vanishes outside a specified finite exceptional set of admitted periods
+on the original hypothetical simple-quartet domain. It gives an explicit
+sufficient period bound, retaining the unit phase, branch and degree
+congruence. The source Schur subtraction is removed on that domain;
+the complete target minimum remains to be evaluated.
+
+[Read the seven-page proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-conductor-coprimality/ORIGINAL_CONDUCTOR_COPRIMALITY.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-conductor-coprimality/ORIGINAL_CONDUCTOR_COPRIMALITY.tex) · [Mathematical results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-conductor-coprimality/NEW_RESULTS_2026-09-19.md) · [Complete source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-conductor-coprimality/README.md) · [Next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-native-conductor-coprimality/CONTINUATION.md).
+
+The four incoming notes, current low-jet revision and its archived
+predecessor, complete PCL argument, three cumulative LaTeX successors
+and exact algebra/rank diagnostics accompany the proof. Platt and
+Trudgian are cited for the finite-height input. Imported Gamma estimates
+retain their stated written-proof status, not certification by finite
+checks. No target determinant, individual projected sign or RH conclusion
+is inferred from this source-kernel result.
+
 <!-- corpus-cohomology-metric-receivers:20260919 -->
 ## Earlier Split-Zero constructions in the theta-cohomology programme
 

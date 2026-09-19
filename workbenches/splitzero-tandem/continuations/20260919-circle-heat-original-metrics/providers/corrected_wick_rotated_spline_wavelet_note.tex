@@ -1,0 +1,864 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.08in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+
+\title{Corrected Wick-Rotated Characters, Twisted Spectral Traces,\\
+Lorentzian Lifts, and the Periodic Spline-Wavelet Hierarchy}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This article gives a self-contained correction and completion of a spectral-geometric note built around the Perelman $\mathcal W$-functional and the Schr"odinger operator $L=-4\Delta_g+R$.  The first correction is conceptual: the vacuum coefficient belongs to the ground-state normalized Wick-rotated trace, not to the value at $s=0$ of the twisted spectral Dirichlet series.  The second correction is functional-analytic: the recursively integrated base step on the circle is not a basis of $L^2(\mathbb T)$; it is only one distinguished branch inside the full integrated Haar spline-wavelet family.
+
+We prove the free-energy decomposition of $\mathcal W$, identify the Euclidean Hamiltonian $H_\tau=\tau(-4\Delta_g+R)$, construct the correct Wick character, derive the Mellin formula for twisted spectral Dirichlet series and an explicit counterexample to the false formula $\mathcal L_U(0)=-c$, and determine the Lorentzian principal symbol of the wave lift $\partial_t^2-4\Delta_g+R$.  On the circle we compute the exact Fourier expansion of the centered spline tower, derive its Bernoulli closed form, prove the distributional spline equation and Sobolev regularity, identify the odd theta character as the spatial derivative of the heat-evolved base spline, recover the odd-square Dirichlet series by Mellin transform, and prove that the genuine basis theorem is the integrated Haar Riesz-basis statement in $H_0^n(\mathbb T)$.
+\end{abstract}
+
+\tableofcontents
+\section{Purpose and scope}
+
+This part integrates and corrects the mathematical content of the underlying draft and its later correction.  The starting point is the decomposition of the Perelman $\mathcal W$-functional into an energy term for the Schr\"odinger operator
+\[
+L=-4\Delta_g+R
+\]
+and an entropy term.  Two assertions require correction.
+
+\begin{enumerate}[label=(\roman*)]
+\item The value at $s=0$ of the twisted spectral Dirichlet series does \emph{not}, in general, equal the ground-state character.
+\item The single recursively integrated step chain on $\mathbb T^1$ is \emph{not} a basis of $L^2(\mathbb T)$; the correct basis is the full integrated Haar family.
+\end{enumerate}
+
+Everything else in the present part is organized so that these corrections are proved in full and then reinserted into the spectral-geometric framework.
+
+\section{The $\mathcal W$-functional and the Euclidean Hamiltonian}
+
+Let $(M,g)$ be a closed smooth Riemannian manifold of dimension $n$, and let $\tau>0$.  We write the Perelman functional in the form
+\[
+\mathcal W(g,f,\tau)=\int_M \bigl[\tau(R+|\nabla f|^2)+f-n\bigr](4\pi\tau)^{-n/2}e^{-f}\,dV,
+\]
+subject to the normalization
+\[
+\int_M (4\pi\tau)^{-n/2}e^{-f}\,dV=1.
+\]
+Define the probability density
+\[
+\rho:=(4\pi\tau)^{-n/2}e^{-f}.
+\]
+
+\begin{lemma}\label{mod:rho-identities}
+One has
+\[
+f=-\log\rho-\frac n2\log(4\pi\tau),
+\qquad
+|\nabla f|^2=\frac{|\nabla\rho|^2}{\rho^2}
+=4\frac{|\nabla\sqrt\rho|^2}{\rho}.
+\]
+\end{lemma}
+
+\begin{proof}
+The first identity is immediate from the defining equation for $\rho$.  Differentiating gives
+\[
+\nabla f=-\frac{\nabla\rho}{\rho}.
+\]
+Squaring yields
+\[
+|\nabla f|^2=\frac{|\nabla\rho|^2}{\rho^2}.
+\]
+If $\psi=\sqrt\rho$, then $\nabla\rho=2\psi\nabla\psi$, hence
+\[
+\frac{|\nabla\rho|^2}{\rho}=4|\nabla\psi|^2=4|\nabla\sqrt\rho|^2.
+\]
+\end{proof}
+
+\begin{proposition}[Decomposition of $\mathcal W$]\label{mod:W-decomp}
+With $\rho$ as above,
+\[
+\mathcal W(g,f,\tau)
+=
+\int_M \tau\bigl(R\rho+4|\nabla\sqrt\rho|^2\bigr)\,dV
+-\int_M \rho\log\rho\,dV
+-C(n,\tau),
+\]
+where
+\[
+C(n,\tau)=\frac n2\log(4\pi\tau)+n.
+\]
+\end{proposition}
+
+\begin{proof}
+Insert the identities of Lemma~\ref{mod:rho-identities} into the definition of $\mathcal W$:
+\[
+\mathcal W
+=
+\int_M \Bigl[\tau\Bigl(R+\frac{|\nabla\rho|^2}{\rho^2}\Bigr)-\log\rho-\frac n2\log(4\pi\tau)-n\Bigr]\rho\,dV.
+\]
+Expanding and using $\int_M\rho\,dV=1$ gives
+\[
+\mathcal W
+=
+\int_M \tau\Bigl(R\rho+\frac{|\nabla\rho|^2}{\rho}\Bigr)\,dV
+-\int_M \rho\log\rho\,dV
+-\frac n2\log(4\pi\tau)-n.
+\]
+Finally, $\frac{|\nabla\rho|^2}{\rho}=4|\nabla\sqrt\rho|^2$.
+\end{proof}
+
+\begin{theorem}[Hamiltonian identification]\label{mod:H-identification}
+Let
+\[
+L:=-4\Delta_g+R,
+\qquad
+H_\tau:=\tau L,
+\]
+where $\Delta_g$ is the positive Laplace-Beltrami operator.  If $\psi=\sqrt\rho$, then
+\[
+\langle \psi,H_\tau\psi\rangle_{L^2(M)}
+=
+\tau\int_M \bigl(R\rho+4|\nabla\sqrt\rho|^2\bigr)\,dV.
+\]
+In particular, the energy term in Proposition~\ref{mod:W-decomp} is exactly the expectation value of the Schr\"odinger operator $H_\tau$.
+\end{theorem}
+
+\begin{proof}
+Since $M$ is closed, Green's identity for the positive Laplacian yields
+\[
+\int_M \psi(-\Delta_g)\psi\,dV
+=
+\int_M |\nabla\psi|^2\,dV.
+\]
+Therefore
+\[
+\langle \psi,H_\tau\psi\rangle
+=
+\tau\int_M \psi(-4\Delta_g+R)\psi\,dV
+=
+\tau\int_M \bigl(4|\nabla\psi|^2+R\psi^2\bigr)\,dV.
+\]
+Now $\psi^2=\rho$.
+\end{proof}
+
+\section{Ground-state normalized Wick characters}
+
+Let $L$ be a self-adjoint elliptic operator on a closed manifold, with compact resolvent and lower-bounded spectrum
+\[
+\lambda_{\min}=\inf\operatorname{Spec}(L)>-\infty.
+\]
+Write the spectral decomposition as
+\[
+L\phi_j=\lambda_j\phi_j,
+\qquad
+\lambda_{\min}=\lambda_0\le \lambda_1\le \lambda_2\le \cdots,
+\]
+for an orthonormal eigenbasis $(\phi_j)$.  Let $U$ be a unitary operator commuting with $L$.  For each eigenvalue $\lambda$, let
+\[
+E_\lambda:=\ker(L-\lambda I),
+\qquad
+a_\lambda:=\operatorname{Tr}(U|_{E_\lambda}).
+\]
+
+\begin{theorem}[Ground-state normalized Wick character]\label{mod:wick-character}
+For every $a>0$ and every $\tau\in\mathfrak H:=\{z\in\CC:\Ima z>0\}$, the series
+\[
+\chi_{U,a}(\tau):=\operatorname{Tr}\!\bigl(Ue^{2\pi i\tau aL}\bigr)
+\]
+converges absolutely and defines a holomorphic function on $\mathfrak H$.  Moreover,
+\[
+e^{-2\pi i\tau a\lambda_{\min}}\chi_{U,a}(\tau)
+=
+\sum_{\lambda\in\operatorname{Spec}(L)} a_\lambda\,q^{a(\lambda-\lambda_{\min})},
+\qquad
+q=e^{2\pi i\tau}.
+\]
+If $\dim E_{\lambda_{\min}}=1$ and $U\psi_0=c\psi_0$ for a unit vector $\psi_0\in E_{\lambda_{\min}}$, then
+\[
+e^{-2\pi i\tau a\lambda_{\min}}\chi_{U,a}(\tau)
+=
+c+\sum_{\lambda>\lambda_{\min}} a_\lambda\,q^{a(\lambda-\lambda_{\min})}.
+\]
+\end{theorem}
+
+\begin{proof}
+Because $UL=LU$, the operator $Ue^{2\pi i\tau aL}$ is diagonal in a spectral basis:
+\[
+\chi_{U,a}(\tau)=\sum_\lambda a_\lambda e^{2\pi i\tau a\lambda}.
+\]
+Since $\Ima\tau>0$,
+\[
+\bigl|e^{2\pi i\tau a\lambda}\bigr|
+=
+e^{-2\pi (\Ima\tau)a\lambda}
+=
+e^{-2\pi (\Ima\tau)a\lambda_{\min}}
+e^{-2\pi (\Ima\tau)a(\lambda-\lambda_{\min})}.
+\]
+Hence
+\[
+\sum_\lambda |a_\lambda|\,\bigl|e^{2\pi i\tau a\lambda}\bigr|
+\le
+e^{-2\pi (\Ima\tau)a\lambda_{\min}}
+\sum_\lambda \dim(E_\lambda)e^{-2\pi (\Ima\tau)a(\lambda-\lambda_{\min})}.
+\]
+The final sum is the heat trace of the nonnegative compact-resolvent operator $L-\lambda_{\min}I$ at time $2\pi a\,\Ima\tau$, so it is finite.  Absolute and locally uniform convergence follow, hence holomorphy.  Factoring out the ground energy yields the displayed expansion.  In the one-dimensional ground-state case one has $a_{\lambda_{\min}}=c$.
+\end{proof}
+
+\begin{corollary}[Integral $q$-grading criterion]\label{mod:q-character}
+Assume there exists $a>0$ such that
+\[
+a(\lambda-\lambda_{\min})\in\ZZ_{\ge 0}
+\qquad
+\text{for every }\lambda\in\operatorname{Spec}(L).
+\]
+Then the normalized Wick trace is a genuine vacuum $q$-character:
+\[
+e^{-2\pi i\tau a\lambda_{\min}}\chi_{U,a}(\tau)
+=
+c+\sum_{n\ge 1} b_n q^n.
+\]
+The vacuum coefficient is exactly $c$.
+\end{corollary}
+
+\begin{proof}
+Group equal integer exponents in Theorem~\ref{mod:wick-character}.
+\end{proof}
+
+\section{Twisted spectral Dirichlet series and the failure of the $s=0$ vacuum claim}
+
+Assume now that $L\ge 0$, that $\dim\ker L=1$, and that $U\psi_0=c\psi_0$ on the kernel.  Define
+\[
+\Theta_U(t):=\operatorname{Tr}(Ue^{-tL}),
+\qquad
+\mathcal L_U(s):=\operatorname{Tr}'(UL^{-s})
+=
+\sum_{\lambda>0} a_\lambda\lambda^{-s},
+\]
+where the prime indicates omission of the zero eigenspace.
+
+\begin{theorem}[Mellin formula for the twisted spectral Dirichlet series]\label{mod:twisted-mellin}
+For $\Rea s$ sufficiently large,
+\[
+\mathcal L_U(s)
+=
+\frac{1}{\Gamma(s)}
+\int_0^\infty t^{s-1}\bigl(\Theta_U(t)-c\bigr)\,dt.
+\]
+\end{theorem}
+
+\begin{proof}
+By spectral decomposition,
+\[
+\Theta_U(t)=c+\sum_{\lambda>0} a_\lambda e^{-t\lambda}.
+\]
+For $\Rea s\gg 0$, absolute convergence allows termwise integration:
+\[
+\frac{1}{\Gamma(s)}
+\int_0^\infty t^{s-1}\bigl(\Theta_U(t)-c\bigr)\,dt
+=
+\frac{1}{\Gamma(s)}
+\sum_{\lambda>0} a_\lambda \int_0^\infty t^{s-1}e^{-t\lambda}\,dt
+=
+\sum_{\lambda>0} a_\lambda\lambda^{-s}.
+\]
+\end{proof}
+
+\begin{proposition}[Counterexample to $\mathcal L_U(0)=-c$]\label{mod:counterexample}
+Let
+\[
+L=-\partial_x^2
+\]
+on the circle $\mathbb T=\RR/\ZZ$, with Fourier basis $e_k(x)=e^{2\pi ikx}$, $k\in\ZZ$.  Define $U$ by
+\[
+Ue_0=e_0,
+\qquad
+Ue_k=-e_k\quad (k\neq 0).
+\]
+Then $U$ is unitary, $UL=LU$, the kernel character is $c=1$, but
+\[
+\mathcal L_U(0)=1\neq -1=-c.
+\]
+\end{proposition}
+
+\begin{proof}
+The eigenvalues are
+\[
+Le_k=4\pi^2k^2e_k.
+\]
+Therefore
+\[
+\mathcal L_U(s)
+=
+\sum_{k\neq 0}(-1)(4\pi^2k^2)^{-s}
+=
+-2(4\pi^2)^{-s}\zeta(2s).
+\]
+Evaluating at $s=0$ gives
+\[
+\mathcal L_U(0)=-2\zeta(0)=-2\Bigl(-\frac12\Bigr)=1.
+\]
+\end{proof}
+
+\begin{remark}
+The vacuum coefficient is extracted from the normalized Wick character of Theorem~\ref{mod:wick-character}, not from the value at $s=0$ of the twisted Dirichlet series.  The latter is governed by the short-time asymptotic expansion of the twisted heat trace.
+\end{remark}
+
+\section{Wick rotation and the Lorentzian lift}
+
+The Euclidean semigroup generated by $H_\tau$ is
+\[
+e^{-tH_\tau}.
+\]
+Its holomorphic continuation in imaginary time yields the Schr\"odinger evolution
+\[
+e^{-tH_\tau}\longmapsto e^{isH_\tau},
+\qquad
+i\partial_s\psi=H_\tau\psi.
+\]
+If one introduces a second-order time variable instead, the natural hyperbolic lift is the wave operator
+\[
+P:=\partial_t^2+L=\partial_t^2-4\Delta_g+R.
+\]
+
+\begin{theorem}[Principal symbol and Lorentzian signature]\label{mod:lorentzian}
+The principal symbol of $P$ is
+\[
+\sigma_P(t,x;\sigma,\xi)=-\sigma^2+4g^{ij}(x)\xi_i\xi_j.
+\]
+Hence $P$ defines a Lorentzian operator of signature $(n,1)$ on $\RR_t\times M$.  In particular, when $n=3$, the principal symbol has signature $(3,1)$.
+\end{theorem}
+
+\begin{proof}
+The principal symbol of $\partial_t^2$ is $-\sigma^2$.  The principal symbol of the positive Laplacian is $g^{ij}\xi_i\xi_j$, so the principal symbol of $-4\Delta_g$ is $4g^{ij}\xi_i\xi_j$.  The scalar-curvature term $R$ is order zero and contributes no principal part.  The resulting quadratic form has one negative time direction and $n$ positive spatial directions.
+\end{proof}
+
+\begin{remark}
+This Lorentzian signature belongs to the lifted wave operator, not to the Euclidean heat trace by itself.  The Euclidean spectral package becomes hyperbolic only after the Wick rotation or, equivalently, after passing from the heat semigroup to the wave operator.
+\end{remark}
+
+\section{The centered spline tower on the circle}
+
+Let
+\[
+h_0(x):=\mathbf 1_{[0,1/2)}(x)-\mathbf 1_{[1/2,1)}(x),
+\qquad x\in\mathbb T.
+\]
+Write
+\[
+\widehat f(k):=\int_0^1 f(x)e^{-2\pi ikx}\,dx,
+\qquad k\in\ZZ.
+\]
+Let $L^2_0(\mathbb T)$ be the mean-zero subspace, and define the mean-zero antiderivative operator $Q$ on $L^2_0(\mathbb T)$ by
+\[
+\widehat{Qf}(0)=0,
+\qquad
+\widehat{Qf}(k)=\frac{\widehat f(k)}{2\pi ik}\quad(k\neq 0).
+\]
+Set
+\[
+g_0:=h_0,
+\qquad
+g_n:=Q^n g_0\quad(n\ge 1).
+\]
+
+\begin{lemma}[Fourier coefficients of the base step]\label{mod:g0-fourier}
+For $k\neq 0$,
+\[
+\widehat g_0(k)=\frac{1-(-1)^k}{\pi ik}
+=
+2\frac{1-(-1)^k}{2\pi ik}.
+\]
+In particular, $\widehat g_0(2m)=0$ for every $m\in\ZZ$.
+\end{lemma}
+
+\begin{proof}
+A direct integration gives
+\[
+\widehat g_0(k)
+=
+\int_0^{1/2}e^{-2\pi ikx}\,dx-\int_{1/2}^1 e^{-2\pi ikx}\,dx
+=
+\frac{1-e^{-\pi ik}}{2\pi ik}-\frac{e^{-\pi ik}-e^{-2\pi ik}}{2\pi ik}.
+\]
+Since $e^{-2\pi ik}=1$ and $e^{-\pi ik}=(-1)^k$, this simplifies to the stated expression.
+\end{proof}
+
+\begin{theorem}[Exact Fourier formula for the centered spline tower]\label{mod:g_n-fourier}
+For every $n\ge 0$ and every $k\neq 0$,
+\[
+\widehat g_n(k)
+=
+2\frac{1-(-1)^k}{(2\pi ik)^{n+1}}.
+\]
+Equivalently,
+\[
+\widehat g_n(2m)=0,
+\qquad
+\widehat g_n(2m+1)=\frac{4}{(2\pi i(2m+1))^{n+1}}.
+\]
+\end{theorem}
+
+\begin{proof}
+The case $n=0$ is Lemma~\ref{mod:g0-fourier}.  If the formula holds for $g_n$, then
+\[
+\widehat g_{n+1}(k)=\frac{\widehat g_n(k)}{2\pi ik}
+=
+2\frac{1-(-1)^k}{(2\pi ik)^{n+2}},
+\]
+because $g_{n+1}=Qg_n$.
+\end{proof}
+
+\begin{corollary}[Half-period oddness]\label{mod:half-period-odd}
+For every $n\ge 0$,
+\[
+g_n\Bigl(x+\frac12\Bigr)=-g_n(x).
+\]
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{mod:g_n-fourier},
+\[
+g_n\Bigl(x+\frac12\Bigr)
+=
+\sum_{k\neq 0}\widehat g_n(k)(-1)^k e^{2\pi ikx}.
+\]
+All even modes vanish.  For odd $k$ one has $(-1)^k=-1$, giving the result.
+\end{proof}
+
+\begin{corollary}[The single chain is not a basis of $L^2(\mathbb T)$]\label{mod:not-basis}
+The closed span of $\{g_n:n\ge 0\}$ is contained in the proper closed subspace
+\[
+L^2_-(\mathbb T):=
+\left\{
+f\in L^2(\mathbb T): f(x+1/2)=-f(x)
+\right\}.
+\]
+Hence $\{g_n:n\ge 0\}$ is not a basis of $L^2(\mathbb T)$.
+\end{corollary}
+
+\begin{proof}
+Corollary~\ref{mod:half-period-odd} gives $g_n\in L^2_-(\mathbb T)$ for all $n$.  The constant function $1$ does not lie in $L^2_-(\mathbb T)$, so this subspace is proper.
+\end{proof}
+
+\begin{theorem}[Reflection parity]\label{mod:reflection-parity}
+Let $(Pf)(x):=f(1-x)$.  Then
+\[
+Pg_n=(-1)^{n+1}g_n.
+\]
+\end{theorem}
+
+\begin{proof}
+First, $Pg_0=-g_0$.  Next, on Fourier coefficients,
+\[
+\widehat{Pf}(k)=\widehat f(-k),
+\]
+so for mean-zero $f$,
+\[
+\widehat{PQf}(k)=\widehat{Qf}(-k)=\frac{\widehat f(-k)}{-2\pi ik}=-\widehat{QPf}(k).
+\]
+Thus $PQ=-QP$ on $L^2_0(\mathbb T)$.  Therefore
+\[
+Pg_n=P Q^n g_0 = (-1)^n Q^n P g_0 = (-1)^{n+1}g_n.
+\]
+\end{proof}
+
+\begin{theorem}[Distributional spline equation]\label{mod:spline-equation}
+For every $n\ge 0$,
+\[
+D^{n+1}g_n=2(\delta_0-\delta_{1/2})
+\]
+in the sense of periodic distributions.
+\end{theorem}
+
+\begin{proof}
+For $n=0$, differentiating the step function gives
+\[
+Dg_0=2(\delta_0-\delta_{1/2}).
+\]
+For $n\ge 1$, one has $Dg_n=g_{n-1}$ by construction, and the claim follows by iteration.
+\end{proof}
+
+\begin{theorem}[Sobolev regularity]\label{mod:sobolev}
+For every $n\ge 0$,
+\[
+g_n\in H^s(\mathbb T)
+\quad\Longleftrightarrow\quad
+s<n+\frac12.
+\]
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{mod:g_n-fourier},
+\[
+|\widehat g_n(k)|\asymp |k|^{-(n+1)}
+\qquad
+(k\to\infty,\ k\text{ odd}),
+\]
+and the even modes vanish.  Hence
+\[
+\|g_n\|_{H^s}^2
+\asymp
+\sum_{m\in\ZZ\setminus\{0\}}
+(1+|2m+1|^2)^s |2m+1|^{-2n-2}.
+\]
+This converges exactly when $2s-2n-2<-1$, that is, when $s<n+\frac12$.
+\end{proof}
+
+\section{Bernoulli closed form and the endpoint-normalized hierarchy}
+
+Let $\widetilde B_m$ denote the periodic Bernoulli polynomial of order $m$, so that for $m\ge 2$,
+\[
+\widetilde B_m(x)
+=
+-\frac{m!}{(2\pi i)^m}\sum_{k\neq 0}\frac{e^{2\pi ikx}}{k^m}.
+\]
+
+\begin{theorem}[Bernoulli closed form]\label{mod:bernoulli}
+For every $n\ge 1$,
+\[
+g_n(x)
+=
+-\frac{2}{(n+1)!}\left(
+\widetilde B_{n+1}(x)-\widetilde B_{n+1}\!\left(x+\frac12\right)
+\right).
+\]
+\end{theorem}
+
+\begin{proof}
+Using the Fourier series of $\widetilde B_{n+1}$,
+\[
+\widetilde B_{n+1}(x)-\widetilde B_{n+1}\!\left(x+\frac12\right)
+=
+-\frac{(n+1)!}{(2\pi i)^{n+1}}
+\sum_{k\neq 0}\frac{1-(-1)^k}{k^{n+1}}e^{2\pi ikx}.
+\]
+Multiplying by $-2/(n+1)!$ reproduces the Fourier expansion of $g_n$ from Theorem~\ref{mod:g_n-fourier}.
+\end{proof}
+
+\begin{corollary}[First terms]\label{mod:first-terms}
+On $0\le x<1/2$,
+\[
+g_1(x)=x-\frac14,
+\qquad
+g_2(x)=\frac{x^2}{2}-\frac{x}{4},
+\qquad
+g_3(x)=\frac{x^3}{6}-\frac{x^2}{8}+\frac1{192}.
+\]
+On $1/2\le x<1$,
+\[
+g_1(x)=\frac34-x,
+\qquad
+g_2(x)=-\frac{x^2}{2}+\frac{3x}{4}-\frac14,
+\qquad
+g_3(x)=-\frac{x^3}{6}+\frac{3x^2}{8}-\frac{x}{4}+\frac3{64}.
+\]
+\end{corollary}
+
+\begin{proof}
+Insert the periodic Bernoulli polynomials of orders $2,3,4$ into Theorem~\ref{mod:bernoulli} and reduce the argument $x+1/2$ modulo $1$.
+\end{proof}
+
+\begin{proposition}[Endpoint-normalized hierarchy]\label{mod:endpoint-hierarchy}
+Define
+\[
+h_0:=g_0,
+\qquad
+h_n:=g_n-g_n(0)\quad(n\ge 1).
+\]
+Then $h_n(0)=h_n(1)=0$, and
+\[
+h_n(x)=\int_0^x\bigl(h_{n-1}(t)-\overline{h_{n-1}}\bigr)\,dt,
+\qquad
+\overline{h_{n-1}}:=\int_0^1 h_{n-1}(t)\,dt.
+\]
+\end{proposition}
+
+\begin{proof}
+Because $g_n$ has zero mean, $\overline{h_n}=-g_n(0)$, hence
+\[
+g_n=h_n-\overline{h_n}.
+\]
+Differentiating gives
+\[
+h_n'(x)=Dg_n(x)=g_{n-1}(x)=h_{n-1}(x)-\overline{h_{n-1}}.
+\]
+Since $h_n(0)=0$, integration from $0$ to $x$ yields the recursion.  Periodicity gives $h_n(1)=0$.
+\end{proof}
+
+\begin{proposition}[Mellin recursion]\label{mod:mellin}
+For $\Rea s>0$, define
+\[
+M_n(s):=\int_0^1 x^{s-1}h_n(x)\,dx.
+\]
+Then
+\[
+M_0(s)=\frac{2^{1-s}-1}{s},
+\]
+and for $n\ge 1$,
+\[
+M_n(s)
+=
+-\frac1s\left(M_{n-1}(s+1)-\frac{\overline{h_{n-1}}}{s+1}\right).
+\]
+\end{proposition}
+
+\begin{proof}
+For $n=0$ one computes directly
+\[
+M_0(s)=\int_0^{1/2}x^{s-1}\,dx-\int_{1/2}^1x^{s-1}\,dx
+=
+\frac{2^{1-s}-1}{s}.
+\]
+For $n\ge 1$, integration by parts and Proposition~\ref{mod:endpoint-hierarchy} give
+\[
+M_n(s)=\int_0^1 x^{s-1}h_n(x)\,dx
+=
+-\frac1s\int_0^1 x^s\bigl(h_{n-1}(x)-\overline{h_{n-1}}\bigr)\,dx,
+\]
+which is the stated recursion.
+\end{proof}
+
+\section{Theta characters and the odd-square Dirichlet series}
+
+Rescale the circle Laplacian to
+\[
+N:=-\frac1{4\pi^2}\partial_x^2,
+\]
+so that
+\[
+Ne_k=k^2e_k,
+\qquad
+e_k(x)=e^{2\pi ikx}.
+\]
+Let $T$ be the half-period translation
+\[
+(Tf)(x):=f\!\left(x+\frac12\right),
+\]
+hence $Te_k=(-1)^ke_k$.
+
+\begin{proposition}[Odd theta characters]\label{mod:theta-characters}
+For $q=e^{2\pi i\tau}$ with $\Ima\tau>0$,
+\[
+\chi_T(\tau):=\operatorname{Tr}(Te^{2\pi i\tau N})
+=
+\sum_{k\in\ZZ}(-1)^k q^{k^2}.
+\]
+If
+\[
+P_-:=\frac12(I-T),
+\]
+then
+\[
+\chi_-(\tau):=\operatorname{Tr}(P_-e^{2\pi i\tau N})
+=
+\sum_{k\ \mathrm{odd}} q^{k^2}
+=
+2\sum_{m\ge 0}q^{(2m+1)^2}.
+\]
+\end{proposition}
+
+\begin{proof}
+In the Fourier basis,
+\[
+e^{2\pi i\tau N}e_k=q^{k^2}e_k,
+\qquad
+Te_k=(-1)^ke_k.
+\]
+Thus
+\[
+\chi_T(\tau)=\sum_{k\in\ZZ}(-1)^k q^{k^2}.
+\]
+Also
+\[
+P_-e_k=\frac{1-(-1)^k}{2}e_k,
+\]
+which kills the even modes and retains the odd ones.
+\end{proof}
+
+Define the heat-evolved base field
+\[
+\Phi_0(x,\tau):=e^{2\pi i\tau N}h_0(x).
+\]
+
+\begin{theorem}[The spline field is an $x$-primitive of the odd theta character]\label{mod:spline-primitive}
+For $\Ima\tau>0$,
+\[
+\partial_x\Phi_0(x,\tau)
+=
+4\sum_{k\ \mathrm{odd}}q^{k^2}e^{2\pi ikx}.
+\]
+In particular,
+\[
+\chi_-(\tau)=\frac14\,\partial_x\Phi_0(0,\tau).
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{mod:g0-fourier},
+\[
+\Phi_0(x,\tau)=\sum_{k\ \mathrm{odd}}\frac{2}{\pi ik}q^{k^2}e^{2\pi ikx}.
+\]
+Differentiating termwise gives
+\[
+\partial_x\Phi_0(x,\tau)
+=
+\sum_{k\ \mathrm{odd}}\frac{2}{\pi ik}(2\pi ik)q^{k^2}e^{2\pi ikx}
+=
+4\sum_{k\ \mathrm{odd}}q^{k^2}e^{2\pi ikx}.
+\]
+Evaluating at $x=0$ proves the second statement.
+\end{proof}
+
+\begin{proposition}[Odd-square Dirichlet series from the spline field]\label{mod:odd-square}
+Let
+\[
+u_0(x,t):=e^{-tN}h_0(x)
+=
+\sum_{k\ \mathrm{odd}}\frac{2}{\pi ik}e^{-tk^2}e^{2\pi ikx},
+\qquad t>0.
+\]
+Then for $\Rea s>\frac12$,
+\[
+\frac{1}{4\Gamma(s)}
+\int_0^\infty t^{s-1}\partial_xu_0(0,t)\,dt
+=
+\sum_{k\ \mathrm{odd}}k^{-2s}
+=
+2(1-2^{-2s})\zeta(2s).
+\]
+\end{proposition}
+
+\begin{proof}
+By differentiating the Fourier series one obtains
+\[
+\partial_xu_0(0,t)=4\sum_{k\ \mathrm{odd}}e^{-tk^2}.
+\]
+For $\Rea s>\frac12$, absolute convergence allows termwise integration:
+\[
+\frac{1}{4\Gamma(s)}
+\int_0^\infty t^{s-1}\partial_xu_0(0,t)\,dt
+=
+\frac{1}{\Gamma(s)}\sum_{k\ \mathrm{odd}}\int_0^\infty t^{s-1}e^{-tk^2}\,dt
+=
+\sum_{k\ \mathrm{odd}}k^{-2s}.
+\]
+Finally,
+\[
+\sum_{k\ \mathrm{odd}}k^{-2s}=2\sum_{m\ge 0}(2m+1)^{-2s}=2(1-2^{-2s})\zeta(2s).
+\]
+\end{proof}
+
+\section{The correct basis theorem: integrated Haar spline-wavelets}
+
+Let $\{\psi_{j,m}\}_{j\ge 0,\ 0\le m<2^j}$ be the standard periodized Haar orthonormal basis of the mean-zero subspace
+\[
+L^2_0(\mathbb T)=\{f\in L^2(\mathbb T):\widehat f(0)=0\},
+\]
+normalized so that $\psi_{0,0}=h_0$.  For $n\ge 0$, define
+\[
+\Psi_{j,m}^{(n)}:=Q^n\psi_{j,m}.
+\]
+
+\begin{theorem}[Integrated Haar basis theorem]\label{mod:haar-basis}
+For each $n\ge 0$, the family
+\[
+\mathcal B_n:=\{\Psi_{j,m}^{(n)}\}_{j,m}
+\]
+is a Riesz basis of
+\[
+H_0^n(\mathbb T):=\{f\in H^n(\mathbb T):\widehat f(0)=0\}.
+\]
+Each $\Psi_{j,m}^{(n)}$ is a periodic spline of degree $n$ with dyadic knots, and the chain singled out above is the scale-$0$ branch:
+\[
+\Psi_{0,0}^{(n)}=g_n.
+\]
+\end{theorem}
+
+\begin{proof}
+For $f\in L^2_0(\mathbb T)$,
+\[
+\|Q^n f\|_{H^n}^2
+=
+\sum_{k\neq 0}(1+k^2)^n\left|\frac{\widehat f(k)}{(2\pi ik)^n}\right|^2.
+\]
+Since
+\[
+0<C_1\le \frac{(1+k^2)^n}{|k|^{2n}}\le C_2
+\qquad (k\neq 0),
+\]
+it follows that
+\[
+C_1\|f\|_{L^2}^2\le \|Q^n f\|_{H^n}^2\le C_2\|f\|_{L^2}^2.
+\]
+Thus $Q^n:L^2_0(\mathbb T)\to H_0^n(\mathbb T)$ is a bounded isomorphism, with inverse $D^n$ on mean-zero functions.  The image of an orthonormal basis under a bounded invertible operator is a Riesz basis, so $\mathcal B_n$ is a Riesz basis of $H_0^n(\mathbb T)$.  Since Haar wavelets are piecewise constant with dyadic jumps, repeated mean-zero integration produces piecewise polynomials of degree $n$ with the same dyadic knot set.  Finally,
+\[
+\Psi_{0,0}^{(n)}=Q^n\psi_{0,0}=Q^n h_0=g_n.
+\]
+\end{proof}
+
+\begin{theorem}[Corrected modular synthesis]\label{mod:final}
+Let
+\[
+L=-4\Delta_g+R,
+\qquad
+H_\tau=\tau L.
+\]
+Then the following statements hold.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The correct Wick-rotated vacuum character attached to $H_\tau$ and a commuting unitary symmetry $U$ is the ground-state normalized trace
+\[
+e^{-2\pi i\tau a\lambda_{\min}}\operatorname{Tr}(Ue^{2\pi i\tau aL}),
+\]
+whose vacuum coefficient is the ground-state character.
+\item The value at $s=0$ of the twisted spectral Dirichlet series is not, in general, equal to the ground-state character; Proposition~\ref{mod:counterexample} gives an explicit failure.
+\item On $\mathbb T^1$, after the rescaling $N=-(4\pi^2)^{-1}\partial_x^2$, the base spline field
+\[
+\Phi_0(x,\tau)=e^{2\pi i\tau N}h_0(x)
+\]
+is a canonical spatial primitive of the odd theta character:
+\[
+\chi_-(\tau)=\frac14\,\partial_x\Phi_0(0,\tau)=\sum_{k\ \mathrm{odd}}q^{k^2}.
+\]
+\item The Mellin transform of the same derivative field yields the odd-square Dirichlet series
+\[
+\frac{1}{4\Gamma(s)}
+\int_0^\infty t^{s-1}\partial_x(e^{-tN}h_0)(0)\,dt
+=
+2(1-2^{-2s})\zeta(2s).
+\]
+\item The single spline chain is not a basis of $L^2(\mathbb T)$; it is the distinguished branch $\{Q^n\psi_{0,0}\}_{n\ge 0}$ of the genuine integrated-Haar periodic spline-wavelet basis $\{Q^n\psi_{j,m}\}_{j,m}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Item (1) is Theorem~\ref{mod:wick-character}.  Item (2) is Theorem~\ref{mod:twisted-mellin} together with Proposition~\ref{mod:counterexample}.  Item (3) is Proposition~\ref{mod:theta-characters} and Theorem~\ref{mod:spline-primitive}.  Item (4) is Proposition~\ref{mod:odd-square}.  Item (5) is Corollary~\ref{mod:not-basis} and Theorem~\ref{mod:haar-basis}.
+\end{proof}
+
+
+\end{document}

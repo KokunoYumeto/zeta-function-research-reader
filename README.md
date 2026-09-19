@@ -1,3 +1,20 @@
+<!-- circle-heat-original-metrics:20260919 -->
+## Circle heat in the original arithmetic quotient metrics
+
+This eight-page proof carries the earlier circle heat construction through
+the original tensor source and its attained restriction and quotient
+metrics, with an explicit finite error budget. It also controls the
+metrics and induced singular values of Deligne’s nilpotent grades.
+The original full-Gram constant is retained. In the simple-quartet case
+there is one grade containing the entire metric; this does not calculate
+cross-primary observation angles or establish arithmetic purity.
+
+[Read the eight-page proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-circle-heat-original-metrics/HEAT_TO_ORIGINAL_QUOTIENT_METRICS.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-circle-heat-original-metrics/HEAT_TO_ORIGINAL_QUOTIENT_METRICS.tex) · [Two dated mathematical results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-circle-heat-original-metrics/NEW_RESULTS_2026-09-19.md) · [Complete source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-circle-heat-original-metrics/README.md) · [Next calculations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-circle-heat-original-metrics/CONTINUATION.md).
+
+The original circle paper, complete Deligne D032 text, three cumulative
+LaTeX successors and 68 finite diagnostics accompany the proof. Human
+sources retain their point-of-use citations.
+
 <!-- full-window-source-products:20260919 -->
 ## Full-window source products and the retained arithmetic class
 

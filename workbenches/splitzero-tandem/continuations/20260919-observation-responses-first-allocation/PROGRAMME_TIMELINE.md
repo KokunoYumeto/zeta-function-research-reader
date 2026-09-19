@@ -1,8 +1,12 @@
-# Split-Zero / tau-base cohomology / RH: programme timeline
+# Split-Zero / tau-base cohomology / RH: programme chronology
 
-**Working start date for this public RH/cohomology programme: 12 September 2026.** The earliest commit under the programme's own GitHub directory is bb5830535cfc24462c331d4a407375507714270b, dated 16:40:24 UTC / 18:40:24 Europe/Berlin. It already contains a reviewed continuation, so this dates the public repository track, not the first private calculation.
+**Origin of the construction: 12 July 2025.** The original work was titled [*An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*](https://zenodo.org/records/17555345). The user identifies this as the first version of the idea; Zenodo records its publication date as 12 July 2025. It adjoins an element distinct from integer zero, serving as additive identity and multiplicative absorber. This is the construction subsequently developed into the March 2026 globalization semiring note and the later Split-Zero programme. The historical title is retained; the later name is not retroactively attributed to it.
 
-The underlying Split-Zero project is older. The archived, source-checked origin record identifies [the first globalization note](https://doi.org/10.5281/zenodo.18976982) with record date **12 March 2026**, and [the secondary semimodule/reconstruction note](https://doi.org/10.5281/zenodo.19120905) with record date **20 March 2026**. The secondary PDF's automatic title-page date differs; it is not substituted for the deposited record date. These origin dates are inherited from that identified provenance record, not a newly reconstructed date of invention.
+The existing [*Project Atlas: Split-Zero Geometry and Common Deformation Registers*](https://zenodo.org/records/21443852), dated 19 July 2026, links the wider programme's results compendium, complete proof sources, formal checks and visual work. It is an established public reference point for the work preceding the September RH/cohomology strand.
+
+**The dated table below concerns the September RH/cohomology repository strand.** Its earliest recorded commit under `workbenches/splitzero-tandem` is bb5830535cfc24462c331d4a407375507714270b, 12 September 2026 at 16:40:24 UTC / 18:40:24 Europe/Berlin. That date identifies this repository strand. The construction's origin remains July 2025.
+
+This is the provenance-corrected repository chronology. A mathematical overview explaining the results and their significance is still being revised. See [the provenance correction](PROVENANCE_CORRECTION_2026-09-19.md) for the exact isomorphism between the original and globalization presentations and the preserved source evidence.
 
 Dates below use **Europe/Berlin**. The evidence is the complete 49-commit history of the programme directory through 6071082663b0bc6193ed58cf5393f52ed7bd58ec, together with the current result index and publication receipts. A commit timestamp dates a recorded revision; it is not an independently measured push time or the first discovery time.
 

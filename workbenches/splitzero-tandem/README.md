@@ -1,3 +1,10 @@
+<!-- origin-atlas-provenance-correction:20260919 -->
+## Provenance correction — 19 September 2026
+
+The construction originates in the [original paper dated 12 July 2025](https://zenodo.org/records/17555345), under its original title, and the broader programme already has a [Project Atlas dated 19 July 2026](https://zenodo.org/records/21443852). September 12 dates the later RH/cohomology repository strand, not the construction’s origin. [Corrected chronology](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-observation-responses-first-allocation/PROGRAMME_TIMELINE.md) · [Exact continuity and correction](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-observation-responses-first-allocation/PROVENANCE_CORRECTION_2026-09-19.md).
+
+Only navigation and chronology are corrected here. Mathematical sources and PDFs remain unchanged; the original source inventory belongs to the [immutable 44-page edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/1046c3b67d33e2fe688879de2edf258bba1201a6/workbenches/splitzero-tandem/continuations/20260919-observation-responses-first-allocation/). The [navigation correction record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-observation-responses-first-allocation/NAVIGATION_CORRECTION.json) identifies the live replacements. The mathematical overview rewrite and earlier-corpus coverage remain outstanding.
+
 # Split-Zero cohomology: observation responses and the first determinant allocation
 
 This 44-page continuation studies how an arithmetic class is measured after

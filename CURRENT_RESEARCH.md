@@ -1,3 +1,21 @@
+<!-- full-window-source-products:20260919 -->
+## Full-window source products and the retained arithmetic class
+
+This 13-page continuation evaluates both source-response products and the
+norm loss of the same retained terminal arithmetic class over degrees
+`q−1` through `2q`. It proves the exact return to the observation quotient
+and bounds the original kernel determinant over the complete window.
+Source and class results retain every fixed original multiplicity;
+conductor results retain the simple-quartet, fixed-period domain.
+The remaining observation angles, phases and individual allocations
+are identified explicitly; no RH conclusion is claimed.
+
+[Read the 13-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/FULL_WINDOW_SOURCE_PRODUCTS.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/FULL_WINDOW_SOURCE_PRODUCTS.tex) · [Five dated mathematical results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/NEW_RESULTS_2026-09-19.md) · [Complete source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/README.md) · [Next calculations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/WEB_CONTINUATION_PROMPT.md).
+
+The package includes three complete cumulative LaTeX successors, complete
+cited providers, the retained Deligne D032 text and 69 finite-identity
+checks. Point-of-use human citations remain in the sources.
+
 ## Original sources
 
 The construction originates in the [original paper dated 12 July 2025](https://zenodo.org/records/17555345), under its original title, and the broader programme already has a [Project Atlas dated 19 July 2026](https://zenodo.org/records/21443852). September 12 dates the later RH/cohomology repository strand, not the construction’s origin.

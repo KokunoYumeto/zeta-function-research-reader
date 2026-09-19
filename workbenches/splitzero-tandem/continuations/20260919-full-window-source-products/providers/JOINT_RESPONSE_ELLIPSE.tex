@@ -1,0 +1,228 @@
+% Root derivation: original EC three-column response, 19 September 2026.
+\section{The joint response ellipse in the original three-column Gram}
+
+This calculation starts from the same full retained eigenclass and the same
+observation kernel as EC37--41. Its source is the supplied complete EC
+continuation, preserved in \texttt{02\_Untitled 1775.md}, lines9401--10815;
+the full-class completion is NCRP1--30. Every Gram below uses the original
+arithmetic quotient metric $G_N$ and its full attained polynomial lift.
+No native-section representative is substituted for the retained class.
+The positive-square argument is the Hermitian Schur argument of
+Boyd, El Ghaoui, Feron and Balakrishnan, \emph{Linear Matrix Inequalities
+in System and Control Theory} (SIAM,1994), section2.1, equations(2.3)--(2.4),
+doi:10.1137/1.9781611970777; its rank-deficient version is proved below
+on the actual image, so no nonsingularity of a three-column Gram is assumed.
+
+\subsection{Exact map, image, minimum and remainder}
+Let $v=v_\lambda$ be the full retained class and let
+$b_1=b_N$, $b_2=b_{N+1}$ be EC's original columns. Retain its original
+kernel frame $I$, and write
+\[
+ P=I(I^*G_NI)^{-1}I^*G_N,\quad
+ W=[b_1,b_2,v],\quad F=W^*G_NW,\quad K=W^*G_NPW .                 \tag{JRE1}
+\]
+The zero-dimensional kernel gives $P=0$ and the full kernel gives $P=1$.
+In every case $P^2=P$ and $P^*G_N=G_NP$. In particular
+$K=W^*P^*G_NPW$, so $0\preceq K\preceq F$.
+Set
+\[
+ E=F_{33}>0,\quad f=\binom{F_{13}}{F_{23}},\quad
+ \theta=K_{33}/E\in[0,1],\quad
+ x=Pv,\quad z=x-\theta v .                                    \tag{JRE2}
+\]
+The two entries of $f$ are nonzero on EC's stated domain, by its original
+Cauchy-transform proof EC20 and EC27--29. We keep their exact values.
+Since $v^*G_Nx=x^*G_Nx=\theta E$, direct expansion gives
+\[
+ v^*G_Nz=0,\qquad z^*G_Nz=E\theta(1-\theta).                   \tag{JRE3}
+\]
+Let $B=[b_1,b_2]$ and define the exact residual-column map
+\[
+ A=B-vf^*/E:\mathbb C^2\longrightarrow E_{\rm packet},\quad
+ S=A^*G_NA=F_{[1,2],[1,2]}-ff^*/E\succeq0 .                    \tag{JRE4}
+\]
+Here $E_{\rm packet}$ denotes the original polynomial quotient, while
+$E$ in JRE2 is its retained-class squared norm. Thus their types differ
+explicitly. The response residual is
+\[
+ r=A^*G_Nz=\binom{K_{13}}{K_{23}}-\theta f .                    \tag{JRE5}
+\]
+For every $c\in\ker S$ positivity implies $Ac=0$; hence $c^*r=0$.
+Since $S$ is Hermitian, $r\in\operatorname{im}S$.
+Define $S^\dagger$ as the inverse of $S$ on its positive eigenspaces,
+and zero on its kernel. This specifies it at every rank without a
+regularization parameter. The vector
+$z_0=AS^\dagger r$ has $A^*G_Nz_0=r$, and $z-z_0$ is orthogonal to
+$\operatorname{im}A$. Expanding the orthogonal square proves
+\[
+ \boxed{r^*S^\dagger r+
+       \|z-AS^\dagger r\|_{G_N}^{2}=E\theta(1-\theta).}       \tag{JRE6}
+\]
+Thus $AS^\dagger r$ is the attained minimum-norm vector with the actual
+two observations $A^*G_Nz=r$. Every other solution is its sum with a
+vector in $\ker(A^*G_N)$, whose squared norm adds. This proves the
+complete map, its range, its minimum, and its exact residual term.
+
+To state the same identity in the original dimensionless responses,
+retain EC37's $U=K_{13}/F_{13}$ and $V=K_{23}/F_{23}$ and put
+\[
+ D=\operatorname{diag}(F_{13},F_{23}),\quad
+ C=D^{-1}A^*G_N,\quad T=D^{-1}S D^{-*},\quad
+ w=Cz=\binom{U-\theta}{V-\theta}.                              \tag{JRE7}
+\]
+The codomain of $C$ is $\mathbb C^2$ with its standard Hermitian
+metric; its adjoint from that space to the original $G_N$-space is
+$C^\sharp=AD^{-*}$. In particular $CC^\sharp=T$.
+The same orthogonal argument applied to $C$ proves
+\[
+ w\in\operatorname{im}T,\qquad
+ w^*T^\dagger w+\|z-C^\sharp T^\dagger w\|_{G_N}^{2}
+             =E\theta(1-\theta).                              \tag{JRE8}
+\]
+The two minimum vectors in JRE6 and JRE8 agree, since they solve
+equivalent observations and both lie in $\operatorname{im}A$.
+This proves the exact congruence of the image metrics even when
+$S$ has rank zero or one. It does not use an invalid unrestricted
+congruence formula for a Moore--Penrose inverse.
+
+\subsection{A correlated finite bound for the three projected errors}
+Write $t=T_{12}$, retain
+\[
+ L=E\theta(1-\theta),\quad
+ d=\sqrt{L(T_{11}+T_{22}-2\Re t)},\quad
+ h=\frac L2\left(|\Im t|+
+                   \sqrt{T_{11}T_{22}-(\Re t)^2}\right).       \tag{JRE9}
+\]
+The quantities under square roots are nonnegative by $T\succeq0$.
+All full source masses remain in $E$ and $T$; the products in JRE9
+are independent of a common rescaling of the inner product only
+because their displayed factors cancel exactly.
+For $w=(u_1,u_2)^\mathsf T$, JRE8 and Cauchy--Schwarz give
+\[
+ |u_2-u_1|\le d,\qquad
+ |u_j|^2\le L T_{jj}.                                        \tag{JRE10}
+\]
+Here is a sharper joint estimate for the quadratic term, including
+its complex phase. Let
+\[
+ J=\begin{pmatrix}0&-i/2\\i/2&0\end{pmatrix}.
+\]
+Then $w^*Jw=\Im(\bar u_1u_2)$.
+Write $w=T^{1/2}\eta$ with $\eta$ in the image of $T$;
+JRE8 gives $\|\eta\|^2\le L$. The Hermitian matrix
+$T^{1/2}JT^{1/2}$ has trace $-\Im t$ and determinant
+$-\det(T)/4$. Its two eigenvalues are consequently
+\[
+ \frac{-\Im t\ \pm\sqrt{T_{11}T_{22}-(\Re t)^2}}2 .           \tag{JRE11}
+\]
+The formula remains true at rank zero or one, since trace and
+determinant still determine its characteristic polynomial.
+The spectral theorem now proves
+\[
+ |\Im(\bar u_1u_2)|\le h.                                   \tag{JRE12}
+\]
+This is the exact largest absolute quadratic value on the complete
+ellipse JRE8 with its residual term omitted: an eigenvector of the
+larger absolute eigenvalue attains it. The actual observation projection
+need not attain that ellipse boundary; no such attainability is claimed.
+
+Use EC38's three original products
+\[
+ P_K=\bar U V,\qquad P_B=(1-\bar U)(1-V),\qquad
+ P_\times=\bar U+V-2\bar U V .                                \tag{JRE13}
+\]
+Substitute $U=\theta+u_1$, $V=\theta+u_2$. Their imaginary parts are
+exactly
+\[
+ \begin{split}
+ \Im P_K&=\theta\Im(u_2-u_1)+\Im(\bar u_1u_2),\\
+ \Im P_B&=-(1-\theta)\Im(u_2-u_1)+\Im(\bar u_1u_2),\\
+ \Im P_\times&=(1-2\theta)\Im(u_2-u_1)-2\Im(\bar u_1u_2).
+ \end{split}                                                  \tag{JRE14}
+\]
+Their sum is zero. JRE10 and JRE12 prove the three simultaneous bounds
+\[
+ \begin{split}
+ |\Im P_K|&\le\theta d+h,\\
+ |\Im P_B|&\le(1-\theta)d+h,\\
+ |\Im P_\times|&\le|1-2\theta|d+2h .
+ \end{split}                                                  \tag{JRE15}
+\]
+All three use the same $T$, the same $\theta$, and the same retained
+class. In particular a small eigenvalue or a small original $F_{j3}$
+is visible through the exact entries of $T$; it is never removed
+by replacing the Gram with an identity or a rank fraction.
+
+In EC39 let $\varepsilon_{N,\lambda}>0$ be its single shared phase
+remainder and $E_{\rm cur}$ its proved finite bound. The exact
+response-error vector, in the order $(K,B,\times)$, is
+\[
+ \mathcal R_X=2E(-1)^r\varepsilon_{N,\lambda}\Im P_X,
+ \qquad \sum_X\mathcal R_X=0 .                               \tag{JRE16}
+\]
+Thus its individual absolute values are bounded, respectively, by
+\[
+ 2EE_{\rm cur}(\theta d+h),\quad
+ 2EE_{\rm cur}((1-\theta)d+h),\quad
+ 2EE_{\rm cur}(|1-2\theta|d+2h).                              \tag{JRE17}
+\]
+This is a finite amplification estimate on the actual attained
+subquotient metrics. It leaves the actual two-column Schur complement
+and the original period-dependent kernel projection to be evaluated.
+It does not assign a sign to an individual projected term from the
+positive full-class sum. The next analytic task is now the joint
+profile of $T$ and $\theta$ in these exact original coordinates.
+
+\subsection{The actual parity map and its two boundary energies}
+For the original even arithmetic measure on $S=a/2+iy$, reflection
+$\mathcal R P(S)=P(a-S)$ is an isometry. The full root polynomial
+satisfies $\chi(a-S)=(-1)^q\chi(S)$, so reflection preserves each
+complete relation space $\chi\mathbb C[S]_{\le N-q}$. It therefore
+induces an isometry of the attained quotient, commuting with its
+minimum lift. The two original boundary columns have opposite
+parities $(-1)^N$ and $(-1)^{N+1}$: their source monic orthogonal
+polynomials do, by uniqueness of the monic minimum in the even
+measure, and the remainder map commutes with reflection. Consequently
+\[
+ F_{12}=\langle b_N,b_{N+1}\rangle_{G_N}
+       =-\langle b_N,b_{N+1}\rangle_{G_N}=0 .                   \tag{JRE18}
+\]
+This is the full quotient identity also calculated in NCE18--21.
+It preserves the actual source, period, conductor and class. Inserting
+it in JRE4 and JRE7 gives the exact original response matrix
+\[
+ T=\begin{pmatrix}F_{11}/|F_{13}|^2&0\\0&F_{22}/|F_{23}|^2\end{pmatrix}
+       -\frac1E\begin{pmatrix}1&1\\1&1\end{pmatrix},\qquad
+ T_{12}=-1/E .                                                \tag{JRE19}
+\]
+Define the two actual boundary energies
+\[
+ p_1=\frac{|F_{13}|^2}{EF_{11}},\qquad
+ p_2=\frac{|F_{23}|^2}{EF_{22}}.                              \tag{JRE20}
+\]
+Both are positive. The two columns $b_j/\sqrt{F_{jj}}$ are
+orthonormal by JRE18. The orthogonal square of their projection
+of $v/\sqrt E$ is $p_1+p_2$, so $p_1+p_2\le1$ with the exact
+remainder equal to the squared norm of its orthogonal complement.
+In particular these are values of specified original projections,
+not fractions assigned from ranks.
+Substitute JRE19--20 into JRE9. Every original factor cancels
+only inside its displayed matched ratio, yielding
+\[
+ \boxed{d^2=\theta(1-\theta)(p_1^{-1}+p_2^{-1}),\qquad
+ h=\frac{\theta(1-\theta)}{2\sqrt{p_1p_2}}
+                    \sqrt{1-p_1-p_2}.}                       \tag{JRE21}
+\]
+Together JRE17 and JRE21 reduce the actual amplification estimate
+to the three original scalar projection energies
+$p_1,p_2,\theta$. In particular the exact total allowance obeys
+\[
+ \sum_{X=K,B,\times}|\mathcal R_X|
+ \le2EE_{\rm cur}\{(1+|1-2\theta|)d+4h\},\qquad
+ \sum_X\mathcal R_X=0.                                      \tag{JRE22}
+\]
+The first statement follows by adding the three proved absolute
+bounds, while the second is the unchanged signed identity JRE16.
+No lower bound for either $p_j$ is inserted. Their possible smallness
+remains explicitly in JRE21 and is a concrete target for the next
+original-source calculation.

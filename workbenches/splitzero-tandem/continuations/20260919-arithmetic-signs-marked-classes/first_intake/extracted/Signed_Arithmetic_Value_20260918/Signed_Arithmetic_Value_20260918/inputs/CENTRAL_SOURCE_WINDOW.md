@@ -1,0 +1,746 @@
+# Signed arithmetic baseline: central-source continuation
+
+18 September 2026. Written research derivation; not independently reviewed or formally verified.
+
+## Completion status
+
+The assigned target is the finer value of
+
+\[
+\delta_{k,1}^{\mathrm{ar}}=\mathcal B_k^{\mathrm{ar}}-\mathcal B_k^\sigma.
+\]
+
+**Its requested \(q\log k\)- and \(q\)-scale coefficients are not computed in this note.** The last integration in *Untitled 1775*, lines 13324–13328, also leaves that coefficient uncomputed. This note proves a new source-side central-window expansion and writes its exact, still unevaluated, return into the assigned determinant. Its central coefficient must not be recorded as the coefficient of \(\delta_{k,1}^{\mathrm{ar}}\).
+
+The precision target in *Untitled 1775*, lines 9389–9397, is a value for the signed correction, not just a convergent enclosure around an unevaluated centre. That target is preserved here. No numerical hypothetical xi packet is supplied. All constants below retain their dependence on the fixed original packet.
+
+## 1. Original objects and the imported source inequalities
+
+Fix the programme's stipulated full quartet
+
+\[
+\rho=\tfrac12+\delta+i\gamma,\qquad
+0<\delta<\tfrac12,\quad\gamma>2,
+\]
+
+\[
+h(s)=\prod_{z\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}(s-z)^{m_0},
+\qquad m_0\ge1,
+\]
+
+and retain
+
+\[
+v_h=2\xi/h,\quad
+w_h(y)=\frac{|v_h(1/2+iy)|^2}{2\pi},\quad m_k=w_h^{*k},
+\]
+
+\[
+k\equiv1\pmod4,\quad k\ge5,\quad e=1+k(m_0-1),\quad
+q=e(k+1)^2,\quad c=k/2,
+\]
+
+\[
+\chi(S)=\prod_{a,b=0}^k
+\bigl(S-c-(2a-k)\delta-i(2b-k)\gamma\bigr)^e.
+\]
+
+The reference is exactly
+
+\[
+\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\quad
+\int_{\mathbb R}\sigma(y)\,dy=\sqrt{2\pi},\quad \alpha=\pi/2.
+\]
+
+The RTM1–3 inputs used below, with their original constants, are
+
+\[
+e^{\alpha y}w_h(y)\le C(1+|y|)^{-p},\quad
+p=8m_0-9/2\ge7/2,\quad C=C_h^{\mathrm{tilt}},
+\tag{ACW1}
+\]
+
+\[
+w_h^{*3}(y)\ge c_h e^{-\alpha|y|}(1+|y|)^{-B},
+\quad B=42+8m_0,
+\]
+
+\[
+c_\Gamma\frac{e^{-\alpha|y|}}{\sqrt{1+|y|}}
+\le\sigma(y)\le
+C_\Gamma\frac{e^{-\alpha|y|}}{\sqrt{1+|y|}},
+\quad
+c_\Gamma=\sqrt2e^{-7/6},\quad
+C_\Gamma=\sqrt{2\sqrt5}e^{2/3}.
+\]
+
+The original density is even and positive almost everywhere. The constants and those properties are retained inputs, not re-audited upstream claims. The proof uses the three-fold lower bound only on the fixed interval \([-1,1]\). This continuation does not require its large-\(y\) lower power to equal the large-\(y\) upper power.
+
+Exact source pin: `06_Foundations_and_Original_Six_Readers(1).tex`, lines 112323–112602, RTM1–11. The full original source has not been replaced by a model density.
+
+## 2. Tilted mass, mean, and variance on the closed tilt interval
+
+Define the actual one-factor integrals
+
+\[
+M(\theta)=\int_{\mathbb R}e^{\theta y}w_h(y)\,dy,
+\quad L(\theta)=\log M(\theta),\quad |\theta|\le\alpha,
+\]
+
+\[
+\mu(\theta)=L'(\theta),\quad V(\theta)=L''(\theta),\quad
+\mathfrak M=M(\alpha),\quad b_h=\mu(\alpha).
+\tag{ACW2}
+\]
+
+Evenness and ACW1 imply
+
+\[
+e^{\theta y}w_h(y)\le C(1+|y|)^{-p}
+\quad(|\theta|\le\alpha).
+\]
+
+Take \(\eta=1/4\). Since \(p>3+\eta\), dominated differentiation through order two is valid on the closed interval, with finite uniformly bounded absolute moments of order \(2+\eta\). Thus \(\mu\) is continuously differentiable, \(\mu'=V\), and
+
+\[
+\mu(\theta)=\frac{\int y e^{\theta y}w_h(y)\,dy}{M(\theta)},
+\]
+
+\[
+V(\theta)=\frac{\int (y-\mu(\theta))^2e^{\theta y}w_h(y)\,dy}{M(\theta)}>0.
+\]
+
+Strict positivity follows because the density is not concentrated at a point. Furthermore \(M\) is even, \(\mu\) odd, and \(V\) even. Consequently \(b_h>0\), and \(\mu\) maps \([-\alpha,\alpha]\) bijectively onto \([-b_h,b_h]\). Write its inverse as \(\theta(t)\).
+
+No source probability normalization is made in ACW2. For the Fourier proof only, introduce
+
+\[
+p_\theta(y)=\frac{e^{\theta y}w_h(y)}{M(\theta)}.
+\]
+
+The exact map back to the original convolution is
+
+\[
+\boxed{m_k(x)=M(\theta)^k e^{-\theta x}p_\theta^{*k}(x).}
+\tag{ACW3}
+\]
+
+Indeed, multiplication of the \(k\) densities gives the factor
+\(M(\theta)^{-k}e^{\theta\sum y_j}\); the original addition map has \(\sum y_j=x\) and Jacobian one. Every original mass is therefore present in ACW3.
+
+## 3. Explicit uniform Fourier bounds, including the boundary tilts
+
+This section proves the local density estimate rather than invoking an unspecified uniform local limit theorem.
+
+Put \(M_0=M(0)\), and write \(\mathrm B\) for Euler's beta function. Define
+
+\[
+V_* = \frac{2C}{M_0}\,\mathrm B(3,p-3),
+\]
+
+\[
+H_* = 2^{1+\eta}\left[
+\frac{2C}{M_0}\,\mathrm B(3+\eta,p-3-\eta)
++b_h^{2+\eta}\right].
+\tag{ACW4}
+\]
+
+These follow by integrating the original envelope:
+
+\[
+V(\theta)\le\int y^2p_\theta(y)\,dy\le V_*,
+\qquad
+\int|y-\mu(\theta)|^{2+\eta}p_\theta(y)\,dy\le H_*.
+\]
+
+Here \(M(\theta)\ge M_0\), and
+\(|x-y|^{2+\eta}\le2^{1+\eta}(|x|^{2+\eta}+|y|^{2+\eta})\).
+
+On \([-1,1]\), the exact tilted-convolution identity gives
+
+\[
+p_\theta^{*3}(x)\ge
+\frac{c_h e^{-2\alpha}2^{-B}}{\mathfrak M^3}.
+\]
+
+Set
+
+\[
+a_* = \min\left\{\frac14,
+\frac{c_h e^{-2\alpha}2^{-B}}{\mathfrak M^3}\right\},
+\quad \beta=2a_*,\quad v_* = \beta/9.
+\tag{ACW5}
+\]
+
+The probability density \(p_\theta^{*3}\) is the sum of \(\beta\) times the uniform probability density on \([-1,1]\) and a nonnegative residual of mass \(1-\beta\). Variance of this mixture is at least \(\beta/3\). Its variance is also exactly \(3V(\theta)\), by expansion of the centred square of the sum. Hence
+
+\[
+0<v_*\le V(\theta)\le V_*.
+\]
+
+Let
+
+\[
+\phi_\theta(\xi)=\int e^{i\xi(y-\mu(\theta))}p_\theta(y)\,dy.
+\]
+
+Taylor's formula and ACW4 give
+
+\[
+\left|\phi_\theta(\xi)-1+\tfrac12V(\theta)\xi^2\right|
+\le4H_*|\xi|^{2+\eta}.
+\tag{ACW6}
+\]
+
+For completeness, the scalar remainder is at most \(|u|^3/6\) for \(|u|\le1\), and at most \(2+|u|+u^2/2\le(7/2)|u|^{2+\eta}\) for \(|u|>1\); the stated factor four bounds both regions.
+
+Define
+
+\[
+\xi_0=\min\left\{1,(2V_*)^{-1/2},
+\left(\frac{v_*}{16H_*}\right)^{1/\eta}\right\}.
+\]
+
+For \(|\xi|\le\xi_0\), the nonnegative quadratic principal term and ACW6 imply
+
+\[
+|\phi_\theta(\xi)|\le e^{-v_*\xi^2/4}.
+\tag{ACW7}
+\]
+
+The fixed-interval mixture also gives
+
+\[
+|\phi_\theta(\xi)|^3\le1-\beta+\beta\left|\frac{\sin\xi}{\xi}\right|.
+\]
+
+For \(|\xi|\ge\xi_0\),
+\(|\sin\xi/\xi|\le1-\xi_0^2/7\). To verify this bound, use monotonicity of \(\sin x/x\) on \([0,2]\), its Taylor bound at \(0<\xi_0\le1\), and \(|\sin x/x|\le1/2\) beyond two. Consequently
+
+\[
+|\phi_\theta(\xi)|\le r_*
+:=\left(1-\frac{\beta\xi_0^2}{7}\right)^{1/3}<1
+\quad(|\xi|\ge\xi_0).
+\tag{ACW8}
+\]
+
+The envelope and Plancherel give the uniform bound
+
+\[
+\int_{\mathbb R}|\phi_\theta(\xi)|^2\,d\xi
+\le C_2:=\frac{4\pi(C/M_0)^2}{2p-1}.
+\tag{ACW9}
+\]
+
+In particular Fourier inversion of the \(k\)-fold density is valid for every \(k\ge2\).
+
+### A fully specified error
+
+Put
+
+\[
+C_0=4H_*+V_*^2/8,\quad a_k=v_*(k-1)/4,
+\]
+
+\[
+\begin{aligned}
+A_k^{\mathrm{loc}}=\frac1{2\pi}\bigg[
+&C_0 k\,\Gamma\!\left(\frac{3+\eta}{2}\right)
+ a_k^{-(3+\eta)/2}
++C_2 r_*^{k-2}\\
+&+\frac{2e^{-kv_*\xi_0^2/2}}{kv_*\xi_0}
+\bigg],\qquad
+\epsilon_k=\sqrt{2\pi kV_*}\,A_k^{\mathrm{loc}}.
+\end{aligned}
+\tag{ACW10}
+\]
+
+These local symbols are not the programme's arithmetic upper-envelope constant \(A_k\).
+
+For \(|\xi|\le\xi_0\),
+
+\[
+|\phi_\theta(\xi)-e^{-V(\theta)\xi^2/2}|
+\le C_0|\xi|^{2+\eta}.
+\]
+
+Telescoping the difference of the two \(k\)-th powers, and using ACW7, bounds its integral by the first term of ACW10. ACW8–9 bound the remaining characteristic-function integral by \(C_2r_*^{k-2}\). Integration of the remaining Gaussian tail gives the last term. Thus
+
+\[
+\left|
+p_\theta^{*k}(k\mu(\theta))
+-\frac1{\sqrt{2\pi kV(\theta)}}
+\right|\le A_k^{\mathrm{loc}}.
+\]
+
+Equivalently,
+
+\[
+\boxed{
+p_\theta^{*k}(k\mu(\theta))
+=\frac{1+\varepsilon_{k,\theta}}
+{\sqrt{2\pi kV(\theta)}},
+\qquad
+\sup_{|\theta|\le\alpha}|\varepsilon_{k,\theta}|\le\epsilon_k
+=O_h(k^{-1/8}).}
+\tag{ACW11}
+\]
+
+The exponent is \(-\eta/2=-1/8\). All constants are independent of \(\theta\), so the two endpoint tilts are included. For logarithms, use the eventual explicitly testable range \(\epsilon_k\le1/2\). Such a range exists by ACW10.
+
+## 4. The full central density profile
+
+Define the source contrast, with the full mass explicitly recorded,
+
+\[
+\ell_k(y)=\log\frac{m_k(y)}{\mathfrak M^k\sigma(y)}.
+\]
+
+Define on \([-b_h,b_h]\)
+
+\[
+F_h^{\mathrm{cen}}(t)=
+L(\theta(t))-t\theta(t)-L(\alpha)+\alpha|t|.
+\tag{ACW12}
+\]
+
+The function is even. On \(0<t<b_h\), direct differentiation using \(L'(\theta(t))=t\) gives
+
+\[
+(F_h^{\mathrm{cen}})'(t)=\alpha-\theta(t),
+\qquad
+(F_h^{\mathrm{cen}})''(t)=-\frac1{V(\theta(t))},
+\qquad F_h^{\mathrm{cen}}(b_h)=0.
+\]
+
+In particular \(F_h^{\mathrm{cen}}(t)<0\) for \(|t|<b_h\). Its cusp at zero comes from the explicitly retained term \(\alpha|t|\); the original convolution itself remains smooth.
+
+Write
+
+\[
+c(y)=\sigma(y)e^{\alpha|y|}\sqrt{1+|y|},
+\qquad c_\Gamma\le c(y)\le C_\Gamma.
+\]
+
+Substitute \(\theta=\theta(t)\) in the exact identity ACW3 and in ACW11. There is then the exact expression
+
+\[
+\boxed{
+\begin{aligned}
+\ell_k(kt)={}&kF_h^{\mathrm{cen}}(t)
++\tfrac12\log(|t|+k^{-1})
+-\tfrac12\log(2\pi V(\theta(t)))\\
+&-\log c(kt)+\log(1+\varepsilon_{k,\theta(t)}).
+\end{aligned}}
+\tag{ACW13}
+\]
+
+The last scalar is the actual relative local-density error, not a freely selected endpoint value. It satisfies
+\(|\log(1+\varepsilon_{k,\theta(t)})|\le2\epsilon_k\) on the stated logarithmic range. This proves the uniform central profile including \(t=0\) and \(t=\pm b_h\), without a saddle point beyond the original boundary of exponential integrability.
+
+## 5. The integrated central source contrast
+
+The scalar now evaluated is explicitly
+
+\[
+C_{h,k}^{\mathrm{cen}}:=
+\int_{-kb_h}^{kb_h}\ell_k(y)\,dy.
+\]
+
+It is a Lebesgue-integrated log-density statistic. It is not, by definition or by any established metric identification, the programme's signed quotient determinant.
+
+Define the fixed original-source functional
+
+\[
+\mathfrak I_h^{\mathrm{cen}}
+=\int_0^\alpha\mu(\theta)^2\,d\theta>0.
+\tag{ACW14}
+\]
+
+It has finite explicit bounds
+
+\[
+\frac{v_*^2\alpha^3}{3}\le\mathfrak I_h^{\mathrm{cen}}
+\le\frac{V_*^2\alpha^3}{3},
+\]
+
+because \(\mu(0)=0\) and \(v_*\le\mu'\le V_*\). In particular, this coefficient has a determined nonzero sign.
+
+The area of the rate function is evaluated exactly:
+
+\[
+\boxed{
+\int_{-b_h}^{b_h}F_h^{\mathrm{cen}}(t)\,dt
+=-\mathfrak I_h^{\mathrm{cen}}.}
+\tag{ACW15}
+\]
+
+Indeed,
+
+\[
+F_h^{\mathrm{cen}}(t)
+=-\int_t^{b_h}(\alpha-\theta(u))\,du
+\quad(0\le t\le b_h).
+\]
+
+Integrating this formula gives
+
+\[
+\int_{-b_h}^{b_h}F_h^{\mathrm{cen}}
+=-2\int_0^{b_h}u(\alpha-\theta(u))\,du.
+\]
+
+The substitution \(u=\mu(\theta)\) followed by integration by parts gives ACW15. The boundary term is zero at \(\theta=0\), because \(\mu(0)=0\), and at \(\theta=\alpha\), because of \(\alpha-\theta\).
+
+### Finite remainder
+
+Set
+
+\[
+C_h^{(0)}=
+\tfrac12\max\{|\log(2\pi v_*)|,|\log(2\pi V_*)|\}
++\max\{|\log c_\Gamma|,|\log C_\Gamma|\}.
+\]
+
+Integrating ACW13 and using ACW15 gives the entirely explicit bound
+
+\[
+\boxed{
+\left|C_{h,k}^{\mathrm{cen}}+k^2\mathfrak I_h^{\mathrm{cen}}\right|
+\le k\left[
+1+b_h\log(1+b_h)+2b_h C_h^{(0)}+4b_h\epsilon_k
+\right].}
+\tag{ACW16}
+\]
+
+The elementary bound used here is
+
+\[
+\int_0^{b_h}|\log(t+k^{-1})|\,dt
+\le1+b_h\log(1+b_h),\quad k\ge1.
+\]
+
+The negative part is bounded by \(\int_0^1-\log t\,dt=1\); the positive part is at most \(b_h\log(1+b_h)\). No interval around zero has been removed.
+
+Consequently
+
+\[
+\boxed{C_{h,k}^{\mathrm{cen}}=-k^2\mathfrak I_h^{\mathrm{cen}}+O_h(k).}
+\tag{ACW17}
+\]
+
+### Its next coefficient
+
+The precise Gamma asymptotic also gives
+
+\[
+\sigma(y)e^{\alpha|y|}|y|^{1/2}\longrightarrow\sqrt2.
+\]
+
+This is the substitution \(z=1/4+iy/2\) in DLMF 5.11.9 (or the modulus of Stirling's formula 5.11.1). Therefore \(c(y)\to\sqrt2\). Define
+
+\[
+\mathfrak J_h^{\mathrm{cen}}
+=\int_0^{b_h}
+\log\frac{t}{4\pi V(\theta(t))}\,dt
+=\int_0^\alpha
+V(\theta)\log\frac{\mu(\theta)}{4\pi V(\theta)}\,d\theta.
+\tag{ACW18}
+\]
+
+The logarithmic endpoint is integrable, since \(\mu(\theta)\) is bounded above and below by positive constants times \(\theta\). In ACW13, the variance term is bounded, the Gamma term is uniformly bounded and converges away from zero, and the local-density error tends uniformly to zero. Also \(\log(t+1/k)\to\log t\) in \(L^1(0,b_h)\). Dominated convergence consequently proves
+
+\[
+\boxed{
+C_{h,k}^{\mathrm{cen}}
+=-k^2\mathfrak I_h^{\mathrm{cen}}
++k\mathfrak J_h^{\mathrm{cen}}+o_h(k).}
+\tag{ACW19}
+\]
+
+The fixed integrals in ACW14 and ACW18 contain only the original one-factor tilted mass and its first two derivatives. They do not contain an unknown growing quotient Gram or an assigned projected allocation.
+
+On the simple-quartet family \(q=(k+1)^2\),
+
+\[
+C_{h,k}^{\mathrm{cen}}/q\longrightarrow-\mathfrak I_h^{\mathrm{cen}}.
+\]
+
+For every fixed \(m_0\ge2\), the same scalar remains of order \(k^2\), while \(q\asymp k^3\); its ratio to \(q\) tends to zero. These statements concern ACW19, not the determinant target.
+
+## 6. Exact return to the original signed determinant
+
+The source/relation identity in SXR10 gives, for any one of the original positive source metrics,
+
+\[
+\mathcal B_k^\mu
+=\sum_{r=0}^q c_r
+\log\frac{\nu_r^\mu}{\omega_{q+r}^\mu},
+\qquad c_0=c_q=1,\quad c_r=2\ (0<r<q).
+\tag{ACW20}
+\]
+
+Here \(\nu_r^\mu\) is the full monic minimum in \(|\chi|^2d\mu\), and \(\omega_{q+r}^\mu\) is the full monic source minimum. Every preceding relation is retained.
+
+Multiplying a source by a scalar \(D>0\) multiplies its quotient Gram by \(D\) and its quotient determinant by \(D^q\). Thus the four signs give the exact cancellation
+
+\[
+\mathcal B_k^{D\mu}=\mathcal B_k^\mu,
+\qquad (+1)+(+1)+(-1)+(-1)=0.
+\]
+
+Equivalently, both monic norms in each ratio in ACW20 are multiplied by \(D\). Hence
+
+\[
+\mathcal B_k^{m_k/\mathfrak M^k}=\mathcal B_k^{m_k}.
+\tag{ACW21}
+\]
+
+This is the precise account of the scalar in \(\ell_k\); it does not alter the recorded original mass or the arithmetic class.
+
+For an exact evaluation path, introduce on the same polynomial coefficient spaces
+
+\[
+d\nu_u(y)=\sigma(y)e^{u\ell_k(y)}\,dy,
+\qquad0\le u\le1.
+\tag{ACW22}
+\]
+
+Its endpoints are \(\sigma\) and \(m_k/\mathfrak M^k\). This is a new path used to compute the same endpoint difference; it is not identified with the original affine source path at intermediate parameter values.
+
+The original TW/GTM global source envelopes imply, at each fixed \(k\),
+
+\[
+|\ell_k(y)|\le C_{h,k}+M\log(1+y^2),
+\qquad M=21+4m_0.
+\]
+
+All polynomial moments and their parameter derivatives are consequently finite, locally uniformly in \(u\). The moment matrices are positive definite. Their monic minimizers depend smoothly on \(u\). Differentiating their attained norms, the coefficient-derivative cross terms vanish in the full preceding polynomial or relation space, exactly as in SXR5.
+
+Let \(p_{q+r,u}\) and \(u_{r,u}\) be these actual monic minimizers along ACW22. Define
+
+\[
+\begin{aligned}
+\mathcal K_{k,u}(y)=\sum_{r=0}^q c_r\bigg[
+&\frac{|\chi(c+iy)u_{r,u}(c+iy)|^2}{\nu_{r,u}}\\
+&-\frac{|p_{q+r,u}(c+iy)|^2}{\omega_{q+r,u}}
+\bigg].
+\end{aligned}
+\tag{ACW23}
+\]
+
+Each of its two nonnegative sums has integral \(2q\) in \(d\nu_u\). In particular \(\int\mathcal K_{k,u}\,d\nu_u=0\). Differentiating ACW20 and integrating from zero to one gives the exact receiver
+
+\[
+\boxed{
+\delta_{k,1}^{\mathrm{ar}}
+=\int_0^1\int_{\mathbb R}
+\ell_k(y)\mathcal K_{k,u}(y)\,d\nu_u(y)\,du.}
+\tag{ACW24}
+\]
+
+Both endpoints, the full relation ideal, and the monic coordinate frames agree with the assigned target. The scalar \(\mathfrak M^k\) cancels by ACW21, before estimates. No eigenclass, observation kernel, proper-source metric, or quotient denominator has been replaced.
+
+## 7. The actual relation kernel has exponentially small central mass
+
+The central density calculation can also be returned to one of the two actual kernels in ACW24. This step does not replace the remaining source kernel by a reference kernel.
+
+Retain GTM1's original constants
+
+\[
+M=21+4m_0,\quad
+\vartheta_h=\int_{-1}^1 w_h(y)\,dy,
+\]
+
+\[
+a_k^{\mathrm{TW}}=
+\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B}}
+ {C_\Gamma2^{B/2}},\qquad
+A_k^{\mathrm{TW}}=\frac{C}{c_\Gamma}k^{p+1}\mathfrak M^{k-1}.
+\]
+
+Thus
+
+\[
+a_k^{\mathrm{TW}}(1+y^2)^{-M}\sigma(y)
+\le m_k(y)\le A_k^{\mathrm{TW}}\sigma(y).
+\]
+
+Define
+
+\[
+D_n=[1+4(n+M)^2]^M,
+\quad
+L_k^- = D_{2q}^{-1}\min\{1,a_k^{\mathrm{TW}}/\mathfrak M^k\},
+\quad
+L_k^+ = \max\{1,A_k^{\mathrm{TW}}/\mathfrak M^k\}.
+\tag{ACW25}
+\]
+
+On the entire geometric path ACW22,
+
+\[
+d\nu_u\le L_k^+\,d\sigma,
+\qquad
+\|P\|_{\nu_u}^2\ge L_k^-\|P\|_\sigma^2
+\quad(\deg P\le2q).
+\tag{ACW26}
+\]
+
+Here is a direct verification of the lower norm inequality. The Gamma recurrence in GTM7 bounds multiplication by \(y\) on polynomials of degree at most \(n\), including its output of degree \(n+1\), by \(2(n+1)\). Hence
+
+\[
+\|(y+i)^M P\|_\sigma^2\le D_n\|P\|_\sigma^2.
+\]
+
+Cauchy–Schwarz, applied to the factors \(|P|(1+y^2)^{-M/2}\) and \(|P|(1+y^2)^{M/2}\), proves
+
+\[
+\int|P|^2(1+y^2)^{-M}\,d\sigma\ge D_n^{-1}\|P\|_\sigma^2.
+\]
+
+For \(0\le u\le1\), raising the positive lower density ratio to the power \(u\) bounds it below by
+\(\min\{1,a_k^{\mathrm{TW}}/\mathfrak M^k\}(1+y^2)^{-M}\).
+This proves ACW26. In particular
+\(\log(L_k^+/L_k^-)=O_h(k+\log q)\).
+
+Put
+
+\[
+\widehat\chi(y)=i^{-q}\chi(c+iy),\quad
+R=k\sqrt{\delta^2+\gamma^2},\quad
+Y=2^{-16}q,\quad
+B_\chi=\frac{qR^2}{Y^2-R^2},
+\]
+
+\[
+\eta_0=
+\frac{\sqrt{2\pi}}{c_\Gamma}
+\frac{(2q+1)(4q+1)\sqrt{1+2q}}q\,16^{-q}.
+\tag{ACW27}
+\]
+
+Use the eventual finite domain
+
+\[
+q\ge100,\quad R\le Y/4,\quad kb_h\le Y.
+\]
+
+It contains all sufficiently large original tensor orders at every fixed packet and fixed complete multiplicity. In particular \(\eta_0<1/2\) there: the bound \(\eta_0\le540q^2 16^{-q}\) holds, its value at \(q=100\) is below one half, and its consecutive ratio decreases thereafter.
+
+For every polynomial \(P\) of degree at most \(q\), the original Gamma central estimate is
+
+\[
+\int_{|y|\le Y}|\widehat\chi(y)P(y)|^2\,d\sigma
+\le
+\frac{e^{B_\chi}\eta_0}{1-\eta_0}
+\int_{\mathbb R}|\widehat\chi(y)P(y)|^2\,d\sigma.
+\tag{ACW28}
+\]
+
+For completeness, pair every opposite root of \(\widehat\chi\), retaining repetitions. Outside \([-Y,Y]\), its squared modulus is at least
+\(e^{-B_\chi}|y|^{2q}\). Inside that interval it is at most
+\([(9/4)2^{-32}q^2]^q\).
+Expand \(P\) in the complete shifted Legendre basis on \([q,2q]\). Its argument on \([-Y,Y]\) has modulus below four. The elementary recurrence bounds the degree-\(j\) Legendre polynomial there by \(10^j\). Cauchy–Schwarz therefore gives the enlarged valid bound
+
+\[
+|P(y)|^2\le
+\frac{(2q+1)(4q+1)100^{2q}}q
+\int_q^{2q}|P(t)|^2\,dt.
+\]
+
+The reference integral
+\(\int|y|^{2q}|P|^2\,d\sigma\) is at least
+
+\[
+\frac{c_\Gamma q^{2q}e^{-\pi q}}{\sqrt{1+2q}}
+\int_q^{2q}|P(t)|^2\,dt.
+\]
+
+Together with the full reference mass \(\sqrt{2\pi}\) and
+\((9/4)e^\pi10^4\,2^{-32}<1/16\), this bounds both the central root-weighted and central reference-power integrals by \(\eta_0\) times the complete reference-power integral. The outside lower bound then proves ACW28. This is the same coefficient-space central comparison used in the supplied EC calculation; all its intervals and factors have been retained.
+
+Since \(\deg(\widehat\chi P)\le2q\), ACW26 returns this estimate to the actual entire path:
+
+\[
+\boxed{
+\int_{|y|\le kb_h}|\widehat\chi P|^2\,d\nu_u
+\le\eta_k^{\mathrm{rel}}\int_{\mathbb R}|\widehat\chi P|^2\,d\nu_u,
+\quad
+\eta_k^{\mathrm{rel}}=
+\frac{L_k^+}{L_k^-}\frac{e^{B_\chi}\eta_0}{1-\eta_0}.}
+\tag{ACW29}
+\]
+
+The exact polynomial coordinate change \(P(S)\mapsto P(c+iy)\) changes no degree or absolute norm; thus ACW29 applies to every actual monic relation minimizer in ACW23.
+
+Write \(\mathcal R_{k,u}\) for ACW23's nonnegative relation sum and \(\mathcal P_{k,u}\) for its nonnegative source sum. Their weights sum to \(2q\), so
+
+\[
+\int_{|y|\le kb_h}\mathcal R_{k,u}\,d\nu_u
+\le2q\eta_k^{\mathrm{rel}}.
+\]
+
+ACW13 bounds the absolute contrast on this whole interval by
+
+\[
+T_k=k[L(\alpha)-L(0)]
++\tfrac12\log k+\tfrac12\log(1+b_h)+C_h^{(0)}+2\epsilon_k.
+\]
+
+Consequently the central part of the original signed correction has the exact directed enclosure
+
+\[
+\boxed{
+\left|\delta_{k,1}^{\mathrm{ar,cen}}
++\int_0^1\int_{|y|\le kb_h}
+\ell_k(y)\mathcal P_{k,u}(y)\,d\nu_u(y)\,du\right|
+\le2qT_k\eta_k^{\mathrm{rel}}.}
+\tag{ACW30}
+\]
+
+The right side is
+
+\[
+\exp[-q\log16+O_h(k+\log q)].
+\]
+
+Thus the actual relation part of this central return is exponentially controlled. The remaining central term is the original degree band of source minima, not an arbitrary projection or an assigned scalar density. Its weighting has not yet been evaluated at order \(q\).
+
+## 8. Exact stopping point
+
+ACW13–19 evaluate the source contrast on the full interval \([-kb_h,kb_h]\). They do not evaluate its weighting by \(\mathcal K_{k,u}\,d\nu_u\) in ACW24. The explicit Fourier error in ACW11 cannot be multiplied by an assumed constant kernel density.
+
+In particular, the two terms still required in the assigned calculation are the values, at the requested scales, of
+
+\[
+\int_0^1\int_{|y|\le kb_h}
+\ell_k(y)\mathcal K_{k,u}(y)\,d\nu_u(y)\,du
+\]
+
+and
+
+\[
+\int_0^1\int_{|y|>kb_h}
+\ell_k(y)\mathcal K_{k,u}(y)\,d\nu_u(y)\,du.
+\]
+
+ACW30 has bounded the first expression's relation term exponentially. Its remaining source-band kernel still needs an evaluation in the central window. The second still needs more than RTM9's two different tail powers. The existing trace-mass cancellations and GTM20's bound \(O_h(q\log q)\) do not evaluate either term with an \(o(q)\) residual.
+
+No value of \(d_{\log}(h)\) or \(d_0(h)\) is asserted here. In particular, \(-\mathfrak I_h^{\mathrm{cen}}\) is not asserted to equal either of them.
+
+## 9. D032 check and the comparison still not established
+
+The supplied full D032 collection was consulted at the relevant weight theorem and tensor-amplification argument. Theorem 3.3.1 on the original printed page 204 is stated for schemes of finite type over \(\mathbb Z\), not only for a single finite field. The original paper's printed page 140 gives the Kunneth/product argument that halves an existing weight error. These passages were checked against the original IAS PDF of Pierre Deligne, *La conjecture de Weil. II*, Publications mathematiques de l'IHES 52 (1980), 137–252.
+
+The current attempt has not constructed a comparison from the actual signed kernel expression ACW24 to a D032 cohomological object that returns its required value or metric estimate. This is an uncompleted comparison in this attempt, not a proof that no such mathematical correspondence exists. D032's weight bounds are not substituted for ACW24's unknown signed kernel correlation.
+
+## Source and verification record
+
+Imported programme inputs: RTM1–3, RTM8–11, GTM1 and GTM20, and SXR1–12. Exact source ranges and file hashes are recorded in `sources.json`. The current status and precision target were checked in *Untitled 1775*. The source history in D032 was retained; no historical translation was silently promoted to its latest maintained revision.
+
+Classical Gamma asymptotic: NIST DLMF 5.11.9 / 5.11.1, with the exact substitution written in Section 5. Fourier inversion and Plancherel are used after the explicit integrability bounds ACW8–9.
+
+The accompanying verifier checks exact finite source/relation, monic-frame, endpoint-sign and mass-cancellation identities, together with the central area algebra on an explicitly artificial Gaussian source. These are auxiliary checks. They are not numerical values for the hypothetical xi packet, not an interval certificate for it, not an independent verification of all imported source estimates, and not a formal verification of this analytic derivation.
+
+**Final status:** central-source profile and its integrated \(k^2\) and \(k\) coefficients derived, with an exponential bound for the actual central relation-kernel term; the original signed arithmetic-baseline coefficients remain uncomputed. The user's requested full completion has not been achieved.

@@ -1,0 +1,595 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\title{Joint endpoint estimates and localized two-window projection transport}
+\author{Split-Zero research continuation}
+\date{19 September 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Source and precise scope.}
+This note verifies and supplies finite constants for the deductions labelled
+J1--J10 and S15--S16 in the supplied \texttt{COMPLETE\_PROOFS.md}, dated
+18 September 2026.  The source bytes have SHA-256
+\texttt{e4e54261c91ae899a78956383482650f88933024f5f3cec6b41332ceeb5a4172}.
+The endpoint block is at lines 799--966; the two-window block is at
+lines 746--770.  This note retains every singular coefficient, the original
+Lebesgue product measure, the full polynomial relation, and both boundary
+windows.  The incoming endpoint decomposition, the actual tilt envelope,
+and the old window coefficients are explicitly identified as input results.
+The named earlier files \texttt{TWO\_WINDOW\_SAME\_CLASS\_DEFECT.md} and the
+theta-endpoint note were not located in the bounded intake.  Their numerical
+window coefficient and full theta existence theorem are therefore not
+claimed as independently recovered here.  The finite deductions below are
+proved from the actual formulas recorded in the supplied source; no missing
+allocation or projected arithmetic sign is assumed.
+
+\section{The entire remainder has an explicit uniform norm allowance}
+
+Write the original quartet as
+\[
+\mathcal Z=\{1/2+\epsilon\delta+i\epsilon'\gamma:
+                 \epsilon,\epsilon'\in\{-1,1\}\},
+\qquad 0<\delta<1/2,\quad\gamma>2,
+\]
+with common multiplicity \(m\), \(d=m-1\), and retain the given inverse
+primitive
+\[
+\psi(x)=s_h(x)+R_h(x),\qquad
+s_h(x)=\sum_{\rho\in\mathcal Z}\sum_{j=0}^{d}
+a_{\rho,j}x^{-\rho}\frac{\log(1/x)^j}{j!}.
+\tag{JL1}
+\]
+Here \(R_h\) is the actual entire even remainder, not a freely chosen
+regularization.  If
+\(R_h(x)=\sum_{n\ge0}r_{2n}x^{2n}\), put
+\[
+B_h=\sum_{n\ge0}|r_{2n}|<\infty,\qquad
+C_h^{\rm reg}=B_h^2+
+2B_h\sum_{\rho,j}
+\frac{|a_{\rho,j}|}{(1-\Re\rho)^{j+1}}.
+\tag{JL2}
+\]
+The sum defining \(B_h\) converges absolutely because the power series
+is entire.  One can alternatively use the possibly smaller
+\(\sup_{0\le x\le1}|R_h(x)|\).  These constants refer to that same remainder
+and leave all singular coefficients unchanged.
+
+\begin{proposition}
+For every \(L\ge0\),
+\[
+\left|\int_{e^{-L}}^1|\psi(x)|^2\,dx
+      -\int_{e^{-L}}^1|s_h(x)|^2\,dx\right|
+\le C_h^{\rm reg}.
+\tag{JL3}
+\]
+\end{proposition}
+\begin{proof}
+The integrand difference is
+\(2\Re(s_h\overline{R_h})+|R_h|^2\).  Since
+\(\Re\rho<1\),
+\[
+\int_0^1 x^{-\Re\rho}\frac{\log(1/x)^j}{j!}\,dx
+=\frac1{(1-\Re\rho)^{j+1}}.
+\]
+This identity follows from \(x=e^{-t}\) and \(j\) integrations by parts
+in \(\int_0^\infty e^{-(1-\Re\rho)t}t^j\,dt\).
+Take absolute values of each of the finitely many singular terms,
+use \(|R_h|\le B_h\), and enlarge the integration interval to \((0,1)\).
+This proves (JL3).  In particular the cross terms with the entire
+remainder do not grow with the endpoint cutoff.
+\end{proof}
+
+\section{All factorials in the oscillating endpoint leading term}
+
+Let
+\(\rho_+=1/2+\delta+i\gamma\) and
+\(\mathcal R=\{\rho_+,\overline{\rho_+}\}\).
+The local endpoint coefficient convention in the supplied source is
+\[
+a_{\rho,j}=[z^{d-j}]
+\frac{p_\delta(\rho+z)}{2z_\rho(z)},\qquad
+p_\delta(s)=(s-1/2)^2+\gamma^2-\delta^2,\qquad
+\zeta(\rho+z)=z^m z_\rho(z).
+\tag{JL4}
+\]
+Thus
+\[
+a_{\rho_+,d}
+=\frac{2i\delta\gamma}{2z_{\rho_+}(0)}
+=\frac{m!\,i\delta\gamma}{\zeta^{(m)}(\rho_+)}
+=:A_h\ne0,\qquad
+a_{\overline{\rho_+},d}=\overline{A_h}.
+\tag{JL5}
+\]
+This is the top Laurent coefficient in the recorded convention; no
+phase has been made real by a coordinate change.
+
+Put \(I_h(L)=\int_{e^{-L}}^1|\psi|^2\,dx\).
+The change of variables \(x=e^{-t}\) gives the exact finite identity
+\[
+I_h^{\rm sing}(L)=
+\sum_{\rho,\sigma\in\mathcal Z}\sum_{j,l=0}^d
+\frac{a_{\rho,j}\overline{a_{\sigma,l}}}{j!\,l!}
+E_{j+l}(\rho+\bar\sigma-1,L),\qquad
+E_p(z,L)=\int_0^L e^{zt}t^p\,dt.
+\tag{JL6}
+\]
+There is no division by \(z\) in this definition, so the terms with
+\(z=0\), including the reflected-root pairs, remain present.
+For \(z\ne0\), repeated integration by parts gives
+\[
+E_p(z,L)=e^{zL}\sum_{r=0}^p
+\frac{(-1)^r p!L^{p-r}}{(p-r)!z^{r+1}}
+-\frac{(-1)^p p!}{z^{p+1}}.
+\tag{JL7}
+\]
+
+For every ordered right/right pair and \(p=j+l\) put
+\[
+\begin{split}
+A_1={}&\sum_{\rho,\sigma\in\mathcal R}\sum_{j,l=0}^d
+\frac{|a_{\rho,j}a_{\sigma,l}|}{j!\,l!}
+\sum_{\substack{0\le r\le j+l\\(j,l,r)\ne(d,d,0)}}
+\frac{(j+l)!}{(j+l-r)!\,|\rho+\bar\sigma-1|^{r+1}},\\
+A_2={}&C_h^{\rm reg}+
+\sum_{\rho,\sigma\in\mathcal R}\sum_{j,l=0}^d
+\frac{|a_{\rho,j}a_{\sigma,l}|}{j!\,l!}
+\frac{(j+l)!}{|\rho+\bar\sigma-1|^{j+l+1}},\\
+A_3={}&
+\sum_{(\rho,\sigma)\in\mathcal Z^2\setminus\mathcal R^2}
+\sum_{j,l=0}^d
+\frac{|a_{\rho,j}a_{\sigma,l}|}{j!\,l!\,(j+l+1)}.
+\end{split}
+\tag{JL8}
+\]
+These are exactly J2 with (JL2) as a fully displayed valid regular
+allowance.  Define
+\[
+F_h(L)=\frac1{(d!)^2}
+\left(\frac{|A_h|^2}{\delta}
++\Re\frac{A_h^2e^{2i\gamma L}}{\delta+i\gamma}\right),
+\qquad
+f_*=\frac{|A_h|^2}{(d!)^2}
+\left(\frac1\delta-\frac1{\sqrt{\delta^2+\gamma^2}}\right)>0.
+\tag{JL9}
+\]
+
+\begin{proposition}
+For every \(L\ge1\),
+\[
+F_h(L)\ge f_*,
+\qquad
+\left|\frac{I_h(L)}{e^{2\delta L}L^{2d}}-F_h(L)\right|
+\le \frac{A_1}{L}+(A_2+A_3L)e^{-2\delta L}.
+\tag{JL10}
+\]
+\end{proposition}
+\begin{proof}
+For the two equal right/right roots, the \(j=l=d,r=0\) terms in
+(JL7) sum to
+\(|A_h|^2/(\delta(d!)^2)\) after dividing by the displayed scale.
+The other two ordered right/right pairs sum to
+\(\Re(A_h^2e^{2i\gamma L}/(\delta+i\gamma))/(d!)^2\).
+These are precisely the terms in (JL9).
+Every remaining upper endpoint term in (JL7), after that division,
+contains \(L^{j+l-r-2d}\) with exponent at most \(-1\).
+The sum of its absolute coefficients is \(A_1\).
+The lower endpoint terms and (JL3) are bounded by
+\(A_2e^{-2\delta L}\), because \(L^{-2d}\le1\).
+For every pair outside \(\mathcal R^2\), \(\Re z\le0\), and therefore
+\[
+|E_{j+l}(z,L)|\le \frac{L^{j+l+1}}{j+l+1}.
+\]
+Its scaled contribution is at most the corresponding coefficient in
+\(A_3Le^{-2\delta L}\).
+The lower bound for \(F_h\) follows by taking the modulus of its
+oscillating summand.  This proves all assertions, retaining all ordered
+cross terms.
+\end{proof}
+
+\paragraph{Joint tensor/cutoff error.}
+Put
+\[
+\eta_h(L)=
+\frac{A_1/L+(A_2+A_3L)e^{-2\delta L}}{f_*}.
+\]
+If \(\eta_h(L)\le1/2\), the actual ratio
+\(I_h(L)/(e^{2\delta L}L^{2d}F_h(L))\) lies in
+\([1-\eta_h(L),1+\eta_h(L)]\).
+For real \(|x|\le1/2\), integration of \(1/(1+t)\) from \(0\) to \(x\)
+proves \(|\log(1+x)|\le2|x|\).  Consequently
+\[
+\left|\log
+\frac{I_h(L)^k}{e^{2\delta kL}L^{2dk}F_h(L)^k}\right|
+\le2k\eta_h(L),
+\tag{JL11}
+\]
+with relative error at most \(e^{2k\eta_h(L)}-1\).
+At \(L=k^2\), the exponent is \(O_h(k^{-1})\), so
+\[
+I_h(k^2)^k=e^{2\delta k^3}k^{4dk}F_h(k^2)^k
+\bigl(1+O_h(k^{-1})\bigr).
+\tag{JL12}
+\]
+When \(m=1\), the empty sum \(A_1\) is zero.  At
+\(L=(\log k)/\delta\ge1\), the exponent in (JL11) is at most
+\[
+\frac{2}{f_*k}\left(A_2+\frac{A_3}{\delta}\log k\right).
+\tag{JL13}
+\]
+Fubini's theorem gives exactly \(I_h(L)^k\) for the fixed original
+product representative on \([e^{-L},1]^k\).
+These estimates concern that specified representative.  They do not
+evaluate a minimum over added source corrections.
+
+\section{The literal diagonal map and the terminal factorial}
+
+For \(b_\rho x^{-\rho}\), \(\Re\rho=1/2+\delta\), the unchanged product
+measure gives
+\[
+N_{\rm prod}(k,L)=|b_\rho|^{2k}
+\left(\frac{e^{2\delta L}-1}{2\delta}\right)^k.
+\tag{JL14}
+\]
+The literal diagonal map substitutes all \(x_i=x\), hence its value is
+\(b_\rho^kx^{-k\rho}\).  Its norms in the two expressly specified measures are
+\[
+\begin{split}
+N_{\rm diag,dx}(k,L)&=|b_\rho|^{2k}
+\frac{e^{(k-1+2k\delta)L}-1}{k-1+2k\delta},\\
+N_{\rm diag,k}(k,L)&=|b_\rho|^{2k}
+\frac{e^{2k\delta L}-1}{2k\delta}
+\quad\text{in }x^{k-1}\,dx.
+\end{split}
+\tag{JL15}
+\]
+Integrating the respective powers of \(x\) proves these formulas.
+Dividing (JL14) by the second formula gives the exact discrepancy
+\[
+\frac{N_{\rm prod}}{N_{\rm diag,k}}
+=k(2\delta)^{1-k}
+\frac{(1-e^{-2\delta L})^k}{1-e^{-2k\delta L}}.
+\tag{JL16}
+\]
+
+The common terminal factorial can also be checked without dropping the
+original unit.  In one local algebra \(\C[z]/(z^m)\), the actual terminal
+vector is \(z^d\); its endpoint coefficient is
+\(b_\rho=1/(2z_\rho(0))\) in convention (JL4).
+In the extremal ordered tuple, put \(n=kd\) and
+\(N_\Sigma=z_1+\cdots+z_k\).  The multinomial theorem and \(z_i^{d+1}=0\)
+give the exact polynomial identity
+\[
+N_\Sigma^{kd}=\frac{(kd)!}{(d!)^k}\prod_{i=1}^k z_i^d.
+\tag{JL17}
+\]
+Multiplying by the full \(U_h^{\otimes k}\) kills only its positive-degree
+terms in this terminal vector, so its endpoint is
+\[
+\frac{(kd)!}{(d!)^k}\,U_h(\rho)^k b_\rho^k
+\prod_{i=1}^k x_i^{-\rho}.
+\tag{JL18}
+\]
+Both product and diagonal squared norms therefore acquire
+\(\left|(kd)!/(d!)^k\right|^2|U_h(\rho)|^{2k}\).
+This verifies the sentence following J8 for that exact terminal vector.
+No factorial is absorbed into an unnamed choice of basis.
+
+\section{Uniform propagation of moments to the closed tilt interval}
+
+Retain the actual nonnegative one-packet density \(w_h\) and its stated
+envelope
+\[
+e^{\alpha|y|}w_h(y)\le C_h^{\rm tilt}(1+|y|)^{-p},
+\qquad \alpha=\pi/2,\quad p=8m-9/2>3.
+\tag{JL19}
+\]
+Let \(\mu_n=\int_\R y^nw_h(y)\,dy\), without changing the source mass.
+For \(j=0,1,2\),
+\[
+\sum_{r\ge0}\frac{\alpha^r}{r!}
+\int_\R |y|^{r+j}w_h(y)\,dy
+=\int_\R |y|^je^{\alpha|y|}w_h(y)\,dy<\infty.
+\tag{JL20}
+\]
+Tonelli's theorem applies to this nonnegative majorant.  It proves
+uniform absolute convergence on \(0\le\theta\le\alpha\), interchange
+with the signed integrands, and continuity of the derivatives at
+the endpoint:
+\[
+M_h^{(j)}(\theta)
+=\int_\R y^je^{\theta y}w_h(y)\,dy
+=\sum_{r\ge0}\mu_{r+j}\frac{\theta^r}{r!}.
+\tag{JL21}
+\]
+
+For an integer cutoff \(L\ge0\), let \(n=L+1\) and
+\(T_L=n/(2e\alpha)\).  For \(z\ge0\) put
+\[
+\mathcal Q_n(z)=e^{-z}\sum_{r=n}^{\infty}\frac{z^r}{r!}.
+\]
+For \(0<z\le n/(2e)<n\), multiplication of each term by
+\((n/z)^{r-n}\ge1\) yields
+\[
+\mathcal Q_n(z)
+\le (z/n)^n e^{n-z}
+\le(ez/n)^n\le2^{-n}.
+\tag{JL22}
+\]
+For \(z=0\) the sum is zero; globally it is at most one.
+The absolute tail of (JL21) is bounded by
+\[
+\int_\R |y|^jw_h(y)e^{\alpha|y|}
+\mathcal Q_n(\alpha|y|)\,dy.
+\]
+Use \(2^{-n}\) on \(|y|\le T_L\), and one elsewhere.
+Since
+\[
+\int_0^\infty y^j(1+y)^{-p}\,dy
+=\operatorname B(j+1,p-j-1),\qquad
+\int_{T_L}^\infty y^j(1+y)^{-p}\,dy
+\le\frac{(1+T_L)^{j-p+1}}{p-j-1},
+\]
+the resulting explicit bound is
+\[
+\sup_{0\le\theta\le\alpha}
+\left|M_h^{(j)}(\theta)
+-\sum_{r=0}^{L}\mu_{r+j}\frac{\theta^r}{r!}\right|
+\le2C_h^{\rm tilt}\left[
+2^{-(L+1)}\operatorname B(j+1,p-j-1)
++\frac{(1+T_L)^{j-p+1}}{p-j-1}\right].
+\tag{JL23}
+\]
+The beta identity follows by \(u=y/(1+y)\) in its defining integral.
+Thus no fourth tilted moment is used.  These formulas verify J9--J10
+but do not by themselves verify the separately cited arithmetic
+moment recurrence or evaluate a growing projection-kernel integral.
+
+\section{The localized ambient space really contains the window projections}
+
+Here restore the simple target order in S15: \(a=k+4\),
+\(a\equiv1\bmod4\), \(q=(a+1)^2\), \(c=a/2\), and
+\[
+\chi(S)=\prod_{r,s=0}^{a}
+\bigl[S-c-(2r-a)\delta-i(2s-a)\gamma\bigr].
+\tag{JW1}
+\]
+The actual eigenvalue \(\lambda\) is one of these roots.
+Set \(D=2q+1\),
+\[
+\mathcal W=\frac{\chi(S)}{S-\lambda}\Pcal_{D-q+1},
+\quad
+\mathcal R_N=\chi\Pcal_{N-q}
+\quad (\Pcal_j=\{0\}\text{ for }j<0).
+\tag{JW2}
+\]
+All norms are integrals on the original line \(S=c+iy\).
+Let \(\omega\) be the actual arithmetic density and
+\(\widetilde\omega\) its specified central replacement at order \(a\),
+center \(c\), and interval \([-a\mu_h,a\mu_h]\).
+The central-localization calculation C3--C13 gives on this \emph{entire}
+fixed space the relative form bound
+\[
+|(\widetilde\omega-\omega)(f,f)|\le\tau\|f\|_\omega^2
+\quad(f\in\mathcal W),\qquad 0\le\tau<1.
+\tag{JW3}
+\]
+For clarity, the valid finite parameter is
+\[
+\tau=B_a\min\{1,\mathfrak e_{a,1,2q+1}(\omega)\},
+\qquad
+B_a=e^{H_*}-1,
+\tag{JW4}
+\]
+with \(H_*\) and \(\mathfrak e\) the actual constants in C3 and C13.
+The guards of those expressions, including \(R<q\) and \(a\mu_h\le q/2\),
+are retained.  Self-adjointness and polarization of (JW3) yield
+\[
+|(\widetilde\omega-\omega)(f,g)|
+\le\tau\|f\|_\omega\|g\|_\omega.
+\tag{JW5}
+\]
+
+\paragraph{Exact fixed relation band.}
+Let \(S_Nv\) be the original attained polynomial representative of \(v\)
+at cutoff \(N\).  It is orthogonal to \(\mathcal R_N\).
+Every representative of the chosen eigenclass belongs to \(\mathcal W\);
+all its differences belong to \(\mathcal R_N\).
+For \(n=q-1\) or \(n=q\), put
+\[
+F_n=S_{n+q}v-S_nv,\qquad
+\mathcal B_n=\mathcal R_{n+q}\cap\mathcal R_n^{\perp_\omega}.
+\tag{JW6}
+\]
+Then \(F_n\in\mathcal B_n\), and the \(\omega\)-orthogonal projector onto
+this band is \(B_n=P_{\mathcal R_{n+q}}-P_{\mathcal R_n}\).
+The analogous statement holds in the replaced metric.
+The \emph{full} section-difference map from the cyclic module to
+\(\mathcal B_n\) has rank \(q\), not merely on the single eigenline.
+Indeed
+\(\dim\mathcal R_{n+q}-\dim\mathcal R_n=q\).
+If the section difference of any class is zero, its common representative
+\(P\), of degree at most \(n\), is orthogonal to every high relation.
+In particular it is orthogonal to \(\chi P\), whose degree is at most
+\(n+q\).
+
+To check the sign used here, pair each root in (JW1) with the root
+having opposite real displacement and the same imaginary displacement.
+On \(S=c+iy\), each pair contributes
+\(-[(y-(2s-a)\gamma)^2+(2r-a)^2\delta^2]\).
+There are \(q/2\) pairs, and \(q/2\) is even because \(a\equiv1\bmod4\).
+Every \((2r-a)\delta\) is nonzero because \(a\) is odd.
+Thus \(\chi(c+iy)>0\) for every real \(y\).  For \(P\ne0\),
+\(\int\chi(c+iy)|P(c+iy)|^2d\omega(y)>0\), contradicting orthogonality.
+The map is injective and hence fills the band.
+
+\begin{lemma}[Explicit fixed-subspace projection bound]
+For any fixed \(\mathcal R\subseteq\mathcal W\), let \(P,\widetilde P\)
+be its orthogonal projectors in the two metrics.  Put
+\[
+d_\tau=\frac{\tau}{1-\tau},\qquad
+g_\tau=\sqrt{\frac{1+\tau}{1-\tau}}.
+\]
+Then, as operators on \((\mathcal W,\omega)\),
+\[
+\|\widetilde P-P\|\le d_\tau,\qquad
+\|\widetilde P\|\le g_\tau.
+\tag{JW7}
+\]
+For the window band,
+\[
+\|\widetilde B_n-B_n\|\le2d_\tau,\qquad
+\|\widetilde B_n\|,\ \|I-\widetilde B_n\|\le g_\tau.
+\tag{JW8}
+\]
+\end{lemma}
+\begin{proof}
+For \(w\in\mathcal W\), put \(r=w-Pw\) and
+\(h=\widetilde Pw-Pw\in\mathcal R\).  The original orthogonality gives
+\(\langle r,h\rangle_\omega=0\); the new orthogonality gives
+\(\langle r-h,h\rangle_{\widetilde\omega}=0\).
+Consequently
+\[
+(1-\tau)\|h\|_\omega^2
+\le \|h\|_{\widetilde\omega}^2
+= (\widetilde\omega-\omega)(r,h)
+\le\tau\|r\|_\omega\|h\|_\omega
+\le\tau\|w\|_\omega\|h\|_\omega.
+\]
+This proves the difference bound.  For the second bound use
+\(\|\widetilde Pw\|_{\widetilde\omega}\le
+\|w\|_{\widetilde\omega}\) and (JW3).
+Subtracting the two fixed nested relation projectors proves the first
+part of (JW8).  Their difference and its complement are orthogonal
+projectors in the new metric, proving its second part.
+\end{proof}
+
+\paragraph{Sections, multiplication, and both projected errors.}
+The same argument in a fixed affine observation fibre proves
+\[
+\|\widetilde S_Nv-S_Nv\|_\omega
+\le d_\tau\|S_Nv\|_\omega.
+\tag{JW9}
+\]
+Put \(E_n=\|S_nv\|_\omega^2\).
+Nested minima and orthogonality give
+\[
+\|S_{n+q}v\|_\omega\le\sqrt{E_n},\qquad
+\|F_n\|_\omega^2=E_n-E_{n+q}\le E_n,\qquad
+\|\widetilde F_n-F_n\|_\omega\le2d_\tau\sqrt{E_n}.
+\tag{JW10}
+\]
+Multiplication by \(S-\lambda\) takes all these section differences
+into \(\chi\Pcal_{D-q}\subseteq\mathcal W\), with degree at most \(D\).
+Let \(M_a\) be a valid operator allowance for this multiplication on
+the input face in the original metric.  The actual original
+Gamma comparison C2 gives the following fully explicit choice:
+\[
+M_a=
+\sqrt{\frac{b_a}{a_{a,\,2q+1}}}
+\bigl(4q+2+|\lambda-c|\bigr).
+\tag{JW11}
+\]
+In fact the incoming Gamma multiplication bound on degree \(2q\)
+is \(\|yP\|_\sigma\le2(2q+1)\|P\|_\sigma\);
+the triangle inequality for
+\((S-\lambda)P=(iy-(\lambda-c))P\), the upper comparison for the output,
+and the lower comparison for the input give (JW11).
+Thus this bound uses only the displayed C2 provider.  It does not
+silently replace \(b_a/a_{a,2q+1}\) by a fixed constant.
+If the norms are written with the unscaled density \(m_a\) instead of
+\(M_h(\alpha)^{-a}m_a\), both source/Gamma comparison constants acquire
+the same factor \(M_h(\alpha)^a\).  Their ratio in (JW11) is unchanged;
+all section energies in the formulas still carry their original mass.
+
+Set \(w_n=(S-\lambda)F_n\) and
+\(\widetilde w_n=(S-\lambda)\widetilde F_n\).  From (JW10)--(JW11),
+\[
+\|\widetilde w_n-w_n\|_\omega
+\le2d_\tau M_a\sqrt{E_n}.
+\tag{JW12}
+\]
+Equations (JW8) and (JW12), with the triangle inequality, now give
+\[
+\begin{split}
+\|\widetilde B_n\widetilde w_n-B_nw_n\|_\omega
+&\le2d_\tau(g_\tau+1)M_a\sqrt{E_n},\\
+\|(I-\widetilde B_n)\widetilde w_n-(I-B_n)w_n\|_\omega
+&\le2d_\tau(g_\tau+1)M_a\sqrt{E_n}.
+\end{split}
+\tag{JW13}
+\]
+Every vector and every projection in these inequalities is in
+\(\mathcal W\).  No restricted pair-metric estimate is applied to
+an arbitrary projector on the full cyclic quotient.
+
+For a squared-norm version put
+\(\varepsilon_\tau=2d_\tau(g_\tau+1)\).
+For either projected vector \(V_n\) and its corresponding
+\(\widetilde V_n\),
+\[
+\left|\|\widetilde V_n\|_{\widetilde\omega}^2
+              -\|V_n\|_\omega^2\right|
+\le
+\left[\tau(1+\varepsilon_\tau)^2
+      +2\varepsilon_\tau+\varepsilon_\tau^2\right]M_a^2E_n.
+\tag{JW14}
+\]
+To see this, use \(\|V_n\|_\omega\le M_a\sqrt{E_n}\),
+(JW13), and (JW3), then expand the difference of the two squared
+norms.  This includes the cross terms.
+Also, by comparing each of the two attained minima,
+\[
+\left|\|\widetilde F_n\|_{\widetilde\omega}^2
+              -\|F_n\|_\omega^2\right|
+\le\tau(E_n+E_{n+q})\le2\tau E_n.
+\tag{JW15}
+\]
+
+\paragraph{Consequence for the inherited leading coefficients.}
+The supplied original two-window result records
+\(\|F_n\|_\omega^2/E_n\to1\) and the total coefficient
+\(16/\pi^2\) after division by \(q^2\|F_n\|_\omega^2\);
+it records that this coefficient is tangential at \(n=q-1\)
+and normal at \(n=q\).  Equations (JW14)--(JW15) prove stability
+of each of those exact existing coefficients under the specified
+central replacement.  Indeed the displayed C2 constants give
+\[
+\log(b_a/a_{a,2q+1})=O_h(a+\log q),\qquad
+\log\tau\le-2(q-1)\log(q/a)+O_h(q+a+\log q).
+\tag{JW16}
+\]
+Since \(q=(a+1)^2\) and \(|\lambda-c|\le
+a\sqrt{\delta^2+\gamma^2}\), it follows that
+\(\tau M_a^2/q^2\to0\).  Hence the right side of (JW14),
+divided by \(q^2E_n\), tends to zero for each window.
+The denominator perturbation (JW15) also tends to zero relatively.
+This proves the transfer without needing an unlocated sharp
+\(O_h(q)\) multiplication theorem.
+
+The bare rate \(O_h(\tau q\sqrt{E_n})\) stated in S16 should therefore
+be replaced in the received source by the finite (JW13), unless its
+separately named sharper multiplication provider is supplied.
+Its asserted leading-coefficient stability is already justified by
+the weaker explicit rate.  The numerical coefficient of the old
+two-window theorem remains an inherited value: this proof does not
+claim to have independently calculated that absent source.
+
+\paragraph{Integration boundary.}
+The results verified here neither calculate the seven absolute native
+allocations nor the individual three-column projected arithmetic signs.
+They provide a quantitative fixed-representative endpoint limit,
+the exact diagonal norm discrepancy, uniform fixed-source moment input,
+and complete transport of two specified boundary-window projections.
+All original allocation and same-class response calculations remain in
+their original metrics.
+
+\end{document}

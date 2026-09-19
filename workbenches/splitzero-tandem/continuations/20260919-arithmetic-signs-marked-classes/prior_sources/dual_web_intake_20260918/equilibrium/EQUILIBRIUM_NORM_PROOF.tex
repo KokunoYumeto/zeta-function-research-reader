@@ -1,0 +1,877 @@
+% Independent LRC11--15 audit, 2026-09-18.
+% EIQ/GRF/GRE provider SHA256:
+% 50e5071b8bc1e1325f401764e7fdd3cda50994601b6f2e1bf00627864d665571.
+% This fragment uses only ordinary LaTeX mathematical environments.
+\subsection{Original full-polynomial comparison and single-norm audit}
+\label{eqreview:section}
+
+The scalar estimates below retain the real coordinate, the source order,
+the original opposite roots, and the complete Gamma measure.  Their
+providers in the cumulative source are EIQ1--33 and ECL1--14, restated
+with the exact measure conventions in GRF1--5 and GRE9--31.  In particular,
+\[
+ d\sigma(y)=\sigma(y)\,dy
+   =\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\,dy,\qquad
+ \sigma(\mathbb R)=\sqrt{2\pi},
+\]
+\[
+ c_\Gamma e^{-\pi|y|/2}(1+|y|)^{-1/2}
+ \le \sigma(y)\le
+ C_\Gamma e^{-\pi|y|/2}(1+|y|)^{-1/2},\qquad
+ c_\Gamma=\sqrt2 e^{-7/6},\quad
+ C_\Gamma=\sqrt{2\sqrt5}\,e^{2/3}.
+\tag{EQ1}
+\]
+No probability renormalization of this measure is made.  GRE13--16
+prove its mass from the beta integral and its Fourier transform; GRE10--11
+derive these exact pointwise constants from Binet's integral formula.
+
+\paragraph{The exact coordinate map and the original roots.}
+For a grid of degree \(b\), put \(Q_b=(b+1)^2\), \(c_b=b/2\), and
+\[
+ \chi_b(S)=\prod_{a,d=0}^{b}
+   \bigl(S-c_b-(2a-b)\delta-i(2d-b)\gamma\bigr).
+\]
+Here the packet is the stipulated simple quartet, so that every displayed
+factor occurs once.  The polynomial
+\[
+ {\cal Q}_b(y)=i^{-Q_b}\chi_b(c_b+iy)
+ =\prod_{a,d=0}^{b}
+   \bigl(y-(2d-b)\gamma+i(2a-b)\delta\bigr)
+\tag{EQ2}
+\]
+is monic in the same real coordinate \(y\).  Its roots occur in opposite
+pairs, with their full multiplicities, by the involution
+\((a,d)\mapsto(b-a,b-d)\), and have modulus at most
+\(b\sqrt{\delta^2+\gamma^2}\).  For a monic degree-\(r\) polynomial \(P(S)\)
+the map
+\[
+ \widetilde P(y)=i^{-r}P(c_b+iy),\qquad
+ P(S)=i^r\widetilde P((S-c_b)/i)
+\tag{EQ3}
+\]
+is a bijection of the two monic affine fibres.  The leading coefficients
+are one in both directions; expansion in powers proves that the inverse
+formula holds on the whole fibre.  The pointwise product gains the phase
+\(i^{Q_b+r}\), of modulus one, so the norm is unchanged.  This explains
+the real-coordinate notation in every norm below without deleting an
+affine phase.
+
+Keep \(s=1\) or the original upper degree \(a\), even when \(b=a-8\), and
+put
+\[
+ \ell_s=(s-1)/4,\quad n=Q_b+\ell_s,\quad
+ R=\max\{b\sqrt{\delta^2+\gamma^2},\,2\ell_s+1/2\},\quad
+ \epsilon_*=2^{-16}.
+\]
+The exact recurrence of the original Gamma density is
+\[
+ dm_s(y)=\beta_s\prod_{t=0}^{\ell_s-1}
+      (y^2+(2t+1/2)^2)\,d\sigma(y),\qquad
+ \beta_s=\frac{(2\pi)^{s/2}}{\sqrt2\,\Gamma(s/2)}.
+\tag{EQ4}
+\]
+In the original source convention the density before the recurrence is
+\[
+ dm_s(y)=\frac{(2\pi)^{s/2}2^{s/2-1}}{\Gamma(s/2)}
+       \frac{|\Gamma(s/4+iy/2)|^2}{2\pi}\,dy .
+\]
+Indeed \(s/4=1/4+\ell_s\), and each use of the classical recurrence
+\(\Gamma(z+1)=z\Gamma(z)\)
+\cite[eq.~(5.5.1)]{human:dlmf5} produces
+\(|1/4+t+iy/2|^2=(y^2+(2t+1/2)^2)/4\); the source normalization
+therefore gives the exact multiplier
+\[
+ \frac{(2\pi)^{s/2}2^{s/2-1-2\ell_s}}{\Gamma(s/2)}
+ =\frac{(2\pi)^{s/2}}{\sqrt2\,\Gamma(s/2)}.
+\]
+The empty product for \(s=1\) is one.
+
+Let
+\[
+ {\cal M}(y)=|{\cal Q}_b(y)|^2
+       \prod_{t=0}^{\ell_s-1}(y^2+(2t+1/2)^2).
+\]
+An opposite pair contributes \(|y^2-\zeta^2|^2\).  The triangle
+inequality and its reverse therefore give, for real \(|y|>R\),
+\[
+ (1-R^2/y^2)^n
+ \le \frac{{\cal M}(y)}{|y|^{2n}}
+ \le (1+R^2/y^2)^n.
+\tag{EQ5}
+\]
+Each Gamma factor is between \(y^2\) and \(y^2+R^2\); its lower bound
+is also at least \(y^2-R^2\).  This proves the exponent \(n=Q_b+\ell_s\)
+in both directions.  On the entire real line, including inside the root
+disk, the upper triangle inequality gives
+\[
+ {\cal M}(y)\le(y^2+R^2)^n.
+\tag{EQ6}
+\]
+
+\paragraph{A whole-coefficient inner-interval estimate.}
+Assume
+\[
+ n\ge100,\qquad R\le\epsilon_*n/2.
+\tag{EQ7}
+\]
+For every complex polynomial \(P\) of degree at most \(2n\), define
+\[
+ H_0(P)=\int_{\mathbb R}|y|^{2n}|P(y)|^2\,d\sigma(y),\qquad
+ H_{\cal M}(P)=\int_{\mathbb R}{\cal M}(y)|P(y)|^2\,d\sigma(y).
+\]
+The zero polynomial is immediate, so suppose \(P\ne0\).
+On \([n,2n]\), the polynomials
+\[
+ \phi_d(y)=\sqrt{(2d+1)/n}\,L_d(2y/n-3),\qquad 0\le d\le2n,
+\]
+are an orthonormal basis for the Lebesgue polynomial norm, where \(L_d\)
+is the ordinary Legendre polynomial.  The Rodrigues formula used here is
+the Legendre specialization of the classical formula
+\cite[eq.~(18.5.5) and Table~18.5.1]{human:dlmf18}.
+Their orthogonality and squared
+norm \(2/(2d+1)\) on \([-1,1]\) follow from Rodrigues' formula by \(d\)
+integrations by parts.  The same formula gives the finite identity
+\[
+ L_d(z)=2^{-d}\sum_{j=0}^d
+       \binom dj^2(z-1)^{d-j}(z+1)^j.
+\]
+For \(|z|\le4\), Vandermonde's identity and
+\(\binom{2d}{d}\le4^d\) give
+\[
+ |L_d(z)|\le (5/2)^d\binom{2d}{d}\le10^d.
+\]
+If \(|y|\le\epsilon_*n\), then \(|2y/n-3|<4\).  Expanding \(P\) in
+this orthonormal basis and using the complex Cauchy--Schwarz inequality
+therefore proves
+\[
+ |P(y)|^2\le
+ \frac{(2n+1)(4n+1)100^{2n}}{n}
+       \int_n^{2n}|P(t)|^2\,dt .
+\tag{EQ8}
+\]
+This bounds every coefficient direction at once.
+
+On the same inner interval, (EQ6)--(EQ7) give
+\[
+ {\cal M}(y)\le(5\epsilon_*^2n^2/4)^n,\qquad
+ |y|^{2n}\le(\epsilon_*^2n^2)^n
+            \le(5\epsilon_*^2n^2/4)^n .
+\]
+On \([n,2n]\), (EQ1) instead gives
+\[
+ H_0(P)\ge
+ c_\Gamma n^{2n}e^{-\pi n}(1+2n)^{-1/2}
+       \int_n^{2n}|P(t)|^2\,dt .
+\tag{EQ9}
+\]
+Using the entire mass \(\sqrt{2\pi}\) to bound the inner integration
+and cancelling (EQ9) proves each of the inequalities
+\[
+ \int_{|y|\le\epsilon_*n}
+       {\cal M}(y)|P(y)|^2\,d\sigma(y)\le\eta_nH_0(P),\qquad
+ \int_{|y|\le\epsilon_*n}
+       |y|^{2n}|P(y)|^2\,d\sigma(y)\le\eta_nH_0(P),
+\tag{EQ10}
+\]
+where
+\[
+ \eta_n=\frac{\sqrt{2\pi}}{c_\Gamma}
+ \frac{(2n+1)(4n+1)\sqrt{1+2n}}{n}\,16^{-n}.
+\tag{EQ11}
+\]
+The base is valid because
+\((5/4)e^\pi10^4\epsilon_*^2<1/16\).
+For an entirely rational overestimate, use \(\pi<4\), \(e<3\), and
+\(16(5/4)81\cdot10^4<2^{32}\).  Also
+\(\sqrt{2\pi}/c_\Gamma=\sqrt\pi e^{7/6}<8\), whence
+\(\eta_n\le240n^2\,16^{-n}<1/2\) already for \(n\ge4\).
+The last sequence decreases there since \(((n+1)/n)^2<16\).
+Thus no inner half-interval, root factor, or coefficient direction has
+been removed.
+
+\paragraph{The full form and all its original minima.}
+For \(0\le z<1\), integration of \(1/(1-z)\) gives
+\(-\log(1-z)\le z/(1-z)\), and \(\log(1+z)\le z\).
+Consequently (EQ5) implies on \(|y|>\epsilon_*n\)
+\[
+ e^{-B_{\rm root}}|y|^{2n}\le{\cal M}(y)
+       \le e^{B_{\rm root}}|y|^{2n},\qquad
+ B_{\rm root}=\frac{nR^2}{\epsilon_*^2n^2-R^2}.
+\]
+Combine this with (EQ10), retaining the integrals over both half-lines:
+\[
+ \boxed{\;
+ \beta_s e^{-B_{\rm root}}(1-\eta_n)H_0(P)
+ \le \|\chi_bP\|_s^2
+ \le \beta_s e^{B_{\rm root}}(1+\eta_n)H_0(P)
+ \;}.
+\tag{EQ12}
+\]
+Here (EQ3) identifies the notation on the left and right with the original
+vertical-line coefficient space.  For the upper bound the intermediate
+inequality is
+\(H_{\cal M}\le e^{B_{\rm root}}H_{0,\mathrm{outer}}+\eta_nH_0
+\le e^{B_{\rm root}}(1+\eta_n)H_0\).
+For the lower bound it is
+\(H_{\cal M}\ge e^{-B_{\rm root}}H_{0,\mathrm{outer}}
+\ge e^{-B_{\rm root}}(1-\eta_n)H_0\).
+This proves LRC14 with precisely its constants.
+
+More generally fix any nonempty affine fibre \({\cal F}\) in the coefficient
+space of degree at most \(2n\), including a fibre specified by all preceding
+relation constraints.  Since (EQ12) holds at every point of this same
+fibre, taking its infimum proves
+\[
+ \beta_s e^{-B_{\rm root}}(1-\eta_n)
+       \inf_{P\in{\cal F}}H_0(P)
+ \le\inf_{P\in{\cal F}}\|\chi_bP\|_s^2
+ \le\beta_s e^{B_{\rm root}}(1+\eta_n)
+       \inf_{P\in{\cal F}}H_0(P).
+\tag{EQ13}
+\]
+The forms are positive definite: a nonzero polynomial cannot vanish on
+an interval, and the weights are positive almost everywhere.  Their
+finite coefficient Gram matrices are therefore positive definite.
+Completing a square proves attainment and uniqueness on every closed
+affine fibre, in particular the monic fibre.  Equation (EQ13) is the
+exact quotient-norm comparison; it does not replace the old Gram inverse
+by a diagonal matrix.
+
+For the actual discrete family,
+\(R^2=O_{\delta,\gamma}(a^2)\) and \(n=a^2+O(a)\).  Moreover (EQ7) gives
+\[
+ B_{\rm root}\le\frac{4R^2}{3\epsilon_*^2n}
+       =O_{\delta,\gamma}(1).
+\tag{EQ14}
+\]
+This statement keeps \(s=1\) or \(a\) at both grids.
+
+\paragraph{Parity and the exact retained-Gamma monic norm.}
+Put \(r=2h+\varepsilon\ge2\), \(h\ge1\), \(\varepsilon\in\{0,1\}\), and
+\[
+ \nu_r^0(n)=\min_{\deg P=r,\ P\ {\rm monic}}H_0(P),\qquad
+ \alpha=\frac{n+\varepsilon-3/4}{h},\quad
+ \beta=\frac{\pi n}{2h}.
+\]
+The even and odd polynomial subspaces are orthogonal for \(H_0\).
+The parity opposite to \(r\) has no leading term and contributes a
+nonnegative separate squared norm; its minimizer is zero.  On the
+remaining parity fibre the exact monic bijection is
+\[
+ P(y)=n^r(y/n)^\varepsilon p(y^2/n^2),\qquad
+ p\in\mathbb C[x]\ {\rm monic},\quad\deg p=h.
+\tag{EQ15}
+\]
+Define, for \(y>0\),
+\[
+ {\mathfrak r}(y)=\frac{\sigma(y)e^{\pi y/2}\sqrt y}{\sqrt2},\qquad
+ h_{h,n}(\alpha,\beta)
+ =\min_{\deg p=h,\ p\ {\rm monic}}
+   \int_0^\infty |p(x)|^2 e^{-h(\beta\sqrt x-\alpha\log x)}
+                         {\mathfrak r}(n\sqrt x)\,dx.
+\tag{EQ16}
+\]
+The two real half-lines in (EQ15) contribute equally.  Under
+\(y=n\sqrt x\), their combined Jacobian is \(n/\sqrt x\), and
+\(\sigma(n\sqrt x)=\sqrt2\,n^{-1/2}x^{-1/4}
+e^{-\pi n\sqrt x/2}{\mathfrak r}(n\sqrt x)\).
+It follows without a limiting step that
+\[
+ \boxed{\nu_r^0(n)=\sqrt2\,n^{2(n+r)+1/2}
+                 h_{h,n}(\alpha,\beta).}
+\tag{EQ17}
+\]
+In particular the shift is \(-3/4\).  The measures in (EQ16) have positive
+density, finite moments, and a positive definite coefficient Gram matrix,
+so their monic minima are attained uniquely as above.
+
+\paragraph{Original equilibrium and the entire positive half-line.}
+The accepted EIQ equilibrium for
+\(V(x)=\beta\sqrt x-\alpha\log x\) has support
+\([A,B]=[u^2,v_*^2]\), probability density
+\[
+ H(x)\sqrt{(B-x)(x-A)},\qquad
+ H(x)=\frac{\beta}{4\pi^2x}
+   \int_0^\infty
+   \frac{\sqrt t}{(x+t)\sqrt{(A+t)(B+t)}}\,dt>0.
+\tag{EQ18}
+\]
+Its logarithmic potential \(P_{\rm eq}(x)=\int\log|x-y|\,d\mu(y)\)
+and original Robin constant satisfy
+\[
+ D(x)=V(x)-2P_{\rm eq}(x)-\lambda\ge0\quad(0<x<\infty),
+ \qquad D(x)=0\quad(A\le x\le B).
+\tag{EQ19}
+\]
+The endpoint equations and Robin identity are
+\[
+ uK(\kappa)=\frac{\alpha\pi}{\beta},\qquad
+ v_*E(\kappa)=\frac{(\alpha+2)\pi}{\beta},\qquad
+ \kappa^2=1-u^2/v_*^2,
+\]
+\[
+ \lambda=2(\alpha+2)-2\alpha\log((u+v_*)/2)
+                   -2\log((B-A)/4).
+\tag{EQ20}
+\]
+These are exactly EIQ3--19 and ECL6, rather than a substituted potential.
+The independent quantile proof accompanying this fragment establishes
+LRC11--12 directly from (EQ18):
+for the \(h\) midpoint probability quantiles \(x_i\),
+\[
+ \sum_{i=1}^h\log|x-x_i|
+ \le hP_{\rm eq}(x)+C_{\rm disc}\quad(x\in\mathbb R),\qquad
+ C_{\rm disc}=24(B/A)^6+30(B/A)^2.
+\tag{EQ21}
+\]
+It applies in particular to \(h=1\).
+
+From (EQ1),
+\[
+ 0<{\mathfrak r}(y)\le r_+=C_\Gamma/\sqrt2,\qquad
+ {\mathfrak r}(n\sqrt x)\ge r_-=
+ \frac{c_\Gamma}{\sqrt2}\sqrt{\frac{nu}{1+nu}}
+ \quad(A\le x\le B).
+\tag{EQ22}
+\]
+For the full tail, set
+\[
+ T_*=\max\left\{1,v_*,
+ \left[\frac{8(\alpha+2)}{\beta}\right]^2,
+ \frac{4|\lambda|}{\beta}\right\},\qquad
+ J_*=T_*^2+\frac8{\beta^2}.
+\tag{EQ23}
+\]
+If \(t\ge v_*\) and \(y\in[A,B]\), then
+\(0\le t^2-y\le t^2\).  Hence \(P_{\rm eq}(t^2)\le2\log t\),
+including \(t=v_*\) by integrability of the endpoint logarithm.
+Thus
+\[
+ D(t^2)\ge\beta t-2(\alpha+2)\log t-|\lambda|.
+\]
+For \(t\ge1\), \(\log t\le\sqrt t\), since
+\(\max_{t\ge1}(\log t)/\sqrt t=2/e<1\).
+The two nonconstant entries in (EQ23) imply for \(t\ge T_*\)
+\[
+ 2(\alpha+2)\log t\le\beta t/4,\qquad
+ |\lambda|\le\beta t/4,\qquad D(t^2)\ge\beta t/2 .
+\]
+Because \(h\ge1\) and (EQ19) holds all the way to zero,
+\[
+ \int_0^\infty e^{-hD(x)}\,dx
+ \le T_*^2+\int_0^\infty2t e^{-\beta t/2}\,dt
+ =J_* .
+\tag{EQ24}
+\]
+This proves the displayed LRC15 cutoff itself.  No extra \(\log2\) is
+needed: the stronger inequality \(t^2-y\le t^2\) at \(t\ge v_*\)
+replaces the looser estimate \(t^2+y\le2t^2\).
+
+\paragraph{The arcsine lower constant, including all complex roots.}
+Put \(c_{\rm cap}=(B-A)/4\) and let
+\(d\nu=dx/(\pi\sqrt{(B-x)(x-A)})\) be arcsine probability.
+For every complex \(z\),
+\[
+ \int\log|x-z|\,d\nu(x)\ge\log c_{\rm cap},
+\tag{EQ25}
+\]
+with equality for \(z\in[A,B]\).
+Here is a direct proof.  Write \(x=(A+B)/2+d\cos\theta\),
+\(d=(B-A)/2\), and factor
+\(Z^2-2(z-(A+B)/2)Z/d+1=(Z-z_1)(Z-z_2)\).
+On \(|Z|=1\),
+\(|x-z|=(d/2)|Z-z_1||Z-z_2|\), while \(z_1z_2=1\).
+The circle mean of \(\log|Z-z_j|\) is
+\(\log\max(1,|z_j|)\): integrate the convergent logarithmic power
+series inside the circle, factor out \(|z_j|\) outside it, and use
+integrability of \(|\log|\theta||\) for the boundary limit.
+Both means are nonnegative; both vanish exactly when the two roots
+are on the circle, which occurs for \(z\in[A,B]\).  Symmetry in
+\(\cos\theta\) identifies this circle mean with the arcsine integral.
+
+Factor any complex monic degree-\(h\) polynomial root by root.
+Equation (EQ25) gives \(\int\log|p|\,d\nu\ge h\log c_{\rm cap}\).
+Integrating the Euler equality (EQ19), interchanging its logarithmic
+integrals, and applying equality in (EQ25) gives
+\(\int V\,d\nu=2\log c_{\rm cap}+\lambda\).
+All the logarithms are integrable: the equilibrium density is bounded,
+and arcsine endpoint singularities are integrable against a logarithm.
+The entropy is exactly
+\[
+ \int\log(d\nu/dx)\,d\nu=-\log(\pi c_{\rm cap}).
+\]
+Indeed the same angular substitution reduces this to
+\(\pi^{-1}\int_0^\pi\log\sin\theta\,d\theta=-\log2\);
+the last identity follows by adding its sine and cosine integrals
+on \([0,\pi/2]\) and doubling the angle.
+The corresponding finite circle-weight Jensen inequality is recorded by
+Szeg\H{o} \cite[\S12.3, eq.~(12.3.4), pp.~300--301]{human:szego1975};
+the preceding angular map and entropy computation give its exact
+interval constants here.  Probability Jensen applied to
+\(|p|^2e^{-hV}/(d\nu/dx)\) now proves
+\[
+ \int_A^B|p(x)|^2e^{-hV(x)}\,dx
+ \ge \pi c_{\rm cap} e^{-h\lambda}.
+\tag{EQ26}
+\]
+Zeros cause only integrable logarithmic singularities, so this applies
+to every complex monic polynomial.  Multiply by (EQ22) and then
+take the same monic minimum.
+
+For the upper bound use the actual quantile polynomial
+\(p_h(x)=\prod_{i=1}^h(x-x_i)\).  Equations (EQ19)--(EQ21) give pointwise
+on the entire positive half-line
+\[
+ |p_h(x)|^2e^{-hV(x)}
+ \le e^{2C_{\rm disc}}e^{-h\lambda}e^{-hD(x)}.
+\]
+Integrating with (EQ22)--(EQ24) proves
+\[
+ \boxed{\quad
+ c_-e^{-h\lambda}\le h_{h,n}(\alpha,\beta)
+                \le c_+e^{-h\lambda},\qquad
+ c_-=r_-\pi(B-A)/4,\quad
+ c_+=r_+J_*e^{2C_{\rm disc}}.\quad}
+\tag{EQ27}
+\]
+This is LRC15 with exactly the stated constants.
+
+\paragraph{Explicit uniform constants when the degree starts at one.}
+The following proof does not assume an upper bound on \(\alpha\).
+It applies on the whole wedge
+\[
+ \alpha\ge1/2,\qquad \pi/3\le c:=\beta/\alpha\le\pi.
+\tag{EQ28}
+\]
+Write \(s_0\in(0,1)\) for the unique solution
+\[
+ \frac{E(\sqrt{1-s_0^2})}
+      {s_0K(\sqrt{1-s_0^2})}=5.
+\tag{EQ29}
+\]
+Existence and uniqueness follow from the endpoint monotonicity in
+EIQ6; they can also be checked from the derivative just below and the
+limits \(1\) at \(s=1\) and \(+\infty\) at \(s=0\).
+For the latter limit, \(E\ge1\) and
+\(sK\to0\) by dominated convergence in its defining integral.
+Use the abbreviations
+\(K_s=K(\sqrt{1-s^2})\), \(E_s=E(\sqrt{1-s^2})\), \(f(s)=E_s/(sK_s)\).
+The endpoint equation is
+\[
+ f(s)=1+2/\alpha,\qquad s=u/v_*.
+\]
+Direct differentiation under the integral and integration of the derivative
+of \(\sin\theta\cos\theta/
+\sqrt{\cos^2\theta+s^2\sin^2\theta}\) give
+\[
+ -f'(s)=
+ \frac{(K_s-E_s)(E_s-s^2K_s)}
+      {(1-s^2)s^2K_s^2}>0.
+\tag{EQ30}
+\]
+Here \(K_s-E_s\) is the integral of
+\((1-s^2)\sin^2\theta/
+\sqrt{\cos^2\theta+s^2\sin^2\theta}\);
+\(E_s-s^2K_s\) is the same integral with \(\cos^2\theta\).
+Each is between \((1-s^2)\pi/4\) and
+\((1-s^2)\pi/(4s)\), whereas
+\(\pi/2\le K_s\le\pi/(2s)\).
+Since (EQ28) implies \(s\ge s_0\), these inequalities yield
+\[
+ \frac{1-s^2}{4}\le-f'(s)
+       \le\frac{1-s^2}{4s_0^4}.
+\]
+Integration from \(s\) to \(1\) and
+\[
+ \frac1{16}\le\frac{s+2}{12(1+s)^2}\le\frac16
+       \quad(0\le s\le1)
+\]
+give the explicit comparison
+\[
+ \frac{(1-s^2)^2}{16}\le\frac2\alpha
+       \le\frac{(1-s^2)^2}{6s_0^4}.
+\tag{EQ31}
+\]
+In particular this estimate includes \(\alpha\to\infty\) without
+an asymptotic assumption.
+
+Define the fixed, explicitly evaluable positive numbers
+\[
+ u_0=\frac{2s_0}{\pi},\quad v_0=\frac{30}{\pi s_0},\quad
+ C_0=\frac{2\sqrt3\,s_0^4}{\pi^2},\quad
+ C_1=\frac{900\sqrt2}{\pi^2s_0^2}.
+\]
+The original endpoint formulas, the bounds on \(K_s,E_s\), and
+\(1+2/\alpha\le5\) prove
+\[
+ u\ge u_0,\qquad v_*\le v_0,\qquad
+ B/A\le s_0^{-2},\qquad
+ C_0\le c_{\rm cap}\sqrt\alpha\le C_1 .
+\tag{EQ32}
+\]
+For the last inequality use
+\(c_{\rm cap}=v_*^2(1-s^2)/4\), (EQ31), and
+\(u_0\le v_*\le v_0\).
+Put
+\[
+ L_w=\max\{|\log u_0|,|\log v_0|\},\quad
+ L_c=\max\{|\log C_0|,|\log C_1|\},\quad
+ L_\lambda=\frac3\pi(12+2L_w+4L_c).
+\]
+For \(\alpha\ge1/2\),
+\(|\log\alpha|/\alpha\le2\).  Equation (EQ32) then gives
+\(|\log c_{\rm cap}|/\alpha\le2L_c+1\).
+The exact Robin formula (EQ20) therefore proves
+\[
+ |\lambda|/\beta\le L_\lambda.
+\]
+Since \(\beta\ge\pi/6\), the following are uniform upper bounds for
+\(T_*,J_*,C_{\rm disc}\):
+\[
+ \overline T=\max\{1,v_0,(120/\pi)^2,4L_\lambda\},\quad
+ \overline J=\overline T^2+288/\pi^2,\quad
+ \overline C_{\rm disc}=24s_0^{-12}+30s_0^{-4}.
+\tag{EQ33}
+\]
+For \(n\ge100\) a uniform lower bound in (EQ22) is
+\[
+ \underline r=\frac{c_\Gamma}{\sqrt2}
+             \sqrt{\frac{100u_0}{1+100u_0}}>0.
+\]
+Consequently (EQ27) gives the fully explicit uniform interval
+\[
+ \log(\underline r\pi C_0)-\tfrac12\log\alpha
+ \le\log h_{h,n}(\alpha,\beta)+h\lambda
+ \le\log\!\left(
+      \frac{C_\Gamma}{\sqrt2}\overline J
+      e^{2\overline C_{\rm disc}}\right).
+\tag{EQ34}
+\]
+For the exact LRC parameters with \(2\le r=2h+\varepsilon\le2n\),
+one has (EQ28), \(1\le h\le n\), and \(h\ge(r+1)/4\).
+Since \(n+\varepsilon-3/4\le n+1/4\le5n/4\), this proves
+\[
+ \alpha\le5n/(r+1)\quad(n\ge100).
+\tag{EQ35}
+\]
+It follows from (EQ34)--(EQ35) that
+\[
+ |\log h_{h,n}(\alpha,\beta)+h\lambda|
+ \le C_{\rm unif}+\tfrac12\log^+\frac{n}{r+1},
+\tag{EQ36}
+\]
+where, for example, one may take
+\[
+ C_{\rm unif}=\max\left\{
+ |\log(\underline r\pi C_0)|+\tfrac12\log5,\
+ \left|\log\!\left(\frac{C_\Gamma}{\sqrt2}\overline J
+               e^{2\overline C_{\rm disc}}\right)\right|
+ \right\}.
+\]
+This verifies the scalar uniformity needed in LRC18 even for \(h=1\).
+
+\paragraph{The scalar ranks \(r=0,1\).}
+The unique reference monic minimizers are \(1,y\) by parity, so these
+norms equal \(\mu_M=\int_{\mathbb R}|y|^{2M}\,d\sigma(y)\) with
+\(M=n+r\).  Put
+\[
+ G_M=\int_0^\infty y^{2M-1/2}e^{-\pi y/2}\,dy
+     =\frac{\Gamma(2M+1/2)}{(\pi/2)^{2M+1/2}}.
+\]
+The upper bound in (EQ1) immediately gives \(\mu_M\le2C_\Gamma G_M\).
+For the lower bound restrict only this estimate, not the definition,
+to \(y\ge1\), where
+\((1+y)^{-1/2}\ge y^{-1/2}/\sqrt2\).
+The missing proportion satisfies, by one Gamma integration by parts,
+\[
+ \frac{\int_0^1 y^{2M-1/2}e^{-\pi y/2}\,dy}{G_M}
+ \le \frac{\int_0^\infty y^{2M-3/2}e^{-\pi y/2}\,dy}{G_M}
+ =\frac{\pi}{4M-1}<\frac12\qquad(M\ge4).
+\]
+Hence
+\[
+ (c_\Gamma/\sqrt2)G_M\le\mu_M\le2C_\Gamma G_M.
+\tag{EQ37}
+\]
+The actual-root scalar minima are then compared by (EQ13), so these
+ranks need no singular equilibrium substitution.
+% Cross-intake audit of the scalar ingredients in equations (9) and (12).
+\subsection{The separate power-exponential reference and its moving centre}
+\label{eqreview:powerexponential}
+
+The second intake uses the original-coordinate monic minimum
+\[
+ {\mathfrak n}(Q,b)=
+ \min_{\deg p=b,\ p\ {\rm monic}}
+ \int_{\mathbb R}|y|^{2Q}|p(y)|^2e^{-\pi|y|/2}\,dy.
+\tag{EQ38}
+\]
+This is a different reference measure from (EQ16).  The following exact
+map proves the relation needed here, including its different quarter
+shift and its normalization.  Let \(b=2d+\varepsilon\ge2\),
+\(d\ge1\), \(\varepsilon\in\{0,1\}\), and retain the positive scale
+\(q\) appearing in the original upper grid.  Orthogonality of the parity
+subspaces for the even weight proves that the unique monic minimizer
+has parity \(b\).  The monic bijection is
+\[
+ p(y)=q^b(y/q)^\varepsilon P(y^2/q^2),\qquad
+ P\in\mathbb C[x]\ {\rm monic},\quad\deg P=d.
+\]
+The two half-lines have combined Jacobian \(q/\sqrt x\) under
+\(y=q\sqrt x\).  Therefore, exactly,
+\[
+ {\mathfrak n}(Q,b)
+ =q^{2(Q+b)+1}
+ \min_{\deg P=d,\ P\ {\rm monic}}
+ \int_0^\infty |P(x)|^2e^{-dV(x)}\,dx,\qquad
+ V(x)=\beta\sqrt x-\alpha\log x,
+\]
+\[
+ \alpha=(Q+\varepsilon-1/2)/d,\qquad
+ \beta=\pi q/(2d).
+\tag{EQ39}
+\]
+The exponent is \(-1/2\), rather than \(-3/4\), because no residual
+Gamma density is inside (EQ38).  The coefficient Gram matrices are
+positive definite and all moments finite, so the minima are attained
+uniquely.  The argument covers \(d=1\).
+
+Let \([u^2,v_0^2]\) be the EIQ support at these exact parameters,
+\[
+ W=v_0^2-u^2,\quad c_{\rm cap}=W/4,\quad
+ M=\frac{\alpha}{2\pi u^2},\qquad
+ \lambda=2(\alpha+2)-2\alpha\log((u+v_0)/2)-2\log c_{\rm cap}.
+\]
+The EIQ positive formula gives
+\(h_{\rm EIQ}(x)\le\alpha/(xuv_0)\).  To see the constant directly,
+replace \(1/(x+t)\) by \(1/t\) in its positive integral:
+the endpoint mass identity EIQ9 is
+\[
+ \frac{\beta}{2\pi}\int_0^\infty
+       \frac{dt}{\sqrt{t(u^2+t)(v_0^2+t)}}=\frac{\alpha}{uv_0}.
+\]
+Thus
+\[
+ \rho(x)=\frac{\sqrt{(v_0^2-x)(x-u^2)}}{2\pi}h_{\rm EIQ}(x)
+ \le \frac{\alpha}{2\pi u\sqrt x}
+ \le M\quad (u^2\le x\le v_0^2),
+\tag{EQ40}
+\]
+where \((v_0^2-x)(x-u^2)\le v_0^2x\) was used.
+
+\paragraph{The precise clipped-quantile estimate.}
+Take the \(d\) midpoint probability quantiles \(x_i\) of this equilibrium
+and put \(P_d(x)=\prod_i(x-x_i)\).  The empirical distribution function
+differs from the equilibrium distribution function by at most \(1/(2d)\),
+and hence by at most \(1/d\).  For a fixed real \(x\), define on the
+support
+\[
+ f_x(y)=\log\max\{|x-y|,1/d\}.
+\]
+The function is continuous and of bounded variation.  If \(x\) lies
+inside the support, there are two monotone pieces, each having variation
+at most \(\log(1+dW)\); if \(x\) lies outside it, the sole monotone
+piece has that bound.  The latter statement follows from
+\(\max(r+W,1/d)/\max(r,1/d)\le1+dW\), \(r\ge0\).
+Integration by parts against the signed difference of the two
+probability measures has zero endpoint term and gives
+\[
+ \sum_{i=1}^d f_x(x_i)\le
+ d\int f_x\,d\mu+2\log(1+dW).
+\]
+The clipping error, using (EQ40), satisfies
+\[
+ d\int(f_x(y)-\log|x-y|)\,d\mu(y)
+ \le dM\int_{-1/d}^{1/d}\log\frac{1/d}{|t|}\,dt=2M.
+\]
+Since each nodal logarithm is no larger than its clipped value, including
+the value \(-\infty\) at a root, this proves for every real \(x\)
+\[
+ \log|P_d(x)|\le dP_{\rm eq}(x)+2M+2\log(1+dW).
+\tag{EQ41}
+\]
+No unproved smoothness of a clipped kernel is used.
+
+Set
+\[
+ C=2\log(1+v_0^2)+|\lambda|,\qquad
+ T_*=\max\left\{1,v_0,
+       [8(\alpha+2)/\beta]^2,4C/\beta\right\},\qquad
+ J_*=T_*^2+8/\beta^2.
+\tag{EQ42}
+\]
+The global EIQ inequality is \(D=V-2P_{\rm eq}-\lambda\ge0\) on
+\((0,\infty)\).  Because \(C\ge|\lambda|\), the proof of
+(EQ23)--(EQ24) applies with this larger cutoff.  It gives
+\(\int_0^\infty e^{-dD(x)}dx\le J_*\).
+Squaring (EQ41), multiplying by \(e^{-dV}\), and integrating yields
+\[
+ \min_{\deg P=d,\ P\ {\rm monic}}\int_0^\infty|P|^2e^{-dV}\,dx
+ \le J_*e^{-d\lambda+4M}(1+dW)^4.
+\]
+The arcsine proof (EQ25)--(EQ26), with the residual Gamma factor absent,
+gives the lower bound \(\pi c_{\rm cap}e^{-d\lambda}\).
+This is the same finite Jensen inequality
+\cite[\S12.3, eq.~(12.3.4), pp.~300--301]{human:szego1975},
+applied to the power-exponential weight in (EQ39).
+Together with (EQ39) these prove exactly
+\[
+ H^-(Q,b)\le\log{\mathfrak n}(Q,b)\le H^+(Q,b),
+\tag{EQ43}
+\]
+\[
+ \begin{split}
+ H^-(Q,b)&=[2(Q+b)+1]\log q-d\lambda+\log(\pi c_{\rm cap}),\\
+ H^+(Q,b)&=[2(Q+b)+1]\log q-d\lambda
+                  +\log J_*+4M+4\log(1+dW).
+ \end{split}
+\]
+This is the second intake's equation (9), with its stated constants.
+The bounded quantile theorem (EQ21) additionally permits the stronger
+upper endpoint
+\[
+ H^\sharp(Q,b)=[2(Q+b)+1]\log q-d\lambda+\log J_*+2C_{\rm disc}.
+\tag{EQ44}
+\]
+Both upper endpoints may be retained and intersected.  No new root/Gamma
+comparison is presumed by this scalar improvement.
+
+\paragraph{Exact scale cancellation and the all-degree error.}
+Define the same centre as the second intake,
+\[
+ {\cal H}(Q,b)=2(Q+b)\log Q
+      -\frac b2\lambda(2Q/b,\pi Q/b).
+\tag{EQ45}
+\]
+The EIQ dilation identity, including its original Robin constant, is
+\[
+ \lambda(\alpha,\beta c_0)
+   =\lambda(\alpha,\beta)+2(\alpha+2)\log c_0.
+\tag{EQ46}
+\]
+One may prove it without differentiating an asymptotic remainder:
+the map \(x\mapsto c_0^{-2}x\) pushes the unique equilibrium at
+\((\alpha,\beta)\) to the unique equilibrium at \((\alpha,\beta c_0)\).
+At a corresponding point, the logarithmic potential changes by
+\(-2\log c_0\), and the external field changes by \(2\alpha\log c_0\).
+Subtracting twice the potential therefore gives precisely (EQ46).
+The minimizer is carried correctly because the logarithmic-energy
+functional changes by a constant independent of the probability measure.
+
+Set
+\(\alpha_0=2Q/b\), \(\beta_0=\pi q/b\).
+Taking \(c_0=q/Q\) in (EQ46) proves the exact cancellation
+\[
+ 2(Q+b)\log q-\frac b2\lambda(\alpha_0,\beta_0)
+       ={\cal H}(Q,b).
+\tag{EQ47}
+\]
+In particular the \(q\)-versus-\(Q\) scale is not an \(O(j)\) error.
+It cancels identically.
+
+For the parity shift, the exact multiplied differences are
+\[
+ A=d(\alpha-\alpha_0)=\varepsilon-\tfrac12+\frac{\varepsilon Q}{b},
+ \qquad
+ B=d(\beta-\beta_0)=\frac{\varepsilon\pi q}{2b}.
+\tag{EQ48}
+\]
+On the straight parameter segment
+\((\alpha_\theta,\beta_\theta)
+=(\alpha_0,\beta_0)+\theta(\alpha-\alpha_0,\beta-\beta_0)\),
+the exact ECL derivatives are
+\[
+ \lambda_\alpha=-2\log((u+v_0)/2),\qquad
+ \lambda_\beta=2(\alpha+2)/\beta.
+\tag{EQ49}
+\]
+These include all moving-support terms.  On the wedge (EQ28) the first
+has absolute value at most \(2L_w\), and the second at most \(30/\pi\).
+Consequently the fundamental theorem of calculus gives the finite bound
+\[
+ \left|d\lambda(\alpha,\beta)-\frac b2\lambda(\alpha_0,\beta_0)\right|
+ \le 2L_w|A|+\frac{30}{\pi}|B|
+                  +\frac{\varepsilon}{2}|\lambda(\alpha_0,\beta_0)|.
+\tag{EQ50}
+\]
+This argument requires no smallness of the displacement and applies
+when \(b=2\) and \(d=1\).
+
+Here are sufficient original-domain checks for the two actual grids.
+For \(j\ge257\),
+\[
+ q=(j+1)^2,\quad q'=(j-7)^2,\quad
+ \ell_s\in\{0,(j-1)/4\},\quad Q_\pm=q^{(\prime)}+\ell_s.
+\]
+Direct expansion gives
+\[
+ \frac9{10}q\le Q_\pm\le\frac{11}{10}q.
+\tag{EQ51}
+\]
+For example \(q'-(9/10)q=(j^2-142j+489)/10>0\) at \(257\)
+and increases thereafter; also \(\ell_s\le j/4\le q/10\).
+For the upper degrees \(2\le b=r\le q+32j\), and for the lower
+degrees \(b=\Delta-v+r\), \(0\le v\le80\), \(2\le r\le q+32j\),
+one has
+\[
+ 2\le b\le q+48j-48\le\frac65q.
+\tag{EQ52}
+\]
+The final inequality follows since
+\(q-240j+240=j^2-238j+241>0\) at \(257\) and increases thereafter.
+The lower degree is positive because \(\Delta-v=16j-48-v>0\).
+Equations (EQ51)--(EQ52) put both actual parity endpoints and both ideal
+endpoints in the wedge (EQ28).  For instance
+\[
+ \alpha\ge 2(0.9q-0.5)/(1.2q)>1/2,\qquad
+ \frac{\beta}{\alpha}
+     =\frac{\pi q}{2(Q+\varepsilon-1/2)}\in[\pi/3,\pi].
+\]
+These inequalities follow from \(q\ge(258)^2\) and (EQ51).
+The ideal ratio is \(\pi q/(2Q)\) in the same interval.
+Along their straight segment \(\alpha_\theta\ge1/2\), while
+\(\beta_\theta/\alpha_\theta\) is a positive weighted average of
+the endpoint ratios, so the entire segment remains in (EQ28).
+
+On this domain, (EQ32)--(EQ33) and (EQ48)--(EQ50) give
+\[
+ d\lambda(\alpha,\beta)
+      =\frac b2\lambda(\alpha_0,\beta_0)+O(q/b).
+\tag{EQ53}
+\]
+The constants are fixed numbers expressible in the explicitly defined
+\(s_0,u_0,v_0,C_0,C_1,L_w,L_\lambda\).
+Indeed \(|A|\le1/2+Q/b\), \(|B|\le\pi q/(2b)\),
+and \(|\lambda(\alpha_0,\beta_0)|\le L_\lambda\pi q/b\).
+No constant depends on the parity, the row, or \(j\).
+
+Furthermore \(\alpha=O(q/b)\), \(u\ge u_0\), so \(M=O(q/b)\).
+Equation (EQ32) gives
+\(|\log c_{\rm cap}|\le L_c+\tfrac12|\log\alpha|=O(\log q)\).
+The modified tail constant (EQ42) remains uniformly bounded: relative
+to (EQ33), its only additional entry is at most
+\[
+ \frac{8\log(1+v_0^2)}{\beta}
+ \le \frac{48}{\pi}\log(1+v_0^2).
+\]
+Thus \(1\le J_*\le J_0\) for an explicit fixed \(J_0\).
+Finally \(dW\le 2bC_1/\sqrt\alpha=O(q)\).
+Substitute these facts, (EQ47), and (EQ53) into (EQ43):
+\[
+ \boxed{\quad H^\pm(Q,b)
+      ={\cal H}(Q,b)+O(q/b+\log q).\quad}
+\tag{EQ54}
+\]
+This proves the second intake's equation (12) over every actual
+degree \(2\le r\le q+32j\), including the fixed small degrees.
+It does not require \(r\) to exceed the old growing prefix.
+
+The actual original-root bounds denoted \(b^\pm\) in the second intake
+are a separate full-form input to its equation (8).  Equations
+(EQ43)--(EQ54) establish exactly the scalar Jensen, quantile, tail,
+parity and centre ingredients used after that full-form comparison.
+When using instead the proved retained-Gamma comparison (EQ12), the
+exact map is (EQ17), not (EQ39); its stronger all-degree finite interval
+is (EQ27), with uniform error (EQ36).
+

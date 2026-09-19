@@ -1,0 +1,624 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\dd}{\,d}
+\title{Original theta pressure and the sign of the arithmetic correction\\
+Independent receiving derivation with the physical equilibrium constant}
+\author{Split-Zero research continuation}
+\date{19 September 2026}
+\begin{document}
+\maketitle
+
+This is a successor proof to the accepted signed arithmetic calculation,
+not an alteration of its sealed reader. The incoming sign argument is
+rederived below. In particular the equilibrium logarithmic moment is
+derived directly from the original EIQ measure, so its closed form is
+not an additional assumption. All finite inequalities are rational;
+\texttt{check\_theta\_sign\_exact.py} implements precisely their finite sums.
+The classical theta and special-function inputs are cited at use.
+
+\section{Original source, original coefficient, and result}
+Fix an actual off-line quartet of zeros of $g=2\xi$, with complete common
+order $m_0\geq1$ and representatives
+\begin{equation}\tag{TS1}
+ \rho=\tfrac12+\delta+i\gamma,\qquad 0<\delta<\tfrac12,\quad\gamma>2,
+ \qquad
+ h(s)=\prod_{z\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}(s-z)^{m_0}.
+\end{equation}
+The word actual means that $g(\rho)=0$ and that these are the stated
+zeros of the original numerator. No existence of such a quartet is
+asserted here. Define, with its original mass,
+\begin{equation}\tag{TS2}
+ w_h(y)=\frac{|g(1/2+iy)/h(1/2+iy)|^2}{2\pi},\quad
+ M_h(\theta)=\int_{\mathbb R}e^{\theta y}w_h(y)\dd y,\quad
+ \alpha_*=\frac\pi2,\quad
+ I_h=\int_0^{\alpha_*}\left(\frac{M_h'(\theta)}{M_h(\theta)}\right)^2\dd\theta.
+\end{equation}
+The already proved original-source envelope is
+$e^{\alpha_*|y|}w_h(y)\leq C_h(1+|y|)^{-p_h}$ with
+$p_h=8m_0-9/2>3$; its complete provider is recorded in
+\cite{SBV}. Thus dominated convergence gives $M_h\in C^2$
+on the closed tilt interval, with positive values there. The mass is
+$M_h(0)$ and is not replaced by one.
+
+Let $\rho_{a,b}$ denote the original equilibrium measure for
+$V_{a,b}(x)=b\sqrt x-a\log x$ on $(0,\infty)$, and put
+\begin{equation}\tag{TS3}
+ \mathcal L(a,b)=\int\log x\dd\rho_{a,b}(x),\qquad
+ \mathcal C_\Gamma=2\mathcal L(2,\pi)-8\log2+4.
+\end{equation}
+Section~\ref{eqphysical} retains its physical elliptic integrals,
+constructs this measure, and computes the moment. The symbol
+$\mathcal C_\Gamma$ refers to this return coefficient, not a constant
+in a pointwise upper bound for the Gamma density.
+
+\begin{theorem}\label{th:sign}
+For every actual quartet in (TS1), at every complete multiplicity,
+\begin{equation}\tag{TS4}
+ \frac{M_h(\pi/2)}{M_h(0)}>61>e^{41/10},\qquad
+ I_h>\frac{1681}{50\pi},\qquad 0<\mathcal C_\Gamma<\frac23.
+\end{equation}
+For $m_0=1$ the already evaluated coefficient therefore satisfies
+\begin{equation}\tag{TS5}
+ d_0(h)=-2\mathcal C_\Gamma+\frac{\log2}{\pi}I_h
+ >\kappa_*:=\frac{7370383}{7260000}>1.
+\end{equation}
+The pressure bound (TS4) applies also when $m_0\geq2$.
+At those fixed higher multiplicities the asymptotic coefficient is
+$-(4m_0-2)\mathcal C_\Gamma<0$, because the original $k^2/q$ tends to zero.
+\end{theorem}
+
+\section{Positive theta kernel with the factor two retained}
+For $x>0$ put
+\[
+ \vartheta(x)=\sum_{n\in\mathbb Z}e^{-\pi n^2x^2},\quad
+ D=-x\partial_x,\quad (Jf)(x)=x^{-1}f(1/x).
+\]
+The theta transformation $\vartheta=J\vartheta$ is the specialization
+of the classical modular identity, DLMF 20.7.32 at $z=0$,
+$\tau=ix^2$ \cite{theta}. Differentiating a term with $a=\pi n^2$
+gives $D e^{-ax^2}=2ax^2e^{-ax^2}$ and
+$D^2e^{-ax^2}=(-4ax^2+4a^2x^4)e^{-ax^2}$. Therefore
+\begin{equation}\tag{TS6}
+ T(x)=D(D-1)\vartheta(x)
+ =2\sum_{n\geq1}(4\pi^2n^4x^4-6\pi n^2x^2)e^{-\pi n^2x^2}.
+\end{equation}
+The series and all its derivatives converge uniformly on compact
+subsets of $x>0$. Direct differentiation of $Jf$ gives
+$DJ=J(1-D)$, hence $D(D-1)J=JD(D-1)$ and $T=JT$.
+Consequently $K(t)=e^{t/2}T(e^t)$ is even. For $t\geq0$ every term
+of (TS6) is strictly positive, since $2\pi n^2e^{2t}-3>0$.
+It follows that $K(t)>0$ for every real $t$. For $x\geq1$, the
+Gaussian series in (TS6) is bounded by $C(1+x^4)e^{-\pi x^2}$;
+the same type of bound holds after any fixed number of logarithmic
+derivatives. Reflection gives decay faster than every exponential
+at the other end. This proves all Mellin and Fourier integrability
+statements used next.
+
+For $\Re s>1$ each Mellin integral is absolutely integrable and its
+sum is absolutely convergent. Substitution $u=\pi n^2x^2$ gives
+\[
+ \int_0^\infty(4\pi^2n^4x^4-6\pi n^2x^2)e^{-\pi n^2x^2}x^s\frac{dx}{x}
+ =\frac12\pi^{-s/2}n^{-s}s(s-1)\Gamma(s/2).
+\]
+Here $4\Gamma(s/2+2)-6\Gamma(s/2+1)=s(s-1)\Gamma(s/2)$.
+The literal factor two in (TS6) yields
+\begin{equation}\tag{TS7}
+ \int_0^\infty T(x)x^s\frac{dx}{x}
+ =s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)=2\xi(s)=g(s).
+\end{equation}
+The convention for $\xi$ is DLMF 25.4.4 \cite{zeta}.
+Rapid decrease at both ends extends the left side to an entire
+function; the identity continues to every $s$.
+
+Set $G(z)=g(1/2+z)$. Substitution $x=e^t$ in (TS7), then evenness
+of $K$, gives the absolutely convergent representation
+\begin{equation}\tag{TS8}
+ G(z)=2\int_0^\infty K(t)\cosh(zt)\dd t
+ =\sum_{n=0}^\infty a_nz^{2n},\qquad
+ a_n=\frac2{(2n)!}\int_0^\infty t^{2n}K(t)\dd t>0.
+\end{equation}
+Convergence is uniform on compact $z$-sets, by the exponential
+majorants already proved. Thus these are the Taylor coefficients
+of the original numerator.
+
+\section{A fixed interval determined by actual zeros}
+The residue-one pole of $\zeta$ at one, the Gamma recurrence, and
+$\zeta(2)=\pi^2/6$, $\zeta(6)=\pi^6/945$ give
+\begin{equation}\tag{TS9}
+ G(1/2)=1,\qquad G(3/2)=\pi/3,\qquad G(11/2)=4\pi^3/63.
+\end{equation}
+These classical values and conventions are recorded in DLMF
+25.2(i), 25.4.4 and 25.6.1 \cite{zeta,zetavalues}.
+Since $(3/2)^{2n}\geq9(1/2)^{2n}$ for $n\geq1$, (TS8) gives
+\[
+ G(3/2)-a_0\geq9(G(1/2)-a_0).
+\]
+Subtracting the series at $3/2$ and $1/2$ also gives
+$G(3/2)-G(1/2)\geq2a_1$. Thus
+\begin{equation}\tag{TS10}
+ a_0\geq\frac{27-\pi}{24}>\frac{167}{168},\qquad
+ \frac{a_1}{a_0}\leq\frac{4(\pi-3)}{27-\pi}<\frac4{167}.
+\end{equation}
+The rational estimates use $\pi<22/7$, proved by a finite series
+below. Positivity of all coefficients gives, for $|z|\leq11/2$,
+\begin{equation}\tag{TS11}
+ |G(z)|\geq a_0-|G(z)-a_0|
+ \geq2a_0-G(11/2)
+ >\frac{167}{84}-\frac4{63}\left(\frac{22}{7}\right)^3
+ =\frac{1475}{86436}>0.
+\end{equation}
+Apply (TS11) to the actual zero $z=\delta+i\gamma$. It implies
+$\delta^2+\gamma^2>121/4$ and hence
+\begin{equation}\tag{TS12}
+ \gamma^2-\delta^2>121/4-2(1/2)^2=119/4.
+\end{equation}
+No numerical zero table or extra hypothesis on the height is used.
+
+The elementary inequalities $|\cos u|\leq1$ and
+$\cos u\geq1-u^2/2$ in (TS8) give
+$|G(iy)|\leq a_0$ and $G(iy)\geq a_0-a_1y^2$.
+Put $T_*=27/5$ and $c_*=4/167$. The exact identities
+\[
+ 119/4-T_*^2=59/100>0,\qquad
+ 1-c_*T_*^2=1259/4175>0
+\]
+show that squaring is legitimate on $0\leq y\leq T_*$:
+\begin{equation}\tag{TS13}
+ a_0^2(1-c_*y^2)^2\leq G(iy)^2\leq a_0^2.
+\end{equation}
+
+\section{The complete denominator and the entire outside mass}
+Multiplying the four original linear factors on the source line gives
+\begin{equation}\tag{TS14}\begin{aligned}
+ H(y)&=[(y-\gamma)^2+\delta^2][(y+\gamma)^2+\delta^2]\\
+ &=(y^2-\gamma^2+\delta^2)^2+4\delta^2\gamma^2>0,\\
+ h(1/2+iy)&=H(y)^{m_0},\qquad
+ w_h(y)=\frac{G(iy)^2}{2\pi H(y)^{2m_0}}.
+\end{aligned}\end{equation}
+In particular the full power and all four roots remain present.
+Since $H'(y)=4y[y^2-(\gamma^2-\delta^2)]<0$ on $(0,T_*]$,
+$R_h(y)=H(y)^{-2m_0}$ increases there.
+
+For a finite positive measure $\nu$ and real integrable functions
+$f,R$, direct expansion gives
+\begin{equation}\tag{TS15}
+ \left(\int fR\dd\nu\right)\left(\int1\dd\nu\right)
+ -\left(\int f\dd\nu\right)\left(\int R\dd\nu\right)
+ =\frac12\iint(f(y)-f(z))(R(y)-R(z))\dd\nu(y)\dd\nu(z).
+\end{equation}
+On $[0,T_*]$, use $d\nu=G(iy)^2dy$, $f(y)=\cosh(\alpha_*y)$
+and $R=R_h$. These functions are bounded and the measure is finite,
+so Fubini applies. The right side is nonnegative because both
+$f$ and $R$ increase. All denominators below are positive by (TS13).
+Using (TS13) only after this exact comparison yields
+\begin{equation}\tag{TS16}
+ \frac{\int_0^{T_*}\cosh(\alpha_*y)w_h(y)\dd y}
+      {\int_0^{T_*}w_h(y)\dd y}
+ \geq\frac{\int_0^{T_*}\cosh(\alpha_*y)G(iy)^2\dd y}
+              {\int_0^{T_*}G(iy)^2\dd y}
+ \geq J_*:=\frac1{T_*}\int_0^{T_*}\cosh(\alpha_*y)(1-c_*y^2)^2\dd y.
+\end{equation}
+On this interval $0<(1-c_*y^2)^2\leq1$, hence
+$J_*\leq\cosh(\alpha_*T_*)$. On the entire remaining half-line
+$y\geq T_*$, $\cosh(\alpha_*y)\geq\cosh(\alpha_*T_*)\geq J_*$.
+Therefore
+$\int_0^\infty(\cosh(\alpha_*y)-J_*)w_h(y)dy\geq0$:
+the inner integral is nonnegative by (TS16) and the outer one
+is nonnegative pointwise. Both integrals are finite by the retained
+envelope. The exact evenness in (TS14) then gives
+\begin{equation}\tag{TS17}
+ \frac{M_h(\alpha_*)}{M_h(0)}
+ =\frac{\int_0^\infty\cosh(\alpha_*y)w_h(y)\dd y}
+        {\int_0^\infty w_h(y)\dd y}\geq J_*.
+\end{equation}
+This argument places no monotonicity requirement on $R_h$ outside
+$[0,T_*]$ and removes no outer mass.
+
+\section{Finite rational pressure estimate}
+Because $\alpha_*>157/100$, the positive Taylor series of $\cosh$
+and exact polynomial integration give
+\begin{equation}\tag{TS18}\begin{aligned}
+ J_*&\geq S_*:=\sum_{j=0}^8\frac{(157/100)^{2j}}{(2j)!}
+ \left[\frac{T_*^{2j}}{2j+1}-\frac{2c_*T_*^{2j+2}}{2j+3}
+                +\frac{c_*^2T_*^{2j+4}}{2j+5}\right],\\
+ \frac{611585}{10000}&<S_*<\frac{611586}{10000},\qquad S_*>61.
+\end{aligned}\end{equation}
+Every bracket is exactly
+$T_*^{-1}\int_0^{T_*}y^{2j}(1-c_*y^2)^2dy>0$.
+For $x=41/10$, all terms after $x^{21}/21!$ have successive
+ratios at most $x/22<1$, so
+\begin{equation}\tag{TS19}
+ e^{41/10}\leq\sum_{j=0}^{20}\frac{(41/10)^j}{j!}
+ +\frac{(41/10)^{21}}{21!}\frac1{1-(41/10)/22}<61.
+\end{equation}
+Both (TS18) and (TS19) are finite rational inequalities verified
+by the delivered exact cross-products. They imply
+$\log(M_h(\alpha_*)/M_h(0))>41/10$. The positive $C^1$ function
+$M_h$ satisfies the fundamental theorem of calculus on the whole
+closed interval. Cauchy--Schwarz thus proves
+\begin{equation}\tag{TS20}
+ I_h\geq\frac1{\alpha_*}
+ \left(\int_0^{\alpha_*}\frac{M_h'(\theta)}{M_h(\theta)}\dd\theta\right)^2
+ =\frac2\pi\log^2\frac{M_h(\pi/2)}{M_h(0)}
+ >\frac{1681}{50\pi}.
+\end{equation}
+
+\section{Physical EIQ measure and an independent exact moment derivation}
+\label{eqphysical}
+Use $a,b>0$ for the potential parameters in this section, to keep them
+distinct from $\alpha_*=\pi/2$ and all original packet parameters.
+Define the physical complete elliptic integrals
+\[
+ K(\kappa)=\int_0^{\pi/2}\frac{d\theta}{\sqrt{1-\kappa^2\sin^2\theta}},
+ \qquad E(\kappa)=\int_0^{\pi/2}\sqrt{1-\kappa^2\sin^2\theta}\dd\theta.
+\]
+The conventions agree with Carlson's DLMF Chapter 19 \cite{elliptic}.
+For $r\in(0,1)$, put $\kappa=\sqrt{1-r^2}$. Differentiating these
+integrals gives $dE/dr=r(K-E)/(1-r^2)$ and
+$dK/dr=(r^2K-E)/(r(1-r^2))$; the latter follows also by integrating
+the derivative of $\sin\theta\cos\theta/
+\sqrt{1-\kappa^2\sin^2\theta}$ between its zero boundary values.
+It follows that
+\begin{equation}\tag{TS21}
+ \frac d{dr}\frac{rK}{E}
+ =\frac{(K-E)(E-r^2K)}{(1-r^2)E^2}>0.
+\end{equation}
+The first numerator factor is the integral of
+$(1-r^2)\sin^2\theta/\sqrt{1-(1-r^2)\sin^2\theta}$;
+the second is the corresponding integral with $\cos^2\theta$.
+Both are positive. Dominated convergence gives $rK\to0$, $E\to1$
+as $r\downarrow0$, since the integrand of $rK$ is bounded by one.
+At $r\uparrow1$, $K,E\to\pi/2$. Thus there is a unique solution of
+\begin{equation}\tag{TS22}
+ \frac{rK}{E}=\frac a{a+2},\qquad
+ v=\frac{(a+2)\pi}{bE},\quad u=rv,
+ \quad uK=\frac{a\pi}{b},\quad vE=\frac{(a+2)\pi}{b}.
+\end{equation}
+
+Put $A=u^2$, $B=v^2$, $m=(A+B)/2$, $R_s=\sqrt{(A+s)(B+s)}$,
+$R_0=uv$, and $V(x)=b\sqrt x-a\log x$.
+The substitutions $x=A\cos^2\theta+B\sin^2\theta$ give
+\[
+ \int_A^B\frac{V'(x)}{\sqrt{(B-x)(x-A)}}\dd x=0,\qquad
+ \int_A^B\frac{xV'(x)}{\sqrt{(B-x)(x-A)}}\dd x=2\pi.
+\]
+Indeed the integrals with numerators $x^{-1/2},x^{-1},x^{1/2}$
+are respectively $2K/v$, $\pi/(uv)$, and $2vE$.
+Since $\int_0^\infty s^{-1/2}(x+s)^{-1}ds=\pi/\sqrt x$,
+Tonelli in the first identity gives
+$a/R_0=(b/(2\pi))\int_0^\infty ds/(\sqrt sR_s)$.
+Define the positive function and measure
+\begin{equation}\tag{TS23}\begin{aligned}
+ H_*(x)&=\frac{a}{xR_0}-\frac b{2\pi}\int_0^\infty
+           \frac{ds}{\sqrt s(x+s)R_s}
+ =\frac b{2\pi x}\int_0^\infty\frac{\sqrt s}{(x+s)R_s}\dd s>0,\\
+ d\rho_{a,b}(x)&=\frac{\sqrt{(B-x)(x-A)}}{2\pi}H_*(x)
+                 \mathbf1_{(A,B)}(x)\dd x.
+\end{aligned}\end{equation}
+All auxiliary integrals converge at zero and infinity. This is exactly
+the EIQ density \cite{EIQ}, with no coordinate rescaling.
+
+For completeness its mass and Euler equality can be checked directly.
+Let $R(z)=\sqrt{(z-A)(z-B)}$ with $R(z)/z\to1$ at infinity.
+Substitution $x=m+(B-A)\cos\theta/2$ and then
+$t=\tan(\theta/2)$ gives the arcsine transform $1/R(z)$.
+Polynomial division of $(B-x)(x-A)$ then gives
+\begin{equation}\tag{TS24}
+ \frac1\pi\int_A^B\frac{\sqrt{(B-x)(x-A)}}{(x+s)(z-x)}\dd x
+ =1-\frac{R_s+R(z)}{z+s}.
+\end{equation}
+The removable value at $z=-s$ is understood. The same division gives
+$\pi^{-1}\int_A^B\sqrt{(B-x)(x-A)}(x+s)^{-1}dx=m+s-R_s$.
+Using (TS23) and $\int_0^\infty s^{-1/2}(1-s/R_s)ds=2vE$,
+which follows by averaging the Stieltjes representation of $\sqrt x$
+against the arcsine measure, yields
+\[
+ \int d\rho_{a,b}=-a/2+bvE/(2\pi)=1.
+\]
+Furthermore (TS24), the Stieltjes identity, and the exact cancellation
+$a/R_0=(b/(2\pi))\int_0^\infty ds/(\sqrt sR_s)$ give
+\begin{equation}\tag{TS25}
+ \int\frac{d\rho_{a,b}(x)}{z-x}
+ =\frac{V'(z)-R(z)H_*(z)}2.
+\end{equation}
+These identities first hold off both $[A,B]$ and the negative real
+axis, where all integrations are absolutely convergent. Taking real
+boundary values on $(A,B)$ gives the principal-value derivative
+of the logarithmic potential, because the density is locally $C^1$;
+subtracting its value at the singular point proves this limit.
+As $R(x+i0)$ is purely imaginary there, (TS25) implies
+\begin{equation}\tag{TS26}
+ V(x)-2\int\log|x-t|\dd\rho_{a,b}(t)=\ell\qquad(A\leq x\leq B).
+\end{equation}
+The endpoints follow by continuity; bounded compactly supported
+density makes the logarithmic singularity uniformly integrable.
+Outside $[A,B]$ its derivative is $R(x)H_*(x)$, negative on $(0,A)$
+and positive on $(B,\infty)$. This proves the strict exterior Euler
+inequality. It identifies the constructed measure with the unique
+EIQ equilibrium: for the difference $\nu$ from any competing finite
+energy probability measure, expansion of energy gives
+$\int(V-2U_\rho-\ell)\dd\nu-\iint\log|x-y|\dd\nu(x)\dd\nu(y)$.
+The first term equals its integral against the competing probability
+and is nonnegative. The second is nonnegative, since for a zero-mass
+signed measure the identity
+\[
+ -\iint\log|x-y|\dd\nu(x)\dd\nu(y)
+ =\frac12\int_0^\infty\frac1t
+       \iint e^{-t(x-y)^2}\dd\nu(x)\dd\nu(y)\dd t
+\]
+follows from the scalar identity for $-\log d$ by bounded truncation
+and dominated convergence. The inner double integral is
+$(4\pi t)^{-1/2}\int e^{-\zeta^2/(4t)}|\widehat\nu(\zeta)|^2d\zeta$.
+It is positive unless $\nu=0$: a zero Fourier transform forces every
+Gaussian convolution, and hence the measure, to vanish. The
+logarithmic integrability needed here follows from finite energy and
+the coercivity of $V$; cross terms with $\rho$ are integrable by its
+bounded compact density. Infinite-energy competitors cannot improve
+the finite energy of (TS23).
+
+We now derive the closed logarithmic moment without importing ECL14.
+Write
+\[
+ C=\frac{(u+v)^2}{4},\quad\eta=\frac{v-u}{v+u},\quad
+ d\nu_0(x)=\frac{dx}{\pi\sqrt{(B-x)(x-A)}},\quad
+ d\omega_0(x)=\frac{R_0}{x}\dd\nu_0(x).
+\]
+Both measures are probabilities. Under $x=m+(B-A)\cos\theta/2$
+the first is $d\theta/\pi$ and
+$x=C(1+2\eta\cos\theta+\eta^2)$,
+$R_0=C(1-\eta^2)$. Therefore the second measure has the Poisson
+kernel density $(1-\eta^2)/(1+2\eta\cos\theta+\eta^2)$ and
+\begin{equation}\tag{TS27}
+ \int\cos(j\theta)\dd\omega_0=(-\eta)^j\quad(j\geq0).
+\end{equation}
+This follows by expanding the two geometric series and integrating;
+all series converge absolutely for $\eta<1$.
+The absolutely convergent expansion of $\log x$ gives
+\begin{equation}\tag{TS28}
+ \int\log x\dd\nu_0=\log C,\qquad
+ \int\log x\dd\omega_0=\log C+2\log(1-\eta^2)
+ =2\log R_0-\log C.
+\end{equation}
+For $t=m+(B-A)\cos\phi/2\in[A,B]$, the logarithmic distance has
+the Abel-convergent cosine expansion
+\[
+ \log|x-t|=\log\frac{B-A}{4}
+       -2\sum_{j\geq1}\frac{\cos(j\theta)\cos(j\phi)}j.
+\]
+To verify it, factor $\cos\theta-\cos\phi$ into the two sine
+factors and take real parts of $-\sum z^j/j=\log(1-z)$.
+Inserting an Abel factor $s^j$, $0<s<1$, permits termwise
+integration. As $s\uparrow1$, convergence holds in $L^1(d\theta)$
+by the locally integrable logarithmic singularity; the Poisson
+kernel in (TS27) is bounded, so the same is true against $d\omega_0$.
+The endpoint values follow by this identical one-sided integrability.
+Thus (TS27)--(TS28) give the exact potential identities
+\begin{equation}\tag{TS29}
+ \int\log|x-t|\dd\nu_0(x)=\log\frac{B-A}{4},\qquad
+ \int\log|x-t|\dd\omega_0(x)=\log t+\log\eta.
+\end{equation}
+Finally the endpoint integrals in (TS22) give
+\[
+ \int\sqrt x\dd\nu_0=2vE/\pi=2(a+2)/b,\qquad
+ \int\sqrt x\dd\omega_0=2uK/\pi=2a/b.
+\]
+Integrate (TS26) first against $\nu_0$, then against $\omega_0$.
+Fubini applies because both auxiliary densities have integrable
+square-root endpoints and the density of $\rho$ is bounded;
+the logarithmic singularities are absolutely integrable. This yields
+\begin{align*}
+ \ell&=2(a+2)-a\log C-2\log((B-A)/4),\\
+ 2\mathcal L(a,b)+2\log\eta
+ &=2a-a(2\log R_0-\log C)-\ell.
+\end{align*}
+Since $(B-A)/(4\eta)=C$, substitution proves the exact formula
+\begin{equation}\tag{TS30}
+ \boxed{\mathcal L(a,b)=(a+1)\log C-a\log R_0-2.}
+\end{equation}
+In particular, at $(a,b)=(2,\pi)$,
+\begin{equation}\tag{TS31}
+ uK=2,\quad vE=4,\quad 2rK=E,\qquad
+ \mathcal L(2,\pi)=6\log((u+v)/2)-2\log(uv)-2.
+\end{equation}
+All these variables refer to the original physical potential.
+Inserting $u=rv$ and $v=4/E$ in (TS3) gives
+\begin{equation}\tag{TS32}
+ \boxed{\mathcal C_\Gamma=4\log H_*,\qquad
+ H_*:=\frac{(1+r)^3}{8rE(\sqrt{1-r^2})}.}
+\end{equation}
+In particular the denominator contains $E$, not $2E/\pi$.
+
+\section{Exact finite bounds for the physical elliptic constant}
+For rational $x\in(0,1)$ set $m_x=1-x^2$ and
+\[
+ t_n(x)=\left(\frac{\binom{2n}{n}}{4^n}\right)^2m_x^n,
+ \quad K_N(x)=\sum_{n=0}^Nt_n(x),\quad
+ E_N(x)=1-\sum_{n=1}^N\frac{t_n(x)}{2n-1}.
+\]
+The binomial series for $(1-z)^{-1/2}$, integrated against
+$z=m_x\sin^2\theta$, gives $2K/\pi=\sum_{n\geq0}t_n$.
+Here $\int_0^{\pi/2}\sin^{2n}\theta\,d\theta=
+(\pi/2)\binom{2n}{n}/4^n$, obtained by integration by parts from
+$n=0$. The binomial series for $(1-z)^{1/2}$ similarly gives
+$2E/\pi=1-\sum_{n\geq1}t_n/(2n-1)$.
+Since $t_{n+1}/t_n=m_x(2n+1)^2/(2n+2)^2<m_x$, geometric
+majoration proves both finite enclosures
+\begin{equation}\tag{TS33}
+ K_N\leq\frac{2K}{\pi}\leq K_N+\frac{t_{N+1}}{1-m_x},\qquad
+ E_N-\frac{t_{N+1}}{(2N+1)(1-m_x)}
+ \leq\frac{2E}{\pi}\leq E_N.
+\end{equation}
+Take $N=512$, $r_-=1601/10000$, $r_+=801/5000$.
+With each $K,E$ evaluated at $\sqrt{1-r_\pm^2}$, exact rational
+substitution in (TS33) proves
+\begin{equation}\tag{TS34}
+ -\frac{443}{10^8}<2r_-\frac{2K_-}{\pi}-\frac{2E_-}{\pi}
+ <-\frac{441}{10^8}<0,
+ \quad
+ 0<\frac{2597}{10^7}<2r_+\frac{2K_+}{\pi}-\frac{2E_+}{\pi}
+ <\frac{2598}{10^7}.
+\end{equation}
+The strict monotonicity (TS21) implies $r_-<r<r_+$.
+The defining integrand shows that $E(\sqrt{1-r^2})$ increases
+with $r$. Define $\underline E_-=E_{512}(r_-)-
+t_{513}(r_-)/(1025(1-m_{r_-}))$. Using the physical $\pi/2$
+factor and $157/50<\pi<22/7$, the following rational bounds hold:
+\begin{equation}\tag{TS35}
+ \frac{1176}{1000}
+ <\frac{(1+r_-)^3}{8r_+(11/7)E_{512}(r_+)}
+ <H_*<\frac{(1+r_+)^3}{8r_-(157/100)\underline E_-}
+ <\frac{1179}{1000}<\frac{85}{72}<e^{1/6}.
+\end{equation}
+The penultimate inequality is rational. The last follows by retaining
+the first three positive terms $1+1/6+1/72$ in the exponential series.
+The left endpoint exceeds one. Equations (TS32) and (TS35) prove
+$0<\mathcal C_\Gamma<2/3$.
+
+For completeness all elementary constants used above have rational
+certificates as well. The tangent addition formulas yield
+$\tan(2\arctan(1/5))=5/12$,
+$\tan(4\arctan(1/5))=120/119$, and
+$\tan(4\arctan(1/5)-\arctan(1/239))=1$.
+The final angle is positive, by
+$\arctan x\geq x/(1+x^2)$ and $\arctan x\leq x$;
+it is less than $4/5<1<\pi/2$, where
+$\pi/2=2\arctan1>1$ follows by integrating $(1+t^2)^{-1}>1/2$
+on $[0,1)$. Hence Machin's identity is
+$\pi=16\arctan(1/5)-4\arctan(1/239)$.
+The alternating series through eight terms, with its first omitted
+term, encloses $\pi$ strictly between $157/50$ and $22/7$.
+Also integration of the geometric series on $[0,1/3]$ gives
+$\log2=2\sum_{j\geq0}(1/3)^{2j+1}/(2j+1)>56/81>69/100$.
+All stated finite comparisons are made with exact integer
+cross-multiplication by the delivered certificate; its 33 comparisons
+pass identically with and without Python optimization.
+
+\section{Coefficient and finite receivers on the original domain}
+Combining (TS20), $\mathcal C_\Gamma<2/3$, $\log2>69/100$ and
+$\pi<22/7$ gives
+\begin{equation}\tag{TS36}
+ -2\mathcal C_\Gamma+\frac{\log2}{\pi}I_h
+ >-\frac43+\frac{1681}{50}\frac{69}{100}\frac{49}{484}
+ =\frac{7370383}{7260000}>1.
+\end{equation}
+This completes the source and equilibrium part of Theorem~\ref{th:sign}.
+
+The scalar receiving map is the already accepted original one
+\cite{SBV}. To make its scope explicit, retain
+\begin{equation}\tag{TS37}\begin{aligned}
+ k&=4\ell+1\geq5,\quad e_k=1+k(m_0-1),\quad q=e_k(k+1)^2,\\
+ \chi_k(S)&=\prod_{a,b=0}^k
+ [S-k/2-(2a-k)\delta-i(2b-k)\gamma]^{e_k},\\
+ G_N[\nu]&=(J_NH_N[\nu]^{-1}J_N^*)^{-1},\qquad J_N=\operatorname{rem}_{\chi_k},\\
+ \mathcal B_k[\nu]&=\log\det G_{q-1}[\nu]+\log\det G_q[\nu]
+ -\log\det G_{2q-1}[\nu]-\log\det G_{2q}[\nu],\\
+ d\sigma(y)&=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\dd y,\qquad
+ \delta_{k,1}^{\rm ar}=\mathcal B_k[w_h^{*k}(y)dy]-\mathcal B_k[d\sigma].
+\end{aligned}\end{equation}
+Here $H_N$ is the original degree-$N$ polynomial Gram matrix in
+the physical coordinate $S=k/2+iy$. The coordinate morphism is
+$P(S)\mapsto P(k/2+iy)$, with inverse substitution
+$y=(S-k/2)/i$; no roots or lower components are removed.
+The Gamma mass is $\sqrt{2\pi}$ and the arithmetic mass is
+$M_h(0)^k$. The accepted theorem states, on its fixed-packet
+sufficiently-large domain $k\geq k_0(h)$,
+\begin{equation}\tag{TS38}\begin{aligned}
+ \delta_{k,1}^{\rm ar}
+ &=-(4m_0-2)\mathcal C_\Gamma q+\frac{\log2}{\pi}I_h k^2+\epsilon_{h,k},\\
+ |\epsilon_{h,k}|&\leq E_{h,k}=C_h^{\rm SBV}q\mathfrak r(q),\qquad
+ \mathfrak r(q)=\frac{\log\log(q+16)}{\log(q+2)}
+                       +q^{-1/200}\log^2(q+2)\longrightarrow0.
+\end{aligned}\end{equation}
+Its full accepted proof and providers are preserved separately.
+The present argument establishes the missing sign by applying
+that theorem, and does not reassign its proof as unfinished work.
+
+For $m_0=1$, define $A_*=5683461/2420000$ and note
+$A_*-4/3=\kappa_*$. Then $q=(k+1)^2$ and the exact finite lower
+receiver is
+\begin{equation}\tag{TS39}
+ \delta_{k,1}^{\rm ar}
+ >A_*k^2-\frac43q-E_{h,k}
+ =\kappa_*q-A_*(2k+1)-E_{h,k}.
+\end{equation}
+Thus $\delta_{k,1}^{\rm ar}>q$ whenever $k\geq k_0(h)$ and
+\begin{equation}\tag{TS40}
+ C_h^{\rm SBV}\mathfrak r(q)+A_*\frac{2k+1}{q}<\kappa_*-1.
+\end{equation}
+This guard holds eventually for each fixed actual simple packet;
+no packet-independent value for $k_0(h)$ or $C_h^{\rm SBV}$ is claimed.
+Dividing (TS38) by $q$ gives the positive simple coefficient in (TS5).
+At fixed $m_0\geq2$, $k^2/q\to0$, so it instead gives
+$\delta_{k,1}^{\rm ar}/q\to-(4m_0-2)\mathcal C_\Gamma<0$.
+The same pressure estimate remains true, but its $k^2$ term is
+lower order on this original higher-multiplicity scale.
+
+The exact four-endpoint receiving identity for any invertible marked
+frame $\mathcal J$ is
+$\det(\mathcal J^*G_N[\nu]\mathcal J)=|\det\mathcal J|^2\det G_N[\nu]$.
+It follows by multiplicativity of determinants. If the same frame is
+used at the four endpoints, its factor cancels with coefficients
+$1+1-1-1=0$. The arithmetic-to-Gamma ratio of these complete
+four-endpoint products consequently has logarithm
+$\delta_{k,1}^{\rm ar}$ exactly; it exceeds $e^q$ under (TS40).
+This proves the full-frame scalar transport without assigning a
+sign to any proper projected subframe or individual pairing.
+
+Finally the complete action receiver retains its existing identity
+\begin{equation}\tag{TS41}
+ J_k^{\rm action}
+ =\mathcal B_k[d\sigma]+\delta_{k,1}^{\rm ar}
+   +W_k^{\rm mono}-P_{k,-}-P_{k,+}.
+\end{equation}
+Substitution of (TS39) increases this receiver by the displayed
+positive scalar correction on the simple stratum, while retaining
+the full Gamma return, monic window, and both penalties. The
+order-$k$ identity
+$\delta_{k,k}^{\rm ar}=\delta_{k,1}^{\rm ar}
+ -(\mathcal B_k^{(k)}-\mathcal B_k^{(1)})$ remains unchanged.
+The seven absolute allocations and the projected responses $U,V$
+are not evaluated by these scalar identities. Nothing here closes
+the RH programme or infers a sign for the complete action after
+omitting its other terms.
+
+\begin{thebibliography}{9}
+\bibitem{theta} W. P. Reinhardt and P. L. Walker,
+\emph{Theta Functions}, NIST Digital Library of Mathematical Functions,
+Chapter 20, equation 20.7.32,
+\url{https://dlmf.nist.gov/20.7.E32}. Modular identity checked 19 September 2026.
+\bibitem{zeta} T. M. Apostol, \emph{Zeta and Related Functions}, NIST DLMF,
+Chapter 25, 25.2(i), 25.4.3--4,
+\url{https://dlmf.nist.gov/25.2}, \url{https://dlmf.nist.gov/25.4}.
+Residue and exact $\xi$ convention checked 19 September 2026.
+\bibitem{zetavalues} T. M. Apostol, NIST DLMF, equation 25.6.1,
+\url{https://dlmf.nist.gov/25.6.E1}. The displayed values cite
+W. Magnus, F. Oberhettinger and R. P. Soni,
+\emph{Formulas and Theorems for the Special Functions of Mathematical Physics},
+1966, p. 19. Values checked 19 September 2026.
+\bibitem{elliptic} B. C. Carlson, \emph{Elliptic Integrals}, NIST DLMF,
+Ch. 19, definitions and derivatives, \url{https://dlmf.nist.gov/19.2},
+\url{https://dlmf.nist.gov/19.4}. Physical integrals are defined explicitly
+above, and the derivatives and rational tail bounds are derived here.
+\bibitem{EIQ} Split-Zero programme, \emph{Exact equilibrium for the
+square-root logarithmic potential}, EIQ1--28 and GEL providers,
+\texttt{EIQ\_GEL\_original\_equilibrium.tex}, supplied and preserved source.
+The physical density, endpoint equations, Euler equality and the
+additional closed moment derivation are all written out above.
+\bibitem{incoming} Supplied continuation, \emph{Positive original-source
+pressure and the sign of the simple-packet arithmetic correction},
+\texttt{ARITHMETIC\_SIGN\_FROM\_THETA.pdf}, 19 September 2026, nine pages,
+APS1--36, and the corresponding supplied transcript. The pressure,
+constant and sign assertions are independently rederived here.
+\bibitem{SBV} Split-Zero programme, \emph{Signed arithmetic integrated
+calculation}, \texttt{SIGNED\_ARITHMETIC\_INTEGRATED.tex}, accepted
+19 September 2026, together with \texttt{CENTRAL\_FINITE\_REPAIR.tex},
+\texttt{OUTER\_VALUE\_RECONSTRUCTION.tex}, the full localization, source-window,
+original arithmetic envelope, and Gamma providers. The exact input
+identities and hashes are listed in the accompanying acceptance record;
+the sealed 243-page reader is preserved.
+\end{thebibliography}
+\end{document}

@@ -14,9 +14,6 @@ same-class construction remain unfinished. This edition does not claim a
 proof or disproof of the Riemann hypothesis.
 
 The dated bulletin identifies ten advances across the September 19 editions.
-The programme timeline traces the public cohomology/RH work from September 12
-and distinguishes earlier project roots from publication and discovery dates.
-Its curated evidence covers 49 scoped commits through the preceding edition.
 Human-source connections accompany the point-of-use citations in the proofs.
 
 The complete reader LaTeX, five original proofs, three cumulative LaTeX

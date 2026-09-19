@@ -1,6 +1,6 @@
 # Split-Zero continuation — results recorded on 19 September 2026
 
-Read NEW_RESULTS_2026-09-19.md in full, regardless of which earlier session you continued. Use its stable SZ-20260919 identifiers to say which results you have integrated. PROGRAMME_TIMELINE.md records the dated programme history; HUMAN_SOURCE_CONNECTIONS_2026-09-19.md identifies the human sources and precise uses. Their full proofs, rather than the bulletin alone, are the mathematical input.
+Read NEW_RESULTS_2026-09-19.md in full, regardless of which earlier session you continued. Use its stable SZ-20260919 identifiers to say which results you have integrated. HUMAN_SOURCE_CONNECTIONS_2026-09-19.md identifies the human sources and precise uses. Their full proofs, rather than the bulletin alone, are the mathematical input.
 
 The current addition has five complete proofs in the 44-page Original Observation Responses and the First Determinant Allocation reader and ARRIVAL04_PROOF_READER.tex. The three cumulative LaTeX successors preserve every earlier source by reversible insertion. The nineteen-file source collection contains the new complete proofs and all previous material, including the full D032, SGA/EGA and other supporting mathematical LaTeX. This prompt and the dated Markdown overview remain outside that nineteen-file folder. Read the publication record for the immutable GitHub commit; do not use an old session's closing summary as the current mathematical state.
 

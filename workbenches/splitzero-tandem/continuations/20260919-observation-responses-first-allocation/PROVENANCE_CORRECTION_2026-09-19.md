@@ -34,12 +34,6 @@ is an isomorphism of commutative unital semirings. Indeed, it is a bijection wit
 
 This establishes continuity of the defining mathematical object across the change of notation and title. It does not require the original manuscript to use the later name.
 
-## Correction to the September chronology
-
-The previous chronology began with a September repository date and gave two March papers as the earlier origin references. It omitted the July 2025 origin and the established Project Atlas. The corrected chronology references the original paper and the Atlas, while retaining the September commits solely as dates of that repository strand. It does not expand the overview into a catalogue of the intervening papers.
-
-Understanding the wider corpus remains a separate mathematical responsibility: an unread paper's relevance cannot be judged from its absence in a dependency index. Reading the Atlas and checking the original definition do not establish that all preceding proofs have been read or integrated. The earlier request for an overview explaining the mathematical results also remains outstanding; this correction repairs provenance.
-
 ## Evidence and preservation
 
 The source record's `publication_date` is 2025-07-12. The supplied Zenodo version has a later record-creation timestamp and is version index 5; neither field is substituted for the work's date or the user's account of its origin. The downloaded TeX has an empty title-page date. The exact record metadata and source bytes are retained locally in `zenodo_17555345/`; the Atlas metadata and source are retained in `zenodo_21443852/`. Historical editions and their hashes remain unchanged. Human and project credit in the sources remain attached to them.

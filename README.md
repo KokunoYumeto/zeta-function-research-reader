@@ -1,3 +1,23 @@
+<!-- original-heat-source-endpoint:20260919 -->
+## Original heat control and complete source endpoint
+
+This 21-page proof bounds the growth of the original heat-comparison
+constant and evaluates the common heat depth needed to control the
+three original currents. It then calculates the complete finite-primary
+source endpoint: its regular correction, left-block quotient, nilpotent
+metric scales, critical first correction and arithmetic boundary maps.
+The source cross terms and target minimum are retained. Actual native
+allocations, proper-source target values and individual signs remain
+open calculations.
+
+[Read the 21-page proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-original-heat-source-endpoint/ORIGINAL_HEAT_AND_SOURCE_ENDPOINT.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-original-heat-source-endpoint/ORIGINAL_HEAT_AND_SOURCE_ENDPOINT.tex) · [Six mathematical results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-original-heat-source-endpoint/NEW_RESULTS_2026-09-19.md) · [Complete source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-original-heat-source-endpoint/README.md) · [Next calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-original-heat-source-endpoint/CONTINUATION.md).
+
+Full cited providers, three additive cumulative LaTeX successors,
+136 finite heat/current diagnostics and 14 exact endpoint check groups
+accompany the proofs. Human authors retain their point-of-use citations.
+Earlier sealed editions remain unchanged; the new cumulative sources
+have not been rendered into replacement PDFs.
+
 <!-- native-precision-leakage:20260919 -->
 ## Native precision and quantitative kernel leakage
 

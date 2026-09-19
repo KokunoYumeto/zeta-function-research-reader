@@ -1,0 +1,768 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[margin=25mm]{geometry}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\setlength{\emergencystretch}{1em}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\PP}{\mathcal P}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ip}[2]{\left\langle#1,#2\right\rangle}
+\DeclareMathOperator{\cond}{cond}
+\title{The two original low-cutoff source energies: exact minima and finite arithmetic concentration}
+\author{Split-Zero mathematical continuation}
+\date{19 September 2026}
+\begin{document}\maketitle
+
+This proof evaluates equations (1)--(21) of the supplied low-cutoff
+continuation \cite{lce}. The comparison used on a restricted integral is
+the actual pointwise upper envelope CAI17, not merely its consequence
+for whole polynomial norms. The denominator is bounded by the
+whole-polynomial lower comparison followed by a restricted integral in
+the Gamma reference measure. Every integral in the original arithmetic
+source, its mass, and every primary multiplicity are retained.
+
+\section{Original source, complete roots and attained lifts}
+
+Retain the original stipulated quartet domain of CAI1 and EC1--6
+\cite{cai,ec}: fixed $0<\delta<1/2$, $\gamma>2$, and complete common
+order $m_0\ge1$, with
+\begin{equation}\tag{LCS1}
+\begin{gathered}
+ \rho=\tfrac12+\delta+i\gamma,\qquad
+ h(s)=\prod_{\zeta\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}
+                      (s-\zeta)^{m_0},\qquad v_h=2\xi/h,\\
+ w_h(y)=|v_h(1/2+iy)|^2/(2\pi),\qquad
+ dm_k(y)=m_k(y)\,dy=w_h^{*k}(y)\,dy,\qquad
+ \mu_h=\int_\R w_h(y)\,dy,\\
+ k\equiv1\pmod4,\quad k\ge9,\quad c=k/2,\quad
+ e=1+k(m_0-1),\quad q=e(k+1)^2,\\
+ \beta_{ab}=c+(2a-k)\delta+i(2b-k)\gamma,\qquad
+ \chi_k(S)=\prod_{a,b=0}^k(S-\beta_{ab})^e,\\
+ \lambda=k\rho=c+d+it,\quad d=k\delta>0,\quad t=k\gamma>0,\quad
+ z=(\lambda-c)/i=t-id,\quad R=|z|=k\sqrt{\delta^2+\gamma^2}.
+\end{gathered}
+\end{equation}
+The total source mass is $\mu_h^k$ by Tonelli. Evenness follows from
+$\xi(1-s)=\xi(s)$ and $h(1-s)=h(s)$ on the original line, and persists
+under convolution. The coordinate is always $S=c+iy$. Inner products
+are conjugate-linear in the first entry.
+
+Put
+\begin{equation}\tag{LCS2}
+\begin{gathered}
+ Q(y)=i^{-q}\chi_k(c+iy)
+   =\prod_{a,b=0}^k
+      [y-(2b-k)\gamma+i(2a-k)\delta]^e,\\
+ \chi_{k,\lambda}(S)=\chi_k(S)/(S-\lambda)^e,\qquad
+ b_\lambda=\chi_{k,\lambda}(\lambda)^{-1},\\
+ L_\lambda(S)=b_\lambda\chi_k(S)/(S-\lambda),\qquad
+ v_\lambda=[L_\lambda]\in E=\C[S]/(\chi_k).
+\end{gathered}
+\end{equation}
+The $\beta_{ab}$ are distinct before their displayed repetitions, so
+$b_\lambda\ne0$. Multiplication gives
+$(S-\lambda)L_\lambda=b_\lambda\chi_k$. At the $\lambda$ primary,
+$L_\lambda$ has leading nonzero terminal term
+$(S-\lambda)^{e-1}$, and at every other primary it vanishes to order
+$e$. Consequently $v_\lambda\ne0$ and $Av_\lambda=\lambda v_\lambda$.
+This retains the power $e-1$ when $e>1$; no derivative of $\chi_k$ at
+a repeated root is used.
+
+The complete roots of $Q$ are closed under conjugation by
+$(a,b)\mapsto(k-a,b)$ and under negation by
+$(a,b)\mapsto(k-a,k-b)$. Hence $Q$ is real and even. Every root has
+modulus at most $R$, all multiplicities are $e$, and none is real
+because $k$ is odd and $\delta>0$. In particular, pairing all roots
+with their opposites gives the pointwise inequalities
+\begin{equation}\tag{LCS3}
+ |Q(y)|^2\le(y^2+R^2)^q\quad(y\in\R),\qquad
+ |Q(y)|^2\ge(y^2-R^2)^q\quad(|y|>R).
+\end{equation}
+Indeed each of the $q/2$ pairs contributes $y^2-\zeta^2$;
+$y^2-R^2\le|y^2-\zeta^2|\le y^2+R^2$ on $|y|>R$, and the upper
+inequality holds everywhere. Squaring the product proves LCS3.
+
+Let $p_n(S)=i^nQ_n((S-c)/i)$ be the original monic orthogonal
+polynomials, with $Q_n$ real and
+$Q_n(-y)=(-1)^nQ_n(y)$, and set
+$\omega_n=\norm{p_n}_{m_k}^2>0$, $b_n=[p_n]$.
+For $N\ge q-1$ the remainder map and its minimum section are
+\begin{equation}\tag{LCS4}
+\begin{gathered}
+ J_N:\PP_N\longrightarrow E,\quad J_NP=[P],\qquad
+ \ker J_N=\chi_k\PP_{N-q},\\
+ \mathscr S_N=H_N^{-1}J_N^*G_N,\quad
+ G_N=(J_NH_N^{-1}J_N^*)^{-1}.
+\end{gathered}
+\end{equation}
+Here $\PP_j=\C[S]_{\le j}$, $\PP_{-1}=0$, and $H_N$ is the
+Gram of $1,S,\ldots,S^N$ in the original source. The remainder map
+is onto, so its displayed Gram is positive definite. Direct
+multiplication proves $J_N\mathscr S_N=1$ and
+$\mathscr S_N(E)\perp\ker J_N$. For any other lift its difference
+from $\mathscr S_N$ lies in that kernel, and the two squared norms
+add. This proves both the minimum and the exact isometry from
+$(E,G_N)$ to the attained source subspace.
+
+Define the literal integrals
+\begin{equation}\tag{LCS5}
+\begin{gathered}
+ \nu_0=\int_\R Q(y)^2m_k(y)\,dy,\qquad
+ \nu_1=\int_\R y^2Q(y)^2m_k(y)\,dy,\qquad
+ d\mu_Q(y)=\nu_0^{-1}Q(y)^2m_k(y)\,dy,\\
+ a_z=\int_\R\frac{d\mu_Q(y)}{y-z},\qquad
+ m_z=\int_\R\frac{d\mu_Q(y)}{|y-z|^2},\qquad
+ s_2=\int_\R y^2d\mu_Q(y)=\nu_1/\nu_0,\\
+ d_0=\omega_q/\nu_0,\qquad d_1=\omega_{q+1}/\nu_1,\qquad
+ W_N=[b_N,b_{N+1},v_\lambda],\qquad
+ F_N=W_N^*G_NW_N,\quad E_N=(F_N)_{33}.
+\end{gathered}
+\end{equation}
+The auxiliary probability in LCS5 expresses ratios of original
+integrals; $\nu_0$, $\nu_1$, $\omega_n$ and $E_N$ are their original
+full source values throughout.
+
+The monic minimum property gives $0<d_0,d_1\le1$. In fact both
+inequalities are strict. For a positive real density the monic
+orthogonal polynomial of degree $n$ has $n$ simple real roots:
+otherwise, multiply its real sign-changing factors to obtain a
+real polynomial of degree below $n$ whose product with the
+orthogonal polynomial has constant nonzero sign on the real line,
+contradicting orthogonality. Equality $d_0=1$ would make $Q$ that
+orthogonal polynomial, although all its roots are nonreal.
+Equality $d_1=1$ would do the same for $yQ$, which still has those
+nonreal roots. The positive density needed here follows from the
+original envelope displayed in LCS13 below.
+
+\subsection{The two exact low-cutoff minima}
+
+At $N=q-1$ there is no relation in the admitted source. Polynomial
+division, monicity, parity and orthogonality give
+\begin{equation}\tag{LCS6}
+\begin{gathered}
+ \mathscr S_{q-1}v_\lambda(c+iy)
+        =b_\lambda i^{q-1}\frac{Q(y)}{y-z},\qquad
+ E_{q-1}=|b_\lambda|^2\nu_0m_z,\\
+ \mathscr S_{q-1}b_{q-1}=p_{q-1},\qquad
+ \mathscr S_{q-1}b_q=p_q-\chi_k,\\
+ (F_{q-1})_{11}=\omega_{q-1},\qquad
+ (F_{q-1})_{13}=b_\lambda\omega_{q-1},\\
+ (F_{q-1})_{22}=\nu_0-\omega_q,\qquad
+ (F_{q-1})_{23}=i b_\lambda\nu_0a_z.
+\end{gathered}
+\end{equation}
+For example $\ip{\chi_k}{L_\lambda}=-i b_\lambda\nu_0a_z$,
+whereas $\ip{p_q}{L_\lambda}=0$ since $\deg L_\lambda=q-1$;
+this proves the displayed complex phase of $(F_{q-1})_{23}$.
+The coefficient of $p_{q-1}$ in $L_\lambda$ is its leading
+coefficient $b_\lambda$, proving $(F_{q-1})_{13}$.
+
+At $N=q$ the complete relation space is $\C\chi_k$. Projecting
+onto precisely this line gives
+\begin{equation}\tag{LCS7}
+\begin{gathered}
+ \mathscr S_qv_\lambda(c+iy)
+   =b_\lambda i^{q-1}Q(y)\left((y-z)^{-1}-a_z\right),\\
+ E_q=|b_\lambda|^2\nu_0(m_z-|a_z|^2),\qquad
+ \mathscr S_qb_q=p_q-d_0\chi_k,\\
+ (F_q)_{11}=\omega_q(1-d_0),\qquad
+ (F_q)_{13}=i b_\lambda\omega_qa_z.
+\end{gathered}
+\end{equation}
+Here $\ip{\chi_k}{p_q}=\omega_q$ and
+$\ip{\chi_k}{L_\lambda}/\nu_0=-i b_\lambda a_z$.
+Since $q$ is even, $p_{q+1}$ and $\chi_k(S)(S-c)$ have the same
+odd parity in $S-c$. Their difference has degree at most $q-1$
+and is orthogonal to $\chi_k$. It is consequently the attained
+lift at $N=q$ of $b_{q+1}$. In particular the monic relation
+$\chi_k(S)(S-c)$ has no missing preceding constant-relation
+projection. This yields
+\begin{equation}\tag{LCS8}
+\begin{gathered}
+ \mathscr S_qb_{q+1}=p_{q+1}-\chi_k(S)(S-c),\qquad
+ (F_q)_{22}=\nu_1-\omega_{q+1}=\nu_1(1-d_1),\\
+ \int_\R\frac{y}{y-z}\,d\mu_Q(y)=1+za_z,\qquad
+ (F_q)_{23}=b_\lambda\nu_0(1+za_z).
+\end{gathered}
+\end{equation}
+The last phase follows from
+$\overline{i^{q+1}}i^{q-1}=-1$ and the preceding minus sign in
+the attained lift. The term involving $a_z\int y\,d\mu_Q$ is zero.
+
+The exact original energies are therefore
+\begin{equation}\tag{LCS9}
+\boxed{\begin{aligned}
+ p_{1,q-1}&=\frac{\omega_{q-1}}{\nu_0m_z},&
+ p_{2,q-1}&=\frac{|a_z|^2}{(1-d_0)m_z},\\
+ p_{1,q}&=\frac{d_0|a_z|^2}{(1-d_0)(m_z-|a_z|^2)},&
+ p_{2,q}&=\frac{|1+za_z|^2}
+ {s_2(1-d_1)(m_z-|a_z|^2)}.
+\end{aligned}}
+\end{equation}
+They equal $|(F_N)_{j3}|^2/[E_N(F_N)_{jj}]$ with exactly the
+original $G_N$. The complete-primary factor cancels only between
+these matching numerator and denominator terms. The variance
+$m_z-|a_z|^2$ is positive because $(y-z)^{-1}$ is not constant
+on a positive-density real interval. Also
+\begin{equation}\tag{LCS10}
+\begin{gathered}
+ \operatorname{Im}a_z=-dm_z<0,\qquad
+ 1+za_z=\int_\R\frac{y^2}{y^2-z^2}\,d\mu_Q(y),\\
+ \operatorname{Im}(1+za_z)
+       =-2td\int_\R\frac{y^2}{|y^2-z^2|^2}\,d\mu_Q(y)<0.
+\end{gathered}
+\end{equation}
+Thus every displayed response denominator and both response
+numerators are nonzero.
+
+\section{The original arithmetic envelopes and finite norm intervals}
+
+The constants in the following display are exactly CAI16--18 and
+EC14--15 \cite{cai,ec}, with different subscripts for the Gamma
+density constants to avoid confusing them with unrelated scalar
+coefficients:
+\begin{equation}\tag{LCS11}
+\begin{gathered}
+ \alpha=\pi/2,\quad p_h=8m_0-\tfrac92,\quad B_h=42+8m_0,
+ \quad M_h=21+4m_0,\\
+ \vartheta_h=\int_{-1}^1w_h(y)\,dy>0,\quad
+ M_\alpha=\int_\R e^{\alpha y}w_h(y)\,dy\in(0,\infty),\\
+ c_G=\sqrt2e^{-7/6},\quad C_G=\sqrt{2\sqrt5}e^{2/3},\quad
+ \sigma(y)=|\Gamma(1/4+iy/2)|^2/(2\pi),\\
+ \underline a_k=
+ \frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+      {C_G2^{B_h/2}},\qquad
+ \overline a_k=\frac{C_h^{\rm tilt}}{c_G}
+       k^{p_h+1}M_\alpha^{k-1},\\
+ D_n=[1+4(n+M_h)^2]^{M_h},\qquad
+ \ell_k=\underline a_k/D_{2q},\quad
+ u_k=\overline a_k,\quad \mathscr L_k=\log(u_k/\ell_k).
+\end{gathered}
+\end{equation}
+The positive $c_h$ and $C_h^{\rm tilt}$ are the original TW7 and
+BT12 constants retained in CAI17. Their proved defining envelopes
+and the Gamma envelopes are
+\begin{equation}\tag{LCS12}
+\begin{aligned}
+ m_k(y)&\ge c_h\vartheta_h^{k-3}
+       e^{-\alpha(|y|+k-3)}(k-2+|y|)^{-B_h},\\
+ m_k(y)&\le kC_h^{\rm tilt}M_\alpha^{k-1}
+       e^{-\alpha|y|}(1+|y|/k)^{-p_h},\\
+ c_Ge^{-\alpha|y|}(1+|y|)^{-1/2}
+       &\le\sigma(y)\le C_Ge^{-\alpha|y|}(1+|y|)^{-1/2}.
+\end{aligned}
+\end{equation}
+These are established properties of the stipulated arithmetic
+source, not new premises selected to establish the present result.
+Since $p_h>1/2$ and $1+|y|/k\ge(1+|y|)/k$, the upper bounds imply
+\begin{equation}\tag{LCS13}
+ 0<\underline a_k(1+y^2)^{-M_h}\sigma(y)
+       \le m_k(y)\le u_k\sigma(y)\qquad(y\in\R).
+\end{equation}
+For the lower inequality use
+$k-2+|y|\le(k-2)(1+|y|)$ and
+$(1+|y|)^{B_h}\le2^{B_h/2}(1+y^2)^{M_h}$ in LCS12;
+the extra factor $(1+|y|)^{-1/2}$ in the Gamma upper envelope
+only decreases the proposed lower expression.
+
+The Gamma reference family is Meixner--Pollaczek. Its formulas
+are those in DLMF Chapter~18, authored by T.~H.~Koornwinder,
+R.~Wong, R.~Koekoek, R.~F.~Swarttouw and W.~P.~Reinhardt
+\cite{dlmf18}. Equations 18.19.8--9, at the parameters
+$\lambda_{\rm MP}=1/4$, $\varphi=\pi/2$ and $x=y/2$, give the
+exact transport
+\[
+ Q_n^\sigma(y)=n!P_n^{(1/4)}(y/2;\pi/2),\qquad
+ \sigma(y)\,dy=\pi^{-1}w^{(1/4)}(x;\pi/2)\,dx.
+\]
+In particular $Q_n^\sigma$ is monic and the transported mass is
+$\sqrt{2\pi}$. Their generating function, equation 18.23.7, becomes
+\[
+ \sum_{n\ge0}Q_n^\sigma(y)\frac{u^n}{n!}
+ =(1-iu)^{-1/4+iy/2}(1+iu)^{-1/4-iy/2}
+ =(1+u^2)^{-1/4}e^{y\arctan u},\quad |u|<1.
+\]
+Differentiation gives $(1+u^2)\partial_u\mathcal G=(y-u/2)\mathcal G$;
+comparison of coefficients proves
+$Q_{n+1}^\sigma=yQ_n^\sigma-n(n-1/2)Q_{n-1}^\sigma$, also the
+specialization of DLMF 18.22.8. DLMF's notes attribute the generating
+function to M.~E.~H.~Ismail (2009), equation 5.9.3, the recurrence
+to 5.9.1, and the weight and norms to 5.9.8--9. These are
+DLMF-reported book ancestry; the underlying book pages were not
+newly inspected here.
+
+For clarity, the corresponding whole-polynomial lower comparison
+also follows directly. The transported orthonormal recurrence is
+\[
+ ye_j=\sqrt{(j+1)(j+1/2)}e_{j+1}
+           +\sqrt{j(j-1/2)}e_{j-1}.
+\]
+Each of the raising and lowering parts has norm at most $N+1$
+on polynomials of degree at most $N$, so
+$\norm{yP}_\sigma\le2(N+1)\norm P_\sigma$.
+Iteration and binomial expansion show
+$\int|P|^2(1+y^2)^{M_h}\sigma\le D_N\norm P_\sigma^2$.
+Cauchy--Schwarz with the two weights $(1+y^2)^{\pm M_h/2}$,
+then LCS13, gives
+\begin{equation}\tag{LCS14}
+ \ell_k\norm P_\sigma^2\le\norm P_{m_k}^2
+       \le u_k\norm P_\sigma^2\quad(\deg P\le2q),\qquad
+ \mathscr L_k=O_h(k+\log(q+1)).
+\end{equation}
+The last estimate follows by taking logarithms in LCS11; all
+$h$-dependent exponents and constants are fixed and $q$ is a
+polynomial in $k$ of degree two or three.
+
+For any complex monic polynomial $P$ of degree $n$ with all roots
+of modulus at most $R$, define
+\begin{equation}\tag{LCS15}
+\begin{aligned}
+ \mathscr L_n(R)&=
+ \frac{2c_Ge^{-\alpha R}}{\sqrt{R+2}}
+       \alpha^{-2n-1/2}\Gamma(2n+\tfrac12,\alpha),\\
+ \mathscr U_n(R)&=2C_Ge^{\alpha R}
+       \alpha^{-2n-1}\Gamma(2n+1).
+\end{aligned}
+\end{equation}
+Then
+\begin{equation}\tag{LCS16}
+ \mathscr L_n(R)\le\norm P_\sigma^2\le\mathscr U_n(R).
+\end{equation}
+For the upper bound use $|P(y)|\le(|y|+R)^n$, discard the
+factor $(1+|y|)^{-1/2}\le1$, put $s=|y|+R$, and extend its
+integration domain to $s\ge0$. For the lower bound integrate
+both real half-lines $|y|\ge R+1$, use
+$|P(y)|\ge(|y|-R)^n$, put $s=|y|-R\ge1$, and use
+$1+R+s\le(R+2)s$. These operations give exactly LCS15.
+
+The Gamma monic norm in these original mass conventions is
+\begin{equation}\tag{LCS17}
+ \gamma_n=\sqrt{2\pi}\,n!(1/2)_n
+         =\sqrt{2\pi}\,\Gamma(2n+1)/4^n.
+\end{equation}
+Indeed the monic version of the displayed recurrence has coefficient
+$n(n-1/2)$; pairing it against consecutive monic polynomials gives
+$\gamma_n=n(n-1/2)\gamma_{n-1}$, starting at the original Gamma
+mass $\gamma_0=\sqrt{2\pi}$.
+The monic minimum and LCS14 imply
+$\ell_k\gamma_n\le\omega_n\le u_k\gamma_n$.
+Consequently LCS16, applied to the full polynomials
+$Q/(y-z)$, $Q$, and $yQ$, proves all three finite intervals
+\begin{equation}\tag{LCS18}
+\begin{gathered}
+ \frac{\ell_k}{u_k}\frac{\gamma_n}{\mathscr U_n(R)}
+ \le x_n\le
+ \frac{u_k}{\ell_k}\frac{\gamma_n}{\mathscr L_n(R)},\\
+ (n,x_n)=(q-1,p_{1,q-1}),\ (q,d_0),\ (q+1,d_1).
+\end{gathered}
+\end{equation}
+No root is removed except for the single factor $y-z$ explicitly
+present in the literal terminal eigenclass.
+
+Here is an elementary control of the logarithmic errors in LCS18.
+The classical Euler integral and Gamma recurrence are attributed
+to R.~A.~Askey and R.~Roy's DLMF Chapter~5, equations 5.2.1 and
+5.5.1 \cite{dlmf5}; the incomplete integrals are explicitly defined
+below. For $n\ge1$, shifting the incomplete Gamma integral gives
+$e^{-\alpha}\Gamma(2n+1/2)\le\Gamma(2n+1/2,\alpha)
+\le\Gamma(2n+1/2)$. Further,
+\[
+ \frac{\sqrt\pi}{4n+1}\le
+ \frac{\Gamma(2n+1/2)}{\Gamma(2n+1)}
+ =\sqrt\pi\,\frac{\binom{4n}{2n}}{4^{2n}}\le\sqrt\pi.
+\]
+The inequalities follow because the central binomial coefficient
+is the largest of the $4n+1$ coefficients whose sum is $4^{2n}$.
+Substitution in LCS15--18, retaining
+$a_0=\log(4/\pi)>0$, proves
+\begin{equation}\tag{LCS19}
+\begin{aligned}
+ \log p_{1,q-1}&=-2(q-1)a_0+O_h(k+\log q),\\
+ \log d_0&=-2qa_0+O_h(k+\log q),\\
+ \log d_1&=-2(q+1)a_0+O_h(k+\log q).
+\end{aligned}
+\end{equation}
+In particular $d_0,d_1$ vanish exponentially. This proof controls
+the incomplete Gamma term itself and requires no unquantified
+asymptotic replacement of its lower endpoint.
+
+\section{Finite concentration in the original arithmetic measure}
+
+Put $Y=Y_q=2q/\alpha=4q/\pi$. On the finite guard $Y>R$, LCS3
+and the \emph{complete} lower comparison give
+\begin{equation}\tag{LCS20}
+\begin{aligned}
+ \nu_0&\ge\ell_k\int_\R Q(y)^2\sigma(y)\,dy\\
+ &\ge\ell_k\int_{Y\le|y|\le Y+1}Q(y)^2\sigma(y)\,dy
+ \ge D_*:=
+ \frac{2\ell_kc_G(Y^2-R^2)^q e^{-\alpha(Y+1)}}{\sqrt{Y+2}}.
+\end{aligned}
+\end{equation}
+Thus $D_*$ does not assert
+$\int_AQ^2m_k\ge\ell_k\int_AQ^2\sigma$ for a restricted set
+$A$. The restricted integral in the second line is entirely in
+the reference measure.
+
+For $0<b<1$ write
+$A_b=\{y:(1-b)Y\le|y|\le(1+b)Y\}$, and for $j=0,2$ define
+\begin{equation}\tag{LCS21}
+\begin{aligned}
+ U_j(b)=2u_kC_G\sum_{r=0}^q\binom qr R^{2(q-r)}
+ \alpha^{-(2r+j+1/2)}
+ \bigl[&\gamma(2r+j+\tfrac12,\alpha(1-b)Y)\\
+       +&\Gamma(2r+j+\tfrac12,\alpha(1+b)Y)\bigr].
+\end{aligned}
+\end{equation}
+Here $\gamma(s,x)=\int_0^x u^{s-1}e^{-u}\,du$ and
+$\Gamma(s,x)=\int_x^\infty u^{s-1}e^{-u}\,du$.
+The pointwise upper inequality in LCS13 is valid on each part of
+$A_b^c$. Apply it there, use LCS3, expand $(y^2+R^2)^q$, and
+use $(1+y)^{-1/2}\le y^{-1/2}$ for $y>0$. Every coefficient is
+nonnegative, all endpoint integrals are finite, and direct
+integration proves
+\begin{equation}\tag{LCS22}
+ \int_{A_b^c}|y|^jQ(y)^2m_k(y)\,dy\le U_j(b),\qquad
+ \int_{A_b^c}|y/Y|^j\,d\mu_Q(y)\le\frac{U_j(b)}{Y^jD_*}.
+\end{equation}
+This proves the literal finite enclosure (13) of \cite{lce} from
+an actual density inequality.
+
+\subsection{A proved exponential bound for the finite tails}
+
+To evaluate the tails without an unsupported Laplace assertion,
+define $n_j=2q+j$, $a_j=n_j+1$, and
+\begin{equation}\tag{LCS23}
+\begin{aligned}
+ \widetilde U_j(b)=2u_kC_Ge^{\alpha R}\alpha^{-a_j}
+ \bigl[&\gamma(a_j,\alpha((1-b)Y+R))\\
+       +&\Gamma(a_j,\alpha((1+b)Y+R))\bigr].
+\end{aligned}
+\end{equation}
+This is another upper bound for the left side of LCS22. Indeed,
+for $y\ge0$,
+$y^j(y^2+R^2)^q(1+y)^{-1/2}\le(y+R)^{2q+j}$.
+The substitution $s=y+R$ maps the low interval into
+$[0,(1-b)Y+R]$ after a positive extension, and maps the high
+interval onto $[(1+b)Y+R,\infty)$. This gives LCS23 exactly.
+
+For $a>0$ the density $u^{a-1}e^{-u}/\Gamma(a)$ has exponential
+moment $(1-\tau)^{-a}$ for $\tau<1$, by the substitution
+$(1-\tau)u=v$ in its defining integral. Markov's inequality with
+$\tau=1-r^{-1}$, which is negative for $0<r<1$ and positive for
+$r>1$, therefore proves
+\begin{equation}\tag{LCS24}
+ \frac{\gamma(a,ar)}{\Gamma(a)}\le e^{-a g(r)}\ (0<r<1),\qquad
+ \frac{\Gamma(a,ar)}{\Gamma(a)}\le e^{-a g(r)}\ (r>1),\quad
+ g(r)=r-1-\log r.
+\end{equation}
+For the lower-tail case the event $u\le ar$ implies
+$e^{\tau u}\ge e^{\tau ar}$ because $\tau<0$, which justifies
+the same Markov argument and its sign. The function $g$ is
+positive away from $r=1$, as follows from $g'(r)=1-r^{-1}$.
+
+Set
+\begin{equation}\tag{LCS25}
+\begin{gathered}
+ r_{j,-}=\frac{2q(1-b)+\alpha R}{2q+j+1},\qquad
+ r_{j,+}=\frac{2q(1+b)+\alpha R}{2q+j+1},\\
+ C_{q,j}=\frac{2u_kC_Ge^{\alpha R}\alpha^{-a_j}\Gamma(a_j)}
+                {Y^jD_*},\qquad
+ \mathcal E_j(b)=C_{q,j}
+   \left(e^{-a_jg(r_{j,-})}+e^{-a_jg(r_{j,+})}\right).
+\end{gathered}
+\end{equation}
+On the explicit finite guards
+$Y>R$ and $0<r_{j,-}<1<r_{j,+}$, LCS23--24 give
+\begin{equation}\tag{LCS26}
+ \int_{A_b^c}|y/Y|^j\,d\mu_Q(y)
+       \le\frac{\widetilde U_j(b)}{Y^jD_*}
+       \le\mathcal E_j(b).
+\end{equation}
+Every prefactor here can be evaluated from the original constants.
+Its size has the following explicit bound:
+\begin{equation}\tag{LCS27}
+\begin{aligned}
+ \log C_{q,j}\le{}&\mathscr L_k+\log(C_G/c_G)+\alpha R+\alpha
+       +\tfrac12\log(Y+2)-\log\alpha\\
+ &+1+\log(2q+j)+\frac{j^2}{2q}
+       -q\log(1-R^2/Y^2).
+\end{aligned}
+\end{equation}
+To verify it, substitution of $D_*$ gives the exact expression
+\[
+ C_{q,j}=\frac{u_kC_G}{\ell_kc_G}
+ \frac{e^{\alpha R+2q+\alpha}\sqrt{Y+2}}{\alpha}
+ \frac{(2q+j)!}{(2q)^{2q+j}}(1-R^2/Y^2)^{-q}.
+\]
+For an integer $n\ge1$, monotonicity of $\log x$ on the intervals
+$[r,r+1]$ implies
+$\log(n!)\le n\log n-n+1+\log n$.
+Taking $n=2q+j$ and using
+$\log(1+j/(2q))\le j/(2q)$ proves LCS27.
+
+Now $R=O_h(k)$, $q\ge(k+1)^2$ and $R/Y=O_h(k/q)\to0$.
+On the eventual guard $R^2/Y^2\le1/2$,
+$-q\log(1-R^2/Y^2)\le2qR^2/Y^2=O_h(k^2/q)$.
+Thus $\log C_{q,j}=O_h(k+\log q)=o_h(q)$.
+For every fixed $b\in(0,1)$,
+$r_{j,-}\to1-b$ and $r_{j,+}\to1+b$, so
+$\min\{g(r_{j,-}),g(r_{j,+})\}$ has a strictly positive limit.
+LCS26 consequently proves, for each such fixed $b$,
+\begin{equation}\tag{LCS28}
+ \int_{A_b^c}d\mu_Q\longrightarrow0,\qquad
+ \int_{A_b^c}(y/Y)^2d\mu_Q\longrightarrow0
+ \quad\hbox{exponentially in }q.
+\end{equation}
+The literal sum in LCS21 has the same exponential conclusion.
+Indeed its integral form is
+\[
+ 2u_kC_G\int_{[0,(1-b)Y]\cup[(1+b)Y,\infty)}
+ y^{j-1/2}(y^2+R^2)^qe^{-\alpha y}\,dy.
+\]
+On $y\ge1$ its integrand is bounded by the shifted integrand used
+in LCS23; on $0<y<1$ bound $(y^2+R^2)^q$ by $(1+R^2)^q$ and
+integrate $y^{j-1/2}$. Thus the additional finite bound is
+\begin{equation}\tag{LCS28a}
+ \frac{U_j(b)}{Y^jD_*}\le\mathcal E_j(b)
+ +\frac{u_kC_G}{\ell_kc_G}
+  \frac{e^{2q+\alpha}\sqrt{Y+2}}{(j+1/2)Y^j}
+  \left(\frac{1+R^2}{Y^2-R^2}\right)^q.
+\end{equation}
+The logarithm of the last term is at most
+$O_h(k+\log q)+2q+q\log((1+R^2)/(Y^2-R^2))$.
+Its logarithm divided by $q$ tends to $-\infty$ because
+$(1+R^2)/(Y^2-R^2)=O_h(k^2/q^2)\to0$.
+Consequently both $U_0(b)/D_*$ and $U_2(b)/(Y^2D_*)$ themselves
+vanish exponentially, as asserted in the supplied continuation.
+This conclusion uses the complete root polynomial and the actual
+arithmetic upper envelope. LCS26 also supplies an independent finite
+bound if the size of the sum in LCS21 makes it inconvenient.
+
+\section{The three scalar integrals and evaluated energies}
+
+One may take the finite bounds
+\[
+ \eta_b=\min\{1,U_0(b)/D_*,\mathcal E_0(b)\},\qquad
+ \tau_b=\min\{U_2(b)/(Y^2D_*),\mathcal E_2(b)\}
+\]
+when the LCS25 guards hold; omitting $\mathcal E_j$ defines valid
+bounds without those extra guards. Evenness gives
+$a_z=z\int (y^2-z^2)^{-1}d\mu_Q(y)$.
+For every real $y$,
+$|y-z|\ge d$ and $|y^2-z^2|\ge2td$.
+On the annulus $A_b$, triangle inequalities now give, whenever
+$(1-b)Y>R$,
+\begin{equation}\tag{LCS29}
+\begin{gathered}
+ \frac{1-\eta_b}{((1+b)Y+R)^2}\le m_z
+ \le\frac1{((1-b)Y-R)^2}+\frac{\eta_b}{d^2},\\
+ \left|\frac{Y^2a_z}{z}-1\right|
+ \le B_b:=
+ \frac{2b+b^2+R^2/Y^2}{(1-b)^2-R^2/Y^2}
+       +\eta_b\left(1+\frac{Y^2}{2td}\right),\\
+ (1-b)^2(1-\eta_b)\le\frac{s_2}{Y^2}
+       \le(1+b)^2+\tau_b.
+\end{gathered}
+\end{equation}
+For the middle estimate use
+\[
+ \left|\frac{Y^2}{y^2-z^2}-1\right|
+ \le\frac{2b+b^2+R^2/Y^2}{(1-b)^2-R^2/Y^2}
+ \quad(y\in A_b),
+\]
+and bound the same integrand by $1+Y^2/(2td)$ on $A_b^c$.
+For the last estimate retain the second-moment contribution
+$\tau_b$ on $A_b^c$ rather than discarding the tail.
+
+The quantities $Y^2/d^2$ and $Y^2/(td)$ grow at most
+polynomially in $k$, since $d=k\delta$, $t=k\gamma$, and $q$ has
+degree two or three in $k$. For fixed $b$, their products with
+$\eta_b$ therefore vanish by LCS28. First take $k\to\infty$ in
+LCS29 and then let $b\downarrow0$. This proves all three limits
+\begin{equation}\tag{LCS30}
+ \boxed{Y^2m_z\longrightarrow1,\qquad
+        Y^2a_z/z\longrightarrow1,\qquad s_2/Y^2\longrightarrow1.}
+\end{equation}
+The exponentially small central mass has been controlled even
+after multiplication by the inverse denominators.
+
+For explicit finite energy intervals, write $r_0=R^2/Y^2$ and
+\begin{equation}\tag{LCS31}
+\begin{gathered}
+ M_- =\frac{1-\eta_b}{(1+b+R/Y)^2},\quad
+ M_+ =\frac1{(1-b-R/Y)^2}+\frac{Y^2\eta_b}{d^2},\\
+ A_-=(1-B_b)_+,\quad A_+=1+B_b,\quad
+ S_-=(1-b)^2(1-\eta_b),\quad S_+=(1+b)^2+\tau_b,\\
+ H_-=M_--r_0A_+^2,\qquad H_+=M_+-r_0A_-^2.
+\end{gathered}
+\end{equation}
+On the displayed finite guards and $\eta_b<1$, $H_->0$,
+LCS9 and LCS29 give
+\begin{equation}\tag{LCS32}
+\begin{aligned}
+ \frac{r_0A_-^2}{(1-d_0)M_+}
+ &\le p_{2,q-1}\le\frac{r_0A_+^2}{(1-d_0)M_-},\\
+ \frac{d_0r_0A_-^2}{(1-d_0)H_+}
+ &\le p_{1,q}\le\frac{d_0r_0A_+^2}{(1-d_0)H_-},\\
+ \frac{(1-r_0A_+)_+^2}{(1-d_1)S_+H_+}
+ &\le p_{2,q}\le\frac{(1+r_0A_+)^2}{(1-d_1)S_-H_-}.
+\end{aligned}
+\end{equation}
+The guards hold for every sufficiently large $k$ at a fixed
+sufficiently small $b>0$, as follows from LCS28 and $r_0\to0$.
+For the last line use $|za_z|\le r_0A_+$.
+The inputs $d_0,d_1$ themselves have the explicit finite intervals
+LCS18. Thus the finite enclosures retain actual source integrals
+and also admit enclosure solely by the original comparison constants.
+
+Substituting LCS30 and LCS19 into the exact LCS9 gives
+\begin{equation}\tag{LCS33}
+\boxed{\begin{aligned}
+ p_{1,N}&=\exp[-2q\log(4/\pi)+O_h(k+\log q)],\quad N=q-1,q,\\
+ p_{2,q-1}&=\frac{\pi^2(\delta^2+\gamma^2)}{16}
+                \frac{k^2}{q^2}(1+o_h(1)),\\
+ p_{2,q}&=1-o_h(1),\\
+ p_{1,q}&=d_0\frac{\pi^2(\delta^2+\gamma^2)}{16}
+                \frac{k^2}{q^2}(1+o_h(1)).
+\end{aligned}}
+\end{equation}
+To see the variance step explicitly,
+$Y^2|a_z|^2=(R^2/Y^2)|Y^2a_z/z|^2\to0$, so
+$Y^2(m_z-|a_z|^2)\to1$.
+Also $za_z\to0$ and $s_2/Y^2\to1$, giving $p_{2,q}\to1$.
+The one-sided notation in LCS33 is justified by the exact
+projection inequality $p_{2,q}\le1$, proved below.
+The logarithm of $R^2/Y^2$ is $O_h(\log q)$, which explains the
+stated exponential rate for $p_{1,q}$.
+Finally the same-class norm ratio is exactly, and then asymptotically,
+\begin{equation}\tag{LCS34}
+ \boxed{\frac{E_q}{E_{q-1}}=1-\frac{|a_z|^2}{m_z}
+ =1-\frac{\pi^2(\delta^2+\gamma^2)}{16}
+             \frac{k^2}{q^2}(1+o_h(1)).}
+\end{equation}
+
+\section{The original response matrix, spectrum and second response}
+
+Reflection $P(S)\mapsto P(k-S)$ is an isometry in the even
+arithmetic source. It preserves $\chi_k\PP_{N-q}$ and therefore
+commutes with the attained minimum section LCS4. The two source
+polynomials $p_N,p_{N+1}$ have opposite parities, as do their
+attained lifts. Consequently $(F_N)_{12}=0$. Their normalized
+quotient classes are orthonormal, and projection of
+$v_\lambda/\sqrt{E_N}$ onto their span proves
+$0<p_{1,N},p_{2,N}$ and $p_{1,N}+p_{2,N}\le1$.
+
+For completeness, retain the exact JRE map \cite{jre}. Denote
+the original quotient by $E_{\rm packet}=\C[S]/(\chi_k)$ to
+distinguish it from the following scalar. At one
+of the two cutoffs write $v=v_\lambda$, $E=E_N$,
+$f=(F_{13},F_{23})^{\mathsf T}$, $B=[b_N,b_{N+1}]$, and
+\begin{equation}\tag{LCS35}
+\begin{gathered}
+ A=B-vf^*/E:\C^2\longrightarrow(E_{\rm packet},G_N),\\
+ S=A^*G_NA,\quad D=\operatorname{diag}(F_{13},F_{23}),\qquad
+ T=D^{-1}SD^{-*}.
+\end{gathered}
+\end{equation}
+Expanding $S=F_{[1,2],[1,2]}-ff^*/E$ and using $F_{12}=0$
+proves the exact equality with its original source factor
+\begin{equation}\tag{LCS36}
+ \boxed{ET=\begin{pmatrix}p_1^{-1}-1&-1\\-1&p_2^{-1}-1\end{pmatrix}.}
+\end{equation}
+The eigenvalues of $T$ are those in the next display divided by
+the original $E$; its mass has not been replaced.
+
+The exact eigenvalues of $ET$ are
+\begin{equation}\tag{LCS37}
+ \lambda_\pm=\frac12\left[p_1^{-1}+p_2^{-1}-2
+       \ \pm\sqrt{(p_1^{-1}-p_2^{-1})^2+4}\right].
+\end{equation}
+At $N=q-1$, put $a=p_1^{-1}-1$, $b'=p_2^{-1}-1$.
+LCS33 implies $a/b'\to\infty$ and $b'\to\infty$.
+For $a>b'$ the exact deviation is
+\[
+ \lambda_+=a+\Delta,\qquad\lambda_-=b'-\Delta,\qquad
+ \Delta=\frac{2}{\sqrt{(a-b')^2+4}+(a-b')}
+       \in(0,(a-b')^{-1}].
+\]
+It follows that $\lambda_+/a\to1$ and $\lambda_-/b'\to1$,
+in particular that $ET$ is positive definite eventually. Thus
+\begin{equation}\tag{LCS38}
+\boxed{\begin{aligned}
+ \lambda_{\max}(E_{q-1}T_{q-1})
+    &=\exp[2q\log(4/\pi)+O_h(k+\log q)],\\
+ \lambda_{\min}(E_{q-1}T_{q-1})
+    &=\frac{16}{\pi^2(\delta^2+\gamma^2)}
+                    \frac{q^2}{k^2}(1+o_h(1)),\\
+ \lim_{k\to\infty}\frac1q\log\cond(E_{q-1}T_{q-1})
+    &=2\log(4/\pi).
+\end{aligned}}
+\end{equation}
+
+Finally let $P_K$ be any of the admitted $G_N$-orthogonal
+observation-kernel projections. Retain
+$K=W_N^*G_NP_KW_N$ with the three columns
+$(b_N,b_{N+1},v)$, and define
+$\theta=K_{33}/E\in[0,1]$, $V=K_{23}/F_{23}$.
+The vector $x=P_Kv-\theta v$ satisfies
+\[
+ \ip v x_{G_N}=0,\qquad\norm x_{G_N}^2=E\theta(1-\theta).
+\]
+The residual second column
+$r=b_{N+1}-v\overline{F_{23}}/E$ has norm squared
+$F_{22}-|F_{23}|^2/E$. Applying Cauchy--Schwarz to
+$\ip r x=K_{23}-\theta F_{23}$ gives the full finite bound
+\begin{equation}\tag{LCS39}
+ \boxed{|V-\theta|^2\le\theta(1-\theta)(p_2^{-1}-1).}
+\end{equation}
+At $N=q$, LCS33 implies
+\begin{equation}\tag{LCS40}
+ |V_q-\theta_q|\le
+ \sqrt{\theta_q(1-\theta_q)(p_{2,q}^{-1}-1)}=o_h(1),
+ \qquad 0\le\theta_q(1-\theta_q)\le\tfrac14.
+\end{equation}
+The convergence is uniform over those projections. It proves
+$\operatorname{Im}V_q=o_h(1)$ and
+$\operatorname{Re}V_q-\theta_q=o_h(1)$ without assigning a value
+to $\theta_q$. For the actual joint product the exact residual is
+$\overline U_q(V_q-\theta_q)$, whose modulus is
+$|U_q|\,|V_q-\theta_q|$. No unproved bound on $U_q$ is used in
+deducing LCS40, and that factor cannot be omitted when passing
+to the product.
+
+\begin{thebibliography}{9}
+\bibitem{lce} Supplied continuation,
+\emph{Low-cutoff energies, conductor and marked defect},
+19 September 2026, equations (1)--(21).
+Local source: \path{../inputs/LOW_CUTOFF_ENERGIES_CONDUCTOR_AND_MARKED_DEFECT.md}.
+\bibitem{cai} \emph{The complete original action relative to its
+arithmetic total}, CAI1--2 and CAI16--19. Local complete provider:
+\path{work/mixed_tail_continuation_20260917/full_receiver_build/provider_scope/fragments/CAI_COMPLETE_PREREQUISITE.tex}.
+The actual density envelopes are CAI17 and the whole-polynomial
+comparison is CAI18.
+\bibitem{ec} \emph{Retained eigenclass current}, full-multiplicity
+class and source EC1--6; full-source constants EC14--15 and
+complete-root polynomial in the following section. Local provider:
+\path{work/multi_intake_20260919/arrival_02/providers/EC_COMPLETE.md}.
+\bibitem{jre} \emph{The joint response ellipse in the original
+three-column Gram}, JRE1--8 and JRE18--22. Local complete proof:
+\path{work/multi_intake_20260919/arrival_02/JOINT_RESPONSE_ELLIPSE.tex}.
+\bibitem{dlmf18} T.~H.~Koornwinder, R.~Wong, R.~Koekoek,
+R.~F.~Swarttouw and W.~P.~Reinhardt,
+\emph{Orthogonal Polynomials}, DLMF Chapter~18.
+Weight and norms: \url{https://dlmf.nist.gov/18.19.E8},
+\url{https://dlmf.nist.gov/18.19.E9}; recurrence:
+\url{https://dlmf.nist.gov/18.22.E8}; generating function:
+\url{https://dlmf.nist.gov/18.23.E7}.
+Version 1.2.8 (15 September 2026), accessed 19 September 2026.
+\bibitem{dlmf5} R.~A.~Askey and R.~Roy,
+\emph{Gamma Function}, DLMF Chapter~5, Euler integral and recurrence:
+\url{https://dlmf.nist.gov/5.2.E1},
+\url{https://dlmf.nist.gov/5.5.E1}.
+The asymptotic formulas of \S5.11 are not needed in this proof:
+LCS19 uses the explicit integral and binomial inequalities displayed
+there, and LCS27 uses the proved elementary factorial bound.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,531 @@
+% Scalar audit/reconstruction of LRC16--29.  No source packet is replaced.
+% Integration dependencies: the preceding LRC11--15 analytic norm proof,
+% the complete conductor/native transport proof, EIQ/ECL, TAC, CAI and LRP.
+\section{Literal covariance, logarithmic endpoint term, and the complete action}
+\label{sec:lrc-scalar-reconstruction}
+
+The packet degree, source order and four cutoffs in this section are
+exactly those of TAC1 and TAC1a.  Thus
+\[
+ a\equiv1\pmod4,\quad s\in\{1,a\},\quad
+ q=(a+1)^2,\quad Q=(a-7)^2,\quad \Delta=q-Q=16a-48,
+ \quad 0\le v\le80,\quad m=\Delta-v,
+ \quad \ell_s=(s-1)/4.
+\]
+The lower packet has degree $a-8$ and retains the same order $s$.
+The actual quartet, conductor unit, period and branch remain fixed.
+For either $b=a$ or $b=a-8$ write
+\[
+ Q_b=(b+1)^2,\qquad n=Q_b+\ell_s.
+\]
+The finite root-comparison guards of LRC13 are retained.  They imply
+the row-domain bound needed for the entire lower window:
+\begin{equation}\tag{LRS1}
+ m+q\le2(Q+\ell_s)
+ \quad\Longleftrightarrow\quad 3\Delta-v-2\ell_s\le q.
+\end{equation}
+Indeed the root radius in LRC13 is at least $1/2$, so
+$\mathscr R_b\le2^{-17}n$ forces $n\ge65536$.
+At $b=a-8$, an original $a\le41$ would instead give
+$n=(a-7)^2+\ell_s\le34^2+10=1166$.
+Consequently $a\ge45$, where $q-3\Delta=a^2-46a+145>0$.
+This proves LRS1 from the stated finite guards, without adding a
+hypothesis or substituting a different row window.
+
+\subsection{The exact determinant and the summable row error}
+
+Let $\chi_b$ be the original monic root polynomial and let
+$\nu_{r,s}^{(b)}$ be the squared norm of its degree-$r$ monic relation
+polynomial in $|\chi_b|^2dm_s$.  The source norms, including the
+original mass, are those of TAC1a:
+\[
+ h_{d,s}=(2\pi)^{s/2}d!(s/2)_d.
+\]
+In the source coefficient basis
+\[
+ 1,y,\ldots,y^{Q_b-1},\quad
+ \chi_b,\chi_by,\ldots,\chi_by^{D-Q_b},
+\]
+the coefficient change is triangular with determinant of modulus one.
+The same assertion holds in the original $S$ coordinate: the change
+$S=b/2+iy$ has only unit-modulus leading factors.  Let $G$ denote the
+full Gram matrix in this basis and let $G_{\mathrm{rel}}$ be its lower
+right block.  The matrix of evaluation is $[V_b\ 0]$, with the
+original Vandermonde $V_b$.  Since the evaluation covariance is
+$[V_b\ 0]G^{-1}[V_b\ 0]^*$, the block inverse formula gives
+\[
+ \det K_b(D,s)=|\det V_b|^2\frac{\det G_{\mathrm{rel}}}{\det G}.
+\]
+Here $\det G=\prod_{d=0}^Dh_{d,s}$ and monic orthogonalization of
+the full relation space gives
+$\det G_{\mathrm{rel}}=\prod_{r=0}^{D-Q_b}\nu_{r,s}^{(b)}$.
+Consequently
+\begin{equation}\tag{LRS2}
+ \det K_b(D,s)=|\det V_b|^2
+ \frac{\prod_{r=0}^{D-Q_b}\nu_{r,s}^{(b)}}
+      {\prod_{d=0}^{D}h_{d,s}},\qquad D\ge Q_b-1.
+\end{equation}
+The numerator product is empty at $D=Q_b-1$.  This proof includes
+every cross block through the Schur minimum.  Only on subtracting
+two cutoffs does the fixed Vandermonde cancel.  In particular
+\begin{equation}\tag{LRS3}
+ \tau_{b,s,r}:=\log\det K_b(Q_b+r,s)
+              -\log\det K_b(Q_b+r-1,s)
+     =\log\nu_{r,s}^{(b)}-\log h_{Q_b+r,s}.
+\end{equation}
+
+For $r=2h+\epsilon\ge2$, $\epsilon\in\{0,1\}$, set
+\[
+ \alpha=\frac{n+\epsilon-3/4}{h},\qquad
+ \beta=\frac{\pi n}{2h},\qquad M=n+r.
+\]
+The norm comparison LRC14--15 (EQ12--13 and EQ27 of the full equilibrium
+norm proof), proved for these parameters and the
+complete polynomial space of degree at most $2n$, gives
+\begin{equation}\tag{LRS4}
+\begin{split}
+ Z_r+\log c_- -B_{\rm root}+\log(1-\eta_n)
+   &\le\tau_{b,s,r}\le
+ Z_r+\log c_+ +B_{\rm root}+\log(1+\eta_n),\\
+ Z_r&=\log\beta_s+\tfrac12\log2
+       +(2M+\tfrac12)\log n-h\lambda(\alpha,\beta)
+       -\log h_{Q_b+r,s}.
+\end{split}
+\end{equation}
+The constants $c_\pm,B_{\rm root},\eta_n$ are the finite ones in that
+norm proof; no original Gram determinant occurs in their definition.
+For $r=0,1$ use its scalar-moment interval, with centre
+\[
+ \log\beta_s+\log\frac{\Gamma(2(n+r)+1/2)}
+                              {(\pi/2)^{2(n+r)+1/2}}
+                       -\log h_{Q_b+r,s}.
+\]
+
+Here is the precise uniformity needed to sum LRS4.  Throughout
+$2\le r\le2n$, $n\ge100$, its equilibrium parameters satisfy
+$\alpha\ge1/2$ and $\beta/\alpha\in[\pi/3,\pi]$.
+The uniform endpoint proof EQ28--36 accompanying LRC15 gives fixed constants
+$c_0,c_1,w_0,w_1>0$ such that
+\begin{equation}\tag{LRS5}
+ c_0\le c_{\rm cap}\sqrt\alpha\le c_1,
+ \qquad w_0\le (u+v_*)/2\le w_1,
+ \qquad |\log c_\pm|\le C(1+\log^+\alpha).
+\end{equation}
+These assertions include $\alpha\to\infty$; they do not follow
+merely by compactness of a bounded parameter region.  The original
+EIQ5 endpoint equations and their convergent small-modulus expansions
+give $u,v_*\to2/(\beta/\alpha)$ and
+$c_{\rm cap}\sqrt\alpha\to4\sqrt2/(\beta/\alpha)^2$.
+The explicit inequalities in the preceding uniform endpoint proof
+give the positive constants in LRS5 over the entire stated range.
+
+The Gamma cancellation before Stirling is exact.  Since
+$s/2=2\ell_s+1/2$ and
+$\beta_s\sqrt2=(2\pi)^{s/2}/\Gamma(s/2)$,
+\begin{equation}\tag{LRS6}
+ \frac{h_{Q_b+r,s}}{\beta_s\sqrt2}
+   =\Gamma(M-\ell_s+1)\Gamma(M+\ell_s+1/2).
+\end{equation}
+For real $x>0$, write
+\[
+ \log\Gamma(x)=(x-\tfrac12)\log x-x
+              +\tfrac12\log(2\pi)+R(x),
+ \qquad 0<R(x)<\frac1{12x}.
+\]
+This is the positive-real first-remainder form of DLMF
+5.11.1 and 5.11(ii)\cite[\S5.11(i), equation~(5.11.1), and
+\S5.11(ii)]{human:dlmf5}, checked at
+\url{https://dlmf.nist.gov/5.11#ii}.
+Taylor's formula for $f(x)=(x-1/2)\log x-x$ has
+$f'(M)=\log M-1/(2M)$ and
+$f''(x)=1/x+1/(2x^2)$.  If $M\ge100$ and $\ell_s\le\sqrt M$,
+the two shifts $1-\ell_s$ and $\ell_s+1/2$ keep $x\ge M-\sqrt M$,
+where $f''(x)\le2/M$.  Their sum is $3/2$ and the sum of their
+squares is $2\ell_s^2-\ell_s+5/4\le2(\ell_s+1)^2$.
+The two Taylor remainders, their linear $-3/(4M)$ term and the two
+Stirling remainders are therefore bounded in absolute value by
+$8(\ell_s+1)^2/M$.  Hence
+\begin{equation}\tag{LRS7}
+ \log\Gamma(M-\ell_s+1)+\log\Gamma(M+\ell_s+1/2)
+ =(2M+\tfrac12)\log M-2M+\log(2\pi)
+    +O\!\left(\frac{(\ell_s+1)^2}{M}\right).
+\end{equation}
+
+We also give the Robin displacement calculation explicitly.
+ECL11 gives $\lambda_\alpha=-2\log w$, where $w=(u+v_*)/2$.
+The exact dilation $x\mapsto c^{-2}x$ shows
+$\lambda(\alpha,c\beta)=\lambda(\alpha,\beta)
+ +2(\alpha+2)\log c$; its interaction and logarithmic-potential
+terms give the displayed coefficient.  Together with ECL6 this gives
+\begin{equation}\tag{LRS8}
+ \lambda-\alpha\lambda_\alpha-\beta\lambda_\beta
+    =-2\log c_{\rm cap}.
+\end{equation}
+At fixed $n$, define
+$G(h,N)=h\lambda(N/h,\pi n/(2h))$.  Exact differentiation yields
+\[
+ \partial_hG=-2\log c_{\rm cap},\qquad
+ \partial_NG=-2\log w.
+\]
+On the straight interpolation between
+$(h,N)=((r-\epsilon)/2,n+\epsilon-3/4)$ and $(r/2,n)$,
+the bounds $\alpha\ge1/2$, $\beta/\alpha\in[\pi/3,\pi]$ still hold.
+Furthermore $h\ge r/3$, $|h-r/2|\le1/2$ and $|N-n|\le3/4$.
+LRS5 consequently gives
+\begin{equation}\tag{LRS9}
+ h\lambda(\alpha,\beta)
+ =\frac r2\lambda(2n/r,\pi n/r)
+   +O\!\left(1+\log^+\frac{n}{r+1}\right).
+\end{equation}
+This proves the claimed logarithmic dependence without replacing the
+unbounded-$\alpha$ family by a bounded one.
+
+Set, with the original EIQ/ECL Robin convention,
+\begin{equation}\tag{LRS10}
+ \psi(t)=(1+t)(1-\log(1+t))
+               -\frac t4\lambda(2/t,\pi/t),\quad t>0,
+ \qquad \psi(0)=a_0=\log(4/\pi).
+\end{equation}
+Substitute LRS6--9 in LRS4.  The remaining difference of the main
+Gamma terms is
+\[
+ 2M(1-\log(M/n))-(r/2)\lambda(2n/r,\pi n/r)
+      -\tfrac12\log(M/n)-\log(2\pi).
+\]
+Its first two terms equal $2n\psi(r/n)$, and the last two are bounded
+for $r\le2n$.  The scalar moment estimates at $r=0,1$ give the same
+bound: Stirling makes their centre
+$2(n+r)a_0-\tfrac12\log(n+r)+O(1+(\ell_s+1)^2/(n+r))$,
+and LRS14 below treats $\psi(r/n)$.  Thus, including both small ranks,
+\begin{equation}\tag{LRS11}
+ \tau_{b,s,r}=2n\psi(r/n)
+ +O_{\rm actual}\!\left(1+\log^+\frac{n}{r+1}
+                         +\frac{(\ell_s+1)^2}{n+r}\right),
+ \qquad 0\le r\le2n.
+\end{equation}
+The bound is summable with cost $O_{\rm actual}(n)$: indeed
+$\sum_{r=0}^{2n}\log^+(n/(r+1))\le n$ by comparison with
+$\int_0^n\log(n/x)\,dx=n$, and
+$\sum_{r=0}^{2n}(\ell_s+1)^2/(n+r)\le3(\ell_s+1)^2=O(n)$.
+The constants are uniform for $b=a,a-8$ and $s=1,a$ on the actual
+family.  In particular no $\tfrac12\log n$ has been charged once
+per row.
+
+\subsection{The exact primitive and both endpoint expansions}
+
+Let $k(t)$ be the unique EIQ modulus at $(\alpha,\beta)=(2/t,\pi/t)$.
+Write $r_k=\sqrt{1-k^2}$ only in the formulas involving this modulus.
+EIQ5 gives $v_*=2(1+t)/E(k)$ and $u=r_kv_*$.  Applying ECL6 in
+LRS10 and cancelling its explicitly displayed terms gives the exact
+identity
+\begin{equation}\tag{LRS12}
+ \psi(t)=\log\frac{1+r_k}{E(k)}+t\log\frac{k}{E(k)},
+ \qquad
+ \psi'(t)=-\log(1+t)+\tfrac12\log c_{\rm cap}
+             =\log\frac{k}{E(k)}.
+\end{equation}
+The derivative follows directly from LRS8, so no derivative of an
+unstated minimizing selection is involved.  Since $E(k)>1>k$ for
+$0<k<1$, $\psi$ decreases on $(0,\infty)$.
+
+The convergent elliptic series obtained by expanding the integrands
+in EIQ2 give
+\[
+ \frac{E(k)}{\sqrt{1-k^2}K(k)}
+     =1+\frac{k^4}{16}+O(k^6).
+\]
+The endpoint equation makes its left side $1+t$.  Therefore
+$k=2t^{1/4}(1+O(\sqrt t))$ as $t\downarrow0$.  LRS12 first gives
+$\psi(0)=\log(4/\pi)$ and then
+\begin{equation}\tag{LRS13}
+ \psi'(t)=\tfrac14\log t+a_0+O(\sqrt t).
+\end{equation}
+Integrating from zero, where $\int_0^t\log x\,dx=t\log t-t$, proves
+\begin{equation}\tag{LRS14}
+ \psi(t)=a_0+\frac t4\log t+(a_0-\tfrac14)t+O(t^{3/2}).
+\end{equation}
+
+In the original opposite-energy convention $F=-E_{\min}$,
+EIQ30--31 and ECL14 give
+$F_\alpha=\mathcal L$, $\beta F_\beta=-2(\alpha+1)$ and
+$F=-\lambda/2-(\alpha+1)+\alpha\mathcal L/2$.
+Thus
+\[
+ \frac d{dt}\left[\frac{t^2}{2}F(2/t,\pi/t)\right]
+   =tF-\frac t2(\alpha F_\alpha+\beta F_\beta)
+   =-\frac t2\lambda(2/t,\pi/t).
+\]
+It follows that the continuous primitive with value zero at zero is
+\begin{equation}\tag{LRS15}
+ \mathfrak F(t)=\frac{t^2}{4}F(2/t,\pi/t)
+ +\frac{(1+t)^2}{2}\left(\frac32-\log(1+t)\right)-\frac34,
+ \qquad \mathfrak F'=\psi.
+\end{equation}
+The asserted value at zero follows either from ECL14 and the bounded
+support, which give $F(2/t,\pi/t)=O(1/t+|\log t|)$, or directly by
+integrating the continuous LRS14 and taking the displayed limit.
+Put
+\[
+ a_1=\psi(1),\qquad C_B=4\mathfrak F(1)=9-8\log2+F(2,\pi).
+\]
+In ECL16 the original outer coefficient is
+$C_\partial=4a_0-10-2F(2,\pi)+4\mathcal L(2,\pi)$.
+Since $a_1=2(1-\log2)-\lambda(2,\pi)/4$ and
+$F(2,\pi)=-\lambda(2,\pi)/2-3+\mathcal L(2,\pi)$, substitution gives
+\begin{equation}\tag{LRS16}
+ C_\partial=2C_B-8a_1+4a_0.
+\end{equation}
+
+\subsection{The displaced covariance and its finite error interval}
+
+For integers $b_0\ge0,w\ge1,b_0+w\le2n$, define
+\[
+ \mathscr I(n;b_0,w)=4n^2\left[
+ \mathfrak F((b_0+w)/n)-\mathfrak F(b_0/n)\right].
+\]
+The reference row sum with weights $1,2,\ldots,2,1$ differs from this
+quantity by at most
+\begin{equation}\tag{LRS17}
+ A(n;b_0,w)=2n[\psi(b_0/n)-\psi((b_0+w)/n)].
+\end{equation}
+Indeed on each unit interval the integral of the decreasing function
+$2n\psi(x/n)$ lies between its two endpoint values; its difference
+from their average is at most half their difference.  Sum these
+inequalities and multiply by two.  This proof applies also at zero,
+where $\psi'$ is unbounded but $\psi$ is continuous and monotone.
+
+For a completely finite interval, let $e_r^\pm$ be the two bounds in
+LRS4 (or their scalar-moment counterparts) minus $2n\psi(r/n)$.
+For $\vartheta_0=\vartheta_w=1$ and $\vartheta_j=2$ inside, the
+actual weighted sum $S$ satisfies
+\begin{equation}\tag{LRS18}
+ \mathscr I+\sum_{j=0}^w\vartheta_je_{b_0+j}^--A
+ \le S\le
+ \mathscr I+\sum_{j=0}^w\vartheta_je_{b_0+j}^++A.
+\end{equation}
+This supplies directed finite errors, while LRS11 and LRS17 show
+that their sizes are $O_{\rm actual}(q)$ on both original windows.
+
+For the literal lower-grid covariance the cutoff $D=N-v$ has
+$D-Q=m-1,m,m+q-1,m+q$ at $N=q-1,q,2q-1,2q$.
+Telescoping LRS3 therefore gives exactly the weights just used, with
+$n=Q+\ell_s,b_0=m,w=q$.  Consequently
+\begin{equation}\tag{LRS19}
+ \mathcal C^-_{a,s}=\mathscr I(Q+\ell_s;m,q)+O_{\rm actual}(q).
+\end{equation}
+No lower natural window or order $a-8$ has been inserted.
+
+Set $n=Q+\ell_s$ and $H=m+q-n=2\Delta-v-\ell_s$.
+Smoothness near one and integration of LRS14 at zero give
+\[
+\begin{split}
+ \mathfrak F(1+H/n)&=C_B/4+(H/n)a_1+O(H^2/n^2),\\
+ \mathfrak F(m/n)&=a_0m/n+rac{m^2}{8n^2}\log(m/n)
+                  +(a_0/2-3/16)m^2/n^2+O((m/n)^{5/2}).
+\end{split}
+\]
+Here $m,H=O_{\rm actual}(a)$ and $n\asymp q\asymp a^2$.
+Every displayed nonlogarithmic quadratic term is $O(q)$; the
+last lower-end error after multiplication by $4n^2$ is
+$O(m^{5/2}/\sqrt n)=O(a^{3/2})$.  Therefore
+\begin{equation}\tag{LRS20}
+ \mathcal C^-_{a,s}=C_Bn^2+4n(Ha_1-ma_0)
+                    +\frac{m^2}{2}\log(n/m)+O_{\rm actual}(q).
+\end{equation}
+Because $m=16a+O_{\rm actual}(1)$ and $n=a^2+O(a)$,
+\[
+ \frac{m^2}{2}\log(n/m)
+ =128a^2\log a+O_{\rm actual}(a^2+a\log a)
+ =128q\log a+O_{\rm actual}(q).
+\]
+Expanding $n=q-\Delta+\ell_s$ in the other terms of LRS20 gives
+\[
+ C_Bq^2+q\Delta(-2C_B+8a_1-4a_0)
+            +q\ell_s(2C_B-4a_1)+O_{\rm actual}(q).
+\]
+Use LRS16 and $\Delta=16a-48$.  We obtain
+\begin{equation}\tag{LRS21}
+\begin{split}
+ \mathcal C^-_{a,1}
+ &=C_Bq^2-16C_\partial aq+128q\log a+O_{\rm actual}(q),\\
+ \mathcal C^-_{a,a}
+ &=C_Bq^2+(-16C_\partial+C_B/2-a_1)aq
+                +128q\log a+O_{\rm actual}(q).
+\end{split}
+\end{equation}
+
+For the upper grid the original four cutoffs instead give
+$n=q+\ell_s,b_0=0,w=q$.  Taylor expansion at
+$q/n=1-\ell_s/n$ yields
+\begin{equation}\tag{LRS22}
+ \mathcal B_a^{(s)}=C_Bq^2+\ell_sq(2C_B-4a_1)
+                         +O_{\rm actual}(q).
+\end{equation}
+
+\subsection{The original prefix and the correlated native tail}
+
+At an integer cutoff $0\le R<q$ define
+\[
+ \mathscr P(n;b_0,R)=4n^2[
+  \mathfrak F((b_0+R)/n)-\mathfrak F(b_0/n)]
+       +2n\psi((b_0+R)/n),
+\]
+and retain the actual scalar centre
+\begin{equation}\tag{LRS23}
+ \mathfrak P_{a,s}(R)=\mathscr P(q+\ell_s;0,R)
+                    -\mathscr P(Q+\ell_s;m,R).
+\end{equation}
+For a determinant $f(N)$ the exact prefix operation is
+$\operatorname{pre}_Rf=2f(q+R)-f(q)-f(q-1)$.
+Writing consecutive differences $\tau_r=f(q+r)-f(q+r-1)$ gives
+$\operatorname{pre}_Rf=\tau_0+2\sum_{r=1}^R\tau_r$.
+Thus the last $+2n\psi$ in LRS23 is necessary, including at $R=0$.
+The scalar-prefix errors have finite intervals from LRS18 with
+the final row's weight increased from one to two.  They are
+$O_{\rm actual}(q)$ uniformly in every $R<q$.
+
+At every endpoint the complete TAC6/TAC10 factorization, with the
+original conductor and inverse-dual maps, gives
+\[
+ \mathcal B_a^{(s)}=
+ \mathcal C^-_{a,s}+\mathcal R e^C
+      +\mathcal T_{a,s}+F_{L_a}^{(s)}+\Xi_{a,s}.
+\]
+The all-cutoff exterior transport bounds LRC8--10 and LT26--28 apply to the same
+restrictions and attained quotients; their complete proof gives
+$\mathcal R e^C,\Xi_{a,s}=O_{\rm actual}(q)$.
+LRP10--13 give $0\le F_{L_a}^{(s)}=O_{\rm actual}(q)$ for the
+original nonzero quotient metric.  Subtract LRS21 from LRS22 in
+this exact factorization to obtain
+\begin{equation}\tag{LRS24}
+ \mathcal T_{a,s}=16C_\partial aq-128q\log a+O_{\rm actual}(q),
+ \qquad s=1,a.
+\end{equation}
+The two logarithmic terms have the opposite signs forced by the
+same equality.
+
+For specificity, if an endpoint error satisfies $-L_N\le e_N\le U_N$,
+then the directed prefix and tail estimates are
+\begin{equation}\tag{LRS25}
+\begin{split}
+ -2L_{q+R}-U_q-U_{q-1}
+ &\le\operatorname{pre}_Re\le2U_{q+R}+L_q+L_{q-1},\\
+ -L_{2q-1}-L_{2q}-2U_{q+R}
+ &\le\operatorname{tail}_Re
+       \le U_{2q-1}+U_{2q}+2L_{q+R},
+\end{split}
+\end{equation}
+where $\operatorname{tail}_Re=e_{2q-1}+e_{2q}-2e_{q+R}$.
+These follow term by term, with no change of signs, and are uniform
+$O_{\rm actual}(q)$ by the all-cutoff bounds.  The low-quotient
+prefix is between zero and its full return: TAC9--10 proves the
+quotient covariance increases with $N$, so each consecutive
+log-determinant difference is nonnegative.  Its prefix and tail
+partition its nonnegative full weighted sum.  Apply the exact
+endpoint factorization to $\operatorname{pre}_R$, use this low bound,
+LRS25 and the two scalar-prefix comparisons.  This proves
+\begin{equation}\tag{LRS26}
+ \mathcal T_{a,s}^{\le R}=\mathfrak P_{a,s}(R)+O_{\rm actual}(q),
+ \qquad 0\le R<q.
+\end{equation}
+Subtract it from LRS24, preserving the same actual determinants, to get
+\begin{equation}\tag{LRS27}
+ \mathscr T_{a,s,R}=16C_\partial aq-128q\log a
+                     -\mathfrak P_{a,s}(R)+O_{\rm actual}(q).
+\end{equation}
+
+We give the growing-prefix leading term with an error calculation.
+Take $R=\lfloor a^{3/2}/\log a\rfloor$ and $n=Q+\ell_s$; then
+$m/R\to0$, $R/n\to0$ and $n_+=n+\Delta$.
+From LRS13--14, uniformly for $0<t\le(R+m)/n$,
+\[
+ \psi(t)-t\psi'(t)=a_0-t/4+O(t^{3/2}).
+\]
+Differentiate the integral expression for $\mathscr P(n;0,R)$ in
+$n$ and integrate from $n$ to $n+\Delta$.  This bounds its change by
+$O(\Delta R+\Delta R^2/n+\Delta)$.
+For the displacement at fixed $n$, exact integration gives
+\[
+\begin{split}
+ \mathscr P(n;0,R)-\mathscr P(n;m,R)
+ &=-4\int_0^R\int_x^{x+m}\psi'(u/n)\,du\,dx\\
+ &\quad-2\int_R^{R+m}\psi'(u/n)\,du.
+\end{split}
+\]
+Insert LRS13.  Its double logarithmic integral is
+$mR\log(n/R)+O(mR)$: for $0\le z\le m\le R$,
+\[
+ \int_0^R\log((x+z)/R)\,dx
+ =(R+z)\log(1+z/R)-z\log(z/R)-R=O(R).
+\]
+The constant term costs $O(mR)$, the square-root remainder costs
+$O(mR\sqrt{(R+m)/n})$, and the final single integral costs
+$O(m(1+\log(n/R)))$.  All these errors and the preceding change
+in $n$ are $o(a^{5/2})$.  Since
+\[
+ mR\log(n/R)
+ =\frac{16a^{5/2}}{\log a}
+      [\tfrac12\log a+\log\log a+O(1)](1+o(1)),
+\]
+LRS26 proves
+\begin{equation}\tag{LRS28}
+ \mathcal T_{a,s}^{\le R}\sim8a^{5/2}.
+\end{equation}
+For the precision of LRS27 the full LRS23 centre must still be used;
+LRS28 alone does not bound its omitted terms by $O(q\log a)$.
+
+\subsection{The exact complete-action signs and the logarithmic window}
+
+TAC13--15 retain the signed arithmetic correction and give
+\begin{equation}\tag{LRS29}
+ J_a=\mathcal B_a^{(s)}+\delta_{a,s}^{\rm ar}
+                +W_a-P_{a,-}-P_{a,+}.
+\end{equation}
+Here $P_{a,\pm}$ are exactly the nonnegative penalties of TAC14.
+In the simple-quartet regime the original CAI28--35 estimates give
+\begin{equation}\tag{LRS30}
+ W_a-P_{a,-}-P_{a,+}
+   =4q\log q+(8\log2-4)q+O_h(a+\log q).
+\end{equation}
+The subscript $h$ here denotes the fixed original quartet polynomial
+of CAI1,
+$h(z)=\prod_{\zeta\in\{1/2\pm\delta\pm i\gamma\}}(z-\zeta)$,
+not the parity index $h=\lfloor r/2\rfloor$ above.
+For a direct check of the coefficient, CAI31's exact comparison window is
+\[
+ \mathcal W_q^\sigma
+ =2\log\frac{(4q)!}{(2q)!}-4q\log2
+                         +\log\frac{2q-1}{2(4q-1)}.
+\]
+Positive-real Stirling gives
+$\mathcal W_q^\sigma=4q\log q+(8\log2-4)q-\log2+O(1/q)$;
+the original directed errors CAI29 and penalties CAI28 give LRS30.
+Since $4q\log q=8q\log a+8q\log(1+1/a)$ and the last term is
+$O(a)$, LRS22 at $s=1$ and LRS29--30 prove
+\begin{equation}\tag{LRS31}
+ J_a-\delta_{a,1}^{\rm ar}
+       =C_Bq^2+8q\log a+O_{{\rm actual},h}(q).
+\end{equation}
+CAI5/TAC13 define
+$\mathcal H_a=\mathcal B_a^{(1)}-\mathcal B_a^{(a)}$ and
+$\delta_{a,a}^{\rm ar}-\delta_{a,1}^{\rm ar}=\mathcal H_a$.
+Consequently the extra $(C_B/2-a_1)aq$ term at order $s=a$ cancels
+with that exact source correction, with the indicated negative sign.
+There is also an independent check against the original Gamma-source
+coefficient.  At $(\alpha,\beta)=(2,\pi)$, ECL14 and AMT48 give
+\[
+ 2C_B-4a_1
+ =10-8\log2+2F+\lambda
+ =4-8\log2+2\mathcal L=\mathcal C_\Gamma.
+\]
+Thus the order difference in LRS22 is
+$\ell_sq\mathcal C_\Gamma+O(q)$, exactly opposite to AKS46's
+$\mathcal H_a=-\ell_aq\mathcal C_\Gamma+O(q)$.
+Equivalently subtract the two exact TAC10 identities and use the
+same correction to recover LRP18,
+\[
+ \Delta\mathcal C+\Delta\mathcal T+\Delta\Xi+\mathcal H_a
+     =-\Delta F_L.
+\]
+Neither $C_Bq^2$ nor $\delta_{a,1}^{\rm ar}=\delta_a^\sigma$ has
+been removed from the original action or its exterior benchmark.

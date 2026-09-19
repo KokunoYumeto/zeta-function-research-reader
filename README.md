@@ -1,3 +1,10 @@
+<!-- fable-conductor:20260920 -->
+## Four ES–Fable labels and the original weighted conductor
+
+This complete source edition solves the inverse problem for the four-dimensional polynomial map used in the Erdős–Straus/Fable construction, then transports its fibres and escaping branches into the Split-Zero programme’s original weighted conductor. It gives all fibre multiplicities, the omitted values, all four singular values and the exact correction for the original translation action. The nonlinear map has escaping inverse branches; the original linear conductor remains invertible.
+
+[Complete LaTeX proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-fable-conductor/FABLE_TO_ORIGINAL_CONDUCTOR.tex) · [Proofs, exact checks and human provenance](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-fable-conductor/README.md). This is a nineteen-file source edition, not an RH counterexample. The original ES construction, Alpöge’s example and the special-function literature are cited at their actual uses.
+
 <!-- heat-literature-observed-class:20260920 -->
 ## Heat flow and the observed arithmetic class
 

@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,geometry,hyperref}
+\geometry{margin=1in}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\rk}{\operatorname{rank}}
+\title{Four marked Fable points and the exact conductor order strata}
+\author{Independent programme calculation}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+This calculation uses the four \emph{Time} points of the ES--Fable reader,
+not its separate binary-character tetrahedron. The two inputs are
+\cite[Theorem \texttt{explicit-four-time-Jacobian-collision}]{ES}
+and \cite[WCF1--6 and WCF19a]{WCF}. The original conductor coefficients
+are retained. No coefficients are fitted to the four points. The result
+identifies the precise rank-loss test for a pullback of those coefficients;
+it does not assert that an unprovided coefficient map has been constructed.
+
+\section{The four marked source points and their common image}
+Fix $\iota=i$ and the positive real square root $r=\sqrt2$. Use the
+original source coordinates $(a,y,z,w)$. The four columns are
+\begin{align*}
+q_{\mathrm M}&=(0,0,i/2,0)^{\mathsf T},&
+q_{\mathrm N}&=(i,-1,-3i,13)^{\mathsf T},\\
+q_{\mathrm T}&=(1/r,-1-ri,2r+6i,-34-19ri)^{\mathsf T},&
+q_{\mathrm E}&=(1/r,1-ri,-2r+6i,34-19ri)^{\mathsf T}.
+\end{align*}
+Their common target under the reader's polynomial map $P_i$ is
+$h=(0,0,-1,0)^{\mathsf T}$. For completeness the exact polynomial map is
+\begin{align*}
+P_0={}&a^3z+2a^2y-ia,\\
+P_2={}&-a^3y^2z-2ia^2yz+a^2w-2a^2y^3-10iay^2+3az+y,\\
+P_3={}&2a^3y^3z+6ia^2y^2z+2a^2wy+4a^2y^4+2iaw
+       -4iay^3-2ayz+2iz+7y^2,\\
+P_4={}&2a^3y^4z+8ia^2y^3z+a^2wy^2+4a^2y^5+2iawy
+       +7iay^4-10ay^2z-4iyz-w-3y^3.
+\end{align*}
+The reader proves $\det DP_i=-2$. Its four evaluations and that complete
+polynomial determinant have additionally been checked by the exact
+symbolic certificate accompanying this note; no floating-point test is
+used. The coordinate calculation below does not require a claim about
+the global conjecture to which the reader relates this map.
+
+\begin{proposition}[The full labelled collision algebra]
+The matrix $Q=[q_{\mathrm M}\ q_{\mathrm N}\ q_{\mathrm T}\ q_{\mathrm E}]$
+is invertible and
+\begin{equation}
+ \det Q=\frac{77\sqrt2\,i}{2}.\tag{FC1}
+\end{equation}
+Let $X$ be the reduced scheme consisting of these four points and let
+$Y=\{h\}$ be their reduced common image. In the order
+$(\mathrm M,\mathrm N,\mathrm T,\mathrm E)$ the exact pullback of functions
+is
+\begin{equation}
+ \mathcal O(Y)=\C\longrightarrow\mathcal O(X)=\C^4,
+ \qquad c\longmapsto(c,c,c,c).\tag{FC2}
+\end{equation}
+The dual pushforward of point masses is
+\begin{equation}
+ \C^4\longrightarrow\C,\qquad
+ (c_{\mathrm M},c_{\mathrm N},c_{\mathrm T},c_{\mathrm E})
+ \longmapsto c_{\mathrm M}+c_{\mathrm N}+c_{\mathrm T}+c_{\mathrm E}.
+ \tag{FC3}
+\end{equation}
+Its kernel is the three-dimensional space with the ordered basis
+$e_{\mathrm N}-e_{\mathrm M},e_{\mathrm T}-e_{\mathrm M},
+e_{\mathrm E}-e_{\mathrm M}$.
+\end{proposition}
+\begin{proof}
+Expansion along the first column of $Q$ gives
+\[
+ \det Q=\frac i2\det\begin{pmatrix}
+ i&1/r&1/r\\-1&-1-ri&1-ri\\13&-34-19ri&34-19ri
+ \end{pmatrix}.
+\]
+Subtract its second column from its third. The last column becomes
+$(0,2,68)^{\mathsf T}$. Expansion yields
+\[
+ i\{68(-1-ri)-2(-34-19ri)\}
+ -r^{-1}\{-68-26\}=30r+94/r=77r.
+\]
+This proves FC1. The four columns are consequently distinct.
+For each pair of distinct points choose a coordinate taking different
+values at them. Products of the corresponding affine linear factors
+give a polynomial which is one at a selected point and zero at the
+other three. Evaluation of polynomials therefore surjects onto
+$\C^4$, with kernel the ideal of $X$. All four values of $P_i$ equal
+$h$, so composition with $P_i$ gives the constant column, proving FC2.
+Duality gives FC3 and the stated kernel directly.
+\end{proof}
+
+Thus the linear map of \emph{point masses} has a kernel although all
+four differential maps $DP_i(q_T)$ are invertible. These are exact
+different arrows, related by the displayed pullback and duality. A
+permutation $\pi$ of the four labels acts on $\C^4$ by its permutation
+matrix $\Pi_\pi$. In the original ambient coordinates its action on
+the four columns is $Q\Pi_\pi Q^{-1}$. FC3 is invariant under this
+action. This assertion concerns the four marked points and makes no
+unproved equivariance assertion for $P_i$ away from them.
+
+\section{The original weighted conductor and its order of vanishing}
+Use all of WCF1's original coefficients $a_{uw}$ and its original shifts
+\[
+ \beta_{8,u,w}=4+(2u-8)\delta+i(2w-8)\gamma,
+ \qquad
+ E(z)=\sum_{u,w=0}^8a_{uw}e^{\beta_{8,u,w}z}.
+\]
+Write $\mu_j=E^{(j)}(0)$ and $v=\operatorname{ord}_0E$.
+Every finite $v$ has $\mu_v\ne0$; set $v=\infty$ when $E=0$.
+The shift operator, before taking any quotient, is
+\begin{equation}
+ TP(S')=\sum_{u,w=0}^8a_{uw}P(S'+\beta_{8,u,w}).\tag{FC4}
+\end{equation}
+Here $\cP_N=\C[S]_{\le N}$ and $\cP_{-1}=0$. Direct use of the
+binomial theorem gives
+\begin{equation}
+ T(S^n)=\sum_{j=0}^n\binom nj\mu_j(S')^{n-j}.\tag{FC5}
+\end{equation}
+
+The original Hermitian norms are those of WCF2, with
+$s\in\{1,a\}$, $a=4l+1\ge9$, $c_0=a/2$, $c_1=a/2-4$:
+\begin{gather*}
+ dm_s(y)=\frac{(2\pi)^{s/2}2^{s/2}}{4\pi\Gamma(s/2)}
+ |\Gamma(s/4+iy/2)|^2\,dy,\qquad
+ \|P\|_{s,c}^2=\int_{\mathbb R}|P(c+iy)|^2dm_s(y),\\
+ h_{n,s}=(2\pi)^{s/2}n!(s/2)_n,\qquad
+ \rho_n=\sqrt{n!/(s/2)_n},\\
+ p_{0,s}=1,\quad p_{1,s}=y,\quad
+ p_{n+1,s}=yp_{n,s}-n(n-1+s/2)p_{n-1,s},\qquad
+ \phi_{n,s,c}(S)=p_{n,s}((S-c)/i)/\sqrt{h_{n,s}}.
+\end{gather*}
+The Gamma mass and the phase $i^{-n}$ have not been divided out.
+The classical polynomial identities and their human provenance are
+given in WCF2--3 and DLMF 18.19, 18.22 and 18.23 \cite{DLMF}.
+
+\begin{proposition}[Exact fixed-cutoff rank, including order jumps]
+Fix integers $v_0,D\ge0$ and $N=D+v_0$. The original operator FC4
+induces the displayed arrow
+\begin{equation}
+ A^{[v_0]}:\cP_N/\cP_{v_0-1}\longrightarrow\cP_D\tag{FC6}
+\end{equation}
+if and only if $\mu_0=\cdots=\mu_{v_0-1}=0$.
+When it is defined and $v<\infty$, its rank, kernel and image are
+\begin{align}
+ \rk A^{[v_0]}&=\max\{D+1-(v-v_0),0\},\tag{FC7}\\
+ \ker A^{[v_0]}&=\cP_{\min(v-1,N)}/\cP_{v_0-1},\tag{FC8}\\
+ \operatorname{im}A^{[v_0]}&=\cP_{N-v}\quad(v\le N),\tag{FC9}
+\end{align}
+and its image is zero for $v>N$. If $E=0$, the map is zero.
+It is invertible exactly when $v=v_0$. In the full orthonormal
+quotient frame of WCF2 its determinant is
+\begin{equation}
+ \det A^{[v_0]}=
+ \left(\frac{(-i)^{v_0}\mu_{v_0}}{v_0!}\right)^{D+1}
+ \prod_{j=0}^D\frac{\rho_{j+v_0}}{\rho_j}.\tag{FC10}
+\end{equation}
+\end{proposition}
+\begin{proof}
+To descend to the quotient the operator must vanish on
+$1,S,\ldots,S^{v_0-1}$. Evaluation of FC5 at $S'=0$ proves that
+this requires $\mu_j=0$ for $j<v_0$, and the same formula proves
+sufficiency both for descent and for the asserted codomain.
+If $n\ge v$, the leading coefficient of FC5 is
+$\binom nv\mu_v$, which is nonzero, and its degree is $n-v$.
+If $n<v$ its image is zero. Triangular elimination, in the degrees
+$v,\ldots,N$, proves FC7--9 without any assumption on later moments.
+
+For the weighted assertion put
+\[
+ w(t)=-i\arctan t,\qquad
+ g_{v_0}(t)=t^{-v_0}e^{-4w(t)}E(w(t)).
+\]
+The moment vanishing already proved is exactly the condition that this
+function is holomorphic at zero. The generating identity WCF3 applied
+to FC4, with the original centre difference $c_0-c_1=4$, gives
+\[
+ A^{[v_0]}_{ij}=\begin{cases}
+ [t^{j-i}]g_{v_0}(t)\,\rho_{j+v_0}/\rho_i,&i\le j,\\
+ 0,&i>j.
+ \end{cases}
+\]
+Its constant coefficient is $(-i)^{v_0}\mu_{v_0}/v_0!$.
+Multiplication of the diagonal entries proves FC10. All factors
+$\rho_j$ are positive. When $v>v_0$, the first nonzero coefficient
+of $g_{v_0}$ is in degree $v-v_0$, also recovering FC7 in the exact
+weighted frame.
+\end{proof}
+
+The preceding proposition is a complete finite calculation, applicable
+pointwise to every actual coefficient evaluation. It is not an
+assumption that the moment order is constant. For any actual parameter
+space carrying the original coefficients and shifts, the order-$v$
+stratum is precisely
+\[
+ \{\mu_0=\cdots=\mu_{v-1}=0,\ \mu_v\ne0\}.
+\]
+The singular set of the fixed arrow FC6 is precisely the additional
+equation $\mu_{v_0}=0$ on its domain. If $\mu_j\ne0$ for some
+$j<v_0$, FC6 is undefined there; it is not a noninvertible instance
+of that arrow. Replacing the source kernel by the \emph{actual} kernel
+gives, for $v\le N$, the always invertible map
+\[
+ \cP_N/\cP_{v-1}\longrightarrow\cP_{N-v}.
+\]
+This changes the displayed source and target dimensions and must be
+recorded, rather than identifying two different cutoffs.
+
+Because there are at most 81 exponential terms, the identically zero
+case is detected by the first 81 moments. Indeed first collect equal
+shifts, leaving distinct values $\alpha_1,\ldots,\alpha_m$, $m\le81$,
+with collected coefficients $b_j$. The equations
+$\mu_0=\cdots=\mu_{m-1}=0$ read
+$(\alpha_j^n)_{0\le n<m,1\le j\le m}b=0$. This Vandermonde matrix
+has determinant $\prod_{j<k}(\alpha_k-\alpha_j)\ne0$, so every
+$b_j=0$. This proof retains repeated contributions by collecting their
+exact sum and works when shifts themselves coincide.
+
+\section{The exact four-label receiving map}
+The original WCF map has a canonical extension to the four labelled
+points: scalar extension from $\C$ to $\mathcal O(X)=\C^4$. It is
+\begin{equation}
+ A^{[v_0]}_X=A^{[v_0]}\otimes I_4.\tag{FC11}
+\end{equation}
+This expression keeps all four points even when their common image is
+represented by the same coordinates. Its determinant and rank are
+\begin{equation}
+ \det A^{[v_0]}_X=(\det A^{[v_0]})^4,\qquad
+ \rk A^{[v_0]}_X=4\rk A^{[v_0]}.\tag{FC12}
+\end{equation}
+These follow by reordering the tensor basis into four blocks. The
+four-copy inner product is the direct sum of the four original WCF
+inner products; the corresponding source mass is not changed.
+The map obtained by forgetting the labels is induced by FC3 and has
+the exact commuting square
+\[
+\begin{array}{ccc}
+ (\cP_N/\cP_{v_0-1})\otimes\C^4
+ &\xrightarrow{A^{[v_0]}\otimes I_4}&\cP_D\otimes\C^4\\
+ \downarrow I\otimes\Sigma&&\downarrow I\otimes\Sigma\\
+ \cP_N/\cP_{v_0-1}&\xrightarrow{A^{[v_0]}}&\cP_D,
+\end{array}
+\qquad \Sigma(c)=\sum_Tc_T.
+\]
+Equality of the two compositions is bilinearity. The vertical kernels
+are precisely the tensor products with $\ker\Sigma$. If $v=v_0$,
+the upper arrow restricts to an isomorphism on these two kernels.
+Thus the collision's three directions survive as labelled directions
+and do not become a kernel of the horizontal conductor map.
+
+In original coordinate columns, use $Q$ from FC1. This is a change of
+frame for the four labels, and it transports the label metric to
+$(Q^{-1})^*Q^{-1}$ on the raw coordinate space: the equality
+$\|Q^{-1}x\|^2=x^*(Q^{-1})^*Q^{-1}x$ proves the assertion. The
+identity
+\[
+ (I\otimes Q)(A^{[v_0]}\otimes I_4)(I\otimes Q^{-1})
+ =A^{[v_0]}\otimes I_4
+\]
+follows by tensor multiplication. Hence the actual nonorthogonal
+coordinates of the four points change neither FC10 nor FC12.
+
+FC11 is the exact base-change relation supplied by the four-point
+collision alone. A nonconstant map from those source coordinates into
+the programme's original conductor coefficients is additional data.
+Once that concrete map is supplied, FC5 and FC10 give its exact
+singularity test, including every moment-order jump. This note has not
+invented such a coefficient map or replaced the original symbol by an
+interpolating polynomial.
+
+\section{The four original conductor incidences inside every moment}
+Retain the original ordered quartet
+\[
+ (\rho_1,\rho_2,\rho_3,\rho_4)
+ =(\tfrac12+\delta+i\gamma,\tfrac12+\delta-i\gamma,
+ \tfrac12-\delta+i\gamma,\tfrac12-\delta-i\gamma).
+\]
+Write the original degree-eight conductor, in its original period
+coordinates, as
+\[
+ P(t)=A_H(Ht)=\sum_{|m|=8}c_m t^m.
+\]
+No entry of the original matrix $H$ has been removed. Substituting
+$t_j=e^{\rho_jz}$ sends a monomial to the WCF exponential indexed by
+$u=m_1+m_2$, $w=m_1+m_3$. Consequently the full collected coefficients
+are
+\begin{equation}
+ a_{u,w}=\sum_{\substack{|m|=8\\m_1+m_2=u\\m_1+m_3=w}}c_m.
+ \tag{FC13}
+\end{equation}
+The four corner index pairs have only one monomial each. Therefore
+\begin{equation}
+ P(e_1)=a_{8,8},\quad P(e_2)=a_{8,0},\quad
+ P(e_3)=a_{0,8},\quad P(e_4)=a_{0,0}.\tag{FC14}
+\end{equation}
+Define $\mathcal D_\rho=\sum_j\rho_jt_j\partial_{t_j}$.
+The chain rule gives
+\[
+ \frac{d}{dz}P(e^{\rho_1z},\ldots,e^{\rho_4z})
+ =(\mathcal D_\rho P)(e^{\rho_1z},\ldots,e^{\rho_4z}).
+\]
+Applying this identity successively to $\mathcal D_\rho^jP$ proves,
+for every $n\ge0$, the complete original moment formula
+\begin{equation}
+ \mu_n=\left.\mathcal D_\rho^nP\right|_{t=(1,1,1,1)}
+ =\sum_{j=1}^4 P(e_j)(8\rho_j)^n
+ +\sum_{(u,w)\notin\{(8,8),(8,0),(0,8),(0,0)\}}
+     a_{u,w}\beta_{8,u,w}^{\,n}.\tag{FC15}
+\end{equation}
+The second equality follows by applying the diagonal operator to every
+monomial and using FC13--14. It includes every repeated contribution.
+
+Thus the four original point-conductor incidences are four exact
+coordinates in the original moment test, with an explicit remaining
+77-coordinate sum. They are not another choice of conductor. Their
+simultaneous vanishing removes precisely those four corner terms.
+For a nonzero symbol supported on $r$ distinct remaining exponents,
+the Vandermonde proof above gives $v\le r-1$; in particular deleting
+the four corners gives $v\le76$. This is support information supplied
+by the four points, not a kernel of the map with its actual vanishing
+order. FC10 tests a fixed old quotient after all retained terms of
+FC15 have been evaluated.
+
+\begin{thebibliography}{9}
+\bibitem{ES} ES--Fable--C123 research reader, local original \LaTeX,
+\texttt{es\_fable\_c123\_preprint.tex}, read 19 September 2026.
+Exact proof locators: Theorem
+\texttt{explicit-four-time-Jacobian-collision}; equations
+\texttt{quartic-collision-M}, \texttt{quartic-collision-N},
+\texttt{quartic-collision-T}, \texttt{quartic-collision-E},
+\texttt{quartic-four-time-common-target}.
+Its separate theorem \texttt{Fable-to-zeta-four-channel-morphism}
+explicitly concerns binary characters, not the four Times.
+\bibitem{WCF} Original Split-Zero programme, \emph{A polynomial forward
+bound for the full weighted conductor},
+\texttt{WEIGHTED\_CONDUCTOR\_FORWARD.tex}, WCF1--6, WCF19a, WCF20--22.
+Its original human attribution is retained in that source at
+\texttt{human:globalization2026} and \texttt{human:splitzero2026}.
+\bibitem{DLMF} NIST Digital Library of Mathematical Functions,
+Chapter 18, \url{https://dlmf.nist.gov/18.19},
+\url{https://dlmf.nist.gov/18.22},
+\url{https://dlmf.nist.gov/18.23}; original orthogonal-polynomial
+weight, recurrence and generating function used by WCF.
+\end{thebibliography}
+\end{document}

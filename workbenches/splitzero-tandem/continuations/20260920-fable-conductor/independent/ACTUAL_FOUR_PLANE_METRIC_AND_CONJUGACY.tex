@@ -1,0 +1,380 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref}
+\geometry{margin=1in}
+\newtheorem{proposition}{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\cP}{\mathcal P}
+\title{The original four-plane conductor restriction and transported Fable collision}
+\author{Independent programme calculation}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+The source points, their polynomial map $P_i$, the original conductor
+$T_A$, and the original weights are those displayed completely in
+\texttt{FOUR\_LABELS\_AND\_CONDUCTOR\_ORDER.tex}, with source
+locators and exact verification there. This note proves the additional
+restriction and metric formulas for FC26--27 in
+\texttt{FABLE\_TO\_ORIGINAL\_CONDUCTOR.tex}. It changes no
+coefficient of the original conductor.
+
+Retain the original roots in their marked order,
+\[
+ (\rho_1,\rho_2,\rho_3,\rho_4)
+ =(\tfrac12+\delta+i\gamma,\tfrac12+\delta-i\gamma,
+ \tfrac12-\delta+i\gamma,\tfrac12-\delta-i\gamma),
+ \qquad \delta>0,\quad\gamma>0.
+\]
+Let $V_{ja}=\rho_a^j$, $0\le j\le3$, $1\le a\le4$, and write
+\[
+ \Delta=\det V=-64\delta^2\gamma^2(\delta^2+\gamma^2),\qquad
+ \ell_a(S)=\prod_{b\ne a}\frac{S-\rho_b}{\rho_a-\rho_b}.
+\]
+Let $v$ be the actual order of the original nonzero exponential
+symbol, so $\mu_0=\cdots=\mu_{v-1}=0$ and $\mu_v\ne0$.
+Take $D\ge3$. Define the four original quotient classes and their
+literal images by
+\[
+ x_a=[S^v\ell_a(S)]\in\cP_{D+v}/\cP_{v-1},\qquad
+ y_a=T_Ax_a.
+\]
+Their source norm is the original WCF quotient norm, with center
+$c_0=a/2$ and order $s\in\{1,a\}$; their target norm is the original
+WCF Gamma norm at $c_1=a/2-4$, with that same order $s$.
+
+\begin{proposition}[Restriction matrix and determinant]
+The four $x_a$ span $U=\cP_{v+3}/\cP_{v-1}$ inside the original
+source, and $T_A$ maps $U$ bijectively to $W=\cP_3$ inside its
+original target. If $Y$ is the coefficient matrix of the $y_a$ in
+the monomial basis $(1,S',S'^2,S'^3)$, then
+\begin{equation}
+ Y=B_v(V^{\mathsf T})^{-1},\qquad
+ (B_v)_{ij}=\begin{cases}
+ \binom{v+j}{i}\mu_{v+j-i},&0\le i\le j\le3,\\
+ 0,&i>j,
+ \end{cases}\tag{R1}
+\end{equation}
+and
+\begin{equation}
+ \det Y=\frac{\mu_v^4}{\Delta}
+             \prod_{j=0}^3\binom{v+j}{v}\ne0.\tag{R2}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Evaluation at the four roots has matrix $V^{\mathsf T}$ in the
+monomial coefficient basis. Since $\ell_a(\rho_b)=\delta_{ab}$,
+the coefficient matrix of the four Lagrange polynomials is
+$C=(V^{\mathsf T})^{-1}$. Multiplication by $S^v$ makes that same
+matrix the coordinates of the four source classes in
+$[S^v],\ldots,[S^{v+3}]$, which are independent modulo
+$\cP_{v-1}$. Thus the $x_a$ span exactly $U$.
+The binomial theorem gives, with every original moment retained,
+\[
+ [S'^i]T_A S^{v+j}=\binom{v+j}{i}\mu_{v+j-i}.
+\]
+For $i>j$ this is zero by the actual moment order (or there is no
+term because $i>v+j$). For $i=j$ it is
+$\binom{v+j}{v}\mu_v\ne0$. Hence the coefficient matrix is the
+upper triangular $B_v$, and $Y=B_v C$. Multiplication of the
+diagonal entries and $\det C=1/\Delta$ proves R2 and bijectivity.
+\end{proof}
+
+\begin{proposition}[The original quotient and target Gram determinants]
+Put $M_s=(2\pi)^{s/2}$ and $h_{n,s}=M_s n!(s/2)_n$, as in WCF2.
+For the full Gram matrices $G_x=(\langle x_a,x_b\rangle)$ and
+$G_y=(\langle y_a,y_b\rangle)$ in their unchanged original norms,
+\begin{align}
+ \det G_x&=\frac{\prod_{j=0}^3h_{v+j,s}}{|\Delta|^2},\tag{R3}\\
+ \det G_y&=\frac{|\mu_v|^8}{|\Delta|^2}
+     \left(\prod_{j=0}^3\binom{v+j}{v}\right)^2
+     \prod_{j=0}^3h_{j,s}.\tag{R4}
+\end{align}
+Consequently
+\begin{equation}
+ \frac{\det G_y}{\det G_x}
+ =|\mu_v|^8\prod_{j=0}^3
+       \binom{v+j}{v}^{\!2}\frac{h_{j,s}}{h_{v+j,s}}
+ =|\det A_{3,s}|^2>0,\tag{R5}
+\end{equation}
+where $A_{3,s}$ is the original WCF6 matrix with $D=3$.
+\end{proposition}
+\begin{proof}
+The original orthonormal polynomial $\phi_{n,s,c}$ has leading
+coefficient $i^{-n}/\sqrt{h_{n,s}}$. Therefore the coefficient matrix
+of $1,S,\ldots,S^m$ in $\phi_{0,s,c},\ldots,\phi_{m,s,c}$ is
+upper triangular with diagonal $i^n\sqrt{h_{n,s}}$.
+For the source quotient, orthogonal projection away from
+$\cP_{v-1}$ deletes the first $v$ rows. Applied to
+$S^v,\ldots,S^{v+3}$, the remaining four-by-four matrix has diagonal
+$i^{v+j}\sqrt{h_{v+j,s}}$. Its Gram determinant is therefore
+$\prod_jh_{v+j,s}$. Passing to the $x_a$ multiplies that determinant
+by $|\det C|^2=|\Delta|^{-2}$, proving R3. No larger-degree
+coefficient appears: each polynomial has degree at most $v+3$.
+
+The target monomial Gram on $\cP_3$ has determinant
+$\prod_{j=0}^3h_{j,s}$ by the same leading-coefficient argument at
+the original target center $c_1$. Its change-of-frame matrix is
+$Y$, so its determinant is multiplied by $|\det Y|^2$. R2 gives
+R4. Both determinants retain the factor $M_s^4$. Dividing these
+proved equalities gives the first expression in R5.
+
+Finally, writing $b=s/2$, each of the four factors satisfies
+\[
+ \binom{v+j}{v}^{\!2}\frac{h_{j,s}}{h_{v+j,s}}
+ =\frac{1}{(v!)^2}\frac{(v+j)!/(b)_{v+j}}{j!/(b)_j}
+ =\frac{1}{(v!)^2}\frac{\rho_{v+j}^2}{\rho_j^2}.
+\]
+Thus R5 agrees exactly with the squared modulus of WCF19a at $D=3$.
+This proves compatibility with the original weighted operator, not
+only with an unweighted coefficient determinant.
+\end{proof}
+
+\section{Exact transport of the nonlinear collision}
+Let $K$ be the four-by-four matrix of the original ES source columns,
+in the order $(\mathrm M,\mathrm N,\mathrm T,\mathrm E)$, so
+$\det K=77\sqrt2 i/2$. Let the original polynomial map be $P_i$,
+with
+\[
+ P_i(Ke_a)=h=(0,0,-1,0)^{\mathsf T},\qquad \det DP_i=-2.
+\]
+Define linear isomorphisms
+\[
+ X:\C^4\longrightarrow U,\quad Xe_a=x_a,\qquad
+ \mathcal Y=T_A X:\C^4\longrightarrow W,\quad\mathcal Ye_a=y_a,
+\]
+and $\Phi=XK^{-1}$, $\Psi=\mathcal YK^{-1}$. Their inverses exist
+by R1--2 and the exact value of $\det K$. The two transported
+polynomial maps are now completely defined by
+\begin{equation}
+ P_U=\Phi P_i\Phi^{-1}:U\longrightarrow U,\qquad
+ P_W=\Psi P_i\Psi^{-1}:W\longrightarrow W.\tag{R6}
+\end{equation}
+They obey the exact intertwining identity
+\begin{equation}
+ (T_A|_U)P_U=P_W(T_A|_U).\tag{R7}
+\end{equation}
+Indeed $\Psi=(T_A|_U)\Phi$, and substitution in the right side of
+R7 cancels the inverse linear maps, giving the left side.
+The chain rule gives
+\[
+ DP_U(u)=\Phi\,DP_i(\Phi^{-1}u)\,\Phi^{-1},\qquad
+ DP_W(w)=\Psi\,DP_i(\Psi^{-1}w)\,\Psi^{-1}.
+\]
+Consequently both determinants are exactly $-2$ in any fixed linear
+frame of the corresponding space. At the four marked points,
+\begin{equation}
+ P_U(x_a)=\Phi h=2i x_{\mathrm M},\qquad
+ P_W(y_a)=\Psi h=2i y_{\mathrm M}\quad(1\le a\le4).
+ \tag{R8}
+\end{equation}
+Here $h=2iKe_{\mathrm M}$ follows immediately from the original
+column $q_{\mathrm M}=(0,0,i/2,0)^{\mathsf T}$. Thus the four marked
+points of the nonlinear collision transport to the actual
+source and actual target four-planes. The linear operator between
+those planes remains the original invertible $T_A|_U$.
+
+This transport uses the original norms. It does not declare $\Phi$ or
+$\Psi$ unitary. In the original ES coordinate variables $q$, their
+pullback Gram matrices are exactly
+\[
+ (K^{-1})^*G_xK^{-1},\qquad (K^{-1})^*G_yK^{-1},
+\]
+respectively. These formulas follow by substituting the coefficient
+column $K^{-1}q$ into the two original quadratic forms. R3--5 retain
+their determinants and all source masses. The maps R6 are polynomial
+conjugates of the actual ES map, not a new choice of conductor symbol.
+
+There is nevertheless no map from the single common image $h$ to
+$W$ whose composition with $P_i$ agrees with $\Psi$ on all four
+original marked points. Such a map would assign a single value to
+$h$, while $\Psi(Ke_a)=y_a$ are linearly independent. The linear
+obstruction is equally explicit: for
+$\Sigma:\C^4\to\C$, $\Sigma c=\sum_ac_a$, the restriction of
+$\mathcal Y$ to $\ker\Sigma$ has rank three, with independent images
+\[
+ y_{\mathrm N}-y_{\mathrm M},\quad
+ y_{\mathrm T}-y_{\mathrm M},\quad
+ y_{\mathrm E}-y_{\mathrm M}.
+\]
+Independence follows because a relation between these differences is
+a relation between the four independent $y_a$. This states exactly
+which factorization fails and, through R6--8, supplies the full
+nonlinear intertwining relation that does exist. The complete fibre
+contains seven points, rather than just the four marked columns;
+its full calculation follows.
+
+\section{The complete seven-point fibre and the missing factor-sign chart}
+Put $h=(0,0,-1,0)^{\mathsf T}$. To solve $P_i(a,y,z,w)=h$, first
+take $a=0$. The equations in their original order reduce to
+\[
+ P_0=0,\quad P_2=y=0,\quad P_3=2iz=-1,\quad P_4=-w=0.
+\]
+Thus there is precisely one solution with $a=0$, namely $q_{\mathrm M}$.
+If $a\ne0$, the first two equations give, without discarding any
+solution in this open set,
+\[
+ z=\frac{i-2ay}{a^2},\qquad
+ w=\frac{i(7a^2y^2-3iay-3)}{a^3}.
+\]
+Substitution in $P_3+1$ and $P_4$ gives exactly
+\[
+ -\frac{3a^2y^2-a^2+6iay-4}{a^2},\qquad
+ -\frac{(ay+i)(2a^2y^2+4iay-3)}{a^3}.
+\]
+These substitutions are polynomial identities after multiplication by
+the displayed nonzero denominators; they are also verified over
+$\mathbb Q(i,\sqrt2)$ in \texttt{verify\_seven\_fibre.py}.
+Set $t=ay$. The two remaining equations become
+\begin{equation}
+ (t+i)(2t^2+4it-3)=0,\qquad a^2=3t^2+6it-4.\tag{R9}
+\end{equation}
+The first polynomial has the three distinct roots
+$-i,-i+1/\sqrt2,-i-1/\sqrt2$. For $t=-i$ the second equation
+gives $a^2=-1$; for the other two roots it gives $a^2=1/2$.
+Each gives two distinct nonzero values of $a$, and then the unique
+values $y=t/a$, $z$, and $w$ from the preceding formulas.
+There are exactly six points on $a\ne0$, and therefore exactly
+seven points in the complete fibre.
+
+The four original marked points account for $q_{\mathrm M}$ and
+three of these six. The additional three points are
+\begin{align*}
+ q_{\mathrm N}'&=(-i,1,-3i,-13),\\
+ q_{\mathrm T}'&=(-1/\sqrt2,1+\sqrt2 i,2\sqrt2+6i,
+                                      34+19\sqrt2 i),\\
+ q_{\mathrm E}'&=(-1/\sqrt2,-1+\sqrt2 i,-2\sqrt2+6i,
+                                      -34+19\sqrt2 i).
+\end{align*}
+These are all distinct and satisfy the eliminated equations, which
+were equivalent to the original fibre equations on $a\ne0$.
+Their names here indicate their origin under the linear involution
+$J=\operatorname{diag}(-1,-1,1,-1)$:
+$q_T'=Jq_T$. They do not assert that a prime preserves the original
+marked factor root. Direct inspection of each monomial of $P_i$
+gives
+\[
+ P_i(Jq)=\operatorname{diag}(-1,-1,1,-1)P_i(q),
+\]
+so the fibre at $h$ is $J$-stable.
+
+Since $e_z=-2i q_{\mathrm M}$ in the original ambient coordinate
+space, $Jq=-q+2z e_z$ gives the three exact linear identities
+\[
+ q_{\mathrm N}'=-12q_{\mathrm M}-q_{\mathrm N},\quad
+ q_{\mathrm T}'=(24-8\sqrt2 i)q_{\mathrm M}-q_{\mathrm T},\quad
+ q_{\mathrm E}'=(24+8\sqrt2 i)q_{\mathrm M}-q_{\mathrm E}.
+\]
+The complete fibre of $P_W$ at $2i y_{\mathrm M}$ is consequently
+the following seven distinct points in the original WCF target:
+\begin{equation}
+ \left\{y_{\mathrm M},y_{\mathrm N},y_{\mathrm T},y_{\mathrm E},
+ -12y_{\mathrm M}-y_{\mathrm N},
+ (24-8\sqrt2 i)y_{\mathrm M}-y_{\mathrm T},
+ (24+8\sqrt2 i)y_{\mathrm M}-y_{\mathrm E}\right\}.\tag{R10}
+\end{equation}
+Completeness follows from the bijective conjugacy R6, not merely from
+seven evaluations. Replacing every $y$ by $x$ gives the corresponding
+complete source-plane fibre.
+
+There is a second involution, distinct from $J$, on the open chart
+$a\ne0$:
+\begin{equation}
+ \Sigma(a,y,z,w)=\left(-a,\ y+\frac{2i}{a},\
+ \frac{6i}{a^2}-z,\
+ w-\frac{14iy^2}{a}+\frac{28y}{a^2}+\frac{40i}{a^3}\right).
+ \tag{R11}
+\end{equation}
+It is exactly the simultaneous sign change of the six original
+factor coordinates. To see this, retain their original formulas
+\begin{align*}
+ b&=i+ay,&c&=-i+2ay+a^2z,\\
+ d&=-iy-a(iz+2y^2)-a^2yz,&e&=2z-7iy^2+aw,\\
+ f&=iw+3iy^3-4yz+a(6iy^2z+wy+4y^4)+2a^2y^3z.
+\end{align*}
+Substituting R11 gives $a'=-a$, $b'=-b$, $c'=-c$, $e'=-e$.
+For example $b'=i-a(y+2i/a)=-b$; the $c$ equation follows
+from $a^2z'=6i-a^2z$, and the $e$ equation expands to
+\[
+ 2z'-7iy'^2-a w'=-2z+7iy^2-aw=-e.
+\]
+The original coefficient and resultant identities are
+\[
+ ad+bc=1,\qquad
+ a^3f-a^2be+ab^2d-b^3c=1.
+\]
+At $a\ne0$ the first determines $d$ and the second determines
+$f$. Applying them at the primed coordinates gives $d'=-d$ and
+$f'=-f$. All six signs are thus proved. The chart is injective
+on $a\ne0$, with inverse coordinates recovered successively as
+\[
+ y=(b-i)/a,\qquad z=(c+i-2ay)/a^2,\qquad
+ w=(e-2z+7iy^2)/a.
+\]
+The simultaneous sign change squares to the identity, so
+$\Sigma^2=I$ on this chart. The product of the linear and cubic
+factors is unchanged when both change sign. Since $P_i$ comprises
+the four unfixed coefficients of that product, this proves
+\begin{equation}
+ P_i\Sigma=P_i.\tag{R12}
+\end{equation}
+The full identities $\Sigma^2=I$, R12 and the six-factor sign
+change have additionally been verified directly by symbolic
+substitution and rational-function reduction in the accompanying
+exact certificate.
+
+At the three original nonzero-$a$ marked points this involution
+pairs
+\[
+ q_{\mathrm N}\leftrightarrow q_{\mathrm N}',\qquad
+ q_{\mathrm T}\leftrightarrow q_{\mathrm E}',\qquad
+ q_{\mathrm E}\leftrightarrow q_{\mathrm T}'.
+\]
+It preserves the marked factor root because it changes both factors
+by the same sign. The original $q_{\mathrm M}$ has factor state
+$(0,i,-i,0,i,0)$. Its negative factor state
+$(0,-i,i,0,-i,0)$ is excluded from this source chart: $a=0$
+forces $b=i$ in $b=i+ay$. This explains the lost partner without
+identifying any two of the seven source points.
+
+\section{A proved nonproper value of the transported nonlinear map}
+For real $\varepsilon>0$ let
+\[
+ q(\varepsilon)=(\varepsilon,0,i/2,0),\qquad
+ \widetilde q(\varepsilon)=\Sigma q(\varepsilon)
+ =\left(-\varepsilon,\frac{2i}{\varepsilon},
+ \frac{6i}{\varepsilon^2}-\frac i2,
+ \frac{40i}{\varepsilon^3}\right).
+\]
+Then $q(\varepsilon)\to q_{\mathrm M}$,
+$\|\widetilde q(\varepsilon)\|\to\infty$, and R12 gives
+\[
+ P_i\widetilde q(\varepsilon)=P_iq(\varepsilon)\longrightarrow h.
+\]
+For any sequence $\varepsilon_n\downarrow0$, the images together
+with their limit form a compact set, whereas its preimage contains
+the unbounded sequence $\widetilde q(\varepsilon_n)$. This proves
+failure of properness at that finite image value. After the exact
+linear conjugacy, $\Psi\widetilde q(\varepsilon)$ remains unbounded
+in the original target Gamma norm: every injective linear map between
+these finite-dimensional normed spaces has a positive smallest
+singular value. R6 gives
+\begin{equation}
+ P_W\bigl(\Psi\widetilde q(\varepsilon)\bigr)
+ =\Psi P_iq(\varepsilon)\longrightarrow 2i y_{\mathrm M}.\tag{R13}
+\end{equation}
+This is a nonproper value of the transported \emph{nonlinear} map,
+while R2--5 prove that the original linear conductor stays invertible.
+
+For a vector $w=\sum_ac_a y_a$, its original first coordinate under
+$\Psi^{-1}=K\mathcal Y^{-1}$ is
+\[
+ a(w)=i c_{\mathrm N}+(c_{\mathrm T}+c_{\mathrm E})/\sqrt2.
+\]
+Thus the rational partner map $\Psi\Sigma\Psi^{-1}$ has its
+denominator locus on precisely the displayed hyperplane $a(w)=0$.
+It cannot extend regularly across this entire hyperplane: in the
+original coordinates its second component contains the nonzero
+simple pole $2i/a$. Invertible linear conjugacy cannot make all
+components regular when one was not. In particular the escaping
+branch in R13 approaches the finite image $2i y_{\mathrm M}$ from
+the chart whose sign partner of $q_{\mathrm M}$ is missing.
+\end{document}

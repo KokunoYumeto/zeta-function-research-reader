@@ -1,3 +1,22 @@
+<!-- corpus-cohomology-metric-receivers:20260919 -->
+## Earlier Split-Zero constructions in the theta-cohomology programme
+
+This 38-page proof constructs explicit maps from the original theta
+complex into earlier split-support cohomology, arithmetic-boundary,
+global-jet, source-inversion and holonomy constructions. It also quantifies
+the heat depth required by the attained finite metric and errors in
+the actual complex observation responses and three projected currents.
+The original coordinates, full zero multiplicities and human citations
+are retained. Individual projected signs, observation angles and the
+seven separate absolute allocations remain to be calculated.
+
+[Read the 38-page proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-corpus-cohomology-metric-receivers/CORPUS_RECEIVERS_AND_METRIC_CONTROL.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-corpus-cohomology-metric-receivers/CORPUS_RECEIVERS_AND_METRIC_CONTROL.tex) · [Nine dated mathematical results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-corpus-cohomology-metric-receivers/NEW_RESULTS_2026-09-19.md) · [Complete source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-corpus-cohomology-metric-receivers/README.md) · [Earlier sources and their exact maps](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-corpus-cohomology-metric-receivers/SOURCE_RECEIVERS.md) · [Next calculations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-corpus-cohomology-metric-receivers/CONTINUATION.md).
+
+Three complete cumulative LaTeX successors, 35 exact source providers
+including full Deligne D032, explicit correction records and 156 finite
+matrix diagnostics accompany the proof. Reading coverage is recorded
+without claiming an exhaustive review of the earlier corpus.
+
 <!-- circle-heat-original-metrics:20260919 -->
 ## Circle heat in the original arithmetic quotient metrics
 

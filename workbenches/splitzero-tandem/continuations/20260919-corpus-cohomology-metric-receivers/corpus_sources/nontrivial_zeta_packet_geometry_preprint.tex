@@ -1,0 +1,961 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.08in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\Ima}{Im}
+
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\taup}{\tau}
+\newcommand{\into}{\hookrightarrow}
+
+\title{Spectral Packet Geometry of the Non-Trivial Zeta Zeros\
+inside the Split-Zero Formalism}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},\qquad A:=\{0,\taup\}\cong \BB,
+\qquad F_1(s):=\zeta(s)-1.
+\]
+For every zero $\rho$ of the Riemann zeta function one has $F_1(\rho)=-1$, so the pointwise split-zero coefficient is the fixed Boolean pair $A$.  The non-trivial content is therefore not pointwise but geometric.  In this paper we determine the geometric image of the non-trivial zeros by combining the split-zero divisor formalism with the spectral constructions of Connes and Consani.
+
+Let $\xi$ be the completed zeta function and let $D_\xi$ be its zero divisor.  We prove that the non-trivial zeros organize into Klein-four packets, that the Boolean multiplicity shadow descends to a packet sheaf on the orbit space, and that the affine spectral coordinate
+\[
+\Phi(s)=i\Bigl(s-\frac12\Bigr)
+\]
+identifies the non-trivial zero divisor with the spectral divisor cut out by $z\mapsto \zeta(\frac12-iz)$, equivalently with the common-zero locus of the Connes--Consani family $F(Ef)$.  Under this map the packet
+\[
+\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+becomes the centered spectral packet
+\[
+\{z,-z,\bar z,-\bar z\}.
+\]
+We show further that $\Phi$ is the square-root coordinate for the Connes Laplacian,
+\[
+-\rho(1-\rho)=-\Phi(\rho)^2-\frac14,
+\]
+and that on the critical locus the packet parameter determines the primitive $\zeta$-cycle length $2\pi/|\Phi(\rho)|$.  Finally, we prove the exact transformation law of the leading jet coefficient $\xi^{(m)}(\rho)/m!$ under the packet symmetries and obtain from it a well-defined positive packet weight.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},
+\qquad
+A:=\{0,\taup\}\subset S,
+\qquad
+F_1(s):=\zeta(s)-1.
+\]
+If $\rho$ is a zero of $\zeta$, then $F_1(\rho)=-1$, and multiplication by $-1$ fixes exactly the Boolean pair $A\cong\BB$.  Taken pointwise, every zeta zero therefore yields the same split-zero coefficient object.  The mathematical problem is not to distinguish zeros pointwise, but to determine the geometric object carried by the whole non-trivial zero divisor.
+
+There is already a natural symmetry packet on the analytic side.  For the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\Bigl(\frac s2\Bigr)\zeta(s),
+\]
+complex conjugation and the functional involution $s\mapsto 1-s$ preserve the non-trivial zeros and their multiplicities.  Independently, Connes and Consani constructed two spectral realizations of the zeros of the Riemann zeta function: the first realization involves all non-trivial zeros and is expressed in terms of the Hochschild-trace map and the Laplacian $\Delta=H(1+H)$; the second involves the critical zeros and is expressed in terms of $\zeta$-cycles and sheaf cohomology on the Scaling Site.  The purpose of the present paper is to splice these two geometric structures into the split-zero formalism.
+
+The main point is that the non-trivial zero divisor admits two compatible geometric descriptions.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The quotient of the support by complex conjugation and $s\mapsto 1-s$ carries a canonical Boolean packet sheaf, whose stalk at a packet $O$ is the Boolean cube $A^{m_O}$ of the common multiplicity.
+\item The affine map $\Phi(s)=i(s-\frac12)$ transports the same divisor to the spectral plane of Connes and Consani.  Under $\Phi$, the functional symmetry becomes $z\mapsto -z$ and complex conjugation becomes $z\mapsto -\bar z$.
+\end{enumerate}
+
+The outcome is a concrete answer to the question of how a non-trivial zero maps into the split-zero formalism.  After forgetting packet base and multiplicity one recovers the coefficient pair $A$; the full image is a \emph{weighted Boolean packet}: a spectral packet point in the Connes plane, a Boolean multiplicity cube attached to that packet, and on the critical locus a primitive circle length in the geometry of $\zeta$-cycles.
+
+We keep the paper self-contained on the split-zero side.  On the Connes--Consani side we use, as inputs, their spectral realizations of all non-trivial zeros and of critical zeros \cite{ConnesConsaniCycles}.  For general background on sheaves and complex manifolds one may consult \cite{Lee}; for the Boolean and blueprint side of semiring geometry see \cite{Lorscheid}.  Nothing from these references beyond standard facts is used without explicit citation.
+
+\section{The split-zero coefficient object}
+
+\begin{definition}
+Let
+\[
+S:=\ZZ\sqcup\{\taup\},\qquad \taup\notin \ZZ,
+\]
+with operations
+\[
+m\oplus n:=m+n,
+\qquad
+m\oplus\taup=\taup\oplus m:=m,
+\qquad
+\taup\oplus\taup:=\taup,
+\]
+and
+\[
+m\odot n:=mn,
+\qquad
+m\odot\taup=\taup\odot m:=\taup,
+\qquad
+\taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in\ZZ\subset S$ is the multiplicative identity.
+\end{definition}
+
+\begin{definition}
+Set
+\[
+A:=\{0,\taup\}\subset S.
+\]
+\end{definition}
+
+\begin{proposition}\label{prop:boolean-pair}
+The subset $A$ is a subsemiring of $S$, and the map
+\[
+\varphi:A\longrightarrow \BB=\{0,1\},
+\qquad
+\varphi(\taup)=0,
+\qquad
+\varphi(0)=1,
+\]
+is an isomorphism of semirings.
+\end{proposition}
+
+\begin{proof}
+Inside $A$ one has
+\[
+0\oplus 0=0,
+\qquad
+0\oplus\taup=0,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot 0=0,
+\qquad
+0\odot\taup=\taup,
+\qquad
+\taup\odot\taup=\taup.
+\]
+These are exactly the Boolean addition and multiplication tables under the displayed identification.  Hence $A$ is a subsemiring and $\varphi$ is an isomorphism.
+\end{proof}
+
+\begin{proposition}\label{prop:units-fixed}
+The unit group of $S$ is $S^\times=\{\pm 1\}$.  The element $-1$ is the unique unit of exact order $2$, and
+\[
+\Fix_S(-1)=A.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $x\in S$ be a unit.  If $x=\taup$, then $x\odot y=\taup$ for all $y\in S$, so $x$ cannot be invertible.  Hence every unit lies in $\ZZ$.  The only units of $\ZZ$ are $\pm1$, so $S^\times=\{\pm1\}$.
+
+Among these two units, only $-1$ has order $2$.  For the fixed-point set, first note that
+\[
+(-1)\odot\taup=\taup,
+\]
+so $\taup\in\Fix_S(-1)$.  If $n\in\ZZ$, then
+\[
+(-1)\odot n=n
+\iff -n=n
+\iff 2n=0
+\iff n=0.
+\]
+Thus the only fixed supported point is $0$, and therefore
+\[
+\Fix_S(-1)=\{0,\taup\}=A.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:F1-zero}
+For every zero $\rho$ of the Riemann zeta function,
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A.
+\]
+\end{corollary}
+
+\begin{proof}
+If $\zeta(\rho)=0$, then
+\[
+F_1(\rho)=\zeta(\rho)-1=-1.
+\]
+Now apply Proposition \ref{prop:units-fixed}.
+\end{proof}
+
+\section{The non-trivial zero divisor and its packet space}
+
+\subsection{The completed zeta function}
+
+\begin{definition}
+Define the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\Bigl(\frac s2\Bigr)\zeta(s).
+\]
+Let
+\[
+Z_\xi:=\{\rho\in\CC:\xi(\rho)=0\}
+\]
+be its zero set, and for $\rho\in Z_\xi$ let
+\[
+m_\rho:=\ord_\rho(\xi).
+\]
+The divisor of non-trivial zeta zeros is
+\[
+D_\xi:=\sum_{\rho\in Z_\xi} m_\rho[\rho].
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:trivial-simple}
+For every integer $n\ge 1$, the point $-2n$ is a simple zero of $\zeta$.
+\end{lemma}
+
+\begin{proof}
+Use the functional equation in the form
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Gamma(1-s)\zeta(1-s).
+\]
+At $s=-2n$, the factors $2^s$, $\pi^{s-1}$, $\Gamma(1-s)=\Gamma(1+2n)$, and $\zeta(1-s)=\zeta(2n+1)$ are holomorphic and nonzero.  The sine factor vanishes there, and its derivative equals
+\[
+\frac{d}{ds}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Big|_{s=-2n}
+=\frac{\pi}{2}\cos(-n\pi)
+=\frac{\pi}{2}(-1)^n\neq 0.
+\]
+Hence the zero is simple.
+\end{proof}
+
+\begin{proposition}\label{prop:xi-entire}
+The function $\xi$ is entire and satisfies
+\[
+\xi(s)=\xi(1-s).
+\]
+Its zeros are exactly the non-trivial zeros of $\zeta$, with the same multiplicities.
+\end{proposition}
+
+\begin{proof}
+The functional equation for $\zeta$ gives the symmetry $\xi(s)=\xi(1-s)$ by direct substitution.
+
+We check entireness.  Possible singularities can only come from the pole of $\zeta$ at $s=1$ and the poles of $\Gamma(s/2)$ at the nonpositive even integers.
+
+At $s=1$, the factor $s-1$ cancels the simple pole of $\zeta$.
+At $s=0$, the factor $s$ cancels the simple pole of $\Gamma(s/2)$.
+At each negative even integer $-2n$ with $n\ge 1$, Lemma~\ref{lem:trivial-simple} shows that $\zeta$ has a simple zero and $\Gamma(s/2)$ has a simple pole, so these cancel.  No other singularities occur.  Hence $\xi$ is entire.
+
+Now let $\rho$ be a zero of $\zeta$ that is not trivial.  The prefactor
+\[
+\frac12 s(s-1)\pi^{-s/2}\Gamma\!\Bigl(\frac s2\Bigr)
+\]
+is holomorphic and nonzero at $s=\rho$, so $\xi$ has a zero there of the same multiplicity.
+
+Conversely, let $\rho$ be a zero of $\xi$.  The only zeros of the explicit prefactor are the factors $s$ and $s-1$, but the cancellations at $0$ and $1$ have already been accounted for in the proof of entireness, and these points are not zeros of $\xi$.  Therefore every zero of $\xi$ arises from a zero of $\zeta$.  The trivial zeros have been cancelled by the poles of $\Gamma(s/2)$, so the remaining zeros are exactly the non-trivial zeros of $\zeta$.
+\end{proof}
+
+\begin{lemma}\label{lem:real-zeros}
+The real zeros of $\zeta$ are exactly the negative even integers.
+\end{lemma}
+
+\begin{proof}
+If $s>1$ is real, then the Dirichlet series
+\[
+\zeta(s)=\sum_{n\ge 1} n^{-s}
+\]
+converges to a strictly positive real number, so $\zeta(s)\ne 0$.
+
+If $0<s<1$, consider the Dirichlet eta function
+\[
+\eta(s):=\sum_{n\ge1} (-1)^{n-1} n^{-s}.
+\]
+For real $s\in(0,1)$, this is an alternating series with strictly decreasing positive terms tending to $0$, so $\eta(s)>0$.  Since
+\[
+\eta(s)=(1-2^{1-s})\zeta(s)
+\]
+and $1-2^{1-s}<0$ on $(0,1)$, one has $\zeta(s)<0$, in particular $\zeta(s)\ne 0$.
+
+If $s<0$ is real, the functional equation gives
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Gamma(1-s)\zeta(1-s).
+\]
+Here $1-s>1$, so $\zeta(1-s)>0$, and $\Gamma(1-s)>0$ because $1-s$ is positive real.  The factors $2^s$ and $\pi^{s-1}$ are also nonzero.  Thus $\zeta(s)=0$ if and only if
+\[
+\sin\!\Bigl(\frac{\pi s}{2}\Bigr)=0,
+\]
+which for negative real $s$ occurs exactly at $s=-2,-4,-6,\dots$.
+\end{proof}
+
+\begin{corollary}\label{cor:nonreal}
+Every zero of $\xi$ is non-real.
+\end{corollary}
+
+\begin{proof}
+By Proposition \ref{prop:xi-entire}, the zeros of $\xi$ are exactly the non-trivial zeros of $\zeta$.  By Lemma \ref{lem:real-zeros}, the only real zeros of $\zeta$ are the trivial zeros.  Hence every zero of $\xi$ is non-real.
+\end{proof}
+
+\subsection{Klein-four packets}
+
+\begin{definition}
+Define maps on $\CC$ by
+\[
+c(s):=\bar s,
+\qquad
+w(s):=1-s.
+\]
+Let
+\[
+W:=\{\mathrm{id},c,w,cw\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:conjugate-order}
+Let $\Omega\subset\CC$ be a domain stable under complex conjugation, and let $f$ be holomorphic on $\Omega$ and satisfy
+\[
+f(\bar s)=\overline{f(s)}
+\qquad (s\in \Omega).
+\]
+If $\rho\in\Omega$ is a zero of $f$, then
+\[
+\ord_{\bar\rho}(f)=\ord_\rho(f).
+\]
+\end{lemma}
+
+\begin{proof}
+Suppose
+\[
+f(s)=\sum_{n\ge m} a_n (s-\rho)^n
+\]
+near $\rho$, where $a_m\ne 0$.  Then near $\bar\rho$ one has
+\[
+f(s)=\overline{f(\bar s)}=
+\overline{\sum_{n\ge m} a_n (\bar s-\rho)^n}
+=
+\sum_{n\ge m} \overline{a_n}(s-\bar\rho)^n.
+\]
+The first nonzero coefficient in this expansion is $\overline{a_m}\ne 0$, so the order of vanishing at $\bar\rho$ is again $m$.
+\end{proof}
+
+\begin{proposition}\label{prop:packet-symmetry}
+If $\rho\in Z_\xi$, then
+\[
+\bar\rho,\qquad 1-\rho,\qquad 1-\bar\rho
+\]
+all lie in $Z_\xi$, and all four points occur with the same multiplicity.
+\end{proposition}
+
+\begin{proof}
+The functional equation $\xi(1-s)=\xi(s)$ shows that $1-\rho$ is a zero whenever $\rho$ is a zero.  Since $w$ is biholomorphic with nonzero derivative, it preserves orders of vanishing, so
+\[
+\ord_{1-\rho}(\xi)=\ord_\rho(\xi).
+\]
+
+Next, on $\Rea(s)>1$ the Dirichlet series for $\zeta$ has real coefficients, so
+\[
+\zeta(\bar s)=\overline{\zeta(s)}
+\]
+on that half-plane; by analytic continuation this identity holds meromorphically on all of $\CC$.  The same is then true for $\xi$, because the factors $s(s-1)$, $\pi^{-s/2}$, and $\Gamma(s/2)$ are conjugation-compatible.  Thus
+\[
+\xi(\bar s)=\overline{\xi(s)}.
+\]
+By Lemma \ref{lem:conjugate-order}, $\bar\rho$ is a zero with the same multiplicity as $\rho$.  Applying both symmetries gives the same conclusion for $1-\bar\rho$.
+\end{proof}
+
+\begin{corollary}\label{cor:orbit-sizes}
+Let $\rho\in Z_\xi$.
+\begin{enumerate}[label=(\roman*)]
+\item If $\Rea(\rho)=\frac12$, then the $W$-orbit of $\rho$ has cardinality $2$ and equals $\{\rho,\bar\rho\}$.
+\item If $\Rea(\rho)\ne \frac12$, then the $W$-orbit of $\rho$ has cardinality $4$ and equals $\{\rho,\bar\rho,1-\rho,1-\bar\rho\}$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+If $\Rea(\rho)=\frac12$, then $1-\rho=\bar\rho$, and likewise $1-\bar\rho=\rho$.  By Corollary \ref{cor:nonreal}, $\rho\ne\bar\rho$, so the orbit has exactly two points.
+
+Now assume $\Rea(\rho)\ne\frac12$.  Then $\rho\ne1-\bar\rho$.  Again by Corollary \ref{cor:nonreal}$, \rho\ne\bar\rho$.  Also $\rho\ne1-\rho$, since that would force $\rho=1/2$.  Finally $\bar\rho\ne1-\rho$, for otherwise $\Rea(\rho)=1/2$.  Thus the four displayed points are pairwise distinct.
+\end{proof}
+
+\begin{definition}
+Let
+\[
+Y_\xi:=Z_\xi/W
+\]
+be the orbit space of non-trivial zero packets, equipped with the quotient topology.  Because $Z_\xi$ is discrete, $Y_\xi$ is discrete as well.  For $O\in Y_\xi$, write $m_O$ for the common multiplicity of the points of the orbit.
+\end{definition}
+
+\subsection{The Boolean multiplicity shadow and packet descent}
+
+\begin{lemma}\label{lem:product-sheaf}
+Let $Z$ be a discrete topological space and let $(M_z)_{z\in Z}$ be a family of sets or $A$-semimodules.  For each open subset $U\subset Z$, define
+\[
+\cF_M(U):=\prod_{z\in U} M_z,
+\]
+with restriction maps given by coordinate projection.  Then $\cF_M$ is a sheaf.
+\end{lemma}
+
+\begin{proof}
+Let $U\subset Z$ be open and let $(U_i)_{i\in I}$ be an open cover of $U$.  Because $Z$ is discrete, being equal on overlaps means equality of each coordinate indexed by a point of the overlap.
+
+Suppose first that $x,y\in \cF_M(U)$ have equal restrictions to every $U_i$.  Let $z\in U$.  Choose $i$ with $z\in U_i$.  Equality on $U_i$ implies $x_z=y_z$.  Since this holds for every $z\in U$, one has $x=y$.
+
+Now let $x_i\in \cF_M(U_i)$ be sections that agree on overlaps.  For each $z\in U$, choose $i$ with $z\in U_i$ and define $x_z$ to be the $z$-coordinate of $x_i$.  This is independent of the choice of $i$, because if $z\in U_i\cap U_j$, then the restrictions of $x_i$ and $x_j$ to the overlap are equal, so their $z$-coordinates coincide.  Thus $x=(x_z)_{z\in U}$ is a well-defined section of $\cF_M(U)$ restricting to each $x_i$.
+
+Hence the sheaf axioms hold.
+\end{proof}
+
+\begin{definition}
+The \emph{Boolean multiplicity shadow} of $D_\xi$ is the sheaf of $A$-semimodules on $Z_\xi$ defined by
+\[
+\cV_\xi(U):=\prod_{\rho\in U} A^{m_\rho}
+\qquad (U\subset Z_\xi\ \text{open}).
+\]
+\end{definition}
+
+\begin{definition}
+Let $q_\xi:Z_\xi\to Y_\xi$ be the quotient map.  The \emph{Boolean packet sheaf} on $Y_\xi$ is
+\[
+\cP_\xi(U):=\prod_{O\in U} A^{m_O}
+\qquad (U\subset Y_\xi\ \text{open}).
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:packet-descent-xi}
+The group $W$ acts on the sheaf $\cV_\xi$ by reindexing the factors.  For every packet $O\in Y_\xi$ of cardinality $r_O$, the stalk of $q_{\xi,*}\cV_\xi$ at $O$ is canonically
+\[
+(q_{\xi,*}\cV_\xi)_O\cong (A^{m_O})^{r_O},
+\]
+and its $W$-fixed subsemimodule is the diagonal copy of $A^{m_O}$.  Consequently,
+\[
+(q_{\xi,*}\cV_\xi)^W\cong \cP_\xi
+\]
+as sheaves of $A$-semimodules on $Y_\xi$.
+\end{theorem}
+
+\begin{proof}
+Because $Y_\xi$ is discrete, the stalk of $q_{\xi,*}\cV_\xi$ at a packet $O$ is the product of the stalks over the points in that orbit.  Since all points in the orbit have the same multiplicity by Proposition \ref{prop:packet-symmetry}, one obtains
+\[
+(q_{\xi,*}\cV_\xi)_O\cong \prod_{\rho\in O} A^{m_O}\cong (A^{m_O})^{r_O}.
+\]
+
+The action of $W$ on the orbit $O$ permutes the $r_O$ factors transitively.  An element of $(A^{m_O})^{r_O}$ is fixed by all such permutations if and only if all coordinates are equal.  The fixed subsemimodule is therefore the diagonal copy of $A^{m_O}$.
+
+Since $Y_\xi$ is discrete, these diagonal stalks assemble to the sheaf whose value on an open set $U\subset Y_\xi$ is
+\[
+\prod_{O\in U} A^{m_O}=\cP_\xi(U).
+\]
+Hence $(q_{\xi,*}\cV_\xi)^W\cong \cP_\xi$.
+\end{proof}
+
+\section{The spectral plane and the Connes--Consani realization}
+
+\subsection{The affine spectral coordinate}
+
+\begin{definition}
+Define the affine map
+\[
+\Phi:\CC\longrightarrow\CC,
+\qquad
+\Phi(s):=i\Bigl(s-\frac12\Bigr).
+\]
+Its inverse is
+\[
+\Phi^{-1}(z)=\frac12-iz.
+\]
+\end{definition}
+
+\begin{proposition}\label{prop:Phi-symmetry}
+For all $s\in\CC$ one has
+\[
+\Phi(1-s)=-\Phi(s),
+\qquad
+\Phi(\bar s)=-\overline{\Phi(s)}.
+\]
+Consequently $\Phi$ conjugates the action of $W$ on the $s$-plane to the action of the Klein four-group
+\[
+\widetilde W:=\{\mathrm{id},\sigma,\kappa,\sigma\kappa\}
+\]
+on the $z$-plane, where
+\[
+\sigma(z):=-z,
+\qquad
+\kappa(z):=-\bar z.
+\]
+In particular, if $\rho=\beta+i\gamma$, then
+\[
+\Phi(\rho)=-\gamma+i\Bigl(\beta-\frac12\Bigr),
+\]
+and the packet
+\[
+\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+is sent to
+\[
+\{z,-z,\bar z,-\bar z\},
+\qquad z=\Phi(\rho).
+\]
+\end{proposition}
+
+\begin{proof}
+The identities are direct computations:
+\[
+\Phi(1-s)=i\Bigl(1-s-\frac12\Bigr)=i\Bigl(\frac12-s\Bigr)=-i\Bigl(s-\frac12\Bigr)=-\Phi(s),
+\]
+and
+\[
+\Phi(\bar s)=i\Bigl(\bar s-\frac12\Bigr)=-\overline{i\Bigl(s-\frac12\Bigr)}=-\overline{\Phi(s)}.
+\]
+Thus $w$ is conjugated to $\sigma$ and $c$ is conjugated to $\kappa$.  Applying these formulas to the four points of the $W$-orbit of $\rho$ yields the displayed spectral packet.
+\end{proof}
+
+\begin{definition}
+Let
+\[
+Z_E:=\Phi(Z_\xi),
+\qquad
+D_E:=\Phi_*D_\xi=\sum_{z\in Z_E} m_z[z],
+\\\qquad m_z:=m_{\Phi^{-1}(z)}.
+\]
+Let
+\[
+Y_E:=Z_E/\widetilde W
+\]
+be the spectral packet space.
+\end{definition}
+
+\begin{corollary}\label{cor:packet-space-iso}
+The map $\Phi$ induces an isomorphism of discrete spaces
+\[
+\bar\Phi:Y_\xi\stackrel{\sim}{\longrightarrow} Y_E.
+\]
+\end{corollary}
+
+\begin{proof}
+By Proposition \ref{prop:Phi-symmetry}, $\Phi$ is equivariant for the isomorphism $W\cong\widetilde W$.  Since $\Phi$ is bijective on $\CC$, it restricts to a bijection $Z_\xi\to Z_E$ and therefore induces a bijection of quotient spaces.  Both spaces are discrete, so the induced bijection is a homeomorphism.
+\end{proof}
+
+\subsection{The Connes--Consani spectral divisor}
+
+We now connect $D_E$ to the spectral realization of Connes and Consani.  Let $\cS(\RR)^{\mathrm{ev}}$ be the even Schwartz space on $\RR$, and let
+\[
+\cS(\RR)^{\mathrm{ev}}_1:=\left\{f\in\cS(\RR)^{\mathrm{ev}}: \int_{\RR} f(x)\,dx=0\right\}.
+\]
+For $f\in\cS(\RR)^{\mathrm{ev}}$, set
+\[
+(Ef)(u):=u^{1/2}\sum_{n\ge1} f(nu)
+\qquad (u\in\RR_{>0}),
+\]
+and define its Mellin--Fourier transform by
+\[
+F(Ef)(z):=\int_{\RR_{>0}} (Ef)(u)u^{-iz}\,d^*u,
+\qquad d^*u:=\frac{du}{u}.
+\]
+
+\begin{theorem}[Connes--Consani, \cite{ConnesConsaniCycles}]\label{thm:Connes-CC}
+For every $f\in \cS(\RR)^{\mathrm{ev}}_1$ one has
+\[
+F(Ef)(z)=\zeta\Bigl(\frac12-iz\Bigr)\psi_f(z)
+\]
+on the half-plane $\Ima(z)>-\frac12$, where $\psi_f$ is holomorphic.  Consequently the common zero set of the functions $F(Ef)$, $f\in\cS(\RR)^{\mathrm{ev}}_1$, in the strip $|\Ima(z)|<\frac12$ is exactly the zero set of
+\[
+z\longmapsto \zeta\Bigl(\frac12-iz\Bigr).
+\]
+Moreover, the operator $\Delta=H(1+H)$ of \cite[Section~4]{ConnesConsaniCycles} has spectrum
+\[
+\left\{-\rho(1-\rho):\rho\in\CC\setminus\RR,\ \zeta(\rho)=0\right\}
+\]
+counted with multiplicity on the quotient described in \cite[Proposition~4.2]{ConnesConsaniCycles}.
+\end{theorem}
+
+\begin{proof}
+This is exactly the content of equation~(2.2) and the common-zero statement in Section~2, together with Proposition~4.2 and its proof in Section~4 of \cite{ConnesConsaniCycles}.  The spectral values are written there as
+\[
+\Bigl(\rho-\frac12\Bigr)^2-\frac14,
+\]
+which is equal to $-\rho(1-\rho)$.
+\end{proof}
+
+\begin{theorem}\label{thm:bridge}
+The affine map $\Phi$ identifies $Z_\xi$ with the Connes--Consani spectral support:
+\[
+Z_E=\left\{z\in\CC:\zeta\Bigl(\frac12-iz\Bigr)=0\right\}.
+\]
+Equivalently, $Z_E$ is the common zero set of the family $F(Ef)$, $f\in\cS(\RR)^{\mathrm{ev}}_1$, in the strip $|\Ima(z)|<\frac12$.
+
+For every $\rho\in Z_\xi$ one has
+\[
+-\rho(1-\rho)=-\Phi(\rho)^2-\frac14.
+\]
+Thus $\Phi(\rho)$ is the square-root spectral coordinate for the Connes Laplacian.
+\end{theorem}
+
+\begin{proof}
+Let $\rho\in Z_\xi$.  By Proposition \ref{prop:xi-entire}, $\rho$ is a non-trivial zero of $\zeta$.  Put $z=\Phi(\rho)$.  Since $\Phi^{-1}(z)=\frac12-iz$, one has
+\[
+\zeta(\rho)=0
+\iff
+\zeta\Bigl(\frac12-iz\Bigr)=0.
+\]
+Hence
+\[
+Z_E=\left\{z\in\CC:\zeta\Bigl(\frac12-iz\Bigr)=0\right\}.
+\]
+The strip condition is automatic, because if $\rho=\beta+i\gamma$ is non-trivial then $0<\beta<1$, and therefore
+\[
+\Ima(\Phi(\rho))=\beta-\frac12
+\]
+satisfies $|\Ima(\Phi(\rho))|<\frac12$.
+
+The common-zero statement now follows from Theorem \ref{thm:Connes-CC}.
+
+For the Laplacian relation, a direct calculation gives
+\[
+-\Phi(\rho)^2-\frac14
+=-\Bigl(i\Bigl(\rho-\frac12\Bigr)\Bigr)^2-\frac14
+=\Bigl(\rho-\frac12\Bigr)^2-\frac14
+=-\rho(1-\rho).
+\]
+This is exactly the spectral parameter of $\Delta$ attached to $\rho$ by Theorem \ref{thm:Connes-CC}.
+\end{proof}
+
+\begin{definition}
+The \emph{spectral Boolean packet sheaf} on $Y_E$ is
+\[
+\cP_E(U):=\prod_{P\in U} A^{m_P}
+\qquad (U\subset Y_E\ \text{open}),
+\]
+where $m_P$ is the common multiplicity of the elements of the packet $P$.
+\end{definition}
+
+\begin{corollary}\label{cor:packet-transport}
+Via the isomorphism $\bar\Phi:Y_\xi\to Y_E$, the packet sheaf $\cP_\xi$ transports canonically to $\cP_E$:
+\[
+\bar\Phi_*\cP_\xi\cong \cP_E.
+\]
+\end{corollary}
+
+\begin{proof}
+By definition of $D_E$, multiplicities are preserved by $\Phi$.  Hence for every open set $U\subset Y_E$ one has
+\[
+(\bar\Phi_*\cP_\xi)(U)=\cP_\xi(\bar\Phi^{-1}(U))
+=\prod_{O\in \bar\Phi^{-1}(U)} A^{m_O}
+=\prod_{P\in U} A^{m_P}
+=\cP_E(U).
+\]
+These identifications commute with restriction maps.
+\end{proof}
+
+\section{Critical packets and $\zeta$-cycles}
+
+\begin{proposition}\label{prop:critical-real}
+Let $\rho\in Z_\xi$ and let $z=\Phi(\rho)$.  Then
+\[
+\Rea(\rho)=\frac12
+\iff
+z\in\RR.
+\]
+If $\rho=\frac12+i\gamma$, then
+\[
+\Phi(\rho)=-\gamma.
+\]
+Consequently the spectral packet of a critical zero is the two-point set
+\[
+\{-\gamma,\gamma\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $\rho=\beta+i\gamma$.  Then Proposition \ref{prop:Phi-symmetry} gives
+\[
+\Phi(\rho)=-\gamma+i\Bigl(\beta-\frac12\Bigr).
+\]
+Thus $\Phi(\rho)$ is real if and only if $\beta=\frac12$.  In that case $\Phi(\rho)=-\gamma$.  The packet formula of Proposition \ref{prop:Phi-symmetry} then yields the two-point set $\{-\gamma,\gamma\}$.
+\end{proof}
+
+\begin{definition}
+Let $Y_E^{\mathrm{crit}}\subset Y_E$ be the subset of critical packets, i.e. the packets contained in $\RR$.  For $P\in Y_E^{\mathrm{crit}}$, define
+\[
+\nu(P):=|z|
+\]
+for any $z\in P$.  This is well-defined because $P=\{z,-z\}$.
+
+Define also the \emph{primitive cycle length}
+\[
+\Lambda(P):=\frac{2\pi}{\nu(P)}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:zeta-cycles}
+Let $P\in Y_E^{\mathrm{crit}}$ and write $\nu(P)=s>0$.  Then every circle whose length is an integral multiple of
+\[
+\frac{2\pi}{s}
+\]
+is a $\zeta$-cycle in the sense of Connes and Consani.
+\end{theorem}
+
+\begin{proof}
+Let $P=\{\pm s\}$ with $s>0$.  By Proposition \ref{prop:critical-real}, $P$ comes from a critical zero
+\[
+\rho=\frac12+is
+\]
+of $\zeta$.  Theorem~1.1(ii) of Connes and Consani, quoted in \cite{ConnesConsaniCycles}, states that if
+\[
+\zeta\Bigl(\frac12+is\Bigr)=0,
+\]
+then any circle whose length is an integral multiple of $2\pi/s$ is a $\zeta$-cycle.  Applying this with the displayed critical zero proves the assertion.
+\end{proof}
+
+\begin{corollary}\label{cor:critical-map}
+The assignment
+\[
+\Lambda:Y_E^{\mathrm{crit}}\longrightarrow \RR_{>0},
+\qquad
+P\longmapsto \frac{2\pi}{\nu(P)},
+\]
+is a well-defined map from critical packets to primitive $\zeta$-cycle lengths.
+\end{corollary}
+
+\begin{proof}
+This is immediate from the definition of $\nu(P)$ and Theorem \ref{thm:zeta-cycles}.
+\end{proof}
+
+\begin{remark}
+The critical part of the packet map is therefore geometric in the strict Connes--Consani sense: besides the Boolean coefficient object, a critical zero packet determines a primitive circle length for the $\zeta$-cycles on the Scaling Site, together with all of its covering multiples.
+\end{remark}
+
+\section{Packet jet weights}
+
+\begin{definition}
+For $\rho\in Z_\xi$, let $m=m_\rho$.  Define the leading jet coefficient
+\[
+\lambda_\rho:=\frac{\xi^{(m)}(\rho)}{m!}.
+\]
+Since $m=\ord_\rho(\xi)$, one has $\lambda_\rho\ne 0$.
+\end{definition}
+
+\begin{lemma}\label{lem:local-expansion}
+Let $\rho\in Z_\xi$ and $m=m_\rho$.  Then near $\rho$ one has the local expansion
+\[
+\xi(s)=\lambda_\rho (s-\rho)^m + O\bigl((s-\rho)^{m+1}\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+This is the Taylor expansion of $\xi$ at $\rho$.  By definition of the vanishing order, the derivatives of orders $0,1,\dots,m-1$ vanish at $\rho$, while the derivative of order $m$ does not.  Hence the first nonzero term is exactly
+\[
+\frac{\xi^{(m)}(\rho)}{m!}(s-\rho)^m=\lambda_\rho (s-\rho)^m.
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:lambda-transform}
+Let $\rho\in Z_\xi$ and let $m=m_\rho$.  Then the leading jet coefficients satisfy
+\[
+\lambda_{1-\rho}=(-1)^m\lambda_\rho,
+\qquad
+\lambda_{\bar\rho}=\overline{\lambda_\rho},
+\qquad
+\lambda_{1-\bar\rho}=(-1)^m\overline{\lambda_\rho}.
+\]
+Consequently
+\[
+|\lambda_{1-\rho}|=|\lambda_{\rho}|,
+\qquad
+|\lambda_{\bar\rho}|=|\lambda_\rho|,
+\qquad
+|\lambda_{1-\bar\rho}|=|\lambda_\rho|.
+\]
+\end{theorem}
+
+\begin{proof}
+Write $m=m_\rho$.
+
+By Lemma \ref{lem:local-expansion}, near $\rho$ one has
+\[
+\xi(\rho+t)=\lambda_\rho t^m + O(t^{m+1}).
+\]
+Using the functional equation $\xi(1-s)=\xi(s)$, one gets near $1-\rho$
+\[
+\xi(1-\rho+u)=\xi(\rho-u)=\lambda_\rho (-u)^m + O(u^{m+1})
+=(-1)^m\lambda_\rho u^m + O(u^{m+1}).
+\]
+Therefore
+\[
+\lambda_{1-\rho}=(-1)^m\lambda_\rho.
+\]
+
+For conjugation, write near $\rho$
+\[
+\xi(s)=\sum_{n\ge m} a_n (s-\rho)^n,
+\qquad a_m=\lambda_\rho.
+\]
+Since $\xi(\bar s)=\overline{\xi(s)}$, one has near $\bar\rho$
+\[
+\xi(s)=\overline{\xi(\bar s)}=
+\sum_{n\ge m} \overline{a_n}(s-\bar\rho)^n.
+\]
+Thus the leading coefficient at $\bar\rho$ is $\overline{a_m}=\overline{\lambda_\rho}$, i.e.
+\[
+\lambda_{\bar\rho}=\overline{\lambda_\rho}.
+\]
+Applying both identities yields
+\[
+\lambda_{1-\bar\rho}=(-1)^m\lambda_{\bar\rho}=(-1)^m\overline{\lambda_\rho}.
+\]
+The absolute-value statements are immediate.
+\end{proof}
+
+\begin{definition}
+For a packet $P\in Y_E$, choose any $\rho\in Z_\xi$ mapping to $P$ and set
+\[
+\omega(P):=|\lambda_\rho|=\left|\frac{\xi^{(m_P)}(\rho)}{m_P!}\right|.
+\]
+We call $\omega(P)$ the \emph{packet jet weight}.
+\end{definition}
+
+\begin{corollary}\label{cor:weight-well-defined}
+The packet jet weight is well-defined.  Thus
+\[
+\omega:Y_E\longrightarrow \RR_{>0}
+\]
+is a well-defined positive function on the spectral packet space.
+\end{corollary}
+
+\begin{proof}
+Any two representatives of a packet differ by the action of $W$.  Theorem \ref{thm:lambda-transform} shows that the absolute value of the leading jet coefficient is constant on each packet.  Therefore $\omega$ is independent of the chosen representative.
+\end{proof}
+
+\section{The geometric image of a non-trivial zero}
+
+We now assemble the preceding constructions into a single theorem.
+
+\begin{theorem}\label{thm:main}
+Let $\rho\in Z_\xi$ be a non-trivial zero of the Riemann zeta function, and let
+\[
+P_\rho:=[\Phi(\rho)]\in Y_E
+\]
+be its spectral packet.
+Then the following statements hold.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The split-zero coefficient attached to $\rho$ is
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A=\{0,\taup\}\cong\BB.
+\]
+
+\item The packet base point is represented by
+\[
+\Phi(\rho)=i\Bigl(\rho-\frac12\Bigr),
+\]
+and the full analytic packet
+\[
+\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+becomes the centered spectral packet
+\[
+\{z,-z,\bar z,-\bar z\},
+\qquad z=\Phi(\rho).
+\]
+
+\item The Boolean multiplicity shadow descends to the spectral packet sheaf $\cP_E$, and the stalk at $P_\rho$ is
+\[
+(\cP_E)_{P_\rho}\cong A^{m_\rho}.
+\]
+Thus the multiplicity of $\rho$ is recorded as the Boolean cube dimension of its packet stalk.
+
+\item The Connes Laplacian sees the same zero through the spectral identity
+\[
+-\rho(1-\rho)=-\Phi(\rho)^2-\frac14.
+\]
+
+\item If $\rho=\frac12+i\gamma$ lies on the critical line, then
+\[
+P_\rho=\{\pm\gamma\}
+\]
+up to the sign convention imposed by $\Phi$, and the primitive $\zeta$-cycle length attached to the packet is
+\[
+\Lambda(P_\rho)=\frac{2\pi}{|\gamma|}.
+\]
+
+\item The packet jet weight
+\[
+\omega(P_\rho)=\left|\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}\right|
+\]
+is well-defined.
+\end{enumerate}
+
+In particular, the geometric image of a non-trivial zero in the split-zero formalism is the weighted Boolean packet
+\[
+\bigl(P_\rho,(\cP_E)_{P_\rho},\omega(P_\rho)\bigr),
+\]
+and on the critical locus this packet carries in addition the primitive $\zeta$-cycle length $\Lambda(P_\rho)$.
+\end{theorem}
+
+\begin{proof}
+Item (1) is Corollary \ref{cor:F1-zero}.  Item (2) is Proposition \ref{prop:Phi-symmetry}.  Item (3) follows from Corollary \ref{cor:packet-transport} and the definition of $\cP_E$.  Item (4) is the second statement of Theorem \ref{thm:bridge}.  Item (5) is Proposition \ref{prop:critical-real} together with Corollary \ref{cor:critical-map}.  Item (6) is Corollary \ref{cor:weight-well-defined}.
+\end{proof}
+
+\begin{remark}
+The theorem gives an exact answer to the packet-geometric question.  The constant coefficient object $A$ is the reduced coefficient remembered after forgetting packet base and multiplicity.  The full image is a packet point in the Connes spectral plane, equipped with a Boolean multiplicity cube and a canonical positive local weight.  On the critical locus, the same packet point determines the covering-stable family of $\zeta$-cycles on the Scaling Site.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{ConnesConsaniCycles}
+A.~Connes and C.~Consani,
+\emph{Hochschild homology, trace map and $\zeta$-cycles},
+Proc. Sympos. Pure Math. \textbf{105} (2023), 83--104.
+
+\bibitem{ConnesConsaniScaling}
+A.~Connes and C.~Consani,
+\emph{Geometry of the scaling site},
+Selecta Math. (N.S.) \textbf{23} (2017), no.~3, 1803--1850.
+
+\bibitem{ConnesTraceFormula}
+A.~Connes,
+\emph{Trace formula in noncommutative geometry and the zeros of the Riemann zeta function},
+Selecta Math. (N.S.) \textbf{5} (1999), no.~1, 29--106.
+
+\bibitem{Lee}
+J.~M.~Lee,
+\emph{Introduction to Complex Manifolds},
+Graduate Studies in Mathematics, vol.~244, American Mathematical Society, Providence, RI, 2024.
+
+\bibitem{Lorscheid}
+O.~Lorscheid,
+\emph{The geometry of blueprints. Part I: Algebraic background and scheme theory},
+Adv. Math. \textbf{229} (2012), no.~3, 1804--1846.
+
+\bibitem{Titchmarsh}
+E.~C.~Titchmarsh,
+\emph{The Theory of the Riemann Zeta-Function},
+2nd ed., revised by D.~R.~Heath-Brown, Oxford University Press, New York, 1986.
+
+\end{thebibliography}
+
+\end{document}

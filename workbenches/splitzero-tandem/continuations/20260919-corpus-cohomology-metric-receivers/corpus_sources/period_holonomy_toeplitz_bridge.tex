@@ -1,0 +1,341 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{problem}[definition]{Problem}
+\newtheorem{remark}[definition]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Frob}{\operatorname{Frob}}
+\newcommand{\Mom}{\operatorname{Mom}}
+\title{The Exact Local Circle Bridge: Terzo Periods, Connes--Consani Holonomy, and Toeplitz Positivity}
+\author{}
+\date{11 July 2026}
+\begin{document}
+\maketitle
+
+Let $[x,y]^E$ be the free $E$-ring on two generators and put
+\[
+ \mathfrak t=\langle E(xy)+1,\ y^2+1\rangle_E,
+ \qquad \overline F=[x,y]^E/\mathfrak t.
+\]
+In the theory obtained by adjoining Schanuel's conjecture, Terzo proves that $\mathfrak t$ is exactly the kernel of evaluation $x\mapsto\pi$, $y\mapsto i$, and that $\mathfrak t$ is not principal.  Put
+\[
+ \varpi:=2\bar x\bar y\in\overline F.
+\]
+Under evaluation one has $\varpi\mapsto2\pi i$ and $E(\varpi)=1$.  The period lattice of the evaluated marked $E$-subring is therefore $\Z\varpi$, identified with $2\pi i\Z$.
+
+Let $p$ be a rational prime and write $\ell_p=\log p$.  Connes--Consani identify the periodic scaling orbit with
+\[
+ C_p\cong \R_+^\times/p^\Z\cong \R/\ell_p\Z,
+\]
+and identify the monodromy in their finite abelian covers with arithmetic Frobenius.
+
+\begin{theorem}[Exact period normalization]
+The map
+\[
+ \beta_p:\R/\ell_p\Z\longrightarrow\T,
+ \qquad
+ \beta_p([t])=\exp\!\left(\frac{2\pi i}{\ell_p}t\right)
+\]
+is an orientation-preserving isomorphism of topological groups.  It fits into the commutative diagram of short exact sequences
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & \ell_p\Z \arrow[r,hook] \arrow[d,"n\ell_p\mapsto2\pi in"'] &
+\R \arrow[r,"q_p"] \arrow[d,"t\mapsto 2\pi it/\ell_p"] &
+C_p \arrow[r] \arrow[d,"\beta_p"] & 0\\
+0 \arrow[r] & 2\pi i\Z \arrow[r,hook] &
+ i\R \arrow[r,"\exp"] & \T \arrow[r] & 1.
+\end{tikzcd}
+\]
+After Terzo's marked evaluation, the left vertical arrow is equivalently the marked period-lattice isomorphism
+\[
+ \Theta_p:\Z\varpi\xrightarrow{\sim}\pi_1(C_p),
+ \qquad
+ n\varpi\longmapsto n[C_p],
+\]
+where both generators are oriented by $i$ and by the positive scaling flow, respectively.
+\end{theorem}
+
+\begin{proof}
+If $t$ is replaced by $t+n\ell_p$, then
+\[
+ \exp\!\left(\frac{2\pi i}{\ell_p}(t+n\ell_p)\right)
+ =\exp\!\left(\frac{2\pi i}{\ell_p}t\right)e^{2\pi in}
+ =\exp\!\left(\frac{2\pi i}{\ell_p}t\right),
+\]
+so $\beta_p$ is well defined.  It is a continuous homomorphism.  Surjectivity follows because every $u\in\T$ has the form $u=e^{i\theta}$, and then $u=\beta_p([\theta\ell_p/(2\pi)])$.  Its kernel consists of classes $[t]$ satisfying $2\pi t/\ell_p\in2\pi\Z$, hence $t\in\ell_p\Z$ and $[t]=0$.  Thus $\beta_p$ is a continuous bijective homomorphism from a compact group to a Hausdorff group, hence a topological-group isomorphism.  Every square in the diagram commutes by the displayed exponential identity.  The statement about $\Z\varpi$ follows from $\varpi\mapsto2\pi i$.
+\end{proof}
+
+\begin{definition}[Frobenius-twisted scaling local system]
+Let $L/\mathbb Q$ be finite abelian, let $p$ be unramified in $L$, and let
+\[
+ \psi:\operatorname{Gal}(L/\mathbb Q)\longrightarrow\T
+\]
+be a unitary character.  For $s\in\C$, define
+\[
+ z_{p,\psi}(s):=\psi(\Frob_p)p^{s-1/2},
+ \qquad
+ p^w:=e^{w\ell_p},
+\]
+and define
+\[
+ \rho_{p,\psi,s}:\pi_1(C_p)\cong\Z\longrightarrow\C^\times,
+ \qquad
+ \rho_{p,\psi,s}(n)=z_{p,\psi}(s)^n.
+\]
+Let $\mathcal L_{p,\psi,s}$ denote the associated flat complex line bundle over $C_p$.
+\end{definition}
+
+\begin{theorem}[Holonomy defect]
+The holonomy of $\mathcal L_{p,\psi,s}$ is unitary if and only if
+\[
+ \operatorname{Re}s=\frac12.
+\]
+More precisely,
+\[
+ \delta_p(s):=\frac{\log|z_{p,\psi}(s)|}{\ell_p}
+ =\operatorname{Re}s-\frac12.
+\]
+The value is independent of $L$ and $\psi$.
+\end{theorem}
+
+\begin{proof}
+Since $|\psi(\Frob_p)|=1$,
+\[
+ |z_{p,\psi}(s)|
+ =\left|e^{(s-1/2)\ell_p}\right|
+ =e^{(\operatorname{Re}s-1/2)\ell_p}
+ =p^{\operatorname{Re}s-1/2}.
+\]
+Taking the logarithm and dividing by $\ell_p>0$ gives the formula.  The representation is unitary exactly when the modulus of its generator is $1$, which is exactly the condition $\operatorname{Re}s=1/2$.
+\end{proof}
+
+\begin{definition}[Rank-one moment matrix]
+For $z\in\C^\times$, put
+\[
+ v_2(z)=\begin{pmatrix}1\\z\end{pmatrix},
+ \qquad
+ T_2(z):=v_2(z)v_2(z)^*
+ =\begin{pmatrix}1&\bar z\\z&|z|^2\end{pmatrix}.
+\]
+Let
+\[
+ \xi(z):=\begin{pmatrix}-\bar z\\1\end{pmatrix},
+ \qquad
+ P_z(w):=-\bar z+w.
+\]
+\end{definition}
+
+\begin{theorem}[Exact local equivalence of the circle conditions]
+For $z=z_{p,\psi}(s)$, the following conditions are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $\operatorname{Re}s=1/2$;
+\item $\rho_{p,\psi,s}$ is unitary;
+\item $T_2(z)$ is Toeplitz;
+\item the unique zero of $P_z$ lies on the unit circle.
+\end{enumerate}
+The matrix $T_2(z)$ is Hermitian, positive semidefinite, and of rank one for every $s$, and
+\[
+ \ker T_2(z)=\C\xi(z).
+\]
+Moreover, the same signed radial defect is computed in all four registers:
+\[
+\boxed{
+\operatorname{Re}s-\frac12
+=\frac{\log|z|}{\ell_p}
+=\frac{1}{2\ell_p}\log\frac{(T_2(z))_{22}}{(T_2(z))_{11}}
+=\frac{\log|\operatorname{root}(P_z)|}{\ell_p}.
+}
+\]
+\end{theorem}
+
+\begin{proof}
+The factorization $T_2(z)=v_2(z)v_2(z)^*$ proves Hermitian positivity and rank one.  Also
+\[
+ v_2(z)^*\xi(z)
+ =(1,\bar z)\begin{pmatrix}-\bar z\\1\end{pmatrix}=0,
+\]
+so $\xi(z)$ spans the one-dimensional kernel.
+
+A $2\times2$ matrix is Toeplitz precisely when its two diagonal entries agree.  Thus
+\[
+ T_2(z)\text{ is Toeplitz}
+ \iff 1=|z|^2
+ \iff |z|=1.
+\]
+The unique root of $P_z$ is $\bar z$, whose modulus is $|z|$.  Theorem 2 identifies $|z|=1$ with $\operatorname{Re}s=1/2$ and with unitarity.  Finally,
+\[
+ (T_2(z))_{11}=1,
+ \qquad
+ (T_2(z))_{22}=|z|^2,
+\]
+and the displayed defect equalities follow immediately.
+\end{proof}
+
+\begin{corollary}[Pointwise Toeplitz reformulation of RH]
+Fix one rational prime $p$.  For every nontrivial zero $\rho$ of $\zeta$, put
+\[
+ z_p(\rho)=p^{\rho-1/2},
+ \qquad
+ T_{p,\rho}=T_2(z_p(\rho)).
+\]
+Then
+\[
+ \mathrm{RH}
+ \iff
+ \text{$T_{p,\rho}$ is Toeplitz for every nontrivial zero $\rho$}
+\]
+\[
+ \iff
+ \text{the flat line system $\mathcal L_{p,1,\rho}$ is unitary for every such $\rho$}
+\]
+\[
+ \iff
+ \text{the kernel polynomial of every $T_{p,\rho}$ has its zero on $\T$}.
+\]
+This is an exact reformulation, not a proof of RH.
+\end{corollary}
+
+\begin{proof}
+Apply the preceding theorem pointwise to each nontrivial zero $\rho$.  The defining statement of RH is $\operatorname{Re}\rho=1/2$ for every such $\rho$.
+\end{proof}
+
+\begin{definition}[Finite positive holonomy moment map]
+For $n\ge1$, put
+\[
+ v_n(z)=(1,z,\ldots,z^{n-1})^t.
+\]
+For positive weights $\alpha_1,\ldots,\alpha_r$ and nonzero complex numbers $z_1,\ldots,z_r$, define
+\[
+ \Mom_n\!\left(\sum_{j=1}^r\alpha_j\delta_{z_j}\right)
+ :=\sum_{j=1}^r\alpha_jv_n(z_j)v_n(z_j)^*.
+\]
+\end{definition}
+
+\begin{theorem}[Positive finite packets: unitarity is exactly Toeplitzness]
+Let $n\ge3$.  Then
+\[
+ \Mom_n\!\left(\sum_{j=1}^r\alpha_j\delta_{z_j}\right)
+\]
+is positive semidefinite.  It is Toeplitz if and only if
+\[
+ |z_j|=1\qquad(1\le j\le r).
+\]
+If the $z_j$ are distinct and $r=n-1$, then the matrix has rank $n-1$, its kernel is one-dimensional, and the associated kernel polynomial has precisely the roots $\bar z_1,\ldots,\bar z_{n-1}$.
+\end{theorem}
+
+\begin{proof}
+Positivity follows from the expression as a positive sum of rank-one positive matrices.  If every $|z_j|=1$, then
+\[
+ \bigl(v_n(z_j)v_n(z_j)^*\bigr)_{k\ell}
+ =z_j^k\bar z_j^{\ell}=z_j^{k-\ell},
+\]
+so each summand, and hence their sum, is Toeplitz.
+
+Conversely, suppose the moment matrix is Toeplitz.  Its first three diagonal entries are equal.  Hence
+\[
+ \sum_j\alpha_j
+ =\sum_j\alpha_j|z_j|^2
+ =\sum_j\alpha_j|z_j|^4.
+\]
+Set $A=\sum_j\alpha_j>0$, $w_j=\alpha_j/A$, and $X_j=|z_j|^2$.  Then
+\[
+ \sum_jw_jX_j=1,
+ \qquad
+ \sum_jw_jX_j^2=1.
+\]
+Therefore
+\[
+ \sum_jw_j(X_j-1)^2
+ =\sum_jw_jX_j^2-2\sum_jw_jX_j+1=0.
+\]
+Every summand is nonnegative and every $w_j$ is positive, so $X_j=1$ for every $j$.
+
+If the $z_j$ are distinct and $r=n-1$, the Vandermonde columns $v_n(z_j)$ are linearly independent.  Thus the moment matrix has rank $n-1$.  A vector $\xi$ lies in its kernel exactly when
+\[
+ v_n(z_j)^*\xi=0
+ \qquad(1\le j\le n-1),
+\]
+which says that the polynomial $P_\xi(w)=\sum_{k=0}^{n-1}\xi_kw^k$ vanishes at $w=\bar z_j$.  Since the kernel is one-dimensional and the polynomial has degree at most $n-1$, these are precisely its roots.
+\end{proof}
+
+\begin{corollary}[The finite commutative chain]
+For any finite packet of Connes--Consani periodic orbits equipped with Frobenius characters and spectral parameters $s_j$, there is an exact chain
+\[
+ \bigl\{\rho_{p_j,\psi_j,s_j}\bigr\}
+ \longmapsto
+ \sum_j\alpha_j\delta_{z_{p_j,\psi_j}(s_j)}
+ \xmapsto{\ \Mom_n\ }
+ T_n.
+\]
+For $n\ge3$, the image lies in the positive Toeplitz cone if and only if every local system is unitary.  On a distinct $(n-1)$-point packet this is exactly the Carath\'eodory--Fej\'er corank-one situation.
+\end{corollary}
+
+\begin{definition}[The first actual four-register diagram]
+For the trivial Frobenius character, set
+\[
+ a_{p,s}=2\pi i+(s-1/2)\ell_p,
+ \qquad
+ z_{p,s}=e^{a_{p,s}}=p^{s-1/2}.
+\]
+Define
+\[
+ d_{\mathrm{per}}(a_{p,s})=\frac{\Re(a_{p,s}-2\pi i)}{\ell_p},
+\]
+\[
+ d_{\mathrm{hol}}(z)=\frac{\log|z|}{\ell_p},
+ \quad
+ d_{\mathrm{Toep}}(T)=\frac1{2\ell_p}\log\frac{T_{22}}{T_{11}},
+ \quad
+ d_{\mathrm{root}}(P)=\frac{\log|\operatorname{root}P|}{\ell_p}.
+\]
+Then the diagram
+\[
+\begin{tikzcd}[column sep=large]
+a_{p,s} \arrow[r,"\exp"] \arrow[d,"d_{\mathrm{per}}"'] &
+ z_{p,s} \arrow[r,"z\mapsto v_2(z)v_2(z)^*"] \arrow[d,"d_{\mathrm{hol}}"'] &
+ T_2(z_{p,s}) \arrow[r,"\ker\mapsto P"] \arrow[d,"d_{\mathrm{Toep}}"'] &
+ P_{z_{p,s}} \arrow[d,"d_{\mathrm{root}}"]\\
+\R \arrow[r,equal] & \R \arrow[r,equal] & \R \arrow[r,equal] & \R
+\end{tikzcd}
+\]
+commutes, and every lower value is $\Re s-1/2$.
+\end{definition}
+
+\begin{problem}[Global lift to the Weil and adelic registers]
+Construct a natural transformation from the finite positive holonomy moment functor above to the actual restricted Weil forms $QW_{\lambda,N}$ of Connes--Consani--Moscovici such that:
+\begin{enumerate}[label=(\roman*)]
+\item it intertwines the marked Terzo period lattice with the positive orientation of each $C_p$;
+\item finite-cover monodromy acts by the arithmetic Frobenius supplied by Connes--Consani;
+\item the scalar defect $\delta_p(s)$ is sent to the transverse defect of the codimension-one adelic lamination;
+\item vanishing of the defect is equivalent to simplicity of the minimal Weil eigenvalue under the lift;
+\item the induced regularized determinants converge to $\Xi$ in a topology preserving zero divisors.
+\end{enumerate}
+The period-normalization and moment-matrix parts of this diagram are proved above.  The transformation into the genuine Weil matrices and the passage to the global determinant remain the unresolved morphism problem.
+\end{problem}
+
+\begin{remark}[JT/Ford realization]
+For a reduced fraction $a/b$, the oriented Ford circle has center $a/b+i/(2b^2)$ and radius $1/(2b^2)$.  The map
+\[
+ \theta_{a/b}:\T\longrightarrow\mathcal F_{a/b},
+ \qquad
+ u\longmapsto \frac ab+\frac{i+u}{2b^2}
+\]
+is an explicit oriented circle chart.  Thus $\theta_{a/b}\circ\beta_p$ renders the period-normalization theorem in the JT/Ford geometry.  No canonical arithmetic assignment $p\mapsto a/b$ is asserted; construction of such an assignment, if one exists in the relevant corona or modular family, is a separate problem.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{Terzo} G. Terzo, \emph{Consequences of Schanuel's Conjecture in Exponential Algebra}, doctoral thesis, 2008.
+\bibitem{CvS} A. Connes and W. van Suijlekom, \emph{Quadratic forms, real zeros and echoes of the spectral action}, arXiv:2511.23257.
+\bibitem{CC} A. Connes and C. Consani, \emph{A geometric generalization of class field theory}, arXiv:2501.06560.
+\bibitem{CCM} A. Connes, C. Consani and H. Moscovici, \emph{Zeta Spectral Triples}, arXiv:2511.22755.
+\end{thebibliography}
+\end{document}

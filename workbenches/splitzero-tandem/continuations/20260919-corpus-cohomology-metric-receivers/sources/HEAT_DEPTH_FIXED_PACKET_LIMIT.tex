@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\title{The heat depth and the fixed-packet attained limit}
+\author{Split-Zero research programme}\date{19 September 2026}
+\begin{document}\maketitle
+This working continuation of HM1--30 keeps the original fixed divisor
+$h$, its full jet space $E_h$, canonical section $R_h$ and physical
+Hilbert space $L^2(\R_{>0},dx)$. It determines the dependence of the
+proved heat comparison on the actual finite metric. The underlying
+source-density calculation was recovered as RC6--10 in
+\texttt{EXACT\_CORPUS\_RECEIVERS.tex}; its needed proof is reproduced
+here. The accepted HM source is preserved at GitHub commit
+\texttt{88f967d3c38750c57264fc5ebbf10bb463717e4e}.
+
+\section{Density in the stated physical norm}
+Put $D=-x\partial_x$, $f_j=D^j\Theta\phi_*$ and
+$g_0(t)=2\xi(1/2+it)$, with the original $\phi_*$ of HM1.
+Mellin Parseval sends $f_j$ to $(1/2+it)^jg_0(t)$ in
+$L^2(\R,dt/(2\pi))$. We first establish the exact density needed
+for the finite-metric conclusion.
+
+The bounded alternating partial sum
+$A(y)=\sum_{n\le y}(-1)^{n-1}$ gives
+$\eta(s)=s\int_1^\infty A(y)y^{-s-1}dy$ for $\Re s>0$.
+On $s=1/2+it$ this has absolute value at most $2|s|$.
+Continuation of $\eta(s)=(1-2^{1-s})\zeta(s)$ from $\Re s>1$
+then gives $|\zeta(s)|\le2|s|/(\sqrt2-1)$ on this line.
+Stirling's formula in its fixed vertical strip, with the full Gamma
+factor in $2\xi$, yields
+\begin{equation}\tag{HD1}
+ |g_0(t)|\le C(1+|t|)^{11/4}e^{-\pi|t|/4},\qquad
+ \int_\R |g_0(t)|^2e^{2a|t|}dt<\infty\quad(0<a<\pi/4).
+\end{equation}
+The Gamma asymptotic is the classical Stirling formula cited in
+\cite{gamma}; the partial-summation bound was just proved.
+
+If $v$ is orthogonal to all the polynomial multiples of $g_0$, put
+$b(t)=\overline{v(t)}g_0(t)$. Cauchy--Schwarz and (HD1) give
+$b\in L^1(e^{a|t|}dt)$ for every $a<\pi/4$, and all its polynomial
+moments vanish. Its bilateral transform
+$B(z)=\int b(t)e^{zt}dt/(2\pi)$ is holomorphic on $|\Re z|<\pi/4$:
+on every smaller closed strip all derivatives are dominated using a
+slightly larger $a$ in (HD1). Its Taylor coefficients at zero vanish,
+so the identity theorem gives $B=0$ on this strip. Fourier uniqueness
+for $L^1$ functions \cite{Fourier} implies $b=0$ almost everywhere.
+The zeros of the nonzero entire function $\xi$ are discrete, so
+$g_0\ne0$ almost everywhere and $v=0$. We have proved
+\begin{equation}\tag{HD2}
+ \overline{\operatorname{span}\{f_j:j\ge0\}}^{L^2(dx)}=L^2(dx).
+\end{equation}
+This proof uses no assumption about the real parts of the zeros.
+
+\section{The exact finite constant and the required heat scale}
+Fix the complete nonempty divisor $h$ throughout this section and
+write $d=\deg h$. For $N\ge d$, retain the matrices of HM10:
+\[
+ \mathbb G_N=\begin{pmatrix}A&C_N\\C_N^*&S_N\end{pmatrix},\quad
+ A=R_h^*R_h>0,\quad H_N=A-C_NS_N^{-1}C_N^*>0.
+\]
+The relation columns are exactly $f_0,\ldots,f_{N-d}$; the canonical
+section and $A$ are independent of $N$. In particular every statement
+below fixes the divisor rather than replacing it by a growing one.
+
+\begin{theorem}
+The full comparison constant in HM10 is exactly
+\begin{equation}\tag{HD3}
+ c_N^2=\lambda_{\max}(H_N^{-1/2}AH_N^{-1/2})
+      =\sup_{u\ne0}\frac{\norm{R_hu}_{L^2(dx)}^2}{u^*H_Nu}.
+\end{equation}
+Moreover $H_N$ decreases in Loewner order to zero in operator norm,
+and $c_N$ is nondecreasing for $N\ge d$ with $c_N\to\infty$.
+For the literal heat replacement in HM9, set
+$\delta=2^{-(J+1)/2}c_N$. Then
+\begin{equation}\tag{HD4}
+ \lambda_{\max}\!\left(\mathbb G_N^{-1/2}
+                \mathbb G_N^{[J]}\mathbb G_N^{-1/2}\right)
+       \ge (\delta-1)_+^2.
+\end{equation}
+Thus any fixed finite upper comparison constant $B>0$ for these full
+prequotients requires
+\begin{equation}\tag{HD5}
+ J+1\ \ge\ 2\log_2 c_N-2\log_2(1+\sqrt B).
+\end{equation}
+The sufficient depth of HM24 and this necessary depth therefore have
+the same leading dependence $2\log_2 c_N$, with their stated fixed
+tolerance constants retained. No rate for $c_N$ in $N$ is asserted.
+\end{theorem}
+\begin{proof}
+Since $C_NS_N^{-1}C_N^*=A-H_N$, the definition in HM10 becomes
+\[
+ c_N^2=1+\lambda_{\max}
+       (H_N^{-1/2}(A-H_N)H_N^{-1/2})
+       =\lambda_{\max}(H_N^{-1/2}AH_N^{-1/2}).
+\]
+Substituting $v=H_N^{1/2}u$ in its Rayleigh quotient proves the last
+formula in (HD3), without changing the original coefficient maps.
+
+The space of relation columns increases with $N$, so its attained
+distance form $H_N$ decreases. The density (HD2) makes the distance
+from every column of $R_h$ to this relation space tend to zero.
+Hence every diagonal entry of $H_N$ tends to zero. Positivity bounds
+the absolute value of every off-diagonal entry by the geometric mean
+of the corresponding diagonal entries. The fixed dimension is finite,
+so $\norm{H_N}\to0$. At each finite $N$ it is positive definite:
+if $R_hu$ were in the finite relation span, the full original Mellin
+jet map would give $u=0$, since it kills all the $f_j$.
+Formula (HD3) proves monotonicity of $c_N$. It also gives
+$c_N^2\ge\lambda_{\min}(A)/\norm{H_N}\to\infty$.
+
+Let $\mathcal P_N=[0,F_{N-d}]$ and $s=2^{J+1}$, as in HM7--9.
+The operator $U_N=\mathcal R_N\mathbb G_N^{-1/2}$ is an isometric
+embedding, so $\norm{U_N}=1$. By the exact computation in HM13 and
+$T_s^*T_s=s^{-1}I$,
+\[
+ \norm{T_s\mathcal P_N\mathbb G_N^{-1/2}}=s^{-1/2}c_N=\delta.
+\]
+The reverse triangle inequality implies
+$\norm{\mathcal R_N^{[J]}\mathbb G_N^{-1/2}}\ge(\delta-1)_+$.
+Squaring gives (HD4). If the left side of (HD4) is at most $B$,
+then $\delta\le1+\sqrt B$, which is exactly (HD5). At fixed $J$
+the lower bound in (HD4) tends to infinity. Every map here is the
+full original prequotient map with the same section and coefficient
+fibre as HM6.
+\end{proof}
+
+\section{The receiving quotient is still taken through its original map}
+The lower bound (HD4) concerns the full form before minimization.
+Its exact receiving map is the already proved
+$M\mapsto(\Lambda M^{-1}\Lambda^*)^{-1}$. A lower bound on the
+largest eigenvalue of a full form need not survive that map. For an
+explicit verification, let $M_t=\operatorname{diag}(t,1)$ on $\C^2$,
+$M_0=I$, and $\Lambda(z_1,z_2)=z_2$. Then
+$\lambda_{\max}(M_t)=t$ for $t\ge1$, but
+$\Lambda M_t^{-1}\Lambda^*=1$ and the attained quotient form is
+identically $1$. The fixed-divisor limit above therefore proves the
+stated need to increase heat depth for the full-prequotient comparison;
+it does not assign a relative-rate failure to the re-minimized packet
+metrics. Those continue to obey the explicit two-sided bounds of
+HM19 whenever the depth in HM24 is used.
+
+The exact representatives
+$R_hu-F_{N-d}S_N^{-1}C_N^*u$ keep the original full jets and theta
+cohomology class while their squared norms are $u^*H_Nu\to0$.
+Thus the inclusion of the original rapid-decay source space into
+$L^2(dx)$ induces the zero map to the Hausdorff quotient by the
+closed theta image. Its finite jet sections still split the original
+algebraic cohomology. These explicit maps preserve the distinction
+between the chosen source topology and its Hilbert completion, and
+leave the original growing-packet arithmetic estimates intact.
+
+\begin{thebibliography}{9}
+\bibitem{gamma} Richard A.~Askey and Ranjan Roy,
+NIST Digital Library of Mathematical Functions,
+Chapter 5, \S5.11, Stirling's formula,
+\url{https://dlmf.nist.gov/5.11.E3}.
+\bibitem{Fourier} Elias M.~Stein and Rami Shakarchi,
+\emph{Fourier Analysis: An Introduction}, Princeton University Press,
+2003, Chapter 5: Fourier inversion and Plancherel on the real line.
+\end{thebibliography}
+\end{document}

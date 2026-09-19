@@ -1,0 +1,1102 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\divv}{\operatorname{div}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\Eta}{\operatorname{E}}
+
+\title{Complex-Analytic Completion of the Split-Zero Zeta-Divisor Framework\\
+Pole-Trivial-Packet Factorization, Packet Polynomials, Taylor Coefficients, and Leading Jets}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note is a rigorous analytic supplement to the split-zero zeta-divisor framework developed in the uploaded corpus.  The earlier zeta-divisor note already sheafified the pointwise Boolean split-zero fiber attached to zeta zeros, descended the nontrivial-zero sector to the Klein-four packet quotient, and recorded the first derivative formula at the trivial zeros.  What remained unexecuted was the full complex-analytic deconstruction of the Riemann zeta function itself.
+
+We carry that out here.  First, we split the zeta zero divisor into its trivial and nontrivial sectors and prove the corresponding factorization of Boolean divisor shadows.  Next, we analyze the three classical functions
+\[
+\zeta(s),\qquad \Lambda(s):=\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s),
+\qquad
+\xi(s):=\frac12 s(s-1)\Lambda(s),
+\]
+and the centered entire function
+\[
+\Xi(z):=\xi\!\left(\frac12+z\right).
+\]
+We prove exact local expansions at $s=1$, $s=0$, and at the trivial zeros $-2n$, identify the leading jets at arbitrary nontrivial zeros, and show that their absolute values are packet invariants.
+
+Using the classical Hadamard factorization of the order-one entire function $\Xi$, we derive an exact normalized product over reflection packets and then descend that product to the orbit space $Y_\xi=|D_\xi|/\langle s\mapsto 1-s,\,s\mapsto \overline s\rangle$.  Each packet contributes a canonical normalized polynomial factor: a quadratic factor on the critical line and a real quartic factor off the critical line.  This yields a precise packet formulation of the Riemann hypothesis: RH holds if and only if no quartic packet factor occurs.
+
+We then compute the centered Taylor series of $\Xi$ exactly in terms of elementary symmetric functions of the reciprocals of the squared centralized packet locations.  Finally, combining the packet product with the Weierstrass product for $1/\Gamma$, we obtain an explicit global factorization of the full Riemann zeta function into three analytically separated pieces: one pole factor, one trivial-zero factor, and one nontrivial packet factor.  Differentiating logarithmically gives a packet-grouped partial-fraction expansion of $\zeta'/\zeta$ in which every term has a transparent divisor-theoretic origin.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction and audit of the missing analytic execution}
+
+The split-zero note on the zeta divisor established the following facts.
+
+\begin{enumerate}[label=(\roman*)]
+\item For every zero $\rho$ of $\zeta$, the pointwise split-zero fiber attached to $F_1(s)=\zeta(s)-1$ is the same Boolean pair $A=\{0,\tau\}\cong\BB$.
+\item For an effective discrete divisor $D=\sum_x m_x[x]$ on a Riemann surface, the local split-zero data sheafifies to
+\[
+\cV_D(U)=\prod_{x\in U\cap |D|} A^{m_x},
+\qquad
+\cA_D(U)=\prod_{x\in U\cap |D|} A.
+\]
+\item For the completed zeta function $\xi$, the nontrivial-zero shadow descends to the packet quotient
+\[
+Y_\xi:=|D_\xi|/W,
+\qquad
+W=\{\mathrm{id},\,s\mapsto 1-s,\,s\mapsto \overline s,\,s\mapsto 1-\overline s\}.
+\]
+\item At the trivial zeros $-2n$, one has the exact leading coefficient formula
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{enumerate}
+
+Those results were correct, but they did not yet execute the full analytic content that the framework permits.  Four mathematically substantive pieces were still missing.
+
+\begin{enumerate}[label=(A)]
+\item There was no exact factorization of $\zeta$ into its pole sector, trivial-zero sector, and nontrivial packet sector.
+\item Packet descent had been proved at the level of divisor shadows, but not at the level of global analytic product factors.
+\item The local jet formalism had not yet been specialized to the leading coefficients at nontrivial zeros or to the centered Taylor coefficients of $\xi$.
+\item The trivial-zero weights had not been lifted from the first derivative of $\zeta$ to the completed value of $\Lambda$ and then reincorporated into a global product decomposition.
+\end{enumerate}
+
+This note supplies exactly those missing pieces.  The key output is the formula
+\begin{equation}\label{eq:intro-main-factorization}
+\zeta(s)
+=
+\frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+\prod_{O\in Y_\xi} P_O(s)^{m_O},
+\end{equation}
+where the factors $P_O$ are canonical normalized packet polynomials.  The first factor records the pole at $s=1$, the second product records the trivial zeros, and the final product records the nontrivial packets.  Every term on the right-hand side will be defined and proved below.
+
+\begin{remark}
+We use two classical inputs from the standard theory of the zeta function:
+\begin{enumerate}[label=(\arabic*)]
+\item the function $\xi$ is entire of order $1$;
+\item Hadamard factorization therefore applies to the centered entire function $\Xi(z)=\xi(1/2+z)$.
+\end{enumerate}
+These are classical theorems; everything deduced from them is proved in full detail here.
+\end{remark}
+
+\section{Split-zero divisor shadows and the divisor splitting of $\zeta$}
+
+\subsection{Boolean divisor shadows}
+
+Let
+\[
+A:=\{0,\tau\}
+\]
+be the two-element split-zero fiber.  We use only the fact that $A$ is a pointed two-element set with distinguished basepoint $\tau$; all products below are therefore products of pointed sets.  If
+\[
+D=\sum_{x\in Z} m_x[x]
+\]
+is an effective discrete divisor on a Riemann surface $X$, we write
+\begin{equation}\label{eq:shadow-definitions}
+\cV_D(U):=\prod_{x\in U\cap Z} A^{m_x},
+\qquad
+\cA_D(U):=\prod_{x\in U\cap Z} A
+\end{equation}
+for the multiplicity and reduced Boolean shadows.
+
+\begin{proposition}\label{prop:shadow-product-disjoint}
+Let $D_1$ and $D_2$ be effective discrete divisors on a Riemann surface $X$ with disjoint supports.  Then for every open set $U\subset X$ there are canonical isomorphisms
+\[
+\cV_{D_1+D_2}(U)\cong \cV_{D_1}(U)\times \cV_{D_2}(U),
+\qquad
+\cA_{D_1+D_2}(U)\cong \cA_{D_1}(U)\times \cA_{D_2}(U).
+\]
+Hence
+\[
+\cV_{D_1+D_2}\cong \cV_{D_1}\times \cV_{D_2},
+\qquad
+\cA_{D_1+D_2}\cong \cA_{D_1}\times \cA_{D_2}
+\]
+as sheaves of pointed sets.
+\end{proposition}
+
+\begin{proof}
+Because the supports are disjoint,
+\[
+|(D_1+D_2)|=|D_1|\sqcup |D_2|,
+\]
+and the multiplicities on the two pieces are exactly those of $D_1$ and $D_2$.  Therefore, for every open $U$,
+\[
+\prod_{x\in U\cap |D_1+D_2|} A^{m_x}
+=
+\left(\prod_{x\in U\cap |D_1|} A^{m_x}\right)
+\times
+\left(\prod_{x\in U\cap |D_2|} A^{m_x}\right).
+\]
+This is precisely the first claimed isomorphism.  The reduced case is identical, with each $A^{m_x}$ replaced by $A$.  Naturality in $U$ is immediate from the fact that every restriction map is coordinate projection.
+\end{proof}
+
+\subsection{Divisors of $\zeta$, $\Lambda$, and $\xi$}
+
+\begin{definition}
+Let $Z_{\mathrm{nt}}$ be the set of nontrivial zeros of the Riemann zeta function, and write
+\[
+D_{\mathrm{nt}}:=\sum_{\rho\in Z_{\mathrm{nt}}} m_\rho[\rho].
+\]
+Let
+\[
+D_{\mathrm{tr}}:=\sum_{n\ge 1}[-2n].
+\]
+Thus $D_{\mathrm{tr}}$ is the trivial-zero divisor and $D_{\mathrm{nt}}$ is the nontrivial-zero divisor.
+\end{definition}
+
+\begin{proposition}\label{prop:trivial-zeros-simple-again}
+For every integer $n\ge 1$, the point $-2n$ is a simple zero of $\zeta$.
+\end{proposition}
+
+\begin{proof}
+The functional equation in the form
+\begin{equation}\label{eq:functional-zeta}
+\zeta(s)=2^s\pi^{s-1}\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s)
+\end{equation}
+shows the claim immediately.  At $s=-2n$, the factors $2^s$, $\pi^{s-1}$, $\Gamma(1-s)=\Gamma(1+2n)$, and $\zeta(1-s)=\zeta(2n+1)$ are holomorphic and nonzero.  The only vanishing factor is the sine term, and it vanishes simply because
+\[
+\frac{d}{ds}\sin\!\left(\frac{\pi s}{2}\right)\Big|_{s=-2n}
+=\frac{\pi}{2}\cos(-n\pi)=\frac{\pi}{2}(-1)^n\neq 0.
+\]
+Thus $\ord_{-2n}(\zeta)=1$.
+\end{proof}
+
+\begin{theorem}\label{thm:divisor-identities}
+Let
+\[
+\Lambda(s):=\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s),
+\qquad
+\xi(s):=\frac12 s(s-1)\Lambda(s).
+\]
+Then on $\CC$ one has the divisor identities
+\begin{align*}
+\divv(\zeta)&=D_{\mathrm{tr}}+D_{\mathrm{nt}}-[1],\\
+\divv(\Lambda)&=D_{\mathrm{nt}}-[0]-[1],\\
+\divv(\xi)&=D_{\mathrm{nt}}.
+\end{align*}
+In particular, the trivial and nontrivial sectors of the zeta zero divisor are disjoint, and the completed function $\xi$ removes the entire trivial-zero sector.
+\end{theorem}
+
+\begin{proof}
+The function $\zeta$ has a unique pole, namely a simple pole at $s=1$, and by Proposition~\ref{prop:trivial-zeros-simple-again} its trivial zeros are exactly the simple zeros at the negative even integers.  By definition, every remaining zero is a nontrivial zero, with multiplicity $m_\rho$.  This proves the first divisor identity.
+
+For $\Lambda$, the factor $\Gamma(s/2)$ has simple poles at
+\[
+s=0,-2,-4,-6,\dots.
+\]
+At the negative even integers the simple pole of $\Gamma(s/2)$ is cancelled by the simple trivial zero of $\zeta$, so $\Lambda$ is holomorphic and nonzero there.  At $s=0$, however, $\zeta(0)=-1/2\neq 0$, so the pole from $\Gamma(s/2)$ remains.  At $s=1$ the pole of $\zeta$ remains.  The nontrivial zeros are untouched because the prefactor $\pi^{-s/2}\Gamma(s/2)$ is holomorphic and nonzero at every nontrivial zero.  Hence
+\[
+\divv(\Lambda)=D_{\mathrm{nt}}-[0]-[1].
+\]
+Finally, multiplying by $\frac12 s(s-1)$ removes the poles at $0$ and $1$ and introduces no new zeros except there.  Thus $\xi$ is entire and
+\[
+\divv(\xi)=D_{\mathrm{nt}}.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:shadow-zeta-splits}
+For the zeta zero divisor one has canonical sheaf factorizations
+\[
+\cV_{\divv(\zeta)^+}\cong \cV_{D_{\mathrm{tr}}}\times \cV_{D_{\mathrm{nt}}},
+\qquad
+\cA_{\divv(\zeta)^+}\cong \cA_{D_{\mathrm{tr}}}\times \cA_{D_{\mathrm{nt}}},
+\]
+where $\divv(\zeta)^+=D_{\mathrm{tr}}+D_{\mathrm{nt}}$ is the effective zero divisor of $\zeta$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:divisor-identities}, the effective zero divisor of $\zeta$ is exactly $D_{\mathrm{tr}}+D_{\mathrm{nt}}$, and the supports are disjoint.  Proposition~\ref{prop:shadow-product-disjoint} applies.
+\end{proof}
+
+\section{Local analytic expansions and leading jets}
+
+\subsection{The pole at $s=1$ and the regular point $s=0$}
+
+\begin{proposition}\label{prop:stieltjes-expansion}
+There is a unique sequence $(\gamma_n)_{n\ge 0}$ of complex numbers such that, in a punctured neighborhood of $s=1$,
+\begin{equation}\label{eq:stieltjes-expansion}
+\zeta(s)=\frac{1}{s-1}+\sum_{n=0}^{\infty}\frac{(-1)^n\gamma_n}{n!}(s-1)^n.
+\end{equation}
+Equivalently,
+\[
+\zeta(s)-\frac{1}{s-1}
+\]
+is holomorphic at $s=1$ and its Taylor coefficients are the Stieltjes constants.
+\end{proposition}
+
+\begin{proof}
+Since $\zeta$ has a simple pole at $s=1$ with residue $1$, the function
+\[
+h(s):=\zeta(s)-\frac{1}{s-1}
+\]
+is holomorphic near $s=1$.  Therefore it has a unique Taylor expansion
+\[
+h(s)=\sum_{n=0}^{\infty} c_n(s-1)^n.
+\]
+Writing $c_n=(-1)^n\gamma_n/n!$ gives the asserted form.
+\end{proof}
+
+\begin{proposition}\label{prop:zeta-at-zero}
+Near $s=0$ one has the exact expansion
+\begin{equation}\label{eq:zeta-zero-expansion}
+\zeta(s)=-\frac12-\frac12\log(2\pi)s+O(s^2).
+\end{equation}
+Consequently,
+\[
+\zeta(0)=-\frac12,
+\qquad
+\zeta'(0)=-\frac12\log(2\pi).
+\]
+Moreover,
+\begin{equation}\label{eq:Lambda-zero-expansion}
+\Lambda(s)=-\frac1s+\frac{\gamma-\log(4\pi)}{2}+O(s),
+\end{equation}
+and
+\begin{equation}\label{eq:xi-zero-expansion}
+\xi(s)=\frac12+\frac{\log(4\pi)-2-\gamma}{4}s+O(s^2).
+\end{equation}
+In particular,
+\[
+\xi(0)=\xi(1)=\frac12.
+\]
+\end{proposition}
+
+\begin{proof}
+Start from \eqref{eq:functional-zeta}.  As $s\to 0$ we have
+\[
+2^s\pi^{s-1}=\pi^{-1}\bigl(1+\log(2\pi)s+O(s^2)\bigr),
+\]
+\[
+\sin\!\left(\frac{\pi s}{2}\right)=\frac{\pi s}{2}+O(s^3),
+\qquad
+\Gamma(1-s)=1+\gamma s+O(s^2),
+\]
+and by Proposition~\ref{prop:stieltjes-expansion},
+\[
+\zeta(1-s)=-\frac1s+\gamma+O(s).
+\]
+Multiplying the last three expansions first gives
+\[
+\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s)
+=\left(\frac{\pi s}{2}+O(s^3)\right)\left(1+\gamma s+O(s^2)\right)\left(-\frac1s+\gamma+O(s)\right)
+=-\frac{\pi}{2}+O(s^2),
+\]
+because the linear terms cancel exactly.  Multiplying by $2^s\pi^{s-1}$ now yields
+\[
+\zeta(s)=\pi^{-1}\bigl(1+\log(2\pi)s+O(s^2)\bigr)\left(-\frac{\pi}{2}+O(s^2)\right)
+=-\frac12-\frac12\log(2\pi)s+O(s^2),
+\]
+which is \eqref{eq:zeta-zero-expansion}.
+
+Next, use the standard gamma expansion
+\[
+\Gamma\!\left(\frac{s}{2}\right)=\frac{2}{s}-\gamma+O(s)
+\qquad (s\to 0)
+\]
+and
+\[
+\pi^{-s/2}=1-\frac12\log\pi\,s+O(s^2).
+\]
+Multiplying these with \eqref{eq:zeta-zero-expansion} gives
+\[
+\Lambda(s)=\left(1-\frac12\log\pi\,s+O(s^2)\right)
+\left(\frac2s-\gamma+O(s)\right)
+\left(-\frac12-\frac12\log(2\pi)s+O(s^2)\right)
+=-\frac1s+\frac{\gamma-\log(4\pi)}{2}+O(s),
+\]
+which is \eqref{eq:Lambda-zero-expansion}.  Finally,
+\[
+\xi(s)=\frac12 s(s-1)\Lambda(s),
+\]
+so multiplying the previous expansion by $\frac12 s(s-1)$ gives \eqref{eq:xi-zero-expansion} and in particular $\xi(0)=1/2$.  The identity $\xi(1)=1/2$ follows from the functional equation $\xi(1-s)=\xi(s)$.
+\end{proof}
+
+\begin{proposition}\label{prop:zeta-negative-on-critical-strip}
+For every real $s$ with $0<s<1$ one has
+\[
+\zeta(s)<0.
+\]
+Consequently,
+\[
+\xi\!\left(\frac12\right)>0.
+\]
+\end{proposition}
+
+\begin{proof}
+For $\Re(s)>0$, the Dirichlet eta function
+\[
+\eta(s):=\sum_{n\ge 1}\frac{(-1)^{n-1}}{n^s}
+\]
+satisfies
+\[
+\eta(s)=(1-2^{1-s})\zeta(s).
+\]
+If $0<s<1$ is real, then we may group the alternating series as
+\[
+\eta(s)=\sum_{k\ge 1}\left((2k-1)^{-s}-(2k)^{-s}\right),
+\]
+and every summand is strictly positive.  Hence $\eta(s)>0$.  On the same interval one has $1-2^{1-s}<0$, so dividing by this negative factor gives $\zeta(s)<0$.
+
+At $s=1/2$ this shows $\zeta(1/2)<0$.  Since
+\[
+\xi\!\left(\frac12\right)=\frac12\cdot\frac12\cdot\left(-\frac12\right)\pi^{-1/4}\Gamma\!\left(\frac14\right)\zeta\!\left(\frac12\right)
+=-\frac18\pi^{-1/4}\Gamma\!\left(\frac14\right)\zeta\!\left(\frac12\right),
+\]
+and the prefactor outside $\zeta(1/2)$ is positive, the second claim follows.
+\end{proof}
+
+\subsection{Trivial zeros and completed trivial weights}
+
+\begin{proposition}\label{prop:trivial-derivative-and-Lambda}
+For every integer $n\ge 1$ one has
+\begin{equation}\label{eq:trivial-derivative-again}
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1),
+\end{equation}
+and therefore
+\begin{equation}\label{eq:trivial-abs-derivative}
+\bigl|\zeta'(-2n)\bigr|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\end{equation}
+In addition,
+\begin{equation}\label{eq:Lambda-trivial-values}
+\Lambda(-2n)=\Lambda(2n+1)=\frac{(2n)!}{4^n n!\,\pi^n}\,\zeta(2n+1),
+\end{equation}
+and the derivative and completed-value weights are related by
+\begin{equation}\label{eq:trivial-weight-relation}
+\bigl|\zeta'(-2n)\bigr|=\frac{n!}{2\pi^n}\,\Lambda(-2n).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The derivative formula \eqref{eq:trivial-derivative-again} is obtained exactly as in the earlier split-zero note: write
+\[
+\zeta(s)=g_n(s)\sin\!\left(\frac{\pi s}{2}\right),
+\qquad
+g_n(s):=2^s\pi^{s-1}\Gamma(1-s)\zeta(1-s),
+\]
+and evaluate at $s=-2n$.  Since $g_n$ is holomorphic there and the sine factor has a simple zero, one gets
+\[
+\zeta'(-2n)=g_n(-2n)\cdot \frac{\pi}{2}\cos(-n\pi)
+=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+Taking absolute values gives \eqref{eq:trivial-abs-derivative}.
+
+For \eqref{eq:Lambda-trivial-values}, use the functional equation for the completed function:
+\[
+\Lambda(s)=\Lambda(1-s).
+\]
+Hence
+\[
+\Lambda(-2n)=\Lambda(2n+1)=\pi^{-(2n+1)/2}\Gamma\!\left(n+\frac12\right)\zeta(2n+1).
+\]
+The classical half-integer gamma identity
+\[
+\Gamma\!\left(n+\frac12\right)=\frac{(2n)!}{4^n n!}\sqrt\pi
+\]
+therefore gives
+\[
+\Lambda(-2n)=\frac{(2n)!}{4^n n!\,\pi^n}\,\zeta(2n+1).
+\]
+Finally, dividing \eqref{eq:trivial-abs-derivative} by \eqref{eq:Lambda-trivial-values} yields \eqref{eq:trivial-weight-relation}.
+\end{proof}
+
+\subsection{Leading jets at nontrivial zeros}
+
+\begin{definition}
+Let $\rho\in Z_{\mathrm{nt}}$ have multiplicity $m_\rho$.  We define the leading local jet coefficients
+\[
+\lambda_\rho^{\zeta}:=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!},
+\qquad
+\lambda_\rho^{\xi}:=\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}.
+\]
+Equivalently,
+\[
+\zeta(s)=\lambda_\rho^{\zeta}(s-\rho)^{m_\rho}+O\bigl((s-\rho)^{m_\rho+1}\bigr),
+\qquad
+\xi(s)=\lambda_\rho^{\xi}(s-\rho)^{m_\rho}+O\bigl((s-\rho)^{m_\rho+1}\bigr).
+\]
+\end{definition}
+
+\begin{proposition}\label{prop:leading-jets-nontrivial}
+Let $\rho\in Z_{\mathrm{nt}}$.  Then
+\begin{equation}\label{eq:jet-relation-zeta-xi}
+\lambda_\rho^{\xi}=\frac12\rho(\rho-1)\pi^{-\rho/2}\Gamma\!\left(\frac{\rho}{2}\right)\lambda_\rho^{\zeta}.
+\end{equation}
+Moreover, if $m=m_\rho$, then the packet symmetries satisfy
+\begin{equation}\label{eq:jet-symmetry-reflection}
+\lambda_{1-\rho}^{\xi}=(-1)^m\lambda_\rho^{\xi},
+\end{equation}
+and
+\begin{equation}\label{eq:jet-symmetry-conjugation}
+\lambda_{\overline\rho}^{\xi}=\overline{\lambda_\rho^{\xi}}.
+\end{equation}
+Consequently, the absolute value
+\begin{equation}\label{eq:packet-weight-def}
+\omega(O):=\bigl|\lambda_\rho^{\xi}\bigr|
+\end{equation}
+is well defined on every packet $O\in Y_\xi$.
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+\phi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right).
+\]
+Since $\rho$ is a nontrivial zero, $\rho\neq 0,1,-2,-4,\dots$, so $\phi$ is holomorphic and nonzero at $\rho$.  Then $\xi=\phi\zeta$ near $\rho$.  If
+\[
+\zeta(s)=\lambda_\rho^{\zeta}(s-\rho)^m+O\bigl((s-\rho)^{m+1}\bigr),
+\]
+then multiplication by the holomorphic unit $\phi(s)=\phi(\rho)+O(s-\rho)$ gives
+\[
+\xi(s)=\phi(\rho)\lambda_\rho^{\zeta}(s-\rho)^m+O\bigl((s-\rho)^{m+1}\bigr),
+\]
+which is exactly \eqref{eq:jet-relation-zeta-xi}.
+
+For the symmetry formulas, differentiate the identities
+\[
+\xi(1-s)=\xi(s),
+\qquad
+\overline{\xi(\overline s)}=\xi(s).
+\]
+The first gives
+\[
+(-1)^m\xi^{(m)}(1-s)=\xi^{(m)}(s),
+\]
+so evaluating at $s=\rho$ yields
+\[
+\xi^{(m)}(1-\rho)=(-1)^m\xi^{(m)}(\rho),
+\]
+which is \eqref{eq:jet-symmetry-reflection} after dividing by $m!$.  The second identity implies
+\[
+\overline{\xi^{(m)}(\overline s)}=\xi^{(m)}(s)
+\]
+for every $m$, hence \eqref{eq:jet-symmetry-conjugation}.  Formula \eqref{eq:packet-weight-def} is therefore independent of the choice of $\rho\in O$.
+\end{proof}
+
+\section{The centered entire function and the packet product}
+
+\begin{definition}
+Define the centered entire function
+\[
+\Xi(z):=\xi\!\left(\frac12+z\right).
+\]
+If $\rho$ is a nontrivial zero of $\zeta$, set
+\[
+\alpha_\rho:=\rho-\frac12.
+\]
+Then the nonzero zeros of $\Xi$ are exactly the points $\alpha_\rho$.
+\end{definition}
+
+\begin{lemma}\label{lem:Xi-even-and-real}
+The function $\Xi$ is entire and even:
+\[
+\Xi(-z)=\Xi(z)
+\qquad (z\in\CC).
+\]
+Moreover,
+\[
+\overline{\Xi(\overline z)}=\Xi(z),
+\]
+so the Taylor coefficients of $\Xi$ at $0$ are all real and every odd Taylor coefficient vanishes.
+\end{lemma}
+
+\begin{proof}
+Entirety follows from the fact that $\xi$ is entire.  Evenness is immediate from the functional equation:
+\[
+\Xi(-z)=\xi\!\left(\frac12-z\right)=\xi\!\left(1-\left(\frac12+z\right)\right)=\xi\!\left(\frac12+z\right)=\Xi(z).
+\]
+Likewise,
+\[
+\overline{\Xi(\overline z)}=\overline{\xi\!\left(\frac12+\overline z\right)}=\xi\!\left(\frac12+z\right)=\Xi(z),
+\]
+using $\overline{\xi(\overline s)}=\xi(s)$.  Therefore the Taylor coefficients at $0$ are real, and evenness forces the odd coefficients to vanish.
+\end{proof}
+
+\begin{definition}
+Let $\mathcal A$ be a multiset containing one representative from each sign pair $\{\alpha,-\alpha\}$ of nonzero zeros of $\Xi$, repeated according to multiplicity.  Thus the zero multiset of $\Xi$ is
+\[
+\{\pm\alpha:\alpha\in\mathcal A\},
+\]
+with multiplicities understood.
+\end{definition}
+
+\begin{theorem}[Centered sign-pair product]\label{thm:centered-sign-pair-product}
+Assume the classical input that $\Xi$ is entire of order $1$.  Then the product
+\begin{equation}\label{eq:Xi-sign-pair-product}
+\Xi(z)=\Xi(0)\prod_{\alpha\in\mathcal A}\left(1-\frac{z^2}{\alpha^2}\right)
+\end{equation}
+converges absolutely and locally uniformly on compact subsets of $\CC$.  In particular,
+\[
+\sum_{\alpha\in\mathcal A}\frac{1}{|\alpha|^2}<\infty.
+\]
+\end{theorem}
+
+\begin{proof}
+By Hadamard factorization for order-one entire functions, one has
+\[
+\Xi(z)=e^{a+bz}\prod_{\beta\in Z(\Xi)\setminus\{0\}} E_1\!\left(\frac{z}{\beta}\right),
+\qquad
+E_1(w):=(1-w)e^w,
+\]
+with convergence in canonical product sense.  Because the nonzero zeros occur in sign pairs and $\Xi$ is even, we may group the factors pairwise:
+\[
+E_1\!\left(\frac{z}{\alpha}\right)E_1\!\left(-\frac{z}{\alpha}\right)
+=(1-z/\alpha)e^{z/\alpha}(1+z/\alpha)e^{-z/\alpha}
+=1-\frac{z^2}{\alpha^2}.
+\]
+Evenness also forces $b=0$: indeed,
+\[
+1=\frac{\Xi(z)}{\Xi(-z)}=e^{2bz}
+\]
+for all $z$, hence $b=0$.  Therefore
+\[
+\Xi(z)=e^a\prod_{\alpha\in\mathcal A}\left(1-\frac{z^2}{\alpha^2}\right).
+\]
+Evaluating at $z=0$ gives $e^a=\Xi(0)$, hence \eqref{eq:Xi-sign-pair-product}.
+
+Finally, canonical product theory for an order-one entire function implies
+\[
+\sum_{\beta\in Z(\Xi)\setminus\{0\}} \frac{1}{|\beta|^2}<\infty,
+\]
+so after choosing one representative from each sign pair we still have
+\[
+\sum_{\alpha\in\mathcal A}\frac{1}{|\alpha|^2}<\infty.
+\]
+This summability implies that the ordinary product
+\[
+\prod_{\alpha\in\mathcal A}\left(1-\frac{z^2}{\alpha^2}\right)
+\]
+converges absolutely and locally uniformly on compact sets, because for $|z|\le R$ and $|\alpha|>2R$ one has
+\[
+\left|\frac{z^2}{\alpha^2}\right|\le \frac{R^2}{|\alpha|^2},
+\]
+and the tail is controlled by a summable majorant.
+\end{proof}
+
+\begin{definition}\label{def:packet-polynomial}
+Let $Y_\xi=|D_{\mathrm{nt}}|/W$ be the packet quotient.  For a packet $O\in Y_\xi$, define its normalized packet polynomial by
+\begin{equation}\label{eq:packet-polynomial-def}
+P_O(s):=\prod_{\eta\in O}\frac{s-\eta}{\frac12-\eta}.
+\end{equation}
+This is well defined because $1/2\notin O$ by Proposition~\ref{prop:zeta-negative-on-critical-strip}.
+\end{definition}
+
+\begin{lemma}\label{lem:packet-polynomial-explicit}
+For every packet $O\in Y_\xi$, the polynomial $P_O(s)$ has real coefficients and satisfies $P_O(1/2)=1$.
+
+More precisely:
+\begin{enumerate}[label=(\roman*)]
+\item If $O=\{\frac12+i\gamma,\frac12-i\gamma\}$ is a critical-line packet, then
+\begin{equation}\label{eq:packet-polynomial-line}
+P_O(s)=1+\frac{(s-1/2)^2}{\gamma^2}.
+\end{equation}
+\item If $O=\{\beta\pm i\gamma,1-\beta\pm i\gamma\}$ with $\beta\neq 1/2$, then
+\begin{equation}\label{eq:packet-polynomial-offline}
+P_O(s)=\frac{\bigl((s-\beta)^2+\gamma^2\bigr)\bigl((s-1+\beta)^2+\gamma^2\bigr)}{\bigl((\beta-1/2)^2+\gamma^2\bigr)^2}.
+\end{equation}
+Equivalently, if $\alpha=(\beta-1/2)+i\gamma$, then
+\begin{equation}\label{eq:packet-polynomial-offline-z}
+P_O(s)=\left(1-\frac{(s-1/2)^2}{\alpha^2}\right)\left(1-\frac{(s-1/2)^2}{\overline\alpha^2}\right)
+=1-2\Re(\alpha^{-2})(s-1/2)^2+|\alpha|^{-4}(s-1/2)^4.
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The definition \eqref{eq:packet-polynomial-def} is manifestly normalized by $P_O(1/2)=1$.  Because each packet is stable under complex conjugation, the coefficients are real.
+
+If $O=\{1/2\pm i\gamma\}$, then
+\[
+P_O(s)=\frac{(s-1/2-i\gamma)(s-1/2+i\gamma)}{(-i\gamma)(i\gamma)}
+=\frac{(s-1/2)^2+\gamma^2}{\gamma^2}
+=1+\frac{(s-1/2)^2}{\gamma^2}.
+\]
+This proves \eqref{eq:packet-polynomial-line}.
+
+For an off-line packet,
+\[
+\prod_{\eta\in O}(s-\eta)=\bigl((s-\beta)^2+\gamma^2\bigr)\bigl((s-1+\beta)^2+\gamma^2\bigr).
+\]
+Likewise,
+\[
+\prod_{\eta\in O}\left(\frac12-\eta\right)=\bigl((\beta-1/2)^2+\gamma^2\bigr)^2.
+\]
+This gives \eqref{eq:packet-polynomial-offline}.  Writing $z=s-1/2$ and $\alpha=(\beta-1/2)+i\gamma$ transforms the same expression into \eqref{eq:packet-polynomial-offline-z}.
+\end{proof}
+
+\begin{theorem}[Packet product on the orbit space]\label{thm:packet-product-on-Y}
+Let $m_O$ denote the common multiplicity of the points in the packet $O\in Y_\xi$.  Then
+\begin{equation}\label{eq:packet-product-on-Y}
+\xi(s)=\xi\!\left(\frac12\right)\prod_{O\in Y_\xi} P_O(s)^{m_O},
+\end{equation}
+where the product converges absolutely and locally uniformly on compact subsets of $\CC$.
+\end{theorem}
+
+\begin{proof}
+Start from the centered sign-pair product \eqref{eq:Xi-sign-pair-product} with $z=s-1/2$:
+\[
+\xi(s)=\xi\!\left(\frac12\right)\prod_{\alpha\in\mathcal A}\left(1-\frac{(s-1/2)^2}{\alpha^2}\right).
+\]
+Conjugation preserves the multiset $\mathcal A$ up to permutation.  Group the factors according to conjugation orbits on $\mathcal A$.
+
+If $\alpha=i\gamma$ is fixed by conjugation, the corresponding packet is critical-line and Lemma~\ref{lem:packet-polynomial-explicit}(i) shows that the factor is exactly $P_O(s)$.
+
+If $\alpha$ and $\overline\alpha$ are distinct, they belong to the same packet $O$, and Lemma~\ref{lem:packet-polynomial-explicit}(ii) gives
+\[
+\left(1-\frac{(s-1/2)^2}{\alpha^2}\right)
+\left(1-\frac{(s-1/2)^2}{\overline\alpha^2}\right)
+=P_O(s).
+\]
+Because multiplicities are constant on packets, each packet contributes the power $P_O(s)^{m_O}$.  Thus \eqref{eq:packet-product-on-Y} holds.
+
+Absolute and locally uniform convergence follow from Theorem~\ref{thm:centered-sign-pair-product}, because every packet factor is either one sign-pair factor or the product of a conjugate pair of sign-pair factors.
+\end{proof}
+
+\begin{corollary}[Packet formulation of RH]\label{cor:RH-packet-criterion}
+The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item the Riemann hypothesis holds;
+\item every packet $O\in Y_\xi$ has cardinality $2$;
+\item in the product \eqref{eq:packet-product-on-Y}, every factor $P_O$ is quadratic of the form
+\[
+P_O(s)=1+\frac{(s-1/2)^2}{\gamma_O^2}
+\qquad (\gamma_O>0),
+\]
+and no quartic packet factor occurs.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+A nontrivial zero lies on the critical line if and only if its packet under $W$ has two points rather than four.  Thus (i) and (ii) are equivalent.  By Lemma~\ref{lem:packet-polynomial-explicit}, cardinality-$2$ packets produce precisely the quadratic factors, while cardinality-$4$ packets produce the real quartic factors.  Hence (ii) and (iii) are equivalent.
+\end{proof}
+
+\section{Centered Taylor coefficients and symmetric-function formulas}
+
+\begin{definition}
+Choose an ordering $\mathcal A=\{\alpha_1,\alpha_2,\dots\}$ of the multiset from Theorem~\ref{thm:centered-sign-pair-product}, and set
+\[
+a_j:=\alpha_j^{-2}.
+\]
+Because
+\[
+\sum_{j\ge 1}|a_j|<\infty,
+\]
+all elementary symmetric sums
+\begin{equation}\label{eq:elementary-symmetric-def}
+\sigma_n:=\sum_{1\le j_1<\cdots<j_n} a_{j_1}\cdots a_{j_n}
+\qquad (n\ge 1),
+\end{equation}
+are absolutely convergent.  We also set $\sigma_0:=1$.
+\end{definition}
+
+\begin{lemma}\label{lem:infinite-symmetric-expansion}
+For every $z\in\CC$ one has the absolutely convergent expansion
+\begin{equation}\label{eq:infinite-symmetric-expansion}
+\prod_{j\ge 1}(1-a_j z^2)=\sum_{n=0}^{\infty}(-1)^n\sigma_n z^{2n},
+\end{equation}
+and the convergence is locally uniform on compact subsets of $\CC$.
+\end{lemma}
+
+\begin{proof}
+Fix $R>0$ and consider $|z|\le R$.  Since $\sum_j |a_j|<\infty$, one has
+\[
+\sum_j |a_j|R^2<\infty.
+\]
+Therefore the infinite product
+\[
+\prod_j (1-a_j z^2)
+\]
+converges absolutely and uniformly on $|z|\le R$.  For each finite $N$,
+\[
+\prod_{j=1}^N(1-a_j z^2)=\sum_{n=0}^{N}(-1)^n\sigma_n^{(N)} z^{2n},
+\]
+where $\sigma_n^{(N)}$ is the $n$th elementary symmetric sum in $a_1,\dots,a_N$.  For fixed $n$, the coefficients $\sigma_n^{(N)}$ converge absolutely to $\sigma_n$ as $N\to\infty$, because
+\[
+\sum_{1\le j_1<\cdots<j_n<\infty}|a_{j_1}\cdots a_{j_n}|
+\le \frac{1}{n!}\left(\sum_{j\ge 1}|a_j|\right)^n<\infty.
+\]
+Passing to the limit in the finite expansions yields \eqref{eq:infinite-symmetric-expansion}.  Uniform convergence on $|z|\le R$ follows from the Weierstrass $M$-test, since
+\[
+\sum_{n\ge 0}|\sigma_n|R^{2n}\le \prod_{j\ge 1}(1+|a_j|R^2)<\infty.
+\]
+\end{proof}
+
+\begin{theorem}[Exact Taylor coefficients of the centered completed zeta]\label{thm:Xi-taylor-coefficients}
+The centered function $\Xi$ has the exact Taylor expansion
+\begin{equation}\label{eq:Xi-taylor-symmetric}
+\Xi(z)=\Xi(0)\sum_{n=0}^{\infty}(-1)^n\sigma_n z^{2n},
+\end{equation}
+where the coefficients $\sigma_n$ are the absolutely convergent elementary symmetric sums from \eqref{eq:elementary-symmetric-def}.  Equivalently,
+\begin{equation}\label{eq:Xi-even-derivatives}
+\frac{\Xi^{(2n)}(0)}{(2n)!\,\Xi(0)}=(-1)^n\sigma_n,
+\qquad
+\Xi^{(2n+1)}(0)=0
+\qquad (n\ge 0).
+\end{equation}
+Translating back to $s$ gives
+\begin{equation}\label{eq:xi-central-derivatives}
+\frac{\xi^{(2n)}(1/2)}{(2n)!\,\xi(1/2)}=(-1)^n\sigma_n,
+\qquad
+\xi^{(2n+1)}(1/2)=0.
+\end{equation}
+In particular,
+\begin{align}
+\frac{\xi''(1/2)}{2\,\xi(1/2)}&=-\sum_{j\ge 1}\frac{1}{\alpha_j^2},\label{eq:xi-second-derivative}\\
+\frac{\xi^{(4)}(1/2)}{24\,\xi(1/2)}&=\sum_{1\le i<j<\infty}\frac{1}{\alpha_i^2\alpha_j^2}.\label{eq:xi-fourth-derivative}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Insert the product formula \eqref{eq:Xi-sign-pair-product} into Lemma~\ref{lem:infinite-symmetric-expansion}.  This gives \eqref{eq:Xi-taylor-symmetric}.  Comparing coefficients with the Taylor series of $\Xi$ yields \eqref{eq:Xi-even-derivatives}.  Since $\Xi(z)=\xi(1/2+z)$, the identities \eqref{eq:xi-central-derivatives} follow immediately.  The last two displayed formulas are the cases $n=1$ and $n=2$.
+\end{proof}
+
+\begin{remark}
+The coefficients in Theorem~\ref{thm:Xi-taylor-coefficients} are the exact analytic counterpart of the symmetric-function expansions that appeared elsewhere in the uploaded audit note.  Here the variables are no longer cyclotomic affine factors but the reciprocal squares of the centralized packet locations.
+\end{remark}
+
+\section{Global pole-trivial-packet factorization of $\zeta$}
+
+\subsection{Removing the trivial zeros with the reciprocal gamma product}
+
+\begin{theorem}[Weierstrass product for the trivial sector]\label{thm:gamma-product}
+For every $s\in\CC$ one has the locally uniformly convergent product
+\begin{equation}\label{eq:gamma-weierstrass}
+\frac{1}{\Gamma(s/2)}=\frac{s}{2}e^{\gamma s/2}\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:Lambda-to-zeta-via-gamma-product}
+\zeta(s)=\frac{\pi^{s/2}e^{\gamma s/2}}{s-1}\left(\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}\right)\xi(s).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:gamma-weierstrass} is the classical Weierstrass product for the reciprocal gamma function, applied with $z=s/2$.
+
+For the second formula, solve the defining relation
+\[
+\xi(s)=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+\]
+for $\zeta(s)$:
+\[
+\zeta(s)=\frac{2\pi^{s/2}}{s(s-1)}\,\frac{\xi(s)}{\Gamma(s/2)}.
+\]
+Substituting \eqref{eq:gamma-weierstrass} into this identity cancels the factor $2/s$ and yields \eqref{eq:Lambda-to-zeta-via-gamma-product}.
+\end{proof}
+
+\subsection{The full packet factorization}
+
+\begin{theorem}[Pole-trivial-packet factorization of the Riemann zeta function]\label{thm:full-zeta-factorization}
+The Riemann zeta function admits the exact factorization
+\begin{equation}\label{eq:full-zeta-factorization}
+\zeta(s)
+=
+\frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+\prod_{O\in Y_\xi} P_O(s)^{m_O},
+\end{equation}
+where $P_O$ is the normalized packet polynomial from Definition~\ref{def:packet-polynomial} and $m_O$ is the common multiplicity on the packet $O$.  The product over $Y_\xi$ converges absolutely and locally uniformly on compact subsets of $\CC$.
+
+Thus $\zeta$ decomposes canonically into three factors:
+\begin{enumerate}[label=(\roman*)]
+\item the pole factor $1/(s-1)$;
+\item the trivial-zero factor
+\[
+e^{(\gamma+\log\pi)s/2}\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)};
+\]
+\item the nontrivial packet factor
+\[
+\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Insert the packet product \eqref{eq:packet-product-on-Y} into \eqref{eq:Lambda-to-zeta-via-gamma-product}.  Since
+\[
+\pi^{s/2}e^{\gamma s/2}=e^{(\gamma+\log\pi)s/2},
+\]
+this gives exactly \eqref{eq:full-zeta-factorization}.  The convergence statement follows from Theorem~\ref{thm:packet-product-on-Y}.
+\end{proof}
+
+\begin{remark}
+The factorization \eqref{eq:full-zeta-factorization} is the precise sense in which the entire nontrivial-zero sector is ``carried'' by the packet quotient, while the trivial-zero sector is carried by the reciprocal gamma factor.  In the split-zero divisor language, the earlier Boolean shadow now receives a full analytic factor over each packet.
+\end{remark}
+
+\section{Packet-grouped logarithmic derivatives}
+
+\begin{proposition}\label{prop:packet-log-derivative}
+For every packet $O\in Y_\xi$ one has
+\begin{equation}\label{eq:packet-log-derivative}
+\frac{P_O'(s)}{P_O(s)}=\sum_{\eta\in O}\frac{1}{s-\eta}.
+\end{equation}
+In particular, the right-hand side is a rational function with real coefficients.
+\end{proposition}
+
+\begin{proof}
+By definition,
+\[
+P_O(s)=\prod_{\eta\in O}\frac{s-\eta}{1/2-\eta}.
+\]
+Taking the logarithmic derivative annihilates the constant denominator and yields
+\[
+\frac{P_O'(s)}{P_O(s)}=\sum_{\eta\in O}\frac{1}{s-\eta}.
+\]
+Because $P_O$ has real coefficients by Lemma~\ref{lem:packet-polynomial-explicit}, the rational function on the left does as well.
+\end{proof}
+
+\begin{theorem}[Packet-grouped partial-fraction expansion of $\zeta'/\zeta$]\label{thm:zeta-log-derivative-packet}
+On the domain
+\[
+\CC\setminus\Bigl(\{1\}\cup\{-2,-4,-6,\dots\}\cup |D_{\mathrm{nt}}|\Bigr)
+\]
+one has the exact identity
+\begin{equation}\label{eq:zeta-log-derivative-packet}
+\frac{\zeta'(s)}{\zeta(s)}
+=
+\frac{\gamma+\log\pi}{2}
+-\frac{1}{s-1}
++\sum_{n\ge 1}\left(\frac{1}{s+2n}-\frac{1}{2n}\right)
++\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}.
+\end{equation}
+Equivalently,
+\begin{equation}\label{eq:zeta-log-derivative-packet-expanded}
+\frac{\zeta'(s)}{\zeta(s)}
+=
+\frac{\gamma+\log\pi}{2}
+-\frac{1}{s-1}
++\sum_{n\ge 1}\left(\frac{1}{s+2n}-\frac{1}{2n}\right)
++\sum_{O\in Y_\xi} m_O\sum_{\eta\in O}\frac{1}{s-\eta}.
+\end{equation}
+Every pole on the right-hand side comes from exactly one of the three sectors: the pole at $1$, the trivial zeros, or the nontrivial packets.
+\end{theorem}
+
+\begin{proof}
+Differentiate logarithmically the factorization \eqref{eq:full-zeta-factorization}.  The constant factor $\xi(1/2)$ disappears, while
+\[
+\frac{d}{ds}\left(\frac{\gamma+\log\pi}{2}s\right)=\frac{\gamma+\log\pi}{2},
+\qquad
+\frac{d}{ds}\log\frac{1}{s-1}=-\frac{1}{s-1},
+\]
+and
+\[
+\frac{d}{ds}\log\left(\left(1+\frac{s}{2n}\right)e^{-s/(2n)}\right)
+=\frac{1}{s+2n}-\frac{1}{2n}.
+\]
+Finally, the packet factor contributes
+\[
+\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}.
+\]
+This proves \eqref{eq:zeta-log-derivative-packet}.  Formula \eqref{eq:zeta-log-derivative-packet-expanded} is Proposition~\ref{prop:packet-log-derivative}.
+\end{proof}
+
+\begin{corollary}\label{cor:xi-log-derivative-packet}
+On $\CC\setminus |D_{\mathrm{nt}}|$ one has
+\begin{equation}\label{eq:xi-log-derivative-packet}
+\frac{\xi'(s)}{\xi(s)}=\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}
+=\sum_{O\in Y_\xi} m_O\sum_{\eta\in O}\frac{1}{s-\eta}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Differentiate logarithmically the packet factorization \eqref{eq:packet-product-on-Y}.  The constant $\xi(1/2)$ disappears, and Proposition~\ref{prop:packet-log-derivative} gives the second equality.
+\end{proof}
+
+\section{Analytic decoration of the split-zero packet sheaf}
+
+The earlier split-zero note descended the Boolean shadow of the nontrivial-zero divisor to the packet sheaf
+\[
+\mathcal P_\xi^{\cV}(U)=\prod_{O\in U} A^{m_O},
+\qquad U\subset Y_\xi.
+\]
+The results above show that this packet sheaf carries two additional canonical analytic decorations.
+
+\begin{definition}
+For each packet $O\in Y_\xi$, choose any $\rho\in O$ and define
+\[
+\omega(O):=\bigl|\lambda_\rho^{\xi}\bigr|.
+\]
+By Proposition~\ref{prop:leading-jets-nontrivial}, this is well defined.
+\end{definition}
+
+\begin{definition}
+For each packet $O\in Y_\xi$, let $P_O(s)$ be the normalized packet polynomial from Definition~\ref{def:packet-polynomial}.  We call the triple
+\begin{equation}\label{eq:analytic-packet-data}
+\bigl(m_O,\,P_O,\,\omega(O)\bigr)
+\end{equation}
+the \emph{full analytic packet datum} of $O$.
+\end{definition}
+
+\begin{proposition}\label{prop:analytic-packet-data-complete}
+The packet datum \eqref{eq:analytic-packet-data} controls simultaneously the local, descended, and global contributions of the packet $O$:
+\begin{enumerate}[label=(\roman*)]
+\item $m_O$ is the multiplicity of the packet in the Boolean shadow stalk $A^{m_O}$;
+\item $\omega(O)$ is the absolute size of the leading local jet of $\xi$ on the packet;
+\item $P_O(s)^{m_O}$ is the exact normalized global holomorphic factor contributed by $O$ to \eqref{eq:packet-product-on-Y} and hence to \eqref{eq:full-zeta-factorization};
+\item the rational function $m_O P_O'(s)/P_O(s)$ is the exact contribution of $O$ to the logarithmic derivative \eqref{eq:zeta-log-derivative-packet}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part (i) is built into the definition of the descended Boolean packet sheaf.  Part (ii) is the packet invariance of Proposition~\ref{prop:leading-jets-nontrivial}.  Part (iii) is exactly the packet product theorem, and part (iv) is Proposition~\ref{prop:packet-log-derivative} applied inside Theorem~\ref{thm:zeta-log-derivative-packet}.
+\end{proof}
+
+\section{Final theorem}
+
+\begin{theorem}[Complete split-zero analytic deconstruction of $\zeta$]\label{thm:final-summary}
+Let
+\[
+D_{\mathrm{tr}}=\sum_{n\ge 1}[-2n],
+\qquad
+D_{\mathrm{nt}}=\sum_{\rho\in Z_{\mathrm{nt}}}m_\rho[\rho],
+\qquad
+Y_\xi=|D_{\mathrm{nt}}|/W.
+\]
+Then the following statements hold.
+
+\begin{enumerate}[label=(\arabic*)]
+\item \textbf{Divisor splitting.}
+The zero divisor of $\zeta$ splits as
+\[
+\divv(\zeta)^+=D_{\mathrm{tr}}+D_{\mathrm{nt}},
+\]
+and the corresponding Boolean divisor shadows factor as
+\[
+\cV_{\divv(\zeta)^+}\cong \cV_{D_{\mathrm{tr}}}\times \cV_{D_{\mathrm{nt}}},
+\qquad
+\cA_{\divv(\zeta)^+}\cong \cA_{D_{\mathrm{tr}}}\times \cA_{D_{\mathrm{nt}}}.
+\]
+
+\item \textbf{Completion removes the trivial sector.}
+The completed functions satisfy
+\[
+\divv(\Lambda)=D_{\mathrm{nt}}-[0]-[1],
+\qquad
+\divv(\xi)=D_{\mathrm{nt}}.
+\]
+At the trivial zeros,
+\[
+\Lambda(-2n)=\frac{(2n)!}{4^n n!\,\pi^n}\,\zeta(2n+1),
+\qquad
+\bigl|\zeta'(-2n)\bigr|=\frac{n!}{2\pi^n}\,\Lambda(-2n).
+\]
+
+\item \textbf{Packet descent is analytic, not only sheaf-theoretic.}
+For every packet $O\in Y_\xi$, the normalized packet polynomial
+\[
+P_O(s)=\prod_{\eta\in O}\frac{s-\eta}{1/2-\eta}
+\]
+is a real polynomial normalized by $P_O(1/2)=1$, quadratic on the critical line and quartic off it, and one has the exact packet product
+\[
+\xi(s)=\xi(1/2)\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+
+\item \textbf{Taylor coefficients at the center.}
+If $\mathcal A$ is any multiset of sign-pair representatives for the nonzero zeros of $\Xi(z)=\xi(1/2+z)$ and $\sigma_n$ is the $n$th elementary symmetric sum of the reciprocals $\alpha^{-2}$, then
+\[
+\frac{\xi^{(2n)}(1/2)}{(2n)!\,\xi(1/2)}=(-1)^n\sigma_n,
+\qquad
+\xi^{(2n+1)}(1/2)=0.
+\]
+Thus the entire centered Taylor series of $\xi$ is an exact symmetric-function expression in the packet locations.
+
+\item \textbf{The whole zeta function splits into pole, trivial, and packet sectors.}
+One has the global factorization
+\[
+\zeta(s)
+=
+\frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+Differentiating logarithmically gives the packet-grouped partial-fraction expansion
+\[
+\frac{\zeta'(s)}{\zeta(s)}
+=
+\frac{\gamma+\log\pi}{2}
+-\frac{1}{s-1}
++\sum_{n\ge 1}\left(\frac{1}{s+2n}-\frac{1}{2n}\right)
++\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}.
+\]
+
+\item \textbf{Packet criterion for RH.}
+RH holds if and only if every packet polynomial $P_O$ is quadratic, equivalently if and only if no quartic packet factor occurs.
+\end{enumerate}
+
+Therefore the split-zero zeta-divisor framework admits a full complex-analytic execution: the pointwise Boolean fiber remains constant, but the global mathematics is carried by the exact divisor splitting, the packet product, the centered Taylor coefficients, and the leading local jets.
+\end{theorem}
+
+\begin{proof}
+Every item is a restatement of one of the preceding theorems and propositions:
+(1) follows from Theorem~\ref{thm:divisor-identities} and Corollary~\ref{cor:shadow-zeta-splits};
+(2) is Proposition~\ref{prop:trivial-derivative-and-Lambda};
+(3) is Theorem~\ref{thm:packet-product-on-Y};
+(4) is Theorem~\ref{thm:Xi-taylor-coefficients};
+(5) is Theorem~\ref{thm:full-zeta-factorization} together with Theorem~\ref{thm:zeta-log-derivative-packet}; and
+(6) is Corollary~\ref{cor:RH-packet-criterion}.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{Edwards}
+H. M. Edwards,
+\emph{Riemann's Zeta Function},
+Academic Press, New York, 1974.
+
+\bibitem{Titchmarsh}
+E. C. Titchmarsh,
+\emph{The Theory of the Riemann Zeta-Function},
+second edition, revised by D. R. Heath-Brown,
+Oxford University Press, Oxford, 1986.
+
+\bibitem{SteinShakarchi}
+E. M. Stein and R. Shakarchi,
+\emph{Princeton Lectures in Analysis. II. Complex Analysis},
+Princeton University Press, Princeton, 2003.
+
+\bibitem{SplitZeroZeta}
+Internal split-zero zeta-divisor note,
+\emph{Sheafified Split-Zero Shadows of the Zeta Zero Divisor: Boolean Cubes, Jet-Ideal Chains, Compactified Tails, and Packet Descent},
+project corpus, May 2026.
+
+\bibitem{AuditNote}
+Internal audit note,
+\emph{Audit, Corrections, and Further Cross-Paper Consequences from the Uploaded Corpus},
+project corpus, March 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,1169 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\lc}{\operatorname{lc}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Independent derivation of the original observation update,\protect\\
+its quotient current, and the two low-cutoff receivers}
+\author{Split-Zero research programme}
+\date{19 September 2026}
+\begin{document}\maketitle
+
+\section{Original objects, conventions, and the finite minimum}
+
+This derivation checks ORE1--23 of
+\texttt{OBSERVATION\_RESPONSE\_EVOLUTION.tex} directly from the
+original polynomial source. It also derives further exact receiving
+identities for equations (5)--(7) of the supplied
+\texttt{LOW\_CUTOFF\_ENERGIES\_CONDUCTOR\_AND\_MARKED\_DEFECT.md}.
+All adjoints below are conjugate transposes in the stated fixed frames;
+the inner product is antilinear in its first argument. No original
+class, source mass, period map, relation, or conductor coordinate is
+discarded. The calculation is finite and uses the original source
+domain on which the polynomial norms below are defined.
+
+Keep the actual simple-quartet source, including its original unit,
+period and logarithm branch, and put
+\begin{equation}\label{oid:objects}
+\begin{gathered}
+a\equiv1\pmod4,\qquad q=(a+1)^2,\qquad c=a/2,\qquad
+0<\delta<1/2,\quad\gamma>2,\\
+\chi(S)=\prod_{u,b=0}^a
+\bigl[S-c-(2u-a)\delta-i(2b-a)\gamma\bigr],\qquad
+E=\C[S]/(\chi),\\
+dm_a(y)=w_h^{*a}(y)\,dy,\qquad
+w_h(y)=\frac1{2\pi}\left|\frac{2\xi}{h}(1/2+iy)\right|^2,\\
+\langle f,g\rangle_{m_a}
+=\int_{\R}\overline{f(c+iy)}g(c+iy)\,dm_a(y).
+\end{gathered}
+\end{equation}
+The frame of $E$ is the original increasing-power frame. The original
+source gives a positive inner product on each finite polynomial space:
+a nonzero polynomial is nonzero except at finitely many points, and
+the original source density is nonzero on intervals. The moments used
+in the original finite source norms are finite. These are the retained
+source hypotheses, not a replacement Gamma norm.
+
+Write $\mathcal P_N=\C[S]_{\leq N}$ and
+$\mathcal R_N=\chi\mathcal P_{N-q}$, with $\mathcal P_j=0$ for
+$j<0$. For $N\geq q-1$, let $\mathcal V_N$ be the orthogonal
+complement of $\mathcal R_N$ in $\mathcal P_N$. Polynomial division
+by the monic $\chi$ gives a surjection
+$\pi_N:\mathcal P_N\to E$ whose kernel is precisely $\mathcal R_N$.
+Consequently $\pi_N|_{\mathcal V_N}$ is bijective: its kernel is
+zero and both spaces have dimension $q$. Denote its inverse by
+$T_N:E\to\mathcal V_N$. Every lift of $x\in E$ is uniquely
+$T_Nx+r$ with $r\in\mathcal R_N$, and
+\[
+ \norm{T_Nx+r}_{m_a}^2=\norm{T_Nx}_{m_a}^2+\norm r_{m_a}^2.
+\]
+Thus $T_Nx$ is the unique attained minimum over the complete relation
+space and $G_N$ is exactly its positive Hermitian metric:
+$x^*G_Ny=\langle T_Nx,T_Ny\rangle_{m_a}$.
+
+Let $p_n(S)$ be the monic source orthogonal polynomial and
+$\omega_n=\norm{p_n}_{m_a}^2>0$, and put $b_n=[p_n]\in E$.
+The polynomials $p_0,\ldots,p_N$ form a basis, because their distinct
+degrees and leading coefficients give a triangular change of basis
+with diagonal one. Define
+\[
+ C_N=[b_0,\ldots,b_N],\qquad
+ \Omega_N=\diag(\omega_0,\ldots,\omega_N),\qquad
+ M_N=C_N\Omega_N^{-1}C_N^*.
+\]
+The matrix $C_N$ is surjective, so $M_N$ is positive definite:
+$z^*M_Nz=\sum_{j=0}^N|b_j^*z|^2/\omega_j$ vanishes only when
+$C_N^*z=0$, hence only when $z=0$. For $x\in E$ the coefficient
+vector
+\[
+ t_N(x)=\Omega_N^{-1}C_N^*M_N^{-1}x
+\]
+satisfies $C_Nt_N(x)=x$. If $C_Nu=0$, then
+$u^*\Omega_Nt_N(x)=u^*C_N^*M_N^{-1}x=0$.
+Expanding the positive square of $t_N(x)+u$ proves its minimality
+and yields the explicit, original-source formula
+\begin{equation}\label{oid:minimum}
+ G_N=M_N^{-1},\qquad
+ T_Nx=\sum_{j=0}^N p_j\,
+ \frac{b_j^*G_Nx}{\omega_j},\qquad
+ G_N^{-1}=\sum_{j=0}^N\frac{b_jb_j^*}{\omega_j}.
+\end{equation}
+This derives the dual norm and the attained minimum simultaneously.
+
+\section{The original source increment and the full boundary action}
+
+At one step write, only to display the original factors compactly,
+\[
+ G=G_N,\quad G'=G_{N+1},\quad b=b_{N+1},\quad
+ \omega=\omega_{N+1},\quad \beta=b^*Gb,\quad D=\omega+\beta.
+\]
+The new summand in \eqref{oid:minimum} is exactly $bb^*/\omega$.
+Direct multiplication, using $b^*Gb=\beta$, proves
+\begin{equation}\label{oid:rankone}
+ (G')^{-1}=G^{-1}+\frac{bb^*}{\omega},\qquad
+ G'=G-\frac{Gbb^*G}{D},\qquad
+ G'b=rGb,\quad b^*G'b=r\beta,
+ \qquad r=\frac{\omega}{D}.
+\end{equation}
+Indeed the coefficient of $Gbb^*$ in the product of the proposed
+$G'$ with $G^{-1}+bb^*/\omega$ is
+$\omega^{-1}-D^{-1}-\beta/(D\omega)=0$.
+The resulting inverse identity is the rank-one update recorded by
+Hager~\cite[p.~221, equation~(2)]{Hager}; its source column and its
+positive denominator have been derived here from the actual minimum.
+For a column $x$ and a row $y^*$, multilinearity of determinant
+implies $\det(I+xy^*)=1+y^*x$: all terms using two columns from
+$xy^*$ vanish, and the one-column terms sum to its trace.
+Applying this identity to \eqref{oid:rankone} gives
+\begin{equation}\label{oid:r}
+ \frac{\det G'}{\det G}=1-\frac\beta D
+ =\frac\omega D=r.
+\end{equation}
+
+We next prove the boundary formula needed for the currents, without
+importing a conjugation convention from a response formula. Let $A:E\to E$
+be multiplication by $S$. For $x\in E$, the coefficient of $S^N$ in
+$T_Nx$ is
+\begin{equation}\label{oid:leading}
+ \ell_Nx=\frac{b_N^*G_Nx}{\omega_N}.
+\end{equation}
+This follows either from \eqref{oid:minimum}, since $p_N$ is monic,
+or by pairing $p_N$ with $T_Nx$: the difference $p_N-T_Nb_N$
+is an old relation and is orthogonal to $T_Nx$.
+
+Let $\Pi_N$ be orthogonal projection onto $\mathcal V_N$, acting
+also on $\mathcal P_{N+1}$, and let
+$J_N=\Pi_N M_y|_{\mathcal V_N}$. It is Hermitian, since
+multiplication by the real variable $y$ is Hermitian in the original
+integral. Set $\widehat b_j=T_Nb_j$. For $f=T_Nx$,
+$Sf-(\ell_Nx)p_{N+1}$ has degree at most $N$ and class
+$Ax-(\ell_Nx)b_{N+1}$. Since $p_{N+1}\perp\mathcal P_N$,
+projecting this polynomial onto $\mathcal V_N$ gives
+\begin{equation}\label{oid:action}
+ \begin{gathered}
+ T_NAT_N^{-1}=cI+iJ_N+
+ \frac{\widehat b_{N+1}\widehat b_N^*}{\omega_N},\\
+ D_N:=A^*G_N+G_NA-aG_N
+ =\frac{G_Nb_{N+1}b_N^*G_N+G_Nb_Nb_{N+1}^*G_N}{\omega_N}.
+ \end{gathered}
+\end{equation}
+Here the star in the source-space rank-one operator denotes its
+actual source inner product; the matrix identity on $E$ uses the
+original power frame. The sign is positive because the class
+$(\ell_Nx)b_{N+1}$ is added back after the degree reduction.
+
+Retain the full original eigenclass
+\begin{equation}\label{oid:eigen}
+ \lambda=c+d+it,\quad d=a\delta>0,\quad t=a\gamma>0,
+ \qquad v=v_\lambda=\frac{\chi(S)}{(S-\lambda)\chi'(\lambda)},
+ \qquad Av=\lambda v,
+\end{equation}
+including all its original low, conductor and native coordinates.
+Put $f=T_Nv$, $E_N=v^*G_Nv$, and
+$\mu_N=E_N^{-1}\int y|f(c+iy)|^2dm_a(y)\in\R$.
+The polynomial $(S-\lambda)f$ is a relation. If
+$r_N(S)=\chi(S)S^{N+1-q}$, its difference from
+$(\ell_Nv)r_N$ is an old relation. Moreover
+$p_{N+1}-r_N\in\mathcal P_N$ represents $b_{N+1}$, so
+\[
+ \langle f,r_N\rangle=-\langle f,p_{N+1}-r_N\rangle
+ =-v^*G_Nb_{N+1}.
+\]
+Consequently
+\[
+ E_N[-d+i(\mu_N-t)]
+ =\langle f,(S-\lambda)f\rangle
+ =-\frac{\overline{b_{N+1}^*G_Nv}\,b_N^*G_Nv}{\omega_N}.
+\]
+Taking the conjugate, with the displayed minus sign retained, proves
+\begin{equation}\label{oid:current}
+ \mathfrak c_N
+ :=\frac{\overline{b_N^*G_Nv}\,b_{N+1}^*G_Nv}
+ {\omega_NE_N}
+ =d+i(\mu_N-t),\qquad \Re\mathfrak c_N=d>0.
+\end{equation}
+Both boundary inner products are therefore nonzero. In particular
+$b\ne0$, $\beta>0$, and $0<r<1$ in \eqref{oid:rankone}.
+
+The original measure is even and
+$\chi(a-S)=(-1)^q\chi(S)$, directly from the paired full root grid.
+The isometry $f(S)\mapsto f(a-S)$ preserves both the relation space
+and its orthogonal complement. Uniqueness of the monic orthogonal
+polynomial gives $p_j(a-S)=(-1)^jp_j(S)$, so the attained columns
+$\widehat b_N,\widehat b_{N+1}$ have opposite parities. Hence
+\begin{equation}\label{oid:parity}
+ b_N^*G_Nb_{N+1}=0.
+\end{equation}
+The squared norm of the projection of $v$ onto these two nonzero
+orthogonal columns is
+\[
+ \frac{|b_N^*G_Nv|^2}{b_N^*G_Nb_N}
+ +\frac{|b_{N+1}^*G_Nv|^2}{b_{N+1}^*G_Nb_{N+1}}\le E_N.
+\]
+Thus the original two boundary energies satisfy
+\begin{equation}\label{oid:energies}
+ p_{1,N}:=\frac{|b_N^*G_Nv|^2}{E_Nb_N^*G_Nb_N}>0,\qquad
+ p_{2,N}:=\frac{|b_{N+1}^*G_Nv|^2}{E_Nb_{N+1}^*G_Nb_{N+1}}>0,
+ \qquad p_{1,N}+p_{2,N}\le1.
+\end{equation}
+In particular each energy is strictly below one on this original
+eigenclass domain.
+
+\section{The original observation minimum and its exact update}
+
+Fix the full original observation $\Lambda:E\to B=\im\Lambda$
+in a fixed frame of $B$, retaining its period map. Let $K=\ker\Lambda$
+and let $I:\C^{\dim K}\to E$ be any fixed injective frame of $K$.
+At the present cutoff define
+\begin{equation}\label{oid:observation}
+ H=I^*GI,\qquad P=IH^{-1}I^*G,\qquad
+ Q=(\Lambda G^{-1}\Lambda^*)^{-1},\qquad
+ L=G^{-1}\Lambda^*Q:B\to E.
+\end{equation}
+Surjectivity of $\Lambda$ makes $\Lambda G^{-1}\Lambda^*$
+positive definite. The identity $P^2=P$, its image $K$, and
+$P^*G=GP$ follow by multiplication. Also $\Lambda L=I_B$ and
+$I^*GL=I^*\Lambda^*Q=0$. Every lift of $y\in B$ is uniquely
+$Ly+k$ with $k\in K$ and its squared norm is
+$y^*Qy+k^*Gk$. Thus $L$ is the actual unique minimum lift and
+\begin{equation}\label{oid:quotient}
+ L\Lambda=I_E-P,\qquad
+ G(I_E-P)=\Lambda^*Q\Lambda.
+\end{equation}
+For $K=0$ the corresponding inverse in $H$ is empty and $P=0$;
+for $B=0$ the corresponding inverse in $Q$ is empty. Empty
+determinants equal one throughout.
+
+Keep
+\[
+ \alpha=\frac{b^*GPb}{\beta}\in[0,1],\qquad
+ \xi=1-r=\frac\beta D,\qquad
+ d_K=\frac{\det H'}{\det H},\qquad u=\Lambda b.
+\]
+Restriction of \eqref{oid:rankone} to $I$ and the proved determinant
+identity give
+\[
+ H'=H-\frac{zz^*}{D},\qquad z=I^*Gb,\qquad
+ z^*H^{-1}z=\beta\alpha,
+\]
+and hence
+\begin{equation}\label{oid:allocations}
+ d_K=1-\xi\alpha,\qquad r\le d_K\le1,\qquad
+ D^B:=\omega+\beta(1-\alpha)=Dd_K>0.
+\end{equation}
+The quotient inverse updates by the actual observed column:
+\[
+ (Q')^{-1}=Q^{-1}+\frac{uu^*}{\omega},\qquad
+ u^*Qu=b^*G(I-P)b=\beta(1-\alpha).
+\]
+Multiplication as in \eqref{oid:rankone} now proves
+\begin{equation}\label{oid:Qupdate}
+ Q'=Q-\frac{Quu^*Q}{D^B},\qquad
+ r^B:=\frac{\det Q'}{\det Q}
+ =\frac\omega{D^B}=\frac r{d_K}.
+\end{equation}
+In particular the exact nonnegative logarithmic allocations are
+$-\log d_K$ and $-\log r+\log d_K$, with sum $-\log r$.
+
+There is also an exact update of the original minimum section and
+of the projector itself. Multiplying the two matrices in
+$L'=(G^{-1}+bb^*/\omega)\Lambda^*Q'$ and using
+$\omega+u^*Qu=D^B$ gives
+\begin{equation}\label{oid:projector}
+ L'=L+\frac{Pb\,u^*Q}{D^B},\qquad
+ P'=P-\frac{Pb\,b^*G(I-P)}{D^B}.
+\end{equation}
+The second identity follows by multiplying the first by $\Lambda$
+and applying \eqref{oid:quotient}. Its correction is an actual map
+into the original kernel; it does not replace that kernel by a rank.
+It is defined even when $u=0$ or $\Lambda v=0$.
+
+\section{Response transport, conjugations, and energy transport}
+
+Return cutoff indices to every quantity and retain the original rows
+\begin{equation}\label{oid:UV}
+ U_N=\frac{b_N^*G_NP_Nv}{b_N^*G_Nv},\qquad
+ V_N=\frac{b_{N+1}^*G_NP_Nv}{b_{N+1}^*G_Nv},\qquad
+ \theta_N=\frac{v^*G_NP_Nv}{E_N}.
+\end{equation}
+They have their original order. Write
+$s_N=b_{N+1}^*G_Nv$ and
+$s_N^B=b_{N+1}^*G_N(I-P_N)v=(1-V_N)s_N$.
+From \eqref{oid:rankone}, the next full numerator for this same
+$b_{N+1}$ is $r_{N+1}s_N$. From \eqref{oid:Qupdate}, its next
+quotient numerator is
+\begin{equation}\label{oid:transportnumerator}
+ b_{N+1}^*G_{N+1}(I-P_{N+1})v
+ =u^*Q_{N+1}\Lambda v
+ =\frac{\omega_{N+1}}{D_N^B}s_N^B
+ =\frac{r_{N+1}}{d_{K,N}}s_N^B.
+\end{equation}
+Dividing by the proved nonzero full numerator yields
+\begin{equation}\label{oid:response}
+ \boxed{U_{N+1}=1-\frac{1-V_N}{d_{K,N}}.}
+\end{equation}
+No conjugation occurs in this linear transport. Conjugation enters
+only when the earlier row is used in a Hermitian current.
+
+For $x_{K,N}=P_Nv$ and $x_{B,N}=(I-P_N)v$, define the actual
+centered pairings
+\[
+ \Phi_{K,N}=x_{K,N}^*D_Nx_{K,N},\qquad
+ \Phi_{B,N}=x_{B,N}^*D_Nx_{B,N},\qquad
+ \Phi_{\times,N}=2\Re(x_{K,N}^*D_Nx_{B,N}).
+\]
+Equation \eqref{oid:action} gives, with every orientation explicit,
+\begin{equation}\label{oid:products}
+\begin{gathered}
+ P_{K,N}^{\rm resp}=\overline U_NV_N,\qquad
+ P_{B,N}^{\rm resp}=(1-\overline U_N)(1-V_N),\\
+ P_{\times,N}^{\rm resp}=\overline U_N+V_N-2\overline U_NV_N,
+ \qquad \sum_XP_{X,N}^{\rm resp}=1,\\
+ \Phi_{X,N}=2E_N\Re(\mathfrak c_NP_{X,N}^{\rm resp}),\qquad
+ \sum_X\Phi_{X,N}=2dE_N.
+\end{gathered}
+\end{equation}
+For example its quotient term is
+$2\Re(\overline{b_N^*G_Nx_{B,N}}\,
+b_{N+1}^*G_Nx_{B,N})/\omega_N$. Its two cross terms are
+$2\Re(\overline{b_N^*G_Nx_{K,N}}\,b_{N+1}^*G_Nx_{B,N}
++\overline{b_N^*G_Nx_{B,N}}\,b_{N+1}^*G_Nx_{K,N})/\omega_N$.
+These expansions prove the three products, including their conjugations.
+For $N\ge q$, put $R_N=1-V_N$. Then \eqref{oid:response} gives
+\begin{equation}\label{oid:consecutiveproducts}
+ P_{B,N}^{\rm resp}
+ =\frac{\overline{R_{N-1}}R_N}{d_{K,N-1}},\qquad
+ P_{K,N}^{\rm resp}
+ =\left(1-\frac{\overline{R_{N-1}}}{d_{K,N-1}}\right)(1-R_N).
+\end{equation}
+At $N=q-1$ the original $U_{q-1}$ is retained; there is no earlier
+surjective quotient source of dimension $q$ to insert.
+
+Set $\eta_N=(1-r_{N+1})p_{2,N}$. Substitution into
+\eqref{oid:rankone}, followed by \eqref{oid:energies}, proves
+\begin{equation}\label{oid:Eloss}
+ E_{N+1}=E_N-\frac{|s_N|^2}{\omega_{N+1}+\beta_N},\qquad
+ \frac{E_{N+1}}{E_N}=1-\eta_N,
+ \qquad 0<\eta_N<1-r_{N+1}<1,
+ \qquad r_{N+1}<\frac{E_{N+1}}{E_N}<1.
+\end{equation}
+The strict comparison with $r_{N+1}$ strengthens the non-strict
+Cauchy--Schwarz bound in ORE13; it follows from the other nonzero,
+orthogonal boundary column, not from an assumed asymptotic profile.
+For the observed energy
+$e_{B,N}=E_N(1-\theta_N)=(\Lambda v)^*Q_N\Lambda v$,
+\eqref{oid:Qupdate} yields
+\begin{equation}\label{oid:observedloss}
+ \Delta_N^B:=e_{B,N}-e_{B,N+1}
+ =\frac{|s_N^B|^2}{D_N^B}\ge0,
+ \qquad
+ (1-\eta_N)(1-\theta_{N+1})
+ =1-\theta_N-\frac{\eta_N|1-V_N|^2}{d_{K,N}}.
+\end{equation}
+Rearranging the second equation, without dividing by $1-\theta_N$,
+gives
+\begin{equation}\label{oid:theta}
+ \theta_{N+1}-\theta_N
+ =\frac{\eta_N}{1-\eta_N}
+ \left[\theta_N-1+\frac{|1-V_N|^2}{d_{K,N}}\right],\qquad
+ 0\le\frac{\eta_N|1-V_N|^2}{d_{K,N}}\le1-\theta_N.
+\end{equation}
+If $\Lambda v\ne0$, positive definiteness of $Q_{N+1}$ makes the
+last upper inequality strict. If $\Lambda v=0$, $v\in K$ and
+$P_Nv=v$, so $\theta_N=1$, $U_N=V_N=1$, and every observed
+energy and observed drop is zero. This evaluates that stratum without
+an undefined logarithm or phase.
+
+Finally \eqref{oid:rankone} gives, for the same column $b_{N+1}$,
+\begin{equation}\label{oid:p1transport}
+ p_{1,N+1}=
+ \frac{r_{N+1}p_{2,N}}
+ {1-(1-r_{N+1})p_{2,N}}.
+\end{equation}
+Both numerator and denominator use the retained class and original
+source metric at their displayed cutoffs.
+
+\section{The quotient-current receiver and its finite bound}
+
+For $N\ge q$, \eqref{oid:transportnumerator} says that the actual
+first quotient numerator at cutoff $N$ is
+\[
+ b_N^*G_N(I-P_N)v
+ =\frac{\omega_N}{D_{N-1}^B}s_{N-1}^B.
+\]
+Insert this identity, with its real positive coefficient, into the
+quotient expansion following \eqref{oid:products}. The factor
+$\omega_N$ cancels its matching boundary denominator, proving
+\begin{equation}\label{oid:quotientcurrent}
+ \boxed{\Phi_{B,N}
+ =\frac{2\Re(\overline{s_{N-1}^B}s_N^B)}{D_{N-1}^B}.}
+\end{equation}
+This is precisely ORE21. The conjugate belongs to $s_{N-1}^B$;
+neither replacing $\overline{s_{N-1}^B}s_N^B$ by
+$s_{N-1}^Bs_N^B$ nor replacing $D_{N-1}^B$ by $D_N^B$
+preserves the displayed derivation. It agrees exactly with
+\eqref{oid:consecutiveproducts}, because
+$s_N^B=(1-V_N)s_N$ and
+$b_N^*G_Nv=r_Ns_{N-1}$.
+
+When both drops are positive, set $z_N=s_N^B/|s_N^B|$ and
+$c_N^B=\sqrt{D_N^B/D_{N-1}^B}>0$. Equation
+\eqref{oid:observedloss} then proves
+\begin{equation}\label{oid:phase}
+ \Phi_{B,N}=2c_N^B\sqrt{\Delta_{N-1}^B\Delta_N^B},
+ \Re(\overline z_{N-1}z_N),\qquad
+ |\Phi_{B,N}|\le2c_N^B\sqrt{\Delta_{N-1}^B\Delta_N^B}.
+\end{equation}
+If either drop is zero its numerator is zero and
+\eqref{oid:quotientcurrent} gives $\Phi_{B,N}=0$; a phase at zero
+is unnecessary. Since $D_N^B=\omega_{N+1}/r_{N+1}^B$,
+\begin{equation}\label{oid:cB}
+ (c_N^B)^2=\frac{\omega_{N+1}}{\omega_N},
+ \frac{r_N^B}{r_{N+1}^B},\qquad
+ \sum_{N=L}^H\Delta_N^B=e_{B,L}-e_{B,H+1}.
+\end{equation}
+For a finite interval $q\le L\le H$, applying
+$2\sqrt{xy}\le x+y$ to each term of \eqref{oid:phase} gives
+\begin{align}\label{oid:finitebound}
+ \sum_{N=L}^H|\Phi_{B,N}|
+ &\le \max_{L\le N\le H}c_N^B
+ \left(\Delta_{L-1}^B+2\sum_{N=L}^{H-1}\Delta_N^B+\Delta_H^B\right)
+ \notag\\
+ &\le 2\max_{L\le N\le H}c_N^B,e_{B,L-1}.
+\end{align}
+The second inequality follows because all drops are nonnegative and
+their sum from $L-1$ to $H$ is $e_{B,L-1}-e_{B,H+1}\le e_{B,L-1}$.
+This proves ORE22--23 and their endpoint coefficients exactly. It
+does not supply a uniform upper bound for the displayed $c_N^B$.
+
+\section{A further exact relation: the next kernel overlap determines
+the present quotient determinant}
+
+Define the next first-boundary kernel overlap in its original metric,
+\begin{equation}\label{oid:pi}
+ \pi_{1,K,N+1}
+ =\frac{b_{N+1}^*G_{N+1}P_{N+1}b_{N+1}}
+ {b_{N+1}^*G_{N+1}b_{N+1}}\in[0,1].
+\end{equation}
+In the one-step notation, $z=I^*Gb$ and
+$H'=H-zz^*/D$. Multiplication proves
+\[
+ (H')^{-1}=H^{-1}
+ +\frac{H^{-1}zz^*H^{-1}}{D^B},\qquad
+ z^*(H')^{-1}z
+ =\beta\alpha+\frac{(\beta\alpha)^2}{D^B}
+ =\frac{\beta\alpha}{d_K}.
+\]
+As $I^*G'b=rI^*Gb$, the numerator in \eqref{oid:pi} is
+$r^2\beta\alpha/d_K$, while its denominator is $r\beta$.
+Therefore, with $\pi=\pi_{1,K,N+1}$,
+\begin{equation}\label{oid:newallocation}
+ \boxed{\pi=\frac{r\alpha}{d_K},\qquad
+ \alpha=\frac{\pi}{r+(1-r)\pi},\qquad
+ d_K=\frac r{r+(1-r)\pi},\qquad
+ r^B=r+(1-r)\pi.}
+\end{equation}
+All denominators are positive since $r>0$. For $K=0$ these give
+$\pi=\alpha=0,d_K=1,r^B=r$; for $K=E$ they give
+$\pi=\alpha=1,d_K=r,r^B=1$. Thus the endpoint conventions are
+included in the same exact identity.
+
+This relation is additional to ORE1--23. It makes a bound on the
+actual next first-boundary kernel overlap into a bound on the same
+step's quotient determinant. In particular the source's conductor
+bound for $\pi_{1,K,q}$ has this exact receiving map at the first
+source increment. It does not require a choice of kernel basis or a
+replacement by the dimension of that kernel.
+
+\section{The complete coefficient chart and both original windows}
+
+For completeness the metric update above retains the full arithmetic
+coordinate map. Write $\chi(S)=\sum_{\ell=0}^qc_\ell S^\ell$,
+$c_q=1$, and define the residue-dual polynomials
+\[
+ \mathfrak p_n(S)=\sum_{\ell=n+1}^qc_\ell S^{\ell-n-1},
+ \qquad 0\le n<q,
+ \qquad F e_n=\mathfrak p_n.
+\]
+Their distinct monic degrees $q-1-n$ prove that $F:\C^q\to E$
+is invertible. With $\mathbb V_{n,\alpha}=\beta_\alpha^n$ and
+$\mathcal L(\nu)=\sum_\alpha\nu_\alpha\chi(S)/(S-\beta_\alpha)$,
+the residue pairing gives $F=\mathcal L\mathbb V^{-1}$. To see the
+pairing directly, the sum of finite residues of
+$\mathfrak p_n(S)S^j/\chi(S)$ is its $S^{-1}$ coefficient at infinity.
+It is zero for $j<n$, one for $j=n$, and zero for $j>n$, the latter
+from
+$S^{n+1}\mathfrak p_n=\chi-\sum_{\ell=0}^nc_\ell S^\ell$.
+This proves the claimed inverse moment map with its ordinary
+Vandermonde transpose convention.
+
+Use $v_A=\operatorname{ord}_0 E_A$ for the conductor vanishing
+order, to avoid confusing it with the retained class $v$.
+Put $h_A=q-v_A$ and $d_A=(a-7)^2$, on the original conductor
+domain. Let $P_{v_A}$ insert the initial $v_A$ zero coordinates.
+The actual conductor map $C_a^{\mathsf T}$ satisfies
+\[
+ \mathbb V C_a^{\mathsf T}=P_{v_A}J,
+ \qquad
+ J_{i,\alpha'}=\sum_{r=0}^i\binom{v_A+i}{r}
+ \mu_{v_A+i-r}(\beta'_{\alpha'})^r.
+\]
+This is the ordinary product rule for
+$E_A(z)\sum_{\alpha'}\eta_{\alpha'}e^{\beta'_{\alpha'}z}$.
+The map $C_a^{\mathsf T}$ is injective: if this entire product is
+zero, the nonzero analytic factor $E_A$ is nonzero on an open disc,
+so the exponential polynomial vanishes identically; its first $d_A$
+derivatives give an invertible Vandermonde and force $\eta=0$.
+Thus $J$ has rank $d_A$. Retain an actual selected minor
+$I_{\rm sel}$ with $J_{I_{\rm sel}}$ invertible and complement
+$J(I_{\rm sel})$. Put
+\[
+ H_{I_{\rm sel}}=J_{I_{\rm sel}}^{-1}E_{I_{\rm sel}}^{\mathsf T},
+ \qquad
+ Q_{I_{\rm sel}}=E_{J(I_{\rm sel})}^{\mathsf T}
+ -J_{J(I_{\rm sel})}H_{I_{\rm sel}}.
+\]
+Checking the selected and complementary rows separately proves
+$JH_{I_{\rm sel}}+E_{J(I_{\rm sel})}Q_{I_{\rm sel}}=I$.
+It follows that the full chart
+\[
+ \mathcal F=[F_0,F_C,L_{I_{\rm sel}}],\qquad
+ F_0=FE_{\{0,\ldots,v_A-1\}},\quad
+ F_C=FP_{v_A}J=\mathcal LC_a^{\mathsf T},\quad
+ L_{I_{\rm sel}}=FP_{v_A}E_{J(I_{\rm sel})}
+\]
+is invertible. Its inverse retains all three coordinates, including
+$H_{I_{\rm sel}}P_{v_A}^{\mathsf T}F^{-1}x$ in the conductor block.
+For the consecutive chart $0$, application of its $H_0,Q_0$ to the
+selected coefficient columns proves the complete transition
+\[
+ L_{I_{\rm sel}}=F_CD_{0I_{\rm sel}}+L_0M_{0I_{\rm sel}},\quad
+ D_{0I_{\rm sel}}=H_0E_{J(I_{\rm sel})},\quad
+ M_{0I_{\rm sel}}=Q_0E_{J(I_{\rm sel})}.
+\]
+No change of the observation frame $I$ is implicit in this native
+section notation. Set $Y=\mathcal F^{-1}I$. Then
+\begin{equation}\label{oid:fullchart}
+ \Lambda\mathcal FY=0,\qquad
+ H_N=Y^*\mathcal F^*G_N\mathcal FY.
+\end{equation}
+If $Y=(Y_0,Y_C,Y_I)^{\mathsf T}$, the latter is explicitly the
+sum of all nine terms
+$\sum_{r,s\in\{0,C,I\}}Y_r^*F_r^*G_NF_sY_s$.
+For example the native diagonal block under its transition is
+\[
+ D^*F_C^*G_NF_CD+D^*F_C^*G_NL_0M
+ +M^*L_0^*G_NF_CD+M^*L_0^*G_NL_0M.
+\]
+Thus ORE19 retains every cross metric and every conductor term.
+Any analytic-native formula using an ordinary transpose remains in
+its own coefficient maps; this Hermitian pullback does not change
+that transpose to an adjoint.
+
+For every positive scalar sequence $f_N$, cancellation of consecutive
+ratios proves
+\begin{equation}\label{oid:windows}
+ \log\frac{f_{2q-1}f_{2q}}{f_{q-1}f_q}
+ =\sum_{N=q-1}^{2q-1}w_N\log\frac{f_{N+1}}{f_N},\quad
+ w_{q-1}=w_{2q-1}=1,\quad w_N=2\quad(q\le N\le2q-2).
+\end{equation}
+Indeed the interior exponent of each $f_j$ is $w_{j-1}-w_j$;
+the only surviving exponents are $-1,-1,+1,+1$ at
+$q-1,q,2q-1,2q$. Use this with $\det G_N,\det H_N,\det Q_N,E_N$
+and the increments $r_{N+1},d_{K,N},r_{N+1}/d_{K,N},1-\eta_N$.
+It also applies to $e_{B,N}$ when $\Lambda v\ne0$. When
+$\Lambda v=0$, that sequence is identically zero and its receiving
+equation is \eqref{oid:observedloss}, not a logarithm. This proves
+ORE18 with its original two windows and both endpoints.
+
+\section{Exact low-cutoff evaluation, with all complex phases}
+
+The supplied low-cutoff note uses $k$ for the same tensor degree
+called $a$ above. In this section set $k=a$ and preserve the note's
+$q=(k+1)^2$, $c=k/2$, $d=k\delta$, $t=k\gamma$ and
+\[
+ z=\frac{\lambda-c}{i}=t-id,\qquad
+ Q(y)=i^{-q}\chi(c+iy),\qquad b_\lambda=\chi'(\lambda)^{-1}.
+\]
+The full physical polynomial $Q$ is real and has parity $(-1)^q$.
+Retain the original source integrals and their original masses:
+\begin{equation}\label{oid:moments}
+\begin{gathered}
+ \nu_0=\int Q(y)^2dm_k(y),\qquad
+ \nu_1=\int y^2Q(y)^2dm_k(y),\qquad
+ d\mu_Q(y)=\nu_0^{-1}Q(y)^2dm_k(y),\\
+ a_z=\int\frac{d\mu_Q(y)}{y-z},\quad
+ m_z=\int\frac{d\mu_Q(y)}{|y-z|^2},\quad
+ s_2=\frac{\nu_1}{\nu_0},\qquad
+ d_0=\frac{\omega_q}{\nu_0},\quad
+ d_1=\frac{\omega_{q+1}}{\nu_1},\\
+ M=m_z-|a_z|^2,\qquad g=1+za_z.
+\end{gathered}
+\end{equation}
+The probability $\mu_Q$ is only the note's auxiliary device for
+ratios: every norm below retains the multiplying $\nu_0$ or $\nu_1$.
+The symbols $d_0,d_1$ here are the two monic norm ratios of its
+equation (4); they are not the unrelated tail coefficient $d_0(h)$
+mentioned later in that note.
+
+At $N=q-1$ no relation occurs in the minimum fibre, and its actual
+polynomial representative is
+\[
+ f_{q-1}(c+iy)=b_\lambda i^{q-1}\frac{Q(y)}{y-z},\qquad
+ E_{q-1}=|b_\lambda|^2\nu_0m_z.
+\]
+Its leading coefficient in $S$ is $b_\lambda$, so
+$F_{13,q-1}=b_\lambda\omega_{q-1}$ and
+$F_{11,q-1}=\omega_{q-1}$. The representative of $b_q$ is
+$p_q-\chi$. Orthogonality gives
+\[
+ \norm{p_q-\chi}^2=\nu_0-\omega_q,
+ \qquad
+ \langle p_q-\chi,f_{q-1}\rangle=-\langle\chi,f_{q-1}\rangle.
+\]
+Since $\overline{i^q}i^{q-1}=i^{-1}=-i$, the latter numerator is
+exactly $i b_\lambda\nu_0a_z$, including its phase. Thus
+\begin{equation}\label{oid:lowfirst}
+ \begin{gathered}
+ F_{13,q-1}=b_\lambda\omega_{q-1},\qquad
+ F_{23,q-1}=i b_\lambda\nu_0a_z,\qquad
+ F_{22,q-1}=\nu_0-\omega_q,\\
+ p_{1,q-1}=\frac{\omega_{q-1}}{\nu_0m_z},\qquad
+ p_{2,q-1}=\frac{|a_z|^2}{(1-d_0)m_z},\qquad
+ r_q=d_0.
+ \end{gathered}
+\end{equation}
+The first two energy formulas rederive the note's equation (5).
+
+At $N=q$ the relation space is $\C\chi$.
+Its projection coefficient is
+$\langle\chi,f_{q-1}\rangle/\nu_0=-i b_\lambda a_z$.
+Subtracting this entire original relation gives
+\begin{equation}\label{oid:lowsecondlift}
+ f_q(c+iy)=b_\lambda i^{q-1}Q(y)
+ \left(\frac1{y-z}-a_z\right),\qquad
+ E_q=|b_\lambda|^2\nu_0M.
+\end{equation}
+This is the note's equation (6), obtained by the actual orthogonal
+projection. Its first boundary numerator is, by the already proved
+update, $F_{13,q}=d_0F_{23,q-1}=i b_\lambda\omega_q a_z$.
+
+The next monic relation is $R(S)=\chi(S)(S-c)$.
+It is orthogonal to $\chi$, because $\mu_Q$ is even, and its norm
+is $\nu_1$. Both $p_{q+1}$ and $R$ have parity $(-1)^{q+1}$
+about $c$; therefore $p_{q+1}-R$ is orthogonal to $\chi$ and is
+the attained representative of $b_{q+1}$ at cutoff $q$.
+Its norm is $\nu_1-\omega_{q+1}$. Moreover
+\[
+ \int\frac{y}{y-z}\,d\mu_Q(y)=1+za_z=g,\qquad
+ \overline{i^{q+1}}i^{q-1}=i^{-2}=-1.
+\]
+It follows that
+\begin{equation}\label{oid:lowsecond}
+\begin{gathered}
+ F_{13,q}=i b_\lambda\omega_q a_z,\qquad
+ F_{23,q}=b_\lambda\nu_0g,\qquad
+ F_{22,q}=\nu_1-\omega_{q+1},\qquad r_{q+1}=d_1,\\
+ p_{1,q}=\frac{d_0|a_z|^2}{(1-d_0)M},\qquad
+ p_{2,q}=\frac{|g|^2}{s_2(1-d_1)M}.
+\end{gathered}
+\end{equation}
+This proves the note's equation (7) and its original phases. The
+nonzero boundary numerators proved in \eqref{oid:current} give
+$0<d_0,d_1<1$.
+
+The same exact source update now determines further finite quantities:
+\begin{equation}\label{oid:loweta}
+ \boxed{\eta_{q-1}=\frac{|a_z|^2}{m_z},\qquad
+ \eta_q=\frac{|g|^2}{s_2M},\qquad
+ E_{q+1}=|b_\lambda|^2\nu_0
+ \left(M-\frac{|g|^2}{s_2}\right).}
+\end{equation}
+For direct verification, at cutoff $q+1$ the entire relation space
+is the orthogonal span of $\chi$ and $R$, and
+\[
+ f_{q+1}(c+iy)=b_\lambda i^{q-1}Q(y)
+ \left(\frac1{y-z}-a_z-\frac{g}{s_2}y\right).
+\]
+Its original norm is the last expression in \eqref{oid:loweta}.
+It is strictly positive because $1/(y-z)$ cannot equal an affine
+function on a set containing an interval: multiplying such an
+identity by $y-z$ would give a polynomial identity whose quadratic
+and linear coefficients force both affine coefficients to be zero,
+contradicting its constant coefficient one. This also proves the
+strict inequalities $M>0$ and $M-|g|^2/s_2>0$ by their respective
+orthogonal residuals. There is no missing new minimum in
+\eqref{oid:loweta}.
+
+The original full currents consequently have the explicit phases
+\begin{equation}\label{oid:lowcurrent}
+ \mathfrak c_{q-1}=\frac{i a_z}{m_z},\qquad
+ \mathfrak c_q=\frac{-i\overline{a_z}g}{M},\qquad
+ \boxed{\mathfrak c_q=
+ \frac{\overline{\mathfrak c_{q-1}}
+ -\eta_{q-1}(d+it)}{1-\eta_{q-1}}.}
+\end{equation}
+Indeed $\Im a_z=-dm_z$ by the integrand
+$(y-z)^{-1}=(y-t-id)/|y-z|^2$, so the first current has real
+part $d$. Also
+$\Im(\overline{a_z}g)=-\Im a_z+|a_z|^2\Im z=dM$,
+which proves the second current has real part $d$.
+For its transport formula use
+$a_z=-im_z\mathfrak c_{q-1}$,
+$|a_z|^2/m_z=\eta_{q-1}$, and $iz=d+it$.
+Equivalently, the original source means satisfy the exact relation
+\begin{equation}\label{oid:lowmean}
+ \mu_q=2t-\frac{\mu_{q-1}}{1-\eta_{q-1}}.
+\end{equation}
+It follows by comparing imaginary parts in \eqref{oid:lowcurrent}
+and \eqref{oid:current}. These equations contain the original
+physical center and imaginary coordinate; no phase is normalized away.
+
+For the original observation, write
+$\kappa_0=d_{K,q-1}$ and $\kappa_1=d_{K,q}$ only in the following
+low-cutoff formulas. As $D_{q-1}=\nu_0$ and $D_q=\nu_1$,
+\begin{equation}\label{oid:lowobservation}
+\begin{gathered}
+ D_{q-1}^B=\nu_0\kappa_0,\qquad
+ D_q^B=\nu_1\kappa_1,\qquad
+ (c_q^B)^2=s_2\frac{\kappa_1}{\kappa_0},\\
+ \Delta_{q-1}^B=
+ \frac{|b_\lambda|^2\nu_0|a_z|^2|1-V_{q-1}|^2}{\kappa_0},
+ \qquad
+ \Delta_q^B=
+ \frac{|b_\lambda|^2\nu_0|g|^2|1-V_q|^2}{s_2\kappa_1},\\
+ \boxed{\Phi_{B,q}=
+ \frac{2|b_\lambda|^2\nu_0}{\kappa_0}
+ \Re\left[-i\overline{a_z}g
+ (1-\overline V_{q-1})(1-V_q)\right].}
+\end{gathered}
+\end{equation}
+Every equation follows by inserting the explicitly computed complex
+numerators into \eqref{oid:observedloss} and
+\eqref{oid:quotientcurrent}. It is a concrete receiving map for the
+note's equations (5)--(7); it preserves the still actual
+period-dependent responses and restriction determinants.
+It does not assign their signs from a full-class energy.
+The additional determinant relation \eqref{oid:newallocation} is
+especially explicit at this first step:
+\begin{equation}\label{oid:lowallocation}
+ \boxed{r_q^B=d_0+(1-d_0)\pi_{1,K,q},\qquad
+ \kappa_0=\frac{d_0}{d_0+(1-d_0)\pi_{1,K,q}}.}
+\end{equation}
+
+% Mathematical section merged verbatim into ORE_INDEPENDENT_DERIVATION.tex.
+\section{The actual conductor evaluates the first logarithmic allocation}
+
+The domain of this section is the original simple-packet conductor
+domain, $k\equiv1\pmod4$, $k\ge9$, and its fixed actual period
+$\varpi$, with the original finite root-comparison guards retained
+where the LRS estimates below are used. Its full observation is the
+one in inherited FEX1--3~\cite{InheritedFEX}; in particular its
+proved conductor identity is
+\begin{equation}\label{oid:conductordomain}
+ K=\ker\Lambda_k\subset\ker C,
+ \qquad C[P]=\bigl((\mathcal T_AP)(\beta'_{\alpha'})\bigr)_{\alpha'},
+ \qquad \chi_{k-8}\mid\mathcal T_AP\quad([P]\in K),
+\end{equation}
+where all lower roots $\beta'_{\alpha'}$ are retained.
+The exact receiving map from the original observation is
+$\overline C:B\to\C^{q'}$, defined by
+$\overline C(\Lambda_kx)=Cx$. It is well-defined because
+$\ker\Lambda_k\subset\ker C$, is linear, and is the unique map
+with $C=\overline C\Lambda_k$ because $\Lambda_k$ is onto $B$.
+Write
+\[
+ q'=(k-7)^2,\quad c'=c-4,\quad
+ \beta_{8,r,s}=4+(2r-8)\delta+i(2s-8)\gamma,
+ \quad 0\le r,s\le8,
+\]
+and retain the complete conductor
+\begin{equation}\label{oid:conductoroperator}
+ \begin{gathered}
+ (\mathcal T_AP)(S')=\sum_{r,s=0}^8a_{rs}P(S'+\beta_{8,r,s}),
+ \quad \mu_j=\sum_{r,s=0}^8a_{rs}\beta_{8,r,s}^j,\\
+ v_A=\min\{j:\mu_j\ne0\}\le80,
+ \qquad \mathcal C_A=\frac{v_A!}{\mu_{v_A}}\mathcal T_A.
+ \end{gathered}
+\end{equation}
+This is the original displayed conductor scalar. It does not change
+the arithmetic source or the observation. Taylor expansion of each
+shift is finite on a polynomial, so
+$\mathcal C_A=\sum_{j\ge v_A}v_A!\mu_j
+\partial_S^j/(\mu_{v_A}j!)$. Therefore on a polynomial of degree
+$N\ge v_A$ its leading coefficient is exactly $(N)_{v_A}$ times
+the original leading coefficient.
+
+The divisibility in \eqref{oid:conductordomain} holds for every
+representative of the same class, including the attained one.
+Indeed at a lower root the shifted point
+$\beta'_{u',w'}+\beta_{8,r,s}=\beta_{k,u'+r,w'+s}$ is an original
+upper root. Thus every summand of
+$\mathcal T_A(\chi H)(\beta'_{u',w'})$ is zero, for every polynomial
+$H$. Simplicity of all lower roots then proves
+$\chi_{k-8}\mid\mathcal T_A(\chi H)$. This verifies the exact map
+on quotient classes rather than assuming its invariance under the
+minimum relation.
+
+Let $\sigma$ be the original order-one Gamma comparison measure,
+in the physical coordinate $S=c+iy$ (and $S'=c'+iy$ in the target).
+Its complete density and monic norms are
+\[
+ d\sigma(y)=\frac1{2\pi}|\Gamma(1/4+iy/2)|^2\,dy,\qquad
+ \gamma_n=\sqrt{2\pi}\,n!(1/2)_n
+ =\sqrt{2\pi}\,\frac{\Gamma(2n+1)}{4^n}.
+\]
+Retain the original whole-polynomial comparison, valid through degree
+$2q$,
+\begin{equation}\label{oid:comparison}
+ \ell_k\norm P_{\sigma,c}^2\le\norm P_{m_k}^2
+ \le u_k\norm P_{\sigma,c}^2,
+ \qquad \log(u_k/\ell_k)=O_h(k+\log q).
+\end{equation}
+This comparison is applied before minimization. It is not a
+pointwise lower bound for the arithmetic density.
+
+For clarity, the forward conductor bound of FEX9--11 is reproduced
+in the order-one source needed here. In its original monic Gamma
+basis $g_n$,
+\[
+ \sum_{n\ge0}\frac{g_n(y)}{n!}z^n
+ =(1+z^2)^{-1/4}e^{y\arctan z},\qquad
+ w_n=\frac{n!}{(1/2)_n},\qquad \varphi_n=g_n/\sqrt{\gamma_n}.
+\]
+The displayed generating identity is also exactly DLMF 18.23.7
+\cite{DLMF18} with
+$g_n(y)=n!P_n^{(1/4)}(y/2;\pi/2)$: its two factors
+$(1-iz)^{-1/4+iy/2}(1+iz)^{-1/4-iy/2}$ multiply to the displayed
+right side. This identifies the physical coordinate and monic
+coefficient without altering the source norm.
+Differentiating the coefficient identity and using
+$\arctan z=\sum_{j\ge1,\ j\ {\rm odd}}(-1)^{(j-1)/2}z^j/j$
+gives
+\[
+ \partial_y\varphi_n=
+ \sum_{\substack{1\le j\le n\\j\ {\rm odd}}}
+ \frac{(-1)^{(j-1)/2}}{j}\sqrt{\frac{w_n}{w_{n-j}}}\,
+ \varphi_{n-j}.
+\]
+The source mass cancels from these coefficient ratios only.
+For $n>m\ge1$, the product of
+$j(j-1)\le(j-1/2)^2$ gives $w_n/w_m\le\sqrt{n/m}$;
+the same product with $w_1=2$ gives $w_n\le2\sqrt n$.
+In the absolute derivative matrix use weights $w_n^{-1/2}$.
+Its weighted row sums are at most
+$\mathsf H_N=\sum_{j=1}^N1/j$. Its weighted column sum at $n$ is
+at most $\mathsf H_n+4$, since for $1\le m<n$
+\[
+ \frac{\sqrt{n/m}-1}{n-m}
+ =\frac1{\sqrt m(\sqrt n+\sqrt m)}\le\frac1{\sqrt{nm}},
+ \qquad \sum_{m=1}^{n-1}\frac1{\sqrt{nm}}\le2,
+\]
+and the $m=0$ term is at most $2/\sqrt n\le2$.
+Weighted Cauchy--Schwarz on each row, then summation of the column
+bound, proves
+$\norm{\partial_y}\le\sqrt{\mathsf H_N(\mathsf H_N+4)}
+\le\mathsf H_N+2$. The finite exponential of this nilpotent
+derivative is translation, so
+$\norm{f(y+z)}_\sigma\le e^{|z|(\mathsf H_N+2)}\norm f_\sigma$.
+Since the original center displacement is four, triangle inequality
+in \eqref{oid:conductoroperator} proves the full retained bound
+\begin{equation}\label{oid:forward}
+ \begin{gathered}
+ \norm{\mathcal C_AP}_{\sigma,c-4}\le M_N\norm P_{\sigma,c},\\
+ M_N=\max\left\{1,\frac{v_A!}{|\mu_{v_A}|}
+ \sum_{r,s=0}^8|a_{rs}|
+ e^{|\beta_{8,r,s}-4|(\mathsf H_N+2)}\right\}.
+ \end{gathered}
+\end{equation}
+No coefficient of the conductor or part of the center displacement
+has been suppressed.
+
+Let $\nu^-_{r,1}$ be the original complete monic lower-root minimum:
+the minimum of
+$\norm{\chi_{k-8}H}_{\sigma,c-4}^2$ over all monic $H$ of degree
+$r$. At $N=q-1,q$ put $r_N=N-v_A-q'\ge0$ and let
+$P=T_Nx$ for $x\in K$. If its $S^N$ coefficient is $a_N(P)\ne0$,
+the polynomial $\mathcal C_AP$ has degree $N-v_A$, is divisible
+by the full $\chi_{k-8}$, and has leading coefficient
+$(N)_{v_A}a_N(P)$. Therefore
+\begin{equation}\label{oid:kernelcoefficient}
+ \norm{x}_{G_N}^2=\norm P_{m_k}^2
+ \ge\ell_k M_N^{-2}(N)_{v_A}^2
+ \nu^-_{r_N,1}|a_N(P)|^2.
+\end{equation}
+When $a_N(P)=0$ the same inequality is immediate; no nonzero kernel
+projection is presumed. The original boundary identity
+\eqref{oid:leading} gives
+$b_N^*G_Nx=\omega_Na_N(P)$.
+For $K=0$ the desired kernel bound is immediate. For $K\ne0$, the
+supremum of $|b_N^*G_Nx|^2/\norm x_{G_N}^2$ over nonzero
+$x\in K$ is $\norm{P_Nb_N}_{G_N}^2$: Cauchy--Schwarz proves
+the upper bound and $x=P_Nb_N$ attains it when this vector is
+nonzero, while both sides vanish otherwise.
+Also $\omega_N\le u_k\gamma_N$ by applying
+\eqref{oid:comparison} to the monic Gamma minimizer.
+The exact boundary norms already proved are
+\[
+ b_N^*G_Nb_N=\omega_N\varepsilon_N^\partial,
+ \qquad\varepsilon_{q-1}^\partial=1,\quad
+ \varepsilon_q^\partial=1-d_0.
+\]
+Division only by these positive original factors now proves the
+source's conductor inequality, here with its exact receiver:
+\begin{equation}\label{oid:finitepi}
+ \boxed{\pi_{1,K,N}\le\mathcal B_N:=
+ \min\left\{1,\frac{u_k}{\ell_k}
+ \frac{M_N^2\gamma_N}
+ {\varepsilon_N^\partial(N)_{v_A}^2\nu^-_{r_N,1}}\right\},
+ \qquad N=q-1,q.}
+\end{equation}
+It is a bound on the entire actual kernel of the full original
+observation, with all period dependence still present in its
+conductor constants.
+
+Combining \eqref{oid:finitepi} at $N=q$ with
+\eqref{oid:lowallocation} gives the following new finite allocation
+of the first source increment:
+\begin{equation}\label{oid:finiteallocation}
+ \boxed{\begin{gathered}
+ d_0\le r_q^B\le d_0+(1-d_0)\mathcal B_q,\\
+ \frac{d_0}{d_0+(1-d_0)\mathcal B_q}\le\kappa_0\le1,\\
+ 0\le-\log\kappa_0
+ \le\log\left(1+\frac{1-d_0}{d_0}\mathcal B_q\right),\\
+ -\log\bigl(d_0+(1-d_0)\mathcal B_q\bigr)
+ \le-\log r_q^B\le-\log d_0,\\
+ -\log\kappa_0-\log r_q^B=-\log d_0.
+ \end{gathered}}
+\end{equation}
+The lower-root minimum in $\mathcal B_q$ can be replaced by its
+explicit finite scalar lower enclosure in inherited LRS3--4
+\cite{InheritedLRS}. More precisely let
+$\underline\tau_{q',r}$ be that original lower endpoint for
+$\log\nu^-_{r,1}-\log\gamma_{q'+r}$. Then the same bound holds
+with $\mathcal B_N$ replaced by
+\begin{equation}\label{oid:evaluatedfinitepi}
+ \widehat{\mathcal B}_N=
+ \min\left\{1,\frac{u_k}{\ell_k}
+ \frac{M_N^2\gamma_N}
+ {\varepsilon_N^\partial(N)_{v_A}^2\gamma_{N-v_A}}
+ e^{-\underline\tau_{q',r_N}}\right\}.
+\end{equation}
+This is a proved finite substitution: the lower endpoint implies
+$\nu^-_{r_N,1}\ge\gamma_{N-v_A}
+e^{\underline\tau_{q',r_N}}$, with its original root guards and
+source mass. It introduces no unknown observation determinant.
+
+For the leading rate, inherited LRS3, LRS11 and LRS14
+\cite{InheritedLRS} give on those original finite guards
+\begin{equation}\label{oid:LRS}
+ \begin{gathered}
+ \log\nu^-_{r,1}=\log\gamma_{q'+r}+2q'\psi(r/q')+O_h(\log q),\\
+ \psi(t)=a_0+\frac t4\log t+(a_0-\tfrac14)t+O(t^{3/2}),
+ \qquad a_0=\log(4/\pi).
+ \end{gathered}
+\end{equation}
+These are the inherited complete lower-root norm estimates; they
+are used for the actual $r_N=N-v_A-q'$, not a changed lower cutoff.
+Here $q-q'=16k-48$, and
+$r_{q-1}=16k-49-v_A$, $r_q=16k-48-v_A$. Thus
+\[
+ \frac{r_N}{q'}=\frac{16}{k}+O(k^{-2}),\qquad
+ \frac{r_N}{2}\log\frac{r_N}{q'}=-8k\log k+O(k),\qquad
+ \frac{r_N^{3/2}}{\sqrt{q'}}=O(\sqrt k).
+\]
+Inserting these three quantities into \eqref{oid:LRS} proves
+\begin{equation}\label{oid:profile}
+ 2q'\psi(r_N/q')=2qa_0-8k\log k+O_h(k).
+\end{equation}
+The remaining monic factor has an exact product, retaining every
+factor from the original derivative:
+\[
+ \frac{\gamma_N}{\gamma_{N-v_A}(N)_{v_A}^2}
+ =\prod_{j=0}^{v_A-1}\frac{N-j-1/2}{N-j}\le1.
+\]
+For fixed original conductor, \eqref{oid:forward} gives
+$\log M_N=O_{h,\varpi}(\log q)$. The bound $v_A\le80$
+is fixed along the original degree family.
+
+For completeness the first-step determinant rate follows from the
+full physical polynomial rather than an observation inference.
+Let $R=k\sqrt{\delta^2+\gamma^2}$ and $\alpha_0=\pi/2$.
+The original comparison density has fixed constants $c_G,C_G>0$
+with
+$c_Ge^{-\alpha_0|y|}/\sqrt{1+|y|}\le\sigma(y)
+\le C_Ge^{-\alpha_0|y|}/\sqrt{1+|y|}$.
+For the actual degree-$q$ monic $Q$, whose full roots lie in
+$|y|\le R$, direct integration of
+$(|y|-R)^q\le |Q(y)|\le(|y|+R)^q$ on the lower-tail and full
+domains respectively gives
+\[
+ \mathscr L_q(R)\le\norm Q_\sigma^2\le\mathscr U_q(R),
+\]
+where the lower inequality is integrated only over $|y|\ge R+1$ and
+\begin{align*}
+ \mathscr L_q(R)&=\frac{2c_Ge^{-\alpha_0R}}{\sqrt{R+2}}
+ \alpha_0^{-2q-1/2}\Gamma(2q+\tfrac12,\alpha_0),\\
+ \mathscr U_q(R)&=2C_Ge^{\alpha_0R}
+ \alpha_0^{-2q-1}\Gamma(2q+1).
+\end{align*}
+For the lower bound use $s=|y|-R\ge1$ and
+$1+R+s\le(R+2)s$; for the upper bound use $s=|y|+R$ and
+enlarge the positive integral to $s\ge0$. Monic minimization of
+\eqref{oid:comparison} gives
+$\ell_k\gamma_q\le\omega_q\le u_k\gamma_q$ and hence
+\begin{equation}\label{oid:finited0}
+ \frac{\ell_k\gamma_q}{u_k\mathscr U_q(R)}
+ \le d_0\le
+ \frac{u_k\gamma_q}{\ell_k\mathscr L_q(R)}.
+\end{equation}
+Stirling's formula and the fixed-shift Gamma-ratio expansion
+\cite[\S5.11(i), (iii)]{DLMF5} give
+$\log\mathscr U_q(R)-\log\gamma_q
+=2q\log(4/\pi)+O_h(k+\log q)$, and the same with
+$\mathscr L_q$. The incomplete Gamma tail changes its logarithm
+by $o(1)$: the omitted integral from zero to $\alpha_0$ is at most
+$\alpha_0^{2q+1/2}/(2q+1/2)$, while Stirling gives the complete
+Gamma factor. Therefore
+\begin{equation}\label{oid:d0rate}
+ \log d_0=-2qa_0+O_h(k+\log q),\qquad
+ -\log(1-d_0)=o(1).
+\end{equation}
+The DLMF expansion is used only for these explicitly displayed
+Gamma factors; all physical root and source comparison errors remain.
+
+Equations \eqref{oid:finitepi}, \eqref{oid:comparison},
+\eqref{oid:profile} and \eqref{oid:d0rate} now give the source's
+actual conductor estimate, with its proof carried into this receiver:
+\begin{equation}\label{oid:pirate}
+ \pi_{1,K,N}\le\mathcal B_N
+ \le\exp\{-2qa_0+8k\log k+O_{h,\varpi}(k)\},
+ \qquad N=q-1,q.
+\end{equation}
+Finally divide the upper bound at $q$ by the lower estimate for
+$d_0$ in \eqref{oid:d0rate}, and insert it in
+\eqref{oid:finiteallocation}. This proves the new allocation
+\begin{equation}\label{oid:firstallocation}
+ \boxed{\begin{gathered}
+ 0\le-\log\frac{\det H_q}{\det H_{q-1}}
+ \le8k\log k+O_{h,\varpi}(k),\\
+ -\log\frac{\det Q_q}{\det Q_{q-1}}
+ =2q\log(4/\pi)+O_{h,\varpi}(k\log k),\\
+ \lim_{k\to\infty}\frac{-\log(\det H_q/\det H_{q-1})}{q}=0,
+ \qquad
+ \lim_{k\to\infty}\frac{-\log(\det Q_q/\det Q_{q-1})}{q}
+ =2\log(4/\pi).
+ \end{gathered}}
+\end{equation}
+This evaluates the leading allocation of the single original
+increment from $q-1$ to $q$. It neither sums an unproved bound over
+the other source increments nor assigns either full two-window
+allocation or an individual projected-current sign. The finite
+inequality \eqref{oid:finiteallocation}, or its explicit lower-root
+enclosure \eqref{oid:evaluatedfinitepi}, remains the receiving formula
+before passage to the limit.
+
+\section{Precisely what has been checked and what is additional}
+
+ORE1--5 are the retained definitions, attained observation identity
+and source increment proved in \eqref{oid:objects}--\eqref{oid:r}
+and \eqref{oid:observation}--\eqref{oid:allocations}.
+The mathematical contents of ORE6--10 follow from
+\eqref{oid:allocations}--\eqref{oid:response}. The root ORE6 has
+a typographical error: the literal string \texttt{,qquad} must be
+\texttt{,\textbackslash qquad}. This changes no mathematical factor;
+the parent integration subsequently corrected that typography.
+ORE11--17 follow from \eqref{oid:products}--\eqref{oid:p1transport},
+ORE18--19 from \eqref{oid:fullchart}--\eqref{oid:windows}, and
+ORE20--23 from \eqref{oid:observedloss} and
+\eqref{oid:quotientcurrent}--\eqref{oid:finitebound}. No correction
+of a sign, conjugation, cutoff, or positive denominator is needed in
+ORE1--23 on its stated original simple-quartet eigenclass domain.
+
+The supplied low-cutoff note explicitly contains the first and second
+energy formulas \eqref{oid:lowfirst} and \eqref{oid:lowsecond}, the
+two attained lifts through cutoff $q$, asymptotic estimates for those
+energies, a separate conductor bound for the actual kernel overlap,
+and the one-step class norm ratio in its equation (17). It does not
+contain the following ORE receiving identities:
+\begin{enumerate}
+\item ORE6--7: the exact restriction/observation determinant allocation
+and its two logarithmic increments for the same source step.
+\item ORE9--12: the quotient numerator update, consecutive transport
+$U_{N+1}=1-(1-V_N)/d_{K,N}$, and the consecutive response products
+with their actual earlier conjugation and determinant denominator.
+\item ORE14--16: the exact period-dependent observed-energy loss and
+the associated update of $\theta_N$. The note's full-class energy
+ratio does not by itself determine this quotient energy.
+\item ORE17: the general propagation of $p_{2,N}$ into $p_{1,N+1}$.
+The note's explicit low-cutoff expressions satisfy its first instance
+exactly, but do not state this all-cutoff morphism.
+\item ORE18--19: the explicit two-window weighted accumulation of the
+same determinant and energy increments, with the full conductor/native
+kernel-metric receiver. These identities do not assert new numerical
+high-cutoff values.
+\item ORE20--23: the undivided observed numerators and consecutive
+observed drops computing the current, its phase, its finite variation
+bound, and its exact original recurrence/determinant coefficient.
+\end{enumerate}
+ORE1--3 and ORE8 retain the shared original source, projection and
+response definitions. ORE4 is a derived finite minimum identity and
+ORE13 its general full-class energy consequence; neither should be
+described as an independent evaluation of an observation response.
+The note's first low-cutoff energy change is precisely their
+specialization \eqref{oid:loweta} at $q-1$.
+
+Additional to both the root ORE identities and the note's equations
+(5)--(7), this derivation proves the minimum-lift/projector update
+\eqref{oid:projector}, the next-overlap determinant morphism
+\eqref{oid:newallocation}, the strict original bound in
+\eqref{oid:Eloss}, the exact next source minimum and norm in
+\eqref{oid:loweta}, the low-cutoff full-current transport
+\eqref{oid:lowcurrent}--\eqref{oid:lowmean}, and the explicit
+observed-current and determinant receivers
+\eqref{oid:lowobservation}--\eqref{oid:lowallocation}, together with
+the finite and asymptotic single-increment allocations
+\eqref{oid:finiteallocation} and \eqref{oid:firstallocation}.
+The latter use the complete conductor bound proved above and the
+explicitly cited inherited LRS lower-root estimates. They are a new
+consequence for the actual observation, not merely the supplied
+note's full-class energy calculation. The note's absolute-action
+and marked-family calculations are outside this derivation.
+
+\begin{thebibliography}{9}
+\bibitem{Hager} W.~W. Hager, ``Updating the Inverse of a Matrix'',
+\emph{SIAM Review} 31 (1989), 221--239,
+\href{https://doi.org/10.1137/1031049}{doi:10.1137/1031049}.
+\bibitem{DLMF5} R.~A. Askey and R. Roy, ``Gamma Function'',
+Chapter 5 in the NIST Digital Library of Mathematical Functions,
+\S5.11, ``Asymptotic Expansions'', especially (i), (ii), and (iii),
+\url{https://dlmf.nist.gov/5.11}.
+\bibitem{DLMF18} T.~H. Koornwinder, R. Wong, R. Koekoek,
+R.~F. Swarttouw and W.~P. Reinhardt, ``Orthogonal Polynomials'',
+Chapter 18 in the NIST Digital Library of Mathematical Functions,
+\S18.23, equation (18.23.7),
+\url{https://dlmf.nist.gov/18.23#E7}. The DLMF source note attributes
+this generating identity to Ismail (2009), equation (5.9.3).
+\bibitem{InheritedFEX} Split-Zero programme, original complete
+fixed-period conductor proof, FEX1--11, in
+\texttt{14\_CURRENT\_KERNEL\_AND\_MULTIPLICITY\_PROOFS.tex}.
+The observation, source, conductor coefficients, and Gamma derivative
+identity in this derivation are those retained in that source.
+\bibitem{InheritedLRS} Split-Zero programme, ``Literal covariance,
+logarithmic endpoint term, and the complete action'', LRS3--4 and
+LRS11--14, in \texttt{LRC\_SCALAR\_RECONSTRUCTION.tex}.
+The original finite root guards and complete lower-root norm estimates
+are retained in their application above.
+\end{thebibliography}
+
+\end{document}

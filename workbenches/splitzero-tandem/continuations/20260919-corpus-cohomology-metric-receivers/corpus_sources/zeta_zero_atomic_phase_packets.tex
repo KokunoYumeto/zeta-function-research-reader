@@ -1,0 +1,822 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1.08in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\Ima}{Im}
+
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Sph}{\mathbb S^1}
+\newcommand{\ph}{\operatorname{ph}}
+\newcommand{\taup}{\tau}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\cO}{\mathcal O}
+
+\title[Atomic phase packets of zeta zeros]{Taylor Atomization, Orthogonal Walks, and Spectral Packets\ for the Non-Trivial Zeta Zeros}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\begin{abstract}
+For every zero $\rho$ of the Riemann zeta function one has $F_1(\rho)=\zeta(\rho)-1=-1$ in the globalization semiring $G(\ZZ)=\ZZ\sqcup\{\taup\}$, so the reduced split-zero coefficient is the fixed Boolean pair $A=\{0,\taup\}\cong\BB$.  The pointwise coefficient is constant, and the problem is therefore geometric.
+
+In this paper we make precise the orthogonal-walk and atomic-phase formalism extracted from unpublished correspondence of Jacolm Tobley.  First, for a finite real sequence $(\alpha_1,\dots,\alpha_m)$ we prove the exact orthogonal-walk expansion
+\[
+\prod_{k=1}^m (1+\ii\alpha_k)=\sum_{r=0}^m \ii^r e_r(\alpha_1,\dots,\alpha_m),
+\]
+with step lengths given by the elementary symmetric polynomials, and we identify the normalized product with $\exp\bigl(\ii\sum_k \arctan\alpha_k\bigr)$.  Second, given a real-analytic phase series $\Theta(t)=\sum_{n\ge 1}\beta_n t^n$, we prove that on a sufficiently small interval the exact factorization
+\[
+\e^{\ii\Theta(t)}=\prod_{n\ge 1}\frac{1+\ii\tan(\beta_n t^n)}{\sqrt{1+\tan^2(\beta_n t^n)}}
+\]
+holds, and that the corresponding partial products are normalized endpoints of finite orthogonal walks.  Thus Taylor phase series become precise complex exponentials built from atomic sequences.
+
+Third, for a non-trivial zero $\rho$ of the completed zeta function $\xi$ of multiplicity $m$, we apply this formalism to the reduced local germ
+\[
+\psi_\rho(z):=\frac{\xi(\rho+z)}{\lambda_\rho z^m},\qquad \lambda_\rho:=\frac{\xi^{(m)}(\rho)}{m!},
+\]
+and obtain, for every unit direction $\nu\in\Sph$, a canonical real-analytic local phase packet
+\[
+\ph\bigl(\xi(\rho+t\nu)\bigr)=\nu^m\ph(\lambda_\rho)\exp\Bigl(\ii\sum_{n\ge 1}\beta_{\rho,\nu,n}t^n\Bigr)
+\qquad (0<t\ll 1).
+\]
+The finite truncations are normalized endpoints of explicit orthogonal walks determined by the atomic slopes $\tan(\beta_{\rho,\nu,n}t^n)$.  Finally, we combine this local phase formalism with the affine spectral coordinate $\Phi(s)=\ii(s-\tfrac12)$ and the Connes--Consani $\zeta$-cycle lengths.  In this way a non-trivial zeta zero is represented geometrically by a weighted Boolean spectral packet together with a canonical Taylor-atomic phase sequence.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},
+\qquad
+A:=\{0,\taup\}\subset S,
+\qquad
+F_1(s):=\zeta(s)-1.
+\]
+If $\rho$ is a zero of $\zeta$, then $F_1(\rho)=-1$, and multiplication by $-1$ fixes exactly the Boolean pair $A\cong\BB$.  Thus the reduced split-zero coefficient attached to a zeta zero is constant.  The mathematical issue is not pointwise evaluation but the extraction of geometric data from the local analytic germ and from the global packet symmetries.
+
+The present paper addresses a specific question.  The previous split-zero papers produced divisor sheaves, packet sheaves, jet enhancements, and compactified tails.  What they did not yet do is to convert the local Taylor expansions at a zero into a precise complex-exponential formalism governed by the orthogonal-walk constructions from the unpublished correspondence of Jacolm Tobley \cite{Tobley}.  The point of the present note is to do exactly that.
+
+There are three inputs.
+\begin{enumerate}[label=(\roman*)]
+\item The split-zero coefficient object is the Boolean pair $A=\{0,\taup\}\cong\BB$.
+\item The non-trivial zero packets are governed by the completed zeta function
+\[
+\xi(s)=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s),
+\]
+which satisfies $\xi(1-s)=\xi(s)$ and $\overline{\xi(\bar s)}=\xi(s)$.
+\item Tobley's phase formalism rewrites products of normalized affine factors
+\[
+\frac{1+\ii\alpha}{\sqrt{1+\alpha^2}}
+\]
+as exact complex exponentials and expands the unnormalized products into orthogonal walks whose step lengths are elementary symmetric polynomials \cite{Tobley}.
+\end{enumerate}
+
+The new observation is that the local phase of the reduced zeta germ at a zero is exactly of the form treated by the Tobley formalism.  After dividing out the vanishing factor $z^m$ and the leading coefficient $\lambda_\rho$, one is left with a nonvanishing holomorphic germ.  A holomorphic logarithm of that germ has a Taylor expansion, and the imaginary part of that logarithm produces a real phase series
+\[
+\Theta_{\rho,\nu}(t)=\sum_{n\ge 1}\beta_{\rho,\nu,n}t^n.
+\]
+The corresponding local unit phase is $\exp(\ii\Theta_{\rho,\nu}(t))$.  The point is that this is not merely an abstract exponential: it can be written exactly as an infinite product of normalized affine factors and approximated by finite orthogonal walks with explicit step lengths.
+
+This gives a concrete packet-geometric answer to the question of how a non-trivial zero maps into the split-zero formalism.  The reduced coefficient is still the Boolean pair $A$; the multiplicity contributes the Boolean cube $A^{m_\rho}$; the packet position is carried by the affine spectral coordinate
+\[
+\Phi(s)=\ii\Bigl(s-\frac12\Bigr);
+\]
+and the local phase is carried by a canonical Taylor-atomic sequence.  On the critical line, the same packet also determines the primitive $\zeta$-cycle length $2\pi/|\Im\rho|$ by the theorem of Connes and Consani \cite{ConnesConsaniCycles}.
+
+\section{Split-zero coefficients and spectral packets}
+
+\subsection{The Boolean coefficient object}
+
+\begin{definition}
+Let
+\[
+S:=\ZZ\sqcup\{\taup\},\qquad \taup\notin\ZZ,
+\]
+with operations
+\[
+m\oplus n:=m+n,
+\qquad
+m\oplus \taup=\taup\oplus m:=m,
+\qquad
+\taup\oplus\taup:=\taup,
+\]
+and
+\[
+m\odot n:=mn,
+\qquad
+m\odot\taup=\taup\odot m:=\taup,
+\qquad
+\taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in\ZZ\subset S$ is the multiplicative identity.
+\end{definition}
+
+\begin{proposition}\label{prop:boolean-pair}
+The subset
+\[
+A:=\{0,\taup\}\subset S
+\]
+is a subsemiring, and the map
+\[
+A\longrightarrow \BB=\{0,1\},\qquad \taup\mapsto 0,\qquad 0\mapsto 1,
+\]
+is an isomorphism of semirings.
+\end{proposition}
+
+\begin{proof}
+Inside $A$ one has
+\[
+0\oplus0=0,
+\qquad
+0\oplus\taup=0,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot0=0,
+\qquad
+0\odot\taup=\taup,
+\qquad
+\taup\odot\taup=\taup.
+\]
+These are exactly the Boolean addition and multiplication tables under the displayed identification.
+\end{proof}
+
+\begin{proposition}\label{prop:F1-zero}
+For every zero $\rho$ of $\zeta$ one has
+\[
+F_1(\rho)=-1.
+\]
+The unique order-$2$ unit of $S$ is $-1$, and its fixed-point set is exactly $A$.
+\end{proposition}
+
+\begin{proof}
+If $\zeta(\rho)=0$, then $F_1(\rho)=\zeta(\rho)-1=-1$.  Since the only units of $\ZZ$ are $\pm1$, the only units of $S$ are also $\pm1$.  The element $-1$ has order $2$, while $1$ does not.  Finally,
+\[
+(-1)\odot\taup=\taup,
+\qquad
+(-1)\odot n=n\iff -n=n\iff n=0,
+\]
+so the fixed-point set is $\{0,\taup\}=A$.
+\end{proof}
+
+\subsection{Non-trivial packets and the spectral coordinate}
+
+\begin{definition}
+Let
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s)
+\]
+be the completed zeta function.  Its zero set is denoted
+\[
+Z_\xi:=\{\rho\in\CC:\xi(\rho)=0\}.
+\]
+These are exactly the non-trivial zeros of $\zeta$, counted with the same multiplicities.
+\end{definition}
+
+\begin{proposition}\label{prop:packet-coordinate}
+The set $Z_\xi$ is stable under complex conjugation and under $s\mapsto 1-s$.  If $\rho\in Z_\xi$ has multiplicity $m_\rho$, then every point in the orbit
+\[
+P_\rho:=\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+has the same multiplicity.  The affine map
+\[
+\Phi:\CC\longrightarrow \CC,
+\qquad
+\Phi(s):=\ii\Bigl(s-\frac12\Bigr),
+\]
+satisfies
+\[
+\Phi(1-s)=-\Phi(s),
+\qquad
+\Phi(\bar s)=-\overline{\Phi(s)}.
+\]
+Consequently,
+\[
+\Phi(P_\rho)=\{z,-z,\bar z,-\bar z\},
+\qquad z:=\Phi(\rho).
+\]
+If $\rho=\tfrac12+\ii\gamma$ lies on the critical line, then $z=-\gamma\in\RR$.
+\end{proposition}
+
+\begin{proof}
+The functional equation $\xi(1-s)=\xi(s)$ implies that $1-\rho$ is a zero whenever $\rho$ is.  The identity $\overline{\xi(\bar s)}=\xi(s)$ implies that $\bar\rho$ is a zero whenever $\rho$ is.  Because these maps are biholomorphic and preserve $\xi$ up to composition with a nowhere-vanishing factor of modulus $1$, the multiplicity is constant on each orbit.
+
+The displayed formulas for $\Phi$ are immediate:
+\[
+\Phi(1-s)=\ii\Bigl(\frac12-s\Bigr)=-\ii\Bigl(s-\frac12\Bigr)=-\Phi(s),
+\]
+and
+\[
+\Phi(\bar s)=\ii\Bigl(\bar s-\frac12\Bigr)=-\overline{\ii\Bigl(s-\frac12\Bigr)}=-\overline{\Phi(s)}.
+\]
+Applying these to the orbit of $\rho$ gives the packet formula.  If $\rho=\tfrac12+\ii\gamma$, then
+\[
+\Phi(\rho)=\ii\bigl(\ii\gamma\bigr)=-\gamma\in\RR.
+\]
+\end{proof}
+
+\begin{remark}
+For a zero $\rho$ of multiplicity $m_\rho$, the multiplicity coefficient object in the split-zero formalism is the Boolean cube $A^{m_\rho}$.  At the reduced level one sees only the fixed Boolean pair $A$; the higher Boolean cube records multiplicity.
+\end{remark}
+
+\begin{corollary}[Critical packets and $\zeta$-cycle lengths]\label{cor:critical-length}
+Let $\rho=\tfrac12+\ii\gamma\in Z_\xi$ with $\gamma\neq0$.  Then the packet coordinate is $\Phi(\rho)=-\gamma$, and the primitive $\zeta$-cycle length attached to the packet is
+\[
+\Lambda_\rho:=\frac{2\pi}{|\gamma|}=\frac{2\pi}{|\Phi(\rho)|}.
+\]
+\end{corollary}
+
+\begin{proof}
+The identity $\Phi(\rho)=-\gamma$ is Proposition~\ref{prop:packet-coordinate}.  Connes and Consani prove that if $\zeta(\tfrac12+\ii s)=0$ with $s>0$, then every circle of length an integral multiple of $2\pi/s$ is a $\zeta$-cycle, and that $s$ appears in the corresponding spectrum \cite[Theorem~1.1(ii)]{ConnesConsaniCycles}.  This yields the displayed primitive length.
+\end{proof}
+
+\section{Atomic phase factors and orthogonal walks}
+
+The exact phase formalism used below is extracted from Tobley's unpublished correspondence on arctangent decompositions, orthogonal walks, and atomic step models of complex multiplication \cite{Tobley}.
+
+\begin{definition}
+For $a\in\RR$, define the normalized affine phase factor
+\[
+u(a):=\frac{1+\ii a}{\sqrt{1+a^2}}\in\Sph.
+\]
+For a finite sequence $a_1,\dots,a_M\in\RR$, define the unnormalized and normalized products
+\[
+U_M(a_1,\dots,a_M):=\prod_{n=1}^M (1+\ii a_n),
+\qquad
+\widehat U_M(a_1,\dots,a_M):=\prod_{n=1}^M \nu(a_n).
+\]
+\end{definition}
+
+\begin{proposition}[Finite orthogonal-walk expansion]\label{prop:finite-orthogonal}
+Let $a_1,\dots,a_M\in\RR$, and let $e_r(a_1,\dots,a_M)$ be the elementary symmetric polynomials.  Then
+\[
+U_M(a_1,\dots,a_M)=\sum_{r=0}^M \ii^r e_r(a_1,\dots,a_M).
+\]
+Consequently, if
+\[
+S_r:=\sum_{q=0}^r \ii^q e_q(a_1,\dots,a_M),
+\qquad 0\le r\le M,
+\]
+then the successive differences $S_r-S_{r-1}$ are alternately horizontal and vertical segments, and the $r$th segment has signed length $e_r(a_1,\dots,a_M)$.
+
+Moreover,
+\[
+\widehat U_M(a_1,\dots,a_M)=\exp\Bigl(\ii\sum_{n=1}^M \arctan a_n\Bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+Expanding the product gives
+\[
+\prod_{n=1}^M (1+\ii a_n)=\sum_{I\subseteq [M]} \ii^{|I|}\prod_{j\in I} a_j.
+\]
+Grouping by the cardinality $|I|=r$ yields the first formula because
+\[
+e_r(a_1,\dots,a_M)=\sum_{|I|=r}\prod_{j\in I}a_j.
+\]
+Since multiplication by $\ii^r$ rotates the real axis through successive quarter-turns, the geometric statement is immediate.
+
+For the normalized identity, note that
+\[
+\nu(a)=\frac{1+\ii a}{\sqrt{1+a^2}}=
+\cos(\arctan a)+\ii\sin(\arctan a)=\e^{\ii\arctan a}.
+\]
+Multiplying over $n$ proves the claim.
+\end{proof}
+
+\begin{proposition}[Infinitesimal orthogonal rotation]\label{prop:derivative-nu}
+For $a\in\RR$ one has
+\[
+\nu'(a)=\frac{\ii}{1+a^2}\,\nu(a).
+\]
+Consequently, if $a_n:I\to\RR$ are differentiable on an interval $I$, then
+\[
+\frac{d}{dt}\widehat U_M\bigl(a_1(t),\dots,a_M(t)\bigr)
+=\ii\Bigl(\sum_{n=1}^M \frac{a_n'(t)}{1+a_n(t)^2}\Bigr)
+\widehat U_M\bigl(a_1(t),\dots,a_M(t)\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:finite-orthogonal},
+\[
+\nu(a)=\e^{\ii\arctan a},
+\]
+so
+\[
+\nu'(a)=\ii\frac{1}{1+a^2}\e^{\ii\arctan a}=\frac{\ii}{1+a^2}\,\nu(a).
+\]
+For the product, differentiate termwise and factor out the common product.
+\end{proof}
+
+\begin{proposition}[Equal-step limit]\label{prop:equal-step-limit}
+For every $\theta\in\RR$,
+\[
+\lim_{N\to\infty}\nu\!\left(\frac{\theta}{N}\right)^N=\e^{\ii\theta}.
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:finite-orthogonal},
+\[
+\nu\!\left(\frac{\theta}{N}\right)^N
+=\exp\!\Bigl(\ii N\arctan\!\left(\frac{\theta}{N}\right)\Bigr).
+\]
+Since $N\arctan(\theta/N)\to \theta$, the conclusion follows.
+\end{proof}
+
+\begin{theorem}[Exact Taylor atomization]\label{thm:taylor-atomization}
+Let
+\[
+\Theta(t)=\sum_{n=1}^{\infty}\beta_n t^n
+\]
+be a real-analytic function on $(-R,R)$ with $\Theta(0)=0$ and $\beta_n\in\RR$.  Then there exists $r\in(0,R)$ such that for every $|t|\le r$ and every $n\ge1$ one has
+\[
+|\beta_n t^n|<\frac{\pi}{4}.
+\]
+Define the atomic slopes
+\[
+\alpha_n(t):=\tan\bigl(\beta_n t^n\bigr),\qquad |t|\le r.
+\]
+Then the following hold.
+\begin{enumerate}[label=(\roman*)]
+\item The series $\sum_{n\ge1}|\alpha_n(t)|$ converges uniformly on $[-r,r]$.
+\item For every $M\ge1$,
+\[
+\prod_{n=1}^M \nu\bigl(\alpha_n(t)\bigr)=\exp\!\Bigl(\ii\sum_{n=1}^M\beta_n t^n\Bigr).
+\]
+\item The infinite product converges uniformly on $[-r,r]$, and
+\[
+\prod_{n=1}^{\infty}\nu\bigl(\alpha_n(t)\bigr)=\e^{\ii\Theta(t)}.
+\]
+\item The unnormalized finite products admit the orthogonal-walk expansions
+\[
+\prod_{n=1}^M (1+\ii\alpha_n(t))=
+\sum_{q=0}^M \ii^q e_q\bigl(\alpha_1(t),\dots,\alpha_M(t)\bigr).
+\]
+Hence the normalized partial products are normalized endpoints of finite orthogonal walks with step lengths $e_q\bigl(\alpha_1(t),\dots,\alpha_M(t)\bigr)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Choose $r\in(0,R)$ so small that
+\[
+\sum_{n=1}^{\infty}|\beta_n|r^n<\frac{\pi}{4}.
+\]
+Then for every $n$ and every $|t|\le r$,
+\[
+|\beta_n t^n|\le \sum_{m=1}^{\infty}|\beta_m|r^m<\frac{\pi}{4}.
+\]
+On $[-\pi/4,\pi/4]$ one has $|\tan x|\le 2|x|$, so
+\[
+|\alpha_n(t)|=|\tan(\beta_n t^n)|\le 2|\beta_n|r^n.
+\]
+Since $\sum_n |\beta_n|r^n<\infty$, the series $\sum_n |\alpha_n(t)|$ converges uniformly on $[-r,r]$.  This proves~(i).
+
+For~(ii), observe that $|\beta_n t^n|<\pi/2$, so
+\[
+\arctan\alpha_n(t)=\arctan\bigl(\tan(\beta_n t^n)\bigr)=\beta_n t^n.
+\]
+By Proposition~\ref{prop:finite-orthogonal},
+\[
+\prod_{n=1}^M \nu\bigl(\alpha_n(t)\bigr)
+=\exp\!\Bigl(\ii\sum_{n=1}^M \arctan\alpha_n(t)\Bigr)
+=\exp\!\Bigl(\ii\sum_{n=1}^M \beta_n t^n\Bigr).
+\]
+This proves~(ii).
+
+Since the power series for $\Theta$ converges uniformly on $[-r,r]$, the partial sums
+\[
+\Theta_M(t):=\sum_{n=1}^M\beta_n t^n
+\]
+converge uniformly to $\Theta(t)$.  By~(ii),
+\[
+\prod_{n=1}^M \nu\bigl(\alpha_n(t)\bigr)=\e^{\ii\Theta_M(t)},
+\]
+so the partial products converge uniformly to $\e^{\ii\Theta(t)}$.  This proves~(iii).
+
+Part~(iv) is Proposition~\ref{prop:finite-orthogonal} applied to the finite sequence $\alpha_1(t),\dots,\alpha_M(t)$.
+\end{proof}
+
+\begin{corollary}[Two exact walk models for the same phase]\label{cor:two-walks}
+Under the hypotheses of Theorem~\ref{thm:taylor-atomization}, the same phase $\e^{\ii\Theta(t)}$ admits two exact representations.
+\begin{enumerate}[label=(\alph*)]
+\item The \emph{Taylor walk}
+\[
+\e^{\ii\Theta(t)}=\sum_{q=0}^{\infty}\frac{\bigl(\ii\Theta(t)\bigr)^q}{q!},
+\]
+whose step directions cycle with period $4$ and whose step lengths are $|\Theta(t)|^q/q!$.
+\item The \emph{atomic Tobley walk}, obtained as the uniform limit of the normalized endpoints of the finite orthogonal walks attached to the atomic slopes $\alpha_n(t)=\tan(\beta_n t^n)$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Part~(a) is the Taylor expansion of the exponential function.  Part~(b) is Theorem~\ref{thm:taylor-atomization}(iii)--(iv).
+\end{proof}
+
+\section{Taylor atomization of nonvanishing holomorphic germs}
+
+\begin{theorem}[Local phase expansion]\label{thm:nonvanishing-germ}
+Let $g$ be holomorphic on a neighborhood of $0\in\CC$, and assume $g(0)\neq0$.  Then there exist $\varepsilon>0$ and a unique holomorphic function
+\[
+h(z)=\sum_{n=1}^{\infty} c_n z^n
+\]
+on $|z|<\varepsilon$ such that
+\[
+g(z)=g(0)\e^{h(z)},
+\qquad h(0)=0.
+\]
+Fix a unit direction $\nu\in\Sph$, and define
+\[
+\Theta_{g,\nu}(t):=\Ima\,h(t\nu)
+=\sum_{n=1}^{\infty}\beta_{g,\nu,n} t^n,
+\qquad
+\beta_{g,\nu,n}:=\Ima\bigl(c_n\nu^n\bigr).
+\]
+Then, for $0<t<\varepsilon$,
+\[
+\ph\bigl(g(t\nu)\bigr)=\ph\bigl(g(0)\bigr)\e^{\ii\Theta_{g,\nu}(t)}.
+\]
+Moreover, after shrinking $\varepsilon$ if necessary, Theorem~\ref{thm:taylor-atomization} applies to $\Theta_{g,\nu}$, so the local phase is represented by a canonical atomic sequence
+\[
+\alpha_{g,\nu,n}(t):=\tan\bigl(\beta_{g,\nu,n}t^n\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Because $g(0)\neq0$, after shrinking the neighborhood we may assume that $g$ never vanishes on the disc $|z|<\varepsilon$.  Since the disc is simply connected, the nonvanishing holomorphic function $g(z)/g(0)$ admits a unique holomorphic logarithm $h$ with $h(0)=0$.  Expanding $h$ into its Taylor series gives
+\[
+g(z)=g(0)\e^{h(z)},
+\qquad
+h(z)=\sum_{n=1}^{\infty} c_n z^n.
+\]
+Evaluating at $z=t\nu$ yields
+\[
+g(t\nu)=g(0)\exp\!\Bigl(\sum_{n=1}^{\infty} c_n\nu^n t^n\Bigr).
+\]
+Taking moduli gives
+\[
+|g(t\nu)|=|g(0)|\exp\!\Bigl(\sum_{n=1}^{\infty}\Rea(c_n\nu^n)t^n\Bigr),
+\]
+while dividing by the modulus yields
+\[
+\ph\bigl(g(t\nu)\bigr)=\ph\bigl(g(0)\bigr)\exp\!\Bigl(\ii\sum_{n=1}^{\infty}\Ima(c_n\nu^n)t^n\Bigr)
+=\ph\bigl(g(0)\bigr)\e^{\ii\Theta_{g,\nu}(t)}.
+\]
+The last claim is exactly Theorem~\ref{thm:taylor-atomization} applied to the real-analytic function $\Theta_{g,\nu}$.
+\end{proof}
+
+\begin{proposition}[The first two Taylor atoms]\label{prop:first-two-atoms}
+In the situation of Theorem~\ref{thm:nonvanishing-germ}, write
+\[
+\frac{g(z)}{g(0)}=1+a_1 z+a_2 z^2+O(z^3)
+\qquad (z\to0).
+\]
+Then
+\[
+c_1=a_1,
+\qquad
+c_2=a_2-\frac12 a_1^2,
+\]
+and therefore
+\[
+\beta_{g,\nu,1}=\Ima(\nu a_1),
+\qquad
+\beta_{g,\nu,2}=\Ima\!\left(\nu^2\Bigl(a_2-\frac12 a_1^2\Bigr)\right).
+\]
+\end{proposition}
+
+\begin{proof}
+Since $\log(1+w)=w-\frac12 w^2+O(w^3)$ as $w\to0$, applying this with
+\[
+w=a_1 z+a_2 z^2+O(z^3)
+\]
+gives
+\[
+h(z)=a_1 z+\Bigl(a_2-\frac12 a_1^2\Bigr)z^2+O(z^3).
+\]
+Comparing coefficients with $h(z)=\sum_{n\ge1} c_n z^n$ proves the formula for $c_1$ and $c_2$.  The formulas for the $\beta$'s are immediate from the definition $\beta_{g,\nu,n}=\Ima(c_n\nu^n)$.
+\end{proof}
+
+\section{Local phase packets of the non-trivial zeta zeros}
+
+\begin{definition}
+Let $\rho\in Z_\xi$ be a non-trivial zero of multiplicity
+\[
+m:=m_\rho=\ord_\rho(\xi).
+\]
+Define the leading coefficient
+\[
+\lambda_\rho:=\frac{\xi^{(m)}(\rho)}{m!}\in\CC^\times.
+\]
+Then the reduced local germ at $\rho$ is
+\[
+\psi_\rho(z):=\frac{\xi(\rho+z)}{\lambda_\rho z^m}.
+\]
+By construction $\psi_\rho(0)=1$.
+\end{definition}
+
+\begin{theorem}[Local phase packet at a zeta zero]\label{thm:local-phase-packet}
+Let $\rho\in Z_\xi$ have multiplicity $m$, and let $\nu\in\Sph$ be a unit direction.  Then there exists $\varepsilon>0$ and a unique holomorphic function
+\[
+h_\rho(z)=\sum_{n=1}^{\infty} c_{\rho,n} z^n
+\qquad (|z|<\varepsilon)
+\]
+such that
+\[
+\xi(\rho+z)=\lambda_\rho z^m \e^{h_\rho(z)},
+\qquad h_\rho(0)=0.
+\]
+Define the local phase series
+\[
+\Theta_{\rho,\nu}(t):=\Ima\,h_\rho(t\nu)
+=\sum_{n=1}^{\infty}\beta_{\rho,\nu,n} t^n,
+\qquad
+\beta_{\rho,\nu,n}:=\Ima\bigl(c_{\rho,n}\nu^n\bigr).
+\]
+Then, for $0<t<\varepsilon$,
+\begin{align*}
+|\xi(\rho+t\nu)|
+&=t^m |\lambda_\rho| \exp\!\Bigl(\sum_{n=1}^{\infty}\Rea(c_{\rho,n}\nu^n)t^n\Bigr),\\[4pt]
+\ph\bigl(\xi(\rho+t\nu)\bigr)
+&=\nu^m\ph(\lambda_\rho)\e^{\ii\Theta_{\rho,\nu}(t)}.
+\end{align*}
+After shrinking $\varepsilon$ if necessary, the phase factor admits the exact atomic representation
+\[
+\e^{\ii\Theta_{\rho,\nu}(t)}
+=\prod_{n=1}^{\infty}\nu\bigl(\alpha_{\rho,\nu,n}(t)\bigr),
+\qquad
+\alpha_{\rho,\nu,n}(t):=\tan\bigl(\beta_{\rho,\nu,n}t^n\bigr),
+\]
+and its finite truncations are normalized endpoints of the orthogonal walks
+\[
+W_{\rho,\nu,M}(t):=
+\sum_{q=0}^M \ii^q e_q\bigl(\alpha_{\rho,\nu,1}(t),\dots,\alpha_{\rho,\nu,M}(t)\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Because $\xi(\rho+z)$ has a zero of exact order $m$ at $z=0$, one has a factorization
+\[
+\xi(\rho+z)=\lambda_\rho z^m \psi_\rho(z)
+\]
+with $\psi_\rho$ holomorphic and $\psi_\rho(0)=1$.  Shrinking $\varepsilon$ if necessary, we may assume that $\psi_\rho$ never vanishes on $|z|<\varepsilon$.  Since the disc is simply connected, there exists a unique holomorphic logarithm $h_\rho$ with $h_\rho(0)=0$ and
+\[
+\psi_\rho(z)=\e^{h_\rho(z)}.
+\]
+This proves the factorization
+\[
+\xi(\rho+z)=\lambda_\rho z^m \e^{h_\rho(z)}.
+\]
+Now evaluate at $z=t\nu$ with $0<t<\varepsilon$.  Because $|\nu|=1$,
+\[
+\xi(\rho+t\nu)=\lambda_\rho t^m \nu^m \exp\!\Bigl(\sum_{n=1}^{\infty} c_{\rho,n}\nu^n t^n\Bigr).
+\]
+Taking moduli yields the first displayed formula, and dividing by the modulus yields
+\[
+\ph\bigl(\xi(\rho+t\nu)\bigr)=\nu^m\ph(\lambda_\rho)\exp\!\Bigl(\ii\sum_{n=1}^{\infty}\Ima(c_{\rho,n}\nu^n)t^n\Bigr)
+=\nu^m\ph(\lambda_\rho)\e^{\ii\Theta_{\rho,\nu}(t)}.
+\]
+The atomic representation and the orthogonal-walk formula are exactly Theorem~\ref{thm:taylor-atomization} applied to the real-analytic function $\Theta_{\rho,\nu}$.
+\end{proof}
+
+\begin{corollary}[The first local phase atoms of a zeta zero]\label{cor:zeta-first-atoms}
+Let $\rho\in Z_\xi$ have multiplicity $m$.  Then
+\[
+\psi_\rho(z)=1+a_{\rho,1} z+a_{\rho,2} z^2+O(z^3),
+\]
+where
+\[
+a_{\rho,1}=\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)},
+\qquad
+a_{\rho,2}=\frac{\xi^{(m+2)}(\rho)}{(m+2)(m+1)\xi^{(m)}(\rho)}.
+\]
+Hence, for every unit direction $\nu$,
+\[
+\beta_{\rho,\nu,1}=\Ima\!\left(\nu\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)}\right),
+\]
+and
+\[
+\beta_{\rho,\nu,2}=\Ima\!\left(\nu^2\Biggl(\frac{\xi^{(m+2)}(\rho)}{(m+2)(m+1)\xi^{(m)}(\rho)}-
+\frac12\Bigl(\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)}\Bigr)^2\Biggr)\right).
+\]
+In particular, if $\rho$ is simple and lies on the critical line, then the first normal and tangent atoms are
+\[
+\beta_{\rho,1,1}=\Ima\!\left(\frac{\xi''(\rho)}{2\xi'(\rho)}\right),
+\qquad
+\beta_{\rho,\ii,1}=\Rea\!\left(\frac{\xi''(\rho)}{2\xi'(\rho)}\right).
+\]
+\end{corollary}
+
+\begin{proof}
+Since
+\[
+\xi(\rho+z)=\sum_{k=m}^{\infty}\frac{\xi^{(k)}(\rho)}{k!}z^k,
+\]
+dividing by $\lambda_\rho z^m$ gives
+\[
+\psi_\rho(z)=1+
+\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)}z+
+\frac{\xi^{(m+2)}(\rho)}{(m+2)(m+1)\xi^{(m)}(\rho)}z^2+O(z^3).
+\]
+Now apply Proposition~\ref{prop:first-two-atoms}.  If $m=1$ and $\nu=\ii$, then
+\[
+\beta_{\rho,\ii,1}=\Ima\!\left(\ii\frac{\xi''(\rho)}{2\xi'(\rho)}\right)=\Rea\!\left(\frac{\xi''(\rho)}{2\xi'(\rho)}\right).
+\]
+\end{proof}
+
+\begin{proposition}[Packet symmetry of the local phase data]\label{prop:packet-symmetry-local}
+Let $\rho\in Z_\xi$ have multiplicity $m$.  Then
+\[
+\lambda_{1-\rho}=(-1)^m\lambda_\rho,
+\qquad
+\lambda_{\bar\rho}=\overline{\lambda_\rho}.
+\]
+Moreover, after shrinking the common radius of definition if necessary, the reduced local germs satisfy
+\[
+\psi_{1-\rho}(z)=\psi_\rho(-z),
+\qquad
+\psi_{\bar\rho}(z)=\overline{\psi_\rho(\bar z)}.
+\]
+Consequently, the logarithmic phase series satisfy
+\[
+\Theta_{1-\rho,-\nu}(t)=\Theta_{\rho,\nu}(t),
+\qquad
+\Theta_{\bar\rho,\bar\nu}(t)=-\Theta_{\rho,\nu}(t),
+\]
+and therefore the atomic slopes transform by
+\[
+\alpha_{1-\rho,-\nu,n}(t)=\alpha_{\rho,\nu,n}(t),
+\qquad
+\alpha_{\bar\rho,\bar\nu,n}(t)=-\alpha_{\rho,\nu,n}(t).
+\]
+In particular,
+\[
+|\lambda_{\rho}|=|\lambda_{\bar\rho}|=|\lambda_{1-\rho}|=|\lambda_{1-\bar\rho}|,
+\]
+so the local jet weight
+\[
+\omega(P_\rho):=|\lambda_\rho|
+\]
+is a well-defined positive invariant of the packet $P_\rho$.
+\end{proposition}
+
+\begin{proof}
+Because $\xi(1-s)=\xi(s)$, differentiating $m$ times gives
+\[
+(-1)^m\xi^{(m)}(1-s)=\xi^{(m)}(s).
+\]
+Setting $s=\rho$ yields
+\[
+\xi^{(m)}(1-\rho)=(-1)^m\xi^{(m)}(\rho),
+\]
+hence $\lambda_{1-\rho}=(-1)^m\lambda_\rho$.  Likewise, $\overline{\xi(\bar s)}=\xi(s)$ implies
+\[
+\xi^{(m)}(\bar\rho)=\overline{\xi^{(m)}(\rho)},
+\]
+whence $\lambda_{\bar\rho}=\overline{\lambda_\rho}$.
+
+Next,
+\[
+\xi(1-\rho+z)=\xi(\rho-z)=\lambda_\rho(-z)^m\psi_\rho(-z)=\lambda_{1-\rho} z^m\psi_\rho(-z),
+\]
+so by the definition of $\psi_{1-\rho}$ one has $\psi_{1-\rho}(z)=\psi_\rho(-z)$.  Similarly,
+\[
+\xi(\bar\rho+z)=\overline{\xi(\rho+\bar z)}
+=\overline{\lambda_\rho \bar z^m \psi_\rho(\bar z)}
+=\lambda_{\bar\rho} z^m\overline{\psi_\rho(\bar z)},
+\]
+so $\psi_{\bar\rho}(z)=\overline{\psi_\rho(\bar z)}$.
+
+Let $h_\rho$ be the logarithm used in Theorem~\ref{thm:local-phase-packet}.  Since $\psi_{1-\rho}(0)=1$ and $\psi_\rho(0)=1$, uniqueness of the logarithm normalized by value $0$ at the origin gives
+\[
+h_{1-\rho}(z)=h_\rho(-z),
+\qquad
+h_{\bar\rho}(z)=\overline{h_\rho(\bar z)}.
+\]
+Evaluating at $z=-t\nu$ and $z=t\bar\nu$ shows
+\[
+\Theta_{1-\rho,-\nu}(t)=\Ima\,h_{1-\rho}(-t\nu)=\Ima\,h_\rho(t\nu)=\Theta_{\rho,\nu}(t),
+\]
+and
+\[
+\Theta_{\bar\rho,\bar\nu}(t)=\Ima\,\overline{h_\rho(t\nu)}=-\Ima\,h_\rho(t\nu)=-\Theta_{\rho,\nu}(t).
+\]
+The slope formulas follow because $\tan$ is odd.  The weight invariance is immediate from the transformation law for the $\lambda$'s.
+\end{proof}
+
+\begin{theorem}[Geometric image of a non-trivial zero]\label{thm:final}
+Let $\rho$ be a non-trivial zero of $\zeta$, let $m=m_\rho$, and let
+\[
+z_\rho:=\Phi(\rho)=\ii\Bigl(\rho-\frac12\Bigr).
+\]
+Then the geometric image of $\rho$ in the split-zero formalism is the following packet object.
+\begin{enumerate}[label=(\roman*)]
+\item The reduced coefficient is the fixed Boolean pair
+\[
+A=\Fix_S(-1)=\{0,\taup\}\cong\BB,
+\]
+and the multiplicity coefficient object is the Boolean cube $A^m$.
+\item The packet base is the centered spectral packet
+\[
+\Phi(P_\rho)=\{z_\rho,-z_\rho,\bar z_\rho,-\bar z_\rho\}.
+\]
+\item The packet carries the well-defined positive weight
+\[
+\omega(P_\rho)=\left|\frac{\xi^{(m)}(\rho)}{m!}\right|.
+\]
+\item For every unit direction $\nu\in\Sph$ there is a canonical real-analytic phase series
+\[
+\Theta_{\rho,\nu}(t)=\sum_{n=1}^{\infty}\beta_{\rho,\nu,n}t^n
+\]
+and a canonical atomic slope sequence
+\[
+\alpha_{\rho,\nu,n}(t)=\tan\bigl(\beta_{\rho,\nu,n}t^n\bigr)
+\qquad (0<t\ll1),
+\]
+such that
+\[
+\ph\bigl(\xi(\rho+t\nu)\bigr)=\nu^m\ph(\lambda_\rho)
+\prod_{n=1}^{\infty}\frac{1+\ii\alpha_{\rho,\nu,n}(t)}{\sqrt{1+\alpha_{\rho,\nu,n}(t)^2}}.
+\]
+The $M$th truncation is the normalized endpoint of the orthogonal walk
+\[
+W_{\rho,\nu,M}(t)=\sum_{q=0}^M \ii^q e_q\bigl(\alpha_{\rho,\nu,1}(t),\dots,\alpha_{\rho,\nu,M}(t)\bigr).
+\]
+\item Under the packet symmetries $\rho\mapsto1-\rho$ and $\rho\mapsto\bar\rho$, the phase series and atomic slope sequences transform exactly as in Proposition~\ref{prop:packet-symmetry-local}.  Thus the packet carries a well-defined local phase geometry.
+\item If $\rho=\tfrac12+\ii\gamma$ lies on the critical line, then
+\[
+z_\rho=-\gamma\in\RR
+\]
+and the packet determines the primitive $\zeta$-cycle length
+\[
+\Lambda_\rho=\frac{2\pi}{|\gamma|}=\frac{2\pi}{|z_\rho|}.
+\]
+\end{enumerate}
+Equivalently, a non-trivial zeta zero is represented geometrically by a weighted Boolean spectral packet together with its canonical Taylor-atomic phase sequence.
+\end{theorem}
+
+\begin{proof}
+Item~(i) is Proposition~\ref{prop:boolean-pair} together with Proposition~\ref{prop:F1-zero}.  Item~(ii) is Proposition~\ref{prop:packet-coordinate}.  Item~(iii) is the weight invariance proved in Proposition~\ref{prop:packet-symmetry-local}.  Item~(iv) is Theorem~\ref{thm:local-phase-packet}.  Item~(v) is Proposition~\ref{prop:packet-symmetry-local}.  Item~(vi) is Corollary~\ref{cor:critical-length}.
+\end{proof}
+
+\begin{remark}
+The theorem separates three levels of structure.
+\begin{enumerate}[label=(\arabic*)]
+\item The pointwise split-zero coefficient $A$ is constant and therefore too coarse.
+\item The Boolean cube $A^m$ and the packet coordinate $\Phi(P_\rho)$ record multiplicity and global symmetry.
+\item The Taylor-atomic phase sequence records the genuine local analytic geometry of the zero.
+\end{enumerate}
+Thus the local orthogonal-walk packet is the first level at which the non-trivial zeros become visible inside the split-zero formalism.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{ConnesConsaniCycles}
+A.~Connes and C.~Consani,
+\emph{Hochschild homology, trace map and $\zeta$-cycles},
+in \emph{Cyclic Cohomology at 40: Achievements and Future Prospects},
+Proc. Sympos. Pure Math. \textbf{105}, American Mathematical Society, Providence, RI, 2023, pp.~83--110.
+
+\bibitem{Tobley}
+J.~Tobley,
+\emph{Unpublished correspondence on orthogonal-walk phase decompositions, Taylor-series atomization, and affine cyclotomic charts},
+May 2026.  Communicated in the project source transcripts supplied with the manuscript materials.
+
+\end{thebibliography}
+
+\end{document}

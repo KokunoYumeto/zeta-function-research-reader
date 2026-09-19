@@ -1,0 +1,963 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\zetaS}{\zeta}
+\newcommand{\Dzet}{D_{\zeta}}
+\newcommand{\Vzet}{\mathcal V_{\zeta}}
+\newcommand{\Azet}{\mathcal A_{\zeta}}
+\newcommand{\Vnt}{\mathcal V_{\mathrm{nt}}}
+\newcommand{\Ant}{\mathcal A_{\mathrm{nt}}}
+
+\title{Sheafifying the Split-Zero Shadow of the Riemann Zeta Zeros}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\tau\},\qquad A:=\{0,\tau\}\subset S.
+\]
+The elementary identity
+\[
+F_1(s):=\zeta(s)-1,\qquad \zeta(\rho)=0\implies F_1(\rho)=-1,
+\]
+shows that every zero \(\rho\) of the Riemann zeta function has the same split-zero fixed locus
+\[
+\Fix_S(-1)=A\cong \BB.
+\]
+Taken pointwise, this shadow is constant and therefore too coarse. The purpose of the present paper is to prove that the correct global object is not the set-theoretic assignment \(\rho\mapsto A\), but a canonical sheaf of \(A\)-semimodules on the zeta zero divisor.
+
+More precisely, if
+\[
+D_\zeta=\sum_\rho m_\rho[\rho]
+\]
+is the zero divisor of \(\zeta\), we define a sheaf \(\mathcal V_{D_\zeta}\) whose stalk at \(\rho\) is the free rank-\(m_\rho\) \(A\)-semimodule \(A^{m_\rho}\). Since \(A\cong\BB\), each stalk is canonically a Boolean cube of dimension \(m_\rho\). The original split-zero pair appears as a canonical retract of every stalk via the coordinatewise idempotent sum \(A^{m_\rho}\twoheadrightarrow A\). Thus the reduced statement \(F_1(\rho)=-1\) has a precise sheafification: the reduced split-zero shadow is the quotient of a multiplicity-refined Boolean-cubical divisor sheaf.
+
+We prove the construction in full detail, show that trivial zeros give simple stalks, compute the exact leading coefficient at each trivial zero, and prove that the nontrivial part of the sheaf is equivariant for complex conjugation and the functional involution \(s\mapsto 1-s\) via the completed zeta function.
+\end{abstract}
+
+\tableofcontents
+
+\section{Algebraic preliminaries on the globalization semiring}
+
+We begin with the exact algebraic facts about the split-zero semiring that are needed later.
+
+\begin{definition}
+Let
+\[
+S:=\ZZ\sqcup\{\tau\},\qquad \tau\notin\ZZ,
+\]
+with operations
+\[
+m\oplus n:=m+n,
+\qquad
+m\oplus \tau=\tau\oplus m:=m,
+\qquad
+\tau\oplus\tau:=\tau,
+\]
+and
+\[
+m\odot n:=mn,
+\qquad
+m\odot\tau=\tau\odot m:=\tau,
+\qquad
+\tau\odot\tau:=\tau.
+\]
+Thus \(\tau\) is the additive identity and multiplicative absorber, while \(1\in\ZZ\subset S\) is the multiplicative identity. We write
+\[
+A:=\{0,\tau\}\subset S.
+\]
+\end{definition}
+
+\begin{remark}
+The semiring \(S\) is the globalization semiring \(G(\ZZ)\) of the companion notes. For the present paper we need only the concrete formulas above.
+\end{remark}
+
+\begin{proposition}
+The subset \(A=\{0,\tau\}\) is a subsemiring of \(S\), and the map
+\[
+\varphi:A\longrightarrow \BB=\{0,1\},
+\qquad
+\varphi(\tau)=0,
+\qquad
+\varphi(0)=1,
+\]
+is an isomorphism of semirings.
+\end{proposition}
+
+\begin{proof}
+The operation tables inside \(A\) are
+\[
+0\oplus0=0,
+\qquad
+0\oplus\tau=\tau\oplus0=0,
+\qquad
+\tau\oplus\tau=\tau,
+\]
+and
+\[
+0\odot0=0,
+\qquad
+0\odot\tau=\tau\odot0=\tau,
+\qquad
+\tau\odot\tau=\tau.
+\]
+Hence \(A\) is closed under both operations. Under \(\varphi\), these tables become exactly the Boolean addition and multiplication:
+\[
+1+1=1,
+\qquad
+1+0=1,
+\qquad
+0+0=0,
+\]
+and
+\[
+1\cdot1=1,
+\qquad
+1\cdot0=0,
+\qquad
+0\cdot0=0.
+\]
+Therefore \(\varphi\) is a semiring isomorphism.
+\end{proof}
+
+\begin{proposition}
+Let \(R\) be a commutative ring with identity, and let \(G(R)=R\sqcup\{\tau\}\) be defined by the same formulas. Then
+\[
+G(R)^\times=R^\times.
+\]
+In particular,
+\[
+S^\times=\{\pm1\}.
+\]
+\end{proposition}
+
+\begin{proof}
+If \(x\in G(R)\) is a unit, there exists \(y\in G(R)\) such that \(x\odot y=1\). Since \(\tau\odot y=\tau\ne1\), one has \(x\ne\tau\). Similarly \(y\ne\tau\). Thus \(x,y\in R\subset G(R)\), and then \(xy=1\) inside \(R\), so \(x\in R^\times\).
+
+Conversely, if \(u\in R^\times\) with inverse \(u^{-1}\in R\), then
+\[
+u\odot u^{-1}=1
+\]
+in \(G(R)\). Hence every unit of \(R\) is a unit of \(G(R)\).
+
+For \(R=\ZZ\), the only ring units are \(\pm1\).
+\end{proof}
+
+\begin{proposition}
+Let \(R\) be a commutative ring with identity and \(u\in R^\times\subset G(R)^\times\). Then
+\[
+\Fix_{G(R)}(u)=\{\tau\}\cup\{r\in R:(u-1)r=0\}.
+\]
+Equivalently,
+\[
+\Fix_{G(R)}(u)=\{\tau\}\cup\Ann_R(u-1).
+\]
+\end{proposition}
+
+\begin{proof}
+By definition,
+\[
+\Fix_{G(R)}(u)=\{x\in G(R):u\odot x=x\}.
+\]
+First, \(u\odot\tau=\tau\), so \(\tau\in\Fix_{G(R)}(u)\).
+
+Now let \(r\in R\subset G(R)\). Then
+\[
+u\odot r=r\iff ur=r\iff (u-1)r=0.
+\]
+Thus the fixed supported points are exactly \(\Ann_R(u-1)\), and adjoining \(\tau\) gives the claimed formula.
+\end{proof}
+
+\begin{corollary}
+Let \(R\) be an integral domain of characteristic different from \(2\). Then \(-1\) is the unique unit of exact order \(2\) in \(G(R)\), and
+\[
+\Fix_{G(R)}(-1)=\{0,\tau\}\cong \BB.
+\]
+In particular, for \(S=G(\ZZ)\), \(-1\) is the unique order-2 unit and
+\[
+\Fix_S(-1)=A.
+\]
+\end{corollary}
+
+\begin{proof}
+If \(u\in R^\times\) satisfies \(u^2=1\), then
+\[
+(u-1)(u+1)=0.
+\]
+Since \(R\) is an integral domain, \(u=1\) or \(u=-1\). Thus the only unit of exact order \(2\) is \(-1\).
+
+Now the preceding proposition gives
+\[
+\Fix_{G(R)}(-1)=\{\tau\}\cup\Ann_R(-2).
+\]
+Because \(R\) is a domain and has characteristic different from \(2\), multiplication by \(2\) is injective, so \(\Ann_R(-2)=\{0\}\). Hence
+\[
+\Fix_{G(R)}(-1)=\{0,\tau\}.
+\]
+By the Boolean identification above, this fixed locus is Boolean.
+\end{proof}
+
+\begin{proposition}
+For every integer \(m\ge0\), the free rank-\(m\) \(A\)-semimodule \(A^m\) is canonically isomorphic to the Boolean cube \(\cP(\{1,\dots,m\})\) with union as addition and intersection with the full set as scalar multiplication by \(0\in A\cong\BB\).
+Explicitly, the map
+\[
+\Theta_m:A^m\longrightarrow \cP(\{1,\dots,m\}),
+\qquad
+\Theta_m(a_1,\dots,a_m):=\{j:a_j=0\},
+\]
+is an isomorphism of \(A\)-semimodules.
+\end{proposition}
+
+\begin{proof}
+Under the identification \(A\cong\BB\), the element \(0\in A\) corresponds to \(1\in\BB\) and \(\tau\in A\) corresponds to \(0\in\BB\). Therefore addition in \(A\) is Boolean disjunction, so coordinatewise addition in \(A^m\) records precisely the union of those coordinates that are equal to \(0\).
+
+More explicitly, for \(a=(a_j)\) and \(b=(b_j)\), one has
+\[
+\Theta_m(a\oplus b)
+=\{j:a_j\oplus b_j=0\}
+=\{j:a_j=0\text{ or }b_j=0\}
+=\Theta_m(a)\cup\Theta_m(b).
+\]
+Likewise scalar multiplication by \(\tau\) sends every vector to \((\tau,\dots,\tau)\), corresponding to the empty subset, while scalar multiplication by \(0\) is the identity, corresponding to multiplication by \(1\in\BB\). Thus \(\Theta_m\) is an \(A\)-semimodule homomorphism.
+
+It is bijective because every subset \(I\subseteq\{1,
+\dots,m\}\) is uniquely represented by the vector whose \(j\)-th coordinate is \(0\) for \(j\in I\) and \(\tau\) otherwise.
+\end{proof}
+
+\section{Zeta zeros and their reduced split-zero shadow}
+
+\begin{definition}
+Let
+\[
+F_1(s):=\zeta(s)-1.
+\]
+Write
+\[
+Z_\zeta:=\{\rho\in\CC\setminus\{1\}:\zeta(\rho)=0\}
+\]
+for the zero set of the Riemann zeta function. For each \(\rho\in Z_\zeta\), write
+\[
+m_\rho:=\ord_\rho(\zeta)\in\NN
+\]
+for the order of vanishing of \(\zeta\) at \(\rho\).
+\end{definition}
+
+\begin{lemma}
+The set \(Z_\zeta\) is a discrete subset of \(\CC\setminus\{1\}\), and each \(m_\rho\) is a finite positive integer.
+\end{lemma}
+
+\begin{proof}
+The function \(\zeta\) is meromorphic on \(\CC\) with a single pole at \(1\), hence holomorphic on \(\CC\setminus\{1\}\). Let \(\rho\in Z_\zeta\). Since \(\zeta\) is not identically zero on any connected open subset of \(\CC\setminus\{1\}\), the identity theorem implies that zeros cannot accumulate in \(\CC\setminus\{1\}\). Therefore \(Z_\zeta\) is discrete.
+
+At a zero \(\rho\) of a nonzero holomorphic function, the local factorization theorem gives
+\[
+\zeta(s)=(s-\rho)^m g(s)
+\]
+for some integer \(m\ge1\) and some holomorphic function \(g\) with \(g(\rho)\ne0\). The integer \(m\) is unique and is by definition the order of vanishing \(m_\rho\).
+\end{proof}
+
+\begin{proposition}
+For every \(\rho\in Z_\zeta\),
+\[
+F_1(\rho)=-1.
+\]
+Consequently,
+\[
+\Fix_S\bigl(F_1(\rho)\bigr)=\Fix_S(-1)=A.
+\]
+\end{proposition}
+
+\begin{proof}
+If \(\zeta(\rho)=0\), then by definition
+\[
+F_1(\rho)=\zeta(\rho)-1=-1.
+\]
+The second assertion is the fixed-locus computation of the previous section.
+\end{proof}
+
+\begin{remark}
+The preceding proposition is the pointwise split-zero statement. On its own it is constant in \(\rho\). The rest of the paper explains how the divisor of \(\zeta\) upgrades this constant pointwise shadow to a nontrivial sheaf-theoretic object.
+\end{remark}
+
+\section{Split-zero divisor sheaves on discrete divisors}
+
+The sheaf-theoretic construction below is completely general and applies to any locally finite divisor with values in \(\NN\).
+
+\begin{definition}
+Let \(X\) be a topological space. A discrete effective divisor on \(X\) is a pair
+\[
+D=(Z,m),
+\]
+where \(Z\subset X\) is a closed discrete subset and \(m:Z\to\NN_{>0}\) is a multiplicity function.
+For convenience we set \(m(x)=0\) for \(x\notin Z\) and interpret \(A^0\) as the one-element \(A\)-semimodule.
+\end{definition}
+
+\begin{definition}
+Let \(D=(Z,m)\) be a discrete effective divisor on \(X\). Define a presheaf \(\mathcal V_D\) of \(A\)-semimodules on \(X\) by
+\[
+\mathcal V_D(U):=\prod_{x\in U\cap Z} A^{m(x)}
+\]
+for every open \(U\subset X\), with restriction maps given by forgetting the coordinates indexed by points outside the smaller open set.
+
+The reduced split-zero shadow presheaf is
+\[
+\mathcal A_D(U):=\prod_{x\in U\cap Z}A.
+\]
+\end{definition}
+
+\begin{theorem}
+For every discrete effective divisor \(D=(Z,m)\) on \(X\), the presheaves \(\mathcal V_D\) and \(\mathcal A_D\) are sheaves of \(A\)-semimodules.
+Their stalks are given by
+\[
+(\mathcal V_D)_x\cong A^{m(x)},
+\qquad
+(\mathcal A_D)_x\cong A
+\qquad (x\in Z),
+\]
+and
+\[
+(\mathcal V_D)_x\cong A^0,
+\qquad
+(\mathcal A_D)_x\cong A^0
+\qquad (x\notin Z).
+\]
+In particular,
+\[
+\supp(\mathcal V_D)=\supp(\mathcal A_D)=Z.
+\]
+\end{theorem}
+
+\begin{proof}
+We verify the sheaf axiom for \(\mathcal V_D\); the proof for \(\mathcal A_D\) is the same with \(m(x)=1\) on \(Z\).
+
+Let \(U\subset X\) be open and let \(U=\bigcup_{i\in I}U_i\) be an open cover. Suppose first that
+\[
+s,t\in\mathcal V_D(U)=\prod_{x\in U\cap Z}A^{m(x)}
+\]
+have the same restrictions to every \(U_i\). Fix \(x\in U\cap Z\). Since \(x\in U\), there exists \(i\in I\) with \(x\in U_i\). Equality of the restrictions to \(U_i\) implies equality of the \(x\)-coordinates of \(s\) and \(t\). Since this holds for every \(x\in U\cap Z\), one has \(s=t\). Thus sections are determined by their restrictions.
+
+Now suppose that for each \(i\in I\) we are given a section
+\[
+s_i\in\mathcal V_D(U_i)=\prod_{x\in U_i\cap Z}A^{m(x)}
+\]
+and that these sections agree on all overlaps. We define a section \(s\in\mathcal V_D(U)\) coordinatewise as follows. Let \(x\in U\cap Z\). Choose some \(i\in I\) with \(x\in U_i\), and set \(s_x\) equal to the \(x\)-coordinate of \(s_i\). This is well defined: if also \(x\in U_j\), then \(x\in U_i\cap U_j\), and agreement of the restrictions of \(s_i\) and \(s_j\) to \(U_i\cap U_j\) implies equality of their \(x\)-coordinates. Thus the family \((s_x)_{x\in U\cap Z}\) defines an element \(s\in\mathcal V_D(U)\). By construction its restriction to each \(U_i\) is exactly \(s_i\). Therefore \(\mathcal V_D\) is a sheaf.
+
+For the stalk computation, fix \(x\in X\). If \(x\notin Z\), closed discreteness gives an open neighborhood \(U\ni x\) with \(U\cap Z=\varnothing\). Then \(\mathcal V_D(U)=A^0\), and therefore the direct limit defining the stalk \((\mathcal V_D)_x\) is \(A^0\).
+
+If \(x\in Z\), discreteness gives an open neighborhood \(U\ni x\) with
+\[
+U\cap Z=\{x\}.
+\]
+For every smaller open \(V\subset U\) containing \(x\), one still has \(V\cap Z=\{x\}\), so
+\[
+\mathcal V_D(V)=A^{m(x)}.
+\]
+All restriction maps between such neighborhoods are the identity on \(A^{m(x)}\). Hence the direct limit defining the stalk is canonically \(A^{m(x)}\).
+The support statement is immediate from the stalk computation.
+\end{proof}
+
+\begin{corollary}
+For every discrete effective divisor \(D=(Z,m)\), each stalk \((\mathcal V_D)_x\) over \(x\in Z\) is canonically a Boolean cube of dimension \(m(x)\):
+\[
+(\mathcal V_D)_x\cong A^{m(x)}\cong \cP(\{1,\dots,m(x)\}).
+\]
+\end{corollary}
+
+\begin{proof}
+Combine the stalk computation with the Boolean-cube identification of Section~1.
+\end{proof}
+
+\begin{proposition}
+For each integer \(m\ge1\), define
+\[
+\Sigma_m:A^m\longrightarrow A,
+\qquad
+\Sigma_m(a_1,\dots,a_m):=a_1\oplus\cdots\oplus a_m,
+\]
+and
+\[
+\Delta_m:A\longrightarrow A^m,
+\qquad
+\Delta_m(a):=(a,\dots,a).
+\]
+Then \(\Sigma_m\) and \(\Delta_m\) are \(A\)-semimodule homomorphisms and
+\[
+\Sigma_m\circ\Delta_m=\operatorname{id}_A.
+\]
+Consequently, for every discrete effective divisor \(D=(Z,m)\), the stalkwise maps \(\Sigma_{m(x)}\) and \(\Delta_{m(x)}\) induce sheaf morphisms
+\[
+\Sigma_D:\mathcal V_D\longrightarrow \mathcal A_D,
+\qquad
+\Delta_D:\mathcal A_D\longrightarrow \mathcal V_D,
+\]
+with
+\[
+\Sigma_D\circ\Delta_D=\operatorname{id}_{\mathcal A_D}.
+\]
+Thus the reduced split-zero shadow \(\mathcal A_D\) is a canonical retract of the multiplicity-refined sheaf \(\mathcal V_D\).
+\end{proposition}
+
+\begin{proof}
+Because addition and scalar multiplication in \(A^m\) are coordinatewise, \(\Delta_m\) is visibly \(A\)-linear. The map \(\Sigma_m\) is also \(A\)-linear because finite sums in a semimodule are additive and commute with scalar multiplication.
+
+Now let \(a\in A\). If \(a=\tau\), then
+\[
+\Sigma_m(\Delta_m(\tau))=\Sigma_m(\tau,\dots,\tau)=\tau.
+\]
+If \(a=0\), then idempotence of addition inside \(A\) gives
+\[
+\Sigma_m(\Delta_m(0))=\Sigma_m(0,
+\dots,0)=0.
+\]
+Hence \(\Sigma_m\circ\Delta_m=\operatorname{id}_A\).
+
+The sheaf morphisms are defined coordinatewise on each open set:
+\[
+\Sigma_D(U)=\prod_{x\in U\cap Z}\Sigma_{m(x)},
+\qquad
+\Delta_D(U)=\prod_{x\in U\cap Z}\Delta_{m(x)}.
+\]
+These commute with restrictions because all restriction maps are coordinate projections.
+\end{proof}
+
+\begin{remark}
+Under the Boolean-cube identification, the diagonal copy of \(A\) inside \(A^m\) is the two-point subset
+\[
+\{\varnothing,\{1,
+\dots,m\}\}\subset \cP(\{1,
+\dots,m\}),
+\]
+while \(\Sigma_m\) is the emptiness test:
+\[
+\Sigma_m(I)=
+\begin{cases}
+\tau,& I=\varnothing,\\
+0,& I\ne\varnothing.
+\end{cases}
+\]
+Thus the reduced shadow remembers only the dichotomy ``zero absent'' versus ``zero present'', whereas the full cube remembers the multiplicity-resolved subsets of a rank-\(m\) stalk.
+\end{remark}
+
+\begin{proposition}
+Let \(D_1=(Z,m_1)\) and \(D_2=(Z,m_2)\) be discrete effective divisors on the same space \(X\), with the same underlying support for simplicity of notation. Define
+\[
+D_1+D_2:=(Z,m_1+m_2).
+\]
+Then there is a canonical sheaf isomorphism
+\[
+\mathcal V_{D_1+D_2}\cong \mathcal V_{D_1}\times \mathcal V_{D_2}.
+\]
+\end{proposition}
+
+\begin{proof}
+On each open set \(U\subset X\),
+\[
+\mathcal V_{D_1+D_2}(U)=\prod_{x\in U\cap Z}A^{m_1(x)+m_2(x)}.
+\]
+For each \(x\), there is a canonical splitting of coordinates
+\[
+A^{m_1(x)+m_2(x)}\cong A^{m_1(x)}\times A^{m_2(x)}.
+\]
+Taking the product over all \(x\in U\cap Z\) yields
+\[
+\mathcal V_{D_1+D_2}(U)
+\cong
+\left(\prod_{x\in U\cap Z}A^{m_1(x)}\right)
+\times
+\left(\prod_{x\in U\cap Z}A^{m_2(x)}\right)
+=\mathcal V_{D_1}(U)\times\mathcal V_{D_2}(U).
+\]
+These isomorphisms commute with coordinate-forgetting restrictions, hence define a sheaf isomorphism.
+\end{proof}
+
+\section{The zeta split-zero divisor sheaf}
+
+We now specialize the construction to the zero divisor of \(\zeta\).
+
+\begin{definition}
+Let
+\[
+D_\zeta:=\sum_{\rho\in Z_\zeta}m_\rho[\rho]
+\]
+be the zero divisor of \(\zeta\) on \(\CC\setminus\{1\}\), viewed as a discrete effective divisor on \(\CC\).
+Define
+\[
+\mathcal V_\zeta:=\mathcal V_{D_\zeta},
+\qquad
+\mathcal A_\zeta:=\mathcal A_{D_\zeta}.
+\]
+We call \(\mathcal V_\zeta\) the split-zero zeta divisor sheaf and \(\mathcal A_\zeta\) the reduced split-zero shadow sheaf.
+\end{definition}
+
+\begin{theorem}
+For every open set \(U\subset\CC\),
+\[
+\mathcal A_\zeta(U)=\prod_{\rho\in U\cap Z_\zeta}A.
+\]
+Moreover, if one defines
+\[
+\mathcal F(U):=\prod_{\rho\in U\cap Z_\zeta}\Fix_S\bigl(F_1(\rho)\bigr),
+\]
+then
+\[
+\mathcal F=\mathcal A_\zeta
+\]
+as sheaves of \(A\)-semimodules.
+\end{theorem}
+
+\begin{proof}
+The explicit formula for \(\mathcal A_\zeta\) is the general formula for \(\mathcal A_D\) applied to \(D_\zeta\) with all multiplicities replaced by \(1\).
+
+Now the pointwise zero computation shows that for every \(\rho\in Z_\zeta\),
+\[
+\Fix_S\bigl(F_1(\rho)\bigr)=A.
+\]
+Therefore on every open set \(U\),
+\[
+\mathcal F(U)=\prod_{\rho\in U\cap Z_\zeta}A=\mathcal A_\zeta(U).
+\]
+Since the restriction maps in both sheaves are the obvious coordinate projections, the identification is compatible with restrictions. Hence the two sheaves are equal.
+\end{proof}
+
+\begin{theorem}
+For every open set \(U\subset\CC\),
+\[
+\mathcal V_\zeta(U)=\prod_{\rho\in U\cap Z_\zeta}A^{m_\rho}.
+\]
+The stalk at a zero \(\rho\in Z_\zeta\) is
+\[
+(\mathcal V_\zeta)_\rho\cong A^{m_\rho},
+\]
+which is a Boolean cube of dimension \(m_\rho\). The reduced shadow sheaf \(\mathcal A_\zeta\) is a retract of \(\mathcal V_\zeta\) via
+\[
+\mathcal V_\zeta\xrightarrow{\ \Sigma_{D_\zeta}\ }\mathcal A_\zeta
+\xrightarrow{\ \Delta_{D_\zeta}\ }\mathcal V_\zeta,
+\qquad
+\Sigma_{D_\zeta}\circ\Delta_{D_\zeta}=\operatorname{id}_{\mathcal A_\zeta}.
+\]
+\end{theorem}
+
+\begin{proof}
+The section and stalk formulas are the general section and stalk formulas applied to \(D_\zeta\). The retraction statement is the general retraction construction for \(\mathcal V_D\to\mathcal A_D\).
+\end{proof}
+
+\begin{corollary}
+If all zeros of \(\zeta\) are simple, then
+\[
+\mathcal V_\zeta\cong \mathcal A_\zeta.
+\]
+More generally, \(\mathcal V_\zeta\cong\mathcal A_\zeta\) on any open set whose zeros are all simple.
+\end{corollary}
+
+\begin{proof}
+If all zeros in the relevant region are simple, then each \(m_\rho=1\). Hence each stalk
+\[
+A^{m_\rho}=A^1=A,
+\]
+so the defining section formulas for \(\mathcal V_\zeta\) and \(\mathcal A_\zeta\) coincide.
+\end{proof}
+
+\begin{remark}
+Because \(Z_\zeta\) is discrete, the correct sheafification is of skyscraper type rather than a nontrivial local system on a connected support space. The genuine content lies in three places:
+\begin{enumerate}[label=(\roman*)]
+\item the support subset \(Z_\zeta\subset\CC\),
+\item the multiplicity function \(\rho\mapsto m_\rho\), and
+\item the symmetry of the divisor.
+\end{enumerate}
+The constant pointwise value \(-1\) supplies the coefficient object \(A\), while the divisor supplies the support and ranks.
+\end{remark}
+
+\section{Trivial zeros: exact local calculations}
+
+\begin{definition}
+Write
+\[
+Z_{\mathrm{triv}}:=\{-2,-4,-6,\dots\}\subset Z_\zeta
+\]
+for the trivial zeros of \(\zeta\).
+\end{definition}
+
+\begin{proposition}
+Every trivial zero of \(\zeta\) is simple.
+\end{proposition}
+
+\begin{proof}
+We use the functional equation in the form
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s).
+\]
+Fix \(n\ge1\) and set \(s_0=-2n\). The factor
+\[
+\sin\left(\frac{\pi s}{2}\right)
+\]
+has a simple zero at \(s=s_0\), because its derivative there is
+\[
+\frac{\pi}{2}\cos\left(\frac{\pi s_0}{2}\right)
+=\frac{\pi}{2}\cos(-n\pi)=\frac{\pi}{2}(-1)^n\ne0.
+\]
+It therefore suffices to check that the remaining factor
+\[
+2^s\pi^{s-1}\Gamma(1-s)\zeta(1-s)
+\]
+is holomorphic and nonzero at \(s_0\). This is immediate: \(2^{s_0}\ne0\), \(\pi^{s_0-1}\ne0\),
+\[
+\Gamma(1-s_0)=\Gamma(1+2n)=(2n)!\ne0,
+\]
+and
+\[
+\zeta(1-s_0)=\zeta(1+2n)\ne0
+\]
+because the Euler product converges absolutely and is nonzero for \(\Re(s)>1\).
+Hence \(\zeta\) is the product of a function with a simple zero and a function nonvanishing at \(s_0\). Therefore \(s_0\) is a simple zero of \(\zeta\).
+\end{proof}
+
+\begin{proposition}
+For every integer \(n\ge1\),
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\zeta(2n+1).
+\]
+Consequently,
+\[
+F_1(s)+1
+=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\zeta(2n+1)(s+2n)+O\bigl((s+2n)^2\bigr)
+\]
+as \(s\to-2n\).
+\end{proposition}
+
+\begin{proof}
+Write the functional equation as
+\[
+\zeta(s)=\sin\left(\frac{\pi s}{2}\right)H(s),
+\qquad
+H(s):=2^s\pi^{s-1}\Gamma(1-s)\zeta(1-s).
+\]
+By the proof of the preceding proposition, \(H\) is holomorphic and nonzero at \(s=-2n\). Differentiating and evaluating at \(s=-2n\), the vanishing of the sine factor gives
+\[
+\zeta'(-2n)=\frac{\pi}{2}\cos\left(\frac{\pi s}{2}\right)H(s)\bigg|_{s=-2n}
+=\frac{\pi}{2}(-1)^nH(-2n).
+\]
+Now
+\[
+H(-2n)=2^{-2n}\pi^{-2n-1}\Gamma(1+2n)\zeta(2n+1)
+=2^{-2n}\pi^{-2n-1}(2n)!\zeta(2n+1).
+\]
+Multiplying by \(\frac{\pi}{2}(-1)^n\) yields
+\[
+\zeta'(-2n)
+=(-1)^n2^{-2n-1}\pi^{-2n}(2n)!\zeta(2n+1)
+=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\zeta(2n+1).
+\]
+The local expansion follows from the first-order Taylor formula at the simple zero \(-2n\):
+\[
+\zeta(s)=\zeta'(-2n)(s+2n)+O\bigl((s+2n)^2\bigr).
+\]
+Since \(F_1(s)+1=\zeta(s)\), this is exactly the displayed expansion.
+\end{proof}
+
+\begin{corollary}
+For every trivial zero \(-2n\),
+\[
+m_{-2n}=1,
+\qquad
+(\mathcal V_\zeta)_{-2n}\cong A.
+\]
+Hence
+\[
+\mathcal V_\zeta|_{Z_{\mathrm{triv}}}\cong \mathcal A_\zeta|_{Z_{\mathrm{triv}}}.
+\]
+\end{corollary}
+
+\begin{proof}
+The multiplicity statement is the simplicity of the trivial zeros. Therefore the stalk formula gives
+\[
+(\mathcal V_\zeta)_{-2n}\cong A^{m_{-2n}}=A.
+\]
+The restriction statement follows because all stalks on \(Z_{\mathrm{triv}}\) are rank one.
+\end{proof}
+
+\begin{proposition}
+For every integer \(n\ge1\),
+\[
+F_1(-2n)=-1,
+\qquad
+D_1(-2n)=1,
+\]
+where
+\[
+D_1(s):=\zeta(s)-F_1(s).
+\]
+\end{proposition}
+
+\begin{proof}
+Since \(\zeta(-2n)=0\), one has
+\[
+F_1(-2n)=\zeta(-2n)-1=-1.
+\]
+By definition,
+\[
+D_1(s)=\zeta(s)-F_1(s)=\zeta(s)-\bigl(\zeta(s)-1\bigr)=1
+\]
+identically in \(s\). Therefore \(D_1(-2n)=1\).
+\end{proof}
+
+\section{The nontrivial part and functional-equation symmetry}
+
+The full zero divisor of \(\zeta\) is not invariant under \(s\mapsto1-s\) because the trivial zeros are exchanged with poles of \(\Gamma(s/2)\) in the completed functional equation. The correct symmetric object is therefore the nontrivial zero divisor.
+
+\begin{definition}
+Define the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\left(\frac{s}{2}\right)\zeta(s).
+\]
+Let
+\[
+Z_{\mathrm{nt}}:=\{\rho\in\CC:\xi(\rho)=0\}.
+\]
+We call \(Z_{\mathrm{nt}}\) the nontrivial zero set. For \(\rho\in Z_{\mathrm{nt}}\), let
+\[
+m^{\mathrm{nt}}_\rho:=\ord_\rho(\xi).
+\]
+\end{definition}
+
+\begin{proposition}
+The function \(\xi\) is entire and satisfies
+\[
+\xi(s)=\xi(1-s).
+\]
+Its zeros are exactly the nontrivial zeros of \(\zeta\), with the same multiplicities.
+\end{proposition}
+
+\begin{proof}
+The functional equation for \(\zeta\) implies the symmetry \(\xi(s)=\xi(1-s)\) by direct substitution.
+
+We check entireness. The only singularities of the defining factors can arise from the pole of \(\zeta\) at \(s=1\) and the poles of \(\Gamma(s/2)\) at the nonpositive even integers.
+
+At \(s=1\), the factor \(s-1\) cancels the simple pole of \(\zeta\). At \(s=0\), the factor \(s\) cancels the simple pole of \(\Gamma(s/2)\). At each negative even integer \(-2n\) with \(n\ge1\), the simplicity of the trivial zeros shows that \(\zeta\) has a simple zero, while \(\Gamma(s/2)\) has a simple pole there; these cancel. No other singularities occur. Hence \(\xi\) is entire.
+
+Now let \(\rho\) be a zero of \(\zeta\) that is not a trivial zero. Then none of the extra factors
+\[
+\frac12s(s-1)\pi^{-s/2}\Gamma\left(\frac{s}{2}\right)
+\]
+vanishes or blows up at \(\rho\), so \(\xi\) has a zero at \(\rho\) of the same multiplicity.
+
+Conversely, let \(\rho\) be a zero of \(\xi\). Since the auxiliary factors have no zeros except the explicit factors \(s\) and \(s-1\), and these are cancelled by poles of \(\Gamma(s/2)\) or \(\zeta(s)\) so that \(\xi(0)\) and \(\xi(1)\) are finite and nonzero, every zero of \(\xi\) must come from a zero of \(\zeta\). The trivial zeros have been cancelled already, so only nontrivial zeros remain.
+\end{proof}
+
+\begin{lemma}
+If \(f\) is meromorphic on a domain \(\Omega\subset\CC\) stable under complex conjugation and satisfies
+\[
+f(\bar s)=\overline{f(s)},
+\]
+then
+\[
+\ord_{\bar\rho}(f)=\ord_\rho(f)
+\]
+for every zero \(\rho\in\Omega\).
+\end{lemma}
+
+\begin{proof}
+Suppose
+\[
+f(s)=(s-\rho)^m g(s)
+\]
+near \(\rho\), where \(g\) is holomorphic and \(g(\rho)\ne0\). Conjugating gives, near \(\bar\rho\),
+\[
+f(s)=\overline{f(\bar s)}=(s-\bar\rho)^m\overline{g(\bar s)}.
+\]
+The function \(s\mapsto\overline{g(\bar s)}\) is holomorphic near \(\bar\rho\) and is nonzero there because its value at \(\bar\rho\) is \(\overline{g(\rho)}\ne0\). Hence the order of vanishing at \(\bar\rho\) is again \(m\).
+\end{proof}
+
+\begin{theorem}
+Let
+\[
+c(s):=\bar s,
+\qquad
+\sigma(s):=1-s.
+\]
+Then \(c\) and \(\sigma\) preserve the nontrivial zero divisor
+\[
+D_{\mathrm{nt}}:=\sum_{\rho\in Z_{\mathrm{nt}}}m^{\mathrm{nt}}_\rho[\rho].
+\]
+Consequently, the split-zero divisor sheaf
+\[
+\mathcal V_{\mathrm{nt}}:=\mathcal V_{D_{\mathrm{nt}}}
+\]
+and its reduced shadow \(\mathcal A_{\mathrm{nt}}:=\mathcal A_{D_{\mathrm{nt}}}\) carry canonical sheaf automorphisms induced by \(c\) and \(\sigma\). These automorphisms generate an action of the Klein four group
+\[
+\langle c,\sigma\rangle\cong C_2\times C_2.
+\]
+\end{theorem}
+
+\begin{proof}
+First consider complex conjugation. The Dirichlet series for \(\zeta\) has real coefficients on \(\Re(s)>1\), so
+\[
+\zeta(\bar s)=\overline{\zeta(s)}
+\]
+on that half-plane, hence everywhere by analytic continuation. Since the other defining factors of \(\xi\) are also real on the real axis and satisfy the same conjugation property, one has
+\[
+\xi(\bar s)=\overline{\xi(s)}.
+\]
+Therefore \(\rho\in Z_{\mathrm{nt}}\) implies \(\bar\rho\in Z_{\mathrm{nt}}\), and the preceding lemma shows
+\[
+m^{\mathrm{nt}}_{\bar\rho}=m^{\mathrm{nt}}_\rho.
+\]
+Thus \(c\) preserves the divisor \(D_{\mathrm{nt}}\).
+
+Now consider \(\sigma(s)=1-s\). The functional equation gives
+\[
+\xi(s)=\xi(1-s)=\xi(\sigma(s)).
+\]
+Hence \(\rho\in Z_{\mathrm{nt}}\) implies \(1-\rho\in Z_{\mathrm{nt}}\). To compare multiplicities, write near \(\rho\)
+\[
+\xi(s)=(s-\rho)^m g(s),
+\qquad
+g(\rho)\ne0.
+\]
+Then near \(1-\rho\), with \(t=1-s\),
+\[
+\xi(s)=\xi(1-s)=\xi(t)=(t-\rho)^m g(t)=\bigl(-(s-(1-\rho))\bigr)^m g(1-s).
+\]
+The function \(s\mapsto(-1)^m g(1-s)\) is holomorphic and nonzero at \(1-\rho\). Therefore
+\[
+m^{\mathrm{nt}}_{1-\rho}=m^{\mathrm{nt}}_\rho.
+\]
+So \(\sigma\) also preserves \(D_{\mathrm{nt}}\).
+
+Because \(\mathcal V_{\mathrm{nt}}\) and \(\mathcal A_{\mathrm{nt}}\) are defined purely from the support set and multiplicity function of the divisor, any divisor-preserving homeomorphism of the support induces a sheaf automorphism by permuting coordinates. Thus \(c\) and \(\sigma\) act on both sheaves.
+
+Finally,
+\[
+c^2=\sigma^2=\operatorname{id},
+\qquad
+c\sigma(s)=1-\bar s=\sigma c(s),
+\]
+so the generated group is the Klein four group.
+\end{proof}
+
+\begin{remark}
+The full zeta divisor splits as
+\[
+D_\zeta=D_{\mathrm{triv}}+D_{\mathrm{nt}},
+\]
+so the product rule for divisor sheaves yields
+\[
+\mathcal V_\zeta\cong \mathcal V_{D_{\mathrm{triv}}}\times \mathcal V_{\mathrm{nt}}.
+\]
+The functional involution acts only on the nontrivial factor. On the trivial factor, only complex conjugation survives, and it acts trivially because the trivial zeros are real.
+\end{remark}
+
+\section{Final formulation}
+
+We can now package the pointwise split-zero identity into the divisor-theoretic object it naturally determines.
+
+\begin{theorem}[Split-zero sheafification of the zeta zero divisor]
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\tau\},
+\qquad
+A=\Fix_S(-1)=\{0,\tau\}\cong\BB,
+\qquad
+F_1(s)=\zeta(s)-1.
+\]
+Let
+\[
+D_\zeta=\sum_{\rho\in Z_\zeta}m_\rho[\rho]
+\]
+be the zero divisor of \(\zeta\). Then the following hold.
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item For every zero \(\rho\) of \(\zeta\),
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S\bigl(F_1(\rho)\bigr)=A.
+\]
+
+\item The reduced split-zero shadow sheaf is
+\[
+\mathcal A_\zeta(U)=\prod_{\rho\in U\cap Z_\zeta}A.
+\]
+Its stalk at every zero is exactly the split-zero pair \(A\).
+
+\item The multiplicity-refined sheaf is
+\[
+\mathcal V_\zeta(U)=\prod_{\rho\in U\cap Z_\zeta}A^{m_\rho}.
+\]
+Its stalk at \(\rho\) is the free rank-\(m_\rho\) \(A\)-semimodule \(A^{m_\rho}\), equivalently the Boolean cube of dimension \(m_\rho\).
+
+\item There is a canonical retraction
+\[
+\mathcal V_\zeta\xrightarrow{\ \Sigma_{D_\zeta}\ }\mathcal A_\zeta
+\xrightarrow{\ \Delta_{D_\zeta}\ }\mathcal V_\zeta,
+\qquad
+\Sigma_{D_\zeta}\circ\Delta_{D_\zeta}=\operatorname{id}_{\mathcal A_\zeta}.
+\]
+Thus the original pointwise split-zero pair is the reduced retract of a multiplicity-resolved Boolean-cubical divisor sheaf.
+
+\item On the trivial-zero locus, all stalks are simple:
+\[
+(\mathcal V_\zeta)_{-2n}\cong A
+\qquad (n\ge1).
+\]
+The exact local expansion is
+\[
+F_1(s)+1
+=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\zeta(2n+1)(s+2n)
++O\bigl((s+2n)^2\bigr).
+\]
+
+\item On the nontrivial divisor, the completed split-zero sheaf is equivariant for complex conjugation and the functional involution \(s\mapsto1-s\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Item \(1\) is the pointwise zero computation. Item \(2\) is the reduced shadow formula. Item \(3\) is the multiplicity-refined divisor sheaf formula. Item \(4\) is the canonical retraction \(\mathcal V_D\leftrightarrows\mathcal A_D\). Item \(5\) is the simplicity and derivative calculation for the trivial zeros. Item \(6\) is the divisor invariance under complex conjugation and the completed functional equation.
+\end{proof}
+
+\begin{remark}
+The theorem does not claim new information about where the nontrivial zeros are located. What it does claim is exact: the uniform identity \(F_1(\rho)=-1\) canonically determines a sheaf of split-zero coefficients on the zero divisor, and the divisor multiplicities are encoded as Boolean-cubical stalk ranks. The pointwise pair \(\{0,\tau\}\) is therefore only the reduced layer of the construction.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{globalization}
+A note on the globalization semiring \(G(\ZZ)\), companion note, March 2026.
+
+\bibitem{secondary}
+A secondary note on split-zero globalization: semimodule classification, multiplicative reconstruction, and all-orders zeta deformation, companion note, April 2026.
+
+\bibitem{titchmarsh}
+E. C. Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, second edition, revised by D. R. Heath-Brown, Oxford Science Publications, The Clarendon Press, Oxford University Press, New York, 1986.
+
+\end{thebibliography}
+
+\end{document}

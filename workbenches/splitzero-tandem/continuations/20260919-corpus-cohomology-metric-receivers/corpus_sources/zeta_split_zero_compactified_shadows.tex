@@ -1,0 +1,967 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\vol}{vol}
+
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\Vzet}{\mathcal V_{\zeta}}
+\newcommand{\Azet}{\mathcal A_{\zeta}}
+\newcommand{\Jzet}{\mathcal J_{\zeta}}
+\newcommand{\Kzet}{\mathcal K_{\zeta}}
+\newcommand{\Vnt}{\mathcal V_{\mathrm{nt}}}
+\newcommand{\Jnt}{\mathcal J_{\mathrm{nt}}}
+\newcommand{\Knt}{\mathcal K_{\mathrm{nt}}}
+\newcommand{\taup}{\tau}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+
+\title{Compactified Split-Zero Shadows, Derivative-Enhanced Stalks, and Boolean Divisor Geometry for the Riemann Zeta Zeros}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},\qquad A:=\{0,\taup\}\cong\BB,
+\qquad F_1(s):=\zeta(s)-1.
+\]
+At every zero $\rho$ of the Riemann zeta function one has $F_1(\rho)=-1$, and multiplication by $-1$ fixes precisely the Boolean pair $A$.  The pointwise split-zero shadow is therefore constant.  The first purpose of the present paper is to show that the correct global object is obtained only after one sheafifies over the zero divisor and then compactifies to $\PP^1(\CC)$.  The second purpose is to enrich the Boolean shadow by genuine jet data.
+
+We prove five results.
+
+First, for every integral domain $R$ and every nontrivial unit $u\in R^\times\setminus\{1\}$,
+\[
+\Fix_{G(R)}(u)=\{0,\taup\}\cong\BB.
+\]
+This yields a general theory of split-root shadows over $G(R)$; the zeta case is the special value $u=-1$.
+
+Second, for every discrete effective divisor $D=\sum_x m_x[x]$ on $\CC$, the Boolean split-zero sheaf
+\[
+\mathcal V_D(U)=\prod_{x\in U\cap \supp D}A^{m_x}
+\]
+canonically refines the reduced shadow
+\[
+\mathcal A_D(U)=\prod_{x\in U\cap \supp D}A.
+\]
+The stalk at $x$ is the Boolean cube $A^{m_x}\cong\cP(\{1,\dots,m_x\})$, and the reduced shadow is a canonical retract.
+
+Third, the Boolean shadow admits a derivative enhancement.  Using the global coordinate $s$ on $\CC$, we define local jet sheaves with stalks
+\[
+J_x=\CC[s]/(s-x)^{m_x},
+\qquad
+K_x=\CC[s]/(s-x)^{m_x+1},
+\]
+and prove that the coefficient-support map from jets to Boolean cubes is surjective on every stalk.  For the actual zeta function, the distinguished local class $[\zeta]_\rho\in K_\rho$ has exactly one occupied terminal coefficient slot, governed by the nonzero scalar
+\[
+\lambda_\rho:=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}.
+\]
+Thus the Boolean cube is the support shadow of a genuine nonreduced jet thickening.
+
+Fourth, after compactification $j:\CC\into\PP^1(\CC)$, every product-skyscraper sheaf admits an exact sequence
+\[
+0\to j_!\mathcal F\to j_*\mathcal F\to i_{\infty *}T\to0,
+\]
+where the tail stalk is the quotient of the full product by the finite-support direct sum.  Applied to zeta, this gives a nonzero asymptotic Boolean fiber at $\infty$:
+\[
+T_\zeta=\prod_{\rho}A^{m_\rho}\Big/\bigoplus_{\rho}A^{m_\rho}.
+\]
+Hence the one-point compactification produces a genuine new global object even though the higher sheaf cohomology still vanishes.
+
+Fifth, on the trivial-zero sector each stalk is simple and carries a canonical analytic weight
+\[
+\vol_{-2n}(0)=|\zeta'(-2n)|,
+\qquad
+\vol_{-2n}(\taup)=0,
+\]
+with exact formula
+\[
+|\zeta'(-2n)|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+This supplies the requested metric/volume bridge between the Boolean stalk and the analytic size of the trivial-zero germ.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The elementary split-zero identity
+\[
+\zeta(\rho)=0\implies F_1(\rho)=\zeta(\rho)-1=-1
+\]
+turns every zeta zero into the same supported unit of the globalization semiring $G(\ZZ)$.  The fixed locus of that unit is the Boolean pair $\{0,\taup\}$.  Pointwise, then, the semiring shadow of every zeta zero is the same.  The mathematical question is therefore not the pointwise value but the geometric packaging of all these values together.
+
+A first answer is the divisor sheaf built from the multiplicities $m_\rho$.  That construction is correct, but by itself it is still too close to a skyscraper sheaf on a discrete set.  The present paper pushes the construction in three directions requested by the prompt that accompanies this project: it adds actual jet data, it globalizes to the nontrivial base $\PP^1(\CC)$, and it makes the Boolean/$\mathbb F_1$-style geometry explicit.  The compactification produces a tail fiber at $\infty$ measuring the difference between full products and finite-support direct sums, while the derivative enhancement replaces a mere multiplicity count by honest coefficient data in truncated local algebras.
+
+The Boolean viewpoint is natural from the perspective of semiring and blueprint geometry.  Semirings and monoids embed in Lorscheid's category of blueprints and admit a common scheme theory \cite{Lorscheid}; Boolean and idempotent semirings are standard coefficient systems in semiring and weighted-automata contexts \cite{GaubertKatz,Gunawardena,DrosteKuichVogler}; and $\mathbb F_1$-style models are often expected to detect Euler-characteristic information in suitable situations \cite{JarraLorscheidVital}.  None of this is used as a black box here: every concrete statement needed in the paper is proved directly.
+
+The strongest conceptual point is the comparison with nonreduced divisors.  The classical infinitesimal thickening of multiplicity $m$ is the length-$m$ local algebra $\CC[s]/(s-\rho)^m$.  The split-zero shadow replaces this ordered nilpotent thickening by the free Boolean semimodule $A^m$.  The coefficient-support map from jets to Boolean cubes makes precise the claim that the split-zero sheaf is the Boolean shadow of a nonreduced divisor.
+
+\section{Split-root shadows over globalization semirings}
+
+\begin{definition}
+Let $R$ be a commutative ring with identity.  Its globalization semiring is
+\[
+G(R):=R\sqcup\{\taup\},
+\]
+with operations
+\[
+a\oplus b:=a+b,
+\qquad a\oplus \taup=\taup\oplus a:=a,
+\qquad \taup\oplus\taup:=\taup,
+\]
+and
+\[
+a\odot b:=ab,
+\qquad a\odot \taup=\taup\odot a:=\taup,
+\qquad \taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in R\subset G(R)$ is the multiplicative identity.
+\end{definition}
+
+\begin{definition}
+For $u\in R^\times\subset G(R)^\times$, define the \emph{split-root shadow} of $u$ to be the fixed-point set
+\[
+\Fix_{G(R)}(u):=\{x\in G(R):u\odot x=x\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:units-fix}
+For every commutative ring $R$,
+\[
+G(R)^\times=R^\times.
+\]
+Moreover, for every unit $u\in R^\times$,
+\[
+\Fix_{G(R)}(u)=\{\taup\}\cup \Ann_R(u-1).
+\]
+\end{lemma}
+
+\begin{proof}
+If $x\in G(R)$ is invertible, say $x\odot y=1$, then $x\neq \taup$ because $\taup\odot y=\taup\neq1$.  Similarly $y\neq\taup$.  Hence $x,y\in R$ and $xy=1$ inside $R$, so $x\in R^\times$.  Conversely every ring unit remains a semiring unit in $G(R)$.
+
+Now let $u\in R^\times$.  Since $u\odot \taup=\taup$, the absorber $\taup$ is always fixed.  For $r\in R$ one has
+\[
+u\odot r=r \iff ur=r \iff (u-1)r=0,
+\]
+so the fixed supported points are exactly $\Ann_R(u-1)$.
+\end{proof}
+
+\begin{proposition}\label{prop:general-fixed}
+Let $R$ be an integral domain and let $u\in R^\times$ satisfy $u\neq1$.  Then
+\[
+\Fix_{G(R)}(u)=\{0,\taup\}.
+\]
+In particular, for every ring of integers $\mathcal O_K$ and every nontrivial root of unity $\xi\in\mathcal O_K^\times\setminus\{1\}$,
+\[
+\Fix_{G(\mathcal O_K)}(\xi)=\{0,\taup\}.
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:units-fix},
+\[
+\Fix_{G(R)}(u)=\{\taup\}\cup\Ann_R(u-1).
+\]
+Because $R$ is a domain and $u\neq1$, the element $u-1$ is nonzero, so multiplication by $u-1$ is injective.  Hence $\Ann_R(u-1)=\{0\}$.
+\end{proof}
+
+\begin{proposition}\label{prop:boolean-pair}
+For every ring $R$, the subset
+\[
+A_R:=\{0,\taup\}\subset G(R)
+\]
+is a subsemiring canonically isomorphic to the Boolean semiring $\BB=\{0,1\}$.  Explicitly,
+\[
+\taup\longleftrightarrow 0\in\BB,
+\qquad
+0\longleftrightarrow 1\in\BB.
+\]
+\end{proposition}
+
+\begin{proof}
+Inside $A_R$ the operation tables are
+\[
+0\oplus0=0,
+\qquad
+0\oplus\taup=0,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot0=0,
+\qquad
+0\odot\taup=\taup,
+\qquad
+\taup\odot\taup=\taup.
+\]
+These are exactly the Boolean tables after the displayed identification.
+\end{proof}
+
+\begin{corollary}\label{cor:zeta-pointwise}
+Let $S=G(\ZZ)$ and $F_1(s)=\zeta(s)-1$.  If $\rho$ is any zero of the Riemann zeta function, then
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=\{0,\taup\}\cong\BB.
+\]
+\end{corollary}
+
+\begin{proof}
+The first identity is immediate from $\zeta(\rho)=0$.  The second follows from Proposition \ref{prop:general-fixed} with $R=\ZZ$ and $u=-1$.
+\end{proof}
+
+\begin{remark}
+The semiring $G(\ZZ)$ is the arithmetic analogue of the standard idempotent picture in max-plus algebra: the adjoined element $\taup$ plays the same formal role as the additive bottom element in tropical and max-plus settings \cite{GaubertKatz,Gunawardena}.  The zeta phenomenon is therefore naturally an idempotent-support phenomenon rather than an ordinary ring-theoretic one.
+\end{remark}
+
+\section{Boolean divisor schemes and split-zero sheaves}
+
+\subsection{Discrete divisors and Boolean cubes}
+
+\begin{definition}
+A \emph{discrete effective divisor} on $\CC$ is a formal sum
+\[
+D=\sum_{x\in Z} m_x[x],
+\]
+where $Z\subset\CC$ is closed and discrete and each multiplicity $m_x$ is a positive integer.  We write $|D|:=Z$ for the support.
+\end{definition}
+
+\begin{definition}
+Fix a discrete effective divisor $D=\sum_{x\in Z} m_x[x]$ and set $A:=\{0,\taup\}\cong\BB$.  The \emph{split-zero divisor sheaf} of $D$ is the sheaf of $A$-semimodules defined by
+\[
+\mathcal V_D(U):=\prod_{x\in U\cap Z} A^{m_x}
+\]
+for each open $U\subset\CC$, with restriction maps given by coordinate projection.  The \emph{reduced split-zero shadow} is
+\[
+\mathcal A_D(U):=\prod_{x\in U\cap Z} A.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:sheaf-product}
+For every family $(M_x)_{x\in Z}$ of sets, semimodules, or vector spaces indexed by a closed discrete subset $Z\subset\CC$, the rule
+\[
+\mathcal F_M(U):=\prod_{x\in U\cap Z}M_x
+\]
+defines a sheaf on $\CC$.
+\end{lemma}
+
+\begin{proof}
+Let $U=\bigcup_{i\in I}U_i$ be an open cover.  If two sections of $\mathcal F_M(U)$ have the same restrictions to all $U_i$, then their $x$-coordinates agree for every $x\in U\cap Z$, because each such $x$ lies in some $U_i$.  Thus the sections are equal.
+
+Conversely, given compatible sections $s_i\in\mathcal F_M(U_i)$, define the $x$-coordinate of the glued section by choosing any $i$ with $x\in U_i$ and taking the $x$-coordinate of $s_i$.  Compatibility on overlaps makes this independent of the choice of $i$.  The resulting family is the required glued section.
+\end{proof}
+
+\begin{proposition}\label{prop:stalks-VD}
+The sheaves $\mathcal V_D$ and $\mathcal A_D$ are well defined.  Their stalks at $x\in Z$ are
+\[
+(\mathcal V_D)_x\cong A^{m_x},
+\qquad
+(\mathcal A_D)_x\cong A,
+\]
+and their stalks away from $Z$ are one-point stalks.
+\end{proposition}
+
+\begin{proof}
+The sheaf statement follows from Lemma \ref{lem:sheaf-product}.  Since $Z$ is discrete, there is for each $x\in Z$ an open neighborhood $U$ with $U\cap Z=\{x\}$.  For every smaller neighborhood $V\subset U$ of $x$ one has
+\[
+\mathcal V_D(V)=A^{m_x},
+\qquad
+\mathcal A_D(V)=A,
+\]
+and all restriction maps are identities.  Hence the direct limits defining the stalks are $A^{m_x}$ and $A$ respectively.  If $x\notin Z$, choose $U$ with $U\cap Z=\varnothing$; then all sections over smaller neighborhoods are singleton products.
+\end{proof}
+
+\begin{proposition}\label{prop:boolean-cube}
+For each integer $m\ge1$, the free rank-$m$ $A$-semimodule $A^m$ is canonically isomorphic to the Boolean cube
+\[
+\cP(\{1,\dots,m\}),
+\]
+where the subset corresponding to $(a_1,\dots,a_m)$ is
+\[
+\{j:a_j=0\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Because $A\cong\BB$, coordinatewise addition on $A^m$ is Boolean union.  Explicitly,
+\[
+\{j:(a_j\oplus b_j)=0\}=\{j:a_j=0\text{ or }b_j=0\},
+\]
+which is the union of the two corresponding subsets.  The correspondence is bijective because every subset of $\{1,\dots,m\}$ arises uniquely from the indicator vector with coordinate $0$ on the subset and $\taup$ outside it.
+\end{proof}
+
+\begin{proposition}\label{prop:retract}
+For each $m\ge1$, define
+\[
+\Sigma_m:A^m\to A,
+\qquad
+\Sigma_m(a_1,\dots,a_m):=a_1\oplus\cdots\oplus a_m,
+\]
+and
+\[
+\Delta_m:A\to A^m,
+\qquad
+\Delta_m(a):=(a,\dots,a).
+\]
+Then $\Sigma_m$ and $\Delta_m$ are $A$-semimodule maps and
+\[
+\Sigma_m\circ \Delta_m=\operatorname{id}_A.
+\]
+Consequently there are canonical sheaf morphisms
+\[
+\Sigma_D:\mathcal V_D\to\mathcal A_D,
+\qquad
+\Delta_D:\mathcal A_D\to\mathcal V_D,
+\qquad
+\Sigma_D\circ\Delta_D=\operatorname{id}_{\mathcal A_D}.
+\]
+\end{proposition}
+
+\begin{proof}
+All claims are coordinatewise.  If $a=\taup$, then $\Sigma_m(\Delta_m(a))=\taup$.  If $a=0$, then idempotence in $A$ gives $\Sigma_m(\Delta_m(a))=0$.  Thus $\Sigma_m\circ\Delta_m=\operatorname{id}_A$.
+\end{proof}
+
+\begin{remark}
+Under the Boolean-cube identification of Proposition \ref{prop:boolean-cube}, the map $\Sigma_m$ is the emptiness test:
+\[
+\Sigma_m(I)=\begin{cases}
+\taup,& I=\varnothing,\\
+0,& I\neq\varnothing.
+\end{cases}
+\]
+Hence the reduced shadow remembers only whether at least one layer is present, whereas $A^m$ remembers which layers are present.
+\end{remark}
+
+\subsection{A Boolean semiring-scheme attached to the divisor}
+
+\begin{definition}
+Let $Z\subset\CC$ be discrete.  Write $\underline{\BB}_Z$ for the constant sheaf of semirings with stalk $\BB$ on the discrete topological space $Z$.
+\end{definition}
+
+\begin{proposition}\label{prop:specB}
+The semiring spectrum $\Spec(\BB)$ consists of a single point.  Consequently the locally semiringed space
+\[
+Z^{\BB}:=(Z,\underline{\BB}_Z)
+\]
+is canonically the coproduct
+\[
+\coprod_{z\in Z}\Spec(\BB)
+\]
+in semiring schemes.  On $Z^{\BB}$, the sheaf $\mathcal V_D|_Z$ is locally free of rank $m_z$ at the point $z$.
+\end{proposition}
+
+\begin{proof}
+The proper ideals of $\BB=\{0,1\}$ are only $\{0\}$.  This ideal is prime because if $ab=0$ in $\BB$, then $a=0$ or $b=0$.  Hence $\Spec(\BB)$ has exactly one point.
+
+Because $Z$ is discrete, each singleton $\{z\}$ is open and the restriction of $\underline{\BB}_Z$ to $\{z\}$ is the constant semiring sheaf $\BB$.  Thus each point has an open neighborhood isomorphic to $\Spec(\BB)$, so $(Z,\underline{\BB}_Z)$ is a semiring scheme and is the disjoint union of these affine points.
+
+On the singleton $\{z\}$ one has
+\[
+\mathcal V_D(\{z\})=A^{m_z}\cong\BB^{m_z},
+\]
+which is free of rank $m_z$ as a $\BB$-semimodule.  Hence $\mathcal V_D|_Z$ is locally free of rank $m_z$ at $z$.
+\end{proof}
+
+\begin{remark}
+Since semirings embed in the category of blueprints, Proposition \ref{prop:specB} places the split-zero divisor in the blueprint/semiring-scheme framework of Lorscheid \cite{Lorscheid}.  The Boolean shadow is therefore not merely suggestive language: it is an honest sheaf on a $0$-dimensional semiring scheme.
+\end{remark}
+
+\section{Derivative-enhanced stalks and Boolean support shadows}
+
+The preceding sheaf remembers only multiplicities.  We now add actual coefficient data.
+
+\begin{definition}
+Let $D=\sum_{x\in Z}m_x[x]$ be a discrete effective divisor on $\CC$.  For each $x\in Z$, define the truncated jet spaces
+\[
+J_x:=\CC[s]/(s-x)^{m_x},
+\qquad
+K_x:=\CC[s]/(s-x)^{m_x+1}.
+\]
+Define sheaves on $\CC$ by
+\[
+\mathcal J_D(U):=\prod_{x\in U\cap Z}J_x,
+\qquad
+\mathcal K_D(U):=\prod_{x\in U\cap Z}K_x.
+\]
+\end{definition}
+
+\begin{proposition}\label{prop:jets-sheaves}
+The sheaves $\mathcal J_D$ and $\mathcal K_D$ are sheaves of $\CC$-algebras on $\CC$, supported on $Z$, with stalks
+\[
+(\mathcal J_D)_x\cong J_x,
+\qquad
+(\mathcal K_D)_x\cong K_x.
+\]
+At every $x\in Z$, the algebra $J_x$ has $\CC$-dimension $m_x$ and $K_x$ has $\CC$-dimension $m_x+1$.
+\end{proposition}
+
+\begin{proof}
+Again this is Lemma \ref{lem:sheaf-product}.  The stalk computation is identical to the proof of Proposition \ref{prop:stalks-VD}.  The dimension statements follow from the obvious bases
+\[
+1,(s-x),\dots,(s-x)^{m_x-1}
+\]
+for $J_x$ and
+\[
+1,(s-x),\dots,(s-x)^{m_x}
+\]
+for $K_x$.
+\end{proof}
+
+\begin{definition}
+For each $x\in Z$, write an element of $J_x$ uniquely as
+\[
+\alpha=\sum_{r=0}^{m_x-1} c_r (s-x)^r.
+\]
+Define its coefficient-support shadow by
+\[
+\sigma_x(\alpha):=(a_1,\dots,a_{m_x})\in A^{m_x},
+\]
+where
+\[
+a_{r+1}=\begin{cases}
+0,& c_r\neq0,\\
+\taup,& c_r=0.
+\end{cases}
+\]
+Similarly, for
+\[
+\beta=\sum_{r=0}^{m_x} d_r (s-x)^r\in K_x,
+\]
+set
+\[
+\kappa_x(\beta):=(b_1,\dots,b_{m_x+1})\in A^{m_x+1}
+\]
+by the same rule.
+\end{definition}
+
+\begin{theorem}\label{thm:jet-shadow}
+For every $x\in Z$, the support maps
+\[
+\sigma_x:J_x\to A^{m_x},
+\qquad
+\kappa_x:K_x\to A^{m_x+1}
+\]
+are surjective maps of pointed sets.  Moreover,
+\[
+\Sigma_{m_x}(\sigma_x(\alpha))=\taup
+\iff \alpha=0,
+\]
+and
+\[
+\Sigma_{m_x+1}(\kappa_x(\beta))=\taup
+\iff \beta=0.
+\]
+Hence the emptiness test on the Boolean cube records exactly whether the jet is zero or nonzero.
+\end{theorem}
+
+\begin{proof}
+Surjectivity is immediate.  Let $(a_1,\dots,a_{m_x})\in A^{m_x}$.  If $I=\{r+1:a_{r+1}=0\}$, then
+\[
+\alpha_I:=\sum_{r+1\in I}(s-x)^r\in J_x
+\]
+satisfies $\sigma_x(\alpha_I)=(a_1,\dots,a_{m_x})$.  The same argument works for $\kappa_x$.
+
+Now $\Sigma_{m_x}(\sigma_x(\alpha))=\taup$ if and only if every coordinate of $\sigma_x(\alpha)$ is $\taup$.  By construction this is equivalent to $c_r=0$ for all $r$, i.e. to $\alpha=0$.  The proof for $\kappa_x$ is identical.
+\end{proof}
+
+\begin{corollary}\label{cor:boolean-shadow-nonreduced}
+The split-zero stalk $A^{m_x}$ is the Boolean support shadow of the nonreduced jet algebra $J_x=\CC[s]/(s-x)^{m_x}$.  In particular, the multiplicity $m_x$ appears simultaneously as
+\begin{enumerate}[label=(\roman*)]
+\item the length of the ordered jet algebra $J_x$, and
+\item the Boolean-cube dimension of the split-zero shadow $A^{m_x}$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The jet algebra $J_x$ has dimension $m_x$ by Proposition \ref{prop:jets-sheaves}.  The Boolean shadow $A^{m_x}$ has cube dimension $m_x$ by Proposition \ref{prop:boolean-cube}.  The support-shadow statement is Theorem \ref{thm:jet-shadow}.
+\end{proof}
+
+\section{Compactification to \texorpdfstring{$\PP^1(\CC)$}{P1(C)} and the tail fiber at infinity}
+
+We now globalize to a nontrivial base.  The support of zeta zeros is discrete in $\CC$, but its closure in $\PP^1(\CC)$ acquires the extra point $\infty$.
+
+\begin{lemma}\label{lem:infinite-subset-infty}
+Let $Z\subset\CC$ be closed and discrete.  Then every infinite subset of $Z$ has $\infty$ as an accumulation point in $\PP^1(\CC)$.
+\end{lemma}
+
+\begin{proof}
+Because $Z$ is closed and discrete in $\CC$, every compact subset of $\CC$ meets $Z$ in only finitely many points.  Hence an infinite subset of $Z$ is unbounded in $\CC$.  In the one-point compactification $\PP^1(\CC)=\CC\cup\{\infty\}$, an unbounded subset accumulates at $\infty$.
+\end{proof}
+
+\begin{definition}
+Let $j:\CC\into\PP^1(\CC)$ be the standard open immersion and $i_\infty:\{\infty\}\into\PP^1(\CC)$ the closed immersion.
+
+If $\mathcal F$ is one of the product sheaves from Lemma \ref{lem:sheaf-product}, define $j_*\mathcal F$ in the usual way.  For our special product sheaves we define $j_!\mathcal F$ concretely as follows:
+\begin{itemize}[leftmargin=2em]
+\item if $\infty\notin U$, set $(j_!\mathcal F)(U):=\mathcal F(U)$;
+\item if $\infty\in U$, set $(j_!\mathcal F)(U)$ equal to the subgroup/subsemimodule/subset of $\mathcal F(U\cap\CC)$ consisting of sections with finite support in $U\cap Z$.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}\label{prop:j-star-explicit}
+Let $\mathcal F_M$ be the product sheaf attached to a family $(M_x)_{x\in Z}$ on a closed discrete subset $Z\subset\CC$.  Then for every open $U\subset\PP^1(\CC)$,
+\[
+(j_*\mathcal F_M)(U)=\prod_{x\in U\cap Z} M_x.
+\]
+If $\infty\in U$, then
+\[
+(j_!\mathcal F_M)(U)=\bigoplus_{x\in U\cap Z} M_x.
+\]
+If $\infty\notin U$, then
+\[
+(j_!\mathcal F_M)(U)=(j_*\mathcal F_M)(U)=\prod_{x\in U\cap Z}M_x.
+\]
+\end{proposition}
+
+\begin{proof}
+The formula for $j_*$ is just the definition of direct image under an open immersion.
+
+Assume first that $\infty\notin U$.  Then $U\subset\CC$.  Because $Z\cap U$ is a discrete subset of the closed subset $Z$, every subset of $Z\cap U$ is closed in $U$.  Hence every section of $\mathcal F_M(U)$ has closed support in $U$, so $j_!=j_*$ on such opens.
+
+Now assume $\infty\in U$.  A section of $j_*\mathcal F_M(U)$ is a family $(m_x)_{x\in U\cap Z}$.  Its support is the set of $x$ with $m_x\neq0$ (or with non-basepoint value in the pointed-set case).  If this support is finite, then it is closed in $U$.  Conversely, if the support is infinite, Lemma \ref{lem:infinite-subset-infty} shows that $\infty$ is an accumulation point of the support in $\PP^1(\CC)$, hence also in the open neighborhood $U$.  Therefore the support is not closed in $U$.  So the sections with closed support are exactly the finitely supported ones, i.e. the direct sum.
+\end{proof}
+
+\begin{theorem}\label{thm:tail-sequence-general}
+Let $\mathcal F_M$ be the product sheaf attached to a family $(M_x)_{x\in Z}$ on a closed discrete infinite subset $Z\subset\CC$.  Set
+\[
+T_M:=\prod_{x\in Z}M_x\Big/\bigoplus_{x\in Z}M_x.
+\]
+Then there is a short exact sequence of sheaves on $\PP^1(\CC)$,
+\[
+0\longrightarrow j_!\mathcal F_M\longrightarrow j_*\mathcal F_M\longrightarrow i_{\infty *}T_M\longrightarrow0.
+\]
+The sheaf $j_*\mathcal F_M$ is flabby; the skyscraper sheaf $i_{\infty *}T_M$ is flabby; and
+\[
+H^q\bigl(\PP^1(\CC),j_!\mathcal F_M\bigr)=0
+\qquad(q\ge1).
+\]
+Moreover,
+\[
+\Gamma\bigl(\PP^1(\CC),j_*\mathcal F_M\bigr)=\prod_{x\in Z}M_x,
+\qquad
+\Gamma\bigl(\PP^1(\CC),j_!\mathcal F_M\bigr)=\bigoplus_{x\in Z}M_x,
+\]
+and the global quotient map is the canonical quotient
+\[
+\prod_{x\in Z}M_x\onto T_M.
+\]
+\end{theorem}
+
+\begin{proof}
+Define a morphism $j_*\mathcal F_M\to i_{\infty *}T_M$ as follows.  If $\infty\notin U$, the target is $0$, so the map is the zero map.  If $\infty\in U$, then by Proposition \ref{prop:j-star-explicit}
+\[
+(j_*\mathcal F_M)(U)=\prod_{x\in U\cap Z}M_x.
+\]
+Because $U\cap Z$ is cofinite in $Z$, extension by zero outside $U\cap Z$ identifies this product modulo the direct sum with the global quotient $T_M$.  Thus we get a well-defined map to $T_M=(i_{\infty *}T_M)(U)$.  Its kernel over such $U$ is exactly the direct sum by Proposition \ref{prop:j-star-explicit}, i.e. $j_!\mathcal F_M(U)$.  This proves exactness on every open and therefore exactness of sheaves.
+
+For flabbiness of $j_*\mathcal F_M$, note that every restriction map is a coordinate projection between products, hence surjective.  The skyscraper $i_{\infty *}T_M$ is flabby because its restrictions are either identities $T_M\to T_M$ or the surjection $T_M\to0$.
+
+The global-section formulas are the case $U=\PP^1(\CC)$ of Proposition \ref{prop:j-star-explicit}.  The quotient on global sections is visibly surjective.  The long exact sequence in cohomology attached to the short exact sequence therefore yields
+\[
+0\to \Gamma(j_!\mathcal F_M)\to \Gamma(j_*\mathcal F_M)\to \Gamma(i_{\infty *}T_M)\to H^1(j_!\mathcal F_M)\to0,
+\]
+and the surjectivity of the quotient map forces $H^1(j_!\mathcal F_M)=0$.  Since the higher cohomology of both flabby outer sheaves vanishes, the same long exact sequence gives $H^q(j_!\mathcal F_M)=0$ for all $q\ge2$.
+\end{proof}
+
+\begin{remark}
+Thus compactification does not produce nonzero higher cohomology in this discrete setting; the genuinely new global object is the tail stalk $T_M$ at $\infty$.  This is precisely the difference between allowing arbitrary families of local shadow data and allowing only finite-support families.
+\end{remark}
+
+\section{Application to the zeta divisor}
+
+\subsection{The zeta zero divisor and its sheaves}
+
+\begin{definition}
+Let
+\[
+Z_\zeta:=\{\rho\in\CC:\zeta(\rho)=0\}
+\]
+be the zero set of the Riemann zeta function, and let
+\[
+D_\zeta:=\sum_{\rho\in Z_\zeta}m_\rho[\rho],
+\qquad
+m_\rho:=\ord_\rho(\zeta).
+\]
+Set
+\[
+\Vzet:=\mathcal V_{D_\zeta},
+\qquad
+\Azet:=\mathcal A_{D_\zeta},
+\qquad
+\Jzet:=\mathcal J_{D_\zeta},
+\qquad
+\Kzet:=\mathcal K_{D_\zeta}.
+\]
+Write $Z_{\mathrm{triv}}=\{-2,-4,-6,\dots\}$ for the trivial zeros and $Z_{\mathrm{nt}}:=Z_\zeta\setminus Z_{\mathrm{triv}}$ for the nontrivial zeros.
+\end{definition}
+
+\begin{lemma}\label{lem:zeta-zeros-discrete}
+The set $Z_\zeta$ is closed and discrete in $\CC$, and every $m_\rho$ is a finite positive integer.
+\end{lemma}
+
+\begin{proof}
+The Riemann zeta function is meromorphic on $\CC$ with a single pole at $1$, hence holomorphic on $\CC\setminus\{1\}$.  Since it is not identically zero on any connected open subset, the identity theorem implies that its zeros cannot accumulate in $\CC\setminus\{1\}$.  Because $1$ is a pole rather than a zero, the zero set is closed and discrete in all of $\CC$.  Finite positive multiplicity is the standard local factorization theorem for holomorphic functions.
+\end{proof}
+
+\begin{corollary}\label{cor:trivial-infinite}
+The set $Z_\zeta$ is infinite.  Consequently the tail stalks attached to $\Vzet$, $\Azet$, $\Jzet$, and $\Kzet$ are all nonzero.
+\end{corollary}
+
+\begin{proof}
+The trivial zeros $-2,-4,-6,\dots$ are all zeros of $\zeta$, so $Z_\zeta$ is infinite.  Therefore the full product is strictly larger than the direct sum in each of the corresponding tail quotients.
+\end{proof}
+
+\begin{proposition}\label{prop:zeta-sheaf-formulas}
+For every open $U\subset\CC$,
+\[
+\Vzet(U)=\prod_{\rho\in U\cap Z_\zeta}A^{m_\rho},
+\qquad
+\Azet(U)=\prod_{\rho\in U\cap Z_\zeta}A,
+\]
+\[
+\Jzet(U)=\prod_{\rho\in U\cap Z_\zeta}\CC[s]/(s-\rho)^{m_\rho},
+\qquad
+\Kzet(U)=\prod_{\rho\in U\cap Z_\zeta}\CC[s]/(s-\rho)^{m_\rho+1}.
+\]
+At every zero $\rho$,
+\[
+(\Vzet)_\rho\cong A^{m_\rho},
+\qquad
+(\Azet)_\rho\cong A,
+\qquad
+(\Jzet)_\rho\cong \CC[s]/(s-\rho)^{m_\rho},
+\qquad
+(\Kzet)_\rho\cong \CC[s]/(s-\rho)^{m_\rho+1}.
+\]
+\end{proposition}
+
+\begin{proof}
+Apply Propositions \ref{prop:stalks-VD} and \ref{prop:jets-sheaves} to the divisor $D_\zeta$.
+\end{proof}
+
+\subsection{The distinguished local zeta section}
+
+\begin{theorem}\label{thm:distinguished-zeta-section}
+For each zero $\rho\in Z_\zeta$, the class of $\zeta$ in the local algebra
+\[
+K_\rho=\CC[s]/(s-\rho)^{m_\rho+1}
+\]
+has the form
+\[
+[\zeta]_\rho=\lambda_\rho (s-\rho)^{m_\rho},
+\qquad
+\lambda_\rho=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}\neq0.
+\]
+Consequently the coefficient-support shadow of $[\zeta]_\rho$ is the terminal basis vector of the Boolean cube $A^{m_\rho+1}$:
+\[
+\kappa_\rho([\zeta]_\rho)=(\taup,\dots,\taup,0).
+\]
+The family of local classes $([\zeta]_\rho)_{\rho\in U\cap Z_\zeta}$ defines, for every open $U\subset\CC$, a section of $\Kzet(U)$; these sections are compatible under restriction and therefore assemble to a distinguished global section of $\Kzet$, still denoted $[\zeta]$.
+\end{theorem}
+
+\begin{proof}
+Because $\rho$ is a zero of exact order $m_\rho$, the Taylor expansion of $\zeta$ at $\rho$ has the form
+\[
+\zeta(s)=\sum_{r\ge m_\rho} \frac{\zeta^{(r)}(\rho)}{r!}(s-\rho)^r
+=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}(s-\rho)^{m_\rho}+O\bigl((s-\rho)^{m_\rho+1}\bigr).
+\]
+Passing to the quotient modulo $(s-\rho)^{m_\rho+1}$ gives the displayed formula.  The coefficient $\lambda_\rho$ is nonzero precisely because the order of vanishing is $m_\rho$.  Therefore all coefficients of degrees $0,\dots,m_\rho-1$ vanish and the degree-$m_\rho$ coefficient is nonzero, so the support shadow is exactly the terminal basis vector.
+\end{proof}
+
+\begin{corollary}\label{cor:nonreduced-shadow}
+The sheaf $\Kzet$ together with the distinguished section $[\zeta]$ is a derivative-enhanced thickening of the Boolean shadow: at each zero $\rho$, the actual local zeta germ occupies exactly one terminal coefficient layer inside the $(m_\rho+1)$-jet shadow.
+\end{corollary}
+
+\subsection{Compactified zeta shadows}
+
+\begin{definition}
+Define the compactified tail objects
+\[
+T_\zeta^{V}:=\prod_{\rho\in Z_\zeta}A^{m_\rho}\Big/\bigoplus_{\rho\in Z_\zeta}A^{m_\rho},
+\qquad
+T_\zeta^{A}:=\prod_{\rho\in Z_\zeta}A\Big/\bigoplus_{\rho\in Z_\zeta}A,
+\]
+\[
+T_\zeta^{J}:=\prod_{\rho\in Z_\zeta}\CC[s]/(s-\rho)^{m_\rho}\Big/\bigoplus_{\rho\in Z_\zeta}\CC[s]/(s-\rho)^{m_\rho},
+\]
+\[
+T_\zeta^{K}:=\prod_{\rho\in Z_\zeta}\CC[s]/(s-\rho)^{m_\rho+1}\Big/\bigoplus_{\rho\in Z_\zeta}\CC[s]/(s-\rho)^{m_\rho+1}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:compactified-zeta}
+There are short exact sequences on $\PP^1(\CC)$,
+\[
+0\to j_!\Vzet\to j_*\Vzet\to i_{\infty *}T_\zeta^V\to0,
+\]
+\[
+0\to j_!\Azet\to j_*\Azet\to i_{\infty *}T_\zeta^A\to0,
+\]
+\[
+0\to j_!\Jzet\to j_*\Jzet\to i_{\infty *}T_\zeta^J\to0,
+\]
+\[
+0\to j_!\Kzet\to j_*\Kzet\to i_{\infty *}T_\zeta^K\to0.
+\]
+All higher cohomology groups of the four $j_!$-sheaves vanish.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem \ref{thm:tail-sequence-general} to the four families of stalk objects.
+\end{proof}
+
+\begin{corollary}\label{cor:tail-nonzero}
+The compactified Boolean zeta shadow has a nonzero tail fiber at infinity:
+\[
+T_\zeta^V\neq0.
+\]
+The same holds for $T_\zeta^A$, $T_\zeta^J$, and $T_\zeta^K$.
+\end{corollary}
+
+\begin{proof}
+By Corollary \ref{cor:trivial-infinite}, the index set of zeros is infinite.  The class of any everywhere-nonzero family on the trivial-zero subset defines a nonzero element of the quotient product/direct-sum tail object.
+\end{proof}
+
+\subsection{Equivariance on the nontrivial zero divisor}
+
+\begin{definition}
+Let $c:\CC\to\CC$ be complex conjugation, $c(s)=\overline s$, and let $w:\CC\to\CC$ be the reflection $w(s)=1-s$.  Let
+\[
+W:=\{\operatorname{id},c,w,cw\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:nontrivial-symmetry}
+If $\rho\in Z_{\mathrm{nt}}$, then
+\[
+\overline\rho\in Z_{\mathrm{nt}},
+\qquad
+1-\rho\in Z_{\mathrm{nt}},
+\qquad
+1-\overline\rho\in Z_{\mathrm{nt}},
+\]
+and all four points occur with the same multiplicity.
+\end{lemma}
+
+\begin{proof}
+The identity $\overline{\zeta(\overline s)}=\zeta(s)$ on the half-plane $\Re(s)>1$ follows from the Dirichlet series with real coefficients and extends meromorphically to all $s$ by analytic continuation.  Hence zeros are preserved by complex conjugation, with multiplicities preserved because derivatives conjugate.
+
+Now consider the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s).
+\]
+It is entire and satisfies $\xi(s)=\xi(1-s)$.  At a nontrivial zero $\rho$ of $\zeta$, the prefactor is holomorphic and nonzero, so $\xi$ has a zero of the same multiplicity at $\rho$.  The functional equation then implies the same multiplicity at $1-\rho$.  Applying conjugation again gives the fourth point.
+\end{proof}
+
+\begin{proposition}\label{prop:equivariant-sheaves}
+The divisor
+\[
+D_{\mathrm{nt}}:=\sum_{\rho\in Z_{\mathrm{nt}}}m_\rho[\rho]
+\]
+is invariant under the Klein four-group $W$.  Consequently the sheaves
+\[
+\Vnt:=\mathcal V_{D_{\mathrm{nt}}},
+\qquad
+\Jnt:=\mathcal J_{D_{\mathrm{nt}}},
+\qquad
+\Knt:=\mathcal K_{D_{\mathrm{nt}}}
+\]
+carry natural $W$-equivariant structures, as do their compactified direct images and tail quotients at $\infty$.
+\end{proposition}
+
+\begin{proof}
+Lemma \ref{lem:nontrivial-symmetry} shows that every $g\in W$ permutes $Z_{\mathrm{nt}}$ and preserves the multiplicity function.  Therefore $g$ induces coordinate permutations on all product sheaves built from the families of stalks $A^{m_\rho}$, $J_\rho$, and $K_\rho$.  Since $c$ and $w$ both fix $\infty$ on $\PP^1(\CC)$, the induced actions pass to the compactified sheaves and their tail quotients.
+\end{proof}
+
+\section{Trivial zeros and canonical stalk volumes}
+
+\begin{proposition}\label{prop:trivial-simple}
+Every trivial zero $-2n$ of $\zeta$ is simple.
+\end{proposition}
+
+\begin{proof}
+Use the functional equation
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s).
+\]
+Fix $n\ge1$ and set $s_0=-2n$.  The factors $2^s$, $\pi^{s-1}$, and $\Gamma(1-s)$ are holomorphic and nonzero at $s_0$.  Also $1-s_0=1+2n>1$, so $\zeta(1-s_0)=\zeta(2n+1)\neq0$.  Thus the only vanishing factor is $\sin(\pi s/2)$, which has a simple zero at $s_0$ because
+\[
+\frac{d}{ds}\sin\!\left(\frac{\pi s}{2}\right)\Big|_{s=s_0}
+=\frac\pi2\cos(-n\pi)=\frac\pi2(-1)^n\neq0.
+\]
+Hence the zero of $\zeta$ at $s_0$ is simple.
+\end{proof}
+
+\begin{corollary}\label{cor:trivial-stalk-A}
+For every $n\ge1$, the split-zero stalk at the trivial zero $-2n$ is
+\[
+(\Vzet)_{-2n}\cong A.
+\]
+\end{corollary}
+
+\begin{proof}
+This is Proposition \ref{prop:zeta-sheaf-formulas} together with Proposition \ref{prop:trivial-simple}.
+\end{proof}
+
+\begin{proposition}\label{prop:trivial-derivative-formula}
+For every integer $n\ge1$,
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+In particular,
+\[
+|\zeta'(-2n)|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{proposition}
+
+\begin{proof}
+Write the functional equation as
+\[
+\zeta(s)=g_n(s)\sin\!\left(\frac{\pi s}{2}\right),
+\qquad
+g_n(s):=2^s\pi^{s-1}\Gamma(1-s)\zeta(1-s).
+\]
+At $s=-2n$, the function $g_n$ is holomorphic and
+\[
+g_n(-2n)=2^{-2n}\pi^{-2n-1}\Gamma(1+2n)\zeta(2n+1)
+=2^{-2n}\pi^{-2n-1}(2n)!\,\zeta(2n+1).
+\]
+Differentiating at $s=-2n$ and using that $\sin(\pi s/2)$ vanishes there gives
+\[
+\zeta'(-2n)=g_n(-2n)\cdot \frac\pi2\cos(-n\pi)
+=2^{-2n}\pi^{-2n-1}(2n)!\,\zeta(2n+1)\cdot \frac\pi2(-1)^n.
+\]
+This simplifies to
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2^{2n+1}\pi^{2n}}\zeta(2n+1)
+=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\zeta(2n+1).
+\]
+Since $\zeta(2n+1)>0$, the absolute-value formula follows.
+\end{proof}
+
+\begin{definition}
+For each trivial zero $-2n$, define the \emph{canonical stalk volume}
+\[
+\vol_{-2n}:A\to\RR_{\ge0}
+\]
+by
+\[
+\vol_{-2n}(\taup):=0,
+\qquad
+\vol_{-2n}(0):=|\zeta'(-2n)|.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:trivial-volume}
+The unique nonempty face of the trivial-zero Boolean stalk carries the exact analytic weight
+\[
+\vol_{-2n}(0)=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+Equivalently, the canonical volume of the trivial-zero split-zero stalk is proportional to the odd zeta value $\zeta(2n+1)$ with the exact proportionality factor displayed above.
+\end{theorem}
+
+\begin{proof}
+Combine the definition of $\vol_{-2n}$ with Proposition \ref{prop:trivial-derivative-formula}.
+\end{proof}
+
+\begin{remark}
+This is the strongest possible volume statement on the trivial sector, because the stalk itself has only two points.  The derivative formula therefore places an analytic size on the unique nonempty face of the Boolean stalk.
+\end{remark}
+
+\section{Conclusion}
+
+The constant pointwise split-zero identity $F_1(\rho)=-1$ hides three distinct layers of structure.
+
+First, the relevant semiring phenomenon is not special to $-1$; it is a general split-root-shadow theorem for every nontrivial unit in the globalization of an integral domain.
+
+Second, the multiplicity sheaf $\Vzet$ is not merely a decorative repackaging of the zero divisor.  When viewed on the Boolean semiring scheme $Z_\zeta^{\BB}$, it is a locally free semimodule sheaf whose stalk dimension equals the multiplicity.  The comparison with classical nonreduced divisors becomes precise through the jet-support map from truncated local algebras to Boolean cubes.
+
+Third, once the sheaf is compactified to $\PP^1(\CC)$, a new global object appears at $\infty$: the tail quotient of the full product by the finite-support direct sum.  This tail fiber survives even though the higher sheaf cohomology still vanishes.  In the present discrete setting, the correct new invariant is therefore not higher cohomology but asymptotic product-versus-direct-sum data.
+
+In this sense the zeta zero divisor carries two complementary geometries.  The classical geometry is the nonreduced jet thickening encoded by the truncated local rings.  The split-zero geometry is its Boolean support shadow, organized into semimodule sheaves over the Boolean semiring.  The compactified tail at infinity and the trivial-zero analytic volumes are the first genuinely global and arithmetic structures visible in that Boolean shadow.
+
+\begin{thebibliography}{99}
+
+\bibitem{DrosteKuichVogler}
+M. Droste, W. Kuich, and H. Vogler (eds.),
+\emph{Handbook of Weighted Automata},
+Springer, Berlin, 2009.
+
+\bibitem{GaubertKatz}
+S. Gaubert and R. Katz,
+\emph{Rational semimodules over the max-plus semiring and geometric approach of discrete event systems},
+arXiv:math/0208014, 2002.
+
+\bibitem{GrothendieckEGAII}
+A. Grothendieck,
+\emph{\'El\'ements de g\'eom\'etrie alg\'ebrique. II. \'Etude globale \`el\'ementaire de quelques classes de morphismes},
+Publ. Math. IH\'ES \textbf{8} (1961), 5--222.
+
+\bibitem{Gunawardena}
+J. Gunawardena (ed.),
+\emph{Idempotency},
+Cambridge University Press, Cambridge, 1998.
+
+\bibitem{Hilgert}
+J. Hilgert,
+\emph{Mathematical Structures: From Linear Algebra over Rings to Geometry with Sheaves},
+Springer, Berlin, 2024.
+
+\bibitem{JarraLorscheidVital}
+M. Jarra, O. Lorscheid, and E. Vital,
+\emph{Quiver matroids, matroid morphisms, quiver Grassmannians, their Euler characteristics and $\mathbb F_1$-points},
+arXiv:2404.09255, version 2, 2026.
+
+\bibitem{Lee}
+J. M. Lee,
+\emph{Introduction to Complex Manifolds},
+American Mathematical Society, Providence, RI, 2024.
+
+\bibitem{Lorscheid}
+O. Lorscheid,
+\emph{The geometry of blueprints. Part I: Algebraic background and scheme theory},
+Adv. Math. \textbf{229} (2012), no. 3, 1804--1846.
+
+\bibitem{SteinShakarchi}
+E. M. Stein and R. Shakarchi,
+\emph{Fourier Analysis: An Introduction},
+Princeton University Press, Princeton, NJ, 2003.
+
+\end{thebibliography}
+
+\end{document}

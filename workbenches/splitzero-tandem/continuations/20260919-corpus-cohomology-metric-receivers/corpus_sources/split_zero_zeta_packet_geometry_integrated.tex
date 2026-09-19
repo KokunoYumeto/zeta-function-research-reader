@@ -1,0 +1,4072 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.08in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{array,booktabs,longtable}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Idl}{Idl}
+\DeclareMathOperator{\Tail}{Tail}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\width}{width}
+\DeclareMathOperator{\Rea}{Re}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\divv}{div}
+
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cQ}{\mathcal Q}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\taup}{\tau}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\Sph}{\mathbb S^1}
+\newcommand{\ph}{\operatorname{ph}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+
+\newcommand{\setpartprefix}[1]{\def\partprefix{#1}\setcounter{section}{0}}
+\def\partprefix{0}
+\renewcommand{\thesection}{\partprefix.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\theHsection}{\partprefix.\arabic{section}}
+\renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{\theHsubsection.\arabic{subsubsection}}
+\renewcommand{\theHequation}{\partprefix.\arabic{section}.\arabic{equation}}
+\renewcommand{\theHtheorem}{\partprefix.\arabic{section}.\arabic{theorem}}
+
+\title{Sheafified Split-Zero Geometry and Complex-Analytic Packet Decomposition of the Riemann Zeta Function\\
+Boolean Shadows, Packet Polynomials, Connes--Consani Spectral Packets,\\
+and Taylor-Atomic Phase Sequences}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This article integrates into one self-contained paper the split-zero divisor formalism, the complex-analytic packet factorization of the Riemann zeta function, the Connes--Consani spectral geometry of the non-trivial zeros, and the Taylor-atomic local phase construction for the completed zeta germ.  The pointwise split-zero coefficient attached to a zeta zero is constant, namely the Boolean pair $A=\{0,\taup\}\cong\BB$; the first nontrivial structure is therefore divisor-theoretic and packet-theoretic.
+
+We first develop the sheafified Boolean divisor shadows attached to an effective divisor, the reduced retract from multiplicity shadows to support shadows, the comparison between local Artin ideal chains and Boolean cubes, derivative-enhanced jet stalks, compactified tails at infinity, and packet descent for the Klein-four symmetry of the non-trivial zeta divisor.  We then execute the full missing complex analysis: exact local expansions at the pole, at zero, at the trivial zeros, and at arbitrary non-trivial zeros; the centered Hadamard product for $\Xi(z)=\xi(\tfrac12+z)$; exact packet polynomials; centered Taylor coefficients as symmetric functions of packet locations; a global factorization of $\zeta$ into pole, trivial-zero, and non-trivial-packet sectors; and a packet criterion for the Riemann hypothesis.
+
+Next, under the affine spectral coordinate $\Phi(s)=\ii(s-\tfrac12)$, the non-trivial zero packets become centered spectral packets in the Connes--Consani plane, and on the critical locus they determine the primitive $\zeta$-cycle lengths.  Finally, for every non-trivial zero $\rho$ and every unit direction $\nu$, we construct the canonical Taylor-atomic phase series of the reduced local germ of $\xi$ at $\rho$, prove its exact factorization into normalized affine factors, and identify every finite truncation as the endpoint of an explicit orthogonal walk whose step lengths are elementary symmetric polynomials in the atomic slopes.
+\end{abstract}
+
+\tableofcontents
+
+\section*{Master introduction}
+\addcontentsline{toc}{section}{Master introduction}
+
+The logic of the integrated construction is as follows.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The reduced split-zero coefficient of every zeta zero is the same Boolean pair $A=\{0,\taup\}$, so pointwise evaluation is too coarse.
+\item The first nontrivial layer is therefore divisor-theoretic: multiplicity shadows, reduced retracts, local Artin chains, derivative-enhanced jets, compactified tails, and packet descent.
+\item The second layer is global complex analysis: the completed function $\xi$, its packet product, the centered Taylor series of $\Xi$, and the separated factorization of $\zeta$ into pole, trivial, and packet sectors.
+\item The third layer is spectral geometry: the affine coordinate $\Phi(s)=\ii(s-\tfrac12)$ transports the packets into the Connes--Consani plane and exposes the critical $\zeta$-cycles.
+\item The fourth layer is local phase geometry: the reduced local germ at a zero carries a canonical Taylor-atomic phase sequence, whose finite truncations are normalized orthogonal walks.
+\end{enumerate}
+
+The orthogonal-walk and affine-factor calculus needed for the final phase-packet construction is developed explicitly in this paper, so no external unpublished material is required for any proof.
+\part{Sheafified split-zero divisor shadows, jet-ideal chains, compactified tails, and packet descent}
+\addcontentsline{toc}{part}{Part I. Sheafified split-zero divisor shadows, jet-ideal chains, compactified tails, and packet descent}
+\setpartprefix{I}
+
+\section{Introduction}
+
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},\qquad A:=\{0,\taup\}\subset S,
+\qquad F_1(s):=\zeta(s)-1.
+\]
+If $\rho$ is a zero of $\zeta$, then
+\[
+F_1(\rho)=\zeta(\rho)-1=-1.
+\]
+In the globalization semiring, multiplication by $-1$ fixes precisely the Boolean pair $A\cong\BB$.  Pointwise, therefore, every zeta zero determines the same split-zero fiber.  The question is not pointwise identification but global and infinitesimal organization of the zero divisor.
+
+The paper proves seven families of results.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The Boolean multiplicity shadow is not inserted ad hoc: it is the sheafification of the finite-support presheaf of local split-zero data.
+\item The reduced shadow is a canonical split retract of the multiplicity shadow, and the two coincide if and only if all multiplicities are $1$.
+\item The local Artin thickening $\cO_{X,x}/\mathfrak m_x^{m_x}$ has ideal lattice equal to a finite chain $C_{m_x}$, while the Boolean shadow stalk is the cube $B_{m_x}=\cP([m_x])$; the precise comparison is the biadjunction
+\[
+L_{m_x}\dashv i_{m_x}\dashv R_{m_x}.
+\]
+\item For a holomorphic function $f$ with divisor $D$, the local jet class in $\cO_{X,x}/\mathfrak m_x^{m_x+1}$ generates the minimal nonzero ideal.  On $\CC$ there is also a coefficient-support retraction from a derivative-enhanced pointed-set sheaf to the Boolean cube.
+\item After compactification to $\PP^1(\CC)$, the difference between direct image and extension by zero is measured exactly by a tail object at $\infty$.
+\item The nontrivial zeros of the completed zeta function descend, with multiplicities, to packet sheaves on the Klein-four orbit space.
+\item The trivial zeros give simple Boolean stalks with exact analytic weight $|\zeta'(-2n)|$, and the final section supplies explicit cyclotomic phase coordinates and orthogonal-walk expansions for normalized local jet phases.
+\end{enumerate}
+
+The geometric background is standard: local analytic geometry on Riemann surfaces \cite{Lee}, affine and projective constructions in algebraic geometry \cite{GrothendieckEGAII,Vakil,OrecchiaChiantini}, semirings and idempotent algebra \cite{GaubertKatz,Gunawardena,DrosteKuichVogler}, and the blueprint formalism \cite{Lorscheid}.  The proofs below are self-contained.
+
+\section{Globalization semirings and the fixed Boolean pair}
+
+\begin{definition}
+Let $R$ be a commutative ring with identity.  Its \emph{globalization semiring} is
+\[
+G(R):=R\sqcup\{\taup\},
+\]
+with operations
+\[
+a\oplus b:=a+b,\qquad a\oplus\taup=\taup\oplus a:=a,\qquad \taup\oplus\taup:=\taup,
+\]
+and
+\[
+a\odot b:=ab,\qquad a\odot\taup=\taup\odot a:=\taup,\qquad \taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in R\subset G(R)$ is the multiplicative identity.
+\end{definition}
+
+\begin{definition}
+For $u\in R^\times\subset G(R)^\times$, define
+\[
+\Fix_{G(R)}(u):=\{x\in G(R):u\odot x=x\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{P1:lem:units-fix}
+For every commutative ring $R$,
+\[
+G(R)^\times=R^\times.
+\]
+Moreover, for every $u\in R^\times$,
+\[
+\Fix_{G(R)}(u)=\{\taup\}\cup\Ann_R(u-1).
+\]
+\end{lemma}
+
+\begin{proof}
+If $x\in G(R)$ is invertible, say $x\odot y=1$, then $x\neq\taup$ because $\taup\odot y=\taup\neq1$.  Likewise $y\neq\taup$.  Hence $x,y\in R$ and $xy=1$ inside $R$, so $x\in R^\times$.  The converse is immediate.
+
+Now let $u\in R^\times$.  Since $u\odot\taup=\taup$, the absorber is always fixed.  For $r\in R$ one has
+\[
+u\odot r=r \iff ur=r \iff (u-1)r=0,
+\]
+which proves the formula.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:split-root-domain}
+Let $R$ be an integral domain and let $u\in R^\times$ satisfy $u\neq1$.  Then
+\[
+\Fix_{G(R)}(u)=\{0,\taup\}.
+\]
+In particular, if $\xi\in\cO_K^\times$ is a nontrivial root of unity in the ring of integers of a number field $K$, then
+\[
+\Fix_{G(\cO_K)}(\xi)=\{0,\taup\}.
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{P1:lem:units-fix},
+\[
+\Fix_{G(R)}(u)=\{\taup\}\cup\Ann_R(u-1).
+\]
+Because $R$ is a domain and $u-1\neq0$, multiplication by $u-1$ is injective.  Hence $\Ann_R(u-1)=\{0\}$.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:boolean-pair}
+For every ring $R$, the subset
+\[
+A_R:=\{0,\taup\}\subset G(R)
+\]
+is a subsemiring canonically isomorphic to the Boolean semiring $\BB=\{0,1\}$.  Explicitly,
+\[
+\taup\longleftrightarrow 0\in\BB,
+\qquad
+0\longleftrightarrow 1\in\BB.
+\]
+\end{proposition}
+
+\begin{proof}
+Inside $A_R$ the operation tables are
+\[
+0\oplus0=0,\qquad 0\oplus\taup=0,\qquad \taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot0=0,\qquad 0\odot\taup=\taup,\qquad \taup\odot\taup=\taup.
+\]
+These are exactly the Boolean rules after the displayed identification.
+\end{proof}
+
+\begin{corollary}\label{P1:cor:zeta-pointwise}
+Let $S=G(\ZZ)$ and $F_1(s)=\zeta(s)-1$.  If $\rho$ is any zero of $\zeta$, then
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=\{0,\taup\}\cong\BB.
+\]
+\end{corollary}
+
+\begin{proof}
+The first identity is immediate from $\zeta(\rho)=0$.  The second is Proposition~\ref{P1:prop:split-root-domain} with $R=\ZZ$ and $u=-1$.
+\end{proof}
+
+\section{Finite-support presheaves and Boolean divisor shadows}
+
+Throughout this section, $X$ is a connected Riemann surface and
+\[
+D=\sum_{x\in Z}m_x[x]
+\]
+is an effective divisor with discrete support $Z\subset X$.  We write $A:=\{0,\taup\}\cong\BB$.
+
+\begin{definition}
+The \emph{finite-support presheaf} of split-zero data attached to $D$ is
+\[
+\cP_D(U):=\bigoplus_{x\in U\cap Z}A^{m_x},
+\]
+that is, the set of families $(a_x)_{x\in U\cap Z}$ with $a_x\in A^{m_x}$ and all but finitely many $a_x$ equal to the basepoint $(\taup,\dots,\taup)$.  Restriction maps are coordinate projection.
+
+The \emph{Boolean multiplicity shadow} of $D$ is the sheaf of $A$-semimodules
+\[
+\cV_D(U):=\prod_{x\in U\cap Z}A^{m_x},
+\]
+and the \emph{reduced Boolean shadow} is
+\[
+\cA_D(U):=\prod_{x\in U\cap Z}A.
+\]
+\end{definition}
+
+\begin{lemma}\label{P1:lem:product-sheaf}
+Let $Z\subset X$ be closed and discrete, and let $(M_x)_{x\in Z}$ be a family of sets, posets, semimodules, or vector spaces.  Then
+\[
+\mathcal F_M(U):=\prod_{x\in U\cap Z}M_x
+\]
+defines a sheaf on $X$.
+\end{lemma}
+
+\begin{proof}
+Let $U=\bigcup_{i\in I}U_i$ be an open cover.  If two sections of $\mathcal F_M(U)$ agree on each $U_i$, then their $x$-coordinates agree for every $x\in U\cap Z$ because some $U_i$ contains $x$.  Hence the sections are equal.
+
+Conversely, suppose $s_i\in\mathcal F_M(U_i)$ are compatible.  For each $x\in U\cap Z$, choose $i$ with $x\in U_i$ and define the $x$-coordinate of the glued section to be the $x$-coordinate of $s_i$.  Compatibility on overlaps makes this independent of the choice of $i$.  This produces the unique glued section on $U$.
+\end{proof}
+
+\begin{theorem}\label{P1:thm:sheafification}
+The canonical inclusion of presheaves
+\[
+\eta_D:\cP_D\longrightarrow \cV_D
+\]
+exhibits $\cV_D$ as the sheafification of $\cP_D$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{P1:lem:product-sheaf}, $\cV_D$ is a sheaf.  It remains to prove the universal property.
+
+Let $\mathcal F$ be any sheaf and let $\phi:\cP_D\to\mathcal F$ be a morphism of presheaves.  We construct a unique sheaf morphism $\widetilde\phi:\cV_D\to\mathcal F$ with $\widetilde\phi\circ\eta_D=\phi$.
+
+Fix an open set $U\subset X$ and a section
+\[
+s=(s_x)_{x\in U\cap Z}\in\cV_D(U)=\prod_{x\in U\cap Z}A^{m_x}.
+\]
+For each $x\in U\cap Z$, choose an open neighborhood $U_x\subset U$ with $U_x\cap Z=\{x\}$.  Let $e_x\in\cP_D(U_x)$ be the section whose $x$-coordinate is $s_x$ and whose other coordinates are basepoints.  Set
+\[
+t_x:=\phi_{U_x}(e_x)\in\mathcal F(U_x).
+\]
+On an overlap $U_x\cap U_y$ with $x\neq y$, both $e_x$ and $e_y$ restrict to the unique basepoint section because $(U_x\cap U_y)\cap Z=\varnothing$.  Hence $t_x$ and $t_y$ agree on the overlap.  The family $(t_x)_{x\in U\cap Z}$ is therefore compatible, and together with the unique section on $U\setminus Z$ it glues to a section of $\mathcal F(U)$, which we define to be $\widetilde\phi_U(s)$.
+
+This construction is functorial in $U$, so it defines a sheaf morphism $\widetilde\phi$.  By construction, if $s\in\cP_D(U)$ has finite support, the glued section is obtained from the same finitely many local pieces that define $\phi_U(s)$, so $\widetilde\phi_U(\eta_D(s))=\phi_U(s)$.  Thus $\widetilde\phi\circ\eta_D=\phi$.
+
+Finally, uniqueness holds because every section of $\cV_D(U)$ is determined by its restrictions to the open cover
+\[
+U=(U\setminus Z)\cup\bigcup_{x\in U\cap Z}U_x,
+\]
+and on each $U_x$ the value of any factorization through a sheaf must agree with $\phi$ on the single-support section carrying the $x$-coordinate.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:shadow-stalks}
+The sheaves $\cV_D$ and $\cA_D$ are well defined.  Their stalks at $x\in Z$ are
+\[
+(\cV_D)_x\cong A^{m_x},\qquad (\cA_D)_x\cong A,
+\]
+and their stalks away from $Z$ are one-point stalks.
+\end{proposition}
+
+\begin{proof}
+This is Lemma~\ref{P1:lem:product-sheaf}.  Since $Z$ is discrete, for each $x\in Z$ there is an open neighborhood $U$ with $U\cap Z=\{x\}$.  For every smaller neighborhood $V\subset U$ of $x$ one has
+\[
+\cV_D(V)=A^{m_x},\qquad \cA_D(V)=A,
+\]
+with identity restrictions, so the direct limits defining the stalks are $A^{m_x}$ and $A$.  If $x\notin Z$, choose $U$ with $U\cap Z=\varnothing$; then all sections on smaller neighborhoods are singleton products.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:boolean-cube}
+For every integer $m\ge1$, the free rank-$m$ $A$-semimodule $A^m$ is canonically isomorphic to the Boolean cube
+\[
+B_m:=\cP([m]),\qquad [m]:=\{1,\dots,m\},
+\]
+by the rule
+\[
+(a_1,\dots,a_m)\longmapsto \{j:a_j=0\}.
+\]
+Under this identification, semimodule addition is union of subsets.
+\end{proposition}
+
+\begin{proof}
+Because $A\cong\BB$, coordinatewise addition on $A^m$ is Boolean OR.  Therefore
+\[
+\{j:(a_j\oplus b_j)=0\}=\{j:a_j=0\text{ or }b_j=0\},
+\]
+which is exactly the union of the corresponding subsets.  Bijectivity is immediate.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:retract-shadow}
+For each $m\ge1$, define
+\[
+\Sigma_m:A^m\to A,
+\qquad
+\Sigma_m(a_1,\dots,a_m):=a_1\oplus\cdots\oplus a_m,
+\]
+and
+\[
+\Delta_m:A\to A^m,
+\qquad
+\Delta_m(a):=(a,\dots,a).
+\]
+Then $\Sigma_m$ and $\Delta_m$ are $A$-semimodule maps and
+\[
+\Sigma_m\circ\Delta_m=\operatorname{id}_A.
+\]
+Consequently there are canonical sheaf morphisms
+\[
+\Sigma_D:\cV_D\to\cA_D,
+\qquad
+\Delta_D:\cA_D\to\cV_D,
+\qquad
+\Sigma_D\circ\Delta_D=\operatorname{id}_{\cA_D}.
+\]
+\end{proposition}
+
+\begin{proof}
+If $a=\taup$, then $\Sigma_m(\Delta_m(a))=\taup$.  If $a=0$, then idempotence in $A$ gives $\Sigma_m(\Delta_m(a))=0$.  The global statement is obtained coordinatewise over the support of the divisor.
+\end{proof}
+
+\begin{theorem}\label{P1:thm:reduced-vs-multiplicity}
+The following are equivalent.
+\begin{enumerate}[label=(\roman*)]
+\item $\cV_D\cong\cA_D$ in sheaves of $A$-semimodules.
+\item $m_x=1$ for every $x\in Z$.
+\end{enumerate}
+When these conditions fail, $\cA_D$ is nevertheless a canonical split retract of $\cV_D$.
+\end{theorem}
+
+\begin{proof}
+If every $m_x=1$, then the definitions give $\cV_D=\cA_D$.
+
+Conversely, suppose $\cV_D\cong\cA_D$.  Then the stalks are isomorphic at every $x\in Z$, so
+\[
+A^{m_x}\cong A
+\]
+in $A$-semimodules.  Any such isomorphism is in particular a bijection of underlying sets, hence
+\[
+2^{m_x}=|A^{m_x}|=|A|=2.
+\]
+Thus $m_x=1$ for all $x$.  The split-retract statement is Proposition~\ref{P1:prop:retract-shadow}.
+\end{proof}
+
+\begin{remark}
+Because $\Spec(\BB)$ has one point, the Boolean divisor shadow is naturally a sheaf of semiring objects on a zero-dimensional support.  Through the embedding of semirings into blueprints \cite{Lorscheid}, it also admits a blueprint-theoretic interpretation.  We do not use that formalism below.
+\end{remark}
+
+\section{Classical Artin thickenings and the chain-cube comparison theorem}
+
+\subsection{Local Artin rings}
+
+\begin{definition}
+For $x\in X$ and $m\ge1$, let $\mathfrak m_x\subset\cO_{X,x}$ be the maximal ideal.  Define the local Artin rings
+\[
+Q_{x,m}:=\cO_{X,x}/\mathfrak m_x^m,
+\qquad
+K_{x,m}:=\cO_{X,x}/\mathfrak m_x^{m+1}.
+\]
+For the divisor $D=\sum_{x\in Z}m_x[x]$, set
+\[
+Q_x:=Q_{x,m_x},\qquad K_x:=K_{x,m_x}.
+\]
+\end{definition}
+
+\begin{lemma}\label{P1:lem:dvr-local}
+Let $x\in X$.  Then there exists a holomorphic coordinate $t$ centered at $x$ such that
+\[
+\cO_{X,x}\cong\CC\{t\},\qquad \mathfrak m_x=(t).
+\]
+Consequently
+\[
+Q_{x,m}\cong\CC\{t\}/(t^m)\cong\CC[t]/(t^m),
+\qquad
+K_{x,m}\cong\CC\{t\}/(t^{m+1})\cong\CC[t]/(t^{m+1}).
+\]
+\end{lemma}
+
+\begin{proof}
+The existence of a local holomorphic coordinate is part of the definition of a Riemann surface \cite[Chapter~1]{Lee}.  In such a coordinate, the germ ring is the convergent power-series ring $\CC\{t\}$ and the maximal ideal is generated by $t$.  Modulo $(t^m)$ every convergent power series is represented by its degree $<m$ truncation, which gives the polynomial description.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:ideal-chain-local}
+For every $m\ge1$, the ideals of $Q_{x,m}$ are exactly
+\[
+I_k:=(t^k)/(t^m),\qquad k=0,1,\dots,m,
+\]
+where $t$ is any centered local coordinate.  In particular,
+\[
+Q_{x,m}=I_0\supset I_1\supset\cdots\supset I_m=0
+\]
+is a chain, independent of the chosen coordinate.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{P1:lem:dvr-local}, $Q_{x,m}\cong\CC\{t\}/(t^m)$.  Ideals of the quotient correspond to ideals of $\CC\{t\}$ containing $(t^m)$.  Since $\CC\{t\}$ is a discrete valuation ring, every ideal is $(t^k)$ for a unique $k\ge0$.  Those containing $(t^m)$ are precisely $(t^k)$ with $0\le k\le m$, giving the displayed chain.  Because the ideal lattice of a ring is intrinsic, the description is coordinate-independent.
+\end{proof}
+
+\begin{definition}
+For $m\ge1$, define the terminal-segment chain
+\[
+C_m:=\{T_r:1\le r\le m+1\}\subset \cP([m]),
+\]
+where
+\[
+T_r:=\{r,r+1,\dots,m\}\quad (1\le r\le m),
+\qquad
+T_{m+1}:=\varnothing.
+\]
+We also write $B_m:=\cP([m])$ for the full Boolean cube.
+\end{definition}
+
+\begin{corollary}\label{P1:cor:ideal-chain-identification}
+For every $x\in X$ and $m\ge1$, the ideal lattice $\Idl(Q_{x,m})$ is canonically isomorphic to the chain $C_m$ via
+\[
+I_k=(t^k)/(t^m)\longmapsto T_{k+1}.
+\]
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{P1:prop:ideal-chain-local} gives all ideals and their inclusion relations.  The displayed bijection preserves order because
+\[
+I_k\subseteq I_\ell\iff k\ge\ell
+\iff T_{k+1}\subseteq T_{\ell+1}.
+\]
+\end{proof}
+
+\subsection{The chain-cube comparison}
+
+\begin{definition}
+Define the inclusion
+\[
+i_m:C_m\into B_m
+\]
+by viewing each terminal segment as a subset of $[m]$.  Define monotone maps
+\[
+L_m:B_m\to C_m,
+\qquad
+L_m(I):=\begin{cases}
+\varnothing,& I=\varnothing,\\
+\{\min I,\min I+1,\dots,m\},& I\neq\varnothing,
+\end{cases}
+\]
+and
+\[
+R_m:B_m\to C_m,
+\qquad
+R_m(I):=\bigcup\{T\in C_m:T\subseteq I\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{P1:lem:LRtails}
+For every $I\in B_m$, the sets $L_m(I)$ and $R_m(I)$ lie in $C_m$.  Moreover, $L_m(I)$ is the least terminal segment containing $I$, and $R_m(I)$ is the greatest terminal segment contained in $I$.
+\end{lemma}
+
+\begin{proof}
+If $I=\varnothing$, then $L_m(I)=\varnothing=T_{m+1}\in C_m$.  If $I\neq\varnothing$, then $L_m(I)=T_{\min I}\in C_m$ and by construction it is the least terminal segment containing $I$.
+
+For $R_m(I)$, note that the union of terminal segments contained in $I$ is again a terminal segment: if $T_r,T_s\subseteq I$, then $T_{\max\{r,s\}}\subseteq I$ and $T_r\cup T_s=T_{\min\{r,s\}}$.  Hence the displayed union belongs to $C_m$ and is plainly the greatest terminal segment contained in $I$.
+\end{proof}
+
+\begin{theorem}[Chain-cube comparison]\label{P1:thm:chain-cube}
+For every $m\ge1$ one has
+\[
+L_m\dashv i_m\dashv R_m
+\]
+in the category of finite posets.  Explicitly, for $I\in B_m$ and $T\in C_m$,
+\[
+L_m(I)\subseteq T \iff I\subseteq i_m(T),
+\]
+and
+\[
+i_m(T)\subseteq I \iff T\subseteq R_m(I).
+\]
+Hence $C_m$ is both reflective and coreflective in $B_m$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{P1:lem:LRtails}, $L_m(I)$ is the least terminal segment containing $I$.  Therefore
+\[
+L_m(I)\subseteq T\iff I\subseteq T=i_m(T),
+\]
+which proves $L_m\dashv i_m$.
+
+Similarly, $R_m(I)$ is the greatest terminal segment contained in $I$.  Therefore
+\[
+i_m(T)=T\subseteq I\iff T\subseteq R_m(I),
+\]
+which proves $i_m\dashv R_m$.
+\end{proof}
+
+\begin{corollary}\label{P1:cor:not-iso-chain-cube}
+If $m\ge2$, then $C_m$ and $B_m$ are not isomorphic in finite posets.  Nevertheless they are related by the biadjoint comparison of Theorem~\ref{P1:thm:chain-cube}.
+\end{corollary}
+
+\begin{proof}
+The chain $C_m$ has width $1$.  The Boolean cube $B_m$ has width at least $2$ because $\{1\}$ and $\{2\}$ are incomparable.  Poset isomorphisms preserve width, so no isomorphism exists when $m\ge2$.
+\end{proof}
+
+\subsection{Sheafified comparison}
+
+\begin{definition}
+Define sheaves of posets on $X$ by
+\[
+\cI_D(U):=\prod_{x\in U\cap Z}\Idl(Q_x),
+\qquad
+\cC_D(U):=\prod_{x\in U\cap Z}C_{m_x},
+\qquad
+\cB_D(U):=\prod_{x\in U\cap Z}B_{m_x},
+\]
+with coordinatewise order and restriction maps given by projection.
+\end{definition}
+
+\begin{proposition}\label{P1:prop:sheaves-posets}
+The assignments $\cI_D$, $\cC_D$, and $\cB_D$ are sheaves of finite posets.  There is a canonical isomorphism
+\[
+\cI_D\cong\cC_D.
+\]
+Moreover, under the identification of Proposition~\ref{P1:prop:boolean-cube}, the ordered sheaf underlying the $A$-semimodule sheaf $\cV_D$ is canonically isomorphic to $\cB_D$.
+\end{proposition}
+
+\begin{proof}
+This is Lemma~\ref{P1:lem:product-sheaf} applied to families of finite posets, together with Corollary~\ref{P1:cor:ideal-chain-identification} and Proposition~\ref{P1:prop:boolean-cube} on each stalk.
+\end{proof}
+
+\begin{theorem}\label{P1:thm:sheafified-chain-cube}
+There are canonical sheaf morphisms of posets
+\[
+L_D:\cB_D\to\cC_D,
+\qquad
+i_D:\cC_D\to\cB_D,
+\qquad
+R_D:\cB_D\to\cC_D,
+\]
+obtained coordinatewise from $L_{m_x}$, $i_{m_x}$, and $R_{m_x}$.  Stalkwise one has
+\[
+(L_D)_x\dashv (i_D)_x\dashv (R_D)_x.
+\]
+Thus the classical jet-ideal chain sheaf is simultaneously a reflective and a coreflective subobject of the Boolean multiplicity-cube sheaf in sheaves of finite posets.
+\end{theorem}
+
+\begin{proof}
+Coordinatewise application of Theorem~\ref{P1:thm:chain-cube} commutes with restriction maps because all restrictions are coordinate projections.  Hence the maps are sheaf morphisms.  The stalkwise adjunctions are exactly Theorem~\ref{P1:thm:chain-cube} at multiplicity $m_x$.
+\end{proof}
+
+\section{Derivative-enhanced jets and coefficient support}
+
+\subsection{Coordinate-free local jet data}
+
+\begin{definition}
+Let $f\in\cO(X)$ be a nonzero holomorphic function with zero divisor
+\[
+\operatorname{div}(f)=D=\sum_{x\in Z}m_x[x].
+\]
+For each $x\in Z$, write $[f]_x$ for the class of $f$ in $K_x=\cO_{X,x}/\mathfrak m_x^{m_x+1}$.  Define the sheaves
+\[
+\cQ_D(U):=\prod_{x\in U\cap Z}Q_x,
+\qquad
+\cK_D(U):=\prod_{x\in U\cap Z}K_x,
+\]
+and the distinguished section
+\[
+[f]_D(U):=([f]_x)_{x\in U\cap Z}\in\cK_D(U).
+\]
+\end{definition}
+
+\begin{proposition}\label{P1:prop:derivative-enhanced-local}
+For each $x\in Z$, the class $[f]_x$ is nonzero and lies in the minimal nonzero ideal
+\[
+\mathfrak m_x^{m_x}/\mathfrak m_x^{m_x+1}\subset K_x.
+\]
+Indeed, the principal ideal generated by $[f]_x$ is exactly this minimal nonzero ideal.
+\end{proposition}
+
+\begin{proof}
+By definition of multiplicity, $\ord_x(f)=m_x$.  Hence in the discrete valuation ring $\cO_{X,x}$ one may write
+\[
+f=u_x\pi_x^{m_x}
+\]
+with $u_x$ a unit and $\pi_x$ a uniformizer.  Modulo $\mathfrak m_x^{m_x+1}$ this gives
+\[
+[f]_x=[u_x]\,[\pi_x]^{m_x},
+\]
+which is nonzero because $u_x$ remains invertible and $\pi_x^{m_x}\notin\mathfrak m_x^{m_x+1}$.  It lies in $\mathfrak m_x^{m_x}/\mathfrak m_x^{m_x+1}$ by construction.  Since that quotient is one-dimensional over the residue field, every nonzero element generates it, so the ideal generated by $[f]_x$ is exactly the minimal nonzero ideal.
+\end{proof}
+
+\begin{corollary}\label{P1:cor:coordinate-derivative}
+Let $x\in Z$ and choose a centered local coordinate $t$ at $x$.  Then in $K_x\cong\CC[t]/(t^{m_x+1})$ one has
+\[
+[f]_x=\lambda_x t^{m_x}
+\qquad\text{with}\qquad
+\lambda_x\in\CC^\times.
+\]
+If $X=\CC$ with global coordinate $s$, then
+\[
+\lambda_x=\frac{f^{(m_x)}(x)}{m_x!}.
+\]
+\end{corollary}
+
+\begin{proof}
+In the chosen coordinate, $f(t)=\lambda_x t^{m_x}+O(t^{m_x+1})$ with $\lambda_x\neq0$ because $\ord_x(f)=m_x$.  Passing to the quotient by $(t^{m_x+1})$ gives the first formula.  On $\CC$, this is Taylor's theorem in the coordinate $s$.
+\end{proof}
+
+\subsection{Coefficient-support maps on $\CC$}
+
+From now until the end of this subsection we specialize to $X=\CC$ with global coordinate $s$.
+
+\begin{definition}
+For $x\in\CC$ and $m\ge1$, define the derivative-enhanced stalk
+\[
+E_{x,m}:=(s-x)\CC[s]/(s-x)^{m+1}.
+\]
+Its distinguished basepoint is the zero class.  Under the basis
+\[
+(s-x),(s-x)^2,\dots,(s-x)^m,
+\]
+each element of $E_{x,m}$ can be written uniquely as
+\[
+\sum_{r=1}^m c_r(s-x)^r.
+\]
+Define a pointed-set map
+\[
+\sigma_{x,m}:E_{x,m}\to A^m
+\]
+by
+\[
+\sigma_{x,m}\!\left(\sum_{r=1}^m c_r(s-x)^r\right)=(a_1,\dots,a_m),
+\qquad
+ a_r:=\begin{cases}0,& c_r\neq0,\\ \taup,& c_r=0.\end{cases}
+\]
+Define also
+\[
+\iota_{x,m}:A^m\to E_{x,m}
+\]
+by
+\[
+\iota_{x,m}(a_1,\dots,a_m):=\sum_{\{r:a_r=0\}}(s-x)^r.
+\]
+\end{definition}
+
+\begin{proposition}\label{P1:prop:pointed-retract}
+The maps $\sigma_{x,m}$ and $\iota_{x,m}$ are pointed-set morphisms and satisfy
+\[
+\sigma_{x,m}\circ\iota_{x,m}=\operatorname{id}_{A^m}.
+\]
+Consequently, if
+\[
+\cE_D(U):=\prod_{x\in U\cap Z}E_{x,m_x}
+\]
+on $\CC$, then the coordinatewise maps
+\[
+\sigma_D:\cE_D\to\cV_D,
+\qquad
+\iota_D:\cV_D\to\cE_D
+\]
+exhibit the underlying pointed-set sheaf of $\cV_D$ as a retract of $\cE_D$.
+\end{proposition}
+
+\begin{proof}
+Both maps preserve the chosen basepoints by construction.  If $a=(a_1,\dots,a_m)\in A^m$, then the coefficient of $(s-x)^r$ in $\iota_{x,m}(a)$ is nonzero exactly when $a_r=0$.  Applying $\sigma_{x,m}$ therefore recovers $a$.  The sheaf statement is obtained coordinatewise and uses Lemma~\ref{P1:lem:product-sheaf}.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:not-cmon-iso}
+If $m\ge1$, then $E_{x,m}$ and $A^m$ are not isomorphic as commutative monoids under addition.
+\end{proposition}
+
+\begin{proof}
+The additive monoid of $A^m$ is idempotent because addition is coordinatewise Boolean OR:
+\[
+u+u=u\qquad (u\in A^m).
+\]
+The additive monoid of $E_{x,m}$ is not idempotent: for example,
+\[
+(s-x)+(s-x)=2(s-x)\neq (s-x)
+\]
+in characteristic $0$.  Idempotence of the entire monoid is preserved by monoid isomorphism, so no isomorphism exists.
+\end{proof}
+
+\begin{corollary}\label{P1:cor:zeta-support-slot}
+Let $\rho$ be a zero of zeta of multiplicity $m_\rho$.  In the stalk
+\[
+E_\rho:=E_{\rho,m_\rho}
+\]
+one has
+\[
+[\zeta]_\rho=\lambda_\rho (s-\rho)^{m_\rho},
+\qquad
+\lambda_\rho:=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}\neq0.
+\]
+Under the support map $\sigma_{\rho,m_\rho}$, this class is sent to the element of $A^{m_\rho}$ whose only nonbasepoint coordinate is the terminal one.  Equivalently, it picks the atom $\{m_\rho\}\subset [m_\rho]$ of the terminal-segment chain.
+\end{corollary}
+
+\begin{proof}
+The displayed formula is Corollary~\ref{P1:cor:coordinate-derivative} applied to $f=\zeta$.  Since only the coefficient of $(s-\rho)^{m_\rho}$ is nonzero, the support vector has a single nonbasepoint entry in the terminal slot.
+\end{proof}
+
+\section{Compactification and tail objects at infinity}
+
+Let
+\[
+j:\CC\into\PP^1(\CC)
+\]
+be the standard open immersion.
+
+\subsection{Pointed-set tails}
+
+\begin{definition}
+Let $Z\subset\CC$ be closed and discrete, and let $(M_x)_{x\in Z}$ be pointed sets with basepoints $0_x$.  Define the sheaf
+\[
+\mathcal F_M(U):=\prod_{x\in U\cap Z}M_x
+\qquad (U\subset\CC\text{ open}).
+\]
+For an open set $U\subset\PP^1(\CC)$ containing $\infty$, write $U^\circ:=U\cap\CC$.  Define
+\[
+\Tail((M_x)_{x\in Z}):=\prod_{x\in Z}M_x\Big/\sim,
+\]
+where
+\[
+(a_x)\sim(b_x)\iff a_x=b_x\text{ for all but finitely many }x\in Z.
+\]
+\end{definition}
+
+\begin{theorem}\label{P1:thm:stalks-at-infty}
+With the notation above, the canonical morphism
+\[
+j_!\mathcal F_M\longrightarrow j_*\mathcal F_M
+\]
+has the following stalks.
+\begin{enumerate}[label=(\roman*)]
+\item If $x\in Z$, then
+\[
+(j_!\mathcal F_M)_x\cong (j_*\mathcal F_M)_x\cong M_x.
+\]
+\item If $y\in\CC\setminus Z$, then
+\[
+(j_!\mathcal F_M)_y\cong (j_*\mathcal F_M)_y\cong *.
+\]
+\item At $\infty$ one has
+\[
+(j_!\mathcal F_M)_\infty\cong *,
+\qquad
+(j_*\mathcal F_M)_\infty\cong \Tail((M_x)_{x\in Z}).
+\]
+\end{enumerate}
+Consequently, if the tail pointed set is nontrivial, then
+\[
+j_!\mathcal F_M\not\cong j_*\mathcal F_M
+\]
+in sheaves of pointed sets on $\PP^1(\CC)$.
+\end{theorem}
+
+\begin{proof}
+The first two assertions are immediate from sufficiently small neighborhoods in $\CC$: around a point of $Z$ the support is a singleton, while around a point of $\CC\setminus Z$ the support is empty.
+
+For the stalk of $j_!\mathcal F_M$ at $\infty$, note that a section of $j_!\mathcal F_M(U)$ on a neighborhood $U$ of $\infty$ is, by definition, eventually equal to the basepoint outside a finite subset of $U^\circ\cap Z$.  Shrinking $U$ so that those finitely many points disappear shows that every germ becomes the basepoint germ.
+
+For the stalk of $j_*\mathcal F_M$ at $\infty$, a germ is represented by a section on some neighborhood $U$ of $\infty$, hence by a family on the cofinite subset $U^\circ\cap Z\subset Z$.  Extend that family by basepoints on the omitted finite subset of $Z$.  This identifies the germ with a class in the quotient modulo finite modification.  Two such families define the same germ exactly when they agree on a smaller neighborhood of $\infty$, equivalently when they differ only at finitely many indices.  This gives the stated identification.
+
+If the stalks at $\infty$ are not isomorphic, the sheaves are not isomorphic.
+\end{proof}
+
+\subsection{Vector-space tails}
+
+\begin{definition}
+Let $(V_x)_{x\in Z}$ be a family of nonzero complex vector spaces.  Define the sheaf
+\[
+\mathcal F_V(U):=\prod_{x\in U\cap Z}V_x
+\qquad (U\subset\CC\text{ open})
+\]
+and the tail vector space
+\[
+\Tail_{\mathrm{vec}}((V_x)_{x\in Z}):=\prod_{x\in Z}V_x\Big/\bigoplus_{x\in Z}V_x.
+\]
+\end{definition}
+
+\begin{proposition}\label{P1:prop:vector-tail-exact}
+There is a short exact sequence of sheaves of complex vector spaces on $\PP^1(\CC)$,
+\[
+0\longrightarrow j_!\mathcal F_V
+\longrightarrow j_*\mathcal F_V
+\longrightarrow i_{\infty *}\Tail_{\mathrm{vec}}((V_x)_{x\in Z})
+\longrightarrow0.
+\]
+If $Z$ is infinite, then the tail vector space is nonzero.  Moreover,
+\[
+H^q\bigl(\PP^1(\CC),j_!\mathcal F_V\bigr)=0
+\qquad (q\ge1).
+\]
+\end{proposition}
+
+\begin{proof}
+On an open set $U\subset\PP^1(\CC)$ not containing $\infty$, the sheaves $j_!\mathcal F_V$ and $j_*\mathcal F_V$ coincide.  If $\infty\in U$, then
+\[
+(j_*\mathcal F_V)(U)=\prod_{x\in U^\circ\cap Z}V_x,
+\qquad
+(j_!\mathcal F_V)(U)=\bigoplus_{x\in U^\circ\cap Z}V_x,
+\]
+because sections of $j_!$ are precisely those with finite support near $\infty$.  Since $U^\circ\cap Z$ is cofinite in $Z$, the quotient is canonically identified with
+\[
+\prod_{x\in Z}V_x\Big/\bigoplus_{x\in Z}V_x.
+\]
+This proves exactness and identifies the quotient with a skyscraper at $\infty$.
+
+If $Z$ is infinite and each $V_x\neq0$, any family $(v_x)$ with all $v_x\neq0$ defines a nonzero class in the quotient, so the tail vector space is nonzero.
+
+The sheaves $j_*\mathcal F_V$ and $i_{\infty*}\Tail_{\mathrm{vec}}((V_x))$ are flabby: restriction maps on products are coordinate projections, hence surjective, and the same is immediate for a skyscraper sheaf.  The long exact sequence in sheaf cohomology therefore gives
+\[
+H^q(\PP^1(\CC),j_!\mathcal F_V)=0\qquad(q\ge2),
+\]
+and an exact segment
+\[
+0\to \Gamma(j_!\mathcal F_V)\to \Gamma(j_*\mathcal F_V)\to \Tail_{\mathrm{vec}}((V_x))\to H^1(\PP^1(\CC),j_!\mathcal F_V)\to0.
+\]
+But
+\[
+\Gamma(j_!\mathcal F_V)=\bigoplus_{x\in Z}V_x,
+\qquad
+\Gamma(j_*\mathcal F_V)=\prod_{x\in Z}V_x,
+\]
+and the middle map is the quotient map defining the tail vector space, hence is surjective.  Therefore $H^1$ vanishes as well.
+\end{proof}
+
+\section{The zeta divisor, packet descent, and trivial-zero weights}
+
+\subsection{The zeta divisor}
+
+\begin{definition}
+Let
+\[
+D_\zeta:=\sum_{\rho:\,\zeta(\rho)=0}m_\rho[\rho]
+\]
+be the effective divisor of zeta zeros on $\CC$.  Set
+\[
+\cP_\zeta:=\cP_{D_\zeta},\quad
+\cV_\zeta:=\cV_{D_\zeta},\quad
+\cA_\zeta:=\cA_{D_\zeta},\quad
+\cI_\zeta:=\cI_{D_\zeta},\quad
+\cQ_\zeta:=\cQ_{D_\zeta},\quad
+\cK_\zeta:=\cK_{D_\zeta}.
+\]
+\end{definition}
+
+\begin{corollary}\label{P1:cor:zeta-shadow-sheaves}
+At every zero $\rho$ of zeta,
+\[
+(\cV_\zeta)_\rho\cong A^{m_\rho},
+\qquad
+(\cA_\zeta)_\rho\cong A,
+\qquad
+\Fix_S(F_1(\rho))=A.
+\]
+The reduced zeta shadow is a canonical split retract of the multiplicity shadow.
+\end{corollary}
+
+\begin{proof}
+Combine Proposition~\ref{P1:prop:shadow-stalks}, Proposition~\ref{P1:prop:retract-shadow}, and Corollary~\ref{P1:cor:zeta-pointwise}.
+\end{proof}
+
+\subsection{Completed zeta and packet descent}
+
+\begin{definition}
+Define the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s).
+\]
+Let $D_\xi$ be its zero divisor.  Thus $D_\xi$ is the divisor of the nontrivial zeros of zeta.
+\end{definition}
+
+\begin{definition}
+Let
+\[
+c(s):=\overline s,
+\qquad
+w(s):=1-s,
+\qquad
+W:=\{\mathrm{id},c,w,cw\}\cong C_2\times C_2.
+\]
+\end{definition}
+
+\begin{lemma}\label{P1:lem:xi-symmetry-multiplicity}
+If $\rho$ is a zero of $\xi$, then $\overline\rho$, $1-\rho$, and $1-\overline\rho$ are also zeros of $\xi$, and all four points occur with the same multiplicity.
+\end{lemma}
+
+\begin{proof}
+The functional equation $\xi(1-s)=\xi(s)$ gives the reflection symmetry.  The Dirichlet series for $\zeta$ has real coefficients on $\Re(s)>1$, so $\overline{\zeta(\overline s)}=\zeta(s)$ there, and analytic continuation yields the same relation meromorphically on all of $\CC$.  The elementary prefactor in $\xi$ is also conjugation-compatible, so $\overline{\xi(\overline s)}=\xi(s)$.  Therefore zeros are preserved by conjugation.  Multiplicities are preserved because both symmetries are local analytic automorphisms with nonzero derivative in absolute value.
+\end{proof}
+
+\begin{definition}
+Let $Y_\xi:=|D_\xi|/W$ be the orbit space of nontrivial-zero packets, equipped with the quotient topology.  Since $|D_\xi|$ is discrete, so is $Y_\xi$.  For an orbit $O\in Y_\xi$, write $m_O$ for the common multiplicity of its points.
+
+Define the \emph{Boolean packet sheaf}
+\[
+\mathcal P_\xi^{\cV}(U):=\prod_{O\in U}A^{m_O}
+\]
+and the \emph{chain packet sheaf}
+\[
+\mathcal P_\xi^{\cC}(U):=\prod_{O\in U}C_{m_O}
+\]
+on open sets $U\subset Y_\xi$.
+\end{definition}
+
+\begin{theorem}\label{P1:thm:packet-descent}
+Let $q:|D_\xi|\to Y_\xi$ be the quotient map.  The group $W$ acts naturally on the sheaves $\cV_{D_\xi}$ and $\cC_{D_\xi}$.  For each orbit $O\in Y_\xi$ of cardinality $r_O$, the stalk of $q_*\cV_{D_\xi}$ at $O$ is canonically
+\[
+(q_*\cV_{D_\xi})_O\cong (A^{m_O})^{r_O},
+\]
+and its $W$-fixed subsemimodule is the diagonal copy of $A^{m_O}$.  Hence
+\[
+(q_*\cV_{D_\xi})^W\cong \mathcal P_\xi^{\cV}.
+\]
+Likewise,
+\[
+(q_*\cC_{D_\xi})_O\cong (C_{m_O})^{r_O},
+\qquad
+(q_*\cC_{D_\xi})^W\cong \mathcal P_\xi^{\cC}.
+\]
+Thus both the Boolean multiplicity shadow and the classical jet-ideal chain descend to packet sheaves on the orbit space.
+\end{theorem}
+
+\begin{proof}
+Because $Y_\xi$ is discrete, the stalk of $q_*\cV_{D_\xi}$ at an orbit $O$ is the product of the stalks over the points in that orbit.  Lemma~\ref{P1:lem:xi-symmetry-multiplicity} gives the common multiplicity $m_O$, so
+\[
+(q_*\cV_{D_\xi})_O\cong \prod_{\rho\in O}A^{m_O}\cong (A^{m_O})^{r_O}.
+\]
+The group $W$ acts by permuting the $r_O$ factors transitively.  A tuple in $(A^{m_O})^{r_O}$ is invariant under this action if and only if all coordinates are equal.  Thus the fixed part is the diagonal copy of $A^{m_O}$.  Since the orbit space is discrete, these diagonal stalks assemble into the sheaf $\mathcal P_\xi^{\cV}$.
+
+The chain case is identical, replacing $A^{m_O}$ by $C_{m_O}$.
+\end{proof}
+
+\begin{remark}
+No hypothesis such as RH is used here.  If RH holds, every nontrivial-zero packet has cardinality $2$; off the critical line, the packet size is $4$.
+\end{remark}
+
+\subsection{Trivial zeros}
+
+\begin{proposition}\label{P1:prop:trivial-simple}
+For every integer $n\ge1$, the trivial zero $-2n$ of zeta is simple.
+\end{proposition}
+
+\begin{proof}
+The functional equation reads
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s).
+\]
+At $s=-2n$, the factors $2^s$, $\pi^{s-1}$, and $\Gamma(1-s)=\Gamma(1+2n)$ are holomorphic and nonzero, while $\zeta(1-s)=\zeta(2n+1)\neq0$.  The only vanishing factor is the sine term, and it has a simple zero because
+\[
+\frac{d}{ds}\sin\!\left(\frac{\pi s}{2}\right)\Big|_{s=-2n}=\frac\pi2\cos(-n\pi)=\frac\pi2(-1)^n\neq0.
+\]
+\end{proof}
+
+\begin{corollary}\label{P1:cor:trivial-stalk}
+On the trivial-zero sector, the Boolean multiplicity stalk is just $A$:
+\[
+(\cV_\zeta)_{-2n}\cong A\qquad(n\ge1).
+\]
+\end{corollary}
+
+\begin{proof}
+This is Proposition~\ref{P1:prop:shadow-stalks} together with Proposition~\ref{P1:prop:trivial-simple}.
+\end{proof}
+
+\begin{proposition}\label{P1:prop:trivial-derivative}
+For every integer $n\ge1$,
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+Hence
+\[
+|\zeta'(-2n)|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{proposition}
+
+\begin{proof}
+Set
+\[
+g_n(s):=2^s\pi^{s-1}\Gamma(1-s)\zeta(1-s).
+\]
+Then $\zeta(s)=g_n(s)\sin(\pi s/2)$ and $g_n$ is holomorphic at $s=-2n$ with
+\[
+g_n(-2n)=2^{-2n}\pi^{-2n-1}(2n)!\,\zeta(2n+1).
+\]
+Differentiating and using that the sine factor vanishes at $-2n$ gives
+\[
+\zeta'(-2n)=g_n(-2n)\cdot \frac\pi2\cos(-n\pi)
+=2^{-2n}\pi^{-2n-1}(2n)!\,\zeta(2n+1)\cdot\frac\pi2(-1)^n,
+\]
+which simplifies to the stated formula.  Since $\zeta(2n+1)>0$, the absolute-value formula follows.
+\end{proof}
+
+\begin{definition}
+For each trivial zero $-2n$, define its \emph{canonical Boolean weight}
+\[
+\omega_{-2n}:A\to\RR_{\ge0}
+\]
+by
+\[
+\omega_{-2n}(\taup):=0,
+\qquad
+\omega_{-2n}(0):=|\zeta'(-2n)|.
+\]
+\end{definition}
+
+\begin{corollary}\label{P1:cor:trivial-weight}
+The unique nonbasepoint of the trivial Boolean stalk carries the exact analytic weight
+\[
+\omega_{-2n}(0)=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{corollary}
+
+\begin{proof}
+This is immediate from the definition and Proposition~\ref{P1:prop:trivial-derivative}.
+\end{proof}
+
+\subsection{Compactified zeta tails}
+
+\begin{definition}
+Define the zeta tail objects
+\[
+T_\zeta^{\cV}:=\Tail\bigl((A^{m_\rho})_{\rho:\,\zeta(\rho)=0}\bigr),
+\qquad
+T_\zeta^{\cA}:=\Tail\bigl((A)_{\rho:\,\zeta(\rho)=0}\bigr),
+\]
+and the jet-vector-space tails
+\[
+T_\zeta^{\cQ}:=\Tail_{\mathrm{vec}}\bigl((Q_\rho)_{\rho:\,\zeta(\rho)=0}\bigr),
+\qquad
+T_\zeta^{\cK}:=\Tail_{\mathrm{vec}}\bigl((K_\rho)_{\rho:\,\zeta(\rho)=0}\bigr).
+\]
+\end{definition}
+
+\begin{theorem}\label{P1:thm:zeta-tail}
+The compactified Boolean and jet shadows of zeta satisfy:
+\begin{enumerate}[label=(\roman*)]
+\item the stalks at $\infty$ are
+\[
+(j_*\cV_\zeta)_\infty\cong T_\zeta^{\cV},
+\qquad
+(j_*\cA_\zeta)_\infty\cong T_\zeta^{\cA},
+\]
+\[
+(j_*\cQ_\zeta)_\infty\cong T_\zeta^{\cQ},
+\qquad
+(j_*\cK_\zeta)_\infty\cong T_\zeta^{\cK};
+\]
+\item all four tail objects are nonzero;
+\item for the jet-vector-space shadows there are short exact sequences
+\[
+0\to j_!\cQ_\zeta\to j_*\cQ_\zeta\to i_{\infty*}T_\zeta^{\cQ}\to0,
+\]
+\[
+0\to j_!\cK_\zeta\to j_*\cK_\zeta\to i_{\infty*}T_\zeta^{\cK}\to0,
+\]
+and therefore
+\[
+H^q\bigl(\PP^1(\CC),j_!\cQ_\zeta\bigr)=H^q\bigl(\PP^1(\CC),j_!\cK_\zeta\bigr)=0
+\qquad(q\ge1).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(i) is Theorem~\ref{P1:thm:stalks-at-infty} for Boolean shadows and Proposition~\ref{P1:prop:vector-tail-exact} for jet shadows.  Since zeta has infinitely many trivial zeros, the index set is infinite; the class of the everywhere-nonbasepoint family on the trivial-zero sector shows that the Boolean tails are nonzero, and any everywhere-nonzero vector in the product gives nonzero jet tails.  This proves~(ii).  Part~(iii) is Proposition~\ref{P1:prop:vector-tail-exact}.
+\end{proof}
+
+\section{Cyclotomic phase coordinates and orthogonal walks}\label{P1:sec:tobley}
+
+In this section we record two exact phase-coordinate constructions that are elementary but useful in the packet-geometric setting.  They are independent of the preceding sheaf-theoretic arguments, but they apply naturally to the normalized leading coefficients of simple local zeta jets.
+
+\begin{proposition}[Orthogonal-walk expansion]\label{P1:prop:orthogonal-walk}
+Let $\alpha_1,\dots,\alpha_m\in\RR$, and let $e_r(\alpha_1,\dots,\alpha_m)$ be the elementary symmetric polynomials.  Then
+\[
+\prod_{k=1}^m (1+i\alpha_k)=\sum_{r=0}^m i^r e_r(\alpha_1,\dots,\alpha_m).
+\]
+Consequently, if
+\[
+S_r:=\sum_{j=0}^r i^j e_j(\alpha_1,\dots,\alpha_m),
+\qquad 0\le r\le m,
+\]
+then the successive differences $S_r-S_{r-1}$ are alternately horizontal and vertical segments of lengths $e_r(\alpha_1,\dots,\alpha_m)$.  In particular,
+\[
+\prod_{k=1}^m \frac{1+i\alpha_k}{\sqrt{1+\alpha_k^2}}
+=e^{i\sum_{k=1}^m\arctan(\alpha_k)}.
+\]
+\end{proposition}
+
+\begin{proof}
+Expanding the product gives
+\[
+\prod_{k=1}^m(1+i\alpha_k)=\sum_{I\subseteq [m]} i^{|I|}\prod_{j\in I}\alpha_j.
+\]
+Grouping terms by the cardinality $r=|I|$ yields the first formula because
+\[
+e_r(\alpha_1,\dots,\alpha_m)=\sum_{|I|=r}\prod_{j\in I}\alpha_j.
+\]
+The geometric statement follows from the fact that multiplication by $i^r$ rotates the positive real axis through successive quarter-turns.  Finally,
+\[
+\frac{1+i\alpha_k}{\sqrt{1+\alpha_k^2}}
+=\cos(\arctan\alpha_k)+i\sin(\arctan\alpha_k)
+=e^{i\arctan\alpha_k},
+\]
+and multiplying over $k$ proves the normalized identity.
+\end{proof}
+
+\begin{theorem}[Cyclotomic affine-factor chart]\label{P1:thm:cyclotomic-chart}
+Let $\zeta_5=e^{2\pi i/5}$ and set $\phi:=2\pi/5$.  For $t>0$, define
+\[
+L(t):=1+t\zeta_5.
+\]
+Then the function
+\[
+\Theta:(0,\infty)\to(0,\phi),\qquad \Theta(t):=\Arg L(t),
+\]
+is a real-analytic strictly increasing bijection.  Its inverse is
+\[
+t(\theta)=\frac{\sin\theta}{\sin(\phi-\theta)}
+\qquad (0<\theta<\phi).
+\]
+Equivalently,
+\[
+\frac{1+t(\theta)\zeta_5}{|1+t(\theta)\zeta_5|}=e^{i\theta}
+\qquad (0<\theta<2\pi/5).
+\]
+\end{theorem}
+
+\begin{proof}
+Write $z(t):=1+t e^{i\phi}$.  Since $\phi\in(0,\pi)$, one has $\Im z(t)=t\sin\phi>0$, so $\Arg z(t)$ indeed lies in $(0,\phi)$.  Differentiating the argument gives
+\[
+\Theta'(t)=\Im\!\left(\frac{z'(t)}{z(t)}\right)
+=\Im\!\left(\frac{e^{i\phi}}{1+t e^{i\phi}}\right)
+=\frac{\sin\phi}{|1+t e^{i\phi}|^2}>0.
+\]
+Thus $\Theta$ is strictly increasing and real-analytic.  Moreover,
+\[
+\lim_{t\to0^+}\Theta(t)=0,
+\qquad
+\lim_{t\to\infty}\Theta(t)=\phi,
+\]
+so $\Theta$ is a bijection from $(0,\infty)$ onto $(0,\phi)$.
+
+Now let $0<\theta<\phi$ and seek $t>0$ such that
+\[
+\Arg(1+t e^{i\phi})=\theta.
+\]
+This means that $1+t e^{i\phi}$ lies on the ray $\RR_{>0}e^{i\theta}$, so there exists $r>0$ with
+\[
+1+t e^{i\phi}=r e^{i\theta}.
+\]
+Taking imaginary parts yields
+\[
+t\sin\phi=r\sin\theta,
+\]
+and taking real parts yields
+\[
+1+t\cos\phi=r\cos\theta.
+\]
+Eliminating $r$ gives
+\[
+\frac{t\sin\phi}{\sin\theta}=\frac{1+t\cos\phi}{\cos\theta},
+\]
+whence
+\[
+t\sin(\phi-\theta)=\sin\theta.
+\]
+Therefore
+\[
+t=\frac{\sin\theta}{\sin(\phi-\theta)}.
+\]
+The final normalized identity is just a restatement of the defining equation for $t(\theta)$.
+\end{proof}
+
+\begin{corollary}\label{P1:cor:simple-zero-phase-chart}
+Let $\rho$ be a simple zero of zeta, and define its normalized leading coefficient
+\[
+u_\rho:=\frac{\zeta'(\rho)}{|\zeta'(\rho)|}\in S^1.
+\]
+If $\Arg(u_\rho)\in(0,2\pi/5)$, then there exists a unique $t_\rho>0$ such that
+\[
+u_\rho=\frac{1+t_\rho\zeta_5}{|1+t_\rho\zeta_5|}.
+\]
+Thus the phase of the simple local zeta jet is carried by a unique normalized affine factor in the CM field $\QQ(\zeta_5)$ on that arc.
+\end{corollary}
+
+\begin{proof}
+This is an immediate application of Theorem~\ref{P1:thm:cyclotomic-chart} with $\theta=\Arg(u_\rho)$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{P1:thm:cyclotomic-chart} is purely archimedean.  It does not assert that zeta derivatives are cyclotomic numbers.  Rather, it provides an exact phase chart whenever a chosen normalized local coefficient lies in the indicated arc.
+\end{remark}
+
+\section{Final theorem}
+
+\begin{theorem}
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},\qquad A=\{0,\taup\}\cong\BB,
+\qquad F_1(s)=\zeta(s)-1.
+\]
+Then the zeta zero divisor admits the following canonical structures.
+\begin{enumerate}[label=(\roman*)]
+\item For every zero $\rho$ of zeta,
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A.
+\]
+\item For every effective divisor $D$ on a Riemann surface, the finite-support presheaf $\cP_D$ sheafifies to the Boolean multiplicity shadow $\cV_D$, and the reduced shadow $\cA_D$ is a canonical split retract of $\cV_D$.  One has $\cV_D\cong\cA_D$ if and only if every multiplicity is $1$.
+\item The local Artin thickening $Q_{x,m_x}=\cO_{X,x}/\mathfrak m_x^{m_x}$ has ideal lattice $C_{m_x}$, the Boolean shadow stalk is the cube $B_{m_x}$, and the precise comparison is the biadjunction
+\[
+L_{m_x}\dashv i_{m_x}\dashv R_{m_x}.
+\]
+\item For a holomorphic function $f$ with divisor $D$, the local jet class in $K_{x,m_x}=\cO_{X,x}/\mathfrak m_x^{m_x+1}$ generates the minimal nonzero ideal.  On $\CC$, the derivative-enhanced pointed-set sheaf retracts onto the Boolean multiplicity shadow, while no additive-monoid isomorphism exists between the local jet stalk and the Boolean cube.
+\item After compactification to $\PP^1(\CC)$, the difference between direct image and extension by zero is measured by an explicit tail object at $\infty$.  For zeta these tails are nonzero.
+\item For the completed zeta function $\xi$, the nontrivial-zero shadows descend to packet sheaves on the Klein-four orbit space.
+\item On the trivial-zero sector, the Boolean stalk is simple and carries the exact weight
+\[
+|\zeta'(-2n)|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\item The normalized leading coefficients of simple local zeta jets admit exact cyclotomic phase coordinates on the arc $(0,2\pi/5)$, and the product of normalized affine factors is governed by the elementary-symmetric expansion of Proposition~\ref{P1:prop:orthogonal-walk}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The individual assertions are proved in Corollary~\ref{P1:cor:zeta-pointwise}, Theorem~\ref{P1:thm:sheafification}, Theorem~\ref{P1:thm:reduced-vs-multiplicity}, Theorem~\ref{P1:thm:chain-cube}, Proposition~\ref{P1:prop:derivative-enhanced-local}, Proposition~\ref{P1:prop:pointed-retract}, Proposition~\ref{P1:prop:not-cmon-iso}, Theorem~\ref{P1:thm:stalks-at-infty}, Theorem~\ref{P1:thm:packet-descent}, Proposition~\ref{P1:prop:trivial-derivative}, Theorem~\ref{P1:thm:zeta-tail}, Proposition~\ref{P1:prop:orthogonal-walk}, and Theorem~\ref{P1:thm:cyclotomic-chart}.
+\end{proof}
+
+\part{Complex-analytic completion: pole-trivial-packet factorization, centered Taylor coefficients, and global logarithmic derivatives}
+\addcontentsline{toc}{part}{Part II. Complex-analytic completion: pole-trivial-packet factorization, centered Taylor coefficients, and global logarithmic derivatives}
+\setpartprefix{II}
+
+\section{Introduction and audit of the missing analytic execution}
+
+The split-zero note on the zeta divisor established the following facts.
+
+\begin{enumerate}[label=(\roman*)]
+\item For every zero $\rho$ of $\zeta$, the pointwise split-zero fiber attached to $F_1(s)=\zeta(s)-1$ is the same Boolean pair $A=\{0,\tau\}\cong\BB$.
+\item For an effective discrete divisor $D=\sum_x m_x[x]$ on a Riemann surface, the local split-zero data sheafifies to
+\[
+\cV_D(U)=\prod_{x\in U\cap |D|} A^{m_x},
+\qquad
+\cA_D(U)=\prod_{x\in U\cap |D|} A.
+\]
+\item For the completed zeta function $\xi$, the nontrivial-zero shadow descends to the packet quotient
+\[
+Y_\xi:=|D_\xi|/W,
+\qquad
+W=\{\mathrm{id},\,s\mapsto 1-s,\,s\mapsto \overline s,\,s\mapsto 1-\overline s\}.
+\]
+\item At the trivial zeros $-2n$, one has the exact leading coefficient formula
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{enumerate}
+
+Those results were correct, but they did not yet execute the full analytic content that the framework permits.  Four mathematically substantive pieces were still missing.
+
+\begin{enumerate}[label=(A)]
+\item There was no exact factorization of $\zeta$ into its pole sector, trivial-zero sector, and nontrivial packet sector.
+\item Packet descent had been proved at the level of divisor shadows, but not at the level of global analytic product factors.
+\item The local jet formalism had not yet been specialized to the leading coefficients at nontrivial zeros or to the centered Taylor coefficients of $\xi$.
+\item The trivial-zero weights had not been lifted from the first derivative of $\zeta$ to the completed value of $\Lambda$ and then reincorporated into a global product decomposition.
+\end{enumerate}
+
+This note supplies exactly those missing pieces.  The key output is the formula
+\begin{equation}\label{P2:eq:intro-main-factorization}
+\zeta(s)
+=
+\frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+\prod_{O\in Y_\xi} P_O(s)^{m_O},
+\end{equation}
+where the factors $P_O$ are canonical normalized packet polynomials.  The first factor records the pole at $s=1$, the second product records the trivial zeros, and the final product records the nontrivial packets.  Every term on the right-hand side will be defined and proved below.
+
+\begin{remark}
+We use two classical inputs from the standard theory of the zeta function:
+\begin{enumerate}[label=(\arabic*)]
+\item the function $\xi$ is entire of order $1$;
+\item Hadamard factorization therefore applies to the centered entire function $\Xi(z)=\xi(1/2+z)$.
+\end{enumerate}
+These are classical theorems; everything deduced from them is proved in full detail here.
+\end{remark}
+
+\section{Split-zero divisor shadows and the divisor splitting of $\zeta$}
+
+\subsection{Boolean divisor shadows}
+
+Let
+\[
+A:=\{0,\tau\}
+\]
+be the two-element split-zero fiber.  We use only the fact that $A$ is a pointed two-element set with distinguished basepoint $\tau$; all products below are therefore products of pointed sets.  If
+\[
+D=\sum_{x\in Z} m_x[x]
+\]
+is an effective discrete divisor on a Riemann surface $X$, we write
+\begin{equation}\label{P2:eq:shadow-definitions}
+\cV_D(U):=\prod_{x\in U\cap Z} A^{m_x},
+\qquad
+\cA_D(U):=\prod_{x\in U\cap Z} A
+\end{equation}
+for the multiplicity and reduced Boolean shadows.
+
+\begin{proposition}\label{P2:prop:shadow-product-disjoint}
+Let $D_1$ and $D_2$ be effective discrete divisors on a Riemann surface $X$ with disjoint supports.  Then for every open set $U\subset X$ there are canonical isomorphisms
+\[
+\cV_{D_1+D_2}(U)\cong \cV_{D_1}(U)\times \cV_{D_2}(U),
+\qquad
+\cA_{D_1+D_2}(U)\cong \cA_{D_1}(U)\times \cA_{D_2}(U).
+\]
+Hence
+\[
+\cV_{D_1+D_2}\cong \cV_{D_1}\times \cV_{D_2},
+\qquad
+\cA_{D_1+D_2}\cong \cA_{D_1}\times \cA_{D_2}
+\]
+as sheaves of pointed sets.
+\end{proposition}
+
+\begin{proof}
+Because the supports are disjoint,
+\[
+|(D_1+D_2)|=|D_1|\sqcup |D_2|,
+\]
+and the multiplicities on the two pieces are exactly those of $D_1$ and $D_2$.  Therefore, for every open $U$,
+\[
+\prod_{x\in U\cap |D_1+D_2|} A^{m_x}
+=
+\left(\prod_{x\in U\cap |D_1|} A^{m_x}\right)
+\times
+\left(\prod_{x\in U\cap |D_2|} A^{m_x}\right).
+\]
+This is precisely the first claimed isomorphism.  The reduced case is identical, with each $A^{m_x}$ replaced by $A$.  Naturality in $U$ is immediate from the fact that every restriction map is coordinate projection.
+\end{proof}
+
+\subsection{Divisors of $\zeta$, $\Lambda$, and $\xi$}
+
+\begin{definition}
+Let $Z_{\mathrm{nt}}$ be the set of nontrivial zeros of the Riemann zeta function, and write
+\[
+D_{\mathrm{nt}}:=\sum_{\rho\in Z_{\mathrm{nt}}} m_\rho[\rho].
+\]
+Let
+\[
+D_{\mathrm{tr}}:=\sum_{n\ge 1}[-2n].
+\]
+Thus $D_{\mathrm{tr}}$ is the trivial-zero divisor and $D_{\mathrm{nt}}$ is the nontrivial-zero divisor.
+\end{definition}
+
+\begin{proposition}\label{P2:prop:trivial-zeros-simple-again}
+For every integer $n\ge 1$, the point $-2n$ is a simple zero of $\zeta$.
+\end{proposition}
+
+\begin{proof}
+The functional equation in the form
+\begin{equation}\label{P2:eq:functional-zeta}
+\zeta(s)=2^s\pi^{s-1}\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s)
+\end{equation}
+shows the claim immediately.  At $s=-2n$, the factors $2^s$, $\pi^{s-1}$, $\Gamma(1-s)=\Gamma(1+2n)$, and $\zeta(1-s)=\zeta(2n+1)$ are holomorphic and nonzero.  The only vanishing factor is the sine term, and it vanishes simply because
+\[
+\frac{d}{ds}\sin\!\left(\frac{\pi s}{2}\right)\Big|_{s=-2n}
+=\frac{\pi}{2}\cos(-n\pi)=\frac{\pi}{2}(-1)^n\neq 0.
+\]
+Thus $\ord_{-2n}(\zeta)=1$.
+\end{proof}
+
+\begin{theorem}\label{P2:thm:divisor-identities}
+Let
+\[
+\Lambda(s):=\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s),
+\qquad
+\xi(s):=\frac12 s(s-1)\Lambda(s).
+\]
+Then on $\CC$ one has the divisor identities
+\begin{align*}
+\divv(\zeta)&=D_{\mathrm{tr}}+D_{\mathrm{nt}}-[1],\\
+\divv(\Lambda)&=D_{\mathrm{nt}}-[0]-[1],\\
+\divv(\xi)&=D_{\mathrm{nt}}.
+\end{align*}
+In particular, the trivial and nontrivial sectors of the zeta zero divisor are disjoint, and the completed function $\xi$ removes the entire trivial-zero sector.
+\end{theorem}
+
+\begin{proof}
+The function $\zeta$ has a unique pole, namely a simple pole at $s=1$, and by Proposition~\ref{P2:prop:trivial-zeros-simple-again} its trivial zeros are exactly the simple zeros at the negative even integers.  By definition, every remaining zero is a nontrivial zero, with multiplicity $m_\rho$.  This proves the first divisor identity.
+
+For $\Lambda$, the factor $\Gamma(s/2)$ has simple poles at
+\[
+s=0,-2,-4,-6,\dots.
+\]
+At the negative even integers the simple pole of $\Gamma(s/2)$ is cancelled by the simple trivial zero of $\zeta$, so $\Lambda$ is holomorphic and nonzero there.  At $s=0$, however, $\zeta(0)=-1/2\neq 0$, so the pole from $\Gamma(s/2)$ remains.  At $s=1$ the pole of $\zeta$ remains.  The nontrivial zeros are untouched because the prefactor $\pi^{-s/2}\Gamma(s/2)$ is holomorphic and nonzero at every nontrivial zero.  Hence
+\[
+\divv(\Lambda)=D_{\mathrm{nt}}-[0]-[1].
+\]
+Finally, multiplying by $\frac12 s(s-1)$ removes the poles at $0$ and $1$ and introduces no new zeros except there.  Thus $\xi$ is entire and
+\[
+\divv(\xi)=D_{\mathrm{nt}}.
+\]
+\end{proof}
+
+\begin{corollary}\label{P2:cor:shadow-zeta-splits}
+For the zeta zero divisor one has canonical sheaf factorizations
+\[
+\cV_{\divv(\zeta)^+}\cong \cV_{D_{\mathrm{tr}}}\times \cV_{D_{\mathrm{nt}}},
+\qquad
+\cA_{\divv(\zeta)^+}\cong \cA_{D_{\mathrm{tr}}}\times \cA_{D_{\mathrm{nt}}},
+\]
+where $\divv(\zeta)^+=D_{\mathrm{tr}}+D_{\mathrm{nt}}$ is the effective zero divisor of $\zeta$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{P2:thm:divisor-identities}, the effective zero divisor of $\zeta$ is exactly $D_{\mathrm{tr}}+D_{\mathrm{nt}}$, and the supports are disjoint.  Proposition~\ref{P2:prop:shadow-product-disjoint} applies.
+\end{proof}
+
+\section{Local analytic expansions and leading jets}
+
+\subsection{The pole at $s=1$ and the regular point $s=0$}
+
+\begin{proposition}\label{P2:prop:stieltjes-expansion}
+There is a unique sequence $(\gamma_n)_{n\ge 0}$ of complex numbers such that, in a punctured neighborhood of $s=1$,
+\begin{equation}\label{P2:eq:stieltjes-expansion}
+\zeta(s)=\frac{1}{s-1}+\sum_{n=0}^{\infty}\frac{(-1)^n\gamma_n}{n!}(s-1)^n.
+\end{equation}
+Equivalently,
+\[
+\zeta(s)-\frac{1}{s-1}
+\]
+is holomorphic at $s=1$ and its Taylor coefficients are the Stieltjes constants.
+\end{proposition}
+
+\begin{proof}
+Since $\zeta$ has a simple pole at $s=1$ with residue $1$, the function
+\[
+h(s):=\zeta(s)-\frac{1}{s-1}
+\]
+is holomorphic near $s=1$.  Therefore it has a unique Taylor expansion
+\[
+h(s)=\sum_{n=0}^{\infty} c_n(s-1)^n.
+\]
+Writing $c_n=(-1)^n\gamma_n/n!$ gives the asserted form.
+\end{proof}
+
+\begin{proposition}\label{P2:prop:zeta-at-zero}
+Near $s=0$ one has the exact expansion
+\begin{equation}\label{P2:eq:zeta-zero-expansion}
+\zeta(s)=-\frac12-\frac12\log(2\pi)s+O(s^2).
+\end{equation}
+Consequently,
+\[
+\zeta(0)=-\frac12,
+\qquad
+\zeta'(0)=-\frac12\log(2\pi).
+\]
+Moreover,
+\begin{equation}\label{P2:eq:Lambda-zero-expansion}
+\Lambda(s)=-\frac1s+\frac{\gamma-\log(4\pi)}{2}+O(s),
+\end{equation}
+and
+\begin{equation}\label{P2:eq:xi-zero-expansion}
+\xi(s)=\frac12+\frac{\log(4\pi)-2-\gamma}{4}s+O(s^2).
+\end{equation}
+In particular,
+\[
+\xi(0)=\xi(1)=\frac12.
+\]
+\end{proposition}
+
+\begin{proof}
+Start from \eqref{P2:eq:functional-zeta}.  As $s\to 0$ we have
+\[
+2^s\pi^{s-1}=\pi^{-1}\bigl(1+\log(2\pi)s+O(s^2)\bigr),
+\]
+\[
+\sin\!\left(\frac{\pi s}{2}\right)=\frac{\pi s}{2}+O(s^3),
+\qquad
+\Gamma(1-s)=1+\gamma s+O(s^2),
+\]
+and by Proposition~\ref{P2:prop:stieltjes-expansion},
+\[
+\zeta(1-s)=-\frac1s+\gamma+O(s).
+\]
+Multiplying the last three expansions first gives
+\[
+\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s)
+=\left(\frac{\pi s}{2}+O(s^3)\right)\left(1+\gamma s+O(s^2)\right)\left(-\frac1s+\gamma+O(s)\right)
+=-\frac{\pi}{2}+O(s^2),
+\]
+because the linear terms cancel exactly.  Multiplying by $2^s\pi^{s-1}$ now yields
+\[
+\zeta(s)=\pi^{-1}\bigl(1+\log(2\pi)s+O(s^2)\bigr)\left(-\frac{\pi}{2}+O(s^2)\right)
+=-\frac12-\frac12\log(2\pi)s+O(s^2),
+\]
+which is \eqref{P2:eq:zeta-zero-expansion}.
+
+Next, use the standard gamma expansion
+\[
+\Gamma\!\left(\frac{s}{2}\right)=\frac{2}{s}-\gamma+O(s)
+\qquad (s\to 0)
+\]
+and
+\[
+\pi^{-s/2}=1-\frac12\log\pi\,s+O(s^2).
+\]
+Multiplying these with \eqref{P2:eq:zeta-zero-expansion} gives
+\[
+\Lambda(s)=\left(1-\frac12\log\pi\,s+O(s^2)\right)
+\left(\frac2s-\gamma+O(s)\right)
+\left(-\frac12-\frac12\log(2\pi)s+O(s^2)\right)
+=-\frac1s+\frac{\gamma-\log(4\pi)}{2}+O(s),
+\]
+which is \eqref{P2:eq:Lambda-zero-expansion}.  Finally,
+\[
+\xi(s)=\frac12 s(s-1)\Lambda(s),
+\]
+so multiplying the previous expansion by $\frac12 s(s-1)$ gives \eqref{P2:eq:xi-zero-expansion} and in particular $\xi(0)=1/2$.  The identity $\xi(1)=1/2$ follows from the functional equation $\xi(1-s)=\xi(s)$.
+\end{proof}
+
+\begin{proposition}\label{P2:prop:zeta-negative-on-critical-strip}
+For every real $s$ with $0<s<1$ one has
+\[
+\zeta(s)<0.
+\]
+Consequently,
+\[
+\xi\!\left(\frac12\right)>0.
+\]
+\end{proposition}
+
+\begin{proof}
+For $\Re(s)>0$, the Dirichlet eta function
+\[
+\eta(s):=\sum_{n\ge 1}\frac{(-1)^{n-1}}{n^s}
+\]
+satisfies
+\[
+\eta(s)=(1-2^{1-s})\zeta(s).
+\]
+If $0<s<1$ is real, then we may group the alternating series as
+\[
+\eta(s)=\sum_{k\ge 1}\left((2k-1)^{-s}-(2k)^{-s}\right),
+\]
+and every summand is strictly positive.  Hence $\eta(s)>0$.  On the same interval one has $1-2^{1-s}<0$, so dividing by this negative factor gives $\zeta(s)<0$.
+
+At $s=1/2$ this shows $\zeta(1/2)<0$.  Since
+\[
+\xi\!\left(\frac12\right)=\frac12\cdot\frac12\cdot\left(-\frac12\right)\pi^{-1/4}\Gamma\!\left(\frac14\right)\zeta\!\left(\frac12\right)
+=-\frac18\pi^{-1/4}\Gamma\!\left(\frac14\right)\zeta\!\left(\frac12\right),
+\]
+and the prefactor outside $\zeta(1/2)$ is positive, the second claim follows.
+\end{proof}
+
+\subsection{Trivial zeros and completed trivial weights}
+
+\begin{proposition}\label{P2:prop:trivial-derivative-and-Lambda}
+For every integer $n\ge 1$ one has
+\begin{equation}\label{P2:eq:trivial-derivative-again}
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1),
+\end{equation}
+and therefore
+\begin{equation}\label{P2:eq:trivial-abs-derivative}
+\bigl|\zeta'(-2n)\bigr|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\end{equation}
+In addition,
+\begin{equation}\label{P2:eq:Lambda-trivial-values}
+\Lambda(-2n)=\Lambda(2n+1)=\frac{(2n)!}{4^n n!\,\pi^n}\,\zeta(2n+1),
+\end{equation}
+and the derivative and completed-value weights are related by
+\begin{equation}\label{P2:eq:trivial-weight-relation}
+\bigl|\zeta'(-2n)\bigr|=\frac{n!}{2\pi^n}\,\Lambda(-2n).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The derivative formula \eqref{P2:eq:trivial-derivative-again} is obtained exactly as in the earlier split-zero note: write
+\[
+\zeta(s)=g_n(s)\sin\!\left(\frac{\pi s}{2}\right),
+\qquad
+g_n(s):=2^s\pi^{s-1}\Gamma(1-s)\zeta(1-s),
+\]
+and evaluate at $s=-2n$.  Since $g_n$ is holomorphic there and the sine factor has a simple zero, one gets
+\[
+\zeta'(-2n)=g_n(-2n)\cdot \frac{\pi}{2}\cos(-n\pi)
+=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+Taking absolute values gives \eqref{P2:eq:trivial-abs-derivative}.
+
+For \eqref{P2:eq:Lambda-trivial-values}, use the functional equation for the completed function:
+\[
+\Lambda(s)=\Lambda(1-s).
+\]
+Hence
+\[
+\Lambda(-2n)=\Lambda(2n+1)=\pi^{-(2n+1)/2}\Gamma\!\left(n+\frac12\right)\zeta(2n+1).
+\]
+The classical half-integer gamma identity
+\[
+\Gamma\!\left(n+\frac12\right)=\frac{(2n)!}{4^n n!}\sqrt\pi
+\]
+therefore gives
+\[
+\Lambda(-2n)=\frac{(2n)!}{4^n n!\,\pi^n}\,\zeta(2n+1).
+\]
+Finally, dividing \eqref{P2:eq:trivial-abs-derivative} by \eqref{P2:eq:Lambda-trivial-values} yields \eqref{P2:eq:trivial-weight-relation}.
+\end{proof}
+
+\subsection{Leading jets at nontrivial zeros}
+
+\begin{definition}
+Let $\rho\in Z_{\mathrm{nt}}$ have multiplicity $m_\rho$.  We define the leading local jet coefficients
+\[
+\lambda_\rho^{\zeta}:=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!},
+\qquad
+\lambda_\rho^{\xi}:=\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}.
+\]
+Equivalently,
+\[
+\zeta(s)=\lambda_\rho^{\zeta}(s-\rho)^{m_\rho}+O\bigl((s-\rho)^{m_\rho+1}\bigr),
+\qquad
+\xi(s)=\lambda_\rho^{\xi}(s-\rho)^{m_\rho}+O\bigl((s-\rho)^{m_\rho+1}\bigr).
+\]
+\end{definition}
+
+\begin{proposition}\label{P2:prop:leading-jets-nontrivial}
+Let $\rho\in Z_{\mathrm{nt}}$.  Then
+\begin{equation}\label{P2:eq:jet-relation-zeta-xi}
+\lambda_\rho^{\xi}=\frac12\rho(\rho-1)\pi^{-\rho/2}\Gamma\!\left(\frac{\rho}{2}\right)\lambda_\rho^{\zeta}.
+\end{equation}
+Moreover, if $m=m_\rho$, then the packet symmetries satisfy
+\begin{equation}\label{P2:eq:jet-symmetry-reflection}
+\lambda_{1-\rho}^{\xi}=(-1)^m\lambda_\rho^{\xi},
+\end{equation}
+and
+\begin{equation}\label{P2:eq:jet-symmetry-conjugation}
+\lambda_{\overline\rho}^{\xi}=\overline{\lambda_\rho^{\xi}}.
+\end{equation}
+Consequently, the absolute value
+\begin{equation}\label{P2:eq:packet-weight-def}
+\omega(O):=\bigl|\lambda_\rho^{\xi}\bigr|
+\end{equation}
+is well defined on every packet $O\in Y_\xi$.
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+\phi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right).
+\]
+Since $\rho$ is a nontrivial zero, $\rho\neq 0,1,-2,-4,\dots$, so $\phi$ is holomorphic and nonzero at $\rho$.  Then $\xi=\phi\zeta$ near $\rho$.  If
+\[
+\zeta(s)=\lambda_\rho^{\zeta}(s-\rho)^m+O\bigl((s-\rho)^{m+1}\bigr),
+\]
+then multiplication by the holomorphic unit $\phi(s)=\phi(\rho)+O(s-\rho)$ gives
+\[
+\xi(s)=\phi(\rho)\lambda_\rho^{\zeta}(s-\rho)^m+O\bigl((s-\rho)^{m+1}\bigr),
+\]
+which is exactly \eqref{P2:eq:jet-relation-zeta-xi}.
+
+For the symmetry formulas, differentiate the identities
+\[
+\xi(1-s)=\xi(s),
+\qquad
+\overline{\xi(\overline s)}=\xi(s).
+\]
+The first gives
+\[
+(-1)^m\xi^{(m)}(1-s)=\xi^{(m)}(s),
+\]
+so evaluating at $s=\rho$ yields
+\[
+\xi^{(m)}(1-\rho)=(-1)^m\xi^{(m)}(\rho),
+\]
+which is \eqref{P2:eq:jet-symmetry-reflection} after dividing by $m!$.  The second identity implies
+\[
+\overline{\xi^{(m)}(\overline s)}=\xi^{(m)}(s)
+\]
+for every $m$, hence \eqref{P2:eq:jet-symmetry-conjugation}.  Formula \eqref{P2:eq:packet-weight-def} is therefore independent of the choice of $\rho\in O$.
+\end{proof}
+
+\section{The centered entire function and the packet product}
+
+\begin{definition}
+Define the centered entire function
+\[
+\Xi(z):=\xi\!\left(\frac12+z\right).
+\]
+If $\rho$ is a nontrivial zero of $\zeta$, set
+\[
+\alpha_\rho:=\rho-\frac12.
+\]
+Then the nonzero zeros of $\Xi$ are exactly the points $\alpha_\rho$.
+\end{definition}
+
+\begin{lemma}\label{P2:lem:Xi-even-and-real}
+The function $\Xi$ is entire and even:
+\[
+\Xi(-z)=\Xi(z)
+\qquad (z\in\CC).
+\]
+Moreover,
+\[
+\overline{\Xi(\overline z)}=\Xi(z),
+\]
+so the Taylor coefficients of $\Xi$ at $0$ are all real and every odd Taylor coefficient vanishes.
+\end{lemma}
+
+\begin{proof}
+Entirety follows from the fact that $\xi$ is entire.  Evenness is immediate from the functional equation:
+\[
+\Xi(-z)=\xi\!\left(\frac12-z\right)=\xi\!\left(1-\left(\frac12+z\right)\right)=\xi\!\left(\frac12+z\right)=\Xi(z).
+\]
+Likewise,
+\[
+\overline{\Xi(\overline z)}=\overline{\xi\!\left(\frac12+\overline z\right)}=\xi\!\left(\frac12+z\right)=\Xi(z),
+\]
+using $\overline{\xi(\overline s)}=\xi(s)$.  Therefore the Taylor coefficients at $0$ are real, and evenness forces the odd coefficients to vanish.
+\end{proof}
+
+\begin{definition}
+Let $\mathcal A$ be a multiset containing one representative from each sign pair $\{\alpha,-\alpha\}$ of nonzero zeros of $\Xi$, repeated according to multiplicity.  Thus the zero multiset of $\Xi$ is
+\[
+\{\pm\alpha:\alpha\in\mathcal A\},
+\]
+with multiplicities understood.
+\end{definition}
+
+\begin{theorem}[Centered sign-pair product]\label{P2:thm:centered-sign-pair-product}
+Assume the classical input that $\Xi$ is entire of order $1$.  Then the product
+\begin{equation}\label{P2:eq:Xi-sign-pair-product}
+\Xi(z)=\Xi(0)\prod_{\alpha\in\mathcal A}\left(1-\frac{z^2}{\alpha^2}\right)
+\end{equation}
+converges absolutely and locally uniformly on compact subsets of $\CC$.  In particular,
+\[
+\sum_{\alpha\in\mathcal A}\frac{1}{|\alpha|^2}<\infty.
+\]
+\end{theorem}
+
+\begin{proof}
+By Hadamard factorization for order-one entire functions, one has
+\[
+\Xi(z)=e^{a+bz}\prod_{\beta\in Z(\Xi)\setminus\{0\}} E_1\!\left(\frac{z}{\beta}\right),
+\qquad
+E_1(w):=(1-w)e^w,
+\]
+with convergence in canonical product sense.  Because the nonzero zeros occur in sign pairs and $\Xi$ is even, we may group the factors pairwise:
+\[
+E_1\!\left(\frac{z}{\alpha}\right)E_1\!\left(-\frac{z}{\alpha}\right)
+=(1-z/\alpha)e^{z/\alpha}(1+z/\alpha)e^{-z/\alpha}
+=1-\frac{z^2}{\alpha^2}.
+\]
+Evenness also forces $b=0$: indeed,
+\[
+1=\frac{\Xi(z)}{\Xi(-z)}=e^{2bz}
+\]
+for all $z$, hence $b=0$.  Therefore
+\[
+\Xi(z)=e^a\prod_{\alpha\in\mathcal A}\left(1-\frac{z^2}{\alpha^2}\right).
+\]
+Evaluating at $z=0$ gives $e^a=\Xi(0)$, hence \eqref{P2:eq:Xi-sign-pair-product}.
+
+Finally, canonical product theory for an order-one entire function implies
+\[
+\sum_{\beta\in Z(\Xi)\setminus\{0\}} \frac{1}{|\beta|^2}<\infty,
+\]
+so after choosing one representative from each sign pair we still have
+\[
+\sum_{\alpha\in\mathcal A}\frac{1}{|\alpha|^2}<\infty.
+\]
+This summability implies that the ordinary product
+\[
+\prod_{\alpha\in\mathcal A}\left(1-\frac{z^2}{\alpha^2}\right)
+\]
+converges absolutely and locally uniformly on compact sets, because for $|z|\le R$ and $|\alpha|>2R$ one has
+\[
+\left|\frac{z^2}{\alpha^2}\right|\le \frac{R^2}{|\alpha|^2},
+\]
+and the tail is controlled by a summable majorant.
+\end{proof}
+
+\begin{definition}\label{P2:def:packet-polynomial}
+Let $Y_\xi=|D_{\mathrm{nt}}|/W$ be the packet quotient.  For a packet $O\in Y_\xi$, define its normalized packet polynomial by
+\begin{equation}\label{P2:eq:packet-polynomial-def}
+P_O(s):=\prod_{\eta\in O}\frac{s-\eta}{\frac12-\eta}.
+\end{equation}
+This is well defined because $1/2\notin O$ by Proposition~\ref{P2:prop:zeta-negative-on-critical-strip}.
+\end{definition}
+
+\begin{lemma}\label{P2:lem:packet-polynomial-explicit}
+For every packet $O\in Y_\xi$, the polynomial $P_O(s)$ has real coefficients and satisfies $P_O(1/2)=1$.
+
+More precisely:
+\begin{enumerate}[label=(\roman*)]
+\item If $O=\{\frac12+i\gamma,\frac12-i\gamma\}$ is a critical-line packet, then
+\begin{equation}\label{P2:eq:packet-polynomial-line}
+P_O(s)=1+\frac{(s-1/2)^2}{\gamma^2}.
+\end{equation}
+\item If $O=\{\beta\pm i\gamma,1-\beta\pm i\gamma\}$ with $\beta\neq 1/2$, then
+\begin{equation}\label{P2:eq:packet-polynomial-offline}
+P_O(s)=\frac{\bigl((s-\beta)^2+\gamma^2\bigr)\bigl((s-1+\beta)^2+\gamma^2\bigr)}{\bigl((\beta-1/2)^2+\gamma^2\bigr)^2}.
+\end{equation}
+Equivalently, if $\alpha=(\beta-1/2)+i\gamma$, then
+\begin{equation}\label{P2:eq:packet-polynomial-offline-z}
+P_O(s)=\left(1-\frac{(s-1/2)^2}{\alpha^2}\right)\left(1-\frac{(s-1/2)^2}{\overline\alpha^2}\right)
+=1-2\Re(\alpha^{-2})(s-1/2)^2+|\alpha|^{-4}(s-1/2)^4.
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The definition \eqref{P2:eq:packet-polynomial-def} is manifestly normalized by $P_O(1/2)=1$.  Because each packet is stable under complex conjugation, the coefficients are real.
+
+If $O=\{1/2\pm i\gamma\}$, then
+\[
+P_O(s)=\frac{(s-1/2-i\gamma)(s-1/2+i\gamma)}{(-i\gamma)(i\gamma)}
+=\frac{(s-1/2)^2+\gamma^2}{\gamma^2}
+=1+\frac{(s-1/2)^2}{\gamma^2}.
+\]
+This proves \eqref{P2:eq:packet-polynomial-line}.
+
+For an off-line packet,
+\[
+\prod_{\eta\in O}(s-\eta)=\bigl((s-\beta)^2+\gamma^2\bigr)\bigl((s-1+\beta)^2+\gamma^2\bigr).
+\]
+Likewise,
+\[
+\prod_{\eta\in O}\left(\frac12-\eta\right)=\bigl((\beta-1/2)^2+\gamma^2\bigr)^2.
+\]
+This gives \eqref{P2:eq:packet-polynomial-offline}.  Writing $z=s-1/2$ and $\alpha=(\beta-1/2)+i\gamma$ transforms the same expression into \eqref{P2:eq:packet-polynomial-offline-z}.
+\end{proof}
+
+\begin{theorem}[Packet product on the orbit space]\label{P2:thm:packet-product-on-Y}
+Let $m_O$ denote the common multiplicity of the points in the packet $O\in Y_\xi$.  Then
+\begin{equation}\label{P2:eq:packet-product-on-Y}
+\xi(s)=\xi\!\left(\frac12\right)\prod_{O\in Y_\xi} P_O(s)^{m_O},
+\end{equation}
+where the product converges absolutely and locally uniformly on compact subsets of $\CC$.
+\end{theorem}
+
+\begin{proof}
+Start from the centered sign-pair product \eqref{P2:eq:Xi-sign-pair-product} with $z=s-1/2$:
+\[
+\xi(s)=\xi\!\left(\frac12\right)\prod_{\alpha\in\mathcal A}\left(1-\frac{(s-1/2)^2}{\alpha^2}\right).
+\]
+Conjugation preserves the multiset $\mathcal A$ up to permutation.  Group the factors according to conjugation orbits on $\mathcal A$.
+
+If $\alpha=i\gamma$ is fixed by conjugation, the corresponding packet is critical-line and Lemma~\ref{P2:lem:packet-polynomial-explicit}(i) shows that the factor is exactly $P_O(s)$.
+
+If $\alpha$ and $\overline\alpha$ are distinct, they belong to the same packet $O$, and Lemma~\ref{P2:lem:packet-polynomial-explicit}(ii) gives
+\[
+\left(1-\frac{(s-1/2)^2}{\alpha^2}\right)
+\left(1-\frac{(s-1/2)^2}{\overline\alpha^2}\right)
+=P_O(s).
+\]
+Because multiplicities are constant on packets, each packet contributes the power $P_O(s)^{m_O}$.  Thus \eqref{P2:eq:packet-product-on-Y} holds.
+
+Absolute and locally uniform convergence follow from Theorem~\ref{P2:thm:centered-sign-pair-product}, because every packet factor is either one sign-pair factor or the product of a conjugate pair of sign-pair factors.
+\end{proof}
+
+\begin{corollary}[Packet formulation of RH]\label{P2:cor:RH-packet-criterion}
+The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item the Riemann hypothesis holds;
+\item every packet $O\in Y_\xi$ has cardinality $2$;
+\item in the product \eqref{P2:eq:packet-product-on-Y}, every factor $P_O$ is quadratic of the form
+\[
+P_O(s)=1+\frac{(s-1/2)^2}{\gamma_O^2}
+\qquad (\gamma_O>0),
+\]
+and no quartic packet factor occurs.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+A nontrivial zero lies on the critical line if and only if its packet under $W$ has two points rather than four.  Thus (i) and (ii) are equivalent.  By Lemma~\ref{P2:lem:packet-polynomial-explicit}, cardinality-$2$ packets produce precisely the quadratic factors, while cardinality-$4$ packets produce the real quartic factors.  Hence (ii) and (iii) are equivalent.
+\end{proof}
+
+\section{Centered Taylor coefficients and symmetric-function formulas}
+
+\begin{definition}
+Choose an ordering $\mathcal A=\{\alpha_1,\alpha_2,\dots\}$ of the multiset from Theorem~\ref{P2:thm:centered-sign-pair-product}, and set
+\[
+a_j:=\alpha_j^{-2}.
+\]
+Because
+\[
+\sum_{j\ge 1}|a_j|<\infty,
+\]
+all elementary symmetric sums
+\begin{equation}\label{P2:eq:elementary-symmetric-def}
+\sigma_n:=\sum_{1\le j_1<\cdots<j_n} a_{j_1}\cdots a_{j_n}
+\qquad (n\ge 1),
+\end{equation}
+are absolutely convergent.  We also set $\sigma_0:=1$.
+\end{definition}
+
+\begin{lemma}\label{P2:lem:infinite-symmetric-expansion}
+For every $z\in\CC$ one has the absolutely convergent expansion
+\begin{equation}\label{P2:eq:infinite-symmetric-expansion}
+\prod_{j\ge 1}(1-a_j z^2)=\sum_{n=0}^{\infty}(-1)^n\sigma_n z^{2n},
+\end{equation}
+and the convergence is locally uniform on compact subsets of $\CC$.
+\end{lemma}
+
+\begin{proof}
+Fix $R>0$ and consider $|z|\le R$.  Since $\sum_j |a_j|<\infty$, one has
+\[
+\sum_j |a_j|R^2<\infty.
+\]
+Therefore the infinite product
+\[
+\prod_j (1-a_j z^2)
+\]
+converges absolutely and uniformly on $|z|\le R$.  For each finite $N$,
+\[
+\prod_{j=1}^N(1-a_j z^2)=\sum_{n=0}^{N}(-1)^n\sigma_n^{(N)} z^{2n},
+\]
+where $\sigma_n^{(N)}$ is the $n$th elementary symmetric sum in $a_1,\dots,a_N$.  For fixed $n$, the coefficients $\sigma_n^{(N)}$ converge absolutely to $\sigma_n$ as $N\to\infty$, because
+\[
+\sum_{1\le j_1<\cdots<j_n<\infty}|a_{j_1}\cdots a_{j_n}|
+\le \frac{1}{n!}\left(\sum_{j\ge 1}|a_j|\right)^n<\infty.
+\]
+Passing to the limit in the finite expansions yields \eqref{P2:eq:infinite-symmetric-expansion}.  Uniform convergence on $|z|\le R$ follows from the Weierstrass $M$-test, since
+\[
+\sum_{n\ge 0}|\sigma_n|R^{2n}\le \prod_{j\ge 1}(1+|a_j|R^2)<\infty.
+\]
+\end{proof}
+
+\begin{theorem}[Exact Taylor coefficients of the centered completed zeta]\label{P2:thm:Xi-taylor-coefficients}
+The centered function $\Xi$ has the exact Taylor expansion
+\begin{equation}\label{P2:eq:Xi-taylor-symmetric}
+\Xi(z)=\Xi(0)\sum_{n=0}^{\infty}(-1)^n\sigma_n z^{2n},
+\end{equation}
+where the coefficients $\sigma_n$ are the absolutely convergent elementary symmetric sums from \eqref{P2:eq:elementary-symmetric-def}.  Equivalently,
+\begin{equation}\label{P2:eq:Xi-even-derivatives}
+\frac{\Xi^{(2n)}(0)}{(2n)!\,\Xi(0)}=(-1)^n\sigma_n,
+\qquad
+\Xi^{(2n+1)}(0)=0
+\qquad (n\ge 0).
+\end{equation}
+Translating back to $s$ gives
+\begin{equation}\label{P2:eq:xi-central-derivatives}
+\frac{\xi^{(2n)}(1/2)}{(2n)!\,\xi(1/2)}=(-1)^n\sigma_n,
+\qquad
+\xi^{(2n+1)}(1/2)=0.
+\end{equation}
+In particular,
+\begin{align}
+\frac{\xi''(1/2)}{2\,\xi(1/2)}&=-\sum_{j\ge 1}\frac{1}{\alpha_j^2},\label{P2:eq:xi-second-derivative}\\
+\frac{\xi^{(4)}(1/2)}{24\,\xi(1/2)}&=\sum_{1\le i<j<\infty}\frac{1}{\alpha_i^2\alpha_j^2}.\label{P2:eq:xi-fourth-derivative}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Insert the product formula \eqref{P2:eq:Xi-sign-pair-product} into Lemma~\ref{P2:lem:infinite-symmetric-expansion}.  This gives \eqref{P2:eq:Xi-taylor-symmetric}.  Comparing coefficients with the Taylor series of $\Xi$ yields \eqref{P2:eq:Xi-even-derivatives}.  Since $\Xi(z)=\xi(1/2+z)$, the identities \eqref{P2:eq:xi-central-derivatives} follow immediately.  The last two displayed formulas are the cases $n=1$ and $n=2$.
+\end{proof}
+
+\begin{remark}
+The coefficients in Theorem~\ref{P2:thm:Xi-taylor-coefficients} are the exact analytic counterpart of the elementary-symmetric expansions that already govern the orthogonal-walk formulas of Part~I.  Here the variables are the reciprocal squares of the centralized packet locations.
+\end{remark}
+
+\section{Global pole-trivial-packet factorization of $\zeta$}
+
+\subsection{Removing the trivial zeros with the reciprocal gamma product}
+
+\begin{theorem}[Weierstrass product for the trivial sector]\label{P2:thm:gamma-product}
+For every $s\in\CC$ one has the locally uniformly convergent product
+\begin{equation}\label{P2:eq:gamma-weierstrass}
+\frac{1}{\Gamma(s/2)}=\frac{s}{2}e^{\gamma s/2}\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}.
+\end{equation}
+Consequently,
+\begin{equation}\label{P2:eq:Lambda-to-zeta-via-gamma-product}
+\zeta(s)=\frac{\pi^{s/2}e^{\gamma s/2}}{s-1}\left(\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}\right)\xi(s).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{P2:eq:gamma-weierstrass} is the classical Weierstrass product for the reciprocal gamma function, applied with $z=s/2$.
+
+For the second formula, solve the defining relation
+\[
+\xi(s)=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+\]
+for $\zeta(s)$:
+\[
+\zeta(s)=\frac{2\pi^{s/2}}{s(s-1)}\,\frac{\xi(s)}{\Gamma(s/2)}.
+\]
+Substituting \eqref{P2:eq:gamma-weierstrass} into this identity cancels the factor $2/s$ and yields \eqref{P2:eq:Lambda-to-zeta-via-gamma-product}.
+\end{proof}
+
+\subsection{The full packet factorization}
+
+\begin{theorem}[Pole-trivial-packet factorization of the Riemann zeta function]\label{P2:thm:full-zeta-factorization}
+The Riemann zeta function admits the exact factorization
+\begin{equation}\label{P2:eq:full-zeta-factorization}
+\zeta(s)
+=
+\frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+\prod_{O\in Y_\xi} P_O(s)^{m_O},
+\end{equation}
+where $P_O$ is the normalized packet polynomial from Definition~\ref{P2:def:packet-polynomial} and $m_O$ is the common multiplicity on the packet $O$.  The product over $Y_\xi$ converges absolutely and locally uniformly on compact subsets of $\CC$.
+
+Thus $\zeta$ decomposes canonically into three factors:
+\begin{enumerate}[label=(\roman*)]
+\item the pole factor $1/(s-1)$;
+\item the trivial-zero factor
+\[
+e^{(\gamma+\log\pi)s/2}\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)};
+\]
+\item the nontrivial packet factor
+\[
+\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Insert the packet product \eqref{P2:eq:packet-product-on-Y} into \eqref{P2:eq:Lambda-to-zeta-via-gamma-product}.  Since
+\[
+\pi^{s/2}e^{\gamma s/2}=e^{(\gamma+\log\pi)s/2},
+\]
+this gives exactly \eqref{P2:eq:full-zeta-factorization}.  The convergence statement follows from Theorem~\ref{P2:thm:packet-product-on-Y}.
+\end{proof}
+
+\begin{remark}
+The factorization \eqref{P2:eq:full-zeta-factorization} is the precise sense in which the entire nontrivial-zero sector is ``carried'' by the packet quotient, while the trivial-zero sector is carried by the reciprocal gamma factor.  In the split-zero divisor language, the earlier Boolean shadow now receives a full analytic factor over each packet.
+\end{remark}
+
+\section{Packet-grouped logarithmic derivatives}
+
+\begin{proposition}\label{P2:prop:packet-log-derivative}
+For every packet $O\in Y_\xi$ one has
+\begin{equation}\label{P2:eq:packet-log-derivative}
+\frac{P_O'(s)}{P_O(s)}=\sum_{\eta\in O}\frac{1}{s-\eta}.
+\end{equation}
+In particular, the right-hand side is a rational function with real coefficients.
+\end{proposition}
+
+\begin{proof}
+By definition,
+\[
+P_O(s)=\prod_{\eta\in O}\frac{s-\eta}{1/2-\eta}.
+\]
+Taking the logarithmic derivative annihilates the constant denominator and yields
+\[
+\frac{P_O'(s)}{P_O(s)}=\sum_{\eta\in O}\frac{1}{s-\eta}.
+\]
+Because $P_O$ has real coefficients by Lemma~\ref{P2:lem:packet-polynomial-explicit}, the rational function on the left does as well.
+\end{proof}
+
+\begin{theorem}[Packet-grouped partial-fraction expansion of $\zeta'/\zeta$]\label{P2:thm:zeta-log-derivative-packet}
+On the domain
+\[
+\CC\setminus\Bigl(\{1\}\cup\{-2,-4,-6,\dots\}\cup |D_{\mathrm{nt}}|\Bigr)
+\]
+one has the exact identity
+\begin{equation}\label{P2:eq:zeta-log-derivative-packet}
+\frac{\zeta'(s)}{\zeta(s)}
+=
+\frac{\gamma+\log\pi}{2}
+-\frac{1}{s-1}
++\sum_{n\ge 1}\left(\frac{1}{s+2n}-\frac{1}{2n}\right)
++\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}.
+\end{equation}
+Equivalently,
+\begin{equation}\label{P2:eq:zeta-log-derivative-packet-expanded}
+\frac{\zeta'(s)}{\zeta(s)}
+=
+\frac{\gamma+\log\pi}{2}
+-\frac{1}{s-1}
++\sum_{n\ge 1}\left(\frac{1}{s+2n}-\frac{1}{2n}\right)
++\sum_{O\in Y_\xi} m_O\sum_{\eta\in O}\frac{1}{s-\eta}.
+\end{equation}
+Every pole on the right-hand side comes from exactly one of the three sectors: the pole at $1$, the trivial zeros, or the nontrivial packets.
+\end{theorem}
+
+\begin{proof}
+Differentiate logarithmically the factorization \eqref{P2:eq:full-zeta-factorization}.  The constant factor $\xi(1/2)$ disappears, while
+\[
+\frac{d}{ds}\left(\frac{\gamma+\log\pi}{2}s\right)=\frac{\gamma+\log\pi}{2},
+\qquad
+\frac{d}{ds}\log\frac{1}{s-1}=-\frac{1}{s-1},
+\]
+and
+\[
+\frac{d}{ds}\log\left(\left(1+\frac{s}{2n}\right)e^{-s/(2n)}\right)
+=\frac{1}{s+2n}-\frac{1}{2n}.
+\]
+Finally, the packet factor contributes
+\[
+\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}.
+\]
+This proves \eqref{P2:eq:zeta-log-derivative-packet}.  Formula \eqref{P2:eq:zeta-log-derivative-packet-expanded} is Proposition~\ref{P2:prop:packet-log-derivative}.
+\end{proof}
+
+\begin{corollary}\label{P2:cor:xi-log-derivative-packet}
+On $\CC\setminus |D_{\mathrm{nt}}|$ one has
+\begin{equation}\label{P2:eq:xi-log-derivative-packet}
+\frac{\xi'(s)}{\xi(s)}=\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}
+=\sum_{O\in Y_\xi} m_O\sum_{\eta\in O}\frac{1}{s-\eta}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Differentiate logarithmically the packet factorization \eqref{P2:eq:packet-product-on-Y}.  The constant $\xi(1/2)$ disappears, and Proposition~\ref{P2:prop:packet-log-derivative} gives the second equality.
+\end{proof}
+
+\section{Analytic decoration of the split-zero packet sheaf}
+
+The earlier split-zero note descended the Boolean shadow of the nontrivial-zero divisor to the packet sheaf
+\[
+\mathcal P_\xi^{\cV}(U)=\prod_{O\in U} A^{m_O},
+\qquad U\subset Y_\xi.
+\]
+The results above show that this packet sheaf carries two additional canonical analytic decorations.
+
+\begin{definition}
+For each packet $O\in Y_\xi$, choose any $\rho\in O$ and define
+\[
+\omega(O):=\bigl|\lambda_\rho^{\xi}\bigr|.
+\]
+By Proposition~\ref{P2:prop:leading-jets-nontrivial}, this is well defined.
+\end{definition}
+
+\begin{definition}
+For each packet $O\in Y_\xi$, let $P_O(s)$ be the normalized packet polynomial from Definition~\ref{P2:def:packet-polynomial}.  We call the triple
+\begin{equation}\label{P2:eq:analytic-packet-data}
+\bigl(m_O,\,P_O,\,\omega(O)\bigr)
+\end{equation}
+the \emph{full analytic packet datum} of $O$.
+\end{definition}
+
+\begin{proposition}\label{P2:prop:analytic-packet-data-complete}
+The packet datum \eqref{P2:eq:analytic-packet-data} controls simultaneously the local, descended, and global contributions of the packet $O$:
+\begin{enumerate}[label=(\roman*)]
+\item $m_O$ is the multiplicity of the packet in the Boolean shadow stalk $A^{m_O}$;
+\item $\omega(O)$ is the absolute size of the leading local jet of $\xi$ on the packet;
+\item $P_O(s)^{m_O}$ is the exact normalized global holomorphic factor contributed by $O$ to \eqref{P2:eq:packet-product-on-Y} and hence to \eqref{P2:eq:full-zeta-factorization};
+\item the rational function $m_O P_O'(s)/P_O(s)$ is the exact contribution of $O$ to the logarithmic derivative \eqref{P2:eq:zeta-log-derivative-packet}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part (i) is built into the definition of the descended Boolean packet sheaf.  Part (ii) is the packet invariance of Proposition~\ref{P2:prop:leading-jets-nontrivial}.  Part (iii) is exactly the packet product theorem, and part (iv) is Proposition~\ref{P2:prop:packet-log-derivative} applied inside Theorem~\ref{P2:thm:zeta-log-derivative-packet}.
+\end{proof}
+
+\section{Final theorem}
+
+\begin{theorem}[Complete split-zero analytic deconstruction of $\zeta$]\label{P2:thm:final-summary}
+Let
+\[
+D_{\mathrm{tr}}=\sum_{n\ge 1}[-2n],
+\qquad
+D_{\mathrm{nt}}=\sum_{\rho\in Z_{\mathrm{nt}}}m_\rho[\rho],
+\qquad
+Y_\xi=|D_{\mathrm{nt}}|/W.
+\]
+Then the following statements hold.
+
+\begin{enumerate}[label=(\arabic*)]
+\item \textbf{Divisor splitting.}
+The zero divisor of $\zeta$ splits as
+\[
+\divv(\zeta)^+=D_{\mathrm{tr}}+D_{\mathrm{nt}},
+\]
+and the corresponding Boolean divisor shadows factor as
+\[
+\cV_{\divv(\zeta)^+}\cong \cV_{D_{\mathrm{tr}}}\times \cV_{D_{\mathrm{nt}}},
+\qquad
+\cA_{\divv(\zeta)^+}\cong \cA_{D_{\mathrm{tr}}}\times \cA_{D_{\mathrm{nt}}}.
+\]
+
+\item \textbf{Completion removes the trivial sector.}
+The completed functions satisfy
+\[
+\divv(\Lambda)=D_{\mathrm{nt}}-[0]-[1],
+\qquad
+\divv(\xi)=D_{\mathrm{nt}}.
+\]
+At the trivial zeros,
+\[
+\Lambda(-2n)=\frac{(2n)!}{4^n n!\,\pi^n}\,\zeta(2n+1),
+\qquad
+\bigl|\zeta'(-2n)\bigr|=\frac{n!}{2\pi^n}\,\Lambda(-2n).
+\]
+
+\item \textbf{Packet descent is analytic, not only sheaf-theoretic.}
+For every packet $O\in Y_\xi$, the normalized packet polynomial
+\[
+P_O(s)=\prod_{\eta\in O}\frac{s-\eta}{1/2-\eta}
+\]
+is a real polynomial normalized by $P_O(1/2)=1$, quadratic on the critical line and quartic off it, and one has the exact packet product
+\[
+\xi(s)=\xi(1/2)\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+
+\item \textbf{Taylor coefficients at the center.}
+If $\mathcal A$ is any multiset of sign-pair representatives for the nonzero zeros of $\Xi(z)=\xi(1/2+z)$ and $\sigma_n$ is the $n$th elementary symmetric sum of the reciprocals $\alpha^{-2}$, then
+\[
+\frac{\xi^{(2n)}(1/2)}{(2n)!\,\xi(1/2)}=(-1)^n\sigma_n,
+\qquad
+\xi^{(2n+1)}(1/2)=0.
+\]
+Thus the entire centered Taylor series of $\xi$ is an exact symmetric-function expression in the packet locations.
+
+\item \textbf{The whole zeta function splits into pole, trivial, and packet sectors.}
+One has the global factorization
+\[
+\zeta(s)
+=
+\frac{\xi(1/2)e^{(\gamma+\log\pi)s/2}}{s-1}
+\prod_{n\ge 1}\left(1+\frac{s}{2n}\right)e^{-s/(2n)}
+\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+Differentiating logarithmically gives the packet-grouped partial-fraction expansion
+\[
+\frac{\zeta'(s)}{\zeta(s)}
+=
+\frac{\gamma+\log\pi}{2}
+-\frac{1}{s-1}
++\sum_{n\ge 1}\left(\frac{1}{s+2n}-\frac{1}{2n}\right)
++\sum_{O\in Y_\xi} m_O\frac{P_O'(s)}{P_O(s)}.
+\]
+
+\item \textbf{Packet criterion for RH.}
+RH holds if and only if every packet polynomial $P_O$ is quadratic, equivalently if and only if no quartic packet factor occurs.
+\end{enumerate}
+
+Therefore the split-zero zeta-divisor framework admits a full complex-analytic execution: the pointwise Boolean fiber remains constant, but the global mathematics is carried by the exact divisor splitting, the packet product, the centered Taylor coefficients, and the leading local jets.
+\end{theorem}
+
+\begin{proof}
+Every item is a restatement of one of the preceding theorems and propositions:
+(1) follows from Theorem~\ref{P2:thm:divisor-identities} and Corollary~\ref{P2:cor:shadow-zeta-splits};
+(2) is Proposition~\ref{P2:prop:trivial-derivative-and-Lambda};
+(3) is Theorem~\ref{P2:thm:packet-product-on-Y};
+(4) is Theorem~\ref{P2:thm:Xi-taylor-coefficients};
+(5) is Theorem~\ref{P2:thm:full-zeta-factorization} together with Theorem~\ref{P2:thm:zeta-log-derivative-packet}; and
+(6) is Corollary~\ref{P2:cor:RH-packet-criterion}.
+\end{proof}
+
+\part{Spectral packet geometry in the Connes--Consani plane and the geometric image of a non-trivial zero}
+\addcontentsline{toc}{part}{Part III. Spectral packet geometry in the Connes--Consani plane and the geometric image of a non-trivial zero}
+\setpartprefix{III}
+
+\section{Introduction}
+
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},
+\qquad
+A:=\{0,\taup\}\subset S,
+\qquad
+F_1(s):=\zeta(s)-1.
+\]
+If $\rho$ is a zero of $\zeta$, then $F_1(\rho)=-1$, and multiplication by $-1$ fixes exactly the Boolean pair $A\cong\BB$.  Taken pointwise, every zeta zero therefore yields the same split-zero coefficient object.  The mathematical problem is not to distinguish zeros pointwise, but to determine the geometric object carried by the whole non-trivial zero divisor.
+
+There is already a natural symmetry packet on the analytic side.  For the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\Bigl(\frac s2\Bigr)\zeta(s),
+\]
+complex conjugation and the functional involution $s\mapsto 1-s$ preserve the non-trivial zeros and their multiplicities.  Independently, Connes and Consani constructed two spectral realizations of the zeros of the Riemann zeta function: the first realization involves all non-trivial zeros and is expressed in terms of the Hochschild-trace map and the Laplacian $\Delta=H(1+H)$; the second involves the critical zeros and is expressed in terms of $\zeta$-cycles and sheaf cohomology on the Scaling Site.  The purpose of the present paper is to splice these two geometric structures into the split-zero formalism.
+
+The main point is that the non-trivial zero divisor admits two compatible geometric descriptions.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The quotient of the support by complex conjugation and $s\mapsto 1-s$ carries a canonical Boolean packet sheaf, whose stalk at a packet $O$ is the Boolean cube $A^{m_O}$ of the common multiplicity.
+\item The affine map $\Phi(s)=i(s-\frac12)$ transports the same divisor to the spectral plane of Connes and Consani.  Under $\Phi$, the functional symmetry becomes $z\mapsto -z$ and complex conjugation becomes $z\mapsto -\bar z$.
+\end{enumerate}
+
+The outcome is a concrete answer to the question of how a non-trivial zero maps into the split-zero formalism.  After forgetting packet base and multiplicity one recovers the coefficient pair $A$; the full image is a \emph{weighted Boolean packet}: a spectral packet point in the Connes plane, a Boolean multiplicity cube attached to that packet, and on the critical locus a primitive circle length in the geometry of $\zeta$-cycles.
+
+We keep the paper self-contained on the split-zero side.  On the Connes--Consani side we use, as inputs, their spectral realizations of all non-trivial zeros and of critical zeros \cite{ConnesConsaniCycles}.  For general background on sheaves and complex manifolds one may consult \cite{Lee}; for the Boolean and blueprint side of semiring geometry see \cite{Lorscheid}.  Nothing from these references beyond standard facts is used without explicit citation.
+
+\section{The split-zero coefficient object}
+
+\begin{definition}
+Let
+\[
+S:=\ZZ\sqcup\{\taup\},\qquad \taup\notin \ZZ,
+\]
+with operations
+\[
+m\oplus n:=m+n,
+\qquad
+m\oplus\taup=\taup\oplus m:=m,
+\qquad
+\taup\oplus\taup:=\taup,
+\]
+and
+\[
+m\odot n:=mn,
+\qquad
+m\odot\taup=\taup\odot m:=\taup,
+\qquad
+\taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in\ZZ\subset S$ is the multiplicative identity.
+\end{definition}
+
+\begin{definition}
+Set
+\[
+A:=\{0,\taup\}\subset S.
+\]
+\end{definition}
+
+\begin{proposition}\label{P3:prop:boolean-pair}
+The subset $A$ is a subsemiring of $S$, and the map
+\[
+\varphi:A\longrightarrow \BB=\{0,1\},
+\qquad
+\varphi(\taup)=0,
+\qquad
+\varphi(0)=1,
+\]
+is an isomorphism of semirings.
+\end{proposition}
+
+\begin{proof}
+Inside $A$ one has
+\[
+0\oplus 0=0,
+\qquad
+0\oplus\taup=0,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot 0=0,
+\qquad
+0\odot\taup=\taup,
+\qquad
+\taup\odot\taup=\taup.
+\]
+These are exactly the Boolean addition and multiplication tables under the displayed identification.  Hence $A$ is a subsemiring and $\varphi$ is an isomorphism.
+\end{proof}
+
+\begin{proposition}\label{P3:prop:units-fixed}
+The unit group of $S$ is $S^\times=\{\pm 1\}$.  The element $-1$ is the unique unit of exact order $2$, and
+\[
+\Fix_S(-1)=A.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $x\in S$ be a unit.  If $x=\taup$, then $x\odot y=\taup$ for all $y\in S$, so $x$ cannot be invertible.  Hence every unit lies in $\ZZ$.  The only units of $\ZZ$ are $\pm1$, so $S^\times=\{\pm1\}$.
+
+Among these two units, only $-1$ has order $2$.  For the fixed-point set, first note that
+\[
+(-1)\odot\taup=\taup,
+\]
+so $\taup\in\Fix_S(-1)$.  If $n\in\ZZ$, then
+\[
+(-1)\odot n=n
+\iff -n=n
+\iff 2n=0
+\iff n=0.
+\]
+Thus the only fixed supported point is $0$, and therefore
+\[
+\Fix_S(-1)=\{0,\taup\}=A.
+\]
+\end{proof}
+
+\begin{corollary}\label{P3:cor:F1-zero}
+For every zero $\rho$ of the Riemann zeta function,
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A.
+\]
+\end{corollary}
+
+\begin{proof}
+If $\zeta(\rho)=0$, then
+\[
+F_1(\rho)=\zeta(\rho)-1=-1.
+\]
+Now apply Proposition \ref{P3:prop:units-fixed}.
+\end{proof}
+
+\section{The non-trivial zero divisor and its packet space}
+
+\subsection{The completed zeta function}
+
+\begin{definition}
+Define the completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\Bigl(\frac s2\Bigr)\zeta(s).
+\]
+Let
+\[
+Z_\xi:=\{\rho\in\CC:\xi(\rho)=0\}
+\]
+be its zero set, and for $\rho\in Z_\xi$ let
+\[
+m_\rho:=\ord_\rho(\xi).
+\]
+The divisor of non-trivial zeta zeros is
+\[
+D_\xi:=\sum_{\rho\in Z_\xi} m_\rho[\rho].
+\]
+\end{definition}
+
+\begin{lemma}\label{P3:lem:trivial-simple}
+For every integer $n\ge 1$, the point $-2n$ is a simple zero of $\zeta$.
+\end{lemma}
+
+\begin{proof}
+Use the functional equation in the form
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Gamma(1-s)\zeta(1-s).
+\]
+At $s=-2n$, the factors $2^s$, $\pi^{s-1}$, $\Gamma(1-s)=\Gamma(1+2n)$, and $\zeta(1-s)=\zeta(2n+1)$ are holomorphic and nonzero.  The sine factor vanishes there, and its derivative equals
+\[
+\frac{d}{ds}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Big|_{s=-2n}
+=\frac{\pi}{2}\cos(-n\pi)
+=\frac{\pi}{2}(-1)^n\neq 0.
+\]
+Hence the zero is simple.
+\end{proof}
+
+\begin{proposition}\label{P3:prop:xi-entire}
+The function $\xi$ is entire and satisfies
+\[
+\xi(s)=\xi(1-s).
+\]
+Its zeros are exactly the non-trivial zeros of $\zeta$, with the same multiplicities.
+\end{proposition}
+
+\begin{proof}
+The functional equation for $\zeta$ gives the symmetry $\xi(s)=\xi(1-s)$ by direct substitution.
+
+We check entireness.  Possible singularities can only come from the pole of $\zeta$ at $s=1$ and the poles of $\Gamma(s/2)$ at the nonpositive even integers.
+
+At $s=1$, the factor $s-1$ cancels the simple pole of $\zeta$.
+At $s=0$, the factor $s$ cancels the simple pole of $\Gamma(s/2)$.
+At each negative even integer $-2n$ with $n\ge 1$, Lemma~\ref{P3:lem:trivial-simple} shows that $\zeta$ has a simple zero and $\Gamma(s/2)$ has a simple pole, so these cancel.  No other singularities occur.  Hence $\xi$ is entire.
+
+Now let $\rho$ be a zero of $\zeta$ that is not trivial.  The prefactor
+\[
+\frac12 s(s-1)\pi^{-s/2}\Gamma\!\Bigl(\frac s2\Bigr)
+\]
+is holomorphic and nonzero at $s=\rho$, so $\xi$ has a zero there of the same multiplicity.
+
+Conversely, let $\rho$ be a zero of $\xi$.  The only zeros of the explicit prefactor are the factors $s$ and $s-1$, but the cancellations at $0$ and $1$ have already been accounted for in the proof of entireness, and these points are not zeros of $\xi$.  Therefore every zero of $\xi$ arises from a zero of $\zeta$.  The trivial zeros have been cancelled by the poles of $\Gamma(s/2)$, so the remaining zeros are exactly the non-trivial zeros of $\zeta$.
+\end{proof}
+
+\begin{lemma}\label{P3:lem:real-zeros}
+The real zeros of $\zeta$ are exactly the negative even integers.
+\end{lemma}
+
+\begin{proof}
+If $s>1$ is real, then the Dirichlet series
+\[
+\zeta(s)=\sum_{n\ge 1} n^{-s}
+\]
+converges to a strictly positive real number, so $\zeta(s)\ne 0$.
+
+If $0<s<1$, consider the Dirichlet eta function
+\[
+\eta(s):=\sum_{n\ge1} (-1)^{n-1} n^{-s}.
+\]
+For real $s\in(0,1)$, this is an alternating series with strictly decreasing positive terms tending to $0$, so $\eta(s)>0$.  Since
+\[
+\eta(s)=(1-2^{1-s})\zeta(s)
+\]
+and $1-2^{1-s}<0$ on $(0,1)$, one has $\zeta(s)<0$, in particular $\zeta(s)\ne 0$.
+
+If $s<0$ is real, the functional equation gives
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Gamma(1-s)\zeta(1-s).
+\]
+Here $1-s>1$, so $\zeta(1-s)>0$, and $\Gamma(1-s)>0$ because $1-s$ is positive real.  The factors $2^s$ and $\pi^{s-1}$ are also nonzero.  Thus $\zeta(s)=0$ if and only if
+\[
+\sin\!\Bigl(\frac{\pi s}{2}\Bigr)=0,
+\]
+which for negative real $s$ occurs exactly at $s=-2,-4,-6,\dots$.
+\end{proof}
+
+\begin{corollary}\label{P3:cor:nonreal}
+Every zero of $\xi$ is non-real.
+\end{corollary}
+
+\begin{proof}
+By Proposition \ref{P3:prop:xi-entire}, the zeros of $\xi$ are exactly the non-trivial zeros of $\zeta$.  By Lemma \ref{P3:lem:real-zeros}, the only real zeros of $\zeta$ are the trivial zeros.  Hence every zero of $\xi$ is non-real.
+\end{proof}
+
+\subsection{Klein-four packets}
+
+\begin{definition}
+Define maps on $\CC$ by
+\[
+c(s):=\bar s,
+\qquad
+w(s):=1-s.
+\]
+Let
+\[
+W:=\{\mathrm{id},c,w,cw\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{P3:lem:conjugate-order}
+Let $\Omega\subset\CC$ be a domain stable under complex conjugation, and let $f$ be holomorphic on $\Omega$ and satisfy
+\[
+f(\bar s)=\overline{f(s)}
+\qquad (s\in \Omega).
+\]
+If $\rho\in\Omega$ is a zero of $f$, then
+\[
+\ord_{\bar\rho}(f)=\ord_\rho(f).
+\]
+\end{lemma}
+
+\begin{proof}
+Suppose
+\[
+f(s)=\sum_{n\ge m} a_n (s-\rho)^n
+\]
+near $\rho$, where $a_m\ne 0$.  Then near $\bar\rho$ one has
+\[
+f(s)=\overline{f(\bar s)}=
+\overline{\sum_{n\ge m} a_n (\bar s-\rho)^n}
+=
+\sum_{n\ge m} \overline{a_n}(s-\bar\rho)^n.
+\]
+The first nonzero coefficient in this expansion is $\overline{a_m}\ne 0$, so the order of vanishing at $\bar\rho$ is again $m$.
+\end{proof}
+
+\begin{proposition}\label{P3:prop:packet-symmetry}
+If $\rho\in Z_\xi$, then
+\[
+\bar\rho,\qquad 1-\rho,\qquad 1-\bar\rho
+\]
+all lie in $Z_\xi$, and all four points occur with the same multiplicity.
+\end{proposition}
+
+\begin{proof}
+The functional equation $\xi(1-s)=\xi(s)$ shows that $1-\rho$ is a zero whenever $\rho$ is a zero.  Since $w$ is biholomorphic with nonzero derivative, it preserves orders of vanishing, so
+\[
+\ord_{1-\rho}(\xi)=\ord_\rho(\xi).
+\]
+
+Next, on $\Rea(s)>1$ the Dirichlet series for $\zeta$ has real coefficients, so
+\[
+\zeta(\bar s)=\overline{\zeta(s)}
+\]
+on that half-plane; by analytic continuation this identity holds meromorphically on all of $\CC$.  The same is then true for $\xi$, because the factors $s(s-1)$, $\pi^{-s/2}$, and $\Gamma(s/2)$ are conjugation-compatible.  Thus
+\[
+\xi(\bar s)=\overline{\xi(s)}.
+\]
+By Lemma \ref{P3:lem:conjugate-order}, $\bar\rho$ is a zero with the same multiplicity as $\rho$.  Applying both symmetries gives the same conclusion for $1-\bar\rho$.
+\end{proof}
+
+\begin{corollary}\label{P3:cor:orbit-sizes}
+Let $\rho\in Z_\xi$.
+\begin{enumerate}[label=(\roman*)]
+\item If $\Rea(\rho)=\frac12$, then the $W$-orbit of $\rho$ has cardinality $2$ and equals $\{\rho,\bar\rho\}$.
+\item If $\Rea(\rho)\ne \frac12$, then the $W$-orbit of $\rho$ has cardinality $4$ and equals $\{\rho,\bar\rho,1-\rho,1-\bar\rho\}$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+If $\Rea(\rho)=\frac12$, then $1-\rho=\bar\rho$, and likewise $1-\bar\rho=\rho$.  By Corollary \ref{P3:cor:nonreal}, $\rho\ne\bar\rho$, so the orbit has exactly two points.
+
+Now assume $\Rea(\rho)\ne\frac12$.  Then $\rho\ne1-\bar\rho$.  Again by Corollary \ref{P3:cor:nonreal}$, \rho\ne\bar\rho$.  Also $\rho\ne1-\rho$, since that would force $\rho=1/2$.  Finally $\bar\rho\ne1-\rho$, for otherwise $\Rea(\rho)=1/2$.  Thus the four displayed points are pairwise distinct.
+\end{proof}
+
+\begin{definition}
+Let
+\[
+Y_\xi:=Z_\xi/W
+\]
+be the orbit space of non-trivial zero packets, equipped with the quotient topology.  Because $Z_\xi$ is discrete, $Y_\xi$ is discrete as well.  For $O\in Y_\xi$, write $m_O$ for the common multiplicity of the points of the orbit.
+\end{definition}
+
+\subsection{The Boolean multiplicity shadow and packet descent}
+
+\begin{lemma}\label{P3:lem:product-sheaf}
+Let $Z$ be a discrete topological space and let $(M_z)_{z\in Z}$ be a family of sets or $A$-semimodules.  For each open subset $U\subset Z$, define
+\[
+\cF_M(U):=\prod_{z\in U} M_z,
+\]
+with restriction maps given by coordinate projection.  Then $\cF_M$ is a sheaf.
+\end{lemma}
+
+\begin{proof}
+Let $U\subset Z$ be open and let $(U_i)_{i\in I}$ be an open cover of $U$.  Because $Z$ is discrete, being equal on overlaps means equality of each coordinate indexed by a point of the overlap.
+
+Suppose first that $x,y\in \cF_M(U)$ have equal restrictions to every $U_i$.  Let $z\in U$.  Choose $i$ with $z\in U_i$.  Equality on $U_i$ implies $x_z=y_z$.  Since this holds for every $z\in U$, one has $x=y$.
+
+Now let $x_i\in \cF_M(U_i)$ be sections that agree on overlaps.  For each $z\in U$, choose $i$ with $z\in U_i$ and define $x_z$ to be the $z$-coordinate of $x_i$.  This is independent of the choice of $i$, because if $z\in U_i\cap U_j$, then the restrictions of $x_i$ and $x_j$ to the overlap are equal, so their $z$-coordinates coincide.  Thus $x=(x_z)_{z\in U}$ is a well-defined section of $\cF_M(U)$ restricting to each $x_i$.
+
+Hence the sheaf axioms hold.
+\end{proof}
+
+\begin{definition}
+The \emph{Boolean multiplicity shadow} of $D_\xi$ is the sheaf of $A$-semimodules on $Z_\xi$ defined by
+\[
+\cV_\xi(U):=\prod_{\rho\in U} A^{m_\rho}
+\qquad (U\subset Z_\xi\ \text{open}).
+\]
+\end{definition}
+
+\begin{definition}
+Let $q_\xi:Z_\xi\to Y_\xi$ be the quotient map.  The \emph{Boolean packet sheaf} on $Y_\xi$ is
+\[
+\cP_\xi(U):=\prod_{O\in U} A^{m_O}
+\qquad (U\subset Y_\xi\ \text{open}).
+\]
+\end{definition}
+
+\begin{theorem}\label{P3:thm:packet-descent-xi}
+The group $W$ acts on the sheaf $\cV_\xi$ by reindexing the factors.  For every packet $O\in Y_\xi$ of cardinality $r_O$, the stalk of $q_{\xi,*}\cV_\xi$ at $O$ is canonically
+\[
+(q_{\xi,*}\cV_\xi)_O\cong (A^{m_O})^{r_O},
+\]
+and its $W$-fixed subsemimodule is the diagonal copy of $A^{m_O}$.  Consequently,
+\[
+(q_{\xi,*}\cV_\xi)^W\cong \cP_\xi
+\]
+as sheaves of $A$-semimodules on $Y_\xi$.
+\end{theorem}
+
+\begin{proof}
+Because $Y_\xi$ is discrete, the stalk of $q_{\xi,*}\cV_\xi$ at a packet $O$ is the product of the stalks over the points in that orbit.  Since all points in the orbit have the same multiplicity by Proposition \ref{P3:prop:packet-symmetry}, one obtains
+\[
+(q_{\xi,*}\cV_\xi)_O\cong \prod_{\rho\in O} A^{m_O}\cong (A^{m_O})^{r_O}.
+\]
+
+The action of $W$ on the orbit $O$ permutes the $r_O$ factors transitively.  An element of $(A^{m_O})^{r_O}$ is fixed by all such permutations if and only if all coordinates are equal.  The fixed subsemimodule is therefore the diagonal copy of $A^{m_O}$.
+
+Since $Y_\xi$ is discrete, these diagonal stalks assemble to the sheaf whose value on an open set $U\subset Y_\xi$ is
+\[
+\prod_{O\in U} A^{m_O}=\cP_\xi(U).
+\]
+Hence $(q_{\xi,*}\cV_\xi)^W\cong \cP_\xi$.
+\end{proof}
+
+\section{The spectral plane and the Connes--Consani realization}
+
+\subsection{The affine spectral coordinate}
+
+\begin{definition}
+Define the affine map
+\[
+\Phi:\CC\longrightarrow\CC,
+\qquad
+\Phi(s):=i\Bigl(s-\frac12\Bigr).
+\]
+Its inverse is
+\[
+\Phi^{-1}(z)=\frac12-iz.
+\]
+\end{definition}
+
+\begin{proposition}\label{P3:prop:Phi-symmetry}
+For all $s\in\CC$ one has
+\[
+\Phi(1-s)=-\Phi(s),
+\qquad
+\Phi(\bar s)=-\overline{\Phi(s)}.
+\]
+Consequently $\Phi$ conjugates the action of $W$ on the $s$-plane to the action of the Klein four-group
+\[
+\widetilde W:=\{\mathrm{id},\sigma,\kappa,\sigma\kappa\}
+\]
+on the $z$-plane, where
+\[
+\sigma(z):=-z,
+\qquad
+\kappa(z):=-\bar z.
+\]
+In particular, if $\rho=\beta+i\gamma$, then
+\[
+\Phi(\rho)=-\gamma+i\Bigl(\beta-\frac12\Bigr),
+\]
+and the packet
+\[
+\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+is sent to
+\[
+\{z,-z,\bar z,-\bar z\},
+\qquad z=\Phi(\rho).
+\]
+\end{proposition}
+
+\begin{proof}
+The identities are direct computations:
+\[
+\Phi(1-s)=i\Bigl(1-s-\frac12\Bigr)=i\Bigl(\frac12-s\Bigr)=-i\Bigl(s-\frac12\Bigr)=-\Phi(s),
+\]
+and
+\[
+\Phi(\bar s)=i\Bigl(\bar s-\frac12\Bigr)=-\overline{i\Bigl(s-\frac12\Bigr)}=-\overline{\Phi(s)}.
+\]
+Thus $w$ is conjugated to $\sigma$ and $c$ is conjugated to $\kappa$.  Applying these formulas to the four points of the $W$-orbit of $\rho$ yields the displayed spectral packet.
+\end{proof}
+
+\begin{definition}
+Let
+\[
+Z_E:=\Phi(Z_\xi),
+\qquad
+D_E:=\Phi_*D_\xi=\sum_{z\in Z_E} m_z[z],
+\\\qquad m_z:=m_{\Phi^{-1}(z)}.
+\]
+Let
+\[
+Y_E:=Z_E/\widetilde W
+\]
+be the spectral packet space.
+\end{definition}
+
+\begin{corollary}\label{P3:cor:packet-space-iso}
+The map $\Phi$ induces an isomorphism of discrete spaces
+\[
+\bar\Phi:Y_\xi\stackrel{\sim}{\longrightarrow} Y_E.
+\]
+\end{corollary}
+
+\begin{proof}
+By Proposition \ref{P3:prop:Phi-symmetry}, $\Phi$ is equivariant for the isomorphism $W\cong\widetilde W$.  Since $\Phi$ is bijective on $\CC$, it restricts to a bijection $Z_\xi\to Z_E$ and therefore induces a bijection of quotient spaces.  Both spaces are discrete, so the induced bijection is a homeomorphism.
+\end{proof}
+
+\subsection{The Connes--Consani spectral divisor}
+
+We now connect $D_E$ to the spectral realization of Connes and Consani.  Let $\cS(\RR)^{\mathrm{ev}}$ be the even Schwartz space on $\RR$, and let
+\[
+\cS(\RR)^{\mathrm{ev}}_1:=\left\{f\in\cS(\RR)^{\mathrm{ev}}: \int_{\RR} f(x)\,dx=0\right\}.
+\]
+For $f\in\cS(\RR)^{\mathrm{ev}}$, set
+\[
+(Ef)(u):=u^{1/2}\sum_{n\ge1} f(nu)
+\qquad (u\in\RR_{>0}),
+\]
+and define its Mellin--Fourier transform by
+\[
+F(Ef)(z):=\int_{\RR_{>0}} (Ef)(u)u^{-iz}\,d^*u,
+\qquad d^*u:=\frac{du}{u}.
+\]
+
+\begin{theorem}[Connes--Consani, \cite{ConnesConsaniCycles}]\label{P3:thm:Connes-CC}
+For every $f\in \cS(\RR)^{\mathrm{ev}}_1$ one has
+\[
+F(Ef)(z)=\zeta\Bigl(\frac12-iz\Bigr)\psi_f(z)
+\]
+on the half-plane $\Ima(z)>-\frac12$, where $\psi_f$ is holomorphic.  Consequently the common zero set of the functions $F(Ef)$, $f\in\cS(\RR)^{\mathrm{ev}}_1$, in the strip $|\Ima(z)|<\frac12$ is exactly the zero set of
+\[
+z\longmapsto \zeta\Bigl(\frac12-iz\Bigr).
+\]
+Moreover, the operator $\Delta=H(1+H)$ of \cite[Section~4]{ConnesConsaniCycles} has spectrum
+\[
+\left\{-\rho(1-\rho):\rho\in\CC\setminus\RR,\ \zeta(\rho)=0\right\}
+\]
+counted with multiplicity on the quotient described in \cite[Proposition~4.2]{ConnesConsaniCycles}.
+\end{theorem}
+
+\begin{proof}
+This is exactly the content of equation~(2.2) and the common-zero statement in Section~2, together with Proposition~4.2 and its proof in Section~4 of \cite{ConnesConsaniCycles}.  The spectral values are written there as
+\[
+\Bigl(\rho-\frac12\Bigr)^2-\frac14,
+\]
+which is equal to $-\rho(1-\rho)$.
+\end{proof}
+
+\begin{theorem}\label{P3:thm:bridge}
+The affine map $\Phi$ identifies $Z_\xi$ with the Connes--Consani spectral support:
+\[
+Z_E=\left\{z\in\CC:\zeta\Bigl(\frac12-iz\Bigr)=0\right\}.
+\]
+Equivalently, $Z_E$ is the common zero set of the family $F(Ef)$, $f\in\cS(\RR)^{\mathrm{ev}}_1$, in the strip $|\Ima(z)|<\frac12$.
+
+For every $\rho\in Z_\xi$ one has
+\[
+-\rho(1-\rho)=-\Phi(\rho)^2-\frac14.
+\]
+Thus $\Phi(\rho)$ is the square-root spectral coordinate for the Connes Laplacian.
+\end{theorem}
+
+\begin{proof}
+Let $\rho\in Z_\xi$.  By Proposition \ref{P3:prop:xi-entire}, $\rho$ is a non-trivial zero of $\zeta$.  Put $z=\Phi(\rho)$.  Since $\Phi^{-1}(z)=\frac12-iz$, one has
+\[
+\zeta(\rho)=0
+\iff
+\zeta\Bigl(\frac12-iz\Bigr)=0.
+\]
+Hence
+\[
+Z_E=\left\{z\in\CC:\zeta\Bigl(\frac12-iz\Bigr)=0\right\}.
+\]
+The strip condition is automatic, because if $\rho=\beta+i\gamma$ is non-trivial then $0<\beta<1$, and therefore
+\[
+\Ima(\Phi(\rho))=\beta-\frac12
+\]
+satisfies $|\Ima(\Phi(\rho))|<\frac12$.
+
+The common-zero statement now follows from Theorem \ref{P3:thm:Connes-CC}.
+
+For the Laplacian relation, a direct calculation gives
+\[
+-\Phi(\rho)^2-\frac14
+=-\Bigl(i\Bigl(\rho-\frac12\Bigr)\Bigr)^2-\frac14
+=\Bigl(\rho-\frac12\Bigr)^2-\frac14
+=-\rho(1-\rho).
+\]
+This is exactly the spectral parameter of $\Delta$ attached to $\rho$ by Theorem \ref{P3:thm:Connes-CC}.
+\end{proof}
+
+\begin{definition}
+The \emph{spectral Boolean packet sheaf} on $Y_E$ is
+\[
+\cP_E(U):=\prod_{P\in U} A^{m_P}
+\qquad (U\subset Y_E\ \text{open}),
+\]
+where $m_P$ is the common multiplicity of the elements of the packet $P$.
+\end{definition}
+
+\begin{corollary}\label{P3:cor:packet-transport}
+Via the isomorphism $\bar\Phi:Y_\xi\to Y_E$, the packet sheaf $\cP_\xi$ transports canonically to $\cP_E$:
+\[
+\bar\Phi_*\cP_\xi\cong \cP_E.
+\]
+\end{corollary}
+
+\begin{proof}
+By definition of $D_E$, multiplicities are preserved by $\Phi$.  Hence for every open set $U\subset Y_E$ one has
+\[
+(\bar\Phi_*\cP_\xi)(U)=\cP_\xi(\bar\Phi^{-1}(U))
+=\prod_{O\in \bar\Phi^{-1}(U)} A^{m_O}
+=\prod_{P\in U} A^{m_P}
+=\cP_E(U).
+\]
+These identifications commute with restriction maps.
+\end{proof}
+
+\section{Critical packets and $\zeta$-cycles}
+
+\begin{proposition}\label{P3:prop:critical-real}
+Let $\rho\in Z_\xi$ and let $z=\Phi(\rho)$.  Then
+\[
+\Rea(\rho)=\frac12
+\iff
+z\in\RR.
+\]
+If $\rho=\frac12+i\gamma$, then
+\[
+\Phi(\rho)=-\gamma.
+\]
+Consequently the spectral packet of a critical zero is the two-point set
+\[
+\{-\gamma,\gamma\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $\rho=\beta+i\gamma$.  Then Proposition \ref{P3:prop:Phi-symmetry} gives
+\[
+\Phi(\rho)=-\gamma+i\Bigl(\beta-\frac12\Bigr).
+\]
+Thus $\Phi(\rho)$ is real if and only if $\beta=\frac12$.  In that case $\Phi(\rho)=-\gamma$.  The packet formula of Proposition \ref{P3:prop:Phi-symmetry} then yields the two-point set $\{-\gamma,\gamma\}$.
+\end{proof}
+
+\begin{definition}
+Let $Y_E^{\mathrm{crit}}\subset Y_E$ be the subset of critical packets, i.e. the packets contained in $\RR$.  For $P\in Y_E^{\mathrm{crit}}$, define
+\[
+\nu(P):=|z|
+\]
+for any $z\in P$.  This is well-defined because $P=\{z,-z\}$.
+
+Define also the \emph{primitive cycle length}
+\[
+\Lambda(P):=\frac{2\pi}{\nu(P)}.
+\]
+\end{definition}
+
+\begin{theorem}\label{P3:thm:zeta-cycles}
+Let $P\in Y_E^{\mathrm{crit}}$ and write $\nu(P)=s>0$.  Then every circle whose length is an integral multiple of
+\[
+\frac{2\pi}{s}
+\]
+is a $\zeta$-cycle in the sense of Connes and Consani.
+\end{theorem}
+
+\begin{proof}
+Let $P=\{\pm s\}$ with $s>0$.  By Proposition \ref{P3:prop:critical-real}, $P$ comes from a critical zero
+\[
+\rho=\frac12+is
+\]
+of $\zeta$.  Theorem~1.1(ii) of Connes and Consani, quoted in \cite{ConnesConsaniCycles}, states that if
+\[
+\zeta\Bigl(\frac12+is\Bigr)=0,
+\]
+then any circle whose length is an integral multiple of $2\pi/s$ is a $\zeta$-cycle.  Applying this with the displayed critical zero proves the assertion.
+\end{proof}
+
+\begin{corollary}\label{P3:cor:critical-map}
+The assignment
+\[
+\Lambda:Y_E^{\mathrm{crit}}\longrightarrow \RR_{>0},
+\qquad
+P\longmapsto \frac{2\pi}{\nu(P)},
+\]
+is a well-defined map from critical packets to primitive $\zeta$-cycle lengths.
+\end{corollary}
+
+\begin{proof}
+This is immediate from the definition of $\nu(P)$ and Theorem \ref{P3:thm:zeta-cycles}.
+\end{proof}
+
+\begin{remark}
+The critical part of the packet map is therefore geometric in the strict Connes--Consani sense: besides the Boolean coefficient object, a critical zero packet determines a primitive circle length for the $\zeta$-cycles on the Scaling Site, together with all of its covering multiples.
+\end{remark}
+
+\section{Packet jet weights}
+
+\begin{definition}
+For $\rho\in Z_\xi$, let $m=m_\rho$.  Define the leading jet coefficient
+\[
+\lambda_\rho:=\frac{\xi^{(m)}(\rho)}{m!}.
+\]
+Since $m=\ord_\rho(\xi)$, one has $\lambda_\rho\ne 0$.
+\end{definition}
+
+\begin{lemma}\label{P3:lem:local-expansion}
+Let $\rho\in Z_\xi$ and $m=m_\rho$.  Then near $\rho$ one has the local expansion
+\[
+\xi(s)=\lambda_\rho (s-\rho)^m + O\bigl((s-\rho)^{m+1}\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+This is the Taylor expansion of $\xi$ at $\rho$.  By definition of the vanishing order, the derivatives of orders $0,1,\dots,m-1$ vanish at $\rho$, while the derivative of order $m$ does not.  Hence the first nonzero term is exactly
+\[
+\frac{\xi^{(m)}(\rho)}{m!}(s-\rho)^m=\lambda_\rho (s-\rho)^m.
+\]
+\end{proof}
+
+\begin{theorem}\label{P3:thm:lambda-transform}
+Let $\rho\in Z_\xi$ and let $m=m_\rho$.  Then the leading jet coefficients satisfy
+\[
+\lambda_{1-\rho}=(-1)^m\lambda_\rho,
+\qquad
+\lambda_{\bar\rho}=\overline{\lambda_\rho},
+\qquad
+\lambda_{1-\bar\rho}=(-1)^m\overline{\lambda_\rho}.
+\]
+Consequently
+\[
+|\lambda_{1-\rho}|=|\lambda_{\rho}|,
+\qquad
+|\lambda_{\bar\rho}|=|\lambda_\rho|,
+\qquad
+|\lambda_{1-\bar\rho}|=|\lambda_\rho|.
+\]
+\end{theorem}
+
+\begin{proof}
+Write $m=m_\rho$.
+
+By Lemma \ref{P3:lem:local-expansion}, near $\rho$ one has
+\[
+\xi(\rho+t)=\lambda_\rho t^m + O(t^{m+1}).
+\]
+Using the functional equation $\xi(1-s)=\xi(s)$, one gets near $1-\rho$
+\[
+\xi(1-\rho+u)=\xi(\rho-u)=\lambda_\rho (-u)^m + O(u^{m+1})
+=(-1)^m\lambda_\rho u^m + O(u^{m+1}).
+\]
+Therefore
+\[
+\lambda_{1-\rho}=(-1)^m\lambda_\rho.
+\]
+
+For conjugation, write near $\rho$
+\[
+\xi(s)=\sum_{n\ge m} a_n (s-\rho)^n,
+\qquad a_m=\lambda_\rho.
+\]
+Since $\xi(\bar s)=\overline{\xi(s)}$, one has near $\bar\rho$
+\[
+\xi(s)=\overline{\xi(\bar s)}=
+\sum_{n\ge m} \overline{a_n}(s-\bar\rho)^n.
+\]
+Thus the leading coefficient at $\bar\rho$ is $\overline{a_m}=\overline{\lambda_\rho}$, i.e.
+\[
+\lambda_{\bar\rho}=\overline{\lambda_\rho}.
+\]
+Applying both identities yields
+\[
+\lambda_{1-\bar\rho}=(-1)^m\lambda_{\bar\rho}=(-1)^m\overline{\lambda_\rho}.
+\]
+The absolute-value statements are immediate.
+\end{proof}
+
+\begin{definition}
+For a packet $P\in Y_E$, choose any $\rho\in Z_\xi$ mapping to $P$ and set
+\[
+\omega(P):=|\lambda_\rho|=\left|\frac{\xi^{(m_P)}(\rho)}{m_P!}\right|.
+\]
+We call $\omega(P)$ the \emph{packet jet weight}.
+\end{definition}
+
+\begin{corollary}\label{P3:cor:weight-well-defined}
+The packet jet weight is well-defined.  Thus
+\[
+\omega:Y_E\longrightarrow \RR_{>0}
+\]
+is a well-defined positive function on the spectral packet space.
+\end{corollary}
+
+\begin{proof}
+Any two representatives of a packet differ by the action of $W$.  Theorem \ref{P3:thm:lambda-transform} shows that the absolute value of the leading jet coefficient is constant on each packet.  Therefore $\omega$ is independent of the chosen representative.
+\end{proof}
+
+\section{The geometric image of a non-trivial zero}
+
+We now assemble the preceding constructions into a single theorem.
+
+\begin{theorem}\label{P3:thm:main}
+Let $\rho\in Z_\xi$ be a non-trivial zero of the Riemann zeta function, and let
+\[
+P_\rho:=[\Phi(\rho)]\in Y_E
+\]
+be its spectral packet.
+Then the following statements hold.
+
+\begin{enumerate}[label=(\arabic*)]
+\item The split-zero coefficient attached to $\rho$ is
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A=\{0,\taup\}\cong\BB.
+\]
+
+\item The packet base point is represented by
+\[
+\Phi(\rho)=i\Bigl(\rho-\frac12\Bigr),
+\]
+and the full analytic packet
+\[
+\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+becomes the centered spectral packet
+\[
+\{z,-z,\bar z,-\bar z\},
+\qquad z=\Phi(\rho).
+\]
+
+\item The Boolean multiplicity shadow descends to the spectral packet sheaf $\cP_E$, and the stalk at $P_\rho$ is
+\[
+(\cP_E)_{P_\rho}\cong A^{m_\rho}.
+\]
+Thus the multiplicity of $\rho$ is recorded as the Boolean cube dimension of its packet stalk.
+
+\item The Connes Laplacian sees the same zero through the spectral identity
+\[
+-\rho(1-\rho)=-\Phi(\rho)^2-\frac14.
+\]
+
+\item If $\rho=\frac12+i\gamma$ lies on the critical line, then
+\[
+P_\rho=\{\pm\gamma\}
+\]
+up to the sign convention imposed by $\Phi$, and the primitive $\zeta$-cycle length attached to the packet is
+\[
+\Lambda(P_\rho)=\frac{2\pi}{|\gamma|}.
+\]
+
+\item The packet jet weight
+\[
+\omega(P_\rho)=\left|\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}\right|
+\]
+is well-defined.
+\end{enumerate}
+
+In particular, the geometric image of a non-trivial zero in the split-zero formalism is the weighted Boolean packet
+\[
+\bigl(P_\rho,(\cP_E)_{P_\rho},\omega(P_\rho)\bigr),
+\]
+and on the critical locus this packet carries in addition the primitive $\zeta$-cycle length $\Lambda(P_\rho)$.
+\end{theorem}
+
+\begin{proof}
+Item (1) is Corollary \ref{P3:cor:F1-zero}.  Item (2) is Proposition \ref{P3:prop:Phi-symmetry}.  Item (3) follows from Corollary \ref{P3:cor:packet-transport} and the definition of $\cP_E$.  Item (4) is the second statement of Theorem \ref{P3:thm:bridge}.  Item (5) is Proposition \ref{P3:prop:critical-real} together with Corollary \ref{P3:cor:critical-map}.  Item (6) is Corollary \ref{P3:cor:weight-well-defined}.
+\end{proof}
+
+\begin{remark}
+The theorem gives an exact answer to the packet-geometric question.  The constant coefficient object $A$ is the reduced coefficient remembered after forgetting packet base and multiplicity.  The full image is a packet point in the Connes spectral plane, equipped with a Boolean multiplicity cube and a canonical positive local weight.  On the critical locus, the same packet point determines the covering-stable family of $\zeta$-cycles on the Scaling Site.
+\end{remark}
+
+\part{Taylor atomization, orthogonal walks, and local phase packets of the non-trivial zeros}
+\addcontentsline{toc}{part}{Part IV. Taylor atomization, orthogonal walks, and local phase packets of the non-trivial zeros}
+\setpartprefix{IV}
+
+\section{Introduction}
+
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},
+\qquad
+A:=\{0,\taup\}\subset S,
+\qquad
+F_1(s):=\zeta(s)-1.
+\]
+If $\rho$ is a zero of $\zeta$, then $F_1(\rho)=-1$, and multiplication by $-1$ fixes exactly the Boolean pair $A\cong\BB$.  Thus the reduced split-zero coefficient attached to a zeta zero is constant.  The mathematical issue is not pointwise evaluation but the extraction of geometric data from the local analytic germ and from the global packet symmetries.
+
+The present part addresses the passage from local Taylor expansions at a zero to a precise complex-exponential formalism governed by explicit orthogonal-walk identities.  The point is to make the local phase geometry completely exact and intrinsic.
+
+There are three inputs.
+\begin{enumerate}[label=(\roman*)]
+\item The split-zero coefficient object is the Boolean pair $A=\{0,\taup\}\cong\BB$.
+\item The non-trivial zero packets are governed by the completed zeta function
+\[
+\xi(s)=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s),
+\]
+which satisfies $\xi(1-s)=\xi(s)$ and $\overline{\xi(\bar s)}=\xi(s)$.
+\item The elementary affine-factor calculus rewrites products of normalized affine factors
+\[
+\frac{1+\ii\alpha}{\sqrt{1+\alpha^2}}
+\]
+as exact complex exponentials and expands the unnormalized products into orthogonal walks whose step lengths are elementary symmetric polynomials.
+\end{enumerate}
+
+The new observation is that the local phase of the reduced zeta germ at a zero is exactly of the form treated by this affine-factor formalism.  After dividing out the vanishing factor $z^m$ and the leading coefficient $\lambda_\rho$, one is left with a nonvanishing holomorphic germ.  A holomorphic logarithm of that germ has a Taylor expansion, and the imaginary part of that logarithm produces a real phase series
+\[
+\Theta_{\rho,\nu}(t)=\sum_{n\ge 1}\beta_{\rho,\nu,n}t^n.
+\]
+The corresponding local unit phase is $\exp(\ii\Theta_{\rho,\nu}(t))$.  The point is that this is not merely an abstract exponential: it can be written exactly as an infinite product of normalized affine factors and approximated by finite orthogonal walks with explicit step lengths.
+
+This gives a concrete packet-geometric answer to the question of how a non-trivial zero maps into the split-zero formalism.  The reduced coefficient is still the Boolean pair $A$; the multiplicity contributes the Boolean cube $A^{m_\rho}$; the packet position is carried by the affine spectral coordinate
+\[
+\Phi(s)=\ii\Bigl(s-\frac12\Bigr);
+\]
+and the local phase is carried by a canonical Taylor-atomic sequence.  On the critical line, the same packet also determines the primitive $\zeta$-cycle length $2\pi/|\Im\rho|$ by the theorem of Connes and Consani \cite{ConnesConsaniCycles}.
+
+\section{Split-zero coefficients and spectral packets}
+
+\subsection{The Boolean coefficient object}
+
+\begin{definition}
+Let
+\[
+S:=\ZZ\sqcup\{\taup\},\qquad \taup\notin\ZZ,
+\]
+with operations
+\[
+m\oplus n:=m+n,
+\qquad
+m\oplus \taup=\taup\oplus m:=m,
+\qquad
+\taup\oplus\taup:=\taup,
+\]
+and
+\[
+m\odot n:=mn,
+\qquad
+m\odot\taup=\taup\odot m:=\taup,
+\qquad
+\taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in\ZZ\subset S$ is the multiplicative identity.
+\end{definition}
+
+\begin{proposition}\label{P4:prop:boolean-pair}
+The subset
+\[
+A:=\{0,\taup\}\subset S
+\]
+is a subsemiring, and the map
+\[
+A\longrightarrow \BB=\{0,1\},\qquad \taup\mapsto 0,\qquad 0\mapsto 1,
+\]
+is an isomorphism of semirings.
+\end{proposition}
+
+\begin{proof}
+Inside $A$ one has
+\[
+0\oplus0=0,
+\qquad
+0\oplus\taup=0,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot0=0,
+\qquad
+0\odot\taup=\taup,
+\qquad
+\taup\odot\taup=\taup.
+\]
+These are exactly the Boolean addition and multiplication tables under the displayed identification.
+\end{proof}
+
+\begin{proposition}\label{P4:prop:F1-zero}
+For every zero $\rho$ of $\zeta$ one has
+\[
+F_1(\rho)=-1.
+\]
+The unique order-$2$ unit of $S$ is $-1$, and its fixed-point set is exactly $A$.
+\end{proposition}
+
+\begin{proof}
+If $\zeta(\rho)=0$, then $F_1(\rho)=\zeta(\rho)-1=-1$.  Since the only units of $\ZZ$ are $\pm1$, the only units of $S$ are also $\pm1$.  The element $-1$ has order $2$, while $1$ does not.  Finally,
+\[
+(-1)\odot\taup=\taup,
+\qquad
+(-1)\odot n=n\iff -n=n\iff n=0,
+\]
+so the fixed-point set is $\{0,\taup\}=A$.
+\end{proof}
+
+\subsection{Non-trivial packets and the spectral coordinate}
+
+\begin{definition}
+Let
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s)
+\]
+be the completed zeta function.  Its zero set is denoted
+\[
+Z_\xi:=\{\rho\in\CC:\xi(\rho)=0\}.
+\]
+These are exactly the non-trivial zeros of $\zeta$, counted with the same multiplicities.
+\end{definition}
+
+\begin{proposition}\label{P4:prop:packet-coordinate}
+The set $Z_\xi$ is stable under complex conjugation and under $s\mapsto 1-s$.  If $\rho\in Z_\xi$ has multiplicity $m_\rho$, then every point in the orbit
+\[
+P_\rho:=\{\rho,\bar\rho,1-\rho,1-\bar\rho\}
+\]
+has the same multiplicity.  The affine map
+\[
+\Phi:\CC\longrightarrow \CC,
+\qquad
+\Phi(s):=\ii\Bigl(s-\frac12\Bigr),
+\]
+satisfies
+\[
+\Phi(1-s)=-\Phi(s),
+\qquad
+\Phi(\bar s)=-\overline{\Phi(s)}.
+\]
+Consequently,
+\[
+\Phi(P_\rho)=\{z,-z,\bar z,-\bar z\},
+\qquad z:=\Phi(\rho).
+\]
+If $\rho=\tfrac12+\ii\gamma$ lies on the critical line, then $z=-\gamma\in\RR$.
+\end{proposition}
+
+\begin{proof}
+The functional equation $\xi(1-s)=\xi(s)$ implies that $1-\rho$ is a zero whenever $\rho$ is.  The identity $\overline{\xi(\bar s)}=\xi(s)$ implies that $\bar\rho$ is a zero whenever $\rho$ is.  Because these maps are biholomorphic and preserve $\xi$ up to composition with a nowhere-vanishing factor of modulus $1$, the multiplicity is constant on each orbit.
+
+The displayed formulas for $\Phi$ are immediate:
+\[
+\Phi(1-s)=\ii\Bigl(\frac12-s\Bigr)=-\ii\Bigl(s-\frac12\Bigr)=-\Phi(s),
+\]
+and
+\[
+\Phi(\bar s)=\ii\Bigl(\bar s-\frac12\Bigr)=-\overline{\ii\Bigl(s-\frac12\Bigr)}=-\overline{\Phi(s)}.
+\]
+Applying these to the orbit of $\rho$ gives the packet formula.  If $\rho=\tfrac12+\ii\gamma$, then
+\[
+\Phi(\rho)=\ii\bigl(\ii\gamma\bigr)=-\gamma\in\RR.
+\]
+\end{proof}
+
+\begin{remark}
+For a zero $\rho$ of multiplicity $m_\rho$, the multiplicity coefficient object in the split-zero formalism is the Boolean cube $A^{m_\rho}$.  At the reduced level one sees only the fixed Boolean pair $A$; the higher Boolean cube records multiplicity.
+\end{remark}
+
+\begin{corollary}[Critical packets and $\zeta$-cycle lengths]\label{P4:cor:critical-length}
+Let $\rho=\tfrac12+\ii\gamma\in Z_\xi$ with $\gamma\neq0$.  Then the packet coordinate is $\Phi(\rho)=-\gamma$, and the primitive $\zeta$-cycle length attached to the packet is
+\[
+\Lambda_\rho:=\frac{2\pi}{|\gamma|}=\frac{2\pi}{|\Phi(\rho)|}.
+\]
+\end{corollary}
+
+\begin{proof}
+The identity $\Phi(\rho)=-\gamma$ is Proposition~\ref{P4:prop:packet-coordinate}.  Connes and Consani prove that if $\zeta(\tfrac12+\ii s)=0$ with $s>0$, then every circle of length an integral multiple of $2\pi/s$ is a $\zeta$-cycle, and that $s$ appears in the corresponding spectrum \cite[Theorem~1.1(ii)]{ConnesConsaniCycles}.  This yields the displayed primitive length.
+\end{proof}
+
+\section{Atomic phase factors and orthogonal walks}
+
+The exact phase formalism used below is developed explicitly in the present paper from elementary product identities and local logarithm expansions.
+
+\begin{definition}
+For $a\in\RR$, define the normalized affine phase factor
+\[
+u(a):=\frac{1+\ii a}{\sqrt{1+a^2}}\in\Sph.
+\]
+For a finite sequence $a_1,\dots,a_M\in\RR$, define the unnormalized and normalized products
+\[
+U_M(a_1,\dots,a_M):=\prod_{n=1}^M (1+\ii a_n),
+\qquad
+\widehat U_M(a_1,\dots,a_M):=\prod_{n=1}^M \upsilon(a_n).
+\]
+\end{definition}
+
+\begin{proposition}[Finite orthogonal-walk expansion]\label{P4:prop:finite-orthogonal}
+Let $a_1,\dots,a_M\in\RR$, and let $e_r(a_1,\dots,a_M)$ be the elementary symmetric polynomials.  Then
+\[
+U_M(a_1,\dots,a_M)=\sum_{r=0}^M \ii^r e_r(a_1,\dots,a_M).
+\]
+Consequently, if
+\[
+S_r:=\sum_{q=0}^r \ii^q e_q(a_1,\dots,a_M),
+\qquad 0\le r\le M,
+\]
+then the successive differences $S_r-S_{r-1}$ are alternately horizontal and vertical segments, and the $r$th segment has signed length $e_r(a_1,\dots,a_M)$.
+
+Moreover,
+\[
+\widehat U_M(a_1,\dots,a_M)=\exp\Bigl(\ii\sum_{n=1}^M \arctan a_n\Bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+Expanding the product gives
+\[
+\prod_{n=1}^M (1+\ii a_n)=\sum_{I\subseteq [M]} \ii^{|I|}\prod_{j\in I} a_j.
+\]
+Grouping by the cardinality $|I|=r$ yields the first formula because
+\[
+e_r(a_1,\dots,a_M)=\sum_{|I|=r}\prod_{j\in I}a_j.
+\]
+Since multiplication by $\ii^r$ rotates the real axis through successive quarter-turns, the geometric statement is immediate.
+
+For the normalized identity, note that
+\[
+\upsilon(a)=\frac{1+\ii a}{\sqrt{1+a^2}}=
+\cos(\arctan a)+\ii\sin(\arctan a)=\e^{\ii\arctan a}.
+\]
+Multiplying over $n$ proves the claim.
+\end{proof}
+
+\begin{proposition}[Infinitesimal orthogonal rotation]\label{P4:prop:derivative-nu}
+For $a\in\RR$ one has
+\[
+\nu'(a)=\frac{\ii}{1+a^2}\,\upsilon(a).
+\]
+Consequently, if $a_n:I\to\RR$ are differentiable on an interval $I$, then
+\[
+\frac{d}{dt}\widehat U_M\bigl(a_1(t),\dots,a_M(t)\bigr)
+=\ii\Bigl(\sum_{n=1}^M \frac{a_n'(t)}{1+a_n(t)^2}\Bigr)
+\widehat U_M\bigl(a_1(t),\dots,a_M(t)\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{P4:prop:finite-orthogonal},
+\[
+\upsilon(a)=\e^{\ii\arctan a},
+\]
+so
+\[
+\nu'(a)=\ii\frac{1}{1+a^2}\e^{\ii\arctan a}=\frac{\ii}{1+a^2}\,\upsilon(a).
+\]
+For the product, differentiate termwise and factor out the common product.
+\end{proof}
+
+\begin{proposition}[Equal-step limit]\label{P4:prop:equal-step-limit}
+For every $\theta\in\RR$,
+\[
+\lim_{N\to\infty}\upsilon\!\left(\frac{\theta}{N}\right)^N=\e^{\ii\theta}.
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{P4:prop:finite-orthogonal},
+\[
+\upsilon\!\left(\frac{\theta}{N}\right)^N
+=\exp\!\Bigl(\ii N\arctan\!\left(\frac{\theta}{N}\right)\Bigr).
+\]
+Since $N\arctan(\theta/N)\to \theta$, the conclusion follows.
+\end{proof}
+
+\begin{theorem}[Exact Taylor atomization]\label{P4:thm:taylor-atomization}
+Let
+\[
+\Theta(t)=\sum_{n=1}^{\infty}\beta_n t^n
+\]
+be a real-analytic function on $(-R,R)$ with $\Theta(0)=0$ and $\beta_n\in\RR$.  Then there exists $r\in(0,R)$ such that for every $|t|\le r$ and every $n\ge1$ one has
+\[
+|\beta_n t^n|<\frac{\pi}{4}.
+\]
+Define the atomic slopes
+\[
+\alpha_n(t):=\tan\bigl(\beta_n t^n\bigr),\qquad |t|\le r.
+\]
+Then the following hold.
+\begin{enumerate}[label=(\roman*)]
+\item The series $\sum_{n\ge1}|\alpha_n(t)|$ converges uniformly on $[-r,r]$.
+\item For every $M\ge1$,
+\[
+\prod_{n=1}^M \upsilon\bigl(\alpha_n(t)\bigr)=\exp\!\Bigl(\ii\sum_{n=1}^M\beta_n t^n\Bigr).
+\]
+\item The infinite product converges uniformly on $[-r,r]$, and
+\[
+\prod_{n=1}^{\infty}\upsilon\bigl(\alpha_n(t)\bigr)=\e^{\ii\Theta(t)}.
+\]
+\item The unnormalized finite products admit the orthogonal-walk expansions
+\[
+\prod_{n=1}^M (1+\ii\alpha_n(t))=
+\sum_{q=0}^M \ii^q e_q\bigl(\alpha_1(t),\dots,\alpha_M(t)\bigr).
+\]
+Hence the normalized partial products are normalized endpoints of finite orthogonal walks with step lengths $e_q\bigl(\alpha_1(t),\dots,\alpha_M(t)\bigr)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Choose $r\in(0,R)$ so small that
+\[
+\sum_{n=1}^{\infty}|\beta_n|r^n<\frac{\pi}{4}.
+\]
+Then for every $n$ and every $|t|\le r$,
+\[
+|\beta_n t^n|\le \sum_{m=1}^{\infty}|\beta_m|r^m<\frac{\pi}{4}.
+\]
+On $[-\pi/4,\pi/4]$ one has $|\tan x|\le 2|x|$, so
+\[
+|\alpha_n(t)|=|\tan(\beta_n t^n)|\le 2|\beta_n|r^n.
+\]
+Since $\sum_n |\beta_n|r^n<\infty$, the series $\sum_n |\alpha_n(t)|$ converges uniformly on $[-r,r]$.  This proves~(i).
+
+For~(ii), observe that $|\beta_n t^n|<\pi/2$, so
+\[
+\arctan\alpha_n(t)=\arctan\bigl(\tan(\beta_n t^n)\bigr)=\beta_n t^n.
+\]
+By Proposition~\ref{P4:prop:finite-orthogonal},
+\[
+\prod_{n=1}^M \upsilon\bigl(\alpha_n(t)\bigr)
+=\exp\!\Bigl(\ii\sum_{n=1}^M \arctan\alpha_n(t)\Bigr)
+=\exp\!\Bigl(\ii\sum_{n=1}^M \beta_n t^n\Bigr).
+\]
+This proves~(ii).
+
+Since the power series for $\Theta$ converges uniformly on $[-r,r]$, the partial sums
+\[
+\Theta_M(t):=\sum_{n=1}^M\beta_n t^n
+\]
+converge uniformly to $\Theta(t)$.  By~(ii),
+\[
+\prod_{n=1}^M \upsilon\bigl(\alpha_n(t)\bigr)=\e^{\ii\Theta_M(t)},
+\]
+so the partial products converge uniformly to $\e^{\ii\Theta(t)}$.  This proves~(iii).
+
+Part~(iv) is Proposition~\ref{P4:prop:finite-orthogonal} applied to the finite sequence $\alpha_1(t),\dots,\alpha_M(t)$.
+\end{proof}
+
+\begin{corollary}[Two exact walk models for the same phase]\label{P4:cor:two-walks}
+Under the hypotheses of Theorem~\ref{P4:thm:taylor-atomization}, the same phase $\e^{\ii\Theta(t)}$ admits two exact representations.
+\begin{enumerate}[label=(\alph*)]
+\item The \emph{Taylor walk}
+\[
+\e^{\ii\Theta(t)}=\sum_{q=0}^{\infty}\frac{\bigl(\ii\Theta(t)\bigr)^q}{q!},
+\]
+whose step directions cycle with period $4$ and whose step lengths are $|\Theta(t)|^q/q!$.
+\item The \emph{atomic orthogonal walk}, obtained as the uniform limit of the normalized endpoints of the finite orthogonal walks attached to the atomic slopes $\alpha_n(t)=\tan(\beta_n t^n)$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Part~(a) is the Taylor expansion of the exponential function.  Part~(b) is Theorem~\ref{P4:thm:taylor-atomization}(iii)--(iv).
+\end{proof}
+
+\section{Taylor atomization of nonvanishing holomorphic germs}
+
+\begin{theorem}[Local phase expansion]\label{P4:thm:nonvanishing-germ}
+Let $g$ be holomorphic on a neighborhood of $0\in\CC$, and assume $g(0)\neq0$.  Then there exist $\varepsilon>0$ and a unique holomorphic function
+\[
+h(z)=\sum_{n=1}^{\infty} c_n z^n
+\]
+on $|z|<\varepsilon$ such that
+\[
+g(z)=g(0)\e^{h(z)},
+\qquad h(0)=0.
+\]
+Fix a unit direction $\nu\in\Sph$, and define
+\[
+\Theta_{g,\nu}(t):=\Ima\,h(t\nu)
+=\sum_{n=1}^{\infty}\beta_{g,\nu,n} t^n,
+\qquad
+\beta_{g,\nu,n}:=\Ima\bigl(c_n\nu^n\bigr).
+\]
+Then, for $0<t<\varepsilon$,
+\[
+\ph\bigl(g(t\nu)\bigr)=\ph\bigl(g(0)\bigr)\e^{\ii\Theta_{g,\nu}(t)}.
+\]
+Moreover, after shrinking $\varepsilon$ if necessary, Theorem~\ref{P4:thm:taylor-atomization} applies to $\Theta_{g,\nu}$, so the local phase is represented by a canonical atomic sequence
+\[
+\alpha_{g,\nu,n}(t):=\tan\bigl(\beta_{g,\nu,n}t^n\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Because $g(0)\neq0$, after shrinking the neighborhood we may assume that $g$ never vanishes on the disc $|z|<\varepsilon$.  Since the disc is simply connected, the nonvanishing holomorphic function $g(z)/g(0)$ admits a unique holomorphic logarithm $h$ with $h(0)=0$.  Expanding $h$ into its Taylor series gives
+\[
+g(z)=g(0)\e^{h(z)},
+\qquad
+h(z)=\sum_{n=1}^{\infty} c_n z^n.
+\]
+Evaluating at $z=t\nu$ yields
+\[
+g(t\nu)=g(0)\exp\!\Bigl(\sum_{n=1}^{\infty} c_n\nu^n t^n\Bigr).
+\]
+Taking moduli gives
+\[
+|g(t\nu)|=|g(0)|\exp\!\Bigl(\sum_{n=1}^{\infty}\Rea(c_n\nu^n)t^n\Bigr),
+\]
+while dividing by the modulus yields
+\[
+\ph\bigl(g(t\nu)\bigr)=\ph\bigl(g(0)\bigr)\exp\!\Bigl(\ii\sum_{n=1}^{\infty}\Ima(c_n\nu^n)t^n\Bigr)
+=\ph\bigl(g(0)\bigr)\e^{\ii\Theta_{g,\nu}(t)}.
+\]
+The last claim is exactly Theorem~\ref{P4:thm:taylor-atomization} applied to the real-analytic function $\Theta_{g,\nu}$.
+\end{proof}
+
+\begin{proposition}[The first two Taylor atoms]\label{P4:prop:first-two-atoms}
+In the situation of Theorem~\ref{P4:thm:nonvanishing-germ}, write
+\[
+\frac{g(z)}{g(0)}=1+a_1 z+a_2 z^2+O(z^3)
+\qquad (z\to0).
+\]
+Then
+\[
+c_1=a_1,
+\qquad
+c_2=a_2-\frac12 a_1^2,
+\]
+and therefore
+\[
+\beta_{g,\nu,1}=\Ima(\nu a_1),
+\qquad
+\beta_{g,\nu,2}=\Ima\!\left(\nu^2\Bigl(a_2-\frac12 a_1^2\Bigr)\right).
+\]
+\end{proposition}
+
+\begin{proof}
+Since $\log(1+w)=w-\frac12 w^2+O(w^3)$ as $w\to0$, applying this with
+\[
+w=a_1 z+a_2 z^2+O(z^3)
+\]
+gives
+\[
+h(z)=a_1 z+\Bigl(a_2-\frac12 a_1^2\Bigr)z^2+O(z^3).
+\]
+Comparing coefficients with $h(z)=\sum_{n\ge1} c_n z^n$ proves the formula for $c_1$ and $c_2$.  The formulas for the $\beta$'s are immediate from the definition $\beta_{g,\nu,n}=\Ima(c_n\nu^n)$.
+\end{proof}
+
+\section{Local phase packets of the non-trivial zeta zeros}
+
+\begin{definition}
+Let $\rho\in Z_\xi$ be a non-trivial zero of multiplicity
+\[
+m:=m_\rho=\ord_\rho(\xi).
+\]
+Define the leading coefficient
+\[
+\lambda_\rho:=\frac{\xi^{(m)}(\rho)}{m!}\in\CC^\times.
+\]
+Then the reduced local germ at $\rho$ is
+\[
+\psi_\rho(z):=\frac{\xi(\rho+z)}{\lambda_\rho z^m}.
+\]
+By construction $\psi_\rho(0)=1$.
+\end{definition}
+
+\begin{theorem}[Local phase packet at a zeta zero]\label{P4:thm:local-phase-packet}
+Let $\rho\in Z_\xi$ have multiplicity $m$, and let $\nu\in\Sph$ be a unit direction.  Then there exists $\varepsilon>0$ and a unique holomorphic function
+\[
+h_\rho(z)=\sum_{n=1}^{\infty} c_{\rho,n} z^n
+\qquad (|z|<\varepsilon)
+\]
+such that
+\[
+\xi(\rho+z)=\lambda_\rho z^m \e^{h_\rho(z)},
+\qquad h_\rho(0)=0.
+\]
+Define the local phase series
+\[
+\Theta_{\rho,\nu}(t):=\Ima\,h_\rho(t\nu)
+=\sum_{n=1}^{\infty}\beta_{\rho,\nu,n} t^n,
+\qquad
+\beta_{\rho,\nu,n}:=\Ima\bigl(c_{\rho,n}\nu^n\bigr).
+\]
+Then, for $0<t<\varepsilon$,
+\begin{align*}
+|\xi(\rho+t\nu)|
+&=t^m |\lambda_\rho| \exp\!\Bigl(\sum_{n=1}^{\infty}\Rea(c_{\rho,n}\nu^n)t^n\Bigr),\\[4pt]
+\ph\bigl(\xi(\rho+t\nu)\bigr)
+&=\nu^m\ph(\lambda_\rho)\e^{\ii\Theta_{\rho,\nu}(t)}.
+\end{align*}
+After shrinking $\varepsilon$ if necessary, the phase factor admits the exact atomic representation
+\[
+\e^{\ii\Theta_{\rho,\nu}(t)}
+=\prod_{n=1}^{\infty}\upsilon\bigl(\alpha_{\rho,\nu,n}(t)\bigr),
+\qquad
+\alpha_{\rho,\nu,n}(t):=\tan\bigl(\beta_{\rho,\nu,n}t^n\bigr),
+\]
+and its finite truncations are normalized endpoints of the orthogonal walks
+\[
+W_{\rho,\nu,M}(t):=
+\sum_{q=0}^M \ii^q e_q\bigl(\alpha_{\rho,\nu,1}(t),\dots,\alpha_{\rho,\nu,M}(t)\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Because $\xi(\rho+z)$ has a zero of exact order $m$ at $z=0$, one has a factorization
+\[
+\xi(\rho+z)=\lambda_\rho z^m \psi_\rho(z)
+\]
+with $\psi_\rho$ holomorphic and $\psi_\rho(0)=1$.  Shrinking $\varepsilon$ if necessary, we may assume that $\psi_\rho$ never vanishes on $|z|<\varepsilon$.  Since the disc is simply connected, there exists a unique holomorphic logarithm $h_\rho$ with $h_\rho(0)=0$ and
+\[
+\psi_\rho(z)=\e^{h_\rho(z)}.
+\]
+This proves the factorization
+\[
+\xi(\rho+z)=\lambda_\rho z^m \e^{h_\rho(z)}.
+\]
+Now evaluate at $z=t\nu$ with $0<t<\varepsilon$.  Because $|\nu|=1$,
+\[
+\xi(\rho+t\nu)=\lambda_\rho t^m \nu^m \exp\!\Bigl(\sum_{n=1}^{\infty} c_{\rho,n}\nu^n t^n\Bigr).
+\]
+Taking moduli yields the first displayed formula, and dividing by the modulus yields
+\[
+\ph\bigl(\xi(\rho+t\nu)\bigr)=\nu^m\ph(\lambda_\rho)\exp\!\Bigl(\ii\sum_{n=1}^{\infty}\Ima(c_{\rho,n}\nu^n)t^n\Bigr)
+=\nu^m\ph(\lambda_\rho)\e^{\ii\Theta_{\rho,\nu}(t)}.
+\]
+The atomic representation and the orthogonal-walk formula are exactly Theorem~\ref{P4:thm:taylor-atomization} applied to the real-analytic function $\Theta_{\rho,\nu}$.
+\end{proof}
+
+\begin{corollary}[The first local phase atoms of a zeta zero]\label{P4:cor:zeta-first-atoms}
+Let $\rho\in Z_\xi$ have multiplicity $m$.  Then
+\[
+\psi_\rho(z)=1+a_{\rho,1} z+a_{\rho,2} z^2+O(z^3),
+\]
+where
+\[
+a_{\rho,1}=\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)},
+\qquad
+a_{\rho,2}=\frac{\xi^{(m+2)}(\rho)}{(m+2)(m+1)\xi^{(m)}(\rho)}.
+\]
+Hence, for every unit direction $\nu$,
+\[
+\beta_{\rho,\nu,1}=\Ima\!\left(\nu\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)}\right),
+\]
+and
+\[
+\beta_{\rho,\nu,2}=\Ima\!\left(\nu^2\Biggl(\frac{\xi^{(m+2)}(\rho)}{(m+2)(m+1)\xi^{(m)}(\rho)}-
+\frac12\Bigl(\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)}\Bigr)^2\Biggr)\right).
+\]
+In particular, if $\rho$ is simple and lies on the critical line, then the first normal and tangent atoms are
+\[
+\beta_{\rho,1,1}=\Ima\!\left(\frac{\xi''(\rho)}{2\xi'(\rho)}\right),
+\qquad
+\beta_{\rho,\ii,1}=\Rea\!\left(\frac{\xi''(\rho)}{2\xi'(\rho)}\right).
+\]
+\end{corollary}
+
+\begin{proof}
+Since
+\[
+\xi(\rho+z)=\sum_{k=m}^{\infty}\frac{\xi^{(k)}(\rho)}{k!}z^k,
+\]
+dividing by $\lambda_\rho z^m$ gives
+\[
+\psi_\rho(z)=1+
+\frac{\xi^{(m+1)}(\rho)}{(m+1)\xi^{(m)}(\rho)}z+
+\frac{\xi^{(m+2)}(\rho)}{(m+2)(m+1)\xi^{(m)}(\rho)}z^2+O(z^3).
+\]
+Now apply Proposition~\ref{P4:prop:first-two-atoms}.  If $m=1$ and $\nu=\ii$, then
+\[
+\beta_{\rho,\ii,1}=\Ima\!\left(\ii\frac{\xi''(\rho)}{2\xi'(\rho)}\right)=\Rea\!\left(\frac{\xi''(\rho)}{2\xi'(\rho)}\right).
+\]
+\end{proof}
+
+\begin{proposition}[Packet symmetry of the local phase data]\label{P4:prop:packet-symmetry-local}
+Let $\rho\in Z_\xi$ have multiplicity $m$.  Then
+\[
+\lambda_{1-\rho}=(-1)^m\lambda_\rho,
+\qquad
+\lambda_{\bar\rho}=\overline{\lambda_\rho}.
+\]
+Moreover, after shrinking the common radius of definition if necessary, the reduced local germs satisfy
+\[
+\psi_{1-\rho}(z)=\psi_\rho(-z),
+\qquad
+\psi_{\bar\rho}(z)=\overline{\psi_\rho(\bar z)}.
+\]
+Consequently, the logarithmic phase series satisfy
+\[
+\Theta_{1-\rho,-\nu}(t)=\Theta_{\rho,\nu}(t),
+\qquad
+\Theta_{\bar\rho,\bar\nu}(t)=-\Theta_{\rho,\nu}(t),
+\]
+and therefore the atomic slopes transform by
+\[
+\alpha_{1-\rho,-\nu,n}(t)=\alpha_{\rho,\nu,n}(t),
+\qquad
+\alpha_{\bar\rho,\bar\nu,n}(t)=-\alpha_{\rho,\nu,n}(t).
+\]
+In particular,
+\[
+|\lambda_{\rho}|=|\lambda_{\bar\rho}|=|\lambda_{1-\rho}|=|\lambda_{1-\bar\rho}|,
+\]
+so the local jet weight
+\[
+\omega(P_\rho):=|\lambda_\rho|
+\]
+is a well-defined positive invariant of the packet $P_\rho$.
+\end{proposition}
+
+\begin{proof}
+Because $\xi(1-s)=\xi(s)$, differentiating $m$ times gives
+\[
+(-1)^m\xi^{(m)}(1-s)=\xi^{(m)}(s).
+\]
+Setting $s=\rho$ yields
+\[
+\xi^{(m)}(1-\rho)=(-1)^m\xi^{(m)}(\rho),
+\]
+hence $\lambda_{1-\rho}=(-1)^m\lambda_\rho$.  Likewise, $\overline{\xi(\bar s)}=\xi(s)$ implies
+\[
+\xi^{(m)}(\bar\rho)=\overline{\xi^{(m)}(\rho)},
+\]
+whence $\lambda_{\bar\rho}=\overline{\lambda_\rho}$.
+
+Next,
+\[
+\xi(1-\rho+z)=\xi(\rho-z)=\lambda_\rho(-z)^m\psi_\rho(-z)=\lambda_{1-\rho} z^m\psi_\rho(-z),
+\]
+so by the definition of $\psi_{1-\rho}$ one has $\psi_{1-\rho}(z)=\psi_\rho(-z)$.  Similarly,
+\[
+\xi(\bar\rho+z)=\overline{\xi(\rho+\bar z)}
+=\overline{\lambda_\rho \bar z^m \psi_\rho(\bar z)}
+=\lambda_{\bar\rho} z^m\overline{\psi_\rho(\bar z)},
+\]
+so $\psi_{\bar\rho}(z)=\overline{\psi_\rho(\bar z)}$.
+
+Let $h_\rho$ be the logarithm used in Theorem~\ref{P4:thm:local-phase-packet}.  Since $\psi_{1-\rho}(0)=1$ and $\psi_\rho(0)=1$, uniqueness of the logarithm normalized by value $0$ at the origin gives
+\[
+h_{1-\rho}(z)=h_\rho(-z),
+\qquad
+h_{\bar\rho}(z)=\overline{h_\rho(\bar z)}.
+\]
+Evaluating at $z=-t\nu$ and $z=t\bar\nu$ shows
+\[
+\Theta_{1-\rho,-\nu}(t)=\Ima\,h_{1-\rho}(-t\nu)=\Ima\,h_\rho(t\nu)=\Theta_{\rho,\nu}(t),
+\]
+and
+\[
+\Theta_{\bar\rho,\bar\nu}(t)=\Ima\,\overline{h_\rho(t\nu)}=-\Ima\,h_\rho(t\nu)=-\Theta_{\rho,\nu}(t).
+\]
+The slope formulas follow because $\tan$ is odd.  The weight invariance is immediate from the transformation law for the $\lambda$'s.
+\end{proof}
+
+\begin{theorem}[Geometric image of a non-trivial zero]\label{P4:thm:final}
+Let $\rho$ be a non-trivial zero of $\zeta$, let $m=m_\rho$, and let
+\[
+z_\rho:=\Phi(\rho)=\ii\Bigl(\rho-\frac12\Bigr).
+\]
+Then the geometric image of $\rho$ in the split-zero formalism is the following packet object.
+\begin{enumerate}[label=(\roman*)]
+\item The reduced coefficient is the fixed Boolean pair
+\[
+A=\Fix_S(-1)=\{0,\taup\}\cong\BB,
+\]
+and the multiplicity coefficient object is the Boolean cube $A^m$.
+\item The packet base is the centered spectral packet
+\[
+\Phi(P_\rho)=\{z_\rho,-z_\rho,\bar z_\rho,-\bar z_\rho\}.
+\]
+\item The packet carries the well-defined positive weight
+\[
+\omega(P_\rho)=\left|\frac{\xi^{(m)}(\rho)}{m!}\right|.
+\]
+\item For every unit direction $\nu\in\Sph$ there is a canonical real-analytic phase series
+\[
+\Theta_{\rho,\nu}(t)=\sum_{n=1}^{\infty}\beta_{\rho,\nu,n}t^n
+\]
+and a canonical atomic slope sequence
+\[
+\alpha_{\rho,\nu,n}(t)=\tan\bigl(\beta_{\rho,\nu,n}t^n\bigr)
+\qquad (0<t\ll1),
+\]
+such that
+\[
+\ph\bigl(\xi(\rho+t\nu)\bigr)=\nu^m\ph(\lambda_\rho)
+\prod_{n=1}^{\infty}\frac{1+\ii\alpha_{\rho,\nu,n}(t)}{\sqrt{1+\alpha_{\rho,\nu,n}(t)^2}}.
+\]
+The $M$th truncation is the normalized endpoint of the orthogonal walk
+\[
+W_{\rho,\nu,M}(t)=\sum_{q=0}^M \ii^q e_q\bigl(\alpha_{\rho,\nu,1}(t),\dots,\alpha_{\rho,\nu,M}(t)\bigr).
+\]
+\item Under the packet symmetries $\rho\mapsto1-\rho$ and $\rho\mapsto\bar\rho$, the phase series and atomic slope sequences transform exactly as in Proposition~\ref{P4:prop:packet-symmetry-local}.  Thus the packet carries a well-defined local phase geometry.
+\item If $\rho=\tfrac12+\ii\gamma$ lies on the critical line, then
+\[
+z_\rho=-\gamma\in\RR
+\]
+and the packet determines the primitive $\zeta$-cycle length
+\[
+\Lambda_\rho=\frac{2\pi}{|\gamma|}=\frac{2\pi}{|z_\rho|}.
+\]
+\end{enumerate}
+Equivalently, a non-trivial zeta zero is represented geometrically by a weighted Boolean spectral packet together with its canonical Taylor-atomic phase sequence.
+\end{theorem}
+
+\begin{proof}
+Item~(i) is Proposition~\ref{P4:prop:boolean-pair} together with Proposition~\ref{P4:prop:F1-zero}.  Item~(ii) is Proposition~\ref{P4:prop:packet-coordinate}.  Item~(iii) is the weight invariance proved in Proposition~\ref{P4:prop:packet-symmetry-local}.  Item~(iv) is Theorem~\ref{P4:thm:local-phase-packet}.  Item~(v) is Proposition~\ref{P4:prop:packet-symmetry-local}.  Item~(vi) is Corollary~\ref{P4:cor:critical-length}.
+\end{proof}
+
+\begin{remark}
+The theorem separates three levels of structure.
+\begin{enumerate}[label=(\arabic*)]
+\item The pointwise split-zero coefficient $A$ is constant and therefore too coarse.
+\item The Boolean cube $A^m$ and the packet coordinate $\Phi(P_\rho)$ record multiplicity and global symmetry.
+\item The Taylor-atomic phase sequence records the genuine local analytic geometry of the zero.
+\end{enumerate}
+Thus the local orthogonal-walk packet is the first level at which the non-trivial zeros become visible inside the split-zero formalism.
+\end{remark}
+
+
+
+\part{Global synthesis}
+\addcontentsline{toc}{part}{Part V. Global synthesis}
+\setpartprefix{V}
+
+\section{A consolidated theorem}
+
+The previous four parts are assembled in the following statement.
+
+\begin{theorem}[Integrated split-zero zeta-packet synthesis]\label{global:zeta-main}
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},
+\qquad
+A=\{0,\taup\}\cong\BB,
+\qquad
+F_1(s)=\zeta(s)-1,
+\]
+and let $\xi$ be the completed zeta function.  Then the following statements hold.
+
+\begin{enumerate}[label=(\arabic*)]
+\item For every zero $\rho$ of $\zeta$,
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A.
+\]
+Thus the reduced pointwise split-zero coefficient is constant.  The first nontrivial structure only appears after one passes to divisor sheaves, packets, jets, and local phases.
+
+\item For every effective divisor $D=\sum_x m_x[x]$ on a Riemann surface, the finite-support split-zero presheaf sheafifies to the Boolean multiplicity shadow $\cV_D$, the reduced shadow $\cA_D$ is a canonical split retract of $\cV_D$, and each local Artin thickening has ideal lattice equal to a chain whose comparison with the Boolean cube is governed by the biadjunction
+\[
+L_{m_x}\dashv i_{m_x}\dashv R_{m_x}.
+\]
+For the zeta divisor this yields the sheafified Boolean shadow, derivative-enhanced stalks, compactified tails at $\infty$, and packet descent on the Klein-four quotient.
+
+\item Writing $D_{\mathrm{tr}}$ and $D_{\mathrm{nt}}$ for the trivial and nontrivial zero divisors, the completed function $\xi$ removes the trivial sector and admits an exact packet product over the Klein-four orbit space
+\[
+Y_\xi=|D_{\mathrm{nt}}|/\langle s\mapsto 1-s,\ s\mapsto \bar s\rangle:
+\qquad
+\xi(s)=\xi(1/2)\prod_{O\in Y_\xi} P_O(s)^{m_O}.
+\]
+The centered Taylor coefficients of $\Xi(z)=\xi(1/2+z)$ are exact symmetric functions of the reciprocal squared packet locations, and the full zeta function factors globally into pole, trivial-zero, and nontrivial-packet sectors.  Consequently, RH is equivalent to the absence of quartic packet factors.
+
+\item Under the affine spectral coordinate
+\[
+\Phi(s)=\ii\Bigl(s-\frac12\Bigr),
+\]
+a nontrivial zero packet becomes the centered spectral packet
+\[
+\{z,-z,\bar z,-\bar z\}.
+\]
+The same coordinate identifies the analytic factor $-\rho(1-\rho)$ with the spectral quadratic form $-z^2-\frac14$.  On the critical line, the packet determines the primitive $\zeta$-cycle length
+\[
+\Lambda(P_\rho)=\frac{2\pi}{|\Im\rho|}.
+\]
+The packet also carries the canonical positive jet weight
+\[
+\omega(P_\rho)=\left|\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}\right|.
+\]
+Thus the geometric image of a nontrivial zero is a weighted Boolean spectral packet.
+
+\item For every unit direction $\nu\in\mathbb S^1$ and every nontrivial zero $\rho$ of multiplicity $m_\rho$, the reduced local germ
+\[
+\psi_\rho(z)=\frac{\xi(\rho+z)}{\lambda_\rho z^{m_\rho}},
+\qquad
+\lambda_\rho=\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!},
+\]
+has a canonical logarithmic phase series
+\[
+\Theta_{\rho,\nu}(t)=\sum_{n\ge 1}\beta_{\rho,\nu,n}t^n.
+\]
+Its unit phase is exactly the infinite atomic product
+\[
+\exp\bigl(i\Theta_{\rho,\nu}(t)\bigr)
+=
+\prod_{n\ge 1}
+\frac{1+i\alpha_{\rho,\nu,n}(t)}{\sqrt{1+\alpha_{\rho,\nu,n}(t)^2}},
+\qquad
+\alpha_{\rho,\nu,n}(t)=\tan(\beta_{\rho,\nu,n}t^n),
+\]
+and each finite truncation is the normalized endpoint of an orthogonal walk whose step lengths are elementary symmetric polynomials in the atomic slopes.
+
+\item For a simple zero $\rho$, if the normalized phase
+\[
+u_\rho=\frac{\zeta'(\rho)}{|\zeta'(\rho)|}
+\]
+lies on the arc $\Arg(\nu_\rho)\in(0,2\pi/5)$, then there exists a unique $t_\rho>0$ such that
+\[
+\nu_\rho=\frac{1+t_\rho\zeta_5}{|1+t_\rho\zeta_5|}.
+\]
+Hence the simple local jet phase admits an exact cyclotomic affine chart in $\QQ(\zeta_5)$ on that arc.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Items~(1)--(2) are proved in Part~I.  Item~(3) is the global analytic synthesis of Part~II.  Item~(4) is the spectral-packet transport proved in Part~III.  Items~(5)--(6) are the local phase and cyclotomic-chart statements established in Part~IV together with the orthogonal-walk formulas of Part~I.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{ConnesConsaniCycles}
+A.~Connes and C.~Consani,
+\emph{Hochschild homology, trace map and $\zeta$-cycles},
+in \emph{Cyclic Cohomology at 40: Achievements and Future Prospects},
+Proc. Sympos. Pure Math. \textbf{105}, American Mathematical Society, Providence, RI, 2023, pp.~83--110.
+
+\bibitem{ConnesConsaniScaling}
+A.~Connes and C.~Consani,
+\emph{Geometry of the scaling site},
+Selecta Math. (N.S.) \textbf{23} (2017), no.~3, 1803--1850.
+
+\bibitem{ConnesTraceFormula}
+A.~Connes,
+\emph{Trace formula in noncommutative geometry and the zeros of the Riemann zeta function},
+Selecta Math. (N.S.) \textbf{5} (1999), no.~1, 29--106.
+
+\bibitem{DrosteKuichVogler}
+M.~Droste, W.~Kuich, and H.~Vogler (eds.),
+\emph{Handbook of Weighted Automata},
+Springer, Berlin, 2009.
+
+\bibitem{Edwards}
+H.~M.~Edwards,
+\emph{Riemann's Zeta Function},
+Academic Press, New York, 1974.
+
+\bibitem{GaubertKatz}
+S.~Gaubert and R.~Katz,
+\emph{Rational semimodules over the max-plus semiring and geometric approach of discrete event systems},
+arXiv:math/0208014, 2002.
+
+\bibitem{GrothendieckEGAII}
+A.~Grothendieck,
+\emph{\'El\'ements de g\'eom\'etrie alg\'ebrique. II. \'Etude globale \'el\'ementaire de quelques classes de morphismes},
+Publ. Math. IH\'ES \textbf{8} (1961), 5--222.
+
+\bibitem{Gunawardena}
+J.~Gunawardena (ed.),
+\emph{Idempotency},
+Cambridge University Press, Cambridge, 1998.
+
+\bibitem{JarraLorscheidVital}
+M.~Jarra, O.~Lorscheid, and E.~Vital,
+\emph{Quiver matroids, matroid morphisms, quiver Grassmannians, their Euler characteristics and $\mathbb F_1$-points},
+arXiv:2404.09255v2, 2026.
+
+\bibitem{Lee}
+J.~M.~Lee,
+\emph{Introduction to Complex Manifolds},
+Graduate Studies in Mathematics, vol.~244, American Mathematical Society, Providence, RI, 2024.
+
+\bibitem{Lorscheid}
+O.~Lorscheid,
+\emph{The geometry of blueprints. Part I: Algebraic background and scheme theory},
+Adv. Math. \textbf{229} (2012), no.~3, 1804--1846.
+
+\bibitem{OrecchiaChiantini}
+F.~Orecchia and L.~Chiantini (eds.),
+\emph{Zero-Dimensional Schemes},
+Walter de Gruyter, Berlin, 1994.
+
+\bibitem{SteinShakarchi}
+E.~M.~Stein and R.~Shakarchi,
+\emph{Princeton Lectures in Analysis. II. Complex Analysis},
+Princeton University Press, Princeton, 2003.
+
+\bibitem{Titchmarsh}
+E.~C.~Titchmarsh,
+\emph{The Theory of the Riemann Zeta-Function},
+2nd ed., revised by D.~R.~Heath-Brown, Oxford University Press, Oxford, 1986.
+
+\bibitem{Vakil}
+R.~Vakil,
+\emph{The Rising Sea: Foundations of Algebraic Geometry},
+2024 draft.
+
+\end{thebibliography}
+
+\end{document}
+
+\end{document}

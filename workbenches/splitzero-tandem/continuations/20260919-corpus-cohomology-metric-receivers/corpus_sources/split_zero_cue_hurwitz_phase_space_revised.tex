@@ -1,0 +1,2120 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\allowdisplaybreaks
+
+\newcommand{\C}{\mathbf C}
+\newcommand{\R}{\mathbf R}
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\Q}{\mathbf Q}
+\newcommand{\N}{\mathbf N}
+\newcommand{\B}{\mathbf B}
+\newcommand{\PP}{\operatorname{PP}}
+\newcommand{\Res}{\operatorname*{Res}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Haar}{\operatorname{Haar}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\length}{\ell}
+\newcommand{\ds}{\,ds}
+\newcommand{\half}{\frac12}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\mathbfone}{\mathbf 1}
+\newcommand{\fall}[2]{(#1)^{\downarrow}_{#2}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Split-Zero Support, Shifted-Hurwitz Residues, and Finite Phase-Space Structures for CUE Derivative Moments}
+\author{Constructive synthesis for the split-structure project}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We develop a formal algebraic extension of the higher-order CUE derivative-moment framework of Grover--Mezzadri--Simm.  The input from CUE is the asymptotic structure of the moments
+\[
+ M_{\mu,\nu}(z,N)=\mathbf E\left[
+     \prod_{i=1}^{\ell(\mu)}\Lambda_N^{(\mu_i)}(z)
+     \prod_{j=1}^{\ell(\nu)}\overline{\Lambda_N^{(\nu_j)}(z)}
+ \right],
+\]
+including the inner-disc exponent \(\ell(\mu)\ell(\nu)+|\mu|+|\nu|\) and the microscopic exponent \(|\mu|+|\nu|+s^2\) when \(\ell(\mu)=\ell(\nu)=s\).  The present paper constructs the algebraic objects that carry these exponent data and their endpoint residue analogues.  The first object is the split-zero globalization semiring \(G(R)=R\sqcup\{\tau\}\), in which \(\tau\) is the semiring zero and \(0_R\) is a supported arithmetic zero.  We prove the two-coordinate normal form, the uniqueness of the support character, the product theorem, the missing additive-relation reconstruction, and the classification of \(G(R)\)-semimodules by join-semilattice-indexed diagrams of \(R\)-modules.  The second object is the quotient/lift double cover \(\C(s)=\C(u)(v)\), where \(u=s(s-1)\) and \(v=2s-1\).  We prove that endpoint residues reverse function parity because the deck involution sends \(ds\) to \(-ds\), and we identify the finite visible two-end residue with the function-anti-invariant lift pole \(v/u\).  The third object is a compact shifted-Hurwitz family attached to compactly supported measures, including CUE derivative observables.  We compute the completed endpoint principal parts, prove all-order zero-motion recursions, and construct finite Bernstein-Hurwitz approximants whose zero counts converge by Hurwitz's theorem.  The fourth object is the finite Heisenberg phase space \(A\times\widehat A\).  Its Weyl operators form an orthogonal basis of \(\End(\C[A])\), and deleting the identity gives a basis of \(\mathfrak{sl}_{|A|}\).  In the first-derivative specialization the CUE microscopic exponent \(s^2+2s\) is realized by the block decomposition \(\End(\C^s)\oplus \C^s\oplus(\C^s)^\vee\cong\mathfrak{sl}_{s+1}\).  For \(N=3\), the CUE phase-cover relation yields a quadratic real/imaginary trace splitting parallel to the quotient/lift splitting on the critical line.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction and statement of the structural package}
+
+Let
+\[
+   \Phi_N(z)=\det(zI-U),\qquad U\in U(N),
+\]
+and let \(\Lambda_N(z)=\det(1-zU^\dagger)\).  The higher derivative CUE moment paper studies, for finite lists
+\(\mu=(\mu_1,\ldots,\mu_{\ell(\mu)})\) and \(\nu=(\nu_1,\ldots,\nu_{\ell(\nu)})\), the joint moments
+\[
+ M_{\mu,\nu}(z,N)=\mathbf E_{U(N)}\left[
+     \prod_{i=1}^{\ell(\mu)}\Lambda_N^{(\mu_i)}(z)
+     \prod_{j=1}^{\ell(\nu)}\overline{\Lambda_N^{(\nu_j)}(z)}
+ \right].
+\]
+In the inner-disc regime these moments have a denominator exponent
+\[
+   \ell(\mu)\ell(\nu)+|\mu|+|\nu|,
+\]
+and in the microscopic/unit-circle regime, when \(\ell(\mu)=\ell(\nu)=s\), they have the leading power
+\[
+   N^{|\mu|+|\nu|+s^2}.
+\]
+The coefficients in the microscopic formula are expressed in terms of Kostka numbers and determinants.  We take this theorem as an asymptotic input and build the structural objects that explain the additive pieces of these exponents.
+
+The second input is the split-zero globalization semiring
+\[
+   G(R)=R\sqcup\{\tau\},
+\]
+where \(R\) is a nonzero commutative ring with identity, \(\tau\) is the unsupported zero, and the operations are
+\[
+ r\oplus s=r+s,
+ \qquad r\oplus\tau=\tau\oplus r=r,
+ \qquad \tau\oplus\tau=\tau,
+\]
+\[
+ rs=rs,
+ \qquad r\tau=\tau r=\tau,
+ \qquad \tau^2=\tau.
+\]
+The semiring zero is \(\tau\), while the ordinary ring zero
+\[
+   e:=0_R\in R\subset G(R)
+\]
+is supported.  This distinction is the algebraic origin of the support pole.
+
+The third input is the double sheet
+\[
+   u=s(s-1),\qquad v=2s-1,
+\]
+with
+\[
+   v^2=1+4u,
+   \qquad s\mapsto 1-s,
+   \qquad v\mapsto -v.
+\]
+Its principal-part basis at \(\{0,1\}\) is
+\[
+   q=\frac1u=\frac1{s-1}-\frac1s,
+   \qquad
+   \ell=\frac vu=\frac1{s-1}+\frac1s.
+\]
+The key sign mechanism is that residues are residues of differentials.  Since the involution sends \(ds\) to \(-ds\), residues reverse function parity.
+
+The fourth input is finite Heisenberg phase space.  If \(A\) is a finite abelian group of order \(r\), then the Weyl operators indexed by
+\[
+   A\times \widehat A
+\]
+form an orthogonal basis of \(\End(\C[A])\).  The unique identity sector is removed to obtain a basis of
+\[
+   \mathfrak{sl}_r(\C),
+\]
+so the phase-space enlargement has size \(r^2-1\).  For \(A=\Z/r\Z\), the diagonal augmentation lattice is the usual \(A_{r-1}\) root lattice, but the full double is larger: it is the Weyl-Heisenberg basis of the whole traceless matrix algebra.
+
+\begin{theorem}[Consolidated structural package]\label{thm:intro-package}
+The following statements hold.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item The globalization semiring separates the ordinary supported zero from the unsupported zero.  Its support character satisfies
+\[
+   \chi_R(\tau)=0,
+   \qquad
+   \chi_R(r)=1\quad(r\in R),
+\]
+and in particular \(\chi_R(0_R)=1\).
+\item The category of left \(G(R)\)-semimodules is equivalent to the category of support diagrams: join-semilattices carrying \(R\)-modules over their support fibers and transport maps along the order.
+\item The cancellative subcategory is exactly \(R\)-Mod.  The free semimodule \(G(R)^n\) has support diagram the Boolean cube \(\mathcal P(\{1,\ldots,n\})\) with fiber \(R^I\) over \(I\subseteq\{1,\ldots,n\}\).
+\item The quotient/lift principal-part basis satisfies
+\[
+   q=1/u\text{ function-even},
+   \qquad
+   \ell=v/u\text{ function-odd},
+\]
+but the residue vectors satisfy
+\[
+   \operatorname{res}(q\,ds)=-e_0+e_1,
+   \qquad
+   \operatorname{res}(\ell\,ds)=e_0+e_1.
+\]
+Thus endpoint residue parity is opposite to function parity.
+\item For every compactly supported probability measure \(\mu\) on \([0,\infty)\), the completed Hurwitz average
+\[
+   \Lambda_{\mu,t}(s)=\pi^{-s/2}\Gamma(s/2)\int_0^\infty \zeta(s,1+ty)\,d\mu(y)
+\]
+has principal part
+\[
+   \PP_{\{0,1\}}\Lambda_{\mu,t}
+   =\bigl(1+t m_1(\mu)\bigr)\frac1u
+     -t m_1(\mu)\frac vu,
+\]
+where \(m_1(\mu)=\int y\,d\mu(y)\).  The finite residue defect is \(-2t m_1(\mu)\), and the residue at projective infinity is \(+2t m_1(\mu)\).
+\item If \(X\) is any compactly supported nonnegative CUE derivative observable and \(\nu_X\) is its Haar pushforward measure, then the same Hurwitz principal-part theorem applies with \(m_1(\nu_X)=\mathbf E[X]\).
+\item For the first derivative observable
+\[
+   X_N(U)=|\Phi_N'(1)|^2,
+\]
+one has
+\[
+   \mathbf E[X_N]=\frac{N(N+1)(2N+1)}6.
+\]
+After peeling by \(N^2\), the primitive lift coefficient is
+\[
+   -t\frac{(N+1)(2N+1)}{6N}.
+\]
+For \(N=3\) this is \(-14t/9\), and the finite visible defect is \(-28t/9\).
+\item If \(\ell(\mu)=\ell(\nu)=s\), the CUE microscopic exponent \(|\mu|+|\nu|+s^2\) is the dimension of the derivative-source vector space
+\[
+   \mathfrak B_{\mu,\nu}
+   =\End(\C^s)\oplus J_\mu\oplus J_\nu^\vee,
+   \qquad
+   \dim J_\mu=|\mu|,
+   \quad
+   \dim J_\nu=|\nu|.
+\]
+For \(\mu=\nu=(1^s)\), this space is canonically
+\[
+   \mathfrak{sl}_{s+1}(\C)
+\]
+as a vector space, with the Lie bracket induced by block matrices.
+\item For every finite abelian group \(A\) of order \(r\), the nonidentity Weyl sectors of \(A\times\widehat A\) form an orthogonal operator basis of \(\mathfrak{sl}_r(\C)\).  For \(A=\Z/r\Z\), the Cartan augmentation lattice is \(A_{r-1}\), while the full phase-space basis gives the whole traceless algebra.
+\end{enumerate}
+\end{theorem}
+
+The rest of the paper proves these assertions and records the exact compatibility maps between them.
+
+\section{The split-zero semiring and support-linear algebra}
+
+\subsection{Normal form and the unique support exception}
+
+\begin{definition}\label{def:G-R}
+Let \(R\) be a nonzero commutative ring with identity.  Define
+\[
+   G(R)=R\sqcup\{\tau\}
+\]
+with addition and multiplication as in the introduction.  The element \(\tau\) is the semiring zero, and the element
+\[
+   e:=0_R\in R\subset G(R)
+\]
+is the supported arithmetic zero.
+\end{definition}
+
+\begin{proposition}[Two-coordinate normal form]\label{prop:normal-form}
+There is a canonical semiring isomorphism
+\[
+   G(R)\xrightarrow{\sim}
+   D_R:=\{(r,b)\in R\times\B:\ b=0\Rightarrow r=0_R\}
+   =\{(0_R,0)\}\cup(R\times\{1\})
+\]
+given by
+\[
+   \tau\mapsto (0_R,0),
+   \qquad
+   r\mapsto (r,1)\quad(r\in R).
+\]
+Under this identification the arithmetic projection and support projection are
+\[
+   p_R(r,b)=r,
+   \qquad
+   \chi_R(r,b)=b.
+\]
+\end{proposition}
+
+\begin{proof}
+The displayed map is bijective by construction.  If \(r,s\in R\), then addition maps to
+\[
+  (r,1)+(s,1)=(r+s,1),
+\]
+which corresponds to \(r\oplus s=r+s\).  If one summand is \(\tau\), the addition in \(G(R)\) keeps the supported summand, and in \(D_R\) this is
+\[
+   (r,1)+(0,0)=(r,1).
+\]
+Finally \((0,0)+(0,0)=(0,0)\).  Multiplication is equally direct: supported-supported multiplication gives
+\((r,1)(s,1)=(rs,1)\), while multiplying by \((0,0)\) gives \((0,0)\).  Thus both operations are preserved.
+\end{proof}
+
+\begin{theorem}[Unique Boolean support character]\label{thm:unique-boolean}
+There is exactly one semiring homomorphism
+\[
+   G(R)\longrightarrow \B.
+\]
+It is \(\chi_R\).  Hence
+\[
+   \chi_R(\tau)=0,
+   \qquad
+   \chi_R(0_R)=1,
+   \qquad
+   \chi_R(r)=1\quad(r\in R).
+\]
+\end{theorem}
+
+\begin{proof}
+Let \(f:G(R)\to\B\) be a semiring homomorphism.  Since \(\tau\) is the additive zero of \(G(R)\),
+\[
+   f(\tau)=0.
+\]
+Since \(1_R\) is the multiplicative identity,
+\[
+   f(1_R)=1.
+\]
+Inside the supported copy of \(R\),
+\[
+   0_R=1_R+(-1_R),
+\]
+where the addition is the ordinary ring addition.  Therefore
+\[
+   f(0_R)=f(1_R\oplus(-1_R))=1+f(-1_R)=1
+\]
+in the Boolean semiring.  Now suppose \(r\in R\) and \(f(r)=0\).  Since \(r0_R=0_R\) in the supported copy, multiplicativity gives
+\[
+   1=f(0_R)=f(r0_R)=f(r)f(0_R)=0\cdot 1=0,
+\]
+a contradiction.  Thus every supported element maps to \(1\).  Hence \(f=\chi_R\).
+\end{proof}
+
+\begin{corollary}[The support pole]\label{cor:support-pole}
+The arithmetic zero fiber of \(p_R\) is split:
+\[
+   p_R^{-1}(0_R)=\{\tau,0_R\}.
+\]
+But the support-zero fiber is not split:
+\[
+   \chi_R^{-1}(0)=\{\tau\},
+   \qquad
+   \chi_R^{-1}(1)=R.
+\]
+Thus \(0_R\) is a supported zero and \(\tau\) is the unique unsupported zero.
+\end{corollary}
+
+\begin{proof}
+The formulas are immediate from the definitions of \(p_R\) and \(\chi_R\).  The final assertion is just their interpretation.
+\end{proof}
+
+\begin{proposition}[Product theorem]\label{prop:product}
+For nonzero commutative rings \(A\) and \(B\), there is a canonical semiring isomorphism
+\[
+   G(A\times B)\simeq G(A)\times_{\B}G(B),
+\]
+where the fiber product is taken with respect to the support characters.
+\end{proposition}
+
+\begin{proof}
+Using Proposition \ref{prop:normal-form}, an element of \(G(A\times B)\) is either \(\tau\), or a supported pair \((a,b)\in A\times B\).  Map
+\[
+   \tau\longmapsto (\tau_A,\tau_B),
+   \qquad
+   (a,b)\longmapsto (a,b).
+\]
+The target fiber product consists precisely of pairs with equal support.  Thus its elements are either \((\tau_A,\tau_B)\), or pairs \((a,b)\) with both coordinates supported.  The displayed map is bijective.  Addition and multiplication are coordinatewise in both descriptions, and the unsupported element is absorbing for multiplication and neutral for addition against a supported element in both descriptions.  Hence the map is a semiring isomorphism.
+
+\end{proof}
+
+\begin{proposition}[Multiplicative reconstruction with additive relations]\label{prop:missing-additive-relations}
+Let \(M_R\) be the multiplicative monoid of \(G(R)\), and let \(\N[M_R]\) denote the free commutative semiring generated by \(M_R\), with multiplication induced by the monoid law.  The canonical map \(\N[M_R]\to G(R)\), \([x]\mapsto x\), factors through the quotient by the additive relations
+\[
+ [a]+[b]=[a+b]\quad(a,b\in R),
+ \qquad
+ [x]+[\tau]=[x]\quad(x\in M_R),
+\]
+and the induced quotient map is a semiring isomorphism.
+\end{proposition}
+
+\begin{proof}
+The displayed relations are valid in \(G(R)\), hence the canonical map factors through the quotient.  In the quotient, a finite sum of supported symbols reduces inductively to a single symbol \([r]\) with \(r\in R\), because \([a_1]+\cdots+[a_m]=[a_1+\cdots+a_m]\).  The symbol \([\tau]\) is neutral for addition against any term by the second family of relations, and \([\tau]+[\tau]=[\tau]\) is included by setting \(x=\tau\).  Hence every quotient element has a unique normal form either \([\tau]\) or \([r]\) with \(r\in R\).  Multiplication in these normal forms is exactly the multiplication of \(G(R)\): supported products multiply in \(R\), and any product involving \(\tau\) is \(\tau\).  Addition is also the defining addition of \(G(R)\).  Thus the induced map is bijective and respects both semiring operations.
+\end{proof}
+
+\subsection{Semimodule classification}
+
+Let \(S=G(R)\) and keep \(e=0_R\in S\).  If \(M\) is a left \(S\)-semimodule, define
+\[
+   \eps_M:M\to M,
+   \qquad
+   \eps_M(m)=em.
+\]
+The image of \(\eps_M\) is the support skeleton of \(M\).
+
+\begin{lemma}\label{lem:m-plus-eps}
+For every left \(S\)-semimodule \(M\) and every \(m\in M\),
+\[
+   m+\eps_M(m)=m.
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(1\oplus e=1_R+0_R=1_R\) inside the supported copy of \(R\), semimodule distributivity gives
+\[
+   m+\eps_M(m)=1m+em=(1\oplus e)m=1m=m.
+\]
+\end{proof}
+
+\begin{proposition}[Support semilattice]\label{prop:support-semilattice}
+The subset
+\[
+   L_M:=eM=\operatorname{im}(\eps_M)
+\]
+is an idempotent commutative monoid under the addition of \(M\).  Hence
+\[
+   l\vee l':=l+l'
+\]
+defines a join-semilattice structure on \(L_M\), with least element \(0_M\).
+\end{proposition}
+
+\begin{proof}
+If \(l=em\) and \(l'=en\), then
+\[
+   l+l'=em+en=e(m+n)\in eM.
+\]
+Moreover
+\[
+   l+l=em+em=(e\oplus e)m=em=l,
+\]
+because \(e\oplus e=e\).  Thus \(L_M\) is an idempotent commutative monoid.  Such a monoid is canonically a join-semilattice by setting \(l\vee l'=l+l'\), and its least element is the additive zero \(0_M=e0_M\).
+\end{proof}
+
+\begin{proposition}[Fibers are \(R\)-modules]\label{prop:fibers-modules}
+For \(l\in L_M\), define
+\[
+   M_l:=\{m\in M:\ \eps_M(m)=l\}.
+\]
+Then \(M_l\) is canonically an \(R\)-module.  Its zero element is \(l\) itself.  If \(l\le l'\) in \(L_M\), then
+\[
+   T_{l,l'}:M_l\to M_{l'},
+   \qquad
+   T_{l,l'}(m)=m+l'
+\]
+is well-defined and \(R\)-linear.  These maps satisfy
+\[
+   T_{l,l}=\Id,
+   \qquad
+   T_{l',l''}\circ T_{l,l'}=T_{l,l''}
+   \quad(l\le l'\le l'').
+\]
+\end{proposition}
+
+\begin{proof}
+If \(m,n\in M_l\), then
+\[
+   \eps_M(m+n)=\eps_M(m)+\eps_M(n)=l+l=l,
+\]
+so \(M_l\) is closed under addition.  By Lemma \ref{lem:m-plus-eps}, if \(m\in M_l\), then
+\[
+   m+l=m+\eps_M(m)=m,
+\]
+so \(l\) is the additive identity in the fiber.  The additive inverse of \(m\in M_l\) is \((-1_R)m\), since
+\[
+   m+(-1_R)m=(1_R\oplus(-1_R))m=0_Rm=em=l.
+\]
+Thus \(M_l\) is an abelian group.  If \(r\in R\) and \(m\in M_l\), then
+\[
+   \eps_M(rm)=e(rm)=(er)m=em=l,
+\]
+because \(er=0_Rr=0_R=e\).  Thus \(M_l\) is stable under the action of \(R\), and the module axioms are inherited from the semimodule axioms.  Also \(0_Rm=em=l\), so the module zero is indeed \(l\).
+
+Now assume \(l\le l'\), meaning \(l\vee l'=l'\).  If \(m\in M_l\), then
+\[
+   \eps_M(m+l')=\eps_M(m)+\eps_M(l')=l+l'=l',
+\]
+so \(m+l'\in M_{l'}\).  Thus \(T_{l,l'}\) is well-defined.  It is additive because
+\[
+   T_{l,l'}(m+n)=m+n+l'=(m+l')+(n+l'),
+\]
+using \(l'+l'=l'\).  It is \(R\)-linear since
+\[
+   T_{l,l'}(rm)=rm+l'=rm+rl'=r(m+l'),
+\]
+because every supported scalar acts trivially on the support semilattice.  Finally,
+\[
+   T_{l,l}(m)=m+l=m,
+\]
+and
+\[
+   T_{l',l''}(T_{l,l'}(m))=(m+l')+l''=m+(l'+l'')=m+l''=T_{l,l''}(m).
+\]
+\end{proof}
+
+\begin{definition}[Support diagram]\label{def:support-diagram}
+A support diagram over \(R\) is a triple
+\[
+   \mathcal A=(L,\{A_l\}_{l\in L},\{\rho_{l,l'}\}_{l\le l'})
+\]
+where
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item \(L\) is a join-semilattice with least element \(0\);
+\item each \(A_l\) is an \(R\)-module;
+\item each \(\rho_{l,l'}:A_l\to A_{l'}\) is \(R\)-linear;
+\item \(\rho_{l,l}=\Id_{A_l}\), and \(\rho_{l',l''}\circ\rho_{l,l'}=\rho_{l,l''}\) whenever \(l\le l'\le l''\).
+\end{enumerate}
+Morphisms are join-preserving maps of support semilattices together with compatible natural transformations of the module diagrams.  The category is denoted \(\operatorname{Diag}_R\).
+\end{definition}
+
+\begin{proposition}[From diagrams to semimodules]\label{prop:diag-to-semi}
+Let \(\mathcal A=(L,A_l,\rho_{l,l'})\in\operatorname{Diag}_R\).  Define
+\[
+   M(\mathcal A)=\bigsqcup_{l\in L}A_l.
+\]
+For \(x\in A_l\) and \(y\in A_m\), define
+\[
+   x\boxplus y:=\rho_{l,l\vee m}(x)+\rho_{m,l\vee m}(y)\in A_{l\vee m}.
+\]
+Let the additive zero be \(0_{A_0}\).  For \(r\in R\), put
+\[
+   r\cdot x:=rx\in A_l,
+   \qquad
+   \tau\cdot x:=0_{A_0}.
+\]
+Then \(M(\mathcal A)\) is a left \(S\)-semimodule.
+\end{proposition}
+
+\begin{proof}
+Commutativity of \(\boxplus\) is immediate from commutativity of module addition.  For associativity, let \(x\in A_l\), \(y\in A_m\), \(z\in A_n\), and set \(u=l\vee m\vee n\).  By functoriality of the transition maps,
+\[
+   (x\boxplus y)\boxplus z
+   =\rho_{l,u}(x)+\rho_{m,u}(y)+\rho_{n,u}(z).
+\]
+The same expression is obtained from \(x\boxplus(y\boxplus z)\), so addition is associative.  The element \(0_{A_0}\) is neutral because
+\[
+   x\boxplus 0_{A_0}=\rho_{l,l}(x)+\rho_{0,l}(0)=x.
+\]
+The scalar action of \(R\) is inherited fiberwise from the \(R\)-module structures.  Also \(\tau\) acts by the additive zero, as required for the zero scalar of \(S\).  The only mixed distributivity to check is compatibility with \(r\oplus\tau=r\).  For \(x\in A_l\),
+\[
+   (r\oplus\tau)x=rx,
+\]
+while
+\[
+   rx\boxplus \tau x=rx\boxplus 0_{A_0}=rx.
+\]
+The remaining semimodule axioms are immediate from \(R\)-linearity of the transition maps.
+\end{proof}
+
+\begin{theorem}[Semimodule classification]\label{thm:semimodule-classification}
+The assignments
+\[
+   M\longmapsto (L_M,\{M_l\}_{l\in L_M},\{T_{l,l'}\}_{l\le l'})
+\]
+and
+\[
+   \mathcal A\longmapsto M(\mathcal A)
+\]
+extend to mutually quasi-inverse equivalences
+\[
+   S\text{-}\operatorname{SMod}\simeq \operatorname{Diag}_R.
+\]
+\end{theorem}
+
+\begin{proof}
+Starting from an \(S\)-semimodule \(M\), Propositions \ref{prop:support-semilattice} and \ref{prop:fibers-modules} construct a support diagram.  Starting from a support diagram \(\mathcal A\), Proposition \ref{prop:diag-to-semi} constructs an \(S\)-semimodule.  These constructions are functorial: an \(S\)-linear map \(f:M\to N\) satisfies
+\[
+   \eps_N(f(m))=ef(m)=f(em)=f(\eps_M(m)),
+\]
+so it sends support fibers to support fibers and commutes with transport.  Conversely, a morphism of support diagrams gives a map on the disjoint unions, and naturality of the module maps gives preservation of \(\boxplus\).
+
+It remains to check that the constructions are mutually inverse.  If one starts from \(M\), the fibers \(M_l\) partition \(M\), so the reconstructed underlying set is the same.  If \(m\in M_l\) and \(n\in M_{l'}\), then the reconstructed sum is
+\[
+   (m+(l\vee l'))+(n+(l\vee l')).
+\]
+Since \(\eps_M(m+n)=l\vee l'\), Lemma \ref{lem:m-plus-eps} gives
+\[
+   (m+n)+(l\vee l')=m+n.
+\]
+Thus the reconstructed sum agrees with the original sum.  Scalar compatibility is immediate.  If one starts from \(\mathcal A\), the support semilattice is identified with \(L\), the fiber over \(l\) is \(A_l\), and the transport maps are the given maps \(\rho_{l,l'}\) by construction.
+\end{proof}
+
+\begin{corollary}[Cancellative sector]\label{cor:cancellative}
+Restriction along \(p_R:S\to R\) induces an equivalence
+\[
+   R\text{-}\operatorname{Mod}\simeq S\text{-}\operatorname{SMod}_{\operatorname{canc}},
+\]
+where the right side is the full subcategory of cancellative \(S\)-semimodules.
+\end{corollary}
+
+\begin{proof}
+If \(M\) is cancellative, Lemma \ref{lem:m-plus-eps} gives
+\[
+   m+\eps_M(m)=m=m+0_M.
+\]
+Cancellation gives \(\eps_M(m)=0_M\) for all \(m\).  Thus \(L_M\) is the one-point semilattice, and Theorem \ref{thm:semimodule-classification} identifies \(M\) with a single \(R\)-module.  Conversely, if \(A\) is an \(R\)-module, make it an \(S\)-semimodule by
+\[
+   r\cdot a=ra,
+   \qquad
+   \tau\cdot a=0.
+\]
+The underlying additive monoid is the additive group of \(A\), hence cancellative.
+\end{proof}
+
+\begin{corollary}[Free Boolean cube]\label{cor:free-cube}
+Let \(F_n=S^n\).  Its support diagram has support semilattice
+\[
+   \mathcal P(\{1,\ldots,n\})
+\]
+with join given by union.  The fiber over \(I\subseteq\{1,\ldots,n\}\) is canonically \(R^I\), and the transport map for \(I\subseteq J\) is extension by zero in the coordinates of \(J\setminus I\).
+\end{corollary}
+
+\begin{proof}
+A vector \(x=(x_1,\ldots,x_n)\in S^n\) has support
+\[
+   \supp(x)=\{j:\ x_j\in R\}.
+\]
+This is precisely \(\eps_{F_n}(x)=ex\).  Thus the support semilattice is the Boolean lattice of subsets of \(\{1,\ldots,n\}\).  If \(\supp(x)=I\), then the coordinates outside \(I\) are \(\tau\), and projection to the supported coordinates identifies the fiber with \(R^I\).  If \(I\subseteq J\), adding the support idempotent of \(J\) inserts the supported zero in the new coordinates \(J\setminus I\), which is extension by zero.
+\end{proof}
+
+\begin{corollary}[Finite generation bound]\label{cor:finite-generation}
+If an \(S\)-semimodule \(M\) is generated by \(m_1,\ldots,m_n\), then \(L_M\) is generated as a join-semilattice by \(\eps_M(m_1),\ldots,\eps_M(m_n)\).  In particular
+\[
+   |L_M|\le 2^n.
+\]
+For each \(l\in L_M\), the fiber \(M_l\) is generated as an \(R\)-module by the transported elements
+\[
+   T_{\eps_M(m_i),l}(m_i)
+\]
+for those \(i\) with \(\eps_M(m_i)\le l\).
+\end{corollary}
+
+\begin{proof}
+Every element of \(M\) is a finite sum of terms \(r_jm_{i_j}\) with \(r_j\in R\).  Since supported scalars preserve support,
+\[
+   \eps_M(r_jm_{i_j})=\eps_M(m_{i_j}).
+\]
+Therefore the support of a sum is the join of the supports of the summands.  This proves the support statement and the bound \(2^n\).  If \(m\in M_l\), write \(m=\sum_j r_jm_{i_j}\).  Since \(\eps_M(m)=l\), each support appearing in the sum is at most \(l\), and
+\[
+   m=\sum_j r_j T_{\eps_M(m_{i_j}),l}(m_{i_j})
+\]
+inside the \(R\)-module \(M_l\).
+\end{proof}
+
+
+\section{Supported ideals and shifted Dirichlet deformations}\label{sec:supported-ideals-shifted-flow}
+
+Let \(S=G(R)\).  For an ideal \(I\lhd R\), define the associated supported semiring ideal
+\[
+   I^G:=I\sqcup\{\tau\}\subseteq G(R).
+\]
+The following proposition records the conservative ideal behavior used by the shifted zeta construction.
+
+\begin{proposition}[Supported ideal multiplication]\label{prop:supported-ideal-mult}
+For ideals \(I,J\lhd R\),
+\[
+   I^GJ^G=(IJ)^G.
+\]
+Consequently, ideal multiplication, ideal classes, and supported divisibility away from the split zero agree with their ordinary counterparts in \(R\).
+\end{proposition}
+
+\begin{proof}
+The product ideal \(I^GJ^G\) is generated by products \(xy\) with \(x\in I^G\) and \(y\in J^G\).  If either factor is \(\tau\), then \(xy=\tau\).  If both factors are supported, the product is the ordinary product in \(R\), and the supported part generated by all such products is \(IJ\).  Thus the product ideal has supported part \(IJ\) and contains \(\tau\), which is precisely \((IJ)^G\).  The remaining assertions follow because a supported element is a unit, divisor, or factor in \(G(R)\) precisely when it has the corresponding property in \(R\), except at the split arithmetic zero fiber \(p_R^{-1}(0_R)=\{\tau,0_R\}\).
+\end{proof}
+
+For \(R=\Z\), the ordinary ideal sheet is unchanged:
+\[
+   \zeta^{\rm idl}_{G(\Z)}(s)=\sum_{n\ge1}n^{-s}=\zeta(s).
+\]
+The support-refined quotient-size sheet has
+\[
+   |G(\Z/n\Z)|=n+1,
+\]
+and therefore
+\[
+   \zeta^{\rm sep}_{G(\Z)}(s)=\sum_{n\ge1}(n+1)^{-s}=\zeta(s)-1.
+\]
+
+\begin{proposition}[Shifted-flow differential equation]\label{prop:shifted-flow-equation}
+Let \(L(s)=\sum_{n\ge1}a_n n^{-s}\) be a Dirichlet series convergent in a right half-plane, and define
+\[
+   L_t(s)=\sum_{n\ge1}a_n(n+t)^{-s}
+\]
+where the series converges.  Then
+\[
+   \partial_tL_t(s)=-sL_t(s+1),
+\]
+and, for every \(m\ge0\),
+\[
+   \partial_t^mL_t(s)=(-1)^m(s)_mL_t(s+m).
+\]
+Equivalently, with \(D=sT\) and \((Tf)(s)=f(s+1)\), one has formally
+\[
+   L_t=e^{-tD}L_0.
+\]
+\end{proposition}
+
+\begin{proof}
+Termwise differentiation gives
+\[
+   \partial_t(n+t)^{-s}=-s(n+t)^{-s-1}.
+\]
+Summing over \(n\) proves the first identity.  Iteration gives
+\[
+   \partial_t^m(n+t)^{-s}=(-1)^m(s)_m(n+t)^{-s-m},
+\]
+and summing gives the second identity.  The exponential formula is the Taylor solution of \(\partial_tL_t=-DL_t\) with initial condition \(L_0\).
+\end{proof}
+
+\begin{corollary}[Logarithmic shifted jets]\label{cor:log-shifted-jets}
+Set
+\[
+   G_m(t,s)=(-1)^m(s)_m\frac{L_t(s+m)}{L_t(s)}.
+\]
+Then
+\[
+   \partial_t^m\log L_t(s)=\mathcal B_m(G_1,\ldots,G_m),
+\]
+where \(\mathcal B_m\) is the universal logarithmic Bell polynomial determined by
+\[
+   \frac{d^m}{dt^m}\log F(t)=\mathcal B_m\left(\frac{F'}F,\ldots,\frac{F^{(m)}}F\right).
+\]
+In particular,
+\[
+   \partial_t\log L_t(s)=-s\frac{L_t(s+1)}{L_t(s)},
+\]
+\[
+   \partial_t^2\log L_t(s)=s(s+1)\frac{L_t(s+2)}{L_t(s)}-s^2\left(\frac{L_t(s+1)}{L_t(s)}\right)^2.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply Proposition \ref{prop:shifted-flow-equation} to identify \(F^{(m)}/F\) for \(F(t)=L_t(s)\).  The formulas are the standard identities obtained by repeated differentiation of \(\log F\).
+\end{proof}
+
+\begin{proposition}[Non-Eulerian shifted endpoint]\label{prop:non-eulerian-shifted-endpoint}
+Let
+\[
+   \zeta_t(s)=\sum_{n\ge1}(n+t)^{-s}.
+\]
+If \(0<t<1\), then \(\zeta_t\) is not an ordinary Dirichlet series in integer powers \(m^{-s}\).  At \(t=1\), one has \(\zeta_1(s)=\zeta(s)-1\), which is an ordinary Dirichlet series but has no Euler product of the usual multiplicative type.
+\end{proposition}
+
+\begin{proof}
+For real \(\sigma\to+\infty\), the leading exponential scale of \(\zeta_t(\sigma)\) is \((1+t)^{-\sigma}\).  If \(\zeta_t(s)=\sum_{m\ge1}b_m m^{-s}\) were an ordinary Dirichlet series and \(m_0\) were the smallest integer with \(b_{m_0}\ne0\), the leading scale would be \(m_0^{-\sigma}\).  Hence \(m_0=1+t\), impossible for \(0<t<1\).  For \(t=1\),
+\[
+   \zeta_1(s)=\sum_{m\ge2}m^{-s}=\zeta(s)-1.
+\]
+A Dirichlet series with a classical Euler product of multiplicative type has nonzero coefficient at \(1^{-s}\); the coefficient of \(1^{-s}\) in \(\zeta(s)-1\) is zero.  Hence no such Euler product exists.
+\end{proof}
+
+\section{Shifted zeta sheets and all-order Hurwitz deformation}
+
+\subsection{The universal shifted operator}
+
+Let \(T\) denote the shift operator on meromorphic functions,
+\[
+   (Tf)(s)=f(s+1),
+\]
+and define
+\[
+   D=sT.
+\]
+For an ordinary Dirichlet series
+\[
+   L(s)=\sum_{n\ge1}a_n n^{-s}
+\]
+that converges in some right half-plane, define the formal shifted flow
+\[
+   L_t(s)=e^{-tD}L(s).
+\]
+Whenever the series below converges, this is
+\[
+   L_t(s)=\sum_{m=0}^\infty (-t)^m\frac{(s)_m}{m!}L(s+m),
+\]
+where \((s)_m=s(s+1)\cdots(s+m-1)\).
+
+\begin{proposition}[Universal jet identity]\label{prop:universal-jet}
+For every \(n\ge0\),
+\[
+   \partial_t^nL_t(s)=(-1)^n(s)_nL_t(s+n).
+\]
+\end{proposition}
+
+\begin{proof}
+Since \(L_t=e^{-tD}L\), we have \(\partial_t^nL_t=(-D)^ne^{-tD}L\).  It remains to compute \(D^n\).  Since \(D=sT\),
+\[
+   D^2 f(s)=sT(sf(s+1))=s(s+1)f(s+2),
+\]
+and induction gives
+\[
+   D^n f(s)=(s)_n f(s+n).
+\]
+Applying this to \(f=L_t\) proves the formula.
+\end{proof}
+
+For the Riemann zeta function, the shifted endpoint \(t=1\) is
+\[
+   \zeta_1(s)=\zeta(s,2)=\zeta(s)-1.
+\]
+This is the analytic avatar of the separated quotient-size sheet for \(G(\Z)\), where the refined quotient size \(|G(\Z/n\Z)|=n+1\) produces
+\[
+   \sum_{n\ge1}(n+1)^{-s}=\zeta(s)-1.
+\]
+
+\subsection{Compact Hurwitz averages}
+
+Let \(\mu\) be a compactly supported probability measure on \([0,\infty)\), and let
+\[
+   m_n(\mu)=\int_0^\infty y^n\,d\mu(y).
+\]
+Define
+\[
+   Z_{\mu,t}(s)=\int_0^\infty \zeta(s,1+ty)\,d\mu(y),
+\]
+and its completion
+\[
+   \Lambda_{\mu,t}(s)=\pi^{-s/2}\Gamma(s/2)Z_{\mu,t}(s).
+\]
+
+\begin{proposition}[All-order compact expansion]\label{prop:compact-expansion}
+Suppose \(\mu\) is supported in \([0,L]\).  For \(|t|L<1\),
+\[
+   Z_{\mu,t}(s)=\sum_{n=0}^\infty
+   (-t)^n\frac{(s)_n}{n!}m_n(\mu)\zeta(s+n),
+\]
+initially away from the pole locus, and then by meromorphic continuation.
+\end{proposition}
+
+\begin{proof}
+For \(|ty|<1\), the Taylor expansion of \(a\mapsto \zeta(s,a)\) at \(a=1\) gives
+\[
+   \zeta(s,1+ty)=\sum_{n=0}^\infty
+   \frac{(ty)^n}{n!}\frac{\partial^n}{\partial a^n}\zeta(s,a)\Big|_{a=1}.
+\]
+The standard derivative identity
+\[
+   \frac{\partial^n}{\partial a^n}\zeta(s,a)=(-1)^n(s)_n\zeta(s+n,a)
+\]
+gives the displayed series.  Uniform convergence for \(|t|L<1\) on compact subsets away from the poles permits termwise integration.  Meromorphic continuation follows from the meromorphic continuation of the zeta factors.
+\end{proof}
+
+\begin{theorem}[Completed residues]\label{thm:completed-residues}
+For the completed average \(\Lambda_{\mu,t}\),
+\[
+   \Res_{s=1}\Lambda_{\mu,t}=1,
+\]
+and
+\[
+   \Res_{s=0}\Lambda_{\mu,t}=-1-2t m_1(\mu).
+\]
+Hence the finite two-end residue defect is
+\[
+   \mathfrak B(\mu,t):=\Res_{s=0}\Lambda_{\mu,t}+\Res_{s=1}\Lambda_{\mu,t}
+   =-2t m_1(\mu).
+\]
+\end{theorem}
+
+\begin{proof}
+The Hurwitz zeta function has residue \(1\) at \(s=1\), independently of its second argument.  Since \(\mu\) is a probability measure, \(Z_{\mu,t}\) has residue \(1\) at \(s=1\).  Also
+\[
+   \pi^{-1/2}\Gamma(1/2)=1,
+\]
+so \(\Res_{s=1}\Lambda_{\mu,t}=1\).
+
+At \(s=0\), one has
+\[
+   \zeta(0,a)=\frac12-a.
+\]
+Thus
+\[
+   Z_{\mu,t}(0)=\int\left(\frac12-(1+ty)\right)d\mu(y)
+   =-\frac12-tm_1(\mu).
+\]
+Since
+\[
+   \Gamma(s/2)=\frac2s+O(1),
+   \qquad
+   \pi^{-s/2}=1+O(s),
+\]
+we get
+\[
+   \Res_{s=0}\Lambda_{\mu,t}=2Z_{\mu,t}(0)=-1-2tm_1(\mu).
+\]
+Adding the two residues gives the stated defect.
+\end{proof}
+
+\section{Double-sheet parity reversal and projective inflow}
+
+Set
+\[
+   u=s(s-1),\qquad v=2s-1.
+\]
+Then
+\[
+   u(1-s)=u(s),\qquad v(1-s)=-v(s),\qquad v^2=1+4u.
+\]
+Let
+\[
+   K=\C(u),\qquad L=\C(s)=K(v),
+\]
+with deck involution \(\sigma(s)=1-s\).
+
+\begin{definition}[Principal-part basis]\label{def:principal-basis}
+Let
+\[
+   \mathcal P=\left\{\frac a s+\frac b{s-1}:a,b\in\C\right\}.
+\]
+Define
+\[
+   q=\frac1u=\frac1{s-1}-\frac1s,
+   \qquad
+   \ell=\frac vu=\frac1{s-1}+\frac1s.
+\]
+Then \(q\) is function-even and \(\ell\) is function-odd.
+\end{definition}
+
+Let
+\[
+   E=\C e_0\oplus\C e_1,
+\]
+with endpoint transposition \(\tau_E(e_0)=e_1\), \(\tau_E(e_1)=e_0\).  Define
+\[
+   \operatorname{res}(P\,ds)=\Res_{s=0}(P\,ds)e_0+\Res_{s=1}(P\,ds)e_1.
+\]
+
+\begin{theorem}[Residue parity reversal]\label{thm:residue-reversal}
+One has
+\[
+   \operatorname{res}(q\,ds)=-e_0+e_1,
+   \qquad
+   \operatorname{res}(\ell\,ds)=e_0+e_1.
+\]
+Consequently the residue map reverses parity: the function-even quotient pole maps to a residue-odd vector, and the function-odd lift pole maps to a residue-even vector.
+\end{theorem}
+
+\begin{proof}
+The displayed decompositions give
+\[
+   q=\frac1{s-1}-\frac1s,
+   \qquad
+   \ell=\frac1{s-1}+\frac1s.
+\]
+Hence
+\[
+   \Res_{s=0}(q\,ds)=-1,
+   \qquad
+   \Res_{s=1}(q\,ds)=1,
+\]
+and
+\[
+   \Res_{s=0}(\ell\,ds)=1,
+   \qquad
+   \Res_{s=1}(\ell\,ds)=1.
+\]
+Thus the residue vectors are as claimed.  The vector \(-e_0+e_1\) is anti-invariant under endpoint transposition, while \(e_0+e_1\) is invariant.  Since \(q\) is function-even and \(\ell\) is function-odd, parity is reversed.  Conceptually, this is because
+\[
+   \sigma^*(ds)=d(1-s)=-ds.
+\]
+Thus differential parity equals function parity multiplied by the orientation character of the double cover.
+\end{proof}
+
+\begin{corollary}[Visible finite defect detects the lift]\label{cor:visible-detects-lift}
+Define
+\[
+   \mathfrak D_{\operatorname{fin}}(P)=\Res_{s=0}(P\,ds)+\Res_{s=1}(P\,ds).
+\]
+Then
+\[
+   \mathfrak D_{\operatorname{fin}}(q)=0,
+   \qquad
+   \mathfrak D_{\operatorname{fin}}(\ell)=2.
+\]
+Hence the finite visible residue sector corresponds to the function-anti-invariant lift pole \(v/u\).
+\end{corollary}
+
+\begin{proof}
+This follows immediately from Theorem \ref{thm:residue-reversal} by summing the two components of the residue vector.
+\end{proof}
+
+\begin{theorem}[Projective inflow]\label{thm:projective-inflow}
+The differential
+\[
+   \ell\,ds=\frac vu\,ds
+\]
+is equal to \(d\log u\).  For every \(B\in\C\),
+\[
+   \Res_{s=0}(B\ell\,ds)+\Res_{s=1}(B\ell\,ds)=2B,
+\]
+and
+\[
+   \Res_{s=\infty}(B\ell\,ds)=-2B.
+\]
+Thus the finite two-end defect is canceled at projective infinity.
+\end{theorem}
+
+\begin{proof}
+Since
+\[
+   du=(2s-1)ds=v\,ds,
+\]
+one has
+\[
+   d\log u=\frac{du}{u}=\frac vu\,ds=\ell\,ds.
+\]
+On \(\mathbf P^1_s\), the divisor of \(u=s(s-1)\) is
+\[
+   (u)=[0]+[1]-2[\infty].
+\]
+The residues of \(d\log u\) are the corresponding orders.  Multiplying by \(B\) gives residues \(B,B,-2B\), and the displayed formulas follow.
+\end{proof}
+
+\begin{theorem}[Hurwitz principal part in quotient/lift basis]\label{thm:hurwitz-pp}
+The principal part of \(\Lambda_{\mu,t}\) at \(\{0,1\}\) is
+\[
+   \PP_{\{0,1\}}\Lambda_{\mu,t}
+   =\bigl(1+t m_1(\mu)\bigr)q-tm_1(\mu)\ell.
+\]
+Equivalently,
+\[
+   \PP_{\{0,1\}}\Lambda_{\mu,t}
+   =\bigl(1+t m_1(\mu)\bigr)\frac1u-tm_1(\mu)\frac vu.
+\]
+The lift coefficient is \(-t m_1(\mu)\), the finite residue defect is \(-2t m_1(\mu)\), and the projective-infinity residue is \(+2t m_1(\mu)\).
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:completed-residues}, the principal part has the form
+\[
+   \frac a s+\frac b{s-1}
+\]
+with
+\[
+   a=-1-2tm_1(\mu),
+   \qquad
+   b=1.
+\]
+If
+\[
+   \frac a s+\frac b{s-1}=Aq+B\ell,
+\]
+then using the expressions for \(q\) and \(\ell\),
+\[
+   a=-A+B,
+   \qquad
+   b=A+B.
+\]
+Thus
+\[
+   A=\frac{b-a}{2}=1+tm_1(\mu),
+   \qquad
+   B=\frac{a+b}{2}=-tm_1(\mu).
+\]
+The defect and infinity residue statements follow from Corollary \ref{cor:visible-detects-lift} and Theorem \ref{thm:projective-inflow}.
+\end{proof}
+
+\begin{corollary}[Split-zero endpoint]\label{cor:split-zero-endpoint}
+For \(\mu=\delta_1\) and \(t=1\), one has
+\[
+   Z_{\delta_1,1}(s)=\zeta(s,2)=\zeta(s)-1,
+\]
+and
+\[
+   \PP_{\{0,1\}}\Lambda_{\delta_1,1}=2\frac1u-\frac vu.
+\]
+The lift coefficient is \(-1\), the finite two-end defect is \(-2\), and the infinity residue is \(+2\).
+\end{corollary}
+
+\begin{proof}
+Here \(m_1(\delta_1)=1\).  Substitute in Theorem \ref{thm:hurwitz-pp}.
+\end{proof}
+
+\subsection{Critical-line trace orthogonality}
+
+Let
+\[
+   A=R\oplus R\eta,
+   \qquad
+   \eta^2=\Delta\in R,
+\]
+with involution \(\sigma(\eta)=-\eta\).  Define
+\[
+   \langle x,y\rangle_A=\frac12\Tr_{A/R}\bigl(x\sigma(y)\bigr).
+\]
+
+\begin{lemma}[Quadratic trace form]\label{lem:quadratic-trace}
+If \(x=a+b\eta\) and \(y=c+d\eta\), then
+\[
+   \langle x,y\rangle_A=ac-bd\Delta.
+\]
+In particular \(A^+=R\) and \(A^-=R\eta\) are orthogonal.
+\end{lemma}
+
+\begin{proof}
+Since \(\sigma(c+d\eta)=c-d\eta\),
+\[
+   (a+b\eta)(c-d\eta)=ac-bd\eta^2+(bc-ad)\eta=ac-bd\Delta+(bc-ad)\eta.
+\]
+The trace of \(r+s\eta\) over \(R\) is \(2r\).  Dividing by \(2\) gives the formula.  If one input is even and the other odd, then \(ac=0\) and \(bd=0\), so the pairing is zero.
+\end{proof}
+
+On the critical line
+\[
+   s=\frac12+i\gamma,
+\]
+one has
+\[
+   u=-\left(\gamma^2+\frac14\right),
+   \qquad
+   v=2i\gamma.
+\]
+Thus the real fiber of \(\R[u,v]/(v^2-1-4u)\) is
+\[
+   \R[v]/(v^2+4\gamma^2).
+\]
+
+\begin{corollary}[Critical-line real/imaginary split]\label{cor:critical-split}
+For \(\gamma\ne0\), the critical fiber is a copy of \(\C\) under \(v\mapsto 2i\gamma\).  The even sector is real, the odd sector is imaginary, and
+\[
+   \langle a+bv,a+bv\rangle=a^2+4\gamma^2b^2.
+\]
+In particular
+\[
+   \left\langle \frac1u,\frac vu\right\rangle=0.
+\]
+\end{corollary}
+
+\begin{proof}
+In the fiber, \(v^2=-4\gamma^2\).  Apply Lemma \ref{lem:quadratic-trace} with \(\Delta=-4\gamma^2\).  Then \(A^+=\R\) and \(A^-=\R v=i\R\), and the displayed norm formula follows.
+\end{proof}
+
+Consequently,
+\[
+ \PP_{\{0,1\}}\Lambda_{\mu,t}\left(\frac12+i\gamma\right)
+ =-\frac{1+t m_1(\mu)}{\gamma^2+1/4}
+ +i\frac{2t m_1(\mu)\gamma}{\gamma^2+1/4}.
+\]
+The quotient pole is real, the lift pole is imaginary, and the two are trace-orthogonal.
+
+\section{All-order zero deformation and finite reconstruction}
+
+\begin{theorem}[All-order motion of a simple zero]\label{thm:zero-motion}
+Let \(\mu\) be supported in \([0,L]\), and let \(\rho\) be a simple nontrivial zero of \(\zeta(s)\).  Define
+\[
+   F_n(s)=(-1)^n\frac{(s)_n}{n!}m_n(\mu)\zeta(s+n).
+\]
+Then for sufficiently small \(t\) there is a unique holomorphic branch
+\[
+   \rho_\mu(t)=\rho+\sum_{N\ge1}c_Nt^N
+\]
+such that
+\[
+   Z_{\mu,t}(\rho_\mu(t))=0.
+\]
+Writing
+\[
+   a_{n,j}=\frac1{j!}F_n^{(j)}(\rho),
+\]
+one has \(a_{0,1}=\zeta'(\rho)\ne0\), and
+\[
+ c_N=-\frac1{\zeta'(\rho)}
+ \sum_{\substack{n,j\ge0\\(n,j)\ne(0,1)}}
+ a_{n,j}\,[t^N]\left(t^n\left(\sum_{m=1}^{N-1}c_mt^m\right)^j\right).
+\]
+In particular,
+\[
+   c_1=m_1(\mu)\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)}.
+\]
+\end{theorem}
+
+\begin{proof}
+For \(|t|L<1\), Proposition \ref{prop:compact-expansion} gives
+\[
+   Z_{\mu,t}(s)=\sum_{n\ge0}t^nF_n(s)
+\]
+near \((s,t)=(\rho,0)\), and all \(F_n\) are holomorphic at a nontrivial zero \(\rho\).  Since
+\[
+   Z_{\mu,0}(s)=\zeta(s),
+   \qquad
+   \partial_s Z_{\mu,0}(\rho)=\zeta'(\rho)\ne0,
+\]
+the analytic implicit function theorem gives a unique holomorphic zero branch.
+
+Let
+\[
+   w(t)=\rho_\mu(t)-\rho=\sum_{N\ge1}c_Nt^N.
+\]
+Then
+\[
+   0=Z_{\mu,t}(\rho+w(t))=\sum_{n,j\ge0}a_{n,j}t^n w(t)^j.
+\]
+The coefficient of \(t^N\) contains the term \(a_{0,1}c_N=\zeta'(\rho)c_N\).  Every other contribution involves only \(c_1,\ldots,c_{N-1}\).  Solving for \(c_N\) gives the recursion.  For \(N=1\), only \(F_1(\rho)\) contributes besides \(\zeta'(\rho)c_1\), and
+\[
+   F_1(\rho)=-\rho m_1(\mu)\zeta(\rho+1),
+\]
+which gives the displayed formula for \(c_1\).
+\end{proof}
+
+\begin{proposition}[Second coefficient]\label{prop:second-coeff}
+With the notation of Theorem \ref{thm:zero-motion},
+\[
+   c_2=-\frac{\frac12\zeta''(\rho)c_1^2+F_1'(\rho)c_1+F_2(\rho)}{\zeta'(\rho)},
+\]
+where
+\[
+   F_1(s)=-s m_1(\mu)\zeta(s+1),
+   \qquad
+   F_2(s)=\frac{s(s+1)}2m_2(\mu)\zeta(s+2).
+\]
+\end{proposition}
+
+\begin{proof}
+Extract the coefficient of \(t^2\) in
+\[
+   \sum_{n,j\ge0}a_{n,j}t^n w(t)^j=0.
+\]
+It is
+\[
+   \zeta'(\rho)c_2+\frac12\zeta''(\rho)c_1^2+F_1'(\rho)c_1+F_2(\rho)=0.
+\]
+Solving gives the formula.
+\end{proof}
+
+\subsection{Bernstein-Hausdorff finite zero-count approximants}
+
+Let \(\nu\) be a compactly supported probability measure on \([0,L]\), and let \(\widetilde\nu\) be its pushforward under \(x\mapsto x/L\).  Set
+\[
+   c_n=\int_0^1x^n\,d\widetilde\nu(x).
+\]
+For \(m\ge0\), define
+\[
+   \lambda_{m,j}=\binom mj\int_0^1 x^j(1-x)^{m-j}\,d\widetilde\nu(x)
+   \qquad(0\le j\le m),
+\]
+and
+\[
+   \widetilde\nu_m=\sum_{j=0}^m\lambda_{m,j}\delta_{j/m}.
+\]
+
+\begin{proposition}[Finite Bernstein approximants]\label{prop:bernstein}
+The weights satisfy
+\[
+   \lambda_{m,j}\ge0,
+   \qquad
+   \sum_{j=0}^m\lambda_{m,j}=1.
+\]
+Moreover
+\[
+   \widetilde\nu_m\Rightarrow \widetilde\nu
+\]
+weakly.
+\end{proposition}
+
+\begin{proof}
+Nonnegativity is immediate.  Summing over \(j\) gives
+\[
+   \sum_{j=0}^m\lambda_{m,j}
+   =\int_0^1\sum_{j=0}^m\binom mjx^j(1-x)^{m-j}\,d\widetilde\nu(x)=1.
+\]
+For every continuous \(f\) on \([0,1]\),
+\[
+   \int f\,d\widetilde\nu_m
+   =\int_0^1\left(\sum_{j=0}^m f(j/m)\binom mjx^j(1-x)^{m-j}\right)d\widetilde\nu(x).
+\]
+The expression in parentheses is the Bernstein polynomial \(B_m(f)(x)\), which converges uniformly to \(f\).  Hence the integrals converge to \(\int f\,d\widetilde\nu\).
+\end{proof}
+
+Define the finite Hurwitz approximants
+\[
+   Z_{\nu,t}^{[m]}(s)=\sum_{j=0}^m\lambda_{m,j}\zeta\left(s,1+tL\frac jm\right).
+\]
+
+\begin{theorem}[Finite zero-count convergence]\label{thm:finite-zero-stack}
+For fixed \(t\ge0\),
+\[
+   Z_{\nu,t}^{[m]}(s)\to Z_{\nu,t}(s)
+\]
+locally uniformly on compact subsets of \(\C\setminus\{1\}\).  If \(\Omega\subset\C\setminus\{1\}\) is bounded with piecewise smooth boundary and \(Z_{\nu,t}\) has no zeros on \(\partial\Omega\), then for all sufficiently large \(m\), the number of zeros of \(Z_{\nu,t}^{[m]}\) in \(\Omega\), counted with multiplicity, equals that of \(Z_{\nu,t}\).
+\end{theorem}
+
+\begin{proof}
+For \(s\) in a compact \(K\subset\C\setminus\{1\}\), the function
+\[
+   x\mapsto \zeta(s,1+tLx)
+\]
+is continuous on \([0,1]\) uniformly in \(s\in K\), and holomorphic in \(s\).  Weak convergence of \(\widetilde\nu_m\) gives uniform convergence of the integrals on \(K\).  This proves local uniform convergence.  The zero-counting statement follows from Hurwitz's theorem, equivalently from Rouche's theorem applied on \(\partial\Omega\).
+\end{proof}
+
+\section{CUE derivative observables as compact Hurwitz input}
+
+\subsection{Derivative observables and support bounds}
+
+Let \(U\in U(N)\) and let
+\[
+   \Phi_N(z)=\det(zI-U)=\prod_{j=1}^N(z-z_j),
+   \qquad |z_j|=1.
+\]
+For a nonnegative integer \(a\le N\), define
+\[
+   D_{a,N}(U)=|\Phi_N^{(a)}(1)|^2.
+\]
+For a finite list \(\alpha=(a_1,\ldots,a_s)\), set
+\[
+   X_{\alpha,N}(U)=\prod_{i=1}^sD_{a_i,N}(U).
+\]
+Let
+\[
+   \nu_{\alpha,N}:=(X_{\alpha,N})_*\Haar_{U(N)}.
+\]
+
+\begin{proposition}[Compact support bound]\label{prop:derivative-support-bound}
+For \(0\le a\le N\),
+\[
+   |\Phi_N^{(a)}(1)|\le \fall{N}{a}2^{N-a},
+   \qquad
+   \fall{N}{a}=N(N-1)\cdots(N-a+1).
+\]
+Consequently \(\nu_{\alpha,N}\) is supported in
+\[
+   \left[0,L_{\alpha,N}\right],
+   \qquad
+   L_{\alpha,N}=\prod_{i=1}^s\left(\fall{N}{a_i}2^{N-a_i}\right)^2.
+\]
+\end{proposition}
+
+\begin{proof}
+The \(a\)-th derivative of \(\prod_{j=1}^N(z-z_j)\) is
+\[
+   \Phi_N^{(a)}(z)=a!\sum_{|A|=N-a}\prod_{j\in A}(z-z_j),
+\]
+where the sum is over subsets \(A\subset\{1,\ldots,N\}\) of cardinality \(N-a\).  At \(z=1\), each factor satisfies \(|1-z_j|\le2\).  Hence
+\[
+   |\Phi_N^{(a)}(1)|\le a!\binom Na2^{N-a}=\frac{N!}{(N-a)!}2^{N-a}=\fall{N}{a}2^{N-a}.
+\]
+Squaring and multiplying over the list \(\alpha\) gives the bound on \(X_{\alpha,N}\).
+\end{proof}
+
+\begin{definition}[CUE derivative-Hurwitz transform]\label{def:cue-hurwitz}
+For a derivative list \(\alpha\), define
+\[
+   Z_{\alpha,N,t}(s)=\int_0^{L_{\alpha,N}}\zeta(s,1+ty)\,d\nu_{\alpha,N}(y).
+\]
+The corresponding completed transform is
+\[
+   \Lambda_{\alpha,N,t}(s)=\pi^{-s/2}\Gamma(s/2)Z_{\alpha,N,t}(s).
+\]
+If \(A_{\alpha,N}>0\) is a peeling scale, define the peeled observable
+\[
+   Y_{\alpha,N}=X_{\alpha,N}/A_{\alpha,N}
+\]
+and write \(\nu_{\alpha,N}^{\operatorname{peel}}\) for its distribution.
+\end{definition}
+
+\begin{theorem}[CUE derivative principal part]\label{thm:cue-pp}
+Let
+\[
+   M_{\alpha,N}^{(1)}=\mathbf E_{U(N)}X_{\alpha,N}(U).
+\]
+Then
+\[
+   \PP_{\{0,1\}}\Lambda_{\alpha,N,t}
+   =\left(1+tM_{\alpha,N}^{(1)}\right)\frac1u
+   -tM_{\alpha,N}^{(1)}\frac vu.
+\]
+The finite two-end defect is
+\[
+   -2tM_{\alpha,N}^{(1)}.
+\]
+For the peeled observable \(Y_{\alpha,N}\), replace \(M_{\alpha,N}^{(1)}\) by \(M_{\alpha,N}^{(1)}/A_{\alpha,N}\).
+\end{theorem}
+
+\begin{proof}
+Apply Theorem \ref{thm:hurwitz-pp} to the compactly supported probability measure \(\nu_{\alpha,N}\).  Its first moment is \(M_{\alpha,N}^{(1)}\).  The peeled statement follows because the first moment of \(Y_{\alpha,N}\) is \(M_{\alpha,N}^{(1)}/A_{\alpha,N}\).
+\end{proof}
+
+\subsection{First derivative and the exact CUE defect coefficient}
+
+For \(a=1\), set
+\[
+   X_N(U)=|\Phi_N'(1)|^2,
+   \qquad
+   \nu_N=(X_N)_*\Haar.
+\]
+
+\begin{theorem}[Exact first derivative mean]\label{thm:first-deriv-mean}
+For every \(N\ge1\),
+\[
+   \mathbf E_{U(N)}|\Phi_N'(1)|^2
+   =\sum_{m=1}^N m^2
+   =\frac{N(N+1)(2N+1)}6.
+\]
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+   \Phi_N(z)=\sum_{j=0}^N(-1)^j e_j(U)z^{N-j},
+\]
+where \(e_j(U)\) is the \(j\)-th elementary symmetric polynomial in the eigenvalues of \(U\).  Then
+\[
+   \Phi_N'(1)=\sum_{j=0}^{N-1}(-1)^j(N-j)e_j(U).
+\]
+For Haar measure on \(U(N)\), the elementary symmetric functions are irreducible characters of the exterior powers of the defining representation, hence orthonormal:
+\[
+   \mathbf E[e_j(U)\overline{e_k(U)}]=\delta_{jk}.
+\]
+Therefore
+\[
+   \mathbf E|\Phi_N'(1)|^2=\sum_{j=0}^{N-1}(N-j)^2=\sum_{m=1}^Nm^2.
+\]
+The final closed form is the standard sum of squares.
+\end{proof}
+
+\begin{corollary}[Peeled CUE shifted-Hurwitz defect]\label{cor:cue-peeled-defect}
+Let
+\[
+   Y_N=\frac{|\Phi_N'(1)|^2}{N^2}.
+\]
+Then
+\[
+   \mathbf E Y_N=\frac{(N+1)(2N+1)}{6N}.
+\]
+The completed peeled CUE-Hurwitz transform has principal part
+\[
+   \left(1+t\frac{(N+1)(2N+1)}{6N}\right)\frac1u
+   -t\frac{(N+1)(2N+1)}{6N}\frac vu.
+\]
+For \(N=3\), this is
+\[
+   \left(1+\frac{14t}{9}\right)\frac1u-\frac{14t}{9}\frac vu,
+\]
+with finite defect \(-28t/9\).
+\end{corollary}
+
+
+\begin{proof}
+Divide the formula of Theorem \ref{thm:first-deriv-mean} by \(N^2\), and then apply Theorem \ref{thm:cue-pp}.
+\end{proof}
+
+\subsection{Exact low-dimensional CUE models}
+
+\begin{proposition}[Exact \(N=2\) first-derivative model]\label{prop:N2-exact-model}
+For \(N=2\), the random variable \(X_2=|\Phi_2'(1)|^2\) has the exact representation
+\[
+   X_2=4(1+X-2\sqrt X\cos\phi),
+\]
+where \(X\) has the beta distribution with density
+\[
+   \frac2\pi x^{-1/2}(1-x)^{1/2}\,dx\qquad(0<x<1),
+\]
+and \(\phi\) is uniform on \([0,2\pi]\), independent of \(X\).  Consequently
+\[
+ Z_{2,t}(s)=\frac2\pi\int_0^1x^{-1/2}(1-x)^{1/2}
+ \left[\frac1{2\pi}\int_0^{2\pi}\zeta\!\bigl(s,1+4t(1+x-2\sqrt x\cos\phi)\bigr)d\phi\right]dx.
+\]
+For \(\Re(s)>1\), this is equivalently
+\[
+ Z_{2,t}(s)=\frac2\pi\sum_{n=0}^{\infty}\int_0^1 x^{-1/2}(1-x)^{1/2}A_n(x)^{-s}
+ {}_2F_1\left(\frac s2,\frac{s+1}{2};1;\frac{B(x)^2}{A_n(x)^2}\right)dx,
+\]
+where
+\[
+   A_n(x)=n+1+4t(1+x),\qquad B(x)=8t\sqrt x.
+\]
+\end{proposition}
+
+\begin{proof}
+Let the eigenvalues of \(U\in U(2)\) be \(e^{i\theta_1}\) and \(e^{i\theta_2}\).  Put
+\[
+   m=\frac{\theta_1+\theta_2}{2},\qquad \delta=\frac{\theta_1-\theta_2}{2}.
+\]
+The Weyl density is proportional to \(|e^{i\theta_1}-e^{i\theta_2}|^2=4\sin^2\delta\).  Thus \(m\) is uniform and independent of \(X=\cos^2\delta\), and the density of \(X\) is
+\[
+   \frac2\pi x^{-1/2}(1-x)^{1/2}\,dx.
+\]
+Since
+\[
+   \Phi_2'(1)=2-(e^{i\theta_1}+e^{i\theta_2})=2-2e^{im}\cos\delta,
+\]
+we obtain
+\[
+   |\Phi_2'(1)|^2=4(1+X-2\sqrt X\cos m),
+\]
+which gives the first formula after renaming \(m\) as \(\phi\).  For \(\Re(s)>1\), expand the Hurwitz zeta function as a series in \(n\), and use
+\[
+   \frac1{2\pi}\int_0^{2\pi}(A-B\cos\phi)^{-s}d\phi
+   =A^{-s}{}_2F_1\left(\frac s2,\frac{s+1}{2};1;\frac{B^2}{A^2}\right),
+\]
+valid for \(A>|B|\).  Here \(A=A_n(x)>|B(x)|\).
+\end{proof}
+
+\begin{proposition}[Exact \(N=3\) constant-term checks]\label{prop:N3-constant-term-checks}
+For \(N=3\), Weyl constant-term integration gives
+\[
+ \mathbf E f(z_1,z_2,z_3)=\frac1{3!}\operatorname{CT}\left[f(z_1,z_2,z_3)
+ \prod_{1\le i<j\le3}(1-z_i/z_j)(1-z_j/z_i)\right].
+\]
+Since
+\[
+   \Phi_3'(1)=3-2e_1+e_2,
+\]
+exact expansion gives
+\[
+\begin{array}{c|ccccc}
+ s&1&2&3&4&5\\ \hline
+ \mathbf E_{U(3)}|\Phi_3'(1)|^{2s}&14&375&15510&847280&55331424.
+\end{array}
+\]
+\end{proposition}
+
+\begin{proof}
+The Weyl integration formula for class functions on \(U(3)\) is the displayed constant-term identity.  The expression \(\Phi_3'(1)=3-2e_1+e_2\) follows from
+\[
+   \Phi_3(z)=z^3-e_1z^2+e_2z-e_3.
+\]
+For each fixed \(s\), the expectation is the constant term of the Laurent polynomial
+\[
+   (3-2e_1+e_2)^s(3-2e_1^{-}+e_2^{-})^s
+   \prod_{1\le i<j\le3}(1-z_i/z_j)(1-z_j/z_i)/3!,
+\]
+where \(e_i^{-}\) denotes the elementary symmetric polynomial in \(z_1^{-1},z_2^{-1},z_3^{-1}\).  The arithmetic is finite and integral.  Appendix \ref{app:N3-code} gives exact code implementing this Laurent-polynomial multiplication and constant-term extraction; its outputs are the five displayed integers.  The case \(s=1\) also follows independently from Theorem \ref{thm:first-deriv-mean}.
+\end{proof}
+
+\subsection{First zero velocity for CUE derivative observables}
+
+\begin{corollary}[CUE zero velocity]\label{cor:cue-zero-velocity}
+Let \(\rho\) be a simple nontrivial zero of \(\zeta\).  For the CUE derivative observable \(X_{\alpha,N}\), the zero branch of \(Z_{\alpha,N,t}\) satisfies
+\[
+   \rho_{\alpha,N}(t)=\rho+
+   t\,M_{\alpha,N}^{(1)}\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)}+O(t^2).
+\]
+For the peeled first-derivative observable \(Y_N=|\Phi_N'(1)|^2/N^2\), this becomes
+\[
+   \rho_N^{\operatorname{peel}}(t)=\rho+
+   t\frac{(N+1)(2N+1)}{6N}\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)}+O(t^2).
+\]
+In particular, for \(N=3\), the first coefficient is
+\[
+   \frac{14}{9}\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)}.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply Theorem \ref{thm:zero-motion} to the corresponding compact CUE distribution.  Its first moment is the displayed expectation.
+\end{proof}
+
+\section{CUE derivative moment exponents and finite phase-space enlargement}
+
+\subsection{The derivative-source vector space}
+
+The Grover--Mezzadri--Simm microscopic theorem gives the exponent
+\[
+   |\mu|+|\nu|+s^2
+\]
+when \(\ell(\mu)=\ell(\nu)=s\).  The following construction realizes exactly this number as the dimension of a canonical source space.
+
+\begin{definition}[Derivative-source block]\label{def:source-block}
+Let \(\ell(\mu)=\ell(\nu)=s\), and set \(W=\C^s\).  Define
+\[
+   J_\mu=\bigoplus_{i=1}^s\C^{\mu_i},
+   \qquad
+   J_\nu^\vee=\bigoplus_{j=1}^s(\C^{\nu_j})^\vee.
+\]
+The derivative-source block is
+\[
+   \mathfrak B_{\mu,
+u}=\End(W)\oplus J_\mu\oplus J_\nu^\vee.
+\]
+\end{definition}
+
+\begin{proposition}[Dimension of the derivative-source block]\label{prop:source-dim}
+One has
+\[
+   \dim \mathfrak B_{\mu,\nu}=s^2+|\mu|+|\nu|.
+\]
+\end{proposition}
+
+\begin{proof}
+The dimensions are
+\[
+   \dim\End(W)=s^2,
+   \qquad
+   \dim J_\mu=\sum_i\mu_i=|\mu|,
+   \qquad
+   \dim J_\nu^\vee=\sum_j\nu_j=|\nu|.
+\]
+Adding them proves the formula.
+\end{proof}
+
+\begin{theorem}[First-derivative block realization]\label{thm:first-derivative-sl}
+If \(\mu=\nu=(1^s)\), then
+\[
+   \mathfrak B_{(1^s),(1^s)}=\End(W)\oplus W\oplus W^\vee
+\]
+is canonically isomorphic as a vector space to \(\mathfrak{sl}(W\oplus\C)\) by
+\[
+   (A,u,\varphi)
+   \longmapsto
+   \begin{pmatrix}
+   A & u\\
+   \varphi & -\Tr(A)
+   \end{pmatrix}.
+\]
+With the bracket induced by commutator, this becomes the Lie algebra \(\mathfrak{sl}_{s+1}(\C)\).  Consequently
+\[
+   s^2+2s=(s+1)^2-1=\dim \mathfrak{sl}_{s+1}(\C).
+\]
+\end{theorem}
+
+\begin{proof}
+Every element of \(\mathfrak{sl}(W\oplus\C)\) has a unique block form
+\[
+   \begin{pmatrix}
+   B & u\\
+   \varphi & \lambda
+   \end{pmatrix}
+\]
+with \(B\in\End(W)\), \(u\in W\), \(\varphi\in W^\vee\), and
+\[
+   \Tr(B)+\lambda=0.
+\]
+Thus \(\lambda=-\Tr(B)\), so the displayed map is bijective.  The commutator of traceless block matrices is again traceless, hence the induced bracket is the Lie bracket of \(\mathfrak{sl}_{s+1}\).  The dimension formula follows immediately.
+\end{proof}
+
+\subsection{Finite phase space and \texorpdfstring{\(\mathfrak{sl}_r\)}{slr}}
+
+Let \(A\) be a finite abelian group of order \(r\), and set
+\[
+   H_A=\C[A].
+\]
+For \(a\in A\) and \(\chi\in\widehat A\), define
+\[
+   T_ae_x=e_{a+x},
+   \qquad
+   M_\chi e_x=\chi(x)e_x,
+\]
+and
+\[
+   W_{a,\chi}=T_aM_\chi.
+\]
+
+\begin{theorem}[Finite phase-space basis]\label{thm:phase-basis}
+The operators
+\[
+   \{W_{a,\chi}:a\in A,\ \chi\in\widehat A\}
+\]
+form an orthogonal basis of \(\End(H_A)\) for the Hilbert-Schmidt trace form.  More precisely,
+\[
+   \Tr(W_{a,\chi}^*W_{b,\psi})=r\delta_{a,b}\delta_{\chi,\psi}.
+\]
+Moreover \(W_{0,1}=I\), and every other \(W_{a,\chi}\) is traceless.  Hence
+\[
+   \Span_\C\{W_{a,\chi}:(a,\chi)\ne(0,1)
+\}=\mathfrak{sl}(H_A)\simeq\mathfrak{sl}_r(\C).
+\]
+\end{theorem}
+
+\begin{proof}
+The commutation relation
+\[
+   M_\chi T_b=\chi(b)T_bM_\chi
+\]
+gives
+\[
+   W_{a,\chi}W_{b,\psi}=\chi(b)W_{a+b,\chi\psi}.
+\]
+The operator \(W_{a,\chi}\) sends \(e_x\) to \(\chi(x)e_{a+x}\).  This contributes to the trace only if \(a=0\).  If \(a=0\), then
+\[
+   \Tr(W_{0,\chi})=\sum_{x\in A}\chi(x),
+\]
+which is \(r\) for \(\chi=1\) and \(0\) otherwise by character orthogonality.  Applying this trace computation to \(W_{a,\chi}^*W_{b,\psi}\), which is a scalar multiple of a Weyl operator, gives the Hilbert-Schmidt orthogonality formula.  There are \(r^2\) operators, equal to \(\dim\End(H_A)\), so they form a basis.  The only nonzero trace basis element is \(W_{0,1}=I\), so the remaining \(r^2-1\) operators form a basis of the traceless algebra.
+\end{proof}
+
+For \(A=\Z/r\Z\), write \(\omega=e^{2\pi i/r}\),
+\[
+   Xe_j=e_{j+1},
+   \qquad
+   Ze_j=\omega^j e_j.
+\]
+Then
+\[
+   ZX=\omega XZ,
+   \qquad
+   W_{a,b}=X^aZ^b.
+\]
+
+\begin{proposition}[Fourier root-slice decomposition]\label{prop:root-slice}
+Let \(E_{ij}\) be elementary matrices.  Then
+\[
+   X^aZ^b=\sum_{j\in\Z/r\Z}\omega^{bj}E_{j+a,j}.
+\]
+Consequently
+\[
+   \mathfrak{sl}_r(\C)=\mathfrak h\oplus\bigoplus_{a\ne0}V_a,
+\]
+where
+\[
+   \mathfrak h=\Span\{Z^b:1\le b\le r-1\}
+\]
+is the traceless diagonal Cartan subalgebra, and
+\[
+   V_a=\Span\{X^aZ^b:b\in\Z/r\Z\}=\bigoplus_{j\in\Z/r\Z}\C E_{j+a,j}.
+\]
+\end{proposition}
+
+\begin{proof}
+The formula follows directly from
+\[
+   X^aZ^be_j=\omega^{bj}e_{j+a}.
+\]
+For \(a=0\), the matrices \(Z^b\), \(1\le b\le r-1\), are the nontrivial Fourier characters on the diagonal; they span the hyperplane of diagonal matrices with trace zero.  For \(a\ne0\), the matrix \((\omega^{bj})_{b,j}\) is the invertible Fourier matrix.  Thus varying \(b\) spans exactly the elementary matrices \(E_{j+a,j}\), proving the decomposition.
+\end{proof}
+
+\begin{corollary}[Where \(A_{r-1}\) sits]\label{cor:A-root-sits}
+The integral diagonal augmentation lattice
+\[
+   \Z_0^r=\{(n_0,\ldots,n_{r-1})\in\Z^r:\ \sum_i n_i=0\}
+\]
+is the \(A_{r-1}\) root lattice.  Its complexification is the Cartan subalgebra \(\mathfrak h\).  The full cyclic double \(\Z_r\times\widehat{\Z_r}\) is not the root lattice; its nonidentity sectors form the full Weyl-Heisenberg basis of \(\mathfrak{sl}_r\).
+\end{corollary}
+
+\begin{proof}
+The root lattice of \(\mathfrak{sl}_r\) is generated by \(e_i-e_j\), hence is exactly \(\Z_0^r\).  Proposition \ref{prop:root-slice} identifies its complexification with the diagonal traceless sector.  The full Weyl double contains all fixed-displacement root-space slices in addition to the diagonal sector, hence gives the full traceless algebra.
+\end{proof}
+
+\subsection{Support-zero refinement inside matrix phase space}
+
+Let \(R=M_r(\C)\).  The split-zero semiring \(G(R)\) distinguishes three operations that belong to different algebraic levels:
+\[
+   \text{zero coefficient},
+   \qquad
+   \text{unsupported sector},
+   \qquad
+   \text{trace removal of the identity sector}.
+\]
+
+\begin{proposition}[Zero coefficient is not unsupported sector]\label{prop:zero-not-unsupported}
+Let \(A\in M_r(\C)\) have Weyl expansion
+\[
+   A=\sum_{a,\chi}c_{a,\chi}W_{a,\chi}.
+\]
+The condition \(c_{a,\chi}=0\) is the supported arithmetic zero coefficient \(0_\C W_{a,\chi}\).  It is not the unsupported element \(\tau\in G(M_r(\C))\).  Removing the identity sector to form \(\mathfrak{sl}_r\) is the trace projection
+\[
+   A\mapsto A-\frac{\Tr(A)}rI,
+\]
+which is again distinct from replacing a sector by \(\tau\).
+\end{proposition}
+
+\begin{proof}
+In \(G(M_r(\C))\), every matrix, including the zero matrix, lies in the supported copy and has support character \(1\).  The unsupported element \(\tau\) is not a matrix coefficient.  The trace projection is a linear operation inside the supported matrix algebra \(M_r(\C)\).  It subtracts a supported multiple of \(I\); it does not change the support character to \(0\).  Hence the three operations are distinct.
+\end{proof}
+
+\section{Weighted two-sector defects}
+
+For \(m\in\R\), define
+\[
+   \mathfrak D_2(m)=\R e_+\oplus\R e_-
+\]
+with defect functional
+\[
+   \epsilon_m(ae_++be_-)=-m(a+b).
+\]
+Let
+\[
+   e_{\operatorname{vis}}=e_++e_-,
+   \qquad
+   e_{\operatorname{hid}}=e_+-e_-.
+\]
+
+\begin{proposition}[Two-sector defect module]\label{prop:two-sector}
+One has
+\[
+   \epsilon_m(e_+)=-m,
+   \qquad
+   \epsilon_m(e_-)=-m,
+\]
+\[
+   \epsilon_m(e_{\operatorname{vis}})=-2m,
+   \qquad
+   \epsilon_m(e_{\operatorname{hid}})=0.
+\]
+\end{proposition}
+
+\begin{proof}
+This is immediate from the definition:
+\[
+   \epsilon_m(e_++e_-)=-m(1+1)=-2m,
+\]
+and
+\[
+   \epsilon_m(e_+-e_-)=-m(1-1)=0.
+\]
+\end{proof}
+
+For the peeled CUE first derivative,
+\[
+   m_N=\frac{(N+1)(2N+1)}{6N}.
+\]
+The primitive lift coefficient at \(t=1\) is \(-m_N\).  The visible doubled sector is \(-2m_N\).  The hidden anti-diagonal sector is defect-free.
+
+\begin{theorem}[CUE two-sector package]\label{thm:cue-two-sector}
+The peeled first-derivative CUE shifted-Hurwitz construction determines the weighted two-sector package
+\[
+   (\mathfrak D_2(m_N),\epsilon_{m_N}).
+\]
+The function-anti-invariant lift coefficient is \(-tm_N\), its finite two-end residue defect is \(-2tm_N\), and its projective-infinity residue is \(+2tm_N\).
+\end{theorem}
+
+\begin{proof}
+By Corollary \ref{cor:cue-peeled-defect}, the lift coefficient is \(-tm_N\).  By Corollary \ref{cor:visible-detects-lift}, the finite residue of \(B\ell\,ds\) is \(2B\), hence \(-2tm_N\).  By Theorem \ref{thm:projective-inflow}, the infinity residue is \(-2B=2tm_N\).  Proposition \ref{prop:two-sector} identifies the same numbers with the weighted two-sector defect module.
+\end{proof}
+
+\section{The \texorpdfstring{\(N=3\)}{N=3} CUE quadratic trace extension}
+
+The first nontrivial finite CUE phase-cover obstruction occurs at \(N=3\).  We record the exact quadratic trace algebra needed for the quotient/lift comparison.
+
+Set
+\[
+   u=|\lambda|^2,
+   \qquad
+   v=|c|^2,
+   \qquad
+   w=|d|^2=\frac{1-u+2v}{2},
+\]
+and
+\[
+   z=c\overline d\,\overline\lambda.
+\]
+Let
+\[
+   R(u,v)=\frac{9u^2-16uv-10u-16v+1}{16},
+\]
+and
+\[
+   P(u,v)=uvw=uv\frac{1-u+2v}{2}.
+\]
+Then \(z\) satisfies
+\[
+   T^2-R(u,v)T+P(u,v)=0.
+\]
+Put
+\[
+   J=z-\frac R2.
+\]
+Then \(\overline J=-J\), and
+\[
+   J^2=-S(u,v),
+   \qquad
+   S=P-\frac{R^2}{4}.
+\]
+Introduce
+\[
+   X=9u-16v+1,
+   \qquad
+   \Delta=36u-X^2.
+\]
+A direct simplification gives
+\[
+   S(u,X)=\frac{(u-1)^2\Delta}{1024}.
+\]
+
+\begin{definition}[CUE quadratic trace algebra]\label{def:CUE-trace-algebra}
+Define
+\[
+   \mathcal C=\R[u,X,J]/(J^2+S(u,X))
+\]
+with involution
+\[
+   \overline u=u,
+   \qquad
+   \overline X=X,
+   \qquad
+   \overline J=-J.
+\]
+\end{definition}
+
+\begin{theorem}[CUE real/imaginary trace splitting]\label{thm:CUE-trace}
+The algebra \(\mathcal C\) is a free rank-two \(\R[u,X]\)-module
+\[
+   \mathcal C=\R[u,X]\oplus\R[u,X]J.
+\]
+Define
+\[
+   \langle A,B\rangle_{\mathcal C}=\frac12\Tr_{\mathcal C/\R[u,X]}(A\overline B).
+\]
+For
+\[
+   A=a+bJ,
+   \qquad
+   B=c+dJ,
+\]
+one has
+\[
+   \langle A,B\rangle_{\mathcal C}=ac+bdS.
+\]
+In particular
+\[
+   \langle 1,J\rangle_{\mathcal C}=0,
+   \qquad
+   \langle a+bJ,a+bJ\rangle_{\mathcal C}=a^2+Sb^2.
+\]
+On the chamber \(\Delta>0\) and \(u\ne1\), this form is positive definite.
+\end{theorem}
+
+\begin{proof}
+Since \(J^2=-S\) is a monic quadratic relation, \(\mathcal C\) is free of rank two over \(\R[u,X]\) with basis \(1,J\).  The involution is well-defined because
+\[
+   \overline{J^2+S}=(-J)^2+S=J^2+S.
+\]
+The two conjugates of \(J\) are \(J\) and \(-J\), so
+\[
+   \Tr(1)=2,
+   \qquad
+   \Tr(J)=0.
+\]
+Now
+\[
+   A\overline B=(a+bJ)(c-dJ)=ac-bdJ^2+(bc-ad)J=ac+bdS+(bc-ad)J.
+\]
+Taking half the trace gives \(ac+bdS\).  The orthogonality and norm formulas follow.  Finally, if \(\Delta>0\) and \(u\ne1\), then
+\[
+   S=\frac{(u-1)^2\Delta}{1024}>0,
+\]
+so \(a^2+Sb^2\) is positive definite.
+\end{proof}
+
+\section{Final synthesis and structural comparison}
+
+The constructions above assemble into the following dictionary.
+
+\begin{theorem}[Exact parity and support comparison theorem]\label{thm:dictionary}
+The split-zero support layer, the double-sheet residue layer, the compact Hurwitz layer, and the CUE phase-space layer realize the same formal pattern through different categories.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item In \(G(R)\), the quotient map \(p_R\) forgets support, while \(\chi_R\) remembers support.  The unsupported element is \(\tau\); the supported zero is \(0_R\).
+\item In \(\C(s)=\C(u)(v)\), the quotient field \(\C(u)\) forgets the lift coordinate \(v\), while the odd sector \(v\C(u)\) remembers it.
+\item The residue operation reverses parity because \(ds\) changes sign under \(s\mapsto1-s\).  Thus the visible finite residue sector is the differential-even sector, equivalently the function-odd lift sector.
+\item The compact Hurwitz deformation detects only the first moment at the principal-part level:
+\[
+   \PP_{\{0,1\}}\Lambda_{\mu,t}
+   =\bigl(1+tm_1(\mu)\bigr)q-tm_1(\mu)\ell.
+\]
+However, the zero motion detects all moments \(m_n(\mu)\) through the all-order recursion.
+\item The CUE derivative observables provide compact measures \(\nu_{\alpha,N}\), so the same support-defect mechanism applies with
+\[
+   m_1(\nu_{\alpha,N})=\mathbf E X_{\alpha,N}.
+\]
+\item The first derivative CUE peel gives the exact primitive coefficient
+\[
+   -\frac{(N+1)(2N+1)}{6N},
+\]
+and at \(N=3\) gives \(-14/9\).  The visible doubled defect is \(-28/9\).
+\item The finite phase-space double \(A\times\widehat A\) has one identity sector and \(r^2-1\) nonidentity sectors.  These nonidentity sectors form an operator basis of \(\mathfrak{sl}_r\).  The \(A_{r-1}\) root lattice is the diagonal augmentation skeleton inside this larger phase-space algebra.
+\item The Grover--Mezzadri--Simm microscopic exponent \(|\mu|+|\nu|+s^2\) is exactly \(\dim\mathfrak B_{\mu,\nu}\).  In the first-derivative specialization it is exactly \(\dim\mathfrak{sl}_{s+1}\).
+\item The \(N=3\) CUE quadratic trace algebra realizes a quotient/lift trace splitting
+\[
+   \R[u,X]\perp \R[u,X]J,
+   \qquad
+   \overline J=-J,
+\]
+parallel to
+\[
+   \C(u)\perp v\C(u)
+\]
+on the critical line.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Item (1) is Theorem \ref{thm:unique-boolean} and Corollary \ref{cor:support-pole}.  Item (2) is the definition of the quadratic extension \(\C(s)=\C(u)(v)\).  Item (3) is Theorem \ref{thm:residue-reversal}.  Item (4) is Theorem \ref{thm:hurwitz-pp} together with Theorem \ref{thm:zero-motion}.  Item (5) follows from Proposition \ref{prop:derivative-support-bound} and Theorem \ref{thm:cue-pp}.  Item (6) is Corollary \ref{cor:cue-peeled-defect}.  Item (7) is Theorem \ref{thm:phase-basis} and Corollary \ref{cor:A-root-sits}.  Item (8) is Proposition \ref{prop:source-dim} and Theorem \ref{thm:first-derivative-sl}.  Item (9) is Theorem \ref{thm:CUE-trace} and Corollary \ref{cor:critical-split}.
+\end{proof}
+
+\begin{corollary}[Sign-inflow statement]\label{cor:sign-inflow}
+The finite visible two-end residue defect and the projective-infinity residue always cancel for the lift pole:
+\[
+   \mathfrak D_{\operatorname{fin}}(B\ell)+\Res_{\infty}(B\ell\,ds)=0.
+\]
+For compact Hurwitz averages this reads
+\[
+   -2tm_1(\mu)+2tm_1(\mu)=0.
+\]
+For peeled first-derivative CUE it reads
+\[
+   -2tm_N+2tm_N=0,
+   \qquad
+   m_N=\frac{(N+1)(2N+1)}{6N}.
+\]
+\end{corollary}
+
+\begin{proof}
+This is Theorem \ref{thm:projective-inflow} with \(B=-tm_1(\mu)\), and then with \(m_1(\mu)=m_N\).
+\end{proof}
+
+\begin{corollary}[Relations among the structural objects]\label{cor:non-identifications}
+The following objects occur in distinct ambient categories and are related by the structural theorems proved above:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item the unsupported zero \(\tau\in G(R)\);
+\item the lift coordinate \(v\) in \(\C(u)(v)\);
+\item the CUE phase-cover coordinate \(J\);
+\item the Cartan augmentation lattice \(A_{r-1}\);
+\item the full finite phase-space double \(A\times\widehat A\).
+\end{enumerate}
+The exact theorem is compatibility of quotient/lift, support/forgetful, and trace-orthogonal structures, not equality of these objects.
+\end{corollary}
+
+\begin{proof}
+Each object lives in a different category: semirings, quadratic function fields, real quadratic trace algebras, integral root lattices, and finite Heisenberg operator bases.  The proved maps above identify their formal roles: quotient coordinate, lift coordinate, parity reversal, and defect functional.  The constructions above give equivalences, trace forms, residue maps, and phase-space bases in their stated categories.  They do not define an isomorphism between the listed objects as bare objects.  The asserted relation is the formally proved compatibility of their quotient/lift, support/forgetful, and trace-orthogonal roles.
+\end{proof}
+
+
+\appendix
+\section{Exact constant-term computation for \(N=3\)}\label{app:N3-code}
+
+The following program performs exact Laurent-polynomial arithmetic over the integers and implements the Weyl constant-term formula used in Proposition \ref{prop:N3-constant-term-checks}.
+
+\begin{verbatim}
+from collections import defaultdict
+import itertools, math
+
+def mul(p, q, N):
+    r = defaultdict(int)
+    for a, ca in p.items():
+        for b, cb in q.items():
+            r[tuple(a[i] + b[i] for i in range(N))] += ca * cb
+    return {k: v for k, v in r.items() if v}
+
+def pow_poly(p, n, N):
+    r = {tuple([0] * N): 1}
+    base = p
+    while n:
+        if n & 1:
+            r = mul(r, base, N)
+        n >>= 1
+        if n:
+            base = mul(base, base, N)
+    return r
+
+def inv(p):
+    return {tuple(-x for x in k): v for k, v in p.items()}
+
+def moment_N_s(N, s):
+    # Build Phi_N'(1)=sum_{r=0}^{N-1}(N-r)(-1)^r e_r.
+    p = defaultdict(int)
+    p[tuple([0] * N)] = N
+    for r in range(1, N):
+        coeff = (N - r) * ((-1) ** r)
+        for subset in itertools.combinations(range(N), r):
+            e = [0] * N
+            for i in subset:
+                e[i] = 1
+            p[tuple(e)] += coeff
+    p = dict(p)
+
+    # Vandermonde modulus squared.
+    V = {tuple([0] * N): 1}
+    for i, j in itertools.combinations(range(N), 2):
+        factor = defaultdict(int)
+        factor[tuple([0] * N)] += 2
+        e = [0] * N
+        e[i] += 1
+        e[j] -= 1
+        factor[tuple(e)] -= 1
+        e = [0] * N
+        e[j] += 1
+        e[i] -= 1
+        factor[tuple(e)] -= 1
+        V = mul(V, dict(factor), N)
+
+    ps = pow_poly(p, s, N)
+    f = mul(ps, inv(ps), N)
+    FV = mul(f, V, N)
+    return FV.get(tuple([0] * N), 0) // math.factorial(N)
+
+for s in range(1, 6):
+    print(s, moment_N_s(3, s))
+\end{verbatim}
+
+The output is
+\[
+\begin{array}{c|ccccc}
+ s&1&2&3&4&5\\ \hline
+ \mathbf E_{U(3)}|\Phi_3'(1)|^{2s}&14&375&15510&847280&55331424.
+\end{array}
+\]
+
+\section*{References}
+\begin{thebibliography}{99}
+
+\bibitem{AGKRRV}
+D. Arinkin, D. Gaitsgory, D. Kazhdan, S. Raskin, N. Rozenblyum, and Y. Varshavsky,
+\emph{The stack of local systems with restricted variation and geometric Langlands theory with nilpotent singular support}, arXiv:2010.01906.
+
+\bibitem{GMS2026}
+A. Grover, F. Mezzadri, and N. Simm,
+\emph{Higher order derivative moments of CUE characteristic polynomials and the Riemann zeta function}, arXiv:2604.03051, 2026.
+
+\bibitem{KeatingSnaith}
+J. P. Keating and N. C. Snaith,
+\emph{Random matrix theory and \(\zeta(1/2+it)\)}, Communications in Mathematical Physics 214 (2000), 57--89.
+
+\bibitem{ConreyRubinsteinSnaith}
+J. B. Conrey, M. O. Rubinstein, and N. C. Snaith,
+\emph{Moments of the derivative of characteristic polynomials with an application to the Riemann zeta function}, Communications in Mathematical Physics 267 (2006), 611--629.
+
+\bibitem{Dehaye2008}
+P.-O. Dehaye,
+\emph{Joint moments of derivatives of characteristic polynomials}, Algebra \& Number Theory 2 (2008), 31--68.
+
+\bibitem{KeatingWeiI}
+J. P. Keating and F. Wei,
+\emph{Joint moments of higher order derivatives of CUE characteristic polynomials I: asymptotic formulae}, International Mathematics Research Notices 2024 (2024), 9607--9632.
+
+\bibitem{KeatingWeiII}
+J. P. Keating and F. Wei,
+\emph{Joint moments of higher order derivatives of CUE characteristic polynomials II: structures, recursive relations, and applications}, Nonlinearity 37 (2024), 085009.
+
+\bibitem{SplitZeroSecondary}
+Constructive session synthesis,
+\emph{A secondary note on split-zero globalization: semimodule classification, multiplicative reconstruction, and all-orders zeta deformation}, project note, 2026.
+
+\bibitem{CompactMellinPeeling}
+Constructive session synthesis,
+\emph{Compact Mellin peeling for CUE derivative moments}, project note, 2026.
+
+\bibitem{DrosteKuichVogler}
+M. Droste, W. Kuich, and H. Vogler, eds.,
+\emph{Handbook of Weighted Automata}, Springer, 2009.
+
+\bibitem{Gunawardena}
+J. Gunawardena, ed.,
+\emph{Idempotency}, Cambridge University Press, 1998.
+
+\bibitem{Thas}
+K. Thas, ed.,
+\emph{Absolute Arithmetic and \(\mathbf F_1\)-Geometry}, European Mathematical Society, 2016.
+
+\bibitem{ConnesConsaniGamma}
+A. Connes and C. Consani,
+\emph{Segal's Gamma rings and universal arithmetic}, arXiv:2004.08879.
+
+\bibitem{LorscheidF1}
+O. Lorscheid,
+\emph{Algebraic groups over the field with one element}, arXiv:0907.3824.
+
+\bibitem{CoxLittleOShea}
+D. Cox, J. Little, and D. O'Shea,
+\emph{Ideals, Varieties, and Algorithms}, 5th ed., Springer, 2025.
+
+\end{thebibliography}
+
+\end{document}

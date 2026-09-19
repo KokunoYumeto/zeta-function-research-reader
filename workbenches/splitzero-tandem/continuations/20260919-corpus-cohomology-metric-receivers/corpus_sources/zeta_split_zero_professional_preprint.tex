@@ -1,0 +1,1430 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.08in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Idl}{Idl}
+\DeclareMathOperator{\Tail}{Tail}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\BB}{\mathbf B}
+\newcommand{\CMon}{\mathbf{CMon}}
+\newcommand{\PtSet}{\mathbf{PtSet}_*}
+\newcommand{\VectC}{\mathbf{Vect}_{\CC}}
+\newcommand{\SModA}{\mathbf{SMod}_A}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\taup}{\tau}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\Vd}{\mathcal V_D}
+\newcommand{\Ad}{\mathcal A_D}
+\newcommand{\Pd}{\mathcal P_D}
+\newcommand{\Cd}{\mathcal C_D}
+\newcommand{\Bd}{\mathcal B_D}
+\newcommand{\Jd}{\mathcal J_D}
+\newcommand{\Kd}{\mathcal K_D}
+\newcommand{\Ld}{\mathcal L_D}
+\newcommand{\Vplusd}{\widetilde{\mathcal V}_D}
+\newcommand{\Vz}{\mathcal V_\zeta}
+\newcommand{\Az}{\mathcal A_\zeta}
+\newcommand{\Pz}{\mathcal P_\zeta}
+\newcommand{\Cz}{\mathcal C_\zeta}
+\newcommand{\Jz}{\mathcal J_\zeta}
+\newcommand{\Kz}{\mathcal K_\zeta}
+\newcommand{\Lz}{\mathcal L_\zeta}
+\newcommand{\Vplusz}{\widetilde{\mathcal V}_\zeta}
+\newcommand{\Vxi}{\mathcal V_\xi}
+\newcommand{\Cxi}{\mathcal C_\xi}
+\newcommand{\epsx}{\varepsilon_x}
+\newcommand{\epsrho}{\varepsilon_\rho}
+
+\title{Split-Zero Divisor Sheaves for the Riemann Zeta Function:\\
+Sheafification, Chain-Cube Comparison, Tail Fibres,\\
+Packet Descent, and Phase Coordinates}
+\author{}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+S=G(\ZZ)=\ZZ\sqcup\{\taup\},\qquad A:=\{0,\taup\}\cong\BB,\qquad F_1(s):=\zeta(s)-1.
+\]
+At every zero $\rho$ of $\zeta$ one has $F_1(\rho)=-1$, so multiplication by $-1$ fixes the same Boolean pair $A$. The pointwise statement carries no multiplicity. We replace it by a divisor-theoretic package. For a discrete effective divisor $D$ on a Riemann surface we define a finite-support presheaf $\Pd$ and prove that its sheafification is the Boolean multiplicity sheaf
+\[
+\Vd(U)=\prod_{x\in U\cap |D|}A^{m_x};
+\]
+the reduced shadow $\Ad$ is a canonical split retract of $\Vd$, and $\Vd\cong\Ad$ iff all multiplicities are one. The classical local algebra $\cO_{X,x}/\mathfrak m_x^m$ has ideal lattice a finite chain $C_m$; we show that the inclusion $C_m\into B_m=\cP([m])$ admits both a left and a right adjoint, giving a precise relation between nonreduced jets and Boolean cubes. We then construct enhanced jet and terminal-line sheaves, compute the compactification defect at $\infty$ as a tail object, prove packet descent for the nontrivial zeros of the completed zeta function, derive the exact trivial-zero weight
+\[
+|\zeta'(-2n)|=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1),
+\]
+and add phase coordinates on simple packets using normalized real and cyclotomic linear-factor decompositions in the sense of Jacolm Tobley.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+At a zero $\rho$ of the Riemann zeta function one has
+\[
+F_1(\rho)=\zeta(\rho)-1=-1.
+\]
+In the globalization semiring $G(\ZZ)$, multiplication by $-1$ fixes precisely the Boolean pair $A=\{0,\taup\}$. Taken pointwise, the split-zero shadow is therefore constant. The mathematical problem is not to recover that constant value, but to organize the whole zero divisor in a way that remembers multiplicity, infinitesimal structure, and the global effect of compactification.
+
+The first purpose of this paper is to supply a universal construction. Earlier drafts wrote down the Boolean multiplicity sheaf directly. Here we instead begin with the finite-support presheaf of local split-zero data and prove that the product sheaf is its sheafification. The resulting Boolean divisor sheaf is thus obtained by a sheaf-theoretic universal property rather than by stipulation.
+
+The second purpose is to compare the Boolean shadow with the classical nonreduced local model. A zero of multiplicity $m$ has two natural algebraic avatars: the Boolean cube $A^m\cong\cP([m])$, and the local Artin algebra $\cO_{X,x}/\mathfrak m_x^m$, whose ideal lattice is a chain. These objects are not isomorphic once $m\geq 2$, but they are not unrelated either. The precise relation is a biadjoint comparison between the terminal-segment chain and the Boolean cube.
+
+The third purpose is to pass from local structure to global structure. On the open surface, the divisor sheaves are products over a discrete set. After compactification to $\PP^1(\CC)$, the direct image and extension by zero differ by an explicit tail fibre at $\infty$. For vector-space sheaves this defect is measured by a short exact sequence. For the zeta divisor the global jet section gives a canonical nonzero tail class.
+
+The fourth purpose is to record the symmetry of the nontrivial zeros. The completed zeta function
+\[
+\xi(s):=\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s)
+\]
+is invariant under complex conjugation and the involution $s\mapsto 1-s$. These symmetries organize nontrivial zeros into packets for the Klein four-group. The Boolean multiplicity sheaf and the classical chain sheaf both descend to honest sheaves on the packet orbit space.
+
+The final purpose is to add phase data on the simple-zero locus. The leading coefficient of the completed zeta jet is a nonzero complex number. Section~\ref{sec:phase-coordinates} gives exact real and cyclotomic factor coordinates for its phase. This part of the paper is based on unpublished 2026 notes of Jacolm Tobley on arctangent decompositions, orthogonal-walk expansions, and cyclotomic affine phase sliders; the statements used here are proved in self-contained form.
+
+The background frameworks are standard: local and global constructions for schemes and sheaves \cite{GrothendieckEGAII,Vakil,Hilgert}, complex-manifold and sheaf theory \cite{Lee}, idempotent and semiring methods \cite{GaubertKatz,Gunawardena,DrosteKuichVogler}, blueprint geometry \cite{Lorscheid}, and $\mathbb F_1$-type moduli constructions \cite{JarraLorscheidVital}. The paper uses these only as grounding. All specific statements required in the sequel are proved directly.
+
+\section{Globalization semirings and split-root shadows}
+
+\subsection{The globalization semiring}
+
+\begin{definition}
+Let $R$ be a commutative ring with identity. Its globalization semiring is
+\[
+G(R):=R\sqcup\{\taup\},
+\]
+with operations
+\[
+a\oplus b:=a+b,
+\qquad
+ a\oplus\taup=\taup\oplus a:=a,
+\qquad
+ \taup\oplus\taup:=\taup,
+\]
+and
+\[
+a\odot b:=ab,
+\qquad
+ a\odot\taup=\taup\odot a:=\taup,
+\qquad
+ \taup\odot\taup:=\taup.
+\]
+Thus $\taup$ is the additive identity and multiplicative absorber, while $1\in R\subset G(R)$ is the multiplicative identity.
+\end{definition}
+
+\begin{definition}
+For $u\in R^\times\subset G(R)^\times$, define its fixed locus in $G(R)$ by
+\[
+\Fix_{G(R)}(u):=\{x\in G(R):u\odot x=x\}.
+\]
+The two-point subsemiring
+\[
+A_R:=\{0,\taup\}\subset G(R)
+\]
+will be called the split-zero fibre.
+\end{definition}
+
+\begin{lemma}\label{lem:units-fix}
+For every commutative ring $R$,
+\[
+G(R)^\times=R^\times.
+\]
+Moreover, for every $u\in R^\times$,
+\[
+\Fix_{G(R)}(u)=\{\taup\}\cup \Ann_R(u-1).
+\]
+\end{lemma}
+
+\begin{proof}
+If $x\in G(R)$ is invertible, say $x\odot y=1$, then $x\neq \taup$ because $\taup\odot y=\taup\neq1$. Likewise $y\neq\taup$. Hence $x,y\in R$ and $xy=1$ in $R$, so $x\in R^\times$. The converse is immediate.
+
+Now let $u\in R^\times$. Since $u\odot\taup=\taup$, the absorber $\taup$ is fixed. For $r\in R$ one has
+\[
+u\odot r=r \iff ur=r \iff (u-1)r=0,
+\]
+which proves the formula.
+\end{proof}
+
+\begin{proposition}\label{prop:boolean-pair}
+For every commutative ring $R$, the subset $A_R=\{0,\taup\}$ is a subsemiring of $G(R)$ canonically isomorphic to the Boolean semiring $\BB=\{0,1\}$. Explicitly,
+\[
+\taup\longleftrightarrow 0\in\BB,
+\qquad
+0\longleftrightarrow 1\in\BB.
+\]
+\end{proposition}
+
+\begin{proof}
+Inside $A_R$ the operation tables are
+\[
+0\oplus0=0,
+\qquad
+0\oplus\taup=0,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+and
+\[
+0\odot0=0,
+\qquad
+0\odot\taup=\taup,
+\qquad
+\taup\odot\taup=\taup.
+\]
+Transporting these tables through the displayed identification yields the Boolean semiring operations.
+\end{proof}
+
+\begin{theorem}[split-root theorem]\label{thm:split-root}
+Let $R$ be an integral domain and let $u\in R^\times$ satisfy $u\neq1$. Then
+\[
+\Fix_{G(R)}(u)=\{0,\taup\}=A_R\cong\BB.
+\]
+In particular, if $\mathcal O_K$ is the ring of integers of a number field and $\xi\in\mathcal O_K^\times$ is a nontrivial root of unity, then
+\[
+\Fix_{G(\mathcal O_K)}(\xi)=\{0,\taup\}.
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:units-fix},
+\[
+\Fix_{G(R)}(u)=\{\taup\}\cup\Ann_R(u-1).
+\]
+Because $R$ is a domain and $u-1\neq0$, multiplication by $u-1$ is injective. Hence $\Ann_R(u-1)=\{0\}$.
+The second statement is the special case $R=\mathcal O_K$.
+\end{proof}
+
+\begin{corollary}\label{cor:zeta-pointwise}
+Let
+\[
+S:=G(\ZZ),\qquad A:=\{0,\taup\}\subset S,
+\qquad F_1(s):=\zeta(s)-1.
+\]
+If $\rho$ is any zero of $\zeta$, then
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A.
+\]
+\end{corollary}
+
+\begin{proof}
+The first identity is immediate from $\zeta(\rho)=0$. The second is Theorem~\ref{thm:split-root} with $R=\ZZ$ and $u=-1$.
+\end{proof}
+
+\section{Finite-support local data and Boolean divisor sheaves}
+
+Throughout this section, $X$ is a Riemann surface and
+\[
+D=\sum_{x\in Z}m_x[x]
+\]
+is an effective divisor on $X$. Thus $Z\subset X$ is closed and discrete and each multiplicity $m_x$ is a positive integer. We write $A:=\{0,\taup\}\cong\BB$.
+
+\subsection{Product sheaves and finite-support presheaves}
+
+\begin{definition}
+For an open set $U\subset X$, define
+\[
+\Pd(U):=\bigoplus_{x\in U\cap Z}A^{m_x},
+\qquad
+\Vd(U):=\prod_{x\in U\cap Z}A^{m_x},
+\qquad
+\Ad(U):=\prod_{x\in U\cap Z}A.
+\]
+The restriction maps are the obvious coordinate projections. Thus $\Pd(U)$ consists of the families in $\Vd(U)$ with finite support.
+\end{definition}
+
+\begin{lemma}\label{lem:product-sheaf}
+The presheaves $\Vd$ and $\Ad$ are sheaves of $A$-semimodules on $X$.
+\end{lemma}
+
+\begin{proof}
+We verify the sheaf axiom for $\Vd$; the proof for $\Ad$ is identical. Let $U\subset X$ be open and let $U=\bigcup_{i\in I}U_i$ be an open cover.
+
+If $s,t\in\Vd(U)$ have the same restrictions to every $U_i$, then for each $x\in U\cap Z$ there exists $i$ with $x\in U_i$, and equality of the restrictions to $U_i$ implies equality of the $x$-coordinates of $s$ and $t$. Hence $s=t$.
+
+Conversely, suppose given sections $s_i\in\Vd(U_i)$ which agree on overlaps. For each $x\in U\cap Z$, choose $i$ with $x\in U_i$ and define the $x$-coordinate of a candidate section $s\in\Vd(U)$ to be the $x$-coordinate of $s_i$. This is well defined: if $x\in U_i\cap U_j$, then agreement of $s_i$ and $s_j$ on the overlap forces equality of their $x$-coordinates. The resulting family $s=(s_x)_{x\in U\cap Z}$ lies in $\Vd(U)$ and restricts to each $s_i$.
+\end{proof}
+
+\begin{proposition}\label{prop:stalks-VA}
+The sheaves $\Vd$ and $\Ad$ are supported on $Z$. Their stalks are
+\[
+(\Vd)_x\cong A^{m_x},\qquad (\Ad)_x\cong A\qquad (x\in Z),
+\]
+and one-point semimodules away from $Z$.
+\end{proposition}
+
+\begin{proof}
+If $x\notin Z$, choose an open neighbourhood $U\ni x$ with $U\cap Z=\varnothing$. Then $\Vd(U)$ and $\Ad(U)$ are both one-point semimodules, so the stalks at $x$ are one-point.
+
+If $x\in Z$, choose an open neighbourhood $U\ni x$ with $U\cap Z=\{x\}$. Then for every smaller neighbourhood $V\subset U$ containing $x$ one has
+\[
+\Vd(V)=A^{m_x},\qquad \Ad(V)=A,
+\]
+and the restriction maps are identities. Hence the direct limits defining the stalks are $A^{m_x}$ and $A$.
+\end{proof}
+
+\begin{theorem}[sheafification]\label{thm:sheafification}
+The inclusion of presheaves
+\[
+i_D:\Pd\into\Vd
+\]
+exhibits $\Vd$ as the sheafification of $\Pd$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal G$ be a sheaf of $A$-semimodules on $X$, and let
+\[
+\psi:\Pd\longrightarrow \mathcal G
+\]
+be a morphism of presheaves. We construct a unique sheaf morphism
+\[
+\widetilde\psi:\Vd\longrightarrow \mathcal G
+\]
+with $\widetilde\psi\circ i_D=\psi$.
+
+Fix an open set $U\subset X$ and a section $s=(s_x)_{x\in U\cap Z}\in\Vd(U)$. For each $x\in U\cap Z$, choose an open neighbourhood $U_x\subset U$ with $U_x\cap Z=\{x\}$. Set
+\[
+U_0:=U\setminus Z.
+\]
+Then $s|_{U_x}\in\Pd(U_x)=A^{m_x}$ for every $x$, and $s|_{U_0}$ is the zero section in $\Pd(U_0)$.
+Define local sections by
+\[
+t_x:=\psi_{U_x}(s|_{U_x})\in \mathcal G(U_x),
+\qquad
+ t_0:=\psi_{U_0}(0)\in \mathcal G(U_0).
+\]
+If $x\neq y$, then
+\[
+(U_x\cap U_y)\cap Z=\varnothing,
+\]
+so $s|_{U_x\cap U_y}=0$ in $\Pd(U_x\cap U_y)$. Because $\psi$ commutes with restrictions,
+\[
+t_x|_{U_x\cap U_y}=\psi_{U_x\cap U_y}(0)=t_y|_{U_x\cap U_y}.
+\]
+Similarly,
+\[
+t_x|_{U_x\cap U_0}=\psi_{U_x\cap U_0}(0)=t_0|_{U_x\cap U_0}.
+\]
+Hence the family $\{t_0\}\cup\{t_x\}_{x\in U\cap Z}$ agrees on overlaps. Since $\mathcal G$ is a sheaf, there exists a unique section $t\in\mathcal G(U)$ gluing them. Define
+\[
+\widetilde\psi_U(s):=t.
+\]
+This construction is independent of the chosen neighbourhoods because any two choices admit a common refinement, and the glued section is unique.
+
+It is immediate from the definition that $\widetilde\psi$ is compatible with restrictions, hence is a morphism of sheaves. If $s\in\Pd(U)$ has finite support, then choosing $U_x$ only for points in the support shows that $\widetilde\psi_U(s)=\psi_U(s)$, so $\widetilde\psi\circ i_D=\psi$.
+
+For uniqueness, let $\Phi:\Vd\to\mathcal G$ be any sheaf morphism extending $\psi$. If $s\in\Vd(U)$, use the same cover $\{U_0\}\cup\{U_x\}$ as above. On $U_x$ the restriction $s|_{U_x}$ lies in $\Pd(U_x)$, so
+\[
+\Phi_{U_x}(s|_{U_x})=\psi_{U_x}(s|_{U_x})=t_x.
+\]
+Likewise on $U_0$ one has $\Phi_{U_0}(s|_{U_0})=t_0$. By the sheaf property, $\Phi_U(s)$ must be the unique section gluing these local sections, namely $\widetilde\psi_U(s)$. Therefore $\Phi=\widetilde\psi$.
+\end{proof}
+
+\begin{proposition}\label{prop:boolean-cube}
+For each integer $m\geq 1$, the free rank-$m$ $A$-semimodule $A^m$ is canonically isomorphic to the Boolean cube
+\[
+B_m:=\cP([m]),\qquad [m]:=\{1,\dots,m\},
+\]
+via the map sending $(a_1,\dots,a_m)$ to the subset of indices $j$ for which $a_j=0$.
+\end{proposition}
+
+\begin{proof}
+Every vector $(a_1,\dots,a_m)\in A^m$ determines a unique subset
+\[
+I:=\{j\in[m]:a_j=0\}.
+\]
+Conversely, each subset $I\subseteq [m]$ determines the vector whose $j$-th coordinate is $0$ for $j\in I$ and $\taup$ otherwise. This yields a bijection.
+
+Under this identification, coordinatewise idempotent addition corresponds to union of subsets: a coordinate of $u+v$ is $0$ iff at least one of the corresponding coordinates of $u$ or $v$ is $0$. Thus the map is an isomorphism of $A$-semimodules.
+\end{proof}
+
+\begin{proposition}\label{prop:split-retract}
+For each $m\geq1$ define
+\[
+\Sigma_m:A^m\to A,
+\qquad
+\Sigma_m(a_1,\dots,a_m):=a_1\oplus\cdots\oplus a_m,
+\]
+and
+\[
+\Delta_m:A\to A^m,
+\qquad
+\Delta_m(a):=(a,\dots,a).
+\]
+Then $\Sigma_m$ and $\Delta_m$ are $A$-semimodule morphisms and
+\[
+\Sigma_m\circ\Delta_m=\id_A.
+\]
+Consequently there are sheaf morphisms
+\[
+\Sigma_D:\Vd\to\Ad,
+\qquad
+\Delta_D:\Ad\to\Vd,
+\qquad
+\Sigma_D\circ\Delta_D=\id_{\Ad},
+\]
+so the reduced shadow $\Ad$ is a canonical split retract of $\Vd$.
+\end{proposition}
+
+\begin{proof}
+The maps $\Sigma_m$ and $\Delta_m$ are visibly $A$-linear because addition and scalar multiplication in $A^m$ are coordinatewise. The identity $\Sigma_m\circ\Delta_m=\id_A$ follows by checking the two elements $\taup$ and $0$.
+The sheaf morphisms are obtained coordinatewise, and the split identity is checked on each coordinate.
+\end{proof}
+
+\begin{theorem}[full versus reduced shadow]\label{thm:full-vs-reduced}
+In the category $\mathbf{Sh}(X,\SModA)$ one has
+\[
+\Vd\cong \Ad
+\quad\Longleftrightarrow\quad
+m_x=1\text{ for every }x\in Z.
+\]
+\end{theorem}
+
+\begin{proof}
+If every $m_x=1$, then the defining formulas give $\Vd(U)=\Ad(U)$ for all open $U$.
+Conversely, suppose $\Vd\cong\Ad$. For each $x\in Z$ this induces an isomorphism of stalks
+\[
+A^{m_x}\cong A
+\]
+in $\SModA$. Such an isomorphism is in particular a bijection of underlying sets. Since $|A|=2$ and $|A^{m_x}|=2^{m_x}$, one obtains $m_x=1$.
+\end{proof}
+
+\begin{corollary}\label{cor:shadow-stalks}
+For the zeta divisor
+\[
+D_\zeta=\sum_{\rho: \zeta(\rho)=0}m_\rho[\rho],
+\]
+there is a Boolean multiplicity sheaf $\Vz=\Vd$ and a reduced shadow sheaf $\Az=\Ad$. At a zero $\rho$,
+\[
+(\Vz)_\rho\cong A^{m_\rho}\cong B_{m_\rho},
+\qquad
+(\Az)_\rho\cong A.
+\]
+\end{corollary}
+
+\section{Local nonreduced models and the chain-cube comparison}
+
+\subsection{The local Artin ring}
+
+\begin{definition}
+Let $x\in X$ and let $m\geq 1$. Define the local Artin ring
+\[
+Q_{x,m}:=\cO_{X,x}/\mathfrak m_x^m,
+\]
+where $\mathfrak m_x\subset \cO_{X,x}$ is the maximal ideal.
+\end{definition}
+
+\begin{lemma}\label{lem:dvr-local}
+Let $x\in X$. There exists a centred holomorphic coordinate $t$ at $x$ such that
+\[
+\cO_{X,x}\cong \CC\{t\},\qquad \mathfrak m_x=(t).
+\]
+Consequently,
+\[
+Q_{x,m}\cong \CC\{t\}/(t^m)\cong \CC[t]/(t^m).
+\]
+\end{lemma}
+
+\begin{proof}
+The existence of a local holomorphic coordinate is the defining local property of a Riemann surface \cite[Chapter~1]{Lee}. In such a coordinate the local ring is the convergent power-series ring $\CC\{t\}$, and the maximal ideal is generated by $t$. Modulo $(t^m)$ every convergent series is represented by its degree $<m$ truncation, giving the polynomial description.
+\end{proof}
+
+\begin{proposition}\label{prop:ideal-chain-local}
+For every $m\geq 1$, the ideals of $Q_{x,m}$ are exactly
+\[
+I_k:=(t^k)/(t^m),\qquad k=0,1,\dots,m,
+\]
+where $t$ is any centred local coordinate. In particular,
+\[
+Q_{x,m}=I_0\supset I_1\supset\cdots\supset I_m=0
+\]
+is a chain, independent of the chosen coordinate.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:dvr-local}, $Q_{x,m}\cong \CC\{t\}/(t^m)$. Ideals of the quotient correspond to ideals of $\CC\{t\}$ containing $(t^m)$. Since $\CC\{t\}$ is a discrete valuation ring, every ideal is $(t^k)$ for a unique integer $k\geq 0$. Those containing $(t^m)$ are precisely $(t^k)$ for $0\leq k\leq m$, yielding the displayed chain.
+\end{proof}
+
+\begin{definition}
+For $m\geq1$, define the terminal-segment chain
+\[
+C_m:=\{T_r:1\le r\le m+1\}\subset B_m,
+\]
+where
+\[
+T_r:=\{r,r+1,\dots,m\}\quad(1\le r\le m),
+\qquad
+T_{m+1}:=\varnothing.
+\]
+Write
+\[
+i_m:C_m\into B_m
+\]
+for the inclusion.
+\end{definition}
+
+\begin{corollary}\label{cor:ideal-chain-identification}
+For every $x\in X$ and $m\geq1$, the ideal lattice $\Idl(Q_{x,m})$ is canonically isomorphic to $C_m$ via
+\[
+I_k=(t^k)/(t^m)\longmapsto T_{k+1}.
+\]
+\end{corollary}
+
+\begin{proof}
+The displayed bijection preserves order because
+\[
+I_k\subseteq I_\ell \iff k\geq \ell \iff T_{k+1}\subseteq T_{\ell+1}.
+\]
+\end{proof}
+
+\begin{definition}
+Define monotone maps
+\[
+L_m:B_m\to C_m,
+\qquad
+L_m(I):=
+\begin{cases}
+\varnothing,& I=\varnothing,\\
+\{\min I,\min I+1,\dots,m\},& I\neq\varnothing,
+\end{cases}
+\]
+and
+\[
+R_m:B_m\to C_m,
+\qquad
+R_m(I):=\{j\in[m]:\{j,j+1,\dots,m\}\subseteq I\}.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:LRtails}
+For every $I\in B_m$, the sets $L_m(I)$ and $R_m(I)$ lie in $C_m$. Moreover, $L_m(I)$ is the least terminal segment containing $I$, and $R_m(I)$ is the greatest terminal segment contained in $I$.
+\end{lemma}
+
+\begin{proof}
+If $I=\varnothing$, then $L_m(I)=\varnothing=T_{m+1}\in C_m$. If $I\neq\varnothing$, then $L_m(I)=T_{\min I}\in C_m$, and by construction it is the least terminal segment containing $I$.
+
+For $R_m(I)$, if there is no $j\in[m]$ with $T_j\subseteq I$, then $R_m(I)=\varnothing=T_{m+1}$. Otherwise let $r$ be the smallest such index. Then $R_m(I)=T_r\in C_m$, and by minimality of $r$ it is the greatest terminal segment contained in $I$.
+\end{proof}
+
+\begin{theorem}[chain-cube comparison]\label{thm:chain-cube}
+For every $m\geq1$ one has
+\[
+L_m\dashv i_m\dashv R_m
+\]
+in the category of finite posets. Explicitly, for $I\in B_m$ and $T\in C_m$,
+\[
+L_m(I)\subseteq T \iff I\subseteq i_m(T),
+\]
+and
+\[
+i_m(T)\subseteq I \iff T\subseteq R_m(I).
+\]
+Hence $C_m$ is both reflective and coreflective in $B_m$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:LRtails}, $L_m(I)$ is the least terminal segment containing $I$. Therefore
+\[
+L_m(I)\subseteq T\iff I\subseteq T=i_m(T),
+\]
+which proves $L_m\dashv i_m$.
+
+Likewise, $R_m(I)$ is the greatest terminal segment contained in $I$. Therefore
+\[
+i_m(T)=T\subseteq I\iff T\subseteq R_m(I),
+\]
+which proves $i_m\dashv R_m$.
+\end{proof}
+
+\begin{corollary}\label{cor:not-iso-chain-cube}
+If $m\geq2$, then $C_m$ and $B_m$ are not isomorphic in finite posets. Their positive relation is the biadjoint comparison of Theorem~\ref{thm:chain-cube}.
+\end{corollary}
+
+\begin{proof}
+The chain $C_m$ has width $1$. The Boolean cube $B_m$ has width at least $2$ because $\{1\}$ and $\{2\}$ are incomparable. Poset isomorphisms preserve width.
+\end{proof}
+
+\begin{definition}
+Define sheaves of finite posets on $X$ by
+\[
+\Cd(U):=\prod_{x\in U\cap Z} C_{m_x},
+\qquad
+\Bd(U):=\prod_{x\in U\cap Z} B_{m_x},
+\]
+with restriction maps given by coordinate projection.
+\end{definition}
+
+\begin{proposition}\label{prop:sheaves-posets}
+The underlying ordered sheaf of $\Vd$ is canonically isomorphic to $\Bd$. The ideal-chain sheaf
+\[
+U\longmapsto \prod_{x\in U\cap Z}\Idl(Q_{x,m_x})
+\]
+is canonically isomorphic to $\Cd$.
+\end{proposition}
+
+\begin{proof}
+The first statement is Proposition~\ref{prop:boolean-cube} applied coordinatewise. The second statement is Corollary~\ref{cor:ideal-chain-identification} applied coordinatewise.
+\end{proof}
+
+\begin{theorem}\label{thm:sheafified-chain-cube}
+There are canonical morphisms of sheaves of posets
+\[
+L_D:\Bd\to \Cd,
+\qquad
+i_D:\Cd\to \Bd,
+\qquad
+R_D:\Bd\to \Cd,
+\]
+obtained coordinatewise from $L_{m_x}$, $i_{m_x}$, and $R_{m_x}$. On each stalk,
+\[
+(L_D)_x\dashv (i_D)_x\dashv (R_D)_x.
+\]
+Thus the classical ideal-chain sheaf is simultaneously a reflective and a coreflective subobject of the Boolean cube sheaf.
+\end{theorem}
+
+\begin{proof}
+Coordinatewise application of Theorem~\ref{thm:chain-cube} commutes with restrictions because all restriction maps are coordinate projections.
+\end{proof}
+
+\section{Enhanced jets, terminal lines, and Boolean support maps}
+
+\subsection{Ordinary and enhanced jets}
+
+\begin{definition}
+For each $x\in Z$, define
+\[
+J_x:=\cO_{X,x}/\mathfrak m_x^{m_x},
+\qquad
+K_x:=\cO_{X,x}/\mathfrak m_x^{m_x+1}.
+\]
+Let $\epsx$ denote the class of $t^{m_x}$ in $K_x$ for any centred local coordinate $t$ at $x$, and set
+\[
+L_x:=\CC\,\epsx\subset K_x.
+\]
+Because $t^{m_x}$ is determined up to multiplication by a unit, $L_x$ is intrinsic.
+Define sheaves of $\CC$-vector spaces on $X$ by
+\[
+\Jd(U):=\prod_{x\in U\cap Z}J_x,
+\qquad
+\Kd(U):=\prod_{x\in U\cap Z}K_x,
+\qquad
+\Ld(U):=\prod_{x\in U\cap Z}L_x.
+\]
+Define also the enhanced Boolean sheaf
+\[
+\Vplusd(U):=\prod_{x\in U\cap Z}A^{m_x+1}
+\]
+in $\mathbf{Sh}(X,\PtSet)$.
+\end{definition}
+
+\begin{proposition}\label{prop:stalks-jets}
+The sheaves $\Jd$, $\Kd$, and $\Ld$ are sheaves of $\CC$-vector spaces supported on $Z$, with stalks
+\[
+(\Jd)_x\cong J_x,
+\qquad
+(\Kd)_x\cong K_x,
+\qquad
+(\Ld)_x\cong L_x
+\qquad (x\in Z),
+\]
+and one-point stalks away from $Z$. Moreover, for each $x\in Z$ there is a short exact sequence of vector spaces
+\[
+0\longrightarrow L_x\longrightarrow K_x\xrightarrow{q_x}J_x\longrightarrow 0,
+\]
+where $q_x$ is the natural quotient map.
+\end{proposition}
+
+\begin{proof}
+The stalk statement is proved exactly as in Proposition~\ref{prop:stalks-VA}. The quotient map $q_x$ is surjective by definition. Its kernel consists of classes of multiples of $t^{m_x}$ modulo $t^{m_x+1}$, which is precisely the line $L_x$.
+\end{proof}
+
+\begin{corollary}\label{cor:jets-exact-seq}
+In $\mathbf{Sh}(X,\VectC)$ there is a short exact sequence
+\[
+0\longrightarrow \Ld\longrightarrow \Kd\xrightarrow{q_D}\Jd\longrightarrow 0.
+\]
+Consequently, if $D\neq 0$, then $\Kd\not\cong \Jd$ in $\mathbf{Sh}(X,\VectC)$.
+\end{corollary}
+
+\begin{proof}
+Exactness is verified on stalks by Proposition~\ref{prop:stalks-jets}. If $x\in Z$, then
+\[
+\dim_\CC (\Kd)_x=m_x+1\neq m_x=\dim_\CC(\Jd)_x,
+\]
+so the stalks are not isomorphic.
+\end{proof}
+
+\subsection{Boolean support maps}
+
+\begin{definition}
+Fix $x\in Z$ and choose a centred local coordinate $t$.
+Write
+\[
+\alpha=\sum_{r=0}^{m_x-1} c_r t^r\in J_x,
+\qquad
+\beta=\sum_{r=0}^{m_x} d_r t^r\in K_x.
+\]
+Define pointed-set maps
+\[
+\sigma_x:J_x\to A^{m_x},
+\qquad
+\kappa_x:K_x\to A^{m_x+1}
+\]
+by declaring the $(r+1)$st coordinate to be $0$ if the coefficient $c_r$ or $d_r$ is nonzero and $\taup$ otherwise.
+\end{definition}
+
+\begin{proposition}\label{prop:support-retractions}
+For every $x\in Z$, the maps $\sigma_x$ and $\kappa_x$ are surjective and admit sections
+\[
+\iota_x:A^{m_x}\to J_x,
+\qquad
+\widetilde\iota_x:A^{m_x+1}\to K_x,
+\]
+where
+\[
+\iota_x(a_1,\dots,a_{m_x})=
+\sum_{\{r+1\, :\, a_{r+1}=0\}} t^r,
+\]
+and similarly for $\widetilde\iota_x$. Consequently there are sheaf morphisms in $\mathbf{Sh}(X,\PtSet)$
+\[
+\sigma_D:\Jd\to\Vd,
+\qquad
+\iota_D:\Vd\to\Jd,
+\qquad
+\sigma_D\circ\iota_D=\id_{\Vd},
+\]
+and
+\[
+\kappa_D:\Kd\to\Vplusd,
+\qquad
+\widetilde\iota_D:\Vplusd\to\Kd,
+\qquad
+\kappa_D\circ\widetilde\iota_D=\id_{\Vplusd}.
+\]
+\end{proposition}
+
+\begin{proof}
+Every subset of the coefficient positions is realized by a polynomial whose corresponding coefficients are $1$ exactly in those positions. This proves surjectivity and gives the displayed sections. The sheaf morphisms are obtained coordinatewise, and compatibility with restrictions is immediate.
+\end{proof}
+
+\begin{remark}
+The maps $\sigma_x$ and $\kappa_x$ are not additive in general. Coefficient cancellation in $J_x$ or $K_x$ destroys additivity. Thus the Boolean support shadow is naturally a pointed-set shadow rather than a semimodule shadow.
+\end{remark}
+
+\begin{theorem}[ordinary jets versus Boolean shadows]\label{thm:J-not-V}
+If $D\neq0$, then
+\[
+\Jd\not\cong \Vd
+\]
+in $\mathbf{Sh}(X,\CMon)$, where $\Jd$ is viewed additively and $\Vd$ has idempotent coordinatewise addition. Their positive relation is the pointed-set retraction of Proposition~\ref{prop:support-retractions}.
+\end{theorem}
+
+\begin{proof}
+Choose $x\in Z$. The additive monoid $A^{m_x}$ is idempotent:
+\[
+u+u=u\qquad \text{for all }u\in A^{m_x}.
+\]
+By contrast, the additive monoid $J_x$ is not idempotent because the class of $1$ satisfies
+\[
+1+1=2\neq 1
+\]
+in characteristic $0$. Idempotence of the entire additive monoid is preserved by isomorphisms in $\CMon$, so the stalks at $x$ are not isomorphic.
+\end{proof}
+
+\subsection{The distinguished terminal section}
+
+\begin{proposition}\label{prop:local-class-general}
+Let $f\in\cO(X)$ be a nonzero holomorphic function with divisor
+\[
+\operatorname{div}(f)=D=\sum_{x\in Z}m_x[x].
+\]
+For each $x\in Z$, the class $[f]_x\in K_x$ of $f$ modulo $\mathfrak m_x^{m_x+1}$ belongs to $L_x\setminus\{0\}$ and generates the minimal nonzero ideal of $K_x$. If $t$ is a centred local coordinate at $x$, then
+\[
+[f]_x=\lambda_x\,\epsx,
+\qquad
+\lambda_x\in\CC^\times,
+\]
+where $\lambda_x$ is the leading coefficient of the Taylor expansion of $f$ in the coordinate $t$.
+\end{proposition}
+
+\begin{proof}
+Since $\ord_x(f)=m_x$, one may write in the discrete valuation ring $\cO_{X,x}$
+\[
+f=u_x t^{m_x}
+\]
+with $u_x$ a unit. Modulo $t^{m_x+1}$ this gives
+\[
+[f]_x=u_x(x)\,t^{m_x}=\lambda_x\epsx,
+\]
+with $\lambda_x=u_x(x)\neq0$. Thus $[f]_x\in L_x\setminus\{0\}$. Because $L_x\cong \mathfrak m_x^{m_x}/\mathfrak m_x^{m_x+1}$ is one-dimensional, every nonzero element of $L_x$ generates the minimal nonzero ideal.
+\end{proof}
+
+\begin{corollary}\label{cor:terminal-atom}
+Under the support map $\kappa_x:K_x\to A^{m_x+1}$,
+\[
+\kappa_x([f]_x)=(\taup,\dots,\taup,0),
+\]
+namely the terminal atom of the enhanced Boolean cube.
+\end{corollary}
+
+\begin{proof}
+In the coordinate expression of Proposition~\ref{prop:local-class-general}, all coefficients of degrees $<m_x$ vanish and the coefficient of degree $m_x$ is nonzero.
+\end{proof}
+
+\section{Compactification and tail fibres}
+
+Let
+\[
+j:\CC\into \PP^1(\CC)
+\]
+be the standard open immersion and let
+\[
+i_\infty:\{\infty\}\into\PP^1(\CC)
+\]
+be the closed immersion.
+
+\begin{definition}
+Let $Z\subset\CC$ be closed, discrete, and infinite, and let $(M_x)_{x\in Z}$ be a family of pointed sets. Define the product sheaf on $\CC$
+\[
+\cF_M(U):=\prod_{x\in U\cap Z} M_x.
+\]
+If $U\subset\PP^1(\CC)$ is open, define $j_!\cF_M(U)$ by
+\begin{itemize}[leftmargin=2em]
+\item $\cF_M(U)$ if $\infty\notin U$;
+\item the subset of finitely supported families in $\cF_M(U\cap\CC)$ if $\infty\in U$.
+\end{itemize}
+Define the tail object
+\[
+\Tail(M):=\Bigl(\prod_{x\in Z} M_x\Bigr)\Big/\sim,
+\]
+where
+\[
+(m_x)\sim(n_x)\iff m_x=n_x\text{ for all but finitely many }x\in Z.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:infty-accumulation}
+Every infinite subset of a closed discrete subset $Z\subset \CC$ accumulates at $\infty$ in $\PP^1(\CC)$.
+\end{lemma}
+
+\begin{proof}
+Every compact subset of $\CC$ meets $Z$ in finitely many points. Hence every infinite subset of $Z$ is unbounded, and every unbounded subset of the one-point compactification accumulates at $\infty$.
+\end{proof}
+
+\begin{theorem}[compactified stalk theorem]\label{thm:compactified-stalks}
+Let $Z\subset\CC$ be closed, discrete, and infinite, let $(M_x)_{x\in Z}$ be a family of pointed sets, and set $\cF:=\cF_M$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item for every $x\in Z$,
+\[
+(j_!\cF)_x\cong (j_*\cF)_x\cong M_x;
+\]
+\item for every $y\in\CC\setminus Z$,
+\[
+(j_!\cF)_y\cong (j_*\cF)_y\cong *;
+\]
+\item at infinity,
+\[
+(j_!\cF)_\infty\cong *,
+\qquad
+(j_*\cF)_\infty\cong \Tail(M).
+\]
+\end{enumerate}
+Consequently, if $\Tail(M)$ is not a singleton, then
+\[
+j_!\cF\not\cong j_*\cF
+\]
+in $\mathbf{Sh}(\PP^1(\CC),\PtSet)$.
+\end{theorem}
+
+\begin{proof}
+If $x\in Z$, choose an open neighbourhood $U\subset \CC$ with $U\cap Z=\{x\}$. Then both $j_!\cF$ and $j_*\cF$ restrict on every sufficiently small neighbourhood of $x$ to the constant sheaf with value $M_x$, so both stalks are $M_x$.
+
+If $y\in \CC\setminus Z$, choose $U\subset\CC$ with $U\cap Z=\varnothing$. Then both stalks are singletons.
+
+Now let us consider $\infty$. A section of $j_!\cF$ over a neighbourhood $U\ni\infty$ has finite support in $U\cap Z$. Shrinking $U$ to remove that finite set kills the section. Hence every germ at $\infty$ is the basepoint germ.
+
+For $j_*\cF$, a germ at $\infty$ is represented by a family on $U\cap Z$, where $U\cap Z$ is cofinite in $Z$ by Lemma~\ref{lem:infty-accumulation}. Extending by basepoints outside $U\cap Z$ identifies such a family with an element of $\prod_{x\in Z}M_x$. Two such representatives define the same germ exactly when they agree on some smaller neighbourhood of $\infty$, equivalently when they differ only on finitely many indices. Thus the stalk is $\Tail(M)$.
+
+If $\Tail(M)$ is nontrivial, the stalks at $\infty$ differ, so the sheaves cannot be isomorphic.
+\end{proof}
+
+\begin{definition}
+Let $(V_x)_{x\in Z}$ be a family of $\CC$-vector spaces indexed by a closed discrete infinite subset $Z\subset\CC$. Define
+\[
+\cF_V(U):=\prod_{x\in U\cap Z}V_x
+\]
+for open $U\subset\CC$, and set
+\[
+T_V:=\Bigl(\prod_{x\in Z}V_x\Bigr)\Big/\Bigl(\bigoplus_{x\in Z}V_x\Bigr).
+\]
+\end{definition}
+
+\begin{theorem}[vector-space tail exact sequence]\label{thm:vector-tail}
+There is a short exact sequence of sheaves of $\CC$-vector spaces on $\PP^1(\CC)$,
+\[
+0\longrightarrow j_!\cF_V\longrightarrow j_*\cF_V\longrightarrow i_{\infty *}T_V\longrightarrow 0.
+\]
+Moreover,
+\[
+H^q\!\left(\PP^1(\CC),j_!\cF_V\right)=0\qquad (q\ge1),
+\]
+and
+\[
+T_V\cong \Gamma\!\left(\PP^1(\CC),j_*\cF_V\right)\Big/\Gamma\!\left(\PP^1(\CC),j_!\cF_V\right).
+\]
+\end{theorem}
+
+\begin{proof}
+If $U\subset\PP^1(\CC)$ does not contain $\infty$, then $j_!\cF_V(U)=j_*\cF_V(U)$, so the quotient sheaf is zero there. If $U$ contains $\infty$, then
+\[
+j_*\cF_V(U)=\prod_{x\in U\cap Z}V_x,
+\qquad
+j_!\cF_V(U)=\bigoplus_{x\in U\cap Z}V_x.
+\]
+Because $U\cap Z$ is cofinite in $Z$, extension by zero on the finite complement identifies the quotient with $T_V$. This proves exactness.
+
+The sheaf $j_*\cF_V$ is flabby because every restriction map is a coordinate projection between products, hence surjective. The skyscraper $i_{\infty *}T_V$ is also flabby. The long exact sequence in cohomology therefore gives $H^q(\PP^1(\CC),j_!\cF_V)=0$ for $q\ge2$ and an exact segment
+\[
+0\to \Gamma(j_!\cF_V)\to \Gamma(j_*\cF_V)\to T_V\to H^1(\PP^1(\CC),j_!\cF_V)\to 0.
+\]
+Now
+\[
+\Gamma(j_*\cF_V)=\prod_{x\in Z}V_x,
+\qquad
+\Gamma(j_!\cF_V)=\bigoplus_{x\in Z}V_x,
+\]
+so the quotient map is by definition surjective onto $T_V$. Hence $H^1(\PP^1(\CC),j_!\cF_V)=0$ as well.
+\end{proof}
+
+\section{The zeta and completed zeta divisors}
+
+\subsection{The zero sets}
+
+\begin{definition}
+Let
+\[
+D_\zeta:=\sum_{\rho: \zeta(\rho)=0} m_\rho[\rho]
+\]
+be the zero divisor of the Riemann zeta function, and let
+\[
+D_\xi:=\sum_{\rho: \xi(\rho)=0} m_\rho[\rho]
+\]
+be the zero divisor of the completed zeta function. Thus $D_\xi$ is the divisor of nontrivial zeros.
+\end{definition}
+
+\begin{lemma}\label{lem:zeta-discrete}
+The support of $D_\zeta$ is a closed discrete subset of $\CC$, and each multiplicity $m_\rho$ is finite and positive. The support of $D_\xi$ is also closed and discrete.
+\end{lemma}
+
+\begin{proof}
+The zeta function is meromorphic on $\CC$ with a unique pole at $1$, so it is holomorphic on $\CC\setminus\{1\}$. Since it is not identically zero on any connected open subset, the identity theorem implies that its zeros cannot accumulate in $\CC\setminus\{1\}$. Because $1$ is not a zero, the support is closed and discrete in all of $\CC$. Finite positive multiplicity follows from the local factorization theorem for holomorphic functions.
+
+The completed zeta function $\xi$ is entire, so the same argument applies to its zero set.
+\end{proof}
+
+\begin{corollary}\label{cor:zeta-shadow-sheaves}
+The divisors $D_\zeta$ and $D_\xi$ determine Boolean multiplicity sheaves $\Vz$ and $\Vxi$, reduced shadows $\Az$ and $\Ad|_{D_\xi}$, chain sheaves $\Cz$ and $\Cxi$, and jet sheaves $\Jz$, $\Kz$, and $\Lz$.
+\end{corollary}
+
+\subsection{The distinguished zeta jet}
+
+\begin{theorem}[the local zeta class]\label{thm:local-zeta-class}
+For each zero $\rho$ of $\zeta$, the class of $\zeta$ in
+\[
+K_\rho:=\CC[s]/(s-\rho)^{m_\rho+1}
+\]
+has the form
+\[
+[\zeta]_\rho=\lambda_\rho\,\epsrho,
+\qquad
+\lambda_\rho:=\frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}\neq 0.
+\]
+Consequently $[\zeta]_\rho$ generates the terminal line $L_\rho$ and
+\[
+\kappa_\rho([\zeta]_\rho)=(\taup,\dots,\taup,0).
+\]
+\end{theorem}
+
+\begin{proof}
+This is Proposition~\ref{prop:local-class-general} in the global coordinate $s$ on $\CC$. The coefficient $\lambda_\rho$ is the leading Taylor coefficient of $\zeta$ at $\rho$, and the final statement is Corollary~\ref{cor:terminal-atom}.
+\end{proof}
+
+\begin{corollary}
+At every zero $\rho$ of $\zeta$ one has
+\[
+F_1(\rho)=-1,
+\qquad
+\Fix_S(F_1(\rho))=A,
+\qquad
+(\Vz)_\rho\cong A^{m_\rho}.
+\]
+The reduced zeta shadow is a canonical split retract of the multiplicity shadow.
+\end{corollary}
+
+\begin{proof}
+Combine Corollary~\ref{cor:zeta-pointwise}, Corollary~\ref{cor:shadow-stalks}, and Proposition~\ref{prop:split-retract}.
+\end{proof}
+
+\subsection{Packet descent for the completed zeta function}
+
+\begin{definition}
+Let
+\[
+c(s):=\overline s,
+\qquad
+w(s):=1-s,
+\qquad
+W:=\{\mathrm{id},c,w,cw\}\cong C_2\times C_2.
+\]
+Let
+\[
+Y_\xi:=|D_\xi|/W
+\]
+be the orbit space of nontrivial zero packets. Since $|D_\xi|$ is discrete, $Y_\xi$ is discrete as well. For an orbit $O\in Y_\xi$, write $m_O$ for the common multiplicity of its points.
+
+Define the Boolean packet sheaf and the chain packet sheaf by
+\[
+\mathcal P_\xi^{\Vd}(U):=\prod_{O\in U} A^{m_O},
+\qquad
+\mathcal P_\xi^{\Cd}(U):=\prod_{O\in U} C_{m_O},
+\]
+for open sets $U\subset Y_\xi$.
+\end{definition}
+
+\begin{lemma}\label{lem:xi-symmetry-multiplicity}
+If $\rho$ is a zero of $\xi$, then $\overline\rho$, $1-\rho$, and $1-\overline\rho$ are also zeros of $\xi$, and all four points occur with the same multiplicity.
+\end{lemma}
+
+\begin{proof}
+The functional equation $\xi(1-s)=\xi(s)$ gives the reflection symmetry. The Dirichlet series for $\zeta$ has real coefficients on $\Re(s)>1$, so $\overline{\zeta(\overline s)}=\zeta(s)$ there, and analytic continuation gives the same relation meromorphically on all of $\CC$. The elementary prefactor in $\xi$ is also conjugation-compatible, so $\overline{\xi(\overline s)}=\xi(s)$. Therefore zeros are preserved by conjugation.
+
+Multiplicities are preserved because both symmetries are biholomorphic or antiholomorphic automorphisms with nonzero local derivative.
+\end{proof}
+
+\begin{theorem}[packet descent]\label{thm:packet-descent}
+Let $q:|D_\xi|\to Y_\xi$ be the quotient map. The group $W$ acts naturally on the sheaves $\Vxi$ and $\Cxi$. For each orbit $O\in Y_\xi$ of cardinality $r_O$, the stalk of $q_*\Vxi$ at $O$ is canonically
+\[
+(q_*\Vxi)_O\cong (A^{m_O})^{r_O},
+\]
+and its $W$-fixed subsemimodule is the diagonal copy of $A^{m_O}$. Hence
+\[
+(q_*\Vxi)^W\cong \mathcal P_\xi^{\Vd}.
+\]
+Likewise,
+\[
+(q_*\Cxi)_O\cong (C_{m_O})^{r_O},
+\qquad
+(q_*\Cxi)^W\cong \mathcal P_\xi^{\Cd}.
+\]
+Thus both the Boolean multiplicity sheaf and the ideal-chain sheaf descend to honest packet sheaves on the orbit space.
+\end{theorem}
+
+\begin{proof}
+Because $Y_\xi$ is discrete, the stalk of $q_*\Vxi$ at an orbit $O$ is the product of the stalks over the points of that orbit. Lemma~\ref{lem:xi-symmetry-multiplicity} gives the common multiplicity $m_O$, so
+\[
+(q_*\Vxi)_O\cong \prod_{\rho\in O} A^{m_O}\cong (A^{m_O})^{r_O}.
+\]
+The group $W$ acts by permuting the $r_O$ factors transitively. An element of $(A^{m_O})^{r_O}$ is invariant under this permutation action if and only if all coordinates are equal. Thus the invariant subsemimodule is the diagonal copy of $A^{m_O}$. Since the orbit space is discrete, these diagonal stalks assemble into the sheaf $\mathcal P_\xi^{\Vd}$.
+
+The proof for the chain packet sheaf is identical, replacing $A^{m_O}$ by $C_{m_O}$.
+\end{proof}
+
+\begin{remark}
+If the Riemann hypothesis holds, the $W$-orbits of nontrivial zeros have cardinality $2$. Off the critical line the orbit size is $4$. The packet descent theorem does not depend on either alternative.
+\end{remark}
+
+\subsection{Compactified zeta tails}
+
+\begin{theorem}\label{thm:zeta-tail}
+The zeta shadow sheaf satisfies
+\[
+j_!\Vz\not\cong j_*\Vz
+\]
+in $\mathbf{Sh}(\PP^1(\CC),\PtSet)$. The tail fibre at $\infty$ is nontrivial. Likewise, the family of local zeta classes $([\zeta]_\rho)_\rho$ defines a canonical nonzero element of the vector-space tail object attached to $\Kz$.
+\end{theorem}
+
+\begin{proof}
+The zero set of $\zeta$ is infinite because it contains the trivial zeros $-2,-4,-6,\dots$. For each $\rho$, the stalk $(\Vz)_\rho\cong A^{m_\rho}$ contains a nonbasepoint element. The everywhere-nonbasepoint family therefore defines a nontrivial element of the Boolean tail object, so Theorem~\ref{thm:compactified-stalks} gives $j_!\Vz\not\cong j_*\Vz$.
+
+For the jet tail, Theorem~\ref{thm:local-zeta-class} shows that $[\zeta]_\rho\neq0$ for every zero $\rho$. Since there are infinitely many zeros, the family $([\zeta]_\rho)_\rho$ lies in the product $\prod_\rho K_\rho$ but not in the direct sum $\bigoplus_\rho K_\rho$. Hence it determines a nonzero tail class.
+\end{proof}
+
+\subsection{Trivial zeros and exact weights}
+
+\begin{proposition}\label{prop:trivial-simple}
+For every integer $n\geq1$, the trivial zero $-2n$ of $\zeta$ is simple.
+\end{proposition}
+
+\begin{proof}
+The functional equation reads
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s).
+\]
+At $s=-2n$, the factors $2^s$, $\pi^{s-1}$, and $\Gamma(1-s)=\Gamma(1+2n)$ are holomorphic and nonzero, and $\zeta(1-s)=\zeta(2n+1)\neq0$ because $2n+1>1$. The only vanishing factor is $\sin(\pi s/2)$, whose derivative at $s=-2n$ is
+\[
+\frac{d}{ds}\sin\!\left(\frac{\pi s}{2}\right)\Big|_{s=-2n}=\frac\pi2\cos(-n\pi)=\frac\pi2(-1)^n\neq0.
+\]
+Thus the zero is simple.
+\end{proof}
+
+\begin{proposition}\label{prop:trivial-derivative-formula}
+For every integer $n\geq1$,
+\[
+\zeta'(-2n)=(-1)^n\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+\end{proposition}
+
+\begin{proof}
+Differentiate the functional equation from the proof of Proposition~\ref{prop:trivial-simple}. At $s=-2n$ only the derivative of the sine factor contributes, because the sine factor itself vanishes there and the remaining factors are holomorphic. Hence
+\[
+\zeta'(-2n)=2^{-2n}\pi^{-2n-1}\Gamma(1+2n)\zeta(2n+1)\cdot \frac\pi2(-1)^n.
+\]
+Since $\Gamma(1+2n)=(2n)!$, this simplifies to the stated formula.
+\end{proof}
+
+\begin{theorem}[canonical Boolean weight at a trivial zero]\label{thm:boolean-weight}
+For each trivial zero $-2n$, the reduced stalk is $A=\{0,\taup\}$. Define
+\[
+\operatorname{wt}_{-2n}(\taup):=0,
+\qquad
+\operatorname{wt}_{-2n}(0):=|\zeta'(-2n)|.
+\]
+Then
+\[
+\operatorname{wt}_{-2n}(0)=\frac{(2n)!}{2(2\pi)^{2n}}\,\zeta(2n+1).
+\]
+Thus the unique nonbasepoint of the trivial Boolean stalk carries the exact analytic size of the local zeta germ.
+\end{theorem}
+
+\begin{proof}
+Combine Propositions~\ref{prop:trivial-simple} and \ref{prop:trivial-derivative-formula}. The positivity of $\zeta(2n+1)$ makes the displayed quantity nonnegative.
+\end{proof}
+
+\section{Phase coordinates and orthogonal-walk expansions}\label{sec:phase-coordinates}
+
+This section records an additional layer of structure on the simple-zero locus. The constructions in this section are adapted from unpublished 2026 notes of Jacolm Tobley on arctangent factorization, orthogonal-walk expansions, and cyclotomic phase sliders; the proofs below are written independently.
+
+\subsection{Packet phases for simple zeros of the completed zeta function}
+
+\begin{definition}
+Let $Z_\xi^{\mathrm{sm}}\subset |D_\xi|$ denote the set of simple zeros of $\xi$. For $\rho\in Z_\xi^{\mathrm{sm}}$, define
+\[
+\mu_\rho:=\xi'(\rho)\in\CC^\times,
+\qquad\nu_\rho:=\frac{\mu_\rho}{|\mu_\rho|}\in S^1.
+\]
+We call $\nu_\rho$ the phase of the simple packet coefficient at $\rho$.
+\end{definition}
+
+\begin{proposition}\label{prop:xi-phase-symmetry}
+If $\rho\in Z_\xi^{\mathrm{sm}}$, then
+\[
+\mu_{\overline\rho}=\overline{\mu_\rho},
+\qquad
+\mu_{1-\rho}=-\mu_\rho,
+\qquad
+\mu_{1-\overline\rho}=-\overline{\mu_\rho}.
+\]
+Consequently,
+\[
+\nu_{\overline\rho}=\overline{\nu_\rho},
+\qquad
+\nu_{1-\rho}=-\nu_\rho,
+\qquad
+\nu_{1-\overline\rho}=-\overline{\nu_\rho}.
+\]
+Thus the phase on a simple $W$-packet is determined by one representative.
+\end{proposition}
+
+\begin{proof}
+From $\overline{\xi(\overline s)}=\xi(s)$ we obtain by differentiation and then evaluation at $s=\rho$:
+\[
+\overline{\xi'(\overline\rho)}=\xi'(\rho),
+\]
+which is equivalent to $\mu_{\overline\rho}=\overline{\mu_\rho}$.
+
+From the functional equation $\xi(1-s)=\xi(s)$ we obtain by differentiation
+\[
+-\xi'(1-s)=\xi'(s).
+\]
+Evaluating at $s=\rho$ gives $\mu_{1-\rho}=-\mu_\rho$. Combining reflection and conjugation yields the third identity. Dividing by absolute values gives the phase relations.
+\end{proof}
+
+\subsection{Real normalized linear factors}
+
+\begin{proposition}[normalized linear-factor identity]\label{prop:real-factor}
+For real numbers $\alpha_1,\dots,\alpha_n$ one has
+\[
+\prod_{k=1}^n \frac{1+i\alpha_k}{\sqrt{1+\alpha_k^2}}
+=\exp\!\left(i\sum_{k=1}^n \arctan \alpha_k\right).
+\]
+Equivalently, each factor is the unit complex number of angle $\arctan\alpha_k$.
+\end{proposition}
+
+\begin{proof}
+For a single real number $\alpha$,
+\[
+\frac{1+i\alpha}{\sqrt{1+\alpha^2}}
+=\cos(\arctan\alpha)+i\sin(\arctan\alpha)
+=e^{i\arctan\alpha}.
+\]
+Multiplying the identities for $k=1,\dots,n$ proves the formula.
+\end{proof}
+
+\begin{corollary}\label{cor:all-phases-real-factors}
+Every $u\in S^1$ admits a finite factorization of the form
+\[
+u=\prod_{k=1}^n \frac{1+i\alpha_k}{\sqrt{1+\alpha_k^2}}
+\qquad (\alpha_k\in\RR).
+\]
+One may choose the angles $\arctan\alpha_k$ arbitrarily, subject only to having sum equal to an argument of $u$.
+\end{corollary}
+
+\begin{proof}
+Choose $\theta\in(-\pi,\pi]$ with $u=e^{i\theta}$. Write $\theta=\theta_1+\cdots+\theta_n$ with each $\theta_k\in(-\pi/2,\pi/2)$; for example, if $\theta\neq \pi$, one may take $n=2$ and $\theta_1=\theta_2=\theta/2$, while for $\theta=\pi$ one may take $n=4$ and $\theta_k=\pi/4$. Set $\alpha_k:=\tan\theta_k$. Proposition~\ref{prop:real-factor} gives the required factorization.
+\end{proof}
+
+\begin{proposition}[orthogonal-walk expansion]\label{prop:orthogonal-walk}
+Let $e_j=e_j(\alpha_1,\dots,\alpha_n)$ denote the elementary symmetric polynomials. Then
+\[
+\prod_{k=1}^n (1+i\alpha_k)=\sum_{j=0}^n i^j e_j
+= A+iB,
+\]
+where
+\[
+A=\sum_{j\geq 0}(-1)^j e_{2j},
+\qquad
+B=\sum_{j\geq 0}(-1)^j e_{2j+1}.
+\]
+Hence the partial sums
+\[
+S_r:=\sum_{j=0}^r i^j e_j
+\]
+form a finite axis-aligned walk in $\CC$: even increments are horizontal and odd increments are vertical. If $A\neq 0$, then
+\[
+\tan\!\left(\sum_{k=1}^n \arctan\alpha_k\right)=\frac{B}{A}.
+\]
+\end{proposition}
+
+\begin{proof}
+Expanding the product chooses either $1$ or $i\alpha_k$ from each factor. The degree-$j$ contribution is therefore $i^j e_j$, proving the first formula. The expressions for $A$ and $B$ follow by separating even and odd powers of $i$. The axis-aligned description is immediate from the fact that $i^{2j}=(-1)^j$ is real and $i^{2j+1}=i(-1)^j$ is purely imaginary.
+
+By Proposition~\ref{prop:real-factor},
+\[
+\frac{A+iB}{\sqrt{A^2+B^2}}
+=\prod_{k=1}^n \frac{1+i\alpha_k}{\sqrt{1+\alpha_k^2}}
+=e^{i\sum_k \arctan\alpha_k}.
+\]
+Whenever $A\neq0$, taking the quotient of imaginary and real parts gives the tangent formula.
+\end{proof}
+
+\subsection{Cyclotomic affine phase sliders}
+
+\begin{proposition}[cyclotomic slider]\label{prop:cyclotomic-slider}
+Let $p$ be an odd prime, let $\zeta_p:=e^{2\pi i/p}$, and let $u\in\{1,\dots,(p-1)/2\}$. Set
+\[
+\phi_u:=\frac{2\pi u}{p},
+\qquad
+L_{u,p}(t):=1+t\zeta_p^u
+\qquad (t>0).
+\]
+Then
+\[
+\Arg L_{u,p}(t)=\arctan\!\left(\frac{t\sin\phi_u}{1+t\cos\phi_u}\right),
+\qquad
+|L_{u,p}(t)|=\sqrt{1+2t\cos\phi_u+t^2}.
+\]
+Moreover,
+\[
+\frac{d}{dt}\Arg L_{u,p}(t)=\frac{\sin\phi_u}{1+2t\cos\phi_u+t^2}>0,
+\]
+so $\Arg L_{u,p}(t)$ increases strictly from $0$ to $\phi_u$ as $t$ runs from $0$ to $\infty$. For every $\theta\in(0,\phi_u)$, the choice
+\[
+t=\frac{\tan\theta}{\sin\phi_u-\tan\theta\cos\phi_u}
+\]
+satisfies
+\[
+\frac{L_{u,p}(t)}{|L_{u,p}(t)|}=e^{i\theta}.
+\]
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+L_{u,p}(t)=1+t(\cos\phi_u+i\sin\phi_u).
+\]
+The formulas for the argument and modulus follow from the real and imaginary parts. Differentiating the argument formula yields the displayed derivative. Since $0<\phi_u<\pi$, one has $\sin\phi_u>0$, and the denominator is $|L_{u,p}(t)|^2>0$.
+
+Finally, if $\theta\in(0,\phi_u)$ and $t$ is chosen by the displayed formula, then solving the equation
+\[
+\tan\theta=\frac{t\sin\phi_u}{1+t\cos\phi_u}
+\]
+for $t$ gives exactly that expression, hence $\Arg L_{u,p}(t)=\theta$.
+\end{proof}
+
+\begin{corollary}[phase coordinates on simple packets]\label{cor:phase-coordinates}
+Let $\rho\in Z_\xi^{\mathrm{sm}}$ and let $\nu_\rho\in S^1$ be the phase of the simple packet coefficient. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $\nu_\rho$ admits a finite real normalized linear-factor representation of the form in Corollary~\ref{cor:all-phases-real-factors};
+\item if a chosen argument $\theta_\rho$ of $\nu_\rho$ lies in an interval $(0,\phi_u)$ as in Proposition~\ref{prop:cyclotomic-slider}, then $\nu_\rho$ admits a one-factor affine cyclotomic representation
+\[
+\nu_\rho=\frac{1+t\zeta_p^u}{|1+t\zeta_p^u|}
+\]
+with $t$ given explicitly by Proposition~\ref{prop:cyclotomic-slider}.
+\end{enumerate}
+In both cases the remaining phases in the $W$-packet are obtained from $\nu_\rho$ by sign and complex conjugation as in Proposition~\ref{prop:xi-phase-symmetry}.
+\end{corollary}
+
+\begin{proof}
+Part~(i) is Corollary~\ref{cor:all-phases-real-factors}. Part~(ii) is Proposition~\ref{prop:cyclotomic-slider}. The packet transformation law is Proposition~\ref{prop:xi-phase-symmetry}.
+\end{proof}
+
+\section{Blueprint realization}\label{sec:blueprints}
+
+\begin{definition}
+Let $R$ be a commutative semiring. Its associated blueprint in the sense of Lorscheid is the pair
+\[
+B(R)=A_R//\mathcal R_R,
+\]
+where $A_R$ is the underlying multiplicative monoid of $R$ and $\mathcal R_R$ is the pre-addition generated by all relations
+\[
+a+b\equiv c\qquad\text{whenever }a+b=c\text{ in }R.
+\]
+\end{definition}
+
+\begin{proposition}\label{prop:blueprint-embedding}
+For commutative semirings $R$ and $R'$, every semiring morphism $f:R\to R'$ induces a blueprint morphism $B(R)\to B(R')$, and every blueprint morphism $B(R)\to B(R')$ arises uniquely in this way. Thus the assignment $R\mapsto B(R)$ is a fully faithful embedding of commutative semirings into blueprints.
+\end{proposition}
+
+\begin{proof}
+A semiring morphism is multiplicative and preserves every additive relation $a+b=c$, hence it induces a blueprint morphism.
+
+Conversely, let $g:B(R)\to B(R')$ be a blueprint morphism. By definition, $g$ is multiplicative on the underlying monoids and preserves the pre-addition. Therefore, whenever $a+b=c$ in $R$, the relation $a+b\equiv c$ in $B(R)$ is sent to the relation $g(a)+g(b)\equiv g(c)$ in $B(R')$. Because $B(R')$ is the blueprint attached to a semiring, this means exactly that
+\[
+g(a)+g(b)=g(c)
+\]
+in $R'$. Hence $g$ preserves semiring addition as well as multiplication, so it is a semiring morphism. Uniqueness is immediate.
+\end{proof}
+
+\begin{corollary}
+The coefficient semirings $S=G(\ZZ)$ and $A=\{0,\taup\}$ admit canonical blueprint realizations. All semiring morphisms used in this paper, including the fixed-locus inclusion and the split retractions between $\Vd$ and $\Ad$, induce unique blueprint morphisms. Thus the split-zero divisor package sits canonically inside blueprint geometry.
+\end{corollary}
+
+\begin{proof}
+Apply Proposition~\ref{prop:blueprint-embedding} to the semirings and semiring morphisms in question.
+\end{proof}
+
+\section{Conclusion}
+
+The pointwise split-zero statement for zeta zeros is elementary:
+\[
+\zeta(\rho)=0\implies F_1(\rho)=-1\implies \Fix_{G(\ZZ)}(F_1(\rho))=\{0,\taup\}.
+\]
+The content begins only after one packages the divisor globally and compares the resulting objects in the correct categories.
+
+The package obtained here has six components.
+\begin{enumerate}[label=(\roman*)]
+\item The Boolean multiplicity sheaf $\Vd$, obtained as the sheafification of the finite-support presheaf $\Pd$.
+\item The reduced shadow $\Ad$, which is a canonical split retract of $\Vd$, and coincides with it exactly when all multiplicities are one.
+\item The classical local Artin ring $Q_{x,m}$ and its ideal-chain sheaf $\Cd$, compared to the Boolean cube sheaf by the biadjoint relation $L_m\dashv i_m\dashv R_m$.
+\item The enhanced jet, ordinary jet, and terminal-line sheaves $\Kd$, $\Jd$, and $\Ld$, together with the Boolean support retractions in pointed sets.
+\item The compactified tail fibre at $\infty$, which measures the difference between $j_!$ and $j_*$ and produces a canonical nonzero tail class for the zeta jet.
+\item The packet descent and phase coordinates on the nontrivial simple-zero locus of the completed zeta function.
+\end{enumerate}
+
+The result is a category-correct relation between Boolean shadows and classical nonreduced geometry. The Boolean cube is not the Artin thickening. The precise comparison is sheafification on the Boolean side, a chain of ideals on the classical side, a biadjoint chain-cube theorem between them, and a compactified tail fibre that survives globally. On the analytic side, the local zeta jet selects the terminal line, the trivial-zero stalk carries the exact weight $|\zeta'(-2n)|$, and the simple packet coefficient has explicit real and cyclotomic phase coordinates.
+
+\begin{thebibliography}{99}
+
+\bibitem{DrosteKuichVogler}
+M.~Droste, W.~Kuich, and H.~Vogler (eds.),
+\emph{Handbook of Weighted Automata},
+Springer, Berlin, 2009.
+
+\bibitem{GaubertKatz}
+S.~Gaubert and R.~Katz,
+\emph{Rational semimodules over the max-plus semiring and geometric approach of discrete event systems},
+arXiv:math/0208014, 2002.
+
+\bibitem{GrothendieckEGAII}
+A.~Grothendieck,
+\emph{\'El\'ements de g\'eom\'etrie alg\'ebrique. II. \`Etude globale \`el\'ementaire de quelques classes de morphismes},
+Publ. Math. IH\'ES \textbf{8} (1961), 5--222.
+
+\bibitem{Gunawardena}
+J.~Gunawardena (ed.),
+\emph{Idempotency},
+Cambridge University Press, Cambridge, 1998.
+
+\bibitem{Hilgert}
+J.~Hilgert,
+\emph{Mathematical Structures: From Linear Algebra over Rings to Geometry with Sheaves},
+Springer, Berlin, 2024.
+
+\bibitem{JarraLorscheidVital}
+M.~Jarra, O.~Lorscheid, and E.~Vital,
+\emph{Quiver matroids, matroid morphisms, quiver Grassmannians, their Euler characteristics and $\mathbb F_1$-points},
+arXiv:2404.09255, version 2, 2026.
+
+\bibitem{Lee}
+J.~M.~Lee,
+\emph{Introduction to Complex Manifolds},
+American Mathematical Society, Providence, RI, 2024.
+
+\bibitem{Lorscheid}
+O.~Lorscheid,
+\emph{The geometry of blueprints. Part I: Algebraic background and scheme theory},
+arXiv:1103.1745, version 2, 2012.
+
+\bibitem{OrecchiaChiantini}
+F.~Orecchia and L.~Chiantini (eds.),
+\emph{Zero-Dimensional Schemes},
+Walter de Gruyter, Berlin, 1994.
+
+\bibitem{Tobley}
+J.~Tobley,
+\emph{Normalized linear-factor phase coordinates, orthogonal-walk expansions, and cyclotomic affine sliders},
+unpublished notes, 2026.
+
+\bibitem{Vakil}
+R.~Vakil,
+\emph{The Rising Sea: Foundations of Algebraic Geometry},
+draft of July 27, 2024.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,3 +1,12 @@
+<!-- heat-literature-observed-class:20260920 -->
+## Heat flow and the observed arithmetic class
+
+This 25-page continuation calculates how the norm of the terminal polynomial class changes after imposing the programme’s original observation map. It evaluates a four-degree norm ratio, compares the same class in the arithmetic and Gamma-weighted metrics, and sharpens a conductor bound. The original zero multiplicities, source maps and complex phases remain in the formulas.
+
+[Read the complete proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/HEAT_LITERATURE_AND_OBSERVED_CLASS.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/HEAT_LITERATURE_AND_OBSERVED_CLASS.tex) · [Results and proof locators](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/NEW_RESULTS_2026-09-20.md) · [Source package](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/README.md) · [Remaining calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/CONTINUATION.md).
+
+The exact uses of Burnol, Connes, Connes–Consani–Moscovici, Polymath, Platt–Trudgian and the cited special-function literature are documented in the proofs. Three complete cumulative LaTeX successors and the preceding proof providers accompany this edition. The remaining calculation is the signed cross product of the original projected vectors; the norm estimates alone do not give its phase or a conclusion about RH.
+
 <!-- original-heat-source-endpoint:20260919 -->
 ## Original heat control and complete source endpoint
 

@@ -1,0 +1,1175 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\M}{\mathcal M}\newcommand{\G}{\mathsf G}
+\newcommand{\U}{\mathsf U}\newcommand{\E}{\mathsf E}
+\DeclareMathOperator{\spec}{spec}\DeclareMathOperator{\Tr}{Tr}
+\title{The original Beurling Gram and reconstructed-source endpoint:\\complete finite maps, constants, and arithmetic boundary}
+\date{19 September 2026}
+\begin{document}\maketitle
+
+\section{Objects, coordinates, and the exact original source}\label{sec:objects}
+All scalar products are conjugate-linear in their first argument. Vectors
+are columns. A star means conjugate transpose; a bar on a matrix means
+entrywise conjugation. Fix the finite divisor from the original source,
+\[
+ h_Z(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\quad
+ d=\sum_{\rho\in Z}m_\rho,\quad 0<\Re\rho<1,
+\]
+where each $\rho$ is an actual nontrivial zero of $\zeta$, and $m_\rho$
+is its full multiplicity. Each occurrence of a right divisor below means
+the restriction to the stipulated members with $\Re\rho>1/2$. The
+statements preserve the divisor; they do not assert existence of an
+additional zero. The original jet coordinate is
+$u_{\rho,j}=[z^j]F(\rho+z)$, $0\le j<m_\rho$. Multiplication by $s$ is
+\[
+ (A_Zu)_{\rho,j}=\rho u_{\rho,j}+u_{\rho,j-1},\qquad u_{\rho,-1}=0.
+ \tag{EG1}\label{eq:jet-action}
+\]
+Thus $A_Z=\bigoplus_\rho(\rho I+J^\downarrow_{m_\rho})$.
+This lower triangular action is retained throughout.
+
+Put $D=-x\partial_x$ and retain precisely
+\[
+ \begin{gathered}
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+ \Theta f(x)=2\sum_{n\ge1}f(nx),\\
+ \Phi(s)=\M\phi_*(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\\
+ g(s)=2\zeta(s)\Phi(s)=2\xi(s).
+ \end{gathered}
+ \tag{EG2}\label{eq:source}
+\]
+The integral defining $\Phi$ converges for $\Re s>-2$. Its displayed
+formula follows by substituting $v=\pi x^2$ in the two Gaussian
+integrals and using $\Gamma(z+1)=z\Gamma(z)$ twice. In particular
+$\Phi(\rho)\ne0$. The polynomial $r_Z(u)$ is the unique polynomial of
+degree $<d$ whose full jets are $j_Z(h_Z/g)u$. This polynomial exists
+uniquely by the finite Chinese remainder theorem: the factors
+$(s-\rho)^{m_\rho}$ are pairwise coprime, and reduction of polynomials
+of degree $<d$ is an isomorphism onto their product. This retains the
+complete local unit $h_Z/g$, not merely its constant term.
+
+Write its proper rational function as
+\[
+ \frac{r_Z(u)(s)}{h_Z(s)}=
+ \sum_{\rho\in Z}\sum_{\ell=1}^{m_\rho}
+                  \frac{v_{\rho,\ell}(u)}{(s-\rho)^\ell}.
+ \tag{EG3}\label{eq:rational-source}
+\]
+The exact reconstructed source is
+\[
+ \psi_u(x)=\sum_{\rho,\ell}v_{\rho,\ell}(u)
+ \frac{x^{-\rho}}{(\ell-1)!}
+ \int_x^\infty\phi_*(y)y^{\rho-1}
+                         (\log(y/x))^{\ell-1}\,dy.
+ \tag{EG4}\label{eq:MI6}
+\]
+This is the original MI6 source, with every primary and the original
+$1/2$ in \eqref{eq:source}. Indeed, for $\Re s>1$, absolute integration
+and the substitution $x=ye^{-t}$ give
+\[
+ \int_0^y x^{s-\rho-1}\frac{(\log(y/x))^{\ell-1}}{(\ell-1)!}\,dx
+       =\frac{y^{s-\rho}}{(s-\rho)^\ell}.
+\]
+Consequently
+\[
+ \M\psi_u(s)=\Phi(s)\frac{r_Z(u)(s)}{h_Z(s)},\qquad
+ \M\Theta\psi_u(s)=g(s)\frac{r_Z(u)(s)}{h_Z(s)}=\M R_Zu(s).
+ \tag{EG5}\label{eq:source-Mellin}
+\]
+All Gaussian tails are absolutely summable, including their divisor
+weighted sums, so Mellin uniqueness and the finite divisor identity
+$\sum_{n\mid k}\mu(n)=\mathbf1_{k=1}$ also give
+$\psi_u=\frac12\sum_{n\ge1}\mu(n)(R_Zu)(n\,\cdot)$.
+Thus \eqref{eq:MI6} is an exact formula for the original reconstruction.
+Fourier/Mellin uniqueness and the retained $1/(2\pi)$ convention are
+as in the transform formulas of \cite{DLMFTransforms}.
+The original zero-integral source condition is preserved as well:
+each singular term is integrable at zero because $\Re\rho<1$, and
+the source decays at infinity. Evaluating its legitimate Mellin
+integral at $s=1$ gives
+$\int_0^\infty\psi_u(x)dx=\Phi(1)r_Z(u)(1)/h_Z(1)=0$.
+
+\begin{proposition}[The entire principal-part map]\label{prop:principal}
+Write $\zeta(\rho+z)=z^{m_\rho}\zeta_\rho(z)$, with
+$\zeta_\rho(0)=\zeta^{(m_\rho)}(\rho)/m_\rho!\ne0$. Define
+\[
+ a_{\rho,j}=[z^{m_\rho-j-1}]
+ \frac{\sum_{l=0}^{m_\rho-1}u_{\rho,l}z^l}{2\zeta_\rho(z)},
+ \qquad a=\U_Zu.\tag{EG6}\label{eq:principal-map}
+\]
+Then $\U_Z$ is invertible, and its exact block determinant is
+\[
+ \det\U_\rho=(-1)^{m_\rho(m_\rho-1)/2}
+                         (2\zeta_\rho(0))^{-m_\rho}.
+ \tag{EG7}\label{eq:det-U}
+\]
+Put $A_{\rm pp}=\bigoplus_\rho(\rho I+J^\uparrow_{m_\rho})$.
+The exact action equation is
+\[
+ \U_ZA_Z=A_{\rm pp}\U_Z.\tag{EG8}\label{eq:U-action}
+\]
+For $0<x<1$, the source is
+\[
+ \psi_u(x)=\sum_{\rho,j}a_{\rho,j}
+                   x^{-\rho}\frac{(-\log x)^j}{j!}+r_u(x),
+ \qquad r_u(x)=O_Z(\|u\|x^2).
+ \tag{EG9}\label{eq:source-singular}
+\]
+The remainder estimate holds for every fixed number of $D$-derivatives.
+\end{proposition}
+\begin{proof}
+The full jet of $\M R_Zu$ at $\rho$ is $u_\rho$ by its defining
+unit. Division by $2\zeta$ in \eqref{eq:source-Mellin} therefore gives
+exactly \eqref{eq:principal-map}. Multiplication by the Taylor series
+of $(2\zeta_\rho)^{-1}$ is lower triangular with diagonal
+$(2\zeta_\rho(0))^{-1}$. Reversing its $m_\rho$ output coefficients
+has determinant $(-1)^{m_\rho(m_\rho-1)/2}$, proving \eqref{eq:det-U}.
+An explicit inverse is
+\[
+ u_{\rho,l}=[z^l]\left(2\zeta_\rho(z)
+                     \sum_{j=0}^{m_\rho-1}a_{\rho,j}z^{m_\rho-j-1}\right).
+\]
+Multiplication of $\sum_j a_{\rho,j}z^{-j-1}$ by $s=\rho+z$
+changes its principal coefficient of $z^{-j-1}$ to
+$\rho a_{\rho,j}+a_{\rho,j+1}$, where $a_{\rho,m_\rho}=0$.
+The discarded constant is holomorphic and has no principal part.
+Since multiplication commutes with the local zeta unit, this proves
+\eqref{eq:U-action} on the original jet space.
+
+For each summand in \eqref{eq:MI6}, replace its lower integration
+limit by zero. Expanding $(\log y-\log x)^{\ell-1}$ gives
+\[
+ \frac{x^{-\rho}}{(\ell-1)!}
+ \sum_{q=0}^{\ell-1}\binom{\ell-1}{q}
+ (-\log x)^{\ell-1-q}\Phi^{(q)}(\rho).
+\]
+These are exactly the Laurent coefficients just calculated. The
+difference is minus the integral from zero to $x$. Substitution
+$y=xv$ shows it is $O(x^2)$, since $\phi_*(xv)=O(x^2v^2)$ and
+$\Re\rho+2>0$. More explicitly, for
+$\phi_*(x)=\sum_{n\ge1}c_{2n}x^{2n}$ it is the convergent series
+\[
+ (-1)^\ell\sum_{n\ge1}\frac{c_{2n}}{(\rho+2n)^\ell}x^{2n}.
+\]
+Termwise $D$-differentiation proves the derivative assertion. The
+Gaussian integral from $x$ to infinity proves rapid decay of
+\eqref{eq:MI6} at infinity. These facts prove every endpoint assertion.
+\end{proof}
+
+\section{The Beurling Gram, its inverse, and its displacement}\label{sec:beurling}
+In this section $Z=Z_+$ is a right divisor. Retain
+\[
+ H_B=L^2((1,\infty),y^{-2}dy),\quad
+ (J_+f)_{\rho,j}=\frac1{j!}\int_1^\infty
+               f(y)(-\log y)^j y^{-\rho-1}\,dy.
+\]
+The representers are $k_{\rho,j}(y)=(-\log y)^j y^{1-\bar\rho}/j!$.
+Changing variables $t=\log y$ gives
+\[
+ \G_{(\rho,j),(\sigma,l)}=\langle k_{\rho,j},k_{\sigma,l}\rangle
+   =\frac{(-1)^{j+l}\binom{j+l}{j}}
+                {(\rho+\bar\sigma-1)^{j+l+1}},\qquad
+ b_{\rho,j}=(J_+1)_{\rho,j}=\frac{(-1)^j}{\rho^{j+1}}.
+ \tag{EG10}\label{eq:Cauchy-Gram}
+\]
+The integration identity used here follows by integrating the
+exponential $j+l$ times by parts; its boundary terms vanish because
+$\Re(\rho+\bar\sigma-1)>0$. The exponential polynomials defining
+the representers are independent. To prove this, fix one exponent
+and apply all the other factors
+$(\partial_t-(1-\bar\sigma))^{m_\sigma}$ to a putative relation.
+They kill the other exponents and act invertibly on the fixed
+polynomial factor: each such factor is a nonzero scalar plus a
+nilpotent derivative. Thus its polynomial must be zero. Repeating
+for each exponent proves independence. Hence $\G=J_+J_+^*>0$.
+
+\begin{theorem}[Complete finite Beurling projection]\label{thm:projection}
+Let
+\[
+ B_Z(s)=\prod_\rho\left(\frac{s-\rho}{s+\bar\rho-1}\right)^{m_\rho},
+ \quad c_Z=\overline{B_Z(1)},\quad
+ S_Z(s)=\frac{1-c_ZB_Z(s)}s,\quad R_Z^B(s)=\frac{c_ZB_Z(s)}s.
+ \tag{EG11}\label{eq:Blaschke}
+\]
+Then the orthogonal decomposition of $1$ into $\operatorname{ran}J_+^*$
+and $\ker J_+$ has respective transforms $S_Z$ and $R_Z^B$, and
+\[
+ b^*\G^{-1}b=1-\prod_{\rho\in Z}
+                   \left|\frac{1-\rho}{\rho}\right|^{2m_\rho}.
+ \tag{EG12}\label{eq:projection-value}
+\]
+For the original Beurling source space
+$V_Q=\operatorname{span}\{\alpha\lfloor y\rfloor-\lfloor\alpha y\rfloor:
+\alpha=a/Q,\ 1\le a<Q\}$, writing $1=s_Z+r_Z$ for that orthogonal
+decomposition, the full error is exactly
+\[
+ \operatorname{dist}(1,V_Q)^2=b^*\G^{-1}b+
+                                      \operatorname{dist}(r_Z,V_Q)^2.
+ \tag{EG13}\label{eq:Beurling-remainder}
+\]
+\end{theorem}
+\begin{proof}
+Use the transform $\mathcal L_Bf(s)=\int_1^\infty f(y)y^{-s-1}dy$.
+For the representer it is $(-1)^j/(s+\bar\rho-1)^{j+1}$.
+For each factor of $B_Z$, direct substitution proves
+$\overline{B_Z(1)}B_Z(0)=1$; on $\Re s=1/2$, numerator and
+denominator have equal modulus. Thus $S_Z$ has no pole at zero and
+has only the displayed left-half-plane poles. It is proper at
+infinity, so its partial fractions are the transforms of a unique
+linear combination of the $k_{\rho,j}$. The coefficients of its
+highest poles are nonzero because $0<\Re\rho<1$ and the right and
+left divisors are disjoint. Hence the full multiplicities remain.
+Define $s_Z$ by these partial fractions and $r_Z=1-s_Z$. Its
+transform is $R_Z^B$, which vanishes at every $\rho$ to the full
+order $m_\rho$. Consequently $J_+r_Z=0$, proving orthogonality.
+
+The map $f\mapsto e^{-t/2}f(e^t)$ is an isometry
+$H_B\to L^2(0,\infty;dt)$. On $s=1/2+i\tau$, its Fourier transform
+is precisely $\mathcal L_Bf(s)$. Plancherel, in this convention,
+gives
+\[
+ \|r_Z\|^2=\frac{|c_Z|^2}{2\pi}
+                  \int_\R\frac{d\tau}{1/4+\tau^2}=|c_Z|^2.
+\]
+The integral is $2\pi$ by the antiderivative $2\arctan(2\tau)$.
+Since $\|1\|^2=1$, this proves \eqref{eq:projection-value}.
+For $F_\alpha=\alpha\lfloor y\rfloor-\lfloor\alpha y\rfloor$,
+integrating the two floor-function step sums first on $\Re s>1$
+gives $\mathcal L_BF_\alpha(s)=\zeta(s)(\alpha-\alpha^s)/s$.
+The boundedness of $F_\alpha$ continues the identity to $\Re s>0$;
+the pole at $1$ is removable. Differentiating through all retained
+orders gives $J_+F_\alpha=0$. Thus $V_Q\subset\ker J_+$, and
+Pythagoras followed by the infimum proves \eqref{eq:Beurling-remainder}.
+The finite-primary projection has the classical context discussed
+by Burnol \cite{Burnol}; its exact value here follows from the
+displayed calculation, without using a complete approximation theorem.
+\end{proof}
+
+For completeness every inverse coefficient is explicit. If $a=\G^{-1}b$,
+then
+\[
+ a_{\rho,j}=\frac{(-1)^j}{(m_\rho-j-1)!}
+ \left[\frac{d^{m_\rho-j-1}}{ds^{m_\rho-j-1}}
+       ((s+\bar\rho-1)^{m_\rho}S_Z(s))\right]_{s=1-\bar\rho}.
+ \tag{EG14}\label{eq:partial-inverse}
+\]
+Here $a$ is a Beurling representer coefficient, distinguished by its
+stated domain from the principal-part coefficient in \eqref{eq:principal-map}.
+For arbitrary jet data $u$, put
+$H(s)=\prod(s-\rho)^{m_\rho}$,
+$D_B(s)=\prod(s+\bar\rho-1)^{m_\rho}$,
+$H_\rho=H/(s-\rho)^{m_\rho}$, and
+$U_\rho(s)=\sum_{j<m_\rho}u_{\rho,j}(s-\rho)^j$. Then
+\[
+ P_u(s)=\sum_\rho H_\rho(s)
+ \operatorname{rem}_{(s-\rho)^{m_\rho}}
+                    \frac{D_B(s)U_\rho(s)}{H_\rho(s)}.
+ \tag{EG15}\label{eq:Hermite-inverse}
+\]
+The remainder means the finite Taylor polynomial of the displayed
+holomorphic germ. Each summand has degree at most $d-1$. Reducing
+at a fixed root kills all the other summands and gives $D_BU_\rho$.
+Since $D_B$ is a unit there, $P_u/D_B$ has exactly the prescribed
+jets. Its proper partial fractions, by \eqref{eq:partial-inverse}
+with $S_Z$ replaced by $P_u/D_B$, give $\G^{-1}u$. This proves
+both its existence and uniqueness without omitting a derivative slot.
+
+\begin{theorem}[Confluent determinant and the exact action defect]
+\label{thm:Cauchy-displacement}
+For any fixed ordering of the distinct roots,
+\[
+ \det\G=
+ \frac{\prod_{\rho<\sigma}|\rho-\sigma|^{2m_\rho m_\sigma}}
+ {\prod_\rho(2\Re\rho-1)^{m_\rho^2}
+  \prod_{\rho<\sigma}|\rho+\bar\sigma-1|^{2m_\rho m_\sigma}}.
+ \tag{EG16}\label{eq:det-Gram}
+\]
+Let $e_{\rho,j}=\mathbf1_{j=0}$ and $H_B^Z=\G^{-1}$. Then
+\begin{align}
+ A_Z\G+\G A_Z^*-\G&=ee^*,\tag{EG17}\label{eq:displacement}\\
+ A_Z^*H_B^Z+H_B^ZA_Z-H_B^Z&=H_B^Zee^*H_B^Z,\tag{EG18}\label{eq:quotient-defect}\\
+ e^*\G^{-1}e&=\sum_\rho m_\rho(2\Re\rho-1).\tag{EG19}\label{eq:defect-value}
+\end{align}
+The relative defect of $H_B^Z$ has exactly this one positive eigenvalue
+and $d-1$ zero eigenvalues.
+\end{theorem}
+\begin{proof}
+The ordinary Cauchy formula is
+\[
+ \det\left[\frac1{x_i+\bar x_j-1}\right]
+ =\frac{\prod_{i<j}|x_i-x_j|^2}{\prod_{i,j}(x_i+\bar x_j-1)}.
+\]
+It is the sign-preserving specialization of \cite[(1.3.14)]{DLMFCauchy}.
+It also follows directly by multiplying by its denominator: the
+result is alternating separately in the row and column variables,
+has exactly the degrees of the two Vandermonde products, and its
+constant is one by successive residues at a matched row and column
+pole (the one-by-one determinant starts the induction).
+Replace the $m_\rho$ copies of a root by distinct points tending to
+$\rho$. Within each cluster apply Newton divided differences to
+rows and columns. Their determinant divides by the corresponding
+Vandermonde. A divided difference of order $j$ tends to the $j$th
+derivative divided by $j!$, as follows from Taylor expansion or
+the finite interpolation formula. The limiting entry is
+$(-1)^{j+l}(j+l)!/[j!l!(\rho+\bar\sigma-1)^{j+l+1}]$.
+All within-cluster Vandermondes have been divided out. The
+cross-cluster factors have limits as in \eqref{eq:det-Gram}; the
+within-cluster denominator is $(2\Re\rho-1)^{m_\rho^2}$. This
+proves the formula and the absence of any additional factorial.
+
+Let $z=\rho+\bar\sigma-1$. The $(\rho,j),(\sigma,l)$ entry on
+the left of \eqref{eq:displacement} is
+$z\G_{j,l}+\mathbf1_{j>0}\G_{j-1,l}
++\mathbf1_{l>0}\G_{j,l-1}$. For $j+l>0$ its coefficient is
+$(-1)^{j+l}\{\binom{j+l}{j}-\binom{j+l-1}{j-1}
+-\binom{j+l-1}{j}\}=0$, where absent binomial terms mean zero.
+For $j=l=0$ it is $1$. Thus \eqref{eq:displacement} holds.
+Multiplication by $\G^{-1}$ on both sides gives
+\eqref{eq:quotient-defect}. Multiplying only on one side and taking
+trace gives $e^*\G^{-1}e=2\Re\Tr A_Z-d$, proving
+\eqref{eq:defect-value}. Finally the relative Hermitian matrix is
+$(H_B^Z)^{1/2}ee^*(H_B^Z)^{1/2}$, whose only nonzero eigenvalue
+is the squared norm of $(H_B^Z)^{1/2}e$. This proves the spectral claim.
+\end{proof}
+
+\section{Explicit source remainder bounds}\label{sec:remainder}
+For a principal-part vector $a$, set
+\[
+ \Psi_{\rm pp}(x)a=\psi_{\U_Z^{-1}a}(x),\quad
+ p(x)a=\mathbf1_{(0,1)}(x)\sum_{\rho,j}a_{\rho,j}
+                   x^{-\rho}\frac{(-\log x)^j}{j!},\quad
+ r(x)=\Psi_{\rm pp}(x)-p(x).
+ \tag{EG20}\label{eq:row-remainder}
+\]
+These are actual row-valued functions on the original $x$ coordinate.
+Let $W$ be the finite map from $a$ to the coefficients $v$ in
+\eqref{eq:rational-source}. Explicitly,
+\[
+ (Wa)_{\rho,\ell}=[z^{m_\rho-\ell}]
+ \frac{\sum_{j=0}^{m_\rho-1}a_{\rho,j}z^{m_\rho-j-1}}
+                  {\Phi(\rho+z)}.
+ \tag{EG21}\label{eq:W-map}
+\]
+Indeed multiplication of the principal part of $\M\psi$ by the
+analytic unit $1/\Phi$ recovers the proper rational function's
+principal parts. The difference has no pole and is proper, hence is
+zero. This proves \eqref{eq:W-map}, including all of its local derivatives.
+
+\begin{lemma}[A fully finite bound from the MI6 integrals]\label{lem:R0}
+Put $C_\phi=4\pi^2+6\pi$ and $\beta_\rho=\Re\rho$. For one MI6
+summand of order $\ell$, its remainder defined as in
+\eqref{eq:row-remainder} has squared $L^2(dx)$ norm at most
+\[
+ B_{\rho,\ell}^2=
+ \frac{C_\phi^2}{5(\beta_\rho+2)^{2\ell}}
+ +\frac12\left[
+ \frac{C_\phi}{2(\ell-1)!}
+ (\pi/2)^{-(\beta_\rho+\ell+3)/2}
+ \Gamma((\beta_\rho+\ell+3)/2)\right]^2.
+ \tag{EG22}\label{eq:MI6-bound}
+\]
+Consequently the explicit constants
+\[
+ R_0=\|W\|\left(\sum_{\rho,\ell}B_{\rho,\ell}^2\right)^{1/2},\qquad
+ K_r=C_\phi\|W\|\left(\sum_{\rho,\ell}
+                         (\beta_\rho+2)^{-2\ell}\right)^{1/2}
+ \tag{EG23}\label{eq:R0-Kr}
+\]
+satisfy $\|a\mapsto r(\cdot)a\|\le R_0$ and
+$\|r(x)\|\le K_rx^2$ for $0<x<1$.
+\end{lemma}
+\begin{proof}
+For $0<y<1$, $|\phi_*(y)|\le C_\phi y^2$. The integral from zero
+to $x$ for the regular part of one summand is therefore bounded by
+\[
+ \frac{C_\phi x^{-\beta}}{(\ell-1)!}
+ \int_0^x y^{\beta+1}|\log(y/x)|^{\ell-1}dy
+       =\frac{C_\phi x^2}{(\beta+2)^\ell}.
+\]
+Its squared integral is the first term of \eqref{eq:MI6-bound}.
+For $y\ge x\ge1$, $|\phi_*(y)|\le C_\phi y^4e^{-\pi y^2}$,
+$\log(y/x)\le y$, and
+$e^{-\pi y^2}\le e^{-\pi x^2/2}e^{-\pi y^2/2}$. The tail integral
+is thus bounded by
+\[
+ \frac{C_\phi}{2(\ell-1)!}
+ (\pi/2)^{-(\beta+\ell+3)/2}\Gamma((\beta+\ell+3)/2)
+                    x^{-\beta}e^{-\pi x^2/2}.
+\]
+Because $\beta>0$, $\int_1^\infty x^{-2\beta}e^{-\pi x^2}dx
+\le\int_1^\infty e^{-2x}dx<1/2$. This proves the second term.
+For a linear combination, Cauchy--Schwarz over the finite vector
+of coefficients $Wa$ gives respectively the two bounds in
+\eqref{eq:R0-Kr}. No growing matrix is inverted in these constants.
+\end{proof}
+
+\section{Exact right-endpoint metric and its finite correction}\label{sec:right-endpoint}
+Define the actual cutoff metric by
+\[
+ u^*\Gamma_Z(T)u=\int_{e^{-T}}^\infty|\psi_u(x)|^2dx,
+ \qquad T\ge0,\quad \Gamma_{\rm pp}(T)=\U_Z^{-*}\Gamma_Z(T)\U_Z^{-1}.
+ \tag{EG24}\label{eq:cutoff}
+\]
+It is positive definite at every finite $T$. Indeed, a zero norm
+means the finite analytic sum \eqref{eq:MI6} vanishes on an interval,
+and hence everywhere on $(0,\infty)$. Its principal coefficients
+and then $u$ vanish by Proposition~\ref{prop:principal}.
+
+For a right divisor put
+\[
+ \lambda_\rho=\rho-\tfrac12,\quad d_\rho=\Re\lambda_\rho>0,
+ \quad L=A_{\rm pp}-\tfrac12I,\quad
+ \E_T=e^{TL}=\bigoplus_\rho e^{\lambda_\rho T}e^{TJ^\uparrow_{m_\rho}},
+ \quad\widehat\G=\overline\G.
+ \tag{EG25}\label{eq:E}
+\]
+The reversed row is
+\[
+ q(\tau)_{\rho,j}=e^{-\lambda_\rho\tau}\frac{(-\tau)^j}{j!}
+                      = (e^*e^{-\tau L})_{\rho,j}.
+ \tag{EG26}\label{eq:q}
+\]
+The original logarithmic singular row is $f(t)=e^*e^{tL}$.
+Thus $f(T-\tau)=q(\tau)\E_T$, including the entire nilpotent
+translation. Integrating gives
+$\int_0^\infty q(\tau)^*q(\tau)d\tau=\widehat\G$.
+
+\begin{theorem}[Exact finite correction and improved endpoint rate]
+\label{thm:finite-correction}
+The singular cutoff Gram satisfies the exact identity
+\[
+ S(T):=\int_0^T f(t)^*f(t)dt=\E_T^*\widehat\G\E_T-\widehat\G.
+ \tag{EG27}\label{eq:exact-singular}
+\]
+Both source cross terms and the entire regular norm converge in the
+explicit Hermitian matrix
+\[
+ F_Z=\int_0^\infty\{p(x)^*r(x)+r(x)^*p(x)+r(x)^*r(x)\}\,dx,
+ \quad K_Z=F_Z-\widehat\G.\tag{EG28}\label{eq:finite-K}
+\]
+Define, with the same integrand,
+\[
+ B_Z^{\rm reg}(T)=\int_0^{e^{-T}}
+                     \{p^*r+r^*p+r^*r\}\,dx.
+ \tag{EG29}\label{eq:regular-tail}
+\]
+Then the exact source metric identity is
+\[
+ \boxed{\ \Gamma_{\rm pp}(T)=
+       \E_T^*\widehat\G\E_T+K_Z-B_Z^{\rm reg}(T).\ }
+ \tag{EG30}\label{eq:metric-exact}
+\]
+In particular, if $d_* =\min d_\rho$, $m_* =\max m_\rho$, and
+$P_*(T)=\sum_{j=0}^{m_*-1}T^j/j!$, then
+\[
+ \|\E_T^{-*}\Gamma_{\rm pp}(T)\E_T^{-1}-\widehat\G\|
+       \le e^{-2d_*T}P_*(T)^2\{K_0+\mathcal B_Z(T)\},
+ \tag{EG31}\label{eq:sharper-error}
+\]
+where every constant and function on the right is finite and explicit:
+\begin{align}
+ K_0&=\|\G\|+R_0^2+
+                2K_r\sum_{\rho,j}(3-\beta_\rho)^{-j-1},\tag{EG32}\label{eq:K0}\\
+ \mathcal B_Z(T)&=2K_r\sum_{\rho,j}e^{-(3-\beta_\rho)T}
+   \sum_{k=0}^j\frac{T^{j-k}}{(j-k)!(3-\beta_\rho)^{k+1}}
+                       +\frac{K_r^2}5e^{-5T}.\tag{EG33}\label{eq:B-bound}
+\end{align}
+The summation convention here and below is $\rho\in Z$ and
+$0\le j<m_\rho$.
+\end{theorem}
+\begin{proof}
+Conjugating \eqref{eq:displacement} gives
+$L^*\widehat\G+\widehat\G L=ee^*$, because
+$A_{\rm pp}=A_Z^T$. Differentiating
+$\E_T^*\widehat\G\E_T$ therefore gives $f(T)^*f(T)$; at $T=0$
+its value is $\widehat\G$. This proves \eqref{eq:exact-singular}.
+Equivalently, the omitted reversed tail transforms exactly to
+$\widehat\G$ because $q(\tau+T)\E_T=q(\tau)$.
+
+The cross integrals converge absolutely. On $(0,1)$ the bounds are
+\[
+ \|r(x)\|\le K_rx^2,\qquad
+ \|p(x)\|\le\sum_{\rho,j}x^{-\beta_\rho}(-\log x)^j/j!.
+\]
+On $[1,\infty)$, $p=0$ and $r$ is square integrable. Also
+\[
+ \int_0^1x^{2-\beta}\frac{(-\log x)^j}{j!}dx
+                         =(3-\beta)^{-j-1}.
+\]
+It follows that $\|K_Z\|\le K_0$. Expanding
+$(p+r)^*(p+r)$ in the original integral gives
+\eqref{eq:metric-exact}, with neither cross term removed.
+For the small-interval tail, repeated integration by parts gives
+\[
+ \int_0^{e^{-T}}x^{2-\beta}\frac{(-\log x)^j}{j!}dx
+ =e^{-(3-\beta)T}\sum_{k=0}^j
+                    \frac{T^{j-k}}{(j-k)!(3-\beta)^{k+1}}.
+\]
+Together with $\int_0^{e^{-T}}K_r^2x^4dx=K_r^2e^{-5T}/5$, this
+proves $\|B_Z^{\rm reg}(T)\|\le\mathcal B_Z(T)$.
+Finally $\|(J_m^\uparrow)^j\|\le1$ and the nilpotent exponential
+is finite, so $\|\E_T^{-1}\|\le e^{-d_*T}P_*(T)$.
+Congruencing \eqref{eq:metric-exact} by $\E_T^{-1}$ proves
+\eqref{eq:sharper-error}.
+\end{proof}
+
+The originally proposed error bound also follows, with its exact
+constants. The positive tail Gram of $q$ has norm at most its trace
+\[
+ \mathcal T_Z(T)=\sum_{\rho,j}
+ \frac{(2j)!e^{-2d_\rho T}}{(j!)^2(2d_\rho)^{2j+1}}
+              \sum_{l=0}^{2j}\frac{(2d_\rho T)^l}{l!}.
+ \tag{EG34}\label{eq:old-tail}
+\]
+Indeed its diagonal entries are
+$\int_T^\infty e^{-2d_\rho t}t^{2j}/(j!)^2dt$, evaluated by repeated
+integration by parts. The reversed singular map has norm at most
+$\sqrt{\|\G\|}$, while the transformed regular map has norm at most
+$R_0e^{-d_*T}P_*(T)$. Expanding the Gram of their sum proves the
+original upper bound
+\[
+ \mathcal T_Z(T)+2\sqrt{\|\G\|}R_0e^{-d_*T}P_*(T)
+                      +R_0^2e^{-2d_*T}P_*(T)^2.
+ \tag{EG35}\label{eq:old-error}
+\]
+Thus the supplied (48)--(51) are valid. The stronger
+\eqref{eq:sharper-error} uses the actual $O(x^2)$ remainder to keep
+the finite cross integrals, instead of estimating them only by
+Cauchy--Schwarz against the growing singular norm.
+
+An explicit relative lower bound is
+\[
+ g_* =\frac{\det\G}{(\Tr\G)^{d-1}}\le\lambda_{\min}(\G).
+ \tag{EG36}\label{eq:gstar}
+\]
+If the positive eigenvalues are $\lambda_1,\ldots,\lambda_d$, the
+product of the $d-1$ factors other than a smallest one is at most
+$(\sum\lambda_i)^{d-1}$, proving the inequality (also when $d=1$).
+Division of either error bound by $g_*$ is therefore a fully
+specified relative metric bound.
+
+\begin{theorem}[Determinant, including the finite term]\label{thm:det-source}
+For every right divisor,
+\begin{align}
+ \log\det\Gamma_Z(T)
+ ={}&2T\sum_\rho m_\rho(\Re\rho-\tfrac12)
+ -2\sum_\rho m_\rho\log\left(2\left|
+                 \frac{\zeta^{(m_\rho)}(\rho)}{m_\rho!}\right|\right)
+ +\log\det\G\notag\\
+ &+O_Z\left(e^{-2d_*T}(1+T)^{2m_*-2}\right).
+ \tag{EG37}\label{eq:det-source}
+\end{align}
+No $\log T$ term is present. For a right conjugate pair
+$\rho=1/2+\delta+i\gamma$, $\bar\rho$, with $\delta>0$, $\gamma\ne0$
+and common full multiplicity $m$, its constant term is explicitly
+\[
+ \begin{split}
+ \log\det\Gamma_+(T)={}&4m\delta T
+ -4m\log\left(2\left|\frac{\zeta^{(m)}(\rho)}{m!}\right|\right)\\
+ &+2m^2\log\frac{|\gamma|}{2\delta\sqrt{\delta^2+\gamma^2}}
+                  +O_Z(e^{-2\delta T}(1+T)^{2m-2}).
+ \end{split}\tag{EG38}\label{eq:pair-det}
+\]
+On the stipulated original convention $\gamma>0$, this is exactly
+the constant in the supplied (53).
+\end{theorem}
+\begin{proof}
+The nilpotent exponential is upper triangular with diagonal one, so
+$|\det\E_T|^2=\exp(2T\sum m_\rho d_\rho)$.
+Proposition~\ref{prop:principal} gives the exact $|\det\U_Z|^2$.
+Let
+$X_T=\widehat\G^{-1/2}\E_T^{-*}
+(K_Z-B_Z^{\rm reg}(T))\E_T^{-1}\widehat\G^{-1/2}$.
+Its norm is at most \eqref{eq:sharper-error} divided by $g_*$.
+For all sufficiently large $T$ this is less than one, and
+\[
+ |\log\det(I+X_T)|\le d\frac{\|X_T\|}{1-\|X_T\|}
+\]
+by applying $|\log(1+x)|\le |x|/(1-|x|)$ to each real eigenvalue.
+Taking determinants in \eqref{eq:metric-exact} proves
+\eqref{eq:det-source}. A still more precise finite correction is
+\[
+ \log\det(I+X_T)=\Tr X_T+\mathcal R_T,\qquad
+ |\mathcal R_T|\le\frac{d\|X_T\|^2}{2(1-\|X_T\|)}.
+\]
+This follows from the convergent power series of $\log(1+x)$;
+$X_T$ retains the exact $K_Z$ and the exact small-interval tail.
+For the pair, \eqref{eq:det-Gram} gives
+\[
+ \det\G=\frac{(2|\gamma|)^{2m^2}}
+                 {(2\delta)^{2m^2}(2\sqrt{\delta^2+\gamma^2})^{2m^2}}.
+\]
+Zeta commutes with conjugation, so the two absolute local units are
+equal. Substitution proves \eqref{eq:pair-det}.
+\end{proof}
+
+\section{Keeping the entire left block before the minimum}\label{sec:left-quotient}
+The same finite source \eqref{eq:MI6} respects extension by zero
+from a subset of the divisor: multiplying its polynomial $r_Z$ and
+denominator $h_Z$ by the same extra factors preserves their quotient.
+Thus the following block decomposition is one of the actual original
+section, not a replacement section.
+
+\begin{proposition}[Exact finite quartet minimum]\label{prop:left-minimum}
+Split a full quartet, or any finite divisor without a critical member,
+as $Z_+\sqcup Z_-$. The left Gram converges to a positive definite
+matrix $\Gamma_{--}(\infty)$ in the original $dx$ norm. The attained
+right-value quotient is exactly
+\[
+ Q_+(T)=\Gamma_{++}(T)-\Gamma_{+-}(T)
+                     \Gamma_{--}(T)^{-1}\Gamma_{-+}(T).
+ \tag{EG39}\label{eq:Schur}
+\]
+With the original right maps $\U_+,\E_{+,T}$,
+\[
+ \E_{+,T}^{-*}\U_+^{-*}Q_+(T)\U_+^{-1}\E_{+,T}^{-1}
+                             \longrightarrow\widehat\G_+.
+ \tag{EG40}\label{eq:Schur-limit}
+\]
+Consequently \eqref{eq:pair-det}, with its error term replaced by
+$o(1)$, also gives the quotient determinant for the original quartet.
+\end{proposition}
+\begin{proof}
+For a left member $\beta<1/2$, each singular function
+$x^{-\rho}(-\log x)^j$ is in $L^2(0,1;dx)$. The remainder is also
+in $L^2$, so the left Gram converges entrywise. A vector in the
+kernel of its limit would give a source identically zero; its exact
+principal coefficients force the vector to be zero. Thus its limit
+is positive definite. At finite $T$, completing the square in the
+actual block quadratic form gives \eqref{eq:Schur}, with minimizer
+$u_-=-\Gamma_{--}(T)^{-1}\Gamma_{-+}(T)u_+$.
+
+Here is the required cross-block convergence. In $t=-\log x$,
+the transformed right singular row on $0\le t\le T$ is
+$q_+(T-t)$, whose norm is uniformly bounded in $L^2(0,T)$.
+For $0\le t\le T/2$ its squared norm is bounded by the tail
+\eqref{eq:old-tail} at $T/2$, and hence tends to zero. On
+$T/2\le t\le T$ the $L^2$ norm of any fixed left source tends
+to zero, since the left source is square integrable on the full
+logarithmic line. Cauchy--Schwarz on the two intervals shows its
+inner product with the transformed right singular source tends
+to zero. The transformed right regular source has full norm at
+most $R_0\|\E_{+,T}^{-1}\|$, also tending to zero; this also
+covers $t<0$, where the singular cutoff row is zero. Since the
+left domain is finite dimensional, the transformed cross-block
+converges to zero in operator norm. The left inverses remain
+bounded, so their complete Schur correction tends to zero.
+Theorem~\ref{thm:finite-correction} proves \eqref{eq:Schur-limit}.
+Taking determinants, with the same $\U_+,\E_{+,T}$, gives the
+claimed constant. This quotient is precisely $E_Z/E_{Z_-}$ with
+value $[u_++u_-]\mapsto u_+$; no other programme quotient is used.
+\end{proof}
+
+\begin{proposition}[A finite bound after the original quartet minimum]
+\label{prop:quartet-bound}
+Retain the original quartet $1/2\pm\delta\pm i\gamma$, with
+$0<\delta<1/2$, $\gamma\ne0$, and full common multiplicity $m$.
+Use principal-part coordinates separately on both sides. Write
+$\Gamma_{\rm pp,--}(T)=\U_-^{-*}\Gamma_{--}(T)\U_-^{-1}$, and set
+\[
+ g_- =\frac{\det\Gamma_{\rm pp,--}(1)}
+              {(\Tr\Gamma_{\rm pp,--}(1))^{2m-1}}>0.
+ \tag{EG39a}\label{eq:left-fixed-bound}
+\]
+This is a fixed matrix of the explicit MI6 integrals. Let $R_{0,\pm}$,
+$K_{r,\pm}$ be the constants \eqref{eq:R0-Kr} for the respective
+original restricted source maps, and put
+\[
+ C_{+-}=K_{r,-}\sum_{\rho\in Z_+,j}(3-\beta_\rho)^{-j-1}
+       +K_{r,+}\sum_{\sigma\in Z_-,l}(3-\beta_\sigma)^{-l-1}
+       +R_{0,+}R_{0,-},
+\]
+\[
+ P_m(T)=\sum_{j=0}^{m-1}\frac{T^j}{j!},\quad
+ V_m(T)=\sum_{j=0}^{m-1}\sum_{l=0}^{m-1}
+                          \frac{T^{j+l+1}}{(j+l+1)!},\quad
+ \eta_{+-}(T)=e^{-\delta T}\{2V_m(T)+C_{+-}P_m(T)\}.
+ \tag{EG39b}\label{eq:cross-finite-bound}
+\]
+Then for $T\ge1$ the transformed Schur correction has norm at most
+$\eta_{+-}(T)^2/g_-$. In particular, with $\varepsilon_+(T)$ the
+right side of \eqref{eq:sharper-error} for $Z_+$,
+\[
+ \left\|\E_{+,T}^{-*}\U_+^{-*}Q_+(T)\U_+^{-1}\E_{+,T}^{-1}
+                    -\widehat\G_+\right\|
+ \le\varepsilon_+(T)+\frac{\eta_{+-}(T)^2}{g_-}.
+ \tag{EG39c}\label{eq:quotient-finite-bound}
+\]
+Consequently the right-value quotient has the full determinant
+constant in \eqref{eq:pair-det}, with the proved remainder
+$O_Z(e^{-2\delta T}(1+T)^{4m-2})$.
+\end{proposition}
+\begin{proof}
+An invertible block diagonal congruence by
+$\U_+^{-1}\oplus\U_-^{-1}$ carries the original block metric and
+its attained Schur complement to their principal-part versions.
+It preserves the minimizing operation: the original minimizing
+$u_-$ corresponds bijectively to $a_-=\U_-u_-$. Thus it is enough
+to bound the transformed principal-part cross-block
+\[
+ X_{+-}(T)=\E_{+,T}^{-*}\Gamma_{{\rm pp},+-}(T).
+\]
+The singular part of this cross-block is, in logarithmic coordinate,
+$\int_0^Tq_+(T-t)^*f_-(t)dt$. There are exactly two roots on
+each side. The Euclidean norms of these two rows are bounded by
+$\sqrt2e^{-\delta(T-t)}P_m(T-t)$ and
+$\sqrt2e^{-\delta t}P_m(t)$, respectively. Hence its norm is at most
+\[
+ 2e^{-\delta T}\int_0^TP_m(T-t)P_m(t)dt
+                       =2e^{-\delta T}V_m(T).
+\]
+The equality follows by integrating each monomial:
+$\int_0^T(T-t)^jt^l/(j!l!)dt=T^{j+l+1}/(j+l+1)!$,
+as follows by $j$ integrations by parts, or the beta integral
+proved in Lemma~\ref{lem:Legendre}.
+For the three regular contributions to the untransformed
+cross-block, absolute integration and \eqref{eq:R0-Kr} give the
+uniform bound $C_{+-}$, by the estimates used for
+\eqref{eq:K0}. Multiplication by $\E_{+,T}^{-*}$ multiplies this
+bound by at most $e^{-\delta T}P_m(T)$. Therefore
+$\|X_{+-}(T)\|\le\eta_{+-}(T)$, with no cancellation assumed.
+
+The left cutoff matrices increase in the positive-semidefinite
+ordering as $T$ increases. By the determinant--trace argument in
+\eqref{eq:gstar}, $\Gamma_{\rm pp,--}(T)\succeq g_-I$ for
+$T\ge1$. Its inverse has norm at most $g_-^{-1}$, so the entire
+transformed correction $X_{+-}(T)\Gamma_{\rm pp,--}(T)^{-1}
+X_{+-}(T)^*$ has norm at most $\eta_{+-}(T)^2/g_-$.
+The triangle inequality proves \eqref{eq:quotient-finite-bound}.
+The degree of $V_m$ is $2m-1$, whereas that of $P_m$ is $m-1$.
+Applying the relative determinant estimate from
+Theorem~\ref{thm:det-source} gives the asserted
+$e^{-2\delta T}(1+T)^{4m-2}$ remainder. The complete left
+minimum, its fixed positive lower bound, and all cross terms have
+been retained in the original quotient.
+\end{proof}
+
+An exact finite formula is available even for the cross-block singular
+terms. For $\alpha=\bar\rho+\sigma-1$ and $n=i+j$, their entry is
+$I_n(\alpha,T)/(i!j!)$, where
+\[
+ I_n(\alpha,T)=
+ \begin{cases}
+ e^{\alpha T}\displaystyle\sum_{k=0}^n
+ \frac{(-1)^k n!T^{n-k}}{(n-k)!\alpha^{k+1}}
+                  -\dfrac{(-1)^n n!}{\alpha^{n+1}},&\alpha\ne0,\\[4pt]
+ T^{n+1}/(n+1),&\alpha=0.
+ \end{cases}\tag{EG41}\label{eq:finite-moment}
+\]
+Differentiation in $T$ and the value zero at $T=0$ verify this
+formula directly. The finite regular contributions are the integrals
+in \eqref{eq:finite-K} and \eqref{eq:regular-tail} with the appropriate
+rows. Thus every finite cross term is explicitly retained, including
+the resonant $\alpha=0$ terms.
+
+\section{All nilpotent singular scales}\label{sec:nilpotent}
+\begin{theorem}[Every scale of one right primary]\label{thm:scales}
+For one right primary of full multiplicity $m$, put $b_\rho=2\Re\rho-1$.
+The decreasing eigenvalues of the actual $\Gamma_{\rm pp}(T)$ satisfy
+\[
+ \lambda_r(T)=e^{b_\rho T}
+ \left(\frac{(r-1)!}{(m-r)!}\right)^2 b_\rho^{-(2r-1)}
+ T^{2(m+1-2r)}(1+O_{\rho,m}(T^{-1})),\quad 1\le r\le m.
+ \tag{EG42}\label{eq:all-scales}
+\]
+They are exactly the generalized eigenvalues of the original pair
+$(\Gamma_\rho(T),\U_\rho^*\U_\rho)$.
+\end{theorem}
+\begin{proof}
+Write $P(T)=e^{TJ_m^\uparrow}$. Its entry $(i,j)$, with indices
+starting at zero, is $T^{j-i}/(j-i)!$ if $j\ge i$ and zero otherwise.
+Every nonzero minor of order $r$ is homogeneous of degree
+$\sum J-\sum I$. The maximal possible degree is $r(m-r)$,
+attained uniquely by $I=\{0,\ldots,r-1\}$ and
+$J=\{m-r,\ldots,m-1\}$. Its coefficient is
+\[
+ c_{m,r}=\det\left[\frac1{(m-r+j-i)!}\right]_{i,j=0}^{r-1}
+                  =\prod_{j=0}^{r-1}\frac{j!}{(m-r+j)!}.
+ \tag{EG43}\label{eq:extreme-minor}
+\]
+A negative factorial in the determinant denotes the zero entry,
+as in $P$. To prove the equality, multiply column $j$ by
+$(m-r+j)!$. Entry $(i,j)$ becomes the falling factorial
+$(m-r+j)_{\underline i}$, a monic polynomial of degree $i$ in
+the column argument. The determinant of these polynomials is the
+Vandermonde of the consecutive arguments, equal to
+$\prod_{j=0}^{r-1}j!$. Dividing back proves \eqref{eq:extreme-minor}.
+
+The matrix of $\bigwedge^rP(T)$ consists of those minors. After
+division by $T^{r(m-r)}$ it equals
+$c_{m,r}|I\rangle\langle J|+O(T^{-1})$ in operator norm.
+Therefore, on taking its Gram with $\bigwedge^r\widehat\G$,
+\[
+ T^{-2r(m-r)}\bigwedge^r(P(T)^*\widehat\G P(T))
+ =c_{m,r}^2\det(\widehat\G_{I,I})|J\rangle\langle J|+O(T^{-1}).
+\]
+The determinant of this leading $r$-primary Gram is $b_\rho^{-r^2}$
+by \eqref{eq:det-Gram}. The largest eigenvalue of an exterior power
+of a positive matrix is the product of its $r$ largest eigenvalues:
+diagonalizing the positive matrix gives all its exterior eigenvectors
+as wedges, with the corresponding products. Hence that product is
+\[
+ e^{rb_\rho T}c_{m,r}^2b_\rho^{-r^2}T^{2r(m-r)}(1+O(T^{-1})).
+\]
+For $r=m$ the exterior identity is exact, and the same conclusion
+holds. The relative metric error in \eqref{eq:sharper-error} is
+exponentially small, so the min--max principle preserves these
+products with factor $1+o(T^{-1})$. Explicitly the error yields
+$(1-\varepsilon_T)\E_T^*\widehat\G\E_T\preceq\Gamma_{\rm pp}(T)
+\preceq(1+\varepsilon_T)\E_T^*\widehat\G\E_T$, and applying
+the Rayleigh min--max formula bounds every eigenvalue by the same
+two factors. Consecutive products give
+$c_{m,r}/c_{m,r-1}=(r-1)!/(m-r)!$, proving \eqref{eq:all-scales}.
+Finally substituting $a=\U_\rho u$ in the two quadratic forms
+changes the pair to $(\Gamma_{\rm pp}(T),I)$, which proves the
+generalized-eigenvalue assertion without an isometry claim.
+\end{proof}
+
+\section{Critical primary: the exact finite metric and stronger error}\label{sec:critical}
+For one original critical primary $\rho=1/2+i\gamma$ of full
+multiplicity $m$, put
+\[
+ D_T=\operatorname{diag}(T^{j+1/2})_{j=0}^{m-1},\qquad
+ (H_m)_{ij}=\frac1{i!j!(i+j+1)}.
+ \tag{EG44}\label{eq:critical-H}
+\]
+The matrix $F_\rho$ is still the full convergent integral
+\eqref{eq:finite-K} before subtraction of $\widehat\G$; a right
+Cauchy Gram is not defined at this critical root.
+
+\begin{theorem}[Critical determinant, including its first finite correction]
+\label{thm:critical}
+For $T\ge1$,
+\[
+ \Gamma_{\rm pp}(T)=D_TH_mD_T+F_\rho-B_\rho^{\rm reg}(T),
+ \quad D_T^{-1}\Gamma_{\rm pp}(T)D_T^{-1}=H_m+O_\rho(T^{-1}).
+ \tag{EG45}\label{eq:critical-exact}
+\]
+More precisely, if $f_{00}=(F_\rho)_{00}$ in the original principal-part
+coordinates, then
+\[
+ \begin{split}
+ \log\det\Gamma_\rho(T)={}&m^2\log T
+ -2m\log\left(2\left|\frac{\zeta^{(m)}(\rho)}{m!}\right|\right)
+ +\log\prod_{j=0}^{m-1}\frac{j!}{(m+j)!}\\
+ &+\frac{m^2 f_{00}}T+O_\rho(T^{-2}).
+ \end{split}\tag{EG46}\label{eq:critical-det}
+\]
+In particular the supplied (55)--(56) hold, with stronger remainders.
+\end{theorem}
+\begin{proof}
+The oscillatory scalar $e^{i\gamma t}$ cancels in each single-primary
+Gram entry. Thus the singular integral is exactly
+$T^{i+j+1}/(i!j!(i+j+1))$, giving the first identity in
+\eqref{eq:critical-exact}. The regular integrals converge by the
+proof of Theorem~\ref{thm:finite-correction}, since $\beta=1/2<3$;
+their tail has the explicit bound \eqref{eq:B-bound}. Since
+$\|D_T^{-1}\|=T^{-1/2}$, the transformed regular term is $O(T^{-1})$.
+Entrywise it is more precisely
+\[
+ D_T^{-1}(F_\rho-B_\rho^{\rm reg}(T))D_T^{-1}
+                       =\frac{f_{00}}T e_0e_0^*+O(T^{-2}).
+ \tag{EG47}\label{eq:critical-first}
+\]
+The determinant of $D_T$ squared is $T^{\sum_{j=0}^{m-1}(2j+1)}
+=T^{m^2}$. The ordinary Cauchy formula applied to $1/(i+j+1)$
+and then division by $\prod(i!)^2$ gives
+$\det H_m=\prod_{j=0}^{m-1}j!/(m+j)!$.
+The identity $(H_m^{-1})_{00}=m^2$ is proved in
+Lemma~\ref{lem:Legendre} below. Apply the matrix logarithm expansion
+used in Theorem~\ref{thm:det-source} to \eqref{eq:critical-first};
+its first trace is $m^2f_{00}/T$ and its remainder is $O(T^{-2})$.
+The original $|\det\U_\rho|^2$ supplies the unchanged local zeta
+factor, proving \eqref{eq:critical-det}.
+\end{proof}
+
+\begin{lemma}[The three endpoint kernel values, with proof]\label{lem:Legendre}
+Let $b_j=1/j!$ and $e_0=(1,0,\ldots,0)^T$. Then
+\[
+ b^*H_m^{-1}b=e_0^*H_m^{-1}e_0=m^2,\qquad
+                  e_0^*H_m^{-1}b=(-1)^{m-1}m.
+ \tag{EG48}\label{eq:Legendre-values}
+\]
+\end{lemma}
+\begin{proof}
+The matrix $H_m$ is the Gram of $v_j(x)=x^j/j!$ on $[0,1]$.
+Use the explicit shifted Legendre polynomials
+\[
+ L_n(x)=\frac1{n!}\frac{d^n}{dx^n}\{x^n(x-1)^n\}.
+\]
+This is the Rodrigues formula, also recorded in
+\cite[\S18.5(ii)]{DLMFLegendre}. Integration by parts $n$ times
+shows $L_n$ is orthogonal to every polynomial of degree $<n$:
+the derivatives of $x^n(x-1)^n$ through order $n-1$ vanish at both
+endpoints. Its leading coefficient is $(2n)!/(n!)^2$.
+The same integration by parts gives
+\[
+ \int_0^1 L_n(x)x^n dx=\int_0^1x^n(1-x)^n dx
+                   =\frac{(n!)^2}{(2n+1)!}.
+\]
+The last identity follows by integrating the beta integral by parts
+successively, starting with $\int_0^1x^qdx=1/(q+1)$.
+Therefore $\int_0^1L_n^2=1/(2n+1)$. Expanding at $x=0,1$ in
+the Rodrigues formula gives $L_n(0)=(-1)^n$, $L_n(1)=1$.
+It follows that $\sqrt{2n+1}L_n$, $0\le n<m$, is an orthonormal
+basis of the degree-$<m$ polynomials. Its evaluation kernel is
+\[
+ K_m(x,y)=\sum_{n=0}^{m-1}(2n+1)L_n(x)L_n(y)
+                     =v(x)^T H_m^{-1}v(y).
+\]
+The second equality follows because either side reproduces every
+polynomial under integration against $v(y)$; the Gram is positive
+definite. At the endpoints, $v(0)=e_0$, $v(1)=b$. The diagonal sum
+is $\sum(2n+1)=m^2$, and the alternating sum is
+$\sum(-1)^n(2n+1)=(-1)^{m-1}m$, by induction. This proves all three
+identities without assuming endpoint kernel values.
+\end{proof}
+
+\section{Relative arithmetic weight and its typed boundary map}\label{sec:action}
+\begin{theorem}[Original relative arithmetic spectra]\label{thm:relative}
+Write $W_Z(T)=A_Z^*\Gamma_Z(T)+\Gamma_Z(T)A_Z-\Gamma_Z(T)$.
+For a right divisor the spectrum of
+$\Gamma_Z(T)^{-1/2}W_Z(T)\Gamma_Z(T)^{-1/2}$ tends to
+\[
+ \left\{\sum_\rho m_\rho(2\Re\rho-1),\ 0,\ldots,0\right\}.
+ \tag{EG49}\label{eq:right-defect-limit}
+\]
+For a single critical primary of multiplicity $m\ge2$, its two
+leading eigenvalues are
+\[
+ \frac{\pm m\sqrt{m^2-1}}T+O_\rho(T^{-2}),
+ \tag{EG50}\label{eq:critical-defect}
+\]
+and all its remaining eigenvalues are $O_\rho(T^{-2})$. For $m=1$
+the defect is exactly zero at every finite $T$.
+\end{theorem}
+\begin{proof}
+A simultaneous invertible congruence of a Hermitian pair preserves
+its generalized eigenvalues, because
+$\det(S^*(W-\lambda\Gamma)S)=|\det S|^2\det(W-\lambda\Gamma)$.
+Use $S=\U_Z^{-1}\E_T^{-1}$. By \eqref{eq:U-action} and
+$\E_TA_{\rm pp}=A_{\rm pp}\E_T$, the action in these coordinates
+is still $A_{\rm pp}$, while the metric tends to $\widehat\G$.
+Conjugating \eqref{eq:displacement} gives
+\[
+ A_{\rm pp}^*\widehat\G+\widehat\G A_{\rm pp}-\widehat\G=ee^*.
+\]
+Its relative Hermitian matrix has one eigenvalue
+$e^*\widehat\G^{-1}e=\sum m_\rho(2\Re\rho-1)$ by
+\eqref{eq:defect-value}, and all others zero.
+The positive definite inverse square root is continuous here:
+conjugate the metric by $\widehat\G^{-1/2}$ to obtain $I+X_T$,
+whose inverse square root has its norm-convergent binomial series
+for $\|X_T\|<1$. Thus the relative matrices converge in norm;
+the Rayleigh min--max formula gives convergence of their ordered
+eigenvalues. This proves \eqref{eq:right-defect-limit}.
+
+For the critical block, use $S=\U_\rho^{-1}D_T^{-1}$.
+The action becomes
+$D_TA_{\rm pp}D_T^{-1}=\rho I+N/T$, $N=J_m^\uparrow$.
+The real scalar part cancels the weight one. The metric is
+$H_m+O(T^{-1})$ by \eqref{eq:critical-exact}. Hence the relative
+defect is $T^{-1}$ times the relative form of
+$N^*H_m+H_mN$, plus $O(T^{-2})$ in operator norm. Entrywise,
+\[
+ N^*H_m+H_mN=bb^*-e_0e_0^*.
+\]
+Indeed the $(i,j)$ entry for $i+j>0$ is
+$(i+j)/(i!j!(i+j))=1/(i!j!)$, and the $(0,0)$ entry is zero.
+Let $v=H_m^{-1/2}b$ and $w=H_m^{-1/2}e_0$.
+Lemma~\ref{lem:Legendre} gives
+$\|v\|^2=\|w\|^2=m^2$, $w^*v=(-1)^{m-1}m$.
+The nonzero eigenvalues of $vv^*-ww^*$ sum to zero and their
+squared sum is $2(m^4-m^2)$, by directly taking the trace of
+its square. For $m\ge2$ the vectors are independent, so its rank
+is two and its eigenvalues are exactly $\pm m\sqrt{m^2-1}$.
+The min--max bound proves \eqref{eq:critical-defect}. If $m=1$,
+$A_Z=\rho I$ and $2\Re\rho-1=0$, giving exact vanishing for
+every metric, including the actual finite cutoff metric.
+\end{proof}
+
+There is also a finite bound for the convergence in
+\eqref{eq:right-defect-limit}. Set
+$\Omega_T=\E_T^{-*}\Gamma_{\rm pp}(T)\E_T^{-1}$,
+$X_T=\widehat\G^{-1/2}(\Omega_T-\widehat\G)\widehat\G^{-1/2}$,
+$B=\widehat\G^{1/2}A_{\rm pp}\widehat\G^{-1/2}$ and
+$L_0=B^*+B-I$. If $\delta_T=\|X_T\|<1$, the transformed relative
+matrix differs from $L_0$ by at most
+\[
+ \frac{\delta_T}{1-\delta_T}
+                     (\|L_0\|+2\|B\|+1).
+ \tag{EG51}\label{eq:defect-error}
+\]
+To verify this bound, write it as
+$(I+X_T)^{-1/2}(L_0+B^*X_T+X_TB-X_T)(I+X_T)^{-1/2}$.
+The two factors have norm at most $(1-\delta_T)^{-1/2}$ and their
+difference from $I$ has norm at most $(1-\delta_T)^{-1/2}-1$.
+Expanding the first term around $L_0$ gives
+$\|L_0\|\delta_T/(1-\delta_T)$; the other terms give the rest.
+Inserting \eqref{eq:sharper-error} divided by $g_*$ makes this a
+fully finite source estimate.
+
+\begin{theorem}[Typed Beurling/source comparison and exact boundary]
+\label{thm:typed-boundary}
+Suppose the right divisor is stable under conjugation, with the
+same full multiplicities. Let $C$ be the linear permutation
+$(Ca)_{\rho,j}=a_{\bar\rho,j}$; it does not conjugate coefficients.
+Then
+\[
+ C^*=C=C^{-1},\quad C^*\G C=\widehat\G,\quad
+                         C A_{\rm pp}=A_Z^*C.
+ \tag{EG52}\label{eq:C-types}
+\]
+The invertible map from original source jets to Beurling quotient
+jets is
+\[
+ M_T=\G C\E_T\U_Z,\qquad
+ M_T^{-1}=\U_Z^{-1}\E_T^{-1}C\G^{-1}.
+ \tag{EG53}\label{eq:M}
+\]
+It satisfies the two exact identities
+\begin{align}
+ M_T^*H_B^ZM_T&=\U_Z^*\E_T^*\widehat\G\E_T\U_Z,
+                                  \tag{EG54}\label{eq:M-metric}\\
+ M_TA_Z&=(I-A_Z)M_T+e\ell_T,\qquad
+ \ell_T=e^*C\E_T\U_Z=e^*\E_T\U_Z.
+                                  \tag{EG55}\label{eq:M-action}
+\end{align}
+Here $\ell_T$ is exactly $e^{-T/2}$ times the singular part of
+$\psi_u(e^{-T})$ as a functional of $u$, and is nonzero.
+\end{theorem}
+\begin{proof}
+The first two claims in \eqref{eq:C-types} follow by substituting
+the indices in \eqref{eq:Cauchy-Gram}. For the action, the block
+of $C A_{\rm pp}$ at output $\rho$ has diagonal $\bar\rho$ and
+the upper shift, exactly as in $A_Z^*C$. This verifies domains,
+codomains, complex conjugates, and shift directions. Every factor
+in \eqref{eq:M} is invertible. Since $H_B^Z=\G^{-1}$,
+\eqref{eq:M-metric} follows by direct multiplication.
+For the action, \eqref{eq:U-action}, commutation with $\E_T$, and
+\eqref{eq:C-types} give
+\[
+ M_TA_Z=\G A_Z^*C\E_T\U_Z
+       =\{(I-A_Z)\G+ee^*\}C\E_T\U_Z,
+\]
+where the last equality is exactly \eqref{eq:displacement}.
+This proves \eqref{eq:M-action}. The permutation fixes $e$,
+so the two formulas for $\ell_T$ agree. Its evaluation is
+\[
+ \ell_Tu=\sum_{\rho,j}(\U_Zu)_{\rho,j}
+                e^{(\rho-1/2)T}\frac{T^j}{j!},
+\]
+the stated original endpoint value. It is nonzero since $e\ne0$
+and $\E_T\U_Z$ is invertible. This is an exact rank-one boundary
+equation, not an unqualified action intertwining assertion.
+\end{proof}
+
+\begin{theorem}[The full physical integration-by-parts identity]
+\label{thm:physical-boundary}
+Define the original highest-coefficient row by
+$\ell_{\rm ref}(u)=[s^{d-1}]r_Z(u)(s)$, and let
+$\Psi(x)u=\psi_u(x)$. Then
+\[
+ D\Psi=\Psi A_Z+\phi_*\ell_{\rm ref}.
+ \tag{EG56}\label{eq:source-action}
+\]
+At every finite $T$, with $a_T=e^{-T}$,
+\[
+ \begin{split}
+ W_Z(T)={}&a_T\Psi(a_T)^*\Psi(a_T)\\
+ &-\ell_{\rm ref}^*\int_{a_T}^\infty\overline{\phi_*(x)}\Psi(x)dx
+ -\left(\int_{a_T}^\infty\Psi(x)^*\phi_*(x)dx\right)\ell_{\rm ref}.
+ \end{split}\tag{EG57}\label{eq:physical-boundary}
+\]
+The formulas hold with the original nonisometric maps and both
+finite source cross terms.
+\end{theorem}
+\begin{proof}
+Because $r_Z$ is multiplication by the original unit modulo $h_Z$,
+the polynomial $s r_Z(u)-r_Z(A_Zu)$ is divisible by $h_Z$.
+Its degree is at most $d$; $h_Z$ is monic and the leading coefficient
+is $\ell_{\rm ref}(u)$. Hence it is exactly
+$h_Z\ell_{\rm ref}(u)$. Multiplication by $\Phi/h_Z$ in
+\eqref{eq:source-Mellin} and integration by parts for $D$ prove
+\eqref{eq:source-action}. The boundary terms for that Mellin
+calculation vanish on $\Re s>1$ by \eqref{eq:source-singular} and
+the Gaussian tail, so the function identity follows by uniqueness.
+
+At the physical cutoff $a_T>0$ all functions are smooth and the
+upper boundary terms vanish. Direct differentiation gives
+\[
+ \int_{a_T}^\infty\{(D\Psi)^*\Psi+\Psi^*(D\Psi)-\Psi^*\Psi\}dx
+ =-\int_{a_T}^\infty\frac{d}{dx}(x\Psi^*\Psi)dx
+ =a_T\Psi(a_T)^*\Psi(a_T).
+\]
+Substituting \eqref{eq:source-action} gives
+\eqref{eq:physical-boundary}, including both negative cross terms.
+No quotient or endpoint limit has been applied inside this finite
+identity. The convergence and spectra in
+Theorem~\ref{thm:relative} follow from the proved exact source metric,
+and do not discard these finite terms.
+\end{proof}
+
+\section{Equation correspondence and provenance}\label{sec:correspondence}
+The input is the final mathematical response in the supplied
+\emph{ChatGPT--Research Program Audit--20260919--2248.md}, sections
+5--7, together with the original source proof
+\emph{EXACT\_CORPUS\_RECEIVERS.tex}, (B1)--(B5), (T2), (MI5)--(MI9).
+The original pasted input is retained verbatim beside this proof.
+The following are proof locators, not replacements for the proofs above.
+\[
+\begin{array}{c|l}
+\text{Supplied equations}&\text{Exact proof in this document}\\\hline
+(32)\text{--}(38)&\text{Section \ref{sec:beurling}, Theorem \ref{thm:projection}, (EG14)--(EG15)}\\
+(39)\text{--}(42)&\text{Theorem \ref{thm:Cauchy-displacement}}\\
+(43)\text{--}(44),(57)&\text{Proposition \ref{prop:principal}}\\
+(45)\text{--}(50)&\text{Theorem \ref{thm:finite-correction}, (EG34)--(EG35)}\\
+(51)&\text{Lemma \ref{lem:R0}}\\
+(52)\text{--}(53)&\text{Theorem \ref{thm:det-source}, Proposition \ref{prop:left-minimum}}\\
+(54)&\text{Theorem \ref{thm:scales}}\\
+(55)\text{--}(56)&\text{Theorem \ref{thm:critical}}\\
+(58)\text{--}(59)&\text{Theorem \ref{thm:relative}, Lemma \ref{lem:Legendre}}\\
+(60)\text{--}(61)&\text{Theorem \ref{thm:typed-boundary}}\\
+(62)&\text{Theorem \ref{thm:physical-boundary}}
+\end{array}
+\]
+The input's displayed formulas are valid on their stated domains.
+For a signed choice of the pair height the logarithm in (53) requires
+$|\gamma|$; its stipulated positive height already satisfies this.
+The new finite correction (EG28)--(EG33) strengthens the endpoint
+error and the determinant remainder. The actual critical remainder
+improves (55)--(56) to (EG45)--(EG47), evaluates its first finite
+determinant correction, and improves the relative defect error from
+$O(T^{-3/2})$ to $O(T^{-2})$. The full quartet minimum has its own
+proved finite bound (EG39a)--(EG39c), giving the determinant
+remainder $O_Z(e^{-2\delta T}(1+T)^{4m-2})$; the stronger
+unminimized right-block rate is not asserted for that different
+finite Schur correction.
+
+\begin{thebibliography}{9}
+\bibitem{DLMFCauchy} R. Roy, F. W. J. Olver, R. A. Askey, R. Wong,
+and W. P. Reinhardt, NIST Digital Library of Mathematical Functions,
+\S1.3(ii), equation (1.3.14), Cauchy determinant,
+\url{https://dlmf.nist.gov/1.3.E14}. Exact determinant identity;
+its confluence and all multiplicity factors are proved above.
+\bibitem{DLMFTransforms} R. Roy, F. W. J. Olver, R. A. Askey, R. Wong,
+and W. P. Reinhardt, NIST Digital Library of Mathematical Functions,
+\S1.14, Integral Transforms, Fourier and Mellin transform conventions
+and Parseval formulas, \url{https://dlmf.nist.gov/1.14}.
+\bibitem{DLMFLegendre} T. H. Koornwinder, R. Wong, R. Koekoek,
+R. F. Swarttouw and W. P. Reinhardt,
+NIST Digital Library of Mathematical Functions,
+\S18.5(ii), Rodrigues formulas,
+\url{https://dlmf.nist.gov/18.5.ii}. The shifted formula, orthogonality,
+norms, and endpoint evaluations used here are proved in full above.
+\bibitem{Burnol} Jean-Fran\c{c}ois Burnol,
+\emph{A lower bound in an approximation problem involving the zeros
+of the Riemann zeta function}, arXiv:math/0103058,
+\url{https://arxiv.org/abs/math/0103058}. Historical finite-zero
+projection context only; no unproved approximation claim is imported.
+\end{thebibliography}
+\end{document}

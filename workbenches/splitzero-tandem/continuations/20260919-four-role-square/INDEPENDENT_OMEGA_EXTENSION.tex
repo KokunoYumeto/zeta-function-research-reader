@@ -1,0 +1,858 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\HH}{\mathsf H}
+\newcommand{\HHZ}{\mathsf H_0}
+\newcommand{\SSS}{\mathsf{CSRig}}
+\newcommand{\CR}{\mathsf{CRing}}
+\newcommand{\Om}{\Omega}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Con}{\operatorname{Con}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\title{The literal third absorber: exact adjunctions, receivers,\newline congruences, and a distinct zero-preserving variant}
+\author{}
+\date{19 September 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Scope and source.}
+This is a standalone independent derivation of the third-element construction
+in Section 9 of \emph{An Examination of Semiring Structures Derived from the
+Integers by Sequential Adjunction of Identity and Absorbing Elements},
+Zenodo version record 17547186, recovered source file
+\texttt{17547186\_5.tex}. That source explicitly calls its literal extension a
+commutative unital hemiring and explicitly states that it is not a standard
+semiring. Its defining equation is \(\tau\Om=\Om\), not \(\tau\Om=\tau\).
+The proof below retains that equation. A construction with the latter equation
+appears only in the final section and is a different object.
+All rings in the main construction are commutative and unital. We allow the
+zero ring when describing quotients; statements needing \(0_R\ne1_R\) say so.
+
+\section{Precisely specified categories and the original two-level object}
+
+\begin{definition}\label{def:categories}
+An object of \(\HH\) is a set \(D\) with two binary operations, written
+\(+\) and multiplication, and constants \(0_D,1_D\), such that
+\((D,+,0_D)\) and \((D,\cdot,1_D)\) are commutative monoids and
+\(a(b+c)=ab+ac\) for all \(a,b,c\in D\).
+The equation \(0_Da=0_D\) is \emph{not} an axiom of \(\HH\).
+A morphism in \(\HH\) preserves both binary operations and both constants.
+The category \(\HHZ\) has the same objects, with maps preserving both binary
+operations and \(0_D\), but not necessarily \(1_D\).
+The category \(\SSS\) is the full subcategory of \(\HH\) satisfying
+\(0_Da=0_D\) for every \(a\in D\); these are the commutative unital
+standard semirings in this note. The singleton algebra is allowed.
+The category \(\CR\) has commutative unital rings and unital ring maps.
+\end{definition}
+
+These explicit axioms fix the meaning of the weakened category regardless of
+terminological differences concerning the word ``hemiring.''
+Only binary-operation-preserving maps will be called such when either constant
+is not required to be preserved.
+
+\begin{definition}\label{def:G}
+Let \(R\) be a commutative unital ring, put \(e=0_R\), and choose
+\(\tau\notin R\). The disjoint union \(G(R)=R\sqcup\{\tau\}\) has the
+original ring operations on every pair of elements of \(R\), and has
+\[
+ \tau+x=x+\tau=x,\qquad \tau x=x\tau=\tau\quad(x\in G(R)).
+\]
+Its proposed additive identity is \(\tau\), and its proposed multiplicative
+identity is \(1_R\). In particular \(e\ne\tau\), including when \(R\) is
+the zero ring.
+\end{definition}
+
+\begin{proposition}\label{prop:G}
+The displayed operations make \(G(R)\) an object of \(\SSS\). Furthermore,
+for \(a,b\in G(R)\),
+\[
+ a+b=\tau\ \Longleftrightarrow\ a=b=\tau,
+ \qquad
+ ab=\tau\ \Longleftrightarrow\ (a=\tau\text{ or }b=\tau).
+\tag{1}\label{eq:Gsupport}
+\]
+These equivalences hold even if \(R\) has zero divisors or nonzero elements
+annihilated by positive integers.
+\end{proposition}
+\begin{proof}
+Commutativity follows from commutativity in \(R\) and the symmetric rules
+involving \(\tau\). In an additive triple, deleting occurrences of
+\(\tau\) leaves the same ordered sum of ring elements under either
+parenthesization; a triple consisting entirely of \(\tau\) has value
+\(\tau\). Thus addition is associative and has identity \(\tau\).
+In a multiplicative triple with an occurrence of \(\tau\), both
+parenthesizations have value \(\tau\). A triple in \(R\) is associative
+by the ring axiom. The element \(1_R\) acts as identity on \(R\) and on
+\(\tau\).
+
+For distributivity, if \(a=\tau\), both \(a(b+c)\) and \(ab+ac\) are
+\(\tau\). Suppose \(a\in R\). If \(b,c\in R\), distributivity is the
+original ring equation. If \(b=\tau,c\in R\), its two sides are
+\(ac\) and \(\tau+ac=ac\). If \(b\in R,c=\tau\), its two sides are
+\(ab\) and \(ab+\tau=ab\). If \(b=c=\tau\), its two sides are
+\(\tau\) and \(\tau+\tau=\tau\). These cases exhaust all triples.
+The required absorbing-zero axiom is one of the defining rules.
+
+A sum with at least one entry in \(R\) lies in \(R\), whereas
+\(\tau+\tau=\tau\). A product of two entries in \(R\) lies in \(R\),
+whereas every product having an entry \(\tau\) is \(\tau\).
+This proves both equivalences. A ring product equal to \(e\) is still in
+\(R\), and does not equal \(\tau\).
+\end{proof}
+
+\begin{proposition}\label{prop:ringprojection}
+The map
+\[
+ p_R:G(R)\longrightarrow R,\qquad p_R(\tau)=e,\quad p_R(r)=r\ (r\in R)
+\tag{2}\label{eq:ringprojection}
+\]
+is a surjective morphism in \(\SSS\). Its kernel congruence has the one
+nonsingleton class \(\{\tau,e\}\). The set inclusion \(R\hookrightarrow
+G(R)\) preserves both binary operations and the multiplicative identity,
+but does not preserve the additive identity.
+\end{proposition}
+\begin{proof}
+On a pair from \(R\), the map is the identity, hence preserves both
+operations. On \((\tau,r)\), the additive equation is \(r=e+r\),
+and the multiplicative equation is \(e=er\). On \((\tau,\tau)\),
+they are \(e=e+e\) and \(e=e^2\). It sends the source zero \(\tau\)
+to the target zero \(e\), and sends \(1_R\) to \(1_R\).
+It is surjective because it fixes every ring element. Its fibers are
+\(\{\tau,e\}\) and the other singleton ring elements. The claims about
+the inclusion follow directly from the restricted operations and
+\(e\ne\tau\).
+\end{proof}
+
+\section{The literal adjunction of an absorber for both operations}
+
+\begin{definition}\label{def:A}
+For an arbitrary \(D\in\HH\), let \(A(D)=D\sqcup\{\Om\}\), where
+\(\Om\) is a new element. Retain both operations on \(D\), and set
+\[
+ \Om+x=x+\Om=\Om,\qquad \Om x=x\Om=\Om\quad(x\in A(D)).
+\tag{3}\label{eq:literal}
+\]
+Retain the constants \(0_D,1_D\). For a ring \(R\), write
+\[
+ F(R)=A(G(R))=R\sqcup\{\tau,\Om\}.
+\]
+Thus in \(F(R)\), \(\tau\) remains the additive identity,
+\(1_R\) remains the multiplicative identity, and
+\(\tau\Om=\Om\tau=\Om\).
+\end{definition}
+
+\begin{theorem}\label{thm:Aaxioms}
+For every \(D\in\HH\), the algebra \(A(D)\) is an object of \(\HH\),
+and the inclusion \(\eta_D:D\hookrightarrow A(D)\) is an injective
+\(\HH\)-morphism. The new element \(\Om\) is the unique global absorber
+for either operation. The object \(A(D)\) is never an object of \(\SSS\).
+In particular the literal source construction \(F(R)\) is consistent
+for every commutative unital ring \(R\).
+\end{theorem}
+\begin{proof}
+Both extended operations are commutative. In a triple containing \(\Om\),
+both parenthesizations of either operation are \(\Om\); a triple wholly
+in \(D\) satisfies associativity there. The constant \(0_D\) remains
+an additive identity because \(0_D+\Om=\Om\), and \(1_D\) remains a
+multiplicative identity because \(1_D\Om=\Om\).
+
+For distributivity, take \(a,b,c\in A(D)\). If all three are in \(D\),
+use distributivity in \(D\). If \(a=\Om\), the left side is \(\Om\)
+and the right side is \(\Om+\Om=\Om\). If \(a\ne\Om\) and
+\(b=\Om\), the left side is \(a\Om=\Om\), and the right side is
+\(\Om+ac=\Om\). If \(a,b\ne\Om,c=\Om\), the left side is
+\(a\Om=\Om\), and the right side is \(ab+\Om=\Om\). This covers
+all cases; right distributivity follows from commutative multiplication.
+The inclusion preserves both operations and constants by construction.
+
+If \(z\) were any additive absorber, then \(z=z+\Om=\Om\).
+If \(z\) were any multiplicative absorber, then \(z=z\Om=\Om\).
+Finally \(0_D\Om=\Om\ne0_D\), so global zero absorption fails.
+No equation already holding between elements of \(D\) was changed.
+\end{proof}
+
+\begin{definition}
+Let \(\HH_{\mathrm{abs}}\) have objects \((B,b)\), where \(B\in\HH\)
+and \(b\in B\) satisfies \(b+y=b\) and \(by=b\) for every \(y\in B\).
+Morphisms are \(\HH\)-morphisms preserving the distinguished absorber.
+Let \(U:\HH_{\mathrm{abs}}\to\HH\) forget that designation.
+\end{definition}
+
+\begin{theorem}[Exact free-adjunction property]\label{thm:Auniversal}
+For every \(D\in\HH\) and \((B,b)\in\HH_{\mathrm{abs}}\), restriction
+along \(\eta_D\) gives a bijection
+\[
+ \operatorname{Hom}_{\HH_{\mathrm{abs}}}((A(D),\Om),(B,b))
+ \ \longrightarrow\ \operatorname{Hom}_{\HH}(D,B).
+\tag{4}\label{eq:adjunction}
+\]
+Its inverse sends \(f:D\to B\) to the unique function
+\(\widehat f:A(D)\to B\) with \(\widehat f|_D=f\) and
+\(\widehat f(\Om)=b\). These bijections commute with precomposition
+and postcomposition; consequently \(A\) is left adjoint to \(U\).
+\end{theorem}
+\begin{proof}
+The function \(\widehat f\) is uniquely determined because its domain is
+the disjoint union \(D\sqcup\{\Om\}\). For a pair in \(D\), preservation
+of either operation is exactly the corresponding equation for \(f\).
+For a pair with an occurrence of \(\Om\), the image of the source result
+is \(b\); the operation on the images is also \(b\), by its absorbing
+property. This includes the pair \((\Om,\Om)\). The constants lie in
+\(D\) and are preserved by \(f\). Hence \(\widehat f\) is a morphism.
+Restriction and extension are inverse as functions on the indicated hom-sets.
+For \(g:D'\to D\), both \(\widehat f\circ A(g)\) and
+\(\widehat{f\circ g}\) equal \(f\circ g\) on \(D'\) and send the new
+absorber to \(b\); they coincide. For an absorber-preserving
+\(h:(B,b)\to(C,c)\), both \(h\circ\widehat f\) and
+\(\widehat{h\circ f}\) restrict to \(h\circ f\) and send the new
+absorber to \(c\); they coincide. These are the required naturality
+equations.
+\end{proof}
+
+\begin{proposition}[Receivers without a globally designated absorber]
+Let \(f:D\to B\) be an \(\HH\)-morphism and let \(b\in B\). There
+exists an \(\HH\)-morphism \(h:A(D)\to B\) restricting to \(f\) and
+sending \(\Om\) to \(b\) if and only if
+\[
+ b+b=b,\quad b^2=b,\quad b+f(x)=b,\quad bf(x)=b\quad(x\in D).
+\tag{5}\label{eq:relative-receiver}
+\]
+When it exists it is unique.
+\end{proposition}
+\begin{proof}
+Necessity follows by applying \(h\) to each defining equation involving
+\(\Om\), including its pair with itself. For sufficiency, define \(h\)
+on the disjoint union as specified. Pairs from \(D\) are handled by
+\(f\), mixed pairs by the last two displayed equations, and the pair
+\((\Om,\Om)\) by the first two. Constants are in \(D\), so they
+are preserved. There is no other possible value at any domain element.
+\end{proof}
+
+\section{Exact receivers in standard semirings and rings}
+
+\begin{theorem}[Standard-semiring reflection]\label{thm:reflection}
+Let \(D\in\HH\) and \(B\in\SSS\). Every \(\HHZ\)-morphism
+\(h:A(D)\to B\) is the constant map with value \(0_B\).
+That constant map is indeed an \(\HHZ\)-morphism. An \(\HH\)-morphism
+\(A(D)\to B\) exists exactly when \(B\) is the singleton algebra;
+then it is unique. Thus the universal standard-semiring receiver of
+\(A(D)\), for unital zero-preserving morphisms, is the singleton semiring.
+The universal ring receiver is also the zero ring.
+\end{theorem}
+\begin{proof}
+Since \(\Om0_D=\Om\), preservation of multiplication and the additive
+identity gives
+\[
+ h(\Om)=h(\Om)h(0_D)=h(\Om)0_B=0_B.
+\]
+For every \(x\in A(D)\), the equation \(\Om+x=\Om\) then gives
+\(0_B+h(x)=0_B\), whence \(h(x)=0_B\). Conversely the constant-zero
+map preserves addition, multiplication, and zero in a standard semiring.
+If the map also preserves the multiplicative identity, it forces
+\(1_B=0_B\). For each \(y\in B\), the standard-semiring laws yield
+\(y=1_By=0_By=0_B\), so \(B\) is the singleton algebra. The unique
+map to a singleton preserves all required operations and constants.
+
+For the asserted universal property, denote the singleton semiring by
+\(\one\). The unique map \(A(D)\to\one\) factors every unital
+zero-preserving map to a standard semiring: its target has just been proved
+to be a singleton, and the factor \(\one\to B\) is unique. This is
+the universal receiver, not merely an obstruction to an injective map.
+Rings are standard semirings, so the same argument gives the ring assertion.
+\end{proof}
+
+\begin{proposition}[Even maps to rings forgetting the constants collapse]
+If \(K\) is a ring, every map \(h:A(D)\to K\) preserving the two
+binary operations is the constant map \(0_K\), whether or not either
+constant was required to be preserved.
+\end{proposition}
+\begin{proof}
+The equation \(\Om+x=\Om\) implies
+\(h(\Om)+h(x)=h(\Om)\). Addition in \(K\) is a group; adding
+\(-h(\Om)\) to both sides gives \(h(x)=0_K\) for every \(x\).
+The constant-zero map preserves both binary operations in a ring.
+\end{proof}
+
+\begin{corollary}[What fails if both absorption axioms are demanded]
+Suppose one asks for a standard semiring containing the original \(G(R)\)
+with its additive zero \(\tau\), and asks simultaneously for a new element
+\(\Om\) satisfying \(\Om\tau=\Om\) and \(\Om+x=\Om\) for every
+element. The universal algebra satisfying those requirements is the
+singleton semiring, and there is no such injective extension of \(G(R)\).
+This conclusion does not invalidate the original \(\HH\)-construction.
+\end{corollary}
+\begin{proof}
+In a standard semiring, \(\Om\tau=\tau\); the other demanded equation
+gives \(\Om=\tau\). For every \(x\), addition then gives
+\(x=\tau+x=\Om+x=\Om=\tau\). The singleton algebra satisfies all
+the equations. It is their universal receiver by
+Theorem~\ref{thm:reflection}. The original set \(G(R)\) contains the
+distinct elements \(e,\tau\), so cannot inject into that receiver.
+The original \(\HH\)-construction omits the premise of global zero
+absorption and has already been verified directly.
+\end{proof}
+
+\section{Ring information is retained exactly in the weakened category}
+
+\begin{theorem}[Exact quotient identifying the two original zeros]
+\label{thm:quotientA}
+There is a surjective \(\HH\)-morphism
+\[
+ A(p_R):F(R)\longrightarrow A(R),\qquad
+ \tau\longmapsto e,\quad r\longmapsto r\ (r\in R),\quad
+ \Om\longmapsto\Om.
+\tag{6}\label{eq:Aprojection}
+\]
+Its kernel is precisely the congruence generated by \(\tau=e\), and
+\[
+ F(R)/(\tau=e)\ \cong\ A(R)
+\tag{7}\label{eq:Aquotient}
+\]
+in \(\HH\). In particular this quotient has not collapsed the new
+absorber. For any \(B\in\HH\), an \(\HH\)-morphism \(h:F(R)\to B\)
+factors through \(A(p_R)\) exactly when \(h(\tau)=h(e)\); its factor
+is unique.
+\end{theorem}
+\begin{proof}
+The map \(p_R\) is a morphism by Proposition~\ref{prop:ringprojection}.
+Extending it by the new absorber, as in Theorem~\ref{thm:Auniversal},
+gives the displayed morphism. Its fibers are \(\{\tau,e\}\), all
+other singleton ring elements, and the singleton \(\{\Om\}\).
+Thus its kernel contains \((\tau,e)\) and no other nonequal pair
+except its symmetric pair. Every equivalence relation containing
+\((\tau,e)\) contains this kernel, so this is exactly the least
+congruence containing the specified equation.
+
+If \(h(\tau)=h(e)\), define its factor on \(A(R)\) by taking the common
+value on each fiber. To verify preservation of an operation, choose
+preimages of its two arguments under \(A(p_R)\); the operation of the
+preimages maps to the operation of the arguments because \(A(p_R)\)
+is a homomorphism, and applying \(h\) gives the required equality.
+The same reasoning for constants shows that the factor is in \(\HH\).
+Surjectivity makes the factor unique. Conversely any factor is constant
+on the fiber \(\{\tau,e\}\). The induced bijection from the quotient
+to \(A(R)\) preserves operations and constants, as does its inverse by
+the same fiber description.
+\end{proof}
+
+\begin{theorem}[Full faithfulness]\label{thm:fullyfaithful}
+For every pair of commutative unital rings \(R,R'\), including zero rings,
+the assignment
+\[
+ h\longmapsto F(h),\qquad
+ F(h)(\tau)=\tau',\quad F(h)(r)=h(r),\quad F(h)(\Om)=\Om'
+\tag{8}\label{eq:Ffunctor}
+\]
+is a bijection
+\[
+ \operatorname{Hom}_{\CR}(R,R')
+ \ \cong\ \operatorname{Hom}_{\HH}(F(R),F(R')).
+\tag{9}\label{eq:fullyfaithful}
+\]
+It preserves identities and compositions. Thus \(F\) is a fully faithful
+functor, despite its singleton standard-semiring reflection.
+\end{theorem}
+\begin{proof}
+For a ring homomorphism \(h\), the displayed extension preserves operations
+on pairs of ring elements by the ring-homomorphism equations. A pair
+having an occurrence of \(\Om\) maps on both sides to \(\Om'\).
+A pair having \(\tau\) and no \(\Om\) is handled by the additive
+identity and multiplicative-absorption rules in \(G(R')\).
+Both constants are preserved. Hence \(F(h)\) is an \(\HH\)-morphism.
+
+Conversely let \(f:F(R)\to F(R')\) be an \(\HH\)-morphism. Write
+\(e'=0_{R'}\). It sends \(\tau\) to \(\tau'\) and \(1_R\) to
+\(1_{R'}\). The equation \(\Om\tau=\Om\) implies
+\(f(\Om)\tau'=f(\Om)\). In \(F(R')\), multiplication by \(\tau'\)
+sends every element of \(G(R')\) to \(\tau'\) and sends \(\Om'\)
+to \(\Om'\). Hence \(f(\Om)\) is either \(\tau'\) or \(\Om'\).
+The first possibility, together with \(\Om+1_R=\Om\), would imply
+\(\tau'+1_{R'}=\tau'\), contradicting \(1_{R'}\in R'\) and
+\(\tau'\notin R'\). Therefore \(f(\Om)=\Om'\).
+
+The additive idempotents of \(F(R')\) are exactly
+\(\tau',e',\Om'\): for a ring element \(r'\), the equation
+\(r'+r'=r'\) implies \(r'=e'\) by the ring additive inverse.
+Since \(e+e=e\), the element \(f(e)\) is in this three-element set.
+It cannot equal \(\Om'\), because \(e\tau=\tau\) would give
+\(\Om'\tau'=\tau'\). If \(f(e)=\tau'\), then applying \(f\)
+to \(1_R+(-1_R)=e\) gives a sum equal to \(\tau'\) with an entry
+\(1_{R'}\in R'\). Such a sum cannot be \(\tau'\), by the defining
+addition rules. Consequently \(f(e)=e'\).
+
+For \(r\in R\), the equation \(er=e\) gives \(e'f(r)=e'\).
+The value \(f(r)=\tau'\) would make its left side \(\tau'\), and
+the value \(f(r)=\Om'\) would make it \(\Om'\). Both are impossible.
+Thus \(f(r)\in R'\) for every \(r\in R\). The restriction
+\(h=f|_R:R\to R'\) preserves addition, multiplication, zero, and unit;
+it is a unital ring homomorphism. Its extension agrees with \(f\) on
+each element of the disjoint union. This proves existence and uniqueness
+of the inverse correspondence. The formulas show directly that
+\(F(\mathrm{id}_R)=\mathrm{id}_{F(R)}\) and
+\(F(kh)=F(k)F(h)\).
+\end{proof}
+
+\section{Complete congruence classification of the literal extension}
+
+A congruence here is an equivalence relation compatible with both binary
+operations. Quotient constants are the classes of the original constants.
+An ideal of a ring contains its ring zero, is an additive subgroup, and
+is closed under multiplication by all ring elements.
+
+\begin{theorem}\label{thm:congruences}
+For every ideal \(I\) of \(R\), including \(I=R\), define congruences
+\(C_I,D_I\) of \(F(R)\) as follows:
+\begin{itemize}
+\item \(C_I\) has singleton classes \(\{\tau\}\) and \(\{\Om\}\),
+and its classes in \(R\) are the additive cosets of \(I\).
+\item \(D_I\) has singleton class \(\{\Om\}\), the class
+\(\{\tau\}\cup I\), and the other additive cosets of \(I\) in \(R\).
+\end{itemize}
+Every congruence of \(F(R)\) is exactly one of these, or the universal
+congruence. The quotient identifications are
+\[
+ F(R)/C_I\cong F(R/I),\qquad F(R)/D_I\cong A(R/I).
+\tag{10}\label{eq:congquotients}
+\]
+The complete order among proper congruences is
+\[
+\begin{aligned}
+ C_I\subseteq C_J&\Longleftrightarrow I\subseteq J,&
+ D_I\subseteq D_J&\Longleftrightarrow I\subseteq J,\\
+ C_I\subseteq D_J&\Longleftrightarrow I\subseteq J,&
+ D_I\subseteq C_J&\text{ never holds.}
+\end{aligned}
+\tag{11}\label{eq:congorder}
+\]
+Above all of these is the universal congruence.
+\end{theorem}
+\begin{proof}
+Let \(\rho\) be a congruence and suppose \(\Om\mathrel\rho x\) for
+some \(x\in G(R)\). Multiplication by \(\tau\) gives
+\(\Om\mathrel\rho\tau\), because \(x\tau=\tau\) in \(G(R)\).
+For any \(y\in F(R)\), addition of \(y\) then gives
+\(\Om=\Om+y\mathrel\rho\tau+y=y\). Thus \(\rho\) is universal.
+Every proper congruence therefore has \(\Om\) as a singleton class.
+Its restriction \(\sigma\) to \(G(R)\) is a congruence there. Conversely,
+every congruence on \(G(R)\), even its universal one, extends to a
+proper congruence on \(F(R)\) by taking \(\Om\) as a singleton: operations
+with an occurrence of \(\Om\) give \(\Om\) on both sides of each
+compatibility equation.
+
+Restrict \(\sigma\) further to pairs in \(R\), and put
+\(I=\{r\in R:r\mathrel\sigma e\}\). This set contains \(e\).
+If \(a,b\in I\), then \(a+b\mathrel\sigma e+e=e\).
+If \(a\in I\), multiplication by the fixed ring element \(-1_R\)
+gives \(-a\mathrel\sigma e\). For any \(r\in R,a\in I\),
+\(ra\mathrel\sigma re=e\). Hence \(I\) is a ring ideal. For
+\(r,s\in R\), if \(r\mathrel\sigma s\), adding \(-s\) gives
+\(r-s\mathrel\sigma e\), so \(r-s\in I\). Conversely, if
+\(r-s\mathrel\sigma e\), adding \(s\) gives
+\(r\mathrel\sigma s\). Thus the classes within \(R\) are precisely
+the cosets of \(I\).
+
+If \(\tau\) is a singleton under \(\sigma\), this is exactly the
+restriction of \(C_I\). Otherwise \(\tau\mathrel\sigma r\) for
+some \(r\in R\). Multiplying by \(e\) gives
+\(\tau\mathrel\sigma e\). Therefore for every \(s\in R\),
+\(s\mathrel\sigma\tau\) holds exactly when
+\(s\mathrel\sigma e\), namely exactly when \(s\in I\).
+This is exactly the restriction of \(D_I\), with no other possible
+cross-stratum equivalences.
+
+To verify existence and the quotient descriptions, the maps
+\[
+ \begin{array}{rclcrcl}
+ q_I:F(R)&\longrightarrow&F(R/I),&&
+ v_I:F(R)&\longrightarrow&A(R/I),\\
+ r&\longmapsto&r+I,&&r&\longmapsto&r+I,\\
+ \tau&\longmapsto&\tau_I,&&\tau&\longmapsto&I,\\
+ \Om&\longmapsto&\Om_I,&&\Om&\longmapsto&\Om_I
+ \end{array}
+\]
+are surjective \(\HH\)-morphisms. The first is \(F\) applied to the
+ring quotient map, and its preservation equations also follow directly
+from \eqref{eq:Ffunctor}. The second is the extension by the absorber
+of the standard-semiring map \(G(R)\to R/I\) given by
+\(r\mapsto r+I,\tau\mapsto I\); its verification is exactly the
+ring-projection calculation with coefficients taken modulo \(I\).
+Their fibers are the asserted classes, proving that \(C_I,D_I\) are
+congruences and establishing the quotient isomorphisms. Their kernels
+determine \(I\) by restriction to the ring-zero class; also \(C_I\)
+and \(D_J\) are distinct because only the latter identifies \(\tau,e\).
+
+The first three order equivalences follow by inspecting ring cosets:
+refinement implies that every \(i\in I\), equivalent to \(e\),
+lies in \(J\), and \(I\subseteq J\) gives the required refinement
+of every displayed class. Finally \(D_I\) always identifies
+\(\tau,e\), while no \(C_J\) does. This proves the last assertion
+and completes the classification.
+\end{proof}
+
+\begin{corollary}
+Forcing \(\tau=e\) in \(F(R)\) gives the proper quotient \(A(R)\),
+whereas forcing \(\tau=\Om\), or forcing \(e=\Om\), gives the
+singleton quotient. Requiring global absorption of the additive identity
+therefore generates the universal congruence.
+\end{corollary}
+\begin{proof}
+The first congruence is \(D_{\{e\}}\) by the theorem. Either of the
+other equations identifies \(\Om\) with an element of \(G(R)\),
+which the proof shows generates the universal congruence. Global
+absorption of \(\tau\) includes \(\tau\Om=\tau\); the existing
+equation \(\tau\Om=\Om\) then gives \(\tau=\Om\).
+\end{proof}
+
+\section{The triple of singlets, with its actual identity maps}
+
+\begin{proposition}\label{prop:unitsfixed}
+The group of multiplicative units of \(F(R)\) is exactly \(R^\times\).
+Its multiplication action on \(F(R)\) is by automorphisms of the
+additive monoid. The fixed set of the element \(-1_R\) is
+\[
+ \Fix(-1_R)=\{\tau,\Om\}\sqcup R[2],\qquad
+ R[2]=\{r\in R:2r=e\}.
+\tag{12}\label{eq:signfixed}
+\]
+The fixed set of the whole unit group is
+\[
+ \{\tau,\Om\}\sqcup
+ \{r\in R:(u-1_R)r=e\text{ for every }u\in R^\times\}.
+\tag{13}\label{eq:allfixed}
+\]
+In particular for \(R=\mathbb Z\) the unit group is \(\{1,-1\}\)
+and the fixed set is exactly \(\{\tau,e,\Om\}\).
+\end{proposition}
+\begin{proof}
+No product having a factor \(\Om\) is \(1_R\). A product having a
+factor \(\tau\) and no factor \(\Om\) is \(\tau\ne1_R\).
+Consequently both factors of a product equal to \(1_R\) must be in
+\(R\); they are precisely inverse units there. For \(u\in R^\times\),
+the map \(x\mapsto ux\) preserves addition by distributivity, fixes
+\(\tau\), and has inverse \(x\mapsto u^{-1}x\) by associativity
+and the identity axiom. The group-action composition equation is
+\(u(vx)=(uv)x\).
+
+Both \(\tau\) and \(\Om\) are fixed by every such \(u\), directly
+from the multiplication rules. For \(r\in R\), multiplication by
+\(-1_R\) gives \(-r\); equality \(-r=r\) is equivalent, by adding
+\(r\), to \(2r=e\). Likewise \(ur=r\) is equivalent to
+\((u-1_R)r=e\). This proves the two formulas.
+For an integer unit \(n\), an integer \(m\) satisfies \(nm=1\);
+taking ordinary absolute values gives \(|n||m|=1\), so \(n=1\) or
+\(n=-1\), and both are units. The only integer satisfying \(2n=0\)
+is \(n=0\), proving the final assertion.
+\end{proof}
+
+\begin{theorem}\label{thm:tripleretract}
+For every \(R\), the subset \(E=\{\tau,e,\Om\}\) is closed under
+both operations, with the following complete tables:
+\[
+\begin{array}{c|ccc}
+ +&\tau&e&\Om\\\hline
+ \tau&\tau&e&\Om\\
+ e&e&e&\Om\\
+ \Om&\Om&\Om&\Om
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+ \cdot&\tau&e&\Om\\\hline
+ \tau&\tau&\tau&\Om\\
+ e&\tau&e&\Om\\
+ \Om&\Om&\Om&\Om
+\end{array}.
+\tag{14}\label{eq:Etable}
+\]
+As an object of \(\HH\), it has \(0_E=\tau\) and \(1_E=e\).
+Its additive order, defined by \(a\le b\) exactly when \(a+b=b\),
+is the chain \(\tau<e<\Om\). There are typed maps
+\[
+ d_R:F(R)\longrightarrow E,\quad
+ d_R(\tau)=\tau,\ d_R(r)=e,\ d_R(\Om)=\Om,
+ \qquad j_R:E\hookrightarrow F(R).
+\tag{15}\label{eq:dretract}
+\]
+Here \(d_R\) is an \(\HH\)-morphism; \(j_R\) is an
+\(\HHZ\)-morphism; and \(d_Rj_R=\mathrm{id}_E\).
+If \(R\) is nonzero, \(j_R\) is not unital, and no unital morphism
+\(E\to F(R)\) exists at all. Thus this is a split retract in
+\(\HHZ\), not in \(\HH\), when \(R\) is nonzero.
+\end{theorem}
+\begin{proof}
+All entries involving \(\Om\) follow from its two absorbing laws.
+The remaining entries follow from the definition of \(G(R)\) and
+\(e+e=e^2=e\). These give exactly the displayed tables and closure.
+The associative, commutative, and distributive equations restrict from
+\(F(R)\). The tables exhibit \(\tau\) as the additive identity and
+\(e\) as the multiplicative identity on this subset. They also exhibit
+the stated three-element order, with no reverse inequalities between
+distinct elements.
+
+On the ambient set, multiplication by \(e\) sends \(\tau\) to
+\(\tau\), every \(r\in R\) to \(e\), and \(\Om\) to \(\Om\).
+It is therefore exactly \(j_Rd_R\). Distributivity gives
+\(e(x+y)=ex+ey\). Since \(e^2=e\),
+\((ex)(ey)=e^2xy=e(xy)\). It sends the ambient zero to \(\tau\),
+and it sends \(1_R\) to \(e=1_E\). These equations prove that
+\(d_R\) preserves operations and both constants with codomain \(E\).
+The inclusion preserves the inherited binary operations and the common
+additive identity. The composite \(d_Rj_R\) fixes each of the three
+listed elements, so is the identity.
+
+When \(R\) is nonzero, \(j_R(1_E)=e\ne1_R\). More strongly, a unital
+map \(s:E\to F(R)\) would send \(e\) to \(1_R\); applying it to
+\(e+e=e\) would give \(1_R+1_R=1_R\). This is an equation between
+ring elements and implies \(1_R=e\) by adding \(-1_R\) in \(R\),
+contrary to the hypothesis. Thus there cannot be a unital section or
+even a unital map of the stated type.
+\end{proof}
+
+\begin{remark}
+For a general ring, the triple \(E\) is always fixed by all units, but
+it need not be the full fixed set. Formula~\eqref{eq:signfixed} retains
+all possible two-torsion. For instance in characteristic two, \(-1_R=1_R\)
+and every ring element is fixed by that particular element. Nothing in
+the preceding proof discards such elements or changes the ring.
+\end{remark}
+
+\section{A different construction: preserve the global multiplicative zero}
+
+This section does \emph{not} alter the literal object just proved.
+It analyzes the alternative requirement that the original additive identity
+remain a global multiplicative absorber after a third element is adjoined.
+
+\begin{definition}\label{def:sharp}
+Let \(K\in\SSS\), with \(0_K\ne1_K\). On
+\(K^\sharp=K\sqcup\{w\}\), preserve the operations on \(K\), set
+\(w+x=x+w=w\) for every \(x\in K^\sharp\), and define
+\[
+ 0_Kw=w0_K=0_K,\qquad
+ wa=aw=w\ (a\in K\setminus\{0_K\}),\qquad w^2=w.
+\tag{16}\label{eq:sharp}
+\]
+The proposed constants are \(0_K,1_K\). A standard semiring \(K\)
+is called zerosumfree here when \(a+b=0_K\) implies
+\(a=b=0_K\); it has no nonzero zero divisors here when \(ab=0_K\)
+implies \(a=0_K\) or \(b=0_K\).
+\end{definition}
+
+\begin{theorem}[Necessary and sufficient conditions, with exact receivers]
+\label{thm:sharpcriterion}
+The operations in Definition~\ref{def:sharp} make \(K^\sharp\) an object
+of \(\SSS\) if and only if \(K\) is zerosumfree and has no nonzero
+zero divisors.
+
+For a standard semiring \(B\), a unital zero-preserving homomorphism
+\(f:K\to B\), and \(b\in B\), consider the receiver equations
+\[
+ b+b=b,\quad b^2=b,\quad b+f(a)=b\ (a\in K),\quad
+ bf(a)=b\ (a\in K\setminus\{0_K\}).
+\tag{17}\label{eq:sharpreceivers}
+\]
+When the two stated conditions on \(K\) hold, restriction and evaluation
+at \(w\) give a bijection between homomorphisms \(K^\sharp\to B\)
+and pairs \((f,b)\) satisfying \eqref{eq:sharpreceivers}.
+When either condition fails, every such unital receiver \(B\) is the
+singleton, and the singleton is their universal receiver.
+\end{theorem}
+\begin{proof}
+For necessity, if \(a,b\ne0_K\) and \(ab=0_K\), associativity in
+the proposed extension would require
+\[
+ (wa)b=wb=w=w(ab)=w0_K=0_K,
+\]
+contradicting the disjointness of \(w\) and \(K\). If \(a+b=0_K\)
+and at least one of \(a,b\) is nonzero, both must be nonzero: a zero
+summand would leave the other unchanged. Distributivity would then require
+\[
+ 0_K=w(a+b)=wa+wb=w+w=w,
+\]
+again a contradiction.
+
+For sufficiency assume both conditions. Addition is commutative,
+associative, and has identity \(0_K\): triples in \(K\) use its laws,
+and any triple containing \(w\) has sum \(w\) under either
+parenthesization. Multiplication is commutative by definition, and has
+identity \(1_K\) because \(1_K\ne0_K\) and hence \(1_Kw=w\).
+The element \(0_K\) absorbs every element, including \(w\).
+For associativity, a triple with a zero factor gives zero under both
+parenthesizations. A triple with no zero factor and no \(w\) uses
+associativity in \(K\). A triple with no zero factor and an occurrence
+of \(w\) gives \(w\) under both parenthesizations: a product of the
+other nonzero elements of \(K\) cannot become zero, by hypothesis.
+
+For distributivity \(a(b+c)=ab+ac\), first let \(a=0_K\); both sides
+are \(0_K\). Next let \(a=w\). In the extended additive monoid,
+\(b+c=0_K\) holds exactly when \(b=c=0_K\), by zerosumfreeness
+on \(K\) and the rule for a sum with \(w\). If both summands are
+zero, both sides of distributivity are zero. Otherwise the left side
+is \(w\), while at least one of \(wb,wc\) is \(w\) and the other
+is either zero or \(w\), so the right side is \(w\). Finally let
+\(a\in K\setminus\{0_K\}\). If both \(b,c\) lie in \(K\), use
+its original distributivity. If either is \(w\), their sum is \(w\)
+and the left side is \(w\); the right side has a summand \(w\) and
+therefore equals \(w\). These exhaust the cases and prove all axioms.
+
+When the axioms hold, necessity of the receiver equations follows by
+applying a homomorphism to the defining equations of the extension.
+For sufficiency define the function to equal \(f\) on \(K\) and to
+send \(w\) to \(b\). Pairs in \(K\) are handled by \(f\). An
+additive pair with \(w\) is handled by the first or third equation
+in \eqref{eq:sharpreceivers}. A multiplicative pair with \(w\) and
+a nonzero element of \(K\), or with another \(w\), is handled by
+the fourth or second equation. The remaining pair \((w,0_K)\) is
+handled by the standard-semiring law \(b0_B=0_B=f(0_K)\).
+The two constants are preserved by \(f\). This gives the unique extension.
+
+Suppose now that \(a,b\in K\setminus\{0_K\}\) satisfy \(ab=0_K\),
+and a receiver \((f,c)\) satisfies \eqref{eq:sharpreceivers}. Then
+\[
+ c=cf(b)=(cf(a))f(b)=cf(ab)=c0_B=0_B.
+\]
+If instead \(a+b=0_K\) with nonzero \(a,b\), then
+\[
+ 0_B=cf(a+b)=cf(a)+cf(b)=c+c=c.
+\]
+In either case the equation \(c+f(1_K)=c\) gives
+\(0_B+1_B=0_B\), so \(1_B=0_B\), and the standard-semiring laws
+make \(B\) a singleton. The singleton has a unique map from \(K\)
+and a unique choice of \(c\), satisfying every receiver equation.
+Every receiver factors through it uniquely, which proves the universal
+assertion even when the proposed distinct-element extension cannot exist.
+\end{proof}
+
+\begin{corollary}\label{cor:T}
+For every commutative unital ring \(R\), the construction
+\[
+ T(R)=G(R)^\sharp=R\sqcup\{\tau,w\}
+\tag{18}\label{eq:T}
+\]
+is a commutative unital standard semiring, with \(\tau\) as zero and
+\(1_R\) as unit. Its inclusion \(G(R)\hookrightarrow T(R)\) is
+an injective morphism in \(\SSS\). For \(r,s\in R\), its complete
+stratum-level operations are
+\[
+\begin{array}{c|ccc}
+ +&\tau&s&w\\\hline
+ \tau&\tau&s&w\\
+ r&r&r+s&w\\
+ w&w&w&w
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+ \cdot&\tau&s&w\\\hline
+ \tau&\tau&\tau&\tau\\
+ r&\tau&rs&w\\
+ w&\tau&w&w
+\end{array}.
+\tag{19}\label{eq:Ttable}
+\]
+Here \(r,s\) range over \emph{all} elements of \(R\), including
+\(e\), so in particular \(we=w\) but \(w\tau=\tau\).
+These rules are the unique binary operations on this disjoint union
+that preserve the operations on \(G(R)\), make \(w\) additively
+absorbing, make \(\tau\) globally multiplicatively absorbing, and
+make \(w\) multiply every element other than \(\tau\) to \(w\).
+\end{corollary}
+\begin{proof}
+Proposition~\ref{prop:G} proves the exact two hypotheses of
+Theorem~\ref{thm:sharpcriterion} relative to the zero \(\tau\).
+Also \(1_R\ne\tau\) because the union is disjoint, even for the
+zero ring. Thus the theorem applies with \(K=G(R)\). The operations
+restricted to \(G(R)\), and both constants, are unchanged, proving
+the inclusion assertion. Each table entry is either an original
+\(G(R)\) operation, a zero-absorption rule, or one of the defining
+\(w\) rules. Every pair in the disjoint union has exactly one such
+specified value, proving the uniqueness assertion.
+\end{proof}
+
+\begin{proposition}[Exact difference between the two constructions]
+\label{prop:difference}
+The identification of underlying sets
+\(F(R)\to T(R)\) that fixes \(G(R)\) and sends \(\Om\) to \(w\)
+is not a multiplicative homomorphism, and neither is its inverse.
+Every \(\HHZ\)-morphism \(F(R)\to T(R)\) is constant \(\tau\);
+there is no \(\HH\)-morphism of that type.
+If \(R\) is nonzero, there is no \(\HH\)-morphism \(T(R)\to F(R)\).
+
+In \(T(R)\), the congruence generated by \(\tau=e\) is universal.
+Every zero-preserving, possibly nonunital, map from \(T(R)\) to a
+ring is constant zero. For nonzero \(R\), the projection
+\(p_R:G(R)\to R\) therefore does not extend over \(T(R)\).
+These conclusions concern \(T(R)\); for the literal object \(F(R)\),
+the quotient by \(\tau=e\) is instead the exact object \(A(R)\)
+in Theorem~\ref{thm:quotientA}.
+\end{proposition}
+\begin{proof}
+The two multiplication tables disagree at \((\tau,\Om)\), respectively
+\((\tau,w)\): the literal result is \(\Om\), while the alternate
+result is \(\tau\). Since these are distinct, the indicated
+identification and its inverse fail their multiplication equation.
+The assertions about maps \(F(R)\to T(R)\) follow from
+Theorem~\ref{thm:reflection}, because \(T(R)\) is a nontrivial
+standard semiring: its distinct elements include \(\tau,e\).
+
+Suppose \(R\) is nonzero and \(h:T(R)\to F(R)\) is an
+\(\HH\)-morphism. Since \(w\tau=\tau\), its image satisfies
+\(h(w)\tau=\tau\), so \(h(w)\ne\Om\) and \(h(w)\in G(R)\).
+On the other hand \(w+1_R=w\) forces
+\(h(w)+1_R=h(w)\). If \(h(w)=\tau\), this would give
+\(1_R=\tau\), impossible. If \(h(w)=r\in R\), this is the
+ring equation \(r+1_R=r\), implying \(1_R=e\), also impossible.
+
+In a congruence of \(T(R)\) identifying \(\tau,e\), multiplication
+by \(w\) identifies \(\tau w=\tau\) with \(ew=w\). Thus it
+identifies \(\tau,w\). Adding any \(x\in T(R)\) identifies
+\(\tau+x=x\) with \(w+x=w\), so all elements are equivalent.
+For a binary-addition-preserving map to a ring, the equation
+\(w+x=w\) and additive cancellation in the target force every image
+to be zero, just as in the earlier ring-receiver proof. In particular
+this holds for all of the stated homomorphisms. If \(R\) is nonzero,
+the map \(p_R\) fixes \(1_R\ne e\), so cannot be the restriction of
+such a constant-zero map.
+\end{proof}
+
+\begin{proposition}[Functorial scope of the alternate construction]
+Let \(K,L\) be nontrivial commutative unital standard semirings meeting
+the two conditions of Theorem~\ref{thm:sharpcriterion}. For a unital
+zero-preserving map \(f:K\to L\), the set map
+\[
+ f^\sharp:K^\sharp\to L^\sharp,\qquad
+ f^\sharp|_K=f,\quad f^\sharp(w_K)=w_L
+\]
+is a homomorphism if and only if \(f\) reflects zero:
+\(f(a)=0_L\) implies \(a=0_K\).
+Consequently every ring homomorphism \(h:R\to R'\) does extend to
+a homomorphism \(T(R)\to T(R')\) fixing the two adjoined strata,
+even if the ring map has a nonzero kernel.
+\end{proposition}
+\begin{proof}
+If \(a\ne0_K\) but \(f(a)=0_L\), then
+\(f^\sharp(w_Ka)=w_L\), while
+\(f^\sharp(w_K)f^\sharp(a)=w_L0_L=0_L\), contradicting preservation
+of multiplication. Conversely, if \(f\) reflects zero, pairs from
+\(K\) obey the homomorphism equations for \(f\); additive pairs
+with \(w_K\) map to the absorber equation; multiplicative pairs with
+\(w_K\) and a nonzero entry map to \(w_L\) because that entry still
+has nonzero image; the pair with zero maps to zero, and the pair of
+two new elements maps to \(w_L^2=w_L\). Constants are preserved.
+For a ring map \(h\), the map \(G(h):G(R)\to G(R')\) sends
+\(\tau\) to \(\tau'\) and every \(r\in R\) into \(R'\), never
+into the disjoint element \(\tau'\). It therefore reflects the
+standard-semiring zero, regardless of whether \(h(r)=0_{R'}\)
+for a nonzero ring element. Applying the proved criterion gives the
+asserted map on \(T\).
+\end{proof}
+
+\end{document}

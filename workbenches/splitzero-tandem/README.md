@@ -1,3 +1,10 @@
+<!-- four-role-foundational-supplement:20260919 -->
+## Four identity/absorber roles — foundational supplement, 19 September 2026
+
+[Read the complete square and its explanations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-four-role-square/README.md). The four complete proofs calculate the role equations and common-identity receiver, the additive-absorber/multiplicative-identity three-state receiver, the original Omega extension with its exact adjunction and congruences, and paired arithmetic/support observations with a spectral receiver. [Proof index, SZ-20260919-011–014](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-four-role-square/RESULT_INDEX.json) · [Complete source identities](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260919-four-role-square/SOURCE_MANIFEST.json).
+
+This recovers and develops the original construction in its stated categories; it is not a historical-novelty claim or a new analytic RH bound. The supplied finite checker and receipt supplement the general TeX proofs. Earlier publications and the corrected programme chronology remain unchanged; the broader mathematical overview is separate work.
+
 <!-- origin-atlas-provenance-correction:20260919 -->
 ## Provenance correction — 19 September 2026
 

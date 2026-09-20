@@ -1,0 +1,3823 @@
+\documentclass[11pt]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,longtable,booktabs,array,graphicx}
+\usepackage[hidelinks]{hyperref}\usepackage{xurl}
+\hypersetup{hypertexnames=false}
+\allowdisplaybreaks\setlength{\emergencystretch}{3em}
+\title{Original theta sources, finite-prime transfers and full-Weil certificates}
+\author{}\date{20 September 2026}
+\begin{document}\maketitle
+This edition contains seven complete proofs for the original Split-Zero
+theta source, quotient and arithmetic metric. Every phase, multiplicity,
+mass and relation term remains. Classical inputs are cited at their use.
+Finite positive Weil tests and exact source comparisons do not evaluate
+the remaining growing-degree arithmetic estimate or establish RH.
+
+% BEGIN COMPLETE SEMILOCAL PROLATE WEIL PROOFS
+
+\clearpage\begingroup
+\part*{Full Weil form at the original moving pole}
+\newtheorem{swpoletheorem}{Theorem}
+\newtheorem{swpolelemma}[swpoletheorem]{Lemma}
+\newcommand{\swpoleW}{\mathcal W}
+\newcommand{\swpoleLL}{\mathscr L}
+\newcommand{\swpoledd}{\,\mathrm d}
+\newcommand{\swpoleRea}{\operatorname{Re}}
+\newcommand{\swpoleIma}{\operatorname{Im}}
+\newcommand{\swpolevM}{\Lambda_{\mathrm{vM}}}
+
+
+
+This note independently derives the movable-pole portion of the supplied
+full-Weil continuation, including its complete zero sums, the original
+physical measure, all prime powers, all Gamma terms, and finite truncation
+errors. It proves the identities corresponding to incoming equations
+(18), (24)--(32), and (40)--(49). It does not claim a negative numerical
+certificate or an off-critical zero. The separate Gaussian estimates and
+the Fable determinant comparison are outside this note.
+
+The classical analytic input is the completed Riemann function
+\begin{equation}
+ \xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad
+ \swpoleLL(s)=\frac{\xi'(s)}{\xi(s)}.\tag{MP1}
+\end{equation}
+It is entire of order one, has zeros precisely at the nontrivial zeta zeros
+with their multiplicities, has no zero at zero or one, and satisfies
+$\xi(1-s)=\xi(s)$ and $\xi(\bar s)=\overline{\xi(s)}$.
+The source for the full genus-one product used below is Lagarias
+\cite[Lemma 4.1 and its proof]{swpole:Lagarias}; absolute convergence of reciprocal
+power sums of order at least two is stated and proved in
+\cite[Lemma 2.1]{swpole:Lagarias}. The original author TeX, version 4, was read at
+these locators and at the definition of the Weil form in Section 3.
+Lagarias uses a form linear in its first slot. Our convention is its
+transposition: $\swpoleW(F,G)=\langle G,F\rangle_{\mathcal W}$.
+The moving-pole calculations below are proved here, rather than attributed
+to that source. DLMF 25.2.12 \cite{swpole:DLMFProduct} also gives the
+genus-one zeta product explicitly; its original formula TeX was read
+and yields the completed-xi constants recorded in MP6a below.
+
+Throughout, $\rho$ ranges over distinct nontrivial zeros, and $m_\rho$ is
+their actual multiplicity. Every zero sum includes all these zeros.
+We use $0<\swpoleRea\rho<1$ and
+$\sum_\rho m_\rho(1+|\rho|)^{-2}<\infty$. These statements impose no
+Riemann-hypothesis assumption.
+
+\section{The original form, Mellin transform, and kernel}
+Define $R(s)=1-\bar s$. Whenever the displayed series is absolutely
+convergent, set
+\begin{equation}
+ \swpoleW(F,G)=\sum_\rho m_\rho\,\overline{F(R\rho)}G(\rho).
+ \tag{MP2}
+\end{equation}
+This form is conjugate-linear in the first variable. Reflection permutes
+the zeros with their multiplicities. Replacing $\rho$ by $R\rho$ in an
+absolutely convergent sum therefore proves
+$\overline{\swpoleW(G,F)}=\swpoleW(F,G)$. Under RH, and only when using that stated
+assumption, $R\rho=\rho$, and MP2 becomes the positive sum
+$\sum m_\rho\overline{F(\rho)}G(\rho)$.
+
+Fix, without changing its physical or spectral coordinates,
+\begin{equation}
+ \omega=\sigma+i\tau,\quad \sigma>1,\quad h=2\sigma-1,
+ \qquad U_\omega(s)=\frac{s+\bar\omega-1}{\omega-s},\qquad
+ \varphi_j^\omega(s)=\frac{\sqrt h}{\omega-s}U_\omega(s)^j
+ \quad(j\geq0).\tag{MP3}
+\end{equation}
+The square root of $h$ is the positive real square root. For every fixed
+$j$, the function is holomorphic across the closed critical strip and is
+$O((1+|\swpoleIma s|)^{-1})$ there. The constant may depend on $j$ and $\omega$.
+Consequently MP2 converges absolutely on every finite linear span of
+these functions, including between families with different such poles.
+
+Use the Mellin convention $\mathcal Mf(s)=\int_0^\infty f(x)x^{s-1}\swpoledd x$.
+Define the Laguerre polynomials here by their finite coefficients,
+$L_j(u)=\sum_{\ell=0}^j(-1)^\ell\binom j\ell u^\ell/\ell!$.
+Their classical generating function is also recorded in
+Koornwinder--Wong--Koekoek--Swarttouw--Reinhardt \cite{swpole:Laguerre};
+the transform and orthogonality needed here are proved below.
+Then the physical source is exactly
+\begin{equation}
+ f_j^\omega(x)=\sqrt h\,(-1)^j x^{-\omega}L_j(h\log x)
+                    \mathbf1_{\{x\geq1\}}.
+ \tag{MP4}
+\end{equation}
+The value assigned at the single endpoint does not affect the Mellin
+integral or the $L^2(\swpoledd x)$ class. These functions need not be smooth
+across that endpoint.
+
+\begin{swpolelemma}
+For $\swpoleRea s<\sigma$ one has $\mathcal Mf_j^\omega(s)=\varphi_j^\omega(s)$.
+For all $i,j\geq0$, with the original physical measure unchanged,
+\begin{equation}
+ \int_1^\infty\overline{f_i^\omega(x)}f_j^\omega(x)\swpoledd x=\delta_{ij}.
+ \tag{MP5}
+\end{equation}
+\end{swpolelemma}
+\begin{proof}
+Put $a=\omega-s$. Termwise integration of the finite polynomial gives,
+for $\swpoleRea a>0$,
+\[
+ \int_0^\infty e^{-at}L_j(ht)\swpoledd t
+ =\sum_{\ell=0}^j(-1)^\ell\binom j\ell\frac{h^\ell}{a^{\ell+1}}
+ =\frac{(a-h)^j}{a^{j+1}}.
+\]
+The substitution $x=e^t$ in the Mellin transform and
+$h-a=s+\bar\omega-1$ prove MP3--MP4 with the stated sign.
+The same substitution in the physical norm, now retaining its factor
+$\swpoledd x=e^t\swpoledd t$, gives
+\[
+ h(-1)^{i+j}\int_0^\infty e^{-ht}L_i(ht)L_j(ht)\swpoledd t
+ =(-1)^{i+j}\int_0^\infty e^{-u}L_i(u)L_j(u)\swpoledd u.
+\]
+For completeness, summing the finite definition of $L_j$ gives
+\[
+\sum_{j\geq0}L_j(u)t^j=(1-t)^{-1}\exp(-ut/(1-t)).
+\]
+For $|t|,|v|$ sufficiently small its product can be integrated against
+$e^{-u}\swpoledd u$, by exponential domination. The result is
+\[
+ \frac1{(1-t)(1-v)}
+ \int_0^\infty\exp\left[-u\left(1+\frac t{1-t}
+                         +\frac v{1-v}\right)\right]\swpoledd u
+ =\frac1{1-tv}.
+\]
+Comparison of coefficients proves that the last integral of the two
+Laguerre polynomials is $\delta_{ij}$. Its accompanying phase is then
+$(-1)^{2j}=1$, proving MP5.
+\end{proof}
+
+The full genus-one product, with constants $A,B$, is
+\begin{equation}
+ \xi(s)=e^{As+B}\prod_\rho
+       \left[(1-s/\rho)e^{s/\rho}\right]^{m_\rho}.
+ \tag{MP6}
+\end{equation}
+For the particular completion MP1, the exact constants may be retained
+as well. Multiplying the original DLMF 25.2.12 product by
+$\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)$ and using
+$\Gamma(s/2+1)=(s/2)\Gamma(s/2)$ gives
+\begin{equation}
+ \xi(s)=\frac12\exp\!\left[
+  \left(\log2+\tfrac12\log\pi-1-\tfrac12\gamma_E\right)s\right]
+ \prod_\rho\left[(1-s/\rho)e^{s/\rho}\right]^{m_\rho}.
+ \tag{MP6a}
+\end{equation}
+The factors initially cancel away from their displayed special points;
+entire continuation gives the same identity there. The DLMF source
+credits Titchmarsh (1986), equations (2.12.6) and (2.12.8), pages 30--31.
+An earlier integration warning that this locator did not exist was
+incorrect; the incoming locator is valid.
+Its logarithmic derivative is locally normally convergent off the zeros
+when the paired summand $1/(s-\rho)+1/\rho$ is kept intact. Subtracting
+two such derivatives cancels both $A$ and the regularizers. Thus, for
+$\swpoleRea\omega,\swpoleRea\nu>1$,
+\begin{align}
+ \swpoleLL(\nu)-\swpoleLL(1-\bar\omega)
+ &=\sum_\rho m_\rho
+       \left(\frac1{\nu-\rho}+\frac1{\rho+\bar\omega-1}\right),\tag{MP7}\\
+ \swpoleW\left(\frac1{\omega-s},\frac1{\nu-s}\right)
+ &=\frac{\swpoleLL(\nu)+\overline{\swpoleLL(\omega)}}{\nu+\bar\omega-1}.
+ \tag{MP8}
+\end{align}
+Indeed the MP7 summand is
+$(\nu+\bar\omega-1)/((\nu-\rho)(\rho+\bar\omega-1))$ and is
+$O(|\rho|^{-2})$. The denominator $\nu+\bar\omega-1$ is nonzero.
+Differentiating the two functional symmetries gives
+$\swpoleLL(1-\bar\omega)=-\overline{\swpoleLL(\omega)}$. These facts prove MP8
+with every Hadamard constant accounted for.
+
+\section{Exact Toeplitz coefficients and the fixed-pole criterion}
+At a zero put $\alpha=\omega-\rho$ and $\beta=\rho+\bar\omega-1$;
+both are nonzero and $\alpha+\beta=h$. Direct conjugation, retaining the
+same reflection as MP2, gives
+$\overline{U_\omega(R\rho)}=U_\omega(\rho)^{-1}$.
+It follows that the entire finite Weil matrix has the Toeplitz form
+\begin{align}
+ \swpoleW(\varphi_i^\omega,\varphi_j^\omega)&=c_{j-i}(\omega),
+   &c_{-n}&=\overline{c_n},\tag{MP9}\\
+ c_0&=\sum_\rho m_\rho\frac h{\alpha\beta}
+             =2\swpoleRea\swpoleLL(\omega),\tag{MP10}\\
+ c_n&=\sum_\rho m_\rho\frac{h\beta^{n-1}}{\alpha^{n+1}}
+       \quad(n\geq1).\tag{MP11}
+\end{align}
+All these series converge absolutely: for fixed positive or negative
+$n$, $U_\omega(\rho)$ and its inverse tend to $-1$ at large height,
+while $h/(\alpha\beta)=O(|\rho|^{-2})$.
+
+There is also an unconditional positive diagonal. Write
+$d=\sigma-\tfrac12>\tfrac12$, $\rho=\tfrac12+\delta+i\gamma$, and
+$y=\gamma-\tau$. Since $|\delta|<\tfrac12$,
+\begin{equation}
+ \swpoleRea\frac h{\alpha\beta}
+ =\frac{h(d^2-\delta^2+y^2)}
+        {(d^2-\delta^2+y^2)^2+4\delta^2y^2}>0.
+ \tag{MP12}
+\end{equation}
+Hermiticity makes the sum MP10 real. Absolute convergence permits taking
+its real part term by term. The nonempty zero set therefore gives
+$c_0>0$ without RH.
+
+Differentiating MP6 at least once after taking its logarithmic derivative
+gives, for $\ell\geq1$,
+$\swpoleLL^{(\ell)}(\omega)=(-1)^\ell\ell!\sum_\rho
+m_\rho\alpha^{-\ell-1}$. These sums are absolutely convergent.
+Expansion of $(h-\alpha)^{n-1}$ in MP11 therefore proves
+\begin{equation}
+ c_n=(-1)^n\sum_{\ell=1}^n\binom{n-1}{\ell-1}
+               \frac{h^\ell}{\ell!}\swpoleLL^{(\ell)}(\omega).
+ \tag{MP13}
+\end{equation}
+In particular $c_1=-h\swpoleLL'$, $c_2=h\swpoleLL'+h^2\swpoleLL''/2$, and
+$c_3=-h\swpoleLL'-h^2\swpoleLL''-h^3\swpoleLL'''/6$, all at the original $\omega$.
+
+For a finite vector $b=(b_0,\ldots,b_n)$ define
+$F_b=\sum_{j=0}^n b_j\varphi_j^\omega$ and
+$T_n=(c_{j-i})_{0\leq i,j\leq n}$. Then
+\begin{equation}
+ \swpoleW(F_b,F_b)=b^*T_nb,\qquad
+ \swpoleW\left(\varphi_0^\omega-
+             \frac{\bar c_n}{|c_n|}\varphi_n^\omega,
+          \varphi_0^\omega-
+             \frac{\bar c_n}{|c_n|}\varphi_n^\omega\right)
+       =2(c_0-|c_n|)\quad(c_n\ne0).
+ \tag{MP14}
+\end{equation}
+This follows by expansion using the conjugate-linear-first convention;
+it fixes the complex phase rather than replacing it by a sign.
+
+The relevant generating function is initially an identity near zero:
+\begin{equation}
+ s(z)=\frac{\omega+(1-\bar\omega)z}{1+z}
+     =\omega-\frac{hz}{1+z},\qquad
+ \swpoleLL(s(z))=\swpoleLL(\omega)+\sum_{n=1}^\infty c_n z^n.
+ \tag{MP15}
+\end{equation}
+To prove it, use the Taylor series for $\swpoleLL$ at the zero-free point
+$\omega$. For $1\leq\ell\leq n$ the coefficient of $z^n$ in
+$(-hz/(1+z))^\ell$ is
+$(-1)^n h^\ell\binom{n-1}{\ell-1}$. This gives MP13.
+Unconditionally one must not presume that this Taylor series converges
+on the whole unit disk.
+
+\begin{swpoletheorem}
+For each one fixed pole $\swpoleRea\omega>1$, the following are equivalent:
+\begin{enumerate}
+\item RH;
+\item $|c_n(\omega)|\leq c_0(\omega)$ for every $n\geq1$;
+\item all finite matrices $T_n(\omega)$ are positive semidefinite.
+\end{enumerate}
+If RH is false, already a two-mode vector in MP14 is negative for some
+finite $n$. This assertion evaluates no particular finite $n$ or phase.
+\end{swpoletheorem}
+\begin{proof}
+Under RH, $\beta=\bar\alpha$, $|U_\omega(\rho)|=1$, and
+MP10--MP11 give
+\[
+ c_n=\sum_\rho m_\rho\frac h{|\omega-\rho|^2}
+                                      U_\omega(\rho)^n,
+ \qquad c_0=\sum_\rho m_\rho\frac h{|\omega-\rho|^2}.
+\]
+The triangle inequality proves (2), and MP2 proves (3).
+Conversely (3) implies (2) by the principal minor on indices $0,n$.
+Under (2) the series in MP15 is holomorphic on $|z|<1$.
+The map $s(z)$ takes that disk biholomorphically onto $\swpoleRea s>1/2$,
+since
+\begin{equation}
+ \swpoleRea(s(z)-\tfrac12)=\frac{h(1-|z|^2)}{2|1+z|^2},\qquad
+ s'(z)=-\frac h{(1+z)^2}.\tag{MP16}
+\end{equation}
+The composition $\swpoleLL\circ s$ is meromorphic there and agrees with the
+series near zero. The identity theorem for meromorphic functions on the
+connected disk makes it holomorphic on that disk. But a zero $\rho$ with
+$\swpoleRea\rho>1/2$ would give a pole at
+\begin{equation}
+ z_\rho=\frac{\omega-\rho}{\rho+\bar\omega-1},\qquad
+ |\rho+\bar\omega-1|^2-|\omega-\rho|^2
+                       =h(2\swpoleRea\rho-1)>0.\tag{MP17}
+\end{equation}
+The residue of the composition there is
+$m_\rho/s'(z_\rho)\ne0$. Distinct zeros give distinct points because
+$s$ is injective, so the pole cannot cancel. This is a contradiction.
+Reflection then also excludes zeros with $\swpoleRea\rho<1/2$, proving RH.
+If RH fails, the contrapositive gives $|c_n|>c_0>0$ for some $n$,
+and MP14 supplies the asserted vector.
+\end{proof}
+
+A precise strengthening records the degree dependence without assigning
+an uncomputed degree. If there is a right-of-line zero, put
+\begin{equation}
+ r_\omega=\min_{\swpoleRea\rho>1/2}|z_\rho|<1.
+ \quad\text{Then}\quad
+ \limsup_{n\longrightarrow\infty}|c_n|^{1/n}=r_\omega^{-1}>1.
+ \tag{MP18}
+\end{equation}
+The minimum exists and is positive: $\omega$ is not a zero, zeros are
+discrete, and $z_\rho\to-1$ as $|\swpoleIma\rho|\to\infty$. There are
+therefore finitely many zeros whose images lie in any fixed smaller disk.
+The composition has no singularity inside $|z|<r_\omega$ and has a
+genuine pole on its boundary. Thus the Taylor radius is $r_\omega$;
+the Cauchy--Hadamard theorem proves MP18.
+
+\section{Prime and Gamma evaluation with all constants retained}
+For $\swpoleRea s>1$, the Euler product and MP1 give
+\begin{equation}
+ \swpoleLL(s)=\frac1s+\frac1{s-1}-\frac12\log\pi
+           +\frac12\psi(s/2)-\sum_{m=2}^\infty\swpolevM(m)m^{-s},
+ \qquad \psi=\Gamma'/\Gamma.\tag{MP19}
+\end{equation}
+Here $\swpolevM(p^a)=\log p$ for a prime power, and $\swpolevM(m)=0$ otherwise.
+Indeed unique factorization expands the absolutely convergent Euler
+product on this half-plane. Its logarithm is
+$\sum_p\sum_{a\geq1}p^{-as}/a$; termwise differentiation, uniformly
+on compact subsets of the half-plane, gives the displayed prime-power
+series. The bound $0\leq\swpolevM(m)\leq\log m$ proves the needed local
+uniform convergence of every differentiated series.
+
+We spell out the Gamma formulas so their constants and domains are
+explicit. For $\swpoleRea z>0$, repeated integration by parts gives
+\[
+ \int_0^1t^{z-1}(1-t)^M\swpoledd t
+       =\frac{M!}{z(z+1)\cdots(z+M)}.
+\]
+After multiplying by $M^z$ and substituting $u=Mt$, dominated
+convergence to the defining Gamma integral gives Euler's product limit
+$\Gamma(z)=\lim_{M\to\infty}M!M^z/[z(z+1)\cdots(z+M)]$.
+The domination follows from $(1-u/M)^M\leq e^{-u}$ on $0\leq u\leq M$,
+uniformly for $z$ in a compact subset of the right half-plane, with
+integrable bounds for the required powers of $\log u$.
+Equivalently the regularized reciprocal product converges normally,
+since its logarithmic summands after removal of the linear term are
+$O(M^{-2})$ on such compact subsets. Its factors do not vanish there.
+Logarithmic differentiation therefore gives
+\begin{equation}
+ \psi(z)=-\gamma_E+\sum_{r=0}^\infty
+                   \left(\frac1{r+1}-\frac1{r+z}\right),
+ \qquad
+ \frac12\psi(s/2)=-\frac{\gamma_E}2+
+       \sum_{r=0}^\infty\left(\frac1{2r+2}-\frac1{s+2r}\right).
+ \tag{MP20}
+\end{equation}
+These sums converge locally normally. The $r=0$ pole in the second
+sum is exactly $-1/s$, cancelling the first term of MP19.
+
+For a fixed complex $a$ with $\omega\ne a$, direct expansion yields
+\begin{equation}
+ [z^n]\frac1{s(z)-a}
+ =\frac h{(\omega-a)^2}
+       \left(\frac{\bar\omega+a-1}{\omega-a}\right)^{n-1}
+ \quad(n\geq1).\tag{MP21}
+\end{equation}
+To check the coefficient, write the rational function as
+$(1+z)/((\omega-a)+(1-\bar\omega-a)z)$ and use its geometric series
+at zero. Its $n$th coefficient is the displayed one since the sum of
+$\omega-a$ and $\bar\omega+a-1$ is $h$.
+
+Define $L_0^{(-1)}(x)=1$ and, for $n\geq1$,
+\begin{equation}
+ L_n^{(-1)}(x)=\sum_{\ell=1}^n(-1)^\ell
+             \binom{n-1}{\ell-1}\frac{x^\ell}{\ell!},\qquad
+ e^{xz/(1+z)}=\sum_{n=0}^\infty(-1)^nL_n^{(-1)}(x)z^n.
+ \tag{MP22}
+\end{equation}
+The second identity follows by expanding the exponential and extracting
+coefficients, using the same binomial coefficient as in MP15.
+Choose a sufficiently small disk around zero so $\swpoleRea s(z)>1$.
+The prime and Gamma series there converge locally uniformly, and so
+coefficients may be extracted termwise. Combining MP19--MP22 gives the
+exact formula, for each fixed $n\geq1$,
+\begin{align}
+ c_n={}&\frac h{(\omega-1)^2}
+                \left(\frac{\bar\omega}{\omega-1}\right)^{n-1}
+ -h\sum_{r=1}^\infty\frac1{(\omega+2r)^2}
+             \left(\frac{\bar\omega-1-2r}{\omega+2r}\right)^{n-1}
+ \notag\\[-2pt]
+ &\hspace{4mm}-(-1)^n\sum_{m=2}^\infty
+           \swpolevM(m)m^{-\omega}L_n^{(-1)}(h\log m).
+ \tag{MP23}
+\end{align}
+The Gamma sum is absolutely convergent since
+\begin{equation}
+ |\omega+2r|^2-|\bar\omega-1-2r|^2=h(4r+1)>0.
+ \tag{MP24}
+\end{equation}
+The prime sum is absolutely convergent by its fixed polynomial degree in
+$\log m$ and $\sigma>1$. MP23 retains the phase $m^{-i\tau}$ and
+every prime power. No assertion of prime-series convergence throughout
+the Möbius unit disk is needed or made.
+
+\section{Finite tail bounds and an exact computable certificate}
+For integers $N\geq1$, $j\geq0$, define
+\begin{equation}
+ I_j(N,\sigma)=N^{1-\sigma}\sum_{r=0}^j
+       \frac{j!}{(j-r)!}\frac{\log(N+1)^{j-r}}{(\sigma-1)^{r+1}}.
+ \tag{MP25}
+\end{equation}
+For every such $N$, without a monotonicity threshold for a logarithmic
+weight,
+\begin{equation}
+ \sum_{m>N}(\log m)^j m^{-\sigma}\leq I_j(N,\sigma).
+ \tag{MP26}
+\end{equation}
+To prove it, for $x\in[m-1,m]$ and $m>N$ use
+$m^{-\sigma}\leq x^{-\sigma}$ and
+$\log m\leq\log x+\log(1+1/N)$. The latter upper bound is
+nonnegative on $x\geq N\geq1$. The sum is bounded by the integral of
+$x^{-\sigma}(\log x+\log(1+1/N))^j$ from $N$ to infinity.
+Putting $x=Ne^t$ evaluates that integral as
+\[
+ N^{1-\sigma}\int_0^\infty e^{-(\sigma-1)t}
+                     (\log(N+1)+t)^j\swpoledd t=I_j(N,\sigma),
+\]
+by a finite binomial expansion and the elementary factorial integral.
+
+Consequently the prime tail in MP23 after $m=N$ satisfies
+\begin{equation}
+ E_{\mathrm{prime},n}\leq
+ \sum_{\ell=1}^n\binom{n-1}{\ell-1}\frac{h^\ell}{\ell!}
+                                     I_{\ell+1}(N,\sigma).
+ \tag{MP27}
+\end{equation}
+This follows from MP22, $\swpolevM(m)\leq\log m$, and the triangle inequality,
+including every term of the finite polynomial. The Gamma tail after
+$r=M$, for an integer $M\geq0$, satisfies
+\begin{equation}
+ E_{\Gamma,n}\leq h\sum_{r>M}(\sigma+2r)^{-2}
+       \leq h\int_M^\infty(\sigma+2x)^{-2}\swpoledd x
+       =\frac h{2(\sigma+2M)}.\tag{MP28}
+\end{equation}
+The first inequality uses MP24, and the second uses a decreasing positive
+function; both are valid for $n=1$ and for $M=0$.
+
+The diagonal can also be enclosed without discarding a Gamma constant.
+Let $B_1(t)=\{t\}-1/2$ off the integers, with arbitrary endpoint values.
+For $\swpoleRea z>0$ the exact identity is
+\begin{equation}
+ \psi(z)=\log z-\frac1{2z}
+       +\int_0^\infty\frac{B_1(t)}{(z+t)^2}\swpoledd t.
+ \tag{MP29}
+\end{equation}
+Here and below the logarithm is its analytic branch on the right
+half-plane, real on the positive real axis. To prove MP29, integrate
+$B_1(t)f'(t)$ separately on each interval $[r,r+1]$ for
+$f(t)=(z+t)^{-1}$. Summing the endpoint values gives, for integral $L>0$,
+\[
+ \sum_{r=0}^{L-1}\frac1{z+r}
+ =\log(z+L)-\log z+\frac1{2z}-\frac1{2(z+L)}
+                  -\int_0^L\frac{B_1(t)}{(z+t)^2}\swpoledd t.
+\]
+The Euler product above gives
+$\psi(z)=\lim_{L\to\infty}(\log L-\sum_{r=0}^{L-1}(z+r)^{-1})$;
+the harmless final term in that limit tends to zero. The integral
+converges absolutely. Passing to the limit proves MP29 and its sign.
+
+Use the exact finite recurrence
+$\psi(z)=\psi(z+M)-\sum_{r=0}^{M-1}(z+r)^{-1}$.
+For $a=\swpoleRea(z+M)>0$ and $b=\swpoleIma z$, the integral omitted after applying
+MP29 at $z+M$ has absolute value at most
+\begin{equation}
+ J(a,b)=\frac12\int_0^\infty\frac{\swpoledd t}{(a+t)^2+b^2}
+ =\begin{cases}
+ \displaystyle\frac{\arctan(|b|/a)}{2|b|},&b\ne0,\\[5pt]
+ \displaystyle\frac1{2a},&b=0.
+ \end{cases}\tag{MP30}
+\end{equation}
+Use this with $z=\omega/2$. Since $c_0=2\swpoleRea\swpoleLL(\omega)$, the
+factor $1/2$ multiplying $\psi$ in MP19 cancels that factor $2$:
+the diagonal Gamma error is at most $J(a,b)$, not $2J(a,b)$.
+The diagonal prime tail is at most $2I_1(N,\sigma)$.
+The explicit rational terms, $\log\pi$, finite sums, and all rounding
+errors must also be enclosed in the computed diagonal.
+
+Suppose real $e_0,e_n\geq0$ and finite computations give
+\begin{equation}
+ |c_n-\widehat c_n|\leq e_n,\qquad
+ |c_0-\widehat c_0|\leq e_0,\qquad
+ \widehat c_0\in\mathbb R,\quad \widehat c_n\ne0.
+ \tag{MP31}
+\end{equation}
+The nonzero condition makes the computed phase defined. If the initial
+diagonal approximation is complex, replacing it by its real part does
+not increase its error against the real number $c_0$.
+Set
+\begin{equation}
+ \widehat F_n=\varphi_0^\omega-
+                 \frac{\overline{\widehat c_n}}{|\widehat c_n|}
+                      \varphi_n^\omega.
+ \quad\text{Then}\quad
+ \swpoleW(\widehat F_n,\widehat F_n)
+ \leq2(\widehat c_0+e_0-|\widehat c_n|+e_n).
+ \tag{MP32}
+\end{equation}
+Indeed the exact cross term is
+$-2\swpoleRea(\overline{\widehat c_n}c_n/|\widehat c_n|)$.
+Replacing $c_n$ by $\widehat c_n+(c_n-\widehat c_n)$ and applying
+MP31 proves MP32. If the right side is strictly negative, the original
+full zero form is negative, which contradicts its RH-positive expression.
+This is an exact implication for the specified computed vector; there
+is no negative certificate asserted by this note.
+
+For all entries through degree $n$, take a Hermitian Toeplitz computed
+matrix $\widehat T_n$ with real diagonal and the corresponding entry
+errors $e_0,\ldots,e_n$. Each row and column of its error matrix has
+absolute sum at most $e_0+2\sum_{r=1}^n e_r$. Hence
+\begin{equation}
+ \|T_n-\widehat T_n\|_{2\to2}
+       \leq e_0+2\sum_{r=1}^n e_r,\qquad
+ |b^*(T_n-\widehat T_n)b|
+       \leq\left(e_0+2\sum_{r=1}^n e_r\right)\|b\|_2^2.
+ \tag{MP33}
+\end{equation}
+For example, the operator bound follows from the square root of the
+product of the maximum row and column sums. This proves a finite-vector
+certificate without relying on an unenclosed floating-point eigenvalue.
+
+\section{Exact height modulation and its amplification}
+For $\rho=\tfrac12+\delta+i\gamma$ and the original pole
+$\omega=\sigma+i\tau$, put $d=\sigma-\tfrac12$. Directly from MP3,
+\begin{equation}
+ \log|U_\omega(\rho)|
+ =\frac12\log\frac{(d+\delta)^2+(\gamma-\tau)^2}
+                         {(d-\delta)^2+(\gamma-\tau)^2}.
+ \tag{MP34}
+\end{equation}
+For $\omega=2$ and fixed $0<\delta<1/2$, expanding the two logarithms
+at $\gamma^{-2}=0$ gives
+\begin{equation}
+ \log|U_2(\rho)|
+ =\frac{3\delta}{\gamma^2}
+   -\frac{3\delta(9/4+\delta^2)}{\gamma^4}
+   +O_\delta(\gamma^{-6}).\tag{MP35}
+\end{equation}
+In contrast, at the original height-matched pole $2+i\gamma$ the exact
+value is
+\begin{equation}
+ \log|U_{2+i\gamma}(\rho)|
+       =\log\frac{3/2+\delta}{3/2-\delta}.
+ \tag{MP36}
+\end{equation}
+Both numerator and denominator are positive in the stated range, so
+there is no unmentioned absolute-value or branch choice.
+
+The physical comparison is the exact map
+\begin{equation}
+ \begin{gathered}
+ M_\tau:L^2([1,\infty),\swpoledd x)\longrightarrow L^2([1,\infty),\swpoledd x),
+ \\ (M_\tau f)(x)=x^{-i\tau}f(x),
+ \qquad M_\tau^{-1}=M_{-\tau},\qquad
+ f_j^{\sigma+i\tau}=M_\tau f_j^\sigma.
+ \end{gathered}
+ \tag{MP37}
+\end{equation}
+For real $x>0$, $|x^{-i\tau}|=1$, proving unitarity for the original
+measure, and multiplication of the two phases proves the inverse.
+The parameter $h=2\sigma-1$ stays fixed in this map. This proves precisely
+how the physical test family changes while the zero set in MP2 remains
+the same.
+
+The arithmetic quantity detected by the two-mode form is therefore
+\begin{equation}
+ D_n(\sigma,\tau)=|c_n(\sigma+i\tau)|-
+            2\swpoleRea\frac{\xi'}{\xi}(\sigma+i\tau).
+ \tag{MP38}
+\end{equation}
+Its exact coefficients and finite errors are MP19--MP33. MP34--MP37
+describe their spectral and physical dependence on the movable pole.
+No low-degree positive computation supplies an estimate for every
+degree or every pole, and no uncomputed $D_n$ is assigned a sign here.
+
+\section*{Source and reading provenance}
+The immediate mathematical claim source is the supplied full-Weil
+continuation, incoming equations (18), (24)--(32), and (40)--(49).
+This note proves those movable-pole statements independently, and adds
+the explicit unconditional diagonal MP12, the Taylor-radius statement
+MP18, and the next exact asymptotic coefficient in MP35. The certificate
+MP31 states the necessary nonzero-phase and real-diagonal requirements.
+The human source used for the classical genus-one product, absolute
+power-sum convergence, and reflected form is the following original
+author LaTeX. No result from the unavailable Sekatskii source is imported.
+
+\begin{thebibliography}{9}
+\bibitem{swpole:DLMFProduct}
+NIST Digital Library of Mathematical Functions, Chapter25,
+formula25.2.12, release1.2.8,
+\url{https://dlmf.nist.gov/25.2.E12}.
+Source attribution: E.~C.~Titchmarsh,
+\emph{The Theory of the Riemann Zeta-Function}, second edition,
+revised by D.~R.~Heath-Brown (1986), (2.12.6), (2.12.8), pp.30--31.
+The original DLMF formula TeX and its source attribution were read;
+this is not a claim to have read the whole Titchmarsh volume here.
+\bibitem{swpole:Lagarias}
+Jeffrey C. Lagarias,
+\emph{Li Coefficients for Automorphic $L$-Functions},
+arXiv:math/0404394v4, original author LaTeX dated 11 April 2005.
+\url{https://arxiv.org/abs/math/0404394v4}.
+Read locators: Lemma 2.1 (absolute reciprocal-power convergence),
+Section 3 (the reflected Weil scalar product), and Lemma 4.1 with its
+proof (the full genus-one product and logarithmic expansion).
+\bibitem{swpole:Laguerre}
+T.~H.~Koornwinder, R.~Wong, R.~Koekoek, R.~F.~Swarttouw and
+W.~P.~Reinhardt, \emph{Orthogonal Polynomials}, NIST Digital
+Library of Mathematical Functions, Chapter 18, formula 18.12.13,
+release 1.2.8. \url{https://dlmf.nist.gov/18.12.E13}.
+The original formula TeX was read and retained. Its specialization
+at parameter zero gives the generating function in MP5; at
+parameter minus one it gives MP22, both derived explicitly here.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Finite arithmetic positivity with the entire zero tail}
+\newcommand{\swcertW}{\mathcal W}
+\newcommand{\swcertC}{\mathbb C}
+\newcommand{\swcertR}{\mathbb R}
+\newcommand{\swcertdiag}{\operatorname{diag}}
+
+
+
+\section{Original source, full zero sum and the human inputs}
+Retain the completed zeta function and the actual Gaussian source
+\[
+ \xi(s)=\Phi(s)\zeta(s),\qquad
+ \Phi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\qquad
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}.                 \tag{WP1}
+\]
+For $D=-x\,d/dx$, $P(s)=\sum_{j=0}^3p_js^j$ and
+$f_P=P(D)\phi_*$, integration by parts gives
+\[
+ F_P(s)=\int_0^\infty f_P(x)x^{s-1}\,dx=P(s)\Phi(s),
+                  \qquad \Re s>-2.                            \tag{WP2}
+\]
+Indeed the two terms of the Mellin integral of $\phi_*$ are
+$2\pi^{-s/2}\Gamma(s/2+2)$ and
+$-3\pi^{-s/2}\Gamma(s/2+1)$; the Gamma recursion gives WP1.
+Every integration by parts has zero boundary term on the stated
+half-plane, since $D^j\phi_*(x)=O(x^2)$ at zero and is a polynomial
+times a Gaussian at infinity. The even extension of every $f_P$ is
+Schwartz, vanishes at zero, and has integral zero, since $\Phi(1)=0$.
+
+All sums below run over the actual nontrivial zeros $\rho$ of $\zeta$,
+with their actual multiplicities $m_\rho$. Define
+\[
+ \swcertW(F,G)=\sum_\rho m_\rho\,
+       \overline{F(1-\bar\rho)}G(\rho).                         \tag{WP3}
+\]
+The functional equation and conjugation preserve this multiset.
+The estimates below prove absolute convergence for the sources
+used here, so reflection and conjugation may be applied without
+an ordering convention. At a critical-line zero each summand of
+$\swcertW(F,F)$ is $m_\rho|F(\rho)|^2$.
+
+The finite-height input is Platt--Trudgian's Theorem~1
+\cite{swcert:PlattTrudgian}: every zero up to the stated height
+$3\,000\,175\,332\,800$ is on the critical line. We use only
+\[
+                         T_0=3\cdot10^{12}.                    \tag{WP4}
+\]
+For the unverified tail use Hasanalizade--Shen--Wong's
+Corollary~1.2 \cite{swcert:HSW}, in its stated original version:
+\[
+ \left|N(T)-\frac{T}{2\pi}\log\frac{T}{2\pi e}\right|
+ \le .1038\log T+.2573\log\log T+9.3675\quad(T\ge e).          \tag{WP5}
+\]
+$N(T)$ counts positive-height zeros with multiplicity. In particular
+$N(T)\le T\log T$ for $T\ge100$: the right-hand error in WP5 is
+less than $\log T+10\le T$, while
+$1/(2\pi)+1/\log T<1$. These inequalities hold at $100$ and
+persist because $T-\log T-10$ increases and $1/\log T$ decreases.
+The proof uses no hypothesis on the location of zeros above WP4.
+
+\section{Four certified zeros and the Gamma estimate}
+The script \texttt{certify\_four\_critical\_zeros.py}, using Arb
+ball arithmetic \cite{swcert:Johansson} at $384$ bits, encloses the full
+WP1 expression at $s=1/2+it$. It proves the following strict real
+signs; the displayed decimal intervals are outward coarse
+enclosures of the stored balls, not replacement calculations:
+\[
+\begin{array}{c|c}
+t&\xi(1/2+it)\\\hline
+14&(0.0002012,0.0002014)\\
+15&(-0.0007058,-0.0007056)\\
+21&(-3.978\cdot10^{-7},-3.977\cdot10^{-7})\\
+22&(7.716\cdot10^{-6},7.717\cdot10^{-6})
+\end{array}                                                     \tag{WP6}
+\]
+The functional equation and conjugation show that this function
+of real $t$ is real. Continuity and the sign changes therefore
+produce zeros $\gamma_1\in(14,15)$ and $\gamma_2\in(21,22)$.
+Together with their negatives these give four distinct zeros
+$\rho_j=1/2+i\gamma_j$, where here the index runs over
+$\gamma_1,\gamma_2,-\gamma_1,-\gamma_2$. No simplicity is needed.
+Every pair of these four heights has distance greater than $6$.
+The complete balls, script hash and library version are retained
+in \texttt{FOUR\_CRITICAL\_ZERO\_CERTIFICATES.json}.
+
+For clarity the Gamma constants are proved explicitly from
+the complex Stirling remainder in Askey--Roy, DLMF 5.11.1 and
+5.11(ii) \cite{swcert:Gamma}. In the open right half-plane,
+\[
+ \log\Gamma z=(z-\tfrac12)\log z-z+\tfrac12\log(2\pi)+R(z),
+ \quad |R(z)|\le\frac{\sec^2(\arg z/2)}{12|z|}
+                   \le\frac1{6|z|}.                           \tag{WP7}
+\]
+The first inequality is the remainder after omitting all
+Bernoulli terms. Put $z=\beta/2+it/2$ with $0\le\beta\le1$,
+$t\ge10$, and $w=z+1=a+ib$, so $1\le a\le3/2$, $b\ge5$.
+Using $b\arg w\ge b\pi/2-a$, WP7 and $\Gamma(z)=\Gamma(w)/z$,
+\[
+ \begin{split}
+ |\Gamma(z)|
+ &\le \sqrt{2\pi}\,b^{\beta/2-1/2}
+       (1+.09)^{1/2}e^{1/30}e^{-\pi b/2}
+   <3e^{-\pi t/4},\\
+ |\Phi(\beta+it)|&\le5(1+t^2)e^{-\pi t/4}.
+ \end{split}                                                   \tag{WP8}
+\]
+Here $|w|^{a-1/2}=b^{a-1/2}(1+a^2/b^2)^{(a-1/2)/2}$,
+$|z|\ge b$, $a^2/b^2\le .09$, and $\beta/2-1/2\le0$.
+Also $|s(s-1)|\le1+t^2$ and $\pi^{-\beta/2}\le1$.
+The same estimates hold for negative $t$ by conjugation.
+
+For any of the four critical heights, apply WP7 directly to
+$z=1/4+i\gamma/2$, so $7<|z|<12$. It gives
+\[
+ \log|\Gamma z|^2\ge
+ \log(2\pi)-\tfrac12\log12-11\pi-\tfrac12-\tfrac1{21}>-36.
+\]
+Since $|s(s-1)|^2\ge1$ at those heights,
+\[
+             |\Phi(\rho_j)|^2>e^{-40}\quad(1\le j\le4).
+                                                                  \tag{WP9}
+\]
+
+\section{The full cubic Gaussian inequality, with all high zeros retained}
+Let $V_{j\ell}=\rho_j^\ell$ for $0\le\ell\le3$ and let
+$H=V^*\swcertdiag(|\Phi(\rho_j)|^2)V$ be the contribution of one
+copy of each of the four zeros. It is positive definite, and
+\[
+ \det H=\prod_{j=1}^4|\Phi(\rho_j)|^2
+                   \prod_{i<j}|\rho_j-\rho_i|^2>e^{-160},
+ \qquad \operatorname{tr}H<400\cdot485^5<e^{40}.              \tag{WP10}
+\]
+The trace estimate follows from WP8 and
+$\sum_{\ell=0}^3|\rho_j|^{2\ell}\le4(1+\gamma_j^2)^3$,
+discarding only the factor $e^{-\pi|\gamma_j|/2}\le1$ in this
+upper bound. Hence
+\[
+                         \lambda_{\min}(H)>e^{-280}.           \tag{WP11}
+\]
+Indeed the product of its three largest eigenvalues is at most
+$(\operatorname{tr}H)^3$.
+
+For a unit coefficient vector $p$, Cauchy--Schwarz gives
+$|P(\beta+it)|\le2(1+t^2)^{3/2}$ uniformly in the strip.
+The absolute value of each unknown zero summand in WP3 is at
+most
+\[
+                  u(t)=100(1+t^2)^5e^{-ct},\qquad c=\pi/2.
+                                                                  \tag{WP12}
+\]
+For $t\ge T_0$, $u$ decreases and
+$0\le-u'(t)\le c u(t)\le3200c\,t^{10}e^{-ct}$.
+Stieltjes integration by parts, WP5 and $\log t\le t$ show
+\[
+ \begin{split}
+ 2\sum_{\Im\rho>T_0}m_\rho u(\Im\rho)
+ &\le2\int_{T_0}^{\infty}N(t)(-u'(t))\,dt\\
+ &\le6400e^{-cT_0}\sum_{j=0}^{12}
+             \frac{12!}{(12-j)!}\frac{T_0^{12-j}}{c^j}
+ <e^{-T_0}.
+ \end{split}                                                   \tag{WP13}
+\]
+For the last inequality the sum is at most
+$T_0^{12}\sum_{j=0}^{12}(12/(cT_0))^j<2T_0^{12}$.
+Thus its logarithm including $6400$ is less than
+$10+12\log T_0<370$, whereas $(c-1)T_0>10^{12}$.
+The factor $2$ includes negative heights; the boundary term in
+integration by parts is nonpositive and was discarded in an
+upper bound. WP12--13 also prove absolute convergence.
+
+All other zeros below WP4 contribute nonnegative terms, by
+Platt--Trudgian. Combining WP11 and WP13 and then scaling $p$
+proves the complete, unconditional inequality
+\[
+ \boxed{\swcertW(\Phi P,\Phi P)\ge e^{-300}\sum_{j=0}^3|p_j|^2.}
+                                                                  \tag{WP14}
+\]
+The margin follows from $e^{-280}-e^{-T_0}>e^{-300}$.
+The unknown high zeros have been estimated, not placed on the
+critical line. WP14 is a statement about this entire original
+cubic Gaussian source space, not only four sampled vectors.
+
+\section{Exact translation and the coefficient-space receiver}
+The original target coordinate is $S'=c_*+iy$, whereas the
+zeta coordinate on the same physical line is $s=1/2+iy$.
+Thus $S'=s+c_*-1/2$. Retain this exact affine map, and define
+the actual coefficient translation $C_{c_*}$ by
+$p(s+c_*-1/2)=\sum_i(C_{c_*}p)_i s^i$:
+\[
+ (C_{c_*})_{ij}=\begin{cases}\binom ji(c_*-1/2)^{j-i},&i\le j,\\
+                  0,&i>j,\end{cases}\qquad
+ \det C_{c_*}=1,\quad C_{c_*}^{-1}=C_{1-c_*}.                \tag{WP15}
+\]
+The entry formula is the binomial theorem; composing the two
+translations proves the inverse. For the original conductor
+coordinate map $y=\Psi q$ of FC26--32 \cite{swcert:FC} into the coefficient vector of the
+cubic $p$, the original lift is exactly $p(D+c_*-1/2)\phi_*$.
+Explicitly, $\Psi=YK^{-1}$, where $K$ is the retained collision
+coordinate matrix and the $a$th column of $Y$ is the coefficient
+vector of the original polynomial
+\[
+ y_a(S')=\sum_{u,w=0}^{8}a_{uw}
+          (S'+\beta_{8,u,w})^v\ell_a(S'+\beta_{8,u,w}).
+\]
+Here $\ell_a(S)=\prod_{b\ne a}(S-\rho_b)/(\rho_a-\rho_b)$
+and $v$ is the actual order of the conductor symbol, exactly as
+in FC17 and FC26; its periods and original coefficients remain
+in $a_{uw}$ and $\beta_{8,u,w}$.
+Writing $\mathsf W_\Phi$ for the coefficient Gram in WP14,
+its pullback is therefore
+\[
+ \boxed{\mathsf W_{\rm original}
+  =\Psi^*C_{c_*}^*\mathsf W_\Phi C_{c_*}\Psi
+  \succeq e^{-300}\Psi^*C_{c_*}^*C_{c_*}\Psi.}              \tag{WP16}
+\]
+This identity follows by applying WP2 to each original
+coefficient column; it retains every entry of $\Psi$ and the
+centre. The arithmetic native metric and its full minimum are
+not replaced by the Euclidean coefficient norm: WP16 specifies
+the actual form to be transported to those coordinates.
+For the separate eight-state conductor, its original target map
+is substituted into this displayed pullback by the Fable
+receiver cited in the accompanying source index.
+
+\section{A rational cubic test and its unknown-tail bound}
+Retain the pole $\omega=2$, its $h=3$, and the four functions
+\[
+ U(s)=\frac{s+1}{2-s},\qquad
+ \varphi_j(s)=\frac{\sqrt3}{2-s}U(s)^j\quad(0\le j\le3).
+                                                                  \tag{WP17}
+\]
+The complete movable-pole proof MP in the companion source \cite{swcert:MP}
+establishes that their full-Weil Gram is the Hermitian Toeplitz
+matrix $T_3(2)$; equivalently this matrix is defined directly by
+WP3 applied to these four functions. The present positivity
+proof uses WP3 and therefore does not depend on a truncated
+zero expansion or on a Taylor approximation to its entries.
+
+At a critical height $t$, the weight of one row is
+$w_t=3/(9/4+t^2)>1/200$ for $14<|t|<22$, and $|U(1/2+it)|=1$.
+For two of our four heights,
+\[
+ |U(1/2+it)-U(1/2+iu)|
+ =\frac{3|t-u|}{\sqrt{9/4+t^2}\sqrt{9/4+u^2}}
+ >\frac{18}{487}>\frac1{30}.                                \tag{WP18}
+\]
+Consequently the four-row Vandermonde Gram $H_R$ satisfies
+\[
+ \det H_R> b_*:=\frac1{200^4 30^{12}},\qquad
+ \operatorname{tr}H_R\le\frac{16\cdot3}{9/4+14^2}<1,
+ \qquad\lambda_{\min}(H_R)>b_*.                              \tag{WP19}
+\]
+On $0\le\Re s\le1$, $|\Im s|=t\ge10$, one has
+$|U(s)|^2\le1+3/t^2<1.02^2$ and
+$|U'(s)|\le3/t^2$. Differentiation of WP17 gives, for each
+$0\le j\le3$,
+\[
+ |\varphi_j'(s)|
+ \le\frac{\sqrt3}{t^2}
+       \left(1.02^3+\frac9t\,1.02^2\right)<\frac4{t^2}.
+\]
+Thus for $F=\sum_{j=0}^3p_j\varphi_j$ with $\|p\|_2=1$,
+\[
+ |F'(s)|\le8/t^2,\qquad
+ |F(\rho)-F(1-\bar\rho)|\le8/t^2.                           \tag{WP20}
+\]
+The second bound integrates on the horizontal segment of length
+$|2\Re\rho-1|\le1$ inside the same strip. A noncritical reflected
+pair with equal multiplicity $m$ contributes
+\[
+ 2m\Re(\overline{F(1-\bar\rho)}F(\rho))
+ =m\left(|F(\rho)|^2+|F(1-\bar\rho)|^2
+        -|F(\rho)-F(1-\bar\rho)|^2\right)
+ \ge-64m/t^4.                                                 \tag{WP21}
+\]
+Each positive-height reflected pair accounts for $2m$ in $N$;
+the same bound at negative heights therefore gives a total
+possible negative contribution of at most
+\[
+ \begin{split}
+ 64\sum_{\Im\rho>T_0}\frac{m_\rho}{(\Im\rho)^4}
+ &\le\frac{256}{T_0^3}
+                    \left(\frac{\log T_0}{3}+\frac19\right)
+ <10^{-33}<\frac{b_*}{2}.
+ \end{split}                                                   \tag{WP22}
+\]
+Here Stieltjes integration by parts gives an upper bound
+$4\int_{T_0}^\infty N(t)t^{-5}\,dt$, followed by WP5. The last
+comparison follows already from $\log T_0<30$ and
+$200^4 30^{12}<10^{27}$. Absolute convergence of WP3 also follows
+from $F(s)=O(1/|\Im s|)$ and $N(t)=O(t\log t)$.
+All verified zeros outside the selected four contribute
+nonnegatively. Hence
+\[
+                      \boxed{T_3(2)\succeq\tfrac12 b_* I.}    \tag{WP23}
+\]
+This directly bounds all four rational coefficients, including
+their arbitrary relative phases.
+
+\section{New exact-ball certificates through degree eight}
+For a pole $\omega=2+i\tau$ put
+\[
+ \begin{gathered}
+ h=3,\quad M_\omega(z)=\frac{\omega+(1-\bar\omega)z}{1+z},
+ \quad L=\xi'/\xi,\\
+ L(M_\omega(z))=L(\omega)+\sum_{n\ge1}c_nz^n,
+ \quad c_0=2\Re L(\omega),\quad c_{-n}=\bar c_n.
+ \end{gathered}                                                \tag{WP24}
+\]
+The companion MP proof identifies $T_d(\omega)=(c_{j-i})_{0\le i,j\le d}$
+with the complete WP3 Gram of
+$\sqrt h\,(\omega-s)^{-1}[(s+\bar\omega-1)/(\omega-s)]^j$.
+At these poles $\Re\omega>1$, so $\xi(\omega)\ne0$ and the
+Taylor-series division is valid. The checked script
+\texttt{certify\_weil\_matrices.py} computes WP24 by the full
+WP1 product using Arb, with $768$ bits and series cap $12$.
+If $X(z)=\xi(M_\omega(z))$, it computes
+\[
+          L(M_\omega(z))=\frac{X'(z)}{X(z)M_\omega'(z)}.
+                                                                  \tag{WP25}
+\]
+Since $M_\omega'(0)=-h\ne0$, series division is again valid.
+The series cap retains every coefficient through degree eight
+after differentiation. All constants are exact integers or
+Arb-enclosed transcendental constants and values; no zero list
+or finite prime sum is substituted into WP25.
+
+For each $\tau\in\{0,14,21,100,1000\}$, the script constructs
+all leading principal matrices of sizes $1$ through $9$ and
+encloses each determinant. Every determinant has strictly
+positive real lower endpoint; its imaginary ball contains
+zero, as required by the exact Hermitian symmetry. Sylvester's
+criterion therefore proves
+\[
+ \boxed{T_d(2+i\tau)\succ0\quad
+       (0\le d\le8,\ \tau\in\{0,14,21,100,1000\}).}           \tag{WP26}
+\]
+This is $45$ positive determinant certificates. The script
+also encloses and proves positive each of the $40$ margins
+$c_0-|c_n|$ for $1\le n\le8$. The complete ball coefficients,
+all minors, all margins, precision, version and script hash are
+in \texttt{ARITHMETIC\_BALL\_CERTIFICATES.json}. For orientation
+only, the determinants of the largest matrices are approximately
+\[
+\begin{array}{c|r}
+\tau&\det T_8(2+i\tau)\\\hline
+0&2.87069033117\cdot10^{-79}\\
+14&2.04193998712\cdot10^{-52}\\
+21&1.04788150392\cdot10^{-37}\\
+100&4.21694999273\cdot10^{-13}\\
+1000&96.1156305520
+\end{array}                                                     \tag{WP27}
+\]
+The strict ball comparisons, rather than these rounded
+numbers, are the certificates used in WP26.
+
+WP14, WP23 and WP26 establish full-form positive statements on
+the displayed finite source spaces, including the unknown
+zero tails. The movable-pole degree remains unrestricted in
+the exact MP criterion. No conclusion about all degrees, or
+about RH, is inferred from these finite certificates.
+
+\begin{thebibliography}{9}
+\bibitem{swcert:MP} Split-Zero programme,
+\emph{Exact movable-pole Weil coefficients and finite arithmetic
+certificates}, MP1--38, complete accompanying source
+\texttt{MOVABLE\_POLE\_WEIL\_DERIVATION.tex}.
+\bibitem{swcert:FC} Split-Zero programme,
+\emph{Fable to the original conductor}, FC17 and FC26--32,
+complete source \texttt{FABLE\_TO\_ORIGINAL\_CONDUCTOR.tex},
+published edition:
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/tree/f8b73284d2e669e981bf2c7609e99f4d2b3a50be/workbenches/splitzero-tandem/continuations/20260920-marked-observation-illustrated}.
+\bibitem{swcert:PlattTrudgian} D.~Platt and T.~Trudgian,
+\emph{The Riemann hypothesis is true up to $3\cdot10^{12}$},
+arXiv:2004.09765v1, Theorem~1; Bull. London Math. Soc.,
+doi:10.1112/blms.12460.
+\url{https://arxiv.org/abs/2004.09765v1}.
+Original author TeX read completely; canonical disk source
+\texttt{PUBUNIT-8FD792C15B5C6472FBDED93E}.
+\bibitem{swcert:HSW} E.~Hasanalizade, Q.~Shen and P.-J.~Wong,
+\emph{Counting zeros of the Riemann zeta function},
+arXiv:2107.06506v1, Corollary~1.2 and its displayed explicit
+bound. \url{https://arxiv.org/abs/2107.06506v1}.
+The original TeX introduction and this corollary were read;
+this citation imports that published zero-counting theorem.
+\bibitem{swcert:Gamma} R.~A.~Askey and R.~Roy,
+\emph{Gamma Function}, NIST Digital Library of Mathematical
+Functions, Chapter~5, formula 5.11.1 and section 5.11(ii),
+release 1.2.8. Original formula TeX retained.
+\url{https://dlmf.nist.gov/5.11.E1};
+\url{https://dlmf.nist.gov/5.11.ii}.
+\bibitem{swcert:Johansson} F.~Johansson,
+\emph{Arb: efficient arbitrary-precision midpoint-radius
+interval arithmetic}, IEEE Transactions on Computers 66
+(2017), 1281--1292, doi:10.1109/TC.2017.2690633.
+Original author source: \url{https://arxiv.org/abs/1611.02831v1},
+sections 1, 2, 5 and the power-series/matrix parts of section 6.
+Arb is used through python-flint 0.9.0; the precision and
+strict enclosure tests are recorded in both supplied scripts.
+\bibitem{swcert:Lagarias} J.~C.~Lagarias,
+\emph{Li Coefficients for Automorphic $L$-Functions},
+arXiv:math/0404394v4, Lemmas 2.1 and 4.1; Ann. Inst. Fourier
+57 (2007), 1689--1740.
+\url{https://arxiv.org/abs/math/0404394v4}.
+The original genus-one product and convergence proof are the
+human primary inputs to the complete movable-pole companion.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{The native arithmetic Lie defect and finite selfadjoint receiver}
+\newtheorem{swlietheorem}{Theorem}[section]
+\newtheorem{swlieproposition}[swlietheorem]{Proposition}
+\newtheorem{swlielemma}[swlietheorem]{Lemma}
+\newtheorem{swliecorollary}[swlietheorem]{Corollary}
+\newcommand{\swlieC}{\mathbb C}\newcommand{\swlieR}{\mathbb R}
+\newcommand{\swliePP}{\mathcal P}\newcommand{\swlieHH}{\mathcal H}
+\newcommand{\swlieB}{\mathscr B}\newcommand{\swlieM}{\mathcal M}
+\newcommand{\swlienorm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\swlieac}[2]{\{#1,#2\}}
+
+
+\section{Unchanged arithmetic measure, mass, and physical source}
+
+Retain the original complete finite divisor
+\[
+ h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\qquad
+ g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\]
+Here $Z$ is the original nonempty actual set of nontrivial zeros,
+closed under conjugation and $s\mapsto1-s$, and every $m_\rho$
+is its complete order. This stipulates the original actual packet;
+it does not assert the existence of an off-line packet. For its
+unchanged tensor degree $k\geq1$ put
+\begin{equation}\label{swlie:eq:measure}
+ \begin{gathered}
+ w_h(u)=\frac{|(g/h)(1/2+iu)|^2}{2\pi},\qquad
+ m(u)=m_{h,k}(u)=w_h^{*k}(u),\\
+ \mu_h=\int_\swlieR w_h(u)\,du,\qquad
+ M=\int_\swlieR m(u)\,du=\mu_h^k,\qquad s_0=k/2,\qquad S=s_0+iu.
+ \end{gathered}
+\end{equation}
+The Hilbert space in this note is the actual
+$\swlieHH_m=L^2(\swlieR,m(u)\,du)$, with
+$\langle f,g\rangle_m=\int\overline f g\,m\,du$.
+No probability density is substituted for $m$.
+
+The density is even and positive almost everywhere. Indeed
+$g(\bar s)=\overline{g(s)}$, and the same is true of $h$,
+so $w_h$ is even. The zeros of the nonzero entire function
+$g/h$ are discrete, hence $w_h>0$ almost everywhere.
+Convolution preserves evenness and positivity almost everywhere,
+and Tonelli gives the exact mass in \eqref{swlie:eq:measure}.
+For every $0<t<\pi/2$,
+\begin{equation}\label{swlie:eq:expmoment}
+ \int_\swlieR e^{t|u|}m(u)\,du<\infty.
+\end{equation}
+Here is a direct sufficient bound. On $\Re s=1/2$ the integral
+representation of the alternating series gives
+$|\zeta(s)|\leq2|s|/(\sqrt2-1)$: use
+$\eta(s)=s\int_1^\infty A(x)x^{-s-1}\,dx$, $|A(x)|\leq1$,
+and $\eta(s)=(1-2^{1-s})\zeta(s)$.
+The vertical-line Gamma estimate gives a polynomial times
+$e^{-\pi|u|/4}$ for $g(1/2+iu)$. Outside a fixed compact interval
+$|h(1/2+iu)|$ is bounded below by a positive constant times
+$(1+|u|)^{\deg h}$. On that compact interval the quotient
+$g/h$ has its removable values and is bounded. Squaring proves
+exponential integrability of $w_h$ for $t<\pi/2$.
+Since $e^{t|\sum u_j|}\leq\prod_j e^{t|u_j|}$, Tonelli proves
+\eqref{swlie:eq:expmoment} for its actual convolution.
+
+The original physical source has $D=-x\partial_x$,
+$\Theta\phi(x)=2\sum_{n\geq1}\phi(nx)$, and
+$\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}$.
+Let $F_h\in\swlieB$ be its original divided function,
+$\swlieM F_h=g/h$, where $\swlieM F(s)=\int_0^\infty F(x)x^{s-1}\,dx$
+and $\swlieB$ has all seminorms
+$\sup_{x>0}x^b|D^jF(x)|$, $b\in\mathbb Z$, $j\geq0$.
+For completeness, the Fourier transform with kernel
+$e^{-2\pi ixy}$ fixes $\phi_*$: differentiating the Gaussian
+Fourier identity twice and four times gives
+$\widehat{\phi_*}=\phi_*$. Also $\phi_*(0)=\int_\swlieR\phi_*=0$.
+Poisson summation therefore gives
+$\Theta\phi_*(x)=x^{-1}\Theta\phi_*(1/x)$.
+The Gaussian bound at infinity and this identity at zero,
+after every $D$ derivative, prove $\Theta\phi_*\in\swlieB$.
+The elementary Gaussian Mellin integral and the Gamma
+recurrence give
+$\swlieM(2\phi_*)(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)$.
+Termwise integration on $\Re s>1$ and analytic continuation
+then give $\swlieM(\Theta\phi_*)=g$ with every constant retained.
+This construction can be made explicitly: starting from
+$\Theta\phi_*$, divide once at each root occurrence using
+$S_\rho F(x)=x^{-\rho}\int_x^\infty F(y)y^{\rho-1}\,dy$.
+The vanishing Mellin moment rewrites this as the negative
+integral from zero to $x$, proving all rapid endpoint bounds;
+$(D-\rho)S_\rho F=F$ and integration by parts give the Mellin
+division. Thus the complete multiplicity produces this
+unique $F_h$, with no change of physical coordinate.
+
+For $P\in\swlieC[S]$ define the unchanged tensor source
+\begin{equation}\label{swlie:eq:physical}
+ \mathcal A P=P(D_1+\cdots+D_k)F_h^{\otimes k}.
+\end{equation}
+Its multiple Mellin transform is
+$P(s_1+\cdots+s_k)\prod_j(g/h)(s_j)$.
+Mellin Parseval on each original $dx_j$ axis, followed by
+Tonelli and convolution, therefore proves
+\begin{equation}\label{swlie:eq:isometry}
+ \swlienorm{\mathcal A P}_{L^2(dx_1\cdots dx_k)}^2
+  =\int_\swlieR|P(s_0+iu)|^2m(u)\,du.
+\end{equation}
+All polynomial pairings follow by polarization.
+In particular the constant-source squared norm is $M$, not one.
+The finite polynomial maps also retain the original strong
+source topology, independently of this Hilbert identity.
+On the original $k$-variable rapid space write
+\[
+ p_{\boldsymbol b,\boldsymbol d}(F)
+ =\sup_{\boldsymbol x>0}
+       \left|\prod_{\ell=1}^k x_\ell^{b_\ell}
+                    D_\ell^{d_\ell}F(\boldsymbol x)\right|.
+\]
+For $P(S)=\sum_{j=0}^L p_jS^j$ the multinomial theorem gives
+the explicit finite strong bound
+\begin{equation}\label{swlie:eq:strongfinite}
+ p_{\boldsymbol b,\boldsymbol d}(\mathcal A P)
+ \leq\sum_{j=0}^L|p_j|
+       \sum_{\substack{\boldsymbol\alpha\geq0\\|\boldsymbol\alpha|=j}}
+       \frac{j!}{\prod_\ell\alpha_\ell!}
+       \prod_{\ell=1}^k
+                  p_{b_\ell,d_\ell+\alpha_\ell}(F_h).
+\end{equation}
+Thus every finite coefficient map used below is a continuous
+map into the unchanged strong physical source.
+The Hilbert completion constructed below instead has
+codomain the physical Hilbert space; it is not asserted
+to take every Hilbert vector into the rapid source.
+
+\section{Native orthogonal polynomials and exact coefficient maps}
+
+Let $Q_n(u)$ be the unique real monic orthogonal polynomials for
+$m(u)\,du$, and retain their full norms
+\begin{equation}\label{swlie:eq:norms}
+ \omega_n=\int_\swlieR Q_n(u)^2m(u)\,du>0,\qquad
+ \omega_0=M,\qquad
+ \phi_n=Q_n/\sqrt{\omega_n},\qquad
+ a_n=\sqrt{\omega_{n+1}/\omega_n},\quad a_{-1}=0.
+\end{equation}
+Positive density makes every finite moment Gram positive
+definite, proving existence and uniqueness by Gram--Schmidt.
+Evenness and uniqueness give $Q_n(-u)=(-1)^nQ_n(u)$.
+The exact recurrence is
+\begin{equation}\label{swlie:eq:recurrence}
+ uQ_n=Q_{n+1}+\frac{\omega_n}{\omega_{n-1}}Q_{n-1}
+ \quad(n\geq1),\qquad uQ_0=Q_1;
+ \qquad
+ u\phi_n=a_{n-1}\phi_{n-1}+a_n\phi_{n+1}.
+\end{equation}
+To verify the recurrence, pair $uQ_n$ with $Q_j$ for $j<n-1$
+and move $u$ to $Q_j$, whose degree is at most $n-1$.
+The diagonal pairing vanishes by parity. The leading
+coefficient fixes $Q_{n+1}$, and pairing with $Q_{n-1}$
+gives $\omega_n/\omega_{n-1}$.
+
+The $\phi_n$ are complete in $\swlieHH_m$. If $f$ is orthogonal
+to every polynomial, Cauchy--Schwarz and \eqref{swlie:eq:expmoment}
+make $\int\overline f(u)e^{zu}m(u)\,du$ holomorphic on a
+strip containing the imaginary axis. Every derivative at
+zero vanishes, so the function vanishes on that strip.
+Fourier uniqueness for the finite measure $\overline f m\,du$
+gives $f=0$. Hence the map
+\[
+ U:\ell^2(\mathbb N_0)\longrightarrow\swlieHH_m,\qquad Ue_n=\phi_n
+\]
+is unitary. The multiplication operator by $u$ on its natural
+domain corresponds to the Jacobi operator $J$,
+$Je_n=a_{n-1}e_{n-1}+a_ne_{n+1}$ on the finite-support core.
+Indeed the same exponential-moment density argument applied
+to $(1+u^2)m(u)\,du$ proves density of polynomials in the
+graph norm of multiplication by $u$, so this is a core.
+The number operator $\mathsf N e_n=ne_n$ is self-adjoint
+on $\{\sum x_ne_n:\sum n^2|x_n|^2<\infty\}$.
+All products and brackets below are asserted on the
+invariant polynomial/finite-support core; no self-adjoint
+extension of a prolate expression is selected by them.
+
+The original monic $S$-polynomials, including their phases, are
+\begin{equation}\label{swlie:eq:physical-polys}
+ p_n(S)=i^nQ_n((S-s_0)/i),\qquad
+ p_n(s_0+iu)=i^nQ_n(u),\qquad \swlienorm{p_n}_m^2=\omega_n.
+\end{equation}
+The constant vector $1$ is $\sqrt M\,\phi_0$.
+The corresponding unit cyclic vector, when the convention of
+a unit cyclic pair is wanted, is explicitly $1/\sqrt M$
+in this same measure; the physical vector $1$ and its mass
+are never replaced.
+
+Here are full finite coordinate maps. Let $B_L$ have as its
+$n$th column the $u$-power coefficients of $\phi_n$, $0\leq n\leq L$.
+Let
+\begin{equation}\label{swlie:eq:coordinates}
+ (T_L)_{rj}=\binom jr s_0^{j-r}i^r\quad(r\leq j),\qquad
+ (T_L)_{rj}=0\quad(r>j),\qquad
+ D_L=B_L^{-1}T_L.
+\end{equation}
+Since the diagonal of $B_L$ is $1/\sqrt{\omega_n}$,
+it is invertible, and
+$P(s_0+iu)=\sum_{n=0}^L(D_L\operatorname{coeff}P)_n\phi_n(u)$.
+Thus the complete original source Gram in increasing $S$ powers is
+\begin{equation}\label{swlie:eq:sourcegram}
+ H_{S,L}=D_L^*D_L.
+\end{equation}
+The native grading in those exact coordinates is
+$D_L^{-1}\operatorname{diag}(0,\ldots,L)D_L$.
+The rectangular map of multiplication by $S$ from degree
+$\leq L$ to degree $\leq L+1$ is the corresponding rectangular
+matrix $s_0I+iJ$, with the outgoing $a_L$ edge included.
+These equalities prove all physical phases and mass factors,
+not just equivalence of the two polynomial spans.
+
+Equation \eqref{swlie:eq:isometry} extends the map
+$f(u)\mapsto\mathcal A(f((S-s_0)/i))$ from polynomials to
+a unitary map from $\swlieHH_m$ onto the closed cyclic Hilbert
+subspace generated by the original tensor vector.
+It does not identify that subspace with the whole tensor
+Hilbert space. On its polynomial domain it transports
+$-iJ$ to $s_0-(D_1+\cdots+D_k)$ exactly.
+
+\section{The prolate polynomial action and the phase dictionary}
+
+Connes--Consani--Moscovici \cite{swlie:CCM}, Definition
+\texttt{prolop}, attach the formal expression $-J^2+\eta^2\mathsf N$
+to an even cyclic pair. Their actual archimedean prolate
+formula in Theorem \texttt{mainstart}(v) is instead
+$-J^2+2\pi\lambda^2(4\mathsf N+1)-1/4$.
+Retaining all those constants, define for real $\lambda$
+its native arithmetic receiver
+\begin{equation}\label{swlie:eq:W}
+ W_\lambda=-J^2+8\pi\lambda^2(\mathsf N+1/4)-1/4
+ \quad\text{on the finite-support core}.
+\end{equation}
+This is a densely defined symmetric operator.
+It is a polynomial-domain receiver, not an assertion about
+a self-adjoint prolate extension or its spectrum.
+Its entries are, with missing negative indices zero,
+\begin{equation}\label{swlie:eq:Wentries}
+ \begin{split}
+ W_\lambda e_n={}&-a_{n-1}a_{n-2}e_{n-2}
+  +w_ne_n-a_na_{n+1}e_{n+2},\\
+ w_n={}&-a_n^2-a_{n-1}^2+8\pi\lambda^2(n+1/4)-1/4.
+ \end{split}
+\end{equation}
+These follow by applying \eqref{swlie:eq:recurrence} twice.
+The parity involution $\Gamma e_n=(-1)^ne_n$ commutes with
+$W_\lambda$ and $\mathsf N$ and anticommutes with $J$.
+Consequently on the parity-$\varepsilon$ sector
+($n=2r+\varepsilon$, $\varepsilon=0,1$), the adjacent off-diagonal
+is $-a_{2r+\varepsilon}a_{2r+\varepsilon+1}$ and the
+diagonal is $w_{2r+\varepsilon}$.
+
+Let $\mathcal N$ be the polynomial grading
+$\mathcal Np_n=np_n$ in the original $S$ coordinate.
+The physical polynomial-domain action of \eqref{swlie:eq:W} is
+\begin{equation}\label{swlie:eq:Wphysical}
+ (\mathcal W_\lambda P)(S)
+ =(S-s_0)^2P(S)+8\pi\lambda^2(\mathcal N+1/4)P(S)-P(S)/4.
+\end{equation}
+It maps degree $\leq L$ into degree $\leq L+2$.
+Its actual source vector is $\mathcal A\mathcal W_\lambda P$.
+In the orthonormal physical frame $p_n/\sqrt{\omega_n}$,
+the two off-diagonals in \eqref{swlie:eq:Wentries} have the opposite
+sign, namely $+a_na_{n+1}$: the exact diagonal change of
+frame is $e_n\mapsto i^ne_n$, and $i^{n}/i^{n+2}=-1$.
+This explains the positive off-diagonals in the archimedean
+phase convention of \cite{swlie:CCM}; no phase is discarded.
+
+\section{All Lie brackets, with the literal generator factors}
+
+Fix a real scalar $c$, distinct from the physical centre $s_0$,
+and keep precisely
+\begin{equation}\label{swlie:eq:generators}
+ H=-iJ,\qquad K=\mathsf N+c,\qquad
+ B=\frac{[J,\mathsf N]}{2i},\qquad
+ E_+=\frac i2(K+B),\qquad E_-=\frac i2(-K+B).
+\end{equation}
+Define the actual diagonal discrepancy
+\begin{equation}\label{swlie:eq:delta}
+ \mathcal D e_n=(a_n^2-a_{n-1}^2)e_n,\qquad
+ \Delta_c=\mathcal D-2K,\qquad
+ \delta_n^{(c)}=a_n^2-a_{n-1}^2-2n-2c.
+\end{equation}
+
+\begin{swlietheorem}[Complete bracket calculation]\label{swlie:thm:brackets}
+For every positive native recurrence sequence,
+\begin{equation}\label{swlie:eq:basicbrackets}
+ [H,K]=2B,\qquad [H,B]=2K+\Delta_c,\qquad [K,B]=-H/2.
+\end{equation}
+Consequently the literal three generators satisfy
+\begin{equation}\label{swlie:eq:literalbrackets}
+ \boxed{
+ [H,E_+]=2E_++\tfrac i2\Delta_c,\quad
+ [H,E_-]=-2E_-+\tfrac i2\Delta_c,\quad
+ [E_+,E_-]=H/4.}
+\end{equation}
+The remaining mixed brackets are
+$[K,E_\pm]=-iH/4$, $[B,E_+]=iH/4$,
+$[B,E_-]=-iH/4$, with reverse brackets their negatives.
+In particular the literal standard-$\mathfrak{sl}_2$
+third-bracket defect is $-3H/4$, even if $\Delta_c=0$.
+
+The first two weight relations hold without defect if and only if
+\begin{equation}\label{swlie:eq:allc}
+ a_n^2=(n+1)(n+2c)\quad(n\geq0).
+\end{equation}
+Positivity is equivalent to $c>0$ within this family.
+For every such $c$, the explicitly different generators
+\begin{equation}\label{swlie:eq:morphism}
+ F_+=2E_+,\qquad F_-=2E_-,\qquad K_{\rm std}=2K
+\end{equation}
+satisfy
+$[H,F_\pm]=\pm2F_\pm$, $[F_+,F_-]=H$,
+$i(F_--F_+)=K_{\rm std}$.
+These are an exact change of Lie-algebra basis, not an
+unannounced change in \eqref{swlie:eq:generators}.
+\end{swlietheorem}
+\begin{proof}
+Put $Re_n=a_ne_{n+1}$ and $Le_n=a_{n-1}e_{n-1}$.
+Then $J=L+R$, $[J,\mathsf N]=L-R$,
+$B=(L-R)/(2i)$, and $[L,R]=\mathcal D$.
+Also $[\mathsf N,L]=-L$ and $[\mathsf N,R]=R$.
+Direct substitution gives $[J,K]=2iB$,
+$[J,B]=i\mathcal D$, $[K,B]=iJ/2$, proving
+\eqref{swlie:eq:basicbrackets}. For example
+$[H,E_+]=(i/2)(2B+2K+\Delta_c)
+ =2E_++i\Delta_c/2$; the negative case is the same
+substitution with the sign on $K$ reversed.
+Finally
+\[
+ [E_+,E_-]=-\tfrac14[K+B,-K+B]
+          =-\tfrac12[K,B]=H/4.
+\]
+This verifies the third bracket independently of any
+recurrence hypothesis. The mixed brackets follow by the
+same two-term expansions.
+
+The vanishing of the two weight defects is $\Delta_c=0$.
+Sum $a_n^2-a_{n-1}^2=2(n+c)$ from $0$ to $n$, with
+$a_{-1}=0$, to obtain \eqref{swlie:eq:allc}. Conversely taking
+the difference of its two consecutive values gives
+the required diagonal equality. Its first value is
+$a_0^2=2c$, and all values are positive exactly for $c>0$.
+Multiplying both $E$'s by two proves every identity
+in \eqref{swlie:eq:morphism}.
+\end{proof}
+
+This computation supplies a precise correction at the scope
+of \cite{swlie:CCM}. It applies to equations \texttt{h} and
+\texttt{eplusminusricu}, and to Theorem \texttt{dzero}(i).
+The asserted uniqueness of $c=1/4$ does not follow from the
+written relations. With the literal generators there is
+also the third-bracket factor in \eqref{swlie:eq:literalbrackets}.
+The archimedean even representation has an additional
+specified compact spectrum $2n+1/2=2(n+1/4)$, which fixes
+$c=1/4$ after the exact map \eqref{swlie:eq:morphism}.
+That extra representation datum is not a theorem about
+the native arithmetic recurrence.
+
+\begin{swlieproposition}[Quadratic operator and exact Casimir receiver]
+\label{swlie:prop:casimir}
+The standard-basis quadratic expression, retaining the
+literal $E$'s, is
+\begin{equation}\label{swlie:eq:Cas}
+ \begin{split}
+ \mathcal Q_c
+ &=H^2+8(E_+E_-+E_-E_+)
+   =4K^2-J^2-4B^2,\\
+ \mathcal Q_ce_n
+ &=\bigl(4(n+c)^2-2(a_n^2+a_{n-1}^2)\bigr)e_n.
+ \end{split}
+\end{equation}
+For arbitrary coefficients its commutator defects are
+\begin{equation}\label{swlie:eq:Casdef}
+ [\mathcal Q_c,H]=4\swlieac B{\Delta_c},\quad
+ [\mathcal Q_c,K]=0,\quad
+ [\mathcal Q_c,B]=\swlieac H{\Delta_c},\quad
+ [\mathcal Q_c,E_\pm]=\tfrac i2\swlieac H{\Delta_c}.
+\end{equation}
+Here $\swlieac AB=AB+BA$. Under \eqref{swlie:eq:allc},
+$\mathcal Q_c=4c(c-1)I$, which is $-3I/4$ at $c=1/4$.
+The unmodified expression
+$C=H^2+2(E_+E_-+E_-E_+)$ instead obeys
+$C=(\mathcal Q_c+3H^2)/4$; even under
+\eqref{swlie:eq:allc} it is not central.
+\end{swlieproposition}
+\begin{proof}
+Expand $E_+E_-+E_-E_+=(K^2-B^2)/2$.
+Then $J^2+4B^2=2(LR+RL)$, which proves the diagonal
+formula. Expanding commutators of squares using
+\eqref{swlie:eq:basicbrackets} gives, for example,
+\[
+ [\mathcal Q_c,H]
+  =-8\swlieac KB+4\swlieac B{2K+\Delta_c}
+  =4\swlieac B{\Delta_c}.
+\]
+The $K$ terms cancel; the $B$ calculation is
+$\swlieac H{2K+\Delta_c}-2\swlieac KH=\swlieac H{\Delta_c}$.
+The $E$ equations follow by linearity.
+For \eqref{swlie:eq:allc},
+$a_n^2+a_{n-1}^2=2n^2+4cn+2c$,
+so the diagonal is $4c(c-1)$.
+The equation for $C$ follows by direct subtraction.
+Its noncentrality is explicit:
+$[C,K]=(3/2)\swlieac HB=(3/2)(R^2-L^2)$,
+whose value on $e_0$ is $(3/2)a_0a_1e_2\ne0$.
+\end{proof}
+
+\section{All masses in the zero-discrepancy family}
+
+The free parameter in \eqref{swlie:eq:allc} corresponds to an exact
+family of measures, not merely a formal sequence. For $c>0$ let
+\begin{equation}\label{swlie:eq:gamfamily}
+ dm_{c,M}(u)=
+ \frac{M\,2^{2c}}{4\pi\Gamma(2c)}
+       |\Gamma(c+iu/2)|^2\,du .
+\end{equation}
+Its mass is $M$ and its moment-generating function is
+$M(\cos t)^{-2c}$ for $|t|<\pi/2$.
+For a verification with the factors retained, the beta integral
+after $x=e^y$ is
+\[
+ \frac{\Gamma(c+iv)\Gamma(c-iv)}{\Gamma(2c)}
+  =\int_\swlieR (2\cosh(y/2))^{-2c}e^{ivy}\,dy .
+\]
+Fourier inversion, then $u=2v$, gives
+$\int|\Gamma(c+iu/2)|^2e^{iux}\,du
+ =4\pi\Gamma(2c)2^{-2c}(\cosh x)^{-2c}$.
+The Gamma exponential bound permits analytic continuation
+to $x=-it$, proving the asserted mass and transform.
+
+Define monic polynomials by
+\begin{equation}\label{swlie:eq:genfamily}
+ \sum_{n\geq0}Q_n^{(c)}(u)\frac{z^n}{n!}
+       =(1+z^2)^{-c}e^{u\arctan z}.
+\end{equation}
+Differentiating in $z$ proves the recurrence
+$uQ_n^{(c)}=Q_{n+1}^{(c)}+n(n-1+2c)Q_{n-1}^{(c)}$.
+For sufficiently small real $z,w$, multiplying the two
+generating functions and integrating against
+\eqref{swlie:eq:gamfamily} gives
+\[
+ M(1+z^2)^{-c}(1+w^2)^{-c}
+       \bigl(\cos(\arctan z+\arctan w)\bigr)^{-2c}
+       =M(1-zw)^{-2c}.
+\]
+Exponential domination justifies coefficient extraction,
+so the full norms are
+\begin{equation}\label{swlie:eq:gamnorms}
+ \int Q_n^{(c)}Q_j^{(c)}\,dm_{c,M}
+       =\delta_{nj}M\,n!(2c)_n .
+\end{equation}
+Thus \eqref{swlie:eq:allc} is realized for every $c>0$ with the
+same prescribed mass $M$.
+
+For the native arithmetic measure the following classification
+is exact for $c>0$:
+\begin{equation}\label{swlie:eq:exacttest}
+ \begin{gathered}
+ \Delta_c=0
+ \quad\Longleftrightarrow\quad m(u)\,du=dm_{c,M}(u)\\
+ \quad\Longleftrightarrow\quad
+ \left(\int_\swlieR e^{tu}w_h(u)\,du\right)^k
+          =\mu_h^k(\cos t)^{-2c}\quad(|t|<\pi/2).
+ \end{gathered}
+\end{equation}
+Indeed equal recurrences and the same $\omega_0=M$ give
+identical moments:
+$\int u^r\,dm=M\langle e_0,J^re_0\rangle$ is a finite
+weighted-path calculation determined by the coefficients.
+Both measures have exponential moments, so equality of
+all moments gives equality of their analytic Laplace
+transforms and then their Fourier transforms and measures.
+The reverse implication follows from \eqref{swlie:eq:gamnorms};
+the convolution Laplace identity proves the last equivalence.
+
+\begin{swlietheorem}[The native arithmetic Lie defect never vanishes]
+\label{swlie:thm:nonzero}
+For every actual $h$ and $k$ in \eqref{swlie:eq:measure} and every
+real $c$, the operator $\Delta_c$ is nonzero. In particular,
+there is at least one finite index $n$ with
+$a_n^2-a_{n-1}^2-2n-2c\ne0$.
+\end{swlietheorem}
+\begin{proof}
+For $c\leq0$, its first entry is
+$\delta_0^{(c)}=a_0^2-2c>0$.
+Suppose $c>0$ and $\Delta_c=0$.
+For real $|t|<\pi/2$ the native Laplace transform is positive.
+Taking its unique positive $k$th root in
+\eqref{swlie:eq:exacttest} gives
+\[
+ \int_\swlieR e^{tu}w_h(u)\,du
+       =\mu_h(\cos t)^{-2c/k}.
+\]
+Analytic Laplace uniqueness as proved above, with
+$d=c/k>0$, forces the exact equality of densities
+\begin{equation}\label{swlie:eq:impossiblegamma}
+ w_h(u)=\frac{\mu_h\,2^{2d}}{4\pi\Gamma(2d)}
+                \Gamma(d+iu/2)\Gamma(d-iu/2).
+\end{equation}
+The equality is first almost everywhere and then everywhere
+on the real axis, since both densities are continuous.
+But $F=g/h$ is entire, and
+\[
+ W_h(z)=\frac{F(1/2+iz)F(1/2-iz)}{2\pi}
+\]
+is an entire function agreeing with $w_h$ on the real axis.
+The right side of \eqref{swlie:eq:impossiblegamma} is holomorphic
+on $|\Im z|<2d$. The identity theorem makes it equal to
+$W_h$ throughout that strip. At $z_0=2id$ its meromorphic
+continuation has the nonzero residue
+\[
+ \frac{\mu_h2^{2d}}{4\pi\Gamma(2d)}
+       \frac{2}{i}\Gamma(2d)
+       =-\frac{i\mu_h2^{2d-1}}{\pi}.
+\]
+Approaching $z_0$ from inside the strip makes the right
+side unbounded, whereas the entire $W_h$ is bounded near
+$z_0$. This contradiction proves the theorem.
+\end{proof}
+
+Thus the receiving formulas describe an actual nonzero
+arithmetic defect, not an unverified defect-free
+representation. The theorem does not identify its first
+nonzero index; every entry is exactly evaluated by the
+original moment determinants below. Nonvanishing alone
+gives no growing-degree lower bound and no uniform bound
+as $h$, $k$, or the cutoff varies.
+In particular, at $c=1/4$ the original arithmetic discrepancy
+is exactly
+\begin{equation}\label{swlie:eq:archdefect}
+ \boxed{\quad
+ \Delta_{1/4}e_n=
+       \left(\frac{\omega_{n+1}}{\omega_n}
+        -\frac{\omega_n}{\omega_{n-1}}-2n-\frac12\right)e_n,
+ \quad}
+\end{equation}
+where the second ratio is zero for $n=0$.
+Its first entry retains the actual convolution variance:
+$\delta_0^{(1/4)}
+ =k\bigl(\int u^2w_h(u)\,du/\mu_h\bigr)-1/2$.
+No Gamma replacement of that integral is made.
+
+\section{Original Hankel determinants and Toda differences}
+
+Let the unscaled moments and their exponential deformation be
+\begin{equation}\label{swlie:eq:tau}
+ \mu_j(t)=\int_\swlieR u^je^{tu}m(u)\,du,\qquad
+ \tau_n(t)=\det(\mu_{r+s}(t))_{0\leq r,s<n},\quad \tau_0(t)=1 .
+\end{equation}
+These are well-defined and analytic for real $|t|<\pi/2$
+and holomorphic locally there. For real $t$ the Grams are
+positive definite. At zero $\tau_1(0)=M$, with no mass
+cancellation. These are also exactly the original
+$S$-coordinate Gram determinants, not replacement volumes:
+if
+\[
+ H_{S,n-1}(t)_{rj}
+ =\int_\swlieR\overline{(s_0+iu)^r}(s_0+iu)^j e^{tu}m(u)\,du
+ \quad(0\leq r,j<n),
+\]
+then \eqref{swlie:eq:coordinates} gives
+$H_{S,n-1}(t)=T_{n-1}^*(\mu_{r+j}(t))T_{n-1}$.
+Its triangular coordinate determinant is
+$\det T_{n-1}=i^{n(n-1)/2}$, so
+$\det H_{S,n-1}(t)=\tau_n(t)$ exactly.
+Gram--Schmidt using monic polynomials gives
+\begin{equation}\label{swlie:eq:hankelratios}
+ \omega_n=\frac{\tau_{n+1}(0)}{\tau_n(0)},\qquad
+ a_n^2=\frac{\tau_{n+2}(0)\tau_n(0)}{\tau_{n+1}(0)^2}.
+\end{equation}
+The determinant of the monic triangular change of basis is
+one, so the Gram determinant is precisely
+$\prod_{j=0}^{n-1}\omega_j$; this proves both formulas.
+Therefore every entry of the native Lie defect is the
+explicit original Gram expression
+\begin{equation}\label{swlie:eq:hankeldefect}
+ \delta_n^{(c)}
+  =\frac{\tau_{n+2}\tau_n}{\tau_{n+1}^2}
+    -\frac{\tau_{n+1}\tau_{n-1}}{\tau_n^2}-2n-2c,
+ \qquad (n\geq1),
+ \quad \delta_0^{(c)}=\frac{\tau_2}{\tau_1^2}-2c,
+\end{equation}
+where unlabelled $\tau$'s in this display are evaluated at zero.
+
+\begin{swlietheorem}[Exact Toda receiver]\label{swlie:thm:toda}
+For $n\geq1$ and real $|t|<\pi/2$,
+\begin{equation}\label{swlie:eq:toda}
+ \tau_n\tau_n''-(\tau_n')^2=\tau_{n+1}\tau_{n-1},
+ \qquad \partial_t^2\log\tau_n
+                    =\frac{\tau_{n+1}\tau_{n-1}}{\tau_n^2}.
+\end{equation}
+Let $\omega_n(t)=\tau_{n+1}(t)/\tau_n(t)$,
+$\beta_n(t)=\partial_t\log\omega_n(t)$ and
+$a_n(t)^2=\omega_{n+1}(t)/\omega_n(t)$, with $a_{-1}(t)=0$.
+Then
+\begin{equation}\label{swlie:eq:todarecurrence}
+ \begin{gathered}
+ \beta_n'(t)=a_n(t)^2-a_{n-1}(t)^2,\qquad
+ \partial_t\log a_n(t)^2=\beta_{n+1}(t)-\beta_n(t),\\
+ \beta_n(0)=0,\qquad
+ \delta_n^{(c)}
+   =\left.\partial_t^2\log\frac{\tau_{n+1}(t)}{\tau_n(t)}
+                                               \right|_{t=0}-2n-2c .
+ \end{gathered}
+\end{equation}
+\end{swlietheorem}
+\begin{proof}
+Differentiation under the integral gives
+$\mu_j'(t)=\mu_{j+1}(t)$. Differentiate $\tau_n$ by rows:
+every differentiated row except the last repeats the next
+row, so $\tau_n'$ is the minor with row indices
+$0,\ldots,n-2,n$ and column indices $0,\ldots,n-1$.
+Differentiate that expression by columns to obtain
+$\tau_n''$ with both row and column indices
+$0,\ldots,n-2,n$. Apply the Desnanot--Jacobi identity
+to the $(n+1)$-square Hankel matrix with indices $0,\ldots,n$,
+deleting the last two indices. It gives exactly
+$\tau_n\tau_n''-(\tau_n')^2=\tau_{n+1}\tau_{n-1}$.
+This identity itself follows by two-row/two-column
+Schur elimination on an invertible upper-left block;
+that block is positive definite here. Dividing by
+$\tau_n^2$ proves the logarithmic formula.
+Taking the difference at $n+1$ and $n$ proves the first
+identity in \eqref{swlie:eq:todarecurrence}; differentiating
+the defining norm ratio proves the second.
+Evenness makes $\mu_j(-t)=(-1)^j\mu_j(t)$ and thus
+$\tau_n(-t)=\tau_n(t)$, since the row and column signs
+multiply to $(-1)^{n(n-1)}=1$. Hence $\beta_n(0)=0$.
+The last identity is \eqref{swlie:eq:delta} with the first
+Toda identity substituted.
+\end{proof}
+
+The first two discrepancies can therefore be evaluated
+without an orthogonalization ambiguity:
+\[
+ \delta_0^{(c)}=\frac{\mu_2}{\mu_0}-2c,\qquad
+ \delta_1^{(c)}=\frac{\mu_4}{\mu_2}
+              -2\frac{\mu_2}{\mu_0}-2-2c,
+\]
+with moments at zero; here
+$\tau_2=\mu_0\mu_2$ and
+$\tau_3=\mu_2(\mu_0\mu_4-\mu_2^2)$.
+The full sequence is retained in \eqref{swlie:eq:hankeldefect},
+not replaced by these initial entries.
+
+\section{Every finite cutoff, including excursions beyond the edge}
+
+Let $\Pi_L$ project to $e_0,\ldots,e_L$, write
+$P_L^\partial=e_Le_L^*$, and put $\alpha_L=a_L^2$.
+Compressed single generators carry a subscript $L$.
+Because $\mathsf N$ preserves the cutoff,
+$B_L=[J_L,\mathsf N_L]/(2i)$ exactly.
+
+\begin{swlietheorem}[Complete finite edge corrections]\label{swlie:thm:cutoff}
+The finite diagonal discrepancy is
+\begin{equation}\label{swlie:eq:cutdelta}
+ \Delta_{c,L}=\Pi_L\Delta_c\Pi_L-\alpha_LP_L^\partial.
+\end{equation}
+All identities \eqref{swlie:eq:basicbrackets} and
+\eqref{swlie:eq:literalbrackets} hold with the finite matrices and
+this $\Delta_{c,L}$. In particular
+\begin{equation}\label{swlie:eq:cutbracket}
+ [H_L,E_{\pm,L}]
+ =\pm2E_{\pm,L}+\tfrac i2\Pi_L\Delta_c\Pi_L
+                         -\tfrac i2\alpha_LP_L^\partial,
+ \qquad [E_{+,L},E_{-,L}]=H_L/4.
+\end{equation}
+The exact compressed prolate action is
+\begin{equation}\label{swlie:eq:cutprolate}
+ \boxed{\quad
+ W_{\lambda,L}:=\Pi_LW_\lambda\Pi_L
+ =-J_L^2-\alpha_LP_L^\partial
+        +8\pi\lambda^2(\mathsf N_L+1/4)-1/4.\quad}
+\end{equation}
+The quadratic expression built from the finite generators
+instead satisfies
+\begin{equation}\label{swlie:eq:cutcas}
+ \mathcal Q_{c,L}=\Pi_L\mathcal Q_c\Pi_L
+                                   +2\alpha_LP_L^\partial.
+\end{equation}
+Even when the infinite discrepancy vanishes,
+the finite endpoint terms in these equations remain.
+\end{swlietheorem}
+\begin{proof}
+The truncated raising map sends $e_L$ to zero.
+Therefore $[L_L,R_L]=\Pi_L[L,R]\Pi_L-\alpha_LP_L^\partial$,
+which proves \eqref{swlie:eq:cutdelta}. The purely finite
+calculations in Theorem~\ref{swlie:thm:brackets} then give
+\eqref{swlie:eq:cutbracket}. The only path of length two
+leaving and returning to the cutoff is
+$e_L\to e_{L+1}\to e_L$, with weight $a_L^2$.
+Thus
+\[
+ \Pi_LJ^2\Pi_L=J_L^2+\alpha_LP_L^\partial,\qquad
+ \Pi_LB^2\Pi_L=B_L^2+\tfrac14\alpha_LP_L^\partial.
+\]
+Insert these exact identities in \eqref{swlie:eq:W} and
+\eqref{swlie:eq:Cas} to obtain the two formulas and their signs.
+\end{proof}
+
+Every polynomial has an equally explicit correction.
+For $0\leq m,n\leq L$ and integer $r\geq0$,
+\begin{equation}\label{swlie:eq:paths}
+ (\Pi_LJ^r\Pi_L-J_L^r)_{mn}
+ =\sum_{\substack{v_0=n,\ v_r=m,\ v_j\geq0\\
+                  |v_{j+1}-v_j|=1,\ \max_jv_j>L}}
+              \prod_{j=0}^{r-1}a_{\min(v_j,v_{j+1})}.
+\end{equation}
+Matrix multiplication expands into exactly these paths;
+the finite power retains precisely those staying at most $L$.
+The sum is finite for fixed $r$. For
+$P(s_0+iu)=\sum_r\gamma_ru^r$, the correction to
+$\Pi_LP(s_0+iJ)\Pi_L$ from $P(s_0+iJ_L)$ is
+the same sum multiplied by every exact $\gamma_r$,
+where $\gamma=T_d\operatorname{coeff}P$ and $d=\deg P$
+(with the zero polynomial handled by zero coefficients).
+Thus no polynomial is silently evaluated on a finite
+Jacobi matrix in place of compression of the full one.
+
+There is also a useful trace check retaining the whole edge:
+\begin{equation}\label{swlie:eq:trace}
+ \sum_{n=0}^L\delta_n^{(c)}
+  =a_L^2-(L+1)(L+2c),\qquad
+ \operatorname{tr}\Delta_{c,L}=-(L+1)(L+2c).
+\end{equation}
+Both follow by telescoping the native recurrence differences.
+For $c>0$, the latter is nonzero, so no finite positive
+Jacobi cutoff can satisfy all defect-free weight identities.
+
+\section{The actual finite polynomial quotient and its relation defect}
+
+Let $\chi(S)$ be the original full cyclic annihilator of
+the sum operator on $E_h^{\otimes k}$, where
+$E_h=\swlieC[s]/h$. More explicitly its distinct roots are
+$\kappa=\rho_1+\cdots+\rho_k$, with multiplicity
+$e_\kappa=\max_{\sum\rho_j=\kappa}(1+\sum_j(m_{\rho_j}-1))$.
+This formula follows in the local Chinese-remainder block
+$\swlieC[z_1,\ldots,z_k]/(z_1^{m_{\rho_1}},\ldots,z_k^{m_{\rho_k}})$:
+the sum operator is $\kappa+\sum_jz_j$,
+whose nilpotent part has index exactly
+$1+\sum_j(m_{\rho_j}-1)$. Its last nonzero power has
+coefficient
+$(\sum_j(m_{\rho_j}-1))!/\prod_j(m_{\rho_j}-1)!$
+on $\prod_jz_j^{m_{\rho_j}-1}$, which is nonzero.
+Taking the maximum over blocks with the same $\kappa$
+gives the displayed exponent, with no multiplicity omitted.
+Put $q=\deg\chi$, $C_\chi=\swlieC[S]/\chi$, retaining its
+original increasing-power remainder coordinates.
+The substitution map
+$\beta:C_\chi\to E_h^{\otimes k}$,
+$[P]\mapsto P(s_1+\cdots+s_k)$, is injective by this
+minimal polynomial. The original full physical jet map is
+\begin{equation}\label{swlie:eq:unitreceiver}
+ \eta=\bigl(j_h(g/h)\bigr)^{\otimes k}\beta.
+\end{equation}
+The multiplier is the complete original local unit in
+each factor, including every Taylor coefficient and
+root difference. Explicitly, write $H_\rho(s)=h(s)/(s-\rho)^{m_\rho}$
+and $u_{\rho,r}=[z^r](g/h)(\rho+z)$ for $0\leq r<m_\rho$.
+Then
+\begin{equation}\label{swlie:eq:unitcoefficients}
+ \begin{split}
+ u_{\rho,r}
+ =\sum_{a=0}^r\frac{g^{(m_\rho+a)}(\rho)}{(m_\rho+a)!}
+ \sum_{\substack{\ell_\sigma\geq0\ (\sigma\ne\rho)\\
+                 \sum_{\sigma\ne\rho}\ell_\sigma=r-a}}
+ \prod_{\sigma\ne\rho}
+ \frac{(-1)^{\ell_\sigma}
+       \binom{m_\sigma+\ell_\sigma-1}{\ell_\sigma}}
+      {(\rho-\sigma)^{m_\sigma+\ell_\sigma}} .
+ \end{split}
+\end{equation}
+This is the product of the Taylor expansion of
+$g(\rho+z)/z^{m_\rho}$ with the negative-binomial
+expansions of $1/H_\rho(\rho+z)$.
+The empty inner product is one when its required sum is
+zero and contributes zero otherwise.
+In particular
+$u_{\rho,0}=g^{(m_\rho)}(\rho)/
+ (m_\rho!\prod_{\sigma\ne\rho}(\rho-\sigma)^{m_\sigma})\ne0$,
+so multiplication by these complete jets is invertible.
+For every original multi-index $0\leq j_a<m_{\rho_a}$ the
+full physical map has the explicit entry
+\begin{equation}\label{swlie:eq:etajets}
+ (\eta[P])_{\boldsymbol\rho,\boldsymbol j}
+ =\sum_{0\leq\nu_a\leq j_a}
+     \left(\prod_{a=1}^k u_{\rho_a,j_a-\nu_a}\right)
+          \frac{P^{(|\boldsymbol\nu|)}(\kappa)}
+               {\prod_{a=1}^k\nu_a!}.
+\end{equation}
+The formula follows by expanding
+$P(\kappa+z_1+\cdots+z_k)$ with the multinomial theorem.
+The full jet of \eqref{swlie:eq:physical}
+is exactly $\eta[P]$. In particular the algebraic
+relation ideal is exactly $\chi\swlieC[S]$, not a
+Hilbert orthogonal complement.
+
+\begin{swlietheorem}[Exact failure of grading descent]\label{swlie:thm:descent}
+For every nonconstant $\chi$, the native polynomial grading
+$\mathcal N$ does not preserve $\chi\swlieC[S]$ and hence
+does not descend to $C_\chi$. Its first explicit obstruction
+is as follows. Expand the original monic polynomial
+\begin{equation}\label{swlie:eq:chiexpand}
+ \chi=p_q+\sum_{j<q}\gamma_jp_j,\qquad
+ \gamma_j=\frac{\int_\swlieR\overline{p_j(s_0+iu)}
+                \chi(s_0+iu)m(u)\,du}{\omega_j}.
+\end{equation}
+If at least one $\gamma_j\ne0$, then
+\begin{equation}\label{swlie:eq:relationdefect1}
+ [\mathcal N\chi]_\chi
+       =\sum_{j<q}(j-q)\gamma_j[p_j]_\chi\ne0.
+\end{equation}
+If every $\gamma_j=0$, so $\chi=p_q$, then instead
+\begin{equation}\label{swlie:eq:relationdefect2}
+ [\mathcal N((S-s_0)\chi)]_\chi
+       =2\frac{\omega_q}{\omega_{q-1}}[p_{q-1}]_\chi\ne0.
+\end{equation}
+The displayed relation is present by degree $L=q$ in the
+first case and by degree $L=q+1$ in the second.
+At $L=q-1$ there are no nonzero polynomial relations.
+Consequently $\mathcal W_\lambda$ in
+\eqref{swlie:eq:Wphysical} descends precisely for $\lambda=0$
+among real $\lambda$.
+\end{swlietheorem}
+\begin{proof}
+The $p_j$ for $j<q$ give a basis modulo $\chi$ by their
+distinct monic degrees. Applying $\mathcal N-q$ to
+\eqref{swlie:eq:chiexpand} proves \eqref{swlie:eq:relationdefect1};
+its nonzero coefficients cannot cancel in that basis.
+If $\chi=p_q$, the phase-retaining recurrence
+\eqref{swlie:eq:physical-polys}--\eqref{swlie:eq:recurrence} is
+\[
+ (S-s_0)p_q=p_{q+1}
+                 -\frac{\omega_q}{\omega_{q-1}}p_{q-1}.
+\]
+Apply $\mathcal N-(q+1)$ to it. Its right side is
+$2(\omega_q/\omega_{q-1})p_{q-1}$, which is nonzero
+and has degree below $q$. The subtracted multiple
+of $(S-s_0)\chi$ is a relation, proving
+\eqref{swlie:eq:relationdefect2}.
+All multiplication and scalar terms of
+\eqref{swlie:eq:Wphysical} preserve the ideal. The remaining
+term is $8\pi\lambda^2\mathcal N$, so for $\lambda\ne0$
+the same exact obstruction survives, whereas at zero
+the operator is multiplication by $(S-s_0)^2-1/4$.
+\end{proof}
+
+For the actual reflection-stable $\chi$ the parity
+involution does descend: $\chi(k-S)=(-1)^q\chi(S)$.
+Thus $P(S)\mapsto P(k-S)$ preserves the ideal and is
+an involution of its quotient. This is compatible
+with $p_n(k-S)=(-1)^np_n(S)$.
+The even/odd decomposition therefore survives exactly,
+although the complete integer grading does not.
+
+\section{Attained compression and both independent boundary terms}
+
+Fix $L\geq q-1$. Write $b_n=[p_n]_\chi$ in the original
+remainder coordinates. The native orthonormal reduction
+matrix and the original attained form are
+\begin{equation}\label{swlie:eq:finitequotient}
+ \begin{gathered}
+ E_L=\left[\frac{i^{-n}b_n}{\sqrt{\omega_n}}\right]_{n=0}^L,
+ \qquad K_L^\chi=E_LE_L^*
+           =\sum_{n=0}^L\frac{b_nb_n^*}{\omega_n},
+ \qquad G_L=(K_L^\chi)^{-1},\\
+ R_L^\chi=E_L^*G_L,\qquad
+ P_L^\chi=R_L^\chi E_L,\qquad Z_L^\chi=I-P_L^\chi.
+ \end{gathered}
+\end{equation}
+The first $q$ monic columns prove surjectivity.
+Hence $R_L^\chi$ is a right inverse, $P_L^\chi$
+is the orthogonal projection to $(\ker E_L)^\perp$,
+and $\ker E_L$ is precisely the unchanged relation
+space expressed in native coordinates.
+Also $(R_L^\chi)^*R_L^\chi=G_L$.
+To see it is the attained original metric, any lift
+of $v$ is $R_L^\chi v+z$ with $E_Lz=0$.
+The two terms are orthogonal, and therefore its
+squared norm is $v^*G_Lv+\swlienorm z^2$.
+This recovers exactly the original full affine minimum.
+The phases $i^{-n}$ cancel only in the displayed
+diagonal sum for $K_L^\chi$; they remain present
+in every off-diagonal operator calculation.
+
+For any polynomial-domain action $A:\swliePP_L\to\swliePP_{L+r}$
+let $A_{L+r,L}$ be its exact rectangular matrix.
+Define its attained finite quotient receiver and relation
+defect by
+\begin{equation}\label{swlie:eq:generalreceiver}
+ \widehat A_L=E_{L+r}A_{L+r,L}R_L^\chi,\qquad
+ \mathfrak d_{A,L}=E_{L+r}A_{L+r,L}Z_L^\chi.
+\end{equation}
+Then, for every native coefficient vector $x$,
+\begin{equation}\label{swlie:eq:relationidentity}
+ E_{L+r}A_{L+r,L}x
+        =\widehat A_LE_Lx+\mathfrak d_{A,L}x.
+\end{equation}
+This is the identity $I=P_L^\chi+Z_L^\chi$ with
+all maps typed. Thus the non-descent of
+Theorem~\ref{swlie:thm:descent} has an explicit finite receiver,
+not merely a nonidentity.
+
+For a square Hermitian cutoff matrix $A_L$, write
+$\overline A_L=E_LA_LR_L^\chi$. Its $G_L$-weighted
+matrix is
+$G_L\overline A_L=(R_L^\chi)^*A_LR_L^\chi$, so it is
+self-adjoint in the attained metric. In particular
+$0\leq G_L\overline{\mathsf N}_L\leq L G_L$.
+There is no assertion that the eigenvalues of this
+compression are integers.
+If $A_L,B_L$ are any two square cutoff matrices,
+direct multiplication gives the full correction
+\begin{equation}\label{swlie:eq:compressedbracket}
+ [\overline A_L,\overline B_L]
+  =E_L[A_L,B_L]R_L^\chi
+    -E_LA_LZ_L^\chi B_LR_L^\chi
+    +E_LB_LZ_L^\chi A_LR_L^\chi.
+\end{equation}
+Substitution of \eqref{swlie:eq:cutbracket} in this formula
+retains the native diagonal discrepancy, the rank-one
+cutoff defect, and these two relation terms separately.
+They must not be replaced by a rank count.
+Writing $E=E_L$, $R=R_L^\chi$, $Z=Z_L^\chi$,
+the individual Lie brackets are, explicitly,
+\begin{equation}\label{swlie:eq:quotientlie}
+ \begin{aligned}
+ [\overline H_L,\overline E_{\pm,L}]
+ ={}&\pm2\overline E_{\pm,L}
+   +\tfrac i2E(\Pi_L\Delta_c\Pi_L)R
+   -\tfrac i2a_L^2EP_L^\partial R\\
+ &-EH_LZE_{\pm,L}R+EE_{\pm,L}ZH_LR,\\
+ [\overline E_{+,L},\overline E_{-,L}]
+ ={}&\overline H_L/4
+       -EE_{+,L}ZE_{-,L}R+EE_{-,L}ZE_{+,L}R .
+ \end{aligned}
+\end{equation}
+
+The exact compressed prolate matrix obeys the particularly
+useful identity
+\begin{equation}\label{swlie:eq:compressedprolate}
+ \begin{split}
+ \overline W_{\lambda,L}
+ ={}&-\overline J_L^{\,2}
+       +8\pi\lambda^2(\overline{\mathsf N}_L+1/4)-1/4\\
+ &-E_LJ_LZ_L^\chi J_LR_L^\chi
+       -a_L^2E_LP_L^\partial R_L^\chi .
+ \end{split}
+\end{equation}
+To prove it, insert $I=P_L^\chi+Z_L^\chi$
+between the two $J_L$ factors of \eqref{swlie:eq:cutprolate}
+and use $E_LR_L^\chi=I$.
+Each of the two subtracted terms is positive
+semidefinite in the $G_L$ metric: after multiplying
+by $G_L$ they are respectively
+$(Z_L^\chi J_LR_L^\chi)^*(Z_L^\chi J_LR_L^\chi)$
+and $a_L^2(P_L^\partial R_L^\chi)^*
+                           (P_L^\partial R_L^\chi)$.
+This fixes both signs and proves an actual attained
+quadratic comparison.
+
+For clarity, the uncompressed action of multiplication
+by $u=(S-s_0)/i$ does descend, with quotient matrix $M_u$.
+The exact rectangular multiplication satisfies
+$E_{L+1}J_{L+1,L}=M_uE_L$. Removing its outgoing
+edge gives the explicit difference
+\begin{equation}\label{swlie:eq:Jquotient}
+ \overline J_L=M_u-a_L
+       \frac{i^{-(L+1)}b_{L+1}}{\sqrt{\omega_{L+1}}}
+                                  e_L^*R_L^\chi.
+\end{equation}
+Equivalently, with every phase multiplied out,
+$\overline J_L=M_u+(i/\omega_L)b_{L+1}b_L^*G_L$.
+Thus the attained compression of multiplication need
+not equal its algebraic quotient action. The outgoing
+column, including its phase and mass, is exactly known.
+
+The full rectangular receiver $\widehat W_{\lambda,L}$
+from \eqref{swlie:eq:generalreceiver} and the square compressed
+$\overline W_{\lambda,L}$ are different specified maps.
+Their exact bridge is
+\begin{equation}\label{swlie:eq:fullcompbridge}
+ \begin{aligned}
+ \widehat W_{\lambda,L}
+   &=-M_u^2+8\pi\lambda^2(\overline{\mathsf N}_L+1/4)-1/4,\\
+ \overline W_{\lambda,L}
+   &=\widehat W_{\lambda,L}
+     -\left(\frac{b_{L+1}b_{L-1}^*}{\omega_{L-1}}
+             +\frac{b_{L+2}b_L^*}{\omega_L}\right)G_L .
+ \end{aligned}
+\end{equation}
+The first fraction is omitted when $L=0$.
+Indeed full multiplication by $u^2$ descends exactly to
+$M_u^2$. The only outgoing two-step columns of
+$W_\lambda:\swliePP_L\to\swliePP_{L+2}$ are
+$-a_{L-1}a_Le_{L+1}e_{L-1}^*$
+and $-a_La_{L+1}e_{L+2}e_L^*$.
+Their $i^{-n}$ phase products change both signs to plus,
+and their norm coefficients are $1/\omega_{L-1}$ and
+$1/\omega_L$. Subtracting those columns proves the
+second formula. This bridge retains outgoing quotient
+data as well as the returning-edge correction in
+\eqref{swlie:eq:compressedprolate}.
+
+All maps can be pushed through the original physical
+jet injection \eqref{swlie:eq:unitreceiver}: replace $E_L$
+by $\eta E_L$ with codomain $\eta(C_\chi)$ and transport
+the form by $\eta^{-1}$. This retains the complete
+physical unit, not the Euclidean form on a substitute
+jet space. For any fixed original observation $\Lambda$
+one instead uses the onto map $\Lambda\eta E_L$
+to its actual image and repeats the same attained
+right-inverse construction there. The identities
+\eqref{swlie:eq:generalreceiver}--\eqref{swlie:eq:compressedbracket}
+remain exact, with that observation's actual relation
+space; no automatic descent assertion is made for it.
+
+\section{All original phases in explicit compressed matrices}
+
+Set $b_n=[p_n]_\chi$ as above. Direct substitution of
+the columns in \eqref{swlie:eq:finitequotient} gives
+\begin{equation}\label{swlie:eq:explicitcompressed}
+ \begin{aligned}
+ \overline H_L
+ &=\left[\sum_{j=0}^{L-1}
+       \frac{b_jb_{j+1}^*-b_{j+1}b_j^*}{\omega_j}\right]G_L,\\
+ \overline B_L
+ &=\left[\frac12\sum_{j=0}^{L-1}
+       \frac{b_jb_{j+1}^*+b_{j+1}b_j^*}{\omega_j}\right]G_L,\\
+ \overline K_L
+ &=\left[\sum_{j=0}^L
+                  \frac{(j+c)b_jb_j^*}{\omega_j}\right]G_L,\\
+ \overline W_{\lambda,L}
+ &=\left[\sum_{j=0}^L\frac{w_jb_jb_j^*}{\omega_j}
+      +\sum_{j=0}^{L-2}
+             \frac{b_jb_{j+2}^*+b_{j+2}b_j^*}{\omega_j}\right]G_L.
+ \end{aligned}
+\end{equation}
+Every sum with upper endpoint below its lower endpoint
+is zero. For example the $j,j+1$ entry of $H$ is
+$-ia_j$ and the corresponding phase product is
+$i^{-j}i^{j+1}=i$. Their product is $+a_j$,
+and $a_j/\sqrt{\omega_j\omega_{j+1}}=1/\omega_j$.
+The reversed pair has the negative sign. For $B$
+both signs are positive with factor $1/2$.
+For the two-step prolate pair the phase product is
+$-1$, changing $-a_ja_{j+1}$ to a positive coefficient;
+$a_ja_{j+1}/\sqrt{\omega_j\omega_{j+2}}=1/\omega_j$.
+These computations prove the formulas while retaining
+all actual complex $b_j$ and their cross terms.
+
+\section{Receiver into the existing interpolation-volume determinants}
+
+The original cyclic-volume calculation \cite{swlie:CV}, CV.1--CV.5,
+uses precisely $K_L^\chi$ and $G_L$ from
+\eqref{swlie:eq:finitequotient}. To prevent collision with the
+Hankel determinants $\tau_n$, denote its determinants by
+\[
+ D_L^\chi=\det K_L^\chi,\qquad
+ \widetilde K_L^\chi=K_{L-1}^\chi
+                     +b_{L+1}b_{L+1}^*/\omega_{L+1},
+ \qquad \widetilde D_L^\chi=\det\widetilde K_L^\chi.
+\]
+Define $K_{-1}^\chi=0$; a determinant of a singular
+matrix is used as such, without an inverse.
+The exact existing control identity becomes
+\begin{equation}\label{swlie:eq:CVreceiver}
+ (\epsilon_{h,k,L}^{\rm cyc})^2
+ =\underbrace{\frac{\tau_{L+2}(0)\tau_L(0)}
+                         {\tau_{L+1}(0)^2}}_{a_L^2}
+   \frac{D_{L+1}^\chi+D_{L-1}^\chi
+                    -D_L^\chi-\widetilde D_L^\chi}{D_L^\chi}.
+\end{equation}
+Thus the coefficient of the prolate cutoff edge and
+the native Toda norm ratio are exactly the same original
+factor multiplying the actual interpolation-volume
+increment. The scalar $c$ has not entered that identity.
+
+For a direct verification retaining the complex phase,
+put $a=b_L^*G_Lb_L$, $d=b_{L+1}^*G_Lb_{L+1}$ and
+$z=b_L^*G_Lb_{L+1}$. The determinant lemma gives
+\[
+ \frac{D_{L-1}^\chi}{D_L^\chi}=1-\frac a{\omega_L},
+ \quad
+ \frac{D_{L+1}^\chi}{D_L^\chi}=1+\frac d{\omega_{L+1}},
+\]
+\[
+ \frac{\widetilde D_L^\chi}{D_L^\chi}
+ =\left(1-\frac a{\omega_L}\right)
+  \left(1+\frac d{\omega_{L+1}}\right)
+                +\frac{|z|^2}{\omega_L\omega_{L+1}}.
+\]
+The rank-two determinant lemma follows by the
+Schur determinant of
+$\left(\begin{smallmatrix}K&U\\-V^*&I_2\end{smallmatrix}\right)$
+in its two orders. Subtracting these displayed ratios
+gives $(ad-|z|^2)/(\omega_L\omega_{L+1})$.
+Multiplying by $a_L^2=\omega_{L+1}/\omega_L$
+proves \eqref{swlie:eq:CVreceiver} as the original
+$(ad-|z|^2)/\omega_L^2$ control. All formulas hold
+at $L=q-1$ as well; then $D_{L-1}^\chi=0$.
+For $q=1$ the two-vector Gram determinant is zero.
+
+The same recurrence differences governing the Lie
+defect are now exactly
+$a_L^2-a_{L-1}^2-2L-2c$, with each of the two
+ratios given by \eqref{swlie:eq:hankelratios}. Equations
+\eqref{swlie:eq:todarecurrence}, \eqref{swlie:eq:cutprolate},
+\eqref{swlie:eq:compressedprolate}, and \eqref{swlie:eq:CVreceiver}
+are their full arithmetic receiving maps.
+No zero-location theorem, growing-degree sign, or
+asymptotic control follows from the formal Lie
+comparison alone.
+
+\begin{thebibliography}{9}\raggedright
+\bibitem{swlie:CCM} Alain Connes, Caterina Consani and Henri Moscovici,
+\emph{Zeta zeros and prolate wave operators: Semilocal adelic operators},
+\href{https://arxiv.org/abs/2310.18423v2}{arXiv:2310.18423v2}.
+Original author source \texttt{mainc2m24fine.tex}, Sections 2, 3, 6;
+Definition \texttt{prolop}, Proposition \texttt{jacobprol},
+Theorem \texttt{mainstart}(v), Lemma \texttt{eplusminus1},
+and equations \texttt{h}, \texttt{eplusminusricu}, Theorem
+\texttt{dzero}. The bracket correction is proved explicitly
+above; the uniqueness assertion in \texttt{dzero}(i) is not
+imported. Source SHA-256:
+\texttt{e0f4b59aef7b4b79366d51fbb81ce18b93bff49aa9e2b63c55b968c470426fcb}.
+\bibitem{swlie:CV} Split-Zero research programme,
+\emph{The cyclic control as an exact change of arithmetic
+interpolation volume}, 12 September 2026,
+\texttt{cyclic\_control\_determinant\_increments.tex},
+CV.1--CV.12, especially CV.1--CV.5 and CV.11--CV.12.
+Source SHA-256:
+\texttt{06b526ea602e396c00a85bedab0fd59b8170f5e73cc5102c18ab892b86b0359d}.
+The formulas used here are independently reproduced
+with all source mass and complex cross terms.
+\bibitem{swlie:Native} \emph{The actual arithmetic multiplier in
+Gamma Jacobi coordinates}, 20 September 2026,
+\texttt{NATIVE\_JACOBI\_COMMUTANT.tex}. The native measure,
+original $S$-power coordinate map, and unchanged quotient
+are retained; the present native orthogonal basis does
+not substitute the Gamma comparison measure.
+Source SHA-256:
+\texttt{745442cbde7fde3a8177f804816d300f0936f26c921d262af81643c2cc9924c2}.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Finite-prime dual transfers through the original theta quotient}
+\newcommand{\swdualC}{\mathbb C}
+\newcommand{\swdualB}{\mathscr B}
+\newcommand{\swdualM}{\mathcal M}
+\newcommand{\swdualF}{\mathcal F_+}
+
+
+\section{Human source and exact original conventions}
+Connes, Consani and Moscovici \cite[Propositions groundstate,
+sonintensor and groundstatedual; Theorem isosonin]{swdual:CCM} construct two
+different semilocal transfers and prove their dual-pairing identity.
+We give the complete receiving calculation below on the original
+positive-real Hilbert space, then on the original theta complex and
+the literal tensor packet. The factors of two, prime powers, Mellin
+signs and actual arithmetic mass are not discarded.
+
+Put $\mathcal H=L^2((0,\infty),dx)$, with inner product
+$\langle f,g\rangle=\int_0^\infty\overline f g\,dx$.
+The cosine transform is
+\[
+ (\swdualF f)(x)=2\int_0^\infty\cos(2\pi xt)f(t)\,dt.
+                                                               \tag{SD1}
+\]
+It is a unitary involution on $\mathcal H$ by the ordinary Fourier
+Plancherel theorem applied to even extensions; each even extension
+has squared norm twice the positive-real norm. The original generator
+is $D=-x\partial_x$. Its centered Hilbert realization is
+$(D-1/2)/i$, not a replacement for $D$.
+Use the left Mellin transform and its unitary critical-line restriction
+\[
+ \swdualM f(s)=\int_0^\infty f(x)x^{s-1}\,dx,\qquad
+ Uf(t)=\frac{\swdualM f(1/2+it)}{\sqrt{2\pi}}.                       \tag{SD2}
+\]
+Indeed $x=e^y$ sends $f$ isometrically to $e^{y/2}f(e^y)$ in
+$L^2(dy)$, and SD2 is its Fourier transform with the positive
+exponential and factor $(2\pi)^{-1/2}$. Thus all subsequent scalar
+products use $dt$, not an unrecorded multiple of it.
+
+Let $\mathcal P$ be a fixed finite set of finite primes. For $p\in
+\mathcal P$ define the unitary dilation
+\[
+ (V_pf)(x)=p^{1/2}f(px),\quad
+ (V_p^*f)(x)=p^{-1/2}f(x/p),\quad r_p=p^{-1/2}.
+                                                               \tag{SD3}
+\]
+Change of variables proves both the adjoint and unitarity. On their
+natural domains these dilations commute with $D$, and all $V_p$ and
+$V_q^*$ commute. Directly from SD1, $\swdualF V_p=V_p^*\swdualF$.
+
+\section{Two bounded transfers and the preserved cross-pairing}
+Set
+\[
+ E_{\mathcal P}=\prod_{p\in\mathcal P}(I-r_pV_p)^{-1},\qquad
+ T_{\mathcal P}=\prod_{p\in\mathcal P}(I-r_pV_p^*)
+                 =(E_{\mathcal P}^*)^{-1}.                     \tag{SD4}
+\]
+All inverse factors exist by norm-convergent geometric series since
+$r_p<1$. This proves the full Hilbert-space domains and bounded
+inverses, without an infinite Euler-product limit.
+For one prime the formulas on the dense test space are
+\[
+ E_pf(x)=\sum_{j=0}^\infty f(p^jx),\qquad
+ T_pf(x)=f(x)-p^{-1}f(x/p).                                    \tag{SD5}
+\]
+The first series is also the Hilbert norm limit because its $j$th
+term has norm $p^{-j/2}\|f\|$.
+Writing $s=1/2+it$, SD2 gives the exact multipliers
+\[
+ UE_{\mathcal P}f(t)=e_{\mathcal P}(s)Uf(t),\quad
+ e_{\mathcal P}(s)=\prod_p(1-p^{-s})^{-1},
+\]
+\[
+ UT_{\mathcal P}f(t)=b_{\mathcal P}(s)Uf(t),\quad
+ b_{\mathcal P}(s)=\prod_p(1-p^{s-1}),\qquad
+ \overline{b_{\mathcal P}(s)}e_{\mathcal P}(s)=1.
+                                                               \tag{SD6}
+\]
+The plus sign in SD2 is why the two spectral arguments here are the
+opposites of the paper's negative-exponential variable. No scalar
+factor is inferred from the paper's other Hilbert conventions.
+Equation SD4, or directly SD6 and Plancherel, proves
+\[
+ \boxed{\langle T_{\mathcal P}f,E_{\mathcal P}g\rangle
+ =\langle f,g\rangle=\langle E_{\mathcal P}f,T_{\mathcal P}g\rangle.}
+                                                               \tag{SD7}
+\]
+This keeps the complete complex pairing, rather than its real part.
+Let
+\[
+ b_- =\prod_p(1-r_p),\qquad b_+=\prod_p(1+r_p).
+\]
+The triangle and reverse triangle inequalities in SD6 give
+\[
+ b_-\|f\|\le\|T_{\mathcal P}f\|\le b_+\|f\|,
+ \qquad b_+^{-1}\|f\|\le\|E_{\mathcal P}f\|\le b_-^{-1}\|f\|.
+                                                               \tag{SD8}
+\]
+These are explicit finite-set constants, not uniform assertions as
+the prime set grows.
+
+\section{The exact Sonin-space receiver}
+The maps in SD4 are not interchangeable. Define the target Fourier
+involution on the same Hilbert coordinate space by
+\[
+ \mathcal F_{+,\mathcal P}=E_{\mathcal P}\swdualF E_{\mathcal P}^{-1}
+   =E_{\mathcal P}(E_{\mathcal P}^*)^{-1}\swdualF.                    \tag{SD9}
+\]
+The second equality follows by commuting $\swdualF$ past each dilation
+factor. The operator $E_{\mathcal P}$ is normal, since all factors
+commute with their adjoints. Consequently
+$E_{\mathcal P}(E_{\mathcal P}^*)^{-1}$ is unitary; hence so is
+$\mathcal F_{+,\mathcal P}$. Similarity in the first expression proves its
+square is one, and it is therefore selfadjoint. The exact
+intertwining equations are
+\[
+ \mathcal F_{+,\mathcal P}E_{\mathcal P}=E_{\mathcal P}\swdualF,
+ \qquad\mathcal F_{+,\mathcal P}T_{\mathcal P}=T_{\mathcal P}\swdualF.
+                                                               \tag{SD10}
+\]
+For the second, $\swdualF(E^*)^{-1}=E^{-1}\swdualF$ and commutativity give
+$E(E^*)^{-1}\swdualF(E^*)^{-1}=(E^*)^{-1}\swdualF$.
+
+Let $P_\lambda$ denote the subspace supported in $[0,\lambda]$,
+and put
+\[
+ \mathcal S_\lambda=(P_\lambda+\swdualF P_\lambda)^\perp,
+ \qquad
+ \mathcal S_{\lambda,\mathcal P}
+      =(P_\lambda+\mathcal F_{+,\mathcal P}P_\lambda)^\perp.              \tag{SD11}
+\]
+Both $f$ and its indicated Fourier transform vanish below $\lambda$
+in the respective space. Formula SD5 shows
+$E_{\mathcal P}P_\lambda\subset P_\lambda$ and shows that
+$T_{\mathcal P}$ preserves a lower support gap $x<\lambda$.
+Thus SD10 gives $T\mathcal S_\lambda\subset
+\mathcal S_{\lambda,\mathcal P}$.
+Conversely, for $h$ in the latter space write $h=Tf$, using the
+bounded inverse of $T$. For $g\in P_\lambda$, SD7 gives
+$\langle f,g\rangle=\langle h,Eg\rangle=0$.
+Also $E\swdualF g=\mathcal F_{+,\mathcal P}Eg$ lies in
+$\mathcal F_{+,\mathcal P}P_\lambda$, so
+$\langle f,\swdualF g\rangle=\langle h,E\swdualF g\rangle=0$.
+This proves the complete correspondence
+\[
+ \boxed{T_{\mathcal P}:\mathcal S_\lambda
+       \longrightarrow\mathcal S_{\lambda,\mathcal P}
+       \text{ is a bounded isomorphism with bounded inverse}.}  \tag{SD12}
+\]
+It is the explicit Hilbert-coordinate receiver of the semilocal
+Sonin stability theorem of \cite{swdual:CCM}. It is not claimed to be an
+isometry: the exact metric factors are SD8.
+
+\section{The same map on the original theta complex}
+Retain the original strong source $\swdualB$ consisting of smooth $f$ for
+which every $\sup_{x>0}x^a|D^jf(x)|$ is finite, $a\in\mathbb R$,
+$j\ge0$. Retain the original even Schwartz space
+$V=\{\phi:\phi(0)=0,\int_\mathbb R\phi=0\}$ and map
+\[
+ \Theta\phi(x)=2\sum_{n\ge1}\phi(nx),\qquad Q=\swdualB/\Theta V.
+                                                               \tag{SD13}
+\]
+These are the original conventions, related to the cited orbit trace
+by its explicitly retained factor two \cite{swdual:CCtrace,swdual:Meyer}.
+Each finite dilation $f(x/p)$ preserves all the $\swdualB$ seminorms:
+\[
+ \sup_x x^a|D^j[f(x/p)]|=p^a\sup_y y^a|D^jf(y)|.
+\]
+It also preserves even Schwartz functions and both vanishing
+conditions in $V$. Define $T$ on $V$ by the same finite formula SD5.
+Absolute convergence of the theta sum and dilation commutation give
+\[
+ T_{\mathcal P}\Theta=\Theta T_{\mathcal P},\qquad
+ DT_{\mathcal P}=T_{\mathcal P}D.                             \tag{SD14}
+\]
+Thus the actual chain map is $(T|_V,T|_\swdualB)$, inducing $\overline T$
+on $Q$. The Mellin multiplier on the full strong source is the
+entire exponential polynomial $b_{\mathcal P}(s)$ of SD6.
+The inverse of $T$ on the Hilbert space is not asserted to preserve
+$\swdualB$, and $E$ is not asserted to be a strong-source chain map.
+All uses of $E$ below remain on its proved Hilbert domain. This is
+an explicit domain map, not a missing relation between the sources.
+
+For a finite packet of nontrivial zeros $\rho$ with complete
+multiplicities $m_\rho$, let $h(s)=\prod_\rho(s-\rho)^{m_\rho}$,
+$g=2\xi$, and $\swdualM F_h=g/h$. Since $0<\Re\rho<1$,
+each $b_{\mathcal P}(\rho)\ne0$. In the divided-jet coordinates
+$u_{\rho,j}$, multiplication by $b_{\mathcal P}$ is the exact
+lower triangular matrix
+\[
+ (B_{\mathcal P,h})_{\rho;jl}=
+ \begin{cases} b_{\mathcal P}^{(j-l)}(\rho)/(j-l)!,&j\ge l,\\
+ 0,&j<l.\end{cases}                                          \tag{SD15}
+\]
+For explicit coefficients, sum over every subset $A\subset\mathcal P$,
+write $n_A=\prod_{p\in A}p$, and use $n_\varnothing=1$:
+\[
+ \beta_{\rho,j}:=\frac{b_{\mathcal P}^{(j)}(\rho)}{j!}
+ =\frac1{j!}\sum_{A\subset\mathcal P}(-1)^{|A|}
+          n_A^{\rho-1}(\log n_A)^j.                           \tag{SD16}
+\]
+Here $0^0=1$ for $j=0$ and the empty subset contributes zero for
+$j>0$. The inverse block has coefficients
+\[
+ \gamma_{\rho,0}=\beta_{\rho,0}^{-1},\qquad
+ \gamma_{\rho,j}=-\beta_{\rho,0}^{-1}
+               \sum_{l=1}^j\beta_{\rho,l}\gamma_{\rho,j-l}.
+                                                               \tag{SD17}
+\]
+Multiplication of the two finite Taylor series proves the inverse,
+with no assumption of simple zeros. Therefore the restriction to
+each original finite packet is invertible and commutes with its
+original $M_s$ action. The original physical unit $j_h(g/h)$ stays
+in the injection: its transformed value is
+$B_{\mathcal P,h}j_h(g/h)$, not an omitted scalar.
+
+\section{Tensor source, relation kernel and all cross phases}
+Keep the original tensor degree $k$, the sum $S=s_1+\cdots+s_k$,
+and the original cyclic algebra $C=\swdualC[S]/(\chi_{h,k})$ with
+injection $\eta:C\to(\swdualC[s]/(h))^{\otimes k}$ carrying the full
+physical unit. The actual source is
+\[
+ \mathcal V_{h,k}P=P(D_1+\cdots+D_k)(F_h^{\otimes k}),\quad
+ J^{(k)}\mathcal V_{h,k}=\eta\pi_\chi.
+                                                               \tag{SD18}
+\]
+By SD14 and SD15 the new source and actual arithmetic injection are
+\[
+ \mathcal V^T_{h,k}=T_{\mathcal P}^{\otimes k}\mathcal V_{h,k},
+ \quad\eta^T=B_{\mathcal P,h}^{\otimes k}\eta,
+ \qquad J^{(k)}\mathcal V^T_{h,k}=\eta^T\pi_\chi.              \tag{SD19}
+\]
+All factors of the tensor multiplier
+$\prod_{i=1}^kb_{\mathcal P}(s_i)$ remain. It is not replaced by
+$b_{\mathcal P}(S)$: these are different explicitly displayed
+functions. Since $B_{\mathcal P,h}^{\otimes k}$ is invertible,
+$\eta^T$ is injective and the polynomial relation kernel is
+\emph{exactly the same} $(\chi_{h,k})$. This proves the original
+cyclic quotient receiver without assuming that the new tensor
+injection equals the old one.
+
+Let $w_h(t)=|(g/h)(1/2+it)|^2/(2\pi)$, with its actual total mass
+$\mu_h$. The three one-factor observations are
+\[
+ w_T(t)=|b_{\mathcal P}(1/2+it)|^2w_h(t),\quad
+ w_E(t)=|e_{\mathcal P}(1/2+it)|^2w_h(t),\quad
+ \overline b_{\mathcal P}e_{\mathcal P}w_h=w_h.                \tag{SD20}
+\]
+Using tensor Plancherel and Fubini, for all original polynomials $P,Q$,
+\begin{align*}
+\langle\mathcal V^T P,\mathcal V^T Q\rangle
+ &=\int_\mathbb R\overline{P(k/2+iu)}Q(k/2+iu)
+                      w_T^{*k}(u)\,du,\\
+\langle E^{\otimes k}\mathcal V P,E^{\otimes k}\mathcal V Q\rangle
+ &=\int_\mathbb R\overline{P(k/2+iu)}Q(k/2+iu)
+                      w_E^{*k}(u)\,du,\\
+\boxed{\langle\mathcal V^T P,E^{\otimes k}\mathcal V Q\rangle}
+ &=\boxed{\int_\mathbb R\overline{P(k/2+iu)}Q(k/2+iu)
+                       w_h^{*k}(u)\,du.}                    \tag{SD21}
+\end{align*}
+The exponential decay of the original $w_h$ and bounded finite-prime
+multipliers justify all polynomial moments. In the cross identity,
+the cancellation occurs separately at each original $t_i$, before
+convolution. It does not discard phase or replace a complex pairing
+by a norm.
+
+In the original ordered monomial basis let $H_N,H_N^T,H_N^E$
+be the three Gram matrices at admitted degree $N$. SD8 gives
+\[
+ b_-^{2k}H_N\preceq H_N^T\preceq b_+^{2k}H_N,\qquad
+ b_+^{-2k}H_N\preceq H_N^E\preceq b_-^{-2k}H_N,\qquad
+ H_N^{T,E}=H_N.                                               \tag{SD22}
+\]
+At $N\ge\deg\chi_{h,k}-1$, let $J_N$ be the original polynomial
+quotient map to $C$ in its original polynomial basis. The physical
+jet injection $\eta$ is kept separately, as in SD18. Minimum norm on the same
+fibres gives
+\[
+ G_N^T=(J_N(H_N^T)^{-1}J_N^*)^{-1},\quad
+ G_N^E=(J_N(H_N^E)^{-1}J_N^*)^{-1},
+\]
+\[
+ b_-^{2k}G_N\preceq G_N^T\preceq b_+^{2k}G_N,\qquad
+ b_+^{-2k}G_N\preceq G_N^E\preceq b_-^{-2k}G_N.                \tag{SD23}
+\]
+The same inequalities follow directly by minimizing SD22 over
+each unchanged polynomial fibre. They retain all relation columns
+and their Schur complement; they do not identify the two separately
+minimizing lifts. In particular SD21 for equal polynomial lifts
+does not assert equality of the cross-pairing of two different
+minimum lifts.
+
+For an explicit fixed physical target jet $u$ when $k=1$, the
+map $\eta:C\to\swdualC[s]/(h)$ is multiplication by the full unit
+$\upsilon_h=j_h(g/h)$. Its inverse exists because each selected
+zero was divided out with its complete order, so
+$(g/h)(\rho)\ne0$. The transferred physical injection is $B_{\mathcal
+P,h}\eta$. Thus the preimage class is
+$\eta^{-1}B_{\mathcal P,h}^{-1}u$, and the transferred Gram in
+the fixed physical coordinates is exactly
+\[
+ (B_{\mathcal P,h}\eta)^{-*}G_N^T
+              (B_{\mathcal P,h}\eta)^{-1}
+ =B_{\mathcal P,h}^{-*}
+       (\eta^{-*}G_N^T\eta^{-1})B_{\mathcal P,h}^{-1}.
+                                                               \tag{SD24}
+\]
+This follows by substituting that preimage into its quadratic form.
+The middle matrix is the quotient Gram transported by the original
+unit to physical jets; it is not identified with $G_N^T$ in the
+polynomial frame. Both the semilocal multiplier and the full unit
+therefore remain in the physical target calculation.
+At general $k$, use the displayed injection $\eta^T$ and the inverse
+of $B_{\mathcal P,h}^{\otimes k}$ on its image; no unjustified
+inverse within a different cyclic image is taken.
+
+Equations SD12--24 give the concrete literature-to-programme map:
+semilocal Sonin stability, a strong theta-complex endomorphism,
+all divided-jet inverses, an unchanged cyclic relation kernel,
+and a preserved complete cross-Gram with explicit metric comparisons.
+They do not identify a selfadjoint prolate spectrum with the actual
+zeta zeros, and they assert no infinite-prime or growing-degree
+estimate not proved here.
+
+\begin{thebibliography}{9}
+\bibitem{swdual:CCM} A.~Connes, C.~Consani and H.~Moscovici,
+\emph{Zeta zeros and prolate wave operators: semilocal adelic operators},
+\href{https://arxiv.org/abs/2310.18423v2}{arXiv:2310.18423v2},
+4 May2024. Original author TeX read in full, including bibliography;
+source labels groundstate, sonintensor, groundstatedual, isosonin,
+dualht and propbb. Original archive and exact version recorded in
+the accompanying human-source ledger. The cited book proofs of
+the global adelic construction are not claimed as separately read.
+\bibitem{swdual:CCtrace} A.~Connes and C.~Consani,
+\emph{Hochschild homology, trace map and zeta-cycles},
+\href{https://arxiv.org/abs/2207.10419v1}{arXiv:2207.10419v1},
+Propositions h0coinv and propmapE1, Lemma propmapE.
+\bibitem{swdual:Meyer} R.~Meyer,
+\emph{A spectral interpretation for the zeros of the Riemann zeta function},
+\href{https://arxiv.org/abs/math/0412277v3}{arXiv:math/0412277v3},
+weighted-Schwartz source and closed-range theorem. Its original
+completed factor is related to the present $g$ by the retained
+factor $s(s-1)$.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Mixed quotient lifts and their exact boundary currents}
+\newcommand{\swmixC}{\mathbb C}
+\newcommand{\swmixHH}{\mathcal H}
+\newcommand{\swmixDD}{\mathcal D}
+\newcommand{\swmixTT}{\mathsf T}
+\newcommand{\swmixEE}{\mathsf E}
+\newcommand{\swmixim}{\operatorname{im}}
+\newcommand{\swmixM}{\mathcal M}
+\newcommand{\swmixB}{\mathscr B}
+
+
+\section{Original objects, complete relations and finite-prime constants}
+This is an independent receiving calculation from SD1--24 of
+\cite{swmix:SD}, which implements the dual semilocal transfers of Alain
+Connes, Caterina Consani and Henri Moscovici \cite{swmix:CCM}. We prove the
+quotient statements below, rather than identifying two independently
+minimized positive metrics. All scalar products are conjugate linear
+in their first argument.
+
+Keep $\swmixHH=L^2((0,\infty),dx)$, $D=-x\partial_x$, and
+\[
+ \swmixM f(s)=\int_0^\infty f(x)x^{s-1}\,dx,
+ \qquad Uf(t)=(2\pi)^{-1/2}\swmixM f(1/2+it).                 \tag{MQ1}
+\]
+The substitution $x=e^y$ identifies $U$ with the unitary Fourier
+transform of $e^{y/2}f(e^y)$, with positive exponential. Retain the
+original strong source $\swmixB$: $f$ is smooth and
+$\sup_{x>0}x^a|D^jf(x)|<\infty$ for every real $a$ and integer
+$j\ge0$. Retain its theta map
+$\Theta\phi(x)=2\sum_{n\ge1}\phi(nx)$ on the original even Schwartz
+space with $\phi(0)=\int_{\mathbb R}\phi=0$. No factor two is removed.
+
+Let $h(s)=\prod_\rho(s-\rho)^{m_\rho}$ be the given finite packet
+of nontrivial zeros, each with its complete order, $g=2\xi$, and
+$\swmixM F_h=g/h$ for the original $F_h\in\swmixB$. Put
+\[
+ w_h(t)=\frac{|(g/h)(1/2+it)|^2}{2\pi},\quad
+ \mu_h=\int_{\mathbb R}w_h(t)\,dt,\quad
+ m_k=w_h^{*k},\quad S=k/2+iu.                              \tag{MQ2}
+\]
+In particular the mass of $m_k$ is $\mu_h^k$, not one. No measure
+in this note replaces $m_k$. For the integer $k\ge1$ and polynomial
+space $\mathcal P_N=\{P:\deg P\le N\}$ in its ordered original
+basis $1,S,\ldots,S^N$, define
+\[
+ V_NP=P(D_\Sigma)F_h^{\otimes k},\qquad
+ D_\Sigma=\sum_{j=1}^kD_j,\qquad
+ (H_N)_{ij}=\int_{\mathbb R}\overline{S^i}S^j m_k(u)\,du.
+                                                               \tag{MQ3}
+\]
+The original exponential decay gives all these moments and places
+these source vectors in every domain of $D_\Sigma$. Tensor
+Plancherel proves $V_N^*V_N=H_N$. The nonzero analytic Mellin
+function in MQ2 is nonzero almost everywhere on the line;
+convolution retains nonzero density on an interval. A nonzero
+polynomial has only finitely many zeros there. Consequently
+$H_N>0$ and $V_N$ is injective.
+
+Here are the complete arithmetic relations, including collisions of
+tensor sums. In divided jets the original physical unit is
+$\upsilon_h=j_h(g/h)$; each value $(g/h)(\rho)$ is nonzero because
+the order divided out is complete. In the factor at $\rho$, write
+$s=\rho+\varepsilon$, $\varepsilon^{m_\rho}=0$. At a tuple
+$\boldsymbol\rho=(\rho_1,\ldots,\rho_k)$ the nilpotent part of
+$S$ is $\sum_j\varepsilon_j$. Its highest nonzero power has degree
+$\sum_j(m_{\rho_j}-1)$: the coefficient of
+$\prod_j\varepsilon_j^{m_{\rho_j}-1}$ is the nonzero multinomial
+coefficient, and all higher powers vanish. Thus, with no simple-zero
+assumption,
+\[
+ \chi(S)=\prod_\sigma(S-\sigma)^{\nu_\sigma},\qquad
+ \nu_\sigma=\max_{\sum_j\rho_j=\sigma}
+       \left(1+\sum_j(m_{\rho_j}-1)\right).                    \tag{MQ4}
+\]
+Indeed Chinese remainders split the tensor algebra into exactly
+these local factors; an annihilator must have the indicated order
+at each tuple, and the least common multiple uses the maximum at
+coincident sums. Multiplication by the tensor unit is invertible and
+does not alter the annihilator. Hence, putting $d=\deg\chi$,
+\[
+ C=\swmixC[S]/(\chi),\quad J_N:\mathcal P_N\longrightarrow C,
+ \quad \eta:C\hookrightarrow(\swmixC[s]/(h))^{\otimes k},\quad
+ J^{(k)}V_N=\eta J_N,                                       \tag{MQ5}
+\]
+where $\eta[P]=P(\sum s_j)\upsilon_h^{\otimes k}$ in complete
+physical divided jets. For $N\ge d-1$, $J_N$ is onto and the full
+relation space is
+\[
+ \swmixDD_N=\ker J_N=\chi\mathcal P_{N-d};                         \tag{MQ6}
+\]
+it is zero when $N=d-1$. Polynomial division proves this exact
+description; it is not a Hilbert kernel of $V_N$.
+For the original simple-quartet current receiver of \cite{swmix:PD} we
+retain precisely its domain $k\equiv1\pmod4$, $k\ge77$,
+$q=(k+1)^2$, $d=q$ and $N\ge q-1$. MQ4 also records the full
+multiplicities for the general finite-packet construction, without
+enlarging that receiver's admitted domain.
+On that domain $C$ is the original $E_k$ in its cyclic polynomial
+frame; the physical injection $\eta$ is retained separately below.
+
+For the fixed finite prime set $\mathcal P$ define
+\[
+ V_pf(x)=\sqrt p\,f(px),\quad r_p=p^{-1/2},\quad
+ E=\prod_{p\in\mathcal P}(I-r_pV_p)^{-1},\quad
+ T=\prod_{p\in\mathcal P}(I-r_pV_p^*)=(E^*)^{-1}.             \tag{MQ7}
+\]
+The adjoint is $V_p^*f(x)=p^{-1/2}f(x/p)$. Geometric series
+converge in operator norm, and all these dilation factors commute.
+On the line in MQ1 their multipliers are
+\[
+ e(s)=\prod_p(1-p^{-s})^{-1},\qquad
+ b(s)=\prod_p(1-p^{s-1}),\qquad \overline{b(s)}e(s)=1.
+                                                               \tag{MQ8}
+\]
+Change of variables proves these signs. Put
+$\swmixTT=T^{\otimes k}$, $\swmixEE=E^{\otimes k}$ and
+\[
+ b_-=\prod_p(1-p^{-1/2}),\quad b_+=\prod_p(1+p^{-1/2}),\quad
+ \alpha_T=b_-^{2k},\ \beta_T=b_+^{2k},\quad
+ \alpha_E=b_+^{-2k},\ \beta_E=b_-^{-2k}.                       \tag{MQ9}
+\]
+Pointwise bounds on MQ8 and tensor Plancherel give
+\[
+ \swmixTT^*\swmixEE=\swmixEE^*\swmixTT=I,\quad
+ H_N^T=V_N^*\swmixTT^*\swmixTT V_N,\quad H_N^E=V_N^*\swmixEE^*\swmixEE V_N,
+ \quad \alpha_LH_N\preceq H_N^L\preceq\beta_LH_N\ (L=T,E).
+                                                               \tag{MQ10}
+\]
+All factors commute with multiplication by $S$ in the Mellin model,
+so they preserve every domain of $D_\Sigma$ and commute there.
+These are finite-prime bounds; no infinite-prime assertion follows.
+In particular the positive source Grams have the explicit original
+integral expressions
+\[
+ (H_N^L)_{ij}=\int_{\mathbb R}\overline{(k/2+iu)^i}
+          (k/2+iu)^j w_L^{*k}(u)\,du,\quad
+ w_T(t)=|b(1/2+it)|^2w_h(t),\quad
+ w_E(t)=|e(1/2+it)|^2w_h(t).                              \tag{MQ10a}
+\]
+This follows by tensor Plancherel and integration over
+$u=t_1+\cdots+t_k$. Their degree-zero entries are the actual
+$(\int w_L)^k$; neither mass is replaced by $\mu_h^k$ or by one.
+For the cross Gram the cancellation
+$\overline{b(1/2+it_j)}e(1/2+it_j)=1$ occurs separately for
+every $j$, before convolution, giving exactly $H_N$.
+
+\section{Unique opposite-relation orthogonality and exact quotient Gram}
+Fix an admitted $N$ and abbreviate $H=H_N$, $J=J_N$. Set
+\[
+ G=(JH^{-1}J^*)^{-1},\qquad R=H^{-1}J^*G.                    \tag{MQ11}
+\]
+Full row rank of $J$ and positivity of $H$ prove invertibility.
+Direct multiplication gives
+\[
+ JR=I_C,\quad R^*HR=G,\quad R^*H Z=0
+       \quad(\swmixim Z=\swmixDD_N).                                 \tag{MQ12}
+\]
+Conversely, each $c$ with $Jc=u$ has the unique expression
+$c=Ru+d_0$, $d_0\in\swmixDD_N$, with
+$c^*Hc=u^*Gu+d_0^*Hd_0$. This proves both the original minimum
+and its uniqueness.
+
+Define injective source maps $F_T=\swmixTT V_N$, $F_E=\swmixEE V_N$,
+and the paired quotient lifts
+\[
+ L_T=F_TR,\qquad L_E=F_ER.                                  \tag{MQ13}
+\]
+The full opposite relation spaces are $F_E\swmixDD_N$ and
+$F_T\swmixDD_N$, not selected columns of them. MQ10--12 prove
+\[
+ \langle L_Tu,F_Ed_0\rangle=0,
+ \quad \langle L_Eu,F_Td_0\rangle=0\quad(d_0\in\swmixDD_N),
+ \qquad L_T^*L_E=L_E^*L_T=G.                                \tag{MQ14}
+\]
+In fact $L_Tu$ is the unique element of its entire source fibre
+$\{F_Tc:Jc=u\}$ orthogonal to $F_E\swmixDD_N$. If $F_Tc$ has this
+property, $c^*Hd_0=0$ for every $d_0$, so MQ12 and positivity
+force $c=Ru$. The same proof interchanges $T,E$. Thus the pairing
+is nondegenerate on the two mixed complements. It does not descend
+from arbitrary unchosen representatives: the displayed complements
+are the precise maps that make it a quotient pairing.
+
+On $\swmixim F_T$ and $\swmixim F_E$, respectively, the projectors
+\[
+ \Pi_T=F_TRJ F_T^{-1},\qquad \Pi_E=F_ERJ F_E^{-1}             \tag{MQ15}
+\]
+have ranges $\swmixim L_T,\swmixim L_E$ and kernels $F_T\swmixDD_N,F_E\swmixDD_N$.
+Every inverse here is on the indicated image. The identity
+$(RJ)^*H=HRJ$, obtained from MQ11, proves
+$\langle\Pi_T f_T,f_E\rangle=\langle f_T,\Pi_E f_E\rangle$.
+These mutually adjoint mixed projectors need not be the same-side
+orthogonal projectors. Their positive same-side quotient Grams are
+\[
+ C_T=R^*H^TR,\quad C_E=R^*H^ER,\qquad
+ \alpha_L G\preceq C_L\preceq\beta_LG.                      \tag{MQ16}
+\]
+
+\section{The unchanged action, observations, kernel and complex currents}
+Keep the original action $A=M_S$ on $C$, original observation
+$\Lambda:C\to\swmixC^r$, original fixed class $x$, and $K=\ker\Lambda$.
+Let $P$ be the $G$-orthogonal projection onto exactly $K$ and put
+$a=Px$, $b_0=(I-P)x$. Define on the paired complements
+\[
+ A_L=L_LAL_L^{-1},\quad \Lambda_L=\Lambda L_L^{-1},\quad
+ P_L^\times=L_LPL_L^{-1},\quad K_L=L_LK\qquad(L=T,E).
+                                                               \tag{MQ17}
+\]
+All domains are $\swmixim L_L$. MQ14 proves, for every $u,v$,
+$\langle L_TPu,L_E(I-P)v\rangle=0$ and the reverse relation.
+It also proves the exact full-phase transport
+\[
+ \begin{split}
+ z&=a^*GA b_0
+  =\langle P_T^\times L_Tx,A_E(I-P_E^\times)L_Ex\rangle,\\
+ w&=b_0^*GA a
+  =\langle(I-P_T^\times)L_Tx,A_EP_E^\times L_Ex\rangle.
+ \end{split}                                                  \tag{MQ18}
+\]
+Interchanging $T,E$ leaves the same right sides. Neither quantity
+has been replaced by its modulus or real part. In particular their
+product $\overline zw$ is exactly preserved. The paired adjoint of
+$A_T$ is the transport of $A^{\dagger_G}=G^{-1}A^*G$ to the
+$E$ side, since both corresponding inner products equal
+$u^*A^*Gv$.
+
+When $\Lambda$ has full row rank, put
+$Q=(\Lambda G^{-1}\Lambda^*)^{-1}$ and
+$R_{\rm obs}=G^{-1}\Lambda^*Q$. Then
+$\Lambda R_{\rm obs}=I$, $P=I-R_{\rm obs}\Lambda$, and
+\[
+ (L_TR_{\rm obs})^*(L_ER_{\rm obs})=Q.                      \tag{MQ19}
+\]
+For a rank-deficient presentation use its actual image as codomain;
+the intrinsic kernel and MQ17--18 need no change. Thus no observation
+direction or relation is removed merely to obtain a scalar norm.
+
+\section{Degree-raising source action: the complete relation correction}
+Let $i_N:\mathcal P_N\to\mathcal P_{N+1}$ be coefficient inclusion
+and $X_N:\mathcal P_N\to\mathcal P_{N+1}$ multiplication by the
+original $S$. Then
+\[
+ J_{N+1}i_N=J_N,\quad J_{N+1}X_N=AJ_N,\quad
+ H_N=i_N^*H_{N+1}i_N,\quad D_\Sigma V_N=V_{N+1}X_N.         \tag{MQ20}
+\]
+Define, with no cutoff identification,
+\[
+ C_N^{\rm rel}=X_NR_N-i_NR_NA,\qquad
+ \Gamma_N=R_N^*i_N^*H_{N+1}C_N^{\rm rel}.                  \tag{MQ21}
+\]
+Its range is in $\swmixDD_{N+1}$ by MQ20. But $i_NR_N$ is only
+orthogonal to $i_N\swmixDD_N$, not to this larger relation space.
+There is an exact rank-one expression for this entire correction.
+Let $\ell_N$ select the coefficient of $S^N$ in $\mathcal P_N$,
+and let $\zeta_N\in\mathcal P_{N+1}$ be the coefficient vector
+of the monic polynomial $S^{N+1-d}\chi(S)$. Polynomial division
+and its leading coefficient give
+\[
+ C_N^{\rm rel}-\zeta_N\ell_NR_N\in
+       \operatorname{Hom}(C,i_N\swmixDD_N),\qquad
+ \Gamma_N=(R_N^*i_N^*H_{N+1}\zeta_N)(\ell_NR_N),\quad
+ \operatorname{rank}\Gamma_N\le1.                          \tag{MQ21a}
+\]
+Indeed the difference is a relation of degree at most $N$, and
+MQ12 annihilates its pairing with $R_N$. This applies also at
+$N=d-1$, when $\swmixDD_N=0$ but $\swmixDD_{N+1}$ need not vanish.
+Using commutation with $D_\Sigma$ from MQ10 gives the exact formula
+\[
+ \langle\swmixTT V_NR_Nu,D_\Sigma\swmixEE V_NR_Nv\rangle
+       =u^*(G_NA+\Gamma_N)v.                               \tag{MQ22}
+\]
+Indeed replace the second vector by $\swmixEE V_{N+1}X_NR_Nv$,
+cancel $\swmixTT^*\swmixEE$, and insert MQ21. It is invalid to replace
+the raw differential action in MQ22 by $A_E$ of MQ17 without
+subtracting this explicitly known relation pairing.
+
+There is an exact next-cutoff description and a proved finite bound.
+Put $Y_N=i_NR_N-R_{N+1}$. Its range lies in $\swmixDD_{N+1}$ and
+orthogonality of $R_{N+1}$ gives
+\[
+ G_N-G_{N+1}=Y_N^*H_{N+1}Y_N\succeq0,\qquad
+ \Gamma_N=Y_N^*H_{N+1}C_N^{\rm rel},                       \tag{MQ23}
+\]
+\[
+ |u^*\Gamma_Nv|^2\le
+   [u^*(G_N-G_{N+1})u]
+   [v^*(C_N^{\rm rel})^*H_{N+1}C_N^{\rm rel}v].             \tag{MQ24}
+\]
+Expand $i_NR_N=R_{N+1}+Y_N$ to prove the first identity;
+the mixed terms vanish. The second follows because
+$R_{N+1}^*H_{N+1}C_N^{\rm rel}=0$. Cauchy--Schwarz in the
+positive $H_{N+1}$ metric proves MQ24. All its matrices are
+explicit functions of the original moments through degree $2N+2$;
+their values are not evaluated here. Using $R_{N+1}$ in the first
+slot of MQ22 instead produces $G_{N+1}A$, not $G_NA$.
+
+The retained real part $\Re S=k/2$ yields an additional exact
+identity. In MQ3, $\overline S+S=k$ gives
+\[
+ i_N^*H_{N+1}X_N+X_N^*H_{N+1}i_N=kH_N,
+ \quad
+ \boxed{\Gamma_N+\Gamma_N^*=kG_N-G_NA-A^*G_N.}              \tag{MQ25}
+\]
+The second follows by multiplying the first by $R_N^*,R_N$ and
+using MQ21--22. This is the coefficient form of the source identity
+$D_\Sigma+D_\Sigma^*=kI$ on these vectors, with its original
+scalar center intact.
+
+For the two fixed classes of MQ18 write
+\[
+ z_{\rm raw}=z+r_z,\quad w_{\rm raw}=w+r_w,\qquad
+ r_z=a^*\Gamma_Nb_0,\quad r_w=b_0^*\Gamma_Na.                \tag{MQ26}
+\]
+MQ25 and $a^*G_Nb_0=0$ prove
+\[
+ z_{\rm raw}+\overline{w_{\rm raw}}=0,\qquad
+ \boxed{z+\overline w=-a^*(\Gamma_N+\Gamma_N^*)b_0.}         \tag{MQ27}
+\]
+Thus the source phase relation does not pass to the quotient by
+dropping the degree-raised relation. The entire product correction is
+\[
+ \overline zw=\overline{z_{\rm raw}}w_{\rm raw}
+     -\overline{r_z}w_{\rm raw}
+     -\overline{z_{\rm raw}}r_w+\overline{r_z}r_w.            \tag{MQ28}
+\]
+MQ24 bounds each correction with its actual native finite-cutoff
+energies if those are evaluated; it supplies no unproved phase sign.
+
+\section{Separate positive minima and their full cross defect}
+The same polynomial fibre has two distinct positive-metric minima:
+\[
+ G_L=(J(H^L)^{-1}J^*)^{-1},\quad
+ R_L=(H^L)^{-1}J^*G_L,\quad \Delta_L=R_L-R\quad(L=T,E).
+                                                               \tag{MQ29}
+\]
+Both $\Delta_L$ have range in $\swmixDD_N$. MQ12 therefore proves
+\[
+ R_T^*HR_E=G+\Xi,\qquad
+ \boxed{\Xi=\Delta_T^*H\Delta_E.}                           \tag{MQ30}
+\]
+In general this cross defect is a complex, not necessarily Hermitian,
+matrix. There is an explicit formula involving every relation.
+Take $Z$ whose columns are the coefficient vectors of
+$\chi,S\chi,\ldots,S^{N-d}\chi$ and put $K_L=Z^*H^LZ$.
+For $N=d-1$ all expressions involving $Z$ below mean zero.
+Otherwise $Z$ is injective, $K_L>0$, and the normal equations
+$Z^*H^L(R+\Delta_L)=0$ give
+\[
+ \Delta_L=-ZK_L^{-1}Z^*H^LR,\qquad
+ \Xi=R^*H^TZK_T^{-1}(Z^*HZ)K_E^{-1}Z^*H^ER.                \tag{MQ31}
+\]
+This is invariant under an invertible change of the full relation
+basis and retains its actual dimension $N+1-d$.
+
+The same normal equations prove the exact positive Pythagorean
+defects
+\[
+ C_L-G_L=\Delta_L^*H^L\Delta_L\succeq0,
+ \qquad \alpha_LG\preceq G_L\preceq\beta_LG.                \tag{MQ32}
+\]
+For the first, write $R=R_L-\Delta_L$ and eliminate the cross
+terms. For the second, minimize MQ10 on the same entire fibre.
+Consequently Cauchy--Schwarz, MQ9 and MQ30 give the explicit
+finite-prime bounds
+\[
+ \begin{split}
+ |u^*\Xi v|&\le (b_+/b_-)^k
+  \sqrt{u^*(C_T-G_T)u}\sqrt{v^*(C_E-G_E)v},\\
+ |u^*\Xi v|&\le(\kappa_{\mathcal P}-1)\|u\|_G\|v\|_G,
+ \qquad \kappa_{\mathcal P}=(b_+/b_-)^{2k}.
+ \end{split}                                                \tag{MQ33}
+\]
+Indeed $\Delta_L^*H\Delta_L\preceq
+\alpha_L^{-1}(C_L-G_L)$, which proves the first inequality;
+$C_L-G_L\preceq(\beta_L-\alpha_L)G$ proves the second, since
+$\beta_L/\alpha_L=\kappa_{\mathcal P}$ for both sides. These
+bounds are proved, but are not asserted small for a growing prime
+set, growing tensor degree or growing cutoff.
+
+If the original $a,b_0$ and $A$ are retained while only the lifts
+are separately minimized, the resulting currents are exactly
+\[
+ z_{\rm sep}=z+a^*\Xi A b_0,\qquad
+ w_{\rm sep}=w+b_0^*\Xi A a.                               \tag{MQ34}
+\]
+If one additionally uses the respective $G_T,G_E$ projections
+$P_T,P_E$ onto the same $K$, put $e_T=(P_T-P)x$,
+$e_E=(P_E-P)x$. The separate-side currents then satisfy
+\[
+ \begin{split}
+ z_{\rm sep}'-z={}&e_T^*GA b_0-a^*GAe_E-e_T^*GAe_E
+       +(a+e_T)^*\Xi A(b_0-e_E),\\
+ w_{\rm sep}'-w={}&b_0^*GAe_E-e_T^*GAa-e_T^*GAe_E
+       +(b_0-e_T)^*\Xi A(a+e_E).
+ \end{split}                                                 \tag{MQ35}
+\]
+These follow by multiplying the full expressions
+$(a+e_T)^*(G+\Xi)A(b_0-e_E)$ and
+$(b_0-e_T)^*(G+\Xi)A(a+e_E)$; no cross term is discarded.
+For either convention write the two displayed differences as
+$\delta_z,\delta_w$. Then
+\[
+ \overline{z_{\rm sep}}w_{\rm sep}-\overline zw
+   =\overline{\delta_z}w+\overline z\delta_w
+     +\overline{\delta_z}\delta_w,                          \tag{MQ36}
+\]
+with primes in both places for MQ35. This retains unknown phases.
+
+There is also a complete source-action correction for any two
+right inverses $R_1,R_2$ of $J_N$, including MQ29. Define
+\[
+ B_{12}=R_1^*H_NR_2,\quad
+ \Gamma_{12}=R_1^*i_N^*H_{N+1}(X_NR_2-i_NR_2A).
+                                                               \tag{MQ37}
+\]
+Precisely the proof of MQ22 gives
+$\langle\swmixTT V_NR_1u,D_\Sigma\swmixEE V_NR_2v\rangle
+=u^*(B_{12}A+\Gamma_{12})v$.
+Thus for separate minima $B_{TE}=G+\Xi$ and $\Gamma_{TE}$ is
+an additional, explicitly retained correction. No minimum at cutoff
+$N+1$ is substituted without its own class Gram.
+
+\section{Physical divided jets, the full unit, and the local domain of E}
+The finite formula $T_pf=f-p^{-1}f(\cdot/p)$ preserves each
+strong seminorm and the original theta test space. Absolute
+convergence gives $T\Theta=\Theta T$, with the original factor
+two. Thus $T$ is the strong theta-chain map of \cite{swmix:SD}.
+We make no assertion that $E\swmixB\subset\swmixB$, nor that Hilbert
+invertibility supplies a strong-source inverse.
+
+There is nevertheless an exact, narrower local-jet map for $E$.
+Let $\mathcal N_{\mathcal P}$ be the multiplicative semigroup
+generated by these primes. For $f\in\swmixB$ and every $\sigma>0$,
+Tonelli and a change of variables give
+\[
+ \int_0^\infty\sum_{n\in\mathcal N_{\mathcal P}}
+ |f(nx)|x^{\sigma-1}\,dx
+ =\prod_{p\in\mathcal P}(1-p^{-\sigma})^{-1}
+       \int_0^\infty|f(y)|y^{\sigma-1}\,dy<\infty.           \tag{MQ38}
+\]
+The series also converges in $L^2(dx)$ since
+$\sum_n n^{-1/2}<\infty$, and hence represents the same Hilbert
+operator $E$ of MQ7. On each compact subset of $\Re s>0$, powers
+of $|\log x|$ are bounded by a fixed multiple of
+$x^\delta+x^{-\delta}$ for sufficiently small $\delta>0$.
+Apply MQ38 at the two surrounding positive real parts to dominate
+all Mellin derivatives. It follows by differentiation under the
+integral that
+\[
+ \swmixM(Ef)(s)=e(s)\swmixM f(s)\quad(\Re s>0)                      \tag{MQ39}
+\]
+is a holomorphic equality, with all finite derivatives there. This
+proves actual Mellin jets of the transformed original inputs,
+not a global strong theta-chain map. It applies to every original
+polynomial source, and in $k$ variables to $\Re s_j>0$ by the
+same absolutely convergent product integrals. Every native packet
+point lies in this domain.
+
+For completeness all finite-order jet maps and inverse coefficients
+are explicit. Let $n_A=\prod_{p\in A}p$, $n_\varnothing=1$.
+At a packet point $\rho$ put
+\[
+ \begin{split}
+ \beta_{\rho,j}&=\frac1{j!}\sum_{A\subset\mathcal P}
+       (-1)^{|A|}n_A^{\rho-1}(\log n_A)^j,\\
+ \zeta_{\rho,j}&=\frac1{j!}\sum_{A\subset\mathcal P}
+       (-1)^{|A|}n_A^{-\rho}(-\log n_A)^j.
+ \end{split}                                                 \tag{MQ40}
+\]
+Use $0^0=1$ in the degree-zero empty term. The lower Toeplitz
+blocks with coefficients $\beta_{\rho,j}$ form $B_h=j_h(b)$;
+those with coefficients $\zeta_{\rho,j}$ form $C_h=j_h(c)$,
+where $c(s)=\prod_p(1-p^{-s})=e(s)^{-1}$. Their diagonals are
+nonzero since $0<\Re\rho<1$. For either coefficient sequence
+$d_j$, its inverse sequence is exactly
+\[
+ t_0=d_0^{-1},\qquad
+ t_j=-d_0^{-1}\sum_{l=1}^jd_lt_{j-l}\quad(1\le j<m_\rho).
+                                                               \tag{MQ41}
+\]
+Multiplication of the finite Taylor series proves this formula to
+the complete order. Write $E_h=C_h^{-1}=j_h(e)$ and
+$\mathbb B=B_h^{\otimes k}$, $\mathbb E=E_h^{\otimes k}$.
+MQ39 and the strong $T$ map give the literal injections
+\[
+ \eta_T=\mathbb B\eta,\qquad \eta_E=\mathbb E\eta,
+ \quad j^{(k)}F_T=\eta_TJ_N,\quad j^{(k)}F_E=\eta_EJ_N.
+                                                               \tag{MQ42}
+\]
+The last $j^{(k)}$ is the actual holomorphic Mellin-jet evaluation
+on the domain just proved, not an asserted $E$ map on the global
+theta quotient. Since $\mathbb B,\mathbb E$ are invertible, each
+cyclic image has exactly the original relation ideal $(\chi)$.
+Neither tensor multiplier is replaced by a function only of $S$;
+they commute with the total action but keep every factor and the
+full unit $\upsilon_h^{\otimes k}$.
+
+For an explicit coordinate expression let
+$\eta^\ell=(\eta^*\eta)^{-1}\eta^*$, a left inverse on the
+original cyclic image, and define the displayed extensions
+\[
+ Z_T=\eta^\ell\mathbb B^{-1},\qquad
+ Z_E=\eta^\ell\mathbb E^{-1}.                               \tag{MQ43}
+\]
+Their restrictions to $X_T=\swmixim\eta_T$ and $X_E=\swmixim\eta_E$
+are the unique inverses of the respective injections. For actual
+physical vectors $u_T\in X_T$, $v_E\in X_E$, the mixed pairing is
+\[
+ \langle L_TZ_Tu_T,L_EZ_Ev_E\rangle
+       =u_T^* Z_T^*G Z_Ev_E.                               \tag{MQ44}
+\]
+Only the restrictions to these specified images carry a quotient
+interpretation. No arbitrary ambient target outside an image is
+silently admitted. The separate-minimum mixed form is exactly
+$Z_T^*(G+\Xi)Z_E$ on those images. Positive canonical and minimum
+forms on side $L$ are respectively $Z_L^*C_LZ_L$ and
+$Z_L^*G_LZ_L$. At $k=1$ these formulas are square, and in
+particular reproduce the corrected full-unit formula
+\[
+ (B_h\eta)^{-*}G_T(B_h\eta)^{-1}
+   =B_h^{-*}(\eta^{-*}G_T\eta^{-1})B_h^{-1}.                \tag{MQ45}
+\]
+The physical action, observation, projection, kernel and class are
+$\eta_L A Z_L$, $\Lambda Z_L$, $\eta_LPZ_L$, $\eta_LK$,
+$\eta_Lx$ on $X_L$. Substitution and $Z_L\eta_L=I$ prove
+all intertwining relations and MQ18 in these physical coordinates.
+The action-correction and separate-minimum defect matrices transform
+to $Z_T^*\Gamma_NZ_E$ and $Z_T^*\Xi Z_E$, respectively.
+Thus phases and physical units survive every displayed transport.
+
+\section{Exact result and the remaining original calculation}
+MQ13--19 are an exact conjugacy of the original mixed quotient
+geometry: they give unique opposite-relation lifts and preserve the
+entire original quotient and observed cross-Grams. They alone do
+not improve a bound on the original complex product. MQ21--28
+identify and bound the complete degree-raised relation correction;
+indeed its Hermitian part is exactly the obstruction in MQ27 to
+transferring the source phase relation. MQ30--37 identify and bound
+the different correction from separately minimizing the two
+positive metrics, including different projections. MQ38--45 prove
+the strongest local physical-jet receiver used here while preserving
+the strong-source domain restriction. Original native moments,
+$\Gamma_N$, $\Xi$, and the original current values are not numerically
+evaluated. No growing-degree or infinite-prime conclusion is claimed.
+
+The accompanying exact finite tests check these algebraic identities
+on explicitly labelled finite test models, not proxy values for the
+native measure. Their negative checks require nonzero relation
+corrections and reject omission of the physical unit and full
+tensor multiplier. The derivations above, not numerical samples,
+establish the claims for the original source.
+
+\begin{thebibliography}{9}
+\bibitem{swmix:CCM} Alain Connes, Caterina Consani and Henri Moscovici,
+\emph{Zeta zeros and prolate wave operators: semilocal adelic operators},
+\href{https://arxiv.org/abs/2310.18423v2}{arXiv:2310.18423v2},
+4 May 2024. Original author TeX, semilocal construction and labels
+\texttt{groundstate}, \texttt{sonintensor}, \texttt{groundstatedual},
+\texttt{isosonin}, and their complex dual-pairing proofs. The present
+independent reading was bounded to that section; the parent source
+provider records the full-paper reading.
+\bibitem{swmix:SD} \emph{Finite-prime dual transfers in the original theta
+source}, original programme calculation, 20 September 2026,
+\texttt{SEMILOCAL\_DUAL\_THETA\_TRANSFER.tex}, corrected SD1--24.
+The full corrected proof was read; MQ1--10 and MQ40--45 retain its
+original constants, phases and full-unit correction.
+\bibitem{swmix:PD} \emph{Sharp original-metric projection control and disks
+for complex mixed pairings}, original programme calculation,
+20 September 2026, \texttt{PROJECTION\_PHASE\_RETURN.tex},
+PD1--3 for the exact admitted domain, $A=M_S$, $K=\ker\Lambda$,
+unchanged original class, metric and two complex mixed currents.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Literal theta constants, all truncation tails and original divisor jets}
+\newtheorem{swthetatheorem}{Theorem}[section]
+\newtheorem{swthetaproposition}[swthetatheorem]{Proposition}
+\newcommand{\swthetaR}{\mathbb R}\newcommand{\swthetaC}{\mathbb C}
+\newcommand{\swthetaM}{\mathcal M}\newcommand{\swthetaE}{\mathcal E}
+
+
+\section{The author source and the unchanged arithmetic seed}
+This note receives the exact seed and approximation construction in
+Connes--Consani--Moscovici \cite{swtheta:CCM}, equations \texttt{ku},
+\texttt{emap}, \texttt{xih}, \texttt{ktoh}, and Lemma
+\texttt{hermfact1}. Their original author TeX, including all proofs
+and the stated missing steps, was read. We compute the constants from
+the displayed formulas; no claim about minimal Weil eigenvectors is
+imported. We use Riemann's completed function in precisely the
+convention displayed in that source:
+\begin{equation}\tag{PT1}
+ g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad
+ \Xi(t)=\xi(1/2+it).
+\end{equation}
+To avoid confusing the source's Hermite seed with the programme's
+zero-divisor polynomial, denote that seed by $H$:
+\begin{equation}\tag{PT2}
+ \begin{split}
+ H(x)&=(\pi^2x^4-\tfrac32\pi x^2)e^{-\pi x^2},\\
+ \phi_*(x)&=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}=4H(x),\\
+ \Theta\phi(x)&=2\sum_{n\geq1}\phi(nx),\qquad
+ f_0=\Theta\phi_*=8\sum_{n\geq1}H(nx),\\
+ K(u)&=\swthetaE(H)(u)=u^{1/2}\sum_{n\geq1}H(nu)
+                   =\tfrac18u^{1/2}f_0(u).
+ \end{split}
+\end{equation}
+The original scaling generator is $D=-x\partial_x$.
+The two transforms, with all measures and signs, are
+\begin{equation}\tag{PT3}
+ \swthetaM F(s)=\int_0^\infty F(u)u^{s-1}\,du,\qquad
+ \widehat K(z)=\int_0^\infty K(u)u^{-iz}\,\frac{du}{u}.
+\end{equation}
+
+\begin{swthetatheorem}[Exact seed and transform factors]
+The displayed seed gives
+\begin{equation}\tag{PT4}
+ \swthetaM H(s)=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2),\quad
+ \swthetaM f_0(s)=g(s),\quad
+ \widehat K(z)=\frac18g(1/2-iz)=\frac14\Xi(z).
+\end{equation}
+The last equality uses the functional equation with its unchanged
+centre. In particular the literal $H$ in PT2 has transform
+$\Xi/4$, not $\Xi$; multiplying $H$ by four gives the latter
+transform. Both versions and their comparison map remain explicit.
+\end{swthetatheorem}
+\begin{proof}
+For $\Re s>0$, the Gaussian integral gives
+\[
+ \int_0^\infty x^{s+r-1}e^{-\pi x^2}\,dx
+  =\tfrac12\pi^{-(s+r)/2}\Gamma((s+r)/2).
+\]
+Consequently the coefficient of
+$\pi^{-s/2}\Gamma(s/2)$ in $\swthetaM H$ is
+\[
+ \tfrac12(s/2)(s/2+1)-\tfrac34(s/2)=s(s-1)/8.
+\]
+On $\Re s>1$ absolute convergence permits summing the Mellin
+integrals of $H(nx)$, giving $\zeta(s)\swthetaM H(s)$.
+
+For endpoint continuation, use the explicitly normalized Hermite
+functions from \cite{swtheta:CCM}, equation \texttt{xih}:
+\[
+ h_0(x)=2^{1/4}e^{-\pi x^2},\qquad
+ h_4(x)=\frac{16\pi^2x^4-24\pi x^2+3}{2\,2^{1/4}\sqrt3}
+                                  e^{-\pi x^2}.
+\]
+Their stated coefficients give exactly
+\begin{equation}\tag{PT5}
+ H=\frac{\sqrt3}{2^{11/4}}h_4-\frac3{2^{17/4}}h_0,
+ \qquad \|H\|_{L^2(\swthetaR,dx)}^2=\frac{33}{2^{17/2}}.
+\end{equation}
+The norm follows either by direct Gaussian integration or by the
+orthonormality of these two displayed Hermite functions.
+The Fourier transform with kernel $e^{2\pi ixy}$ fixes both:
+differentiate the Gaussian transform four times to verify the
+displayed $h_4$ polynomial, and use the Gaussian transform for $h_0$.
+Also $H(0)=0$, hence $\int_\swthetaR H=0$ by Fourier invariance.
+Poisson summation of this Schwartz function therefore gives
+\[
+ 2\sum_{n\geq1}H(nu)=u^{-1}2\sum_{n\geq1}H(n/u),
+ \quad f_0(u)=u^{-1}f_0(1/u),\quad K(u)=K(1/u).
+\]
+Gaussian decay at infinity and reflection give rapid decay at
+both endpoints after every scaling derivative. All Mellin
+integrals for $f_0$ and multiplicative Fourier integrals for $K$
+are consequently entire. Their equalities on a right half-plane
+extend everywhere. Finally $\xi(1-s)=\xi(s)$, equivalently the
+reflection identity just proved, identifies the two signs of $z$.
+\end{proof}
+
+This scalar correction does not change zeros, but it changes
+source masses and Gram matrices and therefore cannot be dropped.
+The exact unitary between the original Hilbert observations is
+\begin{equation}\tag{PT6}
+ U:L^2(\swthetaR_+,du)\longrightarrow L^2(\swthetaR_+,du/u),\qquad
+ (UF)(u)=u^{1/2}F(u),\quad K=Uf_0/8.
+\end{equation}
+Its inverse is multiplication by $u^{-1/2}$, and direct integration
+proves unitarity. Thus $\|K\|^2=\|f_0\|^2/64$.
+On the original smooth rapid source a direct derivative gives
+\begin{equation}\tag{PT7}
+ UDU^{-1}=\tfrac12-u\partial_u,
+ \qquad -iu\partial_u=i(UDU^{-1}-\tfrac12).
+\end{equation}
+This proves the generator comparison, including the centre and phase.
+The weighted trace here is also exactly
+$\swthetaE(\phi_*)=U\Theta\phi_*/2=4K$, with the factor-two trace
+convention established by Connes--Consani \cite{swtheta:Hochschild}.
+
+\section{A full finite truncation bound}
+Fix $\lambda\geq1$. Let $A_\lambda$ be an actual bounded measurable function
+on $[-\lambda,\lambda]$, extended by zero outside that interval;
+the source's compactly supported prolate combination is one such
+input. Define its actual discrepancy and received finite theta sum:
+\begin{equation}\tag{PT8}
+ \begin{split}
+ d_\lambda&=\sup_{|x|\leq\lambda}|A_\lambda(x)-H(x)|,\\
+ K_\lambda(u)&=\mathbf1_{[\lambda^{-1},\lambda]}(u)\sqrt u
+                 \sum_{1\leq n\leq\lambda/u}A_\lambda(nu).
+ \end{split}
+\end{equation}
+The discrepancy is a defined norm, not an assumed decay rate.
+We bound every part of the difference for every such input.
+Put, for $v\geq1$,
+\begin{equation}\tag{PT9}
+ \begin{split}
+ B(v)&=(\pi^2v^4+\tfrac32\pi v^2)e^{-\pi v^2},\\
+ T(v)&=\int_v^\infty B(x)\,dx
+   =e^{-\pi v^2}(\tfrac\pi2v^3+\tfrac32v)
+                      +\tfrac34\operatorname{erfc}(\sqrt\pi v),\\
+ J_\nu(v)&=\int_v^\infty x^\nu e^{-\pi x^2}\,dx
+     =\frac{\Gamma((\nu+1)/2,\pi v^2)}{2\pi^{(\nu+1)/2}},\\
+ I_a(\lambda)&=\frac{\lambda^{1/2+a}-\lambda^{-1/2-a}}{1/2+a}
+                                     \quad(0\leq a<1/2),\\
+ R_a(\lambda)&=2\left[\pi^2J_{a+7/2}(\lambda)
+       +\tfrac32\pi J_{a+3/2}(\lambda)
+       +\frac{\lambda^{a-1/2}T(\lambda)}{1/2-a}\right].
+ \end{split}
+\end{equation}
+
+\begin{swthetatheorem}[Interior discrepancy, omitted lattice tail, and endpoint tail]
+For every $0\leq a<1/2$,
+\begin{equation}\tag{PT10}
+ \sup_{|\Im z|\leq a}
+ \left|\widehat K_\lambda(z)-\tfrac14\Xi(z)\right|
+ \leq \lambda d_\lambda I_a(\lambda)
+       +[B(\lambda)+T(\lambda)]I_a(\lambda)+R_a(\lambda).
+\end{equation}
+All three terms are retained. The first is the actual interior
+approximation error. The second records the omitted nonzero
+Gaussian summands beyond the prolate support. The third records
+the discarded endpoints of the multiplicative Fourier integral.
+\end{swthetatheorem}
+\begin{proof}
+For $u\in[\lambda^{-1},\lambda]$ the exact difference is
+\begin{equation}\tag{PT11}
+ \begin{split}
+ K_\lambda(u)-K(u)
+   ={}&\sqrt u\sum_{n\leq\lambda/u}
+                       [A_\lambda(nu)-H(nu)]\\
+     &-\sqrt u\sum_{n>\lambda/u}H(nu).
+ \end{split}
+\end{equation}
+There are at most $\lambda/u$ terms in the first sum.
+Also $B$ is decreasing on $[1,\infty)$, since
+\[
+ B'(v)=\pi v e^{-\pi v^2}(-2\pi^2v^4+\pi v^2+3)<0.
+\]
+Taking the first omitted lattice point separately and then
+using the integral comparison for a decreasing positive function gives
+\begin{equation}\tag{PT12}
+ \sum_{n>\lambda/u}|H(nu)|\leq B(\lambda)+T(\lambda)/u.
+\end{equation}
+Indeed if $n_0=\lfloor\lambda/u\rfloor+1$, its first value is
+at most $B(\lambda)$ and
+$\sum_{n>n_0}B(nu)\leq u^{-1}\int_{n_0u}^\infty B$.
+For $\alpha=\Im z$ the Fourier weight is $u^\alpha$.
+The two necessary integrals satisfy
+\[
+ \int_{\lambda^{-1}}^\lambda u^{\alpha-3/2}\,du
+ =\frac{\lambda^{1/2-\alpha}-\lambda^{\alpha-1/2}}{1/2-\alpha}
+ \leq I_a(\lambda),
+ \qquad
+ \int_{\lambda^{-1}}^\lambda u^{\alpha-1/2}\,du
+ \leq I_a(\lambda).
+\]
+For the first inequality write the expression as
+$2\sinh(b\log\lambda)/b$, $b=1/2-\alpha\in[1/2-a,1/2+a]$.
+It is increasing in $b>0$, since
+$t\cosh t-\sinh t\geq0$ for $t\geq0$ by differentiation.
+The second inequality follows by $u\mapsto1/u$ and
+$\alpha\mapsto-\alpha$. Thus PT11 contributes the first two
+terms of PT10.
+
+For $u\geq\lambda\geq1$, the same decreasing-sum estimate gives
+$|K(u)|\leq\sqrt u B(u)+u^{-1/2}T(u)$.
+The reflection $K(u)=K(1/u)$ sends the missing lower endpoint
+integral to the upper endpoint with exponent $-\alpha$.
+Their sum is bounded by
+\[
+ 2\int_\lambda^\infty
+          [u^{a-1/2}B(u)+u^{a-3/2}T(u)]\,du.
+\]
+The first integral is the sum of the two $J$ terms in PT9.
+For the second, positive Fubini gives
+\[
+ \int_\lambda^\infty u^{a-3/2}T(u)\,du
+ =\int_\lambda^\infty B(v)
+       \frac{\lambda^{a-1/2}-v^{a-1/2}}{1/2-a}\,dv
+ \leq\frac{\lambda^{a-1/2}T(\lambda)}{1/2-a}.
+\]
+This proves the third term. Integration by parts twice proves
+the explicit $T$ formula; $t=\pi x^2$ proves the $J$ formula.
+Every bound is independent of $\Re z$, proving the stated
+closed-substrip supremum.
+\end{proof}
+
+In particular the concrete truncated Hermite input
+$A_\lambda=H|_{[-\lambda,\lambda]}$ has $d_\lambda=0$ and
+PT10 proves its transform convergence with an explicit Gaussian
+bound. This input is not relabelled as the prolate eigenfunction.
+For that different input, PT10 retains its actual $d_\lambda$.
+The estimate $d_\lambda=O(\lambda^{-2})$ is the estimate stated
+and derived in \cite{swtheta:CCM}, Lemma \texttt{meixnerlem}, by using
+Meixner--Sch\"afke and Fuchs. Their original books/papers have not
+been read here. Substituting that explicitly attributed estimate
+in the first term gives $O(\lambda^{-1/2+a})$; this observation
+does not supply the still-unproved approximation to the minimum
+eigenvector of the Weil form. PT11 supplies a Gaussian remainder
+absent from the literal displayed first bound in
+\cite{swtheta:CCM}, proof of Lemma \texttt{hermfact1}.
+
+\section{Divided jets in the actual arithmetic packet}
+Let the programme's actual monic zero divisor be
+\[
+ h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\qquad d=\deg h,
+\]
+with its original complete multiplicities and unit
+$\upsilon_h=j_h(g/h)$. No hypothetical zero is selected here.
+For any entire $F$ define the literal interpolation polynomial
+\begin{equation}\tag{PT13}
+ \begin{split}
+ b_\rho(s)&=h(s)/(s-\rho)^{m_\rho},\\
+ \mathcal I_hF(s)&=\sum_{\rho\in Z}b_\rho(s)
+   \sum_{j=0}^{m_\rho-1}\frac{1}{j!}
+     \left(\frac{d^j}{ds^j}\frac{F(s)}{b_\rho(s)}\right)_{s=\rho}
+                      (s-\rho)^j.
+ \end{split}
+\end{equation}
+It has degree less than $d$. Its divided jets of orders below
+$m_\rho$ agree with $F$ at every $\rho$: all other summands
+have the full zero there, and its own summand is Taylor inversion
+of the nonzero local factor $b_\rho$. This proves the claim
+including all factorials and differences $\rho-\rho'$.
+Uniqueness follows because a polynomial of degree less than $d$
+with all those zeros is zero. Therefore
+\begin{equation}\tag{PT14}
+ \mathcal D_hF=(F-\mathcal I_hF)/h
+\end{equation}
+is entire, with its removable values defined by the same divided
+Taylor expansion. For the exact source, $\mathcal I_hg=0$
+and $\mathcal D_hg=g/h$. This is an exact complex-linear map,
+not an identification of an approximant with the arithmetic class.
+
+Define, with the original sign convention,
+\begin{equation}\tag{PT15}
+ G_\lambda(s)=8\widehat K_\lambda(i(s-1/2))
+       =8\int_{\lambda^{-1}}^\lambda K_\lambda(u)
+                                         u^{s-1/2}\,\frac{du}{u}.
+\end{equation}
+For any $a<1/2$, PT10 bounds $G_\lambda-g$ by eight times
+its right side on $|\Re s-1/2|\leq a$. On a circle of radius
+$r>0$ lying in that strip, Cauchy's formula gives for each
+divided derivative
+\begin{equation}\tag{PT16}
+ \frac{|(G_\lambda-g)^{(j)}(s_*)|}{j!}
+       \leq r^{-j}\sup_{|s-s_*|=r}|G_\lambda(s)-g(s)|.
+\end{equation}
+All selected nontrivial zeros lie in the open strip $0<\Re s<1$;
+for a fixed finite packet, circles for every selected zero can
+thus be chosen inside a larger closed substrip. PT13--16
+explicitly transport the finite transform error to every original
+jet and to the entire divisor quotient. To see convergence on a
+compact subset of $0<\Re s<1$ containing divisor roots, surround
+it and the finite packet by a bounded contour inside that open strip
+and avoiding the roots. On that contour $\min|h|>0$,
+PT13 bounds the interpolation error from PT16, and PT14 bounds
+the divided error. The maximum principle extends that bound
+to its interior. The exact physical unit remains $j_h(g/h)$;
+the approximating unit is the explicitly different
+$j_h(\mathcal D_hG_\lambda)$ and converges when the stated
+transform error tends to zero.
+This proves compact convergence of the quotient in the open strip,
+not uniform convergence on arbitrary compact subsets of the plane.
+
+The higher derivatives needed by the physical unit can also be
+written without hiding an interpolation loss. Write
+$f_{\rho,n}=F^{(n)}(\rho)/n!$,
+$p_{\rho,n}=(\mathcal I_hF)^{(n)}(\rho)/n!$ and
+$\beta_{\rho,a}=[t^a]b_\rho(\rho+t)^{-1}$. Direct Taylor
+multiplication gives
+\begin{equation}\tag{PT17}
+ \frac{(\mathcal D_hF)^{(\ell)}(\rho)}{\ell!}
+   =\sum_{a=0}^{\ell}\beta_{\rho,a}
+           (f_{\rho,m_\rho+\ell-a}-p_{\rho,m_\rho+\ell-a}).
+\end{equation}
+Indeed $F-\mathcal I_hF$ vanishes to order $m_\rho$ at
+$\rho$; division by $t^{m_\rho}$ shifts the Taylor index, and
+division by the remaining nonzero factor gives the displayed
+convolution. Expanding each factor
+$(\rho-\sigma+t)^{-m_\sigma}$ gives the full coefficients
+\begin{equation}\tag{PT18}
+ \beta_{\rho,a}=(-1)^a
+   \prod_{\sigma\ne\rho}(\rho-\sigma)^{-m_\sigma}
+   \sum_{\substack{k_\sigma\ge0\\\sum_{\sigma\ne\rho}k_\sigma=a}}
+     \prod_{\sigma\ne\rho}
+       \binom{m_\sigma+k_\sigma-1}{k_\sigma}
+                      (\rho-\sigma)^{-k_\sigma}.
+\end{equation}
+For an empty product, the sum is one at $a=0$ and zero otherwise.
+Thus receiving the full original quotient jet $\ell<m_\rho$
+requires input derivatives through order $2m_\rho-1$, not only
+the interpolation derivatives below $m_\rho$. PT16 controls all
+these higher derivatives with their explicit $r^{-j}$ factors.
+For $F=g$ the interpolation polynomial vanishes identically, and
+PT17 gives exactly the original unit $j_h(g/h)$.
+
+These are entire-function and jet statements. The sharp interval
+cutoff in PT8 can produce endpoint jumps; its inverse Mellin
+source is not silently placed in the original rapid smooth space.
+No convergence in its strong seminorms, no convergence of native
+moment matrices of increasing degree, and no real-zero claim for
+$G_\lambda$ follows from PT10 or PT16. The finite rank-one
+self-adjoint compression and its relation correction must still
+be calculated in the unchanged quotient metric. Thus the present
+map retains the actual missing data instead of discarding it.
+
+\begin{thebibliography}{9}
+\bibitem{swtheta:CCM} A. Connes, C. Consani and H. Moscovici,
+\emph{Zeta Spectral Triples}, arXiv:2511.22755v1 (27 November 2025),
+\url{https://arxiv.org/abs/2511.22755v1}.
+Original author file \texttt{mc2arXiv.tex}, fully read;
+equations \texttt{ku}, \texttt{emap}, \texttt{xih}, \texttt{ktoh};
+Lemmas \texttt{hermfact}, \texttt{meixnerlem}, \texttt{hermfact1}.
+Its cited Meixner--Sch\"afke and Fuchs sources were not independently
+read for this note.
+\bibitem{swtheta:Hochschild} A. Connes and C. Consani,
+\emph{Hochschild homology, trace map and zeta-cycles},
+arXiv:2207.10419v1 (2022),
+\url{https://arxiv.org/abs/2207.10419v1}.
+Original author TeX fully read; Lemma \texttt{propmapE}(ii) and
+Proposition \texttt{propmapE1} give the original factor-two trace.
+\bibitem{swtheta:Riemann} B. Riemann,
+\emph{\"Uber die Anzahl der Primzahlen unter einer gegebenen Gr\"o\ss e},
+Monatsberichte der K\"oniglich Preu\ss ischen Akademie der
+Wissenschaften zu Berlin (1859), 671--680.
+Historical attribution through \cite{swtheta:CCM}; this note proves its
+displayed theta/Gaussian identities directly and does not claim a
+new independent reading of the 1859 original.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Independent complete source and higher-jet calculation}
+\newcommand{\swjetsR}{\mathbb R}\newcommand{\swjetsC}{\mathbb C}
+
+
+\section{Scope, source and corrections}
+This is an independent calculation of PT1--16 in the companion
+\emph{The literal prolate--theta source map: constants, truncation tails and original divisor jets}.
+The actual author LaTeX of Connes--Consani--Moscovici \cite{swjets:CCM},
+from the \emph{Outlook} section through \emph{The missing steps},
+was read for this check: equations \texttt{ku}, \texttt{emap},
+\texttt{xih}, \texttt{ktoh}, and the complete proofs of Lemmas
+\texttt{hermfact}, \texttt{meixnerlem}, \texttt{hermfact1}.
+The source is the original file \texttt{mc2arXiv.tex} of
+arXiv:2511.22755v1. No PDF, numerical figure, or original
+Meixner--Sch\"afke or Fuchs paper was read for this verification.
+Their estimates remain attributed through the inspected CCM argument.
+
+The scalar seed, its Mellin transform, all three truncation terms,
+and the inverse spectral coordinate in PT1--16 are correct.
+Three repairs were reported to the author of the companion:
+the input function in PT8 must be measurable as well as bounded;
+the compact convergence proved by PT10 is on the open critical strip,
+not on arbitrary compact subsets of $\swjetsC$;
+and the draft PT5 contained a control character in place of
+the command beginning its second fraction. No original author
+source was edited. The quotient functions below are entire individually;
+that statement does not enlarge the region in which convergence has
+been proved.
+
+\section{The literal seed and every transform factor}
+Use exactly
+\[
+ \begin{gathered}
+ H(x)=(\pi^2x^4-\tfrac32\pi x^2)e^{-\pi x^2},\quad
+ \phi_*=4H,\quad \Theta\phi(x)=2\sum_{n\ge1}\phi(nx),\\
+ f_0=8\sum_{n\ge1}H(nx),\quad K(u)=u^{1/2}f_0(u)/8.
+ \end{gathered}
+\]
+For $\Re s>0$, the substitution $t=\pi x^2$ gives
+\[
+ \int_0^\infty x^{s+r-1}e^{-\pi x^2}\,dx
+ =\frac{\Gamma((s+r)/2)}{2\pi^{(s+r)/2}}.
+\]
+Thus, retaining both terms in $H$,
+\begin{equation}\tag{IC1}
+ \mathcal MH(s)=\pi^{-s/2}\Gamma(s/2)
+ \left[\tfrac12\tfrac s2(\tfrac s2+1)-\tfrac34\tfrac s2\right]
+ =\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2).
+\end{equation}
+For $\Re s>1$ the integral of the absolute sum is bounded by
+$\zeta(\Re s)\int_0^\infty|H(x)|x^{\Re s-1}\,dx$.
+It follows that
+\[
+ \mathcal Mf_0(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)=g(s)=2\xi(s).
+\]
+
+The two Hermite functions displayed in CCM give directly
+\begin{equation}\tag{IC2}
+ H=\frac{\sqrt3}{2^{11/4}}h_4-\frac3{2^{17/4}}h_0,
+ \qquad \|H\|_{L^2(\swjetsR)}^2=\frac3{2^{11/2}}+\frac9{2^{17/2}}
+ =\frac{33}{2^{17/2}}.
+\end{equation}
+The norm can also be computed by expanding $H^2$ and using
+$\int_{\swjetsR}x^{2j}e^{-2\pi x^2}\,dx
+=\Gamma(j+1/2)/(2\pi)^{j+1/2}$.
+The Gaussian transform with kernel $e^{2\pi ixy}$ is
+$e^{-\pi y^2}$. Multiplication by $x^r$ transforms to
+$(2\pi i)^{-r}\partial_y^r$. Applying this rule for $r=2,4$
+to the displayed polynomial proves $\mathbb FH=H$.
+In particular $H(0)=\int_\swjetsR H=0$. Poisson summation now gives
+\begin{equation}\tag{IC3}
+ \sum_{n\ge1}H(nu)=u^{-1}\sum_{n\ge1}H(n/u),
+ \quad f_0(u)=u^{-1}f_0(1/u),\quad K(u)=K(1/u).
+\end{equation}
+Gaussian decay and IC3 prove rapid decay at both endpoints,
+including every scaling derivative. Hence the Mellin integrals
+of $f_0$ and the multiplicative Fourier integrals of $K$ are entire.
+The half-plane calculation extends to every $s$.
+With the precise transform convention
+$\widehat K(z)=\int_0^\infty K(u)u^{-iz}\,du/u$, one obtains
+\begin{equation}\tag{IC4}
+ \widehat K(z)=\tfrac18g(1/2-iz)
+ =\tfrac14\xi(1/2+iz)=\tfrac14\Xi(z).
+\end{equation}
+The sign change uses IC3, equivalently $\xi(1-s)=\xi(s)$.
+Thus the literal seed in CCM's equation \texttt{ku} has transform
+$\Xi/4$ under its stated conventions. The seed $4H$ has transform
+$\Xi$; this scalar change cannot be dropped in masses or Gram matrices.
+
+The map $UF=u^{1/2}F$ from $L^2(du)$ to $L^2(du/u)$ is unitary,
+because both squared norms equal $\int|F|^2du$. Its inverse is
+the multiplication by $u^{-1/2}$. Direct differentiation yields
+\begin{equation}\tag{IC5}
+ K=Uf_0/8,\quad \|K\|^2=\|f_0\|^2/64,\quad
+ U(-u\partial_u)U^{-1}=\tfrac12-u\partial_u,
+ \quad -iu\partial_u=i(U D U^{-1}-\tfrac12).
+\end{equation}
+These identities retain the original centre, phase and mass.
+Also $\mathcal E(\phi_*)=4K=U\Theta\phi_*/2$ by the two displayed
+sum definitions, without any change of the factor-two trace.
+
+\section{The complete closed-substrip estimate}
+Let $\lambda\ge1$ and let $A_\lambda$ be bounded and measurable
+on $[-\lambda,\lambda]$, extended by zero outside that interval.
+Set
+\[
+ d_\lambda=\sup_{|x|\le\lambda}|A_\lambda(x)-H(x)|,\qquad
+ K_\lambda(u)=\mathbf1_{[\lambda^{-1},\lambda]}(u)\sqrt u
+       \sum_{1\le n\le\lambda/u}A_\lambda(nu).
+\]
+This transform is entire because its defining measurable integrand
+has compact support away from $0$.
+For $u$ in that support the exact error is
+\begin{equation}\tag{IC6}
+ K_\lambda(u)-K(u)
+ =\sqrt u\sum_{n\le\lambda/u}(A_\lambda(nu)-H(nu))
+   -\sqrt u\sum_{n>\lambda/u}H(nu).
+\end{equation}
+The second sum does not vanish: for example $H(n)>0$ for each
+integer $n\ge1$. Consequently taking $A_\lambda=H$ on its interval
+does not justify dropping this term.
+
+For $v\ge1$ put
+\[
+ B(v)=(\pi^2v^4+\tfrac32\pi v^2)e^{-\pi v^2},\quad
+ T(v)=\int_v^\infty B(x)\,dx.
+\]
+Here $|H(v)|\le B(v)$ and
+\[
+ B'(v)=\pi v e^{-\pi v^2}(-2\pi^2v^4+\pi v^2+3)<0.
+\]
+Indeed $-2y^2+y+3<0$ for $y\ge\pi>3/2$.
+Separating the first omitted lattice point and bounding subsequent
+points by the integral of this decreasing function gives
+\begin{equation}\tag{IC7}
+ \sum_{n>\lambda/u}|H(nu)|\le B(\lambda)+T(\lambda)/u.
+\end{equation}
+Integration by parts, or differentiation followed by the value at
+infinity, gives exactly
+\begin{equation}\tag{IC8}
+ T(v)=e^{-\pi v^2}(\tfrac\pi2v^3+\tfrac32v)
+       +\tfrac34\operatorname{erfc}(\sqrt\pi v),\qquad
+ J_\nu(v)=\int_v^\infty x^\nu e^{-\pi x^2}\,dx
+ =\frac{\Gamma((\nu+1)/2,\pi v^2)}{2\pi^{(\nu+1)/2}}.
+\end{equation}
+
+Let $0\le a<1/2$ and $\alpha=\Im z$ with $|\alpha|\le a$.
+The two integrals required by IC6--7 are
+\[
+ \int_{1/\lambda}^{\lambda}u^{\alpha-3/2}\,du
+ =\frac{\lambda^{1/2-\alpha}-\lambda^{\alpha-1/2}}{1/2-\alpha},
+ \quad
+ \int_{1/\lambda}^{\lambda}u^{\alpha-1/2}\,du
+ =\frac{\lambda^{1/2+\alpha}-\lambda^{-1/2-\alpha}}{1/2+\alpha}.
+\]
+Each is at most
+$I_a=(\lambda^{1/2+a}-\lambda^{-1/2-a})/(1/2+a)$.
+To see this, use the increasing function
+$b\mapsto2\sinh(b\log\lambda)/b$ for $b>0$; its derivative
+has the sign of $t\cosh t-\sinh t$, nonnegative by differentiation
+from $t=0$.
+
+For $u\ge\lambda$, $|K(u)|\le\sqrt u B(u)+u^{-1/2}T(u)$.
+Reflection IC3 turns the missing lower endpoint into an upper
+endpoint with exponent $-\alpha$. Both endpoint errors are thus
+at most
+\[
+ 2\int_\lambda^\infty
+     \big[u^{a-1/2}B(u)+u^{a-3/2}T(u)\big]\,du.
+\]
+Positive Fubini evaluates the latter $T$ integral as
+\[
+ \int_\lambda^\infty B(v)
+       \frac{\lambda^{a-1/2}-v^{a-1/2}}{1/2-a}\,dv
+ \le\frac{\lambda^{a-1/2}T(\lambda)}{1/2-a}.
+\]
+Combining these equalities proves the complete bound
+\begin{equation}\tag{IC9}
+ \begin{split}
+ \sup_{|\Im z|\le a}|\widehat K_\lambda(z)-\Xi(z)/4|
+ \le{}&\lambda d_\lambda I_a+[B(\lambda)+T(\lambda)]I_a\\
+ &+2\left[\pi^2J_{a+7/2}(\lambda)
+ +\tfrac32\pi J_{a+3/2}(\lambda)
+ +\frac{\lambda^{a-1/2}T(\lambda)}{1/2-a}\right].
+ \end{split}
+\end{equation}
+All constants and exponents match PT9--12. There is no dependence
+on $\Re z$. Substitution of the CCM-attributed prolate estimate
+$d_\lambda=O(\lambda^{-2})$ makes its first term
+$O(\lambda^{-1/2+a})$. The two Gaussian terms also tend to zero.
+The actual discrepancy is retained; no approximation to a minimum
+Weil eigenvector has been assumed.
+
+\section{The exact divided-quotient jets}
+Let $h(s)=\prod_\rho(s-\rho)^{m_\rho}$ for the actual finite
+packet of distinct roots and complete positive multiplicities,
+and $d=\sum m_\rho$. Put $b_\rho=h/(s-\rho)^{m_\rho}$ and define
+the divided derivatives and local reciprocal coefficients by
+\[
+ f_{\rho,n}=F^{(n)}(\rho)/n!,\quad
+ \beta_{\rho,a}=[t^a]b_\rho(\rho+t)^{-1},\quad
+ c_{\rho,j}=\sum_{a=0}^j\beta_{\rho,a}f_{\rho,j-a}.
+\]
+Taylor multiplication gives
+\begin{equation}\tag{IC10}
+ P=\mathcal I_hF=\sum_\rho b_\rho(s)
+                   \sum_{j=0}^{m_\rho-1}c_{\rho,j}(s-\rho)^j.
+\end{equation}
+At $\rho$ the other summands vanish to order $m_\rho$, while
+the local summand agrees with $F$ to that order. Every summand
+has degree less than $d$. A difference of two such polynomials
+would be divisible by $h$ and have degree less than $d$, hence
+would vanish. This proves interpolation and uniqueness.
+Therefore $\mathcal D_hF=(F-P)/h$ is entire for entire $F$.
+
+Write $p_{\rho,n}=P^{(n)}(\rho)/n!$, zero for $n\ge d$.
+Taylor division now gives the complete quotient-jet formula
+\begin{equation}\tag{IC11}
+ \frac{(\mathcal D_hF)^{(\ell)}(\rho)}{\ell!}
+ =\sum_{a=0}^{\ell}\beta_{\rho,a}
+        (f_{\rho,m_\rho+\ell-a}-p_{\rho,m_\rho+\ell-a}).
+\end{equation}
+Indeed the numerator has Taylor coefficients zero below
+$m_\rho$, and division by $(s-\rho)^{m_\rho}$ shifts those
+indices by precisely $m_\rho$. Multiplication by $1/b_\rho$
+then yields IC11.
+
+For a formula containing only input divided jets, the identity
+$P/h=\sum_\sigma\sum_{j<m_\sigma}c_{\sigma,j}
+(s-\sigma)^{j-m_\sigma}$ yields
+\begin{equation}\tag{IC12}
+ \begin{split}
+ \frac{(\mathcal D_hF)^{(\ell)}(\rho)}{\ell!}
+ ={}&\sum_{a=0}^{m_\rho+\ell}\beta_{\rho,a}f_{\rho,m_\rho+\ell-a}\\
+ &-(-1)^\ell\sum_{\sigma\ne\rho}\sum_{j=0}^{m_\sigma-1}
+ c_{\sigma,j}\binom{m_\sigma-j+\ell-1}{\ell}
+ (\rho-\sigma)^{-(m_\sigma-j+\ell)}.
+ \end{split}
+\end{equation}
+The coefficient follows by expanding each negative integral
+power at $\rho$. The reciprocal coefficients themselves are
+the following finite expressions, retaining every root difference:
+\begin{equation}\tag{IC13}
+ \beta_{\rho,a}=(-1)^a\prod_{\sigma\ne\rho}(\rho-\sigma)^{-m_\sigma}
+ \sum_{\substack{k_\sigma\ge0\\\sum k_\sigma=a}}
+ \prod_{\sigma\ne\rho}\binom{m_\sigma+k_\sigma-1}{k_\sigma}
+                    (\rho-\sigma)^{-k_\sigma}.
+\end{equation}
+This is the coefficient of $t^a$ in the product of the binomial
+series $(1+t/(\rho-\sigma))^{-m_\sigma}$, each multiplied by
+its unchanged constant $(\rho-\sigma)^{-m_\sigma}$.
+For a single root the empty product is $1$ at $a=0$ and the
+empty constrained sum is zero at $a>0$.
+
+IC11--12 show that the quotient jet of order $\ell$ requires
+input derivatives through $m_\rho+\ell$ at $\rho$ and only
+the interpolation jets at other roots. The entire original quotient
+jet at $\rho$, of orders $\ell<m_\rho$, therefore uses derivatives
+through $2m_\rho-1$. This order is necessary in the unrestricted
+holomorphic class: for $F=h(s)(s-\rho)^\ell$, every interpolation
+jet is zero, yet $\mathcal D_hF=(s-\rho)^\ell$ has divided jet
+$1$ at order $\ell$. Every derivative of $F$ at $\rho$ below
+$m_\rho+\ell$ is zero, and the next is
+$(m_\rho+\ell)!b_\rho(\rho)\ne0$.
+
+For a finite quantitative bound choose a circle of radius $r_\sigma$
+at every root and put
+\[
+ S_\sigma=\sup_{|s-\sigma|=r_\sigma}|F(s)|,
+ \quad A_{\sigma,n}=\sum_{a=0}^n|\beta_{\sigma,a}|r_\sigma^{-(n-a)}.
+\]
+Cauchy's integral formula gives
+$|f_{\sigma,j}|\le S_\sigma r_\sigma^{-j}$ and
+$|c_{\sigma,n}|\le S_\sigma A_{\sigma,n}$. Consequently IC12
+proves the explicit finite estimate
+\begin{equation}\tag{IC14}
+ \begin{split}
+ \left|\frac{(\mathcal D_hF)^{(\ell)}(\rho)}{\ell!}\right|
+ \le{}&S_\rho A_{\rho,m_\rho+\ell}\\
+ &+\sum_{\sigma\ne\rho}S_\sigma\sum_{j<m_\sigma}
+ A_{\sigma,j}\binom{m_\sigma-j+\ell-1}{\ell}
+ |\rho-\sigma|^{-(m_\sigma-j+\ell)}.
+ \end{split}
+\end{equation}
+These circles need only lie in the domain of $F$; the reciprocal
+coefficients are exact local algebraic constants, so another root
+inside one of the circles does not invalidate this estimate.
+
+Finally set $G_\lambda(s)=8\widehat K_\lambda(i(s-1/2))$.
+Since $-i\,i(s-1/2)=s-1/2$, IC4 gives the exact target $g(s)$.
+Also $\Im(i(s-1/2))=\Re s-1/2$. Thus IC9 bounds
+$G_\lambda-g$ by eight times its right side on every closed
+substrip $|\Re s-1/2|\le a<1/2$. Apply IC14 to this error.
+The circles for a fixed packet can all be chosen inside such
+a larger closed substrip, proving convergence of every original
+quotient jet whenever the displayed transform error tends to zero.
+For a compact subset of $0<\Re s<1$, take a bounded contour
+inside that strip enclosing both the compact set and packet,
+and avoiding the roots. On the contour $|h|$ has a positive
+minimum, IC10 controls the interpolant of the error, and division
+by $h$ controls its divided error. The maximum principle extends
+the bound to the enclosed compact set.
+
+The exact physical unit is still $j_h(g/h)$; its approximant is
+$j_h(\mathcal D_hG_\lambda)$ with the higher derivatives specified
+above. The sharp interval cutoff may create endpoint jumps.
+None of these entire-function, strip, or fixed-packet statements
+places that inverse Mellin source in the original strong smooth
+space, proves an increasing-degree moment estimate, or proves
+that the approximants have only real spectral zeros.
+
+\section{Exact finite verification}
+The companion script \texttt{verify\_theta\_prolate.py} checks
+the literal Hermite coefficients and Gaussian squared norm;
+the Mellin factor, Fourier invariance, generator and inverse-coordinate
+signs; the full tail derivatives and incomplete-gamma constants;
+the two interior power integrals; and IC10--13 on four explicitly
+artificial repeated-root packets, including nonreal roots.
+Those packets are illustrative polynomial data, not zeta zeros.
+There are 266 exact identities and six deliberate-failure controls.
+The latter reject the missing factor four, the missing factor eight,
+the missing squared-mass factor 64, a reversed inverse-coordinate
+phase before imposing symmetry, an omitted erfc term, and inference
+of a quotient jet from only vanishing lower numerator jets.
+These finite checks accompany the analytic proofs above; they do
+not replace their convergence or domain arguments.
+
+\begin{thebibliography}{9}
+\bibitem{swjets:CCM} A. Connes, C. Consani and H. Moscovici,
+\emph{Zeta Spectral Triples}, arXiv:2511.22755v1
+(27 November 2025), \url{https://arxiv.org/abs/2511.22755v1}.
+Original author file \texttt{mc2arXiv.tex}; actual inspected scope
+is the \emph{Outlook} through \emph{The missing steps}, with the
+equations and proofs specified in Section 1. Earlier original
+sources cited there are not claimed independently read here.
+\end{thebibliography}
+
+\endgroup
+
+% END COMPLETE SEMILOCAL PROLATE WEIL PROOFS
+
+\end{document}

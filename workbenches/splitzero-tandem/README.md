@@ -1,3 +1,8 @@
+<!-- semilocal-prolate-weil:20260920 -->
+## Original theta sources and complete-Weil arithmetic tests
+
+The [new complete source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-semilocal-prolate-weil/README.md) applies the indexed human literature to the Split-Zero programme’s original theta source, quotient and arithmetic metric. It computes the finite-prime transfer and its quotient boundary term, the actual arithmetic recurrence defect, and the exact Hermite-seed constants and full truncation tails. Repeated-zero quotient jets retain their higher derivatives. The full-Weil calculation proves finite positivity with the unknown tail included and reproduces 45 positive determinant enclosures using the complete xi function. [Seven complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-semilocal-prolate-weil/COMPLETE_PROOFS.tex), [results and their programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-semilocal-prolate-weil/RESULT_INDEX.json), human citations, exact checkers, two mathematical figures and three complete cumulative source successors are included. The growing-degree arithmetic estimate remains unfinished; these results do not establish RH.
+
 <!-- theta-transfer-current-precision:20260920 -->
 ## Original theta transfer and certified complex-current precision
 

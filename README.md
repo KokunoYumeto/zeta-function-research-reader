@@ -1,3 +1,8 @@
+<!-- native-secular-frame:20260920 -->
+## Arithmetic spectra and recovery of a lost observation
+
+The Split-Zero programme studies the theta source, its quotient by theta relations, and the arithmetic metric on finite polynomial observations. The [new complete source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-secular-frame/README.md) calculates the exact rank-one difference between multiplication in that quotient and its attained self-adjoint compression. It retains every repeated-root pole, surviving factor, phase and physical jet unit, and identifies the correction with the existing arithmetic error bound. A separate pair of proofs locates where the marked-state observation loses one direction, recovers it with one cubic moment, and gives the full signed-orbit return with both original metrics. [Three complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-secular-frame/COMPLETE_PROOFS.tex), [results and their programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-secular-frame/RESULT_INDEX.json), human citations, exact checkers, two inspected mathematical figures and three complete cumulative source successors are included. These finite identities do not establish the remaining growing-degree estimate or RH.
+
 <!-- semilocal-prolate-weil:20260920 -->
 ## Original theta sources and complete-Weil arithmetic tests
 

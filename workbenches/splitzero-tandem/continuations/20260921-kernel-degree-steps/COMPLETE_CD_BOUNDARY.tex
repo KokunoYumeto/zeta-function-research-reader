@@ -1,0 +1,617 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=25mm]{geometry}
+\usepackage{hyperref}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\conj}[1]{\overline{#1}}
+\title{Two boundary polynomials for the original Gamma kernel\\and the exact correction after coefficient compression}
+\author{}
+\date{20 September 2026}
+\begin{document}\maketitle
+
+\section{Source, mass, coordinates and scope}
+
+This is a finite calculation on the original Gamma receiver MR22--23
+\cite{MR}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/ORIGINAL_KERNEL_MIXED_DETERMINANT.tex\#L36}{[proof MR1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}, not a replacement of the arithmetic source or its original
+coefficient frame. The underlying Christoffel--Darboux identity is
+classical; Akemann--Vernizzi's original author source explicitly gives
+its real-line formula and its algebraic continuation in the footnote
+at \texttt{CD} \cite{AV}. The exact Gamma recurrence and norms below
+are the Meixner--Pollaczek formulas \cite{DLMF}, transported in the
+original JM26 and KG6 coordinates \cite{JM,KG}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/JOINT_MINIMUM_RECEIVERS.tex\#L286}{[proof JM21]} \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/KERNEL_GAMMA_INDEPENDENT.tex\#L73}{[proof KG1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}. We derive every finite
+identity used here. No large-degree coefficient, limit estimate,
+arithmetic zero statement, or priority claim about the classical
+identity is asserted.
+
+The retained density, original physical coordinate and its complex
+evaluation chart are
+\begin{equation}\label{eq:source}
+ d\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\,dy,
+ \quad M_\sigma=\sqrt{2\pi},\quad c=k/2,
+ \quad S=c+iy,
+ \quad u=\frac{v-c}{i},\quad w=\frac{z-c}{i}.
+ \tag{CD1}
+\end{equation}
+In formulas with two scalar polynomial variables, write \(x=u\) and
+\(t=\overline w\); these variables are independent during
+differentiation. An asterisk on a matrix always means conjugate
+transpose. The source inner product is
+\(\langle P,Q\rangle=\int\overline{P(c+iy)}Q(c+iy)\,d\sigma(y)\).
+
+Here is the mass check, retaining the scale in \(y\). The original DLMF
+weight and norm at \(\lambda=1/4,\phi=\pi/2\) are
+\[
+ |\Gamma(1/4+ix)|^2\,dx,
+ \qquad
+ h_j=\frac{2\pi\Gamma(j+1/2)}{\sqrt2\,j!}.
+\]
+Set \(y=2x\) and
+\(p_j(y)=j!P_j^{(1/4)}(y/2;\pi/2)\).
+The measure becomes \(|\Gamma(1/4+ix)|^2dx/\pi\). Hence the actual
+squared norm is
+\begin{equation}\label{eq:norm}
+ \gamma_j=\frac{(j!)^2}{\pi}h_j
+ =\sqrt2\,j!\Gamma(j+1/2)
+ =\sqrt{2\pi}\,j!(1/2)_j.
+ \tag{CD2}
+\end{equation}
+In particular \(\gamma_0=M_\sigma=\sqrt{2\pi}\). The exact density
+change \(dy=2dx\) is already included in CD2.
+
+The original generating function, after the same substitution, is
+\[
+ \sum_{j\geq0}\frac{p_j(y)}{j!}\zeta^j
+ =(1+\zeta^2)^{-1/4}e^{y\arctan\zeta}.
+\]
+Its highest \(y\) coefficient proves monicity. Differentiating in
+\(\zeta\) gives
+\((1+\zeta^2)\partial_\zeta F=(y-\zeta/2)F\).
+Coefficient comparison therefore proves the original recurrence
+\begin{equation}\label{eq:recurrence}
+ p_0=1,\quad p_1=y,\quad
+ p_{j+1}(y)=yp_j(y)-a_jp_{j-1}(y),
+ \quad a_j=j(j-\tfrac12)=\frac{\gamma_j}{\gamma_{j-1}}
+ \quad(j\geq1).
+ \tag{CD3}
+\end{equation}
+All coefficients of \(p_j\) are real. We put \(p_{-1}=0\) only in
+recurrences whose coefficient is zero; no negative-index norm is used.
+
+\section{The two-polynomial identity and its sign}
+
+For \(d\geq0\), set
+\[
+ \mathcal K_d(x,t)=\sum_{j=0}^{d-1}\frac{p_j(x)p_j(t)}{\gamma_j},
+ \qquad K_d(v,\overline z)=\mathcal K_d(u,\overline w).
+\]
+An empty sum is zero. For \(d\geq1\), define
+\[
+ F_d(x,t)=p_d(x)p_{d-1}(t)-p_{d-1}(x)p_d(t).
+\]
+Then the exact polynomial identity is
+\begin{equation}\label{eq:cd}
+ (x-t)\mathcal K_d(x,t)=\frac{F_d(x,t)}{\gamma_{d-1}}.
+ \tag{CD4}
+\end{equation}
+To prove it without dividing by \(x-t\), put
+\(T_j=p_{j+1}(x)p_j(t)-p_j(x)p_{j+1}(t)\).
+The recurrence gives
+\[
+ (x-t)p_j(x)p_j(t)=T_j-a_jT_{j-1}.
+\]
+For \(j=0\) the second term is zero. Division by \(\gamma_j\) and
+\(a_j/\gamma_j=1/\gamma_{j-1}\) make the finite sum telescope to
+\(T_{d-1}/\gamma_{d-1}=F_d/\gamma_{d-1}\).
+This proves \eqref{eq:cd} as an identity in \(\C[x,t]\), including
+\(x=t\). Away from that diagonal it gives
+\begin{equation}\label{eq:offdiagonal}
+ \boxed{\mathcal K_d(x,t)=
+ \frac{p_d(x)p_{d-1}(t)-p_{d-1}(x)p_d(t)}
+      {\gamma_{d-1}(x-t)}.}
+ \tag{CD5}
+\end{equation}
+At the diagonal, differentiation of the polynomial identity in \(x\)
+and then setting \(x=t\) gives
+\begin{equation}\label{eq:diagonal}
+ \boxed{\mathcal K_d(t,t)=
+ \frac{p_d'(t)p_{d-1}(t)-p_{d-1}'(t)p_d(t)}{\gamma_{d-1}}.}
+ \tag{CD6}
+\end{equation}
+At \(d=1\) both formulas give \(1/M_\sigma\), fixing the denominator
+sign. At \(d=0\), the kernel and all its derivatives are zero; neither
+CD5 nor CD6 is used.
+
+The collision in these formulas is \(u=\overline w\), not merely
+\(u=w\). For complex off-line arguments, the Hermitian kernel entry
+\(\mathcal K_d(u,\overline u)\) usually belongs to CD5, not CD6.
+CD6 applies when the two polynomial arguments coincide, whether or not
+that common argument is real. Positivity is asserted for Hermitian Gram
+matrices, not for every analytically continued scalar entry.
+
+\section{Every divided jet, both away from and at a collision}
+
+For a polynomial \(f\), write \(f^{[a]}=f^{(a)}/a!\). Define
+\[
+ F_{d;a,b}(x,t)=p_d^{[a]}(x)p_{d-1}^{[b]}(t)
+             -p_{d-1}^{[a]}(x)p_d^{[b]}(t),
+ \qquad
+ \mathcal K_{d;r,s}=\frac{\partial_x^r\partial_t^s\mathcal K_d}{r!s!}.
+\]
+For all nonnegative integers \(r,s\), at \(x\ne t\),
+\begin{equation}\label{eq:jets-away}
+ \boxed{\mathcal K_{d;r,s}(x,t)=\frac1{\gamma_{d-1}}
+  \sum_{a=0}^r\sum_{b=0}^s
+  \frac{(-1)^a\binom{a+b}{a}\,
+        F_{d;r-a,s-b}(x,t)}{(x-t)^{a+b+1}}.}
+ \tag{CD7}
+\end{equation}
+Indeed the divided \((a,b)\) derivative of \((x-t)^{-1}\) is
+\((-1)^a\binom{a+b}{a}(x-t)^{-a-b-1}\). The divided-derivative product
+rule is convolution with no further binomial factor. Applying it to
+CD5 proves CD7.
+
+At a collision \((x,t)=(\tau,\tau)\), the exact formula is
+\begin{equation}\label{eq:jets-collision}
+ \boxed{\mathcal K_{d;r,s}(\tau,\tau)
+  =\frac1{\gamma_{d-1}}
+      \sum_{j=0}^{s}F_{d;r+1+j,s-j}(\tau,\tau)
+  =-\frac1{\gamma_{d-1}}
+      \sum_{j=0}^{r}F_{d;r-j,s+1+j}(\tau,\tau).}
+ \tag{CD8}
+\end{equation}
+For a complete proof, expand both sides of
+\(F_d(x,t)=\gamma_{d-1}(x-t)\mathcal K_d(x,t)\) at
+\(x=\tau+h,t=\tau+z\). Equality of the coefficient of \(h^az^b\)
+gives
+\[
+ F_{d;a,b}(\tau,\tau)=\gamma_{d-1}
+ \bigl(\mathcal K_{d;a-1,b}(\tau,\tau)
+       -\mathcal K_{d;a,b-1}(\tau,\tau)\bigr),
+\]
+where any negative derivative index means zero. Starting with
+\((a,b)=(r+1,s)\) and iterating downward in \(s\) proves the first
+sum. Starting with \((r,s+1)\) and iterating downward in \(r\)
+proves the second. The expansion is finite, so there is no interchange
+of infinite limiting operations. CD7--8 include arbitrary repeated
+roots and all mixed divided jets. Derivatives beyond the degree are
+zero, exactly as in the original finite kernel.
+
+\section{The original \(S\) coordinate and its reflection denominator}
+
+The monic polynomials in the physical coordinate are
+\[
+ P_j(v)=i^jp_j((v-c)/i),\qquad \|P_j\|^2=\gamma_j.
+\]
+The paired phases cancel in each kernel summand, so this is the same
+\(K_d\) already defined. Since
+\[
+ u-\overline w=-i(v+\overline z-2c),
+\]
+and
+\[
+ F_d(u,\overline w)=-i\bigl(
+ P_d(v)\overline{P_{d-1}(z)}+
+ P_{d-1}(v)\overline{P_d(z)}\bigr),
+\]
+CD5 becomes
+\begin{equation}\label{eq:S-CD}
+ \boxed{K_d(v,\overline z)=
+ \frac{P_d(v)\overline{P_{d-1}(z)}+
+       P_{d-1}(v)\overline{P_d(z)}}
+      {\gamma_{d-1}(v+\overline z-2c)}.}
+ \tag{CD9}
+\end{equation}
+This expression is used away from \(v+\overline z=2c\); the
+polynomial extension supplies the remaining values. The numerator is a
+sum and the denominator is a reflection sum. Replacing either by the
+usual real-line difference would change the original coordinate.
+
+The exact divided-jet transport is
+\begin{equation}\label{eq:S-jets}
+ \frac{\partial_v^r\partial_{\overline z}^sK_d(v,\overline z)}{r!s!}
+   =i^{-r}i^s\mathcal K_{d;r,s}(u,\overline w).
+ \tag{CD10}
+\end{equation}
+This follows from \(\partial_v=i^{-1}\partial_u\) and
+\(\partial_{\overline z}=i\partial_{\overline w}\), so it also
+fixes the phases at collisions. For a direct formula in physical
+variables, write \(G_d(v,b)=P_d(v)\overline{P_{d-1}(\overline b)}+
+P_{d-1}(v)\overline{P_d(\overline b)}\), a polynomial in independent
+variables \(v,b\), and use divided derivatives \(G_{d;a,b}\), with
+the second subscript here an integer. Away from \(v+b=2c\), the
+counterpart of CD7 has denominator \((v+b-2c)^{a+b+1}\) and sign
+\((-1)^{a+b}\) in each summand. At a point \(v_0+b_0=2c\), it is
+\begin{equation}\label{eq:S-jets-collision}
+ \frac{\partial_v^r\partial_b^sK_d(v,b)}{r!s!}
+ \bigg|_{(v_0,b_0)}
+  =\frac1{\gamma_{d-1}}
+      \sum_{j=0}^s(-1)^jG_{d;r+1+j,s-j}(v_0,b_0).
+ \tag{CD11}
+\end{equation}
+To prove this independently, expand
+\(G_d=\gamma_{d-1}(v+b-2c)K_d\) at that point; the local linear
+factor is now \(h+z\), so solving the same coefficient recurrence
+alternates the signs. This agrees with CD10.
+
+\section{Every entry at the original quartet and all four cutoffs}
+
+The original simple-packet domain is
+\[
+ 0<\delta<\tfrac12,\quad \gamma>2,\quad k\equiv1\pmod4,
+ \quad k\geq9,\quad q=(k+1)^2,
+\]
+on the original five-orbit period locus of OCF \cite{OCF}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/ORIGINAL_CONDUCTOR_STRIP_FRAME.tex\#L27}{[proof OCF1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}. Here
+\(\gamma\) is the retained zero height, whereas \(\gamma_j\) is a
+squared polynomial norm. The ordered roots and their exact charts are
+\begin{equation}\label{eq:roots}
+ v_{ab}=c+(2a-k)\delta+i(2b-k)\gamma,
+ \qquad u_{ab}=(2b-k)\gamma-i(2a-k)\delta,
+ \quad 0\leq a,b\leq k.
+ \tag{CD12}
+\end{equation}
+Distinctness follows by comparing the two real coordinates, since
+\(\delta,\gamma>0\). However
+\[
+ u_{ab}=\overline{u_{a'b'}}
+ \quad\Longleftrightarrow\quad b=b',\quad a'=k-a.
+\]
+Indeed equality of real parts gives \(b=b'\), and equality of imaginary
+parts gives \(-(2a-k)=2a'-k\). Thus the full covariance has exactly
+one collision entry per row, at its reflected column \((k-a,b)\).
+There are \(q\) such ordered entries. Since \(k\) is odd, there are no
+fixed points \(a=k-a\), and these are not its Hermitian diagonal
+entries. Their CD6 values must be retained.
+
+For \(d=N+1\), let \(C_d\) denote the matrix
+\([\mathcal K_d(u_\alpha,\overline{u_\beta})]\) in exactly that
+lexicographic root order. For every pair of entries it is computed from
+the same two polynomials by
+\begin{equation}\label{eq:entry-recipe}
+ (C_d)_{\alpha\beta}=
+ \begin{cases}
+ \dfrac{p_d(u_\alpha)\overline{p_{d-1}(u_\beta)}-
+ p_{d-1}(u_\alpha)\overline{p_d(u_\beta)}}
+ {\gamma_{d-1}(u_\alpha-\overline{u_\beta})},
+ &u_\alpha\ne\overline{u_\beta},\\[7pt]
+ \dfrac{p_d'(u_\alpha)p_{d-1}(u_\alpha)-
+ p_{d-1}'(u_\alpha)p_d(u_\alpha)}{\gamma_{d-1}},
+ &u_\alpha=\overline{u_\beta}.
+ \end{cases}
+ \tag{CD13}
+\end{equation}
+This is an exact two-boundary-polynomial expression, including the
+derivatives of those same polynomials at the resonant entries.
+The four original cutoffs require exactly these pairs:
+\[
+\begin{array}{c|c|c|c}
+N&d&\text{boundary pair}&\text{denominator norm}\\\hline
+q-1&q&(p_q,p_{q-1})&\gamma_{q-1}\\
+q&q+1&(p_{q+1},p_q)&\gamma_q\\
+2q-1&2q&(p_{2q},p_{2q-1})&\gamma_{2q-1}\\
+2q&2q+1&(p_{2q+1},p_{2q})&\gamma_{2q}
+\end{array}
+ \tag{CD14}
+\]
+Every number in the table follows from \(d=N+1\); no degree shift is
+absorbed into a different kernel convention.
+
+The original nonreal frame from OCF and MR6--8 is retained literally:
+\[
+ Z=[\,M_A\ \ S_kZ_k\,]\in\C^{q\times r},\qquad
+ \pi Z=0,\quad r=k^2-6k+17,
+ \quad m=q-r=8k-16.
+\]
+All its period and amplitude coefficients, pivot choices and column
+order remain those of the original construction. The compressed matrix
+is therefore given entry by entry by
+\begin{equation}\label{eq:compression-recipe}
+ A_d=Z^TC_d\overline Z,
+ \qquad
+ (A_d)_{ij}=\sum_{\alpha,\beta=1}^q
+    Z_{\alpha i}(C_d)_{\alpha\beta}\overline{Z_{\beta j}},
+ \tag{CD15}
+\end{equation}
+with CD13 substituted in every term. Thus two boundary polynomials
+suffice for the full original compression at each cutoff, provided all
+root entries, all nonreal frame coefficients and all collision values
+are retained. This statement is not an assertion that the two already
+compressed boundary vectors alone obey a closed rank-two displacement.
+The exact additional term is calculated next.
+
+\section{Full displacement and its confluent version}
+
+Put \(Y=\operatorname{diag}(u_\alpha)\) and
+\(f_j=(p_j(u_\alpha))_\alpha\). CD4 is precisely the matrix identity
+\begin{equation}\label{eq:full-displacement}
+ YC_d-C_dY^*=
+ \frac{f_df_{d-1}^*-f_{d-1}f_d^*}{\gamma_{d-1}}
+ =:B_d.
+ \tag{CD16}
+\end{equation}
+The right side is skew-Hermitian and has rank at most two. For a
+resonant entry the scalar multiplier on the left is zero, and the
+corresponding numerator on the right is zero. Consequently CD16 alone
+does not determine those entries of \(C_d\); CD6 or CD8 supplies them.
+For example a matrix supported at a single resonant entry belongs to
+the kernel of \(X\mapsto YX-XY^*\). This proves the need for the
+collision data without assuming uniqueness for a singular matrix map.
+
+For arbitrary finite divided-jet blocks, define instead
+\[
+ f_j=\bigl(p_j^{[a]}(u_\alpha)\bigr)_{(\alpha,a)},
+ \qquad J=\bigoplus_\alpha(u_\alpha I+L_\alpha),
+ \qquad (L_\alpha)_{a,a-1}=1.
+\]
+The other entries of each \(L_\alpha\) are zero; rows are ordered by
+increasing derivative degree. Divided Leibniz differentiation gives
+\((yp_j)^{[a]}(u_\alpha)=u_\alpha p_j^{[a]}(u_\alpha)
++p_j^{[a-1]}(u_\alpha)\). Hence
+\(Jf_j=f_{j+1}+a_jf_{j-1}\), and the same telescoping proof gives
+\begin{equation}\label{eq:jet-displacement}
+ JC_d-C_dJ^*=
+ \frac{f_df_{d-1}^*-f_{d-1}f_d^*}{\gamma_{d-1}},
+ \quad C_d=\sum_{j<d}\frac{f_jf_j^*}{\gamma_j}.
+ \tag{CD17}
+\end{equation}
+Its entries are exactly the divided derivatives in CD7--8. If the total
+jet count is at most \(d\), the first that many monic polynomial columns
+have full row rank: a polynomial of smaller degree in the kernel would
+be divisible by the product of all the specified root powers, by its
+finite Taylor expansions, and would therefore be zero. Thus \(C_d>0\)
+in the original admitted-degree regime. The displacement identity itself
+does not require this positivity or a matrix inverse.
+
+\section{Exact compression and the complementary coupling term}
+
+For the original simple-root frame put
+\[
+ V=\overline Z,\quad W=V^*V=Z^T\overline Z,\quad
+ P=VW^{-1}V^*,\quad Q=I-P,\quad
+ H=(V^*YV)W^{-1},\quad g_j=V^*f_j=Z^Tf_j.
+\]
+Full column rank of \(Z\), proved in OCF and MR7, makes \(W>0\).
+Direct multiplication gives \(P^*=P\), \(P^2=P\),
+\(PV=V\), and \(V^*Q=0\). Therefore \(P\) is the Euclidean
+orthogonal projection to \(\operatorname{im}V\). This projection is
+an algebraic device; the original source Gram and the original columns
+of \(Z\) are not changed.
+
+The placement of \(W^{-1}\) is essential: \(A_d=V^*C_dV\) is a
+covariant Gram, so the reduced operator appearing on its left is
+\(H=(V^*YV)W^{-1}\). The coefficient operator with the opposite
+placement \(W^{-1}(V^*YV)\) cannot be inserted into the following
+formula without also transporting the Gram.
+
+Define the two actual complement maps
+\[
+ L=QY^*V,\qquad T_d^{\perp}=QC_dV,\qquad
+ \mathcal E_d=L^*T_d^{\perp}-(T_d^{\perp})^*L.
+\]
+Then the exact compressed displacement is
+\begin{equation}\label{eq:compressed-displacement}
+ \boxed{HA_d-A_dH^*=
+ \frac{g_dg_{d-1}^*-g_{d-1}g_d^*}{\gamma_{d-1}}
+   -\mathcal E_d.}
+ \tag{CD18}
+\end{equation}
+To prove it, use
+\[
+ HA_d=V^*YPC_dV,\qquad A_dH^*=V^*C_dPY^*V.
+\]
+Insert \(P=I-Q\), apply CD16 to the full terms, and retain the
+remaining difference
+\(V^*YQC_dV-V^*C_dQY^*V=L^*T_d^\perp-(T_d^\perp)^*L\).
+This proves both the sign and every factor in CD18.
+
+Equivalently, put \(\rho_j=V^*YQf_j\). Projecting the original
+three-term recurrence gives its exact inhomogeneous receiver
+\[
+ Hg_j=g_{j+1}+a_jg_{j-1}-\rho_j.
+\]
+Since \(T_d^\perp=\sum_{j<d}Qf_jg_j^*/\gamma_j\), its correction is
+\begin{equation}\label{eq:correction-sum}
+ \mathcal E_d=\sum_{j<d}
+    \frac{\rho_jg_j^*-g_j\rho_j^*}{\gamma_j}.
+ \tag{CD19}
+\end{equation}
+Thus all lower-degree complement couplings occur, with their exact
+signs, in addition to the two projected boundary vectors. Formula CD15
+still computes this entire matrix from the two full boundary
+polynomials and their collision data; CD19 describes what a closed
+recurrence on compressed vectors alone would otherwise omit.
+
+The original complementary frame is available without selecting a new
+one. Put
+\[
+ U=\pi^T\in\C^{q\times m},\qquad M=U^*U=\overline\pi\pi^T.
+\]
+The coefficient identity \(\pi Z=0\) gives \(U^*V=0\); the ranks
+sum to \(q\), so \(Q=UM^{-1}U^*\). Define
+\[
+ F=V^*YU,\qquad T_d=U^*C_dV.
+\]
+Substitution into the already proved correction gives
+\begin{equation}\label{eq:actual-complement}
+ \boxed{\mathcal E_d=FM^{-1}T_d-T_d^*M^{-1}F^*,
+ \qquad
+ \operatorname{rank}(HA_d-A_dH^*)\leq\min(r,2+2m).}
+ \tag{CD20}
+\end{equation}
+Each correction summand has rank at most \(m\), so their difference
+has rank at most \(2m\). Adding the rank-at-most-two boundary term
+proves the bound. Equivalently the displacement's image lies in the
+span of the \(2+2m\) columns
+\([g_d,g_{d-1},F,T_d^*]\). The exact original dimensions are
+\(r=k^2-6k+17\), \(m=8k-16\); consequently the finite bound is
+\(\min(k^2-6k+17,16k-30)\). This is a finite rank statement, not an
+estimate of a determinant or a large-degree return.
+More explicitly, in block sizes \(1,1,m,m\), put
+\(\mathcal G_d=[g_d,g_{d-1},F,T_d^*]\). Then the same formula is
+\[
+ HA_d-A_dH^*=\mathcal G_d
+ \begin{pmatrix}
+ 0&\gamma_{d-1}^{-1}&0&0\\
+ -\gamma_{d-1}^{-1}&0&0&0\\
+ 0&0&0&-M^{-1}\\
+ 0&0&M^{-1}&0
+ \end{pmatrix}\mathcal G_d^*.
+\]
+Expanding its four nonzero blocks gives CD18 and CD20 exactly. The
+matrix \(M\) depends only on the original coefficient frame, not on
+the degree cutoff or on an inverse of the complete source covariance.
+
+For a fixed cutoff the rank-two formula without the correction holds
+if and only if \(L^*T_d^\perp\) is Hermitian, equivalently
+\(FM^{-1}T_d=T_d^*M^{-1}F^*\). The stronger equation \(L=0\) is
+sufficient at every cutoff and is equivalent to
+\(Y^*\operatorname{im}V\subseteq\operatorname{im}V\).
+For the original diagonal matrix \(Y\), whose eigenvalues are distinct,
+this is equivalent to invariance under \(Y\): polynomial interpolation
+at the finite distinct eigenvalues expresses \(Y^*\) as a polynomial
+in \(Y\), and conversely expresses \(Y\) as a polynomial in \(Y^*\).
+Neither invariance is asserted for the original OCF image merely from
+its definition as an invariant-polynomial coefficient image. CD18--20
+apply to its exact coefficients whether or not the displayed correction
+vanishes.
+
+All compression calculations also apply to CD17 with \(Y\) replaced
+by its divided-jet multiplication matrix \(J\). For that possibly
+nonnormal matrix, \(L=0\) means \(J^*\)-invariance. The diagonal
+interpolation argument does not apply to a Jordan block, and no
+equivalence with \(J\)-invariance is used.
+In this general divided-jet statement \(r\) denotes the retained frame's
+column count and \(m\) its complementary dimension. The OCF polynomial
+rank formulas above are claimed only on the original simple-quartet
+domain, not newly extended to a repeated-root coefficient construction.
+
+\section{A finite Gamma example in which the correction is nonzero}
+
+The following is an exact algebra fixture, not a sample of the original
+period. It demonstrates why a general compression argument cannot
+delete the term in CD18. Take the actual Gamma recurrence coefficient
+\(a_1=1/2\), let \(M=M_\sigma\), and use
+\[
+ u=(0,i),\quad Y=\operatorname{diag}(0,i),\quad
+ V=(1,i)^T,\quad Z=(1,-i)^T,\quad d=2.
+\]
+Then \(\gamma_0=M\), \(\gamma_1=M/2\),
+\(f_0=(1,1)^T\), \(f_1=(0,i)^T\), and
+\(f_2=(-1/2,-3/2)^T\). Direct multiplication gives
+\[
+ C_2=M^{-1}\begin{pmatrix}1&1\\1&3\end{pmatrix},\qquad
+ A_2=4/M,\qquad W=2,\qquad H=i/2.
+\]
+Therefore \(HA_2-A_2H^*=4i/M\). But
+\(g_1=1\), \(g_2=-1/2+3i/2\), so the compressed boundary term is
+\[
+ (g_2\overline{g_1}-g_1\overline{g_2})/\gamma_1=6i/M.
+\]
+The difference is the nonzero correction \(\mathcal E_2=2i/M\), with
+the minus sign in CD18. This example has nonreal frame entries and
+uses the retained positive Gamma mass. It establishes failure of an
+uncorrected compression formula, not a claim about the value of the
+original period's correction.
+
+\section{Physical-coordinate displacement and mass powers}
+
+Let \(X=cI+iY=\operatorname{diag}(v_\alpha)\),
+\(h_j=i^jf_j\), and \(H_S=cI+iH\).
+Multiplying CD16 by \(i\) gives the exact physical-coordinate identity
+\begin{equation}\label{eq:S-displacement}
+ XC_d+C_dX^*-2cC_d
+ =\frac{h_dh_{d-1}^*+h_{d-1}h_d^*}{\gamma_{d-1}}.
+ \tag{CD21}
+\end{equation}
+Indeed \(h_dh_{d-1}^*=if_df_{d-1}^*\) and
+\(h_{d-1}h_d^*=-if_{d-1}f_d^*\). The corresponding original-frame
+compression is
+\begin{equation}\label{eq:S-compressed}
+ H_SA_d+A_dH_S^*-2cA_d
+ =\frac{(i^dg_d)(i^{d-1}g_{d-1})^*
+       +(i^{d-1}g_{d-1})(i^dg_d)^*}{\gamma_{d-1}}
+       -i\mathcal E_d.
+ \tag{CD22}
+\end{equation}
+Every term is Hermitian, since \(\mathcal E_d\) is skew-Hermitian.
+Thus both the anti-Hermitian displacement in the Gamma coordinate and
+the shifted Hermitian displacement in the physical coordinate are
+retained exactly.
+
+As a diagnostic only, replacing \(d\sigma\) by \(a\,d\sigma\),
+\(a>0\), leaves all monic polynomials, root coordinates, frames and
+projection matrices unchanged. It multiplies every \(\gamma_j\) by
+\(a\), so \(C_d,A_d,T_d,T_d^\perp,\mathcal E_d\) all scale by
+\(a^{-1}\). Both sides of every CD formula scale identically.
+The original source uses \(a=1\) and the exact mass in CD1--2.
+
+\section{Verification and source boundary}
+
+The companion checker compares finite polynomial sums against CD5--11,
+the full and divided-jet displacement identities, the actual matrix
+form of CD18--20 in declared nonreal algebra fixtures, the collision
+pattern of the original quartet coordinate formula, the four cutoff
+shifts, and the retained mass factors. Those fixtures do not evaluate
+the actual period or change the original frame in the theorem.
+The separate mathematical audit retains a second exact compression
+derivation and its explicit nonzero-correction check.
+
+\begin{thebibliography}{9}
+\bibitem{AV} G. Akemann and G. Vernizzi,
+\emph{Characteristic Polynomials of Complex Random Matrix Models},
+arXiv:hep-th/0212051v2, original author source
+\texttt{AkemannVernizzi.tex}, \texttt{CD} and its following footnote,
+\url{https://arxiv.org/abs/hep-th/0212051v2}.
+\bibitem{DLMF} T. H. Koornwinder, R. Wong, R. Koekoek and R. F. Swarttouw;
+W. P. Reinhardt, \emph{Orthogonal Polynomials}, NIST DLMF Chapter 18,
+original retained TeX for equations
+\url{https://dlmf.nist.gov/18.19.E8},
+\url{https://dlmf.nist.gov/18.19.E9a}, and
+\url{https://dlmf.nist.gov/18.23.E7}.
+The calculation above retains the exact density change \(dy=2dx\).
+\bibitem{MR} Split-Zero programme,
+\emph{The original observation kernel as an exact mixed-relation
+determinant}, 20 September 2026, complete original MR1--23.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/ORIGINAL_KERNEL_MIXED_DETERMINANT.tex\#L36}{Source proof MR1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{OCF} Split-Zero programme,
+\emph{An exact conductor frame and a fixed invariant-generator
+recursion}, 14 September 2026, complete original OCF1--26,
+especially OCF17 and OCF21--24.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/ORIGINAL_CONDUCTOR_STRIP_FRAME.tex\#L27}{Source proof OCF1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{JM} Split-Zero programme,
+\emph{The joint source in the original arithmetic metric: full
+spectrum, observation, and heat return}, original JM21--28,
+especially JM26--27.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/JOINT_MINIMUM_RECEIVERS.tex\#L286}{Source proof JM21}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{KG} Split-Zero programme,
+\emph{Independent derivation of the complete Gamma reduction for the
+original kernel}, 20 September 2026, KG1--21; and the accompanying
+\emph{COERCIVITY\_INDEPENDENT}, C1--4, retaining the original DLMF
+TeX sources and their norm conversion.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/KERNEL_GAMMA_INDEPENDENT.tex\#L73}{Source proof KG1}.
+% END VERIFIED PUBLIC PROOF LINK
+\end{thebibliography}
+\end{document}

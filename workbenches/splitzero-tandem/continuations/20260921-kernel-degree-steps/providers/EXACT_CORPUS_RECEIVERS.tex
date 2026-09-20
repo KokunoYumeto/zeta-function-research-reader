@@ -1,0 +1,1946 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\B}{\mathscr B}\newcommand{\M}{\mathcal M}
+\title{Exact receivers from earlier Split Zero mathematics}
+\date{19 September 2026}
+\begin{document}\maketitle
+This mathematical intake recovers several distinct constructions from
+earlier manuscripts and proves their maps into the theta-source and
+full-multiplicity zero objects used in the RH programme. It does not evaluate
+the currently unresolved seven absolute allocations or projected signs.
+All source versions and precise proof locators are recorded in the accompanying
+\texttt{SOURCE\_RECEIVERS.md}. The statements below are proved here rather than
+inferred from names or similarities of constructions.
+
+\section{The original theta source from the earlier circle heat construction}
+Retain the physical variable $x>0$, $D=-x\partial_x$, and
+\[
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad
+ \Theta\phi(x)=2\sum_{n\geq1}\phi(nx),\quad f_r=D^r\Theta\phi_*.
+\]
+The source space is
+\[
+ V=\{\phi\in\mathcal S(\R):\phi(-x)=\phi(x),\ \phi(0)=0,
+                  \ \int_\R\phi=0\},\qquad \mathcal H=L^2(\R_{>0},dx).
+\]
+These are the original conventions in (TC1)--(TC6) of the theta-chain text.
+The older corrected spline manuscript uses the circle coordinate $z\in\R/\mathbb Z$,
+\[
+ h_0(z)=\mathbf1_{[0,1/2)}(z)-\mathbf1_{[1/2,1)}(z),\qquad
+ N=-\frac1{4\pi^2}\partial_z^2,\qquad u_0(z,t)=e^{-tN}h_0(z).
+\]
+Set $C(t)=\partial_z u_0(0,t)$ for $t>0$.
+
+\begin{theorem}[Exact dyadic source and its full tail]\label{thm:dyadic}
+For each integer $J\geq0$ and $r\geq0$, put $s_J=2^{J+1}$ and
+\[
+ f_r^{[J]}(x)=\frac14D^{r+1}(D-1)
+                 \sum_{j=0}^{J}C(\pi4^j x^2).
+\]
+Then, with no rescaling of $x$ in the receiving theta complex,
+\begin{align}
+ C(t)&=4\sum_{\substack{k\in\mathbb Z\\k\text{ odd}}}e^{-tk^2},\label{eq:C}\\
+ f_r(x)-f_r^{[J]}(x)&=f_r(s_Jx),\label{eq:exact-tail}\\
+ \|f_r-f_r^{[J]}\|_{L^2(dx)}&=s_J^{-1/2}\|f_r\|_{L^2(dx)}.\label{eq:tail-norm}
+\end{align}
+Moreover $f_r^{[J]}=\Theta(\phi_r-\phi_r(s_J\,\cdot))$ with
+$\phi_r=D^r\phi_*\in V$. Thus every truncation lies in the original
+theta image, and its complete Mellin transform is
+\[
+ \M f_r^{[J]}(w)=(1-s_J^{-w})w^r\,2\xi(w).
+ \tag{D1}
+\]
+\end{theorem}
+\begin{proof}
+For $k\ne0$, direct integration gives
+$\widehat h_0(k)=(1-(-1)^k)/(\pi i k)$ and $\widehat h_0(0)=0$.
+The heat Fourier series and all its spatial derivatives converge absolutely
+for $t>0$, giving \eqref{eq:C}. With
+$\vartheta(v)=\sum_{n\in\mathbb Z}e^{-\pi n^2v}$, partitioning the
+integers into odd and even ones gives
+\[
+ \tfrac14 C(\pi4^j x^2)=\vartheta(4^jx^2)-\vartheta(4^{j+1}x^2).
+\]
+The finite sum therefore equals
+$\vartheta(x^2)-\vartheta(s_J^2x^2)$ exactly. Also
+$D(D-1)e^{-\pi x^2}=\phi_*(x)$; termwise differentiation of the
+Gaussian series on every compact subset of $(0,\infty)$ gives
+$D^{r+1}(D-1)(\vartheta(x^2)-1)=f_r(x)$.
+Since $D$ commutes with $T_sF(x)=F(sx)$, this proves
+\eqref{eq:exact-tail}. The Gaussian source and its $D$-iterates have the
+two required zero moments. Poisson summation gives rapid decay of their
+theta sums at zero as well as infinity, so they belong to $\mathcal H$.
+Changing variables $y=s_Jx$ proves \eqref{eq:tail-norm}.
+
+Dilation preserves evenness, the value zero at zero and the zero integral
+of $V$. The sum defining $\Theta$ commutes with dilation, proving the
+displayed source identity. For $\Re w>1$, termwise Mellin integration and
+two integrations by parts give
+\[
+ \M f_0(w)=w(w-1)\pi^{-w/2}\Gamma(w/2)\zeta(w)=2\xi(w).
+\]
+Both sides extend to entire functions by the rapid decay just proved;
+the convention for $\xi$ agrees with Apostol's formula recorded in
+\cite{DLMF25}. Mellin transformation of $D$ and $T_s$ multiplies by $w$
+and $s^{-w}$ respectively. This proves (D1).
+\end{proof}
+
+\begin{proposition}[Complete Gram receiver]\label{prop:dyadic-gram}
+Let $E$ be any one of the original finite packet coordinate spaces,
+$F_L:\C^{L+1}\to\mathcal H$, $F_Le_r=f_r$, and
+$C_E:E\to\C^{L+1}$ any fixed original coefficient map. Set
+$P=F_LC_E$, $P_J=(1-T_{s_J})P$, and retain any original
+$R_{\rm ref}:E\to\mathcal H$. For $R=R_{\rm ref}+P$ and
+$R_J=R_{\rm ref}+P_J$ one has
+\begin{align}
+ \Delta_J&=T_{s_J}P, & \|\Delta_J\|&=s_J^{-1/2}\|P\|,\nonumber\\
+ R_J^*R_J-R^*R
+   &=-R^*\Delta_J-\Delta_J^*R+\Delta_J^*\Delta_J,\tag{D2}\\
+ \|R_J^*R_J-R^*R\|
+   &\leq2s_J^{-1/2}\|R\|\|P\|+s_J^{-1}\|P\|^2.\tag{D3}
+\end{align}
+The same exact dilation norm holds for the Hilbert--Schmidt norm.
+If $q:\B\to\B/\Theta V$ is the original quotient, then
+$qR_J=qR$. All their full Mellin jets at actual zeros of $\xi$ agree.
+\end{proposition}
+\begin{proof}
+$T_s^*T_s=s^{-1}I$ on $L^2(dx)$, which proves both norm equalities.
+Expand $(R-\Delta_J)^*(R-\Delta_J)$ without discarding either cross term
+to obtain (D2); the triangle and submultiplicative norm inequalities
+give (D3). Every column of $\Delta_J$ belongs to $\Theta V$ by the
+preceding theorem. Its Mellin transform is a polynomial times
+$s_J^{-w}2\xi(w)$, so it vanishes to every original zero multiplicity.
+\end{proof}
+
+The exact receiving map is
+$\phi_r\mapsto\phi_r-\phi_r(s_J\,\cdot)$ in $V$.
+It does not preserve the finite polynomial--Gaussian span
+$\operatorname{span}(\phi_0,\ldots,\phi_L)$: the second term has a
+different Gaussian scale. Consequently (D2) compares explicitly specified
+representatives of the same original theta class; it does not identify two
+finite-cutoff attained minima. The useful gain for the programme is a
+geometric heat realization of the full original source, with an exact error
+in the physical Hilbert norm and with all Mellin multiplicities preserved.
+
+\section{Full-multiplicity observations on the arithmetic-site approximation spaces}
+The earlier arithmetic-curve manuscript has the spaces
+\[
+ H_{\rm B}=L^2((1,\infty),y^{-2}dy),\quad
+ F_\alpha(y)=\alpha\lfloor y\rfloor-\lfloor\alpha y\rfloor
+            =\{\alpha y\}-\alpha\{y\},\quad 0<\alpha\leq1,
+\]
+\[
+ V_Q=\operatorname{span}\{F_{a/Q}:1\leq a<Q\},\qquad
+ x_Q=\operatorname{dist}_{H_{\rm B}}(1,V_Q)^2.
+\]
+We retain this coordinate and measure; no identification with the theta
+Hilbert metric is implicit. This construction imports the human
+Nyman--Beurling and B\'aez-Duarte criterion, cited explicitly in
+\cite{Beurling,BD}. The new finite receiver below is proved independently
+of that equivalence.
+
+\begin{lemma}[Exact Mellin observation]\label{lem:NB-mellin}
+For $\Re w>0$,
+\[
+ \int_1^\infty F_\alpha(y)y^{-w-1}\,dy
+       =\zeta(w)\frac{\alpha-\alpha^w}{w}.\tag{B1}
+\]
+The apparent singularity at $w=1$ on the right is removable.
+\end{lemma}
+\begin{proof}
+$F_\alpha$ is bounded, so the left side is holomorphic on $\Re w>0$.
+For $\Re w>1$, write
+$\lfloor y\rfloor=\sum_{n\geq1}\mathbf1_{[n,\infty)}(y)$ and
+$\lfloor\alpha y\rfloor=\sum_{n\geq1}\mathbf1_{[n/\alpha,\infty)}(y)$.
+Absolute convergence justifies integration, yielding
+$\alpha\zeta(w)/w-\alpha^w\zeta(w)/w$. The numerator vanishes at $1$,
+so analytic continuation proves (B1) on the stated half-plane.
+\end{proof}
+
+\begin{theorem}[Confluent Gram lower bound with every multiplicity]\label{thm:NB-jets}
+Let $Z_+$ be a nonempty finite set of actual zeta zeros
+$\rho$ with $\Re\rho>1/2$, retaining their full multiplicities $m_\rho$.
+Use the original local coordinates $(w-\rho)^j$, $0\leq j<m_\rho$,
+of $E_{Z_+}=\prod_{\rho\in Z_+}\C[w]/(w-\rho)^{m_\rho}$.
+Define
+\[
+ (J_+f)_{\rho,j}=\frac1{j!}\int_1^\infty
+            f(y)(-\log y)^j y^{-\rho-1}\,dy,
+ \quad b_{\rho,j}=\frac{(-1)^j}{\rho^{j+1}}.
+\]
+Then $J_+:H_{\rm B}\to E_{Z_+}$ is a bounded surjection,
+$J_+F_\alpha=0$, $J_+1=b$, and its positive definite Gram matrix is
+\[
+ \mathsf G_{(\rho,j),(\sigma,k)}
+  =\frac{(-1)^{j+k}(j+k)!}
+     {j!k!(\rho+\bar\sigma-1)^{j+k+1}}.\tag{B2}
+\]
+For every $Q$,
+\[
+ x_Q\ \geq\ b^*\mathsf G^{-1}b\ >0.\tag{B3}
+\]
+In particular one simple observation at $\rho=\beta+i\gamma$ gives
+$x_Q\geq(2\beta-1)/|\rho|^2$.
+\end{theorem}
+\begin{proof}
+With inner products conjugate-linear in their first variable, the
+representer of the $(\rho,j)$ observation is
+$k_{\rho,j}(y)=(-\log y)^j y^{1-\bar\rho}/j!$.
+Its squared norm is finite because $2\Re\rho-1>0$.
+Thus $J_+^*v=\sum k_{\rho,j}v_{\rho,j}$.
+Setting $t=\log y$ and integrating $t^{j+k}e^{-at}$ gives (B2), with
+$a=\rho+\bar\sigma-1$ of positive real part.
+The representers are independent: a linear relation is an
+exponential polynomial $\sum_\rho p_\rho(t)e^{(1-\bar\rho)t}=0$;
+successively applying the differential operators
+$(\partial_t-(1-\bar\sigma))^{m_\sigma}$ for all but one exponent
+isolates a nonzero invertible operator on its polynomial coefficient.
+Every coefficient therefore vanishes. This proves $\mathsf G>0$ and
+$J_+J_+^*=\mathsf G$, hence surjectivity.
+Differentiating (B1) through order $m_\rho-1$ proves $J_+F_\alpha=0$;
+all differentiation is justified by the logarithmic integrable bounds.
+Direct integration of $1$ gives $b$.
+
+The exact minimum-norm lift of $b$ is
+$S_+b=J_+^*\mathsf G^{-1}b$.
+Every $e$ with $J_+e=b$ decomposes orthogonally as
+$S_+b+(e-S_+b)$, with the second summand in $\ker J_+$.
+Consequently $\|e\|^2\geq b^*\mathsf G^{-1}b$.
+Apply this to $e=1-v$, $v\in V_Q$, and take the minimum. Since the
+coordinate $b_{\rho,0}=1/\rho$ is nonzero, the lower bound is positive.
+For one value observation $\mathsf G=(2\beta-1)^{-1}$, giving the last
+formula.
+\end{proof}
+
+\begin{proposition}[The Beurling observation enters the original theta class]
+For the same actual finite divisor $Z_+$, use its original reference
+section $R_{Z_+}$ of (T2), with the unit $j_{h_{Z_+}}(h_{Z_+}/(2\xi))$.
+Then
+\[
+ \mathcal T_+=R_{Z_+}J_+:H_{\rm B}\longrightarrow\B
+ \tag{B4}
+\]
+is continuous into the original test-function topology and satisfies
+\[
+ J_{\rm all}\mathcal T_+=\iota_+J_+,\qquad
+ q\mathcal T_+=\sigma_{Z_+}J_+,\qquad
+ \mathcal T_+F_\alpha=0,\qquad
+ q\mathcal T_+1=\sigma_{Z_+}b\ne0.
+ \tag{B5}
+\]
+Here $\iota_+$ is full-jet extension by zero, and all other maps are
+the original maps of the theta complex. Thus (B3) is the exact attained
+quotient metric of a second analytic presentation of these same finite
+theta classes.
+\end{proposition}
+\begin{proof}
+$J_+$ is bounded and has finite-dimensional codomain. A linear map
+from that finite-dimensional space into $\B$ is continuous; concretely
+every defining seminorm of $R_{Z_+}v$ is bounded by a finite sum of the
+seminorms of its fixed columns times the coordinates of $v$.
+The identities follow from Theorem~\ref{thm:NB-jets} and (T2), including
+the original complete local unit. Injectivity of $\sigma_{Z_+}$ and
+$b\ne0$ prove the final nonvanishing. The quotient norm on
+$H_{\rm B}/\ker J_+$ is exactly $v^*\mathsf G^{-1}v$ by the
+minimum-norm lift proved above. This assertion specifies that quotient
+metric; it does not equate it with any theta $L^2$ metric.
+\end{proof}
+
+\begin{proposition}[Exact arithmetic-site tower receiver]\label{prop:tower}
+Put $\Lambda_Q=\operatorname{lcm}(1,\ldots,Q)$ and
+$R_Q=\operatorname{span}\{F_{1/n}:2\leq n\leq Q\}$.
+Then $R_Q\subset V_{\Lambda_Q}$ and, for
+$d_Q=\operatorname{dist}(1,R_Q)$, $x_{\Lambda_Q}\leq d_Q^2$.
+For $Q_0\geq3$, $Q_{j+1}=\Lambda_{Q_j}$ is strictly increasing and
+every positive integer divides some $Q_j$.
+Every off-line actual zero supplies the fixed positive lower bound (B3)
+at all these levels, using its right-half-plane functional-equation partner
+when necessary.
+\end{proposition}
+\begin{proof}
+For $n\leq Q$, $1/n=(\Lambda_Q/n)/\Lambda_Q$, which gives the
+inclusion and distance inequality. Because $Q$ and $Q-1$ are coprime,
+$\Lambda_Q\geq Q(Q-1)>Q$ for $Q\geq3$. Hence the tower grows without
+bound and once $Q_j\geq n$, $n\mid Q_{j+1}$. If $\Re\rho<1/2$,
+$1-\rho$ has real part greater than $1/2$ and the same full
+multiplicity, by the functional equation \cite{DLMF25}. Apply the preceding
+theorem at that actual zero; no hypothetical replacement spectrum is used.
+\end{proof}
+
+For clarity, the relation to the usual human criterion is exact. Under the
+isometry $Uf(x)=f(1/x)$ from $H_{\rm B}$ to $L^2(0,1)$,
+$UF_{1/n}=\rho_n-n^{-1}\rho_1$, where
+$\rho_n(x)=\{1/(nx)\}$. Extend this difference by zero to $(1,\infty)$.
+If $g=\sum c_n\rho_n$ on $(0,\infty)$ and $A=\sum c_n/n$, then
+$g(x)=A/x$ for $x>1$, and
+$g-A\rho_1=\sum c_n(\rho_n-n^{-1}\rho_1)$ is supported in $(0,1)$.
+For $\chi=\mathbf1_{(0,1)}$,
+$|A|=\|g-\chi\|_{L^2(1,\infty)}$, so
+\[
+ \|g-A\rho_1-\chi\|_{L^2(0,\infty)}
+ \leq (1+\|\rho_1\|_2)\|g-\chi\|_2.
+\]
+Thus the compensated spaces have exactly the same closure criterion as
+the integer spaces in B\'aez-Duarte's theorem. Together with the finite
+divisibility inclusion above this proves that decay $x_{Q_j}\to0$ on the
+cofinal tower is precisely this established RH criterion. No decay estimate
+has been assumed or proved here. What is gained is an exact finite,
+full-multiplicity observation and its computable positive obstruction at
+every arithmetic-site stage. In the arithmetic-curve construction the
+framed groups $(1/Q)\mathbb Z$ and monoids $(1/Q)\mathbb N$ carry these
+same stages; the transition $Q\mid M$ becomes the monoid Frobenius
+$n\mapsto (M/Q)n$ in their framed integral coordinates.
+
+\section{The old compactified jet tail receives the actual theta quotient}
+Retain the original spaces
+\[
+ \B=\{F\in C^\infty(\R_{>0}):\sup_{x>0}x^b|D^rF(x)|<\infty
+                      \text{ for every }b\in\mathbb Z,r\geq0\},
+ \qquad Q=\B/\Theta V.
+\]
+Let $Z_\infty$ be the discrete set of all actual nontrivial zeros,
+$E_\rho=\C[w]/(w-\rho)^{m_\rho}$, and
+\[
+ E_{\rm fin}=\bigoplus_{\rho\in Z_\infty}E_\rho,\quad
+ E_{\rm all}=\prod_{\rho\in Z_\infty}E_\rho,\quad
+ T=E_{\rm all}/E_{\rm fin}.
+\]
+The earlier packet-geometry manuscript constructs exactly this last
+tail as the stalk at infinity of its compactified product-of-jets sheaf.
+The following receiver retains both the global tail and the analytic
+kernel invisible to every zero jet.
+
+\begin{theorem}[Global full-jet and tail receiver]\label{thm:global-tail}
+The map
+\[
+ J_{\rm all}:\B\longrightarrow E_{\rm all},\qquad
+ F\longmapsto\bigl(j_\rho\M F\bigr)_\rho
+\]
+annihilates $\Theta V$ and descends to a $\C[w]$-module map
+$\overline J:Q\to E_{\rm all}$, with $w$ acting by $D$ on $Q$.
+The original finite reference sections induce a canonical injective
+$\C[w]$-module map $\sigma:E_{\rm fin}\to Q$ satisfying
+$\overline J\sigma=\iota$, the finite-support inclusion.
+Writing $K=\ker\overline J$ and
+$T_{\rm arith}=\operatorname{im}(Q\xrightarrow{\overline J}
+E_{\rm all}\to T)$, there is an exact sequence
+\[
+ 0\longrightarrow K\longrightarrow Q/\sigma(E_{\rm fin})
+       \longrightarrow T_{\rm arith}\longrightarrow0,
+ \qquad T_{\rm arith}\hookrightarrow T.\tag{T1}
+\]
+The space $T_{\rm arith}$ is nonzero.
+\end{theorem}
+\begin{proof}
+Every Mellin transform of $F\in\B$ is entire and can be differentiated
+under its integral, by the bounds defining $\B$ at both endpoints.
+For $\phi\in V$, the original Mellin identity is
+$\M\Theta\phi(w)=2\zeta(w)\M\phi(w)$ for $\Re w>1$.
+The function $\M\phi$ is holomorphic for $\Re w>-2$, since $\phi$
+is even and vanishes to order at least two at zero. It follows by
+continuation that the displayed product vanishes to every full
+nontrivial-zero multiplicity. Thus $J_{\rm all}\Theta=0$.
+Integration by parts gives $\M DF(w)=w\M F(w)$ with vanishing endpoint
+terms. This proves the module assertion.
+
+For a finite subset $Z$, let
+$h_Z(w)=\prod_{\rho\in Z}(w-\rho)^{m_\rho}$, $d_Z=\deg h_Z$, and
+$g(w)=2\xi(w)$. If $u\in E_Z=\C[w]/h_Z$, let $r_Z(u)$ be the
+unique polynomial of degree $<d_Z$ representing $j_{h_Z}(h_Z/g)u$.
+The original reference section $R_Z:E_Z\to\B$ has
+\[
+ \M R_Zu(w)=\frac{g(w)r_Z(u)(w)}{h_Z(w)},\qquad
+ qDR_Z=qR_ZM_w.\tag{T2}
+\]
+For completeness, the division operator giving (T2) is
+$S_\rho F(x)=x^{-\rho}\int_x^\infty F(y)y^{\rho-1}dy$ when
+$\M F(\rho)=0$. It satisfies $(D-\rho)S_\rho F=F$.
+The zero moment rewrites its integral as minus the integral from zero
+to $x$, proving rapid decrease at zero; the original formula proves it
+at infinity. Iterating through the full multiplicities gives the
+division by $h_Z$ in (T2). The source before division is
+$\Theta(r_Z(u)(D)\phi_*)$, whose Mellin transform is $g r_Z(u)$.
+Finally the remainder of multiplication of $r_Z(u)$ by $w$ is
+$r_Z(M_wu)$ modulo $h_Z$, with quotient its original highest coefficient.
+It follows that $DR_Z-R_ZM_w$ is a scalar multiple of $f_0$,
+which lies in $\Theta V$. This proves the second assertion in (T2).
+
+At zeros in $Z$, (T2) has exactly the jets $u$, by the unit $h_Z/g$;
+at every other zero it vanishes to the full multiplicity. Hence
+$J_{\rm all}R_Zu$ is the extension of $u$ by zero.
+If $Z\subset Z'$ and $u'$ is extension by zero, then
+\[
+ r_{Z'}(u')=r_Z(u)\frac{h_{Z'}}{h_Z}.
+\]
+Indeed the right side has degree $<d_{Z'}$ and satisfies all defining
+jets, including the new zero jets. Substitution in (T2) gives equal
+Mellin transforms and thus equal reference sections (Mellin uniqueness
+on any vertical line follows from Fourier uniqueness in $\log x$).
+The $qR_Z$ therefore assemble into $\sigma$. Its full-jet left inverse
+proves injectivity and $K\cap\sigma(E_{\rm fin})=0$.
+
+An element of $Q$ maps to zero in $T$ exactly when its full-jet family
+has finite support. Subtracting the corresponding $\sigma$ section
+puts it in $K$. Thus the kernel before quotient is
+$K+\sigma(E_{\rm fin})$, and after quotient it is canonically $K$.
+This proves every assertion of exactness in (T1).
+
+To see nonzero arithmetic tails directly, choose a nonzero nonnegative
+$\chi\in C_c^\infty((1,2))$. Its Mellin transform $H(w)$ is entire
+and is not identically zero, since $H(a)>0$ for real $a$.
+For every actual zero $\rho$, the function $a\mapsto H(a+\rho)$
+has only a discrete set of real zeros. The union of these exceptional
+sets over the countable $Z_\infty$ is countable. Choose a real $a$
+outside it and put $F(x)=x^a\chi(x)\in\B$.
+Then every value coordinate of $J_{\rm all}F$ is nonzero. Since the
+nontrivial zero set is infinite (the classical zero-counting theorem),
+this family has infinite support and hence nonzero image in $T$.
+\end{proof}
+
+Here is the sheaf-level target explicitly. For $j:\C\hookrightarrow
+\mathbb P^1(\C)$ and $\mathcal F(U)=\prod_{\rho\in U\cap Z_\infty}
+E_\rho$, the old manuscript proves
+\[
+ 0\to j_!\mathcal F\to j_*\mathcal F\to i_{\infty*}T\to0.\tag{T3}
+\]
+At a finite zero both stalks equal its full $E_\rho$; away from zeros
+both vanish. At infinity the first stalk vanishes, and the second is
+the product modulo finite modification: a neighborhood excludes only
+finitely many points of the closed discrete support. This proves (T3)
+on stalks. Globally $\Gamma(j_!\mathcal F)=E_{\rm fin}$ and
+$\Gamma(j_*\mathcal F)=E_{\rm all}$, so (T1) is a receiver into the
+actual global boundary of (T3). Neither $K=0$ nor $T_{\rm arith}=T$ is
+asserted. This retains an analytic part and a global boundary that would
+both be lost by identifying the programme with a finite zero divisor.
+
+\section{Both endpoint states and the complete even-Schwartz source}
+The earlier spectral-packet paper invokes the trace construction of Connes
+and Consani. Their actual source range theorem, \cite[Lemma 4.1]{CCcycles},
+retains both evaluation at zero and integration. Here is the full receiver
+in the present programme's physical coordinate and with its factor two.
+Let $\mathcal S_{\rm ev}=\mathcal S(\R)^{\rm ev}$, and choose a smooth
+$\eta$ on $(0,\infty)$ equal to $1$ near zero and to $0$ for $x\geq2$.
+Define the direct vector-space sum
+\[
+ \B_{01}=\B\oplus\C\eta\oplus\C x^{-1}\eta,
+ \qquad b(F+c_0\eta+c_1x^{-1}\eta)=(c_0,c_1).
+\]
+Its definition is independent of $\eta$: two choices differ by an element
+of $\B$, as do their products with $x^{-1}$.
+
+\begin{theorem}[Exact two-endpoint receiver]\label{thm:two-endpoints}
+The original theta sum extends to $\Theta:\mathcal S_{\rm ev}\to\B_{01}$,
+and the following rows and boundary map are exact:
+\[
+ \begin{array}{ccccccccc}
+ 0&\to& V&\to&\mathcal S_{\rm ev}&\xrightarrow{a}&\C^2&\to&0\\
+ &&\Theta\downarrow&&\Theta\downarrow&&\operatorname{diag}(-1,1)\downarrow\\
+ 0&\to&\B&\to&\B_{01}&\xrightarrow{b}&\C^2&\to&0,
+ \end{array}
+ \qquad a(\phi)=\left(\phi(0),\int_\R\phi\right).
+ \tag{E1}
+\]
+Inclusion of the original target induces the canonical isomorphism
+\[
+ \B/\Theta V\ \xrightarrow{\ \sim\ }\
+ \B_{01}/\Theta\mathcal S_{\rm ev}.\tag{E2}
+\]
+It intertwines the original $D=-x\partial_x$, and the action of $D$ on
+each endpoint quotient $\C^2$ is $\operatorname{diag}(0,1)$.
+The meromorphic Mellin transform of $F\in\B_{01}$ has precisely the
+possible endpoint residues
+\[
+ \operatorname{Res}_{w=0}\M F=c_0,\qquad
+ \operatorname{Res}_{w=1}\M F=c_1.\tag{E3}
+\]
+\end{theorem}
+\begin{proof}
+Poisson summation in the Fourier convention
+$\widehat\phi(t)=\int_\R\phi(x)e^{-2\pi ixt}dx$ gives
+\[
+ \Theta\phi(x)=x^{-1}\!\int_\R\phi-\phi(0)
+                         +x^{-1}\Theta\widehat\phi(1/x).
+\]
+The last term and all its $D$-derivatives decay more rapidly than every
+power at zero. The defining theta series gives the corresponding decay
+at infinity. This proves the middle arrow and the boundary matrix in
+(E1). The source boundary map is onto: the Gaussian $g=e^{-\pi x^2}$
+and $x^2g$ have boundary pairs $(1,1)$ and $(0,1/(2\pi))$.
+The remaining exactness statements follow from the definitions.
+
+To prove (E2) without discarding a boundary component, take any
+$F\in\B_{01}$. Choose $\phi\in\mathcal S_{\rm ev}$ satisfying
+$a(\phi)=\operatorname{diag}(-1,1)b(F)$. Then $F-\Theta\phi\in\B$,
+proving surjectivity. If $F\in\B$ equals $\Theta\phi$ for some
+$\phi\in\mathcal S_{\rm ev}$, the invertible boundary matrix forces
+$a(\phi)=0$, so $\phi\in V$. This proves injectivity and proves
+that a choice of boundary lift does not change the quotient map.
+
+$D$ commutes with $\Theta$. Also $(D\phi)(0)=0$ and
+$\int_\R D\phi=\int_\R\phi$ by integration by parts, while
+$D1=0$ and $Dx^{-1}=x^{-1}$. Derivatives of the cutoff contribute
+only elements of $\B$, proving the asserted quotient actions.
+Finally subtract $c_0+c_1x^{-1}$ near zero inside the Mellin integral.
+The remainder is entire in $w$, and integration over a sufficiently
+small interval $(0,\epsilon)$ gives
+$c_0\epsilon^w/w+c_1\epsilon^{w-1}/(w-1)$.
+This proves (E3), retaining both signs.
+\end{proof}
+
+\begin{proposition}[Original Laplacian range, with explicit inverses]
+The operator $D(D-1):\mathcal S_{\rm ev}\to V$ is a bijection.
+For $\psi\in V$, its inverse is constructed on $x>0$ by
+\[
+ g(x)=\int_x^\infty\frac{\psi(t)}t\,dt,
+ \qquad f(x)=x^{-1}\int_x^\infty g(t)\,dt,
+ \tag{E4}
+\]
+followed by smooth even extension at zero. In particular
+$\Theta D(D-1)e^{-\pi x^2}=f_0$, with exactly the original source
+and its completed Mellin transform $2\xi$.
+\end{proposition}
+\begin{proof}
+Since $\psi(0)=0$ and $\psi$ is even, $\psi(t)/t$ has a smooth odd
+extension at zero. The first integral is smooth even there and rapidly
+decreasing at infinity, and $Dg=\psi$. Fubini gives
+$\int_0^\infty g(t)dt=\int_0^\infty\psi(t)dt=0$.
+Consequently the second expression equals
+$-x^{-1}\int_0^xg(t)dt$, which is smooth and even at zero.
+Its expression as a tail integral proves Schwartz decay at infinity,
+and $(D-1)f=g$. Thus $D(D-1)f=\psi$.
+Conversely $D(D-1)f$ has value zero at zero and zero integral, so lies
+in $V$. The equation $D(D-1)f=0$ on $(0,\infty)$ has general solution
+$c+d/x$. Smoothness at zero and decay at infinity force $c=d=0$,
+proving uniqueness.
+\end{proof}
+
+The precise unweighted/weighted trace dictionary is
+$E\phi(x)=\tfrac12 x^{1/2}\Theta\phi(x)$ and
+$H=x\partial_x=-D$; hence $H(1+H)=D(D-1)$ before conjugating
+by multiplication by $x^{1/2}$. This is an operator identity, not an
+identification of unrelated Hilbert metrics. The Connes--Consani spectral
+quotient uses the closure of the source range in its specified
+strong-Schwartz topology. For the original $\B$ topology there is always
+the exact map
+\[
+ 0\to\overline{\Theta V}/\Theta V\to Q
+       \to\B/\overline{\Theta V}\to0.\tag{E5}
+\]
+Every original finite Mellin jet is continuous in that topology and
+annihilates $\overline{\Theta V}$, so the finite sections (T2) survive
+this passage. The full-source equality is now proved, rather than assumed:
+$\overline{\Theta V}^{\mathscr B}=\Theta V$ in the topology
+$p_{b,j}(F)=\sup_{x>0}x^b|D^jF(x)|$. Hence the first term of (E5)
+is zero and the displayed quotient map is the identity isomorphism.
+The complete proof, with the exact identity of seminorm systems and
+continuous inverse estimates, is in the appended part
+\emph{Closed range of the original full theta source}, or in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/ORIGINAL_THETA_CLOSED_RANGE.tex\#L1}{\texttt{ORIGINAL\_THETA\_CLOSED\_RANGE.tex}}, Theorem
+\texttt{thm:closed} and equation \texttt{eq:E5}; its human source is
+Ralf Meyer, arXiv:math/0412277v3, Theorem 3.3. The two-leg source
+generator is $D\oplus(1-D)$, with target generator $D$.
+For a restricted source $W\subset V$ the exact replacement is
+$\overline{\Theta W}^{\mathscr B}=\Theta\overline W^{V}$,
+not an unproved density assertion. No Hilbert-space closedness is inferred.
+For the Gaussian, (E3) gives residues $(-1,1)$ and the endpoint principal
+part $1/(w(w-1))$. Thus the earlier quotient/lift residue calculation
+and the current theta-source construction have the same exact two-endpoint
+complex, with their common boundary explicitly removed by $D(D-1)$.
+
+\section{The old local phase germ gives every entry of the original Taylor unit}
+The atomic-phase manuscript retains, at a zero $\rho$ of exact multiplicity
+$m_\rho$, the complete holomorphic factorization
+\[
+ \xi(\rho+z)=\lambda_\rho z^{m_\rho}
+       \exp\!\left(\sum_{n\geq1}c_{\rho,n}z^n\right),\qquad
+ \lambda_\rho=\frac{\xi^{(m_\rho)}(\rho)}{m_\rho!}.
+ \tag{U0}
+\]
+Its phase-walk interpretation is explicitly credited there to unpublished
+correspondence of Jacolm Tobley. The receiver here uses the full complex
+logarithmic germ (U0); it makes no claim that the absolute packet weight
+$|\lambda_\rho|$ determines this germ.
+
+\begin{theorem}[All entries of the original unit, without removing phases]
+Retain a finite actual packet divisor
+$h_Z(w)=\prod_{\rho\in Z}(w-\rho)^{m_\rho}$ of degree $d$ and
+$g=2\xi$. For $\rho\in Z$, define
+\[
+ H_\rho=\prod_{\sigma\in Z\setminus\{\rho\}}(\rho-\sigma)^{m_\sigma},
+ \quad S_{\rho,n}=\sum_{\sigma\ne\rho}
+                    \frac{m_\sigma}{(\rho-\sigma)^n},\quad
+ a_{\rho,n}=\frac{(-1)^{n-1}}nS_{\rho,n}-c_{\rho,n}.
+\]
+The complete local jet of the original multiplier
+$\varepsilon_Z=j_{h_Z}(h_Z/g)$ has coefficients
+\[
+ \varepsilon_{\rho,0}=\frac{H_\rho}{2\lambda_\rho},\qquad
+ \varepsilon_{\rho,r}=\frac1r\sum_{n=1}^r
+                  n a_{\rho,n}\varepsilon_{\rho,r-n}
+       \quad(1\leq r<m_\rho).\tag{U1}
+\]
+Let $V_Z$ be the actual confluent evaluation matrix from the original
+increasing power basis to the divided Taylor coefficients, namely
+\[
+ (V_Z)_{(\rho,j),\ell}=
+ \begin{cases}\binom\ell j\rho^{\ell-j},&\ell\geq j,\\0,&\ell<j,
+ \end{cases}
+ \qquad 0\leq\ell<d.
+\]
+Let $T_\rho$ be the lower triangular matrix with
+$(T_\rho)_{rj}=\varepsilon_{\rho,r-j}$ for $r\geq j$ and zero
+otherwise. For the divided-jet input $u\in E_Z$ used in (T2), the exact
+jet-to-power-coefficient map is
+\[
+ \operatorname{coeff}(r_Z(u))
+   =V_Z^{-1}\!\left(\bigoplus_{\rho\in Z}T_\rho\right)u.
+\]
+If instead the input is the increasing-power coefficient vector $a$ of
+the class whose jets are $u=V_Za$, the exact multiplication matrix is
+\[
+ \boxed{\quad M_{\varepsilon_Z}
+     =V_Z^{-1}\!\left(\bigoplus_{\rho\in Z}T_\rho\right)V_Z.\quad}
+ \tag{U2}
+\]
+Thus the two displayed matrices have different specified input coordinates;
+the intervening morphism is precisely the confluent evaluation $V_Z$.
+All root differences, full multiplicities and complex phases occur in
+this original-coordinate formula. If $Z$ is stable under the two
+functional-equation symmetries, then
+\[
+ \varepsilon_{1-\rho,r}=(-1)^{d+r}\varepsilon_{\rho,r},
+ \qquad \varepsilon_{\bar\rho,r}=
+                         \overline{\varepsilon_{\rho,r}}.\tag{U3}
+\]
+\end{theorem}
+\begin{proof}
+Every factor $\rho-\sigma$ is nonzero. On a sufficiently small disc,
+the logarithm with value zero of
+$\prod_{\sigma\ne\rho}(1+z/(\rho-\sigma))^{m_\sigma}$ has
+coefficient $(-1)^{n-1}S_{\rho,n}/n$. Dividing this product by the
+nonvanishing unit in (U0), and retaining the factor $2$ in $g=2\xi$,
+gives
+\[
+ \frac{h_Z(\rho+z)}{g(\rho+z)}
+   =\frac{H_\rho}{2\lambda_\rho}
+                        \exp\!\left(\sum_{n\geq1}a_{\rho,n}z^n\right).
+\]
+Differentiate this convergent identity and compare coefficients of
+$z^{r-1}$ to obtain (U1). Multiplication of truncated Taylor polynomials
+is the Cauchy convolution of their coefficients, precisely $T_\rho$.
+The map $V_Z$ is injective: a polynomial of degree less than $d$ with
+all the stated zero jets is divisible by the monic degree-$d$ polynomial
+$h_Z$ and hence vanishes. Equal finite dimensions give invertibility,
+proving (U2). Finally, for a symmetry-stable divisor,
+$h_Z(1-w)=(-1)^d h_Z(w)$, $g(1-w)=g(w)$, and both $h_Z,g$ commute
+with conjugation. Apply these identities at $1-\rho+z$ and
+$\bar\rho+z$ and compare Taylor coefficients to obtain (U3).
+\end{proof}
+
+This receiver converts a previously separate phase manuscript into actual
+entries of the programme's canonical finite lift. In particular it is
+available before any metric or determinant calculation: the lifted source
+is exactly
+$\Theta(r_Z(u)(D)\phi_*)$, divided by $h_Z(D)$ as in (T2).
+The determinant of $M_{\varepsilon_Z}$ equals
+$\prod_\rho\varepsilon_{\rho,0}^{m_\rho}$, but the full source and
+its Gram cross terms retain the remaining coefficients in (U1).
+No estimate on that determinant is substituted for an estimate on the
+complete map (U2).
+
+\section{The old jet-ideal chain enters Deligne's nilpotent filtration}
+The earlier Boolean-jet and refined-divisor manuscripts prove that the
+ideals of $\C[t]/t^m$ form the intrinsic chain
+$I_j=(t^j)$, and give the adjunctions from this chain to the Boolean
+multiplicity cube. Here this chain is carried into the original finite
+theta class and its actual metric. The integer grading below is precisely
+the nilpotent grading of Deligne \cite[(1.6.1),(1.6.7)]{DeligneII}; it
+does not assign an arithmetic Frobenius weight to a zeta zero.
+
+Retain $E_Z=\C[w]/h_Z$, its original increasing-power basis, and the
+confluent matrix $V_Z$ of (U2). On its actual primary factor at $\rho$
+write $t=w-\rho$ and $N_\rho u=tu$. Define
+\[
+ M_rE_\rho=
+ \operatorname{span}\{t^j:0\leq j<m_\rho,\ m_\rho-1-2j\leq r\},
+ \qquad M_rE_Z=V_Z^{-1}\!\bigoplus_\rho M_rE_\rho.
+ \tag{N1}
+\]
+In particular the exponent of the ideal in the first formula is exactly
+$\max(0,\min(m_\rho,\lceil(m_\rho-1-r)/2\rceil))$.
+Let $N=V_Z^{-1}(\bigoplus N_\rho)V_Z$; this removes the semisimple
+part by its actual primary idempotents, without changing $A=M_w$.
+
+\begin{theorem}[Full multiplicity filtration and its original receiver]
+The filtration (N1) satisfies
+\[
+ NM_r\subset M_{r-2},\qquad
+ N^r:\operatorname{Gr}_r^M E_Z\xrightarrow{\sim}
+             \operatorname{Gr}_{-r}^M E_Z\quad(r\geq0).
+ \tag{N2}
+\]
+It is Deligne's canonical nilpotent filtration. It is preserved by the
+original Taylor-unit multiplication $M_{\varepsilon_Z}$, whose action on
+the grade belonging to $(\rho,j)$ is the full scalar
+$\varepsilon_{\rho,0}=H_\rho/(2\lambda_\rho)$ from (U1).
+The injective original section $\sigma:E_Z\to Q$ of (T2) carries it to
+an $A$-stable filtration of $\sigma(E_Z)$. On that image the action is
+the restriction of the original $D$, and $N$ is transported by the
+actual spectral idempotents of that restriction.
+\end{theorem}
+\begin{proof}
+Multiplication by $t$ lowers the displayed weight by two, proving the
+inclusion. If $r\geq0$, the source grade at $\rho$ is zero unless
+$r\leq m_\rho-1$ and $r\equiv m_\rho-1\pmod2$. In the remaining
+case it is generated by $t^{(m_\rho-1-r)/2}$. Its image under $N^r$
+is $t^{(m_\rho-1+r)/2}$, the nonzero generator of the target grade.
+This proves every isomorphism with its coefficient equal to one in
+the original divided Taylor coordinates. Deligne's uniqueness theorem
+identifies this verified filtration with his canonical one.
+
+For clarity, uniqueness on each actual cyclic primary can also be seen
+directly. An $N_\rho$-stable subspace is an ideal of $\C[t]/t^m$,
+so the weights $a_j$ at which $t^j$ enters any such filtration satisfy
+$a_{j+1}\leq a_j-2$. The graded isomorphisms force the largest and
+smallest weights to be $b$ and $-b$. The nonzero map $N^b$ from the
+top grade implies $b\leq m-1$; the $m-1$ successive drops imply
+$b\geq m-1$. Equality holds and every drop is exactly two, giving
+$a_j=m-1-2j$. This proves uniqueness directly among the original
+primary-stable filtrations as well.
+
+In each primary, multiplication by the unit
+$\sum\varepsilon_{\rho,j}t^j$ preserves every ideal $(t^j)$.
+Its inverse is again a unit, so preservation is equality. Modulo the
+next nonzero ideal step only its constant term survives. This proves
+the asserted full scalar, including its phase and root-difference
+factors. The identity $qDR_Z=qR_ZA$, proved in (T2), transports the
+entire filtration into the original quotient. Since the different
+primary eigenvalues are distinct, their idempotents are the actual
+Chinese-remainder polynomials in $A$; applying those same polynomials
+in $D|_{\sigma(E_Z)}$ gives exactly the stated transported $N$.
+\end{proof}
+
+There is an explicit raising operator on the associated graded, without
+introducing a replacement metric:
+\[
+ R_\rho t^j=j(m_\rho-j)t^{j-1},\qquad
+ H_\rho^{\rm gr}t^j=(m_\rho-1-2j)t^j.
+ \tag{N3}
+\]
+The value is zero for $j=0$. Direct substitution gives
+$[H^{\rm gr},N]=-2N$, $[H^{\rm gr},R]=2R$, and
+$[R,N]=H^{\rm gr}$. For example the last diagonal coefficient is
+$(j+1)(m-j-1)-j(m-j)=m-1-2j$, including the two endpoint cases.
+Thus the old chain supplies the exact $\mathfrak{sl}_2$ grading used
+in Deligne (1.6); these formulas do not assert $R=N^*$ for the original
+arithmetic metric.
+
+\begin{proposition}[Every graded quotient retains its original metric]
+For this metric assertion let $h_{\rm act}$ be any of the programme's
+actual monic finite root polynomials, retaining every root $\kappa$
+and its full multiplicity $m_\kappa$. Write
+$E_{\rm act}=\C[w]/h_{\rm act}$ and let $V_{\rm act}$ be its own
+confluent evaluation matrix, exactly as in (U2). Formula (N1), with
+these roots and multiplicities, defines its nilpotent filtration.
+Let $G_N$ be its existing positive definite attained arithmetic metric
+in the original increasing-power coefficients. Thus this assertion
+applies directly to the full sum polynomial and $G_{q-1}$ of CMO1;
+it does not identify the sum roots with zeros of $\xi$ or apply (U1)
+to a polynomial that does not divide $2\xi$.
+Order the pairs $(\kappa,j)$ by their actual weights
+$m_\kappa-1-2j$, using a fixed order inside ties, and let $C$ be
+the matrix with columns $V_{\rm act}^{-1}e_{\kappa,j}$ in this order.
+Put $\mathcal H=C^*G_NC$. For a weight $r$ write $<$ for all earlier
+grades and $r$ for the current grade. The metric on the actual quotient
+$M_r/M_{r-1}$ is exactly
+\[
+ \mathcal G_r=\mathcal H_{rr}
+      -\mathcal H_{r<}\mathcal H_{<<}^{-1}\mathcal H_{<r}.
+ \tag{N4}
+\]
+For the first grade the subtracted term is zero. Moreover
+\[
+ \det G_N=|\det V_{\rm act}|^2\prod_r\det\mathcal G_r.
+ \tag{N5}
+\]
+For the exact induced map $T_r=N^r:\operatorname{Gr}_r\to
+\operatorname{Gr}_{-r}$, its squared norm on a coefficient vector $u$
+is $(T_ru)^*\mathcal G_{-r}(T_ru)$, and its domain squared norm is
+$u^*\mathcal G_ru$. Thus its actual squared singular values are the
+eigenvalues of
+\[
+ \mathcal G_r^{-1/2}T_r^*\mathcal G_{-r}T_r
+                  \mathcal G_r^{-1/2}.
+ \tag{N6}
+\]
+\end{proposition}
+\begin{proof}
+For fixed current coefficient $u$, all lifts in $M_r$ are $(v,u)$
+with lower-grade coefficient $v$. Their squared norms are
+\[
+ v^*\mathcal H_{<<}v+v^*\mathcal H_{<r}u+
+ u^*\mathcal H_{r<}v+u^*\mathcal H_{rr}u.
+\]
+Completing this exact quadratic form gives the unique minimum at
+$v=-\mathcal H_{<<}^{-1}\mathcal H_{<r}u$ and the value
+$u^*\mathcal G_ru$, proving (N4). The positive definiteness of
+$\mathcal H$ proves the stated inverse exists and $\mathcal G_r>0$.
+Block elimination with these same coefficients yields
+$\det\mathcal H=\prod_r\det\mathcal G_r$ inductively. Since
+$C$ is $V_{\rm act}^{-1}$ followed by a permutation,
+$\det\mathcal H=|\det V_{\rm act}|^{-2}\det G_N$, proving (N5) with the
+full original root-difference determinant retained. The induced map
+$T_r$ is the one already computed in (N2); writing its two quadratic
+forms proves (N6). No cross term was replaced by a rank count.
+\end{proof}
+
+This gives a fully specified recipient for Deligne's nilpotent
+filtration within the old split-zero jet geometry. It also identifies
+the exact analytic matrices that a mixed-state estimate has to control.
+The integers in (N1) are nilpotent grades; arithmetic purity would
+add an assertion about eigenvalue magnitudes, which is neither a
+consequence of these integers nor included in this result.
+
+\section{Repair of the earlier finite-prime boundary lift}
+The earlier primitive-defect and split-zero-defect manuscripts use the
+finite-prime extension below in their semilocal arithmetic boundary
+construction. Their proposed invariant scalar cutoff is not by itself
+an element of the crossed product: the quotient unit is a rank-one
+Morita projection, rather than a constant function in $C_0(\R)$.
+The following supplies that projection, its actual self-adjoint lift,
+and its entire connecting-map calculation. The sign convention remains
+the source's increasing logarithmic coordinate.
+
+Fix a prime $p$, put $\ell=\log p$, and retain
+\[
+ Y=(\mathbb Z\cup\{\infty\})\times\R,\qquad
+ T(m,y)=(m+1,y+\ell),\quad T(\infty,y)=(\infty,y+\ell),
+\]
+where $m\to+\infty$ converges to the adjoined point. Set
+\[
+ I=C_0(\mathbb Z\times\R)\rtimes_T\mathbb Z,
+ \quad E=C_0(Y)\rtimes_T\mathbb Z,
+ \quad Q_p=C_0(\R)\rtimes_{y\mapsto y+\ell}\mathbb Z.
+ \tag{K1}
+\]
+Thus $0\to I\to E\to Q_p\to0$ is the original extension. Use the
+crossed-product convention $U f U^{-1}=f\circ T^{-1}$, so that for
+finite coefficient families
+\[
+ (a*b)_n(z)=\sum_k a_k(z)b_{n-k}(T^{-k}z),\qquad
+ (a^*)_n(z)=\overline{a_{-n}(T^{-n}z)}.
+ \tag{K2}
+\]
+
+Choose a nonnegative $c\in C_c(\R)$ positive on $[-\ell,\ell]$ and
+put
+\[
+ \chi(y)=\frac{c(y)}{\sqrt{\sum_{n\in\mathbb Z}c(y-n\ell)^2}}.
+\]
+The denominator is a strictly positive continuous periodic function;
+all sums are locally finite. Hence $\chi\in C_c(\R)$ and
+$\sum_n\chi(y-n\ell)^2=1$ at every $y$. Define
+\[
+ P_n(y)=\chi(y)\chi(y-n\ell).
+ \tag{K3}
+\]
+Only finitely many $n$ occur, and each coefficient has compact support.
+Let $\phi(t)=(1+e^t)^{-1}$ and define
+\[
+ H_n(m,y)=\phi(y-m\ell)P_n(y),\qquad
+ H_n(\infty,y)=P_n(y).
+ \tag{K4}
+\]
+
+\begin{theorem}[Actual finite-prime connecting morphism]
+The family $P$ is a full projection in $Q_p$ whose corner is
+$P Q_pP\cong C(\R/\ell\mathbb Z)$; it represents the unit class
+under the original circle Morita equivalence. The family $H$ is an
+element of $E$, is self-adjoint with $0\leq H\leq1$, and lifts $P$.
+Under the explicit identification $I\cong C_0(\R,\mathcal K(\ell^2\mathbb Z))$,
+the exponential $\exp(2\pi iH)$ has Fredholm determinant
+\[
+ \det\bigl(\exp(2\pi iH)(t)\bigr)=e^{2\pi i\phi(t)}.
+\]
+Consequently the original connecting homomorphism, with
+counterclockwise winding positive, is
+\[
+ \boxed{\partial_p([P])=-1.}\tag{K5}
+\]
+\end{theorem}
+\begin{proof}
+The involution formula (K2) gives $P^*=P$, and
+\[
+ (P*P)_n(y)=\chi(y)\chi(y-n\ell)
+                 \sum_k\chi(y-k\ell)^2=P_n(y),
+\]
+so $P$ is a projection in the actual quotient algebra. The regular
+representation over an orbit $y+\ell\mathbb Z$ sends it to the
+rank-one projection onto the unit vector
+$v_y=(\chi(y+r\ell))_{r\in\mathbb Z}$. If $y$ is increased by
+$\ell$ these vectors and the representations are related by the
+same bilateral shift. Compression by $v_y$ therefore gives a scalar
+continuous function on $\R/\ell\mathbb Z$. Conversely every continuous
+periodic scalar function times $P$ belongs to the corner, giving the
+claimed isomorphism. The projection is full: locally on this compact
+orbit space its nonzero continuous unit vector generates the rank-one
+operators, and finite-rank matrices generated from these are dense in
+the compact-operator fibers. A finite partition of unity on the circle
+then gives the whole algebra as the closed ideal generated by $P$.
+This is the concrete free-proper-action Morita construction of Green
+\cite{Green}, not an identification of a constant multiplier with an
+algebra projection.
+
+For each nonzero coefficient in (K4), $y$ stays in the fixed compact
+support of $\chi$. As $m\to+\infty$, $y-m\ell\to-\infty$ uniformly
+on that support, and $\phi(y-m\ell)\to1$, proving continuity at
+the adjoined stratum. As $m\to-\infty$ it tends uniformly to zero.
+It follows that $H_n\in C_0(Y)$. The integer $n$-support is finite,
+so $H\in E$. The scalar $t=y-m\ell$ is invariant under $T$ on
+the generic part. Consequently (K2) proves self-adjointness and
+\[
+ (H^a)_n(m,y)=\phi(t)^a P_n(y)\qquad(a\geq1),
+\]
+with the corresponding boundary value $P_n(y)$.
+
+For completeness, the generic algebra identification is given on the
+dense finite convolution algebra by
+\[
+ (\pi_t(a))_{r,s}=a_{r-s}(r,t+r\ell).
+ \tag{K6}
+\]
+Substituting (K2) verifies multiplication and adjoints entry by entry.
+If a coefficient has finite $m$-support and compact $y$-support,
+its image is a compactly supported continuous finite matrix family.
+Conversely a family $f(t)e_{r,s}$ is obtained from the single coefficient
+$a_{r-s}(m,y)=\mathbf1_{\{r\}}(m)f(y-r\ell)$. These elements are dense
+on both sides. Thus the usual crossed-product completion gives the
+displayed isomorphism (equivalently the explicit free-proper-action
+case of \cite{Green}). Under it
+\[
+ \pi_t(H)=\phi(t)\,v_tv_t^*,\qquad \|v_t\|=1.
+\]
+At every boundary orbit the representation gives the projection $P$.
+These fiber representations detect positivity; hence $0\leq H\leq1$.
+
+The exponential formula is now exact, with no missing cross terms:
+\[
+ \pi_t(\exp(2\pi iH))
+   =I+(e^{2\pi i\phi(t)}-1)v_tv_t^*.
+ \tag{K7}
+\]
+The scalar coefficient tends to zero at both ends of $\R$, so this
+is a unitary in the unitization of the original ideal. Its rank-one
+Fredholm determinant is the asserted scalar function. That determinant
+represents its $K_1(C_0(\R)\otimes\mathcal K)$ class: one can deform
+$v_t$ to a fixed unit vector by normalized straight-line interpolation,
+since $v_t$ and any fixed coordinate unit vector are nonnegative and
+the interpolation never vanishes. The coefficient of the rank-one
+projection vanishes at the two ends uniformly throughout this homotopy.
+This supplies an explicit homotopy to a fixed rank-one loop with the
+same determinant.
+
+By the exponential definition of the boundary map, $\partial_p[P]$
+is represented by this unitary. When $t$ increases from $-\infty$ to
+$+\infty$, $\phi$ decreases from one to zero. The determinant therefore
+makes exactly one clockwise circuit. Its counterclockwise degree is
+$-1$, proving (K5).
+\end{proof}
+
+\subsection*{The actual visible semilocal receiving map}
+The earlier source specifies the visible semilocal space after quotient
+by the finite local unit groups. Its map to (K1) can also be given
+explicitly. Let $S=\{p_1,\ldots,p_n,\infty\}$, put
+$\ell_i=\log p_i$, and let
+\[
+ X_S=\{(m_1,\ldots,m_n,x)\in
+    (\mathbb Z\cup\{\infty\})^n\times\R:
+    \text{at most one of }m_i=\infty\text{ or }x=0\}.
+\]
+It carries the subspace topology from the displayed product. The group
+$\Gamma=\mathbb Z^n\times\{\pm1\}$ acts by
+\[
+ (a,\epsilon)(m,x)=
+       (m+a,\epsilon e^{\sum_i a_i\ell_i}x),\qquad
+ \infty+a_i=\infty.
+ \tag{K8}
+\]
+This is precisely the action of rational $S$-units on the local
+valuations and real coordinate after finite local unit quotient. Let
+$A_S=C_0(X_S)\rtimes\Gamma$, let $A_\varnothing$ be the ideal of
+its all-nonzero stratum, and let $B_S$ be the quotient algebra of the
+one-zero strata.
+
+\begin{theorem}[Full primitive boundary row for the specified space]
+The extension $0\to A_\varnothing\to A_S\to B_S\to0$ has, with
+the original logarithmic orientation,
+\[
+ \delta_0:\mathbb Z^{n+2}\longrightarrow\mathbb Z,
+ \qquad
+ \delta_0(k_1,\ldots,k_n,k_+,k_-)
+       =-\sum_i k_i-k_+-k_-.
+ \tag{K9}
+\]
+In particular
+$K_0(A_S)\cong\ker\delta_0\cong\mathbb Z^{n+1}$ and
+$K_1(A_S)\cong\mathbb Z^n$. Each finite-prime component is received
+from (K5) by an explicit equivariant coordinate map, and the two
+archimedean components each have the same sign $-1$.
+\end{theorem}
+\begin{proof}
+On the invariant open edge containing the generic stratum and the
+$p_i$-zero stratum, all $m_j$ for $j\ne i$ are finite and $x\ne0$.
+Use the actual coordinates
+\[
+ z_j=m_j\ (j\ne i),\quad m=m_i,\quad
+ y=\log|x|-\sum_{j\ne i}m_j\ell_j,\quad s=\operatorname{sign}x.
+ \tag{K10}
+\]
+They give a homeomorphism to
+$\mathbb Z^{n-1}\times Y_{p_i}\times\{\pm1\}$.
+The inverse is
+$m_j=z_j$ for $j\ne i$, $m_i=m$, and
+$x=s\exp(y+\sum_{j\ne i}z_j\ell_j)$, proving the assertion also
+at $m_i=\infty$. Under (K8), the other prime generators translate
+only their $z_j$, the sign generator translates only $s$, and the
+$p_i$ generator acts only by $(m,y)\mapsto(m+1,y+\ell_i)$.
+Taking crossed products therefore gives the literal tensor factor
+\[
+ \mathcal K(\ell^2\mathbb Z^{n-1})\otimes E_{p_i}\otimes M_2(\C),
+\]
+with matching generic ideal and boundary quotient. The compact factor
+identification follows directly from the matrix units for translation
+of a discrete group on itself. Removing these compact factors is the
+explicit Morita map, and the original generic logarithmic coordinate is
+\[
+ t=\log|x|-\sum_jm_j\ell_j=y-m_i\ell_i.
+\]
+Thus the orientation is exactly the one in (K5). Naturality of the
+exponential boundary construction yields the component $-1$.
+
+On the invariant archimedean edge every $m_i$ is finite and $x$ may
+be zero. Use instead
+$u=x\exp(-\sum_i m_i\ell_i)$. This is an equivariant homeomorphism
+to $\mathbb Z^n\times\R$: prime generators translate the first
+factor only, and the sign acts by $u\mapsto-u$. Hence its extension
+is a compact-operator tensor factor times
+\[
+ 0\to C_0(\R^\times)\rtimes\{\pm1\}
+ \to C_0(\R)\rtimes\{\pm1\}
+ \to C^*(\{\pm1\})\to0.
+\]
+Write $p_\pm=(1\pm U)/2$ in the quotient. Choose an even continuous
+real-valued $\psi(u)=e^{-u^2}$, with $\psi(0)=1$ and
+$\psi(u)\to0$ as $|u|\to\infty$.
+The actual self-adjoint lifts are $\psi p_\pm$ in this crossed
+product. On $u>0$ the orbit representation gives the rank-one matrices
+$P_\pm=\frac12\left(\begin{smallmatrix}1&\pm1\\\pm1&1\end{smallmatrix}\right)$.
+The exponential determinant is $e^{2\pi i\psi(u)}$ for either
+choice. With $t=\log u$, it goes from phase $2\pi$ to zero as $t$
+goes from $-\infty$ to $+\infty$, giving $-1$ for both classes.
+This logarithmic coordinate is again exactly the common generic
+coordinate above.
+
+The boundary consists of the disjoint $n$ finite-prime strata and
+the archimedean stratum. It has groups
+$K_0(B_S)=\mathbb Z^{n+2}$ and $K_1(B_S)=\mathbb Z^n$ by the
+circle corners and the two sign projections just constructed.
+The generic ideal is stably $C_0(\R)$, so its $K_0$ is zero and
+its $K_1$ is $\mathbb Z$. The extension and all edge inclusions have
+the same generic ideal; restriction to each summand of $K_0(B_S)$
+therefore gives exactly the computed component. This proves (K9).
+Since the row is surjective, the six-term exact sequence gives
+$K_0(A_S)=\ker\delta_0$ and $K_1(A_S)\cong K_1(B_S)$, proving the
+remaining assertions. For $n=1$ the kernel is the actual primitive
+$A_2$ lattice in $\mathbb Z^3$, with its three oriented generators.
+\end{proof}
+
+Thus the actual model calculation and the visible semilocal receiving
+maps are both complete. This is a theorem for the specified original
+finite-unit-quotiented space $X_S$, not a claim about an unspecified
+crossed product. It restores the complete boundary morphism on this
+earlier branch of the Split Zero RH programme, while leaving arithmetic
+metric positivity and eigenvalue bounds to their genuine analytic
+calculations.
+
+\section{Denominator-history inversion reconstructs the original source}
+The earlier arithmetic-curve manuscript's incidence-inversion theorem
+is the exact finite divisor identity
+$\sum_{d\mid n}\mu(d)=\mathbf1_{\{n=1\}}$. Its analytic receiver
+in the original physical coordinate supplies a useful description of
+the entire source quotient, including the part not detected by a fixed
+finite packet. No coordinate or source measure is changed. In this
+section the same theta formula is also defined on the space of smooth
+functions on $(0,\infty)$ that are rapidly decreasing with all
+$D$-derivatives at infinity and are $O(x^{-1})$ with those derivatives
+at zero. Its defining series converges locally on this space; its
+restriction to the original $V$ is the original $\Theta$.
+
+\begin{theorem}[Exact original-source reconstruction]
+For $F\in\B$ define
+\[
+ (\mathcal I_\mu F)(x)=\frac12\sum_{n\geq1}\mu(n)F(nx)
+       \qquad(x>0).\tag{MI1}
+\]
+The sum and all its $D$-derivatives converge absolutely locally
+uniformly on $(0,\infty)$. Its value is smooth, rapidly decreasing
+with all $D$-derivatives at infinity, and is $O(x^{-1})$ with all
+$D$-derivatives at zero. It satisfies
+\[
+ \Theta\mathcal I_\mu F=F,\qquad
+ \mathcal I_\mu\Theta\phi=\phi\quad(\phi\in V),\qquad
+ D\mathcal I_\mu=\mathcal I_\mu D.
+ \tag{MI2}
+\]
+Consequently the original algebraic source quotient has the exact
+operator-compatible presentation
+\[
+ \boxed{\quad Q=\B/\Theta V\ \cong\ \mathcal I_\mu(\B)/V.\quad}
+ \tag{MI3}
+\]
+The obstruction on the right is membership in the original even
+Schwartz zero-moment space, not inversion of the theta sum on positive
+$x$. On every line $\Re w>1$,
+\[
+ \mathcal M(\mathcal I_\mu F)(w)
+       =\frac{\mathcal MF(w)}{2\zeta(w)}.
+ \tag{MI4}
+\]
+\end{theorem}
+\begin{proof}
+For each compact positive $x$-interval and every $r$, the summand
+$D^rF(nx)$ is bounded by $C_B n^{-B}$ for every $B>1$. This proves
+absolute local convergence and differentiation. For $x\geq1$ the
+same bound is $C_B n^{-B}x^{-B}$, proving rapid decrease.
+For $g=D^rF$, both $g$ and its ordinary derivative are integrable
+on $(0,\infty)$. On the interval $((n-1)x,nx)$ the fundamental
+theorem of calculus gives
+\[
+ |g(nx)|\leq x^{-1}\int_{(n-1)x}^{nx}|g(y)|\,dy
+                 +\int_{(n-1)x}^{nx}|g'(y)|\,dy.
+\]
+Sum over $n$ to obtain
+$|D^r\mathcal I_\mu F(x)|\leq
+ (\|g\|_1/x+\|g'\|_1)/2$, proving the zero-end estimate.
+
+For fixed $x>0$, the double sum involved in either composition is
+absolutely convergent: its absolute value is bounded by
+$\sum_{k\geq1}d(k)|F(kx)|$ or the analogous sum for $\phi$.
+Use $d(k)\leq k$ and rapid decrease to verify convergence.
+Regrouping by $k=mn$ then gives (MI2) by the classical finite divisor
+identity $\sum_{d\mid k}\mu(d)=\mathbf1_{k=1}$, documented in
+\cite[Chapter 2]{ApostolMobius} and NIST DLMF (27.5.2).
+The derivative statement follows from the already proved locally
+uniform convergence. In particular $V\subset\mathcal I_\mu(\B)$,
+and (MI2) makes the two induced maps in (MI3) inverse. This proves
+both injectivity and surjectivity without replacing the original $V$.
+Finally absolute integrability on $\Re w>1$ permits substitution
+$y=nx$ in each Mellin integral. The absolutely convergent Euler
+identity $\sum_n\mu(n)n^{-w}=1/\zeta(w)$ proves (MI4).
+\end{proof}
+
+\begin{proposition}[Complete primary source singularities of the actual lift]
+For the original $R_Zu$ of (T2), put
+$\psi_u=\mathcal I_\mu R_Zu$. Its exact equation and Mellin transform
+are
+\[
+ h_Z(D)\psi_u=r_Z(u)(D)\phi_*,\qquad
+ \mathcal M\psi_u(w)=
+       \frac{r_Z(u)(w)}{h_Z(w)}\,\mathcal M\phi_*(w),
+ \tag{MI5}
+\]
+where
+$\mathcal M\phi_*(w)=\frac12w(w-1)\pi^{-w/2}\Gamma(w/2)$.
+Write the proper rational function in its unique original partial
+fractions
+\[
+ \frac{r_Z(u)(w)}{h_Z(w)}
+ =\sum_{\rho\in Z}\sum_{j=1}^{m_\rho}
+                     \frac{b_{\rho,j}}{(w-\rho)^j}.
+\]
+Then, without discarding any primary or multiplicity,
+\[
+ \psi_u(x)=\sum_{\rho,j}\frac{b_{\rho,j}x^{-\rho}}{(j-1)!}
+  \int_x^\infty \phi_*(y)y^{\rho-1}
+                    \bigl(\log(y/x)\bigr)^{j-1}\,dy.
+ \tag{MI6}
+\]
+Its full singular part at zero is
+\[
+ \sum_{\rho,j}\frac{b_{\rho,j}x^{-\rho}}{(j-1)!}
+ \sum_{a=0}^{j-1}\binom{j-1}{a}
+        (-\log x)^{j-1-a}(\mathcal M\phi_*)^{(a)}(\rho).
+ \tag{MI7}
+\]
+The exact remainder obtained by subtracting (MI7) is $O(x^2)$ at
+zero with all $D$-derivatives and has a convergent even Taylor series
+there. Also $\int_0^\infty\psi_u(x)\,dx=0$. Thus (MI6) retains
+the original zero-integral condition while explicitly displaying its
+failure of smoothness at zero for every nonzero finite class.
+\end{proposition}
+\begin{proof}
+Apply (MI2) and (MI4) to (T2). The identity
+$g/(2\zeta)=\mathcal M\phi_*$ gives (MI5), including the factor
+$1/2$. Iterating the integral operator $S_\rho$ in the proof of
+(T2), now without a vanishing Mellin moment at $\rho$, gives
+\[
+ S_\rho^j\phi_*(x)=\frac{x^{-\rho}}{(j-1)!}
+       \int_x^\infty\phi_*(y)y^{\rho-1}
+                      (\log(y/x))^{j-1}\,dy.
+\]
+This follows by Fubini over $x<y_1<\cdots<y_j$: the ordered
+simplex in the logarithmic variables has volume
+$(\log(y_j/x))^{j-1}/(j-1)!$. Its Mellin transform on
+$\Re w>1$ is $\mathcal M\phi_*(w)/(w-\rho)^j$.
+The proper partial fractions therefore give (MI6) by Mellin
+uniqueness on that line.
+
+The integral from zero to infinity converges for each actual
+$0<\Re\rho<1$, since $\phi_*(y)=O(y^2)$ at zero and decreases
+rapidly at infinity. Expanding its logarithmic power gives exactly
+(MI7). The remaining integral from zero to $x$ is bounded by a
+constant times $x^{\Re\rho+2}$ before multiplication by
+$x^{-\rho}$; substituting $y=xv$ proves the same bound for every
+$D$-derivative. More explicitly, if
+$\phi_*(x)=\sum_{n\geq1}c_{2n}x^{2n}$ near zero, that remainder
+for $S_\rho^j\phi_*$ is precisely
+\[
+ (-1)^j\sum_{n\geq1}\frac{c_{2n}}{(\rho+2n)^j}x^{2n},
+\]
+convergent near zero. The signs follow from integrating
+$(\log v)^{j-1}$ on $0<v<1$.
+
+Formula (MI6) is integrable at zero because every actual
+$\Re\rho<1$, including all logarithmic powers, and at infinity
+by the tail estimates. Evaluation of its Mellin transform at $w=1$
+is legitimate. Since $h_Z(1)\ne0$ and
+$\mathcal M\phi_*(1)=0$, its integral is zero. Finally if
+$\psi_u$ were in $V$, (MI2) would imply $R_Zu\in\Theta V$,
+and its full original jets force $u=0$ by (T2). Thus no nonzero
+primary class has been erased by this reconstruction.
+\end{proof}
+
+\begin{corollary}[Exact original $dx$ integrability threshold]
+The reconstructed finite source $\psi_u=\mathcal I_\mu R_Zu$
+satisfies
+\[
+ \boxed{\quad\psi_u\in L^2(\R_{>0},dx)
+ \quad\Longleftrightarrow\quad
+ u_\rho=0\ \text{for every }\rho\in Z\text{ with }
+                         \Re\rho\geq\tfrac12.\quad}\tag{MI9}
+\]
+Here $u_\rho=0$ means the entire primary jet, not merely its value.
+\end{corollary}
+\begin{proof}
+The local factor $\mathcal M\phi_*(\rho)$ is nonzero at every
+nontrivial zero: its explicit Gamma formula has no zero or pole
+there. Thus a principal part of
+$\mathcal M\psi_u=(\mathcal MR_Zu)/(2\zeta)$ at $\rho$ is zero
+exactly when the whole jet $u_\rho$ vanishes. Formula (MI7) shows
+that each remaining primary contributes a nonzero polynomial in
+$-\log x$ times $x^{-\rho}$, and the remainder is $O(x^2)$.
+If all their real parts are less than $1/2$, every term is square
+integrable at zero. Rapid decay at infinity proves sufficiency.
+
+For necessity put $t=-\log x$. The singular part after multiplication
+by the square-root density $e^{-t/2}$ is the finite exponential
+polynomial $\sum_\rho e^{(\rho-1/2)t}P_\rho(t)$.
+Let $b$ be the largest real part among its nonzero terms and $d$
+the largest polynomial degree at that real part. After division by
+$e^{(b-1/2)t}t^d$, the leading part is
+$A(t)=\sum_{\Re\rho=b,\deg P_\rho=d}a_\rho e^{i\Im\rho t}$,
+and the remaining terms tend uniformly to zero on every interval
+$[T,T+L]$ as $T\to\infty$ for fixed $L$. At least one $a_\rho$
+is nonzero. The distinct frequencies imply
+\[
+ \int_T^{T+L}|A(t)|^2dt
+ =L\sum|a_\rho|^2+E(T,L),\qquad
+ |E(T,L)|\leq
+  \sum_{\rho\ne\sigma}\frac{2|a_\rho a_\sigma|}
+                                    {|\Im\rho-\Im\sigma|}.
+\]
+Choose $L$ so the right-hand error is at most half the positive
+diagonal term. This lower bound is uniform in $T$. The vanishing
+remainder preserves a fixed positive fraction of it for all large
+$T$. If $b\geq1/2$, multiplication back by
+$e^{(b-1/2)t}t^d$ yields a positive lower bound on each of infinitely
+many disjoint such intervals, and indeed an increasing bound unless
+$b=1/2,d=0$. Their squared integrals diverge in every case. The
+$O(x^2)$ remainder is square integrable and cannot change that
+conclusion. This proves necessity without treating different
+frequencies as pointwise orthogonal.
+\end{proof}
+
+There is a useful bounded tail estimate on its stated domain only.
+For $\sigma>1$ in the weighted norm
+$\|F\|_\sigma^2=\int_0^\infty|F(x)|^2x^{2\sigma-1}dx$,
+dilation has norm $n^{-\sigma}$. The triangle inequality gives
+\[
+ \left\|\mathcal I_\mu F-\tfrac12\sum_{n\leq L}\mu(n)F(n\,\cdot)
+ \right\|_\sigma
+ \leq\frac{L^{1-\sigma}}{2(\sigma-1)}\|F\|_\sigma.
+ \tag{MI8}
+\]
+The original $dx$ metric has $\sigma=1/2$; (MI8) is not a bound
+in that metric. The exact maps (MI1)--(MI7), including both endpoint
+regions, do not require such an unsupported substitution.
+
+\section{The original theta complex over the earlier split-support space}
+The earlier generic-point-suspension theorem identifies the underlying
+space $X=\operatorname{Spec}G(\C)$ with two points:
+\[
+ \eta=\{\tau\},\qquad z=\{\tau,0_\C\},\qquad
+ \operatorname{Open}(X)=\{\varnothing,\{\eta\},X\}.
+\]
+The new generic point is $\eta$ and the supported closed point is $z$.
+Work here with sheaves of complex vector spaces on this underlying
+space; the coefficient category is specified explicitly. In particular
+no map making its Boolean local semiring into a complex algebra is
+assumed. The original infinite-dimensional spaces give algebraic
+sheaves, while the finite primary recipients below are constructible
+finite-dimensional sheaves.
+
+\begin{theorem}[The actual theta quotient is supported cohomology]
+Define $\mathcal F_\Theta$ by
+\[
+ \mathcal F_\Theta(X)=V,\qquad
+ \mathcal F_\Theta(\{\eta\})=\B,\qquad
+ \operatorname{res}_{X,\{\eta\}}=\Theta.
+ \tag{S1}
+\]
+Then its local cohomology with support at $z$ is calculated by the
+original complex, with its original coefficient spaces and operator:
+\[
+ R\Gamma_{\{z\}}(X,\mathcal F_\Theta)\simeq[V\xrightarrow{\Theta}\B]
+       \quad\text{in degrees }0,1.
+ \tag{S2}
+\]
+Thus $H^0_{\{z\}}=0$, $H^1_{\{z\}}=Q$, and all higher groups vanish.
+For every finite actual zero packet $Z$, its full Mellin-jet map and
+canonical section give sheaf maps
+\[
+ \mathcal F_\Theta\xrightarrow{(0,J_Z)} j_!E_Z
+           \xrightarrow{(0,R_Z)}\mathcal F_\Theta,
+ \tag{S3}
+\]
+whose induced cohomology maps are exactly
+$\overline J_Z:Q\to E_Z$ and $\sigma_Z:E_Z\hookrightarrow Q$.
+Their composite on $E_Z$ is the identity, and both cohomology maps
+intertwine the original $D$ and multiplication by $w$.
+\end{theorem}
+\begin{proof}
+Every open cover of $X$ contains $X$ itself, so a sheaf of vector
+spaces on $X$ is precisely an arrow $F_z\to F_\eta$; morphisms
+are commutative squares. Its sections supported at $z$ are the
+kernel of that arrow. Evaluation at either point is exact. The
+objects $(A\to0)$ and $(B\xrightarrow{1}B)$ are injective: morphisms
+into them identify respectively with $\operatorname{Hom}(F_z,A)$
+and $\operatorname{Hom}(F_\eta,B)$, exact functors of vector spaces.
+For a general arrow $d:A\to B$, the explicit injective resolution is
+\[
+ 0\to(A\xrightarrow d B)
+ \xrightarrow{(a\mapsto(a,da),\,1)}
+ (A\oplus B\xrightarrow{\mathrm{pr}_B}B)
+ \xrightarrow{((a,b)\mapsto da-b,\,0)}(B\to0)\to0.
+ \tag{S4}
+\]
+Each component is an exact sequence, proving exactness of the sheaf
+sequence. The middle term is the direct sum of the two kinds of
+injective just identified. Applying the support-section functor
+gives exactly $[A\xrightarrow d B]$. With $d=\Theta$, this proves
+(S2). Its degree-zero group vanishes by the actual inverse in (MI2).
+The same argument for $j_!E_Z=(0\to E_Z)$ gives its supported
+cohomology $E_Z$ in degree one and zero elsewhere.
+
+The first square in (S3) commutes because $J_Z\Theta=0$ with all
+original multiplicities. The second square commutes because its
+closed component has zero source. Their induced maps in (S4) are
+the displayed original complex maps, proving the cohomology
+identifications and $\overline J_Z\sigma_Z=1$. The first map
+intertwines $D$ already on the complex. For the section, (T2) proves
+$DR_Z-R_ZA=\Theta\gamma_Z$, where $\gamma_Zu$ is the original
+scalar highest-coefficient term times $\phi_*$. Thus the failure
+of strict intertwining is the explicitly supplied chain homotopy
+through the original degree-zero source $V$; it vanishes on degree-one
+cohomology. This proves the asserted operator equivariance without
+changing the section.
+\end{proof}
+
+\begin{proposition}[The exact split semimodule underlying the same arrow]
+Let $S=G(\C)$ with additive zero $\tau$ and supported scalar zero
+$e=0_\C$. On the disjoint union
+$M_\Theta=V\sqcup\B$, retain the ordinary vector addition within
+each component, and define the mixed sum by
+\[
+ v\oplus b=b\oplus v=\Theta v+b\quad(v\in V,b\in\B).
+\]
+The zero of this monoid is $0_V$. A supported scalar $a\in\C$
+acts by ordinary scalar multiplication within each component, and
+$\tau$ sends every element to $0_V$. These operations make
+$M_\Theta$ an $S$-semimodule. Its support semilattice is
+\[
+ eM_\Theta=\{0_V,0_\B\},\qquad0_V<0_\B,
+\]
+with transport map exactly $\Theta$. The map
+\[
+ \pi:M_\Theta\longrightarrow Q\sqcup\{\tau\},\qquad
+ \pi(v)=\tau,\quad\pi(b)=[b],
+ \tag{S5}
+\]
+is an $S$-linear surjection and identifies its target with the Bourne
+quotient by the subsemimodule $V$. In particular the unsupported
+zero fiber is $V$, whereas the supported-zero fiber is the separate
+subset $\Theta V\subset\B$.
+\end{proposition}
+\begin{proof}
+The support tag of a sum is the maximum of its two tags. Once a
+$\B$ tag occurs, the value of any finite sum is the sum in $\B$
+of its $\B$ terms and of the images under $\Theta$ of its $V$
+terms. This formula proves associativity, commutativity and the
+stated identity. Linearity of $\Theta$ proves distributivity of
+supported scalars across every combination of tags. For a scalar
+sum involving $\tau$, the scalar acts as the unchanged supported
+scalar and the other summand contributes $0_V$, again the identity.
+For a scalar product involving $\tau$, both sides are $0_V$.
+The remaining scalar laws are the vector-space laws, including
+the case of supported scalars whose sum is the supported zero $e$.
+This verifies all semimodule axioms. Its two supported zero vectors
+are distinct by the disjoint-union construction, and
+$0_V\oplus0_\B=0_\B$.
+
+Give $Q\sqcup\{\tau\}$ the usual split semimodule structure:
+vector addition on $Q$, additive identity $\tau$, supported scalar
+action on $Q$, and $\tau$ acting by the zero map to $\tau$.
+Since $q\Theta=0$, (S5) preserves the mixed sum; it preserves all
+other operations directly. Surjectivity follows from that of $q$.
+In the Bourne relation, $x\sim y$ means
+$x\oplus v=y\oplus v'$ for some $v,v'\in V$.
+Both sides have the same support tag only when $x,y$ have the same
+tag. All elements of $V$ become equivalent by their additive
+inverses. For $b,b'\in\B$ the relation is precisely
+$b-b'\in\Theta V$. Thus its equivalence classes are one unsupported
+class and the supported vector quotient $Q$, proving the exact
+quotient claim and both fibers. The original $D$ on both components
+preserves these operations because $D\Theta=\Theta D$, so it also
+descends to the original operator on $Q$.
+\end{proof}
+
+The earlier support-diagram theorem therefore has a concrete receiver
+on the entire original theta complex, and the earlier split-spectrum
+theorem has a concrete supported-cohomology receiver on the same
+arrow. These are explicit functors into different stated coefficient
+categories. The sheaf (S1) is not silently obtained by quasi-coherent
+semiring localization: its generic complex vector space and the
+Boolean stalk of the structure semiring have different types. The
+finite maps (S3), the chain homotopy, and the split quotient (S5)
+specify exactly how the programme's analytic and support data meet.
+
+\section{Actual reflection, primary signs, and the unweighted Hilbert completion}
+The compactified-shadow manuscript supplies the full-multiplicity
+divisor and its Klein-four symmetry. We now realize that symmetry on
+the original theta complex, retaining the signs on derivative slots.
+The resulting calculation also determines precisely what its bare
+$L^2(dx)$ completion retains. The Hilbert space and the physical
+coordinate remain the original ones throughout.
+
+\begin{theorem}[Reflection on the original complex and every full primary]
+On $\B$ define
+\[
+ (\mathcal IF)(x)=x^{-1}F(1/x),\qquad (\mathcal CF)(x)=\overline{F(x)}.
+ \tag{RC1}
+\]
+Use the source Fourier convention
+$\widehat\phi(y)=\int_\R\phi(x)e^{-2\pi ixy}\,dx$.
+Then $\widehat V=V$, and
+\[
+ \mathcal I\Theta\phi=\Theta\widehat\phi,
+ \quad\mathcal C\Theta\phi=\Theta\overline\phi,
+ \quad D\mathcal I=\mathcal I(1-D).
+ \tag{RC2}
+\]
+The operator $\mathcal I$ is a self-adjoint unitary involution on
+$L^2(dx)$, while $\mathcal C$ is an antiunitary involution. They
+commute on $\B$, descend to $Q$, and preserve its finite primary
+subspace $\sigma_ZE_Z$ whenever $Z$ is closed under reflection and
+conjugation, with every original multiplicity retained.
+
+Write a jet as $u_\rho(t)=\sum_{j<m_\rho}u_{\rho,j}t^j$.
+The exact induced actions are
+\[
+ (\mathsf Wu)_{\rho,j}=(-1)^j u_{1-\rho,j},\qquad
+ (\mathsf Cu)_{\rho,j}=\overline{u_{\bar\rho,j}}.
+ \tag{RC3}
+\]
+For the original jet map and canonical section,
+\[
+ J_Z\mathcal I=\mathsf WJ_Z,\quad J_Z\mathcal C=\mathsf CJ_Z,
+ \quad \mathcal IR_Z=R_Z\mathsf W,\quad
+ \mathcal CR_Z=R_Z\mathsf C.
+ \tag{RC4}
+\]
+In particular, if $f_r=D^rf_0$, then
+\[
+ \mathcal If_0=f_0,\qquad
+ \mathcal If_r=(1-D)^rf_0
+ =\sum_{j=0}^r(-1)^j\binom rj f_j.
+ \tag{RC5}
+\]
+\end{theorem}
+\begin{proof}
+Fourier transformation preserves even Schwartz functions and
+interchanges the conditions $\phi(0)=0$ and $\int\phi=0$.
+Poisson summation, with these two terms zero, gives (RC2).
+The same formula also follows from the fully specified source
+construction in \cite[Lemma 4.1]{CCcycles}. The chain rule gives
+$D\mathcal I=\mathcal I(1-D)$ directly. Both endpoints defining
+$\B$ remain rapidly decreasing under $\mathcal I$ and $\mathcal C$.
+The substitution $y=1/x$ proves
+$\int|x^{-1}F(1/x)|^2dx=\int|F(y)|^2dy$.
+Since $\mathcal I^2=1$, it is self-adjoint; the other Hilbert and
+commutation assertions follow directly from the displayed formulas.
+
+In the original Mellin convention,
+$\M\mathcal IF(w)=\M F(1-w)$ and
+$\M\mathcal CF(w)=\overline{\M F(\bar w)}$.
+Taylor expansion at each actual root proves (RC3), including every
+factor $(-1)^j$, and the first two identities of (RC4).
+For $h=h_Z$ of degree $d$, root stability and multiplicities give
+$h(1-w)=(-1)^dh(w)$ and $\overline{h(\bar w)}=h(w)$.
+Retain $g=2\xi$, so $g(1-w)=g(w)$ and
+$\overline{g(\bar w)}=g(w)$. The original polynomial
+$r_Z(u)$ is the unique polynomial of degree less than $d$ representing
+$(h/g)u$ modulo $h$. Therefore uniqueness gives
+\[
+ r_Z(\mathsf Wu)(w)=(-1)^d r_Z(u)(1-w),\qquad
+ r_Z(\mathsf Cu)(w)=\overline{r_Z(u)(\bar w)}.
+\]
+Insert these identities in $\M R_Zu=g r_Z(u)/h$.
+Mellin uniqueness proves the last two equalities in (RC4)
+as actual function identities, before passage to cohomology.
+Finally $\M f_0=g$ and its functional equation prove
+$\mathcal If_0=f_0$, after which the operator relation in (RC2)
+proves the exact binomial formula (RC5).
+\end{proof}
+
+\begin{theorem}[Density of the original theta derivative family]
+The original family itself satisfies
+\[
+ \overline{\operatorname{span}\{f_r:r\ge0\}}^{\,L^2(dx)}
+ =L^2(\R_{>0},dx),\qquad
+ \overline{\Theta V}^{\,L^2(dx)}=L^2(\R_{>0},dx).
+ \tag{RC6}
+\]
+For every fixed original finite divisor $Z$, the exact attained
+quotient metrics
+\[
+ \begin{split}
+ G_M&=(\langle f_i,f_j\rangle)_{0\le i,j\le M},\\
+ B_Mu&=(\langle f_i,R_Zu\rangle)_{0\le i\le M},\\
+ H_Z^{(M)}&=R_Z^*R_Z-B_M^*G_M^{-1}B_M
+ \end{split}
+ \tag{RC7}
+\]
+obey $G_M>0$, $H_Z^{(M)}>0$ at each finite $M$, and
+\[
+ H_Z^{(M+1)}\preceq H_Z^{(M)},\qquad
+ \lim_{M\to\infty}\|H_Z^{(M)}\|=0.
+ \tag{RC8}
+\]
+The inner product is $\langle F,G\rangle=\int\overline F G\,dx$.
+Here (RC7) uses precisely the displayed relation subspace
+$\operatorname{span}(f_0,\ldots,f_M)$; it does not replace another
+programme denominator by that subspace.
+\end{theorem}
+\begin{proof}
+The unitary logarithmic-coordinate map is
+$F\mapsto e^{y/2}F(e^y)$ from $L^2(dx)$ to $L^2(dy)$.
+Fourier Plancherel therefore identifies the original space with
+$L^2(\R,dt/(2\pi))$ by $F\mapsto\M F(1/2+it)$.
+This use of Fourier Plancherel is classical; see \cite{SteinFourier}.
+Put $g_0(t)=2\xi(1/2+it)$. The images of $f_r$ are
+$(1/2+it)^rg_0(t)$, retaining the original generator $D$.
+
+We first prove the exponential integrability actually needed below.
+For $s=1/2+it$, the alternating-series continuation obeys
+\[
+ \eta(s)=s\int_1^\infty A(y)y^{-s-1}\,dy,
+ \quad A(y)=\sum_{n\le y}(-1)^{n-1},\quad |A(y)|\le1.
+\]
+Absolute convergence of this integral gives $|\eta(s)|\le2|s|$.
+The identity $\eta(s)=(1-2^{1-s})\zeta(s)$, proved first in
+$\Re s>1$ and then continued through $\Re s>0$, gives
+$|\zeta(1/2+it)|\le2|1/2+it|/(\sqrt2-1)$.
+The vertical-line consequence of Stirling's formula
+\cite[5.11.3]{DLMFStirling} gives
+\[
+ |g_0(t)|\le C(1+|t|)^{11/4}e^{-\pi|t|/4}.
+\]
+Enlarging $C$ covers the compact interval around zero. Consequently
+\[
+ \int_\R |g_0(t)|^2e^{2a|t|}\,dt<\infty
+ \qquad(0<a<\pi/4).
+ \tag{RC9}
+\]
+The zeros of the nonzero entire function $\xi$ are discrete, so
+$g_0$ is nonzero almost everywhere; this uses no zero-location
+hypothesis.
+
+Suppose $v\in L^2(dt/(2\pi))$ is orthogonal to all the displayed
+polynomial multiples. Then $k(t)=\overline{v(t)}g_0(t)$ belongs
+to $L^1(e^{a|t|}dt)$ for each $a<\pi/4$, by Cauchy--Schwarz
+and (RC9), and every moment of $k$ is zero. Its bilateral Laplace
+transform $K(z)=\int k(t)e^{zt}dt/(2\pi)$ is holomorphic on
+$|\Re z|<\pi/4$: on each smaller closed strip its derivatives
+are dominated using a slightly larger $a$ in (RC9).
+All derivatives at zero vanish, hence the identity theorem gives
+$K=0$ on the strip. In particular its Fourier transform vanishes.
+The uniqueness theorem for the Fourier transform of an $L^1$
+function \cite{SteinFourier} gives $k=0$ almost everywhere.
+Since $g_0\ne0$ almost everywhere, $v=0$. This proves density.
+Each $f_r=\Theta D^r\phi_*$ belongs to $\Theta V$, proving (RC6).
+
+Linear independence of the $f_r$ follows in the same Mellin
+representation from independence of polynomials on the real line,
+so $G_M>0$. Orthogonal projection onto their finite span gives
+exactly the Schur minimum (RC7). If $H_Z^{(M)}$ vanished on
+$u$, then $R_Zu$ would be a linear combination of the $f_r$.
+Applying the original full jet map gives $u=0$, since it kills
+every $f_r$ and $J_ZR_Z=1$. Thus the finite minimum is positive
+definite. Its monotonicity follows from inclusion of the finite
+relation spans. Density shows that each diagonal matrix entry
+tends to zero; positivity bounds each off-diagonal entry by the
+geometric mean of the two diagonal entries. Since the fixed
+divisor has finite dimension, this proves operator-norm convergence
+in (RC8).
+\end{proof}
+
+\begin{proposition}[Exact comparison of the two quotient topologies]
+The inclusion of the original $\B$ in $L^2(dx)$ induces the map
+\[
+ Q=\B/\Theta V\longrightarrow
+ L^2(dx)/\overline{\Theta V}^{\,L^2(dx)}=0.
+ \tag{RC10}
+\]
+The infimum of the original $L^2(dx)$ norm in every coset of $Q$
+is zero. Nevertheless, for each original finite divisor $Z$,
+$\overline J_Z\sigma_Z=1$ on $E_Z$ in the original cohomology.
+No nonzero component of $J_Z$ extends to a continuous linear
+functional on $L^2(dx)$. The original rapidly decreasing topology
+on $\B$ keeps all of these finite jets continuous.
+\end{proposition}
+\begin{proof}
+The target and coset infimum follow from (RC6); the actual
+inclusion and quotient maps give (RC10). More explicitly, for a
+fixed $u\in E_Z$ take the minimizers
+\[
+ F_{M,u}=R_Zu-\sum_{r=0}^M (G_M^{-1}B_Mu)_r f_r.
+\]
+Their original jets equal $u$, their classes in $Q$ all equal
+$\sigma_Zu$, and their squared norms equal
+$u^*H_Z^{(M)}u\to0$. A nonzero jet functional would therefore
+violate continuity if extended to $L^2(dx)$. In the original
+$\B$ topology its defining integral has integrand
+$F(x)x^{\rho-1}(\log x)^j/j!$; a sufficiently strong rapid-decay
+seminorm at each endpoint bounds this integral, proving continuity
+there. The finite section identity was proved in (T2).
+\end{proof}
+
+This is a calculated receiving map between the algebraic/rapid-decay
+cohomology and its bare unweighted Hilbert completion. It does not
+close the RH programme. It proves that this particular completion
+forgets every zero class, including critical-line classes. The
+finite attained metrics (RC7), their original jet maps, and the
+original topological quotient specify precisely what remains
+available for further arithmetic estimates. No uniform rate in a
+growing divisor or in the programme's other quotient flags follows
+from the fixed-divisor convergence (RC8).
+
+\section{The full Hurwitz pole train and a bilateral original-jet receiver}
+The earlier compact CUE/Hurwitz manuscripts compute their principal
+parts at $0$ and $1$ exactly. For a recipient in the programme's
+original rapidly decreasing space, all the other gamma poles must
+also be retained. The following construction computes them and
+then supplies an actual bilateral lattice recipient.
+
+\begin{theorem}[All negative-even residues of the original compact shifts]
+Let $\mu$ be the earlier compactly supported probability measure
+on $[0,L]$, and retain its actual shift parameter $t\ge0$. Write
+\[
+ \Lambda_{\mu,t}(w)=\pi^{-w/2}\Gamma(w/2)
+             \int\zeta(w,1+ty)\,d\mu(y).
+\]
+At every integer $k\ge1$ its residue is
+\[
+ \operatorname{Res}_{w=-2k}\Lambda_{\mu,t}
+ =-\frac{2(-1)^k\pi^k}{k!(2k+1)}
+            \int B_{2k+1}(1+ty)\,d\mu(y).
+ \tag{HU1}
+\]
+For $t>0$, the residue at $-2$ is strictly positive unless
+$\mu=\delta_0$:
+\[
+ \operatorname{Res}_{w=-2}\Lambda_{\mu,t}
+   =\frac{2\pi}{3}\int ty(ty+\tfrac12)(ty+1)\,d\mu(y).
+ \tag{HU2}
+\]
+Consequently removing only the $0,1$ principal parts does not
+produce an entire Mellin transform for a nontrivial positive
+compact shift. The two-endpoint formula in the earlier paper
+continues to hold exactly on its stated two-endpoint scope.
+\end{theorem}
+\begin{proof}
+The classical Hurwitz value is
+$\zeta(-n,a)=-B_{n+1}(a)/(n+1)$; see
+\cite[Chapter 12]{ApostolHurwitz}, documented in DLMF 25.11.14.
+Compactness of $\mu$ permits integration of this identity and of
+the holomorphic factors in a neighborhood of $-2k$.
+The residue of $\Gamma(w/2)$ there is $2(-1)^k/k!$,
+and $\pi^{-w/2}=\pi^k$ at that point. These give (HU1).
+The exact polynomial
+$B_3(1+a)=a(a+1/2)(a+1)$ is positive for $a>0$ and zero
+at $a=0$, proving (HU2) and its equality case.
+The $0,1$ principal parts are holomorphic at $-2$, so subtracting
+them leaves this nonzero residue unchanged.
+\end{proof}
+
+\begin{theorem}[Bilateral completion in the original physical coordinate]
+For $0<a<1$ define
+\[
+ \begin{split}
+ K_a(x)&=2\sum_{n\in\mathbb Z}e^{-\pi(n+a)^2x^2},\\
+ F_a(x)&=D(D-1)K_a(x),\\
+ A(w)&=w(w-1)\pi^{-w/2}\Gamma(w/2).
+ \end{split}
+ \tag{HU3}
+\]
+For each closed interval $[\epsilon,1-\epsilon]$ with
+$0<\epsilon<1/2$, $F_a$ belongs to the original $\B$ uniformly
+in every defining endpoint seminorm. Its entire Mellin transform is
+\[
+ \M F_a(w)=A(w)\bigl(\zeta(w,a)+\zeta(w,1-a)\bigr)
+ =A(w)\bigl(a^{-w}+\zeta(w,1+a)+\zeta(w,1-a)\bigr).
+ \tag{HU4}
+\]
+Thus the two earlier shifts together with the actual missing
+central summand cancel every negative-even gamma pole. The exact
+physical inversion of this family is
+\[
+ \mathcal IF_a(x)=4\sum_{n\ge1}
+                \cos(2\pi na)\,\phi_*(nx).
+ \tag{HU5}
+\]
+This retains the full original gaussian source $\phi_*$, the
+original coordinate $x$, and every integer lattice coefficient.
+\end{theorem}
+\begin{proof}
+For $a$ in the stated interval, every $|n+a|$ is bounded away
+from zero, and the gaussian sum and all its $D$ derivatives
+decrease exponentially as $x\to\infty$, uniformly in $a$.
+Poisson summation with the Fourier convention in (RC2) gives
+\[
+ K_a(x)=\frac2x\sum_{m\in\mathbb Z}
+             e^{-\pi m^2/x^2}e^{2\pi ima}.
+ \tag{HU6}
+\]
+The term $m=0$ is exactly $2/x$ and is killed by $D(D-1)$.
+All other terms, with every $D$ derivative, decrease faster than
+every power at zero uniformly in $a$. This proves membership in
+the original $\B$ at both ends, not only a formal pole cancellation.
+
+In $\Re w>1$, absolute integration of the gaussian series gives
+\[
+ \M K_a(w)=\pi^{-w/2}\Gamma(w/2)
+                  \bigl(\zeta(w,a)+\zeta(w,1-a)\bigr).
+\]
+Indeed positive terms $n+a$ for $n\ge0$ give the first Hurwitz
+series and absolute values of terms with $n\le-1$ give the second.
+The factor $2$ in $K_a$ cancels the $1/2$ in each gaussian
+Mellin integral. Two integrations by parts are justified in this
+half-plane at both endpoints, yielding the first equality of
+(HU4). Its left-hand side is entire by the just-proved endpoint
+estimates. The classical recurrence
+$\zeta(w,a)=a^{-w}+\zeta(w,1+a)$ proves the second equality.
+At negative even integers, the Bernoulli reflection identity
+$B_{2k+1}(1-a)=-B_{2k+1}(a)$ gives the same cancellation
+algebraically; it follows also directly from the gaussian proof.
+
+Apply $\mathcal I$ to (HU6). It gives
+$\mathcal IK_a=2+4\sum_{n\ge1}\cos(2\pi na)e^{-\pi n^2x^2}$.
+The identity $D(D-1)\mathcal I=\mathcal ID(D-1)$ follows
+from (RC2). This polynomial kills the constant and maps each
+gaussian to the actual $\phi_*(nx)$, proving (HU5).
+All termwise differentiations are absolutely locally convergent.
+Poisson summation and the gaussian transform used here are
+classical, with their Fourier convention fixed in
+\cite{SteinFourier}; no new convention for $x$ or for the Mellin
+coordinate has been introduced.
+\end{proof}
+
+\begin{theorem}[Every original finite primary is attained by this family]
+Let $Z$ be any nonempty finite set of actual nontrivial zeros,
+with their full multiplicities, and let $J_Z:\B\to E_Z$ be the
+original jet map in (T1). For every $0<\epsilon<1/2$ the
+vectors
+\[
+ j(a):=J_ZF_a\qquad(\epsilon<a<1-\epsilon)
+\]
+span all of $E_Z$. In the original ordered jet coordinates set
+\[
+ \mathsf P_{Z,\epsilon}
+    =\int_\epsilon^{1-\epsilon} j(a)j(a)^*\,da.
+ \tag{HU7}
+\]
+Then $\mathsf P_{Z,\epsilon}>0$, and the explicit map
+\[
+ \mathsf S_{Z,\epsilon}u
+   =\int_\epsilon^{1-\epsilon}
+      F_a\,j(a)^*\mathsf P_{Z,\epsilon}^{-1}u\,da
+       \quad:E_Z\longrightarrow\B
+ \tag{HU8}
+\]
+satisfies
+\[
+ J_Z\mathsf S_{Z,\epsilon}=1,\qquad
+ J_Z(\mathsf S_{Z,\epsilon}-R_Z)=0.
+ \tag{HU9}
+\]
+The actual original finite-sector projection on its cohomology
+classes is
+$\sigma_Z\overline J_Z[q\mathsf S_{Z,\epsilon}u]=\sigma_Zu$.
+The residual difference remains in the explicitly stated
+$\ker J_Z$; it is not identified with $\Theta V$.
+\end{theorem}
+\begin{proof}
+The components of $j(a)$ are real-analytic functions on $0<a<1$,
+by (HU4) and the holomorphy of the Hurwitz parameter there.
+Suppose a complex linear functional $\lambda$ on $E_Z$ kills
+them on the stated open interval. Real-analytic uniqueness extends
+this identity to all $0<a<1$.
+
+Near $a=0$, the sum
+$\zeta(w,1+a)+\zeta(w,1-a)$ and all its finitely many required
+$w$ derivatives are holomorphic and bounded in $a$.
+The singular part of $\lambda j(a)$ therefore has the exact form
+\[
+ \sum_{\rho\in Z}a^{-\rho}P_\rho(-\log a),
+       \qquad \deg P_\rho<m_\rho.
+ \tag{HU10}
+\]
+The original jet convention is the coefficient of $(w-\rho)^j$,
+so these polynomials include their original $1/j!$ factors.
+For each root the map from $\lambda$'s primary coefficients to
+the coefficients of $P_\rho$ is triangular, with nonzero diagonal
+multipliers $A(\rho)/j!$. They are nonzero since
+$0<\Re\rho<1$, $\rho\ne0,1$, and gamma has no zeros.
+Thus a nonzero $\lambda$ gives at least one nonzero polynomial.
+
+Such an exponential polynomial cannot stay bounded as $a\to0$.
+For completeness put $y=-\log a$, choose the largest real part
+$\beta>0$ among its nonzero terms, and then the largest degree $d$
+at that real part. After division by $e^{\beta y}y^d$, it equals
+$T(y)+o(1)$, uniformly as $y\to\infty$, where
+$T(y)=\sum c_\rho e^{i\Im\rho y}$ is a nonzero finite sum with
+distinct frequencies. If the original expression were bounded,
+then $T(y)\to0$. On the other hand direct integration gives
+\[
+ \lim_{R\to\infty}\frac1R\int_R^{2R}|T(y)|^2dy
+       =\sum |c_\rho|^2>0:
+\]
+each cross-frequency integral divided by $R$ tends to zero,
+while each diagonal integral is $|c_\rho|^2$. This contradicts
+$T(y)\to0$. Since the remainder of $\lambda j(a)$ is bounded,
+the identity $\lambda j=0$ consequently forces $\lambda=0$.
+This proves the spanning assertion without discarding any primary
+or derivative slot.
+
+For $u\ne0$, the continuous nonnegative integrand
+$|j(a)^*u|^2$ cannot vanish on the whole interval by the spanning
+result. Its integral is therefore positive, proving (HU7).
+The uniform endpoint seminorm bounds in (HU3) show that (HU8)
+is a genuine integral in $\B$. Its continuous jet map may be
+passed through the integral, giving
+$J_Z\mathsf S_{Z,\epsilon}u
+=\mathsf P_{Z,\epsilon}\mathsf P_{Z,\epsilon}^{-1}u=u$.
+Subtracting the already proved $J_ZR_Z=1$ proves (HU9).
+Passage through the original quotient $q$ proves the stated
+finite-sector cohomology formula. This calculation supplies the
+actual map and its exact residual space, without assigning a
+false equality to the two sections in the entire quotient.
+\end{proof}
+
+The finite guard $\epsilon$ is retained: no uniform statement at
+$a=0$ is asserted. The interpolation matrix (HU7) is explicitly
+evaluated as an integral of full Hurwitz jets, not as a rank-only
+allocation or an arithmetic sign estimate. It gives an additional
+concrete test-family receiver from the older CUE/Hurwitz construction
+to every original finite zero sector. Its residual cohomology class
+and its original $dx$ Gram matrix remain specified objects for
+subsequent arithmetic work.
+
+\begin{thebibliography}{99}
+\bibitem{ApostolHurwitz} T. M. Apostol, \emph{Introduction to Analytic
+Number Theory}, Springer, 1976, Chapter 12; the Hurwitz recurrence
+and Bernoulli special values are documented with primary source
+locators in
+\href{https://dlmf.nist.gov/25.11.E3}{NIST DLMF 25.11.3} and
+\href{https://dlmf.nist.gov/25.11.E14}{25.11.14}.
+\bibitem{DLMFStirling} Richard A.~Askey and Ranjan Roy,
+NIST Digital Library of Mathematical Functions,
+Section 5.11, Asymptotic expansions of the gamma function,
+\href{https://dlmf.nist.gov/5.11.E3}{formula 5.11.3}, including the
+classical Stirling expansion. Its vertical-line modulus estimate
+is used in (RC9).
+\bibitem{SteinFourier} E. M. Stein and R. Shakarchi,
+\emph{Fourier Analysis: An Introduction}, Princeton University
+Press, 2003, Chapter 5 (Fourier transformation on the real line,
+inversion and Plancherel).
+\bibitem{ApostolMobius} T. M. Apostol, \emph{Introduction to Analytic
+Number Theory}, Springer, 1976, Chapter 2; the divisor identity and
+dilated-sum inversion are documented with this source in
+\href{https://dlmf.nist.gov/27.5.E2}{NIST DLMF 27.5.2} and
+\href{https://dlmf.nist.gov/27.5.E7}{27.5.7}.
+\bibitem{StacksSupport} The Stacks Project Authors, \emph{The Stacks Project},
+Section 20.21, Cohomology with support in a closed subset,
+\href{https://stacks.math.columbia.edu/tag/0A39}{Tag 0A39}.
+The defining derived support functor used in (S2) is standard;
+(S4) supplies the full injective-resolution calculation for the exact
+two-point space and original theta arrow used here.
+\bibitem{Beurling} A. Beurling, A closure problem related to the Riemann
+zeta-function, \emph{Proc. Natl. Acad. Sci. USA} 41 (1955), 312--314,
+\href{https://doi.org/10.1073/pnas.41.5.312}{doi:10.1073/pnas.41.5.312}.
+\bibitem{BD} L. B\'aez-Duarte, A strengthening of the Nyman--Beurling
+criterion for the Riemann hypothesis, \emph{Rend. Lincei Mat. Appl.}
+14 (2003), 5--11; \href{https://arxiv.org/abs/math/0202141}{arXiv:math/0202141}.
+\bibitem{CC} A. Connes and C. Consani, Geometry of the arithmetic site,
+\emph{Adv. Math.} 291 (2016), 274--329,
+\href{https://doi.org/10.1016/j.aim.2015.11.045}{doi:10.1016/j.aim.2015.11.045}.
+The framed denominator construction cited above is in the earlier local
+programme manuscript; it must not be attributed to this human paper
+without a matching source statement.
+\bibitem{DLMF25} T. M. Apostol, \emph{Introduction to Analytic Number Theory},
+Springer, 1976, Section 12.8; formulas also documented in
+\href{https://dlmf.nist.gov/25.4.E4}{NIST DLMF 25.4.4}.
+\bibitem{CCcycles} A. Connes and C. Consani, Hochschild homology,
+trace map and $\zeta$-cycles, \emph{Proc. Sympos. Pure Math.} 105
+(2023), 83--101, especially Lemma 4.1 and Proposition 4.2;
+\href{https://arxiv.org/abs/2207.10419}{arXiv:2207.10419}.
+\bibitem{Titchmarsh} E. C. Titchmarsh, \emph{The Theory of the Riemann
+Zeta-Function}, second edition, revised by D. R. Heath-Brown,
+Oxford University Press, 1986 (the classical zero-counting theorem used
+in the nonzero-tail assertion).
+\bibitem{DeligneII} P. Deligne, La conjecture de Weil: II,
+\emph{Publications Math\'ematiques de l'IH\'ES} 52 (1980), 137--252,
+especially (1.6.1), (1.6.7)--(1.6.10);
+\href{https://www.numdam.org/item/PMIHES_1980__52__137_0/}{primary article},
+doi:10.1007/BF02684780. The finite primary formulas and every metric
+receiver used here are proved explicitly above.
+\bibitem{Green} P. Green, The local structure of twisted covariance
+algebras, \emph{Acta Mathematica} 140 (1978), 191--250,
+doi:10.1007/BF02392308;
+\href{https://archive.ymsc.tsinghua.edu.cn/pacm_download/117/6237-11511_2006_Article_BF02392308.pdf}{primary article}.
+\end{thebibliography}
+\end{document}

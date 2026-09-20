@@ -1,0 +1,298 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,hyperref}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\C}{\mathbb C}
+\title{Independent endpoint, multiplicity, and original-coordinate check}
+\author{}
+\date{20 September 2026}
+\begin{document}\maketitle
+
+\paragraph{Checked scope.}
+This check reads SA32--SA43 of
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_SPECTRAL_ACTION.tex\#L1}{\texttt{NATIVE\_SPECTRAL\_ACTION.tex}} and verifies the endpoint
+SA41, aggregate bound SA42, and coordinate phases SA33--SA35.
+It leaves the frozen MC1--MC35 proof and its checkers unchanged.
+The examples below are exact finite comparison-measure calculations,
+not packets of arithmetic zeros. No correction to these formulas was found.
+
+\section{An actual size-two Jordan block at the endpoint}
+
+Use the original matrices
+\begin{equation}
+ G=\begin{pmatrix}3&0\\0&1\end{pmatrix},\quad
+ A=\begin{pmatrix}0&1/3\\1&0\end{pmatrix},\quad
+ r=\begin{pmatrix}1/3\\0\end{pmatrix},\quad
+ \ell=\begin{pmatrix}0&1\end{pmatrix},\quad Q=r\ell.
+ \tag{EC1}
+\end{equation}
+One has \(GA=A^*G\), \(\ell r=0\), and
+\begin{equation}
+ T(t)=A-tQ=\begin{pmatrix}0&(1-t)/3\\1&0\end{pmatrix},
+ \quad T(t)^2=\frac{1-t}{3}I,\quad
+ M=T(1)=\begin{pmatrix}0&0\\1&0\end{pmatrix}.
+ \tag{EC2}
+\end{equation}
+In particular \(M\ne0\) and \(M^2=0\). Its minimal and
+characteristic polynomials are both \(z^2\), so this endpoint is a
+genuine nonzero size-two Jordan block.
+Direct inversion, with no eigenvector decomposition, gives
+\begin{equation}
+ (zI-T(t))^{-1}
+ =\frac1{z^2-(1-t)/3}
+     \begin{pmatrix}z&(1-t)/3\\1&z\end{pmatrix},
+ \quad
+ \kappa_t(z)=\frac1{3z^2-1+t}.
+ \tag{EC3}
+\end{equation}
+At \(t=1\), the entire operator resolvent is
+\(z^{-1}I+z^{-2}M\), and its specified scalar entry is
+\(\kappa_1(z)=1/(3z^2)\). The double pole has not been
+cancelled or replaced by a simple eigenvalue pole.
+
+Write any polynomial as \(F(z)=\sum_{j\ge0}a_jz^j\).
+Equation (EC2) gives, for every complex \(t\),
+\begin{equation}
+ \Phi_F(t)=\tr F(T(t))
+     =2\sum_{j\ge0}a_{2j}\left(\frac{1-t}{3}\right)^j .
+ \tag{EC4}
+\end{equation}
+Odd powers have trace zero because \(T(t)\) does, and even
+powers are the displayed scalar multiples of \(I\).
+Thus for every \(n\ge1\)
+\begin{equation}
+ \Phi_F^{(n)}(1)=\frac{2(-1)^n n!}{3^n}a_{2n}.
+ \tag{EC5}
+\end{equation}
+On the other side of SA41, with \(\Res_\infty^+\) meaning the
+coefficient of \(z^{-1}\),
+\[
+ (-1)^n(n-1)!\Res_\infty^+F'(z)\kappa_1(z)^n
+ =\frac{(-1)^n(n-1)!}{3^n}(2n a_{2n}),
+\]
+which is exactly (EC5). This verifies every polynomial and
+every derivative order in this genuinely defective endpoint,
+not only finitely many monomials.
+
+\section{A retained comparison metric with two nonreal Jordan blocks}
+
+For the separate comparison measure
+\(d\mu=(3/2)1_{[-1,1]}(u)\,du\), retain its mass \(3\).
+On polynomials of degree at most \(3\), in the ordered basis
+\(1,u,u^2,u^3\), its Gram matrix is
+\begin{equation}
+ G_{ij}=
+ \begin{cases}3/(i+j+1),&i+j\text{ even},\\0,&i+j\text{ odd},\end{cases}
+ \quad
+ G=\begin{pmatrix}
+ 3&0&1&0\\0&1&0&3/5\\1&0&3/5&0\\0&3/5&0&3/7
+ \end{pmatrix}.
+ \tag{EC6}
+\end{equation}
+Indeed these entries are the integrals of \(u^{i+j}\).
+The leading principal determinants are
+\(3,3,4/5,48/875\); alternatively positivity follows
+directly by integrating the squared modulus of a nonzero polynomial.
+The original test quotient is \(\C[u]/((u^2+1)^2)\), whose
+multiplication matrix and specified rank-one correction are
+\begin{equation}
+ M=\begin{pmatrix}
+ 0&0&0&-1\\1&0&0&0\\0&1&0&-2\\0&0&1&0
+ \end{pmatrix},\quad
+ r=\begin{pmatrix}32/35\\0\\20/7\\0\end{pmatrix},\quad
+ \ell=\begin{pmatrix}0&0&0&1\end{pmatrix},\quad
+ Q=r\ell,\quad A=M+Q.
+ \tag{EC7}
+\end{equation}
+Here \(\ell r=0\), hence \(Q^2=0\).
+The degree-four monic orthogonal polynomial of the comparison measure is
+\[
+ q_4(u)=u^4-\frac67u^2+\frac3{35}.
+\]
+Its pairings with \(1,u^2\) are respectively
+\(3/5-6/7+9/35=0\) and
+\(3/7-18/35+3/35=0\); its pairings with \(u,u^3\)
+vanish by oddness. Compression of multiplication by \(u\)
+therefore replaces \(u^4\) by \(6u^2/7-3/35\).
+This is exactly the last column of \(A\) in (EC7), so
+\(GA=A^*G\) follows also from its source construction.
+Direct multiplication verifies the same identity.
+The last-column difference is
+\((u^2+1)^2-q_4(u)=20u^2/7+32/35\), retaining the full relation.
+
+The original metric norm is calculated without changing \(G\):
+\begin{equation}
+ r^*Gr=\frac{15472}{1225},\quad
+ \ell G^{-1}\ell^*=\frac{175}{12},\quad
+ \epsilon^2=\tr(Q^{\dagger_G}Q)
+     =(r^*Gr)(\ell G^{-1}\ell^*)=\frac{3868}{21}.
+ \tag{EC8}
+\end{equation}
+For the inverse entry in (EC8), use the odd-coordinate block
+\(\left(\begin{smallmatrix}1&3/5\\3/5&3/7\end{smallmatrix}\right)\),
+whose determinant is \(12/175\). The numerator of the bottom-right
+inverse entry is \(1\). The first factor is
+\(3(32/35)^2+2(32/35)(20/7)+(3/5)(20/7)^2\).
+
+The vector \(1\) is cyclic for \(M\): its first four iterates
+are precisely \(1,u,u^2,u^3\). Thus the minimal polynomial has
+degree four and is the complete characteristic polynomial
+\((z^2+1)^2\). The eigenvalues \(+i,-i\) each have algebraic
+multiplicity two, and the exponent two of each factor in the
+minimal polynomial forces a size-two Jordan block at each.
+This conclusion is also checked directly by
+\begin{equation}
+ M^2+I=
+ \begin{pmatrix}
+ 1&0&-1&0\\0&1&0&-1\\1&0&-1&0\\0&1&0&-1
+ \end{pmatrix}\ne0,\qquad (M^2+I)^2=0,
+ \tag{EC9}
+\end{equation}
+together with cyclicity.
+
+For the scaling generator \(B=cI+iM\), the eigenvalues are
+\(c-1,c+1\), both with algebraic multiplicity two. The
+positive aggregate in SA42 is consequently
+\begin{equation}
+ \mathcal L(1)=2\,[2(c+1)-2c]=4,\qquad
+ \mathcal L(1)^2=16\le\frac{3868}{21}=\epsilon^2 .
+ \tag{EC10}
+\end{equation}
+Counting each distinct eigenvalue once would give \(2\), which is
+not the asserted aggregate. Both occurrences are necessary.
+
+The scalar resolvent in SA41 retains these double poles as well.
+Here
+\begin{equation}
+ d(z)=z^4-\frac67z^2+\frac3{35},\quad
+ n(z)=\frac{20}{7}z^2+\frac{32}{35},\quad
+ \kappa_1(z)=\frac{n(z)}{(z^2+1)^2}.
+ \tag{EC11}
+\end{equation}
+To obtain it directly, solve \((zI-A)y=r\). Its coordinate
+equations give \(y_2=zy_3\),
+\(y_1=(z^2-6/7)y_3-20/7\), \(y_0=zy_1\);
+the first equation then gives
+\(d(z)y_3=20z^2/7+32/35\).
+Thus \(\kappa(z)=\ell y=n(z)/d(z)\);
+the rank-one resolvent formula gives (EC11).
+Its numerator at either \(z=\pm i\) is \(-68/35\ne0\), so
+each order-two endpoint pole is genuine.
+
+\section{Why the aggregate proof counts algebraic multiplicity}
+
+For any of the actual finite matrices in SA42, let \(W\)
+be the direct sum of all generalized eigenspaces of \(B(t)\)
+whose eigenvalues have real part exceeding \(c\).
+For each such eigenvalue \(\lambda\), the dimension of its
+generalized eigenspace is its algebraic multiplicity.
+One proof is to decompose using the relatively prime
+primary factors of the minimal polynomial; the resulting
+invariant direct sum factors the characteristic polynomial.
+Within each summand the nilpotent part has a basis adapted
+to its kernel flag, in which it is strictly triangular.
+Its trace is therefore zero, and the summand's trace is
+its dimension times \(\lambda\).
+
+Let \(P_W\) be the \(G\)-orthogonal projection. In a
+\(G\)-orthonormal basis beginning with \(W\), invariance
+puts \(B(t)|_W\) in the upper-left block. Adjointing that
+block conjugates its trace, whether or not \(W\) is
+invariant under \(B(t)^{\dagger_G}\).
+Consequently
+\begin{equation}
+ \tr(P_W(B(t)+B(t)^{\dagger_G}-2cI))
+ =2\operatorname{Re}\tr(B(t)|_W)-2c\dim W
+ =\mathcal L(t).
+ \tag{EC12}
+\end{equation}
+The Hermitian matrix on the left is the full defect
+\(\mathcal C(t)\), whose nonzero eigenvalues are
+\(|t|\epsilon,-|t|\epsilon\). In its \(G\)-orthonormal
+eigenbasis, each diagonal entry of \(P_W\) is
+\(\|P_Wu_j\|_G^2\in[0,1]\). Thus (EC12) is at most
+\(|t|\epsilon\). This proof includes all generalized
+directions, so no diagonalizability or simple-root premise
+has entered the estimate.
+
+\section{Original scaling coordinate: determinant and derivative phases}
+
+Retain \(S=c+iu\). With \(z=(s-c)/i\), the exact matrix identity is
+\begin{equation}
+ sI-B(t)=i(zI-T(t)),\quad
+ \det(sI-B(t))=i^q p_t((s-c)/i),\quad
+ (sI-B(t))^{-1}=i^{-1}(zI-T(t))^{-1}.
+ \tag{EC13}
+\end{equation}
+This is multiplication of every row by the scalar \(i\);
+its determinant multiplier is \(i^q\), not \(i\) or \(i^{-q}\).
+For (EC2), \(q=2\) and
+\[
+ i^2p_t((s-c)/i)=(s-c)^2+\frac{1-t}{3}.
+\]
+At \(t=1\) it is \((s-c)^2\), retaining the nonzero
+Jordan block although the scalar determinant has only the
+repeated root \(c\). For (EC7), \(q=4\), so the endpoint
+determinant is
+\[
+ i^4(( (s-c)/i)^2+1)^2
+       =((s-c)^2-1)^2,
+\]
+retaining both multiplicities in (EC10).
+
+For a polynomial \(f\) of \(S\), write \(F(u)=f(c+iu)\).
+The chain rule gives \(F'=i\,f'\circ(c+i\,\cdot)\).
+If \(g\) is any polynomial, its divided difference on \(n\)
+nodes transforms as
+\[
+ (g\circ(c+i\,\cdot))[\lambda_1,\ldots,\lambda_n]
+   =i^{\,n-1}g[c+i\lambda_1,\ldots,c+i\lambda_n].
+\]
+For distinct nodes this follows by induction in the divided
+difference recursion: each subtraction of nodes introduces
+one factor \(i\). Both sides are polynomial functions of
+the nodes, so the identity extends to every coincidence
+without removing repeated-node terms.
+Combining this identity with the chain rule proves
+\begin{equation}
+ F'[\lambda_1,\ldots,\lambda_n]
+   =i^n f'[c+i\lambda_1,\ldots,c+i\lambda_n].
+ \tag{EC14}
+\end{equation}
+The actual perturbation of \(T\) is \(-Q\), so the
+\(n\) factors in each trace cycle give \((-1)^n\).
+Multiplication by (EC14) yields exactly
+\((-1)^ni^n=(-i)^n\), as in SA35.
+At the first derivative this also follows directly from
+\[
+ B'(t)=-iQ,\qquad
+ \frac{d}{dt}\tr f(B(t))=-i\,\ell f'(B(t))r,
+\]
+using polynomial differentiation and cyclicity of trace.
+At the size-two Jordan endpoint, the full trace can be
+written without divided differences:
+\[
+ \tr f(cI+iT(t))
+   =2\sum_{j\ge0}\frac{f^{(2j)}(c)}{(2j)!}
+       (-1)^j\left(\frac{1-t}{3}\right)^j .
+\]
+Its \(n\)-th derivative at \(1\) is therefore
+\begin{equation}
+ \left.\frac{d^n}{dt^n}\tr f(B(t))\right|_{t=1}
+   =\frac{2n!}{3^n(2n)!}f^{(2n)}(c).
+ \tag{EC15}
+\end{equation}
+The two signs, one from \(i^{2n}\) and one from
+\((1-t)^n\), cancel. This is also what SA41 gives on
+substituting the retained \(F(u)=f(c+iu)\).
+
+\paragraph{Result.}
+SA41 survives a genuinely nonzero Jordan endpoint, including its
+double scalar resolvent pole. SA42 counts full algebraic multiplicity
+and passes the actual comparison-metric example (EC6)--(EC10).
+The original-coordinate determinant and derivative factors in
+SA33--SA35 are \(i^q\) and \((-i)^n\), respectively.
+These are finite identities and bounds; they assert no new arithmetic
+zero and no asymptotic decay.
+\end{document}

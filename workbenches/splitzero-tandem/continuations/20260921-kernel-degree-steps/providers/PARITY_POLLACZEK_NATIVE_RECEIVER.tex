@@ -1,0 +1,791 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Pol}{\mathbb C[x]}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\title{Exact native parity transport into the Pollaczek pair\\
+and certified finite source--observation bounds}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{The unchanged arithmetic weight and the literature input}
+
+Retain the original quartet, divisor, and completed numerator
+\[
+ \rho=\tfrac12+\delta+i\gamma,\quad 0<\delta<\tfrac12,\quad\gamma>2,
+ \quad h(s)=\prod_{z\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}(s-z)^m,
+ \quad m\geq1,\quad g=2\xi,
+\]
+\[
+ w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi},\quad
+ m_k=w_h^{*k},\quad k=4l+1\geq9,\quad
+ \mu_h=\int_\R w_h(y)\,dy.
+\]
+All multiplicities are the original complete multiplicities. No
+existence of an off-line quartet is asserted here. Conjugation
+symmetry of $g$ and of the root set of $h$ gives $w_h(-y)=w_h(y)$,
+and convolution gives the same symmetry for $m_k$.
+The source variable, centre and quotient polynomial remain
+\[
+ S=c+iy,\quad c=k/2,\quad q=[1+k(m-1)](k+1)^2,
+\]
+\[
+ \chi(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma]^{1+k(m-1)}.
+\]
+All finite observation formulas below use the original degree
+$N\geq q-1$ and actual map $\mathcal A_S=\Lambda\mathcal J_{S,N}$,
+with its full physical Taylor unit. Its codomain is its original
+observation image with the retained Hermitian structure.
+
+The original proved CAI16--18 envelope is used at its actual scope
+\cite{CAI}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/487253b5b01851da5b9b98af4e146fecf1fab902/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/providers/CAI_COMPLETE_PREREQUISITE.tex\#L284}{[proof CAI16]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}; the arbitrary-fixed-multiplicity form is HG21 \cite{HG}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex\#L374}{[proof HG21]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}:
+\begin{equation}\label{eq:CAI}
+ a_k(1+y^2)^{-M}\rho_\sigma(y)\leq m_k(y)\leq A_k\rho_\sigma(y),
+ \quad M=21+4m,
+\end{equation}
+\[
+ \rho_\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\quad
+ \int\rho_\sigma=\sqrt{2\pi},\quad\alpha=\pi/2,
+\]
+\[
+ c_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2}
+ \leq\rho_\sigma(y)\leq
+ C_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2},
+\]
+\[
+ c_\Gamma=\sqrt2e^{-7/6},\quad C_\Gamma=\sqrt{2\sqrt5}e^{2/3},
+ \quad p=8m-9/2,\quad B_h=42+8m,
+\]
+\[
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+                   {C_\Gamma2^{B_h/2}},\quad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{p+1}M_\alpha^{k-1},
+\]
+\[
+ \vartheta_h=\int_{-1}^1w_h(y)\,dy,\qquad
+ M_\alpha=\int_\R e^{\alpha y}w_h(y)\,dy.
+\]
+The constants $c_h,C_h^{\rm tilt}$ are precisely the established
+lower-envelope and compact/tail constants in the complete CAI
+provider, not new assumptions. In particular $m_k>0$ and all
+moments exist. For complex polynomials $P$ of degree at most $d$,
+that provider proves
+\begin{equation}\label{eq:CAI-finite}
+ \frac{a_k}{\Delta_d}\|P\|_\sigma^2
+       \leq\|P\|_{m_k}^2\leq A_k\|P\|_\sigma^2,
+ \qquad \Delta_d=[1+4(d+M)^2]^M.
+\end{equation}
+The Gamma mass has not been divided out.
+
+The original author source used here is A.~I.~Aptekarev,
+G.~L\'opez Lagomasino and A.~Mart\'{\i}nez--Finkelshtein,
+\emph{Strong asymptotics for the Pollaczek multiple orthogonal
+polynomials ensembles},
+\href{https://arxiv.org/abs/1410.1261v1}{arXiv:1410.1261v1}
+\cite{ALM}.
+Its Introduction gives the weights
+\begin{equation}\label{eq:literature}
+ w_1(x)=\frac1{\sinh(\alpha\sqrt x)},\qquad
+ w_2(x)=\frac1{\sqrt x\cosh(\alpha\sqrt x)},\qquad x>0,
+\end{equation}
+and their positive Stieltjes ratio
+\begin{equation}\label{eq:S}
+ s(x)=\frac{w_2(x)}{w_1(x)}
+     =\frac{\tanh(\alpha\sqrt x)}{\sqrt x}
+     =\frac4\pi\sum_{j=0}^{\infty}\frac1{x+(2j+1)^2}.
+\end{equation}
+The lowercase $s(x)$ in this note denotes this multiplier, not
+the original complex source variable $S$. No multiple-orthogonal
+asymptotic is assumed for the native weight.
+
+\section{Exact parity-square maps, source images, and masses}
+
+Define the two original transported measures on $(0,\infty)$ by
+\begin{equation}\label{eq:nu}
+ d\nu_0(x)=\frac{m_k(\sqrt x)}{\sqrt x}\,dx,
+ \qquad d\nu_1(x)=\sqrt x\,m_k(\sqrt x)\,dx=x\,d\nu_0(x).
+\end{equation}
+They have strictly positive densities. Their literal density
+ratios against the first literature weight are
+\begin{equation}\label{eq:ratios}
+ r_0(x)=\frac{m_k(\sqrt x)\sinh(\alpha\sqrt x)}{\sqrt x},
+ \qquad r_1(x)=x r_0(x),\qquad d\nu_j=r_jw_1\,dx.
+\end{equation}
+For every polynomial $f(y)$ there is a unique pair $E,O$ with
+$f(y)=E(y^2)+yO(y^2)$. Evenness of $m_k$ makes the cross term in
+the squared norm odd. The substitution $x=y^2$ on each half-axis
+then proves the exact sesquilinear and norm identities
+\begin{equation}\label{eq:parity-norm}
+ \|f\|_{m_k}^2=\int_0^\infty|E(x)|^2\,d\nu_0(x)
+                    +\int_0^\infty|O(x)|^2\,d\nu_1(x).
+\end{equation}
+There is no missing factor two: the two half-axes cancel the
+$1/2$ in $dy=dx/(2\sqrt x)$.
+
+The same construction is a unitary isomorphism
+\[
+ L^2(\R,m_kdy)\longrightarrow L^2(\nu_0)\oplus L^2(\nu_1),
+\]
+with
+\[
+ E(x)=\frac{f(\sqrt x)+f(-\sqrt x)}2,\qquad
+ O(x)=\frac{f(\sqrt x)-f(-\sqrt x)}{2\sqrt x}.
+\]
+These formulas are defined almost everywhere, and their inverse
+is $f(y)=E(y^2)+yO(y^2)$ for $y\ne0$. The identity of norms proves
+both that the maps are well defined and that they are inverse
+isometries.
+
+The exact isometry into the literature's two Hilbert spaces is
+\begin{equation}\label{eq:literature-isometry}
+ (E,O)\longmapsto
+       \left(\sqrt{r_0}\,E,\sqrt{r_1/s}\,O\right)
+ \quad\text{in }L^2(w_1dx)\oplus L^2(w_2dx).
+\end{equation}
+Since all density ratios are positive, division by their square
+roots gives its inverse on these full Hilbert spaces. On the
+degree-$N$ source its image is exactly
+\[
+ \sqrt{r_0}\,\Pol_{\lfloor N/2\rfloor}
+       \ \oplus\ \sqrt{r_1/s}\,\Pol_{\lfloor(N-1)/2\rfloor},
+\]
+not an unweighted polynomial pair. Here $\Pol_n$ means degree at
+most $n$, and $\Pol_{-1}=\{0\}$. The common-first-weight version
+is $(E,O)\mapsto(\sqrt{r_0}E,\sqrt{r_1}O)$ in two copies of
+$L^2(w_1dx)$.
+
+Write $\eta_j=\int y^jw_h(y)\,dy$ and
+$\zeta_j=\int y^jm_k(y)\,dy$. Tonelli and the convolution
+multinomial formula give the original parity masses
+\begin{equation}\label{eq:masses}
+ \nu_0((0,\infty))=\zeta_0=\mu_h^k,
+ \qquad \nu_1((0,\infty))=\zeta_2=k\eta_2\mu_h^{k-1}.
+\end{equation}
+The cross terms in the second formula vanish because $w_h$ is
+even. The literature masses are different fixed numbers:
+\begin{equation}\label{eq:raw-moments}
+ \tau_j:=\int_0^\infty x^j w_1(x)\,dx
+ =\frac{4(2j+1)!}{\alpha^{2j+2}}
+        (1-2^{-2j-2})\zeta(2j+2),\qquad \tau_0=2,
+\end{equation}
+\[
+ \int_0^\infty w_2(x)\,dx=2.
+\]
+For the first formula use $x=y^2$ and the positive expansion
+$1/\sinh(\alpha y)=2\sum_{j\geq0}e^{-(2j+1)\alpha y}$,
+then integrate each power of $y$. Its constant case uses
+$\sum_{j\geq0}(2j+1)^{-2}=\pi^2/8$, also obtained below from
+\eqref{eq:S} at zero. For the second mass, the same substitution
+gives $2\int_0^\infty\operatorname{sech}(\alpha y)dy=\pi/\alpha=2$;
+an antiderivative of $\operatorname{sech} u$ is
+$\arctan(\sinh u)$. None of these masses is set equal to one.
+
+For the exact original source $F(S)=\sum_{j=0}^Na_jS^j$, define
+\[
+ T_{rj}=\binom jr c^{j-r}i^r\quad(r\leq j),\qquad T_{rj}=0\quad(r>j).
+\]
+Let $\Pi_N$ reorder the coefficients in powers of $y$ into even
+powers first and odd powers second, without rescaling any entry.
+The parity coefficient map is the invertible matrix
+\begin{equation}\label{eq:source-map}
+ L_N=\Pi_NT,\qquad (e,o)=L_Na,
+\end{equation}
+where explicitly
+\[
+ e_r=(-1)^r\sum_{j=2r}^N\binom j{2r}c^{j-2r}a_j,
+ \quad
+ o_r=i(-1)^r\sum_{j=2r+1}^N\binom j{2r+1}c^{j-2r-1}a_j.
+\]
+Thus the full original degree-$N$ source maps onto precisely the
+displayed pair of polynomial spaces. An original constrained
+source subspace $W$ maps to $L_NW$, not to a substituted full pair.
+
+Put $n_0=\lfloor N/2\rfloor$, $n_1=\lfloor(N-1)/2\rfloor$ and
+\begin{equation}\label{eq:parity-grams}
+ H_{j,n}=\left[\int_0^\infty x^{a+b}\,d\nu_j(x)\right]_{a,b=0}^n,
+ \qquad H=\diag(H_{0,n_0},H_{1,n_1}).
+\end{equation}
+The matrices are positive definite because nonzero polynomials
+cannot vanish on a set of full measure for a positive density.
+They retain the literal moments
+$(H_{j,n})_{ab}=\zeta_{2(a+b+j)}$. Integration gives
+\begin{equation}\label{eq:original-gram}
+ H_{S,N}^{\rm ar}=L_N^*HL_N.
+\end{equation}
+The actual observation matrix in these coordinates is
+\begin{equation}\label{eq:observation}
+A=\mathcal A_SL_N^{-1}.
+\end{equation}
+The exact original observation metric and minimizing lift are
+\begin{equation}\label{eq:Q}
+ Q(H)=(AH^{-1}A^*)^{-1},\qquad
+ a_{\min}=L_N^{-1}H^{-1}A^*Q(H)u.
+\end{equation}
+Indeed $A$ is onto its stated observation image, so $AH^{-1}A^*$
+is strictly positive. The vector $z_0=H^{-1}A^*Q(H)u$ satisfies
+$Az_0=u$, and for $Az=0$ the cross term is
+$z^*Hz_0=(Az)^*Q(H)u=0$. Every other lift has energy
+$u^*Q(H)u+z^*Hz$, proving the formula and uniqueness. The
+congruence \eqref{eq:original-gram} returns the result to the
+unchanged source coefficients.
+
+There is also an exact transport of the original quotient, not
+only of its source norm. Put
+\[
+ u_a=(2a-k)\delta,\qquad v_b=(2b-k)\gamma,\qquad
+ e_k=1+k(m-1),
+\]
+and define the monic polynomial
+\begin{equation}\label{eq:Xi}
+ \Xi(x)=\prod_{a=0}^k\prod_{b=(k+1)/2}^{k}
+                 [x-(v_b-iu_a)^2]^{e_k}.
+\end{equation}
+Its degree is $q/2$. The opposite grid point of $(a,b)$ is
+$(k-a,k-b)$, and exactly one point of each opposite pair has
+$v_b>0$. That pair's factors after $S=c+iy$ are
+\[
+ (iy-u_a-iv_b)(iy+u_a+iv_b)
+          =-[y^2-(v_b-iu_a)^2].
+\]
+Since $k$ is odd, $q=e_k(k+1)^2$ is divisible by four. The number
+$q/2$ of paired factors with multiplicity is therefore even,
+so the full sign is $(-1)^{q/2}=1$. Consequently
+\begin{equation}\label{eq:chi-square}
+ \chi(c+iy)=\Xi(y^2)
+\end{equation}
+with exactly the original leading coefficient. Conjugating the
+roots in \eqref{eq:Xi} is the permutation $a\mapsto k-a$, so
+$\Xi$ also has real coefficients.
+
+Let $\mathcal E_x=\C[x]/(\Xi)$. Substitution and parity give the
+explicit algebra isomorphism followed by vector-space coordinates
+\begin{equation}\label{eq:quotient-parity}
+ \C[S]/(\chi)\longrightarrow\C[y]/(\Xi(y^2))
+                  \longrightarrow\mathcal E_x\oplus\mathcal E_x,
+ \qquad [F]\longmapsto([E],[O]).
+\end{equation}
+The second arrow has multiplication
+$(E,O)(E',O')=(EE'+xOO',EO'+OE')$ modulo $\Xi$ in each component.
+To verify its kernel, divide $E$ and $O$ separately by $\Xi$.
+The remaining even and odd polynomials have degrees less than
+$q$ in $y$, so their sum is divisible by the monic degree-$q$
+polynomial $\Xi(y^2)$ only when both remainders are zero. This
+also proves surjectivity and identifies the inverse through the
+unique remainder $E(y^2)+yO(y^2)$ and $y=(S-c)/i$.
+Multiplication by the original variable $S$ is precisely
+\begin{equation}\label{eq:S-block}
+ \begin{pmatrix}cI&iM_x\\ iI&cI\end{pmatrix}
+ \quad\text{on }\mathcal E_x\oplus\mathcal E_x.
+\end{equation}
+An original full Taylor unit $\mathfrak u\in\C[S]/(\chi)$,
+transported as $(U_0,U_1)$, acts by the unchanged block matrix
+\begin{equation}\label{eq:unit-block}
+ \begin{pmatrix}M_{U_0}&M_{xU_1}\\M_{U_1}&M_{U_0}\end{pmatrix}.
+\end{equation}
+Its inverse is the transported multiplication by
+$\mathfrak u^{-1}$; the unit has not been removed. Thus the
+original class and observation maps can equivalently be
+transported through \eqref{eq:quotient-parity} and
+\eqref{eq:unit-block}. Formula \eqref{eq:observation} is their
+same matrix composition before choosing these quotient
+coordinates. At $N\geq q-1$, both parity source degree bounds
+are at least $q/2-1$, so both residue-class components are
+attained by the original degree-$N$ source.
+
+\section{Both native orthogonal families and all Christoffel constants}
+
+Let $P_d(y)$ be the real monic orthogonal polynomial of degree $d$
+for $m_k(y)dy$ and let $\omega_d=\int P_d^2m_k>0$. Existence and
+uniqueness follow by solving the positive definite moment system.
+Evenness and uniqueness give $P_d(-y)=(-1)^dP_d(y)$, so define
+\[
+ P_{2n}(y)=E_n(y^2),\quad P_{2n+1}(y)=yO_n(y^2),
+ \quad \kappa_n=\omega_{2n},\quad\lambda_n=\omega_{2n+1}.
+\]
+Equation \eqref{eq:parity-norm} shows that $E_n$ and $O_n$ are
+respectively the real monic orthogonal families for $\nu_0$ and
+$\nu_1$, with norms $\kappa_n$ and $\lambda_n$.
+
+The monic orthogonal polynomial in the original complex source
+coordinate is not obtained by dropping the phase. It is exactly
+\begin{equation}\label{eq:S-polynomial-phase}
+ \mathsf P_d(S)=i^dP_d((S-c)/i),\qquad
+ \mathsf P_d(c+iy)=i^dP_d(y),\qquad
+ \|\mathsf P_d\|_{m_k}^2=\omega_d.
+\end{equation}
+Its leading coefficient is $i^di^{-d}=1$; the lower-degree
+orthogonality follows by the same invertible substitution used
+in \eqref{eq:source-map}. Thus uniqueness proves this exact
+dictionary. Its parity pair is $((-1)^nE_n,0)$ at degree $2n$
+and $(0,i(-1)^nO_n)$ at degree $2n+1$. These phases remain in
+the original boundary classes and observation entries.
+
+Orthogonality gives the full original recurrence
+\[
+ yP_d=P_{d+1}+\beta_dP_{d-1},\qquad
+ \beta_d=\omega_d/\omega_{d-1}>0\quad(d\geq1),\quad \beta_0=0.
+\]
+To prove it, expand $yP_d-P_{d+1}$ in the lower orthogonal basis.
+Its coefficients below $d-1$ vanish by transferring $y$ to the
+lower polynomial. The coefficient of $P_d$ vanishes by parity,
+and the coefficient of $P_{d-1}$ is
+$\langle P_d,yP_{d-1}\rangle/\omega_{d-1}=\omega_d/\omega_{d-1}$.
+In the original $S$ coordinate the same identity reads
+$(S-c)\mathsf P_d=\mathsf P_{d+1}-\beta_d\mathsf P_{d-1}$,
+since $i^{d+1}/i^{d-1}=-1$; its sign is therefore retained too.
+
+Set
+\begin{equation}\label{eq:ad}
+ a_n=\frac{\lambda_n}{\kappa_n}=\beta_{2n+1}>0,
+ \qquad d_n=\frac{\kappa_n}{\lambda_{n-1}}=\beta_{2n}>0\ (n\geq1),
+ \qquad d_0=0.
+\end{equation}
+Separating the even and odd instances of that recurrence gives
+the exact polynomial identities
+\begin{equation}\label{eq:Christoffel}
+ xO_n=E_{n+1}+a_nE_n,\qquad
+ E_n=O_n+d_nO_{n-1},\quad O_{-1}=0.
+\end{equation}
+Evaluating the first at zero proves, starting from $E_0=1$,
+\begin{equation}\label{eq:E0}
+ E_n(0)=(-1)^n\prod_{j=0}^{n-1}a_j\ne0,
+ \qquad \frac{E_{n+1}(0)}{E_n(0)}=-a_n.
+\end{equation}
+Therefore the exact Christoffel formula is
+\begin{equation}\label{eq:Christoffel-explicit}
+ O_n(x)=\frac{E_{n+1}(x)-[E_{n+1}(0)/E_n(0)]E_n(x)}x
+        =\frac{E_{n+1}(x)+a_nE_n(x)}x,
+ \quad \lambda_n=a_n\kappa_n.
+\end{equation}
+The numerator has a zero at zero, so this is a polynomial identity,
+including the endpoint. The complete odd zero value is
+\begin{equation}\label{eq:O0}
+ O_n(0)=(-1)^n\sum_{j=0}^n
+     \left(\prod_{r=j+1}^nd_r\right)
+     \left(\prod_{r=0}^{j-1}a_r\right)
+ =E_{n+1}'(0)+a_nE_n'(0).
+\end{equation}
+The sum follows by iterating $O_n(0)=E_n(0)-d_nO_{n-1}(0)$;
+the derivative formula follows from \eqref{eq:Christoffel-explicit}.
+Every empty product equals one, so this covers $n=0$.
+
+Substitution of the two identities in \eqref{eq:Christoffel} into
+each other yields both complete monic recurrences
+\begin{align}
+ xE_n&=E_{n+1}+(a_n+d_n)E_n+a_{n-1}d_nE_{n-1},\label{eq:E-rec}\\
+ xO_n&=O_{n+1}+(a_n+d_{n+1})O_n+a_nd_nO_{n-1}.\label{eq:O-rec}
+\end{align}
+The last term of the first is zero at $n=0$ and needs no $a_{-1}$.
+The norm ratios are exactly
+$\kappa_n/\kappa_{n-1}=a_{n-1}d_n$ and
+$\lambda_n/\lambda_{n-1}=a_nd_n$.
+For example the orthonormal version of the first cross relation is
+\[
+ x\frac{O_n}{\sqrt{\lambda_n}}
+  =\sqrt{d_{n+1}}\frac{E_{n+1}}{\sqrt{\kappa_{n+1}}}
+       +\sqrt{a_n}\frac{E_n}{\sqrt{\kappa_n}},
+\]
+and the second is
+\[
+ \frac{E_n}{\sqrt{\kappa_n}}
+ =\sqrt{a_n}\frac{O_n}{\sqrt{\lambda_n}}
+       +\sqrt{d_n}\frac{O_{n-1}}{\sqrt{\lambda_{n-1}}}.
+\]
+These equalities are between functions in the displayed different
+weighted spaces; they explicitly give the matrix of the identity
+map or $x$-multiplication on every finite polynomial domain.
+
+\section{The exact multiple-orthogonality receiver and its residuals}
+
+The raw paper has one polynomial $P$ subject to moments against
+both $w_1$ and $w_2$. The native common-multiplier Nikishin pair is
+\[
+ (d\nu_0,\ s\,d\nu_0)=r_0(x)(w_1(x),w_2(x))\,dx;
+\]
+the native odd measure is instead $d\nu_1=x\,d\nu_0$.
+The literal maps between their functionals, for every polynomial
+$P$ and nonnegative integer $j$, are
+\begin{align}
+ \int x^jP\,d\nu_0&=\int x^j(r_0P)w_1\,dx,\label{eq:functional0}\\
+ \int x^jP\,s\,d\nu_0&=\int x^j(r_0P)w_2\,dx,\label{eq:functionalS}\\
+ \int x^jP\,d\nu_1&=\int x^j\left(\frac{r_1}{s}P\right)w_2\,dx
+                    =\int x^{j+1}P\,d\nu_0.\label{eq:functional1}
+\end{align}
+Thus each finite raw moment operator receives the explicit
+multiplied source space in these formulas, not the raw polynomial
+space unless that multiplier is retained. These maps are the
+functional counterparts of the square-root isometry
+\eqref{eq:literature-isometry}.
+
+Here is a nonzero residual computation within the native common
+multiplier pair. The $n$ zeros of $E_n$ are simple and lie in
+$(0,\infty)$. To prove this, multiply $E_n$ by the product of its
+distinct sign-changing zeros in that interval. If fewer than $n$
+such zeros existed, this product would have degree less than $n$
+and its product with $E_n$ would have constant nonzero sign except
+at finitely many points of the positive interval. Positivity of
+$\nu_0$ would contradict orthogonality. Thus there are $n$ such
+zeros, which exhaust the degree and establish the assertion.
+In particular $E_n(-a)$ has sign $(-1)^n$ for every $a>0$.
+
+For $a>0$, divide $E_n(x)-E_n(-a)$ by $x+a$. The quotient has
+degree $n-1$, so orthogonality gives the exact positive-resolvent
+identity
+\begin{equation}\label{eq:residual-atom}
+ \int\frac{E_n(x)}{x+a}\,d\nu_0(x)
+  =\frac1{E_n(-a)}\int\frac{E_n(x)^2}{x+a}\,d\nu_0(x).
+\end{equation}
+For $0\leq j<n$, division of $x^j$ by $x+a$ similarly gives
+\begin{equation}\label{eq:residual}
+ \int x^jE_n(x)s(x)\,d\nu_0(x)
+ =\frac4\pi\sum_{r=0}^{\infty}
+ \frac{[-(2r+1)^2]^j}{E_n(-(2r+1)^2)}
+ \int\frac{E_n(x)^2}{x+(2r+1)^2}\,d\nu_0(x).
+\end{equation}
+To justify the sum before division, dominate by
+$\int|x^jE_n(x)|s(x)\,d\nu_0<\infty$; the atomwise integrals are
+absolutely summable since $s$ is bounded. The divisions preserve
+each integral exactly. Every term on the resulting right side
+has the same strict sign $(-1)^{n+j}$, so that is the sign of the
+nonzero residual. In particular $E_n$ does not satisfy even the
+zeroth second-weight condition of the native common-multiplier
+Nikishin system. This is an evaluated residual, not just a
+declaration that two orthogonalities differ. For $n=0$ the
+zeroth residual is directly positive.
+
+There is also a completely finite lower bound. Cauchy--Schwarz
+with the factors $(x+1)^{1/2}E_n$ and $(x+1)^{-1/2}E_n$ yields
+\[
+ \int\frac{E_n^2}{x+1}\,d\nu_0
+ \geq\frac{\kappa_n^2}{\int(x+1)E_n^2\,d\nu_0}
+ =\frac{\kappa_n}{1+a_n+d_n},
+\]
+where \eqref{eq:E-rec} computes the final moment. The first
+positive atom in \eqref{eq:residual} therefore gives
+\begin{equation}\label{eq:residual-lower}
+ \left|\int E_n s\,d\nu_0\right|
+ \geq\frac{4\kappa_n}{\pi(1+a_n+d_n)|E_n(-1)|}>0.
+\end{equation}
+All its constants belong to the original native parity family.
+
+\section{Two positive resolvent series, with all constants proved}
+
+We give a direct proof of \eqref{eq:S} and the reciprocal identity
+that will supply finite native bounds. On the interval
+$[0,\alpha]$, $\alpha=\pi/2$, the operator $-d^2/dt^2+x$ with
+Dirichlet condition at zero and Neumann condition at $\alpha$
+has eigenvalues $x+(2j+1)^2$ and normalized eigenfunctions
+$\sqrt{2/\alpha}\sin((2j+1)t)$. Their completeness is the ordinary
+sine Fourier expansion obtained by odd reflection at zero and
+even reflection at $\alpha$. The Green kernel is
+\[
+ G_x(u,v)=\frac{\sinh(\sqrt x\min(u,v))
+                  \cosh(\sqrt x(\alpha-\max(u,v)))}
+                    {\sqrt x\cosh(\alpha\sqrt x)}.
+\]
+Its formula follows by solving the homogeneous differential
+equation on either side of $u=v$, imposing the two boundary
+conditions, continuity, and the unit derivative jump. Its
+eigenfunction expansion is uniformly absolutely convergent on
+the closed square since its terms are bounded by
+$(2/\alpha)/(x+(2j+1)^2)$. The spectral resolvent and the displayed
+Green kernel agree in $L^2$ and hence by continuity everywhere.
+At $u=v=\alpha$ this gives \eqref{eq:S}; at $x=0$, continuity
+gives $s(0)=\alpha$ and the odd reciprocal-square sum used above.
+
+With Neumann conditions at both endpoints, the constant mode
+contributes $1/(\alpha x)$ and the positive modes have
+eigenvalues $x+4j^2$, $j\geq1$. The normalized endpoint values
+have squares $2/\alpha$. The analogous Green kernel has endpoint
+value $\coth(\alpha\sqrt x)/\sqrt x$. Multiplication by $x$ gives
+the exact reciprocal series
+\begin{equation}\label{eq:reciprocal}
+ \boxed{\frac1{s(x)}=\sqrt x\coth(\alpha\sqrt x)
+  =\frac2\pi+\frac4\pi\sum_{j=1}^{\infty}\frac{x}{x+4j^2}.}
+\end{equation}
+The same uniformly convergent kernel argument justifies the
+expansion for $x>0$. Both sides extend at zero to $2/\pi$.
+Every summand is nonnegative. These identities are used on the
+original axis $x>0$; no degree-dependent rescaling is made.
+
+\section{Finite Stieltjes compression and native Gram approximation}
+
+The following formulas apply to each original parity block with
+$\nu=\nu_j$ and degree $n=n_j$. Put $v_n(x)=(1,x,\ldots,x^n)^T$,
+\[
+ H=\int v_nv_n^*\,d\nu,\quad
+ X_H=\int x v_nv_n^*\,d\nu,\quad
+ K=\int v_nv_n^*s\,d\nu,\quad
+ K_x=\int x v_nv_n^*s\,d\nu.
+\]
+All four are finite positive definite matrices, and for the
+zeroth parity block $X_H=H_{1,n}$ exactly. For $a>0$ define
+$R(a)=\int v_nv_n^*/(x+a)\,d\nu$. The block Gram matrix of
+$(x+a)^{1/2}v_n$ and $(x+a)^{-1/2}v_n$ is positive. Its Schur
+complement gives
+\begin{equation}\label{eq:resolvent-compression}
+ R(a)\succeq H(X_H+aH)^{-1}H.
+\end{equation}
+The positive series \eqref{eq:S} therefore proves
+\begin{equation}\label{eq:finite-S}
+ H^{1/2}s(H^{-1/2}X_HH^{-1/2})H^{1/2}
+       \preceq K\preceq\alpha H.
+\end{equation}
+The matrix function in the lower bound is defined by the positive
+spectral decomposition of the finite matrix. The summation is
+justified because each inverse is at most $a^{-1}I$ and the
+reciprocal-square series converges. This is a finite-moment
+bound using the exact Christoffel moment matrix, not a replacement
+of the full multiplication operator by its compression.
+
+More directly useful for the unchanged original Gram is
+\eqref{eq:reciprocal}. Define the actual second-weight tilt
+$d\widetilde\nu=s\,d\nu=r_jw_2\,dx$ and, for an integer $J\geq1$,
+\begin{equation}\label{eq:H-trunc}
+ H^{[J]}=\frac2\pi K+\frac4\pi\sum_{j=1}^J
+       \int\frac{x}{x+4j^2}v_nv_n^*\,d\widetilde\nu.
+\end{equation}
+Every summand is positive and $H^{[J]}$ is strictly positive
+already from its first term. Integrating \eqref{eq:reciprocal}
+and using monotone convergence in every quadratic form gives
+$H^{[J]}\uparrow H$. Since
+$x/(x+4j^2)\leq x/(4j^2)$ and
+$\sum_{j>J}j^{-2}\leq\int_J^\infty t^{-2}dt=1/J$, the full
+matrix error bound is
+\begin{equation}\label{eq:H-error}
+ \boxed{0\preceq H-H^{[J]}\preceq\frac1{\pi J}K_x
+                                      \preceq\frac1{2J}X_H.}
+\end{equation}
+This is a certified approximation of the original native Gram,
+not just a representation of an auxiliary tilted metric.
+
+Only moments and negative-axis resolvent integrals are required
+for a finite truncation. If
+$\widetilde\mu_d=\int x^d\,d\widetilde\nu$ and
+$\widetilde F(a)=\int(x+a)^{-1}\,d\widetilde\nu$, polynomial
+division gives, for $d\geq1$,
+\begin{equation}\label{eq:resolvent-moments}
+ \int\frac{x^d}{x+a}\,d\widetilde\nu
+ =\sum_{r=0}^{d-1}(-a)^r\widetilde\mu_{d-1-r}
+                  +(-a)^d\widetilde F(a).
+\end{equation}
+For $d=0$ the integral is $\widetilde F(a)$. This proves the
+finite evaluation map, including every polynomial-division sign.
+The positive integral form in \eqref{eq:H-trunc} remains available
+when cancellation in \eqref{eq:resolvent-moments} would be
+numerically inconvenient.
+
+Apply these constructions to both blocks of
+\eqref{eq:parity-grams}. Denote their direct sums by $H^{[J]}$,
+$K_x$ and $X_H$. The original source error is exactly the
+congruence
+\[
+ 0\preceq H_{S,N}^{\rm ar}-L_N^*H^{[J]}L_N
+       \preceq\frac1{\pi J}L_N^*K_xL_N.
+\]
+For the unchanged onto observation $A$ in \eqref{eq:observation},
+the minimum-energy proof of \eqref{eq:Q} shows that the map
+$G\mapsto Q(G)=(AG^{-1}A^*)^{-1}$ is order-preserving on positive
+source matrices: taking the minimum over the same set $Az=u$
+preserves each quadratic-form inequality. Therefore
+\begin{equation}\label{eq:Q-bracket}
+ \boxed{Q(H^{[J]})\preceq Q(H)\preceq
+ Q\left(H^{[J]}+\frac1{\pi J}K_x\right).}
+\end{equation}
+Both endpoints converge to the original $Q(H)$: the finite
+matrices converge to $H$, their positive inverses converge by
+$B^{-1}-C^{-1}=B^{-1}(C-B)C^{-1}$, and the same holds after
+the onto observation congruence. This proves a finite certified
+source and observation calculation with the original classes and
+Taylor unit untouched.
+
+There is an entirely explicit degree-only bound for the error.
+The original Gamma orthonormal recurrence has off-diagonal
+$b_j=\sqrt{(j+1)(j+1/2)}\leq j+1$, so its two weighted shifts
+give $\|yP\|_\sigma\leq2(N+1)\|P\|_\sigma$ on degree at most $N$.
+Combining this with \eqref{eq:CAI-finite} yields
+\begin{equation}\label{eq:L-bound}
+ \|yP\|_{m_k}^2\leq\mathcal L_N\|P\|_{m_k}^2,
+ \qquad \mathcal L_N=
+       \frac{4A_k\Delta_N(N+1)^2}{a_k}.
+\end{equation}
+Under the parity map this is exactly $X_H\preceq\mathcal L_NH$.
+Consequently for $J>\mathcal L_N/2$, with
+$\varepsilon_J=\mathcal L_N/(2J)<1$, one has
+\begin{equation}\label{eq:relative}
+ (1-\varepsilon_J)H\preceq H^{[J]}\preceq H,
+ \qquad
+ Q(H^{[J]})\preceq Q(H)
+       \preceq(1-\varepsilon_J)^{-1}Q(H^{[J]}).
+\end{equation}
+This bound is generally coarse but is finite, positive and
+explicit in the original CAI constants and degree. It does not
+assume the desired arithmetic estimate.
+
+\section{A second fully explicit bound using raw Pollaczek moments}
+
+The literal ratio $r_0$ also admits a useful finite comparison
+with the raw first literature weight. Put $L=M+1$ and
+\begin{equation}\label{eq:ratio-constants}
+ c_0=\frac{a_kc_\Gamma\alpha}{2^{1/4}(1+2\alpha)},
+ \qquad C_0=A_kC_\Gamma\alpha.
+\end{equation}
+Then for every $x>0$,
+\begin{equation}\label{eq:ratio-envelope}
+ c_0(1+x)^{-L}\leq r_0(x)\leq C_0.
+\end{equation}
+To prove this, write $y=\sqrt x$ and retain the exact factor
+\[
+ e^{-\alpha y}\frac{\sinh(\alpha y)}y
+    =\frac{1-e^{-2\alpha y}}{2y}.
+\]
+It is at most $\alpha$ and at least
+$\alpha/(1+2\alpha y)$, since $1-e^{-u}\geq u/(1+u)$ for $u\geq0$.
+The latter inequality follows from $e^u\geq1+u$.
+Substituting the two CAI envelopes gives the upper bound and the
+lower expression
+\[
+ \frac{a_kc_\Gamma\alpha(1+y^2)^{-M}}
+                   {(1+2\alpha y)(1+y)^{1/2}}.
+\]
+Use $1+2\alpha y\leq(1+2\alpha)\sqrt{1+y^2}$ and
+$(1+y)^{1/2}\leq2^{1/4}(1+y^2)^{1/4}$, followed by
+$(1+y^2)^{-M-3/4}\geq(1+y^2)^{-M-1}$, to prove
+\eqref{eq:ratio-envelope} with the stated constants.
+
+For parity $j=0,1$ use the raw measure
+$d\tau^{(j)}=x^jw_1(x)dx$ and the degree $n=n_j$. Define the
+explicit moment matrices
+\[
+ U_{j,n}=[\tau_{a+b+j}]_{a,b=0}^n,\qquad
+ V_{j,n}=\left[\sum_{r=0}^L\binom Lr\tau_{a+b+j+r}\right]_{a,b=0}^n.
+\]
+All entries are the explicit values \eqref{eq:raw-moments}.
+The measures satisfy $d\nu_j=r_0\,d\tau^{(j)}$, so the same
+block-Gram Schur-complement argument used in
+\eqref{eq:resolvent-compression}, now with weight $(1+x)^L$,
+proves the actual native bound
+\begin{equation}\label{eq:raw-matrix-bound}
+ \boxed{c_0 U_{j,n}V_{j,n}^{-1}U_{j,n}
+             \preceq H_{j,n}\preceq C_0U_{j,n}.}
+\end{equation}
+Explicitly, the block matrix with blocks $V_{j,n},U_{j,n}$ and
+$\int v_nv_n^*(1+x)^{-L}d\tau^{(j)}$ is a Gram matrix, giving
+the lower rational-weight bound; \eqref{eq:ratio-envelope}
+then gives the displayed native inequality.
+Taking block direct sums, followed by the unchanged congruence
+$L_N$ or the unchanged observation $A$, transports these bounds
+to the original source or to $Q(H)$, respectively. In particular,
+if $G_-$ and $G_+$ are these two block bounds, then
+\[
+ Q(G_-)\preceq Q(H)\preceq Q(G_+).
+\]
+This gives a fully explicit finite comparison from raw literature
+moments to the actual observation metric, with every density
+ratio paid for. No raw multiple-orthogonal polynomial is being
+used as a native orthogonal polynomial.
+
+The same ratio envelope proves a typed map in the reverse
+direction for the paper's actual multiple orthogonal polynomial
+$P_{(n_1,n_2)}$. The function
+\[
+ f(x)=P_{(n_1,n_2)}(x)/r_0(x)
+\]
+belongs to $L^2(\nu_0)$, since its squared norm is
+$\int |P|^2r_0^{-1}w_1dx$ and the inverse ratio is bounded by
+$c_0^{-1}(1+x)^L$. Equations
+\eqref{eq:functional0}--\eqref{eq:functionalS} give exactly
+\[
+ \int x^jf\,d\nu_0=0\ (0\leq j<n_1),\qquad
+ \int x^jf\,s\,d\nu_0=0\ (0\leq j<n_2).
+\]
+This is an explicit receiver of the raw multiple-orthogonality
+relations in the original even Hilbert sector. Its source image
+is $r_0^{-1}\Pol$, not the original polynomial source. For the
+paper's diagonal rescaling
+$Q_n(x)=(4n^2)^{-2n}P_{(n,n)}(4n^2x)$, the corresponding original
+even-axis function is exactly
+\[
+ y\longmapsto\frac{(4n^2)^{2n}Q_n(y^2/(4n^2))}{r_0(y^2)}.
+\]
+This formula retains the complete coordinate change and multiplier;
+no asymptotic statement about native $E_n$ or $O_n$ follows from
+the paper's asymptotic theorem by omitting them.
+
+\section{What the finite estimates do and do not complete}
+
+The parity isometries, Christoffel maps and Gram congruences are
+exact representations of the original objects. The nonzero
+residual \eqref{eq:residual-lower}, the rational truncation and
+error bound \eqref{eq:H-error}, the original observation brackets
+\eqref{eq:Q-bracket}--\eqref{eq:relative}, and the explicit
+raw-moment comparison \eqref{eq:raw-matrix-bound} are additional
+finite calculations and inequalities. Their constants and
+receiving maps have all been evaluated above.
+
+They preserve the original complex observed cross entries
+\[
+ B_i=(\Lambda a_i)^*Q(H)\Lambda v,
+ \qquad
+ \Phi_{B,N}=\frac{2\Re(\overline{B_1}B_2)}{\omega_{N,k}^{\rm ar}},
+\]
+with the actual boundary classes, terminal class, and physical
+Taylor unit. The bounds certify source/observation approximation
+and do not supply an evaluated sign, phase, or required
+asymptotic of this last signed product. No such conclusion, and
+no imported multiple-orthogonal asymptotic, is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{ALM} A. I. Aptekarev, G. L\'opez Lagomasino and
+A. Mart\'{\i}nez--Finkelshtein,
+\emph{Strong asymptotics for the Pollaczek multiple orthogonal
+polynomials ensembles}, arXiv:1410.1261v1 (2014), Introduction:
+the two unscaled weights and their positive Stieltjes ratio.
+\url{https://arxiv.org/abs/1410.1261v1}.
+The original author LaTeX is the source used; its multiple-orthogonal
+asymptotic theorem is not assumed for the arithmetic weight.
+\bibitem{CAI} Split-Zero programme, \emph{The complete original
+action relative to its arithmetic total}, CAI16--18 and its complete original
+convolution providers. This is the programme calculation supplying
+the actual arithmetic density comparison, not a human-literature
+attribution for the Pollaczek weights.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/2412f4aaa07c3fb19052cc0e537e93c2db9b0b1d/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/providers/CAI_COMPLETE_PREREQUISITE.tex}.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/487253b5b01851da5b9b98af4e146fecf1fab902/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/providers/CAI_COMPLETE_PREREQUISITE.tex\#L284}{Source proof CAI16}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{HG} Split-Zero programme, \emph{Heat growth and original
+currents}, HG21 and its displayed proof, retaining every fixed
+primary multiplicity and the original Gamma mass.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/2412f4aaa07c3fb19052cc0e537e93c2db9b0b1d/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/providers/HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex}.
+The parity recurrences, Green-kernel expansions, finite Schur
+inequalities and receiving maps are proved explicitly in this note;
+no omitted asymptotic argument is attributed to these programme
+providers.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex\#L374}{Source proof HG21}.
+% END VERIFIED PUBLIC PROOF LINK
+\end{thebibliography}
+
+\end{document}

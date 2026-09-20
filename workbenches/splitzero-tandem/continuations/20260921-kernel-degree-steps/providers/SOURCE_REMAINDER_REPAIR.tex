@@ -1,0 +1,269 @@
+\section{Rechecking the literal source remainder constants}
+\label{sec:source-repair}
+
+The original author source remains untouched. Polymath's Proposition
+\texttt{RTN-prop} begins at original source line 743. Its proof at
+lines 769--776 puts the Stirling error into a numerator $1/3$ where
+$2/3$ is required. Subsequent Gaussian displays, including lines
+792 and 853--857 (label \texttt{delta1}), replace some occurrences
+of $T-3$ by $T'-0.33$ without a valid equality. The passage from
+the choice of $\widetilde K_u$ at line 808 to the bounds at lines
+824--844 also needs to retain a remainder when
+$\widetilde K_u=\lfloor T'/\pi\rfloor$. This section repairs all
+three issues and proves that the final literal constants survive.
+
+\begin{theorem}[PMH11: corrected source remainder proof]
+\label{PMH11}
+For $0\le\sigma\le1$, $T\ge100$, $0<t\le1/2$, put
+$T'=T+\pi t/8$, $a=\sqrt{T'/(2\pi)}$, $N=\lfloor a\rfloor$,
+and use the original $p,U,C_0(p)$ of
+\eqref{PMH1-phase}--\eqref{PMH1-C0}. The original $R_{t,N}$
+defined in source \texttt{RTN-def} obeys
+\begin{equation}\label{PMH11-final}
+ \left|\frac{R_{t,N}(\sigma+iT)}
+ {(-1)^{N-1}Ue^{\pi i\sigma/4}e^{t\pi^2/64}M_0(iT')}-C_0(p)\right|
+ \le\left(\frac{0.397\,9^\sigma}{a-0.865}
+               +\frac5{3(T-6)}\right)e^{3.49/(T-4)}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The imported Riemann--Siegel input is Polymath's Proposition
+\texttt{arias-prop}, which attributes the bounds to J.~Arias de
+Reyna. Its original labels \texttt{ck-bound-1},
+\texttt{ck-bound-2}, \texttt{rsk-bound-1}, and
+\texttt{rsk-bound-2} state, for $k\ge1$,
+\[
+ |C_k(p,u)|\le\frac{\sqrt2}{2\pi}
+       \frac{9^u\Gamma(k/2)}{2^k}\quad(u>0),
+\]
+\[
+ |C_k(p,u)|\le\frac{2^{1/2-u}}{2\pi}
+       \frac{\Gamma(k/2)}{2\pi((3-2\log2)\pi)^{k/2}}
+       \quad(u\le0),
+\]
+\[
+ |RS_K(u+iT')|\le\frac17 2^{3u/2}\Gamma((K+1)/2)(1.1/a)^{K+1}
+       \quad(u\ge0),
+\]
+\[
+ |RS_K(u+iT')|\le\frac12(9/10)^{\lceil-u\rceil}
+       \Gamma((K+1)/2)(1.1/a)^{K+1}
+       \quad(u<0,\ K+u\ge2).
+\]
+We also retain the source input $|C_0(p)|\le1/2$. All subsequent
+integrations and numerical majorants are proved below.
+
+Set $D=T-3$ and $c=11/12$. The source effective Stirling estimate
+\texttt{elem-lem}(v) bounds its exponent error at $u+iT'$ by
+$1/(6(|u+iT'|-0.66))\le1/(6(T'-0.66))$.
+Taylor's formula for \eqref{PMH1-logM} and the source derivative
+bound \texttt{alpha-deriv-bound} give
+\[
+ |\log M_0(u+iT')-\log M_0(iT')-u\alpha(iT')|
+ \le\frac{u^2}{4(T'-3)}.
+\]
+The exact rational terms of $\alpha$ give
+\[
+ \left|\alpha(iT')-\log a-\frac{\pi i}{4}\right|
+ =\left|\frac1{2iT'}+\frac1{iT'-1}\right|\le\frac3{2T'}.
+\]
+The combined exponent error is therefore at most
+\begin{equation}\label{PMH11-pointwise}
+ \frac{u^2}{4(T'-3)}+\frac{3|u|}{2T'}+\frac1{6(T'-0.66)}
+ \le\frac{u^2+6|u|+2/3}{4D}
+ \le\frac{u^2+c}{D}.
+\end{equation}
+The last step is $6|u|\le3u^2+3$. The numerator $2/3$, not
+$1/3$, accounts for the complete Stirling error.
+
+For $u>0$ use $K_u=1$. For $u<0$ use
+$K_u=\max(\lfloor-u\rfloor+3,\lfloor2a^2\rfloor)$, so
+$K_u+u>2$. Put
+\[
+ S(u)=\sum_{k=1}^{K_u}\frac{|C_k(p,u)|}{a^k}
+            +|RS_{K_u}(u+iT')|.
+\]
+For $u>0$, the imported bounds give
+\[
+ S(u)\le\frac{0.2\,9^u}{a}+\frac{0.173\,2^{3u/2}}{a^2}
+ \le\frac{0.2\,9^u}{a-0.865}.
+\]
+Here $2^{3u/2}\le9^u$, $0.2(0.865)=0.173$, and the geometric
+series bounds the two reciprocal powers. The value at the single
+point $u=0$ has no effect on any integral below.
+
+For $u<0$, the exact constants satisfy
+$\sqrt2/(4\pi^2)<0.036$ and
+$((3-2\log2)\pi)^{-1/2}<0.445$. Moreover
+\[
+ \frac{\Gamma((k+2)/2)}{a^{k+2}}
+ =\frac{k}{2a^2}\frac{\Gamma(k/2)}{a^k}.
+\]
+For indices up to $2a^2$ this permits geometric majorants in the
+even and odd subsequences. They give
+\begin{equation}\label{PMH11-low}
+ \sum_{1\le k\le2a^2}\frac{|C_k(p,u)|}{a^k}
+ \le0.036\,2^{-u}
+ \left(\frac{0.445\sqrt\pi}{a}+\frac{0.247}{a^2}
+                         +\frac{0.098}{a^3}\right)
+ \le\frac{0.0285\,2^{-u}}{a-0.353}.
+\end{equation}
+The first constants follow from
+\[
+ \frac{0.445^2}{1-0.445^2}<0.247,\qquad
+ \frac{0.445^3\sqrt\pi}{2(1-0.445^2)}<0.098.
+\]
+For the last inequality compare the first three coefficients of
+the geometric series for $0.0285/(a-0.353)$, using
+\[
+ 0.036(0.445)\sqrt\pi<0.0285,\quad
+ 0.036(0.247)<0.0285(0.353),\quad
+ 0.036(0.098)<0.0285(0.353)^2.
+\]
+
+The remainder when $K_u=\lfloor2a^2\rfloor$ must still be kept.
+Let $r=K_u+1\ge32$; then $a^2\ge(r-1)/2$. Its imported bound,
+multiplied by $a2^u$, is at most
+\[
+ v_r=\frac12(1.1)^r\Gamma(r/2)
+       \left(\frac{r-1}{2}\right)^{(1-r)/2}.
+\]
+Indeed $(9/10)^{\lceil-u\rceil}\le1\le2^{-u}$.
+The ratio of successive same-parity terms is exactly
+\[
+ \frac{v_{r+2}}{v_r}=1.21\frac r{r+1}
+       \left(\frac{r-1}{r+1}\right)^{(r-1)/2}
+ \le1.21e^{-(r-1)/(r+1)}\le1.21e^{-31/33}<1.
+\]
+The finite checks $v_{32}<4.897\times10^{-6}$ and
+$v_{33}<3.268\times10^{-6}$ are both below $0.0005$.
+Thus this complete branch of the remainder is at most
+$0.0005\,2^{-u}/a\le0.0005\,2^{-u}/(a-0.353)$.
+Together with \eqref{PMH11-low} it is covered by
+$0.029\,2^{-u}/(a-0.353)$; no remainder has been dropped.
+
+If $K_u>\lfloor2a^2\rfloor$, the high coefficients and final
+remainder all have integer indices in $2a^2\le k\le-u+4$.
+The coefficient inequality $0.036(0.445)^k\le(1/2)(1.1)^k$
+puts both into one positive sum. Adding unused positive terms in
+the two sign ranges gives the uniform bound
+\begin{equation}\label{PMH11-S}
+ S(u)\le\frac{0.2\,9^u}{a-0.865}+\frac{0.029\,2^{-u}}{a-0.353}
+       +\frac{2^{-u}}2
+          \sum_{2a^2\le k\le-u+4}(1.1)^k\frac{\Gamma(k/2)}{a^k}.
+\end{equation}
+
+Now use the original shift \texttt{RTN-def} with $\beta_N=\pi i/4$
+and $u=\sigma+\sqrt t\,v$. The shift keeps $e^{t\pi^2/64}$;
+the factors $a^{-u}$ and $e^{u\log a}$ cancel; the phases
+$e^{\pi iu/4}$ and $e^{-\pi i\sqrt t v/4}$ leave
+$e^{\pi i\sigma/4}$. With
+$\mathrm d\nu(u)=(\pi t)^{-1/2}e^{-(u-\sigma)^2/t}\dd u$,
+the left side of \eqref{PMH11-final} is bounded by
+\begin{equation}\label{PMH11-epsdelta}
+ \tfrac12\epsilon+\delta,\quad
+ \epsilon=\int_\R(e^{(u^2+c)/D}-1)\mathrm d\nu(u),\quad
+ \delta=\int_\R e^{(u^2+c)/D}S(u)\mathrm d\nu(u).
+\end{equation}
+This uses \eqref{PMH11-pointwise}, $|e^w-1|\le e^{|w|}-1$ and
+the unchanged $|C_0|\le1/2$.
+
+For real $l$, completing the square gives the exact identity
+\begin{equation}\label{PMH11-Gaussian}
+ J(l):=\int_\R e^{(u^2+c)/D+2lu}\mathrm d\nu(u)
+ =e^{2l\sigma+tl^2}(1-t/D)^{-1/2}
+       \exp\left(\frac cD+\frac{(\sigma+tl)^2}{D-t}\right).
+\end{equation}
+Every occurrence of $D$ is $T-3$. Expanding the quadratic exponent
+gives leading coefficient $-(D-t)/(tD)$; integrating that Gaussian
+proves the identity. Since $-\log(1-v)\le v/(1-v)$ for
+$0\le v<1$,
+\[
+ \log J(0)\le\frac{c+\sigma^2+t/2}{D-t}
+ \le\frac{13/6}{T-3.5}\le\frac{10}{3(T-6)}.
+\]
+With $v=10/(3(T-6))$, $e^v-1\le ve^v$, hence
+\begin{equation}\label{PMH11-epsilon}
+ \tfrac12\epsilon\le\frac5{3(T-6)}e^{3.49/(T-4)}.
+\end{equation}
+The exponent comparison $10/(3(T-6))\le3.49/(T-4)$ is verified
+at $T=100$ after cross multiplication, with positive linear slope
+for larger $T$.
+
+The first two terms of \eqref{PMH11-S} integrate to
+$\delta_1=0.2J(\log3)/(a-0.865)$ and
+$\delta_2=0.029J(-\log\sqrt2)/(a-0.353)$.
+Put
+\[
+ A=\frac{11}{12}+(1+\tfrac12\log3)^2+\frac14
+       =3.5670161955\ldots.
+\]
+After its factor $9^\sigma e^{t\log^23}$, the remaining
+logarithm in $J(\log3)$ is at most
+$A/(T-3.5)\le A/(T-4)$. The finite strict check
+\begin{equation}\label{PMH11-absorb}
+ 0.2\exp\left(\frac{\log^23}{2}+\frac{A-3.49}{96}\right)
+ <0.365986<0.366
+\end{equation}
+and $T-4\ge96$ prove
+\[
+ \delta_1\le\frac{0.366\,9^\sigma}{a-0.865}e^{3.49/(T-4)}.
+\]
+For $M=\log\sqrt2<1$, $|\sigma-tM|\le1$ and
+$0.029e^{M^2/2}<0.031$. The remaining exponent in $J(-M)$ is
+at most $(13/6)/(T-3.5)<3.49/(T-4)$, so
+\[
+ \delta_2\le\frac{0.031\,2^{-\sigma}}{a-0.353}e^{3.49/(T-4)}.
+\]
+
+The last term of \eqref{PMH11-S}, by Fubini--Tonelli, is exactly
+\[
+ \delta_3=\frac1{2\sqrt{\pi t}}
+ \sum_{k\ge2a^2}\frac{(1.1)^k\Gamma(k/2)}{a^k}
+ \int_{-\infty}^{4-k}
+ \exp\left(\frac{u^2+c}{D}-\frac{(u-\sigma)^2}{t}
+                          -u\log2\right)\dd u.
+\]
+Here $k\ge32$, hence $k\ge14$ and $u\le-10$. Since
+$\sigma\ge0$, $t\le1/2$, $D\ge97$, and
+$(1+c/100)/97<1$, this exponent is at most
+$-u^2/(2t)-u\log2$. For $u\le4-k$ one has
+$-u^2/(2t)\le(k-4)u/(2t)$. Integration and
+$((k-4)/(2t)-\log2)\ge(k-6)/(2t)$ give
+\[
+ \delta_3\le\frac{\sqrt t}{\sqrt\pi}
+ \sum_{k\ge2a^2}\frac{(1.1)^k\Gamma(k/2)}{(k-6)a^k}
+            e^{-(k-4)^2+(k-4)\log2}.
+\]
+Set $f_k=(1.1)^k\Gamma(k/2)e^{-(k-4)^2+(k-4)\log2}$.
+The two finite bases satisfy $f_{14}<1.042\times10^{-37}$ and
+$f_{15}<4.516\times10^{-46}$, both below $10^{-30}$, and
+\[
+ \frac{f_{k+2}}{f_k}=2.42k e^{12-4k}<1\quad(k\ge14).
+\]
+Indeed $k e^{-4k}$ decreases there and the case $k=14$ passes.
+As $a>3$, enlarging the sum and discarding factors at most one
+now gives
+\begin{equation}\label{PMH11-delta3}
+ \delta_3\le\sum_{k\ge14}\frac{10^{-30}}{a^k}
+       \le\frac{2\times10^{-30}}{a^{14}}.
+\end{equation}
+The complete denominator slack covers this term:
+\[
+ \frac{0.031\,2^{-\sigma}}{a-0.865}
+ -\frac{0.031\,2^{-\sigma}}{a-0.353}
+ =\frac{0.031(0.512)2^{-\sigma}}{(a-0.865)(a-0.353)}
+ \ge\frac{0.007936}{a^2}
+ >\frac{2\times10^{-30}}{a^{14}}.
+\]
+Thus
+\[
+ \delta\le\frac{0.366\,9^\sigma+0.031\,2^{-\sigma}}
+                  {a-0.865}e^{3.49/(T-4)}
+ \le\frac{0.397\,9^\sigma}{a-0.865}e^{3.49/(T-4)}.
+\]
+Together with \eqref{PMH11-epsdelta} and \eqref{PMH11-epsilon}
+this proves \eqref{PMH11-final}. Every finite transcendental
+comparison in this proof is checked in
+\texttt{corrected\_rtn\_constant\_checks()}.
+\end{proof}

@@ -1,0 +1,614 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,hyperref}
+\hypersetup{hidelinks,hypertexnames=false}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\W}{\mathcal W}
+\newcommand{\LL}{\mathscr L}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\vM}{\Lambda_{\mathrm{vM}}}
+\title{Exact movable-pole Weil coefficients and finite arithmetic certificates}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+This note independently derives the movable-pole portion of the supplied
+full-Weil continuation, including its complete zero sums, the original
+physical measure, all prime powers, all Gamma terms, and finite truncation
+errors. It proves the identities corresponding to incoming equations
+(18), (24)--(32), and (40)--(49). It does not claim a negative numerical
+certificate or an off-critical zero. The separate Gaussian estimates and
+the Fable determinant comparison are outside this note.
+
+The classical analytic input is the completed Riemann function
+\begin{equation}
+ \xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad
+ \LL(s)=\frac{\xi'(s)}{\xi(s)}.\tag{MP1}
+\end{equation}
+It is entire of order one, has zeros precisely at the nontrivial zeta zeros
+with their multiplicities, has no zero at zero or one, and satisfies
+$\xi(1-s)=\xi(s)$ and $\xi(\bar s)=\overline{\xi(s)}$.
+The source for the full genus-one product used below is Lagarias
+\cite[Lemma 4.1 and its proof]{Lagarias}; absolute convergence of reciprocal
+power sums of order at least two is stated and proved in
+\cite[Lemma 2.1]{Lagarias}. The original author TeX, version 4, was read at
+these locators and at the definition of the Weil form in Section 3.
+Lagarias uses a form linear in its first slot. Our convention is its
+transposition: $\W(F,G)=\langle G,F\rangle_{\mathcal W}$.
+The moving-pole calculations below are proved here, rather than attributed
+to that source. DLMF 25.2.12 \cite{DLMFProduct} also gives the
+genus-one zeta product explicitly; its original formula TeX was read
+and yields the completed-xi constants recorded in MP6a below.
+
+Throughout, $\rho$ ranges over distinct nontrivial zeros, and $m_\rho$ is
+their actual multiplicity. Every zero sum includes all these zeros.
+We use $0<\Rea\rho<1$ and
+$\sum_\rho m_\rho(1+|\rho|)^{-2}<\infty$. These statements impose no
+Riemann-hypothesis assumption.
+
+\section{The original form, Mellin transform, and kernel}
+Define $R(s)=1-\bar s$. Whenever the displayed series is absolutely
+convergent, set
+\begin{equation}
+ \W(F,G)=\sum_\rho m_\rho\,\overline{F(R\rho)}G(\rho).
+ \tag{MP2}
+\end{equation}
+This form is conjugate-linear in the first variable. Reflection permutes
+the zeros with their multiplicities. Replacing $\rho$ by $R\rho$ in an
+absolutely convergent sum therefore proves
+$\overline{\W(G,F)}=\W(F,G)$. Under RH, and only when using that stated
+assumption, $R\rho=\rho$, and MP2 becomes the positive sum
+$\sum m_\rho\overline{F(\rho)}G(\rho)$.
+
+Fix, without changing its physical or spectral coordinates,
+\begin{equation}
+ \omega=\sigma+i\tau,\quad \sigma>1,\quad h=2\sigma-1,
+ \qquad U_\omega(s)=\frac{s+\bar\omega-1}{\omega-s},\qquad
+ \varphi_j^\omega(s)=\frac{\sqrt h}{\omega-s}U_\omega(s)^j
+ \quad(j\geq0).\tag{MP3}
+\end{equation}
+The square root of $h$ is the positive real square root. For every fixed
+$j$, the function is holomorphic across the closed critical strip and is
+$O((1+|\Ima s|)^{-1})$ there. The constant may depend on $j$ and $\omega$.
+Consequently MP2 converges absolutely on every finite linear span of
+these functions, including between families with different such poles.
+
+Use the Mellin convention $\mathcal Mf(s)=\int_0^\infty f(x)x^{s-1}\dd x$.
+Define the Laguerre polynomials here by their finite coefficients,
+$L_j(u)=\sum_{\ell=0}^j(-1)^\ell\binom j\ell u^\ell/\ell!$.
+Their classical generating function is also recorded in
+Koornwinder--Wong--Koekoek--Swarttouw--Reinhardt \cite{Laguerre};
+the transform and orthogonality needed here are proved below.
+Then the physical source is exactly
+\begin{equation}
+ f_j^\omega(x)=\sqrt h\,(-1)^j x^{-\omega}L_j(h\log x)
+                    \mathbf1_{\{x\geq1\}}.
+ \tag{MP4}
+\end{equation}
+The value assigned at the single endpoint does not affect the Mellin
+integral or the $L^2(\dd x)$ class. These functions need not be smooth
+across that endpoint.
+
+\begin{lemma}
+For $\Rea s<\sigma$ one has $\mathcal Mf_j^\omega(s)=\varphi_j^\omega(s)$.
+For all $i,j\geq0$, with the original physical measure unchanged,
+\begin{equation}
+ \int_1^\infty\overline{f_i^\omega(x)}f_j^\omega(x)\dd x=\delta_{ij}.
+ \tag{MP5}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $a=\omega-s$. Termwise integration of the finite polynomial gives,
+for $\Rea a>0$,
+\[
+ \int_0^\infty e^{-at}L_j(ht)\dd t
+ =\sum_{\ell=0}^j(-1)^\ell\binom j\ell\frac{h^\ell}{a^{\ell+1}}
+ =\frac{(a-h)^j}{a^{j+1}}.
+\]
+The substitution $x=e^t$ in the Mellin transform and
+$h-a=s+\bar\omega-1$ prove MP3--MP4 with the stated sign.
+The same substitution in the physical norm, now retaining its factor
+$\dd x=e^t\dd t$, gives
+\[
+ h(-1)^{i+j}\int_0^\infty e^{-ht}L_i(ht)L_j(ht)\dd t
+ =(-1)^{i+j}\int_0^\infty e^{-u}L_i(u)L_j(u)\dd u.
+\]
+For completeness, summing the finite definition of $L_j$ gives
+\[
+\sum_{j\geq0}L_j(u)t^j=(1-t)^{-1}\exp(-ut/(1-t)).
+\]
+For $|t|,|v|$ sufficiently small its product can be integrated against
+$e^{-u}\dd u$, by exponential domination. The result is
+\[
+ \frac1{(1-t)(1-v)}
+ \int_0^\infty\exp\left[-u\left(1+\frac t{1-t}
+                         +\frac v{1-v}\right)\right]\dd u
+ =\frac1{1-tv}.
+\]
+Comparison of coefficients proves that the last integral of the two
+Laguerre polynomials is $\delta_{ij}$. Its accompanying phase is then
+$(-1)^{2j}=1$, proving MP5.
+\end{proof}
+
+The full genus-one product, with constants $A,B$, is
+\begin{equation}
+ \xi(s)=e^{As+B}\prod_\rho
+       \left[(1-s/\rho)e^{s/\rho}\right]^{m_\rho}.
+ \tag{MP6}
+\end{equation}
+For the particular completion MP1, the exact constants may be retained
+as well. Multiplying the original DLMF 25.2.12 product by
+$\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)$ and using
+$\Gamma(s/2+1)=(s/2)\Gamma(s/2)$ gives
+\begin{equation}
+ \xi(s)=\frac12\exp\!\left[
+  \left(\log2+\tfrac12\log\pi-1-\tfrac12\gamma_E\right)s\right]
+ \prod_\rho\left[(1-s/\rho)e^{s/\rho}\right]^{m_\rho}.
+ \tag{MP6a}
+\end{equation}
+The factors initially cancel away from their displayed special points;
+entire continuation gives the same identity there. The DLMF source
+credits Titchmarsh (1986), equations (2.12.6) and (2.12.8), pages 30--31.
+An earlier integration warning that this locator did not exist was
+incorrect; the incoming locator is valid.
+Its logarithmic derivative is locally normally convergent off the zeros
+when the paired summand $1/(s-\rho)+1/\rho$ is kept intact. Subtracting
+two such derivatives cancels both $A$ and the regularizers. Thus, for
+$\Rea\omega,\Rea\nu>1$,
+\begin{align}
+ \LL(\nu)-\LL(1-\bar\omega)
+ &=\sum_\rho m_\rho
+       \left(\frac1{\nu-\rho}+\frac1{\rho+\bar\omega-1}\right),\tag{MP7}\\
+ \W\left(\frac1{\omega-s},\frac1{\nu-s}\right)
+ &=\frac{\LL(\nu)+\overline{\LL(\omega)}}{\nu+\bar\omega-1}.
+ \tag{MP8}
+\end{align}
+Indeed the MP7 summand is
+$(\nu+\bar\omega-1)/((\nu-\rho)(\rho+\bar\omega-1))$ and is
+$O(|\rho|^{-2})$. The denominator $\nu+\bar\omega-1$ is nonzero.
+Differentiating the two functional symmetries gives
+$\LL(1-\bar\omega)=-\overline{\LL(\omega)}$. These facts prove MP8
+with every Hadamard constant accounted for.
+
+\section{Exact Toeplitz coefficients and the fixed-pole criterion}
+At a zero put $\alpha=\omega-\rho$ and $\beta=\rho+\bar\omega-1$;
+both are nonzero and $\alpha+\beta=h$. Direct conjugation, retaining the
+same reflection as MP2, gives
+$\overline{U_\omega(R\rho)}=U_\omega(\rho)^{-1}$.
+It follows that the entire finite Weil matrix has the Toeplitz form
+\begin{align}
+ \W(\varphi_i^\omega,\varphi_j^\omega)&=c_{j-i}(\omega),
+   &c_{-n}&=\overline{c_n},\tag{MP9}\\
+ c_0&=\sum_\rho m_\rho\frac h{\alpha\beta}
+             =2\Rea\LL(\omega),\tag{MP10}\\
+ c_n&=\sum_\rho m_\rho\frac{h\beta^{n-1}}{\alpha^{n+1}}
+       \quad(n\geq1).\tag{MP11}
+\end{align}
+All these series converge absolutely: for fixed positive or negative
+$n$, $U_\omega(\rho)$ and its inverse tend to $-1$ at large height,
+while $h/(\alpha\beta)=O(|\rho|^{-2})$.
+
+There is also an unconditional positive diagonal. Write
+$d=\sigma-\tfrac12>\tfrac12$, $\rho=\tfrac12+\delta+i\gamma$, and
+$y=\gamma-\tau$. Since $|\delta|<\tfrac12$,
+\begin{equation}
+ \Rea\frac h{\alpha\beta}
+ =\frac{h(d^2-\delta^2+y^2)}
+        {(d^2-\delta^2+y^2)^2+4\delta^2y^2}>0.
+ \tag{MP12}
+\end{equation}
+Hermiticity makes the sum MP10 real. Absolute convergence permits taking
+its real part term by term. The nonempty zero set therefore gives
+$c_0>0$ without RH.
+
+Differentiating MP6 at least once after taking its logarithmic derivative
+gives, for $\ell\geq1$,
+$\LL^{(\ell)}(\omega)=(-1)^\ell\ell!\sum_\rho
+m_\rho\alpha^{-\ell-1}$. These sums are absolutely convergent.
+Expansion of $(h-\alpha)^{n-1}$ in MP11 therefore proves
+\begin{equation}
+ c_n=(-1)^n\sum_{\ell=1}^n\binom{n-1}{\ell-1}
+               \frac{h^\ell}{\ell!}\LL^{(\ell)}(\omega).
+ \tag{MP13}
+\end{equation}
+In particular $c_1=-h\LL'$, $c_2=h\LL'+h^2\LL''/2$, and
+$c_3=-h\LL'-h^2\LL''-h^3\LL'''/6$, all at the original $\omega$.
+
+For a finite vector $b=(b_0,\ldots,b_n)$ define
+$F_b=\sum_{j=0}^n b_j\varphi_j^\omega$ and
+$T_n=(c_{j-i})_{0\leq i,j\leq n}$. Then
+\begin{equation}
+ \W(F_b,F_b)=b^*T_nb,\qquad
+ \W\left(\varphi_0^\omega-
+             \frac{\bar c_n}{|c_n|}\varphi_n^\omega,
+          \varphi_0^\omega-
+             \frac{\bar c_n}{|c_n|}\varphi_n^\omega\right)
+       =2(c_0-|c_n|)\quad(c_n\ne0).
+ \tag{MP14}
+\end{equation}
+This follows by expansion using the conjugate-linear-first convention;
+it fixes the complex phase rather than replacing it by a sign.
+
+The relevant generating function is initially an identity near zero:
+\begin{equation}
+ s(z)=\frac{\omega+(1-\bar\omega)z}{1+z}
+     =\omega-\frac{hz}{1+z},\qquad
+ \LL(s(z))=\LL(\omega)+\sum_{n=1}^\infty c_n z^n.
+ \tag{MP15}
+\end{equation}
+To prove it, use the Taylor series for $\LL$ at the zero-free point
+$\omega$. For $1\leq\ell\leq n$ the coefficient of $z^n$ in
+$(-hz/(1+z))^\ell$ is
+$(-1)^n h^\ell\binom{n-1}{\ell-1}$. This gives MP13.
+Unconditionally one must not presume that this Taylor series converges
+on the whole unit disk.
+
+\begin{theorem}
+For each one fixed pole $\Rea\omega>1$, the following are equivalent:
+\begin{enumerate}
+\item RH;
+\item $|c_n(\omega)|\leq c_0(\omega)$ for every $n\geq1$;
+\item all finite matrices $T_n(\omega)$ are positive semidefinite.
+\end{enumerate}
+If RH is false, already a two-mode vector in MP14 is negative for some
+finite $n$. This assertion evaluates no particular finite $n$ or phase.
+\end{theorem}
+\begin{proof}
+Under RH, $\beta=\bar\alpha$, $|U_\omega(\rho)|=1$, and
+MP10--MP11 give
+\[
+ c_n=\sum_\rho m_\rho\frac h{|\omega-\rho|^2}
+                                      U_\omega(\rho)^n,
+ \qquad c_0=\sum_\rho m_\rho\frac h{|\omega-\rho|^2}.
+\]
+The triangle inequality proves (2), and MP2 proves (3).
+Conversely (3) implies (2) by the principal minor on indices $0,n$.
+Under (2) the series in MP15 is holomorphic on $|z|<1$.
+The map $s(z)$ takes that disk biholomorphically onto $\Rea s>1/2$,
+since
+\begin{equation}
+ \Rea(s(z)-\tfrac12)=\frac{h(1-|z|^2)}{2|1+z|^2},\qquad
+ s'(z)=-\frac h{(1+z)^2}.\tag{MP16}
+\end{equation}
+The composition $\LL\circ s$ is meromorphic there and agrees with the
+series near zero. The identity theorem for meromorphic functions on the
+connected disk makes it holomorphic on that disk. But a zero $\rho$ with
+$\Rea\rho>1/2$ would give a pole at
+\begin{equation}
+ z_\rho=\frac{\omega-\rho}{\rho+\bar\omega-1},\qquad
+ |\rho+\bar\omega-1|^2-|\omega-\rho|^2
+                       =h(2\Rea\rho-1)>0.\tag{MP17}
+\end{equation}
+The residue of the composition there is
+$m_\rho/s'(z_\rho)\ne0$. Distinct zeros give distinct points because
+$s$ is injective, so the pole cannot cancel. This is a contradiction.
+Reflection then also excludes zeros with $\Rea\rho<1/2$, proving RH.
+If RH fails, the contrapositive gives $|c_n|>c_0>0$ for some $n$,
+and MP14 supplies the asserted vector.
+\end{proof}
+
+A precise strengthening records the degree dependence without assigning
+an uncomputed degree. If there is a right-of-line zero, put
+\begin{equation}
+ r_\omega=\min_{\Rea\rho>1/2}|z_\rho|<1.
+ \quad\text{Then}\quad
+ \limsup_{n\longrightarrow\infty}|c_n|^{1/n}=r_\omega^{-1}>1.
+ \tag{MP18}
+\end{equation}
+The minimum exists and is positive: $\omega$ is not a zero, zeros are
+discrete, and $z_\rho\to-1$ as $|\Ima\rho|\to\infty$. There are
+therefore finitely many zeros whose images lie in any fixed smaller disk.
+The composition has no singularity inside $|z|<r_\omega$ and has a
+genuine pole on its boundary. Thus the Taylor radius is $r_\omega$;
+the Cauchy--Hadamard theorem proves MP18.
+
+\section{Prime and Gamma evaluation with all constants retained}
+For $\Rea s>1$, the Euler product and MP1 give
+\begin{equation}
+ \LL(s)=\frac1s+\frac1{s-1}-\frac12\log\pi
+           +\frac12\psi(s/2)-\sum_{m=2}^\infty\vM(m)m^{-s},
+ \qquad \psi=\Gamma'/\Gamma.\tag{MP19}
+\end{equation}
+Here $\vM(p^a)=\log p$ for a prime power, and $\vM(m)=0$ otherwise.
+Indeed unique factorization expands the absolutely convergent Euler
+product on this half-plane. Its logarithm is
+$\sum_p\sum_{a\geq1}p^{-as}/a$; termwise differentiation, uniformly
+on compact subsets of the half-plane, gives the displayed prime-power
+series. The bound $0\leq\vM(m)\leq\log m$ proves the needed local
+uniform convergence of every differentiated series.
+
+We spell out the Gamma formulas so their constants and domains are
+explicit. For $\Rea z>0$, repeated integration by parts gives
+\[
+ \int_0^1t^{z-1}(1-t)^M\dd t
+       =\frac{M!}{z(z+1)\cdots(z+M)}.
+\]
+After multiplying by $M^z$ and substituting $u=Mt$, dominated
+convergence to the defining Gamma integral gives Euler's product limit
+$\Gamma(z)=\lim_{M\to\infty}M!M^z/[z(z+1)\cdots(z+M)]$.
+The domination follows from $(1-u/M)^M\leq e^{-u}$ on $0\leq u\leq M$,
+uniformly for $z$ in a compact subset of the right half-plane, with
+integrable bounds for the required powers of $\log u$.
+Equivalently the regularized reciprocal product converges normally,
+since its logarithmic summands after removal of the linear term are
+$O(M^{-2})$ on such compact subsets. Its factors do not vanish there.
+Logarithmic differentiation therefore gives
+\begin{equation}
+ \psi(z)=-\gamma_E+\sum_{r=0}^\infty
+                   \left(\frac1{r+1}-\frac1{r+z}\right),
+ \qquad
+ \frac12\psi(s/2)=-\frac{\gamma_E}2+
+       \sum_{r=0}^\infty\left(\frac1{2r+2}-\frac1{s+2r}\right).
+ \tag{MP20}
+\end{equation}
+These sums converge locally normally. The $r=0$ pole in the second
+sum is exactly $-1/s$, cancelling the first term of MP19.
+
+For a fixed complex $a$ with $\omega\ne a$, direct expansion yields
+\begin{equation}
+ [z^n]\frac1{s(z)-a}
+ =\frac h{(\omega-a)^2}
+       \left(\frac{\bar\omega+a-1}{\omega-a}\right)^{n-1}
+ \quad(n\geq1).\tag{MP21}
+\end{equation}
+To check the coefficient, write the rational function as
+$(1+z)/((\omega-a)+(1-\bar\omega-a)z)$ and use its geometric series
+at zero. Its $n$th coefficient is the displayed one since the sum of
+$\omega-a$ and $\bar\omega+a-1$ is $h$.
+
+Define $L_0^{(-1)}(x)=1$ and, for $n\geq1$,
+\begin{equation}
+ L_n^{(-1)}(x)=\sum_{\ell=1}^n(-1)^\ell
+             \binom{n-1}{\ell-1}\frac{x^\ell}{\ell!},\qquad
+ e^{xz/(1+z)}=\sum_{n=0}^\infty(-1)^nL_n^{(-1)}(x)z^n.
+ \tag{MP22}
+\end{equation}
+The second identity follows by expanding the exponential and extracting
+coefficients, using the same binomial coefficient as in MP15.
+Choose a sufficiently small disk around zero so $\Rea s(z)>1$.
+The prime and Gamma series there converge locally uniformly, and so
+coefficients may be extracted termwise. Combining MP19--MP22 gives the
+exact formula, for each fixed $n\geq1$,
+\begin{align}
+ c_n={}&\frac h{(\omega-1)^2}
+                \left(\frac{\bar\omega}{\omega-1}\right)^{n-1}
+ -h\sum_{r=1}^\infty\frac1{(\omega+2r)^2}
+             \left(\frac{\bar\omega-1-2r}{\omega+2r}\right)^{n-1}
+ \notag\\[-2pt]
+ &\hspace{4mm}-(-1)^n\sum_{m=2}^\infty
+           \vM(m)m^{-\omega}L_n^{(-1)}(h\log m).
+ \tag{MP23}
+\end{align}
+The Gamma sum is absolutely convergent since
+\begin{equation}
+ |\omega+2r|^2-|\bar\omega-1-2r|^2=h(4r+1)>0.
+ \tag{MP24}
+\end{equation}
+The prime sum is absolutely convergent by its fixed polynomial degree in
+$\log m$ and $\sigma>1$. MP23 retains the phase $m^{-i\tau}$ and
+every prime power. No assertion of prime-series convergence throughout
+the Möbius unit disk is needed or made.
+
+\section{Finite tail bounds and an exact computable certificate}
+For integers $N\geq1$, $j\geq0$, define
+\begin{equation}
+ I_j(N,\sigma)=N^{1-\sigma}\sum_{r=0}^j
+       \frac{j!}{(j-r)!}\frac{\log(N+1)^{j-r}}{(\sigma-1)^{r+1}}.
+ \tag{MP25}
+\end{equation}
+For every such $N$, without a monotonicity threshold for a logarithmic
+weight,
+\begin{equation}
+ \sum_{m>N}(\log m)^j m^{-\sigma}\leq I_j(N,\sigma).
+ \tag{MP26}
+\end{equation}
+To prove it, for $x\in[m-1,m]$ and $m>N$ use
+$m^{-\sigma}\leq x^{-\sigma}$ and
+$\log m\leq\log x+\log(1+1/N)$. The latter upper bound is
+nonnegative on $x\geq N\geq1$. The sum is bounded by the integral of
+$x^{-\sigma}(\log x+\log(1+1/N))^j$ from $N$ to infinity.
+Putting $x=Ne^t$ evaluates that integral as
+\[
+ N^{1-\sigma}\int_0^\infty e^{-(\sigma-1)t}
+                     (\log(N+1)+t)^j\dd t=I_j(N,\sigma),
+\]
+by a finite binomial expansion and the elementary factorial integral.
+
+Consequently the prime tail in MP23 after $m=N$ satisfies
+\begin{equation}
+ E_{\mathrm{prime},n}\leq
+ \sum_{\ell=1}^n\binom{n-1}{\ell-1}\frac{h^\ell}{\ell!}
+                                     I_{\ell+1}(N,\sigma).
+ \tag{MP27}
+\end{equation}
+This follows from MP22, $\vM(m)\leq\log m$, and the triangle inequality,
+including every term of the finite polynomial. The Gamma tail after
+$r=M$, for an integer $M\geq0$, satisfies
+\begin{equation}
+ E_{\Gamma,n}\leq h\sum_{r>M}(\sigma+2r)^{-2}
+       \leq h\int_M^\infty(\sigma+2x)^{-2}\dd x
+       =\frac h{2(\sigma+2M)}.\tag{MP28}
+\end{equation}
+The first inequality uses MP24, and the second uses a decreasing positive
+function; both are valid for $n=1$ and for $M=0$.
+
+The diagonal can also be enclosed without discarding a Gamma constant.
+Let $B_1(t)=\{t\}-1/2$ off the integers, with arbitrary endpoint values.
+For $\Rea z>0$ the exact identity is
+\begin{equation}
+ \psi(z)=\log z-\frac1{2z}
+       +\int_0^\infty\frac{B_1(t)}{(z+t)^2}\dd t.
+ \tag{MP29}
+\end{equation}
+Here and below the logarithm is its analytic branch on the right
+half-plane, real on the positive real axis. To prove MP29, integrate
+$B_1(t)f'(t)$ separately on each interval $[r,r+1]$ for
+$f(t)=(z+t)^{-1}$. Summing the endpoint values gives, for integral $L>0$,
+\[
+ \sum_{r=0}^{L-1}\frac1{z+r}
+ =\log(z+L)-\log z+\frac1{2z}-\frac1{2(z+L)}
+                  -\int_0^L\frac{B_1(t)}{(z+t)^2}\dd t.
+\]
+The Euler product above gives
+$\psi(z)=\lim_{L\to\infty}(\log L-\sum_{r=0}^{L-1}(z+r)^{-1})$;
+the harmless final term in that limit tends to zero. The integral
+converges absolutely. Passing to the limit proves MP29 and its sign.
+
+Use the exact finite recurrence
+$\psi(z)=\psi(z+M)-\sum_{r=0}^{M-1}(z+r)^{-1}$.
+For $a=\Rea(z+M)>0$ and $b=\Ima z$, the integral omitted after applying
+MP29 at $z+M$ has absolute value at most
+\begin{equation}
+ J(a,b)=\frac12\int_0^\infty\frac{\dd t}{(a+t)^2+b^2}
+ =\begin{cases}
+ \displaystyle\frac{\arctan(|b|/a)}{2|b|},&b\ne0,\\[5pt]
+ \displaystyle\frac1{2a},&b=0.
+ \end{cases}\tag{MP30}
+\end{equation}
+Use this with $z=\omega/2$. Since $c_0=2\Rea\LL(\omega)$, the
+factor $1/2$ multiplying $\psi$ in MP19 cancels that factor $2$:
+the diagonal Gamma error is at most $J(a,b)$, not $2J(a,b)$.
+The diagonal prime tail is at most $2I_1(N,\sigma)$.
+The explicit rational terms, $\log\pi$, finite sums, and all rounding
+errors must also be enclosed in the computed diagonal.
+
+Suppose real $e_0,e_n\geq0$ and finite computations give
+\begin{equation}
+ |c_n-\widehat c_n|\leq e_n,\qquad
+ |c_0-\widehat c_0|\leq e_0,\qquad
+ \widehat c_0\in\mathbb R,\quad \widehat c_n\ne0.
+ \tag{MP31}
+\end{equation}
+The nonzero condition makes the computed phase defined. If the initial
+diagonal approximation is complex, replacing it by its real part does
+not increase its error against the real number $c_0$.
+Set
+\begin{equation}
+ \widehat F_n=\varphi_0^\omega-
+                 \frac{\overline{\widehat c_n}}{|\widehat c_n|}
+                      \varphi_n^\omega.
+ \quad\text{Then}\quad
+ \W(\widehat F_n,\widehat F_n)
+ \leq2(\widehat c_0+e_0-|\widehat c_n|+e_n).
+ \tag{MP32}
+\end{equation}
+Indeed the exact cross term is
+$-2\Rea(\overline{\widehat c_n}c_n/|\widehat c_n|)$.
+Replacing $c_n$ by $\widehat c_n+(c_n-\widehat c_n)$ and applying
+MP31 proves MP32. If the right side is strictly negative, the original
+full zero form is negative, which contradicts its RH-positive expression.
+This is an exact implication for the specified computed vector; there
+is no negative certificate asserted by this note.
+
+For all entries through degree $n$, take a Hermitian Toeplitz computed
+matrix $\widehat T_n$ with real diagonal and the corresponding entry
+errors $e_0,\ldots,e_n$. Each row and column of its error matrix has
+absolute sum at most $e_0+2\sum_{r=1}^n e_r$. Hence
+\begin{equation}
+ \|T_n-\widehat T_n\|_{2\to2}
+       \leq e_0+2\sum_{r=1}^n e_r,\qquad
+ |b^*(T_n-\widehat T_n)b|
+       \leq\left(e_0+2\sum_{r=1}^n e_r\right)\|b\|_2^2.
+ \tag{MP33}
+\end{equation}
+For example, the operator bound follows from the square root of the
+product of the maximum row and column sums. This proves a finite-vector
+certificate without relying on an unenclosed floating-point eigenvalue.
+
+\section{Exact height modulation and its amplification}
+For $\rho=\tfrac12+\delta+i\gamma$ and the original pole
+$\omega=\sigma+i\tau$, put $d=\sigma-\tfrac12$. Directly from MP3,
+\begin{equation}
+ \log|U_\omega(\rho)|
+ =\frac12\log\frac{(d+\delta)^2+(\gamma-\tau)^2}
+                         {(d-\delta)^2+(\gamma-\tau)^2}.
+ \tag{MP34}
+\end{equation}
+For $\omega=2$ and fixed $0<\delta<1/2$, expanding the two logarithms
+at $\gamma^{-2}=0$ gives
+\begin{equation}
+ \log|U_2(\rho)|
+ =\frac{3\delta}{\gamma^2}
+   -\frac{3\delta(9/4+\delta^2)}{\gamma^4}
+   +O_\delta(\gamma^{-6}).\tag{MP35}
+\end{equation}
+In contrast, at the original height-matched pole $2+i\gamma$ the exact
+value is
+\begin{equation}
+ \log|U_{2+i\gamma}(\rho)|
+       =\log\frac{3/2+\delta}{3/2-\delta}.
+ \tag{MP36}
+\end{equation}
+Both numerator and denominator are positive in the stated range, so
+there is no unmentioned absolute-value or branch choice.
+
+The physical comparison is the exact map
+\begin{equation}
+ \begin{gathered}
+ M_\tau:L^2([1,\infty),\dd x)\longrightarrow L^2([1,\infty),\dd x),
+ \\ (M_\tau f)(x)=x^{-i\tau}f(x),
+ \qquad M_\tau^{-1}=M_{-\tau},\qquad
+ f_j^{\sigma+i\tau}=M_\tau f_j^\sigma.
+ \end{gathered}
+ \tag{MP37}
+\end{equation}
+For real $x>0$, $|x^{-i\tau}|=1$, proving unitarity for the original
+measure, and multiplication of the two phases proves the inverse.
+The parameter $h=2\sigma-1$ stays fixed in this map. This proves precisely
+how the physical test family changes while the zero set in MP2 remains
+the same.
+
+The arithmetic quantity detected by the two-mode form is therefore
+\begin{equation}
+ D_n(\sigma,\tau)=|c_n(\sigma+i\tau)|-
+            2\Rea\frac{\xi'}{\xi}(\sigma+i\tau).
+ \tag{MP38}
+\end{equation}
+Its exact coefficients and finite errors are MP19--MP33. MP34--MP37
+describe their spectral and physical dependence on the movable pole.
+No low-degree positive computation supplies an estimate for every
+degree or every pole, and no uncomputed $D_n$ is assigned a sign here.
+
+\section*{Source and reading provenance}
+The immediate mathematical claim source is the supplied full-Weil
+continuation, incoming equations (18), (24)--(32), and (40)--(49).
+This note proves those movable-pole statements independently, and adds
+the explicit unconditional diagonal MP12, the Taylor-radius statement
+MP18, and the next exact asymptotic coefficient in MP35. The certificate
+MP31 states the necessary nonzero-phase and real-diagonal requirements.
+The human source used for the classical genus-one product, absolute
+power-sum convergence, and reflected form is the following original
+author LaTeX. No result from the unavailable Sekatskii source is imported.
+
+\begin{thebibliography}{9}
+\bibitem{DLMFProduct}
+NIST Digital Library of Mathematical Functions, Chapter25,
+formula25.2.12, release1.2.8,
+\url{https://dlmf.nist.gov/25.2.E12}.
+Source attribution: E.~C.~Titchmarsh,
+\emph{The Theory of the Riemann Zeta-Function}, second edition,
+revised by D.~R.~Heath-Brown (1986), (2.12.6), (2.12.8), pp.30--31.
+The original DLMF formula TeX and its source attribution were read;
+this is not a claim to have read the whole Titchmarsh volume here.
+\bibitem{Lagarias}
+Jeffrey C. Lagarias,
+\emph{Li Coefficients for Automorphic $L$-Functions},
+arXiv:math/0404394v4, original author LaTeX dated 11 April 2005.
+\url{https://arxiv.org/abs/math/0404394v4}.
+Read locators: Lemma 2.1 (absolute reciprocal-power convergence),
+Section 3 (the reflected Weil scalar product), and Lemma 4.1 with its
+proof (the full genus-one product and logarithmic expansion).
+\bibitem{Laguerre}
+T.~H.~Koornwinder, R.~Wong, R.~Koekoek, R.~F.~Swarttouw and
+W.~P.~Reinhardt, \emph{Orthogonal Polynomials}, NIST Digital
+Library of Mathematical Functions, Chapter 18, formula 18.12.13,
+release 1.2.8. \url{https://dlmf.nist.gov/18.12.E13}.
+The original formula TeX was read and retained. Its specialization
+at parameter zero gives the generating function in MP5; at
+parameter minus one it gives MP22, both derived explicitly here.
+\end{thebibliography}
+\end{document}

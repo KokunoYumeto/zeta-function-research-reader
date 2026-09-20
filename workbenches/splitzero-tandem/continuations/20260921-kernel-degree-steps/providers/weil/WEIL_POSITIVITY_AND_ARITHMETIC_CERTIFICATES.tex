@@ -1,0 +1,430 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\W}{\mathcal W}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\diag}{\operatorname{diag}}
+\title{Complete-Weil positivity for the cubic Gaussian source and certified movable-pole matrices}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{Original source, full zero sum and the human inputs}
+Retain the completed zeta function and the actual Gaussian source
+\[
+ \xi(s)=\Phi(s)\zeta(s),\qquad
+ \Phi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\qquad
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}.                 \tag{WP1}
+\]
+For $D=-x\,d/dx$, $P(s)=\sum_{j=0}^3p_js^j$ and
+$f_P=P(D)\phi_*$, integration by parts gives
+\[
+ F_P(s)=\int_0^\infty f_P(x)x^{s-1}\,dx=P(s)\Phi(s),
+                  \qquad \Re s>-2.                            \tag{WP2}
+\]
+Indeed the two terms of the Mellin integral of $\phi_*$ are
+$2\pi^{-s/2}\Gamma(s/2+2)$ and
+$-3\pi^{-s/2}\Gamma(s/2+1)$; the Gamma recursion gives WP1.
+Every integration by parts has zero boundary term on the stated
+half-plane, since $D^j\phi_*(x)=O(x^2)$ at zero and is a polynomial
+times a Gaussian at infinity. The even extension of every $f_P$ is
+Schwartz, vanishes at zero, and has integral zero, since $\Phi(1)=0$.
+
+All sums below run over the actual nontrivial zeros $\rho$ of $\zeta$,
+with their actual multiplicities $m_\rho$. Define
+\[
+ \W(F,G)=\sum_\rho m_\rho\,
+       \overline{F(1-\bar\rho)}G(\rho).                         \tag{WP3}
+\]
+The functional equation and conjugation preserve this multiset.
+The estimates below prove absolute convergence for the sources
+used here, so reflection and conjugation may be applied without
+an ordering convention. At a critical-line zero each summand of
+$\W(F,F)$ is $m_\rho|F(\rho)|^2$.
+
+The finite-height input is Platt--Trudgian's Theorem~1
+\cite{PlattTrudgian}: every zero up to the stated height
+$3\,000\,175\,332\,800$ is on the critical line. We use only
+\[
+                         T_0=3\cdot10^{12}.                    \tag{WP4}
+\]
+For the unverified tail use Hasanalizade--Shen--Wong's
+Corollary~1.2 \cite{HSW}, in its stated original version:
+\[
+ \left|N(T)-\frac{T}{2\pi}\log\frac{T}{2\pi e}\right|
+ \le .1038\log T+.2573\log\log T+9.3675\quad(T\ge e).          \tag{WP5}
+\]
+$N(T)$ counts positive-height zeros with multiplicity. In particular
+$N(T)\le T\log T$ for $T\ge100$: the right-hand error in WP5 is
+less than $\log T+10\le T$, while
+$1/(2\pi)+1/\log T<1$. These inequalities hold at $100$ and
+persist because $T-\log T-10$ increases and $1/\log T$ decreases.
+The proof uses no hypothesis on the location of zeros above WP4.
+
+\section{Four certified zeros and the Gamma estimate}
+The script \texttt{certify\_four\_critical\_zeros.py}, using Arb
+ball arithmetic \cite{Johansson} at $384$ bits, encloses the full
+WP1 expression at $s=1/2+it$. It proves the following strict real
+signs; the displayed decimal intervals are outward coarse
+enclosures of the stored balls, not replacement calculations:
+\[
+\begin{array}{c|c}
+t&\xi(1/2+it)\\\hline
+14&(0.0002012,0.0002014)\\
+15&(-0.0007058,-0.0007056)\\
+21&(-3.978\cdot10^{-7},-3.977\cdot10^{-7})\\
+22&(7.716\cdot10^{-6},7.717\cdot10^{-6})
+\end{array}                                                     \tag{WP6}
+\]
+The functional equation and conjugation show that this function
+of real $t$ is real. Continuity and the sign changes therefore
+produce zeros $\gamma_1\in(14,15)$ and $\gamma_2\in(21,22)$.
+Together with their negatives these give four distinct zeros
+$\rho_j=1/2+i\gamma_j$, where here the index runs over
+$\gamma_1,\gamma_2,-\gamma_1,-\gamma_2$. No simplicity is needed.
+Every pair of these four heights has distance greater than $6$.
+The complete balls, script hash and library version are retained
+in \texttt{FOUR\_CRITICAL\_ZERO\_CERTIFICATES.json}.
+
+For clarity the Gamma constants are proved explicitly from
+the complex Stirling remainder in Askey--Roy, DLMF 5.11.1 and
+5.11(ii) \cite{Gamma}. In the open right half-plane,
+\[
+ \log\Gamma z=(z-\tfrac12)\log z-z+\tfrac12\log(2\pi)+R(z),
+ \quad |R(z)|\le\frac{\sec^2(\arg z/2)}{12|z|}
+                   \le\frac1{6|z|}.                           \tag{WP7}
+\]
+The first inequality is the remainder after omitting all
+Bernoulli terms. Put $z=\beta/2+it/2$ with $0\le\beta\le1$,
+$t\ge10$, and $w=z+1=a+ib$, so $1\le a\le3/2$, $b\ge5$.
+Using $b\arg w\ge b\pi/2-a$, WP7 and $\Gamma(z)=\Gamma(w)/z$,
+\[
+ \begin{split}
+ |\Gamma(z)|
+ &\le \sqrt{2\pi}\,b^{\beta/2-1/2}
+       (1+.09)^{1/2}e^{1/30}e^{-\pi b/2}
+   <3e^{-\pi t/4},\\
+ |\Phi(\beta+it)|&\le5(1+t^2)e^{-\pi t/4}.
+ \end{split}                                                   \tag{WP8}
+\]
+Here $|w|^{a-1/2}=b^{a-1/2}(1+a^2/b^2)^{(a-1/2)/2}$,
+$|z|\ge b$, $a^2/b^2\le .09$, and $\beta/2-1/2\le0$.
+Also $|s(s-1)|\le1+t^2$ and $\pi^{-\beta/2}\le1$.
+The same estimates hold for negative $t$ by conjugation.
+
+For any of the four critical heights, apply WP7 directly to
+$z=1/4+i\gamma/2$, so $7<|z|<12$. It gives
+\[
+ \log|\Gamma z|^2\ge
+ \log(2\pi)-\tfrac12\log12-11\pi-\tfrac12-\tfrac1{21}>-36.
+\]
+Since $|s(s-1)|^2\ge1$ at those heights,
+\[
+             |\Phi(\rho_j)|^2>e^{-40}\quad(1\le j\le4).
+                                                                  \tag{WP9}
+\]
+
+\section{The full cubic Gaussian inequality, with all high zeros retained}
+Let $V_{j\ell}=\rho_j^\ell$ for $0\le\ell\le3$ and let
+$H=V^*\diag(|\Phi(\rho_j)|^2)V$ be the contribution of one
+copy of each of the four zeros. It is positive definite, and
+\[
+ \det H=\prod_{j=1}^4|\Phi(\rho_j)|^2
+                   \prod_{i<j}|\rho_j-\rho_i|^2>e^{-160},
+ \qquad \operatorname{tr}H<400\cdot485^5<e^{40}.              \tag{WP10}
+\]
+The trace estimate follows from WP8 and
+$\sum_{\ell=0}^3|\rho_j|^{2\ell}\le4(1+\gamma_j^2)^3$,
+discarding only the factor $e^{-\pi|\gamma_j|/2}\le1$ in this
+upper bound. Hence
+\[
+                         \lambda_{\min}(H)>e^{-280}.           \tag{WP11}
+\]
+Indeed the product of its three largest eigenvalues is at most
+$(\operatorname{tr}H)^3$.
+
+For a unit coefficient vector $p$, Cauchy--Schwarz gives
+$|P(\beta+it)|\le2(1+t^2)^{3/2}$ uniformly in the strip.
+The absolute value of each unknown zero summand in WP3 is at
+most
+\[
+                  u(t)=100(1+t^2)^5e^{-ct},\qquad c=\pi/2.
+                                                                  \tag{WP12}
+\]
+For $t\ge T_0$, $u$ decreases and
+$0\le-u'(t)\le c u(t)\le3200c\,t^{10}e^{-ct}$.
+Stieltjes integration by parts, WP5 and $\log t\le t$ show
+\[
+ \begin{split}
+ 2\sum_{\Im\rho>T_0}m_\rho u(\Im\rho)
+ &\le2\int_{T_0}^{\infty}N(t)(-u'(t))\,dt\\
+ &\le6400e^{-cT_0}\sum_{j=0}^{12}
+             \frac{12!}{(12-j)!}\frac{T_0^{12-j}}{c^j}
+ <e^{-T_0}.
+ \end{split}                                                   \tag{WP13}
+\]
+For the last inequality the sum is at most
+$T_0^{12}\sum_{j=0}^{12}(12/(cT_0))^j<2T_0^{12}$.
+Thus its logarithm including $6400$ is less than
+$10+12\log T_0<370$, whereas $(c-1)T_0>10^{12}$.
+The factor $2$ includes negative heights; the boundary term in
+integration by parts is nonpositive and was discarded in an
+upper bound. WP12--13 also prove absolute convergence.
+
+All other zeros below WP4 contribute nonnegative terms, by
+Platt--Trudgian. Combining WP11 and WP13 and then scaling $p$
+proves the complete, unconditional inequality
+\[
+ \boxed{\W(\Phi P,\Phi P)\ge e^{-300}\sum_{j=0}^3|p_j|^2.}
+                                                                  \tag{WP14}
+\]
+The margin follows from $e^{-280}-e^{-T_0}>e^{-300}$.
+The unknown high zeros have been estimated, not placed on the
+critical line. WP14 is a statement about this entire original
+cubic Gaussian source space, not only four sampled vectors.
+
+\section{Exact translation and the coefficient-space receiver}
+The original target coordinate is $S'=c_*+iy$, whereas the
+zeta coordinate on the same physical line is $s=1/2+iy$.
+Thus $S'=s+c_*-1/2$. Retain this exact affine map, and define
+the actual coefficient translation $C_{c_*}$ by
+$p(s+c_*-1/2)=\sum_i(C_{c_*}p)_i s^i$:
+\[
+ (C_{c_*})_{ij}=\begin{cases}\binom ji(c_*-1/2)^{j-i},&i\le j,\\
+                  0,&i>j,\end{cases}\qquad
+ \det C_{c_*}=1,\quad C_{c_*}^{-1}=C_{1-c_*}.                \tag{WP15}
+\]
+The entry formula is the binomial theorem; composing the two
+translations proves the inverse. For the original conductor
+coordinate map $y=\Psi q$ of FC26--32 \cite{FC}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L300}{[proof FC17]}%
+% END VERIFIED PUBLIC PROOF LINK
+{} into the coefficient vector of the
+cubic $p$, the original lift is exactly $p(D+c_*-1/2)\phi_*$.
+Explicitly, $\Psi=YK^{-1}$, where $K$ is the retained collision
+coordinate matrix and the $a$th column of $Y$ is the coefficient
+vector of the original polynomial
+\[
+ y_a(S')=\sum_{u,w=0}^{8}a_{uw}
+          (S'+\beta_{8,u,w})^v\ell_a(S'+\beta_{8,u,w}).
+\]
+Here $\ell_a(S)=\prod_{b\ne a}(S-\rho_b)/(\rho_a-\rho_b)$
+and $v$ is the actual order of the conductor symbol, exactly as
+in FC17 and FC26; its periods and original coefficients remain
+in $a_{uw}$ and $\beta_{8,u,w}$.
+Writing $\mathsf W_\Phi$ for the coefficient Gram in WP14,
+its pullback is therefore
+\[
+ \boxed{\mathsf W_{\rm original}
+  =\Psi^*C_{c_*}^*\mathsf W_\Phi C_{c_*}\Psi
+  \succeq e^{-300}\Psi^*C_{c_*}^*C_{c_*}\Psi.}              \tag{WP16}
+\]
+This identity follows by applying WP2 to each original
+coefficient column; it retains every entry of $\Psi$ and the
+centre. The arithmetic native metric and its full minimum are
+not replaced by the Euclidean coefficient norm: WP16 specifies
+the actual form to be transported to those coordinates.
+For the separate eight-state conductor, its original target map
+is substituted into this displayed pullback by the Fable
+receiver cited in the accompanying source index.
+
+\section{A rational cubic test and its unknown-tail bound}
+Retain the pole $\omega=2$, its $h=3$, and the four functions
+\[
+ U(s)=\frac{s+1}{2-s},\qquad
+ \varphi_j(s)=\frac{\sqrt3}{2-s}U(s)^j\quad(0\le j\le3).
+                                                                  \tag{WP17}
+\]
+The complete movable-pole proof MP in the companion source \cite{MP}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/MOVABLE_POLE_WEIL_DERIVATION.tex\#L30}{[proof MP1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}
+establishes that their full-Weil Gram is the Hermitian Toeplitz
+matrix $T_3(2)$; equivalently this matrix is defined directly by
+WP3 applied to these four functions. The present positivity
+proof uses WP3 and therefore does not depend on a truncated
+zero expansion or on a Taylor approximation to its entries.
+
+At a critical height $t$, the weight of one row is
+$w_t=3/(9/4+t^2)>1/200$ for $14<|t|<22$, and $|U(1/2+it)|=1$.
+For two of our four heights,
+\[
+ |U(1/2+it)-U(1/2+iu)|
+ =\frac{3|t-u|}{\sqrt{9/4+t^2}\sqrt{9/4+u^2}}
+ >\frac{18}{487}>\frac1{30}.                                \tag{WP18}
+\]
+Consequently the four-row Vandermonde Gram $H_R$ satisfies
+\[
+ \det H_R> b_*:=\frac1{200^4 30^{12}},\qquad
+ \operatorname{tr}H_R\le\frac{16\cdot3}{9/4+14^2}<1,
+ \qquad\lambda_{\min}(H_R)>b_*.                              \tag{WP19}
+\]
+On $0\le\Re s\le1$, $|\Im s|=t\ge10$, one has
+$|U(s)|^2\le1+3/t^2<1.02^2$ and
+$|U'(s)|\le3/t^2$. Differentiation of WP17 gives, for each
+$0\le j\le3$,
+\[
+ |\varphi_j'(s)|
+ \le\frac{\sqrt3}{t^2}
+       \left(1.02^3+\frac9t\,1.02^2\right)<\frac4{t^2}.
+\]
+Thus for $F=\sum_{j=0}^3p_j\varphi_j$ with $\|p\|_2=1$,
+\[
+ |F'(s)|\le8/t^2,\qquad
+ |F(\rho)-F(1-\bar\rho)|\le8/t^2.                           \tag{WP20}
+\]
+The second bound integrates on the horizontal segment of length
+$|2\Re\rho-1|\le1$ inside the same strip. A noncritical reflected
+pair with equal multiplicity $m$ contributes
+\[
+ 2m\Re(\overline{F(1-\bar\rho)}F(\rho))
+ =m\left(|F(\rho)|^2+|F(1-\bar\rho)|^2
+        -|F(\rho)-F(1-\bar\rho)|^2\right)
+ \ge-64m/t^4.                                                 \tag{WP21}
+\]
+Each positive-height reflected pair accounts for $2m$ in $N$;
+the same bound at negative heights therefore gives a total
+possible negative contribution of at most
+\[
+ \begin{split}
+ 64\sum_{\Im\rho>T_0}\frac{m_\rho}{(\Im\rho)^4}
+ &\le\frac{256}{T_0^3}
+                    \left(\frac{\log T_0}{3}+\frac19\right)
+ <10^{-33}<\frac{b_*}{2}.
+ \end{split}                                                   \tag{WP22}
+\]
+Here Stieltjes integration by parts gives an upper bound
+$4\int_{T_0}^\infty N(t)t^{-5}\,dt$, followed by WP5. The last
+comparison follows already from $\log T_0<30$ and
+$200^4 30^{12}<10^{27}$. Absolute convergence of WP3 also follows
+from $F(s)=O(1/|\Im s|)$ and $N(t)=O(t\log t)$.
+All verified zeros outside the selected four contribute
+nonnegatively. Hence
+\[
+                      \boxed{T_3(2)\succeq\tfrac12 b_* I.}    \tag{WP23}
+\]
+This directly bounds all four rational coefficients, including
+their arbitrary relative phases.
+
+\section{New exact-ball certificates through degree eight}
+For a pole $\omega=2+i\tau$ put
+\[
+ \begin{gathered}
+ h=3,\quad M_\omega(z)=\frac{\omega+(1-\bar\omega)z}{1+z},
+ \quad L=\xi'/\xi,\\
+ L(M_\omega(z))=L(\omega)+\sum_{n\ge1}c_nz^n,
+ \quad c_0=2\Re L(\omega),\quad c_{-n}=\bar c_n.
+ \end{gathered}                                                \tag{WP24}
+\]
+The companion MP proof identifies $T_d(\omega)=(c_{j-i})_{0\le i,j\le d}$
+with the complete WP3 Gram of
+$\sqrt h\,(\omega-s)^{-1}[(s+\bar\omega-1)/(\omega-s)]^j$.
+At these poles $\Re\omega>1$, so $\xi(\omega)\ne0$ and the
+Taylor-series division is valid. The checked script
+\texttt{certify\_weil\_matrices.py} computes WP24 by the full
+WP1 product using Arb, with $768$ bits and series cap $12$.
+If $X(z)=\xi(M_\omega(z))$, it computes
+\[
+          L(M_\omega(z))=\frac{X'(z)}{X(z)M_\omega'(z)}.
+                                                                  \tag{WP25}
+\]
+Since $M_\omega'(0)=-h\ne0$, series division is again valid.
+The series cap retains every coefficient through degree eight
+after differentiation. All constants are exact integers or
+Arb-enclosed transcendental constants and values; no zero list
+or finite prime sum is substituted into WP25.
+
+For each $\tau\in\{0,14,21,100,1000\}$, the script constructs
+all leading principal matrices of sizes $1$ through $9$ and
+encloses each determinant. Every determinant has strictly
+positive real lower endpoint; its imaginary ball contains
+zero, as required by the exact Hermitian symmetry. Sylvester's
+criterion therefore proves
+\[
+ \boxed{T_d(2+i\tau)\succ0\quad
+       (0\le d\le8,\ \tau\in\{0,14,21,100,1000\}).}           \tag{WP26}
+\]
+This is $45$ positive determinant certificates. The script
+also encloses and proves positive each of the $40$ margins
+$c_0-|c_n|$ for $1\le n\le8$. The complete ball coefficients,
+all minors, all margins, precision, version and script hash are
+in \texttt{ARITHMETIC\_BALL\_CERTIFICATES.json}. For orientation
+only, the determinants of the largest matrices are approximately
+\[
+\begin{array}{c|r}
+\tau&\det T_8(2+i\tau)\\\hline
+0&2.87069033117\cdot10^{-79}\\
+14&2.04193998712\cdot10^{-52}\\
+21&1.04788150392\cdot10^{-37}\\
+100&4.21694999273\cdot10^{-13}\\
+1000&96.1156305520
+\end{array}                                                     \tag{WP27}
+\]
+The strict ball comparisons, rather than these rounded
+numbers, are the certificates used in WP26.
+
+WP14, WP23 and WP26 establish full-form positive statements on
+the displayed finite source spaces, including the unknown
+zero tails. The movable-pole degree remains unrestricted in
+the exact MP criterion. No conclusion about all degrees, or
+about RH, is inferred from these finite certificates.
+
+\begin{thebibliography}{9}
+\bibitem{MP} Split-Zero programme,
+\emph{Exact movable-pole Weil coefficients and finite arithmetic
+certificates}, MP1--38, complete accompanying source
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/MOVABLE_POLE_WEIL_DERIVATION.tex\#L1}{\texttt{MOVABLE\_POLE\_WEIL\_DERIVATION.tex}}.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/MOVABLE_POLE_WEIL_DERIVATION.tex\#L30}{Source proof MP1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{FC} Split-Zero programme,
+\emph{Fable to the original conductor}, FC17 and FC26--32,
+complete source \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L1}{\texttt{FABLE\_TO\_ORIGINAL\_CONDUCTOR.tex}},
+published edition:
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/tree/f8b73284d2e669e981bf2c7609e99f4d2b3a50be/workbenches/splitzero-tandem/continuations/20260920-marked-observation-illustrated}.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L300}{Source proof FC17}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{PlattTrudgian} D.~Platt and T.~Trudgian,
+\emph{The Riemann hypothesis is true up to $3\cdot10^{12}$},
+arXiv:2004.09765v1, Theorem~1; Bull. London Math. Soc.,
+doi:10.1112/blms.12460.
+\url{https://arxiv.org/abs/2004.09765v1}.
+Original author TeX read completely; canonical disk source
+\texttt{PUBUNIT-8FD792C15B5C6472FBDED93E}.
+\bibitem{HSW} E.~Hasanalizade, Q.~Shen and P.-J.~Wong,
+\emph{Counting zeros of the Riemann zeta function},
+arXiv:2107.06506v1, Corollary~1.2 and its displayed explicit
+bound. \url{https://arxiv.org/abs/2107.06506v1}.
+The original TeX introduction and this corollary were read;
+this citation imports that published zero-counting theorem.
+\bibitem{Gamma} R.~A.~Askey and R.~Roy,
+\emph{Gamma Function}, NIST Digital Library of Mathematical
+Functions, Chapter~5, formula 5.11.1 and section 5.11(ii),
+release 1.2.8. Original formula TeX retained.
+\url{https://dlmf.nist.gov/5.11.E1};
+\url{https://dlmf.nist.gov/5.11.ii}.
+\bibitem{Johansson} F.~Johansson,
+\emph{Arb: efficient arbitrary-precision midpoint-radius
+interval arithmetic}, IEEE Transactions on Computers 66
+(2017), 1281--1292, doi:10.1109/TC.2017.2690633.
+Original author source: \url{https://arxiv.org/abs/1611.02831v1},
+sections 1, 2, 5 and the power-series/matrix parts of section 6.
+Arb is used through python-flint 0.9.0; the precision and
+strict enclosure tests are recorded in both supplied scripts.
+\bibitem{Lagarias} J.~C.~Lagarias,
+\emph{Li Coefficients for Automorphic $L$-Functions},
+arXiv:math/0404394v4, Lemmas 2.1 and 4.1; Ann. Inst. Fourier
+57 (2007), 1689--1740.
+\url{https://arxiv.org/abs/math/0404394v4}.
+The original genus-one product and convergence proof are the
+human primary inputs to the complete movable-pole companion.
+\end{thebibliography}
+\end{document}

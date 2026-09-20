@@ -1,3 +1,10 @@
+<!-- kernel-degree-steps:20260921 -->
+## Exact degree changes in the Split-Zero kernel metric
+
+The [74-page complete paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/COMPLETE_PROOFS.pdf) calculates how the metric of the arithmetic observation kernel changes when the allowed polynomial degree increases. It retains all reflected-node entries, the full correction after compression, and every factor in the four-cutoff determinant product. The calculation proves strict finite kernel contraction for the paired quartet; it does not determine the unresolved large-degree kq magnitude or settle RH.
+
+Programme citations in this reader now link directly to public proof files. [Full LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/COMPLETE_PROOFS.tex), [results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/RESULT_INDEX.json), [human sources](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/SOURCE_USE_LEDGER.json), [the proof-link registry](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/CITATION_LINKS.json) and three complete cumulative LaTeX successors are included. The source archive preserves all ten complete proof bodies and restores two previously unpublished cited sources. The historical cumulative citations still awaiting an exact source match are identified in the registry, rather than assigned a guessed link.
+
 <!-- original-kernel-verified-doi:20260921 -->
 ## Read the Split-Zero original-kernel proof edition
 

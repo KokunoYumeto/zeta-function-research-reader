@@ -1,3 +1,8 @@
+<!-- original-kernel-mixed-determinants:20260920 -->
+## Exact mixed relations in the arithmetic observation kernel
+
+The Split-Zero programme represents finite zero-divisor classes of the completed zeta function in an arithmetic theta-source Hilbert space. The [49-page complete proof reader](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/COMPLETE_PROOFS.pdf) calculates the determinant of the original observation kernel after minimizing over all source representatives. It applies Akemann and Vernizzi’s finite determinant theorem with every mixed relation, source mass and coefficient-frame factor retained. The result identifies the exact Gamma matrix for the remaining large-degree kq calculation; it does not evaluate that coefficient or prove an RH conclusion. [Full LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/COMPLETE_PROOFS.tex), [proof locators and programme use](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/RESULT_INDEX.json), [human sources](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/SOURCE_USE_LEDGER.json), all seven complete proof bodies, exact checks, reproducible illustration and three full cumulative source successors are included.
+
 <!-- gamma-and-finite-derivative:20260920 -->
 ## Gamma bounds and a corrected finite derivative calculation
 

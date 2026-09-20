@@ -1,0 +1,13 @@
+# What was verified
+
+The root task read the complete receiver PMH1–10, the full source remainder repair PMH11, and the complete independent remainder derivation. The pinned original Polymath author LaTeX was read in full, including its bibliography. Its remainder argument was reread against the repairs. Arias de Reyna's 2011 bounds and Boyd's estimate are attributed through Polymath, not presented as separately read originals.
+
+Both frozen checkers were replayed locally, in ordinary and optimized Python modes. The receiver executes **1170 active checks per mode**, including six expected-rejection controls. It combines finite symbolic checks with outward interval arithmetic for the stated contour and time interval. The independent checker passes **23 exact rational comparisons per mode**, with analytic series remainder bounds. No Python assertion statements remain in either checker. All six separate optimized deliberately incorrect variants exit with status 1. These finite checks supplement, rather than replace, the complete analytic proofs.
+
+The input hashes and output hashes are in `checks/ROOT_REPLAY.json`. The normal and optimized outputs agree byte for byte. Only private replay-directory paths are replaced in the public failure tracebacks; the receipt retains the hashes of the original local outputs.
+
+The executed nonempty packet contains exactly one zero, counting multiplicity, throughout the closed time interval `[1023/4096,1025/4096]` in the open rectangle `(1/10,9/10)+i(507/4,513/4)`. A positive boundary margin, winding number one, and reflection symmetry prove its simplicity and real part `1/2`. The minimum returned lower certificate value lies between `1.2475e-41` and `1.2476e-41`; that upper endpoint is not an upper bound for the unknown exact minimum of the source modulus. Full source-unit bounds are `|rho'|<1102` and `|R'/R(rho)|<2204`.
+
+The separately generated coordinate illustration was visually inspected. The two additional TikZ figures remain complete in the proof source; no separate visual verification of their compiled layouts is claimed. Draft-only LaTeX checking, when recorded in `DRAFT_TEX_CHECK.json`, checks the new complete source and resolves references and citations without producing or reading a PDF. No fresh compilation of the three large cumulative successors is claimed. Their predecessor bytes are recovered exactly by reversing the two recorded insertions.
+
+There is no new Lean execution, all-height result, negative-time extension, RH endpoint proof or proof that every contour passes the finite test. No PDF reading, Zenodo, Overleaf or timer change is claimed.

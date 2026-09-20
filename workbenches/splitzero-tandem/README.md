@@ -1,3 +1,8 @@
+<!-- polymath-finite-packet:20260920 -->
+## A certified finite packet of the original theta heat flow
+
+The Split-Zero programme starts with the theta source whose Mellin transform is 2xi. The [new complete calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-polymath-finite-packet/README.md) applies Polymath’s effective de Bruijn–Newman approximation to this exact source, retaining the factor16, all derivative phases, the full zero divisor and its entire exterior factor. It certifies exactly one moving simple zero in (1/10,9/10)+i(507/4,513/4) for every t in [1023/4096,1025/4096]. A separate complete proof repairs intermediate source estimates while retaining their final constants. [All three proof bodies](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-polymath-finite-packet/COMPLETE_PROOFS.tex), [exact result domains and uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-polymath-finite-packet/RESULT_INDEX.json), human citations, checkers, an inspected coordinate illustration and three full cumulative LaTeX successors are included. This finite positive-time certificate does not settle the RH endpoint or all heights.
+
 <!-- arithmetic-gaussian-return:20260920 -->
 ## Gaussian traces calculated in the original arithmetic quotient
 

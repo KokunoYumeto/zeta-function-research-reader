@@ -1,3 +1,8 @@
+<!-- native-heat-action:20260920 -->
+## Two heat observations of the original theta quotient
+
+The Split-Zero programme uses the theta source with Mellin transform 2xi/h and the original least-source-norm metric on its finite polynomial quotient. The [new complete calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-heat-action/README.md) computes both the holomorphic heat trace and the positive-metric heat trace of the same outgoing correction. Their small-heat-time difference recovers the existing arithmetic error bound, with explicit remainder estimates. The exact curvature calculation also gives a sharp heat-time threshold, including its sign-changing boundary example. [Four complete proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-heat-action/COMPLETE_PROOFS.tex), [two labelled figures](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-heat-action/FIGURE_CAPTION.md), [results and their programme use](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-heat-action/RESULT_INDEX.json), human-source citations, exact checkers and three complete cumulative LaTeX successors are included. These finite results do not prove growing-degree arithmetic error decay or an RH conclusion.
+
 <!-- native-spectral-action:20260920 -->
 ## The arithmetic error bound as a trace curvature
 

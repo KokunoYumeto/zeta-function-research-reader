@@ -1,0 +1,595 @@
+# Independent derivation of DS3–DS12 and the real-parameter curvature
+
+Date: 20 September 2026. Scope: finite-dimensional mathematics only. This
+derivation keeps the source proof unchanged. It does not use or claim to
+have read a human source; the parent task retains that separate source
+record. The curvature calculation was also independently derived by a
+bounded mathematical subagent and checked against the calculation below.
+
+## ID1. Objects, metric, and elementary norm identities
+
+Let the given finite vector space have positive Hermitian metric matrix
+\(G\). Set
+
+\[
+X^\dagger=G^{-1}X^*G,\qquad
+A=A^\dagger,\qquad Q=r\ell,\qquad \ell r=0,\qquad T(t)=A-tQ.
+\]
+
+The source hypothesis means \(A^*G=GA\). We do not replace \(G\)
+with another metric. Operator and Schatten norms below are those of this
+given Hermitian space. Define
+
+\[
+\kappa=\operatorname{tr}(Q^\dagger Q)
+=(r^*Gr)(\ell G^{-1}\ell^*),\qquad \epsilon=\sqrt\kappa.
+\]
+
+The formula for \(\kappa\) follows by multiplying
+\(Q^\dagger=G^{-1}\ell^*r^*G\) and taking the trace of the resulting
+rank-one matrix. A nonzero rank-one operator has exactly one nonzero
+singular value: indeed its positive square has one nonzero eigenvalue,
+equal to its trace \(\kappa\). Consequently
+
+\[
+\|Q\|_G=\|Q\|_{\mathrm{HS},G}=\|Q\|_{1,G}=\epsilon.
+\]
+
+All Schatten facts used below can be transported exactly by an invertible
+matrix \(S\) with \(S^*S=G\): the map \(X\mapsto SXS^{-1}\)
+sends the given adjoint to the usual adjoint and preserves trace, products,
+and the declared metric norms. This is a proof of the metric identities,
+not a change to the original operators.
+
+For matrices on this space,
+\(|\operatorname{tr}X|\le\|X\|_1\),
+\(\|UXV\|_1\le\|U\|\|X\|_1\|V\|\), and
+\(|\operatorname{tr}(XY)|\le\|X\|_{\mathrm{HS}}\|Y\|_{\mathrm{HS}}\).
+For completeness, write a singular-value decomposition
+\(X=\sum_j\sigma_j u_jv_j^\dagger\). Each rank-one summand has
+trace norm \(\sigma_j\), while after left and right multiplication its
+trace norm is at most \(\sigma_j\|U\|\|V\|\); the triangle
+inequality gives the middle assertion. The first follows from
+\(|v_j^\dagger u_j|\le1\); the last is the Cauchy–Schwarz inequality
+for the Hilbert–Schmidt inner product, applied to \(X^\dagger,Y\).
+
+## ID2. DS3–DS7: insertion coefficients and the dimension-free remainder
+
+Since \(Q^2=r(\ell r)\ell=0\), with the source notation
+\(D=AQ+QA\),
+
+\[
+T(t)^2=A^2-tD,\qquad
+\|D\|_G\le2\|A\|_G\epsilon,\qquad
+\|D\|_{1,G}\le2\|A\|_G\epsilon. \tag{ID2.1}
+\]
+
+The trace-norm bound follows from ID1 applied separately to \(AQ\)
+and \(QA\). It does not estimate a trace by the dimension times an
+operator norm.
+
+Put \(E(u)=e^{-uA^2}\) for \(u\ge0\). Its norm is at most one
+because the eigenvalues of the given selfadjoint \(A\) are real and
+the eigenvalues of \(A^2\) are nonnegative. Variation of constants for
+\(U'(u)=(-A^2+tD)U(u),\ U(0)=I\), gives
+
+\[
+U(s)=E(s)+t\int_0^s E(s-\tau)D U(\tau)\,d\tau. \tag{ID2.2}
+\]
+
+The term with \(n\) insertions is
+
+\[
+t^n\int_{0\le\tau_n\le\cdots\le\tau_1\le s}
+E(s-\tau_1)D E(\tau_1-\tau_2)D\cdots D E(\tau_n)
+\,d\tau_n\cdots d\tau_1. \tag{ID2.3}
+\]
+
+Set \(v_0=1-\tau_1/s\),
+\(v_j=(\tau_j-\tau_{j+1})/s\) for \(1\le j<n\), and
+\(v_n=\tau_n/s\). These variables are nonnegative and sum to one.
+The absolute Jacobian from any \(n\) independent gap coordinates to
+the time coordinates is \(s^n\). In gap coordinates the measure is
+\(dv_1\cdots dv_n\), with \(v_0=1-\sum_{j=1}^nv_j\).
+It is not Euclidean hypersurface measure. Its total mass is \(1/n!\),
+as follows by integrating the nested time region at \(s=1\).
+
+Taking the trace of ID2.3 proves exactly
+
+\[
+d_n(s)=s^n\int_{\Delta_n}
+\operatorname{tr}(e^{-sv_0A^2}D e^{-sv_1A^2}\cdots D e^{-sv_nA^2})\,dv.
+\tag{ID2.4}
+\]
+
+Taking one insertion in trace norm and every other factor in operator
+norm gives
+
+\[
+|d_n(s)|\le\frac{s^n\|D\|_{1,G}\|D\|_G^{n-1}}{n!}. \tag{ID2.5}
+\]
+
+The corresponding operator bound is
+\(s^n\|D\|_G^n/n!\). Thus the matrix series and its parameter
+derivative converge uniformly on every bounded complex \(t\)-disk.
+The series satisfies ID2.2. Uniqueness follows either from the finite
+linear ODE or by iterating the homogeneous integral equation: a bounded
+solution difference is at most its supremum times
+\((s|t|\|D\|)^N/N!\) for every \(N\), hence is zero. Therefore
+the sum equals \(e^{-sT(t)^2}\) for every complex \(t\).
+
+An independent coefficient calculation makes the factorial explicit.
+For nonnegative integers \(k_0,\ldots,k_n\), with
+\(K=\sum_jk_j\), the gap moment is
+
+\[
+\int_{\Delta_n}\prod_{j=0}^nv_j^{k_j}\,dv
+=\frac{\prod_{j=0}^nk_j!}{(K+n)!}. \tag{ID2.6}
+\]
+
+To prove this by induction, the one-variable integral
+\(\int_0^1u^a(1-u)^bdu=a!b!/(a+b+1)!\) follows by repeated
+integration by parts, starting from \(b=0\). Slice the simplex at
+\(v_n=u\); the other \(n\) gaps are \((1-u)\) times an
+\((n-1)\)-simplex, and its coordinate Jacobian is
+\((1-u)^{n-1}\). The induction hypothesis and this one-variable
+integral give ID2.6 with every factorial retained.
+
+Expanding each gap exponential in ID2.4 now gives
+
+\[
+d_n(s)=\sum_{k_0,\ldots,k_n\ge0}
+\frac{(-1)^K s^{n+K}}{(n+K)!}
+\operatorname{tr}((A^2)^{k_0}D(A^2)^{k_1}\cdots D(A^2)^{k_n}).
+\tag{ID2.7}
+\]
+
+This is exactly the word expansion of
+\(\operatorname{tr}\exp(s(-A^2+tD))\) at coefficient \(t^n\).
+It provides an independent check that neither a further \(n!\) nor
+its inverse belongs in the coefficient. In particular,
+\(d_1(s)=s\operatorname{tr}(D e^{-sA^2})\), since cyclicity
+makes the \(K+1\) gap words at total exponent \(K\) have the
+same trace. This does not independently establish the different
+divided-difference representation cited from NH7–10: equality with any
+already-proved entire expansion follows from uniqueness of Taylor
+coefficients, not from a fresh claim that those external notes were read.
+
+If \(D=0\), all insertion coefficients vanish. Otherwise set
+\(x=s|t|\|D\|_G\). For an integer \(m\ge0\), ID2.5 gives
+
+\[
+|\Phi_s(t)-\operatorname{tr}E(s)-\sum_{n=1}^m t^nd_n(s)|
+\le s|t|\|D\|_{1,G}\sum_{j=0}^{\infty}
+\frac{x^{m+j}}{(m+1+j)!}
+\le s|t|\|D\|_{1,G}\frac{x^m e^x}{(m+1)!}. \tag{ID2.8}
+\]
+
+The last inequality uses
+\((m+1+j)!\ge(m+1)!j!\), factor by factor. The zero case
+\(t=0\) follows directly, including when \(m=0\).
+
+## ID3. DS8: every factor in \(n(2n-1)\)
+
+Let now \(T\) be any finite operator in the given metric and let the
+specified nonnegative number \(B\) satisfy \(B\ge\|T\|_G^2\).
+Write
+
+\[
+H=(T+T^\dagger)/2,\quad K=(T-T^\dagger)/(2i),\quad
+T_v=H+ivK=\tfrac{1+v}{2}T+\tfrac{1-v}{2}T^\dagger.
+\]
+
+For \(0\le v\le1\), the two coefficients are nonnegative and sum
+to one, so \(\|T_v\|_G\le\sqrt B\). Define
+
+\[
+f_n(v)=\operatorname{tr}((T_v^\dagger T_v)^n)
+-\Re\operatorname{tr}(T_v^{2n}),\qquad a_n=f_n(1).
+\]
+
+At \(v=0\) both traces equal \(\operatorname{tr}H^{2n}\).
+Moreover \(T_{-v}=T_v^\dagger\). Thus the real part of the second
+trace is unchanged under \(v\mapsto-v\), while the first becomes
+\(\operatorname{tr}((T_vT_v^\dagger)^n)\), which equals the
+original first trace by one cyclic shift of the \(2n\) factors.
+Consequently \(f_n\) is even and \(f_n(0)=f_n'(0)=0\).
+
+Each trace is a product of \(2n\) affine factors. A second derivative
+chooses an ordered pair of distinct factors: there are precisely
+\(2n(2n-1)\) choices. The differentiated factors are \(iK\) or
+\(-iK\); all other factors are \(T_v\) or \(T_v^\dagger\).
+After a cyclic shift, every resulting trace has the form
+\(\pm\operatorname{tr}(KXKY)\). The products \(X,Y\)
+together contain \(2n-2\) remaining factors, so
+
+\[
+|\operatorname{tr}(KXKY)|
+\le\|KX\|_{\mathrm{HS},G}\|KY\|_{\mathrm{HS},G}
+\le\|K\|_{\mathrm{HS},G}^2 B^{n-1}.
+\]
+
+There are two original traces. Taking the real part cannot increase the
+absolute value. Hence
+
+\[
+|f_n''(v)|\le4n(2n-1)\|K\|_{\mathrm{HS},G}^2B^{n-1}.
+\]
+
+Since \(f_n(1)=\int_0^1(1-v)f_n''(v)\,dv\) and this weight
+has integral \(1/2\),
+
+\[
+|a_n|\le2n(2n-1)\|K\|_{\mathrm{HS},G}^2B^{n-1}
+=n(2n-1)B^{n-1}a_1, \tag{ID3.1}
+\]
+
+where direct expansion gives
+
+\[
+a_1=\operatorname{tr}(T^\dagger T)-\Re\operatorname{tr}T^2
+=\tfrac12\|T-T^\dagger\|_{\mathrm{HS},G}^2
+=2\|K\|_{\mathrm{HS},G}^2. \tag{ID3.2}
+\]
+
+Thus the exact factor is
+\(2\text{ traces}\times2n(2n-1)\text{ ordered pairs}\times
+\tfrac12\text{ integral}\times\tfrac12\text{ conversion to }a_1
+=n(2n-1)\). If \(B=0\), then \(T=0\) and all
+coefficients vanish. If \(a_1=0\), then \(T=T^\dagger\) and
+both complete heat actions agree.
+
+## ID4. DS9–DS11: exponential and rational tails
+
+The two finite exponential series converge absolutely and their constant
+terms cancel, giving
+
+\[
+\Delta_s(T)=\sum_{n\ge1}\frac{(-1)^{n+1}s^n a_n}{n!}.
+\tag{ID4.1}
+\]
+
+For \(s>0\), put \(x=sB\) and
+\(b_n=(2n-1)x^{n-1}/(n-1)!\). Equation ID3.1 bounds the
+absolute value of the \(n\)-th term by \(sa_1b_n\).
+With \(j=n-1\), direct summation gives
+
+\[
+\sum_{n\ge1}b_n=\sum_{j\ge0}(2j+1)x^j/j!
+=(1+2x)e^x.
+\]
+
+Removing \(b_1=1\) proves
+
+\[
+|\Delta_s(T)-sa_1|\le sa_1((1+2x)e^x-1). \tag{ID4.2}
+\]
+
+For \(m\ge1\) with \(m+1>3x\), the first omitted term is
+\(n=m+1\), exactly
+
+\[
+b_{m+1}=(2m+1)x^m/m!.
+\]
+
+If \(x>0\), its successive ratios satisfy
+
+\[
+\frac{b_{n+1}}{b_n}=\frac{x(2n+1)}{n(2n-1)}
+\le\frac{3x}{n}\le\frac{3x}{m+1}<1\qquad(n\ge m+1).
+\]
+
+The first inequality is equivalent to \(2n+1\le6n-3\), valid
+for \(n\ge1\). Therefore
+
+\[
+\left|\Delta_s(T)-\sum_{n=1}^m\frac{(-1)^{n+1}s^na_n}{n!}\right|
+\le sa_1\frac{(2m+1)x^m}{m!(1-3x/(m+1))}. \tag{ID4.3}
+\]
+
+If \(x=0\) or \(a_1=0\), use the direct zero conclusions in
+ID3, without dividing by these quantities. For rational complex entries
+of \(T,G\), rational positive \(s\), and a rational specified
+bound \(B\), all entries of \(G^{-1}\), all \(a_n\), and the
+endpoints of this interval are rational. One permissible bound is
+\(B=\operatorname{tr}(T^\dagger T)\), because the largest
+nonnegative eigenvalue of \(T^\dagger T\) is at most their sum.
+No assertion that every admissible \(B\) is at most this trace is
+needed or valid. For fixed \(x\), the bound tends to zero as
+\(m\to\infty\), since the ratio of successive numerators tends
+to zero and the denominator tends to one.
+
+On the original path with real \(t\),
+\(T(t)-T(t)^\dagger=-t(Q-Q^\dagger)\). Since
+\(Q^2=(Q^\dagger)^2=0\),
+
+\[
+\|Q-Q^\dagger\|_{\mathrm{HS},G}^2
+=2\operatorname{tr}(Q^\dagger Q)=2\kappa,
+\quad a_1=t^2\kappa. \tag{ID4.4}
+\]
+
+For \(0\le x\le1/8\), comparison of nonnegative power series
+gives \(e^x\le(1-x)^{-1}\). Therefore
+\((1+2x)e^x-1\le(5/4)(8/7)-1=3/7\), and ID4.2 yields
+
+\[
+\frac47 st^2\epsilon^2\le\Delta_s(t)
+\le\frac{10}{7}st^2\epsilon^2. \tag{ID4.5}
+\]
+
+The same calculation at \(x\le1/7\) gives error at most \(1/2\).
+These are two ranges extracted from one estimate, not distinct arithmetic
+asymptotic results.
+
+## ID5. DS12: exact conductor and metric transport
+
+For the specified invertible map \(L:U\to W\), set
+\(T_W=LT_UL^{-1}\) and \(H=L^*G_WL\). Then
+
+\[
+H^{-1}=L^{-1}G_W^{-1}(L^*)^{-1},
+\quad
+LT_U^{\dagger_H}L^{-1}
+=G_W^{-1}(L^*)^{-1}T_U^*L^*G_W
+=T_W^{\dagger_{G_W}}. \tag{ID5.1}
+\]
+
+Multiplication gives
+\(T_W^{\dagger_{G_W}}T_W=L(T_U^{\dagger_H}T_U)L^{-1}\).
+Similarity commutes with every power and therefore, by the absolutely
+convergent series, with the exponential. Taking traces proves DS12.
+The same power argument proves invariance of the holomorphic heat trace
+under similarity without a metric choice. Nothing in this calculation
+sets \(H=G_U\); they can differ and their positive heat observations
+can then differ.
+
+## ID6. Exact real-parameter curvature, including confluent nodes
+
+In this section keep \(D=AQ+QA\) as above and use the distinct symbol
+\(C=Q-Q^\dagger\) for the antiadjoint defect. Define
+
+\[
+g_s(x)=xe^{-sx},\quad
+g_s^{[1]}(x,y)=
+\begin{cases}(xe^{-sx}-ye^{-sy})/(x-y),&x\ne y,\\
+e^{-sx}(1-sx),&x=y.
+\end{cases}
+\]
+
+Choose an exact \(G\)-orthonormal eigenbasis matrix \(V\), so
+\(V^*GV=I\), \(V^{-1}=V^*G\), and
+\(V^{-1}AV=\operatorname{diag}(a_i)\). Write
+\(q=V^{-1}QV=(V^{-1}r)(\ell V)\), \(x_i=a_i^2\).
+All multiplicities are retained. Then
+
+\[
+\boxed{\Delta_s''(0)
+=s\sum_{i,j}g_s^{[1]}(x_i,x_j)
+|q_{ij}-\overline{q_{ji}}|^2.} \tag{ID6.1}
+\]
+
+This formula holds even for arbitrary \(Q\). The square-zero relation
+is needed for the simplifications in ID7, not for ID6.1.
+
+Here is a complete derivation avoiding any assumption of distinct squared
+eigenvalues. Write \(Q=J+iK\) with both \(J,K\) selfadjoint.
+For selfadjoint \(X,Y\), let
+
+\[
+F(X,Y)=\Re\operatorname{tr}e^{-s(X+iY)^2}
+-\operatorname{tr}e^{-s(X-iY)(X+iY)}.
+\]
+
+It is real analytic. Moreover \(F(X,0)=0\) and
+\(F(X,-Y)=F(X,Y)\): adjunction proves the assertion for the first
+term, while cyclicity of every power exchanges \(T^\dagger T\)
+and \(TT^\dagger\) in the second. The pure \(X\)-Hessian and
+the mixed \(X,Y\)-Hessian at \((A,0)\) thus vanish. The second
+derivative on the path \((A-tJ,-tK)\) consequently equals the second
+derivative on \((A,tK)\).
+
+For any matrices \(Z,E,R\), differentiation of the exponential series,
+followed by cyclicity, gives
+
+\[
+\left.\frac{d^2}{dt^2}\operatorname{tr}e^{-s(Z+tE+t^2R)}\right|_{t=0}
+=s^2\int_0^1\operatorname{tr}(e^{-s(1-u)Z}E e^{-suZ}E)\,du
+-2s\operatorname{tr}(e^{-sZ}R). \tag{ID6.2}
+\]
+
+To verify its integral coefficient directly, the two-insertion term of
+the exponential has coefficient \(s^2\int_{\Delta_2}\operatorname{tr}
+(e^{-sv_0Z}E e^{-sv_1Z}E e^{-sv_2Z})dv\). Cyclicity combines the
+first and last gaps. For a fixed middle gap \(u\), their total length
+is \(1-u\), so this equals
+\(s^2\int_0^1(1-u)h(u)du\). Cyclicity gives
+\(h(u)=h(1-u)\), hence the integral is one half of
+\(\int_0^1h(u)du\). The second derivative supplies the factor two.
+The one-insertion term with \(t^2R\) supplies
+\(-2s\operatorname{tr}(e^{-sZ}R)\). This proves ID6.2.
+
+For the two paths in question,
+
+\[
+(A+itK)^2=A^2+it(AK+KA)-t^2K^2,
+\]
+\[
+(A-itK)(A+itK)=A^2+it(AK-KA)+t^2K^2.
+\]
+
+In the transported eigenbasis write \(k=V^{-1}KV\), so
+\(|k_{ij}|^2=|k_{ji}|^2\), and set
+\(j_s(x,y)=s^2\int_0^1e^{-s((1-u)x+uy)}du\).
+In ID6.2 the first insertion has entries \(i(a_i+a_j)k_{ij}\)
+and contributes \(-(a_i+a_j)^2|k_{ij}|^2\); the second has entries
+\(i(a_i-a_j)k_{ij}\) and contributes
+\((a_i-a_j)^2|k_{ij}|^2\). Subtracting the two Hessians gives
+
+\[
+\Delta_s''(0)=4s\sum_{i,j}e^{-sx_i}|k_{ij}|^2
+-2\sum_{i,j}(x_i+x_j)j_s(x_i,x_j)|k_{ij}|^2.
+\]
+
+Pairing \((i,j)\) and \((j,i)\), and using
+
+\[
+s(e^{-sx}+e^{-sy})-(x+y)j_s(x,y)=2s g_s^{[1]}(x,y),
+\]
+
+gives ID6.1 because \(2ik_{ij}=q_{ij}-\overline{q_{ji}}\).
+For \(x\ne y\) the displayed identity follows by substituting
+\(j_s(x,y)=s(e^{-sy}-e^{-sx})/(x-y)\); for \(x=y\), direct
+substitution of \(j_s(x,x)=s^2e^{-sx}\) proves it, including cases
+\(a_i=-a_j\). No division by \(a_i+a_j\) is used.
+
+An exactly equivalent formula entirely in the original coordinates is
+
+\[
+\mathcal K_s(C)=\int_0^1\operatorname{tr}
+(C^\dagger e^{-s(1-u)A^2}C e^{-suA^2})\,du,
+\]
+\[
+\boxed{\Delta_s''(0)=s\mathcal K_s(C)+s^2\partial_s\mathcal K_s(C)
+=s\partial_s[s\mathcal K_s(C)].} \tag{ID6.3}
+\]
+
+Indeed
+\(g_s^{[1]}(x,y)=\int_0^1 e^{-sz}(1-sz)du\), with
+\(z=(1-u)x+uy\), by the fundamental theorem of calculus. Substitution
+into ID6.1 proves ID6.3. The integrand defining \(\mathcal K_s(C)\)
+is also
+\(\|e^{-s(1-u)A^2/2}C e^{-suA^2/2}\|_{\mathrm{HS},G}^2\).
+Its nonnegativity alone does not establish a sign for ID6.3, which also
+contains its derivative.
+
+## ID7. Curvature signs, sharp threshold, and exact small-heat-time error
+
+Put \(M=\|A\|_G^2\), so every \(x_i\in[0,M]\).
+By ID4.4, \(\sum_{i,j}|q_{ij}-\overline{q_{ji}}|^2=2\kappa\).
+For \(0\le sM\le1\), the function
+\(z\mapsto e^{-sz}(1-sz)\) is decreasing on \([0,M]\), since
+its derivative is \(se^{-sz}(sz-2)\). Thus ID6.1 gives
+
+\[
+\Delta_s''(0)\ge2s e^{-sM}(1-sM)\kappa. \tag{ID7.1}
+\]
+
+For \(s>0\), \(Q\ne0\), and \(sM<1\), this is strictly
+positive, including \(A=0\). At \(sM=1\) it is nonnegative.
+The threshold is sharp: retaining an arbitrary given positive metric and
+any nonzero square-zero rank-one \(Q\), take \(A=aI\). Then
+
+\[
+\Delta_s''(0)=2s e^{-sa^2}(1-sa^2)\kappa, \tag{ID7.2}
+\]
+
+which is positive, zero, or negative according as \(sa^2<1\),
+\(sa^2=1\), or \(sa^2>1\). This disproves any universal
+all-heat-time positive-curvature interpretation. It does not contradict
+DS11, whose hypothesis bounds \(s\|T(t)\|^2\) much more strongly.
+
+For completeness, \(-e^{-2}\le e^{-w}(1-w)\le1\) for
+\(w\ge0\): the derivative is \(e^{-w}(w-2)\), so the minimum
+is attained at \(w=2\), and the maximum at zero. Consequently
+
+\[
+-2s e^{-2}\kappa\le\Delta_s''(0)\le2s\kappa. \tag{ID7.3}
+\]
+
+The endpoints are attained by \(A^2=(2/s)I\) and by \(A=0\),
+respectively. Large \(sM\) need not force negative curvature: in
+exact \(G\)-orthonormal coordinates,
+\(A=\operatorname{diag}(a,0)\), \(Q_{12}=c\ne0\), other
+entries zero, gives \(\Delta_s''(0)=2s e^{-sa^2}|c|^2>0\).
+
+Define the original-metric quantity
+
+\[
+\Lambda=\|AQ\|_{\mathrm{HS},G}^2+\|QA\|_{\mathrm{HS},G}^2
+=(r^*GA^2r)(\ell G^{-1}\ell^*)
++(r^*Gr)(\ell A^2G^{-1}\ell^*). \tag{ID7.4}
+\]
+
+The second equality follows from the rank-one trace calculation in ID1
+and \(A^*=GAG^{-1}\). Since \(Q^2=(Q^\dagger)^2=0\),
+\(C^\dagger C=CC^\dagger=QQ^\dagger+Q^\dagger Q\).
+Put \(c=V^{-1}CV=q-q^*\). Multiplying by \(A^2\) and taking
+traces gives
+
+\[
+\sum_{i,j}(x_i+x_j)|c_{ij}|^2=2\Lambda. \tag{ID7.5}
+\]
+
+For \(w\ge0\), let \(h(w)=e^{-w}(1-w)\). Then
+
+\[
+0\le h(w)-1+2w\le\tfrac32w^2. \tag{ID7.6}
+\]
+
+For the lower bound, the derivative is \(2-e^{-w}(2-w)\), which
+is nonnegative: for \(0\le w\le2\),
+\(e^{-w}(2-w)\le2\), and for \(w\ge2\) it is nonpositive.
+The difference vanishes at zero. For the upper bound,
+\(h''(w)=e^{-w}(3-w)\le3\); integration twice, using the zero
+initial value and slope of \(h(w)-1+2w\), proves the assertion.
+
+Apply ID7.6 inside the integral for \(g_s^{[1]}\). Since the mean
+of \(z=(1-u)x+uy\) is \((x+y)/2\) and \(0\le z\le M\),
+ID6.1, ID7.5, and \(\|C\|_{\mathrm{HS},G}^2=2\kappa\) give
+the explicit all-\(s\ge0\) estimate
+
+\[
+\boxed{0\le\Delta_s''(0)-2s\kappa+2s^2\Lambda
+\le3s^3M^2\kappa.} \tag{ID7.7}
+\]
+
+Thus \(\Delta_s''(0)=2s\kappa-2s^2\Lambda+O(s^3)\) at the
+fixed finite objects. The constant three is asymptotically sharp because
+ID7.2 for \(A=aI\) has third-order term \(3s^3a^4\kappa\).
+Finally ID4.1 and ID4.4 show, for each fixed real \(t\),
+\(\Delta_s(t)=st^2\kappa+O(s^2)\) as \(s\downarrow0\).
+None of these finite statements controls an arithmetic cutoff or weight
+limit.
+
+## ID8. Exact test design and interpretation
+
+`check_exact.py` independently tests the ordered-time simplex moments,
+the insertion-word coefficients, the rank-one square-zero path, the
+coefficient bound, tail indices and ratios, rational heat enclosures,
+and the metric-conductor identity. It uses two synthetic fixtures with
+nonidentity positive Hermitian metrics, one with rational complex entries.
+They are not represented as original arithmetic examples.
+
+A third synthetic fixture tests ID6.1 through heat-series degree ten by
+direct second-order parameter polynomial multiplication. Its eigenvalues
+are \(2,-2,0\), so it includes opposite eigenvalues and confluent squared
+nodes, and its metric is nonidentity. Both regular and optimized Python
+completed 2,014 exact checks; the full receipt is `TEST_RESULTS.md`.
+
+The independently certified heat intervals use the separate matrix
+exponential series, not ID3.1. If \(N\) terms are retained and
+\(x=sB<N+2\), the radius for their difference is at most
+
+\[
+2d\frac{x^{N+1}}{(N+1)!(1-x/(N+2))},
+\]
+
+because both \(\|T^2\|\) and \(\|T^\dagger T\|\) are at
+most \(B\), each omitted trace term has absolute value at most
+\(d x^n/n!\), and its successive scalar ratios are at most
+\(x/(N+2)\). The dimension factor here belongs solely to this
+independent test enclosure; it is not introduced into the dimension-free
+DS6 or DS8 proofs. Containment of these certified intervals inside DS10
+and DS11 is checked using rational arithmetic only. Finite tests support
+the derivation; the complete proofs above establish the universal claims.
+
+## Conclusion
+
+No correction to the mathematical formulas DS3–DS12 was found. Their
+simplex coefficient, dimension-free norm estimate, factor \(n(2n-1)\),
+omitted-tail index, ratio denominator, zero cases, and metric transport
+are correct as written. ID6–ID7 provide the additional exact real-parameter
+curvature calculation, with confluent squared eigenvalues included and a
+sharp distinction between small-time positivity and unrestricted heat
+time. The original proof has not been modified.

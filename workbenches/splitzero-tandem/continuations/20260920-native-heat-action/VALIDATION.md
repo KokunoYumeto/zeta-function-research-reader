@@ -1,0 +1,9 @@
+# Validation
+
+Root read all NH1–36 and HM1–19 proofs and both exact checkers. A wording correction identifies the four-dimensional example's displayed quantity as a squared norm; no formula changed. Fresh isolated replays passed 799 main checks and 500 independent metric checks, with 10 and 6 rejected wrong-formula controls, in each of normal and optimized Python. Complete receipts are byte-identical between modes.
+
+DS1–12 adds 104 exact checks and two rejected wrong-formula controls per mode. The complete independent ID1–8 derivation adds 2,014 exact checks per mode, including independently enclosed rational heat intervals and the curvature coefficients through heat degree ten with opposite eigenvalues and repeated squared nodes. Total: 3,417 checks and 18 controls per mode. These test finite coefficient identities, retained metrics, Dyson words, remainder indices and rational bounds. They do not certify hypothetical zeros or an arithmetic asymptotic and are not a Lean execution.
+
+The complete incoming Track III, H1–16, was read and compared with the independent proof. Its shared heat-gap formula is not counted as a separate new theorem. Its arbitrary-norm-upper-bound wording is corrected in DS8: one may choose the Hilbert–Schmidt trace as an upper input, but an arbitrary already chosen upper input need not lie below it.
+
+Both scientific figures were rendered and inspected. No PDF was read or generated. Draft-mode LaTeX checks and remaining source warnings are recorded separately before publication. Each cumulative successor contains the entire new proofs; deleting the recorded insertion recovers its predecessor byte-for-byte. The independent Markdown proof is included in full, together with its complete LaTeX conversion and reproducible conversion script; no proof is replaced by a shortened account.

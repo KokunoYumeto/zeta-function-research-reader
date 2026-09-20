@@ -1,3 +1,12 @@
+<!-- kernel-degree-verified-doi:20260921 -->
+## Read the Split-Zero kernel degree-step paper
+
+[Read the 74-page paper on Zenodo](https://zenodo.org/records/22865355) ([DOI 10.5281/zenodo.22865355](https://doi.org/10.5281/zenodo.22865355)). It calculates exact degree changes of the arithmetic observation-kernel metric, retaining the full compression correction and every four-cutoff determinant factor. Programme citations are now clickable links to actual public proof files, including the sources directly beneath the diagram. The finite contraction is proved; the large-degree kq magnitude remains unevaluated.
+
+[Full LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/914b9aab530b7e6c1d112a236b51fa527c9c0538/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/COMPLETE_PROOFS.tex), [results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/914b9aab530b7e6c1d112a236b51fa527c9c0538/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/RESULT_INDEX.json), [proof-link registry](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/914b9aab530b7e6c1d112a236b51fa527c9c0538/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/CITATION_LINKS.json), and [complete source archive](https://zenodo.org/records/22865355/files/101-splitzero-kernel-degree-sources.zip?download=1) are available. The archive contains all ten proof bodies and three cumulative LaTeX successors. Existing human attributions remain. Historical citations that still need an exact source match are listed in the registry.
+
+Zenodo retains 98 earlier standalone files. Its preceding result index is preserved inside the new source archive and remains separately downloadable from the [preceding DOI edition](https://zenodo.org/records/22864870).
+
 <!-- kernel-degree-steps:20260921 -->
 ## Exact degree changes in the Split-Zero kernel metric
 

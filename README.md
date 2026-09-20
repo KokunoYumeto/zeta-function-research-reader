@@ -1,3 +1,8 @@
+<!-- arithmetic-gaussian-return:20260920 -->
+## Gaussian traces calculated in the original arithmetic quotient
+
+The Split-Zero programme studies polynomial representatives of classes built from the theta function with Mellin transform 2xi. The [new complete calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-gaussian-arithmetic-return/README.md) retains their actual arithmetic convolution norm and full relation polynomial. It transfers a Gamma reference calculation to that original measure, proves the quotient compression law, and evaluates the original four-cutoff signed Gaussian trace. In its stated five-orbit observation domain, the limit at t=1/1024 is below -657061/960000. This does not determine the remaining logarithmic terms or settle RH. [Both complete proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-gaussian-arithmetic-return/COMPLETE_PROOFS.tex), [exact result domains and uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-gaussian-arithmetic-return/RESULT_INDEX.json), human citations, checkers, an inspected illustration and three full cumulative LaTeX successors are included.
+
 <!-- heat-transport-arithmetic-volume:20260920 -->
 ## Heat flow on the theta source, and a sharp volume-to-heat bound
 

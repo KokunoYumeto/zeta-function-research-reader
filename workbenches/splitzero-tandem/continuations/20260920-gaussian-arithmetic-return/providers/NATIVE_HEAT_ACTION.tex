@@ -1,0 +1,856 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\tr}{\operatorname{tr}}\newcommand{\dd}{\dagger_G}
+\newcommand{\eps}{\epsilon}\newcommand{\spec}{\operatorname{spec}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\title{The finite native heat action\\
+Convergent arithmetic secular coefficients and retained metric control}
+\author{}\date{20 September 2026}
+\begin{document}\maketitle
+
+\paragraph{Scope and human provenance.}
+This note extends the original finite arithmetic path of
+\cite{NativeAction}, SA1--SA43, from polynomial tests to the
+genuine heat function \(F_s(u)=e^{-su^2}\).
+The Gaussian multiplicative Fourier transform is exactly the
+one used by Alain Connes \cite{ConnesHeat}, equation
+\texttt{ft} in the original author source. Its finite matrix
+application is proved below; Connes's infinite selfadjoint
+heat theorem, labelled \texttt{heatkernelintro}, explicitly
+assumes RH and is not invoked here.
+The finite divided-difference method is discussed by Connes
+and van Suijlekom \cite{CV}; the receiving polynomial
+calculation and its exact cyclic factor are proved in
+\cite{NativeAction}, SA8--SA11. All heat formulas and error
+bounds required here have complete proofs below.
+This is result SZ-20260920-043. Every trace in this note is
+finite; no infinite spectral realization or zero-free
+conclusion is asserted.
+
+\section{The original arithmetic space, without changing its metric}
+
+Keep the nonempty finite packet \(Z\) of actual zeros with
+their full orders \(m_\rho\), invariant under conjugation
+and \(\rho\mapsto1-\rho\). The source data are
+\begin{equation}\tag{NH1}\label{NH1}
+\begin{gathered}
+h(v)=\prod_{\rho\in Z}(v-\rho)^{m_\rho},\qquad
+g(v)=2\xi(v)=v(v-1)\pi^{-v/2}\Gamma(v/2)\zeta(v),\\
+\mathcal M F_h=g/h,\qquad
+w_h(u)=\frac{|(g/h)(1/2+iu)|^2}{2\pi},\qquad
+m(u)=w_h^{*k}(u),\qquad c=k/2,\quad S=c+iu .
+\end{gathered}
+\end{equation}
+Use the actual positive even measure \(m(u)\,du\) with
+its full mass
+\(\mathfrak m=(\int_\R w_h)^k\). Its positivity almost
+everywhere and finite moments are the original source
+properties retained in \cite{NativeAction}, SA1--SA2.
+Let \(Q_j\) be its real monic orthogonal polynomials,
+\(\omega_j=\int Q_j^2m\), and
+\(p_j(S)=i^jQ_j((S-c)/i)\). Thus
+\(\omega_0=\mathfrak m\), not \(1\).
+
+The cyclic arithmetic algebra and its complete relation are
+\begin{equation}\tag{NH2}\label{NH2}
+C=\C[S]/(\chi),\qquad
+\chi(S)=\prod_\kappa(S-\kappa)^{e_\kappa},\qquad
+e_\kappa=\max_{\sum_{j=1}^k\rho_j=\kappa}
+\left(1+\sum_{j=1}^k(m_{\rho_j}-1)\right),\qquad q=\deg\chi .
+\end{equation}
+Here is the calculation retaining collisions. In the local
+tensor ring with coordinates \(z_j^{m_{\rho_j}}=0\),
+the highest nonzero power of \(\sum z_j\) has exponent
+\(\sum(m_{\rho_j}-1)\). Its coefficient on
+\(\prod z_j^{m_{\rho_j}-1}\) is
+\((\sum(m_{\rho_j}-1))!/\prod(m_{\rho_j}-1)!\ne0\).
+The next power is zero. The least polynomial annihilating
+all local tensor components therefore has exactly the
+maximum exponent at each repeated sum in \eqref{NH2}.
+
+Fix the original degree \(L\ge q-1\), and let \(b_j=[p_j]_\chi\).
+In the ordered remainder basis \(1,S,\ldots,S^{q-1}\), set
+\begin{equation}\tag{NH3}\label{NH3}
+\begin{gathered}
+E=[i^{-j}b_j/\sqrt{\omega_j}]_{j=0}^L,\quad
+G=(EE^*)^{-1},\quad R=E^*G,\quad ER=I,\quad R^*R=G,\\
+M=(M_S-cI)/i,\qquad
+A=EJ_LR=M+Q,\qquad
+Q=r\ell,\quad r=\frac{i}{\omega_L}b_{L+1},\quad
+\ell=b_L^*G .
+\end{gathered}
+\end{equation}
+Here \(J_L\) is compression of multiplication by \(u\)
+in the orthonormal polynomial basis
+\(Q_j/\sqrt{\omega_j}\).
+The first \(q\) monic columns of \(E\) are independent,
+so \(EE^*>0\). A lift of \(v\in C\) has form \(Rv+z\),
+\(Ez=0\), and
+\(\|Rv+z\|^2=v^*Gv+\|z\|^2\), since
+\((Rv)^*z=v^*GEz=0\).
+Thus this is precisely the attained quotient metric.
+
+For completeness, the only extra column in full multiplication
+is \(\sqrt{\omega_{L+1}/\omega_L}\,e_{L+1}e_L^*\).
+Reduction and lifting turn it into
+\[
+\sqrt{\omega_{L+1}/\omega_L}\,
+\frac{i^{-(L+1)}b_{L+1}}{\sqrt{\omega_{L+1}}}
+\frac{i^Lb_L^*G}{\sqrt{\omega_L}}
+=-\frac{i}{\omega_L}b_{L+1}b_L^*G .
+\]
+Removing that column proves the sign in \eqref{NH3}.
+Since \(GA=R^*J_LR\) is Hermitian,
+\(A^\dd=A\), where \(X^\dd=G^{-1}X^*G\).
+
+Parity gives \(Q_j(-u)=(-1)^jQ_j(u)\).
+The actual involution \(\mathcal P[P(S)]=[P(k-S)]\)
+satisfies
+\begin{equation}\tag{NH4}\label{NH4}
+\mathcal P^*G\mathcal P=G,\quad
+\mathcal P A\mathcal P=-A,\quad
+\mathcal P Q\mathcal P=-Q,\quad
+\ell r=0,\quad Q^2=0 .
+\end{equation}
+Indeed \(\mathcal P E=E\operatorname{diag}((-1)^j)\);
+insert this into \eqref{NH3}. Orthogonal polynomials of
+opposite parity are orthogonal in the quotient metric,
+because the displayed involution is an isometry.
+This proves \(b_L^*Gb_{L+1}=0\), hence the last two
+identities. Put
+\begin{equation}\tag{NH5}\label{NH5}
+T(t)=A-tQ,\quad T(1)=M,\quad
+a=\|A\|_G,\quad
+\eps=\|Q\|_G
+=\frac{\sqrt{(b_L^*Gb_L)(b_{L+1}^*Gb_{L+1})}}{\omega_L},
+\quad \gamma_j=\ell A^jr .
+\end{equation}
+The rank-one norm formula follows by writing
+\(Qx=r\langle G^{-1}\ell^*,x\rangle_G\) and attaining
+Cauchy--Schwarz on \(G^{-1}\ell^*\). It also gives
+\(\tr Q^\dd Q=\eps^2\) and
+\(|\gamma_j|\le\eps a^j\).
+Parity in \eqref{NH4} proves \(\gamma_{2j}=0\).
+Complex \(t\) is allowed in the holomorphic formulas.
+Statements involving adjoints of \(T(t)\) use real \(t\).
+
+\section{A finite heat function with the exact Fourier constants}
+
+For \(s>0\), the Gaussian formula is
+\begin{equation}\tag{NH6}\label{NH6}
+F_s(z)=e^{-sz^2}
+=\frac1{\sqrt{4\pi s}}\int_\R e^{-v^2/(4s)}e^{ivz}\,dv,
+\qquad z\in\C .
+\end{equation}
+To prove it, the integral of \(e^{-x^2}\) is \(\sqrt\pi\)
+by squaring it and using polar coordinates. Differentiating
+the right side of \eqref{NH6} in \(z\) and integrating
+by parts in \(v\) gives the differential equation
+\(J'(z)=-2szJ(z)\), with \(J(0)=1\).
+On every compact set in \(z\), a polynomial times
+\(e^{-v^2/(4s)+|v||z|}\) is integrable, justifying both
+operations and analyticity. This proves \eqref{NH6}
+including nonreal \(z\). Under \(x=e^v\), its Gaussian
+is exactly Connes's \texttt{ft} \cite{ConnesHeat};
+no factor \(2\), \(\pi\), or square root has been removed.
+
+In the fixed quotient norm, matrix power series give
+\begin{equation}\tag{NH7}\label{NH7}
+\Phi_s(t):=\tr e^{-sT(t)^2}
+=\sum_{m=0}^\infty\frac{(-s)^m}{m!}\tr T(t)^{2m}
+=\frac1{\sqrt{4\pi s}}\int_\R
+e^{-v^2/(4s)}\tr e^{ivT(t)}\,dv .
+\end{equation}
+All three expressions are equal. For the first series,
+the norm of its \(m\)-th matrix term is at most
+ \(s^m\|T(t)\|_G^{2m}/m!\).
+For the Fourier expression expand \(e^{ivT(t)}\) and
+use the dominating exponential
+\(e^{|v|\|T(t)\|_G-v^2/(4s)}\).
+Odd Gaussian moments vanish and the \(2m\)-th moment is
+\((2m)!s^m/m!\), by integration by parts. This proves
+the equality term by term. On compact sets of \(s,t\),
+the first series converges locally uniformly, including
+complex \(s\). Thus \(\Phi\) is entire in both variables.
+At any finite degree \(D\ge0\), with \(b=\|T(t)\|_G\),
+\begin{equation}\tag{NH8}\label{NH8}
+\left|\Phi_s(t)-\sum_{m=0}^D
+\frac{(-s)^m}{m!}\tr T(t)^{2m}\right|
+\le q e^{|s|b^2}\frac{(|s|b^2)^{D+1}}{(D+1)!}.
+\end{equation}
+Indeed \(|\tr X|\le q\|X\|_G\), by diagonal entries in
+a \(G\)-orthonormal basis, and
+\(\sum_{m>D}x^m/m!\le e^x x^{D+1}/(D+1)!\);
+the latter follows from
+\((D+1+j)!\ge(D+1)!\,j!\).
+
+\section{Full secular determinant and every Jordan endpoint}
+
+Retain the full polynomials, not a reduced rational factor:
+\begin{equation}\tag{NH9}\label{NH9}
+\begin{gathered}
+d(z)=\det(zI-A),\quad
+\chi_u(z)=i^{-q}\chi(c+iz)=\det(zI-M),\\
+n(z)=\ell\,\operatorname{adj}(zI-A)r=\chi_u(z)-d(z),\\
+\kappa(z)=\ell(zI-A)^{-1}r=\frac{n(z)}{d(z)},\\
+p_t(z)=\det(zI-T(t))=d(z)+tn(z)=(1-t)d(z)+t\chi_u(z).
+\end{gathered}
+\end{equation}
+To prove the determinant identity away from the spectrum
+of \(A\), factor \(zI-T=(zI-A)(I+t(zI-A)^{-1}r\ell)\).
+The rank-one determinant is \(1+t\ell(zI-A)^{-1}r\),
+as can be checked in a basis beginning with that column.
+Multiplication by \(d\) makes it a polynomial identity
+valid everywhere. At \(t=1\) it proves the numerator
+identity. The companion matrix in the ordered powers of
+\(S\) gives the formula for \(\chi_u\), with its full
+factor \(i^{-q}\).
+
+For every circle \(\mathcal C_R:|z|=R\) with
+\(R>a+|t|\eps\), the exact heat formula is
+\begin{equation}\tag{NH10}\label{NH10}
+\Phi_s(t)=\frac1{2\pi i}\oint_{\mathcal C_R}
+F_s(z)\frac{p_t'(z)}{p_t(z)}\,dz .
+\end{equation}
+Here and below the circle is oriented counterclockwise.
+For proof expand \((zI-T)^{-1}=\sum_{j\ge0}T^jz^{-j-1}\)
+uniformly on this circle. Multiplication by the uniformly
+convergent entire series for \(F_s\) and integration gives
+\(F_s(T)\). Triangularize the finite matrix \(T\);
+the diagonal of its inverse is \(1/(z-\lambda)\).
+Consequently its trace is \(p_t'/p_t\), with every
+algebraic multiplicity, proving \eqref{NH10}.
+This proof requires no diagonalizability.
+
+The rank-one resolvent, checked by multiplication, gives
+\begin{equation}\tag{NH11}\label{NH11}
+\begin{gathered}
+(zI-T(t))^{-1}
+=(zI-A)^{-1}
+-\frac{t(zI-A)^{-1}r\ell(zI-A)^{-1}}{1+t\kappa(z)},\\
+\kappa_t(z)=\ell(zI-T(t))^{-1}r
+=\frac{\kappa(z)}{1+t\kappa(z)}=\frac{n(z)}{p_t(z)},\\
+\Phi_s^{(j)}(t)
+=\frac{(-1)^j(j-1)!}{2\pi i}
+\oint_{\mathcal C_R}F_s'(z)\kappa_t(z)^j\,dz,\qquad j\ge1.
+\end{gathered}
+\end{equation}
+To prove the last formula, first use the trace of the
+first identity to obtain
+\(\tr(zI-T)^{-1}-\tr(zI-A)^{-1}
+=\partial_z\log(1+t\kappa(z))\).
+The logarithm on the circle is its convergent power series,
+since \(|t\kappa(z)|\le|t|\eps/(R-a)<1\).
+Integrate by parts around the circle and differentiate
+in \(t\). This produces exactly
+\((-1)^j(j-1)!\kappa_t^j\).
+In a neighborhood of any fixed \(t\), choose a larger
+circle with the same inequality, which justifies every
+derivative. Formula \eqref{NH11} therefore holds at \(t=1\)
+even if the original multiplication matrix has Jordan blocks.
+
+Explicitly, on a generalized eigenspace with eigenvalue
+\(\lambda\) and nilpotent part \(N_\lambda\) of exponent
+\(d_\lambda\), the operator and its trace are
+\begin{equation}\tag{NH12}\label{NH12}
+F_s(T)|_\lambda
+=\sum_{j=0}^{d_\lambda-1}
+\frac{F_s^{(j)}(\lambda)}{j!}N_\lambda^j,\qquad
+\Phi_s(t)=\sum_\lambda m_\lambda e^{-s\lambda^2}.
+\end{equation}
+The operator formula follows by substituting
+\(\lambda I+N_\lambda\) into the entire Taylor series;
+all terms \(j\ge d_\lambda\) are zero.
+A basis adapted to the kernels of powers of \(N_\lambda\)
+makes its positive powers strictly triangular, with trace
+zero. Its constant term has trace \(m_\lambda F_s(\lambda)\).
+Thus nilpotent directions have not been deleted from the
+operator, and their dimensions remain in its trace.
+
+\section{The parity-improved, absolutely convergent heat coefficients}
+
+The original parity gives the convergent Laurent expansion
+\begin{equation}\tag{NH13}\label{NH13}
+\kappa(z)=\sum_{j=0}^\infty
+\gamma_{2j+1}z^{-2j-2},\qquad |z|>a .
+\end{equation}
+This is the geometric resolvent expansion with
+\(\gamma_{2j}=0\), proved in \eqref{NH4}--\eqref{NH5}.
+For \(n\ge1\) and \(r\ge0\), define the finite ordered sum
+\begin{equation}\tag{NH14}\label{NH14}
+H_{n,r}=
+\sum_{\substack{j_1,\ldots,j_n\ge0\\j_1+\cdots+j_n=r}}
+\prod_{\nu=1}^n\gamma_{2j_\nu+1}.
+\end{equation}
+Every ordered composition is retained.
+
+\begin{theorem}[Exact coefficients and explicit factorial bounds]
+For all complex \(s,t\),
+\begin{equation}\tag{NH15}\label{NH15}
+\Phi_s(t)=\Phi_s(0)+\sum_{n=1}^\infty t^n C_n(s),\qquad
+C_n(s)=2\sum_{r=0}^\infty
+\frac{(-1)^r s^{n+r}}{n(n+r-1)!}\,H_{n,r}.
+\end{equation}
+For \(a=\|A\|_G\) and the original \(\eps=\|Q\|_G\),
+\begin{equation}\tag{NH16}\label{NH16}
+|C_n(s)|\le
+2e^{|s|a^2}\frac{(|s|a\eps)^n}{n!},\qquad n\ge1.
+\end{equation}
+If \(a=0\) or \(\eps=0\), all the \(C_n\) vanish.
+These formulas do not divide by either number.
+\end{theorem}
+\begin{proof}
+Expand the logarithm in the proof of \eqref{NH11}
+uniformly on its circle. The coefficient of \(t^n\) is
+\[
+\frac{(-1)^n}{n}\frac1{2\pi i}
+\oint F_s'(z)\kappa(z)^n\,dz .
+\]
+The entire derivative is
+\(F_s'(z)=\sum_{m\ge1}2m(-s)^m z^{2m-1}/m!\).
+The \(n\)-th power of \eqref{NH13} is
+\(\sum_{r\ge0}H_{n,r}z^{-2n-2r}\).
+Both series converge absolutely and uniformly on the
+circle, so integration selects \(m=n+r\).
+The resulting coefficient is precisely \eqref{NH15}.
+There are \(\binom{n+r-1}{n-1}\) ordered \(n\)-tuples
+of nonnegative integers summing to \(r\): place \(n-1\)
+separators among \(n+r-1\) positions. By \eqref{NH5},
+\[
+|H_{n,r}|\le
+\binom{n+r-1}{n-1}\eps^n a^{n+2r}.
+\]
+Multiply this by \(2|s|^{n+r}/(n(n+r-1)!)\).
+The factorials give exactly
+\[
+\frac{2(|s|a\eps)^n}{n!}\frac{(|s|a^2)^r}{r!}.
+\]
+Summing over \(r\) proves \eqref{NH16}.
+It also proves absolute local uniform convergence of the
+double series in \(s,t\). The initial coefficient identity,
+valid in a neighborhood of \(t=0\), consequently extends
+to every complex \(t\). When \(a=0\), the bound
+\(|\gamma_{2j+1}|\le\eps a^{2j+1}\) makes every factor
+zero, proving the stated degenerate case directly.
+\end{proof}
+
+Write \(x=|s|a^2\), \(y=|s||t|a\eps\).
+For every \(N\ge0\), the actual perturbation remainder is
+\begin{equation}\tag{NH17}\label{NH17}
+\left|\Phi_s(t)-\Phi_s(0)-\sum_{n=1}^N t^n C_n(s)\right|
+\le 2e^x\left(e^y-\sum_{n=0}^N\frac{y^n}{n!}\right)
+\le2e^{x+y}\frac{y^{N+1}}{(N+1)!}.
+\end{equation}
+The first inequality sums \eqref{NH16}; the second
+uses the factorial tail proof following \eqref{NH8}.
+In particular
+\(|\Phi_s(t)-\Phi_s(0)|\le2e^x(e^y-1)\).
+This error has no factor \(q\); it is a consequence of
+the actual rank-one relation and parity, not of discarding
+the \(q\) original dimensions from \(\Phi_s(0)\).
+
+There are explicit inner-series errors as well. Set
+\[
+C_{n,R}(s)=2\sum_{r=0}^{R}
+\frac{(-1)^rs^{n+r}}{n(n+r-1)!}H_{n,r}.
+\]
+Then
+\begin{equation}\tag{NH18}\label{NH18}
+|C_n(s)-C_{n,R}(s)|
+\le\frac{2(|s|a\eps)^n}{n!}
+e^x\frac{x^{R+1}}{(R+1)!}.
+\end{equation}
+Thus evaluating only \(1\le n\le N,0\le r\le R\)
+has total certified error bounded by the sum of
+\eqref{NH17} and
+\(2e^x x^{R+1}(e^y-1)/(R+1)!\).
+The proof is the same exact product bound used above;
+no unknown higher moment is replaced by zero.
+
+The leading coefficient and its retained correction are
+\begin{equation}\tag{NH19}\label{NH19}
+C_n(s)=\frac{2(s\gamma_1)^n}{n!}
++\left(C_n(s)-\frac{2(s\gamma_1)^n}{n!}\right),\qquad
+\left|C_n(s)-\frac{2(s\gamma_1)^n}{n!}\right|
+\le\frac{2(|s|a\eps)^n}{n!}(e^x-1).
+\end{equation}
+For example,
+\begin{equation}\tag{NH20}\label{NH20}
+C_1(s)=2s\gamma_1-2s^2\gamma_3+\cdots,\qquad
+C_2(s)=s^2\gamma_1^2-s^3\gamma_1\gamma_3+\cdots .
+\end{equation}
+The displayed \(s^3\) coefficient in \(C_2\) has two
+ordered compositions and the denominator \(2(2!)\);
+these give the factor \(1\), not \(1/2\).
+Each omitted tail is governed by \eqref{NH18}.
+
+One may instead truncate the heat degree \(m=n+r\).
+Let \(\Delta_{s,D}(t)\) be the terms of
+\(\Phi_s(t)-\Phi_s(0)\) with \(n+r\le D\).
+For \(D\ge0\),
+\begin{equation}\tag{NH21}\label{NH21}
+|\Phi_s(t)-\Phi_s(0)-\Delta_{s,D}(t)|
+\le 2y e^{x+y}\frac{(x+y)^D}{D!}.
+\end{equation}
+Indeed the absolute bound at total degree \(m\) is
+\(2((x+y)^m-x^m)/m!\).
+For nonnegative \(x,y\),
+\((x+y)^m-x^m\le my(x+y)^{m-1}\);
+sum \(m\ge D+1\) and apply the exponential tail estimate.
+The bound vanishes with the actual perturbation \(tQ\).
+
+\section{A separate Gaussian derivative bound}
+
+The following second bound can be used when it is smaller.
+For \(s>0,n\ge1\),
+\begin{equation}\tag{NH22}\label{NH22}
+|C_n(s)|\le
+\frac{(\sqrt{s}\eps)^n}{\Gamma(n/2+1)} .
+\end{equation}
+Here is a direct proof with every rank and constant retained.
+The coefficient of \(t^n\) in \(e^{iv(A-tQ)}\) is
+\[
+(-iv)^n\int_{\substack{\alpha_0,\ldots,\alpha_n\ge0\\
+                       \sum\alpha_j=1}}
+e^{iv\alpha_0A}Qe^{iv\alpha_1A}\cdots
+Qe^{iv\alpha_nA}\,d\alpha .
+\]
+To verify the formula without an operator expansion theorem,
+expand the \(n+1\) exponentials. Integration of
+\(\prod\alpha_j^{m_j}\) over the displayed simplex equals
+\(\prod m_j!/(m_0+\cdots+m_n+n)!\), by successive
+one-variable beta integrals, each proved by integration
+by parts. This is exactly the coefficient of each
+noncommutative word in the matrix exponential series.
+The simplex volume is \(1/n!\).
+For real \(v\), all factors \(e^{iv\alpha A}\) have
+norm \(1\) in \(G\). A rank-one operator \(r\ell\)
+has trace norm \(\eps\), and
+\(|\tr XY|\le\|X\|_1\|Y\|\); this follows by writing
+the rank-one \(X=uv^*\) in orthonormal coordinates and
+using Cauchy--Schwarz. Repeated use gives an absolute
+trace bound \(|v|^n\eps^n/n!\).
+Apply \eqref{NH6} and compute its absolute moment:
+\[
+\frac1{\sqrt{4\pi s}}\int_\R
+e^{-v^2/(4s)}|v|^n\,dv
+=\frac{(4s)^{n/2}\Gamma((n+1)/2)}{\sqrt\pi}.
+\]
+The identity
+\(\Gamma((n+1)/2)/(\sqrt\pi n!)
+=1/(2^n\Gamma(n/2+1))\) follows at integers by
+\(\Gamma(1/2)=\sqrt\pi\) and the recurrence
+\(\Gamma(z+1)=z\Gamma(z)\), or by induction on \(n\)
+separately for its two parities.
+This proves \eqref{NH22}. In particular the better of
+\eqref{NH16} and \eqref{NH22} is available without
+altering the packet, its mass, or its metric.
+
+The repeated divided differences have their exact finite
+spectral form too. If
+\(A=\sum_{\lambda\in\Lambda}\lambda P_\lambda\) is its
+complete \(G\)-selfadjoint spectral decomposition and
+\(w_\lambda=\ell P_\lambda r\), then
+\begin{equation}\tag{NH23}\label{NH23}
+C_n(s)=\frac{(-1)^n}{n}
+\sum_{\lambda_1,\ldots,\lambda_n\in\Lambda}
+F_s'[\lambda_1,\ldots,\lambda_n]
+\prod_{\nu=1}^n w_{\lambda_\nu}.
+\end{equation}
+Define the repeated divided difference by the circle
+integral of \(F_s'(z)/\prod(z-\lambda_\nu)\).
+At distinct nodes partial fractions give the usual
+recursive formula; continuity extends it to repetitions,
+where \(f[\lambda,\ldots,\lambda]=f^{(n-1)}(\lambda)/(n-1)!\).
+Insert
+\(\kappa(z)=\sum_\lambda w_\lambda/(z-\lambda)\)
+in the coefficient integral above. This proves
+\eqref{NH23}, with all repeated projectors retained.
+Multiplication by \(n!\) gives the derivative factor
+\((-1)^n(n-1)!\), not \((-1)^nn!\).
+
+\section{Original scaling coordinate and the complete physical map}
+
+Set \(B(t)=cI+iT(t)\). The original heat test in \(S\) is
+\begin{equation}\tag{NH24}\label{NH24}
+f_s(S)=e^{s(S-c)^2},\qquad
+F_s(u)=f_s(c+iu),\qquad
+\det(zI-B(t))=i^q p_t((z-c)/i).
+\end{equation}
+The determinant identity follows from
+\(zI-B=i(((z-c)/i)I-T)\).
+The positive sign in \(f_s\) comes from \(i^2=-1\).
+The entire derivative and divided differences satisfy
+\(F_s^{(j)}(u)=i^j f_s^{(j)}(c+iu)\) and
+\[
+F_s'[\lambda_1,\ldots,\lambda_n]
+=i^n f_s'[c+i\lambda_1,\ldots,c+i\lambda_n].
+\]
+For distinct nodes this follows successively from the
+divided-difference recursion; continuity proves every
+coincidence. Hence the native scaling trace derivative
+retains the factor \((-i)^n(n-1)!\) in its cyclic formula.
+At the original endpoint,
+\begin{equation}\tag{NH25}\label{NH25}
+\Phi_s(1)=\tr f_s(M_S)
+=\sum_\kappa e_\kappa e^{s(\kappa-c)^2}.
+\end{equation}
+This expression includes all collision exponents from
+\eqref{NH2}, not just the distinct sums.
+
+Let \(E_h=\C[v]/(h)\) and
+\(\upsilon=j_h(g/h)\). Retain
+\begin{equation}\tag{NH26}\label{NH26}
+\eta:C\longrightarrow E_h^{\otimes k},\qquad
+\eta[P]=\upsilon^{\otimes k}P(v_1+\cdots+v_k),\qquad
+\langle\eta x,\eta y\rangle=x^*Gy.
+\end{equation}
+The constant coefficient of \(g/h\) at a zero \(\rho\) is
+\[
+\frac{g^{(m_\rho)}(\rho)}
+ {m_\rho!\prod_{\sigma\ne\rho}(\rho-\sigma)^{m_\sigma}}\ne0 .
+\]
+Thus it is a unit in each truncated local ring: its
+inverse is a finite geometric series after extracting
+that nonzero constant. The substitution kernel is
+\eqref{NH2}, as already calculated, so \(\eta\) is injective.
+On its image, \(\eta T(t)\eta^{-1}\) has exactly the
+heat operator \(\eta F_s(T(t))\eta^{-1}\), by its
+absolutely convergent series; adjoints are transported
+by the displayed metric. All determinants, traces,
+multiplicities, and error constants above therefore
+hold on this same physical image. The inverse is only
+on \(\eta(C)\); no map on the ambient complement is asserted.
+The attained source lift remains
+\[
+\mathcal A\sum_{j=0}^L(Rv)_jQ_j/\sqrt{\omega_j},
+\qquad
+\mathcal A P=P(D_1+\cdots+D_k)F_h^{\otimes k},
+\]
+with \(Q_j\) evaluated at \(u=(S-c)/i\).
+Its class is \(\eta v\), by \(ER=I\), and its norm
+squared is \(v^*Gv\). The heat calculation therefore
+has not removed the original arithmetic source map.
+
+\section{Exact finite comparisons, including defective endpoints}
+
+The following matrices test the proved identities; they
+are not presented as actual packets of zeta zeros.
+For the separate comparison measure
+\((3/2)1_{[-1,1]}(u)\,du\), of mass \(3\), and quotient
+\(u^2+1\) at \(L=1\), retain
+\begin{equation}\tag{NH27}\label{NH27}
+G=\begin{pmatrix}3&0\\0&1\end{pmatrix},\quad
+A=\begin{pmatrix}0&1/3\\1&0\end{pmatrix},\quad
+Q=\begin{pmatrix}0&4/3\\0&0\end{pmatrix},\quad
+a^2=1/3,\quad \eps^2=16/3,\quad \gamma_1=4/3 .
+\end{equation}
+Then \(T(t)^2=(1-4t)I/3\), so
+\begin{equation}\tag{NH28}\label{NH28}
+\Phi_s(t)=2e^{-s(1-4t)/3},\qquad
+C_n(s)=2e^{-s/3}\frac{(4s/3)^n}{n!}.
+\end{equation}
+Here \(\gamma_{2j+1}=(4/3)(1/3)^j\).
+There are \(\binom{n+r-1}{n-1}\) summands in \(H_{n,r}\);
+inserting them into \eqref{NH15} sums to
+\eqref{NH28}, including every sign.
+At \(t=1/4\), \(T\ne0\), \(T^2=0\), so this is a
+genuine size-two Jordan matrix although its heat trace
+equals \(2\). The full operator is \(I\) here because
+the even test has \(T^2=0\); the resolvent still has
+its nonzero order-two term \(T/z^2\).
+For the endpoint test quotient \(u^2\), replacing the
+upper-right entry of \(Q\) by \(1/3\) gives
+\begin{equation}\tag{NH29}\label{NH29}
+T(1)=\begin{pmatrix}0&0\\1&0\end{pmatrix},\quad
+\Phi_s(t)=2e^{-s(1-t)/3},\quad
+\Phi_s^{(n)}(1)=2(s/3)^n,\quad
+\kappa_1(z)=1/(3z^2).
+\end{equation}
+Direct substitution in \eqref{NH11} gives the same
+derivative: \(F_s'(z)\kappa_1(z)^n\) has coefficient
+\(2n(-s)^n/(n!\,3^n)\) on \(z^{-1}\), and multiplication
+by \((-1)^n(n-1)!\) gives \(2(s/3)^n\).
+
+For the four-dimensional comparison quotient
+\((u^2+1)^2\), the complete retained matrices are
+\begin{equation}\tag{NH30}\label{NH30}
+\begin{gathered}
+G=\begin{pmatrix}
+3&0&1&0\\0&1&0&3/5\\1&0&3/5&0\\0&3/5&0&3/7
+\end{pmatrix},\quad
+M=\begin{pmatrix}
+0&0&0&-1\\1&0&0&0\\0&1&0&-2\\0&0&1&0
+\end{pmatrix},\\
+r=(32/35,0,20/7,0)^{\mathsf T},\quad
+\ell=(0,0,0,1),\quad Q=r\ell,\quad A=M+Q .
+\end{gathered}
+\end{equation}
+Its entries \(G_{ij}=3/(i+j+1)\) for even \(i+j\)
+and \(0\) otherwise are the actual moment integrals.
+The polynomial
+\(Q_4(u)=u^4-6u^2/7+3/35\) is orthogonal to
+\(1,u,u^2,u^3\): the odd pairings vanish and the two
+even pairings are
+\(3/5-6/7+9/35=0\) and
+\(3/7-18/35+3/35=0\).
+Compression replaces \(u^4\) by \(6u^2/7-3/35\),
+exactly the last column of \(A\), proving \(GA=A^*G\).
+The original multiplication matrix is cyclic, with
+minimal polynomial \((z^2+1)^2\). Moreover
+\((M^2+I)^2=0\) while \(M^2+I\ne0\).
+Thus both \(+i\) and \(-i\) have a size-two Jordan block.
+Its full heat operator and trace are
+\begin{equation}\tag{NH31}\label{NH31}
+e^{-sM^2}=e^s\bigl(I-s(M^2+I)\bigr),\qquad
+\Phi_s(1)=4e^s .
+\end{equation}
+This follows by inserting the square-zero \(M^2+I\)
+in the exponential. Its trace is zero by nilpotence,
+so the constant term has trace \(4e^s\), not \(2e^s\).
+The full scalar endpoint remains
+\[
+\kappa_1(z)=
+\frac{(20/7)z^2+32/35}{(z^2+1)^2},
+\]
+whose numerator at \(z=\pm i\) is \(-68/35\ne0\).
+Thus the contour derivative formula retains both double poles.
+
+\section{The metric heat difference recovers the same arithmetic allowance}
+
+For real \(t\), keep the same adjoint and define
+\begin{equation}\tag{NH32}\label{NH32}
+\begin{gathered}
+\Psi_s(t)=\tr e^{-sT(t)^\dd T(t)},\quad
+\Delta_s(t)=\Re\Phi_s(t)-\Psi_s(t),\quad
+b=\|T(t)\|_G,\quad X=sb^2,\\
+\mathscr D(t)=\begin{pmatrix}0&T(t)\\T(t)^\dd&0\end{pmatrix}
+\quad\hbox{on }(C\oplus C,G\oplus G),\\
+\tr e^{-s\mathscr D(t)^2}=2\Psi_s(t),\qquad
+P_1\mathscr D(t)I_2=T(t).
+\end{gathered}
+\end{equation}
+The second line is a specified selfadjoint dilation, not
+a replacement of \(\chi\). Its square has diagonal
+blocks \(TT^\dd,T^\dd T\). Their traces of every positive
+power agree by cyclicity, and their zero-th powers both
+have trace \(q\). Their exponential traces agree by
+absolute convergence, proving the factor \(2\).
+The coordinate injection \(I_2v=(0,v)\) and projection
+\(P_1(v,w)=v\) prove the last map directly.
+
+\begin{theorem}[Finite, dimension-free recovery at explicit heat time]
+The exact comparison satisfies
+\begin{equation}\tag{NH33}\label{NH33}
+\left|\Delta_s(t)-st^2\eps^2\right|
+\le st^2\eps^2\bigl[(1+2X)e^X-1\bigr].
+\end{equation}
+In particular, for every \(s>0\) with \(sb^2\le1/7\),
+\begin{equation}\tag{NH34}\label{NH34}
+\frac12\,st^2\eps^2\le\Delta_s(t)
+\le\frac32\,st^2\eps^2 .
+\end{equation}
+One may replace \(b\) in the sufficient heat-time bound
+by the explicit upper bound \(a+|t|\eps\).
+\end{theorem}
+\begin{proof}
+The complete independent calculation is also recorded
+in \cite{MetricHeat}; the required proof is supplied here.
+Write \(T=H+iK\), with
+\(H=(T+T^\dd)/2\) and \(K=(T-T^\dd)/(2i)\).
+Both are selfadjoint. Since \(Q^2=(Q^\dd)^2=0\),
+\(\tr K^2=t^2\eps^2/2\) by expanding its square.
+For \(0\le v\le1\), the exact path
+\[
+Z(v)=H+ivK=\frac{1+v}{2}T+\frac{1-v}{2}T^\dd
+\]
+has norm at most \(b\), because \(\|T^\dd\|_G=\|T\|_G\).
+Conjugation by \(G^{1/2}\) is an isometry to Euclidean
+coordinates and sends the adjoint to the ordinary
+conjugate transpose; it proves that norm equality
+without removing \(G\).
+Put
+\[
+f_n(v)=\tr(Z(v)^\dd Z(v))^n-\Re\tr Z(v)^{2n}.
+\]
+Then \(f_n(0)=0\). In the derivative of the first
+trace at zero, the \(n\) positive and \(n\) negative
+\(iK\) terms cancel by cyclicity. The derivative of the
+second trace before taking the real part is
+\(2ni\tr(H^{2n-1}K)\), whose real part vanishes because
+the trace of the product of two selfadjoint matrices
+is real. Thus \(f_n'(0)=0\).
+
+Each second derivative of either length-\(2n\) word
+has \(2n(2n-1)\) ordered terms. Each contains two
+specified \(K\)'s; all its other factors have norm at
+most \(b\). A cyclic word \(KUKV\) has absolute trace
+at most \(\|K\|_{\mathrm{HS},G}^2\|U\|_G\|V\|_G\):
+matrix-entry Cauchy--Schwarz gives
+\(|\tr XY|\le\|X\|_{\mathrm{HS}}\|Y\|_{\mathrm{HS}}\),
+and multiplication on either side bounds the
+Hilbert--Schmidt norm by operator norm times
+Hilbert--Schmidt norm. These statements follow in the
+same isometric coordinates by summing squared column
+norms. Integrate \(f_n''\) with weight \(1-v\),
+whose integral is \(1/2\). For
+\(D_n=\tr(T^\dd T)^n-\Re\tr T^{2n}=f_n(1)\), this gives
+\[
+|D_n|\le n(2n-1)t^2\eps^2 b^{2n-2}.
+\]
+Direct expansion at \(n=1\) gives the exact value
+\(D_1=t^2\eps^2\).
+The two absolutely convergent exponentials therefore give
+\(\Delta_s=\sum_{n\ge1}(-1)^{n+1}s^nD_n/n!\).
+The tail from \(n=2\) is bounded by
+\[
+st^2\eps^2
+\sum_{n\ge2}\frac{n(2n-1)X^{n-1}}{n!}
+=st^2\eps^2[(1+2X)e^X-1].
+\]
+The series identity is obtained by differentiating
+\(e^X\) twice. If \(b=0\), then \(T=0\), hence
+\(K=0\) and \(t^2\eps^2=0\); the identity holds without
+dividing by \(b\). Finally \(e^X\le(1-X)^{-1}\) for
+\(0\le X<1\), by its nonnegative series coefficients,
+so \((1+2X)e^X-1\le3X/(1-X)\le1/2\) when
+\(X\le1/7\). This proves \eqref{NH34}.
+\end{proof}
+
+The theorem has a direct original arithmetic receiver.
+Let \(\lambda\) run over eigenvalues of \(B(t)=cI+iT(t)\)
+with their full algebraic multiplicities, and put
+\(\mathcal L(t)=\sum_{\Re\lambda>c}(2\Re\lambda-2c)\).
+Then throughout the heat-time range in \eqref{NH34},
+\begin{equation}\tag{NH35}\label{NH35}
+\mathcal L(t)^2\le t^2\eps^2
+\le\frac{2\Delta_s(t)}s
+=\frac{2\Re\Phi_s(t)-\tr e^{-s\mathscr D(t)^2}}s .
+\end{equation}
+Here is the full finite spectral bound.
+The Hermitian defect
+\(B+B^\dd-2cI=it(Q^\dd-Q)\) has eigenvalues
+\(t\eps,-t\eps\) and zero on the complement.
+To see this explicitly, use the orthogonal columns
+\(r/\|r\|_G\) and
+\(G^{-1}\ell^*/\|G^{-1}\ell^*\|_G\), which are orthogonal
+because \(\ell r=0\).
+In that pair its matrix is
+\(\left(\begin{smallmatrix}0&-it\eps\\it\eps&0\end{smallmatrix}\right)\).
+If \(Q=0\) the whole defect is zero.
+Let \(W\) be the sum of generalized eigenspaces of \(B\)
+with real part above \(c\), and \(P_W\) its
+\(G\)-orthogonal projection.
+In a basis beginning with \(W\), invariance shows
+\(\tr P_W(B+B^\dd-2cI)=\mathcal L(t)\).
+Each nilpotent Jordan part has trace zero but retains
+its full dimension in this identity.
+In an orthonormal eigenbasis of the Hermitian defect,
+each diagonal entry of \(P_W\) lies in \([0,1]\).
+Its trace pairing is therefore at most the sum of
+positive defect eigenvalues, namely \(|t|\eps\).
+Squaring and using \eqref{NH34} proves \eqref{NH35}.
+
+For any fixed nonzero \(t\), \eqref{NH33} also gives
+the quantitative recovery
+\(\eps^2=\lim_{s\downarrow0}\Delta_s(t)/(st^2)\).
+This is a recovery of the existing arithmetic allowance
+from two specified finite heat traces. It is not a
+proof that the allowance decays in \(L\) or \(k\).
+For the mass-three example \eqref{NH27}, the exact
+observable, without any numerical approximation, is
+\begin{equation}\tag{NH36}\label{NH36}
+\Delta_s(t)=
+2e^{-s(1-4t)/3}-e^{-s/3}
+-e^{-s(1-4t)^2/3},\qquad
+b^2=\max\{1/3,(1-4t)^2/3\}.
+\end{equation}
+Indeed \(T^\dd T=\operatorname{diag}(1/3,(1-4t)^2/3)\).
+Its first heat coefficient is \(16t^2/3\), the
+original \(t^2\eps^2\).
+
+The holomorphic trace alone need not recover that norm.
+The precise map is exhibited by
+\(A=\operatorname{diag}(-2,-1,1,2)\), \(G=I_4\),
+\[
+r=(\alpha,\beta,\beta,\alpha)^{\mathsf T},\qquad
+\ell=(\alpha^{-1},\beta^{-1},-\beta^{-1},-\alpha^{-1}),
+\qquad \alpha,\beta>0.
+\]
+Its pairing \(\ell r\) is zero and its spectral weights
+are always \(1,1,-1,-1\).
+The diagonal conjugacy
+\(D=\operatorname{diag}(\alpha,\beta,\beta,\alpha)\)
+carries the case \(\alpha=\beta=1\) to these matrices,
+commutes with \(A\), and carries every exponential by
+the same conjugacy. Therefore \(\Phi_s(t)\) is identical
+for all these choices, for every \(s,t\).
+The squared fixed-metric norm, however, is
+\(4(\alpha^2+\beta^2)(\alpha^{-2}+\beta^{-2})\):
+it equals \(16\) at \((1,1)\) and \(25\) at \((2,1)\).
+The conjugacy is not an isometry of the retained
+\(I_4\), and \eqref{NH33} measures precisely this
+change through the metric heat trace.
+These are finite comparison families, not proposed
+arithmetic packets.
+
+\paragraph{What this calculation advances.}
+The original outgoing relation now has a genuine entire
+heat response with two explicit convergent expansions,
+full original-coordinate and physical-image maps, and
+factorial error bounds in the attained metric.
+The same-metric heat difference now gives a quantitative
+finite recovery of \(t^2\eps^2\), including the complete
+exterior receiver \eqref{NH35}; it is not replaced by
+\(\Phi_s\) alone. The independent companion
+\texttt{HEAT\_METRIC\_COMPARISON.tex} additionally retains
+the next heat coefficient and its complete cubic term.
+None of these finite formulas establishes decay of the
+actual arithmetic \(\eps\) as \(L,k\) grow.
+
+\begin{thebibliography}{9}\raggedright
+\bibitem{ConnesHeat}
+Alain Connes, \emph{Heat expansion and zeta},
+\href{https://arxiv.org/abs/2402.13082v1}{arXiv:2402.13082v1}
+(2024). Complete original author source
+\texttt{heat-kernel-zeta.tex} read for this note.
+Gaussian equation \texttt{ft}, heat identity \texttt{plicit1},
+and the explicitly RH-assuming theorem
+\texttt{heatkernelintro}; no infinite theorem is invoked.
+Source SHA-256:
+\texttt{e3d9bc846d966d19ceaf86133a863050c17c9bf40ba5b4a220945f0f5be89b42}.
+\bibitem{CV}
+Alain Connes and Walter D. van Suijlekom,
+\emph{Quadratic Forms, Real Zeros and Echoes of the Spectral Action},
+\href{https://arxiv.org/abs/2511.23257v1}{arXiv:2511.23257v1}
+(2025), Section \texttt{sect:sa}, Lemma \texttt{lem:sa}.
+This note uses the receiving derivation and source-class
+check in \cite{NativeAction}; the complete original CV
+source was read by that derivation's owner, not independently
+read for this note. No source inspection beyond this is claimed.
+\bibitem{NativeAction}
+Split-Zero programme, \emph{Native spectral action along the
+outgoing arithmetic relation}, 20 September 2026,
+\texttt{NATIVE\_SPECTRAL\_ACTION.tex}, SA1--SA43, with
+\texttt{SOURCE\_FUNCTION\_CLASS\_CHECK.tex}, FC1--FC4,
+\texttt{RANK\_ONE\_METRIC\_CURVATURE.tex}, MC1--MC35, and
+\texttt{INDEPENDENT\_ENDPOINT\_CHECK.tex}, EC1--EC15.
+These complete programme proofs were read directly.
+They are local programme derivations, not independent
+human scholarly authorities.
+\bibitem{MetricHeat}
+Split-Zero programme, \emph{Recovering the original rank-one
+metric allowance from two finite heat traces},
+20 September 2026,
+\texttt{metric\_check/HEAT\_METRIC\_COMPARISON.tex},
+HM1--HM19. Independent finite derivation read in full
+for the comparison proved again in \eqref{NH32}--\eqref{NH36}.
+It is a programme derivation, not a human primary source.
+\end{thebibliography}
+\end{document}

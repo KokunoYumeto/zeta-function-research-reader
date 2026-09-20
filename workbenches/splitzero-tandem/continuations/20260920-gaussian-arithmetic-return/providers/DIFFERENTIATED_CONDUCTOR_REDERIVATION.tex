@@ -1,0 +1,422 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\newcommand{\C}{\mathbb C}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Span}{\operatorname{span}}
+\title{Differentiated original conductors: complete gcds, finite receivers, and leakage ranks}
+\author{Independent programme derivation}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{Original domain, action and algebraic dual}
+This note independently rederives DO19--23 of
+\texttt{02\_CONSTANT\_DEPTH\_ORIGINAL\_OBSERVATION.md} and strengthens
+their rank bound using the exact repeated-factor profile.  The working
+domain is the original simple-quartet period locus stated there: the
+conductor has nonzero support on each of its four edges, the original
+invariant observation has the stated primitive-column property, and its
+five-orbit rank formula is valid.  The original degree is
+$k\equiv1\pmod4$, $k\ge77$.  Put $q=(k+1)^2$, $j_-=k-8$, and retain
+\[
+ \lambda_{ab}=\eta_k+2\delta a+2i\gamma b,\quad
+ \eta_k=k(1/2-\delta-i\gamma),\quad
+ E_k=\C[S]/\prod_{a,b=0}^k(S-\lambda_{ab}),
+ \quad M=M_S.                                                   \tag{DC1}
+\]
+Here $\delta,\gamma>0$ are the original numbers; in the application
+$0<\delta<1/2$, $\gamma>2$.  All roots are distinct because real and
+imaginary parts distinguish the two indices.  Thus the value-coordinate
+map $\mathsf V_k$ is an isomorphism, with its actual Lagrange inverse.
+The observation is the original map $\Lambda_k:E_k\to B_k$ onto its
+image, and
+\[
+ K_k=\ker\Lambda_k,\qquad r=\dim K_k=8k-16.                      \tag{DC2}
+\]
+
+Let $R=\C[Z_0,Z_1,W_0,W_1]$, with bidegrees $(1,0)$ for the $Z$
+variables and $(0,1)$ for the $W$ variables.  Write $T_{a,b}=R_{a,b}$;
+when $a,b\ge0$, its dimension is $(a+1)(b+1)$.  The actual conductor is
+\[
+ \mathcal A=\sum_{\sigma\in\mathcal S}a_\sigma
+ Z_0^{8-\sigma_1}Z_1^{\sigma_1}
+ W_0^{8-\sigma_2}W_1^{\sigma_2}\in T_{8,8}.                       \tag{DC3}
+\]
+Its support and coefficients are unchanged.  For a degree-$(k,k)$
+biform $p=\sum p_{ab}Z_0^{k-a}Z_1^aW_0^{k-b}W_1^b$, the relevant
+algebraic dual pairing is
+\[
+ \varphi_p(x)=\sum_{a,b}p_{ab}(\mathsf V_kx)_{ab}.                \tag{DC4}
+\]
+This is complex linear; it uses a transpose, not a conjugate transpose.
+By direct evaluation of DC1, the dual of the actual action $M$ is
+\[
+ M^\vee=\eta_k+\mathcal D,\qquad
+ \mathcal D=2\delta Z_1\partial_{Z_1}
+                 +2i\gamma W_1\partial_{W_1}.                   \tag{DC5}
+\]
+The binomial identities relating $(M^\vee)^n$ and $\mathcal D^n$
+retain $\eta_k$ in both directions, so all their row spans through
+each fixed order agree.  No original physical action is replaced by a
+different one.
+
+Denote by $\mathcal W_k\subset T_{k,k}$ the original invariant
+coefficient image, identified with the algebraic dual image of
+$\Lambda_k$ by DC4.  The original invariant conductor construction
+gives
+\[
+ \mathcal A T_{k-8,k-8}\subset\mathcal W_k.                       \tag{DC6}
+\]
+The actual map receiving this inclusion will be made explicit below.
+
+\section{The complete gcd sequence, including every multiplicity}
+Factor in the polynomial UFD $R$:
+\[
+ \mathcal A=c\prod_{\nu=1}^{m}F_\nu^{e_\nu},\quad
+ c\in\C^*,\quad \deg F_\nu=(u_\nu,v_\nu),
+ \quad e_\nu\ge1.                                               \tag{DC7}
+\]
+Each factor is bihomogeneous.  To see this directly, highest and
+lowest $Z$ degrees in a nonzero product are the sums of the highest
+and lowest degrees of its factors, since the polynomial ring is a
+domain.  Their differences add and are nonnegative.  A homogeneous
+product has difference zero, so each factor is $Z$ homogeneous;
+the same argument applies to $W$ degree.  Each nonconstant factor has
+$u_\nu+v_\nu\ge1$.  Consequently
+\[
+ \sum_\nu e_\nu u_\nu=8,\qquad
+ \sum_\nu e_\nu v_\nu=8,\qquad m\le16,
+ \quad d:=\max_\nu e_\nu\le8.                                   \tag{DC8}
+\]
+For the last bound, at least one of $u_\nu,v_\nu$ is positive.
+
+Full edge support excludes every coordinate variable as a factor:
+the edges $\sigma_1=0,8$ exclude $Z_1,Z_0$, respectively, and the
+two other edges exclude $W_1,W_0$.  For any irreducible factor $F$, if
+$F\mid\mathcal DF$, equality of bidegrees forces
+$\mathcal DF=\zeta F$ for some scalar $\zeta$, including zero.
+On a fixed bidegree, the monomial weights are
+$2\delta a+2i\gamma b$; they are all distinct.  Thus such an
+eigen-polynomial is a single monomial.  An irreducible monomial is
+a scalar multiple of one coordinate variable, which is excluded.
+We have proved
+\[
+ F_\nu\nmid\mathcal D F_\nu\quad\hbox{for every }\nu.           \tag{DC9}
+\]
+
+Fix $F=F_\nu$, $e=e_\nu$, and write $\mathcal A=F^e U$, $F\nmid U$.
+For $0\le l\le e$, the product rule gives the exact leading
+$F$-adic term
+\[
+ \mathcal D^l\mathcal A
+ \equiv (e)_{\underline l}F^{e-l}(\mathcal DF)^l U
+                          \pmod {F^{e-l+1}}.                    \tag{DC10}
+\]
+For a proof, at order zero this is immediate.  Differentiating its
+leading term produces the stated order-$l+1$ term with coefficient
+$(e)_{\underline l}(e-l)$; derivatives of its other factors retain
+at least $F^{e-l}$, and differentiating an $F^{e-l+1}$ multiple
+retains at least $F^{e-l}$.  This proves the induction through $l=e$.
+The coefficient in DC10 is nonzero modulo $F$: the quotient by the
+irreducible $F$ is a domain, its characteristic is zero, and both
+$\mathcal DF$ and $U$ have nonzero images.  Thus the exact valuation
+at order $l\le e$ is $e-l$.
+
+For every $l\ge0$, it follows that the common gcd, up to a nonzero
+constant, is exactly
+\[
+ G_l:=\gcd(\mathcal A,\mathcal D\mathcal A,\ldots,
+                       \mathcal D^l\mathcal A)
+       =\prod_\nu F_\nu^{\max(e_\nu-l,0)}.                       \tag{DC11}
+\]
+Indeed every common factor already divides $\mathcal A$, and DC10
+computes its smallest valuation among the first $l$ derivatives;
+after order $e_\nu$, that smallest valuation is already zero.
+In particular $G_d=1$ and $d\le8$, proving DO20 with all repeated
+factors retained.  Record its exact bidegree
+\[
+ g_l=\sum_\nu\max(e_\nu-l,0)u_\nu,\qquad
+ h_l=\sum_\nu\max(e_\nu-l,0)v_\nu.                              \tag{DC12}
+\]
+Equivalently these are the bidegrees of the directly computable gcd
+in DC11; no factorization or squarefreeness is assumed in using them.
+
+\section{Finite selection of a pair and its entire biform kernel}
+For each $1\le l\le d$, put
+\[
+ \mathcal B_{l,t}=\sum_{a=1}^{l}t^{a-1}\mathcal D^a\mathcal A.
+                                                                    \tag{DC13}
+\]
+Every summand is divisible by $G_l$.  For every irreducible factor
+$F$ of $\mathcal A/G_l$, reduction of
+$\mathcal B_{l,t}/G_l$ modulo $F$ is a nonzero polynomial in $t$ of
+degree at most $l-1$.  Its nonzero coefficient is supplied by the
+valuation calculation DC10 at order $\min(e_F,l)$.
+Passing to the fraction field of the domain $R/(F)$ proves that
+at most $l-1$ complex values of $t$ make this entire reduction zero.
+There are at most $m$ such irreducible factors.  Therefore select the
+first integer in
+\[
+ \{0,1,\ldots,m(l-1)\}
+\]
+for which the exact gcd test gives
+\[
+ \gcd(\mathcal A,\mathcal B_l)=G_l.                              \tag{DC14}
+\]
+The selection exists: the list has one more value than the proved
+maximum number of forbidden values.  It retains the actual complex
+conductor coefficients.  At $l=8$ the uniform list of 113 integers
+in the intake suffices; using $l=d$ requires no higher derivative.
+For $l=1$ the selected polynomial is simply $\mathcal D\mathcal A$.
+
+Set $\mathcal F_l=\mathcal A/G_l$ and
+$\mathcal H_l=\mathcal B_l/G_l$.  They are coprime, both of
+bidegree $(8-g_l,8-h_l)$.  Consider the actual coefficient map
+\[
+ \mu_l:T_{k-8,k-8}\oplus T_{k-8,k-8}\longrightarrow T_{k,k},
+ \qquad (f,g)\longmapsto\mathcal Af+\mathcal B_lg.                \tag{DC15}
+\]
+Its entire kernel is
+\[
+ \ker\mu_l=
+ \{(\mathcal H_l t,-\mathcal F_l t):
+                 t\in T_{k-16+g_l,k-16+h_l}\}.                  \tag{DC16}
+\]
+For a proof, a kernel element satisfies
+$\mathcal F_l f=-\mathcal H_l g$ after cancellation of $G_l$ in
+the domain.  Since the two remaining factors are coprime in a UFD,
+$\mathcal H_l$ divides $f$ and $\mathcal F_l$ divides $g$.  Substitute
+$f=\mathcal H_l t$ and cancel $\mathcal H_l\mathcal F_l$ to obtain
+$g=-\mathcal F_l t$.  The bidegrees force exactly the stated degree
+of $t$.  The converse follows by multiplication, and the parameter
+$t$ is unique.
+
+For $k\ge16$ all displayed degrees are nonnegative.  Hence the
+cokernel dimension of the pair map is exactly
+\[
+ \begin{split}
+ c_l&=(k+1)^2-2(k-7)^2
+             +(k-15+g_l)(k-15+h_l)\\
+    &=128+(g_l+h_l)(k-15)+g_lh_l.                                \end{split}\tag{DC17}
+\]
+At $l=d$, and in particular at $l=8$, this equals 128.  This is a
+complete biform calculation.  Coprimality here does not mean that
+the two positive-degree biforms generate the unit ideal in the
+four-variable polynomial ring; their finite coefficient cokernel
+is precisely what DC17 computes.
+
+\section{The explicit receiver from the original observation stack}
+The derivative-row inclusion can be checked without losing the
+original output functionals.  If $f\in T_{k-8,k-8}$, then
+\[
+ (\mathcal D^l\mathcal A)f
+  =\sum_{a=0}^l(-1)^{l-a}\binom la
+      \mathcal D^a\bigl(\mathcal A\mathcal D^{l-a}f\bigr).
+                                                                    \tag{DC18}
+\]
+To prove it, expand each outer derivative by the product rule.  The
+coefficient of $(\mathcal D^b\mathcal A)\mathcal D^{l-b}f$ is
+$\binom lb\sum_{a=b}^l(-1)^{l-a}\binom{l-b}{a-b}$, which is one
+when $b=l$ and zero otherwise.  DC6 and DC5 then show that the row
+space of the actual observation stack through $M^l$ contains
+$\im\mu_l$.
+
+Here is the complete map between the original source and target
+objects realizing this containment.  Retain $E_{j_-}$ and its
+original multiplication $M_-=M_{S'}$.  The finite-shift conductor
+is the original map
+\[
+ C:E_k\to E_{j_-},\qquad C[P]=[T_AP],\qquad
+ C=\bar C\Lambda_k.                                             \tag{DC19}
+\]
+This factorization is well-defined by the original conductor-row
+inclusion $\ker\Lambda_k\subset\ker C$; it is unique since
+$\Lambda_k$ is onto its image.  In original lower-grid value
+coordinates it is exactly
+\[
+ (Cx)_\beta=\sum_{\sigma\in\mathcal S}
+                        a_\sigma(\mathsf V_kx)_{\beta+\sigma},
+ \qquad 0\le\beta_1,\beta_2\le k-8.                             \tag{DC20}
+\]
+Set
+\[
+ \eta_8=4-8\delta-8i\gamma,
+ \quad\omega_\sigma=2\delta\sigma_1+2i\gamma\sigma_2,
+ \quad C_0=C,\quad
+ C_{a+1}=C_aM-(M_-+\eta_8I)C_a.                                 \tag{DC21}
+\]
+Every $C_a$ has the same type $E_k\to E_{j_-}$.  The unchanged
+upper and lower root values satisfy
+\[
+ \lambda^{(k)}_{\beta+\sigma}
+   -\lambda^{(k-8)}_\beta-\eta_8=\omega_\sigma.
+\]
+Induction in DC21 therefore proves the exact formula
+\[
+ (C_ax)_\beta=\sum_\sigma
+                  \omega_\sigma^a a_\sigma(\mathsf V_kx)_{\beta+\sigma}.
+                                                                    \tag{DC22}
+\]
+In particular it is the finite-shift conductor whose coefficient
+biform is $\mathcal D^a\mathcal A$.  The original constant $\eta_8$
+has not been discarded, and none of the original shifts or coefficients
+has been replaced by a normalized shift.
+Right multiplication by $M$ and left multiplication by
+$M_-+\eta_8I$ commute as operators on $\operatorname{Hom}(E_k,E_{j_-})$.
+Their binomial expansion gives
+\[
+ C_a=\sum_{n=0}^a(-1)^{a-n}\binom an
+       (M_-+\eta_8I)^{a-n}\bar C\Lambda_k M^n.                   \tag{DC23}
+\]
+
+Write $\mathcal O_lx=(\Lambda_kx,\Lambda_kMx,\ldots,
+\Lambda_kM^lx)$.  With $t_l$ selected in DC14, define on its actual
+output space $B_k^{\oplus(l+1)}$ the map
+\[
+ \begin{split}
+ \mathcal K_l(y_0,\ldots,y_l)=\biggl(&\bar C y_0,\\[-3pt]
+ &\sum_{a=1}^lt_l^{a-1}\sum_{n=0}^a(-1)^{a-n}\binom an
+            (M_-+\eta_8I)^{a-n}\bar C y_n\biggr)
+      \in E_{j_-}\oplus E_{j_-}.
+ \end{split}                                                     \tag{DC24}
+\]
+Then
+\[
+ \mathcal K_l\mathcal O_l=(C,C_{\mathcal B_l}),
+ \qquad C_{\mathcal B_l}=\sum_{a=1}^lt_l^{a-1}C_a.               \tag{DC25}
+\]
+Pairing the lower-grid values in DC22 with any coefficient biform
+$f\in T_{k-8,k-8}$ gives precisely
+$\varphi_{(\mathcal D^a\mathcal A)f}$.  Thus the algebraic transpose
+of the pair on the right of DC25 is exactly the multiplication map
+DC15, under the original value-coordinate isomorphisms.  Its rank
+is $q-c_l$, and its kernel dimension is $c_l$.  Therefore
+\[
+ n_l:=\dim\bigcap_{a=0}^l\ker(\Lambda_kM^a)\le c_l.            \tag{DC26}
+\]
+This proves DO21 and the stronger multiplicity-resolved bounds.  It
+does not assert that the pair rows exhaust the invariant coefficient
+image.  All the physical Taylor units, Gamma factors and original
+output coordinates reside in the unchanged $\Lambda_k$ and $\bar C$;
+DC24 is an actual map on those outputs, not a new observation imposed
+by a coefficient analogy.
+
+\section{One-step leakage and the two exact mixed directions}
+At the original cutoff $N$, retain the full attained metric $G_N$ on
+$E_k$ and the original quotient metric
+$Q_N=(\Lambda_kG_N^{-1}\Lambda_k^*)^{-1}$.  Let
+\[
+ I:\C^r\overset{\sim}{\longrightarrow}K_k,\quad
+ H_K=I^*G_NI,\quad L=G_N^{-1}\Lambda_k^*Q_N,
+ \quad J_K=H_K^{-1}I^*G_N.
+\]
+The original decomposition $[I,L]$ is an isometry from
+$\diag(H_K,Q_N)$ to $G_N$.  In this frame retain all four blocks
+\[
+ [I,L]^{-1}M[I,L]=\begin{pmatrix}T&C_{\rm ret}\\B&D\end{pmatrix},
+ \quad B=\Lambda_kMI,\quad C_{\rm ret}=J_KML.                    \tag{DC27}
+\]
+If the initial state is $Ix$, write its two coordinates after $n$
+steps as $(x_n,y_n)$.  The full block equations give
+\[
+ x_{n+1}=Tx_n+C_{\rm ret}y_n,\quad
+ y_{n+1}=Bx_n+Dy_n,\quad x_0=x,\quad y_0=0.
+\]
+Solving the first recursion by induction and substituting it in the
+second gives, with every feedback term retained,
+\[
+ y_{n+1}=BT^nx+Dy_n+
+            \sum_{a=0}^{n-1}BT^{n-1-a}C_{\rm ret}y_a.           \tag{DC28}
+\]
+Thus $(y_1,\ldots,y_l)$ is an invertible lower triangular linear
+transform, with identity diagonal, of
+$(Bx,BTx,\ldots,BT^{l-1}x)$.  Its inverse is obtained by subtraction
+in DC28.  Its kernel dimension is exactly $n_l$: an invisible whole
+state lies in $K_k$ already at step zero.  Consequently
+\[
+ \rank\begin{pmatrix}B\\BT\\\vdots\\BT^{l-1}\end{pmatrix}
+   =r-n_l\ge r-c_l,\qquad
+ l\,\rank B\ge r-c_l.                                           \tag{DC29}
+\]
+
+Define the explicit integer computed from the actual conductor gcds
+\[
+ R_k^{\rm diff}:=
+ \max\left\{0,\max_{1\le l\le8}
+ \left\lceil\frac{8k-144-(g_l+h_l)(k-15)-g_lh_l}{l}\right\rceil
+                                                    \right\}.
+                                                                    \tag{DC30}
+\]
+Then the original one-step action leakage satisfies
+\[
+ \boxed{\rank(\Lambda_kMI)\ge R_k^{\rm diff}\ge k-18.}          \tag{DC31}
+\]
+The second bound uses $g_8=h_8=0$.  The maximum can stop at
+$d=\max e_\nu$, since for $l\ge d$ the numerator is the same
+positive number $8k-144$ and increasing the denominator cannot
+improve the bound.  In particular the exact actual multiplicity
+gives the further bound
+\[
+ \rank B\ge\left\lceil\frac{8k-144}{d}\right\rceil.             \tag{DC32}
+\]
+For a squarefree original conductor, which is determined by its
+actual gcd rather than assumed, $d=1$ and the resulting bound is
+$\rank B\ge8k-144$.  Formula DC30 remains valid without any
+squarefreeness assertion.  It also retains potential improvements
+at intermediate gcd degrees when factors have different multiplicities.
+
+The original full attained-source rank-two Hermitian-weight identity
+in DO17 gives, in these exact metrics,
+\[
+ \widetilde B=Q_N^{1/2}BH_K^{-1/2},\qquad
+ \widetilde C=H_K^{1/2}C_{\rm ret}Q_N^{-1/2},\qquad
+ \widetilde C+\widetilde B^*=R_N^{\rm wt},\quad
+ \rank R_N^{\rm wt}\le2.                                        \tag{DC33}
+\]
+The invertible metric factors do not change ranks.  The elementary
+inequality $\rank(X+Y)\ge\rank X-\rank Y$, proved from
+$\im X\subset\im(X+Y)+\im Y$, yields
+\[
+ \rank C_{\rm ret}\ge\max(0,R_k^{\rm diff}-2).                  \tag{DC34}
+\]
+For the original metric projection $P_K=IJ_K$, direct block
+multiplication gives
+\[
+ [M,P_K]=\begin{pmatrix}0&-C_{\rm ret}\\B&0\end{pmatrix}.
+\]
+Its two image summands occupy the disjoint kernel and observation
+blocks, so its rank is exactly $\rank B+\rank C_{\rm ret}$.  Hence
+\[
+ \boxed{\rank[M,P_K]\ge
+ R_k^{\rm diff}+\max(0,R_k^{\rm diff}-2)
+ =2R_k^{\rm diff}-2\ge2k-38.}                                   \tag{DC35}
+\]
+The equality of the two displayed bounds uses $k\ge77$, hence
+$R_k^{\rm diff}\ge59$.  In particular DO22--23 are correct; DC30,
+DC34 and DC35 give their stronger receiving form using the actual
+conductor multiplicity profile.
+
+\section{What the identities establish}
+The proof supplies an exact finite procedure for the derivative gcds,
+an explicit finite selection of the biform pair, its complete syzygy
+kernel with both degrees retained, and the actual original observation
+receiver DC24.  It evaluates the rank consequences for both mixed
+action directions and their commutator.  The first eight steps leave
+at most 128 invisible directions; no claim that this remainder is
+zero has been made.  The separate DO9 constant-depth reconstruction
+removes that remainder using additional original observations.
+Neither a rank estimate nor that reconstruction sets the one-step
+angle to zero, assigns the complex current signs, or bounds the
+smallest nonzero singular value without its original metric calculation.
+
+The direct input examined here is the user's
+\texttt{02\_CONSTANT\_DEPTH\_ORIGINAL\_OBSERVATION.md}, DO1--23,
+with DO19--23 independently proved above.  The original conductor
+factorization in DC19 is also the explicitly proved OB3 map.
+The biform, UFD, binomial and finite-matrix arguments used in this
+note are given in full; no human result beyond those programme
+inputs is invoked without a proof.
+\end{document}

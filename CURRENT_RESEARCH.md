@@ -1,3 +1,10 @@
+<!-- directional-inverse-power:20260921 -->
+## Resonance directions and inverse-power observation
+
+[006: the 11-page resonance-direction paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/006/REAL_PAIR_DIRECTIONAL_CONTINUATION.pdf) calculates every cutoff's original resonance rays and the full inverse-spectrum transition along curved approaches to the certified real period. [007: the four-page inverse-power paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/007/Inverse_Power_Conductor_Observability_2026-09-21.pdf) constructs an exact left inverse of the original conductor on a specified growing space of inverse powers and proves a finite observation lower bound in the original metric.
+
+[Full proofs and LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/README.md), [exact public proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/PROOF_LINKS.json), and [results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/RESULT_INDEX.json) preserve human citations and the complete earlier dependencies. The geometric family is not identified with arithmetic zeta zeros; the observation lower bound may tend to zero. Neither paper concludes RH.
+
 <!-- spectral-real-period-verified-doi:20260921 -->
 ## Read the native spectral and real-period papers
 

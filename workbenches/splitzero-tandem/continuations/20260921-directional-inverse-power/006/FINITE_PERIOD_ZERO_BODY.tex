@@ -1,0 +1,399 @@
+\section{A certified finite geometric period with an order-one conductor symbol}
+\label{sec:finite-period-zero}
+
+This section constructs a finite complex period of the complete PCL
+coefficient family \cite{PCLOriginal} at which the original symbol changes order.
+It uses the original four factors, the original exponential variable and
+the original Gamma metrics \cite{WCF}. The quartet parameters in this
+construction are specified geometric parameters. They are not asserted
+to be zeros of the Riemann zeta function. The statement concerns this
+coefficient family and its exact ES return; it is not an arithmetic RH
+conclusion. The ES marking and human provenance remain FC1--15a and
+\cite{ES488}.
+
+\subsection{The full convergent functions and the exact point}
+Fix
+\[
+ \delta=\frac14,\quad\gamma=3,\quad
+ \beta=\frac{143}{8},\quad\eta=\frac{21025}{256},\quad
+ w=(\delta+i\gamma,\delta-i\gamma,-\delta+i\gamma,-\delta-i\gamma),
+ \quad\rho_a=\frac12+w_a.
+ \tag{FPZ1}
+\]
+The unit is on its nonzero real phase $a=\bar a\ne0$. Its magnitude is
+unchanged: $U=aI$ cancels with $U^{-1}$ in PCL8. Put
+$V_{ar}=w_a^r$ for $0\le r\le3$, $\zeta=e^{2\pi i/5}$ and
+$D_j=\operatorname{diag}(\zeta^{-j},\zeta^{-2j},\zeta^{-3j},\zeta^{-4j})$.
+Retain every coefficient of the original period:
+\[
+ \mathcal R(z)=\sum_{n\ge0}R_nz^n,\qquad
+ (R_n)_{ar}=\sum_{\substack{p,h\ge0\\2p+4h=5n+r+1-a}}
+ \frac{(\beta/3)^p\eta^h}{p!h!}(-5)^{p+h-n}(a/5)_{p+h-n}.
+ \tag{FPZ2}
+\]
+This is precisely PCL2, with row index $1\le a\le4$. The exact
+conjugation PCL7--9, including all branch powers and Gamma ray factors,
+gives
+\[
+ \begin{split}
+ M_j(z)&=V\mathcal R(z)^{-1}D_j\mathcal R(z)V^{-1},\\
+ t(\xi)&=(e^{\rho_a\xi})_{a=1}^4,\quad Q_0(t)=t_1t_4-t_2t_3,\\
+ f_j(\xi,z)&=Q_0(M_j(z)t(\xi)),\quad d_j(z)=f_j(0,z),\\
+ E_A(\xi,z)&=\prod_{j=1}^4f_j(\xi,z),\quad
+ \mu_n(z)=\partial_\xi^n E_A(0,z).
+ \end{split}\tag{FPZ3}
+\]
+No coefficient of $A_z$, including its off-diagonal coefficients, is
+discarded by this identity.
+
+The following two terminating decimals specify exact rational numbers:
+\[
+ \begin{split}
+ c_R&=0.011136978231486808477778740306233906621055400363647396688725562781,\\
+ c_I&=0.0078780133477760021239711966284294386302928222474756316845213852718,\\
+ c&=c_R+ic_I,\qquad r=10^{-14},\qquad
+ \mathbb D=\{z:|z-c|<r\}.
+ \end{split}\tag{FPZ4}
+\]
+There is exactly one zero $z_*$ of $d_1$ in $\mathbb D$, counted with
+multiplicity. It is simple. Equations FPZ2--4 and this unique-root
+condition define the point exactly, rather than specifying it by an
+unverified floating-point approximation. The proof follows below.
+
+\subsection{An explicit bound for every omitted series coefficient}
+Set $K=11/2$, $C_R=4K^3$ and $T_R=6K^5/5$. Then
+$K^2\ge5\beta/3$, $K^4\ge5\eta$ and $K\ge1$. For each term in
+FPZ2 let $m=p+h$ and $L=m-n\ge0$. Since $0<a/5<1$,
+$(a/5)_L\le L!$. Also
+\[
+ \frac{n!L!}{p!h!}=\frac{\binom mp}{\binom mn}\le2^m,
+ \qquad 2m\le5n+3,\qquad 2^m\le4\,6^n.
+ \tag{FPZ5}
+\]
+The defining constraint gives $K^{2p+4h}\le K^{5n+3}$, and there
+are at most $2n+2$ contributing pairs. Multiplying these inequalities
+with $5^L=5^{m-n}$ proves the uniform entrywise estimate
+\[
+ |(R_n)_{ar}|\le C_R(2n+2)\frac{T_R^n}{n!}.
+ \tag{FPZ6}
+\]
+It proves absolute convergence on every bounded disk, including that
+of the derivative series; it also bounds every tail actually used here.
+Let $N=400$, and let $\rho$ be an outward upper bound for the modulus
+on the rectangle $|\Re(z-c)|\le r$, $|\Im(z-c)|\le r$.
+With $w=T_R\rho$, the entrywise tails satisfy
+\[
+ \begin{split}
+ \left|\mathcal R-\sum_{n=0}^N R_nz^n\right|_{ar}
+ &\le\tau_0=
+ \frac{C_R(2N+4)w^{N+1}}{(N+1)!(1-2w/(N+2))},\\
+ \left|\mathcal R'-\sum_{n=1}^N nR_nz^{n-1}\right|_{ar}
+ &\le\tau_1=
+ \frac{C_R(2N+4)(N+1)T_Rw^N}
+ {(N+1)!(1-3w/(N+1))}.
+ \end{split}\tag{FPZ7}
+\]
+For the first tail the ratio of successive majorant terms is at most
+$2w/(N+2)$. For the derivative tail that ratio is
+$w(n+2)/(n(n+1))\le3w/(N+1)$ for $n\ge N+1$.
+Both denominators are positive. Summing the resulting geometric
+majorants proves FPZ7, including the full infinite remainder.
+
+\subsection{The enclosing calculation and the zero count}
+The reproducible calculation is
+\texttt{certify\_finite\_period\_zero.py}, with its full ball output in
+\texttt{FINITE\_PERIOD\_ZERO\_CERTIFICATE.json}.
+It uses Python-FLINT 0.9.0, 768-bit precision and one worker.
+The inclusion-preserving arithmetic and outward radius operations are
+those of Fredrik Johansson's Arb \cite{human:arb2016}, sections
+``Features and example applications'', ``Radii and magnitude bounds''
+and ``Precision and bounds''. The original author TeX was read at
+those loci; the matrix-tail and zero-count proofs here are the present
+calculation, not claims attributed to that software paper.
+
+All rational coefficients in FPZ2 are evaluated as enclosing balls.
+Simultaneous Horner evaluation encloses $\mathcal R,\mathcal R'$;
+the two tails in FPZ7 are then added to every real and imaginary part.
+In particular the complete run proves
+\[
+ \rho<0.013642,\qquad \tau_0<6.44\cdot10^{-98},\qquad
+ \tau_1<2.92\cdot10^{-93}.
+ \tag{FPZ8}
+\]
+The inverse is an enclosing matrix inverse. The independent companion
+review also verifies $\|I-B\mathcal R(z)\|_\infty<1.73\cdot10^{-9}$
+on the entire rectangle, with $B$ the exact dyadic midpoint of the
+computed centre inverse. Thus a convergent Neumann series proves local
+invertibility independently of PCL5. This is a certificate for the
+full matrix, not for the truncated polynomial alone.
+
+The derivative used in the calculation is exactly
+\[
+ M'_j=V\bigl(\mathcal R^{-1}D_j\mathcal R'
+ -\mathcal R^{-1}\mathcal R'\mathcal R^{-1}D_j\mathcal R\bigr)V^{-1}.
+ \tag{FPZ9}
+\]
+For example, if $y=M_j\mathbf1$ and $y'=M'_j\mathbf1$, then
+$d'_j=y'_1y_4+y_1y'_4-y'_2y_3-y_2y'_3$.
+The original symbol derivative uses $M_j(\rho_a)_a$, retaining
+the original $1/2$ in every $\rho_a$.
+On the closed rectangle the certified strict bounds are
+\[
+ \begin{gathered}
+ |d_1(c)|<5\cdot10^{-63},\quad |d'_1(c)|>434,\quad
+ \sup|d'_1(z)-d'_1(c)|<8,\\
+ \Im\partial_\xi f_1(0,z)>3.68,\qquad
+ -0.24<\Re d_2(z)<-0.22,\\
+ -2.43<\Re d_3(z)<-2.41,\qquad
+ -3.36<\Re d_4(z)<-3.34.
+ \end{gathered}\tag{FPZ10}
+\]
+For $|z-c|=r$, integration of the derivative along the straight
+segment from $c$ proves
+\[
+ |d_1(z)-d'_1(c)(z-c)|
+ \le |d_1(c)|+8r<434r<|d'_1(c)(z-c)|.
+ \tag{FPZ11}
+\]
+The homotopy between the two holomorphic functions has no boundary
+zero. Its contour integral of the logarithmic derivative is continuous
+and integer-valued: isolated zeros locally have the form
+$(z-z_0)^m h(z)$ with $h(z_0)\ne0$, so each contributes its
+integer multiplicity to that integral. The count is therefore constant.
+The linear function has one zero, proving the unique simple zero asserted
+after FPZ4. For any two distinct points $z_1,z_2$ in the convex
+rectangle, the same segment integration gives
+\[
+ |d_1(z_1)-d_1(z_2)-d'_1(c)(z_1-z_2)|\le8|z_1-z_2|,
+ \qquad |d_1(z_1)-d_1(z_2)|>426|z_1-z_2|.
+\]
+Thus $d_1$ is injective on the entire rectangle. The other three factors
+have no zero anywhere in that rectangle by FPZ10. Therefore $\mu_0$
+also has exactly one simple zero in the rectangle as well as in the disk.
+
+At that zero define, with every original factor retained,
+\[
+ m_*:=\mu_1(z_*)=\partial_\xi f_1(0,z_*)\prod_{j=2}^4d_j(z_*),\quad
+ \alpha_*:=\mu'_0(z_*)=d'_1(z_*)\prod_{j=2}^4d_j(z_*).
+ \tag{FPZ12}
+\]
+The enclosing calculation proves $|m_*|>13.80$ and
+$|\alpha_*|>1524$. Consequently
+\[
+ \operatorname{ord}_{\xi=0}E_A(\xi,z_*)=1,\qquad
+ \mu_0(z)=\alpha_*(z-z_*)+O((z-z_*)^2),\qquad
+ u_*:=z_*^{-1}\in
+ [59.8455390191\pm8.74\cdot10^{-11}]
+ +i[-42.333202544\pm4.75\cdot10^{-10}].
+ \tag{FPZ13}
+\]
+These are enclosures of the exact constructed point, not replacements
+for its definition. The finite period and any local logarithm branch
+remain those of PCL1 and PCL7.
+
+\subsection{The five distinct original quadrics at this finite period}
+Let $H$ be the full original period matrix at $u_*$ and put
+$Q_j(X)=Q_0(H^{-1}D^{-j}X)$ for $j\in\mathbb Z/5\mathbb Z$.
+Every $Q_j$ is an invertible linear pullback of the rank-four quadratic
+$Q_0$. Such a quadratic cannot factor into two linear forms, since a
+product of two linear forms has symmetric matrix rank at most two.
+Hence each $Q_j$ is irreducible.
+
+The action $X\mapsto D^{-1}X$ on their projective classes has order
+five. Every orbit length divides five. An association between any two
+distinct indexed quadrics would therefore make this orbit have length
+one. It would give $Q_1=\lambda Q_0(H^{-1}\,\cdot)$ for a nonzero
+scalar $\lambda$. But $Q_0(t(\xi))=0$ for every $\xi$, because
+$\rho_1+\rho_4=\rho_2+\rho_3=1$. Substitution would imply
+$f_1(\xi,z_*)=0$ identically, contradicting FPZ10. Thus
+\[
+ Q_0(H^{-1}\,\cdot),Q_1,Q_2,Q_3,Q_4
+ \text{ are five pairwise nonassociated irreducible quadrics.}
+ \tag{FPZ14}
+\]
+This proves the required five-orbit property at the actual constructed
+point. It does not infer any separately imposed coordinate-section
+coprimality or large-period radius from the orbit property.
+
+\subsection{The exact fixed-space rank loss in every original degree}
+Fix $a_{\rm amp}=4\ell+1\ge9$ and $s\in\{1,a_{\rm amp}\}$.
+Retain $c_0=a_{\rm amp}/2$, $c_1=c_0-4$, the complete measure
+$dm_s$ in FC28, and $\rho_n=\sqrt{n!/(s/2)_n}$ in WCF2.
+For every $D\ge0$ consider the \emph{fixed} old $v=0$ spaces
+$\mathcal P_D\to\mathcal P_D$ with these exact two norms.
+Their matrix, also at the singular parameter, is
+\[
+ B_{D,s}(z)=\operatorname{diag}(\rho_0,\ldots,\rho_D)^{-1}
+ T_D(g(z))\operatorname{diag}(\rho_0,\ldots,\rho_D),\quad
+ g(t,z)=e^{-4\omega(t)}E_A(\omega(t),z),\quad
+ \omega(t)=-i\arctan t.
+ \tag{FPZ15}
+\]
+WCF3--6 prove this identity in the original orthonormal frames.
+In particular $g_0=\mu_0$ and at $z_*$,
+\[
+ g_{0,*}=0,\quad g_{1,*}=-im_*,\quad
+ g_{2,*}=4m_*-\mu_2(z_*)/2,\quad
+ g_{3,*}=i\bigl(\mu_3(z_*)/6-2\mu_2(z_*)+25m_*/3\bigr).
+ \tag{FPZ16}
+\]
+The Taylor coefficients of $\omega=-it+it^3/3+O(t^5)$ prove all
+four formulas. Every higher coefficient is given by the convergent
+FPZ2--3 composition in FPZ15. Explicitly, for every $n$ set
+$y_{j,k}=M_j(z_*)(\rho_a^k)_a$; then
+\[
+ f_{j,n}=\sum_{k=0}^n\binom nk
+ (y_{j,k,1}y_{j,n-k,4}-y_{j,k,2}y_{j,n-k,3}),\quad
+ \mu_n(z_*)=\sum_{n_1+\cdots+n_4=n}
+ \frac{n!}{n_1!\cdots n_4!}\prod_{j=1}^4 f_{j,n_j}.
+ \tag{FPZ17}
+\]
+Here $f_{1,0}=0$ exactly. Thus no moment needed in any degree is
+an unspecified independent input.
+
+For $D\ge1$, at $z_*$ the first column and last row of FPZ15
+vanish. Removing them leaves an upper triangular $D$ by $D$ matrix
+with diagonal $g_{1,*}\rho_j/\rho_{j-1}$, $1\le j\le D$.
+Its determinant is $g_{1,*}^D\rho_D\ne0$. Consequently
+\[
+ \operatorname{rank}B_{D,s}(z_*)=D,\quad
+ \ker B_{D,s}(z_*)=\mathbb C\phi_{0,s,c_0},\quad
+ \operatorname{im}B_{D,s}(z_*)=\mathcal P_{D-1},\quad
+ \det B_{D,s}(z)=\mu_0(z)^{D+1}.
+ \tag{FPZ18}
+\]
+For $D=0$ the rank is zero and the same kernel and determinant
+statements hold. The actual new order is $v=1$; its WCF map is instead
+$\mathcal P_{D+1}/\mathcal P_0\to\mathcal P_D$ and is invertible,
+with diagonal $(-im_*)\rho_{j+1}/\rho_j$. This gives the exact
+map between the fixed-space degeneration and the order-adjusted
+quotient, retaining both domains.
+
+\subsection{All inverse exterior poles in the exact original metrics}
+Let $n=D+1$, $1\le r\le n$, $\tau=z-z_*$, and
+$B_*=B_{D,s}(z_*)$. In a sufficiently small punctured disk FPZ11--13
+give $v=0$ and $B_{D,s}(z)$ is invertible. In singular-value order,
+the identity
+\[
+ \|\bigwedge^r B_{D,s}(z)^{-1}\|
+ =\frac{\|\bigwedge^{n-r}B_{D,s}(z)\|}
+ {|\det B_{D,s}(z)|}
+ \tag{FPZ19}
+\]
+follows by cancelling the product of all $n$ singular values; it also
+holds for $r=n$ with the zeroth exterior norm equal to one.
+All exterior norms in the numerator converge by continuity of their
+matrix entries and the operator norm. FPZ18 makes their limits positive.
+Thus the complete leading asymptotes are
+\[
+ \boxed{\displaystyle
+ \lim_{z\to z_*}|z-z_*|^{D+1}
+ \|\bigwedge^r B_{D,s}(z)^{-1}\|
+ =\frac{\|\bigwedge^{D+1-r}B_*\|}{|\alpha_*|^{D+1}}>0.}
+ \tag{FPZ20}
+\]
+There is one inverse singular value with pole $D+1$ and $D$ inverse
+singular values with finite positive limits. Indeed FPZ18 leaves exactly
+$D$ positive forward singular values; their product tends to
+$|g_{1,*}|^D\rho_D$, while their product with the remaining singular
+value is $|\mu_0|^{D+1}$. In particular
+\[
+ \lim_{z\to z_*}|z-z_*|^{D+1}\|B_{D,s}(z)^{-1}\|
+ =\frac{\rho_D|m_*|^D}{|\alpha_*|^{D+1}}.
+ \tag{FPZ21}
+\]
+No mass or center has changed: the common $M_s$ cancels only when
+expressing the map in its two original orthonormal frames.
+
+For the requested four-dimensional return, $D=3$, the three nonzero
+forward singular values are exactly those of
+\[
+ C_s=\begin{pmatrix}
+ g_{1,*}\rho_1&g_{2,*}\rho_2&g_{3,*}\rho_3\\
+ 0&g_{1,*}\rho_2/\rho_1&g_{2,*}\rho_3/\rho_1\\
+ 0&0&g_{1,*}\rho_3/\rho_2
+ \end{pmatrix}.
+ \tag{FPZ22}
+\]
+This matrix, FPZ12, FPZ16--17 and FPZ2--4 specify every constant
+without free coefficients. If $\lambda_1\ge\lambda_2\ge\lambda_3>0$
+are the roots of $\det(\lambda I-C_s^*C_s)$, the four constants in
+FPZ20, in exterior ranks $1,2,3,4$, are respectively
+\[
+ \frac1{|\alpha_*|^4}
+ \left(\rho_3|m_*|^3,\sqrt{\lambda_1\lambda_2},
+                           \sqrt{\lambda_1},1\right).
+ \tag{FPZ23}
+\]
+The singular values of the inverse have orders $(4,0,0,0)$.
+All four exterior ranks have order four. This is the exact finite-period
+mechanism entering the inverse-exterior expression of audit equation
+(11). It prevents a bound uniform across this geometric parameter
+disk on the fixed old spaces. It does not assert a failure of an estimate
+whose period is fixed, whose quotient uses the actual order, or whose
+arithmetic parameter set has not been mapped to this disk.
+
+Finally $z-z_* =-(u-u_*)/(uu_*)$. Therefore the original-period version
+of FPZ20 has the exact constant
+\[
+ \lim_{u\to u_*}|u-u_*|^{D+1}
+ \|\bigwedge^r B_{D,s}(u^{-1})^{-1}\|
+ =|u_*|^{2(D+1)}
+ \frac{\|\bigwedge^{D+1-r}B_*\|}{|\alpha_*|^{D+1}}.
+ \tag{FPZ24}
+\]
+Both coordinates and their exact conversion are retained. The remaining
+arithmetic question is not answered by assigning this geometric point
+to the zeta-zero locus; no such assignment is made here.
+
+\subsection{A finite complex zero exists for every original quartet on this phase}
+There is also a general existence result, using the new coefficient
+calculation FUT24--26 below. For every original
+$0<\delta<1/2$, $\gamma>2$ and real nonzero unit, each of the four
+functions $d_j$ has a nonzero finite complex zero. Here is a complete
+growth argument; it does not assert the five-orbit condition at every
+zero obtained by this existence argument.
+
+In FPZ5--6 choose instead
+$K=\max\{1,(5\beta/3)^{1/2},(5\eta)^{1/4}\}$, retaining the actual
+$\beta,\eta$. The same bound gives
+\[
+ |\mathcal R_{ar}(z)|\le 2C_R(1+T_R|z|)e^{T_R|z|}.
+ \tag{FPZ25}
+\]
+PCL5 gives $\mathcal R^{-1}=\operatorname{adj}\mathcal R$.
+Each adjugate entry is a sum of six triple products. Write
+$v_V=\|V\|_\infty$, $v_I=\|V^{-1}\|_\infty$ and
+$H(r)=2C_R(1+T_Rr)e^{T_Rr}$. Then
+$\|\operatorname{adj}\mathcal R\|_\infty\le24H^3$ and
+$\|\mathcal R\|_\infty\le4H$, so FPZ3 gives
+$|d_j(z)|\le2(96v_Vv_I)^2H(|z|)^8$. In particular
+$|d_j(z)|\le A(1+|z|)^8e^{B|z|}$ with the full constants
+$A=2(96v_Vv_I)^2(2C_R)^8\max(1,T_R)^8$ and $B=8T_R$.
+PCL parity, or FUT3's direct parity proof, makes $d_j$ even.
+The earlier PZX coefficient and FUT24--26 prove that both its
+second and fourth Taylor coefficients are nonzero.
+
+If it had no nonzero zero, $F(z)=d_j(z)/z^2$ would be an entire
+zero-free function with $F(0)\ne0$. The integral of $F'/F$ on the
+simply connected complex plane defines an entire logarithm $h$ with
+$F=e^h$. The growth bound implies
+$\Re h(z)\le A_0+B|z|+8\log(1+|z|)$, with the compact disk
+absorbed into $A_0$. Write $h(z)=\sum h_nz^n$ and let $M_R$ be
+this upper bound on $|z|=R$. Fourier integration of the real part
+and its mean-value identity gives, for $n\ge1$,
+\[
+ |h_n|\le\frac{2(M_R-\Re h(0))}{R^n}.
+ \tag{FPZ26}
+\]
+Indeed subtract $M_R$ inside the nonconstant Fourier coefficient;
+the integral of $M_R-\Re h$ is $2\pi(M_R-\Re h(0))$ and this
+integrand is nonnegative. Letting $R\to\infty$ proves $h_n=0$
+for every $n\ge2$. Hence $F=e^{h_0+h_1z}$. Evenness implies
+$e^{2h_1z}=1$ for every $z$, whose derivative at zero gives
+$h_1=0$. This would make $d_j$ a constant multiple of $z^2$,
+contradicting its nonzero fourth coefficient. A nonzero finite zero
+therefore exists for each original factor. FPZ4--14 additionally
+construct one particular such zero and prove its precise symbol order
+and orbit property; those additional conclusions came from the full
+certificate, not from the growth argument alone.

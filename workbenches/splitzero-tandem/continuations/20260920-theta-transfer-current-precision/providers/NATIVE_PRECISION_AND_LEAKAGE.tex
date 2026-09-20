@@ -1,0 +1,519 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\title{Native precision, marked detection and quantitative kernel leakage}
+\author{Split-Zero research programme}
+\date{19 September 2026}
+\begin{document}\maketitle
+This is the receiving proof for the supplied continuation
+\cite{incoming}. It retains the original cutoff, full root polynomial,
+period, unit phase, minimum metrics and marked scale. Its analytic
+statements use the stated estimates of the preceding native proof;
+their finite coefficient checks are not substituted for those estimates.
+We prove the sharper precision consequences, the first observed marked
+defect, the exact stack metric, and the certified heat depth. We also
+derive an explicit positive lower bound for the original leakage Gram,
+using the actual observation inverse and both action cross blocks.
+
+\section{The precise analytic inputs and their receiving maps}
+On the original simple-quartet domain let
+\[
+\begin{gathered}
+ a\equiv1\pmod4,\quad q=(a+1)^2,\quad Q=(a-7)^2,\\
+ \Delta=16a-48,\quad v=\operatorname{ord}_0E_A,
+ \quad \epsilon\in\{0,1\},\quad s=1+\epsilon(a-1).
+\end{gathered}
+ \tag{NP1}
+\]
+Set $\ell=(s-1)/4$, $n=Q+\ell$, $m=\Delta-v$ and
+$H=2\Delta-v-\ell$. These retain the original source order even
+for the degree-$(a-8)$ lower root grid. Its four cutoffs are
+$q-v-1,q-v,2q-v-1,2q-v$.
+
+Use the actual equilibrium endpoints $u_e^2,v_e^2$ for
+$\pi\sqrt{x}-2\log x$, satisfying $u_eK(\kappa)=2$,
+$v_eE(\kappa)=4$, $\kappa^2=1-u_e^2/v_e^2$. Define
+\[
+\begin{gathered}
+ w=(u_e+v_e)/2,\quad z_e=u_ev_e,\quad c_e=(v_e^2-u_e^2)/4,\\
+ L=6\log w-2\log z_e-2,\quad
+ \lambda_e=8-4\log w-2\log c_e,\quad F=-\lambda_e/2-3+L,\\
+ C_B=9-8\log2+F,\quad C_\Gamma=2L-8\log2+4,\\
+ C_\sigma=F+6-3L/2-6\log2+2\log\pi,\quad
+ M_{-1}=(u_e^2+v_e^2-4u_ev_e)/(2u_e^2v_e^2),\\
+ a_0=\log(4/\pi),\quad a_1=2(1-\log2)-\lambda_e/4,
+ \quad b_1=\tfrac12\log c_e-\log2,\\
+ C_\partial=2C_B-8a_1+4a_0,\quad
+ K_2=C_B-4a_1+2b_1-2\log2,\quad
+ \eta_h=(\gamma^2-\delta^2)/3.
+\end{gathered}\tag{NP2}
+\]
+The quantitative input D17 of \cite{native} is
+\[
+\begin{aligned}
+\mathcal C^-_{a,s}={}&C_Bn^2+4n(Ha_1-ma_0)
++\tfrac12m^2\log(n/m)+2H^2b_1\\
+&-(2a_0-\tfrac34)m^2-2\ell^2\log2+C_\sigma n
+-2\eta_h Q(Q-1)M_{-1}/n+O_{h,v}(a^{3/2}+a\log(a+2)).
+\end{aligned}\tag{NP3}
+\]
+Its proof sums the low rows with their full endpoint weights, including
+$\sum c_rr=m^2$ and
+$\sum c_rr\log r=m^2\log m-m^2/2+O(\log(m+2))$.
+The expansion $\psi(t)=a_0+(t/4)\log t+(a_0-1/4)t+O(t^{3/2})$
+gives the $-3/4$ in (NP3): $-1/2$ from the linear summand and
+$-1/4$ from this weighted logarithmic sum. No interval is omitted.
+
+\begin{theorem}
+Let
+\[
+ Z(v)=1024(a_1-2b_1)-176C_\partial+4v(a_1-a_0)-192+512\log2,
+ \qquad Z_\Delta=4C_\partial+16(2b_1-a_1).
+ \tag{NP4}
+\]
+The expanded lower covariance satisfies
+\[
+\begin{aligned}
+\mathcal C^-_{a,s}={}&C_Bq^2+[-16C_\partial+\epsilon C_\Gamma/4]aq
++128q\log a\\
+&+q[C_\sigma-2\eta_hM_{-1}-\epsilon C_\Gamma/4
++\epsilon K_2/16-Z(v)-\epsilon Z_\Delta]\\
+&+O_{h,v}(a^{3/2}+a\log(a+2)).
+\end{aligned}\tag{NP5}
+\]
+The complete original correlated native sum obeys
+\[
+ \mathcal N_{a,s}=16C_\partial aq-128q\log a
+    +[Z(v)+\epsilon Z_\Delta]q
+       +O_{h,v}(a^{3/2}+a\log(a+2)). \tag{NP6}
+\]
+After the displayed terms, each remainder is $o(q/\log q)$; in
+particular its next $q/\log q$ coefficient is zero. Also
+$\mathcal N_{a,a}-\mathcal N_{a,1}=Z_\Delta q+o(q/\log q)$.
+\end{theorem}
+\begin{proof}
+Substitute $n=a^2+(-14+\epsilon/4)a+49-\epsilon/4$ into (NP3).
+All polynomial terms of degrees four, three and two yield (NP5)
+by expansion. In the logarithmic term,
+$\log(n/m)=\log a-\log16+O_{h,v}(a^{-1})$,
+so its discarded part is $O(a)$; changing its degree-two coefficient
+from $a^2$ to $q$ costs $O(a\log a)$. Further,
+$Q(Q-1)/n=q+O_{h,v}(a)$ and $n=q+O(a)$. These estimates account
+for every nonpolynomial replacement. The supplied exact coefficient
+diagnostics independently check the three polynomial coefficients
+for both $\epsilon=0,1$.
+
+The original receiving identity is
+$\mathcal B_a^{(s)}=\mathcal C^-_{a,s}+\mathcal N_{a,s}$, where
+$\mathcal N=\mathcal Re^C+\mathcal T+F_L+\Xi$ retains all four
+specified terms. The upper Gamma baseline is
+\[
+ \mathcal B_a^{(s)}=C_Bq^2+\epsilon C_\Gamma aq/4
+ +q[C_\sigma-2\eta_hM_{-1}-\epsilon C_\Gamma/4+\epsilon K_2/16]
+ +O_h(a\log(a+2)).
+\]
+Its order-one remainder is $O_h(\log q)$ in the included absolute
+baseline proof; D20's order conversion costs $O_h(a\log q)$.
+Subtracting proves (NP6). Finally
+$(a^{3/2}+a\log(a+2))\log q/q\to0$. The claims concern this
+complete correlated sum and covariance, not their individual
+restriction or quotient determinants.
+\end{proof}
+
+At fixed original multiplicity $m_0$, retain
+$q=[1+k(m_0-1)](k+1)^2$, $\ell=(k-1)/4$ and the original
+arithmetic density. D20 gives the exact source-order comparison
+through its stated error. With the earlier arithmetic result SR/AG
+as used in FW29--30 \cite{FW}, subtraction yields
+\[
+\begin{aligned}
+\delta_{k,k}^{\rm ar}={}&-(\ell+4m_0-2)C_\Gamma q
++\frac{\log2}{\pi}I_hk^2-\ell^2K_2
++\frac{C_\Gamma q}{2(\log q+c_\zeta)}+o_h(q/\log q),\\
+ I_h={}&\int_0^{\pi/2}[(\log M_h)'(t)]^2dt,
+\quad M_h(t)=\int_{\R}e^{ty}w_h(y)dy,
+\quad c_\zeta=2\gamma_{\rm E}-\log(2\pi).
+\end{aligned}\tag{NP7}
+\]
+Here $w_h(y)=|2\xi(1/2+iy)/h(1/2+iy)|^2/(2\pi)$ and $h$ is
+the complete fixed quartet polynomial. The factor $k^2$ remains
+literal. For $m_0>1$ an $o(q/\log q)$ remainder does not determine
+every smaller $k^2$-scale term separately. The proof is subtraction of
+$\ell qC_\Gamma+\ell^2K_2+O_h(k\log q)$ from the order-one
+correction; $k(\log q)^2/q\to0$ proves the error claim. The exact
+complete-action receiver is
+\[
+ \mathcal B_k[w_k]+\delta_{k,k}^{\rm ar}
+       =\mathcal B_k[\sigma]+\delta_{k,1}^{\rm ar}. \tag{NP8}
+\]
+The larger conversion terms cancel in this identity.
+
+For the sign in D21, set $r=u_e/v_e$ and $\kappa=\sqrt{1-r^2}$.
+Differentiating the elliptic integrals using Carlson's formulas
+\cite[19.4.1--2]{Carlson} gives exactly
+\[
+ \frac{d}{dr}\frac{rK(\kappa)}{E(\kappa)}
+ =\frac{(K-E)(E-r^2K)}{(1-r^2)E^2}>0. \tag{NP9}
+\]
+The first factor is positive by the integral of
+$\kappa^2\sin^2t/\sqrt{1-\kappa^2\sin^2t}$; the second by the
+integral of $\kappa^2\cos^2t/\sqrt{1-\kappa^2\sin^2t}$.
+For completeness, the substitution $x=\tan t$ bounds
+$K=\int_0^\infty[(1+x^2)(1+r^2x^2)]^{-1/2}dx$
+by $1+\log(1/r)+1$, using the intervals $[0,1]$, $[1,1/r]$,
+and $[1/r,\infty)$. Also $E\ge\int_0^{\pi/2}\cos t\,dt=1$.
+At $r=1/10$, $rK/E<(2+3)/10=1/2$, so the actual solution
+of $rK/E=1/2$ exceeds $1/10$. Since
+$1<(1+r)^2/(4r)<121/40$, the exact identity
+$K_2=2\log(w^2/z_e)-4\log2$ yields
+$-4\log2<K_2<2\log(121/160)<0$.
+
+\section{The first visible jet and the original marked recurrence}
+For this section use the original simple quartet and $k\ge9$,
+$k\equiv1\pmod4$. Retain its actual invertible period matrix
+$H(\varpi)$, and put
+\[
+ x(z)=H(\varpi)(e^{2(\delta+i\gamma)z},e^{2\delta z},
+ e^{2i\gamma z},1)^T,\quad b_*=1/2-\delta-i\gamma.
+ \tag{NP10}
+\]
+The original observation pairs $P(S)$ with
+$P(\partial_z)[e^{kb_*z}f(x(z))]_{z=0}$, for invariant homogeneous
+$f$ of degree $k$ with coordinate weights $1,2,3,4$ modulo five.
+Define $j_* =\min\{j:\Lambda S^j\ne0\}$.
+
+\begin{theorem}
+If $x(0)$ has two active coordinates then $j_*=0$. If only $x_i(0)$
+is active, write $z_j=x_j/x_i$, $\nu_j=\operatorname{ord}_0z_j$
+and $c_j=j-i\pmod5$. Then
+\[
+ j_* =\min_{\substack{\alpha\ge0,\ |\alpha|\le4\\
+             \sum_{j\ne i}c_j\alpha_j=-ki\ (\mathrm{mod}\ 5)}}
+                  \sum_{j\ne i}\nu_j\alpha_j\le4. \tag{NP11}
+\]
+In this case $j_*=0$ exactly when $5\mid k$.
+\end{theorem}
+\begin{proof}
+If coordinates $i,j$ are active, choose $0\le b\le4$ with
+$ki+b(j-i)=0\pmod5$. The monomial $x_i^{k-b}x_j^b$ is invariant
+and nonzero at zero. In the one-active case, each inactive coordinate
+is a nonzero four-exponential sum: its row in $H$ is nonzero. The
+first four exponential derivatives give an invertible Vandermonde,
+so $1\le\nu_j\le3$. At least one equals one, since otherwise
+$x'(0)$ is proportional to $x(0)$, which invertibility of $H$ would
+make the distinct exponent vector proportional to $(1,1,1,1)$.
+
+Divide each invariant monomial by the common unit
+$e^{kb_*z}x_i(z)^k$. Its charge is exactly that in (NP11), and its
+order is the indicated sum. A linear combination cannot have smaller
+order than every summand. Conversely each candidate of degree at most
+four homogenizes to degree $k$ and has that exact order. A power at
+most four of an order-one ratio realizes every charge; any monomial
+of total degree at least five has order at least five and cannot
+improve the minimum. The charge-zero constant realizes order zero;
+all other charges have positive order. This proves every assertion.
+\end{proof}
+
+Let $E=\C[S]/(\chi)$, $\deg\chi=q$, in the original increasing
+power basis. Denote multiplication by $S$ by $A$, and let
+$B=e_0e_{q-1}^T$. Retain the original marked scale $u\ne0$ and
+the connection
+\[
+ A(t)=A+tB,\quad U'(t)=A(t)U(t)/u,\quad U(0)=I,
+ \quad\Lambda_h(t)=\Lambda U(t)^{-1}. \tag{NP12}
+\]
+For the actual terminal class $v_\lambda=b_\lambda\chi/(S-\lambda)$,
+one has $Av_\lambda=\lambda v_\lambda$ and $Bv_\lambda=b_\lambda1$.
+Thus, with $Y(t)=e^{\lambda t/u}\Lambda_h(t)v_\lambda-\Lambda v_\lambda$,
+\[
+ Y'(t)=-\frac{b_\lambda}{u}t\,e^{\lambda t/u}\Lambda_h(t)1.
+ \tag{NP13}
+\]
+This follows by differentiating $U^{-1}$ on its correct side:
+$(U^{-1})'=-U^{-1}A(t)/u$.
+
+To calculate the first coefficient without an unjustified commutation,
+write $U^{-1}=\sum W_nt^n$. Then
+$(n+1)W_{n+1}=-(W_nA+W_{n-1}B)/u$, $W_{-1}=0$.
+In any word contributing to $W_n$, the letter $A$ has degree one
+and $B$ degree two. A word containing $B$ kills $1$ unless its
+rightmost $B$ has at least $q-1$ letters $A$ to its right, since
+$BA^j1=0$ for $j<q-1$. Hence
+$W_n1=(-A/u)^n1/n!$ for $n<q+1$. Since $j_*\le4<q$,
+(NP13) proves
+\[
+ Y^{(j_*+2)}(0)=b_\lambda(j_*+1)(-u)^{-(j_*+1)}
+                    \Lambda S^{j_*}\ne0,\qquad
+ Y^{(j)}(0)=0\quad(j<j_*+2). \tag{NP14}
+\]
+The first marked/arithmetic discrepancy is therefore at order two on
+the two-active stratum, and at an exactly determined order at most six
+at every admitted period. This computes the stated holomorphic
+continuation, with full $b_\lambda$ and $u$; it does not substitute a
+new sheaf morphism for that continuation.
+
+\section{Observation stacks in their actual quotient metric}
+Fix an original cutoff $N$, its positive form $G=G_N$, and the
+surjective observation $\Lambda:E\to B_0=\im\Lambda$. Define
+\[
+ Q=(\Lambda G^{-1}\Lambda^*)^{-1},\quad
+ L=G^{-1}\Lambda^*Q,\quad K=\ker\Lambda,\quad
+ I:\C^r\longrightarrow K,\quad H_K=I^*GI. \tag{NP15}
+\]
+$I$ is the original fixed full-column kernel frame. Thus $\Lambda L=I$
+on $B_0$, $I^*GL=0$ and $L^*GL=Q$. Set
+$J_K=H_K^{-1}I^*G$, so $IJ_K+L\Lambda=I_E$.
+The literal action blocks are
+\[
+ T=J_KAI,\quad C=J_KAL,\quad B=\Lambda AI,
+ \quad D=\Lambda AL,\quad
+ A[I,L]=[I,L]\begin{pmatrix}T&C\\B&D\end{pmatrix}.
+ \tag{NP16}
+\]
+All norms below use $H_K$ on kernel coordinates and $Q$ on outputs.
+
+The incoming O1--9 theorem \cite{native} proves $K_\infty=0$ on its
+explicit original period locus, with $r=8k-16$, and injectivity of
+$\mathcal O_r=(\Lambda,\Lambda A,\ldots,\Lambda A^r)^T$.
+Its proof is the decreasing-kernel argument: a plateau is invariant
+under $A$, hence zero; at most $r$ strict drops start from $K$.
+Consequently
+\[
+ \mathcal L_r=\sum_{j=0}^{r-1}(T^j)^*B^*QB T^j\succ0.
+ \tag{NP17}
+\]
+Indeed if all $BT^jx=0$ for $j<r$, the characteristic polynomial
+of $T$ gives the same for every $j$. The block recurrence then gives
+$A^jIx=IT^jx$, so $Ix\in K_\infty$ and $x=0$.
+
+The full stack metric is
+\[
+ \mathsf H_{d,N}=\sum_{j=0}^d(A^j)^*\Lambda^*Q\Lambda A^j,
+ \quad v_\lambda^*\mathsf H_{d,N}v_\lambda
+  =\left(\sum_{j=0}^d|\lambda|^{2j}\right)E_{N,\lambda}(1-\theta_N),
+ \tag{NP18}
+\]
+where $E_{N,\lambda}=v_\lambda^*G_Nv_\lambda$ and
+$\theta_N=\|J_Kv_\lambda\|_{H_K}^2/E_{N,\lambda}$.
+The equality is substitution of the actual eigenvalue equation into
+each term. For fixed $d$ the geometric factor cancels in the original
+four-cutoff return; FW38--40 \cite{FW} therefore yields
+\[
+ C_\partial q+
+ \log\frac{(1-\theta_{q-1})(1-\theta_q)}
+               {(1-\theta_{2q-1})(1-\theta_{2q})}
+       +O_h(k+\log q). \tag{NP19}
+\]
+The stack retains the original angle term by an exact identity.
+
+\section{A quantitative lower bound for every kernel direction}
+We now extend positivity (NP17) by a bound expressed in actual finite
+matrices. This is valid on the just-stated simple-packet observability
+locus and at every original cutoff. It does not replace that cutoff.
+
+Let the distinct arithmetic roots be $\lambda_1,\ldots,\lambda_q$,
+with original Lagrange idempotents
+$e_\lambda(S)=\prod_{\mu\ne\lambda}(S-\mu)/(\lambda-\mu)
+=\sum_{j=0}^{q-1}e_{\lambda,j}S^j$. Write
+$b_\lambda^{\rm obs}=\Lambda e_\lambda\ne0$ and define
+\[
+ \vartheta_\lambda(y)=
+ \frac{(b_\lambda^{\rm obs})^*Qy}{
+             (b_\lambda^{\rm obs})^*Qb_\lambda^{\rm obs}},
+ \quad\mathcal R_N(y_0,\ldots,y_{q-1})
+ =\sum_\lambda e_\lambda\sum_{j=0}^{q-1}e_{\lambda,j}
+                                      \vartheta_\lambda(y_j).
+ \tag{NP20}
+\]
+For the original stack, its $\lambda$ coordinate is
+$\vartheta_\lambda(\Lambda e_\lambda(A)x)=x_\lambda$, so
+$\mathcal R_N\mathcal O_{q-1}=I_E$. This is O10 with its
+functional explicitly placed in the original quotient metric $Q$;
+no metric equivalence is silently assumed. By Cauchy--Schwarz,
+\[
+ \|\mathcal R_N\|_{Q^{\oplus q}\to G}\le C_{R,N}:=
+ \sum_\lambda\frac{\|e_\lambda\|_G
+                 (\sum_j|e_{\lambda,j}|^2)^{1/2}}
+                        {\|b_\lambda^{\rm obs}\|_Q}<\infty.
+ \tag{NP21}
+\]
+This coefficient contains the original root differences and metric.
+
+For $x\in\C^r$ write
+$y_j=\Lambda A^jIx$, $x_j=J_KA^jIx$. The exact block recurrences
+are $x_{j+1}=Tx_j+Cy_j$, $y_{j+1}=Bx_j+Dy_j$,
+with $x_0=x,y_0=0$. Elimination of $x_j$ gives
+\[
+ y_{j+1}=BT^jx+Dy_j+
+                 \sum_{l=0}^{j-1}BT^{j-1-l}Cy_l.
+ \tag{NP22}
+\]
+Define a $(q-1)$ by $(q-1)$ block lower-triangular matrix $W_N$ by
+the following recursion. For input $z_0,\ldots,z_{q-2}$ set $y_0=0$
+and $y_{j+1}=z_j+Dy_j+\sum_{l=0}^{j-1}BT^{j-1-l}Cy_l$.
+Then $W_Nz=(y_1,\ldots,y_{q-1})$. Its diagonal blocks are identities;
+the displayed reverse formula gives its exact inverse. In particular,
+both action cross blocks $B,C$ and $D$ are retained.
+
+Let $\chi_T(t)=\det(tI-T)$, and compute the actual polynomial
+remainders
+$t^j\bmod\chi_T=\sum_{h=0}^{r-1}c_{jh}t^h$, $0\le j\le q-2$.
+Put $C_T=(c_{jh})$. The first $r$ rows form the identity. Applying
+the characteristic identity to $T$ proves
+\[
+ (BT^jx)_{j=0}^{q-2}=(C_T\otimes I_{B_0})(BT^hx)_{h=0}^{r-1},
+ \quad
+ \mathcal O_{q-1}Ix=
+ (0,\ W_N(C_T\otimes I_{B_0})(BT^hx)_{h=0}^{r-1}).
+ \tag{NP23}
+\]
+Define $C_{W,N}=\|W_N\|_{Q^{\oplus(q-1)}}$ and
+$C_{T,N}=\|C_T\|_2$. These are norms of the displayed finite
+matrices, not constants of a different stack. Then
+\[
+ \boxed{\quad
+ \mathcal L_r\succeq
+    (C_{R,N}C_{W,N}C_{T,N})^{-2}H_K.
+ \quad} \tag{NP24}
+\]
+To prove it, apply (NP20) to (NP23), take the original $G$ norm,
+and then use (NP21) and the two matrix norms. The square of
+$\|(BT^hx)_{h<r}\|_{Q^{\oplus r}}$ is exactly
+$x^*\mathcal L_rx$; $\|Ix\|_G^2=x^*H_Kx$. Rearrangement gives
+(NP24). It supplies a strictly positive finite lower bound at the
+original cutoff. Its dependence on the actual $Q$ and action blocks
+is displayed. No small asymptotic action allowance is inferred from
+this possibly large recovery cost.
+
+\section{The exact heat guard and its evaluated degree cost}
+Retain HR1--11 \cite{heat}, including the original complete
+prequotient constant $c_N\ge1$ and the same vectors and observation.
+Let $0<p_{1,N},p_{2,N}\le1$ be the actual squared source-correlation
+fractions from FW5, and $p_{*,N}=\min(p_{1,N},p_{2,N})$.
+For $0<\zeta<1$, the certificate
+\[
+ \eta_{J,N}=(1+2^{-(J+1)/2}c_N)^{2k}-1
+       \le\zeta\sqrt{p_{*,N}}
+ \tag{NP25}
+\]
+is equivalent, by monotonicity, to
+\[
+ J+1\ge T_N:=2\log_2c_N-2\log_2
+ \left[(1+\zeta\sqrt{p_{*,N}})^{1/(2k)}-1\right].
+ \tag{NP26}
+\]
+The least nonnegative integer depth is $J_N^*=\lceil T_N\rceil-1$.
+Indeed $c_N\ge1$ and the bracket is less than one; for the original
+$k\ge9$, $T_N>1$. There is therefore no hidden cutoff at depth zero.
+
+For $0<x\le\zeta$ put $b=\log(1+x)/(2k)$. The elementary bounds
+$x/(1+\zeta)\le\log(1+x)\le x$ and
+$b\le e^b-1\le(1+\zeta)^{1/2}b$ show, uniformly even as
+$p_{*,N}\downarrow0$, that
+\[
+ J_N^*+1-2\log_2c_N
+ =2\log_2(2k/\zeta)-\log_2p_{*,N}+O_\zeta(1).
+ \tag{NP27}
+\]
+Here the equality concerns the least certified depth, not an arbitrary
+larger $J$. The rounding error is less than one.
+
+Let the original endpoint weights be $w_0=w_q=1$, $w_r=2$
+otherwise. They sum to $2q$. FW27--29 supplies
+$\mathscr A_1=-\sum w_r\log p_{1,q-1+r}=C_Bq^2+O_h(q\log q)$
+and $\mathscr A_2=O_h(q\log q)$. Since
+\[
+ -\log p_{1,N}\le-\log p_{*,N}
+       \le-\log p_{1,N}-\log p_{2,N},
+\]
+weighted summation of (NP27) proves
+\[
+ \frac1{2q}\sum_{r=0}^qw_r
+ [J_{q-1+r}^*+1-2\log_2c_{q-1+r}]
+ =\frac{C_B}{2\log2}q+O_{h,\zeta}(\log q).
+ \tag{NP28}
+\]
+On the simple-quartet domain FW48 at $r=0$ gives
+$-\log p_{1,q-1}=2a_0q+O_h(k+\log q)$ and
+$-\log p_{2,q-1}=O_h(\log q)$. The same two-sided inequality yields
+\[
+ J_{q-1}^*+1-2\log_2c_{q-1}
+ =\frac{2\log(4/\pi)}{\log2}q+O_{h,\zeta}(k+\log q).
+ \tag{NP29}
+\]
+(NP28) uses the all-fixed-multiplicity source products; (NP29) uses
+the stated simple-packet pointwise estimate. These are costs of this
+particular heat certificate. They do not bound every possible numerical
+method or evaluate the separate growth of $c_N$.
+
+\section{Return to the now-proved coprime proper-source domain}
+The latest published NC1--27 proof \cite{NC} establishes the
+coprime stratum required in Section 5 of the incoming continuation:
+outside a specified finite exceptional set of admitted periods,
+$E_k^{\rm prop}=0$, with a sufficient original finite-period radius.
+On its intersection with the two-active jet locus,
+$r_I=8k-32-v$. At the same proper-source cutoffs the source form is
+exactly $Q_N^p=Z_R^*J_0^*D_{k,N-v}^{(s_0)}J_0Z_R$.
+
+In the full target product let $F_R$ be the actual multiplier lift,
+$J_*$ the entire target-invariant direction matrix and $\mathcal D_N^p$
+the unchanged target form. Define
+\[
+ A_N=F_R^*\mathcal D_N^pF_R,\quad
+ C_N=J_*^*\mathcal D_N^pJ_*,\quad
+ B_N=J_*^*\mathcal D_N^pF_R,\quad T_N=C_N^{-1/2}B_NA_N^{-1/2}.
+ \tag{NP30}
+\]
+The symbol $T_N$ here denotes this displayed target cross map, not the
+real heat threshold in (NP26). Completing the square in the entire
+target fiber gives
+$H_N^p=A_N-B_N^*C_N^{-1}B_N
+=A_N^{1/2}(I-T_N^*T_N)A_N^{1/2}$.
+Thus the original proper-source return is exactly
+\[
+ \mathcal M^p=\mathcal R_{\rm end}\log\det[(Q_N^p)^{-1/2}A_N(Q_N^p)^{-1/2}]
+       +\mathcal R_{\rm end}\log\det(I-T_N^*T_N). \tag{NP31}
+\]
+This determinant identity follows by multiplying determinants, not by
+asserting the matrices commute. The actual positive target minimum
+gives $I-T_N^*T_N\succ0$. None of the covariance, observation-stack
+or heat-depth results evaluates its eigenvalues. They now supply
+sharper original inputs and a finite positive leakage bound for the
+continuing calculation of this same target metric.
+
+\begin{thebibliography}{9}
+\bibitem{incoming} Supplied web continuation,
+\emph{The new continuation removes more uncertainty than its concluding
+summary states}, 19 September 2026, equations (1)--(23).
+The complete original Markdown is retained with this edition.
+\bibitem{native} \emph{Programme Native Continuation}, four complete
+notes supplied 19 September 2026, D1--25, revised J1--6 including
+J3a--b, E1--4, O1--12. Published with the NC edition below.
+\bibitem{FW} \emph{Full-window source products and the retained class},
+FW1--52, 19 September 2026, public commit
+\texttt{3c44de632b2c5ead13b23619d646803d2bbffc19};
+full proof \texttt{FULL\_WINDOW\_SOURCE\_PRODUCTS.tex} included.
+\bibitem{heat} \emph{Heat approximation errors for the original complex
+observation responses}, HR1--11, and the full original heat metric
+proof HM1--30, published in commit
+\texttt{607728ee3c35be98720d548794727670b1946c91}.
+\bibitem{NC} \emph{Vanishing of the original proper-source kernel through
+conductor coprimality}, NC1--27, 19 September 2026, commit
+\texttt{12dd3645229bfebbf1cb8f5968ecffd4dfff1e9f}.
+\bibitem{Carlson} Bille C. Carlson, \emph{Elliptic Integrals}, Chapter 19
+of the NIST Digital Library of Mathematical Functions,
+\href{https://dlmf.nist.gov/19.4}{Section 19.4}, equations 19.4.1--2.
+The derivative in (NP9) is derived from these formulas; its sign
+and the subsequent inequalities are proved from the defining integrals.
+\end{thebibliography}
+\end{document}

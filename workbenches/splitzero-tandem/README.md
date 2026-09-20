@@ -1,3 +1,8 @@
+<!-- theta-transfer-current-precision:20260920 -->
+## Original theta transfer and certified complex-current precision
+
+The Split-Zero programme uses the theta source, its quotient by theta relations, and the arithmetic norm of finite polynomial classes. The [new complete source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-theta-transfer-current-precision/README.md) proves how Burnol’s complete zero systems enter that original quotient, including Gamma factors and every multiplicity. It also calculates explicit arithmetic moment tolerances for the same quotient metric and fixed-kernel complex current. [Six complete LaTeX derivations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-theta-transfer-current-precision/COMPLETE_PROOFS.tex), [a fully labelled mathematical diagram](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-theta-transfer-current-precision/FIGURE_CAPTION.md), [machine-readable results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-theta-transfer-current-precision/RESULT_INDEX.json), human-source citations, exact checkers and three updated full cumulative manuscripts are included. These finite formulas do not assign native moment values or establish the remaining growing-degree signed estimate.
+
 <!-- native-moments-and-marked-observation:20260920 -->
 ## Arithmetic moment bounds and complete marked observations
 

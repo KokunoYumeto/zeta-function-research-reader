@@ -1,0 +1,161 @@
+# Independent determinant and small-singular-value derivation
+
+20 September 2026. Bounded independent derivation of SD5, SD13, SD19 and SD21–25. All adjoints, norms and minimum sections below use the original attained arithmetic metric \(G_N\). The full companion result keeps fixed \(m_0\ge1\), \(k\equiv1\pmod4\), \(k\ge5\), the complete root polynomial and \(q-1\le N\le2q-1\). It requires no observation-period restriction. No tests were rerun.
+
+**Finding:** these formulas and their signs and factors are correct. The details below supply an independent derivation and an explicit final inequality in SD22. They require no correction to the checked TeX.
+
+## 1. SD5: the determinant in the original metric
+
+Write \(M=C+rv^\dagger\), \(v=\ell^\dagger\), \(C^\dagger=C\), \(D=C^2+a^2I\). Define
+\[
+R=r^\dagger r,\quad
+\alpha=r^\dagger D^{-1}r,\quad
+\beta=v^\dagger D^{-1}v,\quad
+h=v^\dagger D^{-1}Cr,\quad
+u=r^\dagger CD^{-1}Cr.
+\]
+Then
+\[
+M^\dagger M+a^2I
+=D+[Cr,v]\begin{pmatrix}0&1\\1&R\end{pmatrix}[Cr,v]^\dagger.
+\]
+The identity \(\det(I+UV)=\det(I+VU)\), proved by either Schur elimination of the block matrix with diagonal identity blocks, gives
+\[
+\frac{\det(M^\dagger M+a^2I)}{\det D}
+=\det\begin{pmatrix}1+h&\beta\\u+Rh&1+\bar h+R\beta\end{pmatrix}
+=|1+h|^2+(R-u)\beta.
+\]
+Since \(I-CD^{-1}C=a^2D^{-1}\), the last term is \(a^2\alpha\beta\). The original even measure and even \(Q\) give the unitary parity map \(\Pi\), with \(\Pi C\Pi=-C\), \(\Pi r=(-1)^{N+1}r\), and \(\Pi v=(-1)^Nv\). Therefore \(v^\dagger D^{-1}r=0\). The complete companion characteristic polynomial is \(Q\), including every repeated factor, so the rank-one formula gives
+\[
+\frac{Q(ia)}{\det(iaI-C)}
+=1-v^\dagger(iaI-C)^{-1}r
+=1+v^\dagger(C+iaI)D^{-1}r=1+h.
+\]
+Finally \(\det D=|\det(iaI-C)|^2\), by the real eigenvalues of \(C\). These identities prove exactly
+\[
+\det(M^\dagger M+a^2I)
+=|Q(ia)|^2+a^2|\det(iaI-C)|^2\alpha\beta.
+\]
+The plus sign is forced by \(M=C+r\ell\); no boundary phase has been changed. At zero the independent determinant identity \(\det(M^\dagger M)=|\det M|^2=|Q(0)|^2\) holds whether or not \(C\) is invertible.
+
+## 2. Uniformity at \(d/q\to0\)
+
+Let \(\mathcal J_N\) denote the full source compression on \(\mathcal P_{\le N}\), of dimension \(q+d\), and \(\mathcal R_d\) the complete relation compression, of dimension \(d\). NG18–20 give
+\[
+\operatorname{rank}\!\left(\mathcal J_N-
+          (C_N\oplus\mathcal R_d)\right)\le2.
+\]
+All these spectra divided by \(q\) lie in the same fixed compact interval, from NG3. For a bounded-variation test \(f\), the spectral count inequality and integration against \(df\) therefore give
+\[
+\left|\frac{\operatorname{Tr}f(C_N/q)}q
+       -\frac{\operatorname{Tr}f(\mathcal J_N/q)}q\right|
+\le \frac d q\|f\|_\infty+\frac{2\operatorname{Var}(f)}q.
+\]
+This tends to zero for every sequence \(d=o(q)\), including unbounded \(d\). NG16–17 give the source law \(h_0(y)\,dy\) when \((N+1)/q\to1\). Approximation on the fixed compact interval extends the result to every continuous test. In particular the second moment tends to \(2/3\).
+
+For \(d/q\to s>0\), use NG20 as proved for such sequences. The GM endpoint family is continuous for \(s>0\). At zero its subtracted relation measure has mass \(s\), whereas the source measure \(h_0(y/(1+s))\,dy\) tends to \(h_0(y)\,dy\); hence this family is weakly continuous on \([0,1]\). A contradiction subsequence, followed by a convergent subsequence of \(d/q\), proves the uniform convergence used in SD11 and SD18. Its atomless densities also give the uniform fixed-threshold count limit used in SD23.
+
+For completeness, the moment bound and the complete root trace yield, eventually uniformly,
+\[
+\operatorname{Tr}C_N^2\ge q^3/48,\qquad
+|\operatorname{Tr}M^2|\le q^3/96.
+\]
+Parity gives \(\ell r=0\), so
+\[
+\operatorname{Tr}M^2-\operatorname{Tr}C_N^2=2\ell C_Nr.
+\]
+Its absolute value is at least \(q^3/96\). Since
+\(|\ell C_Nr|\le Bq\,\kappa_N\), this proves
+\(\kappa_N\ge q^2/(192B)\), including the factor \(192\).
+
+## 3. SD21–22: finite determinant loss forces a small singular value
+
+Put \(\lambda_j=s_j(M)^2/q^2>0\) and
+\[
+S=\sum_j\log\lambda_j=2\log|Q(0)|-2q\log q.
+\]
+The image of \(M^\dagger M-C_N^2\) lies in \(\operatorname{span}\{C_Nr,v\}\); thus the Hermitian spectral count discrepancy is at most two. For \(0<\eta<1\), the exact guard \(q>R_k/\sqrt\eta\) implies
+\[
+S\le2q\log(R_k/q)<q\log\eta.
+\]
+Let \(n=\#\{\lambda_j<\eta\}\). Then \(1\le n\le m_{N,\eta}\), with exactly the strict-threshold convention in SD20. All the other values are at least \(\eta\), whence
+\[
+S\ge n\log\lambda_q+(q-n)\log\eta.
+\]
+Because \(S-q\log\eta<0\), division first by \(n\) and then replacement by its upper bound preserve the following direction:
+\[
+\log\lambda_q\le\log\eta+\frac{S-q\log\eta}{n}
+\le\log\eta+\frac{S-q\log\eta}{m_{N,\eta}}.
+\]
+This proves SD21 with its stated exponent.
+
+The GM domination \(\nu_s(y)\le h_0(y/2)\), followed by direct integration, gives
+\[
+\nu_s\{|y|<\sqrt\eta\}
+\le \frac{\sqrt\eta}{\pi}
+          \left(1+\log\frac8{\sqrt\eta}\right)=\mathfrak a(\eta).
+\]
+The preceding uniform weak convergence and the absence of atoms yield
+\(m_{N,\eta}/q\le\mathfrak a(\eta)+o(1)\), uniformly in \(N\), for each fixed \(\eta\). Given \(A>0\), choose \(\mathfrak a(\eta)<1/(8A+8)\). Eventually \(m_{N,\eta}/q<1/(4A+4)\) and \(\log(q/R_k)>(1/3)\log q\); the latter holds at every fixed multiplicity because its ratio to \(\log q\) tends to \(1/2\) for \(m_0=1\) and \(2/3\) for \(m_0>1\).
+
+An explicit final step is useful: once additionally
+\(|\log\eta|\le(1/6)\log q\), the numerator in SD21 is at most
+\(-\tfrac12q\log q\). Consequently
+\[
+\lambda_q\le\eta q^{-2A-2},\qquad
+s_q(M;G_N)/q\le\sqrt\eta\,q^{-A-1}\le q^{-A}.
+\]
+This proves SD22 uniformly over the entire original cutoff window. The only threshold asserted is eventual; the spectral convergence theorem supplies no effective numerical value. The original algebraic eigenvalues retain modulus at least \(\sqrt{\delta^2+\gamma^2}\), since both root coordinates are nonzero odd multiples of their original constants.
+
+## 4. SD13 and SD19/24/25: exact action and logarithmic factors
+
+With \(a=q\sqrt t\), the second summand relative to \(\det D\) is
+\[
+a^2\alpha\beta
+=\frac{\kappa_N^2}{q^2}\,t\alpha_N(t)\beta_N(t).
+\]
+Taking the logarithm of SD5 therefore gives SD8, including
+\(2\log\kappa_N-2\log q\). The exact coordinate relation
+\(p_n^S(c+iy)=i^np_n^y(y)\) gives
+\[
+r_N=i^{-N-1}b_{N+1},\qquad
+\ell_N=i^N b_N^*G_N/\omega_N.
+\]
+The phases have modulus one and cancel precisely in
+\(\kappa_N=\|b_{N+1}\|_{G_N}\|b_N\|_{G_N}/\omega_N\).
+The original action identity is \(J_k^{\rm action}=2\sum_Nw_N\log\kappa_N\), as explicitly stated in the proof of FW28 and BRI6o. There are \(q+1\) cutoffs, the two endpoint weights are one and the \(q-1\) interior weights are two, so \(\sum_Nw_N=2q\). Solving SD8 for \(2\log\kappa_N\) thus gives exactly the \(4q\log q\) in SD13.
+
+For the logarithmic loss, the top singular value satisfies
+\[
+\log^+\lambda_1=2\log\kappa_N-2\log q+O_h(q^{-1})
+\]
+eventually, using \(|s_1-\kappa_N|\le Bq\) and SD11. All the remaining squared singular values divided by \(q^2\) are at most \(B^2\). Rank-two spectral comparison is therefore used only with the bounded, continuous, capped function
+\(\min(\log^+x,\log^+B^2)\). NG20 yields
+\(\sum_{j=2}^q\log^+\lambda_j=qb(d/q)+o_h(q)\) uniformly. The exact identity
+\[
+\sum_j\log^-\lambda_j=\sum_j\log^+\lambda_j-S
+\]
+and SD16 give precisely
+\[
+\mathcal D_N=2\log\kappa_N+2(q-1)\log q
+-2q\log k-2q\mathfrak g+qb(d/q)+o_h(q).
+\]
+No convergence theorem is applied to the negative logarithm at zero.
+
+Multiplying by the original weights and summing gives
+\[
+\sum_Nw_N\mathcal D_N=J_k^{\rm action}
++4q(q-1)\log q-4q^2\log k-4q^2\mathfrak g
++2q^2\int_0^1b(s)\,ds+o_h(q^2).
+\]
+The last coefficient is the trapezoidal Riemann sum at \(d/q=0,1/q,\ldots,1\): \(q\sum_Nw_Nb(d/q)=2q^2\int b+o(q^2)\). Substitution of the independently established AG29 precision
+\(J_k^{\rm action}=C_Bq^2+4q\log q+o_h(q^2)\)
+combines \(4q(q-1)\log q+4q\log q\) into \(4q^2\log q\), giving SD25. All factors are preserved.
+
+## Exact source versions read
+
+- ORIGINAL_SPECTRAL_DETERMINANT.tex, SD1–28 read completely; SHA256 01b8f7f7c8d6170cd202bbf461644ddbc061889c3ba09e83a06d11011d4f4ed7.
+- ../NATIVE_GAUSSIAN_TRANSFER.tex, NG16–27 read again for this derivation; preceding full proof and the GM endpoint proof were read during the independent derivations already recorded. SHA256 8a9fd3921f4a8667a88bbb5896ab7d5a19e5be043fcb9b79bb883858888b72ca.
+- ../../publication/cumulative/09_UPDATED_JOINT_NOTE.tex, bounded reading of BRI6n–o, AG27–32, and FW24–30, including the action identity inside the proof of FW28. SHA256 25ac68f49b16ca5f03f81ae448f03a7b870cd97ab14d3c92837b5cfdb89a5b22. This is not a claim of reading the entire cumulative file.
+
+The determinant, parity, variational and logarithmic steps above are proved directly. The original human-source citations supporting the NG/GM source law remain in those complete proofs; no additional external theorem has been imported into this check.

@@ -1,3 +1,8 @@
+<!-- original-spectral-determinant:20260920 -->
+## The original arithmetic determinant and its boundary term
+
+The Split-Zero programme represents finite zero-divisor classes by polynomials in a theta-source Hilbert space. The [complete new calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-spectral-determinant/README.md) uses the unchanged least-source-norm quotient metric. It calculates the full multiplication determinant as its complete root-polynomial term plus a positive term from both original boundary vectors, and returns that identity to the canonical action. It also proves eventual small-singular-value bounds; these are not zeta zeros or an RH conclusion. [Complete LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-spectral-determinant/COMPLETE_PROOFS.tex), [precise domains and uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-spectral-determinant/RESULT_INDEX.json), human citations, reproducible checks, an inspected diagram and three full cumulative source successors are included. No effective finite-degree threshold or individual projected-current sign is asserted.
+
 <!-- polymath-finite-packet:20260920 -->
 ## A certified finite packet of the original theta heat flow
 

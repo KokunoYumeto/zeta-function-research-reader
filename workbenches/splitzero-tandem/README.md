@@ -1,3 +1,10 @@
+<!-- original-observation-source-kernel:20260920 -->
+## Finite arithmetic observation and its original source kernel
+
+The Split-Zero programme forms finite observations of the theta-source quotient and equips them with the least source norm. The [complete new proof edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-observation-source-kernel/README.md) calculates constant-depth recovery of those observations, the full cofactor and coefficient-specialization maps, and an explicit Gaussian source kernel with its endpoint correction. It also carries the native metric bounds into singular-value estimates without changing the original observation or its kernel. [All eight complete proofs in LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-observation-source-kernel/COMPLETE_PROOFS.tex), [machine-readable results](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-original-observation-source-kernel/RESULT_INDEX.json), the original standalone derivations, human citations, exact checks and three full cumulative TeX successors are included.
+
+The evaluated source family is connected to the arithmetic quotient by the displayed theta map and the full polynomial minimum. This does not evaluate the remaining projected arithmetic-current asymptotic or establish an RH conclusion. No new Zenodo or Overleaf edition is claimed here.
+
 <!-- native-parity-and-conductor-boundary:20260920 -->
 ## Native arithmetic metric bounds and the full conductor
 

@@ -1,0 +1,2681 @@
+\documentclass[11pt]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,longtable,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\hypersetup{hypertexnames=false}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\title{Original observation, cofactor recovery and evaluated source kernel}
+\author{}
+\date{20 September 2026}
+\begin{document}\maketitle
+This complete source edition contains all eight accepted proof bodies
+for programme results SZ-20260920-022--024. It calculates finite
+recovery in the original arithmetic observation, the full cofactor
+and coefficient maps, and the source-kernel endpoint correction.
+Human citations and original received-source provenance remain beside
+the calculations. The evaluated source family returns to the native
+quotient through the displayed theta map and complete polynomial
+minimum; no different metric or projected-current sign is substituted.
+
+% BEGIN COMPLETE ORIGINAL OBSERVATION AND SOURCE KERNEL PROOFS
+
+\clearpage\begingroup
+\part*{Original constant-depth observation}
+\providecommand{\pdepthtightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\pdepthdiag}{\operatorname{diag}}
+\newcommand{\pdepthrank}{\operatorname{rank}}
+\newcommand{\pdepthTr}{\operatorname{Tr}}
+
+\section{Constant-depth recovery and a linear-rank arithmetic leakage bound}\label{pdepth:constant-depth-recovery-and-a-linear-rank-arithmetic-leakage-bound}
+
+Research continuation, 19 September 2026.
+
+\subsection{Original domain and inputs}\label{pdepth:original-domain-and-inputs}
+
+This calculation stays on the simple-quartet period locus of the original O1--12 observability proof, with every original unit and period factor in \texttt{H}. It uses that proof's full-edge conductor support and its nonzero primitive-column tests. In particular this locus contains its stated fixed large-period domain \texttt{\textbar{}u\textbar{}\ \textgreater{}=\ R\_det}. The original degrees are \(k\equiv1\pmod4\), \(k\ge74\), so the first integer on this sequence is 77. The five-orbit rank formula gives \(\dim\ker\Lambda_k=8k-16\). The new result below improves the prior \texttt{8k-15} observations to at most 81, and propagates the explicit inverse through the actual NP action blocks. It does not replace a one-step observation by an isometry of its kernel.
+
+The source references are the local incoming proof \path{Programme_Native_Continuation_20260919/proof/04_FULL_ORIGINAL_OBSERVABILITY.md} and the pinned GitHub NP15--24 equations in \path{20260919-native-precision-leakage/NATIVE_PRECISION_AND_LEAKAGE.tex}, commit \path{1445091fd84d47b3908f56d4db1f8a28acd134da}.
+
+\subsection{1. Fixed conductor support and the missing corners}\label{pdepth:fixed-conductor-support-and-the-missing-corners}
+
+Let \[
+E_k=\mathbb C[S]/(\chi_k),\quad q=(k+1)^2,\qquad
+\lambda_{ab}=k/2+(2a-k)\delta+i(2b-k)\gamma,
+\] where the full simple root polynomial and the original multiplication \(A=M_S\) are unchanged. Its value-coordinate isomorphism is \(\mathsf V_k:E_k\to\mathbb C^{\{0,\ldots,k\}^2}\); its inverse sends a coordinate vector to the corresponding original Lagrange idempotent.
+
+Retain the fixed original conductor biform \[
+\mathcal A(Z,W)=\sum_{\sigma\in\mathcal S}a_\sigma
+Z^{\sigma_1}W^{\sigma_2},\quad
+\mathcal S\subset\{0,\ldots,8\}^2,\quad a_\sigma\ne0,
+\quad s=|\mathcal S|\le81.
+\tag{DO1}
+\] The set \(\mathcal S\) is its actual support. No coefficient is declared nonzero solely from a bidegree. Define \[
+F_k=\mathcal S+\{0,\ldots,k-8\}^2,\quad
+C_k=\{0,\ldots,k\}^2\setminus F_k,\quad h=|C_k|.
+\tag{DO2}
+\] On the retained full-edge-support locus, \[
+\boxed{h\le128.}\tag{DO3}
+\] For \(k\ge16\), the corner pattern, and hence \(h\), is independent of \(k\) after indexing each corner by its distances from the two edges.
+
+\subsubsection{Proof}\label{pdepth:proof}
+
+For \(8\le b\le k-8\), the support contains a point \((0,b_0)\) and a point \((8,b_1)\). The first reaches every \((a,b)\) with \(a\le k-8\); the second reaches the remaining \(a\). Interchanging axes covers every \(8\le a\le k-8\). Thus missing coordinates lie in four disjoint 8 by 8 corner blocks.
+
+The single point \((0,b_0)\) already reaches \(8(8-b_0)\) cells in the lower left corner and \(8b_0\) cells in the upper left corner. It therefore reaches 64 of their 128 cells, leaving at most 64. The point \((8,b_1)\) proves the same count at the right corners. This proves DO3. The reachability tests within a corner are inequalities between the support indices and distances 0 through 7, independent of \(k\). No generic full-support assumption is used.
+
+There is a sharper count needed for joint corner recovery. Let \(h_i\) be the missing sizes of the four corners. Then \[
+\boxed{\sum_i h_i-\max_i h_i\le64.}\tag{DO3a}
+\] Choose support points \((0,b_0),(8,b_1),(a_0,0),(a_1,8)\). The four missing sizes are bounded respectively by \(a_0b_0,a_1(8-b_0),(8-a_0)b_1,(8-a_1)(8-b_1)\). Additional support only decreases them. The function sum minus maximum is coordinatewise nondecreasing. Divide these four bounds by 64 and set \(x=a_0/8,y=a_1/8,u=b_0/8,v=b_1/8\). Their sum is \(1+(x-y)(u-v)\). For a nonpositive product the result is immediate. For \(x\ge y,u\ge v\), the product is at most \(xu\); for \(x\le y,u\le v\), it is at most \((1-x)v\). In every case subtracting the largest of the four entries leaves at most one. This proves DO3a without an enumeration assumption.
+
+\subsection{2. Recover every translated conductor coordinate with at most 81 iterates}\label{pdepth:recover-every-translated-conductor-coordinate-with-at-most-81-iterates}
+
+For each \(\beta\in\{0,\ldots,k-8\}^2\), O3 constructs an original invariant polynomial whose restriction to the original quadric is \(\mathcal A Z^{\beta_1}W^{\beta_2}\). Explicitly, lift the biform monomial to the original degree-\(k-8\) homogeneous polynomial, multiply it by the four other orbit quadrics, and sum its five cyclic translates. The four other translates contain the original quadric, so the restriction is exactly the displayed biform, with no extra factor of five.
+
+Let \(\ell_\beta\) be the corresponding complex-linear output functional. The original coefficient-observation dictionary gives exactly \[
+\ell_\beta(\Lambda_k x)=
+\sum_{\sigma\in\mathcal S}a_\sigma
+(\mathsf V_kx)_{\beta+\sigma}.
+\tag{DO4}
+\] For precision, in an original word frame \(F_0\) and invariant polynomial coefficient row \(c_\beta^T\), this functional is the restriction of \(c_\beta^T(F_0^*F_0)^{-1}F_0^*\) to \(\operatorname{im}\Lambda_k\). The transpose in \(c_\beta^T\) is ordinary: this is a complex-linear polynomial pairing. The full inherited Gram remains in the displayed left inverse of \(F_0\).
+
+For \(\sigma\in\mathcal S\), form the explicit degree-\(s-1\) polynomial \[
+\boxed{\displaystyle
+p_{\beta,\sigma}(S)=
+\prod_{\tau\in\mathcal S\setminus\{\sigma\}}
+\frac{S-\lambda_{\beta+\tau}}
+{\lambda_{\beta+\sigma}-\lambda_{\beta+\tau}}.}
+\tag{DO5}
+\] Its denominators are precisely \[
+2\delta(\sigma_1-\tau_1)+2i\gamma(\sigma_2-\tau_2)\ne0.
+\] They are fixed original root differences, independent of \(k\) and \(\beta\). For actual data \(y_n=\Lambda_k A^n x\), DO4 yields \[
+\boxed{\displaystyle
+(\mathsf V_kx)_{\beta+\sigma}
+=\frac1{a_\sigma}\sum_{n=0}^{s-1}
+[S^n]p_{\beta,\sigma}(S)\,\ell_\beta(y_n).}
+\tag{DO6}
+\] Indeed applying DO4 to \(p_{\beta,\sigma}(A)x\) kills every other translated support coordinate. This is recovery of all values in \(F_k\), not merely nonvanishing of their observation columns. Choose one ordered representation \(\alpha=\beta+\sigma\) for each \(\alpha\in F_k\). DO6 is then a specified linear recovery map.
+
+\subsection{3. The original observation is jointly injective on each corner}\label{pdepth:the-original-observation-is-jointly-injective-on-each-corner}
+
+The O5 proof supplies more than separate nonzero columns. On each original primitive corner it spans the entire jet algebra of total degree at most 14, using invariant polynomials of degree at most 74. Every coefficient with the two corner distances at most 7 is among those jets. Consequently the restriction of the original observation to \textbf{all} coordinate vectors supported on any one corner is injective. This follows by pairing with the full spanning jet family, not merely by counting nonzero columns.
+
+For completeness, the local invariant coordinates used there are \(z_{j_0}^5\) and \(z_jz_{j_0}^{d_j}\), with \((j-i)+d_j(j_0-i)=0\pmod5\), where two original Fourier coordinates are active. Their triangular ambient Jacobian is invertible; two restrictions have independent differentials on the original Segre surface. A charge unit times their centered monomials through total degree 14 spans all those jets. Homogenization to degree \(k\) is an original invariant lift; its nonzero local factor is an invertible jet multiplication. This is the same O5 map at the same fixed period, now used on the whole corner at once.
+
+Write \(B_i=(\Lambda_k e_\alpha)_{\alpha\in C_i}\) for the columns of a nonempty missing corner. At a fixed original cutoff \(N\), retain \(Q_N=(\Lambda_kG_N^{-1}\Lambda_k^*)^{-1}\). The just-proved injectivity gives \[
+J_i=(B_i^*Q_NB_i)^{-1}B_i^*Q_N,\qquad J_iB_i=I_{h_i}.
+\tag{DO7}
+\] This inverts the entire corner Gram, of size at most 64, not the separate norms of its columns.
+
+Subtract the recovered values in \(F_k\) from all available observations: \[
+\widetilde y_n=y_n-\sum_{\alpha\in F_k}
+\lambda_\alpha^n(\Lambda_k e_\alpha)(\mathsf V_kx)_\alpha.
+\] Order the remaining corners by decreasing size, with a fixed order for ties. At the current stage let \(C'\) be the still unrecovered coordinates and choose its largest corner \(C_i\). Define \[
+p_i(S)=\prod_{\beta\in C'\setminus C_i}(S-\lambda_\beta),\qquad
+r_i=\deg p_i.
+\] Initially \(r_i=h-\max h_i\le64\), by DO3a. After that step all remaining coordinates number at most 64, so every subsequent \(r_i\le64\) as well. All values of \(p_i\) at \(C_i\) are nonzero. The exact recovery is \[
+\boxed{\displaystyle
+((\mathsf V_kx)_\alpha)_{\alpha\in C_i}
+=\operatorname{diag}(p_i(\lambda_\alpha))_{\alpha\in C_i}^{-1}
+J_i\sum_{n=0}^{r_i}[S^n]p_i(S)\,\widetilde y_n.}
+\tag{DO8}
+\] The polynomial first annihilates every other unrecovered corner. The remaining vector is exactly \(B_i\operatorname{diag}(p_i(\lambda_\alpha))x_i\). After DO8, subtract this corner's known contribution from each \(\widetilde y_n\) and repeat. There are at most four steps. No period, source, or original observation is changed.
+
+Put \(d=\max\{s-1,h-\max_i h_i,1\}\), with the corner term zero when \(h=0\). Then \(d\le80\). DO6 and DO8, followed by \(\mathsf V_k^{-1}\), give an explicit left inverse \(\mathcal R_{d,N}\) of the \textbf{original} stack \(\mathcal O_d=(\Lambda_k,\Lambda_k A,\ldots,\Lambda_k A^d)^T\). Thus \[
+\boxed{\displaystyle
+\mathcal R_{d,N}\mathcal O_d=I_{E_k},\qquad
+\bigcap_{n=0}^{80}\ker(\Lambda_k A^n)=0.}
+\tag{DO9}
+\] At most 81 observations are needed, independent of tensor degree. This does not assert \(\ker\Lambda_k=0\), whose actual dimension is \(8k-16\).
+
+\subsection{4. A finite bound in the original metrics}\label{pdepth:a-finite-bound-in-the-original-metrics}
+
+Use the actual \(Q_N\) norm on outputs and Euclidean norm on root values. Let \(R_k=\max|\lambda_\alpha|\), \(M_k=\max(1,R_k)\), \(\delta_0=2\min(\delta,\gamma)\), and \[
+C_F=\frac1{\min_{\sigma\in\mathcal S}|a_\sigma|}
+\left(\frac{1+R_k}{\delta_0}\right)^{s-1}
+\max_\beta\|\ell_\beta\|_{Q_N^*},\qquad
+b_+=\max_\alpha\|\Lambda_k e_\alpha\|_{Q_N}.
+\] Every local Lagrange coefficient one-norm is bounded by the displayed product of \(1+R_k\) over the retained nonzero root differences. Hence \(\|x_F\|_2\le\sqrt q C_F\|y\|_{Q_N^{\oplus(d+1)}}\). The first residual stack has norm at most \[
+R_0\|y\|,\qquad
+R_0=1+\sqrt{d+1}\,q b_+M_k^d C_F.
+\] For each of the at most four ordered corners set \[
+c_i=\lambda_{\min}(B_i^*Q_NB_i)^{-1/2}
+\left(\frac{1+R_k}{\delta_0}\right)^{r_i},\qquad
+n_i=\sqrt{d+1}\,M_k^d\|B_i\|_{\ell^2\to Q_N}.
+\] The inverse diagonal in DO8 has norm at most \(\delta_0^{-r_i}\), and the filter's coefficient one-norm at most \((1+R_k)^{r_i}\), proving \(\|x_i\|\le c_i\|\widetilde y\|\). Subtracting its contribution gives \(\|\widetilde y_{\rm next}\|\le(1+n_ic_i)\|\widetilde y\|\). Consequently the full root-value inverse has the finite bound \[
+\boxed{\displaystyle
+C_{\rm root,N}=\sqrt q C_F+
+R_0\sum_i c_i\prod_{l<i}(1+n_lc_l).}
+\tag{DO10}
+\] The sum is empty at \(h=0\). Return through the exact original value-to-polynomial map: \[
+\|\mathcal R_{d,N}\|_{Q_N^{\oplus(d+1)}\to G_N}
+\le C_{d,N}:=\|\mathsf V_k^{-1}\|_{\ell^2\to G_N}C_{\rm root,N}.
+\tag{DO11}
+\] These are finite constants in the original metrics. No bound in the inherited period-output metric has been substituted for a bound in \(Q_N\), and no small asymptotic condition number is asserted. An exact, potentially sharper constant is the operator norm of the explicit matrix DO6--8 with these same domain and codomain metrics.
+
+\subsection{5. Constant-depth original kernel leakage}\label{pdepth:constant-depth-original-kernel-leakage}
+
+Retain all NP15--16 maps at this same original cutoff: \[
+I:\mathbb C^r\to K_k,\quad H_K=I^*G_NI,\quad
+L=G_N^{-1}\Lambda_k^*Q_N,\quad J_K=H_K^{-1}I^*G_N,
+\] \[
+T=J_KAI,\ C=J_KAL,\ B=\Lambda_k AI,\ D=\Lambda_k AL.
+\tag{DO12}
+\] The frame \([I,L]\) is an isometry from \(\operatorname{diag}(H_K,Q_N)\) to \(G_N\), and the action block matrix is exactly \(\left(\begin{smallmatrix}T&C\\B&D\end{smallmatrix}\right)\). Neither cross block is removed.
+
+For \(x\in\mathbb C^r\), write \(y_j=\Lambda_k A^jIx\). The block recursion eliminates the kernel coordinate to give \[
+y_{j+1}=BT^jx+Dy_j+
+\sum_{l=0}^{j-1}BT^{j-1-l}Cy_l,\qquad y_0=0.
+\tag{DO13}
+\] Let \(W_d\) be the d by d lower triangular block matrix mapping \((BT^jx)_{j=0}^{d-1}\) to \((y_1,\ldots,y_d)\) by this recursion. Its diagonal is the identity, and subtraction in DO13 is its exact inverse. The new short-stack identity implies \[
+\boxed{\displaystyle
+\sum_{j=0}^{d-1}(T^j)^*B^*Q_NBT^j
+\succeq (C_{d,N}\|W_d\|_{Q_N^{\oplus d}})^{-2}H_K\succ0.}
+\tag{DO14}
+\] Proof: apply \(\mathcal R_{d,N}\) to \(\mathcal O_dIx=(0,W_d(BT^jx)_{j<d})\), then use DO11 and square the actual metric norms. There is no characteristic-polynomial compression or additional \texttt{C\_T} factor as in the earlier NP24 argument.
+
+For an elementary finite bound put \(M_N=\max(1,\|A\|_{G_N})\). Each of \(T,C,B,D\), with the stated domain and codomain metrics, has norm at most \(M_N\). The feedback coefficients at lag \(p\) are \(D\) at zero and \(BT^{p-1}C\) at \(p\ge1\), with norms at most \(M_N^{p+1}\). The recursion for the inverse-feedback coefficients gives inductively \(\|W_{d,n}\|\le(2M_N)^n\). Summing the d diagonal-block norms proves \[
+\|W_d\|\le d(2M_N)^{d-1}.
+\tag{DO15}
+\] This value can be inserted into DO14. The original rank-two source action also gives the finite estimate \(\|A\|_{G_N}\le k/2+C_{\rm mult}(h)(2N+\lfloor k/3\rfloor)+\kappa_N\), with the existing full-source constants and the original boundary radius; HG22 supplies its explicit upper bound on the original window.
+
+Most importantly, DO14 evaluates a new algebraic property of the actual one-step leakage. The d-block matrix \((B,BT,\ldots,BT^{d-1})^T\) has rank r, but has rank at most \(d\,\operatorname{rank}B\). Therefore \[
+\boxed{\displaystyle
+\operatorname{rank}(\Lambda_k AI)
+\ge\left\lceil\frac{8k-16}{d}\right\rceil
+\ge\left\lceil\frac{8k-16}{80}\right\rceil.}
+\tag{DO16}
+\] Thus the actual action leakage has a rank growing at least linearly with tensor degree on this original period locus. This strengthens the earlier nonzero-leakage conclusion; it does not calculate its individual singular values or the sign of its pairing with a specified eigenclass.
+
+There is a further exact consequence for both mixed action directions. The original attained-source identity RBE4 is \[
+\mathsf T_N A\mathsf T_N^{-1}
+=kI/2+i\mathsf J_N+\widehat b_{N+1}\widehat b_N^*/\omega_N,
+\] with \(\mathsf J_N\) Hermitian in the original source norm. Hence the full relative Hermitian weight has rank at most two. In the isometric block frame of DO12, define \[
+\widetilde B=Q_N^{1/2}BH_K^{-1/2},\qquad
+\widetilde C=H_K^{1/2}CQ_N^{-1/2}.
+\] Its mixed weight block is exactly \[
+\boxed{\widetilde C+\widetilde B^*=R_N,\qquad
+\operatorname{rank}R_N\le2.}\tag{DO17}
+\] Therefore the same original return direction satisfies \[
+\operatorname{rank}C\ge\left\lceil\frac{8k-16}{80}\right\rceil-2.
+\] For the original metric projection \(P_{K,N}=IJ_K\), its action commutator has block matrix \(\left(\begin{smallmatrix}0&-C\\B&0\end{smallmatrix}\right)\). The two output summands are disjoint, so its rank is the sum of their ranks: \[
+\boxed{\displaystyle
+\operatorname{rank}[A,P_{K,N}]
+\ge2\left\lceil\frac{8k-16}{80}\right\rceil-2.}\tag{DO18}
+\] On \(\ker R_N\), a subspace of codimension at most two in the observation block, the equality \(\widetilde C=-\widetilde B^*\) is exact. Thus the rank-two Hermitian weight and the growing-rank two-way action leakage are related by the displayed cancellation; neither cross direction can be omitted on account of the full weight's rank.
+
+\subsubsection{A sharper rank calculation from eight differentiated conductor rows}\label{pdepth:a-sharper-rank-calculation-from-eight-differentiated-conductor-rows}
+
+The original coefficient dual of \(A\) on degree-\((k,k)\) biforms is \[
+\eta_k+\mathcal D,\qquad
+\eta_k=k(1/2-\delta-i\gamma),\qquad
+\mathcal D=2\delta Z_1\partial_{Z_1}+2i\gamma W_1\partial_{W_1}.
+\tag{DO19}
+\] Its value on \(Z_0^{k-a}Z_1^aW_0^{k-b}W_1^b\) is exactly \(\lambda_{ab}\). The two spans of powers through any fixed order are related by the inverse binomial transformations \((\eta_k+\mathcal D)^j=\sum_{l\le j}\binom jl\eta_k^{j-l}\mathcal D^l\) and \(\mathcal D^j=\sum_{l\le j}\binom jl(-\eta_k)^{j-l}(\eta_k+\mathcal D)^l\). Thus no different arithmetic action is substituted.
+
+Homogenize the same conductor as a biform of degree \((8,8)\). Full edge support excludes all four coordinate variables as factors. Each irreducible factor \(F\) is bihomogeneous. If \(F\mid\mathcal DF\), equality of its two degrees makes the quotient a scalar. But the \(\mathcal D\) weights of distinct monomials of a fixed bidegree are distinct: their real and imaginary parts distinguish both indices, since \(\delta,\gamma>0\). Such an eigen-polynomial is a monomial. An irreducible monomial is one coordinate variable, already excluded. Hence \(F\nmid\mathcal DF\) for every factor of the actual conductor.
+
+If \(F^e\) is its exact power in \(\mathcal A\), then \(e\le8\), because at least one of the bidegrees of \(F\) is positive. Repeated product differentiation gives, for \(j\le e\), \[
+\mathcal D^j\mathcal A
+=(e)_{\underline j}F^{e-j}(\mathcal DF)^j(\mathcal A/F^e)
+\pmod {F^{e-j+1}}.
+\] The displayed coefficient is nonzero modulo \(F\). In particular \[
+\gcd(\mathcal A,\mathcal D\mathcal A,\ldots,\mathcal D^8\mathcal A)=1.
+\tag{DO20}
+\] This includes every repeated conductor factor; no squarefreeness is assumed.
+
+A specified pair of coprime biforms can now be selected finitely. Put \(B_t=\sum_{j=1}^8t^{j-1}\mathcal D^j\mathcal A\). For each irreducible factor of \(\mathcal A\), its reduction is a nonzero polynomial in \(t\) of degree at most seven, by DO20. There are at most sixteen distinct factors. At most 112 complex numbers are therefore forbidden. Choose the first integer \(t\in\{0,\ldots,112\}\) for which the actual gcd is one. Its existence has just been proved, and the selection retains the fixed original coefficients. Write the selected biform as \(B\).
+
+Let \(\mathcal W_k\) be the original invariant coefficient image. It contains \(\mathcal A T_{k-8,k-8}\). Product differentiation, and induction on the derivative order, show that \((\mathcal D^j\mathcal A)T_{k-8,k-8}\) is contained in \(\sum_{n=0}^j\mathcal D^n\mathcal W_k\): isolate its last product-rule term and use that \(\mathcal D\) preserves every biform degree. Consequently the row space of the original stack through \(A^8\) contains \[
+\mathcal A T_{k-8,k-8}+B T_{k-8,k-8}.
+\] The full kernel of the map \((f,g)\mapsto\mathcal Af+Bg\) is \((Bh,-\mathcal Ah)\). This follows by gcd cancellation in the polynomial UFD and retains both bidegrees. For \(k\ge16\), its cokernel dimension is therefore exactly \[
+(k+1)^2-2(k-7)^2+(k-15)^2=128.
+\] Hence the \textbf{actual original} eight-step invisible space satisfies \[
+\boxed{\displaystyle
+\dim\bigcap_{j=0}^8\ker(\Lambda_k A^j)\le128.}
+\tag{DO21}
+\] This uses the conductor ideal as a row-space inclusion; it does not assert that the conductor rows exhaust the original observation.
+
+Apply the exact feedback map DO13 through eight steps. On the original kernel of dimension \(r=8k-16\), the rank of \((B,BT,\ldots,BT^7)^T\) is at least \(r-128\), by DO21, and at most \(8\operatorname{rank}B\). Thus the earlier rank bound improves to \[
+\boxed{\displaystyle
+\operatorname{rank}(\Lambda_k AI)\ge k-18.}
+\tag{DO22}
+\] It applies on the common original domain above, where \(k\ge77\). Combining with the exact rank-two mixed-weight identity DO17 gives \[
+\boxed{\displaystyle
+\operatorname{rank}(J_KAL)\ge k-20,\qquad
+\operatorname{rank}[A,P_{K,N}]\ge2k-38.}
+\tag{DO23}
+\] These are ranks of the original action and original metric projection, not of a substituted coefficient section. The first eight leakage steps leave at most 128 invisible directions; the explicit at-most-81-step inverse DO9 removes all of them. The original metrics and their finite comparison constants still occur in DO14.
+
+\subsection{6. Receiving boundary}\label{pdepth:receiving-boundary}
+
+The single-step kernel, its full metric, and the actual projected-current numerators remain those of HG6--7. DO9 gives recovery only after applying the displayed stack, and its exact inverse and metric cost are DO6--11. It must not be inserted as \(\theta_N=0\) in a one-step response.
+
+Likewise DO14 is an original arithmetic leakage estimate in \((H_K,Q_N)\). It does not assert preservation of the different coefficient-cone spaces, or identify the proper-source target minimum with this stack. The original PRD source-kernel vanishing is the separate NC22 result, and its remaining target subtraction in NP30--31 is unaffected.
+
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Complete differentiated conductor and repeated factors}
+\newcommand{\pdiffC}{\mathbb C}
+\newcommand{\pdiffim}{\operatorname{im}}
+\newcommand{\pdiffrank}{\operatorname{rank}}
+\newcommand{\pdiffdiag}{\operatorname{diag}}
+\newcommand{\pdiffSpan}{\operatorname{span}}
+
+
+
+\section{Original domain, action and algebraic dual}
+This note independently rederives DO19--23 of
+\texttt{02\_CONSTANT\_DEPTH\_ORIGINAL\_OBSERVATION.md} and strengthens
+their rank bound using the exact repeated-factor profile.  The working
+domain is the original simple-quartet period locus stated there: the
+conductor has nonzero support on each of its four edges, the original
+invariant observation has the stated primitive-column property, and its
+five-orbit rank formula is valid.  The original degree is
+$k\equiv1\pmod4$, $k\ge77$.  Put $q=(k+1)^2$, $j_-=k-8$, and retain
+\[
+ \lambda_{ab}=\eta_k+2\delta a+2i\gamma b,\quad
+ \eta_k=k(1/2-\delta-i\gamma),\quad
+ E_k=\pdiffC[S]/\prod_{a,b=0}^k(S-\lambda_{ab}),
+ \quad M=M_S.                                                   \tag{DC1}
+\]
+Here $\delta,\gamma>0$ are the original numbers; in the application
+$0<\delta<1/2$, $\gamma>2$.  All roots are distinct because real and
+imaginary parts distinguish the two indices.  Thus the value-coordinate
+map $\mathsf V_k$ is an isomorphism, with its actual Lagrange inverse.
+The observation is the original map $\Lambda_k:E_k\to B_k$ onto its
+image, and
+\[
+ K_k=\ker\Lambda_k,\qquad r=\dim K_k=8k-16.                      \tag{DC2}
+\]
+
+Let $R=\pdiffC[Z_0,Z_1,W_0,W_1]$, with bidegrees $(1,0)$ for the $Z$
+variables and $(0,1)$ for the $W$ variables.  Write $T_{a,b}=R_{a,b}$;
+when $a,b\ge0$, its dimension is $(a+1)(b+1)$.  The actual conductor is
+\[
+ \mathcal A=\sum_{\sigma\in\mathcal S}a_\sigma
+ Z_0^{8-\sigma_1}Z_1^{\sigma_1}
+ W_0^{8-\sigma_2}W_1^{\sigma_2}\in T_{8,8}.                       \tag{DC3}
+\]
+Its support and coefficients are unchanged.  For a degree-$(k,k)$
+biform $p=\sum p_{ab}Z_0^{k-a}Z_1^aW_0^{k-b}W_1^b$, the relevant
+algebraic dual pairing is
+\[
+ \varphi_p(x)=\sum_{a,b}p_{ab}(\mathsf V_kx)_{ab}.                \tag{DC4}
+\]
+This is complex linear; it uses a transpose, not a conjugate transpose.
+By direct evaluation of DC1, the dual of the actual action $M$ is
+\[
+ M^\vee=\eta_k+\mathcal D,\qquad
+ \mathcal D=2\delta Z_1\partial_{Z_1}
+                 +2i\gamma W_1\partial_{W_1}.                   \tag{DC5}
+\]
+The binomial identities relating $(M^\vee)^n$ and $\mathcal D^n$
+retain $\eta_k$ in both directions, so all their row spans through
+each fixed order agree.  No original physical action is replaced by a
+different one.
+
+Denote by $\mathcal W_k\subset T_{k,k}$ the original invariant
+coefficient image, identified with the algebraic dual image of
+$\Lambda_k$ by DC4.  The original invariant conductor construction
+gives
+\[
+ \mathcal A T_{k-8,k-8}\subset\mathcal W_k.                       \tag{DC6}
+\]
+The actual map receiving this inclusion will be made explicit below.
+
+\section{The complete gcd sequence, including every multiplicity}
+Factor in the polynomial UFD $R$:
+\[
+ \mathcal A=c\prod_{\nu=1}^{m}F_\nu^{e_\nu},\quad
+ c\in\pdiffC^*,\quad \deg F_\nu=(u_\nu,v_\nu),
+ \quad e_\nu\ge1.                                               \tag{DC7}
+\]
+Each factor is bihomogeneous.  To see this directly, highest and
+lowest $Z$ degrees in a nonzero product are the sums of the highest
+and lowest degrees of its factors, since the polynomial ring is a
+domain.  Their differences add and are nonnegative.  A homogeneous
+product has difference zero, so each factor is $Z$ homogeneous;
+the same argument applies to $W$ degree.  Each nonconstant factor has
+$u_\nu+v_\nu\ge1$.  Consequently
+\[
+ \sum_\nu e_\nu u_\nu=8,\qquad
+ \sum_\nu e_\nu v_\nu=8,\qquad m\le16,
+ \quad d:=\max_\nu e_\nu\le8.                                   \tag{DC8}
+\]
+For the last bound, at least one of $u_\nu,v_\nu$ is positive.
+
+Full edge support excludes every coordinate variable as a factor:
+the edges $\sigma_1=0,8$ exclude $Z_1,Z_0$, respectively, and the
+two other edges exclude $W_1,W_0$.  For any irreducible factor $F$, if
+$F\mid\mathcal DF$, equality of bidegrees forces
+$\mathcal DF=\zeta F$ for some scalar $\zeta$, including zero.
+On a fixed bidegree, the monomial weights are
+$2\delta a+2i\gamma b$; they are all distinct.  Thus such an
+eigen-polynomial is a single monomial.  An irreducible monomial is
+a scalar multiple of one coordinate variable, which is excluded.
+We have proved
+\[
+ F_\nu\nmid\mathcal D F_\nu\quad\hbox{for every }\nu.           \tag{DC9}
+\]
+
+Fix $F=F_\nu$, $e=e_\nu$, and write $\mathcal A=F^e U$, $F\nmid U$.
+For $0\le l\le e$, the product rule gives the exact leading
+$F$-adic term
+\[
+ \mathcal D^l\mathcal A
+ \equiv (e)_{\underline l}F^{e-l}(\mathcal DF)^l U
+                          \pmod {F^{e-l+1}}.                    \tag{DC10}
+\]
+For a proof, at order zero this is immediate.  Differentiating its
+leading term produces the stated order-$l+1$ term with coefficient
+$(e)_{\underline l}(e-l)$; derivatives of its other factors retain
+at least $F^{e-l}$, and differentiating an $F^{e-l+1}$ multiple
+retains at least $F^{e-l}$.  This proves the induction through $l=e$.
+The coefficient in DC10 is nonzero modulo $F$: the quotient by the
+irreducible $F$ is a domain, its characteristic is zero, and both
+$\mathcal DF$ and $U$ have nonzero images.  Thus the exact valuation
+at order $l\le e$ is $e-l$.
+
+For every $l\ge0$, it follows that the common gcd, up to a nonzero
+constant, is exactly
+\[
+ G_l:=\gcd(\mathcal A,\mathcal D\mathcal A,\ldots,
+                       \mathcal D^l\mathcal A)
+       =\prod_\nu F_\nu^{\max(e_\nu-l,0)}.                       \tag{DC11}
+\]
+Indeed every common factor already divides $\mathcal A$, and DC10
+computes its smallest valuation among the first $l$ derivatives;
+after order $e_\nu$, that smallest valuation is already zero.
+In particular $G_d=1$ and $d\le8$, proving DO20 with all repeated
+factors retained.  Record its exact bidegree
+\[
+ g_l=\sum_\nu\max(e_\nu-l,0)u_\nu,\qquad
+ h_l=\sum_\nu\max(e_\nu-l,0)v_\nu.                              \tag{DC12}
+\]
+Equivalently these are the bidegrees of the directly computable gcd
+in DC11; no factorization or squarefreeness is assumed in using them.
+
+\section{Finite selection of a pair and its entire biform kernel}
+For each $1\le l\le d$, put
+\[
+ \mathcal B_{l,t}=\sum_{a=1}^{l}t^{a-1}\mathcal D^a\mathcal A.
+                                                                    \tag{DC13}
+\]
+Every summand is divisible by $G_l$.  For every irreducible factor
+$F$ of $\mathcal A/G_l$, reduction of
+$\mathcal B_{l,t}/G_l$ modulo $F$ is a nonzero polynomial in $t$ of
+degree at most $l-1$.  Its nonzero coefficient is supplied by the
+valuation calculation DC10 at order $\min(e_F,l)$.
+Passing to the fraction field of the domain $R/(F)$ proves that
+at most $l-1$ complex values of $t$ make this entire reduction zero.
+There are at most $m$ such irreducible factors.  Therefore select the
+first integer in
+\[
+ \{0,1,\ldots,m(l-1)\}
+\]
+for which the exact gcd test gives
+\[
+ \gcd(\mathcal A,\mathcal B_l)=G_l.                              \tag{DC14}
+\]
+The selection exists: the list has one more value than the proved
+maximum number of forbidden values.  It retains the actual complex
+conductor coefficients.  At $l=8$ the uniform list of 113 integers
+in the intake suffices; using $l=d$ requires no higher derivative.
+For $l=1$ the selected polynomial is simply $\mathcal D\mathcal A$.
+
+Set $\mathcal F_l=\mathcal A/G_l$ and
+$\mathcal H_l=\mathcal B_l/G_l$.  They are coprime, both of
+bidegree $(8-g_l,8-h_l)$.  Consider the actual coefficient map
+\[
+ \mu_l:T_{k-8,k-8}\oplus T_{k-8,k-8}\longrightarrow T_{k,k},
+ \qquad (f,g)\longmapsto\mathcal Af+\mathcal B_lg.                \tag{DC15}
+\]
+Its entire kernel is
+\[
+ \ker\mu_l=
+ \{(\mathcal H_l t,-\mathcal F_l t):
+                 t\in T_{k-16+g_l,k-16+h_l}\}.                  \tag{DC16}
+\]
+For a proof, a kernel element satisfies
+$\mathcal F_l f=-\mathcal H_l g$ after cancellation of $G_l$ in
+the domain.  Since the two remaining factors are coprime in a UFD,
+$\mathcal H_l$ divides $f$ and $\mathcal F_l$ divides $g$.  Substitute
+$f=\mathcal H_l t$ and cancel $\mathcal H_l\mathcal F_l$ to obtain
+$g=-\mathcal F_l t$.  The bidegrees force exactly the stated degree
+of $t$.  The converse follows by multiplication, and the parameter
+$t$ is unique.
+
+For $k\ge16$ all displayed degrees are nonnegative.  Hence the
+cokernel dimension of the pair map is exactly
+\[
+ \begin{split}
+ c_l&=(k+1)^2-2(k-7)^2
+             +(k-15+g_l)(k-15+h_l)\\
+    &=128+(g_l+h_l)(k-15)+g_lh_l.                                \end{split}\tag{DC17}
+\]
+At $l=d$, and in particular at $l=8$, this equals 128.  This is a
+complete biform calculation.  Coprimality here does not mean that
+the two positive-degree biforms generate the unit ideal in the
+four-variable polynomial ring; their finite coefficient cokernel
+is precisely what DC17 computes.
+
+\section{The explicit receiver from the original observation stack}
+The derivative-row inclusion can be checked without losing the
+original output functionals.  If $f\in T_{k-8,k-8}$, then
+\[
+ (\mathcal D^l\mathcal A)f
+  =\sum_{a=0}^l(-1)^{l-a}\binom la
+      \mathcal D^a\bigl(\mathcal A\mathcal D^{l-a}f\bigr).
+                                                                    \tag{DC18}
+\]
+To prove it, expand each outer derivative by the product rule.  The
+coefficient of $(\mathcal D^b\mathcal A)\mathcal D^{l-b}f$ is
+$\binom lb\sum_{a=b}^l(-1)^{l-a}\binom{l-b}{a-b}$, which is one
+when $b=l$ and zero otherwise.  DC6 and DC5 then show that the row
+space of the actual observation stack through $M^l$ contains
+$\pdiffim\mu_l$.
+
+Here is the complete map between the original source and target
+objects realizing this containment.  Retain $E_{j_-}$ and its
+original multiplication $M_-=M_{S'}$.  The finite-shift conductor
+is the original map
+\[
+ C:E_k\to E_{j_-},\qquad C[P]=[T_AP],\qquad
+ C=\bar C\Lambda_k.                                             \tag{DC19}
+\]
+This factorization is well-defined by the original conductor-row
+inclusion $\ker\Lambda_k\subset\ker C$; it is unique since
+$\Lambda_k$ is onto its image.  In original lower-grid value
+coordinates it is exactly
+\[
+ (Cx)_\beta=\sum_{\sigma\in\mathcal S}
+                        a_\sigma(\mathsf V_kx)_{\beta+\sigma},
+ \qquad 0\le\beta_1,\beta_2\le k-8.                             \tag{DC20}
+\]
+Set
+\[
+ \eta_8=4-8\delta-8i\gamma,
+ \quad\omega_\sigma=2\delta\sigma_1+2i\gamma\sigma_2,
+ \quad C_0=C,\quad
+ C_{a+1}=C_aM-(M_-+\eta_8I)C_a.                                 \tag{DC21}
+\]
+Every $C_a$ has the same type $E_k\to E_{j_-}$.  The unchanged
+upper and lower root values satisfy
+\[
+ \lambda^{(k)}_{\beta+\sigma}
+   -\lambda^{(k-8)}_\beta-\eta_8=\omega_\sigma.
+\]
+Induction in DC21 therefore proves the exact formula
+\[
+ (C_ax)_\beta=\sum_\sigma
+                  \omega_\sigma^a a_\sigma(\mathsf V_kx)_{\beta+\sigma}.
+                                                                    \tag{DC22}
+\]
+In particular it is the finite-shift conductor whose coefficient
+biform is $\mathcal D^a\mathcal A$.  The original constant $\eta_8$
+has not been discarded, and none of the original shifts or coefficients
+has been replaced by a normalized shift.
+Right multiplication by $M$ and left multiplication by
+$M_-+\eta_8I$ commute as operators on $\operatorname{Hom}(E_k,E_{j_-})$.
+Their binomial expansion gives
+\[
+ C_a=\sum_{n=0}^a(-1)^{a-n}\binom an
+       (M_-+\eta_8I)^{a-n}\bar C\Lambda_k M^n.                   \tag{DC23}
+\]
+
+Write $\mathcal O_lx=(\Lambda_kx,\Lambda_kMx,\ldots,
+\Lambda_kM^lx)$.  With $t_l$ selected in DC14, define on its actual
+output space $B_k^{\oplus(l+1)}$ the map
+\[
+ \begin{split}
+ \mathcal K_l(y_0,\ldots,y_l)=\biggl(&\bar C y_0,\\[-3pt]
+ &\sum_{a=1}^lt_l^{a-1}\sum_{n=0}^a(-1)^{a-n}\binom an
+            (M_-+\eta_8I)^{a-n}\bar C y_n\biggr)
+      \in E_{j_-}\oplus E_{j_-}.
+ \end{split}                                                     \tag{DC24}
+\]
+Then
+\[
+ \mathcal K_l\mathcal O_l=(C,C_{\mathcal B_l}),
+ \qquad C_{\mathcal B_l}=\sum_{a=1}^lt_l^{a-1}C_a.               \tag{DC25}
+\]
+Pairing the lower-grid values in DC22 with any coefficient biform
+$f\in T_{k-8,k-8}$ gives precisely
+$\varphi_{(\mathcal D^a\mathcal A)f}$.  Thus the algebraic transpose
+of the pair on the right of DC25 is exactly the multiplication map
+DC15, under the original value-coordinate isomorphisms.  Its rank
+is $q-c_l$, and its kernel dimension is $c_l$.  Therefore
+\[
+ n_l:=\dim\bigcap_{a=0}^l\ker(\Lambda_kM^a)\le c_l.            \tag{DC26}
+\]
+This proves DO21 and the stronger multiplicity-resolved bounds.  It
+does not assert that the pair rows exhaust the invariant coefficient
+image.  All the physical Taylor units, Gamma factors and original
+output coordinates reside in the unchanged $\Lambda_k$ and $\bar C$;
+DC24 is an actual map on those outputs, not a new observation imposed
+by a coefficient analogy.
+
+\section{One-step leakage and the two exact mixed directions}
+At the original cutoff $N$, retain the full attained metric $G_N$ on
+$E_k$ and the original quotient metric
+$Q_N=(\Lambda_kG_N^{-1}\Lambda_k^*)^{-1}$.  Let
+\[
+ I:\pdiffC^r\overset{\sim}{\longrightarrow}K_k,\quad
+ H_K=I^*G_NI,\quad L=G_N^{-1}\Lambda_k^*Q_N,
+ \quad J_K=H_K^{-1}I^*G_N.
+\]
+The original decomposition $[I,L]$ is an isometry from
+$\pdiffdiag(H_K,Q_N)$ to $G_N$.  In this frame retain all four blocks
+\[
+ [I,L]^{-1}M[I,L]=\begin{pmatrix}T&C_{\rm ret}\\B&D\end{pmatrix},
+ \quad B=\Lambda_kMI,\quad C_{\rm ret}=J_KML.                    \tag{DC27}
+\]
+If the initial state is $Ix$, write its two coordinates after $n$
+steps as $(x_n,y_n)$.  The full block equations give
+\[
+ x_{n+1}=Tx_n+C_{\rm ret}y_n,\quad
+ y_{n+1}=Bx_n+Dy_n,\quad x_0=x,\quad y_0=0.
+\]
+Solving the first recursion by induction and substituting it in the
+second gives, with every feedback term retained,
+\[
+ y_{n+1}=BT^nx+Dy_n+
+            \sum_{a=0}^{n-1}BT^{n-1-a}C_{\rm ret}y_a.           \tag{DC28}
+\]
+Thus $(y_1,\ldots,y_l)$ is an invertible lower triangular linear
+transform, with identity diagonal, of
+$(Bx,BTx,\ldots,BT^{l-1}x)$.  Its inverse is obtained by subtraction
+in DC28.  Its kernel dimension is exactly $n_l$: an invisible whole
+state lies in $K_k$ already at step zero.  Consequently
+\[
+ \pdiffrank\begin{pmatrix}B\\BT\\\vdots\\BT^{l-1}\end{pmatrix}
+   =r-n_l\ge r-c_l,\qquad
+ l\,\pdiffrank B\ge r-c_l.                                           \tag{DC29}
+\]
+
+Define the explicit integer computed from the actual conductor gcds
+\[
+ R_k^{\rm diff}:=
+ \max\left\{0,\max_{1\le l\le8}
+ \left\lceil\frac{8k-144-(g_l+h_l)(k-15)-g_lh_l}{l}\right\rceil
+                                                    \right\}.
+                                                                    \tag{DC30}
+\]
+Then the original one-step action leakage satisfies
+\[
+ \boxed{\pdiffrank(\Lambda_kMI)\ge R_k^{\rm diff}\ge k-18.}          \tag{DC31}
+\]
+The second bound uses $g_8=h_8=0$.  The maximum can stop at
+$d=\max e_\nu$, since for $l\ge d$ the numerator is the same
+positive number $8k-144$ and increasing the denominator cannot
+improve the bound.  In particular the exact actual multiplicity
+gives the further bound
+\[
+ \pdiffrank B\ge\left\lceil\frac{8k-144}{d}\right\rceil.             \tag{DC32}
+\]
+For a squarefree original conductor, which is determined by its
+actual gcd rather than assumed, $d=1$ and the resulting bound is
+$\pdiffrank B\ge8k-144$.  Formula DC30 remains valid without any
+squarefreeness assertion.  It also retains potential improvements
+at intermediate gcd degrees when factors have different multiplicities.
+
+The original full attained-source rank-two Hermitian-weight identity
+in DO17 gives, in these exact metrics,
+\[
+ \widetilde B=Q_N^{1/2}BH_K^{-1/2},\qquad
+ \widetilde C=H_K^{1/2}C_{\rm ret}Q_N^{-1/2},\qquad
+ \widetilde C+\widetilde B^*=R_N^{\rm wt},\quad
+ \pdiffrank R_N^{\rm wt}\le2.                                        \tag{DC33}
+\]
+The invertible metric factors do not change ranks.  The elementary
+inequality $\pdiffrank(X+Y)\ge\pdiffrank X-\pdiffrank Y$, proved from
+$\pdiffim X\subset\pdiffim(X+Y)+\pdiffim Y$, yields
+\[
+ \pdiffrank C_{\rm ret}\ge\max(0,R_k^{\rm diff}-2).                  \tag{DC34}
+\]
+For the original metric projection $P_K=IJ_K$, direct block
+multiplication gives
+\[
+ [M,P_K]=\begin{pmatrix}0&-C_{\rm ret}\\B&0\end{pmatrix}.
+\]
+Its two image summands occupy the disjoint kernel and observation
+blocks, so its rank is exactly $\pdiffrank B+\pdiffrank C_{\rm ret}$.  Hence
+\[
+ \boxed{\pdiffrank[M,P_K]\ge
+ R_k^{\rm diff}+\max(0,R_k^{\rm diff}-2)
+ =2R_k^{\rm diff}-2\ge2k-38.}                                   \tag{DC35}
+\]
+The equality of the two displayed bounds uses $k\ge77$, hence
+$R_k^{\rm diff}\ge59$.  In particular DO22--23 are correct; DC30,
+DC34 and DC35 give their stronger receiving form using the actual
+conductor multiplicity profile.
+
+\section{What the identities establish}
+The proof supplies an exact finite procedure for the derivative gcds,
+an explicit finite selection of the biform pair, its complete syzygy
+kernel with both degrees retained, and the actual original observation
+receiver DC24.  It evaluates the rank consequences for both mixed
+action directions and their commutator.  The first eight steps leave
+at most 128 invisible directions; no claim that this remainder is
+zero has been made.  The separate DO9 constant-depth reconstruction
+removes that remainder using additional original observations.
+Neither a rank estimate nor that reconstruction sets the one-step
+angle to zero, assigns the complex current signs, or bounds the
+smallest nonzero singular value without its original metric calculation.
+
+The direct input examined here is the user's
+\texttt{02\_CONSTANT\_DEPTH\_ORIGINAL\_OBSERVATION.md}, DO1--23,
+with DO19--23 independently proved above.  The original conductor
+factorization in DC19 is also the explicitly proved OB3 map.
+The biform, UFD, binomial and finite-matrix arguments used in this
+note are given in full; no human result beyond those programme
+inputs is invoked without a proof.
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Quantitative original mixed-action return}
+\newcommand{\pmixedrank}{\operatorname{rank}}
+\newcommand{\pmixeddiag}{\operatorname{diag}}
+
+
+This is a receiving calculation from the proved constant-depth original
+observation theorem DO1--23 and its differentiated-conductor extension
+DC1--35. Both complete proofs accompany this note. All metrics are the
+original attained metric and its actual observation quotient; the stated
+finite constants are computed from those matrices. No unidentified
+isometry, change of period or bound independent of degree is used.
+
+\section{Original data and the proved recovery constant}
+Retain the actual simple-quartet period locus of DO, $k\equiv1\pmod4$,
+$k\ge77$, $q=(k+1)^2$, $r=8k-16$, the original polynomial quotient
+$E_k$, its full attained metric $G_N$, and original multiplication $A=M_S$.
+For the observation onto its image $\Lambda:E_k\to B_k$, put
+\[
+ Q_N=(\Lambda G_N^{-1}\Lambda^*)^{-1},\quad
+ I:\mathbb C^r\overset\sim\longrightarrow\ker\Lambda,
+ \quad H_K=I^*G_NI,\quad L=G_N^{-1}\Lambda^*Q_N.
+ \tag{DQ1}
+\]
+The original frame $[I,L]$ has metric $\pmixeddiag(H_K,Q_N)$: indeed
+$\Lambda L=1$, $L^*G_NL=Q_N$, $I^*G_NL=0$, and the direct sum
+has dimension $q$. With $J_K=H_K^{-1}I^*G_N$ write all four blocks
+\[
+ [I,L]^{-1}A[I,L]=\begin{pmatrix}T&C\\B&D\end{pmatrix},\quad
+ B=\Lambda AI,\quad C=J_KAL,\quad T=J_KAI,\quad D=\Lambda AL.
+ \tag{DQ2}
+\]
+In the actual support notation of DO1--9, use
+$d=\max\{|\mathcal S|-1,h-\max_i h_i,1\}\le80$ (the corner term
+is zero for $h=0$). The fully specified recovery map of DO6--8 satisfies
+\[
+ \mathcal R_{d,N}(\Lambda x,\Lambda Ax,\ldots,\Lambda A^dx)=x,
+ \qquad \|\mathcal R_{d,N}\|_{Q_N^{\oplus(d+1)}\to G_N}
+       \le C_{d,N}.\tag{DQ3}
+\]
+Here $C_{d,N}$ is exactly DO10--11, including the full corner Gram
+inverses, all root differences and the original value-to-polynomial map.
+It is a finite proved bound, not an additional hypothesis. One may instead
+use the exact norm of the displayed recovery matrix, with the same metrics.
+
+The feedback matrix $W_d$ is defined by the literal recursion
+\[
+ y_{n+1}=BT^nx+Dy_n+\sum_{a=0}^{n-1}BT^{n-1-a}Cy_a,
+ \qquad y_0=0.\tag{DQ4}
+\]
+It sends $(BT^jx)_{0\le j<d}$ to $(y_1,\ldots,y_d)$, is lower
+triangular with identity diagonal, and is invertible by subtraction.
+The complete cross blocks occur in DQ4. Applying DQ3 to $Ix$ gives
+\[
+ \sum_{j=0}^{d-1}(T^j)^*B^*Q_NBT^j
+ \succeq a_N^2H_K,
+ \qquad a_N=(C_{d,N}\|W_d\|_{Q_N^{\oplus d}})^{-1}>0.
+ \tag{DQ5}
+\]
+This follows by squaring
+$\|Ix\|_{G_N}\le C_{d,N}\|W_d(BT^jx)_{j<d}\|_{Q_N^{\oplus d}}$;
+thus it retains the original minimum throughout.
+
+\section{A lower bound for multiple singular values of the actual map}
+Use the metric coordinate isometries explicitly:
+\[
+ \widetilde T=H_K^{1/2}TH_K^{-1/2},\quad
+ \widetilde B=Q_N^{1/2}BH_K^{-1/2},\quad
+ \widetilde C=H_K^{1/2}CQ_N^{-1/2}.
+ \tag{DQ6}
+\]
+These define singular values in the original metrics; no original matrix
+is replaced. Put $\rho_N=\|\widetilde T\|$ and
+\[
+ p=\left\lceil\frac rd\right\rceil,\qquad
+ S_{d,N}=\sum_{j=0}^{d-1}\rho_N^{2j},\qquad
+ b_N=\frac{1}{C_{d,N}\|W_d\|\sqrt{S_{d,N}}}>0.
+ \tag{DQ7}
+\]
+The convention $\rho_N^0=1$ includes $\rho_N=0$. In decreasing
+order of singular values, the original leakage satisfies
+\[
+ \boxed{\sigma_p(\widetilde B)\ge b_N,
+ \qquad p\ge\left\lceil\frac{8k-16}{80}\right\rceil.}
+ \tag{DQ8}
+\]
+Here and below zero singular values are included to fill a rectangular
+matrix's smaller dimension. The argument also proves that this dimension
+is at least $p$.
+
+To prove DQ8, form the exact stack
+$\mathcal B_d=(\widetilde B,\widetilde B\widetilde T,\ldots,
+\widetilde B\widetilde T^{d-1})^{\mathsf T}$. Equation DQ5 says
+$\|\mathcal B_dv\|\ge a_N\|v\|$ for every vector $v$.
+Diagonalizing $\widetilde B^*\widetilde B$ gives an orthonormal
+singular system. Keep the first $p-1$ singular terms, obtaining $B_0$
+with $\pmixedrank B_0\le p-1$ and
+$\|\widetilde B-B_0\|=\sigma_p(\widetilde B)$.
+If fewer terms exist, take $B_0=\widetilde B$ and the remaining
+singular value zero. The stack with $B_0$ replacing $\widetilde B$
+has rank at most $d(p-1)<r$. Choose a unit vector $v$ in its kernel.
+Then
+\[
+ a_N^2\le\|\mathcal B_dv\|^2
+ =\sum_{j<d}\|(\widetilde B-B_0)\widetilde T^jv\|^2
+ \le\sigma_p(\widetilde B)^2 S_{d,N}.
+ \tag{DQ9}
+\]
+This proves DQ8 and excludes the zero alternative. The proof uses the
+whole stack and every power of the original kernel block.
+
+If a bound without computing the feedback norm is desired, DO15 proves
+$\|W_d\|\le d(2M_N)^{d-1}$, $M_N=\max(1,\|A\|_{G_N})$.
+The original orthogonal compression gives $\rho_N\le M_N$, so
+\[
+ b_N\ge
+ \bigl[C_{d,N}d(2M_N)^{d-1}
+         (\sum_{j<d}M_N^{2j})^{1/2}\bigr]^{-1}.
+ \tag{DQ10}
+\]
+Every quantity is either an actual finite norm or a previously proved
+explicit bound. DQ10 makes no assertion that this scale is large enough
+for a signed arithmetic asymptotic.
+
+\section{The exact return direction and commutator}
+The retained full-source Hermitian weight gives the precise identity
+\[
+ \widetilde C+\widetilde B^*=R_N,\qquad\pmixedrank R_N\le2,
+ \tag{DQ11}
+\]
+proved in DO17/DC33. Take the $p$-dimensional right singular space of
+$\widetilde B^*$ associated to the singular values in DQ8.
+On this space $\|\widetilde B^*v\|\ge b_N\|v\|$.
+Its intersection with $\ker R_N$ has dimension at least $p-2$;
+there DQ11 gives $\widetilde Cv=-\widetilde B^*v$ exactly.
+The min--max characterization follows directly from the eigenbasis of
+$\widetilde C^*\widetilde C$: a subspace of dimension $p-2$
+with Rayleigh quotient at least $b_N^2$ forces its $(p-2)$nd largest
+eigenvalue to be at least $b_N^2$. Hence
+\[
+ \boxed{\sigma_{p-2}(\widetilde C)\ge b_N,
+ \qquad \sigma_{2p-2}([A,P_{K,N}])\ge b_N,}
+ \quad P_{K,N}=IJ_K.\tag{DQ12}
+\]
+The domain here gives $p\ge8$, so the indices are positive.
+The second singular value is taken with the original $G_N$ metric
+on both domain and codomain. Its isometric block presentation is
+$\left(\begin{smallmatrix}0&-\widetilde C\\\widetilde B&0\end{smallmatrix}\right)$,
+whose squared singular matrix is
+$\pmixeddiag(\widetilde B^*\widetilde B,\widetilde C^*\widetilde C)$.
+Thus its singular values are the union of those of the two retained
+directions, proving DQ12. The stronger multiplicity-sensitive rank
+bound DC30--35 remains valid alongside these quantitative bounds.
+
+The receiving maps are the literal $\Lambda AI$ and $J_KAL$, so
+DQ8 and DQ12 give original mixed-action control. They do not set
+the projection of a specified eigenclass equal to one of these singular
+vectors: the actual class must still be evaluated through the same maps.
+In particular the rank-two Hermitian weight in DQ11 retains cancellation
+between many nonzero mixed-action directions, with their finite metric
+size now bounded by DQ7--12.
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Original cofactor recovery and coefficient specialization}
+\newcommand{\pcofactorC}{\mathbb C}
+\newcommand{\pcofactorim}{\operatorname{im}}
+\newcommand{\pcofactorSpec}{\operatorname{Spec}}
+\newcommand{\pcofactordiag}{\operatorname{diag}}
+
+
+This proof integrates the user-supplied notes
+\emph{04 One-step proper-kernel period locus} and
+\emph{05 Good coefficient specialization}, retaining the original
+cofactor products, invariant images and conductor multiplicities.
+It supplies the complete sixteen-cofactor recovery used in those notes
+and proves the actual specialization maps. It is a coefficient-module
+calculation. Its arithmetic action and metric receivers are specified
+below; a geometric Frobenius realization of the arithmetic action is
+not supplied by changing the coefficient field.
+
+\section{The original conductor, including the projective vertex}
+Let $S=\pcofactorC[x_1,x_2,x_3,x_4]$ with
+$g x_i=\zeta^i x_i$, where $\zeta$ is the original primitive fifth
+root. Replacing all characters by their negatives changes no argument
+below and corresponds to the inverse-action convention in NC5.
+Retain the original invertible period matrix $H$, quadric
+$Q=Q_0(H^{-1}x)$, $Q_0(t)=t_1t_4-t_2t_3$, and five pairwise
+nonassociate quadrics $Q_a=g^aQ$, $0\le a\le4$. Put
+\[
+ P=\prod_{a=0}^4Q_a,\quad A=\prod_{a=1}^4Q_a,\quad
+ R=S/(Q),\quad B=\pcofactorim(S^{\langle g\rangle}\to R).
+                                                                    \tag{CP1}
+\]
+Every $Q_a$ is irreducible: an invertible change reduces it to the
+Segre determinant, which is primitive and linear in $t_1$, with
+coprime coefficients $t_4,-t_2t_3$. The product $P$ is invariant,
+and prime factorization shows
+$B=S^{\langle g\rangle}/P S^{\langle g\rangle}$.
+
+We recall and prove the full original conductor identity used here:
+\[
+ \{f\in R:fR\subset B\}=AR.                                      \tag{CP2}
+\]
+For any homogeneous lift $h$, the invariant sum
+$\sum_{a=0}^4g^a(Ah)$ restricts to $Ah$ on $Q=0$: every other
+term contains $Q$. This proves $AR\subset B$, without a factor
+of five. For the reverse inclusion localize at $x_i^5$. Each
+character in $S[x_i^{-1}]$ is an invariant times a unique one
+of $1,x_i,\ldots,x_i^4$, since $i$ is nonzero modulo five.
+Thus this ring is free of rank five over its invariant ring,
+with relation $T^5-x_i^5$ and invertible derivative $5T^4$.
+After this faithfully flat change the invariant inclusion becomes
+\[
+ S/(P)\longrightarrow\bigoplus_{a=0}^4 S/(Q_a)                    \tag{CP3}
+\]
+on that chart. A tuple supported on component $a$ is in the image
+precisely when it is the restriction of a polynomial divisible by
+each $Q_b$, $b\ne a$. In the polynomial UFD that intersection
+is their product. Every ideal of the direct sum splits componentwise;
+therefore its conductor is the product ideal on each component.
+Faithful flatness descends this equality to the chart.
+
+The nonzero coordinate charts cover the projective smooth quadric.
+In its original Segre presentation the degree-$d$ part of $R$ is
+the biform space $T_{d,d}$. Chartwise membership in $AR$ says
+that $f/A$ is regular as a section of
+$\mathcal O(d-8,d-8)$ on all four charts. On the ordinary Segre
+charts these regularity conditions say that it is a biform of that
+bidegree; if $d<8$ it is zero. Alternatively each irreducible
+biform factor of $A$ defines a projective divisor, and its full
+valuation in $f$ is at least its valuation in $A$; UFD divisibility
+gives the same conclusion. This proves CP2 with no residual
+vertex-supported term.
+
+\section{Sixteen actual cofactor maps recover every conductor class}
+In degree $d$ write $J_d=B_d/(AR)_d$ and define
+\[
+ X_{{\rm full},d}:J_d\longrightarrow
+       \bigoplus_{i=1}^4\bigoplus_{r=1}^4(R/B)_{d+4r},\qquad
+ [f]\longmapsto([x_i^{4r}f])_{i,r}.                                \tag{CP4}
+\]
+This is well-defined since $AR$ is an ideal of $R$ contained in $B$.
+It is injective at every degree on the original five-orbit domain.
+Indeed, if $f\in B$ and all sixteen products are in $B$, localize
+at $x_i^5$. The five powers $1,x_i^4,x_i^8,x_i^{12},x_i^{16}$
+span the character components over the invariants on this chart:
+their characters $0,4i,3i,2i,i$ are all distinct, and powers differing
+by multiples of five differ by an invariant unit. Hence $fR\subset B$
+on this chart. This holds for every $i$, so the complete proof of
+CP2 gives $f\in AR$. This proves injectivity and gives an explicit
+local module receiver: express each monomial as one of those five
+powers times an invariant, and apply its known cofactor component.
+No iteration of the four original one-step products is presumed.
+
+The same proof holds over any algebraically closed field of
+characteristic different from five, retaining an actual order-five
+$\zeta$ and smooth five-orbit quadric. All uses of division above
+are by invariant units or by five. Polynomial UFD and Segre-chart
+divisibility hold in these characteristics, including characteristic two.
+
+\section{The four one-step products and all divisorial failures}
+For the original one-step proper-source kernel use the actual low-jet
+subspace $J_{v,d}\subset J_d$ and the four tests $[x_i^4f]\in J_{d+4}$.
+For an invariant lift of such a class, the tests are literal
+$x_i^4f\in B$, since $AR\subset B$. Consequently
+\[
+ f\mathcal T\subset B,\qquad
+ \mathcal T=B+x_1^4B+x_2^4B+x_3^4B+x_4^4B.                         \tag{CP5}
+\]
+The module $R$ is finite over $B$, being a quotient of the finite
+invariant extension $S/S^{\langle g\rangle}$. On any nonzero-coordinate
+chart a geometric fibre is a reduced subset of the five orbit points:
+base change the etale extension $T^5-x_i^5$, which splits into
+five distinct points, and impose $Q$. Suppose it has $r$ points
+and its representative has $l$ active coordinates. The evaluations
+of $1$ and the active $x_i^4$ are nonzero column multiples of the
+Fourier-five matrix, restricted to $r$ rows and $l+1$ distinct
+characters. Every square Fourier-five minor is nonzero. Size-two
+minors are nonzero root multiples of $1-\zeta^a$, $a\not\equiv0$;
+size-one minors are units; complementary minors in the inverse
+$5^{-1}(\zeta^{-ij})_{i,j=0}^4$ prove sizes three and four, and the full
+Vandermonde proves size five. Thus $r\le l+1$ implies that
+$\mathcal T$ spans this fibre. The finite cokernel then vanishes
+locally: write a generating vector $v=Mv$ with all entries of $M$
+in the local maximal ideal; the adjugate of $I-M$, whose determinant
+is a unit, gives $v=0$. This proves the needed local generation.
+
+At a projective divisor $l=4$ always meets this criterion. For
+$l=3$ failure requires all five orbit points to lie in $Q$. The
+six quadratic monomials on that coordinate plane have five distinct
+characters, with exactly one repeated character. Fourier inversion
+then forces every singleton-character coefficient to vanish; their
+monomials are nonzero on the active-coordinate locus. The plane
+restriction must therefore be a single-character conic. For $l=2$
+failure requires at least four orbit points in $Q$. The three binary
+monomials have distinct characters, and any three rows have full
+rank by the proved Fourier minors. Every coefficient must vanish,
+so the coordinate line is contained in $Q$. The locus $l=1$ consists
+of isolated projective points and cannot contain a divisor of the
+smooth quadric. These exhaust all possibilities.
+
+Exclude the six coordinate-line containments and, on each coordinate
+plane, retain one nonzero singleton-character coefficient. Its monomial
+is nonzero at every point of the active three-coordinate stratum, so
+Fourier inversion excludes a five-point fibre there. Then CP5 and the just-proved
+generation imply that $f$ belongs to the conductor at every
+projective divisor. The last divisibility argument in CP2 retains
+every restricted-factor multiplicity and gives $f\in AR$. Therefore
+the original one-step proper-source kernel is zero on this locus,
+without requiring coprimality between different orbit restrictions.
+
+\section{Evaluation of the period gates, with the full original unit}
+Use the actual PCL coefficient family \cite{pcofactor:PCL} and write
+\[
+ H(u)=e^{\mathfrak a/u}G_u\mathcal R(u^{-1})V^{-1}U,
+ \quad U=\pcofactordiag(a,\bar a,\bar a,a),\quad a\ne0,\quad z=u^{-1}.
+\]
+The invertible diagonal map $X=G_u^{-1}x$ commutes with the cyclic
+action. Multiplying the quadric by the retained nonzero scalar
+$e^{2\mathfrak a/u}$ yields exactly
+\[
+ \widetilde Q_z(X)=Q_0(U^{-1}V\mathcal R(z)^{-1}X).                 \tag{CP6}
+\]
+The products $x_i^{4r}$ acquire their actual nonzero diagonal
+factors, so all the kernel assertions transport in both directions.
+No invariance of a Hermitian metric under this diagonal map is asserted.
+
+Retain the original $0<\delta<1/2$ and $\gamma>2$.
+Put $r=\delta+i\gamma$, $R_0=r^2$, $T_0=\bar r^2$,
+$\beta=-(R_0+T_0)=2(\gamma^2-\delta^2)>0$,
+$\eta=R_0T_0=(\delta^2+\gamma^2)^2>0$, $p=a^{-2}$,
+$b=\bar a^{-2}$, $u_0=(2R_0-T_0)/3$, $v_0=(2T_0-R_0)/3$.
+The exact PCL value is $J=\mathcal R(0)=I-\beta E_{13}/3-2\beta E_{24}/3$.
+Substitution into CP6 gives
+\[
+ \widetilde Q_0=p(X_1+u_0X_3)^2-b(X_1+v_0X_3)^2
+       -pR_0(X_2-v_0X_4)^2+bT_0(X_2-u_0X_4)^2.                    \tag{CP7}
+\]
+Denote its even and odd symmetric blocks by
+\[
+ \begin{array}{lll}
+ e_0=p-b,&e_1=pu_0-bv_0,&e_2=pu_0^2-bv_0^2,\\
+ o_0=-pR_0+bT_0,&o_1=pR_0v_0-bT_0u_0,
+     &o_2=-pR_0v_0^2+bT_0u_0^2.
+ \end{array}
+\]
+Expansion proves
+\[
+ e_0e_2-e_1^2=-pb(R_0-T_0)^2\ne0,\quad
+ o_0o_2-o_1^2=-pbR_0T_0(R_0-T_0)^2\ne0.                           \tag{CP8}
+\]
+On the plane omitting $X_1$, the repeated-character terms are
+$X_3^2,X_2X_4$; single-character failure would require $o_0=o_2=0$.
+This implies $u_0^2=v_0^2$, whereas
+$(u_0-v_0)(u_0+v_0)=(R_0-T_0)(R_0+T_0)/3\ne0$.
+The plane omitting $X_4$ analogously requires $e_0=e_2=0$ and
+has the same contradiction. On the plane omitting $X_2$, the
+off-character coefficients include $e_1,e_2$, not both zero by
+CP8. On the plane omitting $X_3$ they include $o_0,o_1$, also
+not both zero. Thus all four plane gates have a nonzero constant
+coefficient.
+
+The lines $(1,3)$ and $(2,4)$ are excluded by CP8. The line
+$(1,2)$ requires $e_0=o_0=0$, hence $R_0=T_0$, impossible.
+The lines $(1,4)$ and $(2,3)$ would force respectively the vanishing
+of the same nonzero expression
+\[
+ T_0u_0^2-R_0v_0^2
+ =-(R_0-T_0)(R_0^2-7R_0T_0+T_0^2)/9.                             \tag{CP9}
+\]
+Indeed $(R_0^2+T_0^2)/(R_0T_0)\in[-2,2]$, so its second factor
+divided by $R_0T_0$ is at most $-5$. Only the line $(3,4)$
+can remain at $z=0$. There $e_2=o_2=0$, CP8 gives $e_1o_1\ne0$,
+and substitution gives $(o_1/e_1)^2=\eta$ and
+$T_0u_0^4=R_0v_0^4$.
+
+The complete PCL2 coefficient formula is
+\[
+ R_{ar,n}=\sum_{2p+4h=5n+r+1-a}
+ \frac{\beta^p\eta^h}{3^pp!h!}(-1)^L5^L(a/5)_L,
+ \quad L=p+h-n,\quad1\le a\le4,\quad0\le r\le3.                  \tag{CP10}
+\]
+For $n=1$, its four needed entries are exactly
+\[
+ \begin{array}{ll}
+ \mathcal R'_{21}=\eta-\beta^2/9,
+ &\mathcal R'_{23}=7\beta^3/81-2\beta\eta/3,\\
+ \mathcal R'_{12}=\beta^3/27-\beta\eta/3,
+ &\mathcal R'_{14}=-11\beta^4/324+\beta^2\eta/3-\eta^2/2.
+ \end{array}                                                       \tag{CP11}
+\]
+These follow by the finite sums in CP10, so none is inferred from
+a chosen asymptotic fit. Put $K=\mathcal R'(0)J^{-1}$. Multiplication
+gives
+\[
+ K_{23}=\beta(4\beta^2-27\eta)/81<0,\qquad
+ K_{14}=-(\beta^4-12\beta^2\eta+54\eta^2)/108<0.                   \tag{CP12}
+\]
+The first sign uses $0<\beta/\sqrt\eta<2$; the second uses
+$(\beta^2/\eta-6)^2+18>0$. Differentiating
+$\widetilde Q_z=\widetilde Q_0(J\mathcal R(z)^{-1}X)$ gives the
+matrix derivative $-K^T\widetilde Q_0-\widetilde Q_0K$.
+On $e_2=o_2=0$ its $(3,4)$ entry is
+\[
+ \widetilde Q'_{34}(0)=-e_1[K_{14}+(o_1/e_1)K_{23}].                \tag{CP13}
+\]
+To evaluate the possible cancellation put $b_0=\beta/\sqrt\eta$.
+Substituting $u_0,v_0$ into $T_0u_0^4=R_0v_0^4$, factoring
+$R_0-T_0\ne0$, and using $R_0+T_0=-\beta$, $R_0T_0=\eta$
+gives $b_0^4-27b_0^2+81=0$. Its sole root in $(0,2)$ is
+$b_0=3(\sqrt5-1)/2$, which satisfies $b_0^2+3b_0-9=0$.
+The plus sign $o_1/e_1=\sqrt\eta$ makes the bracket negative.
+For the minus sign reduction by this quadratic gives
+\[
+ K_{14}-\sqrt\eta K_{23}=\eta^2(108-45b_0)/324>0.                 \tag{CP14}
+\]
+The possible limiting coordinate line therefore has a nonzero first
+variation for every original unit phase. The original phase $a$
+has remained in $p,b,e_1,o_1$ throughout the calculation.
+
+Choose one nonzero coefficient of each of the six line restrictions,
+and one nonzero singleton-character coefficient of each of the four
+plane restrictions. These singleton coefficients exclude the five-point
+fibre on the active plane stratum; this is the exact property used in
+the divisorial proof. CP7--14 specifies ten entire functions $g_\nu(z)$.
+Their first nonzero orders $r_\nu$ are zero, except that the
+$(3,4)$ line may have order one, with coefficient given by twice
+CP13 if ordinary polynomial coefficients rather than symmetric
+matrix entries are used. Retain that factor of two in this convention.
+Let $c_\nu=[z^{r_\nu}]g_\nu\ne0$ and
+\[
+ C_\nu=1+\sum_{n>r_\nu}|[z^n]g_\nu|,\quad
+ \epsilon_\nu=\min(1,|c_\nu|/(2C_\nu)),\quad
+ R_{\rm prop}=\max(R_*,(\min_\nu\epsilon_\nu)^{-1}).              \tag{CP15}
+\]
+The entire PCL matrix and its entire inverse imply convergence of
+these sums. For $0<|z|\le\epsilon_\nu$ the complete tail is at most
+$C_\nu|z|^{r_\nu+1}$, so $|g_\nu(z)|\ge|c_\nu||z|^{r_\nu}/2$.
+Here $R_*$ is the original admitted rank/five-orbit lower bound.
+Thus every fixed original $|u|\ge R_{\rm prop}$ has zero original
+proper-source kernel for every original rank-valid degree.
+More generally its possible exceptional set is the fixed finite set
+\[
+ \mathcal X_{\rm prop}=\{u:|u|\ge R_*,\ \prod_\nu g_\nu(1/u)=0\}.
+                                                                    \tag{CP16}
+\]
+After dividing the product by its stated zero order at zero, it is
+entire and nonzero at zero. Its zeros in the compact disk
+$|z|\le R_*^{-1}$ are finite, proving the assertion. A selected
+gate zero does not assert actual kernel failure there; CP4 remains
+injective even at such a point. No degree-uniform period drift is used.
+
+\section{Coefficient reduction and the exact Frobenius pullback}
+Let $\mathcal O$ be the subring of the original complex coefficient
+field generated over $\mathbb Z[1/5]$ by the finitely many entries
+of $H,H^{-1}$ and $\zeta$, and the coefficients of all five quadrics.
+Invert a nonzero leading coefficient of each quadric in one fixed
+monomial order, and one nonzero coefficient in each of two distinct
+character components of $Q$. Those components exist on the five-orbit
+locus. These are finitely many nonzero original coefficients, independent
+of degree. The relation $\Phi_5(\zeta)=0$ and $5$ invertible make
+$\zeta$ have order exactly five in every geometric residue field.
+The matrix $H$ remains invertible, the Segre quadric remains smooth,
+and its retained two different characters ensure the five quadrics
+remain nonassociate. No growing grid Vandermonde has been inverted.
+
+Put $S_{\mathcal O}=\mathcal O[x_1,\ldots,x_4]$ and form $R,B,J$
+over this ring by CP1/CP4. The leading monomials are monic after the
+specified localizations, so division by $Q$ or $P$ gives a basis of
+normal monomials degree by degree. For $B$, division by invariant
+$P$ stays in character zero: its leading monomial also has character
+zero, and subtraction preserves it. The differences $1-\zeta^j$ are
+units since their product is five, so the character-zero monomials
+are exactly the invariant module. Thus $R_d$ and $B_d$ are finite free.
+The restriction $B_d\to R_d$ is injective over the fraction field
+by prime factorization, hence over $\mathcal O$ by freeness; it remains
+injective over every geometric residue field by the same argument.
+
+A finite matrix with independent columns over a residue field has
+an invertible maximal minor on a neighbourhood of that point. On
+that neighbourhood elementary elimination using its literal inverse
+gives a left inverse and a free complementary block. Applying this
+to $B_d\to R_d$ proves that $(R/B)_d$ is locally free and its
+formation commutes with residue-field change. Multiplication
+$A:R_{d-8}\to B_d$ remains injective in every residue field, because
+$R$ there is a domain and $A\ne0$. Its cokernel $J_d$ is therefore
+locally free by the same argument; likewise $(R/AR)_d$.
+
+CP4 is now a matrix of finite locally free modules over $\mathcal O$.
+Its every geometric residue fibre is injective by the complete
+character/chart proof already given, and field extension is faithful
+on vector spaces. Local inverse minors again give a locally split
+injection with locally free cokernel. Therefore
+\[
+ \ker(X_{{\rm full},d}\otimes_{\mathcal O}\kappa)=0                \tag{CP17}
+\]
+for every residue field $\kappa$, with exactly the original graded
+source and target images. It also splits as a module map over this
+affine coefficient ring: choose finitely many principal open sets
+with the local left inverses; multiplying each by a sufficiently
+large power of its defining element clears denominators in the
+finite matrices. These powers still generate the unit ideal.
+A linear combination equal to one of the multiplied local left
+inverse identities supplies a global left inverse. This does not
+supply a degree-uniform chosen inverse or a Hermitian isometry.
+In particular tensoring this literal left inverse with any
+$\mathcal O$-algebra $T$ gives
+\[
+ \ker(X_{{\rm full},d}\otimes_{\mathcal O}T)=0.\tag{CP17a}
+\]
+Thus the proved injection survives arbitrary coefficient base change,
+including nonreduced algebras. This follows from the displayed splitting,
+without an added flatness hypothesis on $T$.
+
+The finite coefficient maps also have an explicit Frobenius relation.
+For a residue field of characteristic $p\ne5$ and a matrix $X$
+for CP4 in any of these local bases, entrywise Frobenius satisfies
+\[
+ F(Xv)=X^{(p)}F(v).                                               \tag{CP18}
+\]
+This follows entry by entry from $(a+b)^p=a^p+b^p$ and
+$(ab)^p=a^pb^p$. The source and target on the right are their
+Frobenius pullbacks, with coefficient matrix $X^{(p)}$.
+This exact semilinear map does not require identifying it with
+$\exp((\log Q_F)M_S)$.
+
+For the independent original sum-polynomial presentation the
+evaluation map is still literally
+\[
+ V_k[(a,b),r]=\lambda_{ab}^{r},\quad0\le r<(k+1)^2.              \tag{CP19}
+\]
+If residue-field reduction makes two grid values equal, their rows
+are equal and this square matrix has a nonzero kernel. The retained
+cofactor maps act on the biform module, so do not remove this
+explicit kernel of the preceding interpolation map. For any
+composable injection $X_{{\rm full},d}$ its pullback on a preceding
+map $F$ has exactly $\ker(X_{{\rm full},d}F)=\ker F$, by CP17.
+This gives the exact kernel receiver across coefficient specialization.
+Original derivative coordinates additionally require their factorials
+to be invertible; Hasse coefficients use the full product identity
+without such a division. A low-jet subspace is restricted only through
+its actual matrix, not identified with its reduction without its
+rank calculation.
+
+\section{Return to the original proper-source metric}
+On the complement of CP16 the original proper-source kernel $E$ is
+zero as an equality of its defined coefficient spaces. In its retained
+value frame $Z_R$, the original source and target therefore read
+\[
+ \begin{split}
+ Q_N^p&=Z_R^*J_0^*D_{k,N-v}^{(s_0)}J_0Z_R,\\
+ H_N^p&=F_R^*D_{\rm target}F_R
+  -F_R^*D_{\rm target}J_*
+   (J_*^*D_{\rm target}J_*)^{-1}J_*^*D_{\rm target}F_R.
+ \end{split}                                                       \tag{CP20}
+\]
+These are the original maps from NC25--27, not a new choice of
+source order or target direction space. The source-$E$ determinant
+correction is exactly one. The complete target-$J_*$ subtraction
+in CP20 persists. Thus the finite-field cofactor recovery and the
+enlarged period locus give exact receivers into that remaining
+metric calculation, without assigning it a value from a rank count.
+
+\begin{thebibliography}{9}
+\bibitem{pcofactor:NC} Programme, \emph{Vanishing of the original proper-source
+kernel through conductor coprimality}, NC1--9 and NC25--27,
+19 September 2026; complete source and original maps:
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/tree/12dd3645229bfebbf1cb8f5968ecffd4dfff1e9f}.
+\bibitem{pcofactor:PCL} Programme, \emph{The literal original conductor limit
+and an invertible pivot restriction}, PCL1--10, complete provider
+included with the cited NC edition. CP10 repeats the exact coefficient
+formula used in this calculation. The incoming period and specialization
+notes are preserved verbatim with hashes in the receiving package.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Independent complete cofactor and specialization proof}
+\newcommand{\pindcoC}{\mathbb C}
+\newcommand{\pindcoim}{\operatorname{im}}
+\newcommand{\pindcoSpec}{\operatorname{Spec}}
+\newcommand{\pindcodiag}{\operatorname{diag}}
+\newcommand{\pindcorank}{\operatorname{rank}}
+
+
+
+This note verifies CP1--20 in
+\path{COFACTOR_PERIOD_AND_SPECIALIZATION.tex} against the two
+incoming original proofs \path{04_ONE_STEP_PROPER_KERNEL_PERIOD_LOCUS.md}
+and \path{05_GOOD_COEFFICIENT_SPECIALIZATION.md}. The chart descent,
+vertex saturation, Fourier minors, exceptional first variation and
+coefficient base change are proved below.  The first variation is
+independently evaluated from all sixteen entries of the original PCL
+coefficient sum.  The original unit phases and diagonal period factors
+are retained in their exact maps.  No assertion about equality of
+the source and target Hermitian metrics follows from these algebraic
+identities.
+
+\section{The original conductor on every chart and at the vertex}
+Work first over an algebraically closed field $K$ of characteristic
+different from five.  Let $\zeta$ have order five and let the cyclic
+group act on $S=K[x_1,x_2,x_3,x_4]$ by $g x_i=\zeta^i x_i$.
+The inverse-action convention gives the same proof with every character
+negated.  Let $Q$ be the unchanged invertible linear transport of
+$t_1t_4-t_2t_3$, assume its five translates $Q_a=g^aQ$ are pairwise
+nonassociate, and retain
+\[
+ P=\prod_{a=0}^4Q_a,\qquad A=\prod_{a=1}^4Q_a,\qquad
+ R=S/(Q),\qquad B=\pindcoim(S^G\to R).                              \tag{CR1}
+\]
+The Segre determinant is irreducible in every such characteristic:
+view it as a primitive degree-one polynomial in $t_1$ over the
+factorial ring $K[t_2,t_3,t_4]$.  Its two coefficients are coprime,
+and it is irreducible over that ring's fraction field.  An invertible
+linear substitution preserves irreducibility.  Thus each $Q_a$ is
+prime.  If an invariant polynomial is divisible by $Q$, applying
+the action shows it is divisible by all $Q_a$, hence by $P$.
+After cancellation, its quotient by the invariant $P$ is invariant.
+Therefore
+\[
+ B=S^G/(P S^G).                                                \tag{CR2}
+\]
+
+For $h\in S$, the invariant orbit sum $\sum_{a=0}^4g^a(Ah)$ has
+restriction $Ah$ to $Q=0$.  Indeed for every $a\ne0$ its product
+$g^aA$ contains $Q$, while the $a=0$ term is the displayed one.
+There is no factor of five.  Hence $AR\subset B$ and, since it
+is an ideal of $R$, it is contained in the conductor.
+
+To prove the reverse containment, choose a coordinate $x_i$ and set
+$T=S[x_i^{-1}]$, $U=T^G$.  The exact character decomposition is
+\[
+ T=\bigoplus_{r=0}^4 U x_i^r
+   \simeq U[t]/(t^5-x_i^5).                                   \tag{CR3}
+\]
+For a monomial of character $j$, choose the unique $r$ with
+$ir\equiv j\pmod5$ and divide it by $x_i^r$; the quotient is
+invariant.  Character independence proves the direct sum.  The
+derivative $5t^4$ is a unit.  Thus CR3 is finite free, faithfully
+flat and etale of degree five, with its original cyclic action.
+Modulo the invariant $P$, it remains a faithfully flat map
+$B_i=U/(P)\to D_i=T/(P)$.  Here localizing $B$ at $x_i^5$
+gives exactly $B_i$, and localizing $R$ gives $T/(Q)$.
+
+The torsor isomorphism
+\[
+ T\otimes_U T\longrightarrow\prod_{a=0}^4T,
+ \qquad f\otimes h\longmapsto(fg^a(h))_a
+\]
+can be proved by expressing both sides in the basis CR3: its
+matrix is the Fourier matrix times invertible powers of $x_i$.
+After imposing $Q$ on the second factor and $P$ on the first,
+the base change of $B_i\subset R_i$ is precisely
+\[
+ D_i\longrightarrow\prod_{a=0}^4T/(Q_a),
+ \qquad f\longmapsto(f\bmod Q_a)_a.                            \tag{CR4}
+\]
+The conductor of CR4 on component $a$ is the image of
+$\prod_{b\ne a}Q_b$.  To prove it, multiply any conductor element
+by the idempotent selecting component $a$.  Its resulting one-component
+tuple is in the image exactly when it lifts to a polynomial divisible
+by every other $Q_b$.  In the localization of the original polynomial
+UFD their ideal intersection equals the product ideal: divisibility
+by each pairwise nonassociate prime is equivalent to divisibility by
+their product.  Conversely every such lift gives a one-component
+tuple, and addition handles all components.
+
+This equality descends faithfully to the original chart, giving
+the conductor $AR_i$.  One may see the descent without an implicit
+invariance assertion: choose finitely many generators of $R_i$ as
+a $B_i$-module; the condition $fR_i\subset B_i$ is the simultaneous
+vanishing of their products with $f$ in $R_i/B_i$.  Flat base change
+preserves these finite kernels, and faithful flatness detects both
+the vanishing and equality of the resulting submodules.  The base
+change of $AR_i$ is exactly the component product ideals in CR4.
+
+The conductor is homogeneous, so consider a homogeneous $f\in R_d$.
+If it is in the conductor then the chart result gives $f\in AR_i$
+for every nonzero-coordinate chart.  Under the original Segre map,
+$R_d=K[Z_0,Z_1,W_0,W_1]_{d,d}$ and $A$ is the complete biform of
+degree $(8,8)$.  Every irreducible bihomogeneous factor of $A$
+defines a projective divisor on $\mathbb P^1\times\mathbb P^1$.
+Chartwise divisibility implies that the factor's multiplicity in
+$f$ is at least its full multiplicity in $A$.  UFD divisibility
+in this four-variable biform ring gives $f=Ah$, with bidegree
+$\deg h=(d-8,d-8)$.  For $d<8$ this forces $f=0$; otherwise $h$
+is an element of $R_{d-8}$.  There is therefore no additional
+term supported only at the affine vertex, and
+\[
+ \boxed{\{f\in R:fR\subset B\}=AR.}                            \tag{CR5}
+\]
+This proof retains repeated factors of the restrictions of the
+different $Q_a$; it never assumes those restrictions are coprime.
+
+\section{All sixteen cofactor observations and the four-step test}
+Put $J_d=B_d/(AR)_d$.  The sixteen maps are the actual products
+\[
+ X_d:J_d\longrightarrow\bigoplus_{i=1}^4\bigoplus_{r=1}^4
+                          (R/B)_{d+4r},
+ \qquad [f]\longmapsto([x_i^{4r}f])_{i,r}.                       \tag{CR6}
+\]
+They are well-defined because $AR$ is an ideal contained in $B$.
+If $f\in B$ and all sixteen products belong to $B$, then on the
+$i$th chart the products of $f$ with
+$1,x_i^4,x_i^8,x_i^{12},x_i^{16}$ all belong to $B_i$.
+These five powers have distinct characters $0,4i,3i,2i,i$ and
+generate $T$ over $U$; powers differing by five differ by the
+invariant unit $x_i^5$.  Their restrictions therefore generate
+$R_i$ over $B_i$.  Thus $fR_i\subset B_i$ on every chart, and
+CR5 implies $f\in AR$.  This proves $X_d$ injective in every
+degree and in every characteristic different from five.
+
+The one-step condition uses only $x_i^4$.  Write
+\[
+ \mathcal T=B+x_1^4B+x_2^4B+x_3^4B+x_4^4B\subset R.            \tag{CR7}
+\]
+For an invariant representative of the original proper-source
+class, the four tests modulo $AR$ are equivalent to literal
+$x_i^4f\in B$, since $AR\subset B$.  Thus they give
+$f\mathcal T\subset B$.
+
+The original ring $R$ is finite over $B$: $S$ is finite over its
+invariants, as witnessed by the equations $x_i^5\in S^G$, and
+passing to $S/(Q)$ preserves this finite generation.  On a nonzero
+coordinate chart, a geometric fibre of $R/B$ is a reduced subset
+of the five points of the etale torsor CR3.  If it has $r$ points
+and its representative has $l$ nonzero coordinates, the values of
+$1$ and those $l$ products $x_i^4$ form nonzero column scalings
+of the five-character Fourier matrix, restricted to $r$ rows.
+
+Every square minor of this Fourier matrix is nonzero.  In sizes
+one and two the determinants are respectively a root of unity
+and a nonzero root multiple of $1-\zeta^a$ with $a\ne0\pmod5$.
+Its inverse has entries $\zeta^{-ij}/5$; this formula is algebraic
+and applies in residue fields, where a complex-conjugation symbol
+would not be the correct definition.  The complementary-minor
+identity for an invertible matrix proves sizes three and four
+from sizes two and one of this inverse.  The full determinant
+is the nonzero Vandermonde.  Hence whenever $r\le l+1$, these
+sections span the whole fibre.  The finite cokernel of
+$\mathcal T\subset R$ vanishes at that base point: if a finite
+generating column $v$ satisfies $v=Mv$ with the entries of $M$
+in the local maximal ideal, the adjugate of $I-M$ and its unit
+determinant give $v=0$.
+
+For a projective divisor, all remaining failures are now explicit.
+If $l=4$, $r\le5=l+1$.  If $l=3$, failure requires $r=5$.
+The six quadratic monomials in the three active coordinates
+have five distinct characters, exactly one repeated.  Fourier
+inversion of the five equations $Q(g^a x)=0$ makes every
+singleton-character coefficient vanish, since its active-coordinate
+monomial is nonzero.  Thus the coordinate-plane restriction of
+$Q$ must be a single-character conic.  If $l=2$, failure requires
+$r\ge4$; the three binary quadratic monomials have distinct
+characters and the corresponding three-column Fourier matrix
+has full rank on any three rows.  All three coefficients vanish,
+so the coordinate line is contained in $Q$.  The locus $l=1$
+contains only finitely many projective points and no divisor of
+the smooth quadric surface.
+
+Exclude these six line containments and four single-character
+plane restrictions.  Then $\mathcal T=R$ at the generic point
+of every divisor.  The relation $f\mathcal T\subset B$ makes
+$f$ a conductor element there.  The full multiplicity argument
+at the end of CR5 again gives $f\in AR$.  This proves vanishing
+of the original one-step proper-source kernel on exactly the
+stated locus, with every original low-jet restriction still imposed.
+
+\section{The complete period transformation and limiting gates}
+For the complex original period, retain
+\[
+ H(u)=e^{\mathfrak a/u}G_u\mathcal R(1/u)V^{-1}U,
+ \quad U=\pindcodiag(a,\bar a,\bar a,a),\quad a\ne0,\quad z=1/u.
+                                                                    \tag{CR8}
+\]
+The exact coordinate map $X=G_u^{-1}x$ commutes with the original
+diagonal cyclic action.  Multiplication of the actual quadric
+equation by $e^{2\mathfrak a/u}$ gives
+\[
+ \widetilde Q_z(X)=Q_0(U^{-1}V\mathcal R(z)^{-1}X).              \tag{CR9}
+\]
+The cofactor products are multiplied by the actual nonzero
+entries $(G_u)_{ii}^{4r}$, so their kernels transport in both
+directions.  This is not asserted to be an isometry.
+
+Retain $r=\delta+i\gamma$, $R_0=r^2$, $T_0=\bar r^2$,
+$\beta=-(R_0+T_0)>0$, $\eta=R_0T_0>0$, $p=a^{-2}$,
+$b=\bar a^{-2}$, and
+$u_0=(2R_0-T_0)/3$, $v_0=(2T_0-R_0)/3$.
+The original centered Vandermonde has rows
+$(1,r,r^2,r^3)$, $(1,\bar r,\bar r^2,\bar r^3)$,
+$(1,-\bar r,\bar r^2,-\bar r^3)$,
+$(1,-r,r^2,-r^3)$.  Multiplication by
+$J^{-1}=I+\beta E_{13}/3+2\beta E_{24}/3$ and expansion of the
+two original products in $Q_0$ gives
+\[
+ \widetilde Q_0=p(X_1+u_0X_3)^2-b(X_1+v_0X_3)^2
+      -pR_0(X_2-v_0X_4)^2+bT_0(X_2-u_0X_4)^2.                   \tag{CR10}
+\]
+Thus, in the even and odd index blocks, its symmetric entries are
+\[
+ \begin{array}{lll}
+ e_0=p-b,&e_1=pu_0-bv_0,&e_2=pu_0^2-bv_0^2,\\
+ o_0=-pR_0+bT_0,&o_1=pR_0v_0-bT_0u_0,
+                    &o_2=-pR_0v_0^2+bT_0u_0^2.
+ \end{array}                                                     \tag{CR11}
+\]
+Expanding each two-by-two determinant proves
+\[
+ e_0e_2-e_1^2=-pb(R_0-T_0)^2\ne0,\qquad
+ o_0o_2-o_1^2=-pbR_0T_0(R_0-T_0)^2\ne0.                         \tag{CR12}
+\]
+Here $R_0-T_0=4i\delta\gamma\ne0$ and
+$R_0+T_0=2(\delta^2-\gamma^2)\ne0$ on the actual domain.
+
+The possible repeated-character pairs of the four coordinate
+planes, in order of the omitted coordinate, are
+\[
+ (X_3^2,X_2X_4),\quad (X_1^2,X_3X_4),\quad
+ (X_4^2,X_1X_2),\quad (X_2^2,X_1X_3).
+\]
+For the first plane, single-character failure would require
+$o_0=o_2=0$, which forces $u_0^2=v_0^2$, contrary to
+$(u_0-v_0)(u_0+v_0)=(R_0-T_0)(R_0+T_0)/3\ne0$.
+For the fourth plane, $e_0=e_2=0$ gives the same contradiction.
+For the second plane $e_1,e_2$ cannot both vanish by CR12; they
+are singleton-character coefficients.  For the third plane the
+corresponding pair is $o_0,o_1$.  This proves a nonzero
+constant-term gate on every plane.
+
+The exact sufficient condition here is that one singleton-character
+coefficient be nonzero: on the locus where all three coordinates are
+active its monomial is nonzero, so the five Fourier equations cannot
+all hold.  This argument does not require that the restriction have
+two different characters at every later period.  For completeness,
+the limiting restriction itself cannot have only a singleton character.
+On the plane omitting $X_2$ it is
+$e_0X_1^2+2e_1X_1X_3+e_2X_3^2+o_2X_4^2$, whose four terms have
+distinct characters.  Only the $e_1$ term could by itself retain a
+nonzero even-block determinant, but that would require
+$e_0=e_2=0$, already proved impossible from
+$(R_0-T_0)(R_0+T_0)\ne0$.  Every other singleton-only case
+contradicts CR12.  On the plane omitting $X_3$, the same argument
+uses the odd block, with its only potential cross-term case
+$o_0=o_2=0$, also already excluded.  More generally a singleton-only
+quadratic monomial has no zero on the three-active-coordinate locus,
+so could not support the divisorial failure under examination.
+
+The coordinate lines $(1,3)$ and $(2,4)$ cannot be contained by
+CR12, and $(1,2)$ would require $e_0=o_0=0$, hence $R_0=T_0$.
+For $(1,4)$ and $(2,3)$ the necessary vanishing contradicts
+\[
+ T_0u_0^2-R_0v_0^2
+  =-(R_0-T_0)(R_0^2-7R_0T_0+T_0^2)/9\ne0.                     \tag{CR13}
+\]
+Indeed $(R_0^2+T_0^2)/(R_0T_0)$ is twice the real part of the
+unit complex number $R_0/T_0$, and lies in $[-2,2]$; subtracting
+seven is strictly negative.  Only line $(3,4)$ can remain, and
+then exactly $e_2=o_2=0$ while $e_1o_1\ne0$.
+
+\section{All first-derivative entries and the exceptional line}
+The original PCL coefficient formula is
+\[
+ [z^n]\mathcal R_{ar}(z)=
+ \sum_{2p+4h=5n+r+1-a}
+ \frac{\beta^p\eta^h}{3^p p!h!}(-1)^L5^L(a/5)_L,
+ \quad L=p+h-n,\quad 1\le a\le4,\quad0\le r\le3.              \tag{CR14}
+\]
+The sum is finite at each degree, with $L\ge0$ for every term.
+At degree one, direct summation of these terms yields the entire
+matrix, in ordinary one-based row and column indices,
+\[
+ \mathcal R'(0)=
+ \begin{pmatrix}
+ 0&\beta(\beta^2-9\eta)/27&0&
+          -(11\beta^4-108\beta^2\eta+162\eta^2)/324\\
+ -(\beta^2-9\eta)/9&0&\beta(7\beta^2-54\eta)/81&0\\
+ 0&-(\beta^2-6\eta)/6&0&\beta(4\beta^2-27\eta)/27\\
+ \beta/3&0&-(2\beta^2-9\eta)/9&0
+ \end{pmatrix}.                                                   \tag{CR15}
+\]
+For example the $(2,3)$ entry uses $(p,h)=(3,0),(1,1)$
+in CR14.  Their terms are $7\beta^3/81$ and
+$-2\beta\eta/3$, respectively.  The other entries follow from
+the same displayed finite sum, and all zero entries have no
+admissible pair because its left side is even.
+
+Put $K=\mathcal R'(0)J^{-1}$.  Multiplication of CR15 gives
+\[
+ K_{23}=\beta(4\beta^2-27\eta)/81<0,\qquad
+ K_{14}=-(\beta^4-12\beta^2\eta+54\eta^2)/108<0.                 \tag{CR16}
+\]
+The first sign follows from $0<\beta/\sqrt\eta<2$; the second
+from $\beta^4-12\beta^2\eta+54\eta^2
+=\eta^2((\beta^2/\eta-6)^2+18)$.
+The exact identity
+$\widetilde Q_z(X)=\widetilde Q_0(J\mathcal R(z)^{-1}X)$ has
+derivative $-K^T\widetilde Q_0-\widetilde Q_0K$ in symmetric
+matrix notation, since
+$[J\mathcal R(z)^{-1}]'_{z=0}=-\mathcal R'(0)J^{-1}$.
+On the possible line stratum this gives
+\[
+ \widetilde Q'_{34}(0)
+       =-e_1\bigl(K_{14}+(o_1/e_1)K_{23}\bigr).                  \tag{CR17}
+\]
+
+For a direct exact derivation of the exceptional equations,
+$e_2=0$ gives $b=p u_0^2/v_0^2$.  Here neither $u_0$ nor $v_0$
+is zero, because either zero combined with $e_2=0$ would make
+both zero, contrary to $R_0\ne T_0$.  Substitution into $o_2=0$
+gives $T_0u_0^4=R_0v_0^4$.  The full factorization is
+\[
+ T_0u_0^4-R_0v_0^4
+ =-\frac{R_0-T_0}{81}
+  (R_0^4-23R_0^3T_0+33R_0^2T_0^2-23R_0T_0^3+T_0^4).           \tag{CR18}
+\]
+The quartic factor equals
+$(R_0+T_0)^4-27(R_0+T_0)^2R_0T_0+81R_0^2T_0^2$.
+Writing $b_0=\beta/\sqrt\eta\in(0,2)$ therefore gives
+\[
+ b_0^4-27b_0^2+81=0,\qquad
+ b_0=3(\sqrt5-1)/2,\qquad b_0^2+3b_0-9=0.                     \tag{CR19}
+\]
+The other positive squared root is greater than four and cannot
+occur in this interval.  Moreover, after $b=p u_0^2/v_0^2$
+is substituted, direct expansion gives
+\[
+ o_1^2-R_0T_0e_1^2=
+ \frac{p^2(R_0-T_0)^2(R_0^2-7R_0T_0+T_0^2)}{9(R_0-2T_0)^4}
+ (R_0^4-23R_0^3T_0+33R_0^2T_0^2-23R_0T_0^3+T_0^4).
+                                                                    \tag{CR20}
+\]
+Thus $(o_1/e_1)^2=\eta$ on this stratum, with either original
+sign still retained.  The plus sign makes the bracket in CR17
+strictly negative by CR16.  For the minus sign, substitution of
+CR19 gives exactly
+\[
+ K_{14}-\sqrt\eta K_{23}
+       =\eta^2(108-45b_0)/324>0.                                \tag{CR21}
+\]
+The inequality uses $b_0<2$, so its numerator exceeds eighteen.
+Since $e_1\ne0$, the exceptional line has nonzero first variation
+for every retained original unit phase.  The ordinary polynomial
+coefficient of $X_3X_4$ is twice the symmetric entry in CR17;
+this factor is required if it is used as the coefficient gate.
+
+\section{Finite period gates and the original proper-source minimum}
+Choose the actual nonzero coefficient just proved on each of the
+six lines and four planes.  Each coefficient is an entire
+function $g_\nu(z)$, because the original PCL matrix and its
+inverse are entire.  Its first nonzero order $r_\nu$ is zero,
+apart from the possible line $(3,4)$, whose order is one and
+whose coefficient is the nonzero value $2\widetilde Q'_{34}(0)$.
+With $c_\nu=[z^{r_\nu}]g_\nu$, put
+\[
+ C_\nu=1+\sum_{n>r_\nu}|[z^n]g_\nu|,\quad
+ \epsilon_\nu=\min(1,|c_\nu|/(2C_\nu)),\quad
+ R_{\rm prop}=\max(R_*,(\min_\nu\epsilon_\nu)^{-1}).             \tag{CR22}
+\]
+The sums converge absolutely by entireness.  For
+$0<|z|\le\epsilon_\nu$, every tail term is bounded after factoring
+$|z|^{r_\nu+1}$, so
+$|g_\nu(z)|\ge |c_\nu||z|^{r_\nu}/2$.  All fixed original periods
+$|u|\ge R_{\rm prop}$ therefore satisfy the zero proper-source
+kernel statement, without a degree-dependent drift in period.
+More generally the only possible exceptions on $|u|\ge R_*$
+belong to the zero set of $\prod_\nu g_\nu(1/u)$ there.
+Divide this product by its proved zero order at zero.  The quotient
+is entire and nonzero at zero; its zeros in the compact disk
+$|z|\le R_*^{-1}$ are finite.  Hence the exceptional superset is
+finite and independent of the source degree.  A selected coefficient
+zero is only a failed sufficient gate, and does not assert actual
+kernel failure at that period.  CR6 remains injective there.
+
+For the original source-$E$ minimum, the NC24 form is
+\[
+ Q_N^p=Z_R^*J_0^*DJ_0Z_R
+ -Z_R^*J_0^*DJ_0Z_E(Z_E^*J_0^*DJ_0Z_E)^{-1}Z_E^*J_0^*DJ_0Z_R.
+\]
+When the proved proper-source kernel $E$ is zero, its frame has
+zero columns and this subtraction is exactly absent:
+$Q_N^p=Z_R^*J_0^*DJ_0Z_R$.  Completing the square in the
+different original target direction space still gives
+\[
+ H_N^p=F_R^*D_{\rm target}F_R
+ -F_R^*D_{\rm target}J_*(J_*^*D_{\rm target}J_*)^{-1}
+                         J_*^*D_{\rm target}F_R.                 \tag{CR23}
+\]
+This proves CP20 directly from the actual two fibre direction
+spaces.  It does not remove $J_*$ or evaluate its determinant
+from the sixteen-cofactor injectivity result.
+
+\section{Good coefficient specialization, with the actual graded images}
+Let $\mathcal O$ be the finitely generated subring of the original
+complex coefficient field specified in CP: it contains
+$\mathbb Z[1/5]$, all entries of $H,H^{-1}$, $\zeta$, and the
+five original quadric coefficients.  Localize only at their chosen
+nonzero leading coefficients and two nonzero coefficients of $Q$
+in distinct cyclic characters.  These are finitely many fixed
+numbers, independent of degree.  In every geometric residue
+field, $\Phi_5(\zeta)=0$ and $5$ invertible give exact order five;
+$H$ remains invertible.  The two retained character coefficients
+prevent any nonidentity translate from being proportional to $Q$,
+since their character ratios differ by a nontrivial fifth root.
+Thus the geometric fibre satisfies every algebraic hypothesis of
+CR1--6, including in characteristic two.
+
+All differences $1-\zeta^a$, $1\le a\le4$, are units: their
+product is five, a unit, and in a commutative ring every factor
+of a unit is a unit.  Consequently the invariant monomials are
+exactly those of character zero, over $\mathcal O$ and after any
+base change.  With the selected leading coefficients units,
+division by the single polynomial $Q$ gives free modules of
+normal monomials in each degree for $R_\mathcal O$; division by
+the invariant $P$ gives the same assertion for
+\[
+ B_\mathcal O=S_\mathcal O^G/(P S_\mathcal O^G).
+\]
+For the latter, the leading monomial of $P$ has character zero,
+so every quotient monomial and every subtraction in the division
+of an invariant stays invariant.  Linear independence of the
+normal remainders follows because a nonzero multiple of the
+monic leading term has its largest monomial divisible by that
+leading term.
+
+The restriction $B_{\mathcal O,d}\to R_{\mathcal O,d}$ is
+injective over the fraction field by the prime-factor argument
+CR2, hence over $\mathcal O$ since its free source has no
+$\mathcal O$-torsion.  Its reduction is injective in every geometric
+residue field by that same argument.  A full-column-rank minor
+in each such fibre is invertible near its point.  Invert that
+literal square block, eliminate the remaining entries, and obtain
+a local left inverse and a free complementary cokernel.  Thus
+$(R/B)_d$ is finite locally free, and the exact sequence remains
+exact after arbitrary base change.
+
+Multiplication by the original $A$ sends $R_{d-8}$ into $B_d$
+by the orbit-sum identity.  Its every geometric fibre is injective
+since $R$ there is a domain and $A$ has nonzero restriction to
+$Q=0$.  The same minor proof therefore applies to its cokernels
+$J_d=B_d/A R_{d-8}$ and $(R/AR)_d$.  These are the actual graded
+images in the fibre, rather than replacements obtained after
+an unexamined tensor kernel.
+
+Finally CR6 is a map of finite locally free modules whose every
+geometric fibre is injective.  Its maximal minors again prove
+a locally split injection and locally free cokernel.  Since
+finite locally free modules over the affine coefficient ring are
+projective, this exact sequence also has a module splitting.
+One can construct it by patching: on a finite principal cover,
+clear denominators of local left inverses by sufficiently large
+powers of the cover elements; these powers still generate the
+unit ideal, and a linear combination equal to one patches the
+multiplied identities.  In particular for every $\mathcal O$-algebra
+$T$, not only every residue field,
+\[
+ \ker(X_d\otimes_\mathcal O T)=0.                              \tag{CR24}
+\]
+This strengthening follows from the actual splitting.  It does
+not supply one chosen degree-uniform inverse or a Hermitian
+isometry.
+
+\section{Exact specialized receivers and the separate interpolation kernel}
+In a residue field of characteristic $p\ne5$, let $X$ denote
+the matrix of the original cofactor map in any local bases.
+Entrywise Frobenius obeys the exact identity
+\[
+ F(Xv)=X^{(p)}F(v),                                             \tag{CR25}
+\]
+by its additive and multiplicative polynomial identities.  The
+matrix on the right is that of the Frobenius-pulled-back map;
+the relation retains the original source and target scalar twists.
+It does not identify this semilinear operation with the arithmetic
+sum action or its exponential.
+
+For the separately defined sum polynomial module the original
+evaluation matrix is
+$V_k[(a,b),r]=\lambda_{ab}^{r}$, $0\le r<(k+1)^2$.
+If values collide under reduction, this square matrix has two
+equal rows and hence a nonzero kernel.  For any specified map
+$F$ into the source of $X_d\otimes T$, the exact receiving
+identity is
+\[
+ \ker((X_d\otimes T)F)=\ker F.                                \tag{CR26}
+\]
+It follows immediately in both directions from CR24, and retains
+any preceding interpolation kernel.  Applying it to a particular
+sum-polynomial map requires that its actual codomain be the
+source of the cofactor map, or that the precise intervening map
+be included in $F$.  There is no automatic identification of
+the full grid-value space with the invariant conductor quotient.
+Ordinary derivative jet coordinates require their factorials
+to remain units; Hasse coefficients retain the product rule
+without such divisions.  Reduction of a low-jet subspace uses
+its actual matrix and rank, even though the ambient cofactor
+injection is preserved by arbitrary base change.
+
+\section{Verification outcome and proof sources}
+The substantive CP1--20 claims follow from the original maps by
+CR1--26.  The only literal formula correction found is that CP19's
+entry should read $\lambda_{ab}^{r}$, with no comma in its exponent.
+In residue-field versions the inverse Fourier matrix is
+$5^{-1}(\zeta^{-ij})$, avoiding complex conjugation as an undefined
+operation there.  The CP14 first-variation constant is correct.
+The coefficient splitting actually gives the arbitrary-base-change
+injection CR24, stronger than its residue-field statement alone.
+
+The inputs read for this independent derivation are the two
+user-supplied Markdown proofs named at the start, CP1--20,
+the complete PCL1--7 coefficient provider and its original
+Vandermonde/unit definition, and NC24--27 for the two metric
+fibres.  All additional UFD, chart, matrix, Fourier and finite
+coefficient calculations needed here have been proved explicitly;
+no unexamined human theorem is used as a substitute for these
+calculations.
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Evaluated original source kernel and endpoint correction}
+\providecommand{\pkerneltightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\pkerneldiag}{\operatorname{diag}}
+\newcommand{\pkernelrank}{\operatorname{rank}}
+\newcommand{\pkernelTr}{\operatorname{Tr}}
+
+\section{Evaluated original source kernel, regular correction, and full-quartet endpoint}\label{pkernel:evaluated-original-source-kernel-regular-correction-and-full-quartet-endpoint}
+
+Research continuation, 19 September 2026.
+
+\subsection{Provenance and scope}\label{pkernel:provenance-and-scope}
+
+The receiving source is \path{KokunoYumeto/zeta-function-research-reader}, commit \path{1445091fd84d47b3908f56d4db1f8a28acd134da}, particularly the complete proof \path{workbenches/splitzero-tandem/continuations/20260919-original-heat-source-endpoint/ORIGINAL_HEAT_AND_SOURCE_ENDPOINT.tex}. The input equations used here are EG1--9 (original source and unit), EG20--33 (regular correction), EG39--41 (complete left minimum), EG44--50 (critical metric), and EG56--57 (physical action). The current calculation evaluates matrices retained there as integrals. It does not insert this source metric in place of the native polynomial-convolution quotient metric or PRD target.
+
+All scalar products are conjugate-linear in the first argument. Independent variables \texttt{z,w} below are inserted as \path{z=conjugate(rho),\ w=sigma} only after holomorphic differentiation. Every zero multiplicity remains in the matrices.
+
+\subsection{1. The original one-parameter source and a scalar function}\label{pkernel:the-original-one-parameter-source-and-a-scalar-function}
+
+Retain \[
+\phi(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+\Phi(s)=\frac12s(s-1)\pi^{-s/2}\Gamma(s/2).
+\tag{SK1}
+\] On the strip \(\mathcal S=\{0<\Re s<1\}\), define the actual function \[
+f_s(x)=x^{-s}\int_x^\infty\phi(y)y^{s-1}dy,
+\qquad g_s(x)=f_s(x)/\Phi(s).
+\tag{SK2}
+\] The Gaussian integral gives, without a limiting interpretation, \[
+f_s(x)=x^{-s}\pi^{-s/2}
+\{2\Gamma(s/2+2,\pi x^2)-3\Gamma(s/2+1,\pi x^2)\}.
+\] The factor \(\Phi\) is nonzero on \(\mathcal S\).
+
+Define the holomorphic scalar \[
+\boxed{\displaystyle
+\mathfrak Z(s)=\frac{[s(s-1)]^2}{4}
+ B_{1/2}\!\left(\frac{1-s}{2},\frac{s}{2}\right)
++\frac{\sqrt2}{4}\left(s^3-\frac32s^2-\frac14s+\frac38\right).}
+\tag{SK3}
+\] The incomplete beta integral is the ordinary integral over \([0,1/2]\), with positive real base and the usual real logarithms. Thus its parameters have no unassigned branch on this strip. Then \[
+\boxed{\mathfrak Z(s)=\int_0^\infty\phi(x)f_s(x)dx,\qquad
+\mathfrak Z(s)+\mathfrak Z(1-s)=\Phi(s)\Phi(1-s).}
+\tag{SK4}
+\]
+
+\subsubsection{Proof, including the original Gamma mass}\label{pkernel:proof-including-the-original-gamma-mass}
+
+Set \(\sigma(y)=|\Gamma(1/4+iy/2)|^2/(2\pi)\), of mass \(\sqrt{2\pi}\). Euler's beta integral \cite{pkernel:sk:AskeyRoy}, after \(u=e^{2t}\), gives \[
+\int_{\mathbb R}e^{iyt}(\cosh t)^{-1/2}dt
+=\frac1{\sqrt2}B(1/4+iy/2,1/4-iy/2)
+=\frac{|\Gamma(1/4+iy/2)|^2}{\sqrt{2\pi}}.
+\] Fourier inversion therefore gives \(\int e^{-ity}\sigma(y)dy=\sqrt{2\pi}(\cosh t)^{-1/2}\). For \(\Re s<1/2\), Laplace integration followed by \(u=e^{-2t}\), then \(v=u/(1+u)\), gives \[
+\int_{\mathbb R}\frac{\sigma(y)}{1/2+iy-s}dy
+=\sqrt\pi B_{1/2}((1-s)/2,s/2).
+\] In the exact physical Parseval convention, \[
+\frac{|\Phi(1/2+iy)|^2}{2\pi}
+=\frac{(y^2+1/4)^2}{4\sqrt\pi}\sigma(y).
+\] Write \(t=1/2+iy\), so \((y^2+1/4)^2=[t(t-1)]^2\). The first four \(t\)-moments of \(\sigma/\sqrt{2\pi}\), obtained by differentiating its just-proved transform, are \(1,1/2,-1/4,-5/8\). Polynomial division gives \[
+\frac1{\sqrt{2\pi}}\int
+\frac{[t(t-1)]^2-[s(s-1)]^2}{t-s}\,d\sigma
+=s^3-\frac32s^2-\frac14s+\frac38.
+\] This proves SK3--4 first for \(\Re s<1/2\) by Parseval in the convention of \cite{pkernel:sk:Transforms}, applied to \(\Phi(t)/(t-s)\). The physical cross integral \(\int\phi f_s\) is holomorphic throughout \(\mathcal S\): at zero its absolute bound is \(O(x^{2-\Re s})\), locally uniformly in \(s\), and at infinity the Gaussian tail dominates every derivative. The beta expression is also holomorphic there. Analytic uniqueness extends their equality. In particular the right-strip value is this explicitly proved continuation; it is not obtained by reusing the unchanged critical-line resolvent across its pole.
+
+The incomplete-beta symmetry identity \cite{pkernel:sk:Paris} \(B_{1/2}(a,b)+B_{1/2}(b,a)=B(a,b)\) and the exact polynomial identity \(R(s)+R(1-s)=0\) prove the second identity in SK4. Its constant is \([s(s-1)]^2\Gamma(s/2)\Gamma((1-s)/2)/(4\sqrt\pi)\), exactly \(\Phi(s)\Phi(1-s)\).
+
+As an independent physical integral check, direct Gaussian integration gives \[
+\int_0^\infty\phi(x)\phi(vx)dx
+=\frac{-18v^6+69v^4-18v^2}{2(1+v^2)^{9/2}}.
+\] Integrating this against \(v^{s-1}dv\) on \([1,\infty)\) gives the equivalent three-beta expression \[
+\mathfrak Z(s)=\tfrac14\{-18B_{1/2}((7-s)/2,(s+2)/2)
++69B_{1/2}((5-s)/2,(s+4)/2)
+-18B_{1/2}((3-s)/2,(s+6)/2)\}.
+\] Both expressions evaluate the same original cross integral.
+
+\subsection{2. All finite cutoff entries, including resonances}\label{pkernel:all-finite-cutoff-entries-including-resonances}
+
+Put \(a=z+w-1\), \(\epsilon=e^{-T}\), \(T\ge0\), and \[
+E_T(a)=\begin{cases}(e^{aT}-1)/a,&a\ne0,\\T,&a=0.\end{cases}
+\] The numerator in \[
+\boxed{\displaystyle
+\mathscr F(z,w)=
+\frac{\Phi(z)\Phi(w)-\mathfrak Z(z)-\mathfrak Z(w)}
+{(z+w-1)\Phi(z)\Phi(w)}}
+\tag{SK5}
+\] vanishes on \(z+w=1\) by SK4. Consequently \(\mathscr F\) is holomorphic on \(\mathcal S^2\). This is a removable divided difference, not a pole assigned zero. For example, \[
+\mathscr F(z,1-z)=
+\frac{\Phi(z)\Phi'(1-z)-\mathfrak Z'(1-z)}{\Phi(z)\Phi(1-z)}.
+\] Its higher derivatives at the resonance are evaluated by the convergent local series \[
+\mathscr F(z,w)=\frac1{\Phi(z)\Phi(w)}
+\sum_{n\ge0}
+\frac{\Phi(z)\Phi^{(n+1)}(1-z)-\mathfrak Z^{(n+1)}(1-z)}{(n+1)!}
+a^n.
+\tag{SK6}
+\]
+
+The full Gaussian Taylor coefficients are \(c_n=2n(2n+1)(-\pi)^n/n!\), so \(\phi(x)=\sum_{n\ge1}c_nx^{2n}\). The regular part of SK2 is exactly \[
+f_s(x)=\Phi(s)x^{-s}-\sum_{n\ge1}\frac{c_nx^{2n}}{s+2n}.
+\tag{SK7}
+\] For each bounded \(x\)-interval the latter series and all required parameter derivatives converge absolutely. Define \[
+\begin{aligned}
+B(z,w;T)={}&-\Phi(z)\sum_{n\ge1}
+\frac{c_n\epsilon^{2n+1-z}}{(w+2n)(2n+1-z)}\\
+&-\Phi(w)\sum_{n\ge1}
+\frac{c_n\epsilon^{2n+1-w}}{(z+2n)(2n+1-w)}\\
+&+\sum_{n,m\ge1}
+\frac{c_nc_m\epsilon^{2n+2m+1}}
+{(z+2n)(w+2m)(2n+2m+1)},\qquad
+\mathscr B(z,w;T)=\frac{B(z,w;T)}{\Phi(z)\Phi(w)}.
+\end{aligned}
+\tag{SK8}
+\] Every single and double sum is absolutely convergent, including at \(T=0\). Then the complete original cutoff kernel is \[
+\boxed{\displaystyle
+\mathscr K_T(z,w):=\int_{\epsilon}^{\infty}g_z(x)g_w(x)dx
+=E_T(z+w-1)+\mathscr F(z,w)-\mathscr B(z,w;T).}
+\tag{SK9}
+\]
+
+\subsubsection{Proof}\label{pkernel:proof}
+
+For \(\Re z,\Re w<1/2\), Parseval and the exact two-factor partial fraction give \[
+\int_0^\infty f_z(x)f_w(x)dx
+=\frac{\mathfrak Z(z)+\mathfrak Z(w)}{1-z-w}.
+\] Subtract the integral of \(\Phi(z)\Phi(w)x^{-z-w}\) on \((0,1)\). The remaining physical integral is holomorphic on all of \(\mathcal S^2\): the cross terms are bounded near zero by \(x^{2-\Re z}\) and \(x^{2-\Re w}\), and the regular square by \(x^4\). Its value is \(\Phi(z)\Phi(w)\mathscr F(z,w)\), first on the open left polydomain and then everywhere by holomorphic uniqueness. The resonance is removable by SK4. The original singular integral on \((\epsilon,1)\) is exactly \(\Phi(z)\Phi(w)E_T(a)\). Expanding the omitted regular integral on \((0,\epsilon)\) with SK7 and integrating term by term gives precisely SK8, with both negative cross sums and the positive double sum. This proves SK9 at every cutoff, not only asymptotically.
+
+\subsubsection{An explicit truncation error}\label{pkernel:an-explicit-truncation-error}
+
+Let \(A(\epsilon)=(4t^2+6t)e^t\), \(t=\pi\epsilon^2\), and, for \(L\ge20\), \[
+ r_L=\frac{\pi\epsilon^2(2L+5)}{(L+1)(2L+3)}<1,
+\quad A_L=\frac{2(L+1)(2L+3)\pi^{L+1}\epsilon^{2L+2}}
+{(L+1)!(1-r_L)}.
+\] The ratio of successive absolute coefficients is decreasing after \(L+1\); hence \(\sum_{n>L}|c_n|\epsilon^{2n}\le A_L\), while the full sum is \(A(\epsilon)\). Truncate both indices of SK8 at \(L\), obtaining \(B_L\). Since the real parts of each first denominator exceed two and those of \(2n+1-z\) also exceed two, \[
+\boxed{\displaystyle
+|B-B_L|\le\frac{A_L}{4}
+\{ |\Phi(z)|\epsilon^{1-\Re z}+|\Phi(w)|\epsilon^{1-\Re w}\}
++\frac{\epsilon A(\epsilon)A_L}{10}.}
+\tag{SK10}
+\] The last term counts the union of both missing-index sets in the double sum and retains its denominator at least twenty. Divide by \(|\Phi(z)\Phi(w)|\) for \(\mathscr B\). For any closed parameter polydisks inside \(\mathcal S^2\), take the supremum of this bound there and divide by the two Cauchy radii to the derivative orders. This gives the corresponding bound for every divided-derivative entry, with no omitted factorial.
+
+\subsection{3. Return to every original primary, unit, and finite Gram}\label{pkernel:return-to-every-original-primary-unit-and-finite-gram}
+
+For the full actual finite zero divisor, use the original principal-part map \(a=\mathsf U_Zu\), \[
+a_{\rho,j}=[z^{m_\rho-j-1}]
+\frac{\sum_{l<m_\rho}u_{\rho,l}z^l}{2\zeta_\rho(z)},
+\qquad \zeta(\rho+z)=z^{m_\rho}\zeta_\rho(z).
+\tag{SK11}
+\] Its determinant and inverse are the original EG6--8 ones. The principal-part basis source is exactly \[
+g_{\rho,j}(x)=\frac1{j!}\partial_\rho^j g_\rho(x).
+\tag{SK12}
+\] To check this, its Mellin transform is the same derivative of \(\Phi(s)/(\Phi(\rho)(s-\rho))\). That function has singular part \((s-\rho)^{-1}\) and a jointly holomorphic remainder near the diagonal. Its divided derivative has singular part \((s-\rho)^{-j-1}\). The rational factor after removing \(\Phi(s)\) is proper and has only that original primary. This identifies it with the unique EG principal-part source; other original zero jets of \(2\zeta\mathcal M g_{\rho,j}\) vanish to full multiplicity. Hence the actual source is \(\psi_u=\sum_{\rho,j}a_{\rho,j}g_{\rho,j}\).
+
+Define a full matrix, with all \(0\le i<m_\rho\), \(0\le j<m_\sigma\), by \[
+\mathsf K_T[(\rho,i),(\sigma,j)]
+=\left.\frac{\partial_z^i\partial_w^j}{i!j!}
+\mathscr K_T(z,w)\right|_{z=\bar\rho,w=\sigma}.
+\] Then the original physical Gram, in its original divided-jet coordinates, is \[
+\boxed{\Gamma_Z(T)=\mathsf U_Z^*\mathsf K_T\mathsf U_Z.}
+\tag{SK13}
+\] Equations SK3, SK5--10, SK11 and SK13 evaluate every entry by special-function derivatives and an absolutely convergent, explicitly bounded series. No unspecified source integral or growing Gram inverse remains in those entries.
+
+In particular the formerly integral matrices of EG28--30 are now \[
+(F_Z)_{\rho i,\sigma j}
+=\frac{\partial_z^i\partial_w^j\mathscr F(\bar\rho,\sigma)}{i!j!},
+\quad (B_Z^{\rm reg}(T))_{\rho i,\sigma j}
+=\frac{\partial_z^i\partial_w^j\mathscr B(\bar\rho,\sigma;T)}{i!j!}.
+\tag{SK14}
+\] On the right divisor, the complete finite constant \(K_Z=F_Z-\widehat G_Z\) is the divided-derivative matrix of \[
+\boxed{\displaystyle
+\mathscr H(z,w)=
+\frac{\mathfrak Z(z)+\mathfrak Z(w)}{(1-z-w)\Phi(z)\Phi(w)}.}
+\tag{SK15}
+\] On the left divisor, the same explicit meromorphic function gives its positive limiting Gram: \[
+\boxed{\displaystyle
+(L_-)_{\rho i,\sigma j}
+=\frac{\partial_z^i\partial_w^j\mathscr H(\bar\rho,\sigma)}{i!j!},
+\qquad \Gamma_{--}(\infty)=\mathsf U_-^*L_-\mathsf U_-.}
+\tag{SK16}
+\] These are consequences of SK9: on the left, \(E_T(a)\to-1/a\); on the right, subtract the exact growing singular Gram. Equality of the formulas is analytic continuation with these explicitly different receiving operations, not equality of the positive left metric and the right cutoff metric.
+
+\subsection{4. Both physical source cross terms are also evaluated}\label{pkernel:both-physical-source-cross-terms-are-also-evaluated}
+
+Set \[
+\begin{aligned}
+\mathfrak Z_T(w)={}&\mathfrak Z(w)
+-\Phi(w)\sum_{n\ge1}\frac{c_n\epsilon^{2n+1-w}}{2n+1-w}\\
+&+\sum_{n,m\ge1}\frac{c_nc_m\epsilon^{2n+2m+1}}
+{(w+2m)(2n+2m+1)}.
+\end{aligned}\tag{SK17}
+\] Multiplying SK7 by the full Gaussian series and integrating its omitted zero interval proves \(\mathfrak Z_T(w)=\int_\epsilon^\infty\phi f_w\). The divided-derivative rows \[
+\ell_{\rho,j}=\frac1{j!}\partial_\rho^j\frac1{\Phi(\rho)},\qquad
+h_{T,\rho,j}=\frac1{j!}\partial_\rho^j\frac{\mathfrak Z_T(\rho)}{\Phi(\rho)}
+\tag{SK18}
+\] are therefore precisely the principal-part highest-coefficient row and physical source cross row. Their original-coordinate versions are obtained by right multiplication by \(\mathsf U_Z\). The exact action identity is \[
+\boxed{\displaystyle
+A_Z^*\Gamma_Z(T)+\Gamma_Z(T)A_Z-\Gamma_Z(T)
+=\mathsf U_Z^*\{\epsilon g(\epsilon)^*g(\epsilon)
+-\ell^*h_T-h_T^*\ell\}\mathsf U_Z.}
+\tag{SK19}
+\] This is EG57 with all three rows evaluated. The two cross terms are not replaced by the positive endpoint outer product. Absolute convergence and Cauchy bounds give all derivative truncation estimates. The single-index omission in SK17 is at most \(|\Phi(w)|\epsilon^{1-\Re w}A_L/2\), and the double-index omission at most \(\epsilon A(\epsilon)A_L/5\).
+
+\subsection{5. The first signed correction after the full quartet minimum}\label{pkernel:the-first-signed-correction-after-the-full-quartet-minimum}
+
+Retain the original quartet \(1/2\pm\delta\pm i\gamma\), \(0<\delta<1/2\), \(\gamma>0\), with full common multiplicity \(m\). In each half order the roots by heights \(+\gamma,-\gamma\), and retain all principal slots \(0,\ldots,m-1\). Write \(G_+=\widehat G_{Z_+}\), and let \(J_+,J_-\) insert the two highest-slot coordinates into the right and left halves. Put \[
+H_+=J_+^*G_+^{-1}J_+,\quad H_-=J_-^*L_-^{-1}J_-,\quad
+D_\gamma(T)=\operatorname{diag}(e^{i\gamma T},e^{-i\gamma T}).
+\] The full left inverse is taken before extracting these two entries. The coefficient \[
+\boxed{\displaystyle
+C_m(T)=\frac{\operatorname{Tr}
+[H_+D_\gamma(T)H_-D_\gamma(T)^*]}{((2m-1)!)^2}>0}
+\tag{SK20}
+\] is completely determined by SK16 and the original Cauchy matrix. Its bounds \[
+\frac{2\lambda_{\min}(H_+)\lambda_{\min}(H_-)}{((2m-1)!)^2}
+\le C_m(T)\le
+\frac{2\|H_+\|\|H_-\|}{((2m-1)!)^2}
+\] are uniform in \(T\). In particular no phase can make this coefficient zero. Its right factor is explicitly \[
+H_+=\begin{pmatrix}a_m&t_m\\\bar t_m&a_m\end{pmatrix},\qquad
+a_m=(2\delta)^{2m-1}\left(\frac{\delta^2+\gamma^2}{\gamma^2}\right)^m,
+\quad t_m=\frac{(2\delta)^{2m}(2\delta+2i\gamma)^{2m-1}}{(2i\gamma)^{2m}}.
+\tag{SK21}
+\] The diagonal follows by deleting the highest slot in the confluent Cauchy determinant. For the off-diagonal, take the Hermite interpolation numerator for a highest jet at the opposite root and evaluate its highest reflected pole, exactly as EG14--15. It yields the displayed power and phase; in particular \(|t_m|/a_m=\delta/\sqrt{\delta^2+\gamma^2}<1\). The left entries can equivalently be written using cofactors of the fully evaluated matrix SK16. Its size is \(2m\), independent of the tensor degree.
+
+Let \(Q_+(T)\) be the \textbf{original} attained right-value quotient EG39, with its entire left block. Let \[
+D_0(T)=4m\delta T-4m\log\left(2\left|\frac{\zeta^{(m)}(\rho)}{m!}\right|\right)
++2m^2\log\frac{\gamma}{2\delta\sqrt{\delta^2+\gamma^2}}.
+\] Then \[
+\boxed{\displaystyle
+\log\det Q_+(T)=D_0(T)
+-e^{-2\delta T}T^{4m-2}C_m(T)
++O_Z(e^{-2\delta T}T^{4m-3}).}
+\tag{SK22}
+\] Thus the old error scale is now an evaluated, strictly negative leading correction, not merely a bound for a possible Schur loss.
+
+\subsubsection{Proof, retaining the resonant cross block}\label{pkernel:proof-retaining-the-resonant-cross-block}
+
+Use the original right transformation \(E_{+,T}=e^{T(A_{{\rm pp},+}-I/2)}\). For a pair with the same height the transformed singular cross entry is \[
+e^{-\delta T+i\gamma_\rho T}
+\int_0^T\frac{(-(T-t))^i t^j}{i!j!}dt
+=e^{-\delta T+i\gamma_\rho T}
+\frac{(-1)^iT^{i+j+1}}{(i+j+1)!}.
+\] For opposite heights, expansion or integration by parts gives a polynomial of degree at most \(i+j\) multiplying the same decreasing exponential; all original frequency denominators are \(\pm2i\gamma\ne0\). The regular cross matrix is bounded by SK14, and multiplication by \(E_{+,T}^{-*}\) costs at most \(e^{-\delta T}\sum_{j<m}T^j/j!\). Consequently the entire transformed cross block is \[
+X(T)=\frac{(-1)^{m-1}e^{-\delta T}T^{2m-1}}{(2m-1)!}
+J_+D_\gamma(T)J_-^*
++O_Z(e^{-\delta T}T^{2m-2}).
+\] The left block is \(L_-+O_Z(e^{-2\delta T}T^{2m-2})\), with a bounded inverse tending to \(L_-^{-1}\). The unminimized transformed right metric differs from \(G_+\) by \(O_Z(e^{-2\delta T}T^{2m-2})\), by the exact finite correction. Insert all three in the full Schur complement. Its leading correction is negative and its trace relative to \(G_+\) is the term in SK22. The next cross term has size \(O_Z(e^{-2\delta T}T^{4m-3})\). The logarithm's quadratic remainder is \(O_Z(e^{-4\delta T}T^{8m-4})\), smaller than that error. Finally restore the unchanged determinants of \(\mathsf U_+\) and \(E_{+,T}\), giving \(D_0(T)\). This proof never removes the left minimum.
+
+\subsection{6. The full quartet's relative arithmetic spectrum}\label{pkernel:the-full-quartets-relative-arithmetic-spectrum}
+
+The left limiting Gram is SK16. Define its two evaluated rows \[
+\ell_{\rho,j}=\partial_\rho^j(1/\Phi(\rho))/j!,\quad
+h_{\rho,j}=\partial_\rho^j(\mathfrak Z(\rho)/\Phi(\rho))/j!,
+\quad \rho\in Z_-,
+\] and \[
+\boxed{\displaystyle
+s_m=\sqrt{(\ell L_-^{-1}\ell^*)(h L_-^{-1}h^*)}\ \ge 2m\delta.}
+\tag{SK23}
+\] All entries are now given by beta derivatives; this is a fixed \(2m\)-matrix calculation, not an unknown growing native projection. For the \textbf{whole original quartet} metric, the limiting relative weight spectrum is \[
+\boxed{\displaystyle
+\{4m\delta,\ -2m\delta+s_m,\ -2m\delta-s_m,
+\underbrace{0,\ldots,0}_{4m-3}\}.}
+\tag{SK24}
+\] The error in the ordered spectrum is \(O_Z(e^{-\delta T}(1+T)^{2m-1})\). Coincident eigenvalues are treated by their ordered min--max values, not by chosen eigenvectors. In particular the limit of its positive trace is \(2m\delta+s_m\), with excess \(s_m-2m\delta\) above the full-primary trace minimum \(4m\delta\).
+
+For a simple quartet let \(\alpha=1/2-\delta+i\gamma\) and \(\mathfrak Z(\alpha)=u+iv\). Then the remaining scalar has the closed value \[
+\boxed{\displaystyle
+s_1=\frac{2\delta\gamma\sqrt{u^2+v^2}}
+{\sqrt{\gamma^2u^2-\delta^2v^2}}.}
+\tag{SK25}
+\] The denominator is strictly positive; it is the determinant of the two independent original left sources times explicit positive factors.
+
+\subsubsection{Proof}\label{pkernel:proof-1}
+
+Apply the simultaneous congruence \(\mathsf U_Z^{-1}\operatorname{diag}(E_{+,T}^{-1},I)\). It commutes with the transformed block arithmetic action. The metric tends to \(\operatorname{diag}(G_+,L_-)\), with its cross block bounded above. The right relative weight has one eigenvalue \(4m\delta\), by its exact Cauchy displacement. On the left, the physical endpoint outer product tends to zero and SK19 gives exactly \(-\ell^*h-h^*\ell\). Conjugation symmetry of the original roots, \(\Phi\), and \(\mathfrak Z\) makes \(\ell L_-^{-1}h^*\) real. Its real part is \(2m\delta\), by taking the trace of the left action identity. Cauchy--Schwarz gives SK23. The nonzero eigenvalues of this rank-at-most-two relative form are therefore \(-2m\delta\pm s_m\). This proves SK24, including the possible zero branch. The stated matrix convergence and the positive limiting block metric give the ordered spectral error by finite-dimensional min--max.
+
+For SK25 it is convenient to use the exactly congruent unnormalized basis \((f_\alpha,f_{\bar\alpha})\). Its limiting Gram is \[
+L^{f}=\begin{pmatrix}u/\delta&\bar Z/(\delta+i\gamma)\\
+Z/(\delta-i\gamma)&u/\delta\end{pmatrix},\quad Z=u+iv,
+\] with rows \(\ell^f=(1,1)\), \(h^f=(Z,\bar Z)\). Direct inversion gives \[
+\ell^f(L^f)^{-1}(\ell^f)^*=\frac{2\delta\gamma}{u\gamma-\delta v},
+\quad h^f(L^f)^{-1}(h^f)^*=\frac{2\delta\gamma|Z|^2}{u\gamma+\delta v}.
+\] Their product proves SK25. Positivity gives \(u>0\) and \(u^2\gamma^2-\delta^2v^2>0\). The change of basis is diagonal multiplication by \(1/\Phi\), so it preserves the two displayed dual norms.
+
+\subsection{7. Critical primary: evaluate the retained coefficient and its next term}\label{pkernel:critical-primary-evaluate-the-retained-coefficient-and-its-next-term}
+
+For one actual critical primary \(\rho=1/2+i\gamma\) of full multiplicity \(m\), write \(P=|\Phi(\rho)|^2\), and put \[
+\boxed{\displaystyle
+f_{00}=\frac{\Phi'(\rho)}{\Phi(\rho)}-
+\frac{\mathfrak Z'(\rho)}{P}\ \in\mathbb R,\qquad
+f_{01}=\frac12\left(\frac{\Phi''(\rho)}{\Phi(\rho)}-
+\frac{\mathfrak Z''(\rho)}{P}\right)
+-f_{00}\frac{\Phi'(\rho)}{\Phi(\rho)}.}
+\tag{SK26}
+\] They are respectively \(\mathscr F(\bar\rho,\rho)\) and \(\partial_w\mathscr F(\bar\rho,\rho)\), by SK6. Differentiating SK4 and using \(1-\rho=\bar\rho\) verifies the reality of \(f_{00}\). The original critical determinant now has the expansion \[
+\boxed{\begin{aligned}
+\log\det\Gamma_\rho(T)={}&m^2\log T
+-2m\log\left(2\left|\frac{\zeta^{(m)}(\rho)}{m!}\right|\right)
++\log\prod_{j=0}^{m-1}\frac{j!}{(m+j)!}\\
+&+\frac{m^2f_{00}}{T}
+-\frac{m^2(m^2-1)\Re f_{01}+\frac12m^4f_{00}^2}{T^2}
++O_\rho(T^{-3}).
+\end{aligned}}\tag{SK27}
+\] For \(m=1\) the first numerator term at order \(T^{-2}\) is zero; there is no fictitious second jet in its Gram.
+
+Indeed the exact critical metric is \(D_TH_mD_T+F_\rho-B^{\rm reg}(T)\), with \((H_m)_{ij}=1/[i!j!(i+j+1)]\) and \(D_T=\operatorname{diag}(T^{j+1/2})\). Its first two normalized corrections are \(f_{00}e_0e_0^*/T+(f_{01}e_0e_1^*+\bar f_{01}e_1e_0^*)/T^2\). The exact inverse entries are \((H_m^{-1})_{00}=m^2\), \((H_m^{-1})_{01}=-m^2(m^2-1)/2\), by the Cauchy determinant/inverse or the shifted Legendre basis. The first two terms of \(\operatorname{Tr}\log(I+X)\) give SK27. All other normalized entries are \(O(T^{-3})\), and SK10 makes the regular tail exponentially smaller. The unchanged original unit determinant restores the zeta factor.
+
+\subsection{8. Exact finite spectrum: a fully specified cubic}\label{pkernel:exact-finite-spectrum-a-fully-specified-cubic}
+
+The full physical identity SK19 also evaluates the finite spectral problem without a \texttt{4m}-degree characteristic polynomial. In principal-part coordinates put \[
+Y_T=[\sqrt\epsilon\,g(\epsilon)^*,\ \ell^*,\ h_T^*],\qquad
+J=\begin{pmatrix}1&0&0\\0&0&-1\\0&-1&0\end{pmatrix},\qquad
+M_T=Y_T^*\mathsf K_T^{-1}Y_T\succeq0.
+\] These are precisely the three evaluated physical rows, with the complete original Gram inverse; no cross row is deleted. The relative weight is congruent to \(\mathsf K_T^{-1/2}Y_TJY_T^*\mathsf K_T^{-1/2}\). Its nonzero eigenvalues are the nonzero eigenvalues of \(JM_T\): the identity \(\det(I+UV)=\det(I+VU)\) follows by eliminating either diagonal block in \(\left(\begin{smallmatrix}I&U\\-V&I\end{smallmatrix}\right)\). This proves the full characteristic identity \[
+\det(\lambda I-W_{\rm rel}(T))
+=\lambda^{4m-3}\det(\lambda I_3-JM_T).
+\] The trace of the original relative weight is \(2\Re\operatorname{Tr}A_Z-4m=0\), so \(\operatorname{Tr}(JM_T)=0\). Also \(\det(JM_T)=-\det M_T\). Consequently, with \(p_T=\tfrac12\operatorname{Tr}((JM_T)^2)>0\), its three remaining values are exactly the three real roots of \[
+\boxed{\lambda^3-p_T\lambda+\det M_T=0.}
+\tag{SK28}
+\] The strict positivity of \(p_T\) follows because the original right and left eigenvectors have weight values \(\pm2\delta\) times their positive norms; the Hermitian weight is not zero. Its other \texttt{4m-3} eigenvalues are \textbf{exactly zero at every finite cutoff}, not only in the endpoint limit. The cubic has the explicit real evaluation \[
+\lambda_j=2\sqrt{p_T/3}\cos\left[
+\frac13\arccos\left(-\frac{3\sqrt3\det M_T}{2p_T^{3/2}}\right)
+-\frac{2\pi j}3\right],\qquad j=0,1,2.
+\] The argument belongs to \texttt{{[}-1,1{]}} because the original relative matrix is Hermitian. When \(\det M_T=0\), this formula includes the third zero; when \(M_T\succ0\), inertia of the displayed \texttt{J} gives two positive and one negative nonzero value. The finite matrix SK13 and all rows SK18 have already been evaluated. This cubic is a source-endpoint spectrum, not the spectrum of a substituted native quotient.
+
+\subsection{9. High-height value of the simple-quartet excess}\label{pkernel:high-height-value-of-the-simple-quartet-excess}
+
+The scalar SK25 also has an explicit high-height expansion for the same analytically defined source family, with fixed \(0<\delta<1/2\). This statement concerns evaluation of that family as the height parameter grows; it does not assert the existence of zeta zeros along such a path. Its result is \[
+\boxed{\displaystyle
+s_1=\sqrt{\frac{22}{195}}
+\left(\gamma^2+\delta^2-\frac{499}{26}\right)
++O_\delta(\gamma^{-2}).}
+\tag{SK29}
+\] Here is a direct derivation with a finite resolvent remainder. Let \(d\mu(y)=|\Phi(1/2+iy)|^2dy/(2\pi)\), and \(\mu_{2j}=\int y^{2j}d\mu\). The exact transform used for SK3 gives \[
+\begin{gathered}
+\mu_0=33\sqrt2/64,\quad \mu_2=585\sqrt2/128,\quad \mu_4=22455\sqrt2/256,\\
+\mu_6=1452915\sqrt2/512,\quad \mu_8=141390945\sqrt2/1024.
+\end{gathered}
+\] All odd moments vanish. On the left root \(\alpha=1/2-\delta+i\gamma\), put \(z=\delta-i\gamma\). Finite geometric division in \(1/(z+iy)\), including its last term, gives \[
+\mathfrak Z(\alpha)=\frac{\mu_0}{z}-\frac{\mu_2}{z^3}
++\frac{\mu_4}{z^5}-\frac{\mu_6}{z^7}+R_8,
+\qquad |R_8|\le\frac{\mu_8}{\delta|z|^8}.
+\] This uses the original spectral measure and \(|z+iy|\ge\delta\), so it bounds the full real line, including \(y\) near \(\gamma\). Writing \(\mathfrak Z(\alpha)=u+iv\), elementary expansion yields \[
+\begin{aligned}
+u={}&\mu_0\delta\gamma^{-2}
++\delta(3\mu_2-\mu_0\delta^2)\gamma^{-4}
++\delta(5\mu_4-10\mu_2\delta^2+\mu_0\delta^4)\gamma^{-6}
++O_\delta(\gamma^{-8}),\\
+v={}&\mu_0\gamma^{-1}+(\mu_2-\mu_0\delta^2)\gamma^{-3}
++(\mu_4-6\mu_2\delta^2+\mu_0\delta^4)\gamma^{-5}
++O_\delta(\gamma^{-7}).
+\end{aligned}
+\] Thus \[
+\gamma^2u^2-\delta^2v^2=
+4\delta^2\mu_0\mu_2\gamma^{-4}
+\left[1+\left(\frac{2\mu_2}{\mu_0}+\frac{2\mu_4}{\mu_2}
+-3\delta^2\right)\gamma^{-2}+O_\delta(\gamma^{-4})\right].
+\] Substitute this and the corresponding expansion of \(|u+iv|^2\) into SK25. Taking the positive square root gives \(s_1=\sqrt{\mu_0/\mu_2}(\gamma^2+\delta^2-\mu_4/\mu_2)
++O_\delta(\gamma^{-2})\). The displayed moments yield SK29. In particular this explicit original source metric has a quadratic high-height positive-trace excess; a positive norm alone does not remove that calculated arithmetic defect.
+
+\subsection{10. What is and is not completed}\label{pkernel:what-is-and-is-not-completed}
+
+SK13 evaluates the finite original inverse-source Gram in every primary slot; SK14--18 evaluate its regular and physical cross matrices; SK22 calculates the signed first correction of its full left-block quotient; SK24--25 calculate the full-quartet relative endpoint spectrum; SK26--27 replace the critical coefficient formerly named by an integral and give its next term. SK28 evaluates the full finite relative spectrum by a cubic; SK29 gives the simple-family high-height coefficient with a finite moment remainder.
+
+The quotient in SK22 is exactly the source-endpoint right-value quotient \(E_Z/E_{Z_-}\), through EG39. Its invertible comparison to Beurling is EG53, and its nonzero boundary remains EG55. Neither map identifies it with PRD's degree-k values \texttt{Z\_R} and target \texttt{J} minimum. The original native kernel return and the native same-class current numerators are not assigned these endpoint values.
+
+\subsubsection{Exact receiver back to the original one-factor minimum}\label{pkernel:exact-receiver-back-to-the-original-one-factor-minimum}
+
+The bridge to the original polynomial presentation is the original theta map itself, not an identification of Gram matrices. Let \(d=\deg h_Z\), \(f_0=\Theta\phi_*\), and \(R_Zu=\Theta\psi_u\). On the original one-factor finite source its full quotient value is exactly \[
+\boxed{\displaystyle
+u^*H_N^{(1)}u=
+\min_{P\in\mathbb C[S]_{\le N-d}}
+\|\Theta(\psi_u+P(D)\phi_*)\|_{L^2(dx)}^2.}
+\tag{SK30}
+\] The polynomial space is zero at \(N=d-1\). To prove the equation, every original representative in the same finite coefficient fibre is \(R_Zu+P(D)f_0\), and \(D\Theta=\Theta D\) on the original Gaussian source and the displayed inverse sources. Thus it equals exactly the function inside this minimum. Its source coordinates are the same \(u,P\) as in HG1--2. Before applying \(\Theta\), the finite physical-cutoff norm of \(\psi_u\) is the evaluated SK13. After applying \(\Theta\), the whole-line norm and the entire polynomial minimum in SK30 remain. This displays the precise remaining operation rather than substituting an endpoint Gram for the original attained theta metric. The original HM multinomial and tensor maps then define the native convolution source.
+
+\subsection{Classical references used}\label{pkernel:classical-references-used}
+
+\begin{itemize}
+\pkerneltightlist
+\item
+  NIST DLMF §5.12, Euler beta integral and gamma quotient (5.12.1): \url{https://dlmf.nist.gov/5.12}
+\item
+  NIST DLMF §8.17, incomplete beta integral and complement (8.17.1, 8.17.4): \url{https://dlmf.nist.gov/8.17}
+\item
+  NIST DLMF §1.14, Fourier/Mellin inversion and Parseval conventions: \url{https://dlmf.nist.gov/1.14}
+\item
+  The pinned programme EG/HG proof above supplies the exact original source, arithmetic unit, cutoff and quotient maps. New deductions are proved here; no independent re-audit of its entire upstream corpus is claimed.
+\end{itemize}
+
+\section{Receiving proof detail: the full highest-slot inverse}
+This paragraph makes the SK21 inverse evaluation explicit for every positive
+integer multiplicity. Put $x_1=\delta+i\gamma$, $x_2=\delta-i\gamma$.
+The matrix in the retained order is
+\[
+G_{(a,i),(b,j)}=\frac{(-1)^{i+j}\binom{i+j}{i}}
+ {(\bar x_a+x_b)^{i+j+1}},\qquad 0\le i,j<m.
+\tag{SK31}
+\]
+For a coefficient vector $c$ define
+$R(t)=\sum_{b,j}(-1)^jc_{b,j}/(t+x_b)^{j+1}$.
+Its divided derivative of order $i$ at $\bar x_a$ is exactly $(Gc)_{a,i}$.
+Let $D(t)=(t+x_1)^m(t+x_2)^m$. For the column of $G^{-1}$ with
+unit data at $(a,m-1)$, the unique numerator is
+\[
+P_a(t)=\frac{D(\bar x_a)}{(\bar x_a-\bar x_{3-a})^m}
+ (t-\bar x_{3-a})^m(t-\bar x_a)^{m-1}.\tag{SK32}
+\]
+Indeed its quotient by $D$ has a zero of order $m$ at the other node
+and leading Taylor coefficient one in order $m-1$ at $\bar x_a$;
+lower orders there vanish. These $2m$ conditions determine a polynomial
+of degree at most $2m-1$, since their difference would be divisible by
+the degree-$2m$ node product. Partial fractions give, with the sign retained,
+\[
+ (G^{-1})_{(b,m-1),(a,m-1)}
+ =(-1)^{m-1}\frac{P_a(-x_b)}{(x_{3-b}-x_b)^m}.\tag{SK33}
+\]
+For $a=2,b=1$, inserting $\bar x_2=x_1$, $\bar x_1=x_2$ gives
+$(2\delta)^{2m}(2\delta+2i\gamma)^{2m-1}/(2i\gamma)^{2m}$.
+For $a=b=1$ it gives
+$(2\delta)^{2m-1}(\delta^2+\gamma^2)^m/\gamma^{2m}$.
+Conjugation gives the other entries, proving SK21 with its full phase.
+In particular these inverse entries come from the entire $2m$-slot
+Gram before the two highest slots are extracted.
+
+\begin{thebibliography}{9}
+\bibitem{pkernel:sk:AskeyRoy} Richard A. Askey and Ranjan Roy,
+\emph{Gamma Function}, NIST Digital Library of Mathematical Functions,
+equation 5.12.1, Euler beta integral, \url{https://dlmf.nist.gov/5.12.E1}.
+Original formula TeX read and retained. It is used in the SK3 Fourier
+integral with positive real integration bases.
+\bibitem{pkernel:sk:Paris} Richard B. Paris, \emph{Incomplete Gamma and Related
+Functions}, NIST DLMF, equations 8.17.1 and 8.17.4,
+\url{https://dlmf.nist.gov/8.17}. Original formula TeX read and retained;
+SK4 uses the complement after undoing the regularized beta factor.
+\bibitem{pkernel:sk:Transforms} Ranjan Roy, Frank W. J. Olver, Richard A. Askey,
+Roderick Wong and William P. Reinhardt, \emph{Algebraic and Analytic
+Methods}, NIST DLMF, equations 1.14.7 and 1.14.37,
+\url{https://dlmf.nist.gov/1.14}. Original formula TeX read and retained;
+the full physical Mellin measure and $1/(2\pi)$ are displayed in SK3--4.
+\end{thebibliography}
+
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Original period metric and factorial return}
+\newcommand{\pperiodC}{\mathbb C}
+\newcommand{\pperiodR}{\mathbb R}
+\newcommand{\pperiodim}{\operatorname{im}}
+\newcommand{\pperioddiag}{\operatorname{diag}}
+
+
+
+\section{The original spaces and the two output norms}
+Retain the original simple quartet, the fixed period and branch, the
+complete arithmetic unit, and the actual source density
+\[
+ w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi},\quad g=2\xi,
+ \quad m_k=w_h^{*k},\quad c=k/2,\quad q=(k+1)^2.                  \tag{PM1}
+\]
+The physical polynomial norm is
+$\int_\pperiodR|P(c+iy)|^2m_k(y)\,dy$.  The original full root polynomial
+has distinct roots
+\[
+ \lambda_{ab}=c+(2a-k)\delta+i(2b-k)\gamma,
+ \quad0\le a,b\le k,
+ \qquad E_k=\pperiodC[S]/\chi_k.                                      \tag{PM2}
+\]
+For every original cutoff $N\ge q-1$, denote by $G_N$ the attained
+metric on $E_k$, including all its polynomial relations and the
+minimum over every degree-$N$ representative.  Let
+$\Lambda:E_k\to B_k$ be the original observation onto its actual
+image, in any one fixed coordinate basis of $B_k$, and retain
+\[
+ Q_N=(\Lambda G_N^{-1}\Lambda^*)^{-1},\qquad
+ L_N=G_N^{-1}\Lambda^*Q_N.                                     \tag{PM3}
+\]
+All inverses exist since $\Lambda$ is onto its image and $G_N$
+is positive definite.  Direct multiplication proves
+$\Lambda L_N=I$, $L_N^*G_NL_N=Q_N$ and
+$x=L_N\Lambda x+n$ with $n\in\ker\Lambda$ orthogonal in $G_N$
+to the first summand.  Thus $Q_N$ is exactly the full observation
+minimum.
+
+The inherited period norm in the incoming
+\path{01_CONDUCTOR_SUPPORT_AND_128_OBSERVATIONS.md}
+uses the specified injection $\jmath:B_k\hookrightarrow\mathcal H_{\rm per}$.
+Write $F_0$ for its original word realization, $G_0=F_0^*F_0$ for
+the complete original word Gram, and $J$ for the inclusion of
+the chosen $B_k$ coordinates into the word-coordinate space.
+Then
+\[
+ \jmath=F_0J,\qquad P=J^*G_0J=\jmath^*\jmath>0,
+ \qquad\jmath\Lambda=F_0\mathsf B\mathsf V_k.                   \tag{PM4}
+\]
+Here $\mathsf V_k$ is the unchanged original root-value map and
+$\mathsf B$ the actual coefficient observation.  PM4 includes
+every original word multiplicity, period entry and unit.  It
+constructs $P$ rather than declaring it to be $Q_N$.
+
+The exact comparison matrix and constants are
+\[
+ \Gamma_N=Q_N^{-1/2}P Q_N^{-1/2},\qquad
+ \rho_N=\sqrt{\lambda_{\max}(\Gamma_N)},\qquad
+ \underline\rho_N=\sqrt{\lambda_{\min}(\Gamma_N)}>0.             \tag{PM5}
+\]
+Substitution $v=Q_N^{1/2}b$ proves both sharp inequalities
+\[
+ \underline\rho_N\|b\|_{Q_N}\le\|b\|_P
+                         \le\rho_N\|b\|_{Q_N}.                 \tag{PM6}
+\]
+The sharp upper constant has the original-map identity
+\[
+ \boxed{\rho_N=\|\jmath\Lambda\|_{(E_k,G_N)\to\mathcal H_{\rm per}}.}
+                                                                    \tag{PM7}
+\]
+Indeed for every source vector the attained decomposition gives
+$\|\Lambda x\|_{Q_N}\le\|x\|_{G_N}$, so PM6 proves one
+inequality.  Conversely take $x=L_Nb$ for a maximizing vector of
+PM5; its norm equals $\|b\|_{Q_N}$, giving equality.  The same
+constant applies to a direct sum of any number of output blocks.
+These are exact finite metric identities, not estimates inferred
+from the number of observation steps.
+
+\section{The unchanged root-value inverse and its metric receiver}
+Let $M=M_S$ and let the actual finite recovery map in the incoming
+support proof be
+\[
+ F_L:B_k^{\oplus(L+1)}\longrightarrow\pperiodC^q,
+ \quad F_L(\Lambda x,\Lambda Mx,\ldots,\Lambda M^Lx)
+                                  =\mathsf V_kx.               \tag{PM8}
+\]
+Its coefficients are the original translated conductor Lagrange
+filters for the covered coordinates, followed by subtraction of
+those values and the original detected-corner Lagrange filters.
+No determinant estimate is substituted for these filters.
+In particular $L\le127$ in that note, whereas the separate
+constant-depth corner-block proof supplies a different valid map
+with $L\le80$.  Either actual matrix can be used in what follows.
+
+The exact norm in the inherited period metric is
+\[
+ C_{P,L}=\|F_L\pperioddiag(P^{-1/2},\ldots,P^{-1/2})\|_{2\to2}.       \tag{PM9}
+\]
+The O5 expression in the incoming proof is a bound for this
+constant, in this precise metric.  With its displayed covered
+coordinate bound $R_{\rm cov}$, remaining-corner bound $R_C$
+and forward-stack bound $S_k$, the algebraic estimate is
+\[
+ C_{P,L}\le R_{\rm cov}+R_C(1+S_kR_{\rm cov}).                  \tag{PM10}
+\]
+For completeness, this last propagation is a direct operator
+identity: if $F_{\rm cov}$ returns the covered coordinates,
+$S_{\rm cov}$ inserts their forward observation stack, and
+$F_C$ returns the remaining corner coordinates after subtraction,
+the full map is
+$F_{\rm cov}+F_C(I-S_{\rm cov}F_{\rm cov})$ in disjoint
+root-coordinate blocks.  The triangle inequality and the three
+stated norms give PM10.  No change to the underlying output
+metric is involved in that estimate.  The factorial arithmetic
+return below is independent of the word-Gram estimates used to
+bound those three period-norm constants.
+
+For a stack measured instead in $Q_N$, PM6 gives the exact
+receiving inequality
+\[
+ \boxed{\|F_L\|_{Q_N^{\oplus(L+1)}\to\ell^2}
+                      \le C_{P,L}\rho_N.}                     \tag{PM11}
+\]
+The factor $\rho_N$ is essential unless its actual matrix is
+evaluated or bounded separately.  Equality of the kernels of
+$\Lambda$ and $\jmath\Lambda$ gives no permission to erase it.
+Conversely, a native-output bound transfers to the inherited
+period input norm with factor $\underline\rho_N^{-1}$.
+
+\section{Full original Lagrange lift and factorial convolution bound}
+Let
+\[
+ d_*=2\min(\delta,\gamma),\qquad
+ R_h=k\sqrt{\delta^2+\gamma^2},\qquad
+ \eta=\pi/4,\qquad n=q-1.                                     \tag{PM12}
+\]
+Every original grid difference has modulus at least $d_*$:
+for two different index pairs it is
+$2\delta(a-a')+2i\gamma(b-b')$, and at least one integer
+difference is nonzero.  The exact original cardinal polynomial
+for a root $\lambda$ is
+\[
+ e_\lambda(S)=\prod_{\mu\ne\lambda}
+                         \frac{S-\mu}{\lambda-\mu}.
+\]
+At the physical argument $S=c+iy$, every numerator factor is
+bounded by $|y|+R_h$, since
+$|\mu-c|\le k\sqrt{\delta^2+\gamma^2}$.  Hence, without changing
+the full polynomial or coordinate,
+\[
+ |e_\lambda(c+iy)|^2
+              \le d_*^{-2n}(|y|+R_h)^{2n}.                     \tag{PM13}
+\]
+For values $v=(v_\lambda)$, the literal Lagrange lift is
+$P_v=\sum_\lambda v_\lambda e_\lambda$.  Cauchy--Schwarz in
+this finite sum yields
+\[
+ |P_v(c+iy)|^2\le q\,d_*^{-2n}(|y|+R_h)^{2n}\|v\|_2^2.       \tag{PM14}
+\]
+
+The fixed full quartet polynomial $h$ has real coefficients,
+because its roots and multiplicities are closed under conjugation.
+The original entire function $g=2\xi$ is of real type.  Thus the
+physical density in PM1 is even, and so is $m_k$.  Define its
+actual bilateral moment
+\[
+ M_h(t)=\int_\pperiodR e^{ty}w_h(y)\,dy.
+\]
+The retained original source estimates prove
+$M_h(\pi/2)<\infty$ (CAI16's $M_\alpha$).  Evenness implies
+$M_h(t)=\int\cosh(ty)w_h(y)\,dy$, so in particular
+$0<M_h(\eta)\le M_h(\pi/2)<\infty$.
+Tonelli applied to the nonnegative convolution integrand gives
+the exact unnormalized convolution identity
+\[
+ \int_\pperiodR e^{ty}m_k(y)\,dy=M_h(t)^k\quad(t=\eta,-\eta).
+                                                                    \tag{PM15}
+\]
+Consequently
+\[
+ \int_\pperiodR e^{\eta|y|}m_k(y)\,dy
+ \le\int_\pperiodR(e^{\eta y}+e^{-\eta y})m_k(y)\,dy
+             =2M_h(\eta)^k.                                   \tag{PM16}
+\]
+This bound retains both half-lines and the complete original
+convolution mass.  No probability normalization has occurred.
+
+For $t\ge0$, the single $(2n)$th term of the exponential series
+gives $t^{2n}\le(2n)!\eta^{-2n}e^{\eta t}$.  Insert
+$t=|y|+R_h$ into PM14 and use PM16.  The original polynomial
+norm therefore satisfies the fully evaluated bound
+\[
+ \boxed{\|P_v\|_{m_k}^2\le B_{h,k}\|v\|_2^2,\qquad
+ B_{h,k}=2q(2q-2)!(\eta d_*)^{-2q+2}
+                    e^{\eta R_h}M_h(\eta)^k.}                 \tag{PM17}
+\]
+This is exactly the incoming O6 constant, with its factor two,
+factorial, physical displacement and mass all accounted for.
+Since $P_v$ has degree $q-1\le N$, it is an admissible original
+representative of its class at every cutoff under consideration.
+Taking the full minimum only lowers its squared norm.  Hence
+\[
+ \|\mathsf V_k^{-1}v\|_{G_N}^2\le B_{h,k}\|v\|_2^2
+                           \quad(N\ge q-1).                   \tag{PM18}
+\]
+
+For fixed original $h,\delta,\gamma$, the logarithm of the
+right-hand constant is $O_h(q\log(q+2))$.  A direct sufficient
+bound uses $(2q-2)!\le(2q-2)^{2q-2}$; the remaining factors in
+PM17 have logarithms bounded in modulus by a constant times
+$q+k+\log(q+2)$.  There is no altered asymptotic constant hidden
+inside the proved exact formula PM17.
+
+\section{The two recovery estimates and exact receiving matrix}
+Combine PM9 and PM18, using the actual reconstruction
+$\mathcal R_{L,N}=\mathsf V_k^{-1}F_L$.  It satisfies
+\[
+ \begin{split}
+ \|\mathcal R_{L,N}\|_{P^{\oplus(L+1)}\to G_N}
+      &\le\sqrt{B_{h,k}}\,C_{P,L},\\
+ \|\mathcal R_{L,N}\|_{Q_N^{\oplus(L+1)}\to G_N}
+      &\le\sqrt{B_{h,k}}\,C_{P,L}\rho_N.
+ \end{split}                                                     \tag{PM19}
+\]
+The first is the proper original-metric interpretation of O6,
+and is uniform over $N\ge q-1$ in its stated input norm.  Its
+incoming $C_{P,L}=\exp(O_{h,u}(k))$ estimate gives the stated
+$\exp(O_{h,u}(q\log(q+2)))$ return in that norm.  The second
+estimate is the actual transfer to the attained output metric
+used by DO and DQ.  Its factor $\rho_N$ has been specified and
+proved in PM5--7; neither that factor nor its dependence on the
+cutoff is estimated by the algebraic observation depth.
+
+The full operator norm can also be evaluated directly, rather
+than through these successive upper bounds.  Set
+\[
+ G_{{\rm val},N}=\mathsf V_k^{-*}G_N\mathsf V_k^{-1},\qquad
+ Q_N^{[L]}=\pperioddiag(Q_N,\ldots,Q_N).
+\]
+Then the exact native recovery constant is
+\[
+ \boxed{\|\mathcal R_{L,N}\|^2
+ =\lambda_{\max}\left((Q_N^{[L]})^{-1/2}
+          F_L^*G_{{\rm val},N}F_L(Q_N^{[L]})^{-1/2}\right).}     \tag{PM20}
+\]
+The identity follows by substituting the explicit coordinate
+isometries in the Rayleigh quotient, without changing any
+original Gram.  It supplies a direct finite receiver for the
+quantitative leakage bounds if the actual coefficient matrix
+is preferred to PM19.  It does not imply a small determinant
+allowance or a signed current estimate.
+
+\section{Proof inputs and what was independently checked}
+The original support inverse and its inherited output realization
+are the actual O1--6 in the user-supplied
+\path{01_CONDUCTOR_SUPPORT_AND_128_OBSERVATIONS.md};
+the older corner-jet construction O1--12 is retained in its
+accompanying input source.  The density and convolution mass
+are the original LR2 and CAI16 definitions, including $1/(2\pi)$.
+PM5--7 and PM11 prove the previously unstated metric conversion;
+PM12--18 give a complete direct derivation of the original
+factorial convolution bound.  The finite word-Gram and jet
+estimates entering the incoming expression PM10 are kept as
+their supplied period-norm bounds, not reclassified as native
+quotient estimates.  All independent finite-dimensional and
+integral arguments invoked here are included in the text.
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Native truncation and original singular-value brackets}
+\newcommand{\pnativediag}{\operatorname{diag}}
+\newcommand{\pnativerank}{\operatorname{rank}}
+
+This receiving calculation combines the proved native truncation
+TR1--10 with DQ1--12 and PM1--20. It keeps the original polynomial
+source, its quotient by the full root polynomial, the original
+observation and the inherited period Gram. The finite native
+integrals in TR are retained as their actual integrals; no moment
+evaluation or numerical certificate is asserted here.
+
+\section{The same source bracket through both original minima}
+Retain TR's original cutoff $N\ge q-1$, parity-coordinate Gram $H$,
+and finite native-resolvent truncation $H^{[J]}$. With the exact
+original constant $L_N^\sharp$ from TR3, take the original integer
+$J>L_N^\sharp/2$ and put
+\[
+ \epsilon=\frac{L_N^\sharp}{2J}\in(0,1),\qquad
+ \kappa=(1-\epsilon)^{-1}.
+ \tag{MS1}
+\]
+TR1--4 proves $H^{[J]}\preceq H\preceq\kappa H^{[J]}$ from
+the complete original measure and multiplication bound. This is an
+available result at the displayed integers, not a new assumption.
+Let $A_0$ be the original map from parity-coordinate polynomials to
+$E_k=\mathbb C[S]/\chi_k$, including the full physical-coordinate
+matrix. Its type and kernel are unchanged. Define
+\[
+ \underline G=(A_0(H^{[J]})^{-1}A_0^*)^{-1},\quad
+ G_N=(A_0H^{-1}A_0^*)^{-1},\quad
+ \underline Q=(\Lambda\underline G^{-1}\Lambda^*)^{-1}.
+ \tag{MS2}
+\]
+The first onto map is onto because $N\ge q-1$; $\Lambda$ is onto
+its actual image. The fixed-fibre minimum formula, proved by
+completing the square in TR5 and PM3, gives
+\[
+ \underline G\preceq G_N\preceq\kappa\underline G,\qquad
+ \underline Q\preceq Q_N\preceq\kappa\underline Q,\qquad
+ \underline H_K:=I^*\underline GI\preceq H_K
+                           \preceq\kappa\underline H_K.
+ \tag{MS3}
+\]
+Here $I$ is the unchanged original frame of $\ker\Lambda$.
+Minimizing over the same affine fibre preserves both inequalities:
+for every admissible representative the source inequality holds,
+and taking infima on that same fibre proves it. This argument
+keeps both complete minima in MS2.
+
+\section{Enclosures for every mixed-action singular value}
+The original forward mixed-action map is the fixed matrix
+$B=\Lambda M_S I$. Its coordinates do not depend on the source
+metric. The source and target metric presentations are
+\[
+ B_N=Q_N^{1/2}BH_K^{-1/2},\qquad
+ \underline B=\underline Q^{1/2}B\underline H_K^{-1/2}.
+ \tag{MS4}
+\]
+For every singular-value index of this rectangular map, including
+its zero values, the exact native enclosure is
+\[
+ \boxed{\sqrt{1-\epsilon}\,\sigma_j(\underline B)
+       \le\sigma_j(B_N)
+       \le(1-\epsilon)^{-1/2}\sigma_j(\underline B).}
+ \tag{MS5}
+\]
+For proof, each nonzero coordinate vector $x$ satisfies
+\[
+ \kappa^{-1}\frac{x^*B^*\underline QBx}{x^*\underline H_Kx}
+ \le\frac{x^*B^*Q_NBx}{x^*H_Kx}
+ \le\kappa\frac{x^*B^*\underline QBx}{x^*\underline H_Kx}.
+\]
+These quotients are the Rayleigh quotients of the two squared
+singular-value problems in the same coordinate space. Their
+min--max formula follows from an orthonormal eigenbasis after
+the indicated metric coordinate isometry: the span of the first
+$j$ eigenvectors supplies the lower bound, and intersection with
+the orthogonal complement of the first $j-1$ supplies the reverse
+bound. Taking the identical extrema over coordinate subspaces
+in the two displayed inequalities and then positive square roots
+proves MS5. Kernel values remain exactly zero because both metrics
+are invertible and the matrix $B$ is unchanged.
+
+The original reverse direction $C=J_KM_SL$ depends on the actual
+metric, so it is not replaced by the reverse block formed from
+$\underline G$. Instead use the exact proved identity
+$C_N+B_N^*=R_N$, $\pnativerank R_N\le2$, where
+$C_N=H_K^{1/2}CQ_N^{-1/2}$. Intersecting a $j$-dimensional
+singular space of $B_N^*$ with $\ker R_N$ loses at most two
+dimensions and on that intersection $C_N=-B_N^*$ exactly.
+For every $3\le j\le\min(\dim\ker\Lambda,\dim B_k)$ this proves
+\[
+ \boxed{\sigma_{j-2}(C_N)
+          \ge\sqrt{1-\epsilon}\,\sigma_j(\underline B).}
+ \tag{MS6}
+\]
+The actual $G_N$-metric commutator has the two isometric blocks
+$\left(\begin{smallmatrix}0&-C_N\\B_N&0\end{smallmatrix}\right)$.
+Its singular values are the union of those of $C_N$ and $B_N$,
+since its squared singular matrix is block diagonal. Thus at
+least $2j-2$ of its singular values are at least the right side
+of MS6 whenever $\sigma_j(\underline B)>0$. This is the exact
+quantitative receiver for the original mixed return, without
+constructing a false metric-independent reverse block.
+
+\section{Period-norm conversion and a fixed recovery map}
+Retain the complete inherited period Gram $P=\jmath^*\jmath$ of
+PM4, and put
+\[
+ \underline\rho=\sqrt{\lambda_{\max}
+          (\underline Q^{-1/2}P\underline Q^{-1/2})}.
+\]
+The sharp original conversion constant in PM5--7 satisfies
+\[
+ \boxed{\sqrt{1-\epsilon}\,\underline\rho
+      \le\rho_N\le\underline\rho.}\tag{MS7}
+\]
+Indeed $\rho_N^2=\sup_{b\ne0}b^*Pb/(b^*Q_Nb)$; the numerator
+is unchanged and MS3 brackets its denominator. Taking the same
+supremum gives the result. Hence the actual extra factor required
+by PM19 can be enclosed from the same finite native truncation.
+
+For a fixed actual recovery matrix $F:B_k^{\oplus(d+1)}\to E_k$
+with $F(\Lambda,\ldots,\Lambda M_S^d)^T=I$, set
+$C_N(F)=\|F\|_{Q_N^{\oplus(d+1)}\to G_N}$ and define
+$\underline C(F)$ with the two underlined metrics. Applying MS3
+to the numerator and denominator of the same operator Rayleigh
+quotient gives
+\[
+ \sqrt{1-\epsilon}\,\underline C(F)
+ \le C_N(F)\le(1-\epsilon)^{-1/2}\underline C(F).
+ \tag{MS8}
+\]
+For example the inherited-period recovery of PM8 is such a fixed
+map. One may also construct the DO corner left inverses using
+$\underline Q$: their exact identity $J_iB_i=I$ holds for every
+positive definite output metric, so the resulting reconstruction
+remains an exact inverse of the original observation stack.
+Once chosen it is held fixed in MS8. This does not equate it
+with the different left inverse selected using $Q_N$.
+
+All matrices underlined here still contain the actual native
+integrals retained by TR1. Equations MS5--8 propagate certified
+values or enclosures of those matrices to the original mixed
+directions and the period conversion without removing any kernel
+or taking an unproved arithmetic phase limit.
+
+\begin{thebibliography}{9}
+\bibitem{pnative:TR} Split-Zero programme, \emph{Native resolvent truncation
+at growing degree and the original conductor minimum}, TR1--10,
+complete proof \texttt{NATIVE\_TRUNCATION\_CONDUCTOR\_RETURN.tex},
+published in the edition
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/tree/ab45e221579a0d48ce2885b4ecdf1a6aefc24a20/workbenches/splitzero-tandem/continuations/20260920-native-parity-conductor-return}.
+The full proof was read for this receiver. Its human-literature
+input is credited to A.~I.~Aptekarev, G.~L\'opez Lagomasino and
+A.~Mart\'{\i}nez--Finkelshtein, \emph{Strong asymptotics for the
+Pollaczek multiple orthogonal polynomials ensembles},
+arXiv:1410.1261v1; the complete companion proves the actual native
+transport and reciprocal series used in TR. This note uses those
+proved programme maps and does not import the author's ensemble
+asymptotics or claim a new reading of the whole author paper.
+\end{thebibliography}
+
+\endgroup
+
+% END COMPLETE ORIGINAL OBSERVATION AND SOURCE KERNEL PROOFS
+
+\end{document}

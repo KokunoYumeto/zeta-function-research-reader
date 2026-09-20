@@ -1,0 +1,255 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\title{The actual arithmetic multiplier in Gamma Jacobi coordinates}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{Original objects and literature input}
+The original arithmetic packet has
+\[
+ \rho=\tfrac12+\delta+i\gamma,\quad 0<\delta<\tfrac12,\quad\gamma>2,
+ \quad h(s)=\prod_{z\in\{\rho,\bar\rho,1-\rho,1-\bar\rho\}}(s-z)^m,
+ \quad g=2\xi,\quad w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi}.
+\]
+The packet divisor retains the complete zero order $m$ at each centre;
+the construction does not assert existence of an off-line packet.
+For the original tensor degrees $k=4l+1\ge9$ put
+\[
+ m_k=w_h^{*k},\quad\mu_h=\int_\R w_h(y)dy,\quad c=k/2,
+ \quad q=[1+k(m-1)](k+1)^2,
+\]
+\[
+ \chi(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma]^{1+k(m-1)}.
+\]
+All finite quotient formulas below use $N\ge q-1$. The original
+reference measure is
+\[
+ d\sigma(y)=\rho_\sigma(y)dy
+ =\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}dy,\qquad
+ M_\sigma=\sqrt{2\pi}.
+\]
+The complete prior CAI proof, equations CAI16--18, provides on this
+domain
+\begin{equation}\label{eq:envelope}
+ a_k(1+y^2)^{-M}\rho_\sigma(y)\le m_k(y)\le A_k\rho_\sigma(y),
+ \quad M=21+4m,
+\end{equation}
+with its original positive constants
+\[
+ \alpha=\pi/2,\quad p=8m-9/2,\quad B_h=42+8m,\quad
+ \vartheta_h=\int_{-1}^1w_h(y)dy,\quad
+ M_\alpha=\int_\R e^{\alpha y}w_h(y)dy,
+\]
+\[
+ c_\Gamma=\sqrt2e^{-7/6},\quad C_\Gamma=\sqrt{2\sqrt5}e^{2/3},\quad
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+ {C_\Gamma2^{B_h/2}},\quad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{p+1}M_\alpha^{k-1}.
+\]
+Here $c_h$ and $C_h^{\rm tilt}$ are precisely the prior lower-envelope
+and compact/tail constants, not newly chosen measures or assumptions.
+The proof and their original definitions are preserved in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/2412f4aaa07c3fb19052cc0e537e93c2db9b0b1d/workbenches/splitzero-tandem/continuations/20260920-heat-literature-observed-class/providers/CAI_COMPLETE_PREREQUISITE.tex}
+{the complete CAI provider}. This note proves the new receiving maps;
+it uses that established density envelope at its stated scope.
+
+The human literature input is Franti\v{s}ek \v{S}tampach and Pavel
+\v{S}\v{t}ov\'{i}\v{c}ek,
+\emph{Spectral representation of some weighted Hankel matrices and
+orthogonal polynomials from the Askey scheme},
+\href{https://arxiv.org/abs/1811.05820v1}{arXiv:1811.05820v1},
+Theorem \texttt{thm:commut\_matr\_Jac}, its following remark, and
+Theorem \texttt{thm:def\_H}. Their commutant is reconstructed below
+on the literal arithmetic multiplier. Their probability-measure
+convention is not imported as a change of the programme's mass.
+
+\section{The exact arithmetic operator and its first column}
+Retain the real monic Gamma polynomials $p_n$ and their full norms:
+\[
+ \sum_{n\ge0}p_n(y)\frac{t^n}{n!}
+ =(1+t^2)^{-1/4}e^{y\arctan t},\quad
+ \gamma_n=M_\sigma n!(1/2)_n,\quad
+ \varphi_n=p_n/\sqrt{\gamma_n},\quad
+ r_n=\sqrt{M_\sigma}\varphi_n.
+\]
+Thus $\varphi_0=M_\sigma^{-1/2}$ and $r_0=1$; the functions
+$r_n$ are not declared orthonormal in the original measure.
+The complete beta-integral/generating-function proof of these norms
+is included in the companion original-Gamma proof. They are also
+the Meixner--Pollaczek family of the cited paper, with
+$r_n(y)=\sqrt{n!/(1/2)_n}P_n^{(1/4)}(y/2;\pi/2)$.
+This is an explicit polynomial identity, retaining the factor $y/2$.
+
+Define the original density ratio
+\[
+ R_k(y)=m_k(y)/\rho_\sigma(y).
+\]
+It is the literal ratio, positive and bounded above by $A_k$ by
+\eqref{eq:envelope}. Multiplication by $R_k$ is consequently a bounded
+positive self-adjoint operator on $L^2(\sigma)$. Let
+\[
+ U_\sigma:\ell^2(\N_0)\longrightarrow L^2(\sigma),\quad
+ U_\sigma e_n=\varphi_n,
+ \qquad \mathcal C=U_\sigma^*M_{R_k}U_\sigma.
+\]
+The polynomials form a complete orthonormal basis here. For an explicit
+density argument, if $f\in L^2(\sigma)$ is orthogonal to every
+polynomial, Cauchy--Schwarz and the exponential moments of $\sigma$
+show that $\int f(y)e^{zy}d\sigma(y)$ is holomorphic in a strip
+about the imaginary axis. Every derivative at zero vanishes, so the
+transform vanishes in that strip by analytic uniqueness. On the
+imaginary axis it is the Fourier transform of the finite measure
+$f\,d\sigma$, hence that measure and $f$ vanish. This proves
+surjectivity of $U_\sigma$ without changing $d\sigma$.
+
+The entries and bounds of the actual operator are
+\begin{equation}\label{eq:C}
+ \mathcal C_{ij}=\int_\R\varphi_i(y)\varphi_j(y)m_k(y)dy,
+ \qquad 0\le\mathcal C\le A_k I,
+ \qquad \mathcal C_{00}=\mu_h^k/M_\sigma.
+\end{equation}
+Define the real symmetric Jacobi matrix $\mathcal J$ by
+\[
+ \mathcal J_{n,n}=0,\quad
+ \mathcal J_{n,n+1}=\mathcal J_{n+1,n}=b_n,
+ \qquad b_n=\sqrt{(n+1)(n+1/2)}.
+\]
+Its polynomial recurrence is exactly multiplication by $y$ in the
+$\varphi_n$ basis. Applying that recurrence under the integral in
+\eqref{eq:C} proves entrywise $\mathcal J\mathcal C=\mathcal C\mathcal J$.
+Every product here uses only finitely many adjacent entries. No
+interchange of an uncontrolled infinite series is needed.
+
+Put $\alpha_j=\mathcal C_{j0}$. Then
+\begin{equation}\label{eq:first}
+ \boxed{\mathcal C_{mn}=
+ \sum_{j=|m-n|}^{m+n}\alpha_j\,[r_j(\mathcal J)]_{mn}.}
+\end{equation}
+To prove the formula fully, the recurrence and $r_0=1$ give
+$r_n(\mathcal J)e_0=e_n$ by induction. The polynomial $r_mr_n$
+expands in the $r_j$ basis, with coefficient
+\[
+ d_{mnj}=\frac1{M_\sigma}\int r_m r_n r_j\,d\sigma
+ =[r_j(\mathcal J)]_{mn}.
+\]
+Orthogonality makes this coefficient zero for $j>m+n$, $j+m<n$
+or $j+n<m$. Finally
+\[
+ \mathcal C_{mn}=\frac1{M_\sigma}\int r_mr_n m_kdy
+ =\sum_j d_{mnj}\frac1{M_\sigma}\int r_jm_kdy
+ =\sum_j d_{mnj}\alpha_j,
+\]
+which proves \eqref{eq:first}. This is the commutant formula of
+\v{S}tampach--\v{S}\v{t}ov\'{i}\v{c}ek with every actual mass
+factor visible. Since $m_k$ is even, $\alpha_j=0$ for odd $j$,
+and $\mathcal C_{mn}=0$ for odd $m+n$.
+
+The first column is itself generated by the original one-factor
+arithmetic input
+\[
+ M_h(z)=\int_\R e^{zy}w_h(y)dy.
+\]
+For $t$ in a sufficiently small complex neighbourhood of zero,
+the exponential tail in CAI17 and Fubini give
+\[
+ \int e^{y\arctan t}m_k(y)dy=M_h(\arctan t)^k.
+\]
+Differentiation of the Gamma generating function under this integral
+therefore gives the exact formula
+\begin{equation}\label{eq:alpha}
+ \boxed{\alpha_j=
+ \frac{j!}{M_\sigma\sqrt{j!(1/2)_j}}
+ [t^j]\bigl((1+t^2)^{-1/4}M_h(\arctan t)^k\bigr).}
+\end{equation}
+In particular $\alpha_0=\mu_h^k/M_\sigma$, as in \eqref{eq:C}.
+This formula keeps the actual $k$th convolution, rather than
+replacing it by a Gamma convolution or a finite Euler product.
+
+\section{Finite boundary defect and exact original quotient}
+Let $P_N$ be projection to $e_0,\ldots,e_N$ and put
+$C_N=P_N\mathcal C P_N$, $J_N=P_N\mathcal J P_N$, regarded as
+$(N+1)$-square matrices. Write
+$c_N=(\mathcal C_{0,N+1},\ldots,\mathcal C_{N,N+1})^T$.
+Then the finite identity is
+\begin{equation}\label{eq:boundary}
+ \boxed{J_NC_N-C_NJ_N=b_N(c_Ne_N^*-e_Nc_N^*).}
+\end{equation}
+Indeed insert $I=P_N+(I-P_N)$ between the two factors of the full
+commutation identity. The only Jacobi entry crossing the cutoff is
+$b_N$, so the two missing products are respectively
+$b_Ne_Nc_N^*$ and $b_Nc_Ne_N^*$. Rearrangement gives
+\eqref{eq:boundary}, including its sign. Each right-hand term has
+rank at most one. Formula \eqref{eq:first} computes $C_N$ from
+$\alpha_0,\ldots,\alpha_{2N}$, and computes $c_N$ from
+$\alpha_0,\ldots,\alpha_{2N+1}$.
+Here $r_j(\mathcal J)$ denotes the polynomial in the full Jacobi
+matrix, then compressed. It is not silently replaced by $r_j(J_N)$,
+which would discard paths leaving and returning to the cutoff.
+
+For an original polynomial $F(S)=\sum_{j=0}^N a_jS^j$ use
+\[
+ T_{rj}=\binom jr c^{j-r}i^r\ (r\le j),\qquad T_{rj}=0\ (r>j).
+\]
+It sends $a$ to the real-variable monomial coefficients of the same
+function $F(c+iy)$. Let $B$ have in column $n$ the monomial
+coefficients of $\varphi_n$. Its diagonal entries are
+$1/\sqrt{\gamma_n}$, so it is invertible. Thus the exact coefficient
+map from $S$-powers to the orthonormal Gamma frame is
+\[
+ D_N=B^{-1}T,\qquad F(c+iy)=\sum_{n=0}^N(D_Na)_n\varphi_n(y).
+\]
+If $H_{S,N}^{\rm ar}$ is the full original arithmetic source Gram,
+then integration proves
+\begin{equation}\label{eq:sourcegram}
+ H_{S,N}^{\rm ar}=D_N^*C_ND_N.
+\end{equation}
+No scalar mass is cancelled: it occurs in both $B$ and $C_N$ with
+the exact powers fixed above.
+
+Let $\mathcal A_S=\Lambda\mathcal J_{S,N}$ be the actual polynomial
+to observation map, where $\mathcal J_{S,N}$ is the original class
+map, with its full physical Taylor unit in the selected jet frame.
+This notation is distinct from the real Jacobi matrix $J_N$.
+Use the original observation image as codomain, so the map is onto.
+Set $\mathcal E_N=\mathcal A_SD_N^{-1}$. The actual observation
+metric and its attained lift are exactly
+\begin{equation}\label{eq:quotient}
+ \boxed{Q_{B,N}=(\mathcal E_N C_N^{-1}\mathcal E_N^*)^{-1},
+ \qquad a_{\min}=D_N^{-1}C_N^{-1}\mathcal E_N^*Q_{B,N}u.}
+\end{equation}
+Positive density makes $C_N$ positive definite. Substituting the lift
+gives $\mathcal A_Sa_{\min}=u$. Any other lift differs by a vector
+whose Gamma-frame coefficients are in $\ker\mathcal E_N$; its
+cross pairing with $C_N^{-1}\mathcal E_N^*Q_{B,N}u$ is zero.
+Its energy is therefore the displayed minimum plus the positive
+energy of the difference. This proves \eqref{eq:quotient} as the
+same original minimum, not an auxiliary metric.
+
+For the unchanged boundary classes $a_1=[p_N^{\rm ar}]_\chi$,
+$a_2=[p_{N+1}^{\rm ar}]_\chi$ and terminal class $v$, the actual
+cross entries to be calculated are accordingly
+\[
+ B_i=(\Lambda a_i)^*(\mathcal E_N C_N^{-1}\mathcal E_N^*)^{-1}
+              \Lambda v,\qquad
+ \Phi_{B,N}=\frac{2\Re(\overline{B_1}B_2)}{\omega_{N,k}^{\rm ar}}.
+\]
+Equations \eqref{eq:first}, \eqref{eq:alpha}, \eqref{eq:boundary}
+and \eqref{eq:quotient} give a fully specified finite arithmetic
+evaluation route and its cutoff correction. Real parity of $C_N$
+does not set these complex projected phases: the matrices
+$\mathcal E_N$, the original unit, and the two classes remain.
+No asymptotic estimate or RH conclusion follows merely from this
+finite representation. In particular the positive norm calculation
+in OB18 is not substituted for the displayed signed product.
+
+\end{document}

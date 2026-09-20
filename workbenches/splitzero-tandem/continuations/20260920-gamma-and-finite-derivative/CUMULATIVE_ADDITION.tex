@@ -1,0 +1,1220 @@
+
+% BEGIN COMPLETE GAMMA AND FINITE DERIVATIVE RESULTS 056 058
+
+\clearpage\begingroup
+\part*{The full gamma inequality and original Taylor cutoff}
+\newtheorem{agammatheorem}{Theorem}
+\newtheorem{agammalemma}[agammatheorem]{Lemma}
+\newtheorem{agammaproposition}[agammatheorem]{Proposition}
+\newtheorem{agammacorollary}[agammatheorem]{Corollary}
+\newcommand{\agammaR}{\mathbb R}
+\newcommand{\agammaN}{\mathbb N}
+\newcommand{\agammaeps}{\varepsilon}
+
+
+
+\section{Statement, source, and scope}\label{agamma:sec:scope}
+The inequality below is the first technical lemma, labelled
+\texttt{gammainequality}, in Juan Arias de Reyna's original author source
+for arXiv:2201.00342v1 \cite[Section 3.10]{agamma:AriasII}. The introduction
+explicitly states that proofs of the technical inequalities were not
+included. The argument here supplies a proof on the entire stated
+domain. Section~\ref{agamma:sec:taylor} gives the exact use of the upper bound
+in the source's proposition labelled \texttt{PropAprTaylor}, with both
+cutoff constants unchanged. Its coefficient hypothesis is precisely
+the bound quoted there from \cite[formulas (47) and (56)]{agamma:AriasI}.
+No new proof of that earlier coefficient bound is claimed here.
+
+\begin{agammatheorem}\label{agamma:thm:gamma}
+For every real $x>0$,
+\begin{equation}\label{agamma:eq:main}
+1>
+R(x):=\frac{\Gamma(x+1)\Gamma(x/3+2)}
+{(x+1)^2\left(\dfrac{(x+1)^4}{3e^4}\right)^{x/3}}
+>\frac{2\pi}{3\sqrt3\,e^{4/3}}.
+\end{equation}
+The formula extends continuously to $x=0$, where $R(0)=1$.
+Moreover $R$ is strictly decreasing on $[0,\infty)$, its logarithm
+is strictly convex, and
+\begin{equation}\label{agamma:eq:Rlimit}
+\lim_{x\to\infty}R(x)=\frac{2\pi}{3\sqrt3\,e^{4/3}}.
+\end{equation}
+Thus both constants in \eqref{agamma:eq:main} are sharp.
+\end{agammatheorem}
+
+All gamma values used below have positive real arguments. All powers
+with a positive base are defined by $b^r=\exp(r\log b)$ with the real
+logarithm. We first prove the needed derivative formula and asymptotic
+directly from Euler's integral, so the proof does not use any of the
+source's unproved inequalities.
+
+\section{Gamma derivatives from Euler's integral}\label{agamma:sec:derivatives}
+For $s>0$ define
+\begin{equation}\label{agamma:eq:euler}
+\Gamma(s)=\int_0^\infty v^{s-1}e^{-v}\,dv.
+\end{equation}
+The integral is positive and finite. On any compact interval
+$0<\alpha\le s\le\beta$, the integrands of its first two derivatives
+are dominated, in absolute value, by
+\[
+e^{-v}\bigl(v^{\alpha-1}+v^{\beta-1}\bigr)
+\bigl(1+|\log v|^2\bigr).
+\]
+This is integrable: near zero use $v=e^{-w}$, and near infinity the
+exponential factor dominates any fixed power and logarithm.
+Differentiation under the integral through order two follows by
+dominated convergence. In particular $\Gamma$ is twice continuously
+differentiable and
+$\psi(s):=(\log\Gamma)'(s)=\Gamma'(s)/\Gamma(s)$ is well defined.
+Integration by parts, with zero boundary terms, gives
+\begin{equation}\label{agamma:eq:recurrence}
+\Gamma(s+1)=s\Gamma(s),\qquad \Gamma(1)=1.
+\end{equation}
+
+\begin{agammalemma}\label{agamma:lem:trigamma}
+For $s>0$,
+\begin{equation}\label{agamma:eq:trigamma}
+\psi'(s)=\sum_{k=0}^\infty\frac1{(s+k)^2}
+=\int_0^\infty\frac{u e^{-su}}{1-e^{-u}}\,du>0.
+\end{equation}
+\end{agammalemma}
+\begin{proof}
+For each positive integer $n$ let
+\[
+I_n(s)=\int_0^n v^{s-1}(1-v/n)^n\,dv.
+\]
+The substitution $v=nw$ and repeated integration by parts give
+\begin{equation}\label{agamma:eq:In}
+I_n(s)=n^s\int_0^1 w^{s-1}(1-w)^n\,dw
+=\frac{n^s n!}{s(s+1)\cdots(s+n)}.
+\end{equation}
+For completeness, if $B_n(s)$ denotes the integral on $[0,1]$, then
+$B_0(s)=1/s$ and, for $n\ge1$, integration of $w^{s-1}$ gives
+$B_n(s)=(n/s)B_{n-1}(s+1)$; iterating proves \eqref{agamma:eq:In}.
+For $0<v<n$, $(1-v/n)^n\le e^{-v}$. After extending the integrand
+by zero for $v\ge n$, the same compact-interval majorant used for
+\eqref{agamma:eq:euler} dominates its derivatives of orders zero, one and two
+with respect to $s$. Pointwise these derivatives converge to the
+corresponding Euler-integral derivatives. Therefore
+$I_n^{(k)}(s)\to\Gamma^{(k)}(s)$ for $k=0,1,2$.
+Since $I_n(s)>0$ and $\Gamma(s)>0$, it follows that
+\[
+\frac{d^2}{ds^2}\log I_n(s)
+=\frac{I_n''(s)}{I_n(s)}-
+\left(\frac{I_n'(s)}{I_n(s)}\right)^2
+\longrightarrow\psi'(s).
+\]
+Twice differentiating the logarithm of the finite product
+\eqref{agamma:eq:In} gives exactly $\sum_{k=0}^n(s+k)^{-2}$.
+Finally $\int_0^\infty u e^{-cu}\,du=c^{-2}$ for $c>0$ by a change
+of variable and integration by parts. Tonelli's theorem applied to
+the nonnegative summands gives
+\[
+\sum_{k=0}^\infty\int_0^\infty u e^{-(s+k)u}\,du
+=\int_0^\infty u e^{-su}\sum_{k=0}^\infty e^{-ku}\,du,
+\]
+which is the asserted integral. It is strictly positive.
+\end{proof}
+
+\section{The exact asymptotic constant}\label{agamma:sec:stirling}
+\begin{agammalemma}\label{agamma:lem:stirling}
+As the real number $y$ tends to $+\infty$,
+\begin{equation}\label{agamma:eq:stirling}
+\Gamma(y+1)=\sqrt{2\pi}\,y^{y+1/2}e^{-y}(1+o(1)),
+\qquad
+\Gamma(y)=\sqrt{2\pi}\,y^{y-1/2}e^{-y}(1+o(1)).
+\end{equation}
+\end{agammalemma}
+\begin{proof}
+In Euler's integral for $\Gamma(y+1)$ substitute $v=y+u\sqrt y$.
+If $h(z)=z-\log(1+z)$ for $z>-1$, the resulting quotient is
+\begin{equation}\label{agamma:eq:laplace-stirling}
+\frac{\Gamma(y+1)}{y^{y+1/2}e^{-y}}
+=\int_{-\sqrt y}^{\infty}\exp\{-y h(u/\sqrt y)\}\,du.
+\end{equation}
+For $-1<z\le0$, put $z=-w$. The identity
+$h(-w)=\int_0^w r/(1-r)\,dr$ gives $h(z)\ge z^2/2$.
+For $0\le z\le1$, the identity
+$h(z)=\int_0^z r/(1+r)\,dr$ gives $h(z)\ge z^2/4$.
+Also $h(0)=h'(0)=0$ and $h''(0)=1$, so
+$y h(u/\sqrt y)\to u^2/2$ for every fixed real $u$.
+Consequently the integrand in \eqref{agamma:eq:laplace-stirling}, restricted
+to $-\sqrt y<u<\sqrt y$ and extended by zero to $\agammaR$, is bounded
+by $e^{-u^2/4}$ and converges pointwise to $e^{-u^2/2}$.
+Dominated convergence applies on the entire real line.
+
+It remains to bound the omitted positive tail. For $z\ge1$,
+$h'(z)=z/(1+z)\ge1/2$, so
+$h(z)\ge h(1)+(z-1)/2$. Here $h(1)=1-\log2>0$, because
+$\log2=\int_1^2 dr/r<1$. Thus
+\begin{equation}\label{agamma:eq:stirling-tail}
+\int_{\sqrt y}^{\infty}e^{-y h(u/\sqrt y)}\,du
+\le \sqrt y\,e^{-y(1-\log2)}
+\int_1^{\infty}e^{-y(z-1)/2}\,dz
+=\frac2{\sqrt y}e^{-y(1-\log2)}\longrightarrow0.
+\end{equation}
+The limit in \eqref{agamma:eq:laplace-stirling} is therefore the Gaussian
+integral. Its square, using Tonelli and polar coordinates, is
+\[
+\left(\int_{\agammaR}e^{-u^2/2}\,du\right)^2
+=\int_{\agammaR^2}e^{-(u^2+v^2)/2}\,du\,dv
+=2\pi\int_0^\infty r e^{-r^2/2}\,dr=2\pi.
+\]
+The integral is positive, so its value is $\sqrt{2\pi}$.
+This proves the first formula; the second follows from
+\eqref{agamma:eq:recurrence} by division by $y$.
+\end{proof}
+
+\section{Positive Laplace kernel and proof of the inequality}
+\label{agamma:sec:kernel}
+Set $t=x+1$ and, for every $t>0$, define the logarithm of the exact
+ratio by
+\begin{equation}\label{agamma:eq:f}
+f(t)=\log\Gamma(t)+\log\Gamma((t+5)/3)-2\log t
+-\frac{t-1}{3}\bigl(4\log t-\log3-4\bigr).
+\end{equation}
+Thus $f(x+1)=\log R(x)$ on the required domain. Direct differentiation
+without changing the original ratio gives
+\begin{align}
+f'(t)&=\psi(t)+\tfrac13\psi((t+5)/3)
+-\tfrac43\log t+\tfrac13\log3-\tfrac2{3t},\label{agamma:eq:fp}\\
+f''(t)&=\psi'(t)+\tfrac19\psi'((t+5)/3)
+-\tfrac4{3t}+\tfrac2{3t^2}.\label{agamma:eq:fpp}
+\end{align}
+Lemma~\ref{agamma:lem:trigamma}, the substitution $v=3u$ in its second
+instance, and the integrals of $e^{-tu}$ and $u e^{-tu}$ yield
+\begin{equation}\label{agamma:eq:kernel}
+f''(t)=\int_0^\infty e^{-tu}K(u)\,du,\qquad
+K(u)=\frac{u}{1-e^{-u}}+
+\frac{u e^{-5u}}{1-e^{-3u}}+\frac{2u}{3}-\frac43.
+\end{equation}
+Each integral combined here is finite for $t>0$, so taking their
+linear combination is valid.
+
+\begin{agammalemma}\label{agamma:lem:kernel-positive}
+For every $u>0$, $K(u)>0$.
+\end{agammalemma}
+\begin{proof}
+Multiplication by the positive factor $3(1-e^{-3u})e^{5u}$ gives
+\begin{align}
+E(u)&:=3(1-e^{-3u})e^{5u}K(u)\notag\\
+&=(5u-4)e^{5u}+3u e^{4u}+3u e^{3u}
++(4-2u)e^{2u}+3u.\label{agamma:eq:E}
+\end{align}
+The factorization $1-e^{-3u}=(1-e^{-u})(1+e^{-u}+e^{-2u})$
+verifies this identity directly. Write the everywhere convergent
+exponential power series as $E(u)=\sum_{n=0}^\infty c_nu^n/n!$.
+The coefficients in degrees zero, one and two are zero, while
+$c_3=-125+144+81+8=108$. For $n\ge2$, expansion of the four
+exponential terms gives
+\begin{align}
+c_n&=(n-4)5^n+3n4^{n-1}+3n3^{n-1}
++(8-2n)2^{n-1}\notag\\
+&=(n-4)(5^n-2^n)+3n(4^{n-1}+3^{n-1}).\label{agamma:eq:coefficients}
+\end{align}
+For $n\ge4$ the first term on the last line is nonnegative and
+the second is strictly positive. Therefore every coefficient from
+degree three onward is strictly positive. Absolute convergence of
+the exponential series justifies the collection of these terms,
+and for $u>0$ it gives $E(u)\ge108u^3/3!>0$.
+Dividing by its positive multiplying factor proves the claim.
+\end{proof}
+
+It follows from \eqref{agamma:eq:kernel} that $f''(t)>0$ for $t>0$.
+To compute the limit, apply Lemma~\ref{agamma:lem:stirling} separately to
+$t$ and $(t+5)/3$. Keeping all factors of $3$ and $e$ gives
+\begin{align}
+e^{f(t)}
+&=\frac{2\pi}{3^{3/2}}\,e^{-3}
+\left(1+\frac5t\right)^{t/3+7/6}(1+o(1)).\label{agamma:eq:ratio-asymptotic}
+\end{align}
+Here the power of $t$ cancels exactly:
+\[
+(t-\tfrac12)+(\tfrac t3+\tfrac76)
+-\left(2+\tfrac{4(t-1)}3\right)=0.
+\]
+The power of $3$ is $-t/3-7/6+(t-1)/3=-3/2$; the exponent of $e$
+before the displayed residual factor is
+$-t-(t+5)/3+4(t-1)/3=-3$.
+Since $\log(1+v)/v\to1$ as $v\to0$, the residual factor tends
+to $e^{5/3}$. Hence
+\begin{equation}\label{agamma:eq:flimit}
+\lim_{t\to\infty}f(t)=
+\ell:=\log\left(\frac{2\pi}{3\sqrt3\,e^{4/3}}\right),
+\end{equation}
+a finite number.
+
+We now deduce monotonicity without differentiating an asymptotic
+formula. If $f'(t_0)\ge0$ at some $t_0>0$, strict increase of $f'$
+gives $f'(t_1)>0$ at any $t_1>t_0$. For $t\ge t_1$, integration
+of $f'(r)\ge f'(t_1)$ gives
+$f(t)\ge f(t_1)+(t-t_1)f'(t_1)$, contradicting \eqref{agamma:eq:flimit}.
+Thus $f'(t)<0$ for every $t>0$. Equations \eqref{agamma:eq:recurrence}
+and \eqref{agamma:eq:f} give $f(1)=0$. For $t>1$, strict decrease gives
+$f(t)<0$, while $f(t)>f(t+1)\ge\ell$. Exponentiation proves
+\eqref{agamma:eq:main}. Continuity at $t=1$, the limit \eqref{agamma:eq:flimit},
+and $f''>0$ prove all remaining assertions of
+Theorem~\ref{agamma:thm:gamma}. In particular no smaller upper constant
+or larger lower constant can hold on all $x>0$.
+
+\section{The exact Taylor-cutoff receiver}\label{agamma:sec:taylor}
+We retain the source's symbols $A(\sigma)$, $B_1$, $a$,
+$\agammaeps_4$, $M$ and $J$. This result is a theorem about the stated
+coefficient class. For Arias de Reyna's $F$, it is the exact
+application of the coefficient bound quoted in
+\cite[formulas (47) and (56)]{agamma:AriasI} by the author at
+\cite[\texttt{PropAprTaylor}]{agamma:AriasII}; it does not assume a
+technical inequality that is left unproved in that source.
+
+\begin{agammaproposition}\label{agamma:prop:taylor}
+Let $A(\sigma)>0$, $B_1>0$, $a>0$ and $\agammaeps_4>0$ be real numbers.
+Let $M\ge1$ be an integer, $p\in\agammaR$ with $|p|\le1$, and let
+$(c_{2j})_{j\ge0}$ be complex numbers satisfying
+\begin{equation}\label{agamma:eq:coefficient-bound}
+|c_{2j}|\le\frac{\pi^j}{2^{j+1}j!},\qquad
+F(z):=\sum_{j=0}^\infty c_{2j}z^{2j}.
+\end{equation}
+For each integer $m\ge0$ define exactly as in the source
+\begin{equation}\label{agamma:eq:epsilon5}
+\agammaeps_5(m)=\frac{(\pi^2B_1a)^{m/3}\agammaeps_4}{316 A(\sigma)}
+\left(\frac{m!}{\Gamma(m/3+2)}\right)^{1/2}.
+\end{equation}
+Choose an integer $J\ge12$ satisfying both inequalities
+\begin{align}
+\frac{(2\pi)^J}{J!}&\le\frac{\agammaeps_4}{632 A(\sigma)},\label{agamma:eq:Jfirst}\\
+\frac{(2\pi)^J}{J!}&\le\frac{\agammaeps_4}{632 A(\sigma)}\frac1M
+\left(\frac{\pi^2 B_1a\sqrt3\,e^2}{M^2}\right)^{(M-1)/3}.
+\label{agamma:eq:Jsecond}
+\end{align}
+Then for $P(z):=\sum_{j=0}^{J-1}c_{2j}z^{2j}$ and every integer
+$0\le m<M$,
+\begin{equation}\label{agamma:eq:taylor-conclusion}
+|F^{(m)}(p)-P^{(m)}(p)|<\frac{\agammaeps_5(m)}2.
+\end{equation}
+In particular this proves the source's stated non-strict bound.
+Such a $J$ exists, so the source's choice of the first such integer
+is also well defined.
+\end{agammaproposition}
+\begin{proof}
+The bound in \eqref{agamma:eq:coefficient-bound} gives uniform absolute
+convergence on $|z|\le R$ for every $R>0$, since its majorant sums
+to $\tfrac12\exp(\pi R^2/2)$. Termwise derivatives also converge
+uniformly on each disk: for fixed $m$ and $R\ge1$ their terms are
+bounded by $(2j+1)^m\pi^j R^{2j}/(2^{j+1}j!)$, whose ratio tends
+to zero. Thus $F$ is entire and the termwise derivative is valid.
+If $m>2j$, the $m$th derivative of $z^{2j}$ is zero. Otherwise,
+including $p=0$ and the exponent-zero case,
+\[
+\left|\left.\frac{d^m}{dz^m}z^{2j}\right|_{z=p}\right|
+\le m!\binom{2j}{m}\le m!\sum_{k=0}^{2j}\binom{2j}{k}
+=m!4^j.
+\]
+Here the monomial $z^0$ is the constant one; no negative powers
+or negative factorials occur. Consequently
+\begin{align}
+|F^{(m)}(p)-P^{(m)}(p)|
+&\le\frac{m!}{2}\sum_{j=J}^\infty\frac{(2\pi)^j}{j!}\notag\\
+&\le\frac{m!}{2}\frac{(2\pi)^J}{J!}
+\sum_{k=0}^\infty\left(\frac{2\pi}{J+1}\right)^k
+<m!\frac{(2\pi)^J}{J!}.\label{agamma:eq:tail}
+\end{align}
+The last inequality holds because $J+1\ge13>4\pi$.
+An elementary exact certificate for this numerical comparison is
+\[
+0<\int_0^1\frac{v^4(1-v)^4}{1+v^2}\,dv
+=\frac{22}{7}-\pi,\qquad \frac{88}{7}<13.
+\]
+Indeed the integrand equals
+$v^6-4v^5+5v^4-4v^2+4-4/(1+v^2)$, which proves the stated
+integral identity by direct integration.
+
+Put $D=\pi^2B_1a$, $C=\agammaeps_4/(632A(\sigma))$, and, for real $r\ge0$,
+\begin{equation}\label{agamma:eq:Q}
+Q(r)=\frac{CD^{r/3}}{\sqrt{\Gamma(r+1)\Gamma(r/3+2)}}.
+\end{equation}
+Theorem~\ref{agamma:thm:gamma}, including its equality at zero, gives
+\begin{equation}\label{agamma:eq:Qlower}
+Q(r)\ge\frac{C}{r+1}
+\left(\frac{D\sqrt3\,e^2}{(r+1)^2}\right)^{r/3},
+\end{equation}
+with equality exactly for $r=0$ and strict inequality for $r>0$.
+This is the reciprocal square root of the upper gamma-product
+bound; taking positive square roots preserves the stated equality
+case. Let $q=(2\pi)^J/J!$. Equations \eqref{agamma:eq:Jfirst} and
+\eqref{agamma:eq:Jsecond} imply $q\le Q(0)$ and $q\le Q(M-1)$.
+
+By Lemma~\ref{agamma:lem:trigamma},
+\begin{equation}\label{agamma:eq:Qconcavity}
+(\log Q)''(r)=-\tfrac12\psi'(r+1)
+-\tfrac1{18}\psi'(r/3+2)<0.
+\end{equation}
+Thus $Q$ is log-concave: its logarithm is concave. If $M>1$,
+write $r=\theta(M-1)$ with $0\le\theta\le1$. Concavity gives
+\[
+\log Q(r)\ge(1-\theta)\log Q(0)+\theta\log Q(M-1)
+\ge\log\min\{Q(0),Q(M-1)\}.
+\]
+This proves $Q(m)\ge q$ for every $0\le m<M$.
+If $M=1$, the two cutoff inequalities coincide and the only
+integer at issue is $m=0$, already covered by $q\le Q(0)$.
+The recurrence \eqref{agamma:eq:recurrence} gives $\Gamma(m+1)=m!$,
+so \eqref{agamma:eq:epsilon5} and \eqref{agamma:eq:Q} yield
+$m!Q(m)=\agammaeps_5(m)/2$. Combining with \eqref{agamma:eq:tail} proves
+\eqref{agamma:eq:taylor-conclusion}.
+
+Finally the two right-hand sides of the cutoff inequalities are
+positive constants for fixed data. The sequence $q_J=(2\pi)^J/J!$
+has $q_{J+1}/q_J=2\pi/(J+1)$, eventually at most $1/2$, and
+therefore tends to zero. Some $J\ge12$ satisfies both bounds;
+the least one exists by the well-ordering of the positive integers.
+\end{proof}
+
+\section{What is corrected and what is not claimed}\label{agamma:sec:limits}
+In the source proof of \texttt{PropAprTaylor}, the comparison now
+proved as \eqref{agamma:eq:Qlower} is printed with a strict sign while the
+displayed range includes $m=0$. At $m=0$ both sides equal
+$\agammaeps_4/(632A(\sigma))$, so the comparison must be non-strict
+there. This does not change either cutoff or the proposition.
+The source's concavity sentence is made precise by
+\eqref{agamma:eq:Qconcavity}: the right-hand side of its
+\texttt{secondcondition} is log-concave, rather than its logarithm
+being log-concave.
+
+This proof establishes only the first technical gamma inequality
+and the stated Taylor-truncation theorem. It does not establish
+the separate technical claims labelled \texttt{secondinegamma}
+and \texttt{fincreasing}; it does not justify the source's preceding
+selection of $M$ using \texttt{fincreasing}; and it does not certify
+coefficient evaluation, rounding, or the entire Riemann--Siegel
+implementation. The lower constant in \eqref{agamma:eq:main} is proved
+exactly, although the Taylor cutoff uses only the upper bound.
+
+\section*{Source record and proof locators}
+The original file used was \texttt{main.tex} from
+arXiv:2201.00342v1, SHA-256
+\begin{center}\small\ttfamily
+06786e7e7010b4a51bb431d7e885370d243f\\
+52956549d535f69391de120d8bdc.
+\end{center}
+Reading covered lines 1--165 (identity and introduction),
+581--602 (the source's real evaluation point),
+1379--1551 (technical lemmas and Taylor receiver), and
+2919--2945 (bibliographic identities). The whole source and the
+original Part I were not read for this bounded derivation.
+The source's $a=\sqrt{t/(2\pi)}$, $N=\lfloor a\rfloor$ and
+$p=1-2(a-N)$ give $-1<p\le1$, so they meet the receiver's
+$|p|\le1$ hypothesis. Here that source parameter $t$ is unrelated
+to the proof variable $t=x+1$ in Section~\ref{agamma:sec:kernel}.
+
+The mathematical proof locators are
+Theorem~\ref{agamma:thm:gamma}, Lemma~\ref{agamma:lem:trigamma},
+Lemma~\ref{agamma:lem:stirling}, Lemma~\ref{agamma:lem:kernel-positive},
+equations \eqref{agamma:eq:kernel}--\eqref{agamma:eq:flimit}, and
+Proposition~\ref{agamma:prop:taylor}. The supplemental finite exact-arithmetic
+checks in \texttt{verification.py} are not a replacement for the
+all-degree positivity proof or the analytic limit arguments.
+
+\begin{thebibliography}{9}
+\bibitem{agamma:AriasII}
+Juan Arias de Reyna,
+\emph{High Precision Computation of Riemann's Zeta Function by the
+Riemann--Siegel Formula, II}, arXiv:2201.00342v1 (2022), original
+author \LaTeX\ source, Section 3.10, label \texttt{gammainequality};
+Section 3.11, labels \texttt{Fmcondition}, \texttt{defJ},
+\texttt{PropAprTaylor}, and \texttt{secondcondition}.
+\url{https://arxiv.org/abs/2201.00342v1}.
+
+\bibitem{agamma:AriasI}
+Juan Arias de Reyna,
+\emph{High precision computation of Riemann's zeta function by the
+Riemann--Siegel formula, I}, Mathematics of Computation
+\textbf{80} (2011), no.~274, 995--1009, formulas (47) and (56),
+as cited at the Taylor-series receiver in \cite{agamma:AriasII}.
+This bibliographic reference records the author's attribution;
+Part I was not independently read in this bounded task.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Exact correction and finite derivative selection}
+\newtheorem{aderivativetheorem}{Theorem}
+\newtheorem{aderivativeproposition}[aderivativetheorem]{Proposition}
+\newtheorem{aderivativelemma}[aderivativetheorem]{Lemma}
+\newcommand{\aderivativeeps}{\varepsilon}
+
+
+
+\section{The printed claim and its actual computational use}
+\label{aderivative:sec:source}
+Juan Arias de Reyna's original author source for
+arXiv:2201.00342v1 \cite{aderivative:AriasII}, Section 3.10, label
+\texttt{fincreasing}, asserts that
+\begin{equation}\label{aderivative:eq:H}
+H(x)=\frac{5^x}{(2\pi)^{(x-1)/2}\Gamma((x+1)/2)}
+\left(\frac{\Gamma(x+1)}{\Gamma(x/3+2)}\right)^{1/2}
+\end{equation}
+is increasing for all $x>0$. Every factor in this expression is
+positive on that domain; the square root is the positive square root.
+We give an exact counterexample to that assertion as printed.
+We then replace its use in the finite derivative-selection step.
+The counterexample concerns this computational lemma, not the
+Riemann hypothesis. It does not establish that a particular
+implementation returns an incorrect zeta value: the global domain
+of the lemma is larger than a particular computation's derivative set.
+
+The source's actual task, labels \texttt{problemFp},
+\texttt{defeps5} and \texttt{Fmcondition}, is to calculate the
+derivatives at the same original real point $p$, for
+\begin{equation}\label{aderivative:eq:indices}
+0\le m\le T:=3L-3,\qquad L\ge1\text{ an integer},\qquad |p|\le1.
+\end{equation}
+The derivative bound $|F^{(m)}(p)|\le F_m$ is explicitly attributed
+in Section 3.9 to the author's Part I, formulas (49) and (55)
+\cite{aderivative:AriasI}. The Taylor coefficient estimate recalled in Section
+3.11 is attributed to that work's formulas (47) and (56):
+\begin{equation}\label{aderivative:eq:Fclass}
+F(z)=\sum_{j=0}^{\infty}c_{2j}z^{2j},\qquad
+|c_{2j}|\le\frac{\pi^j}{2^{j+1}j!}.
+\end{equation}
+These are the source's inputs, not new estimates for a different
+function. Part I has not been independently read in this source
+intake; its attribution is retained through the fully read Part II.
+
+Keep the original positive $A(\sigma),B_1,a,\aderivativeeps_4,F_m$ and define
+\begin{align}
+E_m:=\aderivativeeps_5(m)
+&=\frac{(\pi^2B_1a)^{m/3}\aderivativeeps_4}{316A(\sigma)}
+\left(\frac{m!}{\Gamma(m/3+2)}\right)^{1/2},\label{aderivative:eq:eps5}\\
+\widetilde E_m:=\widetilde\aderivativeeps_5(m)
+&=\min\{4F_m,E_m\}.\label{aderivative:eq:tilde}
+\end{align}
+Our outputs approximate $F^{(m)}(p)$ in absolute value with error
+strictly less than \eqref{aderivative:eq:tilde}. No mass, coefficient, point
+or error allowance is replaced. In particular \eqref{aderivative:eq:tilde}
+is the minimum in the original \texttt{defeps5}. A later display
+in Section 3.11 prints \texttt{max} at the same place; it cannot
+equal $E_m$ when $4F_m>E_m$. The minimum resolves that discrepancy
+and is the quantity used throughout this proof.
+
+\section{An exact six-step counterexample}\label{aderivative:sec:counterexample}
+\begin{aderivativetheorem}\label{aderivative:thm:ratio}
+For every real $x>0$,
+\begin{equation}\label{aderivative:eq:ratio}
+\left(\frac{H(x+6)}{H(x)}\right)^2
+=\frac{46875^2(x+2)(x+4)}
+{\pi^6(x+1)(x+3)(x+5)(x+9)}.
+\end{equation}
+In particular $H(2006)<H(2000)$.
+\end{aderivativetheorem}
+\begin{proof}
+Euler's positive integral
+$\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt$ for $s>0$
+gives $\Gamma(s+1)=s\Gamma(s)$ by integration by parts: both
+boundary terms vanish, since $t^se^{-t}\to0$ at infinity and
+$t^s\to0$ at zero. Apply that recurrence separately to the
+three gamma factors in the square of \eqref{aderivative:eq:H}:
+\begin{align}
+\frac{\Gamma(x+7)}{\Gamma(x+1)}
+&=\prod_{j=1}^6(x+j),\label{aderivative:eq:factorialratio}\\
+\frac{\Gamma((x+7)/2)}{\Gamma((x+1)/2)}
+&=\frac{(x+1)(x+3)(x+5)}8,\label{aderivative:eq:halfratio}\\
+\frac{\Gamma((x+6)/3+2)}{\Gamma(x/3+2)}
+&=\frac{(x+6)(x+9)}9.\label{aderivative:eq:thirdratio}
+\end{align}
+The factor from the remaining powers is $5^{12}/(2\pi)^6$.
+Thus the ratio before cancellation is exactly
+\[
+\frac{5^{12}}{(2\pi)^6}
+\frac{\prod_{j=1}^6(x+j)}
+{\bigl((x+1)(x+3)(x+5)/8\bigr)^2
+ ((x+6)(x+9)/9)}.
+\]
+All cancelled factors are positive. The constant is
+$5^{12}64\cdot9/64=9\cdot5^{12}=46875^2$;
+cancelling one copy of each odd factor and the factor $x+6$
+gives \eqref{aderivative:eq:ratio}.
+
+For an exact bound on $\pi$, the finite geometric identity gives
+\[
+\frac1{1+t^2}=\sum_{j=0}^7(-1)^jt^{2j}
++\frac{t^{16}}{1+t^2},\qquad 0\le t\le1.
+\]
+The integral of its final term is strictly positive. Since
+$\pi=4\int_0^1(1+t^2)^{-1}\,dt$, direct rational integration gives
+\begin{equation}\label{aderivative:eq:pi}
+\pi>4\sum_{j=0}^7\frac{(-1)^j}{2j+1}
+=\frac{135904}{45045}>3,
+\qquad 135904-3\cdot45045=769>0.
+\end{equation}
+At the positive integer $x=2000$, equation \eqref{aderivative:eq:ratio} and
+\eqref{aderivative:eq:pi} now give the strictly rational certificate
+\begin{equation}\label{aderivative:eq:certificate}
+\left(\frac{H(2006)}{H(2000)}\right)^2
+<\frac{46875^2\cdot2002\cdot2004}
+{3^6\cdot2001\cdot2003\cdot2005\cdot2009}
+=\frac{9328515625000}{12454264114047}<1.
+\end{equation}
+The difference of denominator and numerator is exactly
+$3125748489047>0$. Positivity of $H$ proves the conclusion.
+There are no rounded gamma evaluations in this argument.
+\end{proof}
+
+\section{The Taylor result used by the replacement}\label{aderivative:sec:taylor}
+Result SZ-20260920-056 supplies a complete independent proof of
+the first technical gamma inequality in \cite{aderivative:AriasII} and of
+its exact Taylor receiver. Its full proof accompanies this note
+\cite{aderivative:GammaProof}; we state every constant needed here.
+For an integer $M\ge1$, take an integer $J\ge12$ with
+\begin{align}
+q_J:=\frac{(2\pi)^J}{J!}
+&\le\frac{\aderivativeeps_4}{632A(\sigma)},\label{aderivative:eq:J1}\\
+q_J&\le\frac{\aderivativeeps_4}{632A(\sigma)M}
+\left(\frac{\pi^2B_1a\sqrt3e^2}{M^2}\right)^{(M-1)/3}.
+\label{aderivative:eq:J2}
+\end{align}
+For the original Taylor polynomial
+\begin{equation}\label{aderivative:eq:P}
+P_J(z)=\sum_{j=0}^{J-1}c_{2j}z^{2j},
+\end{equation}
+that proved receiver states
+\begin{equation}\label{aderivative:eq:Taylor}
+|F^{(m)}(p)-P_J^{(m)}(p)|<E_m/2,
+\qquad 0\le m<M.
+\end{equation}
+It includes $m=0$ and $M=1$; at zero the intermediate gamma
+comparison is equality, not the strict inequality printed in
+the source. Both original inequalities \texttt{defJ} remain unchanged.
+
+The elementary tail estimate underlying the receiver is useful
+also when every derivative is retained. Absolute local uniform
+convergence of \eqref{aderivative:eq:Fclass} follows from the majorant
+$\tfrac12 e^{\pi |z|^2/2}$. Each differentiated series converges
+locally uniformly too, since a fixed derivative contributes at
+most a polynomial in $j$ to a factorial-decaying majorant.
+For $|p|\le1$, the $m$th derivative of $p^{2j}$ has absolute
+value at most $m!\binom{2j}{m}\le m!4^j$ when $m\le2j$,
+and is zero otherwise. Therefore
+\begin{equation}\label{aderivative:eq:directtail}
+|F^{(m)}(p)-P_J^{(m)}(p)|
+\le\frac{m!}2\sum_{j=J}^\infty\frac{(2\pi)^j}{j!}
+<m!q_J\quad(J\ge12).
+\end{equation}
+Indeed the ratio of successive summands is at most
+$2\pi/(J+1)<1/2$. The bound $\pi<22/7<13/4$ follows by
+integrating the positive function
+$t^4(1-t)^4/(1+t^2)$ on $[0,1]$; the integral is
+$22/7-\pi$. This exact identity is also proved in
+\cite{aderivative:GammaProof}, Proposition \texttt{prop:taylor}.
+Finally $q_{J+1}/q_J=2\pi/(J+1)$, so $q_J\to0$.
+Every finite list of strictly positive upper bounds for $q_J$
+can thus be met without appealing to \texttt{fincreasing}.
+
+\section{Finite selection with the original minimum}
+\label{aderivative:sec:selection}
+\begin{aderivativeproposition}\label{aderivative:prop:finite}
+In the source's finite derivative set \eqref{aderivative:eq:indices}, define
+\begin{equation}\label{aderivative:eq:B}
+\mathcal B=\{m\in\{0,\ldots,T\}: E_m\le F_m\}.
+\end{equation}
+If $\mathcal B$ is empty, zero is an admissible output at every
+index. Otherwise put $M=1+\max\mathcal B$, choose $J$ by
+\eqref{aderivative:eq:J1}--\eqref{aderivative:eq:J2}, and set
+\begin{equation}\label{aderivative:eq:output}
+U_m=\begin{cases}P_J^{(m)}(p),&m\in\mathcal B,\\
+0,&m\notin\mathcal B.
+\end{cases}
+\end{equation}
+For every $0\le m\le T$,
+$|F^{(m)}(p)-U_m|<\widetilde E_m$.
+For the computed indices the stronger error bound is $E_m/2$.
+\end{aderivativeproposition}
+\begin{proof}
+If $m\notin\mathcal B$, then $E_m>F_m>0$ and $4F_m>F_m$;
+hence $|F^{(m)}(p)|\le F_m<\min(4F_m,E_m)$.
+If $m\in\mathcal B$, then $m<M$ and
+$E_m\le F_m<4F_m$, so $\widetilde E_m=E_m$ and
+\eqref{aderivative:eq:Taylor} applies. These two disjoint cases exhaust
+the finite set, including $T=0$, and prove the result.
+There is no requirement that $\mathcal B$ be an initial interval.
+In particular a gap between two computed indices causes no
+change to the error estimate or to the original $p$.
+\end{proof}
+
+The set \eqref{aderivative:eq:B} is an exact mathematical description.
+Its direct use as a floating-point equality test would be
+inappropriate. The next version avoids that test entirely.
+
+\begin{aderivativeproposition}\label{aderivative:prop:overlap}
+At each index use either of the following certified strict tests:
+\begin{align}
+F_m<E_m&:\quad\text{output zero},\label{aderivative:eq:zerotest}\\
+E_m<2F_m&:\quad\text{compute the Taylor derivative}.
+\label{aderivative:eq:computetest}
+\end{align}
+At least one test holds for every positive pair $(F_m,E_m)$.
+When both hold either choice is valid. Let $\mathcal C$ be
+the finite set assigned to computation. If it is nonempty,
+choose $M=1+\max\mathcal C$ and $J$ by
+\eqref{aderivative:eq:J1}--\eqref{aderivative:eq:J2}. The resulting exact polynomial
+outputs satisfy the same original allowances
+\eqref{aderivative:eq:tilde}; each computed output has error $<E_m/2$.
+
+More precisely, suppose the numerical input interface supplies
+nested rational enclosing intervals for these positive real
+parameters, with widths tending to zero. Checking the strict
+tests with the interval endpoints terminates after finitely
+many refinements at each index, including $E_m=F_m$ and
+$E_m=2F_m$.
+\end{aderivativeproposition}
+\begin{proof}
+If the zero test fails then $E_m\le F_m<2F_m$, so the compute
+test holds. At a computed index $E_m<2F_m<4F_m$ gives
+$\widetilde E_m=E_m$ and \eqref{aderivative:eq:Taylor} applies.
+At a zero index the proof of Proposition~\ref{aderivative:prop:finite}
+applies unchanged. Empty $\mathcal C$ needs no $M$ and no $J$.
+
+Write enclosing intervals as $[F_m^-,F_m^+]$ and
+$[E_m^-,E_m^+]$. A certified zero test is $F_m^+<E_m^-$;
+a certified compute test is $E_m^+<2F_m^-$. If a true
+strict test has gap $g>0$, convergence of the interval
+endpoints makes the associated endpoint gap positive at
+some finite refinement. Since one of the true strict
+tests holds, at least one endpoint test eventually passes.
+There are only $T+1$ indices, so the maximum of their finite
+termination stages is finite. Equality of the two positive
+parameters does not require an equality decision: at
+$E_m=F_m$ the compute gap is $F_m>0$, while at $E_m=2F_m$
+the zero gap is $F_m>0$. This statement describes exactly
+what an enclosing-interval numerical interface must return;
+it does not identify floating approximations as certificates.
+\end{proof}
+
+At a computed index the remaining half allowance can be used
+for a certified finite evaluation of $P_J^{(m)}(p)$.
+For completeness, given a rational enclosing rectangle for
+that complex value whose Euclidean diameter is $<E_m/2$,
+its rational center differs from the value by $<E_m/2$.
+The triangle inequality with \eqref{aderivative:eq:Taylor} gives total
+error $<E_m=\widetilde E_m$. The polynomial has finitely
+many terms; complex rational interval additions and
+multiplications enclose them, and convergence of the input
+enclosures gives convergence of the output rectangle by
+continuity of these finite operations. Choosing its width
+against a positive rational lower bound for $E_m/2$ makes
+this a terminating enclosure refinement whenever those
+input enclosures are provided. This is an exact evaluation
+interface and error-composition proof, not a certification
+of the source's separate coefficient or rounding algorithms.
+
+\subsection{An explicit rational evaluation constant}
+\label{aderivative:sec:evaluation}
+The independent derivation accompanying this note supplies
+the following finite bound, whose proof is included here.
+For the computed index $m$, set
+\begin{align}
+I_m&=\{j:0\le j<J,\ 2j\ge m\},&
+k_{jm}&=2j-m,& d_{jm}&=\frac{(2j)!}{(2j-m)!},\notag\\
+U_j&=\frac{(22/7)^j}{2^{j+1}j!},&
+K_m&=\sum_{j\in I_m}d_{jm}(1+k_{jm}U_j).
+\label{aderivative:eq:Km}
+\end{align}
+The rational $U_j$ bounds $|c_{2j}|$ by \eqref{aderivative:eq:Fclass}
+and $\pi<22/7$. If $I_m$ is empty, the derivative of $P_J$
+is identically zero and no evaluation is needed. Otherwise
+$K_m$ is a strictly positive rational number. Choose a
+positive rational $\eta$ with $\eta K_m<E_m/2$ at every
+computed nonzero derivative. There are finitely many such
+indices and each $E_m>0$, so positive rational lower bounds
+for them give an explicit finite choice of $\eta$.
+
+Take rational complex $\widehat c_{2j}$ and a rational
+$r\in[-1,1]$ with
+$|\widehat c_{2j}-c_{2j}|\le\eta$ and $|r-p|\le\eta$.
+A rational approximation to $p$ may be clamped to $[-1,1]$;
+this does not increase its distance from any $p\in[-1,1]$.
+Coefficient-coordinate errors at most $\eta/2$ give
+complex modulus error at most $\eta/\sqrt2<\eta$.
+Now form exactly in rational complex arithmetic
+\begin{equation}\label{aderivative:eq:rationaloutput}
+y_m=\sum_{j\in I_m}d_{jm}\widehat c_{2j}r^{k_{jm}}.
+\end{equation}
+For every nonnegative integer $k$ and $r,p\in[-1,1]$,
+$|r^k-p^k|\le k|r-p|$: for $k=0$ both terms are one,
+and for $k\ge1$ factor the difference into $r-p$ times
+a sum of $k$ products of numbers with absolute value at
+most one. Hence
+\begin{align}
+|y_m-P_J^{(m)}(p)|
+&\le\sum_{j\in I_m}d_{jm}
+\left(|\widehat c_{2j}-c_{2j}|\,|r|^{k_{jm}}
++|c_{2j}|\,|r^{k_{jm}}-p^{k_{jm}}|\right)\notag\\
+&\le\eta K_m<E_m/2.\label{aderivative:eq:evaluationbound}
+\end{align}
+This proves the required finite evaluation bound with
+every degree and coefficient retained. It covers $p=0$,
+$p=\pm1$ and every exponent-zero term. Combined with
+\eqref{aderivative:eq:Taylor}, it gives the original total allowance.
+
+The cutoff can likewise be chosen by rational comparisons.
+Take positive rational lower bounds for the two right-hand
+sides of \eqref{aderivative:eq:J1}--\eqref{aderivative:eq:J2}, and let $b>0$ be
+no greater than either. Find $J\ge12$ with
+$(44/7)^J/J!<b$. This search terminates because the
+successive ratio $(44/7)/(J+1)$ eventually is less than
+$1/2$. Since $2\pi<44/7$, both original bounds hold.
+Computing the first qualifying $J$ is unnecessary; this
+strict rational search avoids an equality test at the
+cutoff as well as at derivative selection.
+
+\section{A version retaining every derivative}\label{aderivative:sec:all}
+There is also a replacement that performs no derivative
+elimination and no comparison of $E_m$ with $F_m$.
+Take $M=T+1$ and choose $J\ge12$ satisfying both original
+conditions \eqref{aderivative:eq:J1}--\eqref{aderivative:eq:J2} and the finite list
+\begin{equation}\label{aderivative:eq:extraJ}
+q_J\le\frac{2F_m}{m!},\qquad 0\le m\le T.
+\end{equation}
+All right-hand sides are positive; $q_J\to0$ proves
+existence. Equations \eqref{aderivative:eq:Taylor} and
+\eqref{aderivative:eq:directtail} give, for every required $m$,
+\begin{equation}\label{aderivative:eq:halfall}
+|F^{(m)}(p)-P_J^{(m)}(p)|
+<\min\{E_m/2,2F_m\}=\widetilde E_m/2.
+\end{equation}
+The remaining half is available for the same certified
+finite-polynomial evaluation. Thus \eqref{aderivative:eq:extraJ}
+is an explicit terminating choice of polynomial degree,
+not an extra mathematical hypothesis about the source
+function or an enlarged error allowance. Strict versions
+of all these cutoff inequalities can be certified using
+convergent enclosing intervals; they eventually hold
+because $q_J\to0$ and all targets stay positive.
+
+\section{Scope, proof map, and provenance}\label{aderivative:sec:scope}
+The exact conclusions are the failure of the printed
+global-monotonicity claim, the finite selection rule,
+the equality-safe overlapping tests, and the full-index
+alternative with the original error tolerances. No assertion
+about the source's other technical lemma
+\texttt{secondinegamma}, a global zero theorem, or the
+complete floating-point Riemann--Siegel implementation is
+made. The full-domain gamma proof and Taylor bound used
+here are retained separately as result056.
+
+Original-source locators in \cite{aderivative:AriasII} are
+Section 3.9, labels \texttt{defeps5}, \texttt{problemFp};
+Section 3.10, label \texttt{fincreasing}; and
+Section 3.11, labels \texttt{Fmcondition}, \texttt{defJ},
+\texttt{PropAprTaylor}. Root read the entire 2968-line
+original \texttt{main.tex}, including the bibliography.
+Its SHA-256 is
+\begin{center}\small\ttfamily
+06786e7e7010b4a51bb431d7e885370d243f\\
+52956549d535f69391de120d8bdc.
+\end{center}
+The intact downloaded archive is separately pinned in the
+source-reading ledger. No original author file has been
+edited and no author macro has been executed.
+The reproducible diagram shows the exact tests and maps
+in Propositions~\ref{aderivative:prop:finite} and \ref{aderivative:prop:overlap};
+it does not display invented derivative samples.
+The accompanying integer/rational checker verifies finite
+certificates and branch arithmetic, not analytic facts
+by numerical sampling. All analytic steps used here are
+proved above or in the accompanying full result056 proof.
+
+\begin{thebibliography}{9}
+\bibitem{aderivative:AriasII}
+Juan Arias de Reyna,
+\emph{High Precision Computation of Riemann's Zeta Function
+by the Riemann--Siegel Formula, II}, arXiv:2201.00342v1
+(2022), original author \LaTeX\ source.
+\url{https://arxiv.org/abs/2201.00342v1}.
+\bibitem{aderivative:AriasI}
+Juan Arias de Reyna,
+\emph{High precision computation of Riemann's zeta function
+by the Riemann--Siegel formula, I}, Mathematics of
+Computation \textbf{80} (2011), no.~274, 995--1009.
+\url{https://doi.org/10.1090/S0025-5718-2010-02426-3}.
+Derivative and coefficient estimates are attributed
+through Part II, as specified in Section~\ref{aderivative:sec:source};
+an independent reading of Part I is not claimed.
+\bibitem{aderivative:GammaProof}
+\emph{A proof of Arias de Reyna's first gamma inequality
+and its exact Taylor-cutoff consequence}, programme
+result SZ-20260920-056 (2026), complete accompanying
+source \texttt{proof.tex}, Theorem \texttt{thm:gamma}
+and Proposition \texttt{prop:taylor}. This is the current
+independent mathematical derivation, not a human literature
+attribution or an independently published prior result.
+\end{thebibliography}
+
+\endgroup
+
+\clearpage\begingroup
+\part*{Independent complete derivation and rational evaluation bound}
+\providecommand{\aindependenttightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\section{Independent proof check: the six-step gamma ratio and finite derivative selection}\label{aindependent:independent-proof-check-the-six-step-gamma-ratio-and-finite-derivative-selection}
+
+20 September 2026. This note checks the mathematical part of result SZ-20260920-058. It does not edit the parent proof, run author macros, read a PDF, or perform publication, rendering, or index work.
+
+\subsection{1. Source identity and actual reading}\label{aindependent:source-identity-and-actual-reading}
+
+The original source is Juan Arias de Reyna, \emph{High Precision Computation of Riemann\textquotesingle s Zeta Function by the Riemann--Siegel Formula, II}, \href{https://arxiv.org/abs/2201.00342v1}{arXiv:2201.00342v1}, original \texttt{main.tex}, SHA-256 \texttt{\path{06786e7e7010b4a51bb431d7e885370d243f52956549d535f69391de120d8bdc}}.
+
+The existing source-reading ledger was consulted for identity and routing. Such a record is not evidence of independent full-paper reading. This check read these original-source ranges: 46--89; 580--603; 1141--1202; 1379--1578; 1743--1832; 2901--2938. It also searched the original source for the integer condition on L: line 709 states L\ensuremath{\ge}1. In particular, this check read the definitions \texttt{defeps5} and \texttt{Fmcondition}, the unproved lemma \texttt{fincreasing}, and the complete proposition \texttt{PropAprTaylor} with its proof. The source\textquotesingle s coefficient formula \texttt{c2n} was read, but no global correctness claim about the source\textquotesingle s floating-point procedures is imported.
+
+The local proof used for the first gamma inequality and the original two-cutoff Taylor theorem is \path{work/independent_arias_gamma_inequality/proof.tex}, result SZ-20260920-056, read completely, SHA-256 at this check \texttt{\path{98216b521ba71831e955ee133069676cd4b5fe0828c6edcc4f1b259a24e0240f}}. Its relevant exact locators are Theorem \texttt{thm:gamma}, Lemma \texttt{lem:trigamma}, and Proposition \texttt{prop:taylor}. The proof derives the gamma inequality independently of the unproved source lemmas. Its strict Taylor conclusion includes the equality case of the gamma comparison at m=0. This note repeats the cutoff argument below so all steps in the present receiver are visible; the already-proved first gamma inequality is a named dependency, not a new unproved assertion.
+
+Part II attributes the derivative bound \textbar F\^{}(m)(p)\textbar\ensuremath{\le}F\_m to Juan Arias de Reyna, \emph{High precision computation of Riemann\textquotesingle s zeta function by the Riemann--Siegel formula, I}, Mathematics of Computation 80 (2011), no. 274, 995--1009, formula (55), and the even Taylor coefficients and their bound to formulas (47) and (56). Part I was not independently read here. The present theorem is proved for the precise coefficient class and derivative bounds stated below; their application to the author\textquotesingle s specific F uses those explicitly attributed source facts.
+
+\subsection{2. Exact disproof of the printed global increase}\label{aindependent:exact-disproof-of-the-printed-global-increase}
+
+For every real x\textgreater0 define the original positive function
+
+\[
+H(x)=\frac{5^x}{(2\pi)^{(x-1)/2}\Gamma((x+1)/2)}
+\left(\frac{\Gamma(x+1)}{\Gamma(x/3+2)}\right)^{1/2}.
+\]
+
+All gamma arguments and all bases of powers are positive. Gamma\textquotesingle s recurrence follows directly by integration by parts in Euler\textquotesingle s integral. Applying that recurrence three times at (x+1)/2, six times at x+1, and twice at x/3+2 gives
+
+\[
+\begin{aligned}
+\frac{H(x+6)}{H(x)}
+&=\frac{5^6}{(2\pi)^3}
+\frac{8}{(x+1)(x+3)(x+5)}
+\left(\frac{9(x+1)(x+2)(x+3)(x+4)(x+5)(x+6)}
+{(x+6)(x+9)}\right)^{1/2}\\
+&=\frac{46875}{\pi^3}
+\left(\frac{(x+2)(x+4)}
+{(x+1)(x+3)(x+5)(x+9)}\right)^{1/2}.
+\end{aligned}
+\]
+
+Every cancellation is between positive quantities, so there is no sign choice. Squaring yields exactly
+
+\[
+\boxed{\left(\frac{H(x+6)}{H(x)}\right)^2
+=\frac{46875^2(x+2)(x+4)}
+{\pi^6(x+1)(x+3)(x+5)(x+9)}.}
+\]
+
+For an elementary exact certificate of \ensuremath{\pi}\textgreater3, use
+
+\[
+\frac1{1+u^2}=\sum_{k=0}^{7}(-1)^k u^{2k}
++\frac{u^{16}}{1+u^2},\qquad 0\le u\le1.
+\]
+
+Integrating and using \ensuremath{\pi}=4 arctan(1) gives
+
+\[
+\pi>4\sum_{k=0}^{7}\frac{(-1)^k}{2k+1}
+=\frac{135904}{45045}>3,
+\]
+
+because 135904\ensuremath{-}3\ensuremath{\cdot}45045=769\textgreater0. Hence, at x=2000,
+
+\[
+\begin{aligned}
+\left(\frac{H(2006)}{H(2000)}\right)^2
+&<\frac{46875^2\cdot2002\cdot2004}
+{3^6\cdot2001\cdot2003\cdot2005\cdot2009}\\
+&=\frac{8815447265625000}{11769279587774415}
+=\frac{9328515625000}{12454264114047}<1.
+\end{aligned}
+\]
+
+The reduction divides numerator and denominator by 945; the final denominator minus numerator is 3125748489047. Since H is positive, H(2006)\textless H(2000). This is an exact counterexample to \texttt{fincreasing} as printed, not an asymptotic estimate or a floating-point sample.
+
+It is enough to disprove the printed lemma and the use of that lemma as a proof of monotonicity in the subsequent selection paragraph. Without a separate substitution of the original F\_m formula, it does not by itself identify a counterexample to every parameter-specific statement about \ensuremath{\varepsilon_{5}}(m)/F\_m. No such stronger claim is needed for the replacement below.
+
+\subsection{3. Original quantities and exact Taylor receiver}\label{aindependent:original-quantities-and-exact-taylor-receiver}
+
+Let L\ensuremath{\ge}1 be an integer and T=3L\ensuremath{-}3. Let A(\ensuremath{\sigma}), \ensuremath{B_{1}}, a, \ensuremath{\varepsilon_{4}} be strictly positive real numbers. For every integer 0\ensuremath{\le}m\ensuremath{\le}T retain the source\textquotesingle s definitions
+
+\[
+\varepsilon_5(m)
+=\frac{(\pi^2 B_1a)^{m/3}\varepsilon_4}{316A(\sigma)}
+\left(\frac{m!}{\Gamma(m/3+2)}\right)^{1/2},
+\qquad
+\widetilde\varepsilon_5(m)=\min\{4F_m,\varepsilon_5(m)\},
+\]
+
+where F\_m\textgreater0 and \textbar F\^{}(m)(p)\textbar\ensuremath{\le}F\_m. Let p be real with \textbar p\textbar\ensuremath{\le}1 and
+
+\[
+F(z)=\sum_{j=0}^{\infty}c_{2j}z^{2j},\qquad
+|c_{2j}|\le\frac{\pi^j}{2^{j+1}j!}.
+\]
+
+The source\textquotesingle s p=1\ensuremath{-}2(a\ensuremath{-}\ensuremath{\lfloor}a\ensuremath{\rfloor}) belongs to (\ensuremath{-}1,1{]}, so it satisfies this receiver domain. Coefficients may be complex. The finite-selection theorem below uses no claim that their values or bounds are monotone in m.
+
+For every integer M\ensuremath{\ge}1, choose any integer J\ensuremath{\ge}12 satisfying the two original inequalities
+
+\[
+q_J:=\frac{(2\pi)^J}{J!}\le\frac{\varepsilon_4}{632A(\sigma)},
+\qquad
+q_J\le\frac{\varepsilon_4}{632A(\sigma)M}
+\left(\frac{\pi^2B_1a\sqrt3e^2}{M^2}\right)^{(M-1)/3}.
+\tag{J}
+\]
+
+The source defines the first such J. Its minimality is not used by any estimate here. Let
+
+\[
+P(z)=\sum_{j=0}^{J-1}c_{2j}z^{2j}.
+\]
+
+Then, for every integer 0\ensuremath{\le}m\textless M,
+
+\[
+|F^{(m)}(p)-P^{(m)}(p)|<\frac{\varepsilon_5(m)}2.
+\tag{Taylor}
+\]
+
+Here are the exact steps. The coefficient bound gives uniform absolute convergence of the series on every compact disk, with majorant (1/2)exp(\ensuremath{\pi}R\ensuremath{{}^2}/2). For fixed m the differentiated terms have a bound of the form (2j+1)\^{}m \ensuremath{\pi}\^{}j R\^{}(2j)/(2\^{}(j+1)j!), whose successive ratio tends to zero. Termwise differentiation is therefore valid. For 2j\textless m the derivative of z\^{}(2j) is zero. For 2j\ensuremath{\ge}m it is bounded on \textbar p\textbar\ensuremath{\le}1 by
+
+\[
+m!\binom{2j}{m}|p|^{2j-m}\le m!\,4^j.
+\]
+
+The exponent-zero term is the constant one, including at p=0. Thus there are no negative factorials or negative powers in this bound. For J\ensuremath{\ge}12,
+
+\[
+|F^{(m)}(p)-P^{(m)}(p)|
+\le\frac{m!}{2}\sum_{j\ge J}\frac{(2\pi)^j}{j!}
+\le\frac{m!}{2}q_J\sum_{k\ge0}\left(\frac{2\pi}{J+1}\right)^k
+<m!q_J.
+\tag{Tail}
+\]
+
+The last inequality follows from J+1\ensuremath{\ge}13\textgreater4\ensuremath{\pi}. An exact certificate for the latter is
+
+\[
+0<\int_0^1\frac{u^4(1-u)^4}{1+u^2}\,du=\frac{22}{7}-\pi,
+\qquad \frac{88}{7}<13.
+\]
+
+For the cutoff argument put C=\ensuremath{\varepsilon_{4}}/(632A(\ensuremath{\sigma})), D=\ensuremath{\pi}\ensuremath{{}^2}\ensuremath{B_{1}}a and
+
+\[
+Q(r)=\frac{CD^{r/3}}{\sqrt{\Gamma(r+1)\Gamma(r/3+2)}},\qquad r\ge0.
+\]
+
+The proved gamma inequality in result 056 is
+
+\[
+\Gamma(r+1)\Gamma(r/3+2)
+\le(r+1)^2\left(\frac{(r+1)^4}{3e^4}\right)^{r/3},
+\]
+
+with equality at r=0 and strict inequality for r\textgreater0. Its reciprocal square root gives
+
+\[
+Q(r)\ge\frac{C}{r+1}
+\left(\frac{D\sqrt3 e^2}{(r+1)^2}\right)^{r/3}.
+\tag{Q lower bound}
+\]
+
+Also (log Q)\ensuremath{{}^{\prime\prime}}(r)=\ensuremath{-}\ensuremath{\psi}\ensuremath{{}^{\prime}}(r+1)/2\ensuremath{-}\ensuremath{\psi}\ensuremath{{}^{\prime}}(r/3+2)/18\textless0, using the positive trigamma series proved in result 056. Thus Q is log-concave. The first inequality in (J) gives q\_J\ensuremath{\le}Q(0); the second and the Q lower bound give q\_J\ensuremath{\le}Q(M\ensuremath{-}1). If M\textgreater1 and 0\ensuremath{\le}r\ensuremath{\le}M\ensuremath{-}1, concavity gives
+
+\[
+\log Q(r)\ge\left(1-\frac r{M-1}\right)\log Q(0)
++\frac r{M-1}\log Q(M-1)\ge\log q_J.
+\]
+
+For M=1 only r=0 is needed and both conditions (J) coincide. Consequently \(m!q_J\le m!Q(m)=\varepsilon_5(m)/2\) for every integer 0\ensuremath{\le}m\textless M. Combining with the strict tail estimate proves (Taylor), including m=0. Since q\_(J+1)/q\_J=2\ensuremath{\pi}/(J+1) is eventually less than 1/2, q\_J tends to zero. Both right sides of (J) are positive constants; hence a qualifying J exists.
+
+\subsection{4. Exact finite selection, with no monotonicity assumption}\label{aindependent:exact-finite-selection-with-no-monotonicity-assumption}
+
+Define the finite subset
+
+\[
+B=\{m\in\{0,\ldots,T\}:\varepsilon_5(m)\le F_m\}.
+\]
+
+For every m outside B, F\_m\textless \ensuremath{\varepsilon_{5}}(m) and F\_m\textless4F\_m. It follows that
+
+\[
+|F^{(m)}(p)-0|\le F_m
+<\min\{4F_m,\varepsilon_5(m)\}
+=\widetilde\varepsilon_5(m).
+\tag{zero branch}
+\]
+
+Thus zero is a valid output with the original strict error allowance for each such index.
+
+If B is empty, take every output to be zero and stop. No M or J is required. In particular, one must not substitute M=0 into (J).
+
+If B is nonempty, set M=1+max B, so 1\ensuremath{\le}M\ensuremath{\le}T+1. Choose J using (J). For each m\ensuremath{\in}B, choose a rational complex number y\_m satisfying
+
+\[
+|y_m-P^{(m)}(p)|<\varepsilon_5(m)/2.
+\tag{evaluation}
+\]
+
+For m\ensuremath{\in}B, \ensuremath{\varepsilon_{5}}(m)\ensuremath{\le}F\_m\textless4F\_m, so the original minimum is exactly \ensuremath{\varepsilon_{5}}(m). Hence (Taylor), (evaluation), and the triangle inequality give
+
+\[
+|F^{(m)}(p)-y_m|
+<\varepsilon_5(m)
+=\widetilde\varepsilon_5(m).
+\]
+
+For m\ensuremath{\notin}B use zero, as already proved. This establishes every required derivative output on 0\ensuremath{\le}m\ensuremath{\le}T. The set B need not be an initial interval: holes below M remain zero outputs. Equality \ensuremath{\varepsilon_{5}}(m)=F\_m belongs to B and presents no analytic difficulty.
+
+The proof preserves \texttt{defeps5}, whose operation is min. The later source paragraph prints max while asserting that the value equals \ensuremath{\varepsilon_{5}}(m) under \ensuremath{\varepsilon_{5}}(m)\ensuremath{\le}F\_m. That equality is true for the original min and false for max. The original source file is not altered here.
+
+\subsection{5. Certified finite selection without an equality oracle}\label{aindependent:certified-finite-selection-without-an-equality-oracle}
+
+The exact set B is mathematically well defined, but computing its membership using comparison of arbitrary real values is a separate issue. An executable version takes certified rational enclosures for each positive F\_m and \ensuremath{\varepsilon_{5}}(m), with enclosure widths tending to zero on refinement. For the source\textquotesingle s specific objects, such certified access must come from their defining formulas or independently checked numerical routines; it is not supplied by an unverified floating-point sample.
+
+At each refinement stage write the enclosures as
+
+\[
+F_m\in[f_m^-,f_m^+],\qquad
+\varepsilon_5(m)\in[e_m^-,e_m^+].
+\]
+
+Use either of the following strict certificates:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Output branch & Rational certificate & Proved exact inequality \\
+\midrule
+zero & $f_m^+<e_m^-$ & $F_m<\varepsilon_5(m)$ \\
+compute & $e_m^+<2f_m^-$ & $\varepsilon_5(m)<2F_m$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+If both certificates hold, either branch is valid; for a deterministic implementation give the zero branch priority. If neither holds, refine. These tests use only strict rational comparisons.
+
+For any two strictly positive real numbers F and \ensuremath{\varepsilon}, either F\textless \ensuremath{\varepsilon}, or \ensuremath{\varepsilon}\ensuremath{\le}F\textless2F. Thus the two exact open conditions F\textless \ensuremath{\varepsilon} and \ensuremath{\varepsilon}\textless2F cover all allowed data. If one strict inequality is true, its positive gap eventually exceeds the sum of the enclosure errors, and its rational certificate is then found. Therefore classification terminates for each index, and it terminates for the entire finite index set. Equality \ensuremath{\varepsilon}=F is covered by the compute branch, while equality \ensuremath{\varepsilon}=2F is covered by the zero branch. No equality decision is needed.
+
+Let C be the set classified for computation. If C is empty, all outputs are zero and the proof in the zero branch applies at every index. Otherwise set M=1+max C and use (J). Every m\ensuremath{\in}C satisfies \ensuremath{\varepsilon_{5}}(m)\textless2F\_m\textless4F\_m, so its original allowance is again exactly \ensuremath{\varepsilon_{5}}(m). Applying (Taylor) and (evaluation) proves total error strictly below that allowance. Every m\ensuremath{\notin}C has a certified zero branch. In particular, B\ensuremath{\subseteq}C, but C may contain some indices from the overlap F\_m\textless \ensuremath{\varepsilon_{5}}(m)\textless2F\_m. This enlargement changes no error claim.
+
+The use of 2F\_m in the compute certificate is sufficient, but not maximal: the same proof works with \ensuremath{\varepsilon_{5}}(m)\textless cF\_m for any fixed 1\textless c\ensuremath{\le}4. The proposed value 2 is valid and gives a substantial overlap with the zero branch. No change to that proposed value is required.
+
+\subsection{6. Cutoff certification and exact rational polynomial evaluation}\label{aindependent:cutoff-certification-and-exact-rational-polynomial-evaluation}
+
+Computability claims require representations, while the preceding analytic statements apply to all real data satisfying their written hypotheses. The following construction makes the effective content explicit and does not require selecting the first J with an undecidable non-strict real comparison.
+
+Find positive rational lower bounds for the two right sides of (J) by refining their certified enclosures until the lower endpoints are positive. Let b\textgreater0 be a rational number no greater than both lower bounds. Since 2\ensuremath{\pi}\textless44/7, search for an integer J\ensuremath{\ge}12 with
+
+\[
+\frac{(44/7)^J}{J!}<b.
+\]
+
+This is a strict comparison of rational numbers and the search terminates, since successive ratios are (44/7)/(J+1), eventually less than 1/2. The chosen J satisfies both original conditions (J), regardless of whether it is their first solution. Thus the receiver retains the original constants while avoiding a second equality-oracle issue at the cutoff.
+
+Here is a complete finite error construction for (evaluation). Suppose certified approximations to p and the finite coefficient list \ensuremath{c_{0}},\ensuremath{c_{2}},\ldots,c\_(2J\ensuremath{-}2) can be refined to arbitrary accuracy. For the source coefficients, formula \texttt{c2n} is an explicit finite expression in Euler numbers, \ensuremath{\pi}, 1/\ensuremath{\sqrt2}, and exp(3\ensuremath{\pi}i/8). This fact supports such refinement by exact-integer operations and certified elementary constants, without relying on the source\textquotesingle s later floating-point schedules. No identity connecting those formulas to F beyond the source\textquotesingle s stated coefficient identity is independently claimed here.
+
+For a derivative index m, let
+
+\[
+I_m=\{j:0\le j<J,\ 2j\ge m\},\quad
+k_{jm}=2j-m,\quad d_{jm}=\frac{(2j)!}{(2j-m)!}.
+\]
+
+If I\_m is empty, P\^{}(m) is identically zero, so take y\_m=0 with evaluation error zero. Otherwise choose rational bounds
+
+\[
+U_j=\frac{(22/7)^j}{2^{j+1}j!}\ge |c_{2j}|,
+\qquad
+K_m=\sum_{j\in I_m}d_{jm}(1+k_{jm}U_j)>0.
+\]
+
+For the finitely many required indices with nonempty I\_m, choose a positive rational \ensuremath{\eta} such that \ensuremath{\eta}K\_m\textless \ensuremath{\varepsilon_{5}}(m)/2 for all of them. Certified positive rational lower bounds for \ensuremath{\varepsilon_{5}}(m) make this a finite rational choice. Find rational complex coefficients \ensuremath{\widehat c}\_(2j) with \textbar \ensuremath{\widehat c}\_(2j)\ensuremath{-}c\_(2j)\textbar\ensuremath{\le}\ensuremath{\eta}, and a rational r\ensuremath{\in}{[}\ensuremath{-}1,1{]} with \textbar r\ensuremath{-}p\textbar\ensuremath{\le}\ensuremath{\eta}. For p, first approximate by a rational and then clamp to {[}\ensuremath{-}1,1{]}; this cannot increase the distance to p. For a complex coefficient, coordinate errors no greater than \ensuremath{\eta}/2 imply its modulus error is less than \ensuremath{\eta}.
+
+Compute exactly in rational complex arithmetic
+
+\[
+y_m=\sum_{j\in I_m}d_{jm}\widehat c_{2j}r^{k_{jm}}.
+\]
+
+For real r,p\ensuremath{\in}{[}\ensuremath{-}1,1{]} and integer k\ensuremath{\ge}1, factorization of r\^{}k\ensuremath{-}p\^{}k gives \textbar r\^{}k\ensuremath{-}p\^{}k\textbar\ensuremath{\le}k\textbar r\ensuremath{-}p\textbar; for k=0 the difference is zero. Therefore
+
+\[
+\begin{aligned}
+|y_m-P^{(m)}(p)|
+&\le\sum_{j\in I_m}d_{jm}
+\left(|\widehat c_{2j}-c_{2j}|\,|r|^{k_{jm}}
++|c_{2j}|\,|r^{k_{jm}}-p^{k_{jm}}|\right)\\
+&\le\eta\sum_{j\in I_m}d_{jm}(1+k_{jm}U_j)
+=\eta K_m<\varepsilon_5(m)/2.
+\end{aligned}
+\]
+
+This proves (evaluation), including k=0, p=0, p=\ensuremath{\pm}1, and m exceeding the degree of P. Finite rational arithmetic incurs no further rounding error. The construction proves existence and termination of certified finite evaluation; it makes no speed claim and does not verify any preexisting implementation.
+
+\subsection{7. Conservative option: compute the entire finite list}\label{aindependent:conservative-option-compute-the-entire-finite-list}
+
+Set M=T+1, and choose J\ensuremath{\ge}12 satisfying both original conditions (J) and
+
+\[
+q_J\le\min_{0\le m\le T}\frac{2F_m}{m!}.
+\tag{full-list cutoff}
+\]
+
+The extra minimum is positive because the index set is finite and every F\_m is strictly positive. Existence follows again from q\_J\ensuremath{\to}0. An effective choice uses a positive rational lower bound for this additional minimum along with the two bounds in Section 6.
+
+For every required index, (Tail), (Taylor), and the extra cutoff give simultaneously
+
+\[
+|F^{(m)}(p)-P^{(m)}(p)|<\varepsilon_5(m)/2,
+\qquad
+|F^{(m)}(p)-P^{(m)}(p)|<2F_m.
+\]
+
+Consequently
+
+\[
+|F^{(m)}(p)-P^{(m)}(p)|
+<\min\{\varepsilon_5(m)/2,2F_m\}
+=\widetilde\varepsilon_5(m)/2.
+\]
+
+Use the rational polynomial construction with \ensuremath{\varepsilon_{5}}(m)/2 replaced by the positive target \(\widetilde\varepsilon_5(m)/2\). The total error is then strictly smaller than the original \(\widetilde\varepsilon_5(m)\) for every m. This option uses no derivative-selection comparisons at all.
+
+\subsection{8. Endpoint and scope conclusions}\label{aindependent:endpoint-and-scope-conclusions}
+
+The data L\ensuremath{\ge}1 make T\ensuremath{\ge}0. At L=1, T=0 and a nonempty computed set gives M=1; the two original cutoff bounds coincide and the proof still applies. An empty computed set invokes neither M nor J. At m=0, the gamma-product comparison is an equality, but the Taylor tail comparison is strict, so the final allowance remains strict. Indices beyond the polynomial degree contribute exact zero polynomial derivatives, not undefined negative factorials. The coefficient and tail bounds hold at p=0 and both endpoints of {[}\ensuremath{-}1,1{]}. All denominators and tolerances used above are strictly positive on the specified domain.
+
+The proposed ratio, the exact rational counterexample, the finite-set replacement, the strict-overlap refinement, and the conservative full-list cutoff are correct. Two practical qualifications are essential: effective input values need certified convergent enclosures, and the implementation should choose any certified qualifying J rather than promise to compute the first J through non-strict comparisons of arbitrary real numbers.
+
+This establishes a finite derivative-output repair with the source\textquotesingle s original error allowances and unchanged Taylor cutoff constants. It does not prove the Riemann hypothesis, verify the second technical gamma inequality, certify all coefficient identities from Part I, or certify a complete Riemann--Siegel implementation.
+
+\subsection{9. Direct review of the parent proof}\label{aindependent:direct-review-of-the-parent-proof}
+
+After completing the independent derivation above, the parent \path{work/arias_finite_derivative_repair_20260920/proof.tex} was read completely. The checked snapshot has SHA-256 \texttt{\path{b1ffb3234069434ab573e7de2d6ac5bbd5bc3a2f6bb1badea704f9cb2209c5ae}}. Its statements and proofs of \texttt{thm:ratio}, \texttt{prop:finite}, \texttt{prop:overlap}, the Taylor-error composition, and the full-list cutoff agree with the independent derivation. No mathematical error was found in that snapshot. It states the convergent rational-enclosure input model and permits strict cutoff certification without minimality. The explicit K\_m evaluation constant in Section 6 above is a proved strengthening of its finite interval-evaluation argument, not a correction of an invalid bound.
+
+\endgroup
+
+\clearpage\begingroup
+\section*{The exact finite derivative mechanism}
+\includegraphics[width=\textwidth,height=.78\textheight,keepaspectratio]{ARIAS_DERIVATIVE_REPAIR.png}
+The left upper panel records the gamma-ratio proof of result056; the right
+upper panel records the exact recurrence counterexample of result058.
+The remaining panels retain the original derivative bounds and absolute
+error allowances from Arias de Reyna, arXiv:2201.00342v1, Section3.11.
+Overlapping strict tests cover every positive pair. The complete proofs
+above give the enclosing-interval interface, all equality cases, both
+original Taylor cutoffs, and the rational polynomial-evaluation constant.
+No curve or derivative value is sampled in the diagram.
+\section*{Programme use}
+The arithmetic calculations in the Split-Zero programme use the completed
+zeta function and its derivatives. This edition supplies a proved
+gamma input and repairs one finite derivative-output interface in its
+computational source literature. It does not claim a newly evaluated
+arithmetic integral, certification of a whole Riemann--Siegel implementation,
+or an RH conclusion. The PartI derivative/coefficient facts remain
+attributed through the fully read PartII author source. Their proofs are
+not misrepresented as independently read here.
+\endgroup
+% END COMPLETE GAMMA AND FINITE DERIVATIVE RESULTS 056 058

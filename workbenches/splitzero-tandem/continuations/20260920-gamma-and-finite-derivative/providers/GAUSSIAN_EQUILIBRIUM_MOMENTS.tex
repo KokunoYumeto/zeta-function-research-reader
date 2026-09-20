@@ -1,0 +1,361 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\dd}{\,d}\newcommand{\R}{\mathbb R}
+\title{The original equilibrium density, its second moment, and a signed Gaussian return}
+\author{Split-Zero research programme: independent derivation}
+\date{20 September 2026}
+\begin{document}\maketitle
+This note proves the equilibrium and finite-constant part of the incoming
+Gaussian continuation. It does not assume a spectral convergence theorem
+for the arithmetic quotient. In particular, the positivity of the measure
+below is proved by an explicit integral comparison; it is not inferred
+from an unproved spectral limit. The potential, endpoint coordinates and
+probability masses are those of EIQ1--33 in the programme source
+\cite{EIQ}. Legendre's elliptic-integral conventions are those of Carlson
+\cite{Carlson}; the original equation TeX was read for the definitions.
+All identities and estimates used in this note are proved below.
+
+\section{Endpoints, density and equilibrium}
+For $0<s\le1$, set
+\begin{equation}\tag{GM1}
+ \begin{gathered}
+ V_s(x)=\frac\pi s\sqrt x-\frac2s\log x\quad(x>0),\qquad
+ \\
+ K(\kappa)=\int_0^{\pi/2}\frac{\dd\theta}{\sqrt{1-\kappa^2\sin^2\theta}},
+ \quad E(\kappa)=\int_0^{\pi/2}\sqrt{1-\kappa^2\sin^2\theta}\dd\theta.
+ \end{gathered}
+\end{equation}
+The definitions of $K,E$ agree exactly with \cite[19.2.4, 19.2.5,
+19.2.8(a,b)]{Carlson}. Put $r=\sqrt{1-\kappa^2}$. There is exactly one
+$r\in(0,1)$ for which
+\begin{equation}\tag{GM2}
+ \frac{rK}{E}=\frac1{1+s},\qquad
+ u=\frac2K,\quad v=\frac{2(1+s)}E,\quad r=\frac uv,
+ \quad a=u^2,\quad b=v^2.
+\end{equation}
+Indeed, differentiation under the defining integrals and integration of
+$d(\sin\theta\cos\theta/\sqrt{1-\kappa^2\sin^2\theta})$ give
+$E_\kappa'=(E-K)/\kappa$ and
+$K_\kappa'=E/[\kappa(1-\kappa^2)]-K/\kappa$.
+They imply
+\begin{equation}\tag{GM3}
+ \frac{d}{dr}\frac{rK}E
+ =\frac{(K-E)(E-r^2K)}{(1-r^2)E^2}>0.
+\end{equation}
+Both factors are positive by the defining integrals. Dominated convergence
+gives $rK/E\to0$ at $r\downarrow0$ and $rK/E\to1$ at $r\uparrow1$:
+for the first limit the integrand of $rK$ is bounded by one and tends
+to zero except at the last endpoint, while $E\to1$.
+This proves existence, uniqueness and continuous dependence.
+
+With $R_w=\sqrt{(a+w)(b+w)}$ define
+\begin{equation}\tag{GM4}
+ \rho_s(x)=\frac{\sqrt{(b-x)(x-a)}}{4\pi s x}
+       \int_0^\infty\frac{\sqrt w}{(x+w)R_w}\dd w\quad(a<x<b),
+ \qquad \rho_s(x)=0\quad(x\notin(a,b)).
+\end{equation}
+Here is a derivation verifying its probability mass and the original
+equilibrium problem. It also specifies the transform needed for its moment.
+Write $\alpha=2/s$, $\beta=\pi/s$, $m=(a+b)/2$, $R_0=uv$ and
+$R(z)=\sqrt{(z-a)(z-b)}$, with $R(z)/z\to1$ at infinity.
+The substitution $x=a\cos^2\theta+b\sin^2\theta$ gives
+\begin{equation}\tag{GM5}
+ \int_a^b\frac{V_s'(x)}{\sqrt{(b-x)(x-a)}}\dd x=0,
+ \qquad
+ \int_a^b\frac{xV_s'(x)}{\sqrt{(b-x)(x-a)}}\dd x=2\pi.
+\end{equation}
+The required elementary integrals, with numerators $x^{-1/2}$,
+$x^{-1}$ and $x^{1/2}$, are $2K/v$, $\pi/(uv)$ and $2vE$.
+The substitution $w=xt^2$ gives
+$\int_0^\infty[\sqrt w(x+w)]^{-1}\dd w=\pi/\sqrt x$.
+Tonelli's theorem and (GM5) now imply
+\begin{equation}\tag{GM6}
+ \frac\alpha{R_0}=\frac\beta{2\pi}
+       \int_0^\infty\frac{\dd w}{\sqrt wR_w},\qquad
+ \int_0^\infty\frac{1-w/R_w}{\sqrt w}\dd w=2vE.
+\end{equation}
+Thus $h(x):=2\pi\rho_s(x)/\sqrt{(b-x)(x-a)}$ has the two forms
+\begin{equation}\tag{GM7}
+ h(x)=\frac\alpha{xR_0}-\frac\beta{2\pi}
+       \int_0^\infty\frac{\dd w}{\sqrt w(x+w)R_w}
+ =\frac\beta{2\pi x}\int_0^\infty\frac{\sqrt w}{(x+w)R_w}\dd w>0.
+\end{equation}
+The arcsine transform, proved by $x=m+(b-a)\cos\theta/2$ followed
+by $t=\tan(\theta/2)$, is
+$\pi^{-1}\int_a^b[(z-x)\sqrt{(b-x)(x-a)}]^{-1}\dd x=1/R(z)$.
+Polynomial division and partial fractions consequently give
+\begin{equation}\tag{GM8}
+ \frac1\pi\int_a^b\frac{\sqrt{(b-x)(x-a)}}{x+w}\dd x=m+w-R_w,
+ \quad
+ \frac1\pi\int_a^b\frac{\sqrt{(b-x)(x-a)}}{(x+w)(z-x)}\dd x
+ =1-\frac{R_w+R(z)}{z+w}=:H_w(z).
+\end{equation}
+Integrating (GM7) using (GM8), and then (GM6), proves
+\begin{equation}\tag{GM9}
+ \int_a^b\rho_s(x)\dd x
+ =\frac\alpha{2R_0}(m-R_0)-\frac\beta{4\pi}
+  \int_0^\infty\frac{(m+w)/R_w-1}{\sqrt w}\dd w
+ =-\frac\alpha2+\frac{\beta vE}{2\pi}=1.
+\end{equation}
+All auxiliary integrals converge at zero and infinity. The Cauchy transform
+has the exact expression
+\begin{equation}\tag{GM10}
+ G(z)=\int_a^b\frac{\rho_s(x)}{z-x}\dd x
+ =\frac\alpha{2R_0}H_0(z)-\frac\beta{4\pi}
+       \int_0^\infty\frac{H_w(z)}{\sqrt wR_w}\dd w
+ =\frac{V_s'(z)-R(z)h(z)}2.
+\end{equation}
+The last equality follows by substituting (GM8); (GM6) cancels the
+constant integral and the elementary Stieltjes integral supplies
+$\beta/(4\sqrt z)$. It holds first outside both $[a,b]$ and the
+negative real axis, and then throughout the domain of the Cauchy transform.
+
+For completeness, this density is the unique equilibrium probability
+for $\int V_s\dd\mu-\iint\log|x-y|\dd\mu\dd\mu$ on $(0,\infty)$.
+The effective potential
+$U(x)=V_s(x)-2\int\log|x-t|\rho_s(t)\dd t$ is continuous.
+The boundary values of (GM10) give $U'=0$ on $(a,b)$ and
+$U'=R(x)h(x)<0$ on $(0,a)$, $U'>0$ on $(b,\infty)$.
+Hence $U=\ell$ on $[a,b]$ and $U>\ell$ elsewhere.
+To justify the minimizing conclusion, let $\mu$ have finite energy,
+$\nu=\mu-\rho_s\dd x$, and observe that the confining potential
+controls $\sqrt x+|\log x|$. All cross logarithmic integrals are therefore
+absolutely integrable; the negative logarithmic singularity in the cross
+term is bounded after integration against the bounded compact density.
+The scalar integral
+$-\log d=\tfrac12\int_0^\infty(e^{-td^2}-e^{-t})\dd t/t$
+and Gaussian Fourier integration give
+\[
+ -\iint\log|x-y|\dd\nu(x)\dd\nu(y)
+ =\frac1{2\sqrt{4\pi}}\int_0^\infty t^{-3/2}
+       \int_\R e^{-\xi^2/(4t)}|\widehat\nu(\xi)|^2\dd\xi\dd t\ge0.
+\]
+Truncation of the scalar integral is bounded by $|\log d|$, so dominated
+convergence justifies this identity. Equality forces $\widehat\nu=0$ and
+then $\nu=0$, by convolution with Gaussian approximate identities.
+The energy difference is the sum of this nonnegative quantity and
+$\int(U-\ell)\dd\mu$. It is strictly positive unless $\mu=\rho_s\dd x$.
+Infinite energy cannot improve the finite value. This proves the assertion.
+
+\section{Exact first moment in the squared coordinate}
+An equivalent Cauchy-transform formula is
+\begin{equation}\tag{GM11}
+ G(z)=\frac{R(z)}{2\pi}
+ \int_a^b\frac{V_s'(x)}{(z-x)\sqrt{(b-x)(x-a)}}\dd x.
+\end{equation}
+To verify it, subtract the right side from (GM10). Its boundary jumps
+vanish: the right side has boundary sum $V_s'$ and the same jump as
+the Cauchy transform, as follows either from (GM7) and the Stieltjes
+integral or directly by the partial fractions in (GM8).
+The difference extends across the endpoints and vanishes at infinity
+by (GM5), so is zero. Equivalently, inserting
+$V_s'=\beta/(2\sqrt x)-\alpha/x$ and the Stieltjes integral in (GM11)
+reduces it term by term to (GM10).
+Let $I_j=\int_a^b x^jV_s'(x)/\sqrt{(b-x)(x-a)}\dd x$.
+Since $I_0=0$, $I_1=2\pi$ and $R(z)=z-m+O(z^{-1})$, expansion gives
+\begin{equation}\tag{GM12}
+ \int x\rho_s(x)\dd x=\frac{I_2}{2\pi}-m
+ =\frac{\beta v^3}{2\pi}J_3-\left(\frac\alpha2+1\right)m,
+ \quad J_3=\int_0^{\pi/2}(1-\kappa^2\sin^2\theta)^{3/2}\dd\theta.
+\end{equation}
+The exact reduction is
+\begin{equation}\tag{GM13}
+ 3J_3=2(2-\kappa^2)E-(1-\kappa^2)K.
+\end{equation}
+Indeed the integrand of the left side minus the right side equals
+$\kappa^2\,d(\sin\theta\cos\theta
+\sqrt{1-\kappa^2\sin^2\theta})/d\theta$; its endpoint values vanish.
+Substitute $\alpha=2/s$, $\beta=\pi/s$, $uK=2$ and $vE=2(1+s)$
+in (GM12)--(GM13). This proves the requested original-coordinate value
+\begin{equation}\tag{GM14}
+ \boxed{\displaystyle\int x\rho_s(x)\dd x
+ =\frac{(1+s)(u^2+v^2)-2uv}{6s}.}
+\end{equation}
+
+\section{A positive probability after the actual relation subtraction}
+Define $h_0(y)=(2\pi)^{-1}\operatorname{arcosh}(2/|y|)$ for $0<|y|<2$,
+and zero elsewhere. Its integrable singularity at zero is understood in
+the measure sense. It is the mixture, for $0<t<1$, of the arcsine
+probabilities on $[-2t,2t]$:
+\begin{equation}\tag{GM15}
+ h_0(y)=\int_{|y|/2}^1\frac{\dd t}{\pi\sqrt{4t^2-y^2}},\qquad
+ \int y^{2j}h_0(y)\dd y=\frac{\binom{2j}j}{2j+1}.
+\end{equation}
+The second identity follows by $y=2t\cos\theta$ and integration over
+$t\in[0,1]$, using
+$\pi^{-1}\int_0^\pi\cos^{2j}\theta\dd\theta=\binom{2j}j/4^j$.
+This last formula follows successively by integration by parts, starting
+from one at $j=0$.
+
+For $0<s\le1$ define, in the original $y$ coordinate,
+\begin{equation}\tag{GM16}
+ \dd\nu_s(y)=\left[h_0\left(\frac y{1+s}\right)
+                    -s|y|\rho_s(y^2)\right]\dd y.
+\end{equation}
+This is a positive probability supported in $[-2(1+s),2(1+s)]$.
+Here is a direct proof, independent of any arithmetic spectral limit.
+For $a<x<b$, (GM4) gives
+\begin{align}\tag{GM17}
+ s\sqrt x\rho_s(x)
+ &\le\frac{\sqrt{b-x}}{4\pi}
+          \int_0^\infty\frac{\dd w}{(x+w)\sqrt{b+w}}\notag\\
+ &=\frac1{2\pi}\operatorname{arcosh}\frac v{\sqrt x}
+ \le\frac1{2\pi}\operatorname{arcosh}\frac{2(1+s)}{\sqrt x}.\notag
+\end{align}
+The first inequality uses separately $\sqrt{x-a}/\sqrt x\le1$ and
+$\sqrt w/\sqrt{a+w}\le1$. The substitution $t=\sqrt{b+w}$ evaluates
+the integral as
+$2\operatorname{arcosh}(v/\sqrt x)/\sqrt{b-x}$.
+The last inequality uses $E\ge1$, hence $v\le2(1+s)$.
+Outside this interval the subtracted density vanishes, so (GM17)
+proves positivity everywhere. The pushforward of
+$|y|\rho_s(y^2)\dd y$ under $y\mapsto y^2$ is exactly
+$\rho_s(x)\dd x$, with both signs of $y$ included. Its mass is one.
+The first term of (GM16) has mass $1+s$, so $\nu_s$ has mass one.
+At $s=0$ put $\dd\nu_0=h_0(y)\dd y$.
+
+Its second moment is consequently
+\begin{equation}\tag{GM18}
+ \boxed{\mathfrak m(s)=\int y^2\dd\nu_s(y)
+ =\frac23(1+s)^3-\frac{(1+s)(u^2+v^2)-2uv}{6}.}
+\end{equation}
+In particular $\mathfrak m(0)=2/3$ and
+$\mathfrak m(1)=(16-u^2-v^2+uv)/3$.
+For the endpoint limit $s\downarrow0$, (GM2) gives
+$r\uparrow1$ and $u,v\to4/\pi$; the formula agrees continuously
+with this definition at zero.
+
+\section{Finite lower bounds, with no fitted elliptic constants}
+First, $r(1)>1/8$. The elementary tangent substitution gives
+\[
+ K=\int_0^\infty\frac{\dd t}{\sqrt{(1+t^2)(1+r^2t^2)}}
+ \le2\operatorname{arsinh}(1)+\log(1/r).
+\]
+For this bound split the integral at $1$ and $1/r$, use the change
+$t=1/(rw)$ in the final part, and bound the middle integrand by $1/t$.
+At $r=1/8$ this is less than $39/10<4$: the elementary inequalities
+$\operatorname{arsinh}(1)<9/10$ and $\log2<7/10$ follow from
+$\sqrt2<99/70$ and the positive Taylor sums through degree five for
+$e^{9/10}$ and $e^{7/10}$ respectively.
+Thus $rK/E<1/2$ at $r=1/8$ and (GM3) proves the assertion.
+Also $K>E$ gives $r(1)<1/2$.
+
+If $r=r(1)\ge3/20$, the decreasing function $1-r+r^2$ on $(0,1/2)$
+and $v<4$ give $v^2(1-r+r^2)<349/25$.
+If $1/8<r\le3/20$, differentiation under the integral in (GM1) gives
+\begin{equation}\tag{GM19}
+ E(r)-1=\int_0^r t\int_0^{\pi/2}
+ \frac{\sin^2\theta}{\sqrt{\cos^2\theta+t^2\sin^2\theta}}
+ \dd\theta\dd t
+ \ge\frac{r^2(K-E)}{2(1-r^2)}.
+\end{equation}
+Use $K=E/(2r)$ and
+$r(1-2r)/[4(1-r^2)]\ge7/320$ on this interval.
+It follows that $E\ge320/313$ and
+\[
+ v^2(1-r+r^2)\le\frac{57}{4}\left(\frac{313}{320}\right)^2
+ <\frac{349}{25}.
+\]
+Both cases prove $\mathfrak m(1)>17/25$ with exact rational constants.
+
+The same argument proves the claimed uniform bound. For $0<s\le1$,
+(GM3) gives $r(s)\ge r(1)>1/8$; $K$ decreases with $r$, so $K<4$
+and $u>1/2$. Furthermore $v\ge u$, $v\le2(1+s)$, and
+$(1+s)u/v=E/K<1$. With $T=1+s$, the exact identity
+\begin{equation}\tag{GM20}
+ 6\mathfrak m(s)-uv=T(4T^2-v^2)+u(v-Tu)\ge0
+\end{equation}
+therefore gives $\mathfrak m(s)\ge uv/6>1/24$. The assertion is also
+true at $s=0$, where its value is $2/3$.
+
+\section{An explicit finite series certificate strengthening the endpoint}
+The accompanying exact/radius computation strengthens the finite endpoint
+bound to
+\begin{equation}\tag{GM21}
+ \frac{16010167095}{10^{11}}<r(1)<\frac{16010167096}{10^{11}},
+ \qquad \boxed{\mathfrak m(1)>\frac{10249}{10000}.}
+\end{equation}
+Here are the full mathematical error bounds used by the certificate.
+For $z=1-r^2\in(0,1)$ and
+$a_n=(\binom{2n}n/4^n)^2$, expansion of the defining integrands yields
+\begin{align}\tag{GM22}
+ \frac{2K}{\pi}&=\sum_{n=0}^{J}a_nz^n+R_K,
+ &0<R_K\le\frac{z^{J+1}}{1-z},\notag\\
+ \frac{2E}{\pi}&=1-\sum_{n=1}^{J}\frac{a_nz^n}{2n-1}-R_E,
+ &0<R_E\le\frac{z^{J+1}}{(2J+1)(1-z)}.\notag
+\end{align}
+For $K$ use the binomial series and the cosine moment in (GM15).
+For $E$ the binomial coefficient is the negative of the corresponding
+coefficient for $K$ divided by $2n-1$. Termwise integration is justified
+by uniform convergence because $z<1$. The tail bounds use $0<a_n\le1$.
+The recurrence $a_0=1$, $a_{n+1}=a_n((2n+1)/(2n+2))^2$ retains every
+coefficient. The certificate uses $J=2048$ and outward-rounded real
+interval arithmetic with 240-bit midpoints. It proves that $rK/E-1/2$
+is negative at the lower rational in (GM21), positive at the upper,
+and then evaluates (GM18) on the entire resulting interval.
+The ratio test is independent of $\pi$. The endpoints $u=2/K$,
+$v=4/E$ use a rigorous $\pi$ interval obtained from
+\[
+ \pi=16\arctan(1/5)-4\arctan(1/239).
+\]
+For completeness, the tangent addition formula gives
+$\tan(4\arctan(1/5)-\arctan(1/239))=1$ exactly;
+the angle is in $(0,\pi/2)$, proving the identity.
+Alternating arctangent sums with their first omitted terms bound both
+arctangents (respectively 24 and 8 terms). Thus no floating point
+approximation to an unbounded remainder is used. All rational endpoints,
+interval enclosures and pass/fail comparisons are saved in the check
+receipt. The general bound (GM20) remains an analytic proof over the
+entire continuum; sampled parameter checks are not substituted for it.
+
+\section{The complete signed Gaussian expression}
+Let
+\begin{equation}\tag{GM23}
+ H_s(t)=\int e^{-ty^2}\dd\nu_s(y),\qquad
+ \mathfrak A(t)=2[-H_0'(t)+H_1'(t)]\quad(t\ge0).
+\end{equation}
+All these derivatives exist by compact support. If
+$I_0(z)=\pi^{-1}\int_0^\pi e^{z\cos\theta}\dd\theta$, the arcsine
+mixture (GM15) gives exactly
+\begin{equation}\tag{GM24}
+ H_0(t)=\int_0^1e^{-2tw^2}I_0(2tw^2)\dd w,\qquad
+ H_s(t)=(1+s)H_0((1+s)^2t)-s\int e^{-tx}\rho_s(x)\dd x.
+\end{equation}
+The second identity is the two-to-one pushforward $x=y^2$ of (GM16),
+including its full mass. Since $\nu_0,\nu_1$ are positive probabilities
+with squared supports in $[0,4]$ and $[0,16]$, respectively,
+\[
+ -H_0'(1/1024)\le2/3,\qquad
+ -H_1'(1/1024)\ge\frac{63}{64}\mathfrak m(1).
+\]
+Here $e^{-x/1024}\ge1-x/1024\ge63/64$ on the second support.
+The completely analytic bound $\mathfrak m(1)>17/25$ proves the incoming
+$\mathfrak A(1/1024)<-13/2400$. The finite-series certificate strengthens
+this to
+\begin{equation}\tag{GM25}
+ \boxed{\mathfrak A(1/1024)
+ <\frac43-\frac{63}{32}\frac{10249}{10000}
+ =-\frac{657061}{960000}.}
+\end{equation}
+This statement is about the explicitly constructed equilibrium receiver.
+Its transfer to the original finite arithmetic observation matrices
+requires the actual spectral convergence argument. This note proves
+neither that convergence nor the individual projected phase signs.
+
+\begin{thebibliography}{9}
+\bibitem{Carlson} B. C. Carlson, \emph{Elliptic Integrals}, Chapter 19 of
+the NIST Digital Library of Mathematical Functions, version 1.2.8,
+15 September 2026, equations 19.2.4, 19.2.5 and 19.2.8(a,b).
+\url{https://dlmf.nist.gov/19.2}. Carlson credits L. M. Milne-Thomson's
+Chapter 17 in Abramowitz--Stegun for part of the Legendre-integral material.
+The four original equation TeX files are retained in \texttt{author\_sources}.
+\bibitem{EIQ} Split-Zero research programme, \emph{Equilibrium measure for
+the original Gamma relation potential}, EIQ1--33, cumulative source
+\texttt{09\_UPDATED\_JOINT\_NOTE.tex}, original potential, elliptic endpoints,
+density, Cauchy transform and energy proof. The private reading ledger
+records the exact source hash and coverage; this note rederives every
+equilibrium identity needed here.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,784 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\title{Certified finite native moment enclosures for the parity resolvents}
+\author{}
+\date{20 September 2026}
+\begin{document}\maketitle
+
+This note closes the finite-resolvent step left in the complete native
+parity/Pollaczek calculation \cite{PP} and its conductor continuation
+\cite{TR}.  Every resolvent below is taken against an actual native
+measure.  Finite moment matrices provide two-sided bounds, exact
+variational error identities, and computable positive-semidefinite gap
+certificates.  The unknown native moments remain explicit inputs; no
+numerical value, phase estimate, or substitute measure is assigned to
+them.  The original observation and conductor kernels and the signs of
+the four endpoint errors are retained.
+
+\section{Unchanged objects, parity measures, and the unresolved integrals}
+
+Keep the full quartet divisor and original arithmetic source
+\begin{equation}\label{eq:native}
+ \begin{gathered}
+ \rho_*=\tfrac12+\delta+i\gamma,\quad0<\delta<\tfrac12,\quad\gamma>2,
+ \quad m\ge1,\quad g=2\xi,\\
+ h(s)=\prod_{z\in\{\rho_*,\bar\rho_*,1-\rho_*,1-\bar\rho_*\}}(s-z)^m,
+ \quad w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi},\\
+ m_k=w_h^{*k},\quad k=4\ell+1\ge9,\quad
+ \mu_h=\int_\R w_h(y)\,dy,\quad S=c+iy,\quad c=k/2,\\
+ e_k=1+k(m-1),\quad q=e_k(k+1)^2,\quad
+ \chi(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma]^{e_k}.
+ \end{gathered}
+\end{equation}
+The full multiplicity $m$ and the physical Taylor unit are unchanged.
+This is the stipulated quartet domain, not an assertion of existence of
+an off-line zero.  The complete native providers \cite{CAI,HG} prove
+evenness, positivity, and the actual envelope
+\begin{equation}\label{eq:envelope}
+ 0<a_k(1+y^2)^{-M}\rho_\sigma(y)\le m_k(y)\le A_k\rho_\sigma(y),
+ \quad M=21+4m,\quad
+ \rho_\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},
+\end{equation}
+where the constants retain their original definitions
+\begin{equation}\label{eq:constants}
+ \begin{gathered}
+ \alpha=\pi/2,\quad p=8m-9/2,\quad B_h=42+8m,\\
+ c_\Gamma=\sqrt2e^{-7/6},\quad
+ C_\Gamma=\sqrt{2\sqrt5}e^{2/3},\quad
+ \rho_\sigma(y)\le C_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2},\\
+ \vartheta_h=\int_{-1}^1w_h(y)\,dy,\quad
+ M_\alpha=\int_\R e^{\alpha y}w_h(y)\,dy,\\
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+ {C_\Gamma2^{B_h/2}},\qquad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{p+1}M_\alpha^{k-1}.
+ \end{gathered}
+\end{equation}
+Here $c_h$ and $C_h^{\rm tilt}$ are precisely the complete CAI
+provider's TW7 and BT12 constants, not newly postulated numbers.
+
+Put $\zeta_r=\int y^rm_k(y)\,dy$ and retain both parity measures
+\begin{equation}\label{eq:parities}
+ d\nu_0(x)=\frac{m_k(\sqrt x)}{\sqrt x}\,dx,\qquad
+ d\nu_1(x)=x\,d\nu_0(x),\qquad x>0.
+\end{equation}
+For the original $f(y)=E(y^2)+yO(y^2)$, evenness and the two
+half-axis substitutions give
+\begin{equation}\label{eq:paritynorm}
+ \int_\R|f(y)|^2m_k(y)dy
+ =\int|E|^2d\nu_0+\int|O|^2d\nu_1.
+\end{equation}
+The masses are exactly
+\[
+ \nu_0((0,\infty))=\mu_h^k,\qquad
+ \nu_1((0,\infty))=\zeta_2=k\eta_2\mu_h^{k-1},
+ \quad\eta_2=\int y^2w_h(y)dy.
+\]
+The second identity follows by the convolution multinomial formula;
+the mixed first moments vanish by evenness.  No mass is replaced by one.
+
+The unscaled Pollaczek ratio supplied by Aptekarev, L\'opez Lagomasino
+and Mart\'{\i}nez--Finkelshtein \cite{ALM}, and the reciprocal identity
+proved by the companion's Green-kernel calculation \cite{PP}, are
+\begin{equation}\label{eq:s}
+ \begin{gathered}
+ s(x)=\frac{\tanh(\alpha\sqrt x)}{\sqrt x}
+ =\frac4\pi\sum_{r=0}^\infty\frac1{x+(2r+1)^2},
+ \quad0<s(x)\le\alpha,\\
+ \frac1{s(x)}=\frac2\pi+\frac4\pi
+       \sum_{j=1}^\infty\frac{x}{x+4j^2}.
+ \end{gathered}
+\end{equation}
+These identities are used with the actual tilted measures
+\begin{equation}\label{eq:tilts}
+ d\widetilde\nu_\epsilon=s(x)d\nu_\epsilon,
+ \qquad\epsilon\in\{0,1\},
+ \qquad\widetilde\nu_1=x\widetilde\nu_0.
+\end{equation}
+Their moments and masses are not the raw Pollaczek moments.  For a
+parity degree $n$ the unresolved matrix in \cite{TR} is exactly
+\begin{equation}\label{eq:target}
+ B_{\epsilon,n}(a)=\int_0^\infty
+ \frac{x}{x+a}v_n(x)v_n(x)^*\,d\widetilde\nu_\epsilon(x),
+ \quad v_n=(1,x,\ldots,x^n)^T,\quad a=4j^2.
+\end{equation}
+The following construction evaluates certified intervals for this
+matrix using a finite sequence of its actual measure's moments.
+
+\section{Two complementary finite moment principles}
+
+In this section $d\lambda$ is one of the actual measures
+$d\nu_\epsilon$ or $d\widetilde\nu_\epsilon$.  Write
+$\mu_r=\int x^r\,d\lambda$.  For $\ell\ge0$ set
+\[
+ H_t^{(\ell)}=[\mu_{i+j+\ell}]_{i,j=0}^t,
+ \qquad H_t=H_t^{(0)}.
+\]
+For a target degree $n$ and an auxiliary degree $t\ge n$, put
+\begin{equation}\label{eq:rectangular}
+ C_t=[\mu_{i+j}]_{\substack{0\le i\le t\\0\le j\le n}},
+ \quad D_t=[\mu_{i+j+1}]_{\substack{0\le i\le t\\0\le j\le n}},
+ \quad Z_t(a)=H_t^{(1)}+aH_t,
+ \quad Y_t(a)=H_t^{(2)}+aH_t^{(1)}.
+\end{equation}
+All square matrices inverted below are positive definite: their
+quadratic forms are integrals of a nonzero polynomial's squared
+modulus against a strictly positive density and a positive weight.
+Define
+\begin{equation}\label{eq:variational}
+ L_{n,t}(a)=C_t^*Z_t(a)^{-1}C_t,
+ \qquad V_{n,t}(a)=D_t^*Y_t(a)^{-1}D_t,
+ \qquad\mathcal D_{n,t}(a)=H_n-aL_{n,t}(a)-V_{n,t}(a).
+\end{equation}
+These quantities use only moments $\mu_0,\ldots,\mu_{2t+2}$.
+
+\begin{theorem}[Finite native Stieltjes and complementary bounds]
+\label{thm:finite}
+For every $a>0$ the exact matrices
+\[
+ R_n(a)=\int\frac{v_nv_n^*}{x+a}\,d\lambda,
+ \qquad B_n(a)=\int\frac{xv_nv_n^*}{x+a}\,d\lambda
+\]
+satisfy
+\begin{equation}\label{eq:bounds}
+ \boxed{L_{n,t}(a)\preceq R_n(a)
+       \preceq\frac{H_n-V_{n,t}(a)}a,\qquad
+ V_{n,t}(a)\preceq B_n(a)\preceq H_n-aL_{n,t}(a).}
+\end{equation}
+The lower bounds increase with $t$, the upper bounds decrease, and
+\begin{equation}\label{eq:gap}
+ \mathcal D_{n,t}(a)\succeq0
+\end{equation}
+is the exact computable width of the $B_n(a)$ interval and $a$ times
+the exact width of the $R_n(a)$ interval.
+\end{theorem}
+\begin{proof}
+For a coefficient vector $c\in\C^{n+1}$ write
+$f(x)=v_n(x)^*c$.  The unique degree-at-most-$t$ minimizers in the
+two weighted approximation problems are
+\[
+ q_0(x)=v_t(x)^*Z_t(a)^{-1}C_tc,
+ \qquad q_1(x)=v_t(x)^*Y_t(a)^{-1}D_tc.
+\]
+Completing the square, including the complex cross terms, proves
+the exact residual identities
+\begin{align}
+ c^*(R_n-L_{n,t})c
+ &=\min_{q\in\C[x]_{\le t}}
+   \int(x+a)\left|\frac{f(x)}{x+a}-q(x)\right|^2d\lambda,
+ \label{eq:residual0}\\
+ c^*(B_n-V_{n,t})c
+ &=\min_{q\in\C[x]_{\le t}}
+   \int x(x+a)\left|\frac{f(x)}{x+a}-q(x)\right|^2d\lambda.
+ \label{eq:residual1}
+\end{align}
+For example the first integrand expands to
+$\int|f|^2/(x+a)-2\Re\int\bar qf+\int(x+a)|q|^2$;
+its finite quadratic minimum is $c^*R_nc-c^*C_t^*Z_t^{-1}C_tc$.
+The second uses the same calculation with $xd\lambda$.
+Both differences are positive semidefinite.  The exact identity
+$aR_n+B_n=H_n$ gives both upper bounds.  Their widths are as stated.
+Enlarging the polynomial trial space decreases each minimum, proving
+all the monotonicity assertions.  No compressed multiplication matrix
+was equated to the original operator.
+\end{proof}
+
+There is an exact finite Stieltjes representation of the first lower
+bound.  Set $J_t=H_t^{-1/2}H_t^{(1)}H_t^{-1/2}>0$ and let
+$J_t=\sum_\theta\theta P_\theta$ be its spectral decomposition.  Then
+\begin{equation}\label{eq:blockstieltjes}
+ L_{n,t}(a)=\sum_\theta\frac{W_\theta}{a+\theta},\qquad
+ W_\theta=C_t^*H_t^{-1/2}P_\theta H_t^{-1/2}C_t\succeq0,
+ \quad\sum_\theta W_\theta=H_n.
+\end{equation}
+To verify the last equality, $C_t$ consists of the first $n+1$
+columns of $H_t$, so $C_t^*H_t^{-1}C_t=H_n$.  This gives positive
+finite nodes and block weights retaining the full moment mass.  It is
+a bound produced by a finite moment problem, not a replacement measure
+for any of the native integrals.  For $n=0$ the scalar weights sum to
+$\mu_0$, not one.
+
+The human block Gauss/Gauss--Radau context is the work of J\"orn
+Zimmerling, Vladimir Druskin and Valeria Simoncini \cite{ZDS},
+especially its original-source Theorem \texttt{lem01} and Proposition
+\texttt{prop:03}.  That proposition states a finite-matrix result
+under positive block-Lanczos off-diagonal Gram factors.  None of those
+nondeflation hypotheses is silently imported here: the preceding
+proofs use the actual unbounded native measure and the explicit
+degree-$t$ polynomial trial space of dimension $t+1$.  The claim is
+proved by its variational residuals, not by applying a finite-matrix
+theorem to an unbounded multiplication operator.  No scalar
+potential-theory rate, extrapolation assertion, or empirical
+complex-shift sign from that paper is used.
+
+\section{A computable error rate and convergence at fixed poles}
+
+\begin{theorem}[Explicit pole-rate certificate]\label{thm:rate}
+Let $t=n+d$ with $d\ge0$.  The exact width in \eqref{eq:gap} obeys
+\begin{equation}\label{eq:rate}
+ \boxed{0\preceq\mathcal D_{n,n+d}(a)
+ \preceq a^{-2d-2}H_n^{(2d+2)}.}
+\end{equation}
+The moment order on the right is still at most $2t+2$.
+Thus the interval width for $B_n(4j^2)$ is bounded by
+$4^{-2d-2}j^{-4d-4}H_n^{(2d+2)}$, and the Stieltjes interval has
+the additional factor $1/(4j^2)$.
+\end{theorem}
+\begin{proof}
+Use the same admissible polynomial in both residual identities:
+\[
+ q(x)=\frac{f(x)}a\sum_{r=0}^d(-x/a)^r,
+ \qquad\frac{f(x)}{x+a}-q(x)
+ =\frac{(-1)^{d+1}x^{d+1}f(x)}{a^{d+1}(x+a)}.
+\]
+Its degree is at most $n+d$.  The width is exactly
+$a(R_n-L_{n,t})+(B_n-V_{n,t})$.  Testing this same $q$ in both
+minima makes the two weights add to $(x+a)^2$, so its total error
+is precisely
+$a^{-2d-2}\int x^{2d+2}|f|^2d\lambda$.  This proves the matrix
+inequality, including its constant and exponent.
+\end{proof}
+
+This is a rate in the pole $a$, with an exact finite certificate at
+each auxiliary degree.  It is not a claim that the displayed bound
+decreases with $d$ at fixed $a$: native high moments may grow rapidly.
+For an explicit numerical overestimate, the original envelope gives
+\begin{equation}\label{eq:momentcap}
+ \int x^r d\nu_\epsilon
+ =\zeta_{2(r+\epsilon)}
+ \le\frac{2A_kC_\Gamma[2(r+\epsilon)]!}
+ {\alpha^{2(r+\epsilon)+1}},\qquad
+ \int x^r d\widetilde\nu_\epsilon
+ \le\alpha\frac{2A_kC_\Gamma[2(r+\epsilon)]!}
+ {\alpha^{2(r+\epsilon)+1}}.
+\end{equation}
+Indeed integrate the upper bound in \eqref{eq:envelope}, dropping
+only $(1+|y|)^{-1/2}\le1$ in this upper estimate.  Hence
+$H_n^{(r)}\preceq\tr(H_n^{(r)})I$ and
+$\tr(H_n^{(r)})=\sum_{i=0}^n\mu_{2i+r}$ give a fully explicit
+constant in \eqref{eq:rate}.  The measure itself has not been altered.
+
+\begin{lemma}[Polynomial density with the original tail]\label{lem:density}
+For either native parity measure or either tilted parity measure,
+polynomials are dense in $L^2(w(x)d\lambda)$ for every nonzero
+nonnegative polynomial weight $w$.
+\end{lemma}
+\begin{proof}
+The symmetric lift of $d\lambda=\ell(x)dx$ under $x=y^2$ is
+$|y|\ell(y^2)dy$.  Its masses and integrals agree under this map;
+for the present measures its density is
+$|y|^{2\epsilon}m_k(y)s(y^2)^e$, where $e=0$ or $1$.
+After multiplying by $w(y^2)$ it has a finite exponential moment
+$\int e^{b|y|}d\lambda_w^{\rm lift}<\infty$ for every $b<\alpha$,
+by \eqref{eq:envelope} and $s\le\alpha$.
+If $f\in L^2(wd\lambda)$ is orthogonal to all $x^r$, its even
+lift $f(y^2)$ times this symmetric measure has all moments zero:
+the even ones are the given orthogonalities and the odd ones vanish
+by symmetry.  Cauchy--Schwarz gives finite absolute exponential
+moments for that complex measure in a smaller strip, for example
+$|\Re z|<\alpha/4$.  Its bilateral transform is analytic there,
+and all its derivatives at zero vanish.  The identity theorem makes
+the transform zero throughout the strip.  Fourier uniqueness for a
+finite complex measure implies $f=0$ almost everywhere.  The
+orthogonal complement of the polynomials is therefore zero.
+\end{proof}
+
+\begin{proposition}[Certified terminating refinement]\label{prop:converge}
+For fixed $n$ and fixed $a>0$, both endpoints in \eqref{eq:bounds}
+converge monotonically to their actual integral, and
+$\mathcal D_{n,t}(a)\to0$ in matrix norm as $t\to\infty$.
+\end{proposition}
+\begin{proof}
+Apply Lemma \ref{lem:density} with $w=x+a$ and $w=x(x+a)$.
+The targets $f/(x+a)$ have finite norm in both spaces by the finite
+native moments.  Each residual minimum in
+\eqref{eq:residual0}--\eqref{eq:residual1} tends to zero.  Apply this
+to the finitely many coordinate vectors: the trace of the positive
+gap tends to zero, and its norm is at most its trace.
+\end{proof}
+For a finite list of poles this gives simultaneous termination of any
+specified positive gap tolerance, provided the needed native moments
+are available as exact or certified inputs.  No uniform a priori rate
+in the auxiliary degree, numerical conditioning assertion, or cost of
+obtaining those moments is asserted.
+
+\section{A finite original-moment route to the tilted integrals}
+
+The preceding construction uses moments of the actual tilt
+$s\nu_\epsilon$.  These are still unevaluated native integrals unless
+supplied.  They must not be confused with moments of the raw Pollaczek
+weight.  This section gives an alternative using only untilted native
+moments, without requiring any exact tilted moment as input.
+
+Take $d\lambda=d\nu_\epsilon$, let $b_r=(2r+1)^2$, and construct
+the two Stieltjes endpoints from Theorem \ref{thm:finite}:
+\[
+ R_{n,t}^-(a)=L_{n,t}(a),\qquad
+ R_{n,t}^+(a)=(H_n-V_{n,t}(a))/a.
+\]
+For the second type of integral define
+\[
+ T_n(a,b)=\int\frac{xv_nv_n^*}{(x+a)(x+b)}d\nu_\epsilon,
+ \qquad a,b>0.
+\]
+Put
+\begin{equation}\label{eq:quadraticlower}
+ Z_t^{(2)}(a,b)=H_t^{(3)}+(a+b)H_t^{(2)}+abH_t^{(1)},
+ \qquad T_{n,t}^-(a,b)=D_t^*[Z_t^{(2)}(a,b)]^{-1}D_t.
+\end{equation}
+This uses moments through degree $2t+3$, is positive definite, and
+is a lower bound for $T_n(a,b)$.  The full residual identity is
+\begin{equation}\label{eq:quadres}
+ c^*(T_n-T_{n,t}^-)c
+ =\min_{q\in\C[x]_{\le t}}
+ \int x(x+a)(x+b)
+ \left|\frac{v_n^*c}{(x+a)(x+b)}-q\right|^2d\nu_\epsilon.
+\end{equation}
+This follows by the same complete-square expansion as before, since
+the cross term is $\int x\bar q(v_n^*c)d\nu_\epsilon$.
+Lemma \ref{lem:density} with the displayed polynomial weight proves
+monotone convergence of this lower bound.
+
+At distinct poles the exact signed partial fraction identity is
+\begin{equation}\label{eq:partialfraction}
+ T_n(a,b)=\frac{bR_n(b)-aR_n(a)}{b-a}.
+\end{equation}
+Retaining its sign gives the upper endpoint
+\begin{equation}\label{eq:quadraticupper}
+ T_{n,t}^+(a,b)=
+ \begin{cases}
+ [bR_{n,t}^+(b)-aR_{n,t}^-(a)]/(b-a),&b>a,\\[1mm]
+ [aR_{n,t}^+(a)-bR_{n,t}^-(b)]/(a-b),&a>b.
+ \end{cases}
+\end{equation}
+It bounds $T_n$ from above, is positive definite, and decreases
+to $T_n$ as $t$ grows.  The combined interval width
+$T_{n,t}^+-T_{n,t}^-\succeq0$ is an entirely finite moment
+certificate.  In the actual application $a=4j^2$ and
+$b=(2r+1)^2$, so the poles are always distinct.  No coincident-pole
+limit or division by an unknown sign is needed.
+
+For an integer $R\ge1$ put
+\begin{equation}\label{eq:theta}
+ \theta_R=\frac4\pi\sum_{r=R}^\infty b_r^{-1}
+ =\alpha-\frac4\pi\sum_{r=0}^{R-1}b_r^{-1},\qquad
+ 0<\theta_R\le\frac{2}{\pi(2R-1)}.
+\end{equation}
+The equality follows from \eqref{eq:s} at zero.  For the inequality,
+the decreasing function $(2u+1)^{-2}$ gives
+$\sum_{r=R}^\infty(2r+1)^{-2}\le\int_{R-1}^\infty(2u+1)^{-2}du$.
+All quantities are unscaled original poles.  Positive summation of
+\eqref{eq:s}, using $1/(x+b_r)\le1/b_r$, now proves
+\begin{equation}\label{eq:tiltKbounds}
+ \begin{gathered}
+ K_n:=\int v_nv_n^*s\,d\nu_\epsilon,\\
+ K_{n,t,R}^-:=\frac4\pi\sum_{r<R}R_{n,t}^-(b_r)
+ \preceq K_n\preceq
+ \frac4\pi\sum_{r<R}R_{n,t}^+(b_r)+\theta_RH_n
+ =:K_{n,t,R}^+.
+ \end{gathered}
+\end{equation}
+For precisely the unresolved matrix \eqref{eq:target},
+\begin{equation}\label{eq:tiltBbounds}
+ \boxed{\frac4\pi\sum_{r<R}T_{n,t}^-(a,b_r)
+ \preceq B_{\epsilon,n}(a)\preceq
+ \frac4\pi\sum_{r<R}T_{n,t}^+(a,b_r)+\theta_RH_n.}
+\end{equation}
+Indeed the omitted integrand is at most
+$\theta_R x/(x+a)v_nv_n^*$ in every quadratic form, hence at most
+$\theta_RH_n$ after integration.  Alternatively it is bounded by
+$\theta_RH_n^{(1)}/a$; either established upper matrix may be used,
+without taking an unsupported entrywise minimum of matrices.
+The lower endpoints are strictly positive, increase with $t$ and $R$,
+and converge to the actual matrices.  First take $R$ large enough to
+control the explicit tail, and then refine the finite list of poles
+using Proposition \ref{prop:converge} and \eqref{eq:quadres}.  The
+upper bounds converge by this same two-stage choice.  No monotonicity
+in $R$ of the mixed-pole upper formula is needed.  Thus finitely many
+untilted native moments suffice for any certified positive tolerance.
+
+There is an important exact boundary to this assertion: if all
+untilted native moments through degree $2n$ are already known, the
+original parity Gram $H_n$ itself is directly known.  One need not
+reconstruct that Gram by an auxiliary resolvent series.  The additional
+formulas above certify the genuinely different $s$-weighted and
+rational-weighted integrals; they do not manufacture moment values or
+claim an unnecessary computational advantage.
+
+\section{Both blocks and the complete native source certificate}
+
+Let $N\ge q-1$ be the original polynomial cutoff, with
+$n_0=\lfloor N/2\rfloor$, $n_1=\lfloor(N-1)/2\rfloor$.  Denote
+the original direct-sum source Gram by
+\[
+ H=\diag\left(\int v_{n_0}v_{n_0}^*d\nu_0,
+                  \int v_{n_1}v_{n_1}^*d\nu_1\right).
+\]
+For the first implementation route, the moment input is the actual
+tilted sequence $\widetilde\mu_{\epsilon,r}=\int x^rsd\nu_\epsilon$;
+its exact compatibility is
+$\widetilde\mu_{1,r}=\widetilde\mu_{0,r+1}$.  Define the block
+matrices $K=\diag(K_0,K_1)$ and
+$K_x=\diag(K_{x,0},K_{x,1})$ from its unshifted and once-shifted
+moments.  For every $j=1,\ldots,J$ apply \eqref{eq:bounds} in
+both blocks with $a_j=4j^2$, choosing any auxiliary degrees
+$t_{\epsilon,j}\ge n_\epsilon$.  Call the resulting direct sums
+$B_j^-,B_j^+$ and $\mathcal D_j=B_j^+-B_j^-$.  Set
+\begin{equation}\label{eq:Gpm}
+ \begin{gathered}
+ G^-_{N,J,\mathbf t}=\frac2\pi K+\frac4\pi\sum_{j=1}^JB_j^-,\\
+ G^+_{N,J,\mathbf t}=\frac2\pi K+\frac4\pi\sum_{j=1}^JB_j^+
+                       +\frac1{\pi J}K_x,\\
+ E_{N,J,\mathbf t}=\frac4\pi\sum_{j=1}^J\mathcal D_j,
+ \qquad\Delta G=G^+-G^-=E_{N,J,\mathbf t}+\frac1{\pi J}K_x.
+ \end{gathered}
+\end{equation}
+The original reciprocal series \eqref{eq:s} gives
+\begin{equation}\label{eq:sourcebounds}
+ \boxed{0<G^-\preceq H\preceq G^+,\qquad
+ 0\preceq H-G^-\preceq\Delta G.}
+\end{equation}
+To check the outer tail including its constants, sum its positive
+terms and use $x/(x+4j^2)\le x/(4j^2)$ and
+$\sum_{j>J}j^{-2}\le1/J$.  The result is exactly
+$K_x/(\pi J)$, not a raw Pollaczek moment block.  All inner errors
+are the computed $\mathcal D_j$; both parity blocks remain present.
+First choosing $J$ and then the finitely many auxiliary degrees gives
+arbitrarily tight absolute brackets by the preceding convergence proofs.
+
+Alternatively use \eqref{eq:tiltKbounds} and
+\eqref{eq:tiltBbounds} to give the $K$ and $B_j$ lower and upper
+matrices from untilted native moments.  Add the actual native outer
+tail bound
+\begin{equation}\label{eq:untiltedouter}
+ H-H^{[J]}\preceq\frac1{2J}X_H,\qquad
+ X_H=\diag\left(\int xv_{n_0}v_{n_0}^*d\nu_0,
+                    \int xv_{n_1}v_{n_1}^*d\nu_1\right),
+\end{equation}
+which follows from $s\le\alpha=\pi/2$.  This produces the same
+type of positive bracket \eqref{eq:sourcebounds} from a finite
+untilted moment sequence only.  Each finite tail and each moment gap
+must be included; no exact tilted integral is assumed in this route.
+
+For either route the fully computable relative certificate is
+\begin{equation}\label{eq:eta}
+ \eta_N=\lambda_{\max}((G^-)^{-1/2}\Delta G(G^-)^{-1/2})\ge0,
+ \qquad G^-\preceq H\preceq G^+\preceq(1+\eta_N)G^-.
+\end{equation}
+This auxiliary conjugation computes a number; it does not change the
+native source coordinates or mass.
+
+\section{Exact complex-source and observation transport}
+
+Retain the original coefficient map from \cite{PP}:
+\begin{equation}\label{eq:transport}
+ T_{rj}=\binom jr c^{j-r}i^r\ (r\le j),\quad
+ (T^{-1})_{rj}=\binom jr(-c)^{j-r}i^{-j}\ (r\le j),\quad
+ L_N=\Pi_NT,
+\end{equation}
+with other entries zero and $\Pi_N$ the even-first, odd-second
+permutation.  It sends the original $S$-coefficients to $(E,O)$ in
+\eqref{eq:paritynorm}.  Thus
+\begin{equation}\label{eq:Sbounds}
+ H_S=L_N^*HL_N,\qquad
+ L_N^*G^-L_N\preceq H_S\preceq L_N^*G^+L_N.
+\end{equation}
+No powers of $i$ or determinant signs disappear:
+\[
+ \det T=i^{N(N+1)/2},\qquad
+ \det L_N=(\det\Pi_N)i^{N(N+1)/2}.
+\]
+In particular all absolute source determinant factors are one in
+this congruence, while its complex determinant phase is retained.
+
+The original physical-unit coefficient-to-class map is $J_{S,N}$,
+and the original onto observation is $\mathcal A_S=\Lambda J_{S,N}$.
+In parity coordinates it is exactly
+\begin{equation}\label{eq:A}
+ A=\mathcal A_SL_N^{-1}=\Lambda J_{S,N}L_N^{-1}.
+\end{equation}
+Every original relation and every observation-kernel direction
+therefore remains in the same fibre.  For any positive source matrix
+$D$, completing the square gives
+\begin{equation}\label{eq:minimum}
+ Q_A(D)=(AD^{-1}A^*)^{-1},\qquad
+ \min_{Az=u}z^*Dz=u^*Q_A(D)u,\quad
+ z_{\min}=D^{-1}A^*Q_A(D)u.
+\end{equation}
+Indeed $Az_{\min}=u$ and $z_{\min}$ is $D$-orthogonal to every
+vector in $\ker A$.  Restriction to a specified original subspace
+uses its same inclusion in $L_N$ coordinates and the same proof on
+the restricted fibre; the full pair of polynomial spaces is not
+substituted for a constrained source.
+
+Consequently \eqref{eq:sourcebounds} and \eqref{eq:eta} imply
+\begin{equation}\label{eq:Qbounds}
+ \boxed{Q_N^-:=Q_A(G^-)\preceq Q_N:=Q_A(H)
+ \preceq Q_N^+:=Q_A(G^+)\preceq(1+\eta_N)Q_N^-.}
+\end{equation}
+This follows by minimizing each inequality on the identical affine
+fibre, not by an operator-norm replacement for $A$.  The exact lift
+back to the original source coefficients is
+$L_N^{-1}D^{-1}A^*Q_A(D)u$.
+
+For any fixed original observed vectors $u_i,u_j$, the entire
+positive remainder $Q_N-Q_N^-$ is retained and satisfies
+\begin{equation}\label{eq:crosserror}
+ |u_i^*(Q_N-Q_N^-)u_j|^2
+ \le (u_i^*\Delta Q_Nu_i)(u_j^*\Delta Q_Nu_j),\qquad
+ \Delta Q_N=Q_N^+-Q_N^-.
+\end{equation}
+This is Cauchy--Schwarz in the positive remainder, followed by its
+upper Loewner bound.  For the actual arithmetic classes put
+$u_i=\Lambda a_i$ and $w=\Lambda v$, with the original
+$a_1=b_N,a_2=b_{N+1}$, terminal class, and scale $\omega_N$.
+If $B_i=u_i^*Q_Nw$, $B_i^-=u_i^*Q_N^-w$ and
+$e_i=\sqrt{(u_i^*\Delta Q_Nu_i)(w^*\Delta Q_Nw)}$, then
+\begin{equation}\label{eq:signedcurrent}
+ \left|\frac{2\Re(\bar B_1B_2-\overline{B_1^-}B_2^-)}{\omega_N}\right|
+ \le\frac2{\omega_N}
+ (|B_1^-|e_2+|B_2^-|e_1+e_1e_2).
+\end{equation}
+Expanding the exact product retains the two linear terms and the
+quadratic error.  This is a certificate for approximation of that
+signed current, not an assignment of its phase or sign.
+
+\section{The full signed four-endpoint enclosure and finite tolerances}
+
+For the original observation image rank $d_N$, let
+\begin{equation}\label{eq:deterror}
+ e_N=\log\det Q_N^+-\log\det Q_N^-.
+\end{equation}
+These are determinants in the unchanged image frame.  The eigenvalue
+bound from \eqref{eq:Qbounds} gives
+\begin{equation}\label{eq:detcap}
+ 0\le\log\det Q_N-\log\det Q_N^-
+ \le e_N\le d_N\log(1+\eta_N).
+\end{equation}
+The empty determinant is one and its contribution is zero.
+At the four original cutoffs $N_1,N_2,N_3,N_4$, retain the signs
+\[
+ F=\log\frac{\det Q_{N_1}\det Q_{N_2}}
+                    {\det Q_{N_3}\det Q_{N_4}},\qquad
+ F^-=\log\frac{\det Q_{N_1}^-\det Q_{N_2}^-}
+                     {\det Q_{N_3}^-\det Q_{N_4}^-}.
+\]
+For the original complete window these cutoffs are
+$(q-1,q,2q-1,2q)$; no new endpoints are selected.  Independent
+truncation lengths and moment degrees are permitted at each cutoff.
+The complete signed bound is
+\begin{equation}\label{eq:four}
+ \boxed{-e_{N_3}-e_{N_4}\le F-F^-
+                       \le e_{N_1}+e_{N_2}.}
+\end{equation}
+Equivalently its lower endpoint uses $Q^-$ in the two numerator
+factors and $Q^+$ in the two denominator factors; its upper endpoint
+uses the reverse choices.  This keeps the endpoint signs rather than
+charging all four positive errors to both sides.
+
+Here is a finite tolerance selection for the tilted-moment route that
+combines the root continuation's outer bound with the new inner
+certificates.  Retain its actual constants \cite{TR}:
+\begin{equation}\label{eq:Lsharp}
+ \begin{gathered}
+ \Delta_N=[1+4(N+M)^2]^M,\quad r_k=\lfloor k/3\rfloor,\\
+ L_N^\sharp=\min\left\{4A_k\Delta_N(N+1)^2/a_k,
+                  C_{\rm mult}(h)^2(2N+r_k)^2\right\},\\
+ d_*=\alpha-\log(5/3),\quad C_\sigma=4/(\sqrt{15}\sqrt{2\pi}),\\
+ H_h=\frac{64C_\sigma(1+4M^2)^M}{d_*^2}
+                   \max_{b=3,4,5}\frac{M_\alpha^b}{a_b},\\
+ T_h=\frac2{d_*}\{\log16+2M+3+\max(0,\log H_h)\},
+ \quad C_{\rm mult}(h)=\sqrt{T_h^2+1}.
+ \end{gathered}
+\end{equation}
+Here $a_b$ is \eqref{eq:constants}'s original convolution constant
+at order $b$.  TR2--4 proves
+\begin{equation}\label{eq:outerrelative}
+ (1-\epsilon_{N,J})H\preceq H^{[J]}\preceq H,
+ \qquad\epsilon_{N,J}=L_N^\sharp/(2J)<1.
+\end{equation}
+Since $G^-\preceq H^{[J]}\preceq G^-+E_{N,J,\mathbf t}$,
+the finite moment test
+\begin{equation}\label{eq:innertest}
+ E_{N,J,\mathbf t}\preceq\delta_NG^-
+\end{equation}
+implies
+\begin{equation}\label{eq:jointrelative}
+ G^-\preceq H\preceq
+ \frac{1+\delta_N}{1-\epsilon_{N,J}}G^-.
+\end{equation}
+The same factor applies to the observation minimum.  No integral
+appears in \eqref{eq:innertest} once the finite tilted moments are
+given.  For fixed $J$, Proposition \ref{prop:converge} makes its left
+side tend to zero, while $G^-\succeq(2/\pi)K>0$, so the test is
+eventually satisfied for every $\delta_N>0$.
+
+For a prescribed four-endpoint tolerance $t_*>0$ and $d_N>0$, choose
+the actual integers and positive inner tolerance
+\begin{equation}\label{eq:tolerance}
+ J_N\ge\left\lceil L_N^\sharp\max\{1,4d_N/t_*\}\right\rceil,
+ \qquad\delta_N=e^{t_*/(4d_N)}-1,
+\end{equation}
+and refine the finitely many moment degrees until \eqref{eq:innertest}
+holds.  Then $\epsilon_{N,J}\le1/2$ and
+$\epsilon_{N,J}\le t_*/(8d_N)$, so
+\[
+ d_N\log\frac{1+\delta_N}{1-\epsilon_{N,J}}
+ \le t_*/4+2d_N\epsilon_{N,J}\le t_*/2.
+\]
+Using these four certified individual bounds in \eqref{eq:four}
+proves $|F-F^-|\le t_*$.  Zero-rank endpoints need no such inner
+test because their determinant error is zero.  At $N=O(q)$ and
+$d_N\le q$ the number of outer resolvent terms is still
+$O_h(q^3/t_*)$ for $0<t_*\le1$, as in \cite{TR}.  The newly closed
+inner step uses finitely many native moments, with a computable
+stopping test.  No unproved bound on the auxiliary moment depth or
+the cost of certifying those moments is attached to that outer rate.
+
+\section{The same original conductor and its full kernel}
+
+On the already established simple-quartet conductor domain, retain
+the exact factorization from \cite{EQ,TR},
+\[
+ C=\bar C\Lambda,
+ \qquad T_N=(\bar C Q_N^{-1}\bar C^*)^{-1},
+ \qquad R_N=Q_N^{-1}\bar C^*T_N,
+\]
+where $\bar C$ is onto its original conductor image.  Its full
+kernel is not removed.  Define
+\begin{equation}\label{eq:conductor}
+ T_N^\pm=(\bar C(Q_N^\pm)^{-1}\bar C^*)^{-1}
+ =\bigl[(\bar CA)(G^\pm)^{-1}(\bar CA)^*\bigr]^{-1}.
+\end{equation}
+Both equalities follow by substitution; the second uses the same
+native source matrix and the composite observation, not a newly
+chosen metric.  The identical-fibre minimum gives
+\[
+ T_N^-\preceq T_N\preceq T_N^+
+ \preceq(1+\eta_N)T_N^-.
+\]
+The same assertion holds with the factor in \eqref{eq:jointrelative}
+when the finite inner test is used.  Every kernel lift is present in
+the minimizing fibre $\bar Cu=w$.
+
+Keep the original cubic inclusion $I_W$ and coordinate matrix $\Psi$,
+and put
+\[
+ \mathcal G_N^\pm=\Psi^*I_W^*T_N^\pm I_W\Psi,
+ \quad\mathcal G_N=\Psi^*I_W^*T_NI_W\Psi.
+\]
+For the original metric-independent signed-state map
+$B_{\mathcal J}=O(I-D_{\mathcal J})O^{-1}E$ of EQ16--19, congruence
+gives, for every original label vector $\alpha_0$,
+\begin{equation}\label{eq:defect}
+ \alpha_0^*B_{\mathcal J}^*\mathcal G_N^-B_{\mathcal J}\alpha_0
+ \le\alpha_0^*B_{\mathcal J}^*\mathcal G_NB_{\mathcal J}\alpha_0
+ \le\alpha_0^*B_{\mathcal J}^*\mathcal G_N^+B_{\mathcal J}\alpha_0.
+\end{equation}
+The sign-flip set $\mathcal J$ is distinct from the positive integer
+truncation length $J$.  The unchanged terminal-class residual in
+EQ20--21 is not assigned zero by this positive energy bound.  For
+conductor determinants or a retained positive definite restriction,
+the identical proof of \eqref{eq:four} uses its actual four endpoint
+ranks and signs.
+
+\section{What is certified, and exact finite tests}
+
+The finite inputs are actual native moments, not guessed asymptotics.
+With tilted moments through the stated degrees, all matrices in
+\eqref{eq:Gpm} are finite matrix expressions.  With untilted moments
+only, \eqref{eq:tiltKbounds}--\eqref{eq:tiltBbounds} provide a second
+finite route.  The original moments themselves remain unevaluated
+unless supplied.  If their numerical enclosures are used instead of
+exact values, every moment-derived matrix and inverse must be enclosed
+with outward error bounds and its positive-definite lower margin
+certified; inserting midpoint moments and treating their inverse as
+exact is not a certificate.
+
+The companion \texttt{verify\_moment\_enclosures.py} checks the
+universal formulas in exact rational and Gaussian-rational arithmetic
+on finite positive atomic moment systems.  Those systems are test
+instances for the proved universal matrix identities, explicitly not
+substitutes for $\nu_0,\nu_1$ or their tilts.  It checks both parity
+blocks, both complementary moment bounds and residuals, the exact
+pole-rate matrix inequality, the signed partial fractions, the
+quadratic-denominator bounds, original complex coefficient congruence,
+the unchanged observation and conductor minima, and signed endpoint
+error inequalities.  Symbolic checks also verify the rational
+identities, with all signs and powers retained.  The all-degree native
+proofs above, rather than these finite examples, establish the claims
+for the original arithmetic measure.
+
+\begin{thebibliography}{9}
+\bibitem{ZDS}
+J\"orn Zimmerling, Vladimir Druskin and Valeria Simoncini,
+\emph{Monotonicity, bounds and acceleration of Block Gauss and
+Gauss--Radau quadrature for computing $B^T\phi(A)B$},
+arXiv:2407.21505v3, original author \LaTeX\ title and source
+\path{GaussRadauRevised.tex}, Sections 3--5, especially original-source
+labels \texttt{lemma:T\_LDLt}, \texttt{prop:Pencil2Stieltjes},
+\texttt{lem01} and \texttt{prop:03}.
+\url{https://arxiv.org/abs/2407.21505v3}.
+The abstract-page title uses ``extrapolation'' in place of
+``acceleration''; this citation identifies the retained version-three
+author source.  The integrating task read that complete source; this
+independent derivation checked its author/title metadata and the full
+monotonicity/bounds statements and proofs surrounding the latter two
+labels.  The native unbounded-measure argument is proved above.
+\bibitem{ALM}
+A. I. Aptekarev, G. L\'opez Lagomasino and A. Mart\'{\i}nez--Finkelshtein,
+\emph{Strong asymptotics for the Pollaczek multiple orthogonal
+polynomials ensembles}, arXiv:1410.1261v1 (2014), Introduction,
+unscaled weights and their positive Stieltjes ratio.
+\url{https://arxiv.org/abs/1410.1261v1}.
+The original author source was read by the integrating task; no
+multiple-orthogonal asymptotic is imported into the native measure.
+\bibitem{PP}
+Split-Zero programme, \emph{Exact native parity transport into the
+Pollaczek pair and certified finite source--observation bounds},
+20 September 2026, complete source
+\path{independent_parity_pollaczek/PARITY_POLLACZEK_NATIVE_RECEIVER.tex};
+original parity maps and masses, positive Green-kernel series,
+finite Stieltjes compression and source--observation bounds.
+Read completely for this derivation.
+\bibitem{TR}
+Split-Zero programme, \emph{Native resolvent truncation at growing
+degree and the original conductor minimum}, 20 September 2026,
+complete source \path{NATIVE_TRUNCATION_CONDUCTOR_RETURN.tex},
+TR1--10.  Read completely for this derivation.  The native outer
+truncation, tensor multiplication constant, full signed endpoint
+calculation and exact conductor receiver are retained here.
+\bibitem{CAI}
+Split-Zero programme, \emph{The complete original action relative
+to its arithmetic total}, complete provider
+\path{CAI_COMPLETE_PREREQUISITE.tex}, CAI16--18 and CAI21--25,
+with its complete original convolution providers and original constants.
+\bibitem{HG}
+Split-Zero programme, \emph{Subexponential heat cost and the original
+arithmetic currents}, 19 September 2026, HG21, arbitrary fixed
+primary multiplicity and original full-measure comparison;
+complete provider \path{HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex}.
+\bibitem{EQ}
+Split-Zero programme, \emph{The eight signed states through the
+original conductor minimum}, complete companion
+\path{EIGHT_STATE_ORIGINAL_MINIMUM.tex}, EQ1--21, and the independent
+\path{EIGHT_STATE_QUOTIENT_REDERIVATION.tex}, IQ1--29.
+The exact receiving maps used here are the equations retained and
+proved in the complete root continuation \cite{TR}; no new
+conductor-domain theorem is asserted in this note.
+\end{thebibliography}
+\end{document}

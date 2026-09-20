@@ -1,3 +1,8 @@
+<!-- gamma-and-finite-derivative:20260920 -->
+## Gamma bounds and a corrected finite derivative calculation
+
+The Split-Zero programme needs reliable values and derivatives of the completed zeta function. The [complete new source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-gamma-and-finite-derivative/README.md) proves the gamma inequality used in Arias de Reyna’s Taylor cutoff and replaces a printed global-monotonicity lemma that fails by an exact gamma-recurrence calculation. The finite replacement keeps the original function, derivative list, constants and error budgets, including the equality cases. [Full LaTeX proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-gamma-and-finite-derivative/COMPLETE_PROOFS.tex), [proof locators and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-gamma-and-finite-derivative/RESULT_INDEX.json), original human citations, the independent derivation, exact checks and an inspected diagram are included. This corrects a computational lemma; it is not an RH counterexample or certification of a whole implementation.
+
 <!-- original-spectral-determinant:20260920 -->
 ## The original arithmetic determinant and its boundary term
 

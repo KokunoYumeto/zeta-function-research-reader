@@ -1,0 +1,1076 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,patterns}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\Mell}{\mathcal M}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Src}[1]{\cite[original TeX label \texttt{#1}]{polymath}}
+\title{An effective receiver for the original Mellin heat source\\
+Literal Polymath factors, complete jets, and moving finite packets}
+\author{}
+\date{20 September 2026\\Programme result SZ-20260920-051; local proof labels PMH1--PMH11}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The effective heat approximation of D.~H.~J.~Polymath is transferred to
+the original source $g_t(s)=\Mell(U_tf_0)(s)=16H_t((2s-1)/i)$ without
+dividing that source by a gamma factor or a polynomial divisor.
+An exact finite cutoff correction gives a holomorphic comparison
+function across Riemann--Siegel cutoff changes. Explicit finite
+inequalities bound every coordinate jet, the complete exterior
+logarithmic derivative of a packet, its traces, and its trace derivative.
+The inequalities are actually checked for a nonempty moving packet:
+for $1023/4096\le t\le1025/4096$ there is exactly one zero in
+$1/10<\Rea s<9/10$, $507/4<\Ima s<513/4$.
+Its simplicity and location on $\Rea s=1/2$ follow from the certified
+count and an exact symmetry, not from an assumed real-zero theorem.
+No assertion about all zeros or the endpoint $t=0$ is made.
+\end{abstract}
+
+\section{The original objects and the source that supplies the error}
+
+The Mellin convention is
+\[
+ \Mell f(s)=\int_0^\infty f(x)x^s\frac{\dd x}{x}.
+\]
+The original source and its multiplier are retained literally:
+\begin{equation}\label{PMH1-objects}
+\begin{split}
+ f_0(x)&=2\sum_{n\ge1}
+ (4\pi^2n^4x^4-6\pi n^2x^2)e^{-\pi n^2x^2},\qquad x>0,\\
+ (U_tf)(x)&=e^{t(\log x)^2/4}f(x),\\
+ g_t(s)&=\Mell(U_tf_0)(s)=16H_t(z(s)),\qquad
+ z(s)=\frac{2s-1}{i}=-2i(s-\tfrac12).
+\end{split}
+\end{equation}
+Here Polymath's original conventions, \Src{phidef} and \Src{htdef}, are
+\begin{equation}\label{PMH1-Phi}
+ \Phi(u)=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})
+ e^{-\pi n^2e^{4u}},\qquad
+ H_t(z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\dd u.
+\end{equation}
+The theta identity $\Phi(-u)=\Phi(u)$, stated with these conventions
+immediately after \Src{phidef}, and its super-exponential decay justify
+the following exact coordinate calculation:
+\[
+ f_0(e^{2u})=4e^{-u}\Phi(u),\quad
+ \frac{\dd x}{x}=2\dd u,\quad
+ e^{t(\log x)^2/4}=e^{tu^2},
+\]
+and therefore
+\[
+ \Mell(U_tf_0)(s)
+ =8\int_\R e^{tu^2}\Phi(u)e^{(2s-1)u}\dd u
+ =16\int_0^\infty e^{tu^2}\Phi(u)\cos(z(s)u)\dd u.
+\]
+This calculation only identifies the receiving object. The full entire
+theta transport and the full-divisor Volterra construction belong to
+the earlier programme result SZ-20260920-046 and are not replaced here.
+Differentiation under this rapidly convergent integral gives
+\begin{equation}\label{PMH1-heat}
+ \partial_tg_t=\tfrac14\partial_s^2g_t,
+ \qquad \partial_t^k\partial_s^jg_t
+ =4^{-k}\partial_s^{j+2k}g_t.
+\end{equation}
+The sign is also checked from Polymath's $\partial_tH_t=-H_t''$
+(\Src{back}): $(-2i)^2=-4$.
+
+Write $s=\sigma+i\tau$. The complete coordinate dictionary is
+\begin{equation}\label{PMH1-coordinate}
+ x=2\tau,\quad y=1-2\sigma,\quad
+ s=\frac{1+iz}{2},\quad 1-s=\frac{1-iz}{2},\quad
+ \dd z=-2i\dd s,\quad |\dd z|=2|\dd s|.
+\end{equation}
+The Euclidean metric is being used in both planes. The affine map
+rotates by $-\pi/2$, scales length by $2$ and area by $4$, and preserves
+positive orientation. No root multiplicity changes under this map.
+
+\subsection{Literal gamma/Stirling factors and all source constants}
+
+On $\C\setminus(-\infty,1]$, use the principal logarithm, with argument
+in $(-\pi,\pi)$. The values needed below have nonzero imaginary part,
+so no endpoint convention for the cut is used. Polymath's exact
+definitions \Src{M-def}, \Src{logM}, \Src{alpha-form}, and \Src{Mt-def}
+are
+\begin{align}
+ M_0(q)&=\frac18\frac{q(q-1)}2\pi^{-q/2}\sqrt{2\pi}
+ \exp\left((\tfrac q2-\tfrac12)\Log\tfrac q2-\tfrac q2\right),
+ \label{PMH1-M0}\\
+ \log M_0(q)&=\Log q+\Log(q-1)-\tfrac q2\log\pi
+ +\log\tfrac{\sqrt{2\pi}}{16}
+ +(\tfrac q2-\tfrac12)\Log\tfrac q2-\tfrac q2,
+ \label{PMH1-logM}\\
+ \alpha(q)&=\frac1{2q}+\frac1{q-1}+\frac12\Log\frac q{2\pi},
+ \qquad M_t(q)=e^{t\alpha(q)^2/4}M_0(q),
+ \label{PMH1-alpha}\\
+ b_n^t&=e^{t\log^2n/4},\qquad
+ T_{t,n}(q)=M_t(q)\frac{b_n^t}{n^{q+(t/2)\alpha(q)}}.
+ \label{PMH1-term}
+\end{align}
+Powers of a positive integer mean $n^v=e^{v\log n}$ with the real
+logarithm of $n$. In particular every complex phase in
+\eqref{PMH1-term} is retained. The source factor called $B_t$ in
+\Src{bo-def} is, in the original Mellin coordinate,
+\begin{equation}\label{PMH1-B}
+ B_t(z(s))=M_t(1-s).
+\end{equation}
+It is a literal nonzero factor; it is not a new definition of $g_t$.
+
+For $0\le t\le1/2$, $0\le\sigma\le1$, $\tau\ge100$, set
+\begin{equation}\label{PMH1-cutoff}
+ T'=\tau+\frac{\pi t}{8},\qquad
+ a=\sqrt{\frac{T'}{2\pi}},\qquad
+ N=N(t,\tau)=\left\lfloor\sqrt{\frac{\tau}{2\pi}+\frac t{16}}\right\rfloor.
+\end{equation}
+For $q=s$ or $q=1-s$, so $|\Ima q|=\tau$, define the following
+positive quantities:
+\begin{align}
+ W_{t,n}(q)&=|M_t(q)|
+ e^{t\log^2n/4-\Rea(q+(t/2)\alpha(q))\log n},
+ \label{PMH1-W}\\
+ \epsilon_{t,n}(q)&=
+ \exp\left(\frac{(t^2/8)|\alpha(q)-\log n|^2+t/4+1/6}
+ {\tau-3.33}\right)-1,
+ \label{PMH1-eps}\\
+ \widetilde\epsilon_t(q)&=
+ \left(\frac{0.397\,9^{\Rea q}}{a-0.865}
+       +\frac5{3(\tau-6)}\right)e^{3.49/(\tau-4)},
+ \label{PMH1-tilde}\\
+ E_{A,N}&=\sum_{n=1}^N W_{t,n}(s)\epsilon_{t,n}(s),
+ \qquad E_{B,N}=\sum_{n=1}^N W_{t,n}(1-s)\epsilon_{t,n}(1-s),
+ \label{PMH1-EAB}\\
+ E_{C,0}&=e^{t\pi^2/64}|M_0(iT')|
+       \left(1+\widetilde\epsilon_t(s)+\widetilde\epsilon_t(1-s)\right),
+ \qquad E_N=E_{A,N}+E_{B,N}+E_{C,0}.
+ \label{PMH1-EC}
+\end{align}
+All decimal constants here are the literal terminating decimals in
+\Src{eps-def}, \Src{epsp-def}, and Corollary \texttt{ab-cor}; hence they
+are exact rational constants, not rounded measurements made here.
+For negative $\Ima q$, \eqref{PMH1-eps}--\eqref{PMH1-tilde} mean the
+reflected positive-imaginary estimates. This reflection is justified
+in the next proof, rather than silently inserting a negative $T$ in a
+positive-$T$ source estimate.
+
+\begin{theorem}[PMH1: the imported approximation in the original coordinate]
+\label{PMH1}
+With the literal quantities \eqref{PMH1-M0}--\eqref{PMH1-EC},
+\begin{equation}\label{PMH1-bound}
+ \left|g_t(s)-16\sum_{n=1}^{N(t,\tau)}
+       \bigl(T_{t,n}(s)+T_{t,n}(1-s)\bigr)\right|\le16E_N
+\end{equation}
+for $0\le t\le1/2$, $0\le\Rea s\le1$, $\Ima s\ge100$.
+\end{theorem}
+\begin{proof}
+For $0<t\le1/2$ and $0\le\sigma\le1/2$,
+\eqref{PMH1-coordinate} gives Polymath's source region
+$0<t\le1/2$, $0\le y\le1$, $x\ge200$ (\Src{region}).
+Corollary \texttt{ab-cor}, with the definitions in
+Corollary \texttt{abc-cor}, says
+$|H_t-A_{t,N}-B_{t,N}|\le E_A+E_B+E_{C,0}$.
+Its $s_-$ is exactly $s$, its $s_+$ is exactly $1-s$, and its
+$x/2$ is exactly $\tau$. Substitution gives
+\eqref{PMH1-EAB}--\eqref{PMH1-bound}, including the factor $16$.
+The functions $M_0$, $M_t$, and $\alpha$ respect conjugation away
+from the cut. Moreover $H_t(\bar z)=\overline{H_t(z)}$ for real $t$,
+by \eqref{PMH1-Phi}. Thus $1/2\le\sigma\le1$ follows by reflecting
+$z$ in the real axis, which replaces $s$ by $1-\bar s$ and exchanges
+the two summands and their error bounds. This also proves the claimed
+reflected interpretation of $\epsilon$ and $\widetilde\epsilon$.
+At any fixed $\tau$, the integer $N(t,\tau)$ is constant for all
+sufficiently small $t\ge0$, including when $\tau/(2\pi)$ is a square:
+at that endpoint the floor is already the larger integer.
+The rapidly convergent integral for $H_t$ and every displayed finite
+quantity are continuous as $t\downarrow0$. Taking this limit proves
+the stated $t=0$ bound. No statement at negative $t$ is obtained.
+The intermediate source-proof slips in the $R_{t,N}$ estimate are
+repaired independently in PMH11 below, which reconfirms exactly
+the final constants used in \eqref{PMH1-tilde}.
+\end{proof}
+
+For completeness, the source's refined correction and its phases are
+not lost in \eqref{PMH1-EC}. In the original upper-$z$ half-strip,
+\Src{abc-cor}, \Src{C0-def}, and \Src{U-def} give
+\begin{align}
+ p&=1-2(a-N),\qquad
+ U=\exp\left[-i\left(\frac{T'}2\log\frac{T'}{2\pi}
+                         -\frac{T'}2-\frac\pi8\right)\right],
+ \label{PMH1-phase}\\
+ C_0(p)&=\frac{e^{\pi i(p^2/2+3/8)}-i\sqrt2\cos(\pi p/2)}
+                 {2\cos(\pi p)},
+ \label{PMH1-C0}\\
+ C_t(x+iy)&=2e^{-\pi iy/8}(-1)^N e^{t\pi^2/64}
+       \Rea\left(M_0(iT')C_0(p)Ue^{\pi i/8}\right).
+ \label{PMH1-C}
+\end{align}
+The apparent singularities at $p=\pm1/2$ in \eqref{PMH1-C0} are
+removed by continuity, as in the source. The refined approximation
+is $H_t=A_{t,N}+B_{t,N}-C_t$ with error
+$E_A+E_B+e^{t\pi^2/64}|M_0(iT')|
+(\widetilde\epsilon_t(s)+\widetilde\epsilon_t(1-s))$.
+The source bound $|C_0(p)|\le1/2$ (\Src{cop}) gives
+$|C_t|\le e^{t\pi^2/64}|M_0(iT')|$, which is precisely the
+additional term retained in $E_{C,0}$.
+The displayed $C_t$ depends on real coordinates, a floor, and a real
+part. No holomorphic derivative of that displayed expression is used.
+The receiver below uses the proved $A+B$ bound, not a deletion of its
+$C$ contribution.
+
+\section{A fixed cutoff and a finite box receiver}
+
+Let
+\[
+ \mathcal D=\{s\in\C:0<\Rea s<1,\ \Ima s>100\}.
+\]
+For a fixed nonnegative integer $K$, define
+\begin{equation}\label{PMH2-Q}
+ Q_{t,K}(s)=16\sum_{n=1}^K
+       \bigl(T_{t,n}(s)+T_{t,n}(1-s)\bigr).
+\end{equation}
+This function is holomorphic on the open upper half-plane. Indeed
+$s$ and $1-s$ then avoid the logarithm cuts and the points $0,1$.
+The source error estimate is asserted only on the smaller source
+strip; holomorphy itself has this stated open domain.
+Write $F_{t,K}(z)=Q_{t,K}((1+iz)/2)/16$.
+
+\begin{theorem}[PMH2: exact repair of a moving cutoff]
+\label{PMH2}
+At each source point define
+\begin{equation}\label{PMH2-Delta}
+ \Delta_{N,K}(s,t)=\sum_{n=1}^N
+ (T_{t,n}(s)+T_{t,n}(1-s))-
+ \sum_{n=1}^K(T_{t,n}(s)+T_{t,n}(1-s)).
+\end{equation}
+Then
+\begin{equation}\label{PMH2-bound}
+ |g_t(s)-Q_{t,K}(s)|\le
+ 16\bigl(E_{N(t,\tau)}(s,t)+|\Delta_{N(t,\tau),K}(s,t)|\bigr).
+\end{equation}
+This estimate holds across every cutoff jump. The function being
+differentiated is $g_t-Q_{t,K}$, never the floor-dependent sum.
+\end{theorem}
+\begin{proof}
+Subtract the exact identity
+$Q_{t,N}-Q_{t,K}=16\Delta_{N,K}$ from $g_t-Q_{t,K}$ and apply
+\eqref{PMH1-bound} and the triangle inequality. Every term between
+the two cutoffs is present with its exact sign in
+\eqref{PMH2-Delta}. If only an absolute majorant is needed,
+\[
+ |\Delta_{N,K}|\le\sum_{n=\min(N,K)+1}^{\max(N,K)}
+           (W_{t,n}(s)+W_{t,n}(1-s)).
+\]
+This is an estimate of that exact finite difference, not an alteration
+of either source function.
+\end{proof}
+
+Here is an explicitly finite prescription for a uniform right-hand
+side. Fix a closed real interval $I\subset[0,1/2]$ and a compact
+rectangle $\mathcal B\subset\{0\le\Rea s\le1,\Ima s\ge100\}$.
+Enclose $\tau/(2\pi)+t/16$ over $I\times\mathcal B$ in a positive
+rational interval $[A_-,A_+]$. Choose a finite integer list
+$\mathcal J$ containing every $\lfloor\sqrt A\rfloor$ for
+$A\in[A_-,A_+]$. This list is computed using integer squares;
+including both candidates at a boundary is valid and avoids an
+undecidable equality test on a general computable real.
+
+Using outward-rounded real or complex interval arithmetic, form
+upper bounds $w_{n,q}$, $e_{n,q}$, $c$, and $d_{N,K}$ for,
+respectively, $W_{t,n}(q)$, $\epsilon_{t,n}(q)$,
+$E_{C,0}$, and $|\Delta_{N,K}|$, over the specified box and time
+interval. All $n$ range only up to $\max(K,\max\mathcal J)$.
+Then the following is a finite, explicit error receiver:
+\begin{equation}\label{PMH2-box}
+ \eta(\mathcal B,I,K)=16\max_{N\in\mathcal J}
+ \left\{\sum_{n=1}^N
+ (w_{n,s}e_{n,s}+w_{n,1-s}e_{n,1-s})+c+d_{N,K}\right\}.
+\end{equation}
+It bounds $|g_t-Q_{t,K}|$ everywhere on $I\times\mathcal B$ by
+PMH2. This prescription uses only finitely many evaluations of
+rational operations, $\pi$, $\log$, $\exp$, square root, and the
+principal complex logarithm on explicitly cut-free rectangles.
+There is no hidden supremum to be numerically guessed.
+
+In particular, the exact magnitude formula retaining the Stirling
+decay, for $q=u+iv$ in this domain, is
+\begin{equation}\label{PMH2-magnitude}
+ |M_t(q)|=\frac{\sqrt{2\pi}}{16}|q||q-1|\pi^{-u/2}
+ \exp\left((\tfrac u2-\tfrac12)\log\frac{|q|}{2}
+ -\frac v2\arg q-\frac u2+\frac t4\Rea(\alpha(q)^2)\right).
+\end{equation}
+Its proof is taking absolute values in \eqref{PMH1-M0} and
+\eqref{PMH1-alpha}, using
+$\Rea((q/2-1/2)\Log(q/2))=(u/2-1/2)\log(|q|/2)-(v/2)\arg q$.
+One may use \eqref{PMH2-magnitude} or directly use complex balls in
+\eqref{PMH1-M0}; both retain the same factor and phase information.
+
+\section{Every jet, with its coordinate factors and source factor}
+
+\begin{theorem}[PMH3: Cauchy error jets]
+\label{PMH3}
+Let $\overline{D(s_0,R)}\subset\mathcal D$ and let
+$|g_t-Q_{t,K}|\le\eta$ on this disk, uniformly for $t\in I$.
+For $|s-s_0|\le h<R$ and every integer $j\ge0$,
+\begin{equation}\label{PMH3-sjet}
+ |g_t^{(j)}(s)-Q_{t,K}^{(j)}(s)|
+ \le\eta_j:=\frac{j!\eta}{(R-h)^j}.
+\end{equation}
+Equivalently, if $|H_t-F_{t,K}|\le\mathcal E$ on the closed
+$z$-disk of radius $r$, then at its center
+\begin{equation}\label{PMH3-zjet}
+ \left|g_t^{(j)}(s)-16(-2i)^jF_{t,K}^{(j)}(z(s))\right|
+ \le\frac{16\,2^j j!\mathcal E}{r^j}.
+\end{equation}
+The corresponding approximation to the exact mixed heat jet is
+$4^{-k}Q_{t,K}^{(j+2k)}$ with error
+$4^{-k}(j+2k)!\eta/(R-h)^{j+2k}$.
+\end{theorem}
+\begin{proof}
+The error is holomorphic on an open neighborhood of every closed
+disk in question. Apply Cauchy's derivative formula to the error on
+the circle centered at $s$ of radius $R-h$. At a boundary case use
+slightly smaller radii and pass to the limit. The integral bound is
+$j!\eta/(R-h)^j$. The chain rule and
+$z'(s)=-2i$ give the exact factor $16(-2i)^j$;
+the metric conversion in \eqref{PMH1-coordinate} gives $r=2R$.
+The mixed jet assertion follows from \eqref{PMH1-heat}.
+In particular it does not assert that $Q_{t,K}$ itself solves the
+heat equation.
+\end{proof}
+
+The comparison jets themselves are finite expressions. Set
+$\ell_n=\log n$ and
+\begin{equation}\label{PMH3-lambda}
+ \lambda_{t,n}(q)=\alpha(q)-\ell_n
+       +\frac t2(\alpha(q)-\ell_n)\alpha'(q).
+\end{equation}
+For every $r\ge1$,
+\begin{equation}\label{PMH3-alpha-jets}
+ \alpha^{(r)}(q)=\frac{(-1)^r r!}{2q^{r+1}}
+ +\frac{(-1)^r r!}{(q-1)^{r+1}}
+ +\frac{(-1)^{r-1}(r-1)!}{2q^r}.
+\end{equation}
+Let $\mathcal B_{0,n}=1$ and, recursively,
+\begin{equation}\label{PMH3-Bell}
+ \mathcal B_{j+1,n}
+ =\sum_{a=0}^j\binom ja\lambda_{t,n}^{(a)}\mathcal B_{j-a,n}.
+\end{equation}
+Every $\lambda_{t,n}^{(a)}$ is explicitly computed by Leibniz's rule
+from \eqref{PMH3-lambda} and \eqref{PMH3-alpha-jets}. The exact jets are
+\begin{align}
+ T_{t,n}^{(j)}(q)&=T_{t,n}(q)\mathcal B_{j,n}(q),
+ \label{PMH3-term-jets}\\
+ Q_{t,K}^{(j)}(s)&=16\sum_{n=1}^K
+ \left(T_{t,n}(s)\mathcal B_{j,n}(s)
+ +(-1)^jT_{t,n}(1-s)\mathcal B_{j,n}(1-s)\right),
+ \label{PMH3-Qjets}\\
+ \partial_tQ_{t,K}(s)&=16\sum_{n=1}^K
+ \left(T_{t,n}(s)\frac{(\alpha(s)-\ell_n)^2}{4}
+ +T_{t,n}(1-s)\frac{(\alpha(1-s)-\ell_n)^2}{4}\right).
+ \label{PMH3-timeQ}
+\end{align}
+Indeed logarithmic differentiation of the literal term
+\eqref{PMH1-term} gives \eqref{PMH3-lambda}; differentiating
+$T'=\lambda T$ $j$ times proves \eqref{PMH3-Bell} by induction.
+Differentiating its full exponent with respect to $t$ gives
+$\alpha^2/4-\alpha\ell_n/2+\ell_n^2/4$, which is exactly the
+factor in \eqref{PMH3-timeQ}. No gamma or Stirling derivative was
+omitted in this calculation.
+
+One can explicitly see the source factor in the alternative
+identity $Q_{t,K}=16M_t(1-s)f_{t,K}(z(s))$, where
+$f_{t,K}=F_{t,K}/B_t$. Then
+\begin{equation}\label{PMH3-Bjet}
+ Q_{t,K}^{(j)}(s)=16\sum_{a=0}^j\binom ja(-1)^a
+ M_t^{(a)}(1-s)(-2i)^{j-a}f_{t,K}^{(j-a)}(z(s)).
+\end{equation}
+In particular, wherever the two sides are defined,
+\begin{equation}\label{PMH3-logB}
+ \frac{Q_{t,K}'}{Q_{t,K}}(s)
+ =-\left[\alpha(1-s)+\frac t2\alpha(1-s)\alpha'(1-s)\right]
+       -2i\frac{f_{t,K}'}{f_{t,K}}(z(s)).
+\end{equation}
+The first term is not dispensable. The use of a quotient in this
+identity does not replace $g_t$ by a normalized source.
+
+\section{A finite stopping inequality for a whole contour and time interval}
+
+Let $\Gamma$ be a positively oriented polygonal Jordan contour
+whose closed interior lies in $\mathcal D$. Its successive segments
+have midpoints $c_i$, lengths $L_i$, and half-lengths $h_i=L_i/2$.
+Choose $R_i>h_i$ so that
+$\overline{D(c_i,R_i)}\subset\mathcal D$, and use the same fixed
+cutoff $K$ on every segment. Let $I=[t_0-d_t,t_0+d_t]\subset[0,1/2]$.
+The box construction \eqref{PMH2-box} gives a verified bound $\eta_i$
+on each outer disk, uniform in $I$. Finite comparison jets give
+verified upper bounds $U_{j,i}$ for $|Q_{t,K}^{(j)}|$ and $V_i$ for
+$|\partial_tQ_{t,K}|$ there. A computed complex ball for
+$Q_{t_0,K}(c_i)$ has center $A_i$ and radius $u_i$; a direct complex
+ball absolute lower bound can be used in place of $|A_i|-u_i$.
+
+\begin{theorem}[PMH4: the stopping inequality]
+\label{PMH4}
+The finitely many explicitly evaluated inequalities
+\begin{equation}\label{PMH4-stop}
+ a_i:=|A_i|-u_i-h_iU_{1,i}-d_tV_i,\qquad
+ \mu_i:=a_i-\eta_i>0\quad\text{for every }i
+\end{equation}
+certify simultaneously for all $t\in I$ that
+\[
+ |Q_{t,K}|\ge a_i>\eta_i,\qquad |g_t|\ge\mu_i
+ \quad\hbox{on the entire $i$th segment.}
+\]
+Consequently $g_t$ and $Q_{t,K}$ have the same number of zeros
+inside $\Gamma$, counted with full algebraic multiplicity, and that
+number is constant on $I$. This is a finite certificate rule, not an
+assertion that untested input satisfies \eqref{PMH4-stop}.
+\end{theorem}
+\begin{proof}
+Join $(t_0,c_i)$ to $(t,c_i)$ and then to $(t,s)$ along the real time
+interval and the straight subsegment in the outer disk. The
+fundamental theorem of calculus and the stated derivative bounds
+give
+$|Q_{t,K}(s)-Q_{t_0,K}(c_i)|\le d_tV_i+h_iU_{1,i}$.
+This proves the first bound and, by the source error, the second.
+The strict inequality $|g_t-Q_{t,K}|<|Q_{t,K}|$ on all of $\Gamma$
+gives equality of root counts by Rouch\'e's theorem. As $t$ varies in
+$I$, the continuous nonzero boundary values of $g_t$ form a homotopy
+in $\C\setminus\{0\}$; their integer winding number is constant.
+Every claim uses an inequality actually tested on finite arithmetic
+data. There is no initial assumption of a zero-free boundary.
+\end{proof}
+
+The number itself can be determined by a second finite calculation.
+At $t_0$, the image of each segment under $Q_{t_0,K}$ and the chord
+between its endpoint images lie in the disk centered at
+$Q_{t_0,K}(c_i)$ of radius $h_iU_{1,i}$. Inequality
+\eqref{PMH4-stop} keeps that disk away from zero. The segment image
+can therefore be deformed to its chord in this convex zero-free disk,
+keeping the endpoints fixed. Sum the principal argument increments
+of successive endpoint ratios, with interval enclosures. If an
+interval for this sum divided by $2\pi$ contains a unique integer,
+that integer is the exact winding number. A convenient additional
+finite check is positive real part for each endpoint ratio; then
+every principal increment is in $(-\pi/2,\pi/2)$ and no branch
+crossing is hidden. The explicit calculation in Section
+\ref{sec:certificate} uses precisely these checks.
+
+\subsection{What terminates and what does not}
+
+There is a finite computation for every prescribed finite cover,
+cutoff and arithmetic precision. A strict positive result in
+\eqref{PMH4-stop} is a stopping certificate. For fixed comparison
+function and fixed outer-disk error bounds, if the limiting exact
+arithmetic inequalities have positive margins, convergence of
+outward interval evaluations and sufficiently fine finite
+subdivision eventually exhibit positive margins: each of the
+finitely many strict inequalities has a positive distance from
+zero, and all evaluation widths can be made smaller than half that
+distance. This statement is only the termination property of the
+arithmetic verification of a strict inequality.
+The analytical source error $E_N$ does not tend to zero when one
+merely raises machine precision. A failed inequality may remain
+failed forever with this approximation. No general termination on
+every genuinely zero-free contour, and no eventual success at
+$t=0$ or at all heights, is claimed.
+
+\section{Full exterior logarithmic derivatives and traces}
+
+After PMH4 has passed, write $\eta_{j,i}=j!\eta_i/(R_i-h_i)^j$.
+For $j=1,2$ put
+\begin{equation}\label{PMH5-delta}
+ \delta_{j,i}=\frac{\eta_{j,i}}{\mu_i}
+       +\frac{U_{j,i}\eta_i}{a_i\mu_i}.
+\end{equation}
+
+\begin{theorem}[PMH5: quotient errors, without a zero-reality premise]
+\label{PMH5}
+On the $i$th contour segment, uniformly for $t\in I$,
+\begin{equation}\label{PMH5-ratio}
+ \left|\frac{g_t^{(j)}}{g_t}-\frac{Q_{t,K}^{(j)}}{Q_{t,K}}\right|
+ \le\delta_{j,i},\qquad j=1,2.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Write $e=g_t-Q_{t,K}$. Exact subtraction gives
+\[
+ \frac{g_t^{(j)}}{g_t}-\frac{Q_{t,K}^{(j)}}{Q_{t,K}}
+ =\frac{e^{(j)}}{g_t}
+       -\frac{Q_{t,K}^{(j)}e}{Q_{t,K}g_t}.
+\]
+Use PMH3, $|g_t|\ge\mu_i$ and $|Q_{t,K}|\ge a_i$.
+\end{proof}
+
+At a fixed certified time, let $\rho_a$ be the distinct enclosed
+zeros of $g_t$, and let $m_a$ be their actual positive integer
+multiplicities. Define exactly
+\begin{equation}\label{PMH6-divisor}
+ P_t(s)=\prod_a(s-\rho_a)^{m_a},\qquad
+ m=\sum_am_a,\qquad R_t(s)=\frac{g_t(s)}{P_t(s)},\qquad
+ b_t(s)=\frac{R_t'(s)}{R_t(s)}.
+\end{equation}
+No zero outside $\Gamma$ is included in $P_t$, and no enclosed zero
+is omitted or assigned a smaller multiplicity. The divisor is
+monic; the original scalar mass, all gamma/Stirling contributions,
+and the entire exterior factor remain in $R_t$.
+
+\begin{theorem}[PMH6: a finite-contour receiver for the complete exterior term]
+\label{PMH6}
+The function $R_t$ is holomorphic and nonzero throughout the closed
+interior of $\Gamma$, after removing its apparent singularities at
+the enclosed zeros. For every interior $w$, including an enclosed
+zero, and every integer $r\ge0$,
+\begin{equation}\label{PMH6-exact}
+ b_t^{(r)}(w)=\frac{r!}{2\pi i}\oint_\Gamma
+       \frac{g_t'(\zeta)/g_t(\zeta)}{(\zeta-w)^{r+1}}\dd\zeta.
+\end{equation}
+If $d_i$ is any positive lower bound for the Euclidean distance
+from $w$ to the $i$th segment, the comparison integral
+\begin{equation}\label{PMH6-approx}
+ \widehat b_{t,K}^{(r)}(w)=\frac{r!}{2\pi i}\oint_\Gamma
+       \frac{Q_{t,K}'(\zeta)/Q_{t,K}(\zeta)}{(\zeta-w)^{r+1}}\dd\zeta
+\end{equation}
+satisfies the fully explicit bound
+\begin{equation}\label{PMH6-error}
+ |b_t^{(r)}(w)-\widehat b_{t,K}^{(r)}(w)|
+ \le\frac{r!}{2\pi}\sum_i\frac{L_i\delta_{1,i}}{d_i^{r+1}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+At each zero $\rho_a$, Taylor's theorem writes
+$g_t(s)=(s-\rho_a)^{m_a}v_a(s)$ with $v_a(\rho_a)\ne0$.
+Removal at the exact multiplicities in \eqref{PMH6-divisor} proves
+the assertion about $R_t$. Logarithmic differentiation gives
+\[
+ \frac{g_t'}{g_t}=\sum_a\frac{m_a}{s-\rho_a}+b_t.
+\]
+For $w$ different from the $\rho_a$, the integral of each rational
+term $m_a/((\zeta-\rho_a)(\zeta-w))$ is zero: its residues at
+$\rho_a$ and $w$ are opposite. The remaining integral is the
+Cauchy formula for $b_t(w)$. Both sides are holomorphic in $w$
+throughout the interior, so this equality extends over all the
+$\rho_a$. Differentiate under the contour integral $r$ times;
+$\partial_w^r(\zeta-w)^{-1}=r!(\zeta-w)^{-r-1}$ has a positive
+sign. This proves \eqref{PMH6-exact}. PMH5 and the length estimate
+for a contour integral prove \eqref{PMH6-error}.
+\end{proof}
+
+For a function $\psi$ holomorphic on a neighborhood of the closed
+interior, the corresponding trace and its source error are
+\begin{align}
+ \mathscr T_\psi(t)&=\sum_am_a\psi(\rho_a)
+    =\frac1{2\pi i}\oint_\Gamma\psi(s)\frac{g_t'}{g_t}(s)\dd s,
+ \label{PMH7-trace}\\
+ \left|\mathscr T_\psi(t)-\frac1{2\pi i}
+ \oint_\Gamma\psi(s)\frac{Q_{t,K}'}{Q_{t,K}}(s)\dd s\right|
+ &\le\frac1{2\pi}\sum_iL_i\sup_{\Gamma_i}|\psi|\,\delta_{1,i}.
+ \label{PMH7-traceerror}
+\end{align}
+The first equality is the residue theorem, with residue $m_a$ at a
+zero of order $m_a$; the second follows from PMH5. The previously
+proved moving-packet identity in SZ-20260920-046 reads, in exactly
+these coordinates and orientations,
+\begin{equation}\label{PMH7-dynamics}
+ \mathscr T_\psi'(t)=-\frac1{8\pi i}\oint_\Gamma
+       \psi'(s)\frac{g_t''(s)}{g_t(s)}\dd s.
+\end{equation}
+Its use here needs no new root-by-root motion hypothesis. For the
+reader to check the exact sign and factor, \eqref{PMH1-heat} gives
+$\partial_t(g_t'/g_t)=\tfrac14\partial_s(g_t''/g_t)$ on the
+certified boundary; integration of the derivative of
+$\psi g_t''/g_t$ along the closed contour yields
+\eqref{PMH7-dynamics}. Thus this identity also holds through
+collisions of interior roots.
+
+\begin{theorem}[PMH7: effective trace-dynamics receiver]
+\label{PMH7}
+The finite source error on the right side of
+\eqref{PMH7-dynamics}, when $g_t''/g_t$ is replaced by
+$Q_{t,K}''/Q_{t,K}$, is at most
+\begin{equation}\label{PMH7-timeerror}
+ \frac1{8\pi}\sum_iL_i\sup_{\Gamma_i}|\psi'|\,\delta_{2,i}.
+\end{equation}
+The result is an approximation to the derivative of the original
+trace. It is not asserted to be the time derivative of the trace
+of the comparison function $Q_{t,K}$.
+\end{theorem}
+\begin{proof}
+Apply PMH5 with $j=2$ directly to the already exact contour
+identity \eqref{PMH7-dynamics} and bound each segment integral by
+its length times its integrand bound. In general
+$\partial_tQ_{t,K}\ne Q_{t,K}''/4$, so identifying the two
+different derivatives would introduce an unbounded heat defect;
+no such identification was made.
+\end{proof}
+
+The full polynomial packet can also be enclosed without locating
+individual roots. Put $p_j=\mathscr T_{s^j}$, $e_0=1$, and compute
+\begin{equation}\label{PMH7-Newton}
+ e_k=\frac1k\sum_{j=1}^k(-1)^{j-1}e_{k-j}p_j,
+ \quad 1\le k\le m,\qquad
+ P_t(s)=\sum_{k=0}^m(-1)^ke_ks^{m-k}.
+\end{equation}
+To prove the recurrence, form
+$E(v)=\prod_a(1+\rho_av)^{m_a}=\sum_ke_kv^k$ as a formal
+polynomial. Its logarithmic derivative is
+$E'(v)/E(v)=\sum_{j\ge1}(-1)^{j-1}p_jv^{j-1}$.
+Comparing the coefficient of $v^{k-1}$ in this identity gives
+\eqref{PMH7-Newton}. Multiplicities enter every power sum and every
+coefficient; there is no passage to a square-free divisor.
+
+\section{Full repeated-root jets, without discarding their mass}
+
+At any enclosed zero $\rho$ of actual multiplicity $m_\rho$, write
+\begin{equation}\label{PMH8-local}
+ g_t(\rho+h)=h^{m_\rho}\sum_{r\ge0}J_rh^r,
+ \qquad J_r=\frac{g_t^{(m_\rho+r)}(\rho)}{(m_\rho+r)!},
+ \qquad J_0\ne0.
+\end{equation}
+Every one of the first $m_\rho$ vanishing derivatives and every
+nonzero higher jet is part of this local object. In particular,
+PMH3 gives the exact comparison centers
+\begin{equation}\label{PMH8-jets}
+ \widehat J_r=
+ \frac{16(-2i)^{m_\rho+r}}{(m_\rho+r)!}
+ F_{t,K}^{(m_\rho+r)}(z(\rho)),\qquad
+ |J_r-\widehat J_r|\le\frac{\eta}{d^{m_\rho+r}}
+\end{equation}
+whenever a Cauchy error disk of available $s$-radius $d$ contains
+the evaluation point with error $\eta$. The factorial and every
+power of $-2i$ have not been removed from the center.
+
+\begin{theorem}[PMH8: complete local logarithmic-derivative jets]
+\label{PMH8}
+For $v(h)=\sum_{r\ge0}J_rh^r$, write
+$v'(h)/v(h)=\sum_{r\ge0}b_rh^r$. Then
+\begin{equation}\label{PMH8-recursion}
+ b_r=\frac{(r+1)J_{r+1}-\sum_{k=1}^rJ_kb_{r-k}}{J_0},
+ \qquad r\ge0.
+\end{equation}
+The full exterior derivative jets for \eqref{PMH6-divisor} are
+\begin{equation}\label{PMH8-exterior}
+ b_t^{(r)}(\rho)=r!b_r
+       -\sum_{\rho_a\ne\rho}
+          \frac{m_a(-1)^r r!}{(\rho-\rho_a)^{r+1}}.
+\end{equation}
+These identities apply to every actual multiplicity. If a numerical
+local jet division is desired, it is performed only after a finite
+ball check excludes zero from $J_0$; it is not an assumed check.
+PMH6 remains available at all interior points without such a
+local division or prior knowledge of an individual root location.
+\end{theorem}
+\begin{proof}
+Multiply the two convergent series in $v\sum_rb_rh^r=v'$ and
+compare coefficients of $h^r$. This gives
+$\sum_{k=0}^rJ_kb_{r-k}=(r+1)J_{r+1}$ and proves the recursion
+because $J_0\ne0$ by the definition of exact multiplicity.
+The local function $v=g_t/(s-\rho)^{m_\rho}$ equals
+$R_t(s)\prod_{\rho_a\ne\rho}(s-\rho_a)^{m_a}$.
+Logarithmic differentiation, followed by $r$ derivatives, gives
+\eqref{PMH8-exterior}. This proof preserves the original nonzero
+mass $J_0$ throughout; it never sets $J_0$ to one.
+\end{proof}
+
+The local algebra is $\C[h]/(h^{m_\rho})$, not only its constant
+part. Multiplication by an analytic $\psi$ is exactly
+$\sum_{r=0}^{m_\rho-1}\psi^{(r)}(\rho)N^r/r!$ in the
+increasing-power basis, with $N$ the full nilpotent shift. Its trace
+is $m_\rho\psi(\rho)$ because $N^r$ has zero diagonal for $r>0$;
+this trace identity does not erase those $m_\rho-1$ jet directions.
+The same full multiplicities are the ones in
+\eqref{PMH7-trace} and \eqref{PMH7-Newton}.
+
+\section{No unevaluated contour integral is required}
+
+\begin{lemma}[PMH9: finite midpoint enclosure]
+\label{PMH9}
+For a straight complex segment with displacement $v_i$, length
+$L_i$, midpoint $c_i$, and a differentiable holomorphic integrand
+$f$ with $|f'|\le D_i$ on it,
+\begin{equation}\label{PMH9-midpoint}
+ \left|\int_{\Gamma_i}f(s)\dd s-v_if(c_i)\right|
+ \le\frac{L_i^2D_i}{4}.
+\end{equation}
+An evaluation-ball radius $\nu_i$ for $f(c_i)$ adds $L_i\nu_i$.
+\end{lemma}
+\begin{proof}
+Parameterize the segment by arclength $u\in[-L_i/2,L_i/2]$;
+its unit tangent has modulus one. The fundamental theorem of
+calculus gives $|f(s(u))-f(c_i)|\le D_i|u|$.
+Integrating and using
+$\int_{-L_i/2}^{L_i/2}|u|\dd u=L_i^2/4$ proves the claim.
+The evaluation-ball contribution follows by multiplying its radius
+by $|v_i|=L_i$.
+\end{proof}
+
+For the exterior receiver \eqref{PMH6-approx}, write
+$L_Q=Q'/Q$. On the $i$th segment,
+\[
+ |L_Q|\le U_{1,i}/a_i,\qquad
+ |L_Q'|\le U_{2,i}/a_i+U_{1,i}^2/a_i^2.
+\]
+Thus for $f(s)=L_Q(s)/(s-w)^{r+1}$ one may take
+\begin{equation}\label{PMH9-exteriorD}
+ D_i=\frac{U_{2,i}/a_i+U_{1,i}^2/a_i^2}{d_i^{r+1}}
+       +\frac{(r+1)U_{1,i}}{a_i d_i^{r+2}}.
+\end{equation}
+Combine PMH9, multiplied by $r!/(2\pi)$, with
+\eqref{PMH6-error} for a finite arithmetic ball enclosing
+$b_t^{(r)}(w)$. For traces the admissible derivative cap is
+\begin{equation}\label{PMH9-traceD}
+ D_i=\sup|\psi'|\frac{U_{1,i}}{a_i}
+ +\sup|\psi|\left(\frac{U_{2,i}}{a_i}
+                         +\frac{U_{1,i}^2}{a_i^2}\right).
+\end{equation}
+For the trace derivative, use $f=\psi'Q''/Q$ and the cap
+\begin{equation}\label{PMH9-timeD}
+ D_i=\sup|\psi''|\frac{U_{2,i}}{a_i}
+ +\sup|\psi'|\left(\frac{U_{3,i}}{a_i}
+                         +\frac{U_{2,i}U_{1,i}}{a_i^2}\right).
+\end{equation}
+Multiply its midpoint and evaluation errors by $1/(8\pi)$ and add
+\eqref{PMH7-timeerror}. All suprema of $\psi$ and its derivatives
+are separately supplied by finite interval evaluation on the
+segment; for polynomial traces they are finite polynomial bounds.
+Equations \eqref{PMH9-exteriorD}--\eqref{PMH9-timeD} follow by
+ordinary differentiation and the product and quotient rules. They
+give a complete finite enclosure scheme, not only a formal contour
+representation.
+
+\section{An actual nonempty moving-packet certificate}
+\label{sec:certificate}
+
+The companion file \texttt{finite\_receiver\_checks.py} evaluates
+the literal formulas above with Python-FLINT version 0.9.0, using
+Arb complex and real balls at 80 decimal digits. The interval
+implementation uses the rigorous midpoint-radius arithmetic
+described by Fredrik Johansson \cite{johansson}; every acceptance
+test below is a strict interval comparison, not a rounded decimal
+comparison. It also checks
+finite symbolic identities with SymPy 1.13.1. Its source is part of
+this derivation. No numerical zero-free test from Polymath's large
+barrier runs is treated as an executed calculation here.
+
+\begin{theorem}[PMH10: a verified finite moving packet]
+\label{PMH10}
+For every real
+\begin{equation}\label{PMH10-time}
+ t\in I_*=[1023/4096,1025/4096],
+\end{equation}
+the original function $g_t=\Mell(U_tf_0)$ has exactly one zero,
+counted with algebraic multiplicity, in
+\begin{equation}\label{PMH10-rectangle}
+ \Omega_*=
+ \{s:1/10<\Rea s<9/10,\quad507/4<\Ima s<513/4\}.
+\end{equation}
+Its boundary contains no zero. This zero is simple and has the form
+$\rho(t)=1/2+i\gamma(t)$, with real analytic $\gamma(t)$ satisfying
+$507/4<\gamma(t)<513/4$. For the full exterior factor
+$R_t(s)=g_t(s)/(s-\rho(t))$, in the original Euclidean $s$ metric,
+\begin{equation}\label{PMH10-speed}
+ |\rho'(t)|=|\gamma'(t)|<1102,\qquad
+ \left|\frac{R_t'}{R_t}(\rho(t))\right|<2204.
+\end{equation}
+These are finite positive-time conclusions only.
+\end{theorem}
+\begin{proof}[Proof, including the finite certificate]
+Take the counterclockwise vertices
+\[
+ \tfrac1{10}+\tfrac{507}{4}i,\quad
+ \tfrac9{10}+\tfrac{507}{4}i,\quad
+ \tfrac9{10}+\tfrac{513}{4}i,\quad
+ \tfrac1{10}+\tfrac{513}{4}i.
+\]
+Divide each side into 32 equal segments, giving exactly 128
+segments. For every midpoint $c_i$ use the outer complex disk of
+$s$-radius $R_i=1/16$, enclosed in the rectangular complex ball
+whose real and imaginary radii both equal $1/16$. Their half-lengths
+are $1/80$ on horizontal sides and $3/128$ on vertical sides, so
+all $R_i-h_i$ are strictly positive. The outer boxes satisfy
+$0<\Rea s<1$ and $\Ima s>100$ by direct rational bounds.
+Use $t_0=1/4$ and $d_t=1/4096$.
+
+The checker verifies, on every whole outer box and all of $I_*$,
+\[
+ 16<\frac{\Ima s}{2\pi}+\frac t{16}<25.
+\]
+Consequently the source cutoff is exactly $N=4$ everywhere in this
+calculation. Take $K=4$, so the exact finite correction
+\eqref{PMH2-Delta} is zero in this example (it is retained for
+general input). Compute $Q_{t_0,4}(c_i)$ as a ball, $U_{1,i}$ from
+\eqref{PMH3-Qjets}, $V_i$ from \eqref{PMH3-timeQ}, and $\eta_i$
+from the literal $16(E_A+E_B+E_{C,0})$ on the entire outer box and
+time interval. Outward rounding is used at every operation.
+Let $\underline\mu_i$ denote the computed lower endpoint of the
+outward interval for the $i$th stopping margin. The smallest such
+returned certificate value lies in
+\begin{equation}\label{PMH10-margin}
+ 1.2475\times10^{-41}<\min_i\underline\mu_i<1.2476\times10^{-41}.
+\end{equation}
+The checker tests the strict lower bound $\mu_i>10^{-42}$ on every
+segment; the narrower interval \eqref{PMH10-margin} describes the
+computed lower certificate values. Its upper endpoint is not an
+upper bound for the unknown exact minimum of $|g_t|$ on the contour.
+Thus PMH4 has actually passed for the whole time interval.
+
+At $t_0$ evaluate $Q_{t_0,4}$ at every endpoint of this mesh.
+The checker verifies that every successive endpoint ratio has
+positive real part. The outward interval for the sum of principal
+arguments divided by $2\pi$ is
+\[
+ 1+[-3.59\times10^{-76},\ 3.59\times10^{-76}].
+\]
+It tests the strict inclusion in $(1/2,3/2)$. The segment-to-chord
+homotopy proved after PMH4 identifies this with the unique integer
+winding number $1$ of $Q_{t_0,4}$. Rouch\'e's theorem and the
+nonzero boundary homotopy in time give exactly one zero of $g_t$
+for every $t\in I_*$. Count one includes multiplicity, so this zero
+is simple.
+
+For real $t$, the original integral \eqref{PMH1-Phi} gives
+$H_t(\bar z)=\overline{H_t(z)}$. Direct calculation with the
+original coordinate gives
+\[
+ z(1-\bar s)=\overline{z(s)},\qquad
+ g_t(1-\bar s)=\overline{g_t(s)}.
+\]
+The rectangle \eqref{PMH10-rectangle} is invariant under
+$s\mapsto1-\bar s$. If its unique zero had real part different
+from $1/2$, its reflected zero would be a distinct second enclosed
+zero, contradicting the proved count. Thus
+$\rho(t)=1/2+i\gamma(t)$. Joint holomorphy of the integral and
+simplicity give a local analytic root by the implicit function
+theorem. Uniqueness makes these local branches agree, giving the
+stated real analytic function on the whole real interval.
+
+Finally put $\psi(s)=s$ in \eqref{PMH7-dynamics}. Its trace is
+$\rho(t)$, and hence
+\begin{equation}\label{PMH10-velocity-certificate}
+ |\rho'(t)|\le\frac1{8\pi}\sum_{i=1}^{128}
+        \frac{L_i(U_{2,i}+\eta_{2,i})}{\mu_i}.
+\end{equation}
+The same outer-box calculations, with $U_{2,i}$ from
+\eqref{PMH3-Qjets} and
+$\eta_{2,i}=2\eta_i/(R_i-h_i)^2$, enclose the right side strictly
+below $1101.812$, and the checker tests that it is below $1102$.
+Differentiate $g_t(\rho(t))=0$ and use
+\eqref{PMH1-heat}: $\rho'=-g_t''(\rho)/(4g_t'(\rho))$.
+Since $g_t=(s-\rho)R_t$ with no removed source mass,
+$g_t''(\rho)/g_t'(\rho)=2R_t'(\rho)/R_t(\rho)$.
+Thus the full exterior value is $-2\rho'(t)$ and its modulus is
+less than $2204$. This proves \eqref{PMH10-speed} without locating
+the root numerically or deleting its exterior factor.
+\end{proof}
+
+The checker additionally verifies a zero-free square centered at
+$1/4+128i$, with half-side $1/256$, at $t=1/4$. Its outer error disk
+has $s$-radius $1/32$, and $N=K=4$. Literal absolute values, with
+their small original magnitude, give
+\[
+ |Q_{1/4,4}(1/4+128i)|>4.8109\times10^{-40},\quad
+ \eta<2.42\times10^{-40},\quad U_1<1.71\times10^{-39},
+\]
+and the full stopping margin is $>2.29\times10^{-40}$.
+The entire square maps into a disk around the nonzero center
+value that excludes zero, so the winding is zero. This separate
+test exercises the value receiver; it is not used to claim a
+zero-free strip.
+
+The exact symbolic checks independently verify
+\eqref{PMH3-alpha-jets} for $1\le r\le7$, every coordinate phase
+in \eqref{PMH3-zjet} on polynomial test inputs for $0\le j\le8$,
+the exact cutoff difference for all 81 pairs $0\le N,K\le8$,
+Newton reconstruction of a degree-five packet with two genuinely
+complex locations of multiplicities two and three, and the complete
+local quotient recursion through order three with original mass
+$J_0=7$. These are bounded checks supplementing the general proofs,
+not a claim to have checked infinitely many orders by computation.
+All 44 former Python assertion predicates are now explicit
+\texttt{require()} calls and cannot be removed by optimization.
+Normal and optimized execution each perform 1170 active checks,
+including controls that deliberately reject a missing factor $16$,
+the wrong coordinate sign, the wrong cutoff, an incorrect winding
+count, deletion of the original unit mass, and deletion of root
+multiplicities. Separate optimized runs of each deliberate-failure
+case return a nonzero exit status. These controls test the finite
+checker; the analytic claims remain established by the proofs above.
+
+\input{SOURCE_REMAINDER_REPAIR.tex}
+
+\section{Geometric source for the receiver}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=.93,>=Latex]
+ \draw[->] (-.3,0)--(4.7,0) node[right] {$\Rea s$};
+ \draw[->] (0,-.3)--(0,3.4) node[above] {$\Ima s$};
+ \draw[thick] (1,0.65) rectangle (3.8,2.65);
+ \draw[->,thick] (1.3,.65)--(2,.65);
+ \node at (2.4,2.95) {$\Gamma$ positive};
+ \fill (2.3,1.55) circle (1.7pt) node[below] {$w$};
+ \fill (3.8,1.65) circle (1.7pt) node[right] {$c_i$};
+ \draw[dashed] (3.8,1.65) circle (.62);
+ \draw[blue,very thick] (3.8,1.4)--(3.8,1.9);
+ \draw[<->] (3.8,1.65)--(4.42,1.65);
+ \node[above] at (4.15,1.68) {$R_i$};
+ \draw[dotted] (2.3,1.55)--(3.8,1.55);
+ \node[above] at (3.0,1.52) {$d_i$};
+ \node[align=center] at (2.35,-.85)
+ {$|g-Q|\le\eta_i$ on the outer disk\\
+ $|g^{(j)}-Q^{(j)}|\le j!\eta_i/(R_i-h_i)^j$ on the segment};
+ \begin{scope}[xshift=6.2cm]
+ \draw[->] (-.3,0)--(4.7,0) node[right] {$\Rea z$};
+ \draw[->] (0,-.3)--(0,3.4) node[above] {$\Ima z$};
+ \draw[thick] (1.4,.25) rectangle (3.4,3.05);
+ \draw[->,thick] (3.4,.7)--(3.4,1.2);
+ \node at (2.4,3.45) {$z=-2i(s-\tfrac12)$};
+ \node[align=center] at (2.4,1.65)
+ {$|\dd z|=2|\dd s|$\\
+ $\partial_s^j= (-2i)^j\partial_z^j$\\
+ $g_t=16H_t$};
+ \node[align=center] at (2.35,-.85)
+ {Schematic coordinate panels, not a root-location plot.\\
+ Exact maps and metrics: \eqref{PMH1-coordinate}.};
+ \end{scope}
+\end{tikzpicture}
+\caption{The actual receiver mechanism. A finite error bound on an
+outer disk supplies every boundary jet; a verified positive
+boundary margin permits the Cauchy projection
+\eqref{PMH6-exact} onto the entire exterior factor. The blue
+segment has half-length $h_i$, the disk has radius $R_i>h_i$, and
+$d_i$ is a lower distance from the evaluation point to that
+segment. The panels show the exact coordinate dictionary but are
+not to a shared drawing scale. Source approximation: Polymath
+\texttt{ab-cor}; new transfer and receiver proofs: PMH2--PMH9.}
+\label{fig:receiver}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex]
+ \fill[blue!5] (0.6,0.4) rectangle (5.4,4.0);
+ \draw[thick] (0.6,0.4) rectangle (5.4,4.0);
+ \draw[->,thick] (1.1,.4)--(2,.4);
+ \draw[->] (0,0)--(6,0) node[right] {$\sigma=\Rea s$};
+ \draw[->] (0,0)--(0,4.5) node[above] {$\tau=\Ima s$};
+ \draw[red,very thick] (3,0.43)--(3,3.97);
+ \draw[fill=white,red] (3,.4) circle (.055);
+ \draw[fill=white,red] (3,4) circle (.055);
+ \draw (.6,.05)--(.6,-.05) node[below] {$1/10$};
+ \draw (3,.05)--(3,-.05) node[below] {$1/2$};
+ \draw (5.4,.05)--(5.4,-.05) node[below] {$9/10$};
+ \draw (.05,.4)--(-.05,.4) node[left] {$507/4$};
+ \draw (.05,4)--(-.05,4) node[left] {$513/4$};
+ \draw[<->,dashed] (1.2,2.6)--(4.8,2.6);
+ \node[fill=white,align=center] at (3,3.25)
+ {$s\longmapsto1-\bar s$\\reflection symmetry};
+ \node[align=left,anchor=west] at (6.2,3.4)
+ {$t\in[1023/4096,1025/4096]$\\
+ 128 certified boundary segments\\
+ $N=K=4$ on all outer disks};
+ \node[align=left,anchor=west] at (6.2,1.55)
+ {Exactly one zero, with multiplicity $1$.\\
+ Its unknown location lies on the red\\
+ open segment; no plotted point is guessed.\\
+ $|\rho'(t)|<1102$, $|R_t'/R_t(\rho(t))|<2204$.};
+\end{tikzpicture}
+\caption{The actually certified moving packet, PMH10. Axis labels
+are the original Mellin coordinates; the vertical axis starts at
+a displayed height window and is not an origin plot. The full
+rectangle has winding number one. Its reflection symmetry forces
+the unique zero onto the indicated open critical-line segment for
+every time in the displayed positive interval. This is a finite
+packet, not an all-height or time-zero conclusion. Source error:
+Polymath \texttt{ab-cor} with the independently repaired remainder
+proof PMH11; exact certificate: \texttt{finite\_receiver\_checks.py}.}
+\label{fig:actual-packet}
+\end{figure}
+
+\section{Provenance, actual reading, and the exact limit of the result}
+
+The human source is D.~H.~J.~Polymath,
+\emph{Effective approximation of heat flow evolution of the Riemann
+$\xi$ function, and a new upper bound for the de Bruijn--Newman
+constant}, arXiv:1904.12438v2. The canonical private corpus identity
+is \texttt{PUBUNIT-764F3D28D9380FFF8D503532}, with alias
+\texttt{PUBUNIT-AF3119CF88213DFD0AB52BF3}. The object actually read
+was the original author file \texttt{debruijn.tex}, 170017 bytes,
+2136 lines, with SHA-256
+\begin{center}\small\ttfamily
+560a28fe31bec92dd793820222e9e73a1fc6958a08344033a946b2ccaba225e5.
+\end{center}
+The complete source was read in contiguous line ranges 1--360,
+361--720, 721--1080, 1081--1440, 1441--1800, and 1801--2136,
+including comments, bibliography, trailing material and
+\verb|\end{document}|. No PDF was read. The original source file is
+unchanged; this file is a separately identified local derivation.
+
+The Arias de Reyna coefficient estimates used in PMH11 are imported
+through the completely read Polymath source, not represented as a
+direct reading of Arias de Reyna's paper. The Johansson interval
+arithmetic source, arXiv:1611.02831v1, was already read in the root
+task's source ledger and is cited here for the implementation;
+this independent derivation's complete direct reading claim is
+the Polymath author file specified above.
+
+Point-of-use source labels are supplied throughout. In particular
+the receiving estimate is the literal Corollary \texttt{ab-cor},
+whose proofs depend on Propositions \texttt{rtn-prop} and
+\texttt{RTN-prop}; their definitions \texttt{eps-def} and
+\texttt{epsp-def} are retained here. The later compressed decimal
+estimates and the source's large numerical barrier certificates
+are not inputs to this calculation. The malformed intermediate
+Gaussian equalities and two remainder issues in the proof of
+\texttt{RTN-prop} are repaired explicitly in PMH11, with exact
+original-source line locators and the unchanged final bound.
+The negative-imaginary
+arguments are treated by the proved reflection in PMH1.
+
+The accomplished bridge is an effective primary-source input to
+the original moving finite-packet identity, with literal
+$M_t(1-s)$, every derivative factor, every finite cutoff term,
+the full divisor, all multiplicities and the original source mass.
+PMH10 supplies one executed nonempty moving-packet certificate and
+finite bounds on its full exterior term. The general contour
+receiver can retain repeated roots, but the executed packet has
+degree one because its count was proved to be one.
+
+The result does not prove that every input contour will pass the
+stopping test; it does not replace a failed source error by higher
+arithmetic precision; it does not cover negative heat time; it
+does not certify an all-height region; and it does not infer an RH
+endpoint from the finite positive-time packet. Exact multiplicity
+at an unspecified numerical root is not treated as a decidable
+floating-point equality. The contour receiver deliberately avoids
+that unsupported step.
+
+\begin{thebibliography}{9}
+\bibitem{polymath}
+D.~H.~J.~Polymath,
+\emph{Effective approximation of heat flow evolution of the Riemann
+$\xi$ function, and a new upper bound for the de Bruijn--Newman
+constant}, arXiv:1904.12438v2, original author LaTeX
+\texttt{debruijn.tex}.
+\href{https://arxiv.org/abs/1904.12438v2}{Original version identity};
+\href{https://arxiv.org/src/1904.12438v2}{original author source archive}.
+\bibitem{johansson}
+F.~Johansson, \emph{Arb: efficient arbitrary-precision
+midpoint-radius interval arithmetic}, arXiv:1611.02831v1.
+\href{https://arxiv.org/abs/1611.02831v1}{Original version identity};
+\href{https://arxiv.org/src/1611.02831v1}{original author source archive}.
+\end{thebibliography}
+\end{document}

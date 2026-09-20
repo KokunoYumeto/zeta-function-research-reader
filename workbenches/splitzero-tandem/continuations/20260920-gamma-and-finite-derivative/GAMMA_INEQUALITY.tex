@@ -1,0 +1,439 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\eps}{\varepsilon}
+\title{A proof of Arias de Reyna's first gamma inequality\newline
+and its exact Taylor-cutoff consequence}
+\author{}
+\date{20 September 2026\quad Result SZ-20260920-056}
+\begin{document}
+\maketitle
+
+\section{Statement, source, and scope}\label{sec:scope}
+The inequality below is the first technical lemma, labelled
+\texttt{gammainequality}, in Juan Arias de Reyna's original author source
+for arXiv:2201.00342v1 \cite[Section 3.10]{AriasII}. The introduction
+explicitly states that proofs of the technical inequalities were not
+included. The argument here supplies a proof on the entire stated
+domain. Section~\ref{sec:taylor} gives the exact use of the upper bound
+in the source's proposition labelled \texttt{PropAprTaylor}, with both
+cutoff constants unchanged. Its coefficient hypothesis is precisely
+the bound quoted there from \cite[formulas (47) and (56)]{AriasI}.
+No new proof of that earlier coefficient bound is claimed here.
+
+\begin{theorem}\label{thm:gamma}
+For every real $x>0$,
+\begin{equation}\label{eq:main}
+1>
+R(x):=\frac{\Gamma(x+1)\Gamma(x/3+2)}
+{(x+1)^2\left(\dfrac{(x+1)^4}{3e^4}\right)^{x/3}}
+>\frac{2\pi}{3\sqrt3\,e^{4/3}}.
+\end{equation}
+The formula extends continuously to $x=0$, where $R(0)=1$.
+Moreover $R$ is strictly decreasing on $[0,\infty)$, its logarithm
+is strictly convex, and
+\begin{equation}\label{eq:Rlimit}
+\lim_{x\to\infty}R(x)=\frac{2\pi}{3\sqrt3\,e^{4/3}}.
+\end{equation}
+Thus both constants in \eqref{eq:main} are sharp.
+\end{theorem}
+
+All gamma values used below have positive real arguments. All powers
+with a positive base are defined by $b^r=\exp(r\log b)$ with the real
+logarithm. We first prove the needed derivative formula and asymptotic
+directly from Euler's integral, so the proof does not use any of the
+source's unproved inequalities.
+
+\section{Gamma derivatives from Euler's integral}\label{sec:derivatives}
+For $s>0$ define
+\begin{equation}\label{eq:euler}
+\Gamma(s)=\int_0^\infty v^{s-1}e^{-v}\,dv.
+\end{equation}
+The integral is positive and finite. On any compact interval
+$0<\alpha\le s\le\beta$, the integrands of its first two derivatives
+are dominated, in absolute value, by
+\[
+e^{-v}\bigl(v^{\alpha-1}+v^{\beta-1}\bigr)
+\bigl(1+|\log v|^2\bigr).
+\]
+This is integrable: near zero use $v=e^{-w}$, and near infinity the
+exponential factor dominates any fixed power and logarithm.
+Differentiation under the integral through order two follows by
+dominated convergence. In particular $\Gamma$ is twice continuously
+differentiable and
+$\psi(s):=(\log\Gamma)'(s)=\Gamma'(s)/\Gamma(s)$ is well defined.
+Integration by parts, with zero boundary terms, gives
+\begin{equation}\label{eq:recurrence}
+\Gamma(s+1)=s\Gamma(s),\qquad \Gamma(1)=1.
+\end{equation}
+
+\begin{lemma}\label{lem:trigamma}
+For $s>0$,
+\begin{equation}\label{eq:trigamma}
+\psi'(s)=\sum_{k=0}^\infty\frac1{(s+k)^2}
+=\int_0^\infty\frac{u e^{-su}}{1-e^{-u}}\,du>0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For each positive integer $n$ let
+\[
+I_n(s)=\int_0^n v^{s-1}(1-v/n)^n\,dv.
+\]
+The substitution $v=nw$ and repeated integration by parts give
+\begin{equation}\label{eq:In}
+I_n(s)=n^s\int_0^1 w^{s-1}(1-w)^n\,dw
+=\frac{n^s n!}{s(s+1)\cdots(s+n)}.
+\end{equation}
+For completeness, if $B_n(s)$ denotes the integral on $[0,1]$, then
+$B_0(s)=1/s$ and, for $n\ge1$, integration of $w^{s-1}$ gives
+$B_n(s)=(n/s)B_{n-1}(s+1)$; iterating proves \eqref{eq:In}.
+For $0<v<n$, $(1-v/n)^n\le e^{-v}$. After extending the integrand
+by zero for $v\ge n$, the same compact-interval majorant used for
+\eqref{eq:euler} dominates its derivatives of orders zero, one and two
+with respect to $s$. Pointwise these derivatives converge to the
+corresponding Euler-integral derivatives. Therefore
+$I_n^{(k)}(s)\to\Gamma^{(k)}(s)$ for $k=0,1,2$.
+Since $I_n(s)>0$ and $\Gamma(s)>0$, it follows that
+\[
+\frac{d^2}{ds^2}\log I_n(s)
+=\frac{I_n''(s)}{I_n(s)}-
+\left(\frac{I_n'(s)}{I_n(s)}\right)^2
+\longrightarrow\psi'(s).
+\]
+Twice differentiating the logarithm of the finite product
+\eqref{eq:In} gives exactly $\sum_{k=0}^n(s+k)^{-2}$.
+Finally $\int_0^\infty u e^{-cu}\,du=c^{-2}$ for $c>0$ by a change
+of variable and integration by parts. Tonelli's theorem applied to
+the nonnegative summands gives
+\[
+\sum_{k=0}^\infty\int_0^\infty u e^{-(s+k)u}\,du
+=\int_0^\infty u e^{-su}\sum_{k=0}^\infty e^{-ku}\,du,
+\]
+which is the asserted integral. It is strictly positive.
+\end{proof}
+
+\section{The exact asymptotic constant}\label{sec:stirling}
+\begin{lemma}\label{lem:stirling}
+As the real number $y$ tends to $+\infty$,
+\begin{equation}\label{eq:stirling}
+\Gamma(y+1)=\sqrt{2\pi}\,y^{y+1/2}e^{-y}(1+o(1)),
+\qquad
+\Gamma(y)=\sqrt{2\pi}\,y^{y-1/2}e^{-y}(1+o(1)).
+\end{equation}
+\end{lemma}
+\begin{proof}
+In Euler's integral for $\Gamma(y+1)$ substitute $v=y+u\sqrt y$.
+If $h(z)=z-\log(1+z)$ for $z>-1$, the resulting quotient is
+\begin{equation}\label{eq:laplace-stirling}
+\frac{\Gamma(y+1)}{y^{y+1/2}e^{-y}}
+=\int_{-\sqrt y}^{\infty}\exp\{-y h(u/\sqrt y)\}\,du.
+\end{equation}
+For $-1<z\le0$, put $z=-w$. The identity
+$h(-w)=\int_0^w r/(1-r)\,dr$ gives $h(z)\ge z^2/2$.
+For $0\le z\le1$, the identity
+$h(z)=\int_0^z r/(1+r)\,dr$ gives $h(z)\ge z^2/4$.
+Also $h(0)=h'(0)=0$ and $h''(0)=1$, so
+$y h(u/\sqrt y)\to u^2/2$ for every fixed real $u$.
+Consequently the integrand in \eqref{eq:laplace-stirling}, restricted
+to $-\sqrt y<u<\sqrt y$ and extended by zero to $\R$, is bounded
+by $e^{-u^2/4}$ and converges pointwise to $e^{-u^2/2}$.
+Dominated convergence applies on the entire real line.
+
+It remains to bound the omitted positive tail. For $z\ge1$,
+$h'(z)=z/(1+z)\ge1/2$, so
+$h(z)\ge h(1)+(z-1)/2$. Here $h(1)=1-\log2>0$, because
+$\log2=\int_1^2 dr/r<1$. Thus
+\begin{equation}\label{eq:stirling-tail}
+\int_{\sqrt y}^{\infty}e^{-y h(u/\sqrt y)}\,du
+\le \sqrt y\,e^{-y(1-\log2)}
+\int_1^{\infty}e^{-y(z-1)/2}\,dz
+=\frac2{\sqrt y}e^{-y(1-\log2)}\longrightarrow0.
+\end{equation}
+The limit in \eqref{eq:laplace-stirling} is therefore the Gaussian
+integral. Its square, using Tonelli and polar coordinates, is
+\[
+\left(\int_{\R}e^{-u^2/2}\,du\right)^2
+=\int_{\R^2}e^{-(u^2+v^2)/2}\,du\,dv
+=2\pi\int_0^\infty r e^{-r^2/2}\,dr=2\pi.
+\]
+The integral is positive, so its value is $\sqrt{2\pi}$.
+This proves the first formula; the second follows from
+\eqref{eq:recurrence} by division by $y$.
+\end{proof}
+
+\section{Positive Laplace kernel and proof of the inequality}
+\label{sec:kernel}
+Set $t=x+1$ and, for every $t>0$, define the logarithm of the exact
+ratio by
+\begin{equation}\label{eq:f}
+f(t)=\log\Gamma(t)+\log\Gamma((t+5)/3)-2\log t
+-\frac{t-1}{3}\bigl(4\log t-\log3-4\bigr).
+\end{equation}
+Thus $f(x+1)=\log R(x)$ on the required domain. Direct differentiation
+without changing the original ratio gives
+\begin{align}
+f'(t)&=\psi(t)+\tfrac13\psi((t+5)/3)
+-\tfrac43\log t+\tfrac13\log3-\tfrac2{3t},\label{eq:fp}\\
+f''(t)&=\psi'(t)+\tfrac19\psi'((t+5)/3)
+-\tfrac4{3t}+\tfrac2{3t^2}.\label{eq:fpp}
+\end{align}
+Lemma~\ref{lem:trigamma}, the substitution $v=3u$ in its second
+instance, and the integrals of $e^{-tu}$ and $u e^{-tu}$ yield
+\begin{equation}\label{eq:kernel}
+f''(t)=\int_0^\infty e^{-tu}K(u)\,du,\qquad
+K(u)=\frac{u}{1-e^{-u}}+
+\frac{u e^{-5u}}{1-e^{-3u}}+\frac{2u}{3}-\frac43.
+\end{equation}
+Each integral combined here is finite for $t>0$, so taking their
+linear combination is valid.
+
+\begin{lemma}\label{lem:kernel-positive}
+For every $u>0$, $K(u)>0$.
+\end{lemma}
+\begin{proof}
+Multiplication by the positive factor $3(1-e^{-3u})e^{5u}$ gives
+\begin{align}
+E(u)&:=3(1-e^{-3u})e^{5u}K(u)\notag\\
+&=(5u-4)e^{5u}+3u e^{4u}+3u e^{3u}
++(4-2u)e^{2u}+3u.\label{eq:E}
+\end{align}
+The factorization $1-e^{-3u}=(1-e^{-u})(1+e^{-u}+e^{-2u})$
+verifies this identity directly. Write the everywhere convergent
+exponential power series as $E(u)=\sum_{n=0}^\infty c_nu^n/n!$.
+The coefficients in degrees zero, one and two are zero, while
+$c_3=-125+144+81+8=108$. For $n\ge2$, expansion of the four
+exponential terms gives
+\begin{align}
+c_n&=(n-4)5^n+3n4^{n-1}+3n3^{n-1}
++(8-2n)2^{n-1}\notag\\
+&=(n-4)(5^n-2^n)+3n(4^{n-1}+3^{n-1}).\label{eq:coefficients}
+\end{align}
+For $n\ge4$ the first term on the last line is nonnegative and
+the second is strictly positive. Therefore every coefficient from
+degree three onward is strictly positive. Absolute convergence of
+the exponential series justifies the collection of these terms,
+and for $u>0$ it gives $E(u)\ge108u^3/3!>0$.
+Dividing by its positive multiplying factor proves the claim.
+\end{proof}
+
+It follows from \eqref{eq:kernel} that $f''(t)>0$ for $t>0$.
+To compute the limit, apply Lemma~\ref{lem:stirling} separately to
+$t$ and $(t+5)/3$. Keeping all factors of $3$ and $e$ gives
+\begin{align}
+e^{f(t)}
+&=\frac{2\pi}{3^{3/2}}\,e^{-3}
+\left(1+\frac5t\right)^{t/3+7/6}(1+o(1)).\label{eq:ratio-asymptotic}
+\end{align}
+Here the power of $t$ cancels exactly:
+\[
+(t-\tfrac12)+(\tfrac t3+\tfrac76)
+-\left(2+\tfrac{4(t-1)}3\right)=0.
+\]
+The power of $3$ is $-t/3-7/6+(t-1)/3=-3/2$; the exponent of $e$
+before the displayed residual factor is
+$-t-(t+5)/3+4(t-1)/3=-3$.
+Since $\log(1+v)/v\to1$ as $v\to0$, the residual factor tends
+to $e^{5/3}$. Hence
+\begin{equation}\label{eq:flimit}
+\lim_{t\to\infty}f(t)=
+\ell:=\log\left(\frac{2\pi}{3\sqrt3\,e^{4/3}}\right),
+\end{equation}
+a finite number.
+
+We now deduce monotonicity without differentiating an asymptotic
+formula. If $f'(t_0)\ge0$ at some $t_0>0$, strict increase of $f'$
+gives $f'(t_1)>0$ at any $t_1>t_0$. For $t\ge t_1$, integration
+of $f'(r)\ge f'(t_1)$ gives
+$f(t)\ge f(t_1)+(t-t_1)f'(t_1)$, contradicting \eqref{eq:flimit}.
+Thus $f'(t)<0$ for every $t>0$. Equations \eqref{eq:recurrence}
+and \eqref{eq:f} give $f(1)=0$. For $t>1$, strict decrease gives
+$f(t)<0$, while $f(t)>f(t+1)\ge\ell$. Exponentiation proves
+\eqref{eq:main}. Continuity at $t=1$, the limit \eqref{eq:flimit},
+and $f''>0$ prove all remaining assertions of
+Theorem~\ref{thm:gamma}. In particular no smaller upper constant
+or larger lower constant can hold on all $x>0$.
+
+\section{The exact Taylor-cutoff receiver}\label{sec:taylor}
+We retain the source's symbols $A(\sigma)$, $B_1$, $a$,
+$\eps_4$, $M$ and $J$. This result is a theorem about the stated
+coefficient class. For Arias de Reyna's $F$, it is the exact
+application of the coefficient bound quoted in
+\cite[formulas (47) and (56)]{AriasI} by the author at
+\cite[\texttt{PropAprTaylor}]{AriasII}; it does not assume a
+technical inequality that is left unproved in that source.
+
+\begin{proposition}\label{prop:taylor}
+Let $A(\sigma)>0$, $B_1>0$, $a>0$ and $\eps_4>0$ be real numbers.
+Let $M\ge1$ be an integer, $p\in\R$ with $|p|\le1$, and let
+$(c_{2j})_{j\ge0}$ be complex numbers satisfying
+\begin{equation}\label{eq:coefficient-bound}
+|c_{2j}|\le\frac{\pi^j}{2^{j+1}j!},\qquad
+F(z):=\sum_{j=0}^\infty c_{2j}z^{2j}.
+\end{equation}
+For each integer $m\ge0$ define exactly as in the source
+\begin{equation}\label{eq:epsilon5}
+\eps_5(m)=\frac{(\pi^2B_1a)^{m/3}\eps_4}{316 A(\sigma)}
+\left(\frac{m!}{\Gamma(m/3+2)}\right)^{1/2}.
+\end{equation}
+Choose an integer $J\ge12$ satisfying both inequalities
+\begin{align}
+\frac{(2\pi)^J}{J!}&\le\frac{\eps_4}{632 A(\sigma)},\label{eq:Jfirst}\\
+\frac{(2\pi)^J}{J!}&\le\frac{\eps_4}{632 A(\sigma)}\frac1M
+\left(\frac{\pi^2 B_1a\sqrt3\,e^2}{M^2}\right)^{(M-1)/3}.
+\label{eq:Jsecond}
+\end{align}
+Then for $P(z):=\sum_{j=0}^{J-1}c_{2j}z^{2j}$ and every integer
+$0\le m<M$,
+\begin{equation}\label{eq:taylor-conclusion}
+|F^{(m)}(p)-P^{(m)}(p)|<\frac{\eps_5(m)}2.
+\end{equation}
+In particular this proves the source's stated non-strict bound.
+Such a $J$ exists, so the source's choice of the first such integer
+is also well defined.
+\end{proposition}
+\begin{proof}
+The bound in \eqref{eq:coefficient-bound} gives uniform absolute
+convergence on $|z|\le R$ for every $R>0$, since its majorant sums
+to $\tfrac12\exp(\pi R^2/2)$. Termwise derivatives also converge
+uniformly on each disk: for fixed $m$ and $R\ge1$ their terms are
+bounded by $(2j+1)^m\pi^j R^{2j}/(2^{j+1}j!)$, whose ratio tends
+to zero. Thus $F$ is entire and the termwise derivative is valid.
+If $m>2j$, the $m$th derivative of $z^{2j}$ is zero. Otherwise,
+including $p=0$ and the exponent-zero case,
+\[
+\left|\left.\frac{d^m}{dz^m}z^{2j}\right|_{z=p}\right|
+\le m!\binom{2j}{m}\le m!\sum_{k=0}^{2j}\binom{2j}{k}
+=m!4^j.
+\]
+Here the monomial $z^0$ is the constant one; no negative powers
+or negative factorials occur. Consequently
+\begin{align}
+|F^{(m)}(p)-P^{(m)}(p)|
+&\le\frac{m!}{2}\sum_{j=J}^\infty\frac{(2\pi)^j}{j!}\notag\\
+&\le\frac{m!}{2}\frac{(2\pi)^J}{J!}
+\sum_{k=0}^\infty\left(\frac{2\pi}{J+1}\right)^k
+<m!\frac{(2\pi)^J}{J!}.\label{eq:tail}
+\end{align}
+The last inequality holds because $J+1\ge13>4\pi$.
+An elementary exact certificate for this numerical comparison is
+\[
+0<\int_0^1\frac{v^4(1-v)^4}{1+v^2}\,dv
+=\frac{22}{7}-\pi,\qquad \frac{88}{7}<13.
+\]
+Indeed the integrand equals
+$v^6-4v^5+5v^4-4v^2+4-4/(1+v^2)$, which proves the stated
+integral identity by direct integration.
+
+Put $D=\pi^2B_1a$, $C=\eps_4/(632A(\sigma))$, and, for real $r\ge0$,
+\begin{equation}\label{eq:Q}
+Q(r)=\frac{CD^{r/3}}{\sqrt{\Gamma(r+1)\Gamma(r/3+2)}}.
+\end{equation}
+Theorem~\ref{thm:gamma}, including its equality at zero, gives
+\begin{equation}\label{eq:Qlower}
+Q(r)\ge\frac{C}{r+1}
+\left(\frac{D\sqrt3\,e^2}{(r+1)^2}\right)^{r/3},
+\end{equation}
+with equality exactly for $r=0$ and strict inequality for $r>0$.
+This is the reciprocal square root of the upper gamma-product
+bound; taking positive square roots preserves the stated equality
+case. Let $q=(2\pi)^J/J!$. Equations \eqref{eq:Jfirst} and
+\eqref{eq:Jsecond} imply $q\le Q(0)$ and $q\le Q(M-1)$.
+
+By Lemma~\ref{lem:trigamma},
+\begin{equation}\label{eq:Qconcavity}
+(\log Q)''(r)=-\tfrac12\psi'(r+1)
+-\tfrac1{18}\psi'(r/3+2)<0.
+\end{equation}
+Thus $Q$ is log-concave: its logarithm is concave. If $M>1$,
+write $r=\theta(M-1)$ with $0\le\theta\le1$. Concavity gives
+\[
+\log Q(r)\ge(1-\theta)\log Q(0)+\theta\log Q(M-1)
+\ge\log\min\{Q(0),Q(M-1)\}.
+\]
+This proves $Q(m)\ge q$ for every $0\le m<M$.
+If $M=1$, the two cutoff inequalities coincide and the only
+integer at issue is $m=0$, already covered by $q\le Q(0)$.
+The recurrence \eqref{eq:recurrence} gives $\Gamma(m+1)=m!$,
+so \eqref{eq:epsilon5} and \eqref{eq:Q} yield
+$m!Q(m)=\eps_5(m)/2$. Combining with \eqref{eq:tail} proves
+\eqref{eq:taylor-conclusion}.
+
+Finally the two right-hand sides of the cutoff inequalities are
+positive constants for fixed data. The sequence $q_J=(2\pi)^J/J!$
+has $q_{J+1}/q_J=2\pi/(J+1)$, eventually at most $1/2$, and
+therefore tends to zero. Some $J\ge12$ satisfies both bounds;
+the least one exists by the well-ordering of the positive integers.
+\end{proof}
+
+\section{What is corrected and what is not claimed}\label{sec:limits}
+In the source proof of \texttt{PropAprTaylor}, the comparison now
+proved as \eqref{eq:Qlower} is printed with a strict sign while the
+displayed range includes $m=0$. At $m=0$ both sides equal
+$\eps_4/(632A(\sigma))$, so the comparison must be non-strict
+there. This does not change either cutoff or the proposition.
+The source's concavity sentence is made precise by
+\eqref{eq:Qconcavity}: the right-hand side of its
+\texttt{secondcondition} is log-concave, rather than its logarithm
+being log-concave.
+
+This proof establishes only the first technical gamma inequality
+and the stated Taylor-truncation theorem. It does not establish
+the separate technical claims labelled \texttt{secondinegamma}
+and \texttt{fincreasing}; it does not justify the source's preceding
+selection of $M$ using \texttt{fincreasing}; and it does not certify
+coefficient evaluation, rounding, or the entire Riemann--Siegel
+implementation. The lower constant in \eqref{eq:main} is proved
+exactly, although the Taylor cutoff uses only the upper bound.
+
+\section*{Source record and proof locators}
+The original file used was \texttt{main.tex} from
+arXiv:2201.00342v1, SHA-256
+\begin{center}\small\ttfamily
+06786e7e7010b4a51bb431d7e885370d243f\\
+52956549d535f69391de120d8bdc.
+\end{center}
+Reading covered lines 1--165 (identity and introduction),
+581--602 (the source's real evaluation point),
+1379--1551 (technical lemmas and Taylor receiver), and
+2919--2945 (bibliographic identities). The whole source and the
+original Part I were not read for this bounded derivation.
+The source's $a=\sqrt{t/(2\pi)}$, $N=\lfloor a\rfloor$ and
+$p=1-2(a-N)$ give $-1<p\le1$, so they meet the receiver's
+$|p|\le1$ hypothesis. Here that source parameter $t$ is unrelated
+to the proof variable $t=x+1$ in Section~\ref{sec:kernel}.
+
+The mathematical proof locators are
+Theorem~\ref{thm:gamma}, Lemma~\ref{lem:trigamma},
+Lemma~\ref{lem:stirling}, Lemma~\ref{lem:kernel-positive},
+equations \eqref{eq:kernel}--\eqref{eq:flimit}, and
+Proposition~\ref{prop:taylor}. The supplemental finite exact-arithmetic
+checks in \texttt{verification.py} are not a replacement for the
+all-degree positivity proof or the analytic limit arguments.
+
+\begin{thebibliography}{9}
+\bibitem{AriasII}
+Juan Arias de Reyna,
+\emph{High Precision Computation of Riemann's Zeta Function by the
+Riemann--Siegel Formula, II}, arXiv:2201.00342v1 (2022), original
+author \LaTeX\ source, Section 3.10, label \texttt{gammainequality};
+Section 3.11, labels \texttt{Fmcondition}, \texttt{defJ},
+\texttt{PropAprTaylor}, and \texttt{secondcondition}.
+\url{https://arxiv.org/abs/2201.00342v1}.
+
+\bibitem{AriasI}
+Juan Arias de Reyna,
+\emph{High precision computation of Riemann's zeta function by the
+Riemann--Siegel formula, I}, Mathematics of Computation
+\textbf{80} (2011), no.~274, 995--1009, formulas (47) and (56),
+as cited at the Taylor-series receiver in \cite{AriasII}.
+This bibliographic reference records the author's attribution;
+Part I was not independently read in this bounded task.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,797 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\B}{\mathscr B}\newcommand{\Epi}{\mathscr E_\pi}
+\newcommand{\Mell}{\mathcal M}\newcommand{\Sch}{\mathcal S}
+\newcommand{\ord}{\operatorname{ord}}\newcommand{\tr}{\operatorname{tr}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\title{The exact de Bruijn--Newman transport of the original theta source\\
+Complete zero orders, transported jets, fixed-observation metrics and exterior dynamics}
+\author{}\date{20 September 2026}
+\begin{document}\maketitle
+
+\paragraph{Result and source coverage.}
+This is result SZ-20260920-046. The original coordinate is $x>0$,
+the source operator is $D=-x\partial_x$, the Mellin measure is $dx/x$,
+and the observation Hilbert measure is $dx$. These are not changed.
+The human sources for the heat family are Alexander Dobner
+\cite{Dobner}, original equations \texttt{eq:fourier},
+\texttt{eq:phisum}, \texttt{eq:xiFtdef}, and Brad Rodgers and
+Terence Tao \cite{RT}, original equations \texttt{hoz},
+\texttt{phidef}, \texttt{htdef}. Dobner's original TeX and bibliography
+were read completely. The Rodgers--Tao reading was limited to the
+first 210 source lines, containing these conventions and the opening
+zero-dynamics discussion; their later proof is not claimed as read.
+Every new transport, domain, finite-quotient and exterior-dynamics
+identity used here is proved below. The existing original strong
+theta space and admitted polynomial lifts are retained from
+\cite{Closed,Native}.
+
+\section{The literal theta source and its two-end decay}
+
+Set
+\begin{equation}\label{eq:objects}
+\begin{gathered}
+\Theta\phi(x)=2\sum_{n\geq1}\phi(nx),\qquad
+\psi(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad f_0=\Theta\psi,\\
+D=-x\partial_x,\qquad
+\Mell f(s)=\int_0^\infty f(x)x^s\,\frac{dx}{x},\\
+g(s)=2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),\qquad
+Jf(x)=x^{-1}f(x^{-1}).
+\end{gathered}
+\end{equation}
+All products defining $g$ are understood by their entire continuation
+at removable points. Define the actual decay domain
+\begin{equation}\label{eq:Epi}
+\Epi=\left\{f\in C^\infty(0,\infty):
+p_{a,j}^{\pi}(f):=\sup_{x>0}e^{a(x^2+x^{-2})}|D^jf(x)|<\infty
+\quad(0<a<\pi,\ j\geq0)\right\}.
+\end{equation}
+Every multiplication by a polynomial in $\log x$ preserves this
+space: to estimate its $j$th Euler derivative with exponent $a$, choose
+$a<b<\pi$ and bound every arising logarithmic power by a constant
+times $e^{(b-a)(x^2+x^{-2})}$. The same argument absorbs any fixed
+power of $x$ or $x^{-1}$. These bounds follow because, on setting
+$y=\log x$, $e^{2y}+e^{-2y}$ grows faster than every polynomial in
+$|y|$ and every linear function of $|y|$.
+
+\begin{lemma}\label{lem:theta-source}
+The function $\psi$ belongs to the original even Schwartz source
+\[
+V=\{\phi\in\Sch(\R):\phi(-x)=\phi(x),\ \phi(0)=0,
+\ \int_\R\phi(x)\,dx=0\}.
+\]
+The function $f_0$ belongs to $\Epi$, satisfies $Jf_0=f_0$, and
+$\Mell f_0=g$ on all of $\C$.
+\end{lemma}
+\begin{proof}
+Write $a(x)=e^{-\pi x^2}$, so $\psi=D(D-1)a$ by direct
+differentiation. The Fourier transform with kernel $e^{-2\pi ix\xi}$
+has $\widehat a=a$; this follows from the Gaussian integral and
+differentiation under that integral. Integration by parts gives
+$\widehat{D\phi}=(1-D)\widehat\phi$, hence
+$\widehat\psi=D(D-1)a=\psi$. It follows that
+$\int\psi=\widehat\psi(0)=\psi(0)=0$. All Schwartz and parity
+assertions also follow directly from the displayed polynomial Gaussian.
+
+Let $\theta(x)=\sum_{n\in\mathbb Z}e^{-\pi n^2x^2}$.
+Periodize $t\mapsto e^{-\pi x^2t^2}$; its $n$th Fourier-series
+coefficient is $x^{-1}e^{-\pi n^2/x^2}$. Both series converge
+absolutely with all required derivatives. Evaluating at zero gives
+$\theta(x)=x^{-1}\theta(x^{-1})$. Termwise application of
+$D(D-1)$ gives $f_0=D(D-1)\theta$. Direct differentiation gives
+$DJ=J(1-D)$, and $s(s-1)$ is unchanged under $s\mapsto1-s$.
+Thus $Jf_0=f_0$.
+
+For $x\geq1$, $D^jf_0$ is an absolutely convergent sum of
+polynomials in $nx$ times $e^{-\pi n^2x^2}$. For each $b<\pi$,
+each polynomial is bounded by a constant times
+$e^{(\pi-b)(nx)^2/2}$; after extracting $e^{-bx^2}$ the
+remaining sum is bounded independently of $x\geq1$ by a convergent
+Gaussian series in $n$. Therefore $|D^jf_0(x)|\leq C_{b,j}e^{-bx^2}$.
+For $0<x\leq1$, use $D^jJ=J(1-D)^j$ to obtain a finite sum
+bounded by $Cx^{-1}e^{-b/x^2}$. Choosing $a<b<\pi$ absorbs
+the $x^{-1}$ and the bounded other exponential factor at either end,
+and proves \eqref{eq:Epi}.
+
+For $\Re s>1$, absolute convergence permits substitution $y=nx$
+and interchange of sum and integral. The Gaussian Mellin integral
+and $\Gamma(z+1)=z\Gamma(z)$ give, with every factor retained,
+\[
+\begin{split}
+\Mell\psi(s)
+&=2\pi^{-s/2}\Gamma(s/2+2)-3\pi^{-s/2}\Gamma(s/2+1)\\
+&=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\\
+\Mell f_0(s)&=2\zeta(s)\Mell\psi(s)=g(s).
+\end{split}
+\]
+The two-end bounds make $\Mell f_0$ entire: on each compact
+set of $s$, all differentiated integrands are dominated by an
+integrable function. This supplies the entire continuation and proves
+the equality everywhere. Reflection also gives $g(1-s)=g(s)$.
+\end{proof}
+
+For later use, if $f\in\Epi$ then integration by parts gives
+\begin{equation}\label{eq:Mellin-rules}
+\Mell(Df)(s)=s\Mell f(s),\qquad
+\Mell((\log x)^rf)(s)=\partial_s^r\Mell f(s).
+\end{equation}
+The boundary terms vanish by \eqref{eq:Epi}. On every vertical line
+$\Re s=c$, repeated integration by parts in $y=\log x$ shows that
+$\Mell f(c+iv)$ and all its $v$-derivatives decrease faster than every
+power of $|v|$. Indeed $e^{cy}f(e^y)$ and all its derivatives are
+integrable and rapidly decreasing, and its Fourier transform uses
+the kernel $e^{ivy}$. Fourier inversion therefore makes $\Mell$
+injective on $\Epi$.
+
+\section{Every actual zero order through two-ended Volterra inverses}
+
+\begin{lemma}[A proved inverse on its exact moment-zero domain]
+\label{lem:volterra}
+For $\rho\in\C$ and $f\in\Epi$ with $\Mell f(\rho)=0$, define
+\begin{equation}\label{eq:Volterra}
+\mathcal V_\rho f(x)
+=x^{-\rho}\int_x^\infty y^\rho f(y)\,\frac{dy}{y}
+=-x^{-\rho}\int_0^x y^\rho f(y)\,\frac{dy}{y},
+\quad x^{-\rho}=e^{-\rho\log x}.
+\end{equation}
+Then $\mathcal V_\rho f\in\Epi$,
+$(D-\rho)\mathcal V_\rho f=f$, and
+\begin{equation}\label{eq:Volterra-Mellin}
+\Mell(\mathcal V_\rho f)(s)=\frac{\Mell f(s)}{s-\rho},
+\end{equation}
+including the removable value at $s=\rho$. It is the unique
+solution in $\Epi$ of this differential equation.
+\end{lemma}
+\begin{proof}
+Both improper integrals converge absolutely by \eqref{eq:Epi};
+their equality is exactly the stated zero moment. Differentiation
+of the first integral gives $D\mathcal V_\rho f=\rho\mathcal
+V_\rho f+f$, proving the equation and smoothness.
+
+Here is the full two-end estimate. Fix $0<a<b<c<\pi$ and
+write $r=\Re\rho$. For $x\geq1$, the first integral has modulus
+at most
+\[
+C_c x^{-r}\int_x^\infty y^{r-1}e^{-cy^2}\,dy
+\leq C_c x^{-r}e^{-bx^2}
+\int_1^\infty y^{r-1}e^{-(c-b)y^2}\,dy.
+\]
+The final integral is finite. The factor $x^{-r}$ is absorbed by
+$e^{(b-a)x^2}$, and $e^{ax^{-2}}$ is bounded on this end.
+For $0<x\leq1$, put $z=1/y$ in the second integral to bound it by
+\[
+C_c x^{-r}\int_{1/x}^\infty z^{-r-1}e^{-cz^2}\,dz
+\leq C_c x^{-r}e^{-b/x^2}
+\int_1^\infty z^{-r-1}e^{-(c-b)z^2}\,dz.
+\]
+Absorb $x^{-r}$ using $b-a$ at this end, and $e^{ax^2}$ is bounded.
+This proves the zeroth derivative bound with every $a<\pi$.
+The equation yields for $j\geq1$
+\[
+D^j\mathcal V_\rho f
+=\rho^j\mathcal V_\rho f+
+\sum_{r'=0}^{j-1}\rho^{j-1-r'}D^{r'}f.
+\]
+It proves every derivative bound without an endpoint loss.
+Apply \eqref{eq:Mellin-rules} to the differential equation to prove
+\eqref{eq:Volterra-Mellin}. The difference of two solutions has the
+form $Cx^{-\rho}$, obtained by differentiating $x^\rho F(x)$;
+such a function lies in $\Epi$ only when $C=0$.
+\end{proof}
+
+Choose the original nonempty finite set $Z$ of actual zeros of $g$,
+stable under conjugation and $\rho\mapsto1-\rho$, and retain their
+complete orders:
+\begin{equation}\label{eq:h}
+m_\rho=\ord_\rho g,\qquad
+h(s)=\prod_{\rho\in Z}(s-\rho)^{m_\rho},\qquad d=\deg h,
+\qquad R_h(s)=g(s)/h(s).
+\end{equation}
+The monic convention here is the original definition of $h$, not a
+change to $g$, the source, the observation measure, or the cyclic unit.
+
+\begin{theorem}[Complete-order source, with no zero hypothesis]
+\label{thm:divisor}
+Enumerate the zeros in \eqref{eq:h} with their repetitions as
+$\rho_1,\ldots,\rho_d$. The actual function
+\begin{equation}\label{eq:Fh}
+F_h=\mathcal V_{\rho_d}\cdots\mathcal V_{\rho_1}f_0
+\end{equation}
+is defined at every step, belongs to $\Epi$, is independent of the
+enumeration, and satisfies
+\begin{equation}\label{eq:Fh-identities}
+\Mell F_h=R_h,\qquad h(D)F_h=f_0.
+\end{equation}
+In particular every Euler derivative of $F_h$ obeys
+$|D^jF_h(x)|\leq C_{a,j,h}e^{-a(x^2+x^{-2})}$ for every
+$0<a<\pi$. The construction includes repeated zeros and does not
+assume that any zero lies on the critical line.
+\end{theorem}
+\begin{proof}
+After $r$ steps, Lemma~\ref{lem:volterra} gives the entire Mellin
+transform $g(s)/\prod_{j=1}^r(s-\rho_j)$. If $r<d$, its value at
+$\rho_{r+1}$ is zero because the remaining actual multiplicity is
+at least one. Thus the next inverse has exactly its required moment
+zero; no new cancellation is assumed. Induction proves membership
+in $\Epi$ and the first identity. Mellin injectivity proves
+enumeration independence and, using \eqref{eq:Mellin-rules}, the
+second identity. This also proves that \eqref{eq:Fh} is the inverse
+Mellin source of the original ratio, not a replacement source.
+\end{proof}
+
+\section{The full complex-time transport and the Mellin differential operator}
+
+\begin{theorem}\label{thm:transport}
+For every $t\in\C$ the operator
+\begin{equation}\label{eq:Ut}
+U_tf(x)=e^{t\log^2x/4}f(x)
+\end{equation}
+is a continuous automorphism of $\Epi$, with inverse $U_{-t}$ and
+$U_tU_r=U_{t+r}$. Its conjugated Euler operator is
+\begin{equation}\label{eq:Dt}
+D_t=U_tDU_{-t}=D+\tfrac t2\log x.
+\end{equation}
+On the entire Mellin image $\Mell\Epi$, set
+$\mathcal T_t=\Mell U_t\Mell^{-1}$. Then
+\begin{equation}\label{eq:heat-series}
+\mathcal T_tF(s)
+=\sum_{n=0}^{\infty}\frac{(t/4)^n}{n!}\partial_s^{2n}F(s),
+\quad \mathcal T_t\mathcal T_r=\mathcal T_{t+r},\quad
+\mathcal T_t\,s\,\mathcal T_{-t}=s+\tfrac t2\partial_s.
+\end{equation}
+The series and all its derivatives converge locally uniformly in
+$(t,s)\in\C^2$. In particular, with $g_t=\Mell(U_tf_0)$ and
+$R_{h,t}=\Mell(U_tF_h)$,
+\begin{equation}\label{eq:deformed-divisor}
+\partial_tg_t=\tfrac14\partial_s^2g_t,\qquad
+h\left(s+\tfrac t2\partial_s\right)R_{h,t}=g_t,
+\qquad h(D_t)U_tF_h=U_tf_0.
+\end{equation}
+The polynomial in the middle formula means composition of the
+displayed differential operator, with its indicated order of factors.
+\end{theorem}
+\begin{proof}
+For $|t|\leq T$, each $D^jU_tf$ is $U_t$ times a finite sum of
+$D^rf$ times polynomials in $\log x$, whose coefficients are bounded
+on the parameter set. Choose $a<b<\pi$ in \eqref{eq:Epi}.
+The bounded function
+\[
+\exp\{T\log^2x/4-(b-a)(x^2+x^{-2})\}
+\]
+continues to be bounded after multiplication by any fixed
+logarithmic power. This proves all asserted seminorm bounds and
+continuity. The inverse and group law follow pointwise.
+Differentiating $e^{-t\log^2x/4}f$ gives \eqref{eq:Dt}.
+
+Put $y=\log x$. On compact $t,s$ sets the sum of the absolute
+values of the expanded Mellin integrand is bounded by
+\[
+|f(e^y)|e^{T y^2/4+C|y|},
+\]
+which is integrable by the two-end bounds. Any further derivative
+only inserts a polynomial in $y$. Dominated convergence proves the
+entire series and every derivative statement. Mellin conjugation
+and \eqref{eq:Mellin-rules} prove the last identity in
+\eqref{eq:heat-series}. Apply it to $h(D)F_h=f_0$ to prove
+\eqref{eq:deformed-divisor}; the heat equation follows by direct
+differentiation of the multiplier.
+\end{proof}
+
+For example the full noncommuting square is
+\begin{equation}\label{eq:noncommuting-square}
+\left(s+\tfrac t2\partial_s\right)^2
+=s^2+t s\partial_s+\tfrac t2+\tfrac{t^2}{4}\partial_s^2.
+\end{equation}
+The constant $t/2$ cannot be dropped. Nor can
+\eqref{eq:deformed-divisor} be replaced with $h(s)R_{h,t}=g_t$.
+Their first-order discrepancy is exactly
+\begin{equation}\label{eq:discrepancy}
+\left.\partial_t\bigl(g_t-hR_{h,t}\bigr)\right|_{t=0}
+=\tfrac14\bigl(h''R_h+2h'R_h'\bigr).
+\end{equation}
+It is not identically zero for the actual nonempty packet.
+For $d=1$, otherwise $R_h$ would be constant, whereas its Mellin
+representation is rapidly decreasing on vertical lines and nonzero.
+For $d\geq2$, let $z$ be a zero of $h'$ of order $r\geq1$.
+If $R_h$ has order $m\geq0$ there, the leading term of
+$h''R_h+2h'R_h'$ has nonzero coefficient proportional to $r+2m$.
+Since $R_h$ is a nonzero entire function, its order there is finite.
+This proves the assertion and an actual first-order obstruction,
+while \eqref{eq:deformed-divisor} supplies the exact replacement map.
+
+\subsection{Maximal multiplier and differential domains in the observation norm}
+For complex $t$, the maximal realization of $U_t$ in the fixed
+space $\mathcal H_0=L^2((0,\infty),dx)$ is
+\begin{equation}\label{eq:maximal-multiplier}
+\operatorname{Dom}_{\mathcal H_0}(U_t)=
+\left\{f\in\mathcal H_0:\int_0^\infty
+e^{(\Re t)\log^2x/2}|f(x)|^2\,dx<\infty\right\}.
+\end{equation}
+It is a closed, densely defined multiplier. To prove closedness,
+if $f_n\to f$ and $U_tf_n\to v$ in $\mathcal H_0$, choose a subsequence
+for which both convergences hold almost everywhere; then the
+pointwise multiplier identity gives $v=U_tf$. Compactly supported
+smooth functions show density of the domain. If $\Re t\leq0$ its
+domain is all $\mathcal H_0$; if $\Re t>0$ it is proper, since
+$1_{[1,\infty)}(x)x^{-1}\in\mathcal H_0$ but its weighted squared integral
+diverges after $y=\log x$. Its inverse on its exact image is $U_{-t}$,
+and the image is precisely $\operatorname{Dom}_{\mathcal H_0}(U_{-t})$:
+both assertions follow from requiring both $f$ and $U_tf$ to be in
+$\mathcal H_0$. In particular purely imaginary $t$ gives a unitary operator
+on $\mathcal H_0$, while positive real time is not a bounded operator on
+that fixed space. Every $f\in\Epi$ belongs to all these domains,
+as was proved by the exponential domination in
+Theorem~\ref{thm:transport}.
+
+For real $t$, give $\mathcal H_t$ the measure
+$e^{-t\log^2x/2}dx$, so $U_t:\mathcal H_0\to\mathcal H_t$ is an isometry.
+The precise closed Euler realization on $\mathcal H_0$ and its transport are
+\begin{equation}\label{eq:closed-Euler-domain}
+\begin{gathered}
+\operatorname{Dom}_{\mathcal H_0}(D)=
+\{f\in\mathcal H_0:-x\partial_xf\text{ in distributions belongs to }\mathcal H_0\},\\
+\operatorname{Dom}_{\mathcal H_t}(D_t)=U_t\operatorname{Dom}_{\mathcal H_0}(D),
+\qquad D_t=U_tDU_{-t}=D+\tfrac t2\log x
+\quad\text{on this domain}.
+\end{gathered}
+\end{equation}
+For a direct description, the isometry
+$\mathcal Lf(y)=e^{y/2}f(e^y)$ from $\mathcal H_0$ to $L^2(\R,dy)$
+has $\mathcal L D\mathcal L^{-1}=\tfrac12-\partial_y$ and
+domain $\{v\in L^2:v'\in L^2\}$, with weak derivative.
+The distributional derivative is closed: convergence of a function
+and its derivative in $L^2$ passes to every compactly supported
+test-function identity. This proves closedness of $D$, and isometric
+conjugation proves closedness and exactly the domain in
+\eqref{eq:closed-Euler-domain}. The displayed differential expression
+follows from the distributional product rule with a smooth multiplier.
+For powers, the domains are $U_t\operatorname{Dom}(D^r)$, where
+$\operatorname{Dom}(D^r)$ requires the first $r$ weak derivatives of
+$\mathcal Lf$ to be in $L^2$. This follows by induction from the
+conjugacy; the equivalent weak-derivative criterion follows by
+expanding $(\tfrac12-\partial_y)^j$ for $j\leq r$ in both
+directions. The actual vectors $D^jF_h$, $U_tD^jF_h$ and all their
+finite tensor sources satisfy every stated derivative domain by
+Theorem~\ref{thm:divisor}. No assertion about an unrestricted
+positive-time multiplier on $\mathcal H_0$ is used.
+
+\subsection{Both human conventions, with their factors}
+Put $x=e^{2u}$. The literal source gives
+\begin{equation}\label{eq:Phi-conventions}
+\begin{split}
+e^u f_0(e^{2u})
+&=4\sum_{n\geq1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})
+e^{-\pi n^2e^{4u}}\\
+&=\Phi_{\mathrm D}(u)=4\Phi_{\mathrm{RT}}(u).
+\end{split}
+\end{equation}
+Its evenness follows from $Jf_0=f_0$. As $dx/x=2\,du$ and
+$x^{(1+iz)/2}=e^ue^{izu}$, the entire functions in the original
+Dobner and Rodgers--Tao conventions satisfy, for all complex $t,z$,
+\begin{equation}\label{eq:constants}
+\begin{gathered}
+\xi_t((1+iz)/2)=\int_\R e^{tu^2}\Phi_{\mathrm D}(u)e^{izu}\,du,\\
+H_t(z)=\int_0^\infty e^{tu^2}\Phi_{\mathrm{RT}}(u)\cos(zu)\,du,\\
+g_t((1+iz)/2)=2\xi_t((1+iz)/2)=16H_t(z).
+\end{gathered}
+\end{equation}
+The last equality uses both evenness and the factor $4$ in
+\eqref{eq:Phi-conventions}. It gives exactly
+$H_0(z)=\xi((1+iz)/2)/8$ and $\partial_tH_t=-\partial_z^2H_t$.
+The integrals converge with all derivatives because $U_tf_0\in\Epi$.
+
+\section{The original finite arithmetic class and its transported jets}
+
+Use precisely the original strong target
+\begin{equation}\label{eq:B}
+\B=\{f\in C^\infty(0,\infty):
+p_{b,j}(f)=\sup_{x>0}x^b|D^jf(x)|<\infty
+\ (b\in\mathbb Z,j\geq0)\},\qquad Q=\B/\Theta V.
+\end{equation}
+It is equipped with all these seminorms, not its Hilbert norm.
+Poisson summation gives $\Theta\phi=J\Theta\widehat\phi$ for
+$\phi\in V$. At $x\geq1$ each Euler derivative of the theta sum
+is bounded by $2\zeta(N)x^{-N}\sup_{y\geq1}y^N|D^j\phi(y)|$,
+for $N>1$; reflection and $D^jJ=J(1-D)^j$ give the other end.
+Thus $\Theta V\subset\B$ and $D\Theta=\Theta D$.
+Integration by parts gives $D(V)\subset V$, so $D$ descends to $Q$.
+The full closed-range proof for this exact topology is in
+\cite{Closed}; the algebraic maps below do not substitute any
+Hilbert closed-range assertion.
+
+Let $E_h=\C[s]/(h)$. For an entire function $F$, $j_hF\in E_h$
+is the unique polynomial residue whose local coordinates at each
+$\rho\in Z$ are
+\begin{equation}\label{eq:jets}
+\sum_{r=0}^{m_\rho-1}\frac{F^{(r)}(\rho)}{r!}\epsilon^r
+\quad\text{in }\C[\epsilon]/(\epsilon^{m_\rho}),\qquad s=\rho+\epsilon.
+\end{equation}
+The Chinese remainder theorem here follows from the Euclidean
+algorithm for the pairwise coprime powers $(s-\rho)^{m_\rho}$;
+it identifies their product quotient with the direct sum of these
+local rings. Define the complete physical unit
+\begin{equation}\label{eq:unit}
+\upsilon_h=j_hR_h=j_h(g/h).
+\end{equation}
+
+\begin{theorem}\label{thm:jets}
+The continuous map $j_h\Mell:\B\to E_h$ vanishes on $\Theta V$
+and hence gives a map $Q\to E_h$. The element $\upsilon_h$ is
+a unit, and
+\begin{equation}\label{eq:physical-jet}
+j_h\Mell\bigl(P(D)F_h\bigr)=\upsilon_h[P]_h.
+\end{equation}
+Consequently the map
+\begin{equation}\label{eq:physical-injection}
+\C[s]/(h)\longrightarrow Q,\qquad
+[P]_h\longmapsto[P(D)F_h]_{\Theta V}
+\end{equation}
+is well-defined and injective. Its composition with the jet map is
+multiplication by the actual unit $\upsilon_h$.
+
+For $t\in\C$ put $\B_t=U_t\B$, $V_t=U_tV$ on the positive
+axis, with transported topologies, and
+$\Theta_t=U_t\Theta U_{-t}$. There are inverse quotient maps
+\begin{equation}\label{eq:quotient-transport}
+Q\ \mathop{\rightleftarrows}^{\mathcal U_t}_{\mathcal U_{-t}}\
+Q_t:=\B_t/\Theta_tV_t,
+\qquad [f]\mapsto[U_tf],\quad[F]\mapsto[U_{-t}F].
+\end{equation}
+The exact jet map on the transported target is
+\begin{equation}\label{eq:transported-jet}
+\mathfrak j_{h,t}=j_h\Mell U_{-t}:\B_t\longrightarrow E_h,
+\qquad
+\mathfrak j_{h,t}\bigl(P(D_t)U_tF_h\bigr)
+=\upsilon_h[P]_h.
+\end{equation}
+It descends to $Q_t$ and satisfies
+$\mathfrak j_{h,t}D_t=s\mathfrak j_{h,t}$ there.
+\end{theorem}
+\begin{proof}
+The Mellin integral of $f\in\B$ is entire: at either end select
+an integer weight strictly past the real parts of $s$ in a given
+compact set. The same bounds absorb any power of $\log x$, so
+each finite jet is bounded by finitely many defining seminorms.
+Explicitly, for integers $b_-<\Re\rho<b_+$, integration of the
+logarithmic powers at the two ends gives the exact estimate
+\[
+\frac{|(\Mell f)^{(r)}(\rho)|}{r!}
+\leq\frac{p_{b_-,0}(f)}{(\Re\rho-b_-)^{r+1}}
++\frac{p_{b_+,0}(f)}{(b_+-\Re\rho)^{r+1}}.
+\]
+The integral identity used is
+$\int_0^1x^{a-1}|\log x|^r\,dx=r!/a^{r+1}$ for $a>0$;
+put $u=-\log x$ and integrate by parts $r$ times. The other
+end follows by $x\mapsto1/x$.
+For $\phi\in V$, its positive-axis Mellin transform is holomorphic
+on $\Re s>-2$: evenness and $\phi(0)=0$ imply $\phi(x)=O(x^2)$
+at zero. In $\Re s>1$, termwise integration gives
+$\Mell\Theta\phi=2\zeta(s)\Mell\phi(s)$.
+The right side continues to $\Re s>-2$, with the pole at $1$
+removed because $\Mell\phi(1)=\tfrac12\int_\R\phi=0$.
+
+Every actual zero of $g$ lies in $0\leq\Re s\leq1$ and differs
+from $0,1$: the absolutely convergent Euler product is nonzero for
+$\Re s>1$ (its logarithm converges absolutely), the gamma factor
+has no zeros there, and $g(1-s)=g(s)$ gives the other half-plane;
+the removable endpoint values are $g(0)=g(1)=1$.
+At such a zero, $s(s-1)\pi^{-s/2}\Gamma(s/2)$ is holomorphic
+and nonzero. Thus the order of $\zeta$ equals the complete order
+$m_\rho$ of $g$, and the continued theta Mellin formula proves
+that all jets in \eqref{eq:jets} vanish. This proves the descended map.
+
+In the local ring at $\rho$, the constant term of $R_h$ is
+\[
+R_h(\rho)=\frac{g^{(m_\rho)}(\rho)}
+{m_\rho!\prod_{\sigma\in Z\setminus\{\rho\}}
+(\rho-\sigma)^{m_\sigma}}\ne0.
+\]
+If a local element is $c+n$ with $c\ne0$ and $n^{m_\rho}=0$,
+its inverse is $c^{-1}\sum_{r=0}^{m_\rho-1}(-n/c)^r$.
+This proves the unit assertion with every coefficient preserved.
+Equation \eqref{eq:physical-jet} is \eqref{eq:Mellin-rules}.
+If $P=hA$, then $P(D)F_h=A(D)f_0=\Theta(A(D)\psi)\in\Theta V$.
+Conversely, if $P(D)F_h\in\Theta V$, its jet is zero, and the
+unit proves $[P]_h=0$. These prove both parts of
+\eqref{eq:physical-injection} and also surjectivity of $Q\to E_h$.
+
+By definition $\Theta_tV_t=U_t\Theta V$, so changing a representative
+by one relation changes its image by the transported relation.
+The pointwise inverses $U_t,U_{-t}$ prove both inverse maps in
+\eqref{eq:quotient-transport}; their continuity follows from the
+transported topologies and the definition of quotient topology.
+Finally $U_{-t}P(D_t)U_t=P(D)$ proves
+\eqref{eq:transported-jet}. The intertwining identity follows from
+integration by parts before taking jets. It does not identify
+$j_h\Mell U_tF_h$ with $\upsilon_h$ or divide $g_t$ by the old $h$.
+\end{proof}
+
+\input{weighted_theta/WEIGHTED_THETA_METRIC_SECTIONS.tex}
+
+\section{A genuinely moving packet retains its full exterior term}
+
+This section uses a local moving packet of $g_t$, not the fixed
+divisor in \eqref{eq:h} transported by $D_t$. No location of these
+zeros relative to the critical line is assumed.
+
+\begin{theorem}[Local root and trace dynamics]\label{thm:moving}
+Fix $t_0\in\C$ and any finite set of distinct simple zeros
+$\rho_1^0,\ldots,\rho_N^0$ of the actual entire function $g_{t_0}$.
+There are disjoint disks about these zeros and a disk $T$ about
+$t_0$ on which precisely one zero $\rho_j(t)$ remains in each
+chosen disk; it is simple and holomorphic in $t$.
+Define, on this actual local domain,
+\begin{equation}\label{eq:moving-factor}
+h_t(s)=\prod_{j=1}^N(s-\rho_j(t)),\qquad
+R_t(s)=g_t(s)/h_t(s),\qquad b_t(s)=\frac{\partial_sR_t(s)}{R_t(s)}.
+\end{equation}
+The quotient $R_t$ is jointly holomorphic, is nonzero at the
+selected zeros, and keeps the entire exterior factor of $g_t$.
+At each selected zero,
+\begin{equation}\label{eq:velocity}
+\rho_j'(t)=-\tfrac12\left(
+\sum_{\ell\ne j}\frac1{\rho_j(t)-\rho_\ell(t)}
++b_t(\rho_j(t))\right).
+\end{equation}
+For every test function $F$ independent of $t$ and holomorphic on
+a neighborhood of the chosen closed disks, multiplication
+by $s$ in $\C[s]/(h_t)$ has trace $\sum_jF(\rho_j(t))$ under $F$,
+and its exact derivative is
+\begin{equation}\label{eq:moving-trace}
+\begin{split}
+\frac d{dt}\sum_{j=1}^NF(\rho_j(t))
+={}&-\frac12\sum_{j<\ell}
+\frac{F'(\rho_j(t))-F'(\rho_\ell(t))}
+{\rho_j(t)-\rho_\ell(t)}\\
+&-\frac12\sum_{j=1}^NF'(\rho_j(t))b_t(\rho_j(t)).
+\end{split}
+\end{equation}
+There is no omitted external interaction in this formula.
+\end{theorem}
+\begin{proof}
+Choose disjoint closed disks about the simple zeros with no other
+zeros and with nonvanishing boundary values at $t_0$; isolation
+of zeros permits this. Their boundary minimum is positive.
+Joint holomorphy from Theorem~\ref{thm:transport} gives uniform
+convergence to $g_{t_0}$ on these boundaries as $t\to t_0$.
+Rouch\'e's theorem therefore retains exactly one zero counted with
+multiplicity in each disk. The implicit function theorem at each
+$(t_0,\rho_j^0)$ gives its holomorphic dependence and simplicity,
+after shrinking $T$ if necessary.
+
+The quotient across $s=\rho_j(t)$ is holomorphic, as follows
+directly from
+\[
+\frac{g_t(s)}{s-\rho_j(t)}
+=\int_0^1\partial_sg_t\bigl(\rho_j(t)
++u(s-\rho_j(t))\bigr)\,du
+\]
+near that root. Divide successively; disjointness makes every
+other factor nonzero there. Thus $R_t$ is holomorphic on
+$T\times\C$ and
+$R_t(\rho_j)=g_t'(\rho_j)/h_t'(\rho_j)\ne0$.
+
+Differentiate $g_t(\rho_j(t))=0$ and use the proved heat equation:
+\[
+\rho_j'=-\frac{\partial_tg_t(\rho_j)}{g_t'(\rho_j)}
+=-\frac14\frac{g_t''(\rho_j)}{g_t'(\rho_j)}.
+\]
+In $g_t=h_tR_t$, evaluation at the root gives
+$g_t''/g_t'=h_t''/h_t'+2R_t'/R_t$.
+Writing $h_t=(s-\rho_j)\prod_{\ell\ne j}(s-\rho_\ell)$ gives
+$h_t''(\rho_j)/h_t'(\rho_j)
+=2\sum_{\ell\ne j}(\rho_j-\rho_\ell)^{-1}$.
+This proves \eqref{eq:velocity}. Evaluation at the distinct roots
+identifies $\C[s]/(h_t)$ with $\C^N$, by the polynomial
+interpolation formula. Multiplication by $s$ has diagonal entries
+$\rho_j$, so its holomorphic functional calculus has trace $\sum F(\rho_j)$.
+The chain rule and \eqref{eq:velocity} give an ordered double sum.
+Pairing $(j,\ell)$ with $(\ell,j)$ gives exactly the first sum in
+\eqref{eq:moving-trace}; the second is retained unchanged.
+\end{proof}
+
+The exterior factor has the exact finite-part description
+\begin{equation}\label{eq:exterior-finite-part}
+b_t(\rho_j)=\lim_{s\to\rho_j}
+\left(\frac{g_t'(s)}{g_t(s)}-
+\sum_{\ell=1}^N\frac1{s-\rho_\ell(t)}\right).
+\end{equation}
+This follows by logarithmic differentiation of \eqref{eq:moving-factor}
+off its zeros and holomorphic continuation near the selected one.
+It retains the full remaining entire factor, including all unselected
+zeros and its zero-free part; it is not a discarded infinite tail.
+
+For the exact Rodgers--Tao coordinate put
+$z_j=-i(2\rho_j-1)$ and
+$\mathcal R_t(z)=H_t(z)/\prod_j(z-z_j(t))$.
+Equation \eqref{eq:constants} gives
+\begin{equation}\label{eq:RT-coordinate}
+R_t((1+iz)/2)=16(2/i)^N\mathcal R_t(z),\qquad
+\frac{\mathcal R_t'(z_j)}{\mathcal R_t(z_j)}
+=\tfrac i2 b_t(\rho_j),\qquad
+z_j'=2\sum_{\ell\ne j}\frac1{z_j-z_\ell}
++2\frac{\mathcal R_t'(z_j)}{\mathcal R_t(z_j)}.
+\end{equation}
+Indeed $s-\rho_j=(i/2)(z-z_j)$ and $z_j'=-2i\rho_j'$;
+substitute these into \eqref{eq:velocity}. The coefficient $2$
+is thus precisely the coefficient in the Rodgers--Tao coordinate,
+whereas the original $s$ coordinate has coefficient $-1/2$.
+No infinite root expansion or global real-zero hypothesis is needed
+for this finite-packet identity. For $f(z)=F((1+iz)/2)$,
+$f'(z)=(i/2)F'((1+iz)/2)$; inserting this factor and
+$\rho_j-\rho_\ell=(i/2)(z_j-z_\ell)$ also converts
+\eqref{eq:moving-trace} into the $z$-coordinate trace identity.
+
+\begin{theorem}[Trace differentiation through repeated-root times]
+\label{thm:collision-trace}
+Fix $t_0\in\C$ and finitely many positively oriented piecewise
+$C^1$ Jordan contours with pairwise disjoint closed interiors,
+whose interiors contain finitely many zeros of $g_{t_0}$ and
+whose boundaries contain none. In a sufficiently
+small parameter disk about $t_0$, retain all the enclosed zeros
+with their algebraic multiplicities. Their total number $N$ is
+constant. If $F$ is holomorphic on a neighborhood of the union
+of the closed interiors, their finite trace
+\begin{equation}\label{eq:contour-trace}
+\mathscr T_F(t)=\frac1{2\pi i}\sum_{\mathcal C}
+\oint_{\mathcal C}F(s)\frac{g_t'(s)}{g_t(s)}\,ds
+\end{equation}
+is holomorphic, including times with multiple roots, and
+\begin{equation}\label{eq:contour-trace-derivative}
+\mathscr T_F'(t)=-\frac14\frac1{2\pi i}
+\sum_{\mathcal C}\oint_{\mathcal C}
+F'(s)\frac{g_t''(s)}{g_t(s)}\,ds.
+\end{equation}
+At any one such time, write the distinct enclosed root locations
+as $\lambda_a$ with actual multiplicities $n_a$ and set
+$h_t(s)=\prod_a(s-\lambda_a)^{n_a}$ and $R_t=g_t/h_t$.
+The full exterior ratio $b_t=R_t'/R_t$ is holomorphic throughout
+the selected interiors. Then
+\begin{equation}\label{eq:multiple-trace}
+\begin{split}
+\mathscr T_F'(t)={}&-\frac14\sum_a n_a(n_a-1)F''(\lambda_a)\\
+&-\frac12\sum_{a<b}n_an_b
+\frac{F'(\lambda_a)-F'(\lambda_b)}{\lambda_a-\lambda_b}
+-\frac12\sum_a n_aF'(\lambda_a)b_t(\lambda_a).
+\end{split}
+\end{equation}
+The values and multiplicities in this last expression are those
+at the chosen time. No derivative of an individual repeated root
+is involved.
+\end{theorem}
+\begin{proof}
+The contour regularity makes every integral well-defined, and
+disjoint closed interiors ensure that each selected root is counted
+once. The minimum of $|g_{t_0}|$ on the finite union of boundaries is
+positive. Uniform continuity on these compact contours retains
+nonvanishing for $t$ in a small disk. Rouch\'e's theorem retains
+the root count in each interior. Differentiation under the contour
+integral is now valid by joint holomorphy and a positive uniform
+denominator bound. The heat equation gives
+\[
+\partial_t(g_t'/g_t)
+=\tfrac14\partial_s(g_t''/g_t).
+\]
+The integral of the derivative of the single-valued product
+$F g_t''/g_t$ along each closed contour is zero. Integration by
+parts therefore gives \eqref{eq:contour-trace-derivative}.
+Residues of $g_t'/g_t$ give
+$\mathscr T_F(t)=\sum_a n_aF(\lambda_a)$.
+
+This is exactly the trace of $F$ of multiplication by $s$ in
+$\C[s]/(h_t)$, not a trace that omits nilpotent directions.
+In its local factor the multiplication operator is
+$\lambda_a I+N_a$, $N_a^{n_a}=0$, so
+$F(\lambda_a I+N_a)=\sum_{r=0}^{n_a-1}
+F^{(r)}(\lambda_a)N_a^r/r!$.
+All positive powers have zero trace in the increasing-power basis;
+the constant term has trace $n_aF(\lambda_a)$.
+If coefficients of the whole polynomial packet are desired, the
+contour traces with $F(s)=s^r$, $1\leq r\leq N$, are its power
+sums, holomorphic in $t$; Newton's recursion for a monic polynomial
+expresses each coefficient through these sums. Thus the polynomial
+packet itself has holomorphic coefficients across the collision,
+even when individual roots have no holomorphic branches.
+
+At a fixed time, $R_t$ is entire and nonzero in each selected
+interior because every zero there was removed at its full order.
+Logarithmic differentiation gives
+\[
+\frac{g_t''}{g_t}=\frac{h_t''}{h_t}
++2\frac{h_t'}{h_t}b_t+\frac{R_t''}{R_t},\qquad
+\frac{h_t'}{h_t}=\sum_a\frac{n_a}{s-\lambda_a},
+\]
+and direct differentiation of the last identity gives
+\[
+\frac{h_t''}{h_t}
+=\sum_a\frac{n_a(n_a-1)}{(s-\lambda_a)^2}
++2\sum_{a<b}\frac{n_an_b}{(s-\lambda_a)(s-\lambda_b)}.
+\]
+The term $F'R_t''/R_t$ is holomorphic in every interior and has
+zero integral. The double-pole term has residue
+$n_a(n_a-1)F''(\lambda_a)$. The two simple-pole residues in the
+$(a,b)$ term add to
+$2n_an_b(F'(\lambda_a)-F'(\lambda_b))/(\lambda_a-\lambda_b)$.
+Finally $2F'(h_t'/h_t)b_t$ contributes
+$2n_aF'(\lambda_a)b_t(\lambda_a)$ at each location.
+Multiply the sum by $-1/4$ to obtain \eqref{eq:multiple-trace}.
+\end{proof}
+
+At a multiple root the displayed simple-root chart does not apply.
+This is a genuine domain boundary, not an assumption that the roots
+are always simple: the heat solution $(s-a)^2+t/2$ at $t=0$ has
+roots $a\pm\sqrt{-t/2}$ and no holomorphic single-root branches
+there. The fixed-divisor construction in
+Theorem~\ref{thm:divisor} and its transported jets do retain all
+multiple-root directions. The moving simple-packet equation and the
+fixed-divisor conjugacy are therefore connected to the same $g_t$
+by \eqref{eq:deformed-divisor} and \eqref{eq:moving-factor}, with
+their different domains and all actual factors specified.
+
+\section{What the source theorem implies at the original time}
+
+Dobner's Theorem \texttt{newmansconj} proves $\Lambda\geq0$;
+its Section 3 obtains off-critical-line zeros for each fixed $t<0$
+from \texttt{mainthm}, almost periodicity and Rouch\'e's theorem.
+Those arguments apply to $\xi_t$, hence to $g_t=2\xi_t$ by
+\eqref{eq:constants}. They are not statements that $g_0$ has an
+off-critical-line zero. The defining property is that all zeros
+are on the critical line exactly for $t\geq\Lambda$.
+The conclusion $\Lambda\geq0$ permits the endpoint $\Lambda=0$.
+In that case every negative time has off-line zeros while all
+zeros at zero are on the line. Thus the precise logical endpoint
+is that RH is equivalent to $\Lambda=0$, after the human theorem
+$\Lambda\geq0$, not that RH is false. The transport maps above
+do not change this conclusion: $U_t$ is a map of source functions,
+not a root-by-root preservation map from $g_t$ to $g_0$.
+
+The finite native heat test $\tr e^{-aT(r)^2}$ of \cite{Native}
+uses a fixed finite attained metric and the outgoing-relation path
+$T(r)$. It is not the definition of $g_t$. Their established common
+objects are the original packet, its complete physical unit and its
+admitted polynomial lifts, carried by
+\eqref{eq:transported-jet} and the metric maps above. No equality
+between the two parameter families, and no degree-uniform allowance
+bound, follows from these exact finite maps alone.
+
+\begin{thebibliography}{9}\raggedright
+\bibitem{Dobner} Alexander Dobner,
+\emph{A proof of Newman's conjecture for the extended Selberg class},
+\href{https://arxiv.org/abs/2005.05142v2}{arXiv:2005.05142v2}.
+Original author files \texttt{paper.tex} and \texttt{references.bib}
+read completely. Paper SHA-256:
+\texttt{0de2b2f7e0d1178ca42a991cb803dae2ac0e24b7e6c9dae6a379e2f16f4d9f31}.
+\bibitem{RT} Brad Rodgers and Terence Tao,
+\emph{The de Bruijn--Newman constant is non-negative},
+\href{https://arxiv.org/abs/1801.05914v5}{arXiv:1801.05914v5},
+\emph{Forum of Mathematics, Pi} 8 (2020), e6.
+Original \texttt{fmp-template.tex}, lines 1--210 read for conventions
+and the opening discussion only. SHA-256:
+\texttt{25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817}.
+\bibitem{Closed} Split-Zero programme,
+\emph{The closed range of the original full theta source with every
+weight, derivative, and factor retained},
+\texttt{ORIGINAL\_THETA\_CLOSED\_RANGE.tex}, 20 September 2026.
+The exact original $V,\B,\Theta$ and their topologies are retained.
+That proof identifies Ralf Meyer's original
+\href{https://arxiv.org/abs/math/0412277v3}{arXiv:math/0412277v3},
+Theorem 3.3, and gives an independent proof in the original seminorms.
+Meyer's original paper was not independently read for this completion.
+\bibitem{Native} Split-Zero programme,
+\emph{Native spectral action along the outgoing arithmetic relation},
+\texttt{NATIVE\_SPECTRAL\_ACTION.tex}, SA1--SA7 and SA37, and
+\emph{The finite native heat action},
+\texttt{NATIVE\_HEAT\_ACTION.tex}, NH1--NH6 and NH24--NH26,
+20 September 2026. The admitted finite source span, complete-order
+cyclic relation and physical unit are retained here.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,372 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\diag}{\operatorname{diag}}
+\title{The sharp heat bound for one downward rank-one metric update}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{Original objects and the exact assertion}
+Let $n\geq1$, let $G_0,G\in\mathbb C^{n\times n}$ be positive
+Hermitian matrices, let $b\in\mathbb C^n$, and let $\omega>0$ satisfy
+\begin{equation}\label{eq:update}
+ G^{-1}=G_0^{-1}+\frac{bb^*}{\omega}.
+\end{equation}
+Here $*$ is conjugate transpose. The matrix $M\in\mathbb C^{n\times n}$
+is fixed, without a reality, normality, diagonalizability, or rank
+hypothesis. The original inner products are
+$\langle x,y\rangle_Q=x^*Qy$ for $Q=G_0,G$. Define
+\begin{equation}\label{eq:original-observable}
+ M^{\dagger_Q}=Q^{-1}M^*Q,\qquad
+ \Psi_s(Q)=\tr\exp(-sM^{\dagger_Q}M),\qquad s>0.
+\end{equation}
+These are the original operators and traces, not traces of a changed
+multiplication operator on the original coordinate space.
+
+\begin{theorem}[Sharp dimension-free rank-one bound]\label{thm:main}
+For the data above, put
+\begin{equation}\label{eq:kappa}
+ \kappa=\frac{\det G_0}{\det G}
+       =1+\frac{b^*G_0b}{\omega}\geq1,
+ \qquad
+ d(1)=0,\qquad
+ d(\kappa)=\left(1-\frac1\kappa\right)
+                    \kappa^{-1/(\kappa-1)}\quad(\kappa>1).
+\end{equation}
+For every $s>0$,
+\begin{equation}\label{eq:sharp-bound}
+ \left|\Psi_s(G)-\Psi_s(G_0)\right|\leq d(\kappa).
+\end{equation}
+There is no rank or dimension multiplier. For every $\kappa>1$ and
+every $s>0$, equality with either sign occurs in dimension two.
+Indeed, if $n\geq2$, $G_0$ and the nonzero $b$ in
+\eqref{eq:update} are prescribed, a suitable fixed complex $M$ gives
+either equality at the prescribed $s$. Moreover,
+\begin{equation}\label{eq:strict-improvement}
+ 0<d(\kappa)<\min\{1,\log(\kappa)/e\}\qquad(\kappa>1).
+\end{equation}
+\end{theorem}
+
+\section{The scalar integral bound}
+The measure used in this section is $d\mu(x)=dx/x$ on $(0,\infty)$.
+All intervals and integrals in the proof are intervals and integrals of
+real positive numbers, even when the original matrices are complex.
+
+\begin{lemma}[An interval maximizes the heat contribution]\label{lem:scalar}
+If $\kappa>1$ and a measurable set $E\subset(0,\infty)$ satisfies
+$\mu(E)\leq\log\kappa$, then
+\begin{equation}\label{eq:integral-bound}
+ \int_E e^{-x}\,dx\leq d(\kappa).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Set
+\[
+ a=\frac{\log\kappa}{\kappa-1},\qquad
+ c=\kappa a,\qquad J=[a,c],\qquad f(x)=xe^{-x}.
+\]
+The inequalities
+$\log\kappa<\kappa-1$ and
+$\log\kappa>1-\kappa^{-1}$ follow by integrating $1/t<1$
+on $(1,\kappa)$ and $1/t>1/\kappa$ on that interval.
+They give $0<a<1<c$. Also $c/a=\kappa$,
+$c-a=\log\kappa$, and
+\[
+ \frac{f(c)}{f(a)}=\frac ca e^{-(c-a)}=1.
+\]
+Since $f'(x)=e^{-x}(1-x)$, if $q=f(a)=f(c)$, then
+$f\geq q$ on $J$ and $f\leq q$ outside $J$.
+The function $f$ is bounded by $1/e$, and both $E$ and $J$ have
+finite $\mu$-measure. Thus all terms in the next identity are integrable:
+\begin{align*}
+ \int_E f\,d\mu-\int_J f\,d\mu
+ &=\int_0^\infty(\mathbf1_E-\mathbf1_J)(f-q)\,d\mu
+       +q\bigl(\mu(E)-\mu(J)\bigr)\leq0.
+\end{align*}
+The first integrand is nonpositive both on $J$ and outside $J$;
+the second term is nonpositive because $\mu(J)=\log\kappa$.
+Finally,
+\[
+ \int_J f\,d\mu=e^{-a}-e^{-c}
+  =\left(1-\frac1\kappa\right)e^{-\log\kappa/(\kappa-1)}
+  =d(\kappa).
+\]
+This proves the assertion.
+\end{proof}
+
+\section{A one-sided positive-semidefinite matrix bound}
+For a positive-semidefinite Hermitian matrix $X$, the notation
+$\tr e^{-sX}$ includes its zero eigenvalues; each zero eigenvalue
+contributes one.
+
+\begin{lemma}[One rank-one matrix increase]\label{lem:matrix}
+Let $X,Y$ be positive-semidefinite Hermitian $n\times n$ matrices and
+let $\kappa\geq1$. Suppose
+\begin{equation}\label{eq:matrix-hyp}
+ X\leq Y\leq\kappa X,\qquad \rank(Y-X)\leq1.
+\end{equation}
+Then, for every $s>0$,
+\begin{equation}\label{eq:one-sided}
+ 0\leq\tr e^{-sX}-\tr e^{-sY}\leq d(\kappa).
+\end{equation}
+\end{lemma}
+\begin{proof}
+If $\kappa=1$, then $X=Y$ and the assertion follows from $d(1)=0$.
+Assume $\kappa>1$. The inequalities in \eqref{eq:matrix-hyp} imply
+$\ker X=\ker Y=:K$. For example, $Xz=0$ gives
+$0\leq z^*Yz\leq\kappa z^*Xz=0$, and positivity implies $Yz=0$
+by the spectral decomposition of $Y$. The reverse implication follows
+from $X\leq Y$. Since $X,Y$ are Hermitian, $L=K^\perp$ is invariant
+under both. Their restrictions $X_L,Y_L$ are positive definite if
+$r=\dim L$ is positive. The zero-eigenvalue contributions to the two
+traces are equal and cancel. If $r=0$, both matrices are zero and
+the assertion is proved.
+
+For $r>0$, the positive rank-at-most-one difference has the form
+$Y_L-X_L=vv^*$ for some $v\in L$ (take a unit eigenvector multiplied
+by the square root of its nonzero eigenvalue, or $v=0$ if the
+difference is zero). Consequently,
+\[
+ X_L^{-1/2}Y_LX_L^{-1/2}=I_L+ww^*,\qquad
+ w=X_L^{-1/2}v.
+\]
+This matrix acts as the identity on $w^\perp$ and has eigenvalue
+$1+\|w\|^2$ on the line spanned by $w$ when $w\ne0$.
+The upper relative inequality in \eqref{eq:matrix-hyp} therefore gives
+\begin{equation}\label{eq:det-bound}
+ 1\leq\frac{\det Y_L}{\det X_L}
+       =1+\|w\|^2\leq\kappa.
+\end{equation}
+The same formula gives one when $w=0$.
+
+Order the eigenvalues increasingly:
+$0<a_1\leq\cdots\leq a_r$ for $X_L$ and
+$0<b_1\leq\cdots\leq b_r$ for $Y_L$.
+We verify the interlacing assertion
+\begin{equation}\label{eq:interlacing}
+ a_i\leq b_i\quad(1\leq i\leq r),\qquad
+ b_i\leq a_{i+1}\quad(1\leq i<r).
+\end{equation}
+For a Hermitian operator with ordered eigenvalues $\lambda_i$,
+\[
+ \lambda_i=\min_{\dim W=i}\ \max_{0\ne z\in W}
+                   \frac{z^*Tz}{z^*z}.
+\]
+To verify this formula, the span of its first $i$ orthonormal
+eigenvectors gives the upper bound $\lambda_i$. Every $i$-dimensional
+$W$ meets the span of eigenvectors $i,i+1,\ldots,r$ nontrivially,
+and a nonzero vector in that intersection has Rayleigh quotient at
+least $\lambda_i$, giving the lower bound. Applying the formula to
+$X_L\leq Y_L$ proves $a_i\leq b_i$. For $i<r$, let $V$ be the span
+of the first $i+1$ eigenvectors of $X_L$. The subspace
+$V\cap v^\perp$ has dimension at least $i$. On that subspace the
+Rayleigh quotient of $Y_L$ equals that of $X_L$ and is at most
+$a_{i+1}$. Choosing any $i$-dimensional subspace there and applying
+the same formula proves $b_i\leq a_{i+1}$.
+
+For the specified $s>0$ define
+$E=\bigcup_{i=1}^r[sa_i,sb_i]$. By \eqref{eq:interlacing}, these
+intervals have disjoint interiors; intervals of zero length and
+shared endpoints have zero measure for both $dx$ and $dx/x$.
+Therefore \eqref{eq:det-bound} gives
+\[
+ \mu(E)=\sum_{i=1}^r\log\frac{b_i}{a_i}
+       =\log\frac{\det Y_L}{\det X_L}\leq\log\kappa.
+\]
+Their ordinary heat integral is
+\[
+ \tr e^{-sX}-\tr e^{-sY}
+   =\sum_{i=1}^r(e^{-sa_i}-e^{-sb_i})
+   =\int_E e^{-x}\,dx.
+\]
+This is nonnegative. Lemma~\ref{lem:scalar} supplies its upper bound.
+\end{proof}
+
+\section{Exact transport of the original metric data}
+We now prove Theorem~\ref{thm:main}. Let
+\begin{equation}\label{eq:transport-data}
+ S=G_0^{1/2},\qquad h=\frac{Sb}{\sqrt\omega},\qquad
+ H=(I+hh^*)^{-1},\qquad D=H^{1/2},\qquad A=SMS^{-1}.
+\end{equation}
+The square roots here are the positive Hermitian square roots given
+by spectral decomposition. Direct multiplication in the original
+coordinates gives
+\begin{equation}\label{eq:exact-G}
+ G^{-1}=S^{-1}(I+hh^*)S^{-1},\qquad G=SHS.
+\end{equation}
+The matrix $I+hh^*$ has eigenvalue $1+\|h\|^2$ on the line spanned
+by $h$ and eigenvalue one on its orthogonal complement. For $h=0$
+it is the identity. Taking determinants in \eqref{eq:exact-G}
+therefore proves exactly
+\[
+ \frac{\det G_0}{\det G}=1+\|h\|^2
+                    =1+\frac{b^*G_0b}{\omega}=\kappa.
+\]
+No real-vector or complex-phase restriction has been made.
+
+The maps
+\begin{equation}\label{eq:isometries}
+ T_0=S:(\mathbb C^n,\langle\ ,\ \rangle_{G_0})
+          \longrightarrow(\mathbb C^n,\langle\ ,\ \rangle_I),
+ \qquad
+ T_1=DS:(\mathbb C^n,\langle\ ,\ \rangle_G)
+          \longrightarrow(\mathbb C^n,\langle\ ,\ \rangle_I)
+\end{equation}
+are exact invertible isometries, since $T_0^*T_0=G_0$ and
+$T_1^*T_1=SHS=G$. Their inverses are $S^{-1}$ and $S^{-1}D^{-1}$.
+For either $Q=G_0,G$, with its respective map $T$, the identity
+$T^*T=Q$ gives
+\begin{equation}\label{eq:adjoint-intertwining}
+ T(M^{\dagger_Q}M)T^{-1}
+   =(TMT^{-1})^*(TMT^{-1}).
+\end{equation}
+Indeed, $TQ^{-1}=T^{-*}$, so both sides equal
+$T^{-*}M^*QM T^{-1}$. The absolutely convergent matrix exponential
+series commutes with similarity, and the trace of a similarity
+is unchanged because $\tr(UV)=\tr(VU)$, as follows directly by
+summing their diagonal entries. Thus the identities transport the
+original observations, without changing their definition.
+
+Write
+\[
+ F_s(Z)=\tr e^{-sZ^*Z},\qquad B=DAD^{-1},\qquad C=DA.
+\]
+Then \eqref{eq:adjoint-intertwining} gives
+\begin{equation}\label{eq:trace-identities}
+ \Psi_s(G_0)=F_s(A),\qquad \Psi_s(G)=F_s(B).
+\end{equation}
+The matrix $C$ is an auxiliary comparison matrix only: it does not
+replace the original $M$. Every original vector $x$, including any
+prescribed cyclic unit, has exactly the images $Sx$ and $DSx$ under
+\eqref{eq:isometries}, and the displayed inverses return it to $x$.
+In particular, no vector, mass, unit, or complex phase is divided
+out of the original data.
+
+If $\kappa=1$, then $b=0$, $G=G_0$, and \eqref{eq:sharp-bound}
+holds with zero on both sides. Suppose henceforth $\kappa>1$ and set
+\begin{equation}\label{eq:rankone-projector}
+ P=\frac{hh^*}{\kappa-1}.
+\end{equation}
+This is the orthogonal projection onto the original transported
+line $\mathbb Ch$: $P^*=P$, $P^2=P$, and $\rank P=1$.
+Calculation on that line and its orthogonal complement gives
+\begin{equation}\label{eq:D-formulas}
+ D^2=I-(1-\kappa^{-1})P,\qquad
+ D=I+(\kappa^{-1/2}-1)P,\qquad
+ D^{-2}=I+(\kappa-1)P.
+\end{equation}
+
+First compare $C$ with $A$. Equations~\eqref{eq:D-formulas} give
+\begin{equation}\label{eq:left-comparison}
+ C^*C=A^*A-(1-\kappa^{-1})A^*PA,
+ \qquad C^*C\leq A^*A\leq\kappa C^*C.
+\end{equation}
+The difference has rank at most one. Applying
+Lemma~\ref{lem:matrix} with $X=C^*C$ and $Y=A^*A$ gives
+\begin{equation}\label{eq:first-gap}
+ 0\leq F_s(C)-F_s(A)\leq d(\kappa).
+\end{equation}
+
+Second compare $B=CD^{-1}$ with $C$. This time use the products
+with the adjoint on the right:
+\begin{equation}\label{eq:right-comparison}
+ BB^*=CC^*+(\kappa-1)CPC^*,
+ \qquad CC^*\leq BB^*\leq\kappa CC^*.
+\end{equation}
+Again the difference has rank at most one. For every square matrix
+$Z$, the matrices $Z^*Z$ and $ZZ^*$ have the same eigenvalues with
+multiplicities. For a positive eigenvalue $\lambda$, the map $Z$
+takes its eigenspace for $Z^*Z$ bijectively to its eigenspace for
+$ZZ^*$, with inverse $Z^*/\lambda$; their zero multiplicities are
+both $n-\rank Z$. This proves the spectral assertion and hence
+$\tr e^{-sZZ^*}=F_s(Z)$. Lemma~\ref{lem:matrix}, now with
+$X=CC^*$ and $Y=BB^*$, gives
+\begin{equation}\label{eq:second-gap}
+ 0\leq F_s(C)-F_s(B)\leq d(\kappa).
+\end{equation}
+Finally,
+\begin{equation}\label{eq:difference-of-gaps}
+ \Psi_s(G)-\Psi_s(G_0)
+ =\bigl(F_s(C)-F_s(A)\bigr)
+  -\bigl(F_s(C)-F_s(B)\bigr).
+\end{equation}
+Both parenthesized numbers belong to the same interval
+$[0,d(\kappa)]$ by \eqref{eq:first-gap}--\eqref{eq:second-gap}.
+Their difference belongs to $[-d(\kappa),d(\kappa)]$.
+This proves \eqref{eq:sharp-bound}, including all possible ranks of
+$M$. In particular, adding the absolute values of these two gaps
+would discard their common sign; no such factor of two is needed.
+
+\section{Exact equality examples in the prescribed metric data}
+Assume $n\geq2$ and $b\ne0$, keeping $G_0,b,\omega$ and therefore
+$G,\kappa,S,h,D$ as above. Let
+\[
+ u=h/\|h\|,
+\]
+which retains the given complex phase of $h$. Choose any Euclidean
+unit vector $v$ with $u^*v=0$. Then
+$Du=\kappa^{-1/2}u$ and $Dv=v$.
+For a specified $s>0$, put
+\begin{equation}\label{eq:positive-example}
+ m_+^2=\frac{\kappa\log\kappa}{s(\kappa-1)},\qquad
+ M_+=S^{-1}(m_+uv^*)S,
+\end{equation}
+where $m_+>0$. This is an explicit fixed operator in the original
+coordinates. Its transports are
+\[
+ A_+=m_+uv^*,\qquad B_+=D A_+ D^{-1}
+             =\kappa^{-1/2}m_+uv^*.
+\]
+Consequently $A_+^*A_+=m_+^2vv^*$ and
+$B_+^*B_+=\kappa^{-1}m_+^2vv^*$; each has $n-1$ zero
+eigenvalues. Direct evaluation gives
+\begin{align*}
+ \Psi_s(G)-\Psi_s(G_0)
+ &= e^{-sm_+^2/\kappa}-e^{-sm_+^2}\\
+ &=e^{-\log\kappa/(\kappa-1)}
+     -e^{-\kappa\log\kappa/(\kappa-1)}
+ =d(\kappa).
+\end{align*}
+For the opposite sign, set
+\begin{equation}\label{eq:negative-example}
+ m_-^2=\frac{\log\kappa}{s(\kappa-1)},\qquad
+ M_-=S^{-1}(m_-vu^*)S.
+\end{equation}
+Now $A_-=m_-vu^*$ and $B_-=\sqrt\kappa\,m_-vu^*$.
+Their squared nonzero singular values are $m_-^2$ and
+$\kappa m_-^2$. Direct evaluation therefore gives
+$\Psi_s(G)-\Psi_s(G_0)=-d(\kappa)$.
+These examples establish both signs of equality while preserving
+the prescribed original metric update. In dimension one, scalar
+similarity leaves $M$ unchanged and the two traces agree; the sharp
+universal constant is already attained in dimension two.
+
+The asserted strict comparison with $\log\kappa/e$ also follows
+from the proof of Lemma~\ref{lem:scalar}: its interval $J$ has
+positive $\mu$-measure $\log\kappa$, while $xe^{-x}<1/e$ except
+at the single point $x=1$. Thus
+$d(\kappa)=\int_J xe^{-x}\,d\mu<\log\kappa/e$.
+Positivity follows from the formula for $d$; both factors in that
+formula lie strictly between zero and one, so $d(\kappa)<1$.
+This finishes the proof of Theorem~\ref{thm:main}.
+
+\section{Scope of the conclusion}
+The estimate is uniform over $s>0$, all finite dimensions, all
+complex $M$, and every update \eqref{eq:update}. It uses the given
+determinant ratio, not the determinant of a substituted metric.
+Neither its proof nor the equality examples imply a decay statement
+as another external parameter, such as a degree, varies. Such a
+statement would require information about the original sequence of
+ratios. The equality examples above concern arbitrary matrices $M$;
+the bound itself therefore applies in particular to every fixed
+multiplication matrix supplied by an original quotient construction.
+
+\end{document}

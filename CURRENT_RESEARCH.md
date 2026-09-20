@@ -1,3 +1,8 @@
+<!-- heat-transport-arithmetic-volume:20260920 -->
+## Heat flow on the theta source, and a sharp volume-to-heat bound
+
+The Split-Zero programme starts with the theta source whose Mellin transform is 2xi, its full-zero-divisor source and the least-source-norm polynomial quotient. The [new complete calculations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-transport-arithmetic-volume/README.md) carry the de Bruijn–Newman flow through that exact theta construction, including its operators, relations, Fourier map, zero multiplicities and metrics. The original Toda determinant ratio now also bounds the change in the positive heat trace when the admitted polynomial degree increases, with no dimension multiplier. [Five complete proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-transport-arithmetic-volume/COMPLETE_PROOFS.tex), [two exact figures](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-transport-arithmetic-volume/FIGURE_CAPTION.md), [results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-heat-transport-arithmetic-volume/RESULT_INDEX.json), human citations, exact checkers and three full cumulative LaTeX successors are included. The remaining growing-degree arithmetic estimate is not asserted.
+
 <!-- native-heat-action:20260920 -->
 ## Two heat observations of the original theta quotient
 

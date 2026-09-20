@@ -1,0 +1,9 @@
+<!-- spectral-real-period-verified-doi:20260921 -->
+## Read the native spectral and real-period papers
+
+[Read the 79-page Split-Zero native spectral paper](https://zenodo.org/records/22865550) ([DOI 10.5281/zenodo.22865550](https://doi.org/10.5281/zenodo.22865550)); [read the separate 22-page real-period paper](https://zenodo.org/records/22865550/files/103-splitzero-real-period.pdf?download=1). The first calculates the original conductor graph metric and isolates the remaining invariant-covariance estimates. The second certifies a positive real period of the original geometric coefficient family and computes its complete ES–Fable return.
+
+[Complete source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/README.md), [exact public proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/PROOF_LINKS.json), [results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/RESULT_INDEX.json), and [complete LaTeX and supporting proofs](https://zenodo.org/records/22865550/files/104-splitzero-spectral-real-period-sources.zip?download=1) are available. Human citations, all 38 sealed delivery files, and the original check receipts are preserved. Neither paper identifies this geometry with arithmetic zeta zeros or concludes RH.
+
+All earlier PDFs remain available. The three preceding source ZIPs numbered 96, 98 and 101 are retained exactly inside the combined download and remain individually available in [the preceding DOI edition](https://zenodo.org/records/22865355). The other 97 earlier downloads remain separate.
+

@@ -1,3 +1,10 @@
+<!-- native-spectral-real-pair:20260921 -->
+## Native spectral geometry and the positive real-period return
+
+Two separate completed editions are available: [003, the 79-page native spectral paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/003/COMPLETE_NATIVE_SPECTRAL_READER.pdf), and [005, the 22-page real-period paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/005/REAL_PAIR_005.pdf). The first calculates the original conductor graph metric, isolates its remaining invariant covariance terms, and identifies the singular direction and its original observation. The second certifies a positive real period in the original geometric coefficient family and calculates its complete ES–Fable inverse, marked outputs and cutoff-dependent spectra.
+
+[Full proofs, LaTeX, citations and original check receipts](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/README.md), [exact proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/PROOF_LINKS.json), and [results and their programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/RESULT_INDEX.json) accompany both papers. The mathematical owners’ sealed files are retained exactly. Neither edition identifies the geometry with arithmetic zeta zeros or concludes RH. Earlier source editions are preserved.
+
 <!-- kernel-degree-verified-doi:20260921 -->
 ## Read the Split-Zero kernel degree-step paper
 

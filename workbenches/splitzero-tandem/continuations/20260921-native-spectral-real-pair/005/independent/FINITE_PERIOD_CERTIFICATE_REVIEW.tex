@@ -1,0 +1,559 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\C}{\mathbb C}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Independent mathematical review of the finite original-period zero}
+\author{Programme mathematical review}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{Exact object and scope}
+This review checks the complete coefficient calculation in
+\texttt{certify\_finite\_period\_zero.py}, using PCL1--10,
+NC1--5 and OFM1--11 of the original supplied programme sources.
+It independently proves a coefficient majorant, the local matrix
+inverse, the complex zero count and the five-quadric orbit test.
+The parameters throughout are
+\[
+ \delta=\frac14,\quad\gamma=3,\quad
+ \beta=2(\gamma^2-\delta^2)=\frac{143}{8},\quad
+ \eta=(\delta^2+\gamma^2)^2=\frac{21025}{256}.
+ \tag{FPR1}
+\]
+The full ordered quartet is
+\[
+ w=(\delta+i\gamma,\delta-i\gamma,-\delta+i\gamma,-\delta-i\gamma),
+ \qquad \rho_a=\frac12+w_a,
+ \qquad V_{ar}=w_a^r\quad(0\le r\le3).
+ \tag{FPR2}
+\]
+Let the unit be any fixed nonzero real value $a=\bar a$.
+Then the original $U=\diag(a,\bar a,\bar a,a)$ is $aI$;
+its cancellation in the exact conjugation below does not assign
+its magnitude a new value. With $z=1/u$, PCL7--9 gives
+\[
+ H(u)=e^{\mathfrak a/u}G_u\mathcal R(z)V^{-1}U,
+ \qquad
+ M_j(z)=H(u)^{-1}D^{-j}H(u)
+       =V\mathcal R(z)^{-1}D^{-j}\mathcal R(z)V^{-1},
+ \tag{FPR3}
+\]
+where $D=\diag(\zeta,\zeta^2,\zeta^3,\zeta^4)$ and
+$\zeta=e^{2\pi i/5}$. The original scalar, branch powers and
+Gamma ray constants commute with $D$ and cancel in this conjugation.
+They remain in $H$ itself and in any metric in those coordinates.
+
+Put $Q_0(t)=t_1t_4-t_2t_3$ and
+\[
+ t(\xi)=(e^{\rho_1\xi},e^{\rho_2\xi},
+                 e^{\rho_3\xi},e^{\rho_4\xi})^{\mathsf T},\quad
+ f_j(\xi,z)=Q_0(M_j(z)t(\xi)),\quad
+ d_j(z)=f_j(0,z),\quad E(\xi,z)=\prod_{j=1}^4 f_j(\xi,z).
+ \tag{FPR4}
+\]
+These are exactly OFM1's original symbol factors. Here $z$ denotes
+inverse period and $\xi$ denotes the symbol variable, so the two
+derivatives have different mathematical meanings.
+This parameter choice is a member of the geometric coefficient
+family. It does not assert that the four $\rho_a$ are Riemann-zeta
+zeros or that the arithmetic unit has the real phase used here.
+
+\section{Full coefficient bound and both infinite tails}
+The literal PCL2 coefficient, with $1\le a\le4$ and $0\le r\le3$, is
+\[
+ R_{ar,n}=
+ \sum_{\substack{p,h\ge0\\2p+4h=5n+r+1-a}}
+ \frac{\beta^p\eta^h}{3^p p!h!}
+ (-1)^L5^L(a/5)_L,\qquad L=p+h-n.
+ \tag{FPR5}
+\]
+For a summand let $m=p+h$ and $s=r+1-a\in[-3,3]$.
+As $r+3p+h+1=a+5L$ is positive and $a\le4$, one has $L\ge0$.
+Thus $m\ge n$. Because $0<a/5<1$, each factor in the rising
+factorial gives $(a/5)_L\le L!$. Moreover
+\[
+ \frac{n!L!}{p!h!}
+ =\frac{\binom{m}{p}}{\binom{m}{n}}\le2^m.
+ \tag{FPR6}
+\]
+Choose $K=11/2$. Direct rational inequalities give
+$K\ge1$, $K^2\ge5\beta/3$ and $K^4\ge5\eta$.
+Consequently the absolute value of each summand in FPR5 is at most
+\[
+ \frac{5^{-n}}{n!}(5\beta/3)^p(5\eta)^h2^m
+ \le\frac{K^{5n+3}}{5^n n!}\,4\,6^n.
+ \tag{FPR7}
+\]
+Indeed $2p+4h=5n+s\le5n+3$, and
+$m\le(5n+3)/2$, whence
+$2^m\le2^{3/2}(\sqrt{32})^n\le4\cdot6^n$.
+For each $h$ there is at most one $p$. The number of pairs is at
+most $(5n+3)/4+1\le2n+2$. With
+\[
+ C=4K^3=\frac{1331}{2},\qquad
+ T=\frac{6K^5}{5}=\frac{483153}{80},
+ \qquad |R_{ar,n}|\le C(2n+2)\frac{T^n}{n!},
+ \tag{FPR8}
+\]
+the Weierstrass convergence criterion proves that every original
+$\mathcal R_{ar}$ is entire. In particular this proof supplies
+convergence at the finite candidate without a large-period
+assumption and without using a finite truncation as its justification.
+
+For $|z|\le\varrho$, let $w=T\varrho$ and $N=400$. The omitted
+series and its derivative are bounded entrywise by
+\[
+ \begin{split}
+ B_0&=\frac{C(2N+4)w^{N+1}}{(N+1)!}
+            \frac1{1-2w/(N+2)},\\
+ B_1&=\frac{C(2N+4)(N+1)T w^N}{(N+1)!}
+            \frac1{1-3w/(N+1)}.
+ \end{split}\tag{FPR9}
+\]
+To prove the first bound, the successive ratio for
+$(2n+2)w^n/n!$ is
+$w(n+2)/(n+1)^2\le2w/(N+2)$ for $n\ge N+1$.
+For the derivative summands $(2n+2)T w^{n-1}/(n-1)!$ it is
+$w(n+2)/(n(n+1))\le2w/(N+1)<3w/(N+1)$.
+The script verifies that both denominators are positive. Summing
+the resulting geometric bounds proves FPR9, including every
+omitted coefficient. Enclosing each complex tail in a rectangle
+with real and imaginary radii $B_i$ is conservative and valid.
+
+The coefficient loop enumerates every permissible $h$ from zero
+through $\lfloor(5n+s)/4\rfloor$, rejects odd $5n+s-4h$, and
+sets $p=(5n+s-4h)/2$. Its stored rising-factorial term is exactly
+\[
+ (-5)^L(a/5)_L=(-1)^L\prod_{\ell=0}^{L-1}(a+5\ell).
+ \tag{FPR10}
+\]
+The arrays cover every such $p,h,L$ through $n=400$.
+Simultaneous Horner evaluation uses the identity
+$(zP+R)'=P+zP'$, hence encloses both the degree-400 series and
+its derivative before adding FPR9's complete tails.
+
+\section{The finite disk and a separate local inverse proof}
+The following decimal strings designate exact rational numbers:
+\[
+ \begin{split}
+ c_R={}&0.011136978231486808477778740306233906621055400363647396688725562781,\\
+ c_I={}&0.0078780133477760021239711966284294386302928222474756316845213852718.
+ \end{split}\tag{FPR11}
+\]
+Put $c=c_R+ic_I$, $r=10^{-14}$, and define
+\[
+ \mathcal D=\{z:|z-c|\le r\},\qquad
+ \mathcal B=\{z:|\Re(z-c)|\le r,\ |\Im(z-c)|\le r\}.
+ \tag{FPR12}
+\]
+The arithmetic includes the tiny rounding enclosures of $c,r$;
+thus its evaluated box contains this exact $\mathcal B$, which
+contains $\mathcal D$. Its $\varrho$ encloses the modulus of
+every point in that box. The resulting explicit tail bounds are
+$B_0<6.44\cdot10^{-98}$ and $B_1<2.92\cdot10^{-93}$.
+
+PCL5 already supplies the global identity $\det\mathcal R=1$.
+There is also a separate finite local certificate, so local
+invertibility need not rest on an unexamined use of that identity.
+Let $A$ be the exact dyadic midpoint matrix of the ball inverse
+of the enclosed $\mathcal R(c)$. The independent checker forms
+$I-A\mathcal R(\mathcal B)$ with the full tails included.
+The four certified upper bounds for the row sums of entry
+moduli are respectively less than
+\[
+ 1.73\cdot10^{-9},\quad 7.75\cdot10^{-10},\quad
+ 1.74\cdot10^{-10},\quad 6.16\cdot10^{-11}.
+ \tag{FPR13}
+\]
+For every exact $z\in\mathcal B$ it follows that
+$\|I-A\mathcal R(z)\|_\infty<1$. Therefore
+$A\mathcal R(z)$ has inverse
+$\sum_{n\ge0}(I-A\mathcal R(z))^n$ by the geometric-series
+identity. Both factors are square, so $\mathcal R(z)$ is
+invertible. Its inverse is holomorphic near the closed box by
+the adjugate formula and compactness. This proves the analytic
+domain needed for the zero count.
+
+\section{Exact derivative maps and the zero count}
+For $R=\mathcal R(z)$, differentiation of FPR3 gives
+\[
+ M_j'(z)=V\bigl(R^{-1}D^{-j}R'
+          -R^{-1}R'R^{-1}D^{-j}R\bigr)V^{-1}.
+ \tag{FPR14}
+\]
+The order of every matrix factor in the script matches this
+identity. Define $y=M_j\mathbf1$, $p=M_j'\mathbf1$ and
+$x=M_j\rho$. Differentiating FPR4 yields exactly
+\[
+ \begin{split}
+ d_j&=y_1y_4-y_2y_3,\\
+ d_j'&=p_1y_4+y_1p_4-p_2y_3-y_2p_3,\\
+ (\partial_\xi f_j)(0,z)&=x_1y_4+y_1x_4-x_2y_3-y_2x_3.
+ \end{split}\tag{FPR15}
+\]
+In particular $\rho$, rather than the centered $w$, occurs in
+the symbol derivative. All four labels and $D^{-j}$ signs are
+the exact NC1/NC5 and OFM1 conventions.
+
+The root script and independent replay give the strict bounds
+\[
+ |d_1(c)|<5\cdot10^{-63},\qquad |d_1'(c)|>434,
+ \qquad \sup_{z\in\mathcal B}|d_1'(z)-d_1'(c)|<8.
+ \tag{FPR16}
+\]
+The last enclosure subtracts the centre derivative ball from
+the entire-box derivative ball, so contains every exact
+derivative difference. For $|z-c|=r$, integration on the segment
+from $c$ to $z$ gives
+\[
+ |d_1(z)-d_1'(c)(z-c)|
+ \le |d_1(c)|+r\sup_{\mathcal B}|d_1'-d_1'(c)|
+ <5\cdot10^{-63}+8\cdot10^{-14}
+ <434\cdot10^{-14}<|d_1'(c)(z-c)|.
+ \tag{FPR17}
+\]
+By Rouch\'e's theorem, $d_1$ and the nonzero linear polynomial
+$d_1'(c)(z-c)$ have the same number of zeros, counted with
+multiplicity, in $|z-c|<r$. That number is one. Hence there is
+exactly one zero $z_*$ in the disk, and it is simple. The proof
+uses the full holomorphic function, not just its truncation.
+The same bounds also prove uniqueness on the entire rectangle.
+For $z_1,z_2\in\mathcal B$, integrate along their segment to get
+$|d_1(z_1)-d_1(z_2)-d_1'(c)(z_1-z_2)|\le8|z_1-z_2|$.
+Thus $|d_1(z_1)-d_1(z_2)|>426|z_1-z_2|$ for distinct points,
+so $d_1$ is injective there.
+Since $0\notin\mathcal B$, the finite original period
+$u_*=1/z_*$ exists. For orientation only its certified enclosure
+is centred near $59.8455390191-42.333202544i$; FPR11--12, not
+these displayed rounded coordinates, specify the exact zero.
+
+\section{Original symbol order and the five distinct quadrics}
+The complete-box enclosures additionally give
+\[
+ \Im\partial_\xi f_1(0,z)>3.68,\qquad
+ d_2(z)\ne0,\quad d_3(z)\ne0,\quad d_4(z)\ne0
+ \quad(z\in\mathcal B).
+ \tag{FPR18}
+\]
+For example the recorded value rectangles for the last three
+factors have real parts in
+$[-0.23174,-0.22826]$, $[-2.42469,-2.41531]$ and
+$[-3.35312,-3.34688]$, respectively; none contains zero.
+At the exact $z_*$, the first factor has a simple zero in $\xi$
+and the other three have order zero. Thus
+\[
+ \ord_{\xi=0}E(\xi,z_*)=1,\qquad
+ \mu_1(z_*)=\partial_\xi f_1(0,z_*)
+                    d_2(z_*)d_3(z_*)d_4(z_*)\ne0.
+ \tag{FPR19}
+\]
+The original script encloses this complete product with modulus
+strictly greater than $13.80$. Distinctly, simplicity in the
+inverse-period direction gives
+\[
+ \frac{d}{dz}E(0,z_*)=d_1'(z_*)d_2(z_*)d_3(z_*)d_4(z_*)\ne0.
+ \tag{FPR20}
+\]
+These two assertions concern different derivatives, and both
+are needed when transporting the order jump.
+
+Here is the entire orbit-admissibility argument. In the literal
+Fourier coordinates put
+\[
+ Q_u(X)=Q_0(H(u)^{-1}X),\quad
+ (gQ)(X)=Q(D^{-1}X),\quad Q_{u,j}=g^jQ_u\quad(0\le j\le4).
+ \tag{FPR21}
+\]
+Because $g^5=1$, its action on association classes of nonzero
+quadratic polynomials has orbit size either one or five.
+More explicitly, if $Q_{u,j}=bQ_{u,k}$ with $j\ne k$ and
+$b\ne0$, then $g^{j-k}[Q_u]=[Q_u]$. A nonzero residue modulo
+five generates the group, so $g[Q_u]=[Q_u]$. In particular
+$Q_{u,1}=b_1Q_u$ for some nonzero $b_1$.
+Pulling back along $X=H(u)t(\xi)$ would give
+\[
+ f_1(\xi,z)=b_1Q_0(t(\xi))
+ =b_1\bigl(e^{(\rho_1+\rho_4)\xi}
+             -e^{(\rho_2+\rho_3)\xi}\bigr)=0,
+ \tag{FPR22}
+\]
+since both exponent sums equal one. This contradicts FPR18.
+Thus every pair of the five quadrics is nonassociate at $u_*$,
+and indeed at every period reciprocal to a point of the box.
+They are prime: $Q_0$ is an irreducible quadratic over $\C$
+(its symmetric matrix has rank four, whereas a product of two
+linear forms has rank at most two), and the invertible linear
+changes $H^{-1}D^{-j}$ preserve irreducibility. The local
+inverse proof establishes that these changes exist. In the
+original diagonal matrix the ray constant is
+$g_a=5^{a/5-1}e^{\pi ia/5}\Gamma(a/5)$, as specified in PCL3.
+Its Gamma value is strictly positive by its positive-real
+integral because $a/5>0$. Thus $g_a\ne0$, and both
+$e^{\mathfrak a/u}$ and $u^{a/5}=\exp((a/5)\log u)$ are
+nonzero on the retained logarithm branch for $u\ne0$.
+The original $V$ is invertible because the four ordered
+$w_a$ are distinct, and $U=aI$ is invertible because $a\ne0$.
+This proves the five-prime-orbit hypothesis directly rather
+than importing a sufficient large-period cutoff.
+
+\section{Independent check of the complete weighted inverse constants}
+The continuation FPZ15--24 was independently read against WCF1--6.
+Here is the derivation of every degree and exterior rank, retaining
+the original Gamma weights. For fixed $s\in\{1,a_{\rm amp}\}$,
+$a_{\rm amp}=4\ell+1\ge9$, let
+\[
+ \rho_n=\sqrt{\frac{n!}{(s/2)_n}},\quad
+ c_0=a_{\rm amp}/2,\quad c_1=c_0-4,\quad
+ g(t,z)=e^{-4\omega(t)}E(\omega(t),z),\quad
+ \omega(t)=-i\arctan t.
+ \tag{FPR23}
+\]
+WCF2--6 gives the fixed old $v=0$ map in its actual
+orthonormal source and target frames:
+\[
+ B_{D,s}(z)_{ij}=\begin{cases}
+  g_{j-i}(z)\rho_j/\rho_i,&i\le j,\\0,&i>j,
+ \end{cases}\qquad0\le i,j\le D.
+ \tag{FPR24}
+\]
+The common original mass is $M_s=(2\pi)^{s/2}$; its two
+orthonormal-frame factors cancel in this matrix, as WCF6 proves.
+Neither source nor target norm or centre has changed.
+At $z_*$, $g_0=0$ and $g_1=-i\mu_1\ne0$.
+The other two coefficients used for $D=3$ are
+$g_2=4\mu_1-\mu_2/2$ and
+$g_3=i(\mu_3/6-2\mu_2+25\mu_1/3)$.
+They follow by substituting
+$\omega=-it+it^3/3+O(t^5)$ into FPR23, and the separate checker
+verifies this formal composition exactly.
+
+For $D\ge1$, the first column and last row of $B_*=B_{D,s}(z_*)$
+are zero. The block in rows $0,\ldots,D-1$ and columns $1,\ldots,D$
+is upper triangular with diagonal $g_1\rho_j/\rho_{j-1}$.
+It is invertible, with determinant $g_1^D\rho_D$, since $\rho_0=1$.
+Permuting the zero column to the end identifies $B_*$ with this
+block plus a zero row and column by unitary coordinate permutations.
+Hence its nonzero singular values are precisely the $D$ singular
+values of that block, and their product is
+$|\mu_1|^D\rho_D$. In particular the rank is exactly $D$, the
+kernel is the constant source polynomial and the image is
+$\mathcal P_{D-1}$ in the original target. For $D=0$ the matrix
+is zero, with empty product one.
+
+Set $n=D+1$ and $\alpha=\mu_0'(z_*)\ne0$. The final certificate
+additionally verifies $|\alpha|>1524$.
+Triangularity gives $\det B_{D,s}(z)=\mu_0(z)^n$.
+Thus for $z\ne z_*$ sufficiently close, with singular values
+$\sigma_1(z)\ge\cdots\ge\sigma_n(z)>0$, one has
+\[
+ \|\bigwedge^r B_{D,s}(z)^{-1}\|
+ =\frac{\sigma_1(z)\cdots\sigma_{n-r}(z)}
+        {|\mu_0(z)|^n}
+ =\frac{\|\bigwedge^{n-r}B_{D,s}(z)\|}{|\mu_0(z)|^n}.
+ \tag{FPR25}
+\]
+The numerator has a positive limit for every $1\le r\le n$,
+because $n-r\le D=\operatorname{rank}B_*$. The convention for
+the zeroth exterior norm is one. Since
+$\mu_0(z)=\alpha(z-z_*)+O((z-z_*)^2)$, this proves
+\[
+ \lim_{z\to z_*}|z-z_*|^{D+1}
+ \|\bigwedge^rB_{D,s}(z)^{-1}\|
+ =\frac{\|\bigwedge^{D+1-r}B_*\|}{|\alpha|^{D+1}}>0.
+ \tag{FPR26}
+\]
+Exactly $D$ forward singular values tend to positive limits.
+Their product tends to $\rho_D|\mu_1|^D$, while the product
+of all $D+1$ equals $|\mu_0|^{D+1}$. The last forward singular
+value therefore vanishes to order $D+1$. Consequently exactly
+one inverse singular value has pole $D+1$, and the other $D$
+inverse singular values tend to positive finite values. The
+operator-norm constant is
+$\rho_D|\mu_1|^D/|\alpha|^{D+1}$.
+
+For $D=3$ the nonzero block is precisely
+\[
+ C_s=\begin{pmatrix}
+ g_1\rho_1&g_2\rho_2&g_3\rho_3\\
+ 0&g_1\rho_2/\rho_1&g_2\rho_3/\rho_1\\
+ 0&0&g_1\rho_3/\rho_2
+ \end{pmatrix}.
+ \tag{FPR27}
+\]
+If $\lambda_1\ge\lambda_2\ge\lambda_3>0$ are the eigenvalues
+of $C_s^*C_s$, then FPR26 in exterior ranks $1,2,3,4$ gives
+the four constants
+$|\alpha|^{-4}(\rho_3|\mu_1|^3,
+\sqrt{\lambda_1\lambda_2},\sqrt{\lambda_1},1)$.
+All original moments in these entries are the finite exact
+derivatives of the original four factors as in OFM5 and FPZ17;
+none is a free independent replacement parameter.
+
+Finally $z-z_*=-(u-u_*)/(uu_*)$ gives
+\[
+ \lim_{u\to u_*}|u-u_*|^{D+1}
+ \|\bigwedge^r B_{D,s}(u^{-1})^{-1}\|
+ =|u_*|^{2(D+1)}
+   \frac{\|\bigwedge^{D+1-r}B_*\|}{|\alpha|^{D+1}}.
+ \tag{FPR28}
+\]
+At the zero the actual order is $v=1$. The order-adjusted map
+has domain $\mathcal P_{D+1}/\mathcal P_0$, target
+$\mathcal P_D$, and nonzero diagonal
+$(-i\mu_1)\rho_{j+1}/\rho_j$ by WCF5--6. It is therefore
+invertible. This exact change of domain is retained alongside
+the fixed-space singularity. No contradiction between these
+two maps is inferred.
+
+\section{The general finite-zero existence argument}
+FPZ25--26 is also valid for every original
+$0<\delta<1/2$, $\gamma>2$ on the nonzero real-unit phase.
+Here the parameters are retained rather than set to FPR1.
+Choose $K=\max\{1,(5\beta/3)^{1/2},(5\eta)^{1/4}\}$,
+$C_R=4K^3$, $T_R=6K^5/5$. Summing FPR8 gives
+\[
+ |\mathcal R_{ar}(z)|\le
+ H(|z|):=2C_R(1+T_R|z|)e^{T_R|z|}.
+ \tag{FPR29}
+\]
+The sum is exact because
+$\sum_{n\ge0}(2n+2)x^n/n!=2(1+x)e^x$.
+For this global argument use the proved original PCL5 identity
+$\mathcal R^{-1}=\operatorname{adj}\mathcal R$.
+Each adjugate entry is a sum of six triple products, so
+$\|\operatorname{adj}\mathcal R\|_\infty\le24H^3$
+and $\|\mathcal R\|_\infty\le4H$.
+Let $v_V=\|V\|_\infty$ and $v_I=\|V^{-1}\|_\infty$.
+Then $\|M_j\|_\infty\le96v_Vv_IH^4$, and
+$|Q_0(M_j\mathbf1)|\le2\|M_j\mathbf1\|_\infty^2$ gives
+\[
+ |d_j(z)|\le A(1+|z|)^8e^{B|z|},\quad
+ A=2(96v_Vv_I)^2(2C_R)^8\max(1,T_R)^8,\quad B=8T_R.
+ \tag{FPR30}
+\]
+All constants thus have finite expressions in the unchanged original
+parameters. PCL22 and the parity proof following FUT7 give that $d_j$
+is even. PZX/OPB15 prove its nonzero second coefficient.
+FUT24--26 prove its nonzero fourth coefficient: their scalar-restored
+$d_j/(4i\delta\gamma)$ has fourth coefficient whose stated imaginary
+part is a nonzero scalar times $F_1(t)$ or $F_2(t)$, with
+$t=\beta^2/\eta\in(0,4)$ and $h=(\sqrt5-1)/2\in(0,2/3)$.
+The exact Bernstein coefficient lists there are
+\[
+ \begin{split}
+ &(25515h,15120+21735h,16464+15939h,14848+11199h),\\
+ &(25515,21735-15120h,15939-16464h,11199-14848h).
+ \end{split}\tag{FPR31}
+\]
+Each entry is positive. For the last three entries of the second
+list the lower bounds using $h<2/3$ are $11655$, $4963$ and
+$3901/3$. The degree-three Bernstein basis on $[0,4]$ is
+nonnegative and sums to one. Hence both polynomials are positive.
+The fourth coefficients of the other two factors follow by the
+proved original conjugation. The nonzero scalar $4i\delta\gamma$
+is restored throughout this implication; the functions in FPR30
+are the original $d_j$, not the scalar-divided presentation.
+
+Suppose one of these original $d_j$ had no nonzero zero.
+Its exact order two at zero makes $F=d_j/z^2$ entire and
+zero-free. The entire $F'/F$ has a primitive on $\C$;
+choosing its additive constant at zero gives an entire $h_0(z)$
+such that $F=e^{h_0}$. The radial bound FPR30 and compactness
+near zero yield
+$\Re h_0(z)\le A_0+B|z|+8\log(1+|z|)$ for a finite $A_0$.
+Write $h_0(z)=\sum_{n\ge0}b_nz^n$ and
+$M_R=A_0+BR+8\log(1+R)$.
+Fourier integration of the real part on $|z|=R$ gives
+$b_nR^n/2=(2\pi)^{-1}\int_0^{2\pi}
+\Re h_0(Re^{i\theta})e^{-in\theta}\,d\theta$ for $n\ge1$.
+Subtract $M_R$ inside this nonconstant Fourier coefficient and
+use the nonnegative integrand $M_R-\Re h_0$. Its integral is
+$2\pi(M_R-\Re b_0)$ by the mean value identity. Consequently
+\[
+ |b_n|\le\frac{2(M_R-\Re b_0)}{R^n}.
+ \tag{FPR32}
+\]
+As $R\to\infty$, this forces $b_n=0$ for $n\ge2$.
+Thus $F=e^{b_0+b_1z}$. Since $d_j$ is even, so is $F$;
+therefore $e^{2b_1z}=1$ for all $z$, and differentiation at
+zero gives $b_1=0$. This makes $d_j=e^{b_0}z^2$, contradicting
+its nonzero fourth coefficient. Hence each factor has a
+nonzero finite complex zero. This argument proves existence
+for every original quartet on the stated phase, but supplies
+neither orbit admissibility nor the symbol order at every such
+zero. Those stronger conclusions for FPR11--12 follow from
+the separate enclosing calculation and FPR18--22.
+
+\section{Review conclusion and limits of the assertion}
+No mathematical error was found in the coefficient loop, the
+two majorants, the original-coordinate conjugation, the two
+derivative formulas or the complex Rouch\'e argument at radius
+$10^{-14}$. The earlier radius $10^{-12}$ failed the interval
+test; that unsuccessful test was not a proof of absence and
+was not used as a positive certificate.
+
+The certified result is a finite geometric period with a genuine
+original-symbol order change from zero to one and five distinct
+prime quadrics. The nonzero real unit is retained through its
+exact cancellation in FPR3. The result supplies neither an
+arithmetic zeta-zero quartet nor an assertion about the actual
+arithmetic unit's phase. It also does not prove the separate
+coordinate-section coprimality conclusions of NC19--22 or
+membership in a previously imposed numerical $|u|\ge R_*$
+subdomain. Those are different assertions and were not checked
+by this certificate. The proved five-orbit condition itself
+holds on the displayed finite box, independently of that cutoff.
+
+\section{Exact reading and replay record}
+The sources actually read for this mathematical review were:
+\begin{itemize}
+\item \texttt{PCL\_COMPLETE.tex}: PCL1--11 and RMR1--3;
+source SHA256
+\texttt{231acb7cd4902b6d3477f853d1d8dea814c71b94cff2a24e7fdee5481652ef54}.
+\item \texttt{ORIGINAL\_CONDUCTOR\_COPRIMALITY.tex}: complete
+file, with NC1--9 used for the original objects and NC19--22
+read to delimit what the certificate does not establish;
+source SHA256
+\texttt{71baa0ba21e7d9de50223eeebfb12532442f270c2552cc1eea9d136629d945ab}.
+\item \texttt{FABLE\_TO\_ORIGINAL\_CONDUCTOR.tex}: FC13--17
+and OFM1--11 read in full;
+source SHA256
+\texttt{8739afeab8d76ebfa4fc5d15d8e8486d8da923beff8675a212cbbda61e00cc18}.
+\item \texttt{WEIGHTED\_CONDUCTOR\_FORWARD.tex}: WCF1--12
+read, with WCF1--6 used for the full weighted inverse verification;
+source SHA256
+\texttt{d86dcb3daf13c9b2d5a0aaa4d72cce35a1aff48066ad69c7d9846b9d097dc354}.
+\item \texttt{FINITE\_PERIOD\_ZERO\_BODY.tex}: complete FPZ1--26,
+including the corrected rectangle injectivity proof and the explicit
+growth constant in FPZ25; reviewed SHA256
+\texttt{7972cb199f16c7b8cf02332889b48bf63c078f00e2b760c66cd5bb589b650207}.
+\item \texttt{FINITE\_PERIOD\_UNIT\_TEST.tex}: FUT1--7 and
+the following parity proof, plus FUT20--26; FUT24--26 is used
+for the full coefficient nonvanishing in FPR31; reviewed SHA256
+\texttt{1d0ff101f47caba1b5f8ed741d5f38f26ee85a898607effb7b810869eb4853dd}.
+\item The full root certificate script, audited and replayed
+successfully with python-flint 0.9.0, 768-bit working precision
+and one arithmetic thread; initial reviewed SHA256
+\texttt{685598fec03bf4018c0a17ffa3a261ab6da379393dd86b44e30d0366df55a877}.
+The final additional output of $\alpha$, $\mu_0,\ldots,\mu_3$
+and $g_0,\ldots,g_3$ was separately read and replayed at SHA256
+\texttt{041728c2ba636914c9c6dbbc294da396b7b1233b9967fb0b4af9cdb3baa8b2b8}.
+The binomial factor-derivative and product rules match OFM5
+and FPZ17; substituting $f_{1,0}=0$ uses the proved exact root.
+\item The separate checker
+\texttt{check\_finite\_period\_certificate\_review.py} and its
+\texttt{FINITE\_PERIOD\_CERTIFICATE\_REVIEW\_CHECK.json}
+record the extra Neumann bounds and independent rounded
+Rouch\'e inequalities. They do not claim to be a second
+implementation of all Arb arithmetic.
+\end{itemize}
+PCL, NC and OFM are credited here as prior programme calculations;
+the current review does not claim authorship of them. Rouch\'e's
+zero-count theorem is the classical human theorem used at FPR17.
+No new human paper was claimed read in this bounded review.
+\end{document}

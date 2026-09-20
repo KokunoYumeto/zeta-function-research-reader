@@ -1,0 +1,403 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Independent derivation of the original four-factor moment and weighted quotient formulas}
+\author{Independent mathematical review}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Verdict and reading boundary.}
+The equations OFM1--17 under review are correct on their stated admitted
+five-orbit domain. In particular, no quotient correction or Gamma weight
+is missing from OFM14--15. The bound $32$ follows from the four original
+quadratic factors; it is a bound, not an assertion that this order is
+attained by an actual period. The positive leading-moment formula is
+restricted to real admitted periods, as it must be. The present proof
+uses the original family and factor definitions FC5, FC10--14, NC1--5
+and PCL1--10 \cite{FC,NC,PCL}; it uses the original orthogonal polynomial
+recurrence and measure in WCF2--6 \cite{WCF}. It does not reprove the
+entire-period construction underlying PCL or assert a conductor order
+jump or an RH conclusion.
+
+The positivity slice is already established in PCL15--16. Its application
+to the original exponential curve, and the individual-factor conjugation
+identity, are made explicit below. The classical orthogonal-polynomial
+dictionary used by WCF credits the NIST Digital Library of Mathematical
+Functions, equations (18.19.8)--(18.19.9), (18.22.8), and (18.23.7)
+\cite{DLMF}. In this review the required generating function is proved
+directly from the retained recurrence; no independent reading of a
+different primary-source edition is claimed.
+
+\section{Nine exact frequencies for each original factor}
+Retain $0<\delta<1/2$, $\gamma>2$, and the ordered quartet
+\[
+ (\rho_1,\rho_2,\rho_3,\rho_4)
+ =\left(\tfrac12+\delta+i\gamma,\tfrac12+\delta-i\gamma,
+ \tfrac12-\delta+i\gamma,\tfrac12-\delta-i\gamma\right).
+ \tag{IR1}
+\]
+Put $t_a(z)=e^{\rho_a z}$, $Q_0(t)=t_1t_4-t_2t_3$,
+$D_5=\diag(\zeta,\zeta^2,\zeta^3,\zeta^4)$, where
+$\zeta=e^{2\pi i/5}$. Let $H$ be the full original invertible period
+matrix and put
+\[
+ M_j=H^{-1}D_5^{-j}H,\quad f_j(z)=Q_0(M_jt(z)),\quad
+ E_A(z)=\prod_{j=1}^4 f_j(z),\quad
+ B_0=\frac12\begin{pmatrix}0&0&0&1\\0&0&-1&0\\
+ 0&-1&0&0\\1&0&0&0\end{pmatrix}.
+ \tag{IR2}
+\]
+Thus $C_j=M_j^{\mathsf T}B_0M_j$ is symmetric and
+$f_j=t^{\mathsf T}C_jt$. With
+$\alpha=(1,1,0,0)$ and $\beta=(1,0,1,0)$, direct addition gives
+\[
+ \rho_a+\rho_b
+ =1+(2(\alpha_a+\alpha_b)-2)\delta
+     +i(2(\beta_a+\beta_b)-2)\gamma.
+\]
+Consequently, writing $0\le u,w\le2$,
+\[
+ c_{j,uw}=\sum_{\alpha_a+\alpha_b=u,\,\beta_a+\beta_b=w}(C_j)_{ab},
+ \quad \lambda_{uw}=1+(2u-2)\delta+i(2w-2)\gamma,
+ \quad f_j(z)=\sum_{u,w=0}^2c_{j,uw}e^{\lambda_{uw}z}.
+ \tag{IR3}
+\]
+This is a sum over ordered pairs $(a,b)$, so a nondiagonal quadratic
+coefficient contributes twice as required. No factor $2$ has been lost.
+
+For completeness, the kernel of restriction of homogeneous quadratics
+to $t(z)$ is precisely $\C Q_0$. There are ten quadratic monomials.
+Their frequency labels $(u,w)$ comprise all nine pairs in $\{0,1,2\}^2$;
+the only repeated pair is $(1,1)$, arising from $t_1t_4$ and $t_2t_3$.
+The nine distinct exponentials are independent: their derivatives at
+zero through degree eight form the matrix
+\[
+ \mathcal V_{n,(u,w)}=\lambda_{uw}^n,\qquad
+ \det\mathcal V=\prod_{a<b}(\lambda_b-\lambda_a)\ne0.
+ \tag{IR4}
+\]
+The exponents are distinct because their real parts determine $u$ and
+their imaginary parts determine $w$. The determinant identity follows
+because this alternating polynomial of the exponents is divisible by
+each difference, has the same degree as their product, and has leading
+coefficient one. This also proves the exact finite-jet inverse
+$c_j=\mathcal V^{-1}(f_j(0),\ldots,f_j^{(8)}(0))^{\mathsf T}$, with
+$\mathcal V^{-1}=\operatorname{adj}(\mathcal V)/\det\mathcal V$.
+
+The admitted original quadrics
+$Q_0(H^{-1}X)$ and $Q_0(H^{-1}D_5^{-j}X)$ are nonassociate. If $f_j$
+were identically zero, the preceding quadratic kernel statement would
+give $Q_0(M_jt)=cQ_0(t)$ as polynomials. Invertibility of $M_j$ and
+$B_0$ excludes $c=0$. Substitution $t=H^{-1}X$ would therefore make
+those two original quadrics associates, a contradiction. Thus every
+$f_j$ is nonzero and IR4 proves
+\[
+ n_j:=\ord_0f_j\in\{0,\ldots,8\},\qquad
+ a_{j,k}:=f_j^{(k)}(0)=\sum_{u,w}c_{j,uw}\lambda_{uw}^k.
+ \tag{IR5}
+\]
+Multiplying convergent Taylor series now gives the complete moments
+and their first nonzero member:
+\[
+ \begin{split}
+ \mu_n&=\sum_{k_1+\cdots+k_4=n}
+ \frac{n!}{k_1!k_2!k_3!k_4!}\prod_{j=1}^4a_{j,k_j},\\
+ v&=\sum_{j=1}^4n_j\le32,\qquad
+ \mu_v=v!\prod_{j=1}^4\frac{a_{j,n_j}}{n_j!}\ne0.
+ \end{split}\tag{IR6}
+\]
+Every summand below degree $v$ has a vanishing factor. At degree $v$
+the only nonzero candidate has $k_j=n_j$ for each $j$, proving both
+the order statement and the exact constant.
+
+\section{Conjugation, the original unit, and the exact leading moment}
+Write the original family as in NC2 and PCL7:
+\[
+ H(u)=D_uR_uV^{-1}U,\quad R_u=\mathcal R(u^{-1}),\quad
+ V_{a,k}=w_a^k,\quad w_a=\rho_a-\tfrac12,\quad
+ U=\diag(a,\bar a,\bar a,a),\quad a\ne0.
+ \tag{IR7}
+\]
+The full $D_u$ includes the scalar, Gamma ray factors and branch
+powers. It commutes with $D_5$. Hence, setting
+$L_u=U^{-1}VR_u^{-1}$, multiplication with the actual inverse of $H$
+gives
+\[
+ H(u)^{-1}D_5^{-j}H(u)=L_uD_5^{-j}L_u^{-1}.
+ \tag{IR8}
+\]
+This is an equality in the retained coordinates; it makes no metric
+replacement. In particular the original $D_u$ is still part of $H$
+in every map for which it has not cancelled algebraically.
+
+Let $J$ exchange indices $1,2$ and $3,4$. The explicit quartet and
+unit give $\bar V=JV$, $\bar U=JUJ$, and $Q_0(Jt)=-Q_0(t)$.
+Every PCL2 coefficient is real: $\beta=2(\gamma^2-\delta^2)$,
+$\eta=(\delta^2+\gamma^2)^2$, all factorials, the integer powers,
+and the Pochhammer factors $(b/5)_L$ are real. The convergent entire
+series therefore gives $\overline{R_u}=R_{\bar u}$. As a result,
+\[
+ \overline{L_u}=JL_{\bar u},\qquad
+ \overline{L_u^{-1}}=L_{\bar u}^{-1}J,\qquad
+ \overline{t(\bar z)}=Jt(z).
+ \tag{IR9}
+\]
+For $f^\#(z)=\overline{f(\bar z)}$, substitution of all three
+identities, together with $\overline{D_5^{-j}}=D_5^j$, yields
+\[
+ \begin{split}
+ f_{j,u}^{\#}(z)
+ &=Q_0\!\left(JL_{\bar u}D_5^jL_{\bar u}^{-1}t(z)\right)\\
+ &=-Q_0\!\left(L_{\bar u}D_5^{-(5-j)}L_{\bar u}^{-1}t(z)\right)
+ =-f_{5-j,\bar u}(z).
+ \end{split}\tag{IR10}
+\]
+This calculation explains the minus sign and the conjugate period.
+The pairwise nonassociate domain is preserved: conjugation followed
+by the invertible substitution $J$ permutes the five quadrics, with
+the harmless common nonzero sign. No unproved closure of an arbitrary
+period domain is needed beyond membership in that specified locus.
+
+Put $g_u=f_{1,u}f_{2,u}$. Applying IR10 twice gives
+\[
+ E_{A,u}=g_u g_{\bar u}^{\#},\qquad
+ \mu_n(u)=\sum_{k=0}^n\binom nk
+ g_u^{(k)}(0)\overline{g_{\bar u}^{(n-k)}(0)}.
+ \tag{IR11}
+\]
+For real admitted $u$, this is $E_{A,u}(x)=|g_u(x)|^2$ for real $x$.
+If $\nu=n_1+n_2$, then IR10 gives $n_4=n_1,n_3=n_2$, and hence
+\[
+ v=2\nu\le32,\quad
+ \mu_v=\binom{2\nu}{\nu}|g_u^{(\nu)}(0)|^2>0,\qquad
+ \mu_n\in\R\quad(n\ge0).
+ \tag{IR12}
+\]
+To check the exact factorial, the leading term of $g_u$ is
+$g_u^{(\nu)}(0)z^\nu/\nu!$. Its product with its conjugate
+reflection has coefficient $|g_u^{(\nu)}(0)|^2/(\nu!)^2$ at
+$z^{2\nu}$, which must be multiplied by $(2\nu)!$ to obtain
+the derivative. Reality of all derivatives follows either from
+IR11 by replacing $k$ by $n-k$, or by conjugate reflection of
+the entire function. Higher derivatives need not be positive.
+
+On positive real periods this agrees exactly with the earlier PCL15
+positivity slice. The conjugation proof above covers every admitted
+real period, including any negative real period in the stated domain. Indeed
+set $Z=e^{2\delta x}$, $W=e^{2i\gamma x}$ and let $A(Z,W)$ be
+PCL8's original biform. Homogeneity of degree eight gives
+\[
+ E_A(x)=e^{(4-8\delta-8i\gamma)x}A(Z,W)
+       =e^{(4-8\delta)x}W^{-4}A(Z,W)\ge0.
+ \tag{IR13}
+\]
+Thus the source of the positivity phenomenon is retained explicitly;
+IR10--12 evaluate the factor and moment statements needed here.
+
+\section{All four quotient maps and their complete matrices}
+Let $\mathcal P_m=\C[S]_{\le m}$, with $\mathcal P_{-1}=0$.
+Fix the original cutoff $D\ge0$, mass $M_s=(2\pi)^{s/2}$,
+$s\in\{1,a_{\rm amp}\}$, $b=s/2$, and centre $c_0=a_{\rm amp}/2$.
+For $0\le j\le4$ put
+\[
+ r_j=\sum_{k=j+1}^4n_k,\quad c_j=c_0-j,\quad
+ \mathcal H_j=\mathcal P_{D+r_j}/\mathcal P_{r_j-1}.
+ \tag{IR14}
+\]
+The space $\mathcal H_j$ has the quotient norm induced by the full
+original Gamma measure at centre $c_j$, namely
+\[
+ \|P\|_{s,c}^2=\int_{\R}|P(c+iy)|^2
+ \frac{(2\pi)^{s/2}2^{s/2}}{4\pi\Gamma(s/2)}
+ |\Gamma(s/4+iy/2)|^2\,dy.
+ \tag{IR15}
+\]
+Define the actual factor translation by
+$T_jP(S)=\sum_{u,w}c_{j,uw}P(S+\lambda_{uw})$. On monomials,
+\[
+ T_jS^N=\sum_{k=0}^N\binom Nk a_{j,k}S^{N-k}
+       =\sum_{k=n_j}^N\binom Nk a_{j,k}S^{N-k}.
+ \tag{IR16}
+\]
+Thus $T_j\mathcal P_{r_{j-1}-1}\subset\mathcal P_{r_j-1}$
+and $T_j\mathcal P_{D+r_{j-1}}\subset\mathcal P_{D+r_j}$.
+The induced quotient map is bijective, because on the ordered retained
+monomials $S^{r_{j-1}+q}$ it has distinct leading degrees $r_j+q$
+and nonzero diagonal coefficients
+$\binom{r_{j-1}+q}{n_j}a_{j,n_j}$. Successive degree elimination
+gives its inverse. This includes $n_j=0$ and $r_j=0$ without
+an extra convention other than $\mathcal P_{-1}=0$.
+Expansion of the four finite translation sums gives exactly
+\[
+ T_A=T_4T_3T_2T_1:\mathcal H_0\longrightarrow\mathcal H_4.
+ \tag{IR17}
+\]
+The denominator of each intermediate quotient is mapped into the
+next denominator. Therefore choosing a different intermediate
+representative has no effect on the final image. No intermediate
+low-degree component has been incorrectly discarded.
+
+Retain the WCF2 orthogonal polynomials
+\[
+ p_0(y)=1,\quad p_1(y)=y,\quad
+ p_{n+1}(y)=yp_n(y)-n(n-1+b)p_{n-1}(y),
+ \quad h_n=M_s n!(b)_n.
+ \tag{IR18}
+\]
+Their orthonormal versions are
+$\phi_{n,c}(S)=p_n((S-c)/i)/\sqrt{h_n}$; the quotient frame
+for $\mathcal H_j$ is $[\phi_{r_j,c_j}],\ldots,[\phi_{r_j+D,c_j}]$.
+To derive the generating series directly, set
+$F(y,t)=\sum_{n\ge0}p_n(y)t^n/n!$. Multiplying IR18 by
+$t^n/n!$ and summing gives
+$(1+t^2)\partial_tF=(y-bt)F$, $F(y,0)=1$.
+Integration in the disk $|t|<1$, with branches having value one
+at zero, gives
+\[
+ F(y,t)=(1+t^2)^{-b/2}e^{y\arctan t},\qquad
+ \omega(t)=-i\arctan t.
+ \tag{IR19}
+\]
+For $\psi_{n,c}(S)=p_n((S-c)/i)/n!$, translation from $c_{j-1}$
+to $c_j=c_{j-1}-1$ has the multiplier
+\[
+ \sum_{n\ge0}(T_j\psi_{n,c_{j-1}})(S)t^n
+ = e^{-\omega(t)}f_j(\omega(t))
+   \sum_{m\ge0}\psi_{m,c_j}(S)t^m.
+ \tag{IR20}
+\]
+The exponent is correct because
+$(S+\lambda-c_{j-1})/i=(S-c_j)/i+(\lambda-1)/i$.
+Set
+\[
+ G_j(t)=t^{-n_j}e^{-\omega(t)}f_j(\omega(t)),\qquad
+ (G_j)_0=(-i)^{n_j}a_{j,n_j}/n_j!\ne0.
+ \tag{IR21}
+\]
+Comparing the coefficient of $t^{r_{j-1}+q}$ in IR20, an output
+frame vector of degree $r_j+p$ has coefficient
+$(G_j)_{q-p}$ for $p\le q$, zero for $p>q$. Coefficients with
+degree below $r_j$ represent zero in the quotient and have already
+been accounted for by IR16. Finally
+\[
+ \phi_{n,c}=\frac{\rho_n}{\sqrt{M_s}}\psi_{n,c},\qquad
+ \rho_n=\sqrt{\frac{n!}{(b)_n}},
+\]
+so the two unchanged factors $M_s^{-1/2}$ cancel and the full
+matrix entry is
+\[
+ (A_j)_{pq}=(G_j)_{q-p}\frac{\rho_{r_{j-1}+q}}{\rho_{r_j+p}}
+ \quad(p\le q),\qquad
+ A_j=W_j^{-1}T_D(G_j)W_{j-1},\quad
+ W_j=\diag(\rho_{r_j},\ldots,\rho_{r_j+D}).
+ \tag{IR22}
+\]
+This proves the offsets directly from input and output degrees,
+without inferring them from an unweighted matrix.
+
+Finite upper triangular Toeplitz matrices multiply by truncated
+convolution. The four intermediate $W_j$ cancel in order, and
+\[
+ \prod_{j=1}^4G_j(t)=t^{-v}e^{-4\omega(t)}E_A(\omega(t))=g(t),
+ \qquad A_4A_3A_2A_1=W_4^{-1}T_D(g)W_0=A_{D,s}.
+ \tag{IR23}
+\]
+This is precisely WCF5--6, with $r_0=v,r_4=0$, original centres
+$a_{\rm amp}/2$ and $a_{\rm amp}/2-4$, and the original mass.
+If $B_j(t)=\sum_{q=0}^D b_{j,q}t^q$, define
+\[
+ b_{j,0}=(G_j)_0^{-1},\qquad
+ b_{j,q}=-(G_j)_0^{-1}\sum_{k=1}^q(G_j)_k b_{j,q-k}.
+ \tag{IR24}
+\]
+Then every coefficient through degree $D$ of $G_jB_j-1$ is zero,
+so $A_j^{-1}=W_{j-1}^{-1}T_D(B_j)W_j$ exactly. Thus
+\[
+ \begin{split}
+ A_{D,s}^{-1}&=A_1^{-1}A_2^{-1}A_3^{-1}A_4^{-1},\\
+ \|\wedge^k A_{D,s}^{-1}\|&\le
+       \prod_{j=1}^4\|\wedge^k A_j^{-1}\|\quad(0\le k\le D+1),\\
+ \det A_{D,s}&=
+ \left(\frac{(-i)^v\mu_v}{v!}\right)^{D+1}
+ \prod_{q=0}^D\frac{\rho_{v+q}}{\rho_q}.
+ \end{split}\tag{IR25}
+\]
+Functoriality of exterior powers and the inequality
+$\|BCx\|\le\|B\|\|C\|\|x\|$ prove the middle statement in
+the retained induced Hilbert norms. The determinant is the product
+of the triangular diagonals, with IR6 supplying the exact leading
+constant. It does not bound the individual inverse exterior norms
+by a uniform arithmetic constant; such a bound is not claimed here.
+
+\section{The actual marked receiver}
+In the original marking write $X,Y$ for the columns
+$x_a=[S^v\ell_a(S)]$ and $y_a=T_Ax_a$, and retain the literal
+invertible four-point matrix $K$ from FC15a. Then
+$\Phi_*=XK^{-1}$ and $\Psi_*=YK^{-1}$. Since IR17 is an equality
+of the original operators, it gives
+\[
+ T_4T_3T_2T_1\Phi_*q=\Psi_*q\qquad(q\in\C^4).
+ \tag{IR26}
+\]
+This includes every affine signed-state column. It does not replace
+the nonlinear signed-state transformation by a linear conductor.
+If $V_\rho$ denotes FC8's matrix of powers and $C_\kappa$ is the
+unchanged translation on output coefficients, direct application
+of IR16 to $S^{v+q}$ yields
+\[
+ M_*=C_\kappa B_v(V_\rho^{\mathsf T})^{-1}K^{-1},\qquad
+ (B_v)_{rq}=\binom{v+q}{v+q-r}\mu_{v+q-r}
+ \quad(0\le r\le q\le3).
+ \tag{IR27}
+\]
+All its moments are the exact finite sums IR3, IR5--6. This is the
+coefficient map needed to return the moment calculation to the
+marked receiver, with no independent choice of those moments.
+
+\paragraph{Scope of the executable certificate.}
+The companion Python file checks ordered-pair coefficients against
+direct quadratic substitution, the nine-node determinant and inverse
+jet certificate, exact conjugation in $\mathbb Q(i)[\zeta]/(\Phi_5)$,
+direct translations of recurrence polynomials in all four quotient
+frames at two sets of nonzero offsets and both original Gamma
+parameters, their weighted product and inverse, and the factorial
+in the positive leading moment. These are finite exact tests of the
+identities proved above. Arbitrary real matrices and prescribed jet
+test factors in that checker are explicitly auxiliary tests and
+are not labelled actual finite periods. The actual coefficient limit
+is identified separately. Source hashes and test counts are in the
+generated JSON receipt.
+
+\begin{thebibliography}{9}
+\bibitem{FC} Split-Zero programme, \emph{The ES--Fable inverse
+correspondence in the original weighted conductor},
+\texttt{FABLE\_TO\_ORIGINAL\_CONDUCTOR.tex}, FC1--25 and FC26--32.
+The work's human-source attributions are retained in that cumulative
+source; this citation does not assign human authorship to this review.
+\bibitem{NC} Split-Zero programme, \emph{Vanishing of the original
+proper-source kernel through conductor coprimality},
+\texttt{ORIGINAL\_CONDUCTOR\_COPRIMALITY.tex}, NC1--5.
+\bibitem{PCL} Split-Zero programme, \emph{The literal original
+conductor limit and an invertible pivot restriction},
+\texttt{PCL\_COMPLETE.tex}, PCL1--16.
+\bibitem{WCF} Split-Zero programme, \emph{A polynomial forward bound
+for the full weighted conductor},
+\texttt{WEIGHTED\_CONDUCTOR\_FORWARD.tex}, WCF1--6.
+\bibitem{DLMF} F. W. J. Olver, A. B. Olde Daalhuis, D. W. Lozier,
+B. I. Schneider, R. F. Boisvert, C. W. Clark, B. R. Miller,
+B. V. Saunders, H. S. Cohl and M. A. McClain, editors,
+\emph{NIST Digital Library of Mathematical Functions}, Chapter 18,
+Meixner--Pollaczek weight, recurrence and generating function,
+\url{https://dlmf.nist.gov/18.19},
+\url{https://dlmf.nist.gov/18.22},
+\url{https://dlmf.nist.gov/18.23}.
+The locators and attribution here follow the already-read WCF source.
+\end{thebibliography}
+\end{document}

@@ -1,3 +1,8 @@
+<!-- native-spectral-action:20260920 -->
+## The arithmetic error bound as a trace curvature
+
+The Split-Zero programme uses the theta source with Mellin transform 2xi/h, its quotient by theta relations, and the source's least-norm metric on polynomial classes. The [new complete calculation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-spectral-action/README.md) follows the exact rank-one correction from the attained selfadjoint compression to the original quotient multiplication operator. It computes every polynomial trace coefficient, the complete repeated-root endpoints, and the same arithmetic error bound as a mixed trace derivative in the original metric. [Four complete proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-spectral-action/COMPLETE_PROOFS.tex), [the exact illustrated mechanism](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-spectral-action/FIGURE_CAPTION.md), [results and their programme use](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260920-native-spectral-action/RESULT_INDEX.json), point-of-use human citations, exact checkers and three complete cumulative source successors are included. The finite calculation does not establish growing-degree error decay or an RH conclusion.
+
 <!-- native-secular-frame:20260920 -->
 ## Arithmetic spectra and recovery of a lost observation
 

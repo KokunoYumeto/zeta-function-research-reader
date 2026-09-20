@@ -1,0 +1,521 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\adj}{\dagger_G}
+\title{The retained rank-one metric term in a quadratic trace action}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and provenance.}
+This is an independent finite-dimensional derivation for the fixed metric and
+rank-one correction specified below. The identities and inequalities asserted
+for this family are proved here, using finite-dimensional linear algebra.
+The contextual source is the quadratic spectral-action
+discussion of Connes and van Suijlekom \cite{CvS}; no unproved assertion from that
+source is used. The receiving programme must insert its actual matrices into
+the displayed maps; no change of metric or vanishing estimate is inferred.
+
+\section{Original coordinates, adjoints, and the rank-one allowance}
+
+Let \(E=\mathbb C^n\), let \(G=G^*>0\) be the specified positive Hermitian
+matrix, and use the inner product conjugate-linear in its first argument
+\begin{equation}
+ \langle x,y\rangle_G=x^*Gy,\qquad
+ X^\adj=G^{-1}X^*G,\qquad
+ \|X\|_{\mathrm{HS},G}^2=\tr(X^\adj X).
+ \tag{MC1}\label{MC1}
+\end{equation}
+The adjoint formula follows by substituting it in
+\(\langle Xx,y\rangle_G=\langle x,X^\adj y\rangle_G\).
+It gives \((XY)^\adj=Y^\adj X^\adj\), and
+\(\tr(X^\adj)=\overline{\tr X}\) by cyclicity of trace.
+Fix a \(G\)-selfadjoint \(A\), a column \(r\), and a row \(\ell\), with
+\begin{equation}
+ A^\adj=A,\qquad Q=r\ell,\qquad \ell r=0,\qquad
+ T(t)=A-tQ,\quad t\in\mathbb R.
+ \tag{MC2}\label{MC2}
+\end{equation}
+These formulas allow \(Q=0\). The relation \(\ell r=0\) proves
+\(Q^2=r(\ell r)\ell=0\).
+
+Define the actual metric dual column, with no change to \(r,\ell\), by
+\begin{equation}
+ v=G^{-1}\ell^*,\qquad
+ a=r^*Gr,\qquad b=\ell G^{-1}\ell^*=v^*Gv,\qquad
+ \epsilon^2=ab.
+ \tag{MC3}\label{MC3}
+\end{equation}
+Since \(v^*G=\ell\), one has \(\langle v,r\rangle_G=0\).
+Direct multiplication gives
+\begin{equation}
+ Q^\adj=vr^*G,\quad
+ Q^\adj Q=a\,vv^*G,\quad QQ^\adj=b\,rr^*G,\quad
+ \tr(Q^\adj Q)=ab=\epsilon^2.
+ \tag{MC4}\label{MC4}
+\end{equation}
+The trace equality uses \(\tr(vv^*G)=v^*Gv\).
+
+\begin{lemma}
+The original metric operator norm of \(Q\) and its Hilbert--Schmidt norm
+are both \(\epsilon\). For \(Q\ne0\), the two vectors
+\(e=r/\sqrt a\) and \(f=v/\sqrt b\) are \(G\)-orthonormal and give
+the following exact coordinate restrictions:
+\begin{equation}
+ Q|_{\operatorname{span}(e,f)}
+ =\begin{pmatrix}0&\epsilon\\0&0\end{pmatrix},\qquad
+ Q^\adj|_{\operatorname{span}(e,f)}
+ =\begin{pmatrix}0&0\\\epsilon&0\end{pmatrix}.
+ \tag{MC5}\label{MC5}
+\end{equation}
+Both operators vanish on the \(G\)-orthogonal complement of this span.
+\end{lemma}
+\begin{proof}
+For every \(x\), \(Qx=r\langle v,x\rangle_G\). Cauchy--Schwarz gives
+\(\|Qx\|_G^2\le ab\|x\|_G^2\), with equality at \(x=v/\sqrt b\)
+when \(Q\ne0\). Equation \eqref{MC4} proves the Hilbert--Schmidt equality.
+The inner product \(\langle e,f\rangle_G\) is zero by \(\ell r=0\);
+the actions \(Qe=0\), \(Qf=\epsilon e\), \(Q^\adj e=\epsilon f\),
+and \(Q^\adj f=0\) prove all remaining assertions. When \(Q=0\), all
+norms are zero and no division by \(a\) or \(b\) is used.
+\end{proof}
+
+\section{The two trace actions, their difference, and their derivatives}
+
+Keep the generally complex number
+\begin{equation}
+ \gamma=\ell Ar=\tr(AQ),\qquad
+ S(t)=\tr\bigl(T(t)^\adj T(t)\bigr),\qquad
+ J(t)=\tr\bigl(T(t)^2\bigr).
+ \tag{MC6}\label{MC6}
+\end{equation}
+There is no assertion that \(\gamma\) is real.
+
+\begin{theorem}
+For every real \(t\), the exact actions and their derivatives are
+\begin{align}
+ S(t)&=\tr(A^2)-2t\Rea\gamma+t^2\epsilon^2,
+ & S'(t)&=-2\Rea\gamma+2t\epsilon^2,
+ & S''(t)&=2\epsilon^2, \tag{MC7}\label{MC7}\\
+ J(t)&=\tr(A^2)-2t\gamma,
+ & J'(t)&=-2\gamma,
+ & J''(t)&=0. \tag{MC8}\label{MC8}
+\end{align}
+In particular,
+\begin{equation}
+ S(t)-J(t)=t^2\epsilon^2+2it\Ima\gamma,\qquad
+ S(t)-\Rea J(t)=t^2\epsilon^2.
+ \tag{MC9}\label{MC9}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Because \(G\) is fixed and \(t\) is real,
+\(T(t)^\adj=A-tQ^\adj\). Expanding the product under the trace gives
+\[
+ S(t)=\tr A^2-t\tr(AQ+Q^\adj A)+t^2\tr(Q^\adj Q).
+\]
+The identity
+\(\tr(Q^\adj A)=\tr((AQ)^\adj)=\overline{\tr(AQ)}\),
+together with \eqref{MC4}, proves \eqref{MC7}. Expanding \(T(t)^2\)
+gives
+\[
+ J(t)=\tr A^2-t\tr(AQ+QA)+t^2\tr Q^2.
+\]
+Here \(\tr QA=\tr AQ\) and \(Q^2=0\), proving \eqref{MC8}.
+Differentiation is differentiation of the two displayed polynomials.
+Finally \(\tr A^2=\|A\|_{\mathrm{HS},G}^2\) is real, so subtraction
+proves \eqref{MC9}.
+\end{proof}
+
+\paragraph{What the nilpotent relation actually removes.}
+The relation \(Q^2=0\) removes the quadratic coefficient of \(J\), not
+its mixed coefficient \(-2\gamma\). It removes no positive coefficient
+\(\tr(Q^\adj Q)=\epsilon^2\) from \(S\). Equation \eqref{MC9} is
+the exact map between the two actions, including the imaginary mixed term.
+
+\section{The Hermitian defect and its complete rank-two calculation}
+
+Define
+\begin{equation}
+ C(t)=i\bigl(T(t)-T(t)^\adj\bigr)
+      =it(Q^\adj-Q),\qquad
+ H(t)=\frac{T(t)+T(t)^\adj}{2}.
+ \tag{MC10}\label{MC10}
+\end{equation}
+Both \(C(t)\) and \(H(t)\) are \(G\)-selfadjoint. In particular
+\begin{equation}
+ C'(t)=i(Q^\adj-Q),\qquad C''(t)=0,\qquad
+ H(t)=A-\frac t2(Q+Q^\adj).
+ \tag{MC11}\label{MC11}
+\end{equation}
+For \(Q\ne0\), its coordinates \eqref{MC5} give
+\begin{equation}
+ C(t)|_{\operatorname{span}(e,f)}
+ =\begin{pmatrix}0&-it\epsilon\\it\epsilon&0\end{pmatrix},
+ \quad
+ C(t)^2=t^2\epsilon^2 P,
+ \tag{MC12}\label{MC12}
+\end{equation}
+where \(P\) is the \(G\)-orthogonal projection onto
+\(\operatorname{span}(r,v)\). Indeed the displayed matrix squares to
+\(t^2\epsilon^2I_2\), and \(C(t)\) vanishes on the complementary space.
+For \(Q=0\), put \(P=0\) and the same square identity holds.
+Its complete spectrum is \(+t\epsilon,-t\epsilon\) and \(n-2\) zeros
+when \(Q\ne0\). Thus
+\begin{align}
+ \|C(t)\|_G&=|t|\epsilon,\qquad
+ \tr C(t)^2=2t^2\epsilon^2,\qquad
+ \tr(C(t)_+)=|t|\epsilon, \tag{MC13}\label{MC13}\\
+ \frac{d}{dt}\tr C(t)^2&=4t\epsilon^2,\qquad
+ \frac{d^2}{dt^2}\tr C(t)^2=4\epsilon^2.
+ \tag{MC14}\label{MC14}
+\end{align}
+Here \(C_+\) is defined by keeping the positive eigenvalue in the
+selfadjoint spectral decomposition. The function
+\(\|C(t)\|_G=|t|\epsilon\) has the two one-sided derivatives
+\(-\epsilon,+\epsilon\) at zero when \(\epsilon>0\); a two-sided
+derivative of this norm at zero is not asserted.
+
+For any matrix \(T\), not only this family, expanding
+the square of \(i(T-T^\adj)\) and taking its trace proves
+\begin{equation}
+ \frac12\tr\bigl(i(T-T^\adj)\bigr)^2
+   =\tr(T^\adj T)-\Rea\tr(T^2).
+ \tag{MC15}\label{MC15}
+\end{equation}
+All factors are retained: cyclicity makes both mixed terms
+\(\tr(T^\adj T)\); the two remaining terms are
+\(-\tr T^2-\overline{\tr T^2}\).
+In the family \eqref{MC2}, \eqref{MC15} is exactly
+\eqref{MC9} and \eqref{MC13}. The more detailed splitting
+\(T=H-iC/2\) gives
+\begin{align}
+ S(t)&=\tr H(t)^2+\tfrac14\tr C(t)^2,
+ & J(t)&=\tr H(t)^2-\tfrac14\tr C(t)^2-i\tr(H(t)C(t)),
+ \tag{MC16}\label{MC16}\\
+ \tr H(t)^2&=\tr A^2-2t\Rea\gamma+\tfrac12t^2\epsilon^2,
+ & \tr(H(t)C(t))&=2t\Ima\gamma.
+ \tag{MC17}\label{MC17}
+\end{align}
+To verify the final identity directly, expand \(HC\). Its part linear
+in \(t\) has trace \(it(\overline\gamma-\gamma)=2t\Ima\gamma\).
+The quadratic trace is zero because \(Q^2=(Q^\adj)^2=0\) and
+\(\tr QQ^\adj=\tr Q^\adj Q\). The first formula in \eqref{MC17}
+follows by squaring \(H\) and using
+\(\tr(Q+Q^\adj)^2=2\epsilon^2\).
+
+\section{Exact receiver for the aggregate spectral allowance}
+
+Let \(c\in\mathbb R\) retain the centre of the original generator and put
+\begin{equation}
+ B(t)=cI+iT(t),\qquad
+ B(t)+B(t)^\adj-2cI=C(t).
+ \tag{MC18}\label{MC18}
+\end{equation}
+The identity follows by substituting the adjoint of \(iT\);
+the sign of \(i\) is essential. Count each eigenvalue \(\lambda\)
+of \(B(t)\) with its algebraic multiplicity \(m_\lambda\), and define
+\begin{equation}
+ L(t)=\sum_{\Rea\lambda>c}m_\lambda(2\Rea\lambda-2c).
+ \tag{MC19}\label{MC19}
+\end{equation}
+
+\begin{theorem}
+For the original metric and every real \(t\),
+\begin{equation}
+ 0\le L(t)\le |t|\epsilon,\qquad
+ L(t)^2\le t^2\epsilon^2
+      =\frac{t^2}{2}S''(t)
+      =S(t)-\Rea J(t).
+ \tag{MC20}\label{MC20}
+\end{equation}
+No diagonalizability of \(B(t)\) is required.
+\end{theorem}
+\begin{proof}
+Let \(W\) be the direct sum of the generalized eigenspaces for
+\(\Rea\lambda>c\), and let \(P_W\) be its \(G\)-orthogonal projection.
+The generalized eigenspace decomposition of a finite complex matrix
+can be obtained by factoring its minimal polynomial into relatively
+prime powers and applying Bezout polynomial identities to produce the
+corresponding projections. Thus \(W\) is invariant under \(B(t)\),
+and the restriction has trace
+\(\tr(B(t)|_W)=\sum_{\Rea\lambda>c}m_\lambda\lambda\);
+this last identity follows, for example, by putting each generalized
+eigenspace into a basis in which its nilpotent part is strictly triangular.
+Choose a \(G\)-orthonormal basis beginning with a basis of \(W\).
+In that basis \(P_W\) is the diagonal projection onto its first
+\(\dim W\) coordinates, and
+\[
+ \tr(P_W C(t))
+   =2\Rea\tr(B(t)|_W)-2c\dim W=L(t).
+\]
+The positive and negative spectral spaces of \(C(t)\) are orthogonal.
+For a unit eigenvector \(u\) of \(C(t)\),
+\(\langle u,P_Wu\rangle_G=\|P_Wu\|_G^2\) lies in \([0,1]\).
+Consequently
+\(\tr(P_W C(t))\le\tr C(t)_+=|t|\epsilon\) by \eqref{MC13};
+the same conclusion is immediate if \(Q=0\) or \(t=0\).
+Every summand of \eqref{MC19} is positive. Squaring the nonnegative
+inequality and using \eqref{MC7} and \eqref{MC9} completes the proof.
+\end{proof}
+
+For a single eigenvector \(B(t)x=\lambda x\), the same identity gives
+\[
+ 2(\Rea\lambda-c)=
+ \frac{\langle x,C(t)x\rangle_G}{\langle x,x\rangle_G};
+\]
+the theorem strengthens its individual bound to the sum with all
+algebraic multiplicities. At \(c=k/2\) and \(t=1\),
+\eqref{MC20} is the direct finite-dimensional receiver
+\(\sum_{\Rea\lambda>k/2}m_\lambda(2\Rea\lambda-k)\le\epsilon\).
+It neither asserts that a programme-specific \(\epsilon\) tends to zero
+nor removes any original spectral class.
+
+\section{Selfadjoint dilation with the metric still present}
+
+On \(E\oplus E\) use the specified metric
+\(\mathcal G=\operatorname{diag}(G,G)\) and define
+\begin{equation}
+ \mathcal D_T=
+ \begin{pmatrix}0&T\\T^\adj&0\end{pmatrix},
+ \qquad
+ \mathcal D_T^{\dagger_{\mathcal G}}=\mathcal D_T,\qquad
+ \mathcal D_T^2=
+ \begin{pmatrix}TT^\adj&0\\0&T^\adj T\end{pmatrix}.
+ \tag{MC21}\label{MC21}
+\end{equation}
+These identities follow by block multiplication and the definition of
+the adjoint. If \(I_2x=(0,x)\) and \(P_1(x,y)=x\), then
+\begin{equation}
+ P_1\mathcal D_T I_2=T.
+ \tag{MC22}\label{MC22}
+\end{equation}
+Thus the original operator is recovered, not replaced by an unrelated
+selfadjoint matrix. The map \(T\mapsto\mathcal D_T\) is real-linear,
+not multiplicative: directly,
+\(\mathcal D_U\mathcal D_T=\operatorname{diag}(UT^\adj,U^\adj T)\).
+No equality of the spectrum of \(T\) with that of \(\mathcal D_T\)
+is inferred.
+
+For every \(z\in\mathbb C\),
+\begin{equation}
+ \det(zI_{2n}-\mathcal D_T)
+  =\det(z^2I_n-T^\adj T)
+  =\det(z^2I_n-TT^\adj).
+ \tag{MC23}\label{MC23}
+\end{equation}
+For \(z\ne0\), take the Schur complement of the first \(zI_n\)
+block in \(zI-\mathcal D_T\); the determinant is
+\(z^n\det(zI-z^{-1}T^\adj T)\). Taking the other block yields
+the other expression. Since all expressions are polynomials in \(z\),
+the equalities also hold at zero. In particular
+\(\det(T^\adj T)=|\det T|^2\); singularity of \(T\) is retained.
+
+For \(z\notin\spec\mathcal D_T\), set
+\(R_+(z)=(TT^\adj-z^2I)^{-1}\) and
+\(R_-(z)=(T^\adj T-z^2I)^{-1}\). Then the exact resolvent is
+\begin{equation}
+ (\mathcal D_T-zI)^{-1}
+ =\begin{pmatrix}
+ zR_+(z)&T R_-(z)\\
+ T^\adj R_+(z)&zR_-(z)
+ \end{pmatrix}.
+ \tag{MC24}\label{MC24}
+\end{equation}
+Indeed \eqref{MC23} ensures both inverse blocks exist; multiplication
+of \((\mathcal D_T+zI)(\mathcal D_T^2-z^2I)^{-1}\) proves the
+formula and multiplication by \(\mathcal D_T-zI\) verifies it.
+The only reorderings used are \(TR_-=R_+T\) and
+\(T^\adj R_+=R_-T^\adj\), obtained from
+\((TT^\adj)T=T(T^\adj T)\) and its adjoint.
+Replacing each denominator by \(z^2I-TT^\adj\) or
+\(z^2I-T^\adj T\) requires an overall minus sign in \eqref{MC24}.
+
+The coordinate map \(\mathcal U=\operatorname{diag}(G^{1/2},G^{1/2})\)
+is an isometry from the \(\mathcal G\) metric to the Euclidean metric:
+\(\mathcal U^*\mathcal U=\mathcal G\). With
+\(\widehat T=G^{1/2}TG^{-1/2}\), it satisfies
+\begin{equation}
+ \mathcal U\mathcal D_T\mathcal U^{-1}
+  =\begin{pmatrix}0&\widehat T\\\widehat T^*&0\end{pmatrix},
+ \qquad
+ G^{1/2}T^\adj G^{-1/2}=\widehat T^*.
+ \tag{MC25}\label{MC25}
+\end{equation}
+Here the second identity follows directly from \(T^\adj=G^{-1}T^*G\).
+The matrix \(G\) has been carried into \(\widehat T\), not discarded.
+Equation \eqref{MC23} therefore shows that the spectrum of
+\(\mathcal D_T\) consists of the positive and negative singular values
+of \(\widehat T\), with multiplicities. The trace and characteristic
+polynomial identities are basis-invariant, and \eqref{MC24} conjugates
+by this same \(\mathcal U\).
+
+One can also retain \(G\) in both summands without using \(G^{1/2}\).
+The \(\mathcal G\)-unitary matrix
+\(\mathcal W=2^{-1/2}\left(\begin{smallmatrix}I&I\\I&-I\end{smallmatrix}\right)\)
+gives the exact defect coordinates
+\begin{equation}
+ \mathcal W^{\dagger_{\mathcal G}}\mathcal D_T\mathcal W
+ =\begin{pmatrix}H&iC/2\\-iC/2&-H\end{pmatrix}.
+ \tag{MC26}\label{MC26}
+\end{equation}
+Multiplying the three block matrices proves the formula; the
+off-diagonal block is exactly \((T^\adj-T)/2=iC/2\).
+Thus its operator norm is \(|t|\epsilon/2\) for the family \eqref{MC2}.
+
+\section{Quadratic spectral-action Hessian: every factor}
+
+Retain the full quadratic action on the doubled space:
+\begin{equation}
+ F(t)=\tr\mathcal D_{T(t)}^2
+      =2S(t)
+      =2\tr A^2-4t\Rea\gamma+2t^2\epsilon^2.
+ \tag{MC27}\label{MC27}
+\end{equation}
+The equality \(F=2S\) follows from \eqref{MC21} and
+\(\tr TT^\adj=\tr T^\adj T\). Hence
+\begin{equation}
+ F'(t)=-4\Rea\gamma+4t\epsilon^2,\quad
+ F''(t)=4\epsilon^2,\quad
+ \frac12F''(t)=2\epsilon^2,\quad
+ \frac12S''(t)=\epsilon^2.
+ \tag{MC28}\label{MC28}
+\end{equation}
+The last two constants are different because the actions are different
+and the exact relation is \(F=2S\). In particular \eqref{MC20} also reads
+\begin{equation}
+ L(t)^2\le\frac{t^2}{4}F''(t).
+ \tag{MC29}\label{MC29}
+\end{equation}
+
+There is a useful Hessian version that does not require rank one.
+On the real vector space of complex matrices, let
+\(F(T)=2\tr T^\adj T\). Expanding \(F(T+sU+tV)\), with \(s,t\)
+real, gives the coefficient of \(st\) as
+\[
+ 2\tr(U^\adj V+V^\adj U)=4\Rea\tr(U^\adj V).
+\]
+Therefore
+\begin{equation}
+ d^2F_T[U,V]=4\Rea\tr(U^\adj V),\qquad
+ d^2S_T[U,V]=2\Rea\tr(U^\adj V).
+ \tag{MC30}\label{MC30}
+\end{equation}
+Along the original family \(U=V=-Q\), these are exactly \eqref{MC28}.
+The perturbation of the doubled operator itself is
+\[
+ \mathcal D_{T(t)}'=
+ \begin{pmatrix}0&-Q\\-Q^\adj&0\end{pmatrix},
+ \qquad
+ \tr\bigl(\mathcal D_{T(t)}'\bigr)^2=2\epsilon^2.
+\]
+Nilpotence \(Q^2=0\) has not made its square zero: its two diagonal
+blocks are \(QQ^\adj\) and \(Q^\adj Q\).
+
+\section{Exact examples retaining a nonidentity metric and complex phase}
+
+Take
+\begin{equation}
+ G=\begin{pmatrix}2&0\\0&3\end{pmatrix},\quad
+ r=\begin{pmatrix}1\\0\end{pmatrix},\quad
+ \ell=\begin{pmatrix}0&1\end{pmatrix},\quad
+ Q=\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+ A=\begin{pmatrix}1&3+3i\\2-2i&4\end{pmatrix}.
+ \tag{MC31}\label{MC31}
+\end{equation}
+One computes
+\[
+ GA=\begin{pmatrix}2&6+6i\\6-6i&12\end{pmatrix}=(GA)^*,
+ \quad Q^\adj=\begin{pmatrix}0&0\\2/3&0\end{pmatrix},
+ \quad \gamma=2-2i,\quad \epsilon^2=\frac23,\quad\tr A^2=41.
+\]
+Thus
+\begin{equation}
+ S(t)=41-4t+\tfrac23t^2,\quad
+ J(t)=41-4t+4it,\quad
+ C(t)=\begin{pmatrix}0&-it\\2it/3&0\end{pmatrix},\quad
+ \tr C(t)^2=\tfrac43t^2.
+ \tag{MC32}\label{MC32}
+\end{equation}
+Both mixed terms survive: the real term \(-4t\) appears in both
+actions, and the imaginary term \(4it\) appears in \(J(t)\).
+Further direct determinants give
+\begin{align}
+ \det(zI-T(t))&=z^2-5z-8+(2-2i)t,\notag\\
+ \det(zI-\mathcal D_{T(t)})
+ &=z^4-\left(41-4t+\tfrac23t^2\right)z^2
+       +64-32t+8t^2.
+ \tag{MC33}\label{MC33}
+\end{align}
+The constant term in the second formula is exactly
+\(|\det T(t)|^2=|-8+(2-2i)t|^2\).
+
+For a second example retain this same \(G,Q,r,\ell\), but take
+\[
+ A_0=\frac{Q+Q^\adj}{2}
+   =\begin{pmatrix}0&1/2\\1/3&0\end{pmatrix}.
+\]
+Then at \(t=1\),
+\(T_0=(Q^\adj-Q)/2\) and \(iT_0=C(1)/2\).
+For any real \(c\), \(B_0=cI+iT_0\) is \(G\)-selfadjoint and
+has eigenvalues \(c+\epsilon/2,c-\epsilon/2\). Consequently
+\begin{equation}
+ L_0(1)=\epsilon,\qquad
+ L_0(1)^2=\epsilon^2=\frac14F_0''(1).
+ \tag{MC34}\label{MC34}
+\end{equation}
+This realizes equality in the aggregate receiver and shows that its
+constant cannot be reduced for the stated finite family.
+
+\section{A surviving quartic coefficient}
+
+The quadratic holomorphic identity \eqref{MC8} does not remove the second
+derivative of every holomorphic trace action. In the same coordinates,
+\begin{equation}
+ \tr(A-tQ)^4
+   =\tr A^4-4t\,\ell A^3r+2t^2(\ell Ar)^2.
+ \tag{MC35}\label{MC35}
+\end{equation}
+To prove it, expand the four factors without commuting \(A\) and \(Q\).
+The four words with one \(Q\) have the same trace by cyclicity and give
+\(-4t\tr(A^3Q)=-4t\ell A^3r\).
+Among the six words with two occurrences of \(Q\), four have adjacent
+\(Q\)'s in cyclic order, so their traces vanish by \(Q^2=0\).
+The other two are \(AQAQ\) and \(QAQA\). Since
+\(QAQ=r(\ell Ar)\ell=(\ell Ar)Q\), both have trace
+\((\ell Ar)\tr(AQ)=(\ell Ar)^2\).
+Every word with three or four \(Q\)'s has adjacent \(Q\)'s in cyclic
+order and has trace zero. These are all sixteen terms.
+For the full complex example \eqref{MC31},
+\((\ell Ar)^2=(2-2i)^2=-8i\); the quadratic coefficient of the
+quartic holomorphic action is therefore \(-16i\), not zero.
+This calculation retains the phase and does not replace the metric
+action by the holomorphic quartic action.
+
+\paragraph{Programme conclusion at its exact scope.}
+The given metric allowance \(\epsilon\) is one-half the square root of
+the second derivative of the full doubled quadratic action, as
+\(\epsilon=\tfrac12\sqrt{F''}\). The holomorphic action has a different
+quadratic coefficient, connected to it by the explicit defect
+\eqref{MC15}, not by a declaration of nonidentity. Equations
+\eqref{MC18}--\eqref{MC20} carry the same number into the aggregate
+arithmetic spectral bound with the original centre and multiplicities.
+No asymptotic decay is established by these finite identities.
+
+\begin{thebibliography}{9}
+\bibitem{CvS}
+Alain Connes and Walter D. van Suijlekom,
+\emph{Quadratic Forms, Real Zeros and Echoes of the Spectral Action},
+arXiv:2511.23257v1 (2025),
+\url{https://arxiv.org/abs/2511.23257v1}.
+Contextual citation; the finite matrix proofs in this note are independent.
+\end{thebibliography}
+\end{document}

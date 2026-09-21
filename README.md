@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22883955) (assigned DOI 10.5281/zenodo.22883955) retains the complete research programme and adds the 45-page invariant-determinant and arithmetic-collision paper, with complete LaTeX, human provenance and precise proof links. All 69 earlier PDFs remain separate.
+
 ### The original invariant determinant and an arithmetic collision
 
 [Read the 45-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/INVARIANT_DETERMINANT_COLLISION_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/INVARIANT_DETERMINANT_COLLISION_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/RESULTS_20260921_018.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/RESULT_INDEX.json).

@@ -33,6 +33,12 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Critical activation and the original observed arithmetic action
+
+[Read the 41-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/CRITICAL_ACTIVATION_COMPLETE_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/CRITICAL_ACTIVATION_COMPLETE_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/RESULTS_20260921_015.md) · [Machine-readable proofs and source records](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/RESULT_INDEX.json).
+
+The Split-Zero programme studies how the original theta source, its arithmetic quotient and its observation contribute to determinant and heat calculations. This addition calculates the inverse-power sector across its critical activation scale, retains every singular direction in the observed arithmetic action, and carries the resulting bounds into the original kernel and complementary determinants. Complete proofs HAR1–49, ACT1–48 and AK1–20, the received argument, original human sources, reproducible figures and verification records are included. The limiting coefficient retains the earlier monic-profile and zero-law source status; the initial canonical kernel determinant and native complex-current phases remain unevaluated. Earlier papers and the whole-project account are retained.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22868558) (assigned DOI 10.5281/zenodo.22868558) retains the complete research programme and adds the 61-page source-family and observed-heat paper, with complete LaTeX, original human sources and precise proof links. All 65 earlier PDFs, including the preceding inverse-quotient paper, remain separate.
 
 ### Original source families and complete observed heat: the 61-page proof

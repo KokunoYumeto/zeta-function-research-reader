@@ -17,6 +17,14 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+### The full original angle spectrum and determinant extraction
+
+[Read the 37-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/ORIGINAL_ANGLE_WORD_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/ORIGINAL_ANGLE_WORD_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/RESULTS_20260921_019.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/RESULT_INDEX.json).
+
+The Split-Zero programme studies the original arithmetic theta source, its quotient and its observation through determinant and heat estimates. This paper determines the leading inverse-growth law for every original projection direction and exterior rank. It bounds the total downward movement of the centered angle spectrum across the complete cutoff window for both original Gamma source orders. The two source-innovation formulas are identified with their exact complex phase and mass, and actual source columns extract the determinant with a proved smaller-scale error. The complete long arithmetic word retains its collision kernel, resultant phase, all nonzero spectral directions and observed heat weights.
+
+Complete AS1–64, FW1–49, RX1–20 and AD1–14 proofs, standalone LaTeX, reproducible figure sources, finite checks, inherited complete proofs and human-source records accompany the paper. The native period-dependent coefficient at order kq and separate complex-current signs remain unevaluated. The negative word-heat return is not assigned to that different current. Gu and Eisenstat's rank-revealing QR work is credited as context; the finite exchange arguments used here are proved directly. Original mathematical inputs retain their stated status. Earlier editions and the whole-project description remain intact; separate unsealed020 work is excluded.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22883955) (assigned DOI 10.5281/zenodo.22883955) retains the complete research programme and adds the 45-page invariant-determinant and arithmetic-collision paper, with complete LaTeX, human provenance and precise proof links. All 69 earlier PDFs remain separate.
 
 ### The original invariant determinant and an arithmetic collision

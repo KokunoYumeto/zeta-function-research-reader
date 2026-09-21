@@ -1,0 +1,11 @@
+# Additional results and complete proof locators
+
+SZ-20260921-008 extends005 and006. RLA1–10 constructs an exact holomorphic inverse from the two actual spectral roots to the original period and unit coordinates. The full original symbol is U(t,p)(t−alpha)(t−beta), with its complete nonzero analytic unit retained. Its parameter branches are transverse, and on actual real parameters beta=−conjugate(alpha).
+
+RLA11–20 constructs the entire finite module M_N=R[t]/(t^N,(t−alpha)(t−beta)) as coker(C^N), C=[[0,−alpha beta],[1,alpha+beta]]. The branch sequence is proved injective and exact; its gluing quotient has lengthN. The annihilator is(alpha^N beta^N). The module is not the direct sum of the two branch modules for anyN. Every map, inverse, presentation change and original analytic unit is explicit.
+
+RLA21–35 carries the full Gamma norms through that algebra, retains all moment and center terms, covers actual orders0,1,2, and reconstructs all four ES states with their lost scalars. RQT1–19 constructs the projected extension, its moving kernel and quotient metric. The old source projection has exactlyN−2 unit singular values and two angle sines d1,d2, whose product is exactly |g0|^N/sqrt(det(RR*)). This rewrites the literal inverse-exterior denominator in equation(11), including every original factorial and Gamma weight. The actual order-two quotient is invertible at the root; the old source loses transversality there.
+
+RQT20–22 computes both angle constants. On resonance the full leading matrix contains (g3*H_(D−1)+g2*K_D)*rho_(D+2)/rho0; no higher-moment correction is discarded. The complete turning transitions retain the fractional exponents and both original extra Gamma weights.
+
+Complete proofs: REAL_PAIR_LOCAL_ALGEBRA.tex, REAL_PAIR_MOVING_QUOTIENT.tex and REAL_PAIR_ANGLE_CONSTANTS.tex, also in the reader and cumulative. The independent mathematical derivation is REAL_PAIR_LOCAL_REVIEW.md. Human antecedents remain cited at use: the canonical ES reader by The Clankers, Johansson's original Arb source, and the named DLMF Chapter18 authors through WCF. Verified public005/006/PCL/WCF proofs are linked precisely in the bibliography. Complete original sources without a verified separate public target accompany the packet.

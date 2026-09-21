@@ -1,0 +1,424 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}\usepackage[hidelinks]{hyperref}\usepackage{xurl}
+\setlength{\emergencystretch}{3em}
+\title{Uniform monic control for the original activation law}
+\author{Split-Zero research programme}\date{21 September 2026}
+\begin{document}\maketitle
+This note supplies the uniform monic-norm estimate used in A19 of the
+new activation proof \cite{Activation}. It also gives explicit source
+comparison bounds sufficient for that proof's action and observation
+receivers. The original finite Taylor-to-\(Q\) return, the full tensor
+section and its physical normal source remain those in A6--18.
+This argument evaluates the fixed-activation \(q^2\) law. It does not
+supply the smaller error required for the canonical \(kq\) allocation.
+
+\section{The exact equilibrium family and uniform constants}
+Let \(t\) range over a fixed compact interval
+\(J=[t_-,t_+]\subset(0,\infty)\), and set
+\[
+V_t(x)=\frac{\pi}{t}\sqrt x-\frac2t\log x.
+\]
+EIQ1--19 \cite{EIQ} proves directly its equilibrium probability
+\(\mu_t\), supported on \([a_t,b_t]\), with
+\[
+V_t(x)-2\int\log|x-y|\,d\mu_t(y)=\lambda_t
+\quad(a_t\le x\le b_t),
+\]
+and a larger value outside that interval in \((0,\infty)\).
+The density is EIQ10--11:
+\[
+\frac{\sqrt{(b_t-x)(x-a_t)}}{2\pi}
+\frac{\beta_t}{2\pi x}
+\int_0^\infty
+\frac{\sqrt s\,ds}{(x+s)\sqrt{(a_t+s)(b_t+s)}},
+\qquad \beta_t=\pi/t.
+\]
+Its endpoints depend smoothly on \(t\), by EIQ3--6.
+Consequently \(a_*=\min_Ja_t>0\),
+\(b^*=\max_Jb_t<\infty\), and \(\min_J(b_t-a_t)>0\).
+The displayed integral, split at \(s=1\), is uniformly bounded:
+near zero its integrand is at most a constant times \(\sqrt s\);
+near infinity it is at most a constant times \(s^{-3/2}\).
+The density therefore has a uniform upper bound \(M_J\).
+The same formulas give a bounded continuous \(\lambda_t\).
+These are proved properties of this specified family, rather than
+regularity assumptions about an arbitrary equilibrium measure.
+
+For \(\epsilon\in\{0,1\}\), put
+\[
+w_{t,\epsilon}(x)
+=x^{\epsilon+\epsilon/t-3/4}
+ e^{-\pi\epsilon\sqrt x/(2t)} .
+\]
+On every equilibrium interval this function and its reciprocal
+are uniformly bounded. On \((0,B]\), for fixed \(B\), it is
+uniformly integrable, since its smallest exponent at zero is
+\(-3/4>-1\).
+
+\section{A complete uniform monic-norm bound}
+For a positive integer \(h\), define
+\[
+I_h(t,\epsilon)=
+\min_{\substack{P\ {\rm monic}\\\deg P=h}}
+\int_0^\infty |P(x)|^2e^{-hV_t(x)}w_{t,\epsilon}(x)\,dx.
+\]
+We prove constants \(c_J,C_J,L_J>0\) such that
+\begin{equation}\tag{AP1}
+c_Je^{-h\lambda_t}\le I_h(t,\epsilon)
+\le C_J(h+2)^{L_J}e^{-h\lambda_t}.
+\end{equation}
+
+For the lower bound let \(\omega_t\) be the arcsine probability on
+\([a_t,b_t]\), and \({\rm cap}_t=(b_t-a_t)/4\).
+For every complex \(z\),
+\[
+\int\log|x-z|\,d\omega_t(x)\ge\log{\rm cap}_t .
+\]
+To verify this, write \(x=(a_t+b_t)/2+(b_t-a_t)\cos\theta/2\).
+Factor \(x-z\) into its two reciprocal factors in \(e^{i\theta}\).
+The mean of \(\log|e^{i\theta}-w|\) is
+\(\log\max(1,|w|)\): for \(|w|<1\) expand
+\(\log(1-we^{-i\theta})\) and integrate its real part; for
+\(|w|>1\) factor out \(w\); at \(|w|=1\) take the integrable
+logarithmic limit. The resulting additional term is nonnegative,
+proving the assertion, with equality for \(z\) in the interval.
+Apply it to every zero of \(P\).
+Jensen's inequality on the interval gives
+\[
+\begin{split}
+\log\int |P|^2e^{-hV_t}w_{t,\epsilon}\,dx
+&\ge 2h\log{\rm cap}_t-h\int V_t\,d\omega_t\\
+&\quad+\int\log(w_{t,\epsilon}/\omega_t')\,d\omega_t .
+\end{split}
+\]
+The final integral is uniformly bounded below. Indeed \(w\) is
+bounded above and below there, and the arcsine logarithmic
+singularities are integrable, uniformly for the stated interval
+lengths. Averaging the exact EIQ Euler equality against \(\omega_t\)
+and interchanging the integrable logarithmic kernels gives
+\[
+\int V_t\,d\omega_t-2\log{\rm cap}_t=\lambda_t.
+\]
+The lower bound in AP1 follows. A root of \(P\) on the interval
+causes an integrable logarithm; Jensen follows by a positive
+regularization and its limit.
+
+For the upper bound take the \(h\) midpoint quantiles \(x_j\) of
+\(\mu_t\), and \(P_h(x)=\prod_{j=1}^h(x-x_j)\).
+The empirical distribution \(\mu_{t,h}\) satisfies
+\(\sup_x|\mu_{t,h}((-\infty,x])-\mu_t((-\infty,x])|
+\le1/(2h)\). Fix a finite \(B>b^*+1\), and put
+\(\varepsilon_h=1/h\) and
+\(f_x(y)=\log\max(|x-y|,\varepsilon_h)\).
+For \(x\in[0,B]\) its total variation on the support is at most
+\(C_{J,B}+2\log(h+2)\): it decreases toward the truncated
+minimum and then increases, and its maximum is bounded by
+\(\log(B+b^*+1)\).
+Integration by parts for a bounded-variation function against the
+difference of the two distribution functions therefore gives
+\[
+\left|\int f_x\,d(\mu_{t,h}-\mu_t)\right|
+\le\frac{C_{J,B}+2\log(h+2)}{2h}.
+\]
+The density bound proves
+\[
+0\le\int(f_x(y)-\log|x-y|)\,d\mu_t(y)
+\le 2M_J\varepsilon_h,
+\]
+because \(\int_0^\varepsilon\log(\varepsilon/u)\,du=\varepsilon\).
+Since the untruncated discrete logarithm is at most the truncated
+one, these two estimates give uniformly on \([0,B]\)
+\[
+\log|P_h(x)|
+\le h\int\log|x-y|\,d\mu_t(y)+C_J\log(h+2).
+\]
+The full Euler inequality then bounds its squared weighted
+integrand by
+\((h+2)^{C_J}e^{-h\lambda_t}w_{t,\epsilon}(x)\).
+Its integral on \([0,B]\) has the claimed upper bound.
+
+Choose \(B>2b^*\) large enough that, for all \(x\ge B\) and \(t\in J\),
+\[
+(2+2/t)\log x-(\pi/t)\sqrt x
+\le-\lambda_t-c\sqrt x,\qquad c=\pi/(2t_+)>0 .
+\]
+Such a common \(B\) exists since \(\log x/\sqrt x\to0\) and
+\(\lambda_t\) is bounded. One can choose it by imposing the
+inequality at \(B\) and
+\(\sqrt B\ge 2(2+2/t_-)/c\), which makes its sufficient envelope
+decrease thereafter. All the polynomial zeros lie in \((0,b^*]\);
+hence \(|P_h(x)|\le x^h\) for \(x\ge B\).
+The tail is bounded by
+\[
+e^{-h\lambda_t}\int_B^\infty
+ x^{\,1+1/t_-}e^{-hc\sqrt x}\,dx
+\le C_Je^{-h\lambda_t}.
+\]
+Here the exponent also bounds the possible negative power on this
+interval. This proves the upper half of AP1, including both
+integration regions. No uniform lower density bound at the soft
+edges was required.
+
+\section{Return to the exact Gamma and arithmetic monic minima}
+Use the complete Gamma measure
+\(d\sigma(y)=|\Gamma(1/4+iy/2)|^2dy/(2\pi)\),
+with mass \(M_\sigma=\sqrt{2\pi}\), recurrence and norms
+\[
+p_{j+1}=yp_j-j(j-\tfrac12)p_{j-1},\qquad
+\gamma_j=M_\sigma j!(1/2)_j .
+\]
+Their original-source citations and full constant conventions are
+in CG4/8 and DLMF \cite{CG,DLMF}.
+Let \(n=L+r\), \(r=2h+\epsilon\), and \(t=r/L\in J\).
+Because the weight \(|y|^{2L}d\sigma\) is even, its unique monic
+minimizer has parity \(r\). Uniqueness follows from its positive
+Gram; reflection is another minimizer, so they coincide.
+Write it as \(U_r(y)=y^\epsilon V_h(y^2)\).
+The exact substitution \(y=L\sqrt x\), including both real
+half-lines, yields
+\[
+\int_{\mathbb R}|y|^{2L}|U_r(y)|^2d\sigma(y)
+=L^{2n+1}\int_0^\infty x^{L+\epsilon-1/2}
+ |\widehat V_h(x)|^2\,\sigma(L\sqrt x)\,dx,
+\]
+where \(\widehat V_h(x)=L^{-2h}V_h(L^2x)\) is monic.
+Here the required density bounds follow directly from Binet's formula
+of Askey and Roy \cite{Binet}, whose original TeX accompanies this edition.
+For $\Re z>0$ it states
+\[
+\log\Gamma(z)=(z-\tfrac12)\log z-z+\tfrac12\log(2\pi)+R(z),\quad
+R(z)=\int_0^\infty e^{-zs}
+\left(\frac1{e^s-1}-\frac1s+\frac12\right)\frac{ds}{s}.
+\]
+For $u>0$, differentiation gives $u\cosh u-\sinh u\ge0$.
+The coefficient of $u^{2j+1}$ in
+$(1+u^2/3)\sinh u-u\cosh u$ is
+$4j(j-1)/(3(2j+1)!)\ge0$. Thus
+$0\le\coth u-u^{-1}\le u/3$, and consequently
+\[
+0\le\frac1{e^s-1}-\frac1s+\frac12\le s/12,\qquad
+|R(z)|\le(12\Re z)^{-1}.
+\]
+Put $Y=|y|/2$, $a=1/4$, $r_Y=(a^2+Y^2)^{1/2}$.
+Twice the real part, with the original $2\pi$ removed, gives
+\[
+\log\sigma(y)+\tfrac12\log Y+\pi Y
+=-\tfrac12\log(r_Y/Y)+2Y\arctan(a/Y)-\tfrac12
+ +2\Re R(a+iY).
+\]
+This is at most $2/3$, since $\arctan v\le v$.
+For $Y\ge1/2$, it is at least
+$-7/6-\tfrac14\log(5/4)$, since $r_Y/Y\le\sqrt{5/4}$.
+Therefore, with the explicit constants
+$C_U=\sqrt2e^{2/3}$ and
+$C_L=\sqrt2e^{-7/6}(5/4)^{-1/4}$, the bounds are
+\(\sigma(y)\le C_U|y|^{-1/2}e^{-\pi|y|/2}\) for \(y\ne0\),
+and the corresponding positive lower bound with \(C_L\) for
+\(|y|\ge1\). Thus the prefactor is \(L^{2n+1/2}\).
+The exact remaining weight factors as
+\[
+x^{L+\epsilon-3/4}e^{-\pi L\sqrt x/2}
+=e^{-hV_t(x)}w_{t,\epsilon}(x).
+\]
+The global upper bound and AP1's explicit trial give the upper
+monic estimate. The lower density bound holds on the equilibrium
+interval once \(L\sqrt{a_*}\ge1\); AP1's interval-only lower proof
+then applies. It follows that
+\begin{equation}\tag{AP2}
+\log\nu_r^{(L),\Gamma}
+=(2n+\tfrac12)\log L-h\lambda_t+O_J(\log(h+2)).
+\end{equation}
+The finitely many smaller integral pairs can be retained in the
+constant. This also proves that no zero neighborhood was removed
+from the upper integral.
+
+The exact factorial norm gives
+\(\log\gamma_n=2n\log n-2n+O(\log(n+2))\).
+Using \(n=L(1+t)\) and \(h=(Lt-\epsilon)/2\) in AP2 gives
+\begin{equation}\tag{AP3}
+\log\frac{\nu_r^{(L),\Gamma}}{\gamma_n}
+=2L\psi(t)+O_J(\log(n+2)),\quad
+\psi(t)=(1+t)(1-\log(1+t))-\frac t4\lambda_t .
+\end{equation}
+This is the original profile, with the full source mass canceled
+only in the displayed ratio.
+
+For the arithmetic source, A8's proved polynomial form bounds
+apply to every polynomial \(y^LU_r\) as well as to every degree-\(n\)
+monic polynomial. Taking their two separate minima gives
+\[
+\left|\log\frac{\nu_r^{(L),\mu}}{\omega_n^\mu}
+-\log\frac{\nu_r^{(L),\Gamma}}{\gamma_n}\right|
+\le\log(c_+/c_-).
+\]
+There is no determinant rank factor. The earlier profile is
+positive on finite positive \(t\), with a positive minimum on \(J\).
+For \(L\) proportional to \(q\), the last error is
+\(O_h(k\log^2(q+2))=o(q)\); subtracting one from the ratio has
+exponentially small relative effect. Therefore the actual
+Taylor minimum A12 satisfies
+\begin{equation}\tag{AP4}
+\log J_{n,L}=L\psi((n-L)/L)
++O_{h,J}(k\log^2(q+2)+\log(q+2)).
+\end{equation}
+This proves the uniform estimate needed in A19 on exactly its
+fixed compact parameter domain.
+
+\section{The original action and observation estimates}
+A8 alone gives a sufficient compression bound without needing a
+linear-in-\(q\) arithmetic recurrence estimate. If \(T_N\) is the
+actual attained scalar minimum section, then its real multiplication
+compression satisfies
+\begin{equation}\tag{AP5}
+\|T_N^*yT_N\|_\mu
+\le (2N+3)\sqrt{c_+/c_-}=e^{o_h(q)}
+\end{equation}
+through the admitted window. The earlier complete-source theorem
+NG3 \cite{NG} also proves the sharper bound
+\(C_{\rm mult}(h)(2N+\lfloor k/3\rfloor)=O_h(q)\);
+its original outgoing degree face is included in that proof.
+Thus the incoming A23 linear bound remains available.
+For the independent bound AP5, the Gamma Jacobi off-diagonal
+coefficients are \(\sqrt{j(j-1/2)}\), so multiplication through degree
+\(N\) has norm at most \(2N+3\). Apply A8 to \(yP\) and \(P\), and
+then use that the minimum section is an isometry and its adjoint
+contracts. This explicit alternative also suffices for A24--27 and
+the entire subcritical heat conclusion.
+
+The original observation admits a stronger finite comparison. Keep
+the full degree-$q$ relation $Q$, with root radius $R$ and every
+multiplicity, and the guards $q\ge8$, $R/q\le1/2$.
+Put $\widehat Q(w)=q^{-q}Q(qw)$. The coordinate map is
+$p(y)\mapsto p(qw)$; the physical norm is kept throughout.
+For any degree-$N$ polynomial $F(w)$, its full remainder is exactly
+\[
+r_F(w)=\frac1{2\pi i}\int_{|\zeta|=2}
+\frac{F(\zeta)}{\widehat Q(\zeta)}
+\frac{\widehat Q(\zeta)-\widehat Q(w)}{\zeta-w}\,d\zeta .
+\]
+The divided difference is polynomial of degree at most $q-1$ in $w$.
+Cauchy's formula identifies the result with $F-\widehat QH$,
+with $H$ analytic inside the contour, establishing congruence at
+every root with its full multiplicity. Polynomial division gives
+uniqueness.
+On $|w|=1$, $|\widehat Q(w)|\le(3/2)^q$; on $|\zeta|=2$,
+$|\widehat Q(\zeta)|\ge(3/2)^q$, and $|\zeta-w|\ge1$.
+It follows by Cauchy--Schwarz and Parseval that
+\[
+\|\operatorname{coef}r_F\|_2
+\le4\sqrt{N+1}\,2^N\|\operatorname{coef}F\|_2.
+\]
+Let $n_*=2q+2$ and $B_{\rm rem}=4\sqrt{n_*+1}\,2^{n_*}$.
+The following full polynomial coefficient bounds retain the
+arithmetic comparison constants and Gamma mass:
+\[
+g_-=\frac{c_-M_\sigma e^{-2q}}
+{(n_*+1)(2n_*+1)6^{2n_*}},\qquad
+g_+=c_+M_\sigma(n_*+1)5^{2n_*}.
+\]
+They satisfy
+$g_-\|\operatorname{coef}p(q\,\cdot)\|_2^2
+\le\|p\|_\mu^2\le
+g_+\|\operatorname{coef}p(q\,\cdot)\|_2^2$.
+Indeed multiplication by $y/q$ on the required Gamma polynomial
+space has norm at most five, by its two Jacobi diagonals and
+$q\ge8$. This bounds each monomial norm by $\sqrt{M_\sigma}5^j$.
+The scaled monic Gamma zeros lie in $[-5,5]$, by the same finite
+Jacobi bound. The coefficient one-norm is therefore at most $6^j$.
+The orthonormalizing factor is bounded by
+$M_\sigma^{-1/2}e^q\sqrt{2j+1}$, using
+$(1/2)_j\ge j!/(2j+1)$ and $q^j/j!\le e^q$.
+The first inequality follows from
+$4^j\le(2j+1)\binom{2j}{j}$.
+Summing squared coefficient norms of this orthonormal basis
+bounds the inverse coefficient Gram, proving the lower bound.
+Cauchy--Schwarz on the monomials proves the upper bound.
+Apply $c_-,c_+$ only after these Gamma estimates.
+
+In the single remainder coefficient frame, taking the original
+minimum over all admitted lifts now proves
+\[
+(g_-/B_{\rm rem}^2)I\preceq G_N\preceq g_+I
+\quad(q-1\le N\le2q).
+\]
+The upper bound uses the remainder itself; the lower applies the
+full remainder estimate to every lift before minimization.
+Hence all canonical metrics compare by
+$\Theta_c=(g_+/g_-)B_{\rm rem}^2=e^{O_h(q)}$.
+All joint metrics compare by $\Theta_J={\bf B}_k{\bf L}_k$ in
+their common physical tensor frame. This latter comparison is
+invariant under passage to the same remainder frame.
+With $\Theta=\max(\Theta_c,\Theta_J)$, inversion, the same
+positive covariance blend, and inversion again preserve mutual
+comparison by $\Theta$, uniformly in activation.
+The actual rank-two source increment gives metric decrease with $N$.
+Restriction to the unchanged rank-$m=8k-16$ kernel therefore gives
+\begin{equation}\tag{AP6}
+0\le\mathcal R\log\det(I_K^*G_N(\alpha)I_K)
+\le2m\log\Theta=O_h(kq)=o_h(q^2).
+\end{equation}
+The two original pairs are $(q-1,2q-1)$ and $(q,2q)$.
+The fixed-kernel determinant factorization proves the same leading
+activation coefficient for the original observation.
+This estimates its kernel loss but does not evaluate its $kq$
+coefficient. All roots, including repeated roots in the full
+source comparison, remain in the remainder formula.
+
+The new adjacent-cutoff proof ACC24--29, supplied completely in
+this reader, calculates both small-matrix determinant allocations
+and the full complex-current polynomial of these same two
+activated columns. It retains their interference terms and the
+unchanged full invariant kernel. Together with AP4 this provides
+a direct continuation of the source activation calculation into
+its native receivers.
+
+\section{Precision at the canonical endpoint}
+The incoming fixed-\(b\) estimate is
+\[
+O_h\bigl(q^2/\log(q/k)+kq\log^2(q+2)\bigr).
+\]
+On its stated compact subsets \(0<b<1\), AP4 and A18 justify
+that estimate and the coefficient \(\mathcal C(b)\).
+The identity \(\mathcal C'(1^-)=\mathfrak C_\partial\) is a
+derivative of the evaluated coefficient function. For
+\(1-b=O(1/k)\), the proposed leading difference is of order
+\(kq\) in the simple-quartet case, whereas the displayed
+fixed-\(b\) error is larger. The exact finite term A17 and the
+actual projection determinants ACC22 remain the maps through
+which that finer calculation must pass. No moving-endpoint
+asymptotic is inserted into the present proof.
+
+\begin{thebibliography}{9}
+\bibitem{Activation} Supplied web-session derivation,
+\emph{The actual outgoing polynomial under source activation},
+A1--38, received 21 September 2026. Its complete source is reproduced
+in this reader; authorship is unspecified in the supplied document.
+\bibitem{EIQ} Split-Zero research programme,
+\emph{Exact equilibrium for the square-root logarithmic potential},
+EIQ1--19.
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/09_INPUT_CUMULATIVE_PROOFS.tex#L4381}{Complete pinned proof, original equation location}.
+\bibitem{CG} Split-Zero research programme,
+\emph{Complete conductor graph metric}, CG4 and CG8--11.
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/003/COMPLETE_CONDUCTOR_GRAPH_METRIC.tex}{Complete pinned proof}.
+\bibitem{NG} Split-Zero research programme,
+\emph{Gaussian spectral actions through the original arithmetic quotient},
+NG2--3, including its complete-source multiplication proof,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_GAUSSIAN_TRANSFER.tex#L50}{pinned original proof}.
+\bibitem{Binet} R. A. Askey and R. Roy,
+\emph{Gamma Function}, NIST Digital Library of Mathematical Functions,
+Chapter 5, version 1.2.8 (15 September 2026),
+\href{https://dlmf.nist.gov/5.9.E10_2}{Binet formula 5.9.10\_2},
+\href{https://dlmf.nist.gov/5.9.E10_2.tex}{original formula TeX}.
+The density envelope above is a complete derivation from that formula.
+\bibitem{DLMF} T. H. Koornwinder, R. Wong, R. Koekoek,
+R. F. Swarttouw, with W. P. Reinhardt,
+\emph{Orthogonal Polynomials}, NIST Digital Library of Mathematical
+Functions, Chapter 18, F. W. J. Olver et al., editors,
+\url{https://dlmf.nist.gov/18.22.E8},
+\url{https://dlmf.nist.gov/18.23.E7}.
+The retained original-author TeX encodings specify the recurrence
+and generating function used in the programme's Gamma specialization.
+The uniform quantile and arcsine estimates AP1 are proved in full above.
+\end{thebibliography}\end{document}
+

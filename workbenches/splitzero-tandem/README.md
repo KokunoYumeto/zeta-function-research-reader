@@ -17,6 +17,12 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+### Original source families and complete observed heat: the 61-page proof
+
+The [new paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/UNIFORM_SOURCE_FAMILY_COMPLETE_READER.pdf) studies how the original theta-source observation changes when its source weights vary. It bounds the actual activated two-column update while retaining its complex cross term, proves exact rational detection maps and a sharp observed fraction for the slow spectral space, and controls the observed heat while keeping its full memory term. The original kernel's remaining leading coefficient and complex-current phases are not claimed.
+
+[Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/UNIFORM_SOURCE_FAMILY_COMPLETE_READER.tex) · [Results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/RESULTS_20260921_014.md) · [Proof-location index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/RESULT_INDEX.json) · [Complete original joint-source proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/JOINT_MINIMUM_COMPLETE.tex). All incoming mathematics, independent derivations, inherited proofs, human citations and check scripts accompany the reader. The preceding inverse-quotient paper remains intact.
+
 [Published cumulative DOI edition](https://zenodo.org/records/22868393) (10.5281/zenodo.22868393) retains the whole research programme and adds the 44-page inverse-sector quotient paper, with complete LaTeX, inherited proofs and human-source records. All 64 earlier PDFs remain separately readable.
 
 ### Original inverse-sector quotient: the 44-page proof

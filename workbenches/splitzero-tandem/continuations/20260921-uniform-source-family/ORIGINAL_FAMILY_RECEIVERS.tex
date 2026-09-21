@@ -1,0 +1,179 @@
+\section{Original source families: angle variation and sharp rational-filter detection}\label{original-source-families-angle-variation-and-sharp-rational-filter-detection}
+
+This derivation receives the complete supplied equations (1)--(87) without changing the original value map, physical coordinate, relation polynomial, source metric, or observation. It adds an exact angle bound for several source weights, extends the rational coefficient inverse to its full degree guard, and improves the retained slow-mode observation estimate.
+
+\subsection{1. A global angle estimate retaining every source group}\label{a-global-angle-estimate-retaining-every-source-group}
+
+Let \(G_\circ>0\) in the original fixed coefficient space \(E\), and let the complete positive source covariances be \(\Omega_i=F_iH_i^+F_i^*\), with every cross term of each normal-source Gram \(H_i\) retained. Set \[
+C(\mathbf x)=G_\circ^{-1}+\sum_{i=1}^p e^{x_i}\Omega_i,\qquad
+G(\mathbf x)=C(\mathbf x)^{-1}.                                      \tag{UFR1}
+\] The prescribed physical source is its prescribed point in this family. The following identities do not assign unchanged physical norms to other points.
+
+Fix disjoint subspaces \(K,V\subset E\) with full frames \(I_K,U\), dimensions \(m,r\), and concatenated frame \([I_K,U]\) on \(K+V\). Define \[
+\delta(\mathbf x)=
+\log\det(I_K^*GI_K)+\log\det(U^*GU)
+-\log\det([I_K,U]^*G[I_K,U]).                                      \tag{UFR2}
+\] Completing the full quadratic minimum over either subspace proves \[
+\delta=\log\det H_K-\log\det\widehat H_K
+       =\log\det H_V-\log\det H_V^B\ge0.                           \tag{UFR3}
+\] Here \(\widehat H_K\) is the actual quotient metric after removing \(V\), and \(H_V^B\) is the actual metric after the observation with kernel \(K\). These are the same Schur complements as \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab120cf974feb26a31d77b07458b6da52f912ea4/workbenches/splitzero-tandem/continuations/20260921-inverse-quotient/INVERSE_QUOTIENT_RECEIVERS.tex}{IQR3 and IQR15--23} and \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab120cf974feb26a31d77b07458b6da52f912ea4/workbenches/splitzero-tandem/continuations/20260921-inverse-quotient/INDEPENDENT_COVARIANCE_ANGLE.md}{CA6--11} in the accompanying complete derivations.
+
+Take the exact straight path \(\mathbf x(s)=\mathbf x+s\mathbf v\), \(0\le s\le1\), with \(\mathbf v=\mathbf y-\mathbf x\), and put \[
+a=\min(0,v_1,\ldots,v_p),\quad b=\max(0,v_1,\ldots,v_p),\quad
+D_s=G(s)^{1/2}C'(s)G(s)^{1/2}.                                   \tag{UFR4}
+\] The positive matrices \[
+K_0(s)=G(s)^{1/2}G_\circ^{-1}G(s)^{1/2},\qquad
+K_i(s)=e^{x_i(s)}G(s)^{1/2}\Omega_iG(s)^{1/2}
+\] sum to \(I\). Consequently \(aI\preceq D_s=\sum_i v_iK_i(s)\preceq bI\).
+
+In the same exact isometry let \(P_K,P_V,P_{K+V}\) denote the Euclidean orthogonal projections, and set \(A_s=P_K+P_V-P_{K+V}\). Differentiating all three original fixed-frame Grams, using \(G'=-GC'G\), gives \[
+\delta'(s)=-\operatorname{Tr}(D_sA_s).                            \tag{UFR5}
+\] The complete principal-pair proof CA17--20 gives eigenvalues \(+c_j,-c_j\), \(0\le c_j<1\), for \(A_s\), with at most \(\min(m,r)\) pairs; all other eigenvalues vanish. Thus \(\operatorname{Tr}A_s=0\). Write \(A_s=A_+-A_-\), where \(\operatorname{Tr}A_+=\operatorname{Tr}A_-=\sum_jc_j\). The matrix \(B_s=D_s-aI\) lies between \(0\) and \((b-a)I\). Each of \(\operatorname{Tr}(B_sA_\pm)\) lies between zero and \((b-a)\sum_jc_j\). The absolute difference of these two numbers is at most that same upper bound. Integration proves \[
+\boxed{|\delta(\mathbf y)-\delta(\mathbf x)|
+ \le \min(m,r)\,[\max(0,\mathbf y-\mathbf x)-\min(0,\mathbf y-\mathbf x)] .} \tag{UFR6}
+\] The maximum and minimum include every coordinate and zero. The proof keeps noncommuting source groups, changing metric angles, and all covariance eigenvalues. No bound on the covariance norm or its rank is required.
+
+For the original \(m=8k-16\), \(q=(k+1)^2\), four separate endpoints with respective logarithmic weight changes of width \(\Delta_N\), this gives the explicit receiving estimate \[
+\left|\mathcal R[\delta_N(\mathbf y_N)-\delta_N(\mathbf x_N)]\right|
+ \le \min(m,r)\sum_{N=q-1,q,2q-1,2q}\Delta_N.                      \tag{UFR7}
+\] In particular, changing each positive source weight by factors lying between \(q^{-A}\) and \(q^A\), for fixed \(A\), costs at most \(8A\min(m,r)\log q=O(k\log q)=o(kq)\). This conclusion concerns the change from the actual starting source. Its initial angle remains present. Reaching a zero source weight requires a separate endpoint estimate; no logarithm of zero was inserted.
+
+The individual restriction and quotient determinant losses have the exact difference \[
+\overline F_K(\mathbf x,\mathbf y)-F_K(\mathbf x,\mathbf y)
+=\delta(\mathbf y)-\delta(\mathbf x),                             \tag{UFR8}
+\] with each loss defined as initial minus final log determinant. Thus UFR7 directly updates their original four-cutoff comparison.
+
+\subsection{2. Full rational coefficient recovery at the sharp degree guard}\label{full-rational-coefficient-recovery-at-the-sharp-degree-guard}
+
+Keep the physical coordinate \(S\), complete upper and lower relations \(\chi,\widehat\chi\), and original shifts \[
+\mathcal T_A f(S)=\sum_{j=1}^J a_j f(S+b_j),\quad
+E_A(z)=\sum_j a_j e^{b_jz},\quad v=\operatorname{ord}_0E_A<\infty.
+\] The complete lower quotient has degree \(q'=\deg\widehat\chi\), with \(\widehat\chi(S)\mid\chi(S+b_j)\). These are the retained conductor maps of \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/007/INVERSE_POWER_CONDUCTOR_OBSERVABILITY.tex}{IK1--13}. The complete original observation satisfies \(K=\ker\Lambda\subseteq\ker C_A\).
+
+Let \(D\) be monic, \(\deg D=d\ge1\), \((D,\chi)=1\), \(d\le q=\deg\chi\). Put \(L=Jd\), \(\mathcal B=\prod_jD(S+b_j)\), and \(U_Dp=[p/D]\), for \(\deg p<d\). Coprimality and the divisibilities imply \((\mathcal B,\widehat\chi)=1\). For \[
+N_p=\mathcal B\,\mathcal T_A(p/D)
+\] the expansion at infinity gives \[
+\deg N_p\le L-v-1.                                               \tag{UFR9}
+\] To prove it, write a nonzero proper rational function as \(f=cS^{-n_0}+O(S^{-n_0-1})\), \(n_0\ge1\). The coefficient of \(S^{-n_0-v}\) in its translated sum is \((-1)^v\binom{n_0+v-1}{v}\mu_vc\ne0\), because every earlier symbol moment vanishes. The same argument proves that \(\mathcal T_A\) has no nonzero proper-rational kernel.
+
+Let \(T_D\) be the coefficient matrix of \(N_{S^\ell}\), \(0\le\ell<d\), in the full rows \(0,\ldots,L-1\). It has full column rank. Define \(\operatorname{coef}_{<L}\) on the lower quotient by its unique degree-below-\(q'\) remainder, truncating or padding with zeros as necessary. On the full guard \(L-v\le q'\), the numerator \(N_p\) is already that remainder. Therefore \[
+W_D=(T_D^*T_D)^{-1}T_D^*
+       \operatorname{coef}_{<L}M_{\mathcal B}^{(-)},\qquad
+\boxed{W_DC_AU_D=I_d}.                                          \tag{UFR10}
+\] This proves the supplied formula (58) on the larger guard \(Jd-v\le q'\), including \(q'<Jd\); its last \(v\) numerator coefficients are exactly zero. Nothing is inferred from values at only some of the lower roots. Full Hermite jets are converted by their original invertible Hermite map.
+
+For families in which \(v\) varies, the uniform guard \(Jd\le q'\) remains available independently of \(v\). On a fixed-order stratum the sharper guard is exact. The formula uses no inverse pole difference; polynomial numerator coordinates preserve the full collision.
+
+Let \(Q=(\Lambda G^{-1}\Lambda^*)^{-1}\), \(\Gamma_A=C_AG^{-1}C_A^*\), \(H_D=U_D^*GU_D\). Every lift of the observed value is also a lift of its conductor value, because \(C_A=R_A\Lambda\). Minimizing over the larger conductor fibre proves \[
+U_D^*\Lambda^*Q\Lambda U_D
+ \succeq (C_AU_D)^*\Gamma_A^+(C_AU_D).                            \tag{UFR11}
+\] The pseudoinverse acts on the actual conductor image. If \(C_A\) is onto, it is the usual inverse. This formulation also covers a smaller conductor image without deleting it. UFR10 implies \(\|C_AU_Da\|_2\ge\|a\|_2/\|W_D\|\). On the positive range of \(\Gamma_A\), its inverse is at least \(1/\lambda_{\max}(\Gamma_A)\). Hence \[
+U_D^*\Lambda^*Q\Lambda U_D\succeq \ell_D H_D,\qquad
+\ell_D=\frac1{\lambda_{\max}(\Gamma_A)\|W_D\|^2\lambda_{\max}(H_D)}>0.
+                                                                    \tag{UFR12}
+\] The left side is at most \(H_D\), so the proved factor is at most one. Every matrix is in its specified original coefficient coordinates. The original unit, if included in the actual value map, remains in both maps and metrics.
+
+The rational complexity bound of supplied (3) follows without another condition-number estimate: \[
+x\in K\setminus\{0\}\quad\Longrightarrow\quad
+d_{\rm rat}(x)\ge\left\lfloor\frac{q'+v}{J}\right\rfloor+1.
+\] Indeed any smaller rational representative would satisfy UFR10, contradicting \(C_Ax=0\). The complexity exists: \(D=\chi+1\) is coprime to \(\chi\), and the original remainder numerator has degree below \(q\). This is a degree exclusion on the complete original kernel, uniform over all pole choices satisfying coprimality.
+
+\subsection{3. A sharper observed fraction for the entire filtered slow space}\label{a-sharper-observed-fraction-for-the-entire-filtered-slow-space}
+
+All norms and projections in this section use the same original \(G_N\). Let \(U\subset E\) be a subspace on which \[
+\|P_Bu\|^2\ge\ell\|u\|^2,\qquad 0<\ell\le1.                     \tag{UFR13}
+\] Let \(V\) be a subspace satisfying \(\|(I-P_U)P_V\|\le\varepsilon\), \(0\le\varepsilon\le1\). Then \[
+\boxed{\|P_Bx\|^2\ge
+\left(\sqrt\ell\sqrt{1-\varepsilon^2}
+       -\sqrt{1-\ell}\,\varepsilon\right)_+^2\|x\|^2
+\quad(x\in V).}                                                 \tag{UFR14}
+\]
+
+Here is a complete proof. UFR13 implies \(\|P_KP_U\|\le\sqrt{1-\ell}\), where \(K=B^\perp\); adjointing gives the same bound for \(P_UP_K\). For unit \(x\in V\), write \(x=\sqrt{1-t^2}\,u+t\,w\), with \(u\in U\), \(w\perp U\), both unit when their coefficient is nonzero, and \(t\le\varepsilon\). For a unit \(z\in K\), put \(a=\|P_Uz\|\le\sqrt{1-\ell}\). The two orthogonal components give \[
+|\langle z,x\rangle|
+\le a\sqrt{1-t^2}+\sqrt{1-a^2}\,t.
+\] If \(\varepsilon<\sqrt\ell\), then \(t<\sqrt\ell\) and \(\sqrt{1-t^2}>\sqrt{1-\ell}\). The right side increases in \(a\) throughout the allowed interval, and its resulting value increases in \(t\le\varepsilon\). It is at most \(\sqrt{1-\ell}\sqrt{1-\varepsilon^2}+\sqrt\ell\,\varepsilon\). Taking the supremum over \(z\in K\), and then using \(\|P_Bx\|^2=1-\|P_Kx\|^2\), proves UFR14 by expanding the square. If \(\varepsilon\ge\sqrt\ell\), its claimed lower bound is zero, which proves the other case. Zero components follow by continuity. The argument also covers \(\ell=1\).
+
+The factor in UFR14 improves supplied (70), which subtracts \(\varepsilon\) in place of \(\sqrt{1-\ell}\varepsilon\). It becomes strictly positive exactly when \(\varepsilon<\sqrt\ell\). The improvement is sharp: in a Euclidean two-plane take \(K=\mathbb Ce_1\), \(U=\mathbb C(\sqrt{1-\ell},\sqrt\ell)\), and rotate its unit vector toward \(e_1\) by \(\arcsin\varepsilon\), when \(\varepsilon<\sqrt\ell\). Its observed coordinate is exactly the positive expression in UFR14. This is an auxiliary sharpness example, not a choice of new arithmetic data.
+
+Now retain a monic filter \(p(y)\) of degree \(1\le d\le q\), coprime to \(Q_k\), with \(N\ge q-1\) and \(d\le N\). The last inequality includes every original cutoff unless \(d=q,N=q-1\); that harmless endpoint is handled by a zero polynomial-quotient map and \(B_p=0\). Divide the complete original minimum polynomial section: \[
+p(M)^{-1}=B_p+U_pT_p,\qquad
+B_p=J_N\mathfrak Q_p\widehat R_N,\quad
+T_p=\mathfrak R_p\widehat R_N,\quad U_pr=[r/p].
+\tag{UFR15}
+\] The equality follows by multiplying the exact polynomial division identity by \(p(M)^{-1}\). Its first term has \(\|B_p\|\le D_p\), where \(D_p\) is the operator norm of the full native polynomial-division map; the minimum lift is an isometry, and the original value map is contractive. No rational function is integrated at a pole.
+
+Let \(X=p(M)^{-1}\), let \(\sigma_j(X)\) be decreasing singular values, and let \(V_d\) be any top \(d\) left singular space. For \(x=Xu\in V_d\), its right singular preimage satisfies \(\|u\|\le\|x\|/\sigma_d(X)\). Because the finite-rank part of UFR15 lies in \(U_p\), \[
+\|(I-P_{U_p})x\|\le D_p\|u\|,\qquad
+\varepsilon_p=\min(1,D_p/\sigma_d(X)).
+\] The rank-\(d\) term also gives \(\sigma_{d+1}(X)\le D_p\): on its nullspace of codimension at most \(d\), \(X=B_p\), and the variational characterization of singular values applies.
+
+Use \(\ell_p\) from UFR12 on the full conductor degree guard, and put \[
+\ell_{\rm sharp}=
+\left(\sqrt{\ell_p}\sqrt{1-\varepsilon_p^2}
+-\sqrt{1-\ell_p}\,\varepsilon_p\right)_+^2.
+\tag{UFR16}
+\] The singular-vector expansion, whose weights are the actual orthogonal projection norms, now proves at every \(\tau\ge0\) \[
+\operatorname{Tr}(P_Be^{-\tau p(M)^\dagger p(M)})
+ \ge\ell_{\rm sharp}\sum_{j=1}^d e^{-\tau/\sigma_j(X)^2},
+\] \[
+\operatorname{Tr}(P_Ke^{-\tau p(M)^\dagger p(M)})
+ \le(1-\ell_{\rm sharp})\sum_{j=1}^d e^{-\tau/\sigma_j(X)^2}
+ +(q-d)e^{-\tau/D_p^2}.                                        \tag{UFR17}
+\] The last term is omitted when \(d=q\); if \(D_p=0\), invertibility and UFR15 force \(d=q\). Thus no division by zero is used.
+
+Finally the exact small positive semidefinite matrix \[
+\mathcal S_p=H_p^{1/2}T_pG_N^{-1}T_p^*H_p^{1/2},
+\qquad H_p=U_p^*G_NU_p
+\tag{UFR18}
+\] has as its eigenvalues the \textbf{squared} singular values of \(U_pT_p\), with zeros included when its rank is below \(d\). Indeed \(U_pH_p^{-1/2}\) is an isometry; after this isometry the map is \(H_p^{1/2}T_p\), whose product with its adjoint is \(\mathcal S_p\). This corrects the unsquared wording following supplied (72). The strict guard below proves positive definiteness when it is used.
+
+Let \(\mu_d=\lambda_{\min}(\mathcal S_p)\). The singular-value variational principle and \(\|B_p\|\le D_p\) give \[
+\sigma_d(X)\ge\sqrt{\mu_d}-D_p.
+\] Therefore the explicitly evaluable sufficient finite guard \[
+\boxed{\sqrt{\mu_d}>D_p(1+\ell_p^{-1/2})}
+\tag{UFR19}
+\] makes UFR17 strictly positive with \(\varepsilon_p\) replaced by \(D_p/(\sqrt{\mu_d}-D_p)\). All matrices in this guard come from the unchanged full source and observation. Without that inequality the finite bound remains valid and can be zero; no positivity is asserted from rank alone.
+
+\subsection{4. Exact physical coordinate and the joint arithmetic norm}\label{exact-physical-coordinate-and-the-joint-arithmetic-norm}
+
+The monic physical denominator corresponding to the monic filter \(p(y)\) is \[
+D(S)=i^d p((S-k/2)/i),\qquad
+(T r)(S)=i^d r((S-k/2)/i).                              \tag{UFR20}
+\] The map \(T\) is invertible on degree-below-\(d\) numerators. The original algebra identification \(\Phi([f(y)])=[f((S-k/2)/i)]\) obeys \(\Phi U_p=U_DT\), because the identical factors \(i^d\) cancel in the rational function. The full relation ideals correspond under the same substitution, including every root multiplicity. Transporting the original metric by \(\Phi\), the source and observed Grams both change by congruence with \(T\). Thus the very same scalar \(\ell_D\) in UFR12 applies to \(U_p\); no additional physical-coordinate factor is discarded. Independent IFE30--31 records both maps.
+
+For the original simple quartet, retain \(k\equiv1\pmod4\), \(k\ge5\), \(q=(k+1)^2\), fixed \(0<\delta<1/2\), \(\gamma>2\), and every allowed original period and cutoff. In the exact complete value coordinates, \[
+y_{ab}=(2b-k)\gamma-i(2a-k)\delta,\quad 0\le a,b\le k,
+\qquad C_k=k\sqrt{\delta^2+\gamma^2}.                     \tag{UFR21}
+\] The full tensor value metric \(G_{k,1}\) is diagonal in these simple-root values, with all its positive ordered-tuple weights retained. Multiplication by \(y\) is therefore a diagonal operator of norm exactly \(C_k\): its upper bound is attained at a corner \((a,b)\). This coordinate calculation is an isometry through the complete value map, not a replacement of the original coefficient metric.
+
+The complete earlier \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/JOINT_MINIMUM_COMPLETE.tex\#L634}{source theorem J3}, reproduced in full in this edition, proves before minimization \[
+\Lambda_{h,2q}^{-k}G_{k,1}\preceq G_N^J
+\preceq\tau_\eta^kG_{k,1},\qquad
+W_k=k\log(\tau_\eta\Lambda_{h,2q})=O_h(k\log^2(q+2)).
+\] Here the same tensor section and its full cross Gram are used at all four cutoffs; its physical tolerance is the fixed simple-quartet choice \(\eta=1\). Applying the two bounds to \(Mv\) and \(v\) proves \(\|M\|_{G_N^J}^2\le C_k^2 e^{W_k}\). For any positive source-weight segment based at this actual joint metric, let \(\Delta=\max(0,v_i)-\min(0,v_i)\), with \(v_i\) the logarithmic weight ratios. Comparing every positive covariance summand gives the two form bounds with ratio \(e^\Delta\); taking inverses and then the same Rayleigh quotient proves \[
+\|M\|_{G_N(\mathbf x)}^2\le C_k^2e^{W_k+\Delta}.
+                                                               \tag{UFR22}
+\] All covariance groups here are the prescribed full normal-source groups from that joint metric. This estimate does not transfer the joint-source enclosure to the unactivated scalar metric.
+
+Apply the complete-memory determinant identity UH29--31 at positive regularizer \(z\). If \(F_N(z)\) is the original observed resolvent pencil and \(M_{B,N}=\Lambda ML_N\), those finite proofs give \[
+\left|\log\det F_N(z)-\log\det(zI+M_{B,N}^{\dagger}M_{B,N})\right|
+\le (8k-16)\log\left(1+\frac{C_k^2e^{W_k+\Delta}}{z}\right).
+                                                               \tag{UFR23}
+\] Indeed the leakage and memory ranks are at most \(8k-16\), while both squared-action block norms are at most the full action norm squared. This proves the displayed bound without discarding either correction. If the four source-weight ratios are between \(q^{-A}\) and \(q^A\), and \(z\ge e^{-\eta_k q}\) with \(\eta_k\to0\), their widths obey \(\Delta\le2A\log q\). For all sufficiently large \(k\), the logarithm is at most \(\log2+2\log C_k+W_k+2A\log q+\eta_k q=o(q)\). Adding the four exact absolute bounds proves an \(o(kq)\) error for the original four-cutoff determinant comparison throughout this whole regularizer window. The estimate includes the full observed memory pencil; the canonical scalar kernel determinant and complex-current phases remain their separate, explicitly retained receivers.
+
+\subsection{5. Relation to the preceding kernel calculation}\label{relation-to-the-preceding-kernel-calculation}
+
+UFR6--8 control how the exact quotient angle varies across positive source weights even when the source covariance has full rank. IQR22--23 separately evaluates the scalar adjacent-source update using the retained monic relation norm. These statements improve the kernel receiving estimates while preserving the unevaluated initial determinant.
+
+The complete TC1--29 proof in this edition now evaluates the actual ACC24 two-column update as well. Its exact scalar and residual joint-source contributions obey \[
+0\le D_N(\eta)\le
+\log\frac{\nu_{N+1-q}}{\omega_{N+1}}+\log(\mathbf B\mathbf L)=O_h(q),
+\qquad0\le\eta\le1.                                           \tag{UFR24}
+\] TC7--8 retains the full complex cross term, and TC10--12 derives the second contribution's rank-one bound from the same full-source enclosure, without a dimension multiplier. TC20--22 consequently proves an \(o(kq)\) angle change from the actual activated baseline at every original cutoff. This strengthens the finite rank-two receiving estimate in \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab120cf974feb26a31d77b07458b6da52f912ea4/workbenches/splitzero-tandem/continuations/20260921-inverse-quotient/INVERSE_QUOTIENT_RECEIVERS.tex}{IQR15--19}. The exact relation to the full normal-source covariance is \(\Omega_{N+1}-\Omega_N=g_Ng_N^*-f_Nf_N^*\), as proved in TC24; the full normal-source determinant is retained in TC25.
+
+UFR9--12 extend the existing inverse-power conductor map to all proper rational numerators below the full degree guard, including colliding poles. UFR14--19 then transfer its actual metric lower bound to a whole slow singular space of a polynomial filter. The filter is \(p(M)\) on the original quotient; it is never replaced by \(p(\Lambda ML_N)\).
+
+The independent heat derivation accompanying this note proves the complete supplied memory and leakage bounds. In particular it compares the two different positive heat traces with error at most \(8k-16\), uniformly in time. That controls their \(q\)-scale comparison. Their complex projected-current phases still require their original coefficients.
+
+The original-author sources retained with this programme include the Stacks Project Authors' \href{https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/homology.tex\#L3057}{cochain homotopy definition} and \href{https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/homology.tex\#L3160}{quasi-isomorphism definition}, for the exact observation-complex interpretation in the preceding quotient proof. Their original TeX is included; these definitions are not the authorship of the finite inequalities derived here. The arithmetic polynomial norms retain T. H. Koornwinder, R. Wong, R. Koekoek and R. F. Swarttouw's NIST DLMF Chapter18 conventions, with W. P. Reinhardt: \href{https://dlmf.nist.gov/18.22.E8}{18.22.E8} and \href{https://dlmf.nist.gov/18.23.E7}{18.23.E7}. No external theorem is invoked in place of the complete finite proofs above.

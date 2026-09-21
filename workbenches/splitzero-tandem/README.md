@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22869444) (assigned DOI 10.5281/zenodo.22869444) retains the complete research programme and adds the 41-page critical source-activation and original arithmetic-action paper, with complete LaTeX, human provenance and precise proof links. All 66 earlier PDFs remain separate.
+
 ### Critical activation and the original observed arithmetic action
 
 [Read the 41-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/CRITICAL_ACTIVATION_COMPLETE_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/CRITICAL_ACTIVATION_COMPLETE_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/RESULTS_20260921_015.md) · [Machine-readable proofs and source records](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-critical-inverse-activation/RESULT_INDEX.json).

@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22876297) (assigned DOI 10.5281/zenodo.22876297) retains the complete research programme and adds the 31-page moving-rational-family and observed-memory paper, with complete LaTeX, human provenance and precise proof links. All 68 earlier PDFs remain separate.
+
 ### Moving rational sources, arithmetic collisions and complete observed memory
 
 [Read the 31-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/MOVING_RATIONAL_FAMILY_COMPLETE_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/MOVING_RATIONAL_FAMILY_COMPLETE_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/RESULTS_20260921_017.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/RESULT_INDEX.json).

@@ -1,0 +1,9 @@
+# External proof citations in the cumulative Split-Zero sources
+
+This correction adds clickable public proof links to 35 previously unmatched historical references: 146 bibliography entries and 122 citation uses across 16 complete LaTeX files. Every previous character of those files is retained; only link text is inserted. Original human citations and source attributions remain.
+
+Where a cited working note is private, the link is explicitly labelled as a public reconstruction or receiving derivation. It is not represented as the private original. The cited historical page cuts are not silently identified with later public cuts. Three missing cited proofs and their earlier resolvent provider are now available as [complete sources](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/README.md).
+
+Read the [clickable reference guide](REFERENCES.md), the [exact citation and source map](CITATION_REPAIR.json), or the corrected complete [joint manuscript](cumulative/09_UPDATED_JOINT_NOTE.tex), [signed-return manuscript](cumulative/10_UPDATED_SIGNED_RETURN.tex), and [kernel manuscript](cumulative/14_CURRENT_KERNEL_AND_MULTIPLICITY_PROOFS.tex). The companion standalone proof sources are retained in `providers/`.
+
+This edition changes the LaTeX citations, not the mathematics. It does not claim newly compiled cumulative PDFs. The [74-page degree-step reader](COMPLETE_PROOFS.pdf) and its existing clickable proof links remain unchanged. The full earlier source package, figures and dependencies accompany the corrected sources. The newer directional and inverse-power readers remain unchanged and are linked from the programme reading guide. Historical validation records are retained as historical evidence, not as fresh compilation claims.

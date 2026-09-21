@@ -1,3 +1,8 @@
+<!-- historical-proof-citations:20260921 -->
+## Find the cited Split-Zero proofs
+
+[Corrected cumulative LaTeX and reference guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/README.md) now give external proof links for the 35 previously unmatched historical references (146 bibliography entries). Links distinguish original public proofs from public reconstructions of private notes. Complete cited native-input sources are included; human credits and equations are retained. The existing mathematical readers and newest results below are unchanged.
+
 <!-- inverse-power-directional-verified-doi:20260921 -->
 ## Read the inverse-power observation and resonance-direction papers
 

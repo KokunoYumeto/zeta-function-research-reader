@@ -1,0 +1,546 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref,xurl}
+\setlength{\emergencystretch}{3em}
+\newcommand{\C}{\mathbb C}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\rank}{\operatorname{rank}}
+\title{Independent proof of cofactor recovery and its original period specialization}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+This note verifies CP1--20 in
+\path{COFACTOR_PERIOD_AND_SPECIALIZATION.tex} against the two
+incoming original proofs \path{04_ONE_STEP_PROPER_KERNEL_PERIOD_LOCUS.md}
+and \path{05_GOOD_COEFFICIENT_SPECIALIZATION.md}. The chart descent,
+vertex saturation, Fourier minors, exceptional first variation and
+coefficient base change are proved below.  The first variation is
+independently evaluated from all sixteen entries of the original PCL
+coefficient sum.  The original unit phases and diagonal period factors
+are retained in their exact maps.  No assertion about equality of
+the source and target Hermitian metrics follows from these algebraic
+identities.
+
+\section{The original conductor on every chart and at the vertex}
+Work first over an algebraically closed field $K$ of characteristic
+different from five.  Let $\zeta$ have order five and let the cyclic
+group act on $S=K[x_1,x_2,x_3,x_4]$ by $g x_i=\zeta^i x_i$.
+The inverse-action convention gives the same proof with every character
+negated.  Let $Q$ be the unchanged invertible linear transport of
+$t_1t_4-t_2t_3$, assume its five translates $Q_a=g^aQ$ are pairwise
+nonassociate, and retain
+\[
+ P=\prod_{a=0}^4Q_a,\qquad A=\prod_{a=1}^4Q_a,\qquad
+ R=S/(Q),\qquad B=\im(S^G\to R).                              \tag{CR1}
+\]
+The Segre determinant is irreducible in every such characteristic:
+view it as a primitive degree-one polynomial in $t_1$ over the
+factorial ring $K[t_2,t_3,t_4]$.  Its two coefficients are coprime,
+and it is irreducible over that ring's fraction field.  An invertible
+linear substitution preserves irreducibility.  Thus each $Q_a$ is
+prime.  If an invariant polynomial is divisible by $Q$, applying
+the action shows it is divisible by all $Q_a$, hence by $P$.
+After cancellation, its quotient by the invariant $P$ is invariant.
+Therefore
+\[
+ B=S^G/(P S^G).                                                \tag{CR2}
+\]
+
+For $h\in S$, the invariant orbit sum $\sum_{a=0}^4g^a(Ah)$ has
+restriction $Ah$ to $Q=0$.  Indeed for every $a\ne0$ its product
+$g^aA$ contains $Q$, while the $a=0$ term is the displayed one.
+There is no factor of five.  Hence $AR\subset B$ and, since it
+is an ideal of $R$, it is contained in the conductor.
+
+To prove the reverse containment, choose a coordinate $x_i$ and set
+$T=S[x_i^{-1}]$, $U=T^G$.  The exact character decomposition is
+\[
+ T=\bigoplus_{r=0}^4 U x_i^r
+   \simeq U[t]/(t^5-x_i^5).                                   \tag{CR3}
+\]
+For a monomial of character $j$, choose the unique $r$ with
+$ir\equiv j\pmod5$ and divide it by $x_i^r$; the quotient is
+invariant.  Character independence proves the direct sum.  The
+derivative $5t^4$ is a unit.  Thus CR3 is finite free, faithfully
+flat and etale of degree five, with its original cyclic action.
+Modulo the invariant $P$, it remains a faithfully flat map
+$B_i=U/(P)\to D_i=T/(P)$.  Here localizing $B$ at $x_i^5$
+gives exactly $B_i$, and localizing $R$ gives $T/(Q)$.
+
+The torsor isomorphism
+\[
+ T\otimes_U T\longrightarrow\prod_{a=0}^4T,
+ \qquad f\otimes h\longmapsto(fg^a(h))_a
+\]
+can be proved by expressing both sides in the basis CR3: its
+matrix is the Fourier matrix times invertible powers of $x_i$.
+After imposing $Q$ on the second factor and $P$ on the first,
+the base change of $B_i\subset R_i$ is precisely
+\[
+ D_i\longrightarrow\prod_{a=0}^4T/(Q_a),
+ \qquad f\longmapsto(f\bmod Q_a)_a.                            \tag{CR4}
+\]
+The conductor of CR4 on component $a$ is the image of
+$\prod_{b\ne a}Q_b$.  To prove it, multiply any conductor element
+by the idempotent selecting component $a$.  Its resulting one-component
+tuple is in the image exactly when it lifts to a polynomial divisible
+by every other $Q_b$.  In the localization of the original polynomial
+UFD their ideal intersection equals the product ideal: divisibility
+by each pairwise nonassociate prime is equivalent to divisibility by
+their product.  Conversely every such lift gives a one-component
+tuple, and addition handles all components.
+
+This equality descends faithfully to the original chart, giving
+the conductor $AR_i$.  One may see the descent without an implicit
+invariance assertion: choose finitely many generators of $R_i$ as
+a $B_i$-module; the condition $fR_i\subset B_i$ is the simultaneous
+vanishing of their products with $f$ in $R_i/B_i$.  Flat base change
+preserves these finite kernels, and faithful flatness detects both
+the vanishing and equality of the resulting submodules.  The base
+change of $AR_i$ is exactly the component product ideals in CR4.
+
+The conductor is homogeneous, so consider a homogeneous $f\in R_d$.
+If it is in the conductor then the chart result gives $f\in AR_i$
+for every nonzero-coordinate chart.  Under the original Segre map,
+$R_d=K[Z_0,Z_1,W_0,W_1]_{d,d}$ and $A$ is the complete biform of
+degree $(8,8)$.  Every irreducible bihomogeneous factor of $A$
+defines a projective divisor on $\mathbb P^1\times\mathbb P^1$.
+Chartwise divisibility implies that the factor's multiplicity in
+$f$ is at least its full multiplicity in $A$.  UFD divisibility
+in this four-variable biform ring gives $f=Ah$, with bidegree
+$\deg h=(d-8,d-8)$.  For $d<8$ this forces $f=0$; otherwise $h$
+is an element of $R_{d-8}$.  There is therefore no additional
+term supported only at the affine vertex, and
+\[
+ \boxed{\{f\in R:fR\subset B\}=AR.}                            \tag{CR5}
+\]
+This proof retains repeated factors of the restrictions of the
+different $Q_a$; it never assumes those restrictions are coprime.
+
+\section{All sixteen cofactor observations and the four-step test}
+Put $J_d=B_d/(AR)_d$.  The sixteen maps are the actual products
+\[
+ X_d:J_d\longrightarrow\bigoplus_{i=1}^4\bigoplus_{r=1}^4
+                          (R/B)_{d+4r},
+ \qquad [f]\longmapsto([x_i^{4r}f])_{i,r}.                       \tag{CR6}
+\]
+They are well-defined because $AR$ is an ideal contained in $B$.
+If $f\in B$ and all sixteen products belong to $B$, then on the
+$i$th chart the products of $f$ with
+$1,x_i^4,x_i^8,x_i^{12},x_i^{16}$ all belong to $B_i$.
+These five powers have distinct characters $0,4i,3i,2i,i$ and
+generate $T$ over $U$; powers differing by five differ by the
+invariant unit $x_i^5$.  Their restrictions therefore generate
+$R_i$ over $B_i$.  Thus $fR_i\subset B_i$ on every chart, and
+CR5 implies $f\in AR$.  This proves $X_d$ injective in every
+degree and in every characteristic different from five.
+
+The one-step condition uses only $x_i^4$.  Write
+\[
+ \mathcal T=B+x_1^4B+x_2^4B+x_3^4B+x_4^4B\subset R.            \tag{CR7}
+\]
+For an invariant representative of the original proper-source
+class, the four tests modulo $AR$ are equivalent to literal
+$x_i^4f\in B$, since $AR\subset B$.  Thus they give
+$f\mathcal T\subset B$.
+
+The original ring $R$ is finite over $B$: $S$ is finite over its
+invariants, as witnessed by the equations $x_i^5\in S^G$, and
+passing to $S/(Q)$ preserves this finite generation.  On a nonzero
+coordinate chart, a geometric fibre of $R/B$ is a reduced subset
+of the five points of the etale torsor CR3.  If it has $r$ points
+and its representative has $l$ nonzero coordinates, the values of
+$1$ and those $l$ products $x_i^4$ form nonzero column scalings
+of the five-character Fourier matrix, restricted to $r$ rows.
+
+Every square minor of this Fourier matrix is nonzero.  In sizes
+one and two the determinants are respectively a root of unity
+and a nonzero root multiple of $1-\zeta^a$ with $a\ne0\pmod5$.
+Its inverse has entries $\zeta^{-ij}/5$; this formula is algebraic
+and applies in residue fields, where a complex-conjugation symbol
+would not be the correct definition.  The complementary-minor
+identity for an invertible matrix proves sizes three and four
+from sizes two and one of this inverse.  The full determinant
+is the nonzero Vandermonde.  Hence whenever $r\le l+1$, these
+sections span the whole fibre.  The finite cokernel of
+$\mathcal T\subset R$ vanishes at that base point: if a finite
+generating column $v$ satisfies $v=Mv$ with the entries of $M$
+in the local maximal ideal, the adjugate of $I-M$ and its unit
+determinant give $v=0$.
+
+For a projective divisor, all remaining failures are now explicit.
+If $l=4$, $r\le5=l+1$.  If $l=3$, failure requires $r=5$.
+The six quadratic monomials in the three active coordinates
+have five distinct characters, exactly one repeated.  Fourier
+inversion of the five equations $Q(g^a x)=0$ makes every
+singleton-character coefficient vanish, since its active-coordinate
+monomial is nonzero.  Thus the coordinate-plane restriction of
+$Q$ must be a single-character conic.  If $l=2$, failure requires
+$r\ge4$; the three binary quadratic monomials have distinct
+characters and the corresponding three-column Fourier matrix
+has full rank on any three rows.  All three coefficients vanish,
+so the coordinate line is contained in $Q$.  The locus $l=1$
+contains only finitely many projective points and no divisor of
+the smooth quadric surface.
+
+Exclude these six line containments and four single-character
+plane restrictions.  Then $\mathcal T=R$ at the generic point
+of every divisor.  The relation $f\mathcal T\subset B$ makes
+$f$ a conductor element there.  The full multiplicity argument
+at the end of CR5 again gives $f\in AR$.  This proves vanishing
+of the original one-step proper-source kernel on exactly the
+stated locus, with every original low-jet restriction still imposed.
+
+\section{The complete period transformation and limiting gates}
+For the complex original period, retain
+\[
+ H(u)=e^{\mathfrak a/u}G_u\mathcal R(1/u)V^{-1}U,
+ \quad U=\diag(a,\bar a,\bar a,a),\quad a\ne0,\quad z=1/u.
+                                                                    \tag{CR8}
+\]
+The exact coordinate map $X=G_u^{-1}x$ commutes with the original
+diagonal cyclic action.  Multiplication of the actual quadric
+equation by $e^{2\mathfrak a/u}$ gives
+\[
+ \widetilde Q_z(X)=Q_0(U^{-1}V\mathcal R(z)^{-1}X).              \tag{CR9}
+\]
+The cofactor products are multiplied by the actual nonzero
+entries $(G_u)_{ii}^{4r}$, so their kernels transport in both
+directions.  This is not asserted to be an isometry.
+
+Retain $r=\delta+i\gamma$, $R_0=r^2$, $T_0=\bar r^2$,
+$\beta=-(R_0+T_0)>0$, $\eta=R_0T_0>0$, $p=a^{-2}$,
+$b=\bar a^{-2}$, and
+$u_0=(2R_0-T_0)/3$, $v_0=(2T_0-R_0)/3$.
+The original centered Vandermonde has rows
+$(1,r,r^2,r^3)$, $(1,\bar r,\bar r^2,\bar r^3)$,
+$(1,-\bar r,\bar r^2,-\bar r^3)$,
+$(1,-r,r^2,-r^3)$.  Multiplication by
+$J^{-1}=I+\beta E_{13}/3+2\beta E_{24}/3$ and expansion of the
+two original products in $Q_0$ gives
+\[
+ \widetilde Q_0=p(X_1+u_0X_3)^2-b(X_1+v_0X_3)^2
+      -pR_0(X_2-v_0X_4)^2+bT_0(X_2-u_0X_4)^2.                   \tag{CR10}
+\]
+Thus, in the even and odd index blocks, its symmetric entries are
+\[
+ \begin{array}{lll}
+ e_0=p-b,&e_1=pu_0-bv_0,&e_2=pu_0^2-bv_0^2,\\
+ o_0=-pR_0+bT_0,&o_1=pR_0v_0-bT_0u_0,
+                    &o_2=-pR_0v_0^2+bT_0u_0^2.
+ \end{array}                                                     \tag{CR11}
+\]
+Expanding each two-by-two determinant proves
+\[
+ e_0e_2-e_1^2=-pb(R_0-T_0)^2\ne0,\qquad
+ o_0o_2-o_1^2=-pbR_0T_0(R_0-T_0)^2\ne0.                         \tag{CR12}
+\]
+Here $R_0-T_0=4i\delta\gamma\ne0$ and
+$R_0+T_0=2(\delta^2-\gamma^2)\ne0$ on the actual domain.
+
+The possible repeated-character pairs of the four coordinate
+planes, in order of the omitted coordinate, are
+\[
+ (X_3^2,X_2X_4),\quad (X_1^2,X_3X_4),\quad
+ (X_4^2,X_1X_2),\quad (X_2^2,X_1X_3).
+\]
+For the first plane, single-character failure would require
+$o_0=o_2=0$, which forces $u_0^2=v_0^2$, contrary to
+$(u_0-v_0)(u_0+v_0)=(R_0-T_0)(R_0+T_0)/3\ne0$.
+For the fourth plane, $e_0=e_2=0$ gives the same contradiction.
+For the second plane $e_1,e_2$ cannot both vanish by CR12; they
+are singleton-character coefficients.  For the third plane the
+corresponding pair is $o_0,o_1$.  This proves a nonzero
+constant-term gate on every plane.
+
+The exact sufficient condition here is that one singleton-character
+coefficient be nonzero: on the locus where all three coordinates are
+active its monomial is nonzero, so the five Fourier equations cannot
+all hold.  This argument does not require that the restriction have
+two different characters at every later period.  For completeness,
+the limiting restriction itself cannot have only a singleton character.
+On the plane omitting $X_2$ it is
+$e_0X_1^2+2e_1X_1X_3+e_2X_3^2+o_2X_4^2$, whose four terms have
+distinct characters.  Only the $e_1$ term could by itself retain a
+nonzero even-block determinant, but that would require
+$e_0=e_2=0$, already proved impossible from
+$(R_0-T_0)(R_0+T_0)\ne0$.  Every other singleton-only case
+contradicts CR12.  On the plane omitting $X_3$, the same argument
+uses the odd block, with its only potential cross-term case
+$o_0=o_2=0$, also already excluded.  More generally a singleton-only
+quadratic monomial has no zero on the three-active-coordinate locus,
+so could not support the divisorial failure under examination.
+
+The coordinate lines $(1,3)$ and $(2,4)$ cannot be contained by
+CR12, and $(1,2)$ would require $e_0=o_0=0$, hence $R_0=T_0$.
+For $(1,4)$ and $(2,3)$ the necessary vanishing contradicts
+\[
+ T_0u_0^2-R_0v_0^2
+  =-(R_0-T_0)(R_0^2-7R_0T_0+T_0^2)/9\ne0.                     \tag{CR13}
+\]
+Indeed $(R_0^2+T_0^2)/(R_0T_0)$ is twice the real part of the
+unit complex number $R_0/T_0$, and lies in $[-2,2]$; subtracting
+seven is strictly negative.  Only line $(3,4)$ can remain, and
+then exactly $e_2=o_2=0$ while $e_1o_1\ne0$.
+
+\section{All first-derivative entries and the exceptional line}
+The original PCL coefficient formula is
+\[
+ [z^n]\mathcal R_{ar}(z)=
+ \sum_{2p+4h=5n+r+1-a}
+ \frac{\beta^p\eta^h}{3^p p!h!}(-1)^L5^L(a/5)_L,
+ \quad L=p+h-n,\quad 1\le a\le4,\quad0\le r\le3.              \tag{CR14}
+\]
+The sum is finite at each degree, with $L\ge0$ for every term.
+At degree one, direct summation of these terms yields the entire
+matrix, in ordinary one-based row and column indices,
+\[
+ \mathcal R'(0)=
+ \begin{pmatrix}
+ 0&\beta(\beta^2-9\eta)/27&0&
+          -(11\beta^4-108\beta^2\eta+162\eta^2)/324\\
+ -(\beta^2-9\eta)/9&0&\beta(7\beta^2-54\eta)/81&0\\
+ 0&-(\beta^2-6\eta)/6&0&\beta(4\beta^2-27\eta)/27\\
+ \beta/3&0&-(2\beta^2-9\eta)/9&0
+ \end{pmatrix}.                                                   \tag{CR15}
+\]
+For example the $(2,3)$ entry uses $(p,h)=(3,0),(1,1)$
+in CR14.  Their terms are $7\beta^3/81$ and
+$-2\beta\eta/3$, respectively.  The other entries follow from
+the same displayed finite sum, and all zero entries have no
+admissible pair because its left side is even.
+
+Put $K=\mathcal R'(0)J^{-1}$.  Multiplication of CR15 gives
+\[
+ K_{23}=\beta(4\beta^2-27\eta)/81<0,\qquad
+ K_{14}=-(\beta^4-12\beta^2\eta+54\eta^2)/108<0.                 \tag{CR16}
+\]
+The first sign follows from $0<\beta/\sqrt\eta<2$; the second
+from $\beta^4-12\beta^2\eta+54\eta^2
+=\eta^2((\beta^2/\eta-6)^2+18)$.
+The exact identity
+$\widetilde Q_z(X)=\widetilde Q_0(J\mathcal R(z)^{-1}X)$ has
+derivative $-K^T\widetilde Q_0-\widetilde Q_0K$ in symmetric
+matrix notation, since
+$[J\mathcal R(z)^{-1}]'_{z=0}=-\mathcal R'(0)J^{-1}$.
+On the possible line stratum this gives
+\[
+ \widetilde Q'_{34}(0)
+       =-e_1\bigl(K_{14}+(o_1/e_1)K_{23}\bigr).                  \tag{CR17}
+\]
+
+For a direct exact derivation of the exceptional equations,
+$e_2=0$ gives $b=p u_0^2/v_0^2$.  Here neither $u_0$ nor $v_0$
+is zero, because either zero combined with $e_2=0$ would make
+both zero, contrary to $R_0\ne T_0$.  Substitution into $o_2=0$
+gives $T_0u_0^4=R_0v_0^4$.  The full factorization is
+\[
+ T_0u_0^4-R_0v_0^4
+ =-\frac{R_0-T_0}{81}
+  (R_0^4-23R_0^3T_0+33R_0^2T_0^2-23R_0T_0^3+T_0^4).           \tag{CR18}
+\]
+The quartic factor equals
+$(R_0+T_0)^4-27(R_0+T_0)^2R_0T_0+81R_0^2T_0^2$.
+Writing $b_0=\beta/\sqrt\eta\in(0,2)$ therefore gives
+\[
+ b_0^4-27b_0^2+81=0,\qquad
+ b_0=3(\sqrt5-1)/2,\qquad b_0^2+3b_0-9=0.                     \tag{CR19}
+\]
+The other positive squared root is greater than four and cannot
+occur in this interval.  Moreover, after $b=p u_0^2/v_0^2$
+is substituted, direct expansion gives
+\[
+ o_1^2-R_0T_0e_1^2=
+ \frac{p^2(R_0-T_0)^2(R_0^2-7R_0T_0+T_0^2)}{9(R_0-2T_0)^4}
+ (R_0^4-23R_0^3T_0+33R_0^2T_0^2-23R_0T_0^3+T_0^4).
+                                                                    \tag{CR20}
+\]
+Thus $(o_1/e_1)^2=\eta$ on this stratum, with either original
+sign still retained.  The plus sign makes the bracket in CR17
+strictly negative by CR16.  For the minus sign, substitution of
+CR19 gives exactly
+\[
+ K_{14}-\sqrt\eta K_{23}
+       =\eta^2(108-45b_0)/324>0.                                \tag{CR21}
+\]
+The inequality uses $b_0<2$, so its numerator exceeds eighteen.
+Since $e_1\ne0$, the exceptional line has nonzero first variation
+for every retained original unit phase.  The ordinary polynomial
+coefficient of $X_3X_4$ is twice the symmetric entry in CR17;
+this factor is required if it is used as the coefficient gate.
+
+\section{Finite period gates and the original proper-source minimum}
+Choose the actual nonzero coefficient just proved on each of the
+six lines and four planes.  Each coefficient is an entire
+function $g_\nu(z)$, because the original PCL matrix and its
+inverse are entire.  Its first nonzero order $r_\nu$ is zero,
+apart from the possible line $(3,4)$, whose order is one and
+whose coefficient is the nonzero value $2\widetilde Q'_{34}(0)$.
+With $c_\nu=[z^{r_\nu}]g_\nu$, put
+\[
+ C_\nu=1+\sum_{n>r_\nu}|[z^n]g_\nu|,\quad
+ \epsilon_\nu=\min(1,|c_\nu|/(2C_\nu)),\quad
+ R_{\rm prop}=\max(R_*,(\min_\nu\epsilon_\nu)^{-1}).             \tag{CR22}
+\]
+The sums converge absolutely by entireness.  For
+$0<|z|\le\epsilon_\nu$, every tail term is bounded after factoring
+$|z|^{r_\nu+1}$, so
+$|g_\nu(z)|\ge |c_\nu||z|^{r_\nu}/2$.  All fixed original periods
+$|u|\ge R_{\rm prop}$ therefore satisfy the zero proper-source
+kernel statement, without a degree-dependent drift in period.
+More generally the only possible exceptions on $|u|\ge R_*$
+belong to the zero set of $\prod_\nu g_\nu(1/u)$ there.
+Divide this product by its proved zero order at zero.  The quotient
+is entire and nonzero at zero; its zeros in the compact disk
+$|z|\le R_*^{-1}$ are finite.  Hence the exceptional superset is
+finite and independent of the source degree.  A selected coefficient
+zero is only a failed sufficient gate, and does not assert actual
+kernel failure at that period.  CR6 remains injective there.
+
+For the original source-$E$ minimum, the NC24 form is
+\[
+ Q_N^p=Z_R^*J_0^*DJ_0Z_R
+ -Z_R^*J_0^*DJ_0Z_E(Z_E^*J_0^*DJ_0Z_E)^{-1}Z_E^*J_0^*DJ_0Z_R.
+\]
+When the proved proper-source kernel $E$ is zero, its frame has
+zero columns and this subtraction is exactly absent:
+$Q_N^p=Z_R^*J_0^*DJ_0Z_R$.  Completing the square in the
+different original target direction space still gives
+\[
+ H_N^p=F_R^*D_{\rm target}F_R
+ -F_R^*D_{\rm target}J_*(J_*^*D_{\rm target}J_*)^{-1}
+                         J_*^*D_{\rm target}F_R.                 \tag{CR23}
+\]
+This proves CP20 directly from the actual two fibre direction
+spaces.  It does not remove $J_*$ or evaluate its determinant
+from the sixteen-cofactor injectivity result.
+
+\section{Good coefficient specialization, with the actual graded images}
+Let $\mathcal O$ be the finitely generated subring of the original
+complex coefficient field specified in CP: it contains
+$\mathbb Z[1/5]$, all entries of $H,H^{-1}$, $\zeta$, and the
+five original quadric coefficients.  Localize only at their chosen
+nonzero leading coefficients and two nonzero coefficients of $Q$
+in distinct cyclic characters.  These are finitely many fixed
+numbers, independent of degree.  In every geometric residue
+field, $\Phi_5(\zeta)=0$ and $5$ invertible give exact order five;
+$H$ remains invertible.  The two retained character coefficients
+prevent any nonidentity translate from being proportional to $Q$,
+since their character ratios differ by a nontrivial fifth root.
+Thus the geometric fibre satisfies every algebraic hypothesis of
+CR1--6, including in characteristic two.
+
+All differences $1-\zeta^a$, $1\le a\le4$, are units: their
+product is five, a unit, and in a commutative ring every factor
+of a unit is a unit.  Consequently the invariant monomials are
+exactly those of character zero, over $\mathcal O$ and after any
+base change.  With the selected leading coefficients units,
+division by the single polynomial $Q$ gives free modules of
+normal monomials in each degree for $R_\mathcal O$; division by
+the invariant $P$ gives the same assertion for
+\[
+ B_\mathcal O=S_\mathcal O^G/(P S_\mathcal O^G).
+\]
+For the latter, the leading monomial of $P$ has character zero,
+so every quotient monomial and every subtraction in the division
+of an invariant stays invariant.  Linear independence of the
+normal remainders follows because a nonzero multiple of the
+monic leading term has its largest monomial divisible by that
+leading term.
+
+The restriction $B_{\mathcal O,d}\to R_{\mathcal O,d}$ is
+injective over the fraction field by the prime-factor argument
+CR2, hence over $\mathcal O$ since its free source has no
+$\mathcal O$-torsion.  Its reduction is injective in every geometric
+residue field by that same argument.  A full-column-rank minor
+in each such fibre is invertible near its point.  Invert that
+literal square block, eliminate the remaining entries, and obtain
+a local left inverse and a free complementary cokernel.  Thus
+$(R/B)_d$ is finite locally free, and the exact sequence remains
+exact after arbitrary base change.
+
+Multiplication by the original $A$ sends $R_{d-8}$ into $B_d$
+by the orbit-sum identity.  Its every geometric fibre is injective
+since $R$ there is a domain and $A$ has nonzero restriction to
+$Q=0$.  The same minor proof therefore applies to its cokernels
+$J_d=B_d/A R_{d-8}$ and $(R/AR)_d$.  These are the actual graded
+images in the fibre, rather than replacements obtained after
+an unexamined tensor kernel.
+
+Finally CR6 is a map of finite locally free modules whose every
+geometric fibre is injective.  Its maximal minors again prove
+a locally split injection and locally free cokernel.  Since
+finite locally free modules over the affine coefficient ring are
+projective, this exact sequence also has a module splitting.
+One can construct it by patching: on a finite principal cover,
+clear denominators of local left inverses by sufficiently large
+powers of the cover elements; these powers still generate the
+unit ideal, and a linear combination equal to one patches the
+multiplied identities.  In particular for every $\mathcal O$-algebra
+$T$, not only every residue field,
+\[
+ \ker(X_d\otimes_\mathcal O T)=0.                              \tag{CR24}
+\]
+This strengthening follows from the actual splitting.  It does
+not supply one chosen degree-uniform inverse or a Hermitian
+isometry.
+
+\section{Exact specialized receivers and the separate interpolation kernel}
+In a residue field of characteristic $p\ne5$, let $X$ denote
+the matrix of the original cofactor map in any local bases.
+Entrywise Frobenius obeys the exact identity
+\[
+ F(Xv)=X^{(p)}F(v),                                             \tag{CR25}
+\]
+by its additive and multiplicative polynomial identities.  The
+matrix on the right is that of the Frobenius-pulled-back map;
+the relation retains the original source and target scalar twists.
+It does not identify this semilinear operation with the arithmetic
+sum action or its exponential.
+
+For the separately defined sum polynomial module the original
+evaluation matrix is
+$V_k[(a,b),r]=\lambda_{ab}^{r}$, $0\le r<(k+1)^2$.
+If values collide under reduction, this square matrix has two
+equal rows and hence a nonzero kernel.  For any specified map
+$F$ into the source of $X_d\otimes T$, the exact receiving
+identity is
+\[
+ \ker((X_d\otimes T)F)=\ker F.                                \tag{CR26}
+\]
+It follows immediately in both directions from CR24, and retains
+any preceding interpolation kernel.  Applying it to a particular
+sum-polynomial map requires that its actual codomain be the
+source of the cofactor map, or that the precise intervening map
+be included in $F$.  There is no automatic identification of
+the full grid-value space with the invariant conductor quotient.
+Ordinary derivative jet coordinates require their factorials
+to remain units; Hasse coefficients retain the product rule
+without such divisions.  Reduction of a low-jet subspace uses
+its actual matrix and rank, even though the ambient cofactor
+injection is preserved by arbitrary base change.
+
+\section{Verification outcome and proof sources}
+The substantive CP1--20 claims follow from the original maps by
+CR1--26.  The only literal formula correction found is that CP19's
+entry should read $\lambda_{ab}^{r}$, with no comma in its exponent.
+In residue-field versions the inverse Fourier matrix is
+$5^{-1}(\zeta^{-ij})$, avoiding complex conjugation as an undefined
+operation there.  The CP14 first-variation constant is correct.
+The coefficient splitting actually gives the arbitrary-base-change
+injection CR24, stronger than its residue-field statement alone.
+
+The inputs read for this independent derivation are the two
+user-supplied Markdown proofs named at the start, CP1--20,
+the complete PCL1--7 coefficient provider and its original
+Vandermonde/unit definition, and NC24--27 for the two metric
+fibres.  All additional UFD, chart, matrix, Fourier and finite
+coefficient calculations needed here have been proved explicitly;
+no unexamined human theorem is used as a substitute for these
+calculations.
+\end{document}

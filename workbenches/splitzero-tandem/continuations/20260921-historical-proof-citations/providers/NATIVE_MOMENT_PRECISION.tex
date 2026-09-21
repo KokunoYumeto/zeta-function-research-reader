@@ -1,0 +1,1140 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\title{Explicit native moment precision, inverse margins, and the original signed receiver}
+\author{}
+\date{20 September 2026}
+\begin{document}\maketitle
+
+This calculation supplies quantitative conditioning and precision
+constants for the actual finite-moment receiver in \cite{FM}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_MOMENT_ENCLOSURES.tex\#L1}{[proof]}%
+% END VERIFIED PUBLIC PROOF LINK
+{} and the
+deflation-aware rank-one refinement RR1--16 in \cite{RR}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_RANK_ONE.tex\#L50}{[proof RR1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}. Both complete
+proofs were read for this derivation. Positivity is proved from the
+original native envelope, rather than assumed of a numerical midpoint.
+All monomial coordinates, masses, parity blocks, complex transport,
+observation and conductor fibres, and signed endpoint errors remain
+unchanged. The elementary quadrature context is the human work of
+Zimmerling, Druskin and Simoncini \cite{ZDS}; no finite-matrix
+nondeflation hypothesis is imported from it.
+
+\section{The original measure and explicit interval floor}
+
+Retain the stipulated quartet domain and every original constant:
+\begin{equation}\label{eq:objects}
+\begin{gathered}
+ \rho_*=\tfrac12+\delta+i\gamma,\quad 0<\delta<\tfrac12,
+ \quad\gamma>2,\quad m\ge1,\quad g=2\xi,\\
+ h(s)=\prod_{z\in\{\rho_*,\bar\rho_*,1-\rho_*,1-\bar\rho_*\}}(s-z)^m,
+ \quad w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi},\\
+ m_k=w_h^{*k},\quad k=4\ell+1\ge9,\quad
+ c=k/2,\quad S=c+iy,\quad \mu_h=\int_\R w_h(y)dy,\\
+ e_k=1+k(m-1),\quad q=e_k(k+1)^2,\quad
+ \chi(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma]^{e_k}.
+\end{gathered}
+\end{equation}
+This is the existing quartet domain, not an existence assertion for
+an off-line zero. The complete original provider \cite{CAI}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/487253b5b01851da5b9b98af4e146fecf1fab902/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/providers/CAI_COMPLETE_PREREQUISITE.tex\#L284}{[proof CAI16]}%
+% END VERIFIED PUBLIC PROOF LINK
+{},
+CAI16--17, and its multiplicity continuation \cite{HG}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex\#L374}{[proof HG21]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}, HG21, give
+\begin{equation}\label{eq:envelope}
+\begin{gathered}
+ a_k(1+y^2)^{-M}\rho_\sigma(y)\le m_k(y)\le A_k\rho_\sigma(y),
+ \quad \rho_\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi},\\
+ c_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2}
+ \le\rho_\sigma(y)\le
+ C_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2},\\
+ \alpha=\pi/2,\quad M=21+4m,\quad p=8m-9/2,\quad B_h=42+8m,\\
+ c_\Gamma=\sqrt2e^{-7/6},\qquad C_\Gamma=\sqrt{2\sqrt5}e^{2/3},\\
+ \vartheta_h=\int_{-1}^1w_h(y)dy,\qquad
+ M_\alpha=\int_\R e^{\alpha y}w_h(y)dy,\\
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+ {C_\Gamma2^{B_h/2}},\qquad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{p+1}M_\alpha^{k-1}.
+\end{gathered}
+\end{equation}
+The constants $c_h,C_h^{\rm tilt}$ are exactly the provider's TW7
+lower-envelope constant and BT12 compact/tail maximum. They and the
+displayed original scalar integrals are not assigned numerical values
+in this note. The Gamma density is an envelope only, never a
+replacement measure.
+
+The original parity and tilted measures are
+\begin{equation}\label{eq:measures}
+ d\nu_0(x)=m_k(\sqrt x)x^{-1/2}dx,\quad d\nu_1=x\,d\nu_0,
+ \quad s(x)=\frac{\tanh(\alpha\sqrt x)}{\sqrt x},\quad
+ d\widetilde\nu_\epsilon=s\,d\nu_\epsilon\quad(\epsilon=0,1).
+\end{equation}
+The original positive Stieltjes identity \cite{PP,FM}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/PARITY_POLLACZEK_NATIVE_RECEIVER.tex\#L1}{[proof]} \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_MOMENT_ENCLOSURES.tex\#L1}{[proof]}%
+% END VERIFIED PUBLIC PROOF LINK
+{} is
+\begin{equation}\label{eq:stieltjes}
+ s(x)=\frac4\pi\sum_{r=0}^\infty\frac1{x+(2r+1)^2},\qquad
+ \frac1{s(x)}=\frac2\pi+\frac4\pi\sum_{j=1}^\infty\frac{x}{x+4j^2},
+ \qquad 0<s(x)\le\alpha.
+\end{equation}
+Evenness and $x=y^2$ give, without any mass change,
+\[
+ \int|E(y^2)+yO(y^2)|^2m_k(y)dy
+ =\int|E|^2d\nu_0+\int|O|^2d\nu_1.
+\]
+In particular $\nu_0((0,\infty))=\mu_h^k$ and
+$\nu_1((0,\infty))=k\eta_2\mu_h^{k-1}$, where
+$\eta_2=\int y^2w_h(y)dy$. The tilted masses remain their actual
+integrals, and $\widetilde\nu_1=x\widetilde\nu_0$.
+
+\begin{lemma}[An actual native floor]\label{lem:floor}
+Put
+\begin{equation}\label{eq:densityfloor}
+ d_\nu=\frac{a_kc_\Gamma3^{-M}e^{-\alpha\sqrt2}}
+ {\sqrt2\sqrt{1+\sqrt2}},\qquad
+ d_{\widetilde\nu}=\frac4{3\pi}d_\nu.
+\end{equation}
+For either parity, the density of $\nu_\epsilon$ on $[1,2]$ is at
+least $d_\nu>0$, and that of $\widetilde\nu_\epsilon$ is at least
+$d_{\widetilde\nu}>0$.
+\end{lemma}
+\begin{proof}
+On this interval $1+x\le3$, $\sqrt x\le\sqrt2$, and
+$1+\sqrt x\le1+\sqrt2$. Substitution in \eqref{eq:envelope}
+and the factor $x^{-1/2}$ gives the first floor for $\nu_0$;
+the additional factor $x\ge1$ gives it for $\nu_1$.
+The first positive term of \eqref{eq:stieltjes} gives
+$s(x)\ge4/[\pi(x+1)]\ge4/(3\pi)$, which proves the second.
+No interval-restricted measure replaces an original measure: we
+only lower-bound its nonnegative quadratic integral by one part.
+\end{proof}
+
+For later upper margins define, for $\epsilon=0,1$ and $r\ge0$,
+\begin{equation}\label{eq:momentcaps}
+ U_{\nu_\epsilon,r}=
+ \frac{2A_kC_\Gamma[2(r+\epsilon)]!}
+ {\alpha^{2(r+\epsilon)+1}},\qquad
+ U_{\widetilde\nu_\epsilon,r}=\alpha U_{\nu_\epsilon,r}.
+\end{equation}
+Then $\int x^r d\lambda\le U_{\lambda,r}$ for each of these
+four actual measures. Indeed the substitution in
+\eqref{eq:measures} gives $\int y^{2(r+\epsilon)}m_k(y)dy$;
+discard $(1+|y|)^{-1/2}\le1$ in the upper envelope and integrate
+$2\int_0^\infty y^Le^{-\alpha y}dy=2L!/\alpha^{L+1}$.
+The tilted bound uses $s\le\alpha$.
+
+\section{An exact rational Gram bound in the unchanged monomials}
+
+For $t\ge0$, set $d=t+1$ and
+\begin{equation}\label{eq:J}
+ J_t=\left[\frac{2^{i+j+1}-1}{i+j+1}\right]_{i,j=0}^t,
+ \quad D_t^{\rm int}=\det J_t,
+ \quad T_t^{\rm int}=\tr J_t,
+ \quad g_t=\frac{D_t^{\rm int}}{(T_t^{\rm int})^t}.
+\end{equation}
+All these are explicitly evaluated rational expressions in $t$.
+The convention is $g_0=1$.
+
+\begin{lemma}\label{lem:J}
+The matrix $J_t$ is positive definite and
+\begin{equation}\label{eq:Jfloor}
+ J_t\succeq g_tI,\qquad
+ D_t^{\rm int}=\prod_{j=0}^t
+ \frac{(j!)^4}{(2j)!(2j+1)!}
+ =\prod_{j=0}^t\frac1{(2j+1)\binom{2j}j^2}.
+\end{equation}
+In particular $g_0=1$, $g_1=1/40$, and $g_2=5/981552$.
+An entirely elementary lower estimate valid for all $t$ is
+\begin{equation}\label{eq:gsize}
+ g_t\ge(3/8)^t(2t+1)^{-(t+1)}4^{-(2t^2+t)}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For a nonzero coefficient column $z$,
+$z^*J_tz=\int_1^2|\sum_{j=0}^tz_jx^j|^2dx>0$;
+a nonzero polynomial cannot vanish on an interval. If the eigenvalues
+are $0<\lambda_1\le\cdots\le\lambda_d$, then
+$\det J_t=\lambda_1\prod_{j=2}^d\lambda_j
+\le\lambda_1(\tr J_t)^{d-1}$, proving the floor.
+
+For the determinant identity alone put $x=1+u$. The coefficient
+matrix $B_{lj}=\binom jl$ for $l\le j$ has determinant one, and
+$J_t=B^*H_t^{\rm Hil}B$, where
+$H_t^{\rm Hil}=[1/(i+j+1)]$. This auxiliary determinant identity
+does not replace any native coefficient coordinates. The Cauchy
+determinant identity yields
+\[
+ \det H_t^{\rm Hil}
+ =\frac{\prod_{0\le i<j\le t}(j-i)^2}
+ {\prod_{i,j=0}^t(i+j+1)}.
+\]
+For completeness, multiply the determinant of $[1/(u_i+v_j)]$
+by $\prod_{i,j}(u_i+v_j)$. The resulting polynomial is alternating
+in each list, hence divisible by the two Vandermonde products;
+its total degree equals their combined degree. The quotient is a
+constant, equal to one by the one-dimensional case and induction
+on the residue at $u_t=-v_t$. Taking $u_i=i$, $v_j=j+1$ proves
+the displayed formula. Grouping successive factors as $t$ grows
+gives the product in \eqref{eq:Jfloor}. Direct substitution gives
+the three small values. Finally $\binom{2j}j\le4^j$ implies
+$D_t^{\rm int}\ge(2t+1)^{-(t+1)}4^{-t(t+1)}$, while
+$T_t^{\rm int}\le2\sum_{i=0}^t4^i\le(8/3)4^t$.
+Division proves \eqref{eq:gsize}.
+\end{proof}
+
+\section{Every required weighted native inverse has an explicit margin}
+
+Fix one of the actual measures $\lambda$ in \eqref{eq:measures},
+write $d_\lambda=d_\nu$ or $d_{\widetilde\nu}$, and put
+$\mu_r=\int x^r d\lambda$. For a real polynomial
+$w(x)=\sum_{l=0}^Lw_lx^l$ with $w_l\ge0$ and $w(1)>0$, set
+\begin{equation}\label{eq:W}
+ W_t(w)=\left[\sum_{l=0}^Lw_l\mu_{i+j+l}\right]_{i,j=0}^t,
+ \quad h_{\lambda,t}=d_\lambda g_t,
+ \quad \ell_t(w)=w(1)h_{\lambda,t},\quad
+ U_t(w)=\sum_{i=0}^t\sum_{l=0}^Lw_lU_{\lambda,2i+l}.
+\end{equation}
+On $[1,2]$, $w(x)\ge w(1)$, so the proved native density floor
+and \eqref{eq:Jfloor} give the full quantitative bounds
+\begin{equation}\label{eq:Wfloor}
+ \boxed{\ell_t(w)I\preceq W_t(w)\preceq U_t(w)I.}
+\end{equation}
+The upper bound follows from positivity and the trace cap. In
+particular the moment systems actually used in \cite{FM}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_MOMENT_ENCLOSURES.tex\#L1}{[proof]}%
+% END VERIFIED PUBLIC PROOF LINK
+{} have
+the following constants, not merely existential eigenvalues:
+\[
+\begin{array}{c|c|c}
+ w(x)&\text{matrix}&\ell_t(w)/h_{\lambda,t}\ \ (=\sum_lw_l)\\ \hline
+ x^l&H_t^{(l)}=[\mu_{i+j+l}]&1\\
+ x+a&H_t^{(1)}+aH_t&1+a\\
+ x(x+a)&H_t^{(2)}+aH_t^{(1)}&1+a\\
+ x(x+a)(x+b)&H_t^{(3)}+(a+b)H_t^{(2)}+abH_t^{(1)}&(1+a)(1+b)
+\end{array}
+\]
+Here $a,b>0$; in the original calculation $a=4j^2$ and
+$b=(2r+1)^2$. These formulas apply separately to both parity
+blocks, both with and without the actual factor $s$.
+
+\begin{theorem}[A pole-independent moment budget]\label{thm:budget}
+Suppose each needed scalar moment has a real certified midpoint
+$\widehat\mu_r$ and absolute error at most $\varepsilon$.
+Let $\widehat W$ be its moment matrix. For $d=t+1$,
+\begin{equation}\label{eq:deltaW}
+ \norm{W-\widehat W}\le\delta_W:=d\,w(1)\varepsilon.
+\end{equation}
+For every $0<\theta\le1/4$, the concrete common budget
+\begin{equation}\label{eq:uniformbudget}
+ \boxed{\varepsilon\le\frac{\theta d_\lambda g_t}{t+1}}
+\end{equation}
+ensures $\delta_W\le\theta\ell_t(w)$ for every weight in
+the table, simultaneously for all positive poles. In particular
+\begin{equation}\label{eq:inversebracket}
+ \widehat W-\delta_W I\succeq(\ell_t(w)-2\delta_W)I>0,
+ \quad
+ (\widehat W+\delta_W I)^{-1}\preceq W^{-1}
+ \preceq(\widehat W-\delta_W I)^{-1},
+\end{equation}
+and
+\begin{equation}\label{eq:inverseerror}
+ \norm{W^{-1}-\widehat W^{-1}}
+ \le\frac{\delta_W}{\ell_t(w)(\ell_t(w)-\delta_W)}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Each entry error is at most $w(1)\varepsilon$. Its maximum
+absolute row sum and hence the norm of the Hermitian error are
+at most $d w(1)\varepsilon$. Weyl's elementary quadratic-form
+inequality gives $\widehat W\succeq(\ell_t(w)-\delta_W)I$.
+This proves the first assertion in \eqref{eq:inversebracket};
+the other assertions use inversion of positive definite Loewner
+inequalities and
+$W^{-1}-\widehat W^{-1}=W^{-1}(\widehat W-W)\widehat W^{-1}$.
+The coefficient sum and the interval minimum are the same $w(1)$,
+so it cancels in \eqref{eq:uniformbudget}.
+\end{proof}
+
+For different moment radii $\varepsilon_r$, a sharper completely
+explicit choice is
+\[
+ \delta_W=\max_{0\le i\le t}\sum_{j=0}^t
+                \sum_lw_l\varepsilon_{i+j+l}.
+\]
+For a finite list of degrees and measures, take the minimum of the
+right side of \eqref{eq:uniformbudget}. This is a specified finite
+positive number, not a request to test an unproved midpoint
+positivity. When a common base sequence represents both parities,
+use the literal shift $\mu_{1,r}=\mu_{0,r+1}$, preserving its
+correlation and mass.
+
+\section{Outward quadratic expressions and explicit absolute budgets}
+
+Every inverse-derived matrix in \cite{FM}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_MOMENT_ENCLOSURES.tex\#L1}{[proof]}%
+% END VERIFIED PUBLIC PROOF LINK
+{} has the form
+$F=C^*W^{-1}C$, where $C=[\mu_{i+j+l_0}]$ is $d$ by $e=n+1$,
+$l_0=0$ or $1$, and $d=t+1\ge e$. Define explicit numbers
+\begin{equation}\label{eq:P}
+ \begin{gathered}
+ c_C=\sqrt{de},\qquad
+ U_C=\left(\sum_{i=0}^{d-1}\sum_{j=0}^{e-1}
+                     U_{\lambda,i+j+l_0}^{2}\right)^{1/2},\\
+ c_W=d\,w(1),\quad \ell=\ell_t(w),\qquad
+ P_F=\frac43\left\{\frac{c_WU_C^2}{\ell^2}
+                  +\frac{2U_Cc_C+c_C^2}{\ell}\right\}.
+ \end{gathered}
+\end{equation}
+These are evaluated algebraic expressions in the original upper
+caps and lower floors. For $\varepsilon\le1$ and
+$c_W\varepsilon\le\ell/4$, set
+$\widehat F=\widehat C^*\widehat W^{-1}\widehat C$.
+Then
+\begin{equation}\label{eq:Ferror}
+ \norm{F-\widehat F}\le P_F\varepsilon,
+ \qquad \widehat F-P_F\varepsilon I\preceq F
+ \preceq\widehat F+P_F\varepsilon I.
+\end{equation}
+Indeed $\norm{C}\le U_C$, $\norm{C-\widehat C}\le c_C\varepsilon$,
+$\norm{\widehat W^{-1}}\le4/(3\ell)$ and
+$\norm{W^{-1}-\widehat W^{-1}}\le4c_W\varepsilon/(3\ell^2)$.
+Insert these in
+\[
+ F-\widehat F=C^*(W^{-1}-\widehat W^{-1})C
+              +C^*\widehat W^{-1}C-
+                    \widehat C^*\widehat W^{-1}\widehat C.
+\]
+The second difference has norm at most
+$(2U_Cc_C\varepsilon+c_C^2\varepsilon^2)4/(3\ell)$;
+$\varepsilon^2\le\varepsilon$ proves the claim. Thus a prescribed
+absolute matrix error $\tau>0$ is attained with the explicit budget
+\begin{equation}\label{eq:budgetF}
+ \varepsilon\le\min\{1,\ell/(4c_W),\tau/P_F\}.
+\end{equation}
+The restriction $\varepsilon\le1$ selects an absolute accuracy;
+it is not a normalization of a measure or of its moments.
+
+There is also a native lower floor for the exact $F$ itself. The
+first $e$ rows of $C$ form $H_n^{(l_0)}\succeq h_{\lambda,n}I$,
+and $W^{-1}\succeq U_t(w)^{-1}I$. Consequently
+\begin{equation}\label{eq:Ffloor}
+ F\succeq\frac{h_{\lambda,n}^2}{U_t(w)}I.
+\end{equation}
+Choosing $P_F\varepsilon\le h_{\lambda,n}^2/[4U_t(w)]$
+makes the lower outward endpoint in \eqref{eq:Ferror} strictly
+positive with at least half this floor. This includes the
+quadratic-denominator matrix with $l_0=1$ and
+$w=x(x+a)(x+b)$, not only the one-pole systems.
+
+An actual floating computation of the midpoint inverse must itself
+be certified. One option is exact rational inversion, since the
+moment midpoints may be rational and the original poles are positive
+integers. More generally, if a computed matrix $R_0$ satisfies a
+certified $\norm{I-\widehat W R_0}\le r_0<1$, then
+\begin{equation}\label{eq:residualinverse}
+ \norm{\widehat W^{-1}-R_0}
+ \le\frac{\norm{R_0}r_0}{1-r_0}.
+\end{equation}
+To prove this put $E=I-\widehat W R_0$ and use
+$\widehat W^{-1}=R_0(I-E)^{-1}$ and its convergent geometric
+series. Replacing $R_0$ by its Hermitian part does not increase
+the error from the exact Hermitian inverse. Its extra quadratic
+error is at most $\norm{\widehat C}^2$ times the right side of
+\eqref{eq:residualinverse}, plus certified multiplication roundoff.
+All subsequent scalar coefficients, square roots and logarithms are
+likewise rounded outwards if evaluated numerically.
+
+\section{A quantitative Radau margin and the exact complex phase}
+
+For the actual tilted measure $\rho=\widetilde\nu_\epsilon$,
+use the original RR notation, with $r\ge n+1$:
+\begin{equation}\label{eq:RR}
+ \begin{gathered}
+ H=[\mu_{i+j}]_{0\le i,j<r},\quad
+ D=[\mu_{i+j+1}]_{0\le i,j<r},\quad
+ C=[\mu_{i+j}]_{\substack{0\le i<r\\0\le j\le n}},\quad
+ e=(0,\ldots,0,1)^T,\\
+ \kappa=(e^*D^{-1}e)^{-1},\quad \widetilde D=D-\kappa ee^*,
+ \quad W_G=D+aH,\quad W_R=\widetilde D+aH.
+ \end{gathered}
+\end{equation}
+Here $\widetilde D$ is semidefinite, not positive definite, and
+is never inverted by itself. The attained constrained minimum
+\begin{equation}\label{eq:kmin}
+ \kappa=\min_{e^*z=1}z^*Dz
+\end{equation}
+has minimizer $\kappa D^{-1}e$; subtracting it from an arbitrary
+point in the fibre proves $\widetilde D\succeq0$ and its exact
+one-dimensional kernel. Set
+\begin{equation}\label{eq:RRconstants}
+ \begin{gathered}
+ h=d_{\widetilde\nu}g_{r-1},\quad
+ U_H=\sum_{i=0}^{r-1}U_{\rho,2i},\quad
+ U_D=\sum_{i=0}^{r-1}U_{\rho,2i+1},\quad U_\kappa=U_{\rho,2r-1}.
+ \end{gathered}
+\end{equation}
+We have
+\begin{equation}\label{eq:radaufloor}
+ H,D\succeq hI,\quad 0<\kappa\le D_{r-1,r-1}\le U_\kappa,
+ \quad W_G\succeq(1+a)hI,\quad W_R\succeq ahI.
+\end{equation}
+Thus the apparent Schur denominator has the explicit native floor
+\begin{equation}\label{eq:denominator}
+ \boxed{1-\kappa e^*W_G^{-1}e\ge
+                    \frac{ah}{U_D+aU_H}>0.}
+\end{equation}
+To check it, conjugate $W_R\succeq ahI$ by $W_G^{-1/2}$.
+The resulting matrix is $I-\kappa uu^*$, $u=W_G^{-1/2}e$,
+and is at least $ah(U_D+aU_H)^{-1}I$. Its least eigenvalue
+is precisely the left side of \eqref{eq:denominator}.
+
+This lower margin has a concrete moment tolerance. For moment
+error $\varepsilon$ with $r\varepsilon<h$, positivity of
+$\widehat D$ follows already from the interval floor, so define
+the exact midpoint scalar $\widehat\kappa=(e^*\widehat D^{-1}e)^{-1}$.
+The error bound $\norm{D-\widehat D}\le r\varepsilon$ gives
+\[
+ (1-r\varepsilon/h)D\preceq\widehat D
+ \preceq(1+r\varepsilon/h)D.
+\]
+Minimizing on the same fibre in \eqref{eq:kmin} proves
+\begin{equation}\label{eq:kerror}
+ |\widehat\kappa-\kappa|\le
+                  \frac{rU_\kappa}{h}\varepsilon.
+\end{equation}
+Therefore, for
+$\widehat W_R=\widehat D+a\widehat H-\widehat\kappa ee^*$,
+\begin{equation}\label{eq:radauprecision}
+ \norm{W_R-\widehat W_R}\le c_R\varepsilon,
+ \quad c_R=r(1+a)+\frac{rU_\kappa}{h},\quad
+ \varepsilon\le\min\{1,h/(4r),ah/(4c_R)\}
+\end{equation}
+guarantees the same positive outward inverse brackets as
+\eqref{eq:inversebracket}, with $\ell=ah$, $c_W=c_R$.
+Formula \eqref{eq:P} with those constants certifies
+$F^+=C^*W_R^{-1}C$. Its Gauss counterpart
+$F^-=C^*W_G^{-1}C$ uses $\ell=(1+a)h$, $c_W=r(1+a)$.
+This proves a finite precision budget even for the deflated Radau
+system; no generic numerical positivity assumption was used.
+
+For clarity, the rank-one phase assertion used in this receiver
+also survives the outward calculation. Let $p_r$ be the actual
+monic polynomial orthogonal for $\rho$ and let $z=v_n(-a)$.
+Orthogonality of the Gauss residual gives, for every
+$f(x)=v_n(x)^Tu$,
+\[
+ f-(x+a)q=-q_{r-1}p_r,\qquad q_{r-1}=-f(-a)/p_r(-a),
+ \quad[q]=W_G^{-1}Cu.
+\]
+The value $p_r(-a)$ cannot vanish, since division by $x+a$
+would contradict positivity of $\int(x+a)|p_r/(x+a)|^2d\rho$.
+Expanding the variational square yields
+\begin{equation}\label{eq:phase}
+ F_n(a)=\int\frac{v_nv_n^*}{x+a}d\rho
+       =F^-+\lambda zz^*,\qquad
+ \lambda=\frac1{p_r(-a)^2}\int\frac{p_r(x)^2}{x+a}d\rho\ge0.
+\end{equation}
+The rank-one inverse identity and
+$e^*W_G^{-1}C=-z^*/p_r(-a)$ give
+\[
+ F^+-F^-=\gamma zz^*,\qquad
+ \gamma=\frac{\kappa}{p_r(-a)^2(1-\kappa e^*W_G^{-1}e)}.
+\]
+For the upper sign, let $t_{r-1}$ be monic orthogonal for $x\rho$.
+Then $\int x|t_{r-1}|^2d\rho=\kappa$, and the Radau equations
+give $f-(x+a)\widetilde q=-\widetilde q_{r-1}xt_{r-1}$ with
+$\widetilde q_{r-1}=f(-a)/[a t_{r-1}(-a)]$.
+Divide $\bar f(x)-\bar f(-a)$, then
+$t_{r-1}(x)-t_{r-1}(-a)$, by $x+a$ and use orthogonality
+against $x\rho$. The complete difference is
+\[
+ u^*(F^+-F_n)u=
+ \frac{|f(-a)|^2}{a t_{r-1}(-a)^2}
+                   \int\frac{x t_{r-1}(x)^2}{x+a}d\rho\ge0.
+\]
+The divided differences vanish for constants, so $r=1$ is included.
+Thus $0\le\lambda\le\gamma$ with its original mass.
+
+If \eqref{eq:Ferror} certifies midpoint errors $\eta_\pm$,
+one may evaluate $\gamma$ stably without polynomial division:
+\begin{equation}\label{eq:gammaout}
+ \widehat\gamma=(\widehat F^+-\widehat F^-)_{00},\qquad
+ \max\{0,\widehat\gamma-\eta_+-\eta_-\}\le\gamma
+ \le\widehat\gamma+\eta_++\eta_-=: \gamma^{\rm up}.
+\end{equation}
+The exact matrix description is
+\begin{equation}\label{eq:phaseout}
+ F_n=\widehat F^-+E^-+\lambda zz^*,\qquad
+ \norm{E^-}\le\eta_-,\quad E^-=(E^-)^*,\quad
+ 0\le\lambda\le\gamma^{\rm up}.
+\end{equation}
+In particular its complex cross error is
+$u^*E^-v+\lambda\overline{f_u(-a)}f_v(-a)$, not an
+independently assigned phase. The same $E^-$ and scalar $\lambda$
+serve every entry. This distinction is retained by every congruence.
+
+\section{Finite tilted and resolvent enclosures from these budgets}
+
+Here are the precise outward substitutions in the previous native
+formulas. They also specify the cost of every finite moment error.
+For the chosen $\lambda$, target $n$, and auxiliary $t\ge n$,
+put $H_n=[\mu_{i+j}]$, $C=[\mu_{i+j}]_{0\le i\le t,0\le j\le n}$,
+$D_0=[\mu_{i+j+1}]_{0\le i\le t,0\le j\le n}$ and
+\[
+ L=C^*(H_t^{(1)}+aH_t)^{-1}C,\qquad
+ V=D_0^*(H_t^{(2)}+aH_t^{(1)})^{-1}D_0.
+\]
+Complete squares with weights $x+a$ and $x(x+a)$ respectively
+give
+\begin{equation}\label{eq:variational}
+ L\preceq R_n(a)\preceq(H_n-V)/a,\quad
+ V\preceq B_n(a)\preceq H_n-aL,
+\end{equation}
+where $R_n=\int vv^*/(x+a)d\lambda$,
+$B_n=\int xvv^*/(x+a)d\lambda$. Explicitly the two lower
+errors on a vector $u$ are the minima over degree-$t$ polynomials
+$q$ of $\int(x+a)|f/(x+a)-q|^2d\lambda$ and
+$\int x(x+a)|f/(x+a)-q|^2d\lambda$, respectively.
+Subtracting each lower bound from $H_n=aR_n+B_n$ proves the
+upper bounds. Thus no sign in \eqref{eq:variational} is assumed.
+
+Let $\eta_H=(n+1)\varepsilon$ and $\eta_L=P_L\varepsilon$,
+$\eta_V=P_V\varepsilon$. Certified finite endpoints are
+\begin{equation}\label{eq:outvar}
+ \begin{aligned}
+ R^{\rm lo}&=\widehat L-\eta_LI,&
+ R^{\rm up}&=(\widehat H_n-\widehat V+(\eta_H+\eta_V)I)/a,\\
+ B^{\rm lo}&=\widehat V-\eta_VI,&
+ B^{\rm up}&=\widehat H_n-a\widehat L+(\eta_H+a\eta_L)I.
+ \end{aligned}
+\end{equation}
+For Radau replace these by
+$B^{\rm lo}=\widehat H_n-a\widehat F^+-(\eta_H+a\eta_+)I$
+and
+$B^{\rm up}=\widehat H_n-a\widehat F^-+(\eta_H+a\eta_-)I$.
+They enclose the exact $H_n-aF^+$ and $H_n-aF^-$ endpoints.
+
+When only untilted moments are used, keep the exact mixed-pole
+integral against $\nu_\epsilon$:
+\[
+ T_n(a,b)=\int\frac{xvv^*}{(x+a)(x+b)}d\nu_\epsilon,
+ \quad T^- =D_0^*W_t(x(x+a)(x+b))^{-1}D_0.
+\]
+Completing the square in the weight $x(x+a)(x+b)$ for the
+function $f/[(x+a)(x+b)]$ proves $T^-\preceq T_n$.
+Its lower outward matrix is $\widehat T^--P_T\varepsilon I$.
+The exact partial fraction identity gives the upper matrix
+\begin{equation}\label{eq:partial}
+ T^{\rm up}=
+ \begin{cases}
+ [bR^{\rm up}(b)-aR^{\rm lo}(a)]/(b-a),&b>a,\\
+ [aR^{\rm up}(a)-bR^{\rm lo}(b)]/(a-b),&a>b.
+ \end{cases}
+\end{equation}
+Indeed $T_n=[bR_n(b)-aR_n(a)]/(b-a)$; the indicated upper
+and lower signs follow from the sign of each coefficient. The
+original even-square and odd-square poles are never equal.
+
+For explicit scalar precision accounting, the centers for the
+exact finite $R^-$ and $R^+$ expressions have error coefficients
+$\eta_{R^-}(a)=\eta_L(a)$ and
+$\eta_{R^+}(a)=(\eta_H+\eta_V(a))/a$. Consequently the
+center for the finite upper expression in \eqref{eq:partial}
+has radius
+\[
+ \eta_{T^+}(a,b)=
+ \begin{cases}
+ [b\eta_{R^+}(b)+a\eta_{R^-}(a)]/(b-a),&b>a,\\
+ [a\eta_{R^+}(a)+b\eta_{R^-}(b)]/(a-b),&a>b,
+ \end{cases}
+ \qquad \eta_{T^-}=P_T\varepsilon.
+\]
+These are the sums of absolute signed coefficients, not
+unsupported subtraction of error bounds.
+
+For $b_r=(2r+1)^2$ and any integer $R\ge1$ put
+\[
+ \theta_R=\alpha-\frac4\pi\sum_{r=0}^{R-1}\frac1{b_r}>0,
+ \qquad\theta_R\le\frac2{\pi(2R-1)}.
+\]
+The first equality uses the value of the positive series at zero;
+the bound compares the decreasing omitted terms with the integral
+of $(2u+1)^{-2}$ from $R-1$ to infinity. If
+$H^{\rm up}=\widehat H_n+\eta_HI$, then the actual tilted
+matrices are enclosed by
+\begin{equation}\label{eq:tiltedout}
+ \begin{aligned}
+ \frac4\pi\sum_{r<R}R^{\rm lo}(b_r)
+ &\preceq \int vv^*s\,d\nu_\epsilon
+ \preceq\frac4\pi\sum_{r<R}R^{\rm up}(b_r)+\theta_RH^{\rm up},\\
+ \frac4\pi\sum_{r<R}T^{\rm lo}(a,b_r)
+ &\preceq \int\frac{xvv^*s}{x+a}d\nu_\epsilon
+ \preceq\frac4\pi\sum_{r<R}T^{\rm up}(a,b_r)+\theta_RH^{\rm up}.
+ \end{aligned}
+\end{equation}
+The omitted positive scalar kernels are at most $\theta_R$,
+since $x/(x+a)\le1$. Integration proves every remainder in
+\eqref{eq:tiltedout}. These are finite original-moment enclosures
+with all scalar tails and signed coefficients retained.
+
+The four finite centers on the two lines of \eqref{eq:tiltedout}
+therefore have explicit radii
+\[
+ \begin{array}{ll}
+ \eta_{K^-}=\dfrac4\pi\sum_{r<R}\eta_{R^-}(b_r),&
+ \eta_{K^+}=\dfrac4\pi\sum_{r<R}\eta_{R^+}(b_r)+\theta_R\eta_H,\\[3pt]
+ \eta_{\widetilde B^-}=\dfrac4\pi\sum_{r<R}\eta_{T^-}(a,b_r),&
+ \eta_{\widetilde B^+}=\dfrac4\pi\sum_{r<R}\eta_{T^+}(a,b_r)
+                                      +\theta_R\eta_H.
+ \end{array}
+\]
+Every coefficient here is the displayed finite expression in
+original constants, poles and degrees; no unknown inverse norm
+is left inside a precision request.
+
+\section{Both parity blocks, outward source bounds, and direct precision}
+
+At an original degree $N\ge q-1$ put
+$n_0=\lfloor N/2\rfloor$, $n_1=\lfloor(N-1)/2\rfloor$, and
+\[
+ H_N=\diag\left([\int x^{i+j}d\nu_0]_{0\le i,j\le n_0},
+                [\int x^{i+j}d\nu_1]_{0\le i,j\le n_1}\right).
+\]
+Let $K$ and $K_x$ be the corresponding actual tilted moment
+blocks with no shift and one shift. The original reciprocal series
+in \eqref{eq:stieltjes}, the one-pole bounds above, and
+$\sum_{j>J}j^{-2}\le1/J$ give
+\begin{equation}\label{eq:Gexact}
+ G^-:=\frac2\pi K+\frac4\pi\sum_{j=1}^JB_j^-
+ \preceq H_N\preceq
+ G^+:=\frac2\pi K+\frac4\pi\sum_{j=1}^JB_j^+
+                        +\frac1{\pi J}K_x.
+\end{equation}
+Here $B_j^\pm$ may be the exact finite variational or Radau
+endpoints in both blocks. They are positive semidefinite: for
+Radau, $W_R\succeq aH$ gives
+$aC^*W_R^{-1}C\preceq C^*H^{-1}C=H_n$; the variational
+lower endpoint is manifestly positive. Therefore
+\begin{equation}\label{eq:gsource}
+ G^-\succeq g_N^*I,\qquad
+ g_N^*=\frac2\pi d_{\widetilde\nu}
+                         \min\{g_{n_0},g_{n_1}\}>0.
+\end{equation}
+Apply the moment budgets to every displayed finite matrix. If
+its exact endpoint has a center $\widehat G^\pm$ with certified
+norm error $\eta_\pm$, set
+\begin{equation}\label{eq:Gout}
+ G^{\rm lo}=\widehat G^--\eta_-I,\qquad
+ G^{\rm up}=\widehat G^++\eta_+I.
+\end{equation}
+For the direct tilted route one may take, explicitly,
+\[
+ \eta_-\le\frac2\pi\eta_K+\frac4\pi\sum_{j=1}^J\eta_{B_j^-},
+ \quad
+ \eta_+\le\frac2\pi\eta_K+\frac4\pi\sum_{j=1}^J\eta_{B_j^+}
+                         +\frac1{\pi J}\eta_{K_x}.
+\]
+Each $\eta$ on the right is the displayed coefficient times
+$\varepsilon$, or the maximum of the two parity coefficients.
+Thus these give finite known coefficients $P_\pm$ with
+$\eta_\pm\le P_\pm\varepsilon$; choose
+$\varepsilon\le g_N^*/(4P_-)$ as well as all local budgets.
+Then $G^{\rm lo}\succeq(g_N^*-2\eta_-)I\succeq g_N^*I/2$,
+and
+\begin{equation}\label{eq:sourcecert}
+ 0<G^{\rm lo}\preceq H_N\preceq G^{\rm up},\quad
+ \Delta G=G^{\rm up}-G^{\rm lo}\succeq0,\quad
+ G^{\rm up}\preceq(1+\eta_N)G^{\rm lo},\quad
+ \eta_N=\frac{\norm{\Delta G}}{g_N^*-2\eta_-}.
+\end{equation}
+The exact norm may be replaced by a certified Frobenius or row-sum
+upper bound. The original-moment-only route \eqref{eq:tiltedout}
+uses the same signed scalar error addition, with the actual native
+outer tail $X_H/(2J)$ in place of $K_x/(\pi J)$, where $X_H$
+is the once-shifted untilted direct sum. This follows from
+$s\le\pi/2$, with no substituted measure. In that route the
+exact finite lower approximation to $K$ is smaller than $K$,
+so its positivity floor must also be replaced. Keep its first
+pole $b_0=1$ and let $t_{\epsilon,0}$ be that pole's actual
+auxiliary degree. Formula \eqref{eq:Ffloor} gives the explicit
+valid replacement
+\[
+ g_{N,\mathrm{untilted}}^*
+ =\frac8{\pi^2}\min_{\epsilon=0,1}
+ \frac{(d_\nu g_{n_\epsilon})^2}
+ {U_{t_{\epsilon,0}}^{(\nu_\epsilon)}(x+1)}>0.
+\]
+All other finite lower summands are positive. Use this floor,
+the literal signed coefficients from \eqref{eq:partial}, and
+the tails in \eqref{eq:tiltedout} in
+\eqref{eq:Gout}--\eqref{eq:sourcecert}; the same proved
+$\eta_-\le g_{N,\mathrm{untilted}}^*/4$ budget certifies the
+lower source endpoint. No positivity floor for the exact tilted
+Gram is mistakenly assigned to its finite lower approximation.
+
+There is a stronger elementary route when the original moments
+through degree $2n_\epsilon$ are supplied: they already give
+$H_N$ directly. There is no need to reconstruct it by resolvents.
+Define
+\begin{equation}\label{eq:directconstants}
+ h_N=d_\nu\min\{g_{n_0},g_{n_1}\},\qquad
+ d_N^{\rm src}=\max\{n_0+1,n_1+1\},\qquad
+ \delta_N=d_N^{\rm src}\varepsilon.
+\end{equation}
+Then $H_N\succeq h_NI$ and $\norm{H_N-\widehat H_N}\le\delta_N$.
+For $\delta_N\le\theta_Nh_N$, $0<\theta_N\le1/4$, put
+\begin{equation}\label{eq:directout}
+ H_N^{\rm lo}=\widehat H_N-\delta_NI,\quad
+ H_N^{\rm up}=\widehat H_N+\delta_NI.
+\end{equation}
+They are positive outward endpoints and obey
+\begin{equation}\label{eq:directrelative}
+ H_N^{\rm up}\preceq\frac1{1-2\theta_N}H_N^{\rm lo}.
+\end{equation}
+Indeed $H_N^{\rm lo}\succeq(h_N-2\delta_N)I$ and the two
+endpoints differ by $2\delta_NI$, giving factor
+$1+2\delta_N/(h_N-2\delta_N)\le(1-2\theta_N)^{-1}$.
+This direct original-moment bound, unlike a still-to-be-selected
+resolvent depth, supplies an unconditional finite entrywise
+precision budget for any prescribed original four-endpoint error.
+
+\section{Exact complex transport, inverse evaluation, and full fibres}
+
+Retain the full original coefficient map, including all phases:
+\begin{equation}\label{eq:transport}
+ \begin{gathered}
+ (T_N)_{rj}=\binom jr c^{j-r}i^r,\quad
+ (T_N^{-1})_{rj}=\binom jr(-c)^{j-r}i^{-j}\quad(r\le j),\\
+ L_N=\Pi_NT_N,\quad H_S=L_N^*H_NL_N,\quad
+ \det T_N=i^{N(N+1)/2},\quad
+ \det L_N=(\det\Pi_N)i^{N(N+1)/2},\\
+ A=\Lambda J_{S,N}L_N^{-1}.
+ \end{gathered}
+\end{equation}
+Other triangular entries vanish and $\Pi_N$ orders even powers
+before odd powers. Expanding $(c+iy)^j$ proves the forward map;
+expanding $y^j=i^{-j}(S-c)^j$ proves its inverse. The original
+physical Taylor unit remains in $J_{S,N}$, and $A$ is onto the
+same original observation image, not replaced by its norm.
+
+For any positive source matrix $D$ in these parity coordinates,
+\begin{equation}\label{eq:Q}
+ Q_A(D)=(AD^{-1}A^*)^{-1},\quad
+ \min_{Az=u}z^*Dz=u^*Q_A(D)u,\quad
+ z_{\min}=D^{-1}A^*Q_A(D)u.
+\end{equation}
+The displayed minimizer is in the fibre and is $D$-orthogonal to
+$\ker A$; subtraction and expansion of the square prove both
+identities. Its original $S$ lift is $L_N^{-1}z_{\min}$.
+For either outward source pair above, the same-fibre minimum gives
+\begin{equation}\label{eq:Qbounds}
+ Q^-:=Q_A(D^{\rm lo})\preceq Q_A(H_N)\preceq
+ Q^+:=Q_A(D^{\rm up}).
+\end{equation}
+The source relative factor is preserved exactly. Any original
+specified source subspace uses its same inclusion and restricted
+fibre, never a silently enlarged polynomial source.
+
+No further unverified inverse is hidden in \eqref{eq:Qbounds}.
+Here is an explicit evaluation margin. For the actual onto $A$
+with $d>0$ rows put
+\begin{equation}\label{eq:Afloor}
+ a_A=\frac{\det(AA^*)}{[\tr(AA^*)]^{d-1}}>0,
+ \quad b_A=\tr(AA^*).
+\end{equation}
+The determinant/trace eigenvalue proof in Lemma \ref{lem:J}
+gives $a_AI\preceq AA^*\preceq b_AI$. This is the literal
+original map, including its jet and complex coefficients. If
+$lI\preceq D\preceq UI$, then
+\begin{equation}\label{eq:obsmargins}
+ \frac{a_A}{U}I\preceq AD^{-1}A^*\preceq\frac{b_A}{l}I,
+\qquad \frac l{b_A}I\preceq Q_A(D)\preceq\frac U{a_A}I.
+\end{equation}
+These margins have already proved native choices, so the
+inequality is not an additional positivity premise. For the direct
+moment endpoints take, simultaneously,
+\[
+ l=h_N-2\delta_N,\qquad
+ U=\sum_{\epsilon=0}^1\sum_{i=0}^{n_\epsilon}
+                 U_{\nu_\epsilon,2i}+2\delta_N.
+\]
+The exact native source has norm at most the displayed trace cap,
+and each endpoint is within $2\delta_N$ of it. For the finite
+resolvent endpoints take $l=g_N^*-2\eta_-$ (or its displayed
+untilted replacement) and $U=\tr G^{\rm up}$, increased by any
+certified arithmetic error in that trace. Positivity and the order
+in \eqref{eq:sourcecert} prove these common endpoint bounds.
+Thus a certified numerical center for $D^{-1}$ with error $r_D$
+gives an observation-center error at most $b_Ar_D$, before adding
+its own certified multiplication roundoff. Requiring that total
+error $\delta_B\le a_A/(4U)$ gives the outward observation
+inverse by \eqref{eq:inversebracket}, with $\ell=a_A/U$.
+One can meet this stated precision using exact arithmetic or
+\eqref{eq:residualinverse}. It is not inferred from a midpoint
+determinant. If $A$ itself is evaluated numerically with error
+$\delta_A$ and midpoint $\widehat A$, its additional product
+error against a source inverse of norm at most $1/l$ is at most
+$(2\norm{A}\delta_A+\delta_A^2)/l$ (or replace $\norm{A}$
+by $\norm{\widehat A}+\delta_A$). Its original coefficient
+enclosures are then separate inputs; this note does not manufacture
+them. The determinant in \eqref{eq:Afloor} is an exact formula
+in the original onto map, not a universal lower bound independent
+of that map. The source-relative tolerance below does not require
+its numerical evaluation.
+
+In particular, if both the source inverse and the map are
+approximated, the combined product radius, before multiplication
+roundoff, is explicitly
+\[
+ \norm{AD^{-1}A^*-\widehat A R_0\widehat A^*}
+ \le \frac{2\norm{A}\delta_A+\delta_A^2}{l}
+                  +\norm{\widehat A}^{\,2}r_D.
+\]
+This follows by first changing $A$ against the exact inverse,
+then changing the inverse against $\widehat A$. It retains the
+mixed effect of simultaneous map and inverse errors rather than
+incorrectly using the coefficient $b_A$ for both centers.
+
+\section{Every complex cross term and every endpoint sign}
+
+For any fixed original observation columns $U=(u_1,u_2,w)$,
+the entire $3$ by $3$ Gram is bounded by
+\[
+ U^*Q^-U\preceq U^*Q_A(H_N)U\preceq U^*Q^+U.
+\]
+Its actual common remainder $E=U^*(Q_A(H_N)-Q^-)U$ satisfies
+$0\preceq E\preceq U^*(Q^+-Q^-)U$; in particular
+\begin{equation}\label{eq:cross}
+ |u^*(Q_A(H_N)-Q^-)v|^2
+ \le(u^*\Delta Q u)(v^*\Delta Q v),\qquad\Delta Q=Q^+-Q^-.
+\end{equation}
+This follows by Cauchy--Schwarz in the positive remainder. It
+retains the single PSD matrix, including every principal minor and
+the full determinant constraint, not three independently chosen
+complex errors. For example, if $E_{ii}=\alpha_i$ and
+$E_{ij}=z_{ij}$ for $i<j$, its constraints include $\alpha_i\ge0$,
+$|z_{ij}|^2\le\alpha_i\alpha_j$, and the full determinant
+\[
+ \alpha_1\alpha_2\alpha_3
+ +2\Re(z_{12}z_{23}\overline{z_{13}})
+ -\alpha_1|z_{23}|^2-\alpha_2|z_{13}|^2-\alpha_3|z_{12}|^2
+ \ge0.
+\]
+Expansion of the determinant proves this expression; the same
+principal-minor constraints apply to $U^*\Delta Q U-E$.
+In the original currents set
+$u_i=\Lambda a_i$, $a_1=b_N$, $a_2=b_{N+1}$, and
+$w=\Lambda v_\lambda$ with its original terminal class and
+$\omega_N>0$. Put $B_i=u_i^*Q_A(H_N)w$, $B_i^-=u_i^*Q^-w$,
+$\epsilon_i=B_i-B_i^-$ and
+$e_i=[(u_i^*\Delta Q u_i)(w^*\Delta Q w)]^{1/2}$.
+The complete signed product is
+\begin{equation}\label{eq:current}
+ \frac{2}{\omega_N}\Re(\overline B_1B_2)
+ =\frac{2}{\omega_N}\Re\{
+ \overline{B_1^-}B_2^-+\overline{B_1^-}\epsilon_2
+ +\overline{\epsilon_1}B_2^-+\overline{\epsilon_1}\epsilon_2\}.
+\end{equation}
+Its difference from the first term has absolute value at most
+$2(|B_1^-|e_2+|B_2^-|e_1+e_1e_2)/\omega_N$.
+No cross term, conjugation, remainder, or phase is assigned zero.
+
+For the actual image dimension $d_N$, define
+$e_N=\log\det Q_N^+-\log\det Q_N^-\ge0$ in the unchanged
+frame. A source relative factor $r_N\ge1$ gives
+\begin{equation}\label{eq:logbound}
+ 0\le\log\det Q_N-\log\det Q_N^-\le e_N\le d_N\log r_N.
+\end{equation}
+The proof conjugates by $(Q_N^-)^{-1/2}$ and multiplies the
+eigenvalues in $[1,r_N]$. This auxiliary computation does not
+change the specified determinant or frame. The empty determinant
+is one. At exactly the original window
+$(N_1,N_2,N_3,N_4)=(q-1,q,2q-1,2q)$ let
+\[
+ F=\log\frac{\det Q_{N_1}\det Q_{N_2}}
+                   {\det Q_{N_3}\det Q_{N_4}},\quad
+ F^-=\log\frac{\det Q_{N_1}^-\det Q_{N_2}^-}
+                     {\det Q_{N_3}^-\det Q_{N_4}^-}.
+\]
+The complete signed enclosure is
+\begin{equation}\label{eq:four}
+ \boxed{-e_{N_3}-e_{N_4}\le F-F^-
+                         \le e_{N_1}+e_{N_2}.}
+\end{equation}
+Equivalently the lower ratio uses lower numerator matrices and
+upper denominator matrices, and the upper ratio reverses these.
+
+For a prescribed absolute four-endpoint tolerance $t_*>0$, the
+direct actual-moment route supplies the explicit endpoint budgets
+\begin{equation}\label{eq:finalbudget}
+ \boxed{\theta_N=\min\{1/4,t_*/(8d_N)\},\qquad
+ \varepsilon_N\le
+ \frac{\theta_Nd_\nu\min(g_{n_0},g_{n_1})}
+      {\max(n_0+1,n_1+1)}\quad(d_N>0).}
+\end{equation}
+Indeed \eqref{eq:directrelative} gives
+$e_N\le-d_N\log(1-2\theta_N)\le4d_N\theta_N\le t_*/2$;
+the middle inequality follows by integrating
+$(1-u)^{-1}\le2$ over $0\le u\le2\theta_N\le1/2$.
+If the minimum selects $1/4$, then $t_*\ge2d_N$ and the last
+inequality still holds. Equation \eqref{eq:four} now proves
+$|F-F^-|\le t_*$. Endpoints of rank zero have zero determinant
+error and require no such budget. Taking the minimum of the four
+positive budgets supplies one compatible shared moment precision.
+No observation conditioning hypothesis is needed for this exact
+relative result, although numerical evaluation of the endpoint
+matrices still follows \eqref{eq:obsmargins}.
+
+If numerical log determinants are returned, retain their outward
+intervals too. Write $l_i^-\le\log\det Q_i^-\le u_i^-$ and
+$l_i^+\le\log\det Q_i^+\le u_i^+$. The fully outward real
+return interval is
+\[
+ [\,l_1^-+l_2^--u_3^+-u_4^+,\quad
+       u_1^++u_2^+-l_3^--l_4^-\,].
+\]
+For an absolute error target $t_*$ on a reported approximation
+to $F^-$, use \eqref{eq:finalbudget} with $t_*/2$ instead of
+$t_*$ and certify each of the four numerical lower-endpoint log
+values to absolute error at most $t_*/8$. The signed sum then
+has numerical error at most $t_*/2$, and the total return error
+is at most $t_*$. This separates, and includes, the actual moment
+error and the finite arithmetic error.
+
+\section{The same conductor and its unchanged signed-state kernel}
+
+On the already established original conductor domain \cite{TR}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_TRUNCATION_CONDUCTOR_RETURN.tex\#L54}{[proof TR1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{},
+retain $C=\bar C\Lambda$ with $\bar C$ onto its actual image.
+The exact conductor metric and outward endpoints are
+\begin{equation}\label{eq:conductor}
+ T_N=(\bar C Q_N^{-1}\bar C^*)^{-1},\quad
+ T_N^\pm=(\bar C(Q_N^\pm)^{-1}\bar C^*)^{-1}
+       =[(\bar CA)(D^\pm)^{-1}(\bar CA)^*]^{-1}.
+\end{equation}
+Substitution proves the last equality; minimizing on the full same
+fibre $\bar Cu=v$ proves $T_N^-\preceq T_N\preceq T_N^+$
+with the identical source-relative factor. This includes the entire
+conductor kernel. Its numerical inverse floor is
+\eqref{eq:obsmargins} with the literal map $\bar CA$.
+Keep the original cubic inclusion $I_W$, coordinate map $\Psi$,
+and signed-state map $B_{\mathcal J}=O(I-D_{\mathcal J})O^{-1}E$.
+For the original label vector $\alpha_0$ the outward signed-state
+energies are precisely
+\[
+ \alpha_0^*B_{\mathcal J}^*\Psi^*I_W^*T_N^-I_W\Psi
+               B_{\mathcal J}\alpha_0
+ \le\alpha_0^*B_{\mathcal J}^*\Psi^*I_W^*T_NI_W\Psi
+               B_{\mathcal J}\alpha_0
+ \le\alpha_0^*B_{\mathcal J}^*\Psi^*I_W^*T_N^+I_W\Psi
+               B_{\mathcal J}\alpha_0.
+\]
+These are literal congruences of \eqref{eq:conductor}. The
+terminal-class residual of the original EQ20--21 is retained,
+not set to zero by these positive energy bounds. Its remaining
+complex pairings use \eqref{eq:cross} with the original columns.
+Conductor determinants, or a specified positive definite
+restriction, use \eqref{eq:four} and \eqref{eq:finalbudget} with
+their actual ranks, frames and the same four endpoints.
+
+\section{Finite native scalar inputs and what the precision costs}
+
+The rational numbers $g_t$, all pole values, determinant phases,
+dimension factors and error coefficients above are fully specified
+finite expressions. No native integral has been numerically
+evaluated without supplied values of the original quartet data.
+The remaining scalar inputs are precisely the original
+$\vartheta_h$, $M_\alpha$, TW7/BT12 constants, and finitely many
+actual moments. Downward bounds for $a_k,d_\nu$ and upward bounds
+for $A_k,U_{\lambda,r}$ may replace their exact values in every
+budget. This preserves all inequalities; it never silently treats
+an uncertified midpoint constant as a lower bound.
+
+For the untilted route the moments can be reduced further to
+original onefold scalar integrals. Write
+$\eta_l=\int y^lw_h(y)dy$ and
+$\zeta_L=\int y^Lm_k(y)dy$. Evenness gives $\eta_{2j+1}=0$,
+and Tonelli followed by the finite multinomial formula gives
+\begin{equation}\label{eq:multinomial}
+ \int x^r d\nu_\epsilon=\zeta_{2(r+\epsilon)},\quad
+ \zeta_L=\sum_{l_1+\cdots+l_k=L}
+ \frac{L!}{l_1!\cdots l_k!}\prod_{j=1}^k\eta_{l_j}.
+\end{equation}
+Odd summands vanish, and all remaining factors are nonnegative.
+Every monomial product in the finite expansion is absolutely
+integrable by the original exponential moment. Fubini therefore
+justifies the factorization even for the terms containing odd
+powers, before evenness makes those terms zero.
+For $L=0$ this is the actual mass $\mu_h^k$; it is not one.
+The original exponential moment gives the explicit caps
+\begin{equation}\label{eq:etaone}
+ 0\le\eta_{2j}\le(2j)!\alpha^{-2j}M_\alpha,
+\end{equation}
+because $\cosh(\alpha y)\ge(\alpha y)^{2j}/(2j)!$ and
+$\int\cosh(\alpha y)w_h=M_\alpha$.
+Suppose original moments through $\zeta_{2R}$ are wanted at
+absolute error $\varepsilon$. Put
+$U=\max_{0\le j\le R}(2j)!\alpha^{-2j}M_\alpha$.
+If every even onefold input is enclosed with midpoint error
+\begin{equation}\label{eq:onefoldbudget}
+ \tau\le\min\left\{1,
+ \frac{\varepsilon}{k^{2R+1}(U+1)^{k-1}}\right\},
+\end{equation}
+then the finite polynomial \eqref{eq:multinomial}, evaluated
+exactly on those midpoints, has error at most $\varepsilon$
+for every even degree through $2R$. To prove it, telescope each
+$k$-fold product; its error is at most
+$k\tau(U+1)^{k-1}$. The sum of all multinomial coefficients
+at degree $L$ is $k^L$, and the even-only subsum is smaller.
+For $L\le2R$ their product is bounded by the denominator in
+\eqref{eq:onefoldbudget}. Thus the four-endpoint budget is an
+explicit finite accuracy request on original onefold integrals,
+not on an unidentified proxy measure.
+
+Their infinite tails also have an original explicit certificate.
+For an even degree $L$ and $Y\ge\max\{1,L/\alpha\}$,
+\begin{equation}\label{eq:tail}
+ \int_{|y|>Y}|y|^Lw_h(y)dy
+ \le2M_\alpha Y^Le^{-\alpha Y},\quad
+ \int_{|y|>Y}|y|^Lm_k(y)dy
+ \le2M_\alpha^kY^Le^{-\alpha Y}.
+\end{equation}
+Indeed $y^Le^{-\alpha y}$ decreases for $y\ge L/\alpha$,
+and evenness gives $\int e^{\alpha|y|}w_h\le2M_\alpha$.
+Tonelli proves $\int e^{\alpha y}m_k=M_\alpha^k$, giving
+the second bound. A tilted moment tail has the additional factor
+at most $\alpha$. Repeatedly doubling $Y$ from the stated lower
+threshold attains any prescribed positive tail allowance, since
+$Y^Le^{-\alpha Y}\to0$. The remaining compact integrals of
+the original $w_h$, or of $s(y^2)m_k(y)$ if one chooses the
+tilted route, still require certified evaluation. Their numerical
+values are not supplied by these tail inequalities or by the
+moment-matrix calculation.
+
+For absolute input error $2^{-p}$, \eqref{eq:uniformbudget}
+requires the explicit integer
+\[
+ p\ge\max\left\{0,
+ \left\lceil\log_2\frac{t+1}{\theta d_\lambda g_t}\right\rceil
+ \right\}.
+\]
+There is no hidden unknown eigenvalue. Formula \eqref{eq:gsize}
+shows an elementary sufficient cost with
+$-\log_2g_t\le4t^2+2t+t\log_2(8/3)
+ +(t+1)\log_2(2t+1)$.
+These unaltered monomial-coordinate floors are deliberately
+conservative and may demand very high precision at the original
+large degrees. This proof establishes finite, explicit tolerances
+and outward certificates, not practical low-cost evaluation of
+the native integrals or a new phase/asymptotic conclusion.
+
+The companion exact tests verify rational interval Grams,
+determinants, all polynomial weights, moment perturbations, inverse
+brackets, the deflated Radau margin, complex rank-one cross terms,
+original triangular maps and masses, quotient/conductor fibres,
+and all four determinant signs. Test measures serve only as exact
+checks of the proved universal identities. They do not replace the
+native measures in any statement above.
+
+\begin{thebibliography}{9}
+\bibitem{ZDS} J\"orn Zimmerling, Vladimir Druskin and Valeria Simoncini,
+\emph{Monotonicity, bounds and acceleration of Block Gauss and
+Gauss--Radau quadrature for computing $B^T\phi(A)B$}, original
+author source of arXiv:2407.21505v3, 9 January 2025, Sections 3--5.
+\url{https://arxiv.org/abs/2407.21505v3}.
+The abstract-page title uses ``extrapolation''; the title here
+identifies the retained version-three author source. Its complete
+source was read by the integrating task. This note uses it for
+human mathematical provenance, and proves its native conditioning
+and perturbation claims independently.
+\bibitem{CAI} Split-Zero programme, \emph{The complete original action
+relative to its arithmetic total}, complete provider
+\path{CAI_COMPLETE_PREREQUISITE.tex}, CAI16--17 and its original
+TW7/BT12 constant definitions. The exact displayed envelope and
+constants are retained above.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/487253b5b01851da5b9b98af4e146fecf1fab902/workbenches/splitzero-tandem/continuations/20260919-full-window-source-products/providers/CAI_COMPLETE_PREREQUISITE.tex\#L284}{Source proof CAI16}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{HG} Split-Zero programme, \emph{Subexponential heat cost and
+the original arithmetic currents}, complete provider
+\path{HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex}, HG21, arbitrary
+fixed primary multiplicity and the full-measure comparison.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_GROWTH_AND_ORIGINAL_CURRENTS.tex\#L374}{Source proof HG21}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{PP} Split-Zero programme, \emph{Exact native parity transport
+into the Pollaczek pair and certified finite source--observation
+bounds}, complete proof
+\path{independent_parity_pollaczek/PARITY_POLLACZEK_NATIVE_RECEIVER.tex},
+20 September 2026. The unscaled Pollaczek ratio there retains the
+human source A. I. Aptekarev, G. L\'opez Lagomasino and
+A. Mart\'{\i}nez--Finkelshtein, \emph{Strong asymptotics for the
+Pollaczek multiple orthogonal polynomials ensembles},
+arXiv:1410.1261v1 (2014). No asymptotic or replacement weight from
+that paper is imported here.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/PARITY_POLLACZEK_NATIVE_RECEIVER.tex\#L1}{Source proof}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{FM} Split-Zero programme, \emph{Certified finite native moment
+enclosures for the parity resolvents}, complete proof
+\path{independent_resolvent_moments/NATIVE_RESOLVENT_MOMENT_ENCLOSURES.tex},
+20 September 2026. Read completely as a prerequisite.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_MOMENT_ENCLOSURES.tex\#L1}{Source proof}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{RR} Split-Zero programme, \emph{One scalar resolvent
+uncertainty in the original polynomial observation}, complete proof
+\path{NATIVE_RESOLVENT_RANK_ONE.tex}, RR1--16, 20 September 2026.
+Read completely as a prerequisite; its full mass, deflation,
+rank-one phase, original maps and endpoint signs are retained.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_RESOLVENT_RANK_ONE.tex\#L50}{Source proof RR1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{TR} Split-Zero programme, \emph{Native resolvent truncation at
+growing degree and the original conductor minimum}, complete proof
+\path{NATIVE_TRUNCATION_CONDUCTOR_RETURN.tex}, TR1--10,
+20 September 2026, retaining the complete original EQ conductor
+and signed-state maps, including their terminal residuals.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_TRUNCATION_CONDUCTOR_RETURN.tex\#L54}{Source proof TR1}.
+% END VERIFIED PUBLIC PROOF LINK
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,756 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xurl}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\allowdisplaybreaks\setlength{\emergencystretch}{3em}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\tr}{\operatorname{tr}}\newcommand{\dd}{\dagger_G}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Theorem}
+\title{Original correlated moments receive both native heat observations}
+\author{}\date{20 September 2026 --- SZ-20260920-045}
+\begin{document}\maketitle
+
+This is a finite receiver, with a complete proof of its moment, quotient,
+compression and heat maps. It continues MI1--25 \cite{MI}%
+% BEGIN HISTORICAL EXTERNAL CITATION
+~Complete source, now public: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/MOVING_INTERVAL_NATIVE_PRECISION.tex\#L30}{MI1--MI25}.%
+% END HISTORICAL EXTERNAL CITATION
+{}, NI1--19 and
+QS1--32 \cite{NI}%
+% BEGIN HISTORICAL EXTERNAL CITATION
+~Complete source, now public: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/NATIVE_INPUT_EVALUATION.tex\#L32}{NI1--NI19}; \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/QUARTET_MOMENT_SEED_REDUCTION.tex\#L27}{QS1--QS32}.%
+% END HISTORICAL EXTERNAL CITATION
+{}, and the finite heat action NH1--36 \cite{NH}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_HEAT_ACTION.tex\#L41}{[proof NH1]} \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_METRIC_COMPARISON.tex\#L43}{[proof HM1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}.
+It does not change result SZ-20260920-043. The companion note
+\path{endpoint_metric_check/ENDPOINT_METRIC_HEAT.tex}, EM1--30,
+supplies additional endpoint bounds; the bounds needed here are proved
+again. The human heat-test source is Connes \cite{Connes}; only its
+Gaussian choice, not its RH-assuming infinite heat theorem, provides
+context. The rank-one spectral-action context is Connes--van Suijlekom
+\cite{CV}. None of their infinite-dimensional results is an assumption
+in this proof. All arithmetic values remain the original inputs.
+
+\section{Original measure, relation and physical unit}
+
+Fix the stipulated quartet, with its actual multiplicity, in the domain
+\begin{equation}\tag{HR1}\label{HR1}
+\begin{gathered}
+0<\delta<\tfrac12,\quad\gamma>2,\quad m\ge1,\quad
+k=4\ell+1\ge9,\quad c=k/2,\quad e_k=1+k(m-1),\\
+g(v)=2\xi(v),\quad h(v)=\prod_{\epsilon,\eta=\pm1}
+(v-\tfrac12-\epsilon\delta-i\eta\gamma)^m,\\
+w_h(y)=|(g/h)(1/2+iy)|^2/(2\pi),\quad m_k=w_h^{*k},\\
+\chi(S)=\prod_{a,b=0}^k
+\bigl(S-c-(2a-k)\delta-i(2b-k)\gamma\bigr)^{e_k},\quad
+q=e_k(k+1)^2,\quad N\ge q-1.
+\end{gathered}
+\end{equation}
+This domain asserts no existence of an off-line zeta zero. The argument
+also applies to an existing full packet closed under conjugation and
+\(\rho\mapsto1-\rho\), with the original multiplicities retained,
+including collisions and its complete polynomial
+\(\chi=\prod_\kappa(S-\kappa)^{e_\kappa}\); the exponent is then the
+maximum \(1+\sum(m_{\rho_j}-1)\) over tuples with that sum, not a count
+of distinct sums. Indeed in the local tensor ring the highest nonzero
+power of \(\sum z_j\), where \(z_j^{m_{\rho_j}}=0\), has degree
+\(\sum(m_{\rho_j}-1)\) and nonzero multinomial coefficient on the
+product of the highest powers. The next power vanishes. Taking the
+least common annihilator across local summands proves this exponent.
+Reflecting every tuple preserves its multiplicities and sends its sum
+\(\kappa\) to \(k-\kappa=2c-\kappa\). Therefore
+\(e_{2c-\kappa}=e_\kappa\) and
+\(\chi(2c-S)=(-1)^q\chi(S)\). This proves the reflection quotient
+map used below also in the collision case. An unpaired subpacket is
+not included in this extension.
+
+Let \(C=\C[S]/(\chi)\), in its ordered remainder basis, and let
+\(M_S\) be multiplication by \(S\). Retain
+\begin{equation}\tag{HR2}\label{HR2}
+M=(M_S-cI)/i,\quad E_h=\C[v]/(h),\quad
+\upsilon=j_h(g/h),\quad
+\eta[P]=\upsilon^{\otimes k}P(v_1+\cdots+v_k).
+\end{equation}
+Here \(F_h\) is the original source with Mellin transform
+\(\mathcal M F_h=g/h\). The constant jet of \(g/h\) at an actual zero \(\rho\) is
+\(g^{(m_\rho)}(\rho)/(m_\rho!\prod_{\sigma\ne\rho}
+(\rho-\sigma)^{m_\sigma})\ne0\). A finite geometric series in the
+nilpotent part inverts that jet. Thus \(\upsilon\) is a unit.
+The preceding annihilator calculation proves that \(\eta\) is
+injective. Its marked cyclic vector is exactly
+\(\eta[1]=\upsilon^{\otimes k}\), not the ambient tensor unit.
+All coordinates below are carried to this image by \(\eta\), with
+metric \(\langle\eta x,\eta y\rangle=x^*Gy\). Hence traces and
+adjoints there are the conjugates of the displayed operators.
+
+\section{One finite correlated arithmetic input}
+
+Put \(P(x)=[x^2+2(\delta^2-\gamma^2)x+
+(\delta^2+\gamma^2)^2]^{2m}\), of degree \(D_0=4m\), and retain
+\begin{equation}\tag{HR3}\label{HR3}
+e_j=\int_\R \frac{y^{2j}|g(1/2+iy)|^2}{2\pi P(y^2)}\,dy,
+\quad \beta_j=\int_\R \frac{y^{2j}|g(1/2+iy)|^2}{2\pi}\,dy,
+\quad x^j=Pq_j+r_j,\quad\deg r_j<D_0.
+\end{equation}
+Pairing the quartet factors gives \(h(1/2+iy)=
+[(y-\gamma)^2+\delta^2]^m[(y+\gamma)^2+\delta^2]^m\), so these
+are the original measure and moments. Polynomial division and finite
+integration give
+\begin{equation}\tag{HR4}\label{HR4}
+e_j=\sum_{u<D_0}r_{j,u}e_u+\sum_{v\le j-D_0}q_{j,v}\beta_v,
+\qquad
+\zeta_j=j![z^j]\left(\sum_{u=0}^N\frac{e_u z^{2u}}{(2u)!}\right)^k
+\quad(0\le j\le2N+1).
+\end{equation}
+The second sum is empty when appropriate; for \(j<D_0\), \(r_j=x^j\).
+The coefficient at the odd index \(2N+1\) is zero exactly. The second
+identity follows by expanding \((y_1+\cdots+y_k)^j\) in the original
+convolution integral. All absolute moments are finite by the original
+exponential envelope, so Fubini applies to each finite expansion.
+In particular \(\zeta_0=e_0^k\), with no division by the mass.
+The required independent scalar inputs are at most \(4m\) divided
+seeds, and \(\beta_0,\ldots,\beta_{N-D_0}\) when \(N\ge D_0\).
+Their certified integral evaluations and complete tails are NI1--11;
+their finite division coefficients and alternate repeated-pole inputs
+are QS7--30. This receiver uses their actual enclosed values, not
+sampled zero parameters.
+
+Write all primitive real inputs as one vector \(\theta\) in its
+certified box \(\mathcal B\). Repeated appearances of any entry are
+the same variable. Equations \eqref{HR3}--\eqref{HR4} are polynomial
+in those variables and in \(\delta,\gamma\), since division is by a
+monic polynomial. They therefore preserve any additional known
+correlations by restricting \(\mathcal B\) to the corresponding set.
+An enclosing box may include sequences not arising from measures;
+it is used only for enclosure of the actual member.
+
+For numerical radii, first set
+\(\epsilon_j^e=\sum_u|r_{j,u}|\epsilon_u^{\rm seed}
++\sum_v|q_{j,v}|\epsilon_v^\beta\).
+Expand the exact products to obtain the finite coefficient bound
+\begin{equation}\tag{HR5}\label{HR5}
+\begin{gathered}
+E(z)=\sum_{u=0}^N |\widehat e_u|z^{2u}/(2u)!,\qquad
+E_+(z)=\sum_{u=0}^N(|\widehat e_u|+\epsilon_u^e)z^{2u}/(2u)!,\\
+|\zeta_j-\widehat\zeta_j|\le
+\epsilon_j:=j![z^j](E_+^k-E^k),\qquad \epsilon_{2j+1}=0.
+\end{gathered}
+\end{equation}
+Every product containing at least one error is present in the difference.
+For enclosed coefficients, replacing a product \(av\) by its midpoint
+gives error at most \(|\widehat a|\epsilon_v+
+\epsilon_a(|\widehat v|+\epsilon_v)\), including the product of errors.
+This proves the parameter-enclosure rule used in QS23 as well.
+The midpoint sequence is obtained by evaluating the entire common map
+at \(\theta_0\), not by making independent choices for repeated entries.
+
+\section{Exact source and attained quotient, including compression}
+
+Let \(\Pi_N\) put the even powers of \(y\) first, then the odd powers.
+With indices \(0\le i,j\le N\), define
+\begin{equation}\tag{HR6}\label{HR6}
+H_y=[\zeta_{i+j}],\quad K_y=[\zeta_{i+j+1}],\quad
+H=\Pi_NH_y\Pi_N^*,\quad K=\Pi_NK_y\Pi_N^*,\quad
+J=J_{S,N}(\Pi_NT_N)^{-1},
+\end{equation}
+where \((T_N)_{rj}=\binom jr c^{j-r}i^r\) for \(r\le j\), and
+\((T_N^{-1})_{rj}=\binom jr(-c)^{j-r}i^{-j}\).
+Expansion of \((c+iy)^j\) and \(i^{-j}(S-c)^j\) proves both maps.
+Here \(J_{S,N}\) is the original reduction into the physical cyclic
+space, expressed in its original cyclic coordinates. In the remainder
+basis its first \(q\) columns are the identity. Thus it is onto.
+The parity Gram \(H\) is block diagonal; \(K\) has the two off-diagonal
+parity blocks. Both receive the same \(\zeta\)'s and their literal
+index shifts. Multiplication by \(y\), compressed in the source metric,
+has matrix \(H^{-1}K\): its normal equations are \(Hv=Kb\).
+
+For every positive \(H\), define
+\begin{equation}\tag{HR7}\label{HR7}
+G=(JH^{-1}J^*)^{-1},\quad R=H^{-1}J^*G,\quad
+A=JH^{-1}KR,\quad Q=A-M,\quad T(t)=(1-t)A+tM=A-tQ.
+\end{equation}
+Since \(J\) is onto, \(JH^{-1}J^*>0\). Direct multiplication gives
+\begin{equation}\tag{HR8}\label{HR8}
+JR=I,\quad HR=J^*G,\quad R^*HR=G,\quad
+GA=R^*KR=A^*G.
+\end{equation}
+Every lift of \(u\) is \(Ru+v\), \(Jv=0\), and its squared norm is
+\(u^*Gu+v^*Hv\), since \(v^*HRu=v^*J^*Gu=0\).
+This proves the full-fibre attained minimum and its unique lift.
+It also proves the precise compression formula, including the first
+factor \(JH^{-1}\), not a substitution of an unrelated matrix.
+On the physical source retain the exact coefficient conversion
+\[
+P_u(S)=\sum_{j=0}^N[((\Pi_NT_N)^{-1}Ru)_j]S^j.
+\]
+The lift is \(P_u(\mathcal D_1+\cdots+\mathcal D_k)F_h^{\otimes k}\),
+where \(\mathcal D_j=-x_j\partial_{x_j}\) and its original Mellin multiplier is the
+\(j\)-th coordinate \(v_j\). Its source polynomial on the physical
+line is \(P_u(c+iy)\), whose parity-ordered coefficients are exactly
+\(Ru\). Moreover \(J_{S,N}(\Pi_NT_N)^{-1}Ru=JRu=u\).
+Its physical image is therefore \(\eta u\), and its squared norm is
+\(u^*Gu\). The parity-\(y\) coefficients have not been applied as
+if they were \(S\)-monomial coefficients.
+
+Here is the rank-one relation needed for the correlated heat tail.
+Form the real monic orthogonal polynomials \(U_j(y)\), \(0\le j\le N\),
+by solving their lower-degree normal equations using \(H_y>0\), and
+let \(\omega_j=\langle U_j,U_j\rangle\), including
+\(\omega_0=\zeta_0\). The same normal equations define the monic
+\(U_{N+1}\) from the moments through \(2N+1\); no norm of that polynomial
+is required. Set \(b_j=[i^jU_j((S-c)/i)]_\chi\). The coefficient map
+from this orthonormal source basis to the parity source is an invertible
+matrix \(B\) with \(B^*HB=I\). Hence \(BB^*=H^{-1}\),
+\(E=JB\), and \(G=(EE^*)^{-1}\). Reduction of the only degree-\(N+1\)
+term omitted in the source compression gives
+\begin{equation}\tag{HR9}\label{HR9}
+Q=r\ell,\qquad r=\frac{i}{\omega_N}b_{N+1},\quad
+\ell=b_N^*G,\quad Q^2=0,\quad
+\varepsilon^2:=\tr(Q^\dd Q)=\norm Q_G^2.
+\end{equation}
+For the sign, the full outgoing column in the orthonormal basis is
+\(U_{N+1}/\sqrt{\omega_N}\). Its reduction is
+\(i^{-(N+1)}b_{N+1}/\sqrt{\omega_N}\), and its lifted last-coordinate
+row is \(i^N b_N^*G/\sqrt{\omega_N}\). Their product is
+\(-i b_{N+1}b_N^*G/\omega_N\). Thus \(M=A-Q\), proving the sign.
+Evenness gives \(U_j(-y)=(-1)^jU_j(y)\), by uniqueness of the normal
+equations. The map \(\mathcal P[P(S)]=[P(2c-S)]\) satisfies
+\(\mathcal PE=E\operatorname{diag}((-1)^j)\), so it is a \(G\)-isometry.
+Opposite parity vectors are orthogonal; therefore \(\ell r=0\) and
+\(Q^2=0\). Finally a rank-one matrix \(r\ell\) has squared operator
+and Hilbert--Schmidt norm \((r^*Gr)(\ell G^{-1}\ell^*)\), by
+Cauchy--Schwarz with equality in the direction \(G^{-1}\ell^*\).
+This proves \eqref{HR9}, including \(Q=0\). This proof uses only the
+positive finite Gram and the consistent even shifted moments, so it
+holds throughout every certified positive moment box.
+
+\section{Explicit moment radii and movement of the same fibre}
+
+Use the consistent midpoint \(H_0,K_0\), not a diagonally shifted
+matrix as if it were a moment sequence. Let
+\begin{equation}\tag{HR10}\label{HR10}
+e_H=\max_i\sum_{j=0}^N\epsilon_{i+j},\qquad
+e_K=\max_i\sum_{j=0}^N\epsilon_{i+j+1}.
+\end{equation}
+The Hermitian row-sum bound gives \(\norm{H-H_0}_2\le e_H\) and
+\(\norm{K-K_0}_2\le e_K\). To prove that bound, for a Hermitian
+matrix \(D\), expand \(|x^*Dx|\) and use
+\(2|x_i x_j|\le|x_i|^2+|x_j|^2\); the result is at most the
+largest absolute row sum times \(\norm x_2^2\). Diagonalizing the
+Hermitian matrix proves the operator bound.
+If \(h_*>0\) is the actual source floor from MI8--9, then
+\(H_0\succeq(h_*-e_H)I\). The guard \(e_H<h_*/2\) proves positivity
+on the whole box and the relative bounds
+\begin{equation}\tag{HR11}\label{HR11}
+\rho=\frac{e_H}{h_*-e_H}<1,\quad
+\sigma=\frac{e_K}{h_*-e_H},\quad
+\norm{H_0^{-1/2}(H-H_0)H_0^{-1/2}}\le\rho,\quad
+\norm{H_0^{-1/2}(K-K_0)H_0^{-1/2}}\le\sigma.
+\end{equation}
+Alternatively any directly certified midpoint floor can replace
+\(h_*-e_H\). Uniform convolution-moment error \(\epsilon\) gives
+\(e_H,e_K\le d\epsilon\), where
+\(d=\max(\lfloor N/2\rfloor+1,\lfloor(N-1)/2\rfloor+1)\), because
+only one parity block contributes in each row. Thus
+\(\epsilon\le h_*/(4d)\) gives \(\rho\le1/3\).
+The actual raw-input tolerance MI17 with total degree \(N\) suffices
+for both \(H\) and \(K\): its apparently additional last moment
+\(\zeta_{2N+1}\) is identically zero. For example
+\begin{equation}\tag{HR12}\label{HR12}
+\tau\le\min\{1/3,\epsilon/[3k(B+1)^{k-1}(2N)!]\},\qquad
+B\ge\int\cosh y\,w_h(y)\,dy,
+\end{equation}
+is enough for each divided input moment. Indeed the truncated
+exponential generating polynomial changes by at most \(3\tau\) on
+the unit circle, its true size is at most \(B\), and telescoping
+its \(k\)-th power bounds its change by \(3k\tau(B+1)^{k-1}\).
+Integration against \(e^{-ij\theta}\) isolates each coefficient.
+The original MI15 gives explicit \(B\), and HR5 usually improves this
+common bound. The seed row sums in HR5 specify the further required
+seed accuracy, with no stability assumption on their recurrence.
+
+In the rest of this section \(J,M\) and all structural parameters
+are fixed. Subscript zero means the same formulas at \(H_0,K_0\).
+The attained minimum proves directly
+\begin{equation}\tag{HR13}\label{HR13}
+(1-\rho)G_0\preceq G\preceq(1+\rho)G_0,\qquad
+\kappa=(1+\rho)/(1-\rho).
+\end{equation}
+Indeed bound the squared norm on every vector of the same fibre
+and then take the two minima; no observation or physical unit changes.
+Define, only as exact isometric proof coordinates,
+\[
+V=H_0^{1/2}R_0G_0^{-1/2},\quad
+D=H_0^{1/2}(R-R_0)G_0^{-1/2},\quad
+C_0=H_0^{-1/2}K_0H_0^{-1/2},\quad
+F=H_0^{-1/2}(K-K_0)H_0^{-1/2}.
+\]
+Then \(V^*V=I\), \(V^*D=0\), and
+\begin{equation}\tag{HR14}\label{HR14}
+\norm D\le\beta:=\rho/\sqrt{1-\rho^2}.
+\end{equation}
+Here is a proof retaining the complete kernel of \(J\).
+The columns of \(V\) are the orthogonal complement of
+\(\mathcal K=\ker(JH_0^{-1/2})\), and those of \(D\) lie in \(\mathcal K\).
+Put \(X=H_0^{-1/2}(H-H_0)H_0^{-1/2}\). For any target column \(y\),
+write \(v=Vy\), \(w=Dy\). Then \(v^*w=0\), \(\norm v=\norm y\),
+and the minimizing normal equations give
+\(0=w^*(I+X)(v+w)=\norm w^2+w^*X(v+w)\).
+Thus \(\norm w^2\le\rho\norm w\sqrt{\norm v^2+\norm w^2}\).
+If \(w=0\) the desired bound holds; otherwise divide by \(\norm w\),
+square, and rearrange to obtain
+\((1-\rho^2)\norm w^2\le\rho^2\norm y^2\).
+Taking the supremum proves HR14, including a zero-dimensional kernel.
+
+Set \(Z=G_0^{-1/2}GG_0^{-1/2}\),
+\(B_1=G_0^{-1/2}(R^*KR)G_0^{-1/2}\),
+\(B_0=V^*C_0V=G_0^{1/2}A_0G_0^{-1/2}\), and \(a_0=\norm{A_0}_{G_0}\),
+\(k_0=\norm{C_0}\). The full matrix difference is
+\begin{equation}\tag{HR15}\label{HR15}
+\begin{split}
+B_1-B_0={}&V^*C_0D+D^*C_0V+D^*C_0D\\
+&+V^*FV+V^*FD+D^*FV+D^*FD.
+\end{split}
+\end{equation}
+In particular the two complex mixed terms involving \(C_0\) and both
+complex mixed terms involving \(F\) survive in the exact identity.
+Since \((V+D)^*(V+D)=I+D^*D\), grouping only for the estimate gives
+\(\norm{B_1-B_0}\le k_0(2\beta+\beta^2)+\sigma(1+\beta^2)\).
+Finally the coordinate matrix of \(A\) is \(Z^{-1}B_1\), and
+\(\norm{Z-I}\le\rho\), \(\norm{Z^{-1}}\le(1-\rho)^{-1}\).
+Consequently
+\begin{equation}\tag{HR16}\label{HR16}
+\norm{A-A_0}_{G_0}\le
+\alpha_A:=\frac{k_0(2\beta+\beta^2)+\sigma(1+\beta^2)+\rho a_0}
+{1-\rho},\quad
+\norm{T(t)-T_0(t)}_{G_0}\le u:=|1-t|\alpha_A.
+\end{equation}
+These are finite computable bounds; they vanish as the input radii vanish.
+
+\section{Separate trace receivers and the exact endpoint improvement}
+
+For real \(t\), \(s>0\), retain
+\begin{equation}\tag{HR17}\label{HR17}
+\Phi_s(t)=\tr e^{-sT(t)^2},\quad
+\Psi_s(t)=\tr e^{-sT(t)^\dd T(t)},\quad
+\Delta_s(t)=\Re\Phi_s(t)-\Psi_s(t).
+\end{equation}
+Let \(b_0\ge\norm{T_0(t)}_{G_0}\), \(b_*=b_0+u\),
+\(v=u(2b_0+u)\), and define
+\(d(1)=0\), \(d(x)=(1-x^{-1})x^{-1/(x-1)}\) for \(x>1\).
+Then
+\begin{equation}\tag{HR18}\label{HR18}
+\begin{split}
+|\Phi_s(t)-\Phi_{s,0}(t)|&\le qsv\,e^{s b_*^2},\\
+|\Psi_s(t)-\Psi_{s,0}(t)|&\le qsv+q d(\kappa).
+\end{split}
+\end{equation}
+For the first line use \(\norm{T^2-T_0^2}\le v\) and the exact
+Duhamel identity
+\(e^{-sX}-e^{-sY}=-\int_0^s e^{-(s-u)X}(X-Y)e^{-uY}\,du\).
+It follows by differentiating the product of the two exponentials;
+their series justify differentiation on this compact interval.
+Their norms are at most \(e^{(s-u)b_*^2}\) and \(e^{ub_0^2}\).
+Finally \(|\tr F|\le q\norm F\) in orthonormal coordinates.
+
+For the second line first compare \(T^\dagger_0T\) and
+\(T_0^{\dagger_0}T_0\) in \(G_0\), where both are positive and their
+difference has norm at most \(v\). The exponentials in Duhamel are
+contractions, giving \(qsv\). To change the metric with \(T\) fixed,
+its generalized Rayleigh quotient is
+\(x^*T^*GTx/(x^*Gx)\). HR13 places it between \(\kappa^{-1}\) and
+\(\kappa\) times the quotient for \(G_0\). The increasing ordered
+eigenvalues satisfy the same bounds. For completeness the \(j\)-th
+eigenvalue is the minimum, over \(j\)-dimensional subspaces, of the
+maximum quotient there: the first \(j\) eigenvectors attain it, and
+every such subspace intersects the last \(q-j+1\) eigenvectors.
+This proves the comparison without identifying eigenvectors.
+Both systems have \(q-r\) zero eigenvalues, \(r=\operatorname{rank}T\).
+For \(x\ge0\), the maximum of \(e^{-x}-e^{-\kappa x}\) is
+\(d(\kappa)\), found by differentiating and substituting
+\(x=\log\kappa/(\kappa-1)\). The reverse scaled difference has
+the same maximum. Thus the metric cost is at most
+\(r d(\kappa)\le qd(\kappa)\), proving HR18.
+Also \(d(\kappa)\le\log\kappa/e\): integrate
+\(xe^u e^{-xe^u}\le1/e\) for \(0\le u\le\log\kappa\).
+
+At \(t=1\), the sharper receiver is
+\begin{equation}\tag{HR19}\label{HR19}
+\begin{gathered}
+\Phi_s(1)=\sum_\kappa e_\kappa e^{s(\kappa-c)^2},\qquad
+\Psi_{\kappa s,0}(1)\le\Psi_s(1)\le\Psi_{s/\kappa,0}(1),\\
+\Phi_s(1)-\Phi_{s,0}(1)=0,\qquad
+|\Delta_s(1)-\Delta_{s,0}(1)|
+=|\Psi_s(1)-\Psi_{s,0}(1)|\le \operatorname{rank}(M)d(\kappa).
+\end{gathered}
+\end{equation}
+The symbol in the first sum denotes roots of \(\chi\); the scalar
+\(\kappa\) in the bounds is the metric ratio HR13. Triangularize
+the companion over \(\C\); powers and exponential series retain its
+diagonal eigenvalues with all algebraic multiplicities. Alternatively
+on a local block the full operator is
+\(\sum_{j<e_\kappa}f_s^{(j)}(\kappa)N_\kappa^j/j!\),
+\(f_s(S)=e^{s(S-c)^2}\). The nilpotent terms have zero trace, not
+zero operator, and the constant term has trace
+\(e_\kappa f_s(\kappa)\). This proves the first identity without
+guessing or separating numerical roots. Monotonicity of the scalar
+exponential and the preceding singular-value comparison prove the
+squeeze. In HR1, \(M\) is invertible since \(k\) is odd and every
+eigenvalue \((2b-k)\gamma-i(2a-k)\delta\) has nonzero real part.
+The endpoint formula is independent of raw moments, not independent
+of an uncertainty in \(\delta,\gamma\) themselves. Such structural
+uncertainty is retained in the rational receiver below.
+
+One may also use the exact isometry
+\(S=(G_0^{-1}G)^{1/2}:C_G\to C_{G_0}\). It carries the physical
+map and marked vector to \(\eta S^{-1}\) and \(S[1]\), so their
+composition remains \(\eta[1]\). With \(D_M=SMS^{-1}-M\), the
+positive square changes by
+\begin{equation}\tag{HR20}\label{HR20}
+E_M=M^{\dagger_0}D_M+D_M^{\dagger_0}M+D_M^{\dagger_0}D_M,
+\quad |\Psi_s(1)-\Psi_{s,0}(1)|\le s\norm{E_M}_{1,G_0}.
+\end{equation}
+Here the trace norm is the sum of singular values in the stated
+metric. To prove its use in Duhamel, write a singular-value expansion
+\(F=\sum\sigma_j u_jv_j^*\); it gives
+\(|\tr FB|\le\sum\sigma_j\norm B\). Both positive heat factors
+are contractions. Expansion gives exactly the three terms in HR20,
+including the quadratic one. In particular the endpoint radius may
+be the minimum of HR19 and HR20. No change of metric scale has occurred.
+
+\section{Finite scalar error budgets and a shared rational heat receiver}
+
+All norms in HR11--20 may be replaced by certified upper bounds.
+The following also supplies a closed sufficient raw-moment tolerance.
+Let \(\epsilon\le\epsilon_*:=h_*/(4d)\). Choose constants valid for
+all such centres:
+\(k_0,a_0\le\bar k\), \(\norm M_{G_0}\le\bar m\).
+They have the following explicit finite construction. The MI upper
+source envelope gives \(H\preceq UI\); put
+\(h_l=3h_*/4\), \(U_l=U+h_*/4\), \(W=(JJ^*)^{-1}\).
+Then \(h_lW\preceq G_0\preceq U_lW\), so take
+\(\bar m=\sqrt{U_l/h_l}\norm M_W\).
+An actual absolute moment cap is
+\(c_j=2A_kC_\Gamma j!/\alpha^{j+1}\) for even \(j\),
+\(c_j=0\) for odd \(j\), where \(\alpha=\pi/2\).
+It follows by integrating the MI2 upper exponential envelope,
+discarding only the factor \((1+|y|)^{-1/2}\le1\).
+Put \(V_K=\max_i\sum_j c_{i+j+1}\) and take
+\(\bar k=(V_K+h_*/4)/h_l\), which bounds \(\norm{C_0}\).
+Thus every constant is a finite expression in original data.
+
+For \(\rho\le1/3\), HR16 implies
+\begin{equation}\tag{HR21}\label{HR21}
+\alpha_A\le C_A\epsilon,\qquad
+C_A=(7\bar k+9/4)d/h_*.
+\end{equation}
+Indeed \(\beta\le3\rho/(2\sqrt2)\),
+\(\beta^2\le3\rho/8\le1/8\), so
+\(2\beta+\beta^2\le(3/\sqrt2+3/8)\rho<5\rho/2\).
+Use \(a_0\le\bar k\), \((1-\rho)^{-1}\le3/2\), and
+\(\rho,\sigma\le4d\epsilon/(3h_*)\).
+Define \(b_c=|1-t|\bar k+|t|\bar m+|1-t|C_A\epsilon_*\).
+Then HR18 and \(\log\kappa\le(9/4)\rho\le3d\epsilon/h_*\) give
+\begin{equation}\tag{HR22}\label{HR22}
+\begin{gathered}
+R_\Phi\le C_\Phi\epsilon,\quad
+C_\Phi=2qs b_c|1-t|C_A e^{s b_c^2},\\
+R_\Psi\le C_\Psi\epsilon,\quad
+C_\Psi=2qs b_c|1-t|C_A+3qd/(e h_*),\\
+\epsilon\le\min\{\epsilon_*,\eta_\Phi/C_\Phi,
+\eta_\Psi/C_\Psi\}.
+\end{gathered}
+\end{equation}
+A zero error constant \(C_\Phi\) or \(C_\Psi\) imposes no restriction
+through its corresponding tolerance quotient, and that error is zero.
+The last line supplies prescribed positive moment
+error budgets \(\eta_\Phi,\eta_\Psi\). For the difference use
+\(\epsilon\le\eta_\Delta/(C_\Phi+C_\Psi)\). Combining HR22, HR12,
+and the finite seed row sums HR5 is an explicit finite primitive-input
+tolerance. It does not assign a bounded size to these constants as
+\(k,N\) grow.
+
+There is a tighter certificate that preserves dependence rather than
+adding two separate input radii. For \(D\ge0\), put
+\begin{equation}\tag{HR23}\label{HR23}
+\begin{gathered}
+P_D^\Phi(\theta)=\sum_{n=0}^D\frac{(-s)^n}{n!}\tr T(\theta)^{2n},\quad
+P_D^\Psi(\theta)=\sum_{n=0}^D\frac{(-s)^n}{n!}
+\tr\bigl(G(\theta)^{-1}T(\theta)^*G(\theta)T(\theta)\bigr)^n,\\
+P_D^\Delta=\Re P_D^\Phi-P_D^\Psi.
+\end{gathered}
+\end{equation}
+The same \(\theta\) is substituted everywhere before polynomial or
+rational collection. Each is a rational function with real input
+variables and complex rational coefficients when prescribed
+\(s,t\) and box endpoints are rational and the structural parameters
+are included in \(\theta\). A requested nonrational real or complex
+constant can instead have its real and imaginary parts included as
+additional shared real inputs with certified rational box endpoints;
+the positive denominator guard must hold on that enlarged box.
+Alternatively its coefficient enclosures can be refined along with
+subdivision. Fixed-width independent coefficient enclosures alone are
+not a claim of convergent exact-range evaluation. Complex conjugation acts on
+coefficients and not on real variables. In particular all products
+in HR15 and in \(T^*GT\) remain. At \(t=1\), \(P_D^\Phi\) is
+identically constant in every raw-moment variable, not merely enclosed
+by a small radius.
+
+For completeness the rational denominators are explicitly positive.
+Write \(h=\det H>0\), \(B_J=J\operatorname{adj}(H)J^*>0\), and
+\(b=\det B_J>0\). Then
+\begin{equation}\tag{HR24}\label{HR24}
+G=h\,\operatorname{adj}(B_J)/b,\quad
+R=\operatorname{adj}(H)J^*\operatorname{adj}(B_J)/b,\quad
+G^{-1}=B_J/h.
+\end{equation}
+Thus products of powers of \(h,b\) give a positive common denominator
+for HR23. All operations are finite determinants and products.
+If \(\delta,\gamma\) are also enclosed, include those same real
+variables in \(\chi,J,M\) in HR1, HR2 and HR6, rather than fixing
+sample values. In the cyclic basis, the monic remainder map \(J_{S,N}\)
+has polynomial coefficients and is onto throughout, by its identity
+minor. With \(\delta_->0,\delta_+<1/2,\gamma_->2\) and a verified
+source floor over the box, HR24 proves positivity throughout.
+The scalar movement formulas HR13--22 are stated for fixed \(J,M\);
+the rational formulas HR23--24 require no such freeze and enclose the
+whole shared structural family. The physical identification is asserted
+at the original actual input, not at nonzero test parameters masquerading
+as zeros.
+
+Here is an exact box-enclosure algorithm, including its termination
+for every required positive denominator guard. Affinely map each
+finite box to \([0,1]^r\). For \(P(x)=\sum_\beta a_\beta x^\beta\)
+with coordinate degrees \(d_i\), its tensor Bernstein coefficients are
+\begin{equation}\tag{HR25}\label{HR25}
+b_\alpha=\sum_{\beta\le\alpha}a_\beta
+\prod_i\binom{\alpha_i}{\beta_i}/\binom{d_i}{\beta_i}.
+\end{equation}
+To prove the formula, use the binomial identity
+\(x^j=\sum_{l=j}^d\binom lj\binom dj^{-1}\binom dl
+x^l(1-x)^{d-l}\) in each variable; expanding \((x+1-x)^{d-j}\)
+proves that identity. The nonnegative basis sums to one, so coefficient
+extrema enclose the polynomial. Apply this to numerator and positive
+denominator, and divide the resulting intervals, using all four endpoint
+quotients. For a complex numerator do this for real and imaginary parts.
+Subdivide rationally if a denominator lower bound is not yet positive.
+For the exact fixed polynomial coefficients just specified, this
+terminates on a compact positive box: on a subbox of side at most
+\(\delta\), expansion about its corner has constant coefficient the
+value there and every other monomial coefficient bounded by
+\(C\delta\), with a finite \(C\) from the original polynomial
+coefficients. Formula HR25 bounds each Bernstein coefficient's
+deviation from that value by another explicit finite constant times
+\(\delta\). The positive continuous denominator has positive minimum
+on the compact box. Thus all sufficiently small subboxes certify it.
+The same estimate proves convergence of the enclosure widths to the
+actual range as the mesh tends to zero. This is a finite algorithm
+for any prescribed excess over that range, not a promise that a genuine
+input uncertainty interval collapses to a point.
+
+\section{Complete heat tails, with correlation and outgoing curvature}
+
+Choose uniform bounds \(b\ge\norm{T(\theta)}_{G(\theta)}\) and
+\(E_Q\ge\norm{Q(\theta)}_{G(\theta)}^2\) on the box.
+For fixed structural data explicit choices are
+\begin{equation}\tag{HR26}\label{HR26}
+b=\sqrt\kappa(b_0+u),\qquad
+E_Q=\kappa(\norm{A_0-M}_{G_0}+\alpha_A)^2.
+\end{equation}
+For variable structural data they can instead be obtained from the
+positive rational forms, for example by bounding \(G,G^{-1},T,Q\)
+entrywise on the compact box. The inequality
+\(\norm X_G\le\sqrt{\norm G\norm{G^{-1}}}\norm X_2\), together
+with \(\norm X_2\le\norm X_F\), proves these finite upper bounds.
+Put \(x=sb^2\). The separate rigorous truncation errors are
+\begin{equation}\tag{HR27}\label{HR27}
+|\Phi_s-P_D^\Phi|\le q e^x\frac{x^{D+1}}{(D+1)!},\qquad
+|\Psi_s-P_D^\Psi|\le q\frac{x^{D+1}}{(D+1)!}.
+\end{equation}
+For the first, the matrix exponential tail is bounded term by term;
+\(\sum_{j>D}x^j/j!\le e^x x^{D+1}/(D+1)!\), because
+\((D+1+l)!\ge(D+1)!l!\). For the second, diagonalize the positive
+\(T^\dd T\). For a scalar \(y\in[0,x]\), Taylor's integral remainder
+for \(e^{-y}\) has absolute value at most \(y^{D+1}/(D+1)!\), since
+all derivative absolute values on \([0,y]\) are at most one. Summing
+over all \(q\) eigenvalues proves the second bound, with zeros included.
+
+The correlated tail is substantially different. Define
+\(D_n=\tr(T^\dd T)^n-\Re\tr T^{2n}\). Then, throughout the box,
+\begin{equation}\tag{HR28}\label{HR28}
+D_1=t^2\varepsilon^2,\qquad
+|D_n|\le n(2n-1)t^2\varepsilon^2 b^{2n-2},\qquad
+\Delta_s=\sum_{n\ge1}\frac{(-1)^{n+1}s^n}{n!}D_n.
+\end{equation}
+Here is the complete finite proof of the dimension-free bound. Write
+\(T=U+iV\), \(U=(T+T^\dd)/2\), \(V=(T-T^\dd)/(2i)\), both
+selfadjoint. HR9 gives \(\tr V^2=t^2\varepsilon^2/2\).
+For \(Z(v)=U+ivV=((1+v)T+(1-v)T^\dd)/2\), \(0\le v\le1\),
+both \(\norm{Z(v)}_G\) and its adjoint norm are at most \(b\).
+Set \(f_n(v)=\tr(Z(v)^\dd Z(v))^n-\Re\tr Z(v)^{2n}\).
+At zero it vanishes; its first derivative vanishes because the alternating
+word has equal numbers of \(+iV\) and \(-iV\), whose traces cancel by
+cyclicity, while the other derivative is the real part of
+\(2ni\tr(U^{2n-1}V)\), zero since the trace in it is real.
+A second derivative of either word has \(2n(2n-1)\) ordered terms,
+each with two specified factors \(V\). A cyclic word \(VX VY\) has
+absolute trace at most \(\norm V_{\rm HS,G}^2\norm X_G\norm Y_G\).
+This follows from matrix-entry Cauchy--Schwarz in the exact coordinates
+\(G^{1/2}\), and from summing squared column norms for multiplication
+of a Hilbert--Schmidt matrix by a bounded matrix. Hence
+\(|f_n''|\le2(2n)(2n-1)\tr(V^2)b^{2n-2}\).
+Integrate with weight \(1-v\), whose integral is \(1/2\), and use
+\(\tr V^2=t^2\varepsilon^2/2\). This proves the bound in HR28.
+Direct expansion gives \(D_1=2\tr V^2\). Absolute convergence of the
+two exponential series proves the last identity.
+
+For every integer \(D\ge1\), summing that bound yields the explicit
+correlated certificate
+\begin{equation}\tag{HR29}\label{HR29}
+\boxed{\quad |\Delta_s-P_D^\Delta|
+\le s t^2 E_Q e^x(2D+1)\frac{x^D}{D!}.\quad}
+\end{equation}
+Indeed, with \(j=n-1\), the remaining scalar sum is
+\(s t^2E_Q\sum_{j\ge D}(2j+1)x^j/j!\), equal to
+\(s t^2E_Q[2x\sum_{j\ge D-1}x^j/j!+\sum_{j\ge D}x^j/j!]\).
+Apply the preceding factorial tail bound to both sums. The formula
+also holds at \(b=0\) and \(t=0\), with zero error and no division
+by either. For \(D=0\), the bound is
+\(s t^2E_Q(1+2x)e^x\). All bounds tend to zero as \(D\to\infty\)
+for the fixed finite input box: the ratio of successive factorial
+terms is eventually at most any chosen constant below one.
+
+Thus a rational interval \([L_D,U_D]\) for the single collected
+\(P_D^\Delta\) from HR23--25 gives the certified final interval
+\begin{equation}\tag{HR30}\label{HR30}
+\Delta_s(\theta)\in[L_D-\mathcal R_D,U_D+\mathcal R_D],\qquad
+\mathcal R_D=s t^2E_Qe^x(2D+1)x^D/D!.
+\end{equation}
+Add any outward coefficient-arithmetic error once, not independently
+for each repeated occurrence. Separate trace intervals use HR27.
+At the endpoint one may use the exact full-root HR19 for \(\Phi_s\)
+and the positive trace polynomial only; no polynomial roots need be
+numerically located. The common difference polynomial preserves its
+exact factor \(t^2\), since each \(D_n\) is polynomial in \(t\) with
+zero constant and linear coefficients by the proof above.
+
+Finally the same estimate at degree one gives
+\begin{equation}\tag{HR31}\label{HR31}
+|\Delta_s-st^2\varepsilon^2|
+\le st^2\varepsilon^2[(1+2x)e^x-1],\quad
+\varepsilon^2=\lim_{s\downarrow0}\Delta_s/(st^2)\quad(t\ne0).
+\end{equation}
+The first bound uses the exact scalar tail from \(j=1\), and the
+limit follows since its bracket tends to zero. For \(0\le x<1\),
+the coefficientwise bound \(e^x\le(1-x)^{-1}\) makes that bracket
+at most \(3x/(1-x)\). In particular \(x\le1/7\) gives relative
+error at most \(1/2\). The result supplies a finite receiver of
+actual arithmetic inputs for both observations and their difference;
+it asserts no unevaluated centres, signs, or degree-uniform decay.
+Letting \(N,k\) grow changes all displayed constants and is not a
+limit licensed by any estimate here.
+
+\section{Executed exact comparison, from one shared input to the final interval}
+
+The exact checker uses comparison measures, explicitly not arithmetic
+zero packets. Its end-to-end family is
+\(\nu_w=\delta_{-1}+w\delta_0+\delta_1\), \(1\le w\le2\),
+with third convolution, original sum coordinate, \(N=2\), and comparison
+relation \(y^2+1\). This is outside HR1's arithmetic domain and tests
+the finite receiver, not the existence of a quartet. Put \(m_0=w+2\).
+Its moments are
+\(\zeta_0=m_0^3\), \(\zeta_2=6m_0^2\),
+\(\zeta_4=6m_0^2+72m_0\), and all odd moments vanish.
+These follow by taking coefficients in
+\((m_0+z^2+z^4/12)^3\) with their factorials.
+In parity order \((1,y^2,y)\), the quotient map is
+\(J=\left(\begin{smallmatrix}1&-1&0\\0&0&1\end{smallmatrix}\right)\).
+Direct substitution in HR7 gives
+\begin{equation}\tag{HR32}\label{HR32}
+G=\operatorname{diag}\!\left(\frac{6m_0^3}{m_0+12},6m_0^2\right),
+\quad A=\begin{pmatrix}0&-1\\-m_0/(m_0+12)&0\end{pmatrix},
+\quad M=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+\end{equation}
+For example the determinant of the even source block is
+\(6m_0^4(m_0+6)>0\); its quadratic inverse on \((1,-1)\) is
+\((m_0+12)/(6m_0^3)\), proving the first quotient entry. The odd
+entry is \(\zeta_2\), and multiplication in HR7 gives the stated \(A\).
+Writing \(r=(m_0+12)/m_0\), the endpoint satisfies
+\(\Phi_s=2e^s\), \(\Psi_s=e^{-sr}+e^{-s/r}\), and
+\(\varepsilon^2=r+r^{-1}+2\). Since \(3\le m_0\le4\),
+\(4\le r\le5\). In particular \(b^2\le10\) and
+\(\varepsilon^2\le16\), bounds deliberately rounded upwards and
+also checked by exact Bernstein inequalities in the script.
+
+The executed certificate uses \(s=1/100,D=3\), and ten rational
+subintervals of \([1,2]\). It collects the shared difference HR23
+before enclosing it. Its polynomial interval is
+\[
+\left[\frac{7451308721303667}{131072000000000000},
+\frac{10722634835189641}{136687500000000000}\right].
+\]
+HR29 and \(e^{1/10}\le10/9\) give the rational tail \(7/33750\).
+The resulting complete heat-difference interval is
+\[
+\left[\frac{200451332275199009}{3538944000000000000},
+\frac{10750984835189641}{136687500000000000}\right].
+\]
+Every numerator, denominator and radius is obtained by rational
+arithmetic. Additional tests retain nonunit source mass, the original
+complex \(S\)-coordinate coefficient maps, a nontrivial quotient kernel,
+and the defective relation \((y^2+1)^2\), including both multiplicities.
+The normal and optimized runs use explicit exception checks, not removable
+assertions. Their receipts identify the proof and checker by SHA-256.
+
+\begin{thebibliography}{9}
+\bibitem{MI} Split-Zero programme, \emph{Moving-interval native margins
+and finite raw-moment precision}, 20 September 2026,
+\texttt{MOVING\_INTERVAL\_NATIVE\_PRECISION.tex}, MI1--25,
+SZ-20260920-038. Complete proof read for this receiver.
+
+% BEGIN HISTORICAL EXTERNAL CITATION
+Complete source, now public: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/MOVING_INTERVAL_NATIVE_PRECISION.tex\#L30}{MI1--MI25}.
+% END HISTORICAL EXTERNAL CITATION
+\bibitem{NI} Split-Zero programme, \emph{Evaluating the original
+quartet-divided moments and carrying their errors through both minima},
+\texttt{NATIVE\_INPUT\_EVALUATION.tex}, NI1--19, and
+\emph{Exact finite input reduction for the original quartet-divided moments},
+\texttt{QUARTET\_MOMENT\_SEED\_REDUCTION.tex}, QS1--32,
+20 September 2026, SZ-20260920-041. Both complete proofs read.
+NI's original input integration uses F. Johansson,
+\emph{Numerical integration in arbitrary-precision ball arithmetic},
+arXiv:1802.07942v1, sections 2--3; that author source was read by the
+NI owner, not independently here. This note proves its receiver and
+does not claim new executions of that integral provider.
+
+% BEGIN HISTORICAL EXTERNAL CITATION
+Complete source, now public: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/NATIVE_INPUT_EVALUATION.tex\#L32}{NI1--NI19}; \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/128aa308dd2a70ba6e073816a957d1ee6414ba2c/workbenches/splitzero-tandem/continuations/20260921-cited-native-input-sources/QUARTET_MOMENT_SEED_REDUCTION.tex\#L27}{QS1--QS32}.
+% END HISTORICAL EXTERNAL CITATION
+\bibitem{NH} Split-Zero programme, \emph{The finite native heat action},
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_HEAT_ACTION.tex\#L1}{\texttt{NATIVE\_HEAT\_ACTION.tex}}, NH1--36, and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_METRIC_COMPARISON.tex\#L1}{\texttt{metric\_check/HEAT\_METRIC\_COMPARISON.tex}}, HM1--19,
+20 September 2026, SZ-20260920-043. Complete proofs read and retained
+unchanged. Their receiver identities are proved here in raw coordinates.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/NATIVE_HEAT_ACTION.tex\#L41}{Source proof NH1}. \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/HEAT_METRIC_COMPARISON.tex\#L43}{Source proof HM1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{Connes} Alain Connes, \emph{Heat expansion and zeta},
+\url{https://arxiv.org/abs/2402.13082v1}, original author source
+\texttt{heat-kernel-zeta.tex}, Gaussian formula \texttt{ft}.
+Complete original source read by the preceding heat worker, as recorded
+in NH; not independently reread in this continuation. Its theorem
+\texttt{heatkernelintro} assumes RH and is not used.
+\bibitem{CV} Alain Connes and Walter D. van Suijlekom,
+\emph{Quadratic Forms, Real Zeros and Echoes of the Spectral Action},
+\url{https://arxiv.org/abs/2511.23257v1}, original author source
+\texttt{Araki-final-oct25.tex}, section \texttt{sect:sa}.
+Context and source reading boundary inherited from NH; no new source
+inspection is claimed. All finite estimates used here are proved above.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,607 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{hyperref,xurl}
+\hypersetup{hypertexnames=false}
+\newcommand{\C}{\mathbb C}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\one}{\mathbf 1}
+\title{The full signed orbit and the original two-Gram metric\\
+Independent finite derivation}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and correction.}
+This note proves the finite-orbit formulas in Sections 5--6 of the
+received calculation \cite{Incoming}%
+% BEGIN HISTORICAL EXTERNAL CITATION
+~Public reconstruction: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260920-native-secular-frame/ORBIT_METRIC_DERIVATION.tex\#L38}{OM1--OM40}.%
+% END HISTORICAL EXTERNAL CITATION
+{}, and carries their metric calculation
+through the original two receiving maps.  Its group formulas (31)--(38)
+are valid with a positive quotient metric.  Its equations (40)--(44)
+use a specified equal-Gram metric.  The original target has instead
+the two coordinate Grams $(G_Y,G)$, and the original source has
+$(G_X,G_U)$, as displayed in SE13, TC9, RW14 and RW19 of \cite{Fable}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L1967}{[proof SE11]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}.
+We prove the exact formulas for those original metrics below; equality
+of the two Grams is neither required nor inferred.
+All root labels, inverse-square-root phases and powers of the boundary
+parameter are retained.
+
+\section{Literal states and the finite group}
+Let
+\[
+ h(r)=Ar^4+r^3+Br^2+Cr+D,\qquad A\ne0,
+ \tag{OM1}
+\]
+have four distinct complex roots $r_1,\ldots,r_4$, in a fixed order.
+Put $d_j=h'(r_j)$, and fix one of the two choices
+$\xi_j^2d_j=1$ at each root.  The two original inverse states over
+root $r_j$ are $p_j^\pm=e_j\pm o_j$, where
+\[
+e_j=\begin{pmatrix}
+0\\-r_j\\3id_j\\(B-17r_j+Ar_j^2)d_j-2Ad_j^2
+\end{pmatrix},\quad
+o_j=\xi_j\begin{pmatrix}
+1\\-id_j\\Ad_j^2+2r_jd_j\\i(7r_j^2d_j-13d_j^2)
+\end{pmatrix}.
+\tag{OM2}
+\]
+These are the coefficient vectors from \cite{Incoming}%
+% BEGIN HISTORICAL EXTERNAL CITATION
+~Public reconstruction: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260920-native-secular-frame/ORBIT_METRIC_DERIVATION.tex\#L38}{OM1--OM40}.%
+% END HISTORICAL EXTERNAL CITATION
+{}, equation (1);
+they are used literally throughout.  Set $E=[e_1\ \cdots\ e_4]$,
+$O=[o_1\ \cdots\ o_4]$, $S=[E\ O]$ and
+$V=\C^4_\alpha\oplus\C^4_\beta$.  For original branch coefficients
+$c_j^\pm$ the exact coordinate maps are
+\[
+\alpha_j=c_j^++c_j^-,\quad \beta_j=c_j^+-c_j^-,
+\qquad c_j^\pm=\tfrac12(\alpha_j\pm\beta_j),
+\qquad \sum_{j,\pm}c_j^\pm p_j^\pm=S(\alpha,\beta).
+\tag{OM3}
+\]
+In particular $\|\alpha\|_2^2+\|\beta\|_2^2=
+2\sum_j(|c_j^+|^2+|c_j^-|^2)$.  Euclidean coefficient norms below
+refer to the displayed $(\alpha,\beta)$ coordinates, with this factor
+retained when returning to the $c^\pm$ coordinates.
+
+Write $P_\pi e_j=e_{\pi(j)}$ and $D_\eps=\diag(\eps_1,\ldots,\eps_4)$.
+The finite group and its representation are
+\[
+\mathcal G=\{(\eps,\pi):\eps_j\in\{1,-1\},
+       \ \prod_j\eps_j=\sgn\pi\},\qquad
+R_{\eps,\pi}=\diag(P_\pi,D_\eps P_\pi).
+\tag{OM4}
+\]
+Here the signs $\eps$ label output coordinates; a convention in which
+they label input roots is converted by $\eps_{\pi(j)}=\sigma_j$.
+This states the exact relation to SM4--6 of \cite{Fable}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L1967}{[proof SE11]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}.
+The product is
+$(\eps,\pi)(\delta,\sigma)=(\eps\,(\pi\delta),\pi\sigma)$, with
+$(\pi\delta)_j=\delta_{\pi^{-1}(j)}$.  Its sign product is
+$\sgn(\pi)\sgn(\sigma)$, so it remains in $\mathcal G$, and direct
+matrix multiplication proves that $R$ is a representation.  There
+are eight sign vectors for each of the twenty-four permutations:
+$|\mathcal G|=192$.
+
+\section{Exact averaging and reconstruction}
+Let $G$ be a fixed positive Hermitian Gram on the receiving coefficient
+space $\C^4$.  Define
+\[
+P_0=\tfrac14\one\one^*,\quad P_3=I-P_0,\qquad
+\lambda_0=\tfrac14\one^*E^*GE\one,\quad
+\lambda_3=\frac{\tr(E^*GE)-\lambda_0}{3},\quad
+\lambda_4=\tfrac14\tr(O^*GO).
+\tag{OM5}
+\]
+Then
+\[
+\frac1{192}\sum_{g\in\mathcal G}R_g^*S^*GS R_g
+=D_\lambda:=
+\diag(\lambda_0P_0+\lambda_3P_3,\lambda_4I_4).
+\tag{OM6}
+\]
+Here is a direct proof of every coefficient.  For fixed $\pi$, the
+admissible signs have prescribed product $\sgn\pi$.  The average of
+$\eps_i$ is zero: flipping $i$ and any other coordinate is a
+sign-product-preserving involution reversing it.  For $i\ne j$,
+the average of $\eps_i\eps_j$ is zero by flipping $i$ and a coordinate
+outside $\{i,j\}$.  Thus averaging $D_\eps C D_\eps$ keeps exactly
+the diagonal of $C$, and averaging any entry of $B D_\eps$ gives
+zero.  The mixed blocks of $S^*GS$ vanish under this sign average.
+The odd diagonal entries then average under all permutations to
+$\tr(O^*GO)/4$.
+
+For completeness let $A_0=E^*GE$.  The average of $P_\pi^*A_0P_\pi$
+has constant diagonal $\tr(A_0)/4$ and constant off-diagonal
+$\sum_{i\ne j}(A_0)_{ij}/12$.  It therefore has eigenvalue
+$\one^*A_0\one/4$ on $\C\one$ and eigenvalue
+$(\tr A_0-\one^*A_0\one/4)/3$ on $\one^\perp$.
+This is precisely the even block of OM6.  The argument applies
+equally to the even and odd sign cosets; averaging only the
+even signs at an odd permutation would not enumerate $\mathcal G$.
+
+Every $\lambda$ in OM5 is strictly positive, including at a singular
+odd receiving matrix.  To retain quantitative bounds, a coordinate
+covector satisfies
+\[
+|v_k|^2\le (G^{-1})_{kk}\,v^*Gv.
+\tag{OM7}
+\]
+Indeed this is Cauchy--Schwarz applied to $G^{-1/2}e_k$ and
+$G^{1/2}v$.  Since $\sum_jr_j=-1/A$, the second row of $E\one$
+is $1/A$.  Further,
+$3\lambda_3=\tr(P_3E^*GE P_3)$, whose columnwise second coordinates
+are $-(r_j-r_{\rm av})$, where $r_{\rm av}=-1/(4A)$.
+The first coordinates of $O$ are $\xi_j$, with
+$|\xi_j|^2=1/|d_j|$.  Applying OM7 gives
+\[
+\lambda_0\ge\frac1{4|A|^2(G^{-1})_{22}},\quad
+\lambda_3\ge
+\frac{\sum_j|r_j-r_{\rm av}|^2}{3(G^{-1})_{22}},\quad
+\lambda_4\ge\frac{\sum_j|d_j|^{-1}}{4(G^{-1})_{11}}.
+\tag{OM8}
+\]
+Distinct roots make the middle numerator positive.  No determinant
+of $O$ occurs in this proof.
+
+The orbit observation is the explicitly defined map
+\[
+\mathcal T:V\longrightarrow(\C^4)^{\oplus192},\qquad
+(\mathcal Tv)_g=S R_gv,
+\tag{OM9}
+\]
+where the codomain has Gram $G^{\oplus192}$.  Its adjoint, with the
+ordinary coefficient Gram on $V$, is
+$\mathcal T^\dagger y=\sum_g R_g^*S^*G y_g$.
+OM6 gives $\mathcal T^\dagger\mathcal T=192D_\lambda$ and hence
+\[
+v=\frac1{192}D_\lambda^{-1}\sum_gR_g^*S^*G(\mathcal Tv)_g.
+\tag{OM10}
+\]
+Define $\mathcal L=(192D_\lambda)^{-1}\mathcal T^\dagger$.
+Then
+$\mathcal L\mathcal L^\dagger=(192D_\lambda)^{-1}$, so its exact
+operator norm is
+\[
+\|\mathcal L\|_{G^{\oplus192}\to2}
+=[192\min(\lambda_0,\lambda_3,\lambda_4)]^{-1/2}.
+\tag{OM11}
+\]
+This proves the incoming noise bound and its sharp constant.
+The data in OM9 are all 192 displayed observations.  OM10 is not
+an identification of this data space with one observation at one
+fixed arithmetic parameter.
+
+\section{The actual quotient observation and its entire kernel}
+Retain the original coefficient map $\Psi:\C^4\to W$, the original
+observation $\Lambda_W:W\to B$, and its actual positive quotient
+Gram $Q$ on $B$.  Put
+\[
+Z=\Lambda_W\Psi,\quad G_\Lambda=Z^*QZ,\quad
+(\mathcal T_\Lambda v)_g=ZS R_gv.
+\tag{OM12}
+\]
+No positive definiteness of $G_\Lambda$ is assumed: it is the
+pullback of the original quotient metric.  Substitution in OM5--6
+gives exactly
+\[
+\begin{split}
+\lambda_{\Lambda,0}&=\tfrac14\|ZE\one\|_Q^2,\\
+\lambda_{\Lambda,3}&=\tfrac13\sum_j\|ZE P_3e_j\|_Q^2,\\
+\lambda_{\Lambda,4}&=\tfrac14\sum_j\|ZO e_j\|_Q^2,\\
+\mathcal T_\Lambda^\dagger\mathcal T_\Lambda
+&=192\diag(\lambda_{\Lambda,0}P_0+
+\lambda_{\Lambda,3}P_3,\lambda_{\Lambda,4}I_4).
+\end{split}\tag{OM13}
+\]
+The exact whole kernel therefore is the direct sum of those of the
+following three spaces for which the displayed test vanishes:
+\[
+\begin{array}{c|c|c}
+\text{space}&\text{dimension}&\text{vanishing test}\\ \hline
+\C\one\oplus0&1&ZE\one=0\\
+\one^\perp\oplus0&3&ZE P_3=0\\
+0\oplus\C^4&4&ZO=0 .
+\end{array}\tag{OM14}
+\]
+Indeed the squared norm of $\mathcal T_\Lambda v$ is the sum of
+three nonnegative terms in OM13.  A term vanishes on its whole
+component exactly when its coefficient is zero.  As $Q$ is
+positive on the attained quotient, a sum of its squared norms
+vanishes exactly when every indicated vector vanishes.
+If a different presentation retains a semidefinite $Q$, the tests
+must instead be made after $Q^{1/2}$; OM13 itself still holds.
+
+This also gives an explicit reconstruction of all surviving states,
+without a missing injectivity assumption.  In $D_{\Lambda}^{+}$
+replace each positive $\lambda_{\Lambda,j}$ by its inverse and each
+zero one by zero, keeping the same $P_0,P_3,I_4$ blocks.  Then
+\[
+\frac1{192}D_\Lambda^+
+\sum_gR_g^*S^*Z^*Q(\mathcal T_\Lambda v)_g
+=\diag(\chi_0P_0+\chi_3P_3,\chi_4I_4)v,
+\quad
+\chi_j=\begin{cases}1&\lambda_{\Lambda,j}>0,\\0&\lambda_{\Lambda,j}=0.
+\end{cases}
+\tag{OM15}
+\]
+This is a direct multiplication using OM13, not an unevaluated
+choice of a section.  Its image is the Euclidean orthogonal
+complement of the exact kernel OM14.  Its noise norm on the
+nonzero image is the reciprocal square root of $192$ times the
+smallest positive $\lambda_{\Lambda,j}$.  If all vanish, the
+receiver is the zero map, as OM15 states.
+
+\paragraph{An evaluated nonzero observation at the new divisor.}
+The regular target $(A,B,C,D)=(1,0,c_*,0)$, $c_*=-60/431$, permits
+a concrete test of OM14.  Take the explicitly specified scalar
+observation
+\[
+Z=\ell^T=(208c_*^2,\,5ic_*,\,60,\,-21i),\qquad Q=1.
+\tag{OM16}
+\]
+This is a test observation on the receiving coefficient space;
+it is not being substituted for the programme's given $\Lambda_W\Psi$.
+With $h=r^4+r^3+c_*r$ and $d=4r^3+3r^2+c_*$, reduction of
+\[
+208c_*^2+5c_*d+60(d^2+2rd)+21(7r^2d-13d^2)
+\]
+modulo $h$ is zero.  Thus $\ell^TO=0$ for every fixed choice of
+the square-root phases.  Reduction of $\ell^T e(r)/i$ gives
+\[
+f(r)=\frac{60}{185761}
+ (1073621r^3+1680900r^2+490909r-75060).
+\tag{OM17}
+\]
+These two reductions are polynomial identities; they follow by
+substituting $r^4=-r^3-c_*r$ until degree at most three remains.
+To evaluate squared norms without unproved conjugation assumptions,
+all four roots are real.  The cubic $r^3+r^2+c_*$ is negative at
+$0$, positive at $-2/3$ (its value is $104/11637$), tends to
+$-\infty$ at $-\infty$ and to $+\infty$ at $+\infty$.
+Its derivative $r(3r+2)$ is nonzero in each of the three open
+intervals between these extrema, so it has three distinct real
+roots; the fourth root $0$ of $h$ is distinct.
+
+The sums $p_k=\sum_jr_j^k$ are, for $0\le k\le6$,
+\[
+\left(4,-1,1,-\frac{251}{431},\frac{191}{431},
+             -\frac{131}{431},\frac{41401}{185761}\right).
+\tag{OM18}
+\]
+The first three follow from the elementary symmetric coefficients,
+$p_3=-1-3c_*$, and for $k\ge4$ the equation of each root gives
+$p_k=-p_{k-1}-c_*p_{k-3}$.  Expanding OM17 and its square using
+these values gives
+\[
+\sum_jf(r_j)=\frac{15870600}{185761},\qquad
+\sum_jf(r_j)^2=\frac{348296871672000}{34507149121}.
+\tag{OM19}
+\]
+Since $\ell^Te_j=if(r_j)$, OM13 now evaluates to
+\[
+\lambda_{\Lambda,0}=\frac{62968986090000}{34507149121},
+\qquad
+\lambda_{\Lambda,3}=\frac{95109295194000}{34507149121},
+\qquad
+\lambda_{\Lambda,4}=0.
+\tag{OM20}
+\]
+Consequently this nonzero scalar observation has a complete-orbit
+map of rank exactly four: it recovers every even state and kills
+the entire odd sector.  The fixed observation has rank one, whereas
+the displayed 192-coordinate observation has rank four; OM13--15
+prove the exact map relating those statements.
+
+\section{The original two-Gram metric}
+Let $H>0$ be the label-coordinate Gram and $G>0$ the
+evaluation-coordinate Gram.  The coefficient map and its pullback
+are
+\[
+J=\begin{pmatrix}I&0\\E&O\end{pmatrix},\qquad
+M_{H,G}=J^*\diag(H,G)J
+=\begin{pmatrix}H+E^*GE&E^*GO\\O^*GE&O^*GO\end{pmatrix}.
+\tag{OM21}
+\]
+The exact original receiving maps are
+\[
+\mathcal J_W(\alpha,\beta)
+ =(Y\alpha,\Psi(E\alpha+O\beta)),\quad
+\mathcal J_U(\alpha,\beta)
+ =(X\alpha,\Phi(E\alpha+O\beta)).
+\tag{OM22}
+\]
+Thus their original orthogonal direct-sum norms give respectively
+\[
+(H,G)=(G_Y,G)\quad\hbox{and}\quad(H,G)=(G_X,G_U),
+\tag{OM23}
+\]
+where $G_Y=Y^*\langle\, ,\,\rangle_{\Gamma,W}Y$ and
+$G=\Psi^*\langle\, ,\,\rangle_{\Gamma,W}\Psi$, and the source
+uses the actual quotient metric in both source copies.  Further,
+$T_AX=Y$ and $T_A\Phi=\Psi$ prove the full commuting identity
+$(T_A\oplus T_A)\mathcal J_U=\mathcal J_W$ by substitution.
+This retains the exact morphism between both original metrics.
+No equality of $G_Y$ with $G$, or of $G_X$ with $G_U$, is implied.
+
+In the remainder of this section $O$ is invertible, so that $M_{H,G}$
+is positive definite.  This holds on the punctured boundary in
+the next section.  At the regular-target odd-frame divisor, the
+same matrix is semidefinite with its actual kernel; the positive
+comparison problem below is not asserted there.
+Put
+\[
+A_0=H+E^*GE,\quad B_0=O^*GO,\quad C_0=E^*GO,\qquad
+\zeta_{H,G}=\|G^{1/2}EH^{-1/2}\|_2 .
+\tag{OM24}
+\]
+Among all positive block-diagonal forms $K=\diag(K_e,K_o)$,
+the exact least relative comparison ratio is
+\[
+\inf_{\substack{K>0\ {\rm block\ diagonal},\ 0<\alpha\le\beta\\
+                 \alpha M_{H,G}\preceq K\preceq\beta M_{H,G}}}
+\frac{\beta}{\alpha}
+=\bigl(\sqrt{1+\zeta_{H,G}^2}+\zeta_{H,G}\bigr)^2.
+\tag{OM25}
+\]
+The infimum is attained.  To prove this, the invertible block
+congruence $\diag(A_0^{-1/2},B_0^{-1/2})$ carries $M_{H,G}$ to
+$\begin{psmallmatrix}I&T\\T^*&I\end{psmallmatrix}$, where
+$T=A_0^{-1/2}C_0B_0^{-1/2}$.  This congruence is used solely
+to prove the comparison and is inverted below; it does not
+replace either original norm.  The matrix
+$U=G^{1/2}OB_0^{-1/2}$ is unitary, so
+\[
+TT^*=A_0^{-1/2}E^*GEA_0^{-1/2},\qquad
+\eta:=\|T\|_2=\frac{\zeta_{H,G}}{\sqrt{1+\zeta_{H,G}^2}}.
+\tag{OM26}
+\]
+For the second equality, the eigenvalues of the first matrix are
+the generalized eigenvalues of $(E^*GE,H+E^*GE)$.
+An eigenvector of $H^{-1/2}E^*GEH^{-1/2}$ with eigenvalue
+$s^2$ gives generalized eigenvalue $s^2/(1+s^2)$, and these
+vectors form a basis.  Its largest $s$ is $\zeta_{H,G}$.
+
+Choose unit singular vectors $x,y$ with $x^*Ty=\eta$ real
+nonnegative.  The vectors $(x,y)$ and $(x,-y)$ have equal
+norm in every block-diagonal form, but their squared norms in
+the transformed $M_{H,G}$ are $2+2\eta$ and $2-2\eta$.
+Consequently any comparison satisfies
+$\beta/\alpha\ge(1+\eta)/(1-\eta)$.
+Conversely the identity matrix in these coordinates satisfies
+the comparison with
+$\alpha=1/(1+\eta)$ and $\beta=1/(1-\eta)$:
+the eigenvalues of the transformed $M_{H,G}$ are $1\pm s_j(T)$.
+Returning to the original coordinates, this identity matrix is
+$K=\diag(A_0,B_0)$.  It attains the lower bound.
+Finally $(1+\eta)/(1-\eta)=
+(\sqrt{1+\zeta_{H,G}^2}+\zeta_{H,G})^2$, proving OM25.
+
+Finite-group averaging of the full original form is also exact:
+\[
+\overline M_{H,G}
+ :=\frac1{192}\sum_gR_g^*M_{H,G}R_g
+ =\diag(\mu_0P_0+\mu_3P_3,\mu_4I_4),
+\tag{OM27}
+\]
+where
+\[
+\mu_0=\tfrac14\one^*(H+E^*GE)\one,\quad
+\mu_3=\frac{\tr(H+E^*GE)-\mu_0}{3},\quad
+\mu_4=\tfrac14\tr(O^*GO).
+\tag{OM28}
+\]
+This follows from the entrywise sign and permutation sum already
+proved in OM6, applied to the three blocks of OM21.  In particular
+\[
+\det\overline M_{H,G}=\mu_0\mu_3^3\mu_4^4,\qquad
+\det M_{H,G}=|\det O|^2\det H\det G.
+\tag{OM29}
+\]
+The second identity uses $\det J=\det O$ and multiplication of
+determinants in the exact congruence OM21.
+
+\section{Original escaping boundary, with all leading constants}
+Fix $B,C,D$, assume the cubic $r^3+Br^2+Cr+D$ is squarefree
+and $\Delta_0:=3C-B^2\ne0$, and vary $A=t\to0$.
+Fix the label and evaluation Grams $H,G$ in OM21; the auxiliary
+Fable polynomial varies while those original receiving maps
+and their physical metrics are held fixed.
+Exactly three roots remain bounded: the implicit-function theorem
+at each simple cubic root supplies those analytic branches.
+For the fourth root, set $v=1/r$.  Its equation is
+$t+v+Bv^2+Cv^3+Dv^4=0$, whose derivative with respect to $v$
+at $(t,v)=(0,0)$ is one.  Thus
+\[
+v=-t-Bt^2+O(t^3),\quad
+r_\infty=-t^{-1}+B+O(t),\quad
+d_\infty=-t^{-2}+4Bt^{-1}+O(1).
+\tag{OM30}
+\]
+An analytic inverse square root on a small punctured disk is
+$\xi_\infty=it(1+2Bt+O(t^2))$; the opposite choice negates
+the odd column, and does not change any ensuing Gram constant.
+Substitution in every coordinate of OM2 gives
+\[
+e_\infty=-20t^{-3}e_4+O(|t|^{-2}),\qquad
+o_\infty=20t^{-3}e_4+O(|t|^{-2}).
+\tag{OM31}
+\]
+For the fourth mean coordinate, the two leading contributions
+are $18t^{-1}(-t^{-2})$ and $-2t(t^{-4})$.
+For the fourth odd coordinate, $7r_\infty^2d_\infty-
+13d_\infty^2=-20t^{-4}+O(t^{-3})$, multiplied by
+$i\xi_\infty=-t+O(t^2)$.  The remaining coordinates have
+smaller pole order, and the other three columns are bounded.
+This proves the constants and phases in OM31.
+
+Let $j_\infty$ be the fixed label of this column.
+The rank-one leading matrix gives
+\[
+E=-20t^{-3}e_4e_{j_\infty}^T+O(|t|^{-2}),\qquad
+\zeta_{H,G}
+=20\sqrt{G_{44}(H^{-1})_{j_\infty j_\infty}}\,
+ |t|^{-3}(1+O(|t|)).
+\tag{OM32}
+\]
+The operator norm of a rank-one matrix $uv^*$ is
+$\|u\|_2\|v\|_2$, which gives the coefficient here.
+The norm is Lipschitz in the matrix entries, so the matrix
+remainder yields the stated relative remainder.  Since
+$(\sqrt{1+z^2}+z)^2=4z^2(1+O(z^{-2}))$ for real $z\to\infty$,
+OM25 becomes
+\[
+\boxed{\inf\frac{\beta}{\alpha}
+=1600G_{44}(H^{-1})_{j_\infty j_\infty}
+ |t|^{-6}(1+O(|t|)).}
+\tag{OM33}
+\]
+
+For a self-contained determinant calculation at this boundary,
+reduce the four polynomial components of $o_j/\xi_j$ modulo
+$h$, using $r^4=-(r^3+Br^2+Cr+D)/t$.
+The constant first row leaves the following determinant after
+the factors $-i$ and $i$ cancel:
+\[
+\mathsf R(t)=\begin{pmatrix}
+2B&3&4t\\
+4tBC-8tD-7C&4tB^2-2tC-16t^2D-5B&4tB-8t^2C-3\\
+20C/t+76D-52BC&20B/t+5C-52B^2+208tD&20/t-66B+104tC
+\end{pmatrix}.
+\tag{OM34}
+\]
+Every entry is a coefficient in the unchanged power basis
+$1,r,r^2,r^3$.  Expansion of its leading term gives
+\[
+\det\mathsf R(t)
+=\frac{20}{t}
+\det\begin{pmatrix}2B&3&0\\-7C&-5B&-3\\C&B&1\end{pmatrix}
+ +O(1)
+=\frac{80(3C-B^2)}t+O(1).
+\tag{OM35}
+\]
+If $V_r=\prod_{j<k}(r_k-r_j)$, then
+$\prod_jd_j=t^4V_r^2$.  Hence
+$(V_r\prod_j\xi_j)^2=t^{-4}$ and
+$V_r\prod_j\xi_j=\eps_{\rm br}t^{-2}$ for a locally fixed
+$\eps_{\rm br}\in\{1,-1\}$.  Evaluation of the reduced
+coefficient matrix at the four roots therefore proves
+\[
+\det O=\eps_{\rm br}t^{-2}\det\mathsf R(t),\qquad
+|\det O|^2=6400|\Delta_0|^2|t|^{-6}(1+O(|t|)).
+\tag{OM36}
+\]
+As $\Delta_0\ne0$, $O$ is invertible for every sufficiently small
+nonzero $t$; thus the positivity assumption used in OM25 has
+been established on this boundary.
+
+The same single escaping column in OM31 gives
+\[
+\mu_0=100G_{44}|t|^{-6}(1+O(|t|)),\quad
+\mu_3=100G_{44}|t|^{-6}(1+O(|t|)),\quad
+\mu_4=100G_{44}|t|^{-6}(1+O(|t|)).
+\tag{OM37}
+\]
+In detail the leading terms of $\tr E^*GE$ and
+$\one^*E^*GE\one$ are both $400G_{44}|t|^{-6}$;
+division by four gives the first coefficient, and
+$(400-100)/3=100$ gives the second.
+The odd trace has the same leading coefficient.  The fixed
+entries of $H$ have lower order and remain in OM28.
+Multiplication of all eight factors in OM29, followed by OM36,
+proves
+\[
+\boxed{\frac{\det\overline M_{H,G}}{\det M_{H,G}}
+=\frac{100^8G_{44}^8}
+ {6400|3C-B^2|^2\det H\det G}
+ |t|^{-42}(1+O(|t|)).}
+\tag{OM38}
+\]
+The numerator grows with order $48$, and the denominator grows
+with order $6$.  This proves the exact exponent $42$ and its
+coefficient without imposing group invariance on the old metric.
+
+\paragraph{Back to the two original sides.}
+Equations OM23, OM33 and OM38 give the complete target constants
+\[
+1600G_{44}(G_Y^{-1})_{j_\infty j_\infty},\qquad
+\frac{100^8G_{44}^8}
+ {6400|3C-B^2|^2\det G_Y\det G},
+\tag{OM39}
+\]
+and the complete source constants
+\[
+1600(G_U)_{44}(G_X^{-1})_{j_\infty j_\infty},\qquad
+\frac{100^8(G_U)_{44}^8}
+ {6400|3C-B^2|^2\det G_X\det G_U}.
+\tag{OM40}
+\]
+The corresponding exponents are $-6$ and $-42$ in each case.
+The incoming equal-Gram formulas follow exactly by setting
+$H=G$ in OM33 and OM38, as the explicitly defined metric in
+its equation (40) does.  For the actual programme target and
+source, OM39--40 retain the distinct original label Grams.
+No estimate of a Hermitian norm in this note assigns a
+phase-sensitive arithmetic current sign.
+
+\begin{thebibliography}{9}
+\bibitem{Incoming}
+User-supplied AI web-session calculation,
+\emph{The relevant strand is Erd\H{o}s--Straus/Fable},
+received 20 September 2026, equations (1)--(44).
+No author name was supplied.
+The exact incoming file has SHA-256
+\path{57efa66b73bb4ce951b1d17ec4170b0f7bf1a00af3718e56faa71e7693ec2717}.
+Its original pinned working-source commit is
+\path{ab45e221579a0d48ce2885b4ecdf1a6aefc24a20}.
+This note reads its entire text and independently proves the
+orbit and metric claims; it corrects the native metric identification.
+
+
+% BEGIN HISTORICAL EXTERNAL CITATION
+Public reconstruction: \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260920-native-secular-frame/ORBIT_METRIC_DERIVATION.tex\#L38}{OM1--OM40}. These links identify the public derivation, not the private working correspondence cited above.
+% END HISTORICAL EXTERNAL CITATION
+\bibitem{Fable}
+Split-Zero programme,
+\emph{Fable to the original conductor: Inverse branches, signed
+states, and boundary action},
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L1}{\texttt{FABLE\_TO\_ORIGINAL\_CONDUCTOR.tex}},
+accepted local source snapshot, 20 September 2026.
+Exact snapshot SHA-256
+\path{9629ec8ff32c069a7329c012687fd8bcfd7d5c9437a94fcfba1d4725edbec764}.
+The exact sections read for this derivation are SE11--18,
+SM3--7, TC8--9 and RW14--20, together with the bibliography.
+Repository:
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader}.
+The source attributes the original marked polynomial to
+The Clankers' Erd\H{o}s--Straus reader and the preceding
+Alp\"oge--Fable example to the human sources retained there.
+Those original publications are not represented as independently
+read in this derivation.  The finite averaging, exact kernel,
+comparison optimization and boundary constants used here have
+complete algebraic proofs above; no unquoted human theorem is
+being imported to justify them.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/FABLE_TO_ORIGINAL_CONDUCTOR.tex\#L1967}{Source proof SE11}.
+% END VERIFIED PUBLIC PROOF LINK
+\end{thebibliography}
+\end{document}

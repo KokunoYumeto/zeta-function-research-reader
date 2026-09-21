@@ -1,0 +1,366 @@
+# Exact compressed Christoffel–Darboux displacement
+
+Independent algebra audit, 2026-09-20. All results are finite-dimensional. The original roots, frame, and Gram matrix remain fixed. No assertion about generic or actual OCF period values is made. The scalar Gamma recurrence and full CD identity are mathematical inputs supplied by the parent derivation; the compression statements below are proved here. The degree-two fixture uses the supplied exact Gamma coefficients and checks its full identity directly.
+
+## CD-C1. Fixed objects and the full boundary
+
+Let \(1\le r\le N\), \(d\ge1\), and retain
+\[
+u_\alpha=(v_\alpha-c)/i,\qquad Y=\operatorname{diag}(u_\alpha),\qquad
+Z\in\mathbb C^{N\times r},\quad \operatorname{rank}Z=r.
+\]
+Put
+\[
+V=\overline Z,\quad W=V^*V=Z^T\overline Z,\quad
+C=\sum_{j=0}^{d-1}\frac{f_jf_j^*}{\gamma_j},\quad
+A=V^*CV=Z^TC\overline Z,
+\]
+where \(f_j=(p_j(u_\alpha))_\alpha\), \(\gamma_j>0\), \(^{*}\) means conjugate transpose, and \(T\) means transpose without conjugation. Then \(C=C^*\ge0\), \(A=A^*\ge0\), and
+\[
+YC-CY^*=\frac{f_df_{d-1}^*-f_{d-1}f_d^*}{\gamma_{d-1}}.
+\tag{CD-C1}
+\]
+The full boundary has rank at most two.
+
+The finite telescoping proof of the supplied boundary is worth recording. For monic polynomials with the actual recurrence
+\[
+xp_j=p_{j+1}+\alpha_jp_j+\beta_jp_{j-1},\quad
+\alpha_j\in\mathbb R,\quad \beta_j=\gamma_j/\gamma_{j-1}\ (j\ge1),
+\]
+and \(p_{-1}=0\), the \(j\)-th contribution to \(YC-CY^*\) is
+\[
+\frac{f_{j+1}f_j^*-f_jf_{j+1}^*}{\gamma_j}
++\frac{f_{j-1}f_j^*-f_jf_{j-1}^*}{\gamma_{j-1}}.
+\]
+The second term is absent at \(j=0\); the real \(\alpha_j\)-terms cancel. Summation cancels all internal pairs and leaves (CD-C1). This does not replace any coefficient of the original Gamma recurrence.
+
+The Gram \(W\) is positive definite because \(x^*Wx=\|Vx\|^2>0\) for nonzero \(x\). Define
+\[
+P=VW^{-1}V^*,\quad Q=I_N-P,\quad S=\operatorname{ran}V.
+\]
+Direct multiplication gives \(P^*=P\), \(P^2=P\), and \(PV=V\). Thus \(P\) is the Euclidean orthogonal projection onto \(S\), and \(Q\) projects onto \(S^\perp\).
+
+## CD-C2. Exact compression and the correct operator orientation
+
+Define matrices and maps
+\[
+B=V^*YV,\quad H=BW^{-1},\quad
+L=QY^*V:\mathbb C^r\to S^\perp,\quad
+G=QCV:\mathbb C^r\to S^\perp,
+\]
+\[
+E=L^*G=V^*YQCV,\quad
+\Delta=E-E^*=L^*G-G^*L,\quad g_j=V^*f_j=Z^Tf_j.
+\]
+Then the exact result in the original frame is
+\[
+\boxed{HA-AH^*
+=\frac{g_dg_{d-1}^*-g_{d-1}g_d^*}{\gamma_{d-1}}-\Delta.}
+\tag{CD-C2}
+\]
+Proof: \(HA=V^*YPCV\), while \(AH^*=V^*CPY^*V\). Inserting \(I=P+Q\) gives
+\[
+\begin{aligned}
+V^*(YC-CY^*)V
+&=V^*YPCV-V^*CPY^*V\\
+&\quad+V^*YQCV-V^*CQY^*V\\
+&=HA-AH^*+\Delta.
+\end{aligned}
+\]
+Compression of (CD-C1) supplies the stated boundary. The identity \(E=L^*G\) uses \(Q^*=Q=Q^2\).
+
+The primal coordinate matrix for \(PY|_S\) is \(K=W^{-1}B\), since \(PYV=VK\). The left operator in (CD-C2) is instead \(H=BW^{-1}=WKW^{-1}\). Equivalently, for
+\[
+K_\sharp=W^{-1}V^*Y^*V,
+\]
+one has \(PY^*V=VK_\sharp\), \(H=K_\sharp^*\), and the left side is \(K_\sharp^*A-AK_\sharp\). No invariant-subspace assertion was used.
+
+The placement can also be checked without changing the original frame. Under a hypothetical \(V'=VR\), \(R\) invertible,
+\[
+W'=R^*WR,\ A'=R^*AR,\ B'=R^*BR,\quad
+K'=R^{-1}KR,\quad H'=R^*HR^{-*}.
+\]
+Thus
+\[
+H'A'-A'H'^*=R^*(HA-AH^*)R,\qquad \Delta'=R^*\Delta R.
+\]
+This proves congruence covariance for the Gram identity.
+
+## CD-C3. Exact vanishing and nonvanishing criteria
+
+For the given \(C\), the correction-free formula holds if and only if
+\[
+\boxed{L^*G=G^*L.}
+\tag{CD-C3}
+\]
+This follows directly from (CD-C2). Equivalently,
+\[
+\langle Lx,Gy\rangle=\langle Gx,Ly\rangle
+\quad\text{for all }x,y\in\mathbb C^r,
+\]
+or
+\[
+\operatorname{Im}\langle Lx,Gx\rangle=0
+\quad\text{for all }x\in\mathbb C^r.
+\tag{CD-C4}
+\]
+Here \(\langle a,b\rangle=a^*b\). To prove the second equivalence, note
+\(x^*\Delta x=2i\operatorname{Im}(x^*Ex)\). If every such quadratic form is zero, applying it to \(e_j\), \(e_j+e_k\), and \(e_j+ie_k\) forces each matrix entry of \(\Delta\) to vanish. Conversely \(\Delta=0\) annihilates those quadratic forms. In particular, one \(x\) with nonzero imaginary part in (CD-C4) proves nonclosure.
+
+Exact sufficient mechanisms are:
+
+- \(L=0\) if and only if \(Y^*S\subset S\), since \(Q\) annihilates exactly \(S\).
+- \(G=0\) if and only if \(CS\subset S\).
+- Orthogonality of \(\operatorname{ran}L\) and \(\operatorname{ran}G\) gives \(L^*G=0\).
+
+Each makes \(\Delta=0\). Neither leakage need vanish when their pairing is Hermitian. Thus nonzero leakage alone does not prove failure.
+
+For diagonal \(Y\), \(YS\subset S\) and \(Y^*S\subset S\) are equivalent. Indeed, let \(\lambda_1,\ldots,\lambda_t\) be its distinct diagonal values, and define
+\[
+h(z)=\sum_{a=1}^t\overline{\lambda_a}
+\prod_{b\ne a}\frac{z-\lambda_b}{\lambda_a-\lambda_b}.
+\]
+Then \(Y^*=h(Y)\). Invariance under \(Y\) implies invariance under every power and hence under \(h(Y)\). Repeating with \(Y^*\) gives the converse. This proof does not establish either invariance for the actual OCF subspace.
+
+For clarity about the scope of the obstruction, the following universal algebra statement is also exact: \(\Delta=0\) for every positive-definite Hermitian ambient \(C\) if and only if \(L=0\). Only necessity remains to prove. If \(L\ne0\), set \(G_0=iL\) and
+\[
+C_0=G_0W^{-1}V^*+VW^{-1}G_0^*.
+\]
+Then \(C_0=C_0^*\), \(G_0^*V=0\), and \(C_0V=G_0\). Choose real \(\lambda>\|C_0\|_{\rm op}\), and set \(C=C_0+\lambda I>0\); positivity follows from
+\[
+z^*Cz\ge(\lambda-\|C_0\|_{\rm op})\|z\|^2>0.
+\]
+Since \(QV=0\), \(QCV=G_0\), so \(\Delta=2iL^*L\ne0\). This statement concerns general Hermitian matrices; it asserts no genericity of the actual Gamma kernels or OCF periods.
+
+## CD-C4. Receiver complement and precise rank bound
+
+Let \(\pi\in\mathbb C^{m\times N}\) have full row rank, \(\pi Z=0\), and \(N=r+m\), and put \(U=\pi^T\). In the parent's receiver, \(m=8k-16\). Then
+\[
+U^*V=\overline\pi\,\overline Z=\overline{\pi Z}=0.
+\]
+Since \(\operatorname{rank}U=m=\dim S^\perp\), \(\operatorname{ran}U=S^\perp\). Define
+\[
+M_U=U^*U>0,\quad F=V^*YU\in\mathbb C^{r\times m},
+\quad T=U^*CV\in\mathbb C^{m\times r}.
+\]
+The subscript distinguishes the receiver Gram \(M_U\) from scalar mass \(M\). The projection proof from CD-C1 gives
+\[
+Q=UM_U^{-1}U^*,\quad E=FM_U^{-1}T,\quad
+\boxed{\Delta=FM_U^{-1}T-T^*M_U^{-1}F^*.}
+\tag{CD-C5}
+\]
+In particular, the signs in the compressed displacement are boundary minus the first product plus its adjoint.
+
+There is an explicit generator factorization
+\[
+HA-AH^*=\mathcal B\mathcal J\mathcal B^*,\qquad
+\mathcal B=[\,g_d\ \ g_{d-1}\ \ F\ \ T^*\,],
+\]
+\[
+\mathcal J=
+\begin{pmatrix}
+0&\gamma_{d-1}^{-1}&0&0\\
+-\gamma_{d-1}^{-1}&0&0&0\\
+0&0&0&-M_U^{-1}\\
+0&0&M_U^{-1}&0
+\end{pmatrix},
+\tag{CD-C6}
+\]
+with block sizes \(1,1,m,m\). Multiplication gives exactly (CD-C2) and (CD-C5). Since the image is contained in that of the \(r\)-by-\((2+2m)\) matrix \(\mathcal B\),
+\[
+\boxed{\operatorname{rank}(HA-AH^*)\le\min(r,2+2m),\quad m=8k-16.}
+\tag{CD-C7}
+\]
+Likewise \(\operatorname{rank}\Delta\le2m\). These are upper bounds, not equality assertions. If \(m=0\), the receiver blocks are empty, \(Q=0\), and the bound is \(\min(r,2)\).
+
+## CD-C5. Nonreal exact Gamma degree-two algebra fixture
+
+Keep arbitrary scalar mass \(M>0\). The original supplied value is \(M=\sqrt{2\pi}\), not \(\sqrt2\,\pi\). Use
+\[
+p_0=1,\quad p_1=x,\quad p_2=x^2-\tfrac12,\qquad
+\gamma_0=M,\quad \gamma_1=M/2,
+\]
+and
+\[
+u=(0,i),\quad v=(c,c-1),\quad Y=\operatorname{diag}(0,i),
+\quad Z=\binom1{-i},\quad V=\overline Z=\binom1i.
+\]
+The coordinate identity \(u=(v-c)/i\) holds exactly. This is a declared algebra fixture, not an evaluation of the actual period-derived OCF frame.
+
+The vectors and complete kernel are
+\[
+f_0=\binom11,\quad f_1=\binom0i,\quad f_2=\binom{-1/2}{-3/2},
+\quad C=\frac1M\begin{pmatrix}1&1\\1&3\end{pmatrix}>0.
+\]
+The leading principal minors are \(1/M\) and \(2/M^2\), proving positivity. Direct multiplication gives
+\[
+D=YC-CY^*=\frac1M\begin{pmatrix}0&i\\i&6i\end{pmatrix}
+=\frac{f_2f_1^*-f_1f_2^*}{M/2}.
+\]
+The compressed data are
+\[
+W=2,\quad A=4/M,\quad B=i,\quad H=i/2,
+\]
+\[
+V^*DV=6i/M,\qquad HA-AH^*=4i/M,\qquad
+\boxed{\Delta=2i/M\ne0.}
+\tag{CD-C8}
+\]
+Explicitly,
+\[
+P=\frac12\begin{pmatrix}1&-i\\i&1\end{pmatrix},\quad
+L=\binom{i/2}{1/2},\quad G=\frac1M\binom{i-1}{1+i},
+\quad E=(1+i)/M.
+\]
+Hence \(E-E^*=2i/M\), exactly the missing term. A compatible receiver fixture is
+\[
+\pi=(i,1),\ U=\binom i1,\ M_U=2,\ F=1,\ T=(2+2i)/M.
+\]
+It satisfies \(\pi Z=0\), \(U^*V=0\), and \(FM_U^{-1}T=(1+i)/M\).
+
+More generally \(p_2=x^2-\beta\), \(\gamma_1=M\beta\), \(\beta>0\), gives
+\[
+A=(2+\beta^{-1})/M,\quad
+V^*DV=2i(1+\beta^{-1})/M,\quad
+HA-AH^*=i(2+\beta^{-1})/M,\quad
+\Delta=i/(M\beta).
+\]
+The Gamma fixture is its exact specialization \(\beta=1/2\).
+
+## CD-C6. Literal all-jet displacement and factorial map
+
+Let \(\xi_\alpha\) be distinct nodes with multiplicities \(n_\alpha\), \(N=\sum n_\alpha\), ordered by \(\alpha\) and then \(k=0,\ldots,n_\alpha-1\). Define
+\[
+\mathcal T_{\rm der}p=(p^{(k)}(\xi_\alpha))_{\alpha,k}.
+\]
+Multiplication by \(x\) has the literal-jet matrix
+\[
+J_{\rm der}=\bigoplus_\alpha J_{\alpha,\rm der},\quad
+(J_{\alpha,\rm der})_{kk}=\xi_\alpha,\quad
+(J_{\alpha,\rm der})_{k,k-1}=k\ (k\ge1),
+\tag{CD-C9}
+\]
+all other entries zero. This follows from
+\[
+(xp)^{(k)}(\xi_\alpha)
+=\xi_\alpha p^{(k)}(\xi_\alpha)+k p^{(k-1)}(\xi_\alpha),
+\]
+with no second term at \(k=0\). Consequently
+\(\mathcal T_{\rm der}(xp)=J_{\rm der}\mathcal T_{\rm der}p\).
+Writing \(f_{j,\rm der}=\mathcal T_{\rm der}p_j\) and
+\[
+C_{\rm der}=\sum_{j<d}f_{j,\rm der}f_{j,\rm der}^*/\gamma_j,
+\]
+the same fully finite recurrence cancellation proves
+\[
+J_{\rm der}C_{\rm der}-C_{\rm der}J_{\rm der}^*
+=\frac{f_{d,\rm der}f_{d-1,\rm der}^*
+-f_{d-1,\rm der}f_{d,\rm der}^*}{\gamma_{d-1}}.
+\tag{CD-C10}
+\]
+All identities CD-C2–CD-C7 follow with these objects and the original literal-coordinate frame, because their proofs used no normality.
+
+Let \(D_{\rm fac}=\operatorname{diag}(k!)_{\alpha,k}\). The exact divided-derivative map is
+\[
+\mathcal T_{\rm div}=D_{\rm fac}^{-1}\mathcal T_{\rm der},\quad
+J_{\rm div}=D_{\rm fac}^{-1}J_{\rm der}D_{\rm fac}.
+\]
+Its subdiagonal entries are \(1\). Moreover
+\[
+f_{j,\rm der}=D_{\rm fac}f_{j,\rm div},\qquad
+C_{\rm der}=D_{\rm fac}C_{\rm div}D_{\rm fac}.
+\tag{CD-C11}
+\]
+The same compressed form requires the dual frame relation
+\[
+V_{\rm div}=D_{\rm fac}V_{\rm der},\quad
+V_{\rm der}^*C_{\rm der}V_{\rm der}
+=V_{\rm div}^*C_{\rm div}V_{\rm div}.
+\]
+This is an exact relation between presentations, not a replacement of the fixed frame. Their Euclidean Gram matrices need not agree, so original \(W,P,H\) must either be computed in the original coordinates or transported with the metric below.
+
+## CD-C7. Jordan invariance is not adjoint invariance
+
+For jets, \(L=0\) is exactly \(J_{\rm der}^*S\subset S\). Ordinary \(J_{\rm der}\)-invariance alone is insufficient. A full all-jet Gamma fixture proves this.
+
+At the single node \(\xi=i\), with derivative orders \(0,1\), use the same degree-two polynomials and norms as CD-C5:
+\[
+J=\begin{pmatrix}i&0\\1&i\end{pmatrix},\
+f_0=\binom10,\ f_1=\binom i1,\ f_2=\binom{-3/2}{2i},\
+C=\frac1M\begin{pmatrix}3&2i\\-2i&2\end{pmatrix}>0.
+\]
+Its positive leading minors are \(3/M\) and \(2/M^2\). Direct multiplication, or CD-C10, verifies the full boundary. Choose \(V=e_2\). Then \(S=\mathbb Ce_2\) is \(J\)-invariant, but
+\[
+W=1,\ A=2/M,\ H=i,\quad
+L=\binom10,\quad G=\frac1M\binom{2i}0.
+\]
+Therefore
+\[
+\Delta=4i/M\ne0,\quad
+V^*(JC-CJ^*)V=8i/M,\quad HA-AH^*=4i/M.
+\tag{CD-C12}
+\]
+This fixture proves the stated insufficiency; it asserts nothing about actual confluent OCF period values.
+
+## CD-C8. Polynomial quotient identity and exact metric transport
+
+Let \(q(x)=\prod_\alpha(x-\xi_\alpha)^{n_\alpha}\). Division by the monic degree-\(N\) polynomial \(q\) gives a unique remainder of degree \(<N\): successively subtract its leading multiples for existence; uniqueness follows because a nonzero multiple of \(q\) cannot have degree \(<N\). Use the original ordered coefficient basis \(1,x,\ldots,x^{N-1}\) for these remainders. Let \(R_q\) be multiplication by \(x\) modulo \(q\), and define the literal-jet matrix
+\[
+\mathsf T_{(\alpha,k),\ell}
+=\begin{cases}
+\ell!\,\xi_\alpha^{\ell-k}/(\ell-k)!,&\ell\ge k,\\
+0,&\ell<k,
+\end{cases}\qquad 0\le\ell<N.
+\]
+It is invertible: a degree-\(<N\) polynomial with zero indicated jets is divisible by every \((x-\xi_\alpha)^{n_\alpha}\), and hence their product, so is zero. Both spaces have dimension \(N\), so this injective map is bijective. Jets agree for polynomials differing by a multiple of \(q\), by the product rule. The multiplication formula therefore proves
+\[
+\mathsf T R_q=J_{\rm der}\mathsf T.
+\tag{CD-C13}
+\]
+
+Let \(a_j\) be the coefficient vector of the remainder of \(p_j\), and put
+\[
+K_q=\sum_{j<d}a_ja_j^*/\gamma_j.
+\]
+Then \(f_{j,\rm der}=\mathsf T a_j\) and \(C_{\rm der}=\mathsf T K_q\mathsf T^*\). Multiplying CD-C10 by \(\mathsf T^{-1}\) and \(\mathsf T^{-*}\) proves
+\[
+R_qK_q-K_qR_q^*
+=\frac{a_da_{d-1}^*-a_{d-1}a_d^*}{\gamma_{d-1}}.
+\tag{CD-C14}
+\]
+
+Retain the original literal-jet frame \(V\). Set
+\[
+\widehat V=\mathsf T^*V,\quad
+\mathsf G=\mathsf T^{-1}\mathsf T^{-*}=(\mathsf T^*\mathsf T)^{-1}.
+\]
+Since \(V=\mathsf T^{-*}\widehat V\), multiplication gives
+\[
+A=\widehat V^*K_q\widehat V,\quad
+W=\widehat V^*\mathsf G\widehat V,\quad
+B=\widehat V^*R_q\mathsf G\widehat V.
+\tag{CD-C15}
+\]
+The original operator and correction are consequently
+\[
+H=(\widehat V^*R_q\mathsf G\widehat V)
+(\widehat V^*\mathsf G\widehat V)^{-1},
+\]
+\[
+E=\widehat V^*R_q
+\bigl(I-\mathsf G\widehat VW^{-1}\widehat V^*\bigr)
+K_q\widehat V,\qquad \Delta=E-E^*.
+\tag{CD-C16}
+\]
+To verify the latter formula, use
+\[
+\mathsf T^{-1}Q\mathsf T
+=I-\mathsf G\widehat VW^{-1}\widehat V^*
+\]
+in \(E=V^*J_{\rm der}QC_{\rm der}V\), followed by CD-C13. These are exact maps between the polynomial and all-jet presentations. Replacing the \(W\) of CD-C15 by \(\widehat V^*\widehat V\) would change the original metric.
+
+## Verification and limits
+
+The accompanying exact checker tests the fixtures, nonscalar nonorthonormal orientation, receiver factorization, literal and divided jets, polynomial quotient transport, and negative controls. The proofs above establish the identities independently of those checks.
+
+For the fixed original OCF \(Z\), the unconditional conclusions are CD-C2, the necessary-and-sufficient criterion CD-C3, the exact receiver CD-C5, and rank bound CD-C7. This audit does not claim the actual period correction vanishes or is nonzero. No frozen sibling file, source index, rendering, or publication was changed.

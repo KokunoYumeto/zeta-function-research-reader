@@ -1,0 +1,762 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[margin=25mm]{geometry}
+\usepackage{hyperref}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\calD}{\mathscr D}
+\title{One-degree determinant updates in the original kernel\\and the exact invariant-image cancellations}
+\author{}
+\date{21 September 2026}
+\begin{document}\maketitle
+
+\section{The retained objects and the finite outcome}
+
+This note calculates one-degree updates of the original Gamma covariance,
+its compression by the full original invariant-image frame, and the
+inverse restriction to the original observation kernel. It uses the
+finite Christoffel--Darboux calculation CD1--22 \cite{CD}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/COMPLETE_CD_BOUNDARY.tex\#L42}{[proof CD1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}, with its
+classical source in Akemann--Vernizzi's original \texttt{CD} formula
+\cite{AV}, and the original Meixner--Pollaczek source identities
+\cite{DLMF}. It retains the original OCF coefficient construction
+\cite{OCF}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/ORIGINAL_CONDUCTOR_STRIP_FRAME.tex\#L27}{[proof OCF1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{} and the original MR8--23 receiver \cite{MR}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/ORIGINAL_KERNEL_MIXED_DETERMINANT.tex\#L36}{[proof MR1]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}.
+Every determinant and inverse identity used below is proved directly.
+No large-degree coefficient or estimate at the unresolved \(kq\) scale
+is asserted.
+
+Keep the actual simple-quartet, five-orbit domain
+\[
+0<\delta<\tfrac12,\quad \gamma>2,\quad k\equiv1\pmod4,
+\quad k\geq9,\quad c=k/2,\quad q=(k+1)^2,
+\quad r=k^2-6k+17,\quad m=8k-16,\quad q=r+m.
+\]
+The zero height is \(\gamma\); the polynomial norms below are
+\(\gamma_j\). In the original lexicographic order,
+\begin{equation}\label{eq:roots}
+v_{ab}=c+(2a-k)\delta+i(2b-k)\gamma,
+\quad u_{ab}=(v_{ab}-c)/i
+=(2b-k)\gamma-i(2a-k)\delta,
+\quad 0\leq a,b\leq k.
+\tag{DS1}
+\end{equation}
+The original scalar relation is \(\chi(S)=\prod_{a,b}(S-v_{ab})\).
+The Gamma comparison source, never divided by its mass, is
+\begin{equation}\label{eq:gamma}
+d\sigma(y)=\frac{|\Gamma(1/4+iy/2)|^2}{2\pi}\,dy,
+\quad M_\sigma=\sqrt{2\pi},\quad
+p_0=1,\ p_1=y,\ p_{j+1}=yp_j-j(j-\tfrac12)p_{j-1},
+\quad \gamma_j=\|p_j\|_\sigma^2=M_\sigma j!(1/2)_j.
+\tag{DS2}
+\end{equation}
+These are monic orthogonal polynomials. To check the exact mass against
+the retained DLMF formulas \cite[18.19.E8--E9a,18.23.E7]{DLMF}, set
+\(\lambda=1/4,\phi=\pi/2,x=y/2\), and multiply the degree-\(j\)
+Meixner--Pollaczek polynomial by \(j!\). The norm
+\(2\pi\Gamma(j+1/2)/(\sqrt2\,j!)\) in \(dx\), multiplied by
+\((j!)^2/\pi\), is precisely \(\gamma_j\). The generating function
+\((1+z^2)^{-1/4}\exp(y\arctan z)\) gives the displayed recurrence
+by differentiating in \(z\). The physical monic polynomial is
+\(P_j(S)=i^jp_j((S-c)/i)\), with the same squared norm.
+
+Use the complete original frame and quotient, not the conductor alone:
+\begin{equation}\label{eq:frames}
+Z=[M_A\ \ S_kZ_k]\in\C^{q\times r},\quad
+\pi\in\C^{m\times q},\quad \ker\pi=\operatorname{im}Z,
+\quad V=\overline Z,\quad U=\pi^T,
+\quad W=V^*V,\quad M_U=U^*U.
+\tag{DS3}
+\end{equation}
+OCF7, OCF17 and OCF21--24 prove these exact ranks and the coefficient
+maps, with their original period, amplitude and pivot coefficients.
+The dual coefficient pairing is bilinear, hence the transpose in
+\(U=\pi^T\). In particular \(U^*V=\overline{\pi Z}=0\), and
+\(U,V\) are complementary full-column-rank frames.
+
+For \(d=N+1\geq q\), define
+\begin{equation}\label{eq:covariance}
+f_j=(p_j(u_{ab}))_{ab},\quad g_j=V^*f_j=Z^Tf_j,
+\quad C_d=\sum_{j<d}\frac{f_jf_j^*}{\gamma_j},
+\quad A_d=V^*C_dV,\quad G_d=U^*C_d^{-1}U.
+\tag{DS4}
+\end{equation}
+Here \(A_d\) is the compressed Gram asked for, and \(G_d\) is the
+original restricted least-source-norm metric at cutoff \(N=d-1\).
+The first \(q\) monic evaluation columns are a Vandermonde matrix
+times a unit-triangular matrix; their determinant is nonzero because
+the roots are distinct. Thus \(C_d,A_d,G_d\) are positive definite.
+The exact minimum formula follows by solving the complete evaluation
+constraint in the orthogonal source basis: if its coefficient matrix
+is \(B\), then \(BB^*=C_d\), and \(B^*C_d^{-1}y\) is a lift of
+\(y\) orthogonal to \(\ker B\). Every other lift adds an orthogonal
+kernel vector, and hence increases its squared norm by that vector's
+squared norm. Restriction by the original value-space frame \(U\)
+therefore gives exactly \(G_d\), after minimizing all source relations.
+
+\section{Entry updates, including every reflected entry}
+
+The definition gives the entire one-degree update before any compression:
+\begin{equation}\label{eq:rankone}
+C_{d+1}=C_d+\frac{f_df_d^*}{\gamma_d},\qquad
+A_{d+1}=A_d+\frac{g_dg_d^*}{\gamma_d}.
+\tag{DS5}
+\end{equation}
+No entry is omitted. For precision, the full CD evaluation is
+\[
+(C_d)_{\alpha\beta}=
+\frac{p_d(u_\alpha)\overline{p_{d-1}(u_\beta)}
+-p_{d-1}(u_\alpha)\overline{p_d(u_\beta)}}
+{\gamma_{d-1}(u_\alpha-\overline{u_\beta})}
+\]
+away from \(u_\alpha=\overline{u_\beta}\). Its proof is the finite
+telescoping of the recurrence in DS2, using
+\(\gamma_j/\gamma_{j-1}=j(j-1/2)\). At a collision its exact value is
+\(\mathcal W_d(u_\alpha)/\gamma_{d-1}\), where
+\[
+\mathcal W_d(x)=p_d'(x)p_{d-1}(x)-p_{d-1}'(x)p_d(x).
+\]
+In the original quartet, equality of the two real coordinates in DS1
+proves
+\(u_{ab}=\overline{u_{a'b'}}\) exactly when
+\((a',b')=(k-a,b)\). There is one such entry in each of the \(q\)
+rows, and none is on the Hermitian diagonal because \(k\) is odd.
+
+Differentiating the recurrence proves, term by term,
+\[
+\mathcal W_{d+1}=p_d^2+a_d\mathcal W_d,
+\qquad a_d=d(d-\tfrac12)=\gamma_d/\gamma_{d-1}.
+\]
+Indeed substitute \(p_{d+1}=xp_d-a_dp_{d-1}\) and its derivative
+into \(p_{d+1}'p_d-p_d'p_{d+1}\); the two \(xp_d'p_d\) terms
+cancel. Hence every resonant entry in DS5 obeys
+\begin{equation}\label{eq:resonance-update}
+\frac{\mathcal W_{d+1}(u)}{\gamma_d}
+-\frac{\mathcal W_d(u)}{\gamma_{d-1}}
+=\frac{p_d(u)^2}{\gamma_d}.
+\tag{DS6}
+\end{equation}
+The square here is \(p_d(u)^2\), not \(|p_d(u)|^2\): the column
+node is the reflected node, whose conjugate equals the row node.
+It agrees exactly with \(f_df_d^*/\gamma_d\). Off the resonance set,
+the difference of the two CD quotients is the same rank-one entry by
+the same polynomial telescope. Thus DS5 is also the complete CD
+boundary update, including all removable denominators.
+
+\section{Determinant and inverse updates with the original frame factors}
+
+Introduce the nonnegative, dimensionless scalar quantities
+\begin{equation}\label{eq:leverage}
+\alpha_d=\frac{g_d^*A_d^{-1}g_d}{\gamma_d},\qquad
+\beta_d=\frac{f_d^*C_d^{-1}f_d}{\gamma_d}.
+\tag{DS7}
+\end{equation}
+For any invertible matrix \(B\), the finite column expansion gives
+\(\det(B+xy^*)=\det B+y^*\operatorname{adj}(B)x\).
+Terms choosing the added column twice vanish because those columns are
+proportional. Since \(\operatorname{adj}(B)=\det(B)B^{-1}\), this
+also proves the usual rank-one determinant identity. Applying it to
+DS5 gives
+\begin{equation}\label{eq:detupdate}
+\boxed{\frac{\det A_{d+1}}{\det A_d}=1+\alpha_d,
+\qquad\frac{\det C_{d+1}}{\det C_d}=1+\beta_d.}
+\tag{DS8}
+\end{equation}
+Equivalently, the exact increment of \(\det A_d\) is
+\(g_d^*\operatorname{adj}(A_d)g_d/\gamma_d\), with no inverse in
+that numerator. A compressed determinant step is zero exactly when
+\(g_d=0\); no individual nonzero step is assumed.
+
+The complementary frame identity, with every constant present, is
+\begin{equation}\label{eq:framefactor}
+\det G_d=\kappa_{\pi,Z}\frac{\det A_d}{\det C_d},
+\qquad\kappa_{\pi,Z}=\frac{\det M_U}{\det W}>0.
+\tag{DS9}
+\end{equation}
+To prove it, use \(U_0=U M_U^{-1/2}\), \(V_0=V W^{-1/2}\) only
+as an auxiliary unitary frame \([U_0,V_0]\). In that frame write
+\(C_d=\left(\begin{smallmatrix}B&E\\E^*&D\end{smallmatrix}\right)\).
+Block elimination gives \(\det C_d=\det D\det(B-ED^{-1}E^*)\),
+and direct multiplication gives the upper inverse block
+\((B-ED^{-1}E^*)^{-1}\). Taking determinants and undoing the two
+frame square roots proves DS9. No source metric or actual coefficient
+frame has been replaced.
+
+Set \(b_d=U^*C_d^{-1}f_d\). This is the classical rank-one inverse
+update associated with Sherman and Morrison \cite{SM}; it is not a new
+inverse-matrix formula. Multiplying out the proposed inverse
+checks the complete inverse update
+\begin{equation}\label{eq:inverseupdate}
+C_{d+1}^{-1}=C_d^{-1}
+-\frac{C_d^{-1}f_df_d^*C_d^{-1}}
+{\gamma_d+f_d^*C_d^{-1}f_d},\qquad
+G_{d+1}=G_d-\frac{b_db_d^*}{\gamma_d(1+\beta_d)}.
+\tag{DS10}
+\end{equation}
+The denominator is positive. Therefore this is the exact original
+kernel contraction, not an inverse of a restricted covariance.
+
+The difference of the two scalar quantities in DS7 has a literal
+complementary expression:
+\begin{equation}\label{eq:gap}
+\boxed{\tau_d:=\beta_d-\alpha_d
+=\frac{b_d^*G_d^{-1}b_d}{\gamma_d}\geq0.}
+\tag{DS11}
+\end{equation}
+For a proof, the two matrices \(C_d^{1/2}V\) and \(C_d^{-1/2}U\)
+have orthogonal column images, because their cross Gram is \(V^*U=0\).
+Their full ranks sum to \(q\). Their two orthogonal projections sum
+to the identity, which gives, after multiplying by \(C_d^{-1/2}\)
+on both sides,
+\[
+C_d^{-1}=VA_d^{-1}V^*
++C_d^{-1}UG_d^{-1}U^*C_d^{-1}.
+\]
+Sandwiching by \(f_d\) and dividing by \(\gamma_d\) proves DS11.
+Consequently both determinant routes, DS8--9 and DS10, agree:
+\begin{equation}\label{eq:kernelstep}
+\boxed{\frac{\det G_{d+1}}{\det G_d}
+=\frac{1+\alpha_d}{1+\beta_d}
+=1-\frac{\tau_d}{1+\beta_d}\in(0,1].}
+\tag{DS12}
+\end{equation}
+The equality case is exactly \(b_d=0\). Every factor
+\(\kappa_{\pi,Z}\) has been retained in DS9 before its cancellation
+between consecutive degrees.
+
+The full determinant step is also the exact original relation-norm
+ratio already identified in the preceding mixed derivation and the
+Toda source/boundary quotient \cite{Mixed,Toda}%
+% BEGIN VERIFIED PUBLIC PROOF LINK
+~\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/MIXED_CONFLUENT_PROOF.tex\#L1}{[proof]} \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/TODA_VOLUME_CONTROL.tex\#L1}{[proof]}%
+% END VERIFIED PUBLIC PROOF LINK
+{}. In physical coordinates
+let \(B_n(\chi,\chi)\) be the determinant of
+\(\langle S^i\chi,S^j\chi\rangle_\sigma\), let
+\(D_d=\prod_{j<d}\gamma_j\), and put \(n=d-q\).
+The finite mixed formula gives
+\(\det C_d=|V_\chi|^2B_n/D_d\), retaining the original root
+Vandermonde. Dividing at consecutive degrees yields
+\[
+1+\beta_d=\frac{B_{n+1}/B_n}{\gamma_d}.
+\]
+Gram--Schmidt for the actual multiplication source
+\(P\mapsto\chi P\) gives \(B_{n+1}/B_n\) as its degree-\(n\)
+monic squared norm, since the monic basis change has determinant one.
+This re-expression credits the pre-existing source/boundary determinant
+structure and does not introduce a different measure for the quotient.
+
+\section{The exact four-cutoff determinant return}
+
+For any sequence \(L_d\) define its original four-cutoff combination
+\(\mathcal RL=L_q+L_{q+1}-L_{2q}-L_{2q+1}\).
+The physical cutoffs are \(N=q-1,q,2q-1,2q\); hence these are the
+correct kernel indices. Put
+\[
+w_d=\begin{cases}1&d=q\text{ or }d=2q,\\2&q<d<2q.\end{cases}
+\]
+Finite telescoping, first from \(q\) to \(2q\), then from \(q+1\)
+to \(2q+1\), gives the exact identities
+\begin{equation}\label{eq:return}
+\boxed{\begin{aligned}
+\mathcal R\log\det A_d
+&=-\sum_{d=q}^{2q}w_d\log(1+\alpha_d),\\
+\mathcal R\log\det C_d
+&=-\sum_{d=q}^{2q}w_d\log(1+\beta_d),\\
+\mathcal R\log\det G_d
+&=\sum_{d=q}^{2q}w_d
+ \log\frac{1+\beta_d}{1+\alpha_d}
+=-\sum_{d=q}^{2q}w_d
+ \log\left(1-\frac{\tau_d}{1+\beta_d}\right).
+\end{aligned}}
+\tag{DS13}
+\end{equation}
+All logarithms are of positive real numbers. In product form the last
+identity is
+\[
+\frac{\det G_q\det G_{q+1}}{\det G_{2q}\det G_{2q+1}}
+=\prod_{d=q}^{2q}\left(\frac{1+\beta_d}{1+\alpha_d}\right)^{w_d}.
+\]
+The common frame constant from DS9 has exponent \(1+1-1-1=0\).
+These formulas preserve every degree step; they do not replace the
+interior steps by either endpoint alone.
+
+\section{The actual quartet prevents complete block cancellation}
+
+The original transported relation is
+\begin{equation}\label{eq:positive-relation}
+\widetilde\chi(y)=i^{-q}\chi(c+iy)
+=\prod_{a=0}^{(k-1)/2}\prod_{b=0}^{k}
+\bigl((y-(2b-k)\gamma)^2+(2a-k)^2\delta^2\bigr)>0
+\quad(y\in\R).
+\tag{DS14}
+\end{equation}
+The paired roots are \(u_{ab},\overline{u_{ab}}=u_{k-a,b}\).
+Each displayed factor is positive because \(2a-k\ne0\) and
+\(\delta>0\). There are \(q/2\) such monic quadratic factors.
+The original phase is retained: \(q=(k+1)^2\) is divisible by four,
+so \(i^q=1\) on this domain. Formula DS14 is an identity for the
+original relation, not a replacement relation or source norm.
+
+For every integer \(s\geq0\), the \(q\) columns
+\begin{equation}\label{eq:tailbasis}
+f_s,f_{s+1},\ldots,f_{s+q-1}
+\quad\text{form a basis of }\C^q.
+\tag{DS15}
+\end{equation}
+Here is a full proof using the original orthogonality. If a combination
+\(P=\sum_{j=s}^{s+q-1}a_jp_j\) vanishes at all roots, division by
+\(\widetilde\chi\) gives \(P=\widetilde\chi R\) with
+\(\deg R\leq s-1\). At \(s=0\), that forces \(R=0\) directly.
+For \(s>0\), orthogonality to every polynomial of degree below \(s\)
+gives
+\[
+0=\int\overline{R(y)}P(y)\,d\sigma(y)
+=\int\widetilde\chi(y)|R(y)|^2\,d\sigma(y).
+\]
+The last integral is strictly positive for a nonzero polynomial
+\(R\), because DS14 is positive and \(d\sigma\) has positive density
+on the real axis. Therefore \(R=0\), then \(P=0\), and finally all
+\(a_j=0\), since the \(p_j\) have different monic leading degrees.
+This proves linear independence and hence the basis claim. The
+positive factor inside this one orthogonality argument is not a new
+choice of quotient metric.
+
+It follows for every \(d\geq q\) that
+\begin{equation}\label{eq:strictblocks}
+C_{d+q}-C_d=\sum_{j=d}^{d+q-1}\frac{f_jf_j^*}{\gamma_j}>0,
+\quad A_{d+q}-A_d>0,
+\quad G_d-G_{d+q}>0.
+\tag{DS16}
+\end{equation}
+The first strict inequality follows by evaluating its quadratic form:
+a vector annihilating every squared term annihilates a basis. The second
+is its congruence by the full-column-rank \(V\). For the third,
+\(C_d^{-1/2}C_{d+q}C_d^{-1/2}>I\), so all eigenvalues of its inverse
+are below one; congruence gives \(C_d^{-1}-C_{d+q}^{-1}>0\), and
+restriction by \(U\) proves the claim.
+
+In particular the two compressed returns in DS13 are strictly negative,
+and the original kernel return is strictly positive:
+\begin{equation}\label{eq:strictreturn}
+\boxed{\mathcal R\log\det A_d<0,\quad
+\mathcal R\log\det C_d<0,\quad
+\mathcal R\log\det G_d>0.}
+\tag{DS17}
+\end{equation}
+For example \(\det G_q>\det G_{2q}\) and
+\(\det G_{q+1}>\det G_{2q+1}\) follow from the strict positive
+matrix differences in DS16, proving the last inequality directly.
+These are finite strict inequalities, with no uniform lower size
+assigned to any term.
+
+There are also exact rank consequences for zero individual steps.
+The columns \(g_d,\ldots,g_{d+q-1}\) span \(\C^r\), by applying
+the surjection \(V^*\) to the basis DS15. At least \(r\) of these
+\(q\) columns are nonzero. Summing DS10 gives
+\[
+G_d-G_{d+q}=\sum_{j=d}^{d+q-1}
+\frac{b_jb_j^*}{\gamma_j(1+\beta_j)}>0,
+\]
+so \(b_d,\ldots,b_{d+q-1}\) span \(\C^m\), and at least \(m\)
+of those kernel contractions are nonzero. Thus the actual invariant
+image cannot force the entire original four-return to vanish, even
+though an individual step may vanish according to its exact criterion.
+
+For the complete covariance, each individual \(\beta_d\) is strictly
+positive on this original domain. Here is a proof without importing a
+zero-location hypothesis. The determinant of \(yI-J_d\), where
+\(J_d\) is the real symmetric tridiagonal matrix with diagonal zero
+and successive off-diagonals \(\sqrt{a_1},\ldots,\sqrt{a_{d-1}}\),
+satisfies the same determinant expansion recurrence and initial values
+as \(p_d\); hence it is \(p_d\). Every eigenvalue of \(J_d\) is
+real: an eigenvector \(z\ne0\) gives
+\(\lambda=z^*J_dz/(z^*z)\in\R\). Thus \(p_d\) has no nonreal
+zero. Each \(u_{ab}\) has nonzero imaginary part because \(k\) is
+odd, so every entry of \(f_d\) is nonzero. Positivity of
+\(C_d^{-1}\) then gives \(\beta_d>0\). This does not imply a
+nonzero \(g_d\) or \(b_d\) at every individual degree, because those
+involve the exact original frame contractions.
+
+\section{The complete complement correction evolves with the step}
+
+Keep the fixed original matrices
+\[
+Y=\operatorname{diag}(u_{ab}),\quad
+P=VW^{-1}V^*,\quad Q=I-P=UM_U^{-1}U^*,\quad
+H=(V^*YV)W^{-1},\quad F=V^*YU,
+\]
+and define
+\[
+T_d=U^*C_dV,\quad e_d=U^*f_d,\quad
+\rho_d=FM_U^{-1}e_d=V^*YQf_d,
+\quad \mathcal E_d=FM_U^{-1}T_d-T_d^*M_U^{-1}F^*.
+\]
+The full CD displacement, proved by the recurrence telescope, is
+\(YC_d-C_dY^*=(f_df_{d-1}^*-f_{d-1}f_d^*)/\gamma_{d-1}\).
+Inserting \(I=P+Q\) and multiplying by \(V^*,V\) gives the exact
+compressed identity
+\begin{equation}\label{eq:correctedCD}
+HA_d-A_dH^*
+=\frac{g_dg_{d-1}^*-g_{d-1}g_d^*}{\gamma_{d-1}}
+-\mathcal E_d.
+\tag{DS18}
+\end{equation}
+Indeed \(HA_d=V^*YPC_dV\) and
+\(A_dH^*=V^*C_dPY^*V\); the discarded complement difference would
+be precisely \(\mathcal E_d\). It is not discarded here.
+Applying DS5 to \(T_d\) proves
+\begin{equation}\label{eq:correctionstep}
+\boxed{T_{d+1}=T_d+\frac{e_dg_d^*}{\gamma_d},\qquad
+\mathcal E_{d+1}-\mathcal E_d
+=\frac{\rho_dg_d^*-g_d\rho_d^*}{\gamma_d}.}
+\tag{DS19}
+\end{equation}
+All cross terms and their signs are present.
+
+Projection of the original recurrence gives
+\(g_{d+1}=Hg_d-a_dg_{d-1}+\rho_d\).
+Writing this right side as \(\xi_d\), the exact next scalar update can
+also be obtained using only the current inverse and the full correction
+data:
+\begin{equation}\label{eq:nextalpha}
+\alpha_{d+1}=\frac1{\gamma_{d+1}}
+\left(\xi_d^*A_d^{-1}\xi_d
+-\frac{|g_d^*A_d^{-1}\xi_d|^2}
+{\gamma_d+g_d^*A_d^{-1}g_d}\right),
+\qquad\xi_d=Hg_d-a_dg_{d-1}+\rho_d.
+\tag{DS20}
+\end{equation}
+This follows by applying the directly checked inverse formula DS10
+to \(A_{d+1}\). Omitting \(\rho_d\) would be an additional,
+unproved cancellation; DS20 instead retains it exactly.
+
+\section{The literal source-scaling map in the original coefficient algebra}
+
+We now calculate what the invariant-image identity actually cancels.
+Retain the OCF period matrix \(\mathsf H\), the original ordered
+variables \((x_1,x_2,x_3,x_4)\), and the Segre substitution
+\[
+t=(z_0w_0,z_0w_1,z_1w_0,z_1w_1)^T,\quad x=\mathsf Ht,
+\quad Q(x)=Q_0(\mathsf H^{-1}x),\quad
+Q_0(t)=t_1t_4-t_2t_3.
+\]
+For a homogeneous polynomial \(F\) of degree \(s\), let
+\(\psi_sF=F(\mathsf Ht)\), a biform of bidegree \((s,s)\).
+OCF3 proves that its exact kernel is \(Q\) times degree \(s-2\)
+polynomials, and that every biform has a polynomial lift. To see the
+surjection directly, the monomial
+\(z_0^a z_1^{s-a}w_0^b w_1^{s-b}\) is the image of
+\(t_1^h t_2^{a-h}t_3^{b-h}t_4^{s-a-b+h}\), where
+\(\max(0,a+b-s)\leq h\leq\min(a,b)\).
+
+Define the actual degree-preserving biform derivation and its
+period-coordinate matrix by
+\begin{equation}\label{eq:generator}
+\mathcal Y=\gamma(w_0\partial_{w_0}-w_1\partial_{w_1})
+-i\delta(z_0\partial_{z_0}-z_1\partial_{z_1}),\quad
+\Lambda=\operatorname{diag}(\gamma-i\delta,-\gamma-i\delta,
+\gamma+i\delta,-\gamma+i\delta),\quad
+\mathsf L=\mathsf H\Lambda\mathsf H^{-1}.
+\tag{DS21}
+\end{equation}
+For any matrix \(B\), define the polynomial derivation
+\(\calD_BF=(Bx)\cdot\nabla F\). The chain rule proves the exact
+commuting identity
+\begin{equation}\label{eq:generator-map}
+\psi_s\calD_{\mathsf L}=\mathcal Y\psi_s.
+\tag{DS22}
+\end{equation}
+Indeed \(\mathcal Yt=\Lambda t\), so
+\(\mathcal Y(\mathsf Ht)=\mathsf H\Lambda t=\mathsf Lx\).
+The two sums \(\Lambda_{11}+\Lambda_{44}\) and
+\(\Lambda_{22}+\Lambda_{33}\) are both zero, so
+\(\calD_{\mathsf L}Q=0\); the derivation is well defined modulo
+the original \(Q\). On the ordered biform coefficient basis of degree
+\(k\), \(\mathcal Y\) has diagonal matrix exactly \(Y\) from DS1.
+This proves the coordinate-level morphism between the physical source
+scaling and the coefficient generator; no new action is assumed.
+
+\section{The invariant average cancels the diagonal generator exactly}
+
+Let \(D=\operatorname{diag}(\zeta,\zeta^2,\zeta^3,\zeta^4)\),
+\(\zeta=e^{2\pi i/5}\), let \(gF(x)=F(D^{-1}x)\), and retain
+the exact original averaging operator
+\(\mathsf R=\tfrac15\sum_{a=0}^4g^a\).
+The original invariant space is \(\mathscr I_k=\{F:gF=F\}\), and
+the original image is \(J_k=\psi_k\mathscr I_k=\ker\pi\).
+By the chain rule,
+\[
+g^a\calD_Bg^{-a}=\calD_{D^aBD^{-a}}.
+\]
+For invariant \(F\), averaging therefore gives
+\begin{equation}\label{eq:reynolds}
+\mathsf R\calD_{\mathsf L}F=\calD_{\mathsf L_0}F,
+\qquad
+\mathsf L_0=\frac15\sum_{a=0}^4D^a\mathsf LD^{-a}
+=\operatorname{diag}(\mathsf L_{11},\ldots,\mathsf L_{44}).
+\tag{DS23}
+\end{equation}
+For the final equality the \((i,j)\) entry is multiplied by
+\(\tfrac15\sum_a\zeta^{a(i-j)}\), which is one for \(i=j\)
+and zero for the distinct weights \(i\ne j\). Thus the average is
+not being estimated: it is computed exactly. Its value is invariant,
+so its image under \(\psi_k\) is annihilated by \(\pi\).
+Writing \(\mathsf L_{\mathrm{off}}=\mathsf L-\mathsf L_0\), we obtain
+the exact original-image cancellation
+\begin{equation}\label{eq:offdiag-cancellation}
+\boxed{\pi\psi_k\calD_{\mathsf L}F
+=\pi\psi_k\calD_{\mathsf L_{\mathrm{off}}}F
+\quad(F\in\mathscr I_k).}
+\tag{DS24}
+\end{equation}
+Every actual diagonal entry is present before this cancellation, and
+every actual off-diagonal entry is retained afterwards.
+
+Here are complete invariant certificates for the exact columns of
+\(Z\), so DS24 is an explicit coefficient calculation, not a
+statement about an unspecified invariant lift. Put
+\(\mathcal A=\prod_{a=1}^4g^aQ\) and
+\(A=\psi_8\mathcal A\). For any biform \(h\) of degree \(k-8\),
+choose its original monomial lift \(\widetilde h\) through the explicit
+Segre monomial formula in the preceding section. Then
+\[
+F_h=5\mathsf R(\mathcal A\widetilde h)\in\mathscr I_k,
+\qquad\psi_kF_h=A h.
+\]
+Indeed, modulo \(Q\), the four terms \(g^a\mathcal A\) for
+\(a\ne0\) each contain \(Q\); the term \(a=0\) is precisely
+\(\mathcal A\). This proves the original factor 5 and supplies the
+certificates for \(M_A\). For a retained column of \(Z_k\), OCF20
+supplies an invariant \(F_j\) with
+\(N_k\psi_kF_j=(Z_k)_j\). OCF7 gives
+\(\psi_kF_j=S_k(Z_k)_j+A h_j\), with its explicitly recorded
+division coefficients \(h_j\). Subtracting
+\(5\mathsf R(\mathcal A\widetilde h_j)\) from \(F_j\) supplies
+an invariant certificate for the exact column \(S_k(Z_k)_j\).
+No chosen frame coefficient is altered.
+
+Let these complete certificates, in the original column order, be
+\(\mathcal F_1,\ldots,\mathcal F_r\). The surviving coupling is the
+fully specified finite matrix
+\begin{equation}\label{eq:omega}
+\boxed{\Omega:=\pi YZ
+=\left[\pi\psi_k
+ \sum_{i\ne j}\mathsf L_{ij}x_j\partial_{x_i}\mathcal F_\ell
+ \right]_{\ell=1}^r,
+\qquad F=\Omega^T.}
+\tag{DS25}
+\end{equation}
+The last equality is \(V^*YU=Z^TY\pi^T=(\pi YZ)^T\), using
+the diagonal matrix \(Y^T=Y\), not a conjugation. Formula DS25 is
+an exact expression in the original period entries, original invariant
+certificates and the already specified elimination maps. It reduces
+the source coupling to the off-diagonal generator, without claiming
+that generator or its quotient image vanishes.
+
+The conductor part has a further exact product-rule cancellation:
+\begin{equation}\label{eq:conductor-cancel}
+\pi Y M_A=\pi M_{\mathcal Y A}.
+\tag{DS26}
+\end{equation}
+Indeed \(\mathcal Y(Ah)=(\mathcal YA)h+A\mathcal Yh\), and the
+second term lies in \(\operatorname{im}M_A\subseteq\ker\pi\).
+The first term in DS26 is retained. Substituting DS25 into DS19 gives
+the complete original correction and its step increment solely with
+the surviving coefficient matrix:
+\begin{equation}\label{eq:omega-correction}
+\mathcal E_d=\Omega^TM_U^{-1}T_d-T_d^*M_U^{-1}\overline\Omega,
+\qquad \rho_d=\Omega^TM_U^{-1}e_d.
+\tag{DS27}
+\end{equation}
+These formulas determine the correction at the actual period. They do
+not replace it by zero. Its exact vanishing criterion is the equality
+of the two displayed products in DS27.
+
+\section{The precise scope of the invariant cancellation}
+
+The following coefficient test proves that cyclic invariance and the
+five-orbit condition alone do not erase the off-diagonal term in DS24.
+It is not assigned to the actual period, used as its replacement frame,
+or used to infer a determinant asymptotic. It tests the claimed
+algebraic implication itself.
+
+Take the invertible coefficient matrix
+\(\mathsf H_*=I+E_{12}\), so
+\(x_1=t_1+t_2,x_2=t_2,x_3=t_3,x_4=t_4\). Then
+\[
+Q_*=(x_1-x_2)x_4-x_2x_3,
+\qquad g^aQ_*=x_1x_4-x_2x_3-\zeta^{-a}x_2x_4.
+\]
+The five quadrics are pairwise nonassociate: the coefficient of
+\(x_1x_4\) fixes any associate scalar at one, and their
+\(x_2x_4\) coefficients differ. They are prime rank-four quadrics
+because they are invertible linear transforms of the Segre equation.
+Thus the same five-orbit coefficient construction applies.
+The transported generator has
+\(\mathsf L_{*,\mathrm{off}}=-2\gamma E_{12}\).
+At the permitted degree \(k=9\), the monomial
+\(F_*=x_1^8x_2\) is invariant because \(8+2\equiv0\pmod5\), but
+\[
+\calD_{\mathsf L_{*,\mathrm{off}}}F_*
+=-16\gamma x_1^7x_2^2.
+\]
+Its restriction is not in the invariant image. To prove this, set
+\(z_1=0\) after the Segre substitution. Then \(x_3=x_4=0\), and
+the only degree-nine invariant monomials which survive are
+\(x_1^8x_2\) and \(x_1^3x_2^6\): with exponent \(b\) on
+\(x_2\), the weight is \(9+b\), so \(b=1\) or \(6\).
+Set \(z_0=w_1=1\) and write \(s=w_0+1\). Their two restrictions
+are \(s^8,s^3\), whereas the derivative restriction is a nonzero
+multiple of \(s^7\). Distinct monomial degrees make the latter
+independent of the former two. Thus its quotient image is nonzero.
+This proves that the off-diagonal remainder cannot be deleted as a
+formal consequence of the averaging identity. At the actual period
+its value remains the exact matrix DS25, not this test's value.
+
+Independently of whether the actual correction has further vanishing
+entries, DS15--17 apply to the actual quartet and original full-rank
+frame. They prove that the complete four-cutoff kernel return cannot
+cancel to zero. They give no lower magnitude at the \(kq\) scale.
+
+\section{A complete nonzero-correction degree-step example}
+
+This second example tests the determinant and correction formulas with
+the exact Gamma mass; its two-node coefficient frame is explicitly an
+algebra fixture, not an arithmetic-period substitute. Take
+\[
+u=(0,i),\quad V=(1,i)^T,\quad Z=(1,-i)^T,
+\quad \pi=(i,1),\quad U=(i,1)^T,
+\quad M=M_\sigma.
+\]
+The matrices at degrees \(d=2,3\) are
+\[
+C_2=M^{-1}\begin{pmatrix}1&1\\1&3\end{pmatrix},\qquad
+C_3=M^{-1}\begin{pmatrix}7/6&3/2\\3/2&9/2\end{pmatrix}.
+\]
+Here \(f_2=(-1/2,-3/2)^T\), \(\gamma_2=3M/2\), and direct
+multiplication verifies \(C_3-C_2=f_2f_2^*/\gamma_2\). The original
+frame factors in this fixture are \(W=M_U=2\), so
+\(\kappa_{\pi,Z}=1\). The complete scalars are
+\begin{equation}\label{eq:fixture}
+\begin{gathered}
+A_2=4/M,\quad A_3=17/(3M),\quad
+\det C_2=2/M^2,\quad\det C_3=3/M^2,\\
+G_2=2M,\quad G_3=17M/9,\quad
+\alpha_2=5/12,\quad\beta_2=1/2,\quad\tau_2=1/12,\\
+\frac{A_3}{A_2}=17/12,\quad
+\frac{\det C_3}{\det C_2}=3/2,\quad
+\frac{G_3}{G_2}=17/18.
+\end{gathered}\tag{DS28}
+\end{equation}
+For the same fixture \(H=i/2\). The exact corrections are
+\(\mathcal E_2=2i/M\) and \(\mathcal E_3=10i/(3M)\), giving
+the nonzero increment \(4i/(3M)\). These follow either by direct
+use of DS18 or from DS19 with the exact \(f_2,g_2,e_2\).
+Thus the determinant update is not relying on a vanished correction.
+The test fixture does not satisfy the quartet's conjugate-pair relation
+DS14, and it is not used to prove the strict block theorem; that theorem
+was proved directly for the actual quartet.
+
+\section{Mass, physical phases, and final boundary of the calculation}
+
+Under the diagnostic scaling \(d\sigma\mapsto a\,d\sigma\),
+\(a>0\), the monic polynomials, frames and root coordinates stay fixed,
+while \(\gamma_j\mapsto a\gamma_j\),
+\(C_d,A_d,T_d,\mathcal E_d\mapsto a^{-1}\) times themselves,
+\(G_d\mapsto aG_d\), and \(b_d\mapsto ab_d\).
+Every \(\alpha_d,\beta_d,\tau_d\) and every one-degree determinant
+ratio is unchanged. DS9 scales by \(a^{q-r}=a^m\), exactly the
+determinant scale of the original rank-\(m\) restricted metric. Its
+constant mass factor cancels in DS13 only after being retained at each
+cutoff. The actual source has \(a=1\), \(M_\sigma=\sqrt{2\pi}\).
+
+The physical \(S\)-evaluation columns are \(i^jf_j\), and their
+compressed columns are \(i^jg_j\). The phases multiply to one in every
+rank-one covariance update and every scalar in DS7--12. The physical
+coefficient generator on degree \(k\) is
+\(cI+iY\). Its coupling is
+\(\pi(cI+iY)Z=i\Omega\), because the complete original identity
+\(\pi Z=0\) removes the scalar term. In polynomial coordinates its
+derivation is \(\calD_{\frac12I+i\mathsf L}\); the radial part acts
+as \(k/2=c\) at degree \(k\). These are exact coordinate maps,
+not changes of the original scaling operator.
+
+The finite outcomes are DS8, DS10--13, the strict block and return
+statements DS15--17, and the fully specified surviving invariant-image
+coupling DS24--27. The original period has not been numerically sampled.
+No source-index, rendering, packaging or publication action is part of
+this derivation, and no estimate of the unresolved coefficient is
+deduced from an algebra fixture.
+
+\begin{thebibliography}{9}
+\bibitem{SM} J. Sherman and W. J. Morrison,
+\emph{Adjustment of an Inverse Matrix Corresponding to a Change in One
+Element of a Given Matrix}, Annals of Mathematical Statistics
+21 (1950), 124--127,
+\url{https://doi.org/10.1214/aoms/1177729893}.
+Historical attribution; bibliographic metadata verified, original article
+not inspected. The complete rank-one calculation used here is given at DS10.
+\bibitem{AV} G. Akemann and G. Vernizzi,
+\emph{Characteristic Polynomials of Complex Random Matrix Models},
+arXiv:hep-th/0212051v2, original author TeX, \texttt{CD} and its
+algebraic-continuation footnote,
+\url{https://arxiv.org/abs/hep-th/0212051v2}.
+\bibitem{DLMF} T. H. Koornwinder, R. Wong, R. Koekoek and
+R. F. Swarttouw; W. P. Reinhardt, NIST DLMF Chapter 18,
+original retained TeX:
+\url{https://dlmf.nist.gov/18.19.E8},
+\url{https://dlmf.nist.gov/18.19.E9a},
+\url{https://dlmf.nist.gov/18.23.E7}.
+\bibitem{OCF} Split-Zero programme,
+\emph{An exact conductor frame and a fixed invariant-generator
+recursion}, original OCF1--26, especially OCF3, OCF7, OCF17,
+and OCF20--24. All period and amplitude coefficients are retained.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/ORIGINAL_CONDUCTOR_STRIP_FRAME.tex\#L27}{Source proof OCF1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{MR} Split-Zero programme,
+\emph{The original observation kernel as an exact mixed-relation
+determinant}, original MR1--23, especially MR8--11 and MR22--23.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/ORIGINAL_KERNEL_MIXED_DETERMINANT.tex\#L36}{Source proof MR1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{CD} Split-Zero programme,
+\emph{Two boundary polynomials for the original Gamma kernel and the
+exact correction after coefficient compression}, complete CD1--22,
+20 September 2026, frozen preceding local derivation.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-kernel-degree-steps/COMPLETE_CD_BOUNDARY.tex\#L42}{Source proof CD1}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{Mixed} Split-Zero programme,
+\emph{The finite mixed and confluent Christoffel determinant on the
+original cyclic source}, complete preceding finite proof, especially
+its main mixed identity and original relation-norm ratio.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/MIXED_CONFLUENT_PROOF.tex\#L1}{Source proof}.
+% END VERIFIED PUBLIC PROOF LINK
+\bibitem{Toda} User-supplied programme continuation,
+\emph{Source--boundary volume dynamics for the arithmetic control},
+12 September 2026, original \texttt{NOTE.tex}, equations (11)--(16)
+and (19). The earlier source/boundary determinant quotient remains
+its original result.
+
+% BEGIN VERIFIED PUBLIC PROOF LINK
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/TODA_VOLUME_CONTROL.tex\#L1}{Source proof}.
+% END VERIFIED PUBLIC PROOF LINK
+\end{thebibliography}
+\end{document}

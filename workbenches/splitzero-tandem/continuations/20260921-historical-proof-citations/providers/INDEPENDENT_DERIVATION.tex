@@ -1,0 +1,551 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\dd}{\,\mathrm d}
+\newtheorem{theorem}{Theorem}
+\title{Independent check of the Polymath heat remainder constant}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+
+\section{Source, scope, and statement}
+
+The source checked here is D.~H.~J. Polymath,
+\emph{Effective approximation of heat flow evolution of the Riemann
+$\xi$ function, and a new upper bound for the de Bruijn--Newman
+constant}, arXiv:1904.12438v2, original author file
+\texttt{debruijn.tex} \cite{polymath}. Its SHA-256 is
+\texttt{560a28fe31bec92dd793820222e9e73a1fc6958a08344033a946b2ccaba225e5}.
+The imported Riemann--Siegel bounds below are the literal statement
+of its Proposition \texttt{arias-prop}, source lines 684--715,
+and the following explanation and $C_0$ bound through line 724.
+This is an independent derivation from those stated bounds, not
+a claim to have independently reread or reproved Arias de Reyna's
+underlying paper. The complete original proof of
+\texttt{RTN-prop}, source lines 743--920, has been read for this check.
+The receiving author's appendix \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5992ad50c0f2a06921f1fcaded7b4e38097c0739/workbenches/splitzero-tandem/continuations/20260920-original-kernel-mixed-determinants/providers/SOURCE_REMAINDER_REPAIR.tex\#L1}{\texttt{SOURCE\_REMAINDER\_REPAIR.tex}}
+was read after the cutoff and Gaussian computations were independently
+checked. No failure in its theorem PMH11 was found.
+
+For nonreal $s$, preserve the original function
+\begin{equation}\label{defR}
+ R_{0,N}(s)=\frac18\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2)
+ \int_{N\swarrow N+1}
+ \frac{w^{-s}e^{i\pi w^2}}{e^{\pi iw}-e^{-\pi iw}}\dd w.
+\end{equation}
+Here $N\swarrow N+1$ has direction $e^{5\pi i/4}$, oriented as
+in the source, and crosses between $N$ and $N+1$; the power is
+the branch in the source contour formula. For $t>0$ put
+\begin{equation}\label{heatR}
+ R_{t,N}(s)=\int_\R R_{0,N}(s+\sqrt t\,v)
+                      \frac{e^{-v^2}}{\sqrt\pi}\dd v.
+\end{equation}
+These are source \texttt{RON-def} and the following heat evolution
+definition, read together with \texttt{RTN-def} \cite{polymath}.
+
+Use the source's nowhere-zero holomorphic function on
+$\C\setminus(-\infty,1]$,
+\begin{equation}\label{defM}
+ M_0(s)=\frac18\frac{s(s-1)}2\pi^{-s/2}\sqrt{2\pi}
+ \exp\!\left((s/2-1/2)\operatorname{Log}(s/2)-s/2\right),
+\end{equation}
+with its specified holomorphic logarithm and principal logarithm
+branches. Its logarithmic derivative is
+\begin{equation}\label{alpha}
+ \alpha(s)=\frac1{2s}+\frac1{s-1}+\frac12\operatorname{Log}(s/(2\pi)),
+ \qquad
+ \alpha'(s)=-\frac1{2s^2}-\frac1{(s-1)^2}+\frac1{2s}.
+\end{equation}
+For $\Im s>3$, the source bound
+\begin{equation}\label{alphabound}
+ |\alpha'(s)|\le\frac1{2(\Im s-3)}
+\end{equation}
+follows by bounding the three terms of \eqref{alpha} and summing
+the positive geometric series. These are source \texttt{M-def},
+\texttt{logM}, \texttt{alpha-form}, and
+\texttt{alpha-deriv-bound} \cite{polymath}.
+
+\begin{theorem}\label{main}
+Let $0\le\sigma\le1$, $T\ge100$, and $0\le t\le1/2$. Set
+\begin{gather*}
+ T'=T+\pi t/8,\qquad a=\sqrt{T'/(2\pi)},\qquad N=\lfloor a\rfloor,
+ \qquad p=1-2(a-N),\\
+ U=\exp\!\left[-i\left(\frac{T'}2\log\frac{T'}{2\pi}
+                   -\frac{T'}2-\frac\pi8\right)\right],\\
+ C_0(p)=\frac{e^{\pi i(p^2/2+3/8)}-i\sqrt2\cos(\pi p/2)}{2\cos(\pi p)},
+\end{gather*}
+with removable values at $p=\pm1/2$. Then
+\begin{align}\label{result}
+ &\left|\frac{R_{t,N}(\sigma+iT)}
+ {(-1)^{N-1}Ue^{\pi i\sigma/4}e^{t\pi^2/64}M_0(iT')}-C_0(p)\right|\\
+ &\hspace{12mm}\le
+ \left(\frac{0.397\,9^\sigma}{a-0.865}+\frac5{3(T-6)}\right)
+                      e^{3.49/(T-4)}.\nonumber
+\end{align}
+For $t>0$ this is precisely the bound stated in source
+\texttt{RTN-prop}. The endpoint $t=0$ is established separately below.
+\end{theorem}
+
+The proof repairs four source passages: the Stirling numerator $1/3$
+in lines 769--776; inconsistent denominators in Gaussian calculations
+including lines 792 and 853--857; omission of one possible final
+Riemann--Siegel remainder after the choice of $K$ at line 808; and the
+changed lower summation cutoff in the equality at line 903. The
+last change is allowed as an inequality, but not as that equality.
+None of these repairs changes \eqref{result}.
+
+\section{The exact imported coefficient bounds}
+
+For real $u$, $T'>0$, positive integer $K$, and $a,N,p,U$ as above,
+Polymath's Proposition \texttt{arias-prop} gives
+\begin{equation}\label{RSexp}
+ \int_{N\swarrow N+1}\frac{w^{-u-iT'}e^{i\pi w^2}}
+ {e^{\pi iw}-e^{-\pi iw}}\dd w
+ =(-1)^{N-1}Ua^{-u}
+ \left(C_0(p)+\sum_{k=1}^K\frac{C_k(p,u)}{a^k}+RS_K(u+iT')\right).
+\end{equation}
+All gamma factors and sign domains in the following input are retained:
+\begin{align}
+ |C_k(p,u)|&\le\frac{\sqrt2}{2\pi}
+                      \frac{9^u\Gamma(k/2)}{2^k} &&(u>0),\label{ckpos}\\
+ |C_k(p,u)|&\le\frac{2^{1/2-u}}{2\pi}
+       \frac{\Gamma(k/2)}{2\pi((3-2\log2)\pi)^{k/2}} &&(u\le0),\label{ckneg}\\
+ |RS_K(u+iT')|&\le\frac17 2^{3u/2}
+                         \Gamma((K+1)/2)(1.1/a)^{K+1} &&(u\ge0),\label{rspos}\\
+ |RS_K(u+iT')|&\le\frac12(9/10)^{\lceil-u\rceil}
+                   \Gamma((K+1)/2)(1.1/a)^{K+1}
+                          &&(u<0,\ K+u\ge2).\label{rsneg}
+\end{align}
+The source labels are \texttt{ck-bound-1}, \texttt{ck-bound-2},
+\texttt{rsk-bound-1}, \texttt{rsk-bound-2}. Polymath attributes these
+to Arias de Reyna, Theorems 3.1, 4.1, 4.2 and equations (3.2), (5.2)
+\cite{arias}. The further source input, label \texttt{cop}, is
+$|C_0(p)|\le1/2$ for $p\in[-1,1]$, attributed there to the $n=0$
+case of Arias de Reyna's Theorem 6.1 \cite{polymath,arias}.
+
+\section{Cutoff admissibility and the previously missing remainder}
+
+Write $b=2a^2=T'/\pi$. We have $b\ge100/\pi>31$ and $a>3$.
+Choose the source cutoff
+\[
+ K_u=1\quad(u\ge0),\qquad
+ K_u=\max(\lfloor-u\rfloor+3,\lfloor b\rfloor)\quad(u<0).
+\]
+This is a measurable, integer-valued function. For $u<0$,
+$\lfloor-u\rfloor+u>-1$, hence $K_u+u>2$, which verifies
+the only additional condition in \eqref{rsneg}. Define
+\[
+ S(u)=\sum_{k=1}^{K_u}|C_k(p,u)|a^{-k}+|RS_{K_u}(u+iT')|.
+\]
+For $u>0$, \eqref{ckpos} and \eqref{rspos} give
+\[
+ S(u)\le\frac{0.2\,9^u}{a}+\frac{0.173\,2^{3u/2}}{a^2}
+ \le0.2\,9^u\left(\frac1a+\frac{0.865}{a^2}\right)
+ \le\frac{0.2\,9^u}{a-0.865}.
+\]
+Indeed $\sqrt{2\pi}/(4\pi)<0.2$, $1.21/7<0.173$,
+$2^{3/2}<9$, and $0.2(0.865)=0.173$.
+At $u=0$, use \eqref{ckneg}; its $k=1$ coefficient is below
+$0.036(0.445)\sqrt\pi<0.0285<0.2$. Thus the same bound holds
+also at $u=0$, without extending the domain of \eqref{ckpos}.
+
+For $u<0$, put $q=0.445$. The exact constants in \eqref{ckneg}
+satisfy
+\[
+ \frac{\sqrt2}{4\pi^2}<0.036,\qquad
+ ((3-2\log2)\pi)^{-1/2}<q.
+\]
+The identity
+\[
+ \frac{\Gamma((k+2)/2)}{a^{k+2}}
+ =\frac{k}{b}\frac{\Gamma(k/2)}{a^k}
+\]
+shows that on each parity subsequence, as long as both indices remain
+at most $b$, successive terms $q^k\Gamma(k/2)/a^k$ have ratio at
+most $q^2$. Consequently
+\begin{align*}
+ \sum_{1\le k\le b}\frac{|C_k(p,u)|}{a^k}
+ &\le0.036\,2^{-u}\left(
+ \frac{q\sqrt\pi}{a}+
+ \frac{q^2}{1-q^2}\frac1{a^2}+
+ \frac{q^3\sqrt\pi}{2(1-q^2)}\frac1{a^3}\right)\\
+ &\le0.036\,2^{-u}\left(
+ \frac{0.445\sqrt\pi}{a}+\frac{0.247}{a^2}+\frac{0.098}{a^3}\right)
+ \le\frac{0.0285\,2^{-u}}{a-0.353}.\tag{L}\label{low}
+\end{align*}
+For the last step, expand $(a-0.353)^{-1}$ as a positive geometric
+series and compare its first three terms, using
+\[
+ 0.036(0.445)\sqrt\pi<0.0285,\quad
+ 0.036(0.247)<0.0285(0.353),\quad
+ 0.036(0.098)<0.0285(0.353)^2.
+\]
+
+If $K_u=\lfloor b\rfloor$, its remainder index is
+$r=K_u+1=\lfloor b\rfloor+1\ge32$. Since
+$a^2\ge(r-1)/2$, \eqref{rsneg} gives
+\begin{equation}\label{vr}
+ a2^u|RS_{K_u}(u+iT')|
+ \le v_r:=\frac12(1.1)^r\Gamma(r/2)
+                           ((r-1)/2)^{(1-r)/2}.
+\end{equation}
+Here $2^u\le1$ and $(9/10)^{\lceil-u\rceil}\le1$.
+Direct gamma recurrence gives the exact ratio
+\[
+ \frac{v_{r+2}}{v_r}=1.21\frac r{r+1}
+     \left(\frac{r-1}{r+1}\right)^{(r-1)/2}
+ \le1.21\exp\!\left(-\frac{r-1}{r+1}\right)
+ \le1.21e^{-31/33}<1.
+\]
+The first inequality uses $\log(1-x)\le-x$ with $x=2/(r+1)$;
+the last follows already from $e^{31/33}>1+31/33>1.21$.
+The exact squared base expressions are
+\[
+ v_{32}^2=\frac14(11/10)^{64}(15!)^2(2/31)^{31},\qquad
+ v_{33}^2=\frac14(11/10)^{66}
+ \left(\frac{32!}{4^{16}16!}\right)^2\pi\,16^{-32}.
+\]
+Their certified upper bounds are respectively
+$(4.897\cdot10^{-6})^2$ and $(3.268\cdot10^{-6})^2$.
+Both are less than $(0.0005)^2$. The two parity inductions now prove
+\[
+ |RS_{K_u}(u+iT')|\le\frac{0.0005\,2^{-u}}a
+ \le\frac{0.0005\,2^{-u}}{a-0.353}
+ \quad\hbox{when }K_u=\lfloor b\rfloor.
+\]
+This is the remainder absent from the source's displayed bound
+after \texttt{laf}. Together with \eqref{low}, it fits
+$0.029\,2^{-u}/(a-0.353)$.
+
+If $K_u>\lfloor b\rfloor$, necessarily $K_u=\lfloor-u\rfloor+3$.
+Every coefficient index above $b$ satisfies $b\le k\le-u+4$;
+the final remainder index $K_u+1$ also satisfies those inequalities.
+By \eqref{ckneg}, its coefficient majorant is at most
+$(1/2)2^{-u}(1.1)^k\Gamma(k/2)/a^k$, and \eqref{rsneg}
+puts the remainder in the same sum. The coefficient indices and
+the remainder index are distinct, so no index is counted twice
+for this upper bound. If $b$ is an integer, the extra index $k=b$
+in the enlarged high sum is harmless. Ties
+$\lfloor-u\rfloor+3=\lfloor b\rfloor$ were already covered by
+\eqref{vr}. Therefore, for every real $u$,
+\begin{equation}\label{Sbound}
+ S(u)\le\frac{0.2\,9^u}{a-0.865}
+       +\frac{0.029\,2^{-u}}{a-0.353}
+       +\frac{2^{-u}}2\sum_{b\le k\le-u+4}
+                              \frac{(1.1)^k\Gamma(k/2)}{a^k}.
+\end{equation}
+All sums here and below are over integers. Empty sums are zero.
+
+\section{The pointwise exponent and the exact Gaussian integral}
+
+Let $D=T-3\ge97$ and $c=11/12$. Source Lemma
+\texttt{elem-lem}(v), attributed to Boyd \cite{polymath,boyd},
+states an exponential Stirling error at $z=(u+iT')/2$ of modulus
+at most $1/(12(|z|-0.33))$. Thus its contribution is at most
+$1/(6(T'-0.66))$. Taylor's formula using \eqref{alphabound}
+and the horizontal segment from $iT'$ to $u+iT'$ bounds the
+logarithmic Taylor remainder by $u^2/(4(T'-3))$. Finally
+\[
+ \alpha(iT')=\log a+\frac{\pi i}4+\frac1{2iT'}+\frac1{iT'-1},
+ \qquad
+ \left|\frac1{2iT'}+\frac1{iT'-1}\right|\le\frac3{2T'}.
+\]
+There is consequently a complex exponential error $E(u)$ with
+\begin{equation}\label{Ebound}
+ |E(u)|\le\frac{u^2}{4(T'-3)}+\frac{3|u|}{2T'}
+                      +\frac1{6(T'-0.66)}
+ \le\frac{u^2+6|u|+2/3}{4D}
+ \le\frac{u^2+c}{D}.
+\end{equation}
+The last step uses $6|u|\le3u^2+3$. In particular the Stirling
+numerator is $2/3$, not the source's $1/3$.
+
+For $t>0$, the source contour shift \texttt{RTN-def} with
+$\beta_N=\pi i/4$ reads
+\[
+ R_{t,N}(\sigma+iT)=e^{t\pi^2/64}
+ \int_\R e^{-\sqrt t\,v\pi i/4}
+ R_{0,N}(\sigma+\sqrt t\,v+iT')
+                         \frac{e^{-v^2}}{\sqrt\pi}\dd v.
+\]
+The shift is admissible because $T,T'>0$; the source justifies
+this by slower-than-Gaussian growth on the connecting horizontal
+strips. Set $u=\sigma+\sqrt t\,v$. Formula \eqref{RSexp} contains
+$a^{-u}$, which cancels the factor $e^{u\log a}$ from $M_0$.
+The two phases $e^{\pi iu/4}$ and $e^{-\sqrt t\,v\pi i/4}$
+leave exactly $e^{\pi i\sigma/4}$. The real probability measure is
+\[
+ \dd\nu(u)=\frac1{\sqrt{\pi t}}e^{-(u-\sigma)^2/t}\dd u,
+ \qquad \int_\R\dd\nu=1.
+\]
+Using $|C_0|\le1/2$ and $|e^z-1|\le e^{|z|}-1$, the left
+side of \eqref{result} is bounded by
+\begin{equation}\label{epsdelta}
+ \frac12\epsilon+\delta,\qquad
+ \epsilon=\int_\R(e^{(u^2+c)/D}-1)\dd\nu(u),\qquad
+ \delta=\int_\R e^{(u^2+c)/D}S(u)\dd\nu(u).
+\end{equation}
+
+For every real $l$, completing the square gives exactly
+\begin{equation}\label{J}
+ J(l):=\int_\R e^{(u^2+c)/D+2lu}\dd\nu(u)
+ =e^{2l\sigma+tl^2}(1-t/D)^{-1/2}
+       \exp\!\left(\frac cD+\frac{(\sigma+tl)^2}{D-t}\right).
+\end{equation}
+To check the algebra, the exponent before integration is
+\[
+ -\frac{D-t}{tD}u^2+2(\sigma/t+l)u+c/D-\sigma^2/t.
+\]
+Its Gaussian integral contributes $(1-t/D)^{-1/2}$ and exponent
+$c/D-\sigma^2/t+tD(\sigma/t+l)^2/(D-t)$.
+Subtracting $2l\sigma+tl^2+c/D$ leaves
+$(\sigma+tl)^2/(D-t)$, proving \eqref{J}. Since $D>t$,
+all these integrals converge. No occurrence of $D$ in this identity
+can be replaced by $T'-0.33$.
+
+The elementary inequality $-\log(1-x)\le x/(1-x)$ for
+$0\le x<1$ yields
+\[
+ \log J(0)\le\frac{c+\sigma^2+t/2}{D-t}
+ \le\frac{13/6}{T-3.5}\le\frac{10}{3(T-6)}.
+\]
+The last inequality follows from $13(T-6)\le20(T-3.5)$.
+Since $e^v-1\le ve^v$ for $v\ge0$ and
+\[
+ \frac{10}{3(T-6)}\le\frac{3.49}{T-4}
+ \quad\Longleftrightarrow\quad 0.47T\ge22.82,
+\]
+we obtain
+\begin{equation}\label{epsilonfinal}
+ \frac12\epsilon=\frac12(J(0)-1)
+       \le\frac5{3(T-6)}e^{3.49/(T-4)}.
+\end{equation}
+
+\section{The first two integrated coefficient terms}
+
+By \eqref{Sbound} write $\delta\le\delta_1+\delta_2+\delta_3$,
+where $\delta_1=0.2J(\log3)/(a-0.865)$,
+$\delta_2=0.029J(-\log\sqrt2)/(a-0.353)$, and $\delta_3$
+integrates the final sum in \eqref{Sbound}.
+Set $L=\log3$ and
+\[
+ A=c+(1+L/2)^2+1/4=3.5670161955\ldots.
+\]
+After removing $9^\sigma e^{tL^2}$ from \eqref{J}, the remaining
+logarithm is bounded by
+\[
+ \frac cD+\frac{(\sigma+tL)^2+t/2}{D-t}
+ \le\frac A{T-3.5}\le\frac A{T-4}.
+\]
+Since $A>3.49$ and $T-4\ge96$,
+\[
+ 0.2e^{tL^2}e^{(A-3.49)/(T-4)}
+ \le0.2\exp\!\left(L^2/2+(A-3.49)/96\right)
+ <0.365986<0.366.
+\]
+The strict numerical comparison is proved by exact rational series
+certificates in the last section; it is not a rounded floating-point
+comparison. Therefore
+\begin{equation}\label{deltaone}
+ \delta_1\le\frac{0.366\,9^\sigma}{a-0.865}e^{3.49/(T-4)}.
+\end{equation}
+This absorption is necessary: merely replacing $5/6$ by $11/12$
+in the source's old exponent and claiming it is at most $3.49$
+would not be valid.
+
+Let $M=\log\sqrt2$. As $0<M<1$, $0\le\sigma\le1$ and
+$0\le t\le1/2$ imply $|\sigma-tM|\le1$. After removing
+$2^{-\sigma}e^{tM^2}$ from \eqref{J}, the remaining logarithm
+is at most
+\[
+ \frac cD+\frac{1+t/2}{D-t}
+ \le\frac{13/6}{T-3.5}<\frac{3.49}{T-4}.
+\]
+The rational-series comparison $0.029e^{M^2/2}<0.031$ now gives
+\begin{equation}\label{deltatwo}
+ \delta_2\le\frac{0.031\,2^{-\sigma}}{a-0.353}e^{3.49/(T-4)}.
+\end{equation}
+
+\section{The exact tail cutoff and its enlargement}
+
+Tonelli's theorem for nonnegative measurable functions gives the
+exact expression
+\begin{equation}\label{tail}
+ \delta_3=\frac1{2\sqrt{\pi t}}
+ \sum_{k\ge b}\frac{(1.1)^k\Gamma(k/2)}{a^k}
+ \int_{-\infty}^{4-k}
+ \exp\!\left(\frac{u^2+c}D-\frac{(u-\sigma)^2}t-u\log2\right)\dd u.
+\end{equation}
+The cutoff is exactly $b=T'/\pi$, not $T'/(2.2\pi)$.
+Here $k\ge32$ and $u\le-28$. To prepare an upper bound enlarged
+to $k\ge14$, it is enough to use $u\le-10$. Because $\sigma\ge0$,
+$(u-\sigma)^2\ge u^2$. Moreover, $u^2\ge100$, $D\ge97$,
+and $1/(2t)\ge1$ imply
+\[
+ \frac{u^2+c}D
+ \le u^2\frac{1+c/100}{97}\le\frac{u^2}{2t}.
+\]
+Thus the exponent in \eqref{tail} is at most
+$-u^2/(2t)-u\log2$. For $u\le4-k$,
+$-u^2/(2t)\le(k-4)u/(2t)$, so
+\begin{align*}
+ \int_{-\infty}^{4-k}e^{-u^2/(2t)-u\log2}\dd u
+ &\le\frac{e^{-(k-4)^2/(2t)+(k-4)\log2}}
+                {(k-4)/(2t)-\log2}\\
+ &\le\frac{2t}{k-6}e^{-(k-4)^2+(k-4)\log2}.
+\end{align*}
+Both denominators are positive, and the last step follows from
+$2t\le1$, $2t\log2\le2$. Therefore
+\[
+ \delta_3\le\frac{\sqrt t}{\sqrt\pi}
+ \sum_{k\ge b}\frac{f_k}{(k-6)a^k},\qquad
+ f_k=(1.1)^k\Gamma(k/2)e^{-(k-4)^2+(k-4)\log2}.
+\]
+The two bases are
+\[
+ f_{14}=(1.1)^{14}6!2^{10}e^{-100}<1.042\cdot10^{-37},
+\]
+\[
+ f_{15}=(1.1)^{15}\frac{14!\sqrt\pi}{4^7 7!}2^{11}e^{-121}
+                                         <4.516\cdot10^{-46}.
+\]
+Exact gamma recurrence gives
+\[
+ \frac{f_{k+2}}{f_k}=2.42k e^{12-4k}<1\qquad(k\ge14).
+\]
+Indeed $x e^{-4x}$ decreases for $x\ge14$ and the ratio at $14$
+is $33.88e^{-44}<1$, already implied by $e^{44}>45$.
+Parity induction proves $f_k<10^{-30}$ for every integer $k\ge14$.
+Since $\sqrt t/\sqrt\pi<1$ and $1/(k-6)<1$ throughout the
+original range, enlarging the nonnegative sum now gives
+\begin{equation}\label{tailfinal}
+ \delta_3\le\sum_{k\ge14}\frac{10^{-30}}{a^k}
+ =\frac{10^{-30}}{a^{14}(1-a^{-1})}
+ \le\frac{2\cdot10^{-30}}{a^{14}}.
+\end{equation}
+This is an inequality, with no altered identity or cutoff.
+
+For $0\le\sigma\le1$ and $a>3$ the available denominator slack is
+\begin{align*}
+ \frac{0.031\,2^{-\sigma}}{a-0.865}
+ -\frac{0.031\,2^{-\sigma}}{a-0.353}
+ &=\frac{0.031(0.512)2^{-\sigma}}
+          {(a-0.865)(a-0.353)}\\
+ &\ge\frac{0.007936}{a^2}
+ >\frac{2\cdot10^{-30}}{a^{14}}.
+\end{align*}
+The last step follows from $a^{12}>3^{12}$ and
+$0.007936\,3^{12}>2\cdot10^{-30}$. Multiplying the slack by
+$e^{3.49/(T-4)}>1$ only increases it. Equations \eqref{deltaone},
+\eqref{deltatwo}, and \eqref{tailfinal} consequently give
+\[
+ \delta\le\frac{0.366\,9^\sigma+0.031\,2^{-\sigma}}{a-0.865}
+                       e^{3.49/(T-4)}
+ \le\frac{0.397\,9^\sigma}{a-0.865}e^{3.49/(T-4)}.
+\]
+Together with \eqref{epsdelta} and \eqref{epsilonfinal}, this proves
+Theorem \ref{main} for $t>0$.
+
+\section{The endpoint $t=0$}
+
+At $t=0$ use $T'=T$, $u=\sigma$, and $K=1$ directly in
+\eqref{RSexp}. The pointwise estimate \eqref{Ebound} and the
+nonnegative-$u$ estimate above give
+\[
+ \left|\frac{R_{0,N}(\sigma+iT)}
+ {(-1)^{N-1}Ue^{\pi i\sigma/4}M_0(iT)}-C_0(p)\right|
+ \le\tfrac12(e^h-1)+e^h\frac{0.2\,9^\sigma}{a-0.865},
+ \quad h=\frac{\sigma^2+c}{T-3}.
+\]
+Here
+\[
+ 0\le h\le\frac{23}{12(T-3)}
+ \le\frac{10}{3(T-6)}\le\frac{3.49}{T-4}.
+\]
+The first contribution is at most
+$5e^{3.49/(T-4)}/(3(T-6))$ by $e^h-1\le he^h$;
+the second is at most
+$0.397\,9^\sigma e^{3.49/(T-4)}/(a-0.865)$ because $0.2<0.397$.
+This proves the endpoint without passing a limit through $\lfloor a\rfloor$.
+
+\section{Exact rational certificates for the finite comparisons}
+
+The companion \texttt{exact\_certificates.py} uses Python integer
+arithmetic, \texttt{Fraction}, and factorials only. Every comparison
+is exact. No floating-point comparison is used. Its rational
+enclosures follow from these elementary series arguments.
+
+For $0<z<1$, alternating integration of the finite geometric series
+gives
+$\arctan z=\sum_{j\ge0}(-1)^jz^{2j+1}/(2j+1)$,
+between a partial sum and that sum plus its next term. Machin's
+identity $\pi=16\arctan(1/5)-4\arctan(1/239)$ follows from
+the tangent addition formula and the fact that the relevant angle
+is in $(0,\pi/2)$: $\tan(2\arctan(1/5))=5/12$,
+$\tan(4\arctan(1/5))=120/119$, and subtracting
+$\arctan(1/239)$ gives tangent $1$. Using partial sums through
+$j=40$ and $j=10$, respectively, proves
+\[
+ 3.1415926535<\pi<3.1415926536,
+ \qquad \sqrt\pi<1.772453851,
+\]
+where the square-root assertion is checked by squaring positive
+rationals.
+
+For $x>1$, $z=(x-1)/(x+1)$ satisfies
+\[
+ \log x=2\sum_{j=0}^n\frac{z^{2j+1}}{2j+1}+R_n,
+ \qquad 0<R_n\le\frac{2z^{2n+3}}{(2n+3)(1-z^2)}.
+\]
+This follows by integrating the geometric expansion of
+$2/(1-z^2)$ and bounding every remaining denominator below by
+$2n+3$. With $n=60$ for $x=2,3$, these give the stated enclosures
+for logarithms and hence for $A$.
+
+For rational $x\ge0$ and integer $n$ with $x<n+2$, write
+$E_n(x)=\sum_{j=0}^n x^j/j!$. The ratios of successive terms
+after the first omitted term are at most $x/(n+2)$, whence
+\[
+ E_n(x)\le e^x\le E_n(x)+
+ \frac{x^{n+1}}{(n+1)!}\frac1{1-x/(n+2)}.
+\]
+The script uses $n=40$ for the two small positive exponential
+arguments, and lower sums with $n=300$ at $x=100$ and $n=330$
+at $x=121$ for the negative-exponential tail bases. This proves
+all comparisons used above, in particular
+\[
+ 3.5670161955<A<3.5670161956,
+\]
+\[
+ 0.2\exp\!\left((\log3)^2/2+(A-3.49)/96\right)<0.365986,
+ \qquad 0.029e^{(\log\sqrt2)^2/2}<0.031.
+\]
+The script's 23 explicit checks all passed in both ordinary and
+optimized Python mode on 20 September 2026. Failed comparisons and
+invalid series domains raise exceptions explicitly, so optimization
+cannot disable the checks.
+They supplement the recurrence and monotonicity proofs; they do
+not substitute a finite sample for a bound over the unbounded
+integer indices or continuous parameter ranges.
+
+\begin{thebibliography}{9}
+\bibitem{polymath} D.~H.~J. Polymath,
+\emph{Effective approximation of heat flow evolution of the Riemann
+$\xi$ function, and a new upper bound for the de Bruijn--Newman
+constant}, \href{https://arxiv.org/abs/1904.12438v2}{arXiv:1904.12438v2}.
+Original author source \texttt{debruijn.tex}; exact labels and source
+coverage are specified in the text.
+\bibitem{arias} J. Arias de Reyna,
+\emph{High-precision computation of Riemann's zeta function by the
+Riemann--Siegel asymptotic formula, I}, Mathematics of Computation
+\textbf{80} (2011), 995--1009. Cited here through the precise input
+statement and attribution in Polymath's original source.
+\bibitem{boyd} W.~G.~C. Boyd,
+\emph{Gamma Function Asymptotics by an Extension of the Method of
+Steepest Descents}, Proceedings: Mathematical and Physical Sciences
+\textbf{447}, no.~1931 (1994), 609--630. Cited here through
+Polymath's source Lemma \texttt{elem-lem}(v).
+\end{thebibliography}
+\end{document}

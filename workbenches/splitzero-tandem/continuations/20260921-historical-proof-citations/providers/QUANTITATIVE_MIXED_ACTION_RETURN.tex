@@ -1,0 +1,166 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\title{Quantitative return of original mixed-action singular values}
+\author{}
+\date{20 September 2026}
+\begin{document}
+\maketitle
+This is a receiving calculation from the proved constant-depth original
+observation theorem DO1--23 and its differentiated-conductor extension
+DC1--35. Both complete proofs accompany this note. All metrics are the
+original attained metric and its actual observation quotient; the stated
+finite constants are computed from those matrices. No unidentified
+isometry, change of period or bound independent of degree is used.
+
+\section{Original data and the proved recovery constant}
+Retain the actual simple-quartet period locus of DO, $k\equiv1\pmod4$,
+$k\ge77$, $q=(k+1)^2$, $r=8k-16$, the original polynomial quotient
+$E_k$, its full attained metric $G_N$, and original multiplication $A=M_S$.
+For the observation onto its image $\Lambda:E_k\to B_k$, put
+\[
+ Q_N=(\Lambda G_N^{-1}\Lambda^*)^{-1},\quad
+ I:\mathbb C^r\overset\sim\longrightarrow\ker\Lambda,
+ \quad H_K=I^*G_NI,\quad L=G_N^{-1}\Lambda^*Q_N.
+ \tag{DQ1}
+\]
+The original frame $[I,L]$ has metric $\diag(H_K,Q_N)$: indeed
+$\Lambda L=1$, $L^*G_NL=Q_N$, $I^*G_NL=0$, and the direct sum
+has dimension $q$. With $J_K=H_K^{-1}I^*G_N$ write all four blocks
+\[
+ [I,L]^{-1}A[I,L]=\begin{pmatrix}T&C\\B&D\end{pmatrix},\quad
+ B=\Lambda AI,\quad C=J_KAL,\quad T=J_KAI,\quad D=\Lambda AL.
+ \tag{DQ2}
+\]
+In the actual support notation of DO1--9, use
+$d=\max\{|\mathcal S|-1,h-\max_i h_i,1\}\le80$ (the corner term
+is zero for $h=0$). The fully specified recovery map of DO6--8 satisfies
+\[
+ \mathcal R_{d,N}(\Lambda x,\Lambda Ax,\ldots,\Lambda A^dx)=x,
+ \qquad \|\mathcal R_{d,N}\|_{Q_N^{\oplus(d+1)}\to G_N}
+       \le C_{d,N}.\tag{DQ3}
+\]
+Here $C_{d,N}$ is exactly DO10--11, including the full corner Gram
+inverses, all root differences and the original value-to-polynomial map.
+It is a finite proved bound, not an additional hypothesis. One may instead
+use the exact norm of the displayed recovery matrix, with the same metrics.
+
+The feedback matrix $W_d$ is defined by the literal recursion
+\[
+ y_{n+1}=BT^nx+Dy_n+\sum_{a=0}^{n-1}BT^{n-1-a}Cy_a,
+ \qquad y_0=0.\tag{DQ4}
+\]
+It sends $(BT^jx)_{0\le j<d}$ to $(y_1,\ldots,y_d)$, is lower
+triangular with identity diagonal, and is invertible by subtraction.
+The complete cross blocks occur in DQ4. Applying DQ3 to $Ix$ gives
+\[
+ \sum_{j=0}^{d-1}(T^j)^*B^*Q_NBT^j
+ \succeq a_N^2H_K,
+ \qquad a_N=(C_{d,N}\|W_d\|_{Q_N^{\oplus d}})^{-1}>0.
+ \tag{DQ5}
+\]
+This follows by squaring
+$\|Ix\|_{G_N}\le C_{d,N}\|W_d(BT^jx)_{j<d}\|_{Q_N^{\oplus d}}$;
+thus it retains the original minimum throughout.
+
+\section{A lower bound for multiple singular values of the actual map}
+Use the metric coordinate isometries explicitly:
+\[
+ \widetilde T=H_K^{1/2}TH_K^{-1/2},\quad
+ \widetilde B=Q_N^{1/2}BH_K^{-1/2},\quad
+ \widetilde C=H_K^{1/2}CQ_N^{-1/2}.
+ \tag{DQ6}
+\]
+These define singular values in the original metrics; no original matrix
+is replaced. Put $\rho_N=\|\widetilde T\|$ and
+\[
+ p=\left\lceil\frac rd\right\rceil,\qquad
+ S_{d,N}=\sum_{j=0}^{d-1}\rho_N^{2j},\qquad
+ b_N=\frac{1}{C_{d,N}\|W_d\|\sqrt{S_{d,N}}}>0.
+ \tag{DQ7}
+\]
+The convention $\rho_N^0=1$ includes $\rho_N=0$. In decreasing
+order of singular values, the original leakage satisfies
+\[
+ \boxed{\sigma_p(\widetilde B)\ge b_N,
+ \qquad p\ge\left\lceil\frac{8k-16}{80}\right\rceil.}
+ \tag{DQ8}
+\]
+Here and below zero singular values are included to fill a rectangular
+matrix's smaller dimension. The argument also proves that this dimension
+is at least $p$.
+
+To prove DQ8, form the exact stack
+$\mathcal B_d=(\widetilde B,\widetilde B\widetilde T,\ldots,
+\widetilde B\widetilde T^{d-1})^{\mathsf T}$. Equation DQ5 says
+$\|\mathcal B_dv\|\ge a_N\|v\|$ for every vector $v$.
+Diagonalizing $\widetilde B^*\widetilde B$ gives an orthonormal
+singular system. Keep the first $p-1$ singular terms, obtaining $B_0$
+with $\rank B_0\le p-1$ and
+$\|\widetilde B-B_0\|=\sigma_p(\widetilde B)$.
+If fewer terms exist, take $B_0=\widetilde B$ and the remaining
+singular value zero. The stack with $B_0$ replacing $\widetilde B$
+has rank at most $d(p-1)<r$. Choose a unit vector $v$ in its kernel.
+Then
+\[
+ a_N^2\le\|\mathcal B_dv\|^2
+ =\sum_{j<d}\|(\widetilde B-B_0)\widetilde T^jv\|^2
+ \le\sigma_p(\widetilde B)^2 S_{d,N}.
+ \tag{DQ9}
+\]
+This proves DQ8 and excludes the zero alternative. The proof uses the
+whole stack and every power of the original kernel block.
+
+If a bound without computing the feedback norm is desired, DO15 proves
+$\|W_d\|\le d(2M_N)^{d-1}$, $M_N=\max(1,\|A\|_{G_N})$.
+The original orthogonal compression gives $\rho_N\le M_N$, so
+\[
+ b_N\ge
+ \bigl[C_{d,N}d(2M_N)^{d-1}
+         (\sum_{j<d}M_N^{2j})^{1/2}\bigr]^{-1}.
+ \tag{DQ10}
+\]
+Every quantity is either an actual finite norm or a previously proved
+explicit bound. DQ10 makes no assertion that this scale is large enough
+for a signed arithmetic asymptotic.
+
+\section{The exact return direction and commutator}
+The retained full-source Hermitian weight gives the precise identity
+\[
+ \widetilde C+\widetilde B^*=R_N,\qquad\rank R_N\le2,
+ \tag{DQ11}
+\]
+proved in DO17/DC33. Take the $p$-dimensional right singular space of
+$\widetilde B^*$ associated to the singular values in DQ8.
+On this space $\|\widetilde B^*v\|\ge b_N\|v\|$.
+Its intersection with $\ker R_N$ has dimension at least $p-2$;
+there DQ11 gives $\widetilde Cv=-\widetilde B^*v$ exactly.
+The min--max characterization follows directly from the eigenbasis of
+$\widetilde C^*\widetilde C$: a subspace of dimension $p-2$
+with Rayleigh quotient at least $b_N^2$ forces its $(p-2)$nd largest
+eigenvalue to be at least $b_N^2$. Hence
+\[
+ \boxed{\sigma_{p-2}(\widetilde C)\ge b_N,
+ \qquad \sigma_{2p-2}([A,P_{K,N}])\ge b_N,}
+ \quad P_{K,N}=IJ_K.\tag{DQ12}
+\]
+The domain here gives $p\ge8$, so the indices are positive.
+The second singular value is taken with the original $G_N$ metric
+on both domain and codomain. Its isometric block presentation is
+$\left(\begin{smallmatrix}0&-\widetilde C\\\widetilde B&0\end{smallmatrix}\right)$,
+whose squared singular matrix is
+$\diag(\widetilde B^*\widetilde B,\widetilde C^*\widetilde C)$.
+Thus its singular values are the union of those of the two retained
+directions, proving DQ12. The stronger multiplicity-sensitive rank
+bound DC30--35 remains valid alongside these quantitative bounds.
+
+The receiving maps are the literal $\Lambda AI$ and $J_KAL$, so
+DQ8 and DQ12 give original mixed-action control. They do not set
+the projection of a specified eigenclass equal to one of these singular
+vectors: the actual class must still be evaluated through the same maps.
+In particular the rank-two Hermitian weight in DQ11 retains cancellation
+between many nonzero mixed-action directions, with their finite metric
+size now bounded by DQ7--12.
+\end{document}

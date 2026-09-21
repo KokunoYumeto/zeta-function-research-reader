@@ -1,0 +1,9 @@
+# Published cumulative edition
+
+[Read the project on Zenodo](https://zenodo.org/records/22867463). The title and main description cover the complete retained research programme.
+
+This edition adds two separate papers: [original observation, determinants, eigenlines and relative heat](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/continuations/20260921-original-observation/README.md) (31 pages), and [actual Xi data and uniform conductor inverse rates](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/continuations/20260921-actual-xi-uniform/README.md) (28 pages). Each has complete LaTeX, prior proofs, human citations, reproducible figures and its stated verification records. Publication preserves the sealed mathematics and does not claim a new independent analytic replay.
+
+The current reading entry and actual-Xi paper credit Levent Alpöge's originating announcement and its Akhil/Fable credits. The ES extension, Tao exposition and later conductor calculations retain separate provenance; [ALF1–3 supplies the exact transport maps](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/continuations/20260921-actual-xi-uniform/ALPOGE_FABLE_ROLE.tex). The earlier standalone paper retains its frozen proof bytes.
+
+All 62 older PDFs remain separate readable downloads. Source archives 104, 112 and 90 remain byte-exact inside archive 114 and separately downloadable from [the preceding immutable edition](https://zenodo.org/records/22867242). The default preview is the 31-page Split-Zero observation paper. [The publication receipt](PUBLICATION.json) records exact file identities and verification scope.

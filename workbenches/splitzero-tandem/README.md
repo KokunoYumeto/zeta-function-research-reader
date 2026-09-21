@@ -1,3 +1,28 @@
+# Split-Zero cohomology: complete mathematical workbench
+
+This workbench contains the Split-Zero programme's complete source papers, cumulative manuscripts, supporting proofs, figures and calculation records. Its purpose is to connect support-preserving coefficient geometry and arithmetic theta cohomology to quantitative information about the Riemann zeta function's spectrum.
+
+The construction retains a ring's internal zero and a separate symbol for absence. Its analytic complex is `[V → B]` with theta map `Θ`, quotient `B/ΘV`, scaling generator `D = −x∂x`, and Mellin arithmetic function `2ξ(s)`. Finite packets keep all zero orders. The subsequent calculations preserve the original source maps, relations, masses and least-norm quotient metrics.
+
+## Contents
+
+- **Foundations and source recovery:** coefficient and homology maps, finite jets, theta image ideals, chain descent, homotopies, continuous recovery, residue and period maps. See the [foundational guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/RESEARCH_PROGRAMMES.md).
+- **Arithmetic control:** tensor and exterior constructions, Mellin/Gamma bounds, orthogonal-polynomial kernels, Hankel–Toda determinant dynamics, source/boundary volumes, mixed terms and growing-degree estimates. Read the [cumulative reader](https://zenodo.org/records/22865640/files/92-splitzero-cited-receiver-reader.pdf?download=1) and [complete cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/666ee448d5ecb0bf8a4888f3a2aceaaa5c74d6d8/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/README.md).
+- **Conductor and observation geometry:** original kernel and relation maps, quotient metrics, inverse spectra, real-period resonances and finite observation bounds. Read the [native spectral/real-period sources](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/README.md) and [directional/inverse-power sources](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/README.md).
+- **Proof provenance and reproduction:** exact [public proof references](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/666ee448d5ecb0bf8a4888f3a2aceaaa5c74d6d8/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/REFERENCES.md), [formal sources](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/formal/splitzero), and each edition's full source, checkers, figures, result maps and manifests. Human-source citations are retained at their actual uses.
+
+Deligne's Weil II motivates the cohomology–duality–weight-control route. These papers calculate the required objects and maps; they do not claim that the finite-field theorem automatically applies here or that the remaining arithmetic estimates are complete. The geometric examples keep their geometric scope. Written proofs, finite checks, interval computations and Lean verification retain their separate stated meanings.
+
+The broader [project guide](https://github.com/KokunoYumeto/zeta-function-research-reader) also covers the retained zeta/fluid/heat/arithmetic-trace/complexity/vacuum readers, Unified Flow and CUE connections. [Zenodo](https://doi.org/10.5281/zenodo.22678085) supplies separately readable PDFs and source archives. The [workbench index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/WORKBENCHES.json) and per-edition manifests identify the exact included work.
+
+## Current publication update
+
+The cumulative source correction now supplies external proof links for 35 historical references, including 146 bibliography entries and 122 citation uses. The full corrected source and four restored supporting proofs are public. This changes citations, not mathematical claims, and does not claim a newly typeset cumulative PDF. Earlier reading notes below retain their own source-cut descriptions and links.
+
+
+<details>
+<summary>Edition-specific reading notes and source references</summary>
+
 <!-- historical-proof-citations:20260921 -->
 ## Find the cited Split-Zero proofs
 
@@ -343,3 +368,6 @@ The selected contribution is `release_20260912b`. Its 88-page PDF has SHA-256 `2
 Six complete earlier public notes appear as dated appendices with their own exact revisions. They are not rewritten to pretend that every historical status statement describes this later edition. The generated appendix TeX under `build/` is required source, not disposable output. [SOURCE_SELECTION.json](SOURCE_SELECTION.json) binds all selected source and checker files. Private transcripts, local staging manifests and later in-progress fragments are excluded from this frozen contribution.
 
 Later calculations can be contributed separately to this living workbench. The immutable source selection here remains available, so the web and local research sessions can compare precisely what changed.
+
+
+</details>

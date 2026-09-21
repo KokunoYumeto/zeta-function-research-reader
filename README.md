@@ -1,3 +1,46 @@
+# Split-Zero cohomology and the zeta-function research programme
+
+This project brings together complete mathematical papers, editable LaTeX proofs, formalization, calculations and human-source literature notes. Its central question is how to study the zeros of the Riemann zeta function through explicit arithmetic cohomology, spectral actions and quantitative metric estimates. The collection also retains the connected fluid, heat-flow, arithmetic-trace, complexity and thermal-geometry investigations that helped motivate the programme.
+
+[Read the Zenodo collection](https://doi.org/10.5281/zenodo.22678085) · [Split-Zero mathematical workbench](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/README.md) · [Machine-readable workbench index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/WORKBENCHES.json) · [Contribution guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/POLYCLANK_PARTICIPATION.md)
+
+## The central construction
+
+Split-Zero coefficients retain the internal zero of a ring and a separate symbol for absence. A zero element in a specified support fibre therefore stays in that fibre. The programme constructs the corresponding coefficient, quotient and homology maps rather than identifying these different objects without a map.
+
+The analytic source is a theta complex `[V → B]`: theta summation maps the specified test functions into a function space, and cohomology is the quotient `B/ΘV` by those actual theta relations. Scaling acts by `D = −x∂x`. Mellin transformation connects this construction to `2ξ(s)`, where `ξ` is the completed Riemann zeta function. Finite spectral packets retain their full multiplicities and derivative data. Their source maps, quotient maps and least-norm metrics are calculated explicitly.
+
+Deligne's Weil II motivates the cohomology–duality–weight-control approach. The finite-field theorem is not being asserted to apply automatically to this arithmetic construction. The [foundational programme guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/RESEARCH_PROGRAMMES.md) gives the original objects and maps.
+
+## What is in the project
+
+| Area | Contents and purpose | Read |
+| --- | --- | --- |
+| Split-Zero geometry and cohomology | Support-preserving coefficients, homology, source relations, Rees constructions, finite spectral jets, theta recovery and chain homotopies. These connect finite observations to the original infinite quotient. | [Foundations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/RESEARCH_PROGRAMMES.md), [cohomology paper](https://zenodo.org/records/22865640/files/10-splitzero-cohomology-and-weight-control.pdf?download=1) |
+| Arithmetic analytic estimates | Mellin and Gamma estimates, tensor and exterior constructions, orthogonal-polynomial kernels, Hankel–Toda determinants, residue and period maps, boundary compensation and growing-degree volume/covariance calculations. | [Cumulative Split-Zero reader](https://zenodo.org/records/22865640/files/92-splitzero-cited-receiver-reader.pdf?download=1), [proof companion](https://zenodo.org/records/22865640/files/94-splitzero-cited-receiver-companion.pdf?download=1), [corrected cumulative LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/666ee448d5ecb0bf8a4888f3a2aceaaa5c74d6d8/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/README.md) |
+| Conductor and spectral geometry | Original relation maps, kernels, quotient volumes, real-period resonances, inverse spectra and finite observation bounds. Geometric examples keep their stated relation to the arithmetic problem. | [Native spectral and real-period papers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/README.md), [directions and inverse-power papers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/README.md) |
+| Formalization and reproducibility | Lean sources for specified algebraic and homological interfaces; exact finite checkers, numerical and interval calculations, reproducible figures, manifests and verification records. Each retains its actual scope. | [Formal sources](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/formal/splitzero), [formalization account](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/formal/splitzero/DERIVED_MATHEMATICS.md) |
+| Zeta literature and connected routes | Separate readers on zeta, fluid/Navier–Stokes mechanisms, de Bruijn–Newman heat flow, Connes/arithmetic traces, geometric complexity, and vacuum/thermal geometry. They preserve attempted connections as well as completed calculations. | [Zeta](https://zenodo.org/records/22865640/files/01-main-reader.pdf?download=1), [fluid](https://zenodo.org/records/22865640/files/02-fluid-reader.pdf?download=1), [heat](https://zenodo.org/records/22865640/files/03-heat-reader.pdf?download=1), [arithmetic traces](https://zenodo.org/records/22865640/files/04-connes-reader.pdf?download=1), [complexity](https://zenodo.org/records/22865640/files/05-gct-reader.pdf?download=1), [vacuum](https://zenodo.org/records/22865640/files/06-vacuum-reader.pdf?download=1) |
+| Related calculations | Unified Flow studies specified black-hole, thermal, spectral-zeta and geometric-flow probes. The CUE map connects existing random-unitary-matrix, Mellin and finite-phase-space work. | [Unified Flow](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/unified-flow), [calculation paper](https://zenodo.org/records/22865640/files/09-unified-flow-calculations.pdf?download=1), [CUE map](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/CUE_RESEARCH_MAP.md) |
+
+## Results, sources and limits
+
+The repository is an ongoing research programme, not a claimed proof or disproof of RH or the other major conjectures discussed in its connected notes. The individual papers identify their completed constructions, remaining estimates, actual hypotheses and verification. Finite observation bounds are not silently promoted to uniform bounds; geometric spectral examples are not silently identified with arithmetic zeros.
+
+The mathematical text retains the original coordinates, masses, signs, multiplicities, relation spaces and metrics. Human citations and exact source locators stay with the arguments. [Clickable programme references](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/666ee448d5ecb0bf8a4888f3a2aceaaa5c74d6d8/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/REFERENCES.md) lead to the actual proof files. A public reconstruction is not presented as the private original. A Lean check, finite regression and analytic proof remain distinct forms of evidence.
+
+Zenodo preserves separately readable papers and their source archives; GitHub provides the working source collection. Each DOI and pinned commit identifies a specific included source cut. The [workbench index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/WORKBENCHES.json), per-edition result maps and manifests retain dependencies and checking scope. Older source notes describe their own editions, not automatically the newest state of every calculation.
+
+## Current publication update
+
+The [cumulative citation correction](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/666ee448d5ecb0bf8a4888f3a2aceaaa5c74d6d8/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/README.md) links 35 historical references at 146 bibliography entries and 122 citation uses to 56 public proof locations. It includes the complete corrected LaTeX and restores four supporting sources. The equations and human credits are unchanged. This source correction does not claim newly compiled cumulative PDFs or a new mathematical result.
+
+The [canonical-page rule](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/AGENTS.md) keeps this whole-project account ahead of edition-specific updates. Earlier reading notes below retain their original links and their own source-cut descriptions; they do not replace the account above.
+
+
+<details>
+<summary>Edition-specific reading notes and source references</summary>
+
 <!-- historical-proof-citations:20260921 -->
 ## Find the cited Split-Zero proofs
 
@@ -4716,3 +4759,6 @@ now provides [all 40 separate downloads](calculation_edition_20260914_recursive_
 is the actual browser preview; the [matching source ZIP](https://zenodo.org/api/records/22739630/files/40-splitzero-recursive-public-sources.zip/content) is an offline download.
 
 Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail and generator-limit continuations are separate subsequent intakes, not material integrated into this fixed edition. Existing working sources retain their independent proof and CI scopes; their Lean or CI results are not attributed to this public PDF.
+
+
+</details>

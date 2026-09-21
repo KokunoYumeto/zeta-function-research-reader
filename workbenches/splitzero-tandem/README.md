@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published DOI edition](https://zenodo.org/records/22865966) (10.5281/zenodo.22865966) contains the cumulative source-link correction and the complete retained collection. Its title and description cover the whole project.
+
 The cumulative source correction now supplies external proof links for 35 historical references, including 146 bibliography entries and 122 citation uses. The full corrected source and four restored supporting proofs are public. This changes citations, not mathematical claims, and does not claim a newly typeset cumulative PDF. Earlier reading notes below retain their own source-cut descriptions and links.
 
 

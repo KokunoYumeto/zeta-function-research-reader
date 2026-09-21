@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published DOI edition](https://zenodo.org/records/22865966) (10.5281/zenodo.22865966) contains the cumulative source-link correction and the complete retained collection. Its title and description cover the whole project.
+
 The [cumulative citation correction](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/666ee448d5ecb0bf8a4888f3a2aceaaa5c74d6d8/workbenches/splitzero-tandem/continuations/20260921-historical-proof-citations/README.md) links 35 historical references at 146 bibliography entries and 122 citation uses to 56 public proof locations. It includes the complete corrected LaTeX and restores four supporting sources. The equations and human credits are unchanged. This source correction does not claim newly compiled cumulative PDFs or a new mathematical result.
 
 The [canonical-page rule](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/AGENTS.md) keeps this whole-project account ahead of edition-specific updates. Earlier reading notes below retain their original links and their own source-cut descriptions; they do not replace the account above.

@@ -33,6 +33,12 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Canonical memory, colliding filters and original observed energy
+
+[Read the 53-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/CANONICAL_MEMORY_FILTERS_COMPLETE_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/CANONICAL_MEMORY_FILTERS_COMPLETE_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/RESULTS_20260921_016.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/RESULT_INDEX.json).
+
+The Split-Zero programme studies the original arithmetic theta source, its quotient and its observation through determinant and heat estimates. This paper bounds the entire canonical memory below the kq scale, including at zero regularizer; calculates the energy changes of the original kernel and complementary quotient; and controls polynomial filters even when their poles coincide. Repeated eigenvalues retain their observation masses. Complete ME1–34, RF1–67, RM1–31 and BR1–9 proofs, the received continuation, exact figure sources and human citations accompany the paper. The earlier monic-profile and zero-law input retains its stated status; initial kernel allocation and native complex-current phases remain unevaluated. Earlier editions and the whole-project description remain intact.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22869444) (assigned DOI 10.5281/zenodo.22869444) retains the complete research programme and adds the 41-page critical source-activation and original arithmetic-action paper, with complete LaTeX, human provenance and precise proof links. All 66 earlier PDFs remain separate.
 
 ### Critical activation and the original observed arithmetic action

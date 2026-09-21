@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative DOI edition](https://zenodo.org/records/22867242) (10.5281/zenodo.22867242) includes the complete project, with the three new local-branch, covariance and activation papers as separate PDFs and their complete LaTeX sources. The project-wide title and description are unchanged in scope.
+
 The [local-branch, conductor-covariance and source-activation papers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-local-covariance-activation/README.md) are now available as three separate readers (18, 22 and 40 pages), with complete LaTeX, prior proofs, human citations, exact check receipts and reproducible figures. They calculate the coupled local spectral module, the original arithmetic covariance return, source activation and exact projected-current formulas. The smaller kernel coefficient and native current signs remain open in these editions. [Results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-local-covariance-activation/RESULT_INDEX.json) and [direct proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-local-covariance-activation/PROOF_LINKS.json) identify their precise scope.
 
 [Published DOI edition](https://zenodo.org/records/22865966) (10.5281/zenodo.22865966) contains the cumulative source-link correction and the complete retained collection. Its title and description cover the whole project.

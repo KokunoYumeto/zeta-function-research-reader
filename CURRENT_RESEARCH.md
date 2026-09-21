@@ -33,6 +33,14 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Moving rational sources, arithmetic collisions and complete observed memory
+
+[Read the 31-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/MOVING_RATIONAL_FAMILY_COMPLETE_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/MOVING_RATIONAL_FAMILY_COMPLETE_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/RESULTS_20260921_017.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-moving-rational-family/RESULT_INDEX.json).
+
+The Split-Zero programme studies the original arithmetic theta source, its quotient and its observation through determinant and heat estimates. This paper bounds the original kernel energy throughout source activation and calculates the complete late-memory return, keeping its actual mass and coupling blocks. Moving rational filters retain their least singular values and full observed heat. At collisions with the arithmetic spectrum, an explicit polynomial frame retains the full primary sector, any additional observation kernel and the corrected chain homotopy.
+
+Complete KG1–42, MF1–42 and PC1–34 proofs, standalone LaTeX, three exact figure sources, received arguments, human citations and 39 inherited source blocks accompany the paper. The owner reports 581 exact and 1,193 numerical finite checks and inspection of all 31 pages; publication does not claim another checker replay. The full ultrasmall singular scale is restricted to canonical or critical activation, not activation one. Earlier monic-profile and zero-law inputs retain their stated status. Initial kernel allocation, the proper-source comparison pair and projected complex-current phases remain unevaluated. All previous editions and the whole-project description are retained.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22870109) (assigned DOI 10.5281/zenodo.22870109) retains the complete research programme and adds the 53-page canonical-memory and polynomial-filter paper, with complete LaTeX, human provenance and precise proof links. All 67 earlier PDFs remain separate.
 
 ### Canonical memory, colliding filters and original observed energy

@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22870109) (assigned DOI 10.5281/zenodo.22870109) retains the complete research programme and adds the 53-page canonical-memory and polynomial-filter paper, with complete LaTeX, human provenance and precise proof links. All 67 earlier PDFs remain separate.
+
 ### Canonical memory, colliding filters and original observed energy
 
 [Read the 53-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/CANONICAL_MEMORY_FILTERS_COMPLETE_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/CANONICAL_MEMORY_FILTERS_COMPLETE_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/RESULTS_20260921_016.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-canonical-memory-filters/RESULT_INDEX.json).

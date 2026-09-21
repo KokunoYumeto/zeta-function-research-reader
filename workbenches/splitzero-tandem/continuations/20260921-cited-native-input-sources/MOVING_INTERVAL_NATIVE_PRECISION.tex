@@ -1,0 +1,594 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xurl}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\lp}[1]{\log^+\!#1}
+\title{Moving-interval native margins and finite raw-moment precision}
+\author{}
+\date{20 September 2026}
+\begin{document}\maketitle
+
+This independently derives the native precision part NP1--22 of the
+incoming continuation. The complete interval inverse, all constants,
+the original-coordinate matrix floor, the finite convolution map and
+both types of receiving error are given below. It strengthens the
+earlier native precision proof \cite{oldNP}, the complex-product
+composition \cite{MC}, and the explicit resolvent degree bound
+\cite{NR}. The original full polynomial source and its attained
+quotients are retained. The estimates do not evaluate the still
+unevaluated arithmetic moment centres or their signed currents.
+
+\section{Objects, domains and established original envelopes}
+
+Fix the existing full quartet domain
+\begin{equation}\tag{MI1}\label{mi:objects}
+\begin{gathered}
+ \rho_*=\tfrac12+\delta+i\gamma,\quad0<\delta<\tfrac12,\quad
+ \gamma>2,\quad m\in\mathbb Z_{\ge1},\quad g=2\xi,\\
+ h(z)=\prod_{\epsilon,\eta=\pm1}
+       (z-\tfrac12-\epsilon\delta-i\eta\gamma)^m,\qquad
+ w_h(y)=\frac{|(g/h)(1/2+iy)|^2}{2\pi},\\
+ m_k=w_h^{*k},\quad k=4\ell+1\ge9,\quad
+ e_k=1+k(m-1),\quad q=e_k(k+1)^2,\quad c=k/2,\\
+ \chi_k(S)=\prod_{a,b=0}^k
+ [S-c-(2a-k)\delta-i(2b-k)\gamma]^{e_k}.
+\end{gathered}
+\end{equation}
+This retains the stipulated actual quartet and its full multiplicity;
+it asserts no existence of an off-line zero. The physical coordinate
+is still $S=c+iy$. The original Gamma comparison, with its actual
+mass $\int\sigma(y)\,dy=\sqrt{2\pi}$, is
+\begin{equation}\tag{MI2}\label{mi:env}
+\begin{gathered}
+ \sigma(y)=|\Gamma(1/4+iy/2)|^2/(2\pi),\quad
+ a_k(1+y^2)^{-M}\sigma(y)\le m_k(y)\le A_k\sigma(y),\\
+ c_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2}
+ \le\sigma(y)\le C_\Gamma e^{-\alpha|y|}(1+|y|)^{-1/2},\\
+ \alpha=\pi/2,\quad M=21+4m,\quad p=8m-9/2,\quad B_h=42+8m,\\
+ c_\Gamma=\sqrt2e^{-7/6},\quad C_\Gamma=\sqrt{2\sqrt5}e^{2/3},\\
+ \vartheta_h=\int_{-1}^1w_h(y)\,dy,\quad
+ M_\alpha=\int_\R e^{\alpha y}w_h(y)\,dy,\\
+ a_k=\frac{c_h\vartheta_h^{k-3}e^{-\alpha(k-3)}(k-2)^{-B_h}}
+                 {C_\Gamma2^{B_h/2}},\qquad
+ A_k=\frac{C_h^{\rm tilt}}{c_\Gamma}k^{p+1}M_\alpha^{k-1}.
+\end{gathered}
+\end{equation}
+These are the established CAI16--17, TW7 and BT12--23 envelope
+constants as used in \cite{oldNP,BT}. They are never assigned
+artificial arithmetic values. The exact parity measures are
+\begin{equation}\tag{MI3}\label{mi:parity}
+ d\nu_b(x)=x^{b-1/2}m_k(\sqrt x)\,dx,\quad
+ d\widetilde\nu_b=s\,d\nu_b,\quad
+ s(x)=\frac{\tanh(\alpha\sqrt x)}{\sqrt x},\quad b=0,1.
+\end{equation}
+For either measure $\lambda$, put
+$H_{\lambda,t}=[\int x^{i+j}\,d\lambda]_{0\le i,j\le t}$.
+These are full original integrals, in increasing monomials.
+
+\section{An exact interval inverse in those monomials}
+
+For $R>1$, let
+$J_{t,R}[i,j]=(R^{i+j+1}-1)/(i+j+1)$.
+Use the classical Legendre polynomials $P_n$; the Rodrigues formula
+is the human result recorded in Dunster's DLMF 14.7.13
+\cite{Dunster}. In the variable $u$ it gives
+\[
+ P_n(2u-1)=\frac1{n!}\frac{d^n}{du^n}[u^n(u-1)^n]
+ =\sum_{l=0}^n(-1)^{n-l}\binom nl\binom{n+l}l u^l.
+\]
+This equality follows by expanding $(u-1)^n$ before differentiating.
+Integration by parts $n$ times makes this polynomial orthogonal on
+$[0,1]$ to every polynomial of degree less than $n$: all boundary
+terms vanish because $u^n(u-1)^n$ has zeros of order $n$ at both
+endpoints. Its squared norm is
+\[
+ \frac{(2n)!}{(n!)^2}\int_0^1u^n(1-u)^n\,du=\frac1{2n+1}.
+\]
+For the last integral, integration by parts repeatedly gives
+$\int_0^1u^n(1-u)^n du=(n!)^2/(2n+1)!$.
+Define the actual coefficient matrix
+\begin{equation}\tag{MI4}\label{mi:C}
+\begin{split}
+ C_{jn}(R)
+ &=[x^j]P_n\!\left(\frac{2x-R-1}{R-1}\right)\\
+ &=(-1)^{n-j}\sum_{l=j}^n
+   \binom nl\binom{n+l}l\binom lj(R-1)^{-l}
+       \qquad(0\le j\le n\le t).
+\end{split}
+\end{equation}
+Every diagonal entry is nonzero. The substitution
+$u=(x-1)/(R-1)$ has Jacobian $R-1$; hence, with both coordinate
+maps retained,
+\begin{equation}\tag{MI5}\label{mi:inverse}
+ \begin{gathered}
+ C^TJ_{t,R}C=\operatorname{diag}_{n=0}^t\frac{R-1}{2n+1},\\
+ J_{t,R}^{-1}
+ =C\operatorname{diag}_{n=0}^t\frac{2n+1}{R-1}C^T,\qquad
+ J_{t,R}\succeq S_t(R)^{-1}I,\\
+ S_t(R)=\frac1{R-1}\sum_{n=0}^t(2n+1)\sum_{j=0}^n C_{jn}(R)^2.
+ \end{gathered}
+\end{equation}
+The last assertion follows from
+$\lambda_{\max}(J^{-1})\le\operatorname{tr}(J^{-1})=S_t(R)$.
+In particular at $R=2$, the inverse traces for $t=0,\ldots,6$ are
+\[
+ 1,\ 40,\ 2685,\ 211936,\ 17845105,\ 1556000328,\ 138680834005.
+\]
+The coefficient signs in \eqref{mi:C} alternate. Evaluation at
+$x=-1$, together with $P_n(-z)=(-1)^nP_n(z)$, therefore gives
+$\sum_j|C_{jn}(R)|=P_n(z_R)$, where
+$z_R=(R+3)/(R-1)>1$.
+
+For $z>1$ the Legendre generating formula of
+\cite{DLMF18} gives the integral identity
+\[
+ P_n(z)=\frac1\pi\int_0^\pi
+        (z+\sqrt{z^2-1}\cos\theta)^n\,d\theta.
+\]
+To verify the identity directly from that generating formula, sum
+the geometric series for sufficiently small real $v$ inside the
+integral. The substitution $u=\tan(\theta/2)$ evaluates the resulting
+integral as
+$[(1-vz)^2-v^2(z^2-1)]^{-1/2}=(1-2zv+v^2)^{-1/2}$.
+Coefficient comparison proves the assertion. Thus, setting
+$\Lambda_R=z_R+\sqrt{z_R^2-1}$, one gets
+$P_n(z_R)\le\Lambda_R^n$ and
+\begin{equation}\tag{MI6}\label{mi:intervalclosed}
+ S_t(R)\le\frac{(t+1)^2}{R-1}\Lambda_R^{2t},
+ \qquad J_{t,R}\succeq
+ \frac{R-1}{(t+1)^2}\Lambda_R^{-2t}I.
+\end{equation}
+The sum $\sum_{n=0}^t(2n+1)=(t+1)^2$ accounts for every factor.
+
+\section{A moving interval in the full original native integral}
+
+For $x\in[1,R]$, \eqref{mi:env} gives a common density floor for
+both $\nu_b$:
+\begin{equation}\tag{MI7}\label{mi:d}
+ d_k(R)=\frac{a_kc_\Gamma e^{-\alpha\sqrt R}}
+ {(1+R)^M\sqrt R\sqrt{1+\sqrt R}}.
+\end{equation}
+The $b=1$ density has the extra factor $x\ge1$. The function $s$
+decreases: for $u>0$ the derivative of
+$\tanh u-u\operatorname{sech}^2u$ is
+$2u\operatorname{sech}^2u\tanh u>0$, and its value at zero is zero.
+For every coefficient vector, restrict only its nonnegative squared
+integral to $[1,R]$. Equations \eqref{mi:inverse}--\eqref{mi:d} give
+\begin{equation}\tag{MI8}\label{mi:floor}
+ \begin{gathered}
+ H_{\nu_b,t}\succeq h_{k,t}(R)I,\qquad
+ H_{\widetilde\nu_b,t}\succeq s(R)h_{k,t}(R)I,\\
+ h_{k,t}(R)=d_k(R)\frac{R-1}{(t+1)^2}\Lambda_R^{-2t}.
+ \end{gathered}
+\end{equation}
+One may replace $h_{k,t}(R)$ by the larger exact expression
+$d_k(R)/S_t(R)$. No source matrix has become an interval matrix.
+
+Take $L=t+1\ge1$ and $R_t=1+4L$.
+Since $\cosh u\ge1+u^2/2$, one has
+$\operatorname{arcosh}(1+v)\le\sqrt{2v}$. It follows that
+\[
+ 2t\log\Lambda_{R_t}\le2\sqrt2\sqrt L,\qquad
+ \alpha\sqrt{R_t}\le\alpha+2\alpha\sqrt L.
+\]
+Also $1+R_t\le6L$, $\sqrt{R_t}\le\sqrt5\sqrt L$ and
+$1+\sqrt{R_t}\le(1+\sqrt5)\sqrt L$. Substitution in
+\eqref{mi:floor}, including $(R_t-1)/L^2=4/L$, proves
+\begin{equation}\tag{MI9}\label{mi:rootfloor}
+ \begin{gathered}
+ H_{\nu_b,t}\succeq f_{k,t}I,\qquad
+ H_{\widetilde\nu_b,t}\succeq\widetilde f_{k,t}I,\\
+ f_{k,t}=
+ \frac{4a_kc_\Gamma e^{-\alpha}}
+ {6^M\sqrt{5(1+\sqrt5)}}L^{-(M+7/4)}
+ e^{-(\pi+2\sqrt2)\sqrt L},\\
+ \widetilde f_{k,t}=\frac{\tanh\alpha}{\sqrt5\sqrt L}f_{k,t}.
+ \end{gathered}
+\end{equation}
+The tilted factor follows from
+$s(R_t)\ge\tanh\alpha/\sqrt{R_t}$, since $R_t\ge1$.
+All these statements include $t=0$.
+
+Here is an explicit logarithmic form of this estimate. Put
+\[
+ D_h=\frac{4c_\Gamma e^{-\alpha}}
+ {6^M\sqrt{5(1+\sqrt5)}},\quad
+ E_h=\log^+\frac{C_\Gamma2^{B_h/2}}{c_h},\quad
+ v_h=\log^+(\vartheta_h^{-1}),\quad
+ \log^+u=\max(0,\log u).
+\]
+Then
+\begin{equation}\tag{MI10}\label{mi:log}
+\begin{split}
+ \log^+(f_{k,t}^{-1})\le{}&
+ \log^+(D_h^{-1})+E_h+(k-3)(\alpha+v_h)
+       +B_h\log(k-2)\\
+ &+(M+7/4)\log L+(\pi+2\sqrt2)\sqrt L.
+\end{split}
+\end{equation}
+For $\widetilde f$ add
+$\log(\sqrt5/\tanh\alpha)+\frac12\log L$.
+If $0\le t\le Cq$ for a fixed $C>0$, then
+$L\le(C+1)q$ and $k\le\sqrt q$. Consequently
+\[
+ \log^+(f_{k,t}^{-1}),\
+ \log^+(\widetilde f_{k,t}^{-1})
+ =O_{h,C}(\sqrt q).
+\]
+This is the cost of the explicit lower certificate. It assigns no
+asymptotic equality to a native eigenvalue.
+
+\section{Weighted inverses, the Radau denominator and the new degree bound}
+
+Let $w(x)=\sum_lw_lx^l$ with $w_l\ge0$ and $w(1)>0$, and let
+$W_t(w)=[\sum_lw_l\mu_{i+j+l}]_{i,j=0}^t$ for an actual measure
+$\lambda$. Choose any proved floor $h_{\lambda,t}$ from
+\eqref{mi:floor}, its inverse-trace improvement, \eqref{mi:rootfloor},
+or the old fixed-interval bound; their maximum is again a floor.
+On the selected interval $w(x)\ge w(1)$, so
+\begin{equation}\tag{MI11}\label{mi:weighted}
+ W_t(w)\succeq w(1)h_{\lambda,t}I,\qquad
+ \norm{W_t(w)-\widehat W_t(w)}
+ \le(t+1)w(1)\varepsilon.
+\end{equation}
+The second statement follows by summing the absolute entry errors
+in each row when every required scalar moment error is at most
+$\varepsilon$. Therefore
+$\varepsilon\le h_{\lambda,t}/[4(t+1)]$ gives a positive lower
+outward endpoint. The same inverse and quadratic-expression estimates
+in \cite{oldNP} follow by substituting this proved larger floor.
+Any additional $\varepsilon\le1$ guard in those estimates is retained.
+This covers $x^l,x+a,x(x+a),x(x+a)(x+b)$ with their actual positive
+poles and shifts; all coefficient sums are exactly their $w(1)$.
+
+For the actual $r$-dimensional tilted Radau system, let
+$H=[\mu_{i+j}]_{i,j<r}$, $D=[\mu_{i+j+1}]_{i,j<r}$,
+$e=(0,\ldots,0,1)^T$, $\kappa=(e^*D^{-1}e)^{-1}$ and
+$W_G=D+aH$. The attained coefficient minimum gives
+$D-\kappa ee^*\succeq0$. Hence
+$W_G-\kappa ee^*\succeq a h_{\widetilde\nu,r-1}I$.
+Congruence by $W_G^{-1/2}$ proves
+\begin{equation}\tag{MI12}\label{mi:radau}
+ 1-\kappa e^*W_G^{-1}e
+ \ge\frac{a h_{\widetilde\nu,r-1}}{U_D+aU_H}>0,
+\end{equation}
+where $U_D,U_H$ are the original positive trace caps.
+Indeed the only eigenvalue of $I-\kappa uu^*$ which can differ
+from one is $1-\kappa u^*u$, and
+$\lambda_{\max}(W_G)\le U_D+aU_H$.
+
+This also feeds the same native resolvent degree formula NR19.
+At original total degree $N$, put $n_b=\lfloor(N-b)/2\rfloor$,
+omitting empty blocks, and
+$H_{\rm base}=(2/\pi)\operatorname{diag}(H_{\widetilde\nu_b,n_b})$.
+For $a_j=4j^2$ and the original padded evaluation vector $z_{b,j}$,
+\begin{equation}\tag{MI13}\label{mi:newchi}
+ \chi_{b,j}=z_{b,j}^*H_{\rm base}^{-1}z_{b,j}
+ \le \frac{\pi}{2h_{\widetilde\nu_b,n_b}}
+          \sum_{l=0}^{n_b}a_j^{2l}.
+\end{equation}
+It follows by inverting the block floor; no evaluation direction is
+changed. The minimum of this bound and the earlier NR26 Gamma
+kernel bound is another proved upper bound on the same scalar.
+Using it in
+\[
+ r_{b,j}=\max\left\{n_b+1,\
+ \left\lceil\left(\frac{4a_j\mathcal K_{k,j}\chi_{b,j}^{\rm upper}}
+ {\pi\varepsilon_{b,j}}\right)^{1/(2j)}\right\rceil-1\right\},\qquad
+ \mathcal K_{k,j}=\frac{\pi\sqrt{2\pi}}{4j}A_k((5/4)_{j-1})^2,
+\]
+preserves the already proved same-direction inner matrix guarantee.
+
+\section{Exact exponential-generating-function transport}
+
+Define actual onefold and convolution moments by
+$\eta_j=\int y^jw_h(y)\,dy$ and
+$\zeta_j=\int y^jm_k(y)\,dy$.
+For every integer $L\ge0$ the finite polynomial
+$A_L(z)=\sum_{j=0}^L\eta_jz^j/j!$ satisfies
+\begin{equation}\tag{MI14}\label{mi:egf}
+ \zeta_j=j![z^j]A_L(z)^k,\qquad 0\le j\le L.
+\end{equation}
+Indeed insert the finite multinomial expansion of
+$(y_1+\cdots+y_k)^j$ in the original convolution integral.
+Fubini is valid because all absolute moments are finite by the
+original exponential bound. Coefficients of degree at most $L$
+cannot involve a higher input degree. In particular
+$\zeta_0=\eta_0^k$ with the complete original mass.
+
+The original BT14--16 estimate \cite{BT} gives
+$e^{\alpha|y|}w_h(y)\le C_h^{\rm tilt}(1+|y|)^{-p}$.
+Thus both of the following are explicit fixed-packet caps:
+\begin{equation}\tag{MI15}\label{mi:B}
+ \begin{gathered}
+ M_h(1)=\int_\R\cosh(y)w_h(y)\,dy
+ \le M_\alpha\le B_*:=\frac{2C_h^{\rm tilt}}{p-1},\\
+ M_h(1)\le B_{\rm in}:=\frac{2C_h^{\rm tilt}}{\alpha-1},
+ \qquad B_*<B_{\rm in}.
+ \end{gathered}
+\end{equation}
+The first line uses evenness, monotonicity of $\cosh$ for positive
+arguments, and
+$\int_\R(1+|y|)^{-p}dy=2/(p-1)$.
+The second follows alternatively by integrating
+$C_h^{\rm tilt}e^{-(\alpha-1)|y|}$.
+Here $p\ge7/2>\alpha>1$, proving the strict comparison.
+The incoming $B_{\rm in}$ is therefore valid; $B_*$ improves it.
+The unchanged fully explicit BT12 constant is
+\[
+\begin{gathered}
+ R_0=\sqrt{\delta^2+\gamma^2},\quad T_h=\max(1,2R_0),\
+ Z_*=2+\sqrt{5/2},\quad\beta=p-1/2,\\
+ C_h^{\rm tilt}=\max\left\{
+ \frac{C_\Gamma}{\sqrt\pi}(T_h^2+1/4)^2
+ [1+2\sqrt{T_h^2+1/4}]^2\delta^{-8m}(1+T_h)^\beta,\
+ \frac{25C_\Gamma Z_*^2}{16\sqrt\pi}
+ (4/3)^{4m}(1+1/T_h)^\beta\right\}.
+\end{gathered}
+\]
+Its compact and tail proof is BT3--14 of \cite{BT}; this
+calculation uses that existing proved original bound.
+
+Odd moments vanish, and even moments are nonnegative. Thus
+$\sup_{|z|\le1}|A_L(z)|\le M_h(1)\le B$ for either cap
+$B=B_*$ or $B=B_{\rm in}$. If
+$|\widehat\eta_j-\eta_j|\le\tau\le1/3$ for all $j\le L$, then
+\[
+ \sup_{|z|\le1}|\widehat A_L-A_L|
+ \le\tau\sum_{j=0}^L1/j!<3\tau\le1.
+\]
+Telescope the difference of the two $k$th powers to bound it by
+$3k\tau(B+1)^{k-1}$ throughout the unit circle.
+Integrating that polynomial against $e^{-ij\theta}$ on this
+circle isolates its $j$th coefficient and proves
+\begin{equation}\tag{MI16}\label{mi:egferror}
+ |\widehat\zeta_j-\zeta_j|
+ \le3k\tau(B+1)^{k-1}j!,\qquad 0\le j\le L.
+\end{equation}
+Consequently all untilted source entries through total degree $N$
+are simultaneously certified by the single tolerance
+\begin{equation}\tag{MI17}\label{mi:tau}
+ \tau\le\min\left\{\frac13,\
+ \frac{\varepsilon}{3k(B+1)^{k-1}(2N)!}\right\}.
+\end{equation}
+Both parity blocks use the same $\widehat\zeta_{2r}$ sequence and
+its literal index shift. The assertion concerns the untilted source
+moments. Multiplying by the nonpolynomial $s(y^2)$ is not represented
+by a finite coefficient in \eqref{mi:egf}; the earlier resolvent
+receiver retains that separate exact operation.
+
+\section{The same original quotient and complex mixed product}
+
+Here use exactly the proved simple-quartet current domain
+$m=1$, $k\equiv1\pmod4$, $k\ge77$, $q=(k+1)^2$, $N\ge q-1$.
+Let $H$ be the direct sum of the actual untilted parity Grams,
+$d=\max_b(n_b+1)$, and let $h_{\min}$ be the minimum of their
+improved floors above. Retain the original source-to-packet map
+\begin{equation}\tag{MI18}\label{mi:map}
+ \begin{gathered}
+ J=J_{S,N}L_N^{-1},\quad L_N=\Pi_NT_N,\quad
+ (T_N)_{rj}=\binom jr c^{j-r}i^r,\\
+ (T_N^{-1})_{rj}=\binom jr(-c)^{j-r}i^{-j}\quad(r\le j),
+ \end{gathered}
+\end{equation}
+with zero entries below its triangular range, the original physical
+unit in $J_{S,N}$ and the permutation $\Pi_N$ placing even powers
+first. Expansion of $(c+iy)^j$ and $i^{-j}(S-c)^j$ proves both
+coefficient maps. Keep $A=M_S$, the original class $x$ in the
+packet, and the original observation kernel $K=\ker\Lambda$.
+Set
+\[
+ W=(JJ^*)^{-1},\qquad
+ \mathfrak A=\norm A_W\norm x_W^2,\qquad
+ U=\sum_{b=0}^1\sum_{i=0}^{n_b}
+ \frac{2A_kC_\Gamma[2(2i+b)]!}{\alpha^{2(2i+b)+1}}.
+\]
+The original upper envelope gives $H\preceq UI$, and its full
+coefficient trace is bounded by
+\begin{equation}\tag{MI19}\label{mi:U}
+ U\le \overline U_N:=
+ \frac{2A_kC_\Gamma(N+1)(2N)!}{\alpha}.
+\end{equation}
+There are $N+1$ diagonal terms and each has $2i+b\le N$;
+the factors $\alpha^{-2(2i+b)}\le1$ prove this finite inequality.
+
+Real source-moment midpoints give a Hermitian $\widehat H$ with
+$\norm{H-\widehat H}\le d\varepsilon$. Put
+$\theta=d\varepsilon/h_{\min}\le1/4$ and
+$H_\pm=\widehat H\pm d\varepsilon I$.
+Direct quadratic-form estimates give
+\[
+ H_-\succeq(1-2\theta)h_{\min}I,\quad
+ H_-\preceq H\preceq H_+,\quad
+ H_+\preceq(1-2\theta)^{-1}H_-.
+\]
+For every actual onto map $J$ and positive matrix $D$, completing
+the square on the full fibre $Jb=u$ proves
+\[
+ \min_{Jb=u}b^*Db=u^*(JD^{-1}J^*)^{-1}u,\quad
+ b_{\min}=D^{-1}J^*(JD^{-1}J^*)^{-1}u.
+\]
+The formula includes all of $\ker J$. Thus the original attained
+metrics $G_0=(JH_-^{-1}J^*)^{-1}$ and
+$G=(JH^{-1}J^*)^{-1}$ obey
+$\frac12h_{\min}W\preceq G_0\preceq G
+\preceq(1-2\theta)^{-1}G_0$ and $G_0\preceq UW$.
+
+For clarity we reproduce the quantitative product transport rather
+than replacing its phase by a norm comparison. Let $P_0,P$ be the
+orthogonal projections onto the same $K$ in $G_0,G$, respectively.
+Put $a=P_0x$, $b=(I-P_0)x$, $u=\norm a_{G_0}$, $v=\norm b_{G_0}$,
+$e=(P-P_0)x$, and $M_A=\norm A_{G_0}$.
+If $\kappa=(1-2\theta)^{-1}$, then
+\[
+ \norm e_{G_0}\le sv,\quad
+ s=\frac{\kappa-1}{2\sqrt\kappa}
+  =\frac{\theta}{\sqrt{1-2\theta}},\qquad e\in K.
+\]
+To prove this, write $G_0^{-1}G=\left[\begin{smallmatrix}B&X\\X^*&D
+\end{smallmatrix}\right]$ in the $G_0$-orthogonal decomposition
+$K\oplus K^{\perp_{G_0}}$. Orthogonality gives the off-diagonal
+projection block $B^{-1}X$. The bound
+$E^2\preceq(\kappa+1)E-\kappa I$ for $I\preceq E\preceq\kappa I$
+gives
+$B^{-1}XX^*B^{-1}\preceq
+(\kappa+1)B^{-1}-\kappa B^{-2}-I
+\preceq(\kappa-1)^2/(4\kappa)I$.
+The last scalar maximum is attained at $2\kappa/(\kappa+1)$.
+
+Define the unchanged complex quantities
+$z=\langle Px,A(I-P)x\rangle_G$,
+$w=\langle(I-P)x,APx\rangle_G$ and
+$z_0=\langle a,Ab\rangle_{G_0}$,
+$w_0=\langle b,Aa\rangle_{G_0}$, using conjugate-linearity first.
+Expand $Px=a+e$, $(I-P)x=b-e$ and $G=G_0E$.
+Both absolute differences are bounded by
+\[
+ M_A\{sv^2+suv+s^2v^2+
+           (\kappa-1)(u+sv)\sqrt{1+s^2}\,v\}.
+\]
+This retains the three difference terms from expanding the two
+vectors and the fourth from $E-I$. Since $\theta\le1/4$,
+$s\le\sqrt2\theta$, $s^2\le2\theta^2$,
+$\kappa-1\le4\theta$ and
+$\sqrt{1+s^2}\le3/(2\sqrt2)$.
+The braces are at most
+$\theta[4\sqrt2uv+(2+\sqrt2)v^2]\le6\theta(u^2+v^2)$;
+the last inequality is
+$6(u-\sqrt2v/3)^2+(8/3-\sqrt2)v^2\ge0$.
+Put $C=2\sqrt{U/h_{\min}}\,U\mathfrak A$.
+The proved metric comparisons give
+$M_A(u^2+v^2)\le C$ and
+$|z_0|,|w_0|\le C/2$. Expanding the complete complex product,
+including its quadratic error, yields
+\begin{equation}\tag{MI20}\label{mi:current}
+ |\overline zw-\overline{z_0}w_0|
+ \le 6C^2\theta+36C^2\theta^2\le15C^2\theta,\qquad
+ C^2=\frac{4U^3\mathfrak A^2}{h_{\min}}.
+\end{equation}
+Thus, for $\mathfrak A>0$ and requested absolute error $t_*>0$,
+\begin{equation}\tag{MI21}\label{mi:epscurrent}
+ \varepsilon\le
+ \min\left\{\frac{h_{\min}}{4d},\
+       \frac{t_*h_{\min}^2}{60dU^3\mathfrak A^2}\right\}.
+\end{equation}
+When $\mathfrak A=0$, positive definiteness of $W$ gives $A=0$
+or $x=0$ and all four pairings vanish; only the first positivity
+guard is needed. No class is recomputed from midpoint moments.
+
+\section{Four original determinant signs and their cheaper budget}
+
+Let the four original cutoffs be $N_i$ with their fixed original
+restriction or attained quotient maps and resulting positive
+metrics $Q_i$, of ranks $r_i$. Retain signs
+$s_1=s_2=1$, $s_3=s_4=-1$.
+At endpoint $i$ let $d_i$ and $h_i$ be the source block size and
+improved source floor. For $r_i>0$ choose
+\begin{equation}\tag{MI22}\label{mi:detbudget}
+ \theta_i=\min\{1/4,t_*/(8r_i)\},\qquad
+ \varepsilon_i=\theta_i h_i/d_i.
+\end{equation}
+Rank-zero determinants equal one. The same source argument and
+same-fibre minimum above give
+$Q_i^-\preceq Q_i\preceq Q_i^+
+\preceq(1-2\theta_i)^{-1}Q_i^-$.
+Restriction is an exact congruence; each subsequent onto quotient
+uses the displayed attained-minimum formula on its complete fibre.
+Consequently, with $e_i=\log\det Q_i-\log\det Q_i^-$,
+\[
+ 0\le e_i\le-r_i\log(1-2\theta_i)
+ \le4r_i\theta_i\le t_*/2.
+\]
+The inequality $-\log(1-2\theta)\le4\theta$ on $[0,1/4]$
+follows by integrating $2/(1-2u)\le4$.
+The positive pair bounds $e_1+e_2-e_3-e_4$ above and the negative
+pair bounds it below. Therefore
+\begin{equation}\tag{MI23}\label{mi:four}
+ \left|\sum_{i=1}^4s_i\log\det Q_i
+       -\sum_{i=1}^4s_i\log\det Q_i^-\right|\le t_*.
+\end{equation}
+There is no extra condition number for a fixed observation map
+in this exact same-fibre comparison. Certified rounding of that map
+and of subsequent arithmetic is a separate numerical error already
+retained in \cite{oldNP}. To use one common moment sequence across
+endpoints, choose $\varepsilon=\min_{i:r_i>0}\varepsilon_i$ and
+$N_{\max}=\max_iN_i$ in \eqref{mi:tau}. If all ranks vanish the
+return is exactly zero and no determinant tolerance is required.
+
+\section{The evaluated scales of these explicit choices}
+
+Take fixed-packet $h$ and a proportional window
+$c_0q\le N\le c_1q$, with fixed positive $c_0,c_1$;
+for four endpoints use the corresponding common bounds.
+Equations \eqref{mi:log} and \eqref{mi:U}, together with
+$\log((2N)!)\le2N\log(2N)$, give
+\[
+ \log^+(h_{\min}^{-1})=O_h(\sqrt q),\qquad
+ \log^+U\le2N\log(N+2)+O_h(N+k).
+\]
+Choose the largest admitted error in \eqref{mi:epscurrent}, and
+then the largest admitted $\tau$ in \eqref{mi:tau}. Taking
+logarithms of those explicit minima gives
+\begin{equation}\tag{MI24}\label{mi:currentcost}
+ \log^+(\tau^{-1})
+ \le8N\log(N+2)+2\log^+\mathfrak A+\log^+(t_*^{-1})
+       +O_h(N+k+\sqrt N).
+\end{equation}
+This retains the actual finite-map factor $\mathfrak A$.
+It assigns no polynomial bound to that factor.
+For \eqref{mi:detbudget}, if $r_i\le c_2q$ with fixed $c_2$,
+the largest common permissible moment error instead satisfies
+$\log^+(\varepsilon^{-1})
+=O_h(\sqrt q+\log(q+2)+\log^+(t_*^{-1}))$.
+Its raw-moment tolerance obeys the stronger bound
+\begin{equation}\tag{MI25}\label{mi:detcost}
+ \log^+(\tau^{-1})
+ \le2N_{\max}\log(N_{\max}+2)+\log^+(t_*^{-1})
+       +O_h(N_{\max}+k+\sqrt q).
+\end{equation}
+These estimates describe the stated sufficient choices, not
+unnecessarily smaller tolerances. Exact determinant centres,
+the original correlated current values and the original complete
+action remain the same mathematical targets.
+
+\begin{thebibliography}{9}
+\bibitem{Dunster} T.~M.~Dunster, \emph{Legendre and Related Functions},
+NIST Digital Library of Mathematical Functions, Chapter 14,
+Rodrigues formula 14.7.13, version 1.2.8 (15 September 2026).
+\url{https://dlmf.nist.gov/14.7.E13}. Original equation TeX read.
+The chapter credits earlier work including I.~A.~Stegun and
+F.~W.~J.~Olver; their books were not separately read for this note.
+\bibitem{DLMF18} T.~H.~Koornwinder, R.~Wong, R.~Koekoek,
+R.~F.~Swarttouw and W.~P.~Reinhardt,
+\emph{Orthogonal Polynomials}, NIST Digital Library of Mathematical
+Functions, Chapter 18, 18.12.11, version 1.2.8.
+\url{https://dlmf.nist.gov/18.12.E11}. Original equation TeX read.
+\bibitem{BT} Split-Zero programme,
+\emph{Actual boundary tilts and uniform convolution tails},
+complete provider \texttt{BOUNDARY\_TILT\_COMPLETE.tex}, BT1--23.
+The exact BT12 constant and BT14--16 estimates are used in MI15.
+\bibitem{oldNP} Split-Zero programme,
+\emph{Explicit native moment precision, inverse margins, and the
+original signed receiver}, 20 September 2026,
+\texttt{NATIVE\_MOMENT\_PRECISION.tex}, original envelopes,
+weighted systems, quadratic-expression guards and finite moments.
+\bibitem{MC} Split-Zero programme,
+\emph{An explicit original-native moment tolerance for the complex
+mixed product}, 20 September 2026,
+\texttt{NATIVE\_MOMENT\_PHASE\_COMPOSITION.tex}, MC1--16.
+MI18--21 retain and reprove its full constant-$15$ product estimate
+with the improved native floor.
+\bibitem{NR} Split-Zero programme,
+\emph{A finite auxiliary-degree bound for the original native
+resolvent}, 20 September 2026,
+\texttt{NATIVE\_RESOLVENT\_DEGREE\_RATE.tex}, NR19 and NR26.
+MI13 supplies a second certified inverse-evaluation bound to the
+same original degree prescription.
+\end{thebibliography}
+\end{document}

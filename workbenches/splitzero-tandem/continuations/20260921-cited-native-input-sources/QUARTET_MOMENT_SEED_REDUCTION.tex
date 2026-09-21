@@ -1,0 +1,636 @@
+\documentclass[11pt]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,xurl}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks\setlength{\emergencystretch}{3em}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\title{Exact finite input reduction for the original quartet-divided moments}
+\author{}\date{20 September 2026}
+\begin{document}\maketitle
+
+The existing arithmetic-moment provider \cite{AM} proves certified
+whole-mass moments of \(g=2\xi\), using the original theta source.
+Its accompanying report explicitly leaves division by the quartet
+polynomial unevaluated. This note proves the exact finite bridge:
+\(4m\) divided even-moment seeds, together with the specified
+undivided moments, determine every requested finite divided moment.
+It also gives the complete equivalent complex-resolvent input,
+all repeated-pole coefficients, and the actual error amplification.
+No numerical off-line zero is supplied or asserted.
+
+\section{Original quartet, whole measures, and their exact map}
+
+Retain the programme's actual-quartet domain \cite{MI}:
+\begin{equation}\tag{QS1}
+\begin{gathered}
+ \rho_*=\tfrac12+\delta+i\gamma,\qquad
+ 0<\delta<\tfrac12,\qquad \gamma>2,\qquad m\in\mathbb Z_{\ge1},\\
+ h(s)=\prod_{\epsilon,\eta=\pm1}
+       (s-\tfrac12-\epsilon\delta-i\eta\gamma)^m,\qquad g=2\xi .
+\end{gathered}
+\end{equation}
+Here the four selected points are the stipulated actual zero
+quartet, with the assigned multiplicity; no existence statement
+about an off-line quartet is made. The following identities retain
+that same divisor and never replace its parameters by sampled
+zero locations.
+
+Define
+\begin{equation}\tag{QS2}
+\begin{gathered}
+ A=2(\delta^2-\gamma^2),\qquad
+ B=(\delta^2+\gamma^2)^2,\qquad
+ Q(x)=x^2+Ax+B,\\
+ a=2m,\quad D=2a=4m,\quad P(x)=Q(x)^a=\sum_{j=0}^D p_jx^j,\\
+ u=\gamma^2-\delta^2>0,\qquad v=2\delta\gamma>0,\qquad
+ z_\pm=u\pm iv=(\gamma\pm i\delta)^2,\qquad
+ R=|z_\pm|=\gamma^2+\delta^2>4.
+\end{gathered}
+\end{equation}
+The symbol \(D\) in this note is the integer degree \(4m\);
+the Euler operator used below is denoted \(\mathcal D\).
+For the original real coordinate \(y\),
+\begin{equation}\tag{QS3}
+\begin{aligned}
+ h(1/2+iy)
+ &=\bigl(((y-\gamma)^2+\delta^2)
+          ((y+\gamma)^2+\delta^2)\bigr)^m=Q(y^2)^m,\\
+ |h(1/2+iy)|^2&=P(y^2),\\
+ Q(x)&=(x-z_+)(x-z_-)=(x-u)^2+v^2\ge v^2
+                      \quad(x\ge0).
+\end{aligned}
+\end{equation}
+For the first equality, pairing the two \(\epsilon\) factors
+at each fixed \(\eta\) gives
+\(-((y-\eta\gamma)^2+\delta^2)\); the two minus signs
+cancel before the power \(m\). Expanding their product proves
+the displayed \(Q\), including the sign of \(A\).
+
+Use the complete original measures and moments
+\begin{equation}\tag{QS4}
+\begin{gathered}
+ d\mu_y(y)=|g(1/2+iy)|^2\,\frac{dy}{2\pi},\qquad
+ d\nu_y(y)=\frac{d\mu_y(y)}{P(y^2)},\\
+ \beta_n=\int_{\R}y^{2n}\,d\mu_y(y),\qquad
+ \eta_j=\int_{\R}y^j\,d\nu_y(y),\qquad e_n=\eta_{2n}.
+\end{gathered}
+\end{equation}
+Reality and the functional equation of \(g\) imply that both
+measures are even. Thus \(\eta_{2n+1}=0\) exactly.
+Their masses are \(\beta_0\) and \(e_0\), and no division by
+either mass is made.
+All moments are finite: \cite{AM}, AM.6--AM.18, proves this
+for \(\mu_y\), and QS3 gives \(P(y^2)\ge v^{2a}>0\).
+
+The explicit pushforward \(x=y^2\) is used only to write
+the exact polynomial division:
+\begin{equation}\tag{QS5}
+ d\mu(x)=\frac{|g(1/2+i\sqrt x)|^2}{2\pi\sqrt x}\,dx,\qquad
+ d\nu(x)=\frac{d\mu(x)}{P(x)}\quad(x>0),\qquad
+ \beta_n=\int_0^\infty x^n\,d\mu,\quad e_n=\int_0^\infty x^n\,d\nu .
+\end{equation}
+Indeed the two equal halves of the \(y\) integral cancel the
+factor \(2\) in \(dy=dx/(2\sqrt x)\).
+This proves the exact measure map, with the original \(2\pi\)
+and whole mass. It also gives the useful finite guards
+\begin{equation}\tag{QS6}
+ 0<e_j\le v^{-2a}\beta_j,\qquad
+ \operatorname{dist}(z_\pm,[0,\infty))=v,\qquad
+ |z_+-z_-|=2v=4\delta\gamma .
+\end{equation}
+Strict positivity follows because the nonzero analytic function
+\(g\) vanishes only on a set of real measure zero.
+
+\section{Literal monic recurrence and the entire finite input map}
+
+The coefficients of \(P\), without omitting any term, are
+\begin{equation}\tag{QS7}
+ p_j=\sum_{\substack{0\le t\le\lfloor j/2\rfloor\\t\ge j-a}}
+     \frac{a!}{t!\,(j-2t)!\,(a-j+t)!}\,
+          A^{j-2t}B^{a-j+t},\qquad 0\le j\le D.
+\end{equation}
+This is the multinomial expansion of
+\((x^2+Ax+B)^a\). In particular \(p_D=1\),
+\(p_{D-1}=aA\), and \(p_0=B^a\).
+Multiplying the density relation \(d\mu=P\,d\nu\) by \(x^n\)
+and integrating the finite sum proves
+\begin{equation}\tag{QS8}
+ \beta_n=\sum_{j=0}^Dp_je_{n+j},\qquad
+ e_{n+D}=\beta_n-\sum_{j=0}^{D-1}p_je_{n+j}
+                  \quad(n\ge0).
+\end{equation}
+The leading coefficient one is essential; no omitted denominator
+or root factor enters this recurrence.
+
+For each \(n\ge0\), let \(q_n,r_n\) be literal Euclidean division:
+\begin{equation}\tag{QS9}
+ x^n=P(x)q_n(x)+r_n(x),\qquad \deg r_n<D.
+\end{equation}
+For \(n<D\), \(q_n=0\) and \(r_n=x^n\).
+All coefficients can be obtained without root separation
+denominators. Define
+\begin{equation}\tag{QS10}
+\begin{aligned}
+ c_\ell
+ &=[t^\ell](1+At+Bt^2)^{-a}\\
+ &=\sum_{j=0}^{\lfloor\ell/2\rfloor}
+   (-1)^{\ell-j}\frac{(a)_{\ell-j}}{(\ell-2j)!\,j!}
+                     A^{\ell-2j}B^j,\qquad \ell\ge0 .
+\end{aligned}
+\end{equation}
+Here \((a)_s=a(a+1)\cdots(a+s-1)\) and \((a)_0=1\).
+Expanding \((1+z)^{-a}\) formally and then \(z=At+Bt^2\)
+proves the coefficient formula. These are finite polynomial
+expressions, so no analytic convergence assertion is needed.
+For \(n\ge D\), with \(b=n-D\), they give
+\begin{equation}\tag{QS11}
+\begin{aligned}
+ q_n(x)&=\sum_{\ell=0}^{b}c_\ell x^{b-\ell}
+         =\sum_{t=0}^{b}q_{n,t}x^t,\qquad q_{n,t}=c_{b-t},\\
+ r_n(x)&=\sum_{j=0}^{D-1}r_{n,j}x^j,\qquad
+ r_{n,j}=-\sum_{t=0}^{\min(j,b)}p_{j-t}c_{b-t}.
+\end{aligned}
+\end{equation}
+To verify the quotient, multiply
+\(x^{-D}\sum_{\ell\ge0}c_\ell x^{-\ell}=1/P(x)\)
+as formal Laurent series and keep its nonnegative powers
+after multiplication by \(x^n\). All powers at least \(D\)
+in \(x^n-Pq_n\) cancel. Its lower coefficients are exactly
+the second formula. This proves both QS9 and QS11.
+
+\begin{theorem}[Exact finite seed reduction]
+For every \(n\ge0\),
+\begin{equation}\tag{QS12}
+ e_n=\sum_{j=0}^{D-1}r_{n,j}e_j+
+                  \sum_{t=0}^{n-D}q_{n,t}\beta_t ,
+\end{equation}
+where the second sum is absent if \(n<D\).
+Consequently the divided moments through \(\eta_{2L}\),
+for a specified integer \(L\ge0\), require only the seeds
+\(e_0,\ldots,e_{\min(L,D-1)}\), and, when \(L\ge D\),
+the undivided moments \(\beta_0,\ldots,\beta_{L-D}\).
+For \(L\ge D-1\) the full seed list is precisely
+\(\eta_0,\eta_2,\ldots,\eta_{8m-2}\), with \(4m\) entries.
+\end{theorem}
+\begin{proof}
+Divide QS9 by \(P(x)\) and integrate against the full measure
+\(\mu\). Every sum is finite and every moment exists by QS6.
+This proves QS12. The degree bounds in QS9 give the stated
+input counts. Conversely QS8 recursively determines a unique
+sequence from all the \(D\) seeds and the \(\beta_n\).
+Thus QS12 and that recurrence give the same exact sequence.
+\end{proof}
+
+\section{Exact use of the existing certified arithmetic provider}
+
+The provider \cite{AM} retains
+\begin{equation}\tag{QS13}
+\begin{gathered}
+ \mathcal D=-x\partial_x,\quad
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\quad
+ f_0(x)=2\sum_{j\ge1}\phi_*(jx),\\
+ H_{\alpha\beta}
+ =\langle\mathcal D^\alpha f_0,\mathcal D^\beta f_0\rangle_{L^2(dx)}
+ =\int_{\R}\overline{(1/2+iy)^\alpha}(1/2+iy)^\beta\,d\mu_y .
+\end{gathered}
+\end{equation}
+To make the receiving transform completely explicit, put
+\[
+ T_{n,\alpha}=\binom n\alpha(-1/2)^{n-\alpha}
+                       \quad(0\le\alpha\le n).
+\]
+Binomial expansion of the same original Mellin coordinate gives
+\begin{equation}\tag{QS14}
+ \beta_n=\sum_{\alpha,\beta=0}^n
+        T_{n,\alpha}T_{n,\beta}H_{\alpha\beta}
+       =\|(\mathcal D-1/2)^nf_0\|_2^2.
+\end{equation}
+Indeed the Mellin multiplier in that norm is \((iy)^n\),
+whose squared modulus is \(y^{2n}\). Thus this is the exact
+AM.17--AM.18 triangular coefficient map, retaining its inverse
+\(\binom n\alpha(1/2)^{n-\alpha}\).
+For instance \(\beta_0=H_{00}\) is the full arithmetic mass
+and \(\beta_1=H_{11}-H_{00}/4\), since
+\(H_{01}=H_{00}/2\) by AM.15.
+
+Here are the precise certified-input formulas already proved
+in the provider, recorded to specify all finite guards.
+Let \(P_0^{\rm AM}(z)=4z^2-6z\),
+\(P_{j+1}^{\rm AM}=2z(P_j^{\rm AM}-(P_j^{\rm AM})')\), and
+\(Q_j^{\rm AM}=\sum_{\ell=0}^j(-1)^\ell\binom j\ell
+P_\ell^{\rm AM}\). Let \(p_{\alpha s}^{\rm AM}\),
+\(q_{\alpha s}^{\rm AM}\) be their coefficients and
+\(d_\alpha=\alpha+2\). Then AM.8 is the absolutely convergent series
+\begin{equation}\tag{QS15}
+\begin{aligned}
+ H_{\alpha\beta}
+ =2\sum_{j,l\ge1}\sum_{s=1}^{d_\alpha}
+                    \sum_{t=1}^{d_\beta}
+ &(p_{\alpha s}^{\rm AM}p_{\beta t}^{\rm AM}
+     +q_{\alpha s}^{\rm AM}q_{\beta t}^{\rm AM})
+        \pi^{s+t}j^{2s}l^{2t}\\
+ &{}\cdot
+ \frac{\Gamma(s+t+1/2,\pi(j^2+l^2))}
+      {(\pi(j^2+l^2))^{s+t+1/2}} .
+\end{aligned}
+\end{equation}
+It follows from the complete two-half-domain identity
+\[
+ H_{\alpha\beta}=\int_1^\infty
+ \bigl(f_\alpha f_\beta+\widetilde f_\alpha\widetilde f_\beta\bigr)\,dx,
+ \qquad f_\alpha=\mathcal D^\alpha f_0,\quad
+ \widetilde f_\alpha=(1-\mathcal D)^\alpha f_0,
+ \quad f_\alpha(1/x)=x\widetilde f_\alpha(x).
+\]
+The source's proof establishes absolute convergence before
+interchanging the integral and the double series; both reflected
+terms are present in QS15.
+
+For a theta cutoff \(K\ge\max(\alpha,\beta)+2\), put
+\begin{equation}\tag{QS16}
+\begin{gathered}
+ C_\alpha=\sum_s|p_{\alpha s}^{\rm AM}|\pi^s,\qquad
+ E_\alpha=\sum_s|q_{\alpha s}^{\rm AM}|\pi^s,\\
+ \omega_{\alpha,K}=
+       \left(\frac{K+2}{K+1}\right)^{2d_\alpha}e^{-\pi(2K+3)}<1,
+ \quad U_{\alpha,K}=\frac{(K+1)^{2d_\alpha}}{1-\omega_{\alpha,K}},\\
+ V_{\alpha,K}=\sum_{j=1}^K j^{2d_\alpha}e^{-\pi(j^2-1)}
+                 +U_{\alpha,K}e^{-\pi((K+1)^2-1)},\\
+ I_s(\lambda)=\frac{\Gamma(s+1/2,\lambda)}
+                          {2\lambda^{s+1/2}},\\
+ \mathcal E_{\alpha\beta,K}
+ =4(C_\alpha C_\beta+E_\alpha E_\beta)
+ (U_{\alpha,K}V_{\beta,K}+V_{\alpha,K}U_{\beta,K})
+ I_{d_\alpha+d_\beta}(\pi((K+1)^2+1)).
+\end{gathered}
+\end{equation}
+AM.13 proves
+\(|H_{\alpha\beta}-H_{\alpha\beta}^{[K]}|
+\le\mathcal E_{\alpha\beta,K}\).
+Its full tail uses the union \(j>K\) or \(l>K\); no part
+of the double complement is discarded.
+Thus a certified radius for \(H_{\alpha\beta}\) is its
+finite-series arithmetic radius plus QS16, rounded outwards.
+The published default provider evaluates degrees \(0\) through
+\(5\); higher degrees use the same proved formula and their
+stated cutoff guard. No unexecuted higher-degree value is
+claimed to have already been numerically certified here.
+
+If entry errors are \(\epsilon_{\alpha\beta}\), QS14 gives
+\begin{equation}\tag{QS17}
+ |\Delta\beta_n|
+ \le\sum_{\alpha,\beta=0}^n
+      |T_{n,\alpha}T_{n,\beta}|\epsilon_{\alpha\beta}.
+\end{equation}
+For a common error \(\epsilon_H\), the bound is
+\((3/2)^{2n}\epsilon_H\), since
+\(\sum_\alpha|T_{n,\alpha}|=(3/2)^n\).
+
+One may combine QS12 and QS14 \emph{before} enclosing errors.
+For \(n\ge D\), set
+\begin{equation}\tag{QS18}
+ F_{n,\alpha\beta}
+ =\sum_{t=\max(\alpha,\beta)}^{n-D}
+        q_{n,t}\binom t\alpha\binom t\beta
+                     (-1/2)^{2t-\alpha-\beta}.
+\end{equation}
+Then exactly
+\[
+ e_n=\sum_{j=0}^{D-1}r_{n,j}e_j+
+                  \sum_{\alpha,\beta=0}^{n-D}
+                         F_{n,\alpha\beta}H_{\alpha\beta}.
+\]
+The error multiplier for the \(H\) entries is consequently
+\(\sum|F_{n,\alpha\beta}|\epsilon_{\alpha\beta}\), which
+retains cancellations among the repeated uses of the same
+certified entry. Symmetry permits the exact replacement
+of off-diagonal pairs by \(2F_{n,\alpha\beta}H_{\alpha\beta}\).
+To receive all \(e_n\), \(n\le L\), a common theta cutoff
+\(K\ge L-D+2\) suffices for this source block when \(L\ge D\).
+
+\section{Actual finite error propagation and unavoidable amplification}
+
+For exact \(\delta,\gamma\) and thus exact coefficient polynomials,
+write the supplied seed and beta errors as
+\(|\Delta e_j|\le\epsilon_j\) and
+\(|\Delta\beta_t|\le\epsilon_t^\beta\).
+The exact linear map QS12 gives
+\begin{equation}\tag{QS19}
+ |\Delta e_n|\le
+ \sum_{j=0}^{D-1}|r_{n,j}|\epsilon_j+
+               \sum_{t=0}^{n-D}|q_{n,t}|\epsilon_t^\beta .
+\end{equation}
+For a fixed output row this is the exact worst-case
+absolute error for independent real input intervals:
+choose the signs of all input errors to agree with that
+row's real coefficients. Such independently perturbed
+inputs need not themselves be the moments of a positive
+measure; QS19 describes the information in the separate
+input enclosures.
+
+For a requested finite \(L\) define the explicit row sums
+\begin{equation}\tag{QS20}
+ \kappa_n^{\rm seed}=\sum_{j=0}^{D-1}|r_{n,j}|,\quad
+ \kappa_n^\beta=\sum_{t=0}^{n-D}|q_{n,t}|,\quad
+ \kappa_L=\max_{0\le n\le L}
+                  (\kappa_n^{\rm seed}+\kappa_n^\beta)\ge1 .
+\end{equation}
+Empty sums are zero. Computing these finite coefficient
+polynomials first and supplying every input to absolute
+error at most \(\tau/\kappa_L\) proves output error at most
+\(\tau\) through \(L\). To reserve \(\tau/2\) for the
+outward arithmetic evaluation of the final linear forms,
+use input errors at most \(\tau/(2\kappa_L)\).
+This is an explicit precision choice, not an assumption
+that forward recurrence is stable.
+
+An entirely finite upper majorant is also available.
+The factorization in QS2 yields
+\[
+ c_\ell=\sum_{j=0}^{\ell}
+ \binom{a+j-1}{j}\binom{a+\ell-j-1}{\ell-j}
+                       z_+^jz_-^{\ell-j},
+ \qquad
+ |c_\ell|\le\binom{D+\ell-1}{\ell}R^\ell .
+\]
+The first identity follows by multiplying
+\((1-z_+t)^{-a}(1-z_-t)^{-a}\).
+Taking moduli and taking the coefficient of \(t^\ell\)
+in \((1-t)^{-2a}\) proves the bound.
+Let \(W_b=\sum_{\ell=0}^b\binom{D+\ell-1}{\ell}R^\ell\).
+Since \(\sum_j|p_j|\le(1+|A|+B)^a\), QS11 implies
+\begin{equation}\tag{QS21}
+ \kappa_n^\beta\le W_{n-D},\qquad
+ \kappa_n^{\rm seed}\le (1+|A|+B)^a W_{n-D}
+                                      \quad(n\ge D).
+\end{equation}
+The computed row sums QS20 usually give a tighter decision.
+
+There is also a necessary lower bound, showing why errors
+cannot be assigned by the recurrence order alone.
+Because \(x^n-r_n(x)\) is divisible by \((x-z_+)^a\),
+its divided derivative of order \(a-1\) vanishes there.
+Thus
+\[
+ \binom n{a-1}z_+^{n-a+1}
+ =\sum_{j=a-1}^{D-1}r_{n,j}
+                      \binom j{a-1}z_+^{j-a+1}.
+\]
+For \(n\ge D-1\), taking absolute values and using \(R>1\)
+gives
+\begin{equation}\tag{QS22}
+ \boxed{\quad
+ \kappa_n^{\rm seed}\ge
+   \frac{\binom n{a-1}}{\binom{D-1}{a-1}}\,
+                                  R^{n-D+1}.\quad}
+\end{equation}
+Indeed \(\binom j{a-1}R^{j-a+1}\) increases on
+\(a-1\le j\le D-1\), so its maximum occurs at \(D-1\).
+The same bound is attained as an amplification lower bound
+by a real homogeneous-error sequence: for a target \(n\),
+multiply \(\binom j{a-1}z_+^{j-a+1}\) by a phase making its
+\(j=n\) value positive real, take real parts, and divide
+by \(\binom{D-1}{a-1}R^{D-a}\).
+Its first \(D\) values have modulus at most one. It obeys
+the homogeneous QS8 because these divided derivative
+sequences are killed by the factor \((E-z_+)^a\) of
+\(P(E)\), where \(E\) advances the index. This also follows
+directly by differentiating \(z^jP(z)\) \(a-1\) times at \(z_+\).
+Its \(n\)th value equals the right side of QS22.
+
+Consequently the precision loss allowed by independent seed
+errors includes at least
+\((n-D+1)\log_2R+
+\log_2\binom n{a-1}-\log_2\binom{D-1}{a-1}\) bits.
+This does not assert instability of the underlying positive
+integral. It quantifies the cancellation in this particular
+exact finite input map.
+
+For uncertain parameter enclosures, preserve correlations
+where the arithmetic system can do so; the following bound
+is valid without them. Suppose a coefficient \(a_\ell\)
+in the finite QS12 or QS18 row is enclosed by
+centre \(\widehat a_\ell\), radius \(\rho_\ell\), and its
+input \(v_\ell\) by centre \(\widehat v_\ell\), radius
+\(\epsilon_\ell\). Then
+\begin{equation}\tag{QS23}
+ \left|\sum_\ell a_\ell v_\ell-
+              \sum_\ell\widehat a_\ell\widehat v_\ell\right|
+ \le\sum_\ell\left[
+ |\widehat a_\ell|\epsilon_\ell+
+                  \rho_\ell(|\widehat v_\ell|+\epsilon_\ell)\right].
+\end{equation}
+Expand each product as centre plus its two errors to prove it.
+The coefficients in QS7, QS10, QS11 and QS18 are finite
+polynomials in the original real parameters, so direct
+outward polynomial evaluation supplies every \(\rho_\ell\).
+Finite parameter boxes used for QS6 must certify
+\(\delta_->0\), \(\delta_+<1/2\), and \(\gamma_->2\).
+The guard \(v\ge2\delta_-\gamma_->0\) then retains the
+original denominator. No guessed zero enclosure is used.
+
+\section{Equivalent finite resolvent input, with all pole coefficients}
+
+The \(D\) real seeds have a second exact presentation.
+On \(\C\setminus[0,\infty)\), define
+\begin{equation}\tag{QS24}
+ \mathcal S(z)=\int_0^\infty\frac{d\mu(x)}{x-z},
+ \qquad F_\ell(z)=\int_0^\infty\frac{d\mu(x)}{(x-z)^\ell}
+       =\frac{\mathcal S^{(\ell-1)}(z)}{(\ell-1)!}.
+\end{equation}
+These are holomorphic. On a compact subset of the domain,
+distance from the support is positive; the full mass
+\(\beta_0\) times that distance to a negative power dominates
+every required derivative, proving differentiation under
+the integral. Differentiating \((x-z)^{-1}\) produces a
+\emph{positive} coefficient at every \(z\) derivative.
+Equivalently, with
+\(\mathcal R(w)=\int d\mu(x)/(x+w)\),
+\begin{equation}\tag{QS25}
+ F_\ell(z)=\frac{(-1)^{\ell-1}}{(\ell-1)!}
+                \mathcal R^{(\ell-1)}(-z).
+\end{equation}
+This records the different sign of differentiation in the
+plus-denominator parameter. In either convention,
+\(|F_\ell(z_\pm)|\le\beta_0/v^\ell\).
+
+For every integer \(n\ge0\), every \(1\le\ell\le a\), and
+\(\sigma\in\{+,-\}\), define
+\begin{equation}\tag{QS26}
+ C_{\sigma,\ell}^{(n)}
+ =\sum_{t=0}^{\min(n,a-\ell)}
+  \binom nt z_\sigma^{n-t}(-1)^{a-\ell-t}
+  \binom{2a-\ell-t-1}{a-\ell-t}
+      (z_\sigma-z_{-\sigma})^{-(2a-\ell-t)} .
+\end{equation}
+Then the complete partial-fraction formula is
+\begin{equation}\tag{QS27}
+ \frac{x^n}{P(x)}
+ =q_n(x)+\sum_{\sigma=\pm}\sum_{\ell=1}^a
+                      \frac{C_{\sigma,\ell}^{(n)}}{(x-z_\sigma)^\ell}.
+\end{equation}
+To prove the coefficient, expand
+\(x^n(x-z_{-\sigma})^{-a}\) at \(x=z_\sigma\).
+The numerator has Taylor coefficient
+\(\binom nt z_\sigma^{n-t}\);
+the other factor's coefficient of order \(s\) is
+\((-1)^s\binom{a+s-1}{s}
+(z_\sigma-z_{-\sigma})^{-a-s}\).
+Taking \(s+t=a-\ell\) gives QS26.
+Subtracting these complete principal parts from \(x^n/P\)
+leaves its polynomial quotient \(q_n\): the proper remainder
+has no pole and tends to zero at infinity, and is therefore zero.
+This proves every repeated-pole coefficient with its sign.
+
+Since the parameters and measure are real,
+\(C_{-,\ell}^{(n)}=\overline{C_{+,\ell}^{(n)}}\) and
+\(F_\ell(z_-)=\overline{F_\ell(z_+)}\). Integration yields
+\begin{equation}\tag{QS28}
+ e_n=\sum_{t=0}^{n-D}q_{n,t}\beta_t+
+          2\Re\sum_{\ell=1}^a C_{+,\ell}^{(n)}F_\ell(z_+).
+\end{equation}
+In particular all \(4m=D\) real seeds are obtained from the
+\(a=2m\) complex values \(F_1(z_+),\ldots,F_a(z_+)\).
+The exact reverse map is
+\begin{equation}\tag{QS29}
+\begin{aligned}
+ F_\ell(z_+)&=\sum_{j=0}^{D-\ell}d_{\ell,j}e_j,\\
+ d_{\ell,j}
+ &=\sum_{\substack{u+w=j\\0\le u\le a-\ell\\0\le w\le a}}
+    \binom{a-\ell}{u}\binom aw
+       (-z_+)^{a-\ell-u}(-z_-)^{a-w}.
+\end{aligned}
+\end{equation}
+Indeed the numerator polynomial in
+\[
+ \frac1{(x-z_+)^\ell}
+   =\frac{(x-z_+)^{a-\ell}(x-z_-)^a}{P(x)}
+\]
+has exactly these coefficients and degree \(D-\ell<D\).
+Partial-fraction uniqueness proves that these two real-linear
+maps are inverse: the \(D\) functions \(x^j/P\), \(0\le j<D\),
+and the \(a\) conjugate pairs \((x-z_\pm)^{-\ell}\) are
+two bases of the same \(D\)-dimensional space of real
+proper rational functions. Thus the resolvent presentation
+retains precisely all seed data rather than assuming extra
+moments can be recovered from the \(\beta_n\) alone.
+
+For certified disks of radii \(\epsilon_\ell^F\) for these
+resolvent values, QS28 gives the explicit bound
+\begin{equation}\tag{QS30}
+ |\Delta e_n|\le
+ \sum_{t=0}^{n-D}|q_{n,t}|\epsilon_t^\beta+
+                    2\sum_{\ell=1}^a
+                            |C_{+,\ell}^{(n)}|\epsilon_\ell^F .
+\end{equation}
+Use QS23 as well when the pole coefficients are enclosed.
+All denominators in QS26 have the positive guard
+\(|z_+-z_-|\ge4\delta_-\gamma_-\).
+The factors in QS26 can grow when \(\delta\) is small;
+the polynomial formulas QS10--QS12 supply an exact alternative
+without those root-separation denominators. Neither
+representation is assigned stability without its actual
+finite row sums.
+
+\section{Exact receiver for the original tensor moments}
+
+For \(k\ge1\), keep \(m_k=w_h^{*k}\), where
+\(w_h(y)\,dy=d\nu_y(y)\), and its original sum coordinate.
+Let \(\zeta_j=\int_{\R}y^jm_k(y)\,dy\).
+For any finite degree bound \(2L\), expansion of
+\((y_1+\cdots+y_k)^j\), justified by the finite absolute
+moments already proved, gives
+\begin{equation}\tag{QS31}
+ \zeta_j=j![z^j]\left(\sum_{n=0}^L
+                     \frac{e_nz^{2n}}{(2n)!}\right)^k
+                 \quad(0\le j\le2L).
+\end{equation}
+In particular \(\zeta_0=e_0^k\), and all odd moments are
+zero. This is the original finite convolution map in
+\cite{MI}, with the entire arithmetic mass retained.
+If the input centres are \(\widehat e_n\), with radii
+\(\epsilon_n\), set the finite coefficient polynomials
+\[
+ E(z)=\sum_{n=0}^L\frac{|\widehat e_n|z^{2n}}{(2n)!},
+ \qquad
+ E_+(z)=\sum_{n=0}^L
+             \frac{(|\widehat e_n|+\epsilon_n)z^{2n}}{(2n)!}.
+\]
+Then
+\begin{equation}\tag{QS32}
+ |\Delta\zeta_j|\le j![z^j]\bigl(E_+(z)^k-E(z)^k\bigr).
+\end{equation}
+Expand each product into centres and errors. All terms
+containing at least one error are bounded by the corresponding
+term in this nonnegative coefficient difference. This proves
+QS32 without replacing the original source by a probability
+measure or by an average-coordinate tensor.
+
+\begin{figure}[ht]\centering
+\(\begin{array}{ccc}
+ (e_0,\ldots,e_{D-1})&
+ \longleftrightarrow&
+ (F_1(z_+),\ldots,F_a(z_+))\\
+ \scriptstyle{\rm QS12}\downarrow&&
+ \downarrow\scriptstyle{\rm QS28}\\
+ (e_0,\ldots,e_L)&=&(e_0,\ldots,e_L)\\
+ &\downarrow\scriptstyle{\rm QS31}&\\
+ &(\zeta_0,\ldots,\zeta_{2L})&
+\end{array}\)
+\caption{The exact seed and resolvent presentations.
+Each downward seed reduction also receives the existing
+undivided moments \(\beta_0,\ldots,\beta_{L-D}\) when
+\(L\ge D\), through the original AM coefficient map
+QS13--QS18. The top arrow and its inverse are QS28--QS29.
+The bottom arrow retains total mass \(e_0^k\).
+The errors of these maps are QS19, QS23, QS30 and QS32.
+No seed centre is supplied by the diagram itself.}
+\end{figure}
+
+\section{What is proved and checked}
+
+The finite source requirement is now exact: at most \(4m\)
+real divided seeds, or equivalently \(2m\) complex resolvent
+jets, plus the specified already available arithmetic-moment
+provider. QS19--QS23 make every required finite input accuracy
+computable; QS22 proves a real worst-case amplification that
+a numerical implementation must retain. These results do not
+claim numerical values for the hypothetical quartet's seeds.
+Their certified original integral evaluation is the separate
+receiving calculation.
+
+The accompanying exact checker verifies coefficient formulas,
+Euclidean division, the monic recurrence, repeated-pole
+coefficients, both Stieltjes derivative signs, both inverse
+seed maps, the AM triangular receiver, full-mass convolution,
+and the error identities on finite rational measures.
+Its rational \(\delta,\gamma\) choices are algebraic test
+parameters, explicitly not claimed zeta zeros. Actual programme
+use keeps QS1 and every original coefficient.
+
+\begin{thebibliography}{9}
+\bibitem{AM} Split-Zero research programme,
+\emph{Certified moments from the original arithmetic theta source},
+12 September 2026,
+\path{work/cumulative_deligne_build_20260913_v10/tex/arithmetic_moments.tex},
+AM.1--AM.19, particularly the full double series AM.8,
+the complete omitted-tail bound AM.13, and the original
+triangular coefficient map AM.17--AM.18.
+The complete proof provider was read for this derivation.
+Its companion report is
+\texttt{work/arithmetic\_moment\_exact\_20260912.md}.
+The published executed finite certificates cover the degrees
+stated in that report; the general formulas are the provider's
+proved all-degree theorem.
+\bibitem{MI} Split-Zero research programme,
+\emph{Moving-interval native margins and finite raw-moment precision},
+20 September 2026,
+\texttt{MOVING\_INTERVAL\_NATIVE\_PRECISION.tex},
+MI1 for the actual full-quartet domain and MI14--MI17
+for the finite convolution receiver. The present QS7--QS30
+supplies the exact input reduction preceding that receiver.
+\end{thebibliography}
+\end{document}

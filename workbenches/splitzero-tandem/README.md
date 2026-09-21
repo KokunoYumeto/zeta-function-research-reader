@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22884590) (assigned DOI 10.5281/zenodo.22884590) retains the complete research programme and adds the 37-page original-angle and full-word paper, with complete LaTeX, human provenance and precise proof links. All 70 earlier PDFs remain separate.
+
 ### The full original angle spectrum and determinant extraction
 
 [Read the 37-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/ORIGINAL_ANGLE_WORD_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/ORIGINAL_ANGLE_WORD_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/RESULTS_20260921_019.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-original-angle-word/RESULT_INDEX.json).

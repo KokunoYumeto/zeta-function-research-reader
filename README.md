@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative DOI edition](https://zenodo.org/records/22868393) (10.5281/zenodo.22868393) retains the whole research programme and adds the 44-page inverse-sector quotient paper, with complete LaTeX, inherited proofs and human-source records. All 64 earlier PDFs remain separately readable.
+
 ### Original inverse-sector quotient: the 44-page proof
 
 The new [paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-inverse-quotient/INVERSE_QUOTIENT_COMPLETE_READER.pdf) constructs an explicit quotient of the programme's theta-source observation by controlled inverse powers of the spectral coordinate. It keeps the original relation, metric, kernel and four cutoffs, and proves that the kernel determinant's leading contribution is unchanged at the stated degree scale. It also calculates the effect of changing the source covariance and transfers the original heat and current formulas through the quotient. The initial angle of an already activated source remains explicit; the remaining full-kernel coefficient and current signs are not claimed here.

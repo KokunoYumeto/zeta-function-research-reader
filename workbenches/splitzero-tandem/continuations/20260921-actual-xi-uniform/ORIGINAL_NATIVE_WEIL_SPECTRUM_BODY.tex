@@ -1,0 +1,179 @@
+\section{Certified arithmetic eigenlines in the original target norm}
+The five-pole calculation in \cite[WP24--27]{WeilCertificates}
+encloses the complete Weil coefficient matrices. Here the receiving
+calculation encloses all four generalized eigenvalues in the
+unchanged original target norm, constructs their exact eigenlines
+in the original eight signed coordinates, and proves that no
+additional kernel is hidden at any of these poles.
+
+Fix the original permitted Gamma parameter $s=1$, so
+$b=1/2$, $M=\sqrt{2\pi}$, and retain the full original target
+center $c_*$ through $S'=z+c_*-1/2$. At
+\[
+ \omega=2+i\tau,\qquad \tau\in\{0,14,21,100,1000\},\qquad
+ h=3,\quad d=3/2,
+ \tag{NV1}
+\]
+let $Q(\tau)$ be exactly NH6 and $K$ exactly NH7. The actual
+positive target Gram and arithmetic Gram are
+\[
+ H_\omega=3Q(\tau)^*KQ(\tau),\quad
+ T_\omega=(c_{j-i}(\omega))_{0\le i,j\le3},\quad
+ \det H_\omega=12\cdot3^{16}M^4b^3(b+1)^2(b+2).
+ \tag{NV2}
+\]
+Thus every original correlation and the original total mass remain.
+The entries $c_j$ are the full zero sums RW12--13. Their
+finite evaluation uses the proved exact generating identity
+\[
+ m_\omega(u)=\frac{\omega+(1-\bar\omega)u}{1+u},\qquad
+ X_\omega(u)=\xi(m_\omega(u)),\qquad
+ \frac{X_\omega'(u)}{X_\omega(u)m_\omega'(u)}
+ =\frac{\xi'}{\xi}(m_\omega(u)).
+ \tag{NV3}
+\]
+For $j=1,2,3$, $c_j$ is its coefficient of $u^j$; the
+diagonal is twice the real part of its constant term.
+The exact derivation, including the zero sum and all
+Hadamard constants, is \cite[MP6--15]{MovableWeil}.
+Both divisors in NV3 have nonzero constant term:
+$\xi(\omega)\ne0$ on $\Re\omega>1$ and
+$m_\omega'(0)=-3$. Formal series division is therefore
+legitimate. The script retains eight coefficients before
+differentiation, more than needed for every displayed entry.
+No truncation of a zero, prime or Gamma sum is used to
+replace these completed-function values.
+
+Here is the complete real-root certification argument,
+so a floating-point eigenvalue is not being used as a sign
+test. For real $x$ set
+\[
+ A_\omega(x)=T_\omega-xH_\omega,\qquad
+ \Delta_0(x)=1,\quad
+ \Delta_j(x)=\det A_\omega(x)_{\{0,\ldots,j-1\}},
+ \quad1\le j\le4.
+ \tag{NV4}
+\]
+At each rational endpoint used below the certificate proves
+all four $\Delta_j$ real and nonzero, with strict signs.
+Gaussian elimination without a row exchange gives
+$A=L\,\diag(p_1,\ldots,p_4)L^*$, where $L$ is invertible
+unit lower triangular and $p_j=\Delta_j/\Delta_{j-1}$.
+For completeness, at the first step $p_1=A_{00}\ne0$;
+subtracting its column multiples yields its Schur complement.
+Its first $r$ leading determinant is
+$\Delta_{r+1}/p_1$, by the block determinant identity.
+Induction proves every pivot and the factorization.
+Hence the number of negative eigenvalues of $A$ equals
+the number of sign changes in
+$(1,\Delta_1,\ldots,\Delta_4)$, since multiplication by
+$L^*$ is a bijection preserving the maximal dimensions
+of positive and negative quadratic subspaces.
+
+The positive matrix $H_\omega$ has an invertible positive
+square root. Congruence by $H_\omega^{-1/2}$ identifies
+$A_\omega(x)$ with $H_\omega^{-1/2}T_\omega H_\omega^{-1/2}-xI$.
+Its negative inertia is therefore precisely the number
+of original-native generalized eigenvalues less than $x$.
+The certificate provides four disjoint rational intervals
+$(l_j,u_j)$ with
+\[
+ 0<l_1<u_1<l_2<u_2<l_3<u_3<l_4<u_4,\qquad
+ \operatorname{neg}A_\omega(l_j)=j-1,\quad
+ \operatorname{neg}A_\omega(u_j)=j.
+ \tag{NV5}
+\]
+Every interval consequently contains exactly one eigenvalue
+with multiplicity. There are four in total, so all have
+been enclosed, are positive and are simple.
+The exact rational endpoints, all forty endpoint inertias,
+all $160$ leading-minor balls, and every original matrix
+entry are retained in
+\texttt{ORIGINAL\_NATIVE\_WEIL\_CERTIFICATES.json}.
+Each interval has relative width less than $10^{-60}$.
+
+The following rounded numbers only identify the certified
+intervals; the rational endpoints and strict signs are
+the evidence:
+\[
+\begin{array}{c|rrrr}
+ \tau&\lambda_1&\lambda_2&\lambda_3&\lambda_4\\\hline
+ 0&8.14745\,10^{-11}&1.31906\,10^{-7}&1.90271\,10^{-5}&1.59784\,10^{-3}\\
+ 14&8.28289\,10^{-11}&3.32645\,10^{-7}&2.28517\,10^{-3}&1.07200\,10^{4}\\
+ 21&2.49471\,10^{-10}&8.59801\,10^{-7}&3.53539\,10^{-2}&1.19546\,10^{5}\\
+ 100&8.86137\,10^{-14}&5.05459\,10^{-7}&4.05208\,10^{1}&3.46066\,10^{8}\\
+ 1000&1.54757\,10^{-19}&3.26961\,10^{-8}&4.69894\,10^{3}&1.63176\,10^{15}
+\end{array}.
+\tag{NV6}
+\]
+The calculation uses python-flint 0.9.0, Arb at $768$ bits,
+and one computational worker. The original interval-arithmetic
+source is Johansson \cite{JohanssonArb}; exact algorithms,
+script hash and complete enclosures are supplied. Every
+determinant's imaginary ball contains zero, consistent
+with the already proved exact Hermitian symmetry. A ball
+containing zero in its real part never passes a sign test.
+
+The eigenlines are also explicitly constructed, rather than
+left as unnamed vectors. Let $\lambda_j$ be the unique
+real root of $\det A_\omega(x)$ in the certified interval
+NV5. For each one, the certificate selects an index
+$k_j\in\{0,1,2,3\}$ and proves the principal cofactor
+$(\operatorname{adj}A_\omega(x))_{k_jk_j}$ nonzero
+throughout that entire interval. It evaluates the same
+cofactor by interval arithmetic with an enclosure of
+the whole rational interval. Consequently
+\[
+ d_j=\operatorname{adj}(T_\omega-\lambda_jH_\omega)e_{k_j}
+ \ne0,\qquad
+ T_\omega d_j=\lambda_jH_\omega d_j.
+ \tag{NV7}
+\]
+Every coordinate of $d_j$ is the specified signed
+three-by-three determinant, hence a polynomial of degree
+at most three in the exactly defined $\lambda_j$.
+The adjugate identity proves the eigenvector equation;
+the certified diagonal cofactor proves nonvanishing.
+Simplicity proves that its line is the complete eigenspace.
+
+Retain the eight signed vectors and the exact factors $1/2$
+in SE2. The original eight-state eigenvector and its two
+physical components are therefore
+\[
+ v_j=\iota_-O^{-1}B_\omega^{-1}d_j
+   =\frac12\sum_{\ell=1}^4
+     (O^{-1}B_\omega^{-1}d_j)_\ell(f_{\ell,+}-f_{\ell,-}),
+ \quad
+ \mathcal J_Wv_j=(0,C_{-\kappa}R_\omega d_j),\quad
+ \mathcal J_Uv_j=(0,T_A^{-1}C_{-\kappa}R_\omega d_j).
+ \tag{NV8}
+\]
+No sign state is identified with another in this map.
+RW15--20 show that $v_j$ is an eigenvector of the
+actual target-native pencil
+$\mathbb Wv=\lambda\mathbb H_Wv$.
+The four remaining eigenvectors have eigenvalue zero and are
+\[
+ g_\ell=\iota_+e_\ell-\iota_-O^{-1}Ee_\ell,\qquad
+ 1\le\ell\le4.
+ \tag{NV9}
+\]
+Indeed their evaluations vanish and their label coordinates
+are independent; NV5 excludes any further kernel.
+For $j\ne k$, Hermitian symmetry in NV7 gives
+$(\lambda_j-\lambda_k)d_k^*H_\omega d_j=0$, proving
+orthogonality in the original target norm. All $g_\ell$
+are orthogonal to all $v_j$ in that same norm by RW16.
+The four graph vectors retain their full label Gram $G_Y$,
+so no Euclidean label norm is silently substituted.
+
+The numerical eigenvalues in NV6 concern the actual target
+metric with the stated permitted $s=1$. The original
+source metric is separately and completely evaluated in
+NH26--42 and the native coercivity calculation. Its
+conductor moments are not assigned numerical values here.
+The symbolic exact source vector in NV8 nevertheless exists
+for every original conductor on its established domain,
+using the actual FC24 inverse. Thus each certified
+arithmetic eigenline has a fully constructed return
+through the original Fable and conductor maps.

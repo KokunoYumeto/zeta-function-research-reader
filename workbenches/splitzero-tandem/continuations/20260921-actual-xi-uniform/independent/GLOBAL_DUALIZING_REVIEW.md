@@ -1,0 +1,22 @@
+# Independent mathematical review — global duality and weighted deck map
+
+The calculation in `GLOBAL_RESIDUE_DUALITY_BODY.tex`, GD1–28, is accepted at SHA256 `dc7ae71655ed93b8502ef18ea3474e1548ff83093310fe669a863df3ba6fd7e0`. The three RD proof-locator corrections reported during review are included in that version. No unresolved mathematical defect was found in its stated scope.
+
+The complete independent proof is `GLOBAL_DUALIZING_REVIEW.tex`, GDR1–30, SHA256 `29baba717a54cb17447b034e362d4003919be86f30fc91e07463355d71a46ef8`.
+
+The independent checker `GLOBAL_DUALIZING_REVIEW.py`, SHA256 `77ad91a4060d21b21c06e57ccc12658f52186cb30e9e060025abec7e917af070`, passes **34 groups / 255 exact scalar entries**. The certificate is `GLOBAL_DUALIZING_REVIEW.json`. This includes polynomial and rational identities, not numerical tolerances. Source structure also has 30 unique tags and balanced environments. No compilation, layout review, rendering or publication was performed.
+
+The full review establishes the following points.
+
+- **Actual global obstruction:** GDR1–14 proves all three divisor multiplicities from the charts, the exact original affine open, local perfect residue generators, the residue/trace transition, and nonexistence of a global generator of the dualizing line. It rules out globally perfect associative scalar pairings; the globally perfect state–dual evaluation remains available with its exact multiplication representation.
+- **Stronger new tensor result:** GDR14 proves that every positive tensor power of this dualizing line is nontrivial. The external dualizing line on every product cover is also nontrivial, by its exact pullback to the diagonal. This is specific to that global scalar-duality construction. On the actual slice `A=-1/2`, the explicit residue generator remains perfect, with determinant `1/64`; the global obstruction must not be transferred to that slice by assertion.
+- **Exact boundary interpretation:** GDR9–10 identifies both infinity projectors, including the original included state. The rank-six coefficient residue at `A=0` loses both signs even at an etale fibre. The eight-state trace at the original target has determinant `2^14`.
+- **Complete original-metric verification:** GDR23–30 independently proves the dual Gram transpose convention, the doubled singular spectra, the exact constants, every inverse exterior limit, and the positive finite-parameter bounds. The checker uses dense complex Hermitian metrics so transpose/adjoint mistakes are detectable.
+- **Stronger new weighted-map result:** GDR19–21 calculates the entire polynomial differential after weighting the original deck map by `a^3/2`. Its determinant is `a^12/4`; at every `a=0` point its rank is one and its kernel is spanned by the three remaining original coordinate directions. The entire hypersurface is sent to `(0,0,0,20i)`. The exact original receiver conjugacies retain this rank and determinant. This singularity belongs to that weighted polynomial map, not to the original `P` or the fixed linear conductor.
+- **Unweighted escape retained:** GDR22 proves the exact vector and norm limits with all original receiver metrics retained. The cubic scalar zero cancels the coordinate pole only after applying the weight; the unweighted vectors continue to escape with positive leading constants `40 ||Phi e4||` and `40 ||Psi e4||`.
+
+Actual reading coverage: the entire `FINITE_COMPLETION_ACCEPTED_BODY.tex`; the entire `RESIDUE_DUALITY_BODY.tex`; the text of `GLOBAL_SIGNED_BASIS_INDEPENDENT.tex` including GB1–12 and GB18–22, without separately reading its generated multiplication-table include; and all GD1–28 of the reviewed root body. The products needed from the multiplication table were independently recomputed from the original quartic instead of accepted from the omitted include. Human binary-form basis provenance is retained through Wood and the source use documented by GB; no whole-paper reading claim is made here.
+
+The verifier reconstructs the original polynomial `P` itself, checks the resultant-one relation and `det DP=-2`, and then checks the exact deck identities, the weighted polynomial, its full differential and its boundary rank. Thus the deck conclusions do not rely only on inherited assertions about that polynomial.
+
+The geometric divisor and line-module proofs are written mathematics in GDR1–14. The algebra certificate does not purport to prove them automatically. No original conductor order jump or arithmetic RH endpoint follows from these reviewed statements.

@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22868558) (assigned DOI 10.5281/zenodo.22868558) retains the complete research programme and adds the 61-page source-family and observed-heat paper, with complete LaTeX, original human sources and precise proof links. All 65 earlier PDFs, including the preceding inverse-quotient paper, remain separate.
+
 ### Original source families and complete observed heat: the 61-page proof
 
 The [new paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-uniform-source-family/UNIFORM_SOURCE_FAMILY_COMPLETE_READER.pdf) studies how the original theta-source observation changes when its source weights vary. It bounds the actual activated two-column update while retaining its complex cross term, proves exact rational detection maps and a sharp observed fraction for the slow spectral space, and controls the observed heat while keeping its full memory term. The original kernel's remaining leading coefficient and complex-current phases are not claimed.

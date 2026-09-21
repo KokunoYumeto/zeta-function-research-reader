@@ -1,0 +1,646 @@
+# Independent covariance-angle derivation
+
+Date: 21 September 2026.
+
+This file checks IQR15–19 and the algebra of IQR2 in `INVERSE_QUOTIENT_RECEIVERS.tex`. It proves the finite matrix statements independently, retains the original metric and the complete source covariance, and spells out the four-cutoff estimate. It does not change the mathematical period domain or assert a new analytic estimate for the source covariance.
+
+The exact finite angle estimate is correct. A stronger estimate using the individual covariance eigenvalues is proved below. The coefficient identity is correct when the retained endpoint value \(\psi(0)=\log(4/\pi)\) is included explicitly. No determinant factor is missing when the frame on \(K+V\) is the stated concatenation.
+
+## Reading and derivation record
+
+The source inspected for this derivation was `INVERSE_QUOTIENT_RECEIVERS.tex`, SHA-256 `42664D36E612DEB49550850DCAA15EF2774B58682A07CDF7F707DF5F3D3F9BA2`. The whole file was read; the independent calculations below concern IQR2 and IQR13–19, together with the exact Schur identity used in IQR3. The separate endpoint definition was checked in `../publication_003/NATIVE_SMALLEST_SINGULAR_PROOF.tex`, S2–S3, lines 31–41, SHA-256 `C7DD360325DC475B82CABBC65F2DC01D5C67711B85951A1837CD3E7F52415BBB`. That reading was bounded to its opening theorem and definitions, lines 1–58. Its public source locator is [S2–S3 in the retained smallest-singular proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/003/NATIVE_SMALLEST_SINGULAR_PROOF.tex#L31). This file is a new finite-dimensional derivation, not a transcription of that source.
+
+The proof is complete for the stated finite hypotheses. The asymptotic application uses the already stated IQR1 size estimate and the explicitly displayed covariance-size hypotheses; those earlier analytic results are not independently rederived here.
+
+## 1. Exact objects, frames, and covariance
+
+Let \(E=\mathbb C^n\) in its fixed coefficient coordinates. Let \(G_0\) be a positive-definite Hermitian matrix, and let \(\Omega\) be a positive-semidefinite Hermitian matrix. For every real \(t\ge0\), set
+
+\[
+G(t)=(G_0^{-1}+t\Omega)^{-1}.
+\tag{CA1}
+\]
+
+Every inverse in CA1 exists: for \(x\ne0\),
+\(x^*(G_0^{-1}+t\Omega)x\ge x^*G_0^{-1}x>0\).
+Use the inner product \(\langle x,y\rangle_t=x^*G(t)y\), with conjugate linearity in the first argument.
+
+Keep fixed subspaces \(K,V\subset E\), with
+\(K\cap V=\{0\}\), dimensions \(m,r\), and fixed full column frames
+\(I_K:\mathbb C^m\to E\), \(U:\mathbb C^r\to E\).
+Set \(S_0=K+V\), and use precisely the concatenated frame
+\(I_{S_0}=[I_K,U]\). Thus \(\dim S_0=m+r\le n\).
+For \(X=K,V,S_0\), write
+
+\[
+H_X(t)=I_X^*G(t)I_X,
+\qquad
+\Gamma(t)=I_K^*G(t)U.
+\tag{CA2}
+\]
+
+Here \(I_V=U\). All three Gram matrices are positive definite because their frames are injective. Define
+
+\[
+\delta(t)=\log\det H_K(t)+\log\det H_V(t)
+-\log\det H_{S_0}(t).
+\tag{CA3}
+\]
+
+The logarithms are the real logarithms of positive determinants. If one subspace has dimension zero, its determinant is 1 and \(\delta\equiv0\); every assertion below then holds with a zero right side.
+
+For the source in IQR13, the matrix in CA1 is the full matrix
+
+\[
+\Omega=F_ZH_Z^+F_Z^*,
+\qquad H_Z\succeq0,
+\qquad \ker H_Z\subseteq\ker F_Z.
+\tag{CA4}
+\]
+
+Indeed \(\Omega=BB^*\) with \(B=F_Z(H_Z^+)^{1/2}\), so \(\Omega\succeq0\). If \(\Pi\) is the Euclidean projection onto \(\operatorname{ran}H_Z\), the kernel hypothesis gives \(F_Z=F_Z\Pi\). The matrix \((H_Z^+)^{1/2}\) is invertible on \(\operatorname{ran}H_Z\), so
+\(\operatorname{rank}\Omega=\operatorname{rank}B=\operatorname{rank}F_Z\).
+Neither this factorization nor anything below removes a cross term of \(H_Z\), \(H_Z^+\), or \(\Omega\).
+
+## 2. The Schur identity and exact quotient meaning
+
+In the stated concatenated frame,
+
+\[
+H_{S_0}(t)=
+\begin{pmatrix}H_K(t)&\Gamma(t)\\
+\Gamma(t)^*&H_V(t)\end{pmatrix}.
+\tag{CA5}
+\]
+
+Suppress \(t\) within this section. Left multiplication by
+\(\begin{psmallmatrix}I&0\\-\Gamma^*H_K^{-1}&I\end{psmallmatrix}\)
+is determinant preserving and gives an upper block triangular matrix. Consequently
+
+\[
+\det H_{S_0}
+=\det H_K\det(H_V-\Gamma^*H_K^{-1}\Gamma).
+\tag{CA6}
+\]
+
+Eliminating the other off-diagonal block gives
+
+\[
+\det H_{S_0}
+=\det H_V\det(H_K-\Gamma H_V^{-1}\Gamma^*).
+\tag{CA7}
+\]
+
+Both Schur complements are positive definite. For example, for \(a\ne0\), insert \((a,-H_V^{-1}\Gamma^*a)\ne0\) into the positive quadratic form CA5 to obtain
+\(a^*(H_K-\Gamma H_V^{-1}\Gamma^*)a>0\).
+
+Let \(\pi:E\to E/V\) be represented by any fixed onto matrix whose kernel is \(V\). Its attained quotient metric is
+
+\[
+\overline G(t)=(\pi G(t)^{-1}\pi^*)^{-1}.
+\tag{CA8}
+\]
+
+To verify this formula directly, for a quotient coordinate \(b\), put
+\(x_*=G(t)^{-1}\pi^*\overline G(t)b\). Then \(\pi x_*=b\), and for every \(v\in\ker\pi\),
+\(v^*G(t)x_*=v^*\pi^*\overline G(t)b=0\).
+Every other lift equals \(x_*+v\), whose squared norm is
+\(x_*^*G(t)x_*+v^*G(t)v\). Hence \(x_*\) is the unique minimum lift and the attained squared norm is \(b^*\overline G(t)b\).
+
+For the quotient image of \(I_Ka\), all lifts have the form \(I_Ka+Uz\). Their squared norms equal
+
+\[
+a^*H_Ka+a^*\Gamma z+z^*\Gamma^*a+z^*H_Vz.
+\]
+
+Completion of this quadratic form gives the unique minimizer
+\(z=-H_V^{-1}\Gamma^*a\). Therefore the quotient kernel Gram is exactly
+
+\[
+\widehat H_K(t)
+=(\pi I_K)^*\overline G(t)(\pi I_K)
+=H_K(t)-\Gamma(t)H_V(t)^{-1}\Gamma(t)^*.
+\tag{CA9}
+\]
+
+The disjointness hypothesis makes \(\pi I_K\) injective. Equations CA3 and CA7 give
+
+\[
+\delta(t)=\log\det H_K(t)-\log\det\widehat H_K(t).
+\tag{CA10}
+\]
+
+For the original observation \(\Lambda:E\to B\) with \(\ker\Lambda=K\), the identical minimum calculation gives
+\(H_V^B(t)=H_V(t)-\Gamma(t)^*H_K(t)^{-1}\Gamma(t)\), using the attained metric
+\((\Lambda G(t)^{-1}\Lambda^*)^{-1}\) on \(B\). Thus
+
+\[
+\delta(t)=\log\det H_V(t)-\log\det H_V^B(t).
+\tag{CA11}
+\]
+
+This proves the exact morphism between the two angle losses. It retains the physical subspaces and all cross-Gram entries.
+
+For an explicit expression, define
+
+\[
+B_t=H_K(t)^{-1/2}\Gamma(t)H_V(t)^{-1/2}.
+\]
+
+From CA6,
+
+\[
+\delta(t)=-\log\det(I_r-B_t^*B_t)
+=-\sum_{j=1}^{\min(m,r)}\log(1-c_j(t)^2)\ge0,
+\tag{CA12}
+\]
+
+where the \(c_j(t)\) are the singular values of \(B_t\), including zeros. Positivity of the Schur complement proves \(c_j(t)<1\).
+
+There is no unstated frame constant in these equations. Replacing \(I_K,U\) by \(I_KT_K,UT_V\), with both matrices invertible, changes the three log determinants in CA3 by
+\(2\log|\det T_K|\), \(2\log|\det T_V|\), and their sum. These changes cancel. If instead a separate frame \(I_{S_0}T\) is used on \(S_0\) while the first two frames are retained, CA3 acquires the constant \(-2\log|\det T|\). Its nonnegativity need not survive, although the change \(\delta(t)-\delta(0)\) is unchanged for fixed \(T\). This is why the concatenation in IQR15 matters for IQR18.
+
+## 3. Exact differentiated identity
+
+Differentiating \((G_0^{-1}+t\Omega)G(t)=I\) gives
+
+\[
+G'(t)=-G(t)\Omega G(t).
+\tag{CA13}
+\]
+
+For a fixed full frame \(I_X\), the determinant differential follows from the cofactor identity for the determinant:
+
+\[
+\frac{d}{dt}\log\det H_X(t)
+=\operatorname{Tr}(H_X(t)^{-1}I_X^*G'(t)I_X).
+\]
+
+Define the original-metric projection and its exact Euclidean transform by
+
+\[
+P_X(t)=I_XH_X(t)^{-1}I_X^*G(t),
+\qquad
+\widetilde P_X(t)=G(t)^{1/2}P_X(t)G(t)^{-1/2}.
+\tag{CA14}
+\]
+
+The first operator is idempotent, fixes \(X\), and satisfies
+\(G(t)P_X(t)=P_X(t)^*G(t)\). The second is
+\(G(t)^{1/2}I_XH_X(t)^{-1}I_X^*G(t)^{1/2}\), so it is the Euclidean orthogonal projection onto the actual transformed subspace \(G(t)^{1/2}X\).
+
+Substitution of CA13 and cyclicity of the finite trace give
+
+\[
+\frac{d}{dt}\log\det H_X(t)
+=-\operatorname{Tr}\bigl(G(t)^{1/2}\Omega G(t)^{1/2}
+\widetilde P_X(t)\bigr).
+\tag{CA15}
+\]
+
+Consequently, for \(t>0\),
+
+\[
+t\delta'(t)=-\operatorname{Tr}(D_tA_t),
+\quad D_t=tG(t)^{1/2}\Omega G(t)^{1/2},
+\quad A_t=\widetilde P_K(t)+\widetilde P_V(t)-\widetilde P_{S_0}(t).
+\tag{CA16}
+\]
+
+This proves IQR15. It differentiates the original fixed-frame Gram matrices. No derivative of a moving transformed frame has been omitted: the transformed projections occur only after evaluating that derivative by CA15.
+
+## 4. Complete spectrum of the projection-pair operator
+
+Fix \(t\), and write \(\mathcal K=G(t)^{1/2}K\), \(\mathcal V=G(t)^{1/2}V\). Their intersection remains zero because \(G(t)^{1/2}\) is invertible. The matrices
+
+\[
+T_K=G(t)^{1/2}I_KH_K(t)^{-1/2},
+\qquad T_V=G(t)^{1/2}UH_V(t)^{-1/2}
+\]
+
+have orthonormal columns, and \(T_K^*T_V=B_t\).
+Choose a singular-value decomposition of \(B_t\), rotating these two orthonormal frames accordingly. If \(p=\min(m,r)\), the resulting unit vectors satisfy
+
+\[
+e_i^*e_j=\delta_{ij},\qquad f_i^*f_j=\delta_{ij},
+\qquad e_i^*f_j=c_i\delta_{ij},
+\tag{CA17}
+\]
+
+for paired indices, with all additional cross products zero. Here \(e_i\in\mathcal K\) and \(f_i\in\mathcal V\), not the untransformed physical subspaces. By Cauchy–Schwarz, \(c_i\le1\). Equality would give \(f_i=e_i\), contradicting \(\mathcal K\cap\mathcal V=0\). Thus \(0\le c_i<1\), agreeing with CA12.
+
+For each paired index put
+\(h_i=(f_i-c_ie_i)/\sqrt{1-c_i^2}\). Equations CA17 show that all pairs \((e_i,h_i)\) are orthonormal and mutually orthogonal. The extra unpaired vectors are orthogonal to their sum. On the pair \((e_i,h_i)\), the two projections are
+
+\[
+\widetilde P_K=\begin{pmatrix}1&0\\0&0\end{pmatrix},
+\qquad
+\widetilde P_V=\begin{pmatrix}c_i^2&c_i\sqrt{1-c_i^2}\\
+c_i\sqrt{1-c_i^2}&1-c_i^2\end{pmatrix}.
+\]
+
+The projection onto \(\mathcal K+\mathcal V\) is the identity on that pair. Hence
+
+\[
+A_t\big|_{\operatorname{span}(e_i,h_i)}
+=\begin{pmatrix}c_i^2&c_i\sqrt{1-c_i^2}\\
+c_i\sqrt{1-c_i^2}&-c_i^2\end{pmatrix},
+\qquad \det(\lambda I-A_t)=\lambda^2-c_i^2.
+\tag{CA18}
+\]
+
+The eigenvalues on this pair are \(+c_i,-c_i\). If \(c_i=0\), the entire block is zero. An unpaired vector lies in one subspace and is orthogonal to the other, so \(A_t\) is zero on it as well. Outside \(\mathcal K+\mathcal V\), all three projections vanish. This accounts for every dimension of \(E\).
+
+Thus the nonzero eigenvalues of \(A_t\) are exactly \(\nu(t)\) pairs \(+c_i,-c_i\), where
+
+\[
+\nu(t)=\operatorname{rank}B_t
+=\operatorname{rank}(I_K^*G(t)U)\le\min(m,r).
+\tag{CA19}
+\]
+
+In particular, if \(A_t=A_{t,+}-A_{t,-}\) is its positive/negative spectral decomposition, then
+
+\[
+0\preceq A_{t,+},A_{t,-}\preceq I,
+\qquad
+\operatorname{rank}A_{t,+}=\operatorname{rank}A_{t,-}=\nu(t).
+\tag{CA20}
+\]
+
+This proves the complete IQR16 spectrum, including the orthogonal and exterior directions.
+
+## 5. Covariance spectrum and the sharp rank-dependent trace estimate
+
+Set
+
+\[
+C=G_0^{1/2}\Omega G_0^{1/2},\qquad
+d=\operatorname{rank}\Omega=\operatorname{rank}C,
+\qquad c=\|C\|.
+\tag{CA21}
+\]
+
+Write the eigenvalues of \(C\) in decreasing order as
+\(\lambda_1\ge\cdots\ge\lambda_n\ge0\). Direct multiplication proves
+
+\[
+G(t)=G_0^{1/2}(I+tC)^{-1}G_0^{1/2},
+\quad
+G_0^{-1/2}G(t)\Omega G_0^{1/2}=(I+tC)^{-1}C.
+\tag{CA22}
+\]
+
+Also
+\(G(t)^{-1/2}(tG(t)\Omega)G(t)^{1/2}=D_t\).
+Therefore the positive matrix \(D_t\) has the exact ordered eigenvalues
+
+\[
+\mu_j(t)=\frac{t\lambda_j}{1+t\lambda_j},
+\qquad
+\operatorname{rank}D_t=d\ (t>0),
+\qquad \|D_t\|=\frac{tc}{1+tc}.
+\tag{CA23}
+\]
+
+The following elementary trace bound also records why a factor 2 is unnecessary. Let \(D\succeq0\), and let \(0\preceq B\preceq I\) have rank at most \(s\). In an eigenbasis \(u_j\) of \(D\), with descending eigenvalues \(\mu_j\), set \(b_j=u_j^*Bu_j\). Then \(0\le b_j\le1\), and \(\sum b_j=\operatorname{Tr}B\le s\). The decreasing order gives
+
+\[
+\sum_j\mu_jb_j\le\sum_{j=1}^s\mu_j.
+\tag{CA24}
+\]
+
+For completeness, when \(1\le s<n\), the tail satisfies
+\(\sum_{j>s}\mu_jb_j\le\mu_s\sum_{j>s}b_j\), while
+\(\sum_{j\le s}\mu_j(1-b_j)\ge\mu_s\sum_{j\le s}(1-b_j)\).
+The first total weight is at most the second because \(\sum b_j\le s\), proving CA24. The cases \(s=0\) and \(s=n\) are immediate.
+
+Apply CA24 separately to \(A_{t,+}\) and \(A_{t,-}\). Each of
+\(a=\operatorname{Tr}(D_tA_{t,+})\) and
+\(b=\operatorname{Tr}(D_tA_{t,-})\)
+is nonnegative and at most \(\sum_{j=1}^{\nu(t)}\mu_j(t)\). Since
+\(|a-b|\le\max(a,b)\), not merely \(a+b\), CA16 yields
+
+\[
+|t\delta'(t)|
+\le\sum_{j=1}^{\min(\nu(t),d)}\frac{t\lambda_j}{1+t\lambda_j}
+\le\ell\frac{tc}{1+tc},
+\qquad \ell=\min(m,r,d).
+\tag{CA25}
+\]
+
+For \(t>0\), division by \(t\) gives an integrable bound down to zero. All original Grams are smooth and positive at zero, so \(\delta\) is continuously differentiable there. Integration proves the stronger estimate
+
+\[
+\boxed{
+|\delta(t)-\delta(0)|
+\le\sum_{j=1}^{\ell}\log(1+t\lambda_j(C))
+\le\min(m,r,\operatorname{rank}\Omega)\log(1+t\|C\|).
+}
+\tag{CA26}
+\]
+
+If \(d=0\), positive semidefiniteness gives \(\Omega=0\), and CA1 is constant. Thus CA26 also covers that case without dividing by a positive eigenvalue. The second inequality in CA26 is exactly IQR17.
+
+The instantaneous cross-Gram rank \(\nu(t)\) is available in CA25. It cannot in general be replaced throughout the integrated estimate by \(\nu(0)\), because covariance activation may create nonzero cross-Gram entries. An exact example follows below.
+
+## 6. Four original cutoffs and the original coefficient scale
+
+Return to the original objects and cutoffs in the receiver:
+
+\[
+q=(k+1)^2,\quad k\equiv1\pmod4,\quad
+N=q-1,q,2q-1,2q,\quad
+m=8k-16,\quad 1\le r<q.
+\]
+
+Keep every period, source, and finite positivity guard of IQR1 and IQR3. For each original cutoff use its actual \(G_N(0)\), \(\Omega_N\), \(C_N=G_N(0)^{1/2}\Omega_NG_N(0)^{1/2}\), and activation \(t_N\ge0\). The fixed-period argument applies separately at each cutoff; it does not identify these four matrices with one another. For the absolute-angle application below, \(G_N(0)\) is the canonical original metric unless the same initial-angle estimate has been proved for the actual different baseline.
+
+For that canonical original metric, the previously proved base estimate is
+
+\[
+0\le\delta_{r,N}(0)\le\min(m,r)\varepsilon_{k,r}.
+\tag{CA27}
+\]
+
+The finite change estimate CA26 holds for every positive baseline, but it does not by itself prove CA27 at an already activated baseline. In particular, if an ACC path starts from a previously activated metric, its initial angle is the angle of that metric. The canonical IVO bound cannot be substituted for it without a proof connecting the two actual baselines.
+
+Adding CA26 and using CA12 gives the finite IQR18 bound
+
+\[
+0\le\delta_{r,N}(t_N)\le
+L_N:=\min(m,r)\varepsilon_{k,r}
++\ell_N\log(1+t_N\|C_N\|),
+\quad \ell_N=\min(m,r,\operatorname{rank}\Omega_N).
+\tag{CA28}
+\]
+
+Let the original four-sign operator be
+\(\mathcal Ra=a_{q-1}+a_q-a_{2q-1}-a_{2q}\).
+For four quantities \(0\le a_N\le L_N\), set
+\(P=a_{q-1}+a_q\), \(M=a_{2q-1}+a_{2q}\).
+Then \(0\le P\le L_{q-1}+L_q\), \(0\le M\le L_{2q-1}+L_{2q}\), so
+
+\[
+|\mathcal R\delta_{r,N}(t_N)|
+\le\max\{L_{q-1}+L_q,L_{2q-1}+L_{2q}\}.
+\tag{CA29}
+\]
+
+This uses the signs and nonnegativity exactly; it is stronger than summing all four \(L_N\).
+
+Now suppose the original asymptotic regime is
+\(r\log(q+2)=o(q)\), and the fixed source constants in IQR1 give
+
+\[
+\varepsilon_{k,r}=O_{h,A}((k+Jr)\log(q+Jr+2))=o(q).
+\tag{CA30}
+\]
+
+The last equality also follows directly when \(J\) is fixed: because \(r<q\), the logarithm is \(O(\log(q+2))\); because \(q=(k+1)^2\), \(k\log(q+2)=o(q)\); and the remaining term is small by the stated regime. Since \(m=O(k)\),
+
+\[
+\min(m,r)\varepsilon_{k,r}\le m\varepsilon_{k,r}=o(kq).
+\tag{CA31}
+\]
+
+This deduction covers \(r\le k\) and \(r>k\) without introducing a second regime or dropping an original coordinate.
+
+For the covariance term require its exact activated size bound
+
+\[
+\max_N\log(1+t_N\|C_N\|)=O_h(q\log(q+2)),
+\quad \max_N\operatorname{rank}\Omega_N\le d_k,
+\quad d_k\log(q+2)=o(k).
+\tag{CA32}
+\]
+
+The first bound follows, for example, from the stated unactivated logarithmic-size bound and \(0\le t_N\le1\), as in the nonnegative-parameter activation scales in IQR14. If activations larger than 1 are allowed, it is the activated expression in CA32 that must satisfy the displayed bound. Then
+
+\[
+\ell_N\log(1+t_N\|C_N\|)
+\le d_k\,O_h(q\log(q+2))=o(kq)
+\tag{CA33}
+\]
+
+uniformly over the four cutoffs. Equations CA29–33 prove
+
+\[
+\mathcal R\delta_{r,N}(t_N)=o(kq).
+\tag{CA34}
+\]
+
+For every actual one-column or two-column source, CA4 gives \(\operatorname{rank}\Omega_N\le1\) or \(\le2\), including dependent columns and complete off-diagonal source Grams. Here \(d_k\le2\), and
+\(d_k\log(q+2)/k\to0\). Thus, when CA27 and the actual-baseline size bound CA32 hold, CA34 applies at both ranks. If CA27 has not been proved at an already activated baseline, rank one or two still gives the angle-change and cost bounds in CA26 and CA37 under CA32; it does not alone give the absolute-angle conclusion CA34. The covariance's norm itself can grow exponentially on the allowed scale; the proof does not require the source change to be small. A general rank-\(q\) covariance does not satisfy the rank hypothesis in CA32, and no \(o(kq)\) conclusion for it follows from this estimate alone.
+
+## 7. The exact kernel-cost identity and its four-sign version
+
+Use the determinant-loss convention
+
+\[
+F_K(t)=\log\det H_K(0)-\log\det H_K(t),
+\quad
+\overline F_K(t)=\log\det\widehat H_K(0)
+-\log\det\widehat H_K(t).
+\tag{CA35}
+\]
+
+Subtract CA10 at the two ends of the same path. The result is exactly
+
+\[
+\boxed{\overline F_K(t)=F_K(t)+\delta(t)-\delta(0).}
+\tag{CA36}
+\]
+
+This proves IQR19 with its stated sign. With the opposite cost convention both cost signs would reverse; CA35 makes the convention explicit.
+
+For four cutoff-dependent paths, each quantity
+\(\delta_{r,N}(t_N)-\delta_{r,N}(0)\) can have either sign. Thus the max-of-two-sums argument in CA29 is applied to \(\delta(t_N)\) itself, not directly to these differences. Applying CA26 instead gives the exact finite bound
+
+\[
+\left|\mathcal R(\overline F_{K,N}(t_N)-F_{K,N}(t_N))\right|
+\le\sum_{N=q-1,q,2q-1,2q}
+\ell_N\log(1+t_N\|C_N\|).
+\tag{CA37}
+\]
+
+Under CA32 this is \(o(kq)\), for any positive starting metric, without using CA27. Alternatively, when the actual starting metric also satisfies CA27, CA29 at time \(t_N\) and at zero, together with CA31–33, gives the same asymptotic conclusion. In particular the actual activated kernel cost and its quotient have the same \(kq\) coefficient when both costs refer to the same starting metric and the actual-baseline covariance obeys CA32.
+
+The path holds \(K,V,\pi\) and their coefficient frames fixed. For a different variation in which \(\pi\) changes, direct differentiation gives
+
+\[
+\partial(\pi G^{-1}\pi^*)
+=(\partial\pi)G^{-1}\pi^*
++\pi G^{-1}(\partial\pi)^*
+-\pi G^{-1}(\partial G)G^{-1}\pi^*.
+\tag{CA38}
+\]
+
+Nothing in CA16 or CA36 removes the first two terms of CA38.
+
+## 8. Exact examples testing sharpness, sign, and source cross terms
+
+### 8.1 Rank one: sharp coefficient and changing cross-Gram rank
+
+Take \(E=\mathbb C^2\), \(G_0=I_2\), \(K=\operatorname{span}(e_1)\), \(V=\operatorname{span}(e_2)\), and
+
+\[
+\Omega=\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+
+This is a positive rank-one projection, so \(C=\Omega\), \(\|C\|=1\). The identity \(\Omega^2=\Omega\) gives
+\(G(t)=I_2-\frac{t}{1+t}\Omega\). Its two diagonal entries are
+\((1+t/2)/(1+t)\), and its determinant is \((1+t)^{-1}\). Hence
+
+\[
+\delta(0)=0,\qquad
+\delta(t)=\log\frac{(1+t/2)^2}{1+t}.
+\tag{CA39}
+\]
+
+The quantity in the logarithm is at least 1 because
+\((1+t/2)^2-(1+t)=t^2/4\). Its derivative is
+\(\delta'(t)=t/((t+2)(t+1))\), which obeys CA25. Also
+
+\[
+\delta(t)=\log t-\log4+o(1),\qquad
+\frac{\delta(t)}{\log(1+t)}\longrightarrow1.
+\]
+
+Thus the coefficient 1 in the rank-one form of CA26 cannot be replaced by a smaller universal coefficient. The cross Gram at zero is zero, but at \(t>0\) it is \(-t/(2(1+t))\ne0\). Therefore \(\nu(0)=0\) cannot replace the uniform rank bound in CA26.
+
+### 8.2 The angle loss need not increase
+
+Let \(0<\rho<1\), keep the same coordinate subspaces, and set
+
+\[
+G_0=\begin{pmatrix}1&\rho\\\rho&1\end{pmatrix},\qquad
+\Omega=\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+
+In the orthonormal eigenvectors \((e_1+e_2)/\sqrt2\),
+\((e_1-e_2)/\sqrt2\), the metric eigenvalues are
+\(a(t)=(1+\rho)/(1+t(1+\rho))\) and \(b=1-\rho\). Therefore
+
+\[
+\delta(t)=\log\frac{(a(t)+b)^2}{4a(t)b},
+\qquad \delta(0)=-\log(1-\rho^2)>0.
+\tag{CA40}
+\]
+
+At \(t_*=2\rho/(1-\rho^2)\), direct substitution gives \(a(t_*)=b\), so \(G(t_*)=bI_2\) and \(\delta(t_*)=0\). This exact decrease proves why the absolute-value estimate is needed and why a signed difference cannot automatically be treated as nonnegative.
+
+### 8.3 Rank two with a full non-diagonal source Gram
+
+Take \(E=\mathbb C^4\), \(G_0=I_4\), \(K=\operatorname{span}(e_1,e_2)\), \(V=\operatorname{span}(e_3,e_4)\), and the complete two-column source
+
+\[
+H_Z=\begin{pmatrix}2&1\\1&2\end{pmatrix},\qquad
+F_Z=\frac1{\sqrt2}\begin{pmatrix}1&0\\0&1\\1&0\\0&1\end{pmatrix}.
+\]
+
+Here
+\(H_Z^{-1}=\frac13\begin{psmallmatrix}2&-1\\-1&2\end{psmallmatrix}\), and
+
+\[
+\Omega=F_ZH_Z^{-1}F_Z^*
+=\frac12\begin{pmatrix}H_Z^{-1}&H_Z^{-1}\\
+H_Z^{-1}&H_Z^{-1}\end{pmatrix}.
+\tag{CA41}
+\]
+
+Every displayed off-diagonal entry is retained. On the subspace of vectors \((x,x)/\sqrt2\), the metric \(G(t)\) acts as
+\(A(t)=(I_2+tH_Z^{-1})^{-1}\); on \((x,-x)/\sqrt2\), it is the identity. Therefore its diagonal coordinate blocks are \((I_2+A(t))/2\), and \(\det G(t)=\det A(t)\). The eigenvalues of \(H_Z^{-1}\) are \(1,1/3\), so
+
+\[
+\delta(t)=
+\log\frac{(1+t/2)^2}{1+t}
++\log\frac{(1+t/6)^2}{1+t/3}.
+\tag{CA42}
+\]
+
+This verifies the complete-covariance interpretation with rank two. At \(t=1\), the answer is \(\log(147/128)\). Deleting the cross terms in \(H_Z\) would instead replace it by \(2I_2\) and give \(\log(625/576)\), a different answer. Thus this finite example detects an unauthorized source-Gram truncation.
+
+Finally, \(\delta(t)=2\log t+O(1)\), so
+\(\delta(t)/\log(1+t)\to2\). The dimension/rank coefficient 2 in CA26 is also optimal in the class of rank-two examples. Direct sums of CA39 give the corresponding optimal coefficient for every positive integer rank allowed by the two subspace dimensions.
+
+## 9. Complete coefficient-identity algebra
+
+Retain the EIQ potential \(\pi\sqrt x-2\log x\), the positive square-root endpoints \(u,v\), and the exact definitions from IQR2:
+
+\[
+uK(\kappa)=2,\qquad vE(\kappa)=4,\qquad
+a=u/v,\quad \kappa^2=1-a^2,
+\quad w=(u+v)/2,\quad z=uv,\quad c=(v^2-u^2)/4.
+\tag{CA43}
+\]
+
+All logarithms below have positive arguments on the retained endpoint domain \(0<u<v\), \(0<\kappa<1\). The letter \(c\) in this section is the original endpoint quantity \((v^2-u^2)/4\), not the covariance norm in CA21.
+
+The retained identities are
+
+\[
+L=6\log w-2\log z-2,
+\quad C_\partial=4\log(4/\pi)+8\log w-4\log z-2\log c,
+\tag{CA44}
+\]
+
+and
+
+\[
+\psi(0)=\log(4/\pi),\qquad
+\psi(1)=\log\frac{\kappa(1+a)}{E(\kappa)^2},
+\qquad J(1)=2(\log2-1)-L/2.
+\tag{CA45}
+\]
+
+The first value in CA45 is explicitly S3 in the cited retained proof. It is needed for the first displayed simplification in IQR2; the inspected receiver uses it without restating it.
+
+From CA43, without rescaling either endpoint,
+
+\[
+v=\frac4{E(\kappa)},\quad
+w=\frac{v(1+a)}2,\quad
+\sqrt c=\frac{v\kappa}2.
+\]
+
+Therefore
+
+\[
+\frac{w\sqrt c}{4}
+=\frac{v^2\kappa(1+a)}{16}
+=\frac{\kappa(1+a)}{E(\kappa)^2},
+\quad
+\psi(1)=\log w+\frac12\log c-\log4.
+\tag{CA46}
+\]
+
+Now expand every term:
+
+\[
+\begin{aligned}
+4[\psi(0)-\psi(1)-J(1)-1]
+&=4\log(4/\pi)
+-4\log w-2\log c+4\log4\\
+&\quad-8\log2+8+2L-4\\
+&=4\log(4/\pi)-4\log w-2\log c+4+2L\\
+&=4\log(4/\pi)-4\log w-2\log c+4\\
+&\quad+12\log w-4\log z-4\\
+&=4\log(4/\pi)+8\log w-4\log z-2\log c\\
+&=C_\partial.
+\end{aligned}
+\tag{CA47}
+\]
+
+The cancellation uses \(4\log4=8\log2\), and the additive constants \(+4\) and \(-4\) cancel only after the full \(L\) identity is inserted. Thus IQR2 has the correct constants, signs, and original endpoint scale. Its equality requires no numerical approximation. Any already proved interval for this same \(C_\partial\) transfers through the equality, but the numerical interval itself has not been re-certified by this independent algebra check.
+
+## 10. Precise conclusions for the receiver
+
+- IQR15 is the exact fixed-period determinant differential in the original metric.
+- IQR16 has the asserted paired spectrum; the vectors in its two-dimensional blocks belong to \(G(t)^{1/2}K\) and \(G(t)^{1/2}V\).
+- IQR17 follows from CA26, which also gives the stronger sum over the top \(\min(m,r,d)\) covariance eigenvalues.
+- IQR18 is valid with the concatenated frame, the actual covariance ranks, the initial-angle estimate for the same starting metric, and the actual-baseline activated logarithmic-size bound CA32. It gives \(o(kq)\) for ranks one and two under the stated \(r\log(q+2)=o(q)\) regime when those hypotheses hold. An already activated baseline does not inherit the canonical IVO initial-angle estimate from rank alone.
+- IQR19 is exact for the determinant-loss convention CA35. Its signed four-cutoff correction is controlled by CA37.
+- IQR2 is algebraically correct, with the endpoint value \(\psi(0)=\log(4/\pi)\) made explicit.
+
+No counterexample occurs under these hypotheses. The exact examples identify three limits of stronger statements that were not asserted: the angle loss need not be monotone, the initial cross-Gram rank is not a uniform rank bound, and deleting source cross terms changes the answer.

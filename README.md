@@ -1,3 +1,12 @@
+<!-- inverse-power-directional-verified-doi:20260921 -->
+## Read the inverse-power observation and resonance-direction papers
+
+[Read the four-page Split-Zero inverse-power paper](https://zenodo.org/records/22865640) ([DOI 10.5281/zenodo.22865640](https://doi.org/10.5281/zenodo.22865640)); [read the separate 11-page resonance-direction paper](https://zenodo.org/records/22865640/files/105-splitzero-real-period-directions.pdf?download=1). The first constructs an exact conductor left inverse and a finite observation lower bound in the original metric. The second calculates every cutoff's resonance rays and the full inverse-spectrum transition along curved approaches to the certified real period.
+
+[Complete source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/README.md), [exact proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/PROOF_LINKS.json), [results and their uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/689a8f87e9c12b7a99b01b3123438c6751ee608f/workbenches/splitzero-tandem/continuations/20260921-directional-inverse-power/RESULT_INDEX.json), and [complete LaTeX, supporting proofs and figures](https://zenodo.org/records/22865640/files/107-splitzero-directional-inverse-power-sources.zip?download=1) are available. Human citations and original check receipts are retained. The finite lower bound may tend to zero; the geometric family is not identified with arithmetic zeta zeros. Neither paper concludes RH.
+
+The earlier 79-page native spectral and 22-page real-period papers remain separate downloads, as do all other earlier PDFs. Source ZIPs 93, 87 and 88 are retained exactly inside the new archive and remain separately downloadable from [the preceding DOI edition](https://zenodo.org/records/22865550).
+
 <!-- directional-inverse-power:20260921 -->
 ## Resonance directions and inverse-power observation
 

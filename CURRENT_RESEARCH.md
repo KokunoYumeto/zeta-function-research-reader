@@ -33,6 +33,14 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### The original invariant determinant and an arithmetic collision
+
+[Read the 45-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/INVARIANT_DETERMINANT_COLLISION_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/INVARIANT_DETERMINANT_COLLISION_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/RESULTS_20260921_018.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260921-invariant-collision/RESULT_INDEX.json).
+
+The Split-Zero programme studies its original arithmetic theta source, quotient and observation through determinant and heat estimates. This paper calculates the kernel-volume return of a polynomial formed from the conductor's actual pivot-interior roots. Its collision quotient retains the metric it removes as an explicit graph term. The complete finite invariant determinant keeps every original row and nonideal relation; a sharper comparison for the same physical source supplies the stated O(q log q) transfer error.
+
+Each complete relation added at a cutoff now has an exact split into new-source, observed and residual-kernel energies. The resulting positive loss factors keep all endpoint weights. Exact integer condensation calculates two scalar Gamma-reference examples, identified as reference examples rather than actual zeta data. Complete FI1–17, IC1–42, CI1–26 and CL1–18 proofs, standalone LaTeX, figures, checks, 48 inherited complete-source blocks and human provenance accompany the paper. Christian Krattenthaler's original determinant-calculus source and the named DLMF authors retain their precise citations. Original-period kernel allocation, independent proper-source comparisons and complex-current signs remain unevaluated. Imported analytic inputs retain their stated status; separate unsealed 019 work is not included. Earlier editions and the whole-project description remain intact.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22876297) (assigned DOI 10.5281/zenodo.22876297) retains the complete research programme and adds the 31-page moving-rational-family and observed-memory paper, with complete LaTeX, human provenance and precise proof links. All 68 earlier PDFs remain separate.
 
 ### Moving rational sources, arithmetic collisions and complete observed memory

@@ -1,0 +1,4322 @@
+# Identity Absorber Square — complete proofs
+
+
+
+
+# 1. The object and the name
+
+The starting coefficient object is exactly
+\[
+S=G(\mathbb Z)=\mathbb Z\sqcup\{\tau\},\qquad
+\tau+x=x,\qquad \tau x=\tau\quad(x\in S).
+\]
+Its supported integer zero is \(e=0_{\mathbb Z}\), with \(e\ne\tau\) and \(n+(-n)=e\).
+The original integer sums and products are retained. The construction is the one in the originating programme source [1], not a replacement of its unsupported element by integer zero.
+
+For an operation, an identity leaves its other argument unchanged; an absorber makes the output equal to itself. Choosing independently for addition and multiplication gives the four defining roles:
+
+| Distinguished element | Addition | Multiplication |
+|---|---|---|
+| \(\tau\) | \(\tau+x=x\) | \(\tau x=\tau\) |
+| \(\varepsilon\) | \(\varepsilon+x=x\) | \(\varepsilon x=x\) |
+| \(u\) | \(u+x=u\) | \(ux=x\) |
+| \(\Omega\) | \(\Omega+x=\Omega\) | \(\Omega x=\Omega\) |
+
+The domains of \(x\), preservation of old identities, and forced quotients are part of each construction; Theorem Z1 of [3] states them in full. For example, literal \(\Omega\) adjoined to \(S\) satisfies \(\tau\Omega=\Omega\), so \(\tau\) is not a global multiplicative absorber in that larger algebra.
+
+The name chosen for this branch is **Identity Absorber Square**. In standard algebraic language, the work studies adjunctions of identity and absorbing elements to algebras with two commutative monoid operations and distributive multiplication. The literal \(\Omega\)-extension need not satisfy the global zero-annihilation axiom in the usual definition of a semiring. The name **absolute element square** can designate this particular research construction; no claim is made that it is an established technical term or that “absolute” identifies it with absolute prismatic cohomology.
+
+# 2. The precise coefficient relation
+
+Let \(N=\mathbb Z\setminus\{0\}\) with integer multiplication, and let \(\Lambda=\mathbb Z[N]\). Theorem Z7 of [3] proves, with explicit inverses,
+\[
+\Gamma(S)=\mathbb Z[S]/([\tau])
+\cong\mathbb Z\times\Lambda,\qquad
+[e]\longmapsto(1,0),\quad
+[n]\longmapsto(1,[n])\ (n\ne0).
+\tag{C1}
+\]
+The first projection is induced by the original support character
+\(\chi(\tau)=0,\chi(n)=1\); the second is induced by the arithmetic monoid map
+\(a(\tau)=e,\ a(n)=n\). Its codomain before base extension is the multiplicative integer monoid whose absorber is \(e\). Thus the second factor is the formal monoid ring \(\Lambda\), not yet the ordinary arithmetic ring.
+
+Evaluation
+\[
+\operatorname{ev}:\Lambda\longrightarrow\mathbb Z,\qquad
+\sum a_n[n]\longmapsto\sum a_nn
+\]
+is a unital ring homomorphism. The quotient which imposes every original additive relation is
+\[
+\mathbb Z\times\Lambda\longrightarrow\mathbb Z,\qquad
+(k,v)\longmapsto\operatorname{ev}(v).
+\tag{C2}
+\]
+Its kernel is \(\mathbb Z\times\ker(\operatorname{ev})\), exactly as proved in (Z49). In particular, the relation \(e+e=e\) kills the idempotent \([e]=(1,0)\). This is a statement about the specified quotient; it does not identify \(e\) and \(\tau\) in \(S\).
+
+Fix a prime \(p\), write \(\widehat\Lambda=\varprojlim_r\Lambda/p^r\Lambda\), and let
+\[
+B_S=\mathbb Z_p\times\widehat\Lambda,\qquad
+E=(1,0),\qquad F=1-E=(0,1).
+\tag{C3}
+\]
+The prismatic comparison [4] constructs the canonical Frobenius on this ring and a second explicit Frobenius compatible with (C2). Both fix \(E,F\); the simultaneous conjugate family in Theorem P5 does so as well. The next statement records exactly what the retained idempotents do to coefficient complexes.
+
+**Theorem C1 (modules, differentials and Frobenius preserve the two factors).**
+The maps
+\[
+M\longrightarrow EM\times FM,\quad m\longmapsto(Em,Fm),
+\qquad
+EM\times FM\longrightarrow M,\quad(x,y)\longmapsto x+y
+\tag{C4}
+\]
+are inverse natural isomorphisms for every unital \(B_S\)-module \(M\).
+They give an equivalence of categories
+\[
+B_S\text{-}\mathrm{Mod}\ \cong\
+\mathbb Z_p\text{-}\mathrm{Mod}\times
+\widehat\Lambda\text{-}\mathrm{Mod}.
+\tag{C5}
+\]
+For every cochain complex \(K^\bullet\) of \(B_S\)-modules, with no boundedness assumption, these maps are an isomorphism of complexes and induce
+\[
+H^i(K^\bullet)\cong
+H^i(EK^\bullet)\times H^i(FK^\bullet)
+\quad(i\in\mathbb Z).
+\tag{C6}
+\]
+If \(\Phi:M\to M\) is semilinear for either of the two specified Frobenius lifts, then \(\Phi\) preserves both factors.
+
+**Proof.** Direct multiplication gives \(E^2=E\), \(F^2=F\), \(EF=FE=0\) and \(E+F=1\). Hence the second map in (C4) composed with the first is \(m\mapsto(E+F)m=m\). Conversely \(E(x+y)=x\) and \(F(x+y)=y\) for \(x\in EM,y\in FM\), proving the other composite is the identity. The action on \(EM\) factors through \(B_SE\cong\mathbb Z_p\), and that on \(FM\) through \(B_SF\cong\widehat\Lambda\). Given modules \(U,V\) over these two rings, coordinatewise action makes \(U\times V\) a \(B_S\)-module with factors \(U,V\). A \(B_S\)-linear map commutes with \(E,F\); conversely a pair of maps on the factors gives a unique \(B_S\)-linear map. These constructions prove the category equivalence including morphisms.
+
+Every differential is \(B_S\)-linear, so it commutes with \(E,F\), and (C4) is an isomorphism of complexes. In each degree, its kernel is the product of the two kernels, and its image is the product of the two images: for the latter, any pair \(d_E x,d_F y\) is the differential of \((x,y)\). The quotient of these kernels by these images is the product of the two quotients, proving (C6). Finally
+\(\Phi(Em)=\phi(E)\Phi(m)=E\Phi(m)\), and the identical calculation holds for \(F\). This proves the last assertion. \(\square\)
+
+For the literal extension \(H=S\sqcup\{\Omega\}\), Theorem Z7 gives
+\(B_H=\mathbb Z_p\times\mathbb Z_p\times\widehat\Lambda\).
+Its orthogonal idempotents are, in the original basis,
+\[
+[\tau],\qquad [e]-[\tau],\qquad [1]-[e].
+\tag{C7}
+\]
+Their coordinates are respectively \((1,0,0),(0,1,0),(0,0,1)\); thus they are orthogonal, sum to \(1\), and are fixed by the two stated Frobenius lifts. Repeating the explicit maps (C4) with three coordinates proves the corresponding three-factor equivalence and cohomology decomposition. The proof requires no identification of \(\tau\) with \(e\).
+
+Theorem C1 concerns complexes over the constructed monoid rings. It does not assert an equivalence between those modules and the original Split-Zero semimodules, nor does it identify an existing programme complex with absolute prismatic cohomology. Its content is a proved coefficient decomposition and its exact behavior under differentials and Frobenius.
+
+# 3. Why multiplication cannot select the original addition
+
+**Theorem C2 (two additions with the same specified multiplication).**
+There are two ring additions on the set \(\mathbb Z\), with the same integer multiplication, the same \(0,1,-1\), and the same multiplicative support information, for which the sum of \(1\) with itself is respectively \(2\) and \(3\). Each extends to a Split-Zero structure on the same set \(S\), with the same multiplication and the same unsupported element \(\tau\).
+
+**Proof.** Every nonzero integer has a unique expression
+\(n=2^r3^s m\), where \(r,s\ge0\) and \(m\) is an integer divisible by neither \(2\) nor \(3\). Existence follows by repeatedly dividing by \(2\) and \(3\), which strictly decreases the positive absolute value until the process stops. Uniqueness follows by cancellation and the fact that \(2\) does not divide an odd integer and \(3\) does not divide a product of integers not divisible by \(3\); the latter fact follows directly from the two nonzero residue classes modulo \(3\).
+Define
+\[
+f(0)=0,\qquad f(2^r3^s m)=2^s3^r m.
+\]
+Then \(f^2=\mathrm{id}\). Exponents add on products, and the product of two remaining factors is still divisible by neither \(2\) nor \(3\). Hence \(f(xy)=f(x)f(y)\) for nonzero \(x,y\); the zero cases follow from \(f(0)=0\). Also \(f(1)=1\) and \(f(-1)=-1\).
+
+Define
+\[
+x\boxplus y=f^{-1}(f(x)+f(y)).
+\tag{C8}
+\]
+For associativity, applying the injective map \(f\) to either parenthesized three-term sum gives \(f(x)+f(y)+f(z)\). Commutativity follows in the same way. Zero is the identity, and the inverse of \(x\) is \(f^{-1}(-f(x))\). To verify distributivity, apply \(f\):
+\[
+f\bigl(x(y\boxplus z)\bigr)
+=f(x)(f(y)+f(z))
+=f(xy)+f(xz)
+=f(xy\boxplus xz).
+\]
+The other distributive law follows by commutativity of multiplication. The original unit \(1\) is unchanged. These checks prove the ring axioms with the unchanged multiplication. But \(1\boxplus1=f^{-1}(2)=3\), whereas \(1+1=2\).
+
+Extend \(f\) by \(f(\tau)=\tau\) and extend \(\boxplus\) by making \(\tau\) its identity. This is transport of the whole original Split-Zero structure under the multiplicative bijection \(f\), so all its identities and distributive laws follow from the corresponding identities already checked, including cases involving \(\tau\). Both structures have the same multiplication and the same support character. Thus those data alone do not select which displayed element is the sum \(1+1\). \(\square\)
+
+The two rings are isomorphic through \(f\); the theorem proves a failure of *canonical recovery on the specified underlying multiplicative object*. It does not claim that the two rings are unrelated. The corrected Frobenius in [4] imports the chosen integer values into its coefficients. This explains why it is a valid positive bridge but not a construction of integer addition from multiplication alone.
+
+# 4. Position in the programme
+
+This is an algebraic branch of Split Zero: its starting object, support map and arithmetic projection are the programme's original ones. The four-corner and order calculations determine which arithmetic and support data survive each adjoining construction. The monoid-ring calculations then connect those exact objects to familiar coefficient rings and bounded crystalline prisms. The user proposed the four-role framing and suggested investigating the prismatic connection; the local derivations supply the stated proofs. Historical novelty is not asserted.
+
+The prismatic literature does not define a prism by multiplication alone. Its \(\delta\)-ring already includes addition, and the absolute site varies bounded prisms without a fixed base prism. Theorems P1–P5 of [4] calculate objects and maps in that setting. They neither solve a stated open problem in absolute prismatic cohomology nor establish an equivalence with the programme's analytic cohomology.
+
+# References and complete proof sources
+
+[1] HI-AI, *An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*, Zenodo 17555345, original 11.tex, Section 3 and the arbitrary-ring construction. See the preserved original [source](sources/17555345_11.tex), lines 578–749 and 1524–1577.
+
+[2] HI-AI, *An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements*, Zenodo 17547186, original 5.tex, literal \(\Omega\) construction. See the preserved original [source](sources/17547186_5.tex), lines 1288–1360.
+
+[3] [Four corners over the integers](FOUR_CORNERS_OVER_Z.md), Theorems Z1–Z8. All definitions, receiver maps, comparisons and product coordinates used above are fully proved there.
+
+[4] [Prismatic comparison](PRISMATIC_COMPARISON.md), with original human sources and the full local construction.
+
+
+## Retained cohomology and Frobenius
+
+The [chain comparison](CHAIN_COMPARISON.md), Theorems Q1–Q4, propagates these coefficient maps to supported cohomology and calculates the additive-relation kernel. The [homotopy-defect construction](HOMOTOPY_DEFECT.md) proves the exact retained summand for a contractible input and its coefficient extensions. In the integer example the [Frobenius cross-effect](FROBENIUS_CROSS_EFFECT.md), Theorems F1–F3, is the mixed Laurent ideal: it has a specified Frobenius-semilinear map, a completely calculated linearization cokernel, and a delta-stable ideal defining an actual quotient of crystalline prisms. Thus these later proofs construct additional maps on the retained classes themselves.
+
+
+
+# 1. The question and the exact four definitions
+
+An identity returns the other argument. An absorber returns itself. The original question chooses one of these behaviors for addition and one for multiplication:
+
+| | Multiplicative identity | Multiplicative absorber |
+|---|---|---|
+| Additive identity | \(\varepsilon+x=x,\quad\varepsilon x=x\) | \(\tau+x=x,\quad\tau x=\tau\) |
+| Additive absorber | \(u+x=u,\quad ux=x\) | \(\Omega+x=\Omega,\quad\Omega x=\Omega\) |
+
+This paper calculates those four roles over the integers. A role is an equation on a specified set, not by itself an entire algebra. Two full algebras are **isomorphic** when a bijection preserves both addition and multiplication. A multiplicative-monoid isomorphism preserves only multiplication and its identity. These are different questions, and both are answered below.
+
+Write \(e=0_{\mathbb Z}\), retaining its distinction from the programme's actual \(\tau\). We use commutative associative addition and multiplication, with identities and distributivity
+\[
+x(y+z)=xy+xz.
+\]
+Call the resulting category \(\mathcal W\); its morphisms preserve both operations and both identities. We do not add a multiplicative zero-absorption axiom. An object satisfying \(0_Dx=0_D\) is called a standard semiring. This is necessary to retain the original literal rule \(\tau\Omega=\Omega\).
+
+An **exact receiver** for one of the roles is an algebra with a specified map from the old algebra such that every permitted map into any target with that role factors uniquely through it. Its map may identify old elements. Below we prove which identifications the equations force, and show an actual model where no others occur.
+
+We calculate both from \(\mathbb Z\) directly and from \(S=G(\mathbb Z)\), the original \(\tau\)-construction. We do not replace the latter by ordinary integers when applying the other roles. Original sources [1–2] define \(S\) and its literal \(\Omega\)-extension. The separate direct-from-\(\mathbb Z\) calculation identifies what adding each role to integer arithmetic alone does.
+
+# 2. Every carrier, operation and integer image
+
+Define the three infinite algebras
+\[
+S=\mathbb Z\sqcup\{\tau\},\qquad
+A=\mathbb Z\sqcup\{\Omega\},\qquad
+H=\mathbb Z\sqcup\{\tau,\Omega\}.
+\tag{Z1}
+\]
+Two integer arguments always use their original sum and product. On \(S\), \(\tau\) is additive identity and multiplicative absorber. On \(A\), \(\Omega\) absorbs both operations. On \(H\), first take \(S\), then adjoin \(\Omega\) absorbing both operations, including \(\tau\Omega=\Omega\). Thus the complete remaining tables of \(H\), with \(m,n\in\mathbb Z\), are
+\[
+\begin{array}{c|ccc}
++&\tau&n&\Omega\\\hline
+\tau&\tau&n&\Omega\\
+m&m&m+n&\Omega\\
+\Omega&\Omega&\Omega&\Omega
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+\cdot&\tau&n&\Omega\\\hline
+\tau&\tau&\tau&\Omega\\
+m&\tau&mn&\Omega\\
+\Omega&\Omega&\Omega&\Omega
+\end{array}.
+\tag{Z2}
+\]
+Deleting the \(\Omega\) row and column gives \(S\); deleting the \(\tau\) row and column gives \(A\). The identities are \((\tau,1)\) in \(S,H\) and \((e,1)\) in \(A\).
+
+Here are the three finite algebras needed:
+\[
+B=\{c<u\},\quad +=\max,\quad\cdot=\min;
+\qquad J=\{\varepsilon<a\},\quad +=\max,\quad\cdot=\max;
+\]
+\[
+C=\{t<c<u\},\quad +=\max,\quad\cdot=\min.
+\tag{Z3}
+\]
+Their complete tables are
+\[
+\begin{array}{c|cc}+&c&u\\\hline c&c&u\\u&u&u\end{array}
+\quad
+\begin{array}{c|cc}\cdot_B&c&u\\\hline c&c&c\\u&c&u\end{array}
+\quad
+\begin{array}{c|cc}+,\cdot_J&\varepsilon&a\\\hline
+\varepsilon&\varepsilon&a\\a&a&a\end{array},
+\tag{Z4}
+\]
+\[
+\begin{array}{c|ccc}+_C&t&c&u\\\hline
+t&t&c&u\\c&c&c&u\\u&u&u&u\end{array}
+\qquad
+\begin{array}{c|ccc}\cdot_C&t&c&u\\\hline
+t&t&t&t\\c&t&c&c\\u&t&c&u\end{array}.
+\tag{Z5}
+\]
+The two identities coincide in \(J\), where both are \(\varepsilon\). They are distinct in \(B,C\).
+
+**Theorem Z1 (the exact four constructions).** With the map conventions stated in its proof, the direct integer constructions and the constructions from the actual programme object are:
+
+| Chosen role | Directly from \(\mathbb Z\) | Map of each integer \(n\) | From the actual \(S=G(\mathbb Z)\) |
+|---|---|---|---|
+| \(\tau\) | \(S\) | \(n\mapsto n\), injective | \(S\) is the starting object |
+| \(\Omega\) | \(A\) | \(n\mapsto n\), injective | \(H\), with \(S\) included injectively |
+| \(u\) | \(B\) | \(n\mapsto c\) for every \(n\) | \(C\), with \(\tau\mapsto t\), every \(n\mapsto c\) |
+| \(\varepsilon\) | \(J\) | \(n\mapsto a\) for every \(n\) | \(J\), with every \(s\in S\mapsto a\) |
+
+**Proof of the algebra laws.** In \(S\), deleting \(\tau\)'s from a sum leaves the integer sum, or \(\tau\) if no integers occur. A product containing \(\tau\) is \(\tau\); all other products are integer products. These descriptions prove associativity and commutativity. A multiplier \(\tau\) makes distributivity \(\tau=\tau+\tau\). An integer multiplier distributes over two integer summands by the integer law; a summand \(\tau\) contributes \(\tau\), the additive identity. This includes the case of two \(\tau\) summands.
+
+Adjoining a literal \(\Omega\) to either \(\mathbb Z\) or \(S\) preserves all laws: an associative expression with an \(\Omega\) is \(\Omega\) under either association, and a distributive expression with an \(\Omega\) in any argument has \(\Omega\) on both sides. With no \(\Omega\), the old law applies. The old identities act correctly on \(\Omega\). These cases verify \(A,H\).
+
+Maximum and minimum on a chain are associative and commutative. For \(y\le z\),
+\[
+\min(x,\max(y,z))=\min(x,z)
+=\max(\min(x,y),\min(x,z)).
+\]
+This proves distributivity for \(B,C\); their least element is additive identity and greatest element multiplicative identity. In \(J\), both sides of distributivity equal \(\max(x,y,z)\). Its least element is the identity for both operations. All tables and identities are therefore valid.
+
+**Proof of the \(\tau\) receiver.** A permitted input \(f:\mathbb Z\to D\) preserves both operations and the multiplicative identity, where \(D\) is a standard semiring. It may send \(e\) to a local additive identity different from \(0_D\). Define \(\widehat f:S\to D\) by \(\widehat f(n)=f(n)\), \(\widehat f(\tau)=0_D\). Integer pairs are preserved by \(f\), and pairs involving \(\tau\) by the target's additive identity and zero-absorption laws. The map preserves both global identities. Every value is forced, giving uniqueness. The constructed \(S\) itself admits the injective old integer map, so no integers are forced equal.
+
+**Proof of the literal \(\Omega\) receiver.** For \(K=\mathbb Z\) or \(S\), a morphism \(f:K\to D\) of \(\mathcal W\) extends to \(K\sqcup\{\Omega\}\) with \(\Omega\mapsto b\) precisely when
+\[
+b+b=b^2=b,\qquad b+f(x)=bf(x)=b\quad(x\in K).
+\tag{Z6}
+\]
+Necessity follows from the source table. Conversely assign those values: old pairs are preserved by \(f\), mixed pairs by the last equations, and the new/new pair by idempotence. The identities remain the old ones and are preserved. All values are forced. This is the precise universal property; it does not require \(b\) to absorb unrelated elements outside the image. The explicit models \(A,H\) retain every old element.
+
+**Proof of the \(u\) receiver.** A permitted input preserves both operations and the old additive identity, but may move the old multiplicative identity to a local identity. The target \(D\) has global multiplicative unit \(u_D\) satisfying \(u_D+x=u_D\). Distributivity gives, for every \(x\),
+\[
+x=x(u_D+u_D)=x+x,\qquad
+0_D=0_D(u_D+x)=0_D+0_Dx=0_Dx.
+\tag{Z7}
+\]
+For any binary-preserving \(f\) from \(\mathbb Z\) or \(S\), the integer images obey
+\[
+f(1)+f(1)=f(1).
+\]
+Add \(f(-1)\) to both sides and use the source integer equations; the result is \(f(1)=f(e)\). Consequently
+\[
+f(n)=f(n1)=f(n)f(1)=f(n)f(e)=f(ne)=f(e)
+\quad(n\in\mathbb Z).
+\tag{Z8}
+\]
+If the input is \(\mathbb Z\), preservation of its additive identity gives \(f(e)=0_D\). There is a unique factor \(B\to D\), \(c\mapsto0_D,u\mapsto u_D\); (Z7) and the identity laws verify every entry of (Z4).
+
+If the input is \(S\), its additive identity is \(\tau\), so \(f(\tau)=0_D\), while \(b=f(e)\) can remain different. The unique factor \(C\to D\) sends \(t\mapsto0_D,c\mapsto b,u\mapsto u_D\). The source gives \(b+b=b^2=b\); these equations, (Z7) and the roles of \(u_D\) verify every pair in (Z5). The finite models themselves admit the stated inputs with distinct displayed elements, proving there is no further forced merger. If the old multiplicative identity must also remain global, direct input \(\mathbb Z\) forces the singleton, whereas input \(S\) identifies \(c=u\) and gives the Boolean quotient \(\{t<u\}\).
+
+**Proof of the \(\varepsilon\) receiver.** The input preserves both operations; neither old identity is required to stay global. In the target \(D\), the new \(\varepsilon_D\) is the identity for both operations. Let \(z\) be the image of the old additive zero and \(b\) the image of any old element. Both inputs \(\mathbb Z,S\) have an additive zero that absorbs multiplication, so \(b+z=b\) and \(bz=z\). Therefore
+\[
+z=bz=b(\varepsilon_D+z)=b\varepsilon_D+bz=b+z=b.
+\tag{Z9}
+\]
+Every old element has one image \(z\). It is idempotent for both operations. The unique factor \(J\to D\) sends \(\varepsilon\mapsto\varepsilon_D,a\mapsto z\). Its four pairs are preserved by the identity and idempotence laws. The nontrivial model \(J\) realizes two distinct elements. Requiring the old additive identity to stay global instead forces \(a=\varepsilon\), and the receiver is the singleton. \(\square\)
+
+For concrete integers, in \(S,H\) one still has \(2+3=5\), \(2\cdot3=6\), and \(5+(-5)=e\ne\tau\). In \(C\), all five integers \(2,3,5,6,e\) have image \(c\), while \(\tau\) has image \(t\). In \(J\), even \(\tau\) joins the common image \(a\). These are forced equalities of images, never equalities between the original elements.
+
+![The original square, with both the direct integer inputs and the programme input distinguished. Theorem Z1 proves the carrier, operations, input maps and universal factors in every corner.](figures/05_original_integer_square.png)
+
+# 3. Which objects really are isomorphic?
+
+**Theorem Z2 (all pairwise answers for the two interpretations).** All six full algebras \(S,A,H,B,C,J\) are pairwise nonisomorphic. In particular this holds for the four direct constructions \(S,A,B,J\), and for the original programme-based comparison \(S,H,C,J\). Nevertheless,
+\[
+(S,\cdot,1)\cong(A,\cdot,1),
+\qquad
+(B,\cdot,u)\cong(J,\cdot,\varepsilon).
+\tag{Z10}
+\]
+Thus the four direct constructions have just two multiplicative-monoid isomorphism classes. The two finite direct constructions have isomorphic additive monoids as well, but there is no single bijection preserving both operations.
+
+**Proof.** \(S,A,H\) are infinite, whereas \(B,J\) have two elements and \(C\) has three. There is no additive absorber in \(S\): \(\tau+1=1\ne\tau\), and \(n+1\ne n\) for every integer \(n\). Both \(A,H\) have additive absorber \(\Omega\). This excludes \(S\cong A\) and \(S\cong H\). The only remaining equally sized direct pair is \(B,J\). The two identities in \(B\) are different; in \(J\) they coincide. Any bijection preserving an operation also carries its identity to the target identity: for any target element \(f(x)\), the image of the source identity acts as an identity on it. Hence no isomorphism \(B\cong J\) exists. This proves both pairwise statements even if identities are omitted from the signature.
+
+The remaining cross-comparison \(A\not\cong H\) follows by counting additive idempotents: \(A\) has exactly \(e,\Omega\), whereas \(H\) has exactly \(\tau,e,\Omega\). No nonzero integer is idempotent for addition since \(2n=n\) implies \(n=e\). This completes the comparison of all six.
+
+For the first isomorphism in (Z10), define
+\[
+F(n)=n\quad(n\in\mathbb Z),\qquad F(\tau)=\Omega.
+\tag{Z11}
+\]
+Integer products are fixed, and every product involving the extra point maps to the extra absorber. \(F\) is bijective and fixes \(1\). But \(F(\tau+1)=1\), while \(F(\tau)+F(1)=\Omega\), so it does not preserve addition.
+
+For the second isomorphism, define
+\[
+K(c)=a,\qquad K(u)=\varepsilon.
+\tag{Z12}
+\]
+It reverses the two-element order, so carries minimum to maximum: the \(cc,cu,uu\) products map respectively to \(a,a,\varepsilon\), the corresponding products in \(J\). It carries the multiplicative unit to the multiplicative unit and is bijective. It fails addition because \(K(c+u)=\varepsilon\), whereas \(K(c)+K(u)=a\). The other bijection \(c\mapsto\varepsilon,u\mapsto a\) preserves addition (both are maximum) but fails that product pair.
+
+For completeness the additive monoids of \(S,A\) are not isomorphic either. The only element with an additive inverse relative to the global identity \(\tau\) in \(S\) is \(\tau\): any sum with an integer stays integer. In \(A\), every integer has an additive inverse relative to its global identity \(e\), while \(\Omega\) does not. Thus the groups of additive units have respectively one and infinitely many elements. \(\square\)
+
+The separate-operation comparison of all six is complete as follows:
+
+| Structure retained | Isomorphism classes among \(S,A,H,B,C,J\) |
+|---|---|
+| Addition and multiplication together | \(\{S\},\{A\},\{H\},\{B\},\{C\},\{J\}\) |
+| Multiplication and its identity | \(\{S,A\},\{H\},\{B,J\},\{C\}\) |
+| Addition and its identity | \(\{S\},\{A\},\{H\},\{B,J\},\{C\}\) |
+
+Here is the proof of the remaining exclusions in that table. Multiplicatively, \(S,A\) each have three idempotents, while \(H\) has four: integer idempotents satisfy \(n^2=n\), hence are \(e,1\); append the appropriate extra points. Thus \(H\) is not multiplicatively isomorphic to \(S,A\). Cardinalities separate all remaining classes. Additively, \(S\) is distinguished from \(H\) by absence of an absorber, and \(A\) from \(H\) by their additive units: only \(\tau\) is invertible in \(H\) relative to \(\tau\), while every integer is invertible in \(A\) relative to \(e\). The finite additive comparison is exactly the increasing bijection between \(B,J\), with \(C\) separated by cardinality. This proves every entry.
+
+The same distinction persists on adding more points. If \(G(K)\) adjoins a new additive identity and multiplicative absorber to any \(K\in\mathcal W\), while \(O(K)\) adjoins a literal absorber for both operations, the identity on \(K\) extended by new-point-to-new-point is always a multiplicative-monoid isomorphism. It is not additive when \(K\) is nonempty, since the new point plus \(x\in K\) is \(x\) in one source and the new point in the other. The axioms for \(G(K)\) follow by the same exhaustive new-identity/new-absorber cases in Theorem Z1. In particular \(G(G(\mathbb Z))\) and \(H=O(G(\mathbb Z))\) have isomorphic multiplicative monoids, fixing every element of the old \(S\).
+
+There is more information in the integer addition than in the multiplicative monoid alone. For nonzero \(n\), write uniquely
+\[
+n=2^r3^s m,\qquad r,s\ge0,\quad 2\nmid m,\quad3\nmid m,
+\]
+retaining the sign in \(m\). Repeated division by \(2,3\) terminates and gives existence and uniqueness; divisibility by each prime gives uniqueness of the exponents. Define
+\[
+V(n)=2^s3^r m,\qquad V(e)=e,
+\tag{Z13}
+\]
+and fix every adjoined point. Exponents add under multiplication: products of odd factors stay odd, and products of residues \(1,2\) modulo \(3\) are nonzero modulo \(3\). Thus \(V(nk)=V(n)V(k)\); cases containing \(e\) or adjoined points follow directly from their tables. \(V\) is its own inverse and fixes \(1\), hence is a multiplicative-monoid automorphism of \(S,A,H\). Yet \(V(1+1)=3\ne2=V(1)+V(1)\). Addition excludes this freedom.
+
+![The exact multiplicative-monoid isomorphisms between the direct integer constructions. Theorem Z2 checks every product and proves that addition prevents a full-algebra isomorphism.](figures/06_monoid_isomorphisms.png)
+
+# 4. The integer data are recoverable, not merely present
+
+**Theorem Z3 (intrinsic recovery and rigidity).** From the operations of \(S\) or \(H\), one can identify the old \(e\), then recover precisely the old integer ring as
+\[
+\mathbb Z=\{x:ex=e\}.
+\tag{Z14}
+\]
+Every two-operation automorphism of \(S,A,H,B,C,J\) is the identity.
+
+**Proof.** The additive idempotents (elements satisfying \(x+x=x\)) are exactly \(\{\tau,e\}\) in \(S\), and \(\{\tau,e,\Omega\}\) in \(H\), since the integer equation \(2n=n\) gives \(n=e\). In \(S\), \(e\) is the one that is not the global additive identity. In \(H\), it is the one that is neither the global additive identity nor the global additive absorber. Those roles determine \(\tau,\Omega\) intrinsically, so determine \(e\). Integer products \(en=e\), whereas \(e\tau=\tau\) and \(e\Omega=\Omega\). This proves (Z14). Its restricted operations, identity \(1\), and zero \(e\) are exactly the original ring structure, including all additive inverses.
+
+An automorphism fixes these distinguished elements, as well as the global multiplicative identity \(1\). It fixes every positive integer by repeated addition of \(1\). The negative of a positive integer is its unique additive inverse in the recovered ring, so is fixed as well. Every element of \(S,H\) is accounted for. In \(A\), its global zero is \(e\), its unique absorber is \(\Omega\), and the same equation \(ex=e\) recovers its integers, giving the same proof. In \(B,C,J\), the order is determined by \(x\le y\) if \(x+y=y\). An additive automorphism preserves that order, and the only increasing bijection of each finite chain is the identity: it fixes the least element, then the next, until all are fixed. \(\square\)
+
+This gives a precise answer about integer information. \(S,A,H\) retain every integer, every integer operation, and an intrinsic way to recover the ring. \(B,C,J\) do not distinguish even \(2\) from \(3\), since their forced old maps are constant on the integers. Their surviving finite information is computed next.
+
+# 5. Finite structures inside the original object
+
+Let
+\[
+Q=\{\tau,e\}\subset S\subset H,\qquad
+L=\{\tau,e,\Omega\}\subset H.
+\tag{Z15}
+\]
+On \(Q\), addition is maximum and multiplication is minimum for \(\tau<e\). Hence
+\[
+Q\longrightarrow\mathbb B=\{0<1\},
+\qquad \tau\mapsto0,\quad e\mapsto1
+\tag{Z16}
+\]
+is an isomorphism to Boolean OR/AND: all four pairs are given by
+\(\tau+\tau=\tau,\tau+e=e,e+e=e\) and
+\(\tau^2=\tau,\tau e=\tau,e^2=e\).
+This is a full two-operation isomorphism on this subalgebra, not on all of \(S\). Its unit is \(e\), so its inclusion into \(S\) does not preserve the global multiplicative unit.
+
+On \(L\), addition is maximum for \(\tau<e<\Omega\), while
+\[
+\begin{array}{c|ccc}\cdot_L&\tau&e&\Omega\\\hline
+\tau&\tau&\tau&\Omega\\
+e&\tau&e&\Omega\\
+\Omega&\Omega&\Omega&\Omega
+\end{array}.
+\tag{Z17}
+\]
+The additive identity is \(\tau\) and multiplicative identity is \(e\). Multiplication by the supported zero defines
+\[
+\rho:H\to L,\quad x\mapsto ex,
+\qquad
+\rho(n)=e,\quad\rho(\tau)=\tau,\quad\rho(\Omega)=\Omega.
+\tag{Z18}
+\]
+Distributivity gives \(\rho(x+y)=\rho(x)+\rho(y)\), and \(e^2=e\) gives
+\(\rho(xy)=\rho(x)\rho(y)\). Also \(\rho(\tau)=\tau,\rho(1)=e\), the identities of \(L\). Thus \(\rho\) is a morphism in \(\mathcal W\). It is the identity on \(L\), so is a retraction on the two-operation algebras; the section \(L\hookrightarrow H\) preserves operations and the additive identity but not the global multiplicative identity.
+
+**Theorem Z4 (all two-element copies and the missing three-element copy).** In \(H\), the only two-element subalgebra isomorphic to Boolean OR/AND is \(Q=\{\tau,e\}\). The only two-element subalgebras isomorphic to \(J\) are \(\{\tau,\Omega\}\) and \(\{e,\Omega\}\). There is no subalgebra isomorphic to \(C\). The full algebras \(L,C\) are not isomorphic, but their multiplicative monoids are isomorphic.
+
+**Proof.** Every element of \(B,J,C\) is additively idempotent. Any embedding into \(H\) must therefore land in the three-element set \(L\), by Theorem Z3. There are exactly three two-element subsets of \(L\). On \(\{\tau,e\}\), the preceding four pairs give maximum/minimum. On each of \(\{\tau,\Omega\},\{e,\Omega\}\), both operations are maximum. This checks existence and exhausts every two-element embedding image; each chain admits only its unique order-preserving isomorphism.
+
+An embedding of \(C\) would have to map onto all of \(L\). The global additive identity in \(C\) absorbs multiplication, whereas that in \(L\) does not: \(\tau\Omega=\Omega\ne\tau\). This excludes an isomorphism and therefore an embedding. Nevertheless
+\[
+t\mapsto\Omega,\qquad c\mapsto\tau,\qquad u\mapsto e
+\tag{Z19}
+\]
+is a multiplicative-monoid isomorphism \(C\to L\). Indeed (Z17) is minimum in the multiplication order \(\Omega<\tau<e\), so this increasing bijection from \(t<c<u\) preserves every minimum and the greatest element, the unit. It fails addition already at \(t+c=c\): its image is \(\tau\), whereas \(\Omega+\tau=\Omega\). \(\square\)
+
+These facts specify what the other roles can do locally without deleting any integers. The supported \(e\) has the \(u\) role on \(Q\): \(e+x=e,ex=x\) for \(x\in Q\). It has the \(\varepsilon\) role on \(\{e,\Omega\}\): \(e+x=x,ex=x\) for those two \(x\). The old \(\tau\) also has the \(\varepsilon\) role on \(\{\tau,\Omega\}\). None of those local statements gives that role on every integer. For example \(e+2=2\ne e\) and \(e\cdot2=e\ne2\). The domains are indispensable.
+
+The three-state receiver \(C\) has a precise Boolean relation even though it has no copy inside \(H\):
+\[
+\pi:C\to\mathbb B,\quad \pi(t)=0,\quad\pi(c)=\pi(u)=1.
+\tag{Z20}
+\]
+It preserves maximum and minimum because it is increasing between chains, and preserves their least and greatest elements. The map \(\mathbb B\to C\), \(0\mapsto t,1\mapsto u\), is a unital section. Composing \(S\to C\) from Theorem Z1 with \(\pi\) gives the original support map \(\chi(\tau)=0,\chi(n)=1\). The third state \(u\) in \(C\) records the newly adjoined global unit as distinct from the common image \(c\) of the old integers. It carries no surviving integer magnitude.
+
+**Theorem Z6 (all finite subalgebras and every map between \(C\) and \(H\)).** The finite nonempty subsets of \(H\) closed under both operations are precisely the seven nonempty subsets of \(L\). There are exactly five binary-operation-preserving maps \(C\to H\): the three constant maps to \(\tau,e,\Omega\), and
+\[
+(t,c,u)\mapsto(\tau,\tau,e),\qquad
+(t,c,u)\mapsto(\tau,e,e).
+\tag{Z28}
+\]
+Every binary-operation-preserving map \(H\to C\) is constant; its three constant values are \(t,c,u\). There is no morphism in \(\mathcal W\) in either direction.
+
+**Proof.** A finite additively closed set cannot contain a nonzero integer \(n\), since then it contains all distinct \(n,2n,3n,\ldots\). Thus it lies in \(L\). Conversely the two operations in (Z17) and its addition table always return one of their arguments, so every nonempty subset is closed.
+
+For a map from \(C\), every image is additively idempotent, hence in \(L\). In \(C\), \(x+xy=x\). If its image contained \(\Omega\) and another element \(b\), that identity would require \(b+b\Omega=b\), whereas the left side is \(\Omega\). So a nonconstant image lies in \(Q=\{\tau,e\}\). Preservation of maximum makes the map increasing. The only nonconstant increasing maps from the three-element chain onto this two-element chain are those in (Z28), and they preserve both maximum and minimum. Constants to the three doubly idempotent elements also preserve both operations. None sends the multiplicative unit \(u\) to the nonidempotent integer \(1\), so none is a \(\mathcal W\)-morphism to \(H\).
+
+For \(f:H\to C\), put \(b=f(\Omega)\). For every \(x\), the absorbing equations require both \(\max(b,f(x))=b\) and \(\min(b,f(x))=b\). These give \(f(x)\le b\) and \(b\le f(x)\), so the map is constant. All three constants preserve both operations because their values are doubly idempotent. No constant preserves both distinct identities of \(C\). \(\square\)
+
+In particular \(L\) contains all finite subalgebra data of \(H\); a fourth finite state cannot be obtained by hiding a nonzero integer in such a subalgebra. This does not rule out different extensions, nor does it make the full integer part finite.
+
+# 6. Exact arithmetic and support reconstruction
+
+Define
+\[
+p:S\to\mathbb Z,\quad p(n)=n,\quad p(\tau)=e,
+\qquad
+\chi:S\to\mathbb B,\quad\chi(n)=1,\quad\chi(\tau)=0.
+\tag{Z21}
+\]
+Both are morphisms in \(\mathcal W\). For \(p\), integer pairs are unchanged, a mixed \(\tau,n\) pair becomes \(e+n=n,en=e\), and a \(\tau,\tau\) pair becomes \(e+e=e^2=e\). For \(\chi\), every integer sum or product remains supported even when it is \(e\); these pairs map to \(1+1=1^2=1\). The \(\tau\) row maps to the Boolean zero row. Their identity images are also correct.
+
+The pair is the exact isomorphism
+\[
+S\;\xrightarrow{\ (p,\chi)\ }\;
+(\mathbb Z\times\{1\})\cup\{(e,0)\}
+\ \subset\ \mathbb Z\times\mathbb B.
+\tag{Z22}
+\]
+The image is exactly the displayed set. Its distinct types separate \(\tau\) from every integer, and the first coordinate separates integers. The map is therefore bijective onto its image, preserves operations, and has an operation-preserving inverse: apply its injectivity to each homomorphism equation. This proves all isomorphism claims, including closure of the image.
+
+Similarly, use \(q:H\to A\) given by
+\[
+q(n)=n,\quad q(\tau)=e,\quad q(\Omega)=\Omega.
+\tag{Z23}
+\]
+Together with \(\rho\) from (Z18), it gives
+\[
+H\;\xrightarrow{\ (q,\rho)\ }\;
+\{(n,e):n\in\mathbb Z\}\cup\{(e,\tau),(\Omega,\Omega)\}
+\ \subset\ A\times L.
+\tag{Z24}
+\]
+To check \(q\), its restriction to \(S\) is the already proved \(p\), and pairs containing \(\Omega\) map to the absorber pair in \(A\). It preserves the two identities. Injectivity of the pair and the inverse homomorphism argument are exactly as in (Z22). The only nonsingleton fibre of \(q\) is \(\{\tau,e\}\). The fibres of \(\rho\) are \(\mathbb Z,\{\tau\},\{\Omega\}\). Their intersection therefore recovers every element.
+
+These formulas show a concrete use: a calculation can retain integer value together with the distinction between unsupported, supported and absorbed states. For example,
+\[
+5+(-5)=e\longmapsto(e,e),\quad
+\tau\longmapsto(e,\tau),\quad
+\Omega\longmapsto(\Omega,\Omega)
+\tag{Z25}
+\]
+are three different outputs in (Z24). Forgetting the second coordinate identifies the first two. Forgetting the first coordinate identifies every integer with every other integer. Keeping both recovers the whole algebra.
+
+# 7. All integer congruences and the exact product obstruction
+
+A congruence is an equivalence relation preserved by both operations. Its kernel under a map is equality of images. For an integer \(d\ge0\), write \(d\mathbb Z\) for the ideal of multiples of \(d\), including \(0\mathbb Z=\{e\}\). Define \(\theta_d\) on \(S\) by integer congruence modulo \(d\), keeping \(\tau\) separate. Define \(\eta_d\) by additionally putting \(\tau\) into the class of the multiples of \(d\). On \(H\), use the same classes and keep \(\Omega\) separate.
+
+**Theorem Z5 (full congruence classification).** These are all congruences of \(S\). On \(H\), these and the total congruence are all possibilities. Their quotients are
+\[
+S/\theta_d=G(\mathbb Z/d\mathbb Z),\qquad
+S/\eta_d=\mathbb Z/d\mathbb Z,
+\]
+\[
+H/\theta_d=O(G(\mathbb Z/d\mathbb Z)),\qquad
+H/\eta_d=O(\mathbb Z/d\mathbb Z).
+\tag{Z26}
+\]
+Here \(\mathbb Z/0\mathbb Z=\mathbb Z\), and the zero ring for \(d=1\) is permitted. Its supported zero remains distinct from an adjoined \(\tau\). For ideals \(I,J\) the orders are \(\theta_I\le\theta_J\), \(\eta_I\le\eta_J\), or \(\theta_I\le\eta_J\) exactly when \(I\subseteq J\). No \(\eta_I\le\theta_J\) occurs.
+
+**Proof.** Restrict a congruence to the integers. Its zero class \(I\) is an ideal: addition preserves the class, multiplication by \(-1\) gives negatives, and multiplication by any integer stays in the class. Adding \(-m\), and conversely adding \(m\), proves \(n\sim m\) exactly when \(n-m\in I\). Every integer ideal is \(d\mathbb Z\): a nonzero ideal has a least positive element \(d\); division with remainder gives, for each element, a remainder in the ideal smaller than \(d\), which must be zero. The zero ideal is \(0\mathbb Z\).
+
+If \(\tau\) meets no integer class, we have \(\theta_d\). If \(\tau\sim n\), multiplication by \(e\) gives \(\tau\sim e\); consequently its integer class is exactly \(I\), and the congruence is \(\eta_d\). Both possibilities occur: the explicit maps in (Z26) send integers to residue classes, and respectively retain \(\tau\) or send it to the supported zero. Integer pairs are preserved by quotient arithmetic, and the \(\tau\) row is preserved by its identity/absorber rules. Thus no further equation is forced.
+
+On \(H\), if \(\Omega\sim n\) for an integer \(n\), adding \(-n\) gives \(\Omega\sim e\), and multiplying by \(\tau\) gives \(\Omega\sim\tau\). If \(\Omega\sim\tau\) directly the same conclusion holds. Then, for every \(x\), addition to this identity/absorber pair gives \(\Omega\sim x\); the congruence is total. Otherwise \(\Omega\) is singleton and the restriction to \(S\) is one of the preceding congruences. Every such congruence extends because every pair involving \(\Omega\) has \(\Omega\) as its value. The displayed quotients follow. Finally integer equivalences compare exactly by ideal inclusion; \(\eta\) identifies \(\tau,e\) while \(\theta\) never does. This proves the entire order. \(\square\)
+
+This calculation retains every integer congruence, not merely the individual integer values. It also gives the precise obstruction to replacing (Z22) or (Z24) by a full product or a claimed unrestricted fibre product.
+
+For \(H\), \(\ker q=\eta_0\), \(\ker\rho=\theta_1\). Their intersection is equality, but their least common containing congruence is \(\eta_1\). The common quotient is
+\[
+D=\{d<o\},\qquad +=\max,\quad\cdot=\max.
+\]
+Define \(\alpha:A\to D\) by every integer \(\mapsto d,\Omega\mapsto o\), and \(\beta:L\to D\) by \(\tau,e\mapsto d,\Omega\mapsto o\). Each pair in their sources either stays among the bottom states or contains an \(\Omega\); this verifies both operations and the identities. Their composites with \(q,\rho\) agree.
+
+The fibre product, meaning pairs with equal images in \(D\), is exactly
+\[
+A\times_D L
+=\{(n,\tau),(n,e):n\in\mathbb Z\}\cup\{(\Omega,\Omega)\}.
+\tag{Z27}
+\]
+It has componentwise operations and identities. It has the required universal property: compatible maps \(f:X\to A,g:X\to L\) have a unique pair map \(x\mapsto(f(x),g(x))\) into this set; every operation and identity is preserved coordinatewise. Formula (Z24) is a proper subalgebra of (Z27), missing exactly \((n,\tau)\) for \(n\ne e\).
+
+No different common target repairs this while keeping \(q,\rho\) as the projections. Indeed, if maps \(f:A\to D'\), \(g:L\to D'\) agree after \(q,\rho\), every integer gives \(f(n)=g(e)\), and the old \(\tau\) gives \(f(e)=g(\tau)\). Hence \(g(e)=g(\tau)=f(n)\) for every integer \(n\). Every pair \((n,\tau)\) belongs to that fibre product, including the missing pairs. This proves the claimed obstruction for any such target, rather than only for \(D\).
+
+For \(S\), \(\ker p=\eta_0,\ker\chi=\theta_1\) have total join \(\eta_1\). More directly any compatible \(f:\mathbb Z\to D'\), \(g:\mathbb B\to D'\) satisfies \(f(n)=g(1)\) for all integers and \(f(e)=g(0)\), so both maps are constant at the same value. Their fibre product is all of \(\mathbb Z\times\mathbb B\), missing the constraint in (Z22).
+
+The obstruction can also be read as noncommutation of the two kernel relations. For \(n\ne e\),
+\[
+n\mathrel{\theta_1}e\mathrel{\eta_0}\tau.
+\]
+There is no reverse path \(n\mathrel{\eta_0}x\mathrel{\theta_1}\tau\): the \(\eta_0\)-class of \(n\ne e\) is just \(\{n\}\), while the \(\theta_1\)-class of \(\tau\) is just \(\{\tau\}\). This proves exactly why matching the common quotient leaves unsupported nonzero pairs that the original algebra does not contain.
+
+# 8. A positive reconstruction rule and two actual pullback squares
+
+The failed unrestricted fibre-product claim has an exact replacement. Let the arithmetic zero-test be
+\[
+\nu:\mathbb Z\to\mathbb B,\qquad \nu(e)=0,\quad \nu(n)=1\ (n\ne e).
+\tag{Z29}
+\]
+This is different from the programme support map: \(\chi(e)=1\), even though \(\nu(e)=0\). Integer multiplication has no zero divisors, so \(\nu(mn)=\nu(m)\nu(n)\). For addition,
+\(\nu(m+n)\le\max(\nu(m),\nu(n))\): if both inputs vanish so does the sum; otherwise the right side is \(1\). Equality need not hold, as \(\nu(1+(-1))=0\). Then (Z22) can be written exactly as
+\[
+S\cong\{(n,b)\in\mathbb Z\times\mathbb B:\nu(n)\le b\}.
+\tag{Z30}
+\]
+If \(n\ne e\), only \(b=1\) is allowed; if \(n=e\), both states are allowed. This proves the equality of carriers.
+
+For \(A\), define the related map, denoted \(\nu_A\) to retain its different codomain,
+\[
+\nu_A(e)=\tau,\qquad
+\nu_A(n)=e\ (n\ne e),\qquad
+\nu_A(\Omega)=\Omega,
+\quad \nu_A:A\to L.
+\tag{Z31}
+\]
+Its multiplication is exact and its addition satisfies
+\[
+\nu_A(xy)=\nu_A(x)\nu_A(y),\qquad
+\nu_A(x+y)\le\nu_A(x)+\nu_A(y),
+\tag{Z32}
+\]
+where \(\le\) is the addition order \(\tau<e<\Omega\). For integer arguments this is the preceding zero-test calculation with relabelled values. If an argument is \(\Omega\), both sides of the multiplication identity are \(\Omega\), and both sides of the addition inequality are \(\Omega\). Thus every case is checked.
+
+With \(\alpha,\beta\) from Section 7, \(\alpha=\beta\nu_A\), as follows from their three value types. Formula (Z24) is precisely
+\[
+H\cong
+\{(x,s)\in A\times_D L:\nu_A(x)\le s\}.
+\tag{Z33}
+\]
+An integer \(x=e\) permits \(s=\tau,e\); a nonzero integer permits only \(s=e\); and compatibility over \(D\) permits only \(s=\Omega\) for \(x=\Omega\). Thus the displayed set is exactly the previously proved image.
+
+This description also proves closure directly. Each multiplication row of (Z17) is increasing for \(\tau<e<\Omega\), so
+\(\nu_A(xy)=\nu_A(x)\nu_A(y)\le ss'\) for two permitted pairs. For sums, (Z32) gives
+\(\nu_A(x+y)\le\nu_A(x)+\nu_A(y)\le s+s'\).
+Compatibility over \(D\) is preserved by coordinatewise operations. The pairs \((e,\tau)\) and \((1,e)\) are its two identities.
+
+The universal property is exact. Given morphisms \(f:X\to A,g:X\to L\) such that
+\[
+\alpha f=\beta g,\qquad \nu_A(f(x))\le g(x)\quad(x\in X),
+\]
+the pair \((f(x),g(x))\) belongs to (Z33), so determines a unique map \(h:X\to H\). Its two coordinates preserve both operations and identities; injectivity of \((q,\rho)\) then proves that \(h\) preserves them. Conversely every \(h\) gives such a pair by (Z33). The same argument proves the corresponding universal property for (Z30), without the \(D\)-compatibility equation. The added condition states exactly that a nonzero integer cannot be unsupported.
+
+There are also genuine pullback squares, involving the original input rather than trying to reconstruct \(H\) from its two quotients:
+\[
+\begin{array}{ccc}
+S&\longrightarrow&H\\
+p\downarrow&&\downarrow q\\
+\mathbb Z&\longrightarrow&A
+\end{array}
+\qquad
+\begin{array}{ccc}
+S&\longrightarrow&H\\
+\chi\downarrow&&\downarrow\rho\\
+\mathbb B&\longrightarrow&L .
+\end{array}
+\tag{Z34}
+\]
+The first bottom arrow includes the integers. The second sends \(0\mapsto\tau,1\mapsto e\); both are morphisms of \(\mathcal W\). All top arrows are the inclusion of \(S\). Both squares commute by their value tables.
+
+Each square is a pullback. For the first, \(q^{-1}(\mathbb Z)=S\). Compatible maps from an arbitrary \(X\) into \(H,\mathbb Z\) therefore have their \(H\)-image in \(S\), giving a unique factor into \(S\); operations and identities restrict, and the bottom inclusion's injectivity forces its arithmetic coordinate to be the given one. For the second, \(\rho^{-1}(\{\tau,e\})=S\); the identical factorization argument gives the support coordinate \(\chi\).
+
+Each square is also a pushout. In the first, a compatible pair of maps out of \(H,\mathbb Z\) must identify \(\tau,e\), because \(p\) does. The exact quotient (Z26) for \(d=0\) is \(A\), so the \(H\)-map factors uniquely through \(A\). Its restriction to the included integers is the other map, proving the full pushout property. In the second, compatibility forces all supported integers to have one image, and (Z26) for \(\theta_1\) gives precisely \(L\). The same factorization proves the second pushout property. These are proved positive comparisons alongside the different fibre-product obstruction in Section 7.
+
+Finally, the state quotients are universal for targets with idempotent addition. If \(f:S\to D\), or \(f:H\to D\), is a morphism and every element of \(D\) satisfies \(x+x=x\), the calculation (Z8) forces every supported integer to have image \(f(e)=f(1)=1_D\). The only remaining source states are \(\tau\), and \(\Omega\) when present. Their exact tables give a unique morphism through \(\chi:S\to\mathbb B\), or through \(\rho:H\to L\), respectively. Every pair and both identities are preserved by those tables. Thus the finite state map is forced by a precise algebraic target property; it is not an arbitrarily chosen label map.
+
+![Exact joint arithmetic/state image. The displayed integer sample is finite, while equations Z24 and Z33 hold for every integer. Red cells are precisely the extra unsupported nonzero pairs introduced by the unrestricted fibre product; Sections 7–8 prove their exclusion and the resulting universal property.](figures/07_integer_and_state.png)
+
+# 9. The original monoidal base extension and what addition changes
+
+Source [1], lines 1324–1405, explicitly chooses commutative monoids with a multiplicative unit and a distinguished global absorber as its \(\mathbb F_1\)-algebras. It defines their integer base extension as the monoid ring with the absorber killed. We now calculate that exact construction for every algebra above, rather than invoking an unspecified interpretation of \(\mathbb F_1\).
+
+For such a monoid \(M\), its **monoid ring** \(\mathbb Z[M]\) consists of finite formal integer sums \(\sum a_x[x]\), with coefficientwise addition and multiplication given by \([x][y]=[xy]\) and bilinear extension. Its identity is \([1_M]\). If \(z_M\) is the global absorber, define
+\[
+\Gamma(M)=\mathbb Z[M]/([z_M]).
+\tag{Z35}
+\]
+The ideal generated by \([z_M]\) is exactly \(\mathbb Z[z_M]\): multiplying it by any basis element returns \([z_M]\), and every integer multiple already occurs. Consequently all other monoid elements remain an independent integer basis in \(\Gamma(M)\). Killing a formal basis element does not identify its original source element with another source element.
+
+This construction has the exact universal property used here. Given a multiplicative map \(f:M\to R\) into a commutative unital ring with \(f(1_M)=1_R,f(z_M)=0_R\), the formula
+\(\sum a_x[x]\mapsto\sum a_x f(x)\) gives a ring homomorphism: distributing the two finite sums verifies multiplication term by term. It kills \([z_M]\), hence factors through \(\Gamma(M)\). Conversely every unital ring homomorphism from \(\Gamma(M)\) gives such an \(f\). The basis values force uniqueness. The monoid-ring axioms themselves follow from coefficient addition and associativity and commutativity on basis products, extended bilinearly.
+
+Let \(N=\mathbb Z\setminus\{e\}\) under multiplication, and write \(\Lambda=\mathbb Z[N]\). The product of nonzero integers is nonzero, so \(N\) is a monoid with unit \(1\). This \(\Lambda\) retains formal basis symbols \([n]\); in particular \([2]\) is not the same element as \(2[1]\).
+
+**Theorem Z7 (complete base-extension comparison).** For the multiplicative monoids of the six algebras,
+\[
+\begin{array}{c|c|c}
+\text{algebra}&\Gamma(\text{multiplicative monoid})
+&\text{quotient also imposing every original addition}\\\hline
+S&\mathbb Z\times\Lambda&\mathbb Z\\
+A&\mathbb Z\times\Lambda&\mathbf0\\
+H&\mathbb Z\times\mathbb Z\times\Lambda&\mathbf0\\
+B&\mathbb Z&\mathbf0\\
+J&\mathbb Z&\mathbf0\\
+C&\mathbb Z\times\mathbb Z&\mathbf0
+\end{array}.
+\tag{Z36}
+\]
+Here \(\mathbf0\) is the one-element ring, and the right column is the universal ring receiving both source operations and their identities.
+
+**Proof of the second column.** For \(S\), the global multiplicative absorber is \(\tau\); for \(A\), it is \(\Omega\). Removing that basis symbol leaves, in both cases, the basis \([n]\) for all integers, with multiplication \([m][n]=[mn]\). Thus both base extensions are \(\mathbb Z[(\mathbb Z,\cdot)]\), agreeing with the original source calculation for \(S\). An explicit unital ring isomorphism to \(\mathbb Z\times\Lambda\) is
+\[
+[e]\mapsto(1,0),\qquad [n]\mapsto(1,[n])\quad(n\ne e).
+\tag{Z37}
+\]
+For products with \([e]\), both sides give \((1,0)\). For two nonzero integers both sides give \((1,[mn])\). The identity \([1]\) maps to \((1,[1])\), the product-ring identity. Linear extension is therefore a unital ring map. It is bijective: if \(v=\sum_{n\ne e}a_n[n]\in\Lambda\), its inverse is
+\[
+(k,v)\mapsto
+\left(k-\sum_{n\ne e}a_n\right)[e]
++\sum_{n\ne e}a_n[n].
+\tag{Z38}
+\]
+The displayed sums are finite, and the two composite maps are the identity by their coefficients. This proves (Z37) completely.
+
+For \(H\), the global multiplicative absorber is \(\Omega\). Its surviving basis is \([\tau]\) and \([n]\) for every integer \(n\). Define
+\[
+[\tau]\mapsto(1,0,0),\qquad
+[e]\mapsto(1,1,0),\qquad
+[n]\mapsto(1,1,[n])\quad(n\ne e).
+\tag{Z39}
+\]
+A product involving \([\tau]\) returns \([\tau]\) in the source and \((1,0,0)\) in the target. A product involving \([e]\), with no \([\tau]\), returns \([e]\) and \((1,1,0)\). Products of nonzero integer basis elements give \((1,1,[mn])\). This proves preservation of every basis product. The unit maps to \((1,1,[1])\). For \(v=\sum a_n[n]\), the inverse is
+\[
+(k,l,v)\mapsto
+(k-l)[\tau]+\left(l-\sum a_n\right)[e]+\sum a_n[n],
+\tag{Z40}
+\]
+as direct substitution verifies.
+
+For \(B\), its global multiplicative absorber is \(c\), and only the unit basis \([u]\) remains. For \(J\), the absorber is \(a\), and only \([\varepsilon]\) remains. Each resulting ring is \(\mathbb Z\), with the surviving basis symbol as unit.
+
+For \(C\), kill its absorber \([t]\). The surviving basis is \([c],[u]\), with \([c]^2=[c]\) and \([u]\) the identity. The map
+\[
+[c]\mapsto(1,0),\qquad[u]\mapsto(1,1)
+\tag{Z41}
+\]
+preserves all products and the unit, and has inverse \((k,l)\mapsto(k-l)[c]+l[u]\). This completes the second column.
+
+**Proof of the last column and its universal property.** For any of these source algebras \(K\), quotient \(\Gamma(K)\) by the ideal generated by
+\[
+[x+y]-[x]-[y]\qquad(x,y\in K),
+\tag{Z42}
+\]
+where the killed absorber basis symbol means ring zero. These relations are exactly preservation of the source addition. In particular the old additive identity \(0_K\) satisfies \([0_K]=2[0_K]\), so its image is ring zero; the multiplicative identity was already preserved. Conversely, every map preserving both operations and identities into a ring sends the global multiplicative absorber \(z_K\) to ring zero: \(z_K0_K=z_K\) gives \(f(z_K)0=f(z_K)\). Thus it factors uniquely through (Z35) and then (Z42). This proves the claimed universal property without assuming it.
+
+For \(S\), the assignment \([n]\mapsto n\), \([\tau]\mapsto0\), respects every relation and gives a surjective map to \(\mathbb Z\). In the quotient, the equation \(e+e=e\) gives \([e]=0\). Repeated addition of \(1\) gives \([n]=n[1]\) for positive integers. The relation \(n+(-n)=e\) gives the same formula for negative integers. Every basis element is therefore an integer multiple of \([1]\), and evaluation is inverse to \(k\mapsto k[1]\). The quotient is exactly \(\mathbb Z\).
+
+For \(A,H\), the source equation \(\Omega+1=\Omega\), with \([\Omega]=0\), forces \([1]=0\), hence the entire ring is \(\mathbf0\). For \(B,C\), the source equation \(u+u=u\), with \([u]=1\), forces \(2=1\), hence \(1=0\). For \(J\), the same argument uses \(\varepsilon+\varepsilon=\varepsilon\) and \([\varepsilon]=1\). The one-element ring always realizes the forced relations, so those quotients exist and are exactly as claimed. \(\square\)
+
+This supplies a precise monoidal answer to the original question. The \(\tau\) and direct \(\Omega\) corners have the same nonzero monoidal base extension, including the separate \(\mathbb Z\)-factor in (Z37). Their original additions then impose different ideals: the \(\tau\) arithmetic gives the ordinary integers, while the literal absorber addition forces the one-element ring. The latter does not mean \(A\) or \(H\) has lost its embedded integer arithmetic: Theorem Z3 proves that it has not. It means that a single map preserving its full operations into a ring cannot retain that arithmetic.
+
+**Theorem Z8 (the induced observations become a product and a fibre product).** The original observations induce the exact product isomorphism
+\[
+(\Gamma\chi,\Gamma p):
+\Gamma(S)\ \xrightarrow{\ \cong\ }
+\Gamma(\mathbb B)\times\Gamma(\mathbb Z,\cdot,e)
+=\mathbb Z\times\Lambda.
+\tag{Z43}
+\]
+For the literal \(\Omega\)-extension, the comparison which was a proper inclusion before base extension becomes an isomorphism:
+\[
+\Gamma(H)\ \xrightarrow{\ \cong\ }
+\Gamma(A)\times_{\Gamma(D)}\Gamma(L).
+\tag{Z44}
+\]
+These statements concern these specific diagrams; they do not assert that \(\Gamma\) preserves all products or pullbacks.
+
+**Proof.** The multiplication maps \(p,\chi,q,\rho,\alpha,\beta\) each preserve the unit and the global multiplicative absorber. For example, the global absorber is \(\tau\) in \(S\), \(e\) in \((\mathbb Z,\cdot)\), Boolean zero in \(\mathbb B\), and \(\Omega\) in \(H,A,L\); in \(D\) it is \(o\). Hence each induces a ring map by (Z35). It is specified on basis symbols by \([x]\mapsto[f(x)]\), where a killed target symbol means zero.
+
+Contracting the multiplicative absorber \(e\) of the integers leaves exactly \(\Lambda\), since all nonzero products are nonzero. Also \(\Gamma(\mathbb B)=\mathbb Z\). For (Z43), \([\tau]=0\) in \(\Gamma(S)\), and the other basis values are
+\[
+[e]\mapsto(1,0),\qquad
+[n]\mapsto(1,[n])\quad(n\ne e).
+\]
+This is precisely (Z37), whose inverse is (Z38). Thus the two factors are the actual induced support and arithmetic maps, not merely an abstract product of isomorphic rings.
+
+For \(L\), killing \([\Omega]\) leaves \([\tau],[e]\) with \([\tau]^2=[\tau]\), \([\tau][e]=[\tau]\), and unit \([e]\). Therefore
+\[
+\Gamma(L)\cong\mathbb Z\times\mathbb Z,\qquad
+[\tau]\mapsto(1,0),\quad[e]\mapsto(1,1),
+\tag{Z45}
+\]
+with inverse \((k,l)\mapsto(k-l)[\tau]+l[e]\). For \(D\), killing \([o]\) leaves its unit \([d]\), so \(\Gamma(D)=\mathbb Z\).
+
+Use the coordinates (Z37), (Z39), (Z45). The induced maps are
+\[
+\begin{aligned}
+\Gamma q(k,l,v)&=(k,v),&
+\Gamma\rho(k,l,v)&=(k,l),\\
+\Gamma\alpha(k,v)&=k,&
+\Gamma\beta(k,l)&=k.
+\end{aligned}
+\tag{Z46}
+\]
+To verify the first line on every basis type: \([\tau]\) has coordinates \((1,0,0)\), and \(q(\tau)=e,\rho(\tau)=\tau\); \([e]\) has coordinates \((1,1,0)\), and both maps send \(e\) to the respective \(e\); a nonzero \([n]\) has coordinates \((1,1,[n])\), and \(q(n)=n,\rho(n)=e\). The killed \([\Omega]\) maps to zero. These checks determine the linear maps on every finite sum. For the second line, \(\alpha\) sends each integer basis symbol to the unit \([d]\), and \(\beta\) sends both \([\tau],[e]\) to \([d]\), so the first-coordinate projections have exactly the required basis values.
+
+Consequently the fibre product on the right of (Z44) consists precisely of pairs
+\[
+((k,v),(k,l)),\qquad k,l\in\mathbb Z,\ v\in\Lambda.
+\]
+The map \((k,l,v)\mapsto((k,v),(k,l))\) is bijective, unital, and preserves coordinatewise addition and multiplication. Its inverse reads off \(k,l,v\). This proves (Z44), including its ring universal property: compatible ring maps into the two factors pair uniquely into this set, and the inverse gives the unique factor through \(\Gamma(H)\). \(\square\)
+
+There is an explicit meaning for the extra pairs that prevented the original fibre-product reconstruction. If \(n\ne e\), the pair consisting of the basis value \([n]\) in \(\Gamma(A)\) and the unsupported basis value \([\tau]\) in \(\Gamma(L)\) corresponds to
+\[
+[n]-[e]+[\tau]\ \in\Gamma(H).
+\tag{Z47}
+\]
+Indeed its three coordinates are \((1,0,[n])\), so (Z46) gives exactly \(([n],[\tau])\). Before the extension there was no element of \(H\) with those two observations. The monoid ring supplies a formal additive difference with them. This is not a new source element or a change to the source addition; it uses the newly constructed ring addition. This exact calculation accounts for the disappearance of the obstruction.
+
+The addition ideal for \(S\) has a precise description in the product coordinates. Let
+\[
+\operatorname{ev}:\Lambda\to\mathbb Z,\qquad
+\operatorname{ev}\left(\sum a_n[n]\right)=\sum a_n n.
+\tag{Z48}
+\]
+It is a unital ring map because evaluating a basis product gives \(mn\), the product of the evaluations; finite linear extension verifies all products. The quotient proved in Theorem Z7 sends \((k,v)\) to \(\operatorname{ev}(v)\). Its kernel is therefore
+\[
+\mathbb Z\times\ker(\operatorname{ev}).
+\tag{Z49}
+\]
+This is exactly the ideal generated by all addition relations (Z42), since Theorem Z7 proved that their quotient map is evaluation and is an isomorphism onto \(\mathbb Z\). The relation \(e+e=e\) kills the support factor \([e]=(1,0)\), and the other relations turn the formal nonzero-integer basis into its arithmetic values.
+
+![The induced product and fibre product after monoidal base extension.](figures/08_monoid_base_extension.png)
+
+Figure 8 shows the exact coordinates and maps of Theorems Z7–Z8. The formal difference in (Z47) accounts for a pair absent from the original source object. Source definition: HI-AI, original 11.tex, lines 1324–1428; full proof: (Z35)–(Z49).
+
+# 10. What is established about usefulness
+
+The square has different answers at different levels, with exact maps proving the relationship:
+
+* Keeping both operations, all four direct integer constructions are different. Keeping only multiplication identifies the \(\tau\) and \(\Omega\) constructions, and identifies the two finite constructions. The maps are (Z11) and (Z12).
+* The infinite constructions retain all integer arithmetic and all its congruences. The value and state maps recover the objects exactly by (Z22) and (Z24), with the precise constraint and product obstruction proved above.
+* A globally imposed \(u\) cannot retain integer magnitude under a binary-preserving map; equation (Z8) proves the collapse. Over the actual \(S\), it retains unsupported versus supported input and a separate new global unit. A globally imposed \(\varepsilon\) loses even that old support distinction; equation (Z9) proves it.
+* The finite roles already occur on specified subalgebras of the integer-preserving \(H\). Theorem Z4 proves exactly which copies exist, which do not, and which comparison survives at the monoid level.
+
+Theorem Z7 further computes the exact monoidal base extension specified by the original source, and the different quotients obtained on restoring addition. These are concrete algebraic uses and restrictions. They do not determine whether the framing is historically new or supply a new result in the current analytic programme. No assertion about a different version of geometry over \(\mathbb F_1\) is inferred from these computations.
+
+# Original sources and proof coverage
+
+[1] HI-AI, *An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*, Zenodo 17555345, original 11.tex. The exact authoring source is sources/17555345_11.tex. Section 3, lines 578–749, defines the original adjoined element; lines 1146–1323 give its two-element singlet algebra; lines 1324–1428 give the chosen monoidal base extension and Boolean comparison; lines 1524–1577 give the arbitrary-ring construction. The actual programme \(\tau\), with supported \(e\) distinct, is the starting object throughout.
+
+[2] HI-AI, *An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements*, Zenodo 17547186, original 5.tex, Section 9, construction lines 1288–1360, with singlets in Section 10. The exact authoring source is sources/17547186_5.tex. The law \(\tau\Omega=\Omega\) is retained, including its weakening of global zero absorption.
+
+The older local proofs RECEIVERS.md, EXPLORATION.md and the preserved September 19 source proofs were consulted before these calculations. The basic receivers, singlet tables, congruence classification, and paired arithmetic/support embedding were already present there; they are fully reproved here to answer this question about the four integer constructions. The monoid comparisons, complete finite-copy and homomorphism classifications, integer recovery and rigidity, and the reconstruction results of Sections 7–8 are derived here with their full proofs. Two independent mathematical derivations checked the comparisons, classifications and reconstruction maps. This is a statement of local proof provenance, not of novelty in the literature. Source-reading coverage and hashes remain in SOURCE_READING_AND_USE.md and SOURCE_MANIFEST.json.
+
+
+The subsequent [prismatic comparison](PRISMATIC_COMPARISON.md), Theorems P1–P5, constructs bounded crystalline prisms from these exact coefficient rings, computes the addition obstruction, and proves the Witt and conjugate-Frobenius bridges. [Coefficient branch](COEFFICIENT_BRANCH.md), Theorems C1–C2, gives the exact module/complex relation and the limitation on canonical addition recovery.
+
+
+# Prismatic coefficient structures on the integer receiver algebras
+
+This note gives complete algebraic derivations for the objects in Theorems Z7–Z8 of [Four corners over the integers](FOUR_CORNERS_OVER_Z.md). It constructs bounded crystalline prisms and their exact comparison maps. It does not identify their prismatic cohomology with a previously constructed cohomology theory.
+
+Fix a prime integer \(p\). Write \(e=0_{\mathbb Z}\), \(S=\mathbb Z\sqcup\{\tau\}\), and \(H=S\sqcup\{\Omega\}\), with the operations and identities specified in that paper. In particular \(e\ne\tau\). Put \(N=\mathbb Z\setminus\{0\}\), regarded as a multiplicative monoid, and
+\[
+\Lambda=\mathbb Z[N],\qquad T=\varprojlim_r\Lambda/p^r\Lambda.
+\tag{P1}
+\]
+The notation \([n]\) denotes a monoid-ring basis element, whereas an integer coefficient denotes a multiple of the ring identity. These are different objects: \([p]\ne p\).
+
+The definitions used here are Bhatt–Scholze, [*Prisms and Prismatic Cohomology*, arXiv:1905.08229v4](https://arxiv.org/abs/1905.08229v4), [original TeX archive](https://arxiv.org/src/1905.08229v4), file `prisms.tex`: Definition `def:deltaring`, Remark `FrobLiftTheta`, Remark `ThetaW2`, Definition `def:Prism`, and Example `PrismExIntro`, item 1. The read source passages are lines 484–558 and 135–170 of the local original source. Every construction specific to the receiver algebras is proved below.
+
+![The canonical obstruction, the Witt comparison and the conjugate arithmetic-compatible family.](figures/09_prismatic_bridge.png)
+
+Figure 9 records the actual maps proved in Theorems P1–P5. The symbol \([p]\) is a basis element; \(p\) is an integer scalar. The two occurrences have different delta values for the canonical Frobenius. The lower panel uses the same ring with a conjugate Frobenius family.
+
+## 1. The completed rings and their coefficients
+
+For a set \(E\), the \(p\)-adic completion of the free abelian group on \(E\) consists of families \((a_u)_{u\in E}\), with \(a_u\in\mathbb Z_p\), such that for each \(r\ge1\), only finitely many \(a_u\) are nonzero modulo \(p^r\). To prove this description, a compatible family of finite coefficient vectors modulo \(p^r\) determines one compatible coefficient at each \(u\), and its finite support modulo \(p^r\) gives the stated condition. Conversely such coefficients give finite vectors modulo every \(p^r\), compatible under reduction. These constructions are inverse.
+
+It follows that the completion is \(p\)-torsionfree: multiplication by \(p\) is injective on every coefficient \(a_u\). It is separated and complete in its own \(p\)-adic topology. Indeed a coefficient family is divisible by \(p^r\) precisely when each coefficient is divisible by \(p^r\); division gives another admissible family because finiteness modulo \(p^s\) after division follows from finiteness modulo \(p^{r+s}\) before division. Consequently its reduction modulo \(p^r\) is exactly the original free module modulo \(p^r\), and the displayed inverse limit is its \(p\)-adic completion.
+
+Applied to \(\Lambda\), this identifies elements of \(T\) with restricted sums \(\sum_{n\ne0}a_n[n]\). Ring multiplication is determined by \([m][n]=[mn]\); modulo each \(p^r\) both inputs have finite support, so multiplication there is an ordinary finite calculation. The compatible products define the product in \(T\).
+
+The finite product decompositions in Theorem Z7 therefore give
+\[
+\begin{array}{c|c}
+M&B_M:=\widehat{\Gamma(M)}_p\\\hline
+S,A&\mathbb Z_p\times T\\
+H&\mathbb Z_p\times\mathbb Z_p\times T\\
+B,J&\mathbb Z_p\\
+C,L&\mathbb Z_p\times\mathbb Z_p\\
+D&\mathbb Z_p.
+\end{array}
+\tag{P2}
+\]
+Completion commutes with these finite products because both reduction modulo \(p^r\) and compatible inverse-limit sequences are calculated coordinate by coordinate. The original coordinates remain
+\[
+\begin{array}{c|ccc}
+&[\tau]&[e]&[n],\quad n\ne0\\\hline
+B_S&0&(1,0)&(1,[n])\\
+B_H&(1,0,0)&(1,1,0)&(1,1,[n]).
+\end{array}
+\tag{P3}
+\]
+In \(B_H\), \([\Omega]=0\). Thus the distinct source states are not renamed as one source element by this construction.
+
+## 2. Canonical Frobenius and bounded crystalline prisms
+
+On any contracted monoid ring occurring here, define
+\[
+\phi_M\left(\sum a_m[m]\right)=\sum a_m[m^p],
+\qquad a_m\in\mathbb Z.
+\tag{P4}
+\]
+This is a unital ring map. On products of basis elements the required equality is \([(mn)^p]=[m^pn^p]\); bilinear expansion then proves it for finite sums. The killed absorber maps to itself before contraction and therefore to zero after contraction. The coefficients are fixed. Since \(\phi_M(p^rx)=p^r\phi_M(x)\), it extends uniquely to the completion \(B_M\), and the extension is continuous.
+
+Modulo \(p\), the binomial theorem gives \((x+y)^p=x^p+y^p\), because every intermediate binomial coefficient is divisible by \(p\). Integer coefficients satisfy \(a^p=a\) modulo \(p\), first by induction from \((a+1)^p\equiv a^p+1\), and then for negative integers as well. Hence \(\phi_M(x)\equiv x^p\pmod p\) for finite sums. Every completed element has a finite-sum representative modulo \(p\), so the same equality holds on \(B_M\).
+
+Since \(B_M\) is \(p\)-torsionfree, define
+\[
+\delta_M(x)=\frac{\phi_M(x)-x^p}{p}.
+\tag{P5}
+\]
+This is a unique element of \(B_M\). It has \(\delta_M(0)=\delta_M(1)=0\), and direct expansion gives
+\[
+\delta_M(x+y)=\delta_M(x)+\delta_M(y)
++\frac{x^p+y^p-(x+y)^p}{p},
+\]
+\[
+\delta_M(xy)=x^p\delta_M(y)+y^p\delta_M(x)
++p\delta_M(x)\delta_M(y).
+\tag{P6}
+\]
+For the product formula, substitute \(\phi_M(x)=x^p+p\delta_M(x)\) and the analogous identity for \(y\), multiply, and divide the difference from \(x^py^p\) by \(p\). The sum formula follows by adding the two expressions for \(\phi_M\). These are exactly the \(\delta\)-ring identities.
+
+**Theorem P1.** Every pair \((B_M,(p))\) in (P2), equipped with (P4)–(P5), is a bounded crystalline prism.
+
+**Proof.** The ring \(B_M\) is a \(\delta\)-ring by (P6). The ideal \((p)\) is generated by a nonzerodivisor because \(B_M\) is \(p\)-torsionfree, so it defines a Cartier divisor. The ring is complete for \((p,(p))=(p)\), as proved in Section 1. It also satisfies the derived completeness convention for prisms: the two-term complex \([B_M\xrightarrow{p^r}B_M]\) has zero kernel and cokernel \(B_M/p^r\), so the derived reduction is the ordinary quotient in degree zero. The transition maps of these quotients are surjective. The inverse-limit complex consequently has no degree-one term in cohomology: explicitly the difference map on the product of the quotients is surjective, since each equation for a successive coordinate can be solved by lifting along its surjective transition map. Its degree-zero kernel is the ordinary inverse limit, which is \(B_M\). The condition \(p\in(p)+\phi_M((p))B_M\) holds already because \(p\in(p)\). Finally \(B_M/(p)\) is killed by \(p\), so its \(p^\infty\)-torsion is killed by the single power \(p\); this is boundedness. These are all the required conditions. In addition \(\delta_M(p)=1-p^{p-1}\), a unit: its residue modulo \(p\) is 1, and the geometric series for the inverse converges \(p\)-adically. Thus the generator \(p\) is distinguished as well. \(\square\)
+
+The basis elements have \(\delta_M([m])=0\). In the product coordinates (P2), Frobenius is the identity on every \(\mathbb Z_p\) factor and is the map \(\phi_T([n])=[n^p]\) on \(T\). For example the images of all three basis types in (P3) have exactly these coordinatewise powers. The coefficient map on \(\mathbb Z_p\) is the identity because it fixes the dense subring \(\mathbb Z\) and is continuous. Formula (P5) then also acts coordinatewise.
+
+## 3. Exact maps of prisms
+
+Let \(f:M\to M'\) be any of the multiplication maps from Theorem Z8, preserving the unit and the respective global absorbers. The induced map on contracted monoid rings sends \([m]\) to \([f(m)]\). Its commutation with Frobenius is the identity
+\[
+[f(m^p)]=[f(m)^p].
+\tag{P7}
+\]
+Consequently it commutes with Frobenius on finite sums and, by continuity, on the completions. It also commutes with \(\delta\): multiply the desired equality by \(p\), use (P5) and Frobenius commutation, then cancel \(p\) in the target. As a unital ring map it sends \(p\) to \(p\), so it gives a map of the prisms with ideal \((p)\).
+
+The exact coordinate maps are unchanged:
+\[
+B_S\longrightarrow B_{\mathbb B}\times B_{(\mathbb Z,\cdot,e)},
+\qquad(k,v)\longmapsto(k,v),
+\tag{P8}
+\]
+where the two target rings are \(\mathbb Z_p,T\), respectively, and
+\[
+\begin{aligned}
+B_q(k,l,v)&=(k,v),&B_\rho(k,l,v)&=(k,l),\\
+B_\alpha(k,v)&=k,&B_\beta(k,l)&=k.
+\end{aligned}
+\tag{P9}
+\]
+In particular
+\[
+B_H\xrightarrow{\ \cong\ }B_A\times_{B_D}B_L,
+\qquad(k,l,v)\longmapsto((k,v),(k,l))
+\tag{P10}
+\]
+is an isomorphism of \(\delta\)-rings, preserving the distinguished ideal \((p)\). The target consists exactly of those pairs with the same first coordinate, so its inverse reads off \(k,l,v\). Ring operations and \(\delta\) are coordinatewise. The target's ideal \((p)\) consists of the pairs in which all three coordinates are divisible by \(p\), which agrees with the image of \((p)\) in \(B_H\). This proves (P10) as an isomorphism of prisms, including the pullback universal property among prisms: compatible prism maps pair to the unique ring map, their \(\delta\)-compatibility is coordinatewise, and their common source ideal maps into \((p)\) in every coordinate.
+
+## 4. The arithmetic evaluation obstruction
+
+The ring evaluation has the continuous extension
+\[
+\operatorname{ev}:T\longrightarrow\mathbb Z_p,
+\qquad \sum_{n\ne0}a_n[n]\longmapsto\sum_{n\ne0}a_n n.
+\tag{P11}
+\]
+The sum converges: for every \(r\), only finitely many terms can be nonzero modulo \(p^r\), since \(n\in\mathbb Z_p\). Evaluation preserves sums and products on the dense monoid ring and therefore on the completion. It is surjective, with ring section given by scalar coefficients. On \(B_S\), the arithmetic map is
+\[
+\varepsilon(k,v)=\operatorname{ev}(v).
+\tag{P12}
+\]
+Its kernel is the closed ideal generated by the original addition relations. Here is the closure assertion explicitly. If \(v\in\ker(\operatorname{ev})\), choose \(v_r\in\Lambda\) congruent to \(v\) modulo \(p^rT\). Then \(\operatorname{ev}(v_r)\) is an integer divisible by \(p^r\). The element \(v_r-\operatorname{ev}(v_r)\) lies in the uncompleted evaluation kernel and is still congruent to \(v\) modulo \(p^r\). The uncompleted kernel is precisely the addition ideal by Theorem Z7. The support factor is killed by the original relation \(e+e=e\), and scalar approximation treats its completion in the same way. Conversely continuity shows that the closure of those relations lies in the kernel.
+
+**Theorem P2.** With canonical Frobenius (P4), the ideal generated in the category of \(\delta\)-rings by the single arithmetic relation
+\[
+r=[p]-p\cdot1
+\tag{P13}
+\]
+is the entire ring, both in \(T\) and in \(B_S\). In particular there is no nonzero \(\delta\)-ring quotient of either ring which imposes all the original integer addition relations. The evaluation (P11) or (P12) is not a \(\delta\)-map to the canonical \(\delta\)-ring \(\mathbb Z_p\).
+
+**Proof.** Put \(X=[p]\). Canonical Frobenius has \(\phi(X)=X^p\) and \(\phi(p)=p\). Thus
+\[
+\delta(r)=\frac{X^p-p-(X-p)^p}{p}.
+\tag{P14}
+\]
+The right side is a polynomial in \(X\) with integer coefficients: the leading \(X^p\) cancels, and every remaining coefficient in \((X-p)^p\) has at least one factor \(p\). Substituting \(X=p\) into that polynomial gives
+\[
+c=p^{p-1}-1.
+\tag{P15}
+\]
+For every polynomial with integer coefficients, its difference from its value at \(p\) is divisible by \(X-p\), by factoring each \(X^j-p^j\). Consequently \(\delta(r)-c\in(r)\). The coefficient \(c\) is a unit in \(\mathbb Z_p\), since \(c\equiv-1\pmod p\). Therefore
+\[
+1\in(r,\delta(r)).
+\tag{P16}
+\]
+Every \(\delta\)-ideal containing \(r\) must contain \(\delta(r)\), hence 1. This proof uses two explicit generators and does not require taking a closure. Finally \(\operatorname{ev}(r)=0\), whereas \(\operatorname{ev}(\delta(r))=c\ne0\); hence evaluation cannot commute with \(\delta\). Equivalently \([p]\) has \(\delta=0\), but its proposed image has \(\delta_{\mathbb Z_p}(p)=(p-p^p)/p=1-p^{p-1}\ne0\). \(\square\)
+
+## 5. Arithmetic-compatible Frobenius lifts: existence and full classification on T
+
+The preceding obstruction is specific to (P4). There are other Frobenius lifts on the same completed ring for which evaluation is a prism morphism. The exact classification follows from a polynomial presentation that we now justify.
+
+Let \(\mathcal P\) be the set of positive prime integers. Every positive integer is a finite product of primes: by strong induction, an integer greater than 1 is either prime or a product of two smaller positive integers, to which the induction applies. Uniqueness follows from the following elementary divisibility argument. If a prime \(\ell\) does not divide \(a\), there are integers \(u,v\) with \(ua+v\ell=1\). Indeed the smallest positive integer of the form \(ua+v\ell\) divides both \(a\) and \(\ell\): Euclidean division by this integer would otherwise give a smaller positive integer of the same form. It therefore equals 1, since \(\ell\) is prime and does not divide \(a\). Multiplying this identity by \(b\) proves that \(\ell\mid ab\) implies \(\ell\mid b\). Applying this implication repeatedly to an equality of two prime products matches one prime on the two sides; cancelling it and repeating proves uniqueness. A nonzero integer has in addition its unique sign. Consequently
+\[
+N\cong\{1,-1\}\times\bigoplus_{\ell\in\mathcal P}\mathbb N,
+\qquad
+\Lambda\cong\mathbb Z[x_\ell\ (\ell\in\mathcal P),t]/(t^2-1),
+\tag{P17}
+\]
+where \(x_\ell=[\ell]\) and \(t=[-1]\). The direct sum means that only finitely many prime exponents are nonzero. The ring isomorphism follows by matching its monomial basis with the unique sign and prime factorization of each basis index in \(N\).
+
+Set
+\[
+R=\widehat{\mathbb Z[x_\ell\ (\ell\in\mathcal P)]}_p.
+\]
+Then \(T=R\oplus tR\), with \(t^2=1\). This follows already before completion by reducing each polynomial in \(t\) uniquely to degree at most one; taking the completion preserves the two coefficient modules. The ring \(R\) is an integral domain. To prove this, a nonzero restricted coefficient family has a least finite \(p\)-adic valuation \(v\). Dividing all coefficients by \(p^v\) gives another restricted family with nonzero reduction in \(\mathbb F_p[x_\ell]\). For two such primitive families their reductions have nonzero product: both use only finitely many variables modulo \(p\), and the leading monomial of the product of two nonzero polynomials over the field \(\mathbb F_p\) has nonzero coefficient. Thus the product of the primitive families is nonzero. Restoring the powers of \(p\), which are nonzerodivisors, proves that the original product is nonzero.
+
+The only roots of \(u^2=1\) in \(T\) are
+\[
+u\in\{1,-1,t,-t\}.
+\tag{P18}
+\]
+Indeed write \(u=a+bt\), with \(a,b\in R\). Comparing the two coefficients in \(u^2=1\) gives \(a^2+b^2=1\) and \(2ab=0\). Since \(R\) is a domain and 2 is nonzero, either \(a=0\) or \(b=0\). The remaining coefficient has square 1, so it is 1 or −1 by factoring \(z^2-1\) in the domain. This proves (P18).
+
+**Theorem P3.** Every continuous unital Frobenius lift \(\psi:T\to T\) satisfying
+\[
+\operatorname{ev}\circ\psi=\operatorname{ev}
+\tag{P19}
+\]
+is given uniquely by arbitrary choices \(j_\ell\in\ker(\operatorname{ev})\), one for every positive prime \(\ell\), through
+\[
+\psi(x_\ell)=x_\ell^p+\ell-\ell^p+p j_\ell,
+\qquad
+\psi(t)=
+\begin{cases}
+t,&p\text{ odd},\\
+-1,&p=2.
+\end{cases}
+\tag{P20}
+\]
+Conversely every such collection defines a continuous Frobenius lift with (P19). No convergence condition on the collection \((j_\ell)\) is required.
+
+**Proof.** A continuous unital endomorphism fixes \(\mathbb Z_p\), since it fixes the dense integers. Its value at \(x_\ell\) has the unique form \(x_\ell^p+p h_\ell\), because it reduces to Frobenius modulo \(p\) and \(T\) is \(p\)-torsionfree. Condition (P19) gives
+\[
+\operatorname{ev}(h_\ell)=\frac{\ell-\ell^p}{p}.
+\]
+The right side is an integer by the congruence used in Section 2. Thus \(h_\ell=(\ell-\ell^p)/p+j_\ell\), for a unique \(j_\ell\in\ker(\operatorname{ev})\).
+
+For the sign generator, \(u=\psi(t)\) satisfies \(u^2=1\), so (P18) lists all options. If \(p\) is odd, the required residue is \(t^p=t\). Of the four possibilities, only \(t\) has that residue: in the free rank-two module over \(R/p\), neither constant can equal \(t\), and \(-t\ne t\) because 2 is nonzero modulo \(p\). If \(p=2\), the required residue is \(t^2=1\). The constants \(1,-1\) have that residue; the other two have residue \(t\ne1\). Finally (P19) requires \(\operatorname{ev}(u)=-1\), leaving \(u=-1\).
+
+Conversely the assignments (P20) satisfy the only defining relation \(t^2=1\), and so define a unital ring map on the polynomial ring with coefficients in \(\mathbb Z_p\). Modulo \(p\), they are precisely the \(p\)-th powers of the generators. Hence the map reduces to Frobenius. It sends \(p^r\) times any polynomial into \(p^rT\), so it extends uniquely to the completion. This also shows why infinitely many chosen images cause no problem: each input is approximated modulo every \(p^r\) by a finite polynomial, and changing that polynomial by a multiple of \(p^r\) changes its image by a multiple of \(p^r\). The evaluation equality holds on all generators and coefficients, hence on polynomials and by continuity on the completion. Uniqueness follows from the density of the polynomial ring. \(\square\)
+
+In particular setting every \(j_\ell=0\) gives an explicit choice \(\phi_{\mathrm{ar}}\). Its \(\delta\)-values are
+\[
+\delta_{\mathrm{ar}}(x_\ell)=\frac{\ell-\ell^p}{p},
+\qquad
+\delta_{\mathrm{ar}}(t)=
+\begin{cases}0,&p\text{ odd},\\-1,&p=2.\end{cases}
+\tag{P21}
+\]
+With this choice, \((T,(p))\) remains a bounded crystalline prism by the proof of Theorem P1, and (P11) becomes a prism morphism to \((\mathbb Z_p,(p),\phi=\mathrm{id})\): Frobenius commutes by (P19), and cancellation of \(p\) proves \(\delta\)-commutation. Its kernel is therefore a \(\delta\)-ideal. Applying the identity Frobenius to the scalar factors and \(\phi_{\mathrm{ar}}\) to the \(T\)-factor gives the same conclusion on \(B_S\), and the same product and fibre-product diagrams (P8)–(P10) remain diagrams of prisms because every displayed map is a coordinate projection.
+
+These corrections use the actual integer arithmetic values \(\ell-\ell^p\). They show exactly that compatible prism structures exist; they do not reconstruct the integer addition from multiplication without additional information. At \(p=2\), even the sign generator must change from canonical Frobenius value \(1\) to the arithmetic-compatible value \(-1\).
+
+## 6. A complete Witt-vector bridge for the canonical lift
+
+The canonical lift also has a positive comparison that retains its rank-one basis elements. We construct the required Witt ring and the comparison directly, including its completeness and \(\delta\)-structure.
+
+For \(z\in\mathbb Z_p\) and \(m\ge1\), one has
+\[
+z^{p^m}-z^{p^{m-1}}\in p^m\mathbb Z_p.
+\tag{P22}
+\]
+For \(m=1\), this is the residue congruence already proved. If \(x-y\in p^r\mathbb Z_p\) with \(r\ge1\), binomial expansion of \((y+p^rh)^p-y^p\) shows divisibility by \(p^{r+1}\). The term linear in \(p^rh\) has that factor; every intermediate term has an additional binomial factor \(p\); the last term has valuation at least \(rp\ge r+1\). Applying this repeatedly proves (P22).
+
+Define a ring of sequences, with coordinatewise addition and multiplication,
+\[
+K=\left\{(a_0,a_1,\ldots)\in\prod_{k\ge0}\mathbb Z_p:
+a_k-a_{k-1}\in p^k\mathbb Z_p\ \text{for every }k\ge1\right\}.
+\tag{P23}
+\]
+It is a subring. Closure under addition and negatives is immediate from the differences. For multiplication,
+\(a_kb_k-a_{k-1}b_{k-1}=(a_k-a_{k-1})b_k+a_{k-1}(b_k-b_{k-1})\), and both summands are divisible by \(p^k\). The identity is the constant sequence 1. It is \(p\)-torsionfree because it is a subring of a product of \(p\)-torsionfree rings.
+
+For a sequence of Witt coordinates \(b=(b_0,b_1,\ldots)\in\prod_{k\ge0}\mathbb Z_p\), set
+\[
+g_k(b)=\sum_{i=0}^k p^i b_i^{p^{k-i}}.
+\tag{P24}
+\]
+The map \(g:b\mapsto(g_0(b),g_1(b),\ldots)\) is a bijection from Witt-coordinate sequences onto \(K\). To prove that its image lies in \(K\), subtract consecutive expressions. The new term is \(p^k b_k\); each preceding difference is \(p^i(b_i^{p^{k-i}}-b_i^{p^{k-1-i}})\), divisible by \(p^k\) by (P22). To prove surjectivity, let \(a\in K\). Define recursively
+\[
+b_0=a_0,\qquad
+b_k=\frac{a_k-\sum_{i<k}p^i b_i^{p^{k-i}}}{p^k}.
+\tag{P25}
+\]
+The numerator is divisible by \(p^k\): the sum in its numerator is congruent modulo \(p^k\) to \(\sum_{i<k}p^i b_i^{p^{k-1-i}}=a_{k-1}\), using (P22), and \(a_k\equiv a_{k-1}\pmod{p^k}\). Thus every \(b_k\) belongs to \(\mathbb Z_p\). The recursion gives \(g(b)=a\), and its forced values prove injectivity as well.
+
+The \(p\)-typical Witt ring \(W(\mathbb Z_p)\) is precisely Witt-coordinate sequences with operations for which all polynomials (P24), called ghost coordinates, are ring maps. The bijection just proved supplies these operations by transporting the ring structure of \(K\), and injectivity of \(g\) makes them unique. Thus it identifies \(W(\mathbb Z_p)\) with (P23). This gives a construction for the particular base ring needed here without using an adjunction in place of the calculation.
+
+The ring \(K\) is complete in its own \(p\)-adic topology, not merely closed for the coordinatewise topology. Here is the required proof. A sequence \(a\in K\) belongs to \(p^rK\) exactly when
+\[
+a_k\in p^r\mathbb Z_p\ \text{for all }k,
+\qquad a_k-a_{k-1}\in p^{k+r}\mathbb Z_p\ \text{for all }k\ge1.
+\tag{P26}
+\]
+Necessity follows by multiplying an element of \(K\) by \(p^r\). Conversely these conditions show that coordinatewise division by \(p^r\) produces an element of \(K\), proving sufficiency. Now let \((a^{(j)})_j\) be Cauchy for the ideals \(p^rK\). Each coordinate has a limit \(a_k\in\mathbb Z_p\). Passing to limits in the defining congruences shows that \(a=(a_k)\in K\). For each fixed \(r\), take \(j\) beyond a Cauchy threshold. The differences \(a^{(j)}-a^{(i)}\), for all sufficiently large \(i\), satisfy both conditions of (P26). Coordinatewise limits preserve divisibility by every fixed power of \(p\), so \(a^{(j)}-a\) satisfies those two conditions as well. Hence \(a^{(j)}-a\in p^rK\). This proves convergence in the ring's own \(p\)-adic topology. Separatedness follows from coordinatewise separatedness. Equivalently every compatible family modulo \(p^rK\) can be represented by a Cauchy sequence and therefore has a unique limit.
+
+Define the shift
+\[
+F(a_0,a_1,a_2,\ldots)=(a_1,a_2,a_3,\ldots).
+\tag{P27}
+\]
+It maps \(K\) into itself, since \(a_{k+1}-a_k\) is divisible by \(p^{k+1}\), hence by \(p^k\), and it is a unital ring map. Its difference from the coordinatewise \(p\)-th power is divisible by \(p\) **inside \(K\)**. Indeed put
+\[
+c_k=\frac{a_{k+1}-a_k^p}{p}.
+\tag{P28}
+\]
+These are integers in \(\mathbb Z_p\), since \(a_{k+1}\equiv a_k\equiv a_k^p\pmod p\). For \(k\ge1\),
+\[
+p(c_k-c_{k-1})
+=(a_{k+1}-a_k)-(a_k^p-a_{k-1}^p).
+\]
+The first parenthesis is divisible by \(p^{k+1}\). The second is also divisible by \(p^{k+1}\), since \(a_k-a_{k-1}\) is divisible by \(p^k\) and the binomial estimate used for (P22) raises that divisibility by one. Hence \(c_k-c_{k-1}\) is divisible by \(p^k\), proving \(c\in K\). Thus \(F(a)-a^p=pc\) in \(K\), not only in the ambient product ring.
+
+It follows from the argument (P5)–(P6) that \(\delta_K(a)=c\) defines a \(\delta\)-ring structure. The preceding proof of completeness and torsionfreeness now proves that
+\[
+\bigl(W(\mathbb Z_p),(p)\bigr)=\bigl(K,(p)\bigr)
+\tag{P29}
+\]
+is a bounded crystalline prism.
+
+**Theorem P4.** For canonical Frobenius \(\phi\) on \(B_S\), the formula in ghost coordinates
+\[
+\Theta(x)=\bigl(\varepsilon(x),\varepsilon(\phi(x)),
+\varepsilon(\phi^2(x)),\ldots\bigr)
+\tag{P30}
+\]
+defines a unique prism morphism \(B_S\to W(\mathbb Z_p)\) whose composite with the zeroth ghost coordinate is \(\varepsilon\). On the nonzero integer basis it sends \([n]\) to the Teichmüller vector of \(n\), whose Witt coordinates are \((n,0,0,\ldots)\). It kills the support factor of \(B_S\), exactly as \(\varepsilon\) does.
+
+**Proof.** In the coordinates \(x=(k,\sum a_n[n])\), the ghost coordinate in position \(j\) is
+\[
+\varepsilon(\phi^j x)=\sum_{n\ne0}a_n n^{p^j}.
+\tag{P31}
+\]
+The restricted sums converge as in (P11). Consecutive terms of (P31) differ by a multiple of \(p^j\), term by term by (P22), and the ideal \(p^j\mathbb Z_p\) is closed. Thus (P30) belongs to \(K\). Each coordinate is a unital ring map, being the composite of such maps, so (P30) is a unital ring map to \(K\). Shift of its coordinates gives
+\(F\Theta(x)=\Theta(\phi(x))\). Multiplying the desired \(\delta\)-commutation by \(p\) and using this identity and (P5) proves it after cancellation in the \(p\)-torsionfree ring \(K\). The map sends \(p\) to \(p\), so it is a prism morphism. It is continuous because any unital ring map sends \(p^rB_S\) into \(p^rK\).
+
+For uniqueness, if a \(\delta\)-map \(h\) has zeroth ghost coordinate \(\varepsilon\), then it commutes with Frobenius. Its \(j\)-th ghost coordinate is the zeroth ghost coordinate of \(F^jh(x)=h(\phi^jx)\), namely \(\varepsilon(\phi^jx)\). Hence all its ghost coordinates are forced to be (P30), proving \(h=\Theta\). For \([n]\), (P31) gives the sequence \((n,n^p,n^{p^2},\ldots)\); formula (P24) identifies its Witt coordinates as \((n,0,0,\ldots)\). Formula (P31) is independent of \(k\), proving the final assertion. \(\square\)
+
+The support can also be retained throughout this comparison. Write \(\Theta_T\) for the restriction to the \(T\)-factor. There are prism morphisms
+\[
+\begin{aligned}
+\Psi_S:\mathbb Z_p\times T&\longrightarrow\mathbb Z_p\times W(\mathbb Z_p),
+&(k,v)&\longmapsto(k,\Theta_T(v)),\\
+\Psi_H:\mathbb Z_p^2\times T&\longrightarrow\mathbb Z_p^2\times W(\mathbb Z_p),
+&(k,l,v)&\longmapsto(k,l,\Theta_T(v)).
+\end{aligned}
+\tag{P32}
+\]
+They are coordinatewise products of prism maps, so all assertions follow from their component calculations. In particular \([e]=(1,0)\) in \(B_S\) maps to the nonzero idempotent \((1,0)\); it does not merge with \([\tau]=0\). The maps (P9) commute with these comparisons because they read the same coordinates before and after applying \(\Theta_T\).
+
+The zeroth ghost map \(w_0:K\to\mathbb Z_p\), \((a_j)\mapsto a_0\), is a ring map, but it is not a \(\delta\)-map to the canonical arithmetic structure. For the Teichmüller vector \([p]_{\mathrm W}\), one has \(\delta_K([p]_{\mathrm W})=0\), since shifting \((p,p^p,p^{p^2},\ldots)\) equals its \(p\)-th power. Its zeroth ghost value is \(p\), whose arithmetic \(\delta\)-value is the nonzero unit \(1-p^{p-1}\). Thus
+\[
+B_S\xrightarrow{\Theta}W(\mathbb Z_p)\xrightarrow{w_0}\mathbb Z_p
+\tag{P33}
+\]
+recovers arithmetic evaluation, with the first map a prism morphism and the second map an explicitly identified ring map that does not preserve \(\delta\).
+
+For completeness, the two-coordinate addition and multiplication laws are obtained directly from (P24). If Witt coordinates are \((a,a_1)\), their first two ghost coordinates are \((a,a^p+pa_1)\). Equating the ghosts for a sum and a product gives
+\[
+(a,a_1)+(b,b_1)=
+\left(a+b,a_1+b_1+\frac{a^p+b^p-(a+b)^p}{p}\right),
+\tag{P34}
+\]
+\[
+(a,a_1)(b,b_1)=
+\left(ab,a^p b_1+b^p a_1+p a_1b_1\right).
+\tag{P35}
+\]
+Cancellation of \(p\) in \(\mathbb Z_p\) proves uniqueness of these coordinates. In particular
+\[
+[a]_{\mathrm W}+[b]_{\mathrm W}-[a+b]_{\mathrm W}
+\quad\text{has first two Witt coordinates}\quad
+\left(0,\frac{a^p+b^p-(a+b)^p}{p}\right).
+\tag{P36}
+\]
+The quotient in (P36) is an integer-coefficient polynomial by the binomial theorem. It is exactly the first additive correction: the product of two Teichmüller vectors is the Teichmüller vector of their product, but their sum requires this additional coordinate. For example at \(p=2\), adding the Teichmüller vectors of 1 and 1 has first two coordinates \((2,-1)\), while the Teichmüller vector of 2 has first two coordinates \((2,0)\). Their difference has coordinates \((0,-1)\). This difference is the image of \(-r=2-[2]\), with the opposite orientation to \(r=[2]-2\) in (P13); the image of \(r\) has coordinates \((0,1)\), as (P15) requires.
+
+Scalar coefficients in this construction have their own exact embedding. The constant ghost sequence
+\[
+\iota(a)=(a,a,a,\ldots)
+\tag{P37}
+\]
+belongs to \(K\), is a ring map \(\mathbb Z_p\to K\), and commutes with \(\delta\), because its image under (P28) is the constant sequence \((a-a^p)/p\). Its first two Witt coordinates are \((a,(a-a^p)/p)\). Thus scalar \(p\) maps to \((p,1-p^{p-1},\ldots)\), while the basis element \([p]\) maps to \((p,0,\ldots)\). This is the positive Witt-vector form of the obstruction in Theorem P2.
+
+For the alternative lift \(\phi_{\mathrm{ar}}\), evaluation commutes with Frobenius, so every ghost coordinate of (P30) equals \(\varepsilon(x)\). Its corresponding prism morphism is therefore \(\iota\circ\varepsilon\). In this case it factors through the arithmetic quotient, in agreement with Theorem P3. The two lifts therefore have different, fully computed relationships to addition on the same coefficient ring.
+
+## 7. A commuting family for every prime, conjugate to monoid Frobenius
+
+The fixed-prime choices in Theorem P3 can be made simultaneously in a way that commutes for different primes. This assertion is integral, before any completion.
+
+For every prime \(p\), let \(\phi_p\) be the canonical endomorphism of \(\Lambda\) given by \(x_\ell\mapsto x_\ell^p\), \(t\mapsto t^p\). Define a single ring automorphism
+\[
+\sigma:\Lambda\longrightarrow\Lambda,
+\qquad \sigma(x_\ell)=x_\ell-\ell,\quad\sigma(t)=-t.
+\tag{P38}
+\]
+It fixes integer coefficients. The sign image satisfies the required relation \((-t)^2=1\); the prime generators have no further polynomial relations. Thus (P38) defines a ring map by (P17). The assignments \(x_\ell\mapsto x_\ell+\ell\), \(t\mapsto-t\) define its inverse: each of the two composites fixes every coefficient and generator. This proves the claimed automorphism.
+
+**Theorem P5.** The conjugate endomorphisms
+\[
+\Psi_p=\sigma\phi_p\sigma^{-1}
+\tag{P39}
+\]
+are commuting arithmetic-compatible Frobenius lifts for all primes simultaneously. Their exact formulas are
+\[
+\Psi_p(x_\ell)=(x_\ell-\ell)^p+\ell,
+\qquad
+\Psi_p(t)=
+\begin{cases}t,&p\text{ odd},\\-1,&p=2.\end{cases}
+\tag{P40}
+\]
+For any fixed prime \(p\), \(\sigma\) extends to an isomorphism of the bounded crystalline prisms on the completed ring \(T\), from the canonical structure \(\phi_p\) to the structure \(\Psi_p\). The same holds on all coefficient product diagrams above by applying the identity to the scalar factors.
+
+**Proof.** On a prime generator,
+\[
+\sigma\phi_p\sigma^{-1}(x_\ell)
+=\sigma\phi_p(x_\ell+\ell)
+=\sigma(x_\ell^p+\ell)
+=(x_\ell-\ell)^p+\ell.
+\]
+On the sign generator,
+\[
+\sigma\phi_p\sigma^{-1}(t)
+=\sigma\phi_p(-t)=\sigma(-t^p)=-(-t)^p.
+\]
+Since \(t^2=1\), the last expression is \(t\) for odd \(p\) and \(-1\) for \(p=2\). These computations prove (P40).
+
+The canonical maps commute: both \(\phi_p\phi_q\) and \(\phi_q\phi_p\) send each generator to its \(pq\)-th power and fix all integer coefficients. Their equality on generators proves their equality on \(\Lambda\). Therefore
+\[
+\Psi_p\Psi_q=\sigma\phi_p\phi_q\sigma^{-1}
+=\sigma\phi_q\phi_p\sigma^{-1}=\Psi_q\Psi_p.
+\tag{P41}
+\]
+Modulo \(p\), formula (P40) gives
+\((x_\ell-\ell)^p+\ell\equiv x_\ell^p-\ell^p+\ell\equiv x_\ell^p\).
+The sign image is \(t^p\) for odd \(p\), and for \(p=2\) its residue \(-1\) equals \(1=t^2\). Thus \(\Psi_p\) is a Frobenius lift. Evaluation sends the first formula in (P40) to \((\ell-\ell)^p+\ell=\ell\), and sends the sign formula to \(-1\). It also fixes coefficients. Consequently \(\operatorname{ev}\Psi_p=\operatorname{ev}\) on every generator and hence on all of \(\Lambda\).
+
+Each map preserves the ideals \(p^r\Lambda\), and the same is true of \(\sigma^{-1}\). Therefore they extend to the completion at the chosen prime \(p\), with \(\sigma\) and \(\sigma^{-1}\) still inverse. The identity \(\Psi_p\sigma=\sigma\phi_p\) makes \(\sigma\) a Frobenius-compatible ring isomorphism. If \(\delta_{\Psi_p},\delta_{\phi_p}\) denote the resulting \(\delta\)-structures, then
+\[
+p\delta_{\Psi_p}(\sigma x)
+=\Psi_p(\sigma x)-(\sigma x)^p
+=\sigma(\phi_p x-x^p)
+=p\sigma(\delta_{\phi_p}x).
+\]
+Cancel \(p\) in the torsionfree completion to prove \(\delta\)-compatibility. The automorphism fixes \(p\), so it preserves the prism ideal \((p)\). Product extension by the identity on every scalar factor commutes with all coordinate projections in (P8)–(P10). This proves the last assertions. \(\square\)
+
+In the classification (P20), this family corresponds to
+\[
+j_\ell=\frac{(x_\ell-\ell)^p-x_\ell^p+\ell^p}{p}.
+\tag{P42}
+\]
+The numerator is divisible by \(p\) as an integer-coefficient polynomial by the binomial theorem; evaluation gives zero. Thus it is indeed an element of \(\ker(\operatorname{ev})\), exactly as Theorem P3 requires.
+
+The automorphism changes the distinguished monoid basis and the evaluation map. In particular \(\sigma([\ell])=[\ell]-\ell\), a formal additive difference, and \(\operatorname{ev}(\sigma([\ell]))=0\), whereas \(\operatorname{ev}([\ell])=\ell\). More generally \(\operatorname{ev}\sigma\) is the augmentation sending every prime generator to 0 and the sign generator to 1. Hence the prism isomorphism does not identify the canonical Frobenius together with its fixed arithmetic evaluation with the corrected Frobenius together with that same fixed evaluation. This exact change of map accounts for its compatibility with Theorem P2. The construction also depends explicitly on subtraction of the arithmetic coefficients \(\ell\), so it is not a recovery of addition from monoid multiplication without additional information.
+
+## 8. Exact scope of the bridge
+
+The constructed relationship is a relationship of completed coefficient rings, \(\delta\)-rings, and bounded crystalline prisms, with exact product and fibre-product maps. Canonical monoid Frobenius keeps every monoid basis element of \(\delta\)-value zero. That condition is incompatible with identifying the basis element \([p]\) with the arithmetic integer coefficient \(p\), and Theorem P2 computes the whole resulting \(\delta\)-ideal. Theorems P3 and P4 give two positive constructions: arithmetic-compatible Frobenius lifts on the same ring, and a canonical prism morphism to a Witt ring retaining multiplication and recording the additive correction. Theorem P5 gives a commuting family for all primes and an exact conjugacy to the canonical monoid family, with its change to the distinguished evaluation explicitly calculated. None of these constructions defines cohomology groups or establishes an equivalence of cohomology theories. In all of them, addition is an explicit part of the ring and \(\delta\)-ring structures; it is not supplied by an unproved identification of the unsupported element with supported integer zero.
+
+
+## 9. The actual absolute-site and F1 comparisons
+
+Bhatt–Lurie's [*Absolute Prismatic Cohomology*, arXiv:2201.06120v1](https://arxiv.org/abs/2201.06120v1), [original source archive](https://arxiv.org/src/2201.06120v1), apc.tex lines 4908–4928, label `definition:absolute-prismatic-site`, defines an object over a bounded \(p\)-adic formal scheme \(X\) to be a bounded prism \((A,I)\) with a map \(\operatorname{Spf}(A/I)\to X\). Its use of “absolute” removes a fixed base prism. The definitions still start with additive rings.
+
+Every prism constructed in Theorem P1, P3, P4 or P5 gives an object over \(X=\operatorname{Spf}(\mathbb Z_p)\). Indeed its quotient by \((p)\) is an \(\mathbb F_p\)-algebra; the canonical continuous map \(\mathbb Z_p\to A/(p)\), factoring through \(\mathbb F_p\), gives the required map of formal spectra. Each displayed prism morphism fixes integer scalars and, by continuity, \(p\)-adic scalars. Its quotient therefore commutes with those structure maps. Thus the coefficient diagrams here are actual diagrams in that absolute site. No computation of the site's cohomology follows merely from supplying these objects.
+
+The canonical family before completion also has a documented F1 interpretation. In [James Borger, *Lambda-rings and the field with one element*, arXiv:0906.3146v1](https://arxiv.org/abs/0906.3146v1), [original source archive](https://arxiv.org/src/0906.3146v1), lrfoe13.tex lines 499–503 and 892–912, a commuting family of Frobenius lifts is the description of a lambda structure on a flat integer algebra, and \([m]\mapsto[m^p]\) is explicitly the toric monoid-algebra family. Our contracted monoid rings are free as abelian groups on the surviving basis elements; they are flat because tensoring with a direct sum of copies of \(\mathbb Z\) is a direct sum of identity functors and hence preserves injections and exact sequences. Section 2 proves the lifts, and Theorem P5 proves their commutation and their simultaneous conjugates. Consequently the construction sits in this stated lambda-ring version of F1 geometry. The toric construction itself is pre-existing literature, not a new result claimed here.
+
+The arithmetic-compatible structure of Theorem P5 is isomorphic to the toric structure by the explicit \(\sigma\). Its arithmetic map has changed under that isomorphism. This gives an exact relationship stronger than a failed comparison, while explaining why it cannot select the original addition from multiplication alone. [Coefficient branch, Theorem C2](COEFFICIENT_BRANCH.md) proves that last limitation by constructing two different additions on the same specified multiplicative object.
+
+
+## Retained cohomology and Frobenius
+
+The [chain comparison](CHAIN_COMPARISON.md), Theorems Q1–Q4, propagates these coefficient maps to supported cohomology and calculates the additive-relation kernel. The [homotopy-defect construction](HOMOTOPY_DEFECT.md) proves the exact retained summand for a contractible input and its coefficient extensions. In the integer example the [Frobenius cross-effect](FROBENIUS_CROSS_EFFECT.md), Theorems F1–F3, is the mixed Laurent ideal: it has a specified Frobenius-semilinear map, a completely calculated linearization cokernel, and a delta-stable ideal defining an actual quotient of crystalline prisms. Thus these later proofs construct additional maps on the retained classes themselves.
+
+
+The quotient crystalline prism of the retained mixed ideal also has an explicit cotangent and differential calculation: [Node cotangent](NODE_COTANGENT.md), (N6)–(N32). Its conormal comparison starts from the same mixed module; restriction to its two branches has a nonzero differential kernel. The integral divided-Frobenius map has the typed source with differential multiplied by p, and the retained kernel there has degree-two cohomology Z/p. All identifications and completion maps are proved in that paper.
+
+
+# A chain comparison from split-zero semimodules to arithmetic complexes
+
+This note constructs exact maps between the split-zero support model, the reduced free abelian group on its supported fibre, and the original arithmetic complex. The comparison gives complete cohomology calculations, including the extra classes introduced by taking a free abelian group on the underlying set. The extra classes are retained objects: the companion papers compute their cross-effects, contraction projectors and Frobenius modules.
+
+The programme source is [*Reconstruction with changes of support index*, equations D1–D5](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L9), followed by [the internal quotient and cohomology comparison, D6–D7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L125), and [the two kernel constructions, D8](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L178). The original TeX was read through the complete D8 proof, in addition to Sections 1–4 of the local source-grounded proof account and the definition and coordinate model in *Split-zero support, augmentation defects, and A-type realization patterns*. The latter file has an empty author field, so no author identity is inferred. The specific cases and all new chain calculations used here are proved below.
+
+## 1. The supported zero in a split extension
+
+Let
+\[
+S=G(\mathbb Z)=\{\tau\}\sqcup\{n^\bullet:n\in\mathbb Z\},
+\qquad e=0^\bullet.
+\tag{Q1}
+\]
+The supported operations are integer addition and multiplication. The element \(\tau\) is the additive identity and multiplicative absorber; it is distinct from \(e\). For an abelian group \(V\), put
+\[
+\operatorname{Spl}(V)=\{\tau_V\}\sqcup\{v^\bullet:v\in V\}.
+\tag{Q2}
+\]
+Two supported elements add by \(v^\bullet+w^\bullet=(v+w)^\bullet\), and \(\tau_V\) is the external additive identity. Supported scalars act by \(n^\bullet v^\bullet=(nv)^\bullet\) and preserve \(\tau_V\); the scalar \(\tau\) sends every element to \(\tau_V\).
+
+These operations give an \(S\)-semimodule. On supported elements, associativity, commutativity, and distributivity are the abelian group and integer-module laws. An occurrence of \(\tau_V\) in addition is the identity case. If a supported scalar acts on \(\tau_V\), both sides of each relevant distributive or associative law equal \(\tau_V\), or the other supported summand in an additive identity law. If the scalar is \(\tau\), both sides of distributivity over vectors are \(\tau_V\), and scalar multiplication involving \(\tau\) also gives \(\tau_V\). Scalar addition with \(\tau\) adds only \(\tau_V\) to the other scalar action. These cases verify the laws for every scalar and vector. Its two support labels are \(\tau_V\) and \(0_V^\bullet\), since
+\[
+e\tau_V=\tau_V,\qquad ev^\bullet=0_V^\bullet.
+\tag{Q3}
+\]
+They remain two different elements even when \(V\) is the zero group.
+
+If \(f:V\to W\) is a group homomorphism, define
+\[
+\operatorname{Spl}(f)(\tau_V)=\tau_W,
+\qquad\operatorname{Spl}(f)(v^\bullet)=f(v)^\bullet.
+\tag{Q4}
+\]
+It is \(S\)-linear. On supported sums and scalar products this follows from the group homomorphism laws; any external element is preserved by the displayed formula and gives the required additive identity or absorber law. Composition and identities hold pointwise. However the zero group map has split extension
+\[
+z_{V,W}:=\operatorname{Spl}(0_{V,W}),\qquad
+z_{V,W}(v^\bullet)=0_W^\bullet,\quad
+z_{V,W}(\tau_V)=\tau_W.
+\tag{Q5}
+\]
+This is different from the zero morphism of \(S\)-semimodules, which sends every element to \(\tau_W\). In particular
+\[
+\ker_S\operatorname{Spl}(f)=\{\tau_V\},
+\qquad
+\operatorname{Spl}(f)^{-1}(e\operatorname{Spl}(W))
+=\operatorname{Spl}(\ker f).
+\tag{Q6}
+\]
+For the first equality, no supported element has external image. For the second, a supported vector maps to the supported zero precisely when \(f(v)=0\), while the external element always maps to the external element. This also proves the equalizer formula
+\[
+\operatorname{Spl}(\ker f)
+=\operatorname{Eq}\bigl(\operatorname{Spl}(f),z_{V,W}\bigr).
+\tag{Q7}
+\]
+Both maps agree at \(\tau_V\); at \(v^\bullet\), their equality is exactly \(f(v)=0\). Any map whose two composites agree therefore has its image in this subset and factors uniquely through it, proving the equalizer universal property.
+
+## 2. The contracted free module and its two idempotent pieces
+
+Let
+\[
+A=\Gamma(S)=\mathbb Z[(\mathbb Z,\cdot)]
+\cong\mathbb Z\times\Lambda,
+\qquad
+\Lambda=\mathbb Z[\mathbb Z\setminus\{0\}],
+\tag{Q8}
+\]
+with the explicit isomorphism \([e]\mapsto(1,0)\), \([n]\mapsto(1,[n])\) for \(n\ne0\), proved in Theorem Z7 of `FOUR_CORNERS_OVER_Z.md`. Here brackets denote monoid-ring basis elements. Define
+\[
+L(V)=\mathbb Z[V].
+\tag{Q9}
+\]
+This is the free abelian group on the set \(V\), with basis symbols \([v]\), including the nonzero basis vector \([0_V]\). It is also the free abelian group on \(\operatorname{Spl}(V)\) with the external basis symbol \([\tau_V]\) killed. Thus the construction still distinguishes the external element, mapped to group zero, from the supported zero, mapped to \([0_V]\).
+
+There is an \(A\)-module action
+\[
+[n][v]=[nv]\quad(n\in\mathbb Z),
+\tag{Q10}
+\]
+extended by distributivity and integer coefficients. The equality \([m]([n][v])=[mnv]=[mn][v]\) proves associativity on basis elements, hence on all finite sums; \([1]\) acts as the identity. This construction first retains the multiplicative scalar action and then forms an abelian group on its vectors. It does not impose the original vector addition: in general \([v+w]\ne[v]+[w]\). Nor does it equate the basis element \([n]\) with the ring coefficient \(n\).
+
+Let \(E=[e]\in A\), \(F=1-E\), and define the augmentation
+\[
+\alpha_V:L(V)\to\mathbb Z,
+\qquad\alpha_V\left(\sum_v a_v[v]\right)=\sum_v a_v.
+\tag{Q11}
+\]
+Then
+\[
+E\left(\sum_v a_v[v]\right)
+=\left(\sum_v a_v\right)[0_V],
+\qquad E^2=E.
+\tag{Q12}
+\]
+Consequently
+\[
+L(V)=\mathbb Z[0_V]\oplus U(V),
+\qquad U(V):=FL(V)=\ker\alpha_V.
+\tag{Q13}
+\]
+To prove the decomposition, write any \(x\in L(V)\) as \(Ex+(x-Ex)\). The first summand is in \(\mathbb Z[0_V]\); the second has augmentation zero. Their intersection is zero, because \(\alpha_V(a[0_V])=a\). This proves both directness and surjectivity of the decomposition.
+
+Put
+\[
+r_v=[v]-[0_V],\qquad r_0=0.
+\tag{Q14}
+\]
+The vectors \(r_v\), \(v\ne0\), are a basis of \(U(V)\). Indeed if \(x=\sum a_v[v]\) has augmentation zero, its coefficient at \([0_V]\) equals \(-\sum_{v\ne0}a_v\), giving \(x=\sum_{v\ne0}a_vr_v\). Conversely a relation among these \(r_v\) has the same coefficients at the distinct \([v]\), \(v\ne0\), so all coefficients vanish.
+
+The scalar action on this basis is
+\[
+[n]r_v=r_{nv}.
+\tag{Q15}
+\]
+In particular \(E\) kills \(U(V)\); thus its action factors through \(A/(E)=\Lambda\). This is the reduced free abelian group on the pointed set \((V,0_V)\), with its induced action of the multiplicative monoid of nonzero integers. The adjective “reduced” means exactly that the distinguished basepoint generator has been killed; it does not identify \(e\) and \(\tau\) in the original semiring.
+
+For a homomorphism \(f:V\to W\), define
+\[
+L(f)[v]=[f(v)],\qquad U(f)r_v=r_{f(v)}.
+\tag{Q16}
+\]
+Both maps are linear over the stated coefficient rings because \(f(nv)=nf(v)\). They preserve the decomposition (Q13): on \(\mathbb Z[0]\), every \(L(f)\) is the identity after identifying its source and target copies of \(\mathbb Z\); on the other summand it is \(U(f)\). These formulas also prove functoriality.
+
+## 3. Exact conversion of the supported-zero equation into a complex
+
+Let \(C=(V^i,d^i)_{i\in\mathbb Z}\) be a cochain complex of abelian groups, so \(d^i:V^i\to V^{i+1}\) and \(d^{i+1}d^i=0_{V^i,V^{i+2}}\). The split maps satisfy the exact equation
+\[
+\operatorname{Spl}(d^{i+1})\operatorname{Spl}(d^i)
+=z_{V^i,V^{i+2}}.
+\tag{Q17}
+\]
+This follows from (Q4) at both types of elements: a supported vector reaches the supported zero, while the external element remains external. It is the fixed-support instance of the equation discussed after D7 in the programme source.
+
+Write
+\[
+E_{V,W}:L(V)\to L(W),\qquad
+E_{V,W}(x)=\alpha_V(x)[0_W].
+\tag{Q18}
+\]
+Then the unreduced maps satisfy
+\[
+L(d^{i+1})L(d^i)=L(0_{V^i,V^{i+2}})=E_{V^i,V^{i+2}},
+\tag{Q19}
+\]
+because every basis vector \([v]\) is sent to \([0_{V^{i+2}}]\). The source and target of this map are specified in (Q18); it is not an endomorphism unless the two groups coincide. In particular it is not the zero homomorphism: it sends \([0_{V^i}]\) to the nonzero basis vector \([0_{V^{i+2}}]\). This remains true when both original groups are zero, since \(L(0)=\mathbb Z\).
+
+Restricting (Q19) to the reduced summands gives
+\[
+U(d^{i+1})U(d^i)r_v=r_{d^{i+1}d^i(v)}=r_0=0.
+\tag{Q20}
+\]
+Thus
+\[
+U(C)=\bigl(U(V^i),D^i=U(d^i)\bigr)
+\tag{Q21}
+\]
+is a genuine cochain complex of \(\Lambda\)-modules. Also \(U(0)=0\), so a bounded complex remains bounded. The unreduced maps in (Q19), under (Q13), have the exact form \(\operatorname{diag}(\mathrm{id}_{\mathbb Z},D^i)\); their composites are \(\operatorname{diag}(\mathrm{id}_{\mathbb Z},0)\). These equations identify exactly what was removed in passing to the complex.
+
+## 4. The universal additive quotient and its kernel complex
+
+Regard \(V\) as a \(\Lambda\)-module by the arithmetic evaluation \([n]v=nv\). There is a natural surjective \(\Lambda\)-linear map
+\[
+\epsilon_V:U(V)\to V,\qquad r_v\longmapsto v.
+\tag{Q22}
+\]
+Linearity follows from (Q15). Surjectivity follows since every nonzero \(v\) is the image of \(r_v\), and zero is the image of zero. Let
+\[
+a_{v,w}:=r_{v+w}-r_v-r_w,
+\qquad K(V):=\ker\epsilon_V.
+\tag{Q23}
+\]
+
+**Theorem Q1 (universal additive quotient).** The subgroup \(K(V)\) is generated by all \(a_{v,w}\), and is a \(\Lambda\)-submodule. The quotient \(U(V)/K(V)\to V\) induced by (Q22) is an isomorphism of \(\Lambda\)-modules. Any \(\Lambda\)-linear map out of \(U(V)\) killing all the relations (Q23) factors uniquely through (Q22).
+
+**Proof.** Let \(K'\) be the subgroup generated by the displayed relations. Every relation evaluates to zero, so \(K'\subseteq K(V)\). In \(U(V)/K'\), the function \(v\mapsto\overline{r_v}\) is a group homomorphism: it preserves addition by (Q23), sends zero to zero, and sends \(-v\) to \(-\overline{r_v}\) by the relation with \(v+(-v)=0\). This homomorphism is inverse to the map induced by \(\epsilon_V\). One composite fixes each \(v\in V\); the other fixes every generator \(\overline{r_v}\), so it is the identity. Therefore the induced quotient map is injective, proving \(K'=K(V)\). Scalar multiplication gives
+\[
+[n]a_{v,w}=a_{nv,nw},
+\tag{Q24}
+\]
+so this subgroup is a \(\Lambda\)-submodule. The quotient isomorphism and its inverse are \(\Lambda\)-linear by their generator formulas. Finally a linear map killing the relations descends to the quotient; the proved isomorphism gives the required factorization, and surjectivity of \(\epsilon_V\) forces its uniqueness. \(\square\)
+
+The maps (Q22) commute with homomorphisms: both \(\epsilon_W U(f)\) and \(f\epsilon_V\) send \(r_v\) to \(f(v)\). Thus \(U(f)\) takes \(K(V)\) into \(K(W)\), also directly visible from \(U(f)a_{v,w}=a_{f(v),f(w)}\). For the complex \(C\), this gives a short exact sequence of complexes
+\[
+0\longrightarrow K(C)\xrightarrow{j}U(C)
+\xrightarrow{\epsilon}C\longrightarrow0,
+\qquad K(C)^i=K(V^i).
+\tag{Q25}
+\]
+Exactness is degreewise (Q22)–(Q23); the differentials restrict to the kernels by the commutation identity. Their squares are zero by (Q20).
+
+## 5. Cohomology propagation and the vanishing connecting maps
+
+For a complex \(X\), write \(H^i(X)=\ker d_X^i/\operatorname{im}d_X^{i-1}\). All maps below are \(\Lambda\)-linear, including the ordinary complex with its arithmetic \(\Lambda\)-action.
+
+**Theorem Q2 (exact cohomology comparison).** For every integer \(i\), (Q25) induces a natural short exact sequence
+\[
+0\longrightarrow H^i(K(C))\xrightarrow{H^i(j)}H^i(U(C))
+\xrightarrow{H^i(\epsilon)}H^i(C)\longrightarrow0.
+\tag{Q26}
+\]
+Every connecting homomorphism \(H^i(C)\to H^{i+1}(K(C))\) associated with (Q25) is zero. The sequence (Q26) need not split as a sequence of abelian groups.
+
+**Proof.** A cycle \(z\in V^i\) has a cycle lift \(r_z\in U(V^i)\), since \(D^i r_z=r_{d^iz}=r_0=0\). It maps to \(z\), proving surjectivity of \(H^i(\epsilon)\).
+
+For exactness in the middle, let \(u\in U(V^i)\) be a cycle whose image represents zero in \(H^i(C)\). Choose \(v\in V^{i-1}\) with \(d^{i-1}v=\epsilon(u)\). Then
+\[
+k=u-D^{i-1}r_v
+\tag{Q27}
+\]
+has \(\epsilon(k)=0\), remains a cycle, and represents the same class as \(u\) in \(H^i(U(C))\). Thus \(k\in K(V^i)\) is a preimage under \(H^i(j)\). Conversely every cycle in \(K(V^i)\) evaluates to zero, so the image lies in the kernel.
+
+For injectivity on the left, suppose a cycle \(k\in K(V^i)\) is a boundary in \(U(C)\), say \(k=D^{i-1}u\). Put \(v=\epsilon(u)\). Then \(d^{i-1}v=\epsilon(k)=0\), so \(r_v\) is a cycle in degree \(i-1\). The element \(u-r_v\) belongs to \(K(V^{i-1})\) and has differential \(k\). Hence \(k\) was already a boundary in \(K(C)\), proving injectivity.
+
+For an explicit connecting-map verification, let \(z\) be a cycle and choose any lift \(u\in U(V^i)\) with \(\epsilon(u)=z\). The proposed connecting class is \([D^iu]\in H^{i+1}(K(C))\). It is a cycle because \(D^{i+1}D^i=0\), and it lies in \(K\) because \(d^iz=0\). Changing the lift by an element of \(K(V^i)\) changes the output by a boundary in \(K\). If the cycle representative is changed to \(z+d^{i-1}v\), choose the lift \(u+D^{i-1}r_v\); its differential is unchanged. Thus the formula is well defined. Choosing the particular lift \(r_z\) gives differential zero, proving that every connecting class is zero. Equivalently for any lift, \(u-r_z\in K(V^i)\), so \(D^iu\) is visibly a \(K\)-boundary.
+
+The maps are natural because the inclusions, evaluations, and differentials in (Q25) commute with every cochain map; applying them to cycle representatives commutes with passing to boundary classes. Failure of splitting is proved by the explicit example in Section 7. \(\square\)
+
+Thus every ordinary cohomology class lifts to a class in the reduced complex. The exact obstruction to the comparison being an isomorphism is the explicitly defined group \(H^i(K(C))\); there is no additional unknown connecting obstruction in this construction. The particular lift \(z\mapsto[r_z]\) uses a cycle representative and is not asserted to give an additive, representative-independent section on cohomology.
+
+## 6. A complete basis and scalar action for the reduced cohomology
+
+Write
+\[
+Z^i=\ker d^i,\qquad B^i=\operatorname{im}d^{i-1},\qquad Y^i=\operatorname{im}d^i.
+\tag{Q28}
+\]
+For each \(y\in Y^i\setminus\{0\}\), choose one \(s_y\in V^i\) with \(d^is_y=y\). The basis description below depends on these choices; the complex and its comparison map do not.
+
+**Theorem Q3 (complete reduced cohomology).** The abelian group \(H^i(U(C))\) is free with basis consisting of the following classes:
+\[
+\begin{array}{ll}
+A_z=[r_z],&z\in Z^i\setminus B^i,\\
+B_{v,y}=[r_v-r_{s_y}],&y\in Y^i\setminus\{0\},\quad
+v\in(d^i)^{-1}(y)\setminus\{s_y\}.
+\end{array}
+\tag{Q29}
+\]
+Its arithmetic comparison is
+\[
+H^i(\epsilon)(A_z)=z+B^i,
+\qquad H^i(\epsilon)(B_{v,y})=v-s_y+B^i.
+\tag{Q30}
+\]
+
+**Proof.** Partition the basis \(\{r_v:v\ne0\}\) of \(U(V^i)\) by the fibres of \(d^i\). The zero fibre consists of \(v\in Z^i\setminus\{0\}\), and every corresponding basis element maps to zero. For a nonzero \(y\in Y^i\), the basis symbols in its fibre all map to the one basis vector \(r_y\) of \(U(V^{i+1})\). Since the target vectors \(r_y\) for distinct nonzero \(y\) are independent, an element of \(\ker D^i\) has unrestricted coefficients on the zero fibre and coefficient sum zero separately on each nonzero fibre. In a nonzero fibre, writing its coefficient at the chosen \(s_y\) as the negative sum of all other coefficients shows that the vectors \(r_v-r_{s_y}\), \(v\ne s_y\), span that kernel. Their coefficients at the distinct \(r_v\), \(v\ne s_y\), prove independence. All sums have finite support, so the argument applies even for infinite fibres. Thus a basis of \(\ker D^i\) consists of all \(r_z\), \(z\in Z^i\setminus\{0\}\), and all the second family in (Q29).
+
+The image of \(D^{i-1}\) is exactly the subgroup freely spanned by \(r_b\), \(b\in B^i\setminus\{0\}\). Indeed each generator maps to \(r_{d^{i-1}v}\), and every such nonzero \(b\) has a preimage. These vectors are a subset of the zero-fibre basis just obtained, because \(B^i\subseteq Z^i\). Quotienting by the subgroup on this subset removes exactly these basis vectors and imposes no further relation. The remaining basis is (Q29). Finally evaluation sends the two kinds of representatives to \(z\) and \(v-s_y\), respectively. The latter is a cycle since \(d^i(v-s_y)=y-y=0\), proving (Q30). \(\square\)
+
+The scalar action is also explicit. Adopt the conventions \(A_z=0\) when \(z\in B^i\), and \(B_{s_y,y}=0\). For every nonzero integer \(n\),
+\[
+[n]A_z=A_{nz},
+\tag{Q31}
+\]
+and
+\[
+[n]B_{v,y}=
+\begin{cases}
+B_{nv,ny}-B_{ns_y,ny},&ny\ne0,\\
+A_{nv}-A_{ns_y},&ny=0.
+\end{cases}
+\tag{Q32}
+\]
+For (Q31), use (Q15) on the representative. For (Q32), the representative becomes \(r_{nv}-r_{ns_y}\). If \(ny\ne0\), both vectors lie in that fibre; inserting and subtracting \(r_{s_{ny}}\) gives the first formula. If \(ny=0\), both are cycles, giving the second. The second case is needed when the target group has integer torsion. These equations determine the full \(\Lambda\)-action, in addition to the underlying free group.
+
+For an explicit generating set for the excess classes, put \(A_z=[r_z]\) for every cycle, with its class zero if \(z\in B^i\). Then the kernel of (Q30) is generated as an abelian group by
+\[
+A_{z+w}-A_z-A_w\qquad(z,w\in Z^i)
+\tag{Q33}
+\]
+and
+\[
+B_{v,y}-A_{v-s_y}.
+\tag{Q34}
+\]
+These are represented by actual \(K(C)\)-cycles: for (Q33), use \(r_{z+w}-r_z-r_w\); for (Q34), use \(r_v-r_{s_y}-r_{v-s_y}\). Each evaluates to zero. Their differentials vanish by (Q20) and, in the second case, by \(y-y-0=0\).
+
+To prove that they generate the kernel, quotient \(H^i(U(C))\) by the subgroup they generate. Relations (Q34) express every second-family basis vector in terms of cycle symbols. Relations (Q33) make the function \(z\mapsto A_z\) additive. Boundary symbols are already zero. This gives a well-defined homomorphism \(Z^i/B^i\) to the quotient, inverse to the induced arithmetic evaluation: one composite fixes each cycle class and the other fixes every generator after (Q34). Hence the quotient is exactly \(H^i(C)\). The injectivity in (Q26) identifies these generated classes with all of \(H^i(K(C))\).
+
+In particular \(H^i(U(C))\) is always free abelian, even when \(H^i(C)\) has torsion. The comparison retains that torsion through its explicitly computed quotient, rather than as torsion already present in the free group.
+
+## 7. Multiplication by 2: an exact nonsplit comparison
+
+Consider the complex supported in degrees 0 and 1,
+\[
+C:\quad\mathbb Z\xrightarrow{\,2\,}\mathbb Z.
+\tag{Q35}
+\]
+Its ordinary cohomology is \(H^0(C)=0\) and \(H^1(C)=\mathbb Z/2\mathbb Z\): multiplication by 2 has zero kernel and image the even integers.
+
+The reduced differential is
+\[
+D^0r_n=r_{2n}\quad(n\ne0).
+\tag{Q36}
+\]
+These output basis vectors are distinct, so \(D^0\) is injective. Its image is the subgroup on all nonzero even-integer basis vectors. Consequently
+\[
+H^0(U(C))=0,
+\qquad
+H^1(U(C))=\bigoplus_{m\in2\mathbb Z+1}\mathbb Z\,a_m,
+\tag{Q37}
+\]
+where \(a_m\) is the class of \(r_m\); positive and negative odd integers index different basis vectors. The comparison sends
+\[
+\sum_{m\text{ odd}}c_m a_m
+\longmapsto\sum_{m\text{ odd}}c_m m\pmod2
+=\sum_{m\text{ odd}}c_m\pmod2.
+\tag{Q38}
+\]
+Only finitely many \(c_m\) are nonzero.
+
+Its kernel has free basis
+\[
+2a_1,\qquad a_m-a_1\quad(m\text{ odd},\ m\ne1).
+\tag{Q39}
+\]
+For a vector in the kernel, put \(s=\sum c_m\), an even integer. Then
+\[
+\sum c_m a_m=\frac{s}{2}(2a_1)
++\sum_{m\ne1}c_m(a_m-a_1).
+\]
+This proves spanning. In any relation among the vectors (Q39), the coefficients at each \(a_m\), \(m\ne1\), first force their corresponding coefficients to zero, and the coefficient at \(a_1\) then forces the remaining coefficient to zero. This proves independence.
+
+Under the isomorphism from (Q26), a basis of \(H^1(K(C))\) is represented by
+\[
+k_0=2r_1-r_2,
+\qquad
+k_m=r_m-r_1-r_{m-1}\quad(m\text{ odd},\ m\ne1).
+\tag{Q40}
+\]
+These all evaluate to zero; every element in degree 1 is a cycle. In \(H^1(U(C))\), the terms \(r_2,r_{m-1}\) are boundaries by (Q36), so their images are exactly (Q39). The injection in (Q26) and the proved basis (Q39) establish the assertion. In degree 0 both ordinary and reduced cohomology vanish, so (Q26) gives \(H^0(K(C))=0\).
+
+The exact sequence
+\[
+0\to H^1(K(C))\to
+\bigoplus_{m\text{ odd}}\mathbb Z a_m\to\mathbb Z/2\mathbb Z\to0
+\tag{Q41}
+\]
+does not split as abelian groups. A section would send the nonzero class of \(\mathbb Z/2\mathbb Z\) to a nonzero element killed by 2 in the middle group. A free abelian group has no such element, since multiplying its independent integer coefficients by 2 can vanish only when all coefficients vanish. This proves the final assertion of Theorem Q2.
+
+## 8. A contractible complex whose reduced complex has extra cohomology
+
+Consider the complex in degrees 0, 1, and 2,
+\[
+C:\quad\mathbb Z\xrightarrow{\ i\ }\mathbb Z^2
+\xrightarrow{\ q\ }\mathbb Z,
+\qquad i(x)=(x,0),\quad q(x,y)=y.
+\tag{Q42}
+\]
+The composite is zero; the first map is injective, the last is surjective, and \(\ker q=\operatorname{im}i\). Thus all its cohomology groups vanish. It is also contractible with
+\[
+h^1(x,y)=x,\qquad h^2(y)=(0,y).
+\tag{Q43}
+\]
+Indeed \(h^1i=\mathrm{id}_{\mathbb Z}\), \(ih^1+h^2q=\mathrm{id}_{\mathbb Z^2}\), and \(qh^2=\mathrm{id}_{\mathbb Z}\). These are all the degreewise contracting homotopy equations.
+
+Its reduced complex is
+\[
+U(\mathbb Z)\longrightarrow U(\mathbb Z^2)\longrightarrow U(\mathbb Z),
+\qquad r_x\longmapsto r_{(x,0)},\quad
+r_{(x,y)}\longmapsto r_y.
+\tag{Q44}
+\]
+The first map is injective on its basis, and the last is onto, since \(r_{(0,y)}\) maps to \(r_y\). In the kernel of the last map, the zero fibre has basis \(r_{(x,0)}\), \(x\ne0\). For each \(y\ne0\), its other fibre contributes the basis differences \(r_{(x,y)}-r_{(0,y)}\), \(x\ne0\). These claims follow directly by collecting coefficients in each fibre, or by the kernel proof of Theorem Q3 with \(s_y=(0,y)\). The image of the first map is exactly the subgroup on the zero-fibre basis. Hence
+\[
+H^0(U(C))=H^2(U(C))=0,
+\]
+\[
+H^1(U(C))=
+\bigoplus_{(x,y)\in(\mathbb Z\setminus\{0\})^2}
+\mathbb Z\,b_{x,y},
+\qquad
+b_{x,y}=[r_{(x,y)}-r_{(0,y)}].
+\tag{Q45}
+\]
+In particular it is nonzero. Since ordinary cohomology is zero, (Q26) identifies it with \(H^1(K(C))\). Explicit cycle representatives in \(K(C)\) are
+\[
+a_{x,y}=r_{(x,y)}-r_{(x,0)}-r_{(0,y)},
+\qquad x\ne0,\ y\ne0.
+\tag{Q46}
+\]
+Their evaluation is \((x,y)-(x,0)-(0,y)=0\). Their differential is \(r_y-r_0-r_y=0\). Their images in cohomology are the basis (Q45), because \(r_{(x,0)}\) is a boundary. Thus their classes give a basis of \(H^1(K(C))\), with all other degrees zero.
+
+This calculation locates the exact failure to preserve the given contraction. Applied separately, the reduced maps in (Q43) satisfy in middle degree
+\[
+\bigl(U(i)U(h^1)+U(h^2)U(q)\bigr)r_{(x,y)}
+=r_{(x,0)}+r_{(0,y)}.
+\tag{Q47}
+\]
+The identity map sends that same vector to \(r_{(x,y)}\); the difference is precisely (Q46). Applying a functor to the sum \(ih^1+h^2q\) would instead give the identity, but \(U\) is not additive on morphisms, so the two operations need not agree. Equation (Q47) exhibits their entire discrepancy here.
+
+Consequently applying \(U\) degree by degree does not preserve chain homotopy equivalences or quasi-isomorphisms. Indeed the zero map from the contractible complex (Q42) to the zero complex is a chain homotopy equivalence by (Q43), hence also a quasi-isomorphism. Its reduced image has the nonzero group (Q45), whereas the reduced zero complex is zero. It can therefore be neither a quasi-isomorphism nor a chain homotopy equivalence. This is a concrete counterexample about this particular construction; the exact positive comparison remains (Q25)–(Q26), and imposing the additive quotient recovers the original complex degree by degree.
+
+## 9. The supported cohomology comparison inside the programme
+
+The group comparison (Q26) gives an actual support-preserving map of the programme's split semimodules, with an internal quotient and both kernel objects computed. Fix a degree \(i\), write
+\[
+M=H^i(U(C)),\qquad N=H^i(K(C))\subseteq M,
+\qquad A_i=H^i(C),
+\tag{Q48}
+\]
+and use the injection of (Q26) to identify \(N\) with its image. Let \(h:M\to A_i\) be the surjection in that sequence.
+
+**Theorem Q4 (supported cohomology quotient).** There is a surjective \(S\)-linear map
+\[
+\operatorname{Spl}(h):\operatorname{Spl}(M)
+\longrightarrow\operatorname{Spl}(A_i),
+\qquad m^\bullet\longmapsto h(m)^\bullet,
+\quad\tau_M\longmapsto\tau_{A_i}.
+\tag{Q49}
+\]
+Its categorical semimodule kernel is \(\{\tau_M\}\), while its all-label kernel is the embedded copy \(\operatorname{Spl}(N)\). Moreover it is the coequalizer of the two \(S\)-linear maps
+\[
+\operatorname{Spl}(N)\rightrightarrows\operatorname{Spl}(M)
+\tag{Q50}
+\]
+given by inclusion and the split extension of the zero group map. In particular the supported zero of \(M\) goes to the supported zero of \(A_i\), and the external element remains a distinct external element.
+
+**Proof.** Formula (Q4) proves \(S\)-linearity, and the surjectivity of \(h\) proves surjectivity at all supported elements; the external element also has its displayed preimage. Since \(\ker h=N\), the two kernel assertions follow by evaluating the map as in (Q6): only \(\tau_M\) maps to \(\tau_{A_i}\), while exactly the elements of \(N\) map to the supported zero.
+
+For the coequalizer property, (Q49) equalizes the displayed pair because every \(n\in N\) has \(h(n)=0\); both maps preserve the external element. Suppose an \(S\)-linear map \(f:\operatorname{Spl}(M)\to P\), to any \(S\)-semimodule \(P\), equalizes that pair. Then \(f(n^\bullet)=f(0_M^\bullet)\) for every \(n\in N\). If \(m'=m+n\), one has
+\[
+f((m')^\bullet)
+=f(m^\bullet)+f(n^\bullet)
+=f(m^\bullet)+f(0_M^\bullet)
+=f(m^\bullet).
+\tag{Q51}
+\]
+The last equality is the image under \(f\) of \(m^\bullet+0_M^\bullet=m^\bullet\); no cancellation in \(P\) is used. Therefore \(f\) is constant on the supported cosets of \(N\), and descends to \(\operatorname{Spl}(M/N)\), while its value at the external element is its required global additive zero. Choosing representatives verifies additivity and the scalar laws of the descended map: sums and integer multiples of representatives represent the corresponding coset operations, and all external cases follow from preservation of the external element. The quotient map is onto, so this factorization is unique. Finally (Q26) gives the group isomorphism \(M/N\cong A_i\), making this exactly (Q49). This proves the complete coequalizer assertion. \(\square\)
+
+This is the explicit instance of the programme's D6 quotient applied to the two-label support diagram: the bottom fibre stays a singleton and the supported fibre is quotiented by \(N\). The exact representative object in D7 is, for this comparison,
+\[
+K_{\mathrm{rep}}^i=
+\{u\in\ker D^i:\epsilon(u)\in B^i\},
+\qquad
+K_{\mathrm{rep}}^i/\operatorname{im}D^{i-1}
+\cong H^i(K(C)).
+\tag{Q51a}
+\]
+Here is its explicit map, including its independence of choices. Given \(u\in K_{\mathrm{rep}}^i\), choose \(v\in V^{i-1}\) with \(d^{i-1}v=\epsilon(u)\), and send it to
+\[
+[u-D^{i-1}r_v]\in H^i(K(C)).
+\tag{Q51b}
+\]
+The representative is the cycle in (Q27). If \(v'\) is another choice, then \(c=v'-v\) is a cycle, and the difference of the representatives is the differential of \(r_{v'}-r_v-r_c\in K(V^{i-1})\); the term \(D^{i-1}r_c\) vanishes. If \(u\) is replaced by \(u+D^{i-1}a\), choose \(v+\epsilon(a)\) as a lift. The representative changes by
+\(D^{i-1}(a-r_{v+\epsilon(a)}+r_v)\), whose parenthesized expression has evaluation zero. Thus the map descends to the displayed quotient. Its inverse includes a \(K\)-cycle as a cycle of \(U(C)\). One composite fixes a \(K\)-cycle by choosing \(v=0\); the other changes \(u\) only by the \(U\)-boundary \(D^{i-1}r_v\). This proves the isomorphism in (Q51a) in both directions and identifies it with the programme's D7 comparison.
+
+The two kernels in Theorem Q4 are then the actual D8 objects for this computed cohomology map. In example (Q42), every class in (Q45) is sent to the supported zero in \(\operatorname{Spl}(0)\), while the external element alone is sent to its external element. The distinction therefore survives the quotient even when the ordinary target cohomology group is zero.
+
+## 10. Coefficient changes and the prismatic comparison
+
+All differentials, inclusions, and evaluations above are \(\Lambda\)-linear. For any unital ring map \(f:\Lambda\to R\), they therefore give complexes and cochain maps after extension of coefficients,
+\[
+R\otimes_\Lambda U(C),\qquad
+R\otimes_\Lambda K(C),\qquad
+R\otimes_\Lambda C.
+\tag{Q52}
+\]
+The differentials are \(1\otimes D\) or \(1\otimes d\); their squares vanish because \((1\otimes D)^2=1\otimes D^2=0\). Commutation of cochain maps is preserved by the same tensor calculation. The additive quotient remains exact as a cokernel:
+\[
+R\otimes_\Lambda K(C)\longrightarrow
+R\otimes_\Lambda U(C)\longrightarrow
+R\otimes_\Lambda C\longrightarrow0.
+\tag{Q53}
+\]
+For a direct proof of the final assertion, tensor elements are finite sums of symbols \(r\otimes u\), subject to the bilinear and balancing relations. Quotienting by the image of \(R\otimes K(V)\) imposes exactly the further relations \(r\otimes k=0\). Replacing \(u\) by its class in \(U(V)/K(V)=V\) then gives mutually inverse maps to \(R\otimes V\): the forward map sends \(r\otimes u\) to \(r\otimes\epsilon(u)\), and the inverse sends \(r\otimes\overline u\) to the class of \(r\otimes u\), independent of its representative by the imposed relations. This proves the cokernel statement in each degree, and the maps commute with differentials.
+
+In particular one may take \(R=T=\widehat\Lambda_p\), the coefficient ring underlying the bounded crystalline prisms of Theorems P1–P5 in [Prismatic comparison](PRISMATIC_COMPARISON.md). The resulting objects are complexes of modules over that coefficient ring. Formula (Q53) alone makes no assertion of injectivity on its left, of exactness of an unspecified completion functor, or of commutation of cohomology with completion. No Frobenius-semilinear structure on these modules or descent to a prismatic site has been constructed here. Therefore the proved connection is the exact chain comparison over shared coefficient rings and its stated scalar extensions; identifying it with a prismatic cohomology object would require additional maps and proofs.
+
+The original support distinction also remains explicit throughout: (Q17) is a supported-zero composite, (Q19) records it by the nonzero rank-one map \(E_{V^i,V^{i+2}}\), and only the specified projection to the \(F\)-summand turns that composite into the ordinary zero map (Q20). The additive quotient then recovers the original arithmetic complex, with the complete excess and quotient maps calculated in (Q26), (Q29)–(Q34), and both examples.
+
+
+## 11. The retained object
+
+The contractible calculation in Section 8 is the starting point of three further complete derivations. [Cross-effects](CROSS_EFFECTS.md) identifies the retained group with the second cross-effect of U, proves its group-ring and augmentation-filtration structure, and computes both integer and torsion examples. [Homotopy defect](HOMOTOPY_DEFECT.md) constructs a projection onto a zero-differential summand for every chosen contraction, proving a strong deformation retract of both U(C) and K(C). Its explicit homotopies also prove the specified coefficient and completion comparisons. [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), Theorems F1–F3, gives the completed mixed ideal, Frobenius linearization with its full cokernel, and the exact quotient-prism map. These constructions retain and study the classes in (Q45).
+
+![Exact chain and cohomology comparison](figures/10_chain_comparison.png)
+
+The first composite retains the supported zero before the explicitly stated projection. The exact cohomology sequence is Theorem Q2; its contractible example is (Q42)–(Q46). The quotient and the retained kernel are both part of the calculation.
+
+
+# The cross-effect retained by a contractible complex
+
+The nonzero cohomology produced from a split contractible complex is an explicit cross-effect. This paper computes its maps, group-ring multiplication, full scalar action and augmentation filtration. It also computes a nonzero torsion-input example whose entire associated graded object and augmentation completion vanish, preserving the original object and the kernel of that completion map.
+
+## 1. The free construction and its cross-effect
+
+For an abelian group \(V\), write \(U(V)=\bigoplus_{v\ne0}\mathbb Zr_v\), with \(r_0=0\), and \(U(f)r_v=r_{f(v)}\). Define \(\epsilon_V:U(V)\to V\) by \(r_v\mapsto v\), and \(K(V)=\ker\epsilon_V\). The multiplicative monoid ring \(\Lambda=\mathbb Z[\mathbb Z\setminus\{0\}]\) acts by \([n]r_v=r_{nv}\). Composition of integer multiplications proves the scalar action law; every U(f) is \(\Lambda\)-linear.
+
+For abelian groups A,B, let \(i_A,i_B\) and \(p_A,p_B\) be the inclusions and projections of \(A\oplus B\). Define
+\[
+\operatorname{cr}_2U(A,B)=
+\ker\bigl(U(p_A)\oplus U(p_B):U(A\oplus B)\to U(A)\oplus U(B)\bigr).
+\tag{X1}
+\]
+**Theorem X1.** There is a natural direct sum decomposition
+\[
+U(A\oplus B)=U(A)\oplus U(B)\oplus W(A,B),
+\qquad W(A,B)\cong U(A)\otimes_{\mathbb Z}U(B),
+\tag{X2}
+\]
+whose first two inclusions are \(U(i_A),U(i_B)\), and whose third inclusion is
+\[
+\kappa(r_a\otimes r_b)
+=w_{a,b}:=r_{(a,b)}-r_{(a,0)}-r_{(0,b)}.
+\tag{X3}
+\]
+The third summand is exactly (X1). Its projection is
+\[
+\Pi=1-U(i_Ap_A)-U(i_Bp_B).
+\tag{X4}
+\]
+
+**Proof.** The original free basis splits into the symbols on the nonzero A-axis, the nonzero B-axis, and those \(r_{(a,b)}\) with both a,b nonzero. Replace each symbol in the last family by (X3). This is an invertible basis change: its inverse writes \(r_{(a,b)}=w_{a,b}+r_{(a,0)}+r_{(0,b)}\), leaving both axis bases fixed. The projections kill exactly the third summand and recover the two axis coordinates, proving every asserted kernel and decomposition. Their composite idempotents on \(U(A\oplus B)\) are orthogonal, because \(p_Ai_B=p_Bi_A=0\) and U(0)=0; therefore (X4) is the projection onto their common kernel. The tensors \(r_a\otimes r_b\), a,b nonzero, form the free tensor-product basis, proving that \(\kappa\) is an isomorphism onto W. For homomorphisms \(f:A\to A'\), \(g:B\to B'\), the image of (X3) is \(w_{f(a),g(b)}\), which is zero if either argument vanishes. This proves naturality with the exact map \(U(f)\otimes U(g)\). \(\square\)
+
+The diagonal scalar action on the tensor product is
+\[
+[n](r_a\otimes r_b)=r_{na}\otimes r_{nb},\qquad
+[n]w_{a,b}=w_{na,nb}.
+\tag{X5}
+\]
+This is the monoid-ring action induced by simultaneous scaling of the two original summands. It is not the action of n as an integer coefficient in the free abelian group.
+
+The terminology is the cross-effect defined by the alternating idempotent in Niels uit de Bos and Lenny Taelman, [*Non-additive functors and Euler characteristics*, Section 2](https://arxiv.org/abs/1410.6908v4). Their two-variable projector is exactly (X4), since U(0)=0. Thus the identification with that definition is equality of the specified subgroup and projector, not only a formal resemblance. The complete proof for this U is above.
+
+## 2. The contractible complex retains exactly this object
+
+Consider the complex in degrees 0,1,2,
+\[
+C(A,B):\quad A\xrightarrow{i_A}A\oplus B\xrightarrow{p_B}B.
+\tag{X6}
+\]
+It has contraction \(h^1=p_A\), \(h^2=i_B\), since \(p_Ai_A=1\), \(i_Ap_A+i_Bp_B=1\) and \(p_Bi_B=1\). Applying U degreewise gives, under (X2), inclusion into the first summand followed by projection from the second. These are the exact differentials; the W summand has zero differential. Hence
+\[
+H^0U(C(A,B))=H^2U(C(A,B))=0,
+\qquad H^1U(C(A,B))\cong W(A,B),
+\tag{X7}
+\]
+where the isomorphism sends the class of (X3) to its W coordinate. The basis change proves this for every abelian A,B, including torsion groups and the zero group. The evaluation of (X3) is zero, so these cycles lie in \(K(A\oplus B)\). The same split maps show that their classes give all of \(H^1K(C(A,B))\); alternatively subtract the lifted evaluated cycle from a boundary preimage as in Chain comparison, Q2. A direct verification appears below in the group-ring splitting.
+
+## 3. The additive-relation kernel is an augmentation square
+
+Let \(\mathbb Z[V]\) now denote the **group ring of the additive group V**, with basis \(t_v\), product \(t_vt_w=t_{v+w}\), and unit \(t_0\). Its augmentation sends every \(t_v\) to 1; put \(I(V)=\ker(\mathbb Z[V]\to\mathbb Z)\). The map
+\[
+U(V)\xrightarrow{\sim}I(V),\qquad r_v\longmapsto t_v-1
+\tag{X8}
+\]
+is an isomorphism because the displayed differences form an augmentation-kernel basis. This group-ring product is distinct from multiplication of integer scalars in \(\Lambda\).
+
+The product has the exact formula
+\[
+r_vr_w=r_{v+w}-r_v-r_w.
+\tag{X9}
+\]
+Consequently
+\[
+K(V)=I(V)^2,\qquad I(V)/I(V)^2\xrightarrow{\sim}V,
+\quad r_v\longmapsto v.
+\tag{X10}
+\]
+To prove this, the right side of (X9) evaluates to zero. Conversely quotient U(V) by the subgroup generated by these expressions. The map \(v\mapsto r_v\) is then additive and inverse to evaluation: one composite fixes V and the other fixes every generating symbol. Thus this subgroup is exactly K(V). The square ideal is additively generated by all products of two augmentation elements. Since each augmentation element is an integer combination of \(r_v\), these products are generated by (X9), giving equality rather than only an inclusion.
+
+The ring isomorphism
+\[
+\mathbb Z[A\oplus B]\cong\mathbb Z[A]\otimes\mathbb Z[B]
+\tag{X11}
+\]
+sends \(t_{(a,b)}\) to \(t_a\otimes t_b\). It is multiplicative and bijective on the indicated bases. Tensoring the two split augmentation decompositions gives
+\[
+\mathbb Z[A\oplus B]=\mathbb Z\oplus I(A)\oplus I(B)\oplus(I(A)\otimes I(B)).
+\tag{X12}
+\]
+The last summand W is a ring ideal: it is the product of the two extended augmentation ideals. Its element \(r_a\otimes r_b\) corresponds to (X3). Evaluation on \(U(A\oplus B)\) sends the first augmentation piece to A, the second to B and W to zero. Therefore
+\[
+K(A\oplus B)=K(A)\oplus K(B)\oplus W.
+\tag{X13}
+\]
+The K-complex in (X6) has first inclusion and second projection with this decomposition, proving the K-cohomology assertion in Section 2 directly.
+
+## 4. The exact augmentation filtration
+
+Let \(I=I(A\oplus B)\) and regard W as the last ideal in (X12). For \(d\ge2\) define
+\[
+F^dW=I^{d-2}W.
+\tag{X14}
+\]
+It is the sum of the images of \(I(A)^a\otimes I(B)^b\) for \(a,b\ge1\), \(a+b=d\). To prove the formula, I is the sum of the two extended augmentation ideals by (X12); expansion of its (d−2)nd power gives these products after multiplication by W. Products of higher total degree are included because ideal powers decrease.
+
+There is always a natural isomorphism
+\[
+W/F^3W\cong A\otimes B.
+\tag{X15}
+\]
+Indeed \(F^3W\) is the sum of the images \(I(A)^2\otimes I(B)\) and \(I(A)\otimes I(B)^2\). The quotient of the tensor product by these two images is \((I(A)/I(A)^2)\otimes(I(B)/I(B)^2)\): imposing the two additional sets of relations in the tensor presentation proves this directly. Apply (X10). Its map sends \(w_{a,b}\) to \(a\otimes b\), and the scalar [n] acts on this quotient by \(n^2\). No injectivity assertion for tensoring an arbitrary subgroup is needed.
+
+**Theorem X2.** For free abelian groups \(A=\mathbb Z^r\), \(B=\mathbb Z^s\), the filtration is separated and
+\[
+\operatorname{gr}_d^F W\cong
+\bigoplus_{a+b=d,\ a,b\ge1}\operatorname{Sym}^a(A)\otimes\operatorname{Sym}^b(B),
+\quad d\ge2.
+\tag{X16}
+\]
+Under this isomorphism [n] acts by \(n^d\) for every nonzero integer n.
+
+**Proof.** Choose the original free bases and write the group ring as
+\(\mathbb Z[t_1^{\pm1},\ldots,t_r^{\pm1},u_1^{\pm1},\ldots,u_s^{\pm1}]\).
+Put \(x_i=t_i-1\), \(y_j=u_j-1\). This is the polynomial ring in \(x,y\) localized by the elements \(1+x_i,1+y_j\). I is generated by all x,y, and W is generated by all products \(x_i y_j\). Modulo \(I^N\) each inverse \((1+x_i)^{-1}\) equals the finite geometric sum \(\sum_{k=0}^{N-1}(-x_i)^k\), and similarly for y. Thus the quotient modulo \(I^N\) is exactly the polynomial ring truncated in total degree N; the two constructions are inverse on every generator.
+
+The same finite expansions show that \(F^dW\) consists, to any finite truncation, of mixed monomials of total degree at least d, where a mixed monomial contains at least one x and at least one y. This follows also by multiplying the generating mixed monomials by \(I^{d-2}\). The degree-d monomials with a x-factors and b y-factors are precisely the basis of the summand \(\operatorname{Sym}^a(A)\otimes\operatorname{Sym}^b(B)\) in (X16), proving the asserted isomorphism. The identification is natural: a homomorphism of free groups sends t_i to a Laurent monomial, whose degree-one expansion is the same linear combination of the x variables as the original group map; higher terms do not affect the homogeneous quotient. Hence this coordinate proof gives the stated symmetric-power identification.
+
+For separation, the localization embeds into the formal power-series ring \(\mathbb Z[[x,y]]\). The polynomial ring embeds there by its coefficients, and every inverted element has invertible constant term; a fraction can map to zero only if its polynomial numerator is zero. Every \(F^dW\) has no terms below degree d. An element in their intersection has all power-series coefficients zero and hence is zero in the original ring. Finally [n] sends x_i to \((1+x_i)^n-1\), with degree-one term nx_i, also for negative n by the inverse geometric expansion. Each degree-d monomial therefore has leading image \(n^d\) times itself. This proves the scalar claim without deleting higher terms in the unquotiented object. \(\square\)
+
+## 5. The integer pair, its full action and its completion
+
+For \(A=B=\mathbb Z\) let
+\[
+R=\mathbb Z[t^{\pm1},u^{\pm1}],\quad x=t-1,\quad y=u-1,
+\qquad W=xyR.
+\tag{X17}
+\]
+The exact map \(w_{a,b}\mapsto(t^a-1)(u^b-1)\) is (X8)–(X12). The original Laurent variables are t,u; x,y are the specified augmentation coordinates. Multiplication by xy makes W a free rank-one R-module, since R embeds in \(\mathbb Q(t,u)\). This action coexists with the original \(\Lambda\)-action, which substitutes \(t\mapsto t^n,u\mapsto u^n\) and is semilinear for that substitution.
+
+As a \(\Lambda\)-module, W has the further exact free decomposition
+\[
+W\cong\bigoplus_{(a,b)\in\mathcal P}\Lambda w_{a,b},
+\quad
+\mathcal P=\{(a,b):a>0,\ b\ne0,\ \gcd(a,|b|)=1\}.
+\tag{X18}
+\]
+For each nonzero signed pair (c,d), put \(g=\gcd(|c|,|d|)\), \(n=\operatorname{sgn}(c)g\) and \((a,b)=(c/n,d/n)\). Then \((a,b)\in\mathcal P\) and \((c,d)=n(a,b)\). These assignments are forced by positivity of a and coprimality, proving uniqueness. The map \([n]w_{a,b}\mapsto w_{na,nb}\) is therefore a bijection of free abelian bases and intertwines multiplication of every scalar basis element. This proves the full \(\Lambda\)-module statement.
+
+Here (X16) becomes
+\[
+\operatorname{gr}_d^FW=\bigoplus_{i=1}^{d-1}\mathbb Zx^iy^{d-i},
+\qquad\operatorname{rank}\operatorname{gr}_d^FW=d-1.
+\tag{X19}
+\]
+The augmentation completion is exactly
+\[
+\widehat W_I:=\varprojlim_d W/F^dW
+\cong xy\,\mathbb Z[[x,y]].
+\tag{X20}
+\]
+Indeed the finite quotients have precisely the mixed monomial coefficients below degree d, by the proof of X2; compatible systems of these coefficients are exactly the displayed formal series. The natural map \(W\to\widehat W_I\) is the injective expansion of its Laurent fractions proved there. This is augmentation completion, not p-adic completion. The latter is computed separately in *Frobenius on the retained cross-effect*, with its exact maps.
+
+## 6. A nonzero object invisible to this filtration
+
+If \(A\otimes B=0\), equation (X15) gives \(F^3W=W\). Consequently \(IW=W\), and induction gives \(F^dW=W\) for all \(d\ge2\). Thus
+\[
+\operatorname{gr}^F W=0,\qquad\widehat W_I=0,
+\quad\ker(W\to\widehat W_I)=W.
+\tag{X21}
+\]
+The last equality records the entire lost object rather than inferring that it was zero.
+
+Take \(A=\mathbb Z/2\), \(B=\mathbb Z/3\). Their tensor product is zero: every pure tensor is killed by both 2 and 3, so it is killed by 3−2=1. Yet U(A) has one free generator and U(B) has two; (X2) gives
+\[
+W(A,B)=\mathbb Zw_{1,1}\oplus\mathbb Zw_{1,2}\cong\mathbb Z^2.
+\tag{X22}
+\]
+Its full diagonal integer action is also explicit. If n is divisible by 2 or 3, (X5) gives zero on both basis vectors. If \(n\equiv1\) modulo 6, it fixes both. If \(n\equiv5\) modulo 6, it interchanges them. These cases exhaust all integers and follow by reducing na modulo 2 and nb modulo 3. Thus the nonzero group, its scalar action and its vanishing filtration quotients are all simultaneously specified.
+
+## 7. Higher mixed terms and source relation
+
+For finitely many groups \(V_1,\ldots,V_m\), tensoring their split group-ring augmentations gives an exact decomposition
+\[
+U\!\left(\bigoplus_{i=1}^mV_i\right)
+\cong\bigoplus_{\varnothing\ne S\subseteq\{1,\ldots,m\}}
+\bigotimes_{i\in S}U(V_i).
+\tag{X23}
+\]
+For a fixed nonempty S, the map from its tensor basis is
+\[
+\bigotimes_{i\in S}r_{v_i}\longmapsto
+\sum_{T\subseteq S}(-1)^{|S|-|T|}
+r_{\sum_{i\in T}i_i(v_i)}.
+\tag{X24}
+\]
+This is the expansion of the product of the factors \((t_{v_i}-1)\) in the tensor group ring. The empty-T term is \(r_0=0\). The split tensor decomposition proves bijectivity of the sum of these maps, including their inverses given by the corresponding projections. The source's alternating projector for the highest cross-effect acts as the identity on the summand \(S=\{1,\ldots,m\}\) and kills every proper-subset summand: for a proper subset, summing the signs over at least one unused index gives 1−1=0. Thus (X23)–(X24) give the exact higher cross-effects for this U. They concern independent group summands. The programme's actual joined support fibres, including noninjective transition maps, are handled by the typed mixed maps in [Mixed support](MIXED_SUPPORT.md), preserving their labels.
+
+![The retained classes and their filtration](figures/11_retained_cross_effect.png)
+
+The grid is a finite sample of the independent basis (X3) for the integer pair; the full basis includes all nonzero signed pairs. The augmentation coordinates in the right panel are \(x=t-1,y=u-1\). Equations (X19)–(X22) give the exact filtration and the different torsion example. The source for the standard cross-effect definition is uit de Bos–Taelman, Section 2, cited above; all concrete calculations and maps used here are fully proved in this paper.
+
+
+# The retained object of a contracting homotopy
+
+This paper constructs an actual zero-differential summand representing the extra cohomology of the reduced free construction on a contractible complex. It retains the contraction, every degree, the additive-relation complex, and the maps under changes of coefficients. The construction is a positive description of the defect of additivity.
+
+## 1. Objects and typed maps
+
+For an abelian group \(V\), let \(U(V)\) be the free abelian group on symbols \(r_v\) for \(v\ne0\), with \(r_0=0\). A homomorphism \(f:V\to W\) gives \(U(f)r_v=r_{f(v)}\). This preserves composition and identities, since both equalities hold on each generator; it sends the zero homomorphism to zero. It need not preserve sums of homomorphisms. Evaluation \(\epsilon_V(r_v)=v\) is a natural surjection, and \(K(V)=\ker\epsilon_V\). The multiplicative scalar ring \(\Lambda=\mathbb Z[\mathbb Z\setminus\{0\}]\) acts by \([n]r_v=r_{nv}\), and every displayed map is \(\Lambda\)-linear, with \([n]\) acting on \(V\) by ordinary integer multiplication.
+
+Let \(C=(C^i,d^i)\) be a cochain complex of abelian groups. Put
+\[
+D^i=U(d^i):U(C^i)\to U(C^{i+1}),\qquad
+D^{i+1}D^i=U(0)=0.
+\tag{HD1}
+\]
+Naturality of evaluation shows that these maps preserve \(K(C^i)\), giving the subcomplex \(K(C)\). Suppose a specified contraction is given:
+\[
+h^i:C^i\to C^{i-1},\qquad
+d^{i-1}h^i+h^{i+1}d^i=\mathrm{id}_{C^i}.
+\tag{HD2}
+\]
+No assumption \(h^{i-1}h^i=0\) is imposed. Define
+\[
+H^i=U(h^i),\quad
+P^i=D^{i-1}H^i,\quad Q^i=H^{i+1}D^i,\quad
+F_h^i=\mathrm{id}-P^i-Q^i.
+\tag{HD3}
+\]
+Every summand in the last expression is an endomorphism of \(U(C^i)\). Its generator formula is
+\[
+F_h^i(r_v)=r_v-r_{d^{i-1}h^iv}-r_{h^{i+1}d^iv}.
+\tag{HD4}
+\]
+Evaluation of this expression is zero by (HD2); hence its image lies in \(K(C^i)\). Unlike the arithmetic expression (HD2), the three symbols in (HD4) have not been equated by a free-group relation.
+
+## 2. The exact projector and deformation retract
+
+**Theorem HD1.** The endomorphism \(F_h\) is a degreewise idempotent satisfying
+\[
+D^iF_h^i=0,\qquad F_h^{i+1}D^i=0.
+\tag{HD5}
+\]
+Thus \(R_h^i=\operatorname{im}F_h^i\subseteq K(C^i)\) defines a complex with differential zero. Inclusion and the projection \(F_h\) make both \(U(C)\) and \(K(C)\) strongly deformation retract onto \((R_h,0)\). The homotopy is
+\[
+S^i=H^iD^{i-1}H^i:U(C^i)\to U(C^{i-1}),
+\tag{HD6}
+\]
+with the exact identities
+\[
+D^{i-1}S^i+S^{i+1}D^i=\mathrm{id}-F_h^i,
+\quad S^{i-1}S^i=0,\quad S^iF_h^i=0,\quad F_h^{i-1}S^i=0.
+\tag{HD7}
+\]
+
+**Proof.** Temporarily suppress degree indices only in compositions whose sources and targets are determined by (HD1)–(HD3). Multiplying (HD2) by d gives \(dhd=d\). Therefore \(a=dh\) and \(b=hd\), in each fixed degree, satisfy \(a^2=a\), \(b^2=b\), and \(a+b=1\). Since \(b=1-a\), both \(ab\) and \(ba\) are zero. Applying U to compositions gives
+\[
+P^2=P,\quad Q^2=Q,\quad PQ=QP=0,\quad DHD=D.
+\tag{HD8}
+\]
+It is legitimate to apply U to these compositions and zero maps; no additivity of U is used. In the target endomorphism ring, expansion now gives \((1-P-Q)^2=1-P-Q\). Also \(D(1-P-Q)=D-DHD=0\) and \((1-P-Q)D=D-DHD=0\), with the corresponding degree indices. These are (HD5).
+
+For \(S=HDH\), one has \(DS=P^2=P\) and \(SD=Q^2=Q\), proving the first identity (HD7). Also \(DHH D=PQ=0\), so \(S^2=H(DHH D)H=0\). Direct composition gives \(SP=S\), \(SQ=0\), \(PS=0\), \(QS=S\), and hence \(SF=FS=0\). All these equalities have exactly the degree types in (HD6)–(HD7). Naturality of evaluation gives \(\epsilon H=h\epsilon\) and \(\epsilon D=d\epsilon\); consequently H, D and S preserve K. The projection's image lies in K by (HD4), and its restriction to its image is the identity. Thus the same identities prove the two claimed strong deformation retracts. \(\square\)
+
+The full decomposition is
+\[
+U(C^i)=\operatorname{im}P^i\oplus R_h^i\oplus\operatorname{im}Q^i.
+\tag{HD9}
+\]
+Indeed the three orthogonal idempotents P,F,Q sum to the identity, so every element is their sum and applying each projector proves uniqueness. The differential is zero on the first two summands. Its map
+\[
+D^i:\operatorname{im}Q^i\xrightarrow{\sim}\operatorname{im}P^{i+1}
+\tag{HD10}
+\]
+has inverse \(H^{i+1}\) on the indicated target. For an element in im Q, \(HD=Q\) acts as identity; for one in im P, \(DH=P\) acts as identity. The image assertions follow by (HD8). Thus the complement of R consists of these explicit two-term complexes with an invertible differential. Intersecting all three summands with K gives the identical decomposition there, since each projector preserves K and R already lies in K. In particular
+\[
+H^i(U(C))\cong R_h^i\cong H^i(K(C)),
+\quad [z]\longmapsto F_h^iz,
+\tag{HD11}
+\]
+with inverse given by including an element of R as a cycle. A cycle differs from its projection by \(D^{i-1}S^iz\), and a boundary has projection zero by (HD5), proving both well-definedness and the inverse assertions directly.
+
+## 3. Changes of contraction and maps between retained objects
+
+Let h and k be contractions on the same C. The map
+\[
+c_{k,h}^i:R_h^i\to R_k^i,\qquad x\longmapsto F_k^ix
+\tag{HD12}
+\]
+is a canonical isomorphism between the specified summands, with inverse \(c_{h,k}\). For x in R_h, it is a cycle, and (HD7) for k gives \(x-F_kx=DS_kx\). Applying F_h and using F_hD=0 gives \(F_hF_kx=x\). Interchanging h,k proves the other inverse. For a third contraction l, the difference \(F_kx-x\) is a boundary killed by F_l, so \(c_{l,k}c_{k,h}=c_{l,h}\) exactly. Thus the concrete summands depend on the contraction, but their specified transition maps satisfy a strict cocycle law.
+
+Let \(f:C\to C'\) be any cochain map between contractible complexes with chosen contractions h and k. No compatibility between f and those contractions is required. Define
+\[
+R(f)^i:R_h^i\to R_k^i,
+\qquad x\longmapsto F_k^iU(f^i)x.
+\tag{HD13}
+\]
+Since U preserves compositions, U(f) is a cochain map. For composable f,g, the difference \(F_kU(f)x-U(f)x\) is a boundary by (HD7), because U(f)x is a cycle. U(g) sends it to a boundary and the target projector kills it. Therefore \(R(g)R(f)=R(gf)\). The identity map acts as the identity on R. Formula (HD13) defines an actual functor on complexes with chosen contractions and arbitrary cochain maps; (HD12) gives its coherent changes of chosen contraction. When f preserves the contractions, U(f) commutes with P,Q,F and (HD13) is simply its restriction.
+
+There is also an exact formula for a general ordinary homotopy. If \(f,g:C\to C'\) and \(a^i:C^i\to C'^{i-1}\) satisfy
+\[
+f^i-g^i=d'^{i-1}a^i+a^{i+1}d^i,
+\tag{HD14}
+\]
+put \(A^i=U(a^i)\) and
+\[
+\Delta_a^i=U(f^i)-U(g^i)-D'^{i-1}A^i-A^{i+1}D^i:
+U(C^i)\longrightarrow K(C'^i).
+\tag{HD15}
+\]
+The codomain follows by evaluating and applying (HD14). It is a cochain map: expanding \(D'\Delta_a-\Delta_aD\), the f and g terms cancel because they are cochain maps, the terms containing two successive differentials vanish, and the two terms \(D'AD\) cancel with opposite signs. Its generator value is
+\[
+\Delta_a^i(r_v)=r_{f^iv}-r_{g^iv}
+-r_{d'^{i-1}a^iv}-r_{a^{i+1}d^iv}.
+\tag{HD16}
+\]
+In cohomology the difference between U(f) and U(g) is exactly the map induced by inclusion of \(\Delta_a\), since the remaining difference is the explicit homotopy \(D'A+AD\). The obstruction to transporting the ordinary homotopy is therefore a specified cochain map into K, with full domain and codomain; it is not a claim that the constructions are unrelated.
+
+## 4. Exact coefficient and completion comparisons
+
+For any unital ring map \(\Lambda\to T\), apply \(T\otimes_\Lambda-\) to the maps in (HD7). Tensoring preserves sums, compositions and identities, so the same deformation retract holds, without a flatness assumption. Its retained object is \(T\otimes_\Lambda R_h\), embedded as a direct summand because its original inclusion has a left inverse. Hence
+\[
+H^i(T\otimes_\Lambda U(C))
+\cong T\otimes_\Lambda R_h^i
+\cong H^i(T\otimes_\Lambda K(C)).
+\tag{HD17}
+\]
+The isomorphisms have the same explicit cycle/projection formulas as (HD11).
+
+For a prime p, write \(\widehat X_p=\varprojlim_nX/p^nX\). Every homomorphism used in (HD7) preserves p^n multiples and therefore induces maps on these inverse limits. The same finite algebraic identities hold after inverse limit, because they hold modulo each p^n. Thus ordinary degreewise p-completion also gives a strong deformation retract onto \((\widehat{R_h}_p,0)\), and
+\[
+H^i(\widehat{U(C)}_p)\cong\widehat{R_h^i}_p
+\cong H^i(\widehat{K(C)}_p).
+\tag{HD18}
+\]
+No general exactness of completion is assumed: the explicit split maps and homotopies prove this case.
+
+For \(T=\widehat\Lambda_p\), the completed group \(\widehat X_p\) is a T-module by coordinatewise multiplication modulo p^n. The exact natural map comparing the two coefficient constructions is
+\[
+\eta_X:T\otimes_\Lambda X\longrightarrow\widehat X_p,
+\qquad a\otimes x\longmapsto(a_nx\bmod p^nX)_n,
+\tag{HD19}
+\]
+where a_n is any lift of the reduction of a in \(\Lambda/p^n\Lambda\). This is independent of the lift and satisfies the tensor balancing relation in every coordinate. Naturality follows from applying a homomorphism to each coordinate. Applied to U(C), K(C) and R_h it commutes with all projectors and homotopies. Under (HD17)–(HD18), its cohomology map is exactly \(\eta_{R_h^i}\). This proves the comparison map; it does not silently identify tensor extension with completion for an infinite-rank module.
+
+## 5. Integer example and programme support
+
+For \(C:\mathbb Z\to\mathbb Z^2\to\mathbb Z\), with maps \(x\mapsto(x,0)\) and \((x,y)\mapsto y\), choose \(h^1(x,y)=x\), \(h^2(y)=(0,y)\). Then
+\[
+F_h^1(r_{(x,y)})=r_{(x,y)}-r_{(x,0)}-r_{(0,y)}.
+\tag{HD20}
+\]
+These vectors for x,y nonzero form a free basis of \(R_h^1\): they have distinct coefficients at the basis vectors \(r_{(x,y)}\) with both coordinates nonzero, and (HD20) generates the image with all other values zero. All other R_h degrees are zero. Thus this is precisely the retained group computed by [Chain comparison](CHAIN_COMPARISON.md), Q42–Q46, and [Cross-effects](CROSS_EFFECTS.md) identifies it with \(U(\mathbb Z)\otimes U(\mathbb Z)\). The split extension of its arithmetic comparison to zero has categorical kernel only the external element, but all supported classes go to the supported zero. The full typed quotient and both kernels are proved in Chain comparison, Q4, using [the programme's D6–D8 proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L125).
+
+![The retained projector and its Frobenius comparison](figures/12_retained_frobenius.png)
+
+The upper panel is (HD3)–(HD7). The lower panel concerns the specified integer example and is proved in *Frobenius on the retained cross-effect*, F1–F19. The actual degrees suppressed in the schematic are retained in every formula above.
+
+
+# Frobenius on the retained cross-effect
+
+This paper studies the nonzero cohomology retained from the contractible integer complex. It constructs its group-ring module, its Frobenius, the exact cokernel of Frobenius linearization, and the quotient prism cut out by the retained classes. All completions in this paper are **p-adic**; the augmentation completion in *Cross-effects* is a different map.
+
+## 1. The retained module and its ambient ring
+
+For an abelian group V let U(V) have free abelian basis \(r_v\ (v\ne0),\qquad r_0=0\), and let \(U(f)r_v=r_{f(v)}\). Consider the complex
+\[
+C:\quad\mathbb Z\xrightarrow{i}\mathbb Z^2\xrightarrow{q}\mathbb Z,
+\qquad i(a)=(a,0),\quad q(a,b)=b,
+\tag{F1}
+\]
+in degrees 0,1,2. Its contraction is \(h^1(a,b)=a,\quad h^2(b)=(0,b)\). In middle degree \(ih^1+h^2q=\mathrm{id}\); the end-degree identities are \(h^1i=\mathrm{id},\quad qh^2=\mathrm{id}\). Thus C is contractible.
+
+The middle kernel of U(q) is freely generated by \(r_{(a,0)}\) for \(a\ne0\) and \(r_{(a,b)}-r_{(0,b)}\) for \(a,b\ne0\): collect coefficients separately in each fibre of q. The first family is precisely im U(i). Consequently its cohomology \(W=H^1U(C)\) is free with basis
+\[
+w_{a,b}=[r_{(a,b)}-r_{(a,0)}-r_{(0,b)}],\qquad a,b\ne0.
+\tag{F2}
+\]
+The subtractand \(r_{(a,0)}\) is a boundary, but retaining it gives a representative of arithmetic evaluation zero. Every coefficient vector in the fibre calculation is finite, so this argument proves both spanning and independence over the full integer index set.
+
+Put
+\[
+R=\mathbb Z[t,t^{-1},u,u^{-1}],\quad x=t-1,\quad y=u-1,
+\quad j=xy,\quad J=jR.
+\tag{F3}
+\]
+Under the group-ring identification \([(a,b)]\mapsto t^a u^b\), the exact map is
+\[
+\theta:W\longrightarrow J,\qquad
+\theta(w_{a,b})=(t^a-1)(u^b-1).
+\tag{F4}
+\]
+Here the group-ring multiplication uses addition in \(\mathbb Z^2\); it is additional structure on \(U(\mathbb Z^2)\), distinct from the scalar monoid ring \(\Lambda=\mathbb Z[\mathbb Z\setminus\{0\}]\) used throughout the branch.
+
+**Theorem F1.** The map (F4) is an isomorphism of abelian groups, natural for separate integer maps on the two factors. It transports the R-module structure on J to W. In particular W is a free rank-one R-module with generator \(w_{1,1}\), despite being a countably infinite-rank abelian group.
+
+**Proof.** The augmentation ideal I_t in \(\mathbb Z[t,t^{-1}]\) has free abelian basis \(t^a-1\) for \(a\ne0\): expand a Laurent polynomial whose coefficients sum to zero and solve for its coefficient at 1. Also \(I_t=x\mathbb Z[t,t^{-1}]\), since \(t^a-1\) is divisible by \(t-1\) for positive a by a geometric sum, and for negative a by \(t^a-1=-t^a(t^{-a}-1)\). The same statements hold for I_u. Tensoring the two free bases gives a basis \((t^a-1)(u^b-1)\) of \(I_t\otimes I_u\) inside R. Its image is \(xyR=J\), proving bijectivity of \(\theta\). Multiplication by j identifies R with J because a Laurent polynomial ring over Z is a domain: embed it in the rational function field Q(t,u). Integer maps \((a,b)\mapsto(ma,nb)\) correspond to the ring substitutions \(t\mapsto t^m,\ u\mapsto u^n\), which proves the asserted naturality. \(\square\)
+
+The original scalar action \([n]w_{a,b}=w_{na,nb}\) is therefore the substitution \(t\mapsto t^n,\ u\mapsto u^n\). It is semilinear for that ring endomorphism. This formula includes negative n and preserves all signs; n=0, if adjoined, acts by zero on J.
+
+## 2. Exact axis quotient and p-adic completion
+
+Define the ring
+\[
+A=\mathbb Z[t,t^{-1}]\times_{\mathbb Z}\mathbb Z[u,u^{-1}],
+\tag{F5}
+\]
+where both maps to Z evaluate their variable at 1. The map
+\[
+\pi:R\longrightarrow A,\qquad f\longmapsto(f(t,1),f(1,u))
+\tag{F6}
+\]
+is onto, has kernel J, and has the explicit additive section
+\[
+s(g,h)=g(t)+h(u)-g(1),\qquad g(1)=h(1).
+\tag{F7}
+\]
+To prove the kernel assertion and surjectivity simultaneously, use the additive direct sum
+\[
+R=\mathbb Z\oplus I_t\oplus I_u\oplus(I_t\otimes I_u).
+\tag{F8}
+\]
+This is obtained by tensoring the two split decompositions \(\mathbb Z[t^{\pm1}]=\mathbb Z\oplus I_t\) and \(\mathbb Z[u^{\pm1}]=\mathbb Z\oplus I_u\). The map \(\pi\) retains exactly the first three terms and kills exactly the last. Formula (F7) reconstructs these first three terms. Thus
+\[
+0\longrightarrow W\xrightarrow{\theta}R\xrightarrow{\pi}A\longrightarrow0
+\tag{F9}
+\]
+is exact as abelian groups, with \(\theta\) understood as its inclusion into R; J is also a ring ideal.
+
+Fix a prime p. Write \(B=\varprojlim_nR/p^nR\) and \(\widehat J=\varprojlim_nJ/p^nJ\). An element of B is uniquely a sum \(\sum_{(a,b)\in\mathbb Z^2}c_{a,b}t^a u^b\) with \(c_{a,b}\in\mathbb Z_p\) and, for each n, only finitely many coefficients nonzero modulo p^n. Multiplication is well defined by reducing modulo every p^n, where both inputs have finite support. This description follows directly from compatible finite Laurent polynomials modulo p^n, and conversely produces such a compatible system.
+
+Multiplication by p is injective, \(B/pB=\mathbb F_p[t^{\pm1},u^{\pm1}]\), and B is p-adically complete and separated by this description. It is a domain: a nonzero element has a finite minimal p-adic coefficient valuation; divide by that power of p. The reductions of two such divided elements are nonzero Laurent polynomials over F_p, whose product is nonzero. Hence the original product cannot vanish.
+
+Since (F8) is a finite split sum, reduction modulo p^n and then inverse limit preserve that displayed decomposition term by term. Consequently
+\[
+\widehat J=jB,\qquad
+\widehat A=B/jB
+\cong\widehat{\mathbb Z[t^{\pm1}]}_p
+\times_{\mathbb Z_p}\widehat{\mathbb Z[u^{\pm1}]}_p.
+\tag{F10}
+\]
+For the first equality, the isomorphism \(R\to J\) given by multiplication by j is an isomorphism for the intrinsic p-adic topologies, and its completed map is multiplication by j in B. The split sum makes its completed inclusion injective and identifies its image with the completed fourth term. Thus no unproved exactness assertion about completion is used. In particular B/jB is p-torsion-free and complete.
+
+## 3. The Frobenius module and its exact defect
+
+The ring endomorphism
+\[
+\phi_p:B\longrightarrow B,\qquad
+\phi_p(t)=t^p,\quad\phi_p(u)=u^p,\quad\phi_p(c)=c\ (c\in\mathbb Z_p)
+\tag{F11}
+\]
+is well defined and continuous by the restricted-coefficient description. It lifts Frobenius modulo p: it does so on Laurent monomials and coefficients, and in characteristic p the pth power of a finite sum is the sum of its pth powers. Modulo p every restricted sum is finite.
+
+Put
+\[
+Q_p(T)=1+T+\cdots+T^{p-1},\qquad q_p=Q_p(t)Q_p(u).
+\tag{F12}
+\]
+Then \(\phi_p(j)=jq_p\). The restriction \(F=\phi_p|_{jB}:jB\to jB\) is \(\phi_p\)-semilinear: \(F(bm)=\phi_p(b)F(m)\). Its linearization has the exact domain and formula
+\[
+\Phi:B\otimes_{B,\phi_p}jB\longrightarrow jB,
+\qquad b\otimes m\longmapsto bF(m).
+\tag{F13}
+\]
+The balancing convention is \(b\phi_p(a)\otimes m=b\otimes am\). Both its domain and codomain are free rank-one B-modules: the domain has basis \(1\otimes j\) and the codomain has basis j. In these bases \(\Phi\) is multiplication by q_p.
+
+**Theorem F2.** Frobenius linearization has the exact sequence
+\[
+0\longrightarrow B\otimes_{B,\phi_p}\widehat J
+\xrightarrow{\Phi}\widehat J
+\longrightarrow B/(q_p)\longrightarrow0,
+\qquad jf\longmapsto f\bmod q_p.
+\tag{F14}
+\]
+Its cokernel is nonzero, p-torsion-free and p-adically complete. Its special fibre is exactly
+\[
+B/(p,q_p)=
+\mathbb F_p[t^{\pm1},u^{\pm1}]
+/\bigl((t-1)^{p-1}(u-1)^{p-1}\bigr).
+\tag{F15}
+\]
+
+**Proof.** The domain B is integral, and q_p is nonzero, so multiplication by q_p is injective. Its image under the basis j is jq_pB, giving exactly the displayed quotient. The identity \((T-1)Q_p(T)=T^p-1\) reduces modulo p to \((T-1)^p\). Cancellation in \(\mathbb F_p[T]\) gives \(Q_p(T)=(T-1)^{p-1}\) modulo p. Thus q_p reduces to the nonzero nonunit \(j^{p-1}\), proving (F15) and nonzero cokernel.
+
+If \(pb=q_pc\) in B, reduction modulo p gives \(\overline q_p\overline c=0\) in the Laurent domain. Therefore \(c=pc^{\prime}\); injectivity of p gives \(b=q_pc^{\prime}\). This proves p-torsion-freeness of B/(q_p). The same argument iterated proves \(q_pb\in p^nB\) if and only if \(b\in p^nB\). Thus multiplication by q_p preserves the p-adic order and its image is closed: a convergent sequence q_pb_n is Cauchy precisely when b_n is, and B is complete. The quotient is complete as well. Indeed for a compatible system of cosets modulo (q_p,p^n), select representatives b_n inductively with \(b_{n+1}-b_n\in p^nB\), subtracting a multiple of q_p at each step; their limit is a representative. If an element maps to zero in every such quotient, choose q_pc_n converging to it; closedness gives membership in q_pB. This proves bijectivity with the inverse limit and completes the proof. \(\square\)
+
+The special fibre (F15) is the union of the loci t=1 and u=1, each with exponent p−1 in the defining equation. For p=2 the defining polynomial is xy and the ring is reduced: an element whose power lies in (xy) is divisible by x and y in the Laurent ring and hence by xy. Indeed the quotients by x and by y are Laurent domains, so both generate prime ideals. Modulo x the element y is nonzero; therefore a multiple of y divisible by x has its other factor divisible by x. For p>2 the class of xy is nonzero but its (p−1)st power is zero, so the fibre is nonreduced. These descriptions concern the explicitly displayed quotient and do not identify the two axes with the earlier support labels.
+
+Thus the failure of \(\Phi\) to be invertible defines a concrete module and a concrete algebraic locus. It does not erase \(\widehat J\). Inverting q_p makes \(\Phi\) an isomorphism by multiplication by \(q_p^{-1}\). Inverting only p does not do so: the nonzero p-torsion-free cokernel remains nonzero after inverting p, because the localization of a nonzero element could vanish only if a power of p killed it.
+
+## 4. The retained ideal defines an actual quotient prism
+
+Define \(\delta(b)=(\phi_p(b)-b^p)/p\). The numerator is divisible by p, and division is unique because B has no p-torsion. Direct expansion proves
+\[
+\delta(a+b)=\delta(a)+\delta(b)
+-\sum_{k=1}^{p-1}\frac{\binom pk}{p}a^kb^{p-k},
+\qquad
+\delta(ab)=a^p\delta(b)+\phi_p(b)\delta(a).
+\tag{F16}
+\]
+Also \(\delta(0)=\delta(1)=0\). These are the \(\delta\)-ring laws in this p-torsion-free setting.
+
+By the polynomial congruence used in (F15),
+\[
+h_p=\frac{q_p-j^{p-1}}p\in\mathbb Z[t,u],
+\qquad \delta(j)=jh_p.
+\tag{F17}
+\]
+For every \(b\in B\), (F16) gives \(\delta(jb)=j^p\delta(b)+\phi_p(b)jh_p\in jB\). Consequently jB is a \(\delta\)-stable ideal, and \(\delta\) descends to B/jB. To check independence of representatives explicitly, replace a by a+k with \(k\in jB\) in the first identity (F16). The term \(\delta(k)\) is in jB, and every cross term contains a positive power of k, so the difference lies in jB. The quotient map is therefore a \(\delta\)-ring map. Under (F10) its Frobenius is the pair of substitutions \(t\mapsto t^p,\quad u\mapsto u^p\); both agree with the identity Frobenius on the scalar Z_p fibre.
+
+**Theorem F3.** Both (B,(p)) and (B/jB,(p)) are bounded crystalline prisms. Their quotient is a morphism of prisms whose kernel is exactly the completed retained cross-effect \(\widehat W=\widehat J\).
+
+**Proof.** The rings are p-torsion-free and p-adically complete by Section 2. Thus p is a non-zero-divisor and defines a Cartier ideal. Derived p-completeness can be checked directly: the free resolution \([\mathbb Z\to\mathbb Z]\) of Z/p^n with map p^n has no negative Tor after tensoring either ring, because p^n is injective. Its derived tensor is therefore the ordinary quotient. The transition maps on these quotients are surjective, so their derived inverse limit is concentrated in degree zero and is the ordinary inverse limit. For completeness of that last claim, the derived-limit calculation for a countable system is the two-term map 1−shift on the product of the groups; surjectivity follows by choosing preimages recursively along the surjective transition maps, leaving the inverse limit as its kernel. Both rings equal their ordinary inverse limit, proving derived completeness. In the prism axiom \(p\in(p,\phi_p(p))\) one has \(\phi_p(p)=p\), so it holds. Their quotients by p have p-torsion killed by p, which is the required boundedness. The \(\delta\)-map already constructed preserves the distinguished ideal (p); its kernel is jB by (F10). \(\square\)
+
+Each is also an object of the absolute prismatic site of Spf(Z_p): the required structural map \(\mathbb Z_p\to B/p\) or \(\mathbb Z_p\to(B/jB)/p\) is reduction to F_p followed by the ring's scalar inclusion. The quotient map respects these structural maps. This is an actual morphism between specified site objects, with the cross-effect as its exact kernel. It does not assert an identification with global prismatic cohomology.
+
+## 5. Relation to the programme and sources
+
+### The actual F-crystal test and its positive open comparison
+
+The definition of a prismatic F-crystal on a prism requires Frobenius linearization to become invertible after inverting the prism ideal. For our crystalline prism this ideal is \((p)\). Theorem F2 therefore proves that \((jB,F)\), with its specified Frobenius, fails that particular requirement: its nonzero p-torsion-free cokernel remains after inverting p. The module and its full cokernel remain the objects studied in (F14).
+
+There is an exact positive comparison on an explicit formal open. Put
+\[
+B^{\circ}=\varprojlim_n (B/p^nB)[1/j].
+\tag{F18}
+\]
+Modulo each power of p this is the localization away from the displayed mixed divisor. It is also the p-completion of \(R[1/j]\): reduction modulo p^n commutes with localization by the universal property of fractions, and \(B/p^nB=R/p^nR\). The ring \(R[1/j]\) is p-torsion-free. Its completion remains so: if a compatible element is killed by p, its representative modulo p^{n+1} is a multiple of p^n by cancellation in \(R[1/j]\), hence vanishes modulo p^n for every n. The quotient by p is exactly \(\mathbb F_p[t^{\pm1},u^{\pm1},1/j]\), using compatible lifts through these surjective reductions. It is a domain, and the p-adic valuation argument of Section 2 proves that \(B^\circ\) is a domain too.
+
+The image of \(q_p\) is a unit in \(B^\circ\): modulo p it equals the unit \(j^{p-1}\); a lift of its inverse has product \(1+pa\), whose inverse is the convergent series \(\sum_{n\ge0}(-pa)^n\). Thus \(\phi_p(j)=jq_p\) is a unit there. The ring map \(R\to B^\circ\) given by Frobenius extends uniquely across \(j^{-1}\), and continuously to \(B^\circ\). It still lifts Frobenius modulo p. The same proof as F3 makes \((B^\circ,(p))\) a bounded crystalline prism, and \(B\to B^\circ\) a morphism of prisms.
+
+After base change the retained module is the free module \(jB^\circ=B^\circ\). Its linearized Frobenius remains multiplication by \(q_p\) in the basis j and is now an isomorphism even before inverting p. Thus it is an effective F-crystal on this specified prism. The exact comparison from the original retained module is
+\[
+jB\longrightarrow jB^\circ,\qquad jb\longmapsto j\,\iota(b),
+\qquad
+B^\circ\otimes_{B}jB\cong jB^\circ.
+\tag{F19}
+\]
+This map is injective. If \(b\ne0\) in B, divide out its finite p-adic valuation; its resulting nonzero Laurent polynomial modulo p remains nonzero after localizing by j in a domain. Hence its image cannot vanish. The Frobenius cokernel (F14) has zero base change because q_p becomes a unit. These formulas specify precisely the object retained, the divisor removed, and the resulting F-crystal. They do not assert descent to a vector bundle on an entire absolute prismatic site.
+
+The F-crystal definition used here is Bhargav Bhatt and Peter Scholze, [*Prismatic F-crystals and crystalline Galois representations*](https://arxiv.org/abs/2106.14735), Section 4, Definition 4.1; the exact retained original TeX has SHA256 6315ffb1407ee3715f3431190e9acc3b2ae897b7fb121153e2a23d6446f2f9c1, with the definition at lines 482–489. This source also explicitly defines the category on a single prism. The positive construction (F18)–(F19) is proved here.
+
+The module W retains the entire middle cohomology in (F1), and the arithmetic comparison sends it to zero because \(H^1(C)=0\). Its split extension sends each supported class to the supported zero, and sends only the external element to the external element. The exact categorical and all-label kernels are given by Theorem Q4 of *Chain comparison*, which applies [the programme's D6–D8 quotient and kernel constructions](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L125). Thus the zero arithmetic observation retains the explicit group W, its R-module structure, Frobenius linearization and quotient-prism map calculated above.
+
+The definitions of \(\delta\)-rings and bounded crystalline prisms are those in Bhargav Bhatt and Peter Scholze, [*Prisms and Prismatic Cohomology*, arXiv:1905.08229v4](https://arxiv.org/abs/1905.08229v4), Definition 1.1, Example 1.3 and the opening \(\delta\)-ring discussion in Section 2. The absolute site convention is that of Bhargav Bhatt and Jacob Lurie, [*Absolute Prismatic Cohomology*, arXiv:2201.06120v1](https://arxiv.org/abs/2201.06120v1), the definition in their prismatic-site subsection (original apc.tex lines 4908–4928). The calculations (F1)–(F17) and every asserted special case are proved in this paper. The original author TeX versions and exact reading coverage are recorded in the source ledger.
+
+
+## 6. Cotangent and differential objects of the quotient
+
+[The full cotangent calculation](NODE_COTANGENT.md), Theorems N1–N3 and (N16)–(N32), applies Illusie's regular-immersion and transitivity results to the quotient in (F7)–(F10). It proves the exact kernel generated by \(\kappa=(t-1)du=-(u-1)dt\), its nonsplit differential sequence, the retained two-term de Rham kernel, and its Frobenius maps. Equations (N25)–(N27) retain the full kernel and cokernel of divided-Frobenius linearization, with explicit quotient maps from the defect (F14). The same paper proves the completed maps and an explicit nontrivial first-order deformation.
+
+
+# Cotangent and Frobenius data at the meeting of two branches
+
+This paper applies the regular-immersion and transitivity constructions in Luc Illusie's *Complexe cotangent et déformations*, volume I, to the explicit quotient in [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), (F7)–(F17). It computes the cotangent complex, the exact differential data lost by restriction to the two branches, the de Rham differential, and both ordinary and divided Frobenius. Every calculation concerns the rings and maps specified below.
+
+## 1. The ring, its branches, and the retained programme object
+
+Set
+\[
+R=\mathbb Z[t^{\pm1},u^{\pm1}],\quad x=t-1,\quad y=u-1,
+\quad j=xy,\quad A=R/(j),
+\quad T=\mathbb Z[t^{\pm1}],\quad V=\mathbb Z[u^{\pm1}].
+\tag{N1}
+\]
+Here \(u\) is a Laurent variable, independent of the role element named \(u\) in the square. All tensor products and differentials have their displayed coefficient ring. The ring zero in \(A\) is an additive zero in this ring construction; it is not the external programme element \(\tau\).
+
+The map
+\[
+\pi:R\longrightarrow T\times_{\mathbb Z}V,
+\qquad f\longmapsto(f(t,1),f(1,u))
+\tag{N2}
+\]
+uses evaluation at 1 for both maps to \(\mathbb Z\). It is surjective: a pair \((g,h)\) with \(g(1)=h(1)=c\) has lift \(g(t)+h(u)-c\). If \(f\) maps to zero, vanishing at \(u=1\) gives \(f=yb\). Vanishing at \(t=1\) gives \(yb(1,u)=0\); since \(V\) is a domain, \(b(1,u)=0\), so \(b=xa\). Conversely, every multiple of \(xy\) vanishes under both evaluations. Thus
+\[
+A\xrightarrow{\sim}T\times_{\mathbb Z}V,
+\qquad A=\mathbb Z\oplus xT\oplus yV
+\quad\text{as abelian groups}.
+\tag{N3}
+\]
+Divisibility by \(t-1\) or \(u-1\) used here holds for Laurent polynomials: multiply by a large positive power of the variable, use polynomial division, and then divide by that invertible power. Write \(\epsilon:A\to\mathbb Z\) for the common evaluation and \(\mathfrak m=(x,y)=\ker\epsilon\). Products of the two axis ideals are zero. The two projections in (N3) prove
+\[
+\operatorname{Ann}_A(x)=(y),\qquad
+\operatorname{Ann}_A(y)=(x),\qquad (x)\cap(y)=0.
+\tag{N4}
+\]
+For example, \(x(a_T,a_V)=0\) forces \(a_T=0\) in the domain \(T\); compatibility of evaluations then puts \(a_V\) in \(yV\). This proves the first assertion, the second follows by interchanging the variables, and the intersection is zero by the projections.
+
+The exact preceding programme object is retained by a specified map. For an abelian group \(G\), let \(U(G)\) be free on \(r_g\), \(g\ne0\), with \(r_0=0\). The cross-effect of the split complex \(\mathbb Z\to\mathbb Z^2\to\mathbb Z\), with maps \(a\mapsto(a,0)\) and \((a,b)\mapsto b\), is
+\[
+W=U(\mathbb Z)\otimes_{\mathbb Z}U(\mathbb Z)
+\xrightarrow{\sim}jR,
+\quad w_{a,b}\longmapsto(t^a-1)(u^b-1).
+\tag{N5}
+\]
+This is the explicitly proved basis isomorphism in [Cross-effects](CROSS_EFFECTS.md), (X1)–(X4), (X13)–(X18), and [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), (F1)–(F6). One can check its basis assertion directly: the augmentation ideals of \(T,V\) have bases \(t^a-1\), \(u^b-1\), respectively, and are also the principal ideals \(xT,yV\); their external tensor product is \(xyR\).
+
+The conormal comparison is therefore the exact sequence of \(R\)-modules
+\[
+0\longrightarrow j^2R\longrightarrow jR
+\longrightarrow jR/j^2R\cong A\longrightarrow0,
+\qquad jf\bmod j^2\longmapsto f\bmod j.
+\tag{N6}
+\]
+The indicated identification of the quotient with \(A\) is well-defined and injective by cancellation of the nonzero element \(j\) in the domain \(R\). The quotient map has kernel \(j^2R\). Thus the retained object has a concrete conormal quotient, with its full kernel preserved.
+
+## 2. The cotangent complex and its conormal map
+
+**Theorem N1.** In cohomological degrees \(-1,0\), a model for the cotangent complex is
+\[
+L_{A/\mathbb Z}\simeq
+\mathcal L=\left[A\,\overline j
+\xrightarrow{\partial}A\,dt\oplus A\,du\right],
+\qquad \partial(a\overline j)=ay\,dt+ax\,du.
+\tag{N7}
+\]
+Its only nonzero cohomology is
+\[
+H^{-1}(\mathcal L)=0,\qquad
+H^0(\mathcal L)=\Omega^1_{A/\mathbb Z}
+=(A\,dt\oplus A\,du)/A(y\,dt+x\,du).
+\tag{N8}
+\]
+
+**Proof.** The Laurent algebra \(R\) is a localization of the polynomial algebra in two variables, hence smooth over \(\mathbb Z\). Illusie I, III 3.1.2(i)–(ii), identifies its cotangent complex with its differentials, freely generated by \(dt,du\). The inverse-variable rules are forced by \(d(t^{-1})=-t^{-2}dt\) and \(d(u^{-1})=-u^{-2}du\). The ideal \((j)\) is a regular ideal: its one-element Koszul complex \([R\xrightarrow{j}R]\) has no negative homology because \(R\) is a domain, and its degree-zero homology is exactly \(A\). Its conormal module is the free \(A\)-module (N6). Illusie's regular-immersion theorem, volume I, III, Proposition 3.2.4(iii), identifies \(L_{A/R}\) with \((j)/(j^2)[1]\). Applying his transitivity triangle, II, Proposition 2.1.2 and (2.1.2.1), to \(\mathbb Z\to R\to A\) yields the cone of the conormal differential
+\(j\bmod j^2\mapsto dj=y\,dt+x\,du\). These are exactly the degrees and sign convention in (N7). No additional regularity of \(A\) is assumed.
+
+For completeness, the degree-zero presentation can also be checked without derived terminology: a derivation \(A\to M\) to any \(A\)-module is uniquely determined by its two values on \(t,u\), subject to \(yD(t)+xD(u)=0\). Differentiating the inverses determines their values and imposes no further relations. This is the universal property of the cokernel in (N8). Finally the kernel of \(\partial\) is \(\operatorname{Ann}(y)\cap\operatorname{Ann}(x)=0\) by (N4). The complex has no other degrees, proving all cohomology assertions. \(\square\)
+
+## 3. The differential lost on the separate branches
+
+Give \(T\,dt\oplus V\,du\) its \(A\)-module structure through the respective projections. Define
+\[
+\psi:\Omega^1_{A/\mathbb Z}\longrightarrow T\,dt\oplus V\,du,
+\quad [a\,dt+b\,du]\longmapsto(a(t,1)\,dt,b(1,u)\,du),
+\quad\kappa=x\,du=-y\,dt.
+\tag{N9}
+\]
+
+**Theorem N2.** There is an exact sequence of \(A\)-modules
+\[
+0\longrightarrow(A/\mathfrak m)\kappa
+\longrightarrow\Omega^1_{A/\mathbb Z}
+\xrightarrow{\psi}T\,dt\oplus V\,du\longrightarrow0.
+\tag{N10}
+\]
+Here \(A/\mathfrak m=\mathbb Z\), the class \(\kappa\) has infinite additive order, and \(\operatorname{Ann}_A(\kappa)=\mathfrak m\). The sequence splits as a sequence of abelian groups and does not split as a sequence of \(A\)-modules.
+
+**Proof.** The relation in (N8) maps to zero under \(\psi\); lifts of the two coefficients establish surjectivity. Before quotienting by that relation, the kernel consists uniquely of forms
+\[
+yh(u)\,dt+xg(t)\,du,\quad h\in V,\ g\in T.
+\]
+Send this expression to \(g(1)-h(1)\in\mathbb Z\). A multiple \(a(y\,dt+x\,du)\) has coefficients \(h=a(1,u)\), \(g=a(t,1)\), whose evaluations agree. Conversely, agreement of those evaluations produces exactly one element \(a\in T\times_{\mathbb Z}V=A\), showing that the form is a relation. Hence this map identifies \(\ker\psi\) with \(\mathbb Z\), carrying \(\kappa\) to 1. Multiplication by \(a\in A\) multiplies this integer by \(\epsilon(a)\), proving both the action and the annihilator.
+
+An additive section sends \((f(t)dt,g(u)du)\) to the same written form in \(\Omega^1_A\), using the inclusions \(T,V\to A\). It is well-defined and \(\mathbb Z\)-linear. An \(A\)-linear section cannot exist: a lift of \((dt,0)\) must have the form \(dt+n\kappa\). Multiplication by \(y\) kills \((dt,0)\) in the target, whereas
+\(y(dt+n\kappa)=-\kappa\ne0\). This contradicts \(A\)-linearity. \(\square\)
+
+This locates the mixed class in the kernel of a particular restriction of degree-zero differentials. Its connecting maps (N7)–(N10) retain both its relation to the cotangent complex and the vanishing of \(H^{-1}(L_{A/\mathbb Z})\).
+
+## 4. The exact de Rham complex and its retained kernel
+
+Let \(\Omega^i_A=\bigwedge^i_A\Omega^1_{A/\mathbb Z}\) and let \(d\) be the ordinary Kähler-de Rham differential. Put \(\omega=dt\wedge du\). Wedging the relation \(y\,dt+x\,du\) with \(dt\) gives \(-x\omega\); wedging it with \(du\) gives \(y\omega\). These generate all exterior relations in degree two. Since there are only two generators,
+\[
+\Omega^2_A=(A/\mathfrak m)\omega=\mathbb Z\omega,
+\quad \Omega^i_A=0\ (i\ge3),\qquad d\kappa=\omega.
+\tag{N11}
+\]
+The last equality follows from \(d(x\,du)=dx\wedge du\), with \(dx=dt\); its sign fixes all later diagrams.
+
+Define the branch complex
+\[
+\mathcal D^0=T\times_{\mathbb Z}V=A,
+\quad\mathcal D^1=T\,dt\oplus V\,du,
+\quad d_{\mathcal D}(g,h)=(g'(t)dt,h'(u)du),
+\quad\mathcal D^i=0\ (i\ne0,1).
+\tag{N12}
+\]
+Restriction is a surjective cochain map \(\rho:\Omega^\bullet_A\to\mathcal D^\bullet\), by the naturality of derivations. Its exact kernel is
+\[
+\mathcal E^1=\mathbb Z\kappa,
+\quad\mathcal E^2=\mathbb Z\omega,
+\quad d:\mathcal E^1\xrightarrow{\sim}\mathcal E^2,
+\quad\kappa\longmapsto\omega,
+\quad\mathcal E^i=0\ (i\ne1,2).
+\tag{N13}
+\]
+The contraction \(s(\omega)=\kappa\), zero in other degrees, satisfies \(ds+sd=1\) on \(\mathcal E\). Thus the retained kernel is explicitly nonzero and contractible.
+
+**Theorem N3.** The restriction \(\rho\) is a quasi-isomorphism of these ordinary de Rham complexes, and (N13) is its full kernel. Explicitly,
+\[
+H^0(\Omega^\bullet_A)=\mathbb Z,\qquad H^2(\Omega^\bullet_A)=0,
+\tag{N14}
+\]
+and
+\[
+H^1(\Omega^\bullet_A)\cong
+\left(\mathbb Z[t^{-1}dt]\oplus
+\bigoplus_{n\in\mathbb Z\setminus\{0\}}(\mathbb Z/n\mathbb Z)[t^{n-1}dt]\right)
+\oplus
+\left(\mathbb Z[u^{-1}du]\oplus
+\bigoplus_{n\in\mathbb Z\setminus\{0\}}(\mathbb Z/n\mathbb Z)[u^{n-1}du]\right).
+\tag{N15}
+\]
+
+**Proof.** Each branch one-form has a lift \(\eta\). If \(d\eta=n\omega\), then \(\eta-n\kappa\) is a closed lift. If a closed form maps to a branch boundary, subtract the derivative of the corresponding element of \(A\). The result is a closed member of \(\mathbb Z\kappa\), hence zero because \(d\kappa=\omega\) has infinite order. These statements prove the bijection on degree-one cohomology. If an element of \(A\) has zero branch derivatives, its derivative lies in \(\mathbb Z\kappa\) and is closed, so it is zero; this proves the bijection in degree zero. Every two-form is a derivative by (N11), proving degree two.
+
+A Laurent polynomial over \(\mathbb Z\) has zero derivative exactly when it is constant, and the constants of the two branches must agree. Derivatives on the two branches can be chosen independently: subtract the evaluations at 1 from two primitives, obtaining a compatible pair with the same derivatives. On the \(t\)-branch, \(d(t^n)=n t^{n-1}dt\) for every integer \(n\); the coefficient positions \(t^{n-1}dt\) are distinct. The position \(n=0\) is unrestricted, and each other position is quotiented by \(n\mathbb Z\). This proves the first direct summand in (N15), and the identical calculation with \(u\) proves the second. The ideals \(n\mathbb Z\) retain the signed integer indexing used by the original derivative. \(\square\)
+
+## 5. Frobenius on forms and on the cotangent presentation
+
+Fix a prime \(p\) and put
+\[
+Q_p(z)=1+z+\cdots+z^{p-1},\quad q_p=Q_p(t)Q_p(u),
+\quad\phi(t)=t^p,\quad\phi(u)=u^p,\quad\phi|_{\mathbb Z}=1.
+\tag{N16}
+\]
+The equality \(\phi(j)=jq_p\) proves that \(\phi\) descends to \(A\). Write \(\phi_i\) for its \(\phi\)-semilinear map on \(i\)-forms, meaning \(\phi_i(a\eta)=\phi(a)\phi_i(\eta)\). Then
+\[
+\phi_1(dt)=p t^{p-1}dt,\quad
+\phi_1(du)=p u^{p-1}du,\quad
+\phi_1(\kappa)=p^2\kappa,\quad
+\phi_2(\omega)=p^2\omega.
+\tag{N17}
+\]
+Indeed \(\phi_1(xdu)=pQ_p(t)u^{p-1}\kappa=p^2\kappa\), since \(A\) acts on \(\kappa\) through \(\epsilon\). The wedge formula gives the last equality by the same action on \(\omega\). These maps commute with \(d\) and with \(\rho\). On (N15), the \(t\)-summand with index \(n\ne0\) maps by
+\[
+\mathbb Z/n\mathbb Z\longrightarrow\mathbb Z/(pn)\mathbb Z,
+\quad [a]\longmapsto[pa],
+\tag{N18}
+\]
+and the \(n=0\) summand maps by multiplication by \(p\). This follows by applying \(\phi_1\) to \(t^{n-1}dt\). The formula is well-defined because changing \(a\) by \(nb\) changes \(pa\) by \(pnb\). The \(u\)-summands obey the same rule.
+
+On the cotangent presentation, the induced map is
+\[
+\mathcal L^{-1}\to\mathcal L^{-1}:a\overline j\longmapsto q_p\phi(a)\overline j,
+\quad
+\mathcal L^0\to\mathcal L^0:
+a\,dt+b\,du\longmapsto p\phi(a)t^{p-1}dt+p\phi(b)u^{p-1}du.
+\tag{N19}
+\]
+This is a cochain map: differentiating \(\phi(j)=jq_p\) gives \(d\phi(j)=q_p dj+j\,dq_p\), whose last term vanishes in \(A\). This also proves compatibility of the conormal comparison (N6) with the original Frobenius on \(jR\).
+
+## 6. Divided Frobenius and the changed differential
+
+The groups of forms are torsion-free over \(\mathbb Z\): for degree one use (N10) and its torsion-free kernel and target, and for degree two use (N11). Consequently division by an integer, when possible, is unique. Define integral operators
+\[
+F_0=\phi,\qquad F_1=p^{-1}\phi_1,\qquad F_2=p^{-2}\phi_2.
+\tag{N20}
+\]
+For degree one, the formula
+\(F_1(a\,dt+b\,du)=\phi(a)t^{p-1}dt+\phi(b)u^{p-1}du\)
+preserves the relation, because its image is
+\(yQ_p(u)t^{p-1}dt+xQ_p(t)u^{p-1}du=-p\kappa+p\kappa=0\).
+Degree two is immediate from (N17). Thus
+\[
+F_1(\kappa)=p\kappa,\quad F_2(\omega)=\omega,
+\qquad dF_i=pF_{i+1}d.
+\tag{N21}
+\]
+The last identity follows by dividing \(d\phi_i=\phi_{i+1}d\) by \(p^i\), with uniqueness justified by torsion-freeness. The correctly typed cochain map is
+\[
+F:(\Omega^\bullet_A,pd)\longrightarrow(\Omega^\bullet_A,d).
+\tag{N22}
+\]
+On the retained kernel its source and target are
+\[
+\begin{array}{ccc}
+\mathbb Z\kappa&\xrightarrow{\ p\ }&\mathbb Z\omega\\
+\downarrow p&&\downarrow1\\
+\mathbb Z\kappa&\xrightarrow{\ 1\ }&\mathbb Z\omega.
+\end{array}
+\tag{N23}
+\]
+The lower complex is contractible. The upper has zero degree-one cohomology and degree-two cohomology \((\mathbb Z/p)\omega\), by injectivity and cokernel of multiplication by \(p\). Thus changing the differential in the divided-Frobenius source produces an explicit retained residue class. We keep both complexes and their exact map.
+
+Division also has an integral lift on \(\mathcal L\), with a different degree convention from the exterior complex. In \(A\),
+\[
+(Q_p(t)-p)(Q_p(u)-p)=0,\quad
+q_p=pc_p,\qquad c_p=Q_p(t)+Q_p(u)-p.
+\tag{N24}
+\]
+The first identity holds since its factors lie in \((x)\) and \((y)\). Dividing both components of (N19) by \(p\) therefore gives the cochain map on \(\mathcal L\) with degree \(-1\) multiplier \(c_p\) and degree zero multipliers \(t^{p-1},u^{p-1}\), always with coefficient action \(\phi\). Explicitly, \(c_py=yQ_p(u)\), \(c_px=xQ_p(t)\), \(t^{p-1}y=y\) and \(u^{p-1}x=x\); these identities verify both components of its commutation with \(\partial\).
+
+## 7. Linearization retains cyclotomic branch data
+
+The action \(F_1:\mathbb Z\kappa\to\mathbb Z\kappa\) is multiplication by \(p\) as an additive map. Its \(A\)-linearization has the exact source
+\[
+A\otimes_{A,\phi}(A/\mathfrak m)
+\cong A/\phi(\mathfrak m),
+\quad\phi(\mathfrak m)=(xQ_p(t),yQ_p(u)).
+\tag{N25}
+\]
+Here \(\phi(\mathfrak m)\) denotes the ideal generated by the image, and balancing means \(a\phi(b)\otimes m=a\otimes bm\). The isomorphism sends \(a\otimes\overline b\) to \(a\phi(b)\) modulo that ideal; its inverse sends \(a\) to \(a\otimes1\). These formulas verify both balancing and the inverse assertions.
+
+Linearization of \(F_1\) is \([a]\mapsto p\epsilon(a)\kappa\). Since \(\mathbb Z\) has no \(p\)-torsion, its exact sequence is
+\[
+0\longrightarrow\mathfrak m/\phi(\mathfrak m)
+\longrightarrow A/\phi(\mathfrak m)
+\longrightarrow\mathbb Z\kappa
+\longrightarrow(\mathbb Z/p)\kappa\longrightarrow0.
+\tag{N26}
+\]
+The axis decomposition and cancellation of \(x\) in \(T\), and of \(y\) in \(V\), give
+\[
+\mathfrak m/\phi(\mathfrak m)
+\cong T/(Q_p(t))\oplus V/(Q_p(u)).
+\tag{N27}
+\]
+Each summand is free of rank \(p-1\) over \(\mathbb Z\): \(Q_p\) is monic of degree \(p-1\), giving the polynomial remainder basis, and its constant coefficient 1 makes its variable invertible in that quotient. Hence the linearized source has additive rank \(2p-1\), its kernel rank \(2p-2\), and its cokernel is exactly \(\mathbb Z/p\). For the undivided map \(\phi_1\), the same source and kernel occur, and the cokernel is \(\mathbb Z/p^2\), since the formula is \([a]\mapsto p^2\epsilon(a)\kappa\).
+
+These two cyclotomic quotients are further quotients of the branch restrictions of the earlier Frobenius defect: in \(R/(q_p)\), restricting to \(u=1\) gives \(T/(pQ_p(t))\). The further quotient to \(T/(Q_p(t))\) is the surjection induced by the identity of \(T\), with exact kernel \(Q_p(t)T/pQ_p(t)T\cong T/pT\), where the isomorphism is multiplication by \(Q_p(t)\). Interchanging \(t,u\) gives the other branch. Thus (N27) is related to the earlier defect by explicit quotient maps and their nonzero kernels.
+
+The first restriction also has an exact kernel:
+\[
+0\longrightarrow R/(q_p)\xrightarrow{\ \cdot y\ }R/(q_p)
+\longrightarrow T/(pQ_p(t))\longrightarrow0.
+\tag{N27a}
+\]
+To prove injectivity, suppose \(yr=q_ps\) in \(R\). Evaluating at \(u=1\) gives \(0=pQ_p(t)s(t,1)\) in the domain \(T\); hence \(s=yh\). Cancelling \(y\) in \(R\) gives \(r=q_ph\). The image is the ideal generated by \(y\), and quotienting by that ideal is exactly evaluation at \(u=1\), proving the remaining assertions. Interchanging \(t,u\) gives the corresponding sequence with multiplication by \(x\).
+
+## 8. The derived fibre and a nontrivial first-order deformation
+
+The complex \(\mathcal L\) consists of finite free \(A\)-modules, so derived tensor with \(A/\mathfrak m=\mathbb Z\) is its termwise tensor. Both \(x,y\) become zero. Therefore
+\[
+\mathbb Z\otimes_A^{\mathbf L}L_{A/\mathbb Z}
+\simeq[\mathbb Z\overline j\xrightarrow{0}\mathbb Z\,dt\oplus\mathbb Z\,du],
+\quad H^{-1}=\mathbb Z\overline j,\quad H^0=\mathbb Z^2.
+\tag{N28}
+\]
+The exact morphism is the coefficientwise reduction \(\mathcal L\to\mathbb Z\otimes_A\mathcal L\). The new degree \(-1\) group records that fibre operation and retains its relation to (N8).
+
+Dualizing the same finite free complex gives
+\[
+\operatorname{Ext}^1_A(L_{A/\mathbb Z},A)
+=\operatorname{coker}\bigl(A^2\xrightarrow{(b,c)\mapsto yb+xc}A\bigr)
+=A/(x,y)=\mathbb Z.
+\tag{N29}
+\]
+The degree-zero dual kernel is \(xT\oplus yV\), because \(yb=-xc\) lies in \((x)\cap(y)=0\), after which (N4) applies to each term. This also computes every derivation \(A\to A\) by its two values.
+
+An explicit deformation realizing a nonzero class is
+\[
+D=\mathbb Z[\varepsilon]/(\varepsilon^2),\qquad
+\widetilde A=R[\varepsilon]/(\varepsilon^2,j-\varepsilon)
+\cong R/(j^2),\qquad\varepsilon\mapsto j.
+\tag{N30}
+\]
+It is free as a \(D\)-module. To prove this, use the additive section \(\sigma:A\to R\), \((g,h)\mapsto g+h-g(1)\), and write \(S=\sigma(A)\). Equation (N2) gives \(R=S\oplus jR\) as abelian groups. Multiplication by \(j\) is injective, so \(jR=jS\oplus j^2R\). Consequently \(R/j^2R=S\oplus jS\), with multiplication by \(\varepsilon=j\) carrying \(s\) to \(js\) and \(js\) to zero. Since \(A\), and hence \(S\), is free over \(\mathbb Z\) by (N3), choosing its basis exhibits \(R/j^2R\) as a direct sum of copies of \(D\). This proves flatness as well as freeness and identifies the special fibre with \(A\).
+
+No \(D\)-algebra isomorphism \(\widetilde A\to A\otimes_{\mathbb Z}D\) reducing to the identity on \(A\) exists. Such an isomorphism would send \(t,u\) to \(t+\varepsilon a,u+\varepsilon b\), respectively. The relation \(j=\varepsilon\) would then require \(ya+xb=1\) in \(A\), which evaluation \(\epsilon\) contradicts. The identification \(\varepsilon\widetilde A\cong A\) sends \(\varepsilon\widetilde a\) to the special-fibre value of \(\widetilde a\); it is well-defined and bijective by the displayed free \(D\)-module decomposition. Evaluating the defining relation on the chosen lifts sends the conormal generator \(\overline j\) to 1 under this identification. Changing those lifts adds exactly \(ya+xb\). Thus its class in the cokernel (N29) is the nonzero constant 1, and the family is nontrivial with the specified special-fibre identification. This statement includes the actual family and proof, rather than only an obstruction group.
+
+## 9. Completion and the exact prismatic comparison
+
+Let \(B=\varprojlim_nR/p^nR\), \(\widehat A=\varprojlim_nA/p^nA\), \(\widehat T=\varprojlim_nT/p^nT\), and define \(\widehat V\) similarly. Equation (N3) and its explicit section persist modulo every \(p^n\); inverse limit therefore gives
+\[
+\widehat A=B/jB\cong\widehat T\times_{\mathbb Z_p}\widehat V,
+\qquad\widehat A=\mathbb Z_p\oplus x\widehat T\oplus y\widehat V.
+\tag{N31}
+\]
+For the equality with \(B/jB\), the finite additive decomposition
+\(R=\mathbb Z\oplus xT\oplus yV\oplus jR\) is split. Multiplication \(R\to jR\) is an isomorphism for the intrinsic \(p\)-adic topologies, so its completion identifies the last summand with \(jB\). Thus (N31) follows from actual split maps, without a general exactness assertion about completion.
+
+Define the continuous forms used here by
+\(\widehat\Omega^i=\varprojlim_n\Omega^i_A/p^n\Omega^i_A\), and likewise complete \(\mathcal D\) and \(\mathcal E\) degreewise. These are specified completions of the finite-presentation differential objects; no identification with unrestricted algebraic differentials of a completed ring is required. The additive section in Theorem N2 is split, so
+\[
+0\longrightarrow\mathbb Z_p\kappa\longrightarrow\widehat\Omega^1
+\longrightarrow\widehat T\,dt\oplus\widehat V\,du\longrightarrow0,
+\quad\widehat\Omega^2=\mathbb Z_p\omega,
+\quad d\kappa=\omega.
+\tag{N32}
+\]
+The original maps preserve \(p^n\) multiples. Their finite identities, including \(ds+sd=1\) on \(\mathcal E\), therefore hold in every quotient and in the inverse limit. The completed de Rham restriction has the exact contractible kernel \([\mathbb Z_p\kappa\xrightarrow{1}\mathbb Z_p\omega]\) and is a quasi-isomorphism by the same explicit closed-lift proof as N3. We do not replace its cohomology by the completion of (N15).
+
+The completed cotangent model is \([\widehat A\overline j\to\widehat A^2]\) with the same map \((y,x)\). Equations (N4) hold in (N31): the one-variable completed Laurent rings are domains, as reduction modulo \(p\) followed by finite \(p\)-adic valuation shows. The same projection proof therefore makes its differential injective. All Frobenius and divided identities (N16)–(N24) extend by continuity. The source of the completed retained divided map has degree-two cohomology \(\mathbb F_p\omega\).
+
+The completed analogue of (N27) consists of the two finite free rings \(\mathbb Z_p[t]/Q_p(t)\) and \(\mathbb Z_p[u]/Q_p(u)\). Indeed polynomial division by each monic \(Q_p\) identifies the quotient with the indicated finite free module, in which the variable is already invertible; its inverse limit is obtained by completing each of its finitely many coefficients. The evaluation splitting and cancellation of the factors \(x,y\) then give (N26) over \(\mathbb Z_p\), with kernel rank \(2p-2\) and cokernel \(\mathbb F_p\kappa\). The earlier defect map is correspondingly \(B/(q_p)\to\widehat T/(pQ_p(t))\to\widehat T/(Q_p(t))\), and its last kernel is \(\widehat T/p\widehat T\) by the same multiplication proof.
+
+Here the quotient/completion comparison itself is split before taking limits. Let \(P_{<p-1}\) be the group of integer polynomials of degree less than \(p-1\). Laurent remainders modulo \(Q_p(t)\) are uniquely defined because
+\(t^{-1}=-(1+t+\cdots+t^{p-2})\) modulo \(Q_p(t)\), followed by monic polynomial division. Thus \(T=Q_p(t)T\oplus P_{<p-1}\) as abelian groups. Multiplication by \(Q_p(t)\) is an isomorphism from \(T\) to the first summand for its intrinsic \(p\)-adic topology. Completing the two split summands proves
+\(\widehat T=Q_p(t)\widehat T\oplus\mathbb Z_p^{p-1}\), which gives the asserted completed quotient without exchanging a general nonsplit quotient and inverse limit. For the first branch map, complete the split decomposition \(R=T\oplus yR\) to obtain \(\ker(B\to\widehat T)=yB\). The proof of (N27a) then works verbatim in \(B\), since both \(B\) and \(\widehat T\) are domains. Consequently the first completed branch map has kernel identified with \(B/(q_p)\) by multiplication by \(y\), and the other has the corresponding kernel by multiplication by \(x\).
+
+Finally, [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), Theorem F3, proves that \((B,(p))\to(\widehat A,(p))\) is a morphism of bounded crystalline prisms with kernel \(jB\), identified with the completed \(W\) of (N5). Thus the ring, conormal, differential, cyclotomic and de Rham objects in this paper are attached by explicit maps to that specified prism morphism. The local computations here do not assert a comparison equivalence with global absolute prismatic cohomology.
+
+## 10. Source identity and exact use
+
+The user-designated [Zenodo edition 22884471](https://zenodo.org/records/22884471) contains both volumes of Luc Illusie's *Complexe cotangent et déformations* in diplomatic and corrected French TeX. Its README identifies the transcription and corrected edition as Codex-produced, without human editorial review. These are editions of Illusie's work, not original author TeX. The intact source archives and the two treatments remain distinct in the source collection.
+
+The actual theorem used in N1 is volume I, Chapter III, Proposition 3.2.4(iii), printed pages 207–209, with the definition of regular ideals in III 3.2.2. The smooth input is III 3.1.2(i)–(ii), read with its proof in the diplomatic text at lines 22946–23162. The transitivity input is Chapter II, Proposition 2.1.2 and (2.1.2.1), printed pages 133–135. In the diplomatic cumulative TeX, the relevant reading was lines 23386–23779 and 14089–14384. The III 3.2.4 statement and proof were compared with the corrected text at lines 23398–23450 and 23571–23593. The corrected page-208 base-change display explicitly inserts the tensor base \(A\), absent in that diplomatic display. The specialization above supplies the coefficient ring at every map. Broader-volume or volume-II theorem reading is not claimed.
+
+The exact volume-I TeX SHA256 values are:
+
+```text
+diplomatic
+82c5831f601801736688348801b17dbc7d59189c4e5a0f357d0709a233795b7f
+corrected
+6350bf6f15e44be78ca2abb1f126d037a245ac8ed48793166a981dde9b173a67
+```
+
+ The regular-immersion and transitivity foundations are Illusie's results; the explicit calculations (N1)–(N32) are derived here. The prism definitions and proof sources remain those precisely cited in *Frobenius on the retained cross-effect*: Bhatt–Scholze, *Prisms and Prismatic Cohomology*, and Bhatt–Lurie, *Absolute Prismatic Cohomology*.
+
+![Mixed differentials, de Rham restriction and divided Frobenius](figures/13_node_differentials.png)
+
+The figure records (N9)–(N13), (N21)–(N23) and (N25)–(N27). Its branch picture is a scheme diagram for the two Laurent axes meeting at \(t=u=1\), not a plot of all arithmetic points. The signs, coefficient groups and degrees in the displayed maps are those proved above.
+
+
+# Mixed support, joined fibres, and their additive defects
+
+The support of a vector and its arithmetic value are separate data in the split-zero programme. This note preserves both, including a nonzero fibre over the bottom support, noninjective transition maps, and maps that merge support labels. The mixed terms produced by adding vectors from different fibres give exact maps into the additive-relation groups. Independent and folded joins give two explicitly related calculations of these groups.
+
+The programme source is [*Reconstruction with changes of support index*, D1–D5](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L9), [the quotient and cohomology comparisons, D6–D7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L125), and [the categorical and all-support kernels, D8](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex#L178). The complete source through the D8 proof was read for this calculation. Every assertion needed below is proved for the stated objects.
+
+## 1. The exact support model
+
+Put \(S=G(\mathbb Z)=\{\tau\}\sqcup\{n^\bullet:n\in\mathbb Z\}\), with \(e=0^\bullet\). Supported elements add and multiply by integer arithmetic; \(\tau\) is an external additive identity and multiplicative absorber. In particular \(\tau\ne e\).
+
+Let \(L\) be a join-semilattice with bottom \(\bot\). For every \(l\in L\), let \(V_l\) be an abelian group. For \(l\le k\), let \(\rho_{lk}:V_l\to V_k\) be a group homomorphism, with \(\rho_{ll}=\mathrm{id}\) and \(\rho_{kh}\rho_{lk}=\rho_{lh}\). Define
+\[
+M=\mathcal T(L,V)=\coprod_{l\in L}\{l\}\times V_l,
+\qquad 0_M=(\bot,0_{V_\bot}),
+\tag{MS1}
+\]
+\[
+(l,x)+(k,y)=(j,\rho_{lj}x+\rho_{kj}y),\quad j=l\vee k,
+\qquad n^\bullet(l,x)=(l,nx),\quad \tau(l,x)=0_M.
+\tag{MS2}
+\]
+These formulas define an \(S\)-semimodule. Threefold addition in either order has support \(l\vee k\vee h\) and amplitude equal to the sum of the three vectors transported to that fibre. This proves associativity; commutativity follows from the join and group laws. The bottom zero acts as the additive identity because \(\rho_{\bot l}(0)=0\). Supported scalar laws hold in each fibre, and distributivity over (MS2) follows from the linearity of the transitions. The scalar \(\tau\) gives the constant global zero map; its multiplication and distributivity laws follow from that formula and the additive identity law. These verifications cover every scalar and vector case.
+
+The scalar \(e\) acts by
+\[
+e(l,x)=(l,0_{V_l}).
+\tag{MS3}
+\]
+Thus a nonbottom supported zero \((l,0)\), a nonzero amplitude \((l,x)\), and the global zero \((\bot,0)\) remain different elements. A vector \((\bot,x)\) with \(x\ne0\) is also different from the global zero. No assumption that \(V_\bot=0\) is made.
+
+A morphism of diagrams is a bottom- and join-preserving map \(\alpha:L\to L'\), with homomorphisms \(f_l:V_l\to W_{\alpha(l)}\) satisfying
+\[
+f_k\rho_{lk}=\rho'_{\alpha(l),\alpha(k)}f_l\quad(l\le k).
+\tag{MS4}
+\]
+It gives the map
+\[
+F_{\alpha,f}:\mathcal T(L,V)\longrightarrow\mathcal T(L',W),
+\qquad (l,x)\longmapsto(\alpha(l),f_lx).
+\tag{MS5}
+\]
+To check its addition law, both sides have label \(\alpha(l\vee k)=\alpha(l)\vee\alpha(k)\), and (MS4) identifies their two transported amplitudes. Its scalar law follows from linearity and preservation of the bottom zero. Identity and composition are given by the corresponding pointwise formulas.
+
+For completeness, the exact distinction between two kernels is
+\[
+F_{\alpha,f}^{-1}(0_N)
+=\coprod_{l\in\alpha^{-1}(\bot')}\{l\}\times\ker f_l,
+\qquad
+F_{\alpha,f}^{-1}(eN)
+=\coprod_{l\in L}\{l\}\times\ker f_l.
+\tag{MS6}
+\]
+The first condition requires both \(\alpha(l)=\bot'\) and \(f_lx=0\); the second requires only \(f_lx=0\), proving the formulas. The indicated subsets are subsemimodules: their labels are closed under joins, and (MS4) takes fibre kernels into fibre kernels. Their inclusions have the respective kernel and inverse-image universal properties because any map with the indicated image factors uniquely through the subset. The inclusion from the first displayed object to the second retains the actual relationship between them.
+
+## 2. The free module retains the supported zeros
+
+Let
+\[
+\mathscr L(M)=\mathbb Z[M]/\mathbb Z[0_M],
+\tag{MS7}
+\]
+where \(\mathbb Z[M]\) here means the free abelian group on the underlying set, and the quotient is a quotient of abelian groups. Write \(b_{l,x}\) for the class of \([(l,x)]\), so \(b_{\bot,0}=0\). This is not a quotient ring obtained from the addition of \(M\); no such ring operation is being assumed.
+
+The coefficient ring
+\[
+A=\mathbb Z[(\mathbb Z,\cdot)]
+\tag{MS8}
+\]
+is the monoid ring of the multiplicative monoid of integers, including its zero basis element \([0]\). It acts by \([n]b_{l,x}=b_{l,nx}\). Associativity follows from \(m(nx)=(mn)x\), the element \([1]\) acts as the identity, and the relation \(b_{\bot,0}=0\) is preserved. The scalar \(\tau\) has zero action and is not the basis element \([0]\).
+
+Put \(E=[0]\), \(F=1-E\), and
+\[
+s_l=b_{l,0},\qquad r_{l,x}=b_{l,x}-s_l.
+\tag{MS9}
+\]
+Then \(s_\bot=0\), \(r_{l,0}=0\), \(Es_l=s_l\), and \(Er_{l,x}=0\). The following decomposition preserves the exact support index:
+\[
+\mathscr L(M)
+=\left(\bigoplus_{l\ne\bot}\mathbb Zs_l\right)
+\oplus
+\left(\bigoplus_{l\in L}U(V_l)\right),
+\qquad
+E\mathscr L(M)=\bigoplus_{l\ne\bot}\mathbb Zs_l.
+\tag{MS10}
+\]
+Here \(U(V_l)\) is the free abelian group with basis \(r_{l,x}\) for \(x\in V_l\setminus\{0\}\), and identifies with \(F\mathscr L(M)\)'s indicated summand. Equivalently \(U(V)\) is the augmentation kernel in the free group \(\mathbb Z[V]\), with \(r_x=[x]-[0]\).
+
+**Proof of (MS10).** At each nonbottom label, replace the basis \(b_{l,x}\) by \(s_l=b_{l,0}\) and \(r_{l,x}=b_{l,x}-b_{l,0}\) for \(x\ne0\). The inverse basis change is \(b_{l,0}=s_l\), \(b_{l,x}=s_l+r_{l,x}\). At bottom the surviving basis is already \(b_{\bot,x}=r_{\bot,x}\) for \(x\ne0\). These changes give bases of disjoint free summands, proving the direct sum. The formulas for \(E\) and \(F\) follow on this basis. In particular the entire nonzero bottom fibre is present in the second summand. \(\square\)
+
+The \(A\)-action on the second summand factors through
+\[
+\Lambda=A/(E)=\mathbb Z[\mathbb Z\setminus\{0\}],
+\qquad [n]r_{l,x}=r_{l,nx}\quad(n\ne0).
+\tag{MS11}
+\]
+The quotient ring statement follows by removing the basis element \([0]\): it spans an ideal since \([n][0]=[0]\), and products of nonzero integers are nonzero. On the first summand every basis scalar \([n]\), including \([0]\), acts as the identity.
+
+The map induced by (MS5) has exact component formulas
+\[
+\mathscr L(F_{\alpha,f})(s_l)=s'_{\alpha(l)},
+\qquad
+\mathscr L(F_{\alpha,f})(r_{l,x})=r'_{\alpha(l),f_lx}.
+\tag{MS12}
+\]
+These follow by subtracting the images of \(b_{l,x}\) and \(b_{l,0}\). They preserve the \(E,F\) decomposition and commute with all scalar actions. If \(\alpha(l)=\bot'\), the first image is zero, but the second image is nonzero whenever \(f_lx\ne0\). Therefore collapsing a support label does not automatically destroy its nonzero amplitude.
+
+There is a precise free basis for the kernel of the second map in (MS12), even when many labels merge. Let
+\[
+P=\{(l,x):l\in L,\ x\ne0\},\qquad
+P_0=\{(l,x)\in P:f_lx=0\}.
+\tag{MS13}
+\]
+For every attained target pair \(q=(a,y)\) with \(y\ne0\), choose one \(p_q=(l_q,x_q)\) such that \((\alpha(l_q),f_{l_q}x_q)=q\). Then the kernel has basis
+\[
+\{r_{l,x}:(l,x)\in P_0\}
+\ \sqcup\
+\{r_{l,x}-r_{l_q,x_q}:
+ (\alpha(l),f_lx)=q,\ (l,x)\ne p_q\}.
+\tag{MS14}
+\]
+Its image is the free subgroup generated by the attained target pairs. To prove this, partition the source basis into the lost set \(P_0\) and the nonempty inverse-image sets of each attained pair. On such an inverse-image set the map is the augmentation to the one target basis vector. Its kernel has the differences from the chosen representative as a basis, by the same invertible basis change used in (MS10). The lost basis vectors map to zero independently. The direct sum over all these disjoint sets proves the kernel and image statements. Only finite sums occur, so infinite index sets cause no additional step. For the \(E\) summand, the identical proof gives lost generators \(s_l\) with \(\alpha(l)=\bot'\) and differences \(s_l-s_{l_a}\) among nonbottom labels with the same nonbottom image.
+
+## 3. The exact mixed term at a join
+
+For an abelian group \(V\), define the surjection
+\[
+\epsilon_V:U(V)\to V,\qquad \epsilon_V(r_x)=x,
+\qquad K(V)=\ker\epsilon_V.
+\tag{MS15}
+\]
+Its kernel is generated by
+\[
+a_{x,y}=r_{x+y}-r_x-r_y\qquad(x,y\in V).
+\tag{MS16}
+\]
+Indeed these elements evaluate to zero. In the quotient by the subgroup they generate, the function \(x\mapsto\overline{r_x}\) preserves addition, zero, and inverses. It is inverse to the induced evaluation map because the two composites fix every \(x\in V\) and every generating class \(\overline{r_x}\). This proves the kernel assertion. The formula \([n]a_{x,y}=a_{nx,ny}\) also proves that \(K(V)\) is a \(\Lambda\)-submodule.
+
+For \(l,k\in L\) and \(j=l\vee k\), define
+\[
+\begin{split}
+\beta_{l,k}:U(V_l)\otimes_{\mathbb Z}U(V_k)&\longrightarrow K(V_j),\\
+r_{l,x}\otimes r_{k,y}&\longmapsto
+r_{j,\rho_{lj}x+\rho_{kj}y}
+-r_{j,\rho_{lj}x}-r_{j,\rho_{kj}y}.
+\end{split}
+\tag{MS17}
+\]
+The values are assigned on a tensor product of free bases and extended bilinearly. A zero vector gives zero on the right, so the notation also works for \(x=0\) or \(y=0\). Evaluation of the right side is zero, giving the displayed codomain. This is bilinear in the free generators \(r_x,r_y\); no assertion that \(x\mapsto r_x\) is additive is made.
+
+Give the tensor product the diagonal \(\Lambda\)-action \([n](r_x\otimes r_y)=r_{nx}\otimes r_{ny}\). This is an action because multiplication of basis scalars composes the two integer multiplications, and it extends by the monoid-ring law. Equation (MS17) and linearity of the transitions prove that \(\beta_{l,k}\) is \(\Lambda\)-linear for this action.
+
+The actual addition in \(M\), embedded into its contracted free group, is recovered by the exact equation
+\[
+b_{j,\rho_{lj}x+\rho_{kj}y}
+=s_j+U(\rho_{lj})r_{l,x}+U(\rho_{kj})r_{k,y}
++\beta_{l,k}(r_{l,x}\otimes r_{k,y}).
+\tag{MS18}
+\]
+All terms after \(s_j\) lie in the \(j\)-summand of (MS10); here \(U(\rho_{lj})r_{l,x}=r_{j,\rho_{lj}x}\). Substitution from (MS17) cancels the two transported terms and leaves \(s_j+r_{j,\rho_{lj}x+\rho_{kj}y}\), which is the left side by (MS9). Thus the mixed term records the exact missing part of addition after the two amplitudes have been transported to their common support.
+
+**Naturality, including support collapse.** For a diagram morphism (MS4), let \(j=l\vee k\). The following equality has source \(U(V_l)\otimes U(V_k)\) and target \(K(W_{\alpha(j)})\):
+\[
+K(f_j)\,\beta_{l,k}
+=\beta'_{\alpha(l),\alpha(k)}
+\bigl(U(f_l)\otimes U(f_k)\bigr).
+\tag{MS19}
+\]
+Here \(K(f_j)\) is the restriction of \(U(f_j)\), since evaluation commutes with homomorphisms. On \(r_x\otimes r_y\), both sides are the additive defect of
+\(f_j\rho_{lj}x=\rho'_{\alpha(l),\alpha(j)}f_lx\) and
+\(f_j\rho_{kj}y=\rho'_{\alpha(k),\alpha(j)}f_ky\).
+The equality \(\alpha(j)=\alpha(l)\vee\alpha(k)\) ensures the target labels agree. This proves (MS19) on a free basis and hence everywhere, without excluding bottom images.
+
+**Symmetry and the associativity identity.** Exchanging the two tensor factors takes \(\beta_{l,k}\) to \(\beta_{k,l}\), since their amplitudes add commutatively in \(V_{l\vee k}\). For three labels \(l,k,m\), write \(j=l\vee k\), \(q=k\vee m\), \(h=l\vee k\vee m\), and define
+\[
+x_j=\rho_{lj}x,\quad y_j=\rho_{kj}y,\qquad
+y_q=\rho_{kq}y,\quad z_q=\rho_{mq}z.
+\]
+The following identity lies in \(K(V_h)\):
+\[
+\begin{split}
+K(\rho_{jh})\beta_{l,k}(r_{l,x}\otimes r_{k,y})
+&+\beta_{j,m}(r_{j,x_j+y_j}\otimes r_{m,z})\\
+=K(\rho_{qh})\beta_{k,m}(r_{k,y}\otimes r_{m,z})
+&+\beta_{l,q}(r_{l,x}\otimes r_{q,y_q+z_q}).
+\end{split}
+\tag{MS20}
+\]
+To prove it, put \(a=\rho_{lh}x\), \(b=\rho_{kh}y\), \(c=\rho_{mh}z\). The first side becomes
+\((r_{a+b}-r_a-r_b)+(r_{a+b+c}-r_{a+b}-r_c)\), while the second is
+\((r_{b+c}-r_b-r_c)+(r_{a+b+c}-r_a-r_{b+c})\).
+Both equal \(r_{a+b+c}-r_a-r_b-r_c\) in the specified \(h\)-fibre. This proves the identity with all transports and domains retained.
+
+**Cancellation gives a nonzero mixed term.** If \(a=\rho_{lj}x\ne0\) and \(\rho_{kj}y=-a\), then
+\[
+\beta_{l,k}(r_{l,x}\otimes r_{k,y})=-r_{j,a}-r_{j,-a}\ne0.
+\tag{MS21}
+\]
+If \(a\ne-a\), the two terms are distinct free basis vectors. If \(a=-a\), the expression is \(-2r_{j,a}\), which is nonzero in a free abelian group. The sum of the two original vectors is \((j,0)\). This is a supported zero when \(j\ne\bot\), and is the global zero only when \(j=\bot\). In either case the additive defect (MS21) remains nonzero. In contrast, the actual global-zero input \((\bot,0)\) gives \(\beta_{\bot,k}(0\otimes r_y)=0\); a nonzero bottom-fibre input need not give zero.
+
+**Vanishing transitions have typed kernels.** If \(x\ne0\) and \(\rho_{lj}x=0\), then \(U(\rho_{lj})r_{l,x}=0\), so \(r_{l,x}\) is an actual nonzero kernel generator. On the unreduced free group the map instead sends \(b_{l,x}\) to \(s_j\), which is nonzero when \(j\ne\bot\). Its support map sends \(s_l\) to \(s_j\). The mixed term with this transported amplitude is zero because (MS17) becomes \(r_b-r_0-r_b=0\). These are three exact maps with different codomains and retained data, not an identification of the original vector with absence.
+
+## 4. Independent joins: the mixed term is a full direct summand
+
+For any abelian groups \(V,W\), take the diamond of labels \(\{\bot,l,k,j\}\), with \(l\vee k=j\), and diagram
+\[
+V_\bot=0,\quad V_l=V,\quad V_k=W,\quad V_j=V\oplus W,
+\qquad \rho_{lj}(x)=(x,0),\quad \rho_{kj}(y)=(0,y).
+\tag{MS22}
+\]
+The other transitions are identities or the unique maps from the zero group. They satisfy all composition identities. Define
+\[
+c_{x,y}=r_{(x,y)}-r_{(x,0)}-r_{(0,y)},
+\qquad x\ne0,\ y\ne0,
+\tag{MS23}
+\]
+and let \(X(V,W)\) be the subgroup they generate. There is an exact direct decomposition
+\[
+U(V\oplus W)=U(V)\oplus U(W)\oplus X(V,W),
+\qquad X(V,W)\cong U(V)\otimes U(W),
+\tag{MS24}
+\]
+where the first two inclusions are induced by the coordinate inclusions and the last isomorphism is precisely \(\beta_{l,k}\).
+
+**Proof.** A basis of \(U(V\oplus W)\) consists of the nonzero axis generators \(r_{(x,0)},r_{(0,y)}\) and the generators \(r_{(x,y)}\) with both coordinates nonzero. Replace each latter generator by \(c_{x,y}\). The inverse change is \(r_{(x,y)}=c_{x,y}+r_{(x,0)}+r_{(0,y)}\). This gives a basis and proves the direct sum. The tensor product of the free bases of \(U(V)\) and \(U(W)\) has basis \(r_x\otimes r_y\), and (MS17) sends it exactly to the basis \(c_{x,y}\) of the third summand. Hence \(\beta_{l,k}\) is injective and onto that summand. \(\square\)
+
+The projection map \((U(\pi_V),U(\pi_W))\) sends the two axis summands identically to \(U(V),U(W)\), and kills every \(c_{x,y}\). Therefore
+\[
+X(V,W)=\ker\bigl(U(V\oplus W)\longrightarrow U(V)\oplus U(W)\bigr),
+\tag{MS25}
+\]
+and the decomposition also gives
+\[
+K(V\oplus W)=K(V)\oplus K(W)\oplus X(V,W).
+\tag{MS26}
+\]
+For (MS26), evaluation is ordinary evaluation on the two axis summands and zero on the mixed summand. Its first two values lie in independent coordinates of \(V\oplus W\), so their vanishing is equivalent to membership in the two individual kernels. This proves the statement and all inclusions.
+
+In particular, for \(V=W=\mathbb Z\), the elements \(c_{m,n}\), \(m,n\in\mathbb Z\setminus\{0\}\), form a free basis of the mixed group. No magnitude or sign has been discarded.
+
+## 5. Folding the join: an explicit nonzero kernel and its image
+
+Replace only the top fibre of (MS22), for \(V=W=\mathbb Z\), by \(V_j=\mathbb Z\), and replace both incoming transitions by the identity. The map from the independent diagram to this folded diagram is the identity on labels, the identity on the two incoming fibres, and
+\[
+\sigma:\mathbb Z\oplus\mathbb Z\to\mathbb Z,
+\qquad \sigma(m,n)=m+n
+\tag{MS27}
+\]
+on the top fibre. Its two transition squares commute because \(\sigma(m,0)=m\) and \(\sigma(0,n)=n\). By (MS19), the mixed map for the folded diagram is exactly
+\[
+U(\mathbb Z)\otimes U(\mathbb Z)
+\xrightarrow[\sim]{\ \beta_{\mathrm{ind}}\ }X(\mathbb Z,\mathbb Z)
+\xrightarrow{\ U(\sigma)\ }K(\mathbb Z),
+\quad
+r_m\otimes r_n\longmapsto r_{m+n}-r_m-r_n.
+\tag{MS28}
+\]
+
+Here is its full kernel and image calculation. Write
+\[
+D=\mathbb Z[z,z^{-1}],\quad I_z=(z-1)D,
+\qquad R=\mathbb Z[t,t^{-1},u,u^{-1}],\quad J=(t-1)(u-1).
+\tag{MS29}
+\]
+The identification \(U(\mathbb Z)\cong I_z\) sends \(r_n\) to \(z^n-1\). To prove it, regard \(D\) as the free abelian group on the basis \(z^n\). Its augmentation kernel has free basis \(z^n-1\), \(n\ne0\), by the coefficient-sum basis calculation. This kernel equals \((z-1)D\): for \(n>0\), \(z^n-1=(z-1)(1+\cdots+z^{n-1})\); for \(n<0\), the same divisibility follows from \(z^n-1=-z^n(z^{-n}-1)\). These formulas prove both inclusions.
+
+Under this identification,
+\[
+K(\mathbb Z)=I_z^2=(z-1)^2D.
+\tag{MS30}
+\]
+Indeed \(\epsilon(r_n)=n\) is the derivative-at-one map on \(I_z\), since the derivative of \(z^n-1\) at \(1\) equals \(n\), including negative integers. Every element of \(I_z\) has unique expression \((z-1)q(z)\), because \(D\) is an integral domain. Its derivative at one is \(q(1)\). The proved augmentation-kernel calculation says \(q(1)=0\) exactly when \(q\in(z-1)D\), proving (MS30). The domain assertion follows, for example, by multiplying two nonzero Laurent polynomials by powers of \(z\) to make nonzero ordinary polynomials; their leading coefficients have nonzero product in \(\mathbb Z\).
+
+The tensor product \(I_t\otimes_{\mathbb Z}I_u\) identifies with the ideal \(JR\), by sending \((t^m-1)\otimes(u^n-1)\) to \((t^m-1)(u^n-1)\). This is an isomorphism: multiplication by \(t-1\) identifies the free group \(\mathbb Z[t^{\pm1}]\) with \(I_t\), multiplication by \(u-1\) does the same for \(I_u\), and the tensor product of the Laurent monomial bases identifies their tensor product with \(R\). Under these identifications the stated map is multiplication by the nonzero element \(J\), which is injective and has image \(JR\). The same leading-coefficient argument, twice, proves that \(R\) is an integral domain.
+
+Let \(\delta:R\to D\) be the ring homomorphism \(t\mapsto z,u\mapsto z\). Then
+\[
+\delta\bigl((t^m-1)(u^n-1)\bigr)
+=z^{m+n}-z^m-z^n+1,
+\]
+which is exactly (MS28). Moreover
+\[
+\ker\delta=(t-u)R,
+\tag{MS31}
+\]
+because the quotient by \(t-u\) identifies the two invertible generators and is isomorphic to \(D\), with mutually inverse maps given by \(t,u\mapsto z\) and \(z\mapsto\overline t=\overline u\). Therefore the complete comparison is the exact sequence
+\[
+0\longrightarrow J(t-u)R
+\longrightarrow JR
+\xrightarrow{\ \delta\ }(z-1)^2D
+\longrightarrow0.
+\tag{MS32}
+\]
+For its kernel, \(\delta(Jq)=(z-1)^2\delta(q)\) vanishes exactly when \(\delta(q)=0\), since \(D\) is a domain. Equation (MS31) then gives the left term. For surjectivity, \(\delta(Jq)=(z-1)^2\delta(q)\) runs through the target because \(\delta\) is onto. The kernel is a free rank-one \(R\)-module with generator \(J(t-u)\), and has free abelian basis \(J(t-u)t^a u^b\), \(a,b\in\mathbb Z\), since multiplication by this nonzero Laurent polynomial is injective. The image has free abelian basis \((z-1)^2z^c\), \(c\in\mathbb Z\), by the same argument.
+
+For example, \(J(t-u)\) corresponds to
+\[
+r_2\otimes r_1-r_1\otimes r_2,
+\tag{MS33}
+\]
+because \(t(t-1)=(t^2-1)-(t-1)\) and \(u(u-1)=(u^2-1)-(u-1)\). Its folded image is zero by the symmetry of addition, but its independent-join image \(c_{2,1}-c_{1,2}\) is nonzero by the free basis in (MS24). Equations (MS27)–(MS33) are the precise map, kernel, and image connecting these two mixed-support structures.
+
+## 6. Mixed support in complexes and its cohomology maps
+
+Let \((C_l^\bullet,d_l)_{l\in L}\) be a diagram of cochain complexes of abelian groups, with transition cochain maps \(\rho_{lk}^i:C_l^i\to C_k^i\). At each degree construct \(M^i=\mathcal T(L,C^i)\), and define
+\[
+\mathfrak d^i:M^i\to M^{i+1},\qquad(l,x)\longmapsto(l,d_l^i x).
+\tag{MS34}
+\]
+The transition cochain identities are exactly (MS4), so these maps are \(S\)-linear. Their composite is the typed supported-zero map
+\[
+\mathfrak d^{i+1}\mathfrak d^i(l,x)=(l,0_{C_l^{i+2}}),
+\qquad M^i\longrightarrow M^{i+2}.
+\tag{MS35}
+\]
+It is not asserted to be the constant global zero map. On contracted free groups this is
+\[
+b_{l,x}\longmapsto s_l^{i+2},\qquad
+s_l^i\longmapsto s_l^{i+2},\qquad
+r_{l,x}^i\longmapsto0.
+\tag{MS36}
+\]
+Its source and target are \(\mathscr L(M^i)\) and \(\mathscr L(M^{i+2})\); the two copies of \(s_l\) are in their stated degrees.
+
+Consequently the \(F\) summands form the genuine complex
+\[
+\mathscr U_L(C)^i=\bigoplus_{l\in L}U(C_l^i),\qquad
+D^i r_{l,x}=r_{l,d_l^i x},\qquad (D^{i+1}D^i)=0.
+\tag{MS37}
+\]
+The equality follows on every generator from \(d_l^{i+1}d_l^i x=0\) and \(r_{l,0}=0\). Its cohomology satisfies
+\[
+H^i(\mathscr U_L(C))=\bigoplus_{l\in L}H^i(U(C_l)).
+\tag{MS38}
+\]
+Indeed the differential preserves the direct summands; a finite-support vector is a cycle exactly when each component is a cycle, and it is a boundary exactly when each of its finitely many nonzero components is a boundary. Choosing one preimage for each of those finitely many components proves the boundary assertion and hence (MS38).
+
+The evaluation maps give the exact sequence of complexes
+\[
+0\longrightarrow\bigoplus_l K(C_l)
+\longrightarrow\mathscr U_L(C)
+\xrightarrow{\ \bigoplus_l\epsilon\ }\bigoplus_l C_l
+\longrightarrow0.
+\tag{MS39}
+\]
+Degreewise exactness was proved in (MS15)–(MS16), and evaluation commutes with each differential because both composites take \(r_x\) to \(d_lx\). Thus the kernels form subcomplexes and (MS39) is exact as claimed. Diagram morphisms give the maps prescribed by (MS12), summing contributions when labels merge. Equations (MS13)–(MS14) remain their exact degreewise kernel formulas; support merging has not been replaced by a componentwise injectivity assumption.
+
+There is also a cochain-level mixed map. Define the complex
+\[
+T_{l,k}(C)^i=U(C_l^i)\otimes_{\mathbb Z}U(C_k^i),\qquad
+\partial^i=U(d_l^i)\otimes U(d_k^i).
+\tag{MS40}
+\]
+This is the tensor product in equal degrees with the displayed differential; it is not the total tensor product of two cochain complexes. Its square is zero because
+\((U(d_l^{i+1})U(d_l^i))\otimes(U(d_k^{i+1})U(d_k^i))=0\).
+Applying (MS19) to the fibre differentials proves
+\[
+\beta_{l,k}^\bullet:T_{l,k}(C)\longrightarrow K(C_{l\vee k})
+\tag{MS41}
+\]
+is a cochain map. Explicitly, both sides of the cochain identity take \(r_x\otimes r_y\) to the additive defect of \(d\rho_{l,j}x=\rho_{l,j}d_lx\) and \(d\rho_{k,j}y=\rho_{k,j}d_ky\) in degree \(i+1\) of the \(j\)-fibre. It therefore induces the typed homomorphism
+\[
+H^i(T_{l,k}(C))\longrightarrow H^i(K(C_{l\vee k}))
+\longrightarrow H^i(\mathscr U_L(C)),
+\tag{MS42}
+\]
+where the second arrow is induced by the inclusion of that kernel complex into its labelled summand. Cycles map to cycles and boundaries to boundaries by the proved cochain identities, which proves that both arrows are well-defined.
+
+For the independent diagram constructed degreewise from two complexes \(C,D\), the decompositions (MS24)–(MS26) commute with the differentials: each axis generator stays on its axis, and
+\(c_{x,y}\mapsto c_{d_Cx,d_Dy}\).
+They consequently give the exact cochain decomposition
+\[
+U(C\oplus D)
+\cong U(C)\oplus U(D)\oplus T(C,D),
+\qquad T(C,D)^i=U(C^i)\otimes U(D^i),
+\tag{MS43}
+\]
+with the differential of (MS40). On cohomology the third summand is precisely the image of the independent-join map (MS42); its inclusion is injective because it has the cochain projection supplied by this direct decomposition. The same decomposition holds for \(K(C\oplus D)\) with \(K(C),K(D)\) on its first two summands, by (MS26).
+
+For the folded diagram constructed degreewise from any complex \(C\), the map
+\(\beta:T(C,C)\to K(C)\) is onto in every degree, since its values are exactly the generators (MS16). Its kernel \(R_\beta(C)^i=\ker\beta^i\) is preserved by the differential by (MS41). This gives the exact sequence of complexes
+\[
+0\longrightarrow R_\beta(C)
+\longrightarrow T(C,C)
+\xrightarrow{\ \beta\ }K(C)
+\longrightarrow0.
+\tag{MS44}
+\]
+Thus the obstruction to injectivity of a mixed join defines an actual kernel complex with specified maps. For a degree whose group is \(\mathbb Z\), its groups and maps are exactly the Laurent-polynomial calculation (MS32), not merely an unspecified kernel. The mixed term, its support labels, its vanishing transitions, and its folding kernel are all retained objects of the comparison.
+
+## 7. The global additive quotient and its exact transition kernel
+
+Fibrewise evaluation and imposing the addition of the whole semimodule have different codomains. Their exact comparison is as follows. Form the group
+\[
+G_V=\left(\bigoplus_{l\in L}V_l\right)
+\Big/
+\left\langle\iota_k\rho_{lk}x-\iota_lx:
+l\le k,\ x\in V_l\right\rangle,
+\tag{MS45}
+\]
+where \(\iota_l\) denotes inclusion into the indicated direct sum before quotienting. Write \(\eta_l:V_l\to G_V\) for the quotient maps. They satisfy \(\eta_k\rho_{lk}=\eta_l\). Any family of homomorphisms \(g_l:V_l\to Q\) with these compatibility identities defines a homomorphism out of the direct sum that kills all the displayed relations, and hence factors uniquely through \(G_V\). This proves the colimit universal property of (MS45) directly.
+
+The canonical map
+\[
+\eta:M\longrightarrow G_V,\qquad (l,x)\longmapsto\eta_l(x)
+\tag{MS46}
+\]
+preserves addition because
+\(\eta_j(\rho_{lj}x+\rho_{kj}y)=\eta_l(x)+\eta_k(y)\), and sends the global zero to zero. It is onto: a finite sum of representatives in (MS45) can be transported to the join of its finitely many labels and then represented by one vector in that fibre. The empty sum is represented by the bottom zero.
+
+It is the universal map from the additive monoid \(M\) to an abelian group. In fact an additive map \(h:M\to Q\) into a group kills every \((l,0)\), since \((l,0)+(l,0)=(l,0)\) implies \(h(l,0)+h(l,0)=h(l,0)\), and cancellation in the target group gives \(h(l,0)=0\). Its restriction \(h_l:V_l\to Q\) is a group homomorphism by the same-fibre instance of (MS2). For \(l\le k\), the identity \((l,x)+(k,0)=(k,\rho_{lk}x)\) gives \(h_k\rho_{lk}=h_l\). The colimit universal property then proves the required unique factorization through (MS46). This argument concerns a group target and makes no cancellation assumption in \(M\).
+
+Extend (MS46) linearly to \(\overline\eta:\mathscr L(M)\to G_V\). Its kernel has the exact description
+\[
+\begin{split}
+\ker\overline\eta
+={}&\bigoplus_{l\ne\bot}\mathbb Zs_l\ \oplus\ Q_V,\\
+Q_V
+={}&\left(\bigoplus_{l\in L}K(V_l)\right)
++\left\langle r_{k,\rho_{lk}x}-r_{l,x}:
+l\le k,\ x\in V_l\right\rangle
+\ \,\subseteq\bigoplus_l U(V_l).
+\end{split}
+\tag{MS47}
+\]
+The first sum on the first line is direct from the second term by (MS10). The plus sign defining \(Q_V\) does not assert an internal direct sum. To prove the formula, first quotient the \(F\) piece by \(\bigoplus_lK(V_l)\), obtaining \(\bigoplus_lV_l\) by (MS15). The remaining displayed generators then become exactly the relations in (MS45). The quotient is therefore \(G_V\), and all \(s_l\) already evaluate to zero. This proves (MS47) without an uncomputed kernel.
+
+The subgroup in (MS47) also equals the subgroup generated by all global addition relations
+\[
+b_{(l,x)+(k,y)}-b_{l,x}-b_{k,y}.
+\tag{MS48}
+\]
+Here the first subscript means the element given by (MS2). One direction follows because (MS46) is additive. Conversely, the relation with the two inputs \((l,0),(l,0)\) kills \(s_l\); relations within one fibre give every generator (MS16) after those support generators have been killed; and the relation for \((l,x),(k,0)\) when \(l\le k\) gives every transition difference in (MS47). Thus the quotient by (MS48) kills all generators of (MS47), proving equality. This identifies the global additive quotient and the exact maps connecting it to the fibrewise quotient (MS39).
+
+The colimit has a pointwise description retaining noninjective transitions:
+\[
+\eta_l(x)=\eta_k(y)
+\quad\Longleftrightarrow\quad
+\text{there is }h\ge l,k\text{ with }\rho_{lh}x=\rho_{kh}y.
+\tag{MS49}
+\]
+For a direct proof, define this relation on the disjoint union in (MS1). Reflexivity and symmetry follow from the definitions. If two equalities hold at possibly different upper labels, transport both to their join to prove transitivity. Addition of two equivalence classes is defined by transport to the join and addition there; replacing representatives preserves the result after transport to a common upper label. The zero classes all coincide, and \((l,-x)\) is the inverse of \((l,x)\). This constructs an abelian group. A compatible family of maps out of the fibres gives a unique homomorphism from it, by the formula on representatives, so it has the same proved universal property as (MS45). The canonical maps between the two groups fix every fibre representative and are inverse, proving (MS49).
+
+In particular define
+\[
+N_l=\ker\eta_l
+=\{x\in V_l:\text{there is }h\ge l\text{ with }\rho_{lh}x=0\}.
+\tag{MS50}
+\]
+This is an exact calculation of the kernel, by (MS49) with the zero representative. It is a subgroup: witnesses for two elements can be transported to their join, where their sum and negatives also vanish. The transitions preserve these groups; if \(x\in N_l\) has a witness \(h\), then for \(k\ge l\), the image \(\rho_{lk}x\) vanishes after further transport to \(k\vee h\). Consequently \((N_l)\) is a subdiagram, and
+\[
+\eta^{-1}(0)=\mathcal T(L,N)
+\tag{MS51}
+\]
+as a subset and subsemimodule of \(M\). In this formula the group target is regarded as \(\mathcal T(\{\bot'\},G_V)\); its bottom fibre is the whole possibly nonzero group. The support map of (MS46) is the unique map \(L\to\{\bot'\}\), and its fibre maps are the \(\eta_l\). These maps satisfy (MS4), so this is an exact instance of (MS5)–(MS6). The kernel includes supported zeros and all amplitudes killed by later transitions, with their original labels retained in its source.
+
+## 8. Retaining support beside the global amplitude
+
+There is also the comparison with the same support set
+\[
+\Theta:\mathcal T(L,V)\longrightarrow\mathcal T(L,\underline{G_V}),
+\qquad (l,x)\longmapsto(l,\eta_lx),
+\tag{MS52}
+\]
+where the target diagram has the group \(G_V\) in every fibre and identity transitions. The equality \(\eta_k\rho_{lk}=\eta_l\) proves (MS4), and hence \(\Theta\) is \(S\)-linear. Its exact equality relation is
+\[
+\Theta(l,x)=\Theta(k,y)
+\quad\Longleftrightarrow\quad
+l=k\text{ and }x-y\in N_l.
+\tag{MS53}
+\]
+The target retains the label, so equality first requires \(l=k\); its amplitude equality is then exactly (MS50). Thus the quotient diagram \(\overline V_l=V_l/N_l\) has a proved embedding
+\[
+\mathcal T(L,V)\xrightarrow{\ q\ }
+\mathcal T(L,\overline V)
+\xhookrightarrow{\ \overline\Theta\ }
+\mathcal T(L,\underline{G_V}),
+\qquad
+q(l,x)=(l,[x]),\quad\overline\Theta(l,[x])=(l,\eta_lx),
+\tag{MS54}
+\]
+whose composite is \(\Theta\). Well-definedness and injectivity of the second arrow follow from (MS50); (MS4) proves the transition identities for both arrows. Its image in the \(l\)-fibre is exactly the subgroup \(\eta_l(V_l)\subseteq G_V\), and these subgroups increase with \(l\).
+
+Every induced transition \(\overline\rho_{lk}:V_l/N_l\to V_k/N_k\) is injective. If \(\rho_{lk}x\in N_k\), there is \(h\ge k\) with \(\rho_{kh}\rho_{lk}x=0\); the composition identity gives \(\rho_{lh}x=0\), so \(x\in N_l\). This proves injectivity. The original \(N_l\)'s and their transition maps remain the kernel diagram of the degreewise exact sequence
+\[
+0\longrightarrow N_l\longrightarrow V_l\longrightarrow V_l/N_l\longrightarrow0.
+\tag{MS55}
+\]
+They have zero colimit: every element of each \(N_l\) becomes zero at an upper label by definition, and (MS49) applies to their transition-stable subdiagram. Thus (MS54) identifies exactly the support-labelled data invisible to the global amplitude, without declaring that data absent in the original diagram.
+
+The morphism \(\Theta\) is injective exactly when every original transition \(\rho_{lk}\) is injective. In one direction, injective transitions make every \(N_l\) zero by (MS50), and (MS53) proves injectivity. Conversely, injectivity of \(\Theta\) makes every \(N_l\) zero. If \(\rho_{lk}x=0\), then \(x\in N_l\), so \(x=0\). This proves that every transition is injective.
+
+There is an exact universal property for (MS54). Let \((\alpha,f):(L,V)\to(L',W)\) be any diagram morphism whose target transitions are injective. For \(x\in N_l\), choose \(h\ge l\) with \(\rho_{lh}x=0\). Naturality gives
+\[
+\rho'_{\alpha(l),\alpha(h)}f_lx=f_h\rho_{lh}x=0.
+\tag{MS56}
+\]
+Injectivity of this target transition implies \(f_lx=0\). Every \(f_l\) therefore factors uniquely through \(V_l/N_l\). The induced maps satisfy (MS4), since their composites with the surjective quotient maps do; those equalities determine the induced maps on every class. Hence \((\alpha,f)\) factors uniquely through the first arrow in (MS54), with the original support map \(\alpha\). This proves the comparison to diagrams with injective transitions, while (MS55) retains the exact diagram removed by that particular comparison.
+
+For an explicit noninjective example, take \(L=\{\bot<a\}\), \(V_\bot=\mathbb Z\), \(V_a=\mathbb Z\), and \(\rho_{\bot a}=0\). Then \(G_V\cong\mathbb Z\) via the top fibre: (MS45) kills every bottom representative and imposes no relation on the top group. Equations (MS50) give \(N_\bot=\mathbb Z\), \(N_a=0\). The original addition satisfies
+\[
+(\bot,m)+(a,n)=(a,n),
+\qquad
+\Theta(\bot,m)=(\bot,0),\quad
+\Theta(a,n)=(a,n).
+\tag{MS57}
+\]
+In \(\mathscr L(M)\), every \(r_{\bot,m}\), \(m\ne0\), is nevertheless a nonzero independent basis vector. Its transition image in the upper reduced group is zero, while the unreduced image of \(b_{\bot,m}\) is the nonzero supported-zero generator \(s_a\). Thus the kernel diagram, the free reduced module, the supported-zero component and the global additive quotient give four explicitly connected views of this mixed-support calculation.
+
+
+# A primitive for dual-number infinitesimals from the tau corner
+
+The primitive is the formal translation difference between the distinguished integer one and the supported integer zero. Its first-order quotient is determined by the existing support map, and also by the existing mixed-support fold. This paper proves the exact isomorphisms, keeps both support states, and compares the result with the smoothing parameter and with first derivatives in real analysis.
+
+The standard dual-number algebra over a commutative ring \(k\) is \(D_k=k[\varepsilon]/(\varepsilon^2)\), with free \(k\)-basis \(1,\varepsilon\). Multiplication is
+\((a+b\varepsilon)(c+d\varepsilon)=ac+(ad+bc)\varepsilon\).
+This standard definition is [Stacks, Tag 0B29](https://stacks.math.columbia.edu/tag/0B29); its tangent-space use is [Tag 0B28](https://stacks.math.columbia.edu/tag/0B28). The maps connecting it to the programme objects are proved below.
+
+## 1. The primitive and the support map
+
+Keep the exact tau corner
+\[
+S=\{\tau\}\sqcup\{n^\bullet:n\in\mathbb Z\},\quad
+e=0^\bullet,\quad \mathbf1=1^\bullet,
+\quad n^\bullet+m^\bullet=(n+m)^\bullet,
+\quad\tau+s=s.
+\tag{DN1}
+\]
+Its original multiplication distinguishes \(\mathbf1\), and satisfies \(\tau s=\tau\) and \(n^\bullet m^\bullet=(nm)^\bullet\). In particular \(e\ne\tau\).
+
+Form the **additive monoid algebra**
+\[
+\mathcal A_+=\mathbb Z[(S,+)],\qquad
+[s][s']=[s+s'],\qquad 1_{\mathcal A_+}=[\tau].
+\tag{DN2}
+\]
+It is free as an abelian group on the displayed elements of \(S\). This construction uses addition as the monoid product. The multiplicative monoid-ring coefficient functor \(\Gamma(S)\) used in the earlier papers is a different explicitly typed construction. Define
+\[
+E=[e],\quad E^2=E,\quad E[n^\bullet]=[n^\bullet],
+\quad\eta=[\mathbf1]-[e].
+\tag{DN3}
+\]
+The element \(\eta\) is a difference of formal basis vectors. It is not the subtraction of two elements performed in the original semiring.
+
+**Theorem DN1.** With \(T=\mathbb Z[z,z^{-1}]\), there is an isomorphism of unital rings
+\[
+\Phi:\mathcal A_+\xrightarrow{\sim}\mathbb Z\times T,
+\quad[\tau]\mapsto(1,1),\quad[n^\bullet]\mapsto(0,z^n),
+\quad E\mapsto(0,1),\quad\eta\mapsto(0,z-1).
+\tag{DN4}
+\]
+The existing support map \(q:S\to P=\{\tau,e\}\), given by \(q(\tau)=\tau\) and \(q(n^\bullet)=e\), induces
+\[
+Q:\mathcal A_+\longrightarrow\mathbb Z[P]\cong\mathbb Z\times\mathbb Z,
+\quad(k,f)\longmapsto(k,f(1)).
+\tag{DN5}
+\]
+Its kernel is the principal ideal
+\[
+\mathcal J=(\eta)=0\times(z-1)T,
+\qquad\mathcal J^r=0\times(z-1)^rT\quad(r\ge1).
+\tag{DN6}
+\]
+
+**Proof.** Multiplication of two supported basis images gives \((0,z^{n+m})\); multiplication by \((1,1)\) leaves each image fixed. Thus \(\Phi\) preserves multiplication and the identity. Its additive inverse is
+\[
+(k,\textstyle\sum_n a_nz^n)\longmapsto
+k([\tau]-[e])+\sum_n a_n[n^\bullet].
+\]
+Direct substitution proves both inverse identities; the sums are finite. The map \(q\) preserves addition: a sum with a supported summand is supported, and a sum of two external elements is external. It also preserves the original multiplication, by the same two support cases. Its monoid-ring extension therefore gives (DN5). A Laurent polynomial vanishes at 1 exactly when it is divisible by \(z-1\), using ordinary polynomial division after multiplying by an invertible power of \(z\). This proves its kernel and generator. Multiplying that principal ideal repeatedly gives the displayed powers. \(\square\)
+
+Thus the primitive \(\eta\) is specified by \(\mathbf1,e\), and the ideal in which it lives is specified by the support map. No freely selected tangent direction was added to define it.
+
+## 2. The exact first-order algebra
+
+**Theorem DN2.** There is an isomorphism
+\[
+\mathcal A_+/\mathcal J^2\xrightarrow{\sim}\mathbb Z\times D_{\mathbb Z},
+\quad[\tau]\mapsto(1,1),\quad
+[n^\bullet]\mapsto(0,1+n\varepsilon),\quad
+\eta\mapsto(0,\varepsilon).
+\tag{DN7}
+\]
+It preserves the two distinct elements \([\tau]\) and \([e]\). The corner with identity \(E\) is exactly \(D_{\mathbb Z}\). The full quotient has the exact sequence
+\[
+0\longrightarrow\mathcal J^2\longrightarrow\mathcal A_+
+\longrightarrow\mathbb Z\times D_{\mathbb Z}\longrightarrow0.
+\tag{DN8}
+\]
+
+**Proof.** The homomorphism \(T\to D_{\mathbb Z}\), \(z\mapsto1+\varepsilon\), is well-defined because \((1+\varepsilon)^{-1}=1-\varepsilon\). For every integer \(n\), including negative integers, \((1+\varepsilon)^n=1+n\varepsilon\), by multiplication and the inverse formula. Every Laurent polynomial has a unique expression modulo \((z-1)^2\) of the form \(a+b(z-1)\): write \(f=f(1)+(z-1)g\), and then \(g=g(1)+(z-1)h\). Evaluation under \(z\mapsto1+\varepsilon\) gives \(a+b\varepsilon\), whose two coefficients vanish only when \(a=b=0\). Consequently its kernel is exactly \((z-1)^2T\), and the inverse is \(a+b\varepsilon\mapsto a+b(z-1)\). Apply (DN4) and (DN6). In the resulting product, \([\tau]=(1,1)\), \([e]=(0,1)\), and their difference is the nonzero idempotent \((1,0)\). Multiplication by \(E=(0,1)\) picks the second factor with its own identity. \(\square\)
+
+This quotient has an exact universal property. Consider a commutative ring \(B\), a map \(B\to\mathbb Z[P]\) with square-zero kernel, and a map \(f:\mathcal A_+\to B\) over \(\mathbb Z[P]\). Then \(f(\mathcal J)\) lies in that kernel, so \(f(\mathcal J^2)=0\). There is a unique factorization through (DN7), since the quotient is surjective. This proves the universal first-order support thickening, with its map from the original algebra included in the data.
+
+Equivalently, unital ring maps \(\mathbb Z\times D_{\mathbb Z}\to B\) correspond exactly to pairs \(c,v\in B\) satisfying
+\[
+c^2=c,\qquad cv=v,\qquad v^2=0.
+\tag{DN9}
+\]
+The map sends \((0,1)\) to \(c\), \((0,\varepsilon)\) to \(v\), and is explicitly
+\[
+(k,a+b\varepsilon)\longmapsto k(1-c)+ac+bv.
+\tag{DN10}
+\]
+Expansion using (DN9) proves multiplicativity; conversely the images of the two generators of the product satisfy those relations. The generator formula proves uniqueness. This describes which square-zero elements can receive the primitive while retaining its support idempotent.
+
+## 3. Every scalar, including tau, still has its own map
+
+Multiplication by a supported integer \(n\) in \(S\) is an endomorphism of its additive monoid. Its extension to \(\mathcal A_+\) is \((k,f(z))\mapsto(k,f(z^n))\), including \(n=0\). It preserves \(\mathcal J^2\) by (DN6). Thus its action on the first-order quotient is
+\[
+\lambda_n(k,a+b\varepsilon)=(k,a+nb\varepsilon).
+\tag{DN11}
+\]
+Multiplication by \(\tau\) sends every element of \(S\) to \(\tau\). Under (DN4), its monoid-ring extension sends \((k,f)\) to \((f(1),f(1))\): the inverse formula of DN1 has total coefficient sum \(f(1)\). It therefore induces
+\[
+\lambda_\tau(k,a+b\varepsilon)=(a,a).
+\tag{DN12}
+\]
+Both \(\lambda_0\) and \(\lambda_\tau\) kill \((0,\varepsilon)\). Their values on \(E\) differ:
+\(\lambda_0(E)=E\), whereas \(\lambda_\tau(E)=1\).
+The action of the two zero-like elements is therefore still distinguished by an explicit coordinate. Composition of the scalar maps follows from their original multiplication and can also be checked in (DN11)–(DN12).
+
+Forgetting external support is the additive monoid map \(S\to\mathbb Z\) that sends \(\tau\) and \(e\) to 0 and \(n^\bullet\) to \(n\). It induces the exact projection \(\mathbb Z\times T\to T\); on (DN7) this becomes \(\mathbb Z\times D\to D\), with kernel \(\mathbb Z\times0\). Thus ordinary supported integer addition already supplies the dual-number factor; the full construction additionally retains the external-support factor. The source dependence of both statements is proved by these maps.
+
+## 4. The mixed-support fold derives the same quotient
+
+Take two copies of the supported integer group and put
+\[
+R=\mathbb Z[t^{\pm1},u^{\pm1}],\quad
+I_t=(t-1)\mathbb Z[t^{\pm1}],\quad I_u=(u-1)\mathbb Z[u^{\pm1}],
+\quad j=(t-1)(u-1),\quad W=I_t\otimes I_u=jR.
+\tag{DN13}
+\]
+The identification sends \(r_a\otimes r_b\) to \((t^a-1)(u^b-1)\). Its complete derivation as the retained cross-effect and its exact programme support maps are in [Cross-effects](CROSS_EFFECTS.md), (X1)–(X13), and [Mixed support](MIXED_SUPPORT.md), (MS22)–(MS33). Its distinguished element \(w_{1,1}\) maps to \(j\): it is the mixed product of the two copies of the primitive in (DN3).
+
+The original integer addition \((a,b)\mapsto a+b\) induces the fold
+\[
+\mu:R\longrightarrow T,\quad t\mapsto z,\ u\mapsto z.
+\tag{DN14}
+\]
+Its kernel is \((t-u)R\), since identifying the two invertible generators gives \(T\), with inverse \(z\mapsto\overline t\). Restricting to the mixed ideal gives the exact sequence
+\[
+0\longrightarrow j(t-u)R\longrightarrow W=jR
+\xrightarrow{\mu}(z-1)^2T\longrightarrow0.
+\tag{DN15}
+\]
+Indeed \(\mu(jf)=(z-1)^2\mu(f)\), the fold is onto, and multiplication by \((z-1)^2\) is injective in \(T\). This proves both image and kernel without deleting any mixed class from the source.
+
+Consequently the exact receiver of the folded mixed product is
+\[
+T/\mu(W)=T/(z-1)^2T\xrightarrow{\sim}D_{\mathbb Z},
+\qquad z-1\longmapsto\varepsilon.
+\tag{DN16}
+\]
+This is the same quotient as DN2, obtained from the already defined mixed-support map. Equivalently, the quotient ring \(A=R/jR\) constructed in *Node cotangent* has the diagonal quotient
+\[
+A/(t-u)A\xrightarrow{\sim}D_{\mathbb Z},
+\qquad t,u\longmapsto1+\varepsilon.
+\tag{DN17}
+\]
+Its inverse sends \(\varepsilon\) to \(\overline{t-1}=\overline{u-1}\); the original relation \((t-1)(u-1)=0\) then proves its square is zero. Both inverse identities hold on the ring generators. The kernel of \(A\to D\) is exactly \((t-u)A\). Multiplication by \(t-u\) in \(A\) is injective: under \(A\cong\mathbb Z[t^{\pm1}]\times_{\mathbb Z}\mathbb Z[u^{\pm1}]\), its two components are \(t-1\) and \(-(u-1)\), each a nonzero element of a domain. This proves the additional exact sequence \(0\to A\xrightarrow{t-u}A\to D\to0\).
+
+The construction before any quotient has no nonzero nilpotent: both factors of \(\mathbb Z\times T\) are reduced. DN7 and DN16 specify the operation that produces the infinitesimal and its full kernel. They are a derivation from the support map and mixed fold, not an identification of an original role element with \(\varepsilon\).
+
+## 5. The smoothing infinitesimal and the diagonal infinitesimal
+
+Let \(\widetilde A=R/j^2R\), and let \(\overline j\) denote the class of \(j\). The smoothing-parameter map is
+\[
+\iota_j:D_{\mathbb Z}\longrightarrow\widetilde A,
+\qquad a+b\varepsilon\longmapsto a+b\overline j.
+\tag{DN18}
+\]
+It is injective. If \(a+bj\in j^2R\), evaluation at \(t=u=1\) gives \(a=0\). Cancelling \(j\) in \(R\) then gives \(b\in jR\), whose evaluation implies \(b=0\). Its image is precisely the subalgebra \(\mathbb Z\oplus\mathbb Z\overline j\), so (DN18) is an isomorphism onto that subalgebra. It is not surjective onto \(\widetilde A\): modulo \(j\), its image consists only of constants in the nonconstant ring \(A\).
+
+In fact the nilradical of \(\widetilde A\) is exactly \(jR/j^2R\), and every member of that ideal is square-zero. The quotient by this ideal is the reduced ring \(A\), a subring of the product of the two Laurent domains. Thus every nilpotent must lie in it, and the product of any two of its elements is zero. Multiplication by \(j\) identifies it with the \(A\)-module \(A\), as proved in (N6). The line generated by \(\overline j\) is the distinguished constant submodule of this larger ideal.
+
+Every mixed generator has an explicit image, including negative indices. Define
+\[
+S_a(t)=\begin{cases}\sum_{r=0}^{a-1}t^r,&a>0,\\
+0,&a=0,\\-\sum_{r=a}^{-1}t^r,&a<0.\end{cases}
+\]
+Then \(t^a-1=(t-1)S_a(t)\), and
+\[
+w_{a,b}\longmapsto\overline jS_a(t)S_b(u)\in jR/j^2R.
+\tag{DN18a}
+\]
+Under \(jR/j^2R\cong A\), its two branch values are
+\(\bigl(bS_a(t),aS_b(u)\bigr)\), with common evaluation \(ab\). The kernel of \(W\to jR/j^2R\) is exactly \(j^2R\) under \(W\cong jR\). Thus the distinguished dual-number line sits in a fully specified mixed module.
+
+
+The isomorphism between the smoothing dual-number subalgebra and the diagonal dual-number quotient is
+\[
+\mathbb Z\oplus\mathbb Z\overline j\xrightarrow{\sim}A/(t-u)A,
+\qquad a+b\overline j\longmapsto a+b\overline{t-1}.
+\tag{DN19}
+\]
+Its inverse is given by the two coefficient coordinates of DN2. The natural ambient quotient
+\[
+\widetilde A\longrightarrow A\longrightarrow A/(t-u)A
+\tag{DN20}
+\]
+instead sends \(\overline j\) to zero. On the subalgebra in DN19 its kernel is \(\mathbb Z\overline j\), and its image is \(\mathbb Z\). On all of \(\widetilde A\), the kernel is \((j,t-u)R/j^2R\). These are distinct maps with fully specified relationships; their abstract dual-number isomorphism does not change the natural quotient.
+
+There is also a direct compatible extension through a cubic nilpotent algebra. Define
+\[
+\theta:\widetilde A\longrightarrow\mathbb Z[v]/(v^3),
+\quad t,u\longmapsto1+v,
+\qquad\theta(\overline j)=v^2.
+\tag{DN21}
+\]
+The elements \(1+v\) are invertible with inverse \(1-v+v^2\), and \(j^2\) maps to \(v^4=0\). The map is onto because \(t-1\) maps to \(v\). Its kernel is the ideal generated by \(t-u\) and \((t-1)^3\) in \(\widetilde A\): imposing those relations gives exactly the target, with inverse \(v\mapsto t-1\). Its restriction along (DN18) is the injective map \(a+b\varepsilon\mapsto a+bv^2\). This exact diagram will receive square-zero operators that are squares of specified cubic-nilpotent operators.
+
+## 6. Exact comparison with first derivatives
+
+Scalar extension of (DN16) gives \(D_{\mathbb R}=\mathbb R[\varepsilon]/\varepsilon^2\). Let \(\mathcal G_1\) be the ring of germs of smooth real functions at the real point 1, and \(\mathfrak n=\{f:f(1)=0\}\). Then
+\[
+J_1:\mathcal G_1\longrightarrow D_{\mathbb R},
+\qquad f\longmapsto f(1)+f'(1)\varepsilon
+\tag{DN22}
+\]
+is a surjective ring homomorphism. The product rule proves multiplicativity; affine functions give every pair of coefficients. Its kernel is exactly \(\mathfrak n^2\). One inclusion follows from the product rule. For the other, if \(f(1)=f'(1)=0\), the fundamental theorem of calculus gives
+\[
+f(s)=(s-1)g(s),\qquad
+g(s)=\int_0^1 f'(1+r(s-1))\,dr.
+\]
+The function \(g\) is smooth and \(g(1)=0\). Applying the same formula to \(g\) gives \(f(s)=(s-1)^2h(s)\) with \(h\) smooth. This lies in \(\mathfrak n^2\), proving the kernel equality and the exact isomorphism
+\[
+\mathcal G_1/\mathfrak n^2\xrightarrow{\sim}D_{\mathbb R}.
+\tag{DN23}
+\]
+The Laurent polynomial inclusion \(\mathbb R[z^{\pm1}]\to\mathcal G_1\), \(z\mapsto(s\mapsto s)\), is well-defined near 1. Composing it with (DN22) sends \(z-1\) to \(\varepsilon\), exactly as in (DN16), and induces an isomorphism of the corresponding first-order quotients. Thus the primitive has a proved map to ordinary first-derivative data.
+
+A nonzero square-zero infinitesimal is an element of these algebras of first-order data. Every homomorphism from a dual-number algebra to a field sends it to zero: its image has square zero in a field, hence vanishes. The derivative coordinate in (DN22) explains exactly how the algebra retains additional information beyond a real-valued evaluation.
+
+## 7. What is standard and what this calculation supplies
+
+Dual numbers, tangent vectors through dual-number points, and the first-order augmentation quotient are established constructions. The concrete result here identifies the primitive \(\eta\), the support kernel, the retained external-support factor, every integer scalar map, the mixed fold, and both distinct routes from the node. The explicit forgetful projection in Section 3 also proves that the dual-number factor does not require all four corners: the tau corner's supported integer addition supplies it. Historical novelty of these general constructions is not asserted.
+
+The programme's original boundary operator has the faithful representation
+\[
+D_{\mathbb C}\xrightarrow{\sim}\mathbb C[I,R_N],\qquad
+a+b\varepsilon\longmapsto aI+bR_N.
+\]
+[Native dual-number receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI16, proves this map, its compatible cubic extension of DN21, and the exact module defect
+\[
+\operatorname{Tor}^{D_{\mathbb C}}_1(\mathbb C,E)
+\cong\ker R_N/\operatorname{im}R_N
+\cong\ker W_N=\{e_N,f_N\}^{\perp_{G_N}}.
+\]
+The last space is already the kernel of the full original arithmetic current. This is a concrete programme receiver for the square-derived infinitesimal and for its nonflat directions. It leaves the original operator and metric intact. No sign conclusion for the separately marked terminal class follows from this isomorphism alone.
+
+The source for the standard definition and tangent-space terminology was read in the original Stacks Project `varieties.tex`, pinned at commit `a04446e57ec1fbc252a871afcec7752fb2807b14`, Section `tangent-spaces`, beginning at line 2912. [Pinned original TeX](https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/varieties.tex#L2912). The source's mathematical authorship remains with the Stacks Project. The local programme definitions are the original sources cited in [the source guide](SOURCE_GUIDE.md); the additive algebra and all maps in this paper have complete proofs above.
+
+![The primitive, mixed fold and two exact infinitesimal routes](figures/14_primitive_dual_numbers.png)
+
+The diagram records DN3–DN8 and DN13–DN21. Its two different maps involving the smoothing parameter are labeled separately; all kernels remain in the complete proofs.
+
+
+# The standard dual-number infinitesimal in the original arithmetic action
+
+22 September 2026. This note answers the specific comparison with the square-derived deformation parameter. It constructs the maps, proves which are isomorphisms, and retains the exact nonflat module. It does not change the original arithmetic action or select a sign for its observed terminal current. The complete primitive and node constructions accompany this interface in the same proof collection.
+
+## 1. The existing arithmetic operator is a faithful dual-number infinitesimal
+
+For every original cutoff \(q-1\le N\le2q\), retain the entire source quotient \((E,G_N)\), where \(q=(k+1)^2\), \(k\ge17\), \(k\equiv1\pmod4\), and the original root polynomial, quartet, period and source remain unchanged. The exact original action is
+\[
+M=C_N+R_N,\qquad
+R_N=\epsilon_N f_N e_N^{\dagger_{G_N}},\qquad
+C_N=C_N^{\dagger_{G_N}},
+\]
+\[
+\epsilon_N>0,\quad \|e_N\|_{G_N}=\|f_N\|_{G_N}=1,
+\quad \langle e_N,f_N\rangle_{G_N}=0.
+\tag{NI1}
+\]
+These are the original outgoing source classes, with every scalar retained, in [OCP5–7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/OBSERVED_CURRENT_PLANE.tex#L90). In particular
+\[
+R_N^2=0,\qquad R_Ne_N=\epsilon_Nf_N\ne0,\quad R_Nf_N=0.
+\tag{NI2}
+\]
+For clarity, the vectors in NI1 have the original definitions
+\[
+b_n=[p_n]\in E=\mathbb C[y]/Q_k,
+\quad E_N=\|b_N\|_{G_N}^2,\quad F_N=\|b_{N+1}\|_{G_N}^2,
+\]
+\[
+e_N=b_N/\sqrt{E_N},\qquad f_N=b_{N+1}/\sqrt{F_N},
+\qquad \epsilon_N=\sqrt{E_NF_N}/\omega_N.
+\]
+Here \(p_n\) is the real monic polynomial for the original measure, \(\omega_n\) is its squared norm, and \(G_N\) is the complete degree-\(N\) quotient minimum. The polynomial is
+\[
+Q_k(y)=\prod_{a,b=0}^k\bigl[y-(2b-k)\gamma+i(2a-k)\delta\bigr],
+\quad 0<\delta<\tfrac12,\quad\gamma>2.
+\]
+No original norm is replaced. OCP5–7 derives the orthogonality and rank-one formula from the complete polynomial minimum. Its nonzero assertion also follows directly from that formula: if either outgoing class vanished, the rank-one term would be zero, making multiplication by \(y\) selfadjoint in the positive metric \(G_N\). Its eigenvalues are the roots of \(Q_k\), all nonreal because \(k\) is odd and \(\delta>0\). A selfadjoint operator has real eigenvalues: for an eigenvector \(v\), the identity \(\langle Mv,v\rangle=\langle v,Mv\rangle\) forces its eigenvalue to equal its conjugate. This contradiction proves \(E_N,F_N>0\), hence \(\epsilon_N>0\). The unchanged complete source is [Original observed current plane](sources/OBSERVED_CURRENT_PLANE.tex), OCP1 and OCP5–7; its pinned published edition is cited above.
+
+Suppress \(N\) only in the following finite formulas. Let \(D_{\mathbb Z}=\mathbb Z[\eta]/(\eta^2)\) and \(D_{\mathbb C}=\mathbb C\otimes_{\mathbb Z}D_{\mathbb Z}\). Then
+\[
+\sigma_N:D_{\mathbb C}\xrightarrow{\sim}\mathbb C[I,R_N],
+\qquad a+b\eta\longmapsto aI+bR_N
+\tag{NI3}
+\]
+is an isomorphism of unital complex algebras. Multiplication is preserved by NI2. If \(aI+bR_N=0\), applying the operator to \(f_N\) gives \(a=0\), and applying it to \(e_N\) then gives \(b\epsilon_Nf_N=0\), hence \(b=0\). Surjectivity onto the stated algebra is its definition. The identical proof gives
+\[
+D_{\mathbb Z}\xrightarrow{\sim}\mathbb ZI+\mathbb ZR_N.
+\tag{NI4}
+\]
+Thus the existing boundary operator is exactly a representation of the standard nonzero square-zero infinitesimal. The isomorphism is onto its two-dimensional generated algebra, not onto all of \(\operatorname{End}_{\mathbb C}(E)\).
+
+## 2. The square-derived parameter and the map back to it
+
+Use precisely the node task's objects
+\[
+\mathcal R=\mathbb Z[t^{\pm1},u^{\pm1}],\quad x=t-1,\quad y=u-1,
+\quad j=xy,\quad \widetilde A=\mathcal R/(j^2).
+\]
+The original square-derived cross-effect and conormal maps are
+\[
+W\xrightarrow{\sim}j\mathcal R,\quad
+w_{a,b}\longmapsto(t^a-1)(u^b-1),
+\quad
+j\mathcal R\longrightarrow j\mathcal R/j^2\mathcal R.
+\tag{NI5}
+\]
+Here \(U(\mathbb Z)\) is free on symbols \(r_a\), \(a\ne0\), with \(r_0=0\), and \(W=U(\mathbb Z)\otimes U(\mathbb Z)\). The elements \(t^a-1\), \(a\ne0\), form a basis of the Laurent augmentation ideal: an augmentation-zero polynomial is the sum of its nonconstant coefficients times these elements, and independence follows from those same coefficients. That ideal is \(x\mathbb Z[t^{\pm1}]\). The identical statement for \(u\), followed by tensor multiplication, identifies the tensor product with \(xy\mathcal R=j\mathcal R\). This proves the first isomorphism in NI5. The second map has exactly kernel \(j^2\mathcal R\); its quotient is \(A=\mathcal R/(j)\) through \(jF\mapsto F\bmod j\), with injectivity verified by cancellation of \(j\) in the Laurent domain. These are N5–6 in the complete source [Node cotangent](NODE_COTANGENT.md), N5–N6, and [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN13–DN21.
+
+The deformation map is
+\[
+\iota:D_{\mathbb Z}\hookrightarrow\widetilde A,
+\qquad \eta\longmapsto j.
+\tag{NI6}
+\]
+For a direct proof of injectivity, suppose \(a+bj=j^2F\). Evaluation at \(t=u=1\) gives \(a=0\). The Laurent ring is a domain, so cancellation of \(j\) yields \(b=jF\); evaluation once more gives \(b=0\). Its image is exactly \(\mathbb Z\oplus\mathbb Zj\), with \(j^2=0\). Thus NI6 is an isomorphism onto that image. The full target is larger: for example \(x\bmod j^2\) is not in its image, since restricting to \(u=1\) would express the nonconstant Laurent polynomial \(t-1\) as a constant.
+
+The infinitesimal ideal itself satisfies
+\[
+\eta D_{\mathbb Z}\cong\mathbb Zj\subset j\mathcal R/j^2\mathcal R.
+\tag{NI7}
+\]
+This is a map of nonunital square-zero ideals; it retains the larger conormal module rather than equating that module with one copy of \(\mathbb Z\). Through NI5, the distinguished element \(w_{1,1}\) goes to \(j\). Equations NI4 and NI6 identify the two generated dual-number algebras by \(j\mapsto R_N\).
+
+## 3. A compatible representation of the entire node deformation
+
+There is an explicit family extending that last identification to \(\widetilde A_{\mathbb C}=\mathbb C\otimes\widetilde A\). Its parameter space is the unit sphere in the actual metric space
+\[
+H_N=\{e_N,f_N\}^{\perp_{G_N}},\qquad \dim_{\mathbb C}H_N=q-2.
+\tag{NI8}
+\]
+It is nonempty because \(q\ge324\). No particular unit vector is selected. For every \(g\in H_N\) with \(\|g\|_{G_N}=1\), define the actual endomorphism
+\[
+T_g=\sqrt{\epsilon_N}\bigl(f_Ng^{\dagger_{G_N}}+g e_N^{\dagger_{G_N}}\bigr).
+\tag{NI9}
+\]
+Orthogonality of the three vectors gives, without changing any coefficient,
+\[
+T_ge_N=\sqrt\epsilon\,g,\quad T_gg=\sqrt\epsilon\,f_N,\quad T_gf_N=0,
+\quad T_g^2=R_N,\quad T_g^3=0.
+\tag{NI10}
+\]
+It vanishes on their common orthogonal complement. Hence \(I+T_g\) is invertible with inverse \(I-T_g+T_g^2\). The assignment
+\[
+\rho_g:\widetilde A_{\mathbb C}\longrightarrow\mathbb C[T_g]
+\subset\operatorname{End}_{\mathbb C}(E),
+\qquad t,u\longmapsto I+T_g
+\tag{NI11}
+\]
+is a well-defined unital algebra homomorphism, and
+\[
+\rho_g(j)=T_g^2=R_N,\qquad
+\rho_g\circ\iota_{\mathbb C}=\sigma_N.
+\tag{NI12}
+\]
+This is the required commuting diagram from the square-derived parameter to the existing arithmetic infinitesimal. Its entire image and kernel are explicit:
+\[
+\ker\rho_g=(x-y,x^3)\subset\widetilde A_{\mathbb C},
+\qquad
+\widetilde A_{\mathbb C}/(x-y,x^3)
+\xrightarrow{\sim}\mathbb C[T_g]\cong\mathbb C[z]/(z^3).
+\tag{NI13}
+\]
+Indeed setting \(x=y\) gives \(j^2=x^4\), and further quotienting by \(x^3\) leaves \(\mathbb C[x]/x^3\); \(1+x\) is automatically invertible. The images \(I,T_g,T_g^2\) are linearly independent: successively apply a proposed relation to \(f_N,g,e_N\). This proves the asserted kernel, not only an inclusion. Under NI13 the standard dual-number inclusion is \(\eta\mapsto z^2\), which is injective.
+
+This family supplies an exact representation. It does not assert that the original arithmetic action distinguished a particular square root \(T_g\), or replace its boundary operator by that root. Every member has the same fixed square \(R_N\), and the family parameter space is specified by the original metric.
+
+![Exact standard-infinitesimal and node-deformation maps](figures/15_native_dual_number_maps.png)
+
+The diagram is NI3, NI6 and NI11–13. The top arrow is injective, the right arrow is a quotient with the displayed kernel, and the bottom arrow identifies the two-dimensional infinitesimal subalgebra inside the cubic algebra. It does not identify the entire node deformation with dual numbers.
+
+## 4. The full arithmetic module retains an exact defect
+
+Give \(E\) its \(D_{\mathbb C}\)-module structure through \(\eta\cdot v=R_Nv\). There is an exact, metric-compatible decomposition
+\[
+E=\operatorname{span}_{\mathbb C}\{e_N,f_N\}\oplus H_N
+\cong D_{\mathbb C}\oplus(\mathbb C_{\eta=0})^{q-2},
+\quad a+b\eta\longmapsto a e_N+b\epsilon_N f_N
+\tag{NI14}
+\]
+on the first summand. Thus a faithful representation of the infinitesimal algebra does not make this entire module free over it. Its failure of flatness has the exact object
+\[
+\operatorname{Tor}^{D_{\mathbb C}}_1(\mathbb C,E)
+\cong\ker R_N/\operatorname{im}R_N
+\xrightarrow{\sim}H_N.
+\tag{NI15}
+\]
+For a complete verification, the periodic free resolution of \(\mathbb C=D_{\mathbb C}/(\eta)\) has every positive differential multiplication by \(\eta\): its kernel and image are both \(\eta D_{\mathbb C}\). Tensor with \(E\); every differential becomes \(R_N\), so degree-one homology is the quotient displayed. Since \(\ker R_N=e_N^\perp=\mathbb C f_N\oplus H_N\) and \(\operatorname{im}R_N=\mathbb C f_N\), the last map sends a class to its unique orthogonal representative in \(H_N\). This also gives its exact quotient metric. Flatness would preserve the injection \((\eta)\hookrightarrow D_{\mathbb C}\); after tensor its kernel is precisely the nonzero space NI15, proving nonflatness directly.
+
+This defect is already a concrete space in the original arithmetic current:
+\[
+W_N=i\epsilon_N(f_Ne_N^\dagger-e_Nf_N^\dagger),\qquad
+\ker W_N=H_N.
+\tag{NI16}
+\]
+On \(\operatorname{span}\{e_N,f_N\}\), the displayed operator is invertible with eigenvalues \(\epsilon_N,-\epsilon_N\), and it vanishes on \(H_N\), proving NI16. This is the full source current; the observed current has its own original projection and is not substituted here. Thus the nonflat directions of the existing dual-number module are exactly the full current's zero eigendirections.
+
+## 5. The primitive quotient and its full support receiver
+
+The primitive in [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN3–DN17, belongs to the diagonal quotient
+\[
+D_\Delta=\mathbb C[t^{\pm1}]/(t-1)^2
+\cong A_{\mathbb C}/(t-u),\qquad A=\mathbb Z[t^{\pm1},u^{\pm1}]/j.
+\]
+It has the direct faithful receiver
+\[
+\nu_N:D_\Delta\xrightarrow{\sim}\mathbb C[I,R_N],
+\qquad \overline{t-1}\longmapsto R_N.
+\tag{NI17}
+\]
+Before quotienting, the exact map sends \(t,u\) to \(I+R_N\), whose inverse is \(I-R_N\). Its kernel in the Laurent ring is \((t-u,j)=(t-u,(t-1)^2)\): imposing those relations gives the two-dimensional dual-number algebra, and NI3 proves independence of its two operator images. In this map \(j\) goes to zero. In the cubic smoothing receiver NI11, \(t-1\) goes to \(T_g\) and \(j\) goes to \(R_N\). These are two proved maps from the specified sources.
+
+Their connecting surjection is
+\[
+c_g:\mathbb C[T_g]\longrightarrow\mathbb C[I,R_N],
+\qquad T_g\longmapsto R_N,\qquad
+\ker c_g=\mathbb C T_g^2.
+\tag{NI18}
+\]
+Both algebras have their proved polynomial presentations, so this is the quotient \(\mathbb C[z]/z^3\to\mathbb C[z]/z^2\) followed by NI3. It sends the domain element \(T_g^2=R_N\) to zero; it is therefore different from their inclusion as operator algebras. The direct primitive map from \(\widetilde A_{\mathbb C}\) is exactly \(c_g\rho_g\), checked on both Laurent generators.
+
+Now retain the entire support quotient from DN7. Write
+\[
+Q_{\mathbb C}=\mathbb C\times D_{\mathbb C},\qquad
+E_0=(0,1),\qquad
+\Pi_N=e_Ne_N^{\dagger_{G_N}}+f_Nf_N^{\dagger_{G_N}}.
+\]
+The symbol \(\Pi_N\) denotes this two-dimensional support projection. The original observation projection \(P_{B,N}=L_N\Lambda\) has a different definition; their exact connecting map is in Section 7. Orthogonality gives
+\[
+\Pi_N^2=\Pi_N,\quad\Pi_NR_N=R_N\Pi_N=R_N,
+\quad\ker\Pi_N=H_N.
+\tag{NI19}
+\]
+The full support representation is
+\[
+\widehat\nu_N:Q_{\mathbb C}\hookrightarrow\operatorname{End}_{\mathbb C}(E),
+\quad (k,a+b\eta)\longmapsto k(I-\Pi_N)+a\Pi_N+bR_N.
+\tag{NI20}
+\]
+The complementary projections and NI19 prove multiplication and the unit formula by expansion. To prove injectivity, apply a zero image to a nonzero vector of \(H_N\), giving \(k=0\); to \(f_N\), giving \(a=0\); and to \(e_N\), giving \(b\epsilon_Nf_N=0\), hence \(b=0\). The space \(H_N\) is nonzero by NI8. On the original additive-monoid basis, the map is exactly
+\[
+[\tau]\longmapsto I,\quad [e]\longmapsto\Pi_N,\quad
+[n^\bullet]\longmapsto\Pi_N+nR_N,\quad
+[1^\bullet]-[e]\longmapsto R_N.
+\tag{NI21}
+\]
+Here \([e]\) is the supported integer-zero basis element; \(e_N\) is the original unit boundary vector. The two are related by NI21, not identified. Composition with DN7 proves NI21, with the original monoid-algebra kernel \(\mathcal J_{\mathbb C}^2\) retained by injectivity of NI20.
+
+The unital embedding
+\[
+\delta:D_{\mathbb C}\hookrightarrow Q_{\mathbb C},
+\quad a+b\eta\longmapsto(a,a+b\eta)
+\tag{NI22}
+\]
+satisfies \(\widehat\nu_N\delta=\sigma_N\), by adding the two complementary scalar projections. The inclusion into the supported corner instead has unit \(E_0\), which acts by \(\Pi_N\); both units and both maps are retained.
+
+## 6. Projectivity with support, and the mixed factorization
+
+As a module over \(Q_{\mathbb C}\), the original space has the exact decomposition
+\[
+E\cong H_N\oplus D_{\mathbb C}
+\cong ((1-E_0)Q_{\mathbb C})^{q-2}\oplus E_0Q_{\mathbb C}.
+\tag{NI23}
+\]
+The first isomorphism sends \((h,a+b\eta)\) to \(h+ae_N+b\epsilon_Nf_N\). NI20 proves it is a module map, and the orthogonal decomposition proves bijectivity. The second presentation follows by taking any basis of \(H_N\); its isomorphism class is independent of that choice. Both principal idempotent modules are direct summands of the free module \(Q_{\mathbb C}\), since \(Q_{\mathbb C}=(1-E_0)Q_{\mathbb C}\oplus E_0Q_{\mathbb C}\). Therefore \(E\) is finite projective over \(Q_{\mathbb C}\).
+
+The metric on the dual-number summand is precisely
+\(\|a+b\eta\|^2=|a|^2+\epsilon_N^2|b|^2\), obtained by substitution in NI23. Restricting scalars along NI22 gives NI14, because \(\eta\) acts as zero on \(H_N\) and as multiplication by \(\eta\) on the plane. The periodic resolution in NI15 now proves
+\[
+\operatorname{Tor}^{D_{\mathbb C}}_i(\mathbb C,E)
+\cong H_N=\ker W_N\qquad(i\ge1).
+\tag{NI24}
+\]
+Thus the exact restriction of scalars accounts for the nonflat directions. The same original vectors form a projective module when their distinct support actions remain part of the coefficient algebra.
+
+The cubic root also has a precise mixed-support interpretation. Its two diagonal blocks vanish:
+\[
+\Pi_NT_g\Pi_N=0,\qquad
+(I-\Pi_N)T_g(I-\Pi_N)=0.
+\]
+The off-diagonal maps are
+\[
+\alpha_g:\operatorname{span}\{e_N,f_N\}\to H_N,
+\quad v\mapsto\sqrt{\epsilon_N}g e_N^\dagger v,
+\]
+\[
+\beta_g:H_N\to\operatorname{span}\{e_N,f_N\},
+\quad h\mapsto\sqrt{\epsilon_N}f_Ng^\dagger h.
+\]
+Their composites are \(\beta_g\alpha_g=R_N\) on the plane and \(\alpha_g\beta_g=0\) on \(H_N\), since \(g^\dagger g=1\) and \(e_N^\dagger f_N=0\). This proves NI10 by a factorization through the two actual support sectors. All adjoints here use \(G_N\).
+
+![The projective support module and its exact restriction defect](figures/16_support_module_defect.png)
+
+The figure records NI19–NI24 and the two off-diagonal maps above; the complete proof specifies their domains, units and original metric.
+
+## 7. Exact transfer to the original observation
+
+Keep the original onto observation \(\Lambda:E\to B\), its full minimum metric \(Q_{B,N}\), and its section \(L_N\) from OCP1. Put
+\[
+O_N=L_NQ_{B,N}^{-1/2}:\mathbb C^{\dim B}\longrightarrow(E,G_N),
+\quad O_N^\dagger O_N=I,\quad O_NO_N^\dagger=P_{B,N}.
+\]
+These identities follow from \(L_N=G_N^{-1}\Lambda^*Q_{B,N}\) and \(Q_{B,N}^{-1}=\Lambda G_N^{-1}\Lambda^*\). The exact observation of any operator is
+\[
+\Phi_N(X)=O_N^\dagger X O_N.
+\]
+For every pair of operators, inserting \(I=P_{B,N}+(I-P_{B,N})\) proves
+\[
+\Phi_N(XY)-\Phi_N(X)\Phi_N(Y)
+=O_N^\dagger X(I-P_{B,N})Y O_N.
+\tag{NI25}
+\]
+Thus this observation is unital and linear, and its multiplicative defect has the displayed exact formula. In particular, with
+\(A_N^{\rm sup}=\Phi_N(\Pi_N)\) and \(R_{B,N}=\Phi_N(R_N)\),
+\[
+A_N^{\rm sup}-(A_N^{\rm sup})^2
+=K_N^\dagger K_N,\qquad
+K_N=(I-P_{B,N})\Pi_NO_N,
+\tag{NI26}
+\]
+\[
+R_{B,N}^2=-O_N^\dagger R_N(I-P_{B,N})R_NO_N.
+\tag{NI27}
+\]
+NI26 follows from \(\Pi_N^2=\Pi_N=\Pi_N^\dagger\); NI27 follows from \(R_N^2=0\). These are respectively the measured support-idempotence defect and the complete hidden-return term for the nilpotent. The original projection and metric have not been replaced.
+
+The observed support and current retain the same outgoing-column data. Define the exact OCP9 matrix
+\[
+U_N=[Q_{B,N}^{1/2}\Lambda e_N,\ Q_{B,N}^{1/2}\Lambda f_N],
+\qquad J_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix}.
+\]
+The formula \(O_N^\dagger=Q_{B,N}^{1/2}\Lambda\) proves
+\[
+A_N^{\rm sup}=U_NU_N^*,\qquad
+\Phi_N(W_N)=\epsilon_NU_NJ_2U_N^*.
+\tag{NI28}
+\]
+The second identity follows by expanding \(W_N\) in NI16 and is precisely OCP10. In particular the same two-column Gram \(U_N^*U_N\) appearing in the existing current estimates is present in this support receiver. Equations NI25–NI28 give the actual connecting maps and defects; they do not assign the separately marked terminal class's signed pairing.
+
+Writing the two columns as \(u_N=O_N^\dagger e_N\) and \(v_N=O_N^\dagger f_N\), their full mixed entry remains explicit:
+\[
+R_{B,N}=\epsilon_Nv_Nu_N^*,\qquad
+R_{B,N}^2=\epsilon_N(u_N^*v_N)R_{B,N}.
+\tag{NI29}
+\]
+Both identities follow by multiplying the indicated column and row. Combining NI27 and NI29 gives the hidden return with its actual complex coefficient; it is the same source term as [CE25](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/EVOLUTION_PROOF.md#L255), with a direct proof here.
+
+
+## 8. Source scope
+
+Read for this interface: NODE_COTANGENT.md, N1–N32 and its source-identity section, with fresh detailed use of N5–6 and N30; the original programme OCP5–7 and the complete current formulas. The node proof attributes its cotangent foundations to Luc Illusie, *Complexe cotangent et déformations*, with exact theorem locators and edition distinctions. This note uses its explicit ring and conormal constructions and proves the new representation and module statements directly. It does not claim fresh reading of Illusie's original volumes or use its cotangent theorem as a substitute for these calculations.
+
+The complete source construction and standard-infinitesimal comparison are included alongside this paper. The RH programme's signed TR20 pairing remains a different unfinished calculation; none of NI1–16 assigns that sign.
+
+
+# An idempotent deformation of the original boundary infinitesimal
+
+The family below connects the supported two-dimensional dual-number algebra to a product algebra with two complementary idempotents. It retains the actual boundary operator and its metric at parameter zero. Along the real parameter it preserves the entire arithmetic current, giving exact transfer statements for current and resolvent bounds. All claims and their full proofs follow.
+
+## 1. Original data and the polynomial family
+
+Use the actual objects of [Native dual-number receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI2. Fix its cutoff \(N\), and abbreviate \(e=e_N\), \(f=f_N\), \(\epsilon=\epsilon_N>0\), \(R=R_N=\epsilon fe^\dagger\), with every adjoint and norm taken in the unchanged metric \(G_N\). Put
+\[
+P_e=ee^\dagger,\quad P_f=ff^\dagger,\quad
+\Pi=P_e+P_f,\quad E_\Pi=\operatorname{span}\{e,f\},\quad H=E_\Pi^\perp.
+\]
+The complete original operator is \(M_0=C+R\), where \(C=C^\dagger\). Introduce the polynomial parameter \(s\), the ring \(B=\mathbb C[s]\), and
+\[
+F(s)=R+sP_e,\quad M(s)=C+F(s),\quad
+\mathcal A=B[z]/(z(z-s)).
+\tag{ID1}
+\]
+The orthogonal projection \(P_e\) is specified by the existing metric and vector, so the family includes that data. It is a deformation of the given operator with exactly \(M(0)=M_0\). It is not an assertion that every other parameter is an original arithmetic multiplication operator.
+
+Orthogonality gives \(R^2=0\), \(P_eR=0\), \(RP_e=R\), and \(P_e^2=P_e\). Expansion therefore proves
+\[
+F(s)^2=sF(s),\quad F(s)e=se+\epsilon f,
+\quad F(s)f=0,\quad F(s)H=0.
+\tag{ID2}
+\]
+The map
+\[
+\mathcal A\longrightarrow\operatorname{End}_B(E\otimes_{\mathbb C}B),
+\quad 1\longmapsto I,\quad z\longmapsto F(s)
+\tag{ID3}
+\]
+is injective, with image exactly \(B[I,F(s)]\). To prove the exact kernel before quotienting, divide any polynomial in \(z\) by the monic polynomial \(z(z-s)\). Its unique remainder is \(a(s)+b(s)z\). If \(aI+bF(s)=0\), application to \(f\) gives \(a=0\); the \(f\)-coefficient after application to \(e\) gives \(\epsilon b=0\), hence \(b=0\). This proves ID3 and the claimed kernel \((z(z-s))\).
+
+The identical argument gives the supported representation with unit \(\Pi\) and image \(B\Pi+BF(s)\). Retaining both support sectors gives the faithful unital map
+\[
+B\times\mathcal A\xrightarrow{\sim}B[I,\Pi,F(s)],
+\quad(c,a+bz)\longmapsto c(I-\Pi)+a\Pi+bF(s).
+\tag{ID4}
+\]
+The products between the complementary sectors vanish. For injectivity restrict to the nonzero space \(H\), and then apply the preceding plane argument. Thus the unit and the support idempotent remain different operators throughout the family.
+
+## 2. Fibres, retained intersection, and flatness
+
+Monic division proves that \(\mathcal A\) is free over \(B\) on \(1,z\), hence flat: tensoring with this module is a direct sum of two copies of the identity tensor functor. Every fibre at \(s=\sigma\in\mathbb C\) has dimension two and is exactly
+\[
+\mathcal A_\sigma=\mathbb C[z]/(z(z-\sigma)).
+\tag{ID5}
+\]
+For \(\sigma\ne0\), the isomorphism to \(\mathbb C\times\mathbb C\) is evaluation at \(z=0,\sigma\); its inverse is
+\[
+(a_0,a_1)\longmapsto a_0(1-z/\sigma)+a_1z/\sigma.
+\]
+The two inverse identities follow by evaluating these affine polynomials, and the remainder formula proves they exhaust the algebra. At zero the exact fibre is
+\[
+\mathcal A_0\cong D_{\mathbb C},\qquad
+\overline z\longmapsto R.
+\tag{ID6}
+\]
+Its representation is the faithful NI3 map.
+
+The full algebra embeds into a product before specialization:
+\[
+\mathcal A\hookrightarrow B\times B,\quad
+a+bz\longmapsto(a,a+bs),
+\quad\operatorname{im}=\{(u,v):v-u\in sB\}.
+\tag{ID7}
+\]
+Both image and injectivity follow by solving \(u=a\), \(v-u=bs\), using that \(s\) is a non-zero-divisor in \(B\). Equivalently \(\mathcal A=B\times_{\mathbb C}B\), with both maps evaluating at \(s=0\). This is the union of the two lines \(z=0\) and \(z=s\), meeting at \((0,0)\), with its map to the \(s\)-line. The total ring is reduced as a subring of two domains, although its zero fibre is nonreduced.
+
+Only \(0,1\) are idempotent in this total ring. Indeed an idempotent of the domain \(B\) is 0 or 1, and the matching condition at zero in ID7 permits only \((0,0)\) and \((1,1)\). The separate fibre idempotents \(z/\sigma,1-z/\sigma\) therefore do not extend to total-ring idempotents. This is their precise extension obstruction, with the intersecting-line ring itself retained.
+
+The original plane is free of rank one as an \(\mathcal A\)-module:
+\[
+\mathcal A\xrightarrow{\sim}E_\Pi\otimes B,
+\quad a+bz\longmapsto(a+bs)e+\epsilon bf.
+\tag{ID8}
+\]
+This map is evaluation on \(e\), so it intertwines the algebra actions. Its inverse sends \(xe+yf\) to \(x-sy/\epsilon+(y/\epsilon)z\). The two inverse identities prove bijectivity with all scalars retained. On the whole space,
+\(E\otimes B\cong\mathcal A\oplus(H\otimes B)\), where \(z\) acts as zero on the second summand. As a module over the full support algebra \(B\times\mathcal A\), this is projective, being a sum of its two principal idempotent modules. At zero it is exactly NI23; restriction along the diagonal-constant dual-number map is NI22–NI24.
+
+On the plane the kernels and images are
+\[
+\ker F(s)=Bf,\quad \operatorname{im}F(s)=B(se+\epsilon f),
+\]
+\[
+\ker(F(s)-s\Pi)=B(se+\epsilon f),
+\quad\operatorname{im}(F(s)-s\Pi)=Bf.
+\tag{ID9}
+\]
+These follow directly from ID2: \((F-s\Pi)(ae+bf)=(\epsilon a-sb)f\), whose coefficient vanishes exactly for \(a=sc,b=\epsilon c\). In particular the two eigenline modules have zero intersection, while their sum is \(Bf+sBe\). Their exact cokernel in the plane is
+\[
+(E_\Pi\otimes B)/(Bf+B(se+\epsilon f))\cong B/(s).
+\tag{ID10}
+\]
+The quotient sends \(ae+bf\) to \(a\bmod s\); its kernel and surjectivity prove the assertion. At zero the two eigenlines coincide as \(\mathbb Cf\), retaining the nilpotent Jordan action in ID6.
+
+## 3. Exact metric cost of splitting the idempotents
+
+For \(\sigma\ne0\), the supported operator idempotents are
+\[
+\Pi_1(\sigma)=F(\sigma)/\sigma
+=P_e+(\epsilon/\sigma)fe^\dagger,
+\quad\Pi_0(\sigma)=\Pi-\Pi_1(\sigma).
+\tag{ID11}
+\]
+ID2 proves their idempotence, zero mixed products and sum \(\Pi\). Their images are \(\mathbb C(\sigma e+\epsilon f)\) and \(\mathbb Cf\). They are not orthogonal projections. Their exact norms are
+\[
+\|\Pi_0(\sigma)\|=\|\Pi_1(\sigma)\|
+=\sqrt{1+\epsilon^2/|\sigma|^2},
+\qquad \|F(\sigma)-R\|=|\sigma|.
+\tag{ID12}
+\]
+For \(\Pi_1\), use the rank-one expression \((e+(\epsilon/\sigma)f)e^\dagger\). For \(\Pi_0\), the only nonzero row in the ordered orthonormal plane coordinates is \((-\epsilon/\sigma,1)\). Both have the stated norm. The last equality follows from \(F-R=\sigma P_e\). Thus the operators converge to the original nilpotent while their separate eigenprojections have an explicit unbounded cost.
+
+The metric retains orthogonal support maps at every parameter:
+\[
+F(\sigma)^\dagger F(\sigma)=(|\sigma|^2+\epsilon^2)P_e,
+\quad
+R=F(\sigma)-\sigma P_e,
+\quad P_f=RR^\dagger/\epsilon^2.
+\tag{ID13}
+\]
+The first identity follows from the rank-one expression
+\(F(\sigma)=(\sigma e+\epsilon f)e^\dagger\); the others follow from their definitions. Together with \(R/\epsilon=fe^\dagger\) and its adjoint, they give all four matrix units. Consequently the supported algebra generated by \(F(\sigma)\) and its adjoint is exactly \(\operatorname{End}_{\mathbb C}(E_\Pi)\) at every fibre. This is a larger, explicitly related algebra than the two-dimensional commutative one. For example \(P_e\) cannot equal \(a\Pi+bF(\sigma)\): applying to \(f\) forces \(a=0\), and the \(f\)-coefficient on \(e\) forces \(b=0\), a contradiction.
+
+## 4. Current, spectral strip and resolvent estimates
+
+Evaluate \(s=\sigma=u+iv\), with \(u,v\in\mathbb R\). The exact current, in the convention already used for the original arithmetic action, is
+\[
+J(\sigma)=i(M(\sigma)-M(\sigma)^\dagger)
+=J_0-2vP_e,
+\quad J_0=i\epsilon(fe^\dagger-ef^\dagger).
+\tag{ID14}
+\]
+Expansion cancels the selfadjoint \(C\) and gives this identity. Its plane matrix in the stated original orthonormal vectors is
+\[
+J(\sigma)|_{E_\Pi}=\begin{pmatrix}-2v&-i\epsilon\\i\epsilon&0\end{pmatrix},
+\quad J(\sigma)|_H=0,
+\quad J(\sigma)^2+2vJ(\sigma)=\epsilon^2\Pi.
+\tag{ID15}
+\]
+The last identity follows by multiplying this displayed matrix. Put \(d_v=\sqrt{v^2+\epsilon^2}\). Its two active eigenvalues and norm are
+\[
+\lambda_\pm=-v\pm d_v,\quad
+\det(J(\sigma)|_{E_\Pi})=-\epsilon^2,
+\quad\|J(\sigma)\|=d_v+|v|.
+\tag{ID16}
+\]
+The determinant of \(\lambda I-J\) is \(\lambda^2+2v\lambda-\epsilon^2\), proving the eigenvalues. They have opposite signs since \(d_v>|v|\); the norm is their largest absolute value because the matrix is Hermitian. The exact orthogonal spectral projections are
+\(\tfrac12(\Pi\pm(J(\sigma)+v\Pi)/d_v)\): ID15 proves that the squared middle factor is \(\Pi\), which establishes all projection identities.
+
+For every real \(\sigma\),
+\[
+J(\sigma)=J_0,quad J_0^2=\epsilon^2\Pi,
+\quad\|J_0x\|^2=\epsilon^2\|\Pi x\|^2,
+\quad-\epsilon\Pi\preceq J_0\preceq\epsilon\Pi.
+\tag{ID17}
+\]
+The first identity is ID14 with \(v=0\); the second is ID15. Selfadjointness proves the norm identity. The two eigenvalues in ID16 prove the operator inequalities; they are attained on \((e+if)/\sqrt2\) and \((e-if)/\sqrt2\), respectively. Cauchy–Schwarz additionally gives the sharp estimate
+\(|\langle x,J_0y\rangle|\le\epsilon\|\Pi x\|\|\Pi y\|\).
+
+Keeping the original observation \(O_N\) and its metric fixed, ID17 implies
+\[
+O_N^\dagger J(\sigma)O_N=O_N^\dagger J_0O_N
+=\epsilon_NU_NJ_2U_N^*\qquad(\sigma\in\mathbb R).
+\tag{ID18}
+\]
+This is exactly the observed current of NI28/OCP10, with no change of column Gram or hidden-return maps. Hence every already proved bound on this fixed current operator or its fixed-vector pairings transfers along the real family by equality. A separately chosen eigenvector of the changing \(M(\sigma)\) is additional data; ID18 does not assert it stays fixed.
+
+For any \(x=ae+bf+h\), \(h\in H\), direct multiplication in ID15 gives
+\[
+\langle x,J(\sigma)x\rangle
+=2\epsilon\operatorname{Im}(\overline a b)-2v|a|^2,
+\]
+\[
+\operatorname{Im}\langle x,M(\sigma)x\rangle
+=v|a|^2-\epsilon\operatorname{Im}(\overline a b).
+\tag{ID19}
+\]
+The second identity follows either directly, using selfadjointness of \(C\), or from \(J=i(M-M^\dagger)\). The eigenvalues in ID16 imply
+\[
+\frac{v-d_v}{2}\|\Pi x\|^2
+\le\operatorname{Im}\langle x,M(\sigma)x\rangle
+\le\frac{v+d_v}{2}\|\Pi x\|^2.
+\tag{ID20}
+\]
+For an eigenvector \(M(\sigma)x=\mu x\), divide by \(\|x\|^2\); the exact support ratio remains in the inequality. Since \((v-d_v)/2<0<(v+d_v)/2\) and \(\|\Pi x\|\le\|x\|\), every eigenvalue lies in the strip
+\[
+(v-d_v)/2\le\operatorname{Im}\mu\le(v+d_v)/2.
+\tag{ID21}
+\]
+For a complex number \(\zeta\) whose imaginary part lies outside this interval, let \(r\) be its positive distance to the interval. ID20 gives
+\(|\operatorname{Im}\langle x,(M(\sigma)-\zeta I)x\rangle|\ge r\|x\|^2\).
+Cauchy–Schwarz then proves
+\[
+\|(M(\sigma)-\zeta I)x\|\ge r\|x\|,
+\qquad\|(M(\sigma)-\zeta I)^{-1}\|\le r^{-1}.
+\tag{ID22}
+\]
+The first inequality gives injectivity, hence invertibility in the finite-dimensional space, and applying it to the inverse proves the second. For real parameters the same strip and bound apply with \(v=0\) and \(d_v=\epsilon\).
+
+## 5. The unchanged current does not remove the full spectral data
+
+The Hermitian part changes by \(uP_e\), and the exact squared-norm operator is
+\[
+M(\sigma)^\dagger M(\sigma)
+=M_0^\dagger M_0+\sigma CP_e+\overline\sigma P_eC+|\sigma|^2P_e.
+\tag{ID23}
+\]
+Expand \((M_0^\dagger+\overline\sigma P_e)(M_0+\sigma P_e)\) and use \(R^\dagger P_e=P_eR=0\) to prove ID23. These terms remain in any estimate involving the whole operator.
+
+A complete example quantifies the spectral information not specified by the fixed current. On the same orthonormal plane, take
+\(C=-\epsilon(fe^\dagger+ef^\dagger)/2\), and let it vanish on \(H\). For real \(s\),
+\[
+M(s)|_{E_\Pi}=\begin{pmatrix}s&-\epsilon/2\\\epsilon/2&0\end{pmatrix},
+\quad\mu_\pm(s)=\frac{s\pm\sqrt{s^2-\epsilon^2}}2.
+\tag{ID24}
+\]
+Its determinant polynomial is \(\mu^2-s\mu+\epsilon^2/4\), proving the formula. The eigenvalues are nonreal for \(|s|<\epsilon\), coincide at \(|s|=\epsilon\), and are distinct real numbers for \(|s|>\epsilon\). At coincidence the matrix is not scalar, so it has a nontrivial Jordan block. Its current is nevertheless the fixed \(J_0\) for all real \(s\). This is an exact example within the displayed operator class, not an example claimed to be the original arithmetic multiplication matrix.
+
+The algebra relation ID2 holds for \(M(s)-C\). It does not replace the full \(M(s)\) by that two-dimensional algebra. The exact bridge therefore comprises the flat family ID1–ID10, the metric maps ID11–ID13, and the current/observation/estimate identities ID14–ID23. Each has its original data and connecting map specified. No RH conclusion or GCT canonical-basis positivity theorem is claimed by this family.
+
+![The exact idempotent collision and current retained along the real family](figures/17_idempotent_current.png)
+
+The figure shows the two branches \(z=0,z=s\), their zero fibre with dual-number coordinate, and the exact metric identities ID12, ID17–ID18. The scheme picture is over the complex polynomial base; its real section is used to display the current-preserving path. All complex-parameter formulas remain in the proofs.
+
+
+# Monoid algebras, infinitesimals, and the GCT question
+
+## The existing geometric construction
+
+There is a standard construction directly matching the supported part of the present calculation. A group is a monoid, and the group algebra of the additive group of integers is
+\[
+k[\mathbb Z]=k[z,z^{-1}].
+\]
+Indeed its basis vector at \(n\) maps to \(z^n\), and the defining group-algebra multiplication \([n][m]=[n+m]\) becomes multiplication of Laurent powers. This gives inverse ring maps on their displayed bases. The support-forgetting map is the augmentation \(z\mapsto1\), with ideal \(I=(z-1)\). Its first-order quotient is exactly
+\[
+k[\mathbb Z]/I^2\cong k[\varepsilon]/\varepsilon^2,
+\qquad z\mapsto1+\varepsilon.
+\tag{LB1}
+\]
+The two inverse maps, including all negative powers and the exact kernel, are proved in [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN4–DN8. The scheme \(\operatorname{Spec}k[z,z^{-1}]\) is the multiplicative group \(\mathbb G_{m,k}\); augmentation specifies its identity section. Thus LB1 is precisely its first infinitesimal neighbourhood at the identity. For \(k=\mathbb Z\), this is a neighbourhood of the identity section over \(\operatorname{Spec}\mathbb Z\), with the base retained.
+
+This use of the squared ideal is the established construction in [Stacks, Section 37.5](https://stacks.math.columbia.edu/tag/05YW), Definition 37.5.1 and Lemma 37.5.2. Original TeX was read at [`more-morphisms.tex`, lines 671–770](https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/more-morphisms.tex#L671). In particular, deriving dual numbers from this monoid/group algebra by its augmentation ideal is a concrete instance of existing infinitesimal geometry. A claim of historical novelty for that operation would be incorrect.
+
+The external tau element adds an idempotent factor which remains part of the result:
+\[
+k[(S,+)]\cong k\times k[\mathbb Z],\qquad
+k[(S,+)]/\mathcal J^2\cong k\times D_k.
+\tag{LB2}
+\]
+The complete maps and inverses in DN4–DN12 prove this statement and distinguish the two support actions. Its second factor is LB1. The particular programme integration consists of the retained mixed-fold map DN15 and the exact operator receivers NI17–NI28. Those maps are fully derived here. A search of the entire historical literature for that particular combination has not been completed, so a priority claim for the combination is also not made.
+
+## What the phrase in GCT means
+
+The recollection has a precise primary source: Ketan D. Mulmuley, [*On P vs. NP, Geometric Complexity Theory, and the Flip I: a high level view*](https://arxiv.org/abs/0709.0748v1), 5 September 2007, Section 16, with the setup in Section 15. The original author archive was obtained from [arXiv source](https://arxiv.org/src/0709.0748v1); `main.tex`, lines 3938–4300, was read for this comparison.
+
+That discussion seeks analogues of the Riemann hypothesis over finite fields in a quantized noncommutative setting, to support positivity for canonical bases of the specified nonstandard quantum groups. Section 15 identifies group embeddings connected with Kronecker and plethysm problems. Section 16 describes a mismatch between their generic and classical-specialization Hilbert functions, and reports that the desired RH extensions could not then be formulated. Its term *nonstandard* refers to that quantum-group setting. The statement is historical; this bounded source reading does not establish that no later formulation exists.
+
+The present dual-number construction is an exact algebraic infinitesimal. It does not by itself define that GCT positivity theory. Nor does its name identify it with a hyperreal infinitesimal: in any field, \(a^2=0\) implies \(a=0\), whereas the nonzero dual-number element has square zero. This last distinction is an elementary algebraic calculation and leaves the proved ring, germ and operator maps intact.
+
+## The bridge established in this collection
+
+The map from the tau-derived algebra to the actual arithmetic representation is faithful:
+\[
+\mathbb C\times D_{\mathbb C}\hookrightarrow\operatorname{End}_{\mathbb C}(E),
+\quad(k,a+b\eta)\mapsto k(I-\Pi_N)+a\Pi_N+bR_N.
+\tag{LB3}
+\]
+It preserves the original metric and coefficient \(\epsilon_N\), sends the primitive to \(R_N\), and sends the two support identities to \(I\) and \(\Pi_N\). NI19–NI24 prove that the unchanged arithmetic space is projective over this full support algebra, and that restriction along \(D\to\mathbb C\times D\) produces the exact object
+\[
+\operatorname{Tor}^{D}_i(\mathbb C,E)
+=\ker R_N/\operatorname{im}R_N\cong\ker W_N\quad(i\ge1).
+\tag{LB4}
+\]
+The exact comparison with the original observation, including every product defect, is NI25–NI28. It reaches the same outgoing-column Gram matrix already used in the arithmetic current estimates. This is a proved connection to the objects underlying those bounds.
+
+The collection has not constructed a map from those arithmetic objects to Mulmuley's nonstandard quantum coordinate algebras, or a canonical-basis positivity theorem for them. The published result therefore stops short of a GCT/RH formulation. The identified research direction is to compare an explicitly specified quantum algebra and its specialization maps with these retained support and deformation maps; the historic phrase alone supplies no such identification. The exact maps already proved remain available for that investigation.
+
+
+
+The starting element is the programme's own \(\tau\). This paper computes two further constructions from that object. The two admissible additive-absorber extensions have an injective common receiver, whose full congruence lattice is calculated below. Adjoining the other two roles in opposite orders gives different two-element receivers. These are proved local results, without a claim of novelty in the wider literature or an established application to the current analytic programme.
+
+# 1. Objects, maps, and the original tau
+
+Fix a nonzero commutative unital ring \(R\). Write \(e=0_R\) and \(1_R\) for its distinct ring identities. Ring elements, their addition, and their multiplication are retained throughout every injective construction.
+
+The category \(\mathcal W\) consists of sets with a commutative additive monoid \((D,+,0_D)\), a commutative multiplicative monoid \((D,\cdot,1_D)\), and multiplication distributing over addition. A morphism in \(\mathcal W\) preserves both operations and both identities. The equation \(0_Dd=0_D\) is **not** an axiom of \(\mathcal W\). A standard semiring here is an object also satisfying that equation. Whenever a map is allowed to preserve fewer identities, this is stated explicitly.
+
+The programme semiring is
+\[
+S=G(R)=R\sqcup\{\tau\},\qquad
+\tau+x=x+\tau=x,\qquad \tau x=x\tau=\tau.
+\tag{1}
+\]
+The operations on two ring elements are the original ones. In particular \(1_R+(-1_R)=e\ne\tau\). Its additive identity is \(\tau\), and its multiplicative identity is \(1_R\).
+
+For completeness, the operations in (1) are associative and commutative. For addition, deleting occurrences of \(\tau\) leaves the original ring sum, or \(\tau\) when no ring argument remains. For multiplication, any occurrence of \(\tau\) makes every parenthesization equal \(\tau\); otherwise use the ring law. For distributivity, a multiplier \(\tau\) gives \(\tau=\tau+\tau\). A ring multiplier distributes over two ring summands by the ring law; if a summand is \(\tau\), its product is \(\tau\), the additive identity, so the other product is unchanged. These cases also cover two \(\tau\) summands. Thus \(S\) is a standard semiring.
+
+The original manuscript writes \(\mathcal T_R\) for the adjoined element. The bijection fixing \(R\) and sending \(\mathcal T_R\) to \(\tau\) preserves all pairs in (1), the ring pairs, and the identities. It is a unital semiring isomorphism. This is the same starting construction, not an identification of \(\tau\) with \(e\). The original definitions are in source [1], Section 3 and its arbitrary-ring generalization.
+
+# 2. The two extensions and their joint receiver
+
+Introduce distinct new elements \(w,\Omega\), neither in \(S\). The first extension is
+\[
+T=S\sqcup\{w\},\qquad
+w+x=w\ (x\in T),\quad wr=w\ (r\in R),\quad
+w^2=w,\quad w\tau=\tau.
+\tag{2}
+\]
+The second is the original literal extension
+\[
+H=S\sqcup\{\Omega\},\qquad
+\Omega+x=\Omega,\quad \Omega x=\Omega\quad(x\in H).
+\tag{3}
+\]
+In particular \(\tau\Omega=\Omega\); this is the original rule in source [2], Sections 9–10.
+
+**Theorem 1 (complete one-point classification).** Equations (2) and (3) are the only associative, commutative, distributive extensions on \(S\sqcup\{v\}\) that preserve \(S\) and make \(v\) an additive absorber. Both preserve the identities \(\tau,1_R\). The extension (2) is standard; (3) belongs to \(\mathcal W\) and is not standard.
+
+**Proof.** For nonzero \(r\in R\), distributivity gives \(rv=rv+r\). If \(rv\in R\), ring cancellation gives \(r=e\), a contradiction. If \(rv=\tau\), the equation becomes \(\tau=r\), also impossible. Hence \(rv=v\). Applying this to \(1_R,-1_R\), which are both nonzero even in characteristic two, gives
+\[
+ev=(1_R+(-1_R))v=v+v=v.
+\]
+Also \(v^2=v(v+1_R)=v^2+v=v\). Put \(a=\tau v\). Associativity yields \(ea=e(\tau v)=(e\tau)v=a\). If \(a\in R\), then \(a=e\). But then associativity gives \(av=(\tau v)v=\tau v^2=a=e\), whereas \(ev=v\ne e\). Thus \(a\) is either \(\tau\) or \(v\).
+
+It remains to verify both tables. Addition in either extension is the old addition with a new absorber, so is associative and commutative. For (2), a multiplicative triple containing \(\tau\) gives \(\tau\); one without \(\tau\) but containing \(w\) gives \(w\); the remaining triples are ring triples. These observations prove associativity, and commutativity is in the table. The old \(1_R\) is a unit, including at \(w\). A multiplier \(\tau\) distributes because every term is \(\tau\). A multiplier \(w\) gives \(\tau\) exactly when both summands are \(\tau\), and gives \(w\) otherwise on both sides. A ring multiplier uses the old distributivity if both summands are in \(S\); if a summand is \(w\), both sides are \(w\). Thus (2) is standard.
+
+For (3), an occurrence of \(\Omega\) in any associative or distributive expression makes both sides \(\Omega\); otherwise use \(S\). The old identities remain identities at \(\Omega\). The equation \(\tau\Omega=\Omega\ne\tau\) proves that (3) is not standard. All forced cases have now been realized. \(\square\)
+
+**Theorem 2 (injective pushout).** The pushout \(H\amalg_S T\) in \(\mathcal W\) is
+\[
+P(R)=R\sqcup\{\tau,w,\Omega\}.
+\tag{4}
+\]
+It contains the exact tables (2) and (3), and its two remaining cross operations are
+\[
+\boxed{\Omega+w=\Omega,\qquad \Omega w=\Omega.}
+\tag{5}
+\]
+Both canonical maps \(H\to P(R)\), \(T\to P(R)\) are injective, and their images intersect exactly in \(S\).
+
+**Proof.** Construct (4) by adjoining a literal absorber \(\Omega\) to the standard semiring \(T\). Commutativity is immediate. Any associative expression containing \(\Omega\) evaluates to \(\Omega\); otherwise associativity is that of \(T\). In \(x(y+z)=xy+xz\), an occurrence of \(\Omega\) in any of \(x,y,z\) makes both sides \(\Omega\); without it use \(T\). The identities remain \(\tau,1_R\), since \(\tau+\Omega=\Omega\) and \(1_R\Omega=\Omega\). Hence this is an object of \(\mathcal W\), and the stated inclusions are injective morphisms.
+
+To prove universality, let \(f:H\to D\), \(g:T\to D\) be morphisms in \(\mathcal W\) agreeing on \(S\). Put \(z=0_D\), \(a=f(\Omega)\), \(b=g(w)\). The preserved source equations give \(za=a\), \(zb=z\), and \(a+1_D=a\). Therefore
+\[
+ab=(za)b=a(zb)=az=a.
+\tag{6}
+\]
+Multiplying \(a+1_D=a\) by \(b\) gives \(ab+b=ab\), hence \(a+b=a\). Thus every such pair of maps already satisfies (5). Define \(h:P(R)\to D\) to equal the common map on \(S\), to send \(\Omega\) to \(a\), and \(w\) to \(b\). Pairs lying in \(H\) or \(T\) are preserved by the given maps; the only remaining pairs are \((w,\Omega)\) and its reverse, handled by (6) and \(a+b=a\). The identities lie in \(S\). Hence \(h\) is a morphism, and every value was forced. This proves the universal property. \(\square\)
+
+There is no identity-preserving morphism \(H\to T\) or \(T\to H\), despite their injective common receiver. Indeed, for \(f:H\to T\), standard zero absorption gives \(f(\Omega)=f(\tau\Omega)=\tau f(\Omega)=\tau\). Applying \(f\) to \(\Omega+1_R=\Omega\) gives \(1_R=\tau\), impossible. For \(g:T\to H\), the equation \(\tau g(w)=\tau\) excludes \(g(w)=\Omega\). If \(g(w)=\tau\), then \(g(w)+1_R=g(w)\) contradicts \(1_R\ne\tau\). If \(g(w)\in R\), that same equation contradicts ring cancellation and \(1_R\ne e\). The pushout proves the exact surviving relationship after these particular maps fail.
+
+![Exact injective pushout and its forced cross operations. The arrows are the inclusions proved in Theorem 2; original definitions are from HI-AI sources 1 and 2.](figures/01_common_receiver.png)
+
+# 3. Every quotient of the joint receiver
+
+A congruence is an equivalence relation preserved by addition and multiplication. Its quotient has the induced operations and the images of the two identities.
+
+**Theorem 3 (complete congruence lattice).** For every ideal \(I\) of \(R\), define \(\theta_I\) by
+\[
+r\mathrel{\theta_I}s\iff r-s\in I\quad(r,s\in R),
+\tag{7}
+\]
+with \(\tau,w,\Omega\) three separate singleton classes. Then
+\[
+P(R)/\theta_I\cong P(R/I).
+\tag{8}
+\]
+Above the congruence belonging to the greatest ideal \(I=R\), exactly three further congruences occur, in the following chain of partitions:
+\[
+\begin{split}
+&\{\tau\}\mid R\mid\{w\}\mid\{\Omega\},\\
+<&\{\tau\}\mid(R\cup\{w\})\mid\{\Omega\},\\
+<&(\{\tau\}\cup R\cup\{w\})\mid\{\Omega\},\\
+<&P(R).
+\end{split}
+\tag{9}
+\]
+Thus the full congruence lattice is the ideal lattice of \(R\) with three additional successive elements above its maximum.
+
+**Proof.** The map fixing the three extra labels and sending \(r\) to its residue class modulo \(I\) preserves each displayed operation, and preserves \(\tau,1_R\). Its fibres are (7). This proves existence and (8), including the zero ring quotient \(R/R\): its supported element remains distinct from the three extra labels.
+
+Conversely let \(\theta\) be any congruence. Put \(I=\{r\in R:r\mathrel\theta e\}\). If \(r,s\in I\), then \(r+s\mathrel\theta e+e=e\). Multiplication by \(-1_R\) gives \(-r\in I\), and multiplication by any \(a\in R\) gives \(ar\in I\). Thus \(I\) is an ideal. Adding \(-s\), and conversely adding \(s\), proves \(r\mathrel\theta s\) exactly when \(r-s\in I\).
+
+Any further identification forces \(I=R\). The exhaustive possibilities are these:
+
+* If \(\tau\mathrel\theta r\in R\), multiplication by \(e\) gives \(\tau\mathrel\theta e\). Multiplication by \(w\) gives \(\tau\mathrel\theta w\). Adding any \(s\in R\) then gives \(s\mathrel\theta w\), so all of \(R\) collapses.
+* If \(w\mathrel\theta r\in R\), addition of \(-r\) gives \(w\mathrel\theta e\). Adding \(s\in R\) gives \(w\mathrel\theta s\).
+* If \(\Omega\mathrel\theta r\in R\), adding \(-r\) gives \(\Omega\mathrel\theta e\), and multiplying by \(\tau\) gives \(\Omega\mathrel\theta\tau\). Since one is an additive absorber and the other an additive identity, addition of any \(x\) gives \(\Omega\mathrel\theta x\); the congruence is total.
+* Identifying \(\tau,w\) collapses \(R\) by their additive rules. Identifying \(\tau,\Omega\) is total by the preceding identity/absorber calculation. Identifying \(w,\Omega\), followed by multiplication by \(\tau\), gives \(\tau\mathrel\theta\Omega\) and is total.
+
+It remains to classify congruences when \(I=R\). The quotient has four elements \(\tau,c,w,\Omega\), with addition the maximum in
+\[
+\tau<c<w<\Omega
+\]
+and multiplication
+\[
+\begin{array}{c|cccc}
+\cdot&\tau&c&w&\Omega\\\hline
+\tau&\tau&\tau&\tau&\Omega\\
+c&\tau&c&w&\Omega\\
+w&\tau&w&w&\Omega\\
+\Omega&\Omega&\Omega&\Omega&\Omega
+\end{array}.
+\tag{10}
+\]
+The unit is \(c\). A congruence for maximum has interval classes: if \(x\le y\le z\) and \(x\sim z\), adding \(y\) gives \(y\sim z\). Identifying \(\tau,c\) forces \(\tau,w\), by multiplying by \(w\). Identifying \(w,\Omega\) forces \(\tau,\Omega\), by multiplying by \(\tau\), so is total. Identifying \(c,\Omega\) has the same consequence. The only remaining adjacent merger is \(c\sim w\), which is compatible with every row of (10) and with maximum. The merger \(\tau\sim c\sim w\) is also compatible: the resulting two-element algebra has both operations maximum. Thus (9) lists exactly all possibilities.
+
+Finally, \(\theta_I\subseteq\theta_J\) exactly when \(I\subseteq J\), by (7). The exhaustive classification and (9) prove the stated lattice description, not merely a count of its elements. \(\square\)
+
+**Corollary 3.1.** The only congruence on \(P(R)\) whose restriction to the nonzero ring \(R\) is equality is the identity congruence. Hence every homomorphism from \(P(R)\) that is injective on \(R\) is injective on all of \(P(R)\).
+
+**Proof.** Equality on \(R\) gives \(I=\{e\}\ne R\), so Theorem 3 leaves exactly \(\theta_{\{e\}}\), the identity. For the second assertion use the congruence of equal images under the homomorphism. \(\square\)
+
+The first new quotient in (9) is the literal absorber adjunction to the Boolean semiring:
+\[
+L_3=\{0,1,\Omega\},\qquad
+\tau\mapsto0,\quad r\mapsto1\ (r\in R),\quad w\mapsto1,\quad\Omega\mapsto\Omega.
+\tag{11}
+\]
+Its addition is maximum; its multiplication is Boolean on \(\{0,1\}\), while \(\Omega\) absorbs all products, including \(0\Omega=\Omega\). These rules are precisely the quotient of (10). On \(S\), (11) is the programme support character: sums of supported elements remain supported even when their ring value is \(e\), and products become unsupported exactly when a factor is \(\tau\). This proves the support comparison on all arguments.
+
+The quotient imposing \(\tau=e\) is the next, two-element quotient in (9):
+\[
+P(R)/(\tau=e)=\{d,\Omega\},\qquad +=\max,\quad\cdot=\max,\quad d<\Omega.
+\tag{12}
+\]
+Indeed \(\tau=e\) forces \(w=e\) by multiplication by \(w\), and then \(w+r=w\) forces every \(r=e\). Equation (12) is an actual model in which \(\Omega\ne d\), so no further merger is forced. Its additive and multiplicative identities both equal \(d\). In particular \(0=1\) does not by itself make an object of \(\mathcal W\) a singleton.
+
+For comparison, imposing \(\tau=e\) on \(H\) alone gives
+\[
+A(R)=R\sqcup\{\Omega\},
+\]
+with unchanged ring operations and \(\Omega\) absorbing both operations; its identities are \(e,1_R\). The map fixes \(R,\Omega\) and sends \(\tau\) to \(e\). Ring pairs are unchanged; a \(\tau,r\) pair maps to \(e+r=r\), respectively \(er=e\); a pair involving \(\Omega\) maps to the corresponding absorber value. It is a surjective morphism with only the class \(\{\tau,e\}\) nonsingleton. Every morphism identifying that pair factors uniquely by assigning these values to the quotient. Consequently
+\[
+P(R)\amalg_H A(R)\cong\{d,\Omega\}
+\tag{13}
+\]
+in \(\mathcal W\): a morphism from \(P(R)\) factors through this pushout exactly when its restriction to \(H\) identifies \(\tau,e\), and (12) is the universal such quotient. This proves exactly why the same arithmetic identification has a different effect after \(w\) is present.
+
+Finally the universal standard-semiring receiver of \(P(R)\), allowing the singleton standard semiring, is that singleton. For a zero-preserving unital map \(h:P(R)\to D\) with standard target,
+\[
+h(\Omega)=h(\tau\Omega)=0_Dh(\Omega)=0_D.
+\]
+The equation \(\Omega+1_R=\Omega\) forces \(1_D=0_D\). The standard absorption law then gives \(x=x1_D=x0_D=0_D\) for every \(x\in D\). Conversely the unique map to the singleton is a morphism. Every allowed map factors uniquely through it. This argument uses the standard target axiom and therefore does not contradict the nontrivial weak quotient (12).
+
+![Complete quotient classification from Theorem 3. The lower chain begins only after the entire supported ring has become one class. The arbitrary ideal lattice is not assigned a geometric shape.](figures/03_all_quotients.png)
+
+# 4. Specify the adjunction before comparing its order
+
+Here are uniform identity conventions for the two remaining roles.
+
+* A \(U\)-receiver for an object \(A\) is an object \(D\in\mathcal W\) whose global unit \(u_D=1_D\) also satisfies \(u_D+x=u_D\), with a map \(A\to D\) preserving both binary operations and the additive identity. The old multiplicative unit need not remain global. Universal factorizations preserve both global identities and the map from \(A\).
+* An \(E\)-receiver for \(A\) is an object \(D\in\mathcal W\) whose additive and multiplicative identities are a common element \(\epsilon_D\), with a binary-operation-preserving map \(A\to D\). Both old identities may become local. Universal factorizations preserve the common global identity and the map from \(A\).
+
+These conventions describe the earlier \(u\)- and \(\epsilon\)-receivers with their actual identity requirements. The order computations below use these same conventions at each occurrence of \(U\) or \(E\).
+
+In every \(U\)-receiver, distributivity forces addition to be idempotent:
+\[
+x=x(u_D+u_D)=x+x.
+\tag{14}
+\]
+It also forces standard zero absorption, even though this was not an axiom of \(\mathcal W\):
+\[
+0_D=0_D(u_D+x)=0_D+0_Dx=0_Dx.
+\tag{15}
+\]
+
+**Theorem 4 (the first receivers).** The universal receivers from \(S=G(R)\) are
+\[
+U(S)=C_3=\{t<c<u\},\quad +=\max,\quad\cdot=\min,\qquad
+\tau\mapsto t,\quad r\mapsto c,
+\tag{16}
+\]
+and
+\[
+E(S)=E_2=\{\epsilon<c\},\quad +=\max,\quad\cdot=\max,\qquad
+s\mapsto c\quad(s\in S).
+\tag{17}
+\]
+
+**Proof.** For a \(U\)-receiver \(f:S\to D\), equation (14) applied to \(f(1_R)\), followed by addition of \(f(-1_R)\), gives \(f(1_R)=f(e)\). Thus
+\[
+f(r)=f(r1_R)=f(r)f(1_R)=f(r)f(e)=f(re)=f(e).
+\]
+Write \(a=f(e)\). It satisfies \(a+a=a\), \(a^2=a\). Since \(f(\tau)=0_D\), the only possible factor in (16) sends \(t\) to \(0_D\), \(c\) to \(a\), and \(u\) to \(u_D\). Identity laws, (15), the two idempotences of \(a\), and the roles of \(u_D\) check every pair of its three-element table. Thus that factor is a morphism.
+
+Maximum and minimum on a chain are associative and commutative. To verify distributivity, order \(y\le z\). Then \(\min(x,\max(y,z))=\min(x,z)=\max(\min(x,y),\min(x,z))\). The least element is additive identity and the greatest is multiplicative identity and additive absorber. These observations verify the object (16) and its old map on every ring/ring, ring/tau and tau/tau pair. They also prove uniqueness of the factor.
+
+For an \(E\)-receiver \(j:S\to D\), put \(a=j(s)\), \(t=j(\tau)\). The source gives \(a+t=a\), \(at=t\). Hence
+\[
+t=at=a(\epsilon_D+t)=a\epsilon_D+at=a+t=a.
+\]
+All of \(S\) has one image \(t\), with \(t+t=t\), \(t^2=t\). The unique possible factor from (17) sends \(\epsilon\) to \(\epsilon_D\) and \(c\) to \(t\). The common-identity laws and these idempotences prove preservation of every pair. In (17), both associative operations are maximum, and their distributive identity says that both sides equal the maximum of the three arguments. The constant old map preserves operations. Thus (17) also exists and has the asserted universal property. \(\square\)
+
+# 5. The two orders, their maps, and their exact common quotient
+
+**Theorem 5 (order-dependent receivers).** With the conventions of Section 4,
+\[
+\begin{array}{c|c|c|c}
+\text{order}&\text{carrier}&\text{addition}&\text{multiplication}\\\hline
+E(U(S))&\{\epsilon<u\}&\max&\max\\
+U(E(S))&\{\epsilon<u\}&\max&\min
+\end{array}.
+\tag{18}
+\]
+Call these two objects \(P_E\) and \(P_U\), respectively; neither symbol denotes the four-part object \(P(R)\). The map from every original element of \(S\) is constant \(u\) in \(P_E\), and constant \(\epsilon\) in \(P_U\). The adjoined labels \(\epsilon,u\) remain distinct in each universal receiver.
+
+**Proof.** For an \(E\)-receiver \(f:C_3\to D\), put \(T=f(t)\), \(C=f(c)\), \(U=f(u)\). The old table gives \(UT=T\), \(U+T=U\), \(T+C=C\), \(U+C=U\). The new common identity gives
+\[
+T=UT=U(\epsilon_D+T)=U\epsilon_D+UT=U+T=U.
+\]
+It follows that \(C=T+C=U+C=U\). Thus the entire first receiver has one image \(a\), with \(a+a=a^2=a\). Adjoining the new common identity gives exactly the two-element maximum/maximum table. The factor sends \(\epsilon\) to \(\epsilon_D\), \(u\) to \(a\); the identity laws and idempotences prove every pair and uniqueness. The nontrivial two-element table itself is a receiver, proving that its two labels are not forced equal.
+
+For a \(U\)-receiver \(g:E_2\to D\), put \(E=g(\epsilon)\), \(C=g(c)\). The old table gives \(E+C=C\), \(EC=C\). The new role gives \(C+u_D=u_D\), \(Eu_D=E\). Distributivity forces
+\[
+E=Eu_D=E(C+u_D)=EC+Eu_D=C+E=C.
+\tag{19}
+\]
+Our \(U\)-convention also gives \(E=0_D\), so both old elements map to \(0_D\). Their common class \(\epsilon\), with the new \(u\), has addition maximum and multiplication minimum. The unique factor sends \(\epsilon\) to \(0_D\), \(u\) to \(u_D\); (14), (15) and the identity laws check the full Boolean table. Chain distributivity was proved above. Again the actual nontrivial two-element model prevents a further universal merger. \(\square\)
+
+In \(P_E\), the old \(u\) still acts as multiplicative identity on its old image \(\{u\}\), but \(u\epsilon=u\ne\epsilon\), so it is not the new global multiplicative identity. In \(P_U\), the old \(\epsilon\) is the global additive identity and remains a multiplicative identity on the old image \(\{\epsilon\}\), but \(\epsilon u=\epsilon\ne u\). These assertions follow directly from (18) and state the exact domains of the surviving roles.
+
+If the second \(U\)-step is instead allowed to forget the old additive identity, (19) still forces \(E=C=a\). The same Boolean table gives a factor sending \(\epsilon\) to \(a\), preserving both operations and the new multiplicative unit, but it need not preserve additive zero. For example \(D=C_3\), with both old elements mapped to \(c\), has that factor \(\epsilon\mapsto c,u\mapsto u\). Thus its broader universal property uses maps that need not preserve additive zero. This is a different convention on maps, not a silent change to the theorem.
+
+**Theorem 6 (all comparisons between the two orders).** Every binary-operation-preserving map between \(P_E\) and \(P_U\), in either direction, is constant. Each target element gives exactly one such constant map. Their full identity and original-object behavior is:
+
+| Map | Preserves additive identity | Preserves multiplicative identity | Commutes with the maps from \(S\) |
+|---|---|---|---|
+| \(P_E\to P_U\), constant \(\epsilon\) | yes | no | yes |
+| \(P_E\to P_U\), constant \(u\) | no | yes | no |
+| \(P_U\to P_E\), constant \(\epsilon\) | yes | yes | no |
+| \(P_U\to P_E\), constant \(u\) | no | no | yes |
+
+**Proof.** For \(f:P_E\to P_U\), put \(a=f(\epsilon)\), \(b=f(u)\). Since both \(\epsilon+u\) and \(\epsilon u\) are \(u\) in the source, preservation says \(a\vee b=b\) and \(a\wedge b=b\). Therefore \(a\le b\) and \(b\le a\), so \(a=b\). For \(g:P_U\to P_E\), write the images as \(a,b\) in the same order. The source sum is \(u\), the source product is \(\epsilon\), and both target operations are join. Thus \(a\vee b=b\) and \(a\vee b=a\), again giving equality. Conversely every target element is idempotent for both operations, so every constant map preserves them.
+
+The additive identities in both objects are \(\epsilon\); their multiplicative identities are \(\epsilon\) in \(P_E\) and \(u\) in \(P_U\). The original maps are constant \(u\) and \(\epsilon\), respectively. Comparing the two possible constant values with these specified elements proves every entry of the table. \(\square\)
+
+There are also exact comparisons to the first receivers. The map \(E_2\to P_E\) sending \(\epsilon\mapsto\epsilon,c\mapsto u\) is an isomorphism of both operations and identities, and commutes with the maps from \(S\). The map \(C_3\to P_U\) sending \(t,c\mapsto\epsilon,u\mapsto u\) preserves maxima and minima: for an ordered pair its smaller and larger images are precisely the images of its smaller and larger elements. It preserves both identities and is onto, with congruence classes \(\{t,c\},\{u\}\). Hence
+\[
+P_U\cong C_3/(t=c).
+\tag{20}
+\]
+
+The unique binary-preserving maps under \(S\), as given in the last column of Theorem 6, have composites constant \(u\) on \(P_E\) and constant \(\epsilon\) on \(P_U\). These are the actual idempotent collapse maps; the two orders are not isomorphic even if their distinguished labels are forgotten.
+
+Finally their universal common quotient preserving both added labels is the singleton. To prove this with its precise scope, take binary-preserving maps from \(P_E,P_U\) to an algebra \(D\), agreeing on the images \(\epsilon_D,u_D\) of the two labels. The first source requires \(\epsilon_Du_D=u_D\); the second requires \(\epsilon_Du_D=\epsilon_D\). Thus the two images coincide. Both source images are the same one-element algebra, and the maps factor uniquely through it. Conversely the singleton with its unique operations is such a common quotient. This proves universality for binary-preserving labelled maps. It does not require every unrelated element of \(D\) to collapse. If both specified roles are imposed globally in \(D\) as well, then \(x=\epsilon_D+x=u_D+x=u_D\) for every \(x\), and \(D\) itself is a singleton.
+
+![The two adjunction orders of Theorems 4–6, with their exact identity conventions and original-element images. These arrows are universal maps with the displayed identifications, not inclusions.](figures/02_order_of_roles.png)
+
+# 6. All six orders of the three remaining roles
+
+Write \(O(A)\) for adjoining a new literal absorber \(\Omega\) to both operations of \(A\in\mathcal W\), keeping its global identities. This construction has the following precise universal property. A morphism \(f:A\to D\) in \(\mathcal W\) extends with \(\Omega\mapsto b\) exactly when
+\[
+b+b=b,\quad b^2=b,\quad b+f(x)=bf(x)=b\quad(x\in A).
+\tag{21}
+\]
+Necessity follows by applying a morphism to the source equations. Conversely the map defined by those values preserves all old pairs by \(f\), every mixed pair by (21), and the new/new pair by the two idempotences. It preserves identities because they lie in \(A\), and is unique. Existence and the \(\mathcal W\) axioms for \(O(A)\) follow by the same complete absorber case analysis used in Theorem 2. No condition that \(b\) absorb unrelated elements of \(D\) is inserted.
+
+We apply \(O,U,E\) once each to the original \(S\), retaining the \(U,E\) identity conventions of Section 4. Words below give the execution order from left to right. In a row, \(a\) denotes the image of any original \(s\in S\); it need not remain distinct from the added labels.
+
+**Theorem 7 (complete order table).** The six resulting receivers, all their element identifications and their operations are:
+
+| Order | Ordered carrier and label identifications | Addition | Multiplication |
+|---|---|---|---|
+| \(O\,U\,E\) | \(\epsilon<a=u=\Omega\) | maximum | maximum |
+| \(U\,O\,E\) | \(\epsilon<a=u<\Omega\) | maximum | maximum |
+| \(U\,E\,O\) | \(\epsilon<a=u<\Omega\) | maximum | maximum |
+| \(O\,E\,U\) | \(a=\epsilon=\Omega<u\) | maximum | minimum |
+| \(E\,O\,U\) | \(a=\epsilon=\Omega<u\) | maximum | minimum |
+| \(E\,U\,O\) | \(a=\epsilon<u<\Omega\) | maximum | minimum on \(\{\epsilon,u\}\); \(\Omega x=\Omega\) for all \(x\) |
+
+Each row specifies its original-object map by \(s\mapsto a\). Each occurrence of an added symbol has the image explicitly shown; distinct positions separated by \(<\) remain distinct in the universal receiver. The order notation concerns the displayed finite addition chains, not any ordering of \(R\).
+
+**Proof.** Four exact elementary receivers suffice to compute every row.
+
+First, if \(A\) is any standard semiring, then \(E(A)\) is the two-element maximum/maximum algebra, with all old elements mapped to its nonidentity element. The proof of Theorem 4 uses only \(x+0_A=x\) and \(x0_A=0_A\), so applies unchanged to every such \(A\). Its factor is forced by the old common image and the newly specified common identity.
+
+Second, for every \(A\in\mathcal W\),
+\[
+U(O(A))\cong\mathbb B,
+\tag{22}
+\]
+with all old elements, including the old \(\Omega\), mapped to Boolean zero, and the new \(u\) mapped to Boolean one. To prove it, let \(f:O(A)\to D\) be a \(U\)-receiver. Equation (15) makes \(D\) standard, and \(f\) preserves the old additive identity. Therefore
+\[
+f(\Omega)=f(0_A\Omega)=0_Df(\Omega)=0_D.
+\]
+For each \(x\in O(A)\), applying \(f\) to \(\Omega+x=\Omega\) yields \(0_D+f(x)=0_D\), hence \(f(x)=0_D\). The new unit \(u_D\) need not be zero: the input map is not required to preserve the old unit. The unique factor from \(\mathbb B\) sends \(0\) to \(0_D\), \(1\) to \(u_D\); identity laws, (14), (15) prove that it preserves both operations and identities. The constant old map to Boolean zero is admissible, and \(\mathbb B\) is nontrivial. This proves (22) without an unwarranted singleton conclusion.
+
+Third, if \(A\) has a common additive and multiplicative identity, then \(U(A)\cong\mathbb B\), again with all old elements mapped to zero. Indeed, the input preserves \(0_A\), and the source identity \(0_Ax=x\) gives
+\[
+f(x)=f(0_Ax)=0_Df(x)=0_D
+\]
+by (15). The same Boolean factor and nontrivial model prove universality.
+
+Fourth, for a standard semiring \(A\),
+\[
+E(O(A))\cong\{\epsilon<c<\Omega\},
+\qquad +=\max,\quad\cdot=\max,
+\tag{23}
+\]
+with all of \(A\) mapped to \(c\). For an \(E\)-receiver of \(O(A)\), the first calculation collapses \(A\) to a common idempotent \(c_D\). Write \(b_D\) for the image of its original \(\Omega\). Its source equations give
+\[
+c_D+c_D=c_D^2=c_D,\quad
+b_D+b_D=b_D^2=b_D,\quad c_D+b_D=c_Db_D=b_D.
+\]
+The new \(\epsilon_D\) is the identity for both operations. These relations check every pair in the three-element maximum/maximum table and force a unique factor preserving the new identities. That table itself is an admissible receiver with three distinct elements, proving (23).
+
+Now follow the six words. For \(OUE\), (22) first gives Boolean \(\{0,u\}\), with the original \(S,\Omega\) at zero. The first calculation then collapses both Boolean elements to \(a=u=\Omega\) and adjoins \(\epsilon\), giving the first row. For \(UOE\), Theorem 4 first gives standard \(C_3\); (23) then sends its three elements, including the old \(u\), to \(a\) and retains \(\epsilon,\Omega\) as the other two elements. For \(UEO\), Theorem 5 gives the two-element maximum/maximum algebra \(\{\epsilon<a=u\}\); adjoining a literal absorber gives the same three-element table with all labels as in the preceding row.
+
+For \(OEU\), (23) first gives a three-element algebra with a common identity \(\epsilon\). The third calculation sends all its elements to Boolean zero and adjoins the new \(u\), giving \(a=\epsilon=\Omega<u\). For \(EOU\), \(E(S)\) first has a common identity and its literal absorber adjunction still has that same common identity: both operations are maximum on the resulting three-element chain. The third calculation therefore gives the identical labelled Boolean receiver. Finally, \(EUO\) starts from the Boolean receiver of Theorem 5 and literally adjoins \(\Omega\). It has the last row's exact table by the definition of \(O\). Every intermediate universal factor has been proved in the required category, so these computations prove the sequential universal claims. \(\square\)
+
+The paired equalities \(UOE\cong UEO\) and \(OEU\cong EOU\) preserve every original element's image and all three added labels: the maps fixing the displayed chain elements are bijections and preserve each table entry. There are exactly four algebra-isomorphism classes among the six rows. Two versus three elements distinguishes classes of different sizes. Among the two-element algebras, minimum differs from maximum on the pair of distinct elements; any additive isomorphism must preserve their chain order. Among the three-element algebras, the maximum/maximum table gives \(\epsilon u=u\), whereas the last row gives \(\epsilon u=\epsilon\); again any additive isomorphism preserves the unique chain order. Thus the remaining equally sized candidates are not isomorphic.
+
+The universal common quotient of all six rows that preserves the three added labels is a singleton. In the first row \(u=\Omega\), and in the fourth \(\epsilon=\Omega\); agreement on these labelled images therefore forces \(\epsilon=u=\Omega\). Every original image equals one of these labels in every row, so all six maps have the same single-element image and factor uniquely through the singleton. This is the universal quotient of the labelled generated images; it does not assert collapse of unrelated elements in an arbitrary larger target.
+
+![All six orders, their exact label images, operations and carrier sizes. Theorem 7 proves every row and its universal maps. Equalities are in the resulting receiver, not in the original programme object.](figures/04_all_six_orders.png)
+
+# 7. What the calculation establishes
+
+Theorem 2 replaces the earlier unfinished claim of a singleton common receiver: the exact common receiver is injective and retains \(R,\tau,w,\Omega\) as separate parts. Theorem 3 computes all its quotients and proves that preserving the original ring faithfully preserves the entire joint object faithfully. Equations (11)–(13) give its exact support and arithmetic comparisons.
+
+Theorems 5–6 resolve the two orders of the other identity roles, and Theorem 7 includes the literal absorber in all six orders. Their tables, forced original images, comparisons, and labelled common quotients are explicit. These results do not establish that an additional corner contributes a new invariant to the present analytic programme. The starting tau remains the actual programme object throughout.
+
+# Sources and proof provenance
+
+1. HI-AI, *An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*, Zenodo record 17555345, original source 11.tex. Section 3 defines the original \(\mathcal T\) and proves its semiring structure; the arbitrary-ring section gives \(S_R\). The exact source is included as sources/17555345_11.tex. The operative definitions are reproduced and proved here, rather than imported from the record's title.
+2. HI-AI, *An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements*, Zenodo record 17547186, original source 5.tex, Sections 9–10. The literal rule is \(\mathcal T\Omega=\Omega\), with global multiplicative zero absorption explicitly weakened. The exact source is included as sources/17547186_5.tex.
+
+Theorem 1 and the first receivers in Theorem 4 were already present in the preserved private working draft and are fully reproved here. Theorems 2–3 repair and complete its unfinished common-receiver calculation. Theorems 5–7 complete the two-role calculation and all six orders including the literal absorber. These results were independently derived from the stated tables. Finite checks supplied alongside this paper supplement the proofs and do not replace their arbitrary-ring arguments. Historical private conversations and publication instructions are not part of this mathematical repository.

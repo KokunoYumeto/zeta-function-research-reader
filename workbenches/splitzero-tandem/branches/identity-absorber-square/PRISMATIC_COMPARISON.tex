@@ -1,0 +1,900 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2295}{\ensuremath{\oplus}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2261}{\ensuremath{\equiv}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Prismatic coefficient structures on the integer receiver
+algebras}\label{prismatic-coefficient-structures-on-the-integer-receiver-algebras}
+
+This note gives complete algebraic derivations for the objects in
+Theorems Z7--Z8 of \href{FOUR_CORNERS_OVER_Z.md}{Four corners over the
+integers}. It constructs bounded crystalline prisms and their exact
+comparison maps. It does not identify their prismatic cohomology with a
+previously constructed cohomology theory.
+
+Fix a prime integer \(p\). Write \(e=0_{\mathbb Z}\),
+\(S=\mathbb Z\sqcup\{\tau\}\), and \(H=S\sqcup\{\Omega\}\), with the
+operations and identities specified in that paper. In particular
+\(e\ne\tau\). Put \(N=\mathbb Z\setminus\{0\}\), regarded as a
+multiplicative monoid, and \[
+\Lambda=\mathbb Z[N],\qquad T=\varprojlim_r\Lambda/p^r\Lambda.
+\tag{P1}
+\] The notation \([n]\) denotes a monoid-ring basis element, whereas an
+integer coefficient denotes a multiple of the ring identity. These are
+different objects: \([p]\ne p\).
+
+The definitions used here are Bhatt--Scholze,
+\href{https://arxiv.org/abs/1905.08229v4}{\emph{Prisms and Prismatic
+Cohomology}, arXiv:1905.08229v4},
+\href{https://arxiv.org/src/1905.08229v4}{original TeX archive}, file
+\texttt{prisms.tex}: Definition \texttt{def:deltaring}, Remark
+\texttt{FrobLiftTheta}, Remark \texttt{ThetaW2}, Definition
+\texttt{def:Prism}, and Example \texttt{PrismExIntro}, item 1. The read
+source passages are lines 484--558 and 135--170 of the local original
+source. Every construction specific to the receiver algebras is proved
+below.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={The canonical obstruction, the Witt comparison and the conjugate arithmetic-compatible family.}]{figures/09_prismatic_bridge.png}}
+\caption{The canonical obstruction, the Witt comparison and the
+conjugate arithmetic-compatible family.}
+\end{figure}
+
+Figure 9 records the actual maps proved in Theorems P1--P5. The symbol
+\([p]\) is a basis element; \(p\) is an integer scalar. The two
+occurrences have different delta values for the canonical Frobenius. The
+lower panel uses the same ring with a conjugate Frobenius family.
+
+\subsection{1. The completed rings and their
+coefficients}\label{the-completed-rings-and-their-coefficients}
+
+For a set \(E\), the \(p\)-adic completion of the free abelian group on
+\(E\) consists of families \((a_u)_{u\in E}\), with
+\(a_u\in\mathbb Z_p\), such that for each \(r\ge1\), only finitely many
+\(a_u\) are nonzero modulo \(p^r\). To prove this description, a
+compatible family of finite coefficient vectors modulo \(p^r\)
+determines one compatible coefficient at each \(u\), and its finite
+support modulo \(p^r\) gives the stated condition. Conversely such
+coefficients give finite vectors modulo every \(p^r\), compatible under
+reduction. These constructions are inverse.
+
+It follows that the completion is \(p\)-torsionfree: multiplication by
+\(p\) is injective on every coefficient \(a_u\). It is separated and
+complete in its own \(p\)-adic topology. Indeed a coefficient family is
+divisible by \(p^r\) precisely when each coefficient is divisible by
+\(p^r\); division gives another admissible family because finiteness
+modulo \(p^s\) after division follows from finiteness modulo \(p^{r+s}\)
+before division. Consequently its reduction modulo \(p^r\) is exactly
+the original free module modulo \(p^r\), and the displayed inverse limit
+is its \(p\)-adic completion.
+
+Applied to \(\Lambda\), this identifies elements of \(T\) with
+restricted sums \(\sum_{n\ne0}a_n[n]\). Ring multiplication is
+determined by \([m][n]=[mn]\); modulo each \(p^r\) both inputs have
+finite support, so multiplication there is an ordinary finite
+calculation. The compatible products define the product in \(T\).
+
+The finite product decompositions in Theorem Z7 therefore give \[
+\begin{array}{c|c}
+M&B_M:=\widehat{\Gamma(M)}_p\\\hline
+S,A&\mathbb Z_p\times T\\
+H&\mathbb Z_p\times\mathbb Z_p\times T\\
+B,J&\mathbb Z_p\\
+C,L&\mathbb Z_p\times\mathbb Z_p\\
+D&\mathbb Z_p.
+\end{array}
+\tag{P2}
+\] Completion commutes with these finite products because both reduction
+modulo \(p^r\) and compatible inverse-limit sequences are calculated
+coordinate by coordinate. The original coordinates remain \[
+\begin{array}{c|ccc}
+&[\tau]&[e]&[n],\quad n\ne0\\\hline
+B_S&0&(1,0)&(1,[n])\\
+B_H&(1,0,0)&(1,1,0)&(1,1,[n]).
+\end{array}
+\tag{P3}
+\] In \(B_H\), \([\Omega]=0\). Thus the distinct source states are not
+renamed as one source element by this construction.
+
+\subsection{2. Canonical Frobenius and bounded crystalline
+prisms}\label{canonical-frobenius-and-bounded-crystalline-prisms}
+
+On any contracted monoid ring occurring here, define \[
+\phi_M\left(\sum a_m[m]\right)=\sum a_m[m^p],
+\qquad a_m\in\mathbb Z.
+\tag{P4}
+\] This is a unital ring map. On products of basis elements the required
+equality is \([(mn)^p]=[m^pn^p]\); bilinear expansion then proves it for
+finite sums. The killed absorber maps to itself before contraction and
+therefore to zero after contraction. The coefficients are fixed. Since
+\(\phi_M(p^rx)=p^r\phi_M(x)\), it extends uniquely to the completion
+\(B_M\), and the extension is continuous.
+
+Modulo \(p\), the binomial theorem gives \((x+y)^p=x^p+y^p\), because
+every intermediate binomial coefficient is divisible by \(p\). Integer
+coefficients satisfy \(a^p=a\) modulo \(p\), first by induction from
+\((a+1)^p\equiv a^p+1\), and then for negative integers as well. Hence
+\(\phi_M(x)\equiv x^p\pmod p\) for finite sums. Every completed element
+has a finite-sum representative modulo \(p\), so the same equality holds
+on \(B_M\).
+
+Since \(B_M\) is \(p\)-torsionfree, define \[
+\delta_M(x)=\frac{\phi_M(x)-x^p}{p}.
+\tag{P5}
+\] This is a unique element of \(B_M\). It has
+\(\delta_M(0)=\delta_M(1)=0\), and direct expansion gives \[
+\delta_M(x+y)=\delta_M(x)+\delta_M(y)
++\frac{x^p+y^p-(x+y)^p}{p},
+\] \[
+\delta_M(xy)=x^p\delta_M(y)+y^p\delta_M(x)
++p\delta_M(x)\delta_M(y).
+\tag{P6}
+\] For the product formula, substitute \(\phi_M(x)=x^p+p\delta_M(x)\)
+and the analogous identity for \(y\), multiply, and divide the
+difference from \(x^py^p\) by \(p\). The sum formula follows by adding
+the two expressions for \(\phi_M\). These are exactly the
+\(\delta\)-ring identities.
+
+\textbf{Theorem P1.} Every pair \((B_M,(p))\) in (P2), equipped with
+(P4)--(P5), is a bounded crystalline prism.
+
+\textbf{Proof.} The ring \(B_M\) is a \(\delta\)-ring by (P6). The ideal
+\((p)\) is generated by a nonzerodivisor because \(B_M\) is
+\(p\)-torsionfree, so it defines a Cartier divisor. The ring is complete
+for \((p,(p))=(p)\), as proved in Section 1. It also satisfies the
+derived completeness convention for prisms: the two-term complex
+\([B_M\xrightarrow{p^r}B_M]\) has zero kernel and cokernel \(B_M/p^r\),
+so the derived reduction is the ordinary quotient in degree zero. The
+transition maps of these quotients are surjective. The inverse-limit
+complex consequently has no degree-one term in cohomology: explicitly
+the difference map on the product of the quotients is surjective, since
+each equation for a successive coordinate can be solved by lifting along
+its surjective transition map. Its degree-zero kernel is the ordinary
+inverse limit, which is \(B_M\). The condition
+\(p\in(p)+\phi_M((p))B_M\) holds already because \(p\in(p)\). Finally
+\(B_M/(p)\) is killed by \(p\), so its \(p^\infty\)-torsion is killed by
+the single power \(p\); this is boundedness. These are all the required
+conditions. In addition \(\delta_M(p)=1-p^{p-1}\), a unit: its residue
+modulo \(p\) is 1, and the geometric series for the inverse converges
+\(p\)-adically. Thus the generator \(p\) is distinguished as well.
+\(\square\)
+
+The basis elements have \(\delta_M([m])=0\). In the product coordinates
+(P2), Frobenius is the identity on every \(\mathbb Z_p\) factor and is
+the map \(\phi_T([n])=[n^p]\) on \(T\). For example the images of all
+three basis types in (P3) have exactly these coordinatewise powers. The
+coefficient map on \(\mathbb Z_p\) is the identity because it fixes the
+dense subring \(\mathbb Z\) and is continuous. Formula (P5) then also
+acts coordinatewise.
+
+\subsection{3. Exact maps of prisms}\label{exact-maps-of-prisms}
+
+Let \(f:M\to M'\) be any of the multiplication maps from Theorem Z8,
+preserving the unit and the respective global absorbers. The induced map
+on contracted monoid rings sends \([m]\) to \([f(m)]\). Its commutation
+with Frobenius is the identity \[
+[f(m^p)]=[f(m)^p].
+\tag{P7}
+\] Consequently it commutes with Frobenius on finite sums and, by
+continuity, on the completions. It also commutes with \(\delta\):
+multiply the desired equality by \(p\), use (P5) and Frobenius
+commutation, then cancel \(p\) in the target. As a unital ring map it
+sends \(p\) to \(p\), so it gives a map of the prisms with ideal
+\((p)\).
+
+The exact coordinate maps are unchanged: \[
+B_S\longrightarrow B_{\mathbb B}\times B_{(\mathbb Z,\cdot,e)},
+\qquad(k,v)\longmapsto(k,v),
+\tag{P8}
+\] where the two target rings are \(\mathbb Z_p,T\), respectively, and
+\[
+\begin{aligned}
+B_q(k,l,v)&=(k,v),&B_\rho(k,l,v)&=(k,l),\\
+B_\alpha(k,v)&=k,&B_\beta(k,l)&=k.
+\end{aligned}
+\tag{P9}
+\] In particular \[
+B_H\xrightarrow{\ \cong\ }B_A\times_{B_D}B_L,
+\qquad(k,l,v)\longmapsto((k,v),(k,l))
+\tag{P10}
+\] is an isomorphism of \(\delta\)-rings, preserving the distinguished
+ideal \((p)\). The target consists exactly of those pairs with the same
+first coordinate, so its inverse reads off \(k,l,v\). Ring operations
+and \(\delta\) are coordinatewise. The target's ideal \((p)\) consists
+of the pairs in which all three coordinates are divisible by \(p\),
+which agrees with the image of \((p)\) in \(B_H\). This proves (P10) as
+an isomorphism of prisms, including the pullback universal property
+among prisms: compatible prism maps pair to the unique ring map, their
+\(\delta\)-compatibility is coordinatewise, and their common source
+ideal maps into \((p)\) in every coordinate.
+
+\subsection{4. The arithmetic evaluation
+obstruction}\label{the-arithmetic-evaluation-obstruction}
+
+The ring evaluation has the continuous extension \[
+\operatorname{ev}:T\longrightarrow\mathbb Z_p,
+\qquad \sum_{n\ne0}a_n[n]\longmapsto\sum_{n\ne0}a_n n.
+\tag{P11}
+\] The sum converges: for every \(r\), only finitely many terms can be
+nonzero modulo \(p^r\), since \(n\in\mathbb Z_p\). Evaluation preserves
+sums and products on the dense monoid ring and therefore on the
+completion. It is surjective, with ring section given by scalar
+coefficients. On \(B_S\), the arithmetic map is \[
+\varepsilon(k,v)=\operatorname{ev}(v).
+\tag{P12}
+\] Its kernel is the closed ideal generated by the original addition
+relations. Here is the closure assertion explicitly. If
+\(v\in\ker(\operatorname{ev})\), choose \(v_r\in\Lambda\) congruent to
+\(v\) modulo \(p^rT\). Then \(\operatorname{ev}(v_r)\) is an integer
+divisible by \(p^r\). The element \(v_r-\operatorname{ev}(v_r)\) lies in
+the uncompleted evaluation kernel and is still congruent to \(v\) modulo
+\(p^r\). The uncompleted kernel is precisely the addition ideal by
+Theorem Z7. The support factor is killed by the original relation
+\(e+e=e\), and scalar approximation treats its completion in the same
+way. Conversely continuity shows that the closure of those relations
+lies in the kernel.
+
+\textbf{Theorem P2.} With canonical Frobenius (P4), the ideal generated
+in the category of \(\delta\)-rings by the single arithmetic relation \[
+r=[p]-p\cdot1
+\tag{P13}
+\] is the entire ring, both in \(T\) and in \(B_S\). In particular there
+is no nonzero \(\delta\)-ring quotient of either ring which imposes all
+the original integer addition relations. The evaluation (P11) or (P12)
+is not a \(\delta\)-map to the canonical \(\delta\)-ring
+\(\mathbb Z_p\).
+
+\textbf{Proof.} Put \(X=[p]\). Canonical Frobenius has \(\phi(X)=X^p\)
+and \(\phi(p)=p\). Thus \[
+\delta(r)=\frac{X^p-p-(X-p)^p}{p}.
+\tag{P14}
+\] The right side is a polynomial in \(X\) with integer coefficients:
+the leading \(X^p\) cancels, and every remaining coefficient in
+\((X-p)^p\) has at least one factor \(p\). Substituting \(X=p\) into
+that polynomial gives \[
+c=p^{p-1}-1.
+\tag{P15}
+\] For every polynomial with integer coefficients, its difference from
+its value at \(p\) is divisible by \(X-p\), by factoring each
+\(X^j-p^j\). Consequently \(\delta(r)-c\in(r)\). The coefficient \(c\)
+is a unit in \(\mathbb Z_p\), since \(c\equiv-1\pmod p\). Therefore \[
+1\in(r,\delta(r)).
+\tag{P16}
+\] Every \(\delta\)-ideal containing \(r\) must contain \(\delta(r)\),
+hence 1. This proof uses two explicit generators and does not require
+taking a closure. Finally \(\operatorname{ev}(r)=0\), whereas
+\(\operatorname{ev}(\delta(r))=c\ne0\); hence evaluation cannot commute
+with \(\delta\). Equivalently \([p]\) has \(\delta=0\), but its proposed
+image has \(\delta_{\mathbb Z_p}(p)=(p-p^p)/p=1-p^{p-1}\ne0\).
+\(\square\)
+
+\subsection{5. Arithmetic-compatible Frobenius lifts: existence and full
+classification on
+T}\label{arithmetic-compatible-frobenius-lifts-existence-and-full-classification-on-t}
+
+The preceding obstruction is specific to (P4). There are other Frobenius
+lifts on the same completed ring for which evaluation is a prism
+morphism. The exact classification follows from a polynomial
+presentation that we now justify.
+
+Let \(\mathcal P\) be the set of positive prime integers. Every positive
+integer is a finite product of primes: by strong induction, an integer
+greater than 1 is either prime or a product of two smaller positive
+integers, to which the induction applies. Uniqueness follows from the
+following elementary divisibility argument. If a prime \(\ell\) does not
+divide \(a\), there are integers \(u,v\) with \(ua+v\ell=1\). Indeed the
+smallest positive integer of the form \(ua+v\ell\) divides both \(a\)
+and \(\ell\): Euclidean division by this integer would otherwise give a
+smaller positive integer of the same form. It therefore equals 1, since
+\(\ell\) is prime and does not divide \(a\). Multiplying this identity
+by \(b\) proves that \(\ell\mid ab\) implies \(\ell\mid b\). Applying
+this implication repeatedly to an equality of two prime products matches
+one prime on the two sides; cancelling it and repeating proves
+uniqueness. A nonzero integer has in addition its unique sign.
+Consequently \[
+N\cong\{1,-1\}\times\bigoplus_{\ell\in\mathcal P}\mathbb N,
+\qquad
+\Lambda\cong\mathbb Z[x_\ell\ (\ell\in\mathcal P),t]/(t^2-1),
+\tag{P17}
+\] where \(x_\ell=[\ell]\) and \(t=[-1]\). The direct sum means that
+only finitely many prime exponents are nonzero. The ring isomorphism
+follows by matching its monomial basis with the unique sign and prime
+factorization of each basis index in \(N\).
+
+Set \[
+R=\widehat{\mathbb Z[x_\ell\ (\ell\in\mathcal P)]}_p.
+\] Then \(T=R\oplus tR\), with \(t^2=1\). This follows already before
+completion by reducing each polynomial in \(t\) uniquely to degree at
+most one; taking the completion preserves the two coefficient modules.
+The ring \(R\) is an integral domain. To prove this, a nonzero
+restricted coefficient family has a least finite \(p\)-adic valuation
+\(v\). Dividing all coefficients by \(p^v\) gives another restricted
+family with nonzero reduction in \(\mathbb F_p[x_\ell]\). For two such
+primitive families their reductions have nonzero product: both use only
+finitely many variables modulo \(p\), and the leading monomial of the
+product of two nonzero polynomials over the field \(\mathbb F_p\) has
+nonzero coefficient. Thus the product of the primitive families is
+nonzero. Restoring the powers of \(p\), which are nonzerodivisors,
+proves that the original product is nonzero.
+
+The only roots of \(u^2=1\) in \(T\) are \[
+u\in\{1,-1,t,-t\}.
+\tag{P18}
+\] Indeed write \(u=a+bt\), with \(a,b\in R\). Comparing the two
+coefficients in \(u^2=1\) gives \(a^2+b^2=1\) and \(2ab=0\). Since \(R\)
+is a domain and 2 is nonzero, either \(a=0\) or \(b=0\). The remaining
+coefficient has square 1, so it is 1 or −1 by factoring \(z^2-1\) in the
+domain. This proves (P18).
+
+\textbf{Theorem P3.} Every continuous unital Frobenius lift
+\(\psi:T\to T\) satisfying \[
+\operatorname{ev}\circ\psi=\operatorname{ev}
+\tag{P19}
+\] is given uniquely by arbitrary choices
+\(j_\ell\in\ker(\operatorname{ev})\), one for every positive prime
+\(\ell\), through \[
+\psi(x_\ell)=x_\ell^p+\ell-\ell^p+p j_\ell,
+\qquad
+\psi(t)=
+\begin{cases}
+t,&p\text{ odd},\\
+-1,&p=2.
+\end{cases}
+\tag{P20}
+\] Conversely every such collection defines a continuous Frobenius lift
+with (P19). No convergence condition on the collection \((j_\ell)\) is
+required.
+
+\textbf{Proof.} A continuous unital endomorphism fixes \(\mathbb Z_p\),
+since it fixes the dense integers. Its value at \(x_\ell\) has the
+unique form \(x_\ell^p+p h_\ell\), because it reduces to Frobenius
+modulo \(p\) and \(T\) is \(p\)-torsionfree. Condition (P19) gives \[
+\operatorname{ev}(h_\ell)=\frac{\ell-\ell^p}{p}.
+\] The right side is an integer by the congruence used in Section 2.
+Thus \(h_\ell=(\ell-\ell^p)/p+j_\ell\), for a unique
+\(j_\ell\in\ker(\operatorname{ev})\).
+
+For the sign generator, \(u=\psi(t)\) satisfies \(u^2=1\), so (P18)
+lists all options. If \(p\) is odd, the required residue is \(t^p=t\).
+Of the four possibilities, only \(t\) has that residue: in the free
+rank-two module over \(R/p\), neither constant can equal \(t\), and
+\(-t\ne t\) because 2 is nonzero modulo \(p\). If \(p=2\), the required
+residue is \(t^2=1\). The constants \(1,-1\) have that residue; the
+other two have residue \(t\ne1\). Finally (P19) requires
+\(\operatorname{ev}(u)=-1\), leaving \(u=-1\).
+
+Conversely the assignments (P20) satisfy the only defining relation
+\(t^2=1\), and so define a unital ring map on the polynomial ring with
+coefficients in \(\mathbb Z_p\). Modulo \(p\), they are precisely the
+\(p\)-th powers of the generators. Hence the map reduces to Frobenius.
+It sends \(p^r\) times any polynomial into \(p^rT\), so it extends
+uniquely to the completion. This also shows why infinitely many chosen
+images cause no problem: each input is approximated modulo every \(p^r\)
+by a finite polynomial, and changing that polynomial by a multiple of
+\(p^r\) changes its image by a multiple of \(p^r\). The evaluation
+equality holds on all generators and coefficients, hence on polynomials
+and by continuity on the completion. Uniqueness follows from the density
+of the polynomial ring. \(\square\)
+
+In particular setting every \(j_\ell=0\) gives an explicit choice
+\(\phi_{\mathrm{ar}}\). Its \(\delta\)-values are \[
+\delta_{\mathrm{ar}}(x_\ell)=\frac{\ell-\ell^p}{p},
+\qquad
+\delta_{\mathrm{ar}}(t)=
+\begin{cases}0,&p\text{ odd},\\-1,&p=2.\end{cases}
+\tag{P21}
+\] With this choice, \((T,(p))\) remains a bounded crystalline prism by
+the proof of Theorem P1, and (P11) becomes a prism morphism to
+\((\mathbb Z_p,(p),\phi=\mathrm{id})\): Frobenius commutes by (P19), and
+cancellation of \(p\) proves \(\delta\)-commutation. Its kernel is
+therefore a \(\delta\)-ideal. Applying the identity Frobenius to the
+scalar factors and \(\phi_{\mathrm{ar}}\) to the \(T\)-factor gives the
+same conclusion on \(B_S\), and the same product and fibre-product
+diagrams (P8)--(P10) remain diagrams of prisms because every displayed
+map is a coordinate projection.
+
+These corrections use the actual integer arithmetic values
+\(\ell-\ell^p\). They show exactly that compatible prism structures
+exist; they do not reconstruct the integer addition from multiplication
+without additional information. At \(p=2\), even the sign generator must
+change from canonical Frobenius value \(1\) to the arithmetic-compatible
+value \(-1\).
+
+\subsection{6. A complete Witt-vector bridge for the canonical
+lift}\label{a-complete-witt-vector-bridge-for-the-canonical-lift}
+
+The canonical lift also has a positive comparison that retains its
+rank-one basis elements. We construct the required Witt ring and the
+comparison directly, including its completeness and
+\(\delta\)-structure.
+
+For \(z\in\mathbb Z_p\) and \(m\ge1\), one has \[
+z^{p^m}-z^{p^{m-1}}\in p^m\mathbb Z_p.
+\tag{P22}
+\] For \(m=1\), this is the residue congruence already proved. If
+\(x-y\in p^r\mathbb Z_p\) with \(r\ge1\), binomial expansion of
+\((y+p^rh)^p-y^p\) shows divisibility by \(p^{r+1}\). The term linear in
+\(p^rh\) has that factor; every intermediate term has an additional
+binomial factor \(p\); the last term has valuation at least
+\(rp\ge r+1\). Applying this repeatedly proves (P22).
+
+Define a ring of sequences, with coordinatewise addition and
+multiplication, \[
+K=\left\{(a_0,a_1,\ldots)\in\prod_{k\ge0}\mathbb Z_p:
+a_k-a_{k-1}\in p^k\mathbb Z_p\ \text{for every }k\ge1\right\}.
+\tag{P23}
+\] It is a subring. Closure under addition and negatives is immediate
+from the differences. For multiplication,
+\(a_kb_k-a_{k-1}b_{k-1}=(a_k-a_{k-1})b_k+a_{k-1}(b_k-b_{k-1})\), and
+both summands are divisible by \(p^k\). The identity is the constant
+sequence 1. It is \(p\)-torsionfree because it is a subring of a product
+of \(p\)-torsionfree rings.
+
+For a sequence of Witt coordinates
+\(b=(b_0,b_1,\ldots)\in\prod_{k\ge0}\mathbb Z_p\), set \[
+g_k(b)=\sum_{i=0}^k p^i b_i^{p^{k-i}}.
+\tag{P24}
+\] The map \(g:b\mapsto(g_0(b),g_1(b),\ldots)\) is a bijection from
+Witt-coordinate sequences onto \(K\). To prove that its image lies in
+\(K\), subtract consecutive expressions. The new term is \(p^k b_k\);
+each preceding difference is \(p^i(b_i^{p^{k-i}}-b_i^{p^{k-1-i}})\),
+divisible by \(p^k\) by (P22). To prove surjectivity, let \(a\in K\).
+Define recursively \[
+b_0=a_0,\qquad
+b_k=\frac{a_k-\sum_{i<k}p^i b_i^{p^{k-i}}}{p^k}.
+\tag{P25}
+\] The numerator is divisible by \(p^k\): the sum in its numerator is
+congruent modulo \(p^k\) to \(\sum_{i<k}p^i b_i^{p^{k-1-i}}=a_{k-1}\),
+using (P22), and \(a_k\equiv a_{k-1}\pmod{p^k}\). Thus every \(b_k\)
+belongs to \(\mathbb Z_p\). The recursion gives \(g(b)=a\), and its
+forced values prove injectivity as well.
+
+The \(p\)-typical Witt ring \(W(\mathbb Z_p)\) is precisely
+Witt-coordinate sequences with operations for which all polynomials
+(P24), called ghost coordinates, are ring maps. The bijection just
+proved supplies these operations by transporting the ring structure of
+\(K\), and injectivity of \(g\) makes them unique. Thus it identifies
+\(W(\mathbb Z_p)\) with (P23). This gives a construction for the
+particular base ring needed here without using an adjunction in place of
+the calculation.
+
+The ring \(K\) is complete in its own \(p\)-adic topology, not merely
+closed for the coordinatewise topology. Here is the required proof. A
+sequence \(a\in K\) belongs to \(p^rK\) exactly when \[
+a_k\in p^r\mathbb Z_p\ \text{for all }k,
+\qquad a_k-a_{k-1}\in p^{k+r}\mathbb Z_p\ \text{for all }k\ge1.
+\tag{P26}
+\] Necessity follows by multiplying an element of \(K\) by \(p^r\).
+Conversely these conditions show that coordinatewise division by \(p^r\)
+produces an element of \(K\), proving sufficiency. Now let
+\((a^{(j)})_j\) be Cauchy for the ideals \(p^rK\). Each coordinate has a
+limit \(a_k\in\mathbb Z_p\). Passing to limits in the defining
+congruences shows that \(a=(a_k)\in K\). For each fixed \(r\), take
+\(j\) beyond a Cauchy threshold. The differences \(a^{(j)}-a^{(i)}\),
+for all sufficiently large \(i\), satisfy both conditions of (P26).
+Coordinatewise limits preserve divisibility by every fixed power of
+\(p\), so \(a^{(j)}-a\) satisfies those two conditions as well. Hence
+\(a^{(j)}-a\in p^rK\). This proves convergence in the ring's own
+\(p\)-adic topology. Separatedness follows from coordinatewise
+separatedness. Equivalently every compatible family modulo \(p^rK\) can
+be represented by a Cauchy sequence and therefore has a unique limit.
+
+Define the shift \[
+F(a_0,a_1,a_2,\ldots)=(a_1,a_2,a_3,\ldots).
+\tag{P27}
+\] It maps \(K\) into itself, since \(a_{k+1}-a_k\) is divisible by
+\(p^{k+1}\), hence by \(p^k\), and it is a unital ring map. Its
+difference from the coordinatewise \(p\)-th power is divisible by \(p\)
+\textbf{inside \(K\)}. Indeed put \[
+c_k=\frac{a_{k+1}-a_k^p}{p}.
+\tag{P28}
+\] These are integers in \(\mathbb Z_p\), since
+\(a_{k+1}\equiv a_k\equiv a_k^p\pmod p\). For \(k\ge1\), \[
+p(c_k-c_{k-1})
+=(a_{k+1}-a_k)-(a_k^p-a_{k-1}^p).
+\] The first parenthesis is divisible by \(p^{k+1}\). The second is also
+divisible by \(p^{k+1}\), since \(a_k-a_{k-1}\) is divisible by \(p^k\)
+and the binomial estimate used for (P22) raises that divisibility by
+one. Hence \(c_k-c_{k-1}\) is divisible by \(p^k\), proving \(c\in K\).
+Thus \(F(a)-a^p=pc\) in \(K\), not only in the ambient product ring.
+
+It follows from the argument (P5)--(P6) that \(\delta_K(a)=c\) defines a
+\(\delta\)-ring structure. The preceding proof of completeness and
+torsionfreeness now proves that \[
+\bigl(W(\mathbb Z_p),(p)\bigr)=\bigl(K,(p)\bigr)
+\tag{P29}
+\] is a bounded crystalline prism.
+
+\textbf{Theorem P4.} For canonical Frobenius \(\phi\) on \(B_S\), the
+formula in ghost coordinates \[
+\Theta(x)=\bigl(\varepsilon(x),\varepsilon(\phi(x)),
+\varepsilon(\phi^2(x)),\ldots\bigr)
+\tag{P30}
+\] defines a unique prism morphism \(B_S\to W(\mathbb Z_p)\) whose
+composite with the zeroth ghost coordinate is \(\varepsilon\). On the
+nonzero integer basis it sends \([n]\) to the Teichmüller vector of
+\(n\), whose Witt coordinates are \((n,0,0,\ldots)\). It kills the
+support factor of \(B_S\), exactly as \(\varepsilon\) does.
+
+\textbf{Proof.} In the coordinates \(x=(k,\sum a_n[n])\), the ghost
+coordinate in position \(j\) is \[
+\varepsilon(\phi^j x)=\sum_{n\ne0}a_n n^{p^j}.
+\tag{P31}
+\] The restricted sums converge as in (P11). Consecutive terms of (P31)
+differ by a multiple of \(p^j\), term by term by (P22), and the ideal
+\(p^j\mathbb Z_p\) is closed. Thus (P30) belongs to \(K\). Each
+coordinate is a unital ring map, being the composite of such maps, so
+(P30) is a unital ring map to \(K\). Shift of its coordinates gives
+\(F\Theta(x)=\Theta(\phi(x))\). Multiplying the desired
+\(\delta\)-commutation by \(p\) and using this identity and (P5) proves
+it after cancellation in the \(p\)-torsionfree ring \(K\). The map sends
+\(p\) to \(p\), so it is a prism morphism. It is continuous because any
+unital ring map sends \(p^rB_S\) into \(p^rK\).
+
+For uniqueness, if a \(\delta\)-map \(h\) has zeroth ghost coordinate
+\(\varepsilon\), then it commutes with Frobenius. Its \(j\)-th ghost
+coordinate is the zeroth ghost coordinate of \(F^jh(x)=h(\phi^jx)\),
+namely \(\varepsilon(\phi^jx)\). Hence all its ghost coordinates are
+forced to be (P30), proving \(h=\Theta\). For \([n]\), (P31) gives the
+sequence \((n,n^p,n^{p^2},\ldots)\); formula (P24) identifies its Witt
+coordinates as \((n,0,0,\ldots)\). Formula (P31) is independent of
+\(k\), proving the final assertion. \(\square\)
+
+The support can also be retained throughout this comparison. Write
+\(\Theta_T\) for the restriction to the \(T\)-factor. There are prism
+morphisms \[
+\begin{aligned}
+\Psi_S:\mathbb Z_p\times T&\longrightarrow\mathbb Z_p\times W(\mathbb Z_p),
+&(k,v)&\longmapsto(k,\Theta_T(v)),\\
+\Psi_H:\mathbb Z_p^2\times T&\longrightarrow\mathbb Z_p^2\times W(\mathbb Z_p),
+&(k,l,v)&\longmapsto(k,l,\Theta_T(v)).
+\end{aligned}
+\tag{P32}
+\] They are coordinatewise products of prism maps, so all assertions
+follow from their component calculations. In particular \([e]=(1,0)\) in
+\(B_S\) maps to the nonzero idempotent \((1,0)\); it does not merge with
+\([\tau]=0\). The maps (P9) commute with these comparisons because they
+read the same coordinates before and after applying \(\Theta_T\).
+
+The zeroth ghost map \(w_0:K\to\mathbb Z_p\), \((a_j)\mapsto a_0\), is a
+ring map, but it is not a \(\delta\)-map to the canonical arithmetic
+structure. For the Teichmüller vector \([p]_{\mathrm W}\), one has
+\(\delta_K([p]_{\mathrm W})=0\), since shifting
+\((p,p^p,p^{p^2},\ldots)\) equals its \(p\)-th power. Its zeroth ghost
+value is \(p\), whose arithmetic \(\delta\)-value is the nonzero unit
+\(1-p^{p-1}\). Thus \[
+B_S\xrightarrow{\Theta}W(\mathbb Z_p)\xrightarrow{w_0}\mathbb Z_p
+\tag{P33}
+\] recovers arithmetic evaluation, with the first map a prism morphism
+and the second map an explicitly identified ring map that does not
+preserve \(\delta\).
+
+For completeness, the two-coordinate addition and multiplication laws
+are obtained directly from (P24). If Witt coordinates are \((a,a_1)\),
+their first two ghost coordinates are \((a,a^p+pa_1)\). Equating the
+ghosts for a sum and a product gives \[
+(a,a_1)+(b,b_1)=
+\left(a+b,a_1+b_1+\frac{a^p+b^p-(a+b)^p}{p}\right),
+\tag{P34}
+\] \[
+(a,a_1)(b,b_1)=
+\left(ab,a^p b_1+b^p a_1+p a_1b_1\right).
+\tag{P35}
+\] Cancellation of \(p\) in \(\mathbb Z_p\) proves uniqueness of these
+coordinates. In particular \[
+[a]_{\mathrm W}+[b]_{\mathrm W}-[a+b]_{\mathrm W}
+\quad\text{has first two Witt coordinates}\quad
+\left(0,\frac{a^p+b^p-(a+b)^p}{p}\right).
+\tag{P36}
+\] The quotient in (P36) is an integer-coefficient polynomial by the
+binomial theorem. It is exactly the first additive correction: the
+product of two Teichmüller vectors is the Teichmüller vector of their
+product, but their sum requires this additional coordinate. For example
+at \(p=2\), adding the Teichmüller vectors of 1 and 1 has first two
+coordinates \((2,-1)\), while the Teichmüller vector of 2 has first two
+coordinates \((2,0)\). Their difference has coordinates \((0,-1)\). This
+difference is the image of \(-r=2-[2]\), with the opposite orientation
+to \(r=[2]-2\) in (P13); the image of \(r\) has coordinates \((0,1)\),
+as (P15) requires.
+
+Scalar coefficients in this construction have their own exact embedding.
+The constant ghost sequence \[
+\iota(a)=(a,a,a,\ldots)
+\tag{P37}
+\] belongs to \(K\), is a ring map \(\mathbb Z_p\to K\), and commutes
+with \(\delta\), because its image under (P28) is the constant sequence
+\((a-a^p)/p\). Its first two Witt coordinates are \((a,(a-a^p)/p)\).
+Thus scalar \(p\) maps to \((p,1-p^{p-1},\ldots)\), while the basis
+element \([p]\) maps to \((p,0,\ldots)\). This is the positive
+Witt-vector form of the obstruction in Theorem P2.
+
+For the alternative lift \(\phi_{\mathrm{ar}}\), evaluation commutes
+with Frobenius, so every ghost coordinate of (P30) equals
+\(\varepsilon(x)\). Its corresponding prism morphism is therefore
+\(\iota\circ\varepsilon\). In this case it factors through the
+arithmetic quotient, in agreement with Theorem P3. The two lifts
+therefore have different, fully computed relationships to addition on
+the same coefficient ring.
+
+\subsection{7. A commuting family for every prime, conjugate to monoid
+Frobenius}\label{a-commuting-family-for-every-prime-conjugate-to-monoid-frobenius}
+
+The fixed-prime choices in Theorem P3 can be made simultaneously in a
+way that commutes for different primes. This assertion is integral,
+before any completion.
+
+For every prime \(p\), let \(\phi_p\) be the canonical endomorphism of
+\(\Lambda\) given by \(x_\ell\mapsto x_\ell^p\), \(t\mapsto t^p\).
+Define a single ring automorphism \[
+\sigma:\Lambda\longrightarrow\Lambda,
+\qquad \sigma(x_\ell)=x_\ell-\ell,\quad\sigma(t)=-t.
+\tag{P38}
+\] It fixes integer coefficients. The sign image satisfies the required
+relation \((-t)^2=1\); the prime generators have no further polynomial
+relations. Thus (P38) defines a ring map by (P17). The assignments
+\(x_\ell\mapsto x_\ell+\ell\), \(t\mapsto-t\) define its inverse: each
+of the two composites fixes every coefficient and generator. This proves
+the claimed automorphism.
+
+\textbf{Theorem P5.} The conjugate endomorphisms \[
+\Psi_p=\sigma\phi_p\sigma^{-1}
+\tag{P39}
+\] are commuting arithmetic-compatible Frobenius lifts for all primes
+simultaneously. Their exact formulas are \[
+\Psi_p(x_\ell)=(x_\ell-\ell)^p+\ell,
+\qquad
+\Psi_p(t)=
+\begin{cases}t,&p\text{ odd},\\-1,&p=2.\end{cases}
+\tag{P40}
+\] For any fixed prime \(p\), \(\sigma\) extends to an isomorphism of
+the bounded crystalline prisms on the completed ring \(T\), from the
+canonical structure \(\phi_p\) to the structure \(\Psi_p\). The same
+holds on all coefficient product diagrams above by applying the identity
+to the scalar factors.
+
+\textbf{Proof.} On a prime generator, \[
+\sigma\phi_p\sigma^{-1}(x_\ell)
+=\sigma\phi_p(x_\ell+\ell)
+=\sigma(x_\ell^p+\ell)
+=(x_\ell-\ell)^p+\ell.
+\] On the sign generator, \[
+\sigma\phi_p\sigma^{-1}(t)
+=\sigma\phi_p(-t)=\sigma(-t^p)=-(-t)^p.
+\] Since \(t^2=1\), the last expression is \(t\) for odd \(p\) and
+\(-1\) for \(p=2\). These computations prove (P40).
+
+The canonical maps commute: both \(\phi_p\phi_q\) and \(\phi_q\phi_p\)
+send each generator to its \(pq\)-th power and fix all integer
+coefficients. Their equality on generators proves their equality on
+\(\Lambda\). Therefore \[
+\Psi_p\Psi_q=\sigma\phi_p\phi_q\sigma^{-1}
+=\sigma\phi_q\phi_p\sigma^{-1}=\Psi_q\Psi_p.
+\tag{P41}
+\] Modulo \(p\), formula (P40) gives
+\((x_\ell-\ell)^p+\ell\equiv x_\ell^p-\ell^p+\ell\equiv x_\ell^p\). The
+sign image is \(t^p\) for odd \(p\), and for \(p=2\) its residue \(-1\)
+equals \(1=t^2\). Thus \(\Psi_p\) is a Frobenius lift. Evaluation sends
+the first formula in (P40) to \((\ell-\ell)^p+\ell=\ell\), and sends the
+sign formula to \(-1\). It also fixes coefficients. Consequently
+\(\operatorname{ev}\Psi_p=\operatorname{ev}\) on every generator and
+hence on all of \(\Lambda\).
+
+Each map preserves the ideals \(p^r\Lambda\), and the same is true of
+\(\sigma^{-1}\). Therefore they extend to the completion at the chosen
+prime \(p\), with \(\sigma\) and \(\sigma^{-1}\) still inverse. The
+identity \(\Psi_p\sigma=\sigma\phi_p\) makes \(\sigma\) a
+Frobenius-compatible ring isomorphism. If
+\(\delta_{\Psi_p},\delta_{\phi_p}\) denote the resulting
+\(\delta\)-structures, then \[
+p\delta_{\Psi_p}(\sigma x)
+=\Psi_p(\sigma x)-(\sigma x)^p
+=\sigma(\phi_p x-x^p)
+=p\sigma(\delta_{\phi_p}x).
+\] Cancel \(p\) in the torsionfree completion to prove
+\(\delta\)-compatibility. The automorphism fixes \(p\), so it preserves
+the prism ideal \((p)\). Product extension by the identity on every
+scalar factor commutes with all coordinate projections in (P8)--(P10).
+This proves the last assertions. \(\square\)
+
+In the classification (P20), this family corresponds to \[
+j_\ell=\frac{(x_\ell-\ell)^p-x_\ell^p+\ell^p}{p}.
+\tag{P42}
+\] The numerator is divisible by \(p\) as an integer-coefficient
+polynomial by the binomial theorem; evaluation gives zero. Thus it is
+indeed an element of \(\ker(\operatorname{ev})\), exactly as Theorem P3
+requires.
+
+The automorphism changes the distinguished monoid basis and the
+evaluation map. In particular \(\sigma([\ell])=[\ell]-\ell\), a formal
+additive difference, and \(\operatorname{ev}(\sigma([\ell]))=0\),
+whereas \(\operatorname{ev}([\ell])=\ell\). More generally
+\(\operatorname{ev}\sigma\) is the augmentation sending every prime
+generator to 0 and the sign generator to 1. Hence the prism isomorphism
+does not identify the canonical Frobenius together with its fixed
+arithmetic evaluation with the corrected Frobenius together with that
+same fixed evaluation. This exact change of map accounts for its
+compatibility with Theorem P2. The construction also depends explicitly
+on subtraction of the arithmetic coefficients \(\ell\), so it is not a
+recovery of addition from monoid multiplication without additional
+information.
+
+\subsection{8. Exact scope of the
+bridge}\label{exact-scope-of-the-bridge}
+
+The constructed relationship is a relationship of completed coefficient
+rings, \(\delta\)-rings, and bounded crystalline prisms, with exact
+product and fibre-product maps. Canonical monoid Frobenius keeps every
+monoid basis element of \(\delta\)-value zero. That condition is
+incompatible with identifying the basis element \([p]\) with the
+arithmetic integer coefficient \(p\), and Theorem P2 computes the whole
+resulting \(\delta\)-ideal. Theorems P3 and P4 give two positive
+constructions: arithmetic-compatible Frobenius lifts on the same ring,
+and a canonical prism morphism to a Witt ring retaining multiplication
+and recording the additive correction. Theorem P5 gives a commuting
+family for all primes and an exact conjugacy to the canonical monoid
+family, with its change to the distinguished evaluation explicitly
+calculated. None of these constructions defines cohomology groups or
+establishes an equivalence of cohomology theories. In all of them,
+addition is an explicit part of the ring and \(\delta\)-ring structures;
+it is not supplied by an unproved identification of the unsupported
+element with supported integer zero.
+
+\subsection{9. The actual absolute-site and F1
+comparisons}\label{the-actual-absolute-site-and-f1-comparisons}
+
+Bhatt--Lurie's \href{https://arxiv.org/abs/2201.06120v1}{\emph{Absolute
+Prismatic Cohomology}, arXiv:2201.06120v1},
+\href{https://arxiv.org/src/2201.06120v1}{original source archive},
+apc.tex lines 4908--4928, label
+\texttt{definition:absolute-prismatic-site}, defines an object over a
+bounded \(p\)-adic formal scheme \(X\) to be a bounded prism \((A,I)\)
+with a map \(\operatorname{Spf}(A/I)\to X\). Its use of ``absolute''
+removes a fixed base prism. The definitions still start with additive
+rings.
+
+Every prism constructed in Theorem P1, P3, P4 or P5 gives an object over
+\(X=\operatorname{Spf}(\mathbb Z_p)\). Indeed its quotient by \((p)\) is
+an \(\mathbb F_p\)-algebra; the canonical continuous map
+\(\mathbb Z_p\to A/(p)\), factoring through \(\mathbb F_p\), gives the
+required map of formal spectra. Each displayed prism morphism fixes
+integer scalars and, by continuity, \(p\)-adic scalars. Its quotient
+therefore commutes with those structure maps. Thus the coefficient
+diagrams here are actual diagrams in that absolute site. No computation
+of the site's cohomology follows merely from supplying these objects.
+
+The canonical family before completion also has a documented F1
+interpretation. In \href{https://arxiv.org/abs/0906.3146v1}{James
+Borger, \emph{Lambda-rings and the field with one element},
+arXiv:0906.3146v1}, \href{https://arxiv.org/src/0906.3146v1}{original
+source archive}, lrfoe13.tex lines 499--503 and 892--912, a commuting
+family of Frobenius lifts is the description of a lambda structure on a
+flat integer algebra, and \([m]\mapsto[m^p]\) is explicitly the toric
+monoid-algebra family. Our contracted monoid rings are free as abelian
+groups on the surviving basis elements; they are flat because tensoring
+with a direct sum of copies of \(\mathbb Z\) is a direct sum of identity
+functors and hence preserves injections and exact sequences. Section 2
+proves the lifts, and Theorem P5 proves their commutation and their
+simultaneous conjugates. Consequently the construction sits in this
+stated lambda-ring version of F1 geometry. The toric construction itself
+is pre-existing literature, not a new result claimed here.
+
+The arithmetic-compatible structure of Theorem P5 is isomorphic to the
+toric structure by the explicit \(\sigma\). Its arithmetic map has
+changed under that isomorphism. This gives an exact relationship
+stronger than a failed comparison, while explaining why it cannot select
+the original addition from multiplication alone.
+\href{COEFFICIENT_BRANCH.md}{Coefficient branch, Theorem C2} proves that
+last limitation by constructing two different additions on the same
+specified multiplicative object.
+
+\subsection{Retained cohomology and
+Frobenius}\label{retained-cohomology-and-frobenius}
+
+The \href{CHAIN_COMPARISON.md}{chain comparison}, Theorems Q1--Q4,
+propagates these coefficient maps to supported cohomology and calculates
+the additive-relation kernel. The
+\href{HOMOTOPY_DEFECT.md}{homotopy-defect construction} proves the exact
+retained summand for a contractible input and its coefficient
+extensions. In the integer example the
+\href{FROBENIUS_CROSS_EFFECT.md}{Frobenius cross-effect}, Theorems
+F1--F3, is the mixed Laurent ideal: it has a specified
+Frobenius-semilinear map, a completely calculated linearization
+cokernel, and a delta-stable ideal defining an actual quotient of
+crystalline prisms. Thus these later proofs construct additional maps on
+the retained classes themselves.
+
+The quotient crystalline prism of the retained mixed ideal also has an
+explicit cotangent and differential calculation:
+\href{NODE_COTANGENT.md}{Node cotangent}, (N6)--(N32). Its conormal
+comparison starts from the same mixed module; restriction to its two
+branches has a nonzero differential kernel. The integral
+divided-Frobenius map has the typed source with differential multiplied
+by p, and the retained kernel there has degree-two cohomology Z/p.~All
+identifications and completion maps are proved in that paper.
+
+\end{document}

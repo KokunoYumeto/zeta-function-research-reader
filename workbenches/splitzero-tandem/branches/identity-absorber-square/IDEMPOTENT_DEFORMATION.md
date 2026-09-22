@@ -1,0 +1,225 @@
+# An idempotent deformation of the original boundary infinitesimal
+
+The family below connects the supported two-dimensional dual-number algebra to a product algebra with two complementary idempotents. It retains the actual boundary operator and its metric at parameter zero. Along the real parameter it preserves the entire arithmetic current, giving exact transfer statements for current and resolvent bounds. All claims and their full proofs follow.
+
+## 1. Original data and the polynomial family
+
+Use the actual objects of [Native dual-number receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI2. Fix its cutoff \(N\), and abbreviate \(e=e_N\), \(f=f_N\), \(\epsilon=\epsilon_N>0\), \(R=R_N=\epsilon fe^\dagger\), with every adjoint and norm taken in the unchanged metric \(G_N\). Put
+\[
+P_e=ee^\dagger,\quad P_f=ff^\dagger,\quad
+\Pi=P_e+P_f,\quad E_\Pi=\operatorname{span}\{e,f\},\quad H=E_\Pi^\perp.
+\]
+The complete original operator is \(M_0=C+R\), where \(C=C^\dagger\). Introduce the polynomial parameter \(s\), the ring \(B=\mathbb C[s]\), and
+\[
+F(s)=R+sP_e,\quad M(s)=C+F(s),\quad
+\mathcal A=B[z]/(z(z-s)).
+\tag{ID1}
+\]
+The orthogonal projection \(P_e\) is specified by the existing metric and vector, so the family includes that data. It is a deformation of the given operator with exactly \(M(0)=M_0\). It is not an assertion that every other parameter is an original arithmetic multiplication operator.
+
+Orthogonality gives \(R^2=0\), \(P_eR=0\), \(RP_e=R\), and \(P_e^2=P_e\). Expansion therefore proves
+\[
+F(s)^2=sF(s),\quad F(s)e=se+\epsilon f,
+\quad F(s)f=0,\quad F(s)H=0.
+\tag{ID2}
+\]
+The map
+\[
+\mathcal A\longrightarrow\operatorname{End}_B(E\otimes_{\mathbb C}B),
+\quad 1\longmapsto I,\quad z\longmapsto F(s)
+\tag{ID3}
+\]
+is injective, with image exactly \(B[I,F(s)]\). To prove the exact kernel before quotienting, divide any polynomial in \(z\) by the monic polynomial \(z(z-s)\). Its unique remainder is \(a(s)+b(s)z\). If \(aI+bF(s)=0\), application to \(f\) gives \(a=0\); the \(f\)-coefficient after application to \(e\) gives \(\epsilon b=0\), hence \(b=0\). This proves ID3 and the claimed kernel \((z(z-s))\).
+
+The identical argument gives the supported representation with unit \(\Pi\) and image \(B\Pi+BF(s)\). Retaining both support sectors gives the faithful unital map
+\[
+B\times\mathcal A\xrightarrow{\sim}B[I,\Pi,F(s)],
+\quad(c,a+bz)\longmapsto c(I-\Pi)+a\Pi+bF(s).
+\tag{ID4}
+\]
+The products between the complementary sectors vanish. For injectivity restrict to the nonzero space \(H\), and then apply the preceding plane argument. Thus the unit and the support idempotent remain different operators throughout the family.
+
+## 2. Fibres, retained intersection, and flatness
+
+Monic division proves that \(\mathcal A\) is free over \(B\) on \(1,z\), hence flat: tensoring with this module is a direct sum of two copies of the identity tensor functor. Every fibre at \(s=\sigma\in\mathbb C\) has dimension two and is exactly
+\[
+\mathcal A_\sigma=\mathbb C[z]/(z(z-\sigma)).
+\tag{ID5}
+\]
+For \(\sigma\ne0\), the isomorphism to \(\mathbb C\times\mathbb C\) is evaluation at \(z=0,\sigma\); its inverse is
+\[
+(a_0,a_1)\longmapsto a_0(1-z/\sigma)+a_1z/\sigma.
+\]
+The two inverse identities follow by evaluating these affine polynomials, and the remainder formula proves they exhaust the algebra. At zero the exact fibre is
+\[
+\mathcal A_0\cong D_{\mathbb C},\qquad
+\overline z\longmapsto R.
+\tag{ID6}
+\]
+Its representation is the faithful NI3 map.
+
+The full algebra embeds into a product before specialization:
+\[
+\mathcal A\hookrightarrow B\times B,\quad
+a+bz\longmapsto(a,a+bs),
+\quad\operatorname{im}=\{(u,v):v-u\in sB\}.
+\tag{ID7}
+\]
+Both image and injectivity follow by solving \(u=a\), \(v-u=bs\), using that \(s\) is a non-zero-divisor in \(B\). Equivalently \(\mathcal A=B\times_{\mathbb C}B\), with both maps evaluating at \(s=0\). This is the union of the two lines \(z=0\) and \(z=s\), meeting at \((0,0)\), with its map to the \(s\)-line. The total ring is reduced as a subring of two domains, although its zero fibre is nonreduced.
+
+Only \(0,1\) are idempotent in this total ring. Indeed an idempotent of the domain \(B\) is 0 or 1, and the matching condition at zero in ID7 permits only \((0,0)\) and \((1,1)\). The separate fibre idempotents \(z/\sigma,1-z/\sigma\) therefore do not extend to total-ring idempotents. This is their precise extension obstruction, with the intersecting-line ring itself retained.
+
+The original plane is free of rank one as an \(\mathcal A\)-module:
+\[
+\mathcal A\xrightarrow{\sim}E_\Pi\otimes B,
+\quad a+bz\longmapsto(a+bs)e+\epsilon bf.
+\tag{ID8}
+\]
+This map is evaluation on \(e\), so it intertwines the algebra actions. Its inverse sends \(xe+yf\) to \(x-sy/\epsilon+(y/\epsilon)z\). The two inverse identities prove bijectivity with all scalars retained. On the whole space,
+\(E\otimes B\cong\mathcal A\oplus(H\otimes B)\), where \(z\) acts as zero on the second summand. As a module over the full support algebra \(B\times\mathcal A\), this is projective, being a sum of its two principal idempotent modules. At zero it is exactly NI23; restriction along the diagonal-constant dual-number map is NI22–NI24.
+
+On the plane the kernels and images are
+\[
+\ker F(s)=Bf,\quad \operatorname{im}F(s)=B(se+\epsilon f),
+\]
+\[
+\ker(F(s)-s\Pi)=B(se+\epsilon f),
+\quad\operatorname{im}(F(s)-s\Pi)=Bf.
+\tag{ID9}
+\]
+These follow directly from ID2: \((F-s\Pi)(ae+bf)=(\epsilon a-sb)f\), whose coefficient vanishes exactly for \(a=sc,b=\epsilon c\). In particular the two eigenline modules have zero intersection, while their sum is \(Bf+sBe\). Their exact cokernel in the plane is
+\[
+(E_\Pi\otimes B)/(Bf+B(se+\epsilon f))\cong B/(s).
+\tag{ID10}
+\]
+The quotient sends \(ae+bf\) to \(a\bmod s\); its kernel and surjectivity prove the assertion. At zero the two eigenlines coincide as \(\mathbb Cf\), retaining the nilpotent Jordan action in ID6.
+
+## 3. Exact metric cost of splitting the idempotents
+
+For \(\sigma\ne0\), the supported operator idempotents are
+\[
+\Pi_1(\sigma)=F(\sigma)/\sigma
+=P_e+(\epsilon/\sigma)fe^\dagger,
+\quad\Pi_0(\sigma)=\Pi-\Pi_1(\sigma).
+\tag{ID11}
+\]
+ID2 proves their idempotence, zero mixed products and sum \(\Pi\). Their images are \(\mathbb C(\sigma e+\epsilon f)\) and \(\mathbb Cf\). They are not orthogonal projections. Their exact norms are
+\[
+\|\Pi_0(\sigma)\|=\|\Pi_1(\sigma)\|
+=\sqrt{1+\epsilon^2/|\sigma|^2},
+\qquad \|F(\sigma)-R\|=|\sigma|.
+\tag{ID12}
+\]
+For \(\Pi_1\), use the rank-one expression \((e+(\epsilon/\sigma)f)e^\dagger\). For \(\Pi_0\), the only nonzero row in the ordered orthonormal plane coordinates is \((-\epsilon/\sigma,1)\). Both have the stated norm. The last equality follows from \(F-R=\sigma P_e\). Thus the operators converge to the original nilpotent while their separate eigenprojections have an explicit unbounded cost.
+
+The metric retains orthogonal support maps at every parameter:
+\[
+F(\sigma)^\dagger F(\sigma)=(|\sigma|^2+\epsilon^2)P_e,
+\quad
+R=F(\sigma)-\sigma P_e,
+\quad P_f=RR^\dagger/\epsilon^2.
+\tag{ID13}
+\]
+The first identity follows from the rank-one expression
+\(F(\sigma)=(\sigma e+\epsilon f)e^\dagger\); the others follow from their definitions. Together with \(R/\epsilon=fe^\dagger\) and its adjoint, they give all four matrix units. Consequently the supported algebra generated by \(F(\sigma)\) and its adjoint is exactly \(\operatorname{End}_{\mathbb C}(E_\Pi)\) at every fibre. This is a larger, explicitly related algebra than the two-dimensional commutative one. For example \(P_e\) cannot equal \(a\Pi+bF(\sigma)\): applying to \(f\) forces \(a=0\), and the \(f\)-coefficient on \(e\) forces \(b=0\), a contradiction.
+
+## 4. Current, spectral strip and resolvent estimates
+
+Evaluate \(s=\sigma=u+iv\), with \(u,v\in\mathbb R\). The exact current, in the convention already used for the original arithmetic action, is
+\[
+J(\sigma)=i(M(\sigma)-M(\sigma)^\dagger)
+=J_0-2vP_e,
+\quad J_0=i\epsilon(fe^\dagger-ef^\dagger).
+\tag{ID14}
+\]
+Expansion cancels the selfadjoint \(C\) and gives this identity. Its plane matrix in the stated original orthonormal vectors is
+\[
+J(\sigma)|_{E_\Pi}=\begin{pmatrix}-2v&-i\epsilon\\i\epsilon&0\end{pmatrix},
+\quad J(\sigma)|_H=0,
+\quad J(\sigma)^2+2vJ(\sigma)=\epsilon^2\Pi.
+\tag{ID15}
+\]
+The last identity follows by multiplying this displayed matrix. Put \(d_v=\sqrt{v^2+\epsilon^2}\). Its two active eigenvalues and norm are
+\[
+\lambda_\pm=-v\pm d_v,\quad
+\det(J(\sigma)|_{E_\Pi})=-\epsilon^2,
+\quad\|J(\sigma)\|=d_v+|v|.
+\tag{ID16}
+\]
+The determinant of \(\lambda I-J\) is \(\lambda^2+2v\lambda-\epsilon^2\), proving the eigenvalues. They have opposite signs since \(d_v>|v|\); the norm is their largest absolute value because the matrix is Hermitian. The exact orthogonal spectral projections are
+\(\tfrac12(\Pi\pm(J(\sigma)+v\Pi)/d_v)\): ID15 proves that the squared middle factor is \(\Pi\), which establishes all projection identities.
+
+For every real \(\sigma\),
+\[
+J(\sigma)=J_0,quad J_0^2=\epsilon^2\Pi,
+\quad\|J_0x\|^2=\epsilon^2\|\Pi x\|^2,
+\quad-\epsilon\Pi\preceq J_0\preceq\epsilon\Pi.
+\tag{ID17}
+\]
+The first identity is ID14 with \(v=0\); the second is ID15. Selfadjointness proves the norm identity. The two eigenvalues in ID16 prove the operator inequalities; they are attained on \((e+if)/\sqrt2\) and \((e-if)/\sqrt2\), respectively. Cauchy–Schwarz additionally gives the sharp estimate
+\(|\langle x,J_0y\rangle|\le\epsilon\|\Pi x\|\|\Pi y\|\).
+
+Keeping the original observation \(O_N\) and its metric fixed, ID17 implies
+\[
+O_N^\dagger J(\sigma)O_N=O_N^\dagger J_0O_N
+=\epsilon_NU_NJ_2U_N^*\qquad(\sigma\in\mathbb R).
+\tag{ID18}
+\]
+This is exactly the observed current of NI28/OCP10, with no change of column Gram or hidden-return maps. Hence every already proved bound on this fixed current operator or its fixed-vector pairings transfers along the real family by equality. A separately chosen eigenvector of the changing \(M(\sigma)\) is additional data; ID18 does not assert it stays fixed.
+
+For any \(x=ae+bf+h\), \(h\in H\), direct multiplication in ID15 gives
+\[
+\langle x,J(\sigma)x\rangle
+=2\epsilon\operatorname{Im}(\overline a b)-2v|a|^2,
+\]
+\[
+\operatorname{Im}\langle x,M(\sigma)x\rangle
+=v|a|^2-\epsilon\operatorname{Im}(\overline a b).
+\tag{ID19}
+\]
+The second identity follows either directly, using selfadjointness of \(C\), or from \(J=i(M-M^\dagger)\). The eigenvalues in ID16 imply
+\[
+\frac{v-d_v}{2}\|\Pi x\|^2
+\le\operatorname{Im}\langle x,M(\sigma)x\rangle
+\le\frac{v+d_v}{2}\|\Pi x\|^2.
+\tag{ID20}
+\]
+For an eigenvector \(M(\sigma)x=\mu x\), divide by \(\|x\|^2\); the exact support ratio remains in the inequality. Since \((v-d_v)/2<0<(v+d_v)/2\) and \(\|\Pi x\|\le\|x\|\), every eigenvalue lies in the strip
+\[
+(v-d_v)/2\le\operatorname{Im}\mu\le(v+d_v)/2.
+\tag{ID21}
+\]
+For a complex number \(\zeta\) whose imaginary part lies outside this interval, let \(r\) be its positive distance to the interval. ID20 gives
+\(|\operatorname{Im}\langle x,(M(\sigma)-\zeta I)x\rangle|\ge r\|x\|^2\).
+Cauchy–Schwarz then proves
+\[
+\|(M(\sigma)-\zeta I)x\|\ge r\|x\|,
+\qquad\|(M(\sigma)-\zeta I)^{-1}\|\le r^{-1}.
+\tag{ID22}
+\]
+The first inequality gives injectivity, hence invertibility in the finite-dimensional space, and applying it to the inverse proves the second. For real parameters the same strip and bound apply with \(v=0\) and \(d_v=\epsilon\).
+
+## 5. The unchanged current does not remove the full spectral data
+
+The Hermitian part changes by \(uP_e\), and the exact squared-norm operator is
+\[
+M(\sigma)^\dagger M(\sigma)
+=M_0^\dagger M_0+\sigma CP_e+\overline\sigma P_eC+|\sigma|^2P_e.
+\tag{ID23}
+\]
+Expand \((M_0^\dagger+\overline\sigma P_e)(M_0+\sigma P_e)\) and use \(R^\dagger P_e=P_eR=0\) to prove ID23. These terms remain in any estimate involving the whole operator.
+
+A complete example quantifies the spectral information not specified by the fixed current. On the same orthonormal plane, take
+\(C=-\epsilon(fe^\dagger+ef^\dagger)/2\), and let it vanish on \(H\). For real \(s\),
+\[
+M(s)|_{E_\Pi}=\begin{pmatrix}s&-\epsilon/2\\\epsilon/2&0\end{pmatrix},
+\quad\mu_\pm(s)=\frac{s\pm\sqrt{s^2-\epsilon^2}}2.
+\tag{ID24}
+\]
+Its determinant polynomial is \(\mu^2-s\mu+\epsilon^2/4\), proving the formula. The eigenvalues are nonreal for \(|s|<\epsilon\), coincide at \(|s|=\epsilon\), and are distinct real numbers for \(|s|>\epsilon\). At coincidence the matrix is not scalar, so it has a nontrivial Jordan block. Its current is nevertheless the fixed \(J_0\) for all real \(s\). This is an exact example within the displayed operator class, not an example claimed to be the original arithmetic multiplication matrix.
+
+The algebra relation ID2 holds for \(M(s)-C\). It does not replace the full \(M(s)\) by that two-dimensional algebra. The exact bridge therefore comprises the flat family ID1–ID10, the metric maps ID11–ID13, and the current/observation/estimate identities ID14–ID23. Each has its original data and connecting map specified. No RH conclusion or GCT canonical-basis positivity theorem is claimed by this family.
+
+![The exact idempotent collision and current retained along the real family](figures/17_idempotent_current.png)
+
+The figure shows the two branches \(z=0,z=s\), their zero fibre with dual-number coordinate, and the exact metric identities ID12, ID17–ID18. The scheme picture is over the complex polynomial base; its real section is used to display the current-preserving path. All complex-parameter formulas remain in the proofs.

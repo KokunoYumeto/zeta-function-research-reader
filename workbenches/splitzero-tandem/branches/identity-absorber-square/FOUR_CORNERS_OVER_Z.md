@@ -1,0 +1,635 @@
+---
+title: "The original four roles over the integers"
+subtitle: "Exact constructions, isomorphisms, and retained arithmetic"
+author: []
+date: "21 September 2026"
+---
+
+# 1. The question and the exact four definitions
+
+An identity returns the other argument. An absorber returns itself. The original question chooses one of these behaviors for addition and one for multiplication:
+
+| | Multiplicative identity | Multiplicative absorber |
+|---|---|---|
+| Additive identity | \(\varepsilon+x=x,\quad\varepsilon x=x\) | \(\tau+x=x,\quad\tau x=\tau\) |
+| Additive absorber | \(u+x=u,\quad ux=x\) | \(\Omega+x=\Omega,\quad\Omega x=\Omega\) |
+
+This paper calculates those four roles over the integers. A role is an equation on a specified set, not by itself an entire algebra. Two full algebras are **isomorphic** when a bijection preserves both addition and multiplication. A multiplicative-monoid isomorphism preserves only multiplication and its identity. These are different questions, and both are answered below.
+
+Write \(e=0_{\mathbb Z}\), retaining its distinction from the programme's actual \(\tau\). We use commutative associative addition and multiplication, with identities and distributivity
+\[
+x(y+z)=xy+xz.
+\]
+Call the resulting category \(\mathcal W\); its morphisms preserve both operations and both identities. We do not add a multiplicative zero-absorption axiom. An object satisfying \(0_Dx=0_D\) is called a standard semiring. This is necessary to retain the original literal rule \(\tau\Omega=\Omega\).
+
+An **exact receiver** for one of the roles is an algebra with a specified map from the old algebra such that every permitted map into any target with that role factors uniquely through it. Its map may identify old elements. Below we prove which identifications the equations force, and show an actual model where no others occur.
+
+We calculate both from \(\mathbb Z\) directly and from \(S=G(\mathbb Z)\), the original \(\tau\)-construction. We do not replace the latter by ordinary integers when applying the other roles. Original sources [1–2] define \(S\) and its literal \(\Omega\)-extension. The separate direct-from-\(\mathbb Z\) calculation identifies what adding each role to integer arithmetic alone does.
+
+# 2. Every carrier, operation and integer image
+
+Define the three infinite algebras
+\[
+S=\mathbb Z\sqcup\{\tau\},\qquad
+A=\mathbb Z\sqcup\{\Omega\},\qquad
+H=\mathbb Z\sqcup\{\tau,\Omega\}.
+\tag{Z1}
+\]
+Two integer arguments always use their original sum and product. On \(S\), \(\tau\) is additive identity and multiplicative absorber. On \(A\), \(\Omega\) absorbs both operations. On \(H\), first take \(S\), then adjoin \(\Omega\) absorbing both operations, including \(\tau\Omega=\Omega\). Thus the complete remaining tables of \(H\), with \(m,n\in\mathbb Z\), are
+\[
+\begin{array}{c|ccc}
++&\tau&n&\Omega\\\hline
+\tau&\tau&n&\Omega\\
+m&m&m+n&\Omega\\
+\Omega&\Omega&\Omega&\Omega
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+\cdot&\tau&n&\Omega\\\hline
+\tau&\tau&\tau&\Omega\\
+m&\tau&mn&\Omega\\
+\Omega&\Omega&\Omega&\Omega
+\end{array}.
+\tag{Z2}
+\]
+Deleting the \(\Omega\) row and column gives \(S\); deleting the \(\tau\) row and column gives \(A\). The identities are \((\tau,1)\) in \(S,H\) and \((e,1)\) in \(A\).
+
+Here are the three finite algebras needed:
+\[
+B=\{c<u\},\quad +=\max,\quad\cdot=\min;
+\qquad J=\{\varepsilon<a\},\quad +=\max,\quad\cdot=\max;
+\]
+\[
+C=\{t<c<u\},\quad +=\max,\quad\cdot=\min.
+\tag{Z3}
+\]
+Their complete tables are
+\[
+\begin{array}{c|cc}+&c&u\\\hline c&c&u\\u&u&u\end{array}
+\quad
+\begin{array}{c|cc}\cdot_B&c&u\\\hline c&c&c\\u&c&u\end{array}
+\quad
+\begin{array}{c|cc}+,\cdot_J&\varepsilon&a\\\hline
+\varepsilon&\varepsilon&a\\a&a&a\end{array},
+\tag{Z4}
+\]
+\[
+\begin{array}{c|ccc}+_C&t&c&u\\\hline
+t&t&c&u\\c&c&c&u\\u&u&u&u\end{array}
+\qquad
+\begin{array}{c|ccc}\cdot_C&t&c&u\\\hline
+t&t&t&t\\c&t&c&c\\u&t&c&u\end{array}.
+\tag{Z5}
+\]
+The two identities coincide in \(J\), where both are \(\varepsilon\). They are distinct in \(B,C\).
+
+**Theorem Z1 (the exact four constructions).** With the map conventions stated in its proof, the direct integer constructions and the constructions from the actual programme object are:
+
+| Chosen role | Directly from \(\mathbb Z\) | Map of each integer \(n\) | From the actual \(S=G(\mathbb Z)\) |
+|---|---|---|---|
+| \(\tau\) | \(S\) | \(n\mapsto n\), injective | \(S\) is the starting object |
+| \(\Omega\) | \(A\) | \(n\mapsto n\), injective | \(H\), with \(S\) included injectively |
+| \(u\) | \(B\) | \(n\mapsto c\) for every \(n\) | \(C\), with \(\tau\mapsto t\), every \(n\mapsto c\) |
+| \(\varepsilon\) | \(J\) | \(n\mapsto a\) for every \(n\) | \(J\), with every \(s\in S\mapsto a\) |
+
+**Proof of the algebra laws.** In \(S\), deleting \(\tau\)'s from a sum leaves the integer sum, or \(\tau\) if no integers occur. A product containing \(\tau\) is \(\tau\); all other products are integer products. These descriptions prove associativity and commutativity. A multiplier \(\tau\) makes distributivity \(\tau=\tau+\tau\). An integer multiplier distributes over two integer summands by the integer law; a summand \(\tau\) contributes \(\tau\), the additive identity. This includes the case of two \(\tau\) summands.
+
+Adjoining a literal \(\Omega\) to either \(\mathbb Z\) or \(S\) preserves all laws: an associative expression with an \(\Omega\) is \(\Omega\) under either association, and a distributive expression with an \(\Omega\) in any argument has \(\Omega\) on both sides. With no \(\Omega\), the old law applies. The old identities act correctly on \(\Omega\). These cases verify \(A,H\).
+
+Maximum and minimum on a chain are associative and commutative. For \(y\le z\),
+\[
+\min(x,\max(y,z))=\min(x,z)
+=\max(\min(x,y),\min(x,z)).
+\]
+This proves distributivity for \(B,C\); their least element is additive identity and greatest element multiplicative identity. In \(J\), both sides of distributivity equal \(\max(x,y,z)\). Its least element is the identity for both operations. All tables and identities are therefore valid.
+
+**Proof of the \(\tau\) receiver.** A permitted input \(f:\mathbb Z\to D\) preserves both operations and the multiplicative identity, where \(D\) is a standard semiring. It may send \(e\) to a local additive identity different from \(0_D\). Define \(\widehat f:S\to D\) by \(\widehat f(n)=f(n)\), \(\widehat f(\tau)=0_D\). Integer pairs are preserved by \(f\), and pairs involving \(\tau\) by the target's additive identity and zero-absorption laws. The map preserves both global identities. Every value is forced, giving uniqueness. The constructed \(S\) itself admits the injective old integer map, so no integers are forced equal.
+
+**Proof of the literal \(\Omega\) receiver.** For \(K=\mathbb Z\) or \(S\), a morphism \(f:K\to D\) of \(\mathcal W\) extends to \(K\sqcup\{\Omega\}\) with \(\Omega\mapsto b\) precisely when
+\[
+b+b=b^2=b,\qquad b+f(x)=bf(x)=b\quad(x\in K).
+\tag{Z6}
+\]
+Necessity follows from the source table. Conversely assign those values: old pairs are preserved by \(f\), mixed pairs by the last equations, and the new/new pair by idempotence. The identities remain the old ones and are preserved. All values are forced. This is the precise universal property; it does not require \(b\) to absorb unrelated elements outside the image. The explicit models \(A,H\) retain every old element.
+
+**Proof of the \(u\) receiver.** A permitted input preserves both operations and the old additive identity, but may move the old multiplicative identity to a local identity. The target \(D\) has global multiplicative unit \(u_D\) satisfying \(u_D+x=u_D\). Distributivity gives, for every \(x\),
+\[
+x=x(u_D+u_D)=x+x,\qquad
+0_D=0_D(u_D+x)=0_D+0_Dx=0_Dx.
+\tag{Z7}
+\]
+For any binary-preserving \(f\) from \(\mathbb Z\) or \(S\), the integer images obey
+\[
+f(1)+f(1)=f(1).
+\]
+Add \(f(-1)\) to both sides and use the source integer equations; the result is \(f(1)=f(e)\). Consequently
+\[
+f(n)=f(n1)=f(n)f(1)=f(n)f(e)=f(ne)=f(e)
+\quad(n\in\mathbb Z).
+\tag{Z8}
+\]
+If the input is \(\mathbb Z\), preservation of its additive identity gives \(f(e)=0_D\). There is a unique factor \(B\to D\), \(c\mapsto0_D,u\mapsto u_D\); (Z7) and the identity laws verify every entry of (Z4).
+
+If the input is \(S\), its additive identity is \(\tau\), so \(f(\tau)=0_D\), while \(b=f(e)\) can remain different. The unique factor \(C\to D\) sends \(t\mapsto0_D,c\mapsto b,u\mapsto u_D\). The source gives \(b+b=b^2=b\); these equations, (Z7) and the roles of \(u_D\) verify every pair in (Z5). The finite models themselves admit the stated inputs with distinct displayed elements, proving there is no further forced merger. If the old multiplicative identity must also remain global, direct input \(\mathbb Z\) forces the singleton, whereas input \(S\) identifies \(c=u\) and gives the Boolean quotient \(\{t<u\}\).
+
+**Proof of the \(\varepsilon\) receiver.** The input preserves both operations; neither old identity is required to stay global. In the target \(D\), the new \(\varepsilon_D\) is the identity for both operations. Let \(z\) be the image of the old additive zero and \(b\) the image of any old element. Both inputs \(\mathbb Z,S\) have an additive zero that absorbs multiplication, so \(b+z=b\) and \(bz=z\). Therefore
+\[
+z=bz=b(\varepsilon_D+z)=b\varepsilon_D+bz=b+z=b.
+\tag{Z9}
+\]
+Every old element has one image \(z\). It is idempotent for both operations. The unique factor \(J\to D\) sends \(\varepsilon\mapsto\varepsilon_D,a\mapsto z\). Its four pairs are preserved by the identity and idempotence laws. The nontrivial model \(J\) realizes two distinct elements. Requiring the old additive identity to stay global instead forces \(a=\varepsilon\), and the receiver is the singleton. \(\square\)
+
+For concrete integers, in \(S,H\) one still has \(2+3=5\), \(2\cdot3=6\), and \(5+(-5)=e\ne\tau\). In \(C\), all five integers \(2,3,5,6,e\) have image \(c\), while \(\tau\) has image \(t\). In \(J\), even \(\tau\) joins the common image \(a\). These are forced equalities of images, never equalities between the original elements.
+
+![The original square, with both the direct integer inputs and the programme input distinguished. Theorem Z1 proves the carrier, operations, input maps and universal factors in every corner.](figures/05_original_integer_square.png)
+
+# 3. Which objects really are isomorphic?
+
+**Theorem Z2 (all pairwise answers for the two interpretations).** All six full algebras \(S,A,H,B,C,J\) are pairwise nonisomorphic. In particular this holds for the four direct constructions \(S,A,B,J\), and for the original programme-based comparison \(S,H,C,J\). Nevertheless,
+\[
+(S,\cdot,1)\cong(A,\cdot,1),
+\qquad
+(B,\cdot,u)\cong(J,\cdot,\varepsilon).
+\tag{Z10}
+\]
+Thus the four direct constructions have just two multiplicative-monoid isomorphism classes. The two finite direct constructions have isomorphic additive monoids as well, but there is no single bijection preserving both operations.
+
+**Proof.** \(S,A,H\) are infinite, whereas \(B,J\) have two elements and \(C\) has three. There is no additive absorber in \(S\): \(\tau+1=1\ne\tau\), and \(n+1\ne n\) for every integer \(n\). Both \(A,H\) have additive absorber \(\Omega\). This excludes \(S\cong A\) and \(S\cong H\). The only remaining equally sized direct pair is \(B,J\). The two identities in \(B\) are different; in \(J\) they coincide. Any bijection preserving an operation also carries its identity to the target identity: for any target element \(f(x)\), the image of the source identity acts as an identity on it. Hence no isomorphism \(B\cong J\) exists. This proves both pairwise statements even if identities are omitted from the signature.
+
+The remaining cross-comparison \(A\not\cong H\) follows by counting additive idempotents: \(A\) has exactly \(e,\Omega\), whereas \(H\) has exactly \(\tau,e,\Omega\). No nonzero integer is idempotent for addition since \(2n=n\) implies \(n=e\). This completes the comparison of all six.
+
+For the first isomorphism in (Z10), define
+\[
+F(n)=n\quad(n\in\mathbb Z),\qquad F(\tau)=\Omega.
+\tag{Z11}
+\]
+Integer products are fixed, and every product involving the extra point maps to the extra absorber. \(F\) is bijective and fixes \(1\). But \(F(\tau+1)=1\), while \(F(\tau)+F(1)=\Omega\), so it does not preserve addition.
+
+For the second isomorphism, define
+\[
+K(c)=a,\qquad K(u)=\varepsilon.
+\tag{Z12}
+\]
+It reverses the two-element order, so carries minimum to maximum: the \(cc,cu,uu\) products map respectively to \(a,a,\varepsilon\), the corresponding products in \(J\). It carries the multiplicative unit to the multiplicative unit and is bijective. It fails addition because \(K(c+u)=\varepsilon\), whereas \(K(c)+K(u)=a\). The other bijection \(c\mapsto\varepsilon,u\mapsto a\) preserves addition (both are maximum) but fails that product pair.
+
+For completeness the additive monoids of \(S,A\) are not isomorphic either. The only element with an additive inverse relative to the global identity \(\tau\) in \(S\) is \(\tau\): any sum with an integer stays integer. In \(A\), every integer has an additive inverse relative to its global identity \(e\), while \(\Omega\) does not. Thus the groups of additive units have respectively one and infinitely many elements. \(\square\)
+
+The separate-operation comparison of all six is complete as follows:
+
+| Structure retained | Isomorphism classes among \(S,A,H,B,C,J\) |
+|---|---|
+| Addition and multiplication together | \(\{S\},\{A\},\{H\},\{B\},\{C\},\{J\}\) |
+| Multiplication and its identity | \(\{S,A\},\{H\},\{B,J\},\{C\}\) |
+| Addition and its identity | \(\{S\},\{A\},\{H\},\{B,J\},\{C\}\) |
+
+Here is the proof of the remaining exclusions in that table. Multiplicatively, \(S,A\) each have three idempotents, while \(H\) has four: integer idempotents satisfy \(n^2=n\), hence are \(e,1\); append the appropriate extra points. Thus \(H\) is not multiplicatively isomorphic to \(S,A\). Cardinalities separate all remaining classes. Additively, \(S\) is distinguished from \(H\) by absence of an absorber, and \(A\) from \(H\) by their additive units: only \(\tau\) is invertible in \(H\) relative to \(\tau\), while every integer is invertible in \(A\) relative to \(e\). The finite additive comparison is exactly the increasing bijection between \(B,J\), with \(C\) separated by cardinality. This proves every entry.
+
+The same distinction persists on adding more points. If \(G(K)\) adjoins a new additive identity and multiplicative absorber to any \(K\in\mathcal W\), while \(O(K)\) adjoins a literal absorber for both operations, the identity on \(K\) extended by new-point-to-new-point is always a multiplicative-monoid isomorphism. It is not additive when \(K\) is nonempty, since the new point plus \(x\in K\) is \(x\) in one source and the new point in the other. The axioms for \(G(K)\) follow by the same exhaustive new-identity/new-absorber cases in Theorem Z1. In particular \(G(G(\mathbb Z))\) and \(H=O(G(\mathbb Z))\) have isomorphic multiplicative monoids, fixing every element of the old \(S\).
+
+There is more information in the integer addition than in the multiplicative monoid alone. For nonzero \(n\), write uniquely
+\[
+n=2^r3^s m,\qquad r,s\ge0,\quad 2\nmid m,\quad3\nmid m,
+\]
+retaining the sign in \(m\). Repeated division by \(2,3\) terminates and gives existence and uniqueness; divisibility by each prime gives uniqueness of the exponents. Define
+\[
+V(n)=2^s3^r m,\qquad V(e)=e,
+\tag{Z13}
+\]
+and fix every adjoined point. Exponents add under multiplication: products of odd factors stay odd, and products of residues \(1,2\) modulo \(3\) are nonzero modulo \(3\). Thus \(V(nk)=V(n)V(k)\); cases containing \(e\) or adjoined points follow directly from their tables. \(V\) is its own inverse and fixes \(1\), hence is a multiplicative-monoid automorphism of \(S,A,H\). Yet \(V(1+1)=3\ne2=V(1)+V(1)\). Addition excludes this freedom.
+
+![The exact multiplicative-monoid isomorphisms between the direct integer constructions. Theorem Z2 checks every product and proves that addition prevents a full-algebra isomorphism.](figures/06_monoid_isomorphisms.png)
+
+# 4. The integer data are recoverable, not merely present
+
+**Theorem Z3 (intrinsic recovery and rigidity).** From the operations of \(S\) or \(H\), one can identify the old \(e\), then recover precisely the old integer ring as
+\[
+\mathbb Z=\{x:ex=e\}.
+\tag{Z14}
+\]
+Every two-operation automorphism of \(S,A,H,B,C,J\) is the identity.
+
+**Proof.** The additive idempotents (elements satisfying \(x+x=x\)) are exactly \(\{\tau,e\}\) in \(S\), and \(\{\tau,e,\Omega\}\) in \(H\), since the integer equation \(2n=n\) gives \(n=e\). In \(S\), \(e\) is the one that is not the global additive identity. In \(H\), it is the one that is neither the global additive identity nor the global additive absorber. Those roles determine \(\tau,\Omega\) intrinsically, so determine \(e\). Integer products \(en=e\), whereas \(e\tau=\tau\) and \(e\Omega=\Omega\). This proves (Z14). Its restricted operations, identity \(1\), and zero \(e\) are exactly the original ring structure, including all additive inverses.
+
+An automorphism fixes these distinguished elements, as well as the global multiplicative identity \(1\). It fixes every positive integer by repeated addition of \(1\). The negative of a positive integer is its unique additive inverse in the recovered ring, so is fixed as well. Every element of \(S,H\) is accounted for. In \(A\), its global zero is \(e\), its unique absorber is \(\Omega\), and the same equation \(ex=e\) recovers its integers, giving the same proof. In \(B,C,J\), the order is determined by \(x\le y\) if \(x+y=y\). An additive automorphism preserves that order, and the only increasing bijection of each finite chain is the identity: it fixes the least element, then the next, until all are fixed. \(\square\)
+
+This gives a precise answer about integer information. \(S,A,H\) retain every integer, every integer operation, and an intrinsic way to recover the ring. \(B,C,J\) do not distinguish even \(2\) from \(3\), since their forced old maps are constant on the integers. Their surviving finite information is computed next.
+
+# 5. Finite structures inside the original object
+
+Let
+\[
+Q=\{\tau,e\}\subset S\subset H,\qquad
+L=\{\tau,e,\Omega\}\subset H.
+\tag{Z15}
+\]
+On \(Q\), addition is maximum and multiplication is minimum for \(\tau<e\). Hence
+\[
+Q\longrightarrow\mathbb B=\{0<1\},
+\qquad \tau\mapsto0,\quad e\mapsto1
+\tag{Z16}
+\]
+is an isomorphism to Boolean OR/AND: all four pairs are given by
+\(\tau+\tau=\tau,\tau+e=e,e+e=e\) and
+\(\tau^2=\tau,\tau e=\tau,e^2=e\).
+This is a full two-operation isomorphism on this subalgebra, not on all of \(S\). Its unit is \(e\), so its inclusion into \(S\) does not preserve the global multiplicative unit.
+
+On \(L\), addition is maximum for \(\tau<e<\Omega\), while
+\[
+\begin{array}{c|ccc}\cdot_L&\tau&e&\Omega\\\hline
+\tau&\tau&\tau&\Omega\\
+e&\tau&e&\Omega\\
+\Omega&\Omega&\Omega&\Omega
+\end{array}.
+\tag{Z17}
+\]
+The additive identity is \(\tau\) and multiplicative identity is \(e\). Multiplication by the supported zero defines
+\[
+\rho:H\to L,\quad x\mapsto ex,
+\qquad
+\rho(n)=e,\quad\rho(\tau)=\tau,\quad\rho(\Omega)=\Omega.
+\tag{Z18}
+\]
+Distributivity gives \(\rho(x+y)=\rho(x)+\rho(y)\), and \(e^2=e\) gives
+\(\rho(xy)=\rho(x)\rho(y)\). Also \(\rho(\tau)=\tau,\rho(1)=e\), the identities of \(L\). Thus \(\rho\) is a morphism in \(\mathcal W\). It is the identity on \(L\), so is a retraction on the two-operation algebras; the section \(L\hookrightarrow H\) preserves operations and the additive identity but not the global multiplicative identity.
+
+**Theorem Z4 (all two-element copies and the missing three-element copy).** In \(H\), the only two-element subalgebra isomorphic to Boolean OR/AND is \(Q=\{\tau,e\}\). The only two-element subalgebras isomorphic to \(J\) are \(\{\tau,\Omega\}\) and \(\{e,\Omega\}\). There is no subalgebra isomorphic to \(C\). The full algebras \(L,C\) are not isomorphic, but their multiplicative monoids are isomorphic.
+
+**Proof.** Every element of \(B,J,C\) is additively idempotent. Any embedding into \(H\) must therefore land in the three-element set \(L\), by Theorem Z3. There are exactly three two-element subsets of \(L\). On \(\{\tau,e\}\), the preceding four pairs give maximum/minimum. On each of \(\{\tau,\Omega\},\{e,\Omega\}\), both operations are maximum. This checks existence and exhausts every two-element embedding image; each chain admits only its unique order-preserving isomorphism.
+
+An embedding of \(C\) would have to map onto all of \(L\). The global additive identity in \(C\) absorbs multiplication, whereas that in \(L\) does not: \(\tau\Omega=\Omega\ne\tau\). This excludes an isomorphism and therefore an embedding. Nevertheless
+\[
+t\mapsto\Omega,\qquad c\mapsto\tau,\qquad u\mapsto e
+\tag{Z19}
+\]
+is a multiplicative-monoid isomorphism \(C\to L\). Indeed (Z17) is minimum in the multiplication order \(\Omega<\tau<e\), so this increasing bijection from \(t<c<u\) preserves every minimum and the greatest element, the unit. It fails addition already at \(t+c=c\): its image is \(\tau\), whereas \(\Omega+\tau=\Omega\). \(\square\)
+
+These facts specify what the other roles can do locally without deleting any integers. The supported \(e\) has the \(u\) role on \(Q\): \(e+x=e,ex=x\) for \(x\in Q\). It has the \(\varepsilon\) role on \(\{e,\Omega\}\): \(e+x=x,ex=x\) for those two \(x\). The old \(\tau\) also has the \(\varepsilon\) role on \(\{\tau,\Omega\}\). None of those local statements gives that role on every integer. For example \(e+2=2\ne e\) and \(e\cdot2=e\ne2\). The domains are indispensable.
+
+The three-state receiver \(C\) has a precise Boolean relation even though it has no copy inside \(H\):
+\[
+\pi:C\to\mathbb B,\quad \pi(t)=0,\quad\pi(c)=\pi(u)=1.
+\tag{Z20}
+\]
+It preserves maximum and minimum because it is increasing between chains, and preserves their least and greatest elements. The map \(\mathbb B\to C\), \(0\mapsto t,1\mapsto u\), is a unital section. Composing \(S\to C\) from Theorem Z1 with \(\pi\) gives the original support map \(\chi(\tau)=0,\chi(n)=1\). The third state \(u\) in \(C\) records the newly adjoined global unit as distinct from the common image \(c\) of the old integers. It carries no surviving integer magnitude.
+
+**Theorem Z6 (all finite subalgebras and every map between \(C\) and \(H\)).** The finite nonempty subsets of \(H\) closed under both operations are precisely the seven nonempty subsets of \(L\). There are exactly five binary-operation-preserving maps \(C\to H\): the three constant maps to \(\tau,e,\Omega\), and
+\[
+(t,c,u)\mapsto(\tau,\tau,e),\qquad
+(t,c,u)\mapsto(\tau,e,e).
+\tag{Z28}
+\]
+Every binary-operation-preserving map \(H\to C\) is constant; its three constant values are \(t,c,u\). There is no morphism in \(\mathcal W\) in either direction.
+
+**Proof.** A finite additively closed set cannot contain a nonzero integer \(n\), since then it contains all distinct \(n,2n,3n,\ldots\). Thus it lies in \(L\). Conversely the two operations in (Z17) and its addition table always return one of their arguments, so every nonempty subset is closed.
+
+For a map from \(C\), every image is additively idempotent, hence in \(L\). In \(C\), \(x+xy=x\). If its image contained \(\Omega\) and another element \(b\), that identity would require \(b+b\Omega=b\), whereas the left side is \(\Omega\). So a nonconstant image lies in \(Q=\{\tau,e\}\). Preservation of maximum makes the map increasing. The only nonconstant increasing maps from the three-element chain onto this two-element chain are those in (Z28), and they preserve both maximum and minimum. Constants to the three doubly idempotent elements also preserve both operations. None sends the multiplicative unit \(u\) to the nonidempotent integer \(1\), so none is a \(\mathcal W\)-morphism to \(H\).
+
+For \(f:H\to C\), put \(b=f(\Omega)\). For every \(x\), the absorbing equations require both \(\max(b,f(x))=b\) and \(\min(b,f(x))=b\). These give \(f(x)\le b\) and \(b\le f(x)\), so the map is constant. All three constants preserve both operations because their values are doubly idempotent. No constant preserves both distinct identities of \(C\). \(\square\)
+
+In particular \(L\) contains all finite subalgebra data of \(H\); a fourth finite state cannot be obtained by hiding a nonzero integer in such a subalgebra. This does not rule out different extensions, nor does it make the full integer part finite.
+
+# 6. Exact arithmetic and support reconstruction
+
+Define
+\[
+p:S\to\mathbb Z,\quad p(n)=n,\quad p(\tau)=e,
+\qquad
+\chi:S\to\mathbb B,\quad\chi(n)=1,\quad\chi(\tau)=0.
+\tag{Z21}
+\]
+Both are morphisms in \(\mathcal W\). For \(p\), integer pairs are unchanged, a mixed \(\tau,n\) pair becomes \(e+n=n,en=e\), and a \(\tau,\tau\) pair becomes \(e+e=e^2=e\). For \(\chi\), every integer sum or product remains supported even when it is \(e\); these pairs map to \(1+1=1^2=1\). The \(\tau\) row maps to the Boolean zero row. Their identity images are also correct.
+
+The pair is the exact isomorphism
+\[
+S\;\xrightarrow{\ (p,\chi)\ }\;
+(\mathbb Z\times\{1\})\cup\{(e,0)\}
+\ \subset\ \mathbb Z\times\mathbb B.
+\tag{Z22}
+\]
+The image is exactly the displayed set. Its distinct types separate \(\tau\) from every integer, and the first coordinate separates integers. The map is therefore bijective onto its image, preserves operations, and has an operation-preserving inverse: apply its injectivity to each homomorphism equation. This proves all isomorphism claims, including closure of the image.
+
+Similarly, use \(q:H\to A\) given by
+\[
+q(n)=n,\quad q(\tau)=e,\quad q(\Omega)=\Omega.
+\tag{Z23}
+\]
+Together with \(\rho\) from (Z18), it gives
+\[
+H\;\xrightarrow{\ (q,\rho)\ }\;
+\{(n,e):n\in\mathbb Z\}\cup\{(e,\tau),(\Omega,\Omega)\}
+\ \subset\ A\times L.
+\tag{Z24}
+\]
+To check \(q\), its restriction to \(S\) is the already proved \(p\), and pairs containing \(\Omega\) map to the absorber pair in \(A\). It preserves the two identities. Injectivity of the pair and the inverse homomorphism argument are exactly as in (Z22). The only nonsingleton fibre of \(q\) is \(\{\tau,e\}\). The fibres of \(\rho\) are \(\mathbb Z,\{\tau\},\{\Omega\}\). Their intersection therefore recovers every element.
+
+These formulas show a concrete use: a calculation can retain integer value together with the distinction between unsupported, supported and absorbed states. For example,
+\[
+5+(-5)=e\longmapsto(e,e),\quad
+\tau\longmapsto(e,\tau),\quad
+\Omega\longmapsto(\Omega,\Omega)
+\tag{Z25}
+\]
+are three different outputs in (Z24). Forgetting the second coordinate identifies the first two. Forgetting the first coordinate identifies every integer with every other integer. Keeping both recovers the whole algebra.
+
+# 7. All integer congruences and the exact product obstruction
+
+A congruence is an equivalence relation preserved by both operations. Its kernel under a map is equality of images. For an integer \(d\ge0\), write \(d\mathbb Z\) for the ideal of multiples of \(d\), including \(0\mathbb Z=\{e\}\). Define \(\theta_d\) on \(S\) by integer congruence modulo \(d\), keeping \(\tau\) separate. Define \(\eta_d\) by additionally putting \(\tau\) into the class of the multiples of \(d\). On \(H\), use the same classes and keep \(\Omega\) separate.
+
+**Theorem Z5 (full congruence classification).** These are all congruences of \(S\). On \(H\), these and the total congruence are all possibilities. Their quotients are
+\[
+S/\theta_d=G(\mathbb Z/d\mathbb Z),\qquad
+S/\eta_d=\mathbb Z/d\mathbb Z,
+\]
+\[
+H/\theta_d=O(G(\mathbb Z/d\mathbb Z)),\qquad
+H/\eta_d=O(\mathbb Z/d\mathbb Z).
+\tag{Z26}
+\]
+Here \(\mathbb Z/0\mathbb Z=\mathbb Z\), and the zero ring for \(d=1\) is permitted. Its supported zero remains distinct from an adjoined \(\tau\). For ideals \(I,J\) the orders are \(\theta_I\le\theta_J\), \(\eta_I\le\eta_J\), or \(\theta_I\le\eta_J\) exactly when \(I\subseteq J\). No \(\eta_I\le\theta_J\) occurs.
+
+**Proof.** Restrict a congruence to the integers. Its zero class \(I\) is an ideal: addition preserves the class, multiplication by \(-1\) gives negatives, and multiplication by any integer stays in the class. Adding \(-m\), and conversely adding \(m\), proves \(n\sim m\) exactly when \(n-m\in I\). Every integer ideal is \(d\mathbb Z\): a nonzero ideal has a least positive element \(d\); division with remainder gives, for each element, a remainder in the ideal smaller than \(d\), which must be zero. The zero ideal is \(0\mathbb Z\).
+
+If \(\tau\) meets no integer class, we have \(\theta_d\). If \(\tau\sim n\), multiplication by \(e\) gives \(\tau\sim e\); consequently its integer class is exactly \(I\), and the congruence is \(\eta_d\). Both possibilities occur: the explicit maps in (Z26) send integers to residue classes, and respectively retain \(\tau\) or send it to the supported zero. Integer pairs are preserved by quotient arithmetic, and the \(\tau\) row is preserved by its identity/absorber rules. Thus no further equation is forced.
+
+On \(H\), if \(\Omega\sim n\) for an integer \(n\), adding \(-n\) gives \(\Omega\sim e\), and multiplying by \(\tau\) gives \(\Omega\sim\tau\). If \(\Omega\sim\tau\) directly the same conclusion holds. Then, for every \(x\), addition to this identity/absorber pair gives \(\Omega\sim x\); the congruence is total. Otherwise \(\Omega\) is singleton and the restriction to \(S\) is one of the preceding congruences. Every such congruence extends because every pair involving \(\Omega\) has \(\Omega\) as its value. The displayed quotients follow. Finally integer equivalences compare exactly by ideal inclusion; \(\eta\) identifies \(\tau,e\) while \(\theta\) never does. This proves the entire order. \(\square\)
+
+This calculation retains every integer congruence, not merely the individual integer values. It also gives the precise obstruction to replacing (Z22) or (Z24) by a full product or a claimed unrestricted fibre product.
+
+For \(H\), \(\ker q=\eta_0\), \(\ker\rho=\theta_1\). Their intersection is equality, but their least common containing congruence is \(\eta_1\). The common quotient is
+\[
+D=\{d<o\},\qquad +=\max,\quad\cdot=\max.
+\]
+Define \(\alpha:A\to D\) by every integer \(\mapsto d,\Omega\mapsto o\), and \(\beta:L\to D\) by \(\tau,e\mapsto d,\Omega\mapsto o\). Each pair in their sources either stays among the bottom states or contains an \(\Omega\); this verifies both operations and the identities. Their composites with \(q,\rho\) agree.
+
+The fibre product, meaning pairs with equal images in \(D\), is exactly
+\[
+A\times_D L
+=\{(n,\tau),(n,e):n\in\mathbb Z\}\cup\{(\Omega,\Omega)\}.
+\tag{Z27}
+\]
+It has componentwise operations and identities. It has the required universal property: compatible maps \(f:X\to A,g:X\to L\) have a unique pair map \(x\mapsto(f(x),g(x))\) into this set; every operation and identity is preserved coordinatewise. Formula (Z24) is a proper subalgebra of (Z27), missing exactly \((n,\tau)\) for \(n\ne e\).
+
+No different common target repairs this while keeping \(q,\rho\) as the projections. Indeed, if maps \(f:A\to D'\), \(g:L\to D'\) agree after \(q,\rho\), every integer gives \(f(n)=g(e)\), and the old \(\tau\) gives \(f(e)=g(\tau)\). Hence \(g(e)=g(\tau)=f(n)\) for every integer \(n\). Every pair \((n,\tau)\) belongs to that fibre product, including the missing pairs. This proves the claimed obstruction for any such target, rather than only for \(D\).
+
+For \(S\), \(\ker p=\eta_0,\ker\chi=\theta_1\) have total join \(\eta_1\). More directly any compatible \(f:\mathbb Z\to D'\), \(g:\mathbb B\to D'\) satisfies \(f(n)=g(1)\) for all integers and \(f(e)=g(0)\), so both maps are constant at the same value. Their fibre product is all of \(\mathbb Z\times\mathbb B\), missing the constraint in (Z22).
+
+The obstruction can also be read as noncommutation of the two kernel relations. For \(n\ne e\),
+\[
+n\mathrel{\theta_1}e\mathrel{\eta_0}\tau.
+\]
+There is no reverse path \(n\mathrel{\eta_0}x\mathrel{\theta_1}\tau\): the \(\eta_0\)-class of \(n\ne e\) is just \(\{n\}\), while the \(\theta_1\)-class of \(\tau\) is just \(\{\tau\}\). This proves exactly why matching the common quotient leaves unsupported nonzero pairs that the original algebra does not contain.
+
+# 8. A positive reconstruction rule and two actual pullback squares
+
+The failed unrestricted fibre-product claim has an exact replacement. Let the arithmetic zero-test be
+\[
+\nu:\mathbb Z\to\mathbb B,\qquad \nu(e)=0,\quad \nu(n)=1\ (n\ne e).
+\tag{Z29}
+\]
+This is different from the programme support map: \(\chi(e)=1\), even though \(\nu(e)=0\). Integer multiplication has no zero divisors, so \(\nu(mn)=\nu(m)\nu(n)\). For addition,
+\(\nu(m+n)\le\max(\nu(m),\nu(n))\): if both inputs vanish so does the sum; otherwise the right side is \(1\). Equality need not hold, as \(\nu(1+(-1))=0\). Then (Z22) can be written exactly as
+\[
+S\cong\{(n,b)\in\mathbb Z\times\mathbb B:\nu(n)\le b\}.
+\tag{Z30}
+\]
+If \(n\ne e\), only \(b=1\) is allowed; if \(n=e\), both states are allowed. This proves the equality of carriers.
+
+For \(A\), define the related map, denoted \(\nu_A\) to retain its different codomain,
+\[
+\nu_A(e)=\tau,\qquad
+\nu_A(n)=e\ (n\ne e),\qquad
+\nu_A(\Omega)=\Omega,
+\quad \nu_A:A\to L.
+\tag{Z31}
+\]
+Its multiplication is exact and its addition satisfies
+\[
+\nu_A(xy)=\nu_A(x)\nu_A(y),\qquad
+\nu_A(x+y)\le\nu_A(x)+\nu_A(y),
+\tag{Z32}
+\]
+where \(\le\) is the addition order \(\tau<e<\Omega\). For integer arguments this is the preceding zero-test calculation with relabelled values. If an argument is \(\Omega\), both sides of the multiplication identity are \(\Omega\), and both sides of the addition inequality are \(\Omega\). Thus every case is checked.
+
+With \(\alpha,\beta\) from Section 7, \(\alpha=\beta\nu_A\), as follows from their three value types. Formula (Z24) is precisely
+\[
+H\cong
+\{(x,s)\in A\times_D L:\nu_A(x)\le s\}.
+\tag{Z33}
+\]
+An integer \(x=e\) permits \(s=\tau,e\); a nonzero integer permits only \(s=e\); and compatibility over \(D\) permits only \(s=\Omega\) for \(x=\Omega\). Thus the displayed set is exactly the previously proved image.
+
+This description also proves closure directly. Each multiplication row of (Z17) is increasing for \(\tau<e<\Omega\), so
+\(\nu_A(xy)=\nu_A(x)\nu_A(y)\le ss'\) for two permitted pairs. For sums, (Z32) gives
+\(\nu_A(x+y)\le\nu_A(x)+\nu_A(y)\le s+s'\).
+Compatibility over \(D\) is preserved by coordinatewise operations. The pairs \((e,\tau)\) and \((1,e)\) are its two identities.
+
+The universal property is exact. Given morphisms \(f:X\to A,g:X\to L\) such that
+\[
+\alpha f=\beta g,\qquad \nu_A(f(x))\le g(x)\quad(x\in X),
+\]
+the pair \((f(x),g(x))\) belongs to (Z33), so determines a unique map \(h:X\to H\). Its two coordinates preserve both operations and identities; injectivity of \((q,\rho)\) then proves that \(h\) preserves them. Conversely every \(h\) gives such a pair by (Z33). The same argument proves the corresponding universal property for (Z30), without the \(D\)-compatibility equation. The added condition states exactly that a nonzero integer cannot be unsupported.
+
+There are also genuine pullback squares, involving the original input rather than trying to reconstruct \(H\) from its two quotients:
+\[
+\begin{array}{ccc}
+S&\longrightarrow&H\\
+p\downarrow&&\downarrow q\\
+\mathbb Z&\longrightarrow&A
+\end{array}
+\qquad
+\begin{array}{ccc}
+S&\longrightarrow&H\\
+\chi\downarrow&&\downarrow\rho\\
+\mathbb B&\longrightarrow&L .
+\end{array}
+\tag{Z34}
+\]
+The first bottom arrow includes the integers. The second sends \(0\mapsto\tau,1\mapsto e\); both are morphisms of \(\mathcal W\). All top arrows are the inclusion of \(S\). Both squares commute by their value tables.
+
+Each square is a pullback. For the first, \(q^{-1}(\mathbb Z)=S\). Compatible maps from an arbitrary \(X\) into \(H,\mathbb Z\) therefore have their \(H\)-image in \(S\), giving a unique factor into \(S\); operations and identities restrict, and the bottom inclusion's injectivity forces its arithmetic coordinate to be the given one. For the second, \(\rho^{-1}(\{\tau,e\})=S\); the identical factorization argument gives the support coordinate \(\chi\).
+
+Each square is also a pushout. In the first, a compatible pair of maps out of \(H,\mathbb Z\) must identify \(\tau,e\), because \(p\) does. The exact quotient (Z26) for \(d=0\) is \(A\), so the \(H\)-map factors uniquely through \(A\). Its restriction to the included integers is the other map, proving the full pushout property. In the second, compatibility forces all supported integers to have one image, and (Z26) for \(\theta_1\) gives precisely \(L\). The same factorization proves the second pushout property. These are proved positive comparisons alongside the different fibre-product obstruction in Section 7.
+
+Finally, the state quotients are universal for targets with idempotent addition. If \(f:S\to D\), or \(f:H\to D\), is a morphism and every element of \(D\) satisfies \(x+x=x\), the calculation (Z8) forces every supported integer to have image \(f(e)=f(1)=1_D\). The only remaining source states are \(\tau\), and \(\Omega\) when present. Their exact tables give a unique morphism through \(\chi:S\to\mathbb B\), or through \(\rho:H\to L\), respectively. Every pair and both identities are preserved by those tables. Thus the finite state map is forced by a precise algebraic target property; it is not an arbitrarily chosen label map.
+
+![Exact joint arithmetic/state image. The displayed integer sample is finite, while equations Z24 and Z33 hold for every integer. Red cells are precisely the extra unsupported nonzero pairs introduced by the unrestricted fibre product; Sections 7–8 prove their exclusion and the resulting universal property.](figures/07_integer_and_state.png)
+
+# 9. The original monoidal base extension and what addition changes
+
+Source [1], lines 1324–1405, explicitly chooses commutative monoids with a multiplicative unit and a distinguished global absorber as its \(\mathbb F_1\)-algebras. It defines their integer base extension as the monoid ring with the absorber killed. We now calculate that exact construction for every algebra above, rather than invoking an unspecified interpretation of \(\mathbb F_1\).
+
+For such a monoid \(M\), its **monoid ring** \(\mathbb Z[M]\) consists of finite formal integer sums \(\sum a_x[x]\), with coefficientwise addition and multiplication given by \([x][y]=[xy]\) and bilinear extension. Its identity is \([1_M]\). If \(z_M\) is the global absorber, define
+\[
+\Gamma(M)=\mathbb Z[M]/([z_M]).
+\tag{Z35}
+\]
+The ideal generated by \([z_M]\) is exactly \(\mathbb Z[z_M]\): multiplying it by any basis element returns \([z_M]\), and every integer multiple already occurs. Consequently all other monoid elements remain an independent integer basis in \(\Gamma(M)\). Killing a formal basis element does not identify its original source element with another source element.
+
+This construction has the exact universal property used here. Given a multiplicative map \(f:M\to R\) into a commutative unital ring with \(f(1_M)=1_R,f(z_M)=0_R\), the formula
+\(\sum a_x[x]\mapsto\sum a_x f(x)\) gives a ring homomorphism: distributing the two finite sums verifies multiplication term by term. It kills \([z_M]\), hence factors through \(\Gamma(M)\). Conversely every unital ring homomorphism from \(\Gamma(M)\) gives such an \(f\). The basis values force uniqueness. The monoid-ring axioms themselves follow from coefficient addition and associativity and commutativity on basis products, extended bilinearly.
+
+Let \(N=\mathbb Z\setminus\{e\}\) under multiplication, and write \(\Lambda=\mathbb Z[N]\). The product of nonzero integers is nonzero, so \(N\) is a monoid with unit \(1\). This \(\Lambda\) retains formal basis symbols \([n]\); in particular \([2]\) is not the same element as \(2[1]\).
+
+**Theorem Z7 (complete base-extension comparison).** For the multiplicative monoids of the six algebras,
+\[
+\begin{array}{c|c|c}
+\text{algebra}&\Gamma(\text{multiplicative monoid})
+&\text{quotient also imposing every original addition}\\\hline
+S&\mathbb Z\times\Lambda&\mathbb Z\\
+A&\mathbb Z\times\Lambda&\mathbf0\\
+H&\mathbb Z\times\mathbb Z\times\Lambda&\mathbf0\\
+B&\mathbb Z&\mathbf0\\
+J&\mathbb Z&\mathbf0\\
+C&\mathbb Z\times\mathbb Z&\mathbf0
+\end{array}.
+\tag{Z36}
+\]
+Here \(\mathbf0\) is the one-element ring, and the right column is the universal ring receiving both source operations and their identities.
+
+**Proof of the second column.** For \(S\), the global multiplicative absorber is \(\tau\); for \(A\), it is \(\Omega\). Removing that basis symbol leaves, in both cases, the basis \([n]\) for all integers, with multiplication \([m][n]=[mn]\). Thus both base extensions are \(\mathbb Z[(\mathbb Z,\cdot)]\), agreeing with the original source calculation for \(S\). An explicit unital ring isomorphism to \(\mathbb Z\times\Lambda\) is
+\[
+[e]\mapsto(1,0),\qquad [n]\mapsto(1,[n])\quad(n\ne e).
+\tag{Z37}
+\]
+For products with \([e]\), both sides give \((1,0)\). For two nonzero integers both sides give \((1,[mn])\). The identity \([1]\) maps to \((1,[1])\), the product-ring identity. Linear extension is therefore a unital ring map. It is bijective: if \(v=\sum_{n\ne e}a_n[n]\in\Lambda\), its inverse is
+\[
+(k,v)\mapsto
+\left(k-\sum_{n\ne e}a_n\right)[e]
++\sum_{n\ne e}a_n[n].
+\tag{Z38}
+\]
+The displayed sums are finite, and the two composite maps are the identity by their coefficients. This proves (Z37) completely.
+
+For \(H\), the global multiplicative absorber is \(\Omega\). Its surviving basis is \([\tau]\) and \([n]\) for every integer \(n\). Define
+\[
+[\tau]\mapsto(1,0,0),\qquad
+[e]\mapsto(1,1,0),\qquad
+[n]\mapsto(1,1,[n])\quad(n\ne e).
+\tag{Z39}
+\]
+A product involving \([\tau]\) returns \([\tau]\) in the source and \((1,0,0)\) in the target. A product involving \([e]\), with no \([\tau]\), returns \([e]\) and \((1,1,0)\). Products of nonzero integer basis elements give \((1,1,[mn])\). This proves preservation of every basis product. The unit maps to \((1,1,[1])\). For \(v=\sum a_n[n]\), the inverse is
+\[
+(k,l,v)\mapsto
+(k-l)[\tau]+\left(l-\sum a_n\right)[e]+\sum a_n[n],
+\tag{Z40}
+\]
+as direct substitution verifies.
+
+For \(B\), its global multiplicative absorber is \(c\), and only the unit basis \([u]\) remains. For \(J\), the absorber is \(a\), and only \([\varepsilon]\) remains. Each resulting ring is \(\mathbb Z\), with the surviving basis symbol as unit.
+
+For \(C\), kill its absorber \([t]\). The surviving basis is \([c],[u]\), with \([c]^2=[c]\) and \([u]\) the identity. The map
+\[
+[c]\mapsto(1,0),\qquad[u]\mapsto(1,1)
+\tag{Z41}
+\]
+preserves all products and the unit, and has inverse \((k,l)\mapsto(k-l)[c]+l[u]\). This completes the second column.
+
+**Proof of the last column and its universal property.** For any of these source algebras \(K\), quotient \(\Gamma(K)\) by the ideal generated by
+\[
+[x+y]-[x]-[y]\qquad(x,y\in K),
+\tag{Z42}
+\]
+where the killed absorber basis symbol means ring zero. These relations are exactly preservation of the source addition. In particular the old additive identity \(0_K\) satisfies \([0_K]=2[0_K]\), so its image is ring zero; the multiplicative identity was already preserved. Conversely, every map preserving both operations and identities into a ring sends the global multiplicative absorber \(z_K\) to ring zero: \(z_K0_K=z_K\) gives \(f(z_K)0=f(z_K)\). Thus it factors uniquely through (Z35) and then (Z42). This proves the claimed universal property without assuming it.
+
+For \(S\), the assignment \([n]\mapsto n\), \([\tau]\mapsto0\), respects every relation and gives a surjective map to \(\mathbb Z\). In the quotient, the equation \(e+e=e\) gives \([e]=0\). Repeated addition of \(1\) gives \([n]=n[1]\) for positive integers. The relation \(n+(-n)=e\) gives the same formula for negative integers. Every basis element is therefore an integer multiple of \([1]\), and evaluation is inverse to \(k\mapsto k[1]\). The quotient is exactly \(\mathbb Z\).
+
+For \(A,H\), the source equation \(\Omega+1=\Omega\), with \([\Omega]=0\), forces \([1]=0\), hence the entire ring is \(\mathbf0\). For \(B,C\), the source equation \(u+u=u\), with \([u]=1\), forces \(2=1\), hence \(1=0\). For \(J\), the same argument uses \(\varepsilon+\varepsilon=\varepsilon\) and \([\varepsilon]=1\). The one-element ring always realizes the forced relations, so those quotients exist and are exactly as claimed. \(\square\)
+
+This supplies a precise monoidal answer to the original question. The \(\tau\) and direct \(\Omega\) corners have the same nonzero monoidal base extension, including the separate \(\mathbb Z\)-factor in (Z37). Their original additions then impose different ideals: the \(\tau\) arithmetic gives the ordinary integers, while the literal absorber addition forces the one-element ring. The latter does not mean \(A\) or \(H\) has lost its embedded integer arithmetic: Theorem Z3 proves that it has not. It means that a single map preserving its full operations into a ring cannot retain that arithmetic.
+
+**Theorem Z8 (the induced observations become a product and a fibre product).** The original observations induce the exact product isomorphism
+\[
+(\Gamma\chi,\Gamma p):
+\Gamma(S)\ \xrightarrow{\ \cong\ }
+\Gamma(\mathbb B)\times\Gamma(\mathbb Z,\cdot,e)
+=\mathbb Z\times\Lambda.
+\tag{Z43}
+\]
+For the literal \(\Omega\)-extension, the comparison which was a proper inclusion before base extension becomes an isomorphism:
+\[
+\Gamma(H)\ \xrightarrow{\ \cong\ }
+\Gamma(A)\times_{\Gamma(D)}\Gamma(L).
+\tag{Z44}
+\]
+These statements concern these specific diagrams; they do not assert that \(\Gamma\) preserves all products or pullbacks.
+
+**Proof.** The multiplication maps \(p,\chi,q,\rho,\alpha,\beta\) each preserve the unit and the global multiplicative absorber. For example, the global absorber is \(\tau\) in \(S\), \(e\) in \((\mathbb Z,\cdot)\), Boolean zero in \(\mathbb B\), and \(\Omega\) in \(H,A,L\); in \(D\) it is \(o\). Hence each induces a ring map by (Z35). It is specified on basis symbols by \([x]\mapsto[f(x)]\), where a killed target symbol means zero.
+
+Contracting the multiplicative absorber \(e\) of the integers leaves exactly \(\Lambda\), since all nonzero products are nonzero. Also \(\Gamma(\mathbb B)=\mathbb Z\). For (Z43), \([\tau]=0\) in \(\Gamma(S)\), and the other basis values are
+\[
+[e]\mapsto(1,0),\qquad
+[n]\mapsto(1,[n])\quad(n\ne e).
+\]
+This is precisely (Z37), whose inverse is (Z38). Thus the two factors are the actual induced support and arithmetic maps, not merely an abstract product of isomorphic rings.
+
+For \(L\), killing \([\Omega]\) leaves \([\tau],[e]\) with \([\tau]^2=[\tau]\), \([\tau][e]=[\tau]\), and unit \([e]\). Therefore
+\[
+\Gamma(L)\cong\mathbb Z\times\mathbb Z,\qquad
+[\tau]\mapsto(1,0),\quad[e]\mapsto(1,1),
+\tag{Z45}
+\]
+with inverse \((k,l)\mapsto(k-l)[\tau]+l[e]\). For \(D\), killing \([o]\) leaves its unit \([d]\), so \(\Gamma(D)=\mathbb Z\).
+
+Use the coordinates (Z37), (Z39), (Z45). The induced maps are
+\[
+\begin{aligned}
+\Gamma q(k,l,v)&=(k,v),&
+\Gamma\rho(k,l,v)&=(k,l),\\
+\Gamma\alpha(k,v)&=k,&
+\Gamma\beta(k,l)&=k.
+\end{aligned}
+\tag{Z46}
+\]
+To verify the first line on every basis type: \([\tau]\) has coordinates \((1,0,0)\), and \(q(\tau)=e,\rho(\tau)=\tau\); \([e]\) has coordinates \((1,1,0)\), and both maps send \(e\) to the respective \(e\); a nonzero \([n]\) has coordinates \((1,1,[n])\), and \(q(n)=n,\rho(n)=e\). The killed \([\Omega]\) maps to zero. These checks determine the linear maps on every finite sum. For the second line, \(\alpha\) sends each integer basis symbol to the unit \([d]\), and \(\beta\) sends both \([\tau],[e]\) to \([d]\), so the first-coordinate projections have exactly the required basis values.
+
+Consequently the fibre product on the right of (Z44) consists precisely of pairs
+\[
+((k,v),(k,l)),\qquad k,l\in\mathbb Z,\ v\in\Lambda.
+\]
+The map \((k,l,v)\mapsto((k,v),(k,l))\) is bijective, unital, and preserves coordinatewise addition and multiplication. Its inverse reads off \(k,l,v\). This proves (Z44), including its ring universal property: compatible ring maps into the two factors pair uniquely into this set, and the inverse gives the unique factor through \(\Gamma(H)\). \(\square\)
+
+There is an explicit meaning for the extra pairs that prevented the original fibre-product reconstruction. If \(n\ne e\), the pair consisting of the basis value \([n]\) in \(\Gamma(A)\) and the unsupported basis value \([\tau]\) in \(\Gamma(L)\) corresponds to
+\[
+[n]-[e]+[\tau]\ \in\Gamma(H).
+\tag{Z47}
+\]
+Indeed its three coordinates are \((1,0,[n])\), so (Z46) gives exactly \(([n],[\tau])\). Before the extension there was no element of \(H\) with those two observations. The monoid ring supplies a formal additive difference with them. This is not a new source element or a change to the source addition; it uses the newly constructed ring addition. This exact calculation accounts for the disappearance of the obstruction.
+
+The addition ideal for \(S\) has a precise description in the product coordinates. Let
+\[
+\operatorname{ev}:\Lambda\to\mathbb Z,\qquad
+\operatorname{ev}\left(\sum a_n[n]\right)=\sum a_n n.
+\tag{Z48}
+\]
+It is a unital ring map because evaluating a basis product gives \(mn\), the product of the evaluations; finite linear extension verifies all products. The quotient proved in Theorem Z7 sends \((k,v)\) to \(\operatorname{ev}(v)\). Its kernel is therefore
+\[
+\mathbb Z\times\ker(\operatorname{ev}).
+\tag{Z49}
+\]
+This is exactly the ideal generated by all addition relations (Z42), since Theorem Z7 proved that their quotient map is evaluation and is an isomorphism onto \(\mathbb Z\). The relation \(e+e=e\) kills the support factor \([e]=(1,0)\), and the other relations turn the formal nonzero-integer basis into its arithmetic values.
+
+![The induced product and fibre product after monoidal base extension.](figures/08_monoid_base_extension.png)
+
+Figure 8 shows the exact coordinates and maps of Theorems Z7–Z8. The formal difference in (Z47) accounts for a pair absent from the original source object. Source definition: HI-AI, original 11.tex, lines 1324–1428; full proof: (Z35)–(Z49).
+
+# 10. What is established about usefulness
+
+The square has different answers at different levels, with exact maps proving the relationship:
+
+* Keeping both operations, all four direct integer constructions are different. Keeping only multiplication identifies the \(\tau\) and \(\Omega\) constructions, and identifies the two finite constructions. The maps are (Z11) and (Z12).
+* The infinite constructions retain all integer arithmetic and all its congruences. The value and state maps recover the objects exactly by (Z22) and (Z24), with the precise constraint and product obstruction proved above.
+* A globally imposed \(u\) cannot retain integer magnitude under a binary-preserving map; equation (Z8) proves the collapse. Over the actual \(S\), it retains unsupported versus supported input and a separate new global unit. A globally imposed \(\varepsilon\) loses even that old support distinction; equation (Z9) proves it.
+* The finite roles already occur on specified subalgebras of the integer-preserving \(H\). Theorem Z4 proves exactly which copies exist, which do not, and which comparison survives at the monoid level.
+
+Theorem Z7 further computes the exact monoidal base extension specified by the original source, and the different quotients obtained on restoring addition. These are concrete algebraic uses and restrictions. They do not determine whether the framing is historically new or supply a new result in the current analytic programme. No assertion about a different version of geometry over \(\mathbb F_1\) is inferred from these computations.
+
+# Original sources and proof coverage
+
+[1] HI-AI, *An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*, Zenodo 17555345, original 11.tex. The exact authoring source is sources/17555345_11.tex. Section 3, lines 578–749, defines the original adjoined element; lines 1146–1323 give its two-element singlet algebra; lines 1324–1428 give the chosen monoidal base extension and Boolean comparison; lines 1524–1577 give the arbitrary-ring construction. The actual programme \(\tau\), with supported \(e\) distinct, is the starting object throughout.
+
+[2] HI-AI, *An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements*, Zenodo 17547186, original 5.tex, Section 9, construction lines 1288–1360, with singlets in Section 10. The exact authoring source is sources/17547186_5.tex. The law \(\tau\Omega=\Omega\) is retained, including its weakening of global zero absorption.
+
+The older local proofs RECEIVERS.md, EXPLORATION.md and the preserved September 19 source proofs were consulted before these calculations. The basic receivers, singlet tables, congruence classification, and paired arithmetic/support embedding were already present there; they are fully reproved here to answer this question about the four integer constructions. The monoid comparisons, complete finite-copy and homomorphism classifications, integer recovery and rigidity, and the reconstruction results of Sections 7–8 are derived here with their full proofs. Two independent mathematical derivations checked the comparisons, classifications and reconstruction maps. This is a statement of local proof provenance, not of novelty in the literature. Source-reading coverage and hashes remain in SOURCE_READING_AND_USE.md and SOURCE_MANIFEST.json.
+
+
+The subsequent [prismatic comparison](PRISMATIC_COMPARISON.md), Theorems P1–P5, constructs bounded crystalline prisms from these exact coefficient rings, computes the addition obstruction, and proves the Witt and conjugate-Frobenius bridges. [Coefficient branch](COEFFICIENT_BRANCH.md), Theorems C1–C2, gives the exact module/complex relation and the limitation on canonical addition recovery.

@@ -1,0 +1,312 @@
+# The standard dual-number infinitesimal in the original arithmetic action
+
+22 September 2026. This note answers the specific comparison with the square-derived deformation parameter. It constructs the maps, proves which are isomorphisms, and retains the exact nonflat module. It does not change the original arithmetic action or select a sign for its observed terminal current. The complete primitive and node constructions accompany this interface in the same proof collection.
+
+## 1. The existing arithmetic operator is a faithful dual-number infinitesimal
+
+For every original cutoff \(q-1\le N\le2q\), retain the entire source quotient \((E,G_N)\), where \(q=(k+1)^2\), \(k\ge17\), \(k\equiv1\pmod4\), and the original root polynomial, quartet, period and source remain unchanged. The exact original action is
+\[
+M=C_N+R_N,\qquad
+R_N=\epsilon_N f_N e_N^{\dagger_{G_N}},\qquad
+C_N=C_N^{\dagger_{G_N}},
+\]
+\[
+\epsilon_N>0,\quad \|e_N\|_{G_N}=\|f_N\|_{G_N}=1,
+\quad \langle e_N,f_N\rangle_{G_N}=0.
+\tag{NI1}
+\]
+These are the original outgoing source classes, with every scalar retained, in [OCP5–7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/OBSERVED_CURRENT_PLANE.tex#L90). In particular
+\[
+R_N^2=0,\qquad R_Ne_N=\epsilon_Nf_N\ne0,\quad R_Nf_N=0.
+\tag{NI2}
+\]
+For clarity, the vectors in NI1 have the original definitions
+\[
+b_n=[p_n]\in E=\mathbb C[y]/Q_k,
+\quad E_N=\|b_N\|_{G_N}^2,\quad F_N=\|b_{N+1}\|_{G_N}^2,
+\]
+\[
+e_N=b_N/\sqrt{E_N},\qquad f_N=b_{N+1}/\sqrt{F_N},
+\qquad \epsilon_N=\sqrt{E_NF_N}/\omega_N.
+\]
+Here \(p_n\) is the real monic polynomial for the original measure, \(\omega_n\) is its squared norm, and \(G_N\) is the complete degree-\(N\) quotient minimum. The polynomial is
+\[
+Q_k(y)=\prod_{a,b=0}^k\bigl[y-(2b-k)\gamma+i(2a-k)\delta\bigr],
+\quad 0<\delta<\tfrac12,\quad\gamma>2.
+\]
+No original norm is replaced. OCP5–7 derives the orthogonality and rank-one formula from the complete polynomial minimum. Its nonzero assertion also follows directly from that formula: if either outgoing class vanished, the rank-one term would be zero, making multiplication by \(y\) selfadjoint in the positive metric \(G_N\). Its eigenvalues are the roots of \(Q_k\), all nonreal because \(k\) is odd and \(\delta>0\). A selfadjoint operator has real eigenvalues: for an eigenvector \(v\), the identity \(\langle Mv,v\rangle=\langle v,Mv\rangle\) forces its eigenvalue to equal its conjugate. This contradiction proves \(E_N,F_N>0\), hence \(\epsilon_N>0\). The unchanged complete source is [Original observed current plane](sources/OBSERVED_CURRENT_PLANE.tex), OCP1 and OCP5–7; its pinned published edition is cited above.
+
+Suppress \(N\) only in the following finite formulas. Let \(D_{\mathbb Z}=\mathbb Z[\eta]/(\eta^2)\) and \(D_{\mathbb C}=\mathbb C\otimes_{\mathbb Z}D_{\mathbb Z}\). Then
+\[
+\sigma_N:D_{\mathbb C}\xrightarrow{\sim}\mathbb C[I,R_N],
+\qquad a+b\eta\longmapsto aI+bR_N
+\tag{NI3}
+\]
+is an isomorphism of unital complex algebras. Multiplication is preserved by NI2. If \(aI+bR_N=0\), applying the operator to \(f_N\) gives \(a=0\), and applying it to \(e_N\) then gives \(b\epsilon_Nf_N=0\), hence \(b=0\). Surjectivity onto the stated algebra is its definition. The identical proof gives
+\[
+D_{\mathbb Z}\xrightarrow{\sim}\mathbb ZI+\mathbb ZR_N.
+\tag{NI4}
+\]
+Thus the existing boundary operator is exactly a representation of the standard nonzero square-zero infinitesimal. The isomorphism is onto its two-dimensional generated algebra, not onto all of \(\operatorname{End}_{\mathbb C}(E)\).
+
+## 2. The square-derived parameter and the map back to it
+
+Use precisely the node task's objects
+\[
+\mathcal R=\mathbb Z[t^{\pm1},u^{\pm1}],\quad x=t-1,\quad y=u-1,
+\quad j=xy,\quad \widetilde A=\mathcal R/(j^2).
+\]
+The original square-derived cross-effect and conormal maps are
+\[
+W\xrightarrow{\sim}j\mathcal R,\quad
+w_{a,b}\longmapsto(t^a-1)(u^b-1),
+\quad
+j\mathcal R\longrightarrow j\mathcal R/j^2\mathcal R.
+\tag{NI5}
+\]
+Here \(U(\mathbb Z)\) is free on symbols \(r_a\), \(a\ne0\), with \(r_0=0\), and \(W=U(\mathbb Z)\otimes U(\mathbb Z)\). The elements \(t^a-1\), \(a\ne0\), form a basis of the Laurent augmentation ideal: an augmentation-zero polynomial is the sum of its nonconstant coefficients times these elements, and independence follows from those same coefficients. That ideal is \(x\mathbb Z[t^{\pm1}]\). The identical statement for \(u\), followed by tensor multiplication, identifies the tensor product with \(xy\mathcal R=j\mathcal R\). This proves the first isomorphism in NI5. The second map has exactly kernel \(j^2\mathcal R\); its quotient is \(A=\mathcal R/(j)\) through \(jF\mapsto F\bmod j\), with injectivity verified by cancellation of \(j\) in the Laurent domain. These are N5–6 in the complete source [Node cotangent](NODE_COTANGENT.md), N5–N6, and [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN13–DN21.
+
+The deformation map is
+\[
+\iota:D_{\mathbb Z}\hookrightarrow\widetilde A,
+\qquad \eta\longmapsto j.
+\tag{NI6}
+\]
+For a direct proof of injectivity, suppose \(a+bj=j^2F\). Evaluation at \(t=u=1\) gives \(a=0\). The Laurent ring is a domain, so cancellation of \(j\) yields \(b=jF\); evaluation once more gives \(b=0\). Its image is exactly \(\mathbb Z\oplus\mathbb Zj\), with \(j^2=0\). Thus NI6 is an isomorphism onto that image. The full target is larger: for example \(x\bmod j^2\) is not in its image, since restricting to \(u=1\) would express the nonconstant Laurent polynomial \(t-1\) as a constant.
+
+The infinitesimal ideal itself satisfies
+\[
+\eta D_{\mathbb Z}\cong\mathbb Zj\subset j\mathcal R/j^2\mathcal R.
+\tag{NI7}
+\]
+This is a map of nonunital square-zero ideals; it retains the larger conormal module rather than equating that module with one copy of \(\mathbb Z\). Through NI5, the distinguished element \(w_{1,1}\) goes to \(j\). Equations NI4 and NI6 identify the two generated dual-number algebras by \(j\mapsto R_N\).
+
+## 3. A compatible representation of the entire node deformation
+
+There is an explicit family extending that last identification to \(\widetilde A_{\mathbb C}=\mathbb C\otimes\widetilde A\). Its parameter space is the unit sphere in the actual metric space
+\[
+H_N=\{e_N,f_N\}^{\perp_{G_N}},\qquad \dim_{\mathbb C}H_N=q-2.
+\tag{NI8}
+\]
+It is nonempty because \(q\ge324\). No particular unit vector is selected. For every \(g\in H_N\) with \(\|g\|_{G_N}=1\), define the actual endomorphism
+\[
+T_g=\sqrt{\epsilon_N}\bigl(f_Ng^{\dagger_{G_N}}+g e_N^{\dagger_{G_N}}\bigr).
+\tag{NI9}
+\]
+Orthogonality of the three vectors gives, without changing any coefficient,
+\[
+T_ge_N=\sqrt\epsilon\,g,\quad T_gg=\sqrt\epsilon\,f_N,\quad T_gf_N=0,
+\quad T_g^2=R_N,\quad T_g^3=0.
+\tag{NI10}
+\]
+It vanishes on their common orthogonal complement. Hence \(I+T_g\) is invertible with inverse \(I-T_g+T_g^2\). The assignment
+\[
+\rho_g:\widetilde A_{\mathbb C}\longrightarrow\mathbb C[T_g]
+\subset\operatorname{End}_{\mathbb C}(E),
+\qquad t,u\longmapsto I+T_g
+\tag{NI11}
+\]
+is a well-defined unital algebra homomorphism, and
+\[
+\rho_g(j)=T_g^2=R_N,\qquad
+\rho_g\circ\iota_{\mathbb C}=\sigma_N.
+\tag{NI12}
+\]
+This is the required commuting diagram from the square-derived parameter to the existing arithmetic infinitesimal. Its entire image and kernel are explicit:
+\[
+\ker\rho_g=(x-y,x^3)\subset\widetilde A_{\mathbb C},
+\qquad
+\widetilde A_{\mathbb C}/(x-y,x^3)
+\xrightarrow{\sim}\mathbb C[T_g]\cong\mathbb C[z]/(z^3).
+\tag{NI13}
+\]
+Indeed setting \(x=y\) gives \(j^2=x^4\), and further quotienting by \(x^3\) leaves \(\mathbb C[x]/x^3\); \(1+x\) is automatically invertible. The images \(I,T_g,T_g^2\) are linearly independent: successively apply a proposed relation to \(f_N,g,e_N\). This proves the asserted kernel, not only an inclusion. Under NI13 the standard dual-number inclusion is \(\eta\mapsto z^2\), which is injective.
+
+This family supplies an exact representation. It does not assert that the original arithmetic action distinguished a particular square root \(T_g\), or replace its boundary operator by that root. Every member has the same fixed square \(R_N\), and the family parameter space is specified by the original metric.
+
+![Exact standard-infinitesimal and node-deformation maps](figures/15_native_dual_number_maps.png)
+
+The diagram is NI3, NI6 and NI11–13. The top arrow is injective, the right arrow is a quotient with the displayed kernel, and the bottom arrow identifies the two-dimensional infinitesimal subalgebra inside the cubic algebra. It does not identify the entire node deformation with dual numbers.
+
+## 4. The full arithmetic module retains an exact defect
+
+Give \(E\) its \(D_{\mathbb C}\)-module structure through \(\eta\cdot v=R_Nv\). There is an exact, metric-compatible decomposition
+\[
+E=\operatorname{span}_{\mathbb C}\{e_N,f_N\}\oplus H_N
+\cong D_{\mathbb C}\oplus(\mathbb C_{\eta=0})^{q-2},
+\quad a+b\eta\longmapsto a e_N+b\epsilon_N f_N
+\tag{NI14}
+\]
+on the first summand. Thus a faithful representation of the infinitesimal algebra does not make this entire module free over it. Its failure of flatness has the exact object
+\[
+\operatorname{Tor}^{D_{\mathbb C}}_1(\mathbb C,E)
+\cong\ker R_N/\operatorname{im}R_N
+\xrightarrow{\sim}H_N.
+\tag{NI15}
+\]
+For a complete verification, the periodic free resolution of \(\mathbb C=D_{\mathbb C}/(\eta)\) has every positive differential multiplication by \(\eta\): its kernel and image are both \(\eta D_{\mathbb C}\). Tensor with \(E\); every differential becomes \(R_N\), so degree-one homology is the quotient displayed. Since \(\ker R_N=e_N^\perp=\mathbb C f_N\oplus H_N\) and \(\operatorname{im}R_N=\mathbb C f_N\), the last map sends a class to its unique orthogonal representative in \(H_N\). This also gives its exact quotient metric. Flatness would preserve the injection \((\eta)\hookrightarrow D_{\mathbb C}\); after tensor its kernel is precisely the nonzero space NI15, proving nonflatness directly.
+
+This defect is already a concrete space in the original arithmetic current:
+\[
+W_N=i\epsilon_N(f_Ne_N^\dagger-e_Nf_N^\dagger),\qquad
+\ker W_N=H_N.
+\tag{NI16}
+\]
+On \(\operatorname{span}\{e_N,f_N\}\), the displayed operator is invertible with eigenvalues \(\epsilon_N,-\epsilon_N\), and it vanishes on \(H_N\), proving NI16. This is the full source current; the observed current has its own original projection and is not substituted here. Thus the nonflat directions of the existing dual-number module are exactly the full current's zero eigendirections.
+
+## 5. The primitive quotient and its full support receiver
+
+The primitive in [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN3–DN17, belongs to the diagonal quotient
+\[
+D_\Delta=\mathbb C[t^{\pm1}]/(t-1)^2
+\cong A_{\mathbb C}/(t-u),\qquad A=\mathbb Z[t^{\pm1},u^{\pm1}]/j.
+\]
+It has the direct faithful receiver
+\[
+\nu_N:D_\Delta\xrightarrow{\sim}\mathbb C[I,R_N],
+\qquad \overline{t-1}\longmapsto R_N.
+\tag{NI17}
+\]
+Before quotienting, the exact map sends \(t,u\) to \(I+R_N\), whose inverse is \(I-R_N\). Its kernel in the Laurent ring is \((t-u,j)=(t-u,(t-1)^2)\): imposing those relations gives the two-dimensional dual-number algebra, and NI3 proves independence of its two operator images. In this map \(j\) goes to zero. In the cubic smoothing receiver NI11, \(t-1\) goes to \(T_g\) and \(j\) goes to \(R_N\). These are two proved maps from the specified sources.
+
+Their connecting surjection is
+\[
+c_g:\mathbb C[T_g]\longrightarrow\mathbb C[I,R_N],
+\qquad T_g\longmapsto R_N,\qquad
+\ker c_g=\mathbb C T_g^2.
+\tag{NI18}
+\]
+Both algebras have their proved polynomial presentations, so this is the quotient \(\mathbb C[z]/z^3\to\mathbb C[z]/z^2\) followed by NI3. It sends the domain element \(T_g^2=R_N\) to zero; it is therefore different from their inclusion as operator algebras. The direct primitive map from \(\widetilde A_{\mathbb C}\) is exactly \(c_g\rho_g\), checked on both Laurent generators.
+
+Now retain the entire support quotient from DN7. Write
+\[
+Q_{\mathbb C}=\mathbb C\times D_{\mathbb C},\qquad
+E_0=(0,1),\qquad
+\Pi_N=e_Ne_N^{\dagger_{G_N}}+f_Nf_N^{\dagger_{G_N}}.
+\]
+The symbol \(\Pi_N\) denotes this two-dimensional support projection. The original observation projection \(P_{B,N}=L_N\Lambda\) has a different definition; their exact connecting map is in Section 7. Orthogonality gives
+\[
+\Pi_N^2=\Pi_N,\quad\Pi_NR_N=R_N\Pi_N=R_N,
+\quad\ker\Pi_N=H_N.
+\tag{NI19}
+\]
+The full support representation is
+\[
+\widehat\nu_N:Q_{\mathbb C}\hookrightarrow\operatorname{End}_{\mathbb C}(E),
+\quad (k,a+b\eta)\longmapsto k(I-\Pi_N)+a\Pi_N+bR_N.
+\tag{NI20}
+\]
+The complementary projections and NI19 prove multiplication and the unit formula by expansion. To prove injectivity, apply a zero image to a nonzero vector of \(H_N\), giving \(k=0\); to \(f_N\), giving \(a=0\); and to \(e_N\), giving \(b\epsilon_Nf_N=0\), hence \(b=0\). The space \(H_N\) is nonzero by NI8. On the original additive-monoid basis, the map is exactly
+\[
+[\tau]\longmapsto I,\quad [e]\longmapsto\Pi_N,\quad
+[n^\bullet]\longmapsto\Pi_N+nR_N,\quad
+[1^\bullet]-[e]\longmapsto R_N.
+\tag{NI21}
+\]
+Here \([e]\) is the supported integer-zero basis element; \(e_N\) is the original unit boundary vector. The two are related by NI21, not identified. Composition with DN7 proves NI21, with the original monoid-algebra kernel \(\mathcal J_{\mathbb C}^2\) retained by injectivity of NI20.
+
+The unital embedding
+\[
+\delta:D_{\mathbb C}\hookrightarrow Q_{\mathbb C},
+\quad a+b\eta\longmapsto(a,a+b\eta)
+\tag{NI22}
+\]
+satisfies \(\widehat\nu_N\delta=\sigma_N\), by adding the two complementary scalar projections. The inclusion into the supported corner instead has unit \(E_0\), which acts by \(\Pi_N\); both units and both maps are retained.
+
+## 6. Projectivity with support, and the mixed factorization
+
+As a module over \(Q_{\mathbb C}\), the original space has the exact decomposition
+\[
+E\cong H_N\oplus D_{\mathbb C}
+\cong ((1-E_0)Q_{\mathbb C})^{q-2}\oplus E_0Q_{\mathbb C}.
+\tag{NI23}
+\]
+The first isomorphism sends \((h,a+b\eta)\) to \(h+ae_N+b\epsilon_Nf_N\). NI20 proves it is a module map, and the orthogonal decomposition proves bijectivity. The second presentation follows by taking any basis of \(H_N\); its isomorphism class is independent of that choice. Both principal idempotent modules are direct summands of the free module \(Q_{\mathbb C}\), since \(Q_{\mathbb C}=(1-E_0)Q_{\mathbb C}\oplus E_0Q_{\mathbb C}\). Therefore \(E\) is finite projective over \(Q_{\mathbb C}\).
+
+The metric on the dual-number summand is precisely
+\(\|a+b\eta\|^2=|a|^2+\epsilon_N^2|b|^2\), obtained by substitution in NI23. Restricting scalars along NI22 gives NI14, because \(\eta\) acts as zero on \(H_N\) and as multiplication by \(\eta\) on the plane. The periodic resolution in NI15 now proves
+\[
+\operatorname{Tor}^{D_{\mathbb C}}_i(\mathbb C,E)
+\cong H_N=\ker W_N\qquad(i\ge1).
+\tag{NI24}
+\]
+Thus the exact restriction of scalars accounts for the nonflat directions. The same original vectors form a projective module when their distinct support actions remain part of the coefficient algebra.
+
+The cubic root also has a precise mixed-support interpretation. Its two diagonal blocks vanish:
+\[
+\Pi_NT_g\Pi_N=0,\qquad
+(I-\Pi_N)T_g(I-\Pi_N)=0.
+\]
+The off-diagonal maps are
+\[
+\alpha_g:\operatorname{span}\{e_N,f_N\}\to H_N,
+\quad v\mapsto\sqrt{\epsilon_N}g e_N^\dagger v,
+\]
+\[
+\beta_g:H_N\to\operatorname{span}\{e_N,f_N\},
+\quad h\mapsto\sqrt{\epsilon_N}f_Ng^\dagger h.
+\]
+Their composites are \(\beta_g\alpha_g=R_N\) on the plane and \(\alpha_g\beta_g=0\) on \(H_N\), since \(g^\dagger g=1\) and \(e_N^\dagger f_N=0\). This proves NI10 by a factorization through the two actual support sectors. All adjoints here use \(G_N\).
+
+![The projective support module and its exact restriction defect](figures/16_support_module_defect.png)
+
+The figure records NI19–NI24 and the two off-diagonal maps above; the complete proof specifies their domains, units and original metric.
+
+## 7. Exact transfer to the original observation
+
+Keep the original onto observation \(\Lambda:E\to B\), its full minimum metric \(Q_{B,N}\), and its section \(L_N\) from OCP1. Put
+\[
+O_N=L_NQ_{B,N}^{-1/2}:\mathbb C^{\dim B}\longrightarrow(E,G_N),
+\quad O_N^\dagger O_N=I,\quad O_NO_N^\dagger=P_{B,N}.
+\]
+These identities follow from \(L_N=G_N^{-1}\Lambda^*Q_{B,N}\) and \(Q_{B,N}^{-1}=\Lambda G_N^{-1}\Lambda^*\). The exact observation of any operator is
+\[
+\Phi_N(X)=O_N^\dagger X O_N.
+\]
+For every pair of operators, inserting \(I=P_{B,N}+(I-P_{B,N})\) proves
+\[
+\Phi_N(XY)-\Phi_N(X)\Phi_N(Y)
+=O_N^\dagger X(I-P_{B,N})Y O_N.
+\tag{NI25}
+\]
+Thus this observation is unital and linear, and its multiplicative defect has the displayed exact formula. In particular, with
+\(A_N^{\rm sup}=\Phi_N(\Pi_N)\) and \(R_{B,N}=\Phi_N(R_N)\),
+\[
+A_N^{\rm sup}-(A_N^{\rm sup})^2
+=K_N^\dagger K_N,\qquad
+K_N=(I-P_{B,N})\Pi_NO_N,
+\tag{NI26}
+\]
+\[
+R_{B,N}^2=-O_N^\dagger R_N(I-P_{B,N})R_NO_N.
+\tag{NI27}
+\]
+NI26 follows from \(\Pi_N^2=\Pi_N=\Pi_N^\dagger\); NI27 follows from \(R_N^2=0\). These are respectively the measured support-idempotence defect and the complete hidden-return term for the nilpotent. The original projection and metric have not been replaced.
+
+The observed support and current retain the same outgoing-column data. Define the exact OCP9 matrix
+\[
+U_N=[Q_{B,N}^{1/2}\Lambda e_N,\ Q_{B,N}^{1/2}\Lambda f_N],
+\qquad J_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix}.
+\]
+The formula \(O_N^\dagger=Q_{B,N}^{1/2}\Lambda\) proves
+\[
+A_N^{\rm sup}=U_NU_N^*,\qquad
+\Phi_N(W_N)=\epsilon_NU_NJ_2U_N^*.
+\tag{NI28}
+\]
+The second identity follows by expanding \(W_N\) in NI16 and is precisely OCP10. In particular the same two-column Gram \(U_N^*U_N\) appearing in the existing current estimates is present in this support receiver. Equations NI25–NI28 give the actual connecting maps and defects; they do not assign the separately marked terminal class's signed pairing.
+
+Writing the two columns as \(u_N=O_N^\dagger e_N\) and \(v_N=O_N^\dagger f_N\), their full mixed entry remains explicit:
+\[
+R_{B,N}=\epsilon_Nv_Nu_N^*,\qquad
+R_{B,N}^2=\epsilon_N(u_N^*v_N)R_{B,N}.
+\tag{NI29}
+\]
+Both identities follow by multiplying the indicated column and row. Combining NI27 and NI29 gives the hidden return with its actual complex coefficient; it is the same source term as [CE25](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/EVOLUTION_PROOF.md#L255), with a direct proof here.
+
+
+## 8. Source scope
+
+Read for this interface: NODE_COTANGENT.md, N1–N32 and its source-identity section, with fresh detailed use of N5–6 and N30; the original programme OCP5–7 and the complete current formulas. The node proof attributes its cotangent foundations to Luc Illusie, *Complexe cotangent et déformations*, with exact theorem locators and edition distinctions. This note uses its explicit ring and conormal constructions and proves the new representation and module statements directly. It does not claim fresh reading of Illusie's original volumes or use its cotangent theorem as a substitute for these calculations.
+
+The complete source construction and standard-infinitesimal comparison are included alongside this paper. The RH programme's signed TR20 pairing remains a different unfinished calculation; none of NI1–16 assigns that sign.

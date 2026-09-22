@@ -33,6 +33,16 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### The original kernel across the complete cutoff window
+
+The Split-Zero programme studies the arithmetic theta source, its quotient and the original conductor observation. This addition evaluates how the entire original kernel spectrum and volume change as the polynomial source cutoff moves across its window. It retains the original metric, fixed period, stipulated simple quartet and complete source minima. The earlier four-cutoff coefficient is recovered within this full profile.
+
+Read the [26-page illustrated paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-cutoff-profile/CUTOFF_PROFILE_READER.pdf), [complete reader LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-cutoff-profile/CUTOFF_PROFILE_READER.tex), [results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-cutoff-profile/RESULTS_20260922_025.md) and [machine-readable proof index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-cutoff-profile/RESULT_INDEX.json).
+
+The complete proofs cover every original kernel direction and cutoff, actual rank-one source increments, specified complete fixed subquotients, uniform moving-ratio Gamma and jet estimates, and a convergent elliptic endpoint correction through degree five. The half-volume cutoff is certified between 0.28581630680480845015 and 0.28581630680480845016. The measured phase is calculated for arbitrary cutoff pairs. Original heat estimates retain the full angle defect and conductor-to-invariant compression; the scalar smoothing error is bounded by a constant divided by q, with exact transport and physical Euler-constant bias.
+
+The unchanged previous source bank, 25 new source blocks, four complete proof files, check scripts, original human-author equation TeX and reading-use records accompany the paper. Reported finite verification covers 866 exact checks, four negative controls and 16 independently certified incoming scalar intervals; the separate supplied 59-check report is not represented as replayed because its executable was absent. Individual complex arithmetic-current signs remain unfinished. This addition does not claim RH.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22893050) (assigned DOI 10.5281/zenodo.22893050) retains the whole research programme and adds the 35-page original-kernel coefficient and measured-frequency paper, with complete LaTeX, human citations and exact proof links. All 74 earlier PDFs remain separate.
 
 ### Original kernel coefficient and measured frequency return

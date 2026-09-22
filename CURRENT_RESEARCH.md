@@ -33,6 +33,16 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Arithmetic probes, kernel mass and the terminal metric correction
+
+[Read the 35-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/ARITHMETIC_PROBE_MASS_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/ARITHMETIC_PROBE_MASS_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/RESULTS_20260922_022.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/RESULT_INDEX.json).
+
+The Split-Zero programme studies the arithmetic theta source, its quotient and its observation through determinant and heat estimates. This paper decomposes the original kernel determinant into positive successive observation layers and bounds the depth-eight remainder by 256E_k, using the earlier full-source estimate E_k=O_h(q). It sharpens the determinant interval obtained from the same kernel-mass samples, improves the filtered-mass multiplier from 5/4 to 9/8, and calculates a common realization metric from finite response data.
+
+The paper also identifies the terminal correction between the hidden-coordinate and full-ambient minima. The former has the directed 2304E_k allowance; the latter requires the enclosure [-256E_k,2560E_k]. Canonical projective sections retain the physical action (k/2)v+iu and both complex current terms. Complete AP1–30, KM1–45 (including KM33a–b) and PEN1–27 proofs, illustrated reader LaTeX, checkers, 116 retained source blocks, human citations and precise earlier proof links accompany these results.
+
+The actual native kq coefficient and separate current values/signs remain unevaluated; finite auxiliary checks do not assign them. The separate first-layer calculation is excluded. Whole-project descriptions and all earlier editions remain intact. [Human authors, source versions and reading coverage](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/SOURCE_READING_USE.md) and [earlier results strengthened or corrected](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/RECEIVER_UPDATES.md) are explicit.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22886386) (assigned DOI 10.5281/zenodo.22886386) retains the complete research programme and adds the 39-page original-observation recovery paper, with complete LaTeX, human citations and precise proof links. All 72 earlier PDFs remain separate.
 
 ### Finite recovery of the original observation

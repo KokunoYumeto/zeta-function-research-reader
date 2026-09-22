@@ -1,3 +1,5 @@
+> **Correction to RD15:** the response return is 4[ψ(0)−ψ(1)]q + O(k log q), not twice the established kernel coefficient. Read the [separate correction and complete successor proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport/CORRECTION_027_RD15.md). The sealed edition below remains unchanged.
+
 # Published original terminal-response edition
 
 [Read the whole cumulative project on Zenodo](https://zenodo.org/records/22902002). Its title and main description retain the full research collection.

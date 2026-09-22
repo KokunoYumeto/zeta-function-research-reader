@@ -33,6 +33,18 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Measured support, original current and controlled evolution
+
+The Split-Zero programme studies finite zero classes of the completed Riemann zeta function through the arithmetic theta source, its quotient metric and conductor observation. This continuation calculates how both observed support directions, their hidden kernel defect and the original current pass through that observation. Ordered mixed probes recover the signed current with inverse factor at most 1610/309 < 6. The complete proofs also calculate the observed collision, metric-stable source-step formulas and evolution of the actual measured inverse.
+
+Read the [29-page illustrated paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport/SUPPORT_TRANSPORT_READER.pdf), [complete reader LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport/SUPPORT_TRANSPORT_READER.tex), [results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport/RESULTS_20260922_028.md) and [machine-readable proof index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport/RESULT_INDEX.json).
+
+**Correction to edition 027:** its response return is 4[ψ(0)−ψ(1)]q + O(k log q), with coefficient approximately 0.7001820930. It is not twice the established kernel coefficient C∂ = 2J(1) ≈ 1.3542819878. The [separate reading correction and complete proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport/CORRECTION_027_RD15.md) give the exact integral relation. Sealed 027 files remain unchanged.
+
+The new source-step formulas retain every kernel row, mixed phase and original period restriction. Growing jets through depth k, the longer evolution clock, all exterior ranks and terminal returns are proved in full. The actual signed arithmetic kernel-action pairings remain the next calculation; evolution estimates do not supply that instantaneous sign, and no RH conclusion is asserted.
+
+All 19 owner files, five complete derivations, human-source records, reproducible figure/check sources and the complete preceding proof bank with 13 additions accompany this edition. The separately published node proof is cited, not duplicated. The original mathematical checks and all-page visual review remain attributed to their authoring task; publication adds identity and download verification.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22902002) (assigned DOI 10.5281/zenodo.22902002) retains the whole research programme and adds the 10-page original terminal-response paper, with complete LaTeX, human citations and exact proof links. All 77 earlier PDFs remain separate.
 
 ### Original terminal arithmetic response

@@ -1,0 +1,11 @@
+# Real word currents and native source steps
+
+This addition to the Split-Zero arithmetic programme calculates Hermitian currents in the original polynomial quotient and its complete source metric. It includes all the new proofs, an illustrated 49-page reader, its complete LaTeX, all preceding proof sources and reproducible mathematical checks.
+
+Read REAL_WORDS_AND_SOURCE_STEPS.pdf. INTEGRATION_AND_RECEIVERS.md states the current source domains and carries the results into earlier calculations. WORD_SIGNATURE_PROOF.md gives the independent finite polynomial, rational and divisor derivations. WHOLE_SPACE_PROOF.md preserves the supplied continuation. NATIVE_WORD_ACTIVATION_PROOF.md proves the stronger constant-inertia result for actual adjacent sources. NATIVE_SOURCE_STEP_PROOF.md calculates the marked-current curvature from endpoint traces and dual-number collision data.
+
+RETAINED_COMPLETE_PROOF_SOURCES.tex preserves the complete028 bank as an unchanged prefix, including its human sources. New blocks retain every incoming archive member, all complete mathematical proofs in Markdown and LaTeX, reviewed checks and figure sources. This is a source collection; REAL_WORDS_AND_SOURCE_STEPS.tex is the directly compilable reader. SOURCE_MANIFEST.json records exact block offsets and hashes. No ZIP or hidden subfolder is required.
+
+Run BUILD_READER.py with Python, NumPy, matplotlib, pypdf, Pandoc and LuaLaTeX to reproduce the reader and illustrations. Run CHECKS.py to extract only the eight named reviewed scripts into a fresh temporary directory and execute them. Use --extract-only to inspect them first; python -O CHECKS.py retains the explicit mathematical checks. The wrapper never runs the archived packaging script. Exact auxiliary fixtures, outward scalar intervals and floating-point diagnostics are distinguished in VERIFICATION.json.
+
+The signed product and native full-space inertia are proved. The observation retains the exact lower bounds in WG12–13. The prescribed terminal current still requires its actual imaginary pairing; the new collision data determine its source-curvature receiver without assigning an unsupported arithmetic sign. Human citations and pinned public predecessor proofs are given at use. All sealed predecessors remain unchanged.

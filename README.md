@@ -33,6 +33,18 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Real word currents and actual source additions
+
+The Split-Zero programme studies finite zero classes of the completed Riemann zeta function in an arithmetic quotient, using its original theta source, quotient metric and conductor observation. This continuation studies the Hermitian current associated with real polynomials and rational functions of the original multiplication operator. It proves that an actual adjacent-source addition preserves every degree-d polynomial current's inertia (d,d,q−2d), for d ≤ q/2, throughout the source interpolation. Here inertia counts positive, negative and zero directions; q is the quotient dimension.
+
+Read the [49-page illustrated paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-real-words-source-steps/REAL_WORDS_AND_SOURCE_STEPS.pdf), [complete reader LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-real-words-source-steps/REAL_WORDS_AND_SOURCE_STEPS.tex), [results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-real-words-source-steps/RESULTS_20260922_029.md) and [owner's exact proof index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-real-words-source-steps/RESULT_INDEX.json).
+
+The original observation retains between max(d−m,0) and d directions of each sign, where m is its kernel dimension. The full signed product retains the complete boundary Gram while every lower real polynomial coefficient cancels. Its four-cutoff estimate has the explicit degree range d=o(k) and the complete error term. Exact polynomial, rational and real-divisor classifications include repeated poles and repeated primary factors.
+
+For a prescribed class, the source-step current is calculated from its endpoint currents and trace change. The latter has an exact receiver in the weighted displacement of the observed dual-number collision. The complete endpoint sign cones, degenerate cases and terminal-mass error are retained. These formulas do not evaluate the original terminal imaginary pairing or assign its individual arithmetic sign; no RH conclusion is asserted.
+
+All 19 sealed owner files, five complete proof texts, 55 appended source blocks, complete LaTeX, human citations and reproducible figures/checks accompany this addition. The preceding bank remains unchanged. The [published correction to edition 027's response coefficient](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4ba9285b66af58a6d58fc502a494c1fb45ca5b79/workbenches/splitzero-tandem/continuations/20260922-support-transport/CORRECTION_027_RD15.md) remains active; the kernel and response coefficients are not identified with each other. The independently published node sources are not duplicated.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22903925) (assigned DOI 10.5281/zenodo.22903925) retains the whole research programme and adds the 29-page support-transport paper, complete LaTeX and human citations. It includes the explicit correction to edition 027’s response coefficient. All 78 earlier PDFs remain separate. [Exact proof and correction links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport-publication/README.md).
 
 ### Measured support, original current and controlled evolution

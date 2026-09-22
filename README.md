@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22884828) (assigned DOI 10.5281/zenodo.22884828) retains the complete research programme and adds the 62-page original-growth and measured-resolvent paper, with complete LaTeX, human provenance and precise proof links. All 71 earlier PDFs remain separate.
+
 ### Original growth, complete-row sampling and measured resolvents
 
 [Read the 62-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/ORIGINAL_GROWTH_RESOLVENT_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/ORIGINAL_GROWTH_RESOLVENT_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/RESULTS_20260922_020.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/RESULT_INDEX.json).

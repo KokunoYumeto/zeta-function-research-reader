@@ -1,0 +1,3876 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs,graphicx,longtable}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,hypertexnames=false,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\setlength{\emergencystretch}{3em}
+\allowdisplaybreaks
+\title{Recovering the original prime calculation over full Split-Zero support}
+\author{Programme continuation with explicit source provenance}
+\date{22 September 2026 --- SZ-20260922-032}
+\begin{document}
+\maketitle
+
+This working paper reconstructs specified parts of the original
+arithmetic programme over its actual lattice coefficient object
+$G_L(\mathbb C)$. The previously used $G_{\mathbb B}(\mathbb C)$ is a
+Boolean special case; its spectrum is not a description of the full
+support spectrum. The foundational lattice results below are credited
+to the retained Version 11 source. The new calculations construct
+the exact recovered carriers, maps, original metric, mixed kernels,
+and the map from prime-support defects to Weil's local distribution.
+
+The central algebraic recovery is the path closure of the original
+companion operator. Its support graph forces a synchronized carrier
+which retains the entire lattice $L$. The original linear maps and
+prime group action lift on that carrier, and all preimages of its
+projection from the full free semimodule are calculated. Supported
+zero maps remain distinct from actual absence. The calculation also
+exhibits a higher mixed kernel invisible to individual branch
+linearizations and computes an exact inverse recovering all joint
+support moments. An explicit compact test detects any prescribed
+prime-support defect, with both Weil moment conditions satisfied.
+
+The recovery also supplies a pointed category whose zero morphisms
+are the retained supported zeros. Its exact kernels, cokernels and
+cohomology recover the original complex. For the actual companion
+prime matrices, an invertible lift to the entire free semimodule is
+impossible; a proved fibre groupoid and its prime correspondences
+retain every mask with their precise composition laws. The full
+additive support jet and all extensions of the earlier scalar action
+are calculated. Joint tensor observations then recover every finite
+mixed support coefficient and connect the support-addition operators
+to the diagonal trace insertions through an explicit incidence algebra.
+
+These are recovery and defect calculations, not a completed proof or
+disproof of the Riemann hypothesis. No sign for the full-place Weil
+form is assumed. In particular a counterexample to a restricted
+place functional is explicitly identified as such.
+
+\paragraph{Foundational credit.}
+The scalar prime chain $(\tau)\subsetneq(e)\subsetneq(p)$, including
+the nonzero prime element $e$ and $(e)=\{\tau,e\}$, is an established
+result of the first globalization paper. The user identifies Gemini
+2.5 Pro as the originating model for that result. This attribution is
+recorded as user-provided provenance. The exact original
+\texttt{globalization\_note.tex} has an empty author field; the later
+Version 11 source has the byline The Clankers. These source identities
+are retained separately. Repetition of that prime-chain theorem is not counted
+as a new result here. The human sources used for the analytic maps
+are Alain Connes and Andr\'e Weil, and the lattice background includes
+Garrett Birkhoff. The original ES--Fable lineage remains credited to
+Levent Alp\"oge where its transport is used; this paper does not
+reassign that construction to its own recovery calculations.
+
+\tableofcontents
+\clearpage
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=.97\linewidth]{FULL_LATTICE_RECOVERY.png}
+\caption{Left: the full two-channel prime spectrum, using the source's
+existing ordinal-sum theorem. Middle: the original companion cycle and
+its path closure, proved in CLM8--17. Right: the signed four-state
+vector in FLC10, whose branch marginals vanish, with full recovery in
+FLC11. The middle cycle abbreviates intermediate vertices; the left
+arithmetic node ranges over every rational prime.}
+\end{figure}
+\end{landscape}
+
+
+% Complete proof source: independent/FULL_LATTICE_STALKS.tex
+% Independent extension of v11; existing v11 results are explicitly credited.
+% Reserved equation tags FLS1--FLS24.
+\section{The full support lattice: stalks, residues, and exact branch recovery}
+
+\paragraph{Original source and correction of scope.}
+The source is The Clankers, \emph{Split Support Geometry: Universal
+Zero Fibres, Arithmetic Curves, and Frobenius-Perfect Quantization},
+June 2026, pre-publication draft Version 11, file
+\texttt{split\_support\_geometry\_arithmetic\_curve\_v11.tex},
+SHA-256 \texttt{5fa6a55aa9d1a2e57599e206087d3d2466b25dd99fa1a90d5f86367aafab1b4d}.
+Its Definition \texttt{def:lattice-split} and the existing theorems
+on prime classification, the spectral ordinal sum, support
+localization, Birkhoff support coordinates, and the branch-selected
+spectrum already construct and prove
+the full lattice model, its spectrum, finite support coordinates,
+and branch selection. Those are the source's results, not new
+discoveries of this continuation. Its bibliography credits
+Garrett Birkhoff, \emph{Lattice Theory}, third edition (1967),
+for the lattice-theoretic background. The local calculations
+and explicit infinite-point distinctions below apply that
+source without replacing its lattice by one Boolean branch.
+
+Let $R$ be a nonzero commutative unital ring and $L$ a nontrivial
+bounded distributive lattice. The original object is
+\[
+A=G_L(R)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+\cup\{(r,1_L):r\in R\},
+\]
+\[
+(r,\lambda)+(s,\mu)=(r+s,\lambda\vee\mu),
+\quad (r,\lambda)(s,\mu)=(rs,\lambda\wedge\mu).
+\tag{FLS1}
+\]
+Write $Z_L=\{z_\lambda:\lambda\in L\}$,
+$\tau_L=z_{0_L}$ and $e_L=z_{1_L}$. The source's prime and
+topology theorem gives
+\[
+P_{\mathfrak p}=\{z_\lambda:\lambda\in\mathfrak p\}
+\quad(\mathfrak p\in\operatorname{SpecLat}L),\qquad
+Q_{\mathfrak q}=Z_L\cup\{(r,1_L):r\in\mathfrak q\}
+\quad(\mathfrak q\in\operatorname{Spec}R),
+\tag{FLS2}
+\]
+with every $P_{\mathfrak p}$ strictly below every
+$Q_{\mathfrak q}$. Its principal opens are
+\[
+D(z_\lambda)=\{P_{\mathfrak p}:\lambda\notin\mathfrak p\},
+\qquad
+D((r,1_L))=\operatorname{SpecLat}L\cup D_R(r).
+\tag{FLS3}
+\]
+In the following, stalk means the prime localization of the
+usual sheaf of local fractions for this semiring-prime
+spectrum. None of these local computations substitutes the
+underlying multiplicative-monoid spectrum or the twisted
+prime-congruence spectrum for (FLS2).
+
+\subsection{Support stalks are localized lattices, not generally Boolean}
+
+Fix $\mathfrak p\in\operatorname{SpecLat}L$ and set
+$F=L\setminus\mathfrak p$. This is the complementary prime
+filter. Since $e_L\notin P_{\mathfrak p}$, first invert
+$e_L$. The source's support-localization theorem gives
+$A[e_L^{-1}]\cong L$, and a supported amplitude maps to
+$1_L$. The remaining denominators are exactly the elements
+of $F$. Hence the full support stalk is
+\[
+A_{P_{\mathfrak p}}\cong L[F^{-1}].
+\tag{FLS4}
+\]
+This can be written without unspecified fractions. An
+idempotent which becomes invertible becomes the unit, so
+every element of $F$ becomes $1$. Every fraction is therefore
+represented by an element of $L$. The exact equality relation is
+\[
+\lambda\sim_F\mu
+\quad\Longleftrightarrow\quad
+\exists\nu\in F:\ \nu\wedge\lambda=\nu\wedge\mu,
+\qquad L[F^{-1}]=L/{\sim_F}.
+\tag{FLS5}
+\]
+The equivalence follows directly from multiplicative fraction
+equality. It is also a lattice congruence: reflexivity uses
+$1_L\in F$; symmetry is immediate; transitivity uses the
+meet of two witnesses, which remains in $F$. Meeting a witness
+with a common factor proves compatibility with meets, and
+distributivity proves compatibility with joins. All joins,
+meets, zero and unit in this stalk are therefore explicit.
+
+The elements outside $\mathfrak p$ all have class $1$.
+An element $\lambda\in\mathfrak p$ cannot have class $1$:
+a witness would give $\nu\wedge\lambda=\nu$ with
+$\nu\in F$, hence $\nu\leq\lambda$ and $\nu\in\mathfrak p$,
+a contradiction. Thus the stalk has the unique maximal ideal
+\[
+\mathfrak m_{\mathfrak p}
+=\{[\lambda]_F:\lambda\in\mathfrak p\},
+\qquad
+L[F^{-1}]/_{\rm Bourne}\mathfrak m_{\mathfrak p}
+\cong\mathbb B.
+\tag{FLS6}
+\]
+For maximality, the only multiplicative unit of any lattice
+semiring is its top: an invertible idempotent is the unit.
+All other classes here lie in $\mathfrak m_{\mathfrak p}$,
+which is an ideal. For the quotient statement, the Bourne
+congruence identifies every element of this ideal with zero,
+while all elements outside it are already $1$. It cannot
+identify $1$ with zero: an equality $1\vee i=j$ with both
+$i,j\in\mathfrak m_{\mathfrak p}$ would put $1$ in the ideal.
+This proves the two-element residue. It does not prove that
+the stalk before quotienting has two elements.
+
+For finite $L$, the source's finite Birkhoff theorem identifies
+$F$ with the principal filter $\uparrow j$ of a unique
+nonzero join-irreducible element $j$. Then
+\[
+L[F^{-1}]\xrightarrow{\ \cong\ }\downarrow j,
+\qquad[\lambda]_F\longmapsto\lambda\wedge j,
+\qquad \downarrow j=\{\mu:\mu\leq j\},
+\tag{FLS7}
+\]
+where the unit on the right is $j$. A witness in (FLS5)
+implies equality after meeting with $j$, since $j$ is below
+every witness. Conversely equality after meeting with $j$
+uses $j$ itself as witness. Surjectivity follows by taking
+$\lambda=\mu\leq j$. Distributivity proves that this
+bijection preserves both operations. Thus it is the claimed
+semiring isomorphism, with every support below $j$ retained.
+
+For the source's chain example $L=\{0<a<1\}$ this gives
+\[
+A_{P_{\{0\}}}\cong\{0,a\}\cong\mathbb B,
+\qquad
+A_{P_{\{0,a\}}}\cong\{0,a,1\}.
+\tag{FLS8}
+\]
+The second stalk is not Boolean, although its residue (FLS6)
+is Boolean. This is an explicit counterexample to the
+assertion that every support stalk is $\mathbb B$.
+
+If $L$ is any Boolean algebra, finite or infinite, every
+support stalk is instead $\mathbb B$. Indeed, for
+$\lambda\in\mathfrak p$, its Boolean complement
+$\neg\lambda$ is in $F$, and
+$(\neg\lambda)\wedge\lambda=0$. Formula (FLS5) therefore
+makes $[\lambda]_F=0$. Elements in $F$ have class $1$,
+so the exact isomorphism is the branch itself:
+\[
+L[F^{-1}]\cong\mathbb B,
+\qquad[\lambda]_F\longmapsto
+\epsilon_{\mathfrak p}(\lambda)
+=\mathbf1_{\lambda\notin\mathfrak p}
+\quad(L\text{ Boolean}).
+\tag{FLS9}
+\]
+
+\subsection{Arithmetic stalks retain the entire lattice}
+
+Fix $\mathfrak q\in\operatorname{Spec}R$.
+The complement of $Q_{\mathfrak q}$ consists precisely of
+the supported amplitudes $(s,1_L)$ with $s\notin\mathfrak q$.
+The complete localization is
+\[
+A_{Q_{\mathfrak q}}\xrightarrow{\ \cong\ }G_L(R_{\mathfrak q}),
+\qquad
+\frac{(r,1_L)}{(s,1_L)}\longmapsto(r/s,1_L),
+\qquad
+\frac{z_\lambda}{(s,1_L)}\longmapsto z_\lambda.
+\tag{FLS10}
+\]
+The fraction operations verify the map. Equality between
+supported fractions is exactly ring fraction equality;
+when their amplitude becomes zero the image is $z_{1_L}$.
+Multiplication by any supported denominator leaves each
+$z_\lambda$ unchanged, so two such lower-support fractions
+are equal precisely when their lattice labels are equal.
+A supported fraction cannot become $z_\lambda$ for
+$\lambda<1_L$, because every fraction-equality witness
+preserves the support $1_L$ on its supported side. These
+facts prove injectivity; all displayed target elements
+have the given preimages, proving surjectivity.
+
+The supported and amplitude residue maps consequently are
+\[
+G_L(R_{\mathfrak q})\twoheadrightarrow
+G_L(\kappa(\mathfrak q))\xrightarrow{p_L}\kappa(\mathfrak q).
+\tag{FLS11}
+\]
+The first identifies represented amplitudes with the same
+residue but keeps all $z_\lambda$ distinct. The composite
+is the Bourne quotient by the maximal amplitude ideal,
+which identifies the entire zero lattice with the field
+zero. This proves the different residue fibres exactly.
+For $R=\mathbb Z$, both the generic arithmetic stalk
+$G_L(\mathbb Q)$ and every finite-place stalk
+$G_L(\mathbb Z_{(p)})$ still contain the full lattice $L$.
+
+\subsection{A single branch and all branches have different exact fibres}
+
+Let $X=\operatorname{SpecLat}L$ and write
+$\epsilon_x:L\to\mathbb B$ for its branch at $x$.
+The source's branch quotient is
+$\beta_x:G_L(R)\to G_{\mathbb B}(R)$, acting as identity
+on the represented amplitudes and as $\epsilon_x$ on the
+zero lattice. Its spectral inclusion selects exactly
+$\{x\}\blacktriangleright\operatorname{Spec}R$.
+The maps on its stalks, calculated above, are
+\[
+L[(L\setminus x)^{-1}]\twoheadrightarrow\mathbb B
+\quad\text{at the selected support point},
+\]
+\[
+G_L(R_{\mathfrak q})\twoheadrightarrow G_{\mathbb B}(R_{\mathfrak q})
+\quad\text{at an arithmetic point}.
+\tag{FLS12}
+\]
+The first is the residue map (FLS6); the second applies
+$\epsilon_x$ to the entire remaining zero lattice. These
+are the exact maps by which choosing one branch can lose
+support even when the amplitude is unchanged.
+
+For finite $L$, the source already proves that all branches
+recover $L$: their coordinate patterns are the order ideals
+of its join-irreducible poset $J(L)$. We retain that result
+and extend its concrete comparison to arbitrary bounded
+distributive $L$. The needed prime-separation argument is
+included. If $\lambda\nleq\mu$, the lattice ideal
+$\downarrow\mu$ and filter $\uparrow\lambda$ are disjoint.
+By the maximal principle choose an ideal $I$ maximal among
+those containing the first and avoiding the second. It is
+prime. Indeed if $a,b\notin I$, the ideals obtained by
+adjoining $a$ and $b$ each meet the filter. There are
+$f,g$ in the filter and $i,j\in I$ such that
+$f\leq i\vee a$ and $g\leq j\vee b$. Distributivity gives
+\[
+f\wedge g\leq(i\vee a)\wedge(j\vee b)
+\leq i\vee j\vee(a\wedge b).
+\tag{FLS13}
+\]
+If $a\wedge b\in I$, the right-hand side belongs to $I$,
+so the filter would meet $I$, a contradiction. Thus $I$
+is prime, contains $\mu$, and omits $\lambda$. This is
+the classical distributive-lattice prime-separation
+argument, used here with its choice principle explicit.
+
+It follows that the simultaneous branch map is injective:
+\[
+\boldsymbol\beta:G_L(R)\hookrightarrow
+\prod_{x\in X}G_{\mathbb B}(R),
+\qquad a\longmapsto(\beta_x(a))_{x\in X}.
+\tag{FLS14}
+\]
+Distinct nonzero amplitudes, or a nonzero and a zero
+amplitude, are separated by any coordinate. Two elements
+of the zero lattice are separated by (FLS13). Its image
+is exactly the families with a common amplitude $r$ such
+that, when $r=0$, the set of coordinates having supported
+zero is $D_L(\lambda)$ for one $\lambda\in L$:
+\[
+\operatorname{im}\boldsymbol\beta
+=\{((r,1))_{x\in X}:r\in R\}
+\cup\{((0,\epsilon_x(\lambda)))_{x\in X}:\lambda\in L\}.
+\tag{FLS15}
+\]
+This gives the exact consistency restriction on a family
+of branches; arbitrary independent branch values are not
+automatically a full-support element.
+
+The allowable support patterns in (FLS15) are exactly
+the compact opens of $X$. The identities
+$D_L(\lambda\vee\mu)=D_L(\lambda)\cup D_L(\mu)$ and
+$D_L(\lambda\wedge\mu)=D_L(\lambda)\cap D_L(\mu)$ follow
+from the prime-ideal axioms. To prove compactness, suppose
+$D_L(\lambda)\subseteq\bigcup_iD_L(\mu_i)$ has no finite
+subcover. Then $\lambda$ is not below any finite join of
+the $\mu_i$, by the separation argument. The ideal
+generated by all the $\mu_i$ is disjoint from
+$\uparrow\lambda$; applying the same maximal-ideal proof
+produces a prime containing every $\mu_i$ and omitting
+$\lambda$, contradicting the cover. Every compact open
+has a finite cover by basic opens, so it is itself one
+basic open. We have proved the exact recovery map
+\[
+L\xrightarrow{\ \cong\ }\mathcal K\mathcal O(X),
+\qquad \lambda\longmapsto D_L(\lambda),
+\tag{FLS16}
+\]
+where $\mathcal K\mathcal O(X)$ is the lattice of compact
+open subsets with union and intersection. This is the
+classical spectral representation applied to the original
+zero lattice, not a replacement of that lattice by a
+single stalk. A chosen branch alone records only whether
+$x\in D_L(\lambda)$, identifying all labels on each of
+the two sides of that membership test.
+
+For finite $L$ the lost-support objects can be given still
+more explicitly using the source's Birkhoff coordinates.
+Let $J=J(L)$, retain only a subset $T\subseteq J$ of the
+branches, and suppose the observed positive coordinates
+are $U\subseteq T$. The entire zero-support fibre is
+\[
+\{I\in\operatorname{Idl}(J):I\cap T=U\}
+=\left[\downarrow U,\ J\setminus\uparrow(T\setminus U)\right]
+\subseteq\operatorname{Idl}(J),
+\tag{FLS23}
+\]
+where the interval is empty when its lower bound is not
+contained in its upper bound. To prove this, containing
+$U$ forces the order ideal $I$ to contain $\downarrow U$.
+Omitting every point of $T\setminus U$ forces it to omit
+their upward closure. Conversely every order ideal between
+these two bounds contains the required positive coordinates
+and none of the negative coordinates. The lower and upper
+bounds are themselves order ideals, so this is the exact
+interval of omitted information, with its inherited joins
+and meets and its inclusion into $L$ through Birkhoff's
+map. For a single branch $j$ the two fibres are therefore
+\[
+\epsilon_j^{-1}(0)\cong
+[\varnothing,J\setminus\uparrow j],
+\qquad
+\epsilon_j^{-1}(1)\cong[\downarrow j,J].
+\tag{FLS24}
+\]
+Every branch is necessary for full reconstruction when $L$
+is finite: if $j$ is omitted, the two order ideals
+$\downarrow j$ and $(\downarrow j)\setminus\{j\}$ have
+identical values at every retained branch and are distinct.
+This proves the failure of that observation by constructing
+its exact fibre, rather than replacing the lost states by
+an unspecified error.
+
+\subsection{Infinite Boolean branches and complete-frame points}
+
+For $L=\mathcal P(I)$, bounded lattice homomorphisms
+$L\to\mathbb B$ are exactly ultrafilters $U$ on $I$,
+with $\epsilon_U(A)=\mathbf1_{A\in U}$. This follows
+because finite meets and joins give a prime filter,
+and complementation gives exactly one of $A,I\setminus A$
+in it. Conversely that ultrafilter rule preserves the
+two finite operations. All these branches belong to
+the semiring-prime spectrum used in (FLS2), including
+nonprincipal ultrafilters when they exist. A point of
+the \emph{complete frame}, however, must preserve
+arbitrary joins. Such a branch is exactly evaluation
+at a single $i\in I$:
+\[
+\epsilon_i(A)=\mathbf1_{i\in A},\qquad
+\epsilon_U\left(\bigcup_{i\in I}\{i\}\right)=1
+\ne\bigvee_{i\in I}\epsilon_U(\{i\})=0
+\quad(U\text{ nonprincipal}).
+\tag{FLS17}
+\]
+The displayed equation proves failure of complete-join
+preservation for a nonprincipal branch. Conversely a
+complete-join preserving branch applied to
+$I=\bigcup_i\{i\}$ must send some singleton to $1$;
+the filter laws then make it evaluation at that element.
+Evaluation branches alone already recover $\mathcal P(I)$
+by all its membership coordinates, but they are not all
+the bounded-lattice prime points when $I$ is infinite.
+
+More generally, for a complete Boolean algebra $L$,
+complete-frame points are exactly its atoms. A bounded
+lattice branch preserves complements. If it also preserves
+arbitrary joins, De Morgan's law shows it preserves
+arbitrary meets. For its filter $F$, put
+$a=\bigwedge_{f\in F}f$. Its value at $a$ is $1$, so
+$a\ne0$ and $a\in F$. If $0<b<a$, either $b\in F$,
+contradicting minimality of $a$, or $\neg b\in F$,
+contradicting $a\leq\neg b$. Thus $a$ is an atom and
+the branch is $\lambda\mapsto\mathbf1_{a\leq\lambda}$.
+Conversely an atom supplies a completely join-preserving
+branch: finite meet with that atom distributes over any
+join, and each resulting meet is either zero or the atom.
+Therefore
+\[
+\operatorname{Hom}_{\rm Frm}(L,\mathbb B)
+\cong\operatorname{Atoms}(L),
+\quad
+\operatorname{Hom}_{\rm DLat}(L,\mathbb B)
+\cong\operatorname{Ultrafilters}(L)
+\quad(L\text{ complete Boolean}).
+\tag{FLS18}
+\]
+An atomless nontrivial complete Boolean algebra consequently
+has no complete-frame points, while its bounded-lattice
+branches still separate elements by (FLS13). Empty frame
+point data cannot reconstruct that algebra. This is a
+change of the permitted morphisms, not disappearance of
+the original lattice or its semiring-prime spectrum.
+
+\subsection{Exact corrections to the Boolean-only calculation}
+
+The earlier TPW calculation concerns $G_{\mathbb B}(R)$.
+It remains a calculation of one Boolean quotient, and
+must be so labelled. In the full source,
+\[
+G_L(0)=L,\qquad G_L(R)[e_L^{-1}]=L,\qquad
+Q_{(0)}=Z_L\quad(R\text{ a domain}).
+\tag{FLS19}
+\]
+The first is immediate from (FLS1), the second is the
+source's localization theorem, and the third is (FLS2).
+In particular the arithmetic zero prime contains every
+mixed support label, not merely $\tau_L$ and $e_L$.
+Moreover absence by itself need not be prime. For
+$L=\mathcal P(\{1,2\})$,
+\[
+z_{\{1\}}z_{\{2\}}=\tau_L,
+\qquad z_{\{1\}}\ne\tau_L\ne z_{\{2\}},
+\tag{FLS20}
+\]
+so $\{\tau_L\}$ is not prime. The support stratum has
+both coordinate branches, with neither a substitute for
+the other. The unchanged arithmetic residue amplitude
+alone therefore does not describe the changed source
+spectrum or prove a statement about every original
+mixed-support operator.
+
+The compact-carrier test algebra constructed in TPW is
+a different specified support object: its carrier
+multiplication is set product on the multiplicative
+test line. The original zero lattice has meet as its
+multiplication. Their exact respective products are
+\[
+e_S*e_T=e_{ST}\quad\text{in the TPW carrier algebra},
+\qquad z_\lambda z_\mu=z_{\lambda\wedge\mu}
+\quad\text{in }G_L(R).
+\tag{FLS21}
+\]
+TPW supplies a map to the source's single-fibre Boolean
+model, not an identification with the entire lattice
+model. Full original-lattice convolution or trace claims
+must retain $L$ and calculate their branch maps, including
+which finite or infinite joins those maps preserve.
+In particular finite sums are always detected by all
+branches, whereas a chosen infinite-join observation
+cannot be moved through a nonprincipal branch without
+checking it; (FLS17) is an explicit failure calculation.
+
+The surviving exact comparison, both before and after
+arithmetic localization, is
+\[
+\begin{array}{ccc}
+G_L(R)&\lhook\joinrel\longrightarrow&\displaystyle\prod_{x\in X}G_{\mathbb B}(R)\\
+\downarrow&&\downarrow\\
+G_L(R_{\mathfrak q})&\lhook\joinrel\longrightarrow&
+\displaystyle\prod_{x\in X}G_{\mathbb B}(R_{\mathfrak q}).
+\end{array}
+\tag{FLS22}
+\]
+Every map is the explicit amplitude localization or
+branch map proved above, so the square commutes on
+$(r,1_L)$ and every $z_\lambda$, hence on all elements.
+Injectivity of each horizontal map follows from prime
+separation. This retains the full lattice through all
+its compatible branches and specifies exactly the data
+lost when only one branch is used.
+
+
+
+% Complete proof source: FULL_LATTICE_RECOVERY.tex
+\section{Exact recovery of the amplitude constructions over the full lattice}
+\label{sec:full-lattice-recovery}
+
+\paragraph{Source and scope.}
+The coefficient object in this section is the actual $G_L(\mathbb C)$ of
+The Clankers, \emph{Split Support Geometry}, Version 11, Definition
+\texttt{def:lattice-split}, lines 1226--1249 of the retained original TeX.
+The complete source is retained as
+\texttt{sources/FULL\_LATTICE\_FOUNDATION\_V11.tex}.
+Its existing prime, localization and branch theorems are antecedents,
+not results first discovered in this continuation. We now construct
+the maps that recover the existing amplitude linear algebra over this
+coefficient object. This construction gives a specified subobject of
+the full free semimodule; it does not identify those two objects.
+
+Let $L$ be a nontrivial bounded distributive lattice and put
+$S_L=G_L(\mathbb C)$. Write $z_\lambda=(0,\lambda)$,
+$\tau_L=z_0$ and $e_L=z_1$. For a complex vector space $V$ define
+\[
+V_L^\uparrow
+ =\{(0_V,\lambda):\lambda\in L\}
+   \cup\{(v,1_L):v\in V\}\subset V\times L.
+\tag{FLR1}
+\]
+Its operations, with every zero retained, are
+\[
+(v,\lambda)+(w,\mu)=(v+w,\lambda\vee\mu),\qquad
+(c,\alpha)(v,\lambda)=(cv,\alpha\wedge\lambda).
+\tag{FLR2}
+\]
+These are closed operations: a nonzero sum has a nonzero summand and
+therefore top support; a nonzero scalar product has both factors of
+top support. Associativity, units and the two distributive laws follow
+from the vector-space laws and distributivity in $L$.
+The actual zero is $(0_V,0_L)$. Thus FLR1 is an $S_L$-semimodule.
+Its amplitude projection $a_V(v,\lambda)=v$ is equivariant for
+the ring reflection $p_L:S_L\to\mathbb C$.
+
+For each original linear map $T:V\to W$, define
+\[
+T_L^\uparrow(v,\lambda)=(Tv,\lambda).
+\tag{FLR3}
+\]
+When $Tv=0$, the output keeps its original support. The formulas FLR2
+prove additivity and $S_L$-linearity of FLR3. They also prove
+\[
+(UT)_L^\uparrow=U_L^\uparrow T_L^\uparrow,\quad
+(T+T')_L^\uparrow=T_L^\uparrow+T_L^{\prime\uparrow},\quad
+(\mathrm{id}_V)_L^\uparrow=\mathrm{id}_{V_L^\uparrow}.
+\tag{FLR4}
+\]
+For the sum, both output supports are $\lambda$, so their join is
+$\lambda$. The lifted zero linear map is
+\[
+\varepsilon_V=(0_{V,V})_L^\uparrow,
+\qquad\varepsilon_V(v,\lambda)=(0_V,\lambda)=e_L(v,\lambda).
+\tag{FLR5}
+\]
+It is distinct from the categorical zero map, which has constant value
+$(0_V,0_L)$. The lift is faithful, since evaluation on $(v,1_L)$
+recovers $Tv$. Thus FLR4 proves actual composition identities without
+silently erasing the distinction in FLR5.
+
+The lift is also compatible with every Boolean branch
+$\epsilon:L\to\mathbb B$. The map
+\[
+b_{\epsilon,V}:V_L^\uparrow\longrightarrow V_{\mathbb B}^\uparrow,
+\quad(v,\lambda)\longmapsto(v,\epsilon(\lambda))
+\tag{FLR6}
+\]
+is equivariant for the source's coefficient map $\beta_\epsilon$,
+and $b_{\epsilon,W}T_L^\uparrow=T_{\mathbb B}^\uparrow b_{\epsilon,V}$.
+This follows by substituting FLR2 and using preservation of join and
+meet. It specifies exactly how every branch calculation receives the
+full-lattice calculation; one such square does not recover all of $L$.
+
+\subsection{The original metric, section and full supported kernel}
+Take an original Hermitian vector space $(V,h_V)$, with the convention
+that the first variable is conjugate-linear. Its lifted pairing is
+\[
+H_{V,L}((v,\lambda),(w,\mu))
+  =(h_V(v,w),\lambda\wedge\mu)\in S_L.
+\tag{FLR7}
+\]
+If its amplitude is nonzero, both vectors have top support, so the
+displayed pair lies in $S_L$. The Hermitian symmetry, additivity and
+sesquilinearity follow respectively from those of $h_V$, distributivity
+in $L$, and FLR2. In particular
+\[
+H_{W,L}(T_L^\uparrow x,y)
+ =H_{V,L}(x,(T^\dagger)_L^\uparrow y).
+\tag{FLR8}
+\]
+Both amplitudes are the original adjoint identity and both supports are
+the same meet. At a zero-amplitude vector $(0,\lambda)$ its self-pairing
+is $z_\lambda$, not necessarily $\tau_L$. No order on $S_L$ is being
+invented: all numerical metric inequalities here refer to the exact
+original real amplitudes under $p_L$.
+
+Apply FLR1--8 at every original cutoff to the spaces $E,B,K$, the map
+$\Lambda:E\to B$, the complete metric $G_N$, and the maps of ST2.
+To avoid confusing the source's section with the support lattice,
+write $L_{\rm sec}$ for precisely its original
+$G_N^{-1}\Lambda^*Q_B$, with no alteration to this matrix. Then
+\[
+\Lambda_L^\uparrow (L_{\rm sec})_L^\uparrow
+   =\mathrm{id}_{B_L^\uparrow},\qquad
+(J^\dagger)_L^\uparrow J_L^\uparrow
+   =\mathrm{id}_{B_L^\uparrow},\qquad
+(P_B)_L^\uparrow=J_L^\uparrow(J^\dagger)_L^\uparrow.
+\tag{FLR9}
+\]
+These follow from the original matrix identities by FLR4. The support
+map $\sigma_V(v,\lambda)=\lambda$ is retained. Define
+$Z_L(V)=\{(0,\lambda):\lambda\in L\}$. The full supported kernel is
+the exact inverse image
+\[
+(\Lambda_L^\uparrow)^{-1}(Z_L(B))
+ =K_L^\uparrow
+ =\{(k,1_L):k\in\ker\Lambda\}\cup Z_L(E).
+\tag{FLR10}
+\]
+Indeed membership is exactly $\Lambda v=0$, with no condition deleting
+$\lambda$. In contrast, the inverse image of the single actual zero
+$(0,0_L)$ is only $(0,0_L)$. Using that single-point kernel would lose
+all nonzero vectors of $K$ and every nonbottom support mask. FLR10
+identifies the precise kernel object used in recovery.
+
+There is a canonical isomorphism over $L$
+\[
+(B\oplus K)_L^\uparrow
+ \simeq B_L^\uparrow\times_L K_L^\uparrow,
+\quad((b,k),\lambda)\longleftrightarrow((b,\lambda),(k,\lambda)).
+\tag{FLR11}
+\]
+Here the fibre product means equality of support labels. If $\lambda<1$
+both amplitudes are zero; at $1$ both are unrestricted. This proves
+bijectivity, and FLR2 proves $S_L$-linearity. Let $\iota_K$ be the original
+isometric inclusion. The original orthogonal decomposition and its inverse
+therefore lift to the explicit inverse maps
+\[
+\begin{split}
+W_L((b,\lambda),(k,\lambda))&=(Jb+\iota_Kk,\lambda),\\
+W_L^{-1}(x,\lambda)&=((J^\dagger x,\lambda),
+                          (\iota_K^\dagger x,\lambda)).
+\end{split}
+\tag{FLR12}
+\]
+Their composites are identities because the original orthogonal
+decomposition is an identity and each composite preserves $\lambda$.
+The sum of the two pairings on the right of FLR11 has support
+$\lambda\wedge\mu$ in both summands; their join is the same support.
+Thus FLR12 preserves exactly the original metric lifted by FLR7.
+
+In particular, the recovered source identities include
+\[
+(\Pi_L^\uparrow)^2=\Pi_L^\uparrow,\quad
+(R_L^\uparrow)^2=\varepsilon_E,\quad
+(P_B)_L^\uparrow(I-P_B)_L^\uparrow=\varepsilon_E,
+\tag{FLR13}
+\]
+where the second equality retains the original $R^2=0$ as a supported
+zero map. It does not assert multiplication to actual absence.
+For $\Phi(X)=J^\dagger XJ$, its full recovered composition law is
+\[
+\begin{split}
+(\Phi(XY))_L^\uparrow
+ &=(\Phi(X))_L^\uparrow(\Phi(Y))_L^\uparrow\\
+ &\quad+
+  (J^\dagger X(I-P_B)YJ)_L^\uparrow.
+\end{split}
+\tag{FLR14}
+\]
+Substitution of FLR4 reduces its amplitude to insertion of
+$I=P_B+(I-P_B)$ and leaves the same support label on both sides.
+With $X=Y=\Pi$, it gives the complete original identity
+$A=A^2+D^\dagger D$, lifted over $L$, with
+$D=(I-P_B)\Pi J$. The original squared norm and every original constant
+are unchanged under the proved amplitude map; no new bound is assumed.
+
+\subsection{What this recovery retains, and the larger carrier}
+Fix an original basis $V\simeq\mathbb C^n$, $n\ge1$. There is an injective
+$S_L$-linear map
+\[
+\iota_{V}:V_L^\uparrow\hookrightarrow S_L^n,
+\quad(v,1_L)\mapsto((v_i,1_L))_i,\qquad
+(0,\lambda)\mapsto((0,\lambda))_i.
+\tag{FLR15}
+\]
+It is well defined at $(0,1_L)$, and coordinatewise operations give
+linearity. Coordinates recover $v$ and the common support, proving
+injectivity. For $n\ge2$ it need not be surjective. For instance,
+$((1,1_L),(0,0_L))$ is a valid free vector and is not in its image.
+More generally the exact fibre of the amplitude projection of $S_L^n$
+over $v=(v_i)$ is
+\[
+\prod_{i:v_i=0}L,
+\quad\text{with support }1_L\text{ forced at each }v_i\ne0.
+\tag{FLR16}
+\]
+There are no omitted choices: at a zero coordinate every lattice label
+is allowed; at a nonzero coordinate the definition of $G_L$ forces top.
+For finite $L$ the fibre has $|L|^{\#\{i:v_i=0\}}$ elements.
+Thus FLR15 recovers the original amplitude construction faithfully,
+while FLR16 describes the additional mixed directions that the full
+matrix construction must retain. The next section constructs the exact
+prime action on the synchronization retract and retains every additional
+free mask in the explicitly calculated fibres of that retraction.
+
+\subsection{Cohomology of the recovered support diagram}
+For clarity, consider an original complex $(V^n,d^n)$ of complex vector
+spaces. At each support $\lambda$ define a complex with terms
+$V^n$ for $\lambda=1_L$ and the zero vector space for $\lambda<1_L$.
+For $\lambda\le\mu$, use the identity when the labels agree and the
+unique zero map from a lower zero fibre to the top fibre otherwise.
+The maps commute with each $d^n$. Taking kernels, images and quotients
+at each label gives the exact support diagram
+\[
+\mathcal H^n_\lambda=
+\begin{cases}
+\ker d^n/\operatorname{im}d^{n-1},&\lambda=1_L,\\
+0,&\lambda<1_L.
+\end{cases}
+\qquad
+\bigsqcup_{\lambda\in L}\mathcal H^n_\lambda
+ =(H^n(V^\bullet))_L^\uparrow.
+\tag{FLR17}
+\]
+This is a calculation of a specified diagram, with its induced
+$S_L$-action from FLR2. The maps on its total semimodules satisfy
+$(d^{n+1})_L^\uparrow(d^n)_L^\uparrow=\varepsilon$, not the categorical
+zero map. Therefore FLR17 does not identify this support diagram with
+an ordinary complex in a category requiring the latter zero map.
+It supplies the exact fibrewise cohomology and the map recovering the
+original amplitude cohomology, rather than erasing supported cycles.
+
+
+
+% Complete proof source: independent/COMPLETE_LATTICE_MATRIX_TRANSPORT.tex
+\section{Exact matrix transport from the complete lattice base}
+\label{sec:complete-lattice-matrix-transport}
+
+The base in this section is the original bounded distributive lattice
+$L$, with its actual bottom $0_L$ and top $1_L$, and the complete
+semiring $S_L=G_L(\mathbb C)$. It is not a two-element replacement.
+The source is version 11 of \emph{Split Support Geometry: Universal
+Zero Fibres, Arithmetic Curves, and Frobenius-Perfect Quantization},
+by The Clankers, Definition \texttt{def:lattice-split}, Theorems
+\texttt{thm:lattice-normal-form}, \texttt{thm:lattice-monomial-gl}
+and \texttt{thm:lattice-split-determinant}. Those constructions and
+the monomial theorem belong to that source; they are not claimed here
+as new results. The calculation below applies that base to the exact
+ST source, metric, observation and prime actions, and constructs the
+carriers on which their complete support transport is valid.
+
+\subsection{The amplitude and support matrix together}
+
+For an $m\times n$ matrix over $S_L$ write $(T,A)$, where
+$T\in M_{m,n}(\mathbb C)$ and $A\in M_{m,n}(L)$. The admissibility
+condition and operations are exactly
+\begin{equation}\tag{CLM1}
+\begin{gathered}
+T_{ij}\ne0\ \Longrightarrow\ A_{ij}=1_L,\\
+(T,A)+(U,B)=(T+U,A\vee B),\qquad
+(T,A)(U,B)=(TU,A\star B),\\
+(A\star B)_{ij}=\bigvee_\ell(A_{i\ell}\wedge B_{\ell j}).
+\end{gathered}
+\end{equation}
+The joins in the second line of CLM1 are entrywise. Each formula follows
+by applying the componentwise scalar operations in the cited definition
+to the finite matrix sum. Conversely every admissible pair specifies
+exactly one $S_L$-matrix. In particular these formulas retain complex
+signs in the amplitude and every lattice element in the support matrix.
+
+Let $\beta(T)_{ij}=1_L$ when $T_{ij}\ne0$ and $0_L$ otherwise, and put
+$\ell(T)=(T,\beta(T))$. This is the minimal entrywise lift: a zero
+entry is actual $\tau_L=(0,0_L)$. The exact failures of addition and
+composition are
+\begin{equation}\tag{CLM2}
+\begin{gathered}
+\ell(T)+\ell(U)=(T+U,\beta(T)\vee\beta(U)),\qquad
+\beta(T+U)\le\beta(T)\vee\beta(U),\\
+\ell(T)\ell(U)=(TU,\beta(T)\star\beta(U)),\qquad
+\beta(TU)\le\beta(T)\star\beta(U).
+\end{gathered}
+\end{equation}
+For the first inequality a nonzero sum requires a nonzero summand. For
+the second a nonzero matrix entry requires at least one nonzero product
+in its defining sum. Each inequality is therefore entrywise in $L$.
+At an entry where the amplitude cancels but the right support is nonzero,
+the exact result is the zero-fibre point $(0,\lambda)$ with that support,
+not $\tau_L$. No subtraction of lattice values is used or needed.
+
+More generally all lifts of a fixed amplitude $T$ form the explicit set
+\begin{equation}\tag{CLM3}
+\mathfrak F_L(T)=
+ \{A\in M_{m,n}(L):T_{ij}\ne0\Rightarrow A_{ij}=1_L\}.
+\end{equation}
+CLM1 gives the composition map
+$\mathfrak F_L(T)\times\mathfrak F_L(U)\to\mathfrak F_L(TU)$,
+$(A,B)\mapsto A\star B$. The proof is the same nonzero-product
+argument. Thus cancelled matrix coefficients define actual fibres of
+support data, with composition, rather than invalidating the base.
+
+\subsection{The original nilpotent and projector equations}
+
+Fix the original coordinate basis and metric $G_N$ of ST1--ST3. The
+following symbols are the original matrices, not orthogonally changed
+coordinates:
+\begin{equation}\tag{CLM4}
+\begin{gathered}
+J^\dagger J=I_B,\qquad P=JJ^\dagger=L\Lambda,
+\qquad P^2=P,\qquad \Pi=ee^\dagger+ff^\dagger,\quad\Pi^2=\Pi,\\
+R=\epsilon fe^\dagger,\qquad e^\dagger f=0,\quad
+\Pi R=R\Pi=R,\quad R^2=0,\qquad
+e^\dagger=e^*G_N.
+\end{gathered}
+\end{equation}
+The lattice $L$ and the original minimum section $L$ in $P=L\Lambda$
+are distinguished by their arguments; no source section is altered.
+For clarity the support matrices below always carry a subscript or
+appear as the second member of a matrix pair.
+
+Choose any exact lifts $\widehat R=(R,A_R)$,
+$\widehat\Pi=(\Pi,A_\Pi)$ and $\widehat P=(P,A_P)$. CLM1 gives
+\begin{equation}\tag{CLM5}
+\begin{gathered}
+\widehat R^{j}=(0,A_R^{\star j})\quad(j\ge2),\qquad
+\widehat\Pi^{j}=(\Pi,A_\Pi^{\star j})\quad(j\ge1),\qquad
+\widehat P^{j}=(P,A_P^{\star j})\quad(j\ge1),\\
+\widehat\Pi\widehat R=(R,A_\Pi\star A_R),\qquad
+\widehat R\widehat\Pi=(R,A_R\star A_\Pi).
+\end{gathered}
+\end{equation}
+These identities prove the exact zero-amplitude support left by the
+nilpotent equation and the exact support iterations left by projector
+equations. They do not assert nilpotence or idempotence with actual
+$\tau_L$ at every vanished amplitude entry.
+
+For the minimal lift of the original rank-one $R$ this calculation
+is explicit in its actual coordinates. Put $b_j=(e^*G_N)_j$ and let
+$F_i$ be $1_L$ or $0_L$ according as $f_i\ne0$ or $f_i=0$; define
+$B_j$ from $b_j$ in the same way. Then
+\begin{equation}\tag{CLM6}
+\begin{gathered}
+\beta(R)_{ij}=F_i\wedge B_j,\qquad
+\omega=\bigvee_\ell(B_\ell\wedge F_\ell),\qquad
+\beta(R)^{\star2}_{ij}=F_i\wedge\omega\wedge B_j,\\
+\ell(R)^2=
+\begin{cases}(0,0),&\omega=0_L,\\
+(0,\beta(R)),&\omega=1_L.
+\end{cases}
+\end{gathered}
+\end{equation}
+The first equality follows from $R_{ij}=\epsilon f_i b_j$ and
+$\epsilon>0$. Finite distributivity proves the second line's support
+product. The amplitude of every entry of $R^2$ is
+$\epsilon^2 f_i(\sum_\ell b_\ell f_\ell)b_j=0$, with the original
+complex terms preserved by $e^\dagger f=0$. If $\omega=1_L$, at least
+one summand $b_\ell f_\ell$ is nonzero; because their sum is zero,
+there are at least two nonzero summands. Thus the surviving support
+records a real cancellation in the original complex amplitudes. In
+this case $\beta(R)^{\star j}=\beta(R)$ for every $j\ge1$; when
+$\omega=0_L$, its powers vanish for $j\ge2$. No intermediate lattice
+level in a nonminimal lift is excluded by CLM6; those are retained in
+CLM5.
+
+For the actual section, observation and adjoint the corresponding
+minimal products are
+\begin{equation}\tag{CLM7}
+\begin{gathered}
+\ell(J^\dagger)\ell(J)
+ =(I_B,\beta(J^\dagger)\star\beta(J)),\qquad
+\ell(J)\ell(J^\dagger)
+ =(P,\beta(J)\star\beta(J^\dagger)),\\
+\ell(L)\ell(\Lambda)
+ =(P,\beta(L)\star\beta(\Lambda)),\qquad
+\ell(ee^\dagger)+\ell(ff^\dagger)
+ =(\Pi,\beta(ee^\dagger)\vee\beta(ff^\dagger)).
+\end{gathered}
+\end{equation}
+The two lifts of $P$ on the first two lines need not have identical
+support. They have the identical original amplitude and lie in the
+same fibre $\mathfrak F_L(P)$. The adjoint support is computed from
+$J^\dagger=J^*G_N$; it is not replaced by the transposed support of
+$J$. These equations retain exactly the original metric coefficients
+responsible for cancellation.
+
+\subsection{Finite path support and the carrier that recovers an exponential group}
+
+Let $(T,A)$ be any square admissible pair of size $n\ge1$, over any
+bounded distributive $L$. Define its finite path closure
+\begin{equation}\tag{CLM8}
+A^*=I_L\vee A\vee A^{\star2}\vee\cdots\vee A^{\star(n-1)}.
+\end{equation}
+Here $I_L$ has top on its diagonal and bottom elsewhere. A matrix entry
+$A_{ij}$ labels the arrow from input index $j$ to output index $i$.
+An entry $(A^{\star m})_{ij}$ is the join of the meets of edge labels
+along all length-$m$ directed walks from column index $j$ to row index
+$i$. This is proved by induction on the walk length $m$ using finite
+distributivity. If a walk repeats a
+vertex, deleting the intervening closed part leaves the endpoints
+unchanged and removes some factors from a meet; the remaining meet is
+greater than or equal to the original one. A walk with distinct
+endpoints reduces to a simple path of length at most $n-1$. A closed
+walk is bounded by the diagonal entry of $I_L$. Consequently
+\begin{equation}\tag{CLM9}
+A^{\star j}\le A^*\quad(j\ge0),\qquad
+A^*\star A^*=A^*,\qquad I_L\le A^*.
+\end{equation}
+For the product equality, concatenate the two finite paths in every
+term of $A^*\star A^*$ and use the preceding deletion argument to obtain
+the upper bound. The diagonal unit term gives the reverse bound. Thus
+no completeness assumption on $L$ or infinite lattice join is required.
+
+For every $z\in\mathbb C$, the pair
+\begin{equation}\tag{CLM10}
+\mathcal E_A(z)=(e^{zT},A^*)
+\end{equation}
+is an admissible $S_L$-matrix. Indeed a nonzero amplitude entry of the
+entire exponential has a nonzero summand from some power $T^j$, or
+from $I$ when $j=0$. A nonzero power entry has a path with nonzero
+amplitude product; every edge on that path has support $1_L$ in $A$.
+Deleting cycles retains top support, so $A^*$ has top in that entry.
+This proves admissibility. The support in CLM10 is the finite
+join recording every possible path, including paths whose amplitude
+sums vanish; it is not the minimal support of the already-summed
+matrix $e^{zT}$.
+
+This path support is also the exact eventual support of the actual
+finite exponential sums. For $z\ne0$, every coefficient $z^j/j!$ is
+nonzero and has supported scalar lift $(z^j/j!,1_L)$. Therefore
+\[
+\sum_{j=0}^{D}(z^j/j!,1_L)(T,A)^j
+ =\left(\sum_{j=0}^{D}\frac{z^jT^j}{j!},
+         \bigvee_{j=0}^{D}A^{\star j}\right).
+\]
+By CLM9 the support is exactly $A^*$ for every $D\ge n-1$, while the
+amplitude converges to the original entire exponential. Thus the
+limit requires only ordinary finite-dimensional complex convergence
+and eventually constant lattice coordinates, not a new infinite-sum
+operation on $L$. At $z=0$, using minimal coefficient lifts would give
+$(I,I_L)$ instead. CLM10 keeps $(I,A^*)$ at that parameter as the exact
+identity of the recovered carrier in CLM11, with its retained
+zero-amplitude paths made explicit.
+
+Define $P_A=(I_n,A^*)$ and the free $S_L$-semimodule
+$\mathcal V_L=S_L^n$. Its exact image and exponential law are
+\begin{equation}\tag{CLM11}
+\begin{gathered}
+P_A^2=P_A,\qquad
+\mathcal V_A=\operatorname{im}P_A
+ =\{(v,\lambda)\in S_L^n:A^*\lambda=\lambda\},\\
+\mathcal E_A(z)\mathcal E_A(w)=\mathcal E_A(z+w),\qquad
+\mathcal E_A(0)=P_A,\qquad
+\mathcal E_A(z)P_A=P_A\mathcal E_A(z)=\mathcal E_A(z).
+\end{gathered}
+\end{equation}
+Vectors on the first line use amplitude $v\in\mathbb C^n$ and support
+$\lambda\in L^n$, with $v_i\ne0\Rightarrow\lambda_i=1_L$;
+$(A^*\lambda)_i=\bigvee_j(A^*_{ij}\wedge\lambda_j)$.
+The idempotence in CLM9 proves the first line, since the map $P_A$
+does not change $v$. CLM1 and $A^*\star A^*=A^*$ prove the second
+line. It follows that $\mathcal E_A$ is an exact additive-group action
+on the concrete retract $\mathcal V_A$, with inverse
+$\mathcal E_A(-z)$ there. On the full free module its product at $z,-z$
+is $P_A$, not generally the identity. This computes the entire
+inverse-cancellation defect and gives the carrier on which the inverse
+exists.
+
+For real $a\ge0$ one can also use the identity-supported value at
+$a=0$ and the path-supported value $(e^{iaT},A^*)$ for $a>0$ to obtain
+a semigroup on the full free module. Its prime powers agree exactly
+because $m\log p>0$ for $m\ge1$. Extending that particular full-module
+semigroup to negative arguments fails at the displayed product
+$\mathcal E_A(ia)\mathcal E_A(-ia)=P_A$. The retract in CLM11 supplies
+the full group with all masks retained, instead of dropping this defect.
+
+The support fibre of the retract is exactly
+\begin{equation}\tag{CLM12}
+\ker(p:\mathcal V_A\to\mathbb C^n)
+ =\{(0,\lambda):A^*\lambda=\lambda\}.
+\end{equation}
+It is closed under coordinatewise joins and scalar meets: matrix
+multiplication by $A^*$ preserves each by distributivity. The amplitude
+map is surjective, since the all-top support vector is fixed by $A^*$.
+Thus this is an explicit retained lattice of zero-amplitude objects,
+not an omitted kernel or a new complex vector space.
+
+\subsection{The original companion graph forces the synchronized carrier}
+
+Return to the original source
+\begin{equation}\tag{CLM13}
+\begin{gathered}
+E=\mathbb C[y]/Q_k,\qquad q=(k+1)^2,\quad k\ge17,
+\quad k\equiv1\pmod4,\\
+Q_k(y)=\prod_{a,b=0}^k
+ [y-(2b-k)\gamma+i(2a-k)\delta],\qquad \delta,\gamma>0,\qquad
+M[f]=[yf].
+\end{gathered}
+\end{equation}
+In the original monomial coordinates $1,y,\ldots,y^{q-1}$, write
+$Q_k(y)=y^q+\sum_{j=0}^{q-1}c_jy^j$. The matrix of $M$ has
+$M_{j+1,j}=1$ for $0\le j<q-1$ and $M_{j,q-1}=-c_j$.
+None of the roots of $Q_k$ is zero: $k$ is odd, so each of $2a-k$
+and $2b-k$ is a nonzero odd integer. Hence $c_0=Q_k(0)\ne0$.
+The nonzero amplitude edges therefore contain the entire directed
+cycle
+\begin{equation}\tag{CLM14}
+0\longrightarrow1\longrightarrow\cdots\longrightarrow q-1
+ \longrightarrow0,
+\qquad \beta(M)^*=\mathbf 1_{q\times q}.
+\end{equation}
+Every pair of vertices is joined along this cycle in at most $q-1$
+steps, so its path support is top; this proves the equality. Every
+other admissible support matrix for the same original $M$ lies above
+$\beta(M)$ and below the all-top matrix, and thus has the same path
+closure. The conclusion is independent of the unspecified supports
+assigned to zero entries, while preserving their intermediate masks
+before closure.
+
+For the original prime action, CLM11 is consequently the carrier
+\begin{equation}\tag{CLM15}
+E^\uparrow_L=
+ \{(v,1_L):v\in E\}\ \cup\ \{(0,\lambda):\lambda\in L\}.
+\end{equation}
+Precisely, its embedding in $S_L^q$ gives every coordinate the same
+support $\lambda$. To prove the identification, multiplication of a
+support vector by the all-top matrix gives the constant vector with
+value $\bigvee_j\lambda_j$. A fixed vector therefore has equal
+coordinates; if their common value is below top, all amplitudes must
+be zero. Conversely every such synchronized vector is fixed. Thus the
+synchronized carrier is forced by the original companion prime-action
+graph; it is not a replacement of $L$ by a smaller lattice.
+
+On this carrier the original centred and uncentred prime actions are
+\begin{equation}\tag{CLM16}
+\begin{aligned}
+\mathcal F_p(v,\lambda)
+ &=(e^{i(\log p)M}v,\lambda),\\
+\widetilde{\mathcal F}_p(v,\lambda)
+ &=(p^{k/2}e^{i(\log p)M}v,\lambda),\\
+\mathcal F_p^m(v,\lambda)
+ &=(e^{im(\log p)M}v,\lambda),\qquad m\in\mathbb Z.
+\end{aligned}
+\end{equation}
+CLM11 proves the group laws. Multiplication by the supported nonzero
+scalar $(p^{k/2},1_L)$ gives the uncentred formula. The original
+coordinate $s=k/2+iy$ and every prime phase are retained.
+For the original cardinal vector at
+$y_{ab}=(2b-k)\gamma-i(2a-k)\delta$, the centred eigenvalue is exactly
+$p^{(2a-k)\delta}e^{i(2b-k)\gamma\log p}$, and the uncentred one has
+the additional factor $p^{k/2}$. This follows by applying the entire
+exponential to $M\ell_{ab}=y_{ab}\ell_{ab}$.
+
+The lattice fibre has a separate exact statement:
+\begin{equation}\tag{CLM17}
+\mathcal F_p(0,\lambda)=(0,\lambda)
+ =(a,1_L)(0,\lambda)\qquad(a\in\mathbb C^\times).
+\end{equation}
+Thus a semimodule eigenvector definition that admits non-absent vectors
+of zero amplitude assigns these points to every supported nonzero
+scalar eigenvalue. They cannot be counted as new numerical prime
+eigenvalues. Requiring nonzero amplitude recovers exactly the original
+complex eigenvalue relation, while CLM17 retains the entire extra
+fixed lattice fibre as objects.
+
+\subsection{Recovering the exact maps and their original metric}
+
+For any original complex linear map $T:V\to W$ between positive
+dimensional source or receiver spaces define
+\begin{equation}\tag{CLM18}
+T^\uparrow:V^\uparrow_L\longrightarrow W^\uparrow_L,
+\qquad T^\uparrow(v,\lambda)=(Tv,\lambda).
+\end{equation}
+These maps preserve the $S_L$-semimodule operations. In detail, addition
+is $(v,\lambda)+(w,\mu)=(v+w,\lambda\vee\mu)$ and scalar
+multiplication is $(r,\nu)(v,\lambda)=(rv,\nu\wedge\lambda)$.
+The linear identities $T(v+w)=Tv+Tw$ and $T(rv)=rTv$ prove both
+assertions, including every zero-amplitude case. Formula CLM18 is
+represented on the synchronized carriers by the matrix pair
+$(T,\mathbf1)$, even when some entries of $T$ vanish.
+
+Direct evaluation proves
+\begin{equation}\tag{CLM19}
+(TU)^\uparrow=T^\uparrow U^\uparrow,\qquad
+I^\uparrow=I_{V^\uparrow_L},\qquad
+(T+U)^\uparrow=T^\uparrow+U^\uparrow.
+\end{equation}
+An amplitude isomorphism therefore has the exact inverse
+$(T^{-1})^\uparrow$ on this carrier. This does not assert an inverse
+for its matrix on the full free $S_L$-module, which would contradict
+the monomial theorem quoted from version 11. The image of the
+amplitude zero map is specifically
+\begin{equation}\tag{CLM20}
+Z_V=0^\uparrow:(v,\lambda)\longmapsto(0,\lambda).
+\end{equation}
+It is not the actual semimodule zero morphism
+$(v,\lambda)\mapsto(0,0_L)$. In particular the recovered nilpotent
+identity is $(R^\uparrow)^2=Z_E$. It retains every zero layer; it does
+not falsely assert square-zero with actual $\tau_L$ as every output.
+The preimage of actual $\tau_L$ under $T^\uparrow$ consists only of
+actual $\tau_L$, while its layerwise kernel is the exact subset
+\[
+\{(v,1_L):Tv=0\}\cup\{(0,\lambda):\lambda\in L\}
+ =(\ker T)^\uparrow_L.
+\]
+This follows by imposing the output amplitude equation $Tv=0$
+without deleting the output support. Thus the distinction between
+categorical zero and the support-preserving zero map is explicit.
+
+The original metric has an exact lift, not a changed amplitude metric:
+\begin{equation}\tag{CLM21}
+h^\uparrow_{G_N}((v,\lambda),(w,\mu))
+ =(v^*G_Nw,\lambda\wedge\mu)\in S_L.
+\end{equation}
+If $v^*G_Nw\ne0$, both vectors have nonzero amplitude and hence both
+supports are top; so the pair is admissible. Conjugation on $S_L$ is
+$(r,\nu)\mapsto(\bar r,\nu)$. Hermitian symmetry follows from that
+of $G_N$, and sesquilinearity follows from distributivity in $L$ and
+sesquilinearity of the amplitude form. For example the support of
+$h^\uparrow(x_1+x_2,y)$ is
+$(\lambda_1\vee\lambda_2)\wedge\mu
+=(\lambda_1\wedge\mu)\vee(\lambda_2\wedge\mu)$; scalar multiplication
+gives the analogous meet formula. Its norm at $(0,\lambda)$ is
+$(0,\lambda)$, which records the zero layer. Its amplitude is exactly
+the original squared norm; no positive complex norm for a new
+zero-amplitude vector has been invented.
+
+For the original metric adjoint $T^\dagger$ between the two original
+metric spaces, the support meets on both sides are identical and the
+amplitudes obey the adjoint identity. Consequently
+\begin{equation}\tag{CLM22}
+\begin{gathered}
+h_W^\uparrow(T^\uparrow x,y)=h_V^\uparrow(x,(T^\dagger)^\uparrow y),\\
+(J^\dagger)^\uparrow J^\uparrow=I_B^\uparrow,\qquad
+J^\uparrow(J^\dagger)^\uparrow=P^\uparrow
+=L^\uparrow\Lambda^\uparrow,\qquad
+(P^\uparrow)^2=P^\uparrow,\\
+(\Pi^\uparrow)^2=\Pi^\uparrow,\qquad
+\Pi^\uparrow R^\uparrow=R^\uparrow\Pi^\uparrow=R^\uparrow,
+\qquad(R^\uparrow)^2=Z_E.
+\end{gathered}
+\end{equation}
+All equalities follow from CLM4 and CLM19, with CLM20 keeping the
+correct supported zero. The first line and $J^\dagger J=I$ show that
+$J^\uparrow$ preserves the entire lifted form, including the lattice
+norms. This salvages the original sections, projectors, boundary map
+and metric without asserting that the two-dimensional additive support
+algebra in ST4 was a representation of the complete lattice base.
+
+\subsection{The prime compression identity on the recovered carriers}
+
+Let $U(z)=J^\dagger e^{zM}J$ and retain the original kernel
+$K=\ker\Lambda$, projection $Q=I-P$, and all their amplitudes and
+phases. The exact amplitude composition defect is
+$U(z+w)=U(z)U(w)+J^\dagger e^{zM}Qe^{wM}J$. Applying CLM19 gives
+\begin{equation}\tag{CLM23}
+U(z+w)^\uparrow
+ =U(z)^\uparrow U(w)^\uparrow
+  +\bigl(J^\dagger e^{zM}Qe^{wM}J\bigr)^\uparrow.
+\end{equation}
+To prove the amplitude formula, insert $I=P+Q$ between the two
+exponentials and use $P=JJ^\dagger$. The lift preserves that finite
+sum exactly, including cancellations into $Z_B$. Thus the entire
+original-kernel memory from TDP6--TDP10 persists on the recovered
+full-lattice carrier. The support saturation has not silently made
+the observed action multiplicative.
+
+For comparison, if one keeps minimal entrywise lifts on the full free
+module, the two sides of the amplitude identity have support matrices
+that are computed by CLM1--CLM3 and need not agree. Their exact
+relation is equality after amplitude projection and equality after
+restriction to the synchronized carrier using the saturated lifts.
+This is a proved correspondence between two concrete retained objects,
+not an identification of their distinct free support masks.
+
+Finally, the cited lattice determinant theorem evaluates every actual
+square matrix pair as
+\begin{equation}\tag{CLM24}
+\det_L^{\rm sp}(T,A)
+ =\left(\det T,
+  \bigvee_{\sigma\in S_n}\bigwedge_i A_{i,\sigma(i)}\right).
+\end{equation}
+The original signed determinant amplitude is unchanged, while the
+support is the exact matching value. In particular a saturated
+prime matrix has top determinant support even when a related signed
+amplitude determinant vanishes. This does not replace invertibility
+on the full free module by a determinant test: the monomial theorem
+still controls that question. The exact recovered inverse on the
+synchronized or path-saturated carrier is already constructed in
+CLM11 and CLM19. No new Frobenius trace formula or RH conclusion is
+asserted from its existence.
+
+The full free module's mixed masks also have an exact retained
+correspondence with the original synchronized carrier. For the
+projection $P_{\mathbf1}$ in CLM15 its fibre is
+\begin{equation}\tag{CLM25}
+P_{\mathbf1}^{-1}(v,\lambda)
+ =\{(v,\mu):\mu\in L^q,\quad\bigvee_i\mu_i=\lambda,
+                  \quad v_i\ne0\Rightarrow\mu_i=1_L\}.
+\end{equation}
+This is obtained by evaluating the projection, so it gives both
+directions of the correspondence. If $v\ne0$, necessarily
+$\lambda=1_L$, and the nonzero amplitude coordinates already force the
+join to be top. The remaining coordinates are independently arbitrary:
+the fibre is canonically $L^{Z(v)}$, where $Z(v)=\{i:v_i=0\}$, with
+the labelled nonzero coordinates fixed at top. If $v=0$, the fibre is
+exactly $\{\mu\in[0_L,\lambda]^q:\bigvee_i\mu_i=\lambda\}$.
+Thus the mixed masks outside the synchronized carrier are retained as
+explicit fibres of its retraction, with all lattice levels and
+coordinate labels. Recovering a group action on the retract neither
+identifies those different masks nor asserts that they do not exist.
+
+For the finite powerset lattice $L=\mathcal P(I)$, write $r=|I|$.
+These exact fibres have the following cardinalities:
+\begin{equation}\tag{CLM26}
+\begin{gathered}
+\left|P_{\mathbf1}^{-1}(v,1_L)\right|
+ =2^{r|Z(v)|}\qquad(v\ne0),\\
+\left|P_{\mathbf1}^{-1}(0,A)\right|
+ =(2^q-1)^{|A|}\qquad(A\subseteq I).
+\end{gathered}
+\end{equation}
+The first equality follows from the exact fibre $L^{Z(v)}$ in CLM25:
+each labelled zero coordinate independently chooses any of the $2^r$
+subsets of $I$. For the second, write the coordinate masks as
+$\mu_1,\ldots,\mu_q\subseteq A$. Their union is $A$ precisely when,
+for every atom $a\in A$, the index set
+$S_a=\{i:a\in\mu_i\}\subseteq\{1,\ldots,q\}$ is nonempty.
+The map $(\mu_i)_i\mapsto(S_a)_{a\in A}$ is a bijection onto the
+product, over the labelled atoms of $A$, of the $2^q-1$ nonempty
+coordinate subsets. Its inverse is
+$\mu_i=\{a\in A:i\in S_a\}$. This proves the second equality without
+identifying different atoms or different coordinate masks. When
+$A=\varnothing$, the empty product has value one and its sole
+preimage is the all-absent mask. Thus synchronization has an explicit
+residual-space correspondence with every full preimage counted.
+
+
+
+% Complete proof source: independent/SUPPORT_RETRACTION_COHOMOLOGY.tex
+\section{Exact support retractions, cohomology and prime correspondences}
+\label{sec:support-retraction-cohomology}
+
+The coefficient object in this section is the original
+$G_L(\mathbb C)$ of The Clankers,
+\emph{Split Support Geometry: Universal Zero Fibres, Arithmetic Curves,
+and Frobenius-Perfect Quantization}, version 11, Definition
+\texttt{def:lattice-split}; the source is retained as
+\texttt{sources/FULL\_LATTICE\_FOUNDATION\_V11.tex}.
+The original source, metric, boundary maps and prime phases are
+those of ST1--3, FLR1--17 and CLM1--26.
+The foundational split-support construction is an antecedent.
+Here the exact free-to-synchronized matrix squares, a category with
+supported zero morphisms, its kernel and cohomology calculations,
+and the full fibre correspondence of the original prime maps are
+constructed and proved.
+
+\subsection{Definitions retained throughout}
+
+Let \(L\) be a nontrivial bounded distributive lattice and \(S=G_L(\mathbb C)\). Write its elements as \((c,\alpha)\), with \(c\ne0\Rightarrow\alpha=1_L\), and retain
+
+\[
+(c,\alpha)+(d,\beta)=(c+d,\alpha\vee\beta),\qquad
+(c,\alpha)(d,\beta)=(cd,\alpha\wedge\beta).
+\tag{CR1}
+\]
+
+The actual scalar zero is \(\tau=(0,0_L)\); the supported zero is \(e=(0,1_L)\). These are distinct. For a complex vector space \(V\), retain FLR1 exactly:
+
+\[
+V^\uparrow_L=\{(v,1_L):v\in V\}\cup\{(0_V,\lambda):\lambda\in L\}.
+\tag{CR2}
+\]
+
+Its operations are FLR2. A free vector in \(S^n\) instead has amplitude \(v\in\mathbb C^n\) and support vector \(\boldsymbol\lambda\in L^n\), subject to \(v_i\ne0\Rightarrow\lambda_i=1_L\). Thus a free vector is written \((v,\boldsymbol\lambda)\); a synchronized vector is written \((v,\lambda)\), with one common label.
+
+For a rectangular \(m\times n\) free matrix write \(\widehat T=(T,A)\) as in CLM1. Its action is
+
+\[
+\widehat T(v,\boldsymbol\lambda)=
+\left(Tv,\left(\bigvee_j A_{ij}\wedge\lambda_j\right)_{i=1}^m\right).
+\tag{CR3}
+\]
+
+All dimensions used for free matrices below are positive. The synchronized construction itself also includes \(V=0\), in which case \(0^\uparrow_L=L\).
+
+\subsection{The companion path closure really is all-top}
+
+CLM8--9 are valid for every finite matrix over the stated bounded distributive lattice. Induction on path length gives the join of the meets of the edge labels along all directed walks. If a walk repeats a vertex, delete the closed subwalk. This removes factors from its meet, so its value can only increase in the lattice order. A path with different endpoints reduces to length at most \(n-1\); a closed walk is bounded by the corresponding diagonal entry of \(I_L\). This proves, with no infinite join,
+
+\[
+A^{\star j}\le A^*=I_L\vee A\vee\cdots\vee A^{\star(n-1)},\qquad
+A^*\star A^*=A^*.
+\tag{CR4}
+\]
+
+For the exact original polynomial and monomial basis of CLM13, put
+
+\[
+Q_k(y)=\prod_{a,b=0}^k[y-(2b-k)\gamma+i(2a-k)\delta]
+      =y^q+\sum_{j=0}^{q-1}c_jy^j,
+\quad q=(k+1)^2.
+\tag{CR5}
+\]
+
+Here \(k\ge17\), \(k\equiv1\pmod4\), and \(\gamma,\delta>0\). Every factor has a nonzero root, because both odd integers \(2a-k\) and \(2b-k\) are nonzero. Thus \(c_0\ne0\). Multiplication by \(y\) has entries \(M_{j+1,j}=1\) for \(0\le j<q-1\), and \(M_{j,q-1}=-c_j\). Its nonzero entries contain the directed cycle
+
+\[
+0\longrightarrow1\longrightarrow\cdots\longrightarrow q-1
+ \longrightarrow0.
+\tag{CR6}
+\]
+
+Every ordered pair is connected by at most \(q-1\) edges of this cycle. Each edge has support \(1_L\) in every admissible lift of \(M\). Consequently \(A^*=\mathbf1_{q\times q}\) for every such lift \(A\), exactly as stated in CLM14.
+
+Let \(J_n\) denote the \(n\times n\) all-top lattice matrix, and let \(P_n=(I_n,J_n)\). Then
+
+\[
+P_n(v,\boldsymbol\lambda)=
+\bigl(v,(\bigvee_i\lambda_i,\ldots,\bigvee_i\lambda_i)\bigr).
+\tag{CR7}
+\]
+
+Its fixed vectors have all labels equal. If one amplitude coordinate is nonzero, that label must be top. If the common label is below top, every amplitude coordinate is zero. This proves exactly
+
+\[
+\operatorname{im}P_q=E^\uparrow_L
+\]
+
+under the original monomial-coordinate inclusion of FLR15. No Boolean branch has been selected. Every element of \(L\) is present as a common zero-amplitude label.
+
+The result is specific about its construction: this is the carrier of the path-supported exponential of CLM10. It does not assert that every possible lifting procedure or every mixed free mask is already that carrier.
+
+\subsection{The exact free-to-synchronized squares}
+
+Define maps
+
+\[
+\begin{aligned}
+\iota_n:(\mathbb C^n)^\uparrow_L&\longrightarrow S^n,
+&\iota_n(v,\lambda)&=(v,(\lambda,\ldots,\lambda)),\\
+r_n:S^n&\longrightarrow(\mathbb C^n)^\uparrow_L,
+&r_n(v,\boldsymbol\lambda)&=(v,\bigvee_j\lambda_j).
+\end{aligned}
+\tag{CR8}
+\]
+
+Both are well defined. For \(r_n\), a nonzero coordinate of \(v\) forces the total join to be top. Both preserve addition. Their compatibility with scalar multiplication follows from
+\(\alpha\wedge\bigvee_j\lambda_j=\bigvee_j(\alpha\wedge\lambda_j)\).
+They are therefore \(S\)-linear, with
+
+\[
+r_n\iota_n=I,\qquad \iota_nr_n=P_n.
+\tag{CR9}
+\]
+
+For \(A\in M_{m,n}(L)\), retain its exact row joins, column joins and total join:
+
+\[
+\rho_i(A)=\bigvee_j A_{ij},\qquad
+\kappa_j(A)=\bigvee_i A_{ij},\qquad
+d(A)=\bigvee_{i,j}A_{ij}.
+\tag{CR10}
+\]
+
+For the original amplitude \(T\), define \(T^\uparrow(v,\lambda)=(Tv,\lambda)\), exactly as in FLR3. Direct evaluation of CR3 gives the complete two squares:
+
+\[
+\begin{aligned}
+\widehat T\iota_n(v,\lambda)
+ &=\bigl(Tv,(\rho_i(A)\wedge\lambda)_i\bigr),\\
+\iota_mT^\uparrow(v,\lambda)
+ &=\bigl(Tv,(\lambda)_i\bigr),\\
+r_m\widehat T(v,\boldsymbol\lambda)
+ &=\left(Tv,\bigvee_j\kappa_j(A)\wedge\lambda_j\right),\\
+T^\uparrow r_n(v,\boldsymbol\lambda)
+ &=\left(Tv,\bigvee_j\lambda_j\right).
+\end{aligned}
+\tag{CR11}
+\]
+
+Consequently the restriction square commutes on its entire domain exactly when every row join is top. Necessity follows by putting \(v=0\), \(\lambda=1_L\); sufficiency follows from the first two formulas. The retraction square commutes on its entire domain exactly when every column join is top. For necessity take the zero amplitude and a support vector with top in just column \(j\) and bottom elsewhere. Sufficiency follows from the last two formulas. This proves both directions of each assertion.
+
+For example, take \(L=\{0,1\}\), \(T=\operatorname{diag}(1,0)\), and its minimal support \(A=\operatorname{diag}(1,0)\). The synchronized zero-amplitude vector with label \(1\) is sent to the nonsynchronized mask \((1,0)\). Thus an arbitrary minimal free lift does not restrict to the lift FLR3. This counterexample concerns that particular lift; it does not obstruct the saturated lift.
+
+Indeed the saturated matrix \(\widehat T_{\rm sat}=(T,\mathbf1_{m\times n})\) satisfies both squares. Its exact matrix expression is
+
+\[
+\widehat T_{\rm sat}=\iota_mT^\uparrow r_n.
+\tag{CR12}
+\]
+
+No amplitude, sign, coordinate or constant has changed in CR12. The support operation is explicitly specified.
+
+Sandwiching an arbitrary lift gives the stronger exact formula
+
+\[
+P_m\widehat T P_n=(T,d(A)\mathbf1_{m\times n}),
+\tag{CR13}
+\]
+
+where \(d(A)\mathbf1\) means that every entry is the same lattice element \(d(A)\), not a numerical multiple. This follows by finite distributivity in \(J_m\star A\star J_n\). If \(T\ne0\), admissibility forces some entry of \(A\) to be top, hence \(d(A)=1_L\), and CR13 equals the saturated lift. If \(T=0\), the total support \(d(A)\) remains necessary data. In particular, sandwiching the minimal zero matrix gives the actual zero matrix, while the lift of the original zero linear map is supported zero. This explicitly locates the exceptional zero-map issue.
+
+Saturation itself is the matrix operation
+
+\[
+\widehat T\longmapsto\widehat T+(0,\mathbf1_{m\times n}).
+\tag{CR14}
+\]
+
+Finite sums and composable products of these saturated matrices agree with the saturated matrix of the corresponding amplitude sum or product; the intermediate dimension is positive, so the support product of the two all-top rectangular matrices is all-top. Their identity on the synchronized image is \(P_n\), as proved in CR9. These statements are exact maps, not an identification of the distinct support matrices \(A\).
+
+\subsection{A category whose zero object is the retained support lattice}
+
+Regard \(L\) itself as an \(S\)-semimodule: its addition is join and
+
+\[
+(c,\alpha)\cdot\lambda=\alpha\wedge\lambda.
+\tag{CR15}
+\]
+
+The scalar laws follow immediately from CR1 and lattice distributivity. Define \(\mathsf{Ret}_L\) as follows. An object is an \(S\)-semimodule \(X\) with specified \(S\)-linear maps
+
+\[
+L\xrightarrow{s_X}X\xrightarrow{\sigma_X}L,
+\qquad \sigma_Xs_X=I_L.
+\tag{CR16}
+\]
+
+A morphism \(f:X\to Y\) is \(S\)-linear and satisfies
+
+\[
+f s_X=s_Y,\qquad \sigma_Y f=\sigma_X.
+\tag{CR17}
+\]
+
+Composition and identities preserve these equations, so this defines a category without any additional existence assumption. The object \((L,I_L,I_L)\) is both initial and terminal: a morphism from it to \(X\) must be \(s_X\), and a morphism from \(X\) to it must be \(\sigma_X\). Thus its zero morphism from \(X\) to \(Y\) is exactly
+
+\[
+0^{\mathsf{Ret}}_{X,Y}=s_Y\sigma_X.
+\tag{CR18}
+\]
+
+The two composition laws for these zero morphisms follow from CR17. This is a supported zero, not the constant map to actual \(\tau\).
+
+The synchronized object CR2 has
+
+\[
+s_V(\lambda)=(0_V,\lambda),\qquad
+\sigma_V(v,\lambda)=\lambda.
+\tag{CR19}
+\]
+
+These maps are \(S\)-linear by FLR2 and satisfy CR16. The lift of every original complex linear map is a morphism in \(\mathsf{Ret}_L\). Moreover every morphism \(f:V^\uparrow_L\to W^\uparrow_L\) in this category is the lift of exactly one original linear map. To prove this, CR17 forces \(f(0,\lambda)=(0,\lambda)\) and forces every output to have its input label. Write
+
+\[
+f(v,1_L)=(T(v),1_L).
+\]
+
+Additivity of \(f\) gives \(T(v+w)=T(v)+T(w)\); scalar multiplication by \((c,1_L)\), together with \(T(0)=0\), gives \(T(cv)=cT(v)\) for every \(c\in\mathbb C\). Thus \(T\) is complex linear and \(f=T^\uparrow\). Its uniqueness follows by reading the amplitude at label top. This proves full faithfulness, not only faithfulness, of the synchronized recovery in the specified category.
+
+In particular FLR5 and CLM20 are the actual zero morphisms of \(\mathsf{Ret}_L\). FLR4 and CLM19 preserve the zero object and zero morphisms in this category. No claim about preservation of the different zero object in the ambient category of all \(S\)-semimodules is needed or made.
+
+The free module \(S^n\) also has a specified object of \(\mathsf{Ret}_L\):
+
+\[
+s_n(\lambda)=(0,(\lambda)_i),\qquad
+\sigma_n(v,\boldsymbol\lambda)=\bigvee_i\lambda_i.
+\tag{CR20}
+\]
+
+CR8 gives a retraction and inclusion in this category. CR11 proves that a free matrix \((T,A)\) is a morphism between these free objects exactly when all its row joins and all its column joins are top. Every path-closure support \(A^*\) has this property because its diagonal is top. Saturated lifts have it as well. Thus the path-supported exponential and the saturated original maps live in one explicitly constructed category, alongside the free objects and their retained mixed masks.
+
+The zero endomorphism of the free object CR20 is
+
+\[
+0^{\mathsf{Ret}}_{S^n,S^n}=(0,J_n)=s_n\sigma_n.
+\tag{CR21}
+\]
+
+It is different both from the actual zero matrix and, on nonsynchronized masks, from the diagonal matrix \(eI_n\). On the synchronized image it is exactly FLR5.
+
+\subsection{Exact kernels, cokernels and cohomology}
+
+Let \(T:V\to W\) be an original linear map. The inclusion
+
+\[
+(\ker T)^\uparrow_L\hookrightarrow V^\uparrow_L
+\tag{CR22}
+\]
+
+is its categorical kernel in \(\mathsf{Ret}_L\), not merely an inverse image selected after forgetting the category. Indeed the equation
+\(T^\uparrow f=0^{\mathsf{Ret}}_{X,W}\) for a morphism \(f:X\to V^\uparrow_L\) says exactly that every amplitude of \(f(x)\) lies in \(\ker T\). Its support remains \(\sigma_X(x)\). It therefore factors uniquely through CR22; the factor is \(S\)-linear and preserves both maps CR19 because CR22 is an inclusion with inherited operations. This verifies the full kernel universal property for every object \(X\) of \(\mathsf{Ret}_L\).
+
+The original quotient induces
+
+\[
+q^\uparrow:W^\uparrow_L\longrightarrow(W/\operatorname{im}T)^\uparrow_L.
+\tag{CR23}
+\]
+
+It is a categorical cokernel in the same category. Its composite with \(T^\uparrow\) is CR18. For the universal property let \(f:W^\uparrow_L\to X\) satisfy \(fT^\uparrow=0^{\mathsf{Ret}}\). At label top and \(v\in V\),
+
+\[
+f(w+Tv,1_L)=f(w,1_L)+f(Tv,1_L)
+ =f(w,1_L)+s_X(1_L)=f(w,1_L).
+\tag{CR24}
+\]
+
+The last equality follows by writing \(s_X(1_L)=f(0_W,1_L)\) and using additivity of \(f\). Therefore the definition \(\bar f([w],1_L)=f(w,1_L)\), \(\bar f(0,\lambda)=s_X(\lambda)\) is independent of representatives and consistent at \(([0],1_L)\). It factors \(f\). Since \(q^\uparrow\) is surjective and \(S\)-linear, the factor is \(S\)-linear; its two support identities follow from those of \(f\). Surjectivity also proves uniqueness. This proves CR23 completely.
+
+It follows from CR22--23 that the categorical image of \(T^\uparrow\), computed as the kernel of its cokernel, is exactly \((\operatorname{im}T)^\uparrow_L\). Thus no part of the amplitude image or zero lattice is omitted.
+
+For any original complex \((V^n,d^n)\), its lifted differentials satisfy
+
+\[
+(d^{n+1})^\uparrow(d^n)^\uparrow
+ =0^{\mathsf{Ret}}_{V^n,V^{n+2}}.
+\tag{CR25}
+\]
+
+They consequently form an actual complex in the pointed category just defined. The image of the preceding differential lies in the kernel of the following one by the original equation \(d^nd^{n-1}=0\), and CR22--24 compute its quotient exactly:
+
+\[
+H^n_{\mathsf{Ret}_L}(V^\bullet_L{}^\uparrow)
+ =\left(\ker d^n/\operatorname{im}d^{n-1}\right)^\uparrow_L.
+\tag{CR26}
+\]
+
+The quotient here means the categorical cokernel of the already constructed inclusion of image into kernel. Thus CR26 proves the same object as FLR17 by exact universal properties. It strengthens FLR17's fibrewise calculation; it does not falsely turn \(d^2\) into the constant actual-zero map in the different category of all semimodules.
+
+The split sum in FLR11 is also the categorical product in \(\mathsf{Ret}_L\). The product of two objects in this category is the fibre product of their support maps, with section \(\lambda\mapsto(s_V\lambda,s_W\lambda)\). For synchronized objects this is exactly \((V\oplus W)^\uparrow_L\), as FLR11 proves. Both projections and the paired map preserve support and section, verifying the product universal property. The ordinary vector-space inclusions into the direct sum lift and give its coproduct property: for morphisms \(f:V^\uparrow_L\to X\), \(g:W^\uparrow_L\to X\), the map
+
+\[
+((v,w),\lambda)\longmapsto f(v,\lambda)+g(w,\lambda)
+\tag{CR27}
+\]
+
+is \(S\)-linear, preserves the section because \(s_X\lambda+s_X\lambda=s_X\lambda\), and preserves support because \(\lambda\vee\lambda=\lambda\). It restricts to \(f\) and \(g\): for example \(f(v,\lambda)+s_X\lambda=f(v,\lambda)+f(0,\lambda)=f(v,\lambda)\). Every element is the sum of the two inclusion images at its same label, so uniqueness follows. Hence the synchronized objects have the original biproduct and exact linear algebra in this category.
+
+\subsection{The metric really restricts from the full free module}
+
+Let \(G\) be the original positive definite Hermitian matrix on \(\mathbb C^n\), in its original coordinates. Take any admissible support matrix \(B\) for \(G\). Every diagonal entry of \(G\) is positive, so
+
+\[
+B_{ii}=1_L\quad\text{for every }i.
+\tag{CR28}
+\]
+
+Choose \(B\) symmetric to give a Hermitian free pairing; the minimal support \(\beta(G)\) is one such choice. The exact free pairing is
+
+\[
+\widehat h_B\bigl((v,\boldsymbol\lambda),(w,\boldsymbol\mu)\bigr)
+ =\left(v^*Gw,
+ \bigvee_{i,j}\lambda_i\wedge B_{ij}\wedge\mu_j\right).
+\tag{CR29}
+\]
+
+This is the matrix pairing over \(S\), with conjugation \((c,\alpha)\mapsto(\bar c,\alpha)\). Hermitian symmetry and sesquilinearity follow from matrix multiplication CR1, symmetry of \(B\), and Hermitian symmetry of \(G\). On the synchronized inclusion, its support is
+
+\[
+\bigvee_{i,j}\lambda\wedge B_{ij}\wedge\mu
+ =\lambda\wedge\mu,
+\tag{CR30}
+\]
+
+because CR28 forces the total join of \(B\) to be top. Thus FLR7 and CLM21 are the exact restriction of this free pairing, with the original amplitude metric unchanged.
+
+Moreover \(P_n\) is self-adjoint for CR29. Each row and each column of \(B\) has join top by CR28, so both \(\widehat h_B(P_nx,y)\) and \(\widehat h_B(x,P_ny)\) have support
+\((\bigvee_i\lambda_i)\wedge(\bigvee_j\mu_j)\), and their amplitudes agree because the amplitude of \(P_n\) is \(I_n\). Its idempotence was already proved in CR9. In general \(P_n\) is not an isometry of the full support-valued pairing: CR29 may contain strictly less support before projection. This retains, rather than suppresses, the free mixed-mask metric information.
+
+For original positive definite metrics \(G_V,G_W\), let \(T^\dagger\) be the actual metric adjoint. Their saturated lifts are an adjoint pair even on the full free modules with pairings CR29. Both sides of
+
+\[
+\widehat h_{B_W}(\widehat T_{\rm sat}x,y)
+ =\widehat h_{B_V}(x,\widehat{T^\dagger}_{\rm sat}y)
+\tag{CR31}
+\]
+
+have the original adjoint amplitude and support
+\((\bigvee_i\lambda_i)\wedge(\bigvee_j\mu_j)\), again because every row and column join of the metric supports is top. Restricting CR31 through CR8 proves FLR8 and CLM22 as exact inherited pairings. No replacement of the weighted adjoint by a transposed support matrix has occurred.
+
+In particular the exact identities involving the original section, \(J\), \(P_B\), \(\Pi\) and \(R\) follow from the amplitude identities and CR12--14. In the recovered category, \((R^\uparrow)^2\) is precisely the zero morphism CR18. On the full free module its saturated counterpart squares to CR21, as the original amplitude \(R^2=0\) requires.
+
+\subsection{Why the original prime group cannot act invertibly on every free mask}
+
+The difference between the retract and the free object can be proved for the actual original prime matrices, rather than left as a possible issue.
+
+Here a monomial matrix has exactly one nonzero entry in every row and every column. An \(S\)-linear automorphism of \(S^n\) has a monomial amplitude matrix. Write an inverse pair as \((T,A)(U,B)=(I,I_L)\) and \((U,B)(T,A)=(I,I_L)\). The amplitude \(U=T^{-1}\) is invertible. If \(T_{ij}\ne0\), then \(A_{ij}=1_L\). For every \(\ell\ne i\), the off-diagonal support equation in \(A\star B=I_L\) forces \(B_{j\ell}=0_L\), hence \(U_{j\ell}=0\). If a row \(i\) of \(T\) had two nonzero entries at \(j\ne j'\), rows \(j,j'\) of \(U\) would both be supported on column \(i\), contradicting invertibility of \(U\). Thus each row of \(T\) has at most one nonzero entry. Invertibility gives exactly one per row and per column. This proves the assertion directly from CR1.
+
+Now retain the actual companion matrix \(M\) and let
+
+\[
+F_p=\exp(i(\log p)M),\qquad p\text{ an ordinary prime}.
+\tag{CR32}
+\]
+
+Its amplitude is not monomial in the original monomial basis. To prove this, first observe that \(Q_k\) has at least two nonzero coefficients below its leading term. One is \(c_0\ne0\). If all the others were zero, \(Q_k=y^q+c_0\), all of whose roots have the same absolute value. But the original grid contains roots with absolute values
+
+\[
+k\sqrt{\gamma^2+\delta^2}\quad\text{and}\quad
+\sqrt{\gamma^2+\delta^2},
+\tag{CR33}
+\]
+
+using respectively \((2a-k,2b-k)=(k,k)\) and \((1,1)\). These are different because \(k\ge17\). This proves the coefficient claim without imposing an extra relation between \(\gamma\) and \(\delta\).
+
+Every matrix commuting with \(M\) is multiplication by its value on the cyclic vector \(1\): on the basis element \(y^j=M^j1\), commutation gives \(T(y^j)=M^jT(1)\). If such an invertible matrix is monomial, then \(T(1)=cy^r\) with \(c\ne0\) and \(0\le r<q\). If \(r\ge1\), take \(j=q-r\), which is an available basis index. Its image is
+
+\[
+T(y^{q-r})=cy^q=-c\sum_{j=0}^{q-1}c_jy^j,
+\tag{CR34}
+\]
+
+which has at least two nonzero coordinates by the preceding coefficient calculation. This contradicts the monomial property. Hence \(r=0\) and such a commuting monomial matrix must be \(cI\).
+
+But \(F_p\) commutes with \(M\) and is not scalar. The original roots are distinct because \(\gamma,\delta>0\), and the cardinal vectors give eigenvalue absolute values
+
+\[
+\left|\exp(i(\log p)y_{ab})\right|
+   =p^{(2a-k)\delta}.
+\tag{CR35}
+\]
+
+These values vary with \(a\), so a scalar matrix is impossible. Therefore \(F_p\) is not monomial. The preceding direct automorphism proof now shows that no \(S\)-linear automorphism of the full free module can have amplitude \(F_p\). Multiplication by the retained nonzero scalar factor \(p^{k/2}\) does not change this conclusion for the uncentred prime action.
+
+There is an even stronger finite-lattice statement. If \(2\le|L|<\infty\), no amplitude-preserving bijection of the entire free set can cover \(F_p\). Since the invertible \(F_p\) is not monomial, one of its columns has at least two nonzero entries. Choose the corresponding basis vector \(e_j\). The fibre over \(e_j\) has size \(|L|^{q-1}\), whereas the fibre over \(F_pe_j\) has size \(|L|^{q-r}\) for some \(r\ge2\), by FLR16. These cardinalities differ. A bijection covering the invertible amplitude map would give a bijection of those fibres, which is impossible. This proves the claim even without linearity.
+
+The exact positive result is the group action on \(\operatorname{im}P_q=E^\uparrow_L\) of CLM16, with retraction fibres exactly CLM25--26. The full free path-supported operators collapse those fibres to the synchronized output. For example, already with \(L=\{0,1\}\) and two coordinates, the different zero-amplitude masks \((1,0)\) and \((1,1)\) have the same image under \(P_2\). Therefore no inverse on the entire free module can be inferred from the inverse on the retract.
+
+\subsection{The exact fibre groupoid and invertible prime correspondence}
+
+Retain every free mask as an object. Put \(X=S^q\), \(Y=E^\uparrow_L\), \(r=r_q\), and \(\iota=\iota_q\). Define the groupoid \(\mathcal G_r\) with object set \(X\), with one arrow \(x\to x'\) exactly when \(r(x)=r(x')\), and with no arrow otherwise. The composite of two composable arrows is the unique arrow with the resulting endpoints. Such an arrow exists by transitivity of equality of \(r\)-images. The unique arrow \(x\to x\) is the identity and reversal is the inverse. This proves the groupoid laws.
+
+Let \(\mathcal D(Y)\) be the discrete groupoid on the set \(Y\). The maps \(r,\iota\) define functors
+\[
+\mathcal R:\mathcal G_r\longrightarrow\mathcal D(Y),\qquad
+\mathcal I:\mathcal D(Y)\longrightarrow\mathcal G_r,\qquad
+\mathcal R\mathcal I=I_{\mathcal D(Y)}.
+\tag{CR36}
+\]
+An arrow of \(\mathcal G_r\) is sent by \(\mathcal R\) to the identity of its common \(r\)-image. The other functor sends each identity to the identity of its included object. Their composite \(\mathcal P=\mathcal I\mathcal R\) acts on objects by the exact synchronization \(P_q\) of CR7. There is a specified natural isomorphism
+\[
+\epsilon:\mathcal P\Longrightarrow I_{\mathcal G_r},\qquad
+\epsilon_x=(P_qx\longrightarrow x).
+\tag{CR37}
+\]
+The arrow exists because \(r(P_qx)=r(x)\), and is invertible by the groupoid definition. For every arrow \(x\to x'\), both composites in its naturality square are the unique arrow \(P_qx\to x'\). This proves naturality, including all zero-amplitude masks.
+
+For \(a\in\mathbb Q_{>0}^{\times}\), use the actual recovered prime-parameter map
+\[
+F_a^\uparrow(v,\lambda)=
+ \bigl(\exp(i(\log a)M)v,\lambda\bigr).
+\tag{CR38}
+\]
+The real logarithm on positive rationals satisfies \(\log(ab)=\log a+\log b\). The two matrix exponents commute because both are multiples of the same \(M\); their series product gives \(F_a^\uparrow F_b^\uparrow=F_{ab}^\uparrow\), with identity \(F_1^\uparrow=I_Y\) and inverse \(F_{a^{-1}}^\uparrow\). This retains \(F_p\) for every ordinary prime. These bijections are functors of the discrete groupoid. Define
+\[
+\mathcal T_a=\mathcal I F_a^\uparrow\mathcal R.
+\qquad
+\mathcal T_a(x)=\iota F_a^\uparrow r(x).
+\tag{CR39}
+\]
+On arrows, this functor sends the unique arrow between two objects with common \(r\)-image to the identity of their common image under the object map in CR39. The exact composition and inverse equations are
+\[
+\mathcal T_a\mathcal T_b=\mathcal T_{ab},\qquad
+\mathcal T_1=\mathcal P,\qquad
+\mathcal T_a\mathcal T_{a^{-1}}=\mathcal P
+ =\mathcal T_{a^{-1}}\mathcal T_a.
+\tag{CR40}
+\]
+These follow by inserting \(\mathcal R\mathcal I=I\). Equation CR37 therefore supplies the explicit natural isomorphisms from both inverse composites to the identity. Each \(\mathcal T_a\) is an equivalence of the groupoid. The composition constraints are literal identities. The unit constraints are coherent: at a synchronized object \(\iota y\), \(\epsilon_{\iota y}\) is its identity; also \(\mathcal R(\epsilon_x)\) is an identity. Thus whiskering \(\epsilon\) on either side by any \(\mathcal T_a\) yields the identity transformation required by the unit laws.
+
+The complete mask correspondence, without choosing a preferred target mask, is
+\[
+\mathcal C_a=\{(x,x')\in X\times X:
+                 r(x')=F_a^\uparrow r(x)\}.
+\tag{CR41}
+\]
+If composition means first \(\mathcal C_b\) and then \(\mathcal C_a\), then
+\(\mathcal C_a\circ\mathcal C_b=\mathcal C_{ab}\). One inclusion follows by substituting the two defining equations. For the other, if \(r(z)=F_{ab}^\uparrow r(x)\), choose the middle object \(y=\iota F_b^\uparrow r(x)\). It satisfies both required relations. Reversal of pairs gives \(\mathcal C_a^{-1}=\mathcal C_{a^{-1}}\). The relation \(\mathcal C_1\) is equality of the \(r\)-images, not the diagonal relation on \(X\).
+
+These constructions retain different masks as different objects. They declare masks with the same \(r\)-image isomorphic in this particular groupoid. The equivalence on the groupoid and the relation CR41 do not contradict the absence of a free-module automorphism or a free-set bijection in the preceding nonmonomial-prime calculation. Their composite identity is explicitly the fibre relation, with the natural isomorphism CR37 supplying the categorical identity. No preservation of an analytic trace on the fibres is inferred.
+
+
+
+
+% Complete proof source: FULL_LATTICE_SUPPORT_JET.tex
+\section{The full additive support algebra and the original nilpotent action}
+\label{sec:full-support-jet}
+
+The starting object is exactly the additive monoid of the source's
+$G_L(\mathbb Z)$, with the join law in Definition
+\texttt{def:lattice-split}. Its scalar special case and original
+second-order action are ST4, reproduced algebraically below. Neither
+the foundational scalar result nor finite-poset inversion is claimed
+new. The calculation here determines their full-lattice receiver,
+every finite-dimensional extension of the original action, and its
+prime trace. The prime operator, source metric, and original boundary
+vectors remain those of ST1--3 and TDP1--4.
+
+\subsection{An exact algebra isomorphism, including every zero symbol}
+Write $[n]$ for the basis symbol of $(n,1_L)$, and $[z_\lambda]$
+for the symbol of $(0,\lambda)$; $[0]=[z_1]$ is a single symbol.
+The complex monoid algebra $\mathcal A_L=\mathbb C[G_L(\mathbb Z),+]$
+has multiplication
+\[
+[n][m]=[n+m],\qquad [z_\lambda][n]=[n],\qquad
+[z_\lambda][z_\mu]=[z_{\lambda\vee\mu}],\qquad
+1_{\mathcal A_L}=[z_0].
+\tag{FSJ1}
+\]
+These are the original addition laws, extended bilinearly. In
+particular their algebra unit is the symbol of $\tau$, not the
+symbol $[1]$. This specifies the operation being linearized.
+
+For finite nontrivial $L$, there is the exact unital algebra isomorphism
+\[
+\begin{split}
+\Psi:\mathcal A_L&\longrightarrow
+ \mathbb C[t,t^{-1}]\times\mathbb C^{L\setminus\{1\}},\\
+[n]&\longmapsto(t^n,(0)_{a<1}),\\
+[z_\lambda]&\longmapsto(1,(\mathbf1_{\{\lambda\le a\}})_{a<1}).
+\end{split}
+\tag{FSJ2}
+\]
+The second and third lines agree at $[0]=[z_1]$. They preserve
+FSJ1 because $\lambda\vee\mu\le a$ holds exactly when both
+$\lambda\le a$ and $\mu\le a$ hold.
+
+Here is a full inverse. Define the finite-poset coefficients
+$\mu(a,a)=1$ and
+$\mu(a,b)=-\sum_{a\le c<b}\mu(a,c)$ for $a<b$.
+They satisfy $\sum_{a\le c\le b}\mu(a,c)=\mathbf1_{\{a=b\}}$
+by this recursion. Put
+\[
+\xi_a=\sum_{\lambda\ge a}\mu(a,\lambda)[z_\lambda]
+\quad(a\in L).
+\tag{FSJ3}
+\]
+Evaluation in the $b$ coordinate of FSJ2 gives exactly
+$\sum_{a\le\lambda\le b}\mu(a,\lambda)=\mathbf1_{\{a=b\}}$.
+The Laurent coordinate of $\xi_a$ is
+$\sum_{a\le\lambda\le1}\mu(a,\lambda)=\mathbf1_{\{a=1\}}$.
+Consequently $\xi_1=[0]$, and for $a<1$ the element $\xi_a$
+has Laurent coordinate zero and the single scalar coordinate one
+at $a$. The inverse sends $(f,(c_a))$ to
+$\sum_n f_n[n]+\sum_{a<1}c_a\xi_a$, where
+$f=\sum_n f_nt^n$. To check that no element was lost, write an
+element uniquely as $\sum_{n\ne0}r_n[n]+\sum_\lambda b_\lambda[z_\lambda]$.
+Zero Laurent coordinates force $r_n=0$ and $\sum_\lambda b_\lambda=0$.
+The proper scalar coordinates successively force every $b_a=0$
+for $a<1$, starting at the bottom and proceeding in increasing order.
+The remaining sum forces $b_1=0$. This proves injectivity as well
+as the displayed inverse.
+
+Thus $\xi_a^2=\xi_a$, $\xi_a\xi_b=0$ for $a\ne b$, and
+$\sum_a\xi_a=1$. For the Boolean lattice $L=\mathcal P(I)$,
+\[
+\mu(A,B)=(-1)^{|B\setminus A|},\qquad
+\xi_A=\sum_{B\supseteq A}(-1)^{|B\setminus A|}[z_B].
+\tag{FSJ4}
+\]
+The formula follows because the defining interval sum is
+$(1-1)^{|B\setminus A|}$ off the diagonal. In two channels,
+$\xi_\varnothing=[z_\varnothing]-[z_{\{1\}}]
+-[z_{\{2\}}]+[z_{\{1,2\}}]$ is exactly the mixed vector FLC10,
+now with its algebra multiplication also computed.
+
+The ideal generated by $([1]-[0])^2$ is mapped by FSJ2 to
+$((t-1)^2)\times0$. Hence its quotient is exactly
+\[
+\mathcal A_L^{(2)}
+ =\mathcal A_L/(([1]-[0])^2)
+ \simeq \mathbb C[\eta]/(\eta^2)\times\mathbb C^{L\setminus\{1\}},
+\qquad t\longmapsto1+\eta.
+\tag{FSJ5}
+\]
+This holds also for negative integers, since
+$(1+\eta)^{-1}=1-\eta$ and induction gives
+$(1+\eta)^n=1+n\eta$ for every $n\in\mathbb Z$.
+The proper support idempotents survive the jet quotient unchanged.
+
+The inclusion of the scalar submonoid $\{\tau\}\sqcup\mathbb Z$
+gives the injective map
+\[
+\iota:\mathbb C\times\mathbb C[\eta]/(\eta^2)
+ \longrightarrow\mathcal A_L^{(2)},\qquad
+(c_0,d)\longmapsto(d,(c_0)_{a<1}).
+\tag{FSJ6}
+\]
+It sends the original $[\tau]$ and $[n]$ to the identical full-lattice
+symbols. Thus ST4 specifies the action of this embedded algebra;
+it does not specify the separate actions of the $\xi_a$, $a<1$.
+
+For $L=\mathcal P(I)$, each coordinate branch
+$\beta_i(z_A)=z_{\mathbf1_{\{i\in A\}}}$ induces a surjection
+$\mathcal A_L^{(2)}\to\mathcal A_{\mathbb B}^{(2)}$.
+In FSJ5 coordinates it keeps the dual-number factor and the
+single scalar factor $a=I\setminus\{i\}$. This is because
+$\mathbf1_{\{i\notin A\}}=\mathbf1_{\{A\subseteq I\setminus\{i\}\}}$.
+The kernel after all individual branches have been taken is therefore
+\[
+\ker\!\left(\mathcal A_L^{(2)}\longrightarrow
+ \prod_{i\in I}\mathcal A_{\mathbb B}^{(2)}\right)
+ =\bigoplus_{|I\setminus A|\ge2}\mathbb C\xi_A.
+\tag{FSJ7}
+\]
+This proves the algebraic relation to FLC7--11, not merely a match
+of dimensions: a branch's two zero-symbol coordinates are total
+mass and its marginal, and its Laurent/jet coordinate is the common
+amplitude coordinate. Complementing subsets interchanges join and
+meet and sends these $\xi_A$ to the primitive joint-moment channels
+indexed by $I\setminus A$.
+
+\subsection{The complete space of extensions in the original metric}
+Retain the original $E$, $G_N$, $\Pi=ee^\dagger+ff^\dagger$,
+$R=\epsilon fe^\dagger$, and $H=\ker\Pi$. In particular
+$\dim E=q$, $\dim H=q-2$, $R^2=0$ and $R\ne0$.
+All algebra representations $\rho_L:\mathcal A_L^{(2)}\to
+\operatorname{End}_{\mathbb C}(E)$ extending ST4 are exactly
+\[
+\begin{gathered}
+\rho_L(d_0+d_1\eta,(c_a))
+ =d_0\Pi+d_1R+\sum_{a<1}c_aE_a,\\
+E_a^2=E_a,\quad E_aE_b=0\ (a\ne b),\quad
+E_a\Pi=\Pi E_a=0,\quad \sum_{a<1}E_a=I_E-\Pi.
+\end{gathered}
+\tag{FSJ8}
+\]
+For necessity take $E_a=\rho_L(\xi_a)$ and use FSJ3 and FSJ6.
+The complementary idempotent equals $I-\Pi$ by extension of ST4.
+The dual factor must be $d_0\Pi+d_1R$. Conversely the displayed
+relations, $\Pi R=R\Pi=R$, and $R^2=0$ prove multiplicativity of
+FSJ8 by direct multiplication; $E_aR=RE_a=0$ follows by inserting
+$\Pi$ next to $R$. The sum of the displayed idempotents proves
+unitality and FSJ6 proves the required extension.
+
+For orthogonal support projections in the unchanged metric $G_N$,
+add precisely $E_a^\dagger=E_a$ to FSJ8. Such extensions are
+equivalently all orthogonal decompositions
+\[
+H=\bigoplus_{a<1}H_a,
+\qquad E_a=\text{the original-metric orthogonal projection onto }H_a.
+\tag{FSJ9}
+\]
+Indeed the idempotent relations make the ranges orthogonal and give
+their sum $H$; conversely an orthogonal decomposition has exactly
+those projections. Every tuple of integers $r_a\ge0$ with
+$\sum r_a=q-2$ occurs: split an orthonormal basis of the given
+Hermitian space $H$ into labelled blocks of these sizes. This does
+not alter $G_N$ or the original vectors $e,f$. More explicitly,
+for any basis-column matrix $U_a$ of $H_a$, its projection is
+$E_a=U_a(U_a^\dagger U_a)^{-1}U_a^\dagger$, with the dagger and
+all entries in the original metric. No rescaling of source
+coordinates is needed.
+
+The resulting complete parameter space is the disjoint union
+\[
+\coprod_{\substack{r_a\ge0\ (a<1)\\\sum r_a=q-2}}
+ \mathrm U(H,G_N|_H)\Big/\prod_{a<1}\mathrm U(r_a).
+\tag{FSJ10}
+\]
+To verify the quotient description, an original-metric unitary sends
+an orthonormal basis adapted to one decomposition to a basis adapted
+to any other decomposition of the same dimensions. Its stabilizer
+is exactly the product of the unitaries on the labelled summands.
+Thus FSJ10 describes every orthogonal support extension, including
+zero summands. Without the orthogonality condition, FSJ8 gives
+\[
+\coprod_{\substack{r_a\ge0\ (a<1)\\\sum r_a=q-2}}
+ \mathrm{GL}(H)\Big/\prod_{a<1}\mathrm{GL}(r_a).
+\tag{FSJ10a}
+\]
+Indeed mutually annihilating idempotents summing to the identity
+are exactly all labelled direct-sum decompositions of $H$. Sending
+an adapted basis to another proves transitivity of $\mathrm{GL}(H)$,
+and the invertible maps preserving each summand are exactly the
+displayed stabilizer. This proves both parameter-space descriptions.
+
+The dual-number factor acts faithfully, since $\Pi$ and $R$ are
+linearly independent: apply $d_0\Pi+d_1R$ first to $f$ and then
+to $e$. The whole FSJ8 action is faithful exactly when every
+$E_a\ne0$. Therefore faithful orthogonal extensions exist exactly when
+\[
+|L|-1\le q-2.
+\quad\text{For }L=\mathcal P(I):\quad 2^{|I|}\le q-1.
+\tag{FSJ11}
+\]
+This follows in both directions from the dimension allocations in
+FSJ9. At $k=17$, $q=324$, eight Boolean support coordinates fit,
+whereas nine do not fit faithfully in this particular jet receiver.
+This is an exact dimension statement about the linearized support
+algebra, not a bound on the number of primes, a statement about the
+full semimodule $E_L^\uparrow$, or a contradiction to RH.
+
+\subsection{The exact additional prime-trace coefficients}
+For every extension in FSJ8,
+\[
+\rho_L([z_\lambda])=\Pi+\sum_{\lambda\le a<1}E_a,
+\qquad
+\operatorname{tr}\rho_L([z_\lambda])
+ =2+\sum_{\lambda\le a<1}r_a.
+\tag{FSJ12}
+\]
+The first formula is FSJ2; the second follows from the ranks of the
+idempotents. In particular the supported zero $[z_1]$ has trace two
+and the actual-absence symbol $[z_0]=1$ has trace $q$ in this additive
+monoid algebra. These traces have been derived from the specified
+representation; they are not assigned from the heights of prime
+ideals in the semiring spectrum.
+
+Retain every cardinal $\ell_{bc}$ and every prime eigenvalue in
+TDP2--3. Write $\operatorname{ev}_{bc}:E\to\mathbb C$ for evaluation
+at the original root $\lambda_{bc}$, and put
+$\omega_{bc}(p,m)=p^{m(2b-k)\delta}
+\exp(im(2c-k)\gamma\log p)$ for $0\le b,c\le k$.
+Then
+\[
+\begin{split}
+\operatorname{tr}(\rho_L([z_\lambda])F_p^m)
+ &=\sum_{b,c=0}^k\omega_{bc}(p,m)
+ \left[\operatorname{ev}_{bc}(\Pi\ell_{bc})
+ +\sum_{\lambda\le a<1}\operatorname{ev}_{bc}(E_a\ell_{bc})\right],\\
+\operatorname{tr}(F_p^m)&=\sum_{b,c=0}^k\omega_{bc}(p,m).
+\end{split}
+\tag{FSJ13}
+\]
+The notation $b,c$ in this display occupies respectively the original
+first and second quartet indices; no root or phase has changed.
+To prove the formulas, use the exact dual basis
+$\operatorname{ev}_{bc}(\ell_{de})=\delta_{bd}\delta_{ce}$ and
+$F_p^m\ell_{bc}=\omega_{bc}(p,m)\ell_{bc}$. The trace of any operator
+$T$ is $\sum_{bc}\operatorname{ev}_{bc}(T\ell_{bc})$. Substitution
+proves the first identity. For $\lambda=0$, FSJ8 makes the bracket
+equal to $\operatorname{ev}_{bc}(\ell_{bc})=1$, proving the second.
+For the uncentred action multiply every term by exactly $p^{mk/2}$.
+
+Thus the full original trace is recovered after summing all support
+channels, and FSJ13 calculates the individual coefficients it leaves
+undetermined before an extension is specified. The source's scalar
+action fixes $\Pi,R$ and $\sum E_a$; FSJ10 records the orthogonal
+extension space and FSJ10a records all algebra extensions. No choice is
+inferred from the old scalar prime-chain theorem. These coefficients
+are also not the freely chosen place weights of FLC15: FSJ13 is a
+trace of original finite operators, whereas FLC15 is a specified
+valuation into the local distributions of the explicit formula.
+Both maps and the mixed kernel FSJ7 are now explicit.
+
+
+
+% Complete proof source: FULL_LATTICE_CONNES_AND_PRIMES.tex
+\section{The full lattice in the prime and adelic calculation}
+\label{sec:full-lattice-connes}
+
+\paragraph{Sources.}
+The coefficient definition, spectral ordinal sum, branch selection and
+adelic defect are from The Clankers, \emph{Split Support Geometry},
+Version 11, retained in the original TeX, especially
+\texttt{def:lattice-split}, \texttt{thm:spectral-ordinal-sum},
+\texttt{thm:branch-selected-spectrum} and
+\texttt{def:adelic-support-defect}.
+Alain Connes's original \emph{Trace formula in noncommutative geometry
+and the zeros of the Riemann zeta function},
+\href{https://arxiv.org/abs/math/9811068}{arXiv:math/9811068v1},
+Section VI, equations (1)--(16), supplies the adelic action and its
+formal local fixed-point terms. The complete original source archive
+and decompressed TeX are retained. The following maps extend the
+calculation to $G_L$ without identifying a formal permutation trace
+with Connes's analytic cohomological trace.
+
+Let $\mathbb A=\mathbb A_{\mathbb Q}$, $X=\mathbb A/\mathbb Q^\times$
+and $C=\mathbb A^\times/\mathbb Q^\times$. Multiplication by a rational
+or an idele acts on $G_L(\mathbb A)$ by
+\[
+u(a,1_L)=(ua,1_L),\qquad uz_\lambda=z_\lambda.
+\tag{FLC1}
+\]
+These are actions of the multiplicative groups on the underlying set;
+they are not asserted to preserve the multiplicative unit as semiring
+automorphisms. They preserve each zero-support label because
+$(u,1_L)(0,\lambda)=(0,\lambda)$.
+They commute, so taking rational orbits gives the $C$-set
+\[
+X_L=G_L(\mathbb A)/\mathbb Q^\times
+ =\{z_\lambda:\lambda\in L\}
+   \sqcup (X\setminus\{[0]\})^\bullet.
+\tag{FLC2}
+\]
+Every zero label is a singleton rational orbit, and every nonzero
+represented orbit is the original rational orbit of its amplitude.
+This proves the decomposition and its equivariance. The amplitude
+map $a_X:X_L\to X$ has fibre $L$ at $[0]$ and a singleton at every
+other orbit. For $[a]\ne[0]$, the fixed-point equation is exactly
+\[
+[j][a]^\bullet=[a]^\bullet
+\quad\Longleftrightarrow\quad
+\exists q\in\mathbb Q^\times\quad(qj_v-1)a_v=0
+\quad\text{at every place }v.
+\tag{FLC3}
+\]
+Thus the entire lattice of zero states is fixed by $C$, while the
+nonzero fixed orbits retain this equation. At a point with just one
+zero coordinate $v$, $q$ is uniquely determined by any nonzero
+coordinate; putting $t_v=qj_v$ gives transverse action
+$a_v\mapsto t_va_v$ and denominator $|1-t_v|_v$.
+This is the original Connes local amplitude denominator, with its
+quotient representative handled explicitly.
+
+Let $\mathbb C[Y]$ denote finite formal linear combinations of points
+of a set $Y$. The induced linear map has exact kernel
+\[
+\ker\bigl(\mathbb C[X_L]\xrightarrow{a_{X*}}\mathbb C[X]\bigr)
+ =\left\{\sum_{\lambda\in L}c_\lambda\delta_{z_\lambda}:
+        \text{finite support},\ \sum_\lambda c_\lambda=0\right\}.
+\tag{FLC4}
+\]
+Every nonzero-amplitude orbit has a unique lift, so its coefficient
+must vanish in the kernel; the remaining condition is the displayed
+sum at $[0]$. This proves FLC4. The entire kernel is a trivial
+$C$-representation. When $L$ is finite its dimension is $|L|-1$,
+and its integrated representation has trace
+\[
+(|L|-1)\int_C h(u)\,d^\times u
+\tag{FLC5}
+\]
+for an integrable test function $h$. This is a finite-dimensional
+trace on exactly FLC4. For infinite $L$ no finite trace is inferred.
+Nor does FLC5 identify FLC4 with any specific analytic cohomology.
+
+\subsection{All scalar branches can lose mixed linear combinations}
+The source proves that the family of all Boolean branches separates
+the elements of a finite distributive lattice. Linearization is a
+different operation, and its exact kernel must also be computed.
+For $L=\mathcal P(I)$, $I=\{1,\ldots,n\}$, $n\ge1$, let
+$V_L=\mathbb C[L]$ with basis $\delta_A$ and define the simultaneous
+branch map
+\[
+\mathcal B:V_L\longrightarrow
+ \bigoplus_{i=1}^n\mathbb C[\{0,1\}],
+\qquad
+\delta_A\longmapsto
+   (\delta_{\mathbf1_{\{i\in A\}}})_{i=1}^n.
+\tag{FLC6}
+\]
+Each component is precisely the linearization of the source branch
+at $i$. For coefficients $c_A$, its kernel is
+\[
+\sum_A c_A=0,\qquad
+\sum_{A\ni i}c_A=0\quad(i=1,\ldots,n).
+\tag{FLC7}
+\]
+These equations are independent: the functions $1$ and
+$A\mapsto\mathbf1_{\{i\in A\}}$ are linearly independent by evaluating
+first at $\varnothing$ and then at each singleton. Therefore
+\[
+\dim\ker\mathcal B=2^n-n-1.
+\tag{FLC8}
+\]
+For every $T\subseteq I$ set
+\[
+v_T=\sum_{A\subseteq I}(-1)^{|A\cap T|}\delta_A.
+\tag{FLC9}
+\]
+The $v_T$ form an orthogonal basis: for $T\ne U$, choose a coordinate
+in their symmetric difference and pair subsets differing in that
+coordinate in the inner product. Their contributions cancel.
+Every vector has squared norm $2^n$. If $|T|\ge2$, its total coefficient
+sum vanishes by toggling a coordinate of $T$. The sum restricted to
+$A\ni i$ vanishes by toggling a coordinate in $T\setminus\{i\}$.
+Hence these $2^n-n-1$ vectors form a basis of FLC7.
+This is the complete mixed kernel left after every individual branch
+has been observed, with no missing higher intersections.
+
+For two channels the kernel is the explicit line
+\[
+\mathbb C h,\qquad
+h=\delta_\varnothing-\delta_{\{1\}}-\delta_{\{2\}}
+                         +\delta_{\{1,2\}}.
+\tag{FLC10}
+\]
+Both branch maps send $h$ to zero. Its four support states remain
+distinct before linearization. In FLC4--5 this line is fixed by the
+idele action, so its finite-dimensional integrated trace is exactly
+$\int_C h_0(u)\,d^\times u$ for a test function $h_0$.
+This calculation identifies a concrete mixed channel; it supplies
+neither its inclusion in an analytic Weil space nor a Weil sign.
+
+Recovery is explicit. The joint moment map
+\[
+\mathcal J(c)_T=\sum_{A\supseteq T}c_A
+\quad(T\subseteq I),\qquad
+c_A=\sum_{T\supseteq A}(-1)^{|T\setminus A|}\mathcal J(c)_T
+\tag{FLC11}
+\]
+is invertible. Substitution gives coefficient $1$ for $c_A$ and,
+for $B\supsetneq A$, coefficient
+$\sum_{A\subseteq T\subseteq B}(-1)^{|T\setminus A|}=0$.
+Thus retaining all joint support intersections repairs exactly the
+loss in FLC6. The coordinates in FLC11 are products of the original
+branch indicators, not additional chosen primes.
+
+\subsection{The rational prime coordinates of the support defect}
+Use the source's standard rational place set
+$\Omega=\{\infty\}\sqcup\mathbb P$ and its counting measure with
+the usual absolute values $|p|_p=p^{-1}$, $|p|_\infty=p$.
+For a bounded real weight $c=(c_v)_{v\in\Omega}$, the exact source
+defect transform is
+\[
+\mathscr D(c)(a)=\sum_v c_v\log|a|_v.
+\tag{FLC12}
+\]
+Every rational $a\ne0$ has only finitely many nonzero finite-place
+terms. Writing $a=\pm\prod_p p^{\nu_p(a)}$ gives
+\[
+\boxed{\mathscr D(c)(a)
+   =\sum_p\nu_p(a)(c_\infty-c_p)\log p.}
+\tag{FLC13}
+\]
+Indeed the infinite-place term is
+$c_\infty\sum_p\nu_p(a)\log p$ and the finite term at $p$ is
+$-c_p\nu_p(a)\log p$. Thus
+$\ker\mathscr D=\mathbb R\mathbf1$:
+evaluation at $a=p$ forces $c_p=c_\infty$ for every prime, and these
+equalities conversely make every term zero. On support indicators
+$c_v=\mathbf1_A(v)$ this recovers the source's full/empty balanced
+support theorem, now with each prime coordinate of its defect
+displayed. In particular a selected finite-prime support generally
+changes the product-formula defect; it is not made invisible by
+preserving the residue field at that prime.
+
+\subsection{Exact map from place support to the prime distribution}
+Use Connes's original-author TeX \emph{The Riemann Hypothesis: Past,
+Present and a Letter Through Time},
+\href{https://arxiv.org/abs/2602.04022}{arXiv:2602.04022}, section
+\texttt{sectweilpos}, equations \texttt{wp} and \texttt{arch}, for
+the following explicit-formula convention. For
+$f\in C_c^\infty(\mathbb R_+^\times)$ put
+\[
+\begin{split}
+W_p(f)&=(\log p)\sum_{m\ge1}p^{-m/2}
+                  (f(p^m)+f(p^{-m})),\\
+W_{\rm arch}(f)&=(\log(4\pi)+\gamma)f(1)\\
+&\quad+\int_1^\infty
+ [f(x)+f(x^{-1})-2x^{-1/2}f(1)]
+ \frac{x^{1/2}}{x-x^{-1}}\,\frac{dx}{x}.
+\end{split}
+\tag{FLC14}
+\]
+Here $W_{\rm arch}$ is Connes's $W_{\mathbb R}$; his notation
+$W_\infty$ in the subsequent positivity discussion has the opposite
+sign. These local distributions are quoted with their human attribution,
+not claimed as new. The integral converges at $1$ because the bracket
+vanishes there to at least first order, and at infinity because the
+test terms have compact support and the subtracted term decays.
+
+The place-support lattice has the following explicit valuation into
+this collection of local distributions:
+\[
+\mathcal W_A(f)=\mathbf1_A(\infty)W_{\rm arch}(f)
+                         +\sum_{p\in A}W_p(f).
+\tag{FLC15}
+\]
+There are finitely many nonzero summands for each $f$: if
+$\operatorname{supp}f\subset[e^{-T},e^T]$, they require
+$m\log p\le T$. Its exact support law is
+\[
+\mathcal W_{A\cup B}+\mathcal W_{A\cap B}
+                 =\mathcal W_A+\mathcal W_B.
+\tag{FLC16}
+\]
+This follows term by term from the indicator identity and does not
+identify meet with convolution. For a bounded weight $c$ define
+$\mathcal W_c=c_\infty W_{\rm arch}+\sum_pc_pW_p$ in the same way.
+For $g\in C_c^\infty(\mathbb R_+^\times)$ let
+$g^*(x)=\overline{g(x^{-1})}$ and $f=g*g^*$, with Haar measure $dx/x$.
+Substitution $x=e^u$ gives the exact correlation
+\[
+H_g(a)=f(e^a)=\int_{\mathbb R}
+ g(e^u)\overline{g(e^{u-a})}\,du,
+\quad H_g(-a)=\overline{H_g(a)}.
+\tag{FLC17}
+\]
+Consequently the entire changed prime term is
+\[
+\boxed{\mathcal W_c(g*g^*)-
+             c_\infty\mathcal W_{\mathbf1}(g*g^*)
+ =2\sum_{p,m\ge1}(c_p-c_\infty)(\log p)p^{-m/2}
+                              \Re H_g(m\log p).}
+\tag{FLC18}
+\]
+No archimedean term is omitted: it cancels because its two coefficients
+are $c_\infty$. Every finite term is displayed. Combining FLC13 at
+$a=p$ gives the exact relation to the foundational support defect
+\[
+\mathcal W_c(g*g^*)-c_\infty\mathcal W_{\mathbf1}(g*g^*)
+ =-2\sum_{p,m\ge1}\mathscr D(c)(p)\,p^{-m/2}
+                              \Re H_g(m\log p).
+\tag{FLC19}
+\]
+This is an exact morphism from the existing prime-support defect
+to the change in this defined place-weighted arithmetic functional.
+It does not assert that the choice of this functional is forced by
+an analytic trace of the full lattice geometry.
+The Weil criterion concerns the full-place distribution, with its
+stated Mellin vanishing conditions. Formula FLC19 calculates the
+change produced by each place-support weight before such a criterion
+can be applied to a restricted or mixed expression. In the convention
+where the desired Weil quadratic form is nonnegative, put
+$\mathcal Q_c(g)=-\mathcal W_c(g*g^*)$. Its defect is the negative
+of FLC19, so the coefficient is $+2$. The classical criterion in the
+quoted source is $\mathcal Q_{\mathbf1}(g)\ge0$ for all its compact
+tests with $\widehat g(\pm i/2)=0$; no such sign is assumed here.
+
+\subsection{The exact fate of the mixed branch kernel in this map}
+For a finite set $I$ of labelled places, extend the place valuation
+linearly from support states by
+\[
+\mathcal V:\mathbb C[\mathcal P(I)]\longrightarrow
+ \mathcal D'(\mathbb R_+^\times),\qquad
+\delta_A\longmapsto\sum_{v\in A}W_v,
+\tag{FLC20}
+\]
+where the archimedean label means $W_{\rm arch}$.
+Its exact factorization is
+\[
+\mathcal V\!\left(\sum_Ac_A\delta_A\right)
+ =\sum_{v\in I}\left(\sum_{A\ni v}c_A\right)W_v.
+\tag{FLC21}
+\]
+This follows by exchanging two finite sums. Hence
+$\ker\mathcal B\subseteq\ker\mathcal V$: every higher mixed vector
+FLC9 with $|T|\ge2$ is killed by this specific local-distribution map.
+In particular the four-state vector FLC10 has image zero, since
+$\mathcal W_\varnothing-\mathcal W_{\{1\}}-
+\mathcal W_{\{2\}}+\mathcal W_{\{1,2\}}=0$.
+The same finite-sum argument proves that the foundational defect map
+$\delta_A\mapsto\Delta(A)$ kills this mixed kernel as well.
+Thus FLC19 calculates first place moments exactly. It does not
+silently calculate the higher joint moments in FLC11.
+The vector $h$ has zero image under FLC20 even though its invariant
+line has the trace described after FLC10. These are two different
+specified maps: evaluating a distribution on a vector is not taking
+the trace on its invariant span. Their proved relationship is the
+kernel factorization FLC21. A trace realization retaining joint
+support must carry that kernel explicitly.
+
+
+
+% Complete proof source: independent/PRIME_DEFECT_DETECTION.tex
+% Independent exact calculation; tags PDD1--PDD15.
+\section{A compact Weil-admissible test detecting each prime-support defect}
+
+\paragraph{Sources and fixed conventions.}
+The support defect is the original place-support construction of
+The Clankers, \emph{Split Support Geometry}, Version 11,
+\texttt{def:adelic-support-defect}. Its rational-coordinate
+calculation is FLC12--13 in the present continuation.
+The local explicit-formula contributions and test-function
+convention are Alain Connes's original TeX, \emph{The Riemann
+Hypothesis: Past, Present and a Letter Through Time},
+\href{https://arxiv.org/abs/2602.04022}{arXiv:2602.04022},
+section \texttt{sectweilpos}, equations \texttt{wp} and
+\texttt{arch}, together with the immediately following
+statement of Andr\'e Weil's criterion. The exact formula
+below uses $W_{\rm arch}=W_{\mathbb R}$ from that source;
+it does not use the opposite-sign quantity which the source
+subsequently names $W_\infty$.
+
+Let $\Omega=\{\infty\}\sqcup\mathbb P$, let
+$c\in\ell^\infty(\Omega;\mathbb R)$, and retain
+\[
+d_p=\mathscr D(c)(p)=(c_\infty-c_p)\log p,
+\qquad
+\mathcal W_c=c_\infty W_{\rm arch}+\sum_q c_qW_q,
+\qquad Q_c(g)=-\mathcal W_c(g*g^*),
+\tag{PDD1}
+\]
+where
+\[
+g^*(x)=\overline{g(x^{-1})},\quad
+(g*g^*)(x)=\int_0^\infty g(y)\overline{g(y/x)}\,\frac{dy}{y},
+\quad
+W_q(f)=(\log q)\sum_{m\geq1}q^{-m/2}
+\bigl(f(q^m)+f(q^{-m})\bigr).
+\tag{PDD2}
+\]
+All these prime sums are finite for each compactly supported
+test function. The admissibility conditions in this
+convention are
+\[
+\widehat g(i/2)=\int_0^\infty g(x)x^{1/2}\,\frac{dx}{x}=0,
+\qquad
+\widehat g(-i/2)=\int_0^\infty g(x)x^{-1/2}\,\frac{dx}{x}=0.
+\tag{PDD3}
+\]
+Weil's nonnegative quadratic form is $Q_{\mathbf1}$ on
+these tests. The following computations prove the exact
+support correction; they do not assume a sign for
+$Q_{\mathbf1}$.
+
+\subsection{The completely specified compact test}
+
+Fix any rational prime $p$ and set
+\[
+a_p=\log p,\qquad
+\varepsilon_p=\frac18\log\frac{p+1}{p},\qquad
+\]
+\[
+u_p(t)=
+\begin{cases}
+\exp\!\left(-\dfrac{1}{1-(t/\varepsilon_p)^2}\right),
+   &|t|<\varepsilon_p,\\
+0,&|t|\geq\varepsilon_p,
+\end{cases}
+\qquad v_p(t)=u_p''(t)-\frac14u_p(t).
+\tag{PDD4}
+\]
+The function $u_p$ is real, smooth, nonzero and compactly
+supported. For smoothness at each endpoint, every one-sided
+derivative is a finite sum of powers of
+$[1-(t/\varepsilon_p)^2]^{-1}$ and polynomials in $t$
+times the exponential in PDD4. The exponential tends to
+zero faster than each such power, so every derivative
+extends with value zero. At $|t|<\varepsilon_p$, writing
+$b(t)=1-(t/\varepsilon_p)^2$ gives the explicit original
+derivative and coefficient
+\[
+v_p(t)=u_p(t)
+\left(
+\frac{4t^2}{\varepsilon_p^4 b(t)^4}
+-\frac{8t^2}{\varepsilon_p^4 b(t)^3}
+-\frac{2}{\varepsilon_p^2 b(t)^2}-\frac14
+\right).
+\tag{PDD5}
+\]
+Both $v_p$ and every derivative vanish at the support
+endpoints. Its nonzero amplitude is proved without an
+assumption about a numerical integral: integration by
+parts gives
+\[
+\int_{\mathbb R}v_p(t)u_p(t)\,dt
+=-\int_{\mathbb R}|u_p'(t)|^2\,dt
+ -\frac14\int_{\mathbb R}|u_p(t)|^2\,dt<0.
+\quad
+N_p:=\int_{-\varepsilon_p}^{\varepsilon_p}|v_p(t)|^2\,dt>0.
+\tag{PDD6}
+\]
+The rightmost strict inequality follows because $v_p$
+cannot be the zero function in view of the preceding
+strictly negative integral. $N_p$ is kept as this exact
+integral of the explicitly specified function; no change
+of its scale has been made.
+
+For $\sigma\in\{1,-1\}$ define the exact multiplicative
+test function
+\[
+g_{p,\sigma}(x)=v_p(\log x)
+                   +\sigma v_p(\log x-a_p),
+\qquad f_{p,\sigma}=g_{p,\sigma}*g_{p,\sigma}^*.
+\tag{PDD7}
+\]
+It is real, smooth, and supported in the union
+$[e^{-\varepsilon_p},e^{\varepsilon_p}]
+\cup[pe^{-\varepsilon_p},pe^{\varepsilon_p}]$.
+For either $b=1/2$ or $b=-1/2$, two integrations by parts
+with the vanishing endpoint derivatives give
+\[
+\int_{\mathbb R}v_p(t)e^{bt}\,dt
+=(b^2-1/4)\int_{\mathbb R}u_p(t)e^{bt}\,dt=0.
+\tag{PDD8}
+\]
+The integral for $v_p(t-a_p)$ is $e^{ba_p}$ times this
+zero. Substitution $x=e^t$ now proves both conditions
+PDD3 for every $g_{p,\sigma}$.
+
+\subsection{Exact isolation from every other prime power}
+
+Put $C_p(b)=\int_{\mathbb R}v_p(t)v_p(t-b)\,dt$.
+It is real and even, $C_p(0)=N_p$, and
+$C_p(b)=0$ when $|b|>2\varepsilon_p$, because the two
+compact supports then do not meet. Expansion of PDD7
+gives the full correlation, including both mixed terms:
+\[
+f_{p,\sigma}(e^b)
+=2C_p(b)+\sigma C_p(b-a_p)+\sigma C_p(b+a_p).
+\tag{PDD9}
+\]
+There are no suppressed phases or translated pieces in
+this identity.
+
+For any integer $n\geq2$ with $n\ne p$,
+\[
+|\log n-a_p|\geq\log\frac{p+1}{p}
+                 =8\varepsilon_p.
+\tag{PDD10}
+\]
+For $n\geq p+1$ this is monotonicity of the logarithm.
+For $n\leq p-1$ it follows from
+$p/(p-1)>(p+1)/p$, which is equivalent to
+$p^2>p^2-1$; when $p=2$ there is no such integer
+$n\geq2$ on the lower side. Also
+$2\varepsilon_p<\log2\leq\log n$ and
+$2\varepsilon_p<a_p$ because
+$(p+1)/p\leq3/2<2^4$. Formula PDD9 therefore implies
+\[
+f_{p,\sigma}(q^m)=f_{p,\sigma}(q^{-m})
+=\begin{cases}
+\sigma N_p,&q=p,\ m=1,\\
+0,&\text{every other prime }q\text{ and integer }m\geq1.
+\end{cases}
+\tag{PDD11}
+\]
+Indeed the $2C_p(\log(q^m))$ term vanishes by
+$\log(q^m)\geq\log2$; the positive-shift argument
+$\log(q^m)+a_p$ is also outside the support. The
+remaining argument $\log(q^m)-a_p$ is outside it by
+PDD10 unless $q^m=p$. Unique prime factorization gives
+$q=p,m=1$ in the latter case. Its contribution is
+$\sigma C_p(0)$. Evenness proves the reciprocal
+evaluation as well.
+
+\subsection{Detection, inversion, and the exact sign}
+
+Every local prime contribution is now calculated:
+\[
+W_q(f_{p,\sigma})
+=\begin{cases}
+2\sigma(\log p)p^{-1/2}N_p,&q=p,\\
+0,&q\ne p.
+\end{cases}
+\tag{PDD12}
+\]
+The archimedean contribution cancels in the difference
+with coefficient $c_\infty$. Thus
+\[
+\begin{split}
+\mathcal W_c(f_{p,\sigma})
+-c_\infty\mathcal W_{\mathbf1}(f_{p,\sigma})
+&=-2\sigma d_p p^{-1/2}N_p,\\
+Q_c(g_{p,\sigma})-c_\infty Q_{\mathbf1}(g_{p,\sigma})
+&=2\sigma d_p p^{-1/2}N_p.
+\end{split}
+\tag{PDD13}
+\]
+These identities follow either directly from PDD12 or
+from FLC19 with the positive Weil-form sign accounted
+for. They include the archimedean term through its
+exact cancellation, rather than omitting it from a
+formula for $Q_{\mathbf1}$.
+
+In particular, the map from the original support defect
+$\mathscr D(c)$ to its quadratic-form correction on
+Weil-admissible compact tests is injective. Each prime
+coordinate has the explicit recovery formula
+\[
+d_p=\frac{\sqrt p}{2N_p}
+\bigl(Q_c(g_{p,1})-c_\infty Q_{\mathbf1}(g_{p,1})\bigr).
+\tag{PDD14}
+\]
+If all corrections vanish, every $d_p$ is zero. Conversely
+their vanishing makes the correction identically zero
+by FLC19. For rational $a\ne0$ the remaining defect is
+then recovered as the original finite sum
+$\mathscr D(c)(a)=\sum_p\nu_p(a)d_p$.
+This is an exact inverse on the image of the defect map,
+not just a necessary bound.
+
+There is also a definite sign calculation for the
+archimedean-free subspace. If $c_\infty=0$ and
+$c_p\ne0$ for some prime, PDD13 gives
+\[
+Q_c(g_{p,\sigma})
+=-2\sigma c_p(\log p)p^{-1/2}N_p.
+\tag{PDD15}
+\]
+Choosing $\sigma=\operatorname{sgn}(c_p)$ makes this
+strictly negative, and the opposite sign makes it
+strictly positive. Consequently no nonzero real weight
+with $c_\infty=0$ gives a nonnegative quadratic form on
+all the admissible tests. For a nonempty place support
+$A$ omitting $\infty$, take any $p\in A$: its indicator
+weight has the explicit negative value
+$Q_{\mathbf1_A}(g_{p,1})=-2(\log p)p^{-1/2}N_p$.
+This is a counterexample to positivity of that restricted
+place functional, not a counterexample to RH or an
+evaluation of the sign of the full-place form.
+
+\paragraph{The higher mixed-support kernel is still retained.}
+The injectivity in PDD14 starts with the place defect
+$\mathscr D(c)$, not with arbitrary formal linear
+combinations of support states. In a finite Boolean
+channel model, a formal vector $\sum_A t_A\delta_A$
+maps to the place weights
+$c_i=\sum_{A\ni i}t_A$. Hence all the higher mixed
+vectors in FLC7--10 map to zero under both the defect
+and the local-place functional. For example
+$\delta_\varnothing-\delta_{\{1\}}-\delta_{\{2\}}
++\delta_{\{1,2\}}$ has both place weights zero.
+The exact mixed kernel and its nonzero formal fixed
+trace are therefore not detected by PDD14. The maps
+in FLC20--21 retain that kernel explicitly; detecting
+every prime coordinate of their image does not erase it.
+
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=.97\linewidth]{JOINT_SUPPORT_RECOVERY.png}
+\caption{The literal two-place vector $h$ is invisible to the
+individual marginals. Its joint distribution has the two displayed
+cross terms, proved in JMD6--11; its algebra factor is FSJ4 and JMD20.
+The matrix contains tensor coefficients, not an assertion of Weil
+positivity. In fact JMD15 proves the joint bilinear functional indefinite.
+All decoder constants $b_u,b_v$ are retained.}
+\end{figure}
+\end{landscape}
+
+% Complete proof source: independent/JOINT_SUPPORT_DISTRIBUTION.tex
+\section{Exact recovery of joint support by local distributions}
+\label{sec:joint-support-distribution}
+
+\paragraph{Sources and the constructed maps.}
+The ring-null support lattice is the object in The Clankers,
+\emph{Split Support Geometry}, Version 11,
+\texttt{def:lattice-split} and \texttt{thm:lattice-normal-form}.
+The source's adelic support valuation and its linear extension are
+\texttt{def:adelic-support-defect} and
+\texttt{thm:adelic-defect-linearization}.
+The local distributions used here are Alain Connes's
+\emph{The Riemann Hypothesis: Past, Present and a Letter Through Time},
+\href{https://arxiv.org/abs/2602.04022}{arXiv:2602.04022},
+section \texttt{sectweilpos}, equations \texttt{wp} and
+\texttt{arch}; the retained original author TeX has these at
+lines 854--867. We use $W_{\rm arch}=W_{\mathbb R}$ there,
+not the opposite-sign quantity later named $W_\infty$.
+The local distributions, their human attribution, and the original
+support states are retained without alteration.
+
+The map $\delta_A\mapsto\sum_{v\in A}W_v$ is the specified
+distribution-valued place valuation in FLC20. This section constructs
+its joint observations and their exact relation to traces on the
+formal zero-support representation. The displayed insertion of the
+Connes distributions is part of the definition of the observable;
+it is not assumed to be an analytic trace forced by the base.
+
+Let $G=\mathbb R_+^\times$ with Haar measure $dx/x$.
+Let $I$ be a finite set of $n\ge1$ distinct labelled places of
+$\mathbb Q$, and put $V=\mathbb C[\mathcal P(I)]$, with its
+original basis $\delta_A$, $A\subseteq I$.
+For a vector $c=\sum_A c_A\delta_A$ define
+$J_T(c)=\sum_{A\supseteq T}c_A$ for every $T\subseteq I$.
+Here $J_\varnothing(c)$ is its total coefficient sum.
+The simultaneous individual-branch map has kernel
+$K=\{c:J_\varnothing(c)=0,\ J_{\{i\}}(c)=0\text{ for all }i\in I\}$,
+as computed in FLC6--FLC10.
+
+\subsection{The exact joint coordinates of the mixed kernel}
+
+For each $S\subseteq I$, retain the vector
+$v_S=\sum_{A\subseteq I}(-1)^{|A\cap S|}\delta_A$.
+Its joint coordinates are
+\[
+J_T(v_S)=
+\begin{cases}
+(-1)^{|S|}2^{n-|T|},&S\subseteq T,\\
+0,&S\not\subseteq T.
+\end{cases}
+\tag{JMD1}
+\]
+To prove this, write $A=T\cup B$ with $B\subseteq I\setminus T$.
+If $S\setminus T$ is nonempty, toggle any coordinate in that set;
+the paired signs cancel. If $S\subseteq T$, the sign is constantly
+$(-1)^{|S|}$ over all $2^{n-|T|}$ choices of $B$.
+The $v_S$ form a basis: their squared norms in the original orthonormal
+support-state basis are $2^n$, and for $S\ne U$ the inner product
+vanishes by toggling a coordinate in their symmetric difference.
+In particular the $v_S$ with $|S|\ge2$ are a basis of $K$.
+Indeed they belong to $K$ by JMD1, and the conditions defining $K$
+have rank $n+1$: a linear relation among the functions $1$ and
+$\mathbf1_{i\in A}$ vanishes first on $A=\varnothing$ and then
+on every singleton only when all its coefficients vanish.
+Thus $\dim K=2^n-n-1$, exactly the number of those basis vectors.
+
+\subsection{Literal compact tests for each local distribution}
+
+Put $\eta=(\log2)/16$ and define
+\[
+\begin{split}
+w_\eta(t)&=
+\begin{cases}
+\exp\!\left(-\dfrac{1}{1-(t/\eta)^2}\right),&|t|<\eta,\\
+0,&|t|\ge\eta,
+\end{cases}\\
+\psi_\infty(e^t)&=w_\eta(t-4\eta)+w_\eta(t+4\eta).
+\end{split}
+\tag{JMD2}
+\]
+Every one-sided derivative of the bump is a polynomial in $t$ and
+inverse powers of $1-(t/\eta)^2$, multiplied by the displayed
+exponential. At either endpoint the exponential tends to zero faster
+than each such inverse power. Therefore $w_\eta$, and hence
+$\psi_\infty$, is smooth with compact support.
+The latter is real, nonnegative and invariant under $x\mapsto x^{-1}$.
+Its logarithmic support satisfies
+$3\eta\le|t|\le5\eta<\log2$, and it vanishes at $x=1$.
+Every $W_p(\psi_\infty)$ is consequently zero.
+The exact archimedean value is
+\[
+\beta:=W_{\rm arch}(\psi_\infty)
+=2\int_0^\infty
+\psi_\infty(e^t)\frac{e^{-t/2}}{1-e^{-2t}}\,dt>0.
+\tag{JMD3}
+\]
+This follows from FLC14, with its constant term and subtraction both
+zero because $\psi_\infty(1)=0$.
+The integral is finite since its support avoids zero and infinity.
+It is strictly positive since its integrand is positive for
+$3\eta<t<5\eta$.
+
+For each rational prime $p$ retain the exact PDD4--PDD7 functions:
+$a_p=\log p$, $\varepsilon_p=\frac18\log((p+1)/p)$,
+$u_p(t)=\exp(-1/(1-(t/\varepsilon_p)^2))$ for
+$|t|<\varepsilon_p$ and zero elsewhere,
+$v_p=u_p''-u_p/4$,
+$g_{p,1}(e^t)=v_p(t)+v_p(t-a_p)$, and
+$f_{p,1}=g_{p,1}*g_{p,1}^*$.
+Keep $N_p=\int|v_p(t)|^2dt>0$ at its original scale.
+Define
+\[
+\begin{split}
+\alpha_p&=2(\log p)p^{-1/2}N_p>0,\qquad
+A_p=W_{\rm arch}(f_{p,1}),\\
+\psi_p&=\beta f_{p,1}-A_p\psi_\infty,\qquad
+b_\infty=\beta,\quad b_p=\beta\alpha_p.
+\end{split}
+\tag{JMD4}
+\]
+All coefficients here are the displayed integrals and factors;
+none of the original functions or support states has had its scale
+changed. The new function $\psi_p$ is a specified linear combination
+used for decoding distributions.
+
+For completeness the prime evaluations used in this construction
+follow directly from the original bump.
+Integration by parts gives
+$\int v_pu_p=-\int|u_p'|^2-\frac14\int u_p^2<0$, proving $N_p>0$.
+Let $C_p(t)=\int v_p(s)v_p(s-t)ds$.
+It vanishes outside $[-2\varepsilon_p,2\varepsilon_p]$, is even,
+and has value $N_p$ at zero. Expanding the convolution yields
+$f_{p,1}(e^t)=2C_p(t)+C_p(t-a_p)+C_p(t+a_p)$.
+For every integer $m\ge2$, $m\ne p$,
+$|\log m-\log p|\ge\log((p+1)/p)=8\varepsilon_p$.
+For $m\ge p+1$ this is monotonicity of the logarithm; for
+$m\le p-1$ it follows from $p/(p-1)>(p+1)/p$.
+Also $2\varepsilon_p<\log2$.
+Thus among all prime powers $q^k$, $k\ge1$, only $q^k=p$ yields
+a nonzero evaluation, and that evaluation and its reciprocal both
+equal $N_p$. Therefore
+$W_q(f_{p,1})=\alpha_p\mathbf1_{q=p}$.
+Together with JMD3 this proves the full duality
+\[
+\boxed{W_v(\psi_u)=b_u\mathbf1_{v=u},\qquad b_u>0,}
+\quad v,u\in\{\infty\}\sqcup\mathbb P,
+\tag{JMD5}
+\]
+where the label $\infty$ on $W_v$ means $W_{\rm arch}$.
+For $u=p$, its archimedean value is
+$\beta A_p-A_p\beta=0$; its only nonzero finite value is
+$\beta\alpha_p$ at $p$. For $u=\infty$, the assertions are JMD3
+and the support calculation following JMD2.
+
+These decoding functions are not asserted to be convolution squares
+or to satisfy Weil's two vanishing conditions.
+The original $g_{p,1}$ does satisfy them: for $b=\pm1/2$,
+two integrations by parts give
+$\int v_p(t)e^{bt}dt=(b^2-1/4)\int u_p(t)e^{bt}dt=0$,
+and translation by $a_p$ multiplies this zero by $e^{ba_p}$.
+The distinction preserves the domains of both constructions.
+
+\subsection{The original support diagonal and the complete recovery}
+
+Retain $\mathcal V:V\to\mathcal D'(G)$ from FLC20,
+$\mathcal V\delta_A=\sum_{v\in A}W_v$.
+For $r\ge1$ define the linearized set diagonal and its observation
+\[
+\Delta^{(r)}:V\longrightarrow V^{\otimes r},\qquad
+\Delta^{(r)}\delta_A=\delta_A^{\otimes r},\qquad
+\mathcal V_r=\mathcal V^{\otimes r}\circ\Delta^{(r)}.
+\tag{JMD6}
+\]
+The set map copies each original support state before its
+observations are taken; its extension is linear.
+In particular
+\[
+\mathcal V_r(c)
+=\sum_{A\subseteq I}c_A
+       \left(\sum_{v\in A}W_v\right)^{\otimes r}.
+\tag{JMD7}
+\]
+Each term is a tensor product of distributions in separate variables,
+and the sum is finite, so the target is $\mathcal D'(G^r)$.
+Equivalently the expression acts as a continuous multilinear
+functional on $r$ compact smooth functions.
+No product of singular distributions in one variable is used.
+The expression is linear in $c$; it is not
+$\mathcal V(c)^{\otimes r}$, which has products of different
+coefficients $c_Ac_B$ and loses the stated diagonal construction.
+
+Given a tuple $(i_1,\ldots,i_r)$ of labels from $I$, let $T$ be its
+set of distinct entries. JMD5 gives the exact joint decoder
+\[
+\boxed{
+\mathcal V_r(c)(\psi_{i_1}\otimes\cdots\otimes\psi_{i_r})
+=\left(\prod_{j=1}^r b_{i_j}\right)J_T(c).}
+\tag{JMD8}
+\]
+Indeed the contribution of $\delta_A$ is
+$\prod_j\sum_{v\in A}W_v(\psi_{i_j})
+=\prod_j b_{i_j}\mathbf1_{i_j\in A}$.
+The product of indicators is exactly $\mathbf1_{T\subseteq A}$.
+Summing with the original coefficients $c_A$ proves the identity.
+Every $b_{i_j}$ is strictly positive, so division by the displayed
+literal factor recovers the joint coordinate without an ambiguity.
+
+Put $\mathcal V_0(c)=J_\varnothing(c)$.
+For every $0\le r\le n$ the full observation through degree $r$
+has exact kernel
+\[
+\boxed{
+\begin{aligned}
+\bigcap_{s=0}^r\ker\mathcal V_s
+&=\{c:J_T(c)=0\text{ for all }|T|\le r\}\\
+&=\operatorname{span}\{v_S:|S|>r\}.
+\end{aligned}}
+\tag{JMD9}
+\]
+To prove the first equality, JMD8 recovers every nonempty coordinate
+of degree at most $r$, and $\mathcal V_0$ gives the empty coordinate.
+Conversely expanding JMD7 gives coefficients $J_T(c)$ with
+$|T|\le s$, so their vanishing makes each distribution zero.
+The stated Walsh vectors lie in the kernel by JMD1.
+For dimension and complete recovery, the full moment map has inverse
+\[
+\boxed{c_A=\sum_{T\supseteq A}(-1)^{|T\setminus A|}J_T(c).}
+\tag{JMD10}
+\]
+Substitute $J_T(c)=\sum_{B\supseteq T}c_B$.
+The coefficient at $c_A$ is one. For $B\supsetneq A$, the
+coefficient is
+$\sum_{A\subseteq T\subseteq B}(-1)^{|T\setminus A|}=0$
+by pairing subsets differing in one element of $B\setminus A$.
+This proves the inverse. Consequently all the functions
+$A\mapsto\mathbf1_{T\subseteq A}$ are independent, and the
+subfamily $|T|\le r$ has rank $\sum_{k=0}^r\binom nk$.
+The kernel dimension is $\sum_{k=r+1}^n\binom nk$, exactly the
+number of displayed independent Walsh vectors, completing JMD9.
+Thus degrees zero through $n$ recover every coefficient.
+On the mixed kernel $K$, the degrees zero and one already vanish;
+precisely the remaining joint degrees two through $n$ must be retained,
+and JMD8--JMD10 recover them all.
+
+For two distinct places $u,v$, put
+$\mathbf h=\delta_\varnothing-\delta_{\{u\}}-
+\delta_{\{v\}}+\delta_{\{u,v\}}$ in their four-state support space.
+Then $\mathcal V\mathbf h=0$, but the full second observation is
+\[
+\boxed{
+\begin{aligned}
+\mathcal V_2(\mathbf h)&=W_u\otimes W_v+W_v\otimes W_u,\\
+\mathcal V_2(\mathbf h)(\psi_u\otimes\psi_v)&=b_ub_v>0.
+\end{aligned}}
+\tag{JMD11}
+\]
+Expanding $(W_u+W_v)^{\otimes2}$ cancels exactly the two unmixed
+terms subtracted by the singleton states. JMD5 evaluates the two
+remaining terms as $b_ub_v$ and zero, respectively.
+This also proves that the group-like diagonal does not descend
+through the quotient retaining only individual branch observations.
+Indeed $\mathbf h$ is in the branch kernel while
+$(\mathcal V\otimes\mathcal V)\Delta^{(2)}\mathbf h\ne0$;
+the map $\mathcal V$ itself factors through that quotient.
+If its kernel were a coideal, the latter tensor observation would
+vanish. The nonzero tensor in JMD11 is the exact defect of that descent.
+
+\subsection{The corresponding finite-dimensional trace}
+
+Define operators on the original support-state basis by
+\[
+E_i\delta_A=\mathbf1_{i\in A}\delta_A,\qquad
+E_T=\prod_{i\in T}E_i,\qquad
+D_c\delta_A=c_A\delta_A.
+\tag{JMD12}
+\]
+The $E_i$ are commuting projections and $E_\varnothing=I_V$.
+These are diagonal observables on the formal support-state space,
+not an identification with an additive-monoid algebra.
+The idele action fixes every such zero state by FLC1:
+$(u,1_L)(0,A)=(0,A)$.
+Hence on this finite-dimensional representation its integrated
+operator for an integrable $h_0$ on the idele class group $C$ is
+$U(h_0)=(\int_Ch_0(u)d^\times u)I_V$.
+Taking the trace by summing the diagonal entries proves
+\[
+\boxed{
+\operatorname{Tr}_V(D_cE_TU(h_0))
+=J_T(c)\int_C h_0(u)\,d^\times u.}
+\tag{JMD13}
+\]
+Thus the joint moments have an exact finite-dimensional trace
+realization on the actual formal zero-support representation.
+
+Define the specified distribution-valued diagonal observable
+$\mathsf A(f)=\sum_{i\in I}W_i(f)E_i$.
+Multiplying its diagonal entries proves the complete connecting map
+\[
+\boxed{
+\operatorname{Tr}_V\bigl(D_c\mathsf A(f_1)\cdots\mathsf A(f_r)\bigr)
+=\mathcal V_r(c)(f_1\otimes\cdots\otimes f_r).}
+\tag{JMD14}
+\]
+In detail, the entry at $\delta_A$ of the product is
+$c_A\prod_j\sum_{i\in A}W_i(f_j)$.
+Summation is JMD7 evaluated on the tensor of the $f_j$.
+Insertion of $U(h_0)$ multiplies this exact formula by
+$\int_Ch_0(u)d^\times u$.
+
+For the four-state vector $\mathbf h$, the trace on its invariant
+line is $\int_Ch_0$, as in FLC10.
+The different operator $D_{\mathbf h}$ on $V$ has integrated trace
+zero because $J_\varnothing(\mathbf h)=0$.
+The insertion of $E_uE_v$ changes that trace to
+$\operatorname{Tr}_V(D_{\mathbf h}E_uE_vU(h_0))=\int_Ch_0$,
+since $J_{\{u,v\}}(\mathbf h)=1$.
+The traced operators and spaces are therefore specified and their
+values agree with the complete joint reconstruction.
+
+JMD13 uses the representation forced by the stated action on the
+formal zero-support states. JMD14 additionally inserts the Connes
+local distributions by the displayed definition of $\mathsf A(f)$.
+No equality between that insertion and an analytic cohomological
+trace of the original programme has been proved here.
+The exact maps obtained so far are the support diagonal, its
+tensor-valued local observations, the full finite joint inverse,
+and their stated finite-dimensional trace realization.
+
+\subsection{The exact sign of the joint two-place bilinear form}
+
+For the two-place vector $\mathbf h$ in JMD11 keep the literal
+test combinations $\varphi_+=\psi_u+\psi_v$ and
+$\varphi_-=\psi_u-\psi_v$.
+JMD5 gives $W_u(\varphi_\pm)=b_u$ and
+$W_v(\varphi_\pm)=\pm b_v$.
+Evaluation of both tensor summands in JMD11 therefore proves
+\[
+\boxed{
+\mathcal V_2(\mathbf h)(\varphi_\pm\otimes\varphi_\pm)
+=\pm2b_ub_v.}
+\tag{JMD15}
+\]
+Since both constants are strictly positive, the real symmetric
+bilinear functional $(f,g)\mapsto\mathcal V_2(\mathbf h)(f\otimes g)$
+is indefinite. This sign calculation uses the displayed joint
+functional and decoding tests. It is not a counterexample to Weil
+positivity: these decoders were not asserted to be admissible
+convolution squares, and the bilinear distribution in JMD15 is not
+the full-place Weil quadratic form.
+
+\subsection{Exact relation to support addition and its incidence algebra}
+
+Let $L=\mathcal P(I)$ and retain the zero-support elements
+$z_A=(0,A)$ in $G_L(\mathbb Z)$.
+Their addition is $z_A+z_B=z_{A\cup B}$, directly from the original
+coefficient definition. Thus their submonoid gives a subalgebra
+$\mathbb C[L,\cup]\hookrightarrow\mathbb C[G_L(\mathbb Z),+]$,
+whose unit is $[z_\varnothing]$.
+The inclusion is injective because its distinct basis elements remain
+distinct basis elements of the larger monoid algebra.
+Its left regular action on the original zero-state space $V$ is
+\[
+S_B\delta_A=\delta_{A\cup B},\qquad
+S_BS_C=S_{B\cup C},\qquad S_\varnothing=I_V.
+\tag{JMD16}
+\]
+Composition proves the product identity on every basis vector.
+The representation is faithful: applying $\sum_Bt_BS_B$ to
+$\delta_\varnothing$ yields $\sum_Bt_B\delta_B$, so a zero operator
+forces all coefficients to vanish.
+This is the restriction of support addition, not an asserted
+restriction of every element of the larger monoid algebra to $V$;
+addition by a nonzero amplitude can leave the zero-state sector.
+
+The diagonal place observations in JMD12 and the support-addition
+operators have the exact commutator
+\[
+\boxed{
+E_iS_B-S_BE_i=\mathbf1_{i\in B}S_B(I_V-E_i).}
+\tag{JMD17}
+\]
+Indeed the left side applied to $\delta_A$ is
+$(\mathbf1_{i\in A\cup B}-\mathbf1_{i\in A})\delta_{A\cup B}$.
+The difference of indicators is
+$\mathbf1_{i\in B}(1-\mathbf1_{i\in A})$, which is the right side.
+In particular $E_iS_{\{i\}}=S_{\{i\}}$ and
+$S_{\{i\}}E_i=E_i$; their difference is nonzero on
+$\delta_\varnothing$.
+Therefore the $E_i$ are not being identified with elements of the
+commutative regular image of $\mathbb C[L,\cup]$.
+Their exact relation is JMD17.
+
+Let $\mathfrak I$ be the subalgebra of $\operatorname{End}_{\mathbb C}(V)$
+generated by all $S_B$ and all $E_i$.
+For $A\subseteq I$ put
+$F_A=\prod_{i\in A}E_i\prod_{i\notin A}(I_V-E_i)$.
+It is the projection onto the literal line $\mathbb C\delta_A$:
+its value at $\delta_C$ is the product of indicators expressing $C=A$.
+For $A\subseteq B$ define $M_{B,A}\delta_C=
+\mathbf1_{C=A}\delta_B$.
+Then the generated algebra is exactly
+\[
+\boxed{
+\mathfrak I=\operatorname{span}\{M_{B,A}:A\subseteq B\subseteq I\},
+\quad M_{B,A}=F_BS_BF_A,\quad\dim\mathfrak I=3^n.}
+\tag{JMD18}
+\]
+For the displayed product, $F_A$ kills every basis vector except
+$\delta_A$; $S_B$ sends it to $\delta_B$ when $A\subseteq B$;
+and $F_B$ fixes the result. Thus every displayed matrix unit belongs
+to $\mathfrak I$.
+Conversely these matrix units span a subalgebra, because
+$M_{B,A}M_{D,C}=\mathbf1_{A=D}M_{B,C}$ and the nonzero case has
+$C\subseteq A\subseteq B$.
+Each $S_B$ sends $\delta_A$ to a basis vector labelled by a superset
+of $A$, so it lies in that subalgebra; the diagonal $E_i$ lie there
+as well. This proves equality.
+The units are independent by their distinct matrix entries.
+There are $3^n$ pairs $A\subseteq B$: at each coordinate the choices
+are membership in neither set, in $B$ only, or in both.
+This proves the dimension and identifies the generated algebra as
+the inclusion-incidence matrix algebra of the original Boolean lattice.
+In particular the point projections reconstruct every diagonal
+insertion in JMD13--JMD14 through $D_c=\sum_Ac_AF_A$.
+
+The exact coordinate change diagonalizing the support-addition
+subalgebra is also available. For $T\subseteq I$ put
+\[
+w_T=\sum_{A\supseteq T}(-1)^{|A\setminus T|}\delta_A.
+\qquad S_Bw_T=\mathbf1_{B\subseteq T}\,w_T.
+\tag{JMD19}
+\]
+If $B\subseteq T$, every $A$ in the sum already contains $B$,
+so $S_B$ fixes every summand. Otherwise choose $i\in B\setminus T$.
+Pair the summands indexed by $A$ and $A\cup\{i\}$ with $i\notin A$.
+Their signs are opposite and their images under $S_B$ coincide;
+they cancel. This proves the eigenvalue formula.
+The transformation from the $\delta_A$ to the $w_T$ is triangular
+with diagonal entries one when subsets are ordered by cardinality,
+and its inverse is $\delta_T=\sum_{A\supseteq T}w_A$.
+The inverse follows by the same alternating-subset sum as JMD10.
+Thus these are exact coordinates on the same support-state space.
+
+For $I=\{u,v\}$, $w_\varnothing$ is exactly $\mathbf h$.
+As an element of the support-addition monoid algebra it is
+\[
+\mathbf h=
+([z_\varnothing]-[z_{\{u\}}])
+([z_\varnothing]-[z_{\{v\}}]),\qquad
+\mathbf h^2=\mathbf h,
+\quad S_B\mathbf h=0\quad(B\ne\varnothing).
+\tag{JMD20}
+\]
+The product expands to its original four coefficients because
+$[z_A][z_B]=[z_{A\cup B}]$.
+Each factor is idempotent, since $[z_{\{i\}}]^2=[z_{\{i\}}]$,
+and they commute; their product is idempotent.
+The final identity is JMD19.
+Nevertheless its tensor-valued observation is the nonzero JMD11,
+and the diagonal insertion $E_uE_v$ extracts its coefficient one
+at $\delta_{\{u,v\}}$.
+These formulas connect the mixed vector to support addition,
+joint local-distribution observations, and diagonal trace insertions
+without identifying their different algebra structures.
+
+\subsection{The exact mixed sign at every even tensor order}
+For the same two-place vector $\mathbf h$, expansion of JMD7 gives,
+for every integer $r\ge1$,
+\[
+\mathcal V_r(\mathbf h)
+ =(W_u+W_v)^{\otimes r}-W_u^{\otimes r}-W_v^{\otimes r}.
+\tag{JMD21}
+\]
+The empty support contributes the zero distribution; the other three
+states have precisely the coefficients $-1,-1,+1$ of $\mathbf h$.
+This proves JMD21 directly, including the zero result at $r=1$.
+Evaluating at the literal decoding functions of JMD15 yields
+\[
+\begin{split}
+\mathcal V_r(\mathbf h)(\varphi_+^{\otimes r})
+ &=(b_u+b_v)^r-b_u^r-b_v^r>0\quad(r\ge2),\\
+\mathcal V_{2m}(\mathbf h)(\varphi_-^{\otimes 2m})
+ &=(b_u-b_v)^{2m}-b_u^{2m}-b_v^{2m}<0\quad(m\ge1).
+\end{split}
+\tag{JMD22}
+\]
+The first strict inequality follows from the positive mixed terms in
+the binomial expansion, since $b_u,b_v>0$.
+For the second, $|b_u-b_v|<\max(b_u,b_v)$, so the first term is
+strictly smaller than even the larger of the two subtracted terms.
+Thus every even-order diagonal evaluation has both signs.
+
+The negative evaluation has an exact nonvanishing root limit:
+\[
+\lim_{m\to\infty}
+\left[b_u^{2m}+b_v^{2m}-(b_u-b_v)^{2m}\right]^{1/(2m)}
+ =\max(b_u,b_v)>0.
+\tag{JMD23}
+\]
+Put $B=\max(b_u,b_v)$ and $b=\min(b_u,b_v)>0$.
+The quantity inside brackets is bounded above by $2B^{2m}$ and
+below by $B^{2m}[1-(1-b/B)^{2m}]$.
+The root of the upper factor $2$ tends to one; the lower factor tends
+to one and has the same root limit, by taking its logarithm divided
+by $2m$. The squeeze proves the formula, also when $b=B$.
+This is a calculation for the constructed joint observation of the
+original mixed support vector. It does not identify that observation
+with Deligne's Euler coefficients or the full Weil form. It proves
+that an even tensor order alone does not provide positivity for this
+particular surviving mixed channel, and gives its complete size.
+
+
+
+% Complete proof source: ORIGINAL_GAUSSIAN_PRIME_ENTRIES.tex
+\section{Closed prime entries for the original arithmetic test vectors}
+\label{sec:original-gaussian-prime}
+
+The original marked-product programme source is retained unchanged.
+Its retained filename is \texttt{TAU\_ORIGINAL.tex} in the source directory.
+It defines
+\[
+\phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2},\qquad
+D=-x\frac{d}{dx},\qquad f_P=P(D)\phi_*,
+\tag{GPE1}
+\]
+for a polynomial $P(s)=\sum_{r=0}^d p_rs^r$. These exact vectors,
+including the two original coefficients and the sign of $D$, are used
+below. The calculation evaluates FLC19 on them without replacing them
+by a generic positive test function.
+
+Put $b^{(0)}_1=-6\pi$, $b^{(0)}_2=4\pi^2$ and all other
+$b^{(0)}_j=0$. Set missing indices equal to zero. Direct differentiation
+gives the finite recurrence
+\[
+b^{(r+1)}_j=-2j b^{(r)}_j+2\pi b^{(r)}_{j-1},\qquad
+b_j=\sum_{r=0}^d p_rb^{(r)}_j,
+\quad
+f_P(x)=e^{-\pi x^2}\sum_{j=1}^{d+2}b_jx^{2j}.
+\tag{GPE2}
+\]
+Indeed $D(x^{2j}e^{-\pi x^2})=
+(-2j x^{2j}+2\pi x^{2j+2})e^{-\pi x^2}$.
+Induction proves the recurrence at every order, retaining every
+coefficient, including cancellations to zero.
+
+For the source's Mellin convention
+$\mathcal M f(s)=\int_0^\infty f(x)x^s\,dx/x$, direct integration
+with $t=\pi x^2$ gives, for $\Re s>-2$,
+\[
+\mathcal M\phi_*(s)
+=2\pi^{-s/2}\Gamma(s/2+2)-3\pi^{-s/2}\Gamma(s/2+1)
+=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2).
+\tag{GPE3}
+\]
+The first equality follows term by term from the defining gamma
+integral; the second uses $\Gamma(z+1)=z\Gamma(z)$ and extends across
+removable points by continuity. At both endpoints of integration
+$x^sf_P(x)$ tends to zero for $\Re s>-2$. Integration by parts hence
+gives $\mathcal M(Df)=s\mathcal M f$ and
+\[
+\mathcal M f_P(s)=P(s)\Phi(s),\qquad
+\Phi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),
+\quad\mathcal M f_P(1)=0,\quad\mathcal M f_P(0)=-P(0).
+\tag{GPE4}
+\]
+
+The exact passage to Connes's multiplicative test convention is
+$g_P(x)=x^{1/2}f_P(x)$; the factor is part of the map and is retained.
+Define its correlation, with the original multiplicative Haar measure,
+by $H_P(a)=(g_P*g_P^*)(e^a)$. Substitution as in FLC17 yields
+\[
+H_P(a)=e^{-a/2}\int_0^\infty
+ f_P(x)\overline{f_P(e^{-a}x)}\,dx.
+\tag{GPE5}
+\]
+The integral converges absolutely at both ends. Substitution of GPE2
+and the gamma integral give the closed expression
+\[
+\boxed{
+H_P(a)=\frac12\sum_{j,l=1}^{d+2}b_j\overline{b_l}
+ \frac{\Gamma(j+l+1/2)}{\pi^{j+l+1/2}}
+ \frac{e^{-(2l+1/2)a}}{(1+e^{-2a})^{j+l+1/2}}.}
+\tag{GPE6}
+\]
+To verify each coefficient, the relevant integral is
+$\int_0^\infty x^{2j+2l}e^{-\pi(1+e^{-2a})x^2}\,dx$
+$=\tfrac12\Gamma(j+l+1/2)
+[\pi(1+e^{-2a})]^{-j-l-1/2}$; its outside factors are exactly those
+shown. All sums are finite. Complex conjugation and translation in
+GPE5 prove $H_P(-a)=\overline{H_P(a)}$.
+
+For $a\ge0$, define the explicit nonnegative constant
+\[
+K_P=\frac12\sum_{j,l=1}^{d+2}|b_j\overline{b_l}|
+          \frac{\Gamma(j+l+1/2)}{\pi^{j+l+1/2}}.
+\quad |H_P(a)|\le K_Pe^{-5a/2}.
+\tag{GPE7}
+\]
+The denominator in GPE6 is at least one, and $l\ge1$ gives
+$2l+1/2\ge5/2$. The triangle inequality proves the bound with this
+literal constant. It applies to $P=0$ as well.
+Consequently the support-dependent prime contribution is the
+absolutely convergent, explicitly evaluable series
+\[
+\mathcal P_c(P)
+=2\sum_{p,m\ge1}c_p(\log p)p^{-m/2}
+                 \Re H_P(m\log p),
+\tag{GPE8}
+\]
+with every entry given by GPE6. Truncation by the original prime-power
+integer $p^m\le N$, $N\ge2$ an integer, has proved error
+\[
+\boxed{
+\left|\mathcal P_c(P)-
+ 2\sum_{p^m\le N}c_p(\log p)p^{-m/2}\Re H_P(m\log p)\right|
+ \le \|c\|_\infty K_P\frac{\log N+1/2}{N^2}.}
+\tag{GPE9}
+\]
+Indeed a prime-power term has absolute value at most
+$2\|c\|_\infty K_P(\log p)(p^m)^{-3}$. Grouping by $n=p^m$
+and using $\log p\le\log n$ bounds the tail by
+$2\|c\|_\infty K_P\sum_{n>N}\log n/n^3$.
+The function $\log x/x^3$ decreases for $x\ge2$, so this is at most
+$2\|c\|_\infty K_P\int_N^\infty\log x/x^3\,dx$
+$=\|c\|_\infty K_P(\log N+1/2)/N^2$.
+
+The archimedean functional in this same convention is
+\[
+\begin{split}
+\mathcal A(P)&=(\log(4\pi)+\gamma)H_P(0)\\
+&\quad+\int_0^\infty
+ \frac{e^{-a/2}
+ [H_P(a)+H_P(-a)-2e^{-a/2}H_P(0)]}{1-e^{-2a}}\,da.
+\end{split}
+\tag{GPE10}
+\]
+This is FLC14 after $x=e^a$, with no constants dropped. The numerator
+vanishes at $a=0$ to at least first order, so the apparent singularity
+is integrable. At infinity GPE7 and its conjugate give an integrable
+bound; the subtracted term is $O(e^{-a})$. Thus
+$\mathcal W_c(P):=c_\infty\mathcal A(P)+\mathcal P_c(P)$ is a
+well-defined extension of those local expressions to these original
+noncompact test vectors. Its exact defect is
+\[
+\boxed{\mathcal W_c(P)-c_\infty\mathcal W_{\mathbf1}(P)
+ =-2\sum_{p,m\ge1}\mathscr D(c)(p)p^{-m/2}
+                                  \Re H_P(m\log p).}
+\tag{GPE11}
+\]
+The series converges by GPE7 because
+$|\mathscr D(c)(p)|\le2\|c\|_\infty\log p$.
+This gives the support defect on the actual programme vectors, not
+only on unspecified test functions. It makes no unproved assertion
+about its sign or an exchange with an infinite zero sum.
+
+Finally, for the Fourier--Mellin convention in FLC14,
+$\widehat g_P(t)=\mathcal M f_P(1/2-it)$. In particular
+\[
+\widehat g_P(i/2)=0,\qquad
+\widehat g_P(-i/2)=-P(0).
+\tag{GPE12}
+\]
+Thus both separate vanishing conditions hold precisely when $P(0)=0$.
+For every $P$, the two cross-products
+$\widehat g_P(i/2)\overline{\widehat g_P(-i/2)}$ and its conjugate
+are zero. These are different assertions, and GPE12 retains both.
+
+
+
+\appendix
+\section{The complete original amplitude memory calculation}
+The following derivation works in the original amplitude spaces and
+metric. Its finite sums and compositions lift by FLR4 and CLM19; its
+analytic evolution is recovered by CLM8--17. Its Deligne comparison
+does not assert an equivalence of the programme with Deligne's
+geometric hypotheses. The exact kernel and tensor defects are
+retained. The reading coverage of the local Deligne transcription is
+stated at its use, separately from the original author sources of
+Connes and the original programme TeX.
+
+% Complete proof source: independent/TAU_DELiGNE_PRIME_MEMORY.tex
+\section{The original support action on prime powers, kernel memory and tensor amplification}
+\label{sec:tau-prime-memory}
+
+This calculation uses the exact objects and metric of ST1--ST20 in
+\emph{What the original observation retains of split support}, result
+SZ-20260922-028. It neither substitutes a new source metric nor discards
+the original observation kernel. The human mathematical precedents for
+the final comparison are Pierre Deligne, \emph{La conjecture de Weil. II},
+Publications Math\'ematiques de l'IH\'ES \textbf{52} (1980), 137--252,
+\S\S1.4--1.5 and 3.2, and the Grothendieck trace formula he uses in
+1.4.5.1. The supplied English TeX is a local translation/transcription,
+not an original author TeX source. It has been read at 1.4.3--1.5.2 and
+3.2.1--3.2.13; its compressed presentation of \S3.2 does not constitute
+verification of all intermediate assertions in Deligne's original proof.
+Every finite-dimensional assertion made below is proved here.
+
+\subsection{The exact prime-power spectrum of the original source}
+
+Retain the original integer $k\ge17$, $k\equiv1\pmod4$, $q=(k+1)^2$,
+the original simple quartet with $\delta,\gamma>0$, the admitted period,
+and each literal cutoff $q-1\le N\le2q$. Set
+\begin{equation}\tag{TDP1}
+\begin{gathered}
+\lambda_{ab}=(2b-k)\gamma-i(2a-k)\delta,\qquad
+Q_k(y)=\prod_{a,b=0}^k(y-\lambda_{ab}),\qquad
+E=\mathbb C[y]/Q_k,\qquad M[f]=[yf],\\
+s=k/2+iy,\qquad
+F_p=\exp(i(\log p)M),\qquad
+\widetilde F_p=p^{k/2}F_p .
+\end{gathered}
+\end{equation}
+Here $p$ is a rational prime. The map $s=k/2+iy$ is the original
+centred Mellin coordinate map; the scalar $p^{k/2}$ is retained in the
+uncentred action. The parameters $k$ and $q$ have not been replaced by
+the number of factors in any later tensor construction.
+
+The $q$ roots in TDP1 are distinct: equality of two roots forces equality
+of their real and imaginary parts, and hence $a=a'$ and $b=b'$.
+The exact cardinal polynomials
+\begin{equation}\tag{TDP2}
+\ell_{ab}(y)=\prod_{(c,d)\ne(a,b)}
+ \frac{y-\lambda_{cd}}{\lambda_{ab}-\lambda_{cd}}
+\end{equation}
+therefore form a basis of $E$. Evaluation at the roots proves
+$M\ell_{ab}=\lambda_{ab}\ell_{ab}$ in $E$. Consequently, for every
+integer $m\ge0$,
+\begin{equation}\tag{TDP3}
+\begin{aligned}
+F_p^m\ell_{ab}
+ &=p^{m(2a-k)\delta}
+   \exp\!\bigl(im(2b-k)\gamma\log p\bigr)\ell_{ab},\\
+\widetilde F_p^{\,m}\ell_{ab}
+ &=p^{mk/2+m(2a-k)\delta}
+   \exp\!\bigl(im(2b-k)\gamma\log p\bigr)\ell_{ab}.
+\end{aligned}
+\end{equation}
+This follows by applying the convergent exponential series to each
+cardinal vector. Different prime-action eigenvalues may coincide because
+of their phases; the labelled vectors and their multiplicities remain.
+In particular the exact largest eigenvalue modulus is $p^{mk\delta}$
+for $F_p^m$ and $p^{mk/2+mk\delta}$ for $\widetilde F_p^{\,m}$.
+These are statements about the programme's stipulated source, not
+identifications of a finite trace with the scalar prime evaluations in
+Weil's explicit formula.
+
+Let $G_N$ be the complete original source metric, let
+$K=\ker\Lambda$, and retain the original section
+\begin{equation}\tag{TDP4}
+\begin{gathered}
+Q_B=(\Lambda G_N^{-1}\Lambda^*)^{-1},\qquad
+L=G_N^{-1}\Lambda^*Q_B,\qquad J=LQ_B^{-1/2},\\
+J^\dagger J=I_B,\qquad P=JJ^\dagger=L\Lambda,\qquad
+Q=I_E-P,\qquad \Phi(X)=J^\dagger XJ.
+\end{gathered}
+\end{equation}
+The dagger uses $G_N$ on $E$, its restriction on $K$, and the stated
+Euclidean coordinates on $B$. Let $\iota_K:K\hookrightarrow E$ be the
+isometric inclusion. The map $W:B\oplus K\to E$,
+$W(y,z)=Jy+\iota_Kz$, is unitary for these metrics, since the two
+summands are orthogonal, $\operatorname{im}J=K^\perp$, and their sum is
+$E$. Define the full blocks
+\begin{equation}\tag{TDP5}
+W^\dagger MW=
+\begin{pmatrix}H&B_{01}\\ B_{10}&D_K\end{pmatrix},\qquad
+\begin{array}{ll}
+H=J^\dagger MJ,&B_{01}=J^\dagger M\iota_K,\\
+B_{10}=\iota_K^\dagger MJ,&D_K=\iota_K^\dagger M\iota_K.
+\end{array}
+\end{equation}
+No invariance of $K$ under $M$ is assumed or used.
+
+\subsection{The entire compression and the complete return through the kernel}
+
+For every $z\in\mathbb C$ put $U(z)=J^\dagger e^{zM}J$ and
+$Y(z)=\iota_K^\dagger e^{zM}J$. Differentiating the entire exponential
+series and applying TDP5 gives
+\begin{equation}\tag{TDP6}
+\begin{gathered}
+U'=HU+B_{01}Y,\qquad Y'=B_{10}U+D_KY,\qquad U(0)=I_B,\quad Y(0)=0,\\
+Y(z)=\int_0^z e^{(z-t)D_K}B_{10}U(t)\,dt,\\
+U'(z)=HU(z)+\int_0^z\mathcal K(z-t)U(t)\,dt,
+\qquad \mathcal K(t)=B_{01}e^{tD_K}B_{10}.
+\end{gathered}
+\end{equation}
+Integrals are along the straight segment, with the usual complex
+orientation. The second equation follows by differentiating
+$e^{-zD_K}Y(z)$ and integrating; substitution proves the third.
+Thus TDP6 is an identity of entire functions, including purely imaginary
+prime arguments. A second variation-of-constants calculation gives
+\begin{equation}\tag{TDP7}
+U(z)-e^{zH}=
+\int_0^z\!\int_0^t
+ e^{(z-t)H}B_{01}e^{(t-v)D_K}B_{10}U(v)\,dv\,dt.
+\end{equation}
+The difference is the full original-kernel return, including its complex
+signs. No positive sign for this operator is asserted.
+
+Insertion of $I_E=P+Q$ in $e^{(z+w)M}$ proves the exact product defect
+\begin{equation}\tag{TDP8}
+\begin{aligned}
+U(z+w)-U(z)U(w)
+ &=J^\dagger e^{zM}Qe^{wM}J,\\
+U(mz)-U(z)^m
+ &=\sum_{j=1}^{m-1}U(z)^{m-1-j}
+   J^\dagger e^{zM}Qe^{jzM}J\qquad(m\ge1).
+\end{aligned}
+\end{equation}
+For the second identity the sum is empty at $m=1$. If the assertion is
+known for $m$, write
+$U((m+1)z)-U(z)^{m+1}=U(z)(U(mz)-U(z)^m)
++U((m+1)z)-U(z)U(mz)$ and use the first identity. This proves it for
+all integers $m$. Specializing $z=i\log p$ gives the exact correction
+between the observed prime-power action and powers of the observed
+one-prime action. For the uncentred action both sides acquire precisely
+$p^{mk/2}$, with no change to any of the kernel factors.
+
+The same defect determines the local determinant. Write
+$W^\dagger F_pW=\left(\begin{smallmatrix}A_p&B_p\\C_p&D_p\end{smallmatrix}\right)$.
+Over formal power series in $u$, every matrix with constant term $I$ is
+invertible. Block Gaussian elimination then gives
+\begin{equation}\tag{TDP9}
+\begin{gathered}
+\sum_{m\ge0}\Phi(F_p^m)u^m
+ =\bigl[I_B-uA_p-u^2B_p(I_K-uD_p)^{-1}C_p\bigr]^{-1},\\
+\det(I_E-uF_p)
+ =\det(I_K-uD_p)\det(I_B-uA_p)\,\mathcal E_p(u),\\
+\mathcal E_p(u)=
+\det\!\left[I_B-u^2(I_B-uA_p)^{-1}
+ B_p(I_K-uD_p)^{-1}C_p\right].
+\end{gathered}
+\end{equation}
+To verify the first identity, expand $(I_E-uF_p)^{-1}$ as its geometric
+series and take its upper-left block. Eliminate the lower-left block
+using the invertible lower-right block $I_K-uD_p$; its Schur complement
+is the displayed inverse. Taking determinants proves the second
+identity, and factoring $I_B-uA_p$ proves the third. Since both sides are
+rational functions, the identities also hold wherever the displayed
+inverses exist, and extend across removable singularities after clearing
+denominators. They retain every pole cancellation carried by $K$.
+
+The formal logarithmic derivative, or the identity
+$-\log\det(I-uT)=\sum_{m\ge1}\operatorname{tr}(T^m)u^m/m$, yields
+\begin{equation}\tag{TDP10}
+\begin{aligned}
+-\log\mathcal E_p(u)
+ &=\sum_{m\ge1}
+ \frac{\operatorname{tr}(F_p^m)-\operatorname{tr}(A_p^m)
+ -\operatorname{tr}(D_p^m)}{m}u^m,\\
+[u^2](-\log\mathcal E_p(u))&=\operatorname{tr}(B_pC_p).
+\end{aligned}
+\end{equation}
+Indeed the diagonal blocks of $F_p^2$ have traces
+$\operatorname{tr}(A_p^2)+\operatorname{tr}(B_pC_p)$ and
+$\operatorname{tr}(D_p^2)+\operatorname{tr}(C_pB_p)$; cyclicity of the
+finite trace proves the coefficient claim. These traces are generally
+complex. Positivity of $\Phi$ on positive operators does not change this
+calculation into a nonnegative Euler coefficient.
+
+\subsection{The support algebra exhibits the cancellation explicitly}
+
+The original support representation and its boundary operator are
+\begin{equation}\tag{TDP11}
+\begin{gathered}
+\rho(c_0,c_1+c_2\eta)=c_0(I-\Pi)+c_1\Pi+c_2R,\qquad
+\Pi=ee^\dagger+ff^\dagger,\qquad R=\epsilon fe^\dagger,\\
+e^\dagger f=0,\quad \|e\|=\|f\|=1,\quad \epsilon>0,\quad R^2=0,\\
+[\tau]\longmapsto I_E,\qquad [n]\longmapsto\Pi+nR.
+\end{gathered}
+\end{equation}
+The symbol multiplication in the last line represents addition in the
+original monoid $\mathbb Z\sqcup\{\tau\}$. In particular $[p]^m=[mp]$
+there, not $[p^m]$. The original $\tau$ action cannot be identified with
+the multiplicative prime-power law by replacing one of these indices.
+The exact one-parameter group in the same algebra is
+$\rho(1,1+z\eta)=I_E+zR=e^{zR}$; at integral $z=n$ this is the image
+of $[\tau]+[n]-[0]$. Its multiplication law follows from $R^2=0$.
+
+Retain the measured columns and all their phases:
+\begin{equation}\tag{TDP12}
+\begin{gathered}
+u=J^\dagger e,\quad v=J^\dagger f,\qquad
+\begin{pmatrix}a&r\\\bar r&d\end{pmatrix}
+ =[u,v]^*[u,v],\quad \alpha=1-a,\quad \mathfrak d=ad-|r|^2,\\
+T=\Phi(R)=\epsilon vu^*,\qquad \kappa=\epsilon r,\qquad
+T^2=\kappa T,\\
+e_K=\iota_K^\dagger e,\quad f_K=\iota_K^\dagger f,\quad
+\|e_K\|^2=\alpha,\quad\|f_K\|^2=1-d,\quad e_K^*f_K=-r.
+\end{gathered}
+\end{equation}
+The identity $T^2=\kappa T$ is direct multiplication using $u^*v=r$.
+The last line follows by inserting $P+Q$ in the inner products of $e,f$.
+The support map preserves the original nilpotent on $E$, but compression
+can give it the nonzero eigenvalue $\kappa$. Since $\mathfrak d>0$ in
+the original finite area guards, neither $u$ nor $v$ is zero, so $T\ne0$.
+
+The complete $R$ blocks, its memory and its two exponentials are
+\begin{equation}\tag{TDP13}
+\begin{gathered}
+W^\dagger RW=
+\begin{pmatrix}T&\epsilon ve_K^*\\
+ \epsilon f_Ku^*&\epsilon f_Ke_K^*\end{pmatrix},\qquad
+\mathcal K_R(z)=-\kappa e^{-\kappa z}T,\\
+\Phi(e^{zR})=I_B+zT,\qquad
+e^{zT}=I_B+f_\kappa(z)T,\qquad
+f_\kappa(z)=\begin{cases}(e^{\kappa z}-1)/\kappa,&\kappa\ne0,\\
+z,&\kappa=0.
+\end{cases}
+\end{gathered}
+\end{equation}
+For the memory identity, the lower-right block sends $f_K$ to
+$-\kappa f_K$. Thus its exponential sends $f_K$ to
+$e^{-\kappa z}f_K$, and multiplication by the two off-diagonal blocks
+gives $-\kappa e^{-\kappa z}T$. The first exponential truncates because
+$R^2=0$. For the second, induction gives $T^j=\kappa^{j-1}T$ for $j\ge1$;
+substitution in the entire exponential series proves the formula,
+including its removable value at $\kappa=0$.
+
+For direct verification that the memory cancels the extra exponential,
+substitute $U_R(z)=I_B+zT$ in TDP6 with the blocks in TDP13. The sum of
+the two terms on its right is
+$T+z\kappa T-\kappa T\int_0^z e^{-\kappa(z-t)}(1+t\kappa)dt=T$,
+since the integrand is the derivative in $t$ of
+$t e^{-\kappa(z-t)}$. This is precisely $U_R'(z)$.
+
+Put $c=i\log p$, $n_E=\dim E=q$ and $b_B=\dim B$. The exact support
+prime action $I_E+cR$ and all its prime powers satisfy
+\begin{equation}\tag{TDP14}
+\begin{gathered}
+\Phi((I_E+cR)^m)=I_B+mcT,\\
+(I_B+cT)^m=I_B+
+\begin{cases}((1+c\kappa)^m-1)T/\kappa,&\kappa\ne0,\\
+mcT,&\kappa=0,
+\end{cases}\\
+\det(I_E-w(I_E+cR))=(1-w)^{n_E}.
+\end{gathered}
+\end{equation}
+The first line is the binomial theorem with $R^2=0$. For the second line
+expand by the binomial theorem and use $T^j=\kappa^{j-1}T$; the scalar
+binomial formula supplies the coefficient. All eigenvalues of $R$ are
+zero, so all eigenvalues of $I_E+cR$ equal one; this proves the last line.
+In contrast, the observed block has a candidate eigenvalue
+$1+c\kappa$. This is a compression effect, not a moved eigenvalue of
+the full support action.
+
+When $K\ne0$, its original block is $I_K+c\epsilon f_Ke_K^*$ and has
+the candidate eigenvalue $1-c\kappa$. Its exact factors in TDP9 are
+\begin{equation}\tag{TDP15}
+\begin{aligned}
+\det(I_B-w(I_B+cT))
+ &=(1-w)^{b_B-1}(1-w-wc\kappa),\\
+\det(I_K-w(I_K+c\epsilon f_Ke_K^*))
+ &=(1-w)^{n_E-b_B-1}(1-w+wc\kappa),\\
+\mathcal E_{p,R}(w)
+ &=\frac{(1-w)^2}{(1-w)^2-w^2c^2\kappa^2}.
+\end{aligned}
+\end{equation}
+These identities first hold formally at $w=0$. The first two follow
+from the rank-one determinant identity
+$\det(I+xy^*)=1+y^*x$, which is proved by extending $x$ to a basis when
+$x\ne0$; the case $x=0$ is immediate. Their product, the last line and
+TDP14 multiply to an identity. Alternatively substituting the blocks
+of TDP13 into TDP9 gives the last line directly. In the inverse
+determinant, its factor $\mathcal E_{p,R}(w)^{-1}$ cancels the two
+candidate poles at $1/(1+c\kappa)$ and $1/(1-c\kappa)$. If $\kappa=0$
+this factor is identically one. If $K=0$, then $r=0$, $\kappa=0$ and the
+kernel factor is absent; TDP14 remains valid. This is a complete
+pole-cancellation calculation on the actual support receiver.
+
+The original estimates do not authorize deleting $\kappa$:
+\begin{equation}\tag{TDP16}
+\begin{gathered}
+|\kappa|^2=\epsilon^2|r|^2
+ \le\epsilon^2\alpha(1-d),\qquad
+\|T\|=\epsilon\sqrt{ad},\\
+\alpha\le e^{-2q\psi(t_N)+O_{h,\varpi}(k\log(q+2))},\quad
+\log\epsilon=q\psi(t_N)+O_{h,\varpi}(k\log(q+2)),\\
+|\kappa|\le e^{O_{h,\varpi}(k\log(q+2))}\sqrt{1-d},
+\qquad t_N=(N+1-q)/q.
+\end{gathered}
+\end{equation}
+The first inequality is the Cauchy--Schwarz inequality on $K$ using
+TDP12; the rank-one norm gives the second equality. Substitution of the
+two original estimates proves the last line. The large rate in
+$\epsilon$ cancels the square-root leakage rate, and the phase of $r$
+has not been restricted. Therefore the displayed estimate supplies
+neither a sign nor a vanishing assertion for $\kappa$.
+
+The full $M=C+R$ in ST3 must still be used. For $\lambda$ outside the
+spectrum of the original self-adjoint $C$, rank-one elimination gives
+\begin{equation}\tag{TDP17}
+\det(\lambda I_E-M)=\det(\lambda I_E-C)
+ \bigl[1-\epsilon e^\dagger(\lambda I_E-C)^{-1}f\bigr].
+\end{equation}
+Factor $\lambda I-C$ on the left and use the rank-one determinant
+identity just proved. Clearing denominators extends the equality to a
+polynomial identity. Thus nilpotence of $R$ by itself does not remove
+the spectral displacement in TDP3. In particular products
+$RC^jR=\epsilon^2(e^\dagger C^jf)fe^\dagger$ need not vanish.
+The exact interaction with $C$, not $R$ in isolation, determines the
+original source spectrum.
+
+\subsection{Tensor products retain the same defect, with exact mixed sectors}
+
+Let $\nu\ge1$ be an independent tensor count and retain the product
+metric $G_N^{\otimes\nu}$. Define
+\begin{equation}\tag{TDP18}
+\begin{gathered}
+J_\nu=J^{\otimes\nu},\quad P_\nu=P^{\otimes\nu},\quad
+Q_\nu=I-P_\nu
+ =\sum_{\varnothing\ne S\subset\{1,\ldots,\nu\}}
+ \bigotimes_{j=1}^{\nu}\begin{cases}Q,&j\in S,\\P,&j\notin S,
+ \end{cases}\\
+M_\nu=\sum_{j=1}^\nu I^{\otimes(j-1)}\otimes M\otimes
+ I^{\otimes(\nu-j)},\qquad H_\nu=\sum_{j=1}^\nu
+ I^{\otimes(j-1)}\otimes H\otimes I^{\otimes(\nu-j)},\\
+J_\nu^\dagger e^{zM_\nu}J_\nu=U(z)^{\otimes\nu},\qquad
+e^{zH_\nu}=(e^{zH})^{\otimes\nu}.
+\end{gathered}
+\end{equation}
+The projections in the first line have mutually orthogonal ranges:
+two distinct subsets place $PQ=0$ in at least one factor. Expansion of
+$(P+Q)^{\otimes\nu}$ proves their sum. The summands of $M_\nu$ commute,
+so multiplication of their convergent exponential series proves the
+last line. Tensoring therefore preserves the full source action, and
+also preserves the difference caused by observation:
+\begin{equation}\tag{TDP19}
+U(z)^{\otimes\nu}-(e^{zH})^{\otimes\nu}
+ =\sum_{j=1}^\nu U(z)^{\otimes(j-1)}\otimes
+ \bigl(U(z)-e^{zH}\bigr)\otimes(e^{zH})^{\otimes(\nu-j)}.
+\end{equation}
+The right side telescopes after inserting and subtracting tensors with
+successively one further factor $U(z)$. No mixed-kernel subset is
+discarded by TDP18 or TDP19.
+
+For the original support put $A=\Phi(\Pi)=[u,v][u,v]^*$, with its two
+strictly positive eigenvalues $\vartheta_+,\vartheta_-$ from ST7. Let
+$A_\nu=A^{\otimes\nu}$, which is the exact compression of
+$\Pi^{\otimes\nu}$. Its eigenvalues and defect are
+\begin{equation}\tag{TDP20}
+\begin{gathered}
+\vartheta_+^{\nu-j}\vartheta_-^j
+ \quad\hbox{with multiplicity }{\nu\choose j},\quad 0\le j\le\nu,
+ \quad\hbox{and }0\hbox{ on the remaining }b_B^\nu-2^\nu\hbox{ dimensions},\\
+A_\nu-A_\nu^2
+ =\sum_{j=1}^{\nu}(A^2)^{\otimes(j-1)}\otimes(A-A^2)
+ \otimes A^{\otimes(\nu-j)}
+ =(Q_\nu\Pi^{\otimes\nu}J_\nu)^\dagger
+  (Q_\nu\Pi^{\otimes\nu}J_\nu).
+\end{gathered}
+\end{equation}
+Tensor products of orthonormal eigenvectors prove the first line,
+including labelled multiplicities when values coincide. A telescoping
+expansion proves the first equality in the second line. Since
+$\Pi^{\otimes\nu}$ is an orthogonal projection, insertion of
+$P_\nu+Q_\nu$ proves the last equality. Each summand of the middle
+expression is positive semidefinite. Positivity of this defect does
+not make it zero.
+
+There are exact amplification values, not merely an unspecified error:
+\begin{equation}\tag{TDP21}
+\begin{gathered}
+\det{}^+A_\nu=\mathfrak d^{\,\nu2^{\nu-1}},\qquad
+\frac{\log\det{}^+A_\nu}{\nu2^\nu}=\tfrac12\log\mathfrak d,\\
+\left|\frac{\log\det{}^+A_\nu}{\nu2^\nu}
+ -\tfrac12\log d\right|\le\frac{\alpha}{2\Theta_N},\qquad
+0\le1-\vartheta_+^\nu\le\nu\alpha,\\
+\frac1\nu\log(\vartheta_+^{\nu-j}\vartheta_-^j)
+ =(1-j/\nu)\log\vartheta_++(j/\nu)\log\vartheta_-.
+\end{gathered}
+\end{equation}
+Each of $\vartheta_+$ and $\vartheta_-$ occurs $\nu2^{\nu-1}$ times in
+the product of the $2^\nu$ nonzero eigenvalues, proving the determinant
+identity. ST11 then proves its estimate. The identity
+$1-x^\nu=(1-x)\sum_{j=0}^{\nu-1}x^j$ for $0\le x\le1$, together with
+ST8, proves the bound on the first tensor branch. The final line is the
+logarithm of the exact eigenvalue. In particular a non-unit second
+support eigenvalue contributes a loss proportional to the tensor
+count. Taking a $\nu$th root does not remove that value. This is the
+precise contrast with a fixed exponent error divided by the tensor
+count in Deligne's amplification.
+
+The support representation survives observation as a homomorphism
+exactly when both original support vectors are retained:
+\begin{equation}\tag{TDP22}
+\Phi\circ\rho\text{ is multiplicative}\quad\Longleftrightarrow\quad
+a=d=1\quad\Longleftrightarrow\quad e,f\in K^\perp.
+\end{equation}
+For necessity, multiplicativity makes $A^2=A$. Its two nonzero
+eigenvalues must then be one. Thus $a+d=\operatorname{tr}A=2$ and
+$0\le a,d\le1$ imply $a=d=1$; Cauchy--Schwarz on $K$ gives $r=0$.
+The norm identities in TDP12 imply $e,f\in K^\perp$. Conversely, in
+that case both $\Pi$ and $R$ preserve $K^\perp$ and are zero on $K$.
+Their compressions obey the identical multiplication table
+$A^2=A$, $AT=TA=T$, $T^2=0$. The complement $I_B-A$ has zero products
+with $A,T$, so the algebra formula in TDP11 is multiplicative.
+The defect space determined by failure is the actual range
+$\operatorname{im}(Q\Pi J)\subset K$, with Gram operator $A-A^2$,
+and its tensor analogues are the explicitly decomposed ranges in TDP20.
+
+The support nilpotent also tensors without dropping mixed terms. Put
+$R_\nu=\sum_{j=1}^\nu I^{\otimes(j-1)}\otimes R\otimes I^{\otimes(\nu-j)}$.
+Commutativity between different factors and $R^2=0$ give
+\begin{equation}\tag{TDP23}
+\begin{gathered}
+R_\nu^j=j!\sum_{|S|=j}\bigotimes_{l=1}^\nu
+ \begin{cases}R,&l\in S,\\I_E,&l\notin S,\end{cases}
+\quad (0\le j\le\nu),\qquad
+R_\nu^{\nu+1}=0,\quad R_\nu^\nu=\nu!R^{\otimes\nu}\ne0,\\
+e^{zR_\nu}=(I_E+zR)^{\otimes\nu},\qquad
+\Phi_\nu(e^{zR_\nu})=(I_B+zT)^{\otimes\nu},\qquad
+\Phi_\nu(X)=J_\nu^\dagger XJ_\nu.
+\end{gathered}
+\end{equation}
+In expanding the $j$th power, only words using $j$ distinct positions
+survive; every subset occurs in $j!$ orders. Since $R\ne0$, choose $x$
+with $Rx\ne0$; then $R^{\otimes\nu}x^{\otimes\nu}\ne0$, proving its
+nonvanishing. Thus the full support tensor has only eigenvalue one
+after exponentiation, while its nilpotent length is exactly $\nu+1$.
+Observation keeps the explicitly displayed polynomial in $z$ of degree
+at most $\nu$. It cannot be replaced by $e^{z\Phi_\nu(R_\nu)}$ without
+the memory already calculated.
+
+\subsection{The exact object carrying eigenvalues through observation}
+
+For each $\lambda\in\mathbb C$, define the lifted observed eigenspace
+and its observed image by
+\begin{equation}\tag{TDP24}
+\begin{gathered}
+\mathscr L_\lambda=
+ \{(y,z)\in B\oplus K:
+ (H-\lambda I)y+B_{01}z=0,
+ \ B_{10}y+(D_K-\lambda I)z=0\},\\
+\mathscr O_\lambda=\{y\in B:\text{there is }z\in K
+ \text{ with }(y,z)\in\mathscr L_\lambda\},\\
+0\longrightarrow\ker(D_K-\lambda I)\cap\ker B_{01}
+ \xrightarrow{z\mapsto(0,z)}\mathscr L_\lambda
+ \xrightarrow{(y,z)\mapsto y}\mathscr O_\lambda\longrightarrow0,\\
+\mathscr L_\lambda\xrightarrow[\cong]{\ W\ }\ker(M-\lambda I),
+\qquad\|W(y,z)\|_{G_N}^2=\|y\|^2+\|z\|^2.
+\end{gathered}
+\end{equation}
+Multiplication by the block matrix in TDP5 proves the last isomorphism.
+The first map in the exact sequence is injective; the kernel of the
+second consists exactly of pairs $(0,z)$ satisfying both displayed
+equations; and surjectivity is the definition of $\mathscr O_\lambda$.
+Orthogonality in TDP4 proves the metric identity. If
+$\lambda\notin\operatorname{spec}D_K$, this same space is the explicit
+graph
+\begin{equation}\tag{TDP25}
+\begin{gathered}
+z=(\lambda I-D_K)^{-1}B_{10}y,\qquad
+\mathscr O_\lambda=
+\ker\bigl[H+B_{01}(\lambda I-D_K)^{-1}B_{10}-\lambda I_B\bigr],\\
+\|(y,z)\|^2=
+y^*\bigl[I_B+B_{10}^\dagger(\bar\lambda I-D_K^\dagger)^{-1}
+ (\lambda I-D_K)^{-1}B_{10}\bigr]y.
+\end{gathered}
+\end{equation}
+Solving the second equation of TDP24 proves the first line, and taking
+the squared norm proves the second. At exceptional $\lambda$ TDP24
+remains the exact space, with no discarded singular fibre.
+
+For a nonzero original eigenvector $x$, set $y=J^\dagger x$ and
+$z=\iota_K^\dagger x$. Even when the programme proves $y\ne0$ for its
+terminal class, the exact observed equation is
+$(H-\lambda I)y=-B_{01}z$, not an eigenvalue equation for $H$ alone.
+Tensor products preserve the lift: $x^{\otimes\nu}$ maps to
+$y^{\otimes\nu}$ in the fully observed sector, and to every other
+subset sector of TDP18 with the appropriate $y$ or $z$ factor.
+If $y\ne0$, its exact detection ratio is
+\begin{equation}\tag{TDP26}
+\frac{\|J_\nu^\dagger x^{\otimes\nu}\|}{\|x^{\otimes\nu}\|}
+ =\left(\frac{\|y\|}{\sqrt{\|y\|^2+\|z\|^2}}\right)^\nu.
+\end{equation}
+This follows from the definition of the Hilbert tensor metric and
+TDP24. A fixed non-unit detection factor thus gives a linear logarithmic
+cost in the tensor count; it is not a fixed additive error that disappears
+after taking a tensor root. If $y=0$, the full lift still exists but its
+fully observed tensor sector is zero. No lower bound for that case has
+been invented.
+
+\subsection{What this changes in a Deligne-style amplification}
+
+Deligne's two relevant mechanisms have different exact inputs. In
+1.4.3--1.5.2 the cohomological denominator has a bounded weight shift;
+the trace formula identifies it with the Euler product; nonnegative
+coefficients for the even tensor powers prevent a local pole from
+being hidden inside the product. The finite tensor calculation
+$w(\alpha^{2\nu})=2\nu w(\alpha)$ then divides the fixed error by
+$2\nu$. In the supplied version of 3.2, an eigenvalue on $H^1_c$
+squares inside a K\"unneth component of a surface, while the surface
+estimate improves the induction error. Its displayed inequalities have
+the arithmetic implication
+\begin{equation}\tag{TDP27}
+2w(\alpha)<2+2^{-j}\quad\Longrightarrow\quad
+w(\alpha)<1+2^{-j-1}.
+\end{equation}
+This line is just division by two. Attribution of the full surrounding
+proof remains to Deligne; the local abbreviated English source is not
+used to supply omitted hypotheses or maps.
+
+For the present programme, TDP3 gives the actual prime eigenvalues,
+TDP24 gives their exact observation map, TDP18 gives the full tensor
+object, and TDP9 gives the exact local determinant after observation.
+The kernel contribution is the concrete rational function
+$\mathcal E_p$, not an unnamed missing term. Its support-only value in
+TDP15 cancels precisely the false poles that discarding the kernel
+would introduce. Accordingly the positivity of $A-A^2$ in ST9 cannot
+replace the noncancellation input in Deligne's pole argument: TDP15 is
+an exact example with a positive support defect and nontrivial pole
+cancellation. Likewise TDP21 and TDP26 calculate the tensor loss itself;
+the second support eigenvalue and the eigenvector's unobserved component
+are retained as spaces and maps, not removed by a weight declaration.
+
+All formulas apply separately at $N=q-1,q,2q-1,2q$. Any signed return
+uses the original signs $+,+,-,-$; for scalar absolute error estimates
+the triangle inequality gives the sum of the four respective errors.
+No cancellation between these cutoffs has been assumed. No equivalence
+between the original conductor and Deligne's full cohomological trace
+formula, and no conclusion about RH, is claimed from a compressed
+positivity assertion. The calculation instead supplies the exact
+prime-power, determinant and tensor defect objects that the original
+programme now has to evaluate, with their connecting maps proved.
+
+There is an exact positive receiver for every finite original prime
+combination, with the adjoint in the original metric. Let $\mathcal I$
+be any finite set of prime-power indices $(p,m)$, let $c_{p,m}\in\mathbb C$
+be arbitrary, and put $X=\sum_{(p,m)\in\mathcal I}c_{p,m}F_p^m$. Then
+\begin{equation}\tag{TDP28}
+\begin{aligned}
+\Phi(X^\dagger X)-\Phi(X)^\dagger\Phi(X)
+ &=(QXJ)^\dagger(QXJ)\\
+ &=\sum_{(p,m),(r,n)\in\mathcal I}
+ \overline{c_{p,m}}c_{r,n}\,
+ J^\dagger(F_p^m)^\dagger QF_r^nJ\succeq0.
+\end{aligned}
+\end{equation}
+Insertion of $I_E=P+Q$ between $X^\dagger$ and $X$ proves the first
+identity, since $Q^2=Q=Q^\dagger$ and $P=JJ^\dagger$. Expansion proves
+the second identity, with all phases retained. Evaluation on $b\in B$
+gives $\|QXJb\|_{G_N}^2$, proving positivity. This is an exact
+prime-action Gram identity. Equating it to Weil's scalar positivity
+functional would require an additional proved map; no such equality is
+asserted here. The positive adjoint-product defect and the Euler
+product defect in TDP9 are both calculated, and they have different
+factors: the latter contains $B_p(I-uD_p)^{-1}C_p$, without an adjoint.
+
+
+
+\section{Source identities and proof locations}
+\begin{enumerate}
+\item \emph{A Note on the Globalization Semiring $G(\mathbb Z)$},
+March 2026, exact original source with empty author field,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d2f0020a7c446f429682925c1c682d99ba86a4cc/workbenches/splitzero-tandem/foundations/globalization-semiring/globalization_note.tex}
+{pinned complete original TeX}. The source is read in full and retained
+unchanged. Corollaries \texttt{cor:prime-ideals}, \texttt{cor:dim-two},
+and Theorem \texttt{thm:zero-prime-not-irr} already contain the scalar
+prime results. The user's Gemini 2.5 Pro origin attribution is recorded
+above. The distinct deposit cited in Version 11 is
+\href{https://doi.org/10.5281/zenodo.18976982}{DOI 10.5281/zenodo.18976982};
+its metadata is not substituted for the supplied file's author field.
+The class-semigroup assertion of that original note is not used here:
+its displayed scalar set includes the supported ring zero. Indeed for
+every supported ideal $I_J$, multiplication by that zero gives
+$0I_J=\{0,\tau\}$; choosing both allowed scalars equal to zero
+identifies every pair of supported ideals in its stated equivalence.
+The later Version 11 normed
+ideal-class definition is a different, restricted definition.
+\item The Clankers, \emph{Split Support Geometry: Universal Zero
+Fibres, Arithmetic Curves, and Frobenius-Perfect Quantization},
+pre-publication Version 11, June 2026. Complete supplied source:
+\texttt{sources/FULL\_LATTICE\_FOUNDATION\_V11.tex}; exact original
+proof labels and source reading coverage are retained in the source
+ledger. The spectrum and branch theorems are used with their existing
+proofs, not represented as new.
+\item Garrett Birkhoff, \emph{Lattice Theory}, third edition,
+American Mathematical Society, 1967. Lattice-theoretic background
+credited by Version 11. The finite and infinite separation arguments
+needed here are written out in FLS7 and FLS13--18.
+\item Programme result SZ-20260922-028,
+\emph{What the original observation retains of split support},
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4ba9285b66af58a6d58fc502a494c1fb45ca5b79/workbenches/splitzero-tandem/continuations/20260922-support-transport/SUPPORT_SPECTRUM_AND_TERMINAL_MASS.md#L14}
+{complete ST1--20 proof, pinned edition}. Root downloaded this exact
+public file and verified equality with the retained source bytes.
+The original objects and metrics are ST1--3; the scalar action is ST4;
+the finite bounds are ST6--20. Their human sources are cited in that
+proof. FSJ1--13 derives the full-lattice extension of its scalar action.
+\item Alain Connes, \emph{Trace formula in noncommutative geometry
+and the zeros of the Riemann zeta function},
+\href{https://arxiv.org/abs/math/9811068v1}{arXiv:math/9811068v1},
+Section VI, equations (1)--(16). Original downloaded author TeX and
+unchanged source archive retained. Used in FLC1--5.
+\item Alain Connes, \emph{The Riemann Hypothesis: Past, Present and
+a Letter Through Time}, \href{https://arxiv.org/abs/2602.04022v1}
+{arXiv:2602.04022v1}, section \texttt{sectweilpos}, equations
+\texttt{wp} and \texttt{arch}, and its statement of Andr\'e Weil's
+criterion. Original author TeX read at these locations; used in
+FLC14--21, PDD1--15 and GPE5--12.
+\item Pierre Deligne, \emph{La conjecture de Weil. II},
+Publications Math\'ematiques de l'IH\'ES \textbf{52} (1980),
+137--252, \href{https://www.numdam.org/item/PMIHES_1980__52__137_0/}
+{original publication record}. The local supplied English TeX is a
+transcription/translation, not author LaTeX. Only the reading range
+stated in the TDP appendix is claimed; the new finite-dimensional
+identities in that appendix are proved there in full.
+\end{enumerate}
+\end{document}

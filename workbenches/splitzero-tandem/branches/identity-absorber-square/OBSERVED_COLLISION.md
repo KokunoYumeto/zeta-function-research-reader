@@ -4,7 +4,7 @@
 
 ## 1. Original metric, observation and retained parameters
 
-Retain the original data of [Native receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1 and NI25–29: \(q=(k+1)^2\), \(k\ge17\), \(k\equiv1\pmod4\), \(q-1\le N\le2q\), the original source quotient \((E,G_N)\), original polynomial \(Q_k\), and original surjective observation \(\Lambda:E\to B\). The source metric and quotient metric are positive definite. Write
+Retain the original data of [Native receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/NATIVE_DUAL_NUMBER_RECEIVER.md), NI1 and NI25–29: \(q=(k+1)^2\), \(k\ge17\), \(k\equiv1\pmod4\), \(q-1\le N\le2q\), the original source quotient \((E,G_N)\), original polynomial \(Q_k\), and original surjective observation \(\Lambda:E\to B\). The source metric and quotient metric are positive definite. Write
 \[
 Q_B=(\Lambda G_N^{-1}\Lambda^*)^{-1},\quad
 L=G_N^{-1}\Lambda^*Q_B,\quad J=LQ_B^{-1/2},\quad P_B=JJ^\dagger.
@@ -22,7 +22,7 @@ M=C+R,\quad C=C^\dagger,\quad R=\epsilon f e^\dagger,
 \quad e^\dagger f=0,\quad e^\dagger e=f^\dagger f=1.
 \tag{OC2}
 \]
-The complete definitions and proof from the original monic classes \(b_n=[p_n]\) are NI1–2 and the retained [OCP source](sources/OBSERVED_CURRENT_PLANE.tex), OCP5–7. Put
+The complete definitions and proof from the original monic classes \(b_n=[p_n]\) are NI1–2 and the retained [OCP source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/OBSERVED_CURRENT_PLANE.tex), OCP5–7. Put
 \[
 P_e=ee^\dagger,\quad \Pi=ee^\dagger+ff^\dagger,\quad
 F(s)=R+sP_e,\quad M(s)=C+F(s).
@@ -120,7 +120,7 @@ Therefore the collision lies on the real path exactly when the original current 
 y^*W_B(0)y=2b\Im(\bar c_g c_h)-2\epsilon\Im r\,|c_g|^2,
 \quad y^*W_B(s_*)y=2b\Im(\bar c_g c_h).
 \]
-This proves the rank-one correction for the marked bound; it preserves the phase of both components. Detailed sharp support inequalities and their module receivers are developed in [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md).
+This proves the rank-one correction for the marked bound; it preserves the phase of both components. Detailed sharp support inequalities and their module receivers are developed in [Observed support propagation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_SUPPORT_PROPAGATION.md).
 
 ## 4. Pullback through the determinant and resolvent of the whole operator
 

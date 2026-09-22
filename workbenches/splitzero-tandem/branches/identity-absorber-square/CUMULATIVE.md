@@ -1233,7 +1233,7 @@ The quotient crystalline prism of the retained mixed ideal also has an explicit 
 
 ## Integral receiver for the observed collision
 
-[Observed cotangent and Frobenius](OBSERVED_COTANGENT_FROBENIUS.md) constructs the integral family with relation \(z(z-as-b)=0\), where \(a\) is invertible and \(b\) is a separate coefficient. Its complex specialization is the actual observed family when \(a\mapsto u^*u\) and \(b\mapsto\epsilon u^*v\). At each prime its proved Frobenius respects the full shifted relation; the coordinatewise candidate has an explicitly calculated relation defect. The resulting completed crystalline-prism maps and their collision quotient are proved in that paper. The complex and p-adic models receive the common integral source through their displayed maps.
+[Observed cotangent and Frobenius](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COTANGENT_FROBENIUS.md) constructs the integral family with relation \(z(z-as-b)=0\), where \(a\) is invertible and \(b\) is a separate coefficient. Its complex specialization is the actual observed family when \(a\mapsto u^*u\) and \(b\mapsto\epsilon u^*v\). At each prime its proved Frobenius respects the full shifted relation; the coordinatewise candidate has an explicitly calculated relation defect. The resulting completed crystalline-prism maps and their collision quotient are proved in that paper. The complex and p-adic models receive the common integral source through their displayed maps.
 
 
 # A chain comparison from split-zero semimodules to arithmetic complexes
@@ -2272,7 +2272,7 @@ The definitions of \(\delta\)-rings and bounded crystalline prisms are those in 
 
 ## Shifted collision and its Frobenius defect
 
-The node cross-effect now has the observed-family receiver described in [Observed cotangent and Frobenius](OBSERVED_COTANGENT_FROBENIUS.md). The integral relation \(z(z-as-b)\), its exact node and Laurent maps, and its corrected Frobenius give a further receiver for the earlier mixed-node construction. The defect of the coordinatewise Frobenius is retained as an explicit polynomial; the corrected parameter map annihilates it. The paper states precisely which open-node maps preserve the chosen Frobenius and provides the common coefficient construction.
+The node cross-effect now has the observed-family receiver described in [Observed cotangent and Frobenius](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COTANGENT_FROBENIUS.md). The integral relation \(z(z-as-b)\), its exact node and Laurent maps, and its corrected Frobenius give a further receiver for the earlier mixed-node construction. The defect of the coordinatewise Frobenius is retained as an explicit polynomial; the corrected parameter map annihilates it. The paper states precisely which open-node maps preserve the chosen Frobenius and provides the common coefficient construction.
 
 
 # Cotangent and Frobenius data at the meeting of two branches
@@ -2630,7 +2630,7 @@ The figure records (N9)–(N13), (N21)–(N23) and (N25)–(N27). Its branch pic
 
 ## The observed collision as an exact node receiver
 
-[Observed cotangent and Frobenius](OBSERVED_COTANGENT_FROBENIUS.md) carries the node calculation to \(z(z-as-\epsilon r)=0\), with both directions of the coordinate map specified. Its relative cotangent differential is \(2z-as-\epsilon r\); its absolute differential also retains \(-az\,ds\). The collision fibre has its full derived degree-minus-one term, and the discriminant is \((as+\epsilon r)^2\). The accompanying integral model constructs a Frobenius respecting the shifted parameter and calculates the exact defect of the coordinatewise alternative. The Laurent localization comparison retains the original node coordinates instead of identifying different open rings.
+[Observed cotangent and Frobenius](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COTANGENT_FROBENIUS.md) carries the node calculation to \(z(z-as-\epsilon r)=0\), with both directions of the coordinate map specified. Its relative cotangent differential is \(2z-as-\epsilon r\); its absolute differential also retains \(-az\,ds\). The collision fibre has its full derived degree-minus-one term, and the discriminant is \((as+\epsilon r)^2\). The accompanying integral model constructs a Frobenius respecting the shifted parameter and calculates the exact defect of the coordinatewise alternative. The Laurent localization comparison retains the original node coordinates instead of identifying different open rings.
 
 
 # Mixed support, joined fibres, and their additive defects
@@ -3144,7 +3144,7 @@ In \(\mathscr L(M)\), every \(r_{\bot,m}\), \(m\ne0\), is nevertheless a nonzero
 
 ## Mixed support after the actual observation
 
-At the shifted observed collision the support complement is the original observed-current kernel. [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) proves its full \(\mathbb C\times D\)-module receiver and the exact two off-diagonal maps whose composite is \(\widetilde R\). Their reverse composite is zero, and the complete cubic receiver retains both source supports. The same paper proves the measured-support quadratic bounds and the exact signed correction to the original current. These are additional concrete receivers for the mixed-support structure, with all projections and their domains retained.
+At the shifted observed collision the support complement is the original observed-current kernel. [Observed support propagation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_SUPPORT_PROPAGATION.md) proves its full \(\mathbb C\times D\)-module receiver and the exact two off-diagonal maps whose composite is \(\widetilde R\). Their reverse composite is zero, and the complete cubic receiver retains both source supports. The same paper proves the measured-support quadratic bounds and the exact signed correction to the original current. These are additional concrete receivers for the mixed-support structure, with all projections and their domains retained.
 
 
 # A primitive for dual-number infinitesimals from the tau corner
@@ -3397,7 +3397,7 @@ The diagram records DN3–DN8 and DN13–DN21. Its two different maps involving 
 
 ## Receiver at the observed collision
 
-The original primitive \([1]-[e]\) also has a faithful receiver in the actual observed collision algebra: its dual-number coordinate maps to \(\widetilde R=F_B(-\epsilon r/a)\). Retaining the external factor sends \([\tau]\) to \(I_B\), supported \([e]\) to the range projection \(P\), and \([n]\) to \(P+n\widetilde R\). [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) proves the complete representation, its exact support kernel, projective module and cubic mixed factorization. [Observed collision](OBSERVED_COLLISION.md), OC9 and OC11, proves the specialization map and signed correction to the original arithmetic parameter zero.
+The original primitive \([1]-[e]\) also has a faithful receiver in the actual observed collision algebra: its dual-number coordinate maps to \(\widetilde R=F_B(-\epsilon r/a)\). Retaining the external factor sends \([\tau]\) to \(I_B\), supported \([e]\) to the range projection \(P\), and \([n]\) to \(P+n\widetilde R\). [Observed support propagation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_SUPPORT_PROPAGATION.md) proves the complete representation, its exact support kernel, projective module and cubic mixed factorization. [Observed collision](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COLLISION.md), OC9 and OC11, proves the specialization map and signed correction to the original arithmetic parameter zero.
 
 
 # The standard dual-number infinitesimal in the original arithmetic action
@@ -3716,7 +3716,7 @@ The complete source construction and standard-infinitesimal comparison are inclu
 
 ## Observed collision receiver
 
-The complete observation now has the exact shifted nilpotent \(\widetilde R=\epsilon vu^*-(\epsilon r/a)uu^*\). The generated dual-number algebra, the retained support representation, and its restriction Tor groups are proved in [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md). The Tor group is precisely the kernel of the original observed current, as well as that of the collision current. The range projection \(P=U(U^*U)^{-1}U^*\), the measured support \(A=UU^*\), and the original source projection remain connected by their explicit defect formulas. This extends NI19–29 to the actual observation and supplies the mixed-support cubic root there. [Observed collision](OBSERVED_COLLISION.md), OC5–OC17, supplies the affine base map and complete determinant/resolvent receiver.
+The complete observation now has the exact shifted nilpotent \(\widetilde R=\epsilon vu^*-(\epsilon r/a)uu^*\). The generated dual-number algebra, the retained support representation, and its restriction Tor groups are proved in [Observed support propagation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_SUPPORT_PROPAGATION.md). The Tor group is precisely the kernel of the original observed current, as well as that of the collision current. The range projection \(P=U(U^*U)^{-1}U^*\), the measured support \(A=UU^*\), and the original source projection remain connected by their explicit defect formulas. This extends NI19–29 to the actual observation and supplies the mixed-support cubic root there. [Observed collision](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COLLISION.md), OC5–OC17, supplies the affine base map and complete determinant/resolvent receiver.
 
 
 # An idempotent deformation of the original boundary infinitesimal
@@ -3948,7 +3948,7 @@ The figure shows the two branches \(z=0,z=s\), their zero fibre with dual-number
 
 ## Propagation through the original observation
 
-Under the original observation, ID2 becomes \(F_B(s)^2=(as+\epsilon r)F_B(s)\). Its exact hidden contribution is \((s-as-\epsilon r)F_B(s)\); its affine parameter map is \(t=as+\epsilon r\), with inverse \(s=(t-\epsilon r)/a\). The collision is \(s_*=-\epsilon r/a\), and \(\Im s_*=\operatorname{tr}W_B(0)/(2a)\). [Observed collision](OBSERVED_COLLISION.md), OC1–OC11, proves these formulas with the original metric. OC12–OC17 carries the same family through the full characteristic polynomial, resolvent, ordered marked pairings and exact eigenspace at a failed inverse. [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) proves the sharp signed support bounds, retaining the rank-one current correction.
+Under the original observation, ID2 becomes \(F_B(s)^2=(as+\epsilon r)F_B(s)\). Its exact hidden contribution is \((s-as-\epsilon r)F_B(s)\); its affine parameter map is \(t=as+\epsilon r\), with inverse \(s=(t-\epsilon r)/a\). The collision is \(s_*=-\epsilon r/a\), and \(\Im s_*=\operatorname{tr}W_B(0)/(2a)\). [Observed collision](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COLLISION.md), OC1–OC11, proves these formulas with the original metric. OC12–OC17 carries the same family through the full characteristic polynomial, resolvent, ordered marked pairings and exact eigenspace at a failed inverse. [Observed support propagation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_SUPPORT_PROPAGATION.md) proves the sharp signed support bounds, retaining the rank-one current correction.
 
 
 # Monoid algebras, infinitesimals, and the GCT question
@@ -4363,7 +4363,7 @@ Theorem 1 and the first receivers in Theorem 4 were already present in the prese
 
 ## 1. Original metric, observation and retained parameters
 
-Retain the original data of [Native receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1 and NI25–29: \(q=(k+1)^2\), \(k\ge17\), \(k\equiv1\pmod4\), \(q-1\le N\le2q\), the original source quotient \((E,G_N)\), original polynomial \(Q_k\), and original surjective observation \(\Lambda:E\to B\). The source metric and quotient metric are positive definite. Write
+Retain the original data of [Native receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/NATIVE_DUAL_NUMBER_RECEIVER.md), NI1 and NI25–29: \(q=(k+1)^2\), \(k\ge17\), \(k\equiv1\pmod4\), \(q-1\le N\le2q\), the original source quotient \((E,G_N)\), original polynomial \(Q_k\), and original surjective observation \(\Lambda:E\to B\). The source metric and quotient metric are positive definite. Write
 \[
 Q_B=(\Lambda G_N^{-1}\Lambda^*)^{-1},\quad
 L=G_N^{-1}\Lambda^*Q_B,\quad J=LQ_B^{-1/2},\quad P_B=JJ^\dagger.
@@ -4381,7 +4381,7 @@ M=C+R,\quad C=C^\dagger,\quad R=\epsilon f e^\dagger,
 \quad e^\dagger f=0,\quad e^\dagger e=f^\dagger f=1.
 \tag{OC2}
 \]
-The complete definitions and proof from the original monic classes \(b_n=[p_n]\) are NI1–2 and the retained [OCP source](sources/OBSERVED_CURRENT_PLANE.tex), OCP5–7. Put
+The complete definitions and proof from the original monic classes \(b_n=[p_n]\) are NI1–2 and the retained [OCP source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/OBSERVED_CURRENT_PLANE.tex), OCP5–7. Put
 \[
 P_e=ee^\dagger,\quad \Pi=ee^\dagger+ff^\dagger,\quad
 F(s)=R+sP_e,\quad M(s)=C+F(s).
@@ -4479,7 +4479,7 @@ Therefore the collision lies on the real path exactly when the original current 
 y^*W_B(0)y=2b\Im(\bar c_g c_h)-2\epsilon\Im r\,|c_g|^2,
 \quad y^*W_B(s_*)y=2b\Im(\bar c_g c_h).
 \]
-This proves the rank-one correction for the marked bound; it preserves the phase of both components. Detailed sharp support inequalities and their module receivers are developed in [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md).
+This proves the rank-one correction for the marked bound; it preserves the phase of both components. Detailed sharp support inequalities and their module receivers are developed in [Observed support propagation](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_SUPPORT_PROPAGATION.md).
 
 ## 4. Pullback through the determinant and resolvent of the whole operator
 
@@ -5006,7 +5006,7 @@ The original full observed arithmetic operator is \(C_B+\epsilon vu^*\); the col
 
 ![Retained observed support, original-current Tor and measured support](figures/19_observed_support.png)
 
-The diagram displays OSP22–OSP26 and OSP10–OSP14. Its Delta denotes the exact Gram determinant mathfrak d; its original support symbol e denotes the supported integer zero, separately from the metric source vector bearing that letter in the earlier operator notation. The complete sharp bound and equality-probe calculations are OSP33–OSP50. [Observed collision](OBSERVED_COLLISION.md), OC12–OC17, returns the same exact perturbation to the characteristic polynomial and inverse of the full arithmetic operator.
+The diagram displays OSP22–OSP26 and OSP10–OSP14. Its Delta denotes the exact Gram determinant mathfrak d; its original support symbol e denotes the supported integer zero, separately from the metric source vector bearing that letter in the earlier operator notation. The complete sharp bound and equality-probe calculations are OSP33–OSP50. [Observed collision](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COLLISION.md), OC12–OC17, returns the same exact perturbation to the characteristic polynomial and inverse of the full arithmetic operator.
 
 
 # Cotangent and Frobenius calculations for the observed collision
@@ -5026,7 +5026,7 @@ D=A/(s-s_*)=\mathbb C[z]/(z^2).
 \]
 The scalar \(\varepsilon\), the polynomial \(z\), and the external programme element \(\tau\) are different objects. The later integral parameter \(\mathsf b\) is formal. It is not an asserted \(p\)-adic value of \(\varepsilon r\), or of any area coefficient used elsewhere in the reader.
 
-The programme inputs are [Node cotangent, N1–N8, N16–N24 and N28–N32](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/NODE_COTANGENT.md) and [Prismatic comparison, Theorems P1–P5](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/PRISMATIC_COMPARISON.md). The observed family is the public result [DF1–12](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4ba9285b66af58a6d58fc502a494c1fb45ca5b79/workbenches/splitzero-tandem/continuations/20260922-support-transport/OBSERVED_DEFORMATION_AND_CURRENT.md#L22), rederived with its full operator receiver in [Observed collision](OBSERVED_COLLISION.md), OC1–OC17.
+The programme inputs are [Node cotangent, N1–N8, N16–N24 and N28–N32](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/NODE_COTANGENT.md) and [Prismatic comparison, Theorems P1–P5](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/PRISMATIC_COMPARISON.md). The observed family is the public result [DF1–12](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4ba9285b66af58a6d58fc502a494c1fb45ca5b79/workbenches/splitzero-tandem/continuations/20260922-support-transport/OBSERVED_DEFORMATION_AND_CURRENT.md#L22), rederived with its full operator receiver in [Observed collision](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COLLISION.md), OC1–OC17.
 
 The regular-hypersurface cotangent formula used below is Luc Illusie's regular-immersion theorem, *Complexe cotangent et déformations*, I, III Proposition 3.2.4(iii), combined with transitivity, II Proposition 2.1.2. Its exact source use is documented in the linked Node cotangent note, Section 10. This task read the two specified programme notes; it does not claim a new reading of Illusie's complete work. All calculations for the observed coefficients are proved below.
 

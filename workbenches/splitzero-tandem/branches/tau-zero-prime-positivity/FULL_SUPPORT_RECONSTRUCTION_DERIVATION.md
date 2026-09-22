@@ -1,0 +1,297 @@
+# Reconstruction over the full support lattice
+
+This calculation starts from the programme's actual support-amplitude semiring. It proves the precise comparison with the earlier scalar calculations, identifies information lost by all separate Boolean branch maps after linearization, and constructs a support-valued extension of the finite Weil packet form. It does not assert that a zeta zero off the critical line exists, or that positivity for the classical Weil distribution has been proved.
+
+The source definition and the existing spectrum theorem are in *Split Support Geometry: Universal Zero Fibres, Arithmetic Curves, and Frobenius-Perfect Quantization*, The Clankers, June 2026, Version 11. The file read for this derivation is `split_support_geometry_arithmetic_curve_v11910.tex`, SHA256 `8443cc0401b18d373939d992f0a2f5384ee2fa1130f059753d5f3972eec5052d`, Definition `def:lattice-split`, Theorems `thm:lattice-normal-form`, `thm:birkhoff-support-coordinates`, `thm:lattice-prime-classification`, `thm:spectral-ordinal-sum`, and `thm:support-base-change`, source lines1180–1871. Those results are prior programme mathematics. The different file `split_support_geometry_arithmetic_curve_v11.tex`, SHA256 `5fa6a55aa9d1a2e57599e206087d3d2466b25dd99fa1a90d5f86367aafab1b4d`, has the explicit branch-spectrum theorem at lines1925–1985. The editions are not treated as byte-identical.
+
+## 1. The base and its split comparison maps
+
+Let R be a nonzero commutative unital ring and L a nontrivial bounded distributive lattice. Write its bounds as 0_L and 1_L. Set
+\[
+S_L=G_L(R)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+\cup\{\widehat r=(r,1_L):r\in R\},
+\quad z_{1_L}=\widehat0=e_L,\quad z_{0_L}=\tau_L.
+\tag{FSR1}
+\]
+The overlap in this union consists of the one element e_L. The operations are
+\[
+(r,\lambda)+(s,\mu)=(r+s,\lambda\vee\mu),\qquad
+(r,\lambda)(s,\mu)=(rs,\lambda\wedge\mu).
+\tag{FSR2}
+\]
+In particular, \(\widehat r+z_\lambda=\widehat r\) and \(\widehat r z_\lambda=z_\lambda\), including r=0. Closure follows because every nonzero amplitude has top support. The semiring laws follow from those of R and the distributive lattice law. Its zero is tau_L and its unit is widehat1.
+
+Put S=G_B(R), with B={0,1}. The endpoint inclusion and each Boolean branch give maps
+\[
+\iota:S\longrightarrow S_L,\quad \tau\mapsto\tau_L,\quad r\mapsto\widehat r,
+\qquad
+\beta_\epsilon:S_L\longrightarrow S,\quad
+z_\lambda\mapsto z_{\epsilon(\lambda)},\quad \widehat r\mapsto r,
+\qquad \beta_\epsilon\iota=\mathrm{id}_S.
+\tag{FSR3}
+\]
+Here epsilon:L→B preserves the bounds, joins, and meets. Both maps preserve every operation in FSR2: on the zero fibre this is the lattice-map identity; on two supported amplitudes it is the identity of R; on a mixed pair it follows from the two identities after FSR2. Thus iota is injective and every beta_epsilon is surjective. The kernel congruence of beta_epsilon identifies exactly the zero-fibre elements with the same epsilon value, and no two distinct nonzero amplitudes. Its inverse image of the actual scalar zero is
+\[
+\beta_\epsilon^{-1}(\tau)=\{z_\lambda:\epsilon(\lambda)=0\}.
+\tag{FSR4}
+\]
+Its inverse image of the supported scalar zero is the complementary set of zero-fibre elements. This is the exact distinction between a zero ideal and a congruence in this comparison.
+
+The amplitude projection p_L:S_L→R has zero fibre Z_L={z_lambda}. Every homomorphism to a ring kills Z_L: the equality e_L+z_lambda=e_L implies this by additive cancellation in the target. The restriction to the supported copy then gives a unique ring homomorphism R→A. This proves the universal property of p_L, without identifying e_L with tau_L in S_L.
+
+For a domain R, the supported zero is a prime element in the divisibility sense:
+\[
+e_L S_L=Z_L,
+\qquad e_L\mid xy\ \Longleftrightarrow\ p_L(x)p_L(y)=0
+\ \Longleftrightarrow\ e_L\mid x\ \text{or}\ e_L\mid y.
+\tag{FSR5}
+\]
+The first equality follows from e_L z_lambda=z_lambda and e_L widehat r=e_L. The next equivalence follows from the first equality and the multiplication law. The last uses precisely the absence of zero divisors in R. The ideal Z_L is proper because widehat1 is outside it. The element e_L is not a unit, since every product with it has amplitude zero. It is reducible, since e_L=e_L e_L with two nonunits. Its primality and its multiplicative idempotence are simultaneous facts.
+
+For completeness the entire semiring-prime comparison can be obtained directly. If an ideal contains a supported amplitude, multiplication by e_L puts e_L in it, hence puts all of Z_L in it. Its supported amplitudes form a ring ideal J. An ideal containing no supported amplitude is Z_a for a proper lattice ideal a: joins follow from addition and downward closure follows from z_mu z_lambda=z_mu when mu≤lambda. Thus all ideals are Z_a and
+\[
+Q_J=Z_L\cup\{\widehat r:r\in J\}.
+\tag{FSR6}
+\]
+Testing FSR2 shows that Z_a is prime exactly when a is a prime lattice ideal, and Q_J is prime exactly when J is a ring prime. Every support prime is strictly below every arithmetic prime. For R=Z this includes
+\[
+Z_{\mathfrak a}\subsetneq Z_L=(e_L)=Q_{(0)}\subsetneq Q_{(p)}.
+\tag{FSR7}
+\]
+The basic opens are D(z_lambda)={Z_a:lambda∉a} and D(widehat r)=Spec_lat(L) union D_R(r). These formulas prove the topological ordinal sum, including its topology. Contraction along beta_epsilon sends the scalar prime {tau} to Z_(epsilon inverse0) and Q_q to Q_q. Contraction along iota sends every Z_a to {tau} and Q_q to Q_q. Consequently the scalar spectrum is a retract with an explicitly chosen section; it is not the entire support spectrum.
+
+## 2. Joint reconstruction before linearization
+
+Now assume L finite and let J(L) be its nonzero join-irreducible elements. For j∈J(L) put theta_j(lambda)=1 if j≤lambda and 0 otherwise. A join-irreducible is join-prime: if j≤lambda∨mu, distributivity gives j=(j∧lambda)∨(j∧mu), so one term equals j. Therefore theta_j is a bounded lattice homomorphism. Every nonzero element is the join of the join-irreducibles below it, by induction in the finite partially ordered set. Hence these characters jointly distinguish elements of L.
+
+Conversely, a Boolean branch has a prime filter whose least element j is the meet of its elements. If j=x∨y with neither x nor y equal to j, the primality of the filter contradicts the minimality of j. Thus j is join-irreducible, and the branch is theta_j. This proves the entire branch list.
+
+The product of all branch maps is the injective semiring map
+\[
+\Beta:S_L\longrightarrow\prod_{j\in J(L)}S,\qquad
+\Beta(x)=(\beta_j(x))_j.
+\tag{FSR8}
+\]
+Its image is exactly the following set. All coordinate amplitudes have a common value r. If r≠0, all coordinates are the same supported element r. If r=0, each coordinate is tau or e, and the set of coordinates equal to e is an order ideal in J(L). Indeed it is {j:j≤lambda} for the source z_lambda. Conversely, an order ideal A gives lambda=join A; join-primality shows that {j:j≤lambda}=A. This proves both surjectivity onto the displayed image and injectivity.
+
+For L=B^d the poset J(L) is an antichain of d atoms. Every subset is an order ideal, so FSR8 becomes an isomorphism
+\[
+G_{B^d}(R)\ \cong\ \underbrace{G(R)\times_R\cdots\times_R G(R)}_{d\text{ factors}},
+\tag{FSR9}
+\]
+where the maps to R are amplitude projections. This is different from the product of independent amplitude coordinates: the common-amplitude condition is part of the isomorphism, not an omitted restriction.
+
+For a general finite distributive L, FSR8 is the subsemiring of that fibre product whose zero-amplitude masks satisfy the stated order-ideal relations. The additive and multiplicative laws remain FSR2. All earlier scalar identities pull back along each beta_j. Conversely, if two S_L-valued expressions have equal images under every beta_j, FSR8 proves equality in S_L. This last conclusion concerns semiring-valued expressions; it does not yet concern their free additive envelopes.
+
+## 3. The exact extra kernel created by linearization
+
+For a commutative coefficient ring k define the contracted meet algebra
+\[
+C_L=k[(L,\wedge)]/([0_L]).
+\tag{FSR10}
+\]
+It is free as a k-module on u_lambda=[lambda] for lambda≠0_L, with u_0=0, unit u_1, and u_lambda u_mu=u_(lambda∧mu). It retains multiplication from support and introduces its own additive linear combinations. In particular u_(lambda∨mu) is not defined to be u_lambda+u_mu.
+
+For every nonzero a∈L, whether join-irreducible or not, define
+\[
+\eta_a(u_\lambda)=\mathbf1_{\{a\leq\lambda\}}.
+\tag{FSR11}
+\]
+This is a unital k-algebra homomorphism: a≤lambda∧mu holds exactly when both inequalities hold. With any linear extension of the order, its matrix has entries 1_(a≤lambda), is triangular with diagonal1, and is invertible over the integers. Consequently
+\[
+\eta:C_L\xrightarrow{\sim}\prod_{a\in L\setminus\{0\}}k.
+\tag{FSR12}
+\]
+No division in k is used.
+
+An explicit inverse uses the Möbius function of the finite order. Define mu(a,a)=1 and, for a<b, mu(a,b)=-sum_(a≤c<b)mu(a,c). The upper triangular incidence matrix Z_(ab)=1_(a≤b) has inverse with these entries: the recurrence proves MZ=I, and finite triangular matrices then also satisfy ZM=I. Define
+\[
+E_a=\sum_{\lambda\leq a}\mu(\lambda,a)u_\lambda.
+\tag{FSR13}
+\]
+Then eta_b(E_a)=sum_(b≤lambda≤a)mu(lambda,a)=delta_(ab). The term lambda=0 contributes zero. Thus
+\[
+E_aE_b=\delta_{ab}E_a,\qquad
+\sum_{a\neq0}E_a=u_1,\qquad
+u_\lambda=\sum_{0<a\leq\lambda}E_a.
+\tag{FSR14}
+\]
+These identities follow by applying the isomorphism FSR12, so hold over every coefficient ring.
+
+The linearized Boolean branch theta_j is precisely eta_j. Write
+\[
+K_L=\bigcap_{j\in J(L)}\ker\eta_j
+=\bigoplus_{a\in L\setminus(\{0\}\cup J(L))}kE_a.
+\tag{FSR15}
+\]
+This proves the full kernel, not only its dimension. Over a field its dimension is |L|−1−|J(L)|. It is a direct product of copies of k, with multiplicatively idempotent coordinate projectors. It is zero exactly when every nonzero lattice element is join-irreducible, equivalently when L is a chain. To verify the last equivalence, a chain has that property. If L is not a chain, choose incomparable a,b; then a∨b is nonzero and join-reducible.
+
+For L=B^2={0,a,b,1}, with a∧b=0 and a∨b=1,
+\[
+E_a=u_a,\qquad E_b=u_b,\qquad
+w=E_1=u_1-u_a-u_b,
+\quad w^2=w\neq0,
+\quad\eta_a(w)=\eta_b(w)=0.
+\tag{FSR16}
+\]
+Indeed the three terms are distinct basis vectors, proving nonzero, and direct expansion gives
+\((u_1-u_a-u_b)^2=u_1+u_a+u_b-2u_a-2u_b=u_1-u_a-u_b\).
+Thus the semiring branch maps in FSR8 distinguish every support element, but their separately linearized maps omit w. This is a proved failure of linearized reconstruction from separate branches. Its retained object is K_L with inclusion, coordinate projectors, and quotient given in FSR15.
+
+The nonzero a that are not join-irreducible give genuine mixed observables. For a with join-irreducible decomposition a=join_(j≤a)j,
+\[
+\eta_a(u_\lambda)=\prod_{j\leq a}\theta_j(\lambda).
+\tag{FSR17}
+\]
+Both sides are1 exactly when every j≤a lies below lambda, equivalently when a≤lambda. Thus a joint product of branch tests restores this missing coordinate. Separate branch expectations do not determine expectations of these products. FSR12 gives the complete recovery map using all these joint tests.
+
+## 4. Contracted multiplicative coefficients and the scalar retract
+
+Let Gamma_L=k[(S_L, multiplication)]/([tau_L]). Put E=[e_L] and F=1−E. Multiplication by E sends [z_lambda] to itself and [widehat r] to [e_L]. Thus E Gamma_L is C_L, embedded by u_lambda↦[z_lambda]. The complementary factor F Gamma_L has basis
+\[
+v_r=[\widehat r]-[e_L],\qquad r\in R\setminus\{0\},
+\tag{FSR18}
+\]
+and v_0=0. Their multiplication is v_r v_s=v_(rs), with zero when rs=0. Indeed expansion gives [widehat(rs)]−[e_L]−[e_L]+[e_L]. The two sets {[z_lambda]:lambda≠0} and {v_r:r≠0} form a basis: each original nonzero supported basis element is v_r+[e_L], and comparison of the distinct [widehat r] coefficients proves linear independence. Hence
+\[
+\Gamma_L\cong C_L\times D_R,
+\qquad D_R=k[(R,\times)]/([0_R]).
+\tag{FSR19}
+\]
+The formulas prove this for rings with zero divisors as well as domains. For R=Z the second factor is
+\[
+D_{\mathbb Z}\cong k[t,X_p:p\text{ rational prime}]/(t^2-1),
+\quad v_{-1}\mapsto t,\quad v_p\mapsto X_p.
+\tag{FSR20}
+\]
+Unique prime factorization of every nonzero integer proves a bijection of the displayed monomial bases and compatibility with multiplication.
+
+For scalar support the same construction is Gamma_B=k×D_R. Under FSR19 each branch and the scalar inclusion become
+\[
+\Gamma(\beta_j):(c,d)\longmapsto(\eta_j(c),d),
+\qquad
+\Gamma(\iota):(a,d)\longmapsto(a\,u_1,d).
+\tag{FSR21}
+\]
+These formulas follow on z_lambda and widehat r, which generate the algebras. The composite is the identity. The intersection of all branch kernels is exactly K_L×0. Thus the earlier arithmetic prime-label algebra D_R is preserved as an actual direct factor, and the missing support coefficient object is explicitly identified. This is stronger than saying that earlier work might survive.
+
+The evaluation map Gamma_L→R when k=Z sends [widehat r] to r and every [z_lambda] to0. For R=Z, FSR19–20 identify its kernel as
+\[
+C_L\times (t+1,\ X_p-p\text{ for every prime }p)\subset C_L\times D_{\mathbb Z}.
+\tag{FSR22}
+\]
+The quotient of D_Z by the displayed ideal is Z: every polynomial reduces to its integer evaluation, and that evaluation is the inverse of the resulting inclusion of Z. This proves equality of the kernel ideal. In particular all of C_L, including K_L, is killed by arithmetic addition. It remains present before that quotient. The inclusion and quotient in FSR19 and FSR22 give its exact relation to the arithmetic factor.
+
+## 5. Extension of complexes, operators, and all primary jets
+
+Take k=C for this section. Let (V^bullet,d) be any specified complex of complex vector spaces, with its original differentials. Its full support extension is
+\[
+V_L^\bullet=C_L\otimes_{\mathbb C}V^\bullet
+=\bigoplus_{a\neq0}E_a\otimes V^\bullet,
+\qquad d_L(E_a\otimes v)=E_a\otimes dv.
+\tag{FSR23}
+\]
+This is a defined construction, not an identification with a prismatic complex. Decomposition FSR14 proves directly
+\[
+\ker d_L=\bigoplus_a E_a\otimes\ker d,
+\qquad\operatorname{im}d_L=\bigoplus_a E_a\otimes\operatorname{im}d,
+\qquad H^q(V_L)=\bigoplus_a E_a\otimes H^q(V).
+\tag{FSR24}
+\]
+The first two equalities follow by equating the coefficients of the independent E_a. The third is their quotient. Thus a nonzero cohomology class of a specified old complex remains nonzero in every individual support sector. For every linear chain map T, the map 1⊗T preserves all sectors. A homotopy dH+Hd=T−T' extends to 1⊗H and satisfies the identical formula. The maps eta_j⊗id are chain maps, with joint kernel K_L⊗V^bullet. The scalar inclusion v↦u_1⊗v is split by every eta_j⊗id. These formulas specify exactly which part of this statement is functorial and which prismatic comparison still requires identifying the actual input complex.
+
+For the finite packet take the four distinct points
+\[
+\alpha_1=\rho,\qquad\alpha_2=1-\overline\rho,\qquad
+\alpha_3=\overline\rho,\qquad\alpha_4=1-\rho,
+\]
+where \(\rho=1/2+\delta+i\gamma\), \(0<\delta<1/2\) and \(\gamma>2\). Put \(d(s)=\prod_{i=1}^4(s-\alpha_i)\), \(h=d^m\) with \(m\ge1\), and \(A_h=\mathbb C[s]/(h)\). These parameters define a finite algebra for every such \(\rho\); they do not assert that \(\rho\) is a zeta zero. Pairwise coprimality gives the isomorphism to the four rings \(\mathbb C[t_i]/(t_i^m)\) by Taylor coefficients. To see its inverse explicitly, take \(h_i=h/(s-\alpha_i)^m\) and multiply \(h_i\) by the degree-\((m-1)\) Taylor polynomial of \(1/h_i\) at \(\alpha_i\). The resulting class \(e_i\) is 1 modulo \((s-\alpha_i)^m\) and 0 modulo each other primary power. Then
+\[
+\sum_{i=1}^4\sum_{b=0}^{m-1}c_{i,b}e_i(s-\alpha_i)^b
+\tag{FSR25}
+\]
+is the inverse image of the four Taylor polynomials. Injectivity follows because a polynomial vanishing to order m at all four points is divisible by h. This proves the complete primary decomposition and retains every jet.
+
+Evaluation \(\operatorname{ev}:A_h\to\mathbb C^4\) is surjective with kernel \(J_h=(d)/(d^m)\), of dimension \(4m-4\). Surjectivity follows from the \(e_i\). The kernel statement follows by divisibility by the four distinct linear factors. Choose any specified unit \(u\in A_h\) and write \(U=M_u\). Its four constant Taylor coefficients are nonzero; conversely that condition makes it a unit by the finite inverse of each truncated Taylor series. Then \(a_h=\operatorname{ev}U\) is onto with kernel \(J_h\). The old programme choice \(u=j_h(g/h)\), wherever that entire quotient defines a unit, is retained exactly by this construction; it is not substituted by 1.
+
+Extend \(A_h,J_h,U\) and \(a_h\) coefficientwise as in FSR23. If \(u_{i,b}\) denotes its Taylor coefficient, the full operator remains
+\[
+U_L\bigl((x_{a,i,b})_{a,i,b}\bigr)_{a,i,b}
+=\sum_{c=0}^{b}u_{i,c}x_{a,i,b-c}.
+\tag{FSR26}
+\]
+Thus no amplitude derivative, multiplicity, or support sector is omitted. Multiplication by \(s\) still acts on each basis element by \(\alpha_i\) times that element plus the next jet, with the last next jet zero. The kernel of the extended \(a_h\) is \(C_L\otimes J_h\), while the joint kernel of all branch maps on the entire algebra is \(K_L\otimes A_h\). These are distinct explicitly defined subspaces.
+
+## 6. The complete support-valued finite Weil pairing
+
+Let \(\sigma\) exchange 1 with 2 and 3 with 4. On \(\mathbb C^4\) set
+\[
+b(c,c')=m\sum_{i=1}^4\overline{c_{\sigma i}}c'_i,
+\qquad B_h(x,y)=b(a_hx,a_hy).
+\tag{FSR27}
+\]
+Complex conjugation and reindexing by \(\sigma\) prove Hermitian symmetry. The matrix of \(b\) is the sum of two blocks \(m\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)\), which is nonsingular and has one positive and one negative direction per block. Since \(a_h\) is onto with kernel \(J_h\), the radical of \(B_h\) is \(J_h\) and its inertia is \((2,2,4m-4)\). A full diagonal basis is
+\[
+\frac{U^{-1}(e_1+e_2)}{\sqrt{2m}},\quad
+\frac{U^{-1}(e_1-e_2)}{\sqrt{2m}},\quad
+\frac{U^{-1}(e_3+e_4)}{\sqrt{2m}},\quad
+\frac{U^{-1}(e_3-e_4)}{\sqrt{2m}},
+\]
+together with \(U^{-1}e_i(s-\alpha_i)^b\) for \(1\le i\le4\) and \(1\le b<m\). Direct evaluation gives squared values \(+1,-1\) and 0 as stated. This proves the finite result independently of any analytic zeta assertion.
+
+Give \(C_L\) the involution conjugating coefficients and fixing each \(E_a\). For \(x=\sum_a E_a\otimes x_a\) and \(y=\sum_a E_a\otimes y_a\) define
+\[
+\mathbb B_L(x,y)=\sum_{a\neq0}E_a B_h(x_a,y_a).
+\tag{FSR28}
+\]
+The definition is unambiguous by FSR14. It is \(C_L\)-Hermitian and sesquilinear by the scalar identities and orthogonality of the \(E_a\). Its radical is exactly \(C_L\otimes J_h\): if its values against all \(y\) vanish, choosing \(y\) supported on one sector shows that the corresponding \(x_a\) lies in the scalar radical. For every branch \(j\),
+\[
+\eta_j\bigl(\mathbb B_L(x,y)\bigr)
+=B_h((\eta_j\otimes\mathrm{id})x,(\eta_j\otimes\mathrm{id})y).
+\tag{FSR29}
+\]
+This is the proved comparison with the earlier scalar packet form.
+
+The intrinsic positive cone of the finite product algebra \(C_L\) is
+\[
+C_L^+=\left\{\sum_a c_a E_a:c_a\in\mathbb R_{\ge0}\right\}.
+\tag{FSR30}
+\]
+It equals \(\{v^*v:v\in C_L\}\), since each coordinate is an absolute square, and conversely each nonnegative coordinate has its nonnegative real square root. The regular-representation trace is \(\operatorname{tr}_{\rm reg}(\sum_a c_a E_a)=\sum_a c_a\): multiplication by \(E_a\) is the projection onto its one-dimensional coordinate. Consequently \(\operatorname{tr}_{\rm reg}\mathbb B_L\) has inertia
+\[
+\bigl(2(|L|-1),\ 2(|L|-1),\ (4m-4)(|L|-1)\bigr).
+\tag{FSR31}
+\]
+This follows from the direct sum of the explicit diagonal bases after FSR27. No claim identifies this finite trace with the adelic trace without the corresponding analytic map.
+
+Retaining only the sum of Boolean-branch traces means using \(\sum_{j\in J(L)}\eta_j\). The radical of that form is
+\[
+\left(\bigoplus_{j\in J(L)}E_j\otimes J_h\right)
+\oplus\left(K_L\otimes A_h\right),
+\tag{FSR32}
+\]
+and its inertia is
+\[
+\left(2|J(L)|,\ 2|J(L)|,\ (4m-4)|J(L)|+4m(|L|-1-|J(L)|)\right).
+\tag{FSR33}
+\]
+Each observed sector has exactly the scalar radical and each unobserved sector has its entire \(4m\)-dimensional space in the radical; this proves both formulas.
+
+For \(B^2\) let \(w\) be FSR16 and choose the fully specified element
+\[
+x=w\otimes U^{-1}(e_1-e_2).
+\tag{FSR34}
+\]
+Both branch images of \(x\) vanish, but
+\[
+\mathbb B_{B^2}(x,x)=-2m\,w\neq0.
+\tag{FSR35}
+\]
+The equality follows from FSR27 and \(w^2=w\). Thus zero results from all separate branch observations do not make the full support-valued form zero or positive. Replacing the minus by a plus in FSR34 gives \(+2m w\), so the omitted space carries both signs in this finite packet model. This is a concrete comparison result about the defined form. It is not a counterexample to RH: the arbitrary \(\rho\) in FSR25 has not been asserted to be a zeta zero.
+
+Finally the scalar inclusion \(x\mapsto u_1\otimes x\) obeys
+\[
+\mathbb B_L(u_1\otimes x,u_1\otimes y)=u_1 B_h(x,y).
+\tag{FSR36}
+\]
+It therefore preserves the old calculation as a diagonal subspace. Full support adds exact sectors and additional observations; it does not by itself repair a negative scalar value. This specifies the part of the old Weil construction that survives and the additional calculation required for an actual full-support adelic realization.

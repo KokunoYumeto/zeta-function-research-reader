@@ -1,0 +1,1038 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{xurl}
+\emergencystretch=3em
+\setcounter{tocdepth}{1}
+\newcommand{\Beta}{\mathrm{B}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2209}{\ensuremath{\notin}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{2228}{\ensuremath{\vee}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{The signed eight-state completion and its exact heat
+receivers}\label{the-signed-eight-state-completion-and-its-exact-heat-receivers}
+
+This note compares the original seven-point affine chart with its
+eight-state signed completion, keeping both original involutions. It
+calculates the complete trace forms, identifies the missing infinity
+state, and constructs a target path whose marked-root quotient is
+exactly the HEB heat family. The whole eight-state form is calculated on
+that path, including its length-four collision algebra.
+
+The original sources actually read are
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab45e221579a0d48ce2885b4ecdf1a6aefc24a20/workbenches/splitzero-tandem/continuations/20260920-fable-boundary-action/FABLE_TO_ORIGINAL_CONDUCTOR.tex}{\emph{The
+ES--Fable inverse correspondence in the original weighted conductor},
+FC36--FC47}, and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/005/independent/FINITE_SIGNED_COMPLETION.tex}{\emph{The
+finite signed-root completion with all original fibre algebras},
+FS1--FS27 and FS30--FS31}. The latter pinned TeX has the same bytes as
+the local source used here. Its reciprocal-coordinate construction,
+chart transitions, trace and local algebra proofs are retained. The
+receiving HEB equations are HEB15--HEB20 and HEB31--HEB32 of
+\href{HEAT_ENDPOINT_SIGN_BRIDGE.md}{the complete heat endpoint sign
+bridge proof}, read in full during the quarter comparison. The original
+heat clock also has the public proof
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ac168d55cbb400a6c8926a00d67909ba65646ac5/satellites/26_incompressible_fibre_heat.tex\#L389}{\emph{The
+original heat trajectories}, \texttt{eq:\allowbreak{}ifh-\allowbreak{}target-\allowbreak{}flow}}. All new
+comparisons and their hypotheses are proved below.
+
+\subsection{1. The original coordinates and the two completion
+charts}\label{the-original-coordinates-and-the-two-completion-charts}
+
+Write the first source coordinate called \(a\) in FS1 as \(\alpha\),
+solely to distinguish it from the HEB coefficient \(a_H\). This is the
+identity renaming of that coordinate. The other source coordinates
+remain \((y,z,w)\). The original factors are \[
+\begin{aligned}
+b&=i+\alpha y,&c&=-i+2\alpha y+\alpha^2z,\\
+d&=-iy-\alpha(iz+2y^2)-\alpha^2yz,&
+e&=2z-7iy^2+\alpha w,\\
+f&=iw+3iy^3-4yz+\alpha(6iy^2z+wy+4y^4)+2\alpha^2y^3z.
+\end{aligned}
+\tag{ESH1}
+\] The target is \(\mathbf U=(A,B,C,D)\), where \[
+P=(\alpha c,\alpha e+bd,\alpha f+be,bf),\qquad
+H_{\mathbf U}(U,V)=AU^4+U^3V+BU^2V^2+CUV^3+DV^4.
+\tag{ESH2}
+\] The retained factor identities are \(\alpha d+bc=1\) and
+\(\alpha^3f-\alpha^2be+\alpha b^2d-b^3c=1\). They follow by substituting
+(ESH1), and are the exact identities proved in FS1 and FC44--FC44b. Thus
+\((\alpha U+bV)(cU^3+dU^2V+eUV^2+fV^3)=H_{\mathbf U}\), with resultant
+one. The cubic coefficient is fixed at one; it is not another free
+parameter.
+
+Use \(R\) for the finite marked root called \(r\) in FS2, and \(T\) for
+its reciprocal factor called \(t\). The finite completed chart and the
+infinity chart are \[
+F_{\mathbf U}(R)=AR^4+R^3+BR^2+CR+D,
+\qquad F_{\mathbf U}(R)=0,\quad T^2=F'_{\mathbf U}(R),
+\tag{ESH3}
+\] \[
+k_{\mathbf U}(v)=A+v+Bv^2+Cv^3+Dv^4,
+\qquad k_{\mathbf U}(v)=0,\quad \Theta^2=-k'_{\mathbf U}(v).
+\tag{ESH4}
+\] On their overlap the maps are \[
+v=R^{-1},\quad \Theta=-T/R,\qquad
+R=v^{-1},\quad T=-\Theta/v.
+\tag{ESH5}
+\] They are inverse by substitution. Differentiating \(k(v)=v^4F(1/v)\)
+at a root gives \(k'(v)=-v^2F'(1/v)\), which verifies the
+squared-coordinate relation and its sign. On the original finite factor
+chart, \[
+R=-b/\alpha=-y-i/\alpha,\qquad T=1/\alpha,
+\qquad \alpha^2F'_{\mathbf U}(R)=1.
+\tag{ESH6}
+\] The finite completion allows \(T=0\); it does not declare
+\(1/\alpha\) to be an invertible coordinate at that boundary.
+
+For reference, the inverse factor formulas on \(T\ne0\) are \[
+\begin{aligned}
+\alpha&=T^{-1},&b&=-R/T,&c&=AT,\\
+d&=(1+AR)T,&e&=(B+R+AR^2)T,&
+f&=(C+BR+R^2+AR^3)T.
+\end{aligned}
+\tag{ESH7}
+\] They give \(\alpha d+bc=1\) directly. Their four product coefficients
+are \(A,B,C\), and \(-R(C+BR+R^2+AR^3)=D\), the last by \(F(R)=0\).
+Their resultant is \(T^{-2}F'(R)=1\). Thus these formulas prove the
+factor reconstruction with its original reciprocal coordinate.
+
+At \(v=0\), the infinity equations give \[
+A=0,\qquad \Theta^2=-1,\qquad
+\Theta=-i\text{ is included},\quad \Theta=i\text{ is omitted}.
+\tag{ESH8}
+\] Indeed the infinity factor chart has \(b=\Theta^{-1}\); the original
+source at \(\alpha=0\) has \(b=i\) by (ESH1), so its value is
+\(\Theta=-i\). The other sign has \(b=-i\) and does not belong to that
+original chart. This is the precise meaning of the missing eighth state.
+
+The missing infinity point is unramified. The relative derivative matrix
+of (ESH4) with respect to \((v,\Theta)\) has determinant
+\(2\Theta k'(v)\); at \(v=0\) its value is \(2\Theta\ne0\), since
+\(k'(0)=1\). This matrix is invertible there, proving the vanishing of
+the relative differential module and the absence of ramification in that
+chart. On the finite chart the same determinant is \(2T F'(R)=2T^3\), so
+its ramification support is \(T=0\). The infinity points never belong to
+that support. These calculations reproduce the relevant part of
+FS16--FS17 and prove that the omitted infinity sign is not the nilpotent
+collision.
+
+\subsection{2. The entire completed fibre at the original seven-point
+target}\label{the-entire-completed-fibre-at-the-original-seven-point-target}
+
+At \[
+\mathbf U_*=(0,0,-1,0),\qquad
+H_*(U,V)=UV(U-V)(U+V),\qquad F_*(R)=R^3-R,
+\tag{ESH9}
+\] the projective roots are \(\infty,0,1,-1\), all simple. At the finite
+roots the derivative values are \[
+F'_*(0)=-1,\qquad F'_*(1)=F'_*(-1)=2.
+\tag{ESH10}
+\] The completed complex fibre algebra is therefore exactly \[
+\mathcal A_*=
+\frac{\mathbb C[T_0]}{(T_0^2+1)}
+\times\frac{\mathbb C[T_+]}{(T_+^2-2)}
+\times\frac{\mathbb C[T_-]}{(T_-^2-2)}
+\times\frac{\mathbb C[\Theta]}{(\Theta^2+1)}.
+\tag{ESH11}
+\] To prove the finite splitting, the idempotents in
+\(\mathbb C[R]/(R^3-R)\) are \[
+e_0=1-R^2,\qquad e_+=(R^2+R)/2,\qquad e_-=(R^2-R)/2.
+\tag{ESH12}
+\] They evaluate as the three separate indicator functions at
+\(0,1,-1\). Their products, sum and squares are consequently the
+orthogonal idempotent identities: a polynomial remainder of degree at
+most two vanishing at the three distinct roots is zero. Applying those
+idempotents to the relation \(T^2=3R^2-1\) gives the first three factors
+in (ESH11). The infinity root is the disjoint fourth root of the
+projective root fibre, and (ESH8) gives its fourth factor. Each
+quadratic has two distinct roots, so each is reduced and of dimension
+two. The total dimension is eight and every geometric point is reduced.
+
+The eight points are \[
+(0,\pm i),\quad(1,\pm\sqrt2),\quad(-1,\pm\sqrt2),
+\quad(\infty,\Theta=\pm i).
+\tag{ESH13}
+\] The first entry marks the projective root; the second is its retained
+sign coordinate. The source chart includes the first six and
+\((\infty,-i)\). At the latter, FS13 gives the original point
+\((\alpha,y,z,w)=(0,0,i/2,0)\). At \((\infty,i)\), the factor
+coordinates are exactly \[
+(\alpha,b,c,d,e,f)=(0,-i,i,0,-i,0),
+\tag{ESH14}
+\] by (ESH8) and the product coefficients. This is the omitted sign in
+FC44b, not an additional root or an identification of two labels.
+
+\subsection{3. Both original involutions, with coefficient conjugation
+separate}\label{both-original-involutions-with-coefficient-conjugation-separate}
+
+The completed sign deck involution is \[
+\Sigma:(R,T)\longmapsto(R,-T),\qquad
+(v,\Theta)\longmapsto(v,-\Theta).
+\tag{ESH15}
+\] Its formulas agree through (ESH5), preserve the equations, and square
+to the identity. They are the completed version of the simultaneous
+factor sign in FC43--FC44. Let \(\kappa\) conjugate coefficients and fix
+the displayed coordinate generators; it is defined on a fibre over real
+\((A,B,C,D)\). The conjugate-deck involution is
+\(\#_\Sigma=\Sigma\kappa\), so it negates \(T,\Theta\) and fixes the
+real root variable \(R\), while conjugating scalars.
+
+The other original involution is \[
+J(\alpha,y,z,w)=(-\alpha,-y,z,-w).
+\tag{ESH16}
+\] Substituting in (ESH1) sends the factor tuple to
+\(( -\alpha,b,c,-d,e,-f)\), so its target map and completion charts are
+\[
+J_{\mathrm{out}}(A,B,C,D)=(-A,-B,C,-D),
+\tag{ESH17}
+\] \[
+J:(R,T)\longmapsto(-R,-T),\qquad
+(v,\Theta)\longmapsto(-v,\Theta).
+\tag{ESH18}
+\] The first formula follows from (ESH6), and the second from (ESH5). To
+verify the equations on their whole domains, one has
+\(F_{J_{\mathrm{out}}\mathbf U}(-R)=-F_{\mathbf U}(R)\),
+\(F'_{J_{\mathrm{out}}\mathbf U}(-R)=F'_{\mathbf U}(R)\), and the
+identical two identities for \(k\) at \(-v\). Thus (ESH18) is the full
+map, including completion points. The target \(\mathbf U_*\) is fixed,
+so \(\#_J=J\kappa\) is an involution of this fibre. It is different from
+\(\#_\Sigma\).
+
+\subsection{4. The complete trace forms and their
+signatures}\label{the-complete-trace-forms-and-their-signatures}
+
+For the quadratic algebra \(K_\mu=\mathbb C[T]/(T^2-\mu)\), with real
+\(\mu\ne0\), multiplication in the unchanged basis \((1,T)\) gives \[
+\operatorname{Tr}_{K_\mu}(c+dT)=2c.
+\tag{ESH19}
+\] Indeed multiplication by \(T\) has matrix
+\(\begin{psmallmatrix}0&\mu\\1&0\end{psmallmatrix}\). Hence the
+coefficient-conjugation and conjugate-deck Hermitian forms have
+respective Gram matrices \[
+[Q_\kappa]=\operatorname{diag}(2,2\mu),\qquad
+[Q_{\#_\Sigma}]=\operatorname{diag}(2,-2\mu),
+\quad Q_\iota(x,y)=\operatorname{Tr}(\iota(x)y).
+\tag{ESH20}
+\] These formulas follow also by multiplying \((\bar c+\bar dT)(e+fT)\)
+or \((\bar c-\bar dT)(e+fT)\) and taking twice the scalar coefficient.
+They verify the full forms in both arguments.
+
+In the factor order of (ESH11), with each basis \((1,T)\) retained, the
+whole Gram matrices are \[
+[Q_\kappa]=\operatorname{diag}(2,-2,2,4,2,4,2,-2),
+\tag{ESH21}
+\] \[
+[Q_{\#_\Sigma}]=\operatorname{diag}(2,2,2,-4,2,-4,2,2).
+\tag{ESH22}
+\] Both happen to have inertia \((6,2,0)\), but their negative subspaces
+belong to different factors. Here and below inertia lists positive,
+negative and radical dimensions. The complex bilinear trace without an
+antilinear involution has no ordered signature; (ESH21) is its
+coefficient-conjugation Hermitian version, or its real coefficient
+restriction.
+
+The native involution has a different complete matrix. In the ordered
+basis \[
+(e_0,e_0T,\ e_+,e_-,\ e_+T,e_-T,\ e_\infty,e_\infty\Theta)
+\] one has \[
+[Q_{\#_J}]=
+\begin{pmatrix}2&0\\0&2\end{pmatrix}
+\oplus\begin{pmatrix}0&2\\2&0\end{pmatrix}
+\oplus\begin{pmatrix}0&-4\\-4&0\end{pmatrix}
+\oplus\begin{pmatrix}2&0\\0&-2\end{pmatrix}.
+\tag{ESH23}
+\] For proof, (ESH18) fixes the root 0 and negates its sign,
+interchanges \(e_+,e_-\) and negates \(T\), and fixes the infinity
+coordinate \(\Theta\). Thus, for example, \(\#_J(e_+T)=-e_-T\), whose
+pairing with \(e_-T\) is \(-\operatorname{Tr}(2e_-)=-4\). The mixed
+products between different root factors vanish, and (ESH20) gives the
+remaining blocks. Each off-diagonal two-by-two block has one eigenvalue
+of each sign. Therefore \[
+\operatorname{inertia}(Q_{\#_J})=(5,3,0).
+\tag{ESH24}
+\] Neither calculation assumes that one of these finite forms is the
+global Weil form.
+
+\subsection{5. Omitting precisely one of the eight
+states}\label{omitting-precisely-one-of-the-eight-states}
+
+Let \(m=(\infty,i)\) be the missing point. Its idempotent, supported in
+the infinity factor, is \[
+e_m=(0,0,0,(1-i\Theta)/2),\qquad
+e_n=(0,0,0,(1+i\Theta)/2),
+\tag{ESH25}
+\] where \(n=(\infty,-i)\) is the retained point. Evaluation at
+\(\Theta=\pm i\) verifies that these are the respective indicator
+functions. Therefore the exact original seven-state quotient is \[
+q:\mathcal A_*\longrightarrow\mathcal A_7:=\mathcal A_*/\mathbb Ce_m,
+\qquad
+\mathcal A_*\cong\mathcal A_7\times\mathbb C.
+\tag{ESH26}
+\] The last factor is evaluation at \(m\). Its inverse inserts that
+value at the omitted coordinate, while the canonical nonunital section
+of \(q\) inserts zero there. These maps are the full coordinate maps,
+not a count alone.
+
+Coefficient conjugation in (ESH25) gives the exact stability results \[
+\#_\Sigma(e_m)=e_m,\qquad
+\Sigma(e_m)=\kappa(e_m)=e_n,
+\qquad J(e_m)=e_m,\quad \#_J(e_m)=e_n.
+\tag{ESH27}
+\] Thus \(\#_\Sigma\) descends to \(\mathcal A_7\), whereas \(\Sigma\),
+\(\kappa\), and \(\#_J\) individually do not. Pure native \(J\) does
+descend. For the descended conjugate-deck trace one has, on arbitrary
+lifts \(f,g\), \[
+Q_{\#_\Sigma,7}(qf,qg)
+=Q_{\#_\Sigma,*}(f,g)-\overline{f(m)}g(m).
+\tag{ESH28}
+\] This follows from the direct-product trace and the fact that \(m\) is
+fixed by the point action of \(\#_\Sigma\). The removed summand is
+positive. Consequently \[
+\operatorname{inertia}(Q_{\#_\Sigma,7})=(5,2,0).
+\tag{ESH29}
+\] In particular the two explicit retained vectors \(e_+T,e_-T\) still
+have value \(-4\), and are mutually orthogonal by (ESH22). Removing the
+omitted infinity point has not removed either negative direction.
+
+For the native Hermitian form there is instead the restriction to the
+retained corner \((1-e_m)\mathcal A_*\). Its infinity line
+\(\mathbb Ce_n\) is radical because \(\#_J(e_n)=e_m\), whose product
+with every retained element is zero. The other six-dimensional block has
+inertia \((4,2,0)\) from (ESH23), so this restricted form has \[
+\operatorname{inertia}
+\bigl(Q_{\#_J}|_{(1-e_m)\mathcal A_*}\bigr)=(4,2,1).
+\tag{ESH30}
+\] It is not a trace form of a descended native involution. Indeed
+\(Q_{\#_J}(e_m,e_n)=\operatorname{Tr}(e_n)=1\), so adding a
+representative from the killed ideal can change the original pairing.
+This proves directly why that full form cannot be defined on the
+quotient by choosing arbitrary lifts.
+
+The exact native-stable quotient generated by this omission is also
+determined. The smallest \(\#_J\)-stable ideal containing
+\(\mathbb Ce_m\) is \[
+\mathcal I_{\mathrm{stable}}=\mathbb Ce_m\oplus\mathbb Ce_n
+=e_\infty\mathcal A_*.
+\tag{ESH30a}
+\] Every stable ideal containing \(e_m\) must contain its image \(e_n\);
+conversely their sum is an ideal and is stable by (ESH27). This proves
+minimality and the universal quotient property: any algebra quotient
+with an induced native involution and killing \(e_m\) factors uniquely
+through \(\mathcal A_6=\mathcal A_*/\mathcal I_{\mathrm{stable}}\), the
+product of the three finite root factors. Its native trace form has
+inertia \((4,2,0)\) by the first three blocks of (ESH23). The restricted
+seven-dimensional form (ESH30) factors through the further projection
+\(\mathcal A_7\to\mathcal A_6\), whose kernel is its radical
+\(\mathbb Ce_n\). This gives the complete projection and radical maps,
+rather than an involution assigned to a nonstable quotient.
+
+Restoring the eighth coordinate has a different exact effect. In the
+infinity point basis \((e_m,e_n)\), the native trace block is \[
+\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\tag{ESH30b}
+\] The diagonal entries vanish because the two different point
+idempotents multiply to zero after applying \(\#_J\), and the cross
+entries are the trace-one values just computed. Its eigenvectors
+\(e_m+e_n\) and \(e_m-e_n\) have positive and negative values 2 and
+\(-2\). Completing the eighth state therefore restores the full
+nondegenerate hyperbolic pair, whose restriction to the retained
+one-dimensional infinity corner was radical. Under \(\#_\Sigma\), by
+contrast, these two point idempotents are separately fixed and form two
+positive scalar summands, as (ESH27)--(ESH29) show.
+
+There is a literal occurrence of the fraction \(1/8\) in the normalized
+trace, with a different meaning. If
+\(\operatorname{tr}_8=\operatorname{Tr}/8\), then \[
+\operatorname{tr}_8(1)=1,\qquad
+\operatorname{tr}_8(e_m)=1/8,\qquad
+\operatorname{tr}_8(e_\infty)=1/4.
+\tag{ESH31}
+\] These follow because the three idempotents have ranks eight, one and
+two as multiplication projectors. The value \(1/8\) is the normalized
+mass of that one reduced state. It supplies no parameter evolution by
+itself. The next sections give actual parameter maps and calculate their
+full forms.
+
+\subsection{6. Exact boundary maps to the HEB quadratic
+forms}\label{exact-boundary-maps-to-the-heb-quadratic-forms}
+
+Write the HEB algebra and involution as \[
+E_{a_H}=\mathbb C[r_H]/(r_H^2+a_H),\qquad
+r_H^\#=-r_H,\quad z^\#=\bar z\ (z\in\mathbb C).
+\tag{ESH32}
+\] Its full regular trace form in basis \((1,r_H)\) is
+\(\operatorname{diag}(2,2a_H)\), by the same multiplication argument as
+(ESH19)--(ESH20). The original heat clock is \(a_H(h)=-1/4+2h\).
+
+For the infinity algebra \(I=\mathbb C[\Theta]/(\Theta^2+1)\), the exact
+conjugate-deck isomorphism is \[
+\phi_\Sigma:E_{1/4}\xrightarrow{\sim}I,
+\qquad r_H\longmapsto\Theta/2,
+\qquad\phi_\Sigma^{-1}(\Theta)=2r_H.
+\tag{ESH33}
+\] The squared relation follows from \(\Theta^2=-1\), and substitution
+gives both inverse compositions. Since \(\#_\Sigma(\Theta)=-\Theta\),
+the map preserves the involution. An algebra isomorphism conjugates
+multiplication matrices in the corresponding bases, so preserves regular
+trace and hence the full reflected pairing. Equivalently the target
+matrix \(\operatorname{diag}(2,2)\) pulls back under \(r_H=\Theta/2\) to
+\(\operatorname{diag}(2,1/2)\), exactly the HEB matrix at \(a_H=1/4\).
+That value corresponds to heat time \(h=1/4\), not the nilpotent time
+\(h=1/8\).
+
+For the native involution on the same infinity algebra there is a
+different exact comparison: \[
+\phi_J:E_{-1/4}\xrightarrow{\sim}I,
+\qquad r_H\longmapsto i\Theta/2,
+\qquad\phi_J^{-1}(\Theta)=-2i r_H.
+\tag{ESH34}
+\] Here \((i\Theta/2)^2=1/4\), so the source relation is respected.
+Native \(\#_J\) fixes \(\Theta\) and conjugates \(i\), hence negates
+\(i\Theta/2\). Both inverse compositions and involution compatibility
+follow by substitution, and the algebra isomorphism again preserves
+trace. Its form has inertia \((1,1,0)\), corresponding to HEB heat time
+\(h=0\). The scalar \(i\) is part of the map: this is a complex algebra
+and conjugate-linear-involution comparison, not an identification of the
+coefficient-fixed real presentations. In particular (ESH33) must not be
+used as a native-involution isometry.
+
+The factor projection \(\mathcal A_*\to I\) and the corner inclusion
+\(I\to\mathcal A_*\), with zero in the three other factors, are explicit
+algebra maps. The projection is unital; the inclusion sends its unit to
+\(e_\infty\). The inclusion preserves regular trace and the
+corresponding involution, while the projection retains only its factor
+contribution to the total trace. No unital trace-preserving map from the
+entire rank-eight algebra to this rank-two algebra could exist, since
+the traces of their units are eight and two. The full trace comparison
+is the sum of the four factor traces in (ESH11), not the projection
+alone.
+
+The reduced infinity pair is not the collision algebra \(E_0\), and
+their precise morphisms show what is lost. Every unital complex algebra
+map \(I\simeq\mathbb C^2\to E_0\) is one of the two point evaluations
+followed by the scalar inclusion. Indeed an idempotent in \(E_0\) has
+form \(c+dr_H\); its square equation gives \(c^2=c\) and \((2c-1)d=0\),
+hence it is 0 or 1. The two complementary idempotents of \(I\) must
+therefore map to 0 and 1. Conversely each choice is a map. Every unital
+map \(E_0\to I\) kills \(r_H\), since its image would be nilpotent in
+the reduced algebra \(I\); hence it is the reduction map followed by the
+diagonal scalar inclusion. Thus every composite from \(E_0\) through
+\(I\) kills its nonzero nilpotent. The retained dual-number direction is
+genuinely present in the other heat receiver constructed next.
+
+\subsection{7. A target path whose marked-root quotient is exactly the
+original heat
+algebra}\label{a-target-path-whose-marked-root-quotient-is-exactly-the-original-heat-algebra}
+
+Define the following explicit path in the unchanged quartic coefficient
+target: \[
+\gamma_+(h)=(0,0,-1-16h,16h),\qquad
+F_h(R)=R^3-(1+16h)R+16h
+=(R-1)(R^2+R-16h).
+\tag{ESH35}
+\] It begins at \(\mathbf U_*\). This is a target path chosen to pull
+back the HEB clock; it is not asserted to be a native PDE evolution of
+the whole quartic. The marked root \(R=1\) is retained for every
+parameter, and \[
+F'_h(1)=2-16h=-8a_H(h).
+\tag{ESH36}
+\] The finite signed algebra over this path is \[
+\mathcal B=
+\frac{\mathbb C[h,R,T]}{(F_h(R),\ T^2-(3R^2-1-16h))}.
+\tag{ESH37}
+\] It is free of rank six over \(\mathbb C[h]\): first divide by the
+monic cubic in \(R\), then by the monic quadratic in \(T\), giving basis
+\(1,R,R^2,T,TR,TR^2\). Evaluation at the marked root gives the
+surjective algebra map \[
+\pi_1:\mathcal B\longrightarrow
+\mathcal K=\mathbb C[h,T]/(T^2-2+16h),
+\qquad R\longmapsto1,\ T\longmapsto T,
+\quad\ker\pi_1=(R-1).
+\tag{ESH38}
+\] The kernel assertion follows by taking the quotient of the displayed
+presentation by \(R-1\); the resulting presentation is exactly
+\(\mathcal K\). It supplies the entire scheme-theoretic marked-root
+quotient even where the root is multiple.
+
+There is a full family isomorphism \[
+\mathbb C[h,r_H]/(r_H^2-1/4+2h)
+\xrightarrow{\sim}\mathcal K,
+\qquad r_H\longmapsto\frac{T}{2\sqrt2},
+\qquad\text{inverse: }T\longmapsto2\sqrt2r_H.
+\tag{ESH39}
+\] The relation follows because \(T^2/8=1/4-2h\); the inverse
+substitution recovers both generators. The scale \(2\sqrt2\) is
+retained. For real \(h\), \(\#_\Sigma\) fixes the marked root and sends
+\(T\) to \(-T\), so the quotient and this isomorphism preserve the HEB
+involution. The isomorphism preserves the regular trace of the rank-two
+receiver by conjugating its multiplication matrices. The projection
+selects that receiver; its relation to the whole trace is given
+separately below. In particular the receiver's pulled-back full trace
+form is exactly \[
+Q_{\mathrm{heat},h}=2|c|^2+2a_H(h)|d|^2
+\quad\text{on }c+dr_H.
+\tag{ESH40}
+\] This is an actual comparison with the HEB threshold \(h=1/8\),
+arising from a finite marked-root factor, not from the missing infinity
+sign.
+
+Away from \(h=1/8\), the marked factor is an actual direct summand of
+the finite fibre. An explicit root idempotent is \[
+e_1(R;h)=\frac{R^2+R-16h}{2-16h}.
+\tag{ESH41}
+\] It has value 1 at \(R=1\) and vanishes on the other quadratic factor.
+Since the two factors are comaximal when \(2-16h\ne0\), these values
+prove its idempotence in the quotient; alternatively multiply the
+polynomial identities and reduce by \(F_h\). The inverse to the
+resulting factor decomposition inserts the rank-two algebra by
+multiplying its representatives by \(e_1\). Its regular trace equals the
+whole-fibre trace on that corner because multiplication is zero on the
+complementary factors. At \(h=1/8\), the denominator vanishes and that
+idempotent expression cannot be retained; (ESH38) remains the valid
+quotient.
+
+The infinity component stays constant along the entire path: \(A=0\),
+\(k'_h(0)=1\), and \(\Theta^2=-1\) by (ESH8). Thus the completed whole
+fibre is the finite signed algebra of (ESH37) plus this constant
+rank-two infinity factor. The omission of \(\Theta=i\) is unchanged
+throughout the path. In the original source its included point is \[
+(\alpha,y,z,w)=\left(0,0,\frac{i(1+16h)}2,-16h\right),
+\tag{ESH42}
+\] obtained from the original \(\alpha=0\) formula
+\(P=(0,y,2iz+7y^2,-4iyz-w-3y^3)\). Its target is exactly
+\(\gamma_+(h)\). This supplies a concrete check that the old infinity
+chart and its omitted sign remain different from the moving finite-root
+collision.
+
+\subsection{8. The full eight-state trace on the chosen
+path}\label{the-full-eight-state-trace-on-the-chosen-path}
+
+For \(h\ge0\), put \(s_h=\sqrt{1+64h}>0\). The three finite roots are \[
+R_1=1,\qquad R_+(h)=\frac{-1+s_h}{2},\qquad
+R_-(h)=\frac{-1-s_h}{2}.
+\tag{ESH43}
+\] They are distinct except when \(h=1/8\), where \(R_+=R_1=1\) and
+\(R_-=-2\). This follows directly from their formulas; \(R_-\le-1\)
+never meets the other two. The exact derivative values are \[
+\mu_1=2-16h,\qquad
+\mu_+=\frac{s_h(s_h-3)}2,\qquad
+\mu_-=\frac{s_h(s_h+3)}2>0.
+\tag{ESH44}
+\] For proof, differentiate (ESH35). At a root of its quadratic factor
+the product derivative is \((R-1)(2R+1)\), and substitution of (ESH43)
+gives the last two expressions; the first is (ESH36).
+
+For distinct roots the complete fibre decomposition is \[
+\mathcal A_h\simeq
+\mathbb C[T_1]/(T_1^2-\mu_1)
+\times\mathbb C[T_+]/(T_+^2-\mu_+)
+\times\mathbb C[T_-]/(T_-^2-\mu_-)
+\times I.
+\tag{ESH45}
+\] The projections evaluate \(R\) at the three displayed roots and use
+the infinity chart for \(I\). The inverse maps use the three Lagrange
+idempotents \(e_j(R)=\prod_{k\ne j}(R-R_k)/(R_j-R_k)\), multiplying a
+sign polynomial by its root idempotent. Their denominators are nonzero
+exactly in the stated distinct-root domain. Evaluations prove their
+orthogonal-idempotent relations, sum and inverse compositions, as in
+(ESH12). Thus the entire decomposition and all factor trace comparisons
+are explicit.
+
+Each real root factor is preserved by \(\#_\Sigma\). By (ESH20), a
+derivative \(\mu<0\) contributes two positive dimensions, while
+\(\mu>0\) contributes one positive and one negative dimension. The
+infinity factor always contributes two positive dimensions. For
+\(0\le h<1/8\) the derivative signs in the order (ESH44) are
+\((+,-,+)\); for \(h>1/8\) they are \((-,+,+)\). Hence \[
+\boxed{\operatorname{inertia}(Q_{\#_\Sigma,\mathcal A_h})=(6,2,0)
+\quad(h\ge0,\ h\ne1/8).}
+\tag{ESH46}
+\] The sign gained by the fixed marked-root heat factor is exactly
+accompanied by the opposite change in the \(R_+\) factor. The \(R_-\)
+factor remains indefinite throughout. An explicit negative vector on
+that persistent factor is \(e_-T\), with value \[
+Q_{\#_\Sigma}(e_-T,e_-T)=-2\mu_-<0.
+\tag{ESH47}
+\] This follows because its square has scalar coefficient \(\mu_-e_-\),
+the involution negates its sign, and the trace of \(e_-\) is 2. Removing
+the one infinity sign merely removes a positive dimension, so the
+seven-dimensional quotient has inertia \((5,2,0)\) for these noncritical
+parameters as well.
+
+\subsection{9. The full collision algebra and its marked-root
+quotient}\label{the-full-collision-algebra-and-its-marked-root-quotient}
+
+At \(h_c=1/8\), \[
+F_{h_c}(R)=R^3-3R+2=(R-1)^2(R+2).
+\tag{ESH48}
+\] Near the repeated root write \(\epsilon=R-1\). The other factor
+\(R+2=3+\epsilon\) is a unit in that local root algebra, so the root
+relation is exactly \(\epsilon^2=0\). Differentiating gives
+\(F'_{h_c}(1+\epsilon)=6\epsilon+3\epsilon^2\), hence the signed local
+algebra is \[
+\mathcal L=
+\frac{\mathbb C[\epsilon,T]}{(\epsilon^2,T^2-6\epsilon)}
+\xrightarrow{\sim}\mathbb C[T]/(T^4),
+\qquad \epsilon\longmapsto T^2/6.
+\tag{ESH49}
+\] The inverse sends \(T\) to its original sign coordinate. Squaring its
+relation gives \(T^4=36\epsilon^2=0\), and the two substitutions recover
+\(\epsilon,T\). This proves the isomorphism with its full coefficient 6
+retained. Its basis is \(1,T,T^2,T^3\), or equivalently
+\(1,\epsilon,T,\epsilon T\), so its dimension is four.
+
+For a fully explicit whole-fibre decomposition at this parameter, the
+root idempotent for \(R=-2\) is \[
+e_{-2}=(R-1)^2/9,\qquad e_{\mathrm{dbl}}=1-e_{-2}.
+\tag{ESH50}
+\] The first is 1 at \(-2\) and zero in the double-root algebra;
+therefore it is idempotent modulo (ESH48). These two factors are
+comaximal because the retained difference is 3, so they give inverse
+product projections. Since \(F'_{h_c}(-2)=9\), the complete signed fibre
+is \[
+\mathcal A_{h_c}\simeq
+\mathcal L\times\mathbb C[T_-]/(T_-^2-9)\times I.
+\tag{ESH51}
+\] The maps are given by \(e_{\mathrm{dbl}},e_{-2}\), the local
+substitution (ESH49), and the infinity factor; this retains all eight
+dimensions.
+
+Under \(\#_\Sigma\), \(\epsilon\) is fixed and \(T\) is negated. For any
+\(f\in\mathcal L\), multiplication by its nonconstant part is nilpotent:
+it lies in the nilpotent ideal \((T)\), and its multiplication operator
+has fourth power zero. Thus its trace is zero, whereas its constant part
+acts on four basis vectors. This proves the complete local form \[
+\operatorname{Tr}_{\mathcal L}(f)=4f(0),\qquad
+Q_{\#_\Sigma,\mathcal L}(f,g)=4\overline{f(0)}g(0),
+\quad\operatorname{rad}Q=(T).
+\tag{ESH52}
+\] Its inertia is \((1,0,3)\). The simple \(-2\) factor contributes
+\((1,1,0)\), and infinity contributes \((2,0,0)\). Therefore \[
+\boxed{\operatorname{inertia}(Q_{\#_\Sigma,\mathcal A_{h_c}})=(4,1,3).}
+\tag{ESH53}
+\] In particular the entire collision is still not a positive form: the
+vector supported on the \(-2\) sign coordinate has value \(-18\).
+
+The exact HEB receiver at the collision is the further quotient \[
+0\longrightarrow(T^2)/(T^4)
+\longrightarrow\mathcal L
+\xrightarrow{\ \bar\pi_1\ }\mathbb C[T]/(T^2)
+\longrightarrow0,
+\qquad r_H\longmapsto T/(2\sqrt2).
+\tag{ESH54}
+\] The kernel is a two-dimensional square-zero ideal with basis
+\(T^2,T^3\). This follows directly from (ESH49), since the marked-root
+quotient sets \(\epsilon=0\), equivalently \(T^2=0\). Both the kernel
+and quotient are stable under the stated involution. The quotient has
+trace \(2f(0)\), so its trace is related to the full local trace by \[
+\operatorname{Tr}_{\mathcal L}(f)
+=2\operatorname{Tr}_{E_0}(\bar\pi_1 f),\qquad
+Q_{\mathcal L}(f,g)
+=2Q_{E_0}(\bar\pi_1f,\bar\pi_1g).
+\tag{ESH55}
+\] The factors of two are required by the lengths four and two. The map
+sends a nonzero nilpotent to the HEB nilpotent and kills the specified
+further two-dimensional ideal; it does not identify the length-four
+object with dual numbers.
+
+Deleting only the omitted infinity state from the completed collision
+gives a seven-dimensional algebra with inertia \((3,1,3)\). The original
+affine source removes more at this parameter: FS15 removes the
+ramification component \(T=0\), whose open complement is empty on
+\(\mathcal L\) because \(T\) is nilpotent. Thus its actual three reduced
+points are the two signs over \(-2\) and the included infinity sign.
+Their conjugate-deck trace has inertia \((2,1,0)\). These assertions
+follow by deleting the stated direct factors in (ESH51); they
+distinguish the seven-dimensional completed quotient from the original
+affine fibre at ramification.
+
+\subsection{10. The native involution relates two different target
+paths}\label{the-native-involution-relates-two-different-target-paths}
+
+The native map in (ESH17) sends the path (ESH35) to \[
+\gamma_-(h)=(0,0,-1-16h,-16h),\qquad
+F^-_h(R)=(R+1)(R^2-R-16h).
+\tag{ESH56}
+\] For \(h\ne0\) these are different target points. The exact completion
+map between their fibres remains \[
+(R,T)\longmapsto(-R,-T),\qquad
+(v,\Theta)\longmapsto(-v,\Theta),
+\tag{ESH57}
+\] as proved in (ESH18). It sends the fixed marked root \(+1\) of
+\(\gamma_+\) to the fixed marked root \(-1\) of \(\gamma_-\), whose
+derivative is also \(2-16h\). Under the two marked-root isomorphisms
+(ESH39), it sends the HEB sign generator to its negative; adding
+coefficient conjugation gives the HEB involution as an antilinear map
+\textbf{between} those two receivers. It is not a self-involution of the
+whole \(\gamma_+(h)\) fibre for nonzero \(h\). At the initial common
+target it instead exchanges its two different root factors, giving the
+mixed native form (ESH23). This is why the full-path calculation (ESH46)
+is specifically for \(\#_\Sigma\), without silently substituting the
+native involution or the global Weil involution.
+
+\subsection{11. What the two occurrences of one eighth
+retain}\label{what-the-two-occurrences-of-one-eighth-retain}
+
+The one-eighth normalized trace value in (ESH31) belongs to one reduced
+infinity state. The HEB boundary at \(h=1/8\) belongs, under
+(ESH35)--(ESH39), to a derivative becoming zero at a finite marked root.
+The explicit maps prove a useful relation to the same eight-state
+completion, but they locate these events in different factors. The
+infinity sign pair remains reduced and unramified throughout the path;
+the finite collision retains the larger length-four algebra (ESH49) and
+its exact dual-number quotient.
+
+For any fixed support lattice \(L\), the commutative ring quotients and
+isomorphisms above induce \(G_L(f):(x,\lambda)\mapsto(f(x),\lambda)\).
+Preservation of the amplitude operations follows from the ring map, and
+support joins and meets are unchanged, proving these are the actual
+support-semiring maps. In (ESH54), the retained nonzero amplitude \(T\)
+has supported square \(e_L\) in the dual-number quotient, distinct from
+\(\tau_L\). Its nonzero squared amplitude in the length-four source lies
+in the explicitly killed ideal. The absence of the infinity state is
+instead the idempotent quotient (ESH26), with the whole kernel
+\(\mathbb Ce_m\) displayed. The two maps therefore retain different,
+exactly specified information.
+
+The complete calculation yields no positive whole eight-state trace at
+the proposed one-eighth boundary: the conjugate-deck inertias are
+(ESH46) and (ESH53), and the native initial inertia is (ESH24). The
+positive HEB factor after the boundary is real mathematical data, with
+the additional indefinite factor and all nilpotent multiplicities
+retained in the same calculation.
+
+\subsection{12. The whole trace in a polynomial basis through the
+collision}\label{the-whole-trace-in-a-polynomial-basis-through-the-collision}
+
+The root idempotents in (ESH45) have denominators that vanish at the
+collision. The following calculation instead uses the free polynomial
+basis of (ESH37) over the entire parameter line. Introduce the
+coefficient abbreviations \[
+c_h=1+16h,\qquad d_h=16h,\qquad
+K_h=\mathbb C[R]/(R^3-c_hR+d_h),\qquad
+B_h=K_h[T]/(T^2-3R^2+c_h).
+\tag{ESH58}
+\] These are exactly the finite root and signed fibre algebras already
+used, with the original root and sign coordinates unchanged. The
+notation also defines free algebras over \(\mathbb C[h]\) before
+specializing \(h\). The infinity factor \(I\) remains the one in
+(ESH33), so the whole fibre is \(\mathcal A_h=B_h\times I\). Use the
+ordered bases \[
+\begin{gathered}
+\mathcal E_R=(1,R,R^2),\qquad
+\mathcal E_B=(1,R,R^2,T,TR,TR^2),\\
+\mathcal E_8=((1,0),(R,0),(R^2,0),(T,0),(TR,0),(TR^2,0),(0,1),(0,\Theta)).
+\end{gathered}
+\tag{ESH59}
+\] The entries of \(\mathcal E_8\) lie in \(B_h\times I\); in particular
+its first entry is the finite-component unit, and its seventh entry is
+the infinity-component unit. Their sum is the whole unit. This fixed
+decomposition uses the disjoint finite and infinity root components
+proved after (ESH41), without splitting the moving finite roots.
+
+Let \(M_R\) be multiplication by \(R\) in \(\mathcal E_R\), with each
+column the image of its corresponding basis vector. The defining monic
+cubic gives \[
+M_R=\begin{pmatrix}0&0&-d_h\\1&0&c_h\\0&1&0\end{pmatrix},
+\qquad M_R^3=c_hM_R-d_hI_3.
+\tag{ESH60}
+\] Thus, writing
+\(p_j=\operatorname{Tr}_{K_h}(R^j)=\operatorname{tr}(M_R^j)\), direct
+traces of \(I_3,M_R,M_R^2\) and multiplication of (ESH60) by further
+powers give \[
+\begin{gathered}
+p_0=3,\qquad p_1=0,\qquad p_2=2c_h,\qquad
+p_j=c_hp_{j-2}-d_hp_{j-3}\quad(j\ge3),\\
+p_3=-3d_h,\qquad p_4=2c_h^2,\qquad
+p_5=-5c_hd_h,\qquad p_6=2c_h^3+3d_h^2.
+\end{gathered}
+\tag{ESH61}
+\] For example the recurrence gives \(p_3=c_hp_1-d_hp_0=-3d_h\), then
+gives each subsequent displayed term by substitution. The calculation is
+in \(\mathbb C[h]\), so remains valid on every fibre, including
+nonreduced ones.
+
+Define the two root-trace matrices in the unchanged basis by \[
+\begin{aligned}
+\mathsf P_h&=(p_{i+j})_{0\le i,j\le2}
+=\begin{pmatrix}
+3&0&2c_h\\
+0&2c_h&-3d_h\\
+2c_h&-3d_h&2c_h^2
+\end{pmatrix},\\
+\mathsf Q_h&=(3p_{i+j+2}-c_hp_{i+j})_{0\le i,j\le2}
+=\begin{pmatrix}
+3c_h&-9d_h&4c_h^2\\
+-9d_h&4c_h^2&-12c_hd_h\\
+4c_h^2&-12c_hd_h&4c_h^3+9d_h^2
+\end{pmatrix}.
+\end{aligned}
+\tag{ESH62}
+\] Every entry follows from (ESH61). The second is precisely
+\(\operatorname{Tr}_{K_h}((3R^2-c_h)R^{i+j})\), retaining the derivative
+multiplier \(3R^2-c_h=F_h'(R)\).
+
+For clarity, these root traces determine the full signed trace without a
+reducedness assumption. Multiplication by \(a\in K_h\) acts on the two
+summands \(K_h\oplus TK_h\) by the same matrix \(M_a\), so its trace in
+\(B_h\) is \(2\operatorname{Tr}_{K_h}(a)\). Multiplication by \(Tb\),
+for \(b\in K_h\), has block matrix \[
+L_{Tb}=\begin{pmatrix}0&M_{(3R^2-c_h)b}\\M_b&0\end{pmatrix}
+\quad\text{on }K_h\oplus TK_h.
+\tag{ESH63}
+\] Its trace is zero. Even-even products therefore give
+\(2\mathsf P_h\), mixed products give zero, and odd-odd products give
+\(2\mathsf Q_h\) for the complex bilinear regular trace. For real \(h\),
+coefficient conjugation fixes \(R,T\), while \(\#_\Sigma\) fixes \(R\)
+and negates \(T\). Consequently their complete Hermitian matrices in
+\(\mathcal E_8\) are \[
+\begin{aligned}
+[Q_{\kappa,\mathcal A_h}]_{\mathcal E_8}
+&=\operatorname{diag}(2\mathsf P_h,\ 2\mathsf Q_h,\ 2,-2),\\
+[Q_{\#_\Sigma,\mathcal A_h}]_{\mathcal E_8}
+&=\operatorname{diag}(2\mathsf P_h,\ -2\mathsf Q_h,\ 2,2).
+\end{aligned}
+\tag{ESH64}
+\] The last two entries are obtained by multiplying in
+\(I=\mathbb C[\Theta]/(\Theta^2+1)\) with the respective involutions, as
+in (ESH20). These are polynomial matrix formulas for the whole
+eight-dimensional family. They do not substitute the native involution
+\(\#_J\), whose distinct target map is still (ESH57).
+
+\subsubsection{12.1. The critical ranks and the complete
+radical}\label{the-critical-ranks-and-the-complete-radical}
+
+At \(h_c=1/8\), the retained coefficients are \(c_{h_c}=3\) and
+\(d_{h_c}=2\). Put \[
+u=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad
+v=\begin{pmatrix}1\\-2\\4\end{pmatrix}.
+\] Direct substitution in (ESH62) gives \[
+\begin{aligned}
+\mathsf P_{h_c}
+&=\begin{pmatrix}3&0&6\\0&6&-6\\6&-6&18\end{pmatrix}
+=2uu^{\mathsf T}+vv^{\mathsf T},\\
+\mathsf Q_{h_c}
+&=\begin{pmatrix}9&-18&36\\-18&36&-72\\36&-72&144\end{pmatrix}
+=9vv^{\mathsf T}.
+\end{aligned}
+\tag{ESH65}
+\] For a coefficient vector \(z\in\mathbb C^3\),
+\(z^*\mathsf P_{h_c}z=2|u^{\mathsf T}z|^2+|v^{\mathsf T}z|^2\). The two
+rows \(u^{\mathsf T}\) and \(v^{\mathsf T}\) are independent, since
+their first entries agree and their second entries differ. Thus
+\(\mathsf P_{h_c}\) is positive semidefinite of rank two; its kernel is
+the simultaneous solution of these two linear equations. The second
+matrix has rank one because \(v\ne0\). The kernels, with all coordinates
+retained, are \[
+\begin{aligned}
+\ker\mathsf P_{h_c}&=\mathbb C(-2,1,1)^{\mathsf T},\\
+\ker\mathsf Q_{h_c}
+&=\{(z_0,z_1,z_2)^{\mathsf T}:z_0-2z_1+4z_2=0\}\\
+&=\operatorname{span}_{\mathbb C}\{(2,1,0)^{\mathsf T},(-2,1,1)^{\mathsf T}\}.
+\end{aligned}
+\tag{ESH66}
+\] The displayed vectors satisfy the equations and are independent; the
+ranks just proved show that they exhaust the kernels. It follows
+immediately from the blocks of (ESH64) that the finite conjugate-deck
+form has inertia \((2,1,3)\), and its whole eight-state form has inertia
+\((4,1,3)\). This proves (ESH53) directly in a basis that is defined
+across the collision.
+
+More explicitly, write any element of \(\mathcal A_{h_c}\) uniquely as
+\((p(R)+Tq(R),\eta_0+\eta_1\Theta)\), with \(p,q\) of degree at most
+two. For two such elements \(x=(p+Tq,\eta_0+\eta_1\Theta)\) and
+\(y=(\widetilde p+T\widetilde q,\widetilde\eta_0+\widetilde\eta_1\Theta)\),
+(ESH64)--(ESH65) give the full pairing \[
+\begin{aligned}
+Q_{\#_\Sigma}(x,y)
+={}&4\overline{p(1)}\widetilde p(1)
++2\overline{p(-2)}\widetilde p(-2)
+-18\overline{q(-2)}\widetilde q(-2)\\
+&+2\overline{\eta_0}\widetilde\eta_0
++2\overline{\eta_1}\widetilde\eta_1.
+\end{aligned}
+\tag{ESH67}
+\] Each independent coefficient test in this formula can be realized by
+a degree-at-most-two polynomial, or by one infinity basis vector. For
+example the two constant and linear polynomials interpolate arbitrary
+values at \(1,-2\), and a constant polynomial realizes any prescribed
+\(q(-2)\). Hence the radical is exactly the subspace with
+\(p(1)=p(-2)=q(-2)=\eta_0=\eta_1=0\), not the larger cone of vectors
+whose single diagonal value happens to vanish. Factoring the
+degree-at-most-two polynomials gives the following complete radical in
+the original finite coordinates: \[
+\begin{gathered}
+\mathfrak N=\operatorname{rad}Q_{\#_\Sigma,\mathcal A_{h_c}}
+=\operatorname{span}_{\mathbb C}\{n_1,n_2,n_3\},\\
+n_1=((R-1)(R+2),0),\qquad
+n_2=(T(R+2),0),\qquad
+n_3=(T(R-1)(R+2),0).
+\end{gathered}
+\tag{ESH68}
+\] Indeed the first polynomial spans the degree-at-most-two polynomials
+vanishing at both roots, while \(R+2\) and \((R-1)(R+2)\) are
+independent and span the polynomials vanishing at \(-2\). These vectors
+are independent in the fixed free basis (ESH59).
+
+\subsubsection{12.2. The radical maps to the retained length-four local
+algebra}\label{the-radical-maps-to-the-retained-length-four-local-algebra}
+
+The critical product projection (ESH51) sends the three vectors of
+(ESH68) to zero in the simple \(-2\) and infinity factors. In its
+length-four factor retain \(R=1+\epsilon\), \(\epsilon^2=0\),
+\(T^2=6\epsilon\). Their exact images are \[
+n_1\longmapsto T^2/2,\qquad
+n_2\longmapsto 3T+T^3/6,\qquad
+n_3\longmapsto T^3/2.
+\tag{ESH69}
+\] For the first image,
+\((R-1)(R+2)=\epsilon(3+\epsilon)=3\epsilon=T^2/2\). Multiplication by
+\(T\), or expansion of \(T(3+\epsilon)\), proves the other two.
+Conversely the local classes \(T,T^2,T^3\), extended by zero to the
+other factors, are the images of \[
+T\longleftrightarrow n_2/3-n_3/9,\qquad
+T^2\longleftrightarrow2n_1,\qquad
+T^3\longleftrightarrow2n_3.
+\tag{ESH70}
+\] Both compositions are checked by substituting (ESH69). Thus the
+radical is exactly the entire nilpotent ideal \((T)\) of
+\(\mathbb C[T]/(T^4)\), extended by zero to the reduced factors. This
+identifies it as an ideal and as the nilradical of the whole critical
+algebra, not merely as a vector subspace of zero trace. The connecting
+maps preserve \(\#_\Sigma\): \(n_1\) is fixed, \(n_2,n_3\) are negated,
+and the respective powers \(T^2,T,T^3\) have those same signs.
+
+The complete multiplication of the three retained generators is \[
+\begin{gathered}
+n_1^2=n_1n_3=n_2n_3=n_3^2=0,\qquad
+n_2^2=18n_1,\qquad n_1n_2=3n_3,\\
+\mathfrak N^2=\operatorname{span}_{\mathbb C}(n_1,n_3),\qquad
+\mathfrak N^3=\mathbb C n_3,\qquad
+\mathfrak N^4=0.
+\end{gathered}
+\tag{ESH71}
+\] To prove every product, substitute (ESH69), multiply in
+\(\mathbb C[T]/(T^4)\), and use the inverse (ESH70). The other
+components are zero. For instance \((3T+T^3/6)^2=9T^2=18(T^2/2)\) and
+\((T^2/2)(3T+T^3/6)=3T^3/2\). All stated zero products have degree at
+least four. The displayed nonzero products, together with the
+independence of the three generators, prove the exact ideal powers and
+their dimensions. In particular \(n_2^3=54n_3\ne0\) and \(n_2^4=0\).
+
+Finally, restrict the marked-root map (ESH38) at the collision to this
+radical. It evaluates \(R=1\) and imposes \(T^2=0\), so \[
+\begin{gathered}
+\pi_1(n_1)=0,\qquad \pi_1(n_2)=3T=6\sqrt2\,r_H,\qquad
+\pi_1(n_3)=0,\\
+0\longrightarrow\mathfrak N^2
+\longrightarrow\mathfrak N
+\xrightarrow{\ \pi_1\ }\mathbb C r_H
+\longrightarrow0.
+\end{gathered}
+\tag{ESH72}
+\] Here \(\mathbb C r_H\) is the nonzero nilpotent ideal in the HEB
+dual-number receiver, with its original scale \(r_H=T/(2\sqrt2)\). The
+map is onto since its value on \(n_2\) is nonzero; (ESH68) and these
+images show that its kernel is precisely
+\(\operatorname{span}(n_1,n_3)=\mathfrak N^2\). This is an exact
+sequence of the corresponding nonunital ideals and of complex vector
+spaces, with their inherited involutions. It exhibits the full retained
+infinitesimal, its two-dimensional kernel, and the actual heat quotient
+in coordinates valid at the collision. No root idempotent with a
+vanishing denominator enters (ESH58)--(ESH72).
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={The full eight-state conjugate-deck trace along the specified target path. ESH35--ESH55 prove the three derivative functions, their sign exchange, the persistent negative factor, and the complete length-four collision with its dual-number quotient.}]{figures/30_eight_state_heat.png}}
+\caption{The full eight-state conjugate-deck trace along the specified
+target path. ESH35--ESH55 prove the three derivative functions, their
+sign exchange, the persistent negative factor, and the complete
+length-four collision with its dual-number quotient.}
+\end{figure}
+
+\end{document}

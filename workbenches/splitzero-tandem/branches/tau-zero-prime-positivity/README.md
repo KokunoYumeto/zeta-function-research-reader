@@ -2,6 +2,8 @@
 
 This research addition studies the supported-zero prime, the infinitesimal boundary of the original escaping inverse map, and the explicit formula for the separated quotient-counting zeta function. It retains both zero elements, all support sectors, the original observation metric, and the difference between algebraic trace and the signed arithmetic current.
 
+This collection also proves the endpoint heat comparison, the exact ES metric and tetrahedral maps, finite and infinite shell operators, and the complete signed eight-state fibre with its omitted infinity point. Its Weil calculations retain the compensating analytic term and both finite involutions; the positive factor is not asserted to prove positivity of the whole Weil form.
+
 Read [the complete proof edition](TAU_ZERO_PRIME_POSITIVITY.pdf), [its LaTeX source](TAU_ZERO_PRIME_POSITIVITY.tex), or the individual proofs below. [Sources and exact reading scope](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/173dbc6ed5a03235dbe7654f928f3692107db39b/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SOURCES.md) records the prior programme results and human foundations. [The dated result bulletin](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/173dbc6ed5a03235dbe7654f928f3692107db39b/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/RESULTS_20260922.md) gives stable IDs and proof locators.
 
 | Complete proof | Principal calculations |
@@ -25,4 +27,21 @@ The finite cover trace becomes positive semidefinite at a dual-number collision;
 
 ![Signed logarithmic lengths and the first infinitesimal arithmetic distribution.](figures/24_non_eulerian_lengths.png)
 
-The corresponding Python sources reproduce these figures. Exact symbolic checks supplement the written proofs; their JSON reports state their scope. Run `python build_tau_positivity.py` with Pandoc and a LaTeX installation to rebuild the complete edition. Run the four `check_*.py` files to reproduce the finite algebra checks. Python dependencies are SymPy, NumPy and Matplotlib. No numerical zero search is used to establish the shifted-divisor countertest.
+The corresponding Python sources reproduce these figures. Exact symbolic checks supplement the written proofs; their JSON reports state their scope. Run `python build_tau_positivity.py` with Pandoc and a LaTeX installation to rebuild the complete edition. Run the ten `check_*.py` files to reproduce the finite algebra checks. Python dependencies are SymPy, NumPy and Matplotlib. No numerical zero search is used to establish the shifted-divisor countertest.
+
+## Quarter heat, tetrahedral transport, and the infinite shell
+
+The added proofs identify the original target coordinate −1/4 with the endpoint trace receiver, transport its heat coefficient through the actual ES metric and tetrahedral frame, and construct the corresponding finite and infinite shell operators. The full multiplication maps, mixed blades, ambient kernels and explicit-formula correction are retained.
+
+- [HEB1–HEB36: Complete original inverse curve, compactified infinitesimal, endpoint isometry and the compensating term in the full Weil identity. An admissible bump-derivative test retains its first jet at the collision and proves the compensating change.](HEAT_ENDPOINT_SIGN_BRIDGE.md)
+- [PZS1–PZS38: The reflected sign, nilpotent residue obstruction, positive twist and exact observed-family comparison.](PRIME_ZERO_SIGN_DEFORMATION_DERIVATION.md)
+- [ESQ1–ESQ68: Exact metric isometry, tetrahedral symmetry, multiplication embedding, collision algebra and original moving spatial metric.](ES_QUARTER_HEAT_TRACE_DERIVATION.md)
+- [ESHL1–ESHL64: Spectral and matrix-algebra lifts, every shell sector, sharp infinite-dimensional positivity and retained finite-volume observables.](ES_SHELL_HEAT_LIFT_DERIVATION.md)
+- [WEC1–WEC18: The actual four-evaluation correction in Weil’s formula is isometric to the original ES quarter form, with an explicit test section, kernel and involution-preserving map.](WEIL_ES_COMPENSATION_DERIVATION.md)
+- [ESH1–ESH72: The original seven-point chart, its omitted infinity state, both full involutions and traces, and the complete eight-state heat collision with its length-four algebra and dual-number quotient.](EIGHT_STATE_HEAT_COMPARISON.md)
+
+The positive lower bound applies to the specified shell operator for h > 1/8. It does not establish positivity of the classical Weil form: HEB28–HEB30 calculate the exact term transferred elsewhere in that form when its endpoint factor moves. The original zeta zeros are not shown to move onto the critical line by this construction.
+
+![The exact shell lift and common sign crossing.](figures/28_shell_heat_sign.png)
+
+[The dated results and proof locators](RESULTS_20260923.md) accompany the complete proofs. The six additional check scripts validate their finite identities; the infinite extension has a written proof.

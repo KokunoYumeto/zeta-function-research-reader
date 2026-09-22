@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22903925) (assigned DOI 10.5281/zenodo.22903925) retains the whole research programme and adds the 29-page support-transport paper, complete LaTeX and human citations. It includes the explicit correction to edition 027’s response coefficient. All 78 earlier PDFs remain separate. [Exact proof and correction links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-support-transport-publication/README.md).
+
 ### Measured support, original current and controlled evolution
 
 The Split-Zero programme studies finite zero classes of the completed Riemann zeta function through the arithmetic theta source, its quotient metric and conductor observation. This continuation calculates how both observed support directions, their hidden kernel defect and the original current pass through that observation. Ordered mixed probes recover the signed current with inverse factor at most 1610/309 < 6. The complete proofs also calculate the observed collision, metric-stable source-step formulas and evolution of the actual measured inverse.

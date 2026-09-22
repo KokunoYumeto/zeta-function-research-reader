@@ -33,6 +33,14 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Original growth, complete-row sampling and measured resolvents
+
+[Read the 62-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/ORIGINAL_GROWTH_RESOLVENT_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/ORIGINAL_GROWTH_RESOLVENT_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/RESULTS_20260922_020.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-growth-resolvent/RESULT_INDEX.json).
+
+The Split-Zero programme studies the arithmetic theta source, its quotient and its observation through determinant and heat estimates. This paper calculates the full complex kernel correction recoverable from the measured resolvent, bounds complete-source metric errors by the ranks that contribute, and controls sampling of all original rows including lower-root coefficient errors. Relative growth estimates retain the complementary minimum and use a corrected circle for growing radii. A separate four-label arithmetic receiver calculation evaluates its first singular corrections and carries its metric and conductor maps explicitly.
+
+Complete RM1–23, RG1–54, CS1–24, ES1–37 and received PR1–44 proofs, standalone LaTeX, figures, checkers, inherited proofs and human-source records accompany the paper. Dusson, Sigal and Stamm's Feshbach–Schur work, the named DLMF authors, Jensen's historical attribution, and Dirichlet's theorem in Ralf Stephan's credited translation retain precise sources and reading coverage. The native period-dependent kernel coefficient at order kq and individual complex-current signs remain unevaluated. Auxiliary receiver values and determinant signs are not substituted for them. The whole-project description and all preceding editions remain intact.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22884590) (assigned DOI 10.5281/zenodo.22884590) retains the complete research programme and adds the 37-page original-angle and full-word paper, with complete LaTeX, human provenance and precise proof links. All 70 earlier PDFs remain separate.
 
 ### The full original angle spectrum and determinant extraction

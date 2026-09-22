@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22904913) (assigned DOI 10.5281/zenodo.22904913) retains the whole research programme and adds the 11-page current, source-overlap and collision paper, complete LaTeX and human citations. All 80 earlier PDFs remain separate. [Exact proof links and publication receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-current-collision-publication/README.md). The actual terminal phase, marked sign and interior contribution remain unevaluated.
+
 ### The marked current, source overlap and exterior collision estimate
 
 The Split-Zero programme studies finite zero classes of the completed Riemann zeta function in an arithmetic quotient, using the original theta source, quotient metric and conductor observation. This continuation calculates how the current of a prescribed class and its overlap with the next source direction depend on the same complex phase. It also bounds the change in the full arithmetic operator's inverse and determinant on an explicitly specified exterior frequency region.

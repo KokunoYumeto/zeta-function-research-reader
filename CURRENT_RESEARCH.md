@@ -33,6 +33,16 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Original kernel coefficient and measured frequency return
+
+[Read the 35-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-kernel-frequency/KERNEL_AND_FREQUENCY_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-kernel-frequency/KERNEL_AND_FREQUENCY_READER.tex) · [Results and earlier calculations strengthened](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-kernel-frequency/RESULTS_20260922_024.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-kernel-frequency/RESULT_INDEX.json).
+
+The Split-Zero programme studies the arithmetic theta source, its quotient and its observation through determinant and heat estimates. This edition evaluates the previously unassigned original kernel determinant coefficient on the retained fixed-period simple-quartet domain: k≡1 mod4, k≥17, q=(k+1)² and m=8k−16. At cutoffs q−1,q,2q−1,2q with signs +,+,−,−, its return is m C_boundary q+o(kq). Complete growing-jet and Gamma proofs support the evaluation, and the elliptic constant satisfies 10.83425590260233706 < 8 C_boundary < 10.83425590260233707 by outward integer arithmetic.
+
+The paper controls the measured determinant uniformly over positive regularizers and the entire measured phase in integral norm, retaining both frequency ends. It proves sharp finite phase/derivative bounds and restores a missing outer factor two in the incoming two-response explanation without changing its displayed response combination. CK, PJ, EL, PT and SF proofs, editable LaTeX, checkers, exact reading records and human citations are included. The full 022 source bank is unchanged, followed by 48 blocks including the 023 first-layer work and all six new arrivals.
+
+These results update the earlier kernel-coefficient status on this stated domain; the separate complex arithmetic-current values/signs remain unfinished. This is not a proof of RH. [Source identities and reading coverage](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-kernel-frequency/SOURCE_READING_USE_LEDGER.json) distinguish human sources, programme derivations, incoming claims and executed checks. All previous editions and whole-project descriptions remain intact.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22887380) (assigned DOI 10.5281/zenodo.22887380) retains the complete research programme and adds the 35-page arithmetic-probe and kernel-mass paper, with complete LaTeX, human citations and precise proof links. All 73 earlier PDFs remain separate.
 
 ### Arithmetic probes, kernel mass and the terminal metric correction

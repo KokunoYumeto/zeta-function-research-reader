@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22886386) (assigned DOI 10.5281/zenodo.22886386) retains the complete research programme and adds the 39-page original-observation recovery paper, with complete LaTeX, human citations and precise proof links. All 72 earlier PDFs remain separate.
+
 ### Finite recovery of the original observation
 
 [Read the 39-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/ORIGINAL_OBSERVATION_RECOVERY_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/ORIGINAL_OBSERVATION_RECOVERY_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/RESULTS_20260922_021.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/RESULT_INDEX.json).

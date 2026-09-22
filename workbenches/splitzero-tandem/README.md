@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22902002) (assigned DOI 10.5281/zenodo.22902002) retains the whole research programme and adds the 10-page original terminal-response paper, with complete LaTeX, human citations and exact proof links. All 77 earlier PDFs remain separate.
+
 ### Original terminal arithmetic response
 
 The Split-Zero programme carries finite zero classes of the completed Riemann zeta function through its arithmetic theta source, quotient metric and conductor observation. This continuation calculates two distinct amplification rates in the response of the original terminal eigenclass, rather than only their product. For the two original boundary rows, log α = 2qψ(t_N) + O(k log q), while 0 ≤ log β = O(k + log q). The complete proofs retain the original four cutoffs and period restrictions.

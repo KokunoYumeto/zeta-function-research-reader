@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22895296) (assigned DOI 10.5281/zenodo.22895296) retains the whole research programme and adds the 26-page complete original cutoff-profile paper, with full LaTeX, human citations and exact proof links. All 75 earlier PDFs remain separate.
+
 ### The original kernel across the complete cutoff window
 
 The Split-Zero programme studies the arithmetic theta source, its quotient and the original conductor observation. This addition evaluates how the entire original kernel spectrum and volume change as the polynomial source cutoff moves across its window. It retains the original metric, fixed period, stipulated simple quartet and complete source minima. The earlier four-cutoff coefficient is recovered within this full profile.

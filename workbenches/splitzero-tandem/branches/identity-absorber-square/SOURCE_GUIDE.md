@@ -4,9 +4,9 @@ The four-role framing and the suggestion to test prismatic compatibility origina
 
 ## Originating programme definitions
 
-1. HI-AI, *An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*, Zenodo 17555345, original 11.tex. [Original TeX](sources/17555345_11.tex), lines 578–749: the adjoined tau; 1146–1323: the singlet algebra; 1324–1428: monoidal base extension; 1524–1577: arbitrary-ring construction. The supported integer zero remains distinct from tau throughout.
+1. HI-AI, *An Algebraic Structure Incorporating a Z/1Z-Symmetric Element Adjoined to the Integers: Construction, Analysis, and Generalizations*, Zenodo 17555345, original 11.tex. [Original TeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/17555345_11.tex), lines 578–749: the adjoined tau; 1146–1323: the singlet algebra; 1324–1428: monoidal base extension; 1524–1577: arbitrary-ring construction. The supported integer zero remains distinct from tau throughout.
 
-2. HI-AI, *An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements*, Zenodo 17547186, original 5.tex. [Original TeX](sources/17547186_5.tex), lines 1288–1360: literal Omega and the law tau*Omega=Omega. These original files retain their own authorship and notices.
+2. HI-AI, *An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements*, Zenodo 17547186, original 5.tex. [Original TeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/17547186_5.tex), lines 1288–1360: literal Omega and the law tau*Omega=Omega. These original files retain their own authorship and notices.
 
 ## Human literature
 
@@ -20,10 +20,10 @@ The exact Bhatt–Scholze and Bhatt–Lurie local TeX files were compared byte f
 
 ## Complete derivations in this collection
 
-- [Receivers](RECEIVERS.md), Theorems 1–7: common extensions, congruences and every order of the three other role constructions.
-- [Four corners over the integers](FOUR_CORNERS_OVER_Z.md), Theorems Z1–Z8: all receiver maps, complete isomorphism comparisons, finite subalgebras, congruences, arithmetic/support reconstruction and monoid-ring calculations.
-- [Prismatic comparison](PRISMATIC_COMPARISON.md): the completed rings, crystalline prisms, exact observation maps, addition obstruction, compatible lifts and Witt-vector bridge.
-- [Coefficient branch](COEFFICIENT_BRANCH.md), Theorems C1–C2: module and complex decompositions, exact programme scope, and failure of canonical addition recovery from the specified multiplicative object.
+- [Receivers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/RECEIVERS.md), Theorems 1–7: common extensions, congruences and every order of the three other role constructions.
+- [Four corners over the integers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FOUR_CORNERS_OVER_Z.md), Theorems Z1–Z8: all receiver maps, complete isomorphism comparisons, finite subalgebras, congruences, arithmetic/support reconstruction and monoid-ring calculations.
+- [Prismatic comparison](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/PRISMATIC_COMPARISON.md): the completed rings, crystalline prisms, exact observation maps, addition obstruction, compatible lifts and Witt-vector bridge.
+- [Coefficient branch](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/COEFFICIENT_BRANCH.md), Theorems C1–C2: module and complex decompositions, exact programme scope, and failure of canonical addition recovery from the specified multiplicative object.
 
 Each Markdown paper has a corresponding standalone TeX source. CUMULATIVE.md and CUMULATIVE.tex retain the complete mathematical arguments together. Reproducible figures and exact finite checks supplement the proofs.
 
@@ -48,7 +48,7 @@ Receiving calculation: NODE_COTANGENT.md, Theorems N1–N3 and N1–N32. Illusie
 
 The Stacks Project authors, *The Stacks Project*, `varieties.tex`, commit `a04446e57ec1fbc252a871afcec7752fb2807b14`. [Original TeX, tangent spaces](https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/varieties.tex#L2912); [Tag 0B29](https://stacks.math.columbia.edu/tag/0B29). Original lines 2912–3031 were read: the dual-number definition, tangent-vector construction and the start of the cotangent comparison. Reading the entire latter proof is not claimed. PRIMITIVE_DUAL_NUMBERS.md proves all DN1–DN23 maps directly.
 
-The original arithmetic input is [Observed current plane, OCP1 and OCP5–7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/OBSERVED_CURRENT_PLANE.tex#L90). Its unchanged [complete TeX](sources/OBSERVED_CURRENT_PLANE.tex) accompanies this collection. The receiving proof, NATIVE_DUAL_NUMBER_RECEIVER.md, NI1–NI16, gives the entire algebra representation and module calculation; its arithmetic input is the stated original quotient and metric. Original lines 35–169, including the complete proof of OCP5–7 and the exact observed current, were read here. The asymptotic results in later sections are not used or claimed reread for this interface.
+The original arithmetic input is [Observed current plane, OCP1 and OCP5–7](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5c69161ca70ee187f41df0bfe786e8b6eebed422/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/OBSERVED_CURRENT_PLANE.tex#L90). Its unchanged [complete TeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/OBSERVED_CURRENT_PLANE.tex) accompanies this collection. The receiving proof, NATIVE_DUAL_NUMBER_RECEIVER.md, NI1–NI16, gives the entire algebra representation and module calculation; its arithmetic input is the stated original quotient and metric. Original lines 35–169, including the complete proof of OCP5–7 and the exact observed current, were read here. The asymptotic results in later sections are not used or claimed reread for this interface.
 
 
 ## First neighbourhoods and the historical GCT question

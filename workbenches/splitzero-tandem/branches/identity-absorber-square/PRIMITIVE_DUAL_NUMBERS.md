@@ -121,7 +121,7 @@ I_t=(t-1)\mathbb Z[t^{\pm1}],\quad I_u=(u-1)\mathbb Z[u^{\pm1}],
 \quad j=(t-1)(u-1),\quad W=I_t\otimes I_u=jR.
 \tag{DN13}
 \]
-The identification sends \(r_a\otimes r_b\) to \((t^a-1)(u^b-1)\). Its complete derivation as the retained cross-effect and its exact programme support maps are in [Cross-effects](CROSS_EFFECTS.md), (X1)–(X13), and [Mixed support](MIXED_SUPPORT.md), (MS22)–(MS33). Its distinguished element \(w_{1,1}\) maps to \(j\): it is the mixed product of the two copies of the primitive in (DN3).
+The identification sends \(r_a\otimes r_b\) to \((t^a-1)(u^b-1)\). Its complete derivation as the retained cross-effect and its exact programme support maps are in [Cross-effects](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/CROSS_EFFECTS.md), (X1)–(X13), and [Mixed support](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/MIXED_SUPPORT.md), (MS22)–(MS33). Its distinguished element \(w_{1,1}\) maps to \(j\): it is the mixed product of the two copies of the primitive in (DN3).
 
 The original integer addition \((a,b)\mapsto a+b\) induces the fold
 \[
@@ -231,7 +231,7 @@ The programme's original boundary operator has the faithful representation
 D_{\mathbb C}\xrightarrow{\sim}\mathbb C[I,R_N],\qquad
 a+b\varepsilon\longmapsto aI+bR_N.
 \]
-[Native dual-number receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI16, proves this map, its compatible cubic extension of DN21, and the exact module defect
+[Native dual-number receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI16, proves this map, its compatible cubic extension of DN21, and the exact module defect
 \[
 \operatorname{Tor}^{D_{\mathbb C}}_1(\mathbb C,E)
 \cong\ker R_N/\operatorname{im}R_N
@@ -239,7 +239,7 @@ a+b\varepsilon\longmapsto aI+bR_N.
 \]
 The last space is already the kernel of the full original arithmetic current. This is a concrete programme receiver for the square-derived infinitesimal and for its nonflat directions. It leaves the original operator and metric intact. No sign conclusion for the separately marked terminal class follows from this isomorphism alone.
 
-The source for the standard definition and tangent-space terminology was read in the original Stacks Project `varieties.tex`, pinned at commit `a04446e57ec1fbc252a871afcec7752fb2807b14`, Section `tangent-spaces`, beginning at line 2912. [Pinned original TeX](https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/varieties.tex#L2912). The source's mathematical authorship remains with the Stacks Project. The local programme definitions are the original sources cited in [the source guide](SOURCE_GUIDE.md); the additive algebra and all maps in this paper have complete proofs above.
+The source for the standard definition and tangent-space terminology was read in the original Stacks Project `varieties.tex`, pinned at commit `a04446e57ec1fbc252a871afcec7752fb2807b14`, Section `tangent-spaces`, beginning at line 2912. [Pinned original TeX](https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/varieties.tex#L2912). The source's mathematical authorship remains with the Stacks Project. The local programme definitions are the original sources cited in [the source guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/SOURCE_GUIDE.md); the additive algebra and all maps in this paper have complete proofs above.
 
 ![The primitive, mixed fold and two exact infinitesimal routes](figures/14_primitive_dual_numbers.png)
 

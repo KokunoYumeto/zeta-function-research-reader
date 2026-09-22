@@ -34,7 +34,7 @@ Here \(p_n\) is the real monic polynomial for the original measure, \(\omega_n\)
 Q_k(y)=\prod_{a,b=0}^k\bigl[y-(2b-k)\gamma+i(2a-k)\delta\bigr],
 \quad 0<\delta<\tfrac12,\quad\gamma>2.
 \]
-No original norm is replaced. OCP5–7 derives the orthogonality and rank-one formula from the complete polynomial minimum. Its nonzero assertion also follows directly from that formula: if either outgoing class vanished, the rank-one term would be zero, making multiplication by \(y\) selfadjoint in the positive metric \(G_N\). Its eigenvalues are the roots of \(Q_k\), all nonreal because \(k\) is odd and \(\delta>0\). A selfadjoint operator has real eigenvalues: for an eigenvector \(v\), the identity \(\langle Mv,v\rangle=\langle v,Mv\rangle\) forces its eigenvalue to equal its conjugate. This contradiction proves \(E_N,F_N>0\), hence \(\epsilon_N>0\). The unchanged complete source is [Original observed current plane](sources/OBSERVED_CURRENT_PLANE.tex), OCP1 and OCP5–7; its pinned published edition is cited above.
+No original norm is replaced. OCP5–7 derives the orthogonality and rank-one formula from the complete polynomial minimum. Its nonzero assertion also follows directly from that formula: if either outgoing class vanished, the rank-one term would be zero, making multiplication by \(y\) selfadjoint in the positive metric \(G_N\). Its eigenvalues are the roots of \(Q_k\), all nonreal because \(k\) is odd and \(\delta>0\). A selfadjoint operator has real eigenvalues: for an eigenvector \(v\), the identity \(\langle Mv,v\rangle=\langle v,Mv\rangle\) forces its eigenvalue to equal its conjugate. This contradiction proves \(E_N,F_N>0\), hence \(\epsilon_N>0\). The unchanged complete source is [Original observed current plane](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/OBSERVED_CURRENT_PLANE.tex), OCP1 and OCP5–7; its pinned published edition is cited above.
 
 Suppress \(N\) only in the following finite formulas. Let \(D_{\mathbb Z}=\mathbb Z[\eta]/(\eta^2)\) and \(D_{\mathbb C}=\mathbb C\otimes_{\mathbb Z}D_{\mathbb Z}\). Then
 \[
@@ -64,7 +64,7 @@ w_{a,b}\longmapsto(t^a-1)(u^b-1),
 j\mathcal R\longrightarrow j\mathcal R/j^2\mathcal R.
 \tag{NI5}
 \]
-Here \(U(\mathbb Z)\) is free on symbols \(r_a\), \(a\ne0\), with \(r_0=0\), and \(W=U(\mathbb Z)\otimes U(\mathbb Z)\). The elements \(t^a-1\), \(a\ne0\), form a basis of the Laurent augmentation ideal: an augmentation-zero polynomial is the sum of its nonconstant coefficients times these elements, and independence follows from those same coefficients. That ideal is \(x\mathbb Z[t^{\pm1}]\). The identical statement for \(u\), followed by tensor multiplication, identifies the tensor product with \(xy\mathcal R=j\mathcal R\). This proves the first isomorphism in NI5. The second map has exactly kernel \(j^2\mathcal R\); its quotient is \(A=\mathcal R/(j)\) through \(jF\mapsto F\bmod j\), with injectivity verified by cancellation of \(j\) in the Laurent domain. These are N5–6 in the complete source [Node cotangent](NODE_COTANGENT.md), N5–N6, and [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN13–DN21.
+Here \(U(\mathbb Z)\) is free on symbols \(r_a\), \(a\ne0\), with \(r_0=0\), and \(W=U(\mathbb Z)\otimes U(\mathbb Z)\). The elements \(t^a-1\), \(a\ne0\), form a basis of the Laurent augmentation ideal: an augmentation-zero polynomial is the sum of its nonconstant coefficients times these elements, and independence follows from those same coefficients. That ideal is \(x\mathbb Z[t^{\pm1}]\). The identical statement for \(u\), followed by tensor multiplication, identifies the tensor product with \(xy\mathcal R=j\mathcal R\). This proves the first isomorphism in NI5. The second map has exactly kernel \(j^2\mathcal R\); its quotient is \(A=\mathcal R/(j)\) through \(jF\mapsto F\bmod j\), with injectivity verified by cancellation of \(j\) in the Laurent domain. These are N5–6 in the complete source [Node cotangent](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/NODE_COTANGENT.md), N5–N6, and [Primitive dual numbers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/PRIMITIVE_DUAL_NUMBERS.md), DN13–DN21.
 
 The deformation map is
 \[
@@ -156,7 +156,7 @@ On \(\operatorname{span}\{e_N,f_N\}\), the displayed operator is invertible with
 
 ## 5. The primitive quotient and its full support receiver
 
-The primitive in [Primitive dual numbers](PRIMITIVE_DUAL_NUMBERS.md), DN3–DN17, belongs to the diagonal quotient
+The primitive in [Primitive dual numbers](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/PRIMITIVE_DUAL_NUMBERS.md), DN3–DN17, belongs to the diagonal quotient
 \[
 D_\Delta=\mathbb C[t^{\pm1}]/(t-1)^2
 \cong A_{\mathbb C}/(t-u),\qquad A=\mathbb Z[t^{\pm1},u^{\pm1}]/j.

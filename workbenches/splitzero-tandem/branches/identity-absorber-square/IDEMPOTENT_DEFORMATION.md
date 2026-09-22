@@ -4,7 +4,7 @@ The family below connects the supported two-dimensional dual-number algebra to a
 
 ## 1. Original data and the polynomial family
 
-Use the actual objects of [Native dual-number receiver](NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI2. Fix its cutoff \(N\), and abbreviate \(e=e_N\), \(f=f_N\), \(\epsilon=\epsilon_N>0\), \(R=R_N=\epsilon fe^\dagger\), with every adjoint and norm taken in the unchanged metric \(G_N\). Put
+Use the actual objects of [Native dual-number receiver](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/NATIVE_DUAL_NUMBER_RECEIVER.md), NI1–NI2. Fix its cutoff \(N\), and abbreviate \(e=e_N\), \(f=f_N\), \(\epsilon=\epsilon_N>0\), \(R=R_N=\epsilon fe^\dagger\), with every adjoint and norm taken in the unchanged metric \(G_N\). Put
 \[
 P_e=ee^\dagger,\quad P_f=ff^\dagger,\quad
 \Pi=P_e+P_f,\quad E_\Pi=\operatorname{span}\{e,f\},\quad H=E_\Pi^\perp.

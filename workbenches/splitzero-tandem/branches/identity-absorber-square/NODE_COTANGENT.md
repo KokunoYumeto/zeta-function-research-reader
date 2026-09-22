@@ -1,6 +1,6 @@
 # Cotangent and Frobenius data at the meeting of two branches
 
-This paper applies the regular-immersion and transitivity constructions in Luc Illusie's *Complexe cotangent et déformations*, volume I, to the explicit quotient in [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), (F7)–(F17). It computes the cotangent complex, the exact differential data lost by restriction to the two branches, the de Rham differential, and both ordinary and divided Frobenius. Every calculation concerns the rings and maps specified below.
+This paper applies the regular-immersion and transitivity constructions in Luc Illusie's *Complexe cotangent et déformations*, volume I, to the explicit quotient in [Frobenius on the retained cross-effect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md), (F7)–(F17). It computes the cotangent complex, the exact differential data lost by restriction to the two branches, the de Rham differential, and both ordinary and divided Frobenius. Every calculation concerns the rings and maps specified below.
 
 ## 1. The ring, its branches, and the retained programme object
 
@@ -41,7 +41,7 @@ W=U(\mathbb Z)\otimes_{\mathbb Z}U(\mathbb Z)
 \quad w_{a,b}\longmapsto(t^a-1)(u^b-1).
 \tag{N5}
 \]
-This is the explicitly proved basis isomorphism in [Cross-effects](CROSS_EFFECTS.md), (X1)–(X4), (X13)–(X18), and [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), (F1)–(F6). One can check its basis assertion directly: the augmentation ideals of \(T,V\) have bases \(t^a-1\), \(u^b-1\), respectively, and are also the principal ideals \(xT,yV\); their external tensor product is \(xyR\).
+This is the explicitly proved basis isomorphism in [Cross-effects](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/CROSS_EFFECTS.md), (X1)–(X4), (X13)–(X18), and [Frobenius on the retained cross-effect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md), (F1)–(F6). One can check its basis assertion directly: the augmentation ideals of \(T,V\) have bases \(t^a-1\), \(u^b-1\), respectively, and are also the principal ideals \(xT,yV\); their external tensor product is \(xyR\).
 
 The conormal comparison is therefore the exact sequence of \(R\)-modules
 \[
@@ -327,7 +327,7 @@ Here the quotient/completion comparison itself is split before taking limits. Le
 \(t^{-1}=-(1+t+\cdots+t^{p-2})\) modulo \(Q_p(t)\), followed by monic polynomial division. Thus \(T=Q_p(t)T\oplus P_{<p-1}\) as abelian groups. Multiplication by \(Q_p(t)\) is an isomorphism from \(T\) to the first summand for its intrinsic \(p\)-adic topology. Completing the two split summands proves
 \(\widehat T=Q_p(t)\widehat T\oplus\mathbb Z_p^{p-1}\), which gives the asserted completed quotient without exchanging a general nonsplit quotient and inverse limit. For the first branch map, complete the split decomposition \(R=T\oplus yR\) to obtain \(\ker(B\to\widehat T)=yB\). The proof of (N27a) then works verbatim in \(B\), since both \(B\) and \(\widehat T\) are domains. Consequently the first completed branch map has kernel identified with \(B/(q_p)\) by multiplication by \(y\), and the other has the corresponding kernel by multiplication by \(x\).
 
-Finally, [Frobenius on the retained cross-effect](FROBENIUS_CROSS_EFFECT.md), Theorem F3, proves that \((B,(p))\to(\widehat A,(p))\) is a morphism of bounded crystalline prisms with kernel \(jB\), identified with the completed \(W\) of (N5). Thus the ring, conormal, differential, cyclotomic and de Rham objects in this paper are attached by explicit maps to that specified prism morphism. The local computations here do not assert a comparison equivalence with global absolute prismatic cohomology.
+Finally, [Frobenius on the retained cross-effect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md), Theorem F3, proves that \((B,(p))\to(\widehat A,(p))\) is a morphism of bounded crystalline prisms with kernel \(jB\), identified with the completed \(W\) of (N5). Thus the ring, conormal, differential, cyclotomic and de Rham objects in this paper are attached by explicit maps to that specified prism morphism. The local computations here do not assert a comparison equivalence with global absolute prismatic cohomology.
 
 ## 10. Source identity and exact use
 

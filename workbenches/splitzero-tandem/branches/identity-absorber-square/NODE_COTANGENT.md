@@ -349,3 +349,8 @@ corrected
 ![Mixed differentials, de Rham restriction and divided Frobenius](figures/13_node_differentials.png)
 
 The figure records (N9)–(N13), (N21)–(N23) and (N25)–(N27). Its branch picture is a scheme diagram for the two Laurent axes meeting at \(t=u=1\), not a plot of all arithmetic points. The signs, coefficient groups and degrees in the displayed maps are those proved above.
+
+
+## The observed collision as an exact node receiver
+
+[Observed cotangent and Frobenius](OBSERVED_COTANGENT_FROBENIUS.md) carries the node calculation to \(z(z-as-\epsilon r)=0\), with both directions of the coordinate map specified. Its relative cotangent differential is \(2z-as-\epsilon r\); its absolute differential also retains \(-az\,ds\). The collision fibre has its full derived degree-minus-one term, and the discriminant is \((as+\epsilon r)^2\). The accompanying integral model constructs a Frobenius respecting the shifted parameter and calculates the exact defect of the coordinatewise alternative. The Laurent localization comparison retains the original node coordinates instead of identifying different open rings.

@@ -310,3 +310,8 @@ Both identities follow by multiplying the indicated column and row. Combining NI
 Read for this interface: NODE_COTANGENT.md, N1–N32 and its source-identity section, with fresh detailed use of N5–6 and N30; the original programme OCP5–7 and the complete current formulas. The node proof attributes its cotangent foundations to Luc Illusie, *Complexe cotangent et déformations*, with exact theorem locators and edition distinctions. This note uses its explicit ring and conormal constructions and proves the new representation and module statements directly. It does not claim fresh reading of Illusie's original volumes or use its cotangent theorem as a substitute for these calculations.
 
 The complete source construction and standard-infinitesimal comparison are included alongside this paper. The RH programme's signed TR20 pairing remains a different unfinished calculation; none of NI1–16 assigns that sign.
+
+
+## Observed collision receiver
+
+The complete observation now has the exact shifted nilpotent \(\widetilde R=\epsilon vu^*-(\epsilon r/a)uu^*\). The generated dual-number algebra, the retained support representation, and its restriction Tor groups are proved in [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md). The Tor group is precisely the kernel of the original observed current, as well as that of the collision current. The range projection \(P=U(U^*U)^{-1}U^*\), the measured support \(A=UU^*\), and the original source projection remain connected by their explicit defect formulas. This extends NI19–29 to the actual observation and supplies the mixed-support cubic root there. [Observed collision](OBSERVED_COLLISION.md), OC5–OC17, supplies the affine base map and complete determinant/resolvent receiver.

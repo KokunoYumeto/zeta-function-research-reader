@@ -441,3 +441,8 @@ The [chain comparison](https://github.com/KokunoYumeto/zeta-function-research-re
 
 
 The quotient crystalline prism of the retained mixed ideal also has an explicit cotangent and differential calculation: [Node cotangent](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/NODE_COTANGENT.md), (N6)–(N32). Its conormal comparison starts from the same mixed module; restriction to its two branches has a nonzero differential kernel. The integral divided-Frobenius map has the typed source with differential multiplied by p, and the retained kernel there has degree-two cohomology Z/p. All identifications and completion maps are proved in that paper.
+
+
+## Integral receiver for the observed collision
+
+[Observed cotangent and Frobenius](OBSERVED_COTANGENT_FROBENIUS.md) constructs the integral family with relation \(z(z-as-b)=0\), where \(a\) is invertible and \(b\) is a separate coefficient. Its complex specialization is the actual observed family when \(a\mapsto u^*u\) and \(b\mapsto\epsilon u^*v\). At each prime its proved Frobenius respects the full shifted relation; the coordinatewise candidate has an explicitly calculated relation defect. The resulting completed crystalline-prism maps and their collision quotient are proved in that paper. The complex and p-adic models receive the common integral source through their displayed maps.

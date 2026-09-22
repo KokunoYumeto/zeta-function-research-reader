@@ -244,3 +244,8 @@ The source for the standard definition and tangent-space terminology was read in
 ![The primitive, mixed fold and two exact infinitesimal routes](figures/14_primitive_dual_numbers.png)
 
 The diagram records DN3–DN8 and DN13–DN21. Its two different maps involving the smoothing parameter are labeled separately; all kernels remain in the complete proofs.
+
+
+## Receiver at the observed collision
+
+The original primitive \([1]-[e]\) also has a faithful receiver in the actual observed collision algebra: its dual-number coordinate maps to \(\widetilde R=F_B(-\epsilon r/a)\). Retaining the external factor sends \([\tau]\) to \(I_B\), supported \([e]\) to the range projection \(P\), and \([n]\) to \(P+n\widetilde R\). [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) proves the complete representation, its exact support kernel, projective module and cubic mixed factorization. [Observed collision](OBSERVED_COLLISION.md), OC9 and OC11, proves the specialization map and signed correction to the original arithmetic parameter zero.

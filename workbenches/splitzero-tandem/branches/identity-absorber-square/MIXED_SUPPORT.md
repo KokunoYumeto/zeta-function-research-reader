@@ -505,3 +505,8 @@ For an explicit noninjective example, take \(L=\{\bot<a\}\), \(V_\bot=\mathbb Z\
 \tag{MS57}
 \]
 In \(\mathscr L(M)\), every \(r_{\bot,m}\), \(m\ne0\), is nevertheless a nonzero independent basis vector. Its transition image in the upper reduced group is zero, while the unreduced image of \(b_{\bot,m}\) is the nonzero supported-zero generator \(s_a\). Thus the kernel diagram, the free reduced module, the supported-zero component and the global additive quotient give four explicitly connected views of this mixed-support calculation.
+
+
+## Mixed support after the actual observation
+
+At the shifted observed collision the support complement is the original observed-current kernel. [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) proves its full \(\mathbb C\times D\)-module receiver and the exact two off-diagonal maps whose composite is \(\widetilde R\). Their reverse composite is zero, and the complete cubic receiver retains both source supports. The same paper proves the measured-support quadratic bounds and the exact signed correction to the original current. These are additional concrete receivers for the mixed-support structure, with all projections and their domains retained.

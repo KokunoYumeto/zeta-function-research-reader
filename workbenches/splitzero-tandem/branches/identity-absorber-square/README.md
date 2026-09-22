@@ -32,7 +32,7 @@ The four-role framing, the prismatic research direction, and the instruction to 
 
 ## Reproduce the sources and checks
 
-Run `python build.py` with Python, Matplotlib, SymPy and Pandoc available. The fifteenth figure is supplied as exact SVG source and a rendered PNG. It executes the finite algebra and polynomial checks, regenerates the sixteen Matplotlib figures, and produces the individual and cumulative TeX sources. The full proofs establish the general statements; the finite checks have their recorded sample scope.
+Run `python build.py` with Python, Matplotlib, SymPy and Pandoc available. The fifteenth figure is supplied as exact SVG source and a rendered PNG. It executes the finite algebra and polynomial checks, regenerates the nineteen Matplotlib figures, and produces the individual and cumulative TeX sources. The full proofs establish the general statements; the finite checks have their recorded sample scope.
 
 This source package contains Markdown and TeX, PNG/SVG figures and their generating scripts, finite checkers with outputs, and the unchanged originating programme TeX files. The human literature is cited through versioned original-source links. The local reading archives and correspondence are kept distinct from the mathematical papers. No Lean verification or PDF edition is claimed.
 
@@ -43,3 +43,16 @@ The node calculation applies the user-designated [Illusie edition](https://zenod
 The supported additive monoid also supplies a distinguished first-order primitive. Its mixed-product quotient is the standard dual-number algebra, with external support retained in a second factor. An exact receiver in the original arithmetic programme identifies the nilpotent with its boundary operator; the full module defect is its full current kernel. These concrete maps are proved in the primitive, receiver and deformation papers and do not claim historical novelty for dual numbers.
 
 [Parent Split-Zero workbench](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/README.md) · [Branch research state](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/BRANCH_RESEARCH_STATE.md)
+
+
+## Observed collision and its propagated calculations
+
+Three additional papers carry the same original programme data through the observed infinitesimal collision. The signed trace determines the collision's imaginary displacement. Its exact full-operator determinant and resolvent maps preserve the Hermitian part; its retained support module returns the original observed-current kernel as Tor; and its cotangent and integral Frobenius calculations return to the node and prismatic constructions.
+
+| Paper | Complete calculation |
+|---|---|
+| [Observed collision](OBSERVED_COLLISION.md) · [TeX](OBSERVED_COLLISION.tex) | OC1–OC17: affine family, signed trace, exact determinant, inverse, marked pairings and eigenspace. |
+| [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) · [TeX](OBSERVED_SUPPORT_PROPAGATION.tex) | Full support, projectivity, Tor, mixed cubic root and sharp signed support bounds. |
+| [Observed cotangent and Frobenius](OBSERVED_COTANGENT_FROBENIUS.md) · [TeX](OBSERVED_COTANGENT_FROBENIUS.tex) | Relative and absolute cotangent complexes, derived collision, discriminant, exact integral lift and crystalline-prism maps. |
+
+The originating observed result is [DF1–12, public proof edition 4ba9285](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4ba9285b66af58a6d58fc502a494c1fb45ca5b79/workbenches/splitzero-tandem/continuations/20260922-support-transport/OBSERVED_DEFORMATION_AND_CURRENT.md#L22). The complete finite calculation is rederived with its exact maps in the new papers. The retained collection now has seventeen papers and twenty figures. The additional checker uses an auxiliary six-dimensional nonidentity metric with complex overlapping columns; its 29 exact checks and three negative controls are not a native period computation.

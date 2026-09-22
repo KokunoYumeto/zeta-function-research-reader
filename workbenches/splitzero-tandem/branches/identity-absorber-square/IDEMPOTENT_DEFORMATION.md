@@ -223,3 +223,8 @@ The algebra relation ID2 holds for \(M(s)-C\). It does not replace the full \(M(
 ![The exact idempotent collision and current retained along the real family](figures/17_idempotent_current.png)
 
 The figure shows the two branches \(z=0,z=s\), their zero fibre with dual-number coordinate, and the exact metric identities ID12, ID17–ID18. The scheme picture is over the complex polynomial base; its real section is used to display the current-preserving path. All complex-parameter formulas remain in the proofs.
+
+
+## Propagation through the original observation
+
+Under the original observation, ID2 becomes \(F_B(s)^2=(as+\epsilon r)F_B(s)\). Its exact hidden contribution is \((s-as-\epsilon r)F_B(s)\); its affine parameter map is \(t=as+\epsilon r\), with inverse \(s=(t-\epsilon r)/a\). The collision is \(s_*=-\epsilon r/a\), and \(\Im s_*=\operatorname{tr}W_B(0)/(2a)\). [Observed collision](OBSERVED_COLLISION.md), OC1–OC11, proves these formulas with the original metric. OC12–OC17 carries the same family through the full characteristic polynomial, resolvent, ordered marked pairings and exact eigenspace at a failed inverse. [Observed support propagation](OBSERVED_SUPPORT_PROPAGATION.md) proves the sharp signed support bounds, retaining the rank-one current correction.

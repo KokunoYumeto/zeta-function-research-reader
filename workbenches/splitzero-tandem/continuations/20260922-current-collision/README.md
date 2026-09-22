@@ -1,0 +1,7 @@
+# The original current, its source overlap and the collision resolvent
+
+This Split-Zero programme addition contains two complete new proofs and an illustrated 11-page reader. PO calculates the exact joint feasible region of the marked current and actual source overlap, then evaluates their sharp combined bounds and the native source-step receiver. CRX controls the full arithmetic operator's collision resolvent and determinant transfer on its stated exterior frequency region.
+
+Read CURRENT_AND_COLLISION.pdf; its directly compilable LaTeX and both complete Markdown proofs accompany it. BUILD_READER.py reproduces the reader and its two figures with Python, NumPy, matplotlib, pypdf, Pandoc and LuaLaTeX. CHECKS.py extracts the reviewed phase checker into a fresh temporary folder; --extract-only permits inspection first. Exact identities, floating-point inequalities and negative controls are counted separately. The figures use explicitly auxiliary parameters and proved bounds.
+
+RETAINED_COMPLETE_PROOF_SOURCES.tex preserves the entire published 029 source collection unchanged, including its human citations, and adds both new proofs in Markdown and LaTeX, complete public node source inputs, the reviewed checker and figure sources. SOURCE_MANIFEST.json records their offsets and identities. Every cited predecessor remains available. The new exterior estimate does not remove the interior native phase contribution, and no actual terminal sign is assigned.

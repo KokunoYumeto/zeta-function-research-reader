@@ -33,6 +33,8 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22901724) (assigned DOI 10.5281/zenodo.22901724) retains the whole research programme and adds the 65-page original-current and effective-cutoff paper, with complete LaTeX, human citations and exact proof links. All 76 earlier PDFs remain separate.
+
 ### Original arithmetic current and effective cutoff control
 
 The Split-Zero programme studies the arithmetic theta source, its quotient and the original conductor observation. This edition connects the kernel-volume profile to the observed arithmetic-current growth profile through exact integral maps. Complete finite Gamma and localization estimates control actual source increments, every original kernel constraint, complete fixed subquotients and shrinking cutoff windows.

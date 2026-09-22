@@ -17,6 +17,18 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+### Original arithmetic current and effective cutoff control
+
+The Split-Zero programme studies the arithmetic theta source, its quotient and the original conductor observation. This edition connects the kernel-volume profile to the observed arithmetic-current growth profile through exact integral maps. Complete finite Gamma and localization estimates control actual source increments, every original kernel constraint, complete fixed subquotients and shrinking cutoff windows.
+
+Read the [65-page illustrated paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/CURRENT_AND_CUTOFF_READER.pdf), [complete reader LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/CURRENT_AND_CUTOFF_READER.tex), [results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/RESULTS_20260922_026.md) and [machine-readable proof index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-current-effective-cutoff/RESULT_INDEX.json).
+
+The two nonzero observed-current eigenvalues have opposite signs, with logarithmic magnitude qψ(t)+O(k log q). The intrinsic first-order evolution has a four-cutoff logarithmic condition-number coefficient 4 log(4/π)−1/2, with error O(k log q). Complete evolution retains the exact hidden-source Volterra term. Original metrics, admitted period, stipulated simple quartet, invariant rows and all four cutoffs remain in the proofs.
+
+For the separately prescribed terminal eigenclass, RC35–44 imports the earlier conductor theorem with γ≥1000δ and its full original period restrictions. It proves the observed/full norm comparison, bounds the normalized marked current by exp[O(k log q)], and shows exponentially balanced weights in the two observed sign eigenspaces. The residual individual sign remains in the exact complex pairing RC32; it is not assigned by the two opposite eigenvalue signs. No RH conclusion is claimed.
+
+Both incoming proofs, four complete receiving derivations, all 19 final owner files and the unchanged preceding source bank with 34 additions are included. Human-source equation TeX, exact source-use records, reproducible checks and the full editable reader accompany the publication. Reported finite and scalar checks retain their separate scopes; they are not native-period numerical evaluations.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22895296) (assigned DOI 10.5281/zenodo.22895296) retains the whole research programme and adds the 26-page complete original cutoff-profile paper, with full LaTeX, human citations and exact proof links. All 75 earlier PDFs remain separate.
 
 ### The original kernel across the complete cutoff window

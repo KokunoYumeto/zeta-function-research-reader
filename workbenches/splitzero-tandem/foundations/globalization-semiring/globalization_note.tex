@@ -1,0 +1,956 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=ForestGreen,urlcolor=BrickRed]{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{setspace}
+\setstretch{1.05}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.6em}{}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\B}{\mathbf B}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\taup}{\tau}
+\newcommand{\OK}{\mathcal O_K}
+\newcommand{\ideal}[1]{I_{#1}}
+
+\title{A Note on the Globalization Semiring \texorpdfstring{$G(\mathbb Z)$}{G(Z)}}
+\author{}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+S=\Z\sqcup\{\taup\},
+\]
+where \(\taup\) is declared to be the additive identity and multiplicative absorber.  This note is written as a publication-style extraction of the genuinely nontrivial mathematics carried by the duplicated-zero construction.  We prove, in a self-contained manner, the classification of ideals and prime ideals of \(S\), the description of its congruences and quotient semirings, the equality \(\Frac(S)\cong \B\), the determination of its local stalks, the infinite-dimensionality of the prime spectrum of its multiplicative monoid, the direct-product decomposition of the contracted monoid algebra, and the extension of the entire construction to rings of integers \(\OK\) of number fields, including the identification \(\Cl(S(\OK))\cong \Cl(K)\) and the equality of zeta functions \(\zeta_{S(\OK)}=\zeta_K\).  The proofs are complete; the references serve only to locate the surrounding literature on semirings, \(\mathbb F_1\)-geometry, blueprints, and algebraic number theory.
+\end{abstract}
+
+\tableofcontents
+
+\section{Definition and elementary structure}
+
+The construction may be viewed as an instance of adjoining an external zero to a ring, in the sense used in semiring theory; cf. Golan \cite[Chs.~1, 6--8]{golan}.  We treat the case of \(\Z\) directly.
+
+\begin{definition}
+Let
+\[
+S:=\Z\sqcup\{\taup\},\qquad \taup\notin \Z,
+\]
+with operations defined by
+\[
+m\oplus n=m+n\qquad (m,n\in\Z),
+\]
+\[
+m\oplus \taup=\taup\oplus m=m,\qquad \taup\oplus\taup=\taup,
+\]
+\[
+m\cdot n=mn\qquad (m,n\in\Z),
+\]
+\[
+m\cdot \taup=\taup\cdot m=\taup,\qquad \taup\cdot\taup=\taup.
+\]
+Thus \(0_S=\taup\) and \(1_S=1\in\Z\).
+\end{definition}
+
+\begin{proposition}\label{prop:basic-semiring}
+The structure \((S,\oplus,\cdot,\taup,1)\) is a commutative unital semiring.
+\end{proposition}
+
+\begin{proof}
+Let
+\[
+D:=\{(0,0)\}\cup(\Z\times\{1\})\subset \Z\times \B,
+\]
+where \(\B=\{0,1\}\) is the Boolean semiring, written additively and multiplicatively in the usual way.  The subset \(D\) is closed under the componentwise operations of \(\Z\times \B\):
+\[
+(n,1)+(m,1)=(n+m,1),\qquad (n,1)+(0,0)=(n,1),\qquad (0,0)+(0,0)=(0,0),
+\]
+\[
+(n,1)(m,1)=(nm,1),\qquad (n,1)(0,0)=(0,0),\qquad (0,0)(0,0)=(0,0).
+\]
+Define
+\[
+\iota:S\longrightarrow D,
+\qquad
+\iota(\taup)=(0,0),\qquad \iota(n)=(n,1)\ (n\in\Z).
+\]
+This is bijective, and the transported operations are exactly \(\oplus\) and \(\cdot\).  Since \(D\) is a subsemiring of the commutative unital semiring \(\Z\times\B\), the same is true of \(S\).
+\end{proof}
+
+\begin{proposition}\label{prop:projection-kernel}
+The map
+\[
+p:S\longrightarrow \Z,
+\qquad
+p(\taup)=0,
+\qquad
+p(n)=n\ (n\in\Z),
+\]
+is a surjective semiring homomorphism.  Its kernel ideal is
+\[
+A:=\{0,\taup\}.
+\]
+Moreover, \(A\) is a subsemiring of \(S\) and
+\[
+A\cong \B
+\]
+as semirings.
+\end{proposition}
+
+\begin{proof}
+Surjectivity is immediate.  For \(m,n\in\Z\) one has
+\[
+p(m\oplus n)=m+n=p(m)+p(n),\qquad p(mn)=mn=p(m)p(n).
+\]
+Also,
+\[
+p(m\oplus\taup)=p(m)=m=p(m)+0=p(m)+p(\taup),
+\]
+\[
+p(m\taup)=p(\taup)=0=p(m)\cdot 0=p(m)p(\taup),
+\]
+and similarly for the remaining cases.  Hence \(p\) is a semiring homomorphism.
+
+Its kernel is
+\[
+\ker p=\{x\in S:p(x)=0\}=\{0,\taup\}=A.
+\]
+The set \(A\) is closed under both operations because
+\[
+0\oplus 0=0,
+\quad
+0\oplus \taup=0,
+\quad
+\taup\oplus\taup=\taup,
+\]
+\[
+0\cdot 0=0,
+\quad
+0\cdot \taup=\taup,
+\quad
+\taup\cdot\taup=\taup.
+\]
+Thus \(A\) is a subsemiring.  Define
+\[
+\psi:A\longrightarrow \B,
+\qquad
+\psi(\taup)=0,
+\qquad
+\psi(0)=1.
+\]
+By inspection of the operation tables, \(\psi\) preserves addition and multiplication and is bijective; therefore \(A\cong\B\).
+\end{proof}
+
+\begin{proposition}\label{prop:boolean-no-map}
+There is no unital semiring homomorphism \(\B\to S\).
+\end{proposition}
+
+\begin{proof}
+Assume that \(f:\B\to S\) is a unital semiring homomorphism.  Then
+\[
+f(1)=1.
+\]
+Since \(1+1=1\) in \(\B\), additivity gives
+\[
+1=f(1)=f(1+1)=f(1)\oplus f(1)=1\oplus 1=2,
+\]
+a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:fixed-points}
+Let \(\{\pm 1\}\) act on \(S\) by multiplication.  Then
+\[
+S^{\{\pm1\}}=\{0,\taup\}=A\cong \B.
+\]
+\end{proposition}
+
+\begin{proof}
+An element \(x\in S\) is fixed if and only if \((-1)x=x\).  If \(x=n\in\Z\), then \((-1)x=-n\), and
+\[
+-n=n \iff 2n=0 \iff n=0.
+\]
+If \(x=\taup\), then \((-1)\taup=\taup\) by definition.  Hence the fixed set is \(\{0,\taup\}=A\), which is Boolean by Proposition \ref{prop:projection-kernel}.
+\end{proof}
+
+\section{Ideals, prime ideals, and Krull dimension}
+
+\begin{definition}
+For \(n\ge 0\), let
+\[
+\ideal{n}:=n\Z\cup\{\taup\}.
+\]
+By convention \(0\Z=\{0\}\), so \(\ideal{0}=\{0,\taup\}\).
+\end{definition}
+
+\begin{theorem}\label{thm:ideal-classification}
+Every ideal \(I\subseteq S\) is either \(\{\taup\}\) or \(\ideal{n}\) for a unique integer \(n\ge 0\).  Equivalently,
+\[
+\Id(S)=\bigl\{\{\taup\}\bigr\}\cup\bigl\{J\cup\{\taup\}:J\triangleleft \Z\bigr\}.
+\]
+In particular, every ideal of \(S\) is principal.
+\end{theorem}
+
+\begin{proof}
+Let \(I\) be an ideal of \(S\).  Since \(\taup=0_S\), one has \(\taup\in I\).  Set
+\[
+J:=I\cap \Z.
+\]
+If \(J=\varnothing\), then \(I=\{\taup\}\).  Assume now that \(J\neq\varnothing\).  We claim that \(J\triangleleft \Z\).  Indeed, if \(a,b\in J\), then \(a,b\in I\), and therefore
+\[
+a+b=a\oplus b\in I.
+\]
+Since \(a+b\in \Z\), it follows that \(a+b\in J\).  Next, if \(r\in\Z\) and \(a\in J\), then
+\[
+ra=r\cdot a\in I,
+\]
+and again \(ra\in\Z\), so \(ra\in J\).  Hence \(J\) is an ideal of \(\Z\).
+
+Conversely,
+\[
+I=(I\cap\Z)\cup\{\taup\}=J\cup\{\taup\}.
+\]
+Since every ideal of \(\Z\) has the form \(n\Z\) for a unique \(n\ge 0\), every ideal of \(S\) has the form \(\ideal{n}\) or \(\{\taup\}\).
+
+It remains to verify that \(J\cup\{\taup\}\) is indeed an ideal whenever \(J\triangleleft \Z\).  Let \(x,y\in J\cup\{\taup\}\).  If both are in \(J\), then \(x\oplus y=x+y\in J\subseteq J\cup\{\taup\}\).  If one of them is \(\taup\), then \(x\oplus y\) equals the other one, hence again lies in \(J\cup\{\taup\}\).  Finally, for any \(s\in S\) and \(x\in J\cup\{\taup\}\), the product \(sx\) lies in \(J\cup\{\taup\}\): if \(x=\taup\), then \(sx=\taup\); if \(x\in J\) and \(s\in\Z\), then \(sx\in J\); if \(x\in J\) and \(s=\taup\), then \(sx=\taup\).
+\end{proof}
+
+\begin{corollary}\label{cor:prime-ideals}
+The prime ideals of \(S\) are exactly
+\[
+P_{\taup}:=\{\taup\},
+\qquad
+P_0:=\{0,\taup\},
+\qquad
+P_p:=p\Z\cup\{\taup\}\quad (p\text{ prime in }\Z).
+\]
+\end{corollary}
+
+\begin{proof}
+By Theorem \ref{thm:ideal-classification}, every proper ideal of \(S\) has the form \(J\cup\{\taup\}\), where \(J\) is a proper ideal of \(\Z\), or else \(\{\taup\}\).
+
+First, \(\{\taup\}\) is prime.  Indeed, if \(ab=\taup\), then by definition of multiplication in \(S\), one of \(a,b\) equals \(\taup\).
+
+Next, let \(J\subsetneq \Z\) be an ideal, and consider \(I=J\cup\{\taup\}\).  We show that \(I\) is prime if and only if \(J\) is prime in \(\Z\).  Suppose first that \(I\) is prime.  If \(ab\in J\) with \(a,b\in\Z\), then \(ab\in I\), so \(a\in I\) or \(b\in I\).  Since \(a,b\in\Z\), this means \(a\in J\) or \(b\in J\).  Thus \(J\) is prime.
+
+Conversely, assume that \(J\) is prime in \(\Z\).  Let \(a,b\in S\) with \(ab\in I\).  If one of \(a,b\) equals \(\taup\), then that element already belongs to \(I\).  Otherwise \(a,b\in\Z\), so \(ab\in J\), and primality of \(J\) gives \(a\in J\) or \(b\in J\), hence \(a\in I\) or \(b\in I\).
+
+The prime ideals of \(\Z\) are \((0)\) and \((p)\) for prime numbers \(p\).  This yields precisely the listed primes.
+\end{proof}
+
+\begin{corollary}\label{cor:dim-two}
+The Krull dimension of \(S\) is
+\[
+\dim S=2.
+\]
+More precisely,
+\[
+P_{\taup}\subsetneq P_0\subsetneq P_p
+\]
+for every prime number \(p\), and there is no strictly longer chain of prime ideals.
+\end{corollary}
+
+\begin{proof}
+The displayed chain is immediate from the descriptions in Corollary \ref{cor:prime-ideals}.  Hence \(\dim S\ge 2\).
+
+On the other hand, Corollary \ref{cor:prime-ideals} lists all prime ideals of \(S\).  The ideal \(P_{\taup}\) is contained in every prime ideal.  Among the remaining primes, \(P_0\) is contained in each \(P_p\), while distinct ideals \(P_p\) and \(P_q\) with \(p\neq q\) are incomparable.  Therefore no chain can have length exceeding \(2\).
+\end{proof}
+
+\section{Divisibility, congruences, and zeta}
+
+\begin{proposition}\label{prop:units-irr}
+The group of units of \(S\) is
+\[
+S^{\times}=\{\pm 1\}.
+\]
+The irreducible elements of \(S\) are exactly \(\pm p\), where \(p\) ranges over the prime numbers.
+\end{proposition}
+
+\begin{proof}
+If \(u\in S\) is a unit, there exists \(v\in S\) with \(uv=1\).  Since \(\taup\cdot x=\taup\) for all \(x\), necessarily \(u,v\in\Z\).  Then \(uv=1\) in \(\Z\), so \(u=\pm1\).
+
+Now let \(x\in S\) be irreducible.  Then \(x\neq \taup\) and \(x\) is not a unit, so \(x\in\Z\setminus\{0,\pm1\}\).  Write \(x=ab\) in \(\Z\).  This is also a factorization in \(S\).  Irreducibility of \(x\) in \(S\) implies that one of \(a,b\) is a unit of \(S\), hence \(\pm1\).  Therefore \(x\) is irreducible in \(\Z\), so \(x=\pm p\).
+
+Conversely, let \(x=\pm p\) with \(p\) prime.  If \(x=ab\) in \(S\), then \(a,b\neq \taup\), because otherwise \(ab=\taup\).  Hence \(a,b\in\Z\), and the factorization occurs already in \(\Z\).  Since \(\pm p\) is irreducible in \(\Z\), one of \(a,b\) equals \(\pm1\), hence is a unit of \(S\).
+\end{proof}
+
+\begin{theorem}\label{thm:zero-prime-not-irr}
+The element \(0\in\Z\subset S\) is prime in the divisibility sense but not irreducible.  Consequently \(S\) is not a unique factorization semiring.
+\end{theorem}
+
+\begin{proof}
+First we show that \(0\) is not irreducible.  One has
+\[
+0=2\cdot 0,
+\]
+and neither factor is a unit of \(S\).  Thus \(0\) is reducible.
+
+Now we show that \(0\) is prime.  Suppose
+\[
+0\mid ab.
+\]
+By definition, this means that there exists \(c\in S\) such that
+\[
+ab=0\cdot c.
+\]
+If \(c=\taup\), then \(0\cdot c=\taup\); if \(c\in\Z\), then \(0\cdot c=0\).  Hence
+\[
+ab\in\{0,\taup\}.
+\]
+If both \(a\) and \(b\) lie in \(\Z\setminus\{0\}\), then \(ab\in\Z\setminus\{0\}\), contradiction.  Therefore at least one of \(a,b\) belongs to \(\{0,\taup\}\).  If \(a=0\), then \(0\mid a\) via \(a=0\cdot 1\).  If \(a=\taup\), then \(0\mid a\) via \(a=0\cdot \taup\).  The same argument applies to \(b\).  Thus
+\[
+0\mid ab\implies 0\mid a\ \text{or}\ 0\mid b,
+\]
+so \(0\) is prime.
+
+Finally, in any factorization of a product of irreducibles in \(S\), each factor is of the form \(\pm p\) by Proposition \ref{prop:units-irr}; their product is then a nonzero integer, never equal to \(0\).  Hence the nonunit element \(0\) admits no factorization into irreducibles.  Therefore unique factorization fails.
+\end{proof}
+
+\begin{definition}
+For \(n\ge0\), define a relation \(\rho_n\) on \(S\) by
+\[
+x\,\rho_n\,y
+\iff
+\bigl(x=y=\taup\bigr)
+\ \text{or}\ 
+\bigl(x,y\in\Z\ \text{and}\ x\equiv y\pmod n\bigr).
+\]
+For \(n\ge0\), define
+\[
+\pi_n:S\longrightarrow \Z/n\Z
+\]
+by
+\[
+\pi_n(\taup)=\bar 0,
+\qquad
+\pi_n(m)=\bar m\quad (m\in\Z),
+\]
+where for \(n=0\) we interpret \(\Z/0\Z\) as \(\Z\) itself.  Let \(\rho_n'\) be the congruence induced by \(\pi_n\):
+\[
+x\,\rho_n'\,y \iff \pi_n(x)=\pi_n(y).
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:congruence-classification}
+Every congruence on \(S\) is either \(\rho_n\) or \(\rho_n'\) for a unique \(n\ge0\).  Moreover:
+\[
+S/\rho_n\cong G(\Z/n\Z)
+\qquad (n\ge0),
+\]
+\[
+S/\rho_n'\cong \Z/n\Z
+\qquad (n\ge0).
+\]
+In particular,
+\[
+S/\rho_0'\cong \Z.
+\]
+\end{theorem}
+
+\begin{proof}
+Let \(\sim\) be a congruence on \(S\).  Its restriction to \(\Z\subset S\) is a ring congruence on \(\Z\), hence there exists a unique \(n\ge0\) such that for \(a,b\in\Z\),
+\[
+a\sim b \iff a\equiv b\pmod n.
+\]
+We now distinguish two cases.
+
+\emph{Case 1: \(\taup\not\sim 0\).}  We claim that \(\taup\) is equivalent to no integer.  Indeed, if \(m\in\Z\) and \(m\sim\taup\), then adding \(-m\) to both sides yields
+\[
+0=m\oplus(-m)\sim \taup\oplus(-m)=-m.
+\]
+Since \(-m\in\Z\), this implies \(-m\equiv 0\pmod n\), hence \(-m\sim0\).  By transitivity, \(\taup\sim0\), contradiction.  Therefore the \(\sim\)-class of \(\taup\) is \(\{\taup\}\), and all other classes are the residue classes modulo \(n\) inside \(\Z\).  Hence \(\sim=\rho_n\).
+
+The quotient \(S/\rho_n\) has one distinguished zero class \([\taup]\) and residue classes \([0],[1],\dots,[n-1]\) coming from \(\Z\).  The operations are exactly those of the globalization \(G(\Z/n\Z)\), so
+\[
+S/\rho_n\cong G(\Z/n\Z).
+\]
+
+\emph{Case 2: \(\taup\sim 0\).}  Then for \(m\in\Z\),
+\[
+m\sim\taup \iff m\sim 0 \iff n\mid m.
+\]
+Hence the class of \(\taup\) is
+\[
+\ideal{n}=n\Z\cup\{\taup\}.
+\]
+Since the restriction of \(\sim\) to \(\Z\) is still congruence modulo \(n\), the classes are exactly \(\ideal{n}\) together with the nonzero residue classes modulo \(n\).  Therefore \(\sim=\rho_n'\).
+
+By construction, \(\rho_n'\) is the kernel congruence of \(\pi_n\), so the first isomorphism theorem for semirings gives
+\[
+S/\rho_n'\cong \operatorname{im}(\pi_n)=\Z/n\Z.
+\]
+When \(n=0\), this reads \(S/\rho_0'\cong\Z\).
+\end{proof}
+
+\begin{corollary}\label{cor:zeta}
+Let
+\[
+\zeta_S(s):=\sum_I N(I)^{-s},
+\]
+where the sum runs over ideals of finite norm and
+\[
+N(I):=|S/\rho_I|
+\]
+for the quotient by the congruence naturally associated to \(I\).  Then
+\[
+\zeta_S(s)=\sum_{n\ge1} n^{-s}=\zeta(s).
+\]
+\end{corollary}
+
+\begin{proof}
+By Theorem \ref{thm:ideal-classification}, the ideals are \(\{\taup\}\) and \(\ideal{n}\) for \(n\ge0\).  The ideal \(\{\taup\}\) has quotient \(S\) itself, hence infinite norm.  The ideal \(\ideal{0}=\{0,\taup\}\) has quotient \(\Z\) by Theorem \ref{thm:congruence-classification}, hence infinite norm.  For \(n\ge1\), the quotient by the congruence associated to \(\ideal{n}\) is \(\Z/n\Z\), again by Theorem \ref{thm:congruence-classification}.  Therefore
+\[
+N(\ideal{n})=|\Z/n\Z|=n\qquad (n\ge1),
+\]
+and so
+\[
+\zeta_S(s)=\sum_{n\ge1} n^{-s}=\zeta(s).
+\]
+\end{proof}
+
+\section{Localization and local stalks}
+
+Localization of semirings is standard; cf. Golan \cite[Ch.~17]{golan}.  In the present situation, the proofs are completely explicit.
+
+\begin{theorem}\label{thm:localization-away-from-zero}
+Let \(M\subseteq \Z\) be a multiplicative subset with \(0\notin M\).  Then the localization \(S_M\) is canonically isomorphic to
+\[
+G(\Z_M).
+\]
+\end{theorem}
+
+\begin{proof}
+Recall that \(S_M\) is the quotient of \(S\times M\) by the relation
+\[
+(r_1,m_1)\sim (r_2,m_2)
+\iff
+\exists k\in M:\ k(r_1m_2)=k(r_2m_1).
+\]
+Because \(0\notin M\), every \(k\in M\) is a nonzero integer.
+
+Define
+\[
+\Phi:S_M\longrightarrow G(\Z_M)
+\]
+by
+\[
+\Phi([\taup,m])=\taup,
+\qquad
+\Phi([r,m])=r/m\quad (r\in\Z).
+\]
+We first show that \(\Phi\) is well defined.  Suppose \((r_1,m_1)\sim(r_2,m_2)\).
+If \(r_1=\taup\), then
+\[
+k(r_1m_2)=k\taup=\taup.
+\]
+Hence \(k(r_2m_1)=\taup\), which is impossible when \(r_2\in\Z\), because then \(r_2m_1\in\Z\) and multiplication by the nonzero integer \(k\) stays in \(\Z\).  Therefore \(r_2=\taup\) as well.  Thus all classes represented by \((\taup,m)\) map to \(\taup\).
+
+Now assume \(r_1,r_2\in\Z\).  Then the equality
+\[
+k(r_1m_2)=k(r_2m_1)
+\]
+holds in \(\Z\), and since \(k\neq0\), cancellation in the integral domain \(\Z\) gives
+\[
+r_1m_2=r_2m_1.
+\]
+Hence \(r_1/m_1=r_2/m_2\) in \(\Z_M\).
+
+The map \(\Phi\) is a semiring homomorphism by direct calculation on representatives.  It is surjective because every element of \(G(\Z_M)\) is either \(\taup\) or a fraction \(r/m\) with \(r\in\Z\), \(m\in M\).  It is injective by the same argument used for well-definedness: if two non-\(\taup\) classes have the same image, then they satisfy cross-multiplication in \(\Z\), hence are equivalent in the localization; and the class of \(\taup\) cannot coincide with a class represented by an integer.
+\end{proof}
+
+\begin{theorem}\label{thm:frac-collapse}
+If one localizes at the full multiplicative subset \(\Z\subset S\), then
+\[
+\Frac(S)=S_{\Z}\cong \B.
+\]
+\end{theorem}
+
+\begin{proof}
+We write classes in \(S_{\Z}\) as \([r,m]\) with \(r\in S\), \(m\in\Z\).  First,
+\[
+C_0:=[\taup,1]
+\]
+is a class represented only by pairs \((\taup,m)\).  Indeed, if \([r,m]=[\taup,1]\), then there exists \(k\in\Z\) such that
+\[
+k(r\cdot 1)=k(\taup\cdot m)=k\taup=\taup.
+\]
+If \(r\in\Z\), the left-hand side is either an integer or \(0\), never \(\taup\).  Hence \(r=\taup\).
+
+Now let
+\[
+C_1:=[1,1].
+\]
+We claim that every class represented by an integer numerator equals \(C_1\).  Let \([r_1,m_1]\) and \([r_2,m_2]\) have \(r_1,r_2,m_1,m_2\in\Z\).  Taking \(k=0\in\Z\) in the localization relation gives
+\[
+0(r_1m_2)=0=0(r_2m_1),
+\]
+so \([r_1,m_1]=[r_2,m_2]\).  Thus all such pairs lie in a single class, namely \(C_1\).
+
+The classes \(C_0\) and \(C_1\) are distinct.  If \([\taup,1]=[1,1]\), there would exist \(k\in\Z\) with
+\[
+k\taup=k,
+\]
+which is impossible because the left-hand side is always \(\taup\) and the right-hand side lies in \(\Z\).
+
+Therefore \(S_{\Z}\) has exactly two elements.  Their operations are forced:
+\[
+C_0+C_0=C_0,
+\qquad
+C_0+C_1=C_1,
+\qquad
+C_1+C_1=[2,1]=C_1,
+\]
+\[
+C_0C_0=C_0,
+\qquad
+C_0C_1=C_0,
+\qquad
+C_1C_1=C_1.
+\]
+This is exactly the Boolean semiring \(\B\).
+\end{proof}
+
+\begin{corollary}\label{cor:stalks}
+Let \(\cO\) be the structure sheaf of \(\Spec(S)\).  Then
+\[
+\cO_{P_{\taup}}\cong \B,
+\qquad
+\cO_{P_0}\cong G(\Q),
+\qquad
+\cO_{P_p}\cong G(\Z_{(p)}).
+\]
+\end{corollary}
+
+\begin{proof}
+By definition, the stalk at a prime ideal \(P\) is the localization at the complement \(S\setminus P\).
+
+For \(P_{\taup}=\{\taup\}\), one has \(S\setminus P_{\taup}=\Z\), so
+\[
+\cO_{P_{\taup}}\cong S_{\Z}\cong \B
+\]
+by Theorem \ref{thm:frac-collapse}.
+
+For \(P_0=\{0,\taup\}\), the complement is \(\Z\setminus\{0\}\), which is multiplicative and avoids \(0\).  Hence by Theorem \ref{thm:localization-away-from-zero},
+\[
+\cO_{P_0}\cong G\bigl(\Z_{\Z\setminus\{0\}}\bigr)=G(\Q).
+\]
+
+For \(P_p=p\Z\cup\{\taup\}\), the complement is \(\Z\setminus p\Z\), again a multiplicative subset avoiding \(0\).  Therefore
+\[
+\cO_{P_p}\cong G\bigl(\Z_{\Z\setminus p\Z}\bigr)=G(\Z_{(p)}).
+\]
+\end{proof}
+
+\section{The multiplicative monoid and the contracted monoid algebra}
+
+The monoid-theoretic side belongs naturally to the Deitmar--\(\mathbb F_1\) framework; see Deitmar \cite{deitmar} and Lorscheid \cite{lorscheidview,lorscheid}.  Write
+\[
+M:=(\Z,\times),
+\qquad
+M_S:=M\sqcup\{\taup\},
+\]
+where \(\taup\) is absorbing.
+
+\begin{definition}
+Let \(\mathcal P\) be the set of rational primes.  For \(\Sigma\subseteq\mathcal P\), define
+\[
+P_\Sigma:=\{n\in\Z: \text{there exists }p\in\Sigma\text{ with }p\mid n\}.
+\]
+For \(\Sigma=\varnothing\), we set
+\[
+P_{\varnothing}:=\{0\}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:monoid-spec-z}
+The prime ideals of the commutative monoid \(M=(\Z,\times)\) are exactly the sets \(P_\Sigma\) with \(\Sigma\subseteq \mathcal P\).  The inclusion relation is
+\[
+P_{\Sigma_1}\subseteq P_{\Sigma_2}
+\iff
+\Sigma_1\subseteq\Sigma_2.
+\]
+Consequently,
+\[
+\dim \Spec(M)=\infty.
+\]
+\end{theorem}
+
+\begin{proof}
+We first verify that each \(P_\Sigma\) is a prime ideal.  If \(n\in P_\Sigma\) and \(m\in\Z\), then some \(p\in\Sigma\) divides \(n\), hence divides \(mn\), so \(mn\in P_\Sigma\).  Thus \(P_\Sigma\) is an ideal of the monoid.  It is proper because \(1\notin P_\Sigma\).  Now assume \(ab\in P_\Sigma\).  Then some \(p\in\Sigma\) divides \(ab\), and primality of \(p\) in \(\Z\) gives \(p\mid a\) or \(p\mid b\).  Hence \(a\in P_\Sigma\) or \(b\in P_\Sigma\).  Therefore \(P_\Sigma\) is prime.
+
+Conversely, let \(P\) be a prime ideal of \(M\).  If \(P=\{0\}\), then \(P=P_{\varnothing}\).  Assume \(P\neq\{0\}\).  Define
+\[
+\Sigma(P):=\{p\in\mathcal P:p\in P\}.
+\]
+We claim that \(P=P_{\Sigma(P)}\).  First, if \(p\in\Sigma(P)\), then \(p\in P\), and ideality gives \(p\Z\subseteq P\).  Therefore \(P_{\Sigma(P)}\subseteq P\).
+
+For the reverse inclusion, let \(x\in P\setminus\{0\}\).  Write
+\[
+x=\pm p_1\cdots p_r
+\]
+as a prime factorization in \(\Z\).  Since \(P\) is prime and \(x\in P\), repeated use of primality shows that one of the factors \(\pm p_i\) belongs to \(P\).  If \(-p_i\in P\), then multiplying by \(-1\in M\) yields
+\[
+(-1)(-p_i)=p_i\in P.
+\]
+Hence some prime number \(p_i\) belongs to \(P\), i.e. \(p_i\in\Sigma(P)\).  Since \(p_i\mid x\), one has \(x\in p_i\Z\subseteq P_{\Sigma(P)}\).  Therefore \(P\subseteq P_{\Sigma(P)}\), and the classification follows.
+
+The inclusion criterion is immediate from the classification: if \(\Sigma_1\subseteq\Sigma_2\), then \(P_{\Sigma_1}\subseteq P_{\Sigma_2}\).  Conversely, if \(P_{\Sigma_1}\subseteq P_{\Sigma_2}\) and \(p\in\Sigma_1\), then \(p\in P_{\Sigma_1}\subseteq P_{\Sigma_2}\), so some \(q\in\Sigma_2\) divides \(p\); necessarily \(q=p\), hence \(p\in\Sigma_2\).
+
+Choose distinct primes \(p_1,p_2,\dots\), and set \(\Sigma_n=\{p_1,\dots,p_n\}\).  Then
+\[
+P_{\varnothing}\subsetneq P_{\Sigma_1}\subsetneq P_{\Sigma_2}\subsetneq\cdots
+\]
+is an infinite strictly increasing chain of prime ideals.  Thus \(\dim\Spec(M)=\infty\).
+\end{proof}
+
+\begin{corollary}\label{cor:monoid-spec-ms}
+The prime ideals of \(M_S\) are exactly
+\[
+\{\taup\}
+\quad\text{and}\quad
+P_\Sigma\cup\{\taup\}\qquad (\Sigma\subseteq \mathcal P).
+\]
+Hence
+\[
+\dim\Spec(M_S)=\infty.
+\]
+The unique maximal prime ideal of \(M_S\) is
+\[
+(\Z\setminus\{\pm1\})\cup\{\taup\}.
+\]
+\end{corollary}
+
+\begin{proof}
+Every prime ideal of \(M_S\) contains \(\taup\), because \(\taup\) is the absorbing element.  If \(P'\) is prime in \(M_S\), then \(P:=P'\cap\Z\) is prime in \(M\), and
+\[
+P'=P\cup\{\taup\}.
+\]
+Conversely, if \(P\) is prime in \(M\), then \(P\cup\{\taup\}\) is prime in \(M_S\) by a direct case distinction on whether one of the factors is \(\taup\).  The classification follows from Theorem \ref{thm:monoid-spec-z}.  The dimension statement follows immediately.
+
+For maximality, take \(\Sigma=\mathcal P\).  Then
+\[
+P_{\mathcal P}=\{n\in\Z: \text{some prime divides }n\}=\Z\setminus\{\pm1\},
+\]
+and every other \(P_\Sigma\) is contained in it.
+\end{proof}
+
+\begin{corollary}\label{cor:not-homeomorphic}
+The topological spaces \(\Spec(S)\) and \(\Spec(M_S)\) are not homeomorphic.
+\end{corollary}
+
+\begin{proof}
+Krull dimension is a homeomorphism invariant.  By Corollary \ref{cor:dim-two},
+\[
+\dim\Spec(S)=2,
+\]
+whereas by Corollary \ref{cor:monoid-spec-ms},
+\[
+\dim\Spec(M_S)=\infty.
+\]
+Hence the spaces cannot be homeomorphic.
+\end{proof}
+
+\begin{theorem}\label{thm:base-extension-product}
+Let \(\Z_0[M_S]\) be the contracted monoid algebra of \(M_S\), i.e.
+\[
+\Z_0[M_S]:=\Z[M_S]/([\taup]).
+\]
+Then
+\[
+\Z_0[M_S]\cong \Z[M]\cong \Z\times \Z[M^\times],
+\]
+where \(M^\times=\Z\setminus\{0\}\) is the multiplicative monoid of nonzero integers.
+Consequently,
+\[
+\Spec(\Z_0[M_S])\cong \Spec(\Z)\ \sqcup\ \Spec\bigl(\Z[M^\times]\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+The first isomorphism is immediate from the definition of the contracted monoid algebra: quotienting \(\Z[M_S]\) by \([\taup]\) kills the absorbing basis element and leaves the monoid ring on the remaining monoid \(M=(\Z,\times)\).
+
+For the second isomorphism, define
+\[
+\Phi:\Z[M]\longrightarrow \Z\times\Z[M^\times]
+\]
+on basis elements by
+\[
+\Phi([0])=(1,0),
+\qquad
+\Phi([n])=(1,[n])\quad (n\in\Z\setminus\{0\}),
+\]
+and extend \(\Z\)-linearly.  Thus, for a general element
+\[
+\alpha=a_0[0]+\sum_{n\neq0} a_n[n],
+\]
+one has
+\[
+\Phi(\alpha)=\Bigl(a_0+\sum_{n\neq0} a_n,\ \sum_{n\neq0} a_n[n]\Bigr).
+\]
+We verify multiplicativity on basis elements.  If one factor is \([0]\), then
+\[
+[0][m]=[0]
+\]
+in \(\Z[M]\), while
+\[
+\Phi([0])\Phi([m])=(1,0)\cdot \Phi([m])=(1,0)=\Phi([0]).
+\]
+If \(m,n\neq0\), then
+\[
+\Phi([m])\Phi([n])=(1,[m])(1,[n])=(1,[mn])=\Phi([mn]).
+\]
+Thus \(\Phi\) is a ring homomorphism.
+
+It is bijective with inverse
+\[
+\Psi:\Z\times\Z[M^\times]\longrightarrow\Z[M],
+\]
+\[
+\Psi\Bigl(c,\sum_{n\neq0} b_n[n]\Bigr)=\Bigl(c-\sum_{n\neq0} b_n\Bigr)[0]+\sum_{n\neq0} b_n[n].
+\]
+A direct calculation shows \(\Psi\circ\Phi=\mathrm{id}\) and \(\Phi\circ\Psi=\mathrm{id}\).
+
+Finally, the spectrum of a product of rings is the disjoint union of the spectra of the factors.  Therefore
+\[
+\Spec(\Z_0[M_S])\cong\Spec(\Z)\sqcup\Spec\bigl(\Z[M^\times]\bigr).
+\]
+\end{proof}
+
+\begin{remark}\label{rem:blueprint}
+By the semiring embedding into the category of blueprints, a semiring determines a blueprint whose underlying monoid is its multiplicative monoid and whose pre-addition records exactly the additive relations; see Lorscheid \cite[§4.1.1]{lorscheidview} and \cite[§4]{lorscheid}.  In the present case, the associated blueprint \(B_S\) has underlying monoid \(M_S\) and pre-addition generated by the relations
+\[
+[a]+[b]\equiv [a+b]\qquad (a,b\in\Z)
+\]
+and
+\[
+[x]+[\taup]\equiv [x]\qquad (x\in M_S).
+\]
+This isolates formally the distinction between the semiring geometry of \(S\) and the monoid geometry of \(M_S\).
+\end{remark}
+
+\section{Extension to rings of integers}
+
+Let \(K\) be a number field, and let \(\OK\) be its ring of integers.  Standard facts on \(\OK\) may be found in Neukirch \cite[Chs.~I--VII]{neukirch}.
+
+\begin{definition}
+Define
+\[
+S(\OK):=\OK\sqcup\{\taup\},
+\]
+with the same rules as before:
+\[
+x\oplus y=x+y\quad (x,y\in\OK),
+\qquad
+x\oplus\taup=x,
+\qquad
+\taup\oplus\taup=\taup,
+\]
+\[
+xy=xy\quad (x,y\in\OK),
+\qquad
+x\taup=\taup x=\taup,
+\qquad
+\taup^2=\taup.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:OK-ideals-spectrum}
+The ideals of \(S(\OK)\) are exactly
+\[
+\{\taup\}
+\quad\text{and}\quad
+I_J:=J\cup\{\taup\},
+\]
+where \(J\) ranges over the ideals of \(\OK\).  The prime ideals are exactly
+\[
+\{\taup\},
+\qquad
+\{0\}\cup\{\taup\},
+\qquad
+\mathfrak p\cup\{\taup\}
+\quad (\mathfrak p\neq0\text{ prime in }\OK).
+\]
+In particular,
+\[
+\dim S(\OK)=2.
+\]
+If \(\OK\) is a PID, then \(S(\OK)\) is a principal ideal semiring.
+\end{theorem}
+
+\begin{proof}
+The proof of the ideal classification is verbatim the same as for \(\Z\): every ideal contains \(\taup\), its intersection with \(\OK\) is an ideal of \(\OK\), and conversely every \(J\cup\{\taup\}\) is an ideal.
+
+The prime ideal classification is also the same as before.  The ideal \(\{\taup\}\) is prime because a product equals \(\taup\) if and only if one factor equals \(\taup\).  For a proper ideal \(J\subsetneq \OK\), the ideal \(J\cup\{\taup\}\) is prime in \(S(\OK)\) if and only if \(J\) is prime in \(\OK\), by the same argument as in the proof of Corollary \ref{cor:prime-ideals}.  Since \(\OK\) is a Dedekind domain, its prime ideals are \((0)\) and the nonzero prime ideals, and the nonzero ones are maximal.  Therefore the maximal chains in \(\Spec(S(\OK))\) are exactly
+\[
+\{\taup\}\subsetneq \{0\}\cup\{\taup\}\subsetneq \mathfrak p\cup\{\taup\},
+\]
+which have length \(2\).  Hence \(\dim S(\OK)=2\).
+
+If \(\OK\) is a PID and \(J=(a)\), then
+\[
+I_J=(a)\cup\{\taup\}=S(\OK)\cdot a,
+\]
+so every nonzero ideal of \(S(\OK)\) is principal.  The ideal \(\{\taup\}\) is generated by \(\taup\).
+\end{proof}
+
+\begin{definition}
+Let \(\Cl(S(\OK))\) be the class semigroup of nonzero ideals of \(S(\OK)\), modulo the equivalence relation
+\[
+I_1\sim I_2
+\iff
+\exists a,b\in S(\OK)\setminus\{\taup\}:\ aI_1=bI_2.
+\]
+Since \(S(\OK)\setminus\{\taup\}=\OK\), the scalars in this definition are exactly the nonzero algebraic integers.
+\end{definition}
+
+\begin{theorem}\label{thm:class-semigroup}
+There is a canonical isomorphism of commutative monoids
+\[
+\Cl(S(\OK))\cong \Cl(K).
+\]
+\end{theorem}
+
+\begin{proof}
+For a nonzero ideal \(J\subseteq \OK\), let
+\[
+I_J:=J\cup\{\taup\}.
+\]
+Define
+\[
+\Phi:\Cl(K)\longrightarrow \Cl(S(\OK)),
+\qquad
+[J]\longmapsto [I_J].
+\]
+We first show that \(\Phi\) is well defined.  If \([J_1]=[J_2]\) in \(\Cl(K)\), then there exist \(a,b\in\OK\setminus\{0\}\) such that
+\[
+aJ_1=bJ_2.
+\]
+Therefore
+\[
+aI_{J_1}=a(J_1\cup\{\taup\})=(aJ_1)\cup\{\taup\}=(bJ_2)\cup\{\taup\}=bI_{J_2},
+\]
+so \([I_{J_1}]=[I_{J_2}]\) in \(\Cl(S(\OK))\).
+
+Next, \(\Phi\) is multiplicative because
+\[
+I_{J_1}I_{J_2}=(J_1\cup\{\taup\})(J_2\cup\{\taup\})=J_1J_2\cup\{\taup\}=I_{J_1J_2}.
+\]
+
+To prove injectivity, suppose \([I_{J_1}]=[I_{J_2}]\).  Then there exist \(a,b\in\OK\setminus\{0\}\) such that
+\[
+aI_{J_1}=bI_{J_2}.
+\]
+Intersecting both sides with \(\OK\) gives
+\[
+aJ_1=bJ_2,
+\]
+so \([J_1]=[J_2]\) in \(\Cl(K)\).
+
+For surjectivity, let \([I]\in \Cl(S(\OK))\).  Since \(I\) is a nonzero ideal, the ideal classification from Theorem \ref{thm:OK-ideals-spectrum} yields \(I=I_J\) for a unique nonzero ideal \(J\subseteq \OK\).  Hence \([I]=\Phi([J])\).
+\end{proof}
+
+\begin{theorem}\label{thm:Dedekind-zeta}
+The ideal zeta function of \(S(\OK)\) is the Dedekind zeta function of \(K\):
+\[
+\zeta_{S(\OK)}(s)=\zeta_K(s).
+\]
+\end{theorem}
+
+\begin{proof}
+For each nonzero ideal \(J\subseteq\OK\), define the semiring morphism
+\[
+\pi_J:S(\OK)\longrightarrow \OK/J
+\]
+by
+\[
+\pi_J(\taup)=0,
+\qquad
+\pi_J(x)=x\bmod J\quad (x\in\OK).
+\]
+The verification that \(\pi_J\) is a surjective semiring homomorphism is immediate.  Its kernel is exactly
+\[
+I_J=J\cup\{\taup\}.
+\]
+Hence the quotient by the corresponding congruence is isomorphic to \(\OK/J\), and the norm of \(I_J\) is
+\[
+N(I_J)=|\OK/J|=N(J).
+\]
+The ideals of finite norm are exactly the \(I_J\) with \(J\neq0\); the ideal \(\{\taup\}\) has infinite quotient.  Therefore
+\[
+\zeta_{S(\OK)}(s)=\sum_{0\neq J\triangleleft \OK} N(I_J)^{-s}
+=\sum_{0\neq J\triangleleft \OK} N(J)^{-s}
+=\zeta_K(s).
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:OK-fixed}
+Under the action of \(\OK^{\times}\) on \(S(\OK)\) by multiplication, the fixed-point subsemiring is
+\[
+S(\OK)^{\OK^{\times}}=\{0,\taup\}\cong\B.
+\]
+\end{corollary}
+
+\begin{proof}
+Certainly \(0\) and \(\taup\) are fixed.  If \(x\in\OK\) is fixed by every unit, then in particular it is fixed by \(-1\in \OK^{\times}\), so
+\[
+-x=x.
+\]
+Since \(\OK\) has characteristic \(0\), this implies \(x=0\).  Thus the fixed set is \(\{0,\taup\}\), which is Boolean by the same two-element table as before.
+\end{proof}
+
+\section*{Acknowledgment on provenance}
+The proofs above are self-contained.  The arrangement of topics follows the line of ideas suggested by the uploaded notes, but the article cites only published literature: semiring background from Golan \cite{golan}, monoidal \(\mathbb F_1\)-geometry from Deitmar \cite{deitmar}, blueprint formalism from Lorscheid \cite{lorscheidview,lorscheid}, and algebraic number theory from Neukirch \cite{neukirch}.
+
+\begin{thebibliography}{99}
+
+\bibitem{deitmar}
+A.~Deitmar,
+\emph{Schemes over \(\mathbb F_1\)},
+in \emph{Number Fields and Function Fields---Two Parallel Worlds},
+Progr. Math. \textbf{239}, Birkh\"auser Boston, Boston, MA, 2005, pp.~87--100.
+
+\bibitem{golan}
+J.~S.~Golan,
+\emph{Semirings and Their Applications},
+Kluwer Academic Publishers, Dordrecht, 1999.
+
+\bibitem{lorscheidview}
+O.~Lorscheid,
+\emph{A blueprinted view on \(\mathbb F_1\)-geometry},
+in K.~Thas (ed.), \emph{Absolute Arithmetic and \(\mathbb F_1\)-Geometry},
+EMS Congress Reports, European Mathematical Society, Z\"urich, 2016, pp.~161--220.
+
+\bibitem{lorscheid}
+O.~Lorscheid,
+\emph{The geometry of blueprints. Part I: Algebraic background and scheme theory},
+Adv. Math. \textbf{229} (2012), no.~3, 1804--1846.
+
+\bibitem{neukirch}
+J.~Neukirch,
+\emph{Algebraic Number Theory},
+Grundlehren der Mathematischen Wissenschaften \textbf{322}, Springer-Verlag, Berlin, 1999.
+
+\end{thebibliography}
+
+\end{document}

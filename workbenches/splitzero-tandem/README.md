@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22904523) (assigned DOI 10.5281/zenodo.22904523) retains the whole research programme and adds the 49-page real-word-current and source-step paper, complete LaTeX and human citations. All 79 earlier PDFs remain separate. [Exact proof links and publication receipt](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-real-words-source-steps-publication/README.md). The terminal imaginary pairing remains unevaluated.
+
 ### Real word currents and actual source additions
 
 The Split-Zero programme studies finite zero classes of the completed Riemann zeta function in an arithmetic quotient, using its original theta source, quotient metric and conductor observation. This continuation studies the Hermitian current associated with real polynomials and rational functions of the original multiplication operator. It proves that an actual adjacent-source addition preserves every degree-d polynomial current's inertia (d,d,q−2d), for d ≤ q/2, throughout the source interpolation. Here inertia counts positive, negative and zero directions; q is the quotient dimension.

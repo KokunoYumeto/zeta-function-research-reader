@@ -26,7 +26,7 @@ F_0=\zeta,\quad F_1=\zeta-1,
 \]
 Initially these equalities hold for \(\Re s>1\). The identity at \(t=1\) is a change of index in an absolutely convergent series. The intermediate values are numerical interpolation of the cardinality weights; they are not asserted to count a nonintegral number of elements in a quotient.
 
-In particular, SW2 is not the separate prime-weight Euler product \(\prod_p(1-(p+1)^{-s})^{-1}\). Its distinction from that product is proved with the actual quotient maps in TN1–TN9 of `TAU_WEIL_NORM_RECONSTRUCTION.md`. For example the weights satisfy \((m+1)(n+1)-(mn+1)=m+n\); retaining the labels gives the multiplicative vector \((1,n)\), while summing its entries gives the nonmultiplicative number \(n+1\).
+In particular, SW2 is not the separate prime-weight Euler product \(\prod_p(1-(p+1)^{-s})^{-1}\). Its distinction from that product is proved with the actual quotient maps in TN1–TN9 of [prime-norm comparison proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/173dbc6ed5a03235dbe7654f928f3692107db39b/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/TAU_WEIL_NORM_RECONSTRUCTION.md). For example the weights satisfy \((m+1)(n+1)-(mn+1)=m+n\); retaining the labels gives the multiplicative vector \((1,n)\), while summing its entries gives the nonmultiplicative number \(n+1\).
 
 ## SW2. Analytic continuation and estimates used below
 
@@ -172,7 +172,7 @@ Put \(a=1+t\), \(r_n=(n+t)/a\) for \(n\ge2\), and choose \(c\) so large that \(\
 \log r_{\boldsymbol n}\,r_{\boldsymbol n}^{-s}.
 \tag{SW18}
 \]
-To verify differentiation and absolute convergence, take a slightly smaller real part on which the sum is still less than 1. Its positive margin bounds the differentiated geometric series. Explicitly, if \(B(c)=\sum r_n^{-c}<1\) and \(D(c)=\sum(\log r_n)r_n^{-c}<\infty\), the sum of the absolute differentiated terms is \(\sum_{k\ge1}D(c)B(c)^{k-1}=D(c)/(1-B(c))\). The general-length derivation and its signed atoms are developed independently in `NON_EULERIAN_LENGTH_DERIVATION.md`.
+To verify differentiation and absolute convergence, take a slightly smaller real part on which the sum is still less than 1. Its positive margin bounds the differentiated geometric series. Explicitly, if \(B(c)=\sum r_n^{-c}<1\) and \(D(c)=\sum(\log r_n)r_n^{-c}<\infty\), the sum of the absolute differentiated terms is \(\sum_{k\ge1}D(c)B(c)^{k-1}=D(c)/(1-B(c))\). The general-length derivation and its signed atoms are developed independently in [non-Eulerian length proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/173dbc6ed5a03235dbe7654f928f3692107db39b/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/NON_EULERIAN_LENGTH_DERIVATION.md).
 
 Define the absolutely convergent functional
 \[

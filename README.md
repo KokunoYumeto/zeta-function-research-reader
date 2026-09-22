@@ -33,6 +33,16 @@ Zenodo preserves separately readable papers and their source archives; GitHub pr
 
 ## Current publication update
 
+### Original terminal arithmetic response
+
+The Split-Zero programme carries finite zero classes of the completed Riemann zeta function through its arithmetic theta source, quotient metric and conductor observation. This continuation calculates two distinct amplification rates in the response of the original terminal eigenclass, rather than only their product. For the two original boundary rows, log α = 2qψ(t_N) + O(k log q), while 0 ≤ log β = O(k + log q). The complete proofs retain the original four cutoffs and period restrictions.
+
+Read the [10-page illustrated paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-terminal-response/TERMINAL_RESPONSE_READER.pdf), [complete reader LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-terminal-response/TERMINAL_RESPONSE_READER.tex), [results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-terminal-response/RESULTS_20260922_027.md) and [machine-readable proof index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-terminal-response/RESULT_INDEX.json).
+
+In the actual observation metric, the terminal class approaches an explicitly constructed maximal isotropic hyperplane for the current form. Its canonically phased positive- and negative-current amplitudes have coherence deficit at most exp[−2qψ(t_N) + O(k log q)]. The diagonal current correction has the same absolute error bound. The original imaginary cross-coordinate remains in the exact current formula; its sign is not evaluated by these magnitude estimates. These are results on the full previously stated conductor domain, not a conclusion about RH.
+
+Both complete derivations, all 15 owner files and the complete preceding source bank with seven additions are included. Full LaTeX, human citations, figure sources and the original verification reports accompany them. Exact finite checks and noninterval numerical diagnostics retain their separate scopes; no actual native-period numerical evaluation is claimed.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22901724) (assigned DOI 10.5281/zenodo.22901724) retains the whole research programme and adds the 65-page original-current and effective-cutoff paper, with complete LaTeX, human citations and exact proof links. All 76 earlier PDFs remain separate.
 
 ### Original arithmetic current and effective cutoff control

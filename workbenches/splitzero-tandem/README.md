@@ -17,6 +17,8 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+[Published cumulative Zenodo edition](https://zenodo.org/records/22887380) (assigned DOI 10.5281/zenodo.22887380) retains the complete research programme and adds the 35-page arithmetic-probe and kernel-mass paper, with complete LaTeX, human citations and precise proof links. All 73 earlier PDFs remain separate.
+
 ### Arithmetic probes, kernel mass and the terminal metric correction
 
 [Read the 35-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/ARITHMETIC_PROBE_MASS_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/ARITHMETIC_PROBE_MASS_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/RESULTS_20260922_022.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-arithmetic-probe-mass/RESULT_INDEX.json).

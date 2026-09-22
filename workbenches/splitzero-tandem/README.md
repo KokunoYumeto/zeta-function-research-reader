@@ -17,6 +17,14 @@ The broader [project guide](https://github.com/KokunoYumeto/zeta-function-resear
 
 ## Current publication update
 
+### Finite recovery of the original observation
+
+[Read the 39-page paper](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/ORIGINAL_OBSERVATION_RECOVERY_READER.pdf) · [Complete LaTeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/ORIGINAL_OBSERVATION_RECOVERY_READER.tex) · [Results and programme uses](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/RESULTS_20260922_021.md) · [Machine-readable proof locations](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260922-original-observation-recovery/RESULT_INDEX.json).
+
+The Split-Zero programme studies the arithmetic theta source, its quotient and its observation through determinant and heat estimates. This paper gives an exact spectral map from zero-frequency measured data to the original kernel angles, with finite rounding and determinant errors. It proves the sharp information loss of scalar data, identifies the scalar leading coefficient that retains the kq term, and bounds the bounded-power observation's 128-direction remainder by an explicit O(q) determinant. The polynomial quotient retains the full coefficient Gram, original poles, source maps and corrected complex currents.
+
+Complete MR1–29, SD1–54 and BD1–31 proofs, illustrated reader LaTeX, checkers, inherited source blocks and human citations accompany it. Loewner realization work credits Zhang, Gosea and Antoulas, with Mayo and Antoulas retained as historical attribution; Feshbach–Schur, DLMF and Platt–Trudgian sources retain exact reading coverage. The actual native kq coefficient and separate current values/signs remain unevaluated. Auxiliary examples are not substituted for them. Canonical whole-project descriptions and all preceding editions remain intact; unfinished022work is excluded.
+
 [Published cumulative Zenodo edition](https://zenodo.org/records/22884828) (assigned DOI 10.5281/zenodo.22884828) retains the complete research programme and adds the 62-page original-growth and measured-resolvent paper, with complete LaTeX, human provenance and precise proof links. All 71 earlier PDFs remain separate.
 
 ### Original growth, complete-row sampling and measured resolvents

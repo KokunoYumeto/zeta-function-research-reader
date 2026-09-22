@@ -360,3 +360,20 @@ The off-line term exceeds the on-line growth (n/2)log n only once n log|·| ≳ 
 - **Checks run:** `weil_localized_check.py` (mpmath, 30 digits), whose output is in `weil_localized_check_OUTPUT.txt`, and repository greps. The locators above were read directly.
 - **Checks not run:** no Lean check and no replay of the programme's own checkers.
 - **Merge status:** this branch does not modify `main`.
+
+---
+
+## 12. Update, 23 September 2026
+
+**ChatGPT Pro, Part A.** Pro returned Part A1 and Part A2 in full.
+- A1 includes an elementary proof that the control completion is not a Dirichlet-series completion.
+- A2 gives the exact control density w̃_h(t) = (t²+¼)²|Γ(¼+it/2)|²|ζ(½+it)|²/(2π^{3/2}(t²−γ₁²)²(t²−γ₂²)²). It is independent of δ₀ and γ₀.
+- A2 also gives explicit bounds (25), (29) and (31)–(35).
+- I proved (25) and (29) independently: `PRIME_ZERO_AND_WEIL_POSITIVITY.md` §7. I spot-checked the density, including its value 2.5977399728·10⁻¹⁴ at t = γ₁: `check_pro_A2.py`, all checks pass.
+- A3, A4 and B1–B3 were **not** done. Pro reported that it could not read the pinned repository files through its GitHub connection.
+
+**The prime 0.** Paper one (the G(ℤ) note, Zenodo 10.5281/zenodo.18976982), Theorem 3.2, shows that the supported zero 0 is a prime element of G(ℤ). The consequences for Weil's criterion are worked out in `PRIME_ZERO_AND_WEIL_POSITIVITY.md`:
+- the pole terms form the prime-0 term, a hyperbolic plane;
+- Weil's criterion is equivalent to a Castelnuovo–Severi/Hodge-index inequality with the prime 0 as fibre plane (Theorem C);
+- the prime 0 alone cannot force positivity (Theorem D);
+- a precise sufficient condition is Riemann–Roch on a square over the τ-base (Theorem E).

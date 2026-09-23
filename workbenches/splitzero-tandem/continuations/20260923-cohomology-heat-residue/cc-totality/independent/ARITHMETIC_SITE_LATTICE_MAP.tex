@@ -1,0 +1,661 @@
+\section{The full support lattice and the arithmetic site's coefficient extension}
+\label{sec:arithmetic-site-lattice-map}
+
+The human source used here is Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1502.05580}{\emph{Geometry of the Arithmetic
+Site}}, original author source \texttt{arithmeticsite\_Adv\_final1.tex},
+2074 lines, SHA--256
+\par\noindent
+\texttt{bd9da2b9e3c8846e306af18dbf745d7cf603450d6630a00e239da4235a7320b4}.
+\par\noindent
+The source mathematics actually read for this calculation is lines
+331--407, 440--503, 598--704, and 850--1010. These ranges include the
+definition of the characteristic-one semirings and Frobenius,
+the rank-one description of points, the arithmetic-site definition,
+the complete stalk proof, global sections, the definition of valued
+points, and the stated pullback to the ordinary arithmetic spectrum.
+This is bounded reading, not a claim to have read the whole paper.
+
+The known programme input is the full, arbitrary bounded distributive
+lattice $L$, not a Boolean lattice in its place. Its carrier, complete
+prime classification, and supported-zero localization are already proved
+in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/01_REBUILT_MATHEMATICS.tex}{031,
+Theorem \texttt{thm:rebuilt-full-support}, and Theorem
+\texttt{thm:e-stalk}, equation \texttt{eq:e-element-localization}}.
+The latter states $G_L(R)[e^{-1}]\simeq L$. It is an existing result,
+not a new assertion of the present calculation. We prove its precise
+universal consequence for characteristic-one targets, and construct
+the resulting full-lattice coefficient extension of the arithmetic
+site, including its points, stalks, and Frobenius.
+
+\subsection{The characteristic-one universal property}
+
+Let $R$ be a nonzero commutative unital ring and let $L$ be a nontrivial
+bounded distributive lattice, finite or infinite. Retain
+\begin{equation}\tag{ASL1}
+ \begin{gathered}
+ S=G_L(R)=\{(0,\lambda):\lambda\in L\}
+                  \cup\{(r,1_L):r\in R\},\\
+ (r,\lambda)+(s,\mu)=(r+s,\lambda\vee\mu),\qquad
+ (r,\lambda)(s,\mu)=(rs,\lambda\wedge\mu),\\
+ z_\lambda=(0,\lambda),\quad \tau=z_{0_L},\quad e=z_{1_L},
+ \quad 1_S=(1_R,1_L),\quad
+ \sigma:S\longrightarrow L,\quad \sigma(r,\lambda)=\lambda.
+ \end{gathered}
+\end{equation}
+The operations on the semiring $L$ are join and meet, with zero $0_L$
+and unit $1_L$. A semiring homomorphism below preserves both zero and
+unit.
+
+For every commutative semiring $K$ whose addition is idempotent, the
+map $\sigma$ induces a natural bijection
+\begin{equation}\tag{ASL2}
+ \operatorname{Hom}_{\rm sr}(L,K)
+       \xrightarrow{\ \sim\ }
+ \operatorname{Hom}_{\rm sr}(S,K),\qquad g\longmapsto g\sigma.
+\end{equation}
+To prove this, let $f:S\to K$. In $S$, write
+$v=(-1_R,1_L)$, so $e=1_S+v$ and $e+1_S=1_S$.
+Idempotence in $K$ gives
+\[
+ f(e)+1_K=(1_K+f(v))+1_K=1_K+f(v)=f(e),
+\]
+whereas the second source relation makes this equal to $1_K$.
+Thus $f(e)=1_K$. Since $e(r,1_L)=e$, every supported amplitude
+satisfies $f(r,1_L)=1_K$. Define $g(\lambda)=f(z_\lambda)$.
+Addition and multiplication of the $z_\lambda$ show that $g$ preserves
+join and meet, and $g(0_L)=0_K$, $g(1_L)=1_K$. It follows that
+$f=g\sigma$. Conversely every such composite is a homomorphism.
+Surjectivity of $\sigma$ gives uniqueness. This proves (ASL2) directly,
+with exactly the same localization map as the established result.
+
+There is a more precise description for an arbitrary idempotent $K$.
+Use its natural partial order $x\le y\iff x+y=y$ and let
+\begin{equation}\tag{ASL3}
+ \operatorname{Id}_{\le1}(K)=\{a\in K:a^2=a,\ a+1_K=1_K\}.
+\end{equation}
+This is a bounded distributive lattice under addition and multiplication.
+For $a,b$ in this set, $ab\le a,b$, while any other $c$ in the set
+with $c\le a,b$ satisfies $c=c^2\le ab$. Thus multiplication is
+their meet. Also $(a+b)^2=a+b+ab=a+b$, since $ab\le a+b$, so
+addition gives the join in the same set. Distributivity is inherited
+from $K$. Every unital homomorphism from $L$ has its image here,
+because $\lambda^2=\lambda$ and $\lambda\vee1_L=1_L$.
+Consequently (ASL2) is also the exact bijection
+\begin{equation}\tag{ASL4}
+ \operatorname{Hom}_{\rm sr}(S,K)
+       \simeq\operatorname{Hom}_{\rm BLat}
+                      (L,\operatorname{Id}_{\le1}(K)).
+\end{equation}
+
+\subsection{All maps to the actual tropical coefficient semirings}
+
+Connes--Consani define their structure semiring as $\mathbb Z_{\max}$.
+Its stalk at the ordered group $H$ is
+\[
+ H_{\max}=(H\cup\{-\infty\},\max,+).
+\]
+See their Definition
+\texttt{site}, lines 618--622, and Theorem \texttt{structure2},
+lines 626--659. Write $\mathbf0=-\infty$ and $\mathbf1=0_H$
+in this additive presentation, so that the multiplicative unit is
+never confused with the absorbing zero. For any totally ordered
+abelian group $H$, the only multiplicative idempotents of $H_{\max}$
+are $\mathbf0$ and $\mathbf1$: for $h\in H$, $h+h=h$ forces $h=0_H$.
+The same assertion holds for their nonnegative min-version
+$(H_{\ge0}\cup\{\infty\},\min,+)$ (source lines 662--665), and
+for the multiplicative tropical real semifield
+$\mathbb R_+^{\max}=([0,\infty),\max,\cdot)$.
+
+Let $X=\operatorname{SpecLat}L$ be the set of proper lattice prime
+ideals. For $P\in X$ set
+\begin{equation}\tag{ASL5}
+ \chi_P(\lambda)=
+ \begin{cases}0,&\lambda\in P,\\1,&\lambda\notin P.
+ \end{cases}
+ \qquad \chi_P:L\longrightarrow\mathbb B=\{0,1\}.
+\end{equation}
+A lattice ideal is closed under finite joins and downward closed;
+primality means $\lambda\wedge\mu\in P$ forces one factor into $P$.
+These properties prove exactly that (ASL5) preserves zero, unit, join,
+and meet. Conversely the zero fibre of a bounded lattice homomorphism
+to $\mathbb B$ is such a prime ideal, and determines the homomorphism.
+Combining this fact with (ASL4) gives, for each of the tropical targets
+$K$ just specified,
+\begin{equation}\tag{ASL6}
+ \operatorname{Hom}_{\rm sr}(S,K)\simeq X,
+ \qquad f_P=\iota_{\mathbb B,K}\chi_P\sigma.
+\end{equation}
+Here the canonical inclusion sends the two Boolean elements to
+$\mathbf0_K,\mathbf1_K$. The complete fibres are
+\begin{equation}\tag{ASL7}
+ \begin{split}
+ f_P^{-1}(\mathbf0_K)&=\{z_\lambda:\lambda\in P\},\\
+ f_P^{-1}(\mathbf1_K)&=
+    \{z_\lambda:\lambda\notin P\}
+       \cup\{(r,1_L):r\in R\setminus\{0_R\}\},\\
+ f_P^{-1}(a)&=\varnothing\quad
+               (a\notin\{\mathbf0_K,\mathbf1_K\}).
+ \end{split}
+\end{equation}
+In particular all ordinary nonzero amplitudes and the supported zero
+$e$ have value $\mathbf1_K$. This is forced by the universal property;
+it is not an assumption that the added prime has no effect.
+
+The source's Frobenius maps are $x\mapsto x^n$, $n\ge1$, and on
+$\mathbb R_+^{\max}$ also $x\mapsto x^t$, $t>0$ (source lines
+395--406). They fix both Boolean elements. Thus
+\begin{equation}\tag{ASL8}
+ \operatorname{Fr}_n^K f_P=f_P,
+ \qquad f_P(x^n)=f_P(x),\qquad
+ \operatorname{Fr}_t^{\mathbb R_+^{\max}}f_P=f_P.
+\end{equation}
+The middle identity holds for the actual powers in $S$, by
+multiplicativity. It does not assert that $x\mapsto x^n$ is an
+additive endomorphism of $S$; that fails, for example, for $R=\mathbb Z$
+and $n=2$. On the reflected lattice, $\lambda^n=\lambda$, so its
+Frobenius is exactly the identity. Equations (ASL8) are the precise
+compatibility statements, with no additional action imposed on $R$.
+
+\subsection{The full lattice is recovered by its whole family of characters}
+
+Define the basic opens $D(\lambda)=\{P\in X:\lambda\notin P\}$.
+The map
+\begin{equation}\tag{ASL9}
+ L\longrightarrow\mathbb B^X,\qquad
+ \lambda\longmapsto(\chi_P(\lambda))_{P\in X}
+                =\mathbf1_{D(\lambda)}
+\end{equation}
+is an injective lattice homomorphism. Here and below we use the usual
+prime-ideal theorem for bounded distributive lattices, for which the
+needed separation proof is as follows. If $\lambda\nleq\mu$, the
+ideal $\downarrow\mu$ and filter $\uparrow\lambda$ are disjoint.
+By Zorn's lemma choose an ideal maximal among those containing the
+first and disjoint from the second. If $a,b$ are outside it but
+$a\wedge b$ lies in it, adjoining $a$ and adjoining $b$ each produces
+an intersection with the filter. Thus filter elements are bounded
+above by $i\vee a$ and $j\vee b$ for some ideal elements $i,j$.
+Their meet is bounded above by $i\vee j\vee(a\wedge b)$, by
+distributivity, and hence is in the ideal, a contradiction. The
+maximal ideal is therefore prime, contains $\mu$, and avoids
+$\lambda$. This separates the two elements in (ASL9).
+
+The same proof shows $D(\lambda)$ is compact. If it is covered by
+$D(\mu_i)$ but no finite subfamily covers it, then $\lambda$ is not
+in the ideal generated by all the $\mu_i$. The preceding ideal/filter
+argument gives a prime containing all $\mu_i$ and avoiding $\lambda$,
+contradicting the cover. Thus a finite subfamily covers it. Since
+\begin{equation}\tag{ASL10}
+ D(\lambda\vee\mu)=D(\lambda)\cup D(\mu),\qquad
+ D(\lambda\wedge\mu)=D(\lambda)\cap D(\mu),
+\end{equation}
+every compact open of $X$ equals a unique $D(\lambda)$. Consequently
+(ASL9) identifies $L$ with the lattice of compact opens, not with the
+entire power set of $X$.
+
+For finite $L$ this is especially explicit. Every nonzero
+join-irreducible $j$ is join-prime: if $j\le a\vee b$, then
+$j=(j\wedge a)\vee(j\wedge b)$ forces $j\le a$ or $j\le b$.
+Its character is $\chi_j(\lambda)=1$ exactly when $j\le\lambda$.
+Conversely the complement of any prime ideal is a finite filter;
+its least element $j$ is nonzero and join-prime, so every character
+arises this way. Thus
+\begin{equation}\tag{ASL11}
+ X\simeq J(L),\qquad
+ L\simeq\{\text{downward-closed subsets of }J(L)\},
+ \quad \lambda\longmapsto\{j:j\le\lambda\}.
+\end{equation}
+For surjectivity in the last map, a downward-closed subset $A$ has
+$\lambda=\bigvee A$; join-primality puts every irreducible below
+$\lambda$ in $A$. No Boolean support assumption occurs. For the
+three-element chain, the character vectors are $(0,0),(1,0),(1,1)$;
+the vector $(0,1)$ is absent. Replacing this lattice by two independent
+Boolean channels would therefore change the object.
+
+\subsection{Prime centres, localization, and the support structure sheaf}
+
+The complete prime data of the original semiring, already proved in
+031, is
+\begin{equation}\tag{ASL12}
+ \begin{gathered}
+ P^{\rm supp}=\{z_\lambda:\lambda\in P\}\quad(P\in X),\\
+ Q_{\mathfrak p}=\{z_\lambda:\lambda\in L\}
+              \cup\{(r,1_L):r\in\mathfrak p\}
+                    \quad(\mathfrak p\in\operatorname{Spec}R),\\
+ \operatorname{Spec}S=X\blacktriangleright\operatorname{Spec}R,
+ \qquad D_S(e)=X,\quad V_S(e)=\operatorname{Spec}R.
+ \end{gathered}
+\end{equation}
+For clarity, exhaustion follows directly from the source operations.
+An ideal containing a supported element contains $e$, hence every
+$z_\lambda$; its supported amplitudes form a ring ideal. An ideal
+containing no supported element consists of the $z_\lambda$ from a
+proper lattice ideal. The two primality tests are respectively ring
+primality and meet-primality. Every support prime lies strictly below
+every arithmetic prime, and the basic opens are
+$D_S(z_\lambda)=D(\lambda)$ and
+$D_S((r,1_L))=X\cup D_R(r)$. This proves the stated topology.
+
+A tropical semifield has only its zero ideal as a proper ideal,
+because every nonzero element is a unit. The spectral map induced by
+$f_P$ therefore has the single image $P^{\rm supp}$, by (ASL7).
+More generally, every proper prime of any target in (ASL6) contracts
+to that same prime, since it contains $\mathbf0$ and excludes
+$\mathbf1$. In particular these maps do not centre on an arithmetic
+prime $Q_{\mathfrak p}$ containing $e$.
+
+For a multiplicative subset $T\subset S$, a character map $f_P$
+extends to $T^{-1}S$ exactly when
+\begin{equation}\tag{ASL13}
+ \sigma(T)\cap P=\varnothing;
+ \qquad f_P(s/t)=f_P(s)\quad(t\in T).
+\end{equation}
+Indeed all target values of denominators are either zero or unit one.
+For the universal property with arbitrary idempotent targets,
+localization commutes with the reflection:
+\begin{equation}\tag{ASL14}
+ (T^{-1}S)_{\rm idemp}\simeq\sigma(T)^{-1}L.
+\end{equation}
+Both sides represent maps from $S$ to idempotent semirings in which
+all elements of $T$ become units, using (ASL2), so the displayed
+isomorphism follows from the two inverse universal maps.
+
+The full support localizations are explicit:
+\begin{equation}\tag{ASL15}
+ L[\lambda^{-1}]\simeq\downarrow\lambda,
+ \qquad \mu\longmapsto\mu\wedge\lambda,
+ \quad 1_{\downarrow\lambda}=\lambda.
+\end{equation}
+The equivalence relation is
+$\mu\sim\nu\iff\mu\wedge\lambda=\nu\wedge\lambda$;
+all positive powers of the denominator are $\lambda$ itself.
+For a prime $P$, the stalk has the description
+\begin{equation}\tag{ASL16}
+ L_P=L/(\mu\sim_P\nu),\qquad
+ \mu\sim_P\nu\iff
+   \exists t\notin P:\mu\wedge t=\nu\wedge t,
+ \qquad S_{P^{\rm supp}}\simeq L_P.
+\end{equation}
+Every denominator in $L\setminus P$ is idempotent, so after being
+inverted it becomes the unit; this gives the stated equivalence and
+exhausts fractions. In $S_{P^{\rm supp}}$, $e$ is inverted first,
+giving $L$, and the remaining denominators are precisely those
+represented by $L\setminus P$. This proves the last isomorphism.
+
+These semirings of sections form a sheaf on the
+support spectrum. On compact basic opens set
+\begin{equation}\tag{ASL17}
+ \mathcal L(D(\lambda))=\downarrow\lambda,
+ \qquad
+ \operatorname{res}_{D(\mu)}(a)=a\wedge\mu
+                   \quad(\mu\le\lambda).
+\end{equation}
+For a finite cover with $\lambda=\bigvee_i\lambda_i$, compatible
+sections $a_i\le\lambda_i$ obey
+$a_i\wedge\lambda_j=a_j\wedge\lambda_i$. Their unique gluing is
+$a=\bigvee_i a_i$: distributivity proves
+$a\wedge\lambda_i=a_i$, and if a second section has these restrictions
+then intersecting it with $\bigvee_i\lambda_i$ proves equality.
+Compactness gives a finite subcover for any cover of a basic open,
+and the same compatibility checks every remaining member. Thus this
+is a sheaf on the basis and has stalk (ASL16). It is the restriction
+of the localization structure sheaf of $S$ to $D_S(e)$.
+
+The stalk $L_P$ generally retains more than a Boolean value. For the
+chain $0<a<1$ at the prime $P=\{0,a\}$, only $1$ is inverted, so
+$L_P=L$ still has three elements. Its local residue map to
+$\mathbb B$ sends $0,a$ to zero and $1$ to one. In general the
+extension of $\chi_P$ sends a class to one precisely when that class
+is the unit: $\mu\notin P$ becomes invertible and hence equals one;
+if $\mu\in P$ could equal one, then some $t\notin P$ would satisfy
+$t\le\mu$, contradicting downward closure. The Bourne quotient
+by its zero fibre is exactly $\mathbb B$, because it collapses all
+nonunits to zero while leaving the unit distinct. Thus the residue
+character is related to the full support stalk by an exact local
+map; it is not a replacement for that stalk.
+
+\subsection{The universal tropical coefficient extension retains every support}
+
+Let $K$ be a tropical semifield as above and form the commutative
+semiring tensor product
+\begin{equation}\tag{ASL18}
+ K_L=K\otimes_{\mathbb B}L.
+\end{equation}
+There is no unital map $\mathbb B\to S$: it would require
+$1_S+1_S=1_S$, which in the nonzero ring amplitude would say
+$2\cdot1_R=1_R$. The correct direct base change from $S$ uses the
+initial semiring $\mathbb N_0$, and (ASL2) gives the canonical
+isomorphism
+\begin{equation}\tag{ASL19}
+ S\otimes_{\mathbb N_0}K\simeq L\otimes_{\mathbb B}K.
+\end{equation}
+Indeed any semiring receiving a unital map from $K$ is additively
+idempotent: $1+1=1$ implies $x+x=x$ for every element. Its map from
+$S$ therefore factors uniquely through $L$. Maps from $L$ and $K$
+agree on $\mathbb B$, and these are exactly the universal maps on
+the right side of (ASL19). This proves the isomorphism without
+pretending that $S$ was already a Boolean algebra or a
+$\mathbb B$-algebra.
+
+The simultaneous character evaluations give a faithful model
+\begin{equation}\tag{ASL20}
+ \begin{split}
+ K_L&\longrightarrow K^X,\\
+ w=\sum_{i=1}^r a_i\otimes\lambda_i
+    &\longmapsto\left(P\longmapsto
+          \max_{i:\lambda_i\notin P}a_i\right),
+ \end{split}
+\end{equation}
+with the empty maximum equal to $\mathbf0_K$.
+Both operations are pointwise on the displayed functions. The map
+exists by the tensor universal property. Every tensor expression is
+a finite sum of pure tensors, because products of pure tensors are
+pure tensors. To prove injectivity, discard zero-coefficient terms
+and list the finitely many distinct remaining coefficients as
+$a_1<\cdots<a_r$ in the natural total order of $K$. Let
+$\mu_i$ be the join of the supports whose coefficients are at least
+$a_i$. The original tensor expression equals
+\begin{equation}\tag{ASL21}
+ \sum_{i=1}^r a_i\otimes\mu_i,
+ \qquad \mu_1\ge\cdots\ge\mu_r.
+\end{equation}
+For verification, distributing each $\mu_i$ merely adds terms
+$a_i\otimes\lambda$ already bounded above by a term
+$a_j\otimes\lambda$ with $j\ge i$; their sum is the latter because
+$a_i+a_j=a_j$. Thus all original data is related by actual tensor
+relations. In the image function $w(P)$, the set where $w(P)\ge a_i$
+is exactly $D(\mu_i)$. For two expressions, use the union of their
+finite coefficient lists in (ASL21). Equality of functions gives
+equality of every $D(\mu_i)$ and therefore of every $\mu_i$ by
+(ASL9). Hence the two tensors are equal, proving faithfulness.
+
+Equivalently, (ASL20) identifies $K_L$ with the finite-valued
+functions $w:X\to K$ whose sets $\{P:w(P)\ge a\}$ are compact open
+for every nonzero attained value $a$. Conversely, the finitely many
+nonzero values of such a function and their compact opens supply
+(ASL21), by (ASL10). In particular $1\otimes L$ embeds faithfully
+as its compact-open characteristic functions. The fibre of evaluation
+at a specified $P$ is completely described by the displayed maximum:
+it is zero exactly when all nonzero-coefficient supports belong to
+$P$; a nonzero value $a$ occurs exactly when $a$ is the largest active
+coefficient. In level-set language this is
+$P\in D(\mu_{\ge a})\setminus D(\mu_{>a})$.
+
+The coefficient extension can also accompany the original ring
+amplitudes without losing them. The map
+\begin{equation}\tag{ASL22}
+ S\longrightarrow R\times K_L,\qquad
+ (r,\lambda)\longmapsto(r,1\otimes\lambda)
+\end{equation}
+is an injective semiring homomorphism: its first coordinate retains
+the amplitude and (ASL20) makes its second coordinate faithful on
+the entire lattice. Its image consists exactly of pairs with a
+compact-open characteristic function in the second coordinate and
+with that function identically one whenever $r\ne0$. This is an
+actual correspondence retaining both coordinates, not a claim that
+the ring amplitude itself embeds into a characteristic-one semiring.
+
+\subsection{The arithmetic site with full lattice coefficients}
+
+Let $\mathscr A=\widehat{\mathbb N^\times}$ be the source topos and
+$\mathcal O=\mathbb Z_{\max}$ with its Frobenius action, exactly as
+in Connes--Consani's Definition \texttt{site}. Give the constant
+semiring object $\underline L$ the trivial action and set
+\begin{equation}\tag{ASL23}
+ \mathcal O_L=\mathcal O\otimes_{\underline{\mathbb B}}\underline L,
+ \qquad
+ (\mathscr A,\mathcal O_L)\longrightarrow(\mathscr A,\mathcal O).
+\end{equation}
+The underlying geometric morphism is the identity, and its structure
+map is $\mathcal O\to\mathcal O_L$, $a\mapsto a\otimes1$.
+By (ASL19) it is also the universal coefficient object receiving
+$\mathcal O$ and the constant full semiring $\underline S$ over
+$\underline{\mathbb N_0}$. The latter is expressly a constant object;
+no unproved additive Frobenius on the ring $R$ is asserted.
+
+The Frobenius action and joint character maps are
+\begin{equation}\tag{ASL24}
+ \operatorname{Fr}_n\left(\sum_i a_i\otimes\lambda_i\right)
+       =\sum_i a_i^n\otimes\lambda_i,
+ \qquad
+ \operatorname{ev}_P:\mathcal O_L\to\mathcal O.
+\end{equation}
+Evaluation is (ASL20), so these are equivariant semiring maps and
+their family is jointly injective. In the additive notation of
+$\mathbb Z_{\max}$ the coefficient operation $a_i^n$ means $na_i$;
+the absorbing zero stays absorbing zero. For each $P$ the exact
+coefficient specialization is
+\begin{equation}\tag{ASL25}
+ \mathcal O_L\otimes_{\underline L,\chi_P}
+           \underline{\mathbb B}\simeq\mathcal O.
+\end{equation}
+This follows from the two tensor universal properties, or directly
+by substituting $\lambda\mapsto\chi_P(\lambda)$ in every pure
+tensor. All supports are present before this specified specialization.
+
+At the point corresponding to a nonzero ordered subgroup
+$H\subset\mathbb Q$, the stalk is
+\begin{equation}\tag{ASL26}
+ (\mathcal O_L)_H\simeq H_{\max}\otimes_{\mathbb B}L.
+\end{equation}
+To justify this precisely, the inverse-image functor of the point
+preserves finite products and arbitrary colimits. A semiring tensor
+product is constructed from finite products, coproducts and the
+coequalizers imposing its addition and multiplication relations.
+It is therefore preserved by that inverse-image functor. A constant
+object with trivial action has the same stalk: in the source's
+description $(X\times H_{>0})/\sim$ at lines 631--649, any two
+positive parameters have a common divisor in $H_{>0}$, and the
+trivial action identifies them while retaining the value in $X$.
+Finally the source's Theorem \texttt{structure2} identifies the
+original structure stalk as $H_{\max}$. These facts prove (ASL26).
+Its elements have exactly the full-lattice function description
+(ASL20)--(ASL21), now with coefficients in $H_{\max}$.
+
+The global sections of the extended site are exactly
+\begin{equation}\tag{ASL27}
+ \Gamma(\mathscr A,\mathcal O_L)\simeq L.
+\end{equation}
+For a one-object action topos, a global section is a simultaneous
+fixed element; this is the source's argument at lines 668--673.
+Under the faithful function representation (ASL20), invariance under
+$\operatorname{Fr}_2$ forces each value $a$ to satisfy $a^2=a$.
+In $\mathbb Z_{\max}$ these are precisely $\mathbf0,\mathbf1$.
+Such a finite-valued function is a section of $\mathcal O_L$ exactly
+when its nonzero set is $D(\lambda)$, and then it is
+$1\otimes\lambda$. Conversely these sections are fixed by every
+Frobenius. This proves (ASL27); the source's unextended case is
+$\Gamma(\mathscr A,\mathcal O)=\mathbb B$.
+
+\subsection{All tropical-valued points of the extended site}
+
+By the definition of a valued point in the source, lines 685--690,
+one supplies a topos point $H$ and a semiring map from its structure
+stalk to $\mathbb R_+^{\max}$. The tensor universal property and
+(ASL6) therefore give the exact classification
+\begin{equation}\tag{ASL28}
+ \begin{split}
+ \operatorname{Hom}_{\rm sr}
+   (H_{\max}\otimes_{\mathbb B}L,\mathbb R_+^{\max})
+ &\simeq
+ \operatorname{Hom}_{\rm sr}(H_{\max},\mathbb R_+^{\max})\times X,\\
+ (\beta,P):\quad
+ \sum_i a_i\otimes\lambda_i
+ &\longmapsto\max_{i:\lambda_i\notin P}\beta(a_i).
+ \end{split}
+\end{equation}
+There is no missing compatibility condition: every unital semiring
+map agrees on the two distinguished elements of $\mathbb B$.
+Thus the set of isomorphism classes of valued points of the extended
+site is the product of the original valued-point set with $X$.
+An isomorphism of underlying topos points can change $H$ and its
+map $\beta$ as in the source's equivalence relation, but it acts
+identically on the constant object $L$, hence cannot identify
+different $P$'s.
+
+For a fixed embedding $H\subset\mathbb Q$, the first factor in
+(ASL28) can itself be given exactly. Every map has the form
+\begin{equation}\tag{ASL29}
+ \beta_c(-\infty)=0,\qquad
+ \beta_c(h)=e^{ch}\ (h\in H),\qquad c\ge0.
+\end{equation}
+Indeed group units must map to positive real units. Taking their
+real logarithms gives an additive order-preserving map
+$\ell:H\to\mathbb R$. Fix $h_0>0$. Since every $h/h_0$ is rational,
+additivity forces $\ell(h)=h\ell(h_0)/h_0$; order preservation makes
+$c=\ell(h_0)/h_0\ge0$. Conversely every formula (ASL29) preserves
+both multiplication and maximum. The value $c=0$ is the degenerate
+map through $\mathbb B$; $c>0$ is injective on the ordered group.
+
+Under the source's real Frobenius the exact point action is
+\begin{equation}\tag{ASL30}
+ \operatorname{Fr}_t:(H,\beta_c,P)\longmapsto
+                         (H,\beta_{tc},P),\qquad t>0.
+\end{equation}
+Thus the arithmetic site's original nontrivial coefficient dynamics
+is retained, and the full lattice contributes its whole space of
+prime characters as a fixed parameter. A direct map from $S$ to a
+single tropical stalk sees only its one character, by (ASL7), whereas
+the extended coefficient sheaf, all its stalks, and their joint
+evaluations retain every element and every relation of $L$.
+Equations (ASL19), (ASL23), (ASL26), and (ASL28) are the exact
+connecting maps. No purity, cohomology comparison, or Riemann-hypothesis
+conclusion is inferred from them.
+
+\subsection{A precise distinction between prime ideals and valued points}
+
+The preceding statements classify all support primes of $S$, all
+lattice primes, and all tropical-valued points of the coefficient
+extension. They do not identify the ordinary semiring prime spectrum
+of $K_L$ with $X$. There can be additional primes, with an explicit
+example already for the three-element chain $L=\{0<a<1\}$.
+For $K=\mathbb R_+^{\max}$, (ASL20) gives
+\begin{equation}\tag{ASL31}
+ K_L\simeq\{(u,v)\in[0,\infty)^2:u\ge v\},\qquad
+ \mathfrak q=\{(0,0)\}\cup\{(u,v):u>v\}.
+\end{equation}
+The operations are coordinatewise maximum and multiplication.
+The set $\mathfrak q$ is a proper prime ideal. It is closed under
+maximum: whichever of two first coordinates is larger also exceeds
+both second coordinates. Multiplying $(u,v)$ with $u>v$ by a
+nonzero $(r,s)$ with $r\ge s$ gives $ur>vs$; multiplication by zero
+gives zero. Its complement is the set of positive diagonal pairs,
+which is multiplicatively closed. These observations prove the ideal
+and prime assertions. But $\mathfrak q$ is neither evaluation kernel:
+the first evaluation has only the zero kernel, the second kernel is
+$\{(u,0):u\ge0\}$, and $(2,1)$ belongs to $\mathfrak q$ but to
+neither of those. Thus the full support and valued-point comparison
+retains its precise stated scope even in this smallest non-Boolean
+case. It does not erase other prime geometry introduced by the
+tropical coefficient extension.
+
+\subsection{The exact pullback over the ordinary arithmetic spectrum}
+
+Connes--Consani's geometric morphism over $\operatorname{Spec}\mathbb Z$
+uses the monoid $\mathbb N_0^\times$ that includes zero, not just
+$\mathbb N^\times$. This distinction is explicit in their Remark
+\texttt{caseno}, source line 660, and Theorem \texttt{thmspz}, lines
+951--961. Put $\mathscr A_0=\widehat{\mathbb N_0^\times}$ and let
+$\mathcal O^0$ be their extended structure semiring. In additive
+exponent notation its additional action is
+\begin{equation}\tag{ASL32}
+ \operatorname{Fr}_0(-\infty)=-\infty,\qquad
+ \operatorname{Fr}_0(h)=0_H\quad(h\in H).
+\end{equation}
+This preserves both operations: a maximum is absorbing zero exactly
+when both inputs are absorbing zero, and a product is absorbing zero
+exactly when one factor is. The extension
+$\mathcal O^0_L=\mathcal O^0\otimes_{\underline{\mathbb B}}
+\underline L$ has
+\begin{equation}\tag{ASL33}
+ \operatorname{Fr}_0\!\left(\sum_i a_i\otimes\lambda_i\right)
+ =1\otimes\rho\!\left(\sum_i a_i\otimes\lambda_i\right),
+ \qquad
+ \rho\!\left(\sum_i a_i\otimes\lambda_i\right)
+       =\bigvee_{a_i\ne\mathbf0}\lambda_i.
+\end{equation}
+The map $\rho$ is well defined by the tensor universal property,
+using the semiring map $H_{\max}\to\mathbb B$ that sends every
+nonzero element to one. Equivalently, in (ASL20), $D(\rho(w))$
+is exactly the set where $w$ is nonzero. Thus (ASL33) retains a
+specific element of $L$, rather than only whether any support exists.
+It obeys $\operatorname{Fr}_0\operatorname{Fr}_n
+=\operatorname{Fr}_n\operatorname{Fr}_0=\operatorname{Fr}_0$.
+
+The original source constructs
+$\Theta:\operatorname{Sh}(\operatorname{Spec}\mathbb Z)
+\to\mathscr A_0$. At a rational prime $p$, its point is
+$H(p)=\mathbb Z[1/p]\subset\mathbb Q$, as defined at source lines
+910--914; the generic point $\eta$ goes to the trivial group.
+Applying its inverse-image functor to the full coefficient extension
+gives the exact sheaf and stalk formulas
+\begin{equation}\tag{ASL34}
+ \begin{gathered}
+ \mathcal T_L:=\Theta^*\mathcal O^0_L
+   \simeq\Theta^*\mathcal O^0\otimes_{\underline{\mathbb B}}
+                \underline L,\\
+ (\mathcal T_L)_p\simeq
+      \mathbb Z[1/p]_{\max}\otimes_{\mathbb B}L,
+ \qquad (\mathcal T_L)_\eta\simeq L.
+ \end{gathered}
+\end{equation}
+The preservation argument proving (ASL26) applies to $\Theta^*$ as
+well. Connes--Consani's Proposition \texttt{sheavesonspz0}, source
+lines 965--975, gives the original stalks $H(p)_{\max}$ and
+$\mathbb B$, so tensoring proves (ASL34). This is a pullback of
+semiring coefficients on the underlying topos of the arithmetic
+spectrum. It does not identify these coefficients with the ordinary
+ring structure sheaf $\mathcal O_{\operatorname{Spec}\mathbb Z}$.
+
+All its sections can also be described without suppressing the prime
+or support labels. For a nonempty open $U$ of
+$\operatorname{Spec}\mathbb Z$, a section of $\mathcal T_L$ is
+exactly the data
+\begin{equation}\tag{ASL35}
+ \begin{gathered}
+ \lambda\in L,\qquad
+ w_p\in\mathbb Z[1/p]_{\max}\otimes_{\mathbb B}L
+                  \quad(p\in U\text{ a rational prime}),\\
+ \rho(w_p)=\lambda\quad\hbox{for every }p,\qquad
+ w_p=1\otimes\lambda\quad\hbox{for all but finitely many }p.
+ \end{gathered}
+\end{equation}
+The value at $\eta$ is $\lambda$. Addition and multiplication are
+pointwise, with join and meet at $\eta$; restriction discards the
+coordinates at the removed primes. The integer Frobenius applies
+$h\mapsto nh$ to every coefficient at every retained prime and
+acts identically on $\lambda$. Its zero action is (ASL33).
+
+Here is a complete gluing proof. The source's Proposition
+\texttt{sheavesonspz0}(ii) says that an original section is either
+absorbing zero everywhere or a family of nonzero coefficients
+equal to the unit outside a finite set of primes. A local finite
+tensor expression therefore has a single generic support
+$\lambda=\bigvee_{a_i\ne\mathbf0}\lambda_i$; all its prime values
+have that same support, and outside a finite set every value is
+$1\otimes\lambda$. Every sheaf tensor section has such expressions
+locally, by the construction of the tensor as the sheafification of
+the presheaf tensor. Every nonempty open $U$ here is quasi-compact:
+a nonempty member of any open cover misses only finitely many points
+of $U$, which finitely many other members can cover. Thus finitely
+many local expressions suffice. Their generic values agree since
+every nonempty intersection contains $\eta$. Their finite exceptional
+sets have finite union. This proves that every section yields (ASL35).
+
+Conversely take (ASL35), with finite exceptional set $E$. For each
+$p\in E$ write $w_p$ as a finite tensor sum using nonzero
+coefficients $a_i\in\mathbb Z[1/p]_{\max}$. Its support labels
+have join $\lambda$. On the open $U_p=U\setminus(E\setminus\{p\})$
+extend $a_i$ to the original coefficient section with value $a_i$
+at $p$ and the unit at every other prime; the source's section
+description makes this an actual section. Tensor these sections
+with their labels and add. The result has prescribed value $w_p$
+at $p$ and value $1\otimes\lambda$ elsewhere on $U_p$.
+The case $\lambda=0_L$ has only zero tensors and is obtained from
+the zero section. Add the constant section $1\otimes\lambda$ on
+$U\setminus E$. These local sections agree on their intersections,
+so the sheaf gluing axiom constructs the required global section.
+Uniqueness follows because sections of a sheaf on a topological
+space are determined by all their germs. This proves (ASL35) and
+its operation and restriction formulas.

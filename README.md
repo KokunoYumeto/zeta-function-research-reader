@@ -4979,3 +4979,8 @@ Later full-packet formal-boundary, global-ray-monodromy, graph, relation-tail an
 
 
 </details>
+
+
+## Full-support cohomology and heat-endpoint readers
+
+The [complete source edition](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/main/workbenches/splitzero-tandem/continuations/20260923-cohomology-heat-residue) adds the separate 208-page cohomology and prime-observation reconstruction, 103-page full-lattice Connes–Consani component, and 40-page supported heat/endpoint paper. Full LaTeX, human citations, exact checks and [result-to-proof links](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-cohomology-heat-residue/RESULTS_AND_PROOF_LINKS.json) accompany all three. The papers calculate the original maps, metrics, nilpotent residues and endpoint terms; no RH decision is claimed. The rest of the project described above remains part of this cumulative collection.

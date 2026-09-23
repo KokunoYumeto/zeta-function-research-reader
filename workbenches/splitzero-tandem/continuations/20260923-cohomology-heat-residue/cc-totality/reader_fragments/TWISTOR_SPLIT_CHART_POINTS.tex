@@ -1,0 +1,521 @@
+
+
+The source is Alain Connes and Caterina Consani, \emph{The Absolute Twistor
+Line and the Geometry of $\overline{\operatorname{Spec}\mathbb Z}$},
+\href{https://arxiv.org/abs/2609.00299v1}{arXiv:2609.00299v1}, specifically
+the original author file \texttt{CC.tex}.  Its complete 1,228-line source
+was read for this calculation.  The source labels used below are
+\begin{quote}\ttfamily
+opens; eq:restriction\_maps;\\
+def:alpha\_symmetry; thm:twistor\_space\_scheme;\\
+prop:twistor\_frobenius.
+\end{quote}
+Their local signs and generators are
+retained.  The source file's SHA-256 is
+\begin{center}\small\texttt{57a10dcef5cd758e6b2f1c54b1c0a11b0fb0}\\
+\texttt{93638f74fb1be515ec3bc7080ba4}.\end{center}
+
+This note evaluates the source's \emph{pointed multiplicative chart
+monoids}, glues the resulting chart-point sets, and takes their explicit
+$\alpha$-orbits.  These constructions are defined below.  No assertion
+that this calculation classifies all geometric morphisms into a quotient
+topos, or all torsors over a general target, is needed or made.  This
+specification is essential because the target is not a ring.  No
+Riemann-hypothesis conclusion is asserted.
+
+\section{The target and its exact morphism to the complex numbers}
+
+Let $L$ be a bounded distributive lattice with bottom $0_L$ and top $1_L$.
+The target is the given Split-Zero semiring
+\begin{equation}\tag{CSP1}
+ \begin{gathered}
+ S=G_L(\CC)=\{(0,\lambda):\lambda\in L\}\cup
+                   \{(a,1_L):a\in\CC\},\\
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\qquad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu).
+ \end{gathered}
+\end{equation}
+Pairs in the displayed union have their literal equality; thus the two
+occurrences of $(0,1_L)$ are one element.  Put
+\begin{equation}\tag{CSP2}
+ z_\lambda=(0,\lambda),\quad \tau=z_{0_L},\quad e=z_{1_L},\quad
+ \widehat a=(a,1_L),\quad 1=\widehat1,\quad \eps_S=\widehat{-1}.
+\end{equation}
+The multiplicative monoid is pointed by its absorbing element $\tau$.
+In particular $e$ is not its distinguished absorbing element when
+$0_L\ne1_L$.  Addition and multiplication in (CSP1) are closed: a
+nonzero output amplitude forces every factor with a nonzero amplitude
+to have top support.  The lattice laws and complex arithmetic prove
+the semiring laws, with distributivity using
+$\lambda\wedge(\mu\vee\nu)=(\lambda\wedge\mu)\vee
+(\lambda\wedge\nu)$.
+
+\begin{lemma}\label{lem:units}
+The units of $S$ and the solutions of the imaginary-generator equation are
+\begin{equation}\tag{CSP3}
+ S^\times=\{\widehat a:a\in\CC^\times\},\qquad
+ \widehat a^{-1}=\widehat{a^{-1}},\qquad
+ \{j\in S:j^2=\eps_S\}=\{\widehat i,\widehat{-i}\}.
+\end{equation}
+For every $\lambda\in L$ and positive integer $n$,
+\begin{equation}\tag{CSP4}
+ z_\lambda^n=z_\lambda,\qquad
+ \eps_S z_\lambda=z_\lambda,\qquad
+ z_\lambda z_\mu=z_{\lambda\wedge\mu}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+An inverse equation $xy=1$ forces the product of the amplitudes to be
+$1$.  Both amplitudes are nonzero, so both supports equal $1_L$ and the
+inverse has the displayed value.  Conversely these values multiply to
+$1$.  If $j^2=\widehat{-1}$, its amplitude is nonzero and squares to
+$-1$, so it equals $i$ or $-i$ and its support is $1_L$.  Formula
+(CSP4) follows directly from lattice idempotence and (CSP1).
+\end{proof}
+
+\begin{proposition}\label{prop:amplitude}
+The amplitude map and a pointed multiplicative section are
+\begin{equation}\tag{CSP5}
+ q:S\longrightarrow\CC,\quad q(a,\lambda)=a,\qquad
+ b:\CC\longrightarrow S,\quad
+ b(0)=\tau,\quad b(a)=\widehat a\ (a\ne0).
+\end{equation}
+Here $q$ is a unital semiring homomorphism; $b$ is the unique pointed
+unital multiplicative section of $q$ and preserves $-1$.  For
+$0_L\ne1_L$, $b$ is not additive, and no unital semiring homomorphism
+from a nonzero ring to $S$ exists.
+\end{proposition}
+\begin{proof}
+The formula for $q$ preserves each operation in (CSP1), together with
+zero and one.  Multiplicativity of $b$ holds when both factors are
+nonzero because $\CC$ is a field; when at least one is zero it follows
+from absorption by $\tau$.  Any section must take each nonzero $a$ to
+the only point with amplitude $a$, namely $\widehat a$, and pointedness
+forces its value at zero.  However
+$b(1)+b(-1)=e\ne\tau=b(0)$.  More generally, a unital semiring
+homomorphism $f:R\to S$ from a ring would give
+$1+f(-1)=f(0)=\tau$.  The support of the left side is
+$1_L\vee\supp(f(-1))=1_L$, contradicting the bottom support of
+$\tau$ when $0_L\ne1_L$.
+\end{proof}
+
+Complex conjugation is the semiring automorphism
+$c_S(a,\lambda)=(\overline a,\lambda)$.  It fixes every $z_\lambda$,
+preserves $\eps_S$, and exchanges $\widehat i$ with $\widehat{-i}$.
+
+\section{All chart points and all overlaps}
+
+Let $B=\{0,1,\eps\}$ with $\eps^2=1$ be the source's signed pointed
+base monoid.  Its target structure sends $0$ to $\tau$, $1$ to $1$,
+and $\eps$ to $\eps_S$.  The chart monoids, with the source's
+generators unchanged, are
+\begin{equation}\tag{CSP6}
+ M_+=B[T,J_+]/(J_+^2=\eps),\quad
+ M_-=B[S,J_-]/(J_-^2=\eps),\quad
+ M_0=B[T,T^{-1},J]/(J^2=\eps).
+\end{equation}
+Each nonzero element of $M_+$ is uniquely $J_+^aT^m$ with
+$a\in\mathbb Z/4\mathbb Z$ and $m\in\NN$; $M_-$ has the
+corresponding form in $J_-,S$, and $M_0$ has $m\in\mathbb Z$.
+Thus these presentations have no additive relation identifying
+$1+\eps$ with the distinguished zero.  All homomorphisms in this
+section are pointed unital multiplicative $B$-homomorphisms.
+
+The restrictions are exactly the source's restrictions:
+\begin{equation}\tag{CSP7}
+ \rho_+(T)=T,\quad\rho_+(J_+)=J,\qquad
+ \rho_-(S)=T^{-1},\quad\rho_-(J_-)=\eps J.
+\end{equation}
+
+\begin{theorem}\label{thm:charts}
+The complete point sets and overlap maps are
+\begin{equation}\tag{CSP8}
+ U_\pm(S)=\Hom_B(M_\pm,S)=S\times\{\widehat i,\widehat{-i}\},
+ \qquad U_0(S)=S^\times\times\{\widehat i,\widehat{-i}\},
+\end{equation}
+\begin{equation}\tag{CSP9}
+ \rho_+^*(t,j)=(t,j)_+,\qquad
+ \rho_-^*(t,j)=(t^{-1},\eps_Sj)_-.
+\end{equation}
+No $z_\lambda$ belongs to the overlap, including the supported zero
+$e$.  The glued chart-point set
+\begin{equation}\tag{CSP10}
+ X_L=U_+(S)\coprod_{U_0(S)}U_-(S)
+\end{equation}
+is the disjoint union of two copies of
+\begin{equation}\tag{CSP11}
+ P_L=\CC^\times\ \sqcup\ \{0_\lambda:\lambda\in L\}
+                 \ \sqcup\ \{\infty_\lambda:\lambda\in L\}.
+\end{equation}
+The symbols $0_\lambda$ and $\infty_\mu$ are distinct for all
+$\lambda,\mu$; equality within either family is precisely equality of
+the lattice labels.
+\end{theorem}
+\begin{proof}
+A map on $M_+$ is determined by $t=\phi(T)$ and
+$j=\phi(J_+)$.  The relation forces $j^2=\eps_S$, whose solutions
+are (CSP3), and imposes no condition on $t$.  Conversely, for any such
+pair, the formula $\phi(J_+^aT^m)=j^at^m$ and $\phi(0)=\tau$
+defines a unique map.  The same proof applies to $M_-$.  On $M_0$,
+the equation $TT^{-1}=1$ forces $t$ to be a unit, and (CSP3) gives
+all possibilities.  Precomposition with (CSP7) yields (CSP9).
+
+Both overlap maps are injective.  Their gluing relation pairs exactly
+$(t,j)_+$ with $(t^{-1},-j)_-$ for $t\in S^\times$.  The first
+component consists of $U_+$ with $j=\widehat i$ and $U_-$ with
+$j=\widehat{-i}$.  In it, a nonzero complex $a$ is represented by
+$(\widehat a,\widehat i)_+$, equivalently
+$(\widehat{a^{-1}},\widehat{-i})_-$.  Its two families of additional
+points are represented by $(z_\lambda,\widehat i)_+$ and
+$(z_\lambda,\widehat{-i})_-$, which define respectively
+$0_\lambda$ and $\infty_\lambda$.  None is in an overlap, so none
+can be identified by a chain of gluing relations.  Reversing the two
+imaginary signs gives the second component and proves the assertion.
+\end{proof}
+
+This proof constructs $P_L$ as the two-chart gluing
+$S\coprod_{S^\times}S$ with reciprocal transition.  It neither
+declares a labelled zero invertible nor replaces the pointed zero by
+$e$.
+
+\section{The geometric quotient and its amplitude fibres}
+
+The source's symmetry is given on chart points by
+\begin{equation}\tag{CSP12}
+ \alpha(t,j)_+=(\eps_St,j)_-,\qquad
+ \alpha(s,j)_-=(\eps_Ss,j)_+,
+\end{equation}
+and on the overlap by
+\begin{equation}\tag{CSP13}
+ \alpha(t,j)=(\eps_St^{-1},\eps_Sj).
+\end{equation}
+These formulas are evaluations of
+$\alpha_+^*(S)=\eps T$, $\alpha_+^*(J_-)=J_+$ and their
+minus-chart counterparts, exactly as in the source.
+
+\begin{theorem}\label{thm:quotient}
+Formulas (CSP12)--(CSP13) define an involution of $X_L$ exchanging
+its two components.  Consequently the orbit set
+$C_L=X_L/\langle\alpha\rangle$ is in bijection with $P_L$, by the
+unique representative in the first component.  Amplitude gives the
+surjection
+\begin{equation}\tag{CSP14}
+ \pi_L:C_L\cong P_L\longrightarrow\PP^1(\CC),\qquad
+ a\longmapsto a\ (a\ne0),\quad
+ 0_\lambda\longmapsto0,\quad \infty_\lambda\longmapsto\infty.
+\end{equation}
+Its fibre is a singleton over every $a\in\CC^\times$ and an exact
+copy of $L$ over each of $0$ and $\infty$.
+\end{theorem}
+\begin{proof}
+To check the only gluing issue, start with the equivalent points
+$(t,j)_+$ and $(t^{-1},-j)_-$.  Their images are
+$(-t,j)_-$ and $(-t^{-1},-j)_+$.  These are equivalent because the
+inverse of $-t^{-1}$ is $-t$ and the imaginary sign changes in the
+transition.  Applying (CSP12) twice multiplies the spatial coordinate
+by $\eps_S^2=1$ and leaves $j$ unchanged.  A first-component plus
+point has $j=i$ and maps to a minus point with $j=i$, which lies in
+the second component; the other three chart/sign combinations give
+the same exchange.  Every orbit therefore meets the first component
+exactly once.  The map $q$ in (CSP5) preserves all chart relations,
+the reciprocal transition, and the symmetry.  Its resulting quotient
+map is exactly (CSP14); Theorem~\ref{thm:charts} supplies all its
+fibres.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzcd}[column sep=large,row sep=large]
+ \{0_\lambda:\lambda\in L\}\arrow[d,"\pi_L"']
+ &\CC^\times\arrow[d,equal]
+ &\{\infty_\lambda:\lambda\in L\}\arrow[d,"\pi_L"]\\
+ \{0\}&\CC^\times&\{\infty\}
+\end{tikzcd}
+\caption{Exact disjoint decomposition of the amplitude map, proved in
+Theorems~\ref{thm:charts} and~\ref{thm:quotient}.  Every support label
+survives in the upper row; only the map to the lower row identifies
+them.  The real structure exchanges $0_\lambda$ and $\infty_\lambda$
+with the same label (Theorem~\ref{thm:real}).  The chart and sign
+conventions come from Connes--Consani \cite{CSP-CC}, formulas
+\texttt{opens} and \texttt{eq:restriction\_maps}.}
+\end{figure}
+
+For every $\lambda\in L$, the formula
+\begin{equation}\tag{CSP15}
+ s_\lambda:\PP^1(\CC)\to P_L,\qquad
+ s_\lambda(a)=a\ (a\ne0),\quad
+ s_\lambda(0)=0_\lambda,\quad
+ s_\lambda(\infty)=\infty_\lambda
+\end{equation}
+is an injective set-theoretic section of $\pi_L$.  Only $s_{0_L}$ is
+induced by a pointed multiplicative section of $q$: it is induced by
+$b$ in (CSP5).  Indeed a pointed map must send zero to $\tau$.
+Thus using $s_{1_L}$ to retain supported zeros is a well-defined
+section of the point map but is not an unmentioned pointed-monoid
+section.  All of these distinctions disappear when $L$ has one element,
+in which case $S=\CC$ and $P_L=\PP^1(\CC)$.
+
+If $f:L\to L'$ is a bounded lattice homomorphism, the map
+\begin{equation}\tag{CSP16}
+ G_f:S\to G_{L'}(\CC),\quad z_\lambda\mapsto z_{f(\lambda)},
+ \quad\widehat a\mapsto\widehat a\ (a\ne0)
+\end{equation}
+preserves addition, multiplication, zero, one, and $\eps$.  For
+addition of two nonzero amplitudes with a zero sum, the image is
+$z_{f(1_L)}=z_{1_{L'}}$, so cancellation is also checked.  All other
+cases follow directly from meet and join preservation.  It therefore
+induces $P_L\to P_{L'}$ taking each pole label $\lambda$ to
+$f(\lambda)$ and fixing $\CC^\times$.  This is the exact change-of-
+support map, including every zero.
+
+\section{Real structure and every odd Frobenius}
+
+Define two bijections of $P_L$:
+\begin{equation}\tag{CSP17}
+ \begin{array}{lll}
+ \beta(a)=-a^{-1},&\beta(0_\lambda)=\infty_\lambda,
+                      &\beta(\infty_\lambda)=0_\lambda,\\
+ \sigma(a)=-\overline a^{-1},&\sigma(0_\lambda)=\infty_\lambda,
+                      &\sigma(\infty_\lambda)=0_\lambda.
+ \end{array}
+\end{equation}
+These are formulas on disjoint subsets; no inverse of $z_\lambda$
+is present.
+
+\begin{theorem}\label{thm:real}
+Postcomposition of chart points with $c_S$ commutes with $\alpha$,
+and the induced real structure on $C_L=P_L$ is $\sigma$ of (CSP17).
+It has no fixed points, retains every support label, and obeys
+\begin{equation}\tag{CSP18}
+ \pi_L\sigma(a)=-1/\overline{\pi_L(a)},\qquad
+ \sigma s_\lambda=s_\lambda\sigma_{\CC}.
+\end{equation}
+The first formula uses the usual projective exchange of $0$ and
+$\infty$ on its right side.
+\end{theorem}
+\begin{proof}
+Complex conjugation preserves multiplication, inverse of units, and
+$\eps_S$, hence commutes with (CSP12)--(CSP13) and respects (CSP9).
+It exchanges the two components.  On a first-component plus point
+$(t,i)_+$, apply conjugation and then $\alpha$ to return to the first
+component: $(t,i)_+\mapsto(\overline t,-i)_+
+\mapsto(-\overline t,-i)_-$.  If $t=\widehat a$ is a unit, the
+first-component global coordinate is $-1/\overline a$; if
+$t=z_\lambda$, the point is $\infty_\lambda$.  The minus-chart
+calculation similarly takes $\infty_\lambda$ to $0_\lambda$.
+For a unit, a fixed point would satisfy $a\overline a=-1$, which is
+impossible in $\CC$.  The two labelled pole families are disjoint,
+so there are no fixed points there either.  Equation (CSP18) follows
+on all three disjoint subsets.
+\end{proof}
+
+For a positive integer $n$ let $P_n$ on $P_L$ raise $a\in\CC^\times$
+to $a^n$ and fix every labelled pole.  Let
+$d(n)\in\{0,1\}$ be the residue of $(n-1)/2$ modulo $2$ for odd
+$n$.
+
+\begin{theorem}\label{thm:frob}
+Raising every element of the source chart monoids to its $n$th power
+is a pointed $B$-endomorphism precisely when $n$ is odd.  These maps
+commute with restriction and $\alpha$.  Their induced action on
+$P_L$ is
+\begin{equation}\tag{CSP19}
+ F_n=\beta^{d(n)}P_n,\qquad
+ F_n(a)=\begin{cases}a^n&n\equiv1\pmod4,\\-a^{-n}&n\equiv3\pmod4,
+ \end{cases}
+\end{equation}
+\begin{equation}\tag{CSP20}
+ \begin{array}{c|cc}
+ &F_n(0_\lambda)&F_n(\infty_\lambda)\\\hline
+ n\equiv1\pmod4&0_\lambda&\infty_\lambda\\
+ n\equiv3\pmod4&\infty_\lambda&0_\lambda
+ \end{array}.
+\end{equation}
+They satisfy, without any removal of labelled poles,
+\begin{equation}\tag{CSP21}
+ F_mF_n=F_{mn},\qquad F_n\sigma=\sigma F_n,\qquad
+ \pi_LF_n=\Fr_n\pi_L,\qquad F_ns_\lambda=s_\lambda\Fr_n.
+\end{equation}
+Here $\Fr_n$ is the source's complex twistor action, from the
+proposition labelled\\\texttt{prop:twistor\_frobenius}.
+\end{theorem}
+\begin{proof}
+Power maps are monoid endomorphisms because the chart monoids are
+commutative.  Their restriction to $B$ fixes $\eps$ precisely when
+$\eps^n=\eps$, namely for odd $n$.  For odd $n$ the relation
+$(J^n)^2=\eps^n=\eps$ is preserved.  On the overlap, the two orders
+of restriction send $J_-$ to $(\eps J)^n=\eps J^n$ and send
+$S$ to $T^{-n}$, so they agree.  Power maps commute with every
+monoid homomorphism, in particular the maps defining $\alpha$.
+
+On chart points they take $(t,j)$ to $(t^n,j^n)$.  Since
+$j^n=(-1)^{(n-1)/2}j$, for $n\equiv1\pmod4$ the first component
+is preserved, while for $n\equiv3\pmod4$ it is exchanged with the
+second.  In the latter case applying $\alpha$ returns the image to
+the first component and changes a unit coordinate to $-a^{-n}$.
+For $t=z_\lambda$, (CSP4) gives $t^n=z_\lambda$ and multiplication
+by $\eps_S$ does not change it.  The chart exchange gives exactly
+(CSP20), including $\lambda=0_L,1_L$.
+
+For odd $n$, $\beta P_n=P_n\beta$: on units this is the identity
+$(-a^{-1})^n=-a^{-n}$, and both sides have the same pole exchange.
+Since $P_mP_n=P_{mn}$ and $d(mn)=d(m)+d(n)$ modulo $2$, (CSP19)
+proves the first identity in (CSP21).  The map $\sigma$ is $\beta$
+followed by amplitude conjugation; the latter commutes with every
+$P_n$ and $\beta$.  This proves the second identity.  The other two
+follow from (CSP14), (CSP15), (CSP19), and (CSP20) on every part of
+$P_L$.
+\end{proof}
+
+\begin{proposition}\label{prop:fibresfixed}
+For odd $n$, every unit point of $P_L$ has exactly $n$ distinct
+$F_n$-preimages, and each labelled pole has exactly one preimage.
+For $n>1$ the fixed-point sets are
+\begin{equation}\tag{CSP22}
+ \operatorname{Fix}(F_n)=
+ \begin{cases}
+ \{a\in\CC^\times:a^{n-1}=1\}\ \sqcup\
+       \{0_\lambda,\infty_\lambda:\lambda\in L\},&n\equiv1\pmod4,\\
+ \{a\in\CC^\times:a^{n+1}=-1\},&n\equiv3\pmod4.
+ \end{cases}
+\end{equation}
+In particular
+\begin{equation}\tag{CSP23}
+ \bigcap_{n\text{ odd}}\operatorname{Fix}(F_n)=\varnothing.
+\end{equation}
+\end{proposition}
+\begin{proof}
+For a nonzero target $w$, the preimage equation is $a^n=w$ or
+$a^n=-1/w$.  Its right side is nonzero and its $n$ roots in $\CC$
+are distinct, since a repeated root would also annihilate $na^{n-1}$.
+No labelled pole maps to a unit.  Formula (CSP20) gives the single
+preimage of each pole, with its unchanged support label.  Setting
+the expressions in (CSP19) equal to $a$ gives (CSP22); (CSP20)
+settles the poles.  A simultaneous fixed point cannot be a pole
+because $F_3$ exchanges the two pole families.  A unit fixed by $F_3$
+satisfies $a^4=-1$, whereas one fixed by $F_5$ satisfies $a^4=1$.
+Their intersection is empty, proving (CSP23).
+\end{proof}
+
+Statement (CSP23) concerns \emph{points}.  It does not contradict
+the source's Frobenius-invariant \emph{sections} calculation: those
+are different explicitly defined functors.  On the source monoid
+$M_+$ the simultaneous fixed elements are exactly $B$: a nonzero
+element $J^aT^m$ fixed by its third power has $3m=m$, whence $m=0$,
+and $3a=a$ modulo $4$, whence $a=0$ or $2$.  Zero is also fixed.
+On evaluated points, however, the image of $J$ must be one of the two
+square roots of $-1$; neither is fixed by its third power.  This
+calculates the difference directly.
+
+\section{The precise Hopf limitation and the surviving torsor law}
+
+The spatial core $B[T,T^{-1}]$ has the source's coproduct
+$T\mapsto T\otimes T$, with the base sign fixed.  Its $S$-points
+form exactly $S^\times=\CC^\times$.  The action on the enriched
+overlap obtained by multiplying its spatial coordinate is
+\begin{equation}\tag{CSP24}
+ D_a(t,j)=(\widehat a t,j),\qquad a\in\CC^\times.
+\end{equation}
+It extends to $X_L$ by multiplying the plus coordinate by $a$ and
+the minus coordinate by $a^{-1}$, preserving each component.  It
+obeys $\alpha D_a=D_{a^{-1}}\alpha$.  If $a^2\ne1$, it does not
+induce an action on $C_L$: for a generic point $x=(t,i)$ the two
+points $D_a x$ and $D_a\alpha x$ would have to be $\alpha$-related,
+but their second coordinates force that relation and their first
+coordinates then force $-a/t=-1/(at)$, or $a^2=1$.
+
+There is nevertheless an exact lift of the usual quotient scaling.
+Write $\chi(\widehat i)=1$, $\chi(\widehat{-i})=-1$.  Define on
+each affine chart, using its own local imaginary generator,
+\begin{equation}\tag{CSP24a}
+ A_a(t,j)_+=(\widehat{a^{\chi(j)}}t,j)_+,\qquad
+ A_a(s,j)_-=(\widehat{a^{\chi(j)}}s,j)_-.
+\end{equation}
+On the overlap the sign of $j$ changes in the transition and $t$
+is inverted, so the two formulas agree.  Formula (CSP12) preserves
+the local $j$ while exchanging charts and multiplying by $-1$;
+therefore $A_a$ commutes with $\alpha$.  Also $A_aA_b=A_{ab}$.
+On the first component, (CSP24a) scales the global unit coordinate
+by $a$ and fixes every labelled pole, hence descends to that precise
+action $a\cdot x$ on $P_L$.  This is a lift that uses the imaginary
+branch; it is not the unmodified action (CSP24).  It obeys
+\begin{equation}\tag{CSP25}
+ \sigma(a\cdot x)=\overline a^{-1}\cdot\sigma(x)
+ \quad(a\in\CC^\times,\ x\in P_L).
+\end{equation}
+For unit $x$ this is complex arithmetic, and for a pole it follows
+because both scaling maps fix the poles and $\sigma$ exchanges their
+two families.
+
+\begin{proposition}\label{prop:heap}
+The prescription $J\mapsto J\otimes J$ does not extend the spatial
+diagonal to a $B$-coproduct on $M_0$.  On its full enriched point
+set $U_0(S)=\CC^\times\times\{\widehat i,\widehat{-i}\}$ the
+choice-free operation that survives is the ternary law
+\begin{equation}\tag{CSP26}
+ [(t_1,j_1),(t_2,j_2),(t_3,j_3)]
+       =(t_1t_2^{-1}t_3,\ j_1j_2^{-1}j_3).
+\end{equation}
+It satisfies
+\begin{equation}\tag{CSP27}
+ [x,y,y]=x=[y,y,x],\qquad
+ [[x,y,z],u,v]=[x,y,[z,u,v]].
+\end{equation}
+Both $\alpha$ and complex conjugation preserve it, as does every
+odd power map.  Selecting any one point $o$ gives the group law
+$x*_oy=[x,o,y]$; selecting $o=(1,\widehat i)$ gives the explicit
+law
+\begin{equation}\tag{CSP28}
+ (t_1,j_1)*_o(t_2,j_2)=(t_1t_2,j_1\widehat{-i}j_2).
+\end{equation}
+\end{proposition}
+\begin{proof}
+In the balanced monoid tensor product over $B$, $\eps\otimes1=
+1\otimes\eps$.  Therefore
+$(J\otimes J)^2=\eps\otimes\eps=1$, while a $B$-map must
+send $J^2=\eps$ to $\eps\otimes1$.  These two elements are
+different: evaluate both tensor factors at $T=1,J=\widehat i$
+in $S$.  The balanced tensor evaluation sends $1$ to $1$ and
+$\eps\otimes1$ to $\widehat{-1}\ne1$.  This is an obstruction
+to this exact diagonal on the \emph{enriched} monoid; it is no
+obstruction to the coproduct on the spatial core used in (CSP24).
+
+In (CSP26), every displayed inverse exists, and
+$(j_1j_2^{-1}j_3)^2=(-1)(-1)^{-1}(-1)=-1$, so the law lands in
+the enriched point set.  The cancellation and association identities
+(CSP27) follow by multiplying the coordinates; for example both
+association expressions have first coordinate
+$t_xt_y^{-1}t_zt_u^{-1}t_v$ and the corresponding second coordinate.
+Equivalently its source ternary co-operation is
+$T\mapsto T\otimes T^{-1}\otimes T$ and
+$J\mapsto J\otimes J^{-1}\otimes J$: the square of the latter is
+$\eps\otimes\eps^{-1}\otimes\eps=\eps$, so the source relation
+is respected.  The image of $\eps$ is the base element, as required.
+
+On the overlap $\alpha(t,j)=(-t^{-1},j^{-1})$.  Substitution into
+(CSP26) shows the first coordinate becomes
+$-t_1^{-1}t_2t_3^{-1}$ in either order, and the second becomes
+$j_1^{-1}j_2j_3^{-1}$ in either order.  Conjugation preserves products
+and inverses, and power maps do so in this commutative group; for
+odd powers they also preserve the equation $j^2=-1$.  Hence they
+preserve (CSP26).  Formula (CSP27) gives identity $o$, associativity,
+and inverse $[o,x,o]$ for $*_o$, proving it is a group.  Formula
+(CSP28) uses $(\widehat i)^{-1}=\widehat{-i}$.
+\end{proof}
+
+The last proposition supplies the exact enriched replacement when the
+group-like imaginary-generator prescription fails.  A binary law
+requires the stated choice of $o$; the ternary law and all chart,
+support, real-structure, and Frobenius maps above require no such
+choice.  The calculation retains the source's distinguished choice
+of $i$ only when identifying the quotient with its first component.
+
+\begin{thebibliography}{9}
+\bibitem{CSP-CC}
+Alain Connes and Caterina Consani,
+\emph{The Absolute Twistor Line and the Geometry of
+$\overline{\operatorname{Spec}\mathbb Z}$},
+\href{https://arxiv.org/abs/2609.00299v1}{arXiv:2609.00299v1} (2026).
+Original author source \texttt{CC.tex}; source formulas and labels are
+specified at the beginning and at their mathematical uses.
+\end{thebibliography}

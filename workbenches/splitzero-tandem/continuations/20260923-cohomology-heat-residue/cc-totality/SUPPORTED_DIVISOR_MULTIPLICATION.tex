@@ -1,0 +1,283 @@
+\section{Divisor multiplication and degree with the full lattice fibre}
+\label{sec:full-lattice-divisors}
+
+The source construction is Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1502.05585v2}{\emph{Absolute algebra and
+Segal's $\Gamma$-sets}}, original \texttt{F1\_corr.tex},
+\S5.2: Proposition \texttt{propspecz}, equations \texttt{propsmash1},
+\texttt{propsmash2}, and Proposition \texttt{proppic}, source lines
+938--1053. Their divisor modules and exceptional multiplication rule
+are the source results. Here we calculate the rule for the full
+lattice carrier and replace the global-section test by an intrinsic
+test that retains every labelled zero. The split carrier is from
+The Clankers, \emph{Split Support Geometry}, v11,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1226}{Definition \texttt{def:lattice-split}}.
+
+\subsection{The original divisor and its entire support lift}
+Fix a nontrivial bounded distributive lattice $L$ and write
+$z_\ell=(0,\ell)$, $\tau=z_{0_L}$, $e=z_{1_L}$, and
+$\widehat x=(x,1_L)$ for $x\ne0$. Retain the original divisor
+\begin{equation}\tag{SDM1}
+ D=\sum_p n_p[p]+a[\infty],\qquad n_p\in\mathbb Z,
+ \quad n_p=0\text{ for all but finitely many }p,\quad a\in\mathbb R.
+\end{equation}
+The underlying space is the source's
+$X=\overline{\operatorname{Spec}\mathbb Z}$, whose nonempty opens
+are complements of finite sets of closed primes, possibly including
+$\infty$. This section constructs sheaves on that specified space;
+it does not identify it with $\operatorname{Spec}G_L(\mathbb Z)$.
+For nonempty $U$ define
+\begin{equation}\tag{SDM2}
+ \begin{split}
+ R_U&=\{x\in\mathbb Q:v_p(x)\ge0\text{ for finite }p\in U\},\\
+ I_D(U)&=\{x\in\mathbb Q:v_p(x)+n_p\ge0\text{ for finite }p\in U\},\\
+ G_L(I_D(U))&=\{(0,\ell):\ell\in L\}
+           \cup\{(x,1_L):x\in I_D(U)\}.
+ \end{split}
+\end{equation}
+Here $v_p(0)=+\infty$. Addition joins the supports, and the scalar
+action of $G_L(R_U)$ multiplies amplitudes and meets supports.
+For a finite pointed set $K$, with $K^\circ=K\setminus\{*\}$,
+put
+\begin{equation}\tag{SDM3}
+ \mathcal M_L(D)(U)(K)=
+ \left\{(x_j,\ell_j)_{j\in K^\circ}\in G_L(I_D(U))^{K^\circ}:
+ \ \infty\in U\Longrightarrow\sum_j|x_j|\le e^a\right\}.
+\end{equation}
+The empty-open value is the singleton. A pointed map sums the
+amplitudes and joins the supports over each nonbasepoint fibre;
+an empty fibre has value $\tau$. Restriction includes the rational
+amplitudes and leaves every support unchanged. Write
+$\mathcal A_L=\mathcal M_L(0)$. Also define
+$\mathcal M_L^{<}(D)$ by replacing $\le e^a$ by $<e^a$ on
+opens containing $\infty$, with no change elsewhere.
+
+\begin{theorem}\label{SDM:sheaf}
+These are sheaves of $\mathcal A_L$-modules. The amplitude-zero
+subsheaf is $HL$ on every nonempty open, for both inequalities.
+Their stalks are
+\begin{equation}\tag{SDM4}
+ \begin{aligned}
+ \mathcal M_L(D)_\eta&=HG_L(\mathbb Q),\\
+ \mathcal M_L(D)_p&=HG_L(p^{-n_p}\mathbb Z_{(p)}),\\
+ \mathcal M_L(D)_\infty&=B_{e^a}^L(\mathbb Q).
+ \end{aligned}
+\end{equation}
+For the strict sheaf the last stalk is $B_{<e^a}^L(\mathbb Q)$.
+The notation $H$ on an additive module denotes its finite-tuple
+$\Gamma$-set; it does not assert that $I_D(U)$ is a ring.
+\end{theorem}
+\begin{proof}
+The valuation inequalities make $I_D(U)$ an $R_U$-module. Addition
+and scalar action on the displayed carrier satisfy their axioms
+by distributivity in $L$ and in $\mathbb Q$. A nonzero product has
+both input supports equal to $1_L$, as required. The triangle
+inequality proves closure under pointed maps, including maps that
+discard input coordinates. For the external module action the
+coordinates are $(r_i x_j,\lambda_i\wedge\ell_j)$; its bound is
+$\sum_{i,j}|r_i x_j|=(\sum_i|r_i|)(\sum_j|x_j|)\le e^a$,
+and is strict when the second bound is strict. The valuation
+inequalities add. This proves the module identities coordinatewise.
+
+Every two nonempty opens intersect. Compatible local sections
+therefore have exactly the same rational amplitudes and lattice
+labels. All valuation conditions required on the union hold on a
+covering open; if the union contains infinity, one such open supplies
+the required bound. This proves existence and uniqueness of gluing.
+Every zero-amplitude tuple satisfies either positive bound, proving
+the subsheaf assertion. At a finite prime $p$, all other primes $q$
+where one of the finitely many inequalities $v_q(x_j)+n_q\ge0$
+fails can be excluded, together with infinity. This is a finite
+set: it includes denominator primes and may also include primes with
+negative divisor coefficient. At infinity every such finite prime
+can be excluded, while the original bound remains. At the generic
+point every such finite prime and infinity can be excluded.
+Taking these unions gives (SDM4) without changing any label.
+\end{proof}
+
+\subsection{The exact tensor law, including its boundary}
+Let $D'=\sum_p n'_p[p]+a'[\infty]$, and set
+$\lambda=e^a$, $\mu=e^{a'}$. Multiplication defines
+\begin{equation}\tag{SDM5}
+ m_{D,D'}:\mathcal M_L(D)\wedge_{\mathcal A_L}\mathcal M_L(D')
+ \longrightarrow\mathcal M_L(D+D'),\qquad
+ (x_i,\ell_i),(y_j,t_j)\longmapsto(x_i y_j,\ell_i\wedge t_j).
+\end{equation}
+The relative smash product is the sheafification of the module
+coequalizer for the Day smash product. The displayed product is
+balanced and respects all pointed maps by the two distributive laws.
+
+\begin{theorem}\label{SDM:tensor}
+The map (SDM5) is injective as a map of sheaves and identifies its
+source with
+\begin{equation}\tag{SDM6}
+ \begin{cases}
+ \mathcal M_L^{<}(D+D'),&\lambda,\mu\notin\mathbb Q
+                             \text{ and }\lambda\mu\in\mathbb Q,\\
+ \mathcal M_L(D+D'),&\text{otherwise}.
+ \end{cases}
+\end{equation}
+In particular its image contains the whole $HL$ in every case.
+The exceptional missing stalk tuples are exactly those at infinity
+whose rational amplitudes satisfy $\sum_j|x_j|=\lambda\mu$;
+every permissible choice of support on their zero coordinates is
+missing with them. The finite stalks have no such defect.
+\end{theorem}
+\begin{proof}
+We give the module calculation, rather than infer it from level one.
+At a finite prime, multiplication by the rational $p^{-n_p}$ gives
+an isomorphism from $HG_L(\mathbb Z_{(p)})$ to the second object
+in (SDM4). The map multiplies every amplitude and fixes every label;
+its inverse multiplies by $p^{n_p}$. The same holds for $D'$.
+The unit identity $A\wedge_A A\simeq A$ now proves the claimed
+isomorphism on that stalk. At the generic point both modules are
+the coefficient module itself.
+
+At infinity put $A=B_1^L(\mathbb Q)$. For each rational $r>0$,
+\begin{equation}\tag{SDM7}
+ s_r:A\xrightarrow{\sim}B_r^L(\mathbb Q),\qquad
+ (x_j,\ell_j)_j\longmapsto(r x_j,\ell_j)_j
+\end{equation}
+is an $A$-module isomorphism, with inverse $s_{1/r}$ on the indicated
+codomain. For $0<r\le t$ the inclusion $B_r^L\subset B_t^L$
+corresponds under these isomorphisms to multiplication by
+$\widehat{r/t}$ in $A(1_+)$. Thus the multiplication map induces
+$B_r^L\wedge_A B_s^L\simeq B_{rs}^L$ and the transition maps are
+exactly the coordinatewise inclusions, including all zero labels.
+For completeness, the inverse of the balanced-unit multiplication
+is $A\simeq A\wedge\mathbb S\to A\wedge A\to A\wedge_A A$,
+using the unit $\mathbb S\to A$ in the middle map. One composite
+is the identity by the unit law; the other is the identity because
+the balanced relation transfers the first $A$-factor to the second.
+A tuple $(z_{\ell_j})_j$ is represented by that tuple paired with
+$\widehat1$ and is recovered with supports $\ell_j\wedge1_L=\ell_j$.
+
+For any real $c>0$ the full bounded module is the filtered union
+\begin{equation}\tag{SDM8}
+ B_c^L(\mathbb Q)=\underset{r\in\mathbb Q,\ 0<r\le c}{\operatorname{colim}}
+ B_r^L(\mathbb Q).
+\end{equation}
+Indeed each tuple has rational total absolute amplitude. If that
+total is positive it may be used as $r$; if it is zero any rational
+$0<r\le c$ works, retaining its arbitrary lattice labels. The
+relative smash product preserves colimits in each variable: the
+Day smash is a left adjoint in each variable, and the defining
+balanced coequalizer commutes with colimits. Hence the product at
+infinity is the union of $B_{rs}^L$ over positive rational
+$r\le\lambda$, $s\le\mu$. A tuple of rational total amplitude
+$t<\lambda\mu$ belongs to this union by choosing $r,s$ sufficiently
+close to their upper endpoints. The same is true for $t=0$.
+The endpoint $t=\lambda\mu$ is attained precisely when both
+endpoints $\lambda,\mu$ are rational: since $r/\lambda,s/\mu\le1$,
+their product is one only when both equal one. If exactly one
+endpoint is irrational the product is irrational, so no rational
+tuple total equals it. If both are irrational and their product is
+irrational, the same observation applies. This proves (SDM6) at
+infinity. All these are injections into the same tuple module.
+
+Stalks commute with the tensor construction used here. To verify
+this directly, the stalk is a filtered colimit over neighborhoods;
+each Day representative uses finite pointed sets and finitely many
+sections, so all its entries occur on a common neighborhood.
+Every defining relation between representatives also occurs on a
+common neighborhood. The same finite-representative argument applies
+to the balanced coequalizer. Sheafification leaves stalks unchanged.
+Consequently the stalk computations prove the sheaf statement.
+\end{proof}
+
+\subsection{Recovering degree without deleting labelled zeros}
+For a pointed $\Gamma$-set $M$, call $x\in M(1_+)$ additively
+idempotent when there exists $w\in M(2_+)$ with
+\begin{equation}\tag{SDM9}
+ M(\pi_1)w=x=M(\pi_2)w,\qquad M(\nabla)w=x,
+\end{equation}
+where $\pi_1,\pi_2$ are the two pointed coordinate projections
+and $\nabla$ is the fold. This property uses only the given
+$\Gamma$-structure and is preserved by isomorphisms.
+
+\begin{lemma}\label{SDM:idempotents}
+For every nonempty open in (SDM3), its additively idempotent
+level-one elements are exactly $\{z_\ell:\ell\in L\}$, for either
+inequality. The same holds for the image sheaf in (SDM6).
+\end{lemma}
+\begin{proof}
+The two projections force $w=(x,x)$. If $x=(u,\ell)$, the fold
+equation says $2u=u$ and $\ell\vee\ell=\ell$. In $\mathbb Q$
+the first equality is equivalent to $u=0$. Conversely $(z_\ell,z_\ell)$
+always satisfies the valuation conditions and either positive bound,
+and its fold is $z_\ell$. The image description (SDM6) supplies the
+last assertion.
+\end{proof}
+
+Keep all the coefficients of (SDM1), and define
+\begin{equation}\tag{SDM10}
+ c_D=\prod_p p^{-n_p}>0,\qquad
+ \deg D=a+\sum_p n_p\log p=a-\log c_D.
+\end{equation}
+These formulas do not replace $D$ by another divisor. The actual
+global amplitude module $I_D(X)$ is $c_D\mathbb Z$: for a rational
+$x$, all $v_p(x/c_D)\ge0$ hold exactly when $x/c_D\in\mathbb Z$.
+For $D_b=b[\infty]$, set
+$\mathcal T_b=\mathcal M_L(D)\wedge_{\mathcal A_L}\mathcal M_L(D_b)$.
+Define the following invariant of an abstract
+$\mathcal A_L$-module sheaf of the displayed form:
+\begin{equation}\tag{SDM11}
+ \alpha_L(\mathcal M_L(D))=
+ \inf\left\{b\in\mathbb R:
+ \mathcal T_b(X)(1_+)
+ \text{ contains a non-idempotent element}\right\}.
+\end{equation}
+\begin{theorem}\label{SDM:degree}
+One has the exact formula and classification
+\begin{equation}\tag{SDM12}
+ \alpha_L(\mathcal M_L(D))=\log c_D-a=-\deg D,
+ \qquad
+ \mathcal M_L(D)\simeq\mathcal M_L(D')
+ \Longleftrightarrow D'-D\text{ is principal}.
+\end{equation}
+The invariant in (SDM11) uses the complete support sheaf and no
+quotient of its zero fibre.
+\end{theorem}
+\begin{proof}
+By (SDM6), a non-idempotent global section is a nonzero element of
+$c_D\mathbb Z$ with $|x|\le e^{a+b}$, with strict inequality in
+the exceptional case. Its least possible absolute value is exactly
+$c_D$. Thus it does not exist for $b<\log c_D-a$ and does exist
+for every $b>\log c_D-a$. At equality it exists precisely when
+the tensor law is not exceptional, a distinction that leaves the
+infimum unchanged. More precisely, the set in (SDM11) is
+$[-\deg D,\infty)$ when $e^a\in\mathbb Q$ and
+$(-\deg D,\infty)$ otherwise: at equality the product of the
+two radius bounds is $c_D\in\mathbb Q$, and $e^b=c_D/e^a$ is
+rational exactly when $e^a$ is rational. This proves the first
+formula with the endpoint fully accounted for. An isomorphism of module sheaves induces an
+isomorphism after tensoring with $\mathcal M_L(D_b)$; it preserves
+(SDM9), and therefore preserves this infimum. It follows that
+isomorphic sheaves have $\deg D=\deg D'$.
+
+Put $q=\prod_p p^{n'_p-n_p}\in\mathbb Q_{>0}$. Equality of degrees
+gives $a'-a=-\log q$, while $v_p(q)=n'_p-n_p$ for every $p$.
+Thus $D'=D+(q)$ with the original principal-divisor convention
+$(q)=\sum_pv_p(q)[p]-\log|q|[\infty]$. Conversely, for any
+$q\in\mathbb Q^\times$ and $D'=D+(q)$, the explicit map
+\begin{equation}\tag{SDM13}
+ \mathcal M_L(D)(U)(K)\longrightarrow\mathcal M_L(D')(U)(K),
+ \qquad(x_j,\ell_j)_j\longmapsto(q^{-1}x_j,\ell_j)_j
+\end{equation}
+is an isomorphism. Indeed
+$v_p(q^{-1}x_j)+n_p+v_p(q)=v_p(x_j)+n_p$, and the new
+archimedean bound is $e^a/|q|$. Its inverse multiplies by $q$.
+It commutes with all restrictions, pointed maps and module actions,
+and fixes every $z_\ell$. This proves both implications.
+\end{proof}
+
+For nontrivial $L$, replacing ``non-idempotent'' in (SDM11) by
+``different from the pointed zero'' would give $-\infty$, since
+$e\ne\tau$ is always present. This is the precise defect of
+transporting the source's nonzero-section test without its lattice
+fibre. The intrinsic test proves (SDM12) while preserving that fibre.
+The tensor calculation concerns the original sum-of-absolute-values
+divisor sheaves. It does not identify them with the later all-subset
+modules of \emph{Riemann--Roch for the ring $\mathbb Z$}; their exact
+comparison is (HG38)--(HG41). No weight or cohomological purity
+statement is inferred from these module calculations.

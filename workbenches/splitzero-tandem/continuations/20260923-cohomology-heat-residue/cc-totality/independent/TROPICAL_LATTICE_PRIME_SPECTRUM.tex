@@ -1,0 +1,596 @@
+\section{The complete finite-lattice prime spectrum after tropical base change}
+\label{sec:tropical-lattice-prime-spectrum}
+
+The coefficient semiring throughout this calculation is exactly
+$K=\mathbb R_+^{\max}=([0,\infty),\max,\cdot)$, with absorbing
+zero $0$ and unit $1$. This is the tropical coefficient semifield of
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/1502.05580}{\emph{Geometry of the Arithmetic
+Site}}. The exact locators are lines 395--406 and Definition
+\texttt{defnpt}, lines 685--690 of the original author source:
+\begin{center}
+\texttt{arithmeticsite\_Adv\_final1.tex}.
+\end{center}
+The complete support base $G_L(R)$ and its original spectrum are the
+existing programme construction cited and reproduced in (ASL1),
+(ASL12), and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/031/01_REBUILT_MATHEMATICS.tex}{031,
+Theorem \texttt{thm:rebuilt-full-support}}.
+The ordinary-prime classification proved below is a derivation for
+the coefficient extension; it is not attributed to Connes--Consani.
+
+Let $L$ be any nontrivial finite bounded distributive lattice.
+Its original elements are retained through the exact isomorphism
+\begin{equation}\tag{LSP1}
+ L\longrightarrow\operatorname{Down}(J),\qquad
+ \lambda\longmapsto\{j\in J:j\le\lambda\},
+ \qquad J=J(L),
+\end{equation}
+whose inverse takes the join of a downset. The proof with all maps
+is (ASL11): join-irreducibles in a distributive lattice are join-prime,
+and every element is the join of those below it. In particular this
+is not a replacement by independent Boolean coordinates. By the
+faithful tensor calculation (ASL18)--(ASL21), the full coefficient
+extension is exactly
+\begin{equation}\tag{LSP2}
+ A_J:=K\otimes_{\mathbb B}L
+ \simeq\{f:J\to[0,\infty):x\le y\Longrightarrow f(x)\ge f(y)\},
+\end{equation}
+with pointwise maximum and multiplication. For completeness the
+finite version follows directly: the nonzero superlevel sets of
+an antitone function are downsets, and its finitely many values
+express it as a sum of those values tensored with those downsets.
+Sorting the coefficient values and using their cumulative downsets
+proves uniqueness by character evaluation, exactly as (ASL21).
+For every downset $D\subset J$, write $e_D$ for its characteristic
+function. These are precisely the multiplicative idempotents of
+$A_J$; each coordinate of an idempotent is zero or one.
+
+An ideal here means an ordinary semiring ideal, closed under addition
+and multiplication by every element. It is not required to be
+subtractive. A prime ideal is proper and its multiplicative
+complement is closed. Retaining that distinction is necessary for
+the complete answer.
+
+\subsection{Exhaustive classification, including the primes with several labels}
+
+For $j\in J$, put $J_{\le j}=\{x:x\le j\}$. Let $U$ be an
+upward-closed subset of $J_{\le j}$ containing $j$. Define
+\begin{equation}\tag{LSP3}
+ \mathfrak p_{j,U}
+ =\{f\in A_J:f(j)=0\ \hbox{or}
+                  \ \exists i\in U:\ f(i)>f(j)\}.
+\end{equation}
+Then every ordinary prime ideal of $A_J$ is exactly one of
+(LSP3), and the pair $(j,U)$ is unique.
+
+First prove existence. If $f,g$ belong to (LSP3), put
+$h=\max(f,g)$. When $h(j)=0$, it belongs to the ideal. Otherwise
+one of $f,g$, say $f$, attains $h(j)>0$ at $j$. Since $f$ is in
+the ideal, there is $i\in U$ with $f(i)>f(j)=h(j)$, whence
+$h(i)>h(j)$. This proves additive closure. For a product $fg$, a
+zero at $j$ persists. If $f(i)>f(j)>0$ and $g(j)>0$, then
+$g(i)\ge g(j)>0$, so $f(i)g(i)>f(j)g(j)$. If $g(j)=0$, the
+product has zero at $j$. This proves absorption. The constant unit
+is outside the ideal. Finally its complement is exactly
+\begin{equation}\tag{LSP4}
+ f(j)>0,\qquad f(i)=f(j)\quad(i\in U),
+\end{equation}
+and is multiplicatively closed. Thus (LSP3) is prime.
+
+For exhaustion, let $\mathfrak p$ be any prime of $A_J$. Its
+intersection with the $e_D$ is a prime of the lattice of downsets.
+The complement of that lattice prime is a finite filter. Its least
+member $D_0$ is nonempty and join-prime: if $D_0\subset B\cup C$
+then $D_0\subset B$ or $D_0\subset C$, by primality of the
+complementary ideal. Since $D_0$ is the union of its principal
+downsets, $D_0=J_{\le j}$ for a unique $j$. It follows that
+\begin{equation}\tag{LSP5}
+ e_D\notin\mathfrak p\quad\Longleftrightarrow\quad j\in D.
+\end{equation}
+In particular $e_{J_{\le j}}\notin\mathfrak p$, and primality
+gives
+\[
+ f\in\mathfrak p\quad\Longleftrightarrow\quad
+ e_{J_{\le j}}f\in\mathfrak p.
+\]
+We can therefore work on the full subposet $B=J_{\le j}$, with
+unit $e_B$. This is the exact truncation map $f\mapsto f|_B$,
+followed by extension by zero outside $B$ when viewed in $A_J$.
+The latter extension is a homomorphism with unit $e_B$ in its image.
+
+Every function on $B$ with value zero at $j$ is in the prime:
+it is multiplied identically by $e_{B\setminus\{j\}}$, which
+belongs to the prime by (LSP5). All remaining functions are positive
+at every coordinate, because $j$ is the maximum of $B$. The positive
+constant functions are units, so multiplying by such a function
+does not change ideal membership. For a positive function $f$ define
+the exact coordinates
+\begin{equation}\tag{LSP6}
+ a_x=\log(f(x)/f(j)),\qquad
+ C_j=\{a:B\to[0,\infty):a_j=0,\ a_x\ge a_y\text{ if }x\le y\}.
+\end{equation}
+This retains $f$ through $f(x)=f(j)\exp(a_x)$ and a positive
+unit factor $f(j)$. Write $h_a(x)=\exp(a_x)$ and set
+\[
+ F=\{a\in C_j:h_a\notin\mathfrak p\}.
+\]
+The set $F$ contains zero and is closed under addition, by
+$h_{a+b}=h_ah_b$ and the multiplicative closure of the complement.
+It also has the stronger property
+\begin{equation}\tag{LSP7}
+ b\in F,\quad a\in C_j,\quad a_x\le b_x\ (x\in B)
+ \quad\Longrightarrow\quad a\in F.
+\end{equation}
+Indeed let $g(x)=\exp(b_x)$ for $x\ne j$ and $g(j)=0$.
+It is antitone, is supported on $B\setminus\{j\}$, and belongs
+to the prime. If $h_a$ also belonged to it, then
+$\max(h_a,g)=h_b$ would belong, a contradiction. This proves (LSP7).
+
+Let $D$ be the union of the sets $\{x:a_x>0\}$ over $a\in F$.
+It is a downset of $B$ and excludes $j$. Since $B$ is finite, there
+is a single $b\in F$ whose positive-coordinate set is exactly $D$:
+choose one member positive at each coordinate of $D$ and add them.
+When $D$ is empty take $b=0$. For any $a\in C_j$ vanishing outside
+$D$, some positive integer $N$ satisfies $a_x\le Nb_x$ at every
+coordinate; take an integer at least every nonzero ratio $a_x/b_x$.
+Then $Nb\in F$ and (LSP7) gives $a\in F$. Conversely every
+member of $F$ vanishes outside $D$ by the definition of $D$. Hence
+\begin{equation}\tag{LSP8}
+ F=\{a\in C_j:a_x=0\text{ for every }x\in U\},
+ \qquad U=B\setminus D.
+\end{equation}
+The set $U$ is upward closed and contains $j$. Returning through
+(LSP6) and retaining the functions with zero at $j$ proves
+$\mathfrak p=\mathfrak p_{j,U}$.
+
+Uniqueness of $j$ follows from (LSP5). If $U\ne V$ have the same
+$j$, take $i\in U\setminus V$, interchanging them if necessary.
+Then $i\ne j$ and the principal downset $J_{\le i}$ is disjoint
+from $V$. The function equal to $\exp(1)$ on $J_{\le i}$ and
+to $1$ elsewhere belongs to $\mathfrak p_{j,U}$ and not to
+$\mathfrak p_{j,V}$. This proves uniqueness completely.
+
+For a three-point poset with incomparable $a,b$ both below $j$,
+the upset $U=\{a,b,j\}$ gives the additional prime
+\begin{equation}\tag{LSP9}
+ \{f:f(j)=0\text{ or }f(a)>f(j)\text{ or }f(b)>f(j)\}.
+\end{equation}
+It is distinct from both comparable-pair primes with $U=\{a,j\}$
+or $U=\{b,j\}$, by the uniqueness proof. Thus comparable pairs
+alone do not exhaust the spectrum for a general finite lattice.
+
+\subsection{Specialization and every basic open}
+
+The complete specialization criterion is
+\begin{equation}\tag{LSP10}
+ \mathfrak p_{j,U}\subseteq\mathfrak p_{k,V}
+ \quad\Longleftrightarrow\quad
+ j\le k\ \hbox{and}\ U\setminus\{j\}\subseteq V.
+\end{equation}
+Necessity of $j\le k$ follows by contracting to the idempotents:
+the lattice prime of $j$ is contained in that of $k$ exactly when
+$j\le k$. Explicitly, if $j\nleq k$, the downset $J_{\le k}$
+contains $k$ and excludes $j$, contradicting the required inclusion.
+If $i\in U\setminus\{j\}$ but $i\notin V$, the function
+equal to $\exp(1)$ on $J_{\le i}$ and $1$ elsewhere has value
+$1$ at $j,k$ and all of $V$, but a strict excess at $i$.
+It contradicts prime inclusion. This proves the other necessity.
+
+For sufficiency, take $f\notin\mathfrak p_{k,V}$. Then $f(k)>0$
+and $f(v)=f(k)$ for all $v\in V$. If $U=\{j\}$, the inequality
+$f(j)\ge f(k)>0$ already puts $f$ outside $\mathfrak p_{j,U}$.
+Otherwise every $i\in U\setminus\{j\}$ lies in $V$, and
+upward closure with $i\le j\le k$ also puts $j$ in $V$.
+Thus $f(i)=f(j)=f(k)$ for every $i\in U$, proving the implication.
+The basic open of any original function is exactly
+\begin{equation}\tag{LSP11}
+ D(f)=\{(j,U):f(j)>0,\ f(i)=f(j)\text{ for all }i\in U\}.
+\end{equation}
+Equations (LSP10)--(LSP11) determine the whole finite topological
+spectrum, with every original support label still present.
+
+For the chain $J=\{1<\cdots<n\}$, every possible upset in
+$J_{\le j}$ is $\{i,i+1,\ldots,j\}$, with $1\le i\le j\le n$.
+The list becomes
+\begin{equation}\tag{LSP12}
+ \mathfrak p_{ij}=\{f:f_i=0\text{ or }f_i>f_j\},
+ \qquad 1\le i\le j\le n,
+ \qquad |\operatorname{Spec}A_J|=\frac{n(n+1)}2.
+\end{equation}
+This formula equals (LSP3): when $f_j=0$, either $f_i=0$ or
+$f_i>f_j$, and when $f_j>0$ the largest value in the indicated
+upset is $f_i$. The inclusion criterion is
+\begin{equation}\tag{LSP13}
+ \mathfrak p_{ij}\subseteq\mathfrak p_{k\ell}
+ \quad\Longleftrightarrow\quad
+ j\le\ell\text{ and }(i=j\text{ or }k\le i).
+\end{equation}
+In particular, for $n=2$ the entire spectrum is the three-element
+chain $\{0\}=\mathfrak p_{11}\subsetneq\mathfrak p_{22}
+\subsetneq\mathfrak p_{12}$, including (ASL31).
+For general $n$ its Krull dimension is exactly $2n-2$. The integer
+$2j-i-1$ strictly increases under each strict inclusion in (LSP13)
+and ranges from $0$ to $2n-2$, giving the upper bound. The chain
+\begin{equation}\tag{LSP14}
+ \mathfrak p_{11}\subsetneq\mathfrak p_{22}
+ \subsetneq\cdots\subsetneq\mathfrak p_{nn}
+ \subsetneq\mathfrak p_{n-1,n}\subsetneq\cdots
+ \subsetneq\mathfrak p_{1n}
+\end{equation}
+has exactly $2n-2$ strict inclusions, proving equality, including
+the single-point case $n=1$.
+
+\subsection{All localized coordinates and the exact maps between them}
+
+Fix $(j,U)$ and put $B=J_{\le j}$. The localization at its prime
+has the following concrete realization, with pointwise operations:
+\begin{equation}\tag{LSP15}
+ (A_J)_{\mathfrak p_{j,U}}\simeq
+ \left\{h:B\to[0,\infty):
+ \begin{array}{l}
+ \{x:h(x)>0\}\text{ is a downset of }B,\\
+ h|_U\text{ is antitone}
+ \end{array}\right\}.
+\end{equation}
+The map sends a fraction $f/g$, $g\notin\mathfrak p_{j,U}$,
+to $h(x)=f(x)/g(x)$ for $x\in B$. By (LSP4), every such denominator
+is positive throughout $B$ and constant on $U$. Thus the indicated
+support and order properties hold. Equality of fractions implies
+coordinatewise equality there. Conversely coordinatewise equality
+implies equality after multiplication by $e_B$, which is outside
+the prime; hence this map is injective. This also shows explicitly
+why coordinates outside $B$ disappear at this specified localization.
+
+To prove surjectivity without guessing denominators, take any $h$
+on the right side. Set $g(x)=1$ for $x\in U$, and construct its
+other positive values in reverse order, processing all strict
+successors of $x$ first. Choose
+\begin{equation}\tag{LSP16}
+ g(x)=\max\left(\{1\}\cup\{g(y):y>x\}
+  \cup\{h(y)g(y)/h(x):y>x\}\right)\quad(h(x)>0),
+\end{equation}
+and omit the last set when $h(x)=0$. Every set here is finite.
+For $x\in U$, its successors are also in $U$ and the antitone
+condition on $h|_U$ already verifies the required inequalities with
+$g(x)=1$. For every other $x$, formula (LSP16) makes both $g$ and
+$hg$ antitone. In the zero case every successor also has $h(y)=0$
+because the nonzero support is a downset, so no inequality was
+lost by omitting the ratios. Thus $g$ is positive, antitone and
+constant on $U$, while $f=hg$ is antitone. Extend both by zero
+outside $B$. They are elements of $A_J$, $g$ is outside the prime,
+and $f/g=h$. This proves (LSP15) with an explicit inverse construction.
+
+The units and maximal ideal in this local semiring are therefore
+\begin{equation}\tag{LSP17}
+ \begin{gathered}
+ h\text{ is a unit}\quad\Longleftrightarrow\quad
+ h(x)>0\ (x\in B),\quad h(i)=h(j)\ (i\in U),\\
+ \mathfrak m_{j,U}=\{h:h(j)=0\text{ or }
+                         \exists i\in U:\ h(i)>h(j)\}.
+ \end{gathered}
+\end{equation}
+Indeed an inverse must be the coordinatewise reciprocal, so support
+must be all of $B$. Both $h|_U$ and its reciprocal are antitone
+exactly when values agree along every comparable pair. Every element
+of $U$ is below $j$, forcing the displayed constant value. Conversely
+these conditions make the reciprocal belong to (LSP15). The
+complement of the units is the ideal displayed in (LSP17), so it is
+the unique maximal ideal.
+
+If (LSP10) holds, the canonical map between the localizations is
+\begin{equation}\tag{LSP18}
+ (A_J)_{\mathfrak p_{k,V}}\longrightarrow
+ (A_J)_{\mathfrak p_{j,U}},\qquad
+ h\longmapsto h|_{J_{\le j}}.
+\end{equation}
+It has this value on every original fraction, hence is the required
+localization map. Its image consists exactly of the functions in
+(LSP15) whose restriction to $V\cap J_{\le j}$ is antitone.
+Necessity follows by restriction. For sufficiency extend such a
+function by zero on $J_{\le k}\setminus J_{\le j}$. Its nonzero
+support remains a downset. Its restriction to $V$ is antitone:
+the only cross-boundary comparisons start in $J_{\le j}$ and end
+outside, and then the latter value is zero. It is therefore an
+element of the source of (LSP18). The fibres of the map are exactly
+the admissible functions agreeing on $J_{\le j}$. No additional
+surjectivity assertion is needed or made.
+
+For completeness, primes of the localized semiring correspond to
+the pairs $(k,V)$ whose prime is contained in $\mathfrak p_{j,U}$.
+Extension takes such a prime to the fractions with numerator in it.
+This is well defined: if $f/g=f'/g'$ then some inverted $t$ satisfies
+$tfg'=tf'g$; all inverted factors are outside the smaller prime,
+so primality makes $f$ belong exactly when $f'$ does. The complement
+is multiplicatively closed, and contraction recovers the same prime.
+Conversely a prime of the localization cannot contain an inverted
+element; its contraction has this property and the fraction rule
+recovers it. Together with (LSP10), this proves the entire localized
+prime geometry, not just the local coordinate formulas.
+
+\subsection{Subtractive primes, quotient maps, and actual tropical residue maps}
+
+An ideal $I$ is subtractive when $a+b\in I$ and $a\in I$ imply
+$b\in I$. Precisely the primes
+\begin{equation}\tag{LSP19}
+ \mathfrak p_{j,\{j\}}=\{f:f(j)=0\}
+\end{equation}
+are subtractive. They are kernels of evaluation at $j$, and the
+subtractive property follows by evaluating the defining implication
+in $K$. For any $U\ne\{j\}$ choose $i\in U\setminus\{j\}$.
+The function $b$ equal to $\exp(1)$ on $J_{\le i}$ and $1$
+elsewhere satisfies
+\begin{equation}\tag{LSP20}
+ b\in\mathfrak p_{j,U},\qquad \max(1,b)=b,
+ \qquad 1\notin\mathfrak p_{j,U}.
+\end{equation}
+This violates subtractivity. It also proves that the Bourne quotient
+by this prime is the zero semiring: the relation generated by
+$b=0$ and $1+b=b$ forces $1=0$. This is a property of that precise
+quotient construction; the original prime and localization in
+(LSP15) are still proper and nonzero.
+
+For the subtractive prime the complete global Bourne quotient is
+\begin{equation}\tag{LSP21}
+ A_J/\mathfrak p_{j,\{j\}}\simeq A_{J_{\ge j}},
+ \qquad f\longmapsto f|_{J_{\ge j}}.
+\end{equation}
+Here the quotient identifies $f,g$ when $f+a=g+b$ for some
+$a,b$ in the ideal. Such functions $a,b$ vanish on $J_{\ge j}$,
+so equivalence forces equality on that whole upset. Conversely,
+if the restrictions agree, choose a real $M$ at least all the
+finitely many values of $f,g$. The function $M e_{J\setminus
+J_{\ge j}}$ is in the ideal, and adding it to both functions
+makes them equal everywhere. This proves the kernel-congruence
+assertion. Every antitone function on $J_{\ge j}$ extends by a
+sufficiently large constant on its complementary downset, proving
+surjectivity. Thus (LSP21) is an actual quotient isomorphism; it
+need not equal $K$ before localization.
+
+After localization at this prime the residue quotient is exactly
+\begin{equation}\tag{LSP22}
+ (A_J)_{\mathfrak p_{j,\{j\}}}/\mathfrak m_{j,\{j\}}\simeq K,
+ \qquad h\longmapsto h(j).
+\end{equation}
+Evaluation is surjective on constants. If $h(j)=h'(j)$, choose a
+constant $M$ dominating both functions on $B\setminus\{j\}$.
+The function equal to $M$ there and zero at $j$ belongs to the local
+maximal ideal and to (LSP15); adding it makes $h,h'$ equal. Conversely
+any such equivalence preserves the value at $j$. This proves (LSP22).
+For $U\ne\{j\}$ the local Bourne quotient is also zero, by the
+image of (LSP20).
+
+Any unital homomorphism to a tropical semifield has a subtractive
+zero kernel: if the image of $a+b$ and of $a$ is zero, the image
+of $b$ is zero. Consequently none of the additional primes can be
+the zero kernel of such a map. The exact tropical-valued-point
+classification (ASL28) and the larger ordinary-prime classification
+(LSP3) therefore agree through the specified kernel map; neither
+geometry has been substituted for the other.
+
+\subsection{The full original prime spectrum is recovered from the companion map}
+
+For a nonzero commutative ring $R$, retain the original, injective
+map (ASL22), with all amplitude and support coordinates:
+\begin{equation}\tag{LSP23}
+ G_L(R)\longrightarrow R\times A_J,
+ \qquad(r,\lambda)\longmapsto
+        \bigl(r,e_{\{j\in J:j\le\lambda\}}\bigr).
+\end{equation}
+Injectivity follows because both displayed coordinates are retained
+and (LSP1) is injective; preservation of operations follows from
+join being union and meet being intersection of these downsets.
+Every prime of $R\times A_J$ comes from exactly one factor.
+Indeed the two idempotents $(1,0),(0,1)$ multiply to zero and sum
+to the unit; a proper prime therefore contains exactly one of them.
+It then contains the whole corresponding factor and is the inverse
+image of a prime of the other factor. Hence
+\begin{equation}\tag{LSP24}
+ \operatorname{Spec}(R\times A_J)
+   =\operatorname{Spec}R\ \sqcup\ \operatorname{Spec}A_J.
+\end{equation}
+The contractions under (LSP23) are exactly
+\begin{equation}\tag{LSP25}
+ \begin{gathered}
+ \mathfrak r\in\operatorname{Spec}R\longmapsto
+  \{(0,\lambda):\lambda\in L\}
+      \cup\{(r,1_L):r\in\mathfrak r\},\\
+ (j,U)\longmapsto
+  \{(0,\lambda):j\nleq\lambda\}.
+ \end{gathered}
+\end{equation}
+To check the second formula, an idempotent $e_D$ belongs to
+$\mathfrak p_{j,U}$ exactly when $j\notin D$, by (LSP5).
+Every nonzero supported amplitude, and the supported zero at top
+support, maps to the unit function. The first formula follows
+directly from the amplitude coordinate. The original prime
+classification (ASL12) now proves that (LSP24) maps surjectively
+onto the whole original spectrum of $G_L(R)$. The fibre over an
+arithmetic prime is its one $R$-prime; the fibre over a support
+prime labelled $j$ is exactly all upsets $U\subseteq J_{\le j}$
+containing $j$. This is the precise simultaneous relation between
+the ring amplitudes, every support prime, and the additional tropical
+prime geometry. It makes no cohomological or purity identification.
+
+\subsection{The complete Frobenius action on these primes}
+
+For every real $t>0$, coefficient Frobenius is the automorphism
+$\operatorname{Fr}_t(f)(x)=f(x)^t$. It preserves every zero,
+equality, and strict inequality in (LSP3), so
+\begin{equation}\tag{LSP26}
+ \operatorname{Fr}_t^{-1}(\mathfrak p_{j,U})
+       =\mathfrak p_{j,U}\qquad(t>0).
+\end{equation}
+Thus its action on this ordinary prime spectrum is the identity,
+although its action on coefficient functions and on the local
+semirings remains the indicated power operation. At the additional
+zero element of $\mathbb N_0^\times$, use the actual convention
+(ASL32), which gives $\operatorname{Fr}_0(f)=e_{\operatorname{supp}f}$.
+By (LSP5), the spectral action is precisely
+\begin{equation}\tag{LSP27}
+ \operatorname{Fr}_0^{-1}(\mathfrak p_{j,U})
+      =\mathfrak p_{j,\{j\}},\qquad
+ (j,U)\longmapsto(j,\{j\}).
+\end{equation}
+More explicitly, the semiring maps
+$L\xrightarrow{D\mapsto e_D} A_J
+\xrightarrow{f\mapsto\operatorname{supp}f} L$
+compose to the identity on $L$, while their reverse composite is
+$\operatorname{Fr}_0$. The corresponding spectral maps are the
+projection $(j,U)\mapsto j$ and its section $j\mapsto(j,\{j\})$.
+This proves an actual retraction onto the evaluation primes. It
+does not identify the additional primes with them: their distinct
+specializations and localized functions remain (LSP10)--(LSP18).
+
+\subsection{Exact naturality for every finite bounded-lattice morphism}
+
+Let $\phi:L\to L'$ preserve zero, unit, join, and meet, with both
+lattices finite, nontrivial, and distributive. Put $J=J(L)$ and
+$J'=J(L')$. The dual monotone map $g:J'\to J$ is uniquely specified
+by
+\begin{equation}\tag{LSP28}
+ j'\le\phi(\lambda)\quad\Longleftrightarrow\quad
+ g(j')\le\lambda\qquad(\lambda\in L).
+\end{equation}
+To prove existence, evaluate $\phi$ at the character of $j'$.
+The resulting bounded lattice character of $L$ is the character
+of a unique $j\in J$, by the proof of (LSP5), and this $j$ defines
+$g(j')$. For monotonicity, if $j'\le k'$ then
+$k'\le\phi(\lambda)$ implies $j'\le\phi(\lambda)$ for every
+$\lambda$. Taking $\lambda=g(k')$ in (LSP28) gives
+$g(j')\le g(k')$. Under (LSP1) the entire map is therefore
+$\phi(D)=g^{-1}(D)$. Conversely inverse image under any monotone
+$g$ preserves downsets, empty and full sets, unions, and
+intersections, and hence gives exactly such a $\phi$.
+
+The induced coefficient map has the full coordinate formula
+\begin{equation}\tag{LSP29}
+ \Phi=\operatorname{id}_K\otimes\phi:A_J\longrightarrow A_{J'},
+ \qquad \Phi(f)=f\circ g.
+\end{equation}
+On a pure tensor $a\otimes D$ it sends its characteristic support
+to $g^{-1}(D)$ and keeps the coefficient $a$, so (LSP29) follows
+on all finite sums. Pointwise operations also prove directly that
+this is a unital semiring map. It commutes with every positive real
+Frobenius and with $\operatorname{Fr}_0$, since both power and
+the nonzero-support test commute with precomposition.
+
+Fix an arbitrary target prime $\mathfrak p_{j',U'}$. Its exact
+contraction is
+\begin{equation}\tag{LSP30}
+ \Phi^{-1}(\mathfrak p_{j',U'})=\mathfrak p_{j,U},
+ \qquad j=g(j'),\qquad
+ U=\{x\le j:\ \exists u'\in U',\ g(u')\le x\}.
+\end{equation}
+The set $U$ is the upward closure of $g(U')$ inside $J_{\le j}$,
+is upward closed there, and contains $j$. Membership of $\Phi(f)$
+in the target prime says either $f(g(j'))=0$ or
+$f(g(u'))>f(g(j'))$ for some $u'\in U'$. Every $g(u')$ belongs
+to $U$, so this implies membership on the right of (LSP30).
+Conversely, if $f(x)>f(j)$ for $x\in U$, choose $u'\in U'$
+with $g(u')\le x$. Antitonicity gives
+$f(g(u'))\ge f(x)>f(j)$. The zero alternative is identical on
+both sides. This proves equality of the two ideals, with no loss
+of the upward-closure labels.
+
+The associated local map is just as explicit:
+\begin{equation}\tag{LSP31}
+ (A_J)_{\mathfrak p_{j,U}}\longrightarrow
+ (A_{J'})_{\mathfrak p_{j',U'}},\qquad
+ h\longmapsto h\circ(g|_{J'_{\le j'}}).
+\end{equation}
+Its domain is correct because $g(J'_{\le j'})\subseteq J_{\le j}$.
+An allowed nonzero-support downset in (LSP15) pulls back to a
+downset. On $U'$, the arguments of $h$ lie in $g(U')\subseteq U$,
+where $h$ is antitone, so the image satisfies the target order
+condition. Formula (LSP30) makes every denominator outside the
+source prime map outside the target prime. Thus (LSP31) is the
+canonical localization map, as can also be checked on its fractions
+$\Phi(f)/\Phi(q)=(f/q)\circ g$. It is local: a value function
+$h$ is a unit precisely when $h(j)>0$ and it is constant on $U$,
+by (LSP17). Its image is a unit precisely when $h(g(j'))>0$ and
+it is constant on $g(U')$. These conditions are equivalent, since
+each $x\in U$ lies between some $g(u')$ and $j$, all in $U$;
+the antitone inequalities force $h(x)=h(j)$ when both endpoint
+values equal $h(j)$. This proves the inverse image of the target
+maximal ideal is the source maximal ideal.
+
+All maps compose with their full labels. If a second bounded-lattice
+map $L'\to L''$ has dual $r:J''\to J'$, the dual of its composite
+with $\phi$ is $g\circ r$ by (LSP28), and the coefficient maps
+compose by the ordinary identity
+$(f\circ g)\circ r=f\circ(g\circ r)$. The required equality for
+prime labels is
+\begin{equation}\tag{LSP32}
+ \mathord{\uparrow}_{\le g(r(j''))}
+       g\!\left(\mathord{\uparrow}_{\le r(j'')}r(U'')\right)
+ =\mathord{\uparrow}_{\le g(r(j''))}(g\circ r)(U'').
+\end{equation}
+Indeed an intermediate element $y'$ obeys
+$r(u'')\le y'\le r(j'')$ for some $u''\in U''$, hence
+$g(r(u''))\le g(y')\le g(r(j''))$, proving one inclusion.
+The other follows because each $r(u'')$ is itself in the
+intermediate upward closure. This proves (LSP32) and the
+composition of (LSP30). Localized precomposition in (LSP31)
+then composes identically on every retained coordinate.
+
+The maps also fit the original split-support base, not only its
+tropical coefficient extension. For any fixed nonzero commutative
+ring $R$, define
+\begin{equation}\tag{LSP33}
+ G_\phi:G_L(R)\longrightarrow G_{L'}(R),\qquad
+ (r,\lambda)\longmapsto(r,\phi(\lambda)).
+\end{equation}
+This is defined on the original carriers: nonzero amplitudes have
+top support, which $\phi$ preserves, while zero amplitudes admit
+every image support. The operations in (ASL1) prove that it
+preserves addition, multiplication, zero, and unit. It also sends
+the global zero $\tau$ to $\tau$ and the supported zero $e$ to
+$e$. The companion maps (LSP23) obey the exact equality
+\begin{equation}\tag{LSP34}
+ (\operatorname{id}_R\times\Phi)\circ\iota_L
+       =\iota_{L'}\circ G_\phi.
+\end{equation}
+For verification at $(r,\lambda)$, both sides have amplitude $r$
+and characteristic support $g^{-1}(\{j:j\le\lambda\})$, which
+equals $\{j':j'\le\phi(\lambda)\}$ by (LSP28).
+
+Write $\mathfrak s_j=\{(0,\lambda):j\nleq\lambda\}$ for an
+original support prime and $Q_{\mathfrak r}$ for its original
+arithmetic prime at $\mathfrak r\in\operatorname{Spec}R$, as
+in (ASL12). Direct contraction gives
+\begin{equation}\tag{LSP35}
+ G_\phi^{-1}(\mathfrak s_{j'})=\mathfrak s_{g(j')},
+ \qquad G_\phi^{-1}(Q_{\mathfrak r})=Q_{\mathfrak r}.
+\end{equation}
+The first follows from (LSP28), with no nonzero supported amplitude
+entering a support prime. The second follows because amplitude is
+unchanged and all zero-supported elements are in every arithmetic
+prime. Consequently the spectral contraction square associated
+to (LSP34) commutes explicitly: on tropical primes it is
+$(j',U')\mapsto(g(j'),U)\mapsto g(j')$, which also results from
+$(j',U')\mapsto j'\mapsto g(j')$; on arithmetic primes both
+paths retain $\mathfrak r$. Each entire fibre of upsets in (LSP25)
+therefore maps by the exact upward-closure formula (LSP30), not
+merely by the map on its base point.
+
+Finally the full original support stalks participate in the same
+local square. In finite-lattice coordinates, (ASL15)--(ASL16) give
+\begin{equation}\tag{LSP36}
+ (G_L(R))_{\mathfrak s_j}\simeq
+ \operatorname{Down}(J_{\le j}),\qquad
+ (r,\lambda)\longmapsto
+     \{x\le j:x\le\lambda\}.
+\end{equation}
+Indeed among the lattice denominators containing $j$, the least
+is $J_{\le j}$, and localizing that idempotent restricts every
+downset to it. The map of these stalks induced by $G_\phi$ is
+\begin{equation}\tag{LSP37}
+ D\longmapsto\{x'\le j':g(x')\in D\}.
+\end{equation}
+Their embeddings into the two local tropical semirings send $D$
+to $e_D$, which satisfies every support and order condition in
+(LSP15). Applying (LSP31) to such an idempotent yields exactly the
+characteristic function of (LSP37). This proves commutation of
+the local coefficient square, retaining each original stalk and
+each chosen prime label $U,U'$ in its proper place.

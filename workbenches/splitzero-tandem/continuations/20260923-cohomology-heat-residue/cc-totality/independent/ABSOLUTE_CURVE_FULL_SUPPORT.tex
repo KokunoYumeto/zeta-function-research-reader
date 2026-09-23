@@ -1,0 +1,812 @@
+% Complete independent proof fragment. Requires amsmath, amssymb, amsthm,
+% amscd, hyperref and theorem/proposition/lemma environments. Prefix ACF.
+\section{The absolute arithmetic curve over the full support spectrum}
+\subsection{Sources, conventions, and the objects retained}
+Alain Connes and Caterina Consani's original author source
+\texttt{FF.tex}, \emph{On the Absolute Geometry of Spec Z and the
+Fargues--Fontaine curve},
+\href{https://arxiv.org/abs/2606.06604}{arXiv:2606.06604}, was read in
+full, lines 1--1764. Its SHA-256 is
+\begin{center}\small\texttt{14c17a95040be7bfc57bb5f87e58907a05}\\
+\texttt{cacd0bcb1b6967b2892cf3d9bc1229}.\end{center}
+The precise inputs are Section \texttt{sect9.1}, Proposition
+\texttt{prop12}, and the following source locators:
+\begin{center}\small
+\begin{tabular}{l}
+\texttt{prop:monoid\_structure\_morphisms}\\
+\texttt{defnloc},\quad \texttt{propflat}\\
+\texttt{prop:archimedean\_points\_C}\\
+\texttt{prop:nonarchimedean\_points\_C}.
+\end{tabular}
+\end{center}
+The notation of that source is
+preserved:
+\begin{equation}\tag{ACF1}
+ \theta(\eta)=[\mathbb Z],\qquad
+ \Theta(\eta)=[\{0\}],\qquad
+ \Theta(p)=[\mathbb Z[1/p]],\qquad \kappa\Theta=\theta.
+\end{equation}
+The first equality concerns an arithmetic divisor class; the second
+concerns a point of the topos. In particular the source sheaf is
+\begin{equation}\tag{ACF2}
+ \begin{gathered}
+ \mathcal F=\Theta^{-1}\mathcal O_{\mathbf F_1},\qquad
+ \mathcal O_{\mathbf F_1}=\mathbf F_1[T],\\
+ \mathcal F_\eta=\mathbf F_1,\quad
+ \mathcal F_p=\mathbf F_1[T^{H_p^+}],\quad
+ H_p=\mathbb Z[1/p],\quad H_p^+=H_p\cap[0,\infty).
+ \end{gathered}
+\end{equation}
+The original sheaf on the topos and its generic stalk are different
+objects in this formula.
+
+For the coefficient foundation the input is \emph{Split Support
+Geometry: Universal Zero Fibres, Arithmetic Curves, and Frobenius-Perfect
+Quantization}, source byline \emph{The Clankers}, June 2026,
+pre-publication Version 11. The complete original proof file is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{pinned at commit a2851f9e}.
+The locators used here are Definition \texttt{def:\allowbreak lattice-\allowbreak split},
+Theorems \texttt{thm:\allowbreak lattice-\allowbreak ideal-\allowbreak classification},
+\texttt{thm:\allowbreak lattice-\allowbreak prime-\allowbreak classification},
+\texttt{thm:\allowbreak spectral-\allowbreak ordinal-\allowbreak sum}, Proposition
+\texttt{prop:\allowbreak classical-\allowbreak collapse}, and Definition
+\texttt{def:\allowbreak split-\allowbreak absolute-\allowbreak point-\allowbreak map}. Their relevant source ranges
+1221--1311, 1606--1749, and 4591--4788 were read. All extensions proved
+below retain every lattice label and reproduce the necessary arguments.
+
+Let $L$ be a bounded distributive lattice, including the possible
+one-element lattice. For a nonzero commutative ring $R$ set
+\begin{equation}\tag{ACF3}
+ \begin{gathered}
+ S_R=G_L(R)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+       \cup\{\widehat a=(a,1_L):a\in R\},\\
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\qquad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu),\\
+ \tau=z_{0_L},\quad e=z_{1_L}=\widehat0,\quad
+ 1=\widehat1,\qquad q(a,\lambda)=a.
+ \end{gathered}
+\end{equation}
+These operations close on the displayed carrier: an amplitude different
+from zero forces support $1_L$, while a factor with smaller support has
+zero amplitude. The ring and lattice distributive laws give the semiring
+laws component by component. Thus $q$ is a unital semiring map. The
+notation $\widehat0$ always denotes $e$, not $\tau$.
+
+\subsection{The full prime spectrum and its arithmetic retraction}
+Here $\operatorname{Spec}$ means prime ideals of the additive semiring:
+an ideal contains $\tau$, is closed under addition, and absorbs
+multiplication by every element. It does not mean prime ideals of only
+the underlying multiplicative monoid. Put $S=S_{\mathbb Z}$,
+$X_L=\operatorname{Spec}S$, and $Y=\operatorname{Spec}\mathbb Z$.
+
+\begin{proposition}[All primes and all basic opens]
+Write $\operatorname{Spec}_{\rm lat}L$ for the proper prime lattice ideals,
+where ideals are lower, contain $0_L$, and are closed under finite joins.
+The points of $X_L$ are exactly
+\begin{equation}\tag{ACF4}
+ \begin{aligned}
+ P_J&=\{z_\lambda:\lambda\in J\},
+                  &&J\in\operatorname{Spec}_{\rm lat}L,\\
+ Q_{\mathfrak p}&=q^{-1}(\mathfrak p),
+                  &&\mathfrak p\in Y.
+ \end{aligned}
+\end{equation}
+Every $P_J$ is strictly contained in $Q_{(0)}$, and
+$Q_{(0)}\subsetneq Q_{(p)}$ for every rational prime $p$.
+Within the support stratum inclusion of primes is exactly inclusion of
+$J$. With $A=\operatorname{Spec}_{\rm lat}L$, the basic opens are
+\begin{equation}\tag{ACF5}
+ \begin{aligned}
+ D_S(z_\lambda)&=\{P_J:\lambda\notin J\},\\
+ D_S(\widehat n)&=A\ \cup\ i(D_{\mathbb Z}(n))\quad(n\in\mathbb Z),\\
+ D_S(e)&=A,\qquad V_S(e)=i(Y),\qquad
+ i(\mathfrak p)=Q_{\mathfrak p}.
+ \end{aligned}
+\end{equation}
+In the second line $n=0$ is allowed, and then the right side is $A$.
+\end{proposition}
+\begin{proof}
+If an ideal $I$ contains $\widehat n$ with $n\ne0$, then multiplication
+by $\widehat{-1}$ and addition give $e\in I$. If it contains $e$
+initially the same conclusion is already available. Then
+$ez_\lambda=z_\lambda$ puts the entire zero fibre in $I$.
+The amplitudes whose supported representatives belong to $I$ form a ring
+ideal, so $I=q^{-1}(\mathfrak a)$ for a unique ring ideal
+$\mathfrak a$. Otherwise $I$ consists solely of $z_\lambda$ for a proper
+lattice ideal $J$: addition gives join closure and
+$z_\mu z_\lambda=z_\mu$ when $\mu\le\lambda$ gives downward closure.
+Conversely these constructions are ideals. The amplitude ideals are
+prime exactly when $\mathfrak a$ is prime, by surjectivity of $q$.
+For a support ideal, a product of two top-supported elements is
+still top-supported, even if its amplitude is zero. A product
+of a top-supported element with $z_\lambda$ has support $\lambda$.
+For two zero elements primality is precisely
+$\lambda\wedge\mu\in J\Rightarrow\lambda\in J$ or $\mu\in J$.
+This proves exhaustion and primality. The strict cross-stratum inclusion
+follows because every $Q_{\mathfrak p}$ contains $e$ and no $P_J$ does.
+Membership in the displayed ideals proves every formula for the basic
+opens directly.
+\end{proof}
+
+\begin{proposition}[A retraction which retains the support stratum]
+The map $i:Y\to X_L$ is a homeomorphism onto the closed subspace $V(e)$.
+There is a continuous retraction
+\begin{equation}\tag{ACF6}
+ \begin{gathered}
+ r:X_L\longrightarrow Y,\qquad
+ r(P_J)=\eta,\quad r(Q_{(0)})=\eta,\quad r(Q_{(p)})=(p),\\
+ ri=\operatorname{id}_Y.
+ \end{gathered}
+\end{equation}
+Its fibres are $r^{-1}(\eta)=A\cup\{Q_{(0)}\}$ and
+$r^{-1}((p))=\{Q_{(p)}\}$. For $n\ne0$,
+\begin{equation}\tag{ACF7}
+ r^{-1}D_{\mathbb Z}(n)=D_S(\widehat n).
+\end{equation}
+For $n=0$ the left side is empty, whereas $D_S(\widehat0)=A$.
+\end{proposition}
+\begin{proof}
+The formulas in ACF5 give the homeomorphism onto $V(e)$ and show that
+ACF7 holds for every nonzero integer, since every nonempty basic open of
+$Y$ contains $\eta$. The inverse image of the empty open is empty.
+These opens form a basis, proving continuity. All statements about fibres
+and the composite follow from the explicit assignments. In particular
+$r$ is a quotient map: if $r^{-1}U$ is open, then
+$U=i^{-1}r^{-1}U$ is open.
+\end{proof}
+For $0_L\ne1_L$, this continuous retraction is not induced by a unital
+semiring homomorphism $\mathbb Z\to S$. Indeed any such homomorphism
+would send $1$ to $\widehat1$. If $u$ were the image of $-1$, then
+$\widehat1+u=\tau$ would be required. Its left support is $1_L$, which
+cannot equal $0_L$. The continuous map and its sheaf pullback nevertheless
+exist exactly as proved.
+
+\subsection{The pullback sheaf and its exact comparison}
+Define a spherical-algebra sheaf on the actual full base by
+\begin{equation}\tag{ACF8}
+ \mathcal F_L=r^{-1}\mathcal F=(\Theta\circ r)^{-1}
+                           \mathcal O_{\mathbf F_1}.
+\end{equation}
+For a continuous map, the inverse image is the sheafification of the
+presheaf assigning to $W\subseteq X_L$ the colimit of $\mathcal F(V)$
+over opens $V\subseteq Y$ for which $W\subseteq r^{-1}V$.
+This specifies the sheaf, not only a list of stalks.
+
+\begin{proposition}[Exact restriction, stalks, and direct image]
+There are canonical isomorphisms
+\begin{equation}\tag{ACF9}
+ i^{-1}\mathcal F_L\simeq\mathcal F,\qquad
+ r_*\mathcal F_L\simeq\mathcal F,\qquad
+ (\mathcal F_L)_x\simeq\mathcal F_{r(x)}.
+\end{equation}
+Consequently
+\begin{equation}\tag{ACF10}
+ (\mathcal F_L)_{P_J}=\mathbf F_1,\qquad
+ (\mathcal F_L)_{Q_{(0)}}=\mathbf F_1,\qquad
+ (\mathcal F_L)_{Q_{(p)}}=\mathbf F_1[T^{H_p^+}].
+\end{equation}
+All generic-direction stalk maps from the last object to either of the
+first two are
+\begin{equation}\tag{ACF11}
+ \epsilon_p(0)=0,\qquad \epsilon_p(T^h)=1\quad(h\in H_p^+).
+\end{equation}
+Maps between stalks $\mathbf F_1$ in ACF10 are identities.
+\end{proposition}
+\begin{proof}
+The stalk of the inverse-image presheaf at $x$ is the colimit of
+$\mathcal F(V)$ over neighbourhoods of $r(x)$: every such $V$ yields the
+neighbourhood $r^{-1}V$ of $x$, and every representative of the presheaf
+stalk is already represented on some such $V$. The two identifications
+respect equality of germs. Sheafification preserves this stalk, proving
+the third isomorphism. The first follows either by the same construction
+and $ri=\operatorname{id}$ or by the canonical composition isomorphism
+for inverse images.
+
+The second isomorphism holds for any sheaf $E$ on $Y$ in place of
+$\mathcal F$. The adjunction unit sends $E(U)$ into
+$(r^{-1}E)(r^{-1}U)$. Restriction along $i$ gives a left inverse using
+$i^{-1}r^{-1}E=E$. If two sections over $r^{-1}U$ have the same restriction,
+their germs agree at every point $Q_{\mathfrak p}$ with $\mathfrak p\in U$.
+When $U$ is nonempty it contains $\eta$. Each support point is a
+generization of $Q_{(0)}$, so the germ at that support point is the
+image of the germ at $Q_{(0)}$. The two sections therefore agree at all
+stalks and are equal. The case $U=\varnothing$ is automatic. This proves
+bijectivity, respecting all sheaf operations and restrictions.
+
+The source has all endomorphisms
+$\operatorname{Fr}_m(T^h)=T^{mh}$, including $m=0$, with the absorbing
+zero fixed. Every sheaf generization map commutes with them. On
+$\mathbf F_1$, $\operatorname{Fr}_0$ is the identity. Thus a generization
+$g$ to $\mathbf F_1$ satisfies
+$g(T^h)=\operatorname{Fr}_0g(T^h)=g(T^0)=1$.
+It sends the absorbing zero to zero. This proves ACF11 without selecting
+an unsupported alternative augmentation. All other displayed maps are
+unital maps $\mathbf F_1\to\mathbf F_1$, hence identities.
+\end{proof}
+
+\begin{proposition}[The actual semiring structure sheaf]
+Let $\mathcal O_X$ be the sheaf of locally represented fractions of $S$
+on $X_L$. For a lattice prime $J$ define
+\begin{equation}\tag{ACF12}
+ \begin{gathered}
+ L_J=L[(L\setminus J)^{-1}],\\
+ [\lambda]=[\mu]\ \Longleftrightarrow\
+ \text{there is }\nu\notin J\text{ with }
+                  \lambda\wedge\nu=\mu\wedge\nu.
+ \end{gathered}
+\end{equation}
+Its operations are induced join and meet. The stalks are
+\begin{equation}\tag{ACF13}
+ (\mathcal O_X)_{P_J}=L_J,\qquad
+ (\mathcal O_X)_{Q_{(0)}}=G_L(\mathbb Q),\qquad
+ (\mathcal O_X)_{Q_{(p)}}=G_L(\mathbb Z_{(p)}).
+\end{equation}
+The generic-direction map from an arithmetic stalk to $L_J$ is
+$(a,\lambda)\mapsto[\lambda]$. The maps between arithmetic stalks
+are the usual localization of amplitudes with support unchanged.
+If $J\subseteq K$, the map $L_K\to L_J$ is the canonical localization.
+\end{proposition}
+\begin{proof}
+The locally represented fraction definition gives the stalk $S_P$ at
+a prime $P$: a fraction near $P$ has denominator outside $P$, and equality
+of fraction germs is the localization equality witnessed by another
+such denominator. At $Q_{\mathfrak p}$, every allowed denominator is
+$\widehat n$ with $n\notin\mathfrak p$ and $n\ne0$. Thus
+\[
+ (a,\lambda)/\widehat n\longmapsto(a/n,\lambda)
+\]
+is onto $G_L(\mathbb Z_{\mathfrak p})$. The usual localization
+cross-multiplication criterion proves injectivity: an additional
+denominator is top-supported, so equality preserves the supports
+exactly, and its amplitude is a nonzero integer. Operations match
+component by component.
+
+At $P_J$, $e$ is an allowed denominator. The relation $e^2=e$ makes $e=1$
+after localization. Hence every $(a,\lambda)$ equals its product with
+$e$, namely $z_\lambda$. This first localization is exactly $L$:
+$z_\lambda\mapsto\lambda$ is the isomorphism. The remaining allowed
+zero denominators are the $z_\nu$ with $\nu\notin J$, so the second
+localization is $L_J$. An invertible idempotent is $1$; thus every
+fraction is represented by its numerator, and the usual fraction
+equality becomes precisely ACF12. This also proves the formula for
+all maps, because they are induced by the original localization maps.
+The top and bottom of $L_J$ remain different: equality would require
+$\nu\notin J$ with $\nu=0_L$, impossible for a lattice ideal.
+\end{proof}
+
+\begin{proposition}[Coefficient comparison over the whole base]
+On $Y$ define the sheaf $B_L$ by
+$B_L(U)=G_L(\mathcal O_Y(U))$ for nonempty opens $U$, and the terminal
+semiring for the empty open. There is a canonical sheaf morphism
+\begin{equation}\tag{ACF14}
+ \Phi:r^{-1}B_L\longrightarrow\mathcal O_X
+\end{equation}
+which is an isomorphism at every arithmetic stalk and a surjection
+\begin{equation}\tag{ACF15}
+ G_L(\mathbb Q)\longrightarrow L_J,\qquad
+ (a,\lambda)\longmapsto[\lambda]
+\end{equation}
+at $P_J$. Its exact equality relation at that stalk is equality of the
+classes $[\lambda]$ and $[\mu]$ in ACF12, regardless of amplitudes.
+\end{proposition}
+\begin{proof}
+Every two nonempty opens of $Y$ meet, and their rings of sections embed
+in $\mathbb Q$. Compatible local sections therefore have one support
+label on all members of a nonempty cover and glue their amplitudes by
+the ring sheaf axiom. A nonzero glued amplitude forces top support.
+This proves the claimed sheaf description. Its stalks are
+$G_L(\mathbb Z_{(p)})$ and $G_L(\mathbb Q)$: passage to the stalk keeps
+every support label and takes the corresponding filtered localization
+of the amplitude.
+
+For $D_{\mathbb Z}(n)$ with $n\ne0$, a section of $B_L$ is represented
+by $(a/n^k,\lambda)$. Send it to the local fraction
+$(a,\lambda)/\widehat{n^k}$ over $D_S(\widehat n)$, which is its full
+inverse image by ACF7. Equality and restriction are preserved by the
+fraction rules. These maps on a basis give $B_L\to r_*\mathcal O_X$
+and hence ACF14. At arithmetic stalks the map is the isomorphism just
+proved. At a support stalk all nonzero integers have been inverted,
+and the subsequent inversion of $e$ and $z_\nu$ gives ACF15. Every
+$[\lambda]$ is hit by $z_\lambda$. Formula ACF12 gives precisely its
+fibres, proving all assertions.
+\end{proof}
+The functor used here is Connes--Consani's $H$ from
+\href{https://arxiv.org/abs/1502.05585}{\emph{Absolute algebra and
+Segal's $\Gamma$-rings: au dessous de $\overline{\operatorname{Spec}
+\mathbb Z}$}}, original \texttt{F1\_corr.tex}, formula
+\texttt{functsum} (lines 433--442) and Lemma \texttt{sssalg}
+(lines 519--533). That source was read completely, lines 1--1336,
+for the preceding coefficient derivation.
+Applying the semiring functor $H$ degree by degree gives the corresponding
+spherical-algebra map $r^{-1}HB_L\to H\mathcal O_X$. Here
+$(HA)(k_+)=A^k$, a pointed map sums coordinates over its fibres, and
+multiplication sends $(a_i),(b_j)$ to $(a_i b_j)_{i,j}$. These formulas
+show directly that the comparison commutes with all pointed maps and
+multiplications. Stalks and inverse images commute with this finite
+coordinate construction. Thus ACF14 is also the exact connection with
+the split coefficient sheaf, rather than an identification with
+$\mathcal F_L$.
+
+\begin{proposition}[The spherical comparison is forced by the generic stalk]
+There is exactly one unital spherical-algebra sheaf map
+\begin{equation}\tag{ACF16}
+ \mathcal F_L\longrightarrow H\mathcal O_X.
+\end{equation}
+At $Q_{(p)}$ it sends every $T^h$ to $1$ and the source absorbing zero
+to the target additive zero. At all other stalks it is the unit map from
+$\mathbf F_1$.
+\end{proposition}
+\begin{proof}
+The original endomorphism $\operatorname{Fr}_0$ of
+$\mathcal O_{\mathbf F_1}=\mathbf F_1[T]$ factors through the constant
+spherical algebra $\mathbf F_1$: every monomial goes to $1$ and the
+absorbing zero to $0$. This factorization is equivariant for every
+$\operatorname{Fr}_m$, so it pulls back to a sheaf augmentation
+$\mathcal F_L\to\mathbf F_1$. Compose with the unit map to
+$H\mathcal O_X$ to obtain ACF16.
+For uniqueness, any such morphism has the unique unit map at $Q_{(0)}$.
+The generization $G_L(\mathbb Z_{(p)})\to G_L(\mathbb Q)$ is injective.
+Compatibility with ACF11 forces the image of every $T^h$ at $Q_{(p)}$
+to be the unique element whose image in $G_L(\mathbb Q)$ is $1$,
+namely $1$. At support points the source is $\mathbf F_1$, whose unital
+map is unique. A spherical monoid-algebra map is determined by its
+values on monomials, as is also proved explicitly below. Hence the
+maps agree on every stalk and are equal as sheaf maps.
+\end{proof}
+
+\subsection{Every point of the finite-prime stalk, with every zero label}
+Put $S_{\mathbb C}=G_L(\mathbb C)$. A spherical-algebra point of
+$\mathbf F_1[T^{H_p^+}]$ with values in $HS_{\mathbb C}$ is exactly a
+pointed unital multiplicative monoid map to $S_{\mathbb C}$.
+Explicitly, for a pointed monoid $M$, the source in degree $k_+$ is
+$M\wedge k_+$. A monoid map $f:M\to S_{\mathbb C}$ induces the map
+which sends $(m,j)$ to the tuple with $f(m)$ in coordinate $j$ and
+$\tau$ elsewhere. The wedge basepoint goes to the all-$\tau$ tuple.
+A pointed map between finite pointed sets moves this one occupied
+coordinate or sends it to the basepoint; the coordinate-sum formula of
+$H$ does exactly the same. Products agree because $f$ is multiplicative.
+Conversely the maps $1_+\to k_+$ selecting one coordinate force this
+formula for every natural map. Its degree-one component must preserve
+multiplication, the unit and the absorbing zero. This proves the
+source adjunction in the present case, including its zero convention.
+
+Consequently a point is a character
+\begin{equation}\tag{ACF17}
+ \chi:H_p^+\longrightarrow S_{\mathbb C},\qquad
+ \chi(0)=1,\quad \chi(h+h')=\chi(h)\chi(h'),
+\end{equation}
+with the additional source absorbing zero mapped to $\tau$.
+The exponent $0$ and the absorbing zero are distinct source elements.
+
+\begin{proposition}[Complete root-sequence classification]
+Define
+\begin{equation}\tag{ACF18}
+ \mathcal U_p=
+ \{(u_n)_{n\ge0}\in(\mathbb C^\times)^{\mathbb N}:
+                                      u_{n+1}^p=u_n\}.
+\end{equation}
+Then the full monoid of points is the disjoint union
+\begin{equation}\tag{ACF19}
+ \begin{gathered}
+ \mathcal P_{p,L}=\mathcal U_p\ \sqcup\ \{Z_\lambda:\lambda\in L\},\\
+ Z_\lambda(0)=1,\qquad Z_\lambda(h)=z_\lambda\quad(h>0).
+ \end{gathered}
+\end{equation}
+A sequence $u\in\mathcal U_p$ gives the character
+\begin{equation}\tag{ACF20}
+ \chi_u(a/p^n)=\widehat{u_n^a}\quad(a\in\mathbb N),
+ \qquad \chi_u(0)=1.
+\end{equation}
+Products and the amplitude map are exactly
+\begin{equation}\tag{ACF21}
+ \begin{gathered}
+ \chi_u\chi_v=\chi_{uv},\qquad
+ \chi_u Z_\lambda=Z_\lambda,\qquad
+ Z_\lambda Z_\mu=Z_{\lambda\wedge\mu},\\
+ q_*:\mathcal P_{p,L}\longrightarrow
+       \varprojlim_{x\mapsto x^p}\mathbb C
+       =\mathcal U_p\sqcup\{\boldsymbol0\},\\
+ q_*^{-1}(\boldsymbol0)=\{Z_\lambda:\lambda\in L\},\qquad
+ q_*^{-1}(u)=\{\chi_u\}\quad(u\in\mathcal U_p).
+ \end{gathered}
+\end{equation}
+This inverse limit is asserted as a multiplicative monoid, not as a
+perfectoid field or as the ordinary field $\mathbb C$.
+\end{proposition}
+\begin{proof}
+Given a character put $s_n=\chi(1/p^n)$. Then $s_{n+1}^p=s_n$.
+Conversely, from any sequence with this property define
+$\chi(a/p^n)=s_n^a$, with $s_n^0=1$. To check independence of the
+representation, pass to a common denominator $p^N$:
+$s_n^a=s_N^{a p^{N-n}}$; equal rational exponents give equal integer
+powers. The same common-denominator calculation proves multiplicativity.
+
+Write $s_n=(u_n,\lambda_n)$. Idempotence of lattice meet gives
+$\lambda_{n+1}=\lambda_n$ for every $n$. If one $u_n$ is zero, the
+relations and the absence of nonzero nilpotents in $\mathbb C$ force
+all $u_n=0$. Thus all $s_n=z_\lambda$ for a single arbitrary label
+$\lambda$, producing $Z_\lambda$. Otherwise all $u_n$ are nonzero
+and every support is $1_L$, producing exactly ACF18 and ACF20.
+All products follow by evaluating at the generators $1/p^n$.
+The unit is the constant character $1$ in $\mathcal U_p$, and the
+absorbing point is $Z_{0_L}$. The amplitude formula follows coordinate
+by coordinate; a complex coherent sequence is either everywhere zero
+or everywhere nonzero. This proves exhaustion, injectivity, and every
+fibre statement.
+\end{proof}
+The labelled zeros form a multiplicatively absorbing ideal of the
+point monoid, with multiplication given by meet. They remain distinct
+before the explicitly stated amplitude quotient. Each support prime
+$P_J$ has a unique algebraic $HS_{\mathbb C}$-valued stalk point, because
+its stalk is $\mathbf F_1$; these points are still indexed by their
+different base points $P_J$. The map on point sets induced by the
+stalk augmentation ACF11 sends this unique generic point to the
+constant unit character in ACF19. It does not select a zero branch.
+
+\begin{proposition}[Every Frobenius, including exponent zero]
+For every integer $m\ge1$, source Frobenius induces
+\begin{equation}\tag{ACF22}
+ \operatorname{Fr}_m^*(\chi_u)=\chi_{(u_n^m)_n},\qquad
+ \operatorname{Fr}_m^*(Z_\lambda)=Z_\lambda.
+\end{equation}
+For $m=0$, every point is sent to the constant unit character.
+The $p$-th Frobenius is a bijection, with inverse on the group part
+$(u_n)\mapsto(u_{n+1})$, and with every $Z_\lambda$ fixed.
+More generally, write $m=p^a d$ with $(d,p)=1$. On $\mathcal U_p$,
+$\operatorname{Fr}_m^*$ is surjective with kernel canonically isomorphic
+to $\mu_d(\mathbb C)$ by the zeroth coordinate after removal of the
+$p$-power automorphism. For $d>1$ it is not injective.
+All these maps commute with the sheaf generizations ACF11.
+\end{proposition}
+\begin{proof}
+Precomposition sends $\chi(h)$ to $\chi(mh)=\chi(h)^m$, giving ACF22.
+For $m=0$ it gives $\chi(0)=1$ at every exponent, while the extra source
+absorbing zero is still mapped to $\tau$. The inverse for $p$ follows
+from $u_{n+1}^p=u_n$ and fixes the constant support sequences.
+For $d$ prime to $p$, to lift a sequence $u$ choose $v_0^d=u_0$.
+Having chosen $v_n$, choose a $p$-th root $w$ of $v_n$.
+Then $w^d/u_{n+1}$ is a $p$-th root of unity. Since raising to the
+$d$-th power permutes $\mu_p$, multiply $w$ by the unique suitable
+$p$-th root of unity to obtain $v_{n+1}$ with both
+$v_{n+1}^p=v_n$ and $v_{n+1}^d=u_{n+1}$. This constructs a preimage.
+In the kernel every coordinate belongs to $\mu_d$, and raising to
+$p$ is an automorphism of that finite group, so $v_0$ determines the
+whole sequence uniquely. Combining with the $p$-power bijection proves
+the assertion for $m$. Finally $\epsilon_p(T^{mh})=1$ for every $h,m$,
+which proves the compatibility even at $m=0$.
+\end{proof}
+
+\subsection{The source's actual locality condition}
+In \texttt{defnloc}, Connes--Consani define a local character using a
+homomorphism from the ordered group $H$ into a complete Hausdorff
+topological \emph{group}. It must be continuous for the topology induced
+by its place and then extends uniquely to the corresponding local field.
+For $H_p$ the places are $p$ and $\infty$; for the trivial group there
+are no such places (source Proposition \texttt{classpla}). We apply
+this definition exactly to the unit group of the present target.
+
+\begin{proposition}[The exact boundary excluded by group extension]
+The units of $S_{\mathbb C}$ are exactly
+$\{\widehat a:a\in\mathbb C^\times\}$, identified with the usual
+topological group $\mathbb C^\times$. A character ACF17 extends to a
+group homomorphism $H_p\to S_{\mathbb C}^{\times}$ if and only if it
+belongs to $\mathcal U_p$. Every $Z_\lambda$ fails this extension,
+including $Z_{1_L}$ and $Z_{0_L}$.
+\end{proposition}
+\begin{proof}
+If $(a,\lambda)(b,\mu)=1$, then $ab=1$, so $a,b$ are nonzero and both
+supports are $1_L$. Conversely $\widehat a^{-1}=\widehat{a^{-1}}$.
+A character extending to a group must take every $h>0$ to a unit,
+since its value at $-h$ is an inverse. This excludes every zero branch.
+A character from $\mathcal U_p$ extends by
+$\rho(h-k)=\chi(h)\chi(k)^{-1}$ for $h,k\in H_p^+$;
+if $h-k=h'-k'$, then $h+k'=h'+k$, proving independence of the
+representation. The group law and uniqueness follow from the same
+calculation. Thus the obstruction object is exactly the retained
+lattice ideal $\{Z_\lambda\}$ of ACF21.
+\end{proof}
+This argument does not discard the algebraic boundary: it identifies
+its exact failure to satisfy the source's group-valued definition.
+For an explicit topological semiring realization give $L$ the
+discrete topology and $S_{\mathbb C}\subseteq\mathbb C\times L$ the
+subspace topology. Its operations are continuous, since the ring
+operations are continuous and maps between finite products of
+discrete sets are continuous. Its unit group has exactly the stated
+topology. Even without requiring group extension, a zero-branch
+character is not continuous at exponent $0$: at the archimedean place
+$1/p^n\to0$, and at the $p$-adic place $p^n\to0$, whereas its amplitudes
+are constantly $0$ along these sequences and its amplitude at $0$ is
+$1$.
+
+\begin{proposition}[All archimedean local characters]
+The archimedean local points form the family
+\begin{equation}\tag{ACF23}
+ \chi_z(h)=\widehat{\exp(zh)},\qquad z\in\mathbb C,\quad h\in H_p^+.
+\end{equation}
+Different $z$ give different characters. The trivial point is $z=0$.
+Source Frobenius $\operatorname{Fr}_m^*$ acts by $z\mapsto mz$.
+\end{proposition}
+\begin{proof}
+The group $H_p$ is dense in $\mathbb R$: rounding $p^n t$ to the nearest
+integer approximates any real $t$ with error at most $1/(2p^n)$.
+A continuous homomorphism $H_p\to\mathbb C^\times$ is uniformly
+continuous for the group uniformities. Completeness of
+$\mathbb C^\times$ for its group uniformity follows from
+$\mathbb C^\times\simeq\mathbb R\times S^1$, by logarithm of the modulus
+and phase. Therefore the homomorphism extends uniquely to $\mathbb R$:
+apply it to approximating Cauchy sequences, and use uniform continuity
+to prove independence and continuity of the limit.
+For a continuous homomorphism $f:\mathbb R\to\mathbb C^\times$, choose a
+small interval around zero on which $f$ takes values in a neighbourhood
+of $1$ with a continuous logarithm $g$ and $g(0)=0$.
+For sufficiently small $s,t,s+t$, the difference
+$g(s+t)-g(s)-g(t)$ belongs to $2\pi i\mathbb Z$ and is continuous;
+on the connected neighbourhood of $(0,0)$ it is therefore zero.
+Continuous local additivity gives $g(t)=zt$: rational subdivisions
+first give this equality on rational multiples of a fixed sufficiently
+small nonzero real argument, and continuity gives it on the entire
+small interval. Subdividing any real $t$ into sufficiently small equal
+pieces gives $f(t)=\exp(zt)$ everywhere. Conversely each such function
+is continuous and multiplicative. If two parameters give the same
+character on $H_p$, density makes them agree on $\mathbb R$;
+their local logarithms have equal slopes. Frobenius follows by
+substituting $mh$.
+\end{proof}
+
+For the $p$-adic family fix its parameter convention explicitly.
+For $x\in\mathbb Q_p$, let $\{x\}_p\in\mathbb Z[1/p]\cap[0,1)$ be its
+finite sum of negative $p$-adic digits. Its class modulo $\mathbb Z$
+depends only on $x\bmod\mathbb Z_p$. Set
+\begin{equation}\tag{ACF24}
+ \psi_p(x)=\exp(2\pi i\{x\}_p).
+\end{equation}
+The map $\mathbb Z[1/p]/\mathbb Z\to\mathbb Q_p/\mathbb Z_p$ is a
+bijection: every $p$-adic class has the finite negative-digit
+representative and its kernel is
+$\mathbb Z[1/p]\cap\mathbb Z_p=\mathbb Z$.
+It respects addition, so ACF24 is a continuous additive character
+with kernel $\mathbb Z_p$.
+
+\begin{proposition}[All $p$-adic local characters]
+The $p$-adic local points form the family
+\begin{equation}\tag{ACF25}
+ \chi_a(h)=\widehat{\psi_p(ah)},\qquad a\in\mathbb Q_p,
+ \quad h\in H_p^+.
+\end{equation}
+The parameter is unique, the trivial point is $a=0$, and source
+Frobenius acts by $a\mapsto ma$.
+\end{proposition}
+\begin{proof}
+The group $H_p$ is dense in $\mathbb Q_p$: truncate the $p$-adic
+expansion of any number at successively larger nonnegative exponents.
+The completeness argument just used extends each continuous character
+uniquely to $\mathbb Q_p$. A continuous homomorphism
+$f:\mathbb Q_p\to\mathbb C^\times$ maps a sufficiently small open
+subgroup $p^N\mathbb Z_p$ into a neighbourhood of $1$ containing no
+nontrivial subgroup. Such a neighbourhood exists: use a bounded open
+interval for $\log|z|$ and an open phase arc of length less than one
+half-turn; powers of any nonidentity element leave it. Continuity
+therefore gives $f(p^N\mathbb Z_p)=1$. For each $x\in\mathbb Q_p$,
+some $p$-power multiple belongs to $p^N\mathbb Z_p$, so $f(x)$ is a
+root of unity of $p$-power order.
+
+Write $x_n=f(1/p^n)$ and use the fixed isomorphism
+$\mathbb Q_p/\mathbb Z_p\to\mu_{p^\infty}(\mathbb C)$ induced by
+$\psi_p$ to write $x_n=\psi_p(b_n)$, where $b_n$ is specified modulo
+$\mathbb Z_p$. The relation $x_{n+1}^p=x_n$ gives
+$p b_{n+1}\equiv b_n\pmod{\mathbb Z_p}$.
+Thus $a_n=p^n b_n$ is specified modulo $p^n\mathbb Z_p$ and satisfies
+$a_{n+1}\equiv a_n\pmod{p^n\mathbb Z_p}$.
+Choose representatives recursively; their differences have valuations
+at least $n$, so they form a Cauchy sequence in $\mathbb Q_p$. Its
+limit $a$ satisfies $a\equiv a_n\pmod{p^n\mathbb Z_p}$ for every $n$.
+It follows that $x_n=\psi_p(a/p^n)$. Agreement on these generators gives
+agreement on $H_p$, and continuity gives agreement on $\mathbb Q_p$.
+If two parameters work, their difference belongs to
+$\bigcap_{n\ge0}p^n\mathbb Z_p=\{0\}$, proving uniqueness.
+Conversely ACF24 shows that every $a$ gives a continuous character.
+Replacing $h$ by $mh$ proves the Frobenius action.
+\end{proof}
+
+\begin{proposition}[The exact intersection of the two local families]
+As subsets of the algebraic point set ACF19, their intersection is
+\begin{equation}\tag{ACF26}
+ \{\chi_{2\pi i b}:b\in\mathbb Z[1/p]\}
+  =\{\chi_b\text{ of ACF25}:b\in\mathbb Z[1/p]\}.
+\end{equation}
+The place-labelled local space therefore has two copies of these
+characters when the labels $p$ and $\infty$ are retained. Forgetting
+the place label identifies exactly these copies. The zero-labelled
+ideal is disjoint from both families.
+\end{proposition}
+\begin{proof}
+If an archimedean character $\exp(zh)$ is also $p$-adic local, then its
+value at $h=1$ is a root of unity of $p$-power order by the preceding
+proof. Therefore $\exp z=\exp(2\pi i c/p^n)$ for integers $c,n$, so
+$z=2\pi i b$ with $b\in\mathbb Z[1/p]$.
+For such $b$ and $h\in H_p$, the rational number $bh$ belongs to
+$\mathbb Z[1/p]$ and differs from $\{bh\}_p$ by an integer. Hence
+$\exp(2\pi i b h)=\psi_p(bh)$. This proves both sufficiency and the
+exact match of parameters; uniqueness follows from the preceding
+propositions. Exclusion of the zero-labelled ideal was proved by the
+unit criterion.
+\end{proof}
+
+\subsection{Comparison with the foundation's resolved point diagram}
+The foundation's Definition \texttt{def:\allowbreak split-\allowbreak absolute-\allowbreak point-\allowbreak map}
+assigns, in the two-element support case, the ordered groups
+$\{0\},\mathbb Z,H_p$ to $P_\tau,Q_{(0)},Q_{(p)}$, respectively.
+Its Corollary \texttt{cor:\allowbreak resolved-\allowbreak stalk-\allowbreak chain} gives the forward maps
+$\{0\}\hookrightarrow\mathbb Z\hookrightarrow H_p$, and hence
+$\mathbf F_1\to\mathbf F_1[T]\to\mathbf F_1[T^{H_p^+}]$.
+This is a point-and-stalk diagram explicitly described as such in the
+source. The sheaf pulled back along $r$ instead has the stalks and the
+reverse, generic-direction maps in ACF10--ACF11. In particular it
+restricts exactly to CC's original sheaf on $V(e)$; its value at
+$Q_{(0)}$ is not $\mathbf F_1[T]$.
+
+There are exact objectwise maps relating the two intermediate objects:
+\begin{equation}\tag{ACF27}
+ \mathbf F_1\xrightarrow{\text{unit}}\mathbf F_1[T]
+ \xrightarrow{T\mapsto1}\mathbf F_1,
+ \qquad\text{whose composite is the identity.}
+\end{equation}
+The following calculation records the precise defect when this
+augmentation is compared with the forward inclusion into the finite
+stalk. It does not assert a sheaf identification.
+
+\begin{proposition}[The coequalizer of the intermediate comparison]
+Let $j,c:\mathbf F_1[T]\rightrightarrows
+\mathbf F_1[T^{H_p^+}]$ be the maps $j(T)=T^1$ and $c(T)=1$.
+At the level of pointed multiplicative monoids, their coequalizer is
+\begin{equation}\tag{ACF28}
+ \mathbf F_1[T^{H_p^+}]\longrightarrow
+ \mathbf F_1[H_p/\mathbb Z],\qquad
+ T^h\longmapsto[h],\quad 0\longmapsto0.
+\end{equation}
+The target is the group $H_p/\mathbb Z$ with an extra absorbing zero;
+its identity is $[0]$, distinct from that zero. Applying the spherical
+monoid-algebra functor gives the spherical-algebra coequalizer.
+Its $HS_{\mathbb C}$-valued points are exactly the characters ACF25
+with $a\in\mathbb Z_p$. They have no extra zero-support branches.
+\end{proposition}
+\begin{proof}
+The imposed relation is $T^1=1$. Every $h=a/p^n\in H_p^+$ then
+satisfies $(T^h)^{p^n}=T^a=1$, so all monomials become invertible.
+The resulting group is the quotient of the group completion $H_p$ by
+$\mathbb Z$. More explicitly, if $h-k\in\mathbb Z$, multiply the
+relation $T^1=1$ by the appropriate nonnegative monomial to identify
+$T^h$ and $T^k$. Conversely their classes in $H_p/\mathbb Z$ can be
+equal only under that condition. The extra absorbing zero remains
+separate, witnessed by the displayed map to the pointed group.
+Any monoid map equalizing $j,c$ sends $T^1$ to $1$, makes every image
+monomial a unit by the displayed power identity, and therefore factors
+uniquely through this quotient. This proves the universal property.
+The monoid-algebra adjunction transports that same universal property
+to spherical algebras: the coordinate-inclusion argument proving it
+above applies to every spherical target using its degree-one
+multiplication and its structure maps.
+
+A point of this quotient is a coherent sequence of roots of unity
+$x_{n+1}^p=x_n$ with $x_0=1$. Since $x_n^{p^n}=1$, the parameter
+construction in the proof of ACF25 yields a unique $a\in\mathbb Z_p$;
+conversely such $a$ satisfies $\psi_p(a)=1$ and gives a point.
+All monomials in a group must map to units, excluding every
+$Z_\lambda$. Thus the entire point set and the exclusion are exact.
+\end{proof}
+This coequalizer is an additional explicitly stated quotient, not a
+replacement of ACF19. It records the relation required to make the two
+forward maps agree. Its $p$-Frobenius on points is $a\mapsto pa$ on
+$\mathbb Z_p$, which is injective and not surjective; in contrast
+ACF22 is bijective on the unquotiented full point set. The loss of the
+inverse Frobenius is exact: $T^1=1$ does not imply $T^{1/p}=1$.
+
+The support-local semiring need not be Boolean. For the three-element
+chain $L=\{0<a<1\}$ and the prime ideal $J=\{0,a\}$, the only
+allowed lattice denominator is $1$, so ACF12 gives $L_J=L$ with all
+three elements distinct. For $J=\{0\}$, inverting $a$ identifies $a$
+with $1$ and leaves two elements. Thus the actual support stalks retain
+the different local lattice geometries even though every spherical
+stalk in ACF10 over them is $\mathbf F_1$.
+
+The comparison quotient also gives an exact Frobenius calculation.
+Under the character parameter its point multiplication is addition in
+$\mathbb Z_p$, because $\psi_p((a+b)h)=\psi_p(ah)\psi_p(bh)$.
+Writing $m=p^a d>0$ with $(p,d)=1$, its Frobenius therefore has
+\begin{equation}\tag{ACF32}
+ \begin{gathered}
+ \ker(m:\mathbb Z_p\to\mathbb Z_p)=0,\qquad
+ \operatorname{coker}(m:\mathbb Z_p\to\mathbb Z_p)
+                   =\mathbb Z_p/p^a\mathbb Z_p
+                   \simeq\mathbb Z/p^a\mathbb Z,\\
+ \{\text{quotient characters}\}\cap\{\text{archimedean local characters}\}
+       =\{\chi_{2\pi i k}:k\in\mathbb Z\}.
+ \end{gathered}
+\end{equation}
+The first line follows because $\mathbb Z_p$ is an integral domain and
+$d$ is a unit, with the last quotient identified by its first $a$
+$p$-adic digits. The second follows from ACF26 and
+$\mathbb Z_p\cap\mathbb Z[1/p]=\mathbb Z$. Thus the full algebraic
+point group has the prime-to-$p$ kernel $\mu_d$ in ACF22, whereas this
+specific comparison quotient has the $p$-primary cokernel in ACF32.
+Both statements retain their respective original domains.
+
+\subsection{An exact diagram of the retained data}
+For $L=\{0,a,b,1\}$ with $a\wedge b=0$ and $a\vee b=1$, there are two
+support primes $P_{\{0,a\}}$ and $P_{\{0,b\}}$, both below $Q_{(0)}$.
+The following diagram displays the maps and stalk values; every
+horizontal arrow points in the generization direction for stalk maps:
+\begin{equation}\tag{ACF29}
+\begin{CD}
+ \mathbf F_1[T^{H_p^+}] @>{\epsilon_p}>> \mathbf F_1
+                              @>{\operatorname{id}}>> \mathbf F_1\\
+ @V{T^h\mapsto1}VV @VV{\rm unit}V @VV{\rm unit}V\\
+ H G_L(\mathbb Z_{(p)}) @>>> H G_L(\mathbb Q) @>>> H L_J .
+\end{CD}
+\end{equation}
+The three columns lie over $Q_{(p)},Q_{(0)},P_J$, and the last column
+is present separately for each of the two support primes. Its bottom
+horizontal map is support localization, not an amplitude map.
+For this Boolean lattice $L_J\cong\{0,1\}$: localizing the unique
+nontrivial element outside $J$ makes it $1$, and its complementary
+element becomes $0$. Before this localization the finite-prime point
+boundary consists of the four distinct characters
+$Z_0,Z_a,Z_b,Z_1$. Amplitude collapses those four to one zero character;
+locality selects only the group part; neither operation silently changes
+the other. The source locators for the top row are FF Proposition
+\texttt{prop12} and its Frobenius structure; the bottom row is proved
+in ACF12--ACF16, and the four labelled characters in ACF19--ACF21.
+
+
+\subsection{The assembled point object and its exact local map}
+The base, all its spherical stalks, and all their algebraic characters
+can be assembled without any implicit identification. Define the set
+of base-labelled algebraic points, with its displayed projection to
+$X_L$, by
+\begin{equation}\tag{ACF30}
+ \begin{split}
+ \mathfrak P_L={}&
+ \coprod_{J\in\operatorname{Spec}_{\rm lat}L}\{(P_J,*)\}
+ \ \sqcup\ \{(Q_{(0)},*)\}\\
+ &\sqcup\coprod_{p\ \mathrm{prime}}
+       \bigl(\{Q_{(p)}\}\times(\mathcal U_p\sqcup L)\bigr).
+ \end{split}
+\end{equation}
+This is a set with explicitly specified fibre monoids; no additional
+topology on this set is asserted. Its structure is fixed by the sheaf
+$\mathcal F_L$, the maps ACF11, and the products ACF21. The point map
+for a generization from $Q_{(p)}$ to $Q_{(0)}$ or $P_J$ goes in the
+opposite direction and selects the constant unit character in the
+finite-prime fibre. The multiplicative point at each support prime
+retains its base index $J$ even when the corresponding spherical
+stalk map is identical to that at another support prime.
+
+Define the place-labelled local object, retaining the trivial character
+at every place, by
+\begin{equation}\tag{ACF31}
+ \begin{gathered}
+ \mathfrak P_L^{\rm loc}=
+ \coprod_{p\ \mathrm{prime}}
+ \left((\{(Q_{(p)},\infty)\}\times\mathbb C)
+       \sqcup(\{(Q_{(p)},p)\}\times\mathbb Q_p)\right),\\
+ \ell:\mathfrak P_L^{\rm loc}\longrightarrow\mathfrak P_L,\qquad
+ (Q_{(p)},\infty,z)\longmapsto(Q_{(p)},\chi_z),\quad
+ (Q_{(p)},p,a)\longmapsto(Q_{(p)},\chi_a).
+ \end{gathered}
+\end{equation}
+All fibres of $\ell$ have size at most two. They have size two exactly
+at $\chi_{2\pi i b}=\chi_b$ with $b\in\mathbb Z[1/p]$, by ACF26;
+their two preimages are the displayed distinct place-labelled points.
+The map has no image in the zero-labelled boundary, and there are no
+place-labelled points above $P_J$ or $Q_{(0)}$, because their group is
+$\{0\}$ and its place set is empty. These statements follow respectively
+from ACF19, the unit criterion, ACF23--ACF26, and the source place
+definition. Thus ACF30--ACF31 give the full object and its exact local
+subfamilies, rather than a collapse to its classical amplitude.
+
+Every positive source Frobenius fixes the base, fixes every boundary
+label, and acts on the local parameters by $z\mapsto mz$ and
+$a\mapsto ma$. Exponent-zero Frobenius sends every finite-prime
+algebraic point to its constant unit character and sends both local
+parameters to zero while retaining their place labels. Consequently
+$\ell$ is equivariant for every $m\ge0$, directly by ACF22--ACF25.

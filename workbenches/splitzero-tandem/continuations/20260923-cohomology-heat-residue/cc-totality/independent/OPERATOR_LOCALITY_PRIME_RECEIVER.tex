@@ -1,0 +1,649 @@
+% Independent mathematical derivation; prefix OLR. Requires amsmath,
+% amssymb and hyperref. All metrics and original source parameters retained.
+\section{Locality of the original finite spectral receiver}
+\label{sec:operator-locality-receiver}
+
+\paragraph{Sources and scope of the calculation.}
+Alain Connes and Caterina Consani, \emph{On the Absolute Geometry of
+Spec Z and the Fargues--Fontaine curve},
+\href{https://arxiv.org/abs/2606.06604}{arXiv:2606.06604}, original
+author file \texttt{FF.tex}, Definition \texttt{defnloc} and the
+following extension proposition (lines 693--774), define locality by
+continuity on $H_p=\mathbb Z[1/p]$ for its specified place topology.
+Their archimedean complex points are in
+\texttt{prop:archimedean\_points\_C} (lines 1465--1500), and their
+$p$-adic complex points in \texttt{prop:nonarchimedean\_points\_C}
+(lines 1643--1659). Those original TeX passages were read in this
+derivation. ACF23--ACF26 retain their scalar local families on the
+full support base. The matrix analogues needed below are proved here,
+including their Jordan terms, rather than inferred from eigenvalue
+moduli alone.
+
+The original receiver, metric, odd twistor return and complete boundary
+are TOB6--TOB29 in \texttt{TWISTOR\_TO\_ORIGINAL\_BOUNDARY.tex};
+its labelled prime traces and reverse maps are TPT1--TPT28 in
+\texttt{TWISTOR\_PRIME\_TRACE.tex}. Their original programme input is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/033/MIXED_PRIME_ENERGY_AND_BOUNDARY.tex}{033,
+SBT1--SBT23}. The rank-one nilpotent and original observation maps
+below are TDP4, TDP11--TDP13 and TDP23 in the retained
+\texttt{TAU\_DELiGNE\_PRIME\_MEMORY.tex}. These local proof files
+are programme derivations, not author papers by Connes or Consani.
+
+\subsection{The exact matrix extension criterion}
+
+Let $V$ be a finite-dimensional complex vector space and
+$A\in\operatorname{End}_{\mathbb C}(V)$. Give $\operatorname{GL}(V)$
+its usual complex topology. Fix a rational prime $p$ and put
+\[
+\rho_A(h)=\exp(hA),\qquad h\in H_p=\mathbb Z[1/p].
+\tag{OLR1}
+\]
+This is an additive-group homomorphism into $\operatorname{GL}(V)$:
+the absolutely convergent exponential series for the commuting
+matrices $hA,tA$ gives $\rho_A(h+t)=\rho_A(h)\rho_A(t)$,
+and $\rho_A(-h)$ is its inverse.
+
+The following three statements are equivalent:
+\[
+\begin{gathered}
+\rho_A\text{ extends continuously to }\mathbb Q_p;\qquad
+\exp(p^r A)=I_V\text{ for some integer }r\ge0;\\
+A\text{ is semisimple and every eigenvalue belongs to }
+                          2\pi i\mathbb Z[1/p].
+\end{gathered}
+\tag{OLR2}
+\]
+Here semisimple means diagonalizable over $\mathbb C$; it is not a
+claim that the original metric makes the eigenbasis orthogonal.
+The same statements are equivalent to continuity of OLR1 on $H_p$
+for its $p$-adic topology. The extension is unique.
+
+Here is an elementary proof of necessity that retains nilpotents.
+For any induced matrix norm, the neighbourhood
+$\mathcal U=\{T:\|T-I_V\|<1/2\}$ contains no nontrivial subgroup.
+Indeed, if a subgroup lies in $\mathcal U$, all positive and negative
+integer powers of any one of its elements $T$ lie there.
+For every eigenvalue $\lambda$ of $T$ this implies
+$|\lambda^m-1|<1/2$ for all integers $m$.
+Positive or negative powers exclude $|\lambda|\ne1$.
+For $|\lambda|=1$, the same bound implies
+$\Re\lambda^m>7/8$. If $\lambda\ne1$, the geometric sum gives
+$n^{-1}\sum_{m=1}^n\lambda^m\to0$, contradicting that inequality.
+Thus every eigenvalue is one, and $T=I_V+D$ with $D$ nilpotent.
+If $D\ne0$, choose the largest $j$ with $D^j\ne0$. Some entry of
+$T^m=\sum_{a=0}^j\binom maD^a$ is a polynomial of degree $j$
+with nonzero leading coefficient, so its powers are unbounded.
+This again contradicts membership in $\mathcal U$. Hence $T=I_V$.
+
+Continuity at zero of an extension provides an integer $r\ge0$ with
+$\rho_A(p^r\mathbb Z_p)\subset\mathcal U$; this image is a subgroup,
+so it is trivial. In particular $\exp(p^rA)=I_V$.
+The identical argument applied to the subgroup $p^r\mathbb Z$
+inside $H_p$ proves this conclusion from continuity on $H_p$ alone.
+
+On a Jordan primary space write $A=\alpha I+D$, $D^s=0$.
+The equality $\exp(p^rA)=I$ first implies
+$\exp(p^r\alpha)=1$, so $\alpha=2\pi i a/p^r$ for an integer $a$.
+It then requires $\exp(p^rD)=I$. But
+\[
+\exp(p^rD)-I
+=p^rD\left(\sum_{j=0}^{s-1}\frac{(p^rD)^j}{(j+1)!}\right).
+\tag{OLR3}
+\]
+The factor in parentheses is $I$ plus a nilpotent and is invertible,
+with inverse given by a finite geometric sum. Thus $D=0$.
+Conversely finitely many eigenvalues in $2\pi i\mathbb Z[1/p]$
+have a common denominator $p^r$, and diagonalization proves
+$\exp(p^rA)=I$.
+
+Sufficiency and uniqueness can be proved directly without assuming
+completeness of a particular matrix norm on the open set
+$\operatorname{GL}(V)$. The inclusion induces a group isomorphism
+\[
+H_p/p^r\mathbb Z\ \xrightarrow{\ \simeq\ }\
+                    \mathbb Q_p/p^r\mathbb Z_p.
+\tag{OLR4}
+\]
+Its kernel is $H_p\cap p^r\mathbb Z_p=p^r\mathbb Z$.
+It is onto because truncating the $p$-adic digits of any $x$ just
+before exponent $r$ gives a finite element $h_x\in H_p$ with
+$x-h_x\in p^r\mathbb Z_p$. Define
+$\widetilde\rho_A(x)=\exp(h_xA)$.
+Changing $h_x$ changes it by an integer multiple of $p^r$, so this
+definition is independent of the choice. OLR4 proves the group law.
+It is constant on the open cosets of $p^r\mathbb Z_p$, hence
+continuous. Truncated digit expansions also prove density of $H_p$
+in $\mathbb Q_p$, and agreement on a dense subset of a Hausdorff
+target proves uniqueness. This completes OLR2.
+
+Using the original ACF24 convention
+$\psi_p(x)=\exp(2\pi i\{x\}_p)$, the explicit spectral formula is
+\[
+A=\sum_j2\pi i b_jP_j\quad\Longrightarrow\quad
+\widetilde\rho_A(x)=\sum_j\psi_p(b_jx)P_j,
+\qquad b_j\in\mathbb Z[1/p].
+\tag{OLR5}
+\]
+For $h\in H_p$, $b_jh-\{b_jh\}_p$ is an integer, proving agreement
+with the original exponential. No phases or eigenspace projectors
+have been changed.
+For comparison, every $A$, including every Jordan nilpotent, gives
+the continuous archimedean representation $t\mapsto\exp(tA)$ on
+$\mathbb R$. Thus OLR2 describes the intersection of that matrix
+family with the $p$-adic local family; it does not exclude the
+archimedean local points admitted in the Connes--Consani source.
+
+\subsection{The maximal admissible subspace and its exact defect}
+
+For arbitrary $A$ define $D_r(A)=\exp(p^rA)-I$. Then
+\[
+\begin{split}
+V_{p\text{-loc}}(A)
+&=\bigcup_{r\ge0}\ker D_r(A)\\
+&=\bigoplus_{\alpha\in\operatorname{Spec}(A)\cap2\pi iH_p}
+                             \ker(A-\alpha I).
+\end{split}
+\tag{OLR6}
+\]
+The kernels increase because $T^p-I=(T-I)\sum_{j=0}^{p-1}T^j$.
+On an $\alpha$-primary space, if $e^{p^r\alpha}\ne1$, then
+$D_r(A)$ is a nonzero scalar times $I$ plus a nilpotent, so is
+invertible. If $e^{p^r\alpha}=1$, OLR3 proves that its kernel is
+exactly the kernel of the primary nilpotent, the actual eigenspace.
+This proves OLR6. Finitely many allowable $\alpha$ have a common
+denominator, so the union is already $\ker D_{r_0}(A)$ for one
+$r_0\ge0$ and remains that kernel for all $r\ge r_0$.
+The restriction to this subspace satisfies OLR2. Conversely every
+$A$-invariant subspace on which the restriction is $p$-adic local is
+contained in OLR6 by OLR2. Moreover every linear subspace invariant
+under $\rho_A(H_p)$ is $A$-invariant: for its vector $v$ the vectors
+$p^n(\rho_A(p^{-n})-I)v$ belong to that subspace and converge to
+$Av$ by the exponential series; finite-dimensional subspaces are
+closed. Thus maximality applies to the original group action itself.
+
+The defect is the original quotient, with its exact connecting map:
+\[
+\begin{gathered}
+0\longrightarrow V_{p\text{-loc}}(A)\longrightarrow V
+\xrightarrow{\pi}\mathfrak D_p(A):=V/V_{p\text{-loc}}(A)
+\longrightarrow0,\\
+\overline D_r:\mathfrak D_p(A)\xrightarrow{\ \simeq\ }
+       \operatorname{im}D_r(A),\qquad
+\overline D_r([v])=D_r(A)v\quad(r\ge r_0).
+\end{gathered}
+\tag{OLR7}
+\]
+It is well-defined and injective because its kernel before taking
+the quotient is exactly OLR6; it is onto its displayed image.
+All maps intertwine $A$ and $\exp(hA)$ because $D_r(A)$ commutes
+with them. A good-eigenvalue Jordan block can have a local quotient
+even though the entire block is not local. OLR7 retains that extension
+through the original nilpotent; it does not claim a decomposition
+into a local summand and a complementary invariant summand.
+
+\subsection{Application to every label and cutoff of the original receiver}
+
+Retain exactly
+\[
+\begin{gathered}
+k\ge17,\quad k\equiv1\pmod4,\quad q=(k+1)^2,
+\quad\delta,\gamma>0,\quad q-1\le N\le2q,\\
+\lambda_{ab}=(2b-k)\gamma-i(2a-k)\delta,\quad
+Q_k(y)=\prod_{a,b=0}^k(y-\lambda_{ab}),\\
+E=\mathbb C[y]/(Q_k),\quad M[v]=[yv],\quad
+A_p=i(\log p)M,\quad F_p=e^{A_p},\quad
+\langle v,w\rangle_N=v^*G_Nw.
+\end{gathered}
+\tag{OLR8}
+\]
+The four cutoffs $q-1,q,2q-1,2q$ remain individual members of this
+range. No replacement of $G_N$ is used.
+The roots are distinct, since equality forces equality of real and
+imaginary parts and then of both integer labels.
+Let $\ell_{ab}$ be the original Lagrange polynomial with value one
+at $\lambda_{ab}$ and zero at the other roots, and let $P_{ab}$ be
+the projector onto its coefficient. Evaluation proves that these
+vectors form a basis and $M\ell_{ab}=\lambda_{ab}\ell_{ab}$.
+Thus the complete exponent and its locality are
+\[
+\begin{gathered}
+A_p\ell_{ab}
+=\bigl((2a-k)\delta\log p+i(2b-k)\gamma\log p\bigr)\ell_{ab},\\
+E_{p\text{-loc}}(A_p)=0,\qquad
+\mathfrak D_p(A_p)=E,\\
+D_r(A_p)=\sum_{a,b}(\omega_{ab}^{p^r}-1)P_{ab},\qquad
+D_r(A_p)^{-1}=\sum_{a,b}(\omega_{ab}^{p^r}-1)^{-1}P_{ab},\\
+\omega_{ab}=p^{(2a-k)\delta}e^{i(2b-k)\gamma\log p}.
+\end{gathered}
+\tag{OLR9}
+\]
+Indeed $k$ is odd, so $2a-k\ne0$. Every exponent in OLR9 has
+nonzero real part, excluding every label from OLR6. Every
+$\omega_{ab}^{p^r}-1$ is nonzero for the same reason, proving the
+displayed inverse. This is the entire original defect, not only
+an observation of a selected eigenvalue.
+
+For $v=\sum_i c_i\ell_i$ and $w=\sum_jd_j\ell_j$, the complete
+original Gram form of the defect is
+\[
+\langle D_rv,D_rw\rangle_N
+=\sum_{i,j}\overline c_i d_j
+ \overline{(\omega_i^{p^r}-1)}(\omega_j^{p^r}-1)
+                   \langle\ell_i,\ell_j\rangle_N.
+\tag{OLR10}
+\]
+All off-diagonal Gram entries survive. On one original vector its
+literal squared factor is
+\[
+\begin{split}
+\|D_r\ell_{ab}\|_N^2
+={}&\bigl[p^{2p^r(2a-k)\delta}
+-2p^{p^r(2a-k)\delta}
+ \cos\bigl(p^r(2b-k)\gamma\log p\bigr)+1\bigr]
+                          \|\ell_{ab}\|_N^2.
+\end{split}
+\tag{OLR11}
+\]
+The topology failure therefore keeps the full phase as well as the
+radial exponent. More precisely $D_rv\not\to0$ for any nonzero $v$.
+If a coefficient with $2a-k>0$ is nonzero, applying its fixed
+bounded projector to $D_rv$ proves divergence of that component.
+Otherwise every occupied label has $2a-k<0$, and the finite
+spectral sum gives $D_rv\to-v\ne0$.
+
+The uncentred action is also retained:
+\[
+\widetilde A_p=A_p+\frac{k\log p}{2}I,\qquad
+\widetilde F_p=e^{\widetilde A_p}=p^{k/2}F_p.
+\tag{OLR12}
+\]
+Its admissible subspace is exactly the sum of those original
+$\mathbb C\ell_{ab}$ for which
+$k/2+(2a-k)\delta=0$ and
+$(2b-k)\gamma\log p/(2\pi)\in H_p$.
+This follows directly from OLR6 and keeps the mass factor.
+For the stated general hypothesis $\delta>0$ one must retain both
+conditions; discarding $k/2$ would be a different calculation.
+
+\subsection{The original nilpotent and observation-kernel return}
+
+Retain the programme vectors $e,f$ and the literal coefficient
+$\epsilon>0$ with $e^\dagger f=0$ and
+$\|e\|_N=\|f\|_N=1$. For $R=\epsilon fe^\dagger$, $R^2=0$,
+and the complete locality calculation is
+\[
+E_{p\text{-loc}}(R)=\ker R=e^\perp,\qquad
+D_r(R)=p^r\epsilon fe^\dagger,\qquad
+\|D_r(R)v\|_N^2=p^{2r}\epsilon^2|e^\dagger v|^2.
+\tag{OLR13}
+\]
+The exponential is exactly $I+hR$, proving the first two statements
+by OLR6, and the original unit norm of $f$ proves the third.
+Thus the nonzero nilpotent is not removed by the fact that its sole
+eigenvalue is zero. This calculation concerns this specified $R$;
+it does not replace $M+R$ by $M$ when the two fail to commute.
+For any such sum, OLR3--OLR7 apply to its actual primary spaces.
+
+For the original isometric section $J:B\to E$, retain
+$P_B=JJ^\dagger$, $Q=I-P_B$, and $K=QE=\ker\Lambda$.
+Put $U_r=J^\dagger F_p^{p^r}J$.
+The complete visible and kernel defect is
+\[
+\begin{split}
+D_r(A_p)Jb&=J(U_r-I)b+QF_p^{p^r}Jb,\\
+\|D_r(A_p)Jb\|_N^2
+&=\|(U_r-I)b\|_B^2+\|QF_p^{p^r}Jb\|_N^2.
+\end{split}
+\tag{OLR14}
+\]
+Insert $I=P_B+Q$ and use $QJ=0$ for the first identity.
+The two terms are orthogonal in the original metric for the second.
+The combined map on the right is injective: its vanishing gives
+$D_r(A_p)Jb=0$, then OLR9 gives $Jb=0$, hence $b=0$.
+No such conclusion about the visible term alone is asserted.
+For arbitrary $h,t$ the original compression has the exact product
+defect
+\[
+J^\dagger\rho_{A_p}(h+t)J
+-J^\dagger\rho_{A_p}(h)J J^\dagger\rho_{A_p}(t)J
+=J^\dagger\rho_{A_p}(h)Q\rho_{A_p}(t)J.
+\tag{OLR15}
+\]
+Insertion of $I=P_B+Q$ proves it. Thus treating compression as a
+group representation would remove precisely the displayed return.
+
+\subsection{Full lattice support and the exact lifted correspondence}
+
+For the full bounded distributive lattice $L$, keep
+$V_L^\uparrow=\{(0,\lambda):\lambda\in L\}
+\cup\{(v,1_L):v\in V\}$ over $G_L(\mathbb C)$, and
+$T^\uparrow(v,\lambda)=(Tv,\lambda)$ for every linear $T$.
+The component laws give
+$(TU)^\uparrow=T^\uparrow U^\uparrow$ and
+$(T+U)^\uparrow=T^\uparrow+U^\uparrow$ directly.
+In particular the zero linear map lifts to
+$\varepsilon_V(v,\lambda)=(0,\lambda)$, not to the map constant
+at $\tau=(0,0_L)$.
+The exact support-retaining version of OLR7 is
+\[
+\begin{gathered}
+D_r(A)^\uparrow
+=\overline D_r^{\,\uparrow}\pi^\uparrow,\qquad
+(D_r(A)^\uparrow)^{-1}(Z_L)
+=V_{p\text{-loc}}(A)_L^\uparrow\quad(r\ge r_0),\\
+Z_L=\{(0,\lambda):\lambda\in L\},\qquad
+\pi^\uparrow(v,\lambda)=([v],\lambda).
+\end{gathered}
+\tag{OLR16}
+\]
+Equality is checked on each $(v,\lambda)$; membership in the
+inverse image is exactly $D_r(A)v=0$ with its support unchanged.
+The fibre of $\pi^\uparrow$ over $(0,\lambda)$ for $\lambda<1_L$
+is the singleton $(0,\lambda)$; over $(0,1_L)$ it is
+$V_{p\text{-loc}}(A)\times\{1_L\}$.
+For the original $A_p$, OLR9 says that the inverse image in OLR16
+is precisely $Z_L$, and the defect lift is an automorphism on the
+whole synchronized carrier. In particular no support label is erased.
+
+With $L$ discrete and the carrier a subspace of $V\times L$,
+the lifted representation is continuous whenever its matrix
+representation is continuous: its action is
+$(h,(v,\lambda))\mapsto(\rho_A(h)v,\lambda)$.
+Every zero state is fixed. This does not turn a zero-valued monoid
+character $T^h\mapsto z_\lambda$ into a group-valued local point:
+the fixed vector of a representation and the value of a character
+are different specified maps, and $z_\lambda$ is not a unit.
+
+The original free-coordinate support information has its exact
+correspondence as well for a retained basis of positive dimension.
+In that basis write a free vector as
+$(v,\boldsymbol\mu)$, where $v_i\ne0$ forces $\mu_i=1_L$.
+The idempotent synchronization is
+\[
+P_{\rm syn}(v,\boldsymbol\mu)=(v,\bigvee_i\mu_i),\qquad
+P_{\rm syn}^{-1}(v,\lambda)
+=\{(v,\boldsymbol\mu):\bigvee_i\mu_i=\lambda,
+                         \ v_i\ne0\Rightarrow\mu_i=1_L\}.
+\tag{OLR17}
+\]
+This is the matrix pair $(I,\mathbf1)$ on free coordinates:
+its amplitude is $I$ and its support sends every output coordinate
+to the full finite join. Its image is exactly the synchronized
+carrier, and its square is itself, proving OLR17.
+Taking the inverse image of OLR16 retains all masks with
+$v\in V_{p\text{-loc}}(A)$. In the original case these are all
+zero-amplitude masks, with arbitrary $\boldsymbol\mu$.
+No group action with the free-module identity has been inferred
+from an action on this retract.
+For dimension zero the free zero-coordinate semimodule has one
+element, with empty support join $0_L$, whereas the synchronized
+carrier of the zero complex vector space still contains every
+$(0,\lambda)$, $\lambda\in L$. Thus OLR17 is not a surjection
+onto that latter carrier in dimension zero unless $L$ has one
+element. The original receiver and its positive tensor powers have
+dimensions $q>0$ and $q^t>0$, so the stated correspondence applies
+to them, including their zero-amplitude fibres.
+
+\subsection{Frobenius, the complete twistor return, and the boundary}
+
+Source Frobenius acts by precomposition $h\mapsto mh$, so its
+operator parameter is exactly $A\mapsto mA$.
+For $m=p^j$, $j\in\mathbb Z$, OLR6 gives
+$V_{p\text{-loc}}(p^jA)=V_{p\text{-loc}}(A)$, because multiplication
+by $p^j$ preserves $H_p$ and the eigenspace kernels.
+OLR5 gives the corresponding $p$-adic parameters $b_j\mapsto p^j b_j$.
+For a general positive integer $m$ the exact condition is
+$m\alpha\in2\pi iH_p$; primes dividing $m$ other than $p$ can
+enlarge the admissible subspace. For $m=0$ the action is identity
+on the whole space. These statements retain every source Frobenius.
+
+Keep every positive odd $d$, $\chi_d=(-1)^{(d-1)/2}$, and the
+original receiver
+\[
+C_d(v_0,\ldots,v_{d-1})
+=(\chi_d F_p^{\chi_d}v_{d-1},v_0,\ldots,v_{d-2}),\qquad
+G_{N,d}=\operatorname{diag}(G_N,\ldots,G_N).
+\tag{OLR18}
+\]
+Let $\iota_s,\pi_s$ be the literal block inclusion and projection.
+The identity $C_d^d=\operatorname{diag}(\chi_dF_p^{\chi_d},\ldots)$
+proves the exact recovery of every locality defect:
+\[
+\begin{split}
+D_r(A_p)
+&=\chi_d^{p^r}\pi_s C_d^{\chi_d d p^r}\iota_s-I_E\\
+&=\chi_d^{p^r}p^{-k\chi_d d p^r/2}
+       \pi_s(p^{k/2}C_d)^{\chi_d d p^r}\iota_s-I_E.
+\end{split}
+\tag{OLR19}
+\]
+Negative powers in the $\chi_d=-1$ case are legitimate because the
+receiver is invertible. The powers of the sign multiply to one,
+and the scalar mass in the second equality is explicitly cancelled
+by its displayed inverse factor; it has not been omitted.
+Thus the original nonzero defect has an exact return through every
+odd receiver and every original block.
+
+The explicit logarithm on the full TOB16 eigenbasis has eigenvalues
+\[
+\nu_{ab,t}=
+\frac{\chi_di(\log p)\lambda_{ab}
+       +i\pi(1-\chi_d)/2+2\pi it}{d},\qquad0\le t<d.
+\tag{OLR20}
+\]
+Its exponential is $C_d$. The eigenvectors
+$(\ell_{ab},e^{-\nu_{ab,t}}\ell_{ab},\ldots,
+ e^{-(d-1)\nu_{ab,t}}\ell_{ab})$ form a basis: within each label
+the $d$ distinct roots give an invertible Vandermonde matrix.
+Every real part is $\chi_d(2a-k)\delta\log p/d\ne0$.
+OLR6 therefore gives zero admissible subspace for this entire
+$dq$-dimensional exponential family, despite its contracted real
+parts. The complete Gram entries remain TOB17, not a diagonal
+substitute for $G_{N,d}$.
+
+The same return is visible in the complete original boundary.
+Put $T_d=\chi_dF_p^{\chi_d}$ and keep the TOB26--TOB28 maps
+$\mathcal B_{d,H}$ and $L_{d,H}$, for $H\ge0$. Their exact norms are
+\[
+\begin{split}
+\|\mathcal B_{d,H}v\|^2
+&=p^k\sum_{s=0}^{d-1}
+       (\|T_d^{-H}v_s\|_N^2+\|T_d^{H+1}v_s\|_N^2),\\
+\|L_{d,H}v\|^2
+&=\sum_{j=-H}^H\sum_{s=0}^{d-1}\|T_d^{-j}v_s\|_N^2.
+\end{split}
+\tag{OLR21}
+\]
+For completeness these maps use the original orthonormal annuli
+\[
+h_j(\mathbf x)=p^{kj/2}(1-p^{-1})^{-k/2}
+\mathbf1_{(p^j\mathbb Z_p^\times)^k}(\mathbf x).
+\]
+The complete finite receiver has coordinates
+$x_{d\ell+s}=T_d^{-\ell}v_s$.
+The boundary at $dH+s$ consists exactly of
+$p^{k/2}(h_{dH+s+1}\otimes x_{dH+s}
+ -h_{-dH-s}\otimes x_{-dH-s-1})$.
+Its two annuli are disjoint; summing over $s$ gives the first line.
+The interval $[-dH,dH+d-1]$ gives the second line by the same
+orthogonality. Invertibility of $T_d$ makes the joint boundary
+injective. On blocks in $\mathbb C\ell_{ab}$, finite geometric
+summation gives
+\[
+\frac{\|\mathcal B_{d,H}v\|^2}{\|L_{d,H}v\|^2}
+\longrightarrow p^k\left|p^{2\chi_d(2a-k)\delta}-1\right|>0.
+\tag{OLR22}
+\]
+Indeed the ratio is
+$p^k(R^{-2H}+R^{2H+2})/\sum_{j=-H}^HR^{-2j}$,
+$R=p^{\chi_d(2a-k)\delta}\ne1$; divide by the largest
+geometric term to obtain the limit. OLR19 and OLR21 are the
+explicit maps linking this complete boundary with locality's
+unchanged original prime return.
+
+\subsection{All tensor labels and the nonzero local tensor sector}
+
+For $t\ge1$, retain the entire original tensor object
+$E^{\otimes t}$ with metric $G_N^{\otimes t}$ and generator
+$A_p^{[t]}=\sum_{j=1}^tI^{\otimes(j-1)}\otimes A_p\otimes
+I^{\otimes(t-j)}$.
+The commuting summands give
+$e^{hA_p^{[t]}}=\rho_{A_p}(h)^{\otimes t}$.
+On the original vector
+$\ell_{a_1b_1}\otimes\cdots\otimes\ell_{a_tb_t}$ its exponent is
+\[
+\bigl(2\textstyle\sum_j a_j-tk\bigr)\delta\log p
++i\bigl(2\textstyle\sum_j b_j-tk\bigr)\gamma\log p.
+\tag{OLR23}
+\]
+The tensor of the original Lagrange bases is a basis, so OLR6
+proves that the exact admissible projector is
+\[
+\Pi_{p,t}=\sum_{\substack{\sum a_j=tk/2\\
+(2\sum b_j-tk)\gamma\log p/(2\pi)\in H_p}}
+       P_{a_1b_1}\otimes\cdots\otimes P_{a_tb_t}.
+\tag{OLR24}
+\]
+An empty index set means the zero projector. These spectral
+projectors need not be orthogonal for $G_N^{\otimes t}$;
+that metric remains unchanged, with entries the products of
+the original Gram entries.
+The entire complementary defect also has an explicit receiver:
+$[v]\mapsto(I-\Pi_{p,t})v$ is an isomorphism from
+$E^{\otimes t}/\operatorname{im}\Pi_{p,t}$ to
+$\ker\Pi_{p,t}$, with inverse sending a vector to its quotient
+class. Its kernel before passing to the quotient is exactly the
+admissible range; $\Pi_{p,t}$ commutes with the tensor generator,
+so both maps intertwine the complete exponential action.
+This is a spectral direct sum, not an orthogonal replacement of
+the metric. OLR7 and OLR16 apply to all its retained components.
+Since $k$ is odd, the admissible space is zero for odd $t$.
+For even $t$, define
+$n_{t,j}=[x^j](1+x+\cdots+x^k)^t$.
+Counting the independent $a$- and $b$-tuples gives its exact dimension
+\[
+\dim\operatorname{im}\Pi_{p,t}
+=n_{t,tk/2}\sum_{j=0}^{tk}n_{t,j}\,
+ \mathbf1_{(2j-tk)\gamma\log p/(2\pi)\in H_p}.
+\tag{OLR25}
+\]
+Each coefficient counts precisely the tuples with the indicated
+sum by expansion of the polynomial product, proving the count.
+
+In particular at $t=2$ the original $q$ independent vectors
+\[
+\ell_{ab}\otimes\ell_{k-a,k-b},\qquad0\le a,b\le k,
+\tag{OLR26}
+\]
+have exponent zero and hence the trivial local character.
+There can be additional labels in OLR24 with nonzero allowed
+phase, and OLR25 retains them exactly. Thus the local tensor
+sector is nonzero although the individual receiver has no
+nonzero local amplitude. This calculation cannot be replaced by
+tensoring the zero admissible subspace of the individual factor.
+The involution $R_0\ell_{ab}=\ell_{k-a,k-b}$ satisfies
+$R_0MR_0=-M$ by evaluation on each basis vector, so
+$R_0F_pR_0=F_p^{-1}$. It identifies explicitly the reverse label
+in every vector OLR26. Their Gram entry at labels $i,j$ is
+$\langle\ell_i,\ell_j\rangle_N
+ \langle R_0\ell_i,R_0\ell_j\rangle_N$; no unproved isometry
+of $R_0$ in the original metric is assumed.
+
+All mass factors also tensor. For the uncentred generator
+\[
+\widetilde A_p^{[t]}=A_p^{[t]}+\frac{tk\log p}{2}I,
+\tag{OLR27}
+\]
+the first condition in OLR24 becomes
+$tk/2+(2\sum a_j-tk)\delta=0$; its phase condition is unchanged.
+In particular the vectors OLR26 have uncentred exponent
+$k\log p$, so their centred trivial characters do not make
+the uncentred characters $p$-adic local.
+
+For a general primary tensor block, the same calculation retains
+all nilpotents. If its factor generators are $\alpha_jI+D_j$,
+the tensor generator is $(\sum_j\alpha_j)I+D_{\rm tot}$ with
+$D_{\rm tot}=\sum_jI\otimes D_j\otimes I$ nilpotent.
+OLR3 proves that its admissible space is exactly $\ker D_{\rm tot}$
+when $\sum_j\alpha_j\in2\pi iH_p$, and zero otherwise.
+For the original rank-one $R$, its tensor generator
+$R^{[t]}=\sum_jI\otimes R\otimes I$ satisfies
+\[
+e^{hR^{[t]}}=(I+hR)^{\otimes t},\qquad
+(R^{[t]})^{t+1}=0,\qquad
+(R^{[t]})^t=t!R^{\otimes t}\ne0,
+\quad E_{p\text{-loc}}(R^{[t]})=\ker R^{[t]}.
+\tag{OLR28}
+\]
+Commutativity of the factor operators gives the exponential;
+every repeated slot in a product vanishes since $R^2=0$, and
+the $t!$ orders using every slot give the last nonzero power.
+OLR3 gives the final kernel. All these tensor maps admit the
+support-preserving lifts OLR16--OLR17 on their actual full carriers.
+
+Its kernel dimension can be calculated exactly, with the original
+rank-two support projector $\Pi=ee^\dagger+ff^\dagger$:
+\[
+\boxed{
+\dim\ker R^{[t]}
+=\sum_{j=0}^t\binom tj(q-2)^{t-j}
+                         \binom{j}{\lfloor j/2\rfloor}.}
+\tag{OLR29}
+\]
+Here $R$ and $\epsilon$ are precisely those in OLR13.
+To prove the formula, let $W=\operatorname{im}\Pi=\mathbb Ce\oplus
+\mathbb Cf$ and $U=\ker\Pi$, an orthogonal decomposition for
+the unchanged $G_N$. The original vectors $e,f$ are orthonormal;
+$Re=\epsilon f$, $Rf=0$, and $R|_U=0$.
+Tensoring the exact decomposition $E=W\oplus U$ gives a direct
+orthogonal sum indexed by the set of slots occupied by $W$.
+A sector with $j$ such slots has operator $X_j$ on $W^{\otimes j}$,
+the sum of the original $R$ over these slots, tensored with the
+identity on the remaining $U$ factors.
+
+Grade $W^{\otimes j}$ by the number $r$ of factors equal to $f$.
+Its grade-$r$ subspace $V_r$ has dimension $\binom jr$.
+The operator $X_j$ maps $V_r$ to $V_{r+1}$, with coefficient
+$\epsilon$ on every replacement of one $e$ by $f$.
+Its original-metric adjoint $Y_j=X_j^\dagger$ reverses those
+replacements with the same real coefficient $\epsilon$.
+Terms in different slots commute. In one slot
+$(R^\dagger R-RR^\dagger)e=\epsilon^2e$ and
+$(R^\dagger R-RR^\dagger)f=-\epsilon^2f$.
+Consequently
+\[
+(Y_jX_j-X_jY_j)|_{V_r}=\epsilon^2(j-2r)I_{V_r},\qquad
+\|X_jv\|^2-\|Y_jv\|^2
+=\epsilon^2(j-2r)\|v\|^2.
+\tag{OLR30}
+\]
+Thus $X_j:V_r\to V_{r+1}$ is injective when $r<j/2$.
+The isometry interchanging $e$ and $f$ in each of the $j$ slots
+interchanges $X_j$ and $Y_j$ and sends grade $r+1$ to grade
+$j-r-1$. For $r\ge j/2$ that latter grade is less than $j/2$,
+so $Y_j:V_{r+1}\to V_r$ is injective by the result just proved.
+Its adjoint $X_j:V_r\to V_{r+1}$ is then surjective.
+The total kernel dimension therefore telescopes:
+\[
+\dim\ker X_j
+=\sum_{r=\lceil j/2\rceil}^j
+      \left(\binom jr-\binom j{r+1}\right)
+=\binom j{\lfloor j/2\rfloor}.
+\tag{OLR31}
+\]
+For odd $j$, the two middle grades have equal dimension and the
+injective intervening map is an isomorphism, consistent with this
+sum. For $j=0$, $W^{\otimes0}=\mathbb C$ and $X_0=0$, so the
+same formula gives one. Each $j$-slot sector has the further
+multiplicity $(q-2)^{t-j}$ and there are $\binom tj$ such sectors.
+Their direct sum proves OLR29. No coefficient $\epsilon$, tensor
+slot, or original metric term was removed.
+
+The original single receiver, its nilpotent channels, its complete
+observation return, its odd twistor receivers, and its tensor
+local sector have thus been placed in the specified local-point
+framework by exact maps. The calculation selects no locality
+condition that Connes--Consani impose on all points: their
+archimedean points still include every original exponential above.
+It therefore neither proves RH by imposing $p$-locality nor
+produces an RH counterexample by exhibiting a nonlocal receiver.

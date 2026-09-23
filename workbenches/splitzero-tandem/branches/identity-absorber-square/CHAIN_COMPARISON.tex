@@ -1,0 +1,819 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2295}{\ensuremath{\oplus}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2261}{\ensuremath{\equiv}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{A chain comparison from split-zero semimodules to arithmetic
+complexes}\label{a-chain-comparison-from-split-zero-semimodules-to-arithmetic-complexes}
+
+This note constructs exact maps between the split-zero support model,
+the reduced free abelian group on its supported fibre, and the original
+arithmetic complex. The comparison gives complete cohomology
+calculations, including the extra classes introduced by taking a free
+abelian group on the underlying set. The extra classes are retained
+objects: the companion papers compute their cross-effects, contraction
+projectors and Frobenius modules.
+
+The programme source is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex\#L9}{\emph{Reconstruction
+with changes of support index}, equations D1--D5}, followed by
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex\#L125}{the
+internal quotient and cohomology comparison, D6--D7}, and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex\#L178}{the
+two kernel constructions, D8}. The original TeX was read through the
+complete D8 proof, in addition to Sections 1--4 of the local
+source-grounded proof account and the definition and coordinate model in
+\emph{Split-zero support, augmentation defects, and A-type realization
+patterns}. The latter file has an empty author field, so no author
+identity is inferred. The specific cases and all new chain calculations
+used here are proved below.
+
+\subsection{1. The supported zero in a split
+extension}\label{the-supported-zero-in-a-split-extension}
+
+Let \[
+S=G(\mathbb Z)=\{\tau\}\sqcup\{n^\bullet:n\in\mathbb Z\},
+\qquad e=0^\bullet.
+\tag{Q1}
+\] The supported operations are integer addition and multiplication. The
+element \(\tau\) is the additive identity and multiplicative absorber;
+it is distinct from \(e\). For an abelian group \(V\), put \[
+\operatorname{Spl}(V)=\{\tau_V\}\sqcup\{v^\bullet:v\in V\}.
+\tag{Q2}
+\] Two supported elements add by \(v^\bullet+w^\bullet=(v+w)^\bullet\),
+and \(\tau_V\) is the external additive identity. Supported scalars act
+by \(n^\bullet v^\bullet=(nv)^\bullet\) and preserve \(\tau_V\); the
+scalar \(\tau\) sends every element to \(\tau_V\).
+
+These operations give an \(S\)-semimodule. On supported elements,
+associativity, commutativity, and distributivity are the abelian group
+and integer-module laws. An occurrence of \(\tau_V\) in addition is the
+identity case. If a supported scalar acts on \(\tau_V\), both sides of
+each relevant distributive or associative law equal \(\tau_V\), or the
+other supported summand in an additive identity law. If the scalar is
+\(\tau\), both sides of distributivity over vectors are \(\tau_V\), and
+scalar multiplication involving \(\tau\) also gives \(\tau_V\). Scalar
+addition with \(\tau\) adds only \(\tau_V\) to the other scalar action.
+These cases verify the laws for every scalar and vector. Its two support
+labels are \(\tau_V\) and \(0_V^\bullet\), since \[
+e\tau_V=\tau_V,\qquad ev^\bullet=0_V^\bullet.
+\tag{Q3}
+\] They remain two different elements even when \(V\) is the zero group.
+
+If \(f:V\to W\) is a group homomorphism, define \[
+\operatorname{Spl}(f)(\tau_V)=\tau_W,
+\qquad\operatorname{Spl}(f)(v^\bullet)=f(v)^\bullet.
+\tag{Q4}
+\] It is \(S\)-linear. On supported sums and scalar products this
+follows from the group homomorphism laws; any external element is
+preserved by the displayed formula and gives the required additive
+identity or absorber law. Composition and identities hold pointwise.
+However the zero group map has split extension \[
+z_{V,W}:=\operatorname{Spl}(0_{V,W}),\qquad
+z_{V,W}(v^\bullet)=0_W^\bullet,\quad
+z_{V,W}(\tau_V)=\tau_W.
+\tag{Q5}
+\] This is different from the zero morphism of \(S\)-semimodules, which
+sends every element to \(\tau_W\). In particular \[
+\ker_S\operatorname{Spl}(f)=\{\tau_V\},
+\qquad
+\operatorname{Spl}(f)^{-1}(e\operatorname{Spl}(W))
+=\operatorname{Spl}(\ker f).
+\tag{Q6}
+\] For the first equality, no supported element has external image. For
+the second, a supported vector maps to the supported zero precisely when
+\(f(v)=0\), while the external element always maps to the external
+element. This also proves the equalizer formula \[
+\operatorname{Spl}(\ker f)
+=\operatorname{Eq}\bigl(\operatorname{Spl}(f),z_{V,W}\bigr).
+\tag{Q7}
+\] Both maps agree at \(\tau_V\); at \(v^\bullet\), their equality is
+exactly \(f(v)=0\). Any map whose two composites agree therefore has its
+image in this subset and factors uniquely through it, proving the
+equalizer universal property.
+
+\subsection{2. The contracted free module and its two idempotent
+pieces}\label{the-contracted-free-module-and-its-two-idempotent-pieces}
+
+Let \[
+A=\Gamma(S)=\mathbb Z[(\mathbb Z,\cdot)]
+\cong\mathbb Z\times\Lambda,
+\qquad
+\Lambda=\mathbb Z[\mathbb Z\setminus\{0\}],
+\tag{Q8}
+\] with the explicit isomorphism \([e]\mapsto(1,0)\),
+\([n]\mapsto(1,[n])\) for \(n\ne0\), proved in Theorem Z7 of
+\texttt{FOUR\_CORNERS\_OVER\_Z.md}. Here brackets denote monoid-ring
+basis elements. Define \[
+L(V)=\mathbb Z[V].
+\tag{Q9}
+\] This is the free abelian group on the set \(V\), with basis symbols
+\([v]\), including the nonzero basis vector \([0_V]\). It is also the
+free abelian group on \(\operatorname{Spl}(V)\) with the external basis
+symbol \([\tau_V]\) killed. Thus the construction still distinguishes
+the external element, mapped to group zero, from the supported zero,
+mapped to \([0_V]\).
+
+There is an \(A\)-module action \[
+[n][v]=[nv]\quad(n\in\mathbb Z),
+\tag{Q10}
+\] extended by distributivity and integer coefficients. The equality
+\([m]([n][v])=[mnv]=[mn][v]\) proves associativity on basis elements,
+hence on all finite sums; \([1]\) acts as the identity. This
+construction first retains the multiplicative scalar action and then
+forms an abelian group on its vectors. It does not impose the original
+vector addition: in general \([v+w]\ne[v]+[w]\). Nor does it equate the
+basis element \([n]\) with the ring coefficient \(n\).
+
+Let \(E=[e]\in A\), \(F=1-E\), and define the augmentation \[
+\alpha_V:L(V)\to\mathbb Z,
+\qquad\alpha_V\left(\sum_v a_v[v]\right)=\sum_v a_v.
+\tag{Q11}
+\] Then \[
+E\left(\sum_v a_v[v]\right)
+=\left(\sum_v a_v\right)[0_V],
+\qquad E^2=E.
+\tag{Q12}
+\] Consequently \[
+L(V)=\mathbb Z[0_V]\oplus U(V),
+\qquad U(V):=FL(V)=\ker\alpha_V.
+\tag{Q13}
+\] To prove the decomposition, write any \(x\in L(V)\) as \(Ex+(x-Ex)\).
+The first summand is in \(\mathbb Z[0_V]\); the second has augmentation
+zero. Their intersection is zero, because \(\alpha_V(a[0_V])=a\). This
+proves both directness and surjectivity of the decomposition.
+
+Put \[
+r_v=[v]-[0_V],\qquad r_0=0.
+\tag{Q14}
+\] The vectors \(r_v\), \(v\ne0\), are a basis of \(U(V)\). Indeed if
+\(x=\sum a_v[v]\) has augmentation zero, its coefficient at \([0_V]\)
+equals \(-\sum_{v\ne0}a_v\), giving \(x=\sum_{v\ne0}a_vr_v\). Conversely
+a relation among these \(r_v\) has the same coefficients at the distinct
+\([v]\), \(v\ne0\), so all coefficients vanish.
+
+The scalar action on this basis is \[
+[n]r_v=r_{nv}.
+\tag{Q15}
+\] In particular \(E\) kills \(U(V)\); thus its action factors through
+\(A/(E)=\Lambda\). This is the reduced free abelian group on the pointed
+set \((V,0_V)\), with its induced action of the multiplicative monoid of
+nonzero integers. The adjective ``reduced'' means exactly that the
+distinguished basepoint generator has been killed; it does not identify
+\(e\) and \(\tau\) in the original semiring.
+
+For a homomorphism \(f:V\to W\), define \[
+L(f)[v]=[f(v)],\qquad U(f)r_v=r_{f(v)}.
+\tag{Q16}
+\] Both maps are linear over the stated coefficient rings because
+\(f(nv)=nf(v)\). They preserve the decomposition (Q13): on
+\(\mathbb Z[0]\), every \(L(f)\) is the identity after identifying its
+source and target copies of \(\mathbb Z\); on the other summand it is
+\(U(f)\). These formulas also prove functoriality.
+
+\subsection{3. Exact conversion of the supported-zero equation into a
+complex}\label{exact-conversion-of-the-supported-zero-equation-into-a-complex}
+
+Let \(C=(V^i,d^i)_{i\in\mathbb Z}\) be a cochain complex of abelian
+groups, so \(d^i:V^i\to V^{i+1}\) and \(d^{i+1}d^i=0_{V^i,V^{i+2}}\).
+The split maps satisfy the exact equation \[
+\operatorname{Spl}(d^{i+1})\operatorname{Spl}(d^i)
+=z_{V^i,V^{i+2}}.
+\tag{Q17}
+\] This follows from (Q4) at both types of elements: a supported vector
+reaches the supported zero, while the external element remains external.
+It is the fixed-support instance of the equation discussed after D7 in
+the programme source.
+
+Write \[
+E_{V,W}:L(V)\to L(W),\qquad
+E_{V,W}(x)=\alpha_V(x)[0_W].
+\tag{Q18}
+\] Then the unreduced maps satisfy \[
+L(d^{i+1})L(d^i)=L(0_{V^i,V^{i+2}})=E_{V^i,V^{i+2}},
+\tag{Q19}
+\] because every basis vector \([v]\) is sent to \([0_{V^{i+2}}]\). The
+source and target of this map are specified in (Q18); it is not an
+endomorphism unless the two groups coincide. In particular it is not the
+zero homomorphism: it sends \([0_{V^i}]\) to the nonzero basis vector
+\([0_{V^{i+2}}]\). This remains true when both original groups are zero,
+since \(L(0)=\mathbb Z\).
+
+Restricting (Q19) to the reduced summands gives \[
+U(d^{i+1})U(d^i)r_v=r_{d^{i+1}d^i(v)}=r_0=0.
+\tag{Q20}
+\] Thus \[
+U(C)=\bigl(U(V^i),D^i=U(d^i)\bigr)
+\tag{Q21}
+\] is a genuine cochain complex of \(\Lambda\)-modules. Also \(U(0)=0\),
+so a bounded complex remains bounded. The unreduced maps in (Q19), under
+(Q13), have the exact form
+\(\operatorname{diag}(\mathrm{id}_{\mathbb Z},D^i)\); their composites
+are \(\operatorname{diag}(\mathrm{id}_{\mathbb Z},0)\). These equations
+identify exactly what was removed in passing to the complex.
+
+\subsection{4. The universal additive quotient and its kernel
+complex}\label{the-universal-additive-quotient-and-its-kernel-complex}
+
+Regard \(V\) as a \(\Lambda\)-module by the arithmetic evaluation
+\([n]v=nv\). There is a natural surjective \(\Lambda\)-linear map \[
+\epsilon_V:U(V)\to V,\qquad r_v\longmapsto v.
+\tag{Q22}
+\] Linearity follows from (Q15). Surjectivity follows since every
+nonzero \(v\) is the image of \(r_v\), and zero is the image of zero.
+Let \[
+a_{v,w}:=r_{v+w}-r_v-r_w,
+\qquad K(V):=\ker\epsilon_V.
+\tag{Q23}
+\]
+
+\textbf{Theorem Q1 (universal additive quotient).} The subgroup \(K(V)\)
+is generated by all \(a_{v,w}\), and is a \(\Lambda\)-submodule. The
+quotient \(U(V)/K(V)\to V\) induced by (Q22) is an isomorphism of
+\(\Lambda\)-modules. Any \(\Lambda\)-linear map out of \(U(V)\) killing
+all the relations (Q23) factors uniquely through (Q22).
+
+\textbf{Proof.} Let \(K'\) be the subgroup generated by the displayed
+relations. Every relation evaluates to zero, so \(K'\subseteq K(V)\). In
+\(U(V)/K'\), the function \(v\mapsto\overline{r_v}\) is a group
+homomorphism: it preserves addition by (Q23), sends zero to zero, and
+sends \(-v\) to \(-\overline{r_v}\) by the relation with \(v+(-v)=0\).
+This homomorphism is inverse to the map induced by \(\epsilon_V\). One
+composite fixes each \(v\in V\); the other fixes every generator
+\(\overline{r_v}\), so it is the identity. Therefore the induced
+quotient map is injective, proving \(K'=K(V)\). Scalar multiplication
+gives \[
+[n]a_{v,w}=a_{nv,nw},
+\tag{Q24}
+\] so this subgroup is a \(\Lambda\)-submodule. The quotient isomorphism
+and its inverse are \(\Lambda\)-linear by their generator formulas.
+Finally a linear map killing the relations descends to the quotient; the
+proved isomorphism gives the required factorization, and surjectivity of
+\(\epsilon_V\) forces its uniqueness. \(\square\)
+
+The maps (Q22) commute with homomorphisms: both \(\epsilon_W U(f)\) and
+\(f\epsilon_V\) send \(r_v\) to \(f(v)\). Thus \(U(f)\) takes \(K(V)\)
+into \(K(W)\), also directly visible from \(U(f)a_{v,w}=a_{f(v),f(w)}\).
+For the complex \(C\), this gives a short exact sequence of complexes \[
+0\longrightarrow K(C)\xrightarrow{j}U(C)
+\xrightarrow{\epsilon}C\longrightarrow0,
+\qquad K(C)^i=K(V^i).
+\tag{Q25}
+\] Exactness is degreewise (Q22)--(Q23); the differentials restrict to
+the kernels by the commutation identity. Their squares are zero by
+(Q20).
+
+\subsection{5. Cohomology propagation and the vanishing connecting
+maps}\label{cohomology-propagation-and-the-vanishing-connecting-maps}
+
+For a complex \(X\), write
+\(H^i(X)=\ker d_X^i/\operatorname{im}d_X^{i-1}\). All maps below are
+\(\Lambda\)-linear, including the ordinary complex with its arithmetic
+\(\Lambda\)-action.
+
+\textbf{Theorem Q2 (exact cohomology comparison).} For every integer
+\(i\), (Q25) induces a natural short exact sequence \[
+0\longrightarrow H^i(K(C))\xrightarrow{H^i(j)}H^i(U(C))
+\xrightarrow{H^i(\epsilon)}H^i(C)\longrightarrow0.
+\tag{Q26}
+\] Every connecting homomorphism \(H^i(C)\to H^{i+1}(K(C))\) associated
+with (Q25) is zero. The sequence (Q26) need not split as a sequence of
+abelian groups.
+
+\textbf{Proof.} A cycle \(z\in V^i\) has a cycle lift \(r_z\in U(V^i)\),
+since \(D^i r_z=r_{d^iz}=r_0=0\). It maps to \(z\), proving surjectivity
+of \(H^i(\epsilon)\).
+
+For exactness in the middle, let \(u\in U(V^i)\) be a cycle whose image
+represents zero in \(H^i(C)\). Choose \(v\in V^{i-1}\) with
+\(d^{i-1}v=\epsilon(u)\). Then \[
+k=u-D^{i-1}r_v
+\tag{Q27}
+\] has \(\epsilon(k)=0\), remains a cycle, and represents the same class
+as \(u\) in \(H^i(U(C))\). Thus \(k\in K(V^i)\) is a preimage under
+\(H^i(j)\). Conversely every cycle in \(K(V^i)\) evaluates to zero, so
+the image lies in the kernel.
+
+For injectivity on the left, suppose a cycle \(k\in K(V^i)\) is a
+boundary in \(U(C)\), say \(k=D^{i-1}u\). Put \(v=\epsilon(u)\). Then
+\(d^{i-1}v=\epsilon(k)=0\), so \(r_v\) is a cycle in degree \(i-1\). The
+element \(u-r_v\) belongs to \(K(V^{i-1})\) and has differential \(k\).
+Hence \(k\) was already a boundary in \(K(C)\), proving injectivity.
+
+For an explicit connecting-map verification, let \(z\) be a cycle and
+choose any lift \(u\in U(V^i)\) with \(\epsilon(u)=z\). The proposed
+connecting class is \([D^iu]\in H^{i+1}(K(C))\). It is a cycle because
+\(D^{i+1}D^i=0\), and it lies in \(K\) because \(d^iz=0\). Changing the
+lift by an element of \(K(V^i)\) changes the output by a boundary in
+\(K\). If the cycle representative is changed to \(z+d^{i-1}v\), choose
+the lift \(u+D^{i-1}r_v\); its differential is unchanged. Thus the
+formula is well defined. Choosing the particular lift \(r_z\) gives
+differential zero, proving that every connecting class is zero.
+Equivalently for any lift, \(u-r_z\in K(V^i)\), so \(D^iu\) is visibly a
+\(K\)-boundary.
+
+The maps are natural because the inclusions, evaluations, and
+differentials in (Q25) commute with every cochain map; applying them to
+cycle representatives commutes with passing to boundary classes. Failure
+of splitting is proved by the explicit example in Section 7. \(\square\)
+
+Thus every ordinary cohomology class lifts to a class in the reduced
+complex. The exact obstruction to the comparison being an isomorphism is
+the explicitly defined group \(H^i(K(C))\); there is no additional
+unknown connecting obstruction in this construction. The particular lift
+\(z\mapsto[r_z]\) uses a cycle representative and is not asserted to
+give an additive, representative-independent section on cohomology.
+
+\subsection{6. A complete basis and scalar action for the reduced
+cohomology}\label{a-complete-basis-and-scalar-action-for-the-reduced-cohomology}
+
+Write \[
+Z^i=\ker d^i,\qquad B^i=\operatorname{im}d^{i-1},\qquad Y^i=\operatorname{im}d^i.
+\tag{Q28}
+\] For each \(y\in Y^i\setminus\{0\}\), choose one \(s_y\in V^i\) with
+\(d^is_y=y\). The basis description below depends on these choices; the
+complex and its comparison map do not.
+
+\textbf{Theorem Q3 (complete reduced cohomology).} The abelian group
+\(H^i(U(C))\) is free with basis consisting of the following classes: \[
+\begin{array}{ll}
+A_z=[r_z],&z\in Z^i\setminus B^i,\\
+B_{v,y}=[r_v-r_{s_y}],&y\in Y^i\setminus\{0\},\quad
+v\in(d^i)^{-1}(y)\setminus\{s_y\}.
+\end{array}
+\tag{Q29}
+\] Its arithmetic comparison is \[
+H^i(\epsilon)(A_z)=z+B^i,
+\qquad H^i(\epsilon)(B_{v,y})=v-s_y+B^i.
+\tag{Q30}
+\]
+
+\textbf{Proof.} Partition the basis \(\{r_v:v\ne0\}\) of \(U(V^i)\) by
+the fibres of \(d^i\). The zero fibre consists of
+\(v\in Z^i\setminus\{0\}\), and every corresponding basis element maps
+to zero. For a nonzero \(y\in Y^i\), the basis symbols in its fibre all
+map to the one basis vector \(r_y\) of \(U(V^{i+1})\). Since the target
+vectors \(r_y\) for distinct nonzero \(y\) are independent, an element
+of \(\ker D^i\) has unrestricted coefficients on the zero fibre and
+coefficient sum zero separately on each nonzero fibre. In a nonzero
+fibre, writing its coefficient at the chosen \(s_y\) as the negative sum
+of all other coefficients shows that the vectors \(r_v-r_{s_y}\),
+\(v\ne s_y\), span that kernel. Their coefficients at the distinct
+\(r_v\), \(v\ne s_y\), prove independence. All sums have finite support,
+so the argument applies even for infinite fibres. Thus a basis of
+\(\ker D^i\) consists of all \(r_z\), \(z\in Z^i\setminus\{0\}\), and
+all the second family in (Q29).
+
+The image of \(D^{i-1}\) is exactly the subgroup freely spanned by
+\(r_b\), \(b\in B^i\setminus\{0\}\). Indeed each generator maps to
+\(r_{d^{i-1}v}\), and every such nonzero \(b\) has a preimage. These
+vectors are a subset of the zero-fibre basis just obtained, because
+\(B^i\subseteq Z^i\). Quotienting by the subgroup on this subset removes
+exactly these basis vectors and imposes no further relation. The
+remaining basis is (Q29). Finally evaluation sends the two kinds of
+representatives to \(z\) and \(v-s_y\), respectively. The latter is a
+cycle since \(d^i(v-s_y)=y-y=0\), proving (Q30). \(\square\)
+
+The scalar action is also explicit. Adopt the conventions \(A_z=0\) when
+\(z\in B^i\), and \(B_{s_y,y}=0\). For every nonzero integer \(n\), \[
+[n]A_z=A_{nz},
+\tag{Q31}
+\] and \[
+[n]B_{v,y}=
+\begin{cases}
+B_{nv,ny}-B_{ns_y,ny},&ny\ne0,\\
+A_{nv}-A_{ns_y},&ny=0.
+\end{cases}
+\tag{Q32}
+\] For (Q31), use (Q15) on the representative. For (Q32), the
+representative becomes \(r_{nv}-r_{ns_y}\). If \(ny\ne0\), both vectors
+lie in that fibre; inserting and subtracting \(r_{s_{ny}}\) gives the
+first formula. If \(ny=0\), both are cycles, giving the second. The
+second case is needed when the target group has integer torsion. These
+equations determine the full \(\Lambda\)-action, in addition to the
+underlying free group.
+
+For an explicit generating set for the excess classes, put \(A_z=[r_z]\)
+for every cycle, with its class zero if \(z\in B^i\). Then the kernel of
+(Q30) is generated as an abelian group by \[
+A_{z+w}-A_z-A_w\qquad(z,w\in Z^i)
+\tag{Q33}
+\] and \[
+B_{v,y}-A_{v-s_y}.
+\tag{Q34}
+\] These are represented by actual \(K(C)\)-cycles: for (Q33), use
+\(r_{z+w}-r_z-r_w\); for (Q34), use \(r_v-r_{s_y}-r_{v-s_y}\). Each
+evaluates to zero. Their differentials vanish by (Q20) and, in the
+second case, by \(y-y-0=0\).
+
+To prove that they generate the kernel, quotient \(H^i(U(C))\) by the
+subgroup they generate. Relations (Q34) express every second-family
+basis vector in terms of cycle symbols. Relations (Q33) make the
+function \(z\mapsto A_z\) additive. Boundary symbols are already zero.
+This gives a well-defined homomorphism \(Z^i/B^i\) to the quotient,
+inverse to the induced arithmetic evaluation: one composite fixes each
+cycle class and the other fixes every generator after (Q34). Hence the
+quotient is exactly \(H^i(C)\). The injectivity in (Q26) identifies
+these generated classes with all of \(H^i(K(C))\).
+
+In particular \(H^i(U(C))\) is always free abelian, even when \(H^i(C)\)
+has torsion. The comparison retains that torsion through its explicitly
+computed quotient, rather than as torsion already present in the free
+group.
+
+\subsection{7. Multiplication by 2: an exact nonsplit
+comparison}\label{multiplication-by-2-an-exact-nonsplit-comparison}
+
+Consider the complex supported in degrees 0 and 1, \[
+C:\quad\mathbb Z\xrightarrow{\,2\,}\mathbb Z.
+\tag{Q35}
+\] Its ordinary cohomology is \(H^0(C)=0\) and
+\(H^1(C)=\mathbb Z/2\mathbb Z\): multiplication by 2 has zero kernel and
+image the even integers.
+
+The reduced differential is \[
+D^0r_n=r_{2n}\quad(n\ne0).
+\tag{Q36}
+\] These output basis vectors are distinct, so \(D^0\) is injective. Its
+image is the subgroup on all nonzero even-integer basis vectors.
+Consequently \[
+H^0(U(C))=0,
+\qquad
+H^1(U(C))=\bigoplus_{m\in2\mathbb Z+1}\mathbb Z\,a_m,
+\tag{Q37}
+\] where \(a_m\) is the class of \(r_m\); positive and negative odd
+integers index different basis vectors. The comparison sends \[
+\sum_{m\text{ odd}}c_m a_m
+\longmapsto\sum_{m\text{ odd}}c_m m\pmod2
+=\sum_{m\text{ odd}}c_m\pmod2.
+\tag{Q38}
+\] Only finitely many \(c_m\) are nonzero.
+
+Its kernel has free basis \[
+2a_1,\qquad a_m-a_1\quad(m\text{ odd},\ m\ne1).
+\tag{Q39}
+\] For a vector in the kernel, put \(s=\sum c_m\), an even integer. Then
+\[
+\sum c_m a_m=\frac{s}{2}(2a_1)
++\sum_{m\ne1}c_m(a_m-a_1).
+\] This proves spanning. In any relation among the vectors (Q39), the
+coefficients at each \(a_m\), \(m\ne1\), first force their corresponding
+coefficients to zero, and the coefficient at \(a_1\) then forces the
+remaining coefficient to zero. This proves independence.
+
+Under the isomorphism from (Q26), a basis of \(H^1(K(C))\) is
+represented by \[
+k_0=2r_1-r_2,
+\qquad
+k_m=r_m-r_1-r_{m-1}\quad(m\text{ odd},\ m\ne1).
+\tag{Q40}
+\] These all evaluate to zero; every element in degree 1 is a cycle. In
+\(H^1(U(C))\), the terms \(r_2,r_{m-1}\) are boundaries by (Q36), so
+their images are exactly (Q39). The injection in (Q26) and the proved
+basis (Q39) establish the assertion. In degree 0 both ordinary and
+reduced cohomology vanish, so (Q26) gives \(H^0(K(C))=0\).
+
+The exact sequence \[
+0\to H^1(K(C))\to
+\bigoplus_{m\text{ odd}}\mathbb Z a_m\to\mathbb Z/2\mathbb Z\to0
+\tag{Q41}
+\] does not split as abelian groups. A section would send the nonzero
+class of \(\mathbb Z/2\mathbb Z\) to a nonzero element killed by 2 in
+the middle group. A free abelian group has no such element, since
+multiplying its independent integer coefficients by 2 can vanish only
+when all coefficients vanish. This proves the final assertion of Theorem
+Q2.
+
+\subsection{8. A contractible complex whose reduced complex has extra
+cohomology}\label{a-contractible-complex-whose-reduced-complex-has-extra-cohomology}
+
+Consider the complex in degrees 0, 1, and 2, \[
+C:\quad\mathbb Z\xrightarrow{\ i\ }\mathbb Z^2
+\xrightarrow{\ q\ }\mathbb Z,
+\qquad i(x)=(x,0),\quad q(x,y)=y.
+\tag{Q42}
+\] The composite is zero; the first map is injective, the last is
+surjective, and \(\ker q=\operatorname{im}i\). Thus all its cohomology
+groups vanish. It is also contractible with \[
+h^1(x,y)=x,\qquad h^2(y)=(0,y).
+\tag{Q43}
+\] Indeed \(h^1i=\mathrm{id}_{\mathbb Z}\),
+\(ih^1+h^2q=\mathrm{id}_{\mathbb Z^2}\), and
+\(qh^2=\mathrm{id}_{\mathbb Z}\). These are all the degreewise
+contracting homotopy equations.
+
+Its reduced complex is \[
+U(\mathbb Z)\longrightarrow U(\mathbb Z^2)\longrightarrow U(\mathbb Z),
+\qquad r_x\longmapsto r_{(x,0)},\quad
+r_{(x,y)}\longmapsto r_y.
+\tag{Q44}
+\] The first map is injective on its basis, and the last is onto, since
+\(r_{(0,y)}\) maps to \(r_y\). In the kernel of the last map, the zero
+fibre has basis \(r_{(x,0)}\), \(x\ne0\). For each \(y\ne0\), its other
+fibre contributes the basis differences \(r_{(x,y)}-r_{(0,y)}\),
+\(x\ne0\). These claims follow directly by collecting coefficients in
+each fibre, or by the kernel proof of Theorem Q3 with \(s_y=(0,y)\). The
+image of the first map is exactly the subgroup on the zero-fibre basis.
+Hence \[
+H^0(U(C))=H^2(U(C))=0,
+\] \[
+H^1(U(C))=
+\bigoplus_{(x,y)\in(\mathbb Z\setminus\{0\})^2}
+\mathbb Z\,b_{x,y},
+\qquad
+b_{x,y}=[r_{(x,y)}-r_{(0,y)}].
+\tag{Q45}
+\] In particular it is nonzero. Since ordinary cohomology is zero, (Q26)
+identifies it with \(H^1(K(C))\). Explicit cycle representatives in
+\(K(C)\) are \[
+a_{x,y}=r_{(x,y)}-r_{(x,0)}-r_{(0,y)},
+\qquad x\ne0,\ y\ne0.
+\tag{Q46}
+\] Their evaluation is \((x,y)-(x,0)-(0,y)=0\). Their differential is
+\(r_y-r_0-r_y=0\). Their images in cohomology are the basis (Q45),
+because \(r_{(x,0)}\) is a boundary. Thus their classes give a basis of
+\(H^1(K(C))\), with all other degrees zero.
+
+This calculation locates the exact failure to preserve the given
+contraction. Applied separately, the reduced maps in (Q43) satisfy in
+middle degree \[
+\bigl(U(i)U(h^1)+U(h^2)U(q)\bigr)r_{(x,y)}
+=r_{(x,0)}+r_{(0,y)}.
+\tag{Q47}
+\] The identity map sends that same vector to \(r_{(x,y)}\); the
+difference is precisely (Q46). Applying a functor to the sum
+\(ih^1+h^2q\) would instead give the identity, but \(U\) is not additive
+on morphisms, so the two operations need not agree. Equation (Q47)
+exhibits their entire discrepancy here.
+
+Consequently applying \(U\) degree by degree does not preserve chain
+homotopy equivalences or quasi-isomorphisms. Indeed the zero map from
+the contractible complex (Q42) to the zero complex is a chain homotopy
+equivalence by (Q43), hence also a quasi-isomorphism. Its reduced image
+has the nonzero group (Q45), whereas the reduced zero complex is zero.
+It can therefore be neither a quasi-isomorphism nor a chain homotopy
+equivalence. This is a concrete counterexample about this particular
+construction; the exact positive comparison remains (Q25)--(Q26), and
+imposing the additive quotient recovers the original complex degree by
+degree.
+
+\subsection{9. The supported cohomology comparison inside the
+programme}\label{the-supported-cohomology-comparison-inside-the-programme}
+
+The group comparison (Q26) gives an actual support-preserving map of the
+programme's split semimodules, with an internal quotient and both kernel
+objects computed. Fix a degree \(i\), write \[
+M=H^i(U(C)),\qquad N=H^i(K(C))\subseteq M,
+\qquad A_i=H^i(C),
+\tag{Q48}
+\] and use the injection of (Q26) to identify \(N\) with its image. Let
+\(h:M\to A_i\) be the surjection in that sequence.
+
+\textbf{Theorem Q4 (supported cohomology quotient).} There is a
+surjective \(S\)-linear map \[
+\operatorname{Spl}(h):\operatorname{Spl}(M)
+\longrightarrow\operatorname{Spl}(A_i),
+\qquad m^\bullet\longmapsto h(m)^\bullet,
+\quad\tau_M\longmapsto\tau_{A_i}.
+\tag{Q49}
+\] Its categorical semimodule kernel is \(\{\tau_M\}\), while its
+all-label kernel is the embedded copy \(\operatorname{Spl}(N)\).
+Moreover it is the coequalizer of the two \(S\)-linear maps \[
+\operatorname{Spl}(N)\rightrightarrows\operatorname{Spl}(M)
+\tag{Q50}
+\] given by inclusion and the split extension of the zero group map. In
+particular the supported zero of \(M\) goes to the supported zero of
+\(A_i\), and the external element remains a distinct external element.
+
+\textbf{Proof.} Formula (Q4) proves \(S\)-linearity, and the
+surjectivity of \(h\) proves surjectivity at all supported elements; the
+external element also has its displayed preimage. Since \(\ker h=N\),
+the two kernel assertions follow by evaluating the map as in (Q6): only
+\(\tau_M\) maps to \(\tau_{A_i}\), while exactly the elements of \(N\)
+map to the supported zero.
+
+For the coequalizer property, (Q49) equalizes the displayed pair because
+every \(n\in N\) has \(h(n)=0\); both maps preserve the external
+element. Suppose an \(S\)-linear map \(f:\operatorname{Spl}(M)\to P\),
+to any \(S\)-semimodule \(P\), equalizes that pair. Then
+\(f(n^\bullet)=f(0_M^\bullet)\) for every \(n\in N\). If \(m'=m+n\), one
+has \[
+f((m')^\bullet)
+=f(m^\bullet)+f(n^\bullet)
+=f(m^\bullet)+f(0_M^\bullet)
+=f(m^\bullet).
+\tag{Q51}
+\] The last equality is the image under \(f\) of
+\(m^\bullet+0_M^\bullet=m^\bullet\); no cancellation in \(P\) is used.
+Therefore \(f\) is constant on the supported cosets of \(N\), and
+descends to \(\operatorname{Spl}(M/N)\), while its value at the external
+element is its required global additive zero. Choosing representatives
+verifies additivity and the scalar laws of the descended map: sums and
+integer multiples of representatives represent the corresponding coset
+operations, and all external cases follow from preservation of the
+external element. The quotient map is onto, so this factorization is
+unique. Finally (Q26) gives the group isomorphism \(M/N\cong A_i\),
+making this exactly (Q49). This proves the complete coequalizer
+assertion. \(\square\)
+
+This is the explicit instance of the programme's D6 quotient applied to
+the two-label support diagram: the bottom fibre stays a singleton and
+the supported fibre is quotiented by \(N\). The exact representative
+object in D7 is, for this comparison, \[
+K_{\mathrm{rep}}^i=
+\{u\in\ker D^i:\epsilon(u)\in B^i\},
+\qquad
+K_{\mathrm{rep}}^i/\operatorname{im}D^{i-1}
+\cong H^i(K(C)).
+\tag{Q51a}
+\] Here is its explicit map, including its independence of choices.
+Given \(u\in K_{\mathrm{rep}}^i\), choose \(v\in V^{i-1}\) with
+\(d^{i-1}v=\epsilon(u)\), and send it to \[
+[u-D^{i-1}r_v]\in H^i(K(C)).
+\tag{Q51b}
+\] The representative is the cycle in (Q27). If \(v'\) is another
+choice, then \(c=v'-v\) is a cycle, and the difference of the
+representatives is the differential of \(r_{v'}-r_v-r_c\in K(V^{i-1})\);
+the term \(D^{i-1}r_c\) vanishes. If \(u\) is replaced by
+\(u+D^{i-1}a\), choose \(v+\epsilon(a)\) as a lift. The representative
+changes by \(D^{i-1}(a-r_{v+\epsilon(a)}+r_v)\), whose parenthesized
+expression has evaluation zero. Thus the map descends to the displayed
+quotient. Its inverse includes a \(K\)-cycle as a cycle of \(U(C)\). One
+composite fixes a \(K\)-cycle by choosing \(v=0\); the other changes
+\(u\) only by the \(U\)-boundary \(D^{i-1}r_v\). This proves the
+isomorphism in (Q51a) in both directions and identifies it with the
+programme's D7 comparison.
+
+The two kernels in Theorem Q4 are then the actual D8 objects for this
+computed cohomology map. In example (Q42), every class in (Q45) is sent
+to the supported zero in \(\operatorname{Spl}(0)\), while the external
+element alone is sent to its external element. The distinction therefore
+survives the quotient even when the ordinary target cohomology group is
+zero.
+
+\subsection{10. Coefficient changes and the prismatic
+comparison}\label{coefficient-changes-and-the-prismatic-comparison}
+
+All differentials, inclusions, and evaluations above are
+\(\Lambda\)-linear. For any unital ring map \(f:\Lambda\to R\), they
+therefore give complexes and cochain maps after extension of
+coefficients, \[
+R\otimes_\Lambda U(C),\qquad
+R\otimes_\Lambda K(C),\qquad
+R\otimes_\Lambda C.
+\tag{Q52}
+\] The differentials are \(1\otimes D\) or \(1\otimes d\); their squares
+vanish because \((1\otimes D)^2=1\otimes D^2=0\). Commutation of cochain
+maps is preserved by the same tensor calculation. The additive quotient
+remains exact as a cokernel: \[
+R\otimes_\Lambda K(C)\longrightarrow
+R\otimes_\Lambda U(C)\longrightarrow
+R\otimes_\Lambda C\longrightarrow0.
+\tag{Q53}
+\] For a direct proof of the final assertion, tensor elements are finite
+sums of symbols \(r\otimes u\), subject to the bilinear and balancing
+relations. Quotienting by the image of \(R\otimes K(V)\) imposes exactly
+the further relations \(r\otimes k=0\). Replacing \(u\) by its class in
+\(U(V)/K(V)=V\) then gives mutually inverse maps to \(R\otimes V\): the
+forward map sends \(r\otimes u\) to \(r\otimes\epsilon(u)\), and the
+inverse sends \(r\otimes\overline u\) to the class of \(r\otimes u\),
+independent of its representative by the imposed relations. This proves
+the cokernel statement in each degree, and the maps commute with
+differentials.
+
+In particular one may take \(R=T=\widehat\Lambda_p\), the coefficient
+ring underlying the bounded crystalline prisms of Theorems P1--P5 in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/PRISMATIC_COMPARISON.md}{Prismatic
+comparison}. The resulting objects are complexes of modules over that
+coefficient ring. Formula (Q53) alone makes no assertion of injectivity
+on its left, of exactness of an unspecified completion functor, or of
+commutation of cohomology with completion. No Frobenius-semilinear
+structure on these modules or descent to a prismatic site has been
+constructed here. Therefore the proved connection is the exact chain
+comparison over shared coefficient rings and its stated scalar
+extensions; identifying it with a prismatic cohomology object would
+require additional maps and proofs.
+
+The original support distinction also remains explicit throughout: (Q17)
+is a supported-zero composite, (Q19) records it by the nonzero rank-one
+map \(E_{V^i,V^{i+2}}\), and only the specified projection to the
+\(F\)-summand turns that composite into the ordinary zero map (Q20). The
+additive quotient then recovers the original arithmetic complex, with
+the complete excess and quotient maps calculated in (Q26), (Q29)--(Q34),
+and both examples.
+
+\subsection{11. The retained object}\label{the-retained-object}
+
+The contractible calculation in Section 8 is the starting point of three
+further complete derivations.
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/CROSS_EFFECTS.md}{Cross-effects}
+identifies the retained group with the second cross-effect of U, proves
+its group-ring and augmentation-filtration structure, and computes both
+integer and torsion examples.
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/HOMOTOPY_DEFECT.md}{Homotopy
+defect} constructs a projection onto a zero-differential summand for
+every chosen contraction, proving a strong deformation retract of both
+U(C) and K(C). Its explicit homotopies also prove the specified
+coefficient and completion comparisons.
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md}{Frobenius
+on the retained cross-effect}, Theorems F1--F3, gives the completed
+mixed ideal, Frobenius linearization with its full cokernel, and the
+exact quotient-prism map. These constructions retain and study the
+classes in (Q45).
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Exact chain and cohomology comparison}]{figures/10_chain_comparison.png}}
+\caption{Exact chain and cohomology comparison}
+\end{figure}
+
+The first composite retains the supported zero before the explicitly
+stated projection. The exact cohomology sequence is Theorem Q2; its
+contractible example is (Q42)--(Q46). The quotient and the retained
+kernel are both part of the calculation.
+
+\end{document}

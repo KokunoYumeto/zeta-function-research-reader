@@ -1,0 +1,723 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2295}{\ensuremath{\oplus}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2261}{\ensuremath{\equiv}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Cotangent and Frobenius data at the meeting of two
+branches}\label{cotangent-and-frobenius-data-at-the-meeting-of-two-branches}
+
+This paper applies the regular-immersion and transitivity constructions
+in Luc Illusie's \emph{Complexe cotangent et déformations}, volume I, to
+the explicit quotient in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md}{Frobenius
+on the retained cross-effect}, (F7)--(F17). It computes the cotangent
+complex, the exact differential data lost by restriction to the two
+branches, the de Rham differential, and both ordinary and divided
+Frobenius. Every calculation concerns the rings and maps specified
+below.
+
+\subsection{1. The ring, its branches, and the retained programme
+object}\label{the-ring-its-branches-and-the-retained-programme-object}
+
+Set \[
+R=\mathbb Z[t^{\pm1},u^{\pm1}],\quad x=t-1,\quad y=u-1,
+\quad j=xy,\quad A=R/(j),
+\quad T=\mathbb Z[t^{\pm1}],\quad V=\mathbb Z[u^{\pm1}].
+\tag{N1}
+\] Here \(u\) is a Laurent variable, independent of the role element
+named \(u\) in the square. All tensor products and differentials have
+their displayed coefficient ring. The ring zero in \(A\) is an additive
+zero in this ring construction; it is not the external programme element
+\(\tau\).
+
+The map \[
+\pi:R\longrightarrow T\times_{\mathbb Z}V,
+\qquad f\longmapsto(f(t,1),f(1,u))
+\tag{N2}
+\] uses evaluation at 1 for both maps to \(\mathbb Z\). It is
+surjective: a pair \((g,h)\) with \(g(1)=h(1)=c\) has lift
+\(g(t)+h(u)-c\). If \(f\) maps to zero, vanishing at \(u=1\) gives
+\(f=yb\). Vanishing at \(t=1\) gives \(yb(1,u)=0\); since \(V\) is a
+domain, \(b(1,u)=0\), so \(b=xa\). Conversely, every multiple of \(xy\)
+vanishes under both evaluations. Thus \[
+A\xrightarrow{\sim}T\times_{\mathbb Z}V,
+\qquad A=\mathbb Z\oplus xT\oplus yV
+\quad\text{as abelian groups}.
+\tag{N3}
+\] Divisibility by \(t-1\) or \(u-1\) used here holds for Laurent
+polynomials: multiply by a large positive power of the variable, use
+polynomial division, and then divide by that invertible power. Write
+\(\epsilon:A\to\mathbb Z\) for the common evaluation and
+\(\mathfrak m=(x,y)=\ker\epsilon\). Products of the two axis ideals are
+zero. The two projections in (N3) prove \[
+\operatorname{Ann}_A(x)=(y),\qquad
+\operatorname{Ann}_A(y)=(x),\qquad (x)\cap(y)=0.
+\tag{N4}
+\] For example, \(x(a_T,a_V)=0\) forces \(a_T=0\) in the domain \(T\);
+compatibility of evaluations then puts \(a_V\) in \(yV\). This proves
+the first assertion, the second follows by interchanging the variables,
+and the intersection is zero by the projections.
+
+The exact preceding programme object is retained by a specified map. For
+an abelian group \(G\), let \(U(G)\) be free on \(r_g\), \(g\ne0\), with
+\(r_0=0\). The cross-effect of the split complex
+\(\mathbb Z\to\mathbb Z^2\to\mathbb Z\), with maps \(a\mapsto(a,0)\) and
+\((a,b)\mapsto b\), is \[
+W=U(\mathbb Z)\otimes_{\mathbb Z}U(\mathbb Z)
+\xrightarrow{\sim}jR,
+\quad w_{a,b}\longmapsto(t^a-1)(u^b-1).
+\tag{N5}
+\] This is the explicitly proved basis isomorphism in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/CROSS_EFFECTS.md}{Cross-effects},
+(X1)--(X4), (X13)--(X18), and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md}{Frobenius
+on the retained cross-effect}, (F1)--(F6). One can check its basis
+assertion directly: the augmentation ideals of \(T,V\) have bases
+\(t^a-1\), \(u^b-1\), respectively, and are also the principal ideals
+\(xT,yV\); their external tensor product is \(xyR\).
+
+The conormal comparison is therefore the exact sequence of \(R\)-modules
+\[
+0\longrightarrow j^2R\longrightarrow jR
+\longrightarrow jR/j^2R\cong A\longrightarrow0,
+\qquad jf\bmod j^2\longmapsto f\bmod j.
+\tag{N6}
+\] The indicated identification of the quotient with \(A\) is
+well-defined and injective by cancellation of the nonzero element \(j\)
+in the domain \(R\). The quotient map has kernel \(j^2R\). Thus the
+retained object has a concrete conormal quotient, with its full kernel
+preserved.
+
+\subsection{2. The cotangent complex and its conormal
+map}\label{the-cotangent-complex-and-its-conormal-map}
+
+\textbf{Theorem N1.} In cohomological degrees \(-1,0\), a model for the
+cotangent complex is \[
+L_{A/\mathbb Z}\simeq
+\mathcal L=\left[A\,\overline j
+\xrightarrow{\partial}A\,dt\oplus A\,du\right],
+\qquad \partial(a\overline j)=ay\,dt+ax\,du.
+\tag{N7}
+\] Its only nonzero cohomology is \[
+H^{-1}(\mathcal L)=0,\qquad
+H^0(\mathcal L)=\Omega^1_{A/\mathbb Z}
+=(A\,dt\oplus A\,du)/A(y\,dt+x\,du).
+\tag{N8}
+\]
+
+\textbf{Proof.} The Laurent algebra \(R\) is a localization of the
+polynomial algebra in two variables, hence smooth over \(\mathbb Z\).
+Illusie I, III 3.1.2(i)--(ii), identifies its cotangent complex with its
+differentials, freely generated by \(dt,du\). The inverse-variable rules
+are forced by \(d(t^{-1})=-t^{-2}dt\) and \(d(u^{-1})=-u^{-2}du\). The
+ideal \((j)\) is a regular ideal: its one-element Koszul complex
+\([R\xrightarrow{j}R]\) has no negative homology because \(R\) is a
+domain, and its degree-zero homology is exactly \(A\). Its conormal
+module is the free \(A\)-module (N6). Illusie's regular-immersion
+theorem, volume I, III, Proposition 3.2.4(iii), identifies \(L_{A/R}\)
+with \((j)/(j^2)[1]\). Applying his transitivity triangle, II,
+Proposition 2.1.2 and (2.1.2.1), to \(\mathbb Z\to R\to A\) yields the
+cone of the conormal differential \(j\bmod j^2\mapsto dj=y\,dt+x\,du\).
+These are exactly the degrees and sign convention in (N7). No additional
+regularity of \(A\) is assumed.
+
+For completeness, the degree-zero presentation can also be checked
+without derived terminology: a derivation \(A\to M\) to any \(A\)-module
+is uniquely determined by its two values on \(t,u\), subject to
+\(yD(t)+xD(u)=0\). Differentiating the inverses determines their values
+and imposes no further relations. This is the universal property of the
+cokernel in (N8). Finally the kernel of \(\partial\) is
+\(\operatorname{Ann}(y)\cap\operatorname{Ann}(x)=0\) by (N4). The
+complex has no other degrees, proving all cohomology assertions.
+\(\square\)
+
+\subsection{3. The differential lost on the separate
+branches}\label{the-differential-lost-on-the-separate-branches}
+
+Give \(T\,dt\oplus V\,du\) its \(A\)-module structure through the
+respective projections. Define \[
+\psi:\Omega^1_{A/\mathbb Z}\longrightarrow T\,dt\oplus V\,du,
+\quad [a\,dt+b\,du]\longmapsto(a(t,1)\,dt,b(1,u)\,du),
+\quad\kappa=x\,du=-y\,dt.
+\tag{N9}
+\]
+
+\textbf{Theorem N2.} There is an exact sequence of \(A\)-modules \[
+0\longrightarrow(A/\mathfrak m)\kappa
+\longrightarrow\Omega^1_{A/\mathbb Z}
+\xrightarrow{\psi}T\,dt\oplus V\,du\longrightarrow0.
+\tag{N10}
+\] Here \(A/\mathfrak m=\mathbb Z\), the class \(\kappa\) has infinite
+additive order, and \(\operatorname{Ann}_A(\kappa)=\mathfrak m\). The
+sequence splits as a sequence of abelian groups and does not split as a
+sequence of \(A\)-modules.
+
+\textbf{Proof.} The relation in (N8) maps to zero under \(\psi\); lifts
+of the two coefficients establish surjectivity. Before quotienting by
+that relation, the kernel consists uniquely of forms \[
+yh(u)\,dt+xg(t)\,du,\quad h\in V,\ g\in T.
+\] Send this expression to \(g(1)-h(1)\in\mathbb Z\). A multiple
+\(a(y\,dt+x\,du)\) has coefficients \(h=a(1,u)\), \(g=a(t,1)\), whose
+evaluations agree. Conversely, agreement of those evaluations produces
+exactly one element \(a\in T\times_{\mathbb Z}V=A\), showing that the
+form is a relation. Hence this map identifies \(\ker\psi\) with
+\(\mathbb Z\), carrying \(\kappa\) to 1. Multiplication by \(a\in A\)
+multiplies this integer by \(\epsilon(a)\), proving both the action and
+the annihilator.
+
+An additive section sends \((f(t)dt,g(u)du)\) to the same written form
+in \(\Omega^1_A\), using the inclusions \(T,V\to A\). It is well-defined
+and \(\mathbb Z\)-linear. An \(A\)-linear section cannot exist: a lift
+of \((dt,0)\) must have the form \(dt+n\kappa\). Multiplication by \(y\)
+kills \((dt,0)\) in the target, whereas \(y(dt+n\kappa)=-\kappa\ne0\).
+This contradicts \(A\)-linearity. \(\square\)
+
+This locates the mixed class in the kernel of a particular restriction
+of degree-zero differentials. Its connecting maps (N7)--(N10) retain
+both its relation to the cotangent complex and the vanishing of
+\(H^{-1}(L_{A/\mathbb Z})\).
+
+\subsection{4. The exact de Rham complex and its retained
+kernel}\label{the-exact-de-rham-complex-and-its-retained-kernel}
+
+Let \(\Omega^i_A=\bigwedge^i_A\Omega^1_{A/\mathbb Z}\) and let \(d\) be
+the ordinary Kähler-de Rham differential. Put \(\omega=dt\wedge du\).
+Wedging the relation \(y\,dt+x\,du\) with \(dt\) gives \(-x\omega\);
+wedging it with \(du\) gives \(y\omega\). These generate all exterior
+relations in degree two. Since there are only two generators, \[
+\Omega^2_A=(A/\mathfrak m)\omega=\mathbb Z\omega,
+\quad \Omega^i_A=0\ (i\ge3),\qquad d\kappa=\omega.
+\tag{N11}
+\] The last equality follows from \(d(x\,du)=dx\wedge du\), with
+\(dx=dt\); its sign fixes all later diagrams.
+
+Define the branch complex \[
+\mathcal D^0=T\times_{\mathbb Z}V=A,
+\quad\mathcal D^1=T\,dt\oplus V\,du,
+\quad d_{\mathcal D}(g,h)=(g'(t)dt,h'(u)du),
+\quad\mathcal D^i=0\ (i\ne0,1).
+\tag{N12}
+\] Restriction is a surjective cochain map
+\(\rho:\Omega^\bullet_A\to\mathcal D^\bullet\), by the naturality of
+derivations. Its exact kernel is \[
+\mathcal E^1=\mathbb Z\kappa,
+\quad\mathcal E^2=\mathbb Z\omega,
+\quad d:\mathcal E^1\xrightarrow{\sim}\mathcal E^2,
+\quad\kappa\longmapsto\omega,
+\quad\mathcal E^i=0\ (i\ne1,2).
+\tag{N13}
+\] The contraction \(s(\omega)=\kappa\), zero in other degrees,
+satisfies \(ds+sd=1\) on \(\mathcal E\). Thus the retained kernel is
+explicitly nonzero and contractible.
+
+\textbf{Theorem N3.} The restriction \(\rho\) is a quasi-isomorphism of
+these ordinary de Rham complexes, and (N13) is its full kernel.
+Explicitly, \[
+H^0(\Omega^\bullet_A)=\mathbb Z,\qquad H^2(\Omega^\bullet_A)=0,
+\tag{N14}
+\] and \[
+H^1(\Omega^\bullet_A)\cong
+\left(\mathbb Z[t^{-1}dt]\oplus
+\bigoplus_{n\in\mathbb Z\setminus\{0\}}(\mathbb Z/n\mathbb Z)[t^{n-1}dt]\right)
+\oplus
+\left(\mathbb Z[u^{-1}du]\oplus
+\bigoplus_{n\in\mathbb Z\setminus\{0\}}(\mathbb Z/n\mathbb Z)[u^{n-1}du]\right).
+\tag{N15}
+\]
+
+\textbf{Proof.} Each branch one-form has a lift \(\eta\). If
+\(d\eta=n\omega\), then \(\eta-n\kappa\) is a closed lift. If a closed
+form maps to a branch boundary, subtract the derivative of the
+corresponding element of \(A\). The result is a closed member of
+\(\mathbb Z\kappa\), hence zero because \(d\kappa=\omega\) has infinite
+order. These statements prove the bijection on degree-one cohomology. If
+an element of \(A\) has zero branch derivatives, its derivative lies in
+\(\mathbb Z\kappa\) and is closed, so it is zero; this proves the
+bijection in degree zero. Every two-form is a derivative by (N11),
+proving degree two.
+
+A Laurent polynomial over \(\mathbb Z\) has zero derivative exactly when
+it is constant, and the constants of the two branches must agree.
+Derivatives on the two branches can be chosen independently: subtract
+the evaluations at 1 from two primitives, obtaining a compatible pair
+with the same derivatives. On the \(t\)-branch, \(d(t^n)=n t^{n-1}dt\)
+for every integer \(n\); the coefficient positions \(t^{n-1}dt\) are
+distinct. The position \(n=0\) is unrestricted, and each other position
+is quotiented by \(n\mathbb Z\). This proves the first direct summand in
+(N15), and the identical calculation with \(u\) proves the second. The
+ideals \(n\mathbb Z\) retain the signed integer indexing used by the
+original derivative. \(\square\)
+
+\subsection{5. Frobenius on forms and on the cotangent
+presentation}\label{frobenius-on-forms-and-on-the-cotangent-presentation}
+
+Fix a prime \(p\) and put \[
+Q_p(z)=1+z+\cdots+z^{p-1},\quad q_p=Q_p(t)Q_p(u),
+\quad\phi(t)=t^p,\quad\phi(u)=u^p,\quad\phi|_{\mathbb Z}=1.
+\tag{N16}
+\] The equality \(\phi(j)=jq_p\) proves that \(\phi\) descends to \(A\).
+Write \(\phi_i\) for its \(\phi\)-semilinear map on \(i\)-forms, meaning
+\(\phi_i(a\eta)=\phi(a)\phi_i(\eta)\). Then \[
+\phi_1(dt)=p t^{p-1}dt,\quad
+\phi_1(du)=p u^{p-1}du,\quad
+\phi_1(\kappa)=p^2\kappa,\quad
+\phi_2(\omega)=p^2\omega.
+\tag{N17}
+\] Indeed \(\phi_1(xdu)=pQ_p(t)u^{p-1}\kappa=p^2\kappa\), since \(A\)
+acts on \(\kappa\) through \(\epsilon\). The wedge formula gives the
+last equality by the same action on \(\omega\). These maps commute with
+\(d\) and with \(\rho\). On (N15), the \(t\)-summand with index
+\(n\ne0\) maps by \[
+\mathbb Z/n\mathbb Z\longrightarrow\mathbb Z/(pn)\mathbb Z,
+\quad [a]\longmapsto[pa],
+\tag{N18}
+\] and the \(n=0\) summand maps by multiplication by \(p\). This follows
+by applying \(\phi_1\) to \(t^{n-1}dt\). The formula is well-defined
+because changing \(a\) by \(nb\) changes \(pa\) by \(pnb\). The
+\(u\)-summands obey the same rule.
+
+On the cotangent presentation, the induced map is \[
+\mathcal L^{-1}\to\mathcal L^{-1}:a\overline j\longmapsto q_p\phi(a)\overline j,
+\quad
+\mathcal L^0\to\mathcal L^0:
+a\,dt+b\,du\longmapsto p\phi(a)t^{p-1}dt+p\phi(b)u^{p-1}du.
+\tag{N19}
+\] This is a cochain map: differentiating \(\phi(j)=jq_p\) gives
+\(d\phi(j)=q_p dj+j\,dq_p\), whose last term vanishes in \(A\). This
+also proves compatibility of the conormal comparison (N6) with the
+original Frobenius on \(jR\).
+
+\subsection{6. Divided Frobenius and the changed
+differential}\label{divided-frobenius-and-the-changed-differential}
+
+The groups of forms are torsion-free over \(\mathbb Z\): for degree one
+use (N10) and its torsion-free kernel and target, and for degree two use
+(N11). Consequently division by an integer, when possible, is unique.
+Define integral operators \[
+F_0=\phi,\qquad F_1=p^{-1}\phi_1,\qquad F_2=p^{-2}\phi_2.
+\tag{N20}
+\] For degree one, the formula
+\(F_1(a\,dt+b\,du)=\phi(a)t^{p-1}dt+\phi(b)u^{p-1}du\) preserves the
+relation, because its image is
+\(yQ_p(u)t^{p-1}dt+xQ_p(t)u^{p-1}du=-p\kappa+p\kappa=0\). Degree two is
+immediate from (N17). Thus \[
+F_1(\kappa)=p\kappa,\quad F_2(\omega)=\omega,
+\qquad dF_i=pF_{i+1}d.
+\tag{N21}
+\] The last identity follows by dividing \(d\phi_i=\phi_{i+1}d\) by
+\(p^i\), with uniqueness justified by torsion-freeness. The correctly
+typed cochain map is \[
+F:(\Omega^\bullet_A,pd)\longrightarrow(\Omega^\bullet_A,d).
+\tag{N22}
+\] On the retained kernel its source and target are \[
+\begin{array}{ccc}
+\mathbb Z\kappa&\xrightarrow{\ p\ }&\mathbb Z\omega\\
+\downarrow p&&\downarrow1\\
+\mathbb Z\kappa&\xrightarrow{\ 1\ }&\mathbb Z\omega.
+\end{array}
+\tag{N23}
+\] The lower complex is contractible. The upper has zero degree-one
+cohomology and degree-two cohomology \((\mathbb Z/p)\omega\), by
+injectivity and cokernel of multiplication by \(p\). Thus changing the
+differential in the divided-Frobenius source produces an explicit
+retained residue class. We keep both complexes and their exact map.
+
+Division also has an integral lift on \(\mathcal L\), with a different
+degree convention from the exterior complex. In \(A\), \[
+(Q_p(t)-p)(Q_p(u)-p)=0,\quad
+q_p=pc_p,\qquad c_p=Q_p(t)+Q_p(u)-p.
+\tag{N24}
+\] The first identity holds since its factors lie in \((x)\) and
+\((y)\). Dividing both components of (N19) by \(p\) therefore gives the
+cochain map on \(\mathcal L\) with degree \(-1\) multiplier \(c_p\) and
+degree zero multipliers \(t^{p-1},u^{p-1}\), always with coefficient
+action \(\phi\). Explicitly, \(c_py=yQ_p(u)\), \(c_px=xQ_p(t)\),
+\(t^{p-1}y=y\) and \(u^{p-1}x=x\); these identities verify both
+components of its commutation with \(\partial\).
+
+\subsection{7. Linearization retains cyclotomic branch
+data}\label{linearization-retains-cyclotomic-branch-data}
+
+The action \(F_1:\mathbb Z\kappa\to\mathbb Z\kappa\) is multiplication
+by \(p\) as an additive map. Its \(A\)-linearization has the exact
+source \[
+A\otimes_{A,\phi}(A/\mathfrak m)
+\cong A/\phi(\mathfrak m),
+\quad\phi(\mathfrak m)=(xQ_p(t),yQ_p(u)).
+\tag{N25}
+\] Here \(\phi(\mathfrak m)\) denotes the ideal generated by the image,
+and balancing means \(a\phi(b)\otimes m=a\otimes bm\). The isomorphism
+sends \(a\otimes\overline b\) to \(a\phi(b)\) modulo that ideal; its
+inverse sends \(a\) to \(a\otimes1\). These formulas verify both
+balancing and the inverse assertions.
+
+Linearization of \(F_1\) is \([a]\mapsto p\epsilon(a)\kappa\). Since
+\(\mathbb Z\) has no \(p\)-torsion, its exact sequence is \[
+0\longrightarrow\mathfrak m/\phi(\mathfrak m)
+\longrightarrow A/\phi(\mathfrak m)
+\longrightarrow\mathbb Z\kappa
+\longrightarrow(\mathbb Z/p)\kappa\longrightarrow0.
+\tag{N26}
+\] The axis decomposition and cancellation of \(x\) in \(T\), and of
+\(y\) in \(V\), give \[
+\mathfrak m/\phi(\mathfrak m)
+\cong T/(Q_p(t))\oplus V/(Q_p(u)).
+\tag{N27}
+\] Each summand is free of rank \(p-1\) over \(\mathbb Z\): \(Q_p\) is
+monic of degree \(p-1\), giving the polynomial remainder basis, and its
+constant coefficient 1 makes its variable invertible in that quotient.
+Hence the linearized source has additive rank \(2p-1\), its kernel rank
+\(2p-2\), and its cokernel is exactly \(\mathbb Z/p\). For the undivided
+map \(\phi_1\), the same source and kernel occur, and the cokernel is
+\(\mathbb Z/p^2\), since the formula is
+\([a]\mapsto p^2\epsilon(a)\kappa\).
+
+These two cyclotomic quotients are further quotients of the branch
+restrictions of the earlier Frobenius defect: in \(R/(q_p)\),
+restricting to \(u=1\) gives \(T/(pQ_p(t))\). The further quotient to
+\(T/(Q_p(t))\) is the surjection induced by the identity of \(T\), with
+exact kernel \(Q_p(t)T/pQ_p(t)T\cong T/pT\), where the isomorphism is
+multiplication by \(Q_p(t)\). Interchanging \(t,u\) gives the other
+branch. Thus (N27) is related to the earlier defect by explicit quotient
+maps and their nonzero kernels.
+
+The first restriction also has an exact kernel: \[
+0\longrightarrow R/(q_p)\xrightarrow{\ \cdot y\ }R/(q_p)
+\longrightarrow T/(pQ_p(t))\longrightarrow0.
+\tag{N27a}
+\] To prove injectivity, suppose \(yr=q_ps\) in \(R\). Evaluating at
+\(u=1\) gives \(0=pQ_p(t)s(t,1)\) in the domain \(T\); hence \(s=yh\).
+Cancelling \(y\) in \(R\) gives \(r=q_ph\). The image is the ideal
+generated by \(y\), and quotienting by that ideal is exactly evaluation
+at \(u=1\), proving the remaining assertions. Interchanging \(t,u\)
+gives the corresponding sequence with multiplication by \(x\).
+
+\subsection{8. The derived fibre and a nontrivial first-order
+deformation}\label{the-derived-fibre-and-a-nontrivial-first-order-deformation}
+
+The complex \(\mathcal L\) consists of finite free \(A\)-modules, so
+derived tensor with \(A/\mathfrak m=\mathbb Z\) is its termwise tensor.
+Both \(x,y\) become zero. Therefore \[
+\mathbb Z\otimes_A^{\mathbf L}L_{A/\mathbb Z}
+\simeq[\mathbb Z\overline j\xrightarrow{0}\mathbb Z\,dt\oplus\mathbb Z\,du],
+\quad H^{-1}=\mathbb Z\overline j,\quad H^0=\mathbb Z^2.
+\tag{N28}
+\] The exact morphism is the coefficientwise reduction
+\(\mathcal L\to\mathbb Z\otimes_A\mathcal L\). The new degree \(-1\)
+group records that fibre operation and retains its relation to (N8).
+
+Dualizing the same finite free complex gives \[
+\operatorname{Ext}^1_A(L_{A/\mathbb Z},A)
+=\operatorname{coker}\bigl(A^2\xrightarrow{(b,c)\mapsto yb+xc}A\bigr)
+=A/(x,y)=\mathbb Z.
+\tag{N29}
+\] The degree-zero dual kernel is \(xT\oplus yV\), because \(yb=-xc\)
+lies in \((x)\cap(y)=0\), after which (N4) applies to each term. This
+also computes every derivation \(A\to A\) by its two values.
+
+An explicit deformation realizing a nonzero class is \[
+D=\mathbb Z[\varepsilon]/(\varepsilon^2),\qquad
+\widetilde A=R[\varepsilon]/(\varepsilon^2,j-\varepsilon)
+\cong R/(j^2),\qquad\varepsilon\mapsto j.
+\tag{N30}
+\] It is free as a \(D\)-module. To prove this, use the additive section
+\(\sigma:A\to R\), \((g,h)\mapsto g+h-g(1)\), and write \(S=\sigma(A)\).
+Equation (N2) gives \(R=S\oplus jR\) as abelian groups. Multiplication
+by \(j\) is injective, so \(jR=jS\oplus j^2R\). Consequently
+\(R/j^2R=S\oplus jS\), with multiplication by \(\varepsilon=j\) carrying
+\(s\) to \(js\) and \(js\) to zero. Since \(A\), and hence \(S\), is
+free over \(\mathbb Z\) by (N3), choosing its basis exhibits \(R/j^2R\)
+as a direct sum of copies of \(D\). This proves flatness as well as
+freeness and identifies the special fibre with \(A\).
+
+No \(D\)-algebra isomorphism \(\widetilde A\to A\otimes_{\mathbb Z}D\)
+reducing to the identity on \(A\) exists. Such an isomorphism would send
+\(t,u\) to \(t+\varepsilon a,u+\varepsilon b\), respectively. The
+relation \(j=\varepsilon\) would then require \(ya+xb=1\) in \(A\),
+which evaluation \(\epsilon\) contradicts. The identification
+\(\varepsilon\widetilde A\cong A\) sends \(\varepsilon\widetilde a\) to
+the special-fibre value of \(\widetilde a\); it is well-defined and
+bijective by the displayed free \(D\)-module decomposition. Evaluating
+the defining relation on the chosen lifts sends the conormal generator
+\(\overline j\) to 1 under this identification. Changing those lifts
+adds exactly \(ya+xb\). Thus its class in the cokernel (N29) is the
+nonzero constant 1, and the family is nontrivial with the specified
+special-fibre identification. This statement includes the actual family
+and proof, rather than only an obstruction group.
+
+\subsection{9. Completion and the exact prismatic
+comparison}\label{completion-and-the-exact-prismatic-comparison}
+
+Let \(B=\varprojlim_nR/p^nR\), \(\widehat A=\varprojlim_nA/p^nA\),
+\(\widehat T=\varprojlim_nT/p^nT\), and define \(\widehat V\) similarly.
+Equation (N3) and its explicit section persist modulo every \(p^n\);
+inverse limit therefore gives \[
+\widehat A=B/jB\cong\widehat T\times_{\mathbb Z_p}\widehat V,
+\qquad\widehat A=\mathbb Z_p\oplus x\widehat T\oplus y\widehat V.
+\tag{N31}
+\] For the equality with \(B/jB\), the finite additive decomposition
+\(R=\mathbb Z\oplus xT\oplus yV\oplus jR\) is split. Multiplication
+\(R\to jR\) is an isomorphism for the intrinsic \(p\)-adic topologies,
+so its completion identifies the last summand with \(jB\). Thus (N31)
+follows from actual split maps, without a general exactness assertion
+about completion.
+
+Define the continuous forms used here by
+\(\widehat\Omega^i=\varprojlim_n\Omega^i_A/p^n\Omega^i_A\), and likewise
+complete \(\mathcal D\) and \(\mathcal E\) degreewise. These are
+specified completions of the finite-presentation differential objects;
+no identification with unrestricted algebraic differentials of a
+completed ring is required. The additive section in Theorem N2 is split,
+so \[
+0\longrightarrow\mathbb Z_p\kappa\longrightarrow\widehat\Omega^1
+\longrightarrow\widehat T\,dt\oplus\widehat V\,du\longrightarrow0,
+\quad\widehat\Omega^2=\mathbb Z_p\omega,
+\quad d\kappa=\omega.
+\tag{N32}
+\] The original maps preserve \(p^n\) multiples. Their finite
+identities, including \(ds+sd=1\) on \(\mathcal E\), therefore hold in
+every quotient and in the inverse limit. The completed de Rham
+restriction has the exact contractible kernel
+\([\mathbb Z_p\kappa\xrightarrow{1}\mathbb Z_p\omega]\) and is a
+quasi-isomorphism by the same explicit closed-lift proof as N3. We do
+not replace its cohomology by the completion of (N15).
+
+The completed cotangent model is
+\([\widehat A\overline j\to\widehat A^2]\) with the same map \((y,x)\).
+Equations (N4) hold in (N31): the one-variable completed Laurent rings
+are domains, as reduction modulo \(p\) followed by finite \(p\)-adic
+valuation shows. The same projection proof therefore makes its
+differential injective. All Frobenius and divided identities
+(N16)--(N24) extend by continuity. The source of the completed retained
+divided map has degree-two cohomology \(\mathbb F_p\omega\).
+
+The completed analogue of (N27) consists of the two finite free rings
+\(\mathbb Z_p[t]/Q_p(t)\) and \(\mathbb Z_p[u]/Q_p(u)\). Indeed
+polynomial division by each monic \(Q_p\) identifies the quotient with
+the indicated finite free module, in which the variable is already
+invertible; its inverse limit is obtained by completing each of its
+finitely many coefficients. The evaluation splitting and cancellation of
+the factors \(x,y\) then give (N26) over \(\mathbb Z_p\), with kernel
+rank \(2p-2\) and cokernel \(\mathbb F_p\kappa\). The earlier defect map
+is correspondingly
+\(B/(q_p)\to\widehat T/(pQ_p(t))\to\widehat T/(Q_p(t))\), and its last
+kernel is \(\widehat T/p\widehat T\) by the same multiplication proof.
+
+Here the quotient/completion comparison itself is split before taking
+limits. Let \(P_{<p-1}\) be the group of integer polynomials of degree
+less than \(p-1\). Laurent remainders modulo \(Q_p(t)\) are uniquely
+defined because \(t^{-1}=-(1+t+\cdots+t^{p-2})\) modulo \(Q_p(t)\),
+followed by monic polynomial division. Thus \(T=Q_p(t)T\oplus P_{<p-1}\)
+as abelian groups. Multiplication by \(Q_p(t)\) is an isomorphism from
+\(T\) to the first summand for its intrinsic \(p\)-adic topology.
+Completing the two split summands proves
+\(\widehat T=Q_p(t)\widehat T\oplus\mathbb Z_p^{p-1}\), which gives the
+asserted completed quotient without exchanging a general nonsplit
+quotient and inverse limit. For the first branch map, complete the split
+decomposition \(R=T\oplus yR\) to obtain \(\ker(B\to\widehat T)=yB\).
+The proof of (N27a) then works verbatim in \(B\), since both \(B\) and
+\(\widehat T\) are domains. Consequently the first completed branch map
+has kernel identified with \(B/(q_p)\) by multiplication by \(y\), and
+the other has the corresponding kernel by multiplication by \(x\).
+
+Finally,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6af54ea3c8ef99127af327f3103e086c68d482c2/workbenches/splitzero-tandem/branches/identity-absorber-square/FROBENIUS_CROSS_EFFECT.md}{Frobenius
+on the retained cross-effect}, Theorem F3, proves that
+\((B,(p))\to(\widehat A,(p))\) is a morphism of bounded crystalline
+prisms with kernel \(jB\), identified with the completed \(W\) of (N5).
+Thus the ring, conormal, differential, cyclotomic and de Rham objects in
+this paper are attached by explicit maps to that specified prism
+morphism. The local computations here do not assert a comparison
+equivalence with global absolute prismatic cohomology.
+
+\subsection{10. Source identity and exact
+use}\label{source-identity-and-exact-use}
+
+The user-designated \href{https://zenodo.org/records/22884471}{Zenodo
+edition 22884471} contains both volumes of Luc Illusie's \emph{Complexe
+cotangent et déformations} in diplomatic and corrected French TeX. Its
+README identifies the transcription and corrected edition as
+Codex-produced, without human editorial review. These are editions of
+Illusie's work, not original author TeX. The intact source archives and
+the two treatments remain distinct in the source collection.
+
+The actual theorem used in N1 is volume I, Chapter III, Proposition
+3.2.4(iii), printed pages 207--209, with the definition of regular
+ideals in III 3.2.2. The smooth input is III 3.1.2(i)--(ii), read with
+its proof in the diplomatic text at lines 22946--23162. The transitivity
+input is Chapter II, Proposition 2.1.2 and (2.1.2.1), printed pages
+133--135. In the diplomatic cumulative TeX, the relevant reading was
+lines 23386--23779 and 14089--14384. The III 3.2.4 statement and proof
+were compared with the corrected text at lines 23398--23450 and
+23571--23593. The corrected page-208 base-change display explicitly
+inserts the tensor base \(A\), absent in that diplomatic display. The
+specialization above supplies the coefficient ring at every map.
+Broader-volume or volume-II theorem reading is not claimed.
+
+The exact volume-I TeX SHA256 values are:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diplomatic}
+\NormalTok{82c5831f601801736688348801b17dbc7d59189c4e5a0f357d0709a233795b7f}
+\NormalTok{corrected}
+\NormalTok{6350bf6f15e44be78ca2abb1f126d037a245ac8ed48793166a981dde9b173a67}
+\end{Highlighting}
+\end{Shaded}
+
+The regular-immersion and transitivity foundations are Illusie's
+results; the explicit calculations (N1)--(N32) are derived here. The
+prism definitions and proof sources remain those precisely cited in
+\emph{Frobenius on the retained cross-effect}: Bhatt--Scholze,
+\emph{Prisms and Prismatic Cohomology}, and Bhatt--Lurie, \emph{Absolute
+Prismatic Cohomology}.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Mixed differentials, de Rham restriction and divided Frobenius}]{figures/13_node_differentials.png}}
+\caption{Mixed differentials, de Rham restriction and divided Frobenius}
+\end{figure}
+
+The figure records (N9)--(N13), (N21)--(N23) and (N25)--(N27). Its
+branch picture is a scheme diagram for the two Laurent axes meeting at
+\(t=u=1\), not a plot of all arithmetic points. The signs, coefficient
+groups and degrees in the displayed maps are those proved above.
+
+\subsection{The observed collision as an exact node
+receiver}\label{the-observed-collision-as-an-exact-node-receiver}
+
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/c9df443d9e1df000dfbb083943f97197e746eb08/workbenches/splitzero-tandem/branches/identity-absorber-square/OBSERVED_COTANGENT_FROBENIUS.md}{Observed
+cotangent and Frobenius} carries the node calculation to
+\(z(z-as-\epsilon r)=0\), with both directions of the coordinate map
+specified. Its relative cotangent differential is \(2z-as-\epsilon r\);
+its absolute differential also retains \(-az\,ds\). The collision fibre
+has its full derived degree-minus-one term, and the discriminant is
+\((as+\epsilon r)^2\). The accompanying integral model constructs a
+Frobenius respecting the shifted parameter and calculates the exact
+defect of the coordinatewise alternative. The Laurent localization
+comparison retains the original node coordinates instead of identifying
+different open rings.
+
+\end{document}

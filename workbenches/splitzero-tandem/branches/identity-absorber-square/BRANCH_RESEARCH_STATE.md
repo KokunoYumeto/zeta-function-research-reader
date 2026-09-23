@@ -1,0 +1,17 @@
+# Identity Absorber Square — research collection
+
+This exploratory branch of the Split-Zero programme studies identity and absorber adjunctions, supported arithmetic, and their exact coefficient, cohomological and geometric receivers. The original tau element remains distinct from supported ring zero. The four-role framing and research direction originate with the programme's creator; the original manuscripts and human mathematical sources retain their authorship.
+
+The seventeen papers contain complete proofs of the four integer roles and their isomorphisms and congruences; arbitrary-ring receivers and adjunction orders; monoid-ring decompositions; crystalline prism constructions, Frobenius lifts and arithmetic defects; the chain comparison; retained cross-effects of contractible complexes; contraction projectors; mixed-support fibres and joins; Frobenius linearizations and quotient prisms; the node cotangent and divided de Rham calculation; the primitive-to-dual-numbers construction; and its original arithmetic operator receiver.
+
+The last constructions reach an existing arithmetic boundary operator and the same two-column data used in the programme's current estimates. Retaining both support sectors gives a projective module; restricting its coefficients gives the exact positive Tor groups, identified with the full current kernel. Observation preserves this relation through explicitly calculated multiplication defects. A flat family from split idempotents to the original nilpotent has exact metric costs and leaves the entire current unchanged along its real parameter. These statements retain their full proofs and original norms.
+
+Dual numbers and first infinitesimal neighbourhoods are established mathematics. The source comparison identifies the supported primitive quotient with the first neighbourhood of the identity in the multiplicative group. The historical GCT source discusses different, nonstandard quantum groups and prospective finite-field RH positivity methods. This collection does not claim a map to those quantum groups, a new GCT/RH formulation, a determination of the marked terminal sign, or an equivalence with absolute prismatic cohomology. Its exact coefficient prisms, cohomological maps and arithmetic receiver supply concrete objects for further investigation.
+
+Markdown and corresponding cumulative and individual LaTeX carry all proofs. Twenty figures have reproducible Matplotlib or SVG sources. Computational checks have their stated finite or symbolic scope; they supplement the proofs and are not a formal Lean verification or human peer review. Human literature is cited through original source links, with exact reading scope in the source guide. Private reading archives and correspondence are excluded from this collection.
+
+
+## Observed collision propagation
+
+The observed family reaches its dual-number fibre at \(s_*=-\epsilon r/a\), with \(\Im s_*=\operatorname{tr}W_B(0)/(2a)\). The extension now includes the full characteristic polynomial and resolvent receiver, the exact current-kernel Tor group, the retained support and cubic mixed factorization, sharp signed support bounds, and the relative/absolute cotangent and integral Frobenius constructions. Each has a complete standalone proof and the cumulative source includes all retained papers. The original arithmetic parameter, marked vectors, metric and Hermitian action remain explicit. Its public originating result is DF1–12 in edition 4ba9285b66af58a6d58fc502a494c1fb45ca5b79.
+

@@ -1,0 +1,2004 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+
+\geometry{a4paper, margin=0.8in}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{construction}[theorem]{Construction}
+
+\numberwithin{equation}{section}
+
+% Custom commands
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+% Specific elements and structures
+\newcommand{\Tobj}{\mathcal{T}} % Adjoined element (Globalization, Zero of S)
+\newcommand{\OmegaObj}{\Omega} % Adjoined element (Absorber of S')
+\newcommand{\SemiringS}{\mathcal{S}}
+\newcommand{\SemiringSPrime}{\mathcal{S}'}
+\newcommand{\Ztwo}{\mathbb{Z}/2\mathbb{Z}}
+\newcommand{\Bool}{\mathbb{B}} % Boolean semiring
+\newcommand{\BoolExt}{\mathbb{B}_{\mathrm{ext}}} % Extended Boolean semiring
+
+% Algebraic concepts
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\MaxSpec}{MaxSpec}
+\DeclareMathOperator{\MinSpec}{MinSpec}
+\DeclareMathOperator{\KrullDim}{Kdim}
+\DeclareMathOperator{\Cong}{Cong}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Ker}{Ker}
+
+% Number Theory
+\newcommand{\OK}{\mathcal{O}_K}
+\newcommand{\SOK}{S(\OK)}
+\newcommand{\SPOK}{S'(\OK)}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+
+% Categories
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\SRing}{\mathbf{SRing}}
+\newcommand{\SRingZero}{\mathbf{SRing}_0}
+\newcommand{\SRingH}{\mathbf{SRing}_H}
+
+% Sets of singlets
+\newcommand{\SetA}{\mathcal{A}}
+\newcommand{\SetAPrime}{\mathcal{A}'}
+
+% Notation for specific elements
+\newcommand{\ZeroZ}{0_{\Z}}
+\newcommand{\OneZ}{1_{\Z}}
+\newcommand{\ZeroS}{0_{\SemiringS}}
+\newcommand{\OneS}{1_{\SemiringS}}
+\newcommand{\ZeroSPrime}{0_{\SemiringSPrime}}
+\newcommand{\OneSPrime}{1_{\SemiringSPrime}}
+
+\title{An Examination of Semiring Structures Derived from the Integers by Sequential Adjunction of Identity and Absorbing Elements}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We conduct a systematic investigation of two algebraic structures constructed sequentially from the ring of integers $\Z$. The first structure, $\SemiringS$, is the globalization $G(\Z)$, obtained by adjoining an element $\Tobj$ defined as the additive identity and multiplicative absorber. We establish through verification of the axioms that $\SemiringS$ is a commutative unital standard semiring. A comprehensive analysis of its algebraic properties demonstrates that $\SemiringS$ is a Principal Ideal Semiring (PIS), an integral semidomain, and zerosumfree, with all ideals being subtractive. Its Krull dimension is determined to be 2. We provide a complete classification of its congruences. We analyze its factorization properties, proving that $\SemiringS$ is not a Unique Factorization Domain (UFD); specifically, the element $0_{\Z}$ is shown to be prime but reducible, and it lacks a factorization into irreducibles. The ideal zeta function is computed as $\zeta_{\SemiringS}(s)=\zeta(s)$. The action of the unit group $U(\SemiringS) \cong \Ztwo$ identifies the set of fixed points (singlets) $\SetA = \{0_{\Z}, \Tobj\}$, which forms a sub-semiring isomorphic to the Boolean semiring $\Bool$.
+
+The second structure, $\SemiringSPrime$, is constructed by adjoining a universal absorbing element $\OmegaObj$ to $\SemiringS$ (the absorber adjunction $A(\SemiringS)$). We prove that $\SemiringSPrime$ is a commutative unital hemiring, but not a standard semiring, as the additive identity ($\Tobj$) is distinct from the multiplicative absorber ($\OmegaObj$). We analyze $\SemiringSPrime$, proving it is a PIS and zerosumfree. We establish that no proper ideal in $\SemiringSPrime$ is subtractive, a consequence of the presence of an additive absorber. Its Krull dimension is determined to be 3. The singlets of $\SemiringSPrime$ form an idempotent sub-hemiring $\SetAPrime=\{0_{\Z}, \Tobj, \OmegaObj\}$, isomorphic to the extended Boolean semiring $\BoolExt$.
+
+Generalizations to rings of integers $\OK$ in algebraic number fields are examined. We prove that the class semigroup of $\SOK$ is isomorphic to the class group $\Cl(K)$. We conclude with a discussion of the topological and categorical implications, demonstrating how the sequential application of the functors $G$ and $A$ systematically increases the Krull dimension by introducing new generic points, satisfying $\KrullDim(A(G(\OK))) = \KrullDim(\OK)+2$.
+\end{abstract}
+
+\tableofcontents
+
+\section{Set-Theoretic Foundations and the Construction of Integers}
+
+We operate within the axiomatic framework of Zermelo-Fraenkel set theory with the Axiom of Choice (ZFC), as detailed in \cite{JechSetTheory}. We commence by recapitulating the construction of the standard number systems, ensuring precision in the definitions upon which subsequent algebraic structures are erected.
+
+\subsection{The Natural Numbers $\omega$}
+
+We employ the von Neumann construction of the natural numbers, which is predicated upon the Axiom of Infinity.
+
+\begin{definition}
+A set $S$ is termed \emph{inductive} if it satisfies the following two conditions:
+\begin{enumerate}
+    \item The empty set $\emptyset$ is an element of $S$.
+    \item For every $x \in S$, the successor of $x$, defined as $S(x) = x \cup \{x\}$, is also an element of $S$.
+\end{enumerate}
+\end{definition}
+
+The Axiom of Infinity asserts the existence of at least one inductive set.
+
+\begin{definition}
+The set of natural numbers, denoted by $\omega$ (or $\N_0$), is defined as the intersection of all inductive sets:
+\begin{equation}
+    \omega := \bigcap \{S \mid S \text{ is inductive}\}.
+\end{equation}
+\end{definition}
+
+\begin{lemma}\label{lem:omega_smallest_inductive}
+The set $\omega$ is an inductive set, and it is the smallest such set with respect to the inclusion relation; that is, if $S'$ is an inductive set, then $\omega \subseteq S'$.
+\end{lemma}
+\begin{proof}
+Let $\mathcal{I}$ denote the collection of all inductive sets. By the Axiom of Infinity, $\mathcal{I}$ is non-empty. We must verify that $\omega = \bigcap \mathcal{I}$ satisfies the definition of an inductive set.
+
+(i) Verification of $\emptyset \in \omega$. By the definition of an inductive set, $\emptyset \in S$ for every $S \in \mathcal{I}$. Consequently, $\emptyset$ is an element of the intersection of all elements of $\mathcal{I}$. Therefore, $\emptyset \in \omega$.
+
+(ii) Verification of closure under the successor operation. Let $x \in \omega$. By the definition of intersection, $x \in S$ for every $S \in \mathcal{I}$. Since each $S \in \mathcal{I}$ possesses the property of being inductive, it follows that the successor $S(x)$ is an element of $S$ for every $S \in \mathcal{I}$. Consequently, $S(x)$ is an element of the intersection $\bigcap \mathcal{I}$. Therefore, $S(x) \in \omega$.
+
+The two conditions being satisfied, $\omega$ is an inductive set.
+
+To demonstrate the minimality property, let $S'$ be an arbitrary inductive set. By definition, $S' \in \mathcal{I}$. By the properties of set intersection, $\bigcap \mathcal{I} \subseteq S'$. Therefore, $\omega \subseteq S'$.
+\end{proof}
+
+\begin{notation}
+We denote the elements of $\omega$ using standard numerals: $0 := \emptyset$, $1 := S(0) = \{0\}$, $2 := S(1) = \{0, 1\}$, and so forth.
+\end{notation}
+
+\begin{theorem}[Principle of Mathematical Induction]\label{thm:induction}
+Let $A$ be a subset of $\omega$. If $0 \in A$ and for all $n \in \omega$, the condition $n \in A$ implies $S(n) \in A$, then $A=\omega$.
+\end{theorem}
+\begin{proof}
+The hypotheses imposed upon the set $A$ precisely state that $A$ is an inductive set. By the minimality established in Lemma \ref{lem:omega_smallest_inductive}, we have the inclusion $\omega \subseteq A$. Since $A \subseteq \omega$ by hypothesis, we conclude by the Axiom of Extensionality that $A=\omega$.
+\end{proof}
+
+The binary operations of addition and multiplication on $\omega$ are established via the Recursion Theorem.
+
+\begin{definition}[Operations on $\omega$]\label{def:operations_omega}
+For $m \in \omega$:
+\begin{enumerate}
+    \item Addition (+): Defined recursively by the equations $m+0 := m$ and $m+S(n) := S(m+n)$.
+    \item Multiplication ($\times$): Defined recursively by the equations $m\times 0 := 0$ and $m\times S(n) := (m\times n) + m$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}\label{prop:properties_omega}
+The structure $(\omega, +, \times, 0, 1)$ is a commutative unital standard semiring (Definition \ref{def:standard_semiring}) satisfying the cancellation laws:
+\begin{enumerate}
+    \item Additive cancellation: for all $m, n, l \in \omega$, the equality $m+l = n+l$ implies $m=n$.
+    \item Multiplicative cancellation (for $l\neq 0$): for all $m, n, l \in \omega$, the equality $m\times l = n\times l$ implies $m=n$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The verification of the semiring axioms (associativity, commutativity, distributivity, identities, and the absorbing property of 0) relies on successive applications of the Principle of Mathematical Induction (Theorem \ref{thm:induction}). We provide verification of the cancellation laws.
+
+1. Additive cancellation law. We proceed by induction on the variable $l$.
+Base Case ($l=0$): Assume $m+0 = n+0$. By the definition of addition (Definition \ref{def:operations_omega}.1), $m+0=m$ and $n+0=n$. Thus $m=n$.
+
+Inductive Step: Assume the cancellation law holds for a specific $l \in \omega$. We consider the successor $S(l)$.
+Suppose $m+S(l) = n+S(l)$. By Definition \ref{def:operations_omega}.1, this equality is equivalent to $S(m+l) = S(n+l)$.
+
+We utilize the injectivity of the successor function $S$. This property is derived from the definition of ordinals in ZFC. Specifically, if $S(x)=S(y)$, then $x \cup \{x\} = y \cup \{y\}$. By properties related to the well-founded nature of the membership relation on the ordinals $\omega$, this equality implies $x=y$.
+
+By the injectivity of $S$, we deduce $m+l = n+l$.
+By the inductive hypothesis, $m=n$.
+By the Principle of Mathematical Induction, the additive cancellation law holds for all $l \in \omega$.
+
+2. Multiplicative cancellation law. This relies on the property that $\omega$ has no zero divisors (if $m\times l = 0$, then $m=0$ or $l=0$), which is also established by induction.
+Assuming this property, suppose $m\times l = n\times l$ and $l\neq 0$. We may assume $m \ge n$ (using the standard order relation on $\omega$, defined by $n \le m$ iff there exists $k \in \omega$ such that $m=n+k$).
+Then $(n+k)\times l = n\times l$. By distributivity, $(n\times l) + (k\times l) = n\times l$.
+We write the right side as $(n\times l) + 0$.
+By the additive cancellation law (Part 1), we conclude $k\times l = 0$. Since $l\neq 0$, by the absence of zero divisors, we must have $k=0$. Thus $m=n+0=n$.
+\end{proof}
+
+\subsection{The Ring of Integers $\Z$}
+
+We construct the ring of integers $\Z$ from the semiring $\omega$ utilizing the method of Grothendieck group completion.
+
+\begin{definition}
+Define the relation $\sim$ on the Cartesian product $\omega \times \omega$ by the condition $(a, b) \sim (c, d)$ if and only if $a+d = b+c$ in $\omega$.
+\end{definition}
+
+\begin{lemma}\label{lem:Z_equivalence_relation}
+The relation $\sim$ is an equivalence relation on $\omega \times \omega$.
+\end{lemma}
+\begin{proof}
+We verify the defining properties of an equivalence relation: reflexivity, symmetry, and transitivity. These properties rely on the algebraic structure of $(\omega, +)$ established in Proposition \ref{prop:properties_omega}.
+
+1. Reflexivity: For any $(a, b) \in \omega \times \omega$. We require $(a, b) \sim (a, b)$, which necessitates $a+b = b+a$. This holds by the commutativity of addition in $\omega$.
+
+2. Symmetry: Assume $(a, b) \sim (c, d)$. This means $a+d = b+c$. We require $(c, d) \sim (a, b)$, which necessitates $c+b = d+a$. By the commutativity of addition in $\omega$, $b+c=c+b$ and $a+d=d+a$. Thus $c+b = d+a$.
+
+3. Transitivity: Assume $(a, b) \sim (c, d)$ and $(c, d) \sim (e, f)$. We have the equalities in $\omega$:
+\begin{align}
+    a+d &= b+c \label{eq:trans1} \\
+    c+f &= d+e \label{eq:trans2}
+\end{align}
+We wish to demonstrate that $(a, b) \sim (e, f)$, i.e., $a+f = b+e$.
+We sum the two equations \eqref{eq:trans1} and \eqref{eq:trans2}:
+$(a+d) + (c+f) = (b+c) + (d+e)$.
+Applying the associativity and commutativity of addition in $\omega$, we rearrange the terms:
+$(a+f) + (d+c) = (b+e) + (c+d)$.
+Since $d+c=c+d$, we apply the additive cancellation law (Proposition \ref{prop:properties_omega}.1) to cancel the term $(c+d)$ from both sides of the equality. This yields the desired result $a+f = b+e$.
+Therefore, $\sim$ is transitive.
+\end{proof}
+
+\begin{definition}
+The set of integers, $\Z$, is defined as the set of equivalence classes $\Z := (\omega \times \omega) / \sim$. We denote the equivalence class containing the pair $(a, b)$ by $[a, b]$.
+\end{definition}
+
+\begin{definition}[Operations on $\Z$]\label{def:operations_Z}
+Addition $(+_{\Z})$ and multiplication $(\times_{\Z})$ on $\Z$ are defined as follows:
+\begin{align}
+    [a, b] +_{\Z} [c, d] &:= [a+c, b+d], \label{eq:Z_add_def} \\
+    [a, b] \times_{\Z} [c, d] &:= [ac+bd, ad+bc]. \label{eq:Z_mult_def}
+\end{align}
+(We use juxtaposition $xy$ to denote $x\times y$ in $\omega$).
+\end{definition}
+
+\begin{lemma}\label{lem:Z_ops_well_defined}
+The operations $+_{\Z}$ and $\times_{\Z}$ are well-defined on the set of equivalence classes $\Z$.
+\end{lemma}
+\begin{proof}
+We must demonstrate that the definitions are independent of the choice of representatives for the equivalence classes. Let $[a, b] = [a', b']$ and $[c, d] = [c', d']$. This implies the following equalities in $\omega$:
+\begin{align}
+    a+b' &= b+a' \label{eq:welldef_cond1} \\
+    c+d' &= d+c' \label{eq:welldef_cond2}
+\end{align}
+
+1. Well-definedness of $+_{\Z}$. We must show $[a+c, b+d] = [a'+c', b'+d']$. This requires verification of the condition $(a+c)+(b'+d') = (b+d)+(a'+c')$.
+Using associativity and commutativity in $\omega$:
+LHS = $(a+c)+(b'+d') = (a+b')+(c+d')$.
+RHS = $(b+d)+(a'+c') = (b+a')+(d+c')$.
+By equations \eqref{eq:welldef_cond1} and \eqref{eq:welldef_cond2}, and commutativity, LHS = RHS. Thus $+_{\Z}$ is well-defined.
+
+2. Well-definedness of $\times_{\Z}$. We must show $[ac+bd, ad+bc] = [a'c'+b'd', a'd'+b'c']$. It suffices, by the symmetry inherent in the definition (commutativity of $\times_{\Z}$ follows immediately from the commutativity of $\times$ in $\omega$), to verify independence with respect to the first argument, assuming $[a, b] = [a', b']$. We require $[ac+bd, ad+bc] = [a'c+b'd, a'd+b'c]$.
+This requires verification of the condition $(ac+bd)+(a'd+b'c) = (ad+bc)+(a'c+b'd)$.
+LHS: $ac+bd+a'd+b'c$. Rearranging terms using properties of $\omega$ and applying distributivity: $c(a+b') + d(b+a')$.
+RHS: $ad+bc+a'c+b'd$. Rearranging terms: $c(b+a') + d(a+b')$.
+By equation \eqref{eq:welldef_cond1}, $a+b'=b+a'$. Thus LHS = RHS. $\times_{\Z}$ is well-defined.
+\end{proof}
+
+\begin{theorem}\label{thm:Z_is_ring}
+The structure $(\Z, +_{\Z}, \times_{\Z})$ is a commutative ring with unity. Furthermore, it is an integral domain of characteristic 0, and a Principal Ideal Domain (PID).
+\end{theorem}
+\begin{proof}
+The verification of the axioms of a commutative ring with unity relies on the established properties of the semiring $(\omega, +, \times)$, as detailed in standard algebra texts \cite{LangAlgebra}.
+
+\textit{Part I: $(\Z, +_{\Z})$ is an abelian group.}
+Associativity and commutativity follow directly from the corresponding properties in $\omega$.
+The additive identity is $0_{\Z} = [0, 0]$. Verification: $[a, b]+_{\Z}[0, 0] = [a+0, b+0] = [a, b]$.
+The additive inverse of $[a, b]$ is $-[a, b] = [b, a]$. Verification: $[a, b]+_{\Z}[b, a] = [a+b, b+a]$. We check $[a+b, b+a] = [0, 0]$. This requires $(a+b)+0 = (b+a)+0$, which holds by commutativity in $\omega$.
+
+\textit{Part II: $(\Z, \times_{\Z})$ is a commutative monoid.}
+Associativity and commutativity follow from the corresponding properties and distributivity in $\omega$.
+The multiplicative identity is $1_{\Z} = [1, 0]$. Verification: $[a, b]\times_{\Z}[1, 0] = [a(1)+b(0), a(0)+b(1)] = [a, b]$.
+
+\textit{Part III: Distributivity.} Verification follows by expanding the definitions and applying distributivity in $\omega$.
+
+\textit{Part IV: Integral Domain.} We verify the absence of zero divisors. Suppose $[a, b]\times_{\Z}[c, d] = 0_{\Z}$. This means $[ac+bd, ad+bc] = [0, 0]$, so $ac+bd = ad+bc$.
+Assume $[a, b] \neq 0_{\Z}$ (i.e., $a\neq b$). Without loss of generality, assume $a>b$ (using the standard order on $\omega$). Then $a=b+k$ for some $k \in \omega, k\neq 0$.
+Substituting: $(b+k)c+bd = (b+k)d+bc$.
+Expanding using distributivity in $\omega$: $bc+kc+bd = bd+kd+bc$.
+By the additive cancellation law (Proposition \ref{prop:properties_omega}.1), we cancel $bc+bd$ from both sides, yielding $kc=kd$.
+Since $k\neq 0$, we utilize the multiplicative cancellation law (Proposition \ref{prop:properties_omega}.2) to conclude $c=d$. Thus $[c, d]=[c, c]=0_{\Z}$.
+
+\textit{Part V: Characteristic 0.} The characteristic is the smallest positive integer $n$ such that $n\cdot 1_{\Z} = 0_{\Z}$. $n\cdot 1_{\Z} = [n, 0]$. The condition $[n, 0]=[0, 0]$ implies $n+0=0+0$, so $n=0$. Since no such positive $n$ exists, the characteristic is 0.
+
+\textit{Part VI: PID.} It is a standard result in ring theory that $\Z$ is a Euclidean Domain (with the Euclidean function being the absolute value), and every Euclidean Domain is a PID.
+\end{proof}
+
+We identify $n \in \omega$ with the equivalence class $[n, 0] \in \Z$. This defines an injective homomorphism $\iota: \omega \to \Z$, establishing the embedding of $\omega$ into $\Z$. We henceforth utilize standard notation for $\Z$.
+
+\section{Algebraic Preliminaries: Semirings and Related Concepts}
+
+We establish the precise definitions for the algebraic structures central to this investigation, adhering to conventions such as those presented in \cite{GolanSemirings}.
+
+\subsection{Definitions of Semirings and Hemirings}
+
+\begin{definition}\label{def:semiring}
+A \emph{semiring} is an algebraic structure $(R, +, \times)$ consisting of a non-empty set $R$ equipped with two binary operations, addition ($+$) and multiplication ($\times$), satisfying the following axioms:
+\begin{enumerate}[label=(S\arabic*)]
+    \item $(R, +)$ is a commutative semigroup (addition is associative and commutative).
+    \item $(R, \times)$ is a semigroup (multiplication is associative).
+    \item Multiplication distributes over addition from the left and the right: $a(b+c) = ab+ac$ and $(a+b)c = ac+bc$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:modifications_semiring}
+A semiring $(R, +, \times)$ is characterized as follows:
+\begin{enumerate}
+    \item \emph{Commutative} if $(R, \times)$ is commutative.
+    \item \emph{Unital} if $(R, \times)$ possesses an identity element $1_R$.
+    \item A \emph{hemiring} if $(R, +)$ possesses an identity element $0_R$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:absorbing_element}
+Let $(M, *)$ be a semigroup. An element $z \in M$ is called an \emph{absorbing element} (or \emph{annihilator}) if $a*z=z*a=z$ for all $a \in M$.
+\end{definition}
+
+\begin{lemma}\label{lem:unique_identity_absorber}
+In a monoid (e.g., a hemiring under addition, or a unital semiring under multiplication), the identity element is unique. In a semigroup, an absorbing element (additive or multiplicative), if it exists, is unique.
+\end{lemma}
+\begin{proof}
+Uniqueness of identity: Let $e_1, e_2$ be identities. $e_1 = e_1 * e_2$ (since $e_2$ is a right identity) $= e_2$ (since $e_1$ is a left identity).
+Uniqueness of absorber: Let $z_1, z_2$ be absorbers. $z_1 = z_1 * z_2$ (since $z_2$ is a right absorber) $= z_2$ (since $z_1$ is a left absorber).
+\end{proof}
+
+A crucial distinction concerns the relationship between the additive identity and the multiplicative absorber.
+
+\begin{definition}\label{def:semiring_with_zero}
+A semiring $R$ is called a \emph{standard semiring} (or \emph{semiring with zero}) if it is a hemiring and its unique additive identity $0_R$ is also the unique multiplicative absorbing element. That is, $a+0_R=a$ and $a \times 0_R = 0_R \times a = 0_R$ for all $a \in R$.
+\end{definition}
+
+We shall analyze structures that are hemirings but may or may not satisfy the conditions of a standard semiring.
+
+\begin{definition}\label{def:zerosumfree_integral}
+Let $R$ be a commutative unital hemiring with additive identity $0_R$.
+\begin{enumerate}
+    \item $R$ is \emph{Zerosumfree} if $a+b=0_R$ implies $a=0_R$ and $b=0_R$.
+    \item $R$ is an \emph{integral semidomain relative to $0_R$} if $1_R \neq 0_R$ and it has no zero divisors relative to $0_R$ (i.e., if $a\times b = 0_R$, then $a=0_R$ or $b=0_R$).
+\end{enumerate}
+If $R$ is a standard semiring, we simply refer to it as an integral semidomain.
+\end{definition}
+
+\begin{definition}\label{def:z_integral_semidomain}
+Let $R$ be a commutative unital semiring possessing a multiplicative absorber $z_R$. $R$ is a \emph{z-integral semidomain} if $1_R \neq z_R$ and it has no z-divisors (i.e., if $a\times b = z_R$, then $a=z_R$ or $b=z_R$).
+\end{definition}
+
+\begin{example}[The Boolean Semiring]\label{ex:boolean_semiring}
+The Boolean semiring $\Bool=(\{0, 1\}, \lor, \wedge)$ is a structure where addition is logical OR ($1\lor 1=1$) and multiplication is logical AND. It is a standard commutative unital semiring. It is characterized by additive idempotence: $x+x=x$.
+\end{example}
+
+\subsection{Ideals and Congruences}
+
+\begin{definition}\label{def:ideal}
+Let $R$ be a commutative semiring. An \emph{ideal} $I$ of $R$ is a non-empty subset $I \subseteq R$ such that $I+I \subseteq I$ (closure under addition) and $R\times I \subseteq I$ (absorption under multiplication by $R$).
+\end{definition}
+
+\begin{lemma}\label{lem:absorber_in_ideal}
+If a commutative semiring $R$ possesses a multiplicative absorbing element $z_R$, then $z_R \in I$ for any ideal $I$.
+\end{lemma}
+\begin{proof}
+Let $I$ be an ideal. Since $I$ is non-empty by definition, let $x \in I$. By the absorption property of ideals, $z_R\times x \in I$. By the definition of an absorbing element (Definition \ref{def:absorbing_element}), $z_R \times x = z_R$. Thus $z_R \in I$.
+\end{proof}
+
+\begin{definition}\label{def:PIS}
+A commutative unital semiring $R$ is a \emph{Principal Ideal Semiring} (PIS) if every ideal is principal. The principal ideal generated by $a$ is $(a)_R = Ra = \{ra \mid r \in R\}$.
+\end{definition}
+
+\begin{definition}\label{def:subtractive_ideal}
+An ideal $I$ of a semiring $R$ is called \emph{subtractive} (or a \emph{k-ideal}) if for all $a, b \in R$, whenever $a \in I$ and $a+b \in I$, it follows that $b \in I$.
+\end{definition}
+
+The presence of an additive absorbing element imposes severe restrictions on the existence of subtractive ideals.
+
+\begin{lemma}\label{lem:subtractive_and_additive_absorber}
+Let $R$ be a hemiring possessing an additive absorbing element $y_R$. A proper ideal $I$ of $R$ cannot be subtractive. Consequently, the only subtractive ideal is the improper ideal $R$.
+\end{lemma}
+\begin{proof}
+Assume $R$ has an additive absorber $y_R$, so $a+y_R=y_R$ for all $a \in R$.
+We rely on the established result (e.g., \cite{GolanSemirings}, Proposition 5.4) that if $I$ is a subtractive ideal, then $y_R \in I$.
+
+Now, assume $I$ is a subtractive ideal, so $y_R \in I$. Assume further that $I$ is proper. By the definition of a proper ideal, there exists an element $b \in R$ such that $b \notin I$.
+Let $a=y_R$. We have established $a \in I$.
+Consider the sum $a+b = y_R+b$. By the property of the additive absorber, $y_R+b = y_R$.
+Thus $a+b \in I$.
+By the definition of a subtractive ideal, since $a \in I$ and $a+b \in I$, it must follow that $b \in I$.
+This contradicts the assumption that $b \notin I$.
+Therefore, the assumption that $I$ is a proper subtractive ideal must be false. The only possibility is that $I=R$. The improper ideal $R$ is trivially subtractive.
+\end{proof}
+
+\begin{definition}\label{def:congruence}
+A \emph{congruence} $\rho$ on a semiring $R$ is an equivalence relation on $R$ compatible with the operations: if $a \rho b$ and $c \rho d$, then $(a+c) \rho (b+d)$ and $(a\times c) \rho (b\times d)$. The set of congruences is $\Cong(R)$.
+\end{definition}
+
+\subsection{The Spectrum and Dimension}
+
+\begin{definition}\label{def:prime_maximal_ideals}
+Let $R$ be a commutative unital semiring.
+\begin{enumerate}
+    \item An ideal $P$ is \emph{prime} if $P$ is proper ($P \neq R$) and if $a\times b \in P$ implies $a \in P$ or $b \in P$. The set of prime ideals is $\Spec(R)$.
+    \item An ideal $M$ is \emph{maximal} if $M$ is proper and there is no ideal $I$ such that $M \subsetneq I \subsetneq R$. The set of maximal ideals is $\MaxSpec(R)$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:Krull_dimension}
+The \emph{Krull dimension} of $R$, $\KrullDim(R)$, is the supremum of the lengths $n$ of chains of distinct prime ideals $P_0 \subsetneq P_1 \subsetneq \dots \subsetneq P_n$.
+\end{definition}
+
+\subsection{Group Actions and Symmetries}
+
+\begin{definition}\label{def:G_action}
+Let $M$ be an algebraic structure and $G$ a group. A \emph{G-action} on $M$ by automorphisms is a group homomorphism $\rho: G \to \Aut(M)$. An element $x \in M$ is a \emph{fixed point} (or \emph{singlet}) if $\rho(g)(x) = x$ for all $g \in G$. The set of fixed points is denoted $M^G$.
+\end{definition}
+
+We recall the inherent symmetries of $\Z$.
+
+\begin{lemma}\label{lem:units_Z}
+The group of units of the ring $\Z$ is $U(\Z) = \{1_{\Z}, -1_{\Z}\} \cong \Ztwo$.
+\end{lemma}
+\begin{proof}
+A unit $x \in \Z$ requires an inverse $y \in \Z$ such that $xy=1$. Since $\Z$ is an integral domain, if $x\neq 0, y\neq 0$, then $|xy|=|x||y|=1$. Since $|x|, |y| \in \omega\setminus\{0\}$, this implies $|x|=1$ and $|y|=1$. Thus $x \in \{1, -1\}$.
+\end{proof}
+
+\begin{definition}\label{def:Z_action_on_Z}
+The canonical $\Ztwo$ action on $\Z$ is the action $\rho_{\Z}: U(\Z) \to \Aut((\Z, +))$ defined by multiplication: $\rho_{\Z}(g)(n) = g \times_{\Z} n$.
+\end{definition}
+
+\begin{theorem}\label{thm:Z_singlets}
+The only fixed point (singlet) of the canonical $\Ztwo$ action on $(\Z, +)$ is $0_{\Z}$.
+\end{theorem}
+\begin{proof}
+A fixed point $n$ must satisfy $g\times n = n$ for all $g \in U(\Z)$. We consider the action of the non-identity element $g=-1_{\Z}$. We require $(-1_{\Z})\times n = n$. By the definition of multiplication in $\Z$, this means $-n=n$. Adding $n$ to both sides yields $0_{\Z}=2n$. Since $\Z$ is an integral domain of characteristic 0 (Theorem \ref{thm:Z_is_ring}), the equation $2n=0_{\Z}$ implies $n=0_{\Z}$.
+\end{proof}
+
+\section{Construction and Analysis of the Globalization Semiring $\SemiringS$}
+
+We construct the structure $\SemiringS$ by adjoining an element $\Tobj$ to the ring of integers $\Z$, defined such that $\Tobj$ functions simultaneously as the additive identity and the multiplicative absorber. This corresponds to the globalization construction applied to $\Z$ \cite[Example I.1.10]{GolanSemirings}.
+
+\subsection{Definition and Verification of Structure}
+
+\begin{construction}\label{const:S}
+Let $\Z$ be the ring of integers. Let $\Tobj$ be a formal element such that $\Tobj \notin \Z$. We define the set $\SemiringS := \Z \cup \{\Tobj\}$.
+\end{construction}
+
+\begin{definition}[Addition on $\SemiringS$]\label{def:addition_S}
+We define the operation $+: \SemiringS \times \SemiringS \to \SemiringS$. For $a, b \in \SemiringS$:
+\begin{equation}
+a+b := \begin{cases}
+    a+_{\Z} b & \text{if } a \in \Z, b \in \Z \quad \text{(Case A1)} \\
+    a & \text{if } a \in \Z, b = \Tobj \quad \text{(Case A2)} \\
+    b & \text{if } a = \Tobj, b \in \Z \quad \text{(Case A3)} \\
+    \Tobj & \text{if } a = \Tobj, b = \Tobj \quad \text{(Case A4)}
+\end{cases}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Multiplication on $\SemiringS$]\label{def:multiplication_S}
+We define the operation $\times: \SemiringS \times \SemiringS \to \SemiringS$. For $a, b \in \SemiringS$:
+\begin{equation}
+a\times b := \begin{cases}
+    a\times_{\Z} b & \text{if } a \in \Z, b \in \Z \quad \text{(Case M1)} \\
+    \Tobj & \text{if } a \in \Z, b = \Tobj \quad \text{(Case M2)} \\
+    \Tobj & \text{if } a = \Tobj, b \in \Z \quad \text{(Case M3)} \\
+    \Tobj & \text{if } a = \Tobj, b = \Tobj \quad \text{(Case M4)}
+\end{cases}
+\end{equation}
+\end{definition}
+
+\begin{theorem}\label{thm:S_is_semiring}
+The structure $(\SemiringS, +, \times)$ is a commutative unital standard semiring. The additive identity is $0_{\SemiringS}=\Tobj$. The multiplicative identity is $1_{\SemiringS}=1_{\Z}$.
+\end{theorem}
+\begin{proof}
+We systematically verify the axioms detailed in Definitions \ref{def:semiring}, \ref{def:modifications_semiring}, and \ref{def:semiring_with_zero} through an examination of all possible cases.
+
+\emph{Part I: $(\SemiringS, +)$ is a commutative monoid.}
+
+I.1. Commutativity. We must verify $a+b = b+a$ for all $a, b \in \SemiringS$.
+Case I.1.1: $a \in \Z, b \in \Z$. $a+b = a+_{\Z} b$. $b+a = b+_{\Z} a$. By Theorem \ref{thm:Z_is_ring}, $+_{\Z}$ is commutative, so equality holds.
+Case I.1.2: $a \in \Z, b=\Tobj$. $a+b = a$ (Case A2). $b+a = a$ (Case A3). Equality holds.
+Case I.1.3: $a=\Tobj, b \in \Z$. Symmetric to Case I.1.2.
+Case I.1.4: $a=\Tobj, b=\Tobj$. $a+b = \Tobj$ (Case A4). $b+a = \Tobj$. Equality holds.
+
+I.2. Associativity. We must verify $(a+b)+c = a+(b+c)$ for all $a, b, c \in \SemiringS$. We examine the eight possibilities based on the membership of $a, b, c$ in $\Z$ or $\{\Tobj\}$.
+
+Case I.2.1: $a \in \Z, b \in \Z, c \in \Z$.
+LHS: $(a+b)+c = (a+_{\Z} b)+_{\Z} c$. RHS: $a+(b+c) = a+_{\Z} (b+_{\Z} c)$. Equality holds by associativity of $+_{\Z}$ (Theorem \ref{thm:Z_is_ring}).
+
+Case I.2.2: $a \in \Z, b \in \Z, c=\Tobj$.
+LHS: $(a+b)+c = (a+_{\Z} b)+\Tobj$. Since $a+_{\Z} b \in \Z$, by Case A2, this equals $a+_{\Z} b$.
+RHS: $a+(b+c) = a+(b+\Tobj)$. By Case A2, $b+\Tobj=b$. RHS $= a+b = a+_{\Z} b$.
+
+Case I.2.3: $a \in \Z, b=\Tobj, c \in \Z$.
+LHS: $(a+b)+c = (a+\Tobj)+c$. By Case A2, $a+\Tobj=a$. LHS $= a+c = a+_{\Z} c$.
+RHS: $a+(b+c) = a+(\Tobj+c)$. By Case A3, $\Tobj+c=c$. RHS $= a+c = a+_{\Z} c$.
+
+Case I.2.4: $a=\Tobj, b \in \Z, c \in \Z$.
+LHS: $(a+b)+c = (\Tobj+b)+c$. By Case A3, $\Tobj+b=b$. LHS $= b+c = b+_{\Z} c$.
+RHS: $a+(b+c) = \Tobj+(b+_{\Z} c)$. Since $b+_{\Z} c \in \Z$, by Case A3, this equals $b+_{\Z} c$.
+
+Case I.2.5: $a \in \Z, b=\Tobj, c=\Tobj$.
+LHS: $(a+\Tobj)+\Tobj$. By Case A2, $a+\Tobj=a$. LHS $= a+\Tobj$. By Case A2, this equals $a$.
+RHS: $a+(\Tobj+\Tobj)$. By Case A4, $\Tobj+\Tobj=\Tobj$. RHS $= a+\Tobj$. By Case A2, this equals $a$.
+
+Case I.2.6: $a=\Tobj, b \in \Z, c=\Tobj$.
+LHS: $(\Tobj+b)+\Tobj$. By Case A3, $\Tobj+b=b$. LHS $= b+\Tobj$. By Case A2, this equals $b$.
+RHS: $\Tobj+(b+\Tobj)$. By Case A2, $b+\Tobj=b$. RHS $= \Tobj+b$. By Case A3, this equals $b$.
+
+Case I.2.7: $a=\Tobj, b=\Tobj, c \in \Z$.
+LHS: $(\Tobj+\Tobj)+c$. By Case A4, $\Tobj+\Tobj=\Tobj$. LHS $= \Tobj+c$. By Case A3, this equals $c$.
+RHS: $\Tobj+(\Tobj+c)$. By Case A3, $\Tobj+c=c$. RHS $= \Tobj+c$. By Case A3, this equals $c$.
+
+Case I.2.8: $a=b=c=\Tobj$.
+LHS: $(\Tobj+\Tobj)+\Tobj = \Tobj+\Tobj = \Tobj$. RHS: $\Tobj+(\Tobj+\Tobj) = \Tobj+\Tobj = \Tobj$.
+
+I.3. Additive Identity. By inspection of Definition \ref{def:addition_S} (Cases A2, A3, A4), the element $\Tobj$ satisfies $a+\Tobj=a$ and $\Tobj+a=a$ for all $a \in \SemiringS$. By Lemma \ref{lem:unique_identity_absorber}, the identity is unique. Thus $0_{\SemiringS}=\Tobj$. $\SemiringS$ is a hemiring.
+
+\emph{Part II: $(\SemiringS, \times)$ is a commutative monoid.}
+
+II.1. Commutativity. We must verify $a\times b = b\times a$.
+Case II.1.1: $a, b \in \Z$. $a\times b = a\times_{\Z} b$. $b\times a = b\times_{\Z} a$. Equality holds by commutativity of $\times_{\Z}$ (Theorem \ref{thm:Z_is_ring}).
+Case II.1.2: $a \in \Z, b=\Tobj$. $a\times b = \Tobj$ (Case M2). $b\times a = \Tobj$ (Case M3). Equality holds.
+Case II.1.3: $a=\Tobj, b \in \Z$. Symmetric to Case II.1.2.
+Case II.1.4: $a=\Tobj, b=\Tobj$. $a\times b = \Tobj$ (Case M4). $b\times a = \Tobj$. Equality holds.
+
+II.2. Associativity. We must verify $(a\times b)\times c = a\times(b\times c)$.
+
+Case II.2.1: $a, b, c \in \Z$. Equality holds by inheritance from the associativity of $\times_{\Z}$.
+
+Case II.2.2: At least one element is $\Tobj$. We observe from Definition \ref{def:multiplication_S} (Cases M2, M3, M4) that $\Tobj$ is a multiplicative absorbing element (Definition \ref{def:absorbing_element}).
+If $a=\Tobj$. LHS: $(\Tobj\times b)\times c$. By the absorbing property, $\Tobj\times b = \Tobj$. LHS $=\Tobj\times c = \Tobj$.
+RHS: $\Tobj\times(b\times c)$. By the absorbing property, RHS $=\Tobj$.
+
+If $b=\Tobj$. LHS: $(a\times\Tobj)\times c = \Tobj\times c = \Tobj$.
+RHS: $a\times(\Tobj\times c) = a\times\Tobj = \Tobj$.
+
+If $c=\Tobj$. LHS: $(a\times b)\times\Tobj = \Tobj$.
+RHS: $a\times(b\times\Tobj) = a\times\Tobj = \Tobj$.
+
+II.3. Multiplicative Identity. We determine the multiplicative identity $1_{\SemiringS}$. We claim $1_{\Z}$ is the identity.
+Let $a \in \SemiringS$.
+If $a \in \Z$. $1_{\Z}\times a = 1_{\Z}\times_{\Z} a = a$ (Case M1). $a\times 1_{\Z} = a\times_{\Z} 1_{\Z} = a$.
+If $a=\Tobj$. $1_{\Z}\times\Tobj$. Since $1_{\Z} \in \Z$, by Case M2, this equals $\Tobj$. $\Tobj\times 1_{\Z} = \Tobj$ by Case M3.
+Thus $1_{\SemiringS}=1_{\Z}$.
+
+\emph{Part III: Distributivity.}
+We must verify $a\times(b+c) = (a\times b) + (a\times c)$. By commutativity (Part II.1), this suffices.
+
+Case III.1: $a, b, c \in \Z$.
+LHS: $a\times(b+_{\Z} c) = a\times_{\Z}(b+_{\Z} c)$.
+RHS: $(a\times_{\Z} b) + (a\times_{\Z} c)$.
+Equality holds by distributivity in the ring $\Z$.
+
+Case III.2: $a \in \Z$. We examine the locations of $b$ and $c$.
+Subcase III.2.a: $b \in \Z, c=\Tobj$.
+LHS: $a\times(b+\Tobj)$. By Case A2, $b+\Tobj=b$. LHS $= a\times b$.
+RHS: $(a\times b) + (a\times\Tobj)$. By Case M2, $a\times\Tobj=\Tobj$. RHS $= (a\times b) + \Tobj$.
+Since $a\times b \in \Z$ (as $a, b \in \Z$), by Case A2, this equals $a\times b$.
+
+Subcase III.2.b: $b=\Tobj, c \in \Z$. Symmetric to Subcase III.2.a by commutativity of $+$.
+
+Subcase III.2.c: $b=\Tobj, c=\Tobj$.
+LHS: $a\times(\Tobj+\Tobj)$. By Case A4, $\Tobj+\Tobj=\Tobj$. LHS $= a\times\Tobj$. By Case M2, this equals $\Tobj$.
+RHS: $(a\times\Tobj) + (a\times\Tobj)$. By Case M2, this equals $\Tobj+\Tobj$. By Case A4, this equals $\Tobj$.
+
+Case III.3: $a=\Tobj$.
+LHS: $\Tobj\times(b+c)$. By the absorbing property (Part II.2.2), LHS $=\Tobj$.
+RHS: $(\Tobj\times b) + (\Tobj\times c)$. By the absorbing property, this equals $\Tobj+\Tobj$. By Case A4, this equals $\Tobj$.
+
+\emph{Part IV: Standard Semiring (Annihilation by Zero).}
+The additive identity is $0_{\SemiringS}=\Tobj$. The multiplicative absorbing property $a\times 0_{\SemiringS} = 0_{\SemiringS}$ was verified in Part II.2.2.
+
+All axioms are satisfied. $(\SemiringS, +, \times)$ is a commutative unital standard semiring.
+\end{proof}
+
+\section{Algebraic Properties of the Semiring $\SemiringS$}
+
+\subsection{Basic Element Properties}
+
+\begin{proposition}\label{prop:idempotents}
+The additive idempotents of $\SemiringS$ are $\{0_{\Z}, \Tobj\}$. The multiplicative idempotents of $\SemiringS$ are $\{0_{\Z}, 1_{\Z}, \Tobj\}$.
+\end{proposition}
+\begin{proof}
+1. Additive idempotents ($x+x=x$).
+Case 1: $x \in \Z$. $x+x = x+_{\Z} x = 2x$. We require $2x=x$. In the ring $\Z$, this implies $2x-x=0_{\Z}$, so $x=0_{\Z}$.
+Case 2: $x=\Tobj$. $\Tobj+\Tobj=\Tobj$ (Case A4).
+
+2. Multiplicative idempotents ($x\times x=x$).
+Case 1: $x \in \Z$. $x\times x = x\times_{\Z} x = x^2$. We require $x^2=x$. In the integral domain $\Z$, this implies $x(x-1)=0_{\Z}$, so $x=0_{\Z}$ or $x=1_{\Z}$.
+Case 2: $x=\Tobj$. $\Tobj\times\Tobj=\Tobj$ (Case M4).
+\end{proof}
+
+\begin{proposition}\label{prop:units_S}
+The group of units of $\SemiringS$ is $U(\SemiringS) = \{1_{\Z}, -1_{\Z}\}$.
+\end{proposition}
+\begin{proof}
+We seek $x \in \SemiringS$ such that there exists $y \in \SemiringS$ with $x\times y = 1_{\SemiringS} = 1_{\Z}$.
+We examine the possibilities for $x$.
+If $x=\Tobj$. Then $x\times y = \Tobj\times y = \Tobj$. We require $\Tobj=1_{\Z}$. This is false by Construction \ref{const:S} ($1_{\Z} \in \Z$ and $\Tobj \notin \Z$). Thus $\Tobj$ is not a unit.
+If $x \in \Z$. We examine $y$. If $y=\Tobj$, $x\times y = \Tobj \neq 1_{\Z}$. Thus $y \in \Z$.
+The condition becomes $x\times_{\Z} y = 1_{\Z}$. This implies $x$ is a unit in the ring $\Z$. By Lemma \ref{lem:units_Z}, $U(\Z)=\{1_{\Z}, -1_{\Z}\}$.
+\end{proof}
+
+\begin{proposition}\label{prop:integral_semidomain}
+The semiring $\SemiringS$ is an integral semidomain.
+\end{proposition}
+\begin{proof}
+We verify the conditions of Definition \ref{def:zerosumfree_integral}. $\SemiringS$ is commutative and unital (Theorem \ref{thm:S_is_semiring}). $1_{\SemiringS}=1_{\Z} \neq \Tobj=0_{\SemiringS}$.
+We check for zero divisors. We analyze the equation $a\times b = 0_{\SemiringS} = \Tobj$.
+We examine the possibilities based on $a, b \in \Z \cup \{\Tobj\}$.
+Case 1: $a \in \Z$ and $b \in \Z$. $a\times b = a\times_{\Z} b$. Since $a, b \in \Z$, the product $a\times_{\Z} b \in \Z$. Thus $a\times b \neq \Tobj$.
+Case 2: $a \in \Z$ and $b = \Tobj$. $a\times b = \Tobj$ (Case M2).
+Case 3: $a = \Tobj$ and $b \in \Z$. $a\times b = \Tobj$ (Case M3).
+Case 4: $a = \Tobj$ and $b = \Tobj$. $a\times b = \Tobj$ (Case M4).
+
+Therefore, the condition $a\times b = \Tobj$ implies that at least one of $a$ or $b$ must be $\Tobj$. $\SemiringS$ has no zero divisors.
+\end{proof}
+
+\begin{proposition}\label{prop:zerosumfree}
+The semiring $\SemiringS$ is zerosumfree.
+\end{proposition}
+\begin{proof}
+We analyze the condition $a+b=0_{\SemiringS}=\Tobj$.
+Case 1: $a, b \in \Z$. $a+b = a+_{\Z} b$. Since $a, b \in \Z$, the sum $a+_{\Z} b \in \Z$. Thus $a+b \neq \Tobj$.
+Case 2: $a \in \Z, b=\Tobj$. $a+b=a$ (Case A2). We require $a=\Tobj$. This contradicts $a \in \Z$.
+Case 3: $a=\Tobj, b \in \Z$. $a+b=b$ (Case A3). We require $b=\Tobj$. Contradiction.
+Case 4: $a=\Tobj, b=\Tobj$. $a+b=\Tobj$ (Case A4).
+The only solution to $a+b=\Tobj$ is $a=\Tobj$ and $b=\Tobj$. Thus $\SemiringS$ is zerosumfree.
+\end{proof}
+
+\subsection{The Ideal Structure of $\SemiringS$}
+
+We characterize the ideals of $\SemiringS$, establishing a correspondence with the ideals of $\Z$.
+
+\begin{theorem}\label{thm:ideal_structure_S}
+The ideals of $\SemiringS$ are precisely the following sets:
+\begin{enumerate}
+    \item The zero ideal $I_0 = \{\Tobj\}$.
+    \item The sets of the form $I_J = J \cup \{\Tobj\}$, where $J$ is a (non-empty) ideal of the ring $\Z$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We proceed by demonstrating that every ideal must be of this form, and conversely, that every set of this form is an ideal.
+
+\textit{Part I: Characterization of an arbitrary ideal.}
+Let $I$ be an ideal of $\SemiringS$. Since $\Tobj$ is the multiplicative absorber in $\SemiringS$ (Theorem \ref{thm:S_is_semiring}), by Lemma \ref{lem:absorber_in_ideal}, $\Tobj \in I$.
+Define $J = I \cap \Z$. Then $I = (I \cap \Z) \cup (I \cap \{\Tobj\}) = J \cup \{\Tobj\}$.
+
+Case 1: $J = \emptyset$. Then $I = \emptyset \cup \{\Tobj\} = \{\Tobj\} = I_0$.
+
+Case 2: $J \neq \emptyset$. We demonstrate that $J$ is an ideal of the ring $\Z$.
+(i) Closure under $+_{\Z}$. Let $a, b \in J$. Since $J \subset I$, $a, b \in I$. Since $I$ is an ideal of $\SemiringS$, $a+b \in I$. Since $a, b \in \Z$, $a+b = a+_{\Z} b$ (Case A1), and $a+_{\Z} b \in \Z$. Thus $a+_{\Z}b \in I \cap \Z = J$.
+(ii) Absorption under $\times_{\Z}$. Let $r \in \Z$ and $a \in J$. Since $\Z \subset \SemiringS$ and $J \subset I$, $r \in \SemiringS$ and $a \in I$. Since $I$ is an ideal of $\SemiringS$, $r\times a \in I$. Since $r, a \in \Z$, $r\times a = r\times_{\Z} a$ (Case M1), and $r\times_{\Z} a \in \Z$. Thus $r\times_{\Z} a \in I \cap \Z = J$.
+A non-empty subset $J \subseteq \Z$ closed under addition and multiplication by elements of $\Z$ satisfies the definition of an ideal of $\Z$.
+
+\textit{Part II: Verification that the forms define ideals.}
+1. $I_0=\{\Tobj\}$.
+Additive closure: $\Tobj+\Tobj=\Tobj \in I_0$.
+Absorption: $r\times\Tobj = \Tobj \in I_0$ for all $r \in \SemiringS$. $I_0$ is an ideal.
+
+2. Let $J$ be an ideal of $\Z$. By standard definition, ideals of rings are non-empty (as $0_{\Z} \in J$). Let $I_J = J \cup \{\Tobj\}$.
+(i) Additive closure. Let $a, b \in I_J$.
+Case 2a: $a, b \in J$. $a+b = a+_{\Z} b$. Since $J$ is an ideal of $\Z$, $a+_{\Z} b \in J \subset I_J$.
+Case 2b: $a \in J, b=\Tobj$. $a+\Tobj = a$ (Case A2). Since $a \in J$, $a \in I_J$.
+Case 2c: $a=\Tobj, b \in J$. $\Tobj+b = b$ (Case A3). $b \in J \subset I_J$.
+Case 2d: $a=\Tobj, b=\Tobj$. $\Tobj+\Tobj = \Tobj \in I_J$.
+
+(ii) Closure under absorption by $\SemiringS$. Let $r \in \SemiringS, a \in I_J$.
+Case 2i: $r \in \Z$.
+If $a \in J$. $r\times a = r\times_{\Z} a$. Since $J$ is an ideal of $\Z$, $r\times_{\Z} a \in J \subset I_J$.
+If $a=\Tobj$. $r\times\Tobj = \Tobj \in I_J$.
+Case 2ii: $r=\Tobj$.
+$r\times a = \Tobj\times a = \Tobj \in I_J$.
+$I_J$ is an ideal of $\SemiringS$.
+\end{proof}
+
+\begin{theorem}\label{thm:S_is_PIS}
+The semiring $\SemiringS$ is a Principal Ideal Semiring (PIS).
+\end{theorem}
+\begin{proof}
+We utilize the characterization in Theorem \ref{thm:ideal_structure_S} and the fact that $\Z$ is a Principal Ideal Domain (PID) (Theorem \ref{thm:Z_is_ring}). We use the definition of a principal ideal (Definition \ref{def:PIS}): $(a)_{\SemiringS} = \SemiringS a$.
+
+1. The zero ideal $I_0=\{\Tobj\}$. It is generated by $\Tobj$. $( \Tobj )_{\SemiringS} = \SemiringS\times\Tobj$. By the multiplicative absorbing property of $\Tobj$, this set is $\{\Tobj\} = I_0$.
+
+2. Ideals $I_J = J \cup \{\Tobj\}$. Since $\Z$ is a PID, $J=(n)_{\Z}=n\Z$ for some $n \ge 0$ (we can choose the non-negative generator).
+We compute the principal ideal generated by $n$ in $\SemiringS$.
+$(n)_{\SemiringS} = \{r\times n \mid r \in \SemiringS\}$.
+We analyze the elements based on $r \in \Z \cup \{\Tobj\}$.
+If $r \in \Z$: $r\times n = r\times_{\Z} n$ (Case M1). The collection of such elements is $\{r\times_{\Z} n \mid r \in \Z\} = n\Z = J$.
+If $r=\Tobj$: $r\times n = \Tobj\times n$. By Definition \ref{def:multiplication_S} (Case M3), this equals $\Tobj$.
+Thus, $(n)_{\SemiringS} = J \cup \{\Tobj\} = I_J$.
+
+Since every ideal of $\SemiringS$ is principal, $\SemiringS$ is a PIS.
+\end{proof}
+
+\begin{corollary}\label{cor:S_is_Noetherian}
+The semiring $\SemiringS$ is Noetherian.
+\end{corollary}
+\begin{proof}
+A commutative unital semiring is Noetherian if it satisfies the Ascending Chain Condition (ACC) on ideals. Let $I_1 \subseteq I_2 \subseteq \dots$ be an ascending chain of ideals in $\SemiringS$.
+By Theorem \ref{thm:ideal_structure_S}, each $I_k$ corresponds to a subset $J_k = I_k \cap \Z$. The inclusion $I_k \subseteq I_{k+1}$ implies $J_k \subseteq J_{k+1}$.
+If all $I_k=I_0$, the chain stabilizes.
+If $I_N \neq I_0$ for some $N$, then for $k\ge N$, $I_k=I_{J_k}$ where $J_k$ is an ideal of $\Z$.
+Thus we have an ascending chain of ideals $J_N \subseteq J_{N+1} \subseteq \dots$ in $\Z$.
+Since $\Z$ is a PID (Theorem \ref{thm:Z_is_ring}), it is Noetherian. The chain $J_k$ must stabilize; there exists $M\ge N$ such that $J_k=J_M$ for all $k\ge M$.
+Consequently, $I_k = J_k \cup \{\Tobj\} = J_M \cup \{\Tobj\} = I_M$ for all $k\ge M$. The chain in $\SemiringS$ stabilizes.
+\end{proof}
+
+\subsection{Subtractive Ideals}
+
+We investigate the subtractive property (Definition \ref{def:subtractive_ideal}) for the ideals of $\SemiringS$.
+
+\begin{theorem}\label{thm:subtractive_ideals_S}
+Every ideal of the semiring $\SemiringS$ is subtractive.
+\end{theorem}
+\begin{proof}
+Let $I$ be an ideal of $\SemiringS$. We must show that if $a \in I$ and $a+b \in I$, then $b \in I$. We analyze the cases based on the structure of $I$ (Theorem \ref{thm:ideal_structure_S}).
+
+Case 1: $I=I_0=\{\Tobj\}$.
+If $a \in I_0$, then $a=\Tobj$.
+If $a+b \in I_0$, then $\Tobj+b = \Tobj$. By the definition of addition (identity property of $\Tobj$, Theorem \ref{thm:S_is_semiring}), $\Tobj+b=b$. Thus $b=\Tobj$. So $b \in I_0$.
+
+Case 2: $I=I_J=J\cup\{\Tobj\}$ for some ideal $J$ of $\Z$.
+Let $a \in I_J$ and $a+b \in I_J$.
+
+Subcase 2a: $a=\Tobj$.
+Then $a+b = \Tobj+b = b$. Since $a+b \in I_J$, we have $b \in I_J$.
+
+Subcase 2b: $a \in J$. (Note $J \subset \Z$).
+We examine the possibilities for $b \in \Z \cup \{\Tobj\}$.
+
+(i) $b=\Tobj$. Then $b \in I_J$ (since $\Tobj \in I_J$ by the definition of $I_J$).
+
+(ii) $b \in \Z$.
+Since $a \in J \subset \Z$ and $b \in \Z$, the addition is $a+b = a+_{\Z}b$ (Case A1).
+Since $a, b \in \Z$, $a+_{\Z}b \in \Z$.
+We are given $a+b \in I_J$. Since $a+b \in \Z$, we must have $a+b \in I_J \cap \Z = J$.
+We have $a \in J$ and $a+_{\Z}b \in J$.
+Since $J$ is an ideal of the ring $\Z$, it is an additive subgroup of $(\Z, +_{\Z})$.
+Therefore, the difference (in the group sense) $(a+_{\Z}b) -_{\Z} a$ must belong to $J$.
+We compute $(a+_{\Z}b) -_{\Z} a = b$.
+Thus $b \in J$. Since $J \subset I_J$, $b \in I_J$.
+
+In all cases, $b \in I$. Thus every ideal $I$ of $\SemiringS$ is subtractive.
+\end{proof}
+
+\section{The Spectrum and Topology of $\SemiringS$}
+
+\subsection{The Spectrum of Prime Ideals}
+
+We determine the set of prime ideals $\Spec(\SemiringS)$ and analyze the poset structure under inclusion to determine the Krull dimension.
+
+\begin{theorem}\label{thm:prime_ideals_S}
+The spectrum $\Spec(\SemiringS)$ consists precisely of the following ideals:
+\begin{enumerate}
+    \item The zero ideal $P_{\Tobj} = \{\Tobj\}$.
+    \item The ideal $P_{(0)} = \{0_{\Z}, \Tobj\}$.
+    \item The ideals $P_{(p)} = p\Z \cup \{\Tobj\}$, where $p$ is a prime number in $\Z$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We utilize the characterization of ideals from Theorem \ref{thm:ideal_structure_S}.
+
+1. The zero ideal $I_0 = \{\Tobj\}$.
+We check the primality condition (Definition \ref{def:prime_maximal_ideals}). $I_0$ is proper since $1_{\SemiringS}=1_{\Z} \notin I_0$.
+Let $a\times b \in I_0$, so $a\times b = \Tobj$. By Proposition \ref{prop:integral_semidomain} (which states that $\SemiringS$ is an integral semidomain), this implies $a=\Tobj$ or $b=\Tobj$. Thus $a \in I_0$ or $b \in I_0$. $I_0$ is prime. We denote it $P_{\Tobj}$.
+
+2. Ideals of the form $I_J = J \cup \{\Tobj\}$. $I_J$ is proper if and only if $1_{\Z} \notin I_J$, which is equivalent to $1_{\Z} \notin J$. Thus $J$ must be a proper ideal of $\Z$.
+We establish the equivalence: $I_J$ is prime in $\SemiringS$ if and only if $J$ is prime in $\Z$.
+
+($\implies$) Assume $I_J$ is prime in $\SemiringS$. We show $J$ is prime in $\Z$. Let $a, b \in \Z$ such that $a\times_{\Z} b \in J$.
+Then $a\times b \in I_J$ (since the operation in $\SemiringS$ restricted to $\Z$ is $\times_{\Z}$). Since $I_J$ is prime in $\SemiringS$, $a \in I_J$ or $b \in I_J$. Since $a, b \in \Z$, $a \in I_J \cap \Z = J$ or $b \in I_J \cap \Z = J$. Thus $J$ is prime in $\Z$.
+
+($\impliedby$) Assume $J$ is prime in $\Z$. We show $I_J$ is prime in $\SemiringS$. Let $a, b \in \SemiringS$ such that $a\times b \in I_J$.
+If $a=\Tobj$. Since $\Tobj \in I_J$, $a \in I_J$. Similarly if $b=\Tobj$.
+If $a, b \in \Z$. Then $a\times b = a\times_{\Z} b$. Since $a\times b \in \Z$, $a\times b \in I_J$ implies $a\times b \in I_J \cap \Z = J$.
+Since $J$ is prime in $\Z$, $a \in J$ or $b \in J$. Thus $a \in I_J$ or $b \in I_J$.
+
+The prime ideals of $\Z$ are the zero ideal $(0)=\{0_{\Z}\}$ and the principal ideals $(p)=p\Z$ generated by prime numbers $p$.
+
+If $J=(0)$, $I_J = \{0_{\Z}\} \cup \{\Tobj\} = P_{(0)}$.
+If $J=(p)$, $I_J = p\Z \cup \{\Tobj\} = P_{(p)}$.
+\end{proof}
+
+\begin{theorem}\label{thm:maximal_ideals_S}
+The maximal spectrum $\MaxSpec(\SemiringS)$ consists of the ideals $P_{(p)}$, where $p$ is a prime number in $\Z$. The minimal spectrum $\MinSpec(\SemiringS)$ consists solely of $P_{\Tobj}$.
+\end{theorem}
+\begin{proof}
+We analyze the inclusions among the prime ideals identified in Theorem \ref{thm:prime_ideals_S} in the poset $(\Spec(\SemiringS), \subseteq)$.
+(i) Comparison of $P_{\Tobj}$ and $P_{(0)}$. $P_{\Tobj}=\{\Tobj\}$. $P_{(0)}=\{0_{\Z}, \Tobj\}$. Since $0_{\Z} \neq \Tobj$, $P_{\Tobj} \subsetneq P_{(0)}$.
+(ii) Comparison of $P_{(0)}$ and $P_{(p)}$. $P_{(0)}=\{0_{\Z}, \Tobj\}$. $P_{(p)}=p\Z \cup \{\Tobj\}$. Since $0_{\Z} \in p\Z$ (as $0=p\cdot 0$), $P_{(0)} \subseteq P_{(p)}$. Since $p$ is prime, $p\neq 0_{\Z}$. Thus $p \in P_{(p)}$ and $p \notin P_{(0)}$. The inclusion is strict: $P_{(0)} \subsetneq P_{(p)}$.
+(iii) Comparison of $P_{(p)}$ and $P_{(q)}$. $P_{(p)} \subseteq P_{(q)}$ if and only if $p\Z \cup \{\Tobj\} \subseteq q\Z \cup \{\Tobj\}$. This is equivalent to $p\Z \subseteq q\Z$. In $\Z$, this occurs if and only if $q$ divides $p$. Since $p, q$ are prime numbers, this implies $p=q$.
+
+The ideals $P_{(p)}$ are therefore the maximal elements in the poset. Since every prime ideal is contained in one of these (as $P_{\Tobj} \subset P_{(0)} \subset P_{(p)}$), they constitute the maximal spectrum.
+$P_{\Tobj}$ is the unique minimum element, as it is contained in every ideal (Lemma \ref{lem:absorber_in_ideal}).
+\end{proof}
+
+\begin{theorem}\label{thm:krull_dim_S}
+The Krull dimension of the semiring $\SemiringS$ is 2.
+\end{theorem}
+\begin{proof}
+The Krull dimension (Definition \ref{def:Krull_dimension}) is the supremum of the lengths of chains of distinct prime ideals. Based on the inclusion analysis in the proof of Theorem \ref{thm:maximal_ideals_S}, the maximal chains are of the form:
+\begin{equation}\label{eq:maximal_chain_S}
+    P_{\Tobj} \subsetneq P_{(0)} \subsetneq P_{(p)}.
+\end{equation}
+The length of this chain is $n=2$. Therefore, $\KrullDim(\SemiringS)=2$.
+\end{proof}
+
+\subsection{The Zariski Topology on $\Spec(\SemiringS)$}
+
+We examine the topological structure of $\Spec(\SemiringS)$ endowed with the Zariski topology.
+
+\begin{definition}
+The Zariski topology on $\Spec(R)$ is defined by the collection of closed sets $\mathcal{V} = \{V(I) \mid I \text{ is an ideal of } R\}$, where $V(I) = \{P \in \Spec(R) \mid I \subseteq P\}$.
+\end{definition}
+
+We characterize the closed sets in $\Spec(\SemiringS) = \{P_{\Tobj}, P_{(0)}\} \cup \{P_{(p)}\}$.
+
+\begin{lemma}\label{lem:V(I)}
+Let $I$ be an ideal of $\SemiringS$. The closed sets $V(I)$ are characterized as follows:
+\begin{enumerate}
+    \item If $I=I_0=P_{\Tobj}$ (the zero ideal), then $V(I) = \Spec(\SemiringS)$.
+    \item If $I=I_J$ where $J=(n)_{\Z}$, $n\ge 0$.
+    \begin{enumerate}
+        \item If $n=0$ ($J=(0)$), $I=P_{(0)}$. Then $V(I) = \{P_{(0)}\} \cup \{P_{(p)} \mid p \text{ prime}\}$.
+        \item If $n=1$ ($J=\Z$), $I=\SemiringS$ (the improper ideal). Then $V(I) = \emptyset$.
+        \item If $n>1$. Then $V(I) = \{P_{(p)} \mid p \text{ is a prime divisor of } n\}$.
+    \end{enumerate}
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+We analyze the condition $I \subseteq P$ for $P \in \Spec(\SemiringS)$.
+
+1. $I=P_{\Tobj}=\{\Tobj\}$. Since $P_{\Tobj}$ is the zero ideal, it is contained in every ideal (as $\Tobj$ belongs to every ideal by Lemma \ref{lem:absorber_in_ideal}). Thus $V(P_{\Tobj}) = \Spec(\SemiringS)$.
+
+2. $I=I_J = J \cup \{\Tobj\}$. Since $\Tobj \in P$ for all $P$, the condition $I_J \subseteq P$ is equivalent to $J \subseteq P$.
+
+2a. $J=(0)$. $I=P_{(0)}=\{0_{\Z}, \Tobj\}$.
+We examine $P_{(0)} \subseteq P$.
+If $P=P_{\Tobj}$. $0_{\Z} \in P_{\Tobj}$ is false.
+If $P=P_{(0)}$. $P_{(0)} \subseteq P_{(0)}$ is true.
+If $P=P_{(p)}$. $P_{(0)} \subseteq P_{(p)}$ is true (as analyzed in Theorem \ref{thm:maximal_ideals_S}).
+Thus $V(P_{(0)}) = \{P_{(0)}\} \cup \{P_{(p)}\}$.
+
+2b. $J=(1)=\Z$. $I=\SemiringS$. $V(\SemiringS) = \emptyset$ because prime ideals must be proper.
+
+2c. $J=(n), n>1$.
+We examine $J \subseteq P$.
+If $P=P_{\Tobj}$. $J \subseteq P_{\Tobj}$ implies $J \subseteq \{\Tobj\}$. Since $J \subset \Z$, this implies $J=\emptyset$. This is impossible as ideals of $\Z$ are non-empty ($0_{\Z} \in J$).
+If $P=P_{(0)}$. $J \subseteq P_{(0)}$ implies $(n) \subseteq (0)$. This means $n=0$, contradicting $n>1$.
+If $P=P_{(p)}$. $J \subseteq P_{(p)}$ implies $(n) \subseteq (p)$. This is equivalent to $p|n$ in $\Z$.
+Thus $V(I_J)$ is the finite set of maximal ideals corresponding to the prime factors of $n$.
+\end{proof}
+
+\begin{theorem}\label{thm:zariski_topology}
+The topological space $\Spec(\SemiringS)$ exhibits the following properties:
+\begin{enumerate}
+    \item The closed points are the maximal ideals $P_{(p)}$.
+    \item The point $P_{\Tobj}$ is the unique generic point. Consequently, $\Spec(\SemiringS)$ is irreducible.
+    \item $\Spec(\SemiringS)$ is a Noetherian topological space.
+    \item $\Spec(\SemiringS)$ is $T_0$ but not $T_1$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1. A point $P$ is closed if the singleton set $\{P\}$ is a closed set. This occurs if $\{P\}=V(I)$ for some ideal $I$. This is equivalent to $P$ being a maximal ideal. By Theorem \ref{thm:maximal_ideals_S}, these are the $P_{(p)}$.
+
+2. The closure of a point $P$ is $\overline{\{P\}} = V(P)$. The closure of $\{P_{\Tobj}\}$ is $V(P_{\Tobj})$. By Lemma \ref{lem:V(I)}.1, this is $\Spec(\SemiringS)$. A point whose closure is the entire space is a generic point. It is unique because $P_{\Tobj}$ is the unique minimal prime ideal (it is contained in all other prime ideals). A topological space is irreducible if it cannot be written as the union of two proper closed subsets. The existence of a generic point implies irreducibility.
+
+3. A topological space is Noetherian if it satisfies the descending chain condition on closed sets. This property is equivalent to the ascending chain condition (ACC) on the ideals of the semiring. By Corollary \ref{cor:S_is_Noetherian}, $\SemiringS$ is Noetherian. Thus $\Spec(\SemiringS)$ is Noetherian.
+
+4. A space is $T_1$ if all points are closed. Since $P_{\Tobj}$ and $P_{(0)}$ are not closed (their closures are strictly larger than themselves), the space is not $T_1$.
+A space is $T_0$ (Kolmogorov) if for any two distinct points, there is an open set containing one but not the other. This follows from the fact that the prime ideals form a structured poset under inclusion (the specialization order). If $P_1 \neq P_2$, assume without loss of generality $P_1 \not\subseteq P_2$. Then the open set $U = \Spec(\SemiringS) \setminus V(P_1)$ contains $P_2$ but not $P_1$.
+\end{proof}
+
+\section{Divisibility and Factorization in $\SemiringS$}
+
+Since $\SemiringS$ is an integral semidomain (Proposition \ref{prop:integral_semidomain}), we analyze its arithmetic structure concerning divisibility and factorization. This analysis reveals characteristics that deviate from the standard theory of factorization in integral domains (rings).
+
+\subsection{Divisibility and Associates}
+
+\begin{definition}
+For $a, b \in \SemiringS$, $a$ divides $b$ (denoted $a|b$) if there exists $c \in \SemiringS$ such that $b=ac$.
+\end{definition}
+
+\begin{proposition}\label{prop:divisibility_S}
+The divisibility relation in $\SemiringS$ is characterized as follows:
+\begin{enumerate}
+    \item $\Tobj|a$ if and only if $a=\Tobj$.
+    \item $a|\Tobj$ for all $a \in \SemiringS$.
+    \item If $a, b \in \Z$ and $a\neq 0_{\Z}$. Then $a|_{\SemiringS} b$ if and only if $a|_{\Z} b$.
+    \item $0_{\Z}|a$ if and only if $a \in \{0_{\Z}, \Tobj\}$.
+    \item If $a \in \Z\setminus\{0_{\Z}\}$, then $a|0_{\Z}$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+1. If $\Tobj|a$, then $a=\Tobj\times c$ for some $c \in \SemiringS$. By the absorbing property of $\Tobj$, $\Tobj\times c = \Tobj$. Thus $a=\Tobj$. Conversely, $\Tobj|\Tobj$ since $\Tobj=\Tobj\times\Tobj$.
+
+2. $\Tobj = a\times\Tobj$ by the absorbing property of $\Tobj$. Thus $a|\Tobj$.
+
+3. Let $a, b \in \Z, a\neq 0_{\Z}$.
+($\impliedby$) If $a|_{\Z} b$, $b=ac$ for some $c\in\Z$. Since $\Z \subset \SemiringS$, $a|_{\SemiringS} b$.
+($\implies$) If $a|_{\SemiringS} b$, $b=ac$ for some $c\in\SemiringS$. We examine $c$. If $c=\Tobj$, $b=a\times\Tobj=\Tobj$. This contradicts $b\in\Z$. So $c\in\Z$. $b=a\times_{\Z} c$. Thus $a|_{\Z} b$.
+
+4. $0_{\Z}|a$ means $a=0_{\Z}\times c$ for some $c \in \SemiringS$.
+If $c \in \Z$. $a=0_{\Z}\times_{\Z} c = 0_{\Z}$ (Case M1).
+If $c=\Tobj$. $a=0_{\Z}\times\Tobj = \Tobj$ (Case M2).
+Thus the set of elements divisible by $0_{\Z}$ is $\{0_{\Z}, \Tobj\}$.
+
+5. Let $a \in \Z\setminus\{0_{\Z}\}$. $0_{\Z} = a\times_{\Z} 0_{\Z}$ (Case M1). Thus $a|0_{\Z}$ in $\SemiringS$.
+\end{proof}
+
+\begin{definition}
+Elements $a, b \in \SemiringS$ are associates if $a|b$ and $b|a$.
+\end{definition}
+
+\begin{proposition}\label{prop:associates_S}
+Elements $a, b \in \SemiringS$ are associates if and only if $a=ub$ for some unit $u \in U(\SemiringS)=\{\pm 1_{\Z}\}$, provided that $a\neq 0_{\Z}$ and $b\neq 0_{\Z}$. The element $0_{\Z}$ is associated only with itself.
+\end{proposition}
+\begin{proof}
+In a commutative monoid, if $a=ub$ where $u$ is a unit, then $b|a$ and $b=u^{-1}a$, so $a|b$.
+
+Conversely, assume $a|b$ and $b|a$. $b=ac_1, a=bc_2$. $a=ac_1c_2$.
+
+Case 1: $a=\Tobj$. Then $b=\Tobj$ (by Prop \ref{prop:divisibility_S}.1). $a=1_{\Z}b$.
+
+Case 2: $a \in \Z, a\neq 0_{\Z}$. We show $b$ must also be in $\Z\setminus\{0_{\Z}\}$.
+If $b=\Tobj$. $a|\Tobj$ holds. $\Tobj|a$ implies $a=\Tobj$, contradiction.
+If $b=0_{\Z}$. $a|0_{\Z}$ holds (Prop \ref{prop:divisibility_S}.5). $0_{\Z}|a$ implies $a\in\{0_{\Z}, \Tobj\}$ (Prop \ref{prop:divisibility_S}.4), contradiction.
+So $b \in \Z\setminus\{0_{\Z}\}$.
+Since $a, b \in \Z\setminus\{0_{\Z}\}$, $a|_{\SemiringS} b \iff a|_{\Z} b$ (Prop \ref{prop:divisibility_S}.3). Thus $a, b$ are associates in $\Z$. $a=\pm b$.
+
+Case 3: $a=0_{\Z}$. We must determine the associates of $0_{\Z}$. We require $0_{\Z}|b$ and $b|0_{\Z}$.
+$0_{\Z}|b$ implies $b\in\{0_{\Z}, \Tobj\}$.
+If $b=\Tobj$. We check if $\Tobj|0_{\Z}$. This requires $0_{\Z}=\Tobj\times c = \Tobj$. Contradiction.
+If $b=0_{\Z}$. $0_{\Z}|0_{\Z}$ holds.
+Thus $0_{\Z}$ is associated only with itself.
+\end{proof}
+
+\subsection{Irreducibles and Primes}
+
+We analyze the concepts of irreducible and prime elements in $\SemiringS$. We recall the definitions applied to the integral semidomain $\SemiringS$, where $0_{\SemiringS}=\Tobj$ and $U(\SemiringS)=\{\pm 1_{\Z}\}$.
+
+\begin{definition}
+Let $R$ be an integral semidomain.
+\begin{enumerate}
+    \item An element $x \in R$ is \emph{irreducible} if $x\neq 0_R$, $x \notin U(R)$, and if $x=ab$ implies $a \in U(R)$ or $b \in U(R)$.
+    \item An element $p \in R$ is \emph{prime} if $p\neq 0_R$, $p \notin U(R)$, and if $p|ab$ implies $p|a$ or $p|b$.
+\end{enumerate}
+\end{definition}
+
+The set of non-zero, non-unit elements in $\SemiringS$ is $\SemiringS\setminus\{\Tobj, 1_{\Z}, -1_{\Z}\} = \Z\setminus\{1, -1\}$. This set includes $0_{\Z}$.
+
+\begin{theorem}\label{thm:irreducibles_S}
+The irreducible elements of $\SemiringS$ are precisely the elements associated with prime numbers in $\Z$ (i.e., elements $\pm p$, where $p$ is a prime number). The element $0_{\Z}$ is reducible.
+\end{theorem}
+\begin{proof}
+Let $x \in \SemiringS$ be a non-zero, non-unit element.
+
+Case 1: $x=0_{\Z}$. We examine if $0_{\Z}$ is irreducible. We seek a factorization $0_{\Z}=ab$ where $a, b$ are not units.
+Consider $a=2$ and $b=0_{\Z}$. Both $a$ and $b$ are not units in $\SemiringS$.
+We verify the product: $2\times 0_{\Z}$. Since both are in $\Z$, the product is $2\times_{\Z} 0_{\Z} = 0_{\Z}$ (Case M1).
+Thus $0_{\Z}$ admits a factorization into non-units. Therefore, $0_{\Z}$ is reducible.
+
+Case 2: $x \in \Z\setminus\{0_{\Z}, 1_{\Z}, -1_{\Z}\}$. Suppose $x=ab$ in $\SemiringS$.
+Since $x\in\Z$ and $x\neq\Tobj$, we must have $a, b \in \Z$ (otherwise the product would be $\Tobj$, by Cases M2, M3, M4).
+The factorization $x=ab$ in $\SemiringS$ is equivalent to the factorization $x=a\times_{\Z} b$ in $\Z$.
+The units of $\SemiringS$ are exactly the units of $\Z$.
+Thus $x$ is irreducible in $\SemiringS$ if and only if it is irreducible in $\Z$. The irreducibles in $\Z$ are precisely $\pm p$ where $p$ is a prime number.
+\end{proof}
+
+\begin{theorem}\label{thm:primes_S}
+The prime elements of $\SemiringS$ are precisely the irreducible elements ($\pm p$) and the element $0_{\Z}$.
+\end{theorem}
+\begin{proof}
+We check the definition of prime for non-zero, non-unit elements.
+
+1. Irreducibles $x=\pm p$. We show $x$ is prime. Suppose $x|ab$.
+Case 1a: $a, b \in \Z$.
+If $ab=0_{\Z}$. Then $a=0_{\Z}$ or $b=0_{\Z}$. By Proposition \ref{prop:divisibility_S}.5, $x|0_{\Z}$. Thus $x|a$ or $x|b$.
+If $ab\neq 0_{\Z}$. Then $x|_{\SemiringS} ab$ is equivalent to $x|_{\Z} ab$ (Prop \ref{prop:divisibility_S}.3). Since $x$ is prime in $\Z$, $x|_{\Z} a$ or $x|_{\Z} b$. Thus $x|_{\SemiringS} a$ or $x|_{\SemiringS} b$.
+Case 1b: $a=\Tobj$ or $b=\Tobj$. Then $ab=\Tobj$. $x|\Tobj$ holds (Prop \ref{prop:divisibility_S}.2). Also $x|\Tobj$, so $x|a$ or $x|b$.
+Thus $\pm p$ are prime in $\SemiringS$.
+
+2. Reducible element $x=0_{\Z}$. We show $0_{\Z}$ is prime. Suppose $0_{\Z}|ab$.
+By Proposition \ref{prop:divisibility_S}.4, this means $ab \in \{0_{\Z}, \Tobj\}$.
+Case 2a: $ab=0_{\Z}$. This implies $a, b \in \Z$ and $a\times_{\Z} b = 0_{\Z}$. Since $\Z$ is an integral domain, $a=0_{\Z}$ or $b=0_{\Z}$.
+If $a=0_{\Z}$, then $0_{\Z}|a$. If $b=0_{\Z}$, then $0_{\Z}|b$.
+Case 2b: $ab=\Tobj$. This implies $a=\Tobj$ or $b=\Tobj$ (Proposition \ref{prop:integral_semidomain}).
+If $a=\Tobj$. By Proposition \ref{prop:divisibility_S}.4, $0_{\Z}|\Tobj$. So $0_{\Z}|a$. Similarly if $b=\Tobj$.
+Thus $0_{\Z}$ is a prime element in $\SemiringS$.
+
+3. Other elements $n \in \Z$ (composites, $|n|>1$). If $n=cd$ where $|c|, |d| > 1$. Then $n|cd$ in $\SemiringS$. However, $n\nmid c$ and $n\nmid d$ in $\Z$, and thus also in $\SemiringS$ (Prop \ref{prop:divisibility_S}.3). These elements are not prime.
+\end{proof}
+
+\begin{theorem}\label{thm:prime_not_irreducible_S}
+In the integral semidomain $\SemiringS$, there exist prime elements that are not irreducible.
+\end{theorem}
+\begin{proof}
+The element $0_{\Z}$ is prime by Theorem \ref{thm:primes_S}. The element $0_{\Z}$ is reducible by Theorem \ref{thm:irreducibles_S}.
+\end{proof}
+
+This behavior contrasts with that of integral domains (rings), where every prime element is irreducible. The distinction arises because the cancellation law does not hold universally for the element $0_{\Z}$ in $\SemiringS$. Specifically, $0_{\Z}\times a = 0_{\Z}\times b$ does not imply $a=b$. For example, $0_{\Z}\times 1_{\Z} = 0_{\Z}$ and $0_{\Z}\times 2 = 0_{\Z}$.
+
+\subsection{Unique Factorization}
+
+\begin{definition}
+An integral semidomain $R$ is a Unique Factorization Domain (UFD) (or Unique Factorization Semidomain, UFS) if:
+\begin{enumerate}
+    \item (Existence) Every non-zero, non-unit element can be written as a product of irreducible elements.
+    \item (Uniqueness) This factorization is unique up to the order of factors and replacement by associates.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}\label{thm:S_not_UFD}
+The semiring $\SemiringS$ is not a UFD.
+\end{theorem}
+\begin{proof}
+We demonstrate that the existence condition for factorization fails in $\SemiringS$.
+Consider the element $0_{\Z}$. It is non-zero ($0_{\Z}\neq\Tobj$) and non-unit ($0_{\Z}\neq\pm 1_{\Z}$).
+We attempt to factor $0_{\Z}$ into a product of irreducibles. Suppose, for the sake of contradiction, that $0_{\Z}$ possesses such a factorization: $0_{\Z} = x_1 x_2 \dots x_k$, where $x_i$ are irreducible elements of $\SemiringS$.
+By Theorem \ref{thm:irreducibles_S}, the irreducibles are $x_i = \pm p_i$ for prime numbers $p_i$.
+The elements $x_i$ are in $\Z$. The product $x_1 \dots x_k$ in $\SemiringS$ is the product in $\Z$: $P = x_1\times_{\Z}\dots\times_{\Z} x_k$.
+Since each $x_i$ is a prime number (up to sign) in $\Z$, $x_i \neq 0_{\Z}$. Since $\Z$ is an integral domain, their product is non-zero: $P \neq 0_{\Z}$.
+This contradicts the assumption that the product equals $0_{\Z}$.
+Therefore, $0_{\Z}$ cannot be factored into a product of irreducible elements. The existence condition for a UFD is violated.
+\end{proof}
+
+\begin{remark}
+Although $\SemiringS$ is a PIS (Theorem \ref{thm:S_is_PIS}), the standard implication chain (PID $\implies$ UFD) that holds for rings fails in this semiring context. The obstruction arises from the existence of a prime element ($0_{\Z}$) that is reducible and cannot be expressed as a product of irreducibles.
+\end{remark}
+
+\section{Congruences and Quotient Structures}
+
+We provide a complete classification of the congruences on $\SemiringS$ and analyze the resulting quotient semirings.
+
+\subsection{Classification of Congruences}
+
+Let $\rho \in \Cong(\SemiringS)$.
+
+\begin{definition}
+The kernel of a congruence $\rho$ on a hemiring $R$ is the equivalence class of the additive identity: $\ker(\rho) = [0_R]_{\rho}$.
+\end{definition}
+
+In $\SemiringS$, $0_{\SemiringS}=\Tobj$.
+
+\begin{lemma}\label{lem:kernel_is_ideal}
+If $\rho \in \Cong(\SemiringS)$, the kernel $I=[\Tobj]_{\rho}$ is an ideal of $\SemiringS$.
+\end{lemma}
+\begin{proof}
+$I$ is non-empty ($\Tobj \in I$).
+1. Additive closure. Let $a, b \in I$. Then $a \rho \Tobj$ and $b \rho \Tobj$. By compatibility of $\rho$ with $+$, $(a+b) \rho (\Tobj+\Tobj)$. Since $\Tobj+\Tobj=\Tobj$, $(a+b) \rho \Tobj$. Thus $a+b \in I$.
+2. Absorption. Let $r \in \SemiringS, a \in I$. Then $a \rho \Tobj$. By compatibility of $\rho$ with $\times$, $(r\times a) \rho (r\times\Tobj)$. Since $r\times\Tobj=\Tobj$ (absorbing property), $(r\times a) \rho \Tobj$. Thus $r\times a \in I$.
+\end{proof}
+
+Let $\rho_{\Z} = \rho \cap (\Z \times \Z)$ be the restriction of $\rho$ to $\Z$.
+
+\begin{lemma}\label{lem:rho_Z_congruence}
+If $\rho \in \Cong(\SemiringS)$, then $\rho_{\Z}$ is a congruence on the ring $\Z$.
+\end{lemma}
+\begin{proof}
+$\rho_{\Z}$ is an equivalence relation as it is the restriction of one. Compatibility follows because the operations on $\Z$ (Case A1, M1) are the restrictions of the operations on $\SemiringS$. If $a, b, c, d \in \Z$ and $a \rho_{\Z} b, c \rho_{\Z} d$, then $a \rho b, c \rho d$. Thus $(a+c) \rho (b+d)$ and $(a\times c) \rho (b\times d)$. Since the results $a+c, b+d, a\times c, b\times d$ are in $\Z$, $\rho_{\Z}$ is compatible with the operations on $\Z$.
+\end{proof}
+
+A congruence on the ring $\Z$ corresponds uniquely to an ideal $(n)_{\Z}$, $n\ge 0$, where $a \rho_{\Z} b$ if and only if $a-b \in (n)$, i.e., $a \equiv b \pmod{n}$.
+
+We now relate the kernel $I$ and the restriction $\rho_{\Z}$. Let $J = I \cap \Z$. By Theorem \ref{thm:ideal_structure_S}, if $J\neq\emptyset$, $J=(m)_{\Z}$, $m\ge 0$.
+
+\begin{lemma}\label{lem:congruence_constraints}
+Let $\rho \in \Cong(\SemiringS)$. Let $I=[\Tobj]_{\rho}$ be the kernel and let $\rho_{\Z}$ correspond to the ideal $(n)_{\Z}$. Let $J=I\cap\Z$.
+\begin{enumerate}
+    \item If $I=\{\Tobj\}$ (i.e., $J=\emptyset$), there are no constraints on $(n)$.
+    \item If $I\neq\{\Tobj\}$ (i.e., $J=(m)_{\Z} \neq \emptyset$). Then we must have $(n)=(m)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+1. If $I=\{\Tobj\}$. This means $J=\emptyset$. We analyze the constraints on $\rho$. The condition $x \rho y$ implies either $x, y \in \Z$ or $x=y=\Tobj$ (since if one element is $\Tobj$, the other must be in the equivalence class $I=\{\Tobj\}$). If $x, y \in \Z$, $x \rho y$ if and only if $x \equiv y \pmod{n}$. This defines a relation $\rho_n$ associated with $n\ge 0$. We must verify that $\rho_n$ is indeed a congruence on $\SemiringS$.
+
+Verification of $\rho_n$: It is an equivalence relation. We check compatibility. Let $a \rho_n b$ and $c \rho_n d$.
+Case 1.1: $a, b, c, d \in \Z$. $a\equiv b(n), c\equiv d(n)$. Then $a+c \equiv b+d(n)$ and $ac \equiv bd(n)$ in $\Z$. Compatibility holds.
+Case 1.2: $a=\Tobj$. Since $[\Tobj]_{\rho_n}=\{\Tobj\}$, we must have $b=\Tobj$.
+We check addition: $(\Tobj+c) \rho_n (\Tobj+d)$. By the identity property of $\Tobj$, this simplifies to $c \rho_n d$. This holds by assumption.
+We check multiplication: $(\Tobj\times c) \rho_n (\Tobj\times d)$. By the absorbing property of $\Tobj$, this simplifies to $\Tobj \rho_n \Tobj$. This holds.
+All other cases follow by symmetry (commutativity of operations). Thus $\rho_n$ is a valid congruence for any $n\ge 0$.
+
+2. If $I\neq\{\Tobj\}$. Then $J=I\cap\Z \neq \emptyset$. Since $J$ is an ideal of $\Z$ (as established in the proof of Theorem \ref{thm:ideal_structure_S}, Part I), we must have $0_{\Z} \in J$. Thus $0_{\Z} \in I$. This means $0_{\Z} \rho \Tobj$.
+
+We show $(n)=(m)$.
+(i) Demonstration that $(n) \subseteq (m)$. Let $x \in (n)$. Then $x \equiv 0_{\Z} \pmod{n}$, so $x \rho_{\Z} 0_{\Z}$. This implies $x \rho 0_{\Z}$. Since $0_{\Z} \rho \Tobj$, by transitivity of $\rho$, $x \rho \Tobj$. So $x \in I$. Since $x \in \Z$, $x \in I \cap \Z = J=(m)$. Thus $(n) \subseteq (m)$. This implies $m|n$.
+
+(ii) Demonstration that $(m) \subseteq (n)$. Let $x \in (m)$. Then $x \in J$, so $x \in I$. Thus $x \rho \Tobj$. Since $0_{\Z} \in J$, $0_{\Z} \rho \Tobj$. By symmetry and transitivity of $\rho$, $x \rho 0_{\Z}$. Since $x, 0_{\Z} \in \Z$, this means $x \rho_{\Z} 0_{\Z}$. Thus $x \equiv 0_{\Z} \pmod{n}$, so $x \in (n)$. So $(m) \subseteq (n)$. This implies $n|m$.
+
+Since $n, m \ge 0$, $n=m$. Therefore, $(n)=(m)$.
+\end{proof}
+
+\begin{theorem}\label{thm:congruence_classification_S}
+The congruences on $\SemiringS$ are completely classified into the following types:
+
+\begin{enumerate}
+    \item Type A (Trivial Kernel): Congruences $\rho_n$ ($n\ge 0$), defined by $x \rho_n y$ if and only if ($x, y \in \Z$ and $x\equiv y(n)$) or ($x=y=\Tobj$). The kernel is $\ker(\rho_n)=\{\Tobj\}$.
+    \item Type B (Zero Kernel): The congruence $\rho_B$ (corresponding to $n=0$), defined by $x \rho_B y$ if and only if $x=y$ or $x, y \in \{0_{\Z}, \Tobj\}$. The kernel is $\ker(\rho_B)=\{0_{\Z}, \Tobj\}$. This is the Rees congruence associated with the ideal $I_{(0)}$.
+    \item Type C (Principal Kernel): Congruences $\rho'_n$ ($n\ge 1$), defined by the partition consisting of the kernel $I_n=(n)\cup\{\Tobj\}$ and the distinct classes $C_k = \{x\in\Z \mid x\equiv k(n)\}$ for $k=1,\dots, n-1$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The necessity of these forms follows directly from the analysis in Lemma \ref{lem:congruence_constraints}. We must ensure the sufficiency; that is, we must verify that Type B and Type C relations are indeed congruences. The verification for Type A was completed within the proof of Lemma \ref{lem:congruence_constraints}.
+
+Type B Verification ($\rho_B$). This corresponds to the case $n=0, m=0$ in Lemma \ref{lem:congruence_constraints}.2. The ideal is $I_{(0)}=\{0_{\Z}, \Tobj\}$. The relation is the Rees congruence: $a \rho_B b$ iff $a=b$ or $a, b \in I_{(0)}$. We verify compatibility. Let $a \rho_B b$ and $c \rho_B d$. We must check $a+c \rho_B b+d$ and $ac \rho_B bd$.
+
+Case B.1: $a=b, c=d$. Trivial compatibility.
+
+Case B.2: $a, b \in I_{(0)}, c=d$.
+Multiplication: $ac$ and $bc$. Since $I_{(0)}$ is an ideal, $ac \in I_{(0)}$ and $bc \in I_{(0)}$ (absorption property). Thus $ac \rho_B bc$.
+Addition: $a+c$ and $b+c$.
+If $c \in I_{(0)}$. $a+c \in I_{(0)}, b+c \in I_{(0)}$ (additive closure of the ideal). Holds.
+If $c \notin I_{(0)}$. Then $c \in \Z, c\neq 0_{\Z}$.
+The elements of $I_{(0)}$ are $0_{\Z}$ and $\Tobj$.
+If $a=0_{\Z}, b=\Tobj$. $a+c = 0_{\Z}+c = c$ (Case A1). $b+c = \Tobj+c = c$ (Case A3). Since $c=c$, $a+c \rho_B b+c$.
+If $a=0_{\Z}, b=0_{\Z}$ or $a=\Tobj, b=\Tobj$, it reduces to $c \rho_B c$.
+
+Case B.3: $a=b, c, d \in I_{(0)}$. Symmetric to Case B.2.
+
+Case B.4: $a, b \in I_{(0)}, c, d \in I_{(0)}$. $a+c, b+d \in I_{(0)}$ (additive closure). $ac, bd \in I_{(0)}$ (absorption). Holds.
+Type B is a congruence.
+
+Type C Verification ($\rho'_n, n\ge 1$). This corresponds to the case $n=m\ge 1$ in Lemma \ref{lem:congruence_constraints}.2. This relation defines a partition of $\SemiringS$. $a \rho'_n b$ if and only if $a$ and $b$ belong to the same partition class ($I_n$ or $C_k$).
+
+Let $A, B$ be classes. Let $a_1, a_2 \in A$ and $b_1, b_2 \in B$. We must verify $a_1+b_1$ and $a_2+b_2$ belong to the same class $C$, and $a_1 b_1, a_2 b_2$ belong to the same class $D$.
+
+Addition Compatibility:
+Case C.1: $A=C_j, B=C_k$ ($1\le j, k < n$). $a_i, b_i \in \Z$. $a_i \equiv j(n), b_i \equiv k(n)$.
+$a_1+b_1 \equiv j+k(n)$. $a_2+b_2 \equiv j+k(n)$. They belong to the same class (either $C_{j+k \pmod{n}}$ if $j+k \not\equiv 0(n)$, or $I_n$ if $j+k\equiv 0(n)$).
+
+Case C.2: $A=I_n, B=C_k$. $a_i \in I_n, b_i \in C_k$.
+We analyze the possible sums $a_i+b_i$.
+If $a_i \in (n)$. $a_i+b_i \in \Z$. $a_i+b_i \equiv 0+k=k(n)$. So $a_i+b_i \in C_k$.
+If $a_i = \Tobj$. $a_i+b_i = \Tobj+b_i = b_i$ (Case A3). Since $b_i \in C_k$, the sum is in $C_k$.
+In all subcases, the sum belongs to the same class $C_k$.
+
+Case C.3: $A=I_n, B=I_n$. $a_i+b_i \in I_n$ since $I_n$ is an ideal (additive closure).
+
+Multiplication Compatibility:
+Case C.4: $A=C_j, B=C_k$. $a_i b_i \in \Z$. $a_i b_i \equiv jk(n)$. They belong to the same class ($C_{jk \pmod{n}}$ or $I_n$).
+
+Case C.5: $A=I_n$ or $B=I_n$. Since $I_n$ is an ideal, the products $a_i b_i$ belong to $I_n$ by the absorption property. They are in the same class $I_n$.
+
+Type C is a congruence. The classification is complete.
+\end{proof}
+
+\subsection{Quotient Structures}
+
+We analyze the structure of the quotient semirings $\SemiringS/\rho$.
+
+\begin{theorem}\label{thm:quotient_structures}
+The quotient semirings of $\SemiringS$ are characterized up to isomorphism as follows:
+\begin{enumerate}
+    \item $\SemiringS/\rho_n \cong S(\Z/n\Z)$ (The globalization of the ring $\Z/n\Z$). ($n\ge 0$).
+    \item $\SemiringS/\rho_B \cong \Z$.
+    \item $\SemiringS/\rho'_n \cong \Z/n\Z$. ($n\ge 1$).
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We analyze the structure of the quotient based on the classes identified in Theorem \ref{thm:congruence_classification_S}.
+
+1. $\SemiringS/\rho_n$ (Type A). The classes are $[\Tobj]$ (which is the zero element of the quotient) and the classes $[k]_n = \{x\in\Z \mid x\equiv k(n)\}$. Let $Q_A = \SemiringS/\rho_n$.
+The operations in $Q_A$ are defined by the representatives.
+$[j]_n+[k]_n=[j+k]_n$. $[j]_n\times[k]_n=[jk]_n$.
+$[k]_n+[\Tobj]=[k+\Tobj]_n=[k]_n$. $[k]_n\times[\Tobj]=[k\times\Tobj]_n=[\Tobj]$.
+This structure is precisely the definition of the globalization $S(\Z/n\Z)$, where the elements of $\Z/n\Z$ are represented by the classes $[k]_n$, and the adjoined element is $[\Tobj]$.
+
+2. $\SemiringS/\rho_B$ (Type B). The classes are $I_{(0)}=\{0_{\Z}, \Tobj\}$ (the zero element of the quotient) and the singleton classes $\{k\}$ for $k\in\Z\setminus\{0\}$. Let $Q_B = \SemiringS/\rho_B$.
+We define a map $\phi: \Z \to Q_B$ by $\phi(0)=I_{(0)}$ and $\phi(k)=\{k\}$ for $k\neq 0$.
+$\phi$ is clearly a bijection. We verify it is a homomorphism.
+Addition: $\phi(a+b) = \phi(a)+\phi(b)$.
+If $a\neq 0, b\neq 0$.
+If $a+b\neq 0$. LHS $=\{a+b\}$. RHS $=\{a\}+\{b\}$. This is the class containing $a+b$. Since $a+b\neq 0$, this is $\{a+b\}$.
+If $a+b=0$. LHS $=\phi(0)=I_{(0)}$. RHS $=\{a\}+\{b\}$. This is the class containing $a+b=0$. This is $I_{(0)}$.
+If $a=0$. LHS $=\phi(b)$. RHS $=\phi(0)+\phi(b) = I_{(0)}+\phi(b)$. Since $I_{(0)}$ is the zero element of the quotient, this equals $\phi(b)$.
+Multiplication: $\phi(ab) = \phi(a)\phi(b)$.
+If $a\neq 0, b\neq 0$. Since $\Z$ is an integral domain, $ab\neq 0$. LHS $=\{ab\}$. RHS $=\{a\}\{b\}$. This is the class containing $ab$, which is $\{ab\}$.
+If $a=0$. LHS $=\phi(0)=I_{(0)}$. RHS $=\phi(0)\phi(b) = I_{(0)}\phi(b)$. The quotient $Q_B$ is a ring (isomorphic to $\Z$), hence a standard semiring. The zero element $I_{(0)}$ is absorbing. RHS $=I_{(0)}$.
+Thus $Q_B \cong \Z$.
+
+3. $\SemiringS/\rho'_n$ (Type C, $n\ge 1$). The classes are $I_n$ (the zero element of the quotient) and $C_k$ for $k=1,\dots, n-1$. Let $Q_C = \SemiringS/\rho'_n$.
+Define a map $\phi: \Z/n\Z \to Q_C$ by $\phi(\bar{0})=I_n$ and $\phi(\bar{k})=C_k$ for $k\neq 0$.
+This is a bijection.
+Homomorphism verification: $\phi(\bar{j}+\bar{k}) = \phi(\bar{j})+\phi(\bar{k})$.
+If $j\not\equiv 0, k\not\equiv 0 (n)$.
+If $j+k \not\equiv 0(n)$. LHS $= C_{j+k}$. RHS $= C_j+C_k$. This is the class containing the sum of elements from $C_j$ and $C_k$. As verified in Theorem \ref{thm:congruence_classification_S} (Case C.1), this is $C_{j+k}$.
+If $j+k \equiv 0(n)$. LHS $= I_n$. RHS $= C_j+C_k$. The sum belongs to $(n) \subset I_n$. Since the classes partition the space, the resulting class $C_j+C_k$ must be $I_n$.
+If $j\equiv 0(n)$. LHS $=\phi(\bar{k})$. RHS $=I_n+C_k$. As verified in Case C.2, the resulting class is $C_k$.
+Multiplication is verified similarly. The quotient $Q_C$ is isomorphic to the ring $\Z/n\Z$.
+\end{proof}
+
+\section{Symmetry Analysis and the Characterization of Singlets}
+
+We analyze the symmetries of $\SemiringS$ arising from its group of units.
+
+\subsection{The Canonical $\Ztwo$ Action on $\SemiringS$}
+
+By Proposition \ref{prop:units_S}, $U(\SemiringS) = \{1_{\Z}, -1_{\Z}\} \cong \Ztwo$.
+
+\begin{definition}
+The canonical $\Ztwo$ action on $\SemiringS$ is the action $\Psi: U(\SemiringS) \times \SemiringS \to \SemiringS$ defined by the multiplication operation of the semiring: $\Psi(g, s) := g \times s$.
+\end{definition}
+
+\begin{theorem}\label{thm:Psi_additive_automorphism}
+The action $\Psi$ is an action by automorphisms of the additive monoid $(\SemiringS, +)$.
+\end{theorem}
+\begin{proof}
+We must show that the map $\Sigma_g(s) = g \times s$ is an element of $\Aut((\SemiringS, +))$ for each $g \in U(\SemiringS)$, and that the mapping $g \mapsto \Sigma_g$ is a group homomorphism (Definition \ref{def:G_action}).
+
+1. $\Sigma_g$ is an additive homomorphism.
+We must verify $\Sigma_g(a+b) = \Sigma_g(a)+\Sigma_g(b)$.
+LHS: $\Sigma_g(a+b) = g\times(a+b)$. By distributivity in $\SemiringS$ (Theorem \ref{thm:S_is_semiring}, Part III), this equals $(g\times a) + (g\times b)$.
+RHS: $\Sigma_g(a)+\Sigma_g(b) = (g\times a) + (g\times b)$.
+
+2. $\Sigma_g$ is bijective. Since $g$ is a unit, it has an inverse $g^{-1} \in U(\SemiringS)$. The map $\Sigma_{g^{-1}}$ serves as the inverse of $\Sigma_g$.
+We compute the composition: $\Sigma_{g^{-1}}(\Sigma_g(s)) = g^{-1}\times(g\times s)$. By associativity of multiplication (Theorem \ref{thm:S_is_semiring}, Part II.2), this equals $(g^{-1}\times g)\times s$.
+Since $g, g^{-1} \in U(\SemiringS) \subset \Z$, the multiplication is $g^{-1}\times_{\Z} g = 1_{\Z}$.
+Thus, $\Sigma_{g^{-1}}(\Sigma_g(s)) = 1_{\Z}\times s$. Since $1_{\Z}$ is the multiplicative identity of $\SemiringS$, this equals $s$.
+
+3. The map $g \mapsto \Sigma_g$ is a group homomorphism.
+We verify $\Sigma_{g_1 g_2} = \Sigma_{g_1} \circ \Sigma_{g_2}$.
+$\Sigma_{g_1 g_2}(s) = (g_1 g_2)\times s$. By associativity, this equals $g_1\times(g_2\times s) = \Sigma_{g_1}(\Sigma_{g_2}(s))$.
+\end{proof}
+
+\begin{definition}[Involution $\Sigma$]
+The action of the generator $-1_{\Z}$ defines the involution $\Sigma: \SemiringS \to \SemiringS$, $\Sigma(s) = (-1_{\Z}) \times s$.
+\end{definition}
+
+\subsection{Characterization of Singlets}
+
+We determine the fixed points (singlets) of the action $\Psi$. Since the group $\Ztwo$ is generated by $-1_{\Z}$, an element $s$ is a singlet if and only if it is fixed by the generator, i.e., $\Sigma(s)=s$.
+
+\begin{theorem}\label{thm:singlets_S}
+The set of singlets in $\SemiringS$ under the canonical $\Ztwo$ action $\Psi$ is $\SetA = \{0_{\Z}, \Tobj\}$.
+\end{theorem}
+\begin{proof}
+We solve the equation $\Sigma(s)=s$, which is $(-1_{\Z}) \times s = s$.
+
+Case 1: $s=n \in \Z$.
+$\Sigma(n) = (-1_{\Z})\times n$. By Case M1, this is $(-1_{\Z})\times_{\Z} n = -n$.
+We require $-n=n$. As established in the proof of Theorem \ref{thm:Z_singlets}, this implies $2n=0_{\Z}$. Since $\Z$ has characteristic 0, $n=0_{\Z}$.
+
+Case 2: $s=\Tobj$.
+$\Sigma(\Tobj) = (-1_{\Z}) \times \Tobj$.
+Since $-1_{\Z} \in \Z$, by Definition \ref{def:multiplication_S} (Case M2), this product equals $\Tobj$.
+So $\Sigma(\Tobj)=\Tobj$.
+
+The set of singlets is $\{0_{\Z}, \Tobj\}$.
+\end{proof}
+
+\subsection{The Algebraic Structure of the Set of Singlets}
+
+\begin{theorem}\label{thm:structure_A_is_Boolean}
+The subset $\SetA = \{0_{\Z}, \Tobj\} \subset \SemiringS$, equipped with the inherited operations $(+, \times)$, forms a sub-semiring of $\SemiringS$. This sub-semiring is isomorphic to the Boolean semiring $\Bool$.
+\end{theorem}
+\begin{proof}
+We first verify closure under the operations.
+
+Addition (+): We compute the Cayley table for addition on $\SetA$.
+$0_{\Z}+0_{\Z}=0_{\Z} \in \SetA$ (Case A1).
+$0_{\Z}+\Tobj=0_{\Z} \in \SetA$ (Case A2).
+$\Tobj+0_{\Z}=0_{\Z} \in \SetA$ (Case A3).
+$\Tobj+\Tobj=\Tobj \in \SetA$ (Case A4).
+
+Multiplication ($\times$): We compute the Cayley table for multiplication on $\SetA$.
+$0_{\Z}\times 0_{\Z}=0_{\Z} \in \SetA$ (Case M1).
+$0_{\Z}\times\Tobj=\Tobj \in \SetA$ (Case M2).
+$\Tobj\times 0_{\Z}=\Tobj \in \SetA$ (Case M3).
+$\Tobj\times\Tobj=\Tobj \in \SetA$ (Case M4).
+
+Associativity, commutativity, and distributivity are inherited from $\SemiringS$.
+
+We identify the identities within $\SetA$.
+Additive Identity ($0_{\SetA}$): From the addition table, $0_{\SetA}=\Tobj$.
+Multiplicative Identity ($1_{\SetA}$): From the multiplication table, $1_{\SetA}=0_{\Z}$.
+
+The structure $(\SetA, +, \times)$ is a commutative unital standard semiring.
+
+We establish the isomorphism with $\Bool=(\{0, 1\}, \lor, \wedge)$ (Example \ref{ex:boolean_semiring}).
+Define the map $\psi: \SetA \to \Bool$ by mapping the identities: $\psi(0_{\SetA})=\psi(\Tobj)=0$ and $\psi(1_{\SetA})=\psi(0_{\Z})=1$.
+The comparison of the Cayley tables under the mapping $\psi$ confirms that $\psi$ is an isomorphism. For example, $\psi(0_{\Z}+\Tobj) = \psi(0_{\Z})=1$, and $\psi(0_{\Z})\lor\psi(\Tobj) = 1\lor 0 = 1$. Also $\psi(0_{\Z}\times\Tobj) = \psi(\Tobj)=0$, and $\psi(0_{\Z})\wedge\psi(\Tobj) = 1\wedge 0 = 0$.
+\end{proof}
+
+\section{Adjunction of a Universal Absorbing Element: The Hemiring $\SemiringSPrime$}
+
+We investigate the structure obtained by adjoining an element $\OmegaObj$ to $\SemiringS$ that is defined to be absorbing for both addition and multiplication.
+
+\subsection{Construction and Verification of $\SemiringSPrime$}
+
+\begin{construction}\label{const:SPrime}
+Let $\SemiringS = \Z \cup \{\Tobj\}$. Let $\OmegaObj$ be a formal element such that $\OmegaObj \notin \SemiringS$. We define the set $\SemiringSPrime := \SemiringS \cup \{\OmegaObj\} = \Z \cup \{\Tobj, \OmegaObj\}$.
+\end{construction}
+
+\begin{definition}[Operations on $\SemiringSPrime$]\label{def:operations_SPrime}
+We define operations $+_{\SemiringSPrime}$ and $\times_{\SemiringSPrime}$ on $\SemiringSPrime$ that extend the operations on $\SemiringS$ and enforce the absorbing properties of $\OmegaObj$. For $a, b \in \SemiringSPrime$:
+
+Addition ($+_{\SemiringSPrime}$):
+\begin{equation}\label{eq:add_Sprime}
+a+_{\SemiringSPrime} b := \begin{cases}
+    \OmegaObj & \text{if } a = \OmegaObj \text{ or } b = \OmegaObj \\
+    a+b & \text{if } a, b \in \SemiringS
+\end{cases}
+\end{equation}
+
+Multiplication ($\times_{\SemiringSPrime}$):
+\begin{equation}\label{eq:mult_Sprime}
+a\times_{\SemiringSPrime} b := \begin{cases}
+    \OmegaObj & \text{if } a = \OmegaObj \text{ or } b = \OmegaObj \\
+    a\times b & \text{if } a, b \in \SemiringS
+\end{cases}
+\end{equation}
+We henceforth omit the subscripts on the operations.
+\end{definition}
+
+\begin{theorem}\label{thm:SPrime_is_semiring}
+The structure $(\SemiringSPrime, +, \times)$ is a commutative unital hemiring. It is not a standard semiring.
+\end{theorem}
+\begin{proof}
+\emph{Part I: Verification of Semiring Axioms (Definition \ref{def:semiring}).}
+
+I.1. Commutativity. $a+b=b+a$. If $a=\OmegaObj$ or $b=\OmegaObj$, both sides equal $\OmegaObj$. If $a, b \in \SemiringS$, commutativity is inherited from $\SemiringS$. The argument for multiplication is identical.
+
+I.2. Associativity. $(a+b)+c = a+(b+c)$.
+If $a, b, c \in \SemiringS$. Associativity is inherited from $\SemiringS$.
+If at least one element is $\OmegaObj$. Suppose $a=\OmegaObj$. LHS $= (\OmegaObj+b)+c$. By \eqref{eq:add_Sprime}, $\OmegaObj+b=\OmegaObj$. LHS $=\OmegaObj+c = \OmegaObj$. RHS $= \OmegaObj+(b+c) = \OmegaObj$.
+The other cases ($b=\OmegaObj$ or $c=\OmegaObj$) similarly result in $\OmegaObj$. This establishes that $\OmegaObj$ is the additive absorber.
+The argument for multiplicative associativity is identical, establishing $\OmegaObj$ as the multiplicative absorber.
+
+I.3. Distributivity. $a\times(b+c) = (a\times b) + (a\times c)$.
+Case I.3.1: $a, b, c \in \SemiringS$. Distributivity is inherited from $\SemiringS$.
+Case I.3.2: At least one element is $\OmegaObj$.
+If $a=\OmegaObj$. LHS $=\OmegaObj\times(b+c) = \OmegaObj$. RHS $= (\OmegaObj\times b) + (\OmegaObj\times c) = \OmegaObj+\OmegaObj = \OmegaObj$.
+If $b=\OmegaObj$. LHS $= a\times(\OmegaObj+c)$. Since $\OmegaObj$ is the additive absorber, $\OmegaObj+c=\OmegaObj$. LHS $= a\times\OmegaObj = \OmegaObj$.
+RHS $= (a\times\OmegaObj) + (a\times c) = \OmegaObj+(a\times c)$. Since $\OmegaObj$ is the additive absorber, RHS $=\OmegaObj$.
+If $c=\OmegaObj$. Symmetric to $b=\OmegaObj$.
+
+\emph{Part II: Identities (Hemiring and Unital properties).}
+Additive Identity ($0_{\SemiringSPrime}$). We claim the identity is $\Tobj$.
+Let $a \in \SemiringSPrime$. We verify $a+\Tobj=a$.
+If $a \in \SemiringS$. $a+\Tobj = a+_{\SemiringS}\Tobj$. Since $\Tobj$ is the identity of $\SemiringS$, this equals $a$.
+If $a=\OmegaObj$. $\OmegaObj+\Tobj$. By \eqref{eq:add_Sprime} (since the first argument is $\OmegaObj$), the sum is $\OmegaObj$.
+Thus $0_{\SemiringSPrime}=\Tobj$. $\SemiringSPrime$ is a hemiring.
+
+Multiplicative Identity ($1_{\SemiringSPrime}$). We claim the identity is $1_{\Z}$.
+Let $a \in \SemiringSPrime$. We verify $1_{\Z}\times a=a$.
+If $a \in \SemiringS$. $1_{\Z}\times a = a$, since $1_{\Z}$ is the unity of $\SemiringS$.
+If $a=\OmegaObj$. $1_{\Z}\times\OmegaObj$. By \eqref{eq:mult_Sprime} (since the second argument is $\OmegaObj$), the product is $\OmegaObj$.
+Thus $1_{\SemiringSPrime}=1_{\Z}$.
+
+\emph{Part III: Standard Semiring Property.}
+The standard definition (Definition \ref{def:semiring_with_zero}) requires the additive identity to be the multiplicative absorber.
+The additive identity is $\Tobj$. The unique multiplicative absorber is $\OmegaObj$ (Part I.2).
+Since $\Tobj \neq \OmegaObj$ by construction (Construction \ref{const:SPrime}), $\SemiringSPrime$ is not a standard semiring.
+We explicitly demonstrate the failure of the axiom $a\times 0_R = 0_R$. Let $a=\OmegaObj$.
+$a\times 0_{\SemiringSPrime} = \OmegaObj\times\Tobj$. By \eqref{eq:mult_Sprime}, this equals $\OmegaObj$.
+The axiom requires the result to be $0_{\SemiringSPrime}=\Tobj$. Since $\OmegaObj \neq \Tobj$, the axiom fails.
+\end{proof}
+
+\subsection{Algebraic Properties of $\SemiringSPrime$}
+
+\begin{proposition}\label{prop:Sprime_zerosumfree_integral}
+The hemiring $\SemiringSPrime$ is zerosumfree. It is an integral semidomain relative to its additive identity $\Tobj$. It is also a z-integral semidomain relative to its multiplicative absorber $\OmegaObj$.
+\end{proposition}
+\begin{proof}
+1. Zerosumfree (Definition \ref{def:zerosumfree_integral}.1). We analyze $a+b=0_{\SemiringSPrime}=\Tobj$.
+If $a=\OmegaObj$ or $b=\OmegaObj$, $a+b=\OmegaObj$ by \eqref{eq:add_Sprime}. We require $\OmegaObj=\Tobj$, which is false.
+Thus $a, b \in \SemiringS$. $a+b=\Tobj$ in $\SemiringS$. Since $\SemiringS$ is zerosumfree (Proposition \ref{prop:zerosumfree}), this implies $a=\Tobj$ and $b=\Tobj$.
+
+2. Integral semidomain relative to $\Tobj$ (Definition \ref{def:zerosumfree_integral}.2). $1_{\Z} \neq \Tobj$.
+We analyze $a\times b=\Tobj$.
+If $a=\OmegaObj$ or $b=\OmegaObj$, $a\times b=\OmegaObj$ by \eqref{eq:mult_Sprime}. We require $\OmegaObj=\Tobj$, false.
+Thus $a, b \in \SemiringS$. $a\times b=\Tobj$ in $\SemiringS$. Since $\SemiringS$ is an integral semidomain (Proposition \ref{prop:integral_semidomain}), this implies $a=\Tobj$ or $b=\Tobj$.
+
+3. z-integral semidomain relative to $\OmegaObj$ (Definition \ref{def:z_integral_semidomain}). $1_{\Z} \neq \OmegaObj$.
+We analyze $a\times b = \OmegaObj$.
+By the definition of multiplication \eqref{eq:mult_Sprime}, this occurs if and only if $a=\OmegaObj$ or $b=\OmegaObj$. (If $a, b \in \SemiringS$, $a\times b \in \SemiringS$, so $a\times b \neq \OmegaObj$).
+\end{proof}
+
+\begin{proposition}\label{prop:units_SPrime}
+The group of units of $\SemiringSPrime$ is $U(\SemiringSPrime) = \{1_{\Z}, -1_{\Z}\}$.
+\end{proposition}
+\begin{proof}
+We seek $x, y \in \SemiringSPrime$ such that $x\times y = 1_{\SemiringSPrime} = 1_{\Z}$.
+If $x=\OmegaObj$ or $y=\OmegaObj$, $x\times y = \OmegaObj$. We require $\OmegaObj=1_{\Z}$, false.
+Thus $x, y \in \SemiringS$. The equation reduces to the corresponding equation in $\SemiringS$. By Proposition \ref{prop:units_S}, $U(\SemiringSPrime)=U(\SemiringS) = \{1_{\Z}, -1_{\Z}\}$.
+\end{proof}
+
+\subsection{The Ideal Structure of $\SemiringSPrime$}
+
+We characterize the ideals of $\SemiringSPrime$.
+
+\begin{theorem}\label{thm:ideal_structure_SPrime}
+The ideals of $\SemiringSPrime$ are precisely the following sets:
+\begin{enumerate}
+    \item The minimal ideal $I_{\OmegaObj} = \{\OmegaObj\}$.
+    \item The sets of the form $I'_I = I \cup \{\OmegaObj\}$, where $I$ is an ideal of the semiring $\SemiringS$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\textit{Part I: Characterization of an arbitrary ideal.}
+Let $I'$ be an ideal of $\SemiringSPrime$. The multiplicative absorber of $\SemiringSPrime$ is $\OmegaObj$ (Theorem \ref{thm:SPrime_is_semiring}). By Lemma \ref{lem:absorber_in_ideal}, $\OmegaObj \in I'$.
+Define $I = I' \cap \SemiringS$. Then $I' = (I' \cap \SemiringS) \cup (I' \cap \{\OmegaObj\}) = I \cup \{\OmegaObj\}$.
+
+Case 1: $I = \emptyset$. Then $I' = \emptyset \cup \{\OmegaObj\} = \{\OmegaObj\} = I_{\OmegaObj}$.
+
+Case 2: $I \neq \emptyset$. We demonstrate that $I$ is an ideal of $\SemiringS$.
+(i) Additive closure. Let $a, b \in I$. $a, b \in I'$. $a+b \in I'$. Since $a, b \in \SemiringS$, $a+b \in \SemiringS$ by \eqref{eq:add_Sprime}. Thus $a+b \in I' \cap \SemiringS = I$.
+(ii) Absorption by $\SemiringS$. Let $r \in \SemiringS, a \in I$. $r \in \SemiringSPrime, a \in I'$. $r\times a \in I'$. Since $r, a \in \SemiringS$, $r\times a \in \SemiringS$ by \eqref{eq:mult_Sprime}. Thus $r\times a \in I' \cap \SemiringS = I$.
+$I$ is a non-empty subset of $\SemiringS$ satisfying the ideal conditions.
+
+\textit{Part II: Verification that the forms define ideals.}
+1. $I_{\OmegaObj} = \{\OmegaObj\}$. Additive closure: $\OmegaObj+\OmegaObj=\OmegaObj$. Absorption: $r\times\OmegaObj=\OmegaObj$.
+
+2. Let $I$ be an ideal of $\SemiringS$. Let $I'_I = I \cup \{\OmegaObj\}$.
+(i) Additive closure. Let $a, b \in I'_I$.
+If $a, b \in I$. $a+b \in I \subset I'_I$ (since $I$ is an ideal of $\SemiringS$).
+If one is $\OmegaObj$, e.g., $b=\OmegaObj$. $a+b = a+\OmegaObj = \OmegaObj$ (by \eqref{eq:add_Sprime}). $\OmegaObj \in I'_I$.
+(ii) Absorption by $\SemiringSPrime$. Let $r \in \SemiringSPrime, a \in I'_I$.
+If $r \in \SemiringS$. If $a \in I$, $r\times a \in I \subset I'_I$ (since $I$ is an ideal of $\SemiringS$). If $a=\OmegaObj$, $r\times\OmegaObj = \OmegaObj \in I'_I$.
+If $r=\OmegaObj$. $r\times a = \OmegaObj\times a = \OmegaObj \in I'_I$.
+\end{proof}
+
+\begin{corollary}\label{cor:explicit_ideals_SPrime}
+Explicitly, the ideals of $\SemiringSPrime$ are:
+\begin{enumerate}
+    \item $I_{\OmegaObj} = \{\OmegaObj\}$.
+    \item $I'_{\Tobj} = \{\Tobj, \OmegaObj\}$ (corresponding to $I_0$ in $\SemiringS$).
+    \item $I'_J = J \cup \{\Tobj, \OmegaObj\}$, where $J$ is an ideal of $\Z$ (corresponding to $I_J$ in $\SemiringS$).
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+This follows by combining Theorem \ref{thm:ideal_structure_SPrime} with the classification of ideals of $\SemiringS$ (Theorem \ref{thm:ideal_structure_S}).
+\end{proof}
+
+\begin{theorem}\label{thm:SPrime_is_PIS}
+The semiring $\SemiringSPrime$ is a Principal Ideal Semiring (PIS).
+\end{theorem}
+\begin{proof}
+We demonstrate that every ideal characterized in Theorem \ref{thm:ideal_structure_SPrime} is principal.
+
+1. $I_{\OmegaObj} = \{\OmegaObj\}$. We compute $(\OmegaObj)_{\SemiringSPrime} = \SemiringSPrime\times\OmegaObj$. By the multiplicative absorbing property of $\OmegaObj$, this set is $\{\OmegaObj\}$.
+
+2. Ideals $I'_I = I \cup \{\OmegaObj\}$. Since $\SemiringS$ is a PIS (Theorem \ref{thm:S_is_PIS}), $I=(a)_{\SemiringS}$ for some $a \in \SemiringS$.
+We compute the principal ideal generated by $a$ in $\SemiringSPrime$.
+$(a)_{\SemiringSPrime} = \{r\times a \mid r \in \SemiringSPrime\}$.
+We analyze the elements based on $r \in \SemiringS \cup \{\OmegaObj\}$.
+If $r \in \SemiringS$: $r\times a$. The collection is $\{r\times a \mid r \in \SemiringS\} = (a)_{\SemiringS} = I$.
+If $r=\OmegaObj$: $r\times a = \OmegaObj\times a$. By \eqref{eq:mult_Sprime}, this equals $\OmegaObj$.
+Thus, $(a)_{\SemiringSPrime} = I \cup \{\OmegaObj\} = I'_I$.
+
+Specifically, using Corollary \ref{cor:explicit_ideals_SPrime}:
+$I'_{\Tobj}$ corresponds to $I_0=(\Tobj)_{\SemiringS}$. Thus $I'_{\Tobj} = (\Tobj)_{\SemiringSPrime}$.
+$I'_J$ where $J=(n)_{\Z}$ corresponds to $I_J=(n)_{\SemiringS}$. Thus $I'_J = (n)_{\SemiringSPrime}$.
+\end{proof}
+
+\subsection{Subtractive Ideals in $\SemiringSPrime$}
+
+\begin{theorem}\label{thm:subtractive_ideals_SPrime}
+The only subtractive ideal of $\SemiringSPrime$ is the improper ideal $\SemiringSPrime$.
+\end{theorem}
+\begin{proof}
+The semiring $\SemiringSPrime$ possesses an additive absorbing element, namely $\OmegaObj$ (established in the proof of Theorem \ref{thm:SPrime_is_semiring}, Part I.2).
+By Lemma \ref{lem:subtractive_and_additive_absorber}, a hemiring with an additive absorber cannot possess proper subtractive ideals.
+Therefore, the only subtractive ideal is $\SemiringSPrime$.
+\end{proof}
+
+This contrasts sharply with $\SemiringS$, where every ideal is subtractive (Theorem \ref{thm:subtractive_ideals_S}). The introduction of the additive absorber $\OmegaObj$ eliminates the subtractive property for all proper ideals.
+
+\subsection{The Spectrum of $\SemiringSPrime$}
+
+\begin{theorem}\label{thm:prime_ideals_SPrime}
+The spectrum $\Spec(\SemiringSPrime)$ consists of the ideal $I_{\OmegaObj}$ together with the ideals $P'_P = P \cup \{\OmegaObj\}$, where $P \in \Spec(\SemiringS)$.
+\end{theorem}
+\begin{proof}
+We analyze the ideals from Theorem \ref{thm:ideal_structure_SPrime} for primality.
+
+1. $I_{\OmegaObj}=\{\OmegaObj\}$. Proper since $1_{\Z} \notin I_{\OmegaObj}$. Let $ab \in I_{\OmegaObj}$, so $ab=\OmegaObj$.
+By Proposition \ref{prop:Sprime_zerosumfree_integral} (z-integral semidomain property), $ab=\OmegaObj$ implies $a=\OmegaObj$ or $b=\OmegaObj$.
+Thus $I_{\OmegaObj}$ is prime.
+
+2. Ideals $I'_I = I \cup \{\OmegaObj\}$. $I'_I$ is proper if and only if $1_{\Z} \notin I'_I$, which means $1_{\Z} \notin I$. Thus $I$ must be a proper ideal of $\SemiringS$.
+We establish the equivalence: $I'_I$ is prime in $\SemiringSPrime$ if and only if $I$ is prime in $\SemiringS$.
+
+($\implies$) Assume $I'_I$ is prime in $\SemiringSPrime$. We show $I$ is prime in $\SemiringS$. Let $a, b \in \SemiringS$ such that $ab \in I$.
+Then $ab \in I'_I$. Since $I'_I$ is prime, $a \in I'_I$ or $b \in I'_I$. Since $a, b \in \SemiringS$, $a \in I'_I \cap \SemiringS = I$ or $b \in I'_I \cap \SemiringS = I$.
+
+($\impliedby$) Assume $I$ is prime in $\SemiringS$. We show $I'_I$ is prime in $\SemiringSPrime$. Let $ab \in I'_I$.
+We analyze the possibilities for $a, b \in \SemiringSPrime$.
+If $a=\OmegaObj$. Since $\OmegaObj \in I'_I$, $a \in I'_I$. Similarly if $b=\OmegaObj$.
+If $a, b \in \SemiringS$. Then $ab \in \SemiringS$. $ab \in I'_I$ implies $ab \in I'_I \cap \SemiringS = I$.
+Since $I$ is prime in $\SemiringS$, $a \in I$ or $b \in I$. Thus $a \in I'_I$ or $b \in I'_I$.
+\end{proof}
+
+\begin{corollary}\label{cor:explicit_primes_SPrime}
+Explicitly, the prime ideals of $\SemiringSPrime$ are:
+\begin{enumerate}
+    \item $Q_{\OmegaObj} = \{\OmegaObj\}$.
+    \item $Q_{\Tobj} = \{\Tobj, \OmegaObj\}$ (corresponding to $P_{\Tobj}$).
+    \item $Q_{(0)} = \{0_{\Z}, \Tobj, \OmegaObj\}$ (corresponding to $P_{(0)}$).
+    \item $Q_{(p)} = p\Z \cup \{\Tobj, \OmegaObj\}$ (corresponding to $P_{(p)}$).
+\end{enumerate}
+\end{corollary}
+
+\begin{theorem}\label{thm:krull_dim_SPrime}
+The Krull dimension of the semiring $\SemiringSPrime$ is 3.
+\end{theorem}
+\begin{proof}
+We analyze the inclusions among the prime ideals listed in Corollary \ref{cor:explicit_primes_SPrime}.
+Let $\Psi: \Spec(\SemiringS) \to \Spec(\SemiringSPrime) \setminus \{Q_{\OmegaObj}\}$ be the map $\Psi(P) = P \cup \{\OmegaObj\}$. By Theorem \ref{thm:prime_ideals_SPrime}, this is an order-preserving bijection.
+
+The ideal $Q_{\OmegaObj}$ is the unique minimal element of $\Spec(\SemiringSPrime)$. It is contained in every other ideal (as $\OmegaObj$ belongs to every ideal by Lemma \ref{lem:absorber_in_ideal}).
+
+A maximal chain in $\Spec(\SemiringSPrime)$ is obtained by taking a maximal chain in $\Spec(\SemiringS)$, applying $\Psi$, and prepending $Q_{\OmegaObj}$.
+A maximal chain in $\Spec(\SemiringS)$ has length 2 (Theorem \ref{thm:krull_dim_S}), for example, $P_{\Tobj} \subsetneq P_{(0)} \subsetneq P_{(p)}$.
+The corresponding maximal chain in $\SemiringSPrime$ is:
+\begin{equation}
+    Q_{\OmegaObj} \subsetneq Q_{\Tobj} \subsetneq Q_{(0)} \subsetneq Q_{(p)}.
+\end{equation}
+We verify the inclusions are strict.
+$Q_{\OmegaObj} \subsetneq Q_{\Tobj}$ because $\Tobj \in Q_{\Tobj}$ and $\Tobj \neq \OmegaObj$.
+$Q_{\Tobj} \subsetneq Q_{(0)}$ because $0_{\Z} \in Q_{(0)}$ and $0_{\Z} \notin \{\Tobj, \OmegaObj\}$.
+$Q_{(0)} \subsetneq Q_{(p)}$ because $p \in Q_{(p)}$ (since $p\in p\Z$) and $p \notin \{0_{\Z}, \Tobj, \OmegaObj\}$.
+
+The length of this chain is 3. Therefore, $\KrullDim(\SemiringSPrime)=3$.
+\end{proof}
+
+\section{Symmetry Analysis of $\SemiringSPrime$ and Idempotent Structures}
+
+\subsection{The Canonical $\Ztwo$ Action on $\SemiringSPrime$}
+
+$U(\SemiringSPrime) = \{\pm 1_{\Z}\}$ (Proposition \ref{prop:units_SPrime}). The canonical $\Ztwo$ action is $\Psi'(g, s)=g\times s$. This action is again by automorphisms of the additive structure $(\SemiringSPrime, +)$, following the argument of Theorem \ref{thm:Psi_additive_automorphism}, as distributivity holds and the units are invertible.
+
+\begin{theorem}\label{thm:singlets_SPrime}
+The set of singlets in $\SemiringSPrime$ under the canonical $\Ztwo$ action $\Psi'$ is $\SetAPrime = \{0_{\Z}, \Tobj, \OmegaObj\}$.
+\end{theorem}
+\begin{proof}
+We solve the equation $(-1_{\Z})\times s = s$.
+
+Case 1: $s \in \SemiringS$. The equation reduces to the corresponding equation in $\SemiringS$. By Theorem \ref{thm:singlets_S}, the solutions are $s \in \{0_{\Z}, \Tobj\}$.
+
+Case 2: $s=\OmegaObj$. We compute $(-1_{\Z})\times\OmegaObj$. By Definition \ref{def:operations_SPrime} \eqref{eq:mult_Sprime}, since the second argument is $\OmegaObj$, the product is $\OmegaObj$.
+Thus $(-1_{\Z})\times\OmegaObj = \OmegaObj$. $\OmegaObj$ is a singlet.
+
+The set of singlets is $\SetAPrime = \{0_{\Z}, \Tobj, \OmegaObj\}$.
+\end{proof}
+
+\subsection{The Structure of Singlets $\SetAPrime$}
+
+\begin{theorem}\label{thm:structure_Aprime}
+The subset $\SetAPrime \subset \SemiringSPrime$ forms a commutative unital sub-hemiring. This sub-semiring is idempotent ($x+x=x$ for all $x \in \SetAPrime$).
+\end{theorem}
+\begin{proof}
+We verify closure by examining the operation tables restricted to $\SetAPrime$.
+
+Addition (+):
+\begin{center}
+\begin{tabular}{c|ccc}
+$+$ & $0_{\Z}$ & $\Tobj$ & $\OmegaObj$ \\
+\hline
+$0_{\Z}$ & $0_{\Z}$ & $0_{\Z}$ & $\OmegaObj$ \\
+$\Tobj$ & $0_{\Z}$ & $\Tobj$ & $\OmegaObj$ \\
+$\OmegaObj$ & $\OmegaObj$ & $\OmegaObj$ & $\OmegaObj$
+\end{tabular}
+\end{center}
+The entries are derived as follows:
+$0_{\Z}+0_{\Z}=0_{\Z}$ (in $\SemiringS$). $0_{\Z}+\Tobj=0_{\Z}$ (in $\SemiringS$). $\Tobj+\Tobj=\Tobj$ (in $\SemiringS$).
+Any sum involving $\OmegaObj$ results in $\OmegaObj$ (by \eqref{eq:add_Sprime}).
+
+Multiplication ($\times$):
+\begin{center}
+\begin{tabular}{c|ccc}
+$\times$ & $0_{\Z}$ & $\Tobj$ & $\OmegaObj$ \\
+\hline
+$0_{\Z}$ & $0_{\Z}$ & $\Tobj$ & $\OmegaObj$ \\
+$\Tobj$ & $\Tobj$ & $\Tobj$ & $\OmegaObj$ \\
+$\OmegaObj$ & $\OmegaObj$ & $\OmegaObj$ & $\OmegaObj$
+\end{tabular}
+\end{center}
+The entries are derived as follows:
+$0_{\Z}\times 0_{\Z}=0_{\Z}$. $0_{\Z}\times\Tobj=\Tobj$. $\Tobj\times\Tobj=\Tobj$ (in $\SemiringS$).
+Any product involving $\OmegaObj$ results in $\OmegaObj$ (by \eqref{eq:mult_Sprime}).
+
+The set $\SetAPrime$ is closed under both operations. Associativity, commutativity, and distributivity are inherited.
+
+Identities in $\SetAPrime$.
+Additive Identity $0_{\SetAPrime}=\Tobj$ (inherited from $\SemiringSPrime$).
+Multiplicative Identity $1_{\SetAPrime}$. We check the multiplication table. $0_{\Z}$ acts as the identity: $0_{\Z}\times 0_{\Z}=0_{\Z}$, $0_{\Z}\times\Tobj=\Tobj$, $0_{\Z}\times\OmegaObj=\OmegaObj$ (by \eqref{eq:mult_Sprime}). Thus $1_{\SetAPrime}=0_{\Z}$.
+
+Idempotency ($x+x=x$).
+$0_{\Z}+0_{\Z}=0_{\Z}$. $\Tobj+\Tobj=\Tobj$. $\OmegaObj+\OmegaObj=\OmegaObj$.
+\end{proof}
+
+\begin{definition}
+The extended Boolean semiring $\BoolExt$ is the semiring obtained by adjoining a universal absorber $\infty$ to the Boolean semiring $\Bool=\{0, 1\}$. $\BoolExt = \{0, 1, \infty\}$. Operations extend $\Bool$ such that $\infty$ absorbs everything (additively and multiplicatively).
+\end{definition}
+
+\begin{theorem}
+The semiring of singlets $\SetAPrime$ is isomorphic to the extended Boolean semiring $\BoolExt$.
+\end{theorem}
+\begin{proof}
+Define the map $\psi': \SetAPrime \to \BoolExt$ by mapping the identities and the absorber:
+$\psi'(0_{\SetAPrime})=\psi'(\Tobj)=0$. $\psi'(1_{\SetAPrime})=\psi'(0_{\Z})=1$. $\psi'(\OmegaObj)=\infty$.
+The comparison of the operation tables confirms that $\psi'$ is an isomorphism. For instance, $0_{\Z}+\Tobj=0_{\Z}$ maps to $1\lor 0 = 1$. $0_{\Z}\times\Tobj=\Tobj$ maps to $1\wedge 0 = 0$.
+\end{proof}
+
+\subsection{The Algebraic Order on Idempotent Substructures}
+
+In an idempotent semiring $(R, +)$, addition defines a partial order, known as the algebraic order: $a \le b$ if and only if $a+b=b$.
+
+\begin{proposition}\label{prop:order_A}
+The algebraic order on the singlet structure $\SetA=\{0_{\Z}, \Tobj\}$ (which is isomorphic to $\Bool$) is $\Tobj \le 0_{\Z}$.
+\end{proposition}
+\begin{proof}
+We check the condition $a+b=b$. $\Tobj+0_{\Z}=0_{\Z}$ (Case A3 in $\SemiringS$). Thus $\Tobj \le 0_{\Z}$.
+\end{proof}
+
+\begin{proposition}\label{prop:order_APrime}
+The algebraic order on the singlet structure $\SetAPrime=\{0_{\Z}, \Tobj, \OmegaObj\}$ (which is isomorphic to $\BoolExt$) is a total order: $\Tobj \le 0_{\Z} \le \OmegaObj$.
+\end{proposition}
+\begin{proof}
+We check the relations using the addition table in Theorem \ref{thm:structure_Aprime}.
+$\Tobj+0_{\Z}=0_{\Z}$. So $\Tobj \le 0_{\Z}$.
+$0_{\Z}+\OmegaObj=\OmegaObj$. So $0_{\Z} \le \OmegaObj$.
+$\Tobj+\OmegaObj=\OmegaObj$. So $\Tobj \le \OmegaObj$.
+By transitivity, the order is established as $\Tobj \le 0_{\Z} \le \OmegaObj$.
+\end{proof}
+
+The emergence of these characteristic 1 (idempotent) structures from the symmetry analysis of structures derived from $\Z$ (characteristic 0) relates these constructions to concepts studied in the context of the "field with one element" $\F_1$ \cite{ConnesQuanta, CartierFrontiersII}.
+
+\section{Generalization to Algebraic Number Fields}
+
+We generalize the constructions to the ring of integers $\OK$ of an algebraic number field $K$. We recall that $\OK$ is a Dedekind domain \cite{MilneANT}.
+
+\subsection{Construction and Properties of $\SOK$}
+
+\begin{definition}
+Let $\OK$ be the ring of integers of $K$. Define $\SOK = \OK \cup \{\Tobj_K\}$, where $\Tobj_K \notin \OK$. The operations $+$ and $\times$ on $\SOK$ are defined by the globalization construction applied to $\OK$ (analogously to Definitions \ref{def:addition_S} and \ref{def:multiplication_S}), such that $\Tobj_K$ is the additive identity and multiplicative absorber.
+\end{definition}
+
+\begin{theorem}
+The structure $(\SOK, +, \times)$ is a commutative unital standard semiring. It is an integral semidomain and is zerosumfree.
+\end{theorem}
+\begin{proof}
+The verification of the axioms is identical mutatis mutandis to the proof of Theorem \ref{thm:S_is_semiring}, utilizing the commutative ring structure of $\OK$. The proofs that it is an integral semidomain (Proposition \ref{prop:integral_semidomain}) and zerosumfree (Proposition \ref{prop:zerosumfree}) also generalize directly, as $\OK$ is an integral domain and the definitions of the operations ensure that sums/products equal $\Tobj_K$ only under the required conditions.
+\end{proof}
+
+\begin{theorem}\label{thm:ideal_structure_SOK}
+The ideals of $\SOK$ are precisely the zero ideal $\{\Tobj_K\}$ and the sets $I_J = J \cup \{\Tobj_K\}$, where $J$ is an ideal of $\OK$. Furthermore, every ideal of $\SOK$ is subtractive.
+\end{theorem}
+\begin{proof}
+The characterization of ideals follows the proof methodology of Theorem \ref{thm:ideal_structure_S}. The proof that every ideal is subtractive follows the methodology of Theorem \ref{thm:subtractive_ideals_S}, relying crucially on the fact that $J$ is an additive subgroup of $\OK$, allowing for subtraction within the ring structure to establish membership in $J$.
+\end{proof}
+
+\subsection{Ideal Theory and the Class Group}
+
+\begin{theorem}\label{thm:SOK_PIS}
+The semiring $\SOK$ is a Principal Ideal Semiring (PIS) if and only if the ring $\OK$ is a Principal Ideal Domain (PID) (i.e., the class number $h_K=1$).
+\end{theorem}
+\begin{proof}
+($\implies$) Assume $\SOK$ is a PIS. Let $J$ be a non-zero ideal of $\OK$. $I_J=J\cup\{\Tobj_K\}$ is an ideal of $\SOK$. Thus $I_J=(a)_{\SOK}$ for some $a \in \SOK$. Since $I_J \neq \{\Tobj_K\}$, $a \neq \Tobj_K$. So $a \in \OK$.
+We compute $(a)_{\SOK} = \SOK\times a = (\OK\times a) \cup (\{\Tobj_K\}\times a)$.
+$\OK\times a = (a)_{\OK}$ (principal ideal in $\OK$). $\{\Tobj_K\}\times a = \{\Tobj_K\}$ (absorbing property).
+Thus $(a)_{\SOK} = (a)_{\OK} \cup \{\Tobj_K\}$.
+The equality $I_J=(a)_{\SOK}$ implies $J\cup\{\Tobj_K\} = (a)_{\OK} \cup \{\Tobj_K\}$. Intersecting with $\OK$ yields $J=(a)_{\OK}$. Thus every ideal of $\OK$ is principal. $\OK$ is a PID.
+
+($\impliedby$) Assume $\OK$ is a PID. Let $I$ be an ideal of $\SOK$. If $I=\{\Tobj_K\}$, it is principal $(\Tobj_K)_{\SOK}$. If $I=I_J$, then $J=(a)_{\OK}$ for some $a \in \OK$. As shown above, $I_J=(a)_{\SOK}$. Thus $\SOK$ is a PIS.
+\end{proof}
+
+When $h_K > 1$, $\SOK$ is not a PIS. We analyze its ideal class structure using the class semigroup.
+
+\begin{definition}
+Let $R$ be an integral semidomain. Let $\mathcal{I}^*(R)$ be the set of non-zero ideals of $R$. Define the equivalence relation $\sim$ on $\mathcal{I}^*(R)$ by $I_1 \sim I_2$ if there exist $a, b \in R\setminus\{0_R\}$ such that $a I_1 = b I_2$. The class semigroup $\Cl(R)$ is the set of equivalence classes $\mathcal{I}^*(R)/\sim$, with multiplication induced by the multiplication of ideals.
+\end{definition}
+
+In $\SOK$, the zero element is $0_{\SOK}=\Tobj_K$. The set of non-zero elements is $R\setminus\{0_R\} = \OK$.
+
+\begin{theorem}\label{thm:class_semigroup_SOK}
+The class semigroup $\Cl(\SOK)$ is isomorphic to the ideal class group $\Cl(K)$ (which is $\Cl(\OK)$).
+\end{theorem}
+\begin{proof}
+The ideal class group $\Cl(K)$ is defined using fractional ideals, but for a Dedekind domain $\OK$, it is isomorphic to the semigroup of non-zero ideals modulo the equivalence relation defined above, restricted to multipliers in $\OK\setminus\{0\}$.
+
+We establish an isomorphism $\Phi: \Cl(K) \to \Cl(\SOK)$.
+Let $[J] \in \Cl(K)$, where $J$ is a non-zero ideal of $\OK$. Define $\Phi([J]) = [I_J]_{\sim}$, where $I_J=J\cup\{\Tobj_K\}$.
+
+1. Well-defined. Let $[J_1]=[J_2]$ in $\Cl(K)$. This means there exist $\alpha, \beta \in \OK\setminus\{0\}$ such that $\alpha J_1 = \beta J_2$.
+We must show $I_{J_1} \sim I_{J_2}$ in $\SOK$. We use the multipliers $\alpha, \beta \in \OK \subset \SOK$. Note $\alpha, \beta \neq \Tobj_K$.
+We compute $\alpha I_{J_1}$. $\alpha I_{J_1} = \alpha (J_1 \cup \{\Tobj_K\}) = (\alpha J_1) \cup (\alpha\times\Tobj_K)$.
+Since $\alpha \in \OK$, $\alpha\times\Tobj_K = \Tobj_K$.
+$\alpha I_{J_1} = (\alpha J_1) \cup \{\Tobj_K\} = I_{\alpha J_1}$.
+Similarly, $\beta I_{J_2} = I_{\beta J_2}$.
+Since $\alpha J_1 = \beta J_2$, we have $I_{\alpha J_1} = I_{\beta J_2}$. Thus $\alpha I_{J_1} = \beta I_{J_2}$.
+
+2. Homomorphism. We must verify the multiplication of ideals in $\SOK$.
+$I_{J_1} I_{J_2} = (J_1\cup\{\Tobj_K\})(J_2\cup\{\Tobj_K\})$.
+The product consists of elements $xy$ where $x \in I_{J_1}, y \in I_{J_2}$.
+If $x \in J_1, y \in J_2$, $xy \in J_1 J_2$.
+If $x=\Tobj_K$ or $y=\Tobj_K$, $xy=\Tobj_K$.
+Thus $I_{J_1} I_{J_2} = (J_1 J_2) \cup \{\Tobj_K\} = I_{J_1 J_2}$.
+$\Phi([J_1][J_2]) = \Phi([J_1 J_2]) = [I_{J_1 J_2}]_{\sim} = [I_{J_1} I_{J_2}]_{\sim} = [I_{J_1}]_{\sim} [I_{J_2}]_{\sim} = \Phi([J_1])\Phi([J_2])$.
+
+3. Injectivity. Suppose $\Phi([J_1])=\Phi([J_2])$. Then $I_{J_1} \sim I_{J_2}$.
+There exist $a, b \in \SOK\setminus\{\Tobj_K\}$ such that $a I_{J_1} = b I_{J_2}$.
+$a, b \in \OK$.
+$a I_{J_1} = I_{a J_1}$. $b I_{J_2} = I_{b J_2}$.
+$I_{a J_1} = I_{b J_2}$ implies $(a J_1) \cup \{\Tobj_K\} = (b J_2) \cup \{\Tobj_K\}$.
+Intersecting both sides with $\OK$ yields $a J_1 = b J_2$. Thus $[J_1]=[J_2]$ in $\Cl(K)$.
+
+4. Surjectivity. Let $[I] \in \Cl(\SOK)$. $I$ must be a non-zero ideal of $\SOK$. $I \neq \{\Tobj_K\}$. By Theorem \ref{thm:ideal_structure_SOK}, $I=I_J$ for some non-zero ideal $J$ of $\OK$. $[I] = [I_J]_{\sim} = \Phi([J])$.
+\end{proof}
+
+\subsection{Spectrum and Dimension}
+
+\begin{theorem}\label{thm:spectrum_SOK}
+The Krull dimension of $\SOK$ is 2. The spectrum $\Spec(\SOK)$ consists of $P_{\Tobj_K}=\{\Tobj_K\}$, $P_{(0)}=\{0_{\OK}, \Tobj_K\}$, and $P_{\mathfrak{p}} = \mathfrak{p} \cup \{\Tobj_K\}$ where $\mathfrak{p}$ is a non-zero prime ideal of $\OK$.
+\end{theorem}
+\begin{proof}
+The characterization of prime ideals follows the methodology of Theorem \ref{thm:prime_ideals_S}: $I_J$ is prime in $\SOK$ if and only if $J$ is prime in $\OK$.
+The prime ideals of the Dedekind domain $\OK$ are the zero ideal $(0)$ and the non-zero prime (maximal) ideals $\mathfrak{p}$.
+A maximal chain in $\Spec(\OK)$ has length 1: $(0) \subsetneq \mathfrak{p}$.
+The corresponding maximal chain in $\Spec(\SOK)$ is $P_{\Tobj_K} \subsetneq P_{(0)} \subsetneq P_{\mathfrak{p}}$. The length is 2.
+\end{proof}
+
+\subsection{Symmetry Actions in $\SOK$}
+
+We analyze the action of the group of units $U(\OK)$ on $\SOK$.
+
+\begin{definition}
+The canonical action of $G=U(\OK)$ on $\SOK$ is defined by multiplication: $\Psi_K(g, s) = g \times s$.
+\end{definition}
+
+\begin{proposition}
+The action $\Psi_K$ is an action by automorphisms of the additive monoid $(\SOK, +)$.
+\end{proposition}
+\begin{proof}
+This follows from distributivity in $\SOK$ and the invertibility of $g \in U(\OK)$, mirroring the proof of Theorem \ref{thm:Psi_additive_automorphism}.
+\end{proof}
+
+\begin{theorem}\label{thm:singlets_SOK}
+The set of singlets in $\SOK$ under the action of $U(\OK)$ is $A_K=\{0_{\OK}, \Tobj_K\}$. $A_K$ forms a sub-semiring isomorphic to $\Bool$.
+\end{theorem}
+\begin{proof}
+We seek $s \in \SOK$ such that $g\times s = s$ for all $g \in U(\OK)$.
+
+Case 1: $s=x \in \OK$. We require $gx=x$ in $\OK$. This means $(g-1_{\OK})x=0_{\OK}$.
+Since $\OK$ is an integral domain, this implies $x=0_{\OK}$ or $g=1_{\OK}$.
+The condition must hold for all $g \in U(\OK)$. If $U(\OK) \neq \{1_{\OK}\}$, then we must have $x=0_{\OK}$.
+Since the characteristic of $K$ (and thus $\OK$) is 0, we have $-1_{\OK} \in U(\OK)$ and $-1_{\OK} \neq 1_{\OK}$ (as $1+1\neq 0$).
+Taking $g=-1_{\OK}$ yields $(-1_{\OK}-1_{\OK})x=0_{\OK}$, so $(-2_{\OK})x=0_{\OK}$. Since $-2_{\OK} \neq 0_{\OK}$, we must have $x=0_{\OK}$.
+
+Case 2: $s=\Tobj_K$. $g\times \Tobj_K$. Since $g \in \OK$, by the definition of multiplication in $\SOK$ (analogous to Case M2), this equals $\Tobj_K$.
+
+The singlets are $0_{\OK}$ and $\Tobj_K$.
+The isomorphism to $\Bool$ follows the structure established in Theorem \ref{thm:structure_A_is_Boolean}, with $0_{A_K}=\Tobj_K$ and $1_{A_K}=0_{\OK}$.
+\end{proof}
+
+\subsection{The Extended Construction $\SPOK$}
+
+\begin{definition}
+Define $\SPOK = \SOK \cup \{\OmegaObj_K\}$, where $\OmegaObj_K$ is the universal absorbing element (construction analogous to Section 9.1).
+\end{definition}
+
+The properties of $\SPOK$ mirror those of $\SemiringSPrime$.
+
+\begin{theorem}
+$(\SPOK, +, \times)$ is a commutative unital hemiring, but not a standard semiring. It is zerosumfree. $0_{\SPOK}=\Tobj_K, 1_{\SPOK}=1_{\OK}$. The multiplicative absorber is $\OmegaObj_K$.
+\end{theorem}
+
+\begin{theorem}\label{thm:properties_SpOK}
+The semiring $\SPOK$ has the following properties:
+\begin{enumerate}
+    \item The ideals are $\{\OmegaObj_K\}$, and $I\cup\{\OmegaObj_K\}$ where $I$ is an ideal of $\SOK$.
+    \item $\SPOK$ is a PIS if and only if $\OK$ is a PID.
+    \item No proper ideal of $\SPOK$ is subtractive.
+    \item The Krull dimension of $\SPOK$ is 3.
+    \item The set of singlets under $U(\OK)$ is $\{0_{\OK}, \Tobj_K, \OmegaObj_K\}$, isomorphic to $\BoolExt$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+These properties follow by generalizing the arguments established for $\SemiringSPrime$.
+1. Follows the methodology of Theorem \ref{thm:ideal_structure_SPrime}.
+2. Follows the methodology of Theorem \ref{thm:SPrime_is_PIS} and utilizes Theorem \ref{thm:SOK_PIS}.
+3. Follows Theorem \ref{thm:subtractive_ideals_SPrime}, due to the presence of the additive absorber $\OmegaObj_K$.
+4. Follows the methodology of Theorem \ref{thm:krull_dim_SPrime} and utilizes Theorem \ref{thm:spectrum_SOK}. A maximal chain is $Q_{\OmegaObj_K} \subsetneq Q_{\Tobj_K} \subsetneq Q_{(0)} \subsetneq Q_{\p}$.
+5. Follows the methodology of Theorem \ref{thm:singlets_SPrime} and utilizes Theorem \ref{thm:singlets_SOK}.
+\end{proof}
+
+\section{Topological and Categorical Interpretations}
+
+\subsection{The Spectral Sequence of Adjunctions}
+
+We analyze the topological relationships between the spectra induced by the sequence of constructions, illustrating how the adjunctions alter the geometric structure by introducing new generic points.
+
+\begin{equation}
+    \Z \to \SemiringS \to \SemiringSPrime.
+\end{equation}
+
+\subsubsection{Relating $\Spec(\SemiringS)$ and $\Spec(\Z)$}
+
+We utilize the structural correspondence of ideals established in Section 5.
+
+\begin{definition}\label{def:map_SpecS_to_SpecZ}
+Define the map $\pi_{\SemiringS}: \Spec(\SemiringS) \setminus \{P_{\Tobj}\} \to \Spec(\Z)$ by $\pi_{\SemiringS}(P) = P \cap \Z$.
+\end{definition}
+
+\begin{proposition}\label{prop:map_SpecS_to_SpecZ_properties}
+The map $\pi_{\SemiringS}$ is a homeomorphism from the subspace $\Spec(\SemiringS) \setminus \{P_{\Tobj}\}$ (equipped with the subspace topology) onto $\Spec(\Z)$.
+\end{proposition}
+\begin{proof}
+1. Well-defined. If $P \in \Spec(\SemiringS)$ and $P \neq P_{\Tobj}$. By Theorem \ref{thm:prime_ideals_S}, $P=I_J$ for some $J \in \Spec(\Z)$. $P\cap\Z = (J\cup\{\Tobj\}) \cap \Z = J$. The image is in $\Spec(\Z)$.
+
+2. Bijection. The map is bijective due to the 1-1 correspondence established in the proof of Theorem \ref{thm:prime_ideals_S}. The inverse map is $\iota(J) = J\cup\{\Tobj\}$.
+
+3. Continuity. We examine the preimage of a closed set $V(K) \subseteq \Spec(\Z)$, where $K$ is an ideal of $\Z$.
+$\pi_{\SemiringS}^{-1}(V(K)) = \{P \in \Spec(\SemiringS)\setminus\{P_{\Tobj}\} \mid K \subseteq P\cap\Z\}$.
+Let $P=I_J$. The condition is $K \subseteq J$.
+This is equivalent to $I_K = K\cup\{\Tobj\} \subseteq J\cup\{\Tobj\} = I_J = P$.
+This set is $\{P \mid I_K \subseteq P\} \cap (\Spec(\SemiringS)\setminus\{P_{\Tobj}\}) = V(I_K) \cap (\Spec(\SemiringS)\setminus\{P_{\Tobj}\})$. This is a closed set in the subspace topology.
+
+4. Closed map (Homeomorphism). We examine the image of a closed set in the subspace, which is $V(I_J) \cap (\Spec(\SemiringS)\setminus\{P_{\Tobj}\})$.
+$\pi_{\SemiringS}(V(I_J)) = \{P\cap\Z \mid I_J \subseteq P, P\neq P_{\Tobj}\}$.
+This equals $\{Q \in \Spec(\Z) \mid J \subseteq Q\} = V(J)$. This is closed in $\Spec(\Z)$.
+\end{proof}
+
+Topologically, $\Spec(\SemiringS)$ is the space $\Spec(\Z)$ augmented by a unique generic point $P_{\Tobj}$.
+
+\subsubsection{Relating $\Spec(\SemiringSPrime)$ and $\Spec(\SemiringS)$}
+
+We utilize the correspondence established in Section 9.4. Let $Q_{\OmegaObj}=I_{\OmegaObj}$.
+
+\begin{definition}\label{def:map_SpecSp_to_SpecS}
+Define $\pi_{\SemiringSPrime}: \Spec(\SemiringSPrime) \setminus \{Q_{\OmegaObj}\} \to \Spec(\SemiringS)$ by $\pi_{\SemiringSPrime}(P') = P' \cap \SemiringS$.
+\end{definition}
+
+\begin{proposition}\label{prop:map_SpecSp_to_SpecS_properties}
+The map $\pi_{\SemiringSPrime}$ is a homeomorphism from the subspace $\Spec(\SemiringSPrime) \setminus \{Q_{\OmegaObj}\}$ onto $\Spec(\SemiringS)$.
+\end{proposition}
+\begin{proof}
+The map corresponds to the bijection established in the proof of Theorem \ref{thm:prime_ideals_SPrime}. If $P' \neq Q_{\OmegaObj}$, $P'=P\cup\{\OmegaObj\}$ for a unique $P \in \Spec(\SemiringS)$. $\pi_{\SemiringSPrime}(P') = P$. The proof of continuity and closedness follows the pattern of Proposition \ref{prop:map_SpecS_to_SpecZ_properties}, relying on the correspondence of ideal structures (Theorem \ref{thm:ideal_structure_SPrime}).
+\end{proof}
+
+Topologically, $\Spec(\SemiringSPrime)$ is the space $\Spec(\SemiringS)$ augmented by a unique generic point $Q_{\OmegaObj}$.
+
+\begin{theorem}\label{thm:KrullDim_sequence}
+The sequential constructions yield a sequence of algebraic structures with strictly increasing Krull dimension:
+$\KrullDim(\Z)=1$, $\KrullDim(\SemiringS)=2$, $\KrullDim(\SemiringSPrime)=3$.
+\end{theorem}
+\begin{proof}
+$\KrullDim(\Z)=1$ as $\Z$ is a PID (not a field). $\KrullDim(\SemiringS)=2$ by Theorem \ref{thm:krull_dim_S}. $\KrullDim(\SemiringSPrime)=3$ by Theorem \ref{thm:krull_dim_SPrime}.
+\end{proof}
+
+The spectral structure illustrates a successive augmentation of the geometric space corresponding to the algebraic extensions, characterized by the addition of new generic points corresponding to the adjoined elements.
+
+\begin{center}
+\begin{tikzcd}[row sep=tiny]
+\text{Dimension 3 Level (Closed Points of } \SemiringSPrime \text{)} & Q_{(p)} & \\
+\text{Dimension 2 Level} & Q_{(0)} \arrow[u, phantom, "\subsetneq"] & \text{Generic point of } \Spec(\Z) \text{ component} \\
+\text{Dimension 1 Level} & Q_{\Tobj} \arrow[u, phantom, "\subsetneq"] & \text{Generic point of } \Spec(\SemiringS) \\
+\text{Dimension 0 Level} & Q_{\OmegaObj} \arrow[u, phantom, "\subsetneq"] & \text{Generic point of } \Spec(\SemiringSPrime)
+\end{tikzcd}
+\end{center}
+
+\subsection{Categorical Perspective: Globalization and Absorber Adjunction Functors}
+
+We briefly examine the constructions using category theory. Let $\Ring$ be the category of commutative unital rings. Let $\SRing_0$ be the category of commutative unital standard semirings. Let $\SRingH$ be the category of commutative unital hemirings.
+
+\begin{definition}
+The globalization functor $G: \Ring \to \SRing_0$ maps a ring $R$ to $G(R)=R\cup\{\Tobj_R\}$. A ring homomorphism $f: R_1 \to R_2$ is mapped to $G(f): G(R_1) \to G(R_2)$ by $G(f)(x)=f(x)$ for $x\in R_1$ and $G(f)(\Tobj_{R_1})=\Tobj_{R_2}$.
+\end{definition}
+
+\begin{definition}
+The absorber adjunction functor $A: \SRingH \to \SRingH$ maps a hemiring $S$ to $A(S)=S\cup\{\Omega_S\}$. A homomorphism $g: S_1 \to S_2$ is mapped to $A(g): A(S_1) \to A(S_2)$ by $A(g)(x)=g(x)$ for $x\in S_1$ and $A(g)(\Omega_{S_1})=\Omega_{S_2}$.
+\end{definition}
+
+\begin{proposition}
+$G$ and $A$ are well-defined functors. We have $\SemiringS = G(\Z)$ and $\SemiringSPrime = A(\SemiringS) = A(G(\Z))$.
+\end{proposition}
+
+The behavior of the Krull dimension under these functors can be summarized as follows, generalizing the observations made previously.
+
+\begin{theorem}\label{thm:KrullDim_Functors}
+The Krull dimension behaves additively under the functors $G$ and $A$ when applied to suitable Noetherian structures.
+\begin{enumerate}
+    \item If $R$ is a Noetherian ring, $\KrullDim(G(R)) = \KrullDim(R) + 1$.
+    \item If $S$ is a Noetherian hemiring, $\KrullDim(A(S)) = \KrullDim(S) + 1$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1. The analysis of $\Spec(G(R))$ generalizes the arguments of Section 5.1. The spectrum consists of $P_{\Tobj_R}$ and ideals $I_J$ where $J \in \Spec(R)$. The poset structure is $\Spec(R)$ with the new minimum element $P_{\Tobj_R}$ adjoined below every element. This increases the length of maximal chains by 1.
+
+2. The analysis of $\Spec(A(S))$ generalizes the arguments of Section 9.4. The spectrum consists of $I_{\Omega_S}$ and ideals $I'_P$ where $P \in \Spec(S)$. The poset structure is $\Spec(S)$ with the new minimum element $I_{\Omega_S}$ adjoined below every element. This increases the length of maximal chains by 1.
+\end{proof}
+
+\begin{corollary}
+For a Dedekind domain $\OK$ (where $\KrullDim(\OK)=1$), we have $\KrullDim(\SPOK) = \KrullDim(A(G(\OK))) = 1+1+1 = 3$.
+\end{corollary}
+
+\section{Number Theoretic Aspects}
+
+\subsection{Diophantine Equations over $\SemiringS$}
+
+We examine solutions to polynomial equations in $\SemiringS$, illustrating how the presence of $\Tobj$ introduces solutions beyond those found in $\Z$.
+
+\begin{theorem}[Pythagorean Triples in $\SemiringS$]\label{thm:pythagorean_S}
+The solutions $(X, Y, Z) \in \SemiringS^3$ to the equation $X^2+Y^2=Z^2$ are precisely the following:
+\begin{enumerate}
+    \item Integer solutions: $(x, y, z) \in \Z^3$ such that $x^2+y^2=z^2$.
+    \item Degenerate solutions involving $\Tobj$:
+    \begin{itemize}
+        \item $(x, \Tobj, z)$ where $x, z \in \Z$ and $x^2=z^2$ (i.e., $z=\pm x$).
+        \item $(\Tobj, y, z)$ where $y, z \in \Z$ and $y^2=z^2$ (i.e., $z=\pm y$).
+        \item $(\Tobj, \Tobj, \Tobj)$.
+    \end{itemize}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We analyze the equation $X^2+Y^2=Z^2$ based on the structure of $\SemiringS$. Note that $A^2=A\times A$.
+
+Case 1: $X, Y, Z \in \Z$. The operations are those of $\Z$ (Cases A1, M1). This yields the standard integer solutions.
+
+Case 2: At least one variable is $\Tobj$.
+Subcase 2a: $Z=\Tobj$. The equation becomes $X^2+Y^2=\Tobj$.
+Since $\SemiringS$ is zerosumfree (Proposition \ref{prop:zerosumfree}), the sum equals $\Tobj$ if and only if both terms are $\Tobj$. Thus $X^2=\Tobj$ and $Y^2=\Tobj$.
+We analyze $A^2=\Tobj$. If $A \in \Z$, $A^2 = A\times_{\Z} A \in \Z$. So $A^2 \neq \Tobj$. Thus $A=\Tobj$.
+The only solution in this case is $(X, Y, Z)=(\Tobj, \Tobj, \Tobj)$.
+
+Subcase 2b: $X=\Tobj$. $Y, Z \in \SemiringS$.
+The equation becomes $\Tobj^2+Y^2=Z^2$. $\Tobj^2=\Tobj$. So $\Tobj+Y^2=Z^2$.
+By the identity property of $\Tobj$, this simplifies to $Y^2=Z^2$.
+We analyze the solutions to $A^2=B^2$ in $\SemiringS$.
+If $A, B \in \Z$. $A^2=B^2$ in $\Z$, which implies $A=\pm B$.
+If $A=\Tobj$. $B^2=\Tobj$. By the analysis in Subcase 2a, $B=\Tobj$.
+So the solutions for $(Y, Z)$ are $(y, \pm y)$ for $y\in\Z$, and $(\Tobj, \Tobj)$.
+The solutions $(X, Y, Z)$ are $(\Tobj, y, \pm y)$ and $(\Tobj, \Tobj, \Tobj)$.
+
+Subcase 2c: $Y=\Tobj$. Symmetric to 2b. The solutions are $(x, \Tobj, \pm x)$ for $x\in\Z$, and $(\Tobj, \Tobj, \Tobj)$.
+
+Combining these results yields the stated characterization.
+\end{proof}
+
+\subsection{Ideal Zeta Function of $\SemiringS$}
+
+We define and compute the ideal zeta function associated with $\SemiringS$. This definition is typically employed when the quotient structures have finite cardinality.
+
+\begin{definition}
+Let $R$ be a commutative unital semiring where every ideal $I$ is subtractive. The ideal zeta function is defined as $\zeta_R(s) = \sum_{I} (N(I))^{-s}$, where the sum is over ideals $I$ of finite norm. The norm $N(I)$ is defined as the cardinality of the quotient semiring $R/I$ (defined via the Bourne congruence associated with $I$).
+\end{definition}
+
+In $\SemiringS$, every ideal is subtractive (Theorem \ref{thm:subtractive_ideals_S}). The Bourne congruence associated with an ideal $I$ is the congruence $\rho'_I$ where $a \rho'_I b$ iff $a+x=b+y$ for some $x, y \in I$.
+
+\begin{theorem}\label{thm:zeta_S}
+The ideal zeta function of the semiring $\SemiringS$ is identical to the Riemann zeta function $\zeta(s)$.
+\end{theorem}
+\begin{proof}
+The ideals of $\SemiringS$ are $I_0$ and $I_{(n)}=(n)_{\SemiringS}$ for $n\ge 0$ (Theorem \ref{thm:ideal_structure_S} and \ref{thm:S_is_PIS}). We determine the norms based on the associated Bourne congruences and the resulting quotients, which were identified in the analysis of Type B and Type C congruences (Theorem \ref{thm:congruence_classification_S} and \ref{thm:quotient_structures}).
+
+1. $I_0=\{\Tobj\}$. The Bourne congruence associated with $I_0$ is the identity relation $\rho_0$ (Type A, $n=0$). The quotient is $\SemiringS/I_0 \cong \SemiringS$. The norm is infinite.
+
+2. $I_{(0)}=\{0_{\Z}, \Tobj\}$. The Bourne congruence is the Type B congruence $\rho_B$. The quotient is $\SemiringS/\rho_B \cong \Z$. The norm is infinite.
+
+3. $I_{(n)}, n\ge 1$. The Bourne congruence is the Type C congruence $\rho'_n$. The quotient is $\SemiringS/\rho'_n \cong \Z/n\Z$. The norm is $N(I_{(n)})=|\Z/n\Z|=n$.
+
+We sum over the ideals of finite norm:
+\begin{equation}
+    \zeta_{\SemiringS}(s) = \sum_{n=1}^{\infty} (N(I_{(n)}))^{-s} = \sum_{n=1}^{\infty} n^{-s}.
+\end{equation}
+This series is the definition of the Riemann zeta function $\zeta(s)$.
+\end{proof}
+
+This calculation indicates that the globalization construction preserves the arithmetic information encoded in the zeta function, relating the ideal structure of the semiring $\SemiringS$ directly to the arithmetic of $\Z$ as studied in analytic number theory \cite{HardyWright}.
+
+\begin{thebibliography}{99}
+
+\bibitem{AsokOstvar} A. Asok, P. A. Østvær. $\mathbb{A}^1$-homotopy theory and contractible varieties: a survey. arXiv:1903.07851, 2019.
+
+\bibitem{Browning} T. Browning. Cubic Forms and the Circle Method. Progress in Mathematics, Vol. 343. Birkhäuser, 2021.
+
+\bibitem{CartierFrontiersII} P. Cartier, B. Julia, P. Moussa, P. Vanhove (Eds.). Frontiers in Number Theory, Physics, and Geometry II. Springer-Verlag, 2007.
+
+\bibitem{ConnesQuanta} E. Blanchard, D. Ellwood, M. Khalkhali, M. Marcolli, H. Moscovici, S. Popa (Eds.). Quanta of Maths. Clay Mathematics Proceedings, Vol. 11. American Mathematical Society, 2010.
+
+\bibitem{GolanSemirings} J. S. Golan. Semirings and their Applications. Springer Netherlands, 1999.
+
+\bibitem{HardyWright} G. H. Hardy, E. M. Wright. An Introduction to the Theory of Numbers. 6th Edition, revised by D. R. Heath-Brown and J. H. Silverman. Oxford University Press, 2008.
+
+\bibitem{WorldScientific} P. Kumam, K. Chakraborty, H. M. Srivastava, P. Debnath (Eds.). Advances in Number Theory and Applied Analysis. World Scientific, 2023.
+
+\bibitem{JechSetTheory} T. Jech. Set Theory: The Third Millennium Edition, revised and expanded. Springer Monographs in Mathematics. Springer-Verlag, 2003.
+
+\bibitem{LangAlgebra} S. Lang. Algebra. Revised Third Edition, Graduate Texts in Mathematics, Vol. 211. Springer-Verlag, 2002.
+
+\bibitem{MilneANT} J.S. Milne. Algebraic Number Theory. Version 3.08, 2020. Available at www.jmilne.org/math/.
+
+\bibitem{MurtyRathTranscendental} M. Ram Murty, P. Rath. Transcendental Numbers. Springer New York, 2014.
+
+\bibitem{WINE4} R. Abdellatif, V. Karemaker, L. Smajlovic (Eds.). Women in Numbers Europe IV: Research Directions in Number Theory. Association for Women in Mathematics Series, Vol. 32. Springer, 2024.
+
+\end{thebibliography}
+
+\end{document}

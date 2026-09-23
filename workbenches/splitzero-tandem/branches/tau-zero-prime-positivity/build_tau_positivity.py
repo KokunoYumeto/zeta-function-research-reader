@@ -7,7 +7,7 @@ stems=['ESCAPING_FIBRE_INFINITESIMAL_DERIVATION','INFINITESIMAL_SUPPORT_POSITIVI
  'NON_EULERIAN_LENGTH_DERIVATION','SHIFTED_WEIL_POSITIVITY_DERIVATION',
  'FULL_SUPPORT_RECONSTRUCTION_DERIVATION','WEIL_PACKET_DERIVATION',
  'WEIL_PACKET_ANALYTIC_DERIVATION','TAU_WEIL_NORM_RECONSTRUCTION',
- 'HEAT_ENDPOINT_SIGN_BRIDGE','PRIME_ZERO_SIGN_DEFORMATION_DERIVATION','ES_QUARTER_HEAT_TRACE_DERIVATION','ES_SHELL_HEAT_LIFT_DERIVATION','WEIL_ES_COMPENSATION_DERIVATION','EIGHT_STATE_HEAT_COMPARISON']
+ 'HEAT_ENDPOINT_SIGN_BRIDGE','PRIME_ZERO_SIGN_DEFORMATION_DERIVATION','ES_QUARTER_HEAT_TRACE_DERIVATION','ES_SHELL_HEAT_LIFT_DERIVATION','WEIL_ES_COMPENSATION_DERIVATION','EIGHT_STATE_HEAT_COMPARISON','SUPPORTED_ZERO_PRIME_WEIL_DERIVATION','EIGHT_STATE_HOLONOMY_DERIVATION','HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION']
 header=r'''\usepackage{mathrsfs}
 \usepackage{mathtools}
 \usepackage{xurl}
@@ -35,7 +35,7 @@ title: "Split-Zero: escaping fibres and separated-zeta positivity"
 date: "Proofs of 22–23 September 2026"
 ---
 
-This edition contains the complete fourteen derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
+This edition contains the complete seventeen derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
 
 '''
 book=front

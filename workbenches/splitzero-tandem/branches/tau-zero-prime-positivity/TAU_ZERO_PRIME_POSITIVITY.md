@@ -3,7 +3,7 @@ title: "Split-Zero: escaping fibres and separated-zeta positivity"
 date: "Proofs of 22–23 September 2026"
 ---
 
-This edition contains the complete fourteen derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
+This edition contains the complete seventeen derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
 
 
 \clearpage
@@ -6053,6 +6053,1352 @@ Here \(\mathbb C r_H\) is the nonzero nilpotent ideal in the HEB dual-number rec
 
 \clearpage
 
+# The supported-zero prime in the full theta and Weil trace distribution
+
+This construction begins with the actual semiring \(G(\mathbb Z)\), includes its supported-zero prime in the full theta sum, and constructs an unconditional trace distribution with every fixed-support endpoint retained. Its arithmetic spectral sector is the rational, unramified, trivial-character sector relevant to the Riemann zeta function. It proves the maps from actual Weil tests to theta functions, from theta functions to their Mellin divisor receiver, and from the full supported object to the arithmetic scalar receiver. The arithmetic projection of carriers, the pushforward of functions, and the projection which forgets a point-function component are different maps and are calculated separately.
+
+The resulting identity is a distributional trace identity on explicitly constructed representations. It is not an assertion of the global operator equality on Connes's adele-class Hilbert space: the original source explicitly distinguishes its unconditional explicit formula from that further equality. The full supported trace, its scalar arithmetic observation, and its Fourier-closed endpoint enlargement are all given below.
+
+Sources read for this derivation: the complete programme calculations [the complete tau prime spectrum derivation proof](supporting_proofs/TAU_PRIME_SPECTRUM_DERIVATION.md) (TPS1–TPS59), [the complete tau connes endpoint derivation proof](supporting_proofs/TAU_CONNES_ENDPOINT_DERIVATION.md) (TC1–TC41, including TC24a–d), and [the complete full support connes derivation proof](supporting_proofs/FULL_SUPPORT_CONNES_DERIVATION.md) (FL1–FL58); [the original supported-zero prime theorem](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ac168d55cbb400a6c8926a00d67909ba65646ac5/workbenches/splitzero-tandem/branches/identity-absorber-square/sources/17555345_11.tex), labels thm:prime_ideals_S, thm:krull_dim_S and eq:maximal_chain; and Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068). The original author TeX was read at lines 608–822, 1574–1735, 3398–3490, 4217–4416 and 4770–4906. Its Appendix I (36)–(38) supplies the full Poisson formula; Appendix II Theorem 6 is the unconditional explicit formula. Section VI explicitly calls its proposed global operator trace formal. The new maps and all extra support terms below are derived, rather than inferred from the prime spectrum alone.
+
+## 1. The prime and its actual arithmetic maps
+
+Write
+\[
+S=G(\mathbb Z)=\{\tau\}\sqcup\mathbb Z^\bullet,
+\qquad e=0^\bullet\ne\tau,
+\]
+\[
+m^\bullet+n^\bullet=(m+n)^\bullet,\quad
+m^\bullet n^\bullet=(mn)^\bullet,\quad
+x+\tau=x,\quad x\tau=\tau.
+\tag{SZW1}
+\]
+The prime element \(e\) is a nonunit and is different from the semiring zero \(\tau\). Its principal ideal is \(P_e=(e)=\{\tau,e\}\). A product belongs to this ideal precisely when one factor is unsupported or the product of its two integer amplitudes is zero. Since the integers are a domain, this forces one factor into \(P_e\). Likewise \(P_\tau=\{\tau\}\) is prime because a product is unsupported precisely when a factor is unsupported. All other primes are
+\[
+P_p=\{\tau\}\cup(p\mathbb Z)^\bullet,
+\qquad
+P_\tau\subsetneq P_e\subsetneq P_p.
+\tag{SZW2}
+\]
+Here is a short exhaustive proof of the needed classification. An ideal containing any supported integer contains \(e\), by multiplication by \(e\). Its supported amplitudes are closed under integer multiplication and additive inverses, since multiplication by \((-1)^\bullet\) is allowed. They form an integer ideal, hence are \(n\mathbb Z\); primeness is exactly primeness of that integer ideal. The remaining ideal is \(P_\tau\). This proves (SZW2), including height one for \(P_e\) and height two for every \(P_p\).
+
+The two maps
+\[
+\pi:S\to\mathbb Z,\quad \pi(\tau)=0,\ \pi(n^\bullet)=n,
+\qquad
+\chi:S\to\mathbb B,\quad \chi(\tau)=0,\ \chi(n^\bullet)=1
+\tag{SZW3}
+\]
+preserve both semiring operations, as direct substitution shows. Their joint map is injective. Contraction under \(\pi\) sends the ordinary generic prime \((0)\) to \(P_e\), and \((p)\) to \(P_p\). Its image is the closed subspace \(V(e)\); \(D(e)=\{P_\tau\}\). These assertions follow by testing containment of the generating element \(e\) in (SZW2).
+
+The diagonal ring maps give semiring maps \(S\to G(\mathbb A_{\mathbb Q})\) and \(S\to G(\mathbb Z_p)\). If \(\mathfrak n_v=\ker(\mathbb A_{\mathbb Q}\to\mathbb Q_v)\), with \(\mathbb Q_\infty=\mathbb R\), then
+\[
+\bigl(S\to G(\mathbb A_{\mathbb Q})\bigr)^{-1}
+(\{\tau\}\cup\mathfrak n_v^\bullet)=P_e.
+\tag{SZW4}
+\]
+Indeed a rational integer has zero image in any local field exactly when it is zero. At the integral prime \(p\), reduction instead gives \(S\to G(\mathbb F_p)\to\mathbb F_p\), whose arithmetic zero fibre is \(P_p\). Thus the adelic supported-zero strata retain their separate place labels while contracting to the height-one prime \(P_e\). This is the precise arithmetic connection used in the theta construction; it does not identify \(e\) with \(\tau\).
+
+## 2. Full sums, orbital sums, and the supported-zero operator
+
+Use the original self-dual additive measure: Lebesgue measure on \(\mathbb R\), measure one for \(\mathbb Z_p\) at each finite place, and hence covolume one for the diagonal \(\mathbb Q\) in its adele ring. These are the measures in Connes's Appendix I (34)–(36); the displayed constants are for these fixed measures. Let \(\mathcal S_{\mathrm{ev}}(\mathbb R)\) denote the even complex Schwartz functions, with Fourier transform
+\[
+\mathcal F\phi(\xi)=\int_{\mathbb R}\phi(x)e^{-2\pi i x\xi}\,dx.
+\tag{SZW5}
+\]
+For \(x>0\), put
+\[
+\Theta_e\phi(x)=\sum_{n\in\mathbb Z}\phi(nx),\qquad
+P\phi(x)=\sum_{n\in\mathbb Z\setminus\{0\}}\phi(nx),\qquad
+a=\phi(0),\quad b=\int_{\mathbb R}\phi.
+\tag{SZW6}
+\]
+The full supported sum is \(\Theta_e\phi=P\phi+a\). It counts the element \(e\) exactly once. For every compact interval of positive \(x\), the sums and their derivatives converge absolutely and uniformly: differentiating a term introduces a polynomial power of \(n\), which is dominated by a higher Schwartz decay bound. For \(x\ge1\), the same estimate gives \(P\phi(x)=O_N(x^{-N})\) for every \(N>1\). The assertion also holds for all its derivatives and for \(\mathcal F\phi\).
+
+Poisson summation in the stated Fourier convention gives the exact formulas
+\[
+\Theta_e\phi(x)=x^{-1}\Theta_e(\mathcal F\phi)(x^{-1}),
+\]
+\[
+P\phi(x)=x^{-1}P(\mathcal F\phi)(x^{-1})+b/x-a.
+\tag{SZW7}
+\]
+For the first formula apply Poisson to \(y\mapsto\phi(xy)\), whose Fourier transform is \(x^{-1}(\mathcal F\phi)(\xi/x)\). Removing precisely the zero-index term on both sides gives the second. Thus the two endpoint coefficients are the value at the supported zero and its Fourier dual, with their full signs retained.
+
+The operator corresponding to multiplication by the supported zero also has an exact domain. On \(\mathcal S(\mathbb R)+\mathbb C1\), precomposition with the integer map \(x\mapsto nx\) is defined for every \(n\in\mathbb Z\). For \(n=0\) it is
+\[
+U_e\phi=\phi(0)1,\qquad U_e^2=U_e.
+\tag{SZW8}
+\]
+It has rank one on this space. It is not an endomorphism of the Schwartz subspace, because the nonzero constant function is not Schwartz. Its Fourier-dual domain is \(\mathcal S(\mathbb R)\oplus\mathbb C\delta_0\), on which the exact operator is
+\[
+\mathcal F U_e\mathcal F^{-1}(\psi+c\delta_0)
+=\left(\int_{\mathbb R}\psi(x)\,dx+c\right)\delta_0.
+\tag{SZW8a}
+\]
+Indeed \(\mathcal F^{-1}(\psi+c\delta_0)=\mathcal F^{-1}\psi+c1\), whose value at zero is \(\int\psi+c\). Applying \(U_e\) and then \(\mathcal F\) gives the formula since \(\mathcal F1=\delta_0\). Its restriction to the Schwartz summand is \(\psi\mapsto(\int\psi)\delta_0\). These are different maps with specified domains and targets, not an identification of a point-function with a Dirac distribution.
+
+For the complete two-point carrier, a function is \((\phi,c)\in\mathcal S(\mathbb R)\oplus\mathbb C_\tau\), with value \(c\) at \(\tau\). Its sum over the rational integer carrier is
+\[
+\Theta_S(\phi,c;x)=\sum_{u\in G(\mathbb Z)}(\phi,c)(xu)
+=\Theta_e\phi(x)+c.
+\tag{SZW9}
+\]
+This converges by (SZW6); the unsupported point is counted once. The contracted convention that an unsupported point contributes no value is the exact invariant subspace \(c=0\), on which (SZW9) is the full supported sum \(\Theta_e\phi\), still including \(e\).
+
+This carrier sum is different from evaluating an orbital sum at a fixed point. For \(\mathbb Q^\times\) acting on \(G(\mathbb A_{\mathbb Q})\), both \(e\) and \(\tau\) are fixed, separately. Hence \(\sum_{q\in\mathbb Q^\times}F(qe)\) is an infinite repetition of \(F(e)\), and converges only when that value is zero; the corresponding statement at \(\tau\) involves its independent value. The convergence assertion follows because a nonzero constant sequence cannot tend to zero. In contrast, for an idele \(x\), \(\sum_{q\in\mathbb Q^\times}f(qx)\) samples no zero point and converges by Schwartz decay and the compact support of its finite adelic factors. On the spherical input \(f=\phi\otimes1_{\widehat{\mathbb Z}}\) and idele \((x,1,1,\ldots)\), its contributing rationals are exactly the nonzero integers, so it is precisely \(P\phi(x)\). This supplies the actual map from the adelic orbital sum to (SZW6).
+
+## 3. Full finite support and its Poisson defect
+
+For the actual finite bounded distributive support lattice \(L\), write
+\[
+G_L(A)=\{(a,1_L):a\in A\}\cup\{z_\lambda=(0,\lambda):\lambda\ne1_L\},
+\quad \tau_L=z_{0_L},\quad e_L=z_{1_L}.
+\tag{SZW10}
+\]
+Addition uses amplitude addition and support join; multiplication uses amplitude multiplication and support meet. No nonzero amplitude is placed at a nontop support. Let \(n=|L|\), and prescribe the function space
+\[
+\mathcal F_L=\mathcal S_{\mathrm{ev}}(\mathbb R)
+\oplus\bigoplus_{\lambda\ne1_L}\mathbb C\delta_\lambda,
+\qquad F=(\phi,(c_\lambda)),\quad C(F)=\sum_{\lambda\ne1_L}c_\lambda.
+\tag{SZW11}
+\]
+This is the global fixed-sector carrier of FL1–FL12. It is not the coordinatewise carrier \(Q_F=\prod_{v\in F}G(k_v)\) of TC32–TC41. That latter carrier has positive-dimensional strata \(\prod_{v\in E}k_v\), whose integration characters are \(\chi_E(j)=\prod_{v\in E}|j_v|_v\), as a change of variables in each coordinate proves. The exact inclusion \(G(\prod_{v\in F}k_v)\to Q_F\) retains only the full-support stratum and the all-unsupported point; restriction of functions to these is the projection of TC41, with kernel the sum of all nonempty proper strata. No such stratum, or its distinct integration character, has been replaced here by a fixed line. The extra weight-one partners constructed in Section 9 are explicitly new Fourier partners of the FL fixed lines.
+
+Here \(\delta_\lambda\) is a point-function on the support carrier, not a tempered Dirac distribution. The full sum and the componentwise Fourier map are
+\[
+\Theta_L(F;x)=P\phi(x)+a+C(F),\qquad
+\mathcal F_L^{\mathrm{raw}}(\phi,c)=(\mathcal F\phi,c).
+\]
+\[
+\Theta_L(F;x)-x^{-1}\Theta_L(\mathcal F_L^{\mathrm{raw}}F;x^{-1})
+=C(F)(1-x^{-1}).
+\tag{SZW12}
+\]
+Every equality follows by inserting (SZW7); thus the extra fixed constants give an exact Poisson defect. They are not extra terms in the punctured sum. With all support labels retained, the defect has coefficients \(c_\lambda(1-x^{-1})\) on the respective nontop labels, so cancellation in the scalar sum \(C(F)\) does not remove the labelled defect.
+
+On this space the dilation convention inherited from Connes is
+\((V(u)\phi)(x)=\phi(x/u)\), \(u>0\); all \(c_\lambda\) are fixed. Its endpoint map is onto:
+\[
+E_L(F)=\left(a,b,(c_\lambda)_{\lambda\ne1_L}\right),\qquad
+B_L=\mathbb C(0)_{e}\oplus\mathbb C(1)_{e^\vee}
+\oplus\bigoplus_{\lambda\ne1_L}\mathbb C(0)_\lambda.
+\tag{SZW13}
+\]
+The notation \(\mathbb C(s)\) means the character \(u\mapsto u^s\). Evaluation is invariant and \(\int\phi(x/u)dx=u\int\phi\), proving these weights. Surjectivity of the original two endpoints follows, for example, by taking one even Schwartz function with nonzero value at zero and an even Schwartz function vanishing there but having nonzero integral, then solving the resulting triangular two-by-two system. The point coefficients give the other coordinate preimages independently. The kernel is exactly \(\phi(0)=\int\phi=0\), with every extra coefficient zero.
+
+## 4. Mellin regularization retains two different boundary operations
+
+For \(\Re s>1\), the punctured Mellin integral converges absolutely and is
+\[
+Z_\phi(s)=\int_0^\infty P\phi(x)x^s\frac{dx}{x}
+=2\zeta(s)\int_0^\infty\phi(x)x^s\frac{dx}{x}.
+\tag{SZW14}
+\]
+Indeed at zero (SZW7) bounds the integrand by a constant times \(x^{\Re s-1}+x^{\Re s}\), and at infinity it decreases arbitrarily fast. Termwise integration is justified by the sum of absolute values; replacing \(x\) by \(nx\) then gives the displayed Dirichlet series. Evenness accounts for the factor two.
+
+Splitting at one and using (SZW7) proves the complete continuation
+\[
+\begin{aligned}
+Z_\phi(s)={}&\int_1^\infty P\phi(x)x^s\frac{dx}{x}
++\int_1^\infty P(\mathcal F\phi)(x)x^{1-s}\frac{dx}{x}
++\frac{b}{s-1}-\frac{a}{s}.
+\end{aligned}
+\tag{SZW15}
+\]
+Both integrals are entire: on every compact set of \(s\), every differentiated integrand is dominated by a sufficiently high inverse power of \(x\), times a power of \(\log x\). The residues are exactly \(-a\) at zero and \(b\) at one. Formula (SZW15) has kept the full supported-zero and dual endpoint coefficients.
+
+The full function \(\Theta_L(F;x)\) usually has no Mellin convergence strip. Its asymptotic terms are
+\[
+\Theta_L(F;x)=a+C(F)+O_N(x^{-N})\quad(x\to\infty),
+\]
+\[
+\Theta_L(F;x)=b/x+C(F)+O_N(x^N)\quad(x\downarrow0).
+\tag{SZW16}
+\]
+The second estimate follows from (SZW7), increasing its Schwartz exponent by one. Define its meromorphic finite part by subtracting these terms on the two half-lines, integrating the remaining rapidly decreasing functions, and adding the meromorphic continuations of the subtracted elementary integrals. The elementary contributions are
+\[
+\frac{b}{s-1}+\frac{C(F)}s-\frac{a+C(F)}s
+=\frac{b}{s-1}-\frac as.
+\tag{SZW17}
+\]
+Here \(\int_0^1x^{s-1}dx=1/s\) initially for \(\Re s>0\), while \(\int_1^\infty x^{s-1}dx=-1/s\) initially for \(\Re s<0\). The equality of their meromorphic continuations does not posit a common domain of ordinary convergence. Thus the full finite part is exactly (SZW15). In particular deleting the small-end term \(C(F)/s\) while retaining its large-end counterpart would introduce a spurious pole.
+
+The cancellation in (SZW17) is not the trace of a fixed representation. To see the retained distribution, use \(t=\log x\) and Fourier convention \(\widehat h(u)=\int h(t)e^{-iut}dt\). For a constant \(c\), its exponentially damped Fourier transform is
+\[
+\int_{\mathbb R}c e^{-\varepsilon|t|}e^{-iut}dt
+=\frac{c}{\varepsilon+iu}+\frac{c}{\varepsilon-iu}
+=\frac{2c\varepsilon}{\varepsilon^2+u^2}
+\ \longrightarrow\ 2\pi c\delta_0(u)
+\tag{SZW18}
+\]
+in tempered distributions as \(\varepsilon\downarrow0\). For proof, pair the last expression with a Schwartz function \(g\), substitute \(u=\varepsilon v\), and apply dominated convergence to \(2c\int g(\varepsilon v)/(1+v^2)dv\). Its limit is \(2\pi c g(0)\). The integral \(\int(1+v^2)^{-1}dv=\pi\) follows from the antiderivative \(\arctan v\). The fixed line therefore contributes the character distribution \(h\mapsto\int h(t)dt\), even though its meromorphic two-tail finite part is zero. These are two explicitly different receiving maps from the same constant function. Each lower support coefficient has its own copy of (SZW18).
+
+## 5. An exact map from admissible Weil tests to the full theta object
+
+Use precisely the existing HEB11 and WEC1 convention:
+\[
+\mathcal T=C_c^\infty(\mathbb R;\mathbb C),\qquad
+M_f(s)=\int_{\mathbb R}f(v)e^{-(s-1/2)v}dv,
+\qquad f^\#(v)=\overline{f(-v)}.
+\tag{SZW19}
+\]
+Then \(M_{f^\#}(s)=\overline{M_f(1-\overline s)}\), by changing variables. If the alternative plus-exponent convention is used, its exact relation is \(M_f^+(s)=M_f(1-s)=M_{f(-\cdot)}(s)\); no convention is silently interchanged.
+
+Define a Gaussian dilation map with its complete amplitude:
+\[
+\boxed{(J_\theta f)(x)=\int_{\mathbb R}e^{v/2}f(v)
+\exp(-\pi e^{2v}x^2)\,dv.}
+\tag{SZW20}
+\]
+This is even Schwartz. Indeed the support of \(f\) bounds \(e^{2v}\) above and below by positive constants. Every derivative in \(x\), multiplied by every power of \(x\), is consequently bounded by an integrable multiple of a Gaussian uniformly in \(v\). Differentiation under the integral and the Schwartz estimates follow. Direct evaluation and the Gaussian integral give
+\[
+(J_\theta f)(0)=M_f(0),\qquad
+\int_{\mathbb R}J_\theta f=M_f(1),\qquad
+\mathcal F(J_\theta f)=J_\theta(f(-\cdot)).
+\tag{SZW21}
+\]
+For the second equality, the Gaussian has integral \(e^{-v}\). For the third, its Fourier transform is \(e^{-v}\exp(-\pi e^{-2v}\xi^2)\); substituting \(v\mapsto-v\) gives the formula. Consequently \(J_\theta(f^\#)=\mathcal F\overline{J_\theta f}\). This is an actual intertwining map between the test involution and the supported-zero Fourier boundary, not only an equality of two pairs of numbers.
+
+The Mellin calculation, first for \(\Re s>1\), is
+\[
+\int_0^\infty (J_\theta f)(x)x^s\frac{dx}{x}
+=\frac12\pi^{-s/2}\Gamma(s/2)M_f(s),
+\]
+\[
+\boxed{Z_{J_\theta f}(s)=\Lambda(s)M_f(s),\qquad
+\Lambda(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s).}
+\tag{SZW22}
+\]
+The first integral already converges for \(\Re s>0\). Compactness of the \(v\)-support and Gaussian decay justify Fubini, and \(x\mapsto e^{-v}x\) gives the factor \(e^{-sv}\). The second formula follows from (SZW14) and continues meromorphically by (SZW15). It retains the full amplitude \(M_f\). Its residues are \(-M_f(0)\) and \(M_f(1)\), exactly the endpoint map (SZW21).
+
+The two endpoint values range independently over \(\mathbb C^2\). For an explicit section choose a nonnegative even nonzero bump \(\psi\in\mathcal T\), put \(b_\psi=M_\psi(0)=M_\psi(1)>0\), and let \(\psi_t(v)=\psi(v-t)\), with \(t=\log4\). Then
+\[
+f_{A,B}=\frac{4B-A}{3b_\psi}\psi
++\frac{2(A-B)}{3b_\psi}\psi_t,
+\qquad (M_{f_{A,B}}(0),M_{f_{A,B}}(1))=(A,B).
+\tag{SZW23}
+\]
+The translated bump has endpoints \((2b_\psi,b_\psi/2)\), which verifies both identities. Thus no universal restriction such as \(A=B\), or invariance under an auxiliary finite group, follows merely from admissibility of these Weil tests. Its exact endpoint kernel is \(\{f:M_f(0)=M_f(1)=0\}\), and (SZW23) splits its quotient as a vector space.
+
+## 6. The complete arithmetic explicit formula, derived with these endpoints
+
+For \(h\in\mathcal T\), set \(H(s)=M_h(s)\), \(\widehat h(t)=\int h(v)e^{-itv}dv\), and let \(\rho\) range over all nontrivial zeros of \(\zeta\), with their multiplicities \(m_\rho\). Define
+\[
+\begin{aligned}
+Z(h)&=\sum_\rho m_\rho H(\rho),\\
+A_\infty(h)&=\frac1{2\pi}\int_{\mathbb R}\widehat h(t)
+\bigl(\Re\psi(1/4+it/2)-\log\pi\bigr)dt,\\
+P_{\mathrm{fin}}(h)&=\sum_{p}\sum_{k\ge1}
+(\log p)p^{-k/2}\{h(k\log p)+h(-k\log p)\}.
+\end{aligned}
+\tag{SZW24}
+\]
+Here \(\psi=\Gamma'/\Gamma\) is the digamma function, not the bump used above. The last sum is finite for any particular compactly supported \(h\). The archimedean integral is absolutely convergent since \(\widehat h\) decreases faster than every inverse power and the digamma factor grows at most logarithmically. The zero sum is absolutely convergent; a proof of the requisite bound is included below.
+
+The exact identity is
+\[
+\boxed{Z(h)=H(0)+H(1)+A_\infty(h)-P_{\mathrm{fin}}(h).}
+\tag{SZW25}
+\]
+The boundary \(H(0)+H(1)\) here is obtained from the actual full supported theta (SZW7), (SZW15), and (SZW22). It has not been deleted and then replaced by a numerical Euler factor for \(e\).
+
+Here are the analytic details and signs. For the Gaussian \(g(x)=e^{-\pi x^2}\), (SZW15) gives \(Z_g=\Lambda\), simple poles at \(0,1\) with residues \(-1,1\), and the functional equation \(\Lambda(s)=\Lambda(1-s)\). The entire function \(\xi(s)=\tfrac12s(s-1)\Lambda(s)\) therefore has \(\xi(0)=\xi(1)=1/2\). Its theta integral also gives
+\(\max_{|s|\le R}|\xi(s)|\le\exp(CR\log(R+2))\) for some fixed \(C\): bound the rapidly decreasing Gaussian tail by \(C_0e^{-c x^2}\) and each power in the two integrals by \(x^{R+1}\); its integral is bounded by a constant times \(c^{-(R+1)/2}\Gamma((R+1)/2)\). The elementary Stirling bound for the positive real Gamma function gives the claimed estimate. Jensen's formula then implies that the number of zeros in \(|s|\le R\), counted with multiplicity, is \(O(R\log(R+2))\), by applying it on radius \(2R\) around the nonzero value at zero.
+
+The Euler product is nonzero in \(\Re s>1\). It follows from the functional equation that \(\xi\) has no zeros in \(\Re s<0\). For completeness the boundary line \(\Re s=1\) has no zeros either. For \(\sigma>1\), the logarithm of
+\(\zeta(\sigma)^3|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|\)
+is a convergent sum of the nonnegative terms
+\(2p^{-k\sigma}(1+\cos(kt\log p))^2/k\).
+The product is therefore at least one. If \(t\ne0\) and \(\zeta(1+it)\) were a zero of order at least one, analyticity there, finiteness at \(1+2it\), and the simple pole at one would make that product tend to zero as \(\sigma\downarrow1\), a contradiction. The functional equation excludes zeros on \(\Re s=0\); \(\xi(0),\xi(1)\ne0\) handle the two real endpoints. Thus all zeros counted above lie in \(0<\Re s<1\).
+
+Repeated integration by parts in (SZW19) gives
+\(|H(\sigma+it)|\le C_{N,I}(1+|t|)^{-N}\)
+for every \(N\), uniformly on each fixed bounded real interval \(I\) for \(\sigma\). Together with the zero count, this proves absolute convergence of \(Z(h)\).
+
+Set \(\ell=\Lambda'/\Lambda\). Integrate \(\ell(s)H(s)\) around the rectangle with vertical sides \(-1,2\), oriented positively. The residue theorem gives the zeros minus \(H(0)+H(1)\); the residues of \(\ell\) at its two poles are \(-1\), independently of the pole residues of \(\Lambda\). A sequence of upper and lower heights tending to infinity can be chosen so that the horizontal integrals tend to zero. One precise justification is the genus-one Hadamard factorization of the order-at-most-one entire function \(\xi\). It gives
+\(\xi'/\xi(s)=B+\sum_\rho m_\rho((s-\rho)^{-1}+\rho^{-1})\), locally normally away from zeros. The zero bound above implies \(\sum m_\rho/|\rho|^2<\infty\). In each interval \([N,N+1]\), exclude intervals of radius \(N^{-3}\) around the imaginary parts of zeros with \(|\rho|\le3N\). Their total length is \(O(N^{-2}\log N)<1\), so a remaining height exists. On that horizontal segment every nearby denominator has modulus at least \(N^{-3}\), yielding a polynomial bound \(O(N^4\log N)\) for the finite part of the sum. The tail is \(O(\log N)\), since the paired summand is bounded by \(C N/|\rho|^2\). The same argument applies below the real axis. Subtracting \(1/s+1/(s-1)\) gives the same polynomial bound for \(\ell\). The arbitrarily high inverse-power decay of \(H\) proves the asserted disappearance of the horizontal integrals. This argument uses the classical Hadamard and Jensen theorems of complex analysis, with their hypotheses verified here; it does not assume the Riemann hypothesis or any zero-location assertion beyond the strip proved above.
+
+Since \(\ell(1-s)=-\ell(s)\), changing variables on the left edge now gives
+\[
+Z(h)-H(0)-H(1)=\frac1{2\pi i}\int_{\Re s=2}
+\ell(s)\{H(s)+H(1-s)\}\,ds.
+\tag{SZW26}
+\]
+Insert
+\(\ell(s)=-\tfrac12\log\pi+\tfrac12\psi(s/2)-\sum_{p,k}(\log p)p^{-ks}\).
+The prime series converges absolutely on this line. Fourier inversion in each term gives respectively \(p^{-k/2}h(-k\log p)\) and \(p^{-k/2}h(k\log p)\); this proves its contribution is \(-P_{\mathrm{fin}}\). The Gamma part is holomorphic for \(\Re s>0\), so its line can be shifted to \(1/2\). Combining the second term after \(t\mapsto-t\) gives
+\(-\log\pi+\Re\psi(1/4+it/2)\), proving its contribution is \(A_\infty\). This proves (SZW25) with the exact signs, constants and domains in (SZW24).
+
+The same identity is Connes's Appendix II Theorem 6 in the unramified trivial-character sector. Its test on \(C_{\mathbb Q}\) is exactly
+\[
+q_h(j)=|j|^{-1/2}h(-\log|j|),\qquad
+\widehat q_h(s)=\int_{C_{\mathbb Q}}q_h(j)|j|^s d^*j=H(s),
+\tag{SZW27}
+\]
+where the norm-one compact group has Haar mass one and the norm quotient has measure \(du/u\). The equality follows by \(v=-\log|j|\). The local distribution on the other side is consequently \(P_{\mathrm{fin}}-A_\infty\), with all the source principal-value conventions fixed by this equality and by the stated self-dual additive Fourier character. The finite-prime coefficients have remained \((\log p)p^{-k/2}\); none was changed to \(\log(p+1)\).
+
+## 7. An actual summable divisor trace, with the theta image and its cokernel mapped
+
+The zero trace in (SZW24) has an unconditional operator realization that retains every multiplicity. It is a divisor receiver constructed from \(\Lambda\) in (SZW22), not an assumed identification with the entire original adele-class Hilbert space.
+
+Let \(\mathcal O\) be the ring of entire functions of \(s\), put \(q_0(s)=s(s-1)\), and let \(\mathcal O(P)=q_0^{-1}\mathcal O\) be the meromorphic functions with at most simple poles at \(0,1\). Multiplication gives the injective map
+\[
+\mathcal O\xrightarrow{\times\Lambda}\mathcal O(P),\qquad
+q_0\Lambda=2\xi.
+\tag{SZW28}
+\]
+Its injectivity follows because \(\Lambda\) is not identically zero. The map \(F\mapsto q_0F\) identifies its cokernel with \(\mathcal O/(2\xi)\). The other exact quotient is
+\[
+0\to\mathcal O\to\mathcal O(P)
+\xrightarrow{(\operatorname{Res}_0,\operatorname{Res}_1)}\mathbb C^2\to0.
+\tag{SZW29}
+\]
+Surjectivity is witnessed by \(a/s+b/(s-1)\), and a member with both residues zero is entire. Multiplication by \(H\) on this quotient is diagonal with values \(H(0),H(1)\). By (SZW22), the actual theta map \(f\mapsto Z_{J_\theta f}=\Lambda M_f\) lands in the image of (SZW28); its residue map is \(f\mapsto(-M_f(0),M_f(1))\). This proves both the zero-cokernel vanishing of the theta image and the nonvanishing of its independent endpoint data.
+
+At a zero \(\rho\) of multiplicity \(m_\rho\), the local cokernel is
+\[
+\mathcal J_\rho=\mathbb C[z]/(z^{m_\rho}),\qquad z=s-\rho.
+\tag{SZW30}
+\]
+Indeed \(2\xi(s)=(s-\rho)^{m_\rho}u_\rho(s)\) with a holomorphic unit \(u_\rho(\rho)\ne0\), and division by that unit gives the stated quotient. The global jet map has the explicit product target
+\[
+\mathcal O(P)\longrightarrow\prod_\rho\mathcal J_\rho,
+\qquad F\longmapsto\bigl([q_0F]_{\rho,m_\rho}\bigr)_\rho.
+\tag{SZW30a}
+\]
+Its kernel is exactly \(\Lambda\mathcal O\): vanishing of every required jet makes \(q_0F/(2\xi)\) entire at every zero and elsewhere, proving the reverse inclusion as well as the forward one. Every finitely supported tuple of jets occurs. For one chosen \(\rho\), the entire function \(2\xi(s)/(s-\rho)^{m_\rho}\) vanishes with the required orders at every other zero and is a unit at \(\rho\). Multiply it by the Taylor polynomial of the desired jet divided by that unit, of degree below \(m_\rho\), and then divide by \(q_0\). This gives the prescribed jet and zero jets elsewhere. Finite sums give the general finite tuple. These are explicit maps into and out of the divisor receiver, preserving the theta amplitude in (SZW22).
+
+In particular, put \(\mathcal C=\mathcal O(P)/\Lambda\mathcal O\), let \(\iota:\mathcal C\hookrightarrow\prod_\rho\mathcal J_\rho\) be the induced injective map, and define
+\[
+\mathcal C_{\mathrm{fin}}
+=\iota^{-1}\!\left(\bigoplus_\rho^{\mathrm{alg}}\mathcal J_\rho\right).
+\qquad
+\iota:\mathcal C_{\mathrm{fin}}\xrightarrow{\ \sim\ }
+\bigoplus_\rho^{\mathrm{alg}}\mathcal J_\rho.
+\tag{SZW30b}
+\]
+The superscript denotes the algebraic direct sum, consisting of finite tuples. The preceding interpolation proves this isomorphism. The Hilbert space used next is the completion of this particular subspace with its displayed jet norms. No identification of the entire analytic cokernel or the full product with that Hilbert space is asserted.
+
+Give each \(\mathcal J_\rho\) the Euclidean norm in its full basis \((1,z,\ldots,z^{m_\rho-1})\), and form their Hilbert direct sum \(\mathcal H_Z\). Multiplication by \(u^{\rho+z}\), \(u>0\), defines a bounded representation: if \(N_\rho\) is multiplication by \(z\), then \(\|N_\rho\|\le1\), and
+\[
+\|u^\rho\exp((\log u)N_\rho)\|
+\le\max(1,u)e^{|\log u|}
+\tag{SZW31}
+\]
+uniformly in \(\rho\). The bound and density of vectors in finitely many summands prove strong continuity. Integrating against \(q_h\) gives multiplication by the full jet of \(H\). This operator is trace class. To verify this directly, if \(\operatorname{supp}h\subset[-R,R]\), repeated integration by parts in
+\(H^{(k)}(\rho)/k!=\int(-v)^kh(v)e^{-(\rho-1/2)v}dv/k!\)
+gives, after summing over all \(k\ge0\), a bound
+\(\sum_k|H^{(k)}(\rho)|/k!\le C_{N,h}(1+|\Im\rho|)^{-N}\).
+The summation is justified because \(\sum_k|v|^k/k!=e^{|v|}\), and each fixed-order derivative of the series of absolute derivative bounds remains bounded on the compact interval; the extra falling factorial factors in \(k\) are absorbed by this same exponential series. The real part of \(\rho\) is in \([0,1]\), so it introduces only uniform constants. The trace norm of the multiplication matrix is at most \(m_\rho\sum_k|H^{(k)}(\rho)|/k!\). Summing over zeros converges by the count proved above, taking \(N>2\).
+
+Its trace is therefore the absolutely convergent sum
+\[
+\operatorname{Tr}_{\mathcal H_Z}(q_h)=\sum_\rho m_\rho H(\rho)=Z(h).
+\tag{SZW32}
+\]
+Every nilpotent jet is retained in (SZW30); the trace of its positive powers is zero because their multiplication matrices have zero diagonal. This is not a quotient identifying such a jet with \(\tau\), or even with the supported amplitude zero.
+
+Reflection has the exact maps \(\rho\mapsto\rho^\#=1-\overline\rho\) and
+\(p(z)\mapsto\overline{p(-\overline z)}\) from \(\mathcal J_\rho\) to \(\mathcal J_{\rho^\#}\). The functional equation and reality of \(\xi\) give equal multiplicities, so these maps are defined and square to the identity. At the global analytic level the same map is \(F^\#(s)=\overline{F(1-\overline s)}\). The identities \(q_0^\#=q_0\) and \(\Lambda^\#=\Lambda\) show that it preserves \(\mathcal O(P)\) and \(\Lambda\mathcal O\), descends to \(\mathcal C\), and intertwines (SZW30a). It preserves \(\mathcal C_{\mathrm{fin}}\), and its jet map extends to an antilinear isometry \(J_Z\) of \(\mathcal H_Z\), since coefficient conjugation and multiplication of the degree-\(k\) coefficient by \((-1)^k\) preserve the displayed Euclidean norms. Its exact dilation covariance is
+\[
+J_ZU_Z(u)=u\,U_Z(u^{-1})J_Z,
+\qquad u>0.
+\tag{SZW32a}
+\]
+Indeed the reflected multiplier in the \(\rho^\#\) summand is \(u^{\overline\rho-z}=u\,u^{-\rho^\#-z}\), proving the identity on every full jet and hence on the Hilbert completion. This is an anti-intertwiner between dilation and reflected dilation; it is not a claim that the dilation generator is self-adjoint for a positive Weil form. All derivative coordinates remain present.
+
+## 8. The full supported trace identity and its exact scalar observations
+
+For a support label \(\lambda\), retain its coordinate vector \(\mathbf e_\lambda\) in the vector space \(\mathbb C[L]\). Define the label-resolved boundary, divisor, and geometric trace distributions by their actual representation traces:
+\[
+\begin{aligned}
+\boldsymbol B_L(h)&=(H(0)+H(1))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol Z_L(h)&=Z(h)\mathbf e_{1_L},\\
+\boldsymbol D_L(h)&=(P_{\mathrm{fin}}(h)-A_\infty(h))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda.
+\end{aligned}
+\tag{SZW33}
+\]
+The boundary trace is precisely that of (SZW13) integrated against (SZW27); the zero trace is (SZW32); each lower-coordinate trace is the fixed-character distribution (SZW18). Equivalently, take the finite even representation \(B_L\) and the odd representation \(\mathcal H_Z\), with their indicated labels. Their integrated operators are trace class, so their label-resolved supertrace is well defined. Equation (SZW25) proves the full identity
+\[
+\boxed{\boldsymbol B_L-\boldsymbol Z_L=\boldsymbol D_L.}
+\tag{SZW34}
+\]
+Thus all terms come from defined test spaces, the actual full theta, explicit fixed-coordinate representations, and the Mellin divisor receiver. No assertion about an unconstructed global Hilbert trace is used.
+
+Two different scalar maps already give different observations. Let \(\epsilon_{\mathrm{top}}\) pick the coefficient of \(\mathbf e_{1_L}\), and let \(\epsilon_{\mathrm{all}}\) sum all coefficients. Then
+\[
+\begin{aligned}
+\epsilon_{\mathrm{top}}\boldsymbol D_L&=P_{\mathrm{fin}}-A_\infty,\\
+\epsilon_{\mathrm{all}}\boldsymbol D_L&=P_{\mathrm{fin}}-A_\infty+(n-1)H(0),\\
+\epsilon_{\mathrm{all}}\boldsymbol B_L&=nH(0)+H(1).
+\end{aligned}
+\tag{SZW35}
+\]
+The first map forgets all lower fixed traces; the second retains their sum. Their kernels on \(\mathbb C[L]\) are respectively the span of the nontop coordinate vectors, and the hyperplane of zero coordinate total. These maps must not be called the same arithmetic pushforward.
+
+First take \(A=\mathbb R\), as in the function space (SZW11). The actual carrier projection \(G_L(\mathbb R)\to\mathbb R\) identifies all zero points. Its fibre-sum pushforward is
+\[
+(\phi,c)\longmapsto\phi+C(F)1_{\{0\}},
+\qquad
+\mathcal F_L\longrightarrow
+\mathcal S_{\mathrm{ev}}(\mathbb R)\oplus\mathbb C1_{\{0\}}.
+\tag{SZW36}
+\]
+The sum is direct because a continuous function on \(\mathbb R\) supported only at zero is zero. Its kernel consists exactly of \(\phi=0\) and \(\sum c_\lambda=0\). The subsequent map \(\phi+d1_{\{0\}}\mapsto\phi\) is a separate projection, with kernel the added point-function line. It is this composite which returns the classical regular orbital observation. For \(L=\mathbb B\), the first pushforward identifies the external coordinate with an independent point correction at supported zero, while the second projection kills that correction. Thus even in the two-point case the full trace and its regular arithmetic observation are connected by two explicit maps.
+
+There is also an adelic version with its own domain
+\(\mathcal S(\mathbb A_{\mathbb Q})\oplus\mathbb C^{L\setminus\{1_L\}}\): it sends \((f,c)\) to \(f+C(F)1_{\{0_{\mathbb A}\}}\) in \(\mathcal S(\mathbb A_{\mathbb Q})\oplus\mathbb C1_{\{0_{\mathbb A}\}}\), with exactly the same kernel proof since the adele group is nondiscrete. The spherical embedding of (SZW11) is explicitly
+\[
+(\phi,c)\longmapsto(\phi\otimes1_{\widehat{\mathbb Z}},c),
+\qquad
+(\phi,c)\longmapsto
+\phi\otimes1_{\widehat{\mathbb Z}}+C(F)1_{\{0_{\mathbb A}\}}
+\tag{SZW36a}
+\]
+after that adelic pushforward. This states the real-to-adelic map before adding the adelic point correction; the original real function has not silently changed its domain.
+
+More general support maps send point coefficients by finite fibre sums, as in FL19. Separate Boolean branches record the total and the principal-filter sums indexed by join-irreducibles. Their exact kernel is
+\[
+N_L=\{d:\sum_\lambda d_\lambda=0,\quad
+\sum_{\lambda\ge j}d_\lambda=0\text{ for every join-irreducible }j\},
+\tag{SZW37}
+\]
+of dimension \(n-|J(L)|-1\). To verify the dimension, order the join-irreducibles compatibly with their partial order and solve their upper-triangular principal-filter system on the coordinate vectors at those elements; the bottom coordinate then prescribes the total. This gives surjectivity onto \(|J(L)|+1\) moments. The kernel is invariant and trivial under dilation, so it contributes exactly \((n-|J(L)|-1)H(0)\) to the endpoint trace before it is forgotten. All full filter moments reconstruct the coefficients by finite Möbius inversion, whose inverse follows by multiplying the two triangular incidence matrices. Consequently these lost traces are actual labelled objects, not a claim that equality of all pointwise branch labels gives injectivity on their linear combinations.
+
+## 9. The reflected endpoint defect and its concrete Fourier closure
+
+For \(f,g\in\mathcal T\), put \(h=f^\#*g\), using additive convolution. Fubini gives \(M_h(s)=\overline{M_f(1-\overline s)}M_g(s)\). If \(A_f=M_f(0)\) and \(B_f=M_f(1)\), then
+\[
+H(0)=\overline{B_f}A_g,\qquad H(1)=\overline{A_f}B_g.
+\tag{SZW38}
+\]
+The supported-zero pair is therefore exactly
+\(\overline{B_f}A_g+\overline{A_f}B_g\), the hyperbolic Hermitian plane with matrix \(\begin{psmallmatrix}0&1\\1&0\end{psmallmatrix}\) on \((A,B)\). It is not a positive form on all admissible tests; (SZW23) supplies arbitrary endpoint pairs, including \((1,-1)\), of value \(-2\).
+
+The entire unreflected endpoint representation has instead
+\[
+B_L(f,g)=n\overline{B_f}A_g+\overline{A_f}B_g,
+\qquad
+B_L-B_L^*=(n-1)(H(0)-H(1)).
+\tag{SZW39}
+\]
+The last equality is an equality of sesquilinear forms, obtained by exchanging the inputs and conjugating. For \((A_f,B_f)=(1,i)\), its diagonal value is \(-i(n-1)\), so for \(n>1\) it is not Hermitian. This exact defect is also present in \(\epsilon_{\mathrm{all}}\boldsymbol D_L\); (SZW34) therefore retains it on both sides, instead of confusing it with the Hermitian divisor form \(Z(f^\#*g)\).
+
+The obstruction defines a concrete missing object. In tempered distributions on \(\mathbb R\), let
+\[
+B_L^{\mathcal F}=(\mathbb C1\oplus\mathbb C\delta_0)\otimes\mathbb C[L].
+\tag{SZW40}
+\]
+For dilation \(V(u)\phi(x)=\phi(x/u)\), extend the action to distributions by
+\(\langle V(u)T,\varphi\rangle=u\langle T,\varphi(u\cdot)\rangle\).
+This agrees with the action on regular distributions by change of variables. It fixes \(1\) and sends \(\delta_0\) to \(u\delta_0\), so the two weights are precisely zero and one. Fourier interchanges these two distributions. They are linearly independent: test against a compactly supported smooth function vanishing at zero but having nonzero integral to determine the constant coefficient, then against one nonzero at zero to determine the Dirac coefficient.
+
+There is an injective equivariant map
+\[
+B_L\hookrightarrow B_L^{\mathcal F},\qquad
+a\mapsto a1\otimes\mathbf e_{1_L},\quad
+b\mapsto b\delta_0\otimes\mathbf e_{1_L},\quad
+c_\lambda\mapsto c_\lambda1\otimes\mathbf e_\lambda.
+\]
+\[
+B_L^{\mathcal F}/B_L
+\cong\bigoplus_{\lambda\ne1_L}\mathbb C(1)_\lambda.
+\tag{SZW41}
+\]
+The linear independence just proved gives its kernel and quotient. It is the smallest Fourier-stable vector subspace containing the indicated image: the Fourier transform of each missing-label constant is its missing-label Dirac distribution, and after adjoining these the space is Fourier stable. On this space, Fourier followed by coefficient conjugation swaps the two endpoint coordinates at every label. It satisfies the exact reflected covariance \(J V(u)=u V(u^{-1})J\). This proves the representation and involution comparison, with no additional group action inferred from the existence of support labels.
+
+Its trace and the required new geometric correction are
+\[
+\begin{aligned}
+B_L^{\mathcal F}(h)&=n(H(0)+H(1)),\\
+D_L^{\mathcal F}(h)&=P_{\mathrm{fin}}(h)-A_\infty(h)
++(n-1)(H(0)+H(1)),\\
+B_L^{\mathcal F}(h)-Z(h)&=D_L^{\mathcal F}(h).
+\end{aligned}
+\tag{SZW42}
+\]
+These follow from (SZW35) by adding the actual quotient trace \((n-1)H(1)\) in (SZW41). The reflected endpoint form has one hyperbolic pair for each independent label; its inertia is \((n,n,0)\) when all labelled input coordinates are retained. On the diagonal copy of actual scalar tests it is \(n\) times (SZW38). Fourier closure therefore makes the missing partners exact; it does not assert positivity of the entire new distribution.
+
+## 10. The distinct residue-count norm and the comparison required before holonomy
+
+The supported quotient at modulus \(m\ge1\) is \(G(\mathbb Z/m\mathbb Z)\), of cardinality \(m+1\), while the quotient identifying unsupported and supported zero is \(\mathbb Z/m\mathbb Z\), of cardinality \(m\). Consequently the actual supported residue-count sum is
+\[
+\sum_{m\ge1}(m+1)^{-s}=\zeta(s)-1\qquad(\Re s>1).
+\tag{SZW43}
+\]
+For coprime moduli the support-preserving Chinese remainder map lands in the fibre product over \(\mathbb B\); it has size \(mn+1\), while the full Cartesian product has size \((m+1)(n+1)\). The difference \(m+n\) counts the two mixed-support sectors. Thus \(m\mapsto m+1\) is not multiplicative. Extending the prime values \(p+1\) multiplicatively would define a different function, and is not used anywhere in (SZW6)–(SZW42). Likewise \(P_e^2=P_e\) prevents any finite positive multiplicative norm other than one at that ideal, and its actual Bourne quotient is the infinite set \(\mathbb Z\). Neither fact assigns a finite numerical Euler factor to \(e\). The theta endpoint construction instead records its actual fixed operator and Poisson dual.
+
+The complete objects now available for a further holonomy comparison are the full-support endpoint representation (SZW13), the full labelled trace identity (SZW34), its explicit observations (SZW35)–(SZW37), the actual admissible-test lift (SZW20)–(SZW23), the local divisor jets and reflected maps (SZW28)–(SZW32), and the minimal Fourier closure (SZW40)–(SZW42). The raw dilation action fixes every support label, so it gives identity action on those zero-coordinate lines; this is proved by the carrier multiplication in (SZW10), not assumed from a scalar quotient. A nontrivial action on a separate finite cover must therefore be carried into one of these exact domains by an actual intertwining map before its group average becomes an assertion about this Weil trace. The endpoint map is onto by (SZW23), so invariance under such an average is not forced merely by the test class. These statements specify the maps and the testable defect; they do not discard the finite cover or identify its holonomy with the original dilation action.
+
+## 11. A nonzero fixed-support trace that the top projection forgets
+
+This example is already present on the original two-point support lattice \(L=\mathbb B\), with \(\tau\ne e\); it requires no extra finite cover. Choose the exact even smooth function
+\[
+\psi(v)=
+\begin{cases}
+K\exp\!\left(-\dfrac1{1-v^2}\right),& |v|<1,\\
+0,& |v|\ge1,
+\end{cases}
+\qquad
+K=\left(\int_{-1}^1\exp\!\left(-\dfrac1{1-v^2}\right)dv\right)^{-1}.
+\tag{SZW44}
+\]
+The integral defining \(K\) is finite and strictly positive. Every derivative of the interior expression tends to zero at \(v=\pm1\): it is the same exponential times a rational function with a finite-order pole there, and an exponential \(e^{-x}\) times any fixed polynomial tends to zero as \(x\to+\infty\). Thus \(\psi\in\mathcal T\), \(\psi^\#=\psi\), and \(\int\psi=1\). Set
+\[
+b=\int_{-1}^1\psi(v)\cosh(v/2)\,dv>1,
+\qquad h=\psi^\#*\psi,\qquad H=M_h.
+\]
+\[
+M_\psi(0)=M_\psi(1)=b,
+\qquad H(0)=H(1)=b^2>1.
+\tag{SZW45}
+\]
+Evenness replaces either exponential in the first two Mellin evaluations by its hyperbolic cosine average. Strictness follows from \(\cosh(v/2)>1\) away from zero and \(\psi>0\) on \((-1,1)\). The convolution identity (SZW38) gives the remaining evaluations. In particular this is an actual compactly supported admissible Weil test. Its actual theta lift is \(J_\theta\psi\), with endpoint pair \((b,b)\), by (SZW20)–(SZW22).
+
+Independently retain the one-dimensional fixed-support function space
+\(E_\tau=\mathbb C F_\tau\subset\mathcal F_{\mathbb B}\), where \(F_\tau=(0,1)\) is zero on the supported real carrier and one at \(\tau\). Its dilation action is the identity, since \(\tau\) is fixed. The coordinate projection \(\Pi_\tau\) onto this line commutes with dilation, descends under the moment map to the lower line in \(B_{\mathbb B}\), and acts as zero on the divisor representation \(\mathcal H_Z\), which has top label. Integrating the trivial action against the exact test (SZW27) gives
+\[
+\operatorname{Tr}_{E_\tau}(q_h)
+=\int_0^\infty u^{-1/2}h(-\log u)\,\frac{du}{u}
+=H(0)=b^2.
+\tag{SZW46}
+\]
+The change of variable \(v=-\log u\) gives the middle integral as \(\int h(v)e^{v/2}dv\), proving the sign and weight. The label-resolved supertrace after \(\Pi_\tau\) is therefore exactly \(b^2\mathbf e_\tau\). It is nonzero; its \(\epsilon_{\mathrm{top}}\) observation is zero and its \(\epsilon_{\mathrm{all}}\) observation is \(b^2\). For the full unprojected test the lower contribution remains \(b^2\mathbf e_\tau\), in addition to the separate top arithmetic term of (SZW33). This identifies an actual kernel element of the top observation and its nonvanishing trace, rather than merely counting possible coordinates.
+
+The same vector also gives a direct comparison with the full theta and Mellin maps:
+\[
+\Theta_{\mathbb B}(F_\tau;x)=1,
+\qquad
+Z^{\mathrm{fp}}_{F_\tau}(s)=\frac1s-\frac1s=0,
+\qquad
+\lim_{\varepsilon\downarrow0}
+\frac{2\varepsilon}{\varepsilon^2+t^2}=2\pi\delta_0(t)
+\quad\hbox{in }\mathcal S'(\mathbb R).
+\tag{SZW47}
+\]
+The first equality is the actual carrier sum (SZW9). The second is precisely the meromorphic finite-part map (SZW17); the third is the fixed-character boundary map proved in (SZW18). Thus the vanishing under one Mellin observation coexists with the nonzero fixed trace (SZW46), through the exact separate maps already constructed. The surviving object is a trivial dilation representation at its retained support label; it is not a vanishing function, a removed prime, or a zero nilpotent jet.
+
+
+![The actual supported-zero prime, its full theta and Mellin endpoint map, the retained fixed-support boundary distributions, and the full label-resolved trace identity. SZW1–SZW4, SZW6–SZW23 and SZW33–SZW42 prove the displayed maps and constants.](figures/32_supported_zero_weil.png)
+
+\clearpage
+
+# Holonomy of the original signed eight-state completion
+
+23 September 2026. This derivation computes continuation of the actual completed ES–Fable cover, including the omitted infinity sign, the two original involutions, the complete finite trace forms, and the surviving collision algebra. It distinguishes a permutation of nearby states from an automorphism extending through a nonreduced fibre, and calculates the residue when such an extension fails. No finite trace form in this note is identified with an arithmetic Weil distribution.
+
+Original sources read: the original finite signed-completion source linked below, FS1–FS31, and [*The ES–Fable inverse correspondence*, SM1–SM19, pinned original TeX, source lines 2097–2513](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab45e221579a0d48ce2885b4ecdf1a6aefc24a20/workbenches/splitzero-tandem/continuations/20260920-fable-boundary-action/FABLE_TO_ORIGINAL_CONDUCTOR.tex#L2097), including the explicit paths and sign choices in SM7–SM14. The latter already proves the order-192 monodromy group; that result is not claimed as new here. The completed chart and local algebra source is [*The finite signed-root completion*, FS1–FS31, pinned original TeX](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/005/independent/FINITE_SIGNED_COMPLETION.tex). Their exact source hashes are, respectively, `10906ba3bd21c06645571560e4c7b0c3948c0ccaf65d8b9e525abf7cd732794c` and `eaf980a16e7d639e21953e5779e7f76abf18e8bdb80ae923c4160b456c22da6f`. The complete group proof needed here is included below. The receiving heat calculation [the complete eight-state heat proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d5c9d198a8432e3ede468b280162a99c00e3f4f7/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/EIGHT_STATE_HEAT_COMPARISON.md), ESH1–ESH72, was read, and every used map and local relation is restated and proved here. Source provenance of the original polynomial is retained in FS's bibliography: *Erdős–Straus project reader*, source version 69, `explicit-four-time-Jacobian-collision`; the added completion and monodromy are programme derivations.
+
+## 1. The unchanged cover and its continuation maps
+
+Retain target coordinates \(u=(A,B,C,D)\), the fixed cubic coefficient one, and
+\[
+\begin{aligned}
+H_u(U,V)&=AU^4+U^3V+BU^2V^2+CUV^3+DV^4,\\
+F_u(R)&=AR^4+R^3+BR^2+CR+D,\\
+k_u(v)&=A+v+Bv^2+Cv^3+Dv^4.
+\end{aligned}
+\tag{EHM1}
+\]
+The completed finite and infinity charts are
+\[
+F_u(R)=0,\quad T^2=F'_u(R),\qquad
+k_u(v)=0,\quad\Theta^2=-k'_u(v),
+\quad v=R^{-1},\quad\Theta=-T/R.
+\tag{EHM2}
+\]
+The inverse transition is \(R=v^{-1},T=-\Theta/v\). At a root, differentiation of \(k(v)=v^4F(1/v)\) gives \(k'(v)=-v^2F'(1/v)\), proving both squared relations and every transition sign. Write \(\mathfrak D\) for the binary quartic discriminant, with its original value \(A^6\prod_{i<j}(R_j-R_i)^2\) when \(A\ne0\). The completed unramified base is
+\[
+\mathcal B^\circ=\{\mathfrak D\ne0\},\qquad
+\mathcal B=\{A\mathfrak D\ne0\}\subset\mathcal B^\circ.
+\tag{EHM3}
+\]
+On \(\mathcal B^\circ\) each projective root is simple and has two nonzero sign values. On a finite chart the relative Jacobian determinant is \(2T F'(R)=2T^3\ne0\). At infinity, \(v=0\) forces \(A=0\) and \(\Theta=\pm i\), and the relative determinant is \(2\Theta k'(0)=2\Theta\ne0\). Thus these eight points have separate local holomorphic inverse charts. Covering a compact path by finitely many such neighborhoods and matching its initial point gives unique continuation of each state. In particular infinity itself is not a branch point of the completed cover.
+
+For a finite root and nonzero \(T\), the original source coordinate \(\alpha\), called \(a\) in FS, and the other three source coordinates are
+\[
+\begin{aligned}
+\alpha&=T^{-1},\qquad y=-R-iT,\\
+z&=AT^3+2RT+3iT^2,\\
+w&=7iR^2T+(B-17R+AR^2)T^2-13iT^3-2AT^4.
+\end{aligned}
+\tag{EHM4}
+\]
+These are FS13 in the unchanged reciprocal coordinate. They invert the original factor equations: \(b=-R/T,c=AT,d=(1+AR)T,e=(B+R+AR^2)T,f=(C+BR+R^2+AR^3)T\); multiplication gives the four coefficients of EHM1, and the resultant is \(T^{-2}F'(R)=1\). The original source is the completed cover with the ramification divisor and the infinity sign \(\Theta=i\) removed. At \(A=0\) its retained sign is \(\Theta=-i\), with source point
+\((0,B,i(7B^2-C)/2,11B^3-2BC-D)\), as direct substitution in the original polynomial verifies.
+
+For a path entirely in \(\mathcal B\), order its roots continuously and choose one initial \(T_j\) at each. The exact continuation formula is
+\[
+T_j(t)=T_j(0)\exp\left(\frac12\int_0^t
+\left[\frac{A'}A+\sum_{k\ne j}\frac{R'_j-R'_k}{R_j-R_k}\right]ds\right).
+\tag{EHM5}
+\]
+The denominators are nonzero on this path. Differentiating proves that \(T_j^2/[A\prod_{k\ne j}(R_j-R_k)]\) is constant with value one. The inverse source sign \(\alpha_j=1/T_j\) has the negative exponent, exactly SM14. EHM2 supplies continuation through infinity where EHM5's finite coordinates cannot be used.
+
+## 2. The original order-192 group, with its actual generators
+
+For four finite ordered roots let \(\Delta=\prod_{j<k}(R_k-R_j)\). The derivative product is
+\(\prod_jF'(R_j)=A^4\Delta^2\): each of six unordered pairs contributes a minus sign, whose product is one. Therefore
+\[
+\chi=A^2\Delta\prod_{j=1}^4\alpha_j,\qquad \chi^2=1.
+\tag{EHM6}
+\]
+This continuous value is constant along any ordered lift. A base loop acts by
+\[
+(j,\epsilon)\longmapsto(\pi(j),\sigma_j\epsilon),\qquad
+\prod_j\sigma_j=\operatorname{sgn}(\pi),
+\quad
+G=\{(\sigma,\pi)\in\{\pm1\}^4\rtimes S_4:
+\prod_j\sigma_j=\operatorname{sgn}(\pi)\}.
+\tag{EHM7}
+\]
+Indeed the final Vandermonde changes by \(\operatorname{sgn}(\pi)\), while the product of source signs changes by \(\prod_j\sigma_j\), and EHM6 fixes their product. The same signs describe \(T_j=1/\alpha_j\). This gives \(|G|=8\cdot24=192\) as an upper bound.
+
+The original SM7–SM11 realize the bound without assuming a braid-group presentation. Retain their exact real roots, target, and inverse-source signs:
+\[
+\begin{gathered}
+(R_1,R_2,R_3,R_4)=(7,9,11,13),\quad
+u_{\mathrm{real}}=(-1/40,-59/4,95,-9009/40),\\
+(\alpha_1,\alpha_2,\alpha_3,\alpha_4)
+=(\sqrt{5/6},-i\sqrt{5/2},-\sqrt{5/2},i\sqrt{5/6}).
+\end{gathered}
+\tag{EHM8}
+\]
+The derivatives are \((6/5,-2/5,2/5,-6/5)\), proving \(\alpha_j^2F'(R_j)=1\) in each coordinate. For an adjacent pair, with center \(c=(R_j+R_{j+1})/2\), take
+\[
+R_j(\theta)=c-e^{i\theta},\quad
+R_{j+1}(\theta)=c+e^{i\theta},\quad0\le\theta\le\pi,
+\qquad \beta_j=(j+\ (j+1)+\ j-\ (j+1)-).
+\tag{EHM9}
+\]
+Keep the other roots and \(A=-1/40\) fixed. The root sum stays forty, so the cubic coefficient stays one. The pair disk contains no other root, and the endpoint unordered root set is the initial one, proving this is a base loop. At a fixed root, the moving derivative factor is \((R_k-c)^2-e^{2i\theta}\), contained in a right-half-plane disk not meeting zero, so its logarithm has zero total change. At a moving root the difference from its partner has argument change \(\pi\); each difference from an outside root has a logarithm with zero imaginary endpoint change, because it lies in a left or right half-plane and has real endpoints of the same sign. Thus \(\alpha_j\) changes phase by \(-\pi/2\). Substituting the four actual signs EHM8 proves exactly the four-cycle EHM9 and fixes every other state.
+
+The squares \(\beta_j^2\) flip the two adjacent signs. The three vectors \((1,1,0,0),(0,1,1,0),(0,0,1,1)\) are independent over \(\mathbb F_2\) and span the even-sum subspace, so these squares generate all eight allowed pure sign patterns. The root permutations of the \(\beta_j\) generate \(S_4\). The generated group therefore has at least \(8\cdot24\) elements, proving that the upper bound EHM7 is attained. Its product \(\beta_1\beta_2\beta_3\), applied rightmost first, is the eight-cycle \((1+\ 2+\ 3+\ 4+\ 1-\ 2-\ 3-\ 4-)\). This is the determinant-one signed-permutation group, not the even-sign group called \(W(D_4)\): in the latter a signed four-cycle must have positive sign product and order four, while all shorter-cycle combinations have order dividing four or six, so no element has order eight.
+
+The completed cover over \(\mathcal B^\circ\) has the same monodromy. At a base point with \(A\ne0\), any loop in \(\mathcal B^\circ\) can be moved slightly to avoid \(A=0\), with its base point fixed. Here is the needed elementary justification. Cover the compact loop by finitely many convex balls contained in \(\mathcal B^\circ\), subdivide its parameter, and replace each piece by a polygon in these balls. Perturb the finitely many vertices so that their \(A\)-coordinates are nonzero, and detour any zero of a segment's linear \(A\)-coordinate by a small semicircle in that complex coordinate, within the same ball. The replacements are homotopic to the original paths inside these convex balls and avoid \(A=0\). Thus every completed-loop permutation already occurs over \(\mathcal B\). Conversely the loops EHM9 remain available, so the group is exactly \(G\). The base is path connected: the discriminant restricted to the complex line through any two allowed endpoints is a nonzero polynomial, and detouring its finitely many zeros connects them. Base-point changes therefore conjugate the permutation representation by an actual bijection of path lifts. That bijection preserves each sign pair, since the two initial opposite signs continue as opposites. The determinant-one subgroup EHM7 is invariant under conjugation by such a signed permutation, so the same description applies in the explicit labels at \(u_*\).
+
+## 3. Labels and both involutions at the original seven-point target
+
+Use the original target \(u_*=(0,0,-1,0)\), with \(F_*(R)=R^3-R\). Label all eight completed states by
+\[
+\begin{array}{c|cccccccc}
+\text{label}&a_+&a_-&b_+&b_-&c_+&c_-&m&n\\\hline
+(R,T)\text{ or }(\infty,\Theta)&(1,\sqrt2)&(1,-\sqrt2)&(0,i)&(0,-i)&(-1,\sqrt2)&(-1,-\sqrt2)&(\infty,i)&(\infty,-i).
+\end{array}
+\tag{EHM10}
+\]
+The missing original state is exactly \(m\). Write \(\mathcal A_*\cong\mathbb C^8\) for the reduced fibre algebra, with point idempotents \(e_x\). Evaluation supplies this isomorphism: the root idempotents at \(0,1,-1\) are \(1-R^2,(R^2+R)/2,(R^2-R)/2\), and splitting each nonzero sign quadratic gives its two indicator functions. At infinity,
+\(e_m=(1-i\Theta)/2\) and \(e_n=(1+i\Theta)/2\), extended by zero elsewhere. These formulas square to themselves, are complementary, and evaluate to the indicated indicator values.
+
+The original deck involution \(\Sigma\) negates \(T,\Theta\). Coefficient conjugation \(\kappa\) fixes the coordinate generators. Native \(J\) has target map \(j_{\mathrm{out}}(A,B,C,D)=(-A,-B,C,-D)\) and chart maps
+\[
+J(R,T)=(-R,-T),\qquad J(v,\Theta)=(-v,\Theta).
+\tag{EHM11}
+\]
+They follow either from EHM4 and \(J(\alpha,y,z,w)=(-\alpha,-y,z,-w)\), or by substituting in \(F_{j_{\mathrm{out}}u}(-R)=-F_u(R)\) and its derivative. At \(u_*\), the relevant permutations on EHM10 are
+\[
+\begin{aligned}
+s&=(a_+a_-)(b_+b_-)(c_+c_-)(mn),\\
+k&=(b_+b_-)(mn),\qquad
+j=(a_+c_-)(a_-c_+)(b_+b_-),\\
+\tau_\Sigma:=sk&=(a_+a_-)(c_+c_-),\qquad
+\tau_J:=jk=(a_+c_-)(a_-c_+)(mn).
+\end{aligned}
+\tag{EHM12}
+\]
+Here \(s,j\) act complex-linearly on the algebra; \(\kappa\), \(\#_\Sigma=\Sigma\kappa\), and \(\#_J=J\kappa\) conjugate coefficients as well as applying \(k,\tau_\Sigma,\tau_J\), respectively. Applying their coordinate formulas to every state verifies EHM12, including the fact that \(J\) fixes each infinity sign but \(\#_J\) exchanges them.
+
+For any of these conjugate-linear involutions, the complete Hermitian regular-trace pairing is
+\[
+Q_\tau(f,g)=\sum_x\overline{f(\tau x)}g(x),\qquad
+[Q_\tau]=P_\tau,
+\tag{EHM13}
+\]
+where \(P_\tau e_x=e_{\tau x}\). To prove it, multiplication by \(f\) on the point basis is diagonal with entries \(f(x)\), so its trace is their sum; now multiply \(\iota(f)g\). A fixed point of \(\tau\) contributes one positive scalar form. A transposed pair contributes \(\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)\), with one positive and one negative eigenvalue. Hence the full inertias are
+\[
+\operatorname{inertia}Q_k=(6,2,0),\quad
+\operatorname{inertia}Q_{\tau_\Sigma}=(6,2,0),\quad
+\operatorname{inertia}Q_{\tau_J}=(5,3,0).
+\tag{EHM14}
+\]
+In particular \(e_m\) is positive for \(Q_{\tau_\Sigma}\), but isotropic for \(Q_{\tau_J}\), where it pairs with \(e_n\). The negative native infinity vector is \(e_m-e_n\), with value \(-2\). The omitted state, a negative direction, and a radical direction are therefore explicitly related, but are not interchangeable names.
+
+## 4. An explicit loop involving the omitted infinity state
+
+The completed coefficient line
+\[
+u(A)=(A,0,-1,0),\qquad
+F_A(R)=R(AR^3+R^2-1),\qquad
+\mathfrak D(u(A))=4-27A^2
+\tag{EHM15}
+\]
+starts at \(u_*\). The discriminant identity follows either from the Sylvester determinant or from the cubic discriminant of \(AR^3+R^2-1\), multiplied by the squared resultant with \(R\), which is one. Put \(A_c=2/(3\sqrt3)\). For \(0<A<A_c\), the three nonzero roots consist of \(R_L<-2/(3A)<R_C<0<R_P\): the cubic tends to minus infinity on the left, has positive value \(4/(27A^2)-1\) at \(-2/(3A)\), value \(-1\) at zero, and tends to plus infinity on the right. Its derivative has only these two critical points, proving the stated root count and order. As \(A\to0^+\), \(R_C\to-1,R_P\to1\), and \(R_L=-1/A+O(A)\), the original infinity branch. At a nonzero root,
+\[
+F_A'(R)=R^2(3AR+2),\qquad
+\Theta^2=3AR+2.
+\tag{EHM16}
+\]
+The first follows by differentiating \(R(AR^3+R^2-1)\) at a root; the second uses EHM2. For the stated large-root asymptotic, put \(w=AR_L\) while \(A\ne0\); the root equation becomes \(w^2(w+1)=A^2\). Its derivative in \(w\) at \((w,A)=(-1,0)\) is one, so its unique analytic branch there satisfies \(w=-1+A^2+O(A^4)\), obtained by substituting its convergent series. Dividing by the retained nonzero \(A\) gives \(R_L=-1/A+A+O(A^3)\). EHM16 now gives \(\Theta\to\pm i\). Thus the sign \(m\) continues along the large negative root with \(T=-R_L\Theta\) positive imaginary, while \(c_+\) continues along \(R_C\) with positive real \(T\).
+
+At \(A_c\), the two negative roots collide at \(-\sqrt3\). The other nonzero root is \(\sqrt3/2\). The collision is transverse because \(\partial_A F_A(R)=R^4=9\) and \(\partial_R^2F_A(R)=2\sqrt3\ne0\) there. Choose a sufficiently small \(\epsilon>0\), approach \(A_c-\epsilon\) along the positive real interval, traverse the circle \(A=A_c+\epsilon e^{i\theta}\), \(\pi\le\theta\le3\pi\), and return along the interval. No other discriminant point lies on or within this small disk. The resulting based-loop permutation is
+\[
+g_\infty=(m\ c_-\ n\ c_+),\qquad
+g_\infty^2=(mn)(c_+c_-),
+\tag{EHM17}
+\]
+fixing \(a_\pm,b_\pm\). Here is the sign computation. In the local coordinate centered at the collision, the two root displacements initially are negative and positive real; their difference makes a positive half-turn as the target makes one turn. The derivative at the negative displacement initially is negative real and at the positive displacement positive real, since \(F_{RR}>0\). Each derivative therefore acquires argument change \(\pi\); its square root acquires phase \(i\). Thus positive imaginary \(T\) on the large branch ends as negative real \(T\) on the other branch, giving \(m\mapsto c_-\), whereas positive real \(T\) on that branch ends as positive imaginary on the large branch, giving \(c_+\mapsto m\). Negating signs gives the other two arrows. Analytic nonzero factors have logarithms on this small disk and contribute no further winding. The other two root pairs have separate holomorphic nonzero sign branches and are fixed. Returning along the real interval proves the exact labels in EHM17.
+
+This loop leaves \(A=0\); loops entirely in its simple-root locus fix the two infinity sections \(\Theta=\pm i\). The missing infinity state is nevertheless in the full monodromy orbit. In particular, two traversals take the retained state \(n\) to the omitted state \(m\). On its returning original affine inverse branch, \(T=-iR_L(1+O(A^2))\), so EHM4 gives
+\[
+y=-2R_L+O(A)=2/A+O(A),\qquad\alpha=1/T\longrightarrow0.
+\tag{EHM18}
+\]
+Thus the loop has a bounded lift in the completed cover and an escaping lift at the endpoint in the original affine chart. This is the actual relation of the nontrivial holonomy to the seventh/eighth distinction, with its original coordinate divergence.
+
+Let \(v_c=e_{c_+}-e_{c_-}\) and \(v_\infty=e_m-e_n\). Under the point-permutation action \(\rho(g)e_x=e_{gx}\),
+\[
+\rho(g_\infty)v_c=v_\infty,\qquad
+\rho(g_\infty)v_\infty=-v_c,
+\qquad Q_{\tau_\Sigma}(v_c,v_c)=-2,
+\quad Q_{\tau_\Sigma}(v_\infty,v_\infty)=2.
+\tag{EHM19}
+\]
+All four equations follow by applying EHM17 and EHM12. One negative and one positive direction are exchanged. Both remain in the same eight-dimensional space; the next section calculates exactly what happens to the form.
+
+## 5. The typed transport of the forms and involutions
+
+The action \(\rho(g)e_x=e_{gx}\) is a unital algebra automorphism of \(\mathbb C^8\), because it permutes the orthogonal primitive idempotents. It preserves the complex bilinear regular trace pairing and the positive coefficient form \(\sum_x\overline{f(x)}g(x)\). For an original conjugate-linear involution with point permutation \(\tau\), exact substitution gives
+\[
+Q_\tau(\rho(g)f,\rho(g)h)=Q_{g^{-1}\tau g}(f,h),\qquad
+\rho(g)\iota_\tau\rho(g)^{-1}=\iota_{g\tau g^{-1}}.
+\tag{EHM20}
+\]
+Thus \(\rho(g)\) is an isometry from \(Q_\tau\) to \(Q_{g\tau g^{-1}}\). It preserves the original fixed form precisely when \(g\tau=\tau g\), since equality of the matrices in EHM13 is then necessary and sufficient. EHM19 does not meet that condition; it is not a sign flip by an isometry of the unchanged indefinite form.
+
+The same fact has a pathwise formulation retaining both native maps. Uniqueness of lifts gives
+\[
+\Sigma M_\gamma=M_\gamma\Sigma,\qquad
+\kappa M_\gamma\kappa=M_{\overline\gamma},\qquad
+J M_\gamma J^{-1}=M_{j_{\mathrm{out}}\gamma}.
+\tag{EHM21}
+\]
+For a path with differing endpoints these are identities between its stated endpoint fibres; at the real, native-fixed base point \(u_*\) they are identities on that fibre. Conjugating a lifted path by the respective coordinate map gives a lift of the transformed base path with the corresponding initial point, which proves each equality. Combining the second identity with the first or third gives the corresponding equations for \(\#_\Sigma\) and \(\#_J\). In particular native reflection of \(\gamma_+(h)=(0,0,-1-16h,16h)\) is \(\gamma_-(h)=(0,0,-1-16h,-16h)\), generally a different target path. Native reflection is not to be substituted for continuation around a loop of \(\gamma_+\).
+
+The seven-state quotient has its exact transported family. For any state \(x\), let \(q_x:\mathcal A_*\to\mathcal A_*/\mathbb Ce_x\). Then
+\[
+\overline\rho_g:\mathcal A_*/\mathbb Ce_x\xrightarrow{\sim}
+\mathcal A_*/\mathbb Ce_{gx},\qquad
+\overline\rho_g q_x=q_{gx}\rho(g).
+\tag{EHM22}
+\]
+This is well defined because \(\rho(g)(\mathbb Ce_x)=\mathbb Ce_{gx}\); its inverse is induced by \(g^{-1}\). Since \(G\) is transitive, the smallest monodromy-stable ideal containing the omitted line \(\mathbb Ce_m\) is all of \(\mathcal A_*\): it contains every point idempotent and hence their sum one. Consequently there is no nonzero quotient algebra with the full induced monodromy action that kills exactly this one state. The seven-state objects instead form the explicitly transported family EHM22, or a single such quotient over its stabilizer subgroup of order \(192/8=24\). This proves the obstruction and its replacement object, rather than treating the missing state as unrelated to the cover.
+
+## 6. Both meridians of the actual chosen heat path
+
+Retain
+\[
+\gamma_+(h)=(0,0,-1-16h,16h),\qquad
+F_h(R)=(R-1)(R^2+R-16h),\qquad
+\operatorname{Disc}F_h=(2-16h)^2(1+64h).
+\tag{EHM23}
+\]
+The factorization follows by expansion. For the discriminant, the quadratic discriminant is \(1+64h\), and its resultant with \(R-1\) is its value \(2-16h\) at one; the product of squared pairwise root differences gives their stated product. Thus the path meets the discriminant at \(h_c=1/8\) with multiplicity two and at \(h_d=-1/64\) with multiplicity one. On the branch \(s(h)=\sqrt{1+64h}\) with \(s(0)=1\), its roots and derivatives are
+\[
+R_a=1,\quad R_b=(-1+s)/2,\quad R_c=(-1-s)/2,
+\qquad
+\mu_a=(9-s^2)/4,\quad\mu_b=s(s-3)/2,\quad\mu_c=s(s+3)/2.
+\tag{EHM24}
+\]
+The derivatives follow by evaluating \(3R^2-1-16h\), or by differentiating the factorization at each root.
+
+Take the positive meridian around \(h_c\) approached along \((0,h_c)\), and the positive meridian around \(h_d\) approached along \((h_d,0)\). In the exact base labels EHM10 their permutations are
+\[
+g_c=(a_+a_-)(b_+b_-),\qquad
+g_d=(b_+\ c_-\ b_-\ c_+).
+\tag{EHM25}
+\]
+Near \(h_c\), all three root functions are individually holomorphic, \(\mu_a,\mu_b\) have simple zeros, and \(\mu_c\) has none. The first two square roots therefore change sign once, and the third does not, proving the first formula. Around \(h_d\), let \(h=h_d+\epsilon e^{i\theta}\), starting to its right; then \(s=8\sqrt\epsilon e^{i\theta/2}\) makes an upper half-circle. For sufficiently small \(\epsilon\), the continuous argument of \(\mu_b\) runs from \(\pi\) to \(2\pi\), and that of \(\mu_c\) from zero to \(\pi\): in EHM24 the factors \(s-3,s+3\) remain in their respective left and right half-planes, with real endpoint ratios of the same sign. Consequently \(b_+\mapsto c_-\), \(c_+\mapsto b_+\), and the other two arrows follow by negating signs. This proves the second formula. The infinity states are the constant sections \(\Theta=\pm i\) on this path and are fixed by both loops.
+
+These permutations obey \(g_c^2=1,g_d^4=1,g_cg_dg_c=g_d^{-1}\). The four powers of \(g_d\) fix \(a_\pm\), and the four elements \(g_cg_d^j\) exchange them, so these eight elements are distinct; the relations reduce every word to one of them. The path's monodromy is thus the group of order eight
+\[
+\langle g_c,g_d\rangle\cong D_8,
+\qquad g_d^2=(b_+b_-)(c_+c_-).
+\tag{EHM26}
+\]
+The base is the complex \(h\)-plane with these two points deleted. To see that these two meridians generate all its loop permutations, surround each puncture by a small disjoint disk and join their boundaries to the base point by nonintersecting arcs. Cutting a large disk containing any given compact loop along those arcs leaves a region without holes, in which the loop reduces to successive boundary traversals of the two punctures. These are the two stated meridians and their inverses. This supplies the elementary topological generation needed for the equality, rather than only a subgroup assertion.
+
+The first loop is an isometry of the fixed \(Q_{\tau_\Sigma}\), since both permutations in EHM12 and \(g_c\) are products of individual pair flips. It sends the negative vector \(v_a=e_{a_+}-e_{a_-}\) to \(-v_a\) and the positive vector \(v_b=e_{b_+}-e_{b_-}\) to \(-v_b\); their squared values stay \(-2\) and \(2\). The second loop instead sends \(v_c\mapsto v_b\) and \(v_b\mapsto-v_c\), exchanging values \(-2\) and \(2\) for the fixed form. Its transported form is exactly EHM20. Therefore neither nontrivial continuation nor a sign change alone proves positivity of the unchanged pairing.
+
+## 7. The exact local family, the retained radical, and the regular heat-loop extension
+
+Put \(t=h-1/8\), \(\epsilon=R-1\), and
+\[
+\beta(t)=\frac{\sqrt{9+64t}-3}{2},\quad\beta(\beta+3)=16t,
+\qquad
+\mathscr L=\frac{\mathbb C\{t\}[\epsilon,T]}
+{(\epsilon^2-\beta\epsilon,\ T^2+16t-(6+3\beta)\epsilon)}.
+\tag{EHM27}
+\]
+Here \(\mathbb C\{t\}\) means convergent power series at zero and the square root has value three. The root branches in this cluster are \(\epsilon=0,\beta\); the third root is separated, so its root factor is invertible in this local algebra. Reducing \(F_h'(1+\epsilon)=6\epsilon+3\epsilon^2-16t\) by \(\epsilon^2=\beta\epsilon\) proves the second relation. Successive division by the two monic relations proves that \(1,\epsilon,T,\epsilon T\) is a free basis. The special fibre is therefore
+\[
+\mathscr L_0=\mathbb C[\epsilon,T]/(\epsilon^2,T^2-6\epsilon)
+\cong\mathbb C[T]/(T^4),\qquad\epsilon=T^2/6.
+\tag{EHM28}
+\]
+Substitution proves both inverse maps in this isomorphism.
+
+The chosen-loop permutation \(g_c\) has the regular local-family realization \(\epsilon\mapsto\epsilon,T\mapsto-T\). On the whole eight-state family near \(h_c\), let
+\[
+e_c(h,R)=\frac{(R-1)(R-R_b(h))}{(R_c(h)-1)(R_c(h)-R_b(h))},
+\qquad R\mapsto R,\quad T\mapsto(2e_c-1)T,\quad\Theta\mapsto\Theta.
+\tag{EHM29}
+\]
+The denominator stays nonzero near \(h_c\). The numerator evaluates to zero on the cluster and to its denominator at the separated root, so it is the separated-root idempotent. Since \((2e_c-1)^2=1\), this map preserves the entire signed relation, flips just the two cluster signs, and fixes the separated pair and infinity states. It is an involution and realizes EHM25. At \(h_c\), \(e_c=(R-1)^2/9\). This is a local extension of this loop, not the global sign deck map, which would negate all eight signs.
+
+Retain the original radical generators, extended by zero on the separated and infinity factors:
+\[
+\begin{aligned}
+n_1&=(R-1)(R+2)=T^2/2,\\
+n_2&=T(R+2)=3T+T^3/6,\\
+n_3&=T(R-1)(R+2)=T^3/2.
+\end{aligned}
+\tag{EHM30}
+\]
+The right sides follow from \(R=1+T^2/6\) modulo \(T^4\). Conversely \(T=n_2/3-n_3/9,T^2=2n_1,T^3=2n_3\), proving independence and spanning of \(\mathfrak N=(T)\). Multiplication gives
+\[
+n_2^2=18n_1,\quad n_1n_2=3n_3,\quad
+n_1^2=n_1n_3=n_2n_3=n_3^2=0,
+\quad\mathfrak N^2=\langle n_1,n_3\rangle,\quad
+\mathfrak N^3=\langle n_3\rangle,\quad\mathfrak N^4=0.
+\tag{EHM31}
+\]
+Each assertion follows by multiplying the displayed powers of \(T\); the nonzero products and independence prove the stated ideal powers. The specialized loop acts by
+\[
+g_c^*: (n_1,n_2,n_3)\longmapsto(n_1,-n_2,-n_3).
+\tag{EHM32}
+\]
+Here the point map and its pullback are both involutions, so the idempotent-transport convention \(\rho\) agrees with the pullback in this case.
+
+Every \(f\in\mathscr L_0\) has multiplication trace \(4f(0)\): its nonconstant part lies in the nilpotent ideal and has a nilpotent multiplication operator, while its constant part acts on four basis vectors. The conjugate-deck form, with \(T^\#=-T\), is consequently
+\[
+Q_{\mathscr L_0}(f,g)=4\overline{f(0)}g(0),\qquad
+\operatorname{rad}Q_{\mathscr L_0}=\mathfrak N.
+\tag{EHM33}
+\]
+The complete special fibre is \(\mathscr L_0\times\mathbb C[T_c]/(T_c^2-9)\times\mathbb C[\Theta]/(\Theta^2+1)\). Its latter forms have Gram matrices \(\operatorname{diag}(2,-18)\) and \(\operatorname{diag}(2,2)\); direct multiplication proves them as in EHM13. Thus the whole form has inertia \((4,1,3)\), and the nonzero negative separated vector remains. The local radical is exactly the kernel of the regular trace pairing, not an assertion that its elements vanish as algebra elements.
+
+The original HEB map is the further quotient setting \(R=1\), hence \(T^2=0\), with \(r_H=T/(2\sqrt2)\). Its exact sequence on the radical is
+\[
+0\longrightarrow\mathfrak N^2\longrightarrow\mathfrak N
+\xrightarrow{\pi_1}\mathbb Cr_H\longrightarrow0,
+\quad\pi_1(n_1)=0,\quad\pi_1(n_2)=6\sqrt2\,r_H,\quad\pi_1(n_3)=0.
+\tag{EHM34}
+\]
+These images follow by evaluation in EHM30, proving the kernel, surjectivity, and constants. The loop \(g_c\) negates this surviving infinitesimal and preserves its nonzero algebra class.
+
+## 8. The transverse order-four collision and its original-coordinate correction
+
+An actual transverse path through the same coefficient point is
+\[
+F_z(R)=((R-1)^2-z)(R+2),\quad
+u(z)=(0,0,-3-z,2-2z),\quad
+x=R-1,\quad x^2=z,\quad T^2=2x(x+3).
+\tag{EHM35}
+\]
+Expansion proves the target formula, and differentiating on the root relation proves the last equation. Choose the analytic square root \(g(x)=\sqrt{2(x+3)}\) with \(g(0)=\sqrt6\). Then
+\[
+y=T/g(x),\quad y^2=x,\quad y^4=z,
+\qquad x=y^2,\quad T=yg(y^2).
+\tag{EHM36}
+\]
+Both compositions are exact and analytic near the local point because \(g\) never vanishes. Positive point continuation is \(y\mapsto iy\). Its analytic deck map and coordinate pullback are
+\[
+\alpha:(x,T)\longmapsto\left(-x,,iT\sqrt{\frac{3-x}{3+x}}\right),
+\qquad \alpha^2:(x,T)\longmapsto(x,-T).
+\tag{EHM37}
+\]
+The ratio is the specific analytic branch with value one at zero. Substitution in EHM36 proves the equations and the square, without omitting any unit factor. At the special fibre, using \(x=T^2/6,x^2=0\), its pullback is
+\[
+\alpha_0^*(T)=iT-\frac{i}{18}T^3,\qquad
+\alpha_0^*(n_1)=-n_1,\quad
+\alpha_0^*(n_2)=in_2-in_3,\quad
+\alpha_0^*(n_3)=-in_3.
+\tag{EHM38}
+\]
+Indeed \(\sqrt{(3-x)/(3+x)}=1-x/3\) modulo \(x^2\), giving the first formula. Inserting it in EHM30 gives the remaining three. Its square sends \(T\) to \(-T\) and its fourth power is the identity. Thus it preserves all products EHM31. The correction \(-iT^3/18\) is required for the analytic continuation in the original reciprocal coordinate.
+
+The distinction between point maps and pullbacks is explicit: a point map \(\alpha\) has pullback \(\alpha^*e_x=e_{\alpha^{-1}x}\). Therefore the forward idempotent transport \(\rho(\alpha)e_x=e_{\alpha x}\) of EHM20 is \((\alpha^{-1})^*\). On this special local algebra it sends
+\(T\mapsto-iT+iT^3/18\), with the inverse of the three radical transformations EHM38. Both maps have the same invariants and coinvariants, but opposite eigenvalues \(i,-i\) on the corresponding nonreal eigenspaces. This retains the orientation rather than silently changing the convention for a four-cycle.
+
+The relation with the chosen heat path is itself an exact map. Put
+\[
+m(t)=(1+R_b)/2,\quad d(t)=(1-R_b)/2,
+\quad\ell(t)=m(t)-R_c,\quad x=R-m(t).
+\tag{EHM39}
+\]
+Then \(F_h(R)=(x^2-d(t)^2)(x+\ell(t))\) by its three root factors. Also
+\[
+d(t)=-\frac{16t}{3+\sqrt{9+64t}},\qquad
+d(t)^2=\frac{256t^2}{(3+\sqrt{9+64t})^2}.
+\tag{EHM40}
+\]
+These identities follow by rationalizing \((3-\sqrt{9+64t})/4\). The denominator is an analytic nonzero unit near zero, so one small positive \(t\)-loop makes this transverse parameter wind twice. Replacing \(x+3\) in EHM36 by the retained analytic unit \(x+\ell(t)\) gives the same exact fourth-root calculation. Its continuation is consequently the square of the transverse order-four map, exactly \(g_c\). This proves the relationship between the two paths and their cycle orders.
+
+At the other collision put \(v=h+1/64,x=R+1/2\). Direct expansion gives
+\(F_h=(x^2-16v)(x-3/2)\) and \(T^2=2x(x-3/2)\) on the root algebra. Choosing \(\sqrt{2(x-3/2)}\) with value \(i\sqrt3\) gives the exact coordinate \(y=T/\sqrt{2(x-3/2)}\) with \(y^4=16v\). At the special fibre \(x=-T^2/3\), so its positive point continuation has pullback
+\[
+\alpha_{d,0}^*(T)=iT-\frac{2i}{9}T^3,\qquad
+(\alpha_{d,0}^*)^2(T)=-T.
+\tag{EHM41}
+\]
+This follows by expanding the corresponding ratio square root to first order in \(x\). Its branch has the four-cycle \(g_d\) from EHM25. It is a regular specialization at its own collision, which does not imply regular specialization at the different collision \(h_c\).
+
+## 9. The regular-extension obstruction and its nonzero residue
+
+A based permutation is not automatically a single-valued deck map over the punctured \(h_c\)-disk. Such a deck map must commute with the local monodromy \(g_c\): apply it before and after lifting a local loop and use uniqueness. Conversely a commuting permutation extends uniquely over that punctured disk by continuing it in the eight local branches; commutation makes the result independent of the chosen continuation path. Inside the explicitly computed \(D_8\), the centralizer is
+\[
+C_{D_8}(g_c)=\{1,g_c,g_d^2,g_cg_d^2\}.
+\tag{EHM42}
+\]
+Indeed \(g_cg_d^j=g_d^{-j}g_c\), so commutation requires \(g_d^j=g_d^{-j}\), exactly even \(j\); multiplying by \(g_c\) gives the other two. Thus the odd powers of \(g_d\), and their \(g_c\)-multiples, already require a slit neighborhood to label their transported maps. They also move some states in the four-point collision cluster to separated reduced states. Any holomorphic extension to the special fibre would preserve its unique nonreduced local factor, so these maps could not extend through the collision even after attempting that identification.
+
+The commuting element \(g_d^2\) has a stronger, explicitly calculable obstruction. It fixes the \(a\)-sign and flips only the \(b\)-sign in the local cluster. The two local root values of \(\epsilon\) are zero and \(\beta\), so its unique generic algebra formula is
+\[
+S_b(\epsilon)=\epsilon,\qquad
+S_b(T)=\left(1-\frac{2\epsilon}{\beta}\right)T,
+\qquad S_b(\epsilon T)=-\epsilon T.
+\tag{EHM43}
+\]
+The interpolation multiplier has values one and minus one on the two root branches. Its square is one because \(\epsilon^2=\beta\epsilon\), proving that this is an involutive algebra automorphism on the punctured disk; the last equation follows from that same relation. This is its only possible continuation there, since the eight reduced points determine the algebra map. The separated \(c\)-factor also changes sign under \(g_d^2\), but this is a bounded, regular operation on that separate factor.
+
+The simple zero of \(\beta\) produces an actual pole in the free basis EHM27. Its residue, meaning the specialization of the operator \(tS_b\) at \(t=0\), is
+\[
+\begin{aligned}
+\left.tS_b(T)\right|_{0}
+&=-\left.\frac{2t}{\beta}\epsilon T\right|_0
+=-\frac38\epsilon T=-\frac{T^3}{16}\ne0,\\
+\left.tS_b(1)\right|_0&=\left.tS_b(\epsilon)\right|_0
+=\left.tS_b(\epsilon T)\right|_0=0.
+\end{aligned}
+\tag{EHM44}
+\]
+Here \(t/\beta=(\beta+3)/16\) follows from EHM27, and \(\epsilon T=T^3/6\) at the collision. Freeness of the four-element basis shows that this nonzero pole cannot be removed by another regular formula agreeing on the punctured disk. Projection onto the analytic cluster summand shows that adjoining the separated and infinity factors cannot cancel it either.
+
+The residue is exactly the derivation
+\[
+\delta=-\frac{T^3}{16}\frac{d}{dT}:
+\mathbb C[T]/(T^4)\longrightarrow\mathbb C[T]/(T^4),
+\qquad
+\ker\delta=\mathbb C1\oplus(T^2),\quad
+\operatorname{im}\delta=(T^3),\quad\delta^2=0.
+\tag{EHM45}
+\]
+The polynomial derivation preserves the ideal \((T^4)\), since it sends \(T^4\) to \(-T^6/4\); hence it descends and obeys the Leibniz identity. On \(1,T,T^2,T^3\), its values are \(0,-T^3/16,0,0\), exactly EHM44. These four values prove the kernel, image, and square. In the retained radical coordinates this is
+\[
+\delta(n_1)=0,\qquad\delta(n_2)=-\frac38n_3,
+\qquad\delta(n_3)=0,
+\qquad
+\overline\delta:\mathfrak N/\mathfrak N^2\xrightarrow{\sim}\mathfrak N^3,
+\quad[n_2]\longmapsto-\frac38n_3.
+\tag{EHM46}
+\]
+The values follow by applying EHM45 to EHM30. Since \(\delta\) kills \(\mathfrak N^2\), the quotient map is well defined; both its source and target are one dimensional and its displayed value is nonzero, proving the isomorphism. This residue is an actual nonzero map between the retained infinitesimal layers. Its value depends on the specified original clock \(t=h-1/8\), whose scale is kept in EHM44.
+
+The other nontrivial commuting candidate \(g_cg_d^2\) acts on \(T\) by the negative of EHM43 and has residue \(-\delta\). Consequently exactly
+\[
+\{1,g_c\}\subset\langle g_c,g_d\rangle
+\tag{EHM47}
+\]
+extends holomorphically over the whole \(h_c\)-fiber. These two extensions were constructed in EHM29. All others fail either the punctured-disk commutation condition or the explicit nonzero residue test. This is a complete classification within the actual based heat-path group, not a claim that the different transverse local group has only two extending elements: its four elements were explicitly constructed in EHM37.
+
+## 10. The action on invariants, coinvariants, and the trace radical
+
+For any finite permutation group \(K\) acting on the eight states, let \(V=\mathbb C^8\), \(V^K\) be its invariant vectors, and \(V_K=V/W_K\), where
+\(W_K=\operatorname{span}\{\rho(g)v-v:g\in K,v\in V\}\). For an orbit \(O\) let \(u_O=\sum_{x\in O}e_x\). The exact maps are
+\[
+\mathcal P_Kv=\sum_{O}\frac{\sum_{x\in O}v_x}{|O|}u_O,
+\qquad
+0\longrightarrow W_K\longrightarrow V\xrightarrow{\mathcal P_K}V^K\longrightarrow0,
+\qquad V_K\xrightarrow{\sim}V^K,\quad[v]\mapsto\mathcal P_Kv.
+\tag{EHM48}
+\]
+On every orbit the differences \(e_x-e_y\) span the coefficient-sum-zero subspace: choose one base point in the orbit and subtract it from all the others. Each such difference belongs to \(W_K\) because some group element takes one point to the other. Hence \(W_K\) is exactly the direct sum of those subspaces, proving the kernel, exactness, and quotient isomorphism. The invariant algebra consists of functions constant on each orbit and is \(\mathbb C^{\#\mathrm{orbits}}\), with trace weights \(|O|\). The map \(\mathcal P_K\) is linear and is not in general multiplicative: for two different points in a nontrivial orbit, their product is zero, whereas the product of their two images is \(u_O/|O|^2\ne0\). Thus the linear coinvariant space has not been assigned an unjustified quotient-algebra product. The ideal generated by the differences kills every nontrivial orbit, since multiplying \(e_x-e_y\) by \(e_x\) gives \(e_x\).
+
+The actual dimensions and restrictions of the unchanged conjugate-deck form are
+\[
+\begin{array}{c|c|c|c}
+K&\text{nontrivial state orbits}&\dim V^K=\dim V_K&
+\operatorname{inertia}(Q_{\tau_\Sigma}|_{V^K})\\\hline
+\langle g_c\rangle&\{a_+,a_-\},\{b_+,b_-\}&6&(5,1,0)\\
+\langle g_d\rangle&\{b_+,c_-,b_-,c_+\}&5&(4,1,0)\\
+\langle g_c,g_d\rangle&\{a_+,a_-\},\{b_+,b_-,c_+,c_-\}&4&(4,0,0)\\
+G&\text{all eight states}&1&(1,0,0).
+\end{array}
+\tag{EHM49}
+\]
+To prove the signature entries without a dimension inference, every displayed orbit sum has positive value equal to its cardinality, since its orbit is preserved by \(\tau_\Sigma\). For the first row the remaining \(c_+,c_-\) block is hyperbolic and the two infinity states are positive. For the second the remaining \(a_+,a_-\) block is hyperbolic and infinity is positive. In the last two rows every invariant basis vector is an orbit sum and these sums have disjoint supports, giving mutually orthogonal positive values. These are restrictions to explicitly mapped subspaces, not positivity of the full original form. On the reduced eight-state fibre none of these nontrivial linear coinvariant projections makes the original full form descend by arbitrary lifts: its radical is zero by EHM14, whereas \(W_K\ne0\). A form descends through a projection precisely when its kernel pairs to zero with every vector, which proves this obstruction directly. The projection EHM48 still supplies its specified comparison with the invariant restriction.
+
+At the nonreduced collision, the answer changes in an exactly calculable way. The extending local heat involution has invariants \(\langle1,T^2\rangle\) and difference space \(\langle T,T^3\rangle\). The latter lies in the trace radical \((T)\), so the local form EHM33 does descend to its two-dimensional linear coinvariant space, with radical the surviving class of \(T^2\). Its invariant restriction has inertia \((1,0,1)\). On the whole fibre the unchanged separated factor and infinity pair add their signatures, giving the complete invariant/coinvariant form inertia
+\[
+(4,1,1)\quad\text{for the extending heat involution at }h_c.
+\tag{EHM50}
+\]
+By contrast, the transverse order-four map EHM38 has eigenvalues \(1,i,-1,-i\) on a suitable basis of \(\mathscr L_0\). One may use the exact coordinate \(y=T/\sqrt{2(3+T^2/6)}\) from EHM36, in which the basis \(1,y,y^2,y^3\) gives these four values; its linear change of basis is invertible since the coefficient of \(T\) in \(y\) is \(1/\sqrt6\ne0\). Thus its invariants are the scalar line and its difference space is the entire nilpotent radical. The local trace descends to the resulting one-dimensional quotient with value \(4|c|^2\). On the whole transverse fibre the invariant/coinvariant form is nondegenerate of inertia \((4,1,0)\), with the same separated negative direction still present. These conclusions use only the maps that actually specialize; EHM47 excludes assigning a full based \(D_8\)-action to the special fibre.
+
+The residue EHM45 is invisible to this regular trace because its image lies in \(\mathfrak N^3\subset\operatorname{rad}Q\), but it is visible in the algebra and its filtration through the isomorphism EHM46. Explicitly \(Q(\delta f,g)=Q(f,\delta g)=0\) for all local \(f,g\), while \(\delta(T)=-T^3/16\ne0\). These are simultaneous exact identities; zero pairing has not been used to delete the map.
+
+## 11. Native reflection through both local algebras
+
+Native \(J\) maps the positive-path critical point \((0,0,-3,2)\) to \((0,0,-3,-2)\). In the negative-path cluster put \(\epsilon_-=R+1\); its local algebra has \(\epsilon_-^2=0,T_-^2=-6\epsilon_-\), while the positive cluster has \(T_+^2=6\epsilon_+\). The coordinate pullback is
+\[
+J^*(\epsilon_-)=-\epsilon_+,\qquad J^*(T_-)=-T_+.
+\tag{EHM51}
+\]
+Substitution proves both relations and the inverse, which has the same signs. Coefficient conjugation adds the native \(\#_J\) map. For the negative-side generators
+\(\nu_1=(R+1)(R-2),\nu_2=T_-(R-2),\nu_3=T_-(R+1)(R-2)\), this gives
+\[
+J^*(\nu_1)=n_1,\qquad J^*(\nu_2)=n_2,\qquad J^*(\nu_3)=-n_3.
+\tag{EHM52}
+\]
+Every equality follows by replacing \(R\) with \(-R\) and \(T_-\) with \(-T_+\), so it preserves the entire nilpotent ideal and its powers, with their original constants.
+
+The positive meridians on the negative target path, in the same initial eight labels, are
+\[
+g_c^-=(c_+c_-)(b_+b_-),\qquad
+g_d^-=(b_+\ a_-\ b_-\ a_+).
+\tag{EHM53}
+\]
+These follow by applying the native coordinate map and the same root/sign continuation argument used in EHM25. Since coefficient conjugation reverses the orientation of a positive meridian, the correctly typed native identities are
+\(\#_Jg_c^+(\#_J)^{-1}=(g_c^-)^{-1}\) and
+\(\#_Jg_d^+(\#_J)^{-1}=(g_d^-)^{-1}\); they can also be verified directly from EHM12, EHM25, and EHM53. On the positive path \(\#_\Sigma g_c\#_\Sigma^{-1}=g_c\) and \(\#_\Sigma g_d\#_\Sigma^{-1}=g_d^{-1}\). At the positive critical local algebra, coefficient conjugation and \(\#_\Sigma\) each conjugate \(\alpha_0^*\) of EHM38 to its inverse, since they conjugate \(i\) to \(-i\) and preserve its real coefficients. Its square preserves both involutions. All these local maps preserve the degenerate regular-trace form EHM33 because they fix the constant coefficient, even where they do not commute with the original involution; the whole radical accounts for that exact loss of detection.
+
+The monodromy receiver for any subsequent programme pairing is now explicit: its fibre is the full eight-state algebra, its transport is \(\rho:G\to\operatorname{Aut}_{\mathbb C\text{-alg}}(\mathcal A_*)\), its two original involutions and their transport are EHM12 and EHM20–EHM21, and its regular collision maps and obstruction residue are EHM29, EHM38, and EHM43–EHM46. Any proposed scalar pairing transported by these same maps has the directly testable transformation matrix \(\rho(g)^*Q\rho(g)\). No equality of that matrix with a new supported-zero Weil formula is assumed here.
+
+## 12. Exact verification scope
+
+The reproducible script `check_eight_state_holonomy.py` passed **96 exact checks**, recorded in `EIGHT_STATE_HOLONOMY_CHECKS.json`. They reconstruct the 192 signed permutations and the eight-element heat-path group; verify the original involution matrices, all three selected-loop pairing transports, the invariant restriction signatures, the two original discriminants and transverse derivative constants, the order-four local coordinate maps and their original radical products, and the nonzero residue with every basis-monomial Leibniz identity. The analytic path-lifting, chosen logarithm branches, unramified infinity continuation, full local extension classification, and specialization arguments have their complete proofs above; finite symbolic checks are not substituted for those proofs.
+
+
+![The two actual heat meridians, the full length-four collision algebra, its dual-number quotient, and the nonzero holonomy residue between infinitesimal layers. EHM23–EHM34 and EHM42–EHM47 give the complete proofs, signs and clock scale.](figures/33_holonomy_infinitesimal_residue.png)
+
+\clearpage
+
+# Actual signed-cover averaging and the supported-zero endpoint
+
+This calculation uses the original eight-state completion and its actual monodromy. It proves that averaging either of the two retained trace forms over that group produces a positive semidefinite form, calculates the complete defect, and evaluates the change on actual Weil tests. The group action belongs to the auxiliary quartic cover. Its action on an arithmetic global trace is not asserted.
+
+The original cover and its full monodromy are proved in [*The ES–Fable inverse correspondence in the original weighted conductor*, SM1–SM19, source lines2097–2513](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab45e221579a0d48ce2885b4ecdf1a6aefc24a20/workbenches/splitzero-tandem/continuations/20260920-fable-boundary-action/FABLE_TO_ORIGINAL_CONDUCTOR.tex#L2097). The exact fibre, trace and involutions used here are proved in [*The original eight-state heat comparison*, ESH9–ESH34](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d5c9d198a8432e3ede468b280162a99c00e3f4f7/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/EIGHT_STATE_HEAT_COMPARISON.md). The actual test convention is [*The actual Weil correction has the ES three-plus-one form*, WEC1–WEC5](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d5c9d198a8432e3ede468b280162a99c00e3f4f7/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/WEIL_ES_COMPENSATION_DERIVATION.md). The Gaussian theta map below proves the endpoint comparison directly, retaining supported zero.
+
+## 1. Exact fibre and point coordinates
+
+At the unchanged target \(\mathbf U_*=(0,0,-1,0)\), the completed algebra is
+\[
+\mathcal A=\mathbb C[R,T]/(R^3-R,T^2-3R^2+1)
+\ \times\ \mathbb C[\Theta]/(\Theta^2+1).
+\tag{HWA1}
+\]
+Its eight geometric points, in the order retained throughout, are
+\[
+X=(0+,0-,1+,1-,-1+,-1-,\infty+,\infty-)
+\tag{HWA2}
+\]
+with coordinates \((0,\pm i),(1,\pm\sqrt2),(-1,\pm\sqrt2),(\infty,\pm i)\). Evaluation is an algebra isomorphism
+\(\operatorname{ev}:\mathcal A\to\mathbb C^X\). Indeed, the root indicators are
+\(e_0=1-R^2,e_1=(R^2+R)/2,e_{-1}=(R^2-R)/2\). Inside a finite root factor with chosen positive sign coordinate \(t_j\), its point indicators are \(e_j(1\pm T/t_j)/2\). The infinity indicators are \((1\mp i\Theta)/2\). These eight orthogonal idempotents sum to one, evaluate as the eight coordinate vectors, and supply the inverse. Multiplication is diagonal in this basis, so
+\[
+\operatorname{Tr}_{\mathcal A}(x)=\sum_{p\in X}x_p.
+\tag{HWA3}
+\]
+No coordinate weighting is discarded: the coefficient basis and point basis are related by the exact map
+\[
+(c_j,d_j)\longmapsto(c_j+t_jd_j,c_j-t_jd_j),
+\quad(t_0,t_1,t_{-1},t_\infty)=(i,\sqrt2,\sqrt2,i).
+\tag{HWA4}
+\]
+
+Let \(\Sigma\) negate every sign coordinate and let \(\kappa\) conjugate coefficients. The original native map is \(J(R,T)=(-R,-T)\), \(J(v,\Theta)=(-v,\Theta)\), where \(v=1/R\) on the reciprocal chart. Combining each with coefficient conjugation gives the following point permutations:
+\[
+q_\Sigma=(1+\ 1-)(-1+\ -1-),
+\quad
+q_J=(1+\ -1-)(1-\ -1+)(\infty+\ \infty-).
+\tag{HWA5}
+\]
+For example, conjugation at root0 swaps \(i,-i\), after which either \(\Sigma\) or \(J\) swaps them back. At infinity \(J\) fixes \(\Theta\), so conjugation still swaps the two points. Formula(HWA5) follows on all eight points. If \(Q_q\) denotes the permutation matrix of the involution \(q\), then
+\[
+B_q(x,y)=\operatorname{Tr}(x^{\#_q}y)=x^*Q_qy.
+\tag{HWA6}
+\]
+Thus \(B_J\) has inertia \((5,3,0)\) and \(B_\Sigma\) has inertia \((6,2,0)\): each swapped pair contributes eigenvalues \(1,-1\), and each fixed point contributes1. The point metric here is the exact sum in the regular trace, not the ES source metric.
+
+## 2. The actual order-192 group and its average
+
+Label the four root pairs by \(j=0,1,-1,\infty\). The group proved in SM1–SM19 is
+\[
+G=\{(\sigma,\pi):\pi\in S_4,\ \sigma\in\{\pm1\}^4,
+\ \prod_j\sigma_j=\operatorname{sgn}\pi\},
+\quad(j,\epsilon)\mapsto(\pi(j),\sigma_j\epsilon).
+\tag{HWA7}
+\]
+There are exactly \(24\cdot8=192\) elements. For completeness, its appearance in the actual quartic is determined by \(a_j^2H'(r_j)=1\) and the invariant
+\(A^2\prod_{j<k}(r_k-r_j)\prod_ja_j\in\{1,-1\}\). Exchanging adjacent roots along semicircles makes the moving derivatives turn through \(\pi\), so their square roots yield four-cycles \((j+\ (j+1)+\ j-\ (j+1)-)\). Their squares generate all even sign patterns, and their root permutations generate \(S_4\); this proves equality with(HWA7), as calculated with exact paths and coordinates in SM7–SM12. The completed cover is unramified at the infinity pair because its reciprocal equations have determinant \(2\Theta k'(0)=2\Theta\ne0\). Paths from a nearby point with \(A\ne0\) to \(\mathbf U_*\) transport its eight separate local charts. Relabelling the roots and their chosen signs conjugates(HWA7) by a signed permutation, which preserves the determinant-one subgroup. We therefore use that same exact group on(HWA2).
+
+Let \(P_g\) be its permutation matrix on point functions. Define the explicitly scaled finite conjugation sum
+\[
+\mathscr E(Q)=\frac1{192}\sum_{g\in G}P_g^*QP_g.
+\tag{HWA8}
+\]
+The factor \(1/192\) is part of the definition, so the unit vector \(\mathbf1\), whose original trace square is8, still has square8. Let
+\[
+P_{\rm ev}=\frac{I+P_\Sigma}{2},\qquad
+P_{\rm c}=\frac{\mathbf1\mathbf1^*}{8}.
+\tag{HWA9}
+\]
+These are orthogonal projections for the point metric, respectively onto sign-even functions and constant functions. Their kernels and ranks follow directly: \(P_{\rm ev}\) replaces both values in each pair by their arithmetic mean, so it has rank4; \(P_{\rm c}\) replaces every value by the mean of all eight, so it has rank1.
+
+The two exact averages are
+\[
+\boxed{\mathscr E(Q_\Sigma)=P_{\rm ev},\qquad
+\mathscr E(Q_J)=\frac13P_{\rm ev}+\frac23P_{\rm c}.}
+\tag{HWA10}
+\]
+Here is a direct proof without an assumed irreducibility theorem. The even-sign kernel \(K\subset G\) has eight elements. On the sign-even subspace it acts trivially. On the four-dimensional sign-odd subspace it acts by the four distinct sign characters. For two distinct root indices \(j,k\), the average of \(\sigma_j\sigma_k\) over \(K\) is zero: choose a third root \(l\ne j,k\), and multiply each sign pattern by the one flipping \(j,l\), which pairs opposite contributions. Hence averaging a matrix on that subspace over \(K\) removes all off-diagonal entries. Averaging then over the root permutations makes its diagonal constant, equal to one quarter of its trace.
+
+Both original matrices commute with \(\Sigma\), so there are no even–odd blocks. For \(Q_\Sigma\), the even block is \(I_4\) and the odd block is \(\operatorname{diag}(1,-1,-1,1)\), of trace0. Its odd average therefore vanishes. For \(Q_J\), the odd block is
+\[
+\begin{pmatrix}1&0&0&0\\0&0&-1&0\\0&-1&0&0\\0&0&0&-1\end{pmatrix},
+\tag{HWA11}
+\]
+also of trace0. Its even block is the transposition exchanging roots1 and−1. Averaging its conjugates over \(S_4\) averages the six transpositions. The resulting matrix has diagonal \(3/6=1/2\) and every off-diagonal entry \(1/6\), because a given index is fixed by three transpositions and a specified distinct pair is exchanged by one. This is \(I_4/3+\mathbf1_4\mathbf1_4^*/6\). Transport through the exact even projection gives(HWA10).
+
+For \(s_j(x)=x_{j+}+x_{j-}\), the complete quadratic formulas are
+\[
+\begin{aligned}
+\overline B_\Sigma(x,x)&=\frac12\sum_j|s_j(x)|^2,\\
+\overline B_J(x,x)&=\frac16\sum_j|s_j(x)|^2
+ +\frac1{12}\left|\sum_js_j(x)\right|^2.
+\end{aligned}
+\tag{HWA12}
+\]
+Thus each has inertia \((4,0,4)\). For the native average its eigenvalues on constants, the three-dimensional even sum-zero subspace, and the four-dimensional odd subspace are respectively \(1,1/3,0\). Their common radical is exactly
+\[
+V_{\rm odd}=\{x:x_{j-}=-x_{j+}\ \text{for all four }j\}.
+\tag{HWA13}
+\]
+These formulas exhibit positivity from the actual finite group, retaining every root and sign coordinate in the projection and its kernel.
+
+## 3. Exact defect and multiplication retained by the odd space
+
+Define, on the original eight-dimensional space,
+\[
+D_q=Q_q-\mathscr E(Q_q).
+\tag{HWA14}
+\]
+For \(\Sigma\), the defect vanishes on even functions and is exactly \(\operatorname{diag}(1,-1,-1,1)\) on odd functions. Its inertia is \((2,2,4)\). For \(J\), the even block has eigenvalues \(0,2/3,2/3,-4/3\), and the odd block is(HWA11), with eigenvalues \(1,1,-1,-1\). To verify the even values, the root transposition fixes the constant line and has eigenvalues \(1,1,-1\) on its sum-zero complement; subtract its average \(1/3\) on that complement. Consequently
+\[
+\operatorname{inertia}(D_J)=(4,3,1).
+\tag{HWA15}
+\]
+The exact comparison for arbitrary vectors is
+\[
+B_q(x,y)=\overline B_q(x,y)+x^*D_qy.
+\tag{HWA16}
+\]
+The average cannot be the regular trace paired with an antilinear algebra involution on the original reduced \(\mathcal A\). Such an involution permutes its eight primitive idempotents and conjugates their coefficients; its trace matrix is an invertible permutation matrix by(HWA3). The matrices in(HWA10) have rank4. This proves the stated nonidentification and also identifies its exact four-dimensional radical.
+
+There is an explicit linear receiver and an exact multiplication defect. Put
+\[
+E:\mathbb C^X\to\mathbb C^4,
+\quad E(x)_j=(x_{j+}+x_{j-})/2,
+\quad O(x)_j=(x_{j+}-x_{j-})/2,
+\tag{HWA17}
+\]
+and let \(I:\mathbb C^4\to\mathbb C^X\) duplicate each root value. Then \(EI=\operatorname{id}\), \(IE=P_{\rm ev}\), \(\ker E=V_{\rm odd}\), and
+\[
+E(xy)=E(x)E(y)+O(x)O(y).
+\tag{HWA18}
+\]
+All products on the right are coordinatewise. Expanding \((a_j\pm b_j)(c_j\pm d_j)\) proves the identity in every coordinate. Thus \(E\) is a retraction of vector spaces and a bimodule map over the embedded sign-even algebra, while its displayed second term records every product returning from odd to even support. In particular \(z=e_{0+}-e_{0-}\) has \(E(z)=0\) but \(E(z^2)=e_0\ne0\). The kernel is not an ideal, and(HWA17) is not silently promoted to an algebra quotient.
+
+The average forms factor exactly through \(E\):
+\[
+\overline B_\Sigma(x,y)=2\sum_j\overline{E(x)_j}E(y)_j,
+\quad
+\overline B_J(x,y)=\frac23\sum_j\overline{E(x)_j}E(y)_j
+ +\frac13\overline{\sum_jE(x)_j}\sum_jE(y)_j.
+\tag{HWA19}
+\]
+For any retained support lattice, applying these linear amplitude maps to a supported module keeps its support coordinate unchanged. An amplitude sent to0 therefore lands at the supported-zero element of that same support, not at the unsupported element \(\tau\). Formula(HWA18) remains the precise reason that this amplitude projection is not a semiring homomorphism.
+
+The average of vectors is a third, separately specified map:
+\[
+\frac1{192}\sum_gP_gx=P_{\rm c}x,
+\quad B_q(P_{\rm c}x,P_{\rm c}y)=x^*P_{\rm c}y.
+\tag{HWA20}
+\]
+The first identity follows because the group acts transitively on the eight states, so each target coordinate receives each source coordinate equally often. The second uses \(Q_q\mathbf1=\mathbf1\). This rank-one form differs from both rank-four forms(HWA10); all three maps and their different kernels are explicit.
+
+## 4. Actual supported-zero theta endpoints
+
+Keep \(\mathcal T=C_c^\infty(\mathbb R;\mathbb C)\) and the programme convention
+\[
+M_f(s)=\int_{\mathbb R}f(v)e^{-(s-1/2)v}\,dv,
+\qquad f^\#(v)=\overline{f(-v)}.
+\tag{HWA21}
+\]
+The transform of \(f^\#\) is \(\overline{M_f(1-\bar s)}\), by the substitution \(v\mapsto-v\). Define the even Schwartz function
+\[
+\phi_f(x)=\int_{\mathbb R}e^{v/2}f(v)e^{-\pi e^{2v}x^2}\,dv.
+\tag{HWA22}
+\]
+If \(\operatorname{supp}f\subset[-R,R]\), every derivative in \(x\) of the integrand is a polynomial in \(x\) with bounded coefficients times a Gaussian bounded by a constant times \(e^{-\pi e^{-2R}x^2}\). Integration proves every Schwartz bound. The Fourier convention \(\widehat\phi(y)=\int\phi(x)e^{-2\pi ixy}dx\) gives
+\[
+\phi_f(0)=M_f(0),\quad \int\phi_f=M_f(1),
+\quad\widehat{\phi_f}=\phi_{f(-\cdot)},
+\quad\widehat{\overline{\phi_f}}=\phi_{f^\#}.
+\tag{HWA23}
+\]
+For the integral use \(\int e^{-\pi e^{2v}x^2}dx=e^{-v}\). For Fourier use the same Gaussian scaling and substitute \(v\mapsto-v\). Absolute integrability from the compact \(v\)-support justifies both interchanges.
+
+In \(G(\mathbb Z)=\{\tau\}\sqcup\mathbb Z\), let \(e\) denote supported0. Its principal ideal \(\{\tau,e\}\) is prime: a product of two nonzero supported integers is again nonzero supported, so a product in that ideal has at least one factor there. The full supported theta is
+\[
+\Theta_f(x)=\sum_{n\in\mathbb Z}\phi_f(nx),\quad x>0,
+\tag{HWA24}
+\]
+and retains the \(n=0\) summand \(\phi_f(0)\) as the \(e\)-term. The external \(\tau\) is a different label; no integer in this sum represents it. Poisson summation for this Schwartz function gives \(\Theta_f(x)=x^{-1}\Theta_{f(-\cdot)}(x^{-1})\). For this particular mixture the identity follows directly by integrating the Gaussian theta identity, with uniform absolute convergence for \(v\) in the compact support. Its two endpoint amplitudes are exactly(HWA23), not an arbitrary selected pair of complex numbers. Their regularized Mellin endpoint terms are
+\[
+-\frac{M_f(0)}s+\frac{M_f(1)}{s-1}.
+\tag{HWA25}
+\]
+Indeed split the integral of \(\Theta_f(x)-\phi_f(0)\) at1; use full Poisson on \((0,1)\), and integrate \(x^{s-1}(x^{-1}M_f(1)-M_f(0))\). Initially these elementary integrals converge for \(\operatorname{Re}s>1\), and their displayed meromorphic expressions supply continuation. The remaining transformed integrals over \([1,\infty)\) are entire by rapid decay. Also direct Gaussian integration in the initial half-plane gives
+\[
+\int_0^\infty (\Theta_f(x)-\phi_f(0))x^{s-1}dx
+=\pi^{-s/2}\Gamma(s/2)\zeta(s)M_f(s).
+\tag{HWA26}
+\]
+The two integer signs contribute2, cancelling the \(1/2\) in the Gaussian Mellin integral. Uniform absolute convergence for \(\operatorname{Re}s>1\) proves the exchange. This establishes both the arithmetic amplitude and the exact endpoint residues from the retained supported-zero theta.
+
+For two actual tests the endpoint Hermitian pairing is
+\[
+P_e(f,g)=\overline{M_f(0)}M_g(1)+\overline{M_f(1)}M_g(0).
+\tag{HWA27}
+\]
+This is the trace of the two-weight endpoint module with its Fourier reflection exchanging the weights. It is the supported-zero endpoint term; it is not all of the integrated Weil distribution. The separate construction SZW retains the remaining finite-prime, archimedean and fixed-support terms.
+
+## 5. Exact endpoint embedding and the change caused by holonomy averaging
+
+Set \(A_f=M_f(0)\), \(B_f=M_f(1)\) and define
+\[
+j:\mathcal T\to\mathbb C^X,
+\quad j(f)=(0,0,A_f/\sqrt2,A_f/\sqrt2,
+B_f/\sqrt2,B_f/\sqrt2,0,0).
+\tag{HWA28}
+\]
+The root assignment is stated in(HWA2): the two endpoint weights are inserted into roots1 and−1. It is a linear comparison with scale \(1/\sqrt2\), not a unital algebra map. By(HWA5),(HWA21),
+\[
+j(f^\#)=\#_Jj(f),\qquad
+B_J(j(f),j(g))=P_e(f,g).
+\tag{HWA29}
+\]
+Both formulas follow by exchanging \(A,B\) and conjugating; the two signs at each root have equal values. Thus this is an exact involution-preserving embedding of the two-dimensional endpoint quotient into the actual completed trace.
+
+The endpoint map \(f\mapsto(A_f,B_f)\) is onto. Here is a complete section. Choose a positive smooth compact bump \(\psi\) on an open interval. Put \(k_0(v)=e^{v/2}\), \(k_1(v)=e^{-v/2}\), \(G_{ab}=\int\psi k_a\overline{k_b}\). For \(z\ne0\), the nonzero combination \(\bar z_0e^{v/2}+\bar z_1e^{-v/2}\) cannot vanish on an interval: multiplying by \(e^{v/2}\) would make \(\bar z_0e^v+\bar z_1\) identically zero, whose derivative forces \(z_0=z_1=0\). Hence \(G\) is positive definite. The function
+\(S(A,B)=\psi\sum_b(G^{-1}(A,B)^T)_b\overline{k_b}\)
+has precisely those two transforms by multiplication with \(G\). It is smooth and compactly supported, proving surjectivity and \(\ker j=\{M_f(0)=M_f(1)=0\}\).
+
+Substituting(HWA28) in(HWA12) gives the averaged endpoint form
+\[
+\overline P_e(f,f)=\frac12(|A_f|^2+|B_f|^2)
+ +\frac13\operatorname{Re}(\overline{A_f}B_f).
+\tag{HWA30}
+\]
+Its matrix is \(\left(\begin{smallmatrix}1/2&1/6\\1/6&1/2\end{smallmatrix}\right)\), with eigenvalues \(2/3,1/3\), so it is strictly positive on the endpoint quotient. The exact change is
+\[
+K_e=\overline P_e-P_e,
+\quad
+K_e(f,f)=\frac12(|A_f|^2+|B_f|^2)
+-\frac53\operatorname{Re}(\overline{A_f}B_f).
+\tag{HWA31}
+\]
+In the explicitly related coordinates \(u=(A+B)/\sqrt2,v=(A-B)/\sqrt2\),
+\[
+P_e=|u|^2-|v|^2,
+\quad\overline P_e=\frac23|u|^2+\frac13|v|^2,
+\quad K_e=-\frac13|u|^2+\frac43|v|^2.
+\tag{HWA32}
+\]
+Thus actual tests with \((A,B)=(1,-1)\) have old value−2 and averaged value \(2/3\), while tests with \((A,B)=(1,1)\) have old value2 and averaged value \(4/3\). The section just proved supplies both tests. The change has both signs on admissible tests, and its radical on \(\mathcal T\) is exactly \(\ker j\): its two-dimensional matrix is invertible and the section detects every nonzero endpoint vector.
+
+The root-pair image of \(j\) is not invariant under the full group: a signed root permutation taking root1 to root0 sends a vector with \(A\ne0,B=0\) outside it. Such a permutation is in(HWA7) after choosing signs with product equal to its permutation sign. This proves a specific failure of invariance of this comparison map, with the group action and endpoint map explicitly retained. It does not assert that every other arithmetic comparison fails.
+
+The full supported-zero construction [*The supported-zero prime in the full theta and Weil trace distribution*, SZW24–SZW42](SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md) proves the actual integrated formula. Here are its explicit terms and their exact transport. Put \(h=f^\#*g\), \(H=M_h\), and retain
+\[
+\begin{aligned}
+\mathcal Z(f,g)&=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho),\\
+\mathcal A_\infty(f,g)&=\frac1{2\pi}\int_{\mathbb R}
+\overline{\widehat f(t)}\widehat g(t)
+\bigl(\operatorname{Re}\psi(1/4+it/2)-\log\pi\bigr)\,dt,\\
+\mathcal P_{\rm fin}(f,g)&=\sum_{p,k\ge1}(\log p)p^{-k/2}
+\{h(k\log p)+h(-k\log p)\}.
+\end{aligned}
+\tag{HWA33}
+\]
+The sum in the last line is over primes \(p\) and integers \(k\ge1\). It is finite for each compactly supported \(h\). The absolutely convergent zero sum and archimedean integral, with their complete proof and the original minus-exponent convention, are SZW24–SZW32. Substituting \(P_e=\overline P_e-K_e\) gives the actual equality
+\[
+\boxed{\mathcal Z=P_e+\mathcal A_\infty-\mathcal P_{\rm fin}
+=\overline P_e+\mathcal A_\infty-\mathcal P_{\rm fin}-K_e.}
+\tag{HWA34}
+\]
+Formula(HWA31) gives the entire changed term on every admissible test. In particular the negative endpoint \(-2\) becomes \(2/3\), while its retained complement changes by \(-8/3\). This is an exact calculation inside the derived supported-zero formula.
+
+The full labels can be kept before any scalar projection. Let \(L\) be the finite fixed-support lattice of SZW10–SZW13, \(\mathbf e_1\) its top coordinate, and \(\mathbf s_< =\sum_{\lambda\ne1}\mathbf e_\lambda\). Here lower labels are distinct fixed zero points, not the independently different coordinatewise adelic support construction. The original labelled formula, now on \(h=f^\#*g\), is
+\[
+\begin{aligned}
+\boldsymbol B&=P_e\mathbf e_1+H(0)\mathbf s_<,\\
+\boldsymbol D&=(\mathcal P_{\rm fin}-\mathcal A_\infty)\mathbf e_1+H(0)\mathbf s_<,\\
+\boldsymbol B-\mathcal Z\mathbf e_1&=\boldsymbol D.
+\end{aligned}
+\tag{HWA35}
+\]
+Keeping these lower fixed distributions exactly and applying the holonomy comparison at the top endpoint gives
+\[
+\begin{aligned}
+\overline{\boldsymbol B}&=\overline P_e\mathbf e_1+H(0)\mathbf s_<,\\
+\overline{\boldsymbol D}&=(\mathcal P_{\rm fin}-\mathcal A_\infty+K_e)\mathbf e_1
+ +H(0)\mathbf s_<,\\
+\overline{\boldsymbol B}-\mathcal Z\mathbf e_1&=\overline{\boldsymbol D}.
+\end{aligned}
+\tag{HWA36}
+\]
+This follows by adding precisely \(K_e\mathbf e_1\) to both sides of(HWA35). No lower support trace was merged with the top endpoint or discarded.
+
+For the minimal Fourier-closed endpoint module proved in SZW40–SZW42, every lower fixed constant acquires its exact weight-one Dirac partner. Its labelled boundary and geometric distributions are
+\[
+\boldsymbol B^{\mathcal F}=P_e(\mathbf e_1+\mathbf s_<),\quad
+\boldsymbol D^{\mathcal F}=(\mathcal P_{\rm fin}-\mathcal A_\infty)\mathbf e_1+P_e\mathbf s_<.
+\tag{HWA37}
+\]
+There is now the defined direct-sum comparison \(\bigoplus_{\lambda\in L}j\) from the independent endpoint tests into one completed eight-state vector space for each label. Averaging its native forms label by label and restricting back to the diagonal actual scalar tests gives
+\[
+\begin{aligned}
+\overline{\boldsymbol B}^{\mathcal F}&=\overline P_e(\mathbf e_1+\mathbf s_<),\\
+\overline{\boldsymbol D}^{\mathcal F}&=
+(\mathcal P_{\rm fin}-\mathcal A_\infty+K_e)\mathbf e_1
+ +\overline P_e\mathbf s_<,\\
+\overline{\boldsymbol B}^{\mathcal F}-\mathcal Z\mathbf e_1
+&=\overline{\boldsymbol D}^{\mathcal F}.
+\end{aligned}
+\tag{HWA38}
+\]
+Proof: add \(K_e\) on every label in(HWA37), using the original identity \(\boldsymbol B^{\mathcal F}-\mathcal Z\mathbf e_1=\boldsymbol D^{\mathcal F}\). The direct-sum comparison is a specified linear map, and(HWA29) proves its involution compatibility on each summand. The group is the actual auxiliary-cover group on each receiver; no unproved action on the arithmetic zeros or on the original test space has been introduced. Thus the positive averaged boundary, its full geometric correction, the supported-zero prime, the unsupported coordinate and every mixed-support label are retained in one exact identity.
+
+![The complete native trace spectrum before and after its order-192 holonomy average, and the exact supported-zero endpoint comparison on actual admissible tests. HWA10–HWA15 prove the left panel; HWA28–HWA32 prove the right panel; HWA34–HWA38 retain its change in the full supported-zero formula.](figures/31_holonomy_endpoint_average.png)
+
+\clearpage
+
 # Sources, exact proof locations, and reading scope
 
 This addition develops the established tau/split-zero base, the original escaping inverse fibre, and the actual quotient-size interpolation. Every new algebraic and analytic calculation appears in full in the accompanying complete proof files. The exact operator input retains its earlier public definitions and proofs; those are linked below. This is not a historical novelty claim or a proof of the Riemann hypothesis.
@@ -6099,3 +7445,9 @@ Exact reader-source blocks read for this addition are 4981–5121 (raw quarter s
 The endpoint convention is the same primary-source explicit formula already read in Connes–Consani's original author TeX, at the Appendix B locators above. HEB13–HEB17 prove the exact endpoint isomorphism; HEB26–HEB30 prove its rational completion correction. The original polynomial map and heat speed retain the public source-mechanism and incompressible-fibre citations above. No new claim is made for a global arithmetic identification of the ES operator or its infinite fibre trace.
 
 The original eight-state source is [the finite signed-root completion, FS1–FS31](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/0fd693c844aad9117e30ec447c59864a28af10f3/workbenches/splitzero-tandem/continuations/20260921-native-spectral-real-pair/005/independent/FINITE_SIGNED_COMPLETION.tex), read in full. Its source SHA256 is `eaf980a16e7d639e21953e5779e7f76abf18e8bdb80ae923c4160b456c22da6f`. The original polynomial and escaping arcs are [FC36–FC47](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab45e221579a0d48ce2885b4ecdf1a6aefc24a20/workbenches/splitzero-tandem/continuations/20260920-fable-boundary-action/FABLE_TO_ORIGINAL_CONDUCTOR.tex#L590), read at public-source lines 590–769, SHA256 `10906ba3bd21c06645571560e4c7b0c3948c0ccaf65d8b9e525abf7cd732794c`. ESH preserves these original constructions and proves the new heat receivers and whole-fibre trace comparisons.
+
+## Supported-zero trace and signed-cover holonomy
+
+The supported-zero derivation uses the original author TeX of Alain Connes, [Trace formula in noncommutative geometry and the zeros of the Riemann zeta function, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068v1), Section III (two-endpoint function space), Section VI (formal orbital discussion), Appendix I (full Poisson formula), and Appendix II Theorem6 (unconditional explicit formula). SZW derives its stated arithmetic formula by a convergent contour argument and constructs its separate divisor-jet Hilbert receiver explicitly. It does not identify that receiver with an unproved global operator trace. The complete preceding TPS, TC and FL proofs are included in supporting_proofs, with original-source identity and exact scope preserved. Private correspondence is not included.
+
+The actual order-192 monodromy was already proved in [SM1–SM19, source lines2097–2513](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ab45e221579a0d48ce2885b4ecdf1a6aefc24a20/workbenches/splitzero-tandem/continuations/20260920-fable-boundary-action/FABLE_TO_ORIGINAL_CONDUCTOR.tex#L2097). The downloaded original has SHA25610906ba3bd21c06645571560e4c7b0c3948c0ccaf65d8b9e525abf7cd732794c. Root read that complete section and the full new SZW, EHM and HWA proofs. Independent mathematical review checked the analytic trace construction and the complete finite averaging; symbolic checks supplement, rather than replace, those proofs. EHM derives the new explicit infinity loop, heat collision maps and nonzero residue in original coordinates. Figures31–33 display the corresponding proved maps and were rendered and inspected.

@@ -45,3 +45,13 @@ The positive lower bound applies to the specified shell operator for h > 1/8. It
 ![The exact shell lift and common sign crossing.](figures/28_shell_heat_sign.png)
 
 [The dated results and proof locators](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d5c9d198a8432e3ede468b280162a99c00e3f4f7/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/RESULTS_20260923.md) accompany the complete proofs. The six additional check scripts validate their finite identities; the infinite extension has a written proof.
+
+## Supported-zero Weil formula and actual holonomy
+
+The full supported-zero theta now has a proved map from admissible Weil tests, a complete label-resolved trace identity, and a minimal Fourier-closed endpoint extension. The original signed cover has explicit infinity and heat monodromies, including a nonzero residue on the collision algebra. Averaging the native trace over its actual order-192 group gives a positive semidefinite form; the complete calculation retains its nonzero correction in the integrated Weil identity. These statements do not assert RH.
+
+- [SZW1–SZW47: Full supported-zero prime, theta, divisor and fixed-support trace maps](SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md)
+- [EHM1–EHM53: Actual eight-state monodromy and nonzero collision residue](EIGHT_STATE_HOLONOMY_DERIVATION.md)
+- [HWA1–HWA38: Positive holonomy average and its exact integrated Weil correction](HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION.md)
+
+The three earlier complete background derivations are retained in [supporting proofs](supporting_proofs/TAU_PRIME_SPECTRUM_DERIVATION.md). All original coefficients, support labels and quotient kernels remain in the proofs.

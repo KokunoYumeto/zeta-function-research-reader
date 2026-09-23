@@ -7643,7 +7643,7 @@ Its proof is (PHW18); its kernel is the full augmentation ideal, not a declarati
 \end{aligned}
 \tag{PHW25}
 \]
-The proof is SZW20–SZW34: the full theta lift gives the endpoints, the convergent contour gives the arithmetic identity, and its explicit divisor receiver gives \(Z(h)\). Tensoring with the invariant coefficient space \(W\) multiplies every term by \(\dim W\), by the trace of an identity tensor factor. The Fourier closure tensors likewise with \(W\), retaining every support label and its partner. This is the actual trivial-sector map from the holonomy construction into the programme formula. Equations (PHW17), (PHW23), and (PHW24) retain the other character-resolved arithmetic distributions with their full Euler data. The explicit signed-cover quotient which reaches a nontrivial one of these sectors is proved in [CBR1–CBR29](CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md).
+The proof is SZW20–SZW34: the full theta lift gives the endpoints, the convergent contour gives the arithmetic identity, and its explicit divisor receiver gives \(Z(h)\). Tensoring with the invariant coefficient space \(W\) multiplies every term by \(\dim W\), by the trace of an identity tensor factor. The Fourier closure tensors likewise with \(W\), retaining every support label and its partner. This is the actual trivial-sector map from the holonomy construction into the programme formula. Equations (PHW17), (PHW23), and (PHW24) retain the other character-resolved arithmetic distributions with their full Euler data. The explicit signed-cover quotient which reaches a nontrivial one of these sectors is proved in [CBR1–CBR29](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4a4238afc992e77aee83b97d38a1a63d283f540c/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md).
 
 \clearpage
 
@@ -7865,7 +7865,7 @@ Each space is one-dimensional and the displayed coefficient is nonzero. In parti
 
 ## 5. The trace map into the supported-zero programme
 
-The oriented periodic trace, including inertia invariants and both traversals, is proved in [PHW1–PHW22](PRIME_HOLONOMY_SUPPORTED_WEIL_DERIVATION.md). For the quadratic character (CBR15), it specializes to the finite distribution on a compactly supported smooth test \(h\)
+The oriented periodic trace, including inertia invariants and both traversals, is proved in [PHW1–PHW22](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4a4238afc992e77aee83b97d38a1a63d283f540c/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/PRIME_HOLONOMY_SUPPORTED_WEIL_DERIVATION.md). For the quadratic character (CBR15), it specializes to the finite distribution on a compactly supported smooth test \(h\)
 \[
 P_{\lambda}(h)=\sum_{p\ne23}\sum_{k\ge1}
 (\log p)p^{-k/2}\lambda(p)^k

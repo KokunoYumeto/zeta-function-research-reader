@@ -238,3 +238,8 @@ The complete additions are [Gaussian translation](ORIGINAL_ZETA_GAUSSIAN_TRANSLA
 ## Original endpoint sectors and Gaussian prime boundary
 
 Three complete additions reconstruct the original-zeta endpoint sectors, their augmented inverse and full divisor trace, and the actual Gaussian two-moment prime receiver. [Endpoint return](SECTORIAL_ENDPOINT_ZERO_TRACE_RETURN.md), [full filter inverse](SECTORIAL_FILTER_TRACE_DERIVATION.md), and [Gaussian arithmetic boundary](GAUSSIAN_ARITHMETIC_BOUNDARY_RETURN.md) include full proofs, original sources, retained exceptional factors, and reproducible figures. The arithmetic boundary supplies a proved all-zero residual detector. The full Weil sign and the global RH bound remain unproved.
+
+
+## Endpoint-resonant detection and original-time boundary
+
+The retained programme includes [uniform strip detection and flat time germs](ENDPOINT_RESONANT_ZERO_DETECTION.md) and [exact paired transport and full translated Weil receiver](ENDPOINT_PAIR_TRANSPORT_AND_WEIL_MATRIX.md). The certified positive scalar at original time1/32 belongs to a test that misses no nontrivial zero. Its global translated inequality remains unproved. Complete sources, all factors and lattice maps, independent reviews and a reproducible figure accompany the proofs.

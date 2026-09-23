@@ -293,3 +293,10 @@ The exact effects on the earlier calculations are now specified. UZ's actual fil
 
 
 ![Exact endpoint dominance domain and retained maps. SER8–10 and SER18–20 prove every displayed factor and the compact-set zero exclusion. This diagram does not plot zeta zeros or assert one uniform time bound for the unbounded domain. SFT12–22 gives the complete inverse with its original initial data. The source is the full ESH1–18 comparison and the original Rodgers–Tao kernel cited in SER1.](sectorial_endpoint_return.png)
+
+
+## Endpoint-resonant detector and its original-time boundary
+
+The complete [ERD1–50 proof](ENDPOINT_RESONANT_ZERO_DETECTION.md) proves that the actual endpoint-resonant cosine transform at t=1/32 is nonzero throughout the closed critical strip, uniformly in height. It retains the full original zeta product at both shifted arguments, every exceptional germ and an explicit phase bound. The same source has a zero complete right-time Taylor jet at time zero: ERD40–50 retains the exact exponential factor, constructs its nonzero nonnilpotent flat germ, evaluates the dual-number jet map, and supplies the positive-time inverse with its analytic coordinate. Vanishing of these time jets does not discard the positive-time detector.
+
+The full [EPM1–47 proof](ENDPOINT_PAIR_TRANSPORT_AND_WEIL_MATRIX.md) calculates the cosine/sine pair's coupled original-time transport, its inverse, both endpoint argument maps and their common-zero set. The sine source is odd; EPM19–21 constructs a split extension of the even prime quotient rather than inserting that source into the old domain. EPM28–31 retains every finite original trivial-zero entry and the Gamma boundary. EPM43–47 puts the companion's certified50<K(0)<64 for the actual cosine test into the exact global translated criterion RH iff |K(a)|<=K(0) for every a>=0. Its positive diagonal does not prove the global inequality. The complete arithmetic certificate source, executable and independent tail proof are included unchanged.

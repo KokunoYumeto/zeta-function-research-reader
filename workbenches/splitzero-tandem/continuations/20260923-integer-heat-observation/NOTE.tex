@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=22mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathrsfs,graphicx,booktabs,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue,hypertexnames=false]{hyperref}
+\newcommand{\Z}{\mathbb Z}\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\title{Recovering the original integer heat source from samples\\\large Exact inverse, retained mass, and the circle observation}
+\author{Split-Zero programme: mathematical continuation}
+\date{23 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For the original kernel $k_T(x)=(4\pi T)^{-1/2}e^{-x^2/(4T)}$, integer samples of $\sum_n a_nk_T(x-n)$ determine every coefficient by an explicit bounded inverse. We construct the discrete receiver of the existing supported-zero mass completion, retaining the independent mass and every lattice label. Circle periodization instead keeps only the total mass in each label. Half-integer samples give a further exact comparison: the map remains injective but has no uniform inverse bound. These are statements about the specified Gaussian-source spaces, not a replacement of the programme's original arithmetic seminorm or a conclusion about the Riemann hypothesis.
+\end{abstract}
+
+\section{Original source and shared inputs}
+Fix $T>0$. With Lebesgue measure $dx$ and Fourier convention
+$\widehat f(\xi)=\int_{\R}f(x)e^{-2\pi ix\xi}\,dx$, retain
+\begin{equation}
+k_T(x)=\frac{e^{-x^2/(4T)}}{\sqrt{4\pi T}},\quad
+A_Ta(x)=\sum_{n\in\Z}a_nk_T(x-n),\quad
+P_a(\xi)=\sum_na_ne^{-2\pi in\xi}. \tag{IS1}
+\end{equation}
+Initially $a\in c_{00}(\Z)$: the source is the actual finite distribution $\sum_na_n\delta_n$. No factor is removed from $k_T$.
+The existing LH4--5 and MCB12--16 proofs \cite{LH,MCB} give
+\begin{align}
+\norm{A_Ta}_{L^2(\R)}^2
+ &=\frac1{\sqrt{8\pi T}}\sum_{n,m}a_n\overline{a_m}e^{-(n-m)^2/(8T)}
+ =\int_0^1W_T(\xi)|P_a(\xi)|^2\,d\xi,\notag\\
+W_T(\xi)&=\sum_{j\in\Z}e^{-8\pi^2T(\xi+j)^2},\qquad
+ e^{-2\pi^2T}\le W_T(\xi). \tag{IS2}
+\end{align}
+For completeness, the first identity follows by integrating the product of the two Gaussians; its value is $k_{2T}(n-m)$. Unfolding the periodic Gaussian sum gives exactly this Fourier coefficient, proving the second identity. A nearest integer gives the lower bound. Every series here converges uniformly on a period, with all derivatives. The elementary upper bound $W_T(\xi)\le\sum_{r\in\Z}k_{2T}(r)=W_T(0)$ follows from its Fourier series. Thus $A_T$ extends to a bounded, bounded-below map from $\ell^2(\Z)$ onto the closed line space
+\begin{equation}
+\mathcal H_T=A_T\ell^2(\Z)\subset L^2(\R). \tag{IS3}
+\end{equation}
+This is the previously proved Gaussian Gram calculation, used as an input rather than claimed as a new result.
+
+The human literature is the theory of stable integer translates and sampling in shift-invariant spaces. Gr\"ochenig, Romero and St\"ockler \cite[\S2.1, Theorem 2.1; \S5]{GRS} use this Fourier convention. Their Gaussian-type formula applies here with no rational factors and with its exponent parameter exactly $4\pi^2T$. Their stable-shift theorem attributes the general criterion to Jia--Micchelli and Ron; those originals were not inspected. The particular Gaussian identities and inverse needed below are proved directly, with the kernel's amplitude retained. This note does not claim these general sampling methods as programme inventions.
+
+\section{Integer samples have an explicit inverse}
+Put $r_T(l)=k_T(l)$ for $l\in\Z$. Define the discrete Fourier transform on $\ell^2$ as the extension of $a\mapsto P_a$ from finite sequences to $L^2([0,1],d\xi)$. Orthogonality and completeness of the integer exponentials make this map unitary; the inverse coefficient is $\int_0^1P(\xi)e^{2\pi in\xi}\,d\xi$.
+
+\paragraph{IS4. The sample operator.}
+For every $a\in\ell^2(\Z)$ its original heat function has well-defined point values and
+\begin{equation}
+y_m=A_Ta(m)=\sum_na_n k_T(m-n)=(r_T*a)_m. \tag{IS4}
+\end{equation}
+Indeed, $\sup_x\sum_n|k_T(x-n)|^2<\infty$, by Gaussian decay and period one of the sum. Cauchy--Schwarz bounds each tail by the coefficient tail norm times this fixed square root. Thus finite approximations converge uniformly on $\R$, agreeing with the line $L^2$ limit in IS3. The sequence $r_T$ is in $\ell^1$; summing the translated $\ell^2$ norms proves $\norm{r_T*a}_2\le\norm{r_T}_1\norm a_2$. All points in IS4 therefore refer to that same continuous heat function.
+
+Its exact multiplier is
+\begin{equation}
+V_T(\xi)=\sum_{l\in\Z}\frac{e^{-l^2/(4T)}}{\sqrt{4\pi T}}e^{-2\pi il\xi}
+ =\sum_{j\in\Z}e^{-4\pi^2T(\xi+j)^2},\qquad W_T=V_{2T}. \tag{IS5}
+\end{equation}
+To verify the second formula without changing measures, the $l$th Fourier coefficient of the right side is the real Gaussian integral $k_T(l)$. Both series converge uniformly. Equality of their coefficients proves equality of the functions. Consequently
+\begin{equation}
+v_T^-:=\min_{[0,1]}V_T\ \ge e^{-\pi^2T}>0,\qquad
+v_T^+:=\max_{[0,1]}V_T=V_T(0)=\sum_lk_T(l). \tag{IS6}
+\end{equation}
+The last maximum follows by the triangle inequality on the left side of IS5, with equality at zero. Set likewise $w_T^-=\min W_T$ and $w_T^+=W_T(0)$.
+
+\paragraph{IS7. Recovery of every original coefficient.}
+Writing $\mathcal F_dy$ for the discrete transform, convolution gives $\mathcal F_dy=V_TP_a$. Therefore
+\begin{equation}
+\boxed{a_n=\int_0^1\frac{(\mathcal F_dy)(\xi)}{V_T(\xi)}
+ e^{2\pi in\xi}\,d\xi,\qquad n\in\Z.} \tag{IS7}
+\end{equation}
+The numerator is interpreted in $L^2$, not as an unproved pointwise sum. Division is bounded by IS6. Conversely any $y\in\ell^2$ gives $P=(\mathcal F_dy)/V_T\in L^2$ and hence an $a\in\ell^2$ with the specified samples. Thus sampling is a bijection $\mathcal H_T\to\ell^2$, with inverse IS7 followed by the original synthesis IS1.
+
+There is also a convergent coefficient-by-coefficient inverse. Define
+\begin{equation}
+q_{T,l}=\int_0^1\frac{e^{2\pi il\xi}}{V_T(\xi)}\,d\xi,\qquad
+\Lambda_T(x)=\sum_lq_{T,l}k_T(x-l). \tag{IS7a}
+\end{equation}
+For $l\ne0$, integration by parts $j$ times bounds
+$|q_{T,l}|\le(2\pi|l|)^{-j}\norm{(1/V_T)^{(j)}}_{L^1([0,1])}$.
+All boundary terms vanish by periodicity. Thus $q_T$ is rapidly decreasing and in $\ell^1\cap\ell^2$. Multiplication of the absolutely convergent Fourier series proves $q_T*r_T=\delta_0$. It follows that
+\begin{equation}
+a_n=\sum_mq_{T,n-m}y_m,\qquad
+ A_Ta(x)=\sum_my_m\Lambda_T(x-m),\qquad
+ \Lambda_T(j)=\delta_{j0}. \tag{IS7b}
+\end{equation}
+The coefficient sum converges absolutely by Cauchy--Schwarz and in $\ell^2$ by the $\ell^1$ convolution bound. The Fourier transform of $\Lambda_T$ is the full quotient $e^{-4\pi^2T\xi^2}/V_T(\xi)$, a Schwartz function since the reciprocal is smooth periodic with bounded derivatives. Hence the function reconstruction converges in $L^2$ and uniformly with every derivative, by the periodic square-sum estimate used in IS4. This supplies an actual interpolation kernel, not merely existence of an inverse.
+
+The exact bounds relative to the unchanged line norm are
+\begin{equation}
+\boxed{\alpha_T\norm{A_Ta}_2^2\le\sum_m|A_Ta(m)|^2
+ \le\beta_T\norm{A_Ta}_2^2,\quad
+ \alpha_T=\min_{[0,1]}\frac{V_T^2}{W_T},\quad
+ \beta_T=\max_{[0,1]}\frac{V_T^2}{W_T}.} \tag{IS8}
+\end{equation}
+In particular $\alpha_T\ge(v_T^-)^2/w_T^+>0$ and
+$\beta_T\le(v_T^+)^2/w_T^-<\infty$. These follow by integrating $V_T^2|P_a|^2$ and IS2. To prove sharpness of the stated extrema, choose $P$ to be the indicator of a shrinking interval around a minimizer or maximizer; the ratio of the two integrals tends to the stated value by continuity and strict positivity of $W_T$. The inverse discrete transform supplies the required $\ell^2$ coefficients. Trigonometric-polynomial approximation also gives finite-source ratios converging to these extrema. There is no change of the source norm in this comparison.
+
+\section{The supported-zero and heat maps on actual samples}
+Let $L$ be the finite nontrivial bounded distributive lattice of MCB1 \cite{MCB}. Its top integer coordinates and lower zero coordinates have the established graph completion
+\begin{equation}
+\widehat{\mathcal V}_E=\ell^2(\Z)\oplus\C^{L\setminus\{1_L\}}\oplus\C,
+\qquad\norm{(a,b,m)}_E^2=\norm a_2^2+2\norm b_2^2+|m|^2. \tag{IS9}
+\end{equation}
+The last coordinate is independent: it is not the sum of an arbitrary $\ell^2$ sequence. On the finite source it is exactly $m=\sum_na_n$. MCB3--7 proves both density of that graph and the original supported-zero action
+$\widehat E(a,b,m)=(m\delta_0,b,m)$.
+
+The new discrete receiver is the following explicit closed-image isomorphism:
+\begin{equation}
+\mathscr S_T(a,b,m)=\left(y=r_T*a,\ (b_\lambda r_T)_{\lambda<1_L},\ m\right).
+ \tag{IS10}
+\end{equation}
+Equip the displayed output with the sum of the actual sample square sums and $|m|^2$. If
+\begin{equation}
+d_T=\norm{r_T}_2^2=\frac1{4\pi T}\sum_{j\in\Z}e^{-j^2/(2T)}, \tag{IS11}
+\end{equation}
+then its squared lower and upper bounds against IS9 are respectively
+$\min\{(v_T^-)^2,d_T/2,1\}$ and
+$\max\{(v_T^+)^2,d_T/2,1\}$. The factor two from the graph and the full Gaussian amplitude remain. The inverse is IS7 in the top coordinate, $b_\lambda=y_{\lambda,0}/k_T(0)$ in each lower coordinate, and the identity on $m$. Each lower-coordinate range is the closed line $\C r_T$; the top range is all of $\ell^2$. This proves closedness and the entire inverse, not just injectivity.
+
+Supported-zero multiplication has the exact commuting map
+\begin{equation}
+E_T^{\rm sam}\bigl(y,(b_\lambda r_T)_\lambda,m\bigr)
+ =\bigl(mr_T,(b_\lambda r_T)_\lambda,m\bigr),\qquad
+E_T^{\rm sam}\mathscr S_T=\mathscr S_T\widehat E. \tag{IS12}
+\end{equation}
+It is a bounded idempotent, by this formula and IS10's bounds. For the lower zero $z_\sigma=(0,\sigma)$, $\sigma<1_L$, the image is
+\begin{equation}
+\left(0,(b'_\nu r_T)_{\nu<1_L},0\right),\quad
+b'_\nu=m\mathbf1_{\nu=\sigma}
+ +\sum_{\substack{\lambda<1_L\\\sigma\wedge\lambda=\nu}}b_\lambda. \tag{IS13}
+\end{equation}
+Every sum is finite. This is precisely MCB9 through IS10; substitution proves the meet-composition law. In particular the $\tau$ coordinate is not the supported-zero top output.
+
+For a nonzero integer $k$, recover $a$ by IS7 and take
+$y'_j=\sum_na_nk_T(j-kn)$, leaving lower samples and mass unchanged. The sum is absolutely convergent by Cauchy--Schwarz; it is IS4 applied to the coefficient injection $(P_ka)_{kn}=a_n$. This proves boundedness and reproduces the original integer multiplication, including negative integers, without replacing it by a spatial rescaling of the Gaussian.
+
+For $U>0$ the actual heat evolution has a particularly explicit discrete formula:
+\begin{equation}
+\mathcal F_dy_{T+U}=\frac{V_{T+U}}{V_T}\mathcal F_dy_T,\qquad
+b_\lambda r_T\longmapsto b_\lambda r_{T+U},\qquad m\longmapsto m. \tag{IS14}
+\end{equation}
+The continuous kernel identity $k_U*k_T=k_{U+T}$ follows by its Gaussian integral. Applying IS5 to the unchanged coefficients proves IS14. Its multiplier and inverse are bounded for each fixed pair of positive times by IS6. No inverse for arbitrary line heat data is asserted: the domain is the specified integer-source image. The supported-zero square commutes because its top input $mr_T$ has transform $mV_T$ and is taken to $mV_{T+U}$.
+
+\section{Circle periodization receives mass, not integer position}
+Retain the actual circle $\R/\Z$, measure $db$ on $[0,1]$, and
+\begin{equation}
+\theta_T(b)=\sum_{j\in\Z}k_T(b-j),\qquad
+\norm{\theta_T}_{L^2([0,1])}^2=\sum_{j\in\Z}e^{-8\pi^2Tj^2}=W_T(0). \tag{IS15}
+\end{equation}
+The Fourier coefficient of index $j$ is $e^{-4\pi^2Tj^2}$, by unfolding the integral. This proves the norm identity. The classical theta series is also recorded in \cite[\S20.2]{DLMF}; the factor and time here are those of LH10.
+
+For finite $a$, absolute convergence permits integer reindexing and gives
+\begin{equation}
+\sum_{j\in\Z}A_Ta(b+j)=\left(\sum_na_n\right)\theta_T(b),\qquad
+\theta_T(b)=\sqrt{x}\,K(x;b),\quad x=\frac1{4\pi T}. \tag{IS16}
+\end{equation}
+Here $K(x;b)=\sum_ne^{-\pi(n+b)^2x}$ is exactly the original theta series. Its $\sqrt{x}$ multiplier is retained.
+Every finite integer difference $\delta_n-\delta_0$ is killed by this circle map. Conversely $\theta_T\ne0$, since its integral on the circle is one, so its kernel is exactly $\sum_na_n=0$.
+
+On the graph completion IS9 the continuous receiving map is
+\begin{equation}
+\mathscr P_T(a,b,m)=\theta_T\left(mv_{1_L}+\sum_{\lambda<1_L}b_\lambda v_\lambda\right).
+ \tag{IS17}
+\end{equation}
+Its kernel is precisely $\{(a,0,0):a\in\ell^2\}$, because the label vectors are independent. Its squared norm is $W_T(0)(|m|^2+\sum|b_\lambda|^2)$ in the stated orthogonal label observation. This proves boundedness and shows exactly which information it keeps. It is an extension of finite periodization on the graph domain, not a declaration that the periodization series converges for every arbitrary $\ell^2$ source.
+
+To see why $m$ cannot be recovered continuously from integer samples alone, retain the finite coefficients $a_n^{(N)}=1/N$ for $1\le n\le N$ and zero elsewhere. Their mass is one and
+\begin{equation}
+\norm{r_T*a^{(N)}}_2^2\le(v_T^+)^2/N\longrightarrow0,
+\qquad\mathscr P_T(a^{(N)},0,1)=\theta_Tv_{1_L}\ne0. \tag{IS18}
+\end{equation}
+Thus no continuous extension of that mass observation exists on the sample $\ell^2$ space alone. On the full graph receiver IS10 the mass is explicitly present. Adding it there does not assign a new norm to the old arithmetic seminorm; these domains are specified throughout.
+Even on the finite source the sum of the samples is not the mass without its factor: absolute convergence gives $\sum_my_m=V_T(0)\sum_na_n$. On the full graph completion $m$ remains independent of either sum.
+
+\section{Half-integer samples: unique recovery without a uniform bound}
+For a real shift $\eta$, samples at $m+\eta$ have multiplier
+\begin{equation}
+V_{T,\eta}(\xi)=\sum_{l\in\Z}k_T(l+\eta)e^{-2\pi il\xi},\qquad
+\mathcal F_d(A_Ta(m+\eta))=V_{T,\eta}P_a. \tag{IS19}
+\end{equation}
+The series is holomorphic for every complex $\xi$, by uniform Gaussian convergence on compact sets. At $\eta=1/2$, pairing $l$ with $-l-1$ gives
+\begin{equation}
+V_{T,1/2}(1/2)=0,\qquad V_{T,1/2}(0)=\sum_lk_T(l+1/2)>0. \tag{IS20}
+\end{equation}
+Hence this analytic function is not identically zero and has only finitely many real zeros on a period. Multiplication by it is injective on $L^2([0,1])$: an $L^2$ function supported on its zero set is zero. Thus half-integer sampling is injective on $\mathcal H_T$.
+
+For a direct finite-source test of stability, use the unchanged coefficients $a_n=(-1)^n$ for $1\le n\le N$, zero otherwise, and write their polynomial as $P_N$. For any continuous periodic $F$,
+\begin{equation}
+\frac1N\int_0^1F(\xi)|P_N(\xi)|^2\,d\xi\longrightarrow F(1/2). \tag{IS21}
+\end{equation}
+Here is the full approximation argument. Orthogonality gives $\int|P_N|^2=N$. Off any fixed circle neighbourhood of $1/2$, the geometric-sum formula bounds $|P_N|$ by $2/|1-e^{-2\pi i(\xi-1/2)}|$, uniformly in $N$. After division by $N$, the integral there tends to zero. Inside that neighbourhood, uniform continuity bounds $|F-F(1/2)|$ as small as desired. These two estimates prove IS21. This is the elementary finite-exponential concentration argument, with every original coefficient retained.
+
+Taking $F=|V_{T,1/2}|^2$ and $F=W_T$ proves respectively that the sample squared norm divided by $N$ tends to zero and the line squared norm divided by $N$ tends to $W_T(1/2)>0$. Therefore
+\begin{equation}
+\frac{\sum_m|A_Ta^{[N]}(m+1/2)|^2}{\norm{A_Ta^{[N]}}_2^2}\longrightarrow0. \tag{IS22}
+\end{equation}
+No positive uniform lower sampling constant exists. This is not a nonzero $\ell^2$ kernel: the map is injective as proved above. The exact image consists of $y\in\ell^2$ for which $(\mathcal F_dy)/V_{T,1/2}\in L^2$, with division defined almost everywhere. Fourier division gives its inverse on precisely that image. Integer sampling IS7 avoids this instability because its multiplier stays strictly positive. The critical-density distinction agrees with the discussion in \cite[\S1]{GRS}; a density-one statement for every lattice shift would be false.
+
+The half-integer range is dense and proper. In Fourier coordinates, truncate any $Y\in L^2$ to $Y\mathbf1_{|V_{T,1/2}|\ge1/j}$; each truncation is in the image and converges to $Y$. But $Y=1$ is not in it: bounded derivative near $1/2$ gives $|V_{T,1/2}(\xi)|\le C|\xi-1/2|$, so $1/V_{T,1/2}\notin L^2$. Thus the range is nonclosed, with a fully specified unbounded inverse. Taking even $N$ in IS21 makes the exact source mass zero. Retaining that mass and every lower label cannot repair this sampling instability; the example already has their correct zero values.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{sampling.png}
+\caption{Original kernel at $T=1/8$. Top left: the integer and half-integer sampling multipliers in IS5 and IS19. Top right: sample-to-line squared norm ratios for the finite alternating coefficients in IS21; no coefficient is altered between the two observations. Bottom: the exact finite positive-source line norm from IS2 tends to zero while its circle squared norm stays $W_T(0)$ (IS18). Plotted series are finite numerical samples, not interval certificates. The analytic assertions are proved in IS5--8 and IS15--22. Reproducible source: \texttt{draw\_sampling.py}.}
+\end{figure}
+
+\section{Relation to the original-zeta reconstruction and scope}
+The source-level chain is now explicit: original integer coefficients, their original line heat image, and their complete integer samples are related by proved invertible maps IS1--8. The supported-zero action requires the independently retained graph mass; IS10--14 transports that actual action, rather than erasing it in a scalar observation. The theta circle map IS16--17 is a different specified map, with its entire kernel exhibited.
+
+The infinite integer comb used to obtain the theta series has coefficients not in $\ell^2$ and infinite total mass. It is outside IS9, just as MCB7 and LH8--15 state. This note does not apply IS7 to that comb or assign it a finite line norm. Its tempered-distribution heat image and original-zeta Mellin return remain the separate original formulas in LH8--15 \cite{LH}. The full original-zeta multiplier and prime-boundary reconstruction are in FR1--38 \cite{FR}. None of their exceptional points, original seminorms or factors is replaced here.
+
+The continuation therefore supplies a concrete discrete observation for the same finite-source completion. It does not by itself determine the sign of a Weil form, prove an arithmetic positivity estimate, prove or disprove RH, or settle a claim about CDP20.
+
+\paragraph{Verification and provenance.}
+The analytic arguments above are the proofs. The accompanying checker verifies finite convolution, transform and matrix identities and performs explicitly non-certified Gaussian-series tests, with deliberate-error controls. The unchanged complete LH and MCB TeX inputs are included with hashes. They are programme derivations, not independent human authorities. The inspected author TeX for \cite{GRS} is identified by version and SHA256 in \texttt{SOURCE\_IDENTITY.json}; it is not redistributed. The relevant reading was selective, not an assertion that the whole paper or all its cited predecessors were read.
+
+\begin{thebibliography}{9}
+\bibitem{GRS} K. Gr\"ochenig, J. L. Romero and J. St\"ockler,
+\emph{Sampling Theorems for Shift-invariant Spaces, Gabor Frames, and Totally Positive Functions},
+\href{https://arxiv.org/abs/1612.00651v2}{arXiv:1612.00651v2} (24 October 2017),
+\emph{Inventiones mathematicae} 211 (2018), 1119--1148,
+\href{https://doi.org/10.1007/s00222-017-0760-2}{doi:10.1007/s00222-017-0760-2}.
+Author-source locators: \texttt{thm:JiaMicchelli}, \texttt{eq:ch1a}, \texttt{thm:SamplingSet}.
+The general stable-shift criterion is attributed there to R. Q. Jia and C. A. Micchelli, \emph{Using the refinement equations for the construction of pre-wavelets II: powers of two} (1991), Theorem 3.5, and A. Ron, \emph{Introduction to shift-invariant spaces. Linear independence} (2001), Theorem 29. Those originals have not been inspected for this note.
+\bibitem{DLMF} W. P. Reinhardt and P. L. Walker, \emph{Theta Functions},
+NIST Digital Library of Mathematical Functions, Chapter 20,
+\href{https://dlmf.nist.gov/20.2}{\S20.2} and
+\href{https://dlmf.nist.gov/20.5}{\S20.5}, version 1.2.8.
+Native mathematical text inspected; no literature PDF used.
+\bibitem{LH} Split-Zero programme, \emph{Labelled heat and original theta}, LH1--15,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/50abbb837ebee5f3786e67e7ecdec3d42dee0043/workbenches/splitzero-tandem/continuations/20260923-integer-heat-observation/sources/LABELLED_HEAT_AND_ORIGINAL_THETA.tex}{complete pinned proof source} (23 September 2026).
+\bibitem{MCB} Split-Zero programme, \emph{The supported-zero action forces a retained mass coordinate}, MCB1--19,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/50abbb837ebee5f3786e67e7ecdec3d42dee0043/workbenches/splitzero-tandem/continuations/20260923-integer-heat-observation/sources/SUPPORTED_ZERO_MASS_COMPLETION.tex}{complete pinned proof source} (23 September 2026).
+\bibitem{FR} Split-Zero programme, \emph{Original zeta and faithful theta-source return}, FR1--38,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ec73ac350d0cda3d95c0bd1361bede33166b4d34/workbenches/splitzero-tandem/continuations/20260923-original-zeta-return/NOTE.tex}{complete pinned proof source},
+\href{https://doi.org/10.5281/zenodo.22911205}{archived edition} (23 September 2026).
+\end{thebibliography}
+\end{document}

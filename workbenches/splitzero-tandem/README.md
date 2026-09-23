@@ -636,3 +636,8 @@ The [235-page supported-zero, prime, heat and residue collection](https://github
 ### Original-zeta source reconstruction
 
 The [original-zeta correction](continuations/20260923-original-zeta-return/README.md) gives complete proofs and LaTeX for the integer-dilation source, the Gaussian theta return, the prime-boundary receiver, exceptional local jets and the full returned heat equation. It retains the original zeta function, every multiplier and the original metric. This is a scoped correction, not a claim that every earlier estimate is reconstructed or that RH is decided.
+
+
+### Integer heat sampling with the original mass retained
+
+The [sampling addendum](continuations/20260923-integer-heat-observation/README.md) gives an explicit inverse from integer samples of the original Gaussian source, the exact supported-zero and heat-evolution maps, and the difference from circle periodization. It also proves that half-integer samples lose uniform inverse stability without losing uniqueness. The independent mass and every lattice label remain; no replacement of the original arithmetic seminorm or RH conclusion is made. Complete proofs, LaTeX, reproducible figures, checks and human citations are included.

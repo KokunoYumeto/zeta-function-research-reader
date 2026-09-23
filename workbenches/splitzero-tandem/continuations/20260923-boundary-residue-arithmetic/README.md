@@ -1,0 +1,11 @@
+# Boundary contact, residue data and the original arithmetic trace
+
+[Read the 16-page paper](BOUNDARY_RESIDUE_ARITHMETIC_RECEIVERS.pdf) · [Complete LaTeX](BOUNDARY_RESIDUE_ARITHMETIC_RECEIVERS.tex) · [Results and reproduction](NEW_RESULTS_2026-09-23.md).
+
+This paper extends the Split-Zero cohomology and zeta programme by calculating how its supported reciprocal enters collision dynamics, residue pairings and the original arithmetic trace. BT1–22 retains the complete analytic unit and proves the contact term's exact trace-derivative map. RJ1–30 identifies the sharp residue data needed by the fixed-test and determinant corrections, including every higher test jet. WR1–14 reproduces the supplied nineteen-coefficient rational witness using complete theta integrals, directed intervals and explicit quadrature and tail bounds: its value is negative at time −2 and positive at time 0. It does not certify the companion's separate 32-dimensional inertia or establish an RH counterexample.
+
+[The source ledger](SOURCE_AND_RESULT_INDEX.json) identifies the exact supplied derivations, actual reading coverage and the human heat source of Rodgers and Tao. Hadamard's classical factorization is credited where used; reading the historical scan is not claimed. The supplied boundary paper, rational vector and companion manuscript are retained unchanged. All earlier HR, heat-collision and integral-monodromy proofs are included as complete LaTeX. The corrected retained heat-collision source removes two interpretive prose passages without changing any equation or result.
+
+[The equation index](PUBLIC_PROOF_LINKS.json) gives exact proof locations. MANIFEST.json is the owner's sealed 19-file edition; the reading guide and proof index are publication additions. Recorded mathematical, interval and rendering checks retain their stated scope. Root read the complete new controlling TeX; this publication does not claim a further independent numerical replay.
+
+The wider collection and its principal cohomology paper remain available through the [project reading guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/README.md). This supplement does not replace the whole programme with one local calculation.

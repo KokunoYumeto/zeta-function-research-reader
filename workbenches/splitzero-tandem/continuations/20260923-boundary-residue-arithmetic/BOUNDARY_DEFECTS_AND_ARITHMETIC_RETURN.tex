@@ -1,0 +1,675 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs,microtype,booktabs,array}
+\usepackage[margin=26mm,headheight=14pt]{geometry}
+\usepackage[authoryear,round]{natbib}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Regular-inverse contact defects and their arithmetic return},pdfsubject={Split-zero heat boundaries, residue duality, and the original Weil form},pdfauthor={Mathematical continuation}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Split-zero boundary continuation}
+\fancyhead[R]{\small 23 September 2026}
+\fancyfoot[C]{\thepage}
+\setlength{\emergencystretch}{3em}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\Q}{\mathbb Q}\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}\newcommand{\Z}{\mathbb Z}
+\newcommand{\B}{\mathbb B}\newcommand{\N}{\mathfrak N}
+\newcommand{\bp}[1]{#1^{\bullet}}
+\newcommand{\rinv}[1]{#1^{\langle-1\rangle}}
+\newcommand{\Tr}{\operatorname{Tr}}\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\FP}{\operatorname{FP}}\newcommand{\im}{\operatorname{im}}
+\newcommand{\rad}{\operatorname{rad}}\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\K}{\mathcal K}\newcommand{\HH}{\mathsf H}
+\title{Regular-inverse contact defects and their arithmetic return\\[4pt]
+\large Collision energy, filtered holonomy, and the retained Weil correction}
+\author{}
+\date{23 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The boundary direction of the split-zero calculation remains substantive after withdrawing the implication from supported-zero invertibility to a Riemann-hypothesis contradiction. We distinguish inverse-monoid regular inversion from support localization, and calculate the exact forcing term introduced when regular reciprocals are substituted into the finite zero dynamics. For absolutely continuous labelled trajectories, this forcing measures collision residence; it vanishes for an instantaneous collision but detects every persistent repeated-root cluster. A finite Duhamel formula returns these trajectories to the unchanged coefficient heat equation.
+
+For a genuine analytic backward-heat collision of multiplicity $m$, we independently calculate the pole and finite part of the complete local inverse-gap energy, with the surrounding analytic unit retained. The pole is universal; the finite part depends on the second logarithmic derivative of that unit. In the original Rodgers--Tao normalization this produces an explicit completed-zeta derivative expression, without asserting that such a collision occurs at time zero. The collision forcing is mapped into the actual cotangent trace radical when its multiplicity is at least three, with a nonzero perfect-residue value. We also determine the minimum residue-jet order needed to recover the energy finite part: a double collision requires one more infinitesimal order than its own perfect local residue pairing. The new repository's nonzero filtered holonomy residue, normalization/Tor sequence, class-field character and complete endpoint-averaging correction are then compared at their actual maps. A trace-zero residue is retained as a nonzero algebra map; the positive averaged endpoint is not substituted for the full Weil form.
+\end{abstract}
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+
+\section{Source cut and mathematical status}
+The current public source cut read for this continuation is
+\[
+\texttt{569ffbdc3308aeee9db7dc72cfa6d21918736967}
+\]
+of \texttt{KokunoYumeto/zeta-function-research-reader}. The directly used new proofs are the class-field bridge CBR1--29, the collision and continuation calculations EHM24--53, and HWA1--38 on the actual order-192 average and its Weil correction \citep{CBR,EHM,HWA}. The complete attached 382-line handoff is a separate source \citep{handoff}. During this continuation the repository advanced to
+\[
+\texttt{6c702bb8aa71c1129198b61f3d61d43265853320}.
+\]
+The late intake includes the complete ZH1--26 and RD1--31b proofs, the full semilattice source SH1--41, and the original endpoint calculation EP1--21 with its exact residue-jet receiver HW61--64 \citep{ZH,RD,SH,EP}. The endpoint pole and finite part below agree with EP7--8 and EP14--17; they are an independent derivation of that newly published calculation, not an exclusive priority claim. The new additions here are the residence-time forcing, its cotangent receiver, the full discriminant/environment calculation, and the minimal residue-order test. The 208-page prime-word graph-completion source was not read in full; only its publication guide and the handoff report are used.
+
+The source for the dBN family is the attached version 5 of \citet{RT}. Its convention is
+\begin{equation}\label{eq:dbn}
+ H_t(z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\,du,
+ \qquad \partial_tH_t=-\partial_z^2H_t,
+ \qquad H_0(z)=\frac18\xi\left(\frac12+\frac{iz}{2}\right).
+\end{equation}
+The source proves $\Lambda_{\rm dBN}\ge0$. Its real simple-root dynamics is used on the source's stated domain, not at an assigned collision outside that domain. Our finite polynomial and local analytic statements below are proved directly. They do not assume RH, exhibit an off-critical zeta zero, or identify the auxiliary cover clock with $t$ in \eqref{eq:dbn}.
+
+The supported-zero potential discrepancy and the collision-energy finite part were first received through the handoff and then checked against the newly published complete endpoint source. Existing ZH/SH/EP/RD/EHM/CBR/HWA results are credited as inputs and recalculated only at the interfaces used here.
+
+\section{Regular inversion is an internal operation with a changing local identity}
+Let $L$ be a bounded distributive lattice, and use the original full-support carrier
+\[
+ G_L(\C)=\{(0,a):a\in L\}\cup\{(z,1):z\in\C\},
+ \quad \tau=(0,0),\quad e=(0,1).
+\]
+Addition takes the amplitude sum and support join; multiplication takes the amplitude product and support meet. The unit is $(1,1)$.
+
+\begin{proposition}\label{prop:inverse}
+The multiplicative monoid has the unique regular inverse
+\[
+ \rinv{(z,1)}=(z^{-1},1)\quad(z\ne0),
+ \qquad \rinv{(0,a)}=(0,a).
+\]
+It satisfies $xx^{\langle-1\rangle}x=x$ and
+$x^{\langle-1\rangle}xx^{\langle-1\rangle}=x^{\langle-1\rangle}$.
+For the supported zero, $e\rinv e=e$, not $1$.
+\end{proposition}
+\begin{proof}
+For a nonzero amplitude the two equations force the ordinary reciprocal and top support. For $x=(0,a)$ and a zero-label candidate $(0,b)$, the equations give $a\wedge b=a$ and $a\wedge b=b$, hence $a=b$. A nonzero-amplitude candidate cannot satisfy its second equation because the product through $x$ has zero amplitude. Existence follows immediately from the displayed formulas. This also proves uniqueness and includes $\tau$.
+\end{proof}
+
+\subsection{The original zero object and its two adjunctions}
+The source's singlet algebra is $A=\{\tau,e\}$, with its own multiplicative unit $1_A=e$. Thus $e^{-1}=e$ is already an ordinary unit identity in $A$. Its inclusion into $G(\C)$ is not unital with respect to $1_{G(\C)}$, whereas the retraction $r(x)=ex$ is unital as a map into $A$. This is ZH1--3, not a new localization convention \citep{ZH}.
+
+For an arbitrary $G(\C)$-semimodule $M$, the complete zero semilattice is $L_M=eM$. The maps
+\[
+ p_M:M\longrightarrow L_M,\quad m\longmapsto em,
+ \qquad i_M:L_M\hookrightarrow M
+\]
+satisfy $p_Mi_M=I$, $i_Mp_M=e\cdot(-)$. If $J$ embeds bottomed join-semilattices as modules with every supported scalar acting identically, then
+\[
+ \operatorname{Hom}_S(M,J L)=\operatorname{Hom}_{\vee,\bot}(eM,L),
+ \quad
+ \operatorname{Hom}_S(J L,M)=\operatorname{Hom}_{\vee,\bot}(L,eM).
+\]
+For the first identity, $f(m)=ef(m)=f(em)$; for the second, $h(\ell)=h(e\ell)=eh(\ell)$. These equations construct both inverse factorizations and both natural maps. Every support label remains. The earlier support-localization argument addresses a different operation; it does not exhaust these internal zero-object and inverse-monoid structures.
+
+This operation requires no localization. The different localization $G_L(\C)[e^{-1}]\cong L$ identifies every supported amplitude with the local unit. Its arithmetic ring base change is zero. The present calculation instead uses the regular inverse on the unchanged carrier and retains the defect of its local identity. On top-supported real amplitudes define
+\[
+ d(a)=1-a\rinv a.
+\]
+Here subtraction is the ring subtraction in that supported fibre, so its zero is $e$. Under arithmetic reflection, $d(a)$ is the indicator of $a=0$. It is not the indicator of external absence.
+
+\subsection{The exact Rodgers--Tao potential discrepancy}
+For positive $a$, the potential in \citet[\S7, Eq.~(62)]{RT} is
+\[
+ V(a)=a^{-2}+2a-3=\frac{(a-1)^2(2a+1)}{a^2}.
+\]
+Their use has a nonzero gap and does not assign a finite value at $a=0$. Set
+\[
+ V_{\rm exp}(a)=(\rinv a)^2+2a-3,
+ \qquad V_{\rm fact}(a)=(a-1)^2(2a+1)(\rinv a)^2.
+\]
+\begin{proposition}\label{prop:potential}
+On the unchanged top-supported carrier, including $a=e$,
+\begin{equation}\label{eq:pot}
+ V_{\rm exp}-V_{\rm fact}=(2a-3)d(a)=-3d(a).
+\end{equation}
+Its arithmetic values at $a=0$ are $-3$, $0$, and $-3$, respectively.
+\end{proposition}
+\begin{proof}
+Put $b=\rinv a$. The identities $a^2b=a$, $ab^2=b$ give
+$a^2b^2=ab$ and $a^3b^2=a$. Expanding the factored expression gives
+$2a-3ab+b^2$. Its difference from $b^2+2a-3$ is $-3(1-ab)$.
+Also $a(1-ab)=0$ in the supported amplitude ring. This proves every formula including the supported-zero specialization.
+\end{proof}
+
+The same algebraic rational function on the punctured amplitude line has two different regular-inverse extensions. Their discrepancy is the explicit boundary indicator, not an omitted numerical error. Neither extension is the lower-semicontinuous extended value of the original positive potential, which is $+\infty$ at zero. Point assignment alone also does not change an almost-everywhere differential equation; the next section states precisely when dynamics do change.
+
+\section{The complete contact forcing in zero dynamics}
+For a real or complex scalar, write
+\[
+ \iota(a)=\begin{cases}a^{-1},&a\ne0,\\0,&a=0.\end{cases}
+\]
+This is the arithmetic amplitude of the preceding regular inverse. Let $x_i(t)$ be absolutely continuous labelled functions on a real time interval. Suppose that almost everywhere
+\begin{equation}\label{eq:totalode}
+ \dot x_i=2\sum_{j\ne i}\iota(x_i-x_j).
+\end{equation}
+This definition retains each label even at coincidence. Set
+\[
+ P(t,z)=\prod_{i=1}^n(z-x_i(t)),\qquad
+ P_{ij}(t,z)=\prod_{k\notin\{i,j\}}(z-x_k(t)).
+\]
+\begin{theorem}[Complete coefficient defect]\label{thm:contact}
+The coefficients of $P$ are absolutely continuous and obey
+\begin{equation}\label{eq:contact}
+ (\partial_t+\partial_z^2)P
+ =\mathcal D(t,z):=
+ 2\sum_{i<j}\mathbf1_{\{x_i(t)=x_j(t)\}}P_{ij}(t,z)
+\end{equation}
+almost everywhere, hence also as distributions in time. At each time, if the distinct cluster centres are $c_1,\ldots,c_r$ with multiplicities $m_1,\ldots,m_r$, then
+\begin{equation}\label{eq:clusters}
+ \mathcal D=
+ \sum_{\ell:m_\ell\ge2}
+ m_\ell(m_\ell-1)(z-c_\ell)^{m_\ell-2}
+ \prod_{j\ne\ell}(z-c_j)^{m_j}.
+\end{equation}
+This polynomial vanishes if and only if every multiplicity is one.
+\end{theorem}
+\begin{proof}
+Products of finitely many bounded absolutely continuous functions on a compact time interval are absolutely continuous. With $P_i=\prod_{j\ne i}(z-x_j)$, their chain rule gives
+\[
+ P_t=-2\sum_{i<j}\iota(x_i-x_j)(P_i-P_j).
+\]
+The exact polynomial identity $P_i-P_j=(x_i-x_j)P_{ij}$ changes this to
+$-2\sum_{i<j}(1-\mathbf1_{x_i=x_j})P_{ij}$. On the other hand,
+$P_{zz}=2\sum_{i<j}P_{ij}$, proving \eqref{eq:contact}. Grouping the coincident pairs proves \eqref{eq:clusters}.
+
+To see that the cluster summands cannot cancel, fix a centre with $m_\ell\ge2$ and take the coefficient of order $m_\ell-2$ at $z=c_\ell$. Its own summand is
+\[
+ m_\ell(m_\ell-1)\prod_{j\ne\ell}(c_\ell-c_j)^{m_j}\ne0,
+\]
+while every other summand vanishes to order at least $m_\ell$ there. The converse is immediate when there are no repeated centres.
+\end{proof}
+
+\begin{corollary}[Residence, rather than an assigned value at one time]\label{cor:residence}
+A trajectory satisfying \eqref{eq:totalode} obeys the original coefficient heat equation if and only if its collision times have Lebesgue measure zero. An isolated collision is therefore different from a positive-time interval of coincident roots.
+\end{corollary}
+\begin{proof}
+Equation \eqref{eq:contact} and the pointwise noncancellation just proved show that its distributional defect is zero exactly when there is no cluster almost everywhere. Continuity of $x_i$ makes every collision set measurable. Since there are finitely many coefficients, vanishing of their locally integrable distributions is exactly almost-everywhere vanishing.
+\end{proof}
+
+\begin{example}[Every delay is a different totalized solution]\label{ex:delay}
+On $t\ge0$, for any $\theta\in[0,\infty)$, the two labelled functions
+\[
+ x_\pm(t)=\pm\sqrt{2(t-\theta)_+}
+\]
+are absolutely continuous, have the same double-zero initial data, and satisfy \eqref{eq:totalode} almost everywhere. The everywhere-stationary pair is another such solution. Their polynomial for finite $\theta$ is
+\[
+ P_\theta(t,z)=z^2-2(t-\theta)_+,
+ \qquad (\partial_t+\partial_z^2)P_\theta
+ =2\mathbf1_{[0,\theta)}(t).
+\]
+No Dirac mass is present in this first derivative because $P_\theta$ is continuous. The original heat solution is $P_0=z^2-2t$; its square-root derivative is integrable at zero even though it is not finite there. The totalized equation alone loses uniqueness, whereas requiring the displayed defect to vanish selects immediate heat separation.
+\end{example}
+
+\begin{proposition}[Exact return to the original coefficient flow]\label{prop:duhamel}
+On polynomials of degree at most $n$, set $E_t=e^{-t\partial_z^2}$, a finite sum. Every trajectory in Theorem~\ref{thm:contact} satisfies
+\begin{equation}\label{eq:duhamel}
+ P(t)=E_{t-t_0}P(t_0)+
+ \int_{t_0}^t E_{t-s}\mathcal D(s)\,ds.
+\end{equation}
+Consequently subtracting the full integral returns the actual heat solution. For Example~\ref{ex:delay}, the removed term is precisely $2\min(t,\theta)$.
+\end{proposition}
+\begin{proof}
+Differentiate $E_{-(t-t_0)}P(t)$ coefficientwise almost everywhere and apply \eqref{eq:contact}. All matrices and integrals are finite dimensional, and their coefficients are locally integrable. Integrate and multiply by $E_{t-t_0}$. For the example, $E_t$ fixes constants, so the integral is $2\min(t,\theta)$.
+\end{proof}
+
+\subsection{The contact forcing has a precise cotangent receiver}
+At one of the repeated cluster centres in \eqref{eq:clusters}, use the original local coordinate $x=z-c$ and put
+\[
+ P=x^mU(x),\qquad U(0)\ne0,\qquad
+ A_c=\C[x]/(x^m),\qquad
+ q_c=m(m-1)x^{m-2}U(x)\pmod{x^m}.
+\]
+Every other cluster summand vanishes modulo $x^m$, so $q_c$ is the actual localization of the full forcing polynomial. Give $A_c$ its perfect residue functional
+\[
+ \lambda_U(f)=\Res_{x=0}\frac{f(x)}{x^mU(x)}\,dx.
+\]
+The unit $U$ is not replaced by its constant coefficient.
+\begin{proposition}\label{prop:contactcotangent}
+The localized contact forcing is nonzero and has the exact value
+\begin{equation}\label{eq:contactresidue}
+ \lambda_U(xq_c)=m(m-1).
+\end{equation}
+For $m\ge3$ it belongs to
+\[
+ \operatorname{Ann}_{A_c}(P')=H^{-1}(L_{A_c/\C})=(x),
+\]
+so its regular multiplication trace, and its trace pairing with every element of $A_c$, vanish. It nevertheless has the nonzero pairing \eqref{eq:contactresidue} with the class of $x$ in $H^0(L_{A_c/\C})$.
+For $m=2$ it is a unit multiple of $2$ and its regular trace is $4U(0)$; it does not lie in that radical.
+\end{proposition}
+\begin{proof}
+The coefficient of $x^{m-2}$ in $q_c$ is $m(m-1)U(0)\ne0$. In its residue with $x$, the whole $U$ cancels exactly and leaves $m(m-1)\Res dx/x$, proving \eqref{eq:contactresidue}. Modulo $x^m$, the derivative is $P'=mx^{m-1}U(0)$, so its annihilator is $(x)$ in characteristic zero. The hypersurface cotangent complex is $[A_c\xrightarrow{P'}A_c\,dx]$, in degrees $-1,0$; its kernel and cokernel have the residue pairing induced by $\lambda_U$, as in RD27--28a. If $m\ge3$, $q_c\in(x)$, and the trace of multiplication by any element of $(x)$ is zero in the complete triangular $m$-dimensional basis. The cokernel class of $x$ is nonzero for $m\ge3$, and the residue computation proves its stated value. For $m=2$, $q_c(0)=2U(0)$, so its multiplication trace is twice that value. All conclusions follow on the full local algebra, not on its reduced quotient.
+\end{proof}
+
+This gives an explicit bridge between the new heat forcing and the newly published cotangent/trace result. It does not say that all collision defects have zero arithmetic trace: the double-root case is explicitly different.
+
+The dynamics in this section is a finite comparison, not a truncation of the infinite Rodgers--Tao principal-value sum. For a genuine finite cluster in the entire function, its remaining roots enter through the full analytic unit, retained next.
+
+\section{Genuine analytic collisions: pole, finite part, and environment}
+Let $F(t,z)$ be jointly holomorphic near $(0,x_0)$, of real type for real $t,z$, satisfying $F_t=-F_{zz}$ and
+\[
+ F(0,x_0+x)=x^m u(x),\qquad m\ge2,\quad u(0)\ne0.
+\]
+Write
+\[
+ a=\frac{u'(0)}{u(0)},\quad b=\frac{u''(0)}{2u(0)},\quad
+ \kappa=(\log u)''(0)=2b-a^2.
+\]
+The logarithmic derivatives are branch-independent and retain the actual unit. The same argument works after shifting any real collision time to zero.
+
+Define the monic heat-Hermite polynomials
+\[
+ \HH_m(X)=\sum_{j=0}^{\lfloor m/2\rfloor}
+ \frac{(-1)^j m!}{j!(m-2j)!}X^{m-2j}.
+\]
+They obey $\HH_m'=m\HH_{m-1}$,
+$\HH_{m+1}=X\HH_m-2m\HH_{m-1}$ and
+$2\HH_m''-X\HH_m'+m\HH_m=0$.
+
+\begin{lemma}\label{lem:hermite}
+The roots $\lambda_1,\ldots,\lambda_m$ of $\HH_m$ are real and simple, and
+\begin{equation}\label{eq:Hermitesum}
+ \sum_{i\ne j}\frac1{(\lambda_i-\lambda_j)^2}
+ =\frac{m(m-1)}8.
+\end{equation}
+Their full discriminant is
+\begin{equation}\label{eq:Hermitedisc}
+ \prod_{i<j}(\lambda_i-\lambda_j)^2
+ =2^{m(m-1)/2}\prod_{j=1}^m j^j.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Rodrigues' formula $\HH_m=(-2)^m e^{X^2/4}\partial_X^m e^{-X^2/4}$ follows by differentiating, or by its generating function $e^{XT-T^2}$. Integration by parts proves orthogonality to every lower-degree polynomial for the positive Gaussian weight. If it had fewer than $m$ sign-changing real roots, multiplying the linear factors at its real sign changes would produce a lower-degree polynomial whose product with $\HH_m$ had one strict sign, contradicting orthogonality. Thus all roots are real and simple.
+
+At a root, logarithmic differentiation of the product and the differential equation give
+$S_i:=\sum_{j\ne i}(\lambda_i-\lambda_j)^{-1}=\lambda_i/4$.
+In $\sum_iS_i^2$, the cross terms on every unordered triple cancel by
+\[
+ \frac1{(x-y)(x-z)}+\frac1{(y-x)(y-z)}
+ +\frac1{(z-x)(z-y)}=0.
+\]
+The $X^{m-2}$ coefficient of $\HH_m$ gives
+$\sum_i\lambda_i^2=2m(m-1)$. This proves \eqref{eq:Hermitesum}.
+For the discriminant, use $\HH_m'=m\HH_{m-1}$ and evaluate the recurrence at the roots of $\HH_{m-1}$. Successive resultants give $m^m\prod_{j=1}^{m-1}(-2j)^j$; the discriminant sign cancels $(-1)^{m(m-1)/2}$, giving \eqref{eq:Hermitedisc}.
+\end{proof}
+
+\begin{theorem}[Complete local-energy expansion]\label{thm:finitepart}
+For sufficiently small $t>0$, the $m$ roots in the isolated collision cluster are real and simple. They can be labelled so that
+\begin{equation}\label{eq:roots}
+ x_i(t)=x_0+\lambda_i\sqrt t+2at+
+ \kappa\lambda_i t^{3/2}+O(t^2).
+\end{equation}
+The ordered-pair cluster energy has the expansion
+\begin{equation}\label{eq:energy}
+ \mathcal E_{\rm cl}(t):=
+ \sum_{i\ne j}\frac1{(x_i(t)-x_j(t))^2}
+ =\frac{m(m-1)}{8t}
+ -\frac{m(m-1)}4\kappa+O(t).
+\end{equation}
+Its discriminant satisfies, with $\nu=m(m-1)/2$,
+\begin{equation}\label{eq:disc}
+ \mathcal D_{\rm cl}(t)=
+ \left(2^\nu\prod_{j=1}^m j^j\right)t^\nu
+ \bigl(1+2\nu\kappa t+O(t^2)\bigr).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Write $t=\epsilon^2$, $z=x_0+\epsilon X$. The PDE Taylor coefficients are determined by
+$\partial_t^jF=(-1)^j\partial_z^{2j}F$. The vanished first $m$ spatial coefficients therefore ensure that the following expression is holomorphic in $\epsilon$ and $X$ near each bounded $X$-set:
+\[
+ \frac{F(\epsilon^2,x_0+\epsilon X)}{u(0)\epsilon^m}
+ =\HH_m(X)+a\epsilon\HH_{m+1}(X)
+ +b\epsilon^2\HH_{m+2}(X)+O(\epsilon^3).
+\]
+This is a local expansion of the original analytic solution; its remainder follows from joint holomorphy, not from applying an infinite differential series outside its domain.
+
+At each simple $\lambda_i$, the implicit function theorem gives a unique real-analytic root $X_i(\epsilon)$. Use
+\[
+ \HH_{m+1}(\lambda_i)=-2\HH_m'(\lambda_i),\quad
+ \HH_{m+1}'(\lambda_i)=0,\quad
+ \HH_{m+2}(\lambda_i)=-2\lambda_i\HH_m'(\lambda_i),\quad
+ \frac{\HH_m''(\lambda_i)}{\HH_m'(\lambda_i)}=\frac{\lambda_i}{2}.
+\]
+The first two implicit coefficients are $2a$ and $(2b-a^2)\lambda_i$, proving \eqref{eq:roots}. It also proves reality and simplicity for positive $t$.
+
+Every difference is
+$(\lambda_i-\lambda_j)\sqrt t(1+\kappa t)+O(t^2)$.
+Squaring and inverting, then using \eqref{eq:Hermitesum}, proves the pole and constant term in \eqref{eq:energy}. The preliminary error is $O(\sqrt t)$; it improves to $O(t)$ because the energy is a symmetric rational function of the roots and hence a meromorphic function of the analytic Weierstrass coefficients. It has at most a simple pole by the already proved estimate. Similarly the discriminant is analytic in $t$; its product expansion and \eqref{eq:Hermitedisc} give \eqref{eq:disc} and the displayed integer-power remainder.
+\end{proof}
+
+\begin{proposition}[The complete environment term]\label{prop:environment}
+Factor the original solution on the cluster disk as
+$F(t,z)=U(t,z)\prod_i(z-x_i(t))$, where $U$ is the nonvanishing analytic Weierstrass unit. Put $g(t,z)=\partial_z\log U(t,z)$. Then
+\begin{align}
+ \dot x_i&=2\sum_{j\ne i}\frac1{x_i-x_j}+2g(t,x_i),\label{eq:envode}\\
+ \partial_t\log\mathcal D_{\rm cl}
+ &=4\mathcal E_{\rm cl}
+ +4\sum_{i<j}\frac{g(t,x_i)-g(t,x_j)}{x_i-x_j}.\label{eq:env}
+\end{align}
+The second term in \eqref{eq:env} tends to $4\nu\kappa$. It is essential to the finite part in \eqref{eq:energy}.
+\end{proposition}
+\begin{proof}
+At a simple root, $\dot x_i=F_{zz}/F_z$. Differentiate the displayed factorization to obtain \eqref{eq:envode}. Also
+$\partial_{x_i}\log\mathcal D_{\rm cl}=2\sum_{j\ne i}(x_i-x_j)^{-1}$.
+The triple cancellation in Lemma~\ref{lem:hermite} gives the first term of \eqref{eq:env}, and symmetrizing $\sum_i g(t,x_i)\sum_{j\ne i}(x_i-x_j)^{-1}$ gives the second. Finally the divided differences tend to $\partial_zg(0,x_0)=\kappa$. All contributions from outside the chosen cluster are in $U$; none were omitted to obtain a finite subsystem.
+\end{proof}
+
+\subsection{The finite part is not determined by the collision algebra}
+For any real $b$, take the exact polynomial heat solution
+\[
+ F_b(t,z)=z^2-2t+b(z^4-12tz^2+12t^2).
+\]
+Its initial local algebra at zero is $\C[z]/(z^2)$ for every $b$, and its two cluster roots have the same leading $\pm\sqrt{2t}$ and the same local interchange. Yet $u(z)=1+bz^2$ gives
+\begin{equation}\label{eq:oppositefp}
+ \FP_{t=0}\mathcal E_{{\rm cl},b}(t)=-b.
+\end{equation}
+In particular the two signs $b=1,-1$ have identical collision lengths, leading discriminant residue and local root monodromy, but opposite finite parts. They are finite exact controls, not xi evaluations. This identifies the additional data to retain: the actual local unit and not only its support or reduced zero algebra.
+
+\subsection{The completed-zeta derivative receiver}
+If the actual $H_0$ in \eqref{eq:dbn} has a real zero $x_0$ of multiplicity $m\ge2$, put
+$\rho_0=1/2+ix_0/2$ and $v(s)=\xi(s)/(s-\rho_0)^m$. The local unit is
+\[
+ u(x)=\frac{(i/2)^m}{8}v(\rho_0+ix/2),
+ \qquad \kappa=-\frac14(\log v)''(\rho_0).
+\]
+Consequently the exact finite-part receiver is
+\begin{equation}\label{eq:xifp}
+ \FP_{t=0}\mathcal E_{\rm cl}(t)
+ =\frac{m(m-1)}{16}
+ \left[
+ \frac{2\xi^{(m+2)}(\rho_0)}{(m+1)(m+2)\xi^{(m)}(\rho_0)}
+ -\left(\frac{\xi^{(m+1)}(\rho_0)}{(m+1)\xi^{(m)}(\rho_0)}\right)^2
+ \right].
+\end{equation}
+No such multiple zero at time zero is asserted. This formula states which original arithmetic derivatives, including the full unit, decide the finite part if the collision exists. A common scalar multiplying $\xi$ cancels in these ratios; the affine factor $i/2$ is retained and produces the coefficient $1/16$.
+
+For an entire function of genus at most one with real zeros, after removing a zero of multiplicity $m$ at $x_0$, the Hadamard product gives
+\[
+ (\log u)''(0)=-\sum_{\lambda\ne x_0}
+ \frac{m_\lambda}{(x_0-\lambda)^2}\le0.
+\]
+The linear exponential factor has zero second logarithmic derivative and the series converges absolutely. This applies to the usual order-one xi product under RH. Hence a strictly negative value in \eqref{eq:xifp}, if established at an actual such collision, would detect arithmetic information not present in the collision algebra alone. We have not assigned that value a sign or presumed the collision. The source's general $\Lambda_{\rm dBN}\ge0$ theorem is unchanged.
+
+\subsection{How many perfect-residue jets determine the finite part?}
+The current RD duality theorem provides more than the multiplication trace. Its exact information content for the collision energy can also be calculated. In the same original spatial coordinate, define, for each $n\ge1$,
+\[
+ A_n=\C[x]/(x^n),\qquad
+ \lambda_n(f)=\Res_{x=0}\frac{f(x)}{x^nu(x)}\,dx.
+\]
+For $n=m$ this is the raw local residue of the actual collision germ $x^mu(x)$, before any Jacobian multiplier. The pairing $\lambda_n(fg)$ is perfect: its matrix is anti-triangular with nonzero anti-diagonal $1/u(0)$.
+\begin{theorem}[A three-coefficient residue receiver]\label{thm:residuejet}
+For every $n\ge3$, put
+\[
+ L_0=\lambda_n(x^{n-1}),\quad
+ L_1=\lambda_n(x^{n-2}),\quad
+ L_2=\lambda_n(x^{n-3}).
+\]
+Then $L_0\ne0$ and the actual multiplicity-$m$ collision finite part is
+\begin{equation}\label{eq:residueFP}
+ \FP\mathcal E_{\rm cl}
+ =\frac{m(m-1)}4
+ \left[\frac{2L_2}{L_0}-\left(\frac{L_1}{L_0}\right)^2\right].
+\end{equation}
+For $m\ge3$, choose $n=m$: the original full residue pairing suffices. For a double collision, its original $A_2$ and even its complete perfect residue pairing need not determine the finite part. The first larger residue object $A_3$ does determine it, with its actual quotient and kernel retained.
+\end{theorem}
+\begin{proof}
+The reciprocal unit has the exact expansion
+\[
+ u(x)^{-1}=u(0)^{-1}\bigl[1-ax+(a^2-b)x^2+O(x^3)\bigr].
+\]
+Hence $L_0=1/u(0)$, $L_1=-a/u(0)$ and $L_2=(a^2-b)/u(0)$. Substitution in \eqref{eq:energy} proves \eqref{eq:residueFP}.
+
+For $m=2$, the examples $u_b=1+bx^2$ have the same functional on $A_2$: $\lambda_2(1)=0$, $\lambda_2(x)=1$. Their whole residue Gram is therefore the same matrix $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$, but \eqref{eq:oppositefp} gives every value $-b$. Thus the full perfect pairing, not just its regular trace, is insufficient at that order. On $A_3$ the additional coefficient is $\lambda_3(1)=-b$, while $\lambda_3(x)=0$ and $\lambda_3(x^2)=1$, giving the correct value from \eqref{eq:residueFP}.
+\end{proof}
+
+The comparison is the explicit sequence
+\[
+ 0\longrightarrow\C x^2\longrightarrow A_3
+ \xrightarrow{\pi}A_2\longrightarrow0,
+ \qquad \lambda_2(f)=\lambda_3(x\widetilde f).
+\]
+It is independent of the lift $\widetilde f$, since $x\ker\pi=0$ in $A_3$. The missing value $\lambda_3(1)$ is retained rather than inferred from $\lambda_2$. For a genuine double zeta zero, $A_3$ here is an explicitly added analytic thickening; it is not asserted to be an extra actual zero multiplicity or the unchanged theta packet. This locates the first additional local data required by the energy receiver.
+
+\section{The new repository residue survives but the arithmetic character forgets it}
+This section applies the published maps rather than labelling an arbitrary nilpotent as an arithmetic holonomy. The clock below is
+\[
+ t_{\rm cov}=h-\frac18,
+\]
+in the original auxiliary signed-cover path. It is not the dBN parameter of \eqref{eq:dbn}.
+
+\subsection{The actual meromorphic continuation operator}
+In EHM27 the local free algebra has basis $1,\varepsilon,T,\varepsilon T$ and relations
+\[
+ \varepsilon^2=\beta\varepsilon,
+ \qquad T^2+16t_{\rm cov}-(6+3\beta)\varepsilon=0,
+ \qquad \beta(\beta+3)=16t_{\rm cov}.
+\]
+Its special fibre is $\mathscr A_0=\C[T]/(T^4)$, with $\varepsilon=T^2/6$. The based continuation $g_d^2$ has the precise generic formula
+\[
+ S_b(T)=\left(1-\frac{2\varepsilon}{\beta}\right)T,
+ \qquad S_b(\varepsilon)=\varepsilon,
+ \qquad S_b(\varepsilon T)=-\varepsilon T.
+\]
+It is an involution on the punctured disk. Its actual pole residue is
+\begin{equation}\label{eq:delta}
+ \delta=\left.t_{\rm cov}S_b\right|_0
+ =-\frac{T^3}{16}\partial_T,
+ \qquad\delta(T)=-T^3/16,\qquad\delta^2=0.
+\end{equation}
+The coefficient follows from $t_{\rm cov}/\beta=(\beta+3)/16$. With $\N=(T)$, this is a nonzero map
+\[
+ \N/\N^2\longrightarrow\N^3.
+\]
+These are EHM43--46 and CBR26--27 \citep{EHM,CBR}. The residue is a Laurent coefficient of a singular based continuation in the retained frame. It is not declared to be the logarithm of the regular local monodromy. The actual extending heat meridian acts regularly by $T\mapsto-T$ and has finite order two.
+
+Every multiplication operator in $\mathscr A_0$ has trace $4f(0)$. Therefore its conjugate-deck trace pairing is
+\begin{equation}\label{eq:localtrace}
+ B_0(f,g)=4\overline{f(0)}g(0),
+ \qquad\rad B_0=\N,
+ \qquad B_0(\delta f,g)=B_0(f,\delta g)=0.
+\end{equation}
+The nonzero map \eqref{eq:delta} remains in the algebra and the filtration. For example the different residue functional $\lambda(f)=[T^3]f$ gives
+$\lambda(\delta T)=-1/16$, and its multiplication pairing $\lambda(fg)$ is nondegenerate, with anti-diagonal matrix in $1,T,T^2,T^3$. This calculation identifies a detecting pairing, not an identification of that pairing with \eqref{eq:localtrace} or the full arithmetic Weil form.
+
+\subsection{The late RD edition calculates the Jacobian bridge}
+The new RD17--20 proof supplies the actual Hermitian version of the preceding raw residue probe \citep{RD}. With $f^*(T)=\overline{f(-\bar T)}$ and $\lambda(f)=[T^3]f$,
+\[
+ Q_{\rm res}(f,g)=i\lambda(f^*g),\qquad
+ Q_{\rm tr}(f,g)=Q_{\rm res}(f,Kg),\quad K=-4iM_{T^3}.
+\]
+The perfect residue form has inertia $(2,2,0)$, whereas $Q_{\rm tr}$ has radical $(T)$. The map $K$ has square zero, kernel $(T)$ and image $\C T^3$. On the group $V_a=I+a\delta$, $a\in\R$,
+\[
+ Q_{\rm res}(V_af,V_ag)-Q_{\rm res}(f,g)
+ =-\frac{ia}{16}(\bar f_0g_1-\bar f_1g_0).
+\]
+Its two nonzero eigenvalues are $\pm|a|/16$, while the trace-pairing change is exactly zero. These identities follow by direct coefficient multiplication and are the newly published RD receiver, not a newly chosen positive metric.
+
+The general source identity is equally explicit. For monic $h$, let $\lambda_h$ be the top remainder coefficient. Then
+\[
+ \operatorname{Tr}_{\C[s]/(h)}m_f=\lambda_h(h'f).
+\]
+For an involution-stable even-degree packet, $Q_h(f,g)=i\lambda_h(f^\#g)$ is Hermitian and $K_h=-iM_{h'}$. With the full original unit multiplier $U$,
+\[
+ B_h(f,g)=Q_h(Uf,K_hUg).
+\]
+When $h=d^m$ with squarefree $d$, its trace radical is
+\[
+ \operatorname{Ann}(h')=(d)/(d^m)=H^{-1}(L_{E_h/\C}),
+ \quad L_{E_h/\C}=[E_h\xrightarrow{h'}E_h\,ds].
+\]
+The perfect pairing with $H^0=(E_h/(h'))ds$ is $\lambda_h(ab)$. The source proves all factors, including $U$, before identifying this kernel. Proposition~\ref{prop:contactcotangent} maps the actual contact forcing into precisely this mechanism, and Theorem~\ref{thm:residuejet} states how much additional unit data the finite energy requires. A nonzero value of the perfect pairing is not a nonzero value after $K_h$.
+
+\subsection{Normalization loses a fibre direction through an exact Tor term}
+The actual discriminant on this path is
+\[
+ \mathfrak D(h)=(2-16h)^2(1+64h).
+\]
+Thus its character cover near $h=1/8$ is
+\[
+ B=\C\{t_{\rm cov}\}[w]/
+ (w^2-256t_{\rm cov}^2(9+64t_{\rm cov})).
+\]
+With the analytic branch $a(t)=\sqrt{9+64t}$, $a(0)=3$, its normalization map is
+\[
+ f+gw\longmapsto(f+16ta(t)g,f-16ta(t)g)
+ \quad\text{into }\widetilde B=\C\{t\}\oplus\C\{t\}.
+\]
+Its image consists of pairs whose difference is divisible by $t$. Hence
+\[
+ 0\longrightarrow B\longrightarrow\widetilde B
+ \longrightarrow\C\longrightarrow0,
+ \qquad (x,y)\longmapsto(x-y)\bmod t.
+\]
+Specialization yields
+\begin{equation}\label{eq:tor}
+ 0\longrightarrow\C
+ \longrightarrow\C[w]/(w^2)
+ \longrightarrow\C\oplus\C
+ \longrightarrow\C\longrightarrow0.
+\end{equation}
+The first copy is $\operatorname{Tor}_1^{\C\{t\}}(\C,\C)$ and maps onto the line $\C w$; the middle map sends $c+dw$ to $(c,c)$. This is exactly the retained CBR20--23 computation. It explains the loss of injectivity in the fibre without deleting the original boundary direction.
+
+\subsection{The class-field bridge is arithmetic, but not faithful on this residue}
+The current CBR construction proves that the order-192 signed frame group has abelianization $C_2$, detected by the discriminant sign. Its stated specialization gives $\Q(\sqrt{-23})$ and the quadratic character modulo $23$. The original eight-state set itself has no nontrivial quotient of this kind: the commutator subgroup acts transitively; the discriminant quotient belongs to the full frame cover. An explicit sixteen-state common cover relates the two \citep[CBR1--18]{CBR}.
+
+The finite-cover theorem of \citet[Theorem 1]{CC} identifies the prime-circle monodromy with the Frobenius of this abelian extension. In this example the prime $2$ splits, the prime $5$ is inert and $23$ ramifies. At the auxiliary collision $h=1/8$ the character cover has no branch monodromy, since its discriminant has even order. In particular $\chi(g_d^2)=1$, although \eqref{eq:delta} is nonzero. Thus the new arithmetic character is an explicit recipient of part of the cover data, not a faithful recipient of its whole infinitesimal extension.
+
+\section{The positive holonomy average retains a signed Weil correction}
+Use the eight states in the original HWA order, and the two original trace involutions. In point coordinates their matrices are
+\[
+ Q_\Sigma=(1+\ 1-)(-1+\ -1-),
+ \qquad Q_J=(1+\ -1-)(1-\ -1+)(\infty+\ \infty-).
+\]
+Here the formulas denote permutation matrices; the remaining states are fixed. Let $G$ be the original order-192 signed group and $P_g$ its point permutations. The actual averages proved in HWA10 are
+\begin{equation}\label{eq:avg}
+ \frac1{192}\sum_gP_g^*Q_\Sigma P_g=P_{\rm ev},
+ \qquad
+ \frac1{192}\sum_gP_g^*Q_JP_g
+ =\frac13P_{\rm ev}+\frac23P_{\rm c},
+\end{equation}
+where $P_{\rm ev}$ averages each sign pair and $P_{\rm c}=\mathbf1\mathbf1^*/8$. Both averages are positive semidefinite of rank four. This is a proved source result, not positivity of either original indefinite trace.
+
+For completeness, even-sign averaging kills off-diagonal entries between distinct sign characters in the four-dimensional odd subspace. Its trace there is zero for both $Q$ matrices, so the odd block averages to zero. On the even space, the second $Q$ is a root transposition; its six conjugates average to a matrix with diagonal $1/2$ and off-diagonal $1/6$. This proves the second formula in \eqref{eq:avg}, while the first has even block the identity. The complete odd radical is retained.
+
+The even receiver $E(x)_j=(x_{j+}+x_{j-})/2$ is not an algebra quotient:
+\begin{equation}\label{eq:odd}
+ E(xy)=E(x)E(y)+O(x)O(y),
+ \qquad O(x)_j=(x_{j+}-x_{j-})/2.
+\end{equation}
+The second term is the full product returning from the odd space. For example $x=e_{0+}-e_{0-}$ satisfies $E(x)=0$ but $E(x^2)\ne0$.
+
+\subsection{The original endpoint map and its exact matrix}
+For $f\in C_c^\infty(\R)$ use
+\[
+ M_f(s)=\int_\R f(v)e^{-(s-1/2)v}\,dv,
+ \qquad f^\#(v)=\overline{f(-v)},
+ \qquad A=M_f(0),\quad B=M_f(1).
+\]
+The source's Gaussian map
+$\phi_f(x)=\int e^{v/2}f(v)e^{-\pi e^{2v}x^2}\,dv$
+has $\phi_f(0)=A$ and $\int\phi_f=B$, so these are the actual supported-zero theta endpoint functionals. The unchanged endpoint form is
+\[
+ P_e(f,f)=2\operatorname{Re}(\overline A B).
+\]
+The exact HWA28 embedding assigns the two weights to the equal-sign vectors at roots $1,-1$, each with factor $1/\sqrt2$. Pulling back the second average in \eqref{eq:avg} gives
+\[
+ \overline P_e(f,f)=\frac12(|A|^2+|B|^2)
+ +\frac13\operatorname{Re}(\overline A B).
+\]
+Thus the complete correction is
+\begin{equation}\label{eq:K}
+ K_e=\overline P_e-P_e
+ =\frac12(|A|^2+|B|^2)
+ -\frac53\operatorname{Re}(\overline A B).
+\end{equation}
+In the coordinates $(A+B)/\sqrt2,(A-B)/\sqrt2$ its eigenvalues are $-1/3,4/3$.
+Both endpoint pairs are attained by actual compact tests: the two functions $e^{v/2},e^{-v/2}$ have a positive full Gram against any bump positive on an interval; its inverse gives a right inverse of $(M_f(0),M_f(1))$.
+
+The complete source formula HWA33--34 remains
+\begin{equation}\label{eq:Weil}
+ \mathcal Z=P_e+\mathcal A_\infty-\mathcal P_{\rm fin}
+ =\overline P_e+\mathcal A_\infty-\mathcal P_{\rm fin}-K_e.
+\end{equation}
+Here, for $h=f^\#*g$,
+\begin{align*}
+ \mathcal Z(f,g)&=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho),\\
+ \mathcal A_\infty(f,g)&=\frac1{2\pi}\int_\R
+ \overline{\widehat f(t)}\widehat g(t)
+ [\operatorname{Re}\psi(1/4+it/2)-\log\pi]dt,\\
+ \mathcal P_{\rm fin}(f,g)&=
+ \sum_{p,k\ge1}(\log p)p^{-k/2}
+ [h(k\log p)+h(-k\log p)].
+\end{align*}
+The prime sum is finite for compact $h$; the other sums use the convergence established in the source \citep{HWA}. All lower fixed-support labels and their Fourier partners are unchanged in HWA35--38.
+
+In particular, for primitive tests $A=B=0$, both $P_e$ and $K_e$ vanish. The positive averaging operation then makes no change at all to the full primitive Weil value. For $A=1,B=-1$, the endpoint changes from $-2$ to $2/3$, but $K_e=8/3$ remains subtracted in \eqref{eq:Weil}. These are exact retained corrections, not estimates of an omitted tail.
+
+\section{What the boundary direction now supplies}
+The calculations isolate three different observations of the same boundary process. The regular-inverse dynamics has the explicit coefficient forcing \eqref{eq:contact}; its Duhamel correction restores the original heat equation. A genuine collision has the universal pole \eqref{eq:energy}, but its finite part depends on the full analytic unit and is returned to completed-zeta derivatives in \eqref{eq:xifp}. The new auxiliary-cover residue \eqref{eq:delta} is nonzero even though the regular trace and the abelian character do not detect it. The exact sequence \eqref{eq:tor} identifies the specialization term accounting for the lost direction.
+
+These observations support continuing the boundary analysis rather than replacing it by a scalar invertibility slogan. They also specify the additional arithmetic data needed by that continuation. Neither the semilattice support, the local collision algebra, nor a nonzero continuation residue determines the finite part in \eqref{eq:xifp}; \eqref{eq:oppositefp} is an exact countercontrol. The finite-part calculation does not by itself evaluate the full Weil form; its actual endpoint transport is \eqref{eq:Weil}, with the correction retained. The local prime-word graph-completion work announced in the handoff must likewise be read in its complete source norm before its trace is used as this form.
+
+No new numerical zero or numerical period is used here. No theta relation or original Gamma metric is inferred from a vector-space isomorphism, and no new global positivity or negativity claim follows merely from the finite checks.
+
+\section*{Verification and source coverage}
+The included checker executes regular-inverse and full distributive-support identities, the complete polynomial contact formula for all tested repeated-root multisets, heat-Hermite root jets, discriminants and inverse-gap traces, the exact polynomial finite part, the original based-continuation residue, its Leibniz identity and trace radical, the normalization fibre rank, the quadratic Gauss-sum identity modulo the twenty-third cyclotomic polynomial, the full 192-element average and its endpoint matrices. It has explicit false-claim controls. The emitted receipts, not this prose, give the executed counts and results. These are finite auxiliary checks. The local analytic expansions and limiting statements have the written proofs above.
+
+The current attached handoff was read completely. CBR1--29, EHM24--53 and HWA1--38 were read at the initial pinned public commit. The late publication was incorporated through full ZH1--26, full RD1--31b, full SH1--41, and the entire EP1--21 section plus HW61--64 of the 40-page reader. The full remaining historical content of that reader is not claimed read. The full-prime-support publication guide and branch/root guides were consulted for the current route, but their entire historical collection was not independently audited. The source ledger supplies the exact connector-read pins; GitHub source bodies are not included as byte-cached copies. The uploaded Rodgers--Tao source archive and the handoff are included unchanged. No remote publication is performed.
+
+\begin{thebibliography}{9}
+\bibitem[Connes and Consani(2025)]{CC}
+Connes, A., \& Consani, C. (2025).
+\emph{Knots, primes and class field theory} (Version 1).
+\url{https://arxiv.org/abs/2501.06560v1}.
+Theorem 1 is the finite-cover/Frobenius input; no RH-positivity implication is attributed to it.
+
+\bibitem[Rodgers and Tao(2021)]{RT}
+Rodgers, B., \& Tao, T. (2021).
+\emph{The de Bruijn--Newman constant is non-negative} (Version 5).
+\url{https://arxiv.org/abs/1801.05914v5}.
+The attached TeX archive is retained; the potential is in Section 7, printed page 39, Eq.~(62).
+
+\bibitem[Split-Zero programme(2026a)]{EHM}
+Split-Zero research programme. (2026a).
+\emph{Actual eight-state monodromy and nonzero collision residue}.
+\texttt{EIGHT\_STATE\_HOLONOMY\_DERIVATION.md}, EHM24--53.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/569ffbdc3308aeee9db7dc72cfa6d21918736967/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/EIGHT_STATE_HOLONOMY_DERIVATION.md}.
+
+\bibitem[Split-Zero programme(2026b)]{CBR}
+Split-Zero research programme. (2026b).
+\emph{Class-field character of the original signed cover and its collision residue}.
+\texttt{CLASS\_FIELD\_SIGNED\_HOLONOMY\_DERIVATION.md}, CBR1--29.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/569ffbdc3308aeee9db7dc72cfa6d21918736967/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md}.
+
+\bibitem[Split-Zero programme(2026c)]{HWA}
+Split-Zero research programme. (2026c).
+\emph{Actual signed-cover averaging and the supported-zero endpoint}.
+\texttt{HOLONOMY\_AVERAGING\_WEIL\_ENDPOINT\_DERIVATION.md}, HWA1--38.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/569ffbdc3308aeee9db7dc72cfa6d21918736967/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION.md}.
+
+\bibitem[Supplied handoff(2026)]{handoff}
+Supplied concurrent-session handoff. (2026).
+\emph{Pasted markdown (20260923-021348)}.
+382-line supplied message record. Its heat/semilattice statements were subsequently compared with the late public SH/EP source; its entire local prime-word graph-completion proof is not claimed read.
+
+\bibitem[Split-Zero programme(2026d)]{ZH}
+Split-Zero research programme. (2026d).
+\emph{The original supported-zero identity on the heat semimodule}, ZH1--26.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6c702bb8aa71c1129198b61f3d61d43265853320/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_HEAT_IDENTITY_DERIVATION.md}.
+\bibitem[Split-Zero programme(2026e)]{RD}
+Split-Zero research programme. (2026e).
+\emph{Residue duality, the collision Jacobian, and the supported Weil trace}, RD1--31b.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6c702bb8aa71c1129198b61f3d61d43265853320/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/COLLISION_RESIDUE_DUALITY_DERIVATION.md}.
+\bibitem[Split-Zero programme(2026f)]{SH}
+Split-Zero research programme. (2026f).
+\emph{Supported-zero inversion and the full semilattice heat fibre at time zero}, SH1--41.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6c702bb8aa71c1129198b61f3d61d43265853320/workbenches/splitzero-tandem/continuations/20260923-cohomology-heat-residue/heat-endpoints/SEMILATTICE_HEAT_ZERO.tex}.
+\bibitem[Split-Zero programme(2026g)]{EP}
+Split-Zero research programme. (2026g).
+\emph{Supported-zero heat endpoints}, section ``The singular endpoint in the original arithmetic heat family,'' EP1--21; preceding receiver HW61--64.
+\url{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6c702bb8aa71c1129198b61f3d61d43265853320/workbenches/splitzero-tandem/continuations/20260923-cohomology-heat-residue/heat-endpoints/SUPPORTED_ZERO_HEAT_ENDPOINTS.tex}.
+
+\end{thebibliography}
+\end{document}

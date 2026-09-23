@@ -1,0 +1,3 @@
+# The complete primitive prime-window calculation
+
+This edition retains all thirty earlier complete proofs and adds PM1–41, PS1–21, UP1–35 and PW1–22. It constructs a fixed compact primitive test with no transform zeros off the critical line, proves its full translated correlation criterion, and calculates its exact prime and archimedean expression. It retains both Fourier support corrections, all endpoint coordinates and all support labels. The remaining inequality is equivalent to RH and has not been proved. The complete mathematical proofs, original companion programme TeX, reproducible inspected figure and finite exact algebra checks are included. No cancelled four-role exploration or programme timeline is restored.

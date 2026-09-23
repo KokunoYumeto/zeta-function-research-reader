@@ -55,3 +55,10 @@ The full supported-zero theta now has a proved map from admissible Weil tests, a
 - [HWA1–HWA38: Positive holonomy average and its exact integrated Weil correction](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/adfbfe74fa49e31cb7aa068cf755fb083be37c32/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION.md)
 
 The three earlier complete background derivations are retained in [supporting proofs](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/adfbfe74fa49e31cb7aa068cf755fb083be37c32/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/supporting_proofs/TAU_PRIME_SPECTRUM_DERIVATION.md). All original coefficients, support labels and quotient kernels remain in the proofs.
+
+## Class-field monodromy and the original collision
+
+The Connes–Consani finite covers now receive an explicit quadratic quotient of the original signed frame cover. Its conductor-23 specialization, prime return maps, and integral model are calculated. The prime-orbit traces retain both orientations and the complete supported-zero trivial sector. The heat collision retains a nonzero filtered residue which the abelian character forgets.
+
+- [PHW1–PHW25: oriented prime traces, inertia, character decomposition and supported endpoints](PRIME_HOLONOMY_SUPPORTED_WEIL_DERIVATION.md)
+- [CBR1–CBR29: discriminant quotient, arithmetic cover and surviving infinitesimal residue](CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md)

@@ -310,3 +310,7 @@ The accompanying exact symbolic checker verifies the integral duality matrices, 
 ![The Jacobian map from perfect residue duality to trace, and the retained supported endpoint terms.](collision_residue_duality.png)
 
 Figure: the upper row is the complex collision, with \(K=-4iM_{T^3}\), kernel \((T)\), and image \(\mathbb CT^3\). The lower row is the actual amplitude-weighted packet map, whose radical is RD28. The right-hand equations retain the supported-zero boundary from RD29. This is a diagram of proved linear maps and forms; it is not a plot of actual off-critical zeta zeros.
+
+## Integral prism continuation
+
+[DP1–DP43](DISTINGUISHED_COLLISION_PRISM_DERIVATION.md) constructs the specific bounded prism and proves the original nilradical specialization. [EC1–EC48](NILRADICAL_COTANGENT_EXTENSION_CLASS_DERIVATION.md) computes its complete extension class and the exact maps detecting the divided residue. [SG1–SG23](SUPPORTED_PRISM_SPECTRUM_DERIVATION.md) gives the supported prime pullbacks, retaining the unsupported point and the original supported-zero prime under coefficient contraction. These calculations retain all earlier trace and endpoint identities.

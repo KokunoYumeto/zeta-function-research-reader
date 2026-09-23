@@ -1,0 +1,514 @@
+% SWQ: independent derivation, 2026-09-23.
+\section{The original adelic trace quotient with every support label retained}
+\label{sec:cc-supported-weil-quotient}
+
+\paragraph{Human sources, objects, and reading scope.}
+The analytic input is Alain Connes, Caterina Consani, and Matilde
+Marcolli, \href{https://arxiv.org/abs/math/0703392v1}{\emph{The Weil proof
+and the geometry of the adeles class space}}, original author file
+\texttt{Yuri70v2.tex}, SHA-256
+\texttt{b1f694cb934dd4fef829287f1a55dd8de21c67a481e552453c2f7e8fe0ae6fb5},
+canonical programme source \texttt{PUBUNIT-5DE2A2D44F8B1470AC701FDA}.
+The sections actually read for this derivation are source lines
+610--710, 1316--1425, 1508--1551, 1680--1830, 1980--2160,
+2161--2216, and 2313--2424, together with the title and author lines.
+The original locators are \texttt{SCK}, \texttt{rangeTrpi},
+\texttt{rangecVdef}, \texttt{varthetaH1V},
+\texttt{varthetafconvol}, \texttt{vanishV},
+\texttt{tracepairing}, \texttt{fsharpinv},
+\texttt{TraceformulaThm}, and \texttt{TraceformulaH1}.
+The paragraph following \texttt{motH1AKCK} specifies closure of
+the range in the cokernel. The trace-class and explicit-formula
+theorems are cited analytic inputs. The convolution ideal, its sharp
+invariance with all endpoint terms, and the full-label quotient and
+receiving maps are derived below. No positivity assertion or RH
+conclusion is made.
+
+\subsection{The original test algebra and its domains}
+
+Retain the source's unscaled test algebra and operations:
+\begin{equation}\tag{SWQ1}
+\begin{gathered}
+ C=\mathbb A_{\mathbb Q}^{\times}/\mathbb Q^{\times},\qquad
+ B=\bigcap_{\beta\in\mathbb R}|\cdot|^\beta\mathcal S(C),\\
+ (f*g)(x)=\int_C f(h)g(h^{-1}x)\,d^{\times}h,\qquad
+ f^{\sharp}(x)=|x|^{-1}\overline{f(x^{-1})}.
+\end{gathered}
+\end{equation}
+For $\mathbb Q$, the actual continuous multiplicative section in
+the author's subsection \texttt{XKCKsect} is
+\begin{equation}\tag{SWQ2}
+ C=\mathbb R_{>0}\times K,\qquad K=\widehat{\mathbb Z}^{\times},
+ \qquad (r,u)\longmapsto(r,(u_p)_p),
+ \qquad |(r,u)|=r.
+\end{equation}
+Indeed one multiplies an idele by the unique rational number that
+makes every finite component a unit and its real component positive.
+The ambiguity would have all finite valuations zero and positive real
+component, so would be the rational number $1$. Multiplication
+respects these representatives. The multiplicative Haar measure is
+$dr/r\,du$, where $\int_Kdu=1$. The additive adelic measure is real
+Lebesgue measure times the measures of volume $1$ on each
+$\mathbb Z_p$. These exact measures are retained throughout.
+
+The topology used for closure below is the usual weighted Bruhat
+test-function topology: at each fixed open subgroup $H\subset K$,
+functions are $H$-invariant and have all weighted Schwartz seminorms;
+one then uses the Bruhat inductive-limit topology over these finite
+levels. An explicit defining family at a fixed level, with $r=e^x$, is
+\begin{equation}\tag{SWQ3}
+ p_{N,m,j}(f)=\sup_{x\in\mathbb R,\ u\in K}
+ e^{N|x|}(1+|x|)^m
+ \left|\partial_x^j f(e^x,u)\right|,
+ \quad N,m,j\in\mathbb Z_{\ge0}.
+\end{equation}
+These seminorms retain all real weights in SWQ1: weights $e^{\beta x}$
+are bounded by $e^{N|x|}$ when $N\ge|\beta|$, and conversely the two
+weights $e^{Nx}$ and $e^{-Nx}$ control $e^{N|x|}$; Leibniz's formula
+controls their derivatives. This is a description of the original
+test domain, not a change of function or scale in its operations.
+
+All convolution integrals in SWQ1 converge absolutely. Using
+$x=y+(x-y)$ and $1+|x|\le(1+|y|)(1+|x-y|)$ gives the explicit bound
+\begin{equation}\tag{SWQ4}
+ p_{N,m,j}(f*g)
+ \le 2p_{N+1,m,0}(f)\,p_{N,m,j}(g).
+\end{equation}
+The constant $2$ is $\int_{\mathbb R}e^{-|y|}dy$; the compact Haar
+factor is $1$. Differentiation can pass under the integral by the
+same bound on every derivative. Convolution preserves a common
+finite level, and this proves the continuity needed below. Since
+$C$ is abelian, substitution $h\mapsto xh^{-1}$ proves commutativity.
+Fubini, justified by the corresponding three-function $L^1$ bound,
+proves associativity.
+
+In these coordinates sharp is exactly
+\begin{equation}\tag{SWQ5}
+ f^{\sharp}(e^x,u)=e^{-x}\overline{f(e^{-x},u^{-1})},\qquad
+ p_{N,m,j}(f^{\sharp})\le
+ \sum_{\ell=0}^j\binom j\ell p_{N+1,m,\ell}(f).
+\end{equation}
+The bound follows by differentiating $e^{-x}$ and $f(e^{-x},u^{-1})$;
+the two derivative signs together have absolute value $1$.
+Direct substitution gives $(f^{\sharp})^{\sharp}=f$.
+Inversion preserves Haar measure on this abelian group, and the norm
+is a character. Substitution in the absolutely convergent convolution
+therefore gives $(f*g)^{\sharp}=g^{\sharp}*f^{\sharp}$.
+In particular sharp is continuous on the stated test space.
+The algebra $B$ has no convolution unit among its functions.
+Indeed let $b(e^x,u)=e^{-x^2}$, which belongs to $B$ and has
+trivial compact-unit character. Its real Fourier transform is
+$\sqrt\pi e^{-t^2/4}$, nonzero for every real $t$. A convolution
+unit $a\in B$ would consequently have
+$\int_{\mathbb R\times K}a(e^x,u)e^{itx}\,dx\,du=1$ for every
+$t$. Integration by parts in $x$, justified by SWQ3, makes this
+integral tend to zero as $|t|\to\infty$, a contradiction.
+No unit distribution is inserted in this chapter.
+
+\subsection{The adelic source, with both Poisson endpoints}
+
+Use the canonical additive character trivial on $\mathbb Q$, with
+real component $e^{-2\pi ixy}$ and finite conductor $\mathbb Z_p$,
+and its self-dual measures specified after SWQ2. Write
+\begin{equation}\tag{SWQ6}
+\begin{gathered}
+ \widehat\xi(y)=\int_{\mathbb A}\xi(x)\alpha(xy)\,dx,
+ \qquad \varepsilon_0(\xi)=\xi(0),\qquad
+ \varepsilon_1(\xi)=\int_{\mathbb A}\xi(x)\,dx,\\
+ \mathcal S(\mathbb A)_0=\ker\varepsilon_0\cap\ker\varepsilon_1,
+ \qquad (E\xi)(g)=\sum_{q\in\mathbb Q^{\times}}\xi(qg),
+ \qquad V=E\mathcal S(\mathbb A)_0.
+\end{gathered}
+\end{equation}
+For the reference characters $e_v$ in SWQ28, choose exactly
+these local components of $\alpha$. This fixes more than their
+conductors: it specifies the characters themselves, so that
+the differential idele there is $a_v=1$ at every place.
+The sum is invariant under the rational choice of representative.
+For fixed $g$, finite-place compact support puts its contributing
+rational $q$ in $D^{-1}\mathbb Z$ for one positive integer $D$.
+Real Schwartz decay then makes the sum absolutely convergent,
+locally uniformly with every real derivative. Unit dilation at
+finite places preserves the required common denominator and bounds.
+
+For completeness the full Poisson formula used here is
+\begin{equation}\tag{SWQ7}
+ \sum_{q\in\mathbb Q}\xi(qg)
+   =|g|^{-1}\sum_{q\in\mathbb Q}\widehat\xi(qg^{-1}).
+\end{equation}
+It follows directly for the original Bruhat space. A finite-place
+test function is a finite linear combination of characteristic
+functions of cosets $a+N\widehat{\mathbb Z}$, with rational $a$ and
+positive integer $N$, after a common denominator is chosen. The
+rational elements in such a coset are $a+N\mathbb Z$. Real
+periodization of a Schwartz function gives
+\[
+ \sum_{n\in\mathbb Z}\phi(a+Nn)
+  =\frac1N\sum_{m\in\mathbb Z}
+       e^{2\pi i ma/N}\widehat\phi(m/N).
+\]
+To verify this last identity, periodize over $N\mathbb Z$, integrate
+over one period to compute every Fourier coefficient, and evaluate
+the resulting absolutely convergent Fourier series at $a$.
+The finite Fourier transform of the characteristic coset is
+$N^{-1}\alpha_f(ay)1_{N^{-1}\widehat{\mathbb Z}}(y)$.
+At rational $y=m/N$, its character is $e^{2\pi i am/N}$ because
+the global character is trivial on rational numbers. These exact
+factors prove adelic Poisson by linearity. Finally replacing the
+test function by $x\mapsto\xi(gx)$ multiplies its Fourier transform
+by $|g|^{-1}$ and evaluates it at $g^{-1}y$, proving SWQ7.
+The same real Fourier inversion and finite character orthogonality
+give $\widehat{\widehat\xi}(x)=\xi(-x)$.
+
+Separating the actual $q=0$ terms in SWQ7, with neither endpoint
+discarded, gives
+\begin{equation}\tag{SWQ8}
+ E\xi(g)=|g|^{-1}E\widehat\xi(g^{-1})
+             +|g|^{-1}\varepsilon_1(\xi)-\varepsilon_0(\xi).
+\end{equation}
+For $|g|\ge1$, the earlier common-denominator estimate gives
+$E\xi(g)=O_M(|g|^{-M})$ for every $M$, uniformly in the compact
+unit coordinate and with every logarithmic real derivative.
+For $\xi\in\mathcal S(\mathbb A)_0$, both displayed endpoints
+vanish by definition, and the right side applies the same large-norm
+estimate to $\widehat\xi$ at $g^{-1}$. Indeed
+$\widehat\xi(0)=\varepsilon_1(\xi)=0$ and
+$\int\widehat\xi=\xi(0)=0$ by Fourier inversion.
+The factor $|g|^{-1}$ stays present. Since $M$ is arbitrary, it
+proves all the small-norm bounds in SWQ3 as well. Thus $V\subset B$
+on the source's actual domain.
+
+Apply SWQ8 to $\widehat{\overline\xi}$, or equivalently apply
+SWQ7 to $\overline\xi$ and invert $g$. The exact result is
+\begin{equation}\tag{SWQ9}
+ (E\xi)^{\sharp}(g)
+ =E\widehat{\overline\xi}(g)
+      -|g|^{-1}\overline{\varepsilon_0(\xi)}
+      +\overline{\varepsilon_1(\xi)}.
+\end{equation}
+This identity retains the conjugations, the factor $|g|^{-1}$,
+and both endpoints. Put $J\xi=\widehat{\overline\xi}$. Its
+endpoints are
+\begin{equation}\tag{SWQ10}
+ \varepsilon_0(J\xi)=\overline{\varepsilon_1(\xi)},\qquad
+ \varepsilon_1(J\xi)=\overline{\varepsilon_0(\xi)}.
+\end{equation}
+Consequently $J$ preserves the actual space $\mathcal S(\mathbb A)_0$
+and SWQ9 gives $V^{\sharp}\subset V$; applying sharp twice gives
+equality. This derives sharp invariance from additive Fourier--Poisson,
+rather than assuming that the original quotient was an involutive
+quotient.
+
+\subsection{The actual convolution ideal and its closure}
+
+For $f\in B$, $\xi\in\mathcal S(\mathbb A)_0$, use the actual
+multiplicative section SWQ2 to define
+\begin{equation}\tag{SWQ11}
+ \eta(x)=\int_C f(h)\xi(h^{-1}x)\,d^{\times}h.
+\end{equation}
+This integral belongs to the original Bruhat--Schwartz space.
+Indeed the orbit of the finite-place component of $\xi$ under
+the compact group $K$ lies in a finite-dimensional space of test
+functions: its compact support stays in one finite product of
+bounded balls, and its common local-constancy subgroups are unchanged
+by units. The finite quotient of this compact support by these
+subgroups has finitely many points. For the real component, every
+Schwartz seminorm has the explicit bound
+\begin{equation}\tag{SWQ12}
+ \sup_{x_\infty,x_f}
+ |x_\infty^N\partial_{x_\infty}^j\eta(x)|
+ \le C_{\xi,N,j}\int_C |f(h)|\,|h|^{N-j}\,d^{\times}h<\infty.
+\end{equation}
+The last integral is finite by SWQ3. Differentiation and integration
+are justified by the same bound, while the fixed finite-place
+test space makes the resulting function a Bruhat test function.
+
+The two endpoints of this integral are exactly
+\begin{equation}\tag{SWQ13}
+ \eta(0)=\varepsilon_0(\xi)\int_C f(h)\,d^{\times}h,\qquad
+ \int_{\mathbb A}\eta(x)\,dx
+ =\varepsilon_1(\xi)\int_C |h|f(h)\,d^{\times}h.
+\end{equation}
+For the second equation the absolute double integral is bounded by
+$\|\xi\|_{L^1(\mathbb A)}\int_C|h||f(h)|d^{\times}h$, which is
+finite. The change of variables $x=hy$ therefore gives its exact
+adelic factor $|h|$, and Fubini is valid for this equation.
+Thus $\eta\in\mathcal S(\mathbb A)_0$.
+
+There is also a justified interchange with the arithmetic sum in
+the convolution calculation. For fixed $g$, real Schwartz decay and
+the fixed rational denominator give, uniformly in the unit part of
+$h$, the estimate
+\[
+ \sum_{q\ne0}|\xi(qh^{-1}g)|\le C_{\xi,g}(1+|h|).
+\]
+For example, dominate the real values on the grid $D^{-1}\mathbb Z$
+by $C(1+|n||g|/(D|h|))^{-2}$, and bound the resulting series by
+its first term plus its integral. Multiplying by $|f(h)|$ is
+integrable by SWQ3. Hence
+\begin{equation}\tag{SWQ14}
+ f*E\xi=E\eta\in V.
+\end{equation}
+Commutativity gives the ideal property in both orders. This proves
+the actual ideal assertion needed for the quotient, including the
+source-domain check in Lemma \texttt{varthetaH1V}.
+
+Let
+\begin{equation}\tag{SWQ15}
+ W=\overline V\subset B,\qquad Q=B/W,
+\end{equation}
+where closure is in the topology stated before SWQ3. Continuity of
+convolution by each fixed test function, established in SWQ4,
+makes $W$ a convolution ideal. Continuity and involutivity of
+sharp in SWQ5, together with SWQ9--10, give $W^{\sharp}=W$.
+Thus
+$[f]*[g]=[f*g]$ and $[f]^{\sharp}=[f^{\sharp}]$
+are well-defined on $Q$. Notice that SWQ13 is not an exchange of
+$\sum_{q\ne0}$ with the degree integral of $E\xi$. It does not
+assert $\int_C|g|E\xi(g)d^{\times}g=0$. The author's
+\texttt{fubini1}--\texttt{nothappen} calculation concerns precisely
+that different, generally invalid exchange.
+
+\subsection{The full-label quotient and the different Bourne quotient}
+
+Let $L$ be any bounded distributive lattice. All constructions below
+hold without finiteness; to require $e\ne\tau$ take $L$ nontrivial.
+Define the original constrained carrier and operations
+\begin{equation}\tag{SWQ16}
+\begin{gathered}
+ G_L(B)=\{(0,\lambda):\lambda\in L\}\cup(B\times\{1_L\}),\\
+ (f,\lambda)+(g,\mu)=(f+g,\lambda\vee\mu),\qquad
+ (f,\lambda)*(g,\mu)=(f*g,\lambda\wedge\mu),\\
+ (f,\lambda)^{\sharp}=(f^{\sharp},\lambda),\qquad
+ \tau=(0,0_L),\quad e=(0,1_L).
+\end{gathered}
+\end{equation}
+This is a commutative nonunital convolution semiring with sharp.
+Carrier closure follows because any nonzero output amplitude requires
+all relevant nonzero input amplitudes to have top label. For the
+product this uses that convolution with a zero function is zero;
+it does not assume that $B$ has no zero divisors. Associativity and
+distributivity combine those of convolution with the lattice laws.
+Sharp is an involution preserving labels and reversing convolution.
+The complex scalar action has the separate semimodule formula
+$(c,\alpha)(f,\lambda)=(cf,\alpha\wedge\lambda)$ for
+$(c,\alpha)\in G_L(\mathbb C)$.
+
+The exact same-label quotient is
+\begin{equation}\tag{SWQ17}
+ (f,\lambda)\sim_W(g,\mu)\quad\Longleftrightarrow\quad
+ \lambda=\mu\ \hbox{and}\ f-g\in W,
+ \qquad G_L(B)/\!\sim_W\ \simeq G_L(Q).
+\end{equation}
+To prove this, use the map
+$\pi_L(f,\lambda)=([f],\lambda)$. It respects addition,
+convolution, sharp, and the scalar action by the ideal and
+involution properties just proved. It is onto: a nonzero quotient
+amplitude has top label and lifts to a representative with top label;
+a zero amplitude with any label lifts to $(0,\lambda)$.
+Its fibres are exactly the displayed relation. Alternatively, adding
+a third element preserves equality of labels and preserves the
+amplitude difference modulo $W$; multiplication sends that difference
+to an element of $W$; sharp sends it into $W$ as well. These direct
+checks prove the required congruence and the quotient assertion.
+
+In particular every $(0,\lambda)$ survives, and $e$ and $\tau$
+remain distinct for nontrivial $L$. A nonzero $w\in W$ with top
+label maps to $e$, which differs from $\tau$ when $L$ is nontrivial.
+For nontrivial $L$, the inverse image of the absorbing
+additive zero $\tau$ under $\pi_L$ is only $\{\tau\}$, even though
+$\pi_L$ can identify different top-labelled amplitudes. Thus the
+preimage of a single zero does not specify this semiring congruence.
+For the one-element lattice instead $G_L(B)=B$, and that inverse
+image is the ordinary amplitude kernel $W$.
+
+The ordinary Bourne congruence by the ideal $I=G_L(W)$ is different:
+\begin{equation}\tag{SWQ18}
+ x\equiv_I y\quad\Longleftrightarrow\quad
+ \exists a,b\in I:\ x+a=y+b,
+ \qquad
+ (f,\lambda)\equiv_I(g,\mu)\Longleftrightarrow f-g\in W.
+\end{equation}
+The forward implication follows from the amplitude equation.
+Conversely, if $f-g\in W$, choose
+$a=(g-f,1_L)$ and $b=(0,1_L)$. Both belong to $I$; the two
+amplitudes become $g$ and both labels become $1_L$, proving equality.
+Consequently
+\begin{equation}\tag{SWQ19}
+ G_L(B)/\!\equiv_I\ \simeq Q,
+ \qquad
+ G_L(B)/\!\sim_W\ \longrightarrow Q,
+ \quad([f],\lambda)\longmapsto[f].
+\end{equation}
+The Bourne quotient collapses the entire labelled-zero fibre, so it
+identifies $e$ and $\tau$. More exactly it is the same-label quotient
+followed by the congruence generated by $e=\tau$: multiplication
+of this equality by $(0,\lambda)$ makes $(0,\lambda)=\tau$ for
+every $\lambda$. After these identifications the carrier and
+operations are exactly those of $Q$. No Boolean character or
+selected support point has been used.
+
+\subsection{Every numerical additive trace and the full-labelled receiver}
+
+Let $A$ be any abelian group. Every additive map
+$t:G_L(B)\to A$ kills every labelled zero: its idempotence gives
+$t(0,\lambda)+t(0,\lambda)=t(0,\lambda)$, hence $t(0,\lambda)=0$.
+Define $\ell(f)=t(f,1_L)$. Then $\ell$ is additive on $B$, since
+addition of two top-labelled elements stays top-labelled and
+$\ell(0)=t(e)=0$. Every nonzero amplitude already has top label,
+so
+\begin{equation}\tag{SWQ20}
+ t(f,\lambda)=\ell(f),\qquad
+ \operatorname{Hom}_{+}(G_L(B),A)
+       \simeq\operatorname{Hom}_{+}(B,A).
+\end{equation}
+Conversely composition of any additive $\ell$ with amplitude
+projection is additive, proving both directions. This includes all
+numerical additive traces into $\mathbb C$, not only continuous or
+complex-linear ones. Cyclicity adds no restriction here because
+convolution is commutative. Such a map descends through SWQ17
+exactly when $\ell(W)=0$: necessity follows by comparing $(w,1_L)$
+with $e$, and sufficiency follows from the displayed difference
+condition. The same classification on $G_L(Q)$ is
+$\operatorname{Hom}_{+}(G_L(Q),A)=\operatorname{Hom}_{+}(Q,A)$.
+Thus numerical additivity itself removes zero-label distinctions;
+it is not a proof that those distinctions were absent from the
+source object.
+
+Retain the original numerical cohomological trace
+\begin{equation}\tag{SWQ21}
+ T(f)=\operatorname{Tr}\bigl(\underline\vartheta_m(f)\mid H^1\bigr).
+\end{equation}
+Here $\underline\vartheta_m(f)$ is the original convolution action
+on the source's quotient realization, with its prescribed closure.
+Its trace-class meaning is the cited Theorem
+\texttt{varthetagTrH1}, with the trace formula
+\texttt{TraceformulaThm}; this chapter does not replace that
+analytic theorem by a finite-dimensional trace assumption.
+Its vanishing on $W$ can be checked on the actual quotient action:
+for $w\in W$ and $b\in B$, $w*b\in W$, hence
+$\underline\vartheta_m(w)[b]=0$. The operator is zero, so
+\begin{equation}\tag{SWQ22}
+ T(W)=0,\qquad \overline T:Q\to\mathbb C,\quad
+ \overline T([f])=T(f).
+\end{equation}
+This does not require an unproved exchange of an infinite spectral
+sum with a limit of representatives: the operator itself vanishes.
+
+The original trace and Weil-pairing receivers retaining the labels are
+\begin{equation}\tag{SWQ23}
+\begin{gathered}
+ T_L:G_L(Q)\longrightarrow G_L(\mathbb C),\qquad
+ T_L([f],\lambda)=(T(f),\lambda),\\
+ \mathcal W_L\bigl(([f],\lambda),([g],\mu)\bigr)
+   =\bigl(T(f*g^{\sharp}),\lambda\wedge\mu\bigr).
+\end{gathered}
+\end{equation}
+The first map is well-defined by SWQ22. It respects addition and
+the declared $G_L(\mathbb C)$ scalar action; it is a trace receiver,
+not a claimed multiplicative character. For the second, replace
+$f$ by $f+w$ and $g$ by $g+v$, with $w,v\in W$. Its change of
+amplitude is
+\begin{equation}\tag{SWQ24}
+ T\bigl(w*g^{\sharp}+f*v^{\sharp}+w*v^{\sharp}\bigr)=0.
+\end{equation}
+Every summand belongs to $W$ by SWQ15. This proves representative
+independence while retaining each term of the actual change.
+If one input quotient amplitude is zero, the output amplitude is
+zero. Thus every nonzero output amplitude has top label and the
+receiver belongs to the declared constrained carrier.
+
+The receiver is additive in both variables and complex-linear in
+the first, conjugate-linear in the second, with the exact lattice
+factors. For example, if $a=(c,\alpha)$, then
+\begin{equation}\tag{SWQ25}
+ \mathcal W_L(ax,y)=a\mathcal W_L(x,y),\qquad
+ \mathcal W_L(x,ay)=\overline a\,\mathcal W_L(x,y),
+ \quad\overline a=(\overline c,\alpha).
+\end{equation}
+The amplitudes follow from convolution and sharp. For additivity,
+the label equality is
+$(\lambda\vee\lambda')\wedge\mu
+=(\lambda\wedge\mu)\vee(\lambda'\wedge\mu)$, and likewise in
+the second variable. These prove the assertions directly.
+In particular
+$\mathcal W_L((0,\lambda),([g],\mu))=(0,\lambda\wedge\mu)$.
+Even a zero numerical amplitude therefore retains its exact support
+in SWQ23. Projecting to $\mathbb C$ forgets that support by SWQ20.
+
+\subsection{The complete original trace terms of this receiver}
+
+For the trivial unit character write
+$M f(s)=\int_C f(u)|u|^s d^{\times}u$. Every such integral
+converges absolutely on the full complex plane by SWQ3, locally
+uniformly with every derivative. Haar inversion gives
+\begin{equation}\tag{SWQ26}
+ M(f^{\sharp})(s)=\overline{M f(1-\overline s)},\qquad
+ M(f*g^{\sharp})(s)=M f(s)\overline{M g(1-\overline s)}.
+\end{equation}
+For the second identity the weighted double integral is finite,
+so multiplicative Fubini is valid. At the identity one has instead
+the exact weighted inner-product expression
+\begin{equation}\tag{SWQ27}
+ (f*g^{\sharp})(1)
+    =\int_C f(u)\overline{g(u)}|u|\,d^{\times}u.
+\end{equation}
+In particular $M(f^{\sharp})(1)=\overline{M f(0)}$.
+The conjugation is necessary for complex tests; it is missing in
+the author's displayed \texttt{codegcorrZf} equality if that equality
+is read for unrestricted complex-valued $f$. No real-valued
+restriction is imposed here.
+
+Put $h=f*g^{\sharp}$. The source's full trace formula therefore
+gives the following amplitude for SWQ23:
+\begin{equation}\tag{SWQ28}
+\begin{split}
+ T(h)={}&M f(0)\overline{M g(1)}
+       +M f(1)\overline{M g(0)}\\
+ &-(\log|a|)\int_C f(u)\overline{g(u)}|u|d^{\times}u\\
+ &-\sum_{v\le\infty}\int_{(\mathbb Q_v^{\times},e_v)}'
+                \frac{h(u^{-1})}{|1-u|_v}\,d_v^{\times}u.
+\end{split}
+\end{equation}
+Here $u$ denotes the idele class of its original local embedding,
+$a$ is the differential idele relating the global additive character
+to the specified local characters, and $d_v^{\times}u$ and the
+primed distributions are exactly those of
+\texttt{TraceformulaH1} and \texttt{princvalrhobeta}.
+In the canonical rational character used in SWQ6 one has $a_v=1$
+at every place, so the displayed differential term evaluates with
+$\log|a|=\log1=0$; it has not been absorbed into another term.
+The prime sum includes infinity and every finite prime.
+
+The prime notation is essential. In the author's definition a
+distribution $\varrho_{e_v}$ extends multiplicative measure across
+zero with Fourier transform satisfying
+$\widehat\varrho_{e_v}(1)=0$, and the local term is
+\[
+ \left\langle\varrho_{e_v},
+   \lambda\longmapsto
+       \frac{h((\lambda+1)^{-1})}{|\lambda+1|_v}\right\rangle.
+\]
+For compactly supported tests this is the stated original definition;
+for the full space $B$, SWQ28 uses the extension on that test space
+in the cited trace theorem. It is not an assertion that the ordinary
+integral through $u=1$ converges. No replacement of $f$ by
+$|\cdot|^{1/2}f$, and no completed zeta function, is introduced
+into SWQ23--28.
+
+\paragraph{Exact scope and analytic limits.}
+The closure in SWQ15 is the declared weighted Bruhat closure, not
+an unspecified Hilbert, distributional, or pointwise closure.
+The quotient, ideal, and sharp statements above are proved in this
+domain. The scalar trace-class realization and its regularized
+explicit formula retain the analytic hypotheses of the original
+source theorems. SWQ23 does not supply a new proof of those input
+theorems or a positivity result. It supplies a fully specified
+same-label receiving object and proves how its operations and every
+trace term descend. Its numerical values are exactly the original
+ones: every such value is attained on top-labelled inputs, and every
+labelled input has the displayed numerical amplitude. The support
+data remain in $G_L(Q)$ and in $G_L(\mathbb C)$; an additive
+numerical observation necessarily forgets them by SWQ20. The Bourne
+quotient performs that forgetting already in its source, whereas
+SWQ17 retains $e\ne\tau$ for every nontrivial $L$.

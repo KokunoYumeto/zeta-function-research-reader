@@ -1,0 +1,704 @@
+% Complete typesetting of the unchanged public Markdown proof.
+% Original: https://github.com/KokunoYumeto/zeta-function-research-reader/blob/97bc5b1a25edab0d3fcc8c43b79cfa8ece8ce76c/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/supporting_proofs/TAU_CONNES_ENDPOINT_DERIVATION.md
+% Source SHA256: e216a9b4443306868de60082668c0691932f2ee0241954ec7baba13649e8645b
+% No mathematical content or citations were added or removed.
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  10pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{xurl}
+\emergencystretch=3em
+\setcounter{tocdepth}{1}
+\newcommand{\Beta}{\mathrm{B}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2209}{\ensuremath{\notin}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{2228}{\ensuremath{\vee}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{The external element and the endpoint maps in the adele-class
+construction}\label{the-external-element-and-the-endpoint-maps-in-the-adele-class-construction}
+
+This note defines an exact algebraic extension of the function space
+used in Alain Connes's adele-class construction, and computes its
+endpoint quotient, periodization kernel, support strata, and
+stabilizers. The carrier extension is the programme's actual split-zero
+extension: the external element \(\tau\) and the supported adele zero
+\(e=0_A^\bullet\) are distinct throughout.
+
+The human source is Alain Connes,
+\href{https://arxiv.org/abs/math/9811068}{\emph{Trace formula in
+noncommutative geometry and the zeros of the Riemann zeta function},
+arXiv:math/9811068}, Section III, equations (1)--(19), and Section VI,
+equations (1)--(16). The original author TeX was read at local source
+lines 608--822 and 1574--1726. Section III supplies the Bruhat--Schwartz
+subspace with two vanishing endpoints, its weighted orbital norm, and
+its periodization map. Section VI supplies the local-zero fixed-point
+calculation and carefully identifies its trace discussion there as
+formal. The programme's support convention is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/39ced92952a9c807d51500783b221beb141da3b6/workbenches/splitzero-tandem/tex/support_diagrams.tex\#L9}{\emph{Reconstruction
+with changes of support index}, D1--D8}, specialized to its split
+extension; the relevant definitions and maps are included below. All
+assertions specific to the extended carrier are proved here.
+
+\subsection{1. The carriers and the exact action
+groups}\label{the-carriers-and-the-exact-action-groups}
+
+Let \(k\) be a global field, \(A=A_k\) its adele ring, \(J=A^\times\)
+its idele group, and \(C_k=J/k^\times\) its idele class group. Use the
+usual local absolute values normalized for the product formula, and
+write \[
+|j|=\prod_v|j_v|_v\qquad(j\in J).
+\tag{TC1}
+\] Only finitely many factors differ from 1. The product formula gives
+\(|q|=1\) for \(q\in k^\times\). Fix additive Haar measure \(dx\) on
+\(A\); its scalar change law is \(d(jx)=|j|\,dx\). All integrals below
+use this fixed measure, with no change of its scale.
+
+Define the split-zero semiring \[
+G(A)=\{\tau\}\sqcup\{a^\bullet:a\in A\},\qquad e=0_A^\bullet.
+\tag{TC2}
+\] Two supported elements add and multiply by their adele values. The
+remaining laws are \[
+x+\tau=x,\qquad x\tau=\tau x=\tau.
+\tag{TC3}
+\] Its unit is \(1_A^\bullet\). The supported part is closed under both
+operations, but its zero \(e\) is not the additive identity of \(G(A)\).
+The idele action is \[
+j\cdot a^\bullet=(ja)^\bullet,\qquad j\cdot\tau=\tau.
+\tag{TC4}
+\] Composition and identities hold because they do so for adele
+multiplication, while the external element is fixed. This action
+preserves addition and the external identity, and commutes with scalar
+multiplication. Multiplication by an idele is generally not a unital
+ring endomorphism of the adele carrier; no such assertion is needed for
+this group action.
+
+There are equivariant semiring maps \[
+p:G(A)\to A,\qquad p(\tau)=0_A,\quad p(a^\bullet)=a,
+\] \[
+\chi:G(A)\to\mathbb B,\qquad\chi(\tau)=0,\quad\chi(a^\bullet)=1,
+\tag{TC5}
+\] where \(\mathbb B\) has join as addition and meet as multiplication,
+and the idele group acts trivially on it. Direct evaluation on two
+supported elements and on any pair involving \(\tau\) verifies both
+operations and both identities. The joint map is injective, with image
+\[
+\{(0_A,0)\}\cup(A\times\{1\}).
+\tag{TC6}
+\] Thus the arithmetic map identifies exactly \(\tau\) and \(e\), while
+the support map distinguishes them.
+
+As an additive monoid, \(G(A)\) is not a group. A supported element
+cannot have an additive inverse to the external identity: its sum with
+any supported element remains supported, and adding \(\tau\) leaves it
+supported. The arithmetic projection is its universal additive-group
+quotient. Indeed if \(h:G(A)\to V\) is an additive-monoid map to an
+abelian group, then \(h(e)=h(e)+h(e)\), hence \(h(e)=0\). Its
+restriction \(a\mapsto h(a^\bullet)\) is additive and sends the adele
+zero to zero, so defines an additive-group map \(A\to V\). This map
+factors \(h\) through \(p\), including at \(\tau\), and surjectivity of
+\(p\) makes it unique. This states exactly which quotient recovers the
+additive group; it does not equip the original semiring with an
+additive-group Haar measure.
+
+Taking only orbit sets gives \[
+X_\tau:=G(A)/k^\times
+\cong(A/k^\times)\sqcup\{[\tau]\}.
+\tag{TC7}
+\] No supported orbit contains \(\tau\), proving the disjoint
+decomposition. Commutativity of the idele action with \(k^\times\) makes
+(TC7) a \(C_k\)-set. The quotient map induced by \(p\) identifies
+exactly the two fixed points \([\tau]\) and \([e]\). This is an
+orbit-set assertion; addition on multiplicative orbit classes is not
+being presumed well defined, and no topology on (TC7) has been chosen.
+
+\subsection{2. An algebraic function-space extension and its
+endpoints}\label{an-algebraic-function-space-extension-and-its-endpoints}
+
+Let \(\mathcal S(A)\) be the original Bruhat--Schwartz space. Define the
+complex vector space \[
+\mathcal F_\tau=\mathcal S(A)\oplus\mathbb C_\tau.
+\tag{TC8}
+\] An element \((f,c)\) is the function on the set \(G(A)\) taking value
+\(f(a)\) at \(a^\bullet\) and value \(c\) at \(\tau\). This is a
+specified algebraic space of functions, not a claim that \(G(A)\)
+already has a Bruhat--Schwartz theory. Its idele representation is \[
+\widetilde U(j)(f,c)=(U(j)f,c),\qquad
+(U(j)f)(a)=f(j^{-1}a).
+\tag{TC9}
+\] Scalar multiplication by an idele preserves the local Schwartz and
+locally constant compact-support conditions, hence preserves
+\(\mathcal S(A)\). The identity and composition laws in (TC9) follow by
+substituting \(j^{-1}a\). On \(\tau\), the value remains \(c\) because
+(TC4) fixes the point.
+
+At this stage the acting group is \(J\), not \(C_k\): the maps
+\(f(a)\mapsto f(q^{-1}a)\) for \(q\in k^\times\) need not be the
+identity on the original test functions. Passing to the idele class
+group requires a quotient or another proved factorization. The endpoint
+representation below does factor, by the product formula.
+
+Put \[
+\mathcal S(A)_0=\left\{f\in\mathcal S(A):f(0_A)=0,
+\quad\int_A f(a)\,da=0\right\}.
+\tag{TC10}
+\] This is exactly Connes's Section III, equation (6). Define \[
+\mathcal E_\tau:\mathcal F_\tau\longrightarrow\mathbb C^3,
+\qquad (f,c)\longmapsto
+\left(f(0_A),\int_A f(a)\,da,c\right).
+\tag{TC11}
+\]
+
+\textbf{Theorem TC1 (the three endpoint quotient).} The map (TC11) is
+onto, with kernel \(\mathcal S(A)_0\oplus0\). It is an equivariant map
+for the idele action on its source and the action \[
+j\cdot(z_0,z_1,z_\tau)=(z_0,|j|z_1,z_\tau)
+\tag{TC12}
+\] on its target. Thus there is an exact sequence of complex
+\(J\)-representations \[
+0\longrightarrow\mathcal S(A)_0\longrightarrow\mathcal F_\tau
+\xrightarrow{\mathcal E_\tau}
+\mathbb C\oplus\mathbb C(1)\oplus\mathbb C\longrightarrow0.
+\tag{TC13}
+\] The action on the final three-dimensional quotient factors through
+\(C_k\).
+
+\textbf{Proof.} The kernel is the three simultaneous vanishing
+conditions, which are precisely \(f\in\mathcal S(A)_0\) and \(c=0\). To
+prove surjectivity with actual functions, choose a nonnegative
+elementary Bruhat--Schwartz function \(\psi\) with \(\psi(0_A)=1\) and
+integral \(I>0\). Such a function is a product of nonnegative smooth
+compactly supported factors equal to 1 at zero at the archimedean
+places, together with characteristic functions of compact open additive
+subgroups at the nonarchimedean places, equal to \(1_{\mathcal O_v}\) at
+all but finitely many places. In a function field there are no
+archimedean factors. Each factor has finite positive integral, and the
+restricted-product measure gives finite positive total integral.
+
+Choose a nonarchimedean place \(w\) where the chosen factor is the
+characteristic function of a compact open additive subgroup \(K_w\).
+There exists \(b_w\notin K_w\), since a local field has elements with
+arbitrarily negative valuation. Let \(b\in A\) have component \(b_w\) at
+\(w\) and zero elsewhere, and put \(\psi_b(a)=\psi(a-b)\). Then
+\(\psi_b(0_A)=0\), and translation invariance of the fixed additive Haar
+measure gives \(\int\psi_b=I\). Hence \[
+h_0=\psi-\psi_b,\qquad h_1=I^{-1}\psi_b
+\tag{TC14}
+\] satisfy \((h_0(0),\int h_0)=(1,0)\) and \((h_1(0),\int h_1)=(0,1)\).
+The three elements \((h_0,0),(h_1,0),(0,1)\) map to the coordinate basis
+of \(\mathbb C^3\), proving surjectivity. This supplies a linear
+section; it is not asserted to be an equivariant section.
+
+Evaluation at zero gives \((U(j)f)(0)=f(0)\). Changing variables
+\(a=jb\) gives \[
+\int_A f(j^{-1}a)\,da=|j|\int_A f(b)\,db.
+\tag{TC15}
+\] The external coordinate is fixed by (TC9). These three equalities
+prove equivariance (TC12). Finally \(|q|=1\) for \(q\in k^\times\), so
+that subgroup acts trivially on every endpoint. \(\square\)
+
+If only Connes's original two endpoints are imposed, the resulting
+invariant subspace is \[
+\mathcal D_\tau:=\mathcal S(A)_0\oplus\mathbb C_\tau.
+\tag{TC16}
+\] There is a split exact sequence of \(J\)-representations \[
+0\longrightarrow\mathbb C_\tau
+\longrightarrow\mathcal D_\tau
+\xrightarrow{\pi}\mathcal S(A)_0\longrightarrow0,
+\qquad\pi(f,c)=f.
+\tag{TC17}
+\] Its section is \(f\mapsto(f,0)\), which commutes with (TC9). Thus the
+new fixed coordinate is a fully specified additional representation,
+even though the original two constraints do not detect it.
+
+\subsection{3. Periodization and the external
+orbit}\label{periodization-and-the-external-orbit}
+
+For \(f\in\mathcal S(A)\) and \(x\in J\), define the unweighted orbital
+sum \[
+(Pf)(x)=\sum_{q\in k^\times}f(qx).
+\tag{TC18}
+\] This sum converges absolutely. The needed convergence can be verified
+directly from the test-function definition. In a function field, a
+Bruhat--Schwartz function has compact support. The diagonal subgroup
+\(k\) is discrete in \(A\), and its intersection with any compact set is
+finite. To see the latter assertion without assuming it for an arbitrary
+discrete subset, take a neighbourhood \(W\) of zero with
+\(W\cap k=\{0\}\) and a smaller neighbourhood \(V\) with
+\(V-V\subseteq W\). A compact set has a finite cover by translates of
+\(V\), each containing at most one point of \(k\), since two such points
+would have nonzero difference in \(W\cap k\). Applying this to
+\(x^{-1}\operatorname{supp}(f)\) proves finiteness of the sum. A
+neighbourhood \(W\) as used here follows from the product formula:
+restrict every finite absolute value to at most 1 and require at one
+place a value strictly below 1; no nonzero global element can satisfy
+these inequalities.
+
+In a number field, each Bruhat--Schwartz function is a finite sum of
+products \(f_\infty g_f\), where \(f_\infty\) is a Schwartz function on
+the finite-dimensional real vector space \(k_\infty\), and \(g_f\) is
+locally constant with compact support on the finite adeles. For fixed
+\(x\), the finite components of a \(q\) contributing to one product lie
+in the compact set \(x_f^{-1}\operatorname{supp}(g_f)\). Differences of
+any two such components lie in a fixed compact set \(K\). There is a
+constant \(C\) such that \(\prod_{v\text{ finite}}|r_v|_v\le C\) for all
+\(r_f\in K\): a compact subset of the finite adeles is contained in a
+product of bounded local sets with integral coordinates outside finitely
+many places. If two distinct contributing global elements had
+sufficiently close archimedean coordinates, the product of the
+archimedean absolute values of their nonzero difference would be
+strictly less than \(C^{-1}\). The product formula for their difference
+would then fail. Their archimedean coordinates are therefore uniformly
+separated.
+
+A uniformly separated subset of a real vector space of dimension \(d\)
+has at most a constant times \((1+R)^d\) points in a ball of radius
+\(R\): place disjoint balls of one fixed small radius around its points
+and compare their Euclidean volumes with a ball enlarged by that radius.
+On the other hand, for every integer \(N>0\), the Schwartz estimate and
+the invertible linear map \(a_\infty\mapsto a_\infty x_\infty\) give a
+bound \(|f_\infty(q_\infty x_\infty)|\le C_N(1+\|q_\infty\|)^{-N}\). The
+locally constant compact-support factor is bounded. Summing over unit
+radial shells and taking \(N>d+1\) therefore proves absolute
+convergence. Finite sums of the elementary products preserve this
+conclusion.
+
+Absolute convergence permits reindexing by multiplication with
+\(k^\times\). Thus \(Pf\) is a function on \(C_k\), and \[
+P(U(j)f)(x)=(Pf)(j^{-1}x).
+\tag{TC19}
+\] The external extension is \[
+P_\tau:\mathcal F_\tau\to\operatorname{Fun}(C_k,\mathbb C),
+\qquad P_\tau(f,c)=Pf,
+\tag{TC20}
+\] where \(\operatorname{Fun}\) here means the vector space of functions
+on the indicated set. Its exact kernel is \[
+\ker P_\tau=(\ker P)\oplus\mathbb C_\tau,
+\tag{TC21}
+\] and its image is the image of \(P\). Both statements follow
+immediately and in both directions from its defining equality
+\(P_\tau(f,c)=Pf\). Restricting the source to (TC16) gives the same
+statements with \(P\) restricted to \(\mathcal S(A)_0\). The extra
+coordinate is therefore present in the source and explicitly in the
+kernel of this observation map.
+
+Connes's weighted map has the exact extension \[
+(E_\tau(f,c))(x)=|x|^{1/2}\sum_{q\in k^\times}f(qx).
+\tag{TC22}
+\] The positive factor does not change the kernel or image comparison
+with the original weighted map. If \(V(j)\xi(x)=\xi(j^{-1}x)\), then \[
+E_\tau\widetilde U(j)=|j|^{1/2}V(j)E_\tau.
+\tag{TC23}
+\] Indeed \(|x|^{1/2}=|j|^{1/2}|j^{-1}x|^{1/2}\); substitute this and
+(TC19). This is precisely the twist in Connes's Section III, equation
+(19), with the external coordinate explicitly retained in the domain.
+
+There is a different requirement if the same counting orbital sum is
+demanded at the new point \(\tau\). Its proposed value is \[
+\sum_{q\in k^\times}(f,c)(q\tau)
+=\sum_{q\in k^\times}c.
+\tag{TC24}
+\] The group \(k^\times\) is infinite for every global field. A global
+number field contains infinitely many nonzero rational integers; a
+global function field contains all nonzero powers of any transcendental
+element. A series on such a countable group with constant term \(c\)
+converges only if \(c=0\): for an enumeration its terms must tend to
+zero, and for the unordered finite-subset definition its increment on
+any new singleton is always \(c\). If \(c=0\), the sum is zero. At the
+old fixed point \(e\), the identical argument gives the independent
+condition \(f(0_A)=0\). Consequently imposing the two original endpoint
+constraints and convergence of (TC24) gives exactly the subspace
+\(\mathcal S(A)_0\oplus0\). The projection in (TC17) identifies
+\(\mathcal D_\tau/\mathbb C_\tau\) with this subspace by the inverse
+section \(f\mapsto(f,0)\). This is the exact relation between the
+vanishing-coordinate subspace and the quotient by the fixed-coordinate
+line; neither operation proves that the external point was the same
+point as \(e\).
+
+\subsubsection{The algebraic rational-scaling quotient retains the
+external
+line}\label{the-algebraic-rational-scaling-quotient-retains-the-external-line}
+
+There is a canonical representation of \(C_k\) before any completion,
+obtained from coinvariants. Define \[
+N_k=\operatorname{span}_{\mathbb C}
+\{U(q)f-f:q\in k^\times,\ f\in\mathcal S(A)\}.
+\tag{TC24a}
+\] Each such difference has value zero at zero. Its integral is
+\((|q|-1)\int f=0\), by the product formula. Hence
+\(N_k\subseteq\mathcal S(A)_0\). Commutativity of the idele group
+implies \(U(j)(U(q)f-f)=U(q)U(j)f-U(j)f\), so \(N_k\) is invariant under
+\(J\).
+
+The coinvariant quotient of (TC8) is exactly \[
+(\mathcal F_\tau)_{k^\times}
+=\mathcal F_\tau/(N_k\oplus0)
+\cong(\mathcal S(A)/N_k)\oplus\mathbb C_\tau.
+\tag{TC24b}
+\] Indeed the difference \(\widetilde U(q)(f,c)-(f,c)\) is
+\((U(q)f-f,0)\), so the subspace generated by all these differences is
+exactly \(N_k\oplus0\). Every element of \(k^\times\) now acts as the
+identity, and the \(J\)-action therefore factors uniquely through
+\(C_k\). Conversely any \(J\)-equivariant linear map from
+\(\mathcal F_\tau\) to a representation on which \(k^\times\) acts
+trivially kills every displayed difference, so factors uniquely through
+(TC24b). This proves the full universal property of the quotient.
+
+Since \(N_k\subseteq\mathcal S(A)_0\), (TC13) descends to the exact
+sequence of \(C_k\)-representations \[
+0\longrightarrow\mathcal S(A)_0/N_k
+\longrightarrow(\mathcal F_\tau)_{k^\times}
+\longrightarrow\mathbb C\oplus\mathbb C(1)\oplus\mathbb C
+\longrightarrow0.
+\tag{TC24c}
+\] The endpoint map is well defined because it kills \(N_k\); its kernel
+is the quotient of its previous kernel by \(N_k\), and it remains onto
+by the explicit preimages (TC14). Thus every exactness assertion follows
+from the maps themselves.
+
+The sum (TC18) kills \(N_k\) by its absolute-convergence reindexing. It
+induces a \(C_k\)-equivariant map out of (TC24b), whose exact kernel is
+\[
+(\ker P/N_k)\oplus\mathbb C_\tau.
+\tag{TC24d}
+\] Membership in that kernel means exactly \(Pf=0\), independent of
+\(c\), and changing \(f\) by \(N_k\) changes neither condition. The
+external line has therefore survived the algebraic quotient by rational
+scalings; it is the subsequent periodization observation that places the
+entire line in its kernel. These are two different, fully specified
+operations.
+
+\subsection{4. Two specified completion procedures and their exact
+difference}\label{two-specified-completion-procedures-and-their-exact-difference}
+
+The preceding results require no Hilbert-space completion. The relation
+to a completion is also exact once its seminorm is specified. On the
+original domain \(\mathcal S(A)_0\), let \(\|f\|_\delta\) be Connes's
+seminorm, with \(\delta>1\), from Section III, equation (7): \[
+\|f\|_\delta^2=
+\int_{C_k}|Pf(x)|^2(1+\log^2|x|)^{\delta/2}|x|\,d^*x.
+\tag{TC25}
+\] Here \(d^*x\) is exactly the original multiplicative Haar measure on
+\(C_k\), and the original source supplies the finiteness of this
+seminorm on its prescribed domain. Write
+\(N_\delta=\{f:\|f\|_\delta=0\}\) and \(H_\delta\) for the completion of
+\(\mathcal S(A)_0/N_\delta\). This definition does not identify an
+almost-everywhere vanishing sum with pointwise vanishing without an
+additional proof.
+
+On \(\mathcal D_\tau\), the pullback seminorm \[
+\|(f,c)\|_{\delta,\mathrm{obs}}=\|f\|_\delta
+\tag{TC26}
+\] has nullspace exactly \(N_\delta\oplus\mathbb C_\tau\). Projection in
+(TC17) induces an isometry of its quotient onto
+\(\mathcal S(A)_0/N_\delta\): it is onto; two pairs have the same
+quotient class exactly when their first components differ by
+\(N_\delta\); and the norms agree by definition. Therefore its
+completion is canonically isometric to \(H_\delta\). This is an
+assertion about the explicitly pulled-back seminorm (TC26), not an
+assertion that adjoining a point automatically leaves an unspecified
+Hilbert space unchanged.
+
+For any fixed real number \(\lambda>0\), the equally specified seminorm
+\[
+\|(f,c)\|_{\delta,\lambda}^2
+=\|f\|_\delta^2+\lambda|c|^2
+\tag{TC27}
+\] has nullspace \(N_\delta\oplus0\). Its quotient and completion are
+the orthogonal direct sum \(H_\delta\oplus\mathbb C\), with the second
+factor's squared norm scaled by \(\lambda\). To verify completeness, a
+Cauchy sequence is Cauchy in each component by (TC27), and the two
+component limits give a limit with the sum norm; density follows by
+approximating the first component by original test functions and
+retaining the second component exactly. The idele action on the extra
+factor is trivial. Thus a one-dimensional fixed representation can
+instead be retained by an explicit added term; (TC26) and (TC27) give
+different results and an exact projection between them.
+
+No additive Haar measure on the semiring \(G(A)\), no distributional
+trace on its orbit space, and no equality of completed trace formulas
+follows from either choice alone. The exact maps and the alternatives
+are already specified in (TC17), (TC21), and (TC26)--(TC27).
+
+\subsection{5. Global stabilizers and the supported local-zero
+strata}\label{global-stabilizers-and-the-supported-local-zero-strata}
+
+For a supported adele \(a^\bullet\), define its nonzero and zero
+coordinate sets \[
+T(a)=\{v:a_v\ne0\},\qquad Z(a)=\{v:a_v=0\}.
+\tag{TC28}
+\] Its stabilizer in \(J\) is exactly \[
+J_{Z(a)}=\{j\in J:j_v=1\text{ for every }v\in T(a)\}.
+\tag{TC29}
+\] At each local field, the equation \(j_va_v=a_v\) forces \(j_v=1\) if
+\(a_v\ne0\), by cancellation in that field, and gives no restriction if
+\(a_v=0\). The idele restricted-product condition still applies to the
+unconstrained coordinates, since (TC29) is a subgroup of \(J\). This
+proves the formula. The new external element has stabilizer all of
+\(J\); the supported zero \(e\) independently has the same stabilizer.
+
+Let \(c:J\to C_k\) be the quotient. The stabilizer of the supported
+orbit \([a]\) in \(A/k^\times\) is \[
+\operatorname{Stab}_{C_k}([a])=c(J_{Z(a)}).
+\tag{TC30}
+\] Indeed \(c(j)[a]=[a]\) means that \(ja=qa\) for some
+\(q\in k^\times\). Equivalently \(q^{-1}j\in J_{Z(a)}\), proving both
+directions of (TC30). If \(T(a)\ne\varnothing\), the restriction of
+\(c\) to \(J_{Z(a)}\) is injective. Its kernel consists of diagonal
+\(q\in k^\times\) which equal 1 at every place in \(T(a)\); at even one
+such place, injectivity of \(k\to k_v\) forces \(q=1\) in \(k\). If
+\(a=0\), (TC30) gives the full group \(C_k\), as it also does at
+\([\tau]\).
+
+In particular an adele with every local coordinate nonzero has trivial
+stabilizer in \(C_k\), whether or not its coordinates satisfy the idele
+condition. If exactly the coordinate at \(v\) is zero, then (TC29) is
+the copy of \(k_v^\times\) inserted at that coordinate and equal to 1
+elsewhere, and (TC30) is its injective image in \(C_k\). This proves the
+stabilizer formula used at Connes's generic points of the local-zero
+hyperplanes. The entire old adele subset, its coordinate-zero
+conditions, and these algebraic stabilizers embed equivariantly into
+(TC7). Global adjunction adds one further fixed orbit; it does not
+replace any of the old coordinate-zero strata.
+
+For an arbitrary nonidentity \(g\in C_k\), the old fixed-point set may
+also be described exactly as the union, over representatives \(j\) of
+\(g\) and \(q\in k^\times\), of the images of adeles satisfying \[
+a_v=0\quad\text{whenever }j_v\ne q.
+\tag{TC31}
+\] This is the same equation \(j_va_v=qa_v\), now solved at each field.
+The fixed-point set in \(X_\tau\) is that old set disjointly unioned
+with \(\{[\tau]\}\). No closure or transverse-space calculation for this
+new orbit is being inferred from the set description.
+
+\subsection{6. Coordinatewise splitting at finitely many
+places}\label{coordinatewise-splitting-at-finitely-many-places}
+
+Let \(F\) be a finite nonempty set of places, \(m=|F|\), and put \[
+K_F=\prod_{v\in F}k_v,\quad J_F=\prod_{v\in F}k_v^\times,
+\quad Q_F=\prod_{v\in F}G(k_v).
+\tag{TC32}
+\] No topology on the factors \(G(k_v)\) is assumed here. The scalar
+group acts coordinatewise, fixing each external local element.
+
+Every point of \(Q_F\) has a unique support subset \(E\subseteq F\) and
+amplitudes \(a=(a_v)_{v\in E}\in\prod_{v\in E}k_v\): its coordinate is
+\(a_v^\bullet\) on \(E\), and \(\tau_v\) outside \(E\). Denote it by
+\((E,a)\). Therefore the carrier has the disjoint decomposition \[
+Q_F=\coprod_{E\subseteq F}\prod_{v\in E}k_v.
+\tag{TC33}
+\] The empty product is a singleton, namely the tuple of all external
+elements. If \(x=(E,a)\) and \(y=(E',b)\), then \[
+\operatorname{supp}(x+y)=E\cup E',\qquad
+\operatorname{supp}(xy)=E\cap E'.
+\tag{TC34}
+\] For the sum, a coordinate supported in just one input retains that
+input amplitude, and a coordinate supported in both has amplitude
+\(a_v+b_v\), still supported even if that sum is zero. For the product,
+a missing coordinate in either factor is absorbing; on the intersection
+the amplitude is \(a_vb_v\), again supported when zero. These coordinate
+checks prove all statements of (TC34), including cancellation cases.
+
+There is a canonical equivariant injective semiring map \[
+\eta:G(K_F)\longrightarrow Q_F,
+\quad\eta(\tau)=(\tau_v)_{v\in F},\quad
+\eta(a^\bullet)=(a_v^\bullet)_{v\in F}.
+\tag{TC35}
+\] Its image consists of the full-support stratum and the single
+empty-support point. Coordinate evaluation verifies addition,
+multiplication, and both identities. The image types are disjoint, and
+equality within full support identifies every amplitude, proving
+injectivity. The action agrees coordinatewise, proving equivariance. For
+\(m=1\) this is an isomorphism; for \(m\ge2\) any nonempty proper
+support subset gives a point outside its image.
+
+\textbf{Theorem TC2 (support orbits and stabilizers).} A point
+\((E,a)\in Q_F\) is classified up to the action of \(J_F\) by the pair
+\[
+T=\{v\in E:a_v\ne0\}\subseteq E\subseteq F.
+\tag{TC36}
+\] Its stabilizer is \[
+\operatorname{Stab}_{J_F}(E,a)
+=\{j\in J_F:j_v=1\text{ for }v\in T\}
+\cong\prod_{v\in F\setminus T}k_v^\times.
+\tag{TC37}
+\] There are exactly \(3^m\) orbits in \(Q_F\), exactly \(2^m\) fixed
+points, and exactly \(2^{m-|T|}\) different orbits with a specified
+nonzero locus \(T\). By contrast \(G(K_F)\) has \(2^m+1\) orbits and two
+fixed points.
+
+\textbf{Proof.} Multiplication by a nonzero local scalar preserves each
+of the three local statuses: external, supported zero, and supported
+nonzero. It therefore preserves \(E\) and \(T\). Conversely if two
+points have the same pair, choose \(j_v=b_v/a_v\) on \(T\) and \(j_v=1\)
+elsewhere; this takes one point to the other. Thus (TC36) classifies
+orbits. A scalar fixes a nonzero supported coordinate only when it is 1,
+while it fixes both a supported zero and an external coordinate without
+restriction. This proves (TC37).
+
+Each place has independently three possible statuses, so there are
+\(3^m\) pairs of status patterns, hence that many orbits. A point is
+fixed by every scalar if and only if \(T\) is empty. For each
+\(E\subseteq F\), there is exactly one such point \(e_E\), with
+supported zeros on \(E\) and external elements outside it. A nonzero
+supported amplitude is not fixed by all local scalars, since a local
+field has a unit other than 1 and multiplying that amplitude by such a
+scalar changes it. Therefore the fixed points are exactly the \(2^m\)
+points \(e_E\). With \(T\) prescribed, every coordinate in
+\(F\setminus T\) can independently be supported zero or external, giving
+\(2^{m-|T|}\) distinct orbits with the same stabilizer (TC37).
+
+In the full-support stratum of (TC35), only supported zero or supported
+nonzero can occur at a place, giving \(2^m\) orbits indexed by \(T\).
+The extra global external point is one further orbit. The only fixed
+point in full support is its supported zero, and the external point is
+independently fixed, proving the last assertions. \(\square\)
+
+The arithmetic coordinate map \(Q_F\to K_F\) sends a missing coordinate
+to local zero and leaves every supported amplitude unchanged. For a
+fixed amplitude tuple with nonzero locus \(T\), its fibre consists
+exactly of the \(2^{m-|T|}\) choices of supported zero or external label
+at the remaining coordinates. Thus (TC37)'s identical stabilizers do not
+identify these points or their orbits: the arithmetic quotient is the
+explicit map making the identifications.
+
+\subsection{7. A finite-coordinate function-space
+comparison}\label{a-finite-coordinate-function-space-comparison}
+
+The finite support decomposition also permits an exact algebraic
+function-space construction, with no unchosen topology on the split
+carriers. For \(E\subseteq F\), put \(K_E=\prod_{v\in E}k_v\), and let
+\(\mathcal S(K_E)\) be its usual local-product Bruhat--Schwartz space.
+For \(E=\varnothing\), set \(K_E=\{*\}\) and
+\(\mathcal S(K_E)=\mathbb C\). Define \[
+\mathcal F_F=\bigoplus_{E\subseteq F}\mathcal S(K_E).
+\tag{TC38}
+\] There are finitely many summands. An element specifies a test
+function separately on each support stratum of (TC33). The action of
+\(j\in J_F\) on the \(E\)-summand is \(f_E(a)\mapsto f_E(j_E^{-1}a)\);
+on the empty summand it is trivial.
+
+Fix additive Haar measure on every nonempty \(K_E\). Its two endpoints
+are evaluation at the supported zero of that stratum and integration.
+For \(E\ne\varnothing\) their map is onto \(\mathbb C^2\): choose a
+nonnegative compactly supported test function equal to 1 at zero,
+translate it to have value zero at zero without changing its positive
+integral, and repeat the two combinations in (TC14). A translation with
+the required disjointness exists in every nonempty local product by
+translating outside a sufficiently small compact support in one factor.
+In the empty summand, evaluation and integration of its single scalar
+would be the same functional, so retain one endpoint, not two.
+
+Combining these maps gives a surjective endpoint map with target
+dimension \[
+2(2^m-1)+1=2^{m+1}-1.
+\tag{TC39}
+\] Its kernel is the direct sum of the two-endpoint kernels on all
+nonempty strata, with zero on the empty stratum. The evaluation
+character is trivial for each stratum. The integral character on a
+nonempty stratum is \[
+\chi_E(j)=\prod_{v\in E}|j_v|_v,
+\tag{TC40}
+\] by the same variable change as (TC15). Thus its endpoint
+representation consists of \(2^m\) trivial evaluation lines and
+\(2^m-1\) integral lines with the specified characters. This assertion
+counts direct summands; coinciding characters do not merge their
+separate endpoint coordinates.
+
+Restriction to the image of (TC35) is the projection \[
+\mathcal F_F\longrightarrow\mathcal S(K_F)\oplus\mathbb C_\tau
+\tag{TC41}
+\] onto the full-support and empty-support summands. It is onto and
+equivariant, with kernel exactly the sum over all nonempty proper
+\(E\subset F\). A section sets those other functions to zero and is also
+equivariant. Hence coordinatewise splitting adds explicitly defined
+strata and test-function representations beyond the one-line global
+extension; the precise forgetting map is (TC41).
+
+\subsection{8. The proved relation to the original
+construction}\label{the-proved-relation-to-the-original-construction}
+
+The new external point is a second global fixed orbit alongside the
+supported adele zero. Its function coordinate is a trivial
+one-dimensional representation. The exact endpoint quotient (TC13) has
+three coordinates with characters \((1,|j|,1)\), whereas Connes's
+original source uses the two old coordinates. Periodization along idele
+orbits forgets the new coordinate by the exact kernel (TC21), and a
+convergent counting orbital sum at that new fixed point imposes its
+independent vanishing by (TC24). The two completion procedures
+(TC26)--(TC27) show exactly when that line is removed and when it is
+retained.
+
+The global supported local-zero loci retain their original stabilizers
+through the equivariant inclusion, as proved in (TC29)--(TC31).
+Coordinatewise splitting is a different, larger construction:
+(TC33)--(TC37) calculate its additional support labels, fixed points,
+orbits, and arithmetic fibres, while (TC38)--(TC41) calculate a
+corresponding finite-stratum function-space map. No identification of a
+new trace distribution with Connes's trace distribution, and no
+invariance of a topology or Hilbert completion without a specified
+comparison, has been assumed.
+
+\end{document}

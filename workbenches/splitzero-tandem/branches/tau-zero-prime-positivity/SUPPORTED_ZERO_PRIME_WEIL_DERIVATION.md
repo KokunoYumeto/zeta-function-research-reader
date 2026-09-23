@@ -529,3 +529,7 @@ The first equality is the actual carrier sum (SZW9). The second is precisely the
 
 
 ![The actual supported-zero prime, its full theta and Mellin endpoint map, the retained fixed-support boundary distributions, and the full label-resolved trace identity. SZW1–SZW4, SZW6–SZW23 and SZW33–SZW42 prove the displayed maps and constants.](figures/32_supported_zero_weil.png)
+
+## Exact residue-duality continuation
+
+[RD1–RD31b](COLLISION_RESIDUE_DUALITY_DERIVATION.md) proves the complete Jacobian map from perfect residue duality to the retained regular trace, identifies the actual packet radical with cotangent cohomology, and computes the supported endpoint compensation. The existing formulas and all their coordinates remain unchanged.

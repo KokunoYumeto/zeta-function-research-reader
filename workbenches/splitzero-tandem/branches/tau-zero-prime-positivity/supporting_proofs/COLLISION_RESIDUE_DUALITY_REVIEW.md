@@ -1,0 +1,362 @@
+# Independent review of collision residue duality
+
+23 September 2026. This bounded mathematical review checks RD1–RD31 of [COLLISION_RESIDUE_DUALITY_DERIVATION.md](../COLLISION_RESIDUE_DUALITY_DERIVATION.md). It also reads [WEIL_PACKET_ANALYTIC_DERIVATION.md](../WEIL_PACKET_ANALYTIC_DERIVATION.md), WA1–WA30, and the exact conventions in [SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md](../SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md), SZW24–SZW25 and SZW33–SZW39. The packet definitions and involution are checked against [WEIL_PACKET_DERIVATION.md](../WEIL_PACKET_DERIVATION.md), WP1–WP11, WP22–WP29, and WP42–WP44a.
+
+All mathematical formulas in RD1–RD31 are correct. The reviewed source had one coordinate locator, now corrected in the proof edition: RD16's integral cokernel is carried by the **epsilon and epsilon T coordinates**, not “the last two retained coordinates” in the RD2 order. No sign, coefficient, hypothesis, or formula needs replacement. The direct proofs below establish that verdict and the additional exact statements explicitly marked as extensions.
+
+## CR1. Integral bases, duality, and the quotient dual
+
+Retain
+\[
+B=\mathbb Z[x,T]/(x^2(x+3),T^2-3x(x+2)),\qquad
+C=\mathbb Z[\epsilon,T]/(\epsilon^2,T^2-6\epsilon).
+\]
+Their successive monic presentations give the free bases
+\[
+(1,x,x^2,T,xT,x^2T),\qquad(1,\epsilon,T,\epsilon T).
+\]
+The quotient \(q(x)=\epsilon,q(T)=T\) is onto and has kernel
+\(J=\mathbb Zx^2\oplus\mathbb Zx^2T\). This follows by applying \(q\) to the six basis coefficients, without any division.
+
+Let \(\lambda_B,\lambda_C\) extract the \(x^2T,\epsilon T\) coefficients. Reduction by \(x^3=-3x^2\) gives
+\[
+G_B=\begin{pmatrix}0&G\\G&0\end{pmatrix},\quad
+G=\begin{pmatrix}0&0&1\\0&1&-3\\1&-3&9\end{pmatrix},\quad
+G^{-1}=\begin{pmatrix}0&3&1\\3&1&0\\1&0&0\end{pmatrix}.
+\]
+For \(C\), the Gram matrix is the anti-diagonal matrix with four entries equal to one. Direct multiplication gives \(GG^{-1}=I\), \(\det G_B=-1\), and \(\det G_C=1\). The respective maps \(a\mapsto a\lambda\) are therefore integral module isomorphisms to the \(\mathbb Z\)-duals. These proofs remain valid after every scalar extension.
+
+For
+\[
+f=p_0+p_1x+p_2x^2+(q_0+q_1x+q_2x^2)T,
+\]
+the \(T\)-coefficient polynomial of \((x+3)f\) is
+\[
+3q_0+(q_0+3q_1)x+q_1x^2.
+\]
+Its \(x^2\)-coefficient is \(q_1=\lambda_C(qf)\), proving
+\[
+q^\vee\lambda_C=(x+3)\lambda_B.
+\]
+For every \(c\in C\), therefore,
+\[
+q^\vee(c\lambda_C)=(x+3)\widetilde c\,\lambda_B.
+\]
+Any two lifts differ by \(J\), and \((x+3)J=0\), so this equality is independent of the lift. It proves RD10 as a complete map of \(B\)-modules, with \(B\) acting on \(C^\vee\) through \(q\).
+
+There is also an exact integral description of its image:
+\[
+\operatorname{im}q^\vee=\operatorname{Ann}_B(J)\lambda_B=(x+3)B\lambda_B.
+\]
+Indeed \(x^2(p_0+p_1x+p_2x^2)=(p_0-3p_1+9p_2)x^2\), and the identical equation applies to the \(T\)-coefficient polynomial. Vanishing is equivalent to divisibility by \(x+3\): when \(p_0=3p_1-9p_2\), the polynomial is
+\[
+(x+3)(p_1-3p_2+p_2x).
+\]
+Conversely every multiple of \(x+3\) annihilates \(x^2\). This proves the image formula without inverting 3. Since \(C\) is free over \(\mathbb Z\), dualizing \(0\to J\to B\to C\to0\) gives the exact sequence
+\[
+0\to C^\vee\xrightarrow{q^\vee}B^\vee\to J^\vee\to0.
+\]
+Surjectivity of the last map can also be seen directly by extending a functional on the two indicated basis vectors to the full basis of \(B\).
+
+## CR2. Jacobians and both integral trace components
+
+For any finite free algebra with a perfect functional \(\lambda\), a pair of dual bases \(b_i,b_i^*\) gives
+\[
+\operatorname{Tr}(m_f)=\sum_i\lambda(b_i^*fb_i)
+=\lambda\!\left(f\sum_i b_i b_i^*\right).
+\]
+This follows by writing each diagonal coefficient of the multiplication matrix in its dual basis, so it requires no separability.
+
+For \(B\), the dual basis is
+\[
+(3xT+x^2T,\;3T+xT,\;T,\;3x+x^2,\;3+x,\;1).
+\]
+The sum of its products with the original basis is
+\[
+12xT+6x^2T=6x(x+2)T=J_B.
+\]
+For \(C\), the dual basis is \((\epsilon T,T,\epsilon,1)\), and the product sum is
+\(4\epsilon T=J_C\). These match the two explicitly displayed differential determinants in RD8. Thus
+\[
+\operatorname{tr}_B(f)=6p_0-6p_1+18p_2,\qquad
+\operatorname{tr}_C(a+b\epsilon+cT+d\epsilon T)=4a.
+\]
+
+The identity
+\[
+J_B=4x(x+3)T+2x^2T
+\]
+is an equality in the original integral algebra. Its two density functionals evaluate respectively to
+\[
+4p_0,\qquad 2(p_0-3p_1+9p_2).
+\]
+The first is \(q^\vee\operatorname{tr}_C\). The second is exactly the sum of evaluations at the two sections \((x,T)=(-3,3),(-3,-3)\). This last assertion follows by adding those evaluations; the \(T\)-terms cancel and the two polynomial values are equal. Hence the stated trace decomposition is valid integrally, while asserting no direct-product decomposition of \(B\).
+
+## CR3. The dual residue and its complete signs
+
+Over \(\mathbb Z[1/2]\), put \(n_1=x(x+3)\), \(n_3=Tn_1\), and retain
+\[
+D_Bx=0,\quad D_BT=-n_3/8,\qquad
+D_C\epsilon=0,\quad D_CT=-3\epsilon T/8.
+\]
+Applying these assignments to the two defining relations gives zero, using
+\[
+T^2n_1=0,\qquad \epsilon T^2=0.
+\]
+They therefore define algebra derivations. Their quotient compatibility holds on \(x,T\), which generate \(B\).
+
+A complete square-zero verification, supplementing the short generator argument in RD12, is
+\[
+D_Bf=-q_0n_3/8,\quad D_Bn_3=-Tn_1^2/8=0;
+\]
+\[
+D_C(a+b\epsilon+cT+d\epsilon T)=-3c\epsilon T/8,\quad
+D_C(\epsilon T)=0.
+\]
+Here \(xn_3=0\), \(n_1^2=0\), and \(\epsilon^2=0\). Thus both operators square to zero on every element. Their images also have square zero.
+
+Define \(D^\vee\ell=-\ell\circ D\). Coefficient extraction gives
+\[
+D_B^\vee\lambda_B=(n_1/8)\lambda_B,\qquad
+D_C^\vee\lambda_C=(3\epsilon/8)\lambda_C.
+\]
+For a general multiplier \(a\), the complete transported operator is
+\[
+D^\vee(a\lambda)=(Da+ra)\lambda,\qquad
+r_B=n_1/8,\quad r_C=3\epsilon/8.
+\]
+The sign before \(Da\) is positive: evaluate on \(f\) and use
+\[
+-\lambda(aDf)=-\lambda(D(af))+\lambda((Da)f).
+\]
+Compatibility with \(q^\vee\) uses \((x+3)n_1=3n_1\). The natural double-dual operator has no extra sign either:
+\[
+(D^\vee)^\vee\operatorname{ev}(a)(\ell)
+=-\operatorname{ev}(a)(D^\vee\ell)=\ell(Da).
+\]
+
+Finally \(D_BJ_B=r_BJ_B=0\) and \(D_CJ_C=r_CJ_C=0\). Each product reduces to a multiple of \(x^2(x+3)\) or \(\epsilon^2\). Thus the nonzero action on the perfect dual generators disappears precisely upon multiplication by the specified Jacobian densities. This proves RD12–RD15, including the full module action and all signs.
+
+## CR4. The complex collision and RD20
+
+Over \(\mathbb C\), the isomorphism \(C_{\mathbb C}\to C_0=\mathbb C[T]/T^4\) is
+\(\epsilon\mapsto T^2/6,\;T\mapsto T\). Its inverse respects \(T^4=36\epsilon^2=0\). The corresponding integral map \(\mathbb Z[T]/T^4\to C\) is injective with image
+\(\mathbb Z\{1,T,6\epsilon,6\epsilon T\}\), so its cokernel is \((\mathbb Z/6)^2\) on **\(\epsilon,\epsilon T\)**. These are coordinates two and four in RD2.
+
+For \(f^*(T)=\overline{f(-\overline T)}\) and \(\ell(f)=[T^3]f\),
+\[
+Q_{\rm res}(f,g)
+=i(\overline f_0g_3-\overline f_1g_2+\overline f_2g_1-\overline f_3g_0).
+\]
+The matrix has anti-diagonal \(i,-i,i,-i\), and its two paired coordinate blocks each have eigenvalues \(1,-1\). Hence its inertia is \((2,2,0)\).
+
+The regular trace is
+\[
+Q_{\rm tr}(f,g)=4\overline f_0g_0
+=Q_{\rm res}(f,-4iT^3g).
+\]
+The multiplier \(-4iT^3\) is fixed by \(*\). Its multiplication operator has square zero, kernel \((T)\), and image \(\mathbb CT^3\). Thus it is self-adjoint for the residue form and gives exactly the stated positive semidefinite trace form. The integral conversion is \(\lambda_C=6\ell\) and \(J_C=(2/3)T^3\), whose product supplies the same coefficient 4.
+
+The original residue is \(Df=-f_1T^3/16\). Since \(D^2=0\) and \(D(f)D(g)=0\),
+\[
+V_a=1+aD,\qquad V_aV_b=V_{a+b}
+\]
+are algebra automorphisms, with inverse \(V_{-a}\). For real \(a\), the only changed coefficient of \(f\) is \(f_3\mapsto f_3-af_1/16\). Substitution in the displayed formula for \(Q_{\rm res}\) gives
+\[
+Q_{\rm res}(V_af,V_ag)-Q_{\rm res}(f,g)
+=-\frac{ia}{16}(\overline f_0g_1-\overline f_1g_0).
+\]
+Its nonzero matrix block is
+\[
+\begin{pmatrix}0&-ia/16\\ia/16&0\end{pmatrix}.
+\]
+For \(a\ne0\), its eigenvalues are \(\pm|a|/16\), so the full difference has inertia \((1,1,2)\). Invertible congruence preserves the original inertia \((2,2,0)\). The trace difference is zero because \(V_a\) fixes the constant coefficient. This verifies every assertion and sign in RD16–RD20.
+
+## CR5. The general monic trace identity
+
+For a monic \(h\) of degree \(n\), the Gram matrix of
+\(\lambda_h(fg)\), in increasing powers of \(s\), vanishes below the anti-diagonal and has ones on that anti-diagonal. Reversing columns gives a triangular matrix with diagonal one, proving perfect duality without a squarefree hypothesis.
+
+An independent repeated-root proof of RD21 uses the rational function
+\[
+\frac{h'(s)f(s)}{h(s)}.
+\]
+If \(h'f=qh+r\), \(\deg r<n\), its coefficient of \(s^{-1}\) at infinity is the coefficient of \(s^{n-1}\) in \(r\), namely \(\lambda_h(h'f)\); the polynomial \(q\) contributes no negative powers. At a root \(\alpha\) of multiplicity \(m_\alpha\), the rational function \(h'/h\) has a simple pole of residue \(m_\alpha\), so the residue after multiplying by \(f\) is \(m_\alpha f(\alpha)\). Partial fraction expansion consequently gives
+\[
+\lambda_h(h'f)=\sum_\alpha m_\alpha f(\alpha).
+\]
+The multiplication matrix of \(f\) on
+\(\mathbb C[t]/t^{m_\alpha}\) is triangular with \(m_\alpha\) diagonal entries \(f(\alpha)\). The Chinese remainder isomorphism then gives the same sum for the regular trace. This proves RD21 for every multiplicity. RD21's original polynomial-density proof is also valid.
+
+When \(n\) is even and \(h^\#=h\), reflection of a remainder has degree less than \(n\) and top coefficient equal to the negative conjugate of its former top coefficient. Hence
+\[
+\lambda_h(f^\#)=-\overline{\lambda_h(f)}.
+\]
+It follows that \(Q_h(f,g)=i\lambda_h(f^\#g)\) is Hermitian and perfect. Differentiation gives \((h')^\#=-h'\), so
+\[
+(-ih')^\#=-ih',\qquad
+Q_h(f,-ih'g)=\lambda_h(h'f^\#g)=\operatorname{Tr}(m_{f^\#g}).
+\]
+This verifies both the sign and the self-adjointness in RD24.
+
+## CR6. The actual multiplier and the full cotangent identification
+
+For the retained quartet let \(d=\prod_{\alpha\in\mathcal R}(s-\alpha)\), \(h=d^m\), and \(v_h=(2\xi)/h\). The exact zero order \(m\) makes \(v_h\) entire and nonzero at every quartet point. Simultaneous Taylor interpolation identifies
+\[
+E_h=\mathbb C[s]/h\simeq\prod_{\alpha\in\mathcal R}\mathbb C[t_\alpha]/t_\alpha^m.
+\]
+The class \(u=j_h(v_h)\) is a unit because every constant component is nonzero; its inverse is the finite geometric inverse in each factor. Thus \(U=M_u\) is the original full-jet multiplier.
+
+In each primary component, the trace of multiplication by \((uf)^\#(ug)\) is \(m\) times its constant coefficient. Therefore
+\[
+B_h(f,g)=\sum_{\alpha\in\mathcal R}
+m\,\overline{v_h(\sigma\alpha)f(\sigma\alpha)}v_h(\alpha)g(\alpha)
+=Q_h(Uf,K_hUg),
+\qquad \sigma\alpha=1-\overline\alpha.
+\]
+This is exactly WP28; no amplitude, sign, or factor \(m\) is absent.
+
+The polynomial algebra \(\mathbb C[s]\) has the free commutative differential graded resolution
+\(\mathbb C[s,\eta]\), where \(\eta\) has degree \(-1\), is exterior, and the internal differential sends \(\eta\) to \(h(s)\). Multiplication by \(h\) is injective in \(\mathbb C[s]\), so its only cohomology is \(E_h\) in degree zero. Taking its Kähler differentials and tensoring with \(E_h\) gives the two-term cotangent complex
+\[
+L_{E_h/\mathbb C}=
+[E_h\overline h\xrightarrow{h'}E_h\,ds].
+\]
+Consequently \(H^{-1}\) is \(\operatorname{Ann}(h')\overline h\), with its coefficient embedding \(a\overline h\mapsto a\) into \(E_h\). This proves the specified map in RD27–RD28.
+
+Since \(u^\#u\) is a unit, perfection gives
+\[
+\operatorname{rad}B_h=\operatorname{Ann}(h').
+\]
+As \(h'=m d^{m-1}d'\), and \(d'\) is prime to the squarefree \(d\),
+\[
+d^m\mid h'f\quad\Longleftrightarrow\quad d\mid f.
+\]
+Thus
+\[
+\operatorname{rad}B_h=(d)/(d^m)
+\simeq H^{-1}(L_{E_h/\mathbb C})
+\]
+through the displayed coefficient map. For \(m=1\), \((d)/(d)=0\); no whole ambient ideal is being identified with a nonzero cotangent class. Rank-nullity gives the trace-to-dual map rank 4 and kernel and cokernel dimensions \(4m-4\), as stated.
+
+## CR7. Supported endpoints and the full WA24 sign
+
+With the exact WA conventions, set
+\[
+P(A)=\sum_{n\ge2}\frac{\Lambda_{\rm ar}(n)}{\sqrt n}
+\{k(\log n)+k(-\log n)\},
+\]
+\[
+A_\infty(A)=\frac1{2\pi}\int_{\mathbb R}A(1/2+it)
+\{\operatorname{Re}\psi(1/4+it/2)-\log\pi\}\,dt.
+\]
+WA24 is precisely
+\[
+Z(A)=A(0)+A(1)+A_\infty(A)-P(A).
+\]
+The signs agree with SZW24–SZW25. WA1–WA23 prove that these sums and integrals converge for every polynomial packet test: fixed-strip exponential decay gives inverse transforms decaying faster than every fixed exponential; the prime series is then absolutely convergent. The meromorphic cancellation in WA18 removes every nonpacket zero before the contour shift. Its retained poles have residues \(mA(\alpha),-A(0),-A(1)\), establishing the displayed sign without a missing pole term.
+
+RD29 follows by placing this scalar equality at the top support coordinate and the common endpoint value \(A(0)\) at every lower coordinate. In particular, the precise Hermitian value identity is
+\[
+\boldsymbol B_L(A)-\boldsymbol D_L(A)
+=B_h([f],[g])\,\mathbf e_{1_L},
+\]
+not a claim that the boundary distribution alone is the packet form. The lower coordinates cancel in this difference and remain individually defined in both terms.
+
+For \(A=f^\#g\,v_h^2\), all nonpacket zeros give zero because \(v_h\) vanishes there. The finite remaining zero sum equals the regular trace computed in CR6. This proves RD30 with the original supported labels.
+
+Replacing \(g\) by \(g+db\) gives
+\[
+\Delta A=f^\#db\,v_h^2.
+\]
+It vanishes at every packet root because of \(d\), and at every nonpacket zero because of \(v_h^2\). Hence \(\Delta Z=0\). Both tests are in the WA24 class, so subtracting their convergent identities is legitimate and gives
+\[
+\Delta(P-A_\infty)=\Delta A(0)+\Delta A(1).
+\]
+At the top coordinate this is exactly
+\(\Delta\boldsymbol B_L=\Delta\boldsymbol D_L\); at each lower coordinate, both sides are \(\Delta A(0)\). This proves RD31 without setting any endpoint to zero.
+
+There is an explicit nonzero witness. Put \(D_0=d(0)=d(1)\). The quartet symmetry gives
+\[
+D_0=|\rho|^2|1-\rho|^2>0,\qquad
+v_h(0)=v_h(1)=D_0^{-m},
+\]
+using \(2\xi(0)=2\xi(1)=1\). Choose \(f=1,b=1\). Then
+\[
+\Delta A(0)=\Delta A(1)=D_0^{1-2m},\qquad
+\Delta(P-A_\infty)=2D_0^{1-2m},
+\]
+while \(\Delta Z=0\). Every lower support coordinate changes by \(D_0^{1-2m}\). This remains true for \(m=1\), when adding \(d\) changes no finite packet class at all. It therefore verifies concretely why endpoints belong to the actual entire representative rather than to its finite jet class.
+
+The invisible change may retain higher jets at the packet points: multiplication by its primary remainder is strictly triangular and has zero trace. No argument above identifies the entire multiplication operator with zero.
+
+## CR8. Exact types of the final supported lifts
+
+The final paragraph of RD31 is correct when its lifts retain the original linear or sesquilinear map types. Here are the formulas.
+
+For a complex vector space \(V\), let
+\(\operatorname{Spl}(V)=\{\tau_V\}\sqcup V^\bullet\), with supported vector addition and scalar multiplication and with \(\tau_V\) the external additive identity. For a linear map \(F:V\to W\), define
+\[
+\widehat F(\tau_V)=\tau_W,\qquad
+\widehat F(v^\bullet)=(Fv)^\bullet.
+\]
+This is a \(G(\mathbb C)\)-semimodule map: if both arguments are supported, the assertion is exactly the original linearity; if an argument or scalar is unsupported, the defining external-identity and external-absorption formulas give the equality directly. It maps a supported kernel vector to \(0_W^\bullet\), never to \(\tau_W\).
+
+For a sesquilinear form \(Q\), its two-variable lift is
+\[
+\widehat Q(v^\bullet,w^\bullet)=Q(v,w)^\bullet,
+\qquad
+\widehat Q(\tau_V,z)=\widehat Q(z,\tau_V)=\tau_{\mathbb C}.
+\]
+It is conjugate semilinear in the first variable and linear in the second, by the same two-case checks. Thus the trace and duality maps lift as linear maps, and the displayed Hermitian forms lift as sesquilinear maps. No trace map is being asserted to preserve algebra multiplication.
+
+The supported scalar \(e=0^\bullet\) satisfies \(e^2=e\). On any \(G(\mathbb C)\)-semimodule, \(p_M(m)=em\) and inclusion \(i_M:eM\hookrightarrow M\) satisfy \(p_Mi_M=\mathrm{id}\), since \(e(em)=em\). For the split modules, \(e(v^\bullet)=0_V^\bullet\) and \(e\tau_V=\tau_V\). These identities verify that the supported-zero response and unsupported argument remain distinct.
+
+## CR9. Additional exact strengthening of the packet map
+
+These statements extend RD24–RD28 without changing any original coordinate or multiplicity.
+
+First,
+\[
+\operatorname{im}K_h=h'E_h=(d^{m-1})/(d^m),
+\qquad \dim_{\mathbb C}\operatorname{im}K_h=4.
+\]
+Indeed \(m d'\) is a unit modulo \(d^m\), so multiplication by \(h'\) has the same image as multiplication by \(d^{m-1}\). For \(m\ge2\),
+\[
+h'^2=m^2d^{2m-2}(d')^2\in(d^m),
+\]
+because \(2m-2\ge m\), and hence \(K_h^2=0\). For \(m=1\), \(h'=d'\) is a unit in \(E_h\), so \(K_h\) is invertible instead.
+
+Second, for the retained off-critical quartet the perfect residue form has inertia
+\[
+\operatorname{inertia}(Q_h)=(2m,2m,0).
+\]
+The involution pairs the four primary factors in two disjoint pairs. Each individual \(m\)-dimensional factor is isotropic: for \(f,g\) in that factor, \(f^\#\) belongs to its different reflected factor, so \(f^\#g=0\). The cross-pairing is perfect, since perfection of \(Q_h\) would otherwise leave a vector annihilating all four factors. Thus on each pair the matrix is \(\begin{psmallmatrix}0&H\\H^*&0\end{psmallmatrix}\) with \(H\) invertible. A change of basis reduces it to \(\begin{psmallmatrix}0&I\\I&0\end{psmallmatrix}\), which has inertia \((m,m,0)\). Adding the two pairs proves the formula. The trace form remains of inertia \((2,2,4m-4)\), as proved by the exact Jacobian comparison.
+
+Third, the perfect bilinear residue duality also pairs the two cotangent cohomology groups:
+\[
+H^{-1}(L_{E_h/\mathbb C})\times H^0(L_{E_h/\mathbb C})
+\longrightarrow\mathbb C,\qquad
+(a\overline h,[b\,ds])\longmapsto\lambda_h(ab).
+\]
+This is well defined because \(ah'=0\). It is perfect: the orthogonal complement of \(h'E_h\) under the perfect pairing \(\lambda_h(ab)\) is exactly \(\operatorname{Ann}(h')\), since
+\(\lambda_h(ah'c)=0\) for every \(c\) is equivalent to \(ah'=0\). Finite-dimensional duality then identifies \(\operatorname{Ann}(h')\) with the full dual of \(E_h/h'E_h\). This is a map in the original \(s\)-coordinate with the specified relation generator and \(ds\); no coordinate-free normalization is presumed.
+
+## CR10. Scope and exact source versions
+
+The mathematical review covers all claims in RD1–RD31. It checks the incoming analytic extension by reading its complete local proof WA1–WA30, including its convergence and contour signs. It does not certify the separate renderer, symbolic checker implementation, generated figure, public link state, or a publication action.
+
+The reviewed RD1–RD31 source had SHA256
+3B6B947A9ECF751C992FC086C8B55569041ACB8B62A8A77B1A9B6EEEF340F7D9.
+
+The local analytic source read in full had SHA256
+1C7E88DC533CC41E4930606C8E3945E5B9A593267382B05E72D72D6E865E08EA.
+
+The local packet source, with the reading coverage specified above, had SHA256
+3C32851A92AC2A57DDC331E5A839D4A878799E71D58D326193C562742283891D.
+
+The local supported-zero source, with the reading coverage specified above, had SHA256
+FF7FBE6CC627720368A7C245052EF8263925CA2D912046DFE45E3BE74D4455F4.
+
+The human source attribution for the incoming explicit-formula conventions remains Alain Connes and Caterina Consani, *Weil positivity and Trace formula, the archimedean place*, arXiv:2006.13771v1, original author source and proof locators recorded in WA. This review checks the programme's actual analytic derivation and does not claim a fresh reading of that author source. The finite algebra arguments and the extensions CR7–CR9 are fully proved in this review.
+

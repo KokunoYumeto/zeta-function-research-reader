@@ -495,3 +495,7 @@ The reproducible script `check_eight_state_holonomy.py` passed **96 exact checks
 
 
 ![The two actual heat meridians, the full length-four collision algebra, its dual-number quotient, and the nonzero holonomy residue between infinitesimal layers. EHM23–EHM34 and EHM42–EHM47 give the complete proofs, signs and clock scale.](figures/33_holonomy_infinitesimal_residue.png)
+
+## Exact residue-duality continuation
+
+[RD1–RD31b](COLLISION_RESIDUE_DUALITY_DERIVATION.md) proves the complete Jacobian map from perfect residue duality to the retained regular trace, identifies the actual packet radical with cotangent cohomology, and computes the supported endpoint compensation. The existing formulas and all their coordinates remain unchanged.

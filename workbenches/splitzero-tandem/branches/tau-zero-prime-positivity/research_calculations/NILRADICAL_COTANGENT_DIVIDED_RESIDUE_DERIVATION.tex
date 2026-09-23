@@ -1,0 +1,604 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{xurl}
+\emergencystretch=3em
+\setcounter{tocdepth}{1}
+\newcommand{\Beta}{\mathrm{B}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2209}{\ensuremath{\notin}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{2228}{\ensuremath{\vee}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\DeclareUnicodeCharacter{00B3}{\ensuremath{^3}}
+\DeclareUnicodeCharacter{2074}{\ensuremath{^4}}
+\DeclareUnicodeCharacter{2076}{\ensuremath{^6}}
+\DeclareUnicodeCharacter{03BB}{\ensuremath{\lambda}}
+\DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03A6}{\ensuremath{\Phi}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B4}{\ensuremath{\delta}}
+\DeclareUnicodeCharacter{03C0}{\ensuremath{\pi}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{2202}{\ensuremath{\partial}}
+\DeclareUnicodeCharacter{0393}{\ensuremath{\Gamma}}
+\DeclareUnicodeCharacter{2205}{\ensuremath{\varnothing}}
+\DeclareUnicodeCharacter{221E}{\ensuremath{\infty}}
+\DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
+\DeclareUnicodeCharacter{00B9}{\ensuremath{^1}}
+\DeclareUnicodeCharacter{00B0}{\ensuremath{{}^\circ}}
+\DeclareUnicodeCharacter{211D}{\ensuremath{\mathbb{R}}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{The nilradical--cotangent bridge and its divided residue at
+3}\label{the-nilradicalcotangent-bridge-and-its-divided-residue-at-3}
+
+Independent bounded derivation, 23 September 2026. This note proves the
+exact module maps between the original nilradicals and cotangent
+cohomology groups, keeps the integral quotient before and after
+tensoring, and computes the divided residue on both cokernels. Division
+by 3 occurs only in free lattices where the displayed coefficients prove
+divisibility.
+
+The retained source presentations and earlier computations are
+\url{INTEGRAL_EIGHT_STATE_COLLISION_DERIVATION.md}, IEC41--IEC47 and
+Appendix A, \url{IEC_P3_INDEPENDENT_REVIEW.md}, R3.1--R3.5, and
+\url{INTEGRAL_RESIDUE_FROBENIUS_REVIEW.md}, RF39--RF54. The current maps
+are proved in full below. No new publication or historical-literature
+claim is made.
+
+\subsection{NC1. The original algebras and their
+radicals}\label{nc1.-the-original-algebras-and-their-radicals}
+
+Put \(O=\mathbb Z_3\), and retain \[
+B=O[x,T]/(f,g),\quad
+f=x^2(x+3),\quad g=T^2-3x(x+2),
+\] \[
+C=O[\epsilon,T]/(f_C,g_C),\quad
+f_C=\epsilon^2,\quad g_C=T^2-6\epsilon.
+\tag{NC1}
+\] The quotient \(q:B\to C\) sends \(x\mapsto\epsilon,T\mapsto T\). The
+bases \[
+1,x,x^2,T,xT,x^2T,\qquad
+1,\epsilon,T,\epsilon T
+\tag{NC2}
+\] are free \(O\)-bases by successive division by the two monic
+equations. Substitution verifies \(q\), and its images contain the basis
+of \(C\), so it is surjective.
+
+The nilradical of \(C\) is \[
+N_C=O\epsilon\oplus OT\oplus O\epsilon T.
+\] It has fourth power zero, and \(C/N_C=O\) is reduced, proving the
+assertion. The nilradical of \(B\) has basis \[
+n_1=x(x+3),\qquad n_2=T(x+3),\qquad n_3=Tx(x+3).
+\tag{NC3}
+\] For completeness, evaluate \(B\) at \((x,T)=(0,0),(-3,3),(-3,-3)\).
+For an element \(p(x)+Tq_0(x)\), where both polynomials have degree at
+most two, simultaneous vanishing means \[
+p(0)=p(-3)=q_0(-3)=0.
+\] This follows by adding and subtracting the last two evaluations;
+cancellation of the nonzero scalar 3 is valid in the free coefficient
+ring, without making it a unit. Coefficient comparison then gives \[
+p=a(x^2+3x),\qquad
+q_0=b(x+3)+c(x^2+3x).
+\] Thus the common kernel is exactly the span of (NC3). Multiplication
+gives \[
+n_1^2=n_1n_3=n_2n_3=n_3^2=0,\quad
+n_2^2=18n_1,\quad n_1n_2=3n_3.
+\] The span is therefore nilpotent; every nilpotent must vanish in the
+reduced evaluation target \(O^3\). This proves it is precisely \(N_B\).
+
+The complete actions needed below are \[
+xn_1=xn_3=0,\quad xn_2=n_3,\qquad
+Tn_1=n_3,\quad Tn_2=6n_1,\quad Tn_3=0,
+\tag{NC4}
+\] and \[
+\epsilon^2=0,\quad \epsilon T=\epsilon T,\quad
+\epsilon(\epsilon T)=0,\qquad
+T\epsilon=\epsilon T,\quad T^2=6\epsilon,\quad T(\epsilon T)=0
+\tag{NC5}
+\] on the indicated bases. For example \(Tn_2=3x(x+2)(x+3)=6n_1\), using
+\(xn_1=0\). These identities prove (NC4); (NC5) is the presentation of
+\(C\).
+
+The radical map is \[
+q_N(n_1)=3\epsilon,\qquad
+q_N(n_2)=3T+\epsilon T,\qquad
+q_N(n_3)=3\epsilon T.
+\tag{NC6}
+\] Its kernel is zero by coefficient comparison. Its image is a
+\(C\)-submodule of \(N_C\), since \(q\) is onto and \(N_B\) is a
+\(B\)-ideal. Its exact cokernel is \[
+Q_N:=N_C/q_N(N_B)
+=(O/3O)a\oplus(O/9O)b,\qquad
+a=[\epsilon],\quad b=[T],\quad[\epsilon T]=-3b.
+\tag{NC7}
+\] Indeed the three relations in (NC6) are \(3\epsilon=0\),
+\(\epsilon T=-3T\), and \(3\epsilon T=0\), which reduce exactly to
+\(3a=0,9b=0\).
+
+This is also a specified \(C\)-module, not only an \(O\)-module: \[
+\epsilon a=0,\qquad \epsilon b=-3b,\qquad
+Ta=-3b,\qquad Tb=0.
+\tag{NC8}
+\] The last identity uses \(6a=0\); all the others follow from (NC5) and
+(NC7).
+
+\subsection{\texorpdfstring{NC2. Cotangent complexes, their kernels, and
+the map induced by
+\(q\)}{NC2. Cotangent complexes, their kernels, and the map induced by q}}\label{nc2.-cotangent-complexes-their-kernels-and-the-map-induced-by-q}
+
+Both pairs of defining equations are regular sequences in their
+polynomial rings. The first equation is a nonzero divisor; modulo it,
+the second is monic in \(T\), so multiplying a nonzero polynomial by it
+retains a nonzero leading coefficient. The regular-immersion cotangent
+presentations, in degrees \(-1,0\), are consequently \[
+L_{B/O}=
+\left[B\bar f\oplus B\bar g
+\xrightarrow{J_B}B\,dx\oplus B\,dT\right],
+\qquad
+J_B=
+\begin{pmatrix}3x(x+2)&-6(x+1)\\0&2T\end{pmatrix},
+\] \[
+L_{C/O}=
+\left[C\bar f_C\oplus C\bar g_C
+\xrightarrow{J_C}C\,d\epsilon\oplus C\,dT\right],
+\qquad
+J_C=
+\begin{pmatrix}2\epsilon&-6\\0&2T\end{pmatrix}.
+\tag{NC9}
+\] Write \(H_B=H^{-1}(L_{B/O})\) and \(H_C=H^{-1}(L_{C/O})\).
+
+The free \(O\)-bases are \[
+u_1=(n_1,0),\qquad u_2=(n_3,0),\qquad u_3=(n_2,n_3)
+\tag{NC10}
+\] for \(H_B\), and \[
+v_1=(\epsilon,0),\qquad v_2=(\epsilon T,0),\qquad
+v_3=(3T,\epsilon T)
+\tag{NC11}
+\] for \(H_C\).
+
+Here is a direct kernel proof. The ring \(B\) is local: its reduction
+modulo 3 is \(\mathbb F_3[x,T]/(x^3,T^2)\), and a maximal ideal in the
+finite integral \(O\)-algebra \(B\) lies over the maximal ideal of
+\(O\). Thus \(x+1,x+2\) are units. In \(O[x]/f\), multiplying
+\(a+bx+cx^2\) by \(x\) gives \(ax+(b-3c)x^2\), so its kernel is
+\(On_1\). Expanding \(p+Tq_0\) now proves \[
+\operatorname{ann}_B(T)=On_3,\qquad
+\operatorname{ann}_B(T^2)=On_1\oplus On_3.
+\] The lower row of \(J_B(a,b)=0\) therefore gives \(b=cn_3\). Since
+\((x+1)n_3=n_3\) and \(T^2n_2=6n_3\), the upper row gives
+\(a-cn_2\in On_1\oplus On_3\). This proves (NC10) and its independence.
+
+For \(C\), the equation \(Tb=0\) in its free basis gives
+\(b=c\epsilon T\). The remaining equation \(\epsilon a=3b\) forces the
+scalar coefficient of \(a\) to be zero and its \(T\)-coefficient to
+equal \(3c\). The two other coefficients are unrestricted. This proves
+(NC11). These arguments cancel nonzero scalars only in free modules.
+
+The module actions on (NC10) are \[
+xu_1=xu_2=0,\quad xu_3=u_2,\qquad
+Tu_1=u_2,\quad Tu_2=0,\quad Tu_3=6u_1.
+\tag{NC12}
+\] The actions on (NC11) are \[
+\epsilon v_1=\epsilon v_2=0,\quad\epsilon v_3=3v_2,\qquad
+Tv_1=v_2,\quad Tv_2=0,\quad Tv_3=18v_1.
+\tag{NC13}
+\] They follow by multiplying both coordinates of each displayed cycle.
+
+The polynomial lift of \(q\) gives the relation map \[
+\bar f\longmapsto(\epsilon+3)\bar f_C,\qquad
+\bar g\longmapsto-3\bar f_C+\bar g_C,
+\tag{NC14}
+\] because \(f(\epsilon)=(\epsilon+3)f_C\) and
+\(g(\epsilon,T)=g_C-3f_C\). Its differential map is
+\(dx\mapsto d\epsilon,dT\mapsto dT\). Differentiating these two
+polynomial identities proves the chain identity. The induced map is \[
+q_Hu_1=9v_1,\qquad q_Hu_2=9v_2,\qquad
+q_Hu_3=3v_3-3v_2.
+\tag{NC15}
+\] For the last coefficient, use \(q(n_2)=3T+\epsilon T\) and
+\(q(n_3)=3\epsilon T\) in (NC14). The first component becomes
+\(9T-3\epsilon T\), and the second \(3\epsilon T\), giving exactly
+(NC15).
+
+With \(w=v_3-v_2\), the map has diagonal entries \(9,9,3\). It is
+injective and its cokernel is \[
+Q_H:=H_C/q_H(H_B)
+=(O/9O)c_1\oplus(O/9O)c_2\oplus(O/3O)w,
+\quad c_1=[v_1],\quad c_2=[v_2].
+\tag{NC16}
+\] Its \(C\)-action is \[
+\epsilon c_1=\epsilon c_2=0,\quad\epsilon w=3c_2,\qquad
+Tc_1=c_2,\quad Tc_2=Tw=0.
+\tag{NC17}
+\] For \(Tw\), the free-lattice value is \(18v_1\), which is zero in
+(NC16).
+
+\subsection{NC3. The two radical--cotangent maps and their exact
+compatibility}\label{nc3.-the-two-radicalcotangent-maps-and-their-exact-compatibility}
+
+Define \[
+\kappa_B:N_B\longrightarrow H_B,\qquad
+n_1\longmapsto u_1,\quad n_2\longmapsto u_3,\quad n_3\longmapsto u_2,
+\] \[
+\kappa_C:N_C\longrightarrow H_C,\qquad
+\epsilon\longmapsto3v_1,\quad
+T\longmapsto v_3-2v_2,\quad
+\epsilon T\longmapsto3v_2.
+\tag{NC18}
+\] The first map is a \(B\)-linear isomorphism: its basis correspondence
+is bijective, and every action by \(x,T\) in (NC4) agrees with the
+corresponding action in (NC12).
+
+The second map is \(C\)-linear. For the nonzero generator actions, \[
+\epsilon\kappa_C(T)=3v_2=\kappa_C(\epsilon T),\qquad
+T\kappa_C(\epsilon)=3v_2=\kappa_C(T\epsilon),
+\] \[
+T\kappa_C(T)=18v_1=\kappa_C(6\epsilon).
+\] All the zero generator actions in (NC5) give zero by (NC13). These
+checks prove compatibility with both algebra generators, hence with
+every scalar. It is injective: a relation \(3av_1+b(v_3-2v_2)+3cv_2=0\)
+first gives \(b=0\), then \(a=c=0\), using freeness.
+
+The square commutes exactly: \[
+q_H\kappa_B=\kappa_Cq_N.
+\tag{NC19}
+\] On \(n_1,n_3\), both sides give \(9v_1,9v_2\). On \(n_2\), \[
+\kappa_C(3T+\epsilon T)=3(v_3-2v_2)+3v_2=3v_3-3v_2.
+\] This is (NC15).
+
+The cokernel of \(\kappa_C\) is free of rank two over \(\mathbb F_3\),
+but its \(T\)-action must be retained. Explicitly \[
+R_C:=H_C/\kappa_C(N_C)\simeq C/(3,\epsilon)
+\simeq\mathbb F_3[T]/T^2,
+\tag{NC20}
+\] as \(C\)-modules. The isomorphism sends \[
+[v_1]\longmapsto1,\qquad[v_2]\longmapsto T,\qquad
+[v_3]\longmapsto2T.
+\] The relations \(3v_1=3v_2=0\) and \(v_3=2v_2\) prove its bijectivity
+as an \(O\)-module. Equation (NC13) proves its \(C\)-linearity:
+\(T[v_1]=[v_2]\), \(T[v_2]=0\), and \(\epsilon\) acts as zero.
+
+Consequently there is an exact sequence of \(C\)-modules \[
+0\longrightarrow Q_N\xrightarrow{\bar\kappa}Q_H
+\xrightarrow{\psi}R_C\longrightarrow0.
+\tag{NC21}
+\] The maps are \[
+\bar\kappa(a)=3c_1,\qquad
+\bar\kappa(b)=w-c_2,
+\] \[
+\psi(c_1)=1,\qquad\psi(c_2)=T,\qquad\psi(w)=T.
+\tag{NC22}
+\] For injectivity, \(3ac_1+b(w-c_2)=0\) in (NC16) forces \(b=0\) modulo
+9 from its \(c_2\)-component, and \(a=0\) modulo 3 from its
+\(c_1\)-component. The map \(\psi\) is onto by its values on
+\(c_1,c_2\), and its kernel has exactly the relations generated by
+\(\bar\kappa(a),\bar\kappa(b)\); equivalently it is the quotient by the
+image of \(\kappa_C\). This proves exactness. The \(C\)-linearity also
+follows directly from (NC8), (NC17), and (NC22).
+
+As an \(O\)-module sequence, (NC21) is not split. A lift of
+\(1\in C/(3,\epsilon)\) must have \(c_1\)-coefficient congruent to 1
+modulo 3. Its multiple by 3 therefore has a nonzero \(c_1\)-component
+modulo 9. No lift is killed by 3, so an \(O\)-linear section cannot
+exist. In particular a \(C\)-linear section cannot exist.
+
+\subsection{NC4. Tensoring the source cotangent complex
+first}\label{nc4.-tensoring-the-source-cotangent-complex-first}
+
+Since the terms of \(L_{B/O}\) are free \(B\)-modules, its derived
+tensor with \(C\) is represented by ordinary tensoring its displayed
+complex. Write \[
+H_{B,C}=H^{-1}(L_{B/O}\otimes_B^{\mathbf L}C).
+\] Its differential matrix is \[
+\begin{pmatrix}6\epsilon&-6(\epsilon+1)\\0&2T\end{pmatrix}.
+\] Its free \(O\)-basis is \[
+w_1=(\epsilon,0),\qquad
+w_2=(\epsilon T,0),\qquad
+w_3=(T,\epsilon T).
+\tag{NC23}
+\] The second kernel equation gives \(b=c\epsilon T\). The first, after
+cancelling the nonzero scalar 6 in the free module \(C\), gives
+\(\epsilon a=c\epsilon T\). Its coefficient comparison gives precisely
+this basis.
+
+There is a \(C\)-linear isomorphism \[
+j_C:N_C\xrightarrow{\sim}H_{B,C},\qquad
+\epsilon\mapsto w_1,\quad T\mapsto w_3,\quad\epsilon T\mapsto w_2.
+\tag{NC24}
+\] Indeed \(\epsilon w_3=w_2\), \(Tw_1=w_2\), \(Tw_3=6w_1\), and all the
+remaining generator actions agree with (NC5).
+
+The natural base-change map and the map induced by (NC14) are \[
+H_B\longrightarrow H_{B,C}:\quad
+u_1\mapsto3w_1,\quad u_2\mapsto3w_2,\quad u_3\mapsto3w_3+w_2,
+\] \[
+H_{B,C}\longrightarrow H_C:\quad
+w_1\mapsto3v_1,\quad w_2\mapsto3v_2,\quad w_3\mapsto v_3-2v_2.
+\tag{NC25}
+\] Substitution proves all six values. Under \(\kappa_B,j_C\), the first
+map is exactly \(q_N\); the second composed with \(j_C\) is exactly
+\(\kappa_C\). Thus the two maps are injective, have respective cokernels
+\(Q_N\) and \(R_C\), and their composite has cokernel \(Q_H\). This is
+the actual source of the exact sequence (NC21).
+
+In particular the cokernel after tensoring the source complex first is
+\(R_C\), not \(Q_H\). It is \(\mathbb F_3^2\) as an \(O\)-module, with
+the nontrivial \(T\)-action in (NC20). The original free-lattice map has
+cokernel \((O/9)^2\oplus O/3\), as in (NC16).
+
+There is an explicit conormal interpretation of \(R_C\). The ideal
+\(J=\ker q=x^2B\) has free basis \(x^2,x^2T\), and \[
+J^2=9J,\qquad J/J^2=(O/9O)[x^2]\oplus(O/9O)[x^2T].
+\tag{NC26}
+\] Indeed \(x^4=9x^2\) gives both generators of \(J^2\) and all their
+products. Lifting \(f_C\) into \(B\) gives \(x^2\), while lifting
+\(g_C\) gives \(3x^2\). With the connecting-map sign determined by these
+lifts, the conormal map from the cycles is \[
+\partial(v_1)=-3[x^2],\quad
+\partial(v_2)=-3[x^2T],\quad
+\partial(v_3)=-6[x^2T].
+\tag{NC27}
+\] For the first two values use \(x^3=-3x^2\); the third is
+\(3Tx^2+3Tx^3=-6Tx^2\). A vector \(Av_1+Bv_2+Cv_3\) is in its kernel
+exactly when \(A\in3O\) and \(B+2C\in3O\). This is precisely the image
+lattice of \(\kappa_C\). Its image is \(3(J/J^2)\). Therefore \[
+R_C\xrightarrow{\sim}3(J/J^2),\qquad
+1\mapsto-3[x^2],\quad T\mapsto-3[x^2T].
+\tag{NC28}
+\] The \(C\)-action is the one in (NC20): \(\epsilon\) kills these
+classes since multiplication by \(x\) supplies a further factor \(-3\),
+and \(T\) carries the first to the second and kills the second. Thus
+(NC28) is an exact \(C\)-module identification of the final term.
+
+\subsection{NC5. The original residues and the factor
+five}\label{nc5.-the-original-residues-and-the-factor-five}
+
+Retain the derivations with their original coefficients: \[
+D_B(x)=0,\quad D_B(T)=-n_3/8;\qquad
+D_C(\epsilon)=0,\quad D_C(T)=-3\epsilon T/8.
+\tag{NC29}
+\] They are integral derivations. Their polynomial lifts satisfy \[
+\widetilde D_B(f)=0,\qquad
+\widetilde D_B(g)=-\frac34(x+2)f-\frac14n_1g,
+\] \[
+\widetilde D_C(f_C)=0,\qquad
+\widetilde D_C(g_C)=-\frac92f_C-\frac34\epsilon g_C.
+\tag{NC30}
+\] For \(B\), expand \(D_B(g)=-n_1T^2/4\) and substitute
+\(T^2=g+3x(x+2)\), using \(n_1x(x+2)=f(x+2)\). For \(C\), expand
+\(-3\epsilon T^2/4\) and substitute \(T^2=g_C+6\epsilon\). This proves
+preservation of the respective relation ideals. The maps commute with
+\(q\) by their values on \(x,T\).
+
+Their restrictions to the nilradicals are particularly exact: \[
+D_B|_{N_B}=-\frac38\,x\cdot(-),\qquad
+D_C|_{N_C}=-\frac38\,\epsilon\cdot(-).
+\tag{NC31}
+\] For \(B\), both sides kill \(n_1,n_3\) and send \(n_2\) to
+\(-3n_3/8\), using \((x+3)n_3=3n_3\). For \(C\), both kill
+\(\epsilon,\epsilon T\) and send \(T\) to \(-3\epsilon T/8\). Hence
+these are module-linear maps on the displayed ideals, in addition to
+being restrictions of derivations.
+
+The polynomial relation formulas (NC30) induce Lie maps on the cotangent
+complexes: on coefficients they satisfy
+\(\mathcal L_D(am)=D(a)m+a\mathcal L_D(m)\), on relation generators they
+use (NC30), and on differentials they send \(da\) to \(dD(a)\).
+Differentiating (NC30) proves the chain identity. On the free cycle
+bases their maps are \[
+\mathcal L_Bu_1=\mathcal L_Bu_2=0,\qquad
+\mathcal L_Bu_3=-15u_2/8,
+\] \[
+\mathcal L_Cv_1=\mathcal L_Cv_2=0,\qquad
+\mathcal L_Cv_3=-45v_2/8.
+\tag{NC32}
+\] For \(u_3\), differentiating its coefficient \(n_2\) gives
+\(-3n_3/8\), and multiplying its second coefficient \(n_3\) by the
+\(\bar f\)-coefficient of \(\mathcal L_B\bar g\) gives
+\(-3(x+2)n_3/4=-3n_3/2\). Their sum is \(-15n_3/8\). For \(v_3\), the
+coefficient \(3T\) contributes \(-9\epsilon T/8\), while
+\(\epsilon T\mathcal L_C\bar g_C\) contributes \(-9\epsilon T/2\). Their
+sum is \(-45\epsilon T/8\).
+
+In module notation, (NC12)--(NC13) give \[
+\mathcal L_B=-\frac{15}{8}\,x\cdot(-)\quad\text{on }H_B,\qquad
+\mathcal L_C=-\frac{15}{8}\,\epsilon\cdot(-)\quad\text{on }H_C.
+\tag{NC33}
+\] Therefore the precise comparison is \[
+\mathcal L_B\kappa_B=5\kappa_BD_B|_{N_B},\qquad
+\mathcal L_C\kappa_C=5\kappa_CD_C|_{N_C}.
+\tag{NC34}
+\] It also follows directly from the basis formulas, and retains the
+numerical factor 5.
+
+The two residue maps on the radicals commute with \(q_N\), and the two
+Lie maps commute with \(q_H\). For the latter, on the only nonzero
+column, \[
+\mathcal L_Cq_H(u_3)
+=\mathcal L_C(3v_3-3v_2)=-135v_2/8
+=q_H(-15u_2/8).
+\tag{NC35}
+\] The other columns vanish.
+
+\subsection{NC6. Dividing the free maps and computing both
+cokernels}\label{nc6.-dividing-the-free-maps-and-computing-both-cokernels}
+
+The four maps just proved are divisible by 3 on their free lattices.
+Define \[
+A_B=\frac{D_B|_{N_B}}3=-\frac{x}{8}\cdot(-),\qquad
+A_C=\frac{D_C|_{N_C}}3=-\frac{\epsilon}{8}\cdot(-),
+\] \[
+L_B=\frac{\mathcal L_B}3=-\frac{5x}{8}\cdot(-),\qquad
+L_C=\frac{\mathcal L_C}3=-\frac{5\epsilon}{8}\cdot(-).
+\tag{NC36}
+\] Every right side is an integral module map. It is the unique map
+whose triple is the corresponding original map, because each lattice is
+\(O\)-free. All four maps have square zero, by (NC4), \(\epsilon^2=0\),
+and (NC12).
+
+The compatibility squares survive this division. Thus \(A_C\) induces an
+operator \(A_N\) on \(Q_N\), and \(L_C\) induces an operator \(A_H\) on
+\(Q_H\). From (NC8) and (NC17), \[
+A_N(a)=0,\qquad A_N(b)=\frac38b,
+\] \[
+A_H(c_1)=A_H(c_2)=0,\qquad
+A_H(w)=-\frac{15}{8}c_2.
+\tag{NC37}
+\] The relation \([\epsilon T]=-3b\) gives the positive sign in the
+first nonzero formula.
+
+Both induced operators are nonzero and square-zero. Their exact modules
+are \[
+\begin{aligned}
+\ker A_N&=(O/3O)a\oplus3(O/9O)b,\\
+\operatorname{im}A_N&=3(O/9O)b\simeq\mathbb F_3,\\
+\operatorname{coker}A_N&=(O/3O)a\oplus(O/3O)b;
+\end{aligned}
+\tag{NC38}
+\] \[
+\begin{aligned}
+\ker A_H&=(O/9O)c_1\oplus(O/9O)c_2,\\
+\operatorname{im}A_H&=3(O/9O)c_2\simeq\mathbb F_3,\\
+\operatorname{coker}A_H&=(O/9O)c_1
+\oplus(O/3O)c_2\oplus(O/3O)w.
+\end{aligned}
+\tag{NC39}
+\] For (NC38), multiplication by \(3/8\) on an order-nine cyclic module
+has kernel and image its order-three subgroup. For (NC39), the
+\(w\)-summand has order three and maps injectively onto the order-three
+subgroup generated by \(3c_2\), since \(-15/8\) has valuation one. These
+observations prove every kernel, image, and cokernel; the operator
+squares also follow directly from these formulas.
+
+The unscaled operators on both \(Q_N\) and \(Q_H\) are zero: they are
+the triples of (NC37), whose images have order three. Their vanishing
+does not discard the exact nonzero maps obtained by division on the free
+source and target lattices before passing to the quotient.
+
+The factor-five comparison survives on the cokernels: \[
+A_H\bar\kappa=5\bar\kappa A_N,\qquad \psi A_H=0.
+\tag{NC40}
+\] For example, \[
+A_H\bar\kappa(b)=-15c_2/8,\qquad
+5\bar\kappa A_N(b)=\frac{15}{8}(w-c_2)=-15c_2/8,
+\] since \(3w=0\). Equivalently, the exact sequence with its specified
+operators is \[
+0\longrightarrow(Q_N,\,5A_N)
+\xrightarrow{\bar\kappa}(Q_H,\,A_H)
+\xrightarrow{\psi}(R_C,\,0)
+\longrightarrow0.
+\tag{NC41}
+\] The factor 5 is part of this equation. The last operator is zero
+because \(L_C\) is multiplication by \(-5\epsilon/8\), while
+\(\epsilon\) kills \(R_C\).
+
+There is a valid divided Lie map on the tensor-first free kernel as
+well. In (NC23), the base-changed Lie action has \[
+\mathcal L_{B,C}(w_1)=\mathcal L_{B,C}(w_2)=0,\qquad
+\mathcal L_{B,C}(w_3)=-15w_2/8.
+\tag{NC42}
+\] Indeed the coefficient \(T\) contributes \(-3\epsilon T/8\), and the
+coefficient \(\epsilon T\) times the specialized \(\bar f\)-coefficient
+from (NC30) contributes \(-3\epsilon T/2\). Its divided map is
+multiplication by \(-5\epsilon/8\). Thus (NC25) also gives compatible
+divided maps before taking the tensor-first cokernel, and its induced
+map on \(R_C\) is zero. This proves the distinction directly at the
+level of the actual complexes and their kernels.
+
+Finally, \(D_B/3\) does not define an integral derivation on the whole
+algebra \(B\). It would send \[
+T\longmapsto-\frac1{24}n_3
+=-\frac1{24}x^2T-\frac18xT,
+\tag{NC43}
+\] whose coefficient of the independent basis vector \(x^2T\) does not
+belong to \(O\). Its restriction to \(N_B\), in contrast, is the
+integral multiplication map \(-x/8\) in (NC36). This specifies exactly
+where division is allowed and where it is not.
+
+\subsection{NC7. The complete bridge}\label{nc7.-the-complete-bridge}
+
+The original diagram is \[
+\begin{matrix}
+N_B&\xrightarrow{q_N}&N_C\\
+\downarrow\kappa_B&&\downarrow\kappa_C\\
+H_B&\xrightarrow{q_H}&H_C,
+\end{matrix}
+\] with \(\kappa_B\) an isomorphism and all three other displayed maps
+injective. Its cokernel sequence is (NC21), whose final module is
+\(C/(3,\epsilon)\), including its nonzero \(T\)-action. Factoring the
+bottom map through the tensor-first kernel gives (NC25); this accounts
+for the two different cotangent cokernels without replacing either one.
+
+The original residues and their Lie actions are related by the exact
+factor 5 in (NC34). Their free-lattice divisions give the nonzero
+square-zero cokernel maps in (NC37), with complete kernels and images in
+(NC38)--(NC39), and the exact operator sequence (NC41). The final module
+also identifies with the conormal torsion subgroup \(3(J/J^2)\) by
+(NC28). These are maps between the retained original objects with their
+full integral scalar actions.
+
+\end{document}

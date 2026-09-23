@@ -1,13 +1,14 @@
 """Rebuild the complete proof edition from the retained Markdown sources."""
 from pathlib import Path
-import json,re,shutil,subprocess
+import json,re,shutil,subprocess,sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 root=Path(__file__).resolve().parent
 stems=['ESCAPING_FIBRE_INFINITESIMAL_DERIVATION','INFINITESIMAL_SUPPORT_POSITIVITY_DERIVATION',
  'NON_EULERIAN_LENGTH_DERIVATION','SHIFTED_WEIL_POSITIVITY_DERIVATION',
  'FULL_SUPPORT_RECONSTRUCTION_DERIVATION','WEIL_PACKET_DERIVATION',
  'WEIL_PACKET_ANALYTIC_DERIVATION','TAU_WEIL_NORM_RECONSTRUCTION',
- 'HEAT_ENDPOINT_SIGN_BRIDGE','PRIME_ZERO_SIGN_DEFORMATION_DERIVATION','ES_QUARTER_HEAT_TRACE_DERIVATION','ES_SHELL_HEAT_LIFT_DERIVATION','WEIL_ES_COMPENSATION_DERIVATION','EIGHT_STATE_HEAT_COMPARISON','SUPPORTED_ZERO_PRIME_WEIL_DERIVATION','EIGHT_STATE_HOLONOMY_DERIVATION','HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION','PRIME_HOLONOMY_SUPPORTED_WEIL_DERIVATION','CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION']
+ 'HEAT_ENDPOINT_SIGN_BRIDGE','PRIME_ZERO_SIGN_DEFORMATION_DERIVATION','ES_QUARTER_HEAT_TRACE_DERIVATION','ES_SHELL_HEAT_LIFT_DERIVATION','WEIL_ES_COMPENSATION_DERIVATION','EIGHT_STATE_HEAT_COMPARISON','SUPPORTED_ZERO_PRIME_WEIL_DERIVATION','EIGHT_STATE_HOLONOMY_DERIVATION','HOLONOMY_AVERAGING_WEIL_ENDPOINT_DERIVATION','PRIME_HOLONOMY_SUPPORTED_WEIL_DERIVATION','CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION','SUPPORTED_ZERO_HEAT_IDENTITY_DERIVATION','COLLISION_RESIDUE_DUALITY_DERIVATION']
 header=r'''\usepackage{mathrsfs}
 \usepackage{mathtools}
 \usepackage{xurl}
@@ -28,6 +29,27 @@ header=r'''\usepackage{mathrsfs}
 \DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
 \DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
 \DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\DeclareUnicodeCharacter{00B3}{\ensuremath{^3}}
+\DeclareUnicodeCharacter{2074}{\ensuremath{^4}}
+\DeclareUnicodeCharacter{2076}{\ensuremath{^6}}
+\DeclareUnicodeCharacter{03BB}{\ensuremath{\lambda}}
+\DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\epsilon}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03A6}{\ensuremath{\Phi}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03B4}{\ensuremath{\delta}}
+\DeclareUnicodeCharacter{03C0}{\ensuremath{\pi}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{2202}{\ensuremath{\partial}}
+\DeclareUnicodeCharacter{0393}{\ensuremath{\Gamma}}
+\DeclareUnicodeCharacter{2205}{\ensuremath{\varnothing}}
+\DeclareUnicodeCharacter{221E}{\ensuremath{\infty}}
+\DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
+\DeclareUnicodeCharacter{00B9}{\ensuremath{^1}}
+\DeclareUnicodeCharacter{00B0}{\ensuremath{{}^\circ}}
+\DeclareUnicodeCharacter{211D}{\ensuremath{\mathbb{R}}}
 '''
 (root/'TEX_HEADER.tex').write_text(header,encoding='utf-8')
 front='''---
@@ -35,7 +57,7 @@ title: "Split-Zero: escaping fibres and separated-zeta positivity"
 date: "Proofs of 22–23 September 2026"
 ---
 
-This edition contains the complete nineteen derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
+This edition contains the complete twenty-one derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
 
 '''
 book=front

@@ -1,5 +1,10 @@
 # Every time derivative of the actual heat logarithmic derivative
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 The original family is \(g_t(s)=16H_t(-2i(s-1/2))\), with \(\partial_tg_t=\tfrac14\partial_s^2g_t\). Its coordinate, analytic convergence, and complete supported arithmetic receiver are proved in [HA1–HA26](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md). This note computes its time derivatives without replacing any Gamma or endpoint coefficient by a constant.
 
 ## 1. The exact differential-polynomial recurrence
@@ -37,21 +42,21 @@ Thus \(V_1\) preserves homogeneous degree and \(V_2\) increases it by one. In pa
 \]
 Here is the full induction. At \(k=0\) the formula gives \(X_0\). As with \(V\), the derivation \(V_2\) commutes with \(D\). The only term capable of producing degree \(k+2\) in \(B_{k+1}\) is \(V_2B_k^{[k+1]}\). Applying the induction hypothesis gives
 \[
-\begin{split}
+\begin{aligned}
 V_2B_k^{[k+1]}
 &=\frac1{2^k(k+1)}D^k\!\left((k+1)X_0^k\frac{X_0X_1}{2}\right)\\
 &=\frac1{2^{k+1}(k+2)}D^{k+1}(X_0^{k+2}),
-\end{split}\tag{HM6}
+\end{aligned}\tag{HM6}
 \]
 as required. This polynomial is nonzero; its monomial \(X_0^kX_k\) has a positive coefficient. Hence \(\deg B_k=k+1\), not only the upper bound.
 
 For clarity the first two nonconstant polynomials are
 \[
-\begin{split}
+\begin{aligned}
 B_1&=\frac14(X_2+2X_0X_1),\\
 B_2&=\frac1{16}\left(X_4+8X_1X_2+4X_0X_3
 +8X_0X_1^2+4X_0^2X_2\right).
-\end{split}\tag{HM7}
+\end{aligned}\tag{HM7}
 \]
 They follow by one and two direct applications of (HM2). In particular the coefficient of \(X_1X_2\) is eight; no factor is absorbed into a change of heat time.
 
@@ -59,11 +64,11 @@ They follow by one and two direct applications of (HM2). In particular the coeff
 
 On \(\Re s>1\), retain the exact split
 \[
-\begin{split}
+\begin{aligned}
 L_0(s)&=a(s)+r(s),\\
 a(s)&=\frac1s+\frac1{s-1}-\frac12\log\pi+\frac12\psi(s/2),\\
 r(s)&=-\sum_{n\ge2}\Lambda(n)n^{-s}.
-\end{split}\tag{HM8}
+\end{aligned}\tag{HM8}
 \]
 The coefficient functions \(a,a',\ldots\) are retained. The expansion meant here has an explicit rule: in \(B_k\) substitute \(X_j=a^{(j)}+r^{(j)}\), expand each monomial, and multiply the absolutely convergent Dirichlet series in the \(r^{(j)}\) factors by ordered Dirichlet convolution. A term with no \(r\) factor remains its original coefficient function. This is a specified representation; no uniqueness claim is made for expansions with arbitrary \(s\)-dependent coefficients.
 
@@ -116,3 +121,7 @@ This constructs actual arithmetic mixed-prime data at every infinitesimal order.
 The accompanying `check_heat_mixed_prime_recurrence.py` computes the entire recurrence through order six in the differential polynomial ring, checks its exact degree, and compares every highest-degree component with (HM5). Its monomial counts are 1, 2, 5, 11, 23, 44 and 82. These finite checks supplement the all-order proof (HM4)–(HM6).
 
 The human heat source remains Brad Rodgers and Terence Tao, [arXiv:1801.05914v5, original author TeX](https://arxiv.org/src/1801.05914v5), equations `hoz`, `htdef` and the subsequent heat equation. The full supported explicit formula is [SZW19–SZW38](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c022a0adde0a6aa3d8fc8e43ef42795d88e44b0/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md), with its original human sources retained. The logarithmic-derivative equation is the classical Burgers transformation of the heat equation; its exact normalization and every recurrence used here have been proved above. No novelty claim for that transformation is made.
+
+## Actual positive-real-time continuation
+
+The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, strengthens the compact-test variation in this edition: the whole zero trace is smooth for the original real heat time t at least zero, with actual right derivatives at zero. RT16 identifies its first derivative with the full causal arithmetic distribution, and RT20–27 constructs every higher meromorphic derivative receiver. The contact comparison retains the unit and inter-zero terms. These results do not assert a common zero strip for negative or complex time and do not prove the remaining RH inequality. All original supported carriers remain present.

@@ -1,12 +1,23 @@
 # One fixed primitive test and the full translation criterion
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This proof constructs one specified compactly supported smooth test, chosen independently of every zeta zero. Its Mellin transform is nonzero at every possible off-critical zero. The full reflected Weil pairing of that test with its translates is bounded on the positive half-line exactly when RH holds. The proof does not establish that boundedness.
 
 The original minus-exponent Mellin convention, actual zero multiset, boundary filter, and global Laplace argument are those of [BPZ1–BPZ23](BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex). That entire TeX source was read for this derivation. The explicit construction here makes its detecting test independent of a selected or hypothetical zero. The method is an application of the classical Weil-positivity mechanism, with no assertion of historical priority for a bounded-translation criterion.
 
 ## 1. A fixed infinite convolution
 
-The bump used here is classical. Juan Arias de Reyna, *An infinitely differentiable function with compact support: Definition and properties*, Rev. Real Acad. Ciencias Madrid **76** (1982), 21–38, author's English translation [arXiv:1702.05442v1](https://arxiv.org/abs/1702.05442v1), Theorem 1 and equations (1), (4), (9), constructs the function \(\varphi\) used in the following exact comparison. His Fourier convention is \(\widehat\varphi(\zeta)=\int\varphi(t)e^{-2\pi i t\zeta}\,dt\). In the unchanged coordinates of this proof, \(b_r(v)=r^{-1}\varphi(v/r)\) and \(G_r(z)=\widehat\varphi(rz/(2\pi i))\). Indeed, substituting \(v=rt\) in the integral gives that transform, and its factor indexed by \(h\ge0\) is \(\sinh(rz2^{-h-1})/(rz2^{-h-1})\), the factor indexed by \(j=h+1\) in (UP3). Fourier uniqueness proves the density identity. The factor \(r^{-1}\), the support \([-r,r]\), and total mass one are retained. The complete direct construction below is kept for the reader; it is not a new invention of this bump. Arias de Reyna credits Jessen and Wintner (1935) for its Fourier-transform construction; that original article was not inspected for this citation revision.
+The compact density and its dyadic product are classical. In Juan Arias de Reyna, [*An infinitely differentiable function with compact support: Definition and properties*, arXiv:1702.05442v1](https://arxiv.org/abs/1702.05442v1), Theorem 1 and equations (1)–(9), the author's convention is \(\widehat\varphi(\zeta)=\int\varphi(t)e^{-2\pi i t\zeta}\,dt\). The exact relation to the construction below is
+\[
+b_r(v)=r^{-1}\varphi(v/r),\qquad
+G_r(z)=\widehat\varphi\!\left(\frac{rz}{2\pi i}\right).
+\tag{UP0}
+\]
+Indeed substitution in the integral proves the second equality from the first; the author's product (4), with index \(h=j-1\), becomes exactly (UP3). Fourier uniqueness then proves the first equality for the density constructed below. The author's equation (9) gives the same zero multiplicities as (UP11). The source is the author's 2017 English translation of the 1982 paper. Its introduction credits Jessen and Wintner (1935) for the Fourier-product construction; that earlier paper has not been independently read here. The complete proof below is retained to specify the exact test used in the programme; the bump, product and product-zero multiplicities are not claimed as new.
 
 Throughout the construction retain
 \[
@@ -87,18 +98,16 @@ The function is real on the real axis, has real Taylor coefficients, and satisfi
 
 ## 2. The exact zero set of the product
 
-The product zero multiplicities in this section also occur in Arias de Reyna, cited above, equation (9). The coordinate \(\zeta=rz/(2\pi i)\) carries his nonzero integer zeros to the exact lattice in (UP11), without changing their orders. The proof below verifies the assertion directly for the present product.
-
 There are no zeros of (UP3) apart from the zeros of its individual factors. For proof, at a point where none of the factors vanishes, choose a small disc on which a finite initial product has no zeros and the tail deviations from 1 have modulus at most \(1/2\). Their sum converges uniformly by (UP4). The analytic logarithms of the tail factors, given by the power series for \(\log(1+w)\), then have a uniformly absolutely convergent sum on a smaller disc, since \(|\log(1+w)|\le2|w|\). The tail product equals the exponential of that sum, and is nonzero. At a point where factors vanish, the same reasoning applies after removing the finitely many vanishing factors. Only finitely many can vanish there because \(a_jz\to0\).
 
 The zeros of a single factor are the simple zeros \(z=i\pi n/a_j\), with \(n\in\mathbb Z\setminus\{0\}\). Their union and the order at each point are therefore
 \[
-\begin{split}
+\begin{aligned}
 \{z:G_r(z)=0\}
 &=\left\{\frac{2\pi i k}{r}:k\in\mathbb Z\setminus\{0\}\right\}
 =\{128\pi i k:k\in\mathbb Z\setminus\{0\}\},\\
 \operatorname{ord}_{2\pi i k/r}G_r&=1+\nu_2(|k|).
-\end{split}
+\end{aligned}
 \tag{UP11}
 \]
 Indeed the \(j\)-th factor vanishes at \(2\pi i k/r\) precisely when \(2^{j-1}\) divides \(k\), giving the displayed number of factors, each with order one. In particular, every zero of \(G_r\) is on the imaginary axis. The construction does not claim that a critical-line zeta zero cannot lie on that explicitly stated lattice.
@@ -228,12 +237,12 @@ This is the exact triangle inequality for that absolutely convergent sum, with i
 Combining (UP25) and (UP26) proves
 \[
 \boxed{
-\begin{split}
+\begin{aligned}
 \mathrm{RH}
 &\Longleftrightarrow K_r\text{ is bounded on }[0,\infty)\\
 &\Longleftrightarrow |K_r(a)|\le q_r\text{ for every }a\ge0,
 \qquad r=\frac1{64}.
-\end{split}}
+\end{aligned}}
 \tag{UP27}
 \]
 All quantities here arise from the one test fixed in (UP1)–(UP14). The last displayed inequality implies boundedness directly: at \(a=0\) it also forces \(q_r\ge0\), and thereafter supplies the finite constant \(q_r\).
@@ -285,7 +294,7 @@ with the original archimedean and finite-prime terms of BPZ19 and SZW; no endpoi
 
 For the finite support semilattice \(\mathscr L\), write \(\mathbf e_\lambda\) for the retained coordinate basis of the supported explicit formula. For the test (UP31), its exact vector values are
 \[
-\begin{split}
+\begin{aligned}
 \boldsymbol B_{\mathscr L}&=0,\\
 \boldsymbol Z_{\mathscr L}&=K_r(a)\mathbf e_{1_{\mathscr L}},\\
 \boldsymbol D_{\mathscr L}
@@ -293,7 +302,7 @@ For the finite support semilattice \(\mathscr L\), write \(\mathbf e_\lambda\) f
 \mathbf e_{1_{\mathscr L}},\\
 \boldsymbol B_{\mathscr L}-\boldsymbol Z_{\mathscr L}
 &=\boldsymbol D_{\mathscr L}.
-\end{split}
+\end{aligned}
 \tag{UP33}
 \]
 Indeed, both top endpoint coefficients and every lower endpoint coefficient are zero by the evaluated moments in (UP14) and (UP31). These zeros are values of the existing coordinate functionals. They do not identify the supported zero element with external absence.
@@ -318,4 +327,13 @@ It lies in the synchronized carrier: a nonzero amplitude requires both input amp
 
 ## Reading and scope
 
-The complete programme source read was `BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex`, equations BPZ1–BPZ23 and all intervening proofs, at the path linked above. Its original human input is Brad Rodgers and Terence Tao, *The de Bruijn–Newman constant is non-negative*, arXiv:1801.05914v5, with source equations `phidef`, `htdef`, `hoz`, and `sas`, and the original Weil explicit-formula convention is retained through the cited programme sources. This note does not represent a fresh read of those author papers. For the citation revision, Arias de Reyna's original author TeX `09-Function.tex`, arXiv:1702.05442v1, was read at lines 1–720, including Theorem 1 and equations (1)–(9), their proof, Theorem 4's derivative formula and the bibliography. The bump and its product zero set are classical results reproduced here. The programme application is their fixed-test nonvanishing at every possible off-critical zero and the full BPZ Laplace argument in the stated coordinates. No arithmetic bound on \(K_r(a)\) for all translations has been supplied by this proof.
+The complete source read was `BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex`, equations BPZ1–BPZ23 and all intervening proofs, at the path linked above. Its original human input is Brad Rodgers and Terence Tao, *The de Bruijn–Newman constant is non-negative*, arXiv:1801.05914v5, with source equations `phidef`, `htdef`, `hoz`, and `sas`, and the original Weil explicit-formula convention is retained through the cited programme sources. This note does not represent a fresh read of those author papers. The new self-contained steps are the fixed infinite convolution, its complete product zero set, the nonvanishing at every possible off-critical zero, and the resulting application of the full BPZ Laplace argument. No arithmetic bound on \(K_r(a)\) for all translations has been supplied by this proof.
+
+## Actual positive-real-time continuation
+
+The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, strengthens the compact-test variation in this edition: the whole zero trace is smooth for the original real heat time t at least zero, with actual right derivatives at zero. RT16 identifies its first derivative with the full causal arithmetic distribution, and RT20–27 constructs every higher meromorphic derivative receiver. The contact comparison retains the unit and inter-zero terms. These results do not assert a common zero strip for negative or complex time and do not prove the remaining RH inequality. All original supported carriers remain present.
+
+
+## Proved compact-interval and finite-translation bounds
+
+The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1–43, proves full Weil coercivity with constant 11509/600000 through support diameter 19/25, including prime 2 and both original endpoint moments. [FW1–21](FIRST_PRIME_WINDOW_BOUND.md) proves the every-rank matrix bound for centre diameter 583/800 and a strict two-test margin through the next prime gap. The same unchanged test now satisfies its required strict correlation bound for every positive translation through log 256, by [FP1–25](FINITE_PRIME_WINDOW_EXTENSION.md) and the complete [rational prime-power certificate, FPC1–14](FINITE_PRIME_WINDOW_COEFFICIENT_CERTIFICATE.md). [PT1–40](PRIME_TWO_HEAT_TAIL_DERIVATION.md) calculates the surviving mixed channel and proves a strictly negative full actual right heat derivative on the stated short interval after the prime-2 atom ends. These are exact portions of the original bound, retaining supported zero and every original arithmetic coefficient. The uniform inequality beyond log 256 remains unproved.

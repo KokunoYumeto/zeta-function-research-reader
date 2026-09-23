@@ -1,5 +1,10 @@
 # The von Mangoldt operator, Fourier support defects, and the full Weil receiver
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This derivation uses the original basis and time scale of [HCR1–42, complete companion source](HURWITZ_CYCLOTOMIC_RECEIVER.tex). It constructs the exact divisibility-projector sum for the von Mangoldt operator, both of its different supported corrections, and its map into the complete Weil formula. The resulting translation form has both signs even after both endpoint values are forced to vanish. No sign of the entire Weil form is inferred from the positive diagonal operator.
 
 ## 1. Objects and the finite arithmetic identity
@@ -93,14 +98,14 @@ These are HCR26–28 with \(q=a=d\), also proved directly by their displayed sum
 \]
 The scalar majorant converges, for example by integrating \((\log x)x^{-\sigma}\) on \([2,\infty)\). Thus the weighted operator series converges in trace norm. Its diagonal entries stabilize to \(\Lambda(n)n^{-s}\), which identifies its limit as \(AN^{-s}\). In particular
 \[
-\begin{split}
+\begin{aligned}
 \operatorname{Tr}(AN^{-s})
 &=\sum_{n\ge2}\Lambda(n)n^{-s}
 =\zeta(s)\sum_{d\ge2}(-\mu(d)\log d)d^{-s}
 =-\frac{\zeta'(s)}{\zeta(s)},\\
 \|A_DN^{-s}-AN^{-s}\|_1
 &\le\zeta(\sigma)\sum_{d>D}|\mu(d)|(\log d)d^{-\sigma}.
-\end{split}
+\end{aligned}
 \tag{PM11}
 \]
 For completeness the last analytic identity follows without differentiating a conditionally convergent series. The elementary divisor identity \(\sum_{d\mid n}\mu(d)=\mathbf1_{n=1}\), proved by \((1-1)^{\omega(n)}\), and absolute Dirichlet convolution give \(\zeta(s)\sum\mu(d)d^{-s}=1\) for \(\Re s>1\). The two series and their derivatives converge locally uniformly there, using the same logarithmic majorants as (PM10). Differentiate \(\sum\mu(d)d^{-s}=1/\zeta(s)\), obtaining \(\sum(-\mu(d)\log d)d^{-s}=-\zeta'(s)/\zeta(s)^2\), and multiply by \(\zeta(s)\). In particular all signs in (PM11) are fixed. This is the function \(-r(s)\) of HA10.
@@ -244,14 +249,14 @@ B_h=N^{-1/2}\{h(\log N)+h(-\log N)\}
 \]
 has finite rank: if \(\operatorname{supp}h\subset[-R,R]\), its entries vanish for \(n>e^R\). Its entry at 1 is \(2h(0)\). Since \(\Lambda(1)=0\), the exact trace receiver is
 \[
-\begin{split}
+\begin{aligned}
 \operatorname{Tr}(AB_h)
 &=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
 \{h(\log n)+h(-\log n)\}\\
 &=\sum_p\sum_{k\ge1}(\log p)p^{-k/2}
 \{h(k\log p)+h(-k\log p)\}
 =P_{\rm fin}(h).
-\end{split}
+\end{aligned}
 \tag{PM27}
 \]
 The prime-power expansion uses (PM1), not an altered norm for supported zero. Every sum in (PM27) is finite for a fixed test. At cutoff \(D\ge\max(2,\lfloor e^R\rfloor)\), \(\operatorname{Tr}(A_DB_h)\) is already equal to (PM27).
@@ -277,14 +282,14 @@ The first top label in the sparse trace is at index 2; the raw trace already has
 
 The connection to the entire supported formula is now exact. With \(H=M_h\), let \(\mathbf e_\lambda\) denote the coordinate basis of \(\mathbb C[L]\) for the finite support lattice used in SZW. Its existing identity is
 \[
-\begin{split}
+\begin{aligned}
 \boldsymbol B_L(h)&=(H(0)+H(1))\mathbf e_{1_L}
  +H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol Z_L(h)&=Z(h)\mathbf e_{1_L},\\
 \boldsymbol D_L(h)&=(\operatorname{Tr}(AB_h)-A_\infty(h))\mathbf e_{1_L}
  +H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol B_L(h)-\boldsymbol Z_L(h)&=\boldsymbol D_L(h),
-\end{split}
+\end{aligned}
 \tag{PM30}
 \]
 where

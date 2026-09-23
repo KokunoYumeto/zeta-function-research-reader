@@ -1,8 +1,15 @@
 # A fixed primitive test and the complete translated prime window
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 The boundary filter reaches the whole zero set through a single explicitly constructed test. This calculation gives its entire arithmetic correlation, including the exact archimedean term, the prime contribution and the original support labels. It does not assume the inequality equivalent to RH. Every parameter below is fixed before any zero is selected.
 
 ## 1. Original test and full pairing
+
+The dyadic density in (PW3) is the classical compact function of Juan Arias de Reyna, [Theorem 1 and equations (1)–(9), arXiv:1702.05442v1](https://arxiv.org/abs/1702.05442v1). Its exact coordinates are \(b_r(v)=r^{-1}\varphi(v/r)\) and \(G_r(z)=\widehat\varphi(rz/(2\pi i))\), with the author's Fourier factor \(e^{-2\pi i t\zeta}\). UP0 proves this identification. This attribution applies to the original density, infinite product, and its zeros and multiplicities; the full translated Weil calculation below uses that classical function with the stated endpoint filter and unchanged radius.
 
 Use the test space, involution and Mellin convention
 \[
@@ -88,14 +95,14 @@ Multiplicity is included in the nonzero residues, and no finite zero list is sub
 
 For every real \(a\), HA13 applied to \(h_r(v+a)\) gives
 \[
-\begin{split}
+\begin{aligned}
  K_r(a)={}&-(\gamma+\log\pi)h_r(a)\\
  &+\int_0^\infty
  \frac{e^{-x}h_r(a)-\tfrac12e^{-x/4}
        \{h_r(a+x/2)+h_r(a-x/2)\}}{1-e^{-x}}\,dx\\
  &-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
        \{h_r(a+\log n)+h_r(a-\log n)\}.
-\end{split}
+\end{aligned}
 \tag{PW12}
 \]
 The endpoint values of the translated convolution are zero by (PW5); multiplication by a translation exponential does not change this. Near \(x=0\), the numerator in (PW12) is \(O(x)\), by Taylor expansion of the smooth function at \(a\); the denominator is comparable to \(x\). At infinity the numerator decreases exponentially. Every prime sum here is finite, by compact support. These facts justify the displayed integral without a regularization convention. The factor \(1/2\), the shifts \(x/2\), and the coefficient \(-\log\pi\) are unchanged.
@@ -129,12 +136,12 @@ Put \(w(v)=e^{-v/2}/(1-e^{-2v})\) for \(v>0\). Its locally uniformly differentia
 For \(\lambda_j=2j+1/2\), the exact eigenvalue is
 \((\lambda_j^2-1/4)^2=4j^2(2j+1)^2\). The \(j=0\) term is annihilated. The rest is strictly positive, giving
 \[
-\begin{split}
+\begin{aligned}
  R_r(a)&=\sum_{j\ge1}4j^2(2j+1)^2G_r(2j+1/2)^2e^{-(2j+1/2)a}>0,\\
  W(v):=T_v^2w(v)
  &=\frac{4e^{-5v/2}\{9+55e^{-2v}+31e^{-4v}+e^{-6v}\}}
          {(1-e^{-2v})^5}.
-\end{split}
+\end{aligned}
 \tag{PW16}
 \]
 To verify the rational expression, apply \((q\partial_q)^k\) to \((1-q)^{-1}\) for \(k=2,3,4\), and combine \(16\sum j^4q^j+16\sum j^3q^j+4\sum j^2q^j\), with \(q=e^{-2v}\). The numerator is \(4q(9+55q+31q^2+q^3)\), multiplied by \(e^{-v/2}\). For the first identity integrate each exponential against \(k_r(a-v)\): its value is \(e^{-\lambda_j a}G_r(\lambda_j)^2\). Termwise integration follows either from positive monotone convergence or the bound \(G_r(\lambda_j)\le e^{r\lambda_j}\), which leaves a convergent polynomial times \(e^{-\lambda_j(a-2r)}\).
@@ -173,12 +180,12 @@ This is a proved equivalence, not a proof of the inequality on its right. The kn
 
 Let \(L\) be the same finite bounded distributive support lattice as SZW, and let \(\mathbf e_\lambda\) be its unchanged coordinate basis. Applying the complete formula to \(h_r(\cdot+a)\), before any coordinate projection, gives
 \[
-\begin{split}
+\begin{aligned}
  \boldsymbol B_L(a)&=0,\\
  \boldsymbol Z_L(a)&=K_r(a)\mathbf e_{1_L},\\
  \boldsymbol D_L(a)&=-K_r(a)\mathbf e_{1_L},\qquad
  \boldsymbol B_L(a)-\boldsymbol Z_L(a)=\boldsymbol D_L(a).
-\end{split}
+\end{aligned}
 \tag{PW21}
 \]
 Every lower coefficient is the evaluated endpoint value \(M_{h_r(\cdot+a)}(0)=0\); the coordinate spaces and their projections remain present. In the original semimodule lift \(G_L(V)\), a linear map \(A\) acts by \((v,\lambda)\mapsto(Av,\lambda)\). Therefore the endpoint map sends \((f_{r,a},1_L)\) to \((0,1_L)=e\), not to \(\tau=(0,0_L)\). The lifted pairing is
@@ -198,3 +205,12 @@ In the prime operator calculation, the sparse Mobius sum and the Fourier sum als
 ## Proof sources and scope
 
 The analytic explicit formula and full support vector are the complete SZW source cited above; the Gamma integral is HA13. Their original human source includes Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*](https://arxiv.org/abs/math/9811068), Appendix II, Theorem 6. The incoming BPZ proof supplies the translation/Laplace method with all multiplicities; its full TeX is included unchanged. The present fixed convolution, its complete analytic construction, the short-support estimate, and PM's prime-operator comparison have standalone proofs in this collection. These statements specify their exact mathematical contribution without claiming priority over the extensive classical literature on Weil criteria or smoothed prime formulas.
+
+## Actual positive-real-time continuation
+
+The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, strengthens the compact-test variation in this edition: the whole zero trace is smooth for the original real heat time t at least zero, with actual right derivatives at zero. RT16 identifies its first derivative with the full causal arithmetic distribution, and RT20–27 constructs every higher meromorphic derivative receiver. The contact comparison retains the unit and inter-zero terms. These results do not assert a common zero strip for negative or complex time and do not prove the remaining RH inequality. All original supported carriers remain present.
+
+
+## Proved compact-interval and finite-translation bounds
+
+The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1–43, proves full Weil coercivity with constant 11509/600000 through support diameter 19/25, including prime 2 and both original endpoint moments. [FW1–21](FIRST_PRIME_WINDOW_BOUND.md) proves the every-rank matrix bound for centre diameter 583/800 and a strict two-test margin through the next prime gap. The same unchanged test now satisfies its required strict correlation bound for every positive translation through log 256, by [FP1–25](FINITE_PRIME_WINDOW_EXTENSION.md) and the complete [rational prime-power certificate, FPC1–14](FINITE_PRIME_WINDOW_COEFFICIENT_CERTIFICATE.md). [PT1–40](PRIME_TWO_HEAT_TAIL_DERIVATION.md) calculates the surviving mixed channel and proves a strictly negative full actual right heat derivative on the stated short interval after the prime-2 atom ends. These are exact portions of the original bound, retaining supported zero and every original arithmetic coefficient. The uniform inequality beyond log 256 remains unproved.

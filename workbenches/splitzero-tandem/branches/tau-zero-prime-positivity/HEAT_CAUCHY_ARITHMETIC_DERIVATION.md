@@ -1,17 +1,22 @@
 # The actual heat pairing, its supported endpoints, and mixed prime products
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This calculation uses the original heat family and the full supported-zero explicit formula. It gives an actual global family of pairings and computes its arithmetic derivative. Positivity of that family at time zero is not assumed. All lower support coordinates remain in the formula.
 
 ## 1. Original family and coordinates
 
 Write \(\xi_R(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)\). The original Rodgers–Tao conventions are
 \[
-\begin{split}
+\begin{aligned}
 \Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
 H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,\\
 H_0(Z)&=\tfrac18\xi_R(\tfrac12+iZ/2),\qquad
 \partial_tH_t=-\partial_Z^2H_t.
-\end{split}\tag{HA1}
+\end{aligned}\tag{HA1}
 \]
 These are the original source equations `phidef`, `htdef`, `hoz`, and the sentence following `htdef` in [Rodgers–Tao, arXiv:1801.05914v5, author TeX](https://arxiv.org/src/1801.05914v5). Define, retaining the factor 16 and the coordinate factor \(-2i\),
 \[
@@ -82,16 +87,16 @@ For real time the numerator is \(L_t(w)+\overline{L_t(z)}\). The proof can be se
 
 Introduce three distinct functions on \(\Re s>1\):
 \[
-\begin{split}
+\begin{aligned}
 e_0(s)&=\frac1s+\frac1{s-1},\\
 b(s)&=-\tfrac12\log\pi+\tfrac12\psi(s/2),\\
 r(s)&=\frac{\zeta'(s)}{\zeta(s)}=-\sum_{n\ge2}\Lambda(n)n^{-s}.
-\end{split}\qquad L_0=e_0+b+r.
+\end{aligned}\qquad L_0=e_0+b+r.
 \tag{HA10}
 \]
 The notation \(e_0(s)\) is a scalar logarithmic-derivative function, not the programme element \(e\). The endpoint, archimedean and finite-prime values for (HA7) are, separately,
 \[
-\begin{split}
+\begin{aligned}
 E(z,w)&=A_{z,w}(0)+A_{z,w}(1)
 =\frac1{w(\bar z-1)}+\frac1{\bar z(w-1)}
 =\frac{e_0(w)+\overline{e_0(z)}}q,\\
@@ -99,7 +104,7 @@ G(z,w)&=\frac{b(w)+\overline{b(z)}}q,\\
 P(z,w)&=\frac1q\sum_{n\ge2}\Lambda(n)(n^{-w}+n^{-\bar z})
 =-\frac{r(w)+\overline{r(z)}}q,\\
 K_0(z,w)&=E(z,w)+G(z,w)-P(z,w).
-\end{split}\tag{HA11}
+\end{aligned}\tag{HA11}
 \]
 The endpoint equality follows by common denominators, and the prime equality follows from (HA7) in SZW24. For completeness, the Gamma equality has a direct integral proof. The convergent digamma representation for \(\Re a>0\) is
 \[
@@ -109,23 +114,23 @@ The endpoint equality follows by common denominators, and the prime equality fol
 \]
 It follows from the logarithmic derivative of Euler's product for Gamma: expand \((1-e^{-x})^{-1}\), integrate finite partial sums, and use the cancellation at zero to obtain \(-\gamma+\sum_{j\ge0}(1/(j+1)-1/(j+a))\). With the original Fourier convention, the archimedean integral is consequently
 \[
-\begin{split}
+\begin{aligned}
 A_\infty(h)=&-(\gamma+\log\pi)h(0)\\
 &+\int_0^\infty\frac{e^{-x}h(0)-\frac12e^{-x/4}(h(x/2)+h(-x/2))}{1-e^{-x}}\,dx.
-\end{split}\tag{HA13}
+\end{aligned}\tag{HA13}
 \]
 One may first truncate the \(x\) integral. Fourier inversion then proves the identity. Passing to the limit is legitimate: at zero the numerator is \(O(x)\) by the Lipschitz property of \(h\), and at infinity it decreases exponentially. On the Fourier side, the truncated integrals are bounded by \(C\log(2+|y|)\), uniformly in the cutoffs. To verify that bound, split at \(x=1/(1+|y|)\) and at 1 and use \(|1-\cos(yx/2)|\le\min(2,y^2x^2/8)\). The remaining nonoscillatory difference is integrable independently of \(y\). The bound on \(A(1/2+iy)\) proved above supplies domination. Substituting (HA7) in (HA13) gives (HA11) by (HA12), with every factor \(1/2\) retained.
 
 Let \(L\) now denote the finite support semilattice of SZW, with top \(1_L\); this is distinct from the function \(L_t(s)\). In the unchanged vector space with coordinate basis \(\mathbf e_\lambda\), the full identity is
 \[
-\begin{split}
+\begin{aligned}
 \boldsymbol B_L(z,w)&=E(z,w)\mathbf e_{1_L}
 +A_{z,w}(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol Z_L(0;z,w)&=K_0(z,w)\mathbf e_{1_L},\\
 \boldsymbol D_L(0;z,w)&=(P(z,w)-G(z,w))\mathbf e_{1_L}
 +A_{z,w}(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol B_L-\boldsymbol Z_L(0)&=\boldsymbol D_L(0).
-\end{split}\tag{HA14}
+\end{aligned}\tag{HA14}
 \]
 This is exactly SZW33–34 evaluated on (HA7). In particular, the lower fixed traces have not been dropped. Summing all coordinates and projecting to the top coordinate are different maps with the kernels proved in SZW35–37. The coefficient of each lower coordinate is generally not a Hermitian form by itself. The Hermitian positivity question below concerns the full reflected zero trace \(K_0\), as in SZW32 and SZW38, with (HA14) giving its exact supported arithmetic realization.
 
@@ -141,12 +146,12 @@ where \((\Lambda*\Lambda)(n)=\sum_{d\mid n}\Lambda(d)\Lambda(n/d)\) is ordered D
 
 It follows that the genuine time derivative is
 \[
-\begin{split}
+\begin{aligned}
 J(s):=\left.\partial_tL_t(s)\right|_{t=0}
 =\frac14v'(s)+\frac14\sum_{n\ge2}C_n(s)n^{-s},\\
 C_n(s)=-\Lambda(n)(\log n)^2-(\Lambda*\Lambda)(n)\log n
 -2a'(s)\Lambda(n)+2a(s)\Lambda(n)\log n.
-\end{split}\tag{HA16}
+\end{aligned}\tag{HA16}
 \]
 This includes the endpoint–Gamma and endpoint–prime cross terms in \(a\), not merely a heat deformation of the old prime weights. Equations (HA3) and (HA9) yield the exact global derivative
 \[
@@ -175,14 +180,14 @@ To retain the whole support vector through this calculation, let
 
 The logarithmic-divisor receiver at time \(t\) therefore has unchanged fixed endpoint weights and explicitly computed top coefficient
 \[
-\begin{split}
+\begin{aligned}
 \boldsymbol Z_L(t)&=K_t\mathbf e_{1_L},\\
 \boldsymbol D_L(t)&=\left(E-\frac{L_t(w)+L_t(\bar z)}q\right)\mathbf e_{1_L}
 +A_{z,w}(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol B_L-\boldsymbol Z_L(t)&=\boldsymbol D_L(t),\\
 \dot{\boldsymbol D}_L(0)&=-\frac{J(w)+\overline{J(z)}}q\mathbf e_{1_L},
 \qquad \dot{\boldsymbol B}_L=0.
-\end{split}\tag{HA20}
+\end{aligned}\tag{HA20}
 \]
 Here the first two lines are evaluated from the actual meromorphic heat function and its divisor. At zero, (HA11) identifies them with the original arithmetic formula; (HA16) computes their arithmetic first variation. No Euler product for \(g_t\) at nonzero time, or new theta-cohomology identification at such time, is asserted. The lower fixed distributions are the same explicit representations used in SZW, and their zero derivative is a calculation for these fixed tests, not a deletion of those distributions.
 
@@ -261,3 +266,7 @@ The [reflection-index theorem, NI1–32](CAUCHY_REFLECTION_INDEX_DERIVATION.md),
 ## One fixed primitive test and the entire prime window
 
 The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.
+
+## Actual positive-real-time continuation
+
+The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, strengthens the compact-test variation in this edition: the whole zero trace is smooth for the original real heat time t at least zero, with actual right derivatives at zero. RT16 identifies its first derivative with the full causal arithmetic distribution, and RT20–27 constructs every higher meromorphic derivative receiver. The contact comparison retains the unit and inter-zero terms. These results do not assert a common zero strip for negative or complex time and do not prove the remaining RH inequality. All original supported carriers remain present.

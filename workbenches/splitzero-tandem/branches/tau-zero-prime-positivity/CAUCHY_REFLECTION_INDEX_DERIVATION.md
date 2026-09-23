@@ -1,5 +1,10 @@
 # The exact reflection index of the global Cauchy–Weil pairing
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This calculation determines the full negative index of the actual time-zero Cauchy kernel and of its complete coefficient tower at one real pole. The answer is the number of distinct two-point orbits of the actual zero set under reflection in the critical line. That number is allowed to be zero, a finite positive integer, or infinity; the calculation does not assert which alternative occurs. Multiplicity, every local jet, and the full supported arithmetic receiver remain explicit.
 
 The inputs are the complete proofs [AG1–AG24](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md), [CK1–CK19](CAUCHY_WEIL_POSITIVITY_CRITERION.md), and [HA1–HA26](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md). All three files were read in full for this derivation. In particular, the convergence below uses the proved actual zero count, and the support calculation uses the full arithmetic identity rather than a replacement of its endpoint terms.
@@ -77,12 +82,12 @@ This is an element of \(\mathcal H\). Indeed, the terms with \(|\rho|\le2|z|+1\)
 
 For \(z,w\in\mathcal U\), AG10–AG11 gives the exact identity
 \[
-\begin{split}
+\begin{aligned}
 K_0(z,w)
 &=\frac{L_g(w)+\overline{L_g(z)}}{w+\bar z-1}
 =\sum_\rho m_\rho\overline{v_z(\rho^\#)}v_w(\rho)\\
 &=\langle Jv_z,v_w\rangle_{\mathcal H}.
-\end{split}
+\end{aligned}
 \tag{NI10}
 \]
 The scalar series converges absolutely by Cauchy–Schwarz in (NI5). Its summands are exactly those of the original rational test \(F_z^\#F_w\), with \(F_z(s)=(s-z)^{-1}\) and \(F^\#(s)=\overline{F(1-\bar s)}\). No zero is moved or removed in (NI10).
@@ -202,12 +207,12 @@ Finally, the radical of the form restricted to a dense subspace is zero. If \(a\
 Combining (NI12)–(NI13), (NI19)–(NI21) proves the unconditional identity
 \[
 \boxed{
-\begin{split}
+\begin{aligned}
 \sup_{\substack{n\ge1\,,\ z_1,\ldots,z_n\in E}}
 n_-\bigl((K_0(z_i,z_j))_{i,j=1}^n\bigr)
 &=\#\mathcal P,\\
 \sup_{N\ge0} n_-(C_N)&=\#\mathcal P.
-\end{split}}
+\end{aligned}}
 \tag{NI22}
 \]
 Here \(E\) is any subset specified in Section 3, \(\sigma>1\) in the second line is arbitrary, and \(n_-\) counts strictly negative eigenvalues. To justify directly the finite matrix passage, the finitely many vectors \(d_i\) used in (NI21) involve a common finite union of Cauchy poles, or finitely many powers up to a common maximum \(N\). Their negative Gram form is the pullback of the corresponding finite matrix by their coefficient synthesis map. Its injectivity on the negative subspace proves that matrix has at least \(n\) negative eigenvalues. Conversely, any negative eigenspace of a finite matrix maps injectively by its actual evaluation map into a negative-definite subspace of \(\mathcal H\), using (NI12) or (NI20). This proves both inequalities, including presentations with redundant coefficients.
@@ -286,7 +291,7 @@ The sum is absolutely convergent by Cauchy–Schwarz. Equation (NI29) is not a c
 
 The exact algebraic description, without any bounded-multiplicity assumption, is
 \[
-\begin{split}
+\begin{aligned}
 \sqrt{(0)}_{\mathcal A_{\rm tr}}
 &=\{a\in\mathcal N:\text{there exists }r\ge1
 \text{ such that }a_\rho^r=0\text{ for every }\rho\},\\
@@ -294,7 +299,7 @@ The exact algebraic description, without any bounded-multiplicity assumption, is
 \qquad \bigcap_{r\ge1}\mathcal N^r=0,
 \qquad \mathcal A_{\rm tr}\cong
 \varprojlim_r\mathcal A_{\rm tr}/\mathcal N^r.
-\end{split}
+\end{aligned}
 \tag{NI29a}
 \]
 The first equality follows because powers in the product are computed coordinatewise, and any nilpotent has zero constant at every coordinate. For the second equality, multiplication gives one containment. Conversely, for \(r\ge2\), any tuple divisible coordinatewise by \(\epsilon_\rho^r\) is the product of \(r-1\) copies of the tuple \((\epsilon_\rho)_\rho\) and a tuple in \(\mathcal N\): shift each original coefficient down by \(r-1\) powers, retaining a factor \(\epsilon_\rho\). Every factor lies in \(\mathcal N\) since its constant coordinates vanish. The case \(r=1\) is its definition. The intersection is zero since each \(m_\rho\) is finite. Finally, a compatible inverse-limit element determines each local component when \(r\ge m_\rho\), and its constant vector is already the element of \(\mathcal H\) specified at level \(r=1\). These reconstructed components give an element of \(\mathcal A_{\rm tr}\) and the inverse to the displayed map. Thus the trace radical has an exact separated, complete filtration even when it differs from the nilradical. This calculation does not assert any uniform bound, or lack of a uniform bound, for the actual zeta multiplicities.
@@ -305,7 +310,7 @@ Every rational Cauchy test and every \(Q_j\) has a well-defined Taylor class in 
 
 Let \(\mathscr L\) be the original finite support semilattice with top \(1_{\mathscr L}\), and let \(W_{\mathscr L}=\mathbb C^{\mathscr L}\) have basis \(\mathbf e_\lambda\). This symbol is distinct from \(L_g(s)\). Take \(F,G\) in either finite test span of Sections 2 and 4, and put \(A=F^\#G\). Its poles lie strictly outside the critical strip and \(A=O(s^{-2})\), so the proved extension AG14–AG16 applies. With the unchanged arithmetic functionals \(P_{\rm fin}\) and \(A_\infty\), it gives
 \[
-\begin{split}
+\begin{aligned}
 \boldsymbol B_{\mathscr L}(F,G)
 &=(A(0)+A(1))\mathbf e_{1_{\mathscr L}}
 +A(0)\sum_{\lambda\ne1_{\mathscr L}}\mathbf e_\lambda,\\
@@ -314,7 +319,7 @@ Let \(\mathscr L\) be the original finite support semilattice with top \(1_{\mat
 +A(0)\sum_{\lambda\ne1_{\mathscr L}}\mathbf e_\lambda,\\
 \boldsymbol B_{\mathscr L}(F,G)-\boldsymbol D_{\mathscr L}(F,G)
 &=[\operatorname{ev}F,\operatorname{ev}G]\,\mathbf e_{1_{\mathscr L}}.
-\end{split}
+\end{aligned}
 \tag{NI30}
 \]
 Here \(\operatorname{ev}F=(F(\rho))_\rho\), and
@@ -339,7 +344,7 @@ Both \(\pi_{\rm top}\) and \(\Sigma_{\mathscr L}\) recover the scalar form from 
 For completeness, a top-preserving map of support labels \(f:\mathscr L\to\mathscr M\) induces the exact linear pushforward \(f_*\mathbf e_\lambda=\mathbf e_{f(\lambda)}\). Writing
 \(n_\mu=\#\{\lambda\ne1_{\mathscr L}:f(\lambda)=\mu\}\), direct substitution into (NI30) yields
 \[
-\begin{split}
+\begin{aligned}
 f_*\boldsymbol B_{\mathscr L}
 &=(A(0)+A(1))\mathbf e_{1_{\mathscr M}}
 +A(0)\sum_\mu n_\mu\mathbf e_\mu,\\
@@ -348,7 +353,7 @@ f_*\boldsymbol D_{\mathscr L}
 +A(0)\sum_\mu n_\mu\mathbf e_\mu,\\
 f_*(\boldsymbol B_{\mathscr L}-\boldsymbol D_{\mathscr L})
 &=[\operatorname{ev}F,\operatorname{ev}G]\mathbf e_{1_{\mathscr M}}.
-\end{split}
+\end{aligned}
 \tag{NI32}
 \]
 Thus even labels that map into the target top contribute with their full counts to both terms, and the exact signed trace is preserved. This is a statement about the indicated linear support map, not an assertion that every such label map has some additional geometric origin. Supported zero and the unsupported element \(\tau\) remain distinct throughout; no numerical prime norm for supported zero is inserted in these formulas.

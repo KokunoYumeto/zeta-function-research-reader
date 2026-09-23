@@ -545,3 +545,7 @@ The [global heat trace](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md) retains all 
 ## Exact full-form continuation
 
 The [reflection-index theorem, NI1–32](CAUCHY_REFLECTION_INDEX_DERIVATION.md), calculates the signed index of every complete Cauchy coefficient tail. The [finite-jet and endpoint proof, FJ1–29](FINITE_JET_COMPLEMENT_AND_HEAT_TRUNCATION.md), preserves the exact finite jets while proving density on the remaining zeros, derives the full exterior index and tail, and calculates the second and third actual heat coefficients. All supported endpoints remain explicit. These results identify the remaining sign problem without asserting its resolution.
+
+## One fixed primitive test and the entire prime window
+
+The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.

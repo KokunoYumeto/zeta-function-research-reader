@@ -1,0 +1,759 @@
+% Independent derivation. Prefix HCR. Requires amsmath, amssymb, hyperref.
+\section{The full-lattice cyclotomic receiver and the original Hurwitz trace}
+\label{sec:hurwitz-cyclotomic-receiver}
+
+\paragraph{Human sources and exact scope.}
+The operators below represent the Bost--Connes relations in Alain
+Connes, Caterina Consani and Matilde Marcolli,
+\href{https://arxiv.org/abs/0806.2401v1}{\emph{Fun with $\mathbb F_1$}},
+original author source \texttt{funBC.tex}, lines 351--445
+(\texttt{pres}, \texttt{idem}, \texttt{endo}, \texttt{endosigma}),
+895--904 (c1)--(c4), and 929--1082 (\texttt{murhosigma},
+\texttt{newrhos}, \texttt{mapstilderho}). The original system is
+Jean-Beno\^it Bost and Alain Connes, \emph{Hecke algebras, type III
+factors and phase transitions with spontaneous symmetry breaking in
+number theory}, Selecta Math. (N.S.) 1 (1995), 411--457, cited as
+\texttt{BC} in that author source, lines 2207--2209.
+The complete split-support carrier is the foundation retained under
+the byline The Clankers,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split Support Geometry}, v11, Definition \texttt{def:lattice-split}}.
+All relations, support corrections and trace constants used here
+are proved below. The argument is over $\mathbb C$, where the
+displayed positive integers are invertible. It does not transfer
+those divisions silently to integral or characteristic-$p$ versions,
+whose different maps are expressly discussed in the cited source.
+
+\subsection{The actual Hilbert-space representation and all four relations}
+
+Use $\mathbb N=\{1,2,3,\ldots\}$ and its original orthonormal
+basis $\xi_n$ in $\mathcal H=\ell^2(\mathbb N)$. For
+$r\in\mathbb Q/\mathbb Z$ and $m\ge1$, set
+\begin{equation}\tag{HCR1}
+ E(r)\xi_n=e^{2\pi i n r}\xi_n,\qquad
+ S_m\xi_n=\xi_{mn},\qquad
+ S_m^*\xi_n=
+ \begin{cases}\xi_{n/m}&m\mid n,\\0&m\nmid n.\end{cases}
+\end{equation}
+The phase is independent of the chosen representative of $r$.
+$E(r)$ is unitary and $S_m$ is an isometry, since the indicated
+basis vectors remain orthonormal. Taking inner products with
+each basis vector proves the adjoint formula. Consequently
+\begin{equation}\tag{HCR2}
+\begin{gathered}
+ E(r)E(t)=E(r+t),\quad E(0)=I,\quad E(r)^*=E(-r),\\
+ S_m^*S_m=I,\qquad
+ S_mS_n=S_{mn},\qquad S_m^*S_n^*=S_{mn}^*,\\
+ S_mS_n^*=S_n^*S_m\quad(\gcd(m,n)=1).
+\end{gathered}
+\end{equation}
+The first line is multiplication of phases. The second follows
+by multiplication or division of the basis index. For the last
+line, its left side is nonzero exactly when $n\mid k$ on input
+$\xi_k$, and then gives $\xi_{mk/n}$. Its right side is nonzero
+exactly when $n\mid mk$. Coprimality makes these conditions
+identical, with the same output. This proves the source relations
+(c1), both parts of (c2), and (c3), without changing the basis.
+
+Choose a rational representative of $r$. Its $m$ inverse images
+under multiplication by $m$ are $(r+j)/m$, $0\le j<m$,
+modulo $\mathbb Z$. The finite root sum is
+\begin{equation}\tag{HCR3}
+ \frac1m\sum_{j=0}^{m-1}e^{2\pi i n j/m}
+       =\begin{cases}1&m\mid n,\\0&m\nmid n.\end{cases}
+\end{equation}
+If the ratio is one all $m$ terms are one; otherwise multiplying
+the geometric sum by $1-e^{2\pi i n/m}$ gives zero and that
+factor is nonzero. Therefore both sides of the exact source
+relation (c4) act on $\xi_n$ by the same scalar:
+\begin{equation}\tag{HCR4}
+ S_mE(r)S_m^*
+       =\frac1m\sum_{j=0}^{m-1}E((r+j)/m),\qquad
+ (S_mE(r)S_m^*)\xi_n=
+ \begin{cases}e^{2\pi i(n/m)r}\xi_n&m\mid n,\\0&m\nmid n.
+ \end{cases}
+\end{equation}
+Bounded operators agreeing on the complete basis agree on all
+of $\mathcal H$. In particular $P_m=S_mS_m^*$ projects onto
+the actual multiples of $m$. The covariance formulas are also
+direct basis identities:
+\begin{equation}\tag{HCR5}
+ E(r)S_m=S_mE(mr),\quad
+ S_m^*E(r)=E(mr)S_m^*,\quad S_m^*E(r)S_m=E(mr).
+\end{equation}
+
+For the original trace weight let $N\xi_n=n\xi_n$, with
+domain $\{x:\sum n^2|x_n|^2<\infty\}$, and let
+$H=\log N$. The diagonal unitary group and its exact covariance
+are
+\begin{equation}\tag{HCR6}
+ N^{iu}S_mN^{-iu}=m^{iu}S_m,\qquad
+ N^{iu}E(r)N^{-iu}=E(r)\quad(u\in\mathbb R).
+\end{equation}
+Indeed the first phase on $\xi_n$ is $(mn)^{iu}n^{-iu}=m^{iu}$;
+the second identity is commutation of diagonal operators.
+These are the original time-evolution factors in
+\texttt{funBC.tex}, lines 865--869. No parameter of the trace
+weight is rescaled below.
+
+\subsection{Locally finite matrices with every original lattice label}
+
+Let $L$ be any nontrivial bounded distributive lattice and retain
+\begin{equation}\tag{HCR7}
+\begin{gathered}
+ S=G_L(\mathbb C)=\{(a,\lambda):a\in\mathbb C,\lambda\in L,
+                               \ a\ne0\Rightarrow\lambda=1_L\},\\
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\quad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu),\\
+ \tau=(0,0_L),\quad e=(0,1_L),\quad 1_S=(1,1_L),\quad
+ \widehat c=(c,1_L),\qquad(a,\lambda)^*=(\overline a,\lambda).
+\end{gathered}
+\end{equation}
+Let $\mathscr M_L$ consist of matrices indexed by $\mathbb N^2$
+whose rows and columns contain only finitely many entries different
+from $\tau$. Finiteness is measured using the actual split zero,
+not just the complex amplitude. Matrix addition, multiplication
+and adjoint make this a unital involutive semiring. For each
+product entry its sum is finite. A product row is contained in
+the union of finitely many rows of the second factor, and a
+product column in the union of finitely many columns of the
+first; this proves closure. Triple products have finite sets
+of contributing paths, so associativity follows from finite
+distributivity. The identity has $1_S$ on the diagonal and
+$\tau$ elsewhere.
+
+The lift of the specified generators is
+\begin{equation}\tag{HCR8}
+ \widehat E(r)_{ij}=
+   \begin{cases}\widehat{e^{2\pi i j r}}&i=j,\\\tau&i\ne j,
+   \end{cases}
+ \qquad
+ \widehat S_m{}_{ij}=
+   \begin{cases}1_S&i=mj,\\\tau&i\ne mj.\end{cases}
+\end{equation}
+Both are locally finite. Their adjoints use (HCR7) entrywise
+and transpose. All the identities (HCR2) and (HCR5) lift exactly:
+each nonzero entry calculation has a unique contributing path,
+with the same phase and label, and all missing paths give
+$\tau$. This includes both adjoint relations in (c2).
+One is not applying an additive map that changes every complex
+zero to $\tau$: that proposed map fails on $1+(-1)$, since
+$\widehat1+\widehat{-1}=e\ne\tau$. Formula (HCR8) specifies
+the lifts and all subsequent sums are calculated in $S$.
+
+The full coefficient injection is retained entry by entry.
+Let $K$ be the original tropical semifield with zero,
+$K_L=K\otimes_{\mathbb B}L$, and
+$\iota_L(\lambda)=1_K\otimes\lambda$.
+The map $\beta:K\to\mathbb B$ taking a nonzero element
+to one and zero to zero is a semiring homomorphism:
+a tropical sum is zero exactly when both terms are
+zero, and a product is zero exactly when a factor is.
+Consequently $\rho_L=\beta\otimes\operatorname{id}_L$
+is the stated retraction, after $\mathbb B\otimes_{\mathbb B}L=L$.
+The exact matrix map is
+\begin{equation}\tag{HCR9}
+\begin{gathered}
+ \Phi_S(a,\lambda)=(a,\iota_L(\lambda))\in\mathbb C\times K_L,
+       \qquad\rho_L\iota_L=\operatorname{id}_L,\\
+ \Phi_{\mathscr M}:\mathscr M_L\hookrightarrow
+     \mathscr M(\mathbb C)\times\mathscr M(K_L),\qquad
+ ((a_{ij},\lambda_{ij}))\longmapsto
+                    ((a_{ij}),(\iota_L\lambda_{ij})).
+\end{gathered}
+\end{equation}
+Here all matrix algebras use finite rows and columns, and the
+$K_L$ involution is the identity on coefficients followed by
+transpose. Finite sums and products are preserved because
+$\iota_L$ preserves the lattice semiring operations. The
+retraction recovers each label, proving injectivity. Its image
+consists exactly of pairs whose every support entry belongs to
+$\iota_L(L)$ and whose nonzero amplitude entries have support
+$1_{K_L}$, with the original finite row and column condition.
+No infinite lattice join is required.
+
+\subsection{The exact missing support in relation (c4)}
+
+Define the two actual split matrices and the defect by
+\begin{equation}\tag{HCR10}
+\begin{gathered}
+ A_m(r)=\widehat S_m\widehat E(r)\widehat S_m^*,\qquad
+ R_m(r)=\widehat{1/m}\sum_{j=0}^{m-1}\widehat E((r+j)/m),\\
+ (M_m)_{nn}=\begin{cases}\tau&m\mid n,\\e&m\nmid n,\end{cases}
+       \qquad (M_m)_{ij}=\tau\quad(i\ne j).
+\end{gathered}
+\end{equation}
+The scalar multiplication in the average multiplies every
+entry by $\widehat{1/m}$; it preserves all displayed labels.
+The original root sum (HCR3) now gives
+\begin{equation}\tag{HCR11}
+\begin{gathered}
+ A_m(r)_{nn}=
+ \begin{cases}(e^{2\pi i(n/m)r},1_L)&m\mid n,\\\tau&m\nmid n,
+ \end{cases}\quad
+ R_m(r)_{nn}=
+ \begin{cases}(e^{2\pi i(n/m)r},1_L)&m\mid n,\\e&m\nmid n,
+ \end{cases}\\
+ \boxed{A_m(r)+M_m=R_m(r).}
+\end{gathered}
+\end{equation}
+Every off-diagonal entry is $\tau$. On the diagonal each
+Fourier summand has top label. Their finite sum therefore
+has top label even where the complex sum vanishes. This
+proves the entire equation rather than only its amplitude.
+
+The correction is minimal and its entire set of alternatives
+is explicit. If $A_m(r)+D=R_m(r)$, amplitude equality forces
+every amplitude of $D$ to be zero. Off-diagonal entries must
+be $\tau$. At a nonmultiple of $m$, its label must be top;
+at a multiple it may be any original label. Thus
+\begin{equation}\tag{HCR12}
+ D=M_m+\operatorname{diag}(d_n),\qquad
+ d_n=\begin{cases}(0,\lambda_n),\ \lambda_n\in L&m\mid n,\\
+                    \tau&m\nmid n.
+       \end{cases}
+\end{equation}
+In the entrywise order on zero-amplitude labels, $M_m$ is
+the unique least such correction. Also $M_m^2=M_m$,
+$M_mA_m(r)=A_m(r)M_m=0_{\mathscr M}$,
+$M_m\widehat S_m=0_{\mathscr M}$ and
+$\widehat S_m^*M_m=0_{\mathscr M}$, by their disjoint
+allowed indices. Hence the compression of the repaired
+relation recovers $\widehat E(r)$ exactly.
+
+Let $P_m^K$ be the diagonal $K_L$ matrix with entry $1_{K_L}$
+at multiples of $m$ and zero elsewhere, and $C_m^K$ its
+complementary diagonal indicator. The complete map is
+\begin{equation}\tag{HCR13}
+\begin{gathered}
+ \Phi_{\mathscr M}(A_m(r))=(S_mE(r)S_m^*,P_m^K),\quad
+ \Phi_{\mathscr M}(M_m)=(0,C_m^K),\\
+ \Phi_{\mathscr M}(R_m(r))=(S_mE(r)S_m^*,I_K),\qquad
+                         P_m^K+C_m^K=I_K.
+\end{gathered}
+\end{equation}
+Thus the full coefficient map itself exhibits the missing
+support and its exact correction; equality in the complex
+coordinate alone is not equality of the original matrices.
+
+\subsection{Exact full-label corner and common-label receivers}
+
+Let $\mathscr D_L\subset\mathscr M_L$ be the diagonal
+semiring, identified with $S^{\mathbb N}$, and put
+$\widehat P_m=\widehat S_m\widehat S_m^*$.
+There are exact maps retaining all entries that they receive:
+\begin{equation}\tag{HCR14}
+\begin{gathered}
+ \sigma_m(D)=\widehat S_m^*D\widehat S_m,
+          \qquad(\sigma_mD)_{nn}=D_{mn,mn},\\
+ \rho_m^{\mathrm{sp}}(D)=\widehat S_mD\widehat S_m^*,\qquad
+ \sigma_m\rho_m^{\mathrm{sp}}=\operatorname{id},\qquad
+ \rho_m^{\mathrm{sp}}\sigma_m(D)=\widehat P_mD.
+\end{gathered}
+\end{equation}
+The first map is a unital semiring homomorphism.
+The second is a unital isomorphism onto the genuine
+corner $\widehat P_m\mathscr D_L$ with its unit
+$\widehat P_m$ and additive zero $0_{\mathscr M}$.
+All assertions follow entrywise from selection or insertion
+of the indices divisible by $m$; in particular every
+original selected label is unchanged.
+
+Its exact completed presentation is
+\begin{equation}\tag{HCR15}
+\begin{gathered}
+ \mathscr C_m=\{D+M_m:D\in\widehat P_m\mathscr D_L\},\qquad
+ C_m(D)=D+M_m,\\
+ 0_{\mathscr C_m}=M_m,\qquad
+ 1_{\mathscr C_m}=\widehat P_m+M_m=R_m(0),\qquad
+ C_m^{-1}(X)=\widehat P_mX.
+\end{gathered}
+\end{equation}
+Addition and multiplication on this displayed set are inherited
+from matrices, but its additive zero is the stated $M_m$.
+For supported $D,F$, their products with $M_m$ vanish and
+$M_m^2=M_m$, so
+$(D+M_m)(F+M_m)=DF+M_m$ and
+$(D+M_m)+(F+M_m)=D+F+M_m$.
+These calculations prove every semiring law, the unit and
+the mutually inverse maps. This completion preserves every
+label at a multiple of $m$ and inserts exactly the forced
+top zero at a nonmultiple. In particular
+$C_m(\rho_m^{\mathrm{sp}}\widehat E(r))=R_m(r)$ is (c4)
+in this exact completed presentation, with its zero stated.
+The inverse is compression, not an unidentified projection.
+
+For the common-label diagonal ring put
+\begin{equation}\tag{HCR16}
+ Z=\operatorname{diag}(e,e,\ldots),\qquad
+ \mathscr D^{\mathrm{top}}=
+    \{\operatorname{diag}((a_n,1_L)):a_n\in\mathbb C\},\qquad
+ C(D)=D+Z.
+\end{equation}
+This is a ring under its inherited diagonal operations,
+with additive zero $Z$, unit $I$ and additive inverse
+$\operatorname{diag}((-a_n,1_L))$. It is canonically
+isomorphic to the ring of complex sequences. The displayed
+$C:\mathscr D_L\to\mathscr D^{\mathrm{top}}$ is onto and
+unital; finite pointwise operations give
+$C(D+F)=C(D)+C(F)$ and $C(DF)=C(D)C(F)$.
+Its kernel congruence is exactly equality of every complex
+amplitude; the complete fibers retain arbitrary labels
+where those amplitudes vanish. In particular
+$C(A_m(r))=R_m(r)$ and $C(M_m)=Z$.
+This receiver proves exactly how the classical diagonal
+relation is obtained and specifies the data that it forgets.
+
+For the whole matrix algebra, the amplitude receiver has
+the equally exact universal description
+\begin{equation}\tag{HCR17}
+ \mathscr M_L/\langle Z=0_{\mathscr M}\rangle
+       \simeq\mathscr M(\mathbb C),\qquad
+ ((a_{ij},\lambda_{ij}))\longmapsto(a_{ij}).
+\end{equation}
+The matrix $Z$ is central idempotent, and $ZA$ is the
+zero-amplitude matrix with precisely the labels of $A$.
+Thus imposing $Z=0$ kills every zero-amplitude matrix.
+Every complex row-and-column-finite matrix has a preimage
+by placing top labels at nonzero entries and $\tau$ at
+zeros. Two preimages with the same amplitudes are congruent:
+add the coefficientwise amplitude negative of the second,
+with its same labels; both relevant sums have zero amplitude
+and hence vanish in the quotient. Conversely the amplitude
+map kills $Z$ and distinguishes unequal amplitudes.
+This proves the quotient and its universal property.
+It receives all four original Bost--Connes relations.
+
+Inverting $Z$ is a different map. Its idempotent corner
+$Z\mathscr M_L$ is the semiring of locally finite $L$-valued
+support matrices. There (HCR13) becomes the two different
+support indicators $P_m$ and $I$, with their nonzero
+complementary correction for $m>1$. Thus supported-zero
+inversion does not itself restore (c4) with the correction
+omitted. Both exact connecting maps have now been calculated.
+
+\subsection{Every residue projector and its complete supported product}
+
+For $q\ge1$ and $a\in\{1,\ldots,q\}$, with $a=q$
+representing residue zero, define
+\begin{equation}\tag{HCR18}
+ P_{q,a}=\frac1q\sum_{k=0}^{q-1}
+            e^{-2\pi i ak/q}E(k/q),\qquad
+ P_{q,a}\xi_n=\mathbf1_{n\equiv a\ (q)}\xi_n.
+\end{equation}
+The second formula is (HCR3) applied to $n-a$ and proves
+the first is exactly the orthogonal residue projection.
+Its split Fourier sum, sparse projection and missing-support
+diagonal are
+\begin{equation}\tag{HCR19}
+\begin{gathered}
+ Q_{q,a}=\widehat{1/q}\sum_{k=0}^{q-1}
+       \widehat{e^{-2\pi i ak/q}}\,\widehat E(k/q),\\
+ (\Pi_{q,a})_{nn}=
+       \begin{cases}1_S&n\equiv a\ (q),\\\tau&n\not\equiv a\ (q),\end{cases}
+ \quad
+ (B_{q,a})_{nn}=
+       \begin{cases}\tau&n\equiv a\ (q),\\e&n\not\equiv a\ (q),\end{cases}\\
+ \boxed{Q_{q,a}=\Pi_{q,a}+B_{q,a}.}
+\end{gathered}
+\end{equation}
+All off-diagonal entries are $\tau$. The nonselected
+diagonal Fourier sums have zero amplitude and top label,
+so the last formula follows directly, not by replacing
+those entries with $\tau$.
+
+The complete projector laws in the ambient split algebra are
+\begin{equation}\tag{HCR20}
+\begin{gathered}
+ Q_{q,a}^2=Q_{q,a},\qquad
+ Q_{q,a}Q_{q,b}=Z\quad(a\ne b),\qquad
+ \sum_{a=1}^qQ_{q,a}=I,\\
+ \Pi_{q,a}^2=\Pi_{q,a},\qquad
+ \Pi_{q,a}\Pi_{q,b}=0_{\mathscr M}\quad(a\ne b),\qquad
+ \sum_{a=1}^q\Pi_{q,a}=I.
+\end{gathered}
+\end{equation}
+For $a\ne b$, at each index at least one raw diagonal
+amplitude is zero, but both labels are top, so their
+product is $e$ at every index. At a given index exactly
+one summand in the raw sum is $1_S$ and the others are
+$e$; their sum is $1_S$. These calculations prove all
+raw identities, including the case $q=1$ where no distinct
+pair exists. The sparse identities are disjoint indicators.
+The matrices $Q_{q,a}$ are orthogonal in the common-label
+ring (HCR16), whose zero is $Z$; their ambient product
+must still be recorded as the displayed $Z$, not $\tau$.
+For $q\ge2$, making that one distinct product equal to the
+ambient zero imposes $Z=0$, and (HCR17) gives the exact
+resulting quotient.
+
+The mixed original labels can be tested on every coefficient
+vector $v_n=(c_n,\lambda_n)$ with $c\in\ell^2(\mathbb N)$
+and $c_n\ne0\Rightarrow\lambda_n=1_L$. The indicated
+operators preserve that carrier and have the unchanged
+bounded Hilbert-space amplitudes. Their exact actions are
+\begin{equation}\tag{HCR21}
+\begin{aligned}
+ (Q_{q,a}v)_n&=
+ \begin{cases}(c_n,\lambda_n)&n\equiv a\ (q),\\(0,\lambda_n)&n\not\equiv a\ (q),\end{cases}\\
+ (\Pi_{q,a}v)_n&=
+ \begin{cases}(c_n,\lambda_n)&n\equiv a\ (q),\\\tau&n\not\equiv a\ (q).
+ \end{cases}
+\end{aligned}
+\end{equation}
+Thus the missing-support term retains each original
+$\lambda_n$, even when it is neither top nor bottom.
+More generally any locally finite matrix product on a
+finite vector has at output $i$ the exact label
+$\bigvee_j(\lambda_{ij}\wedge\lambda_j)$ over its finite
+contributing row. The complete map sends this to the
+same finite sum of products in $K_L$ and recovers it
+by $\rho_L$. This proves naturality of all mixed labels,
+not just of the binary masks of the generators.
+Any bounded lattice homomorphism $L\to L'$ preserves
+the finite formulas and the carrier; applying it
+entrywise commutes with all displayed constructions.
+
+For completeness the coefficient images are
+\begin{equation}\tag{HCR22}
+ \Phi_{\mathscr M}(\Pi_{q,a})=(P_{q,a},P_{q,a}^K),\quad
+ \Phi_{\mathscr M}(B_{q,a})=(0,(P_{q,a}^{\mathrm{comp}})^K),\quad
+ \Phi_{\mathscr M}(Q_{q,a})=(P_{q,a},I_K).
+\end{equation}
+The two support masks are complementary, disjoint diagonal
+indicators. This identifies their images without subtraction
+inside $K_L$.
+
+The residue receiver is compatible with the actual dilation:
+\begin{equation}\tag{HCR23}
+\begin{gathered}
+ S_mP_{q,a}S_m^*=P_{mq,ma},\qquad
+ \widehat S_m\Pi_{q,a}\widehat S_m^*=\Pi_{mq,ma},\\
+ \widehat S_mQ_{q,a}\widehat S_m^*+M_m=Q_{mq,ma}.
+\end{gathered}
+\end{equation}
+At an output index divisible by $m$, all three equalities
+test $n/m\equiv a\pmod q$. At other indices the sparse
+expressions are zero and the final raw expression needs
+exactly $M_m$. This proves the complete equations.
+If $q\mid Q$, refining the residue classes gives
+\begin{equation}\tag{HCR24}
+ P_{q,a}=\sum_{\substack{1\le b\le Q\\b\equiv a\ (q)}}P_{Q,b},\quad
+ \Pi_{q,a}=\sum_{b\equiv a\ (q)}\Pi_{Q,b},\quad
+ Q_{q,a}=\sum_{b\equiv a\ (q)}Q_{Q,b}.
+\end{equation}
+The classes partition the selected progression. In the
+raw equation there are $Q/q\ge1$ summands, all with
+top diagonal label; their amplitude sum is the same
+indicator and every label remains top. Thus refinement
+also preserves the exact split sums.
+
+Compression also has an exact non-coprime formula. Put
+$d=\gcd(m,q)$ and $q'=q/d$. If $d\nmid a$, the congruence
+$mn\equiv a\pmod q$ has no solution. If $d\mid a$, let
+$b\in\{1,\ldots,q'\}$ be the unique representative with
+$(m/d)b\equiv a/d\pmod{q'}$; it exists because $m/d$ is
+invertible modulo $q'$, including $b=1$ when $q'=1$.
+Then
+\begin{equation}\tag{HCR25}
+\begin{aligned}
+ S_m^*P_{q,a}S_m
+    &=\begin{cases}0&d\nmid a,\\P_{q',b}&d\mid a,\end{cases}\\
+ \widehat S_m^*\Pi_{q,a}\widehat S_m
+    &=\begin{cases}0_{\mathscr M}&d\nmid a,\\\Pi_{q',b}&d\mid a,\end{cases}\\
+ \widehat S_m^*Q_{q,a}\widehat S_m
+    &=\begin{cases}Z&d\nmid a,\\Q_{q',b}&d\mid a.\end{cases}
+\end{aligned}
+\end{equation}
+The diagonal amplitude test is the displayed congruence;
+compression of a raw matrix retains top label at every
+new diagonal index, whereas compression of a sparse
+matrix retains a label only at a selected index. This
+proves the three different zero cases exactly.
+
+\subsection{The trace of the original weight is exactly the Hurwitz series}
+
+For $s\in\mathbb C$ with $\sigma=\operatorname{Re}s>1$,
+use $x^{-s}=\exp(-s\log x)$ for positive real $x$, with
+its real logarithm. Then
+\begin{equation}\tag{HCR26}
+ W_s=N^{-s}=e^{-sH},\quad W_s\xi_n=n^{-s}\xi_n,
+ \qquad \|W_s\|_1=\sum_{n\ge1}n^{-\sigma}<\infty.
+\end{equation}
+The absolute values of the diagonal eigenvalues are
+the singular values, proving the trace norm formula.
+For any bounded diagonal $D\xi_n=d_n\xi_n$, finite
+basis truncation and the tail bound
+$\|D\|\sum_{n>K}n^{-\sigma}\to0$ prove
+\begin{equation}\tag{HCR27}
+ \operatorname{Tr}(DW_s)=\sum_{n\ge1}d_nn^{-s}.
+\end{equation}
+Every series here is absolutely convergent. The selected
+indices for $P_{q,a}$ are precisely $a+qj$, $j\ge0$,
+including $q,2q,\ldots$ when $a=q$. Thus the actual
+Hurwitz receiver is
+\begin{equation}\tag{HCR28}
+\boxed{\begin{gathered}
+ \zeta(s,\alpha)=\sum_{j=0}^\infty(j+\alpha)^{-s}\quad(\alpha>0),\\
+ \operatorname{Tr}(P_{q,a}N^{-s})
+  =\sum_{j=0}^\infty(a+qj)^{-s}
+  =q^{-s}\zeta(s,a/q),\qquad 1\le a\le q,\quad\sigma>1.
+\end{gathered}}
+\end{equation}
+Absolute convergence of the Hurwitz series follows from
+the finite initial term and the bound $(j+\alpha)^{-\sigma}
+\le j^{-\sigma}$ for $j\ge1$. Additivity of real logarithms
+of positive factors proves the factor $q^{-s}$ exactly.
+All these series are locally uniformly convergent in this
+half-plane by a common majorant $\sum n^{-1-\varepsilon}$
+on each compact subset; hence the stated receiver is
+holomorphic there.
+
+The complete split trace on these particular matrices
+can also be recorded without an unproved infinite join.
+Let $\widehat W_s=\operatorname{diag}(\widehat{n^{-s}})$
+and let $\operatorname{tr}_K$ mean the sum of the first
+$K$ diagonal entries. Then
+\begin{equation}\tag{HCR29}
+\begin{gathered}
+ T_K=\sum_{\substack{1\le n\le K\\n\equiv a\ (q)}}n^{-s},\\
+ \operatorname{tr}_K(Q_{q,a}\widehat W_s)=(T_K,1_L)
+                                      \quad(K\ge1),\\
+ \operatorname{tr}_K(\Pi_{q,a}\widehat W_s)=
+     \begin{cases}\tau&K<a,\\(T_K,1_L)&K\ge a.
+     \end{cases}
+\end{gathered}
+\end{equation}
+The first equality retains top labels even on unselected
+indices. In the second, the first selected index is $a$.
+After that index, the support of the finite trace is
+constant top and the amplitude converges absolutely.
+Therefore the amplitude limit with that retained label
+is $(q^{-s}\zeta(s,a/q),1_L)$ for both sequences.
+Under the full map it is
+$(q^{-s}\zeta(s,a/q),1_{K_L})$.
+For $q>1$ the analogous weighted trace of $B_{q,a}$
+has eventual value $e$, although the two preceding
+limits agree because addition of $e$ leaves a top-labelled
+element fixed. Thus this scalar trace equality does not
+identify their different operator support matrices.
+No infinite trace on arbitrary labelled matrices, or
+join not present in $L$, has been assumed.
+
+The original additive-character trace and its exact
+finite transforms are
+\begin{equation}\tag{HCR30}
+\begin{gathered}
+ F_{q,k}(s)=\operatorname{Tr}(E(k/q)N^{-s})
+           =\sum_{n\ge1}e^{2\pi i kn/q}n^{-s},\\
+ q^{-s}\zeta(s,a/q)
+       =\frac1q\sum_{k=0}^{q-1}e^{-2\pi i ak/q}F_{q,k}(s),\\
+ F_{q,k}(s)=q^{-s}\sum_{a=1}^q
+                 e^{2\pi i ka/q}\zeta(s,a/q).
+\end{gathered}
+\end{equation}
+The first transform is the trace of (HCR18). For the
+inverse, $E(k/q)=\sum_a e^{2\pi i ka/q}P_{q,a}$ on
+each basis vector, and (HCR27) gives its trace. Finite
+character sums and absolute convergence justify every
+interchange. In particular the finite cyclic group
+algebra acts faithfully: if a combination of $E(k/q)$
+vanishes, its values at $n=1,\ldots,q$ and (HCR3)
+recover each coefficient as zero.
+
+Dilation retains the Hurwitz shift and changes the
+trace factor by exactly its original degree:
+\begin{equation}\tag{HCR31}
+\begin{gathered}
+ N^{-s}S_m=m^{-s}S_mN^{-s},\qquad
+ S_m^*N^{-s}S_m=m^{-s}N^{-s},\\
+ \operatorname{Tr}(P_{mq,ma}N^{-s})
+   =m^{-s}\operatorname{Tr}(P_{q,a}N^{-s})
+   =(mq)^{-s}\zeta(s,a/q).
+\end{gathered}
+\end{equation}
+The operator identities follow on $\xi_n$ from
+$(mn)^{-s}=m^{-s}n^{-s}$, and the trace identity also
+follows directly by the selected series. Refinement
+(HCR24), with $Q=hq$, similarly gives
+\begin{equation}\tag{HCR32}
+ q^{-s}\zeta(s,a/q)
+    =Q^{-s}\sum_{j=0}^{h-1}\zeta(s,(a+jq)/Q).
+\end{equation}
+The representatives $a+jq$ lie in $1,\ldots,Q$ and
+partition the original residue class, preserving all
+offsets and both original factors.
+
+\subsection{Finite multiplicative characters and every constant in their trace}
+
+We prove the character identity rather than assuming its
+factor. For a finite abelian group $G$, every character
+of a subgroup $B$ extends to $G$. To prove it in one
+step, choose $g\notin B$ and let $m$ be the least
+positive integer with $g^m\in B$. Each element of
+$\langle B,g\rangle$ is uniquely $bg^j$ with $0\le j<m$.
+For a character $\chi$ of $B$, choose one of the $m$
+unit complex roots $z$ of $z^m=\chi(g^m)$ and set
+$\chi'(bg^j)=\chi(b)z^j$. Unique representatives make
+it well defined, and carrying an exponent through $m$
+uses exactly the identity $z^m=\chi(g^m)$, proving
+multiplicativity. These are exactly its $m$ extensions.
+Starting from the trivial subgroup shows both that
+$|\widehat G|=|G|$ and that subgroup characters extend.
+For a nonidentity element of order $d$, its cyclic
+character with value $e^{2\pi i/d}$ therefore extends
+and separates it from the identity. Multiplying all
+characters by such a separating character permutes
+the finite character set and forces its sum at that
+element to vanish. At the identity all summands are
+one. Consequently
+\begin{equation}\tag{HCR33}
+ \frac1{|G|}\sum_{\chi\in\widehat G}
+            \overline{\chi(a)}\chi(b)=\mathbf1_{a=b}
+                         \qquad(a,b\in G).
+\end{equation}
+The conjugate is exactly $\chi(a)^{-1}$, so the tested
+element is $ba^{-1}$. This fixes both the conjugation
+and the numerical factor.
+
+Take $G=(\mathbb Z/q\mathbb Z)^\times$, of cardinality
+$\varphi(q)$. Extend each character to all integers
+by zero on nonunits. The extension is completely
+multiplicative, since a product is a unit modulo $q$
+exactly when both factors are units. When $q=1$,
+the unique character is identically one and
+$\varphi(1)=1$. For $\gcd(a,q)=1$, (HCR33) gives
+the following equality for every $n\ge1$, including
+nonunit residues where both sides vanish:
+\begin{equation}\tag{HCR34}
+ \mathbf1_{n\equiv a\ (q)}
+    =\frac1{\varphi(q)}\sum_{\chi\bmod q}
+                                \overline{\chi(a)}\chi(n).
+\end{equation}
+Define the bounded diagonal operators and their
+absolutely convergent original series by
+\begin{equation}\tag{HCR35}
+\begin{gathered}
+ D_\chi\xi_n=\chi(n)\xi_n,
+ \qquad D_\chi=\sum_{b=1}^q\chi(b)P_{q,b},\\
+ L(s,\chi)=\sum_{n\ge1}\chi(n)n^{-s}
+                       =\operatorname{Tr}(D_\chi N^{-s}),\quad\sigma>1,\\
+ P_{q,a}=\frac1{\varphi(q)}\sum_{\chi\bmod q}
+                            \overline{\chi(a)}D_\chi
+                         \quad(\gcd(a,q)=1).
+\end{gathered}
+\end{equation}
+The norm is at most one and the series is majorized by
+$\sum n^{-\sigma}$. The last line is (HCR34) on each
+basis vector. Taking its trace and using the original
+factor from (HCR28) proves
+\begin{equation}\tag{HCR36}
+ \boxed{\zeta(s,a/q)=\frac{q^s}{\varphi(q)}
+       \sum_{\chi\bmod q}\overline{\chi(a)}L(s,\chi),
+        \qquad\gcd(a,q)=1,\quad\operatorname{Re}s>1.}
+\end{equation}
+The factor $q^s$ converts the residue trace to the
+Hurwitz function; it is not part of the residue
+projection or of its original trace weight.
+
+This finite operator decomposition has an exact
+common-label split receiver. Set
+\begin{equation}\tag{HCR37}
+ \widetilde D_\chi=\operatorname{diag}((\chi(n),1_L))_{n\ge1}
+                       \in\mathscr D^{\mathrm{top}}.
+\end{equation}
+The entries on nonunit residues are $e$, not $\tau$.
+The corresponding identities, including all those
+zeros, are
+\begin{equation}\tag{HCR38}
+ \widetilde D_\chi=\sum_{b=1}^q\widehat{\chi(b)}\,Q_{q,b},
+ \qquad
+ Q_{q,a}=\widehat{1/\varphi(q)}
+       \sum_{\chi\bmod q}\widehat{\overline{\chi(a)}}
+                          \,\widetilde D_\chi
+                      \quad(\gcd(a,q)=1).
+\end{equation}
+Their amplitudes are (HCR35); every diagonal label
+on each side is top, including when $\chi(b)=0$,
+because $\widehat0=e$. This proves equality of
+the full matrices. Substituting (HCR18) into the
+ordinary identity for $D_\chi$ also gives the exact
+additive-to-multiplicative Fourier coefficients
+\begin{equation}\tag{HCR39}
+ D_\chi=\frac1q\sum_{k=0}^{q-1}
+       \left(\sum_{b=1}^q\chi(b)e^{-2\pi i bk/q}\right)E(k/q).
+\end{equation}
+Only two finite sums have been interchanged. The
+inner sum is retained as written, so this formula
+also covers imprimitive characters without inserting
+an unwarranted primitive-character factor.
+
+\subsection{Euler products and the exact modulus-two specialization}
+
+Absolute convergence and unique prime factorization
+give the Euler product with all original local factors:
+\begin{equation}\tag{HCR40}
+ L(s,\chi)=\prod_{p\ \mathrm{prime}}
+                  (1-\chi(p)p^{-s})^{-1},\qquad\sigma>1.
+\end{equation}
+For a finite set of primes, expand each factor in its
+absolutely convergent geometric series. Complete
+multiplicativity and unique factorization identify
+the product with the sum over integers supported on
+those primes. As the finite set exhausts all primes,
+each integer appears, and the majorant
+$\sum n^{-\sigma}<\infty$ makes the omitted sum tend
+to zero. This proves the product and its limit. The
+same proof with the constant-one character gives
+$\zeta(s)=\prod_p(1-p^{-s})^{-1}$.
+
+For $q=2$, the sole character is one on odd integers
+and zero on even integers. Its factor at the prime
+2 is exactly one, while every other factor is the
+corresponding zeta factor. Thus
+\begin{equation}\tag{HCR41}
+\boxed{\begin{gathered}
+ L(s,\chi_0)=\prod_{p\ne2}(1-p^{-s})^{-1}
+                           =(1-2^{-s})\zeta(s),\\
+ \operatorname{Tr}(P_{2,1}N^{-s})=(1-2^{-s})\zeta(s),\qquad
+ \zeta(s,\tfrac12)=(2^s-1)\zeta(s),\qquad\sigma>1.
+\end{gathered}}
+\end{equation}
+The same constants follow by separating the even
+indices $2j$ from all positive indices, justified
+by absolute convergence. The sign can also be
+checked directly from
+\begin{equation}\tag{HCR42}
+ P_{2,1}=\tfrac12(I-E(1/2)),\quad
+ P_{2,2}=\tfrac12(I+E(1/2)),\quad
+ \operatorname{Tr}(E(1/2)N^{-s})=(2^{1-s}-1)\zeta(s).
+\end{equation}
+At index $n$, the phase is the original $(-1)^n$,
+so these are the odd, even and signed traces with
+their actual orientations. Equations (HCR28),
+(HCR30), (HCR36) and (HCR41) are proved in their
+common absolutely convergent domain. They identify
+the Hurwitz shifts with explicit trace receivers
+of the represented endomotive operators; they
+assert no additional zero-location result.
+
+\begin{figure}[htbp]
+\centering
+$\begin{array}{c|cc}
+ \text{diagonal index}&m\mid n&m\nmid n\\\hline
+ \widehat S_m\widehat E(r)\widehat S_m^*
+   &(e^{2\pi i(n/m)r},1_L)&\tau\\
+ M_m&\tau&e\\\hline
+ \widehat{1/m}\sum_{j=0}^{m-1}\widehat E((r+j)/m)
+   &(e^{2\pi i(n/m)r},1_L)&e
+ \end{array}$
+\caption{The exact completion of the Bost--Connes relation
+(c4), HCR10--13, from Connes--Consani--Marcolli,
+\emph{Fun with $\mathbb F_1$}, source lines 895--904.
+Every off-diagonal entry is $\tau$. The lower matrix
+has the same complex operator as the upper matrix
+but retains the shown supported zeros. On a vector
+with original label $\lambda_n$, the extra $e$ acts
+as $(0,\lambda_n)$, exactly HCR21. The full
+coefficient injection HCR9 detects every displayed
+difference.}
+\end{figure}

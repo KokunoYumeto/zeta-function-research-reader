@@ -3,7 +3,7 @@ title: "Split-Zero: escaping fibres and separated-zeta positivity"
 date: "Proofs of 22–23 September 2026"
 ---
 
-This edition contains the complete thirty derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
+This edition contains the complete thirty-four derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs.
 
 
 \clearpage
@@ -6605,6 +6605,10 @@ The [global heat trace](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md) retains all 
 
 The [reflection-index theorem, NI1–32](CAUCHY_REFLECTION_INDEX_DERIVATION.md), calculates the signed index of every complete Cauchy coefficient tail. The [finite-jet and endpoint proof, FJ1–29](FINITE_JET_COMPLEMENT_AND_HEAT_TRUNCATION.md), preserves the exact finite jets while proving density on the remaining zeros, derives the full exterior index and tail, and calculates the second and third actual heat coefficients. All supported endpoints remain explicit. These results identify the remaining sign problem without asserting its resolution.
 
+## One fixed primitive test and the entire prime window
+
+The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.
+
 \clearpage
 
 # Holonomy of the original signed eight-state completion
@@ -10180,6 +10184,10 @@ The human heat source is Brad Rodgers and Terence Tao, *The de Bruijn–Newman c
 
 The [reflection-index theorem, NI1–32](CAUCHY_REFLECTION_INDEX_DERIVATION.md), calculates the signed index of every complete Cauchy coefficient tail. The [finite-jet and endpoint proof, FJ1–29](FINITE_JET_COMPLEMENT_AND_HEAT_TRUNCATION.md), preserves the exact finite jets while proving density on the remaining zeros, derives the full exterior index and tail, and calculates the second and third actual heat coefficients. All supported endpoints remain explicit. These results identify the remaining sign problem without asserting its resolution.
 
+## One fixed primitive test and the entire prime window
+
+The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.
+
 \clearpage
 
 # Every time derivative of the actual heat logarithmic derivative
@@ -10482,6 +10490,10 @@ The transfer construction CK4–CK8 is a complete proof of the classical Schur/P
 Ball, Joseph A.; Biswas, Animikh; Fang, Quanlei; ter Horst, Sanne. *Multivariable generalizations of the Schur class: positive kernel characterization and transfer function realization*. arXiv:0705.2042v3, 2 November 2007. https://arxiv.org/abs/0705.2042v3 . Original author TeX inspected, §1, Theorem 1.1, Proposition 1.2 and the proof discussion through (2) ⇒ (3).
 
 The inspected treatment attributes the scalar positive-kernel Hilbert-space construction to N. Aronszajn, *Theory of reproducing kernels*, Transactions of the American Mathematical Society 68 (1950), 337–404. It cites J. A. Ball, *Linear systems, operator model theory and scattering: multivariable generalizations*, in *Operator Theory and Its Applications (Winnipeg, MB, 1998)*, Fields Institute Communications 25, American Mathematical Society, 2000, 151–178, for the lurking-isometry terminology. These two original works were not inspected for this repair; this historical attribution is through the inspected Ball–Biswas–Fang–ter Horst source. No historical novelty for these classical methods is claimed.
+
+## One fixed primitive test and the entire prime window
+
+The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.
 
 \clearpage
 
@@ -11156,6 +11168,1352 @@ The endpoint test operator reported in the boundary handoff, \(T=\partial_v^2-1/
 
 The original heat convention is Brad Rodgers and Terence Tao, [*The de Bruijn–Newman constant is non-negative*, arXiv:1801.05914v5](https://arxiv.org/abs/1801.05914v5), original author equations `hoz`, `htdef`, `sas`. The entire original author archive and precise reading coverage are retained with AG. The supported explicit formula uses Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068v1), Appendix II Theorem 6, through the complete SZW proof linked above. The programme proofs [AG1–AG24](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md), [HA1–HA26](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md), [CK1–CK19](CAUCHY_WEIL_POSITIVITY_CRITERION.md), and `FIXED_ARITHMETIC_HEAT_FLAGS.tex`, HR1–HR18, are included in the same publication package. The finite Hermite interpolation, Cauchy-transform density, inertia and second-coefficient calculations needed here are proved in full above; no historical novelty claim is made for the classical methods.
 
+## One fixed primitive test and the entire prime window
+
+The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.
+
+\clearpage
+
+# The von Mangoldt operator, Fourier support defects, and the full Weil receiver
+
+This derivation uses the original basis and time scale of [HCR1–42, complete companion source](HURWITZ_CYCLOTOMIC_RECEIVER.tex). It constructs the exact divisibility-projector sum for the von Mangoldt operator, both of its different supported corrections, and its map into the complete Weil formula. The resulting translation form has both signs even after both endpoint values are forced to vanish. No sign of the entire Weil form is inferred from the positive diagonal operator.
+
+## 1. Objects and the finite arithmetic identity
+
+Let \(\mathbb N=\{1,2,\ldots\}\), \(\mathcal H=\ell^2(\mathbb N)\), and retain the orthonormal basis \(\xi_n\). Let \(N\xi_n=n\xi_n\) and \(P_d\xi_n=\mathbf1_{d\mid n}\xi_n\). Thus \(P_d=S_dS_d^*\) in HCR1–4, with no change to the index or the logarithmic generator \(H=\log N\). Write
+\[
+\mu(1)=1,\qquad
+\mu(n)=\begin{cases}(-1)^r,&n\text{ is a product of }r\text{ distinct primes},\\0,&n\text{ has a squared prime factor},\end{cases}
+\quad
+\Lambda(n)=\begin{cases}\log p,&n=p^k,\ k\ge1,\\0,&\text{otherwise}.
+\end{cases}
+\tag{PM1}
+\]
+In particular \(\Lambda(1)=0\). For an integer \(D\ge1\), put
+\[
+I_D=\{d:2\le d\le D,\ \mu(d)\ne0\},\qquad
+c_d=-\mu(d)\log d,\qquad
+A_D=\sum_{d\in I_D}c_dP_d,
+\quad a_D(n)=\sum_{\substack{d\in I_D\\d\mid n}}c_d.
+\tag{PM2}
+\]
+Every coefficient in this displayed sum is nonzero. An empty sum is the zero operator. Each \(A_D\) is a bounded self-adjoint operator: it is a finite real linear combination of bounded orthogonal projections, all diagonal in the same basis.
+
+For every \(n\ge1\),
+\[
+\boxed{\Lambda(n)=-\sum_{d\mid n}\mu(d)\log d.}
+\tag{PM3}
+\]
+Here and below \(\log1=0\). To prove (PM3), let \(p_1,\ldots,p_r\) be the distinct prime factors of \(n>1\). Only their squarefree products contribute. The coefficient of \(\log p_i\) in \(\sum_{d\mid n}\mu(d)\log d\) is
+\[
+\sum_{J\subset\{1,\ldots,r\}\setminus\{i\}}(-1)^{1+|J|}
+=-(1-1)^{r-1}.
+\]
+For \(r=1\) this is \(-1\); for \(r>1\) it is zero. This is exactly (PM3). For \(n=1\) the sole divisor contributes zero. Consequently \(a_D(n)=\Lambda(n)\) as soon as \(D\ge n\). No infinite arithmetic sum is needed at a fixed entry.
+
+## 2. The precise operator domains and modes of convergence
+
+Define the multiplication operator
+\[
+\mathcal D_\Lambda=\left\{x\in\ell^2(\mathbb N):
+\sum_n\Lambda(n)^2|x_n|^2<\infty\right\},\qquad
+(Ax)_n=\Lambda(n)x_n.
+\tag{PM4}
+\]
+It is positive and self-adjoint. Positivity follows by summing the nonnegative quantities \(\Lambda(n)|x_n|^2\); that series is finite on \(\mathcal D_\Lambda\) by Cauchy–Schwarz. To identify the adjoint, test against each basis vector. A vector \(y\) belongs to the adjoint domain exactly when the sequence \((\Lambda(n)y_n)_n\) is square summable, and the adjoint is multiplication by that sequence. This is precisely (PM4). For \(x\in\mathcal D_\Lambda\), its first \(K\) coordinates converge to \(x\) in both Hilbert norm and the norm of \(Ax\). Thus the finite vectors form a core. On this core, (PM3) proves the exact identity
+\[
+\boxed{\Lambda(N)=-\sum_{\substack{d\ge2\\\mu(d)\ne0}}
+\mu(d)\log(d)P_d,}
+\tag{PM5}
+\]
+where the right side stabilizes on each finite vector and its closure is the operator (PM4).
+
+The convergence assertion cannot be strengthened to strong convergence of \(A_Dx\) for every \(x\in\mathcal D_\Lambda\). This has an explicit counterexample. Choose distinct odd primes \(q_j\) so large that \(\log q_j\ge j^2\), and define
+\[
+x_{2q_j}=1/j,\qquad x_n=0\text{ otherwise}.
+\tag{PM6}
+\]
+Arbitrarily large primes exist: a prime divisor of one plus the product of any finite set of primes is outside that set. Thus this choice is available. The series \(\sum1/j^2\) converges, and \(\Lambda(2q_j)=0\), so \(x\in\mathcal D_\Lambda\) and \(Ax=0\). At cutoff \(D=q_j\), the divisors \(2,q_j\) contribute to its \(2q_j\) coordinate and \(2q_j\) does not. Hence
+\[
+a_{q_j}(2q_j)=\log(2q_j),\qquad
+\|A_{q_j}x\|\ge\log(2q_j)/j\ge j.
+\tag{PM7}
+\]
+The claimed stronger convergence therefore fails even on the kernel of \(A\).
+
+A useful valid common domain is explicit. Set
+\[
+b(1)=0,\qquad
+b(n)=\sum_{d\mid n}|\mu(d)|\log d
+=2^{\omega(n)-1}\log\operatorname{rad}(n)\quad(n>1),
+\quad
+\mathcal D_b=\left\{x:\sum b(n)^2|x_n|^2<\infty\right\}.
+\tag{PM8}
+\]
+Here \(\omega(n)\) counts its distinct prime factors and \(\operatorname{rad}(n)\) is their product. Each factor appears in exactly \(2^{\omega(n)-1}\) squarefree divisors, proving the formula for \(b\). The bounds \(|a_D(n)|\le b(n)\) and \(\Lambda(n)\le b(n)\), followed by dominated convergence of the series of squared coordinates, prove \(A_Dx\to Ax\) for every \(x\in\mathcal D_b\). This statement preserves the actual cutoff in (PM2).
+
+## 3. The weighted trace and its exact factor
+
+Fix \(s\in\mathbb C\) with \(\sigma=\Re s>1\), using the real logarithm for \(n^{-s}\). The diagonal operator \(P_dN^{-s}\) has trace norm
+\[
+\|P_dN^{-s}\|_1=\sum_{k\ge1}(dk)^{-\sigma}
+=d^{-\sigma}\zeta(\sigma),\qquad
+\operatorname{Tr}(P_dN^{-s})=d^{-s}\zeta(s).
+\tag{PM9}
+\]
+These are HCR26–28 with \(q=a=d\), also proved directly by their displayed sums. Therefore
+\[
+\sum_{d\ge2,\,\mu(d)\ne0}|c_d|\,\|P_dN^{-s}\|_1
+\le\zeta(\sigma)\sum_{d\ge2}(\log d)d^{-\sigma}<\infty.
+\tag{PM10}
+\]
+The scalar majorant converges, for example by integrating \((\log x)x^{-\sigma}\) on \([2,\infty)\). Thus the weighted operator series converges in trace norm. Its diagonal entries stabilize to \(\Lambda(n)n^{-s}\), which identifies its limit as \(AN^{-s}\). In particular
+\[
+\begin{split}
+\operatorname{Tr}(AN^{-s})
+&=\sum_{n\ge2}\Lambda(n)n^{-s}
+=\zeta(s)\sum_{d\ge2}(-\mu(d)\log d)d^{-s}
+=-\frac{\zeta'(s)}{\zeta(s)},\\
+\|A_DN^{-s}-AN^{-s}\|_1
+&\le\zeta(\sigma)\sum_{d>D}|\mu(d)|(\log d)d^{-\sigma}.
+\end{split}
+\tag{PM11}
+\]
+For completeness the last analytic identity follows without differentiating a conditionally convergent series. The elementary divisor identity \(\sum_{d\mid n}\mu(d)=\mathbf1_{n=1}\), proved by \((1-1)^{\omega(n)}\), and absolute Dirichlet convolution give \(\zeta(s)\sum\mu(d)d^{-s}=1\) for \(\Re s>1\). The two series and their derivatives converge locally uniformly there, using the same logarithmic majorants as (PM10). Differentiate \(\sum\mu(d)d^{-s}=1/\zeta(s)\), obtaining \(\sum(-\mu(d)\log d)d^{-s}=-\zeta'(s)/\zeta(s)^2\), and multiply by \(\zeta(s)\). In particular all signs in (PM11) are fixed. This is the function \(-r(s)\) of HA10.
+
+## 4. The original lattice and the two different cutoff corrections
+
+Retain a nontrivial bounded distributive lattice \(L\), with bottom \(0_L\) and top \(1_L\), and exactly HCR7:
+\[
+\begin{gathered}
+G_L(\mathbb C)=\{(a,\lambda):a\ne0\Longrightarrow\lambda=1_L\},\\
+(a,\lambda)+(b,\eta)=(a+b,\lambda\vee\eta),\qquad
+(a,\lambda)(b,\eta)=(ab,\lambda\wedge\eta),\\
+\tau=(0,0_L),\qquad e=(0,1_L),\qquad\widehat c=(c,1_L).
+\end{gathered}
+\tag{PM12}
+\]
+All matrices below have off-diagonal entries \(\tau\), so they are in the row-and-column-finite matrix semiring of HCR7–9. Let
+\[
+(\widehat P_d)_{nn}=\begin{cases}1_S,&d\mid n,\\\tau,&d\nmid n,\end{cases}
+\quad
+(M_d)_{nn}=\begin{cases}\tau,&d\mid n,\\e,&d\nmid n,\end{cases}
+\quad
+R_d=\widehat{1/d}\sum_{j=0}^{d-1}\widehat E(j/d).
+\tag{PM13}
+\]
+The root sum from HCR3, calculated with the actual labels, gives
+\[
+R_d=\widehat P_d+M_d,
+\qquad (R_d)_{nn}=(\mathbf1_{d\mid n},1_L).
+\tag{PM14}
+\]
+At a nonmultiple the roots cancel in amplitude, and their sum is \(e\), not \(\tau\).
+
+For \(D\ge2\), define the sparse and raw sums using only the nonzero coefficients specified in (PM2):
+\[
+\mathcal A_D=\sum_{d\in I_D}\widehat c_d\widehat P_d,
+\qquad \mathcal R_D=\sum_{d\in I_D}\widehat c_d R_d,
+\quad
+\chi_D(n)=\mathbf1_{\exists p\le D:\ p\text{ prime},\ p\mid n}.
+\tag{PM15}
+\]
+Then the full entry formulas are
+\[
+(\mathcal A_D)_{nn}=\begin{cases}(a_D(n),1_L),&\chi_D(n)=1,\\\tau,&\chi_D(n)=0,\end{cases}
+\qquad
+(\mathcal R_D)_{nn}=(a_D(n),1_L).
+\tag{PM16}
+\]
+Indeed an active squarefree divisor of \(n\) exists exactly when a prime divisor at most \(D\) exists. The sparse sum then joins at least one top label, including when its amplitudes subsequently cancel. Every raw summand has top diagonal label, and there is at least one such summand since \(2\in I_D\). This proves (PM16) at every entry. For \(D=1\) both sums are the zero matrix; it is a separate empty-sum case.
+
+The least missing-support correction is
+\[
+(\mathcal M_D)_{nn}=\begin{cases}\tau,&\chi_D(n)=1,\\e,&\chi_D(n)=0,\end{cases}
+\qquad
+\boxed{\mathcal A_D+\mathcal M_D=\mathcal R_D.}
+\tag{PM17}
+\]
+Every correction \(C\) satisfying \(\mathcal A_D+C=\mathcal R_D\) has zero amplitudes, off-diagonal entries \(\tau\), top diagonal label when \(\chi_D(n)=0\), and any original label when \(\chi_D(n)=1\). These conditions are necessary by amplitude equality and by the joins in (PM12); they are sufficient by the same calculation. Thus (PM17) is the unique least correction in the entrywise order on zero-amplitude labels, and the entire family of corrections has been specified.
+
+The actual sum of the individual Fourier corrections is usually larger. Put
+\[
+\mathcal K_D=\sum_{d\in I_D}\widehat c_dM_d,
+\qquad Q_D=\prod_{p\le D,\ p\text{ prime}}p.
+\tag{PM18}
+\]
+Each nonzero \(c_d\) acts on \(e\) as \(e\). Therefore
+\[
+(\mathcal K_D)_{nn}=\begin{cases}\tau,&Q_D\mid n,\\e,&Q_D\nmid n,\end{cases}
+\qquad
+\boxed{\mathcal A_D+\mathcal K_D=\mathcal R_D.}
+\tag{PM19}
+\]
+To prove the first formula, all the active \(d\) divide \(n\) exactly when all primes at most \(D\) divide \(n\): the forward implication uses that each of these primes is active, and the reverse uses that an active \(d\) is squarefree. The second formula follows by adding (PM14) with its stated coefficients, or directly from (PM16). In particular \(\mathcal M_D\le\mathcal K_D\), but equality need not hold. For \(D=3\), at \(n=2\) the least correction is \(\tau\) and the directly summed correction is \(e\). The additional \(e\) is absorbed by the already top-labelled entry of \(\mathcal A_D\); it has not been set equal to \(\tau\).
+
+## 5. All limiting support, including the index one
+
+Every limit in this paragraph is eventual equality at each matrix entry, so it requires no completeness assumption or infinite join in \(L\). The exact limits are
+\[
+\begin{aligned}
+\mathcal A_{nn}&=\begin{cases}\tau,&n=1,\\(\Lambda(n),1_L),&n\ge2,\end{cases}
+&\mathcal R_{nn}&=(\Lambda(n),1_L)\quad(n\ge1),\\
+\mathcal M_{nn}&=\begin{cases}e,&n=1,\\\tau,&n\ge2,\end{cases}
+&\mathcal K&=Z=\operatorname{diag}(e,e,\ldots).
+\end{aligned}
+\tag{PM20}
+\]
+For \(n\ge2\), some prime divisor appears by \(D\ge n\), and (PM3) fixes the amplitude. The index 1 has no active divisors. For the last limit choose a prime not dividing the fixed integer \(n\); once it is included, \(Q_D\nmid n\) forever. Existence follows from the elementary infinitude argument already supplied. Thus
+\[
+\boxed{\mathcal A+\mathcal M=\mathcal R=\mathcal A+Z.}
+\tag{PM21}
+\]
+In particular every integer with at least two distinct prime factors has the entry \(e\) in both \(\mathcal A\) and \(\mathcal R\), since its zero value of \(\Lambda\) was produced by cancellation. Only the sparse index 1 has \(\tau\). The least limiting defect and the directly summed limiting defect are different matrices, even though both complete the same equation.
+
+The stipulated index set is also essential to the full lift. In the complex identity one may insert the zero term \(-\mu(1)\log1\,P_1=0\). Lifting that newly inserted coefficient as \(\widehat0=e\) instead gives \(e\widehat P_1=Z\), since \(P_1=I\). Thus adding this zero term before lifting changes the sparse lift from \(\mathcal A\) to \(\mathcal A+Z=\mathcal R\). This is the exact connecting map for the two presentations, not permission to identify their support matrices. The original index set \(d\ge2,\mu(d)\ne0\) in (PM5) has been retained throughout.
+
+For an arbitrary input with original coordinates \(v_n=(x_n,\lambda_n)\), where \(x\in\ell^2\) and \(x_n\ne0\Rightarrow\lambda_n=1_L\), the finite sums act by
+\[
+(\mathcal A_Dv)_n=
+\begin{cases}(a_D(n)x_n,\lambda_n),&\chi_D(n)=1,\\\tau,&\chi_D(n)=0,\end{cases}
+\quad
+(\mathcal R_Dv)_n=(a_D(n)x_n,\lambda_n).
+\tag{PM22}
+\]
+Their amplitude operators are bounded at each finite \(D\). The limiting amplitude operator has domain (PM4). On that domain the limiting labelled maps act as \((\Lambda(n)x_n,\lambda_n)\) at every \(n\ge2\), with \(\tau\) at 1 for the sparse map and \((0,\lambda_1)\) at 1 for the raw map. This is an entrywise definition with the domain of the amplitude stated; it does not assert the false Hilbert convergence excluded in (PM7).
+
+The complete coefficient injection of HCR9 sends a matrix entry \((a,\lambda)\) to \((a,\iota_L(\lambda))\), where \(\iota_L:L\hookrightarrow K\otimes_{\mathbb B}L\) has its stated retraction. For diagonal masks write \(\chi_D^K\) and \((1-\chi_D)^K\) for the separate selected and complementary indicators; the notation is a description of masks, not subtraction in the lattice semiring. The exact images are
+\[
+\begin{array}{c|cc}
+&\text{complex amplitude}&\text{full support matrix}\\\hline
+\mathcal A_D&A_D&\chi_D^K\\
+\mathcal R_D&A_D&I_K\\
+\mathcal M_D&0&(1-\chi_D)^K\\
+\mathcal K_D&0&\mathbf1_{Q_D\nmid n}^{K}
+\end{array}
+\tag{PM23}
+\]
+The same map takes the limits to the corresponding masks in (PM20). The retraction recovers every original label, including the \(\lambda_n\) in (PM22). The common-label completion \(C(D)=D+Z\) of HCR16 sends \(\mathcal A_D\) to \(\mathcal R_D\) and \(\mathcal A\) to \(\mathcal R\). Its kernel congruence is equality of amplitudes; the complete injection (PM23) has not taken that quotient.
+
+There is also a supported weighted trace, with its domain expressly fixed. For \(\Re s>1\), multiply the diagonal entries by \((n^{-s},1_L)\), take finite basis traces, and then take the absolutely convergent amplitude limit while retaining the eventual label. For \(D\ge2\), sparse finite basis traces are \(\tau\) at cutoff 1 and top-labelled at every cutoff at least 2. Raw traces are top-labelled at every positive cutoff. Hence both limiting traces are
+\[
+\left(\operatorname{Tr}(A_DN^{-s}),1_L\right),
+\quad\text{and, as }D\to\infty,\quad
+\left(-\zeta'(s)/\zeta(s),1_L\right).
+\tag{PM24}
+\]
+The correction traces are \(e\), because their zero-amplitude support contains index 1. Equality of the two scalar traces thus does not identify their different support matrices. This construction does not define a trace on arbitrary infinite labelled matrices.
+
+## 6. The exact map into the complete Weil prime distribution
+
+Use the original SZW19 convention
+\[
+\mathcal T=C_c^\infty(\mathbb R;\mathbb C),\quad
+M_h(s)=\int_{\mathbb R}h(v)e^{-(s-1/2)v}\,dv,
+\quad h^\#(v)=\overline{h(-v)}.
+\tag{PM25}
+\]
+For \(h\in\mathcal T\), the diagonal operator
+\[
+B_h=N^{-1/2}\{h(\log N)+h(-\log N)\}
+\tag{PM26}
+\]
+has finite rank: if \(\operatorname{supp}h\subset[-R,R]\), its entries vanish for \(n>e^R\). Its entry at 1 is \(2h(0)\). Since \(\Lambda(1)=0\), the exact trace receiver is
+\[
+\begin{split}
+\operatorname{Tr}(AB_h)
+&=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+\{h(\log n)+h(-\log n)\}\\
+&=\sum_p\sum_{k\ge1}(\log p)p^{-k/2}
+\{h(k\log p)+h(-k\log p)\}
+=P_{\rm fin}(h).
+\end{split}
+\tag{PM27}
+\]
+The prime-power expansion uses (PM1), not an altered norm for supported zero. Every sum in (PM27) is finite for a fixed test. At cutoff \(D\ge\max(2,\lfloor e^R\rfloor)\), \(\operatorname{Tr}(A_DB_h)\) is already equal to (PM27).
+
+To state a full supported test receiver rather than hiding its choices, take \(K\ge\max(2,\lfloor e^R\rfloor)\) and the specified finite-basis lift
+\[
+(\widehat B_{h,K})_{nn}=
+\begin{cases}(n^{-1/2}\{h(\log n)+h(-\log n)\},1_L),&1\le n\le K,\\
+\tau,&n>K.
+\end{cases}
+\tag{PM28}
+\]
+It keeps the zero values inside that chosen finite basis as \(e\). Multiplying by the matrices in (PM20), followed by the finite trace, gives
+\[
+\operatorname{tr}(\mathcal A\widehat B_{h,K})
+=\operatorname{tr}(\mathcal R\widehat B_{h,K})
+=(P_{\rm fin}(h),1_L),
+\quad
+\operatorname{tr}(\mathcal M\widehat B_{h,K})=e.
+\tag{PM29}
+\]
+The first top label in the sparse trace is at index 2; the raw trace already has it at index 1. These assertions remain true if \(h=0\), because (PM28) deliberately specifies a top-labelled lift of its zero values. This lift therefore is not asserted to be an additive zero-preserving linear map from the complex test space into the ambient split semiring. The amplitude trace is the complex-linear distribution (PM27); the complete matrix injection (PM23) separately retains the support. If a support-adapted lift of \(B_h\) is chosen instead, its zero entries have different labels and (PM28)–(PM29) must not be silently reused.
+
+The connection to the entire supported formula is now exact. With \(H=M_h\), let \(\mathbf e_\lambda\) denote the coordinate basis of \(\mathbb C[L]\) for the finite support lattice used in SZW. Its existing identity is
+\[
+\begin{split}
+\boldsymbol B_L(h)&=(H(0)+H(1))\mathbf e_{1_L}
+ +H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol Z_L(h)&=Z(h)\mathbf e_{1_L},\\
+\boldsymbol D_L(h)&=(\operatorname{Tr}(AB_h)-A_\infty(h))\mathbf e_{1_L}
+ +H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol B_L(h)-\boldsymbol Z_L(h)&=\boldsymbol D_L(h),
+\end{split}
+\tag{PM30}
+\]
+where
+\[
+Z(h)=\sum_\rho m_\rho M_h(\rho),\qquad
+A_\infty(h)=\frac1{2\pi}\int_{\mathbb R}\widehat h(t)
+\{\Re\psi(1/4+it/2)-\log\pi\}\,dt.
+\tag{PM31}
+\]
+Here the sum ranges over all nontrivial zeta zeros with their multiplicities and \(\widehat h(t)=\int h(v)e^{-itv}dv\). Formula (PM30) follows by substituting the proved equality (PM27) into SZW24–25 and SZW33–34. Those original formulas retain the theta endpoint traces and prove their convergence. No lower coordinate is replaced by a proposed numerical prime weight. For the noncompact Cauchy convolution in HA7, the same receiver is an absolutely convergent trace: its two terms at \(\pm\log n\) give precisely \((n^{-w}+n^{-\bar z})/(w+\bar z-1)\), yielding the prime term of HA11 when \(\Re z,\Re w>1\). Thus (PM11), (PM27), and HA11 receive exactly the same arithmetic coefficients with their original constants.
+
+## 7. Translation is the map relevant to positivity
+
+For \(f,g\in\mathcal T\), direct substitution in convolution gives
+\[
+(f^\#*g)(v)=\int_{\mathbb R}\overline{f(x)}g(x+v)\,dx
+=\langle f,U_vg\rangle_{L^2(\mathbb R)},\qquad
+(U_vg)(x)=g(x+v),\quad U_v^*=U_{-v}.
+\tag{PM32}
+\]
+If the difference of the two test supports is contained in \([-R,R]\), all terms outside that interval vanish, and
+\[
+P_{\rm fin}(f^\#*g)
+=\left\langle f,
+\sum_{2\le n\le e^R}\frac{\Lambda(n)}{\sqrt n}
+\{U_{\log n}+U_{-\log n}\}g\right\rangle.
+\tag{PM33}
+\]
+The finite operator on the right is bounded and self-adjoint; its norm is at most \(2\sum_{n\le e^R}\Lambda(n)/\sqrt n\). The expression stabilizes on each fixed test pair as \(R\) grows. An infinite bounded translation operator is not required or asserted. This is the exact receiver from the positive multiplication operator (PM4) to the prime sesquilinear form. The map from finite diagonal coefficients to the sum of translations in (PM33) is linear and respects adjoints, but is not a positive map.
+
+Here is a complete sign test. Write \(a=\log2\), choose
+\[
+0<2\delta<\min\{\log2,\log(3/2)\},\qquad
+0\ne\varphi\in C_c^\infty((-\delta,\delta)),\qquad
+\varphi_a(x)=\varphi(x-a).
+\tag{PM34}
+\]
+For any nonzero \(\eta\) with this support, put \(k=\eta^\#*\eta\) and \(g_\pm=\eta\pm\eta_a\). Then
+\[
+g_\pm^\#*g_\pm(v)=2k(v)\pm k(v-a)\pm k(v+a),
+\quad k(0)=\|\eta\|_2^2,
+\quad\operatorname{supp}k\subset[-2\delta,2\delta].
+\tag{PM35}
+\]
+Indeed expand the four convolutions in (PM32); translating both arguments leaves \(k\) unchanged and translating one shifts it by \(\pm a\). At \(v=a\) or \(-a\), only one shifted term survives, giving \(\pm\|\eta\|_2^2\). At \(v=\pm\log n\) with \(n\ge3\), every term vanishes because \(a+2\delta<\log3\). Consequently
+\[
+\boxed{P_{\rm fin}(g_\pm^\#*g_\pm)
+=\pm\frac{2\log2}{\sqrt2}\|\eta\|_2^2
+=\pm\sqrt2\log2\,\|\eta\|_2^2.}
+\tag{PM36}
+\]
+This also proves nonpositivity of the coefficient-to-translation map already on the positive single diagonal coefficient at index 2. Positive diagonal coefficients alone therefore do not imply a positive autocorrelation receiver.
+
+## 8. The same exact signs survive endpoint annihilation
+
+Keep the test operator and its original constant
+\[
+T=\partial_v^2-\tfrac14.
+\tag{PM37}
+\]
+Integration by parts twice, with no boundary term for a compact smooth test, gives
+\[
+M_{Tf}(s)=\bigl((s-\tfrac12)^2-\tfrac14\bigr)M_f(s)
+=s(s-1)M_f(s).
+\tag{PM38}
+\]
+Thus both endpoint values vanish exactly; at every nontrivial zero the multiplying factor is nonzero. The coefficients are real and the order is even, so \((Tf)^\#=T(f^\#)\). Differentiation of compact convolution gives
+\[
+(Tf)^\#*(Tg)=T^2(f^\#*g),\qquad
+M_{(Tf)^\#*(Tg)}(s)=[s(s-1)]^2
+\overline{M_f(1-\bar s)}M_g(s).
+\tag{PM39}
+\]
+All support and convergence requirements of (PM27) and (PM30) continue to hold.
+
+For an explicit endpoint-zero version of (PM36), take \(\eta=T\varphi\) with \(\varphi\) from (PM34). This \(\eta\) is nonzero. Otherwise \(\varphi''=\varphi/4\) everywhere; solving this equation with its zero value and zero derivative outside the compact support gives the identically zero solution, a contradiction. Its support remains contained in \((-\delta,\delta)\), and \(T\) commutes with translation. Hence
+\[
+g_\pm=T(\varphi\pm\varphi_a),\quad
+M_{g_\pm}(0)=M_{g_\pm}(1)=0,\quad
+\boxed{P_{\rm fin}(g_\pm^\#*g_\pm)
+=\pm\sqrt2\log2\,\|T\varphi\|_2^2.}
+\tag{PM40}
+\]
+There is no approximation in these signs, and no zero-location assumption in their proof.
+
+For these or any endpoint-zero tests, write \(h=g^\#*g\). Then \(M_h(0)=M_h(1)=0\) by the convolution formula, so (PM30) is exactly
+\[
+\boldsymbol B_L(h)=0,\quad
+\boldsymbol D_L(h)=(P_{\rm fin}(h)-A_\infty(h))\mathbf e_{1_L},\quad
+\boldsymbol Z_L(h)=(A_\infty(h)-P_{\rm fin}(h))\mathbf e_{1_L}.
+\tag{PM41}
+\]
+The coordinate spaces and all support maps remain those of (PM30); the lower coefficients here are the calculated zero values of these tests. In particular (PM40) assigns no sign to (PM41) until the archimedean term is included. The exact remaining comparison is between the archimedean form and the translated prime form, with their already fixed constants. The positive operator \(\Lambda(N)\), the raw supported zeros, and the endpoint annihilator each have now been connected to that comparison by explicit maps rather than by a positivity assertion.
+
+## Source identities and actual reading coverage
+
+- **HCR:** `work/rh_counterfactual_20260913/tau_prime_weil_20260922/cc_totality_20260923/reader_fragments/HURWITZ_CYCLOTOMIC_RECEIVER.tex`, SHA256 `d8a4caa0b66e492e7ffe987ba2aa04beb201aed3cacc3b30a3b0d4b526e6df38`. Read the complete HCR1–42 and their proofs for this derivation. Operators and full lattice are HCR1–16; the weighted original trace is HCR26–31. Its human operator source is Alain Connes, Caterina Consani and Matilde Marcolli, [*Fun with F1*, arXiv:0806.2401v1](https://arxiv.org/abs/0806.2401v1), original `funBC.tex`, relations `pres`, `idem`, `endo`, `endosigma`, and (c1)–(c4), with exact line ranges recorded in HCR. This derivation has read the HCR proof, not newly reread that author archive; HCR's original-source reading claim is not represented as a new reading here. Equations (PM13)–(PM19) reprove every operator and label identity actually needed.
+- **HA:** `HEAT_CAUCHY_ARITHMETIC_DERIVATION.md`, SHA256 `024d3f42723fabf2361cab9400d98d2fe64c57ec114112e6ada6f5430a88f909`. Read HA1–26 for this derivation. [HA10–14, pinned public proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/76f421965914beb133df797835f940849844dc4f/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HEAT_CAUCHY_ARITHMETIC_DERIVATION.md) supply the exact logarithmic derivative, Cauchy trace and supported coefficients checked in (PM11), (PM30), and the paragraph after (PM31).
+- **SZW:** `SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md`, SHA256 `ff7fbe6cc627720368a7c245052ef8263925ca2d912046dfe45e3be74d4455f4`. Read SZW19–26 and SZW33–38, with adjacent text, for this derivation. The complete explicit-formula proof is in [SZW24–26 and full support identity SZW33–34, pinned public source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5a89872598df0902b7c1393cf8e4692ca3010a95/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md). Its human explicit-formula source is Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*](https://arxiv.org/abs/math/9811068), Appendix II, Theorem 6. The present proof uses the complete programme derivation and does not assert a new reading of that author archive.
+
+The Möbius identity (PM3) is the classical arithmetic inversion identity, proved here with its complete divisor calculation. The new programme calculation is its specified split lift, both distinct support corrections and their limits, its exact full Weil receiver, and the endpoint-zero sign test. No novelty claim about classical Möbius inversion, trace-class diagonal operators, or the classical explicit formula is made.
+
+\clearpage
+
+# The actual archimedean form on short-support primitives
+
+This proof gives an explicit rational lower bound, an exact bilinear
+representation of its positive remainder, and an exact localization
+on primitive functions retaining all cross terms. It uses the original minus-sign
+Mellin convention and HA13. No historical novelty claim is made for
+short-support Weil positivity or for the endpoint-annihilating
+differential operator.
+
+## PS1. Original tests, correlations and the archimedean form
+
+Let \(f,g\in C_c^\infty(\mathbb R;\mathbb C)\), and retain the conventions
+
+\[
+f^\#(u)=\overline{f(-u)},\qquad
+h_{f,g}=f^\#*g,\qquad
+M_f(s)=\int_{\mathbb R}f(u)e^{-(s-1/2)u}\,du.
+\tag{PS1}
+\]
+
+The inner product is \(\langle f,g\rangle=\int\overline{f(u)}g(u)\,du\), conjugate-linear
+in its first argument. Define the translation \(\tau_a f(u)=f(u-a)\).
+Changing variables in the convolution gives
+
+\[
+h_{f,g}(a)=\langle\tau_a f,g\rangle,
+\quad h_{f,g}(-a)=\langle f,\tau_a g\rangle,
+\quad h_{f,g}(0)=\langle f,g\rangle.
+\tag{PS2}
+\]
+
+For the diagonal correlation, \(h(-a)=\overline{h(a)}\) and
+\(|h(a)|\le h(0)=\|f\|^2\) by Cauchy–Schwarz. If the two functions
+are supported in one interval of length \(\ell>0\), their correlation
+vanishes outside \([-\ell,\ell]\). This statement does not depend on
+the center of the interval.
+
+Use precisely the archimedean functional proved in [HA13, complete public proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/76f421965914beb133df797835f940849844dc4f/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HEAT_CAUCHY_ARITHMETIC_DERIVATION.md):
+
+\[
+\begin{split}
+\mathcal A(f,g):=A_\infty(h_{f,g})
+={}&-(\gamma+\log\pi)\langle f,g\rangle\\
+&+\int_0^\infty
+\frac{e^{-x}\langle f,g\rangle
+-\tfrac12e^{-x/4}(h_{f,g}(x/2)+h_{f,g}(-x/2))}
+{1-e^{-x}}\,dx.
+\end{split}
+\tag{PS3}
+\]
+
+Here \(\gamma\) is Euler's constant. This is a Hermitian sesquilinear
+form on the stated smooth test space. The cancellation of the
+numerator at \(x=0\) makes the integral converge; smoothness suffices.
+No sign convention for an archimedean geometric distribution is
+substituted for PS3: its sign is the archimedean term appearing
+positively in the original spectral explicit formula.
+
+## PS2. Exact bilinear short-support identity
+
+For \(\ell>0\), set
+
+\[
+\begin{split}
+C(\ell)={}&-\gamma-\log\pi
+-\log(1-e^{-2\ell})\\
+&+\int_0^{2\ell}\frac{e^{-x}-e^{-x/4}}{1-e^{-x}}\,dx,
+\qquad
+w(x)=\frac{e^{-x/4}}{1-e^{-x}}.
+\end{split}
+\tag{PS4}
+\]
+
+For \(f,g\) supported in one interval of length \(\ell\), the following
+is an equality, not merely an inequality:
+
+\[
+\boxed{\mathcal A(f,g)=C(\ell)\langle f,g\rangle
++\frac12\int_0^{2\ell}w(x)
+\langle\tau_{x/2}f-f,\tau_{x/2}g-g\rangle\,dx.}
+\tag{PS5}
+\]
+
+To prove it, split PS3 at \(2\ell\). Above that point the two
+correlations vanish, while
+
+\[
+\int_{2\ell}^\infty\frac{e^{-x}}{1-e^{-x}}\,dx
+=-\log(1-e^{-2\ell}).
+\]
+
+Below that point use the unitary translation identity
+
+\[
+\langle\tau_a f-f,\tau_a g-g\rangle
+=2\langle f,g\rangle-h_{f,g}(a)-h_{f,g}(-a).
+\]
+
+Its substitution separates the remaining constant multiple of
+\(\langle f,g\rangle\), which is exactly the integral in PS4, and leaves the
+positive-weight integral in PS5. The latter converges at zero:
+\(\|\tau_a f-f\|\le |a|\|f'\|\), obtained by the fundamental theorem
+of calculus and Minkowski's inequality. Thus the bilinear
+integrand is \(O(x^2)w(x)=O(x)\) there.
+
+In particular, taking the diagonal gives
+
+\[
+\mathcal A(f,f)=C(\ell)\|f\|^2
++\frac12\int_0^{2\ell}w(x)
+\|\tau_{x/2}f-f\|^2\,dx
+\ge C(\ell)\|f\|^2.
+\tag{PS6}
+\]
+
+The remainder is explicitly a Gram integral of translation
+differences. Consequently the same local lower bound holds as
+a matrix inequality on every finite family supported in that
+one common interval. The equality also proves directly that the
+proposed \(C(\ell)\) has the correct tail sign and every factor of
+two from the original HA13 coordinate.
+
+## PS3. The rational lower bound 55/192
+
+For \(x>0\) put \(q=e^{-x/4}\in(0,1)\). The integrand in PS4 is
+
+\[
+\frac{e^{-x}-e^{-x/4}}{1-e^{-x}}
+=-\frac{q(1+q+q^2)}{1+q+q^2+q^3}\ge-\frac34.
+\tag{PS7}
+\]
+
+The final inequality is equivalent to \(q+q^2+q^3\le3\), which holds
+term by term. Its limit at zero is \(-3/4\), so the integral has no
+unaccounted singular endpoint. Therefore it is at least
+\(-3\ell/2\).
+
+The elementary inequalities used next can all be retained
+without decimal approximations. First \(\gamma\le1\): the decreasing
+sequence \(H_n-\log n\) has limit \(\gamma\) and starts at one. Its
+decrease follows from \(\log(1+1/n)\ge1/(n+1)\), by integration of
+\(1/x\) on \([1,1+1/n]\). Its lower bound follows by comparing the
+harmonic sum with the same integral, so this passage to the
+limit is valid. Second \(\pi\le4\), for example from containment of
+the unit disc in the square of side two. Third,
+
+\[
+\log x\ge\frac{2(x-1)}{x+1}\quad(x\ge1),
+\]
+
+because the derivative of their difference is
+\((x-1)^2/[x(x+1)^2]\ge0\) and the difference is zero at one. At
+\(x=2\) this yields \(\log2\ge2/3\), hence \(\log4\ge4/3\).
+
+Finally \(1-e^{-2\ell}\le2\ell\) follows by integrating \(e^{-x}\le1\).
+Combining all these inequalities in the correct direction gives
+
+\[
+\begin{split}
+C(\ell)
+&\ge-1-\log4-\log(2\ell)-\frac32\ell\\
+&=-1+\log\frac1{8\ell}-\frac32\ell\\
+&\ge-1+\log4-\frac3{64}
+\ge\frac13-\frac3{64}=\frac{55}{192}
+\qquad(0<\ell\le1/32).
+\end{split}
+\tag{PS8}
+\]
+
+Thus the actual archimedean form satisfies the proved bound
+
+\[
+\boxed{\mathcal A(f,f)\ge\frac{55}{192}\|f\|^2}
+\tag{PS9}
+\]
+
+for any smooth \(f\) supported in an interval of length at most
+\(1/32\). No endpoint-vanishing condition is required for this
+archimedean assertion. A smooth function supported in a
+zero-length interval is zero and satisfies it trivially.
+
+## PS4. Endpoint-annihilating primitives and the whole Weil form
+
+Retain the original differential operator
+
+\[
+T=\frac{d^2}{du^2}-\frac14,
+\qquad f=Tg,\quad g\in C_c^\infty(\mathbb R).
+\tag{PS10}
+\]
+
+Two integrations by parts, with no boundary terms, give
+
+\[
+M_{Tg}(s)=\bigl((s-1/2)^2-1/4\bigr)M_g(s)
+=s(s-1)M_g(s).
+\tag{PS11}
+\]
+
+Thus both endpoint values vanish exactly, while \(T\) does not
+enlarge the support. Its squared norm, with complex-valued
+functions permitted, is exactly
+
+\[
+\begin{split}
+\|Tg\|^2
+&=\|g''\|^2-\frac12\Re\langle g'',g\rangle
++\frac1{16}\|g\|^2\\
+&=\|g''\|^2+\frac12\|g'\|^2+\frac1{16}\|g\|^2.
+\end{split}
+\tag{PS12}
+\]
+
+For a compact test \(f\) write its original reflected Weil form
+as
+
+\[
+\mathcal Q(f,g)=\sum_\rho m_\rho
+\overline{M_f(\rho^\#)}M_g(\rho)
+=M_{f^\#*g}(0)+M_{f^\#*g}(1)
++\mathcal A(f,g)-P_{\rm fin}(f^\#*g).
+\tag{PS13}
+\]
+
+The complete underlying formula is [SZW24–26 and SZW33–38](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/76f421965914beb133df797835f940849844dc4f/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md).
+The sum converges by the original strip zero count and rapid
+Mellin decay; the displayed identity is SZW25 with its original
+constants. Its two endpoint values for \(f=Tg\) are zero by PS11
+and the convolution identity. If \(g\) is supported in an
+interval of length \(\ell\le1/32\), the correlation of \(Tg\) is
+supported in \([-\ell,\ell]\). Since \(\ell<\log2\), every prime term
+\(h(\pm\log n)\) with \(n\ge2\) vanishes exactly. Consequently the whole
+spectral form in PS13, with endpoints retained and evaluated,
+equals the archimedean form and satisfies
+
+\[
+\boxed{\mathcal Q(Tg,Tg)\ge\frac{55}{192}
+\left(\|g''\|^2+\frac12\|g'\|^2
++\frac1{16}\|g\|^2\right).}
+\tag{PS14}
+\]
+
+The inequality is strict for \(g\ne0\), since its right side is
+strictly positive. This proves the proposed primitive estimate
+with the exact positive sign in the original full spectral
+form. In the support-resolved SZW identity the endpoint
+amplitude in every boundary coordinate is zero for these tests;
+the labels themselves remain present. No support element is
+identified with a scalar zero by this computation.
+
+For precision, every compact smooth test with both endpoint
+moments zero does have a unique compact smooth primitive in
+this sense. An explicit inverse, preserving the containing
+support interval, is
+
+\[
+g(u)=-\int_{\mathbb R}e^{-|u-v|/2}f(v)\,dv.
+\tag{PS15}
+\]
+
+The kernel \(-e^{-|u|/2}\) has first derivative jump one and
+satisfies \(TK=\delta_0\) in distributions. Thus \(Tg=f\), and convolution
+with smooth compact \(f\) gives a smooth function. If
+\(\operatorname{supp}f\subset[a,b]\), then for \(u>b\) its value is
+\(-e^{-u/2}M_f(0)=0\), and for \(u<a\) it is
+\(-e^{u/2}M_f(1)=0\). Hence \(\operatorname{supp}g\subset[a,b]\).
+The difference of two compact primitives solves the homogeneous
+equation and is a linear combination of \(e^{u/2}\) and \(e^{-u/2}\);
+compact support forces both coefficients to vanish. This proves
+the stated exact inverse and uniqueness, not only existence of
+some endpoint-null images of \(T\).
+
+## PS5. Exact bilinear localization of the primitive
+
+Let \(g\) now be an arbitrary compact smooth function. Choose a
+finite smooth partition of unity \(\chi_j\) on a neighborhood of
+its support, with each \(\chi_j\) supported in an interval \(I_j\)
+of length at most \(1/32\). Such a partition follows by covering
+the compact support by finitely many shorter open intervals,
+choosing nonnegative bumps positive on a smaller cover, and
+dividing by their positive sum on a neighborhood of the
+support; an auxiliary cutoff inside that neighborhood makes
+each resulting function compact smooth. Put
+
+\[
+g_j=\chi_jg,\qquad f_j=Tg_j.
+\tag{PS16}
+\]
+
+These formulas retain the derivatives of the partition:
+
+\[
+f_j=\chi_jTg+2\chi_j'g'+\chi_j''g,
+\qquad g=\sum_jg_j,\qquad Tg=\sum_jf_j.
+\tag{PS17}
+\]
+
+The last equality uses \(\sum_j\chi_j=1\), \(\sum_j\chi_j'=\sum_j\chi_j''=0\) near
+\(\operatorname{supp}g\); outside that support all the derivatives of \(g\)
+vanish. It is therefore an equality of the original tests, not
+a replacement by the functions \(\chi_jTg\) alone.
+
+Each piece has both endpoint moments zero and the stated short
+support. For the exact finite Hermitian matrix
+
+\[
+q_{jk}=\mathcal Q(f_j,f_k),
+\]
+
+sesquilinearity and the finite convolution expansion give
+
+\[
+\begin{split}
+\mathcal Q(Tg,Tg)
+&=\sum_{j,k}q_{jk}
+=\sum_j q_{jj}+2\Re\sum_{j<k}q_{jk},\\
+q_{jk}
+&=\mathcal A(f_j,f_k)-P_{\rm fin}(f_j^\#*f_k),\\
+q_{jj}
+&\ge\frac{55}{192}
+\left(\|g_j''\|^2+\frac12\|g_j'\|^2
++\frac1{16}\|g_j\|^2\right).
+\end{split}
+\tag{PS18}
+\]
+
+The endpoint terms vanish also for each cross pair, since both
+primitive factors have their two endpoint moments zero. The
+prime term vanishes for each diagonal, but is retained in every
+off-diagonal entry. The exact support relation is
+
+\[
+\operatorname{supp}(f_j^\#*f_k)\subset I_k-I_j.
+\tag{PS19}
+\]
+
+Thus distinct windows can have nonzero prime correlations even
+though each window separately has none. PS18 does not infer a
+sign for the entire matrix from the positive diagonal terms.
+
+The bilinear primitive and convolution maps also retain their
+exact coefficients:
+
+\[
+\langle Tg_j,Tg_k\rangle
+=\langle g_j'',g_k''\rangle
++\frac12\langle g_j',g_k'\rangle
++\frac1{16}\langle g_j,g_k\rangle,
+\tag{PS20}
+\]
+
+\[
+(Tg_j)^\#*(Tg_k)
+=T^2(g_j^\#*g_k),\qquad
+T^2=D^4-\frac12D^2+\frac1{16}.
+\tag{PS21}
+\]
+
+For PS20 integrate the two cross terms by parts separately.
+For PS21 use that \(T\) has real even coefficients, commutes with
+reflection, and may act on either factor of a smooth compact
+convolution. Its Mellin multiplier is correspondingly
+\(s^2(s-1)^2\). Equations PS17–PS21 are the exact bilinear
+localization; no partition-derivative or inter-window term is
+removed.
+
+When several pieces are supported in the same one interval of
+length \(\ell\le1/32\), PS5 applies to their whole Gram matrix,
+not just its diagonal. For separated windows the exact entries
+remain those in PS18–PS19; they are not covered by a common
+short-interval lower bound. This specifies precisely the local
+estimate and the remaining arithmetic interactions.
+
+## PS6. Original-source reading and comparison
+
+The original author source used for the operator comparison is:
+Alain Connes and Caterina Consani, [*Weil positivity and Trace formula: the archimedean place*, arXiv:2006.13771v1](https://arxiv.org/src/2006.13771v1),
+`sources/weil/2006.13771v1/weil-compo.tex`.
+
+Original file SHA256:
+`B01D353B0423B6FEDEE373C3C33FE3678EEA733F62049810750F6C64EF20F3FC`.
+Intact `2006.13771v1.tar` archive SHA256:
+`771A004B70FB0C36CAE11351BD29CEC50B3DA13896BB1EF5015BBDD68BEADB6D`.
+
+Actual reading coverage for this derivation:
+
+- lines 95–139: original explicit-formula convention, endpoint
+  vanishing, the stated local positivity and its historical
+  attribution, and the introductory theorem;
+- lines 663–842: Section `sectsupport`, including `boaskac`,
+  `vanishing1`, `vanishing2`, `thmqkey1`, `Qprime`, `remQprime`
+  and `qeasy`, with their proofs.
+
+No PDF was read. The author archive remains intact. These
+locators record bounded reading, not an exhaustive reading of
+the paper. Its local operator method and small-support
+positivity are prior mathematical work; the elementary bound
+PS8 is derived directly from the programme's proved HA13
+formula and does not claim to replace those stronger results.
+
+The coordinate and sign map to the source operator is explicit.
+Under \(u=\log\rho\), its
+\(Q_{\mathrm{CC}}=-(\rho\partial_\rho)^2+1/4\) becomes \(-D^2+1/4=-T\).
+Thus applying our \(T\) to a primitive corresponds to applying
+their \(Q_{\mathrm{CC}}\) to the negative of that primitive. On a convolution
+square the two minus signs cancel, giving exactly PS21. The
+source's support-preserving endpoint-vanishing lemma therefore
+has the same receiving condition, with this sign retained.
+PS15 is an independent additive-coordinate inverse verifying
+that comparison directly.
+
+The symbol \(\tau\) in that author's archimedean distribution is a
+source-specific distribution; it is not identified with the
+programme's unsupported element. The present proof uses HA13,
+PS1 and PS3 to fix its arithmetic sign and all constants.
+
+The concluding bound is an established statement about the
+short-support diagonal pieces and the common-window matrices.
+The exact cross-window form in PS18 remains in the global
+calculation. Nothing here assigns its sign or proves RH from
+the local estimate alone.
+
+\clearpage
+
+# One fixed primitive test and the full translation criterion
+
+This proof constructs one specified compactly supported smooth test, chosen independently of every zeta zero. Its Mellin transform is nonzero at every possible off-critical zero. The full reflected Weil pairing of that test with its translates is bounded on the positive half-line exactly when RH holds. The proof does not establish that boundedness.
+
+The original minus-exponent Mellin convention, actual zero multiset, boundary filter, and global Laplace argument are those of [BPZ1–BPZ23](BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex). That entire TeX source was read for this derivation. The explicit construction here makes its detecting test independent of a selected or hypothetical zero. The method is an application of the classical Weil-positivity mechanism, with no assertion of historical priority for a bounded-translation criterion.
+
+## 1. A fixed infinite convolution
+
+The bump used here is classical. Juan Arias de Reyna, *An infinitely differentiable function with compact support: Definition and properties*, Rev. Real Acad. Ciencias Madrid **76** (1982), 21–38, author's English translation [arXiv:1702.05442v1](https://arxiv.org/abs/1702.05442v1), Theorem 1 and equations (1), (4), (9), constructs the function \(\varphi\) used in the following exact comparison. His Fourier convention is \(\widehat\varphi(\zeta)=\int\varphi(t)e^{-2\pi i t\zeta}\,dt\). In the unchanged coordinates of this proof, \(b_r(v)=r^{-1}\varphi(v/r)\) and \(G_r(z)=\widehat\varphi(rz/(2\pi i))\). Indeed, substituting \(v=rt\) in the integral gives that transform, and its factor indexed by \(h\ge0\) is \(\sinh(rz2^{-h-1})/(rz2^{-h-1})\), the factor indexed by \(j=h+1\) in (UP3). Fourier uniqueness proves the density identity. The factor \(r^{-1}\), the support \([-r,r]\), and total mass one are retained. The complete direct construction below is kept for the reader; it is not a new invention of this bump. Arias de Reyna credits Jessen and Wintner (1935) for its Fourier-transform construction; that original article was not inspected for this citation revision.
+
+Throughout the construction retain
+\[
+r=\frac1{64},\qquad a_j=r2^{-j}\quad(j\ge1),\qquad
+\sum_{j\ge1}a_j=r,\quad \sum_{j\ge1}a_j^2=\frac{r^2}{3}.
+\tag{UP1}
+\]
+Let \(u_j(v)=(2a_j)^{-1}\mathbf1_{[-a_j,a_j]}(v)\), and let
+\(b_{r,N}=u_1*\cdots*u_N\) be its finite convolution density. This is a nonnegative probability density, is real and even, and is supported in
+\([-r_N,r_N]\), where \(r_N=r(1-2^{-N})\). These assertions follow successively from the integral formula for convolution: its integral is the product of the integrals, convolution adds support intervals, and reflection preserves the convolution of even functions.
+
+Use the Fourier convention \(\widehat b(y)=\int_{\mathbb R}b(v)e^{-iyv}\,dv\). Direct integration on each interval gives
+\[
+\widehat b_{r,N}(y)=\prod_{j=1}^N\frac{\sin(a_jy)}{a_jy},\qquad
+G_{r,N}(z)=\int_{\mathbb R}b_{r,N}(v)e^{-zv}\,dv
+=\prod_{j=1}^N\frac{\sinh(a_jz)}{a_jz},
+\tag{UP2}
+\]
+with each quotient assigned its removable value 1 at zero. In particular \(\widehat b_{r,N}(y)=G_{r,N}(iy)\).
+
+The entire functions in (UP2) converge uniformly on compact subsets of \(\mathbb C\) to an entire function
+\[
+G_r(z)=\prod_{j=1}^\infty\frac{\sinh(a_jz)}{a_jz},
+\qquad G_r(0)=1.
+\tag{UP3}
+\]
+Here is the required product estimate. The power series for \(\sinh w/w\) gives
+\[
+\left|\frac{\sinh w}{w}-1\right|
+\le\frac{|w|^2e^{|w|}}6.
+\tag{UP4}
+\]
+For the coefficient comparison, \((2k+1)!\ge6(2k-2)!\) for \(k\ge1\), so the tail is bounded by \(|w|^2/6\) times a subseries of \(e^{|w|}\). On \(|z|\le R\), (UP4) and (UP1) bound the sum of the deviations of the factors from 1 by
+\(R^2e^{rR/2}r^2/18\). The tail of this convergent sum is uniform on that disc. The estimate
+\(\prod(1+|d_j|)\le\exp(\sum|d_j|)\) then shows that the product partial sums are uniformly Cauchy. Their locally uniform limit is entire, proving (UP3).
+
+For real \(y\), each factor in \(\widehat b_{r,N}\) has modulus at most 1. For every fixed integer \(M\ge1\), every \(N\ge M\), and \(|y|\ge1\), keeping its first \(M\) factors gives the explicit bound
+\[
+|\widehat b_{r,N}(y)|
+\le r^{-M}2^{M(M+1)/2}|y|^{-M}.
+\tag{UP5}
+\]
+For \(|y|\le1\) the bound 1 holds. The same two bounds hold for \(G_r(iy)\) by taking the limit. Thus the limiting Fourier function is rapidly decreasing, and every polynomial multiple of it is integrable.
+
+Define
+\[
+b_r(v)=\frac1{2\pi}\int_{\mathbb R}G_r(iy)e^{iyv}\,dy.
+\tag{UP6}
+\]
+For every integer \(k\ge0\), (UP5), with \(M>k+1\), permits differentiating (UP6) under the integral \(k\) times and gives
+\[
+b_r^{(k)}(v)=\frac1{2\pi}\int_{\mathbb R}(iy)^kG_r(iy)e^{iyv}\,dy.
+\tag{UP7}
+\]
+These derivatives are continuous by dominated convergence. Moreover, for \(N\) sufficiently large, Fourier inversion applies to the integrable Fourier transform of the actual convolution density \(b_{r,N}\). It gives its continuous representative and the corresponding derivative formula through any fixed order \(k\). The uniform domination (UP5) and pointwise convergence imply
+\[
+\sup_{v\in\mathbb R}|b_{r,N}^{(k)}(v)-b_r^{(k)}(v)|
+\le\frac1{2\pi}\int_{\mathbb R}|y|^k
+|G_{r,N}(iy)-G_r(iy)|\,dy\longrightarrow0.
+\tag{UP8}
+\]
+For \(k=0\), every approximating representative is nonnegative and zero outside \([-r,r]\); its continuous representative has these properties everywhere since it has them almost everywhere. The uniform limit therefore has the same properties. Uniform convergence on \([-r,r]\) gives \(\int b_r=\lim_N\int b_{r,N}=1\). Reflection and real-valuedness also pass to the limit. We have proved, with its density and limiting sense specified,
+\[
+b_r\in C_c^\infty(\mathbb R,\mathbb R),\quad b_r\ge0,\quad
+b_r(-v)=b_r(v),\quad \int b_r(v)\,dv=1,\quad
+\operatorname{supp}b_r\subset[-r,r].
+\tag{UP9}
+\]
+This is the fixed infinite convolution meant in (UP1). No random choice of a bump or dependence on a zero is involved.
+
+Uniform convergence of the densities on their common compact support permits taking the limit in the integral in (UP2), uniformly for \(z\) in compact subsets. Consequently
+\[
+G_r(z)=\int_{\mathbb R}b_r(v)e^{-zv}\,dv,
+\qquad |G_r(z)|\le e^{r|\Re z|}.
+\tag{UP10}
+\]
+The function is real on the real axis, has real Taylor coefficients, and satisfies \(G_r(-z)=G_r(z)\).
+
+## 2. The exact zero set of the product
+
+The product zero multiplicities in this section also occur in Arias de Reyna, cited above, equation (9). The coordinate \(\zeta=rz/(2\pi i)\) carries his nonzero integer zeros to the exact lattice in (UP11), without changing their orders. The proof below verifies the assertion directly for the present product.
+
+There are no zeros of (UP3) apart from the zeros of its individual factors. For proof, at a point where none of the factors vanishes, choose a small disc on which a finite initial product has no zeros and the tail deviations from 1 have modulus at most \(1/2\). Their sum converges uniformly by (UP4). The analytic logarithms of the tail factors, given by the power series for \(\log(1+w)\), then have a uniformly absolutely convergent sum on a smaller disc, since \(|\log(1+w)|\le2|w|\). The tail product equals the exponential of that sum, and is nonzero. At a point where factors vanish, the same reasoning applies after removing the finitely many vanishing factors. Only finitely many can vanish there because \(a_jz\to0\).
+
+The zeros of a single factor are the simple zeros \(z=i\pi n/a_j\), with \(n\in\mathbb Z\setminus\{0\}\). Their union and the order at each point are therefore
+\[
+\begin{split}
+\{z:G_r(z)=0\}
+&=\left\{\frac{2\pi i k}{r}:k\in\mathbb Z\setminus\{0\}\right\}
+=\{128\pi i k:k\in\mathbb Z\setminus\{0\}\},\\
+\operatorname{ord}_{2\pi i k/r}G_r&=1+\nu_2(|k|).
+\end{split}
+\tag{UP11}
+\]
+Indeed the \(j\)-th factor vanishes at \(2\pi i k/r\) precisely when \(2^{j-1}\) divides \(k\), giving the displayed number of factors, each with order one. In particular, every zero of \(G_r\) is on the imaginary axis. The construction does not claim that a critical-line zeta zero cannot lie on that explicitly stated lattice.
+
+## 3. The original primitive boundary filter
+
+Retain the BPZ operators and coordinate conventions:
+\[
+T=\frac{d^2}{dv^2}-\frac14,\quad f_r=T b_r,\quad
+M_f(s)=\int_{\mathbb R}f(v)e^{-(s-1/2)v}\,dv,\quad
+f^\#(v)=\overline{f(-v)}.
+\tag{UP12}
+\]
+The test \(f_r\) is real and even and belongs to \(C_c^\infty\), with support contained in \([-r,r]\). Integration by parts twice has no boundary terms and proves
+\[
+M_{f_r}(s)
+=\bigl((s-\tfrac12)^2-\tfrac14\bigr)G_r(s-\tfrac12)
+=s(s-1)G_r(s-\tfrac12).
+\tag{UP13}
+\]
+Thus its two endpoint moments vanish, and it is nonzero:
+\[
+M_{f_r}(0)=M_{f_r}(1)=0,
+\qquad M_{f_r}(\tfrac12)=\int f_r=-\tfrac14.
+\tag{UP14}
+\]
+The factor \(T\) and the original coordinate \(s-\tfrac12\) have not been rescaled.
+
+Let \(\rho\) be any actual nontrivial zero of \(\xi_R\). BPZ4–BPZ5 gives \(0\le\Re\rho\le1\) and \(\rho\notin\{0,1\}\); its argument does not need a zero-free assertion on the two vertical boundary lines. Equations (UP11)–(UP13) give the exact detecting statement
+\[
+\Re\rho\ne\tfrac12\quad\Longrightarrow\quad M_{f_r}(\rho)\ne0.
+\tag{UP15}
+\]
+The implication follows because then \(\rho-1/2\) is not purely imaginary and the factor \(\rho(\rho-1)\) is nonzero. Formula (UP15) applies simultaneously to all actual off-critical zeros, without selecting one during the construction of \(b_r\).
+
+## 4. The actual infinite translation pairing
+
+Let \(\rho\) range over the distinct zeros of \(\xi_R\), with their original multiplicities \(m_\rho\). For compact smooth tests use exactly the pairing
+\[
+B(f,g)=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho),
+\quad Q(f)=B(f,f),\quad f_a(v)=f(v-a).
+\tag{UP16}
+\]
+The polynomial zero count and compact-test decay proved in BPZ5–BPZ6 ensure absolute convergence. Here is the estimate specialized to the present test. For every integer \(M\ge0\), integration by parts in the Fourier factor of the Mellin integral gives
+\[
+\sup_{0\le\sigma\le1}|M_{f_r}(\sigma+i\gamma)|
+\le C_M(1+|\gamma|)^{-M}.
+\tag{UP17}
+\]
+All derivatives of \(f_r(v)e^{-(\sigma-1/2)v}\) have uniformly bounded integrals for \(0\le\sigma\le1\), because of (UP9) and its fixed compact support. These bounds prove (UP17) for \(|\gamma|\ge1\); the original integral covers the bounded interval. Combining this with BPZ5, by dyadic height intervals, proves for every integer \(k\ge0\)
+\[
+\sum_\rho m_\rho|M_{f_r}(\rho)|^2(1+|\Im\rho|)^k<\infty.
+\tag{UP18}
+\]
+
+Since \(f_r\) is real and even, its transform has the exact identities
+\[
+M_{f_r}(1-s)=M_{f_r}(s),\qquad
+M_{f_r}(\bar s)=\overline{M_{f_r}(s)},\qquad
+\overline{M_{f_r}(1-\bar\rho)}=M_{f_r}(\rho).
+\tag{UP19}
+\]
+Translation in the original variable gives
+\(M_{(f_r)_a}(s)=e^{-(s-1/2)a}M_{f_r}(s)\) for every real \(a\). Therefore, with \(c_\rho=\rho-1/2\),
+\[
+K_r(a):=B((f_r)_a,f_r)
+=\sum_\rho m_\rho M_{f_r}(\rho)^2e^{c_\rho a},
+\qquad q_r=K_r(0)=Q(f_r).
+\tag{UP20}
+\]
+The weight off the critical line is the displayed complex square, not an absolute square. Every off-critical weight is nonzero by (UP15). The multiplicity is retained in the coefficient at each distinct exponent.
+
+Since \(|\Re c_\rho|\le1/2\), equations (UP18) and (UP20) justify all real derivatives locally uniformly:
+\[
+K_r^{(k)}(a)=\sum_\rho m_\rho M_{f_r}(\rho)^2c_\rho^k e^{c_\rho a},
+\quad K_r\in C^\infty(\mathbb R),\quad
+|K_r(a)|\le C e^{|a|/2}.
+\tag{UP21}
+\]
+Changing \(\rho\) to \(1-\rho\), respectively \(\bar\rho\), is legitimate in these absolutely convergent sums and proves
+\[
+K_r(-a)=K_r(a),\qquad K_r(a)\in\mathbb R
+\quad(a\in\mathbb R).
+\tag{UP22}
+\]
+No holomorphic extension of this real-time series in the variable \(a\) is asserted. Its proof of smoothness and the growth bound are the real-variable statements in (UP21).
+
+## 5. The global Laplace transform and every possible pole
+
+For \(\Re w>1/2\), (UP18), the strip bound, and absolute integrability permit interchanging the integral and full zero sum. They give
+\[
+\mathscr K_r(w):=\int_0^\infty e^{-wa}K_r(a)\,da
+=\sum_\rho\frac{m_\rho M_{f_r}(\rho)^2}{w-c_\rho}.
+\tag{UP23}
+\]
+For example, the integral of the absolute values of all summands is bounded by
+\((\Re w-1/2)^{-1}\sum_\rho m_\rho|M_{f_r}(\rho)|^2\), which is finite. The series on the right is a meromorphic function on the entire \(w\)-plane. On a compact set \(|w|\le R\) avoiding its listed exponent points, only finitely many zeros have bounded height; their nonzero denominators have a positive minimum. For all sufficiently large \(|\Im\rho|\), the denominator has modulus at least \(|\Im\rho|/2\), so (UP18) gives uniform absolute convergence of the remaining tail. The same argument applies on a disc after removing any one listed term.
+
+It follows that its residue at every possible exponent point is exactly
+\[
+\operatorname{Res}_{w=c_\rho}\mathscr K_r(w)
+=m_\rho M_{f_r}(\rho)^2.
+\tag{UP24}
+\]
+The right side is nonzero at every off-critical zero. Distinct actual zeros have distinct \(c_\rho\), so no sum of other zeros can cancel that residue. A point with zero weight is a removable singularity, as specified by (UP24).
+
+Suppose \(K_r\) is bounded on \([0,\infty)\). Its Laplace integral in (UP23) then defines a holomorphic function on \(\Re w>0\), because on every compact subset of that half-plane each derivative in \(w\) is bounded by an integrable multiple of \(a^ke^{-\delta a}\), for some \(\delta>0\). It equals the meromorphic series for \(\Re w>1/2\). The half-plane with the discrete exponent points removed is connected: a segment joining any two points has a compact neighborhood meeting only finitely many such points, and small arcs detour around them. The identity theorem consequently extends their equality throughout that punctured half-plane.
+
+If an actual zero lies off the critical line, reflection provides one with \(\Re\rho>1/2\). Its exponent \(c_\rho\) lies in that half-plane and has the nonzero residue (UP24). A holomorphic Laplace integral there cannot agree on a punctured disc with a meromorphic function having that residue. This contradiction proves
+\[
+K_r\text{ bounded on }[0,\infty)
+\quad\Longrightarrow\quad\mathrm{RH}.
+\tag{UP25}
+\]
+This proof uses the whole infinite zero sum and its normally convergent meromorphic continuation. It does not truncate the actual spectrum.
+
+Conversely, under RH each \(c_\rho=i\gamma_\rho\) is purely imaginary, and (UP19) gives \(M_{f_r}(\rho)\in\mathbb R\). Equations (UP18) and (UP20) then give
+\[
+q_r=\sum_\rho m_\rho M_{f_r}(\rho)^2\ge0,
+\qquad |K_r(a)|\le q_r\quad(a\in\mathbb R).
+\tag{UP26}
+\]
+This is the exact triangle inequality for that absolutely convergent sum, with its actual weights. In particular, no independent sign assumption on \(q_r\) was used to prove (UP25).
+
+## 6. A single fixed test gives the complete criterion
+
+Combining (UP25) and (UP26) proves
+\[
+\boxed{
+\begin{split}
+\mathrm{RH}
+&\Longleftrightarrow K_r\text{ is bounded on }[0,\infty)\\
+&\Longleftrightarrow |K_r(a)|\le q_r\text{ for every }a\ge0,
+\qquad r=\frac1{64}.
+\end{split}}
+\tag{UP27}
+\]
+All quantities here arise from the one test fixed in (UP1)–(UP14). The last displayed inequality implies boundedness directly: at \(a=0\) it also forces \(q_r\ge0\), and thereafter supplies the finite constant \(q_r\).
+
+The criterion has an exact two-translate formulation. BPZ13–BPZ14, or direct cancellation of the exponentials in (UP16), gives
+\[
+Q((f_r)_a)=q_r,
+\qquad
+Q((f_r)_a+f_r)=2q_r+2K_r(a),
+\qquad
+Q((f_r)_a-f_r)=2q_r-2K_r(a).
+\tag{UP28}
+\]
+Here Hermitian symmetry of \(B\), the reality (UP22), and its conjugate linearity in the first slot give the cross terms exactly. All three tests retain both zero endpoint moments because translation multiplies those moments by exponentials. Consequently (UP27) is also exactly
+\[
+\mathrm{RH}\quad\Longleftrightarrow\quad
+Q((f_r)_a+f_r)\ge0\text{ and }Q((f_r)_a-f_r)\ge0
+\text{ for every }a\ge0.
+\tag{UP29}
+\]
+If an off-critical zero exists, the proof of (UP25) makes \(K_r\) unbounded. One can then choose \(a\ge0\) with \(|K_r(a)|>|q_r|\). The minus sign when \(K_r(a)>0\), and the plus sign when \(K_r(a)<0\), gives the actual compact primitive test with value
+\(2q_r-2|K_r(a)|<0\). This witness requires only a translate and a sign of the same fixed test; it does not alter the bump in response to the zero.
+
+Continuity also proves an exact countable version: the inequality in (UP27), or both inequalities in (UP29), can be required for every rational \(a\ge0\), because every real \(a\ge0\) is a limit of such rationals. No corresponding criterion on one fixed, equally spaced translation lattice is asserted here. Sampling on a fixed lattice identifies distinct imaginary frequencies modulo its period; (UP24), which separates their continuous Laplace poles, does not justify discarding that distinction.
+
+## 7. The convolution test and the full supported receiver
+
+Define the actual convolution
+\[
+h_r=f_r^\#*f_r=f_r*f_r,
+\quad h_r\in C_c^\infty(\mathbb R,\mathbb R),
+\quad h_r(-v)=h_r(v),\quad
+\operatorname{supp}h_r\subset[-2r,2r].
+\tag{UP30}
+\]
+Fubini's theorem on compact supports gives \(M_{h_r}=M_{f_r}^2\). The convolution in the cross pairing of (UP20) is exactly
+\[
+((f_r)_a)^\#*f_r(v)=h_r(v+a),\qquad
+M_{h_r(\,\cdot+a)}(s)=e^{(s-1/2)a}M_{f_r}(s)^2.
+\tag{UP31}
+\]
+For proof, \(((f_r)_a)^\#(v)=f_r(v+a)\) because \(f_r\) is real and even, and a change of variable in the convolution yields the first identity. Both endpoint values of the transform in (UP31) are zero by (UP14). Thus the original full explicit formula on this test reads
+\[
+K_r(a)=A_\infty(h_r(\,\cdot+a))
+-P_{\rm fin}(h_r(\,\cdot+a)),
+\tag{UP32}
+\]
+with the original archimedean and finite-prime terms of BPZ19 and SZW; no endpoint contribution is omitted. The same statement applies to each of the two primitive tests in (UP28), using its own full convolution.
+
+For the finite support semilattice \(\mathscr L\), write \(\mathbf e_\lambda\) for the retained coordinate basis of the supported explicit formula. For the test (UP31), its exact vector values are
+\[
+\begin{split}
+\boldsymbol B_{\mathscr L}&=0,\\
+\boldsymbol Z_{\mathscr L}&=K_r(a)\mathbf e_{1_{\mathscr L}},\\
+\boldsymbol D_{\mathscr L}
+&=\bigl(P_{\rm fin}-A_\infty\bigr)(h_r(\,\cdot+a))
+\mathbf e_{1_{\mathscr L}},\\
+\boldsymbol B_{\mathscr L}-\boldsymbol Z_{\mathscr L}
+&=\boldsymbol D_{\mathscr L}.
+\end{split}
+\tag{UP33}
+\]
+Indeed, both top endpoint coefficients and every lower endpoint coefficient are zero by the evaluated moments in (UP14) and (UP31). These zeros are values of the existing coordinate functionals. They do not identify the supported zero element with external absence.
+
+That distinction is retained directly by the synchronized carriers from BPZ20–BPZ22. For this carrier construction retain the original nontrivial bounded distributive support lattice \(\mathscr L\), with bottom \(0_{\mathscr L}\), top \(1_{\mathscr L}\), and \(0_{\mathscr L}\ne1_{\mathscr L}\). For a complex vector space \(V\), set
+\[
+G_{\mathscr L}(V)
+=\{(0,\lambda):\lambda\in\mathscr L\}
+\cup(V\times\{1_{\mathscr L}\}),
+\quad A^\uparrow(v,\lambda)=(Av,\lambda)
+\tag{UP34}
+\]
+for each complex linear map \(A\). With the original join addition and meet scalar action, this lift is additive and scalar compatible by direct substitution. Translation, \(T\), and the endpoint map \(E(f)=(M_f(0),M_f(1))\) are all such linear maps. Every nonzero primitive test with label \(1_{\mathscr L}\) maps under \(E^\uparrow\) to \((0,1_{\mathscr L})\), the supported zero in the endpoint carrier. The unsupported input \((0,0_{\mathscr L})\) retains its distinct label. Their entire lower-label families are preserved by (UP34).
+
+Likewise the lifted pairing is exactly
+\[
+B^{\mathscr L}((u,\lambda),(v,\mu))
+=(B(u,v),\lambda\wedge\mu).
+\tag{UP35}
+\]
+It lies in the synchronized carrier: a nonzero amplitude requires both input amplitudes nonzero, hence both input labels top. Its additivity and conjugate scalar compatibility follow from those of \(B\) and distributivity of meet over join. Thus (UP20) and (UP28) retain top support even when their amplitudes vanish. The negative amplitude obtained after (UP29) has this same support label; an endpoint value equal to supported zero does not change its sign. These formulas keep all the original label maps while applying the single fixed primitive test.
+
+## Reading and scope
+
+The complete programme source read was `BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex`, equations BPZ1–BPZ23 and all intervening proofs, at the path linked above. Its original human input is Brad Rodgers and Terence Tao, *The de Bruijn–Newman constant is non-negative*, arXiv:1801.05914v5, with source equations `phidef`, `htdef`, `hoz`, and `sas`, and the original Weil explicit-formula convention is retained through the cited programme sources. This note does not represent a fresh read of those author papers. For the citation revision, Arias de Reyna's original author TeX `09-Function.tex`, arXiv:1702.05442v1, was read at lines 1–720, including Theorem 1 and equations (1)–(9), their proof, Theorem 4's derivative formula and the bibliography. The bump and its product zero set are classical results reproduced here. The programme application is their fixed-test nonvanishing at every possible off-critical zero and the full BPZ Laplace argument in the stated coordinates. No arithmetic bound on \(K_r(a)\) for all translations has been supplied by this proof.
+
+\clearpage
+
+# A fixed primitive test and the complete translated prime window
+
+The boundary filter reaches the whole zero set through a single explicitly constructed test. This calculation gives its entire arithmetic correlation, including the exact archimedean term, the prime contribution and the original support labels. It does not assume the inequality equivalent to RH. Every parameter below is fixed before any zero is selected.
+
+## 1. Original test and full pairing
+
+Use the test space, involution and Mellin convention
+\[
+\mathcal T=C_c^\infty(\mathbb R;\mathbb C),\qquad
+f^\#(v)=\overline{f(-v)},\qquad
+M_f(s)=\int_\mathbb R f(v)e^{-(s-1/2)v}\,dv,
+\quad T=\partial_v^2-\tfrac14.
+\tag{PW1}
+\]
+The full pairing is conjugate linear in its first slot:
+\[
+ B(f,g)=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho)
+ =Z(f^\#*g).
+\tag{PW2}
+\]
+The sum is over the distinct actual nontrivial zeta zeros with their actual multiplicities. Smooth compact tests have Mellin transforms decreasing faster than every inverse power of height, uniformly in the closed critical strip, by repeated integration by parts. The unconditional count of zeros therefore makes (PW2) absolutely convergent. The complete supported explicit formula, with its original coordinate maps, is [SZW24–26 and SZW33–38](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/76f421965914beb133df797835f940849844dc4f/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md). Its original Gamma integral is [HA12–14](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/76f421965914beb133df797835f940849844dc4f/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HEAT_CAUCHY_ARITHMETIC_DERIVATION.md). Both complete dependencies accompany this derivation.
+
+Fix
+\[
+ r=\frac1{64},\quad a_j=r2^{-j}\ (j\ge1),\quad
+ b_r=\mathop{*}_{j\ge1}\frac{\mathbf1_{[-a_j,a_j]}}{2a_j},\qquad
+ G_r(z)=\prod_{j\ge1}\frac{\sinh(a_jz)}{a_jz},
+\tag{PW3}
+\]
+with each quotient interpreted as one at zero. The infinite convolution is the probability law of the absolutely convergent sum of independent uniform variables on the displayed intervals. Its support lies in \([-r,r]\). The complete construction, smoothness and nonvanishing proof is given in [the universal primitive translation derivation](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md). Here are the analytic details needed by the present calculation. For each integer \(N\), its Fourier transform is bounded by
+\(\prod_{j=1}^{N}\min(1,(a_j|y|)^{-1})\), since every remaining factor has modulus at most one. This decreases as \(O_N(|y|^{-N})\). Fourier inversion and differentiation therefore give a smooth density \(b_r\); its being a probability density, even and nonnegative, follows from the original law. Its Laplace transform is the locally uniformly convergent product \(G_r\), since on compact sets each factor differs from one by \(O(a_j^2)\). Away from the individual factor zeros the infinite product is nonzero: its tail has a convergent logarithm by the same estimate. All factor zeros have real part zero. Thus \(G_r(z)\ne0\) whenever \(\Re z\ne0\).
+
+Set
+\[
+ f_r=Tb_r,\qquad k_r=b_r^\#*b_r,\qquad h_r=f_r^\#*f_r=T^2k_r,
+\qquad f_{r,a}(v)=f_r(v-a).
+\tag{PW4}
+\]
+These are real even smooth functions except for the translated test; \(k_r\ge0\), \(\int k_r=1\), and \(k_r,h_r\) are supported in \([-2r,2r]\). The assertions about convolution follow by differentiating under its compact integral. Twice integrating by parts gives
+\[
+ M_{f_r}(s)=s(s-1)G_r(s-1/2),\qquad M_{f_r}(0)=M_{f_r}(1)=0.
+\tag{PW5}
+\]
+The transform is nonzero at every off-critical nontrivial zero: neither \(s(s-1)\) nor \(G_r(s-1/2)\) vanishes there. The test \(f_r\) is nonzero, since a compactly supported solution of \(b''=b/4\) is zero, whereas \(\int b_r=1\).
+
+## 2. Exact correlation, with every zero retained
+
+Define
+\[
+ K_r(a)=B(f_{r,a},f_r),\qquad q_r=K_r(0),\qquad a\in\mathbb R.
+\tag{PW6}
+\]
+Translation in the first slot gives \(f_{r,a}^\#*f_r(v)=h_r(v+a)\). Reflection and real evenness of \(f_r\) give the absolutely convergent expression
+\[
+ K_r(a)=\sum_\rho m_\rho M_{f_r}(\rho)^2e^{(\rho-1/2)a}.
+\tag{PW7}
+\]
+For \(a\) in a fixed compact real interval the extra exponential is bounded uniformly in the zero set, so the sum is locally uniformly convergent. Complex conjugation and the symmetries of the zeros show that \(K_r\) is real and even; the arithmetic formula below also proves this directly. Translation of both inputs cancels the Mellin exponentials, so
+\[
+ B(f_{r,a},f_{r,a})=q_r,\qquad
+ B(f_r\pm f_{r,a},f_r\pm f_{r,a})=2q_r\pm2K_r(a).
+\tag{PW8}
+\]
+The actual short-support estimate proved in [the short-support derivation](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md) applies because \(2r=1/32<\log2\). It gives
+\[
+ q_r\ge\frac{55}{192}\|f_r\|_2^2
+ =\frac{55}{192}\left(\|b_r''\|_2^2+\tfrac12\|b_r'\|_2^2
+                         +\tfrac1{16}\|b_r\|_2^2\right)>0.
+\tag{PW9}
+\]
+That proof derives the bound from the full Gamma integral, including its positive translation-difference remainder. The finite-prime terms vanish on this single bump because their first nonzero argument is \(\log2\), outside \([-2r,2r]\); both endpoint terms vanish by (PW5). Thus (PW9) is a bound for the original full form, not a discarded-term estimate.
+
+For completeness the single-test all-zero criterion has a short full proof. If RH holds, each term in (PW7) is a nonnegative weight times a phase, since \(M_{f_r}(1/2+i\gamma)\) is real. Absolute summability implies \(|K_r(a)|\le q_r\). Conversely suppose \(K_r\) is bounded on \([0,\infty)\). For \(\Re w>1/2\), dominated termwise integration gives
+\[
+ \int_0^\infty e^{-wa}K_r(a)\,da
+ =\sum_\rho\frac{m_\rho M_{f_r}(\rho)^2}{w-(\rho-1/2)}.
+\tag{PW10}
+\]
+The right side converges normally off its discrete poles: at large height the denominators are bounded below by half the height, and the Mellin values already decrease rapidly. It is meromorphic on the whole complex plane. Every off-critical zero in \(\Re\rho>1/2\) contributes a nonzero residue by (PW5). The assumed boundedness makes the left side holomorphic on \(\Re w>0\). The punctured half-plane is connected, since compact paths can be detoured around its locally finite poles. The identity theorem extends their equality from \(\Re w>1/2\), contradicting any such nonzero residue. Reflection then excludes off-critical zeros on the left too. This proves
+\[
+ \boxed{\mathrm{RH}\ \Longleftrightarrow\ K_r\text{ bounded on }[0,\infty)
+ \ \Longleftrightarrow\ |K_r(a)|\le q_r\text{ for every }a\ge0.}
+\tag{PW11}
+\]
+Multiplicity is included in the nonzero residues, and no finite zero list is substituted. An eventual bound on \((2r,\infty)\) is equivalent, since \(K_r\) is continuous on the remaining compact interval. This argument uses the incoming programme BPZ13–17 Laplace mechanism, whose complete original source is retained as [BPZ](BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex); the fixed product (PW3) makes its test independent of a selected hypothetical zero. No claim that translation criteria are historically new is made.
+
+## 3. The entire arithmetic expression, including the origin
+
+For every real \(a\), HA13 applied to \(h_r(v+a)\) gives
+\[
+\begin{split}
+ K_r(a)={}&-(\gamma+\log\pi)h_r(a)\\
+ &+\int_0^\infty
+ \frac{e^{-x}h_r(a)-\tfrac12e^{-x/4}
+       \{h_r(a+x/2)+h_r(a-x/2)\}}{1-e^{-x}}\,dx\\
+ &-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+       \{h_r(a+\log n)+h_r(a-\log n)\}.
+\end{split}
+\tag{PW12}
+\]
+The endpoint values of the translated convolution are zero by (PW5); multiplication by a translation exponential does not change this. Near \(x=0\), the numerator in (PW12) is \(O(x)\), by Taylor expansion of the smooth function at \(a\); the denominator is comparable to \(x\). At infinity the numerator decreases exponentially. Every prime sum here is finite, by compact support. These facts justify the displayed integral without a regularization convention. The factor \(1/2\), the shifts \(x/2\), and the coefficient \(-\log\pi\) are unchanged.
+
+For \(a>2r\), one has \(h_r(a)=0\), \(h_r(a+x/2)=0\) for \(x\ge0\), and \(h_r(a+\log n)=0\). In the remaining integral use \(x=2v\). Its Jacobian cancels the factor \(1/2\) exactly. Consequently
+\[
+\boxed{
+ K_r(a)=-\int_{a-2r}^{a+2r}
+       \frac{e^{-v/2}}{1-e^{-2v}}h_r(a-v)\,dv
+       -\sum_{\substack{n\ge2\\|\log n-a|\le2r}}
+        \frac{\Lambda(n)}{\sqrt n}h_r(a-\log n).}
+\tag{PW13}
+\]
+Thus only the fixed multiplicative interval
+\[
+ e^{a-1/32}\le n\le e^{a+1/32}
+\tag{PW14}
+\]
+enters the finite-prime part. This is the original logarithmic coordinate; the width has not been scaled away.
+
+## 4. Positive archimedean remainder and exact derivative of the prime window
+
+Put \(w(v)=e^{-v/2}/(1-e^{-2v})\) for \(v>0\). Its locally uniformly differentiable expansion is
+\(w(v)=\sum_{j\ge0}e^{-(2j+1/2)v}\). On the compact integration interval in (PW13), its derivatives of every fixed order converge uniformly. Since \(k_r\) and all its derivatives vanish at its support endpoints, four integrations by parts give
+\[
+ R_r(a):=\int_{a-2r}^{a+2r}w(v)h_r(a-v)\,dv
+ =\int_{a-2r}^{a+2r}(T_v^2w)(v)k_r(a-v)\,dv,
+ \qquad a>2r.
+\tag{PW15}
+\]
+For \(\lambda_j=2j+1/2\), the exact eigenvalue is
+\((\lambda_j^2-1/4)^2=4j^2(2j+1)^2\). The \(j=0\) term is annihilated. The rest is strictly positive, giving
+\[
+\begin{split}
+ R_r(a)&=\sum_{j\ge1}4j^2(2j+1)^2G_r(2j+1/2)^2e^{-(2j+1/2)a}>0,\\
+ W(v):=T_v^2w(v)
+ &=\frac{4e^{-5v/2}\{9+55e^{-2v}+31e^{-4v}+e^{-6v}\}}
+         {(1-e^{-2v})^5}.
+\end{split}
+\tag{PW16}
+\]
+To verify the rational expression, apply \((q\partial_q)^k\) to \((1-q)^{-1}\) for \(k=2,3,4\), and combine \(16\sum j^4q^j+16\sum j^3q^j+4\sum j^2q^j\), with \(q=e^{-2v}\). The numerator is \(4q(9+55q+31q^2+q^3)\), multiplied by \(e^{-v/2}\). For the first identity integrate each exponential against \(k_r(a-v)\): its value is \(e^{-\lambda_j a}G_r(\lambda_j)^2\). Termwise integration follows either from positive monotone convergence or the bound \(G_r(\lambda_j)\le e^{r\lambda_j}\), which leaves a convergent polynomial times \(e^{-\lambda_j(a-2r)}\).
+
+The function \(W\) is strictly decreasing, since every term in its positive exponential series is. Hence the probability density \(k_r\) gives the explicit bounds
+\[
+ 0<W(a+2r)\le R_r(a)\le W(a-2r),\qquad a>2r.
+\tag{PW17}
+\]
+In particular \(R_r(a)=O_r(e^{-5a/2})\) as \(a\to\infty\), with the coefficient and convergent remainder explicitly specified in (PW16). The archimedean cross term itself is \(-R_r(a)\), with a strict negative sign. This sign results from the actual formula, although the diagonal (PW9) is positive.
+
+Define the smooth nonnegative prime-window function
+\[
+ Y_r(a)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}k_r(a-\log n),
+ \qquad a\in\mathbb R.
+\tag{PW18}
+\]
+On each compact interval of \(a\), only finitely many indices occur, so all derivatives can be taken termwise. Because \(h_r=T^2k_r\), (PW13) becomes
+\[
+ \boxed{K_r(a)=-\left(Y_r^{(4)}(a)-\tfrac12Y_r''(a)
+                       +\tfrac1{16}Y_r(a)\right)-R_r(a),\quad a>1/32.}
+\tag{PW19}
+\]
+The operator acting on \(Y_r\) has the same coefficients as the endpoint filter squared; no new normalization has been introduced. Nonnegativity of \(Y_r\) does not assign a sign to this fourth-order expression. The exact map from positive diagonal prime coefficients to this signed translation form is proved in [PM25–41](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), including endpoint-zero tests of both signs.
+
+Combining the proved implications (PW11) with the exact arithmetic equality (PW19) yields
+\[
+\boxed{\mathrm{RH}\ \Longleftrightarrow\
+ \left|Y_r^{(4)}(a)-\tfrac12Y_r''(a)+\tfrac1{16}Y_r(a)+R_r(a)\right|
+ \le q_r\quad\hbox{for every }a>1/32.}
+\tag{PW20}
+\]
+This is a proved equivalence, not a proof of the inequality on its right. The known positive constant \(q_r\), the strictly positive explicit term \(R_r\), and the complete remaining prime expression have each been computed. The prime inequality in (PW20) remains unresolved.
+
+## 5. Full supported-zero receiver
+
+Let \(L\) be the same finite bounded distributive support lattice as SZW, and let \(\mathbf e_\lambda\) be its unchanged coordinate basis. Applying the complete formula to \(h_r(\cdot+a)\), before any coordinate projection, gives
+\[
+\begin{split}
+ \boldsymbol B_L(a)&=0,\\
+ \boldsymbol Z_L(a)&=K_r(a)\mathbf e_{1_L},\\
+ \boldsymbol D_L(a)&=-K_r(a)\mathbf e_{1_L},\qquad
+ \boldsymbol B_L(a)-\boldsymbol Z_L(a)=\boldsymbol D_L(a).
+\end{split}
+\tag{PW21}
+\]
+Every lower coefficient is the evaluated endpoint value \(M_{h_r(\cdot+a)}(0)=0\); the coordinate spaces and their projections remain present. In the original semimodule lift \(G_L(V)\), a linear map \(A\) acts by \((v,\lambda)\mapsto(Av,\lambda)\). Therefore the endpoint map sends \((f_{r,a},1_L)\) to \((0,1_L)=e\), not to \(\tau=(0,0_L)\). The lifted pairing is
+\[
+ B^L((f,\lambda),(g,\mu))=(B(f,g),\lambda\wedge\mu).
+\tag{PW22}
+\]
+Additivity and sesquilinearity follow directly from distributivity of meet over join and the corresponding properties of \(B\). The complete coefficient injection \((c,\lambda)\mapsto(c,\iota_L(\lambda))\) is injective because \(\iota_L\) has the original lattice retraction. It preserves all signs of nonzero amplitudes and all zero labels. Thus an endpoint-zero translated test still carries supported zero, and its value in (PW19) retains its top label even at an amplitude zero.
+
+In the prime operator calculation, the sparse Mobius sum and the Fourier sum also retain distinct support corrections: PM20–24 proves that their least difference is supported zero only at index one, whereas the directly summed Fourier defect is the full supported-zero diagonal. Both map to the same finite prime distribution in (PW13) through the explicitly stated trace receiver; their equality after that receiver does not identify the original matrices. This supplies the exact relation between the boundary filter, every possible off-line zero, the actual prime window and the programme's retained support data.
+
+
+## Exact support and arithmetic maps
+
+![Exact support masks at cutoff five, the original test-support intervals and their prime window, and the complete criterion. The top panel shows all labels at the displayed indices, including the difference between the least correction and the directly summed Fourier correction. The middle support calculation uses the displayed separation a=log 2; the criterion concerns every separation. Proofs: PM15–23 and PW3–20. Both zero endpoint values retain supported-zero labels by PW21–22. The reproducible source draws the proved masks and interval coordinates; it does not sample a hypothetical zero.](primitive_prime_window.png)
+
+## Proof sources and scope
+
+The analytic explicit formula and full support vector are the complete SZW source cited above; the Gamma integral is HA13. Their original human source includes Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*](https://arxiv.org/abs/math/9811068), Appendix II, Theorem 6. The incoming BPZ proof supplies the translation/Laplace method with all multiplicities; its full TeX is included unchanged. The present fixed convolution, its complete analytic construction, the short-support estimate, and PM's prime-operator comparison have standalone proofs in this collection. These statements specify their exact mathematical contribution without claiming priority over the extensive classical literature on Weil criteria or smoothed prime formulas.
+
 \clearpage
 
 # Sources, exact proof locations, and reading scope
@@ -11244,3 +12602,11 @@ Ball, Joseph A.; Biswas, Animikh; Fang, Quanlei; ter Horst, Sanne. *Multivariabl
 The inspected treatment attributes the scalar positive-kernel Hilbert-space construction to N. Aronszajn, *Theory of reproducing kernels*, Transactions of the American Mathematical Society 68 (1950), 337–404. It cites J. A. Ball, *Linear systems, operator model theory and scattering: multivariable generalizations*, in *Operator Theory and Its Applications (Winnipeg, MB, 1998)*, Fields Institute Communications 25, American Mathematical Society, 2000, 151–178, for the lurking-isometry terminology. These two original works were not inspected for this repair; this historical attribution is through the inspected Ball–Biswas–Fang–ter Horst source. No historical novelty for these classical methods is claimed.
 
 The complete CK proof now has the inspected primary-source attribution at its point of use. NI1–32 and FJ1–29 give all density, index, finite-jet and heat-coefficient arguments in full. The companion original HR, HC and HF TeX files are retained unchanged in this source package; their coordinate and multiplicity conventions are preserved. The new finite symbolic checks concern the displayed algebra, not the sign of an infinite arithmetic form.
+
+## Complete primitive prime-window continuation
+
+Juan Arias de Reyna, *An infinitely differentiable function with compact support: Definition and properties*, Rev. Real Acad. Ciencias Madrid **76** (1982), 21–38; author's English translation [arXiv:1702.05442v1](https://arxiv.org/abs/1702.05442v1), submitted 17 February 2017. The original author TeX `09-Function.tex` was inspected at lines 1–720 for this revision. Theorem 1 and equations (1), (4), (9) provide the classical bump, Fourier product and its integer zero multiplicities. UP includes the exact coordinate comparison \(b_r(v)=r^{-1}\varphi(v/r)\), \(G_r(z)=\widehat\varphi(rz/(2\pi i))\) at its point of use. The source file SHA256 is `a87d1eea98bb7c767a48bc2375f3beb2404e6479ea0be0203bbb6e99a95f5649`; the intact private source archive SHA256 is `3585f57d5be347e9e1c469857c23ad8a561c8991a5c17af07700579506817719`. The original source archive is retained for reading and is not republished in this edition.
+
+The inspected author source credits Børge Jessen and Aurel Wintner, *Distribution functions and the Riemann zeta function*, Transactions of the American Mathematical Society **38** (1935), 48–88, for the Fourier construction. This historical credit is through Arias de Reyna; the 1935 original was not inspected in this revision. The complete bump and zero-set proofs remain in UP, with no historical novelty claim. The derivative formula in the same source, Theorem 4 and equations (21)–(23), supplies a concrete next calculation of the fixed primitive's norms and autocorrelation, not an assumed arithmetic estimate.
+
+The four new complete proofs are PM, PS, UP and PW, linked in the reading guide. The original programme [Hurwitz operator proof](HURWITZ_CYCLOTOMIC_RECEIVER.tex), HCR1–42, and [primitive boundary proof](BOUNDARY_PRIMITIVE_ALL_ZERO_RECEIVER.tex), BPZ1–23, accompany them unchanged. Their authorship and original citations remain in those sources. The arithmetic input retains the classical Möbius inversion identity and the original Weil formula. Connes and Consani's [original author source for Weil positivity at the archimedean place](https://arxiv.org/src/2006.13771v1), Section sectsupport, gives the historical operator comparison in PS. No priority is claimed for classical local positivity, infinite convolution bumps, or translation criteria. The collection's explicit support corrections, complete derivations and exact arithmetic maps are proved in the displayed sources. The unresolved prime-window bound is not stated as a proved inequality.

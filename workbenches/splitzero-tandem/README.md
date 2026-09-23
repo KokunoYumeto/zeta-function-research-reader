@@ -1,6 +1,6 @@
 # Split-Zero cohomology: complete mathematical workbench
 
-[Current cumulative Zenodo edition](https://zenodo.org/records/22908744) (DOI 10.5281/zenodo.22908744) retains the whole Split-Zero and zeta research collection. The 208-page cohomology reconstruction remains the preview. The new 15-page original-heat monodromy supplement has complete LaTeX, citations and source links; all 90 preceding PDFs remain separate. [Reading guide and exact publication record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-original-heat-integral-monodromy-publication/README.md).
+[Current cumulative Zenodo edition](https://zenodo.org/records/22909184) (DOI 10.5281/zenodo.22909184) retains the whole Split-Zero and zeta research collection. The 208-page cohomology reconstruction remains the preview. The 210-page heat-Cauchy collection and five-page fixed arithmetic test paper have complete LaTeX, human citations and exact source links; all 91 preceding PDFs remain separate. [Reading guide and exact publication record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-heat-cauchy-publication/README.md).
 
 This workbench contains the Split-Zero programme's complete source papers, cumulative manuscripts, supporting proofs, figures and calculation records. Its purpose is to connect support-preserving coefficient geometry and arithmetic theta cohomology to quantitative information about the Riemann zeta function's spectrum.
 

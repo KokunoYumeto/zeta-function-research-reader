@@ -1,0 +1,245 @@
+# Prime holonomy in the supported-zero Weil distribution
+
+The prime-orbit holonomy here is the actual arithmetic Frobenius in the finite abelian covers constructed by Alain Connes and Caterina Consani, *Knots, primes and class field theory*, [arXiv:2501.06560v1](https://arxiv.org/abs/2501.06560v1). The original author source was read at lines 464–695: Definition `coverdef`, Lemma `Gacts`, Proposition `mappingtorus`, Theorem `mappingtorus1`, Fact `artinrec`, Theorem `main`, and Remark `archimedeanplace`. Root subsequently read the entire body and bibliography. Their finite cover and its arithmetic identification are prior results. The formulas below derive its oriented trace, inertia maps, fixed-support endpoints, character-resolved Euler factors, and exact comparison with SZW. They do not identify an unrelated finite-group action with this arithmetic cover.
+
+The full supported-zero object, its prime spectrum, test convention, and trace receiver are those proved in [the full supported-zero Weil proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/adfbfe74fa49e31cb7aa068cf755fb083be37c32/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md), SZW1–SZW47. In particular
+\[
+S=G(\mathbb Z)=\{\tau\}\sqcup\mathbb Z^\bullet,
+\qquad e=0^\bullet\ne\tau,
+\qquad(\tau)\subsetneq(e)\subsetneq(p).
+\tag{PHW1}
+\]
+Both zero points will remain separate. No expression \(\log0\), positive period for a fixed point, or numerical Euler factor for \(e\) is introduced.
+
+## 1. The finite cover, inertia, and the two orientation coordinates
+
+Put \(K=\widehat{\mathbb Z}^{\times}\), and let \(\chi:K\twoheadrightarrow G\) be a continuous surjection to a finite abelian group. Use exactly the source's balanced quotient
+\[
+X^\chi=(Y_{\mathbb Q}\times G)/K,
+\qquad (z,g)\sim(zw,\chi(w)g),
+\qquad Y_{\mathbb Q}=\mathbb Q^\times\backslash\mathbb A_{\mathbb Q}.
+\tag{PHW2}
+\]
+The group \(G\) acts on the right in the second coordinate. At a prime \(p\), define
+\[
+I_p=\chi(\mathbb Z_p^\times),\qquad
+\widetilde p_p=1,\quad \widetilde p_\ell=p\ (\ell\ne p),
+\qquad g_p=\chi(\widetilde p)\in G,
+\qquad \ell_p=\log p>0.
+\tag{PHW3}
+\]
+Here \(\widetilde p\in K\); at every \(\ell\ne p\), the rational integer \(p\) is an \(\ell\)-adic unit. The class of \(g_p\) in \(G/I_p\) is independent of a change of the \(p\)-component. At an unramified prime \(I_p=1\), this is the source's \(\chi(p)=\mathrm{Frob}_p\), the arithmetic Frobenius. At ramified primes the same quotient class acts on the inertia-invariant fibre.
+
+For completeness the actual orientation map follows directly from (PHW2). Before the finite quotient, the source identifies the inverse image of \(C_p\) with
+\(p^{\mathbb Z}\backslash(H_p\times\mathbb R_+^\times)\), where \(H_p=\prod_{\ell\ne p}\mathbb Z_\ell^\times\) and the generator is \((h,\lambda)\mapsto(ph,p\lambda)\). Write \(t=\log\lambda\). Reducing \((h,g)\) by the compact action gives the natural fibre coordinate \(g_0=\chi(h)^{-1}g\), modulo \(I_p\). Thus the finite mapping torus is exactly
+\[
+\mathfrak C_p=
+\bigl((G/I_p)\times\mathbb R\bigr)
+\big/\bigl((g,t)\sim(g_p^{-1}g,t+\ell_p)\bigr).
+\tag{PHW4}
+\]
+The equality \(\chi(ph)^{-1}g=g_p^{-1}\chi(h)^{-1}g\) proves the formula. This proof also gives the ramified version, since the missing \(p\)-unit coordinate acts on the fibre by \(I_p\). The positive flow is \([g,t]\mapsto[g,t+a]\). Its first return from \(t=0\) to \(t=\ell_p\), expressed again at \(t=0\), is \(g\mapsto g_pg\). The opposite traversal is \(g\mapsto g_p^{-1}g\).
+
+The map \((g,t)\mapsto(g^{-1},t)\) turns (PHW4) into the displayed source convention with generator \((g,t)\mapsto(g_pg,t+\ell_p)\). It intertwines right deck multiplication by \(k\) with multiplication by \(k^{-1}\). This is the exact coordinate conversion; using the printed generator without this conversion would reverse the fibre representation. The arithmetic Frobenius and its inverse are both retained below.
+
+Let \(V\) be a finite-dimensional complex unitary representation \(\rho\) of \(G\). Define
+\[
+P_{I_p}=\frac1{|I_p|}\sum_{i\in I_p}\rho(i),
+\qquad V_p=V^{I_p}=\operatorname{im}P_{I_p},
+\qquad T_p=\rho(g_p)|_{V_p}.
+\tag{PHW5}
+\]
+Direct multiplication of the finite sums shows \(P_{I_p}^2=P_{I_p}\); unitarity gives \(P_{I_p}^*=P_{I_p}\). It fixes precisely the invariant vectors. Since \(G\) is abelian, \(T_p\) is a well-defined unitary operator on \(V_p\), unchanged by replacing \(g_p\) by \(g_pi\), \(i\in I_p\). No assumption about unramified primes is needed in this formula.
+
+## 2. An actual trace on every prime circle
+
+The coefficient space of sections over (PHW4) is
+\[
+\mathcal H_{p,V}=
+\{v\in L^2_{\mathrm{loc}}(\mathbb R,V_p):
+v(t+\ell_p)=T_p^{-1}v(t)\},
+\qquad
+\|v\|^2=\int_0^{\ell_p}\|v(t)\|^2dt.
+\tag{PHW6}
+\]
+Indeed a function on the natural fibre satisfying \(F(gk,t)=\rho(k)^{-1}F(g,t)\) has precisely this boundary condition after (PHW4). The unitary flow on sections is inverse pullback,
+\(U_p(a)v(t)=v(t-a)\); consequently \(U_p(\ell_p)=T_p\). For \(\nu\in C_c^\infty(\mathbb R)\), the bounded operator
+\[
+A_{p,V}(\nu)=\int_{\mathbb R}\nu(a)U_p(a)\,da
+\tag{PHW7}
+\]
+is trace class, and its full trace, including the zero iterate, is
+\[
+\boxed{
+\operatorname{Tr}A_{p,V}(\nu)
+=\ell_p\sum_{k\in\mathbb Z}\operatorname{Tr}(T_p^k)\nu(k\ell_p).
+}
+\tag{PHW8}
+\]
+Here and below \(\operatorname{Tr}(T_p^k)\) means the trace of the matrix power; it is not the power of its trace. To prove (PHW8), diagonalize \(T_p\). For an eigenvalue \(e^{i\theta}\), an orthonormal Fourier basis is \(\ell_p^{-1/2}e^{i(2\pi n-\theta)t/\ell_p}\), \(n\in\mathbb Z\). The eigenvalues of (PHW7) are \(\widehat\nu((2\pi n-\theta)/\ell_p)\), with the minus Fourier convention. They are absolutely summable by repeated integration by parts. Poisson summation of this Schwartz function gives
+\[
+\sum_{n\in\mathbb Z}\widehat\nu((2\pi n-\theta)/\ell_p)
+=\ell_p\sum_{k\in\mathbb Z}e^{ik\theta}\nu(k\ell_p).
+\tag{PHW9}
+\]
+For example this equality follows by expanding the periodic Dirac distribution
+\(\sum_n e^{-2\pi i n a/\ell_p}=\ell_p\sum_k\delta(a-k\ell_p)\), whose Fourier coefficients on one period are all one, and multiplying by \(\nu(a)e^{i\theta a/\ell_p}\). Summing the finitely many eigenlines proves (PHW8), including the term \(\ell_p\dim(V_p)\nu(0)\).
+
+The original supported Weil test space remains
+\[
+\mathcal T=C_c^\infty(\mathbb R;\mathbb C),\qquad
+H(s)=M_h(s)=\int h(v)e^{-(s-1/2)v}dv,
+\qquad f^\#(v)=\overline{f(-v)}.
+\tag{PHW10}
+\]
+Choose once and for all an even smooth cutoff \(\kappa\), zero for \(|a|\le\tfrac14\log2\) and one for \(|a|\ge\tfrac12\log2\). Such a function is obtained from \(b(x)=e^{-1/x}\) for \(x>0\), zero otherwise, using \(b(x)/(b(x)+b(1-x))\) on the intervening interval; its even extension is smooth because it is constant near zero. Define the exact map
+\[
+\nu_h(a)=\kappa(a)e^{-|a|/2}h(-a)\in C_c^\infty(\mathbb R).
+\tag{PHW11}
+\]
+The cutoff is identically one at every nonzero prime iterate \(\pm k\log p\), so (PHW8) gives
+\[
+\boxed{
+P_V(h)=\sum_p\operatorname{Tr}A_{p,V}(\nu_h)
+=\sum_p\sum_{k\ge1}(\log p)p^{-k/2}
+\left\{\operatorname{Tr}(T_p^k)h(-k\log p)
++\operatorname{Tr}(T_p^{-k})h(k\log p)\right\}.
+}
+\tag{PHW12}
+\]
+The trace sum in this formula has only finitely many nonzero terms: if \(\operatorname{supp}h\subset[-R,R]\), then \(k\log p\le R\). It is independent of every permitted choice of \(\kappa\). This proves the actual comparison between the original prime-orbit circle and the weighted Weil distribution. The weight \(e^{-|a|/2}\) is an explicit test map; its arithmetic contour identity is proved in (PHW23) below. The omitted identity iterate is exactly the separately known functional \(\ell_p\dim(V_p)\nu(0)\) of (PHW8).
+
+There is a necessary operator-domain distinction even though (PHW12) is a complete distribution. The bounded direct sum \(\bigoplus_p A_{p,V}(\nu)\) exists, with norm at most \(\|\nu\|_1\), but for nonzero \(V\) and nonzero \(\nu\) it is not trace class. To prove this, \(\widehat\nu\) is not identically zero by Fourier inversion, so there is a real interval of positive length on which \(|\widehat\nu|\ge c>0\). All but finitely many \(p\) have \(V_p=V\ne0\). In any eigenline the frequency grid has spacing \(2\pi/\ell_p\), so the number of grid points in that interval is at least its length times \(\ell_p/(2\pi)-1\). The trace norm of the corresponding diagonal block therefore grows at least as a positive constant times \(\log p\). The total trace norm diverges. For \(\nu=\nu_h\), the finite-prime-cutoff traces nevertheless stabilize once \(p>e^R\), by (PHW8). Thus (PHW12) is an exact stabilized trace distribution, not an ordinary trace on the infinite direct sum. The operator family, the finite cutoffs, the stabilized trace, and the failure of the full trace-class norm are all retained.
+
+## 3. Determinants and the character-resolved arithmetic map
+
+For \(\Re s>1\), define
+\[
+L_V(s)=\prod_p\det(1-p^{-s}T_p\mid V_p)^{-1}.
+\tag{PHW13}
+\]
+Since every eigenvalue of \(T_p\) has modulus one and \(\dim V_p\le\dim V\), the logarithm
+\[
+\log L_V(s)=\sum_p\sum_{k\ge1}\frac{\operatorname{Tr}(T_p^k)}k p^{-ks},
+\qquad
+-\frac{L_V'}{L_V}(s)=
+\sum_p\sum_{k\ge1}(\log p)\operatorname{Tr}(T_p^k)p^{-ks}
+\tag{PHW14}
+\]
+converges absolutely, uniformly on every half-plane \(\Re s\ge1+\varepsilon\), with its differentiated series. Indeed it is dominated respectively by constant multiples of \(\sum_{n\ge2}n^{-1-\varepsilon}\) and \(\sum_{n\ge2}(\log n)n^{-1-\varepsilon}\). The determinant identity follows by applying \(-\log(1-z)=\sum_{k\ge1}z^k/k\) to each eigenvalue. In particular these formulas specify the branch of the logarithm and prove that \(L_V\) has no zero or pole in this half-plane.
+
+Let \(\widehat G\) denote the character group. The explicit mutually orthogonal idempotents are
+\[
+P_\eta=\frac1{|G|}\sum_{g\in G}\overline{\eta(g)}\rho(g),
+\qquad V=\bigoplus_{\eta\in\widehat G}V_\eta,
+\quad V_\eta=\operatorname{im}P_\eta,
+\quad m_\eta=\dim V_\eta.
+\tag{PHW15}
+\]
+For a nontrivial character \(\alpha\), the sum \(\sum_g\alpha(g)\) is zero: multiplication of its index by an element where \(\alpha\ne1\) multiplies the sum by that unequal value. This proves the orthogonality identities for (PHW15). Simultaneous diagonalization of the commuting unitary matrices proves completeness; every eigenline supplies one of the characters, and (PHW15) projects onto it.
+
+The character \(\eta\circ\chi\) factors through a finite unit group. At every prime choose its smallest local congruence exponent through which it factors, and take the product of those prime powers. This gives its conductor \(q_\eta\) and a primitive Dirichlet character \(\eta_0\) modulo \(q_\eta\). Set \(a_\eta\in\{0,1\}\) by \(\eta(\chi(-1))=(-1)^{a_\eta}\). At \(p\), the summand \(V_\eta\) lies in \(V_p\) precisely when \(p\nmid q_\eta\); its eigenvalue is then \(\eta_0(p)\). This follows by restricting \(\eta\circ\chi\) to the \(p\)-unit group and evaluating \(\widetilde p\) at the remaining conductor components. Therefore (PHW13) is exactly
+\[
+L_V(s)=\prod_{\eta\in\widehat G}L(s,\eta_0)^{m_\eta}.
+\tag{PHW16}
+\]
+This includes primes ramified in the extension but unramified for a particular character: they have not been removed merely because they divide the conductor of the whole cover. The trivial character has \(q_1=1\), \(a_1=0\), and \(L(s,1)=\zeta(s)\).
+
+There is a fully labelled version before taking a representation trace. In \(\mathbb C[G]\), put \(E_I=|I|^{-1}\sum_{i\in I}i\). Define
+\[
+\mathscr P_G(h)=\sum_{p,k\ge1}(\log p)p^{-k/2}
+\left\{E_{I_p}g_p^k h(-k\log p)
++E_{I_p}g_p^{-k} h(k\log p)\right\}.
+\tag{PHW17}
+\]
+It is a finite sum for every test. Applying \(\operatorname{Tr}\rho\) gives (PHW12), because \(\rho(E_I)=P_I\). The character Fourier map \(x\mapsto(\eta(x))_\eta\) is an isomorphism \(\mathbb C[G]\to\mathbb C^{\widehat G}\), with inverse given by the character idempotents; its orthogonality proof is the same finite-sum calculation as (PHW15). Hence no holonomy character is lost before a projection is specified.
+
+The trivial-character observation is augmentation \(\epsilon(\sum c_g g)=\sum c_g\). Its kernel is the span of the elements \(g-1\), and its exact section is \(c\mapsto cE_G\). Indeed \(\epsilon(E_G)=1\), \(gE_G=E_G\), and every coefficient vector of total zero equals \(\sum c_g(g-1)\). Consequently
+\[
+\epsilon\mathscr P_G=P_{\mathrm{fin}},
+\qquad E_G\mathscr P_G=P_{\mathrm{fin}}E_G,
+\qquad
+\mathscr P_G=P_{\mathrm{fin}}E_G+(1-E_G)\mathscr P_G.
+\tag{PHW18}
+\]
+The second term contains exactly the nontrivial character components; it is an explicitly retained augmentation-ideal distribution. The first is the original arithmetic prime term of SZW24, with its original \(\log p\) and \(p^{-k/2}\) constants.
+
+## 4. The fixed-support endpoints of the same cover
+
+At the global supported zero \(e\in G(\mathbb A_{\mathbb Q})\), every element of \(K\) fixes the point. Thus its fibre in (PHW2) is \(G/\chi(K)=G/G\), a singleton. Extending the same construction to the full fixed-sector carrier \(G_L(\mathbb A_{\mathbb Q})\) gives a separate singleton above each \(z_\lambda\), including \(e_L\) and \(\tau_L\). The balanced quotient never relates two distinct support labels. Coefficients in \(V\) over each such fibre are therefore
+\[
+W=V^G=\operatorname{im}P_G,
+\qquad P_G=\frac1{|G|}\sum_{g\in G}\rho(g),
+\qquad V=W\oplus\ker P_G.
+\tag{PHW19}
+\]
+These maps are actual stabilizer invariants, not a hypothesis of holonomy-invariant test functions. The same averaging proof as (PHW5) shows that \(P_G\) is a projection, and (PHW15) identifies its kernel as the sum of all nontrivial character spaces. Let \(m_0=\dim W=m_1\).
+
+The exact Schwartz domain verifies both endpoint weights. Use
+\[
+\mathcal F_{L,V}=
+\{f\in\mathcal S(\mathbb A_{\mathbb Q})\otimes V:
+f(aw)=\rho(\chi(w))^{-1}f(a)\ (w\in K)\}
+\oplus\bigoplus_{\lambda\ne1_L}W_\lambda.
+\tag{PHW20}
+\]
+Evaluation gives \(f(0)\in W\), since zero is fixed by every \(w\). The integral \(\int f\) also lies in \(W\), because multiplication by a compact unit preserves the specified self-dual additive Haar measure. Thus
+\[
+\beta_{L,V}(f,c)=\left(f(0),\int f,(c_\lambda)\right),
+\qquad
+B_{L,V}=W(0)_e\oplus W(1)_{e^\vee}
+\oplus\bigoplus_{\lambda\ne1_L}W(0)_\lambda.
+\tag{PHW21}
+\]
+The map is onto: for \(w\in W\), embed an even real Schwartz test as \(\phi\otimes1_{\widehat{\mathbb Z}}\otimes w\), use the two moment preimages proved in SZW13, and prescribe the lower coefficients independently. Its kernel is exactly \(f(0)=\int f=0\) and all \(c_\lambda=0\). Dilation by an idele fixes the first and lower coordinates and multiplies the integral by its norm, proving the stated weights. This connects the same coefficient system's prime-orbit spaces (PHW6) to its fixed-support quotient without identifying their carriers.
+
+On the original SZW test \(q_h(j)=|j|^{-1/2}h(-\log|j|)\), the label-resolved boundary trace is consequently
+\[
+\boldsymbol B_{L,V}(h)
+=m_0\left((H(0)+H(1))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda\right).
+\tag{PHW22}
+\]
+The coefficient is \(\dim V^G\), not \(\dim V\). The original two-point case has its separate \(\tau\)-term \(m_0H(0)\), while the supported-zero/Fourier pair contributes \(m_0(H(0)+H(1))\). The Fourier closure of SZW40–42 tensors with \(W\), so it adds exactly \((|L|-1)m_0\) weight-one partners and no partners in the nontrivial character spaces.
+
+For a finite prime orbit the zero-coordinate set is instead \(\{p\}\), giving inertia \(I_p\) and the circle (PHW4). Its adelic zero-coordinate prime contracts to \((e)\subset S\), by SZW4, but its other nonzero coordinates and its place label remain present. Thus contraction to the supported-zero prime does not collapse these circles into the global zero point. The source's archimedean orbit has fibre \(G/\langle\chi(-1)\rangle\); its invariant coefficient space is the even-parity sum in (PHW15). This is another actual stabilizer map, distinct from both global \(G\)-invariants and finite-prime inertia invariants.
+
+## 5. The convergent arithmetic contour and the full trivial sector
+
+Let \(V^\vee\) be the dual representation, so the local traces are those of \(T_p^{-k}\). For every \(c>1\), the Euler series already proved in (PHW14) gives
+\[
+\begin{aligned}
+P_V(h)={}&\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+-\frac{L_V'}{L_V}(s)H(s)\,ds\\
+&+\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+-\frac{L_{V^\vee}'}{L_{V^\vee}}(s)H(1-s)\,ds.
+\end{aligned}
+\tag{PHW23}
+\]
+These are absolutely convergent integrals: the logarithmic derivative is bounded on each indicated vertical line by its absolutely convergent Euler series, and the transforms decrease faster than every power of the height by integration by parts. Termwise integration is therefore valid. To compute the first integral term with \(\ell=k\log p\), Fourier inversion gives
+\[
+\frac1{2\pi}\int_{\mathbb R}e^{-it\ell}H(c+it)\,dt
+=h(-\ell)e^{(c-1/2)\ell}.
+\]
+Multiplication by \(p^{-kc}=e^{-c\ell}\) gives \(p^{-k/2}h(-\ell)\). Replacing \(H(s)\) by \(H(1-s)\) gives \(p^{-k/2}h(\ell)\); the dual representation supplies \(\operatorname{Tr}(T_p^{-k})\). This proves (PHW23) with the original signs and weights. This argument uses only the convergent half-plane, not a presumed functional equation for an arbitrary representation.
+
+For the trivial character, both integrals and the fixed-support endpoints are exactly those in SZW. Writing \(E_G=|G|^{-1}\sum_g g\) in the group algebra, the exact retained decomposition is
+\[
+\mathscr P_G=P_{\mathrm{fin}}E_G+\mathscr P_G^{\mathrm{aug}},\qquad
+\mathscr P_G^{\mathrm{aug}}=(1-E_G)\mathscr P_G,\qquad
+\epsilon\mathscr P_G^{\mathrm{aug}}=0.
+\tag{PHW24}
+\]
+Its proof is (PHW18); its kernel is the full augmentation ideal, not a declaration that the complementary distribution vanishes. The trace receiving \(P_{\mathrm{fin}}\) is the complete supported-zero identity
+\[
+\begin{aligned}
+\boldsymbol B_L&=(H(0)+H(1))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol Z_L&=Z(h)\mathbf e_{1_L},\\
+\boldsymbol D_L&=(P_{\mathrm{fin}}-A_\infty)\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol B_L-\boldsymbol Z_L&=\boldsymbol D_L.
+\end{aligned}
+\tag{PHW25}
+\]
+The proof is SZW20–SZW34: the full theta lift gives the endpoints, the convergent contour gives the arithmetic identity, and its explicit divisor receiver gives \(Z(h)\). Tensoring with the invariant coefficient space \(W\) multiplies every term by \(\dim W\), by the trace of an identity tensor factor. The Fourier closure tensors likewise with \(W\), retaining every support label and its partner. This is the actual trivial-sector map from the holonomy construction into the programme formula. Equations (PHW17), (PHW23), and (PHW24) retain the other character-resolved arithmetic distributions with their full Euler data. The explicit signed-cover quotient which reaches a nontrivial one of these sectors is proved in [CBR1–CBR29](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4a4238afc992e77aee83b97d38a1a63d283f540c/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md).

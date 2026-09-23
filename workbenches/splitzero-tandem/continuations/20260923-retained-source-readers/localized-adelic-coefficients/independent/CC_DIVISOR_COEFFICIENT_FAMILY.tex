@@ -1,0 +1,417 @@
+% CDV: exact divisor-indexed extension of CC semilocal coefficients.
+\section{All rational-prime translates of the original adelic coefficient sheaf}
+\label{sec:cc-divisor-coefficients}
+
+\paragraph{Human source, original object, and scope.}
+Alain Connes and Caterina Consani,
+\href{https://arxiv.org/abs/2501.06560v1}{\emph{Knots, primes and class
+field theory}, arXiv:2501.06560v1}, Section 4, original author file
+\texttt{arxiv-pisa.tex}, Lemma \texttt{localv}, Proposition
+\texttt{structure}, and Theorem \texttt{structure1}, construct the
+semilocal coefficient sheaf using the literal transition vectors
+$1_{\mathbb Z_p}$. Their author source, SHA-256
+\texttt{249fed347469cfaf6da97915d547c2ca704a4ba21cc339613713e570f14d5cea},
+has been read in full in this task. The proof below starts with those
+functions and keeps every rational scaling and Haar factor. It extends
+the programme calculation CCF8--34, whose complete source is retained,
+by making the nonunit-prime defect into a family with invertible maps.
+The original scalar function remains $\zeta(s)$; its complete local
+integrals are calculated at the end. No identification with a Weil
+positive form is assumed.
+
+\subsection{The actual family and its sheaf maps}
+
+Put $X=\operatorname{Spec}\mathbb Z$ and
+$V=\mathcal S(\mathbb A_{\mathbb Q})$. Here this Bruhat--Schwartz
+space is the algebraic restricted tensor product of the real Schwartz
+space and the finite locally constant compactly supported function
+spaces, with standard vectors $1_{\mathbb Z_p}$. Thus an element is a
+finite sum of tensors with only finitely many nonstandard finite
+factors. Let
+\begin{equation}\tag{CDV1}
+ \mathfrak D=\bigoplus_p\mathbb Z,
+ \quad k=(k_p)_p,\quad
+ c_{p,k_p}=1_{p^{k_p}\mathbb Z_p},\quad
+ N(k)=\prod_p p^{k_p}\in\mathbb Q_{>0}.
+\end{equation}
+Every product indexed by the support of $k$ is finite. Write
+$V^{(p)}$ for the restricted tensor product at every place except $p$,
+including the real factor, and set
+\begin{equation}\tag{CDV2}
+ V_{p,k}=\mathbb Cc_{p,k_p}\otimes V^{(p)}\subset V.
+\end{equation}
+For $U=X\setminus F$, $F$ a finite set of finite primes, define
+\begin{equation}\tag{CDV3}
+ \mathcal O_k(U)=\bigcap_{p\notin F}V_{p,k}\subset V,
+ \qquad \mathcal O_k(\varnothing)=0.
+\end{equation}
+All restriction maps for nonempty inclusions are inclusions of these
+actual subspaces. Explicitly its sections are the tensors with arbitrary
+finite factors at $p\in F$ and the specified $c_{p,k_p}$ at every
+other finite prime, with arbitrary real Schwartz factor and finite
+linear sums.
+
+Here is a proof of this explicit intersection and of the sheaf property.
+For a finite collection of primes define commuting idempotents on $V$
+by
+\begin{equation}\tag{CDV4}
+ P_{p,k}f(x_p,x^{(p)})
+ =p^{k_p}c_{p,k_p}(x_p)
+                  \int_{p^{k_p}\mathbb Z_p}f(y,x^{(p)})\,dy,
+ \qquad \operatorname{vol}(\mathbb Z_p)=1.
+\end{equation}
+The volume of this ball is $p^{-k_p}$, so $P_{p,k}^2=P_{p,k}$
+and its image is exactly $V_{p,k}$. Different $p$ act on different
+tensor coordinates and therefore commute. For a given $f$, choose a
+finite set containing its nonstandard factors and $\operatorname{supp}k$.
+Outside that set the conditions are automatic; inside it, being fixed
+by every required projection is equivalent to belonging to the image
+of their product. This gives precisely the factors in CDV3.
+Every nonempty open in $X$ contains the generic point, so compatible
+sections on a covering are the same element $f\in V$. Their local
+conditions say exactly that $f\in V_{p,k}$ for every point of the
+covered open. This is CDV3, proving existence and uniqueness of gluing.
+The generic stalk is $V$, and the stalk at $p$ is $V_{p,k}$ because
+every finite set away from $p$ can be removed in its neighbourhoods.
+At $k=0$ this is the original Connes--Consani sheaf with its unchanged
+transition factors.
+
+The sheaf is an algebra under the original pointwise multiplication:
+$c_{p,k_p}^2=c_{p,k_p}$, so products preserve every required local
+factor. This statement does not assert a multiplicative structure on
+the quotient vector spaces introduced below.
+
+For $r\in\mathbb Q^\times$ write
+$d(r)=(v_p(r))_p$ and keep the actual dilation
+\begin{equation}\tag{CDV5}
+ (\alpha_r f)(x)=f(r^{-1}x),\qquad
+ \alpha_r:\mathcal O_k\longrightarrow\mathcal O_{k+d(r)}.
+\end{equation}
+At $p$, multiplication by the unit part of $r$ fixes every ball, so
+$\alpha_r c_{p,k_p}=c_{p,k_p+v_p(r)}$. At all other coordinates the
+same formula acts on the actual Schwartz factors. This proves CDV5
+on every open and its compatibility with restrictions. Its inverse is
+$\alpha_{r^{-1}}$, and $\alpha_r\alpha_q=\alpha_{rq}$. These are
+algebra isomorphisms between the specified sheaves. The stabilizer of
+the index $k$ consists exactly of $r=\pm1$, by unique factorization
+of a rational number. The family indexed by $\mathfrak D$ is retained;
+no member is replaced by another without this explicit map.
+
+For crossed-product coefficients retain
+\begin{equation}\tag{CDV6}
+ B=V\rtimes\mathbb Q^\times,\qquad
+ B_{p,k}=\bigoplus_{u:\ v_p(u)=0}V_{p,k}U_u,
+ \quad (fU_u)(gU_v)=f\alpha_u(g)U_{uv}.
+\end{equation}
+The sheaf $\mathcal A_k(X\setminus F)$ is the intersection of the
+$B_{p,k}$ for $p\notin F$. The argument proving CDV3 works coefficient
+by coefficient because every crossed-product element has a unique
+finite sum in the group labels. It yields exactly the coefficient
+sheaf $\mathcal O_k$ crossed with the units of $\mathbb Z[F^{-1}]$.
+The unit condition makes the pointwise coefficient product preserve
+the prescribed local balls. Since rational dilations commute,
+\begin{equation}\tag{CDV7}
+ \alpha_r^B\left(\sum_u f_uU_u\right)
+     =\sum_u\alpha_r(f_u)U_u,
+ \qquad\alpha_r^B:\mathcal A_k\xrightarrow{\sim}\mathcal A_{k+d(r)}
+\end{equation}
+preserves the displayed multiplication, all original group labels,
+and every restriction. Its inverse is $\alpha_{r^{-1}}^B$.
+
+\subsection{Every mixed-prime cohomology component}
+
+For either $W=V$ or $W=B$, use $W_{p,k}=V_{p,k}$ or $B_{p,k}$.
+Define
+\begin{equation}\tag{CDV8}
+ D_k(W)=\bigoplus_pW/W_{p,k},\qquad
+ \delta_k w=([w]_{p,k})_p,\qquad
+ C_k(W)=[W\xrightarrow{\delta_k}D_k(W)].
+\end{equation}
+The arrow lands in the direct sum: only finitely many primes occur
+in $k$, the coefficient tensors, or the nonunit valuations of a group
+label. The sheaf sequence
+\begin{equation}\tag{CDV9}
+ 0\longrightarrow\mathcal H_k\longrightarrow c_XW
+ \longrightarrow\bigoplus_p i_{p*}(W/W_{p,k})\longrightarrow0
+\end{equation}
+is exact, where $\mathcal H_k=\mathcal O_k$ or $\mathcal A_k$.
+At $p$ it is the quotient sequence and at the generic point its last
+term is zero; its kernel on an open is precisely the defining
+intersection. The constant sheaf is flasque because all nonempty
+opens are connected and its restriction maps are identity maps. The
+last sheaf has finite-support sections on every nonempty open:
+its generic germ is zero, so a section vanishes on a cofinite
+neighbourhood of the generic point, leaving only finitely many closed
+points. Its restrictions forget components and are onto. Thus it is
+also flasque, and CDV9 computes
+\begin{equation}\tag{CDV10}
+ H^0(X,\mathcal H_k)=\ker\delta_k,\quad
+ H^1(X,\mathcal H_k)=D_k(W)/\delta_kW,\quad
+ H^j(X,\mathcal H_k)=0\quad(j\ge2).
+\end{equation}
+This uses the definition of sheaf cohomology through an acyclic
+resolution; flasque sheaves are acyclic for global sections. All
+maps and terms of that resolution have been specified.
+
+The complete mixed-place decomposition can be written without altering
+the original Haar lengths of the local vectors. Put
+\begin{equation}\tag{CDV11}
+ E_{p,k}=\left\{f\in\mathcal S(\mathbb Q_p):
+                  \int_{p^{k_p}\mathbb Z_p}f=0\right\},\quad
+ \mathcal S(\mathbb Q_p)=\mathbb Cc_{p,k_p}\oplus E_{p,k}.
+\end{equation}
+The two projections are exactly CDV4 and $I-P_{p,k}$. Expanding a
+finite tensor gives an algebraic direct sum
+\begin{equation}\tag{CDV12}
+ V=\bigoplus_{T\ \mathrm{finite}}V_{T,k},\qquad
+ V_{T,k}=\mathcal S(\mathbb R)\otimes
+       \bigotimes_{p\in T}E_{p,k}\otimes
+       \bigotimes_{p\notin T}'\mathbb Cc_{p,k_p}.
+\end{equation}
+Only finitely many terms occur for any input; projection by the
+corresponding finite product of $P_{p,k}$ and $I-P_{p,k}$ proves
+uniqueness. A $T$ component survives in $V/V_{p,k}$ precisely when
+$p\in T$. For a crossed-product term $V_{T,k}U_u$ it survives
+precisely at
+$T_u=T\cup\{p:v_p(u)\ne0\}$. Therefore the actual differentials
+in CDV8 are the diagonal maps on these components, and
+\begin{equation}\tag{CDV13}
+\begin{split}
+ H^1(X,\mathcal O_k)
+  &=\bigoplus_{|T|\ge2}
+          V_{T,k}\otimes(\mathbb C^T/\Delta\mathbb C),\\
+ H^1(X,\mathcal A_k)
+  &=\bigoplus_{u,T:\ |T_u|\ge2}
+          V_{T,k}U_u\otimes(\mathbb C^{T_u}/\Delta\mathbb C).
+\end{split}
+\end{equation}
+Indeed an empty marked set has zero target, a one-element set has
+surjective diagonal, and for every larger finite set the cokernel is
+exactly its marked coordinates modulo the diagonal. This proves
+CDV13 by actual component maps, rather than dimension counting.
+
+Every rational dilation induces a chain isomorphism
+\begin{equation}\tag{CDV14}
+ C_k(W)\xrightarrow{\alpha_r}C_{k+d(r)}(W),\qquad
+ [w]_{p,k}\longmapsto[\alpha_rw]_{p,k+d(r)},
+\end{equation}
+with group labels unchanged in the crossed product. Well-definedness
+follows from CDV5 and CDV7, and commutation with $\delta$ follows
+componentwise. The inverse is the corresponding map for $r^{-1}$.
+The local projections conjugate exactly:
+$\alpha_rP_{p,k}\alpha_{r^{-1}}=P_{p,k+d(r)}$.
+This follows either from their ranges and orthogonality, or directly
+from the change of variables in CDV4. Hence every mixed component
+$T$, every marked prime, and every diagonal relation is transported
+by CDV14. No cohomology component is dropped in this prime action.
+
+\subsection{The original positive metric and the nonunit defect}
+
+The additive adelic Haar measure is the original product of $dx$ at
+infinity and measures with $\operatorname{vol}(\mathbb Z_p)=1$.
+In particular
+\begin{equation}\tag{CDV15}
+ \|c_{p,k_p}\|^2=p^{-k_p},\qquad
+ \|\alpha_rf\|^2=|r|_\infty\prod_p p^{-v_p(r)}\|f\|^2=\|f\|^2.
+\end{equation}
+The product formula here follows immediately by writing
+$r=\pm\prod p^{v_p(r)}$. Every factor in the preceding product
+is retained. The quotient $V/V_{p,k}$ is isometrically represented
+by $(I-P_{p,k})V$, since CDV4 is the original Haar orthogonal
+projection. Equip $D_k(V)$ with the sum of these squared quotient
+norms. In $D_k(B)$, at a coefficient with $v_p(u)=0$ use this
+projection, and at $v_p(u)\ne0$ use its full original Haar norm;
+sum over the finite coefficient and prime labels. CDV14 is an
+isometry for these metrics, by CDV15 and the conjugation identity.
+
+Completion and quotient do not delete the mixed arithmetic part.
+The orthogonal expansion CDV12, retaining all factors $p^{-k_p}$,
+gives
+\begin{equation}\tag{CDV16}
+ \overline{D_k(V)}/\overline{\delta_kV}
+ =\widehat{\bigoplus}_{|T|\ge2}\overline{V_{T,k}}
+                  \otimes(\Delta\mathbb C)^\perp.
+\end{equation}
+To verify the closures, finite tensors are dense in each Hilbert
+summand by its definition. Each finite collection of diagonal
+components is the image of their sum in $V$. Conversely the
+bounded orthogonal projection on every marked-coordinate factor
+annihilates $\delta_kV$, so its closure has no component outside
+the diagonal. These two inclusions prove the displayed equality.
+On $\mathbb C^T$ the diagonal projection is exactly
+$(c_p)_p\mapsto(|T|^{-1}\sum_pc_p)_p$; its denominator remains.
+The same proof with $T_u$ gives CDV16 for $B$ with every $U_u$
+retained. The original algebraic quotient injects into the Hilbert
+quotient, since a finite vector has zero orthogonal projection
+exactly when its components were already diagonal. These are
+particular positive quotient metrics, not an identification with
+the original Weil trace.
+
+If instead one insists on the fixed target $V/V_{p,k}$, the
+nonunit action has a nonzero defect. For an integer $m$ and
+$f=c_{p,k_p}\otimes g$, its representative is
+\begin{equation}\tag{CDV17}
+ (I-P_{p,k})\alpha_{p^m}f
+ =\left(c_{p,k_p+m}-p^{-\max(0,m)}c_{p,k_p}\right)
+                        \otimes\alpha_{p^m}^{(p)}g.
+\end{equation}
+Indeed the overlap of the two balls has volume
+$p^{-\max(k_p,k_p+m)}$ and CDV4 supplies the multiplier
+$p^{k_p}$. Taking its original squared norm gives
+\begin{equation}\tag{CDV18}
+ \|(I-P_{p,k})\alpha_{p^m}f\|^2
+ =p^{-k_p}\bigl(1-p^{-|m|}\bigr)\|g\|^2.
+\end{equation}
+For $m\ge0$ the finite local squared norm is
+$p^{-k_p}(p^{-m}-p^{-2m})$; for $m<0$ it is
+$p^{-k_p}(p^{-m}-1)$. The other places contribute $p^m$
+by the same product formula, yielding CDV18 in both cases.
+It vanishes exactly at $m=0$ for nonzero $g$. Thus the
+obstruction to a fixed-space endomorphism is a calculated vector;
+CDV14 constructs the invertible action on its actual target family.
+
+\subsection{Fourier maps with every local scalar retained}
+
+Use the conductor-$\mathbb Z_p$ additive character at $p$ and
+$e^{-2\pi ixy}$ at infinity. Character orthogonality proves
+\begin{equation}\tag{CDV19}
+ \widehat{c_{p,k_p}}=p^{-k_p}c_{p,-k_p}.
+\end{equation}
+The annihilator of $p^{k_p}\mathbb Z_p$ is
+$p^{-k_p}\mathbb Z_p$: on it the integral is the ball volume;
+off it, translating by a point on which the character is nontrivial
+forces the integral to be zero. Tensoring gives a vector-sheaf
+isomorphism $\mathcal F:\mathcal O_k\to\mathcal O_{-k}$.
+Its inverse is Fourier followed by $x\mapsto-x$; this follows
+from Fourier inversion on the real Schwartz factor and character
+orthogonality on finite local quotients. In semilocal coordinates
+the transition includes the full scalar
+$\prod_{p\notin F}p^{-k_p}$; it is not the bare map replacing
+each standard vector by $c_{p,-k_p}$.
+
+On the original crossed-product multiplication the target is
+convolution, and the exact isomorphism is
+\begin{equation}\tag{CDV20}
+ \sum_u f_uU_u\longmapsto\sum_u\widehat f_uU_{u^{-1}},\qquad
+ \mathcal F\alpha_r=\alpha_{r^{-1}}\mathcal F,
+ \quad\mathcal F\vartheta_\lambda
+                  =\lambda\vartheta_{\lambda^{-1}}\mathcal F.
+\end{equation}
+Here $\vartheta_\lambda$ acts only on the real coordinate by
+$x_\infty\mapsto\lambda^{-1}x_\infty$, $\lambda>0$.
+The last two equalities follow by change of variables in the Fourier
+integrals; the rational product of moduli is $1$, the real modulus
+is $\lambda$. Fourier of a pointwise product is convolution by
+Fubini on these functions. Therefore the image of
+$f\alpha_u(g)U_{uv}$ is
+$\widehat f*\alpha_{u^{-1}}(\widehat g)U_{u^{-1}v^{-1}}$,
+which is exactly the target product. It preserves the nonunit
+valuation conditions and takes $k$ to $-k$.
+For example the image vector $p^{-k_p}c_{p,-k_p}$ is a
+convolution idempotent: its convolution square is
+$p^{-2k_p}p^{k_p}c_{p,-k_p}$, equal to itself. This verifies
+why the retained scalar matters to the algebra map.
+All these arrows induce the specified chain and cohomology maps
+because they send each local coefficient subspace to its target.
+
+\subsection{Original zeta and the two endpoint functionals}
+
+For $a>0$ define the actual tensor
+\begin{equation}\tag{CDV21}
+ f_{k,a}(x)=e^{-\pi(x_\infty/a)^2}\prod_p c_{p,k_p}(x_p).
+\end{equation}
+The two additive moments, computed in the original measures, are
+\begin{equation}\tag{CDV22}
+ f_{k,a}(0)=1,\qquad \int_{\mathbb A}f_{k,a}(x)\,dx
+                         =a\prod_pp^{-k_p}=a/N(k).
+\end{equation}
+The real Gaussian integral is $a$ by substitution; the finite
+integrals are exactly the ball volumes. Thus these are separate
+endpoint data, not both replaced by one. Rational dilation gives
+$\alpha_rf_{k,a}=f_{k+d(r),|r|a}$, and real scaling gives
+$\vartheta_\lambda f_{k,a}=f_{k,\lambda a}$. CDV22 then proves
+that the rational map preserves both moments whereas the real map
+multiplies only the integral moment by $\lambda$.
+
+For each finite prime use multiplicative Haar measure with
+$\operatorname{vol}^{\times}(\mathbb Z_p^\times)=1$, and at
+infinity use $dx/|x|$. For $\operatorname{Re}s>1$, define the
+adelic multiplicative integral as the absolutely convergent product
+of its local integrals. Their complete evaluation is
+\begin{equation}\tag{CDV23}
+\begin{split}
+ \int_{\mathbb Q_p^\times}c_{p,k_p}(x)|x|_p^s\,d^\times x
+   &=\sum_{j=k_p}^\infty p^{-js}
+     =\frac{p^{-k_ps}}{1-p^{-s}},\\
+ \int_{\mathbb R^\times}e^{-\pi(x/a)^2}|x|^s\frac{dx}{|x|}
+   &=a^s\pi^{-s/2}\Gamma(s/2),\\
+ Z(f_{k,a},s)
+   &=a^sN(k)^{-s}\pi^{-s/2}\Gamma(s/2)\zeta(s).
+\end{split}
+\end{equation}
+For the first line partition the support into annuli
+$p^j\mathbb Z_p^\times$; multiplicative invariance makes each
+annulus have measure $1$. The geometric series converges for
+$\operatorname{Re}s>0$. For the second integrate over both signs
+and substitute $y=\pi(x/a)^2$; the factor of two and the
+Jacobian give exactly the displayed Gamma factor. At the global
+step $\sum_pp^{-\operatorname{Re}s}<\infty$ bounds the product.
+Unique prime factorization identifies its absolutely convergent
+expansion with $\sum_{n\ge1}n^{-s}=\zeta(s)$. Hence the original
+function is recovered, with every factor shown, by
+\begin{equation}\tag{CDV24}
+ \zeta(s)=a^{-s}N(k)^s\frac{\pi^{s/2}}{\Gamma(s/2)}
+                         Z(f_{k,a},s).
+\end{equation}
+No endpoint polynomial $s(s-1)$ was inserted into the arithmetic
+function. Meromorphic continuation here uses the original-zeta
+formula ZTC10 with its separate $1/(s-1)$ and $-1/s$ terms.
+For the actual rational map in CDV22, both $a$ and $N(k)$ are
+multiplied by $|r|$, so their two factors in CDV23 cancel exactly.
+Changing only the finite-place ball would leave $p^{-ms}$ and
+would be a different arithmetic operation. This is the full prime
+and archimedean comparison behind that cancellation.
+
+\subsection{Full lattice coefficients and their actual limits}
+
+Let $L$ be any nontrivial bounded distributive lattice, and retain
+$G_L(W)=\{(0,\lambda):\lambda\in L\}\cup(W\times\{1_L\})$.
+Every linear map above has the exact lift
+$(w,\lambda)\mapsto(Tw,\lambda)$. Addition uses label join and
+scalar multiplication label meet; substitution proves compatibility
+and shows that zeros of amplitudes do not delete their labels.
+Every inverse already displayed lifts by the same formula.
+In particular the quotient congruence is exactly
+the following $G_L(\mathbb C)$-semimodule congruence; it is not
+a quotient-algebra assertion, since $W_{p,k}$ need not be an ideal:
+\begin{equation}\tag{CDV25}
+ (w,\lambda)\sim(w',\lambda')
+ \ \Longleftrightarrow\ \lambda=\lambda'\ \hbox{and}\ w-w'\in W_{p,k},
+ \qquad G_L(W)/{\sim}\cong G_L(W/W_{p,k}).
+\end{equation}
+Its classes are the fibres of the surjective quotient map;
+the relation is compatible with both operations since $W_{p,k}$
+is a vector subspace. Direct-sum formulas lift with one common
+label, not independently chosen labels on the target factors.
+For sheaves the sectionwise construction is sheafified; stalks are
+$G_L(\mathcal H_{k,x})$. To verify that description, filtered
+colimits commute with the carrier construction: a nonzero amplitude
+is represented with top label; a labelled zero is represented by
+that same labelled zero at any stage, and equality is exactly
+equality at a later stage together with equality of labels.
+Sheafification leaves stalks unchanged. All maps and inverse
+identities therefore survive sheafification.
+
+This coefficient lift does not remove the supported-zero prime.
+For $G_L(\mathbb Z)$ its element $e=(0,1_L)$ generates the ideal
+of all labelled zeros, since $e(a,\lambda)=(0,\lambda)$.
+The amplitude map $q:G_L(\mathbb Z)\to\mathbb Z$ sends this
+ideal to $(0)$, and $q^{-1}(0)=(e)$ is prime: if $q(x)q(y)=0$
+in the domain $\mathbb Z$, one amplitude is zero. This proves
+the actual prime statement, retaining every zero label. The
+arithmetic prime $(p)$ similarly has inverse image $q^{-1}(p)$
+containing $(e)$ strictly. The rest of the support spectrum and
+its stalks remain part of the base; no scalar Mellin evaluation
+is asserted to recover them. CDV25 specifies the coefficient
+maps that can be applied on that base, while its full support
+cohomology requires the sheaf extension constructed separately.

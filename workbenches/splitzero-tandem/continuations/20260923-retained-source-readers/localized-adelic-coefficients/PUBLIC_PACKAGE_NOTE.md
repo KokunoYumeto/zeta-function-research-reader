@@ -1,0 +1,6 @@
+# Public source package and retained provenance
+
+This package contains the unchanged programme proof TeX, its dependencies, verification records and reproduction scripts. The received local source ZIP also contained human-authored primary-literature archives. This public package is a different, explicitly documented source closure: those primary archives are not redistributed. Their original identities are in PRIMARY_SOURCE_RETENTION.json. In particular, the arXiv nonexclusive distribution licence for Rodgers–Tao is not a redistribution licence for this programme. Both authors remain credited at each use and their [original version5](https://arxiv.org/abs/1801.05914v5) remains the source to consult. Connes and Consani's [original version1](https://arxiv.org/abs/2501.06560v1) is likewise linked to its primary host.
+
+Statements in the unchanged received READ_FIRST.md referring to an included original author archive describe the local delivery, not this public package. No mathematical proof, citation, figure or programme-source dependency has been removed. The reproduction scripts read the included programme sources, not those primary archives. Recorded finite checks and owner inspections retain their stated scope; publication does not convert them into a new proof audit.
+

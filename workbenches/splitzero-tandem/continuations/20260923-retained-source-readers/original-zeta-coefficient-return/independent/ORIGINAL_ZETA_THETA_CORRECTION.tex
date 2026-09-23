@@ -1,0 +1,435 @@
+% ZTC: original zeta, original shifted arithmetic family, retained theta data.
+\section{Original zeta and the retained theta comparison}
+\label{sec:original-zeta-theta-correction}
+
+\paragraph{Correction and provenance.}
+The statement that the Rodgers--Tao heat kernel was the programme's
+original construction over the entire absolute base was not established.
+THS1--31 begin with that classical analytic kernel and construct a
+support-preserving coefficient lift. HTB1--35 establish its exact
+comparison with the shifted Hurwitz family. Neither construction is a
+derivation of the scalar kernel from the entire arithmetic geometry.
+The distinction is measurable: THS22 already proves that all supported
+zero times act identically on the actual theta orbit. The ambient
+coefficient injection does not make that orbit injective.
+
+The original arithmetic functions in this calculation remain
+\begin{equation}\tag{ZTC1}
+ \zeta(s)=\sum_{n=1}^{\infty}n^{-s},\qquad
+ F_t(s)=\sum_{n=0}^{\infty}(n+1+t)^{-s},
+ \qquad \operatorname{Re}s>1,\quad t>-1.
+\end{equation}
+Their continuations, endpoints, and exact shift generator are proved in
+HTB2--5, with the programme source identified there by version, hash,
+and original theorem labels. In particular $F_0=\zeta$,
+$F_1=\zeta-1$, and $\partial_tF_t(s)=-sF_t(s+1)$.
+The latter family comes from the supplied April 2026 shifted-Hurwitz
+programme draft, not from a proposed identification of two time variables.
+Brad Rodgers and Terence Tao's
+\href{https://arxiv.org/abs/1801.05914v5}{original author source},
+equations \texttt{phidef}, \texttt{htdef}, \texttt{hoz}, and
+\texttt{sas}, supplies the auxiliary heat kernel used in THS and HTB.
+These are cited inputs, not new discoveries. The following comparisons
+are derived explicitly. Their complete HTB, THS, and CFD proofs accompany
+this chapter.
+
+\subsection{A direct theta sum for the original arithmetic family}
+
+For real $t>-1$ and $x>0$, retain the actual shifted frequencies and put
+\begin{equation}\tag{ZTC2}
+ K_t(x)=\sum_{n=0}^{\infty}
+               e^{-\pi(n+1+t)^2x}.
+\end{equation}
+This is a scalar analytic representation of the stated arithmetic
+family. No assertion that it determines the full support lattice is
+part of this definition. For fixed $a=1+t>0$, monotonicity of the
+summand as a function of $n$ gives
+\begin{equation}\tag{ZTC3}
+ K_t(x)\le e^{-\pi a^2x}
+              +\int_0^\infty e^{-\pi(a+y)^2x}\,dy
+ \le 1+\frac1{2\sqrt x}.
+\end{equation}
+For $x\ge1$ the same bound after retaining the first exponential
+gives $K_t(x)\le C_a e^{-\pi a^2x}$, since
+$(a+n)^2-a^2\ge n^2$ and
+$C_a=\sum_{n\ge0}e^{-\pi((a+n)^2-a^2)}<\infty$.
+Consequently the following integral converges absolutely for
+$\operatorname{Re}s>1$:
+\begin{equation}\tag{ZTC4}
+ \int_0^\infty x^{s/2-1}K_t(x)\,dx
+   =\pi^{-s/2}\Gamma(s/2)F_t(s),\qquad
+ F_t(s)=\frac{\pi^{s/2}}{\Gamma(s/2)}
+                \int_0^\infty x^{s/2-1}K_t(x)\,dx.
+\end{equation}
+Indeed, with $\sigma=\operatorname{Re}s>1$, the sum of the
+absolute termwise integrals equals
+$\pi^{-\sigma/2}\Gamma(\sigma/2)\sum_{n\ge0}(n+a)^{-\sigma}$.
+Fubini therefore applies. Substitution $y=\pi(n+a)^2x$ in each
+term proves the displayed identity with its full Gamma and pi factors.
+Continuation outside that domain means the meromorphic continuation
+proved in HTB4, not an assertion that the unsubtracted integral converges
+there.
+
+There is also an exact inverse recovering the kernel, not only the
+arithmetic function. For every real $c>1$,
+\begin{equation}\tag{ZTC4a}
+ K_t(x)=\frac1{4\pi i}\int_{c-i\infty}^{c+i\infty}
+       \pi^{-s/2}\Gamma(s/2)F_t(s)x^{-s/2}\,ds.
+\end{equation}
+Here the integral is absolutely convergent. To prove the inversion
+with its constant, set $\sigma=c/2>0$ and
+$g(v)=\exp(\sigma v-e^v)$. This function and all its derivatives
+are integrable on $\mathbb R$: at $-\infty$ they are bounded
+by a constant times $e^{\sigma v}$, and at $+\infty$ by a
+polynomial in $e^v$ times $g(v)$. The substitution $u=e^v$
+identifies its Fourier transform with $\Gamma(\sigma-i y)$.
+Repeated integration by parts therefore bounds that Gamma factor
+by $C_N(1+|y|)^{-N}$ for every fixed $N$.
+Fourier inversion gives
+$e^{-u}=(2\pi i)^{-1}\int_{\sigma-i\infty}^{\sigma+i\infty}
+\Gamma(w)u^{-w}\,dw$. One may verify this inversion directly
+by first multiplying the Fourier integrand by $e^{-\epsilon y^2}$:
+the resulting expression is the convolution of $g$ with the
+Gaussian approximate identity, which converges to $g$; the stated
+integrable transform bound permits dominated convergence as
+$\epsilon\downarrow0$. Apply the identity to
+$u=\pi(n+1+t)^2x$, then put $s=2w$. The resulting factor is
+$1/(4\pi i)$. Finally sum in $n$. Interchange is justified by
+$\sum(n+1+t)^{-c}<\infty$ and the integrable Gamma bound.
+This proves ZTC4a. ZTC4 and ZTC4a are mutual recovery formulas
+for the specified original arithmetic family and its scalar
+theta sums; they do not recover a support lattice from a scalar
+function.
+
+Differentiation in $t$ is locally uniform for $t$ in compact subsets
+of $(-1,\infty)$ and $x$ in compact subsets of $(0,\infty)$, by
+Gaussian majorants for a polynomial times $e^{-c n^2}$.
+It gives the exact formula
+\begin{equation}\tag{ZTC5}
+ \partial_tK_t(x)=-2\pi x\sum_{n=0}^{\infty}
+              (n+1+t)e^{-\pi(n+1+t)^2x}.
+\end{equation}
+For $\operatorname{Re}s>0$, integration of its absolute value is
+bounded by a constant times $\sum(n+a)^{-\sigma-1}$, locally
+uniformly in $t$. More precisely its Mellin transform is
+\begin{equation}\tag{ZTC6}
+ \int_0^\infty x^{s/2-1}\partial_tK_t(x)\,dx
+ =-2\pi^{-s/2}\Gamma(s/2+1)F_t(s+1)
+ =-s\pi^{-s/2}\Gamma(s/2)F_t(s+1).
+\end{equation}
+Thus the original arithmetic shift generator is represented directly,
+without substituting the heat generator for it. The stated equality
+extends meromorphically by HTB4--5.
+
+The separated sheet and its entire missing summand are visible before
+any transform:
+\begin{equation}\tag{ZTC7}
+ K_1(x)=K_0(x)-e^{-\pi x},\qquad
+ D_t(s)=\zeta(s)-F_t(s),\qquad D_1(s)=1,
+\end{equation}
+\begin{equation}\tag{ZTC8}
+ \pi^{-s/2}\Gamma(s/2)D_t(s)
+   =\int_0^\infty x^{s/2-1}\bigl(K_0(x)-K_t(x)\bigr)\,dx
+       \quad(\operatorname{Re}s>1).
+\end{equation}
+ZTC7 follows by deleting the $n=1$ summand of $K_0$; ZTC8 follows
+by subtracting two absolutely convergent integrals. At $t=1$ the
+integral is exactly $\pi^{-s/2}\Gamma(s/2)$, so its inverse returns
+the actual constant $1$, including its amplitude and support when lifted.
+
+\subsection{Original zeta with both Mellin endpoints retained}
+
+At $t=0$, HTB6 proves
+\begin{equation}\tag{ZTC9}
+ K_0(x)=x^{-1/2}K_0(1/x)+\tfrac12x^{-1/2}-\tfrac12.
+\end{equation}
+Split ZTC4 at $x=1$, apply this identity only to the integral over
+$(0,1)$, and substitute $y=1/x$ there. Initially
+$\operatorname{Re}s>1$, and direct integration gives
+\begin{equation}\tag{ZTC10}
+ \zeta(s)=\frac{\pi^{s/2}}{\Gamma(s/2)}
+ \left\{
+ \frac1{s-1}-\frac1s
+ +\int_1^\infty K_0(x)
+             \left(x^{s/2-1}+x^{-(s+1)/2}\right)\,dx
+ \right\}.
+\end{equation}
+The two separate rational terms are the transforms of the two separate
+terms $x^{-1/2}/2$ and $-1/2$. The integral on $[1,\infty)$ is
+entire in $s$, since exponential decay bounds every logarithmic
+derivative on compact subsets of the $s$-plane. This proves the
+meromorphic continuation of the identity and keeps both endpoint
+contributions. Neither has been declared zero or absorbed into an
+unrecorded constant.
+
+For the original cosine heat kernel, retain
+\begin{equation}\tag{ZTC11}
+\begin{gathered}
+ A(s)=\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2),\qquad
+ s(z)=\frac12+\frac{iz}{2},\qquad z(s)=-2i(s-1/2),\\
+ H_0(z)=\frac{s(z)(s(z)-1)}{16}
+           \pi^{-s(z)/2}\Gamma(s(z)/2)\zeta(s(z)),\\
+ \zeta(s)=\frac{16\pi^{s/2}}
+                  {s(s-1)\Gamma(s/2)}H_0(z(s)).
+\end{gathered}
+\end{equation}
+The proof is HTB6--10: the exact Mellin substitution and two
+integrations by parts yield the displayed multiplier, with all
+endpoint limits justified in the original convergence half-plane.
+The last equality is an identity of meromorphic functions. It is
+not a licence to replace the original zeta calculation by an entire
+function calculation while dropping its multiplier.
+
+\subsection{The boundary is part of the receiving object}
+
+Let $\mathcal M_s$ and $\mathcal M_z$ be the complex vector spaces
+of meromorphic functions on the respective complex planes. Retain
+the linear isomorphism, already proved in HTB11,
+\begin{equation}\tag{ZTC12}
+ Uf(z)=\frac{A(s(z))}{8}f(s(z)),\qquad
+ U^{-1}G(s)=\frac{8G(z(s))}{A(s)}.
+\end{equation}
+Define the joint map on the entire two-component space by
+\begin{equation}\tag{ZTC13}
+ \mathcal V:\mathcal M_s\oplus\mathcal M_s
+          \longrightarrow\mathcal M_z\oplus\mathcal M_z,
+ \qquad (F,D)\longmapsto\bigl(U(F+D),UD\bigr).
+\end{equation}
+It has the exact inverse
+\begin{equation}\tag{ZTC14}
+ \mathcal V^{-1}(H,J)
+    =\left(\frac{8(H-J)\circ z}{A},\frac{8J\circ z}{A}\right).
+\end{equation}
+Substitution proves both compositions equal the identity; all entries
+are meromorphic functions, so no undefined product of separate
+singular point values is involved. On the actual arithmetic family,
+\begin{equation}\tag{ZTC15}
+\begin{gathered}
+ J_t=UD_t,\qquad
+ \mathcal V(F_t,D_t)=(H_0,J_t),\\
+ F_t(s)=\frac{16\pi^{s/2}}
+              {s(s-1)\Gamma(s/2)}
+              \bigl(H_0(z(s))-J_t(z(s))\bigr),\\
+ J_1(z)=\frac{A(s(z))}{8},\qquad
+ J_t(i)=-\frac t8.
+\end{gathered}
+\end{equation}
+For the last equality use HTB5:
+$D_t(0)=\zeta(0)-F_t(0)=t$, $A(0)=-1$, and $z(0)=i$.
+In particular the retained pair determines the real parameter $t$
+by $t=-8J_t(i)$. All $t$ give the same first component $H_0$.
+Discarding $J_t$ therefore identifies different actual arithmetic
+inputs. This is an explicit failure of injectivity on the actual
+programme family, not merely an example in an unrelated vector space.
+On the unrestricted space the summation map $(G,J)\mapsto G+J$
+has exactly the kernel $\{(B,-B):B\in\mathcal M_z\}$.
+
+For the complete support carrier, use the common label on the
+direct sum:
+\begin{equation}\tag{ZTC16}
+ G_L(\mathcal M_s\oplus\mathcal M_s)
+   \xrightarrow{\mathcal V^\uparrow}
+ G_L(\mathcal M_z\oplus\mathcal M_z),\qquad
+ ((F,D),\lambda)\longmapsto(\mathcal V(F,D),\lambda).
+\end{equation}
+Here $G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\})$
+with its original joins and meets. Additivity, compatibility with
+the $G_L(\mathbb C)$ action, carrier membership, and the inverse
+follow componentwise from linearity and ZTC14, as explicitly proved
+in CFD11--12. This is a bijection for every bounded distributive $L$.
+It does not silently replace the common label by independent labels
+on two product factors. In particular $e=(0,1_L)$ and
+$\tau=(0,0_L)$ remain distinct when $L$ is nontrivial.
+
+\paragraph{The exact multiplication comparison.}
+The preceding maps were declared as linear and semimodule maps.
+Their injectivity does not identify the original multiplication with
+ordinary multiplication of their images. This can be checked exactly,
+without discarding the completion multiplier. Set
+\begin{equation}\tag{ZTC16a}
+ B(z)=\frac{A(s(z))}{8}
+ =\frac{s(z)(s(z)-1)}{16}
+       \pi^{-s(z)/2}\Gamma(s(z)/2).
+\end{equation}
+For meromorphic $f,g$ on the $s$-plane the two products are
+\begin{equation}\tag{ZTC16b}
+\begin{gathered}
+ U(fg)(z)=B(z)f(s(z))g(s(z)),\\
+ (Uf)(z)(Ug)(z)=B(z)^2f(s(z))g(s(z)).
+\end{gathered}
+\end{equation}
+In particular $U1=B$, not the ordinary constant unit. The factor
+$B$ is nonconstant: it has a zero at $z(1)=-i$ and poles at
+$z(-2m)$, $m\ge1$. Thus ordinary multiplication is not preserved.
+The exact transported product and its unit are
+\begin{equation}\tag{ZTC16c}
+ G\odot H=\frac{8G(z)H(z)}{A(s(z))},\qquad
+ 1_{\odot}(z)=\frac{A(s(z))}{8}.
+\end{equation}
+This formula is an identity of meromorphic functions, including
+their germs at the zeros and poles of the multiplier. It is not
+pointwise division of undefined singular values. Substitution
+gives $(Uf)\odot(Ug)=U(fg)$. Directly,
+$(G\odot H)\odot K=GHK/B^2=G\odot(H\odot K)$,
+$B\odot G=G$, and distributivity follows from distributivity of
+meromorphic multiplication. Together with ZTC12 this proves a
+unital algebra isomorphism with the stated product.
+
+For each local holomorphic ring $\mathcal O_{s_0}$ the affine
+coordinate map identifies it with $\mathcal O_{z(s_0)}$.
+Its exact image under $U$ is the embedded fractional lattice
+$B\mathcal O_{z(s_0)}$. This lattice is closed under $\odot$,
+since $(Bu)\odot(Bv)=Buv$, and has unit $B$.
+Keeping instead the unmodified target $\mathcal O_{z(s_0)}$
+can fail closure: at $s_0=1$, $B$ has a simple zero, so
+$1\odot1=1/B$ is not holomorphic. This image-lattice statement
+differs from the preimage lattice $A^{-1}\mathcal O$ in ZTC17:
+the former transports an original holomorphic ring, whereas the
+latter specifies which original meromorphic sections have a
+holomorphic completed image.
+
+The full support carrier admits the same exact comparison. Retain
+its original addition, and define the target product by
+\begin{equation}\tag{ZTC16d}
+ (G,\lambda)\odot_L(H,\mu)
+   =\left(\frac{8GH}{A\circ s},\lambda\wedge\mu\right),
+ \qquad 1_{\odot_L}=(B,1_L).
+\end{equation}
+If the amplitude of a product is nonzero, both input amplitudes
+are nonzero, hence both labels are $1_L$; this proves carrier
+closure. If either amplitude is zero its output amplitude is
+zero and the displayed meet retains its original label.
+Associativity and distributivity follow from ZTC16c and the
+meet/join laws of the bounded distributive lattice. The map
+$(f,\lambda)\mapsto(Uf,\lambda)$ and its inverse therefore
+give a unital semiring isomorphism from the original coefficient
+semiring to this specified target, preserving $e$ and $\tau$.
+An ideal $P$ is sent to its literal image $U^{\uparrow}(P)$;
+closure under addition and multiplication follows by applying the
+isomorphism. Its inverse proves the converse. Moreover a product
+belongs to that image precisely when the corresponding original
+product belongs to $P$, proving that prime ideals correspond.
+This proves the exact spectrum comparison for these specified
+coefficient semirings. It is not a derivation of the entire
+arithmetic base from the scalar function $H_0$.
+
+For ZTC13--16, no multiplication on pairs was specified: the
+proved assertion there remains a common-label semimodule
+isomorphism. Neither ordinary multiplication nor a Weil pairing
+is silently inferred from that assertion.
+
+\subsection{Local zeros, poles, and the original trace}
+
+The earlier conversational assertion that the singular module map
+had not been established was also too broad: HTB13 already proves
+$A^{-1}\mathcal O\xrightarrow{U}\mathcal O$ with the affine
+coordinate change. CFD1--10 now make the comparison with the
+\emph{original} regular lattice and every finite jet explicit.
+At a finite point let $h=s-s_0$ and $A=h^k a(h)$, $a(0)\ne0$.
+Retain $I=A^{-1}\mathcal O=h^{-k}\mathcal O$ as an embedded
+submodule of the meromorphic germs, and $J=I\cap\mathcal O$.
+For nonzero $f\in I$ the original order is
+\begin{equation}\tag{ZTC17}
+ \operatorname{ord}_{s_0}f
+ =\dim_{\mathbb C}(I/\mathcal O f)
+  -\dim_{\mathbb C}(I/J)
+  +\dim_{\mathbb C}(\mathcal O/J).
+\end{equation}
+This is proved by the power-of-$h$ bases in CFD6--7, without
+identifying the reference lattices. At a trivial zero $s_0=-2m$,
+$I=h\mathcal O$, $I/\mathcal O\zeta=0$ and
+$\mathcal O/I$ has dimension $1$. At $s_0=1$,
+$I=h^{-1}\mathcal O$, $I/\mathcal O\zeta=0$ and
+$I/\mathcal O$ has dimension $1$. Their signs in ZTC17 give,
+respectively, $+1$ and $-1$. At $s_0=0$, $A(0)=-1$ is a unit.
+CFD4 provides the invertible triangular matrices recovering all
+Laurent coefficients with the exact factors $8$ and $i/2$.
+Keeping only the zero algebra of the completed section would give
+zero in both cancelled cases; keeping these comparison modules
+restores the actual divisor.
+
+The earlier conversational explanation of the fibres requires a
+further correction. The map
+\begin{equation}\tag{ZTC17a}
+ \mathcal O/h\mathcal O\longrightarrow
+ h\mathcal O/h^2\mathcal O,\qquad [u]\longmapsto[hu]
+\end{equation}
+is an isomorphism of $\mathcal O$-modules. It is well-defined because
+$h(h\mathcal O)=h^2\mathcal O$, surjective by the definition of
+$h\mathcal O$, and injective because $hu\in h^2\mathcal O$ implies
+$u\in h\mathcal O$ in the local integral domain. Its inverse is
+$[hu]\mapsto[u]$. Consequently the two abstract fibres alone do
+not account for the loss. What must be retained is their specified
+embedding and the original reference lattice: multiplication by
+$A=h^{-1}a(h)$ identifies $I=h\mathcal O$ with $\mathcal O$, but
+the length-one quotient $\mathcal O/I$ records the cancelled
+original zero. Replacing the entire marked comparison by the
+completed section's zero quotient discards precisely that datum.
+Likewise multiplication by nonzero meromorphic $A$ is an
+automorphism of the meromorphic sheaf as a module. It is not
+a ring automorphism for ordinary multiplication, as ZTC16b proves.
+It is not an automorphism
+of the fixed holomorphic lattice at its zeros and poles. These
+category statements do not contradict one another.
+
+Logarithmic differentiation gives the original trace identity
+\begin{equation}\tag{ZTC18}
+ \frac{\zeta'(s)}{\zeta(s)}
+ =-2i\frac{H_0'(z(s))}{H_0(z(s))}
+ -\frac1s-\frac1{s-1}+\frac12\log\pi-\frac12\psi(s/2).
+\end{equation}
+It first holds away from zeros and poles and then meromorphically;
+$\psi=\Gamma'/\Gamma$. For a positively oriented finite contour
+$\gamma$ avoiding all zeros and poles of the functions and all
+singularities of every displayed integrand, and a holomorphic test $g$
+on and inside it, multiplication by $g$ and integration gives
+\begin{equation}\tag{ZTC19}
+\begin{split}
+ \frac1{2\pi i}\int_\gamma g\,\frac{\zeta'}\zeta\,ds
+ ={}&\frac1{2\pi i}\int_\gamma
+           g(s)(-2i)\frac{H_0'(z(s))}{H_0(z(s))}\,ds\\
+ &-\frac1{2\pi i}\int_\gamma g(s)
+   \left(\frac1s+\frac1{s-1}-\frac12\log\pi
+                         +\frac12\psi(s/2)\right)ds.
+\end{split}
+\end{equation}
+At every zero or pole, write a meromorphic function as
+$(s-s_0)^r$ times a holomorphic unit. Its logarithmic derivative
+then has residue $r$. The residue theorem proves that ZTC19
+counts the original zeros with multiplicity and the original poles
+with negative multiplicity, including every trivial zero inside
+the contour. No infinite-contour limit or decay assumption is
+hidden here. Extending this finite identity to a particular infinite
+trace requires the actual convergence estimates of that trace.
+
+\subsection{Two different trajectories through the same original zeta}
+
+The original-$s$ function associated with the classical heat path is
+\begin{equation}\tag{ZTC20}
+ f_h^{\rm heat}(s)=\frac{16\pi^{s/2}}
+                         {s(s-1)\Gamma(s/2)}H_h(z(s)),
+ \qquad f_0^{\rm heat}=\zeta.
+\end{equation}
+CFD18--21 give its full receiving operator and prove
+\begin{equation}\tag{ZTC21}
+ \left.\partial_hf_h^{\rm heat}(-2)\right|_{h=0}=0,
+ \qquad
+ \left.\partial_tF_t(-2)\right|_{t=0}=-\frac16.
+\end{equation}
+For completeness, the heat equation and chain rule give
+$\partial_hf=(Af)''/(4A)$. At $h=0$, $A\zeta$ is holomorphic
+at $-2$ whereas $1/A$ has a simple zero there, giving the first
+value. HTB5 gives the second as $2\zeta(-1)=-1/6$.
+The discrepancy holds on the actual initial arithmetic function.
+CFD21 further proves that all the zeros at $-2m$ remain simple
+along the real heat path, while its residue at $1$ varies strictly;
+the actual Hurwitz path has constant residue $1$ and values
+$-B_{2m+1}(1+t)/(2m+1)$ at those points.
+
+Thus the valid original-$\zeta$ receiver consists of the original
+functions, their exact transform and inverse, the retained boundary
+component, the embedded local comparison modules, and all support
+labels. The scalar theta orbit by itself is a smaller observable.
+These proofs neither exhibit an off-line zero of the original
+$\zeta$ nor rule one out. They establish precisely which input and
+which deformation a subsequent estimate is estimating.

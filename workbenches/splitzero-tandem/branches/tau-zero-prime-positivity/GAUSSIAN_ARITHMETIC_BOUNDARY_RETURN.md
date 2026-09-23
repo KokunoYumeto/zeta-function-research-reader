@@ -1,0 +1,650 @@
+# The Gaussian arithmetic boundary returns to original zeta through a retained singular sector
+
+Independent mathematical derivation, 2026-09-23. This text concerns the actual integer Gaussian coefficient and two-moment prime receiver in MRT1–20. Its Gaussian parameter is not the translation-heat parameter used in OZG.
+
+## GAB1. Source, coordinates, and domain
+
+The full source read for this derivation is MASS_THETA_PRIME_RECEIVER.tex, MRT1–20, in the [retained complete MRT source](supporting_proofs/MASS_THETA_PRIME_RECEIVER.tex). Its SHA-256 at reading was `c6b159fe08f854792e37c5d1e697f4e9bb9162686c50a51afd751a884f796937`. The precise receiving maps are MRT3–5, MRT10–11, and MRT13–20. All twenty numbered formulas and their surrounding proofs were read.
+
+The source's preceding original-zeta comparison is [Original-zeta return, FR15–25, pinned source](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/ec73ac350d0cda3d95c0bd1361bede33166b4d34/workbenches/splitzero-tandem/continuations/20260923-original-zeta-return/NOTE.tex). Its historical periodization source is Alain Connes, [Trace formula in noncommutative geometry and the zeros of the Riemann zeta function, original version](https://arxiv.org/abs/math/9811068v1), Section III (6)–(19). The new Gaussian boundary calculation below is proved here and is not attributed to Connes. This task read MRT's full source; it does not claim a fresh complete reading of the Connes article.
+
+Before deriving the Mellin–Barnes calculation, a bounded read-only query of the existing canonical literature index searched title fields for Mellin, asymptotic zeta, and theta series. The six returned routing records did not provide a pertinent primary analytic Mellin–Barnes TeX source. No PDF was substituted. The proof below therefore derives the needed contour bounds from the Euler integral and Euler summation instead of treating a search hit as a read source.
+
+Retain the original heat time and its exact dictionary:
+\[
+ T>0,\qquad d=\frac1{4\pi T}>0,\qquad
+ \lambda=\pi d=\frac1{4T},\qquad
+ k_T(0)=(4\pi T)^{-1/2}=\sqrt d.                 \tag{GAB1}
+\]
+The original Dirichlet series in MRT19 is
+\[
+ Z_d(s)=\sum_{n=1}^{\infty}e^{-\pi d n^2}n^{-s}.
+                                                        \tag{GAB2}
+\]
+Whenever the shorter parameter \(\lambda\) occurs, it means exactly \(\pi d\); it does not change the coefficient or the heat time. For complex parameters we use \(\Re\lambda>0\) and the logarithm with \(-\pi/2<\arg\lambda<\pi/2\). The physical receiver has \(d>0\).
+
+The series and all its \(s\)-derivatives converge uniformly on compact \(s\)-sets. Indeed a compact set is contained in \(\Re s\ge-A\), and each derivative is bounded by
+\(\sum e^{-(\Re\lambda)n^2}n^A(\log n)^r<\infty\).
+Consequently \(Z_d\) is entire in \(s\), jointly holomorphic with \(\lambda\) for \(\Re\lambda>0\). All statements below concern original \(\zeta\), not a completed replacement.
+
+## GAB2. The actual receiver and its full Mellin factor
+
+Let
+\[
+ \vartheta(x)=\sum_{n\in\mathbb Z}e^{-\pi n^2x},\qquad
+ B(s)=\pi^{-s/2}\Gamma(s/2).
+\]
+MRT14–17 give, at each original arithmetic prime \(p\), the exact pair
+\[
+ \ell_p\otimes
+ \bigl(\sqrt d\,\vartheta(x+d),\,\vartheta(x)\bigr).
+                                                        \tag{GAB3}
+\]
+The marked integer-zero summand has moments \((\sqrt d,1)\) and is retained separately. The remaining pair is
+\[
+ \ell_p\otimes
+ \bigl(\sqrt d[\vartheta(x+d)-1],\,\vartheta(x)-1\bigr).
+\]
+The first coordinate has the genuine integral, for \(\Re s>0\),
+\[
+ I_d(s)=\int_0^\infty\sqrt d[\vartheta(x+d)-1]x^{s/2-1}\,dx
+       =2\sqrt d\,\pi^{-s/2}\Gamma(s/2)Z_d(s).
+                                                        \tag{GAB4}
+\]
+To prove the interchange, sum the absolute integrals with \(\sigma=\Re s>0\):
+\[
+ 2\sqrt d\sum_{n\ge1}e^{-\pi d n^2}
+   \int_0^\infty e^{-\pi n^2x}x^{\sigma/2-1}\,dx
+ =2\sqrt d\,\pi^{-\sigma/2}\Gamma(\sigma/2)
+   \sum_{n\ge1}e^{-\pi d n^2}n^{-\sigma}<\infty.
+\]
+Substitution \(u=\pi n^2x\) gives every factor in GAB4. For the second coordinate the same calculation, without the Gaussian coefficient, requires \(\Re s>1\) and gives
+\[
+ \int_0^\infty[\vartheta(x)-1]x^{s/2-1}\,dx
+       =2\pi^{-s/2}\Gamma(s/2)\zeta(s).          \tag{GAB5}
+\]
+The constant summand has no Mellin convergence half-plane on \((0,\infty)\). It is not assigned a vanishing integral.
+
+## GAB3. An exponential vertical Gamma bound with a proof
+
+For \(c>0\), the Euler integral after \(r=e^u\) reads
+\[
+ \Gamma(c+it)=\int_{\mathbb R}e^{cu-e^u}e^{itu}\,du.
+\]
+The function \(e^{cu-e^u}\) and its first two derivatives are integrable. Fourier inversion therefore gives
+\[
+ e^{-x}=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+                    \Gamma(z)x^{-z}\,dz,\qquad x>0.
+                                                        \tag{GAB6}
+\]
+For completeness, exponential decay sufficient for every later contour operation follows directly by rotating the Euler-integral ray. If \(0<\omega<\pi/2\), rotate to angle \(\omega\,\operatorname{sgn}t\). The small arc tends to zero since \(c>0\), and the large arc tends to zero since its real part is at least \(r\cos\omega>0\). Thus
+\[
+ |\Gamma(c+it)|
+ \le \Gamma(c)(\cos\omega)^{-c}e^{-\omega|t|}.
+                                                        \tag{GAB7}
+\]
+For a bounded real interval of possible \(c\), shift by an integer \(J\) so that \(c+J>0\) throughout it and use the full recurrence
+\[
+ \Gamma(z)=\frac{\Gamma(z+J)}
+                   {z(z+1)\cdots(z+J-1)}.               \tag{GAB8}
+\]
+For large \(|\Im z|\) the denominator yields a uniform polynomial factor and GAB7 gives exponential decay. On a fixed vertical line with nonintegral negative real part no bounded-height pole is present. This proves a uniform integrable bound on all contours used below. It also proves that GAB6 extends holomorphically to \(\Re x>0\): on any closed subsector choose \(\omega>|\arg x|\), and use \( |x^{-c-it}|=|x|^{-c}e^{t\arg x}\).
+
+## GAB4. The needed polynomial bound for original zeta
+
+Here is a direct continuation and growth estimate sufficient for contour shifting. Put \(P_1(x)=\{x\}-1/2\). Recursively let \(P_{j+1}\) be the bounded, one-periodic, mean-zero primitive of \(P_j\). Such a primitive exists since the integral of \(P_j\) over a period is zero. The derivative identity holds almost everywhere, which suffices for integration by parts.
+
+For \(\Re w>1\), the counting integral for the original Dirichlet series gives
+\[
+ \zeta(w)=w\int_1^\infty\lfloor x\rfloor x^{-w-1}\,dx
+   =\frac12+\frac1{w-1}
+                  -w\int_1^\infty P_1(x)x^{-w-1}\,dx.
+\]
+For every integer \(M\ge2\), repeated integration by parts gives the full formula
+\[
+ \zeta(w)=\frac12+\frac1{w-1}
+ +\sum_{j=2}^{M}(w)_{j-1}P_j(1)
+ -(w)_M\int_1^\infty P_M(x)x^{-w-M}\,dx,       \tag{GAB9}
+\]
+where \((w)_r=w(w+1)\cdots(w+r-1)\).
+For example the first integration contributes \(+wP_2(1)\) and remainder
+\(-w(w+1)\int_1^\infty P_2(x)x^{-w-2}\,dx\), verifying the signs and indices.
+The final integral is absolutely convergent on \(\Re w>1-M\). On every closed real strip strictly inside that region, its absolute value is bounded by a constant times \(1/(\Re w+M-1)\). The finite products in GAB9 therefore prove a polynomial vertical bound for \(\zeta(w)\) in any fixed finite strip, away from the pole \(w=1\). Choosing larger \(M\) covers every such strip. The formula also continues the original Dirichlet series with exactly one simple pole of residue one at \(w=1\). No completed object is used.
+
+## GAB5. Exact Mellin–Barnes return
+
+Choose
+\[
+ c>\max\left(0,\frac{1-\Re s}{2}\right).
+\]
+Apply GAB6 to \(e^{-\lambda n^2}\), multiply by \(n^{-s}\), and sum. Absolute convergence follows from \(\Re s+2c>1\), GAB7, and the sector bound. Thus
+\[
+ \boxed{\displaystyle
+ Z_d(s)=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+       \Gamma(z)(\pi d)^{-z}\zeta(s+2z)\,dz.}
+                                                        \tag{GAB10}
+\]
+For compact \(s\)-sets choose one \(c\) satisfying the strict inequality for every point. The formula is valid for every \(s\in\mathbb C\) and every \(\Re(\pi d)>0\), with this admissible contour.
+
+The moving zeta pole is at
+\[
+ z_s=\frac{1-s}{2}.
+\]
+Its residue in \(\zeta(s+2z)\) is \(1/2\). The associated term is
+\[
+ \mathsf S_d(s)=\frac12\Gamma\!\left(\frac{1-s}{2}\right)
+                    (\pi d)^{(s-1)/2}.                 \tag{GAB11}
+\]
+This half-factor is forced by the map \(z\mapsto s+2z\); it is not an optional convention.
+
+## GAB6. Full finite expansion and exact remainder
+
+Fix \(N\ge0\), \(0<\alpha<1\), and a compact set
+\[
+ K\subset\{s:\Re s<1+2(N+\alpha)\}.
+\]
+Take a right line as in GAB10. Shift it to \(\Re z=-N-\alpha\). For \(s\) not a positive odd integer, the crossed poles are \(z_s\) and the Gamma poles \(0,-1,\ldots,-N\). Their residues give
+\[
+ \boxed{\displaystyle
+ Z_d(s)=\mathsf S_d(s)
+       +\sum_{k=0}^{N}\frac{(-\pi d)^k}{k!}\zeta(s-2k)
+       +\mathcal R_{N,\alpha}(d,s),}
+                                                        \tag{GAB12}
+\]
+with the exact original-zeta remainder
+\[
+ \mathcal R_{N,\alpha}(d,s)
+   =\frac1{2\pi i}\int_{-N-\alpha-i\infty}^{-N-\alpha+i\infty}
+       \Gamma(z)(\pi d)^{-z}\zeta(s+2z)\,dz.             \tag{GAB13}
+\]
+The real-part inequality places the moving pole strictly to the right of the new line, uniformly for \(s\in K\). The remainder is holomorphic in \(s\) throughout that strict half-plane.
+
+Here are the estimates that justify the shift and specify its domain. On any sector
+\[
+ 0<|\pi d|\le1,\qquad |\arg(\pi d)|\le\frac{\pi}{2}-\eta,
+ \qquad \eta>0,
+\]
+choose \(\omega=\pi/2-\eta/2\) in GAB7. On each horizontal edge at imaginary height tending to either infinity, GAB8 and GAB9 bound the integrand by a polynomial in that height times \(e^{-\eta |\Im z|/2}\), with a finite factor from the bounded real interval of the rectangle. Its integral tends to zero. On the left vertical line, the same argument gives an integrable majorant times \(|\pi d|^{N+\alpha}\). Hence
+\[
+ |\mathcal R_{N,\alpha}(d,s)|
+       \le C_{K,N,\alpha,\eta}|\pi d|^{N+\alpha}
+       \quad(s\in K).                                  \tag{GAB14}
+\]
+All \(s\)-derivatives satisfy the same bound on smaller compact sets, by the Cauchy integral formula applied within the strict half-plane. Differentiating \(r\) times in \(\lambda=\pi d\) gives
+\[
+ \partial_\lambda^r\mathcal R_{N,\alpha}
+ =\frac1{2\pi i}\int
+    (-z)(-z-1)\cdots(-z-r+1)
+    \Gamma(z)\lambda^{-z-r}\zeta(s+2z)\,dz,
+\]
+and the bound \(O(|\lambda|^{N+\alpha-r})\). Derivatives with respect to \(d\) carry the additional exact factor \(\pi^r\). All integral differentiations follow from the same exponential majorant.
+
+GAB12 is a finite expansion with an explicit contour remainder, not an assertion that its infinite formal series converges.
+
+## GAB7. Every collision, including its logarithm
+
+Suppose \(s=1+2j\), where \(j\ge0\) is an integer. The condition in GAB6 implies \(j\le N\). Write \(z=-j+h\). Set \(H_0=0\), \(H_j=\sum_{r=1}^{j}1/r\), and let \(\gamma\) be Euler's constant. The local factors are
+\[
+ \Gamma(-j+h)=\frac{(-1)^j}{j!}
+       \left(\frac1h+H_j-\gamma+O(h)\right),
+\quad
+ \zeta(1+2h)=\frac1{2h}+\gamma+O(h),
+\]
+\[
+ (\pi d)^{-z}=(\pi d)^j
+       \left(1-h\Log(\pi d)+O(h^2)\right).
+\]
+The Gamma expansion follows from \(\Gamma(h)=1/h-\gamma+O(h)\) and GAB8. The constant term of zeta is the limit of its harmonic-sum subtraction, \(\gamma\). Multiplication retains the double-pole and all its residue terms. The residue is
+\[
+ \frac{(-\pi d)^j}{2j!}
+              \left(H_j+\gamma-\Log(\pi d)\right).
+                                                        \tag{GAB15}
+\]
+Therefore the correct collision formula is
+\[
+ \boxed{\displaystyle
+ Z_d(1+2j)=
+ \sum_{\substack{0\le k\le N\\k\ne j}}
+      \frac{(-\pi d)^k}{k!}\zeta(1+2j-2k)
+ +\frac{(-\pi d)^j}{2j!}
+      \bigl(H_j+\gamma-\Log(\pi d)\bigr)
+ +\mathcal R_{N,\alpha}(d,1+2j).}              \tag{GAB16}
+\]
+The remainder and bound are exactly GAB13–14. On a neighborhood of a collision, the sum of \(\mathsf S_d(s)\) and the \(k=j\) term in GAB12 has a removable singularity. Their separate singularities must not be treated as finite values or discarded.
+
+For instance, taking \(N\) at least two and using the displayed exact remainder,
+\[
+ Z_d(1)=\frac{\gamma-\Log(\pi d)}2
+          +\frac{\pi d}{12}
+          +\frac{(\pi d)^2}{240}
+          +O(|\pi d|^{2+\alpha}),
+\]
+\[
+ Z_d(3)=\zeta(3)
+       +\frac{\pi d}{2}\Log(\pi d)
+       -\frac{\pi d}{2}(1+\gamma)
+       -\frac{(\pi d)^2}{24}
+       +O(|\pi d|^{2+\alpha}).                         \tag{GAB17}
+\]
+These are checks on the signs, not definitions of the general formula.
+
+## GAB8. The retained singular-sector object and its inverse map
+
+For each fixed \(d>0\), work with the pair of meromorphic functions
+\[
+ \bigl(Z_d(s),\mathsf S_d(s)\bigr).
+\]
+Define the exact triangular change of coordinates
+\[
+ \mathcal T:(Z,\mathsf S)\longmapsto(Y,\mathsf S)
+                      =(Z-\mathsf S,\mathsf S),
+ \qquad
+ \mathcal T^{-1}(Y,\mathsf S)=(Y+\mathsf S,\mathsf S).
+                                                        \tag{GAB18}
+\]
+Thus
+\[
+ Y_d(s)=Z_d(s)-\mathsf S_d(s)
+\]
+is recorded together with the complete subtracted meromorphic function. No data in this pair are removed. Off the positive odd integers, GAB12 says
+\[
+ Y_d(s)=\sum_{k=0}^{N}
+           \frac{(-\pi d)^k}{k!}\zeta(s-2k)
+           +\mathcal R_{N,\alpha}(d,s).                 \tag{GAB19}
+\]
+In particular,
+\[
+ Y_d(s)=\zeta(s)-\pi d\,\zeta(s-2)+O(d^2)               \tag{GAB20}
+\]
+locally uniformly on compact sets avoiding the positive odd integers. To obtain this bound from GAB12 choose \(N\ge2\) sufficiently large for the compact set; the retained finite higher terms are \(O(d^2)\).
+
+The global pole data of the triangular map are explicit. Since \(Z_d\) is entire,
+\[
+ \operatorname*{res}_{s=1+2j}\mathsf S_d(s)
+       =-\frac{(-\pi d)^j}{j!},\qquad
+ \operatorname*{res}_{s=1+2j}Y_d(s)
+       =\frac{(-\pi d)^j}{j!}.                         \tag{GAB21}
+\]
+Indeed \((1-s)/2=-j-(s-1-2j)/2\), so changing the Gamma coordinate contributes the factor \(-2\), cancelled only in magnitude by the prefactor \(1/2\). At \(s=1\) the residue of \(Y_d\) is one, matching original zeta. At \(3,5,\ldots\) there is an additional, fully recorded pole tower. Its residues tend to zero as \(d\to0\), but the poles at each fixed \(d>0\) are present. The pole of \(\mathsf S_d\) cancels that of \(Y_d\) when the inverse map recovers entire \(Z_d\). GAB18 is therefore an isomorphism of retained meromorphic pairs, not an identification of their individual divisors.
+
+## GAB9. The singular sector obeys the actual coefficient dynamics
+
+Absolute Gaussian convergence gives
+\[
+ \partial_d Z_d(s)=-\pi Z_d(s-2).
+\]
+The retained sector obeys the same exact equation:
+\[
+ \partial_d\mathsf S_d(s)
+   =\frac{s-1}{2d}\mathsf S_d(s)
+   =-\pi\,\mathsf S_d(s-2),
+\]
+because
+\(\Gamma((3-s)/2)=((1-s)/2)\Gamma((1-s)/2)\).
+Consequently
+\[
+ \boxed{\partial_d Y_d(s)=-\pi Y_d(s-2)}.                \tag{GAB22}
+\]
+These are meromorphic identities in \(s\), including the agreement of principal parts at positive odd integers. In the auxiliary variable \(\lambda\) the corresponding coefficient is exactly \(-1\). This equation is induced by multiplying the original integer coefficient by \(-\pi n^2\). It does not identify the receiver with a heat equation in a spectral coordinate.
+
+## GAB10. Original-zeta reflection and the shifted nonvanishing used below
+
+The assertion about the first correction at every nontrivial zero needs an unconditional nonvanishing result. Here is its proof with the original factors retained.
+
+Fourier transformation of \(e^{-\pi x y^2}\), followed by Poisson summation for a Schwartz Gaussian, gives
+\(\vartheta(x)=x^{-1/2}\vartheta(1/x)\).
+One can verify this use of Poisson summation directly by periodizing the Gaussian: its Fourier coefficients are \(x^{-1/2}e^{-\pi n^2/x}\), both Fourier series converge absolutely, and evaluation at zero gives the displayed identity.
+Set
+\[
+ J(s)=\int_1^\infty[\vartheta(x)-1]x^{s/2-1}\,dx.
+\]
+This integral is entire since the theta tail decreases exponentially and all logarithmic derivatives are dominated on compact \(s\)-sets. Split the integral in GAB5 at one. In its part from zero to one, insert the full identity
+\[
+ \vartheta(x)-1=x^{-1/2}-1
+                    +x^{-1/2}[\vartheta(1/x)-1].
+\]
+Substitution \(y=1/x\) gives
+\[
+ 2\pi^{-s/2}\Gamma(s/2)\zeta(s)
+ =-\frac2s+\frac2{s-1}+J(s)+J(1-s).                    \tag{GAB23}
+\]
+Initially this equality holds on \(\Re s>1\), and its right side supplies meromorphic continuation. It is unchanged by \(s\mapsto1-s\). Hence, wherever the displayed quotient is defined, the original function satisfies
+\[
+ \boxed{\displaystyle
+ \zeta(s)=
+ \pi^{s-1/2}
+ \frac{\Gamma((1-s)/2)}{\Gamma(s/2)}
+ \zeta(1-s).}                                         \tag{GAB24}
+\]
+Equation GAB23 retains the two endpoint terms separately. Equations GAB23–24 are exact comparisons of original zeta with its reflection; no completed function is substituted as the object under study.
+
+For \(\Re w>1\), unique factorization and absolute convergence give
+\[
+ \zeta(w)=\prod_{p}(1-p^{-w})^{-1},\qquad
+ \log\zeta(w)=\sum_{p}\sum_{r\ge1}\frac{p^{-rw}}r.
+\]
+The double sum is absolutely convergent there, so its exponential is nonzero. Gamma has no zeros and has simple poles precisely at the nonpositive integers. For example these facts follow from its convergent reciprocal product
+\[
+ \frac1{\Gamma(z)}
+   =z e^{\gamma z}\prod_{n=1}^{\infty}
+           (1+z/n)e^{-z/n}.
+\]
+The factors after the exponential converge normally away from their indicated zeros because their logarithmic tails are \(O(n^{-2})\); the product follows by taking the Euler beta-integral limit for \(\Gamma\). It exhibits exactly those zeros of \(1/\Gamma\), and no others.
+
+If \(\rho\) is any nontrivial zeta zero, write
+\[
+ 0<\beta=\Re\rho<1.
+\]
+Then \(w=\rho-2\) satisfies \(-2<\Re w<-1\). In GAB24, both Gamma arguments are away from their poles, all multiplying factors are nonzero, and \(\Re(1-w)=3-\beta>2\). The Euler product therefore proves
+\[
+ \boxed{\zeta(\rho-2)\ne0.}                            \tag{GAB25}
+\]
+No simplicity assumption or hypothesis on \(\beta=1/2\) was used.
+
+## GAB11. What occurs at every nontrivial zero
+
+Apply GAB20 at an arbitrary nontrivial zero \(\rho\), retaining its multiplicity for later use:
+\[
+ Z_d(\rho)
+ =\frac12\Gamma((1-\rho)/2)(\pi d)^{(\rho-1)/2}
+       -\pi d\,\zeta(\rho-2)+O(d^2),                   \tag{GAB26}
+\]
+\[
+ \frac{Y_d(\rho)}{\pi d}\longrightarrow-\zeta(\rho-2)
+          \ne0.                                      \tag{GAB27}
+\]
+For real \(d>0\), the magnitude of the first term in GAB26 is
+\[
+ \frac12|\Gamma((1-\rho)/2)|(\pi d)^{(\beta-1)/2}
+       \longrightarrow+\infty.
+\]
+Thus \(Z_d(\rho)\) does not approach zero, or a finite value, as \(d\downarrow0\). In fact its magnitude tends to infinity. The nonzero Gamma coefficient proves this at every nontrivial zero.
+
+This statement extends uniformly to every compact subset \(K\) of \(0<\Re s<1\). On such a set Gamma is bounded away from zero, and
+\[
+ |\mathsf S_d(s)|\ge c_K(\pi d)^{(\sup_K\Re s-1)/2}
+           \longrightarrow+\infty
+\]
+for \(0<\pi d\le1\). Meanwhile GAB20 bounds \(Y_d\) uniformly. For small enough \(d\), \(|Y_d|<|\mathsf S_d|\) on \(K\), so \(Z_d=\mathsf S_d+Y_d\) has no zeros on \(K\). This is the precise failure of a direct uncorrected small-\(d\) return and the precise sector that causes it. GAB18 provides its invertible retained repair.
+
+## GAB12. The exact local zero return, including multiplicity
+
+Let \(\rho\) have multiplicity \(m\ge1\), and write its full local factorization
+\[
+ \zeta(\rho+h)=h^m u(\rho+h),\qquad u(\rho)\ne0.
+\]
+This factor \(u\) is the original local unit and is not set to one. Let \(d>0\), \(\lambda=\pi d\), and \(\mu=\lambda^{1/m}>0\). From GAB20, uniformly for \(w\) in bounded sets,
+\[
+ \frac{Y_d(\rho+\mu w)}{\lambda}
+   =w^m u(\rho+\mu w)-\zeta(\rho+\mu w-2)+O(\lambda)
+   =u(\rho)w^m-\zeta(\rho-2)+O(\mu).                   \tag{GAB28}
+\]
+The limiting polynomial has \(m\) distinct nonzero roots \(\omega_j\), specified with their exact coefficient:
+\[
+ \omega_j^m=\frac{\zeta(\rho-2)}{u(\rho)},
+                 \qquad j=1,\ldots,m.                 \tag{GAB29}
+\]
+Choose disjoint small discs about these roots. On their boundaries the limiting polynomial is bounded away from zero. Rouché's theorem applied to GAB28 gives one zero counted with multiplicity in each disc for small \(d\). Each zero is consequently simple. The equation and the simple-root lower bound for the limiting polynomial give \(w_j-\omega_j=O(\mu)\). Therefore
+\[
+ \boxed{\displaystyle
+ s_j(d)=\rho+(\pi d)^{1/m}\omega_j
+                    +O((\pi d)^{2/m}).}               \tag{GAB30}
+\]
+On a fixed sufficiently small disc about \(\rho\), the convergence \(Y_d\to\zeta\) and another use of Rouché give exactly \(m\) zeros. Hence the listed zeros are all the local returning zeros.
+
+For \(m=1\), the unit value is \(u(\rho)=\zeta'(\rho)\), giving
+\[
+ s(d)=\rho+\pi d\,\frac{\zeta(\rho-2)}{\zeta'(\rho)}
+                       +O(d^2).                      \tag{GAB31}
+\]
+No holomorphic extension in \(d\) through zero is assumed: uniform asymptotics and Rouché prove the statement for positive \(d\). The assertion concerns \(Y_d\) within the retained pair, whereas GAB11 proves that raw \(Z_d\) has no zeros in that fixed disc for sufficiently small \(d\).
+
+## GAB13. Put back every factor of the actual prime receiver
+
+The singular sector in the actual first moment is
+\[
+ \begin{aligned}
+ \mathcal S_d(s)
+  &:=2\sqrt d\,\pi^{-s/2}\Gamma(s/2)\mathsf S_d(s)\\
+  &=2\sqrt d\,\pi^{-s/2}\Gamma(s/2)
+          \frac12\Gamma((1-s)/2)(\pi d)^{(s-1)/2}\\
+  &=\pi^{-1/2}\Gamma(s/2)\Gamma((1-s)/2)d^{s/2}.
+ \end{aligned}                                        \tag{GAB32}
+\]
+The middle line records every multiplying factor and the final equality is their exact value. Combining GAB4 with GAB12 gives
+\[
+ \begin{aligned}
+ I_d(s)={}&\mathcal S_d(s)\\
+ &+2\sqrt d\,\pi^{-s/2}\Gamma(s/2)
+       \sum_{k=0}^{N}\frac{(-\pi d)^k}{k!}\zeta(s-2k)\\
+ &+2\sqrt d\,\pi^{-s/2}\Gamma(s/2)
+                  \mathcal R_{N,\alpha}(d,s).
+ \end{aligned}                                        \tag{GAB33}
+\]
+Away from the collision points and Gamma poles, the last term is bounded by the full prefactor times the GAB14 bound. At positive odd points use GAB16 inside GAB4, so all cancelling principal parts and logarithms remain.
+
+On \(0<\Re s<1\), multiplication by \(2\sqrt d\,B(s)\) is a holomorphic unit for each \(d>0\), with the exact inverse \(1/(2\sqrt d\,B(s))\). Hence GAB18 has the equivalent full-moment form
+\[
+ (I_d,\mathcal S_d)\longmapsto
+    (I_d-\mathcal S_d,\mathcal S_d),
+ \qquad
+ (R_d,\mathcal S_d)\longmapsto(R_d+\mathcal S_d,\mathcal S_d).
+                                                        \tag{GAB34}
+\]
+The exact return is
+\[
+ \boxed{\displaystyle
+ \frac{I_d(s)-\mathcal S_d(s)}
+      {2\sqrt d\,\pi^{-s/2}\Gamma(s/2)}
+       =Y_d(s)\longrightarrow\zeta(s),}                \tag{GAB35}
+\]
+locally uniformly within the critical strip. Both numerator summands remain separately recorded. The denominator depends on \(d\) and tends to zero; treating it as a harmless fixed constant in the limiting operation would give an incorrect conclusion.
+
+In terms of the original time \(T\), the singular sector and correction are exactly
+\[
+ \mathcal S_{1/(4\pi T)}(s)
+ =\pi^{-1/2}\Gamma(s/2)\Gamma((1-s)/2)(4\pi T)^{-s/2},
+\]
+\[
+ Y_{1/(4\pi T)}(s)
+ =\zeta(s)-\frac1{4T}\zeta(s-2)+O(T^{-2}).
+                                                        \tag{GAB36}
+\]
+Thus the boundary \(d\downarrow0\) is \(T\to+\infty\) for the original heat time. It is not its zero-time value.
+
+## GAB14. What the actual infinitesimal vanishing detects
+
+For each \(s\) with \(0<\Re s<1\), GAB32–33 imply
+\[
+ I_d(s)\sim\mathcal S_d(s),\qquad I_d(s)\longrightarrow0.
+                                                        \tag{GAB37}
+\]
+Indeed \(\mathcal S_d(s)\) has magnitude a nonzero constant times \(d^{\Re s/2}\), while the following regular term is \(O(d^{1/2})\), a strictly smaller order. The comparison is uniform on compact subsets of the critical strip.
+
+Thus this raw first-moment vanishing holds throughout the strip, not only on the zero divisor. Its sharper retained correction does distinguish the zero divisor:
+\[
+ I_d(s)-\mathcal S_d(s)
+  =2\sqrt d\,B(s)\zeta(s)
+       -2\pi d^{3/2}B(s)\zeta(s-2)+O(d^{5/2}).
+                                                        \tag{GAB38}
+\]
+At every nontrivial zero,
+\[
+ \boxed{\displaystyle
+ I_d(\rho)=
+ \pi^{-1/2}\Gamma(\rho/2)\Gamma((1-\rho)/2)d^{\rho/2}
+ -2\pi d^{3/2}\pi^{-\rho/2}\Gamma(\rho/2)\zeta(\rho-2)
+ +O(d^{5/2}).}                                        \tag{GAB39}
+\]
+The coefficient of \(d^{3/2}\) in the retained residual is nonzero by GAB25. The first nonvanishing residual order is therefore exactly \(d^{3/2}\) at every nontrivial zero. At a point in the strip with \(\zeta(s)\ne0\), that residual instead has exact first order \(d^{1/2}\). Equivalently,
+\[
+ \zeta(s)=0
+ \quad\Longleftrightarrow\quad
+ I_d(s)-\mathcal S_d(s)=O(d^{3/2})
+       \quad(0<\Re s<1).                              \tag{GAB40}
+\]
+The reverse implication follows by dividing GAB38 by \(\sqrt d\): its limiting coefficient is \(2B(s)\zeta(s)\), and \(B(s)\ne0\). This is a proved zero detector from the actual receiver, retaining the full sector, rather than an inference from vanishing alone. It detects all nontrivial zeros irrespective of their real parts and supplies no sign inequality.
+
+## GAB15. The supported-zero change and its exact receiving arrow
+
+MRT11 sends the original two moments by
+\[
+ J_T=\begin{pmatrix}0&\sqrt d\\0&1\end{pmatrix},
+ \qquad(q,m)\longmapsto(\sqrt d\,m,m).
+\]
+Consequently the before-minus-after Mellin coordinate, initially on \(\Re s>1\), is exactly
+\[
+ D_{p,d}(s)=
+   \ell_p\otimes
+   \left(2\sqrt d\,B(s)[Z_d(s)-\zeta(s)],\,0\right).
+                                                        \tag{GAB41}
+\]
+Its continuation on the critical strip has the expansion
+\[
+ D_{p,d}(s)=\ell_p\otimes
+   \left(\mathcal S_d(s)
+     -2\pi d^{3/2}B(s)\zeta(s-2)
+     +O(d^{5/2}),\,0\right).                           \tag{GAB42}
+\]
+The term \(2\sqrt d B(s)\zeta(s)\) has cancelled here because the full, explicitly given supported-zero image is being subtracted. The singular sector and every higher correction remain. This cancellation follows the specified map \(J_T\); it is not a declaration that supported zero equals unsupported zero.
+
+The full receiver lives in
+\(\mathcal B=\bigoplus_p\mathbb C\ell_p\otimes\mathbb C^2\).
+MRT5 gives the exact inverse from a finite prime vector:
+\[
+ b\!\left(\sum_p\ell_p\otimes(u_{p,0},u_{p,1})\right)
+ =\sum_p[(t_p-1)\otimes(u_{p,0}h_0+u_{p,1}h_1)],
+\]
+\[
+ h_0(y)=(1-2\pi y^2)e^{-\pi y^2},\qquad
+ h_1(y)=2\pi y^2e^{-\pi y^2}.
+\]
+Their moments are respectively \((1,0)\) and \((0,1)\), by evaluation and Gaussian integration. Therefore all scalars in GAB41–42 determine actual prime-boundary classes through this displayed \(b\), with the same \(\ell_p\), and the second coordinate stays exactly zero. The initial maps use the even top-coefficient source specified by MRT6 and MRT10; they do not introduce lower nonzero carrier amplitudes. The marked \(\delta_0\), the independent retained mass, and the unsupported element are not identified by the Mellin or triangular maps.
+
+The periodization seminorm of MRT12 vanishes on these prime classes because its \(\Phi\) coordinate is zero. The explicit \(b\) map proves the classes nevertheless retain their two moments. GAB18 and GAB34 concern analytic coordinates of those moments. They do not change that seminorm or manufacture a positive form.
+
+## GAB16. Exceptional points of the full moment
+
+For fixed real \(d>0\), GAB4 gives a meromorphic continuation of the first moment to all \(s\). Its only poles are the nonpositive even integers:
+\[
+ \operatorname*{res}_{s=-2r} I_d(s)
+ =\frac{4\sqrt d\,(-\pi)^r}{r!}\,Z_d(-2r),
+ \qquad r=0,1,\ldots.                                 \tag{GAB43}
+\]
+Indeed Gamma has residue \(2(-1)^r/r!\) in the variable \(s\), and
+\[
+ Z_d(-2r)=\sum_{n\ge1}e^{-\pi d n^2}n^{2r}>0.
+\]
+Every pole in GAB43 is consequently present. This meromorphic divisor differs from that of original zeta and is exactly recorded. It cannot be inferred from GAB35, whose holomorphic-unit statement was restricted to the critical strip.
+
+At \(s=1+2j\), the first moment is holomorphic for every \(d>0\). Substituting GAB16 gives its full finite expansion:
+\[
+ \begin{aligned}
+ I_d(1+2j)
+ ={}&2\sqrt d\,\pi^{-(1+2j)/2}\Gamma((1+2j)/2)\\
+ &\quad\cdot\left[
+   \sum_{\substack{0\le k\le N\\k\ne j}}
+       \frac{(-\pi d)^k}{k!}\zeta(1+2j-2k)
+   +\frac{(-\pi d)^j}{2j!}
+        (H_j+\gamma-\log(\pi d))
+   +\mathcal R_{N,\alpha}(d,1+2j)\right].
+ \end{aligned}                                       \tag{GAB44}
+\]
+In particular \(B(1)=1\), so
+\[
+ I_d(1)=\sqrt d\,(\gamma-\log(\pi d))
+                   +\frac{\pi}{6}d^{3/2}+O(d^{5/2}).
+\]
+Here the logarithm is the residue of an actual double-pole collision. Although the two separated functions in GAB34 have positive-odd poles, their inverse sum has exactly the cancellation required by GAB44.
+
+## GAB17. Map diagram and exact geometry of the limit
+
+The following diagram describes linear maps on the indicated retained pairs for each fixed \(d>0\), on \(0<\Re s<1\). Every horizontal arrow is invertible; the downward limit is the proved locally uniform limit, not an isomorphism.
+
+\[
+ \begin{array}{ccc}
+ (Z_d,\mathsf S_d)
+ &\xrightarrow{\ (Z,S)\mapsto(Z-S,S)\ }&
+ (Y_d,\mathsf S_d)\\[2mm]
+ {\scriptstyle\times\,2\sqrt d\,\pi^{-s/2}\Gamma(s/2)}
+ \downarrow&&
+ \downarrow
+ {\scriptstyle\times\,2\sqrt d\,\pi^{-s/2}\Gamma(s/2)}\\[2mm]
+ (I_d,\mathcal S_d)
+ &\xrightarrow{\ (I,S)\mapsto(I-S,S)\ }&
+ (I_d-\mathcal S_d,\mathcal S_d)\\[2mm]
+ &&\displaystyle
+ \frac{I_d-\mathcal S_d}
+ {2\sqrt d\,\pi^{-s/2}\Gamma(s/2)}
+ =Y_d\ \xrightarrow[d\downarrow0]{}\ \zeta .
+ \end{array}                                          \tag{GAB45}
+\]
+
+For an illustration of rates, the exact objects to plot are
+\(|I_d(\rho)|\), \(|\mathcal S_d(\rho)|\),
+and \(|I_d(\rho)-\mathcal S_d(\rho)|\) against positive \(d\),
+with respective proved leading powers
+\(d^{\Re\rho/2},d^{\Re\rho/2},d^{3/2}\)
+and coefficients from GAB32 and GAB39. The coefficients, including the local value \(\zeta(\rho-2)\), must be evaluated rather than replaced by one. At a nonzero point of zeta in the strip, the last leading power is \(d^{1/2}\), with coefficient \(2|B(s)\zeta(s)|\). Such a plot depicts the zero detector GAB40; it must not be captioned as positivity or as a critical-line detector.
+
+## GAB18. The singular sector is an actual continuous Gaussian moment
+
+For \(\Re s<1\), the singular sector has a second exact description:
+\[
+ \boxed{\displaystyle
+ \mathsf S_d(s)=\int_0^\infty e^{-\pi d u^2}u^{-s}\,du
+       =\frac12(\pi d)^{(s-1)/2}
+                     \Gamma((1-s)/2).}                \tag{GAB46}
+\]
+This integral converges absolutely: near zero its absolute integrand is bounded by \(u^{-\Re s}\), which is integrable precisely for \(\Re s<1\), and at infinity the Gaussian dominates every power. Substitution \(v=\pi d u^2\) yields the factor
+\(\frac12(\pi d)^{(s-1)/2}v^{(1-s)/2-1}\,dv\), proving the formula with its full constant.
+The variable \(u\) here is the continuous counterpart of the integer \(n\) in GAB2; it is not the theta parameter \(x\) in MRT14.
+
+On \((0,\infty)\), define two finite positive measures and their exact difference:
+\[
+ A_d=\sum_{n\ge1}e^{-\pi d n^2}\delta_n,\qquad
+ C_d=e^{-\pi d u^2}\,du,\qquad
+ \mu_d=A_d-C_d.                                       \tag{GAB47}
+\]
+Their finite total masses are respectively \(Z_d(0)\) and
+\(1/(2\sqrt d)\), by GAB2 and GAB46 at \(s=0\). They are mutually singular: \(A_d\) is concentrated on \(\mathbb N_{>0}\), while \(C_d\) assigns that set measure zero. Therefore their support distinction is recoverable even from the signed measure:
+\[
+ A_d=\mu_d|_{\mathbb N_{>0}},\qquad
+ C_d=-\mu_d|_{(0,\infty)\setminus\mathbb N_{>0}}.
+\]
+More generally the linear map \((A,C)\mapsto A-C\), from finite signed measures concentrated on \(\mathbb N_{>0}\) and its complement respectively, has precisely these restriction maps as its inverse. The ordered pair \((A_d,C_d)\) retains both positive measures explicitly. This is a measure-level decomposition with exact projections, not an identification of their supports.
+
+For \(\Re s<1\), both moments converge absolutely, and
+\[
+ \boxed{\displaystyle
+ \int_0^\infty u^{-s}\,d\mu_d(u)
+   =\sum_{n\ge1}e^{-\pi d n^2}n^{-s}
+       -\int_0^\infty e^{-\pi d u^2}u^{-s}\,du
+   =Y_d(s).}                                         \tag{GAB48}
+\]
+Thus the pole residue in GAB11 is the complete continuous Gaussian lattice-density moment. GAB48 constructs the exact discrete-minus-continuous measure exposed by the failed raw limit. All nontrivial zeros lie inside its absolute-convergence half-plane. Its continuation outside that half-plane is the meromorphic function already calculated; the positive-odd poles of GAB21 are not erased by the measure description.
+
+On every compact parameter interval \(0<a\le d\le b\), Gaussian domination shows that differentiating \(A_d\), \(C_d\), and \(\mu_d\) is valid in total variation: the sums and integrals with weight \(u^2e^{-\pi a u^2}\) are finite, and the difference quotients admit the corresponding dominating weight on a slightly larger compact parameter interval. Hence
+\[
+ \partial_d A_d=-\pi u^2A_d,\qquad
+ \partial_d C_d=-\pi u^2C_d,\qquad
+ \partial_d\mu_d=-\pi u^2\mu_d.                        \tag{GAB49}
+\]
+Taking the absolutely convergent \(u^{-s}\) moment for \(\Re s<1\) gives GAB22 directly. Near zero the differentiated continuous integrand is \(O(u^{2-\Re s})\), so this additional weighted differentiation is also justified there; at infinity it is Gaussian. The meromorphic identity then extends as proved in GAB9.
+
+This measure object concerns the analytic receiving coordinate of MRT. The original marked integer-zero source is still the separate \(\delta_0\) described in GAB2, outside the open half-line used here. Neither its supported-zero action nor an unsupported label is identified with the Lebesgue measure in GAB47.
+
+## GAB19. Exact conclusions for the receiving programme
+
+1. The actual Gaussian arithmetic coefficient has the full original-zeta Mellin–Barnes return GAB10, finite residue expansion GAB12, and sectorial remainder GAB13–14.
+2. The singular sector is \(\frac12\Gamma((1-s)/2)(\pi d)^{(s-1)/2}\). Every positive-odd collision produces the logarithm and harmonic-number coefficient in GAB15–16.
+3. Raw \(Z_d\) diverges in magnitude at every nontrivial zero and eventually has no zeros in any compact subset of the open critical strip. Its actual first moment nevertheless vanishes throughout that strip because its full prefactor remains present.
+4. Keeping the singular sector as a second coordinate gives an invertible triangular map. Its first coordinate converges to original zeta, and its local zero return retains every multiplicity and the original local unit, GAB28–31.
+5. The full actual receiver gives the exact stronger vanishing criterion GAB40. At a nontrivial zero, the next coefficient is nonzero and is \(-2\pi\,\pi^{-\rho/2}\Gamma(\rho/2)\zeta(\rho-2)\).
+6. The prime-boundary arrow, supported-zero matrix, marked integer-zero summand, retained mass, and meromorphic pole data are all carried explicitly in GAB41–44. No positive Weil pairing or critical-line conclusion is inferred from these identities.
+7. The singular sector is the exact continuous Gaussian moment GAB46. The retained return coordinate is the absolutely convergent Mellin transform GAB48 of the finite signed measure GAB47, whose atomic and continuous components have explicit inverse restriction maps and the common dynamics GAB49.
+
+All conclusions above are proved for the specified actual receiver. None requires RH or a zero-simplicity assumption.
+
+
+![Numerical illustration of the complete original first moment, retained continuous Gaussian sector, and their residual, with 22 positive $d$ values in each panel and 75-digit evaluation. GAB32–40 proves the exact leading coefficients and powers: at a zeta zero the residual has leading term $-2\pi B(\rho)\zeta(\rho-2)d^{3/2}$, with nonzero coefficient; away from the zero divisor its leading term is $2B(s)\zeta(s)d^{1/2}$. The plotted full sums retain their complex phases before taking absolute values. The sampled lines are an illustration, not a zero certificate or positivity estimate. The source is the complete MRT1–20 two-moment receiver; the original time is $T=1/(4\pi d)$.](gaussian_boundary_zero_detector.png)

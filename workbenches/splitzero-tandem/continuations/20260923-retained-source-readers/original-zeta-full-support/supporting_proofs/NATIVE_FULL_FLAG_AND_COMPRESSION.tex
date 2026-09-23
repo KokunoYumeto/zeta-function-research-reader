@@ -1,0 +1,367 @@
+\section{The original nineteen-test form and its two-test transition}
+\label{sec:native-full-flag}
+
+This calculation continues the fixed rational test of
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/87e386271c488ce5914b9926c4d23d0857e0c367/workbenches/splitzero-tandem/continuations/20260923-boundary-residue-arithmetic/BOUNDARY_RESIDUE_ARITHMETIC_RECEIVERS.tex}
+{WR1--14 in the complete boundary/arithmetic proof} and
+NC1--21. The full source is the Rodgers--Tao theta function, in its
+original coordinate and time. All its zeros, their multiplicities,
+and all theta summands enter the calculation. The exact vector comes
+from the supplied \texttt{rational\_witness.json}, whose identity and
+original attribution are retained in WR and NC. The earlier scalar
+crossing is sharpened here to a two-test determinant crossing, and
+then compared with the entire nineteen-dimensional form.
+
+The human analytic source is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The de Bruijn--Newman
+constant is non-negative}}, original author equations
+\texttt{htdef}, \texttt{phidef}, \texttt{hoz}, \texttt{sas}.
+The factorization input and its use are proved and cited in WR1--4,
+reproduced in the standalone edition. In particular the present
+negative physical times are preserved throughout.
+
+\paragraph{NF1. The full original coefficient map.}
+For $0\le i\le18$ set
+\[
+ g_i(Z)=1000^iZ^{-2i-1},\qquad
+ \mathcal F_t(x)=\sum_{i=0}^{18}x_i g_i,
+ \qquad M(t)_{ij}=1000^{i+j}S_{i+j+1}(t).
+ \tag{NF1}
+\]
+The map $\mathcal F_t$ is an isomorphism from $\mathbb C^{19}$ to
+this fixed Laurent-test space, and
+$Q_t(\mathcal F_t(x),\mathcal F_t(y))=x^*M(t)y$ by WR3.
+If $K_{19,ij}=S_{i+j+1}$ is the matrix in the unscaled Laurent
+basis, the exact change is $M=D_0K_{19}D_0$, where
+$D_0=\operatorname{diag}(1000^i)_{i=0}^{18}$ and
+$\det M=1000^{342}\det K_{19}$. Thus neither the test space nor
+the physical coordinate has changed.
+
+Write $w_i=n_i/10^{120}$ for the exact supplied rational vector.
+It has $w_{18}=1$ and $f_* =\mathcal F_t(w)$. The constant
+inclusion and its exact pullback are
+\[
+ J=(w,e_0):\mathbb C^2\longrightarrow\mathbb C^{19},\qquad
+ G(t)=J^TM(t)J=
+ \begin{pmatrix}Q(t)&B(t)\\B(t)&A(t)\end{pmatrix},
+ \tag{NF2}
+\]
+where $Q,B,A$ are the original NC2 functions. The columns of $J$
+are independent because $w_{18}=1$. For real $t$, these forms are
+Hermitian; the displayed symmetric matrices have their unique
+holomorphic continuation near every time used below. Transpose in
+the holomorphic calculations is essential.
+
+\paragraph{NF2. Complete theta derivatives and error control.}
+Retain $I=[-2,-2+h]$, $h=10^{-20}$. WR4 and NC3 give every
+$S_n^{(r)}$, $n+r\le42$, from the actual moments $M_0,\ldots,M_{42}$.
+The positive denominator $M_0$ is retained. NC6--7 prove the complete
+quadrature, omitted-summand and spatial-tail bounds uniformly on
+$I$. The script \texttt{native\_schur\_moments.py} applies those
+bounds at $-2$, at the exact right endpoint, and to the whole $I$.
+It retains every root-moment derivative, not only their scalar
+contractions. Directed intervals include the integral error before
+any matrix operation. This is a computer-assisted calculation with
+\texttt{mpmath.iv}; the library itself is not formally verified.
+
+Put $D(t)=A(t)Q(t)-B(t)^2$ and $s_2(t)=D(t)/A(t)$.
+The Leibniz and quotient identities used for their derivatives are
+\[
+ D^{(r)}=\sum_{j=0}^r\binom rj
+ (A^{(j)}Q^{(r-j)}-B^{(j)}B^{(r-j)}),\qquad
+ s_2^{(r)}=\frac{D^{(r)}-\sum_{j=1}^r\binom rj A^{(j)}s_2^{(r-j)}}{A}.
+ \tag{NF3}
+\]
+They follow by differentiating $D=AQ-B^2$ and $As_2=D$.
+Here $A=M_1/M_0>0$, so every division is valid on $I$.
+For any computed entry $F$ and $0\le d\le h$, the uniform fifth
+derivative bound $C_F$ supplies
+\[
+ \left|F^{(r)}(-2+d)-
+ \sum_{j=r}^4\frac{F^{(j)}(-2)d^{j-r}}{(j-r)!}\right|
+ \le \frac{C_Fd^{5-r}}{(5-r)!},\qquad 0\le r\le4.
+ \tag{NF4}
+\]
+This is the integral remainder formula. It also applies entrywise
+to the full matrix and to any fixed congruence of that matrix.
+
+\paragraph{NF3. The unique original two-test determinant crossing.}
+The interval receipt \texttt{CERTIFIED\_SCHUR\_TRANSITION.json}
+certifies $D''>0$, $D'(-2)>0$, $D(-2)<0<D(-2+h)$.
+Consequently $D$ has exactly one zero $t_d=-2+d_d$ in $I$.
+Each of $120$ bisections uses NF4 and requires a strict certified
+sign. The exact resulting bracket is
+\[
+ \frac{862686317576371313926327932467260436}{2^{120}10^{20}}
+ <d_d<
+ \frac{862686317576371313926327932467260437}{2^{120}10^{20}}.
+ \tag{NF5}
+\]
+In particular
+\[
+\begin{split}
+6.490130514193320673670881322849185694\,10^{-21}<d_d,\\
+d_d<6.490130514193320673670881322849185703\,10^{-21}.
+\end{split}\tag{NF6}
+\]
+The scalar crossing $t_*$ in NC12 precedes $t_d$. Their difference is
+\[
+t_d-t_*=7.145690202342818243320177675\ldots\,10^{-22},
+\]
+with its complete interval in the same receipt.
+
+Define $A_d=A(t_d)$, $\beta_d=B(t_d)/A_d$, and
+$s_1=s_2'(t_d)=D'(t_d)/A_d$. The certified values begin
+\[
+\begin{array}{c|l}
+A_d&0.0110918305080578232670897713658\ldots\\
+B(t_d)&8.33555441084364789326798434454\ldots\,10^{-25}\\
+Q(t_d)&6.26420204362653765383999007728\ldots\,10^{-47}\\
+\beta_d&7.51503947413203068735324494773\ldots\,10^{-23}\\
+s_1&7.34673724543500384324930862766\ldots\,10^{-26}>0.
+\end{array}\tag{NF7}
+\]
+The decimals identify the actual values; exact outward endpoints
+are retained. Since $A>0$, elementary square completion gives
+$x^TGx=A(x_2+Bx_1/A)^2+s_2x_1^2$. Therefore the two-test
+inertia is $(1,1,0)$ before $t_d$, $(1,0,1)$ at $t_d$, and
+$(2,0,0)$ afterwards within $I$. Its radical at the crossing is
+the line generated by $r=(1,-\beta_d)^T$.
+
+\paragraph{NF4. The entire original form has one negative direction.}
+The complete result is
+\[
+ \operatorname{inertia}M(t)=(18,1,0)\quad\hbox{for every }t\in I.
+ \tag{NF8}
+\]
+Here inertia records positive, negative and zero dimensions in
+that order. We prove the assertion with explicit uniform bounds,
+including the movement of every lower test coefficient.
+
+At $t_0=-2$, perform the exact unpivoted factorization
+$M(t_0)=L_0\Delta_0L_0^T$, where $L_0$ is unit lower triangular.
+The interval recurrence is
+\[
+ (L_0)_{ij}=\frac{M_{ij}-\sum_{k<j}(L_0)_{ik}\delta_k(L_0)_{jk}}{\delta_j},
+ \quad
+ \delta_i=M_{ii}-\sum_{k<i}(L_0)_{ik}^2\delta_k.
+ \tag{NF9}
+\]
+Every denominator is certified nonzero. All $\delta_0,\ldots,
+\delta_{17}$ are positive and $\delta_{18}<0$. Their complete
+outward bounds are retained in \texttt{FULL\_FLAG\_RECEIPT.json}.
+Fix, once for all times in $I$, the exact matrix
+\[
+ P=L_0^{-T}\operatorname{diag}
+ (\delta_0^{-1/2},\ldots,\delta_{17}^{-1/2},1),\qquad
+ P^TM(t)P=\begin{pmatrix}C(t)&b(t)\\b(t)^T&d(t)\end{pmatrix}.
+ \tag{NF10}
+\]
+Its first eighteen columns span the original lower Laurent space;
+its last column has coefficient one on $g_{18}$. The exact initial
+values are $C(t_0)=I_{18}$, $b(t_0)=0$, $d(t_0)=\delta_{18}$.
+These are consequences of NF9, not decisions to drop small
+interval entries. The code checks interval containment of every
+exact zero and one. The matrix $P$ is retained in all derivative
+contractions, and $\det(P)^2\det M=\det C\,(d-b^TC^{-1}b)$.
+
+\paragraph{NF5. A uniform lower-block estimate.}
+Use the matrix infinity norm for $C$, the maximum norm for $b$,
+and absolute value for $d$. Denote these three norms by indices
+$a=C,b,d$. Let $p_{r,a}$ bound the corresponding norm of
+$(P^TM^{(r)}(t_0)P)_a$ and $w_a$ bound its fifth derivative
+uniformly on $I$. All bounds are computed by outward arithmetic
+from NF2; no negative summand is erased before the actual matrix
+entry is evaluated. For $0\le r\le4$ put
+\[
+ U_{r,a}=\sum_{j=r}^4\frac{p_{j,a}h^{j-r}}{(j-r)!}
+             +\frac{w_a h^{5-r}}{(5-r)!},\qquad U_{5,a}=w_a.
+ \tag{NF11}
+\]
+The exact initial values allow $p_{0,C}=1$, $p_{0,b}=0$,
+$p_{0,d}=|\delta_{18}|$. Applying NF4 entrywise and then the
+triangle inequality proves these bounds. Applying the same
+argument without the constant identity proves
+\[
+ \sup_{t\in I}\|C(t)-I\|_\infty
+ \le\epsilon=U_{0,C}-1
+ <0.034506331<1/20.
+ \tag{NF12}
+\]
+The exact rational value of $\epsilon$ is stored in
+\texttt{UNIFORM\_FULL\_FLAG\_RECEIPT.json}.
+Because $C-I$ is real symmetric, every eigenvalue has absolute
+value at most its infinity norm (choose a maximum component of
+an eigenvector). Hence $C$ is positive definite. Its Neumann
+series gives $\|C^{-1}\|_\infty\le(1-\epsilon)^{-1}=:V$.
+This also proves the inverse estimate directly without replacing
+the original lower block by the identity.
+
+\paragraph{NF6. The attained full-source minimum and its remainder.}
+Let $x=C^{-1}b$ and $\sigma=d-b^TC^{-1}b$. Define nonnegative
+rational bounds recursively by
+\[
+ X_r=V\left(U_{r,b}+\sum_{j=1}^r\binom rj U_{j,C}X_{r-j}\right),
+ \qquad0\le r\le5.
+ \tag{NF13}
+\]
+Differentiating $Cx=b$ proves $\|x^{(r)}\|_\infty\le X_r$ by
+induction, including $X_0=VU_{0,b}$. Thus
+\[
+ \sup_I|\sigma^{(5)}|
+ \le U_{5,d}+18\sum_{j=0}^5\binom5j U_{j,b}X_{5-j}
+ =:C_\sigma<2.316329\,10^{54}.
+ \tag{NF14}
+\]
+The factor eighteen is the exact bound for the sum of the
+eighteen coordinate products in $b^Tx$.
+
+The small derivatives at $t_0$ must be calculated before taking
+norm bounds. Write $T_r=P^TM^{(r)}(t_0)P/r!$ and use its blocks
+$C_r,b_r,d_r$. Then $x_0=0$ and
+\[
+ x_r=b_r-\sum_{j=1}^r C_jx_{r-j},\qquad
+ \sigma_0=\delta_{18},\qquad
+ \sigma_r=d_r-\sum_{j=1}^{r-1}b_j^Tx_{r-j}\quad(r\ge1).
+ \tag{NF15}
+\]
+These follow by multiplying the convergent series $Cx=b$ and
+$\sigma=d-b^Tx$, using $C_0=I,b_0=x_0=0$.
+They give $\sigma^{(r)}(t_0)=r!\sigma_r$. In particular the
+complete second derivative contains the essential term
+\[
+ \sigma''(t_0)=d''(t_0)-2\|b'(t_0)\|_2^2.
+ \tag{NF16}
+\]
+The interval calculation gives
+\[
+\begin{array}{c|l}
+\sigma(t_0)&-2.3840641788179150923540341723\ldots\,10^{-46}\\
+\sigma'(t_0)&1.0766217789670091488291342795\ldots\,10^{-44}\\
+\sigma''(t_0)&-4.5235065903751242070830035568\ldots\,10^{-44}\\
+\sigma'''(t_0)&3.91046019661926596649\ldots\,10^{-43}\\
+\sigma^{(4)}(t_0)&-4.31315451873506820223\ldots\,10^{-42}.
+\end{array}\tag{NF17}
+\]
+Both $d''(t_0)$ and $2\|b'(t_0)\|_2^2$ begin
+$0.0000142941887834022346441600660202\ldots$.
+The much smaller difference in NF17 is evaluated with directed
+intervals; it is not inferred from the matching displayed digits.
+
+Now NF4 applied to $\sigma$, with NF14, proves on the entire $I$
+\[
+ -2.403367\,10^{-46}<\sigma(t)<-2.364761\,10^{-46}<0.
+ \tag{NF18}
+\]
+Indeed the unrounded enclosure has endpoints
+\[
+\begin{aligned}
+-2.40336691466495846826579087129201\,10^{-46},\\
+-2.36476144297087171536565569435213\,10^{-46}.
+\end{aligned}
+\]
+Its width includes the full fifth-order remainder and all matrix
+and moment errors. Square completion gives
+\[
+ (y,z)^*P^TMP(y,z)
+ =(y+C^{-1}bz)^*C(y+C^{-1}bz)+\sigma|z|^2.
+ \tag{NF19}
+\]
+Together with NF12 and invertibility of $P$, this proves NF8.
+It also proves that $\sigma(t)$ is the exact attained minimum
+over all tests with coefficient one on $g_{18}$. Every lower
+coefficient is allowed to move. The fixed rational $f_*$ is
+retained separately; it has not been identified with that
+minimizer.
+
+\paragraph{NF7. The compressed radical is seen by an original omitted test.}
+At $t_d$ set $v_*=f_*-\beta_dg_0$. It is nonzero, since its
+$g_{18}$ coefficient is one, and $Q_{t_d}(v_*,v_*)=0$ by NF2.
+It is orthogonal to both tests in NF2. The complete-source
+calculation, however, gives
+\[
+ 6.59568309361862943443403012\,10^{-28}
+ <Q_{t_d}(Z^{-3},v_*)
+ <6.59568309361862943443403014\,10^{-28}.
+ \tag{NF20}
+\]
+For each $j$, the exact expression evaluated is
+$\sum_i c_iS_{i+j+1}-\beta_dS_{j+1}$; the entries at $t_d$ are
+enclosed by NF4 at the rational interval NF5. Thus no root
+approximation or unrecorded test is inserted. In particular the
+restriction to $\operatorname{span}(v_*,Z^{-3})$ has determinant
+$-|Q_{t_d}(Z^{-3},v_*)|^2<0$. This gives an explicit original
+test detecting the direction discarded by the two-test
+restriction. NF8 gives the stronger uniform statement.
+
+\paragraph{NF8. Full-support receiving maps.}
+Let $L$ be the retained bounded distributive support lattice and
+$V=\operatorname{span}(g_0,\ldots,g_{18})$. Retain the synchronized
+receiver
+$M_L(V)=(V\times\{1_L\})\cup(\{0\}\times L)$ with the
+operations specified in NC21. Its form is
+\[
+ \widehat Q_t((v,\lambda),(w,\mu))
+ =(Q_t(v,w),\lambda\wedge\mu).
+ \tag{NF21}
+\]
+NC21 proves full sesquilinearity. The original inclusion lifts
+exactly to $\widehat J(x,\lambda)=(Jx,\lambda)$, and its pullback
+is $(x^*G(t)y,\lambda\wedge\mu)$. At $t_d$ the supported
+nonzero vector $(Jr,1_L)$ has self-pairing $e=(0,1_L)$ and the
+nonzero cross-pairing NF20. Thus the supported zero is preserved,
+as is the distinction between the radical of a restriction and
+the radical of the full form. The exact map from an independent
+coefficient source into this receiving carrier is
+\[
+ \rho:S^{19}\longrightarrow M_L(\mathbb C^{19}),\qquad
+ ((a_i,\lambda_i))_i\longmapsto
+ ((a_i)_i,\bigvee_i\lambda_i),\qquad S=G_L(\mathbb C).
+ \tag{NF22}
+\]
+It is well-defined: a nonzero component forces one label, hence
+their join, to be top. Join associativity proves additivity;
+finite distributivity proves compatibility with a scalar's meet.
+It is onto: choose the indicated amplitudes with absent zero
+components for a nonzero vector, and place $(0,\lambda)$ in one
+coordinate to obtain a labelled zero vector. Thus this is a
+specified quotient receiver, not an erasure of the independent
+source definition. For any complex matrix $T$ with no zero column,
+lift nonzero entries to top support and structural zero entries
+to $\tau$, obtaining $T_{\mathrm{sp}}$. Directly taking the join
+of its output labels proves
+$\rho T_{\mathrm{sp}}=\widehat T\rho$:
+every input label occurs at least once, and joins are unchanged
+by repetitions. In particular the equality applies to the
+injective $J$ and invertible full $M_d$, and to their specified
+coordinate isomorphisms. This gives the precise commuting map
+from the independent source to all those receiving formulas.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.91cm,y=0.8cm,>=Stealth]
+\draw[->] (0,0)--(10.5,0) node[right] {$d\,10^{21}$};
+\foreach \x in {0,5,10} {\draw(\x,.10)--(\x,-.10) node[below] {$\x$};}
+\draw[densely dashed] (5.77556,.2)--(5.77556,3.15);
+\draw[densely dashed] (6.49013,.2)--(6.49013,2.25);
+\node[anchor=east] at (-.15,2.8) {$Q(f_*,f_*)$};
+\draw[very thick,red!70!black] (0,2.8)--(5.77556,2.8);
+\draw[very thick,blue!70!black] (5.77556,2.8)--(10,2.8);
+\node[fill=white] at (5.77556,3.45) {$d_*\simeq5.77556\,10^{-21}$};
+\node[anchor=east] at (-.15,1.65) {$G=J^TMJ$};
+\draw[very thick,red!70!black] (0,1.65)--(6.49013,1.65);
+\draw[very thick,blue!70!black] (6.49013,1.65)--(10,1.65);
+\node[fill=white] at (7.4,2.15) {$d_d\simeq6.49013\,10^{-21}$};
+\node[anchor=east] at (-.15,.55) {$M\ (19\text{ tests})$};
+\draw[very thick,red!70!black] (0,.55)--(10,.55);
+\node[fill=white] at (2.5,1.65) {$(1,1,0)$};
+\node[fill=white] at (8.5,1.65) {$(2,0,0)$};
+\node[fill=white] at (5,.55) {$(18,1,0)$ throughout};
+\end{tikzpicture}
+\caption{The original time is $t=-2+d$. Positions are displayed
+to six digits; NF5 and NC12 retain the exact brackets. Red means
+a negative direction is present; blue means this displayed
+restriction is positive. The complete nineteen-test form stays
+nondegenerate and indefinite across both crossings, by NF8--19.
+Rodgers--Tao's original theta data enter through WR1--5.}
+\end{figure}

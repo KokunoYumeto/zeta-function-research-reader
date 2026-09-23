@@ -233,3 +233,8 @@ The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1�
 ## Original-zeta Gaussian and affine continuation
 
 The complete additions are [Gaussian translation](ORIGINAL_ZETA_GAUSSIAN_TRANSLATION_RECONSTRUCTION.md), OZG1–55, and [regular affine heat transport](ORIGINAL_ZETA_REGULAR_HEAT_REMAP.md), OZR1–36. Their full proofs, exact source comparisons and reproducible figures are integrated into the cumulative reader. Gaussian test smoothing retains the divergent trivial-zero sector with its finite-cutoff Gamma counterpart. Affine heat transport retains all exceptional local jets and the logarithmic kernel’s exact infinity contribution. Neither supplies the unresolved global arithmetic positivity bound.
+
+
+## Original endpoint sectors and Gaussian prime boundary
+
+Three complete additions reconstruct the original-zeta endpoint sectors, their augmented inverse and full divisor trace, and the actual Gaussian two-moment prime receiver. [Endpoint return](SECTORIAL_ENDPOINT_ZERO_TRACE_RETURN.md), [full filter inverse](SECTORIAL_FILTER_TRACE_DERIVATION.md), and [Gaussian arithmetic boundary](GAUSSIAN_ARITHMETIC_BOUNDARY_RETURN.md) include full proofs, original sources, retained exceptional factors, and reproducible figures. The arithmetic boundary supplies a proved all-zero residual detector. The full Weil sign and the global RH bound remain unproved.

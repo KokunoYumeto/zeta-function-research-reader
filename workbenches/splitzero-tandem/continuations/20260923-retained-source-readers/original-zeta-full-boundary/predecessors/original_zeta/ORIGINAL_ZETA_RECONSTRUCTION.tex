@@ -1,0 +1,2485 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,longtable,array,booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\providecommand{\R}{\mathbb R}
+\providecommand{\C}{\mathbb C}
+\providecommand{\Z}{\mathbb Z}
+\providecommand{\N}{\mathbb N}
+\providecommand{\dd}{\,d}
+\title{Original zeta, shifted theta sums, and retained support}
+\author{Programme derivations from the cited human sources}
+\date{23 September 2026}
+\begin{document}
+\maketitle
+The original functions, their complete transform multipliers, both
+endpoint terms, boundary components, exceptional local lattices and
+support labels are retained. The scalar kernel is recovered by an
+explicit inverse Mellin integral. Neither this scalar inverse nor a
+coefficient lift is asserted to reconstruct the entire arithmetic base.
+\tableofcontents
+\clearpage
+
+% Complete source: ORIGINAL_ZETA_THETA_CORRECTION.tex
+% ZTC: original zeta, original shifted arithmetic family, retained theta data.
+\section{Original zeta and the retained theta comparison}
+\label{sec:original-zeta-theta-correction}
+
+\paragraph{Correction and provenance.}
+The statement that the Rodgers--Tao heat kernel was the programme's
+original construction over the entire absolute base was not established.
+THS1--31 begin with that classical analytic kernel and construct a
+support-preserving coefficient lift. HTB1--35 establish its exact
+comparison with the shifted Hurwitz family. Neither construction is a
+derivation of the scalar kernel from the entire arithmetic geometry.
+The distinction is measurable: THS22 already proves that all supported
+zero times act identically on the actual theta orbit. The ambient
+coefficient injection does not make that orbit injective.
+
+The original arithmetic functions in this calculation remain
+\begin{equation}\tag{ZTC1}
+ \zeta(s)=\sum_{n=1}^{\infty}n^{-s},\qquad
+ F_t(s)=\sum_{n=0}^{\infty}(n+1+t)^{-s},
+ \qquad \operatorname{Re}s>1,\quad t>-1.
+\end{equation}
+Their continuations, endpoints, and exact shift generator are proved in
+HTB2--5, with the programme source identified there by version, hash,
+and original theorem labels. In particular $F_0=\zeta$,
+$F_1=\zeta-1$, and $\partial_tF_t(s)=-sF_t(s+1)$.
+The latter family comes from the supplied April 2026 shifted-Hurwitz
+programme draft, not from a proposed identification of two time variables.
+Brad Rodgers and Terence Tao's
+\href{https://arxiv.org/abs/1801.05914v5}{original author source},
+equations \texttt{phidef}, \texttt{htdef}, \texttt{hoz}, and
+\texttt{sas}, supplies the auxiliary heat kernel used in THS and HTB.
+These are cited inputs, not new discoveries. The following comparisons
+are derived explicitly. Their complete HTB, THS, and CFD proofs accompany
+this chapter.
+
+\subsection{A direct theta sum for the original arithmetic family}
+
+For real $t>-1$ and $x>0$, retain the actual shifted frequencies and put
+\begin{equation}\tag{ZTC2}
+ K_t(x)=\sum_{n=0}^{\infty}
+               e^{-\pi(n+1+t)^2x}.
+\end{equation}
+This is a scalar analytic representation of the stated arithmetic
+family. No assertion that it determines the full support lattice is
+part of this definition. For fixed $a=1+t>0$, monotonicity of the
+summand as a function of $n$ gives
+\begin{equation}\tag{ZTC3}
+ K_t(x)\le e^{-\pi a^2x}
+              +\int_0^\infty e^{-\pi(a+y)^2x}\,dy
+ \le 1+\frac1{2\sqrt x}.
+\end{equation}
+For $x\ge1$ the same bound after retaining the first exponential
+gives $K_t(x)\le C_a e^{-\pi a^2x}$, since
+$(a+n)^2-a^2\ge n^2$ and
+$C_a=\sum_{n\ge0}e^{-\pi((a+n)^2-a^2)}<\infty$.
+Consequently the following integral converges absolutely for
+$\operatorname{Re}s>1$:
+\begin{equation}\tag{ZTC4}
+ \int_0^\infty x^{s/2-1}K_t(x)\,dx
+   =\pi^{-s/2}\Gamma(s/2)F_t(s),\qquad
+ F_t(s)=\frac{\pi^{s/2}}{\Gamma(s/2)}
+                \int_0^\infty x^{s/2-1}K_t(x)\,dx.
+\end{equation}
+Indeed, with $\sigma=\operatorname{Re}s>1$, the sum of the
+absolute termwise integrals equals
+$\pi^{-\sigma/2}\Gamma(\sigma/2)\sum_{n\ge0}(n+a)^{-\sigma}$.
+Fubini therefore applies. Substitution $y=\pi(n+a)^2x$ in each
+term proves the displayed identity with its full Gamma and pi factors.
+Continuation outside that domain means the meromorphic continuation
+proved in HTB4, not an assertion that the unsubtracted integral converges
+there.
+
+There is also an exact inverse recovering the kernel, not only the
+arithmetic function. For every real $c>1$,
+\begin{equation}\tag{ZTC4a}
+ K_t(x)=\frac1{4\pi i}\int_{c-i\infty}^{c+i\infty}
+       \pi^{-s/2}\Gamma(s/2)F_t(s)x^{-s/2}\,ds.
+\end{equation}
+Here the integral is absolutely convergent. To prove the inversion
+with its constant, set $\sigma=c/2>0$ and
+$g(v)=\exp(\sigma v-e^v)$. This function and all its derivatives
+are integrable on $\mathbb R$: at $-\infty$ they are bounded
+by a constant times $e^{\sigma v}$, and at $+\infty$ by a
+polynomial in $e^v$ times $g(v)$. The substitution $u=e^v$
+identifies its Fourier transform with $\Gamma(\sigma-i y)$.
+Repeated integration by parts therefore bounds that Gamma factor
+by $C_N(1+|y|)^{-N}$ for every fixed $N$.
+Fourier inversion gives
+$e^{-u}=(2\pi i)^{-1}\int_{\sigma-i\infty}^{\sigma+i\infty}
+\Gamma(w)u^{-w}\,dw$. One may verify this inversion directly
+by first multiplying the Fourier integrand by $e^{-\epsilon y^2}$:
+the resulting expression is the convolution of $g$ with the
+Gaussian approximate identity, which converges to $g$; the stated
+integrable transform bound permits dominated convergence as
+$\epsilon\downarrow0$. Apply the identity to
+$u=\pi(n+1+t)^2x$, then put $s=2w$. The resulting factor is
+$1/(4\pi i)$. Finally sum in $n$. Interchange is justified by
+$\sum(n+1+t)^{-c}<\infty$ and the integrable Gamma bound.
+This proves ZTC4a. ZTC4 and ZTC4a are mutual recovery formulas
+for the specified original arithmetic family and its scalar
+theta sums; they do not recover a support lattice from a scalar
+function.
+
+Differentiation in $t$ is locally uniform for $t$ in compact subsets
+of $(-1,\infty)$ and $x$ in compact subsets of $(0,\infty)$, by
+Gaussian majorants for a polynomial times $e^{-c n^2}$.
+It gives the exact formula
+\begin{equation}\tag{ZTC5}
+ \partial_tK_t(x)=-2\pi x\sum_{n=0}^{\infty}
+              (n+1+t)e^{-\pi(n+1+t)^2x}.
+\end{equation}
+For $\operatorname{Re}s>0$, integration of its absolute value is
+bounded by a constant times $\sum(n+a)^{-\sigma-1}$, locally
+uniformly in $t$. More precisely its Mellin transform is
+\begin{equation}\tag{ZTC6}
+ \int_0^\infty x^{s/2-1}\partial_tK_t(x)\,dx
+ =-2\pi^{-s/2}\Gamma(s/2+1)F_t(s+1)
+ =-s\pi^{-s/2}\Gamma(s/2)F_t(s+1).
+\end{equation}
+Thus the original arithmetic shift generator is represented directly,
+without substituting the heat generator for it. The stated equality
+extends meromorphically by HTB4--5.
+
+The separated sheet and its entire missing summand are visible before
+any transform:
+\begin{equation}\tag{ZTC7}
+ K_1(x)=K_0(x)-e^{-\pi x},\qquad
+ D_t(s)=\zeta(s)-F_t(s),\qquad D_1(s)=1,
+\end{equation}
+\begin{equation}\tag{ZTC8}
+ \pi^{-s/2}\Gamma(s/2)D_t(s)
+   =\int_0^\infty x^{s/2-1}\bigl(K_0(x)-K_t(x)\bigr)\,dx
+       \quad(\operatorname{Re}s>1).
+\end{equation}
+ZTC7 follows by deleting the $n=1$ summand of $K_0$; ZTC8 follows
+by subtracting two absolutely convergent integrals. At $t=1$ the
+integral is exactly $\pi^{-s/2}\Gamma(s/2)$, so its inverse returns
+the actual constant $1$, including its amplitude and support when lifted.
+
+\subsection{Original zeta with both Mellin endpoints retained}
+
+At $t=0$, HTB6 proves
+\begin{equation}\tag{ZTC9}
+ K_0(x)=x^{-1/2}K_0(1/x)+\tfrac12x^{-1/2}-\tfrac12.
+\end{equation}
+Split ZTC4 at $x=1$, apply this identity only to the integral over
+$(0,1)$, and substitute $y=1/x$ there. Initially
+$\operatorname{Re}s>1$, and direct integration gives
+\begin{equation}\tag{ZTC10}
+ \zeta(s)=\frac{\pi^{s/2}}{\Gamma(s/2)}
+ \left\{
+ \frac1{s-1}-\frac1s
+ +\int_1^\infty K_0(x)
+             \left(x^{s/2-1}+x^{-(s+1)/2}\right)\,dx
+ \right\}.
+\end{equation}
+The two separate rational terms are the transforms of the two separate
+terms $x^{-1/2}/2$ and $-1/2$. The integral on $[1,\infty)$ is
+entire in $s$, since exponential decay bounds every logarithmic
+derivative on compact subsets of the $s$-plane. This proves the
+meromorphic continuation of the identity and keeps both endpoint
+contributions. Neither has been declared zero or absorbed into an
+unrecorded constant.
+
+For the original cosine heat kernel, retain
+\begin{equation}\tag{ZTC11}
+\begin{gathered}
+ A(s)=\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2),\qquad
+ s(z)=\frac12+\frac{iz}{2},\qquad z(s)=-2i(s-1/2),\\
+ H_0(z)=\frac{s(z)(s(z)-1)}{16}
+           \pi^{-s(z)/2}\Gamma(s(z)/2)\zeta(s(z)),\\
+ \zeta(s)=\frac{16\pi^{s/2}}
+                  {s(s-1)\Gamma(s/2)}H_0(z(s)).
+\end{gathered}
+\end{equation}
+The proof is HTB6--10: the exact Mellin substitution and two
+integrations by parts yield the displayed multiplier, with all
+endpoint limits justified in the original convergence half-plane.
+The last equality is an identity of meromorphic functions. It is
+not a licence to replace the original zeta calculation by an entire
+function calculation while dropping its multiplier.
+
+\subsection{The boundary is part of the receiving object}
+
+Let $\mathcal M_s$ and $\mathcal M_z$ be the complex vector spaces
+of meromorphic functions on the respective complex planes. Retain
+the linear isomorphism, already proved in HTB11,
+\begin{equation}\tag{ZTC12}
+ Uf(z)=\frac{A(s(z))}{8}f(s(z)),\qquad
+ U^{-1}G(s)=\frac{8G(z(s))}{A(s)}.
+\end{equation}
+Define the joint map on the entire two-component space by
+\begin{equation}\tag{ZTC13}
+ \mathcal V:\mathcal M_s\oplus\mathcal M_s
+          \longrightarrow\mathcal M_z\oplus\mathcal M_z,
+ \qquad (F,D)\longmapsto\bigl(U(F+D),UD\bigr).
+\end{equation}
+It has the exact inverse
+\begin{equation}\tag{ZTC14}
+ \mathcal V^{-1}(H,J)
+    =\left(\frac{8(H-J)\circ z}{A},\frac{8J\circ z}{A}\right).
+\end{equation}
+Substitution proves both compositions equal the identity; all entries
+are meromorphic functions, so no undefined product of separate
+singular point values is involved. On the actual arithmetic family,
+\begin{equation}\tag{ZTC15}
+\begin{gathered}
+ J_t=UD_t,\qquad
+ \mathcal V(F_t,D_t)=(H_0,J_t),\\
+ F_t(s)=\frac{16\pi^{s/2}}
+              {s(s-1)\Gamma(s/2)}
+              \bigl(H_0(z(s))-J_t(z(s))\bigr),\\
+ J_1(z)=\frac{A(s(z))}{8},\qquad
+ J_t(i)=-\frac t8.
+\end{gathered}
+\end{equation}
+For the last equality use HTB5:
+$D_t(0)=\zeta(0)-F_t(0)=t$, $A(0)=-1$, and $z(0)=i$.
+In particular the retained pair determines the real parameter $t$
+by $t=-8J_t(i)$. All $t$ give the same first component $H_0$.
+Discarding $J_t$ therefore identifies different actual arithmetic
+inputs. This is an explicit failure of injectivity on the actual
+programme family, not merely an example in an unrelated vector space.
+On the unrestricted space the summation map $(G,J)\mapsto G+J$
+has exactly the kernel $\{(B,-B):B\in\mathcal M_z\}$.
+
+For the complete support carrier, use the common label on the
+direct sum:
+\begin{equation}\tag{ZTC16}
+ G_L(\mathcal M_s\oplus\mathcal M_s)
+   \xrightarrow{\mathcal V^\uparrow}
+ G_L(\mathcal M_z\oplus\mathcal M_z),\qquad
+ ((F,D),\lambda)\longmapsto(\mathcal V(F,D),\lambda).
+\end{equation}
+Here $G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\})$
+with its original joins and meets. Additivity, compatibility with
+the $G_L(\mathbb C)$ action, carrier membership, and the inverse
+follow componentwise from linearity and ZTC14, as explicitly proved
+in CFD11--12. This is a bijection for every bounded distributive $L$.
+It does not silently replace the common label by independent labels
+on two product factors. In particular $e=(0,1_L)$ and
+$\tau=(0,0_L)$ remain distinct when $L$ is nontrivial.
+
+\paragraph{The exact multiplication comparison.}
+The preceding maps were declared as linear and semimodule maps.
+Their injectivity does not identify the original multiplication with
+ordinary multiplication of their images. This can be checked exactly,
+without discarding the completion multiplier. Set
+\begin{equation}\tag{ZTC16a}
+ B(z)=\frac{A(s(z))}{8}
+ =\frac{s(z)(s(z)-1)}{16}
+       \pi^{-s(z)/2}\Gamma(s(z)/2).
+\end{equation}
+For meromorphic $f,g$ on the $s$-plane the two products are
+\begin{equation}\tag{ZTC16b}
+\begin{gathered}
+ U(fg)(z)=B(z)f(s(z))g(s(z)),\\
+ (Uf)(z)(Ug)(z)=B(z)^2f(s(z))g(s(z)).
+\end{gathered}
+\end{equation}
+In particular $U1=B$, not the ordinary constant unit. The factor
+$B$ is nonconstant: it has a zero at $z(1)=-i$ and poles at
+$z(-2m)$, $m\ge1$. Thus ordinary multiplication is not preserved.
+The exact transported product and its unit are
+\begin{equation}\tag{ZTC16c}
+ G\odot H=\frac{8G(z)H(z)}{A(s(z))},\qquad
+ 1_{\odot}(z)=\frac{A(s(z))}{8}.
+\end{equation}
+This formula is an identity of meromorphic functions, including
+their germs at the zeros and poles of the multiplier. It is not
+pointwise division of undefined singular values. Substitution
+gives $(Uf)\odot(Ug)=U(fg)$. Directly,
+$(G\odot H)\odot K=GHK/B^2=G\odot(H\odot K)$,
+$B\odot G=G$, and distributivity follows from distributivity of
+meromorphic multiplication. Together with ZTC12 this proves a
+unital algebra isomorphism with the stated product.
+
+For each local holomorphic ring $\mathcal O_{s_0}$ the affine
+coordinate map identifies it with $\mathcal O_{z(s_0)}$.
+Its exact image under $U$ is the embedded fractional lattice
+$B\mathcal O_{z(s_0)}$. This lattice is closed under $\odot$,
+since $(Bu)\odot(Bv)=Buv$, and has unit $B$.
+Keeping instead the unmodified target $\mathcal O_{z(s_0)}$
+can fail closure: at $s_0=1$, $B$ has a simple zero, so
+$1\odot1=1/B$ is not holomorphic. This image-lattice statement
+differs from the preimage lattice $A^{-1}\mathcal O$ in ZTC17:
+the former transports an original holomorphic ring, whereas the
+latter specifies which original meromorphic sections have a
+holomorphic completed image.
+
+The full support carrier admits the same exact comparison. Retain
+its original addition, and define the target product by
+\begin{equation}\tag{ZTC16d}
+ (G,\lambda)\odot_L(H,\mu)
+   =\left(\frac{8GH}{A\circ s},\lambda\wedge\mu\right),
+ \qquad 1_{\odot_L}=(B,1_L).
+\end{equation}
+If the amplitude of a product is nonzero, both input amplitudes
+are nonzero, hence both labels are $1_L$; this proves carrier
+closure. If either amplitude is zero its output amplitude is
+zero and the displayed meet retains its original label.
+Associativity and distributivity follow from ZTC16c and the
+meet/join laws of the bounded distributive lattice. The map
+$(f,\lambda)\mapsto(Uf,\lambda)$ and its inverse therefore
+give a unital semiring isomorphism from the original coefficient
+semiring to this specified target, preserving $e$ and $\tau$.
+An ideal $P$ is sent to its literal image $U^{\uparrow}(P)$;
+closure under addition and multiplication follows by applying the
+isomorphism. Its inverse proves the converse. Moreover a product
+belongs to that image precisely when the corresponding original
+product belongs to $P$, proving that prime ideals correspond.
+This proves the exact spectrum comparison for these specified
+coefficient semirings. It is not a derivation of the entire
+arithmetic base from the scalar function $H_0$.
+
+For ZTC13--16, no multiplication on pairs was specified: the
+proved assertion there remains a common-label semimodule
+isomorphism. Neither ordinary multiplication nor a Weil pairing
+is silently inferred from that assertion.
+
+\subsection{Local zeros, poles, and the original trace}
+
+The earlier conversational assertion that the singular module map
+had not been established was also too broad: HTB13 already proves
+$A^{-1}\mathcal O\xrightarrow{U}\mathcal O$ with the affine
+coordinate change. CFD1--10 now make the comparison with the
+\emph{original} regular lattice and every finite jet explicit.
+At a finite point let $h=s-s_0$ and $A=h^k a(h)$, $a(0)\ne0$.
+Retain $I=A^{-1}\mathcal O=h^{-k}\mathcal O$ as an embedded
+submodule of the meromorphic germs, and $J=I\cap\mathcal O$.
+For nonzero $f\in I$ the original order is
+\begin{equation}\tag{ZTC17}
+ \operatorname{ord}_{s_0}f
+ =\dim_{\mathbb C}(I/\mathcal O f)
+  -\dim_{\mathbb C}(I/J)
+  +\dim_{\mathbb C}(\mathcal O/J).
+\end{equation}
+This is proved by the power-of-$h$ bases in CFD6--7, without
+identifying the reference lattices. At a trivial zero $s_0=-2m$,
+$I=h\mathcal O$, $I/\mathcal O\zeta=0$ and
+$\mathcal O/I$ has dimension $1$. At $s_0=1$,
+$I=h^{-1}\mathcal O$, $I/\mathcal O\zeta=0$ and
+$I/\mathcal O$ has dimension $1$. Their signs in ZTC17 give,
+respectively, $+1$ and $-1$. At $s_0=0$, $A(0)=-1$ is a unit.
+CFD4 provides the invertible triangular matrices recovering all
+Laurent coefficients with the exact factors $8$ and $i/2$.
+Keeping only the zero algebra of the completed section would give
+zero in both cancelled cases; keeping these comparison modules
+restores the actual divisor.
+
+The earlier conversational explanation of the fibres requires a
+further correction. The map
+\begin{equation}\tag{ZTC17a}
+ \mathcal O/h\mathcal O\longrightarrow
+ h\mathcal O/h^2\mathcal O,\qquad [u]\longmapsto[hu]
+\end{equation}
+is an isomorphism of $\mathcal O$-modules. It is well-defined because
+$h(h\mathcal O)=h^2\mathcal O$, surjective by the definition of
+$h\mathcal O$, and injective because $hu\in h^2\mathcal O$ implies
+$u\in h\mathcal O$ in the local integral domain. Its inverse is
+$[hu]\mapsto[u]$. Consequently the two abstract fibres alone do
+not account for the loss. What must be retained is their specified
+embedding and the original reference lattice: multiplication by
+$A=h^{-1}a(h)$ identifies $I=h\mathcal O$ with $\mathcal O$, but
+the length-one quotient $\mathcal O/I$ records the cancelled
+original zero. Replacing the entire marked comparison by the
+completed section's zero quotient discards precisely that datum.
+Likewise multiplication by nonzero meromorphic $A$ is an
+automorphism of the meromorphic sheaf as a module. It is not
+a ring automorphism for ordinary multiplication, as ZTC16b proves.
+It is not an automorphism
+of the fixed holomorphic lattice at its zeros and poles. These
+category statements do not contradict one another.
+
+Logarithmic differentiation gives the original trace identity
+\begin{equation}\tag{ZTC18}
+ \frac{\zeta'(s)}{\zeta(s)}
+ =-2i\frac{H_0'(z(s))}{H_0(z(s))}
+ -\frac1s-\frac1{s-1}+\frac12\log\pi-\frac12\psi(s/2).
+\end{equation}
+It first holds away from zeros and poles and then meromorphically;
+$\psi=\Gamma'/\Gamma$. For a positively oriented finite contour
+$\gamma$ avoiding all zeros and poles of the functions and all
+singularities of every displayed integrand, and a holomorphic test $g$
+on and inside it, multiplication by $g$ and integration gives
+\begin{equation}\tag{ZTC19}
+\begin{split}
+ \frac1{2\pi i}\int_\gamma g\,\frac{\zeta'}\zeta\,ds
+ ={}&\frac1{2\pi i}\int_\gamma
+           g(s)(-2i)\frac{H_0'(z(s))}{H_0(z(s))}\,ds\\
+ &-\frac1{2\pi i}\int_\gamma g(s)
+   \left(\frac1s+\frac1{s-1}-\frac12\log\pi
+                         +\frac12\psi(s/2)\right)ds.
+\end{split}
+\end{equation}
+At every zero or pole, write a meromorphic function as
+$(s-s_0)^r$ times a holomorphic unit. Its logarithmic derivative
+then has residue $r$. The residue theorem proves that ZTC19
+counts the original zeros with multiplicity and the original poles
+with negative multiplicity, including every trivial zero inside
+the contour. No infinite-contour limit or decay assumption is
+hidden here. Extending this finite identity to a particular infinite
+trace requires the actual convergence estimates of that trace.
+
+\subsection{Two different trajectories through the same original zeta}
+
+The original-$s$ function associated with the classical heat path is
+\begin{equation}\tag{ZTC20}
+ f_h^{\rm heat}(s)=\frac{16\pi^{s/2}}
+                         {s(s-1)\Gamma(s/2)}H_h(z(s)),
+ \qquad f_0^{\rm heat}=\zeta.
+\end{equation}
+CFD18--21 give its full receiving operator and prove
+\begin{equation}\tag{ZTC21}
+ \left.\partial_hf_h^{\rm heat}(-2)\right|_{h=0}=0,
+ \qquad
+ \left.\partial_tF_t(-2)\right|_{t=0}=-\frac16.
+\end{equation}
+For completeness, the heat equation and chain rule give
+$\partial_hf=(Af)''/(4A)$. At $h=0$, $A\zeta$ is holomorphic
+at $-2$ whereas $1/A$ has a simple zero there, giving the first
+value. HTB5 gives the second as $2\zeta(-1)=-1/6$.
+The discrepancy holds on the actual initial arithmetic function.
+CFD21 further proves that all the zeros at $-2m$ remain simple
+along the real heat path, while its residue at $1$ varies strictly;
+the actual Hurwitz path has constant residue $1$ and values
+$-B_{2m+1}(1+t)/(2m+1)$ at those points.
+
+Thus the valid original-$\zeta$ receiver consists of the original
+functions, their exact transform and inverse, the retained boundary
+component, the embedded local comparison modules, and all support
+labels. The scalar theta orbit by itself is a smaller observable.
+These proofs neither exhibit an off-line zero of the original
+$\zeta$ nor rule one out. They establish precisely which input and
+which deformation a subsequent estimate is estimating.
+
+\clearpage
+
+% Complete source: COMPLETION_FAITHFULNESS_DERIVATION.tex
+% Independent derivation, 2026-09-23. Prefix CFD.
+% Sources actually read: HTB in full; THS in full; HZA in full.
+\section{Completion, local lattices, and the exact observable of support}
+\label{sec:completion-faithfulness-independent}
+
+\paragraph{Sources and scope.}
+The analytic source is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The de Bruijn--Newman constant is non-negative}},
+original author source equations \texttt{phidef}, \texttt{htdef},
+\texttt{hoz}, and \texttt{sas}. Its kernel, coordinates, and Mellin
+identity are proved directly in the included HTB1--10; the convergence
+and positivity needed here are proved in THS1--15. The shifted Hurwitz
+family is the supplied April 2026 programme draft, byline ``Compiled
+theorem draft'', equations \texttt{thm:universal-flow} and
+\texttt{thm:zero-motion}, with no inferred human attribution.
+The full support carrier and its public source are stated in HTB29--31
+and HZA1. The complete HTB, THS, and HZA sources were read for this
+derivation. All new comparisons below are proved here. A lift of a
+classical analytic function to that carrier is not thereby a geometric
+construction of that function from the entire arithmetic base.
+
+\subsection{The fractional module and every finite jet}
+
+Retain the exact constants
+\begin{equation}\tag{CFD1}
+ A(s)=\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2),\quad
+ s(z)=\frac12+\frac{iz}{2},\quad z(s)=-2i(s-1/2),\quad
+ (Uf)(z)=\frac{A(s(z))}{8}f(s(z)).
+\end{equation}
+Fix a finite $s_0$, set $h=s-s_0$, $z_0=z(s_0)$, and $w=z-z_0$.
+Write $A=h^k a(h)$, where $k\in\mathbb Z$ and $a$ is a holomorphic
+unit. Let $\mathcal O_s$ and $\mathcal O_z$ be the respective rings of
+holomorphic germs, and $\mathcal M_s$ the field of meromorphic germs.
+Define the specified embedded fractional module
+\begin{equation}\tag{CFD2}
+ I=A^{-1}\mathcal O_s=h^{-k}\mathcal O_s\ \subset\mathcal M_s.
+ \qquad U:I\longrightarrow\mathcal O_z,
+ \qquad U^{-1}g=8g(z(s))/A(s).
+\end{equation}
+The equality of fractional modules uses that $a$ is a unit. The two
+displayed substitutions compose to the identity. Thus this is an
+isomorphism of modules over the coordinate isomorphism
+$C:\mathcal O_s\to\mathcal O_z$, $C(h)=iw/2$. In particular
+\begin{equation}\tag{CFD3}
+ U(h^{N+1}I)=w^{N+1}\mathcal O_z,\qquad
+ I/h^{N+1}I\xrightarrow{\ \overline U\ }
+                  \mathcal O_z/w^{N+1}\mathcal O_z
+ \quad(N\ge0)
+\end{equation}
+are isomorphisms. No undefined product of point values is used at a
+pole or zero of $A$.
+
+For the exact coefficient matrices, write
+$a(h)=\sum_{j\ge0}a_jh^j$ and
+$f=h^{-k}\sum_{j\ge0}f_jh^j$. The coefficient of $w^n$ in $Uf$ is
+\begin{equation}\tag{CFD4}
+ g_n=\frac18\left(\frac i2\right)^n
+            \sum_{j=0}^n a_j f_{n-j},\qquad
+ f_n=\sum_{j=0}^n d_j(2/i)^{n-j}g_{n-j},\qquad
+ \sum_{j\ge0}d_jh^j=\frac8{a(h)}.
+\end{equation}
+The first formula is multiplication of the two convergent power
+series followed by $h=iw/2$; the second reverses those steps. On
+jets through degree $N$ the matrix is triangular with diagonal
+$a_0(i/2)^n/8$, which never vanishes. These are the original coordinate
+and amplitude factors, not a replacement of $h$ or $w$ by a rescaled
+coordinate.
+
+The associated graded map in degree $n$ sends the class of
+$h^{n-k}$ to $a_0(i/2)^n w^n/8$. Consequently the completed order is
+\begin{equation}\tag{CFD5}
+ \operatorname{ord}_{z_0}(Uf)=k+\operatorname{ord}_{s_0}(f).
+\end{equation}
+The germ $f$ and all of its Laurent coefficients are recovered from
+$Uf$ once the embedded module $I$, the specified multiplier $A$, and
+the coordinate map are retained.
+
+\subsection{Which quotient remembers a cancelled divisor}
+
+For every nonzero $f\in I$ there is an exact module isomorphism
+\begin{equation}\tag{CFD6}
+ I/\mathcal O_s f\ \xrightarrow{\ \overline U\ }\
+ \mathcal O_z/\mathcal O_z(Uf).
+ \qquad
+ \dim_{\mathbb C}(I/\mathcal O_s f)
+       =k+\operatorname{ord}_{s_0}f.
+\end{equation}
+Indeed $U(qf)=C(q)Uf$ and $C$ is surjective. The right hand quotient
+is the quotient by a unit times $w^{k+\operatorname{ord}f}$, whose
+classes $1,w,\ldots,w^{k+\operatorname{ord}f-1}$ form a basis.
+This quotient measures the zero of the completed section in $I$.
+It does not, by itself, measure the zero or pole of $f$ relative to
+the different reference lattice $\mathcal O_s\subset\mathcal M_s$.
+
+The exact comparison retains both embeddings:
+\begin{equation}\tag{CFD7}
+\begin{gathered}
+ J=I\cap\mathcal O_s=h^{\max(0,-k)}\mathcal O_s,\qquad
+ I+\mathcal O_s=h^{\min(0,-k)}\mathcal O_s,\\
+ \dim_{\mathbb C}(I/J)=\max(k,0),\qquad
+ \dim_{\mathbb C}(\mathcal O_s/J)=\max(-k,0),\\
+ \operatorname{ord}(f)
+ =\dim(I/\mathcal O_s f)-\dim(I/J)+\dim(\mathcal O_s/J).
+\end{gathered}
+\end{equation}
+The first line follows by comparing integer orders of germs; the
+second by bases of the relevant powers of $h$; the third follows
+from CFD6 and $\max(k,0)-\max(-k,0)=k$. Thus this object retains
+the cancelled divisor with its sign and its precise local module.
+
+For the actual multiplier, HTB18 gives
+\begin{equation}\tag{CFD8}
+\begin{gathered}
+ A(0)=-1,\quad A(s)=\tfrac12(s-1)+O((s-1)^2),\\
+ \operatorname*{Res}_{s=-2m}A(s)
+    =a_m=\frac{2(-1)^m(2m+1)\pi^m}{(m-1)!}\ne0
+       \quad(m\ge1).
+\end{gathered}
+\end{equation}
+There are no other finite zeros or poles. At $s_0=-2m$, let
+$h=s+2m$. Then $k=-1$, $I=h\mathcal O_s$, and the Riemann zeta
+function is $\zeta=h c(h)$ with $c(0)\ne0$. To see the last
+nonvanishing without an additional zero-location assertion, HTB9
+gives $\xi(-2m)=\xi(1+2m)$, and the latter is nonzero because all
+factors of $A(1+2m)\zeta(1+2m)$ are positive. Hence
+\begin{equation}\tag{CFD9}
+ I/\mathcal O_s\zeta=0,\quad
+ \mathcal O_s/I\cong\mathcal O_s/(h),\quad
+ (U\zeta)(z_0)=a_m\zeta'(-2m)/8.
+\end{equation}
+The vanished quotient in the first expression cannot serve as the
+record of the cancelled simple zero. The second expression does
+record its length, and CFD4 recovers every derivative from the
+completed germ. The one-dimensional module $h\mathcal O_s/h^2
+\mathcal O_s$ is the degree-zero associated graded of $I$; it
+contains the leading zero coefficient and maps isomorphically to
+$\mathcal O_z/w\mathcal O_z$. It is not the same quotient as
+$I/\mathcal O_s\zeta$.
+
+At $s_0=1$, $k=1$, $I=h^{-1}\mathcal O_s$ and
+$\zeta=h^{-1}(1+O(h))$, so
+\begin{equation}\tag{CFD10}
+ I/\mathcal O_s\zeta=0,\quad
+ I/\mathcal O_s\cong h^{-1}\mathcal O_s/\mathcal O_s,
+ \quad (U\zeta)(-i)=1/16.
+\end{equation}
+Here the one-dimensional comparison quotient records the cancelled
+pole. At $s=0$ the multiplier is a unit and no divisor cancellation
+occurs. At all points of the open critical strip it is a unit,
+so the ordinary local zero algebras of $\zeta$ and $U\zeta$ are
+isomorphic by coordinate substitution, with every multiplicity
+unchanged. CFD9--10 explain precisely why this strip assertion
+does not replace the global comparison.
+
+\subsection{All support labels on modules and quotients}
+
+For each complex vector space $V$, use exactly
+\begin{equation}\tag{CFD11}
+ G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\}),
+ \quad (v,\lambda)+(v',\mu)=(v+v',\lambda\vee\mu),
+ \quad(c,\alpha)(v,\lambda)=(cv,\alpha\wedge\lambda).
+\end{equation}
+Every complex-linear map $T$ above lifts by
+$T^\uparrow(v,\lambda)=(Tv,\lambda)$. The carrier condition holds
+because $T0=0$; addition and scalar action commute componentwise.
+The inverse lifts when $T$ is invertible. This proves all module
+and finite-jet isomorphisms above over the entire bounded
+distributive lattice $L$, with no finiteness or Boolean restriction.
+
+For a subspace $W\subset V$, the quotient map has the precise
+congruence
+\begin{equation}\tag{CFD12}
+ (v,\lambda)\sim(v',\lambda')
+ \ \Longleftrightarrow\
+ \lambda=\lambda'\ \hbox{ and }\ v-v'\in W,
+ \qquad
+ G_L(V)/{\sim}\ \cong G_L(V/W).
+\end{equation}
+The relation is preserved by addition and scalar action, since $W$
+is a subspace and the same labels undergo the same joins or meets.
+Its classes are exactly the fibres of $(v,\lambda)\mapsto
+(v+W,\lambda)$, which is surjective: a nonzero coset has top label,
+and each labelled zero is the image of the corresponding labelled
+zero. This proves the quotient assertion. In particular
+$G_L(0)=\{(0,\lambda):\lambda\in L\}$ still retains every label;
+it contains no amplitude dimension recording a cancelled divisor.
+The defects in CFD7--10 must therefore remain even after this lift.
+
+With the original $K_L=K\otimes_{\mathbb B}L$, the map
+\begin{equation}\tag{CFD13}
+ \Phi_V(v,\lambda)=(v,1_K\otimes\lambda)
+ \quad\hbox{satisfies}\quad
+ (T\times\mathrm{id})\Phi_V=\Phi_W T^\uparrow.
+\end{equation}
+The zero/nonzero character of the tropical semifield $K$ tensored
+with $L$ retracts $1_K\otimes\lambda$ to $\lambda$, proving
+injectivity. Thus neither completion nor these module comparisons
+identify $e=(0,1_L)$ with $\tau=(0,0_L)$. Multiplication by $A/8$
+is a module map, not an ordinary unital algebra map. The ordinary
+product transports to $(G\odot H)(z)=8G(z)H(z)/A(s(z))$ and unit
+$A(s(z))/8$, as in HTB12. Statements about prime spectra require
+that declared transported product, rather than the ordinary
+pointwise product.
+
+\subsection{The theta orbit and a faithful supported-time probe}
+
+Keep the actual coefficient vector of THS18:
+$a_{2j}(t)=(h_j(t),1_L)$ and $a_{2j+1}(t)=\tau$.
+For $x=(r,\lambda)\in G_L(\mathbb C)$ the exact matrix is
+\begin{equation}\tag{CFD14}
+ U_x(i,j)=
+ \begin{cases}
+ (1,1_L),&j=i,\\
+ ((-r)^m j!/(m!i!),\lambda),&j=i+2m,\ m\ge1,\\
+ \tau,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+THS10--12 give the absolute amplitude convergence. The diagonal
+summand has top support at every even index, while every odd
+summand is $\tau$. Hence
+\begin{equation}\tag{CFD15}
+ U_{(r,\lambda)}\mathbf a(t)=\mathbf a(t+r),\qquad
+ U_{(0,\lambda)}\mathbf a(t)=\mathbf a(t)
+                    \quad\hbox{for every }\lambda\in L.
+\end{equation}
+For nontrivial $L$ this orbit observable is not injective in the
+supported-time parameter. Keeping the label in the ambient carrier
+does not make this particular observable distinguish it.
+
+The full matrix representation nevertheless is injective:
+\begin{equation}\tag{CFD16}
+ U_x(0,2)=(-2r,\lambda),\qquad
+ x=(-\tfrac12,1_L)\,U_x(0,2).
+\end{equation}
+Both the amplitude and every allowed label are recovered by this
+entry. Equivalently, let $p$ be the supported polynomial whose
+only non-$\tau$ coefficient is $p_2=(1,1_L)$. Direct multiplication
+gives
+\begin{equation}\tag{CFD17}
+ (U_xp)_0=(-2r,\lambda),\quad (U_xp)_2=(1,1_L),\quad
+ (U_xp)_j=\tau\ (j\ne0,2).
+\end{equation}
+Thus the degree-two probe restores supported-time faithfulness;
+its left inverse is the constant-coefficient map followed by
+multiplication by $(-1/2,1_L)$. Its sums are finite. A degree-zero
+or degree-one polynomial cannot provide this test because the
+second derivative annihilates both and the strictly upper even
+entries have no source coefficient. The proof establishes the
+parameter observable just specified, not faithfulness of a
+construction of the complete arithmetic geometry.
+
+Another proved loss of information is the finite-cardinality map
+of HZA2: for finite $L$, $|G_L(\mathbb Z/n\mathbb Z)|=n-1+|L|$
+and its Dirichlet series is $\zeta(s,|L|)$. A four-element chain
+and the four-element Boolean lattice give the same series but
+different meet/join structures. Hence this scalar receiver is
+also not a reconstruction of the full lattice. The injective
+$\Phi_V$ and the count are different, explicitly specified maps.
+
+\subsection{Completion does not identify the two deformations}
+
+On meromorphic functions let $Df(s)=s f(s+1)$ and
+$B=-\partial_z^2$. The pullback of the heat generator is
+\begin{equation}\tag{CFD18}
+ \mathcal L_H=U^{-1}BU,\qquad
+ \mathcal L_H f=\frac1{4A}(Af)'',\qquad
+ (\mathcal L_H+D)f=
+ \frac14 f''+\frac{A'}{2A}f'
+             +\frac{A''}{4A}f+s f(s+1).
+\end{equation}
+This follows by the chain rule $ds/dz=i/2$ and differentiating
+twice; the factors $8$ cancel. The Hurwitz generator is $-D$.
+On the constant function $1$, their difference is
+$A''/(4A)+s$. At each $s_0=-2m$, writing $A=h^{-1}a(h)$ gives
+$A''/A=2h^{-2}+O(h^{-1})$, so the difference has a nonzero
+double-pole coefficient $1/2$. It is not the zero operator.
+
+It also differs on the actual initial function $\zeta$. Near
+$s=-2$, the residue calculation HTB18 gives
+$A(s)=-6\pi/(s+2)+O(1)$. Since $A\zeta=\xi$ is entire,
+\begin{equation}\tag{CFD19}
+ \mathcal L_H\zeta(-2)=0,\qquad
+ (-D\zeta)(-2)=2\zeta(-1)=-\tfrac16,\qquad
+ ((\mathcal L_H+D)\zeta)(-2)=\tfrac16.
+\end{equation}
+Here $\zeta(-1)=-1/12$ follows directly from HTB5 and
+$B_2(1)=1/6$. Therefore the two tangent vectors are different
+already before completion. Their transported difference has
+residue $-\pi/8$ in the $s$ coordinate for $U$ without coordinate
+substitution, and $-\pi/(4i)$ in the $z$ coordinate. Equivalently
+the Hurwitz tangent alone has the opposite residue $\pi/(4i)$,
+whereas the heat tangent is entire, as in HTB21.
+
+This distinction persists on the exact trajectories. Write
+\begin{equation}\tag{CFD20}
+ f_h^{\mathrm{heat}}(s)=\frac{8H_h^{\mathrm{heat}}(z(s))}{A(s)}.
+\end{equation}
+For every real $h$ and every $c\in\mathbb R$,
+$H_h^{\mathrm{heat}}(ic)=\int_0^\infty
+e^{hu^2}\Phi(u)\cosh(cu)\,du>0$; convergence and strict
+positivity follow from THS3--6. It follows that
+\begin{equation}\tag{CFD21}
+\begin{gathered}
+ \operatorname{ord}_{s=-2m}f_h^{\mathrm{heat}}=1\quad(m\ge1),
+ \qquad
+ \operatorname*{Res}_{s=1}f_h^{\mathrm{heat}}
+                       =16H_h^{\mathrm{heat}}(-i),\\
+ \frac{d}{dh}\operatorname*{Res}_{s=1}f_h^{\mathrm{heat}}
+       =16\int_0^\infty u^2e^{hu^2}\Phi(u)\cosh u\,du>0.
+\end{gathered}
+\end{equation}
+The first conclusion uses the simple zero of $1/A$ and the
+strictly positive numerator; the residue uses $A'(1)=1/2$;
+the derivative is justified by THS6. At $h=0$ the residue is
+$1$. In contrast $F_t(s)=\zeta(s,1+t)$ has residue $1$ at
+$s=1$ for every allowed $t$ and values
+$F_t(-2m)=-B_{2m+1}(1+t)/(2m+1)$. Already its first completed
+pole has residue $2\pi(1+t)(t+1/2)t$. Thus completion is
+invertible on the specified meromorphic data, but the heat
+trajectory preserves the classical trivial-zero locations by
+its construction and is not the arithmetic Hurwitz trajectory.
+
+The exact bridge remains HTB26--28:
+$F_t+(\zeta-F_t)=\zeta$ and
+$UF_t+U(\zeta-F_t)=U\zeta$. It retains the complete principal
+parts, reflection defect, and every support label. Omitting the
+second summand would change the arithmetic input; retaining it
+is an identity returning the initial function, not a proof that
+the two distinct generators agree or that either trajectory
+reconstructs the full arithmetic base.
+
+\subsection{Faithful parameter representation is not invertible heat transport}
+
+The injectivity of $x\mapsto U_x$ proved in CFD16 does not mean
+that each $U_x$ is an injective endomorphism of supported polynomials.
+In fact, for every $x=(r,\lambda)\ne\tau$ one has $\lambda\ne0_L$.
+Take the degree-two probe $p$ of CFD17 and let $p'$ have the same
+coefficients except $p'_0=(0,\lambda)$ instead of $p_0=\tau$.
+They are distinct. Their degree-zero images are respectively
+$(-2r,\lambda)$ and
+$(0,\lambda)+(-2r,\lambda)=(-2r,\lambda)$, and every other image
+coefficient agrees. Thus
+\begin{equation}\tag{CFD22}
+ p\ne p',\qquad U_xp=U_xp'\quad(x\ne\tau).
+\end{equation}
+So no such $U_x$ has an inverse on the full supported polynomial
+space. The classical time-group relation on the actual saturated
+theta vector results from CFD15; the full supported-time family
+instead satisfies the additive monoid relation of THS20. This is
+an exact support effect, despite injectivity of its parameter map.
+
+\subsection{The direct shifted theta kernel before completion}
+
+For real $t>-1$, put $a=1+t>0$ and retain the direct kernel
+\begin{equation}\tag{CFD23}
+ K_t(x)=\sum_{n=0}^{\infty}e^{-\pi(n+a)^2x},\quad x>0,
+ \qquad
+ K_1(x)=K_0(x)-e^{-\pi x}.
+\end{equation}
+The series and its parameter derivatives converge locally uniformly
+for $x>0$ and $a$ in bounded real intervals, by the Gaussian decay in
+$n$. The last identity deletes precisely the $n=0$ term of the
+$a=1$ series. For $\operatorname{Re}s>1$ one has
+\begin{equation}\tag{CFD24}
+ \int_0^\infty K_t(x)x^{s/2-1}\,dx
+       =\pi^{-s/2}\Gamma(s/2)\zeta(s,a).
+\end{equation}
+Indeed, if $\sigma=\operatorname{Re}s>1$, the sum of integrals of
+the absolute values is
+$\pi^{-\sigma/2}\Gamma(\sigma/2)
+\sum_{n\ge0}(n+a)^{-\sigma}<\infty$.
+Fubini's theorem applies. Substitution $y=\pi(n+a)^2x$ in each
+summand proves CFD24 with every constant retained. This is the
+shifted theta representation of the actual Hurwitz series before
+multiplication by $s(s-1)/2$ or any passage to a cosine transform.
+
+Its exact parameter derivative and its integral are
+\begin{equation}\tag{CFD25}
+\begin{gathered}
+ \partial_tK_t(x)
+     =-2\pi x\sum_{n=0}^{\infty}(n+a)e^{-\pi(n+a)^2x},\\
+ \int_0^\infty \partial_tK_t(x)x^{s/2-1}\,dx
+     =-s\pi^{-s/2}\Gamma(s/2)\zeta(s+1,a),
+                     \qquad\operatorname{Re}s>0.
+\end{gathered}
+\end{equation}
+Local uniformity gives the first derivative formula. For the second,
+the sum of absolute integrals at $\sigma=\operatorname{Re}s>0$ is
+\[
+ 2\pi\sum_{n\ge0}(n+a)
+ \int_0^\infty x^{\sigma/2}e^{-\pi(n+a)^2x}\,dx
+ =2\pi^{-\sigma/2}\Gamma(\sigma/2+1)
+       \sum_{n\ge0}(n+a)^{-\sigma-1}<\infty.
+\]
+Integration term by term at complex $s$ and the recurrence
+$\Gamma(s/2+1)=(s/2)\Gamma(s/2)$ prove the claimed identity.
+In particular on $\operatorname{Re}s>1$ it is the derivative
+of CFD24, and the convergent differentiated integral itself
+continues the result to the larger stated half-plane.
+
+The positive-real-$x$ integral has a relevant complex-parameter
+restriction. The same formula is locally uniformly holomorphic
+when
+\begin{equation}\tag{CFD26}
+ \operatorname{Re}a>|\operatorname{Im}a|.
+\end{equation}
+On each compact subset of this sector there is $c>0$ with
+$\operatorname{Re}(n+a)^2\ge c(n+\operatorname{Re}a)^2$ for all
+$n\ge0$. The preceding absolute-integral bounds therefore apply
+with fixed additional constants. The gamma substitution with a
+complex parameter follows from the holomorphic identity theorem
+from positive real $a$; the principal logarithm satisfies
+$\log((n+a)^2)=2\log(n+a)$ in this sector. This proves the
+holomorphic extension there. On the larger half-plane
+$\operatorname{Re}a>0$, the Hurwitz function has the continuation
+proved in HTB4, but the unrotated kernel integral cannot be claimed
+on that basis. For example $a=1+2i$ gives
+$\operatorname{Re}(a^2)=-3$, and its first summand is
+$e^{3\pi x}e^{-4\pi i x}$; the subsequent summands grow more
+slowly or decay, so the positive-real-$x$ Mellin integral is not
+absolutely convergent at infinity. This identifies the precise
+analytic domain used by the direct kernel construction.
+
+\subsection{The retained pair and its actual support domain}
+
+On $\mathcal M_s\oplus\mathcal M_s$, the exact map
+\begin{equation}\tag{CFD27}
+ V(F,D)=(U(F+D),UD),\qquad
+ V^{-1}(H,J)=(U^{-1}(H-J),U^{-1}J)
+\end{equation}
+is a complex-linear isomorphism by direct composition. It therefore
+lifts to an isomorphism from
+$G_L(\mathcal M_s\oplus\mathcal M_s)$ to
+$G_L(\mathcal M_z\oplus\mathcal M_z)$, preserving its one common
+label. For the actual common-top pair
+$(F_t,\zeta-F_t)$ the image is $(U\zeta,U(\zeta-F_t))$.
+Both summands are recoverable. Projection to the first entry
+alone has linear kernel $\{(F,-F):F\in\mathcal M_s\}$ and
+discards the deformation in this particular family.
+
+This does not extend to the product of two split carriers with
+independent labels by an unmodified triangular semimodule map.
+There the first output label would be $\lambda\vee\mu$. For
+any nonzero $D$ and two different labels $\lambda,\lambda'$,
+the two inputs $((0,\lambda),(D,1_L))$ and
+$((0,\lambda'),(D,1_L))$ have identical images
+$((UD,1_L),(UD,1_L))$. Thus common-label CFD27 has its stated
+inverse, while independent-label data require their original
+labels as additional retained data. This is another explicit
+domain distinction needed for a claim of faithfulness.
+
+\clearpage
+
+\appendix
+
+% Complete source: THETA_HEAT_FULL_SUPPORT.tex
+% Independent mathematical derivation. Prefix THS. Requires amsmath,amssymb,hyperref.
+\section{The theta heat flow through the complete supported coefficient map}
+\label{sec:theta-heat-full-support}
+
+\paragraph{Scope correction, 23 September 2026.}
+This chapter lifts the specified classical analytic heat kernel. It does
+not derive that kernel from the entire absolute arithmetic base.
+THS22 and THS25 explicitly show that its orbit and evaluated scalar
+observable do not distinguish all support labels. The exact original
+zeta and shifted-Hurwitz receiving formulas, retained boundary component,
+exceptional modules, and inverse Mellin map are reconstructed in
+ZTC1--21 and CFD1--27. Those comparisons, rather than the scalar
+theta orbit alone, specify which original arithmetic object is retained.
+
+\paragraph{Original source and actual reading.}
+The original human source is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The De Bruijn--Newman
+constant is non-negative}}, arXiv:1801.05914v5. The author file
+\texttt{fmp-template.tex}, retained in
+\texttt{zero\_inversion\_intake/original\_tex}, has SHA--256
+\begin{center}\small
+\texttt{25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817}.
+\end{center}
+Lines 1--155 were read, including the exact definitions
+\texttt{phidef}, \texttt{htdef}, \texttt{hoz} and \texttt{sas}.
+This is a bounded reading, not a reading of the complete paper.
+The arguments here use the displayed kernel and integral, and prove
+all convergence, differentiation and coefficient statements below
+directly. No threshold theorem about the zeros is invoked.
+The complete coefficient map is ZIL11--12 of the included
+\texttt{ZERO\_INVERSION\_FULL\_LATTICE\_REVIEW.tex}; its source at
+the time of reading has SHA--256
+\begin{center}\small
+\texttt{eb87afa8b3ffac41ca0845bb1f2ba49d9dba14e6c6ac0db86d72d0e5963a50b9}.
+\end{center}
+Its lines 1--135 and 231--290 were read, including the complete
+coefficient laws and the map with its retraction. The needed algebra
+is proved again here. The existing included ZHR source was read in
+full for its original coordinates; none of its threshold implications
+is a premise of this calculation.
+
+\subsection{The original kernel and a uniform bound for every moment}
+
+Keep the original variables and all constants:
+\begin{equation}\tag{THS1}
+\begin{gathered}
+ \Phi(u)=\sum_{n=1}^{\infty}\Phi_n(u),\qquad
+ \Phi_n(u)=(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},
+ \quad u\ge0,\\
+ H_t(z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\,du,
+ \qquad (t,z)\in\mathbb C^2.
+\end{gathered}
+\end{equation}
+Complex time extends the same integral, without changing its kernel.
+Set
+\begin{equation}\tag{THS2}
+ a=e^{-3\pi},\qquad
+ C_4=\frac{1+11a+11a^2+a^3}{(1-a)^5},\qquad C_\Phi=2\pi^2C_4.
+\end{equation}
+Then, for every $u\ge0$,
+\begin{equation}\tag{THS3}
+ 0<\pi(2\pi-3)e^{9u-\pi e^{4u}}
+       \le\Phi(u)\le C_\Phi e^{9u-\pi e^{4u}}.
+\end{equation}
+Indeed
+$\Phi_n(u)=\pi n^2e^{5u}(2\pi n^2e^{4u}-3)e^{-\pi n^2e^{4u}}$
+is positive, since $2\pi-3>0$. Its $n=1$ term is at least the
+lower bound: $2\pi e^{4u}-3\ge(2\pi-3)e^{4u}$.
+For the upper bound discard the negative term and use
+$n^2-1\ge3(n-1)$ for $n\ge1$ and $e^{4u}\ge1$. Thus
+\[
+ \sum_{n\ge1}n^4e^{-\pi(n^2-1)e^{4u}}
+ \le\sum_{n\ge1}n^4a^{n-1}=C_4.
+\]
+The last identity follows by applying $(a\,d/da)^4$ to
+$\sum_{n\ge1}a^n=a/(1-a)$ and dividing by $a$; differentiation
+is valid on $|a|<1$ by the geometric series. In particular the
+kernel series converges absolutely, uniformly on every compact
+$u$ interval, with the stated global bound.
+
+For $A,B\ge0$ and every integer $p\ge0$, define the finite
+explicit number
+\begin{equation}\tag{THS4}
+ \mathcal M_p(A,B)=\frac{C_\Phi}{2\pi}
+ \exp\left(\frac{3A^2}{32\pi}
+            +\frac{(B+9+p)^2}{8\pi}-\frac\pi2\right).
+\end{equation}
+The following pointwise and integral bounds hold:
+\begin{equation}\tag{THS5}
+\begin{gathered}
+ u^p e^{Au^2+Bu}\Phi(u)
+ \le C_\Phi\exp\left(\frac{3A^2}{32\pi}
+                  +\frac{(B+9+p)^2}{8\pi}\right)
+                e^{-\pi e^{4u}/2},\\
+ \int_0^\infty u^p e^{Au^2+Bu}\Phi(u)\,du
+                  \le\mathcal M_p(A,B).
+\end{gathered}
+\end{equation}
+To prove this, use $u^p\le e^{pu}$, with $0^0=1$ in this
+inequality, and the two Taylor bounds
+$e^{4u}\ge(32/3)u^4$ and $e^{4u}\ge8u^2$.
+Completing the square in $u^2$ and then in $u$ gives
+\[
+ Au^2-\frac\pi4e^{4u}
+       \le Au^2-\frac{8\pi}{3}u^4\le\frac{3A^2}{32\pi},\qquad
+ (B+9+p)u-\frac\pi4e^{4u}
+       \le(B+9+p)u-2\pi u^2\le\frac{(B+9+p)^2}{8\pi}.
+\]
+The remaining half of the negative exponential proves the first
+line. Finally $e^{4u}\ge1+4u$ gives
+$\int_0^\infty e^{-\pi e^{4u}/2}\,du\le e^{-\pi/2}/(2\pi)$,
+proving the second line. These estimates include every moment
+order, every positive exponential-square weight, and any fixed
+linear exponential weight.
+
+\subsection{All differentiations and infinite heat sums}
+
+For $\alpha,\beta\ge0$ integers and compact bounds
+$\operatorname{Re}t\le A$ and $|\operatorname{Im}z|\le B$,
+where $A,B\ge0$, one has
+\begin{equation}\tag{THS6}
+ \partial_t^\alpha\partial_z^\beta H_t(z)
+  =\int_0^\infty u^{2\alpha+\beta}e^{tu^2}\Phi(u)
+                      \cos(zu+\beta\pi/2)\,du,
+ \qquad
+ |\partial_t^\alpha\partial_z^\beta H_t(z)|
+     \le\mathcal M_{2\alpha+\beta}(A,B).
+\end{equation}
+Indeed $|\cos w|,|\sin w|\le e^{|\operatorname{Im}w|}$.
+Thus THS5 dominates every displayed integrand on those compact
+sets. Difference quotients may be written as integrals of the
+next derivative along a segment in a slightly larger compact
+set; the same majorant applies. Dominated convergence therefore
+proves the first complex derivative and its integral formula.
+Iteration proves every mixed derivative and commutation of their
+orders. Alternatively the exponential and cosine series about
+any $(t_0,z_0)$ converge under the integrable majorant
+$e^{(\operatorname{Re}t_0+R)u^2+(|\operatorname{Im}z_0|+S)u}
+\Phi(u)$ on a bidisc of radii $R,S$. This also proves joint
+entireness. All these arguments also allow the sum over $n$ in
+THS1 to pass through the integral and derivatives: the sum of
+the absolute integrands is bounded by the same expression
+because every $\Phi_n(u)$ is positive. In particular
+\begin{equation}\tag{THS7}
+ \partial_tH_t(z)=-\partial_z^2H_t(z),\qquad
+ H_t(-z)=H_t(z),\qquad
+ H_{\bar t}(\bar z)=\overline{H_t(z)}.
+\end{equation}
+The last two identities follow directly from the integral and
+the real positive kernel.
+
+The exact Taylor expansion is
+\begin{equation}\tag{THS8}
+ H_t(z)=\sum_{j=0}^{\infty}h_j(t)z^{2j},\qquad
+ h_j(t)=\frac{(-1)^j}{(2j)!}
+          \int_0^\infty e^{tu^2}\Phi(u)u^{2j}\,du.
+\end{equation}
+For $|z|\le R$, the sum of the absolute integrands is
+$e^{\operatorname{Re}t u^2}\Phi(u)\cosh(Ru)$, bounded by
+THS5. This proves the expansion, absolute locally uniform
+convergence, and the absence of every odd coefficient.
+Every $h_j$ is entire in $t$ by THS6. For real $t$ there is the
+explicit strict lower bound
+\begin{equation}\tag{THS9}
+ (-1)^jh_j(t)\ge
+ \frac{\pi(2\pi-3)}{(2j)!(2j+1)}
+          \exp\bigl(\min(t,0)-\pi e^4\bigr)>0.
+\end{equation}
+Restrict the integral to $0\le u\le1$. On that interval THS3
+is at least $\pi(2\pi-3)e^{-\pi e^4}$ and
+$e^{tu^2}\ge e^{\min(t,0)}$; integrate $u^{2j}$.
+Thus every even Taylor coefficient is nonzero at every real
+time. No such nonvanishing statement is assumed at complex time.
+
+For arbitrary complex $t,r$, the coefficient heat identity is
+\begin{equation}\tag{THS10}
+ h_j(t+r)=\sum_{m=0}^{\infty}
+       \frac{(-r)^m(2j+2m)!}{m!(2j)!}\,h_{j+m}(t).
+\end{equation}
+To verify absolute convergence before summing, THS8 and the
+triangle inequality give
+\begin{equation}\tag{THS11}
+ \sum_{m\ge0}\frac{|r|^m(2j+2m)!}{m!(2j)!}|h_{j+m}(t)|
+ \le\frac1{(2j)!}\int_0^\infty
+      u^{2j}e^{(\operatorname{Re}t+|r|)u^2}\Phi(u)\,du<\infty.
+\end{equation}
+For a displayed bound replace the exponent coefficient by
+$\max(\operatorname{Re}t+|r|,0)$ and apply THS5.
+After interchanging sum and integral, the signs satisfy
+$(-1)^m(-1)^{j+m}=(-1)^j$ and the remaining sum is
+$\sum_m(ru^2)^m/m!=e^{ru^2}$. This proves THS10.
+The same argument gives, for any finite number of successive
+complex time steps $r_1,\ldots,r_d$, an absolutely convergent
+multiple series with majorant
+\begin{equation}\tag{THS12}
+ \frac1{(2j)!}\int_0^\infty u^{2j}
+ e^{(\operatorname{Re}t+\sum_{a=1}^d|r_a|)u^2}\Phi(u)\,du.
+\end{equation}
+Indeed the product of the absolute exponential series is
+$\prod_a e^{|r_a|u^2}$. Finite partial products increase to
+that positive bound; their integrals converge by THS5. Tonelli's
+theorem followed by absolute convergence permits all orders of
+summation. The binomial or multinomial identity then combines
+the steps into $\sum_a r_a$, with their original signs.
+
+There is also the function identity, with absolute locally
+uniform convergence in every complex variable,
+\begin{equation}\tag{THS13}
+ H_{t+r}(z)=\sum_{m=0}^{\infty}\frac{(-r)^m}{m!}
+                   \partial_z^{2m}H_t(z).
+\end{equation}
+Insert THS6:
+\[
+ \partial_z^{2m}\cos(zu)=(-1)^mu^{2m}\cos(zu).
+\]
+The absolute integral majorant is
+\[
+ e^{(\operatorname{Re}t+|r|)u^2+|\operatorname{Im}z|u}\Phi(u);
+\]
+THS5 applies uniformly on compact sets. This proves THS13,
+and applies after every further $t,r,z$ derivative by increasing
+the moment order. The group law on this actual family follows
+either from THS12 or by evaluating its final integral.
+In particular coefficient differentiation gives
+\begin{equation}\tag{THS14}
+ h_j'(t)=-(2j+2)(2j+1)h_{j+1}(t).
+\end{equation}
+For connection with the entire-function domain, every $a>0$
+satisfies
+\begin{equation}\tag{THS15}
+ \sup_{z\in\mathbb C}|H_t(z)|e^{-a|z|^2}
+ \le\int_0^\infty
+        e^{(\operatorname{Re}t+1/(4a))u^2}\Phi(u)\,du<\infty.
+\end{equation}
+This follows from $|z|u\le a|z|^2+u^2/(4a)$ and
+$|\cos(zu)|\le e^{|z|u}$. Thus the actual family belongs to
+the space of entire functions satisfying every positive Gaussian
+bound. This is a proved inclusion, without changing its kernel.
+
+\subsection{Every original lattice label and the actual coefficient map}
+
+Let $L$ be any bounded distributive lattice, with no completeness
+assumption. Its bottom and top are $0_L,1_L$. Retain
+\begin{equation}\tag{THS16}
+\begin{gathered}
+ S=G_L(\mathbb C)=\{(0,\lambda):\lambda\in L\}
+                 \cup\{(c,1_L):c\in\mathbb C\},\\
+ (c,\lambda)+(d,\nu)=(c+d,\lambda\vee\nu),\qquad
+ (c,\lambda)(d,\nu)=(cd,\lambda\wedge\nu),\\
+ \tau=(0,0_L),\quad e=(0,1_L),\quad
+ 1_S=(1,1_L),\quad\widehat c=(c,1_L).
+\end{gathered}
+\end{equation}
+If an amplitude sum is nonzero at least one input label is top;
+if a product is nonzero both input labels are top. Thus these
+operations preserve the carrier. The ring laws and lattice
+distributivity prove all semiring laws. No lower label is
+identified with another. The construction also covers the
+one-element lattice, when $\tau=e$ and $S$ is the original ring.
+
+Keep the programme's tropical semifield with zero $K$ and put
+$K_L=K\otimes_{\mathbb B}L$. Its zero and unit are
+$\mathbf0_K,\mathbf1_K$. The map that sends nonzero elements
+of $K$ to $1\in\mathbb B$ and zero to zero preserves addition
+and multiplication: a tropical sum is zero precisely when all
+its terms are zero and a product is zero precisely when a
+factor is zero. Tensoring this map with $L$ proves the
+well-defined retraction
+\begin{equation}\tag{THS17}
+\begin{gathered}
+ \iota_L(\lambda)=\mathbf1_K\otimes\lambda,\qquad
+ \rho_L\left(\sum_i b_i\otimes\lambda_i\right)
+       =\bigvee_{b_i\ne\mathbf0_K}\lambda_i,\qquad
+ \rho_L\iota_L=\operatorname{id}_L,\\
+ \Phi_{\mathbb C}:S\longrightarrow\mathbb C\times K_L,
+ \qquad\Phi_{\mathbb C}(c,\lambda)=(c,\iota_L(\lambda)).
+\end{gathered}
+\end{equation}
+The retraction shows that $\iota_L$ is injective. Both coordinates
+of $\Phi_{\mathbb C}$ preserve both operations, zero and unit,
+and their equality determines both original coordinates.
+Thus this is the injective original full-lattice map, not a
+choice of one Boolean character.
+
+For clarity about infinite sums, the following restricted
+convergence is sufficient. A sequence $(c_m,\lambda_m)$ in $S$
+has a sum here if $\sum_m|c_m|<\infty$ and the finite joins
+$\lambda_0\vee\cdots\vee\lambda_M$ are constant for all
+sufficiently large $M$. Its sum is the amplitude sum with that
+eventual label. It belongs to $S$: if the amplitude sum is
+nonzero at least one summand has nonzero amplitude and hence
+top label. On these sums THS17 commutes with summation, because
+the finite support sums in its target are exactly
+$\iota_L(\lambda_0\vee\cdots\vee\lambda_M)$ and are likewise
+eventually constant. This defines no arbitrary infinite join
+in $L$ or $K_L$. Every infinite sum below satisfies this
+restricted definition from its first summand.
+
+The actual supported coefficient vector is
+\begin{equation}\tag{THS18}
+ \mathbf a(t)=(a_n(t))_{n\ge0},\qquad
+ a_{2j}(t)=(h_j(t),1_L),\qquad a_{2j+1}(t)=\tau.
+\end{equation}
+At real times its even labels are forced by THS9 and the carrier
+condition in THS16. The odd coefficients are structurally absent
+from the cosine series and have the additive zero $\tau$.
+For complex time the same labels are retained: if an even
+coefficient happens to vanish it has value $e$, not $\tau$.
+This gives a specified entire amplitude family with its unchanged
+support vector, not an assertion of nonvanishing at complex times.
+
+For every original supported time $x=(r,\lambda)\in S$, define
+the upper triangular heat matrix on all degrees by
+\begin{equation}\tag{THS19}
+ U_x(i,j)=
+ \begin{cases}
+ 1_S,&j=i,\\
+ \displaystyle\left(\frac{(-r)^m j!}{m!i!},\lambda\right),
+       &j=i+2m,\ m\ge1,\\
+ \tau,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+Every entry lies in $S$. Indeed a nonzero off-diagonal amplitude
+forces $r\ne0$, which forces $\lambda=1_L$. Equivalently that
+entry is $\widehat{(-1)^m j!/(m!i!)}\,x^m$.
+Thus if $r=0$, all off-diagonal amplitudes vanish but their
+original label remains $\lambda$; they are not deleted.
+For $x=(r,\lambda)$ and $y=(s,\mu)$, every matrix-product entry
+is a finite sum and
+\begin{equation}\tag{THS20}
+ U_xU_y=U_{x+y},\qquad
+ x+y=(r+s,\lambda\vee\mu),\qquad U_\tau=I.
+\end{equation}
+For an even gap $j-i=2m>0$, the amplitude of the product is
+$\frac{j!}{i!}\sum_{b=0}^m(-r)^b(-s)^{m-b}/(b!(m-b)!)$
+which is $(-r-s)^mj!/(m!i!)$. Its two endpoint terms have
+labels $\lambda$ and $\mu$; each interior term has label
+$\lambda\wedge\mu$. Their join is exactly $\lambda\vee\mu$,
+including when some or every amplitude is zero. The diagonal
+has its one unit term; an odd or negative gap has only absorbing
+zero terms. This proves every entry and the identity statement.
+
+For the actual vector, all coefficient sums converge in the
+specified sense and satisfy the full supported heat law
+\begin{equation}\tag{THS21}
+ U_{(r,\lambda)}\mathbf a(t)=\mathbf a(t+r),
+ \qquad t\in\mathbb C,\quad(r,\lambda)\in S.
+\end{equation}
+At row $2j$, its amplitude sum is THS10, absolutely convergent
+by THS11. The $m=0$ summand already has label $1_L$, so every
+finite partial sum has that same label. At every odd row every
+source coefficient is $\tau$, and every product and partial sum
+is $\tau$. This proves all amplitudes and every label.
+For successive actions the absolute double or multiple sums
+are THS12. Their finite support joins again have the displayed
+labels because they include the diagonal contribution. Thus
+THS20 acts on this vector with no change of summation order or
+support completion left unproved.
+
+In particular every zero-amplitude time, with its full original
+label, acts by
+\begin{equation}\tag{THS22}
+ U_{(0,\lambda)}\mathbf a(t)=\mathbf a(t)
+ \quad(\lambda\in L),\qquad
+ U_e\mathbf a(t)=\mathbf a(t),\qquad U_\tau\mathbf a(t)=\mathbf a(t).
+\end{equation}
+These equalities do not equate the different operators on
+arbitrary supported vectors. For example a vector whose only
+nonzero entry is $a_2=1_S$ acquires coefficient $(0,\lambda)$
+in degree zero under $U_{(0,\lambda)}$. On THS18 the even
+degree-zero label, and every even tail label, is already top;
+the same action adds no support. No label has been discarded.
+
+Apply $\Phi_{\mathbb C}$ to every coefficient and to every
+matrix entry; denote the resulting objects by
+$\boldsymbol{\mathcal A}(t)$ and $\mathcal U_x$. Then
+\begin{equation}\tag{THS23}
+ \Phi_{\mathbb C}^{\mathbb N}(U_x\mathbf a(t))
+   =\mathcal U_x\Phi_{\mathbb C}^{\mathbb N}(\mathbf a(t))
+   =\boldsymbol{\mathcal A}(t+r),\qquad
+ \mathcal A_{2j}(t)=(h_j(t),1_{K_L}),\quad
+ \mathcal A_{2j+1}(t)=(0,0_{K_L}).
+\end{equation}
+Finite partial sums commute because THS17 is a semiring map;
+their absolute amplitude limits and eventually constant support
+limits commute by the explicit sum definition. Injectivity
+retains every coefficient, including all supported zeros.
+
+The coefficient heat differential also holds before and after
+this map. On the fixed support vector in THS18, define the time
+derivative by its proved entire amplitudes, retaining its even
+top and odd bottom labels. The formal second derivative in $z$
+has row $i$ equal to $\widehat{(i+2)(i+1)}\,a_{i+2}$.
+Multiplication by $\widehat{-1}$ keeps the labels. THS14 proves
+\begin{equation}\tag{THS24}
+ \partial_t\mathbf a(t)=-D_z^2\mathbf a(t),\qquad
+ \Phi_{\mathbb C}^{\mathbb N}(\partial_t\mathbf a(t))
+      =-D_z^2\boldsymbol{\mathcal A}(t).
+\end{equation}
+This derivative is not an undeclared subtraction operation in
+an arbitrary semiring. Each even coordinate lies in the exact
+additive group $\mathbb C\times\{1_L\}$, whose identity is $e$;
+each odd coordinate is the fixed singleton $\{\tau\}$.
+Their product therefore has its coefficientwise complex vector
+space structure with zero vector $(e,\tau,e,\tau,\ldots)$.
+Differentiation there is ordinary coordinate differentiation;
+the preceding integral bounds justify it for this family.
+The inclusion into the full supported coefficient space retains
+these identities and is not asserted to preserve its global
+zero vector $(\tau,\tau,\ldots)$. This proves the precise meaning
+of the differential in THS24 without changing any support.
+
+Evaluation at any original supported point $y=(z,\nu)\in S$
+also converges and gives
+\begin{equation}\tag{THS25}
+ \sum_{n\ge0}a_n(t)y^n=(H_t(z),1_L),\qquad
+ \sum_{n\ge0}\Phi_{\mathbb C}(a_n(t))
+                  \Phi_{\mathbb C}(y)^n=(H_t(z),1_{K_L}).
+\end{equation}
+Absolute convergence is THS8; the constant term is already
+top-supported, so every partial support sum is top, including
+$z=0$ and every allowed label $\nu$ of that zero. The two
+equalities follow by THS17 and the ordinary Taylor expansion.
+In particular an analytic zero has the original value $e$,
+and its exact image $(0,1_{K_L})$, throughout this heat flow.
+
+\begin{figure}[ht]
+\centering
+$\begin{array}{ccc}
+ \mathbf a(t)&\xrightarrow{\ U_{(r,\lambda)}\ }&\mathbf a(t+r)\\[3pt]
+ {\scriptstyle\Phi_{\mathbb C}^{\mathbb N}}\downarrow&&
+             \downarrow{\scriptstyle\Phi_{\mathbb C}^{\mathbb N}}\\[3pt]
+ \boldsymbol{\mathcal A}(t)&\xrightarrow{\ \mathcal U_{(r,\lambda)}\ }&
+                         \boldsymbol{\mathcal A}(t+r)
+ \end{array}$
+\caption{The actual coefficient heat map, THS19--23. An even
+coordinate retains label $1_L$ and its exact moment amplitude;
+an odd coordinate is $\tau$. Every zero-amplitude time
+$(0,\lambda)$ fixes this particular vector by THS22. All lattice
+labels remain in the time object and the full coefficient map;
+the diagram is not a replacement by a Boolean character.
+The kernel and coordinates are Rodgers--Tao's THS1.}
+\end{figure}
+
+\subsection{The exact defect of every finite polynomial truncation}
+
+Let $P_NH_t(z)=\sum_{j=0}^Nh_j(t)z^{2j}$ and let $P_N$ on
+supported vectors replace all coefficients above degree $2N$
+by $\tau$. At $0\le j\le N$ the amplitude of the discrepancy
+between $P_NH_{t+r}$ and the polynomial heat evolution
+$e^{-rD_z^2}P_NH_t$ is exactly
+\begin{equation}\tag{THS26}
+\begin{split}
+ \Delta_{N,j}(t,r)
+ &=\sum_{m=N-j+1}^{\infty}
+       \frac{(-r)^m(2j+2m)!}{m!(2j)!}\,h_{j+m}(t)\\
+ &=\frac{(-1)^j}{(2j)!}\int_0^\infty e^{tu^2}\Phi(u)u^{2j}
+   \left(e^{ru^2}-\sum_{m=0}^{N-j}\frac{(ru^2)^m}{m!}\right)du.
+\end{split}
+\end{equation}
+This follows by subtracting the finite beginning of the absolutely
+convergent series THS10; the polynomial derivative formula gives
+exactly those retained terms. For complex $t,r$, writing
+$M=N-j+1\ge1$, the tail has the explicit estimate
+\begin{equation}\tag{THS27}
+ |\Delta_{N,j}(t,r)|
+ \le\frac{|r|^M}{(2j)!M!}
+      \int_0^\infty u^{2N+2}
+          e^{(\operatorname{Re}t+|r|)u^2}\Phi(u)\,du.
+\end{equation}
+Use $\sum_{m=M}^{\infty}v^m/m!\le v^Me^v/M!$ for $v\ge0$:
+the inequality $(M+\ell)!\ge M!\ell!$ proves it term by term.
+The right side is finite and explicitly bounded by THS5.
+If $t$ is real and $r>0$, then
+\begin{equation}\tag{THS28}
+             (-1)^j\Delta_{N,j}(t,r)>0
+             \quad(0\le j\le N).
+\end{equation}
+The exponential tail in THS26 is strictly positive for every
+$u>0$, and every other factor after removing $(-1)^j$ is
+positive by THS3. Its finite integral is therefore positive.
+This proves that finite polynomial truncation does not
+intertwine the actual heat flow, even at the constant coefficient.
+Injectivity of THS17 shows that the full coefficient map does
+not remove this discrepancy. Both retained low coefficients
+still have their top labels; their amplitudes differ by the
+explicit nonzero quantity above.
+
+Nevertheless the actual finite evolutions do converge to the
+full flow, with the original coefficients. For $|z|\le R$ the
+absolute double-series majorant for their terms is
+\begin{equation}\tag{THS29}
+ \int_0^\infty
+ e^{(\operatorname{Re}t+|r|)u^2}\Phi(u)\cosh(Ru)\,du<\infty.
+\end{equation}
+Indeed the indices are $j,m\ge0$, and the absolute coefficient
+integrands are bounded by
+$u^{2j+2m}|r|^mR^{2j}/(m!(2j)!)$ times
+$e^{\operatorname{Re}tu^2}\Phi(u)$. Summing gives exactly
+the displayed majorant. The polynomial evolution retains the
+triangle $j+m\le N$. These increasing triangles exhaust the
+double series, so its absolute tails tend to zero, uniformly
+on compact sets of $(t,r,z)$ by using their common THS5 bound.
+Thus $e^{-rD_z^2}P_NH_t\to H_{t+r}$ locally uniformly, while
+THS28 excludes exact intertwining at each finite $N$.
+At each fixed supported coefficient its label is also eventually
+the exact label in THS18. This states both the genuine limiting
+map and the finite defect, with no assumed truncation identity.
+
+\subsection{An explicit geometric bound for the entire discarded tail}
+
+The convergence in THS29 has an explicit rate that retains the
+original cutoff. Define
+\[
+ E_N(t,r,z)=H_{t+r}(z)-e^{-rD_z^2}P_NH_t(z).
+\]
+For every $\sigma>1$, $R\ge0$ and complex $t,r$, one has
+\begin{equation}\tag{THS30}
+ \sup_{|z|\le R}|E_N(t,r,z)|
+ \le\sigma^{-(N+1)}
+ \mathcal M_0\bigl(\max(\operatorname{Re}t+\sigma|r|,0),
+                         \sqrt\sigma R\bigr).
+\end{equation}
+To prove this, the exact error is the absolutely convergent
+double series of THS29 over $j+m>N$. For each such term,
+$1\le\sigma^{j+m-(N+1)}$. Multiply its absolute integrand by
+this bound, then sum over every $j,m\ge0$. The resulting upper
+bound is precisely
+\[
+ \sigma^{-(N+1)}\int_0^\infty
+ e^{(\operatorname{Re}t+\sigma|r|)u^2}\Phi(u)
+                  \cosh(\sqrt\sigma R u)\,du.
+\]
+Since $\cosh v\le e^v$ for $v\ge0$, THS5 gives (THS30).
+No coefficient, time parameter or cutoff has been rescaled in
+the actual heat family; $\sigma$ is only an explicitly stated
+parameter in the proved upper bound.
+
+Every mixed derivative of this error has a corresponding exact
+rate. For $\alpha,\beta,\gamma\ge0$, positive radii
+$\delta_t,\delta_r,\delta_z$, complex $t_0,r_0$, and $R\ge0$,
+put
+\[
+ A_*=\max\{\operatorname{Re}t_0+\delta_t
+                 +\sigma(|r_0|+\delta_r),0\},\qquad
+ B_*=\sqrt\sigma(R+\delta_z).
+\]
+Then
+\begin{equation}\tag{THS31}
+ \sup_{|z|\le R}
+ |\partial_t^\alpha\partial_r^\beta\partial_z^\gamma
+                  E_N(t_0,r_0,z)|
+ \le
+ \frac{\alpha!\beta!\gamma!}
+      {\delta_t^\alpha\delta_r^\beta\delta_z^\gamma}
+       \sigma^{-(N+1)}\mathcal M_0(A_*,B_*).
+\end{equation}
+The error is entire in all three variables by THS6, THS13
+and its finite polynomial term. On the product of circles of
+the three displayed radii about $(t_0,r_0,z)$, one has
+$\operatorname{Re}t\le\operatorname{Re}t_0+\delta_t$,
+$|r|\le|r_0|+\delta_r$ and $|z'|\le R+\delta_z$.
+Apply (THS30) there, then apply the one-variable Cauchy
+integral formula successively in the three variables. Each
+formula contributes its exact factorial and inverse radius
+power, proving (THS31). Its constants are finite by THS4 and
+independent of $N$, so the bound tends geometrically to zero
+for the original growing polynomial cutoff. The coefficient
+supports at every retained even index are already top and
+the odd indices are already $\tau$, as proved in THS18--29;
+this amplitude error bound introduces no missing support limit.
+
+The full supported heat law proved here retains the entire
+amplitude family, all original lattice labels and their joint
+map. It does not decide whether $H_0$ has nonreal zeros and
+asserts no conclusion about RH.
+
+\clearpage
+
+% Complete source: HURWITZ_THETA_FLOW_BRIDGE.tex
+% HTB: independent completed-Hurwitz / original-theta calculation.
+% This file is a chapter source; the parent owns its cumulative wrapper.
+\section{The exact completed Hurwitz--theta bridge over the full support lattice}
+\label{sec:completed-hurwitz-theta-bridge}
+
+\paragraph{Original-object correction, 23 September 2026.}
+The auxiliary functions in this chapter are compared with the original
+$\zeta$ and $F_t$; they are not replacements for them. HTB13 already
+provides the fractional-module isomorphism at the exceptional points.
+CFD1--10 retains its comparison with the original regular lattice and
+all finite jets. ZTC13--16 proves the joint inverse with the boundary
+component kept. Projection to $H_0$ alone discards the actual Hurwitz
+deformation. The original arithmetic receiving formulas and both
+Mellin endpoint terms are given in ZTC1--21.
+
+\paragraph{Objects and source provenance.}
+The shifted family below is the one in the supplied April 2026 programme
+draft \emph{Split-Zero Support, Residue-Parity Reversal, Shifted-Hurwitz CUE
+Defects, and Finite Phase-Space Enlargement}, printed byline ``Compiled
+theorem draft'', source labels \texttt{thm:universal-flow} and
+\texttt{thm:zero-motion}. The actual source is
+\texttt{Chatnotes/globalization cue/}\allowbreak
+\texttt{split\_zero\_cue\_shifted\_hurwitz\_phase\_space.tex},
+lines 602--630 and 1003--1060; the exact retained copy is under
+\texttt{hurwitz\_intake/programme\_source/}.
+No human author is specified in those supplied
+bytes, and none is inferred here. Its retained source has SHA-256
+\texttt{52f2a6bccdb15213b1992abef9f8d6476d6e9ea5566ee7ed9d85c9a2d7cc2705}.
+The heat family and every factor in its coordinate map are those of
+Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The de Bruijn--Newman
+constant is non-negative}, arXiv:1801.05914v5}, original source
+\texttt{fmp-template.tex}, equations \texttt{hoz}, \texttt{sas},
+\texttt{phidef}, and \texttt{htdef}, lines 78--101. That source credits
+N. C. de Bruijn's \emph{The roots of trigonometric integrals} (1950),
+C. M. Newman's \emph{Fourier transforms with only real zeroes} (1976),
+and the zero dynamics of G. Csordas, W. Smith, and R. S. Varga (1994).
+Those earlier papers have not been independently read for this chapter;
+their attribution is inherited explicitly from the original Rodgers--Tao
+source. The theta identity used here is proved below, including its
+Mellin factors. The full support carrier is the one in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split Support Geometry}, v11,
+Definition \texttt{def:lattice-split}}. Its operations and all maps needed
+here are stated and verified in the final subsection.
+
+\subsection{Two parameters and the original coordinate map}
+
+Use $t$ for the Hurwitz shift and $h$ for heat time. They are independent
+parameters. Put
+\begin{equation}\tag{HTB1}
+\begin{gathered}
+ a=1+t,\qquad \operatorname{Re}a>0,\qquad
+ F_t(s)=\zeta(s,a),\\
+ A(s)=\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2),\qquad
+ \Xi_t(s)=A(s)F_t(s),\\
+ s(z)=\frac12+\frac{iz}{2},\qquad
+ z(s)=-2i\left(s-\frac12\right),\qquad
+ H_t^{\mathrm{Hur}}(z)=\frac18\Xi_t(s(z)).
+\end{gathered}
+\end{equation}
+For complex $a$ in the indicated half-plane, $(n+a)^{-s}$ uses the
+holomorphic logarithm with argument in $(-\pi/2,\pi/2)$. All subsequent
+identities in $s$ are identities of meromorphic functions; values at
+removable singularities mean their analytic extensions. Statements about
+real parameters explicitly use $t>-1$.
+
+Here is a direct continuation of the Hurwitz input, so that neither its
+pole nor the endpoint values are assumed in the comparison. Define
+Bernoulli polynomials by
+\begin{equation}\tag{HTB2}
+ \frac{x e^{b x}}{e^x-1}
+ =\sum_{k=0}^{\infty}B_k(b)\frac{x^k}{k!},\qquad |x|<2\pi.
+\end{equation}
+For $\operatorname{Re}s>1$, termwise integration gives
+\begin{equation}\tag{HTB3}
+ \Gamma(s)F_t(s)
+ =\int_0^{\infty}x^{s-1}\frac{e^{-a x}}{1-e^{-x}}\,dx.
+\end{equation}
+The interchange is absolutely convergent on compact subsets of
+$\operatorname{Re}s>1$, $\operatorname{Re}a>0$: near zero the absolute
+integrand is bounded by a constant times $x^{\operatorname{Re}s-2}$,
+and at infinity it decays exponentially. Subtracting the first $N+1$
+terms of HTB2 on $(0,1)$ gives, for $\operatorname{Re}s>-N$,
+\begin{equation}\tag{HTB4}
+\begin{split}
+ F_t(s)=\frac1{\Gamma(s)}\bigg\{
+ &\int_1^{\infty}x^{s-1}\frac{e^{-a x}}{1-e^{-x}}\,dx\\
+ +&\int_0^1x^{s-1}
+ \left(\frac{e^{-a x}}{1-e^{-x}}
+       -\sum_{k=0}^{N}\frac{B_k(1-a)}{k!}x^{k-1}\right)dx\\
+ +&\sum_{k=0}^{N}\frac{B_k(1-a)}{k!(s+k-1)}\bigg\}.
+\end{split}
+\end{equation}
+The remainder is $O(x^N)$ locally uniformly in $a$. Differentiating in
+$a$ and $s$ preserves locally integrable majorants on smaller compact
+sets. Thus HTB4 gives joint meromorphic continuation, holomorphic in
+$a$, with compatible values as $N$ increases.
+
+The recurrence $\Gamma(s+1)=s\Gamma(s)$ and $\Gamma(1)=1$ show that
+$\Gamma$ has residue $(-1)^n/n!$ at $-n$. Its reciprocal is entire with
+simple zeros there and no other zeros: for example this follows directly
+from the locally uniformly convergent Euler product
+$1/\Gamma(s)=s e^{\gamma s}\prod_{n\ge1}(1+s/n)e^{-s/n}$, whose
+nonvanishing away from the listed factors follows from the absolute
+convergence of the logarithmic tail. In HTB4 these reciprocal zeros
+cancel every displayed pole except the one at $s=1$. At $s=-n$ only
+the term $k=n+1$ contributes to the value. Replacing $x$ by $-x$ in
+HTB2 proves $B_k(1-a)=(-1)^k B_k(a)$. Consequently
+\begin{equation}\tag{HTB5}
+ \operatorname*{Res}_{s=1}F_t(s)=1,\qquad
+ F_t(-n)=-\frac{B_{n+1}(a)}{n+1}\quad(n\ge0),\qquad
+ \partial_t F_t(s)=-sF_t(s+1).
+\end{equation}
+For the last equality differentiate the convergent series on
+$\operatorname{Re}s>1$; HTB4 and uniqueness of meromorphic continuation
+extend it everywhere. In particular $F_t(0)=1/2-a$.
+
+\subsection{The theta integral with all original constants}
+
+For $x>0$, write
+\[
+ \psi(x)=\sum_{n=1}^{\infty}e^{-\pi n^2x},\qquad
+ \Theta(x)=1+2\psi(x).
+\]
+The Gaussian identity gives
+\begin{equation}\tag{HTB6}
+ \Theta(x)=x^{-1/2}\Theta(1/x),\qquad
+ \psi(1/x)=\sqrt{x}\,\psi(x)+\frac{\sqrt{x}-1}{2}.
+\end{equation}
+One direct proof of the required Gaussian identity is to periodize
+$e^{-\pi x y^2}$. The periodized series and all its derivatives converge
+uniformly on $[0,1]$. Its $k$th Fourier coefficient is
+$\int_{\mathbb R}e^{-\pi x y^2}e^{-2\pi i k y}dy
+=x^{-1/2}e^{-\pi k^2/x}$. This integral follows by scaling from
+$\int e^{-\pi y^2}dy=1$ and differentiating its Fourier transform:
+integration by parts gives $\widehat f'(\eta)=-2\pi\eta\widehat f(\eta)$,
+with $\widehat f(0)=1$. The absolutely convergent Fourier series of the
+periodization evaluated at zero proves HTB6.
+
+Define the original kernel, without changing its argument or amplitude,
+by
+\begin{equation}\tag{HTB7}
+\begin{split}
+ \Phi(u)
+ &=\sum_{n=1}^{\infty}
+   \left(2\pi^2n^4e^{9u}-3\pi n^2e^{5u}\right)
+       e^{-\pi n^2e^{4u}}\\
+ &=e^u\left(2x^2\psi''(x)+3x\psi'(x)\right)_{x=e^{4u}}.
+\end{split}
+\end{equation}
+If $g(u)=e^u\psi(e^{4u})$, direct differentiation and HTB6 give
+\begin{equation}\tag{HTB8}
+ \Phi(u)=\frac18\bigl(g''(u)-g(u)\bigr),\qquad
+ g(-u)=g(u)+\sinh u,\qquad \Phi(-u)=\Phi(u).
+\end{equation}
+Indeed $g''-g=24e^{5u}\psi'(e^{4u})+16e^{9u}\psi''(e^{4u})$,
+and $\partial_u^2-1$ annihilates $\sinh u$ and commutes with reflection.
+For $u\ge0$, each summand in HTB7 is strictly positive because
+$2\pi n^2 e^{4u}-3>0$. Moreover the series and each fixed number of its
+derivatives are bounded by a constant times $e^{C u}e^{-\pi e^{4u}}$:
+factor out $e^{-\pi e^{4u}}$ and bound the remaining sums of powers of
+$n$ times $e^{-\pi(n^2-1)}$. Evenness gives the corresponding estimate
+as $u\to-\infty$. These bounds justify all differentiations and
+integrations that follow.
+
+For $\operatorname{Re}s>1$, substitute $x=e^{4u}$ and integrate by parts
+twice. The endpoint terms vanish, at infinity exponentially and at zero
+by HTB6 and $\operatorname{Re}s>1$. The exact calculation is
+\begin{equation}\tag{HTB9}
+\begin{split}
+ \int_{\mathbb R}\Phi(u)e^{(2s-1)u}du
+ &=\frac14\int_0^{\infty}
+       \left(2x^{s/2+1}\psi''(x)+3x^{s/2}\psi'(x)\right)dx\\
+ &=\frac{s(s-1)}8\int_0^{\infty}\psi(x)x^{s/2-1}dx\\
+ &=\frac{s(s-1)}8\pi^{-s/2}\Gamma(s/2)\zeta(s)
+ =\frac14\xi(s).
+\end{split}
+\end{equation}
+For clarity, with $b=s/2$ the integration-by-parts multiplier is
+$\frac14(2b(b+1)-3b)=s(s-1)/8$. At zero HTB6 gives
+$\psi(x)=\frac12x^{-1/2}-\frac12+O(x^{-1/2}e^{-\pi/x})$, and the
+derivatives give the claimed vanishing boundary terms. The last
+interchange in HTB9 is absolutely convergent for $\operatorname{Re}s>1$.
+The left-hand side is entire by the preceding super-exponential bounds.
+It therefore supplies the entire continuation of $\xi=A\zeta$ and,
+by evenness, proves $\xi(s)=\xi(1-s)$. All its coefficients respect
+complex conjugation because the kernel is real.
+
+The original heat family is thus
+\begin{equation}\tag{HTB10}
+\begin{gathered}
+ H_h^{\mathrm{heat}}(z)=\int_0^{\infty}e^{h u^2}\Phi(u)\cos(zu)\,du,
+ \qquad (h,z)\in\mathbb C^2,\\
+ H_0^{\mathrm{heat}}(z)=\frac18\xi(s(z))=H_0^{\mathrm{Hur}}(z),\qquad
+ \partial_h H_h^{\mathrm{heat}}=-\partial_z^2 H_h^{\mathrm{heat}}.
+\end{gathered}
+\end{equation}
+Joint holomorphy and the differential equation follow from locally
+uniform integrable majorants for every $h,z$ derivative. To obtain the
+middle identity, put $2s-1=iz$ in HTB9 and use evenness: the integral
+over the whole real axis is twice the cosine integral. Hence the factor
+is exactly $1/8$. Every $H_h^{\mathrm{heat}}$ is even; for real $h$ it
+also satisfies $H_h^{\mathrm{heat}}(\bar z)
+=\overline{H_h^{\mathrm{heat}}(z)}$.
+
+\subsection{An invertible meromorphic map and its exact product}
+
+Let $\mathcal M_s$ and $\mathcal M_z$ be the fields of meromorphic
+functions on the entire $s$-plane and $z$-plane, respectively. The
+following maps are everywhere defined as maps of these fields viewed
+as complex vector spaces:
+\begin{equation}\tag{HTB11}
+ U:\mathcal M_s\longrightarrow\mathcal M_z,\qquad
+ (Uf)(z)=\frac{A(s(z))}{8}f(s(z)),\qquad
+ (U^{-1}G)(s)=\frac{8G(z(s))}{A(s)}.
+\end{equation}
+Since $A$ is a nonzero meromorphic function and $s,z$ are inverse affine
+coordinates, these formulas prove complex linearity and both inverse
+identities. With ordinary pointwise products $U$ is not multiplicative:
+its two product expressions differ by a factor $A/8$. The exact
+transported product and unit on the same meromorphic vector space are
+\begin{equation}\tag{HTB12}
+ (G\mathbin{\odot}J)(z)=\frac{8G(z)J(z)}{A(s(z))},\qquad
+ \mathbf 1_{\odot}(z)=\frac{A(s(z))}{8},\qquad
+ U(fq)=Uf\mathbin{\odot}Uq.
+\end{equation}
+All field axioms follow either by this inverse transport or by the
+displayed multiplication formula. Thus $U$ is a unital field
+isomorphism to $(\mathcal M_z,\odot)$, as well as a linear isomorphism
+to the ordinary meromorphic receiver. These two assertions use
+different, explicitly stated products. In particular the ordinary
+constant function $1$ is not asserted to be its transported unit.
+
+There is an exact local regularity rule. At a finite $s_0$, put
+$z_0=z(s_0)$ and let $\nu_{s_0}(f)$ denote meromorphic order, with
+$\nu(0)=+\infty$. Since the coordinate derivative $ds/dz=i/2$ is
+nonzero,
+\begin{equation}\tag{HTB13}
+ \nu_{z_0}(Uf)=\nu_{s_0}(A)+\nu_{s_0}(f),\qquad
+ \mathcal D_{s_0}
+ =\{f:\nu_{s_0}(f)\ge-\nu_{s_0}(A)\}
+ \xrightarrow[\;U\;]{\ \cong\ }\mathcal O_{z_0}.
+\end{equation}
+Here the domain is a fractional module of meromorphic germs and the
+arrow is a module isomorphism over the affine coordinate isomorphism;
+it is not claimed to be a subring with the ordinary product. At a point
+where $A$ is a holomorphic unit, it restricts to an isomorphism of
+holomorphic modules and satisfies the exact evaluation formula
+\[
+ \operatorname{ev}_{z_0}Uf
+   =\frac{A(s_0)}8\operatorname{ev}_{s_0}f.
+\]
+At a zero or pole of $A$, HTB13, rather than an undefined product of
+separate point values, specifies the evaluation domain.
+
+For example, if $A$ is a unit at $s_0$ and $F_t$ has a zero there,
+ordinary affine substitution, denoted $C(f)=f\circ s$, induces the
+unital algebra isomorphism
+\begin{equation}\tag{HTB14}
+ \mathcal O_{s_0}/(F_t)
+ \xrightarrow[\;C\;]{\ \cong\ }
+ \mathcal O_{z_0}/(H_t^{\mathrm{Hur}}).
+\end{equation}
+Indeed $U F_t=(A\circ s)C(F_t)/8$ and $A\circ s$ is a unit, so the
+two target principal ideals coincide. This proves equality of local
+multiplicities and the correspondence of every jet, without changing
+their coordinate scale. Explicitly, for $w=z-z_0$,
+\[
+ (Uf)(z_0+w)=\frac18\sum_{n\ge0}
+       \left(\frac{i}{2}\right)^n w^n
+       \sum_{j=0}^n\frac{A^{(j)}(s_0)f^{(n-j)}(s_0)}{j!(n-j)!}.
+\]
+Thus the complete finite jet map is triangular, with nonzero diagonal
+$A(s_0)(i/2)^n/8$. It is $C$, not multiplication by that unit, which
+gives the ordinary unital algebra arrow in HTB14.
+
+\subsection{Both infinitesimal generators and their difference}
+
+Define $D:\mathcal M_s\to\mathcal M_s$ by $Df(s)=s f(s+1)$.
+All differential and shift operators in the next display have the
+entire meromorphic field as their algebraic domain; no bounded-operator
+or semigroup assertion on an unspecified normed space is being used.
+Direct use of HTB11 gives
+\begin{equation}\tag{HTB15}
+\begin{split}
+ (D_H G)(z):=(UDU^{-1}G)(z)
+ &=c(s(z))G(z-2i),\\
+ c(s)=\frac{sA(s)}{A(s+1)}
+ &=\sqrt{\pi}\,\frac{s(s-1)}{s+1}
+       \frac{\Gamma(s/2)}{\Gamma((s+1)/2)},\\
+ \partial_tH_t^{\mathrm{Hur}}&=-D_HH_t^{\mathrm{Hur}}.
+\end{split}
+\end{equation}
+The sign and displacement follow from $s(z-2i)=s(z)+1$, and the last
+identity follows from HTB5. Gamma recurrence gives the removable values
+$c(0)=-2$, $c(-1)=-2\pi$, and $c(1)=0$. The complete product in HTB15
+is meromorphic: at negative odd integers below $-1$ the vanishing
+multiplier may multiply a pole of the shifted function, and evaluation
+is performed after multiplication. For instance, at $s=0$ the formula
+will give $\partial_tH_t^{\mathrm{Hur}}(i)=1/8$, exactly as HTB20 below.
+
+The original heat generator $B=-\partial_z^2$ has pullback
+\begin{equation}\tag{HTB16}
+ \mathcal L_H:=U^{-1}BU,\qquad
+ \mathcal L_H f(s)=\frac1{4A(s)}\frac{d^2}{ds^2}\bigl(A(s)f(s)\bigr).
+\end{equation}
+This includes both powers from $ds/dz=i/2$ and the minus sign in $B$;
+the original factors $8$ in $U$ and $U^{-1}$ cancel each other.
+The actual pulled-back heat trajectory is
+$f_h(s)=8H_h^{\mathrm{heat}}(z(s))/A(s)$, with $f_0=\zeta$ and
+$\partial_hf_h=\mathcal L_H f_h$. No assertion is needed that an
+operator exponential converges on every meromorphic function.
+
+The two actual generators in the same $s$-space are $\mathcal L_H$ and
+$-D$. Their exact difference is the operator
+\begin{equation}\tag{HTB17}
+\begin{split}
+ \mathcal E f(s)
+ &:=(\mathcal L_H+D)f(s)\\
+ &=\frac14 f''(s)+\frac{b(s)}2f'(s)
+   +\frac{b'(s)+b(s)^2}{4}f(s)+s f(s+1),\\
+ b(s)&=\frac{A'(s)}{A(s)}
+ =\frac1s+\frac1{s-1}-\frac{\log\pi}{2}
+       +\frac12\frac{\Gamma'(s/2)}{\Gamma(s/2)},\\
+ (B+D_H)U&=U\mathcal E.
+\end{split}
+\end{equation}
+The expansion follows by applying the ordinary product rule twice to
+HTB16. Every displayed coefficient is interpreted meromorphically;
+apparent singularities from the expanded expression do not change the
+domain just specified. HTB17 is the exact map of the generator defect,
+not a declaration that the two flows are unrelated.
+
+\subsection{All poles, the entire parameters, and reflection}
+
+The only finite singularities of $A$ are simple poles at $s=-2m$,
+$m\ge1$. The apparent pole at zero is removable and $A(0)=-1$;
+$s=1$ is its only zero, and
+$A(s)=(s-1)/2+O((s-1)^2)$ there. These statements follow from the
+gamma pole calculation following HTB4, the nonvanishing of gamma
+away from its poles, and the two polynomial factors of $A$. Hence
+HTB5 gives
+\begin{equation}\tag{HTB18}
+\begin{gathered}
+ \Xi_t(0)=t+\frac12,\qquad \Xi_t(1)=\frac12,\\
+ a_m:=\operatorname*{Res}_{s=-2m}A(s)
+   =\frac{2(-1)^m(2m+1)\pi^m}{(m-1)!},\\
+ r_m(t):=\operatorname*{Res}_{s=-2m}\Xi_t(s)
+   =\frac{2(-1)^{m+1}\pi^m}{(m-1)!}B_{2m+1}(1+t).
+\end{gathered}
+\end{equation}
+These are all possible poles of $\Xi_t$. A listed point is a pole
+exactly when $r_m(t)\ne0$; otherwise it is removable and its value is
+$a_m\partial_sF_t(-2m)$. To check every constant, the residue of
+$\Gamma(s/2)$ in the $s$-coordinate is $2(-1)^m/m!$ and
+$(-2m)(-2m-1)/2=m(2m+1)$. Multiplying their product by
+$F_t(-2m)=-B_{2m+1}(1+t)/(2m+1)$ gives HTB18. The endpoint at one
+uses the residue $1$ of $F_t$, not its undefined point value.
+
+In particular the first residue and the exact classification are
+\begin{equation}\tag{HTB19}
+\begin{gathered}
+ r_1(t)=2\pi(1+t)\left(t+\frac12\right)t,\\
+ t\in\mathbb R,\ t>-1:\qquad
+ \Xi_t\text{ is entire}\quad\Longleftrightarrow\quad
+ t\in\left\{0,-\frac12\right\},\\
+ \Xi_0(s)=\xi(s),\qquad
+ \Xi_{-1/2}(s)=(2^s-1)\xi(s).
+\end{gathered}
+\end{equation}
+Indeed $B_3(a)=a(a-1/2)(a-1)$ follows by expanding HTB2. Thus the
+first pole alone excludes every other $t>-1$. At zero, entireness was
+proved in HTB9. At $t=-1/2$, the absolutely convergent identity
+$\zeta(s,1/2)=2^s\sum_{n\ge0}(2n+1)^{-s}=(2^s-1)\zeta(s)$
+extends meromorphically and proves entireness. This also proves that
+no unexamined higher gamma pole invalidates the converse.
+
+The same statements in the original receiver coordinate are
+\begin{equation}\tag{HTB20}
+\begin{gathered}
+ z_m=(4m+1)i,\qquad
+ \operatorname*{Res}_{z=z_m}H_t^{\mathrm{Hur}}(z)
+ =\frac{r_m(t)}{4i}
+ =\frac{i(-1)^m\pi^m}{2(m-1)!}B_{2m+1}(1+t),\\
+ H_t^{\mathrm{Hur}}(i)=\frac{2t+1}{16},\qquad
+ H_t^{\mathrm{Hur}}(-i)=\frac1{16}.
+\end{gathered}
+\end{equation}
+The residue factor is $1/(8s'(z_m))=1/(4i)$; it is different from
+the value factor $1/8$. In particular the tangent to the Hurwitz
+trajectory at zero has a genuine pole:
+\begin{equation}\tag{HTB21}
+ \operatorname*{Res}_{s=-2}\left.\partial_t\Xi_t(s)\right|_{t=0}
+ =\pi,\qquad
+ \operatorname*{Res}_{z=5i}\left.\partial_tH_t^{\mathrm{Hur}}(z)
+                                      \right|_{t=0}=\frac{\pi}{4i}.
+\end{equation}
+This is obtained by differentiating the explicit polynomial $r_1(t)$.
+In contrast $\partial_h H_h^{\mathrm{heat}}|_{h=0}$ is entire by
+HTB10. Thus HTB17 is nonzero even on the actual initial zeta function;
+the difference is witnessed by a specified principal part, without a
+change of coordinate, multiplication factor, or zero convention.
+
+Define the meromorphic reflection defect by
+\begin{equation}\tag{HTB22}
+\begin{gathered}
+ R_t(s)=\Xi_t(s)-\Xi_t(1-s),\qquad R_t(1-s)=-R_t(s),\\
+ R_t(0)=t,\qquad R_t(1)=-t,\qquad
+ H_t^{\mathrm{Hur}}(z)-H_t^{\mathrm{Hur}}(-z)=\frac18R_t(s(z)).
+\end{gathered}
+\end{equation}
+For real $t>-1$, its identically vanishing locus is exactly $t=0$:
+necessity follows by evaluation at zero, and sufficiency follows from
+HTB9. At the other entire parameter,
+$R_{-1/2}(s)=(2^s-2^{1-s})\xi(s)$, which is nonzero at $s=0$.
+If $r_m(t)\ne0$, $R_t$ has simple poles at both $-2m$ and $1+2m$,
+with residue $r_m(t)$ at each. The reflection changes the sign of a
+residue and the subtraction changes it again; the two pole sets are
+disjoint. For real $t$, $\Xi_t(\bar s)=\overline{\Xi_t(s)}$ and
+therefore
+$H_t^{\mathrm{Hur}}(-\bar z)=\overline{H_t^{\mathrm{Hur}}(z)}$.
+It is not legitimate to replace the last identity by reality on the
+real $z$-axis when the reflection defect is nonzero.
+
+The reflection is also an exact operator on the source field:
+\begin{equation}\tag{HTB23}
+\begin{gathered}
+ (J_A f)(s)=\frac{A(1-s)}{A(s)}f(1-s),\qquad J_A^2=I,
+ \qquad UJ_A=J_zU,\quad (J_zG)(z)=G(-z),\\
+ [D,J_A]f(s)
+ =s\frac{A(-s)}{A(s+1)}f(-s)
+ -(1-s)\frac{A(1-s)}{A(s)}f(2-s).
+\end{gathered}
+\end{equation}
+Both assertions follow by substitution; their denominators are nonzero
+elements of the meromorphic field. In particular
+$R_t/8$ in the receiver is $(I-J_z)UF_t$, or $U(I-J_A)F_t$.
+This gives a map of the entire reflection defect, including all its
+principal parts. The heat generator commutes with $J_z$, whereas its
+Hurwitz counterpart has exactly the commutator transported from
+HTB23. The two projections $(I\pm J_z)/2$ retain the complete even
+and odd meromorphic parts; no part is discarded in their direct sum.
+
+\subsection{The exact first transverse velocity at a critical zero}
+
+Let $\rho$ be a simple nontrivial zeta zero with
+$\operatorname{Re}\rho=1/2$. This subsection concerns each such zero;
+it assumes neither that every nontrivial zero is simple nor that every
+nontrivial zero lies on the line. At $\rho$, $A$ is a holomorphic unit,
+so HTB14 applies. Joint holomorphy from HTB4 and the implicit function
+theorem give the unique local root $\rho(t)$ with
+$F_t(\rho(t))=0$, $\rho(0)=\rho$. Differentiating that equation gives
+\begin{equation}\tag{HTB24}
+ \rho'(0)=c_1(\rho)
+ =\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)},\qquad
+ z_\rho(t)=-2i\left(\rho(t)-\frac12\right),\qquad
+ \operatorname{Im}z_\rho'(0)=-2\operatorname{Re}c_1(\rho).
+\end{equation}
+The numerator is nonzero: $\rho\ne0$ and the absolutely convergent
+Euler product for $\zeta(\rho+1)$ has no zero because
+$\operatorname{Re}(\rho+1)>1$. This proves $c_1(\rho)\ne0$, but does
+not prove that its real part is nonzero.
+
+At a zero $\xi'(\rho)=A(\rho)\zeta'(\rho)$. Reflection and conjugation
+give $\xi'(1-\rho)=-\xi'(\rho)$ and
+$\overline{\xi'(\rho)}=\xi'(\bar\rho)=-\xi'(\rho)$, so this derivative
+is nonzero and purely imaginary. Similarly
+$c_1(1-\rho)=\overline{c_1(\rho)}$. Differentiating HTB22 at the fixed
+point $\rho$ therefore yields the exact identity
+\begin{equation}\tag{HTB25}
+\begin{split}
+ \left.\partial_tR_t(\rho)\right|_{t=0}
+ &=-\xi'(\rho)c_1(\rho)
+     +\xi'(1-\rho)c_1(1-\rho)\\
+ &=-2\xi'(\rho)\operatorname{Re}c_1(\rho),\\
+ \left.\partial_t\bigl(H_t^{\mathrm{Hur}}(z_\rho)
+                 -H_t^{\mathrm{Hur}}(-z_\rho)\bigr)\right|_{t=0}
+ &=-\frac14\xi'(\rho)\operatorname{Re}c_1(\rho),
+ \qquad z_\rho=z(\rho).
+\end{split}
+\end{equation}
+Thus first-order reflection failure at this zero and its first-order
+transverse velocity vanish together, with the original nonzero factor
+shown. This proves an exact relation at every critical simple zero;
+it does not extrapolate a finite numerical nonvanishing list to all
+zeros. The meromorphic global defect has already been determined
+without such an extrapolation in HTB18--HTB23.
+
+\subsection{The retained arithmetic correction and its boundary kernel}
+
+The full difference from the original arithmetic function is a
+specified entire function before completion:
+\begin{equation}\tag{HTB26}
+\begin{gathered}
+ D_t^{\mathrm{ar}}(s)=\zeta(s)-F_t(s),\qquad
+ C_t(s)=A(s)D_t^{\mathrm{ar}}(s),\qquad
+ J_t(z)=\frac18C_t(s(z)),\\
+ F_t+D_t^{\mathrm{ar}}=\zeta,\qquad
+ \Xi_t+C_t=\xi,\qquad
+ H_t^{\mathrm{Hur}}+J_t=H_0^{\mathrm{heat}}.
+\end{gathered}
+\end{equation}
+Both summands of $D_t^{\mathrm{ar}}$ have residue $1$ at their only
+possible pole, so their difference is entire. There is a convergent
+boundary-kernel formula on the larger half-plane
+$\operatorname{Re}s>0$:
+\begin{equation}\tag{HTB27}
+ D_t^{\mathrm{ar}}(s)=\frac1{\Gamma(s)}
+   \int_0^{\infty}x^{s-1}d_t(x)\,dx,
+ \quad
+ d_t(x)=\frac{e^{-x}(1-e^{-t x})}{1-e^{-x}},\quad d_t(0)=t.
+\end{equation}
+At infinity both exponential terms decay for $\operatorname{Re}(1+t)>0$;
+at zero Taylor expansion gives $d_t(x)=t+O(x)$. These facts prove
+absolute convergence and local uniformity on the indicated domain.
+On $\operatorname{Re}s>1$ it is the difference of HTB3 for $a=1$ and
+$a=1+t$, so it gives the stated continuation by uniqueness. All
+remaining values are fixed by the entire continuation just proved.
+Differentiation gives
+$\partial_tD_t^{\mathrm{ar}}=sF_t(s+1)$, also directly from HTB5.
+
+This correction retains every completed boundary contribution:
+\begin{equation}\tag{HTB28}
+\begin{gathered}
+ C_t(0)=-t,\qquad C_t(1)=0,\qquad
+ \operatorname*{Res}_{s=-2m}C_t=-r_m(t),\\
+ C_t(s)-C_t(1-s)=-R_t(s),\qquad
+ \partial_t C_t(s)=sA(s)F_t(s+1).
+\end{gathered}
+\end{equation}
+Each statement follows by subtracting the corresponding functions in
+HTB26, using entireness and reflection of $\xi$ proved in HTB9, or by
+differentiation. The cancellation of all the principal parts and of
+the entire reflection defect is an identity of the original analytic
+functions. It does not assert a zero-location theorem for any summand.
+
+\subsection{Every map over the original lattice and its faithful receiver}
+
+Let $L$ be any nontrivial bounded distributive lattice. There is no
+finiteness, Boolean-special-case, or one-point restriction here. For a
+complex vector space $V$, define the full support semimodule
+\begin{equation}\tag{HTB29}
+\begin{gathered}
+ G_L(V)=\{(0,\lambda):\lambda\in L\}\cup(V\times\{1_L\}),\\
+ (v,\lambda)+(w,\mu)=(v+w,\lambda\vee\mu),\qquad
+ (c,\alpha)(v,\lambda)=(cv,\alpha\wedge\lambda),\\
+ \tau=(0,0_L),\qquad e=(0,1_L).
+\end{gathered}
+\end{equation}
+The scalars are $G_L(\mathbb C)$ with its original addition and
+multiplication. Closure follows because a nonzero amplitude forces
+each participating amplitude that produces it to have top support.
+The semimodule axioms follow componentwise from vector-space laws and
+the two distributive laws of $L$. In particular an amplitude
+cancellation has the join of the original labels, rather than being
+replaced by $\tau$. If $V$ is a commutative algebra, its supported
+multiplication is $(v,\lambda)(w,\mu)=(vw,\lambda\wedge\mu)$; it
+has exactly the same distributivity verification.
+
+For every complex-linear map $T:V\to W$ occurring above, define
+\begin{equation}\tag{HTB30}
+ T^{\uparrow}(v,\lambda)=(Tv,\lambda).
+\end{equation}
+This is well-defined because $v=0$ implies $Tv=0$. Linearity gives
+preservation of addition and of the displayed scalar action, including
+all zero amplitudes. Composition and inverse maps lift exactly. Thus
+$U^{\uparrow}$ is a semimodule isomorphism, the generators and their
+difference commute with it as in HTB15--HTB17, and both reflection
+projections and their zero-amplitude fibres lift with their original
+labels, as specified in HTB33. Their semimodule kernels, meaning the
+inverse images of $\tau$, are the different fibres identified there.
+Where the transported algebra of HTB12 is used, $U^{\uparrow}$ is
+also a unital semiring isomorphism, with unit
+$(A\circ s/8,1_L)$. Its induced map on prime spectra is the usual
+preimage map: an ideal is prime exactly when its inverse image is
+prime, since a bijective multiplicative map preserves and reflects
+membership in a product. This applies to every support prime as well
+as every arithmetic prime; no prime stratum is erased by the bridge.
+
+To verify the original faithful comparison, let $K$ be the programme's
+tropical semifield with zero and Boolean subsemiring $\mathbb B$.
+Its map $\beta:K\to\mathbb B$ sends zero to zero and every nonzero
+element to one. It preserves products, and preserves sums because a
+sum in an idempotent semifield is zero only when both summands are
+zero. Regard $L$ as the $\mathbb B$-algebra with addition $\vee$ and
+multiplication $\wedge$, and set
+\begin{equation}\tag{HTB31}
+\begin{gathered}
+ K_L=K\otimes_{\mathbb B}L,\qquad
+ \iota_L(\lambda)=1_K\otimes\lambda,\qquad
+ \rho_L=\beta\otimes\operatorname{id}_L,\qquad
+ \rho_L\iota_L=\operatorname{id}_L,\\
+ \Phi_V:G_L(V)\longrightarrow V\times K_L,\qquad
+ \Phi_V(v,\lambda)=(v,\iota_L(\lambda)),\\
+ (T\times\operatorname{id}_{K_L})\Phi_V
+       =\Phi_W T^{\uparrow}.
+\end{gathered}
+\end{equation}
+The tensor universal property proves the retraction formula. It proves
+injectivity of $\iota_L$ and therefore of $\Phi_V$. The coordinate
+laws verify addition and the $G_L(\mathbb C)$-action in the product
+receiver. When $V$ is an algebra they also verify multiplication.
+The last line is a coordinate equality, and supplies the commuting
+square for every previously specified morphism, not just for a
+scalar amplitude map.
+
+For regular germs, evaluation has its own such square. At $s_0$ where
+$A$ is a unit, HTB13 lifts to
+\begin{equation}\tag{HTB32}
+\begin{gathered}
+ \operatorname{ev}_{z_0}^{\uparrow}U^{\uparrow}(f,\lambda)
+ =\left(\frac{A(s_0)}8 f(s_0),\lambda\right),\\
+ \Phi_{\mathbb C}\operatorname{ev}_{z_0}^{\uparrow}U^{\uparrow}
+ =\left(\operatorname{ev}_{z_0}U\times\operatorname{id}_{K_L}\right)
+       \Phi_{\mathcal O_{s_0}}.
+\end{gathered}
+\end{equation}
+At zeros or poles of $A$ the first domain is replaced by the exact
+fractional module $\mathcal D_{s_0}$ of HTB13; evaluation of $Uf$ is
+defined there and its lifted square still holds. The unital local
+algebra arrow of HTB14 likewise gives its full $G_L$ arrow, and
+retains the support of every nilpotent jet or vanishing amplitude.
+
+In particular, at a regular zero of an original top-supported analytic
+function the evaluated element is $e=(0,1_L)$, whose image is
+$(0,1_{K_L})$. It is not $\tau$, whose image is $(0,0_{K_L})$.
+For a linear defect operator $T$, the entire inverse image of all
+zero-amplitude labels is
+\begin{equation}\tag{HTB33}
+ \{x:T^{\uparrow}x\in\{(0,\lambda):\lambda\in L\}\}
+      =G_L(\ker T),\qquad
+ (T^{\uparrow})^{-1}(\tau)=\{\tau\},\qquad
+ (T^{\uparrow})^{-1}(e)=\ker T\times\{1_L\}.
+\end{equation}
+The first equality is just $Tv=0$ with its unchanged label. The second
+uses the defining fact that label $0_L$ permits only amplitude zero;
+the third uses the definition of $e$. These are three different,
+fully specified fibres.
+
+Finally the correction identity HTB26 lifts without support loss:
+\begin{equation}\tag{HTB34}
+ (H_t^{\mathrm{Hur}},1_L)+(J_t,1_L)
+   =(H_0^{\mathrm{heat}},1_L),\qquad
+ \Phi(H_t^{\mathrm{Hur}},1_L)+\Phi(J_t,1_L)
+   =\Phi(H_0^{\mathrm{heat}},1_L).
+\end{equation}
+This uses $1_L\vee1_L=1_L$ and its tensor image; it remains true at
+points where the two amplitudes cancel, provided evaluations are
+taken after the regular analytic sum. At an original zero, the sum
+is supported zero. Separate summands with poles are not individually
+evaluated. Thus the exact analytic correction, its reflection and pole
+defects, the original theta flow, and the arbitrary-lattice receiver
+form one commuting construction. The construction proves the stated
+maps and defects; it supplies no conclusion that all original zeta
+zeros lie on, or fail to lie on, the critical line.
+
+\subsection{The exact boundary correction to the logarithmic receiver}
+
+For every real $t\ge-1/2$, $H_t^{\mathrm{Hur}}(0)>0$. To prove this
+without a numerical input, HTB7 and HTB10 give
+$H_0^{\mathrm{heat}}(0)>0$. Since
+$A(1/2)=-\Gamma(1/4)/(8\pi^{1/4})<0$, it follows that
+$\zeta(1/2)<0$. At $a=1/2$ the identity used in HTB19 gives
+$\zeta(1/2,1/2)=(\sqrt2-1)\zeta(1/2)<0$, while HTB5 gives
+$\partial_a\zeta(1/2,a)=-\zeta(3/2,a)/2<0$ for every $a>0$;
+the last sign follows from its absolutely convergent positive series.
+Thus $F_t(1/2)<0$ for $a\ge1/2$, and the assertion follows from HTB1.
+
+Fix such a $t$. On a sufficiently small disc about $z=0$, both
+$H_0=H_0^{\mathrm{heat}}$ and $H_t=H_t^{\mathrm{Hur}}$ are
+holomorphic and nonzero. Define there $c_t=J_t/H_0$, retaining the
+correction $J_t$ of HTB26. Direct differentiation gives
+\begin{equation}\tag{HTB35}
+\begin{gathered}
+ \frac{H_t'}{H_t}-\frac{H_0'}{H_0}
+     =-\frac{c_t'}{1-c_t},\qquad
+ W_t(z):=\frac{H_t(z)H_t(-z)}{H_0(z)^2}
+     =(1-c_t(z))(1-c_t(-z)),\\
+ b_n(t):=-\frac12[z^{2n-1}]
+       \left(\frac{H_t'(z)}{H_t(z)}-
+             \frac{H_t'(-z)}{H_t(-z)}\right),\quad n\ge1,\\
+ b_n(t)=b_n(0)-\frac12[z^{2n-1}]\frac{W_t'(z)}{W_t(z)}.
+\end{gathered}
+\end{equation}
+The brackets mean the indicated Taylor coefficient at zero. No branch
+of a global logarithm is used. For the last identity differentiate
+$H_t(z)H_t(-z)=H_0(z)^2W_t(z)$, using evenness of $H_0$. This proves
+the correction to every coefficient of the even logarithmic receiver,
+with no finite truncation. All terms are fixed by HTB27 and the
+original theta integral.
+
+The $b_n(t)$ are defined here as logarithmic coefficients, not as
+uncorrected zero-only moments of a meromorphic function. The exact
+distinction is its local divisor: if
+$H_t(z)=(z-z_*)^{\nu}u(z)$ with $u(z_*)\ne0$, then
+$H_t'/H_t=\nu/(z-z_*)+u'/u$. A zero of multiplicity $m$ contributes
+$\nu=m$ and an actual pole contributes $\nu=-1$. HTB18--HTB20 specify
+all those negative contributions and every cancellation. Thus any
+global zero-only interpretation must retain exactly these pole
+terms. HTB35 constructs the complete local correction to the
+arithmetic receiver, and HTB31 applies to its linear coefficient
+extractions with every support label unchanged. It does not assert
+that the nonlinear logarithm is a linear morphism of split carriers.
+
+\clearpage
+
+% Complete source: HURWITZ_ALIGNMENT_FULL_MAP.tex
+% Root derivation. HZA: full carrier, zero graph, and verified calculation scope.
+\section{The aligned Hurwitz zero graph with its complete support map}
+\label{sec:hurwitz-alignment-full-map}
+
+\paragraph{Sources and actual objects.}
+The original programme source is the retained April 2026 draft
+\emph{Split-Zero Support, Residue-Parity Reversal, Shifted-Hurwitz CUE
+Defects, and Finite Phase-Space Enlargement}, printed byline
+``Compiled theorem draft'', source labels \texttt{thm:universal-flow},
+\texttt{prop:non-euler}, and \texttt{thm:zero-motion}.
+Its complete supplied TeX is retained with this calculation; its human
+author is not specified and is not inferred here. The following proof
+keeps its original $s,t$ coordinates. The operator construction in HPS
+uses the arithmetic scaling of Jean-Beno\^it Bost and Alain Connes,
+and the precise endomotive presentation of Alain Connes, Caterina
+Consani and Matilde Marcolli,
+\href{https://arxiv.org/abs/0806.2401v1}{\emph{Fun with $\mathbb F_1$}},
+source equations \texttt{sigmatgenerators} and relations (c1)--(c4).
+The full split carrier is the one in
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{\emph{Split Support Geometry}, v11, Definition \texttt{def:lattice-split}}.
+The new claims below are proved here; numerical path labels have the
+explicit, narrower meaning stated at the end.
+
+\subsection{The full carrier and its finite-cardinality receiver}
+
+Let $L$ be the original nontrivial bounded distributive lattice, and $R$
+a commutative ring. Retain, without identifying any labelled zeros,
+\begin{equation}\tag{HZA1}
+\begin{gathered}
+G_L(R)=\{(0,\lambda):\lambda\in L\}\cup(R\times\{1_L\}),\qquad
+\tau=(0,0_L),\quad e=(0,1_L),\\
+(a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\qquad
+(a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu),\\
+K_L=K\otimes_{\mathbb B}L,\qquad
+\iota_L(\lambda)=1_K\otimes\lambda,\qquad
+\Phi_R(a,\lambda)=(a,\iota_L(\lambda)).
+\end{gathered}
+\end{equation}
+Here $K$ is the programme's tropical semifield, and $\mathbb B$ its
+Boolean subsemiring. The map $K\to\mathbb B$ sending zero to zero and
+every nonzero element to one preserves addition and multiplication.
+Tensoring it with $L$ gives $\rho_L:K_L\to L$ with
+$\rho_L\iota_L=\operatorname{id}_L$. Thus $\Phi_R$ is injective,
+preserves both operations and recovers every label, including labels
+whose amplitude cancels. This supplies the actual comparison map,
+rather than a count of extra points.
+
+For finite $L$ and $n\ge1$, the exact underlying-set count is
+\begin{equation}\tag{HZA2}
+\left|G_L(\mathbb Z/n\mathbb Z)\right|=(n-1)+|L|,
+\qquad
+\sum_{n=1}^{\infty}\left|G_L(\mathbb Z/n\mathbb Z)\right|^{-s}
+=\zeta(s,|L|),\quad \operatorname{Re}s>1.
+\end{equation}
+Indeed there are precisely $n-1$ nonzero amplitudes, each forced to
+have top label, and precisely $|L|$ distinct zero-amplitude elements.
+The sets are disjoint. Substituting $n-1+|L|$ in the absolutely
+convergent sum proves the second equality. The quotient
+$(a,\lambda)\mapsto a$ identifies all these zeros and gives the
+ordinary count $n$. For $|L|=2$, the separated count gives
+$\zeta(s,2)=\zeta(s)-1$. For arbitrary finite $L$ its shift is
+$t=|L|-1$, with no change in the carrier (HZA1).
+
+The count is only this specified receiver. It does not recover the
+meet, join, or prime spectrum of $L$. For example, the four-element
+chain and the four-element Boolean lattice have the same count;
+they are not isomorphic because one is totally ordered and the other
+has two incomparable elements. For infinite $L$ the displayed finite
+cardinality series is not defined. The full map (HZA1) remains
+defined. The real continuous shift below is an analytic family;
+it is not an assertion that the cardinality of $L$ varies continuously.
+
+\subsection{An analytic construction through the critical strip}
+
+Put
+\begin{equation}\tag{HZA3}
+ F(s,t)=\zeta(s,1+t),\qquad
+ h_t(x)=\frac{x e^{-(1+t)x}}{1-e^{-x}}.
+\end{equation}
+The branch of $\log(1+t)$ and of $\log(n+t)$ for complex $t$ is the
+one on $\operatorname{Re}(1+t)>0$. On
+$\operatorname{Re}s>0$, $s\ne1$, $\operatorname{Re}(1+t)>0$, the
+following absolutely convergent expression constructs $F$:
+\begin{equation}\tag{HZA4}
+ F(s,t)=\frac1{\Gamma(s)}\left\{
+ \frac1{s-1}+
+ \int_0^1 x^{s-2}(h_t(x)-1)\,dx+
+ \int_1^\infty x^{s-2}h_t(x)\,dx\right\}.
+\end{equation}
+Near zero, $h_t(x)=1+O(x)$, uniformly on compact parameter sets.
+For large positive $x$, it is bounded by a constant times
+$x e^{-c x}$, where $c>0$ is a lower bound for
+$\operatorname{Re}(1+t)$ on the chosen compact set. The same bounds
+after any fixed number of $s,t$ derivatives acquire only powers of
+$x$ and $|\log x|$. These bounds prove absolute convergence and local
+uniform differentiability under both integrals. For
+$\operatorname{Re}s>1$, combine the two integrals with
+$\int_0^1x^{s-2}\,dx=(s-1)^{-1}$ and expand
+$(1-e^{-x})^{-1}=\sum_{j\ge0}e^{-jx}$. Absolute convergence gives
+$\Gamma(s)\sum_{n\ge1}(n+t)^{-s}$. This proves (HZA4) in the original
+half-plane and supplies its holomorphic continuation to the stated
+domain. Its only possible pole there is $s=1$, with residue one.
+
+Differentiating $h_t$ gives $\partial_t h_t=-x h_t$, so the two
+integrals immediately give the exact flow equation
+\begin{equation}\tag{HZA5}
+ \partial_t F(s,t)=-s F(s+1,t),\qquad
+ \partial_t^kF(s,t)=(-1)^k(s)_kF(s+k,t).
+\end{equation}
+The first equality follows from (HZA4) and the convergent Mellin
+integral for $F(s+1,t)$; the second follows by induction, with
+$(s)_k=s(s+1)\cdots(s+k-1)$ and $(s)_0=1$. Holomorphy in $|t|<1$
+then gives the actual, locally uniformly convergent Taylor series
+\begin{equation}\tag{HZA6}
+ F(s,t)=\sum_{k=0}^{\infty}
+       \frac{(-t)^k(s)_k}{k!}\zeta(s+k),\quad
+       \operatorname{Re}s>0,\ s\ne1,\ |t|<1.
+\end{equation}
+In this domain the factors on the right introduce no additional pole:
+for $k\ge1$ the argument has real part greater than one.
+For any compact subset in $s$ and any smaller closed $t$ disc,
+Cauchy's integral formula in a larger disc of radius less than one
+proves the claimed uniform convergence. Thus no formal exponential
+is being used as an unproved analytic operator assertion.
+
+\subsection{Every nontrivial zero gives one exact local graph}
+
+Let $\rho$ be any zero of $\zeta$ in $0<\operatorname{Re}\rho<1$,
+and let $m$ be its order. This is a quantification over actual zeros;
+no zero on or off a particular vertical line is supplied as an
+assumption about all the zeros. The Euler product in the absolutely
+convergent half-plane gives
+\begin{equation}\tag{HZA7}
+ B_\rho=\rho\zeta(\rho+1)\ne0,
+ \qquad \partial_t F(\rho,0)=-B_\rho.
+\end{equation}
+For completeness, nonvanishing of that Euler product follows from
+$\sum_p\sum_{k\ge1}|p^{-k(\rho+1)}|/k<\infty$: its exponential is
+nonzero, and absolute expansion by unique prime factorization equals
+the zeta series. Also $\rho\ne0$ in the stated strip.
+
+There is a neighbourhood of $\rho$ and a unique holomorphic function
+$\theta$ there, taking values near zero, for which the full local
+zero set is
+\begin{equation}\tag{HZA8}
+ \{(s,t):F(s,t)=0\}=\{(s,\theta(s))\},\qquad \theta(\rho)=0.
+\end{equation}
+Here is a construction with the uniqueness included. Write
+$B=\partial_t F(\rho,0)\ne0$. Choose sufficiently small closed
+discs $|s-\rho|\le d$, $|t|\le r$ inside the holomorphy domain so
+that $|1-B^{-1}\partial_tF(s,t)|\le1/4$ and
+$|B^{-1}F(s,0)|\le r/2$. Such discs exist by continuity and
+$F(\rho,0)=0$. The map $t\mapsto t-B^{-1}F(s,t)$ sends the
+$t$ disc into itself and has Lipschitz constant at most $1/4$.
+Starting from zero, its iterates converge uniformly to the unique
+fixed point. Each iterate is holomorphic in $s$ on the open disc;
+uniform convergence makes the limit holomorphic. A zero of $F$
+in the product of discs is exactly a fixed point, proving (HZA8).
+
+The order and leading coefficient of this graph are determined
+without any simplicity assumption:
+\begin{equation}\tag{HZA9}
+ \theta(s)=(s-\rho)^m U_\rho(s),\qquad
+ U_\rho(\rho)=\frac{\zeta^{(m)}(\rho)}{m!\rho\zeta(\rho+1)}\ne0.
+\end{equation}
+To prove this, the fundamental theorem of calculus gives
+$F(s,t)=\zeta(s)+t A(s,t)$, where
+$A(s,t)=\int_0^1\partial_tF(s,ut)\,du$ is holomorphic and
+$A(\rho,0)=-B_\rho$. At the graph,
+$\theta(s)=-\zeta(s)/A(s,\theta(s))$. Its denominator is a
+holomorphic unit near $\rho$. Factoring the zero of $\zeta$ proves
+both the order and the coefficient in (HZA9). Multiple zeta zeros
+therefore give ramification of the projection to $t$, rather than a
+failure to construct the total zero graph.
+
+At a simple zero the graph can instead be written $s=\rho(t)$,
+by the same contraction argument with the variables interchanged.
+Implicit differentiation in (HZA5) proves
+\begin{equation}\tag{HZA10}
+ \rho'(0)=\frac{\rho\zeta(\rho+1)}{\zeta'(\rho)}.
+\end{equation}
+If this actual zero has $\operatorname{Re}\rho=1/2$ and the real
+part of (HZA10) is nonzero, then
+$\operatorname{Re}\rho(t)-1/2=t\operatorname{Re}\rho'(0)+O(t^2)$
+for real $t$. Dividing by $t$ and using continuity proves a
+transverse crossing for all sufficiently small nonzero $t$.
+This conclusion is local. It places no restriction on a later
+return of the same branch to the line.
+
+\subsection{The supported graph and all its comparison maps}
+
+For any open product of discs $D$ used above, let $R=\mathcal O(D)$.
+The original function is the element $(F,1_L)$ of $G_L(R)$, and
+its value at a point $x=(s,t)$ is obtained by the unital semiring
+homomorphism
+\begin{equation}\tag{HZA11}
+\begin{array}{ccc}
+ G_L(\mathcal O(D))&\xrightarrow{\Phi_{\mathcal O(D)}}&
+                 \mathcal O(D)\times K_L\\
+ {\scriptstyle(a,\lambda)\mapsto(a(x),\lambda)}\downarrow&&
+       \downarrow{\scriptstyle(a,w)\mapsto(a(x),w)}\\
+ G_L(\mathbb C)&\xrightarrow{\Phi_{\mathbb C}}&\mathbb C\times K_L.
+\end{array}
+\end{equation}
+Evaluation preserves ring addition and multiplication, and the label
+is unchanged, proving the left map preserves the displayed split
+operations. Both composites are $(a(x),\iota_L\lambda)$, proving
+commutativity on every element, including every labelled zero.
+Consequently the zero graph just constructed is exactly
+\begin{equation}\tag{HZA12}
+ \{x:\operatorname{ev}_x(F,1_L)=e\}
+ =\{x:\operatorname{ev}_x\Phi(F,1_L)=(0,1_{K_L})\}.
+\end{equation}
+Its value is supported zero, not $\tau$. All other zero sections
+$(0,\lambda)$ remain present, evaluate to themselves, and are
+recovered from the full map by $\rho_L$. The faithful comparison
+does not impose an additional equation on $s$. The disc-algebra
+prime operator in HPS gives the entire family another exact receiver;
+HCR gives its residue-class receivers and their retained support
+defects. These are calculations on the same $F$, with the displayed
+maps, rather than a change of its zero convention.
+
+\subsection{The actual bounded calculation and its limits}
+
+The existing programme velocity certificate stores enclosures for
+$V_j=2\operatorname{Re}\rho_j'(0)$. Its first 60 rows have 29
+positive and 31 negative signs. The factor two must be retained when
+comparing that file with (HZA10). The new script
+\texttt{compute\_hurwitz\_paths.py} independently recomputes those
+60 velocities at 45 decimal digits, checks each sign, and solves
+for actual nearby Hurwitz zeros at $t=10^{-4}$ and $t=-10^{-4}$.
+It checks residuals less than $10^{-33}$. These are numerical checks;
+the pre-existing interval enclosures and the new non-interval
+recomputations are recorded as different evidence.
+
+The same script numerically follows the first five starting zeros
+to $t=-1/2$ and $t=1$, with adaptive predictor/Newton steps and
+80-digit endpoint refinement. At $t=1$, the first three endpoints
+are, to the displayed decimal precision,
+\[
+ 1.40778804065+23.32798775456i,\qquad
+ 0.41092175383+31.71541044219i,\qquad
+ 1.36768818112+38.41910556064i.
+\]
+The exact endpoint identities are
+\begin{equation}\tag{HZA13}
+ F(s,1)=\zeta(s)-1,\qquad
+ F(s,-1/2)=(2^s-1)\zeta(s).
+\end{equation}
+The first follows by deleting the first term of the zeta series.
+For the second, split that series into odd and even integers:
+$\sum_{n\ge0}(n+1/2)^{-s}=2^s\sum_{n\text{ odd}}n^{-s}
+=2^s(1-2^{-s})\zeta(s)$. Both identities extend from their
+convergent half-plane by holomorphic continuation. The nonzero
+factor $2^s$ is retained. The zeros of $2^s-1$ have
+$s=2\pi i k/\log2$ for every integer $k$, including $k=0$.
+
+The five paths in the figure are interpolations of numerical sample
+points. They were initialized at known Riemann zeros; their common
+value $\operatorname{Re}s=1/2$ at $t=0$ is therefore not an
+independent proof for untracked zeros. The first and third numerical
+paths reach the first two positive imaginary zeros of $2^s-1$;
+the other three reach earlier Riemann zeros. No rigorous global
+branch-identity certificate is claimed for this numerical path
+tracking. Separate interval proofs in HXC certify two additional
+transverse critical-line crossings at strictly positive shifts.
+They show why the local conclusion (HZA10) must not be changed into
+the assertion that a zero can cross only at an Euler-product parameter.
+
+\clearpage
+\end{document}

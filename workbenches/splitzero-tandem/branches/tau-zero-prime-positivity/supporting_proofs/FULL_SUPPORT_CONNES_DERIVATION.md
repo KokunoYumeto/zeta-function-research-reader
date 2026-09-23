@@ -1,0 +1,472 @@
+# Full finite support in the Connes endpoint construction
+
+The scalar support base in this note is the actual finite bounded distributive lattice \(L\) from the programme. It is not replaced by a product of local field carriers, and a nonzero amplitude is allowed only at its top support. The result is an exact family of test-function spaces, endpoint maps, branch pushforwards, branch kernels, and complete support observations. In particular, separate Boolean branches can distinguish every point while losing nonzero linear combinations of those points. The lost combinations are computed and retained as an explicit invariant subspace.
+
+The source definition and support maps are in the original programme TeX `split_support_geometry_arithmetic_curve_v11910.tex`, Section `sec:lattice-support`, Definition `def:lattice-split`, Theorems `thm:lattice-normal-form`, `thm:birkhoff-support-coordinates`, and Section `sec:preboolean-support`, Theorem `thm:support-base-change`. The original source was read at lines 1180–1871. The local proof below restates and proves every source assertion used in the construction. Its Connes inputs are Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, arXiv:math/9811068](https://arxiv.org/abs/math/9811068), Section III, equations (6)–(19), in the original author TeX read at lines 608–822. The exact two-point comparison and the convergence proof for periodization are in [the complete tau connes endpoint derivation proof](TAU_CONNES_ENDPOINT_DERIVATION.md), equations TC10–TC27. No claim about a new trace formula is used here.
+
+## 1. The full scalar support and its Boolean branches
+
+Let \(L\) be a finite nontrivial bounded distributive lattice, with bottom \(0_L\), top \(1_L\), join \(\vee\), and meet \(\wedge\). Let \(k\) be a global field, \(A=A_k\) its adele ring, \(J=A^\times\) its idele group, and \(C_k=J/k^\times\). Define
+\[
+G_L(A)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+\cup\{(a,1_L):a\in A\}\subseteq A\times L.
+\tag{FL1}
+\]
+The point \(z_{1_L}\) is included only once; it is the supported adele zero. The additive and multiplicative laws are
+\[
+(a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\qquad
+(a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu).
+\tag{FL2}
+\]
+The external additive identity is \(\tau_L=z_{0_L}\), and the supported zero is \(e_L=z_{1_L}\), distinct because \(L\) is nontrivial.
+
+The subset (FL1) is closed under these operations. A sum with a nonzero amplitude has top support, because any nonzero-amplitude summand has top support; if the amplitudes cancel, its resulting zero still has an allowed support. A product with any nontop support has zero amplitude, since that factor has zero amplitude. Associativity and commutativity restrict from the product; distributivity follows from lattice distributivity and ring distributivity. The two identities are \(z_{0_L}\) and \((1_A,1_L)\), respectively. Thus this is the stated semiring, with zero fibre exactly \(\{z_\lambda:\lambda\in L\}\). Multiplication by \((j,1_L)\), \(j\in J\), sends \((a,1_L)\) to \((ja,1_L)\) and fixes every \(z_\lambda\). These formulas define its group action.
+
+A bounded lattice homomorphism \(\alpha:L\to M\) gives the map
+\[
+\alpha_*:G_L(A)\to G_M(A),\qquad
+z_\lambda\mapsto z_{\alpha(\lambda)},\quad
+(a,1_L)\mapsto(a,1_M).
+\tag{FL3}
+\]
+These prescriptions agree at the supported zero because \(\alpha(1_L)=1_M\). On two zero-fibre elements, preservation of the operations is preservation of joins and meets. On two supported amplitudes it is preservation of their unchanged amplitudes and top support. For mixed pairs, adding a zero-fibre point to a supported amplitude leaves the amplitude at top, and their product is that zero-fibre point; the same statements hold after applying \(\alpha\). These cases prove that (FL3) is a semiring map. It commutes with the idele action and satisfies \((\beta\alpha)_*=\beta_*\alpha_*\), by evaluation on the two types of input.
+
+Write \(P=J(L)\) for the poset of nonzero join-irreducible elements of \(L\), and put \(m=|P|\), \(n=|L|\). For \(j\in P\), let
+\[
+\theta_j(\lambda)=\mathbf1_{\{j\le\lambda\}}.
+\tag{FL4}
+\]
+These are all the Boolean branches. Here is the finite proof needed below. A join-irreducible \(j\) is join-prime: if \(j\le x\vee y\), then \(j=(j\wedge x)\vee(j\wedge y)\), so one of the two meets equals \(j\). This proves join preservation in (FL4); meet preservation and preservation of the bounds follow directly from the order. Every element is a join of the join-irreducibles below it: otherwise repeatedly express a nonzero reducible element as a join of two strictly smaller elements; finiteness makes this procedure terminate. Therefore the functions (FL4) distinguish the elements of \(L\). Conversely, for a Boolean branch, its inverse image of 1 is a nonempty upward-closed set closed under meets, hence has a least element \(j\). Preservation of joins makes \(j\) join-prime; it is nonzero because the branch preserves bottom. A nonzero join-prime is join-irreducible, and the branch is exactly (FL4).
+
+It follows that the family of set maps
+\[
+((\theta_j)_*)_{j\in P}:G_L(A)\longrightarrow
+\prod_{j\in P}G_{\mathbb B}(A)
+\tag{FL5}
+\]
+is injective. Different nonzero amplitudes remain different in every branch. A nonzero amplitude never becomes a zero-fibre point. Zero-fibre points are distinguished by the functions (FL4). Each branch has the exact fibres
+\[
+((\theta_j)_*)^{-1}(\tau)=\{z_\lambda:j\nleq\lambda\},\qquad
+((\theta_j)_*)^{-1}(e)=\{z_\lambda:j\le\lambda\},
+\tag{FL6}
+\]
+and a singleton fibre at every nonzero supported amplitude. In particular all fibres are finite.
+
+## 2. The prescribed function space and its full endpoint quotient
+
+Let \(\mathcal S(A)\) be the original Bruhat–Schwartz space. The algebraic full-support extension in the question is
+\[
+\mathcal F_L=\mathcal S(A)\oplus
+\bigoplus_{\lambda\ne1_L}\mathbb C\delta_\lambda.
+\tag{FL7}
+\]
+It consists of functions on \(G_L(A)\): the first component \(f\) gives value \(f(a)\) at every top-supported amplitude \((a,1_L)\), and the coefficient \(c_\lambda\) gives the value at the extra zero point \(z_\lambda\). Here \(\delta_\lambda\) denotes the characteristic function of that single point. This is a specified algebraic test-function space; no topology on the extra points is inferred.
+
+The idele action is
+\[
+U_L(j)(f,(c_\lambda))=(f(j^{-1}\,cdot),(c_\lambda)).
+\tag{FL8}
+\]
+It preserves \(\mathcal S(A)\) and fixes all the extra point functions. Fix the original additive Haar measure on \(A\), and write \(|j|\) for its idele modulus, so that \(d(ja)=|j|\,da\). Define \(b_\lambda\) by
+\[
+b_{1_L}=f(0_A),\qquad b_\lambda=c_\lambda\quad(\lambda\ne1_L).
+\tag{FL9}
+\]
+Then the full endpoint map is
+\[
+\mathcal E_L:\mathcal F_L\to\mathbb C(1)\oplus\mathbb C[L],
+\qquad(f,c)\mapsto\left(\int_A f(a)\,da,\ 
+\sum_{\lambda\in L}b_\lambda\delta_\lambda\right).
+\tag{FL10}
+\]
+At this point \(\mathbb C[L]\) means the vector space with basis the labelled point functions, not an algebra with a chosen multiplication.
+
+**Theorem FL1 (full endpoint representation).** The map (FL10) is onto, with kernel the embedded original space
+\[
+\mathcal S(A)_0=\{f:f(0_A)=0,\ \int_Af=0\},
+\tag{FL11}
+\]
+and it gives an exact sequence of \(J\)-representations
+\[
+0\to\mathcal S(A)_0\to\mathcal F_L
+\xrightarrow{\mathcal E_L}\mathbb C(1)\oplus\mathbb C[L]\to0.
+\tag{FL12}
+\]
+The idele action on \(\mathbb C[L]\) is trivial on all \(n\) labelled coordinates; on \(\mathbb C(1)\) it is multiplication by \(|j|\). It factors through \(C_k\) on the endpoint quotient.
+
+**Proof.** The kernel conditions in (FL10) say precisely that all extra coefficients vanish and that \(f\) satisfies (FL11). To show that its two original endpoints can be prescribed independently, choose a nonnegative Bruhat–Schwartz function \(\psi\) with \(\psi(0)=1\) and positive finite integral \(I\). It may be chosen as a product of smooth compactly supported archimedean factors and compact-open characteristic functions at nonarchimedean places. Translate it at one nonarchimedean place to a function \(\psi_b\) with \(\psi_b(0)=0\), retaining the same integral. Such a translation exists by taking its coordinate outside the chosen compact open subgroup. Then
+\[
+h_0=\psi-\psi_b,qquad h_1=I^{-1}\psi_b
+\tag{FL13}
+\]
+have endpoint pairs \((f(0),\int f)=(1,0)\) and \((0,1)\), respectively. Together with the independent point functions below top, they provide a preimage for every coordinate vector in (FL10). This proves surjectivity. The equalities \((U(j)f)(0)=f(0)\) and \(\int_A f(j^{-1}a)\,da=|j|\int_A f(a)\,da\) prove the action statements. Finally the product formula \(|q|=1\) for \(q\in k^\times\) proves factorization on the endpoint quotient. The representation on the raw test-function source is still a representation of \(J\), until the rational-scaling quotient is specified below. \(\square\)
+
+## 3. The exact closure defect of branch pushforward
+
+Since (FL3) has finite fibres, its fibre-sum pushforward on arbitrary complex-valued functions is unambiguously defined by
+\[
+(\alpha_\#F)(y)=\sum_{x:\alpha_*(x)=y}F(x).
+\tag{FL14}
+\]
+For a branch \(\epsilon:L\to\mathbb B\), this gives on an input \((f,c)\in\mathcal F_L\):
+\[
+(\epsilon_\#(f,c))(a^\bullet)=f(a)\quad(a\ne0),
+\]
+\[
+(\epsilon_\#(f,c))(e)=f(0)+
+\sum_{\substack{\lambda\ne1_L\\\epsilon(\lambda)=1}}c_\lambda,
+\qquad
+(\epsilon_\#(f,c))(\tau)=
+\sum_{\epsilon(\lambda)=0}c_\lambda.
+\tag{FL15}
+\]
+The first formula uses the singleton nonzero-amplitude fibres; the other two use (FL6).
+
+The top-supported function in (FL15) is
+\[
+f+s_\epsilon\,1_{\{0_A\}},\qquad
+s_\epsilon=\sum_{\substack{\lambda\ne1_L\\\epsilon(\lambda)=1}}c_\lambda.
+\tag{FL16}
+\]
+The adele group is nondiscrete: every neighbourhood of zero contains a nonzero point from a sufficiently small neighbourhood in one local field, with all other coordinates zero. Every Bruhat–Schwartz function is continuous, but \(1_{\{0_A\}}\) is discontinuous at zero in a nondiscrete Hausdorff group. Therefore (FL16) belongs to \(\mathcal S(A)\) if and only if \(s_\epsilon=0\). Indeed for a nonzero \(s_\epsilon\), subtracting the continuous function \(f\) would make a nonzero multiple of \(1_{\{0_A\}}\) continuous, a contradiction.
+
+Thus branch pushforward has the precise landing condition
+\[
+\epsilon_\#(f,c)\in\mathcal F_{\mathbb B}
+\quad\Longleftrightarrow\quad s_\epsilon=0.
+\tag{FL17}
+\]
+The complete space (FL7) does not satisfy these equations in general. This defect defines the additional point-function space needed for a functorial pushforward; it does not identify lower support points with top support before applying the branch.
+
+Define the stable algebraic enlargement
+\[
+\widehat{\mathcal F}_L^{\mathrm{pt}}
+=\mathcal S(A)\oplus\mathbb C[L].
+\tag{FL18}
+\]
+It has the same values as before, except that the independent coefficient \(d_{1_L}\) also contributes at \(e_L\). Thus its value at \((a,1_L)\) is \(f(a)+d_{1_L}1_{\{0_A\}}(a)\), and its value at \(z_\lambda\), \(\lambda\ne1_L\), is \(d_\lambda\). The displayed sum is direct as a space of functions: if a Bruhat–Schwartz function were supported only at zero, its continuity would make it zero, by the same nondiscreteness argument. The notation (FL18) is not a topological or Hilbert completion.
+
+Every support map now has a well-defined linear pushforward
+\[
+\alpha_\#:\widehat{\mathcal F}_L^{\mathrm{pt}}
+\longrightarrow\widehat{\mathcal F}_M^{\mathrm{pt}},
+\qquad
+(f,d)\longmapsto(f,\alpha_\#d),
+\]
+\[
+(\alpha_\#d)_\mu=\sum_{\alpha(\lambda)=\mu}d_\lambda.
+\tag{FL19}
+\]
+To verify (FL19), the regular part \(f\) follows the unchanged top amplitudes, and every additional point function follows its zero-point image. In particular the regular value \(f(0)\) travels to top once; it is not included a second time among the \(d\)'s. All sums are finite. Summing successively over the fibres of \(\alpha\) and \(\beta\) gives
+\((\beta\alpha)_\#=\beta_\#\alpha_\#\). The action (FL8), extended trivially on every point coefficient, commutes with (FL19). This proves the functorial and equivariant assertions.
+
+When \(|L|>2\), the enlargement of the two-point target by its top point function is necessary for the family of all branch pushforwards of \(\mathcal F_L\). There is a nonzero proper element \(\lambda\) of \(L\), and a join-irreducible \(j\le\lambda\). The branch \(\theta_j\) sends the allowed input \(\delta_\lambda\) to the top point function \(\delta_{1_{\mathbb B}}\), which is not in the old target. Adding that one vector to the old target suffices by (FL15). Hence (FL18) for the two-point target is the smallest vector space of functions containing the old target and all these pushforwards. For \(L=\mathbb B\), its only branch is the identity and this extra vector is not forced by that single input support base.
+
+## 4. Separate branch marginals and their exact kernel
+
+On the entire zero-fibre vector space, let
+\[
+T_L:\mathbb C[L]\longrightarrow\prod_{j\in P}\mathbb C[\mathbb B],
+\qquad T_L(d)=((\theta_j)_\#d)_{j\in P}.
+\tag{FL20}
+\]
+Define its total and branch moments by
+\[
+m_0(d)=\sum_{\lambda\in L}d_\lambda,
+\qquad
+m_j(d)=\sum_{\lambda\ge j}d_\lambda\quad(j\in P).
+\tag{FL21}
+\]
+The two coordinates of the \(j\)-th pushforward are
+\[
+((\theta_j)_\#d)_0=m_0(d)-m_j(d),\qquad
+((\theta_j)_\#d)_1=m_j(d).
+\tag{FL22}
+\]
+Thus all separate branches retain precisely the total and the \(m\) one-branch moments.
+
+**Theorem FL2 (the marginal kernel).** The map \(T_L\) has rank \(m+1\), and
+\[
+N_L:=\ker T_L
+=\{d:m_0(d)=0,\ m_j(d)=0\text{ for all }j\in P\}
+\tag{FL23}
+\]
+has dimension \(n-m-1\). Its image consists exactly of the tuples of two-coordinate vectors whose coordinate totals agree for every branch. The group \(J\), and consequently \(C_k\), acts trivially on \(N_L\).
+
+**Proof.** The kernel formula follows in both directions from (FL22). To prove the rank and image claim, the vectors \(\delta_{0_L}\) and \(\delta_j\) for \(j\in P\) suffice to attain any prescribed values \((T,(t_j)_{j\in P})\) of (FL21). Set
+\[
+d=a_0\delta_{0_L}+\sum_{j\in P}a_j\delta_j.
+\]
+The equations on the branch moments are
+\[
+t_k=\sum_{j\in P:\,k\le j}a_j.
+\tag{FL24}
+\]
+Choose the \(a_j\)'s in reverse order along any linear order extending the finite partial order: at \(k\), all terms with \(j>k\) have already been determined, and the coefficient of \(a_k\) is 1. The unique solution then gives the desired total by setting \(a_0=T-\sum_j a_j\). Therefore the map to \(m+1\) moments is onto. Its rank is \(m+1\), and finite-dimensional rank-nullity gives the stated dimension. Formula (FL22) shows that these arbitrary moments are exactly the tuples with common total. Every point function in the zero fibre is fixed by the group action, so the same is true on the kernel. \(\square\)
+
+This theorem does not contradict the set injectivity (FL5). Injectivity on points says that different basis vectors have different images. It does not assert their images are linearly independent. Formula (FL23) calculates their exact linear dependencies.
+
+On the stable full function spaces, the joint branch pushforward has kernel exactly
+\[
+\ker\left(\widehat{\mathcal F}_L^{\mathrm{pt}}
+\longrightarrow\prod_{j\in P}\widehat{\mathcal F}_{\mathbb B}^{\mathrm{pt}}\right)
+=0\oplus N_L.
+\tag{FL25}
+\]
+Indeed (FL19) retains the same regular component \(f\) in every target, so membership in the kernel forces \(f=0\), and the remaining equations are exactly (FL23). On the original space (FL7), whose point coefficient at top is zero in (FL18), the corresponding kernel is
+\[
+0\oplus\bigl(N_L\cap\{d_{1_L}=0\}\bigr).
+\tag{FL26}
+\]
+This is a different map from merely reading the endpoints of those branch functions.
+
+For precision, its dimension is \(n-m-1\) if \(1_L\) is join-irreducible, and \(n-m-2\) otherwise. If top is join-irreducible, its branch moment is exactly \(d_{1_L}\), so (FL23) already forces that coordinate to vanish. If top is not join-irreducible, the coordinate functional \(d\mapsto d_{1_L}\) is not in the span of the moment functionals (FL21). To prove this, suppose the indicator of top as a function on \(L\) were \(a_0+\sum_{j\in P}a_j\theta_j\). Evaluation at bottom gives \(a_0=0\). Every join-irreducible is then a proper element, so evaluation at join-irreducibles in increasing order forces each \(a_j=0\), by the triangular equations, contradicting value 1 at top. Since the moment map is onto, a functional vanishing on its kernel would factor through its image and lie in that moment span. Therefore the top coefficient is nonzero on some element of \(N_L\), and requiring it to vanish removes one dimension. This also proves that \(n-m-2\ge0\) in this case, without an extra counting assumption.
+
+## 5. The Boolean square, with each observation distinguished
+
+Take \(L=\mathbb B^2=\{0,a,b,1\}\), where \(a,b\) are incomparable. Its branches are the two coordinate projections. The exact marginal kernel is
+\[
+N_{\mathbb B^2}=\mathbb C w,
+\qquad
+w=\delta_0-\delta_a-\delta_b+\delta_1.
+\tag{FL27}
+\]
+For the first branch, the two fibres are \(\{0,b\}\) and \(\{a,1\}\), and each coefficient sum in \(w\) is zero. The second branch has fibres \(\{0,a\}\) and \(\{b,1\}\), with the same property. The dimension in Theorem FL2 is \(4-2-1=1\), proving that this vector spans the entire kernel.
+
+For \((f,c_0,c_a,c_b)\in\mathcal F_{\mathbb B^2}\), the two full pushforwards in their stable targets are
+\[
+\epsilon_{1\#}(f,c)
+=\bigl(f,\ (c_0+c_b)\delta_0+c_a\delta_1\bigr),
+\]
+\[
+\epsilon_{2\#}(f,c)
+=\bigl(f,\ (c_0+c_a)\delta_0+c_b\delta_1\bigr).
+\tag{FL28}
+\]
+If both are zero as functions, their unique decompositions in (FL18) first give \(f=0\), then \(c_a=c_b=0\), and finally \(c_0=0\). Thus the joint full function pushforward from the original space is injective in this example, in agreement with (FL26). It does not land in the original two-point spaces unless \(c_a=c_b=0\), by (FL17).
+
+If instead only the original two-point endpoints are read after pushforward, the zero-fibre coefficients are \(b=(c_0,c_a,c_b,f(0))\), and the two branches record the marginals (FL22). For example take \(h_0\) from (FL13), with value 1 at zero and integral zero, and set
+\[
+v=(h_0,1,-1,-1)\in\mathcal F_{\mathbb B^2}.
+\tag{FL29}
+\]
+Its full endpoint vector is \((0,w)\), and all branch endpoint observations vanish. Its two full branch functions, however, each have top-supported part \(h_0-1_{\{0_A\}}\) and external value zero. They are not zero functions: if that top-supported function vanished, the nonzero point function \(1_{\{0_A\}}\) would be Bruhat–Schwartz, contrary to Section 3. Therefore the endpoint kernel, the full function pushforward kernel, and failure to remain in the original test class are three separate, explicitly computed objects.
+
+## 6. Complete support observations and Möbius reconstruction
+
+For every \(\kappa\in L\), define the full principal-filter moment
+\[
+M_\kappa(d)=\sum_{\lambda\ge\kappa}d_\lambda.
+\tag{FL30}
+\]
+The case \(\kappa=0_L\) is the total, and the join-irreducible cases are the separate-branch moments. Let the Möbius function of the finite poset \(L\) be given by
+\[
+\mu(\lambda,\lambda)=1,\qquad
+\mu(\lambda,\kappa)=-\sum_{\lambda\le\nu<\kappa}\mu(\lambda,\nu)
+\quad(\lambda<\kappa).
+\tag{FL31}
+\]
+For incomparable ordered pairs set its value to zero.
+
+**Theorem FL3 (full reconstruction and the missing moments).** The map \(d\mapsto(M_\kappa(d))_{\kappa\in L}\) is a vector-space isomorphism, with inverse
+\[
+d_\lambda=\sum_{\kappa\ge\lambda}\mu(\lambda,\kappa)M_\kappa(d).
+\tag{FL32}
+\]
+Every moment (FL30) is a joint branch observation: its test function on \(L\) is
+\[
+\mathbf1_{\{\kappa\le\lambda\}}
+=\prod_{\substack{j\in P\\j\le\kappa}}\theta_j(\lambda).
+\tag{FL33}
+\]
+The empty product for \(\kappa=0_L\) is 1. Consequently the exact data missing from separate branches are the \(n-m-1\) moments indexed by the nonzero join-reducible elements of \(L\).
+
+**Proof.** Substitute (FL30) into the right side of (FL32) and interchange finite sums. The coefficient of \(d_\nu\) is
+\(\sum_{\lambda\le\kappa\le\nu}\mu(\lambda,\kappa)\), which is 1 when \(\nu=\lambda\), and zero otherwise by (FL31). Thus (FL32) is a left inverse. The spaces on both sides have the same finite dimension \(n\), so a linear map with a left inverse is bijective, and this is its inverse. Alternatively one can solve (FL30) downwards in the order, with coefficient 1 at each new \(d_\kappa\), obtaining uniqueness and existence directly.
+
+An element \(\kappa\) is the join of all join-irreducibles below it. Therefore \(\kappa\le\lambda\) holds if and only if every one of those join-irreducibles is at most \(\lambda\). This is exactly the product identity (FL33). Products here are products of scalar-valued test functions, not multiplication of the formal point vectors. Finally the full list has \(n\) moments, of which exactly the bottom and \(m\) join-irreducible ones occur in (FL21). The reconstruction is an isomorphism, so the other moments provide independent missing coordinates. \(\square\)
+
+There is an explicit basis of \(N_L\) adapted to these missing coordinates. For each nonzero join-reducible \(\kappa\), let
+\[
+v_\kappa=\sum_{\lambda\le\kappa}\mu(\lambda,\kappa)\delta_\lambda.
+\tag{FL34}
+\]
+By the inverse transform, its full moments are 1 at \(\kappa\) and zero elsewhere. This last claim follows because (FL32) is the inverse of (FL30), applied to the coordinate vector at \(\kappa\); it does not require a second unproved Möbius identity. In particular its bottom and join-irreducible moments vanish, so \(v_\kappa\in N_L\). They are independent and span the kernel because their missing moments form its coordinate basis. This supplies complete representatives, not only a dimension.
+
+For the Boolean square, the four moments are
+\[
+M_0=d_0+d_a+d_b+d_1,quad
+M_a=d_a+d_1,quad M_b=d_b+d_1,quad M_1=d_1.
+\tag{FL35}
+\]
+Their inverse is
+\[
+d_1=M_1,\quad d_a=M_a-M_1,\quad d_b=M_b-M_1,
+\quad d_0=M_0-M_a-M_b+M_1.
+\tag{FL36}
+\]
+The missing joint moment is \(M_1\), the observation using the product of the two branches; its basis representative is precisely \(w\). For a finite chain every nonzero element is join-irreducible, so there are no missing moments and the separate thresholds already reconstruct every linear combination. Thus the linear defect detects a genuine difference between branching support and a sequence of thresholds.
+
+The same reconstruction applies to the actual full test functions. Retain the regular component \(f\) and all point moments of \(d\) in (FL18); formula (FL32) reconstructs the point-function component uniquely. For the original endpoint quotient, retain \(\int f\) and all \(M_\kappa(b)\) for the coefficients (FL9). Their common kernel is precisely \(\mathcal S(A)_0\), by Theorem FL1 and the proved inversion. Thus full observables restore the source endpoint quotient that separate branches lose.
+
+## 7. The exact endpoint kernel after all Boolean branches
+
+For a function in (FL18), use the extended two-point endpoint functional consisting of its integral of the regular component and its actual values at the two zero points. The extra top point function contributes to evaluation at zero and contributes zero to the specified regular integral. This is a declared extension of the original functional, not a claim about a new Haar measure on the support semiring. Applied to (FL19) from \(\mathcal F_L\), its two zero values are exactly the fibre sums of the coefficients (FL9).
+
+Let \(\mathcal B_L\) be the combined branch endpoint map from \(\mathcal F_L\), using all \(j\in P\). It has the factorization
+\[
+\mathcal F_L\xrightarrow{\mathcal E_L}
+\mathbb C(1)\oplus\mathbb C[L]
+\longrightarrow\prod_{j\in P}
+\bigl(\mathbb C(1)\oplus\mathbb C[\mathbb B]\bigr),
+\tag{FL37}
+\]
+where the last map repeats the integral and applies \(T_L\) to the zero coordinates. Its image has one norm-character coordinate and \(m+1\) trivial coordinates. Its exact kernel fits into
+\[
+0\to\mathcal S(A)_0\longrightarrow\ker\mathcal B_L
+\xrightarrow{\mathcal E_L}N_L\to0.
+\tag{FL38}
+\]
+For proof, membership in the kernel means that the integral vanishes and the zero vector lies in (FL23). The kernel of the restricted \(\mathcal E_L\) is (FL11). Its surjectivity onto \(N_L\) follows from the surjectivity of (FL10), or explicitly by sending \(d\in N_L\) to the function with regular part \(d_{1_L}h_0\) and extra coefficients \(d_\lambda\), \(\lambda\ne1_L\). This gives a linear section of (FL38). It depends on the chosen \(h_0\), and no equivariance of that section is asserted. All the maps in (FL38) are equivariant, since they were derived from (FL8), (FL10), and the branch maps. For the Boolean square, (FL29) is its explicit section on the generator of the one-dimensional quotient.
+
+## 8. Relation to the contracted meet algebra
+
+There are two distinct multiplications relevant to these coordinates. Point functions on the zero set have pointwise product
+\[
+\delta_\lambda\delta_\mu=
+\begin{cases}\delta_\lambda,&\lambda=\mu,\\0,&\lambda\ne\mu.\end{cases}
+\tag{FL39}
+\]
+By contrast, the meet-monoid algebra \(\mathbb C[L,\wedge]\) has a formal basis \(u_\lambda\) with product
+\[
+u_\lambda u_\mu=u_{\lambda\wedge\mu}.
+\tag{FL40}
+\]
+The linear map \(\delta_\lambda\mapsto u_\lambda\) identifies their vector spaces but not these products. Support pushforwards are ring maps for (FL40), because \(\alpha\) preserves meets; fibre-sum pushforward is generally not a ring map for pointwise product.
+
+The span of \(u_{0_L}\) is an ideal for (FL40), because \(u_{0_L}u_\lambda=u_{0_L}\). Form the contracted algebra and its quotient map
+\[
+\pi:\mathbb C[L,\wedge]\to
+\mathbb C_0[L,\wedge]=\mathbb C[L,\wedge]/\mathbb C u_{0_L}.
+\tag{FL41}
+\]
+The branch maps on the contracted algebra have values
+\[
+u_\lambda\longmapsto\theta_j(\lambda)\in\mathbb C,
+\tag{FL42}
+\]
+since the bottom basis of the two-element meet algebra is killed and its top basis is its multiplicative identity. Their joint kernel is
+\[
+K_L^{\wedge}=
+\left\{\sum_{\lambda\ne0_L}c_\lambda\overline u_\lambda:
+\sum_{\lambda\ge j}c_\lambda=0\text{ for every }j\in P\right\}.
+\tag{FL43}
+\]
+
+**Theorem FL4 (contraction of the marginal defect).** Under the stated vector-space identification, (FL41) restricts to a bijection
+\[
+N_L\xrightarrow{\ \cong\ }K_L^{\wedge}.
+\tag{FL44}
+\]
+Its inverse is
+\[
+\sum_{\lambda\ne0_L}c_\lambda\overline u_\lambda
+\longmapsto
+\sum_{\lambda\ne0_L}c_\lambda\delta_\lambda
+-\left(\sum_{\lambda\ne0_L}c_\lambda\right)\delta_{0_L}.
+\tag{FL45}
+\]
+
+**Proof.** For a vector in \(N_L\), deleting its bottom coefficient does not change any branch moment, since \(j\ne0_L\); hence its image satisfies (FL43). If such a vector maps to zero, it was a multiple of \(\delta_{0_L}\), and its zero total forces that multiple to vanish, proving injectivity. Conversely (FL45) has total zero, and its branch moments agree with (FL43), hence vanish. Its contraction is the original vector. This proves surjectivity and the inverse formula. \(\square\)
+
+For the Boolean square, the vector (FL27) maps to
+\[
+\overline u_1-\overline u_a-\overline u_b.
+\tag{FL46}
+\]
+With meet multiplication, its square equals itself: the cross product \(\overline u_a\overline u_b\) is zero after contraction, and direct expansion gives \(\overline u_1-\overline u_a-\overline u_b\). Before contraction the meet-algebra counterpart \(u_0-u_a-u_b+u_1\) is also idempotent: its product with \(u_a,u_b,u_0\) is zero and its product with \(u_1\) is itself. With the pointwise multiplication (FL39), however,
+\[
+w^2=\delta_0+\delta_a+\delta_b+\delta_1\ne w.
+\tag{FL47}
+\]
+Moreover \(\delta_0w=\delta_0\notin N_L\), since its total is 1. Thus the marginal kernel is an ideal for its meet-algebra interpretation but not for the pointwise function algebra in this example. The exact linear comparison (FL44) relates the two calculations without identifying their multiplication laws.
+
+## 9. Coinvariants, orbital observations, and retained boundary traces
+
+Let
+\[
+N_k=\operatorname{span}_{\mathbb C}
+\{U(q)f-f:q\in k^\times,\ f\in\mathcal S(A)\}.
+\tag{FL48}
+\]
+At zero each difference vanishes, and its integral vanishes by \(|q|=1\). Thus \(N_k\subseteq\mathcal S(A)_0\). It is \(J\)-stable because idele actions commute. Every added point is fixed, so the rational-scaling coinvariants are exactly
+\[
+(\mathcal F_L)_{k^\times}
+\cong(\mathcal S(A)/N_k)\oplus\mathbb C^{L\setminus\{1_L\}},
+\]
+\[
+(\widehat{\mathcal F}_L^{\mathrm{pt}})_{k^\times}
+\cong(\mathcal S(A)/N_k)\oplus\mathbb C[L].
+\tag{FL49}
+\]
+Indeed every group-action difference has the form \((U(q)f-f,0)\), and these generate exactly \(N_k\oplus0\). These quotients have actions of \(C_k\); any equivariant map to a representation on which \(k^\times\) acts trivially kills those differences and factors uniquely through the quotient. Thus (FL49) also has the required universal property. The point-coordinate spaces and the defect \(N_L\) survive this quotient.
+
+Periodization on the ideles observes only the regular component:
+\[
+P_L(f,c)(x)=\sum_{q\in k^\times}f(qx),\qquad x\in J.
+\tag{FL50}
+\]
+Each \(qx\) is an idele and in particular is a nonzero amplitude, so it is none of the zero-fibre points. The absolute convergence and invariance under replacing \(x\) by a rational multiple are exactly the Bruhat–Schwartz calculation in TC18–TC19: compact support meets the discrete global field in finitely many points for a function field, and separated archimedean lattice points with Schwartz decay give an absolutely convergent sum for a number field. No new terms were added at these sample points. Therefore the exact kernel on (FL7) is
+\[
+\ker P_L=(\ker P)\oplus\mathbb C^{L\setminus\{1_L\}},
+\tag{FL51}
+\]
+and on (FL18) it is \((\ker P)\oplus\mathbb C[L]\). The reason in both directions is the equality \(P_L(f,c)=Pf\), with no dependence on the point coordinates. It descends through (FL49) because reindexing the absolutely convergent sum kills every generator of (FL48).
+
+At each actual zero point, the counting orbital sum instead consists of a constant value repeated over all \(k^\times\), because that point is fixed. Since \(k^\times\) is infinite, such a sum converges if and only if that value is zero. On the original space (FL7), imposing this condition at every \(z_\lambda\) forces all \(c_\lambda=0\) and \(f(0)=0\). Together with the original integral condition it selects exactly (FL11). On (FL18), the conditions are instead
+\[
+d_\lambda=0\ (\lambda\ne1_L),\qquad d_{1_L}=-f(0).
+\tag{FL52}
+\]
+With the regular integral also zero, they select the space of functions whose regular component has integral zero and whose top point correction cancels its value at zero. This differs from (FL11) as an algebraic space. The distinction follows from the independent top point added in (FL18) and must be retained in an analytic treatment.
+
+There are finite-dimensional traces that are completely determined without any infinite-dimensional trace assertion. Fix a Haar measure \(d^*j\) on \(C_k\), take a continuous compactly supported function \(h\), and put
+\[
+\kappa_0(h)=\int_{C_k}h(j)\,d^*j,qquad
+\kappa_1(h)=\int_{C_k}h(j)|j|\,d^*j.
+\tag{FL53}
+\]
+These integrals are finite. On a trivial \(r\)-dimensional representation, the integrated operator is \(\kappa_0(h)\) times the identity, with trace \(r\kappa_0(h)\). On \(\mathbb C(1)\) it is the scalar \(\kappa_1(h)\). Therefore on the full endpoint quotient (FL12), its trace is exactly
+\[
+n\kappa_0(h)+\kappa_1(h).
+\tag{FL54}
+\]
+On the image of all separate-branch endpoints it is
+\[
+(m+1)\kappa_0(h)+\kappa_1(h),
+\tag{FL55}
+\]
+because its zero-coordinate part has dimension \(m+1\) by Theorem FL2 and is trivial, while its single common integral coordinate has the norm character. The omitted invariant kernel contributes precisely
+\[
+\operatorname{Tr}_{N_L}(h)=(n-m-1)\kappa_0(h).
+\tag{FL56}
+\]
+These formulas follow from explicit finite matrices on the spaces named. They do not assign any trace to the whole Bruhat–Schwartz space, to an unchosen Hilbert extension, or to a Weil distribution. Complete moments retain every one of the \(n\) fixed endpoint coordinates and therefore retain the contribution (FL56) that separate marginals discard.
+
+For a specified comparison of completions, impose only the original two conditions on the regular component and retain the support coefficients:
+\[
+\mathcal D_L=\mathcal S(A)_0\oplus\mathbb C^{L\setminus\{1_L\}}.
+\tag{FL57}
+\]
+Pulling back Connes's original seminorm from the first factor gives nullspace \(N_\delta\oplus\mathbb C^{L\setminus\{1_L\}}\), where \(N_\delta\) is the original seminorm nullspace. Its quotient and completion are the original Hilbert completion, via the exact projection. If instead a positive definite Hermitian form \(H\) on the displayed finite coordinate space is fixed and one uses
+\[
+\|(f,c)\|_{\delta,H}^2=\|f\|_\delta^2+c^*Hc,
+\tag{FL58}
+\]
+the nullspace is \(N_\delta\oplus0\), and the completion is the original Hilbert space direct-summed with this \((n-1)\)-dimensional trivial representation. For proof, positivity gives the stated nullspace, and a Cauchy sequence for (FL58) is Cauchy in each component and converges to their component limits; density follows by approximating the first component by original test functions. These are specified alternatives with exact maps, not an assertion that a preferred topology or positive form was already supplied by \(L\).
+
+## 10. The full-support comparison
+
+The actual support base changes the endpoint calculation from a single external line to the entire finite zero fibre. Every zero point is retained separately in (FL10), and every branch is the source map (FL3). Its fibre pushforward has the closure condition (FL17); the exact stable space (FL18) supplies the missing top point function when the branch collapses a lower support point onto the supported zero. Separate branch marginals have the nonzero kernel (FL23) whenever the lattice has join-reducible nonzero elements. Full joint observations reconstruct those coefficients by (FL32), with explicit defect representatives (FL34).
+
+The Boolean square computes the difference between set injectivity, linear endpoint information, and full test functions without conflating them. The contraction (FL44) relates this function-space calculation to the contracted meet-algebra calculation with its actual multiplication specified. Coinvariants, periodization, finite boundary traces, and chosen completions then carry these objects by the exact maps (FL49)–(FL58). None of these steps equates actual absence with the supported zero or replaces a nontop support label by a nonzero amplitude.

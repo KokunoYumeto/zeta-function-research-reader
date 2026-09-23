@@ -1,0 +1,912 @@
+\begingroup
+\emergencystretch=3em
+\section{Every local heat coefficient and its exact residue receiver}
+\label{sec:all-order-local-residue}
+
+This section retains the original heat equation, spatial coordinate,
+arithmetic coordinate, and full analytic unit. The primary heat source
+is Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The de Bruijn--Newman
+constant is non-negative}}, original author TeX
+\texttt{fmp-template.tex}, lines 78--101, equations \texttt{hoz},
+\texttt{sas}, \texttt{phidef}, and \texttt{htdef}. Those author-source
+lines were read directly; the full paper is not claimed reread here.
+The preceding marked residue maps are
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/87e386271c488ce5914b9926c4d23d0857e0c367/workbenches/splitzero-tandem/continuations/20260923-boundary-residue-arithmetic/BOUNDARY_RESIDUE_ARITHMETIC_RECEIVERS.tex}
+{RJ3--9 and RJ18--20 in the complete boundary/residue proof}.
+The earlier fixed-test calculation is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/87e386271c488ce5914b9926c4d23d0857e0c367/workbenches/splitzero-tandem/continuations/20260923-boundary-residue-arithmetic/RETAINED_FIXED_ARITHMETIC_HEAT_FLAGS.tex}
+{HR3--6 in the retained fixed-arithmetic proof}.
+Both complete sources accompany the calculation. Every map and coefficient
+needed for the extension below is proved here.
+
+\paragraph{LT1. The actual local family and the finite contour.}
+Fix an actual real zero $x_0$ of order $m\ge1$ of the original
+$H_0$, and write $x=Z-x_0$ without changing its scale. More generally
+the proof applies to any jointly holomorphic solution of
+$\partial_tH=-\partial_x^2H$ with
+\[
+ H_0(x_0+x)=x^mu(x),\qquad
+ u(x)=\sum_{r\ge0}u_rx^r,\quad u_0\ne0,\qquad
+ s=\rho+ix/2,\quad \rho=\tfrac12+ix_0/2.
+ \tag{LT1}
+\]
+For the original family $H_0(Z)=\xi_{\rm R}(1/2+iZ/2)/8$.
+Its joint holomorphy follows directly from the retained theta
+integral: on $u\ge0$, its defining series has the bound
+$|\Phi(u)|\le C e^{9u}\exp(-(\pi/2)e^{4u})$.
+Indeed one factors $\exp(-(\pi/2)e^{4u})$ from each summand
+and bounds the remaining convergent sum by a constant times
+$\sum_{l\ge1}l^4\exp(-\pi(l^2-1/2))$.
+On $|t|\le T$, $|Z|\le R$, the integrand and every fixed
+parameter derivative are dominated by a polynomial in $u$
+times $\exp(Tu^2+Ru+9u-(\pi/2)e^{4u})$, which is integrable.
+Uniform convergence on compact parameter sets proves the
+joint holomorphy used here, with the original kernel intact.
+The test $\phi(x)$ is holomorphic on a fixed disk about $0$.
+Choose a smaller disk on whose closure $u$ does not vanish and
+whose boundary $\Gamma$ lies in the common holomorphy domain.
+Uniform continuity makes $H_t$ nonzero on $\Gamma$ for sufficiently
+small complex $t$. The argument principle keeps exactly $m$ zeros
+inside, counted with their actual multiplicities. Their complete
+test trace is
+\[
+ Z_\phi(t)=\frac1{2\pi i}\int_\Gamma
+       \phi(x)\frac{\partial_xH_t(x_0+x)}{H_t(x_0+x)}\,dx
+       =\sum_{\text{cluster}}\phi(x_i(t)).
+ \tag{LT2}
+\]
+The contour integrand is holomorphic in $t$ on a neighbourhood
+of the compact contour, so $Z_\phi$ is holomorphic. No derivatives
+of individual colliding roots are used.
+
+On an annulus about $\Gamma$, $H_t/H_0$ is uniformly close to $1$.
+Its logarithm is the convergent branch equal to zero at $t=0$.
+For $n\ge1$, differentiation of this branch and integration by
+parts on $\Gamma$ give
+\[
+ \boxed{[t^n]Z_\phi(t)
+   =-\operatorname{Res}_{x=0}
+       \phi'(x)[t^n]\log(H_t/H_0)\,dx.}
+ \tag{LT3}
+\]
+Here $[t^n]\log(H_t/H_0)$ is meromorphic inside $\Gamma$, with
+its only possible pole at $0$, as the next finite formula proves.
+The integration by parts follows by integrating the derivative
+of the single-valued product $\phi[t^n]\log(H_t/H_0)$.
+At order zero, $Z_\phi(0)=m\phi(0)$.
+
+\paragraph{LT2. A closed finite formula.}
+Let $E=x\,d/dx$, and set $(a)_{\underline r}
+=a(a-1)\cdots(a-r+1)$, with empty product $1$.
+For $a\ge1$ put
+\[
+ C_a[u](x)=\frac{(-1)^a}{a!}
+             (E+m)_{\underline{2a}}u(x).
+ \tag{LT4}
+\]
+The elementary identity
+$\partial_x^{2a}(x^mu)=x^{m-2a}
+(E+m)_{\underline{2a}}u$ follows by applying both sides to each
+convergent monomial and differentiating the convergent series.
+The PDE therefore determines its actual Taylor coefficient:
+\[
+ [t^a]H_t(x_0+x)=\frac{(-1)^a}{a!}
+                       \partial_x^{2a}(x^mu),\qquad
+ \frac{[t^a]H_t}{H_0}=x^{-2a}\frac{C_a[u]}u.
+ \tag{LT5}
+\]
+Only finitely many time derivatives are used at each order.
+In particular no convergence assertion about an unrestricted
+formal heat operator is needed.
+
+Define the following finite expression, holomorphic at $x=0$:
+\[
+ Q_{m,n}[u](x)=
+ \sum_{\substack{k_1,\ldots,k_n\ge0\\
+                  \sum_{a=1}^n a k_a=n}}
+ \frac{(-1)^{K+1}(K-1)!}{\prod_{a=1}^n k_a!}
+       \prod_{a=1}^n\left(\frac{C_a[u](x)}{u(x)}\right)^{k_a},
+ \qquad K=\sum_{a=1}^n k_a.
+ \tag{LT6}
+\]
+Expand the logarithm through time degree $n$, using
+\[
+ \log(1+Y)=\sum_{K=1}^n\frac{(-1)^{K+1}}K Y^K+O(Y^{n+1}),
+ \qquad
+ Y=\sum_{a=1}^n t^a x^{-2a}\frac{C_a[u]}u+O(t^{n+1}).
+\]
+The multinomial coefficient is $K!/\prod k_a!$; every selected
+term has pole factor $x^{-2\sum a k_a}=x^{-2n}$.
+This proves exactly
+\[
+ [t^n]\log(H_t/H_0)=x^{-2n}Q_{m,n}[u](x).
+ \tag{LT7}
+\]
+In particular the pole order is at most $2n$.
+Writing $\phi(x)=\sum_{k\ge0}\phi_kx^k$ in LT3 gives the
+requested closed receiving formula
+\[
+ \boxed{[t^n]Z_\phi
+   =-\sum_{k=1}^{2n}k\phi_k
+                 [x^{2n-k}]Q_{m,n}[u].}
+ \tag{LT8}
+\]
+Every sum and every coefficient extraction in LT4--8 is finite
+at fixed $n$. All constants, signs and factorials refer to the
+original $t$ and $x$.
+
+\paragraph{LT3. The sufficient jet order, with universal boundaries.}
+Introduce $\gamma_r=u_r/u_0$ solely as recorded coefficient ratios;
+the function $H_t$ and its complete unit $u$ have not been rescaled.
+The coefficient of $x^d$ in $C_a[u]/u$ is a polynomial in
+$\gamma_1,\ldots,\gamma_d$, because the reciprocal series is
+obtained recursively from $u\cdot u^{-1}=1$. It is homogeneous
+of weight $d$ when $\gamma_r$ is given weight $r$:
+the coefficient of $x^d$ in a product is a sum of products whose
+indices add to $d$. LT6 preserves that property. Thus
+$[x^d]Q_{m,n}[u]$ is such a polynomial of weight $d$.
+
+For a general fixed test, LT8 depends only on $\phi_1,\ldots,\phi_{2n}$
+and $u_0,\ldots,u_{2n-1}$, equivalently $u\bmod x^{2n}$.
+The constant $\phi_0$ contributes only at time zero.
+If $\phi$ vanishes to order at least $\ell\ge1$, then:
+\[
+ \begin{array}{c|c}
+  \ell>2n &[t^n]Z_\phi=0\\
+  \ell=2n &[t^n]Z_\phi=p_{2n}\phi_{2n}\\
+  1\le\ell<2n &u_0,\ldots,u_D\text{ suffice},\quad D=2n-\ell.
+ \end{array}
+ \tag{LT9}
+\]
+Here $p_{2n}$ is the $2n$th root moment of the original-scale
+heat polynomial
+\[
+ P_m(y)=\sum_{a=0}^{\lfloor m/2\rfloor}
+       \frac{(-1)^am!}{a!(m-2a)!}y^{m-2a}.
+ \tag{LT10}
+\]
+More generally $p_a$ denotes the sum of the $a$th powers of
+all $m$ roots, counted with multiplicity, and $p_0=m$.
+To prove the middle entry, LT8 uses only $Q_{m,n}[u](0)$,
+which depends solely on $m$. At the auxiliary unit $u=1$,
+$H_t=e^{-t\partial_x^2}x^m=t^{m/2}P_m(x/\sqrt t)$;
+its roots are $\sqrt t$ times the roots of $P_m$.
+Their $2n$th power sum is exactly $p_{2n}t^n$, proving that
+constant. This is a calculation of a universal coefficient of the
+retained family, not its replacement by a model at other orders.
+The first entry follows because the sum in LT8 is empty.
+If $\phi-\phi(0)$ has a higher order than $\phi$ itself, that
+higher order may be used for every positive time coefficient.
+
+\paragraph{LT4. Exact supply by the marked residue tower.}
+For every $r\ge1$ retain
+\[
+ A_r=\mathbb C[x]/(x^r),\qquad
+ \lambda_r(f)=\operatorname{Res}_0\frac{f(x)}{x^ru(x)}\,dx,
+ \qquad B_r(f,g)=\lambda_r(fg).
+ \tag{LT11}
+\]
+If $u^{-1}=\sum_{a\ge0}q_ax^a$, then
+$\lambda_r(x^j)=q_{r-1-j}$ for $0\le j<r$.
+The pairing matrix has entries $q_{r-1-i-j}$ when $i+j<r$,
+and zero otherwise. Reversing columns gives a triangular matrix
+with diagonal $q_0=u_0^{-1}$, so
+\[
+ \det B_r=(-1)^{r(r-1)/2}u_0^{-r}\ne0.
+ \tag{LT12}
+\]
+Its entire marked pairing gives exactly $q_0,\ldots,q_{r-1}$,
+since $\lambda_r(f)=B_r(1,f)$. The inverse recursion
+\[
+ u_0=q_0^{-1},\qquad
+ u_a=-q_0^{-1}\sum_{b=1}^a q_bu_{a-b}\quad(1\le a<r)
+ \tag{LT13}
+\]
+recovers exactly $u\bmod x^r$.
+The original coordinate class $x$ and the given functional are
+part of the data.
+
+For $R\ge r$ the quotient algebra map $\pi_{R,r}:A_R\to A_r$
+has kernel $(x^r)/(x^R)$. Its transpose under these perfect
+pairings is the injective module map
+\[
+ j_{r,R}(f)=x^{R-r}\widetilde f,\qquad
+ B_R(a,j_{r,R}f)=B_r(\pi_{R,r}a,f),\qquad
+ \lambda_R(j_{r,R}f)=\lambda_r(f).
+ \tag{LT14}
+\]
+A change of lift adds a multiple of $x^R$, proving
+well-definedness. The coefficients of $x^{R-r},\ldots,x^{R-1}$
+prove injectivity; cancelling $x^{R-r}$ in the residue proves
+both identities. It is an $A_R$-module map when $A_r$ has its
+action through $\pi$, not an algebra inclusion. Its image is
+$(x^{R-r})=(\ker\pi)^{\perp_{B_R}}$, since the inclusion follows
+from LT14 and both sides have dimension $r$. All compositions
+are the literal quotient compositions and multiplication by the
+corresponding powers of $x$.
+
+Therefore $A_{2n}$ supplies the general LT8 coefficient, and
+$A_{D+1}$ supplies the third case of LT9. When $m\ge D+1$,
+the original multiplicity-$m$ receiver $A_m$ already supplies
+these data by LT14. When $m<D+1$, the displayed larger object
+is a specified analytic thickening. It does not add zero
+multiplicity. The full inverse system determines all Taylor
+coefficients of the original analytic $u$ by LT13, and hence
+determines that germ by the uniqueness of a convergent power
+series. A single finite receiver supplies only its stated jet.
+
+On the full supported module
+$\{(0,\lambda):\lambda\in L\}\cup\{(a,1_L):a\in A_r\}$,
+each map retains the label:
+$(a,1_L)\mapsto(\pi a,1_L)$ or $(ja,1_L)$ and
+$(0,\lambda)\mapsto(0,\lambda)$. Addition and the prescribed
+scalar action commute with these rules directly. The quotient
+is multiplicative; $j$ has the module property just proved.
+An amplitude in $\ker\pi$ becomes the top-supported zero, not
+external absence. The trace receiver LT8 is a polynomial
+function of the recorded unit data, not an asserted algebra map;
+its output likewise retains its specified scalar support.
+
+\paragraph{LT5. The highest-jet coefficient is exactly computable.}
+Suppose $1\le\ell<2n$, $\phi_\ell\ne0$, and put $D=2n-\ell$.
+Weight homogeneity implies that the dependence on $\gamma_D$
+in LT8 is affine, and its coefficient is independent of every
+lower unit coefficient. Only the summand $k=\ell$ can contain it.
+The exact coefficient is
+\[
+ \boxed{\frac{\partial}{\partial\gamma_D}[t^n]Z_\phi
+       =\phi_\ell\,\sigma_{m,n,\ell},\qquad
+ \sigma_{m,n,\ell}
+       =-\ell[y^{-\ell}]\frac{P_{m+D}(y)}{P_m(y)}.}
+ \tag{LT15}
+\]
+The Laurent coefficient is at infinity. To prove it, it is
+enough by the preceding weight argument to evaluate at
+$u(x)=u_0(1+\eta x^D)$. The actual finite polynomial heat
+solution with this initial value is
+\[
+ H^{(\eta)}(t,x)=u_0\left(
+ e^{-t\partial_x^2}x^m+\eta e^{-t\partial_x^2}x^{m+D}\right).
+ \tag{LT16}
+\]
+The exponentials here terminate, and direct differentiation proves
+the heat equation and exact initial multiplicity $m$.
+Differentiating the logarithm at $\eta=0$ gives
+$H_{m+D}(t,x)/H_m(t,x)-x^D$; its second term has zero
+coefficient at positive time degree. With
+$H_k(t,x)=t^{k/2}P_k(x/\sqrt t)$, the required term is
+$x^{-\ell}[y^{-\ell}]P_{m+D}(y)/P_m(y)$.
+Substitution in LT3 proves LT15, including its minus sign.
+The finite heat examples in LT16 test information content; no
+new multiple zero of the arithmetic family is asserted.
+
+There is an integer recurrence evaluating every multiplier without
+approximating any root. Put
+\[
+ a_{k,j}=\frac{(-1)^j(k)_{\underline{2j}}}{j!},\qquad
+ b_0=1,\quad
+ b_j=a_{m+D,j}-\sum_{h=1}^j a_{m,h}b_{j-h}
+       \quad(1\le j\le n).
+ \tag{LT17}
+\]
+Terms with $2j>k$ are zero for the nonnegative integer $k$.
+Dividing
+$\sum_j a_{m+D,j}z^j$ by $\sum_j a_{m,j}z^j$ coefficientwise
+proves $\sigma_{m,n,\ell}=-\ell b_n$.
+Thus a zero multiplier is identified by exact finite arithmetic.
+When it is zero, the highest coefficient is absent for every
+unit. When it is nonzero, changing $\gamma_D$ by a nonzero
+$\eta$ changes the trace coefficient by precisely
+$\eta\phi_\ell\sigma_{m,n,\ell}$, while leaving the complete
+$A_D$ receiver unchanged. This explicitly proves the necessity
+of $A_{D+1}$ in that case.
+
+\paragraph{LT6. A finite exact test for every remaining jet.}
+The zero cases of LT15 require calculation, rather than a sharpness
+claim based solely on the upper bound. The following formula computes
+every lower sensitivity and thereby determines the exact cutoff.
+In formal variables $z,x$, define
+\[
+ \begin{aligned}
+ w(x)&=1+\sum_{r\ge1}\gamma_rx^r,\qquad\gamma_0=1,\\
+ {\cal F}_m(z,x)&=
+ \sum_{a=0}^{n}\sum_{r\ge0}\gamma_r a_{m+r,a}z^ax^r,
+ \\
+ V_{m,n,r}(x)&=[z^n]\frac{\sum_{a=0}^{n}a_{m+r,a}z^a}
+                                      {{\cal F}_m(z,x)}.
+ \end{aligned}
+ \tag{LT18}
+\]
+Only coefficients of $x$ through $2n-\ell-r$ need be formed
+below. All divisions are finite formal divisions with nonzero
+constant term; $w$ is a record of ratios, not a change of the
+retained function.
+For every $1\le r\le D$,
+\[
+ \boxed{\frac{\partial}{\partial\gamma_r}[t^n]Z_\phi
+ =-\sum_{k=\ell}^{2n-r} k\phi_k
+              [x^{2n-r-k}]V_{m,n,r}(x).}
+ \tag{LT19}
+\]
+Indeed differentiation of $H_t$ with respect to $\gamma_r$
+is $u_0H_{m+r}$, by the linearity of LT5. The positive-time
+part of the logarithmic derivative is therefore
+$[t^n]u_0H_{m+r}/H_t$. Factoring $x^m$ and putting
+$z=t/x^2$ gives $x^{r-2n}V_{m,n,r}(x)$. The derivative
+of $\log H_0$ is time-independent, and LT3 proves LT19.
+
+For each fixed $m,n$ and fixed test jet, the right sides of LT19
+are explicitly determined finite polynomials in
+$\gamma_1,\ldots,\gamma_{D-r}$. This list may include the
+differentiated variable $\gamma_r$ when $2r\le D$.
+Let $r_*$ be the greatest $r$ for which this polynomial
+has a nonzero coefficient, with $r_*=0$ if none do. This is a
+finite coefficient test, not an unresolved analytic condition.
+LT8 is a polynomial, so it is independent of all
+$\gamma_r$ with $r>r_*$, and $A_{r_*+1}$ supplies it.
+If $r_*>0$, the nonzero polynomial in LT19 cannot vanish at
+every tuple of real rational values of its unit variables: induction on
+the number of variables reduces that assertion to the fact that
+a nonzero one-variable polynomial has finitely many roots.
+Choose such a rational basepoint in all variables occurring
+in the derivative, then vary only $\gamma_{r_*}$ near that
+basepoint. The derivative there is nonzero, so a sufficiently
+small nonzero rational change gives a different value. The resulting
+finite polynomial heat families have identical receiver $A_{r_*}$
+and different trace coefficients. Thus the stated finite test
+determines the exact least receiver order for the fixed test over
+the class of genuine analytic heat families. If $r_*=0$, the
+coefficient is universal and needs no unit data.
+
+\paragraph{LT7. Explicit zero multipliers and their actual receivers.}
+LT17 gives the following complete lists at the first three
+positive time orders:
+\[
+\begin{array}{c|c|l}
+n&\ell&\sigma_{m,n,\ell}\\ \hline
+1&1&2m\\
+2&1&-12m\\
+2&2&8m(m-1)\\
+2&3&12m(m-1)\\
+3&1&-40m(m-4)\\
+3&2&-128m(m-1)\\
+3&3&24m(m-1)(m-5)\\
+3&4&32m(m-1)(2m-3)\\
+3&5&40m(m-1)(2m-3).
+\end{array}
+\tag{LT20}
+\]
+For example the first exceptional case $m=4,n=3,\phi=x$ has
+the exact coefficient
+\[
+ [t^3]Z_x=-32\gamma_1^5+160\gamma_1^3\gamma_2
+       -96\gamma_1^2\gamma_3-192\gamma_1\gamma_2^2
+       +192\gamma_2\gamma_3.
+ \tag{LT21}
+\]
+Both $\gamma_5$ and $\gamma_4$ are absent, and the actual least
+receiver is $A_4$, since the $\gamma_3$ derivative
+$192\gamma_2-96\gamma_1^2$ is a nonzero polynomial.
+For a fixed test of exact order $1$ at the same $(m,n)$,
+\[
+ \partial_{\gamma_4}[t^3]Z_\phi=-1536\phi_2,\qquad
+ \left.\partial_{\gamma_3}[t^3]Z_\phi\right|_{\phi_2=0}
+       =\phi_1(192\gamma_2-96\gamma_1^2)-288\phi_3.
+ \tag{LT22}
+\]
+Thus the least receiver is $A_5$ when $\phi_2\ne0$ and $A_4$
+when $\phi_2=0$. In the latter case $\phi_1\ne0$ ensures that
+the second polynomial is nonzero.
+
+For $m=5,n=3,\phi=x^3$ the result is
+\[
+ [t^3]Z_{x^3}=-440\gamma_1^3+960\gamma_1\gamma_2.
+ \tag{LT23}
+\]
+For a fixed test of exact order $3$, its highest remaining
+derivative is $960\phi_3\gamma_1+4480\phi_4$, so the least
+receiver is $A_3$. The term $\gamma_3$ is absent by LT20.
+
+Zero multipliers occur beyond these first orders. An exact instance is
+\[
+ \sigma_{m,5,2}=-1024m(m-1)(m-4)(m-21).
+ \tag{LT24}
+\]
+At $m=4$ and $m=21$, for any fixed test of exact order $2$,
+the degree-$8$ unit coefficient is absent, while the next
+derivatives are respectively
+\[
+ \begin{aligned}
+ \partial_{\gamma_7}[t^5]Z_\phi
+       &=32256\phi_2\gamma_1+532224\phi_3 &&(m=4),\\
+ \partial_{\gamma_7}[t^5]Z_\phi
+       &=-1270080\phi_2\gamma_1-182891520\phi_3 &&(m=21).
+ \end{aligned}
+ \tag{LT25}
+\]
+Both polynomials are nonzero since $\phi_2\ne0$, so $A_8$ is
+the exact least receiver in these cases.
+The finite derivation of LT20--25 is substitution of LT4 into
+LT6, with the coefficient condition $\sum a k_a=n$ retained;
+LT19 gives the displayed sensitivities directly. The included
+exact checker evaluates both this partition calculation and an
+independent local factor/Newton calculation. LT17 and LT19
+retain all other exceptional cases, without a claim that this
+displayed list exhausts larger time orders.
+
+\paragraph{LT8. The complete simple-zero refinement.}
+At $m=1$, the implicit function theorem gives a single
+holomorphic zero $x(t)=\sum_{a\ge1}\alpha_at^a$.
+Applied to the test $x$, LT9 shows that $\alpha_a$ uses
+unit coefficients only through degree $2a-1$.
+The coefficient of $\gamma_{2a-1}$ is, by LT15,
+\[
+ -[y^{-1}]\frac{P_{2a}(y)}{P_1(y)}
+     =(-1)^{a+1}\frac{(2a)!}{a!},
+ \qquad \alpha_1=2\gamma_1.
+ \tag{LT26}
+\]
+Here $P_1=y$, and the constant term of $P_{2a}$ is
+$(-1)^a(2a)!/a!$, proving the formula.
+For a fixed test of exact order $\ell\ge1$, the coefficient
+$[t^n]\phi(x(t))$ is zero if $n<\ell$. If $n\ge\ell$, a product
+of $k$ root coefficients contributing to time degree $n$ has
+each index at most $n-k+1\le n-\ell+1$. It therefore uses
+unit coefficients only through
+\[
+ R=2n-2\ell+1.
+ \tag{LT27}
+\]
+This is a stronger bound than LT9 for every $\ell>1$.
+When $n>\ell$, the unique way to include
+$\alpha_{n-\ell+1}$ at time degree $n$ is to take it once
+and take $\alpha_1$ in all other $\ell-1$ factors.
+Consequently the highest-unit derivative is
+\[
+ \partial_{\gamma_R}[t^n]Z_\phi
+   =\ell\phi_\ell(2\gamma_1)^{\ell-1}
+       (-1)^{n-\ell+2}
+          \frac{(2n-2\ell+2)!}{(n-\ell+1)!}.
+ \tag{LT28}
+\]
+For $n=\ell$, the coefficient is
+$\phi_\ell(2\gamma_1)^\ell$, whose derivative is the same
+formula with $R=1$. The polynomial in LT28 is nonzero, so
+$A_{2n-2\ell+2}$ is the exact least receiver over analytic
+simple-zero families. In particular LT15's zero multipliers
+for $m=1,\ell>1$ are actual losses of highest-jet information,
+not exceptions to be suppressed.
+
+\paragraph{LT9. Return to every original fixed-test flag.}
+For fixed arithmetic tests $F,G$, put
+$A(s)=F^\#(s)G(s)$, where
+$F^\#(s)=\overline{F(1-\bar s)}$, and
+$\phi(x)=A(\rho+ix/2)$. Its coefficients are exactly
+\[
+ \phi_k=(i/2)^k\frac{A^{(k)}(\rho)}{k!}
+       =\sum_{a+b=k}\overline{(i/2)^af_a}\,(i/2)^bg_b,
+ \quad f_a=F^{(a)}(\rho)/a!,\quad g_b=G^{(b)}(\rho)/b!.
+ \tag{LT29}
+\]
+Reflection fixes the centre and conjugates the coefficients in
+the spatial coordinate, proving the second identity.
+If both tests vanish to order at least $j$, then $\phi$ vanishes
+to order at least $2j$. Thus at $n=j$ the coefficient is the
+universal $p_{2j}\bar f_jg_j/4^j$. At $n=j+1$, $j\ge1$,
+LT9 supplies the full coefficient from $A_3$; all actual test
+jets through total degree $2j+2$ remain in LT8.
+Writing $c=\gamma_1$, $d=\gamma_2$, and $b=2d-c^2$ gives
+\[
+\begin{split}
+[t^{j+1}]Z_{F^\#G}=\frac1{4^j}\bigg[&
+ \bigl(2jb\,p_{2j}+4j(2j-1)c^2p_{2j-2}\bigr)\bar f_jg_j\\
+ &+i(2j+1)c\,p_{2j}
+            (\bar f_jg_{j+1}-\bar f_{j+1}g_j)\\
+ &+\frac{p_{2j+2}}4
+       (\bar f_{j+1}g_{j+1}-\bar f_jg_{j+2}-\bar f_{j+2}g_j)
+ \bigg].
+\end{split}
+\tag{LT30}
+\]
+To verify the reduction directly, the recurrences
+$P_{m+1}=yP_m-2P_m'$ and
+$P_{m+2}(r)=-2rP_m'(r)$ at each root of $P_m$ give
+the first two perturbed root terms
+$r\sqrt t+2ct+b r t^{3/2}$. Expanding powers gives
+$[t^{j+1}]\sum x_i^{2j}
+=2jb p_{2j}+4j(2j-1)c^2p_{2j-2}$,
+$[t^{j+1}]\sum x_i^{2j+1}=2(2j+1)cp_{2j}$,
+and $[t^{j+1}]\sum x_i^{2j+2}=p_{2j+2}$.
+The Hermite roots are simple. Indeed expanding
+$e^{yz-z^2}$ proves both
+$e^{yz-z^2}=\sum_{m\ge0}P_m(y)z^m/m!$ and the exact identity
+$P_m(y)e^{-y^2/4}=(-2)^m\partial_y^m e^{-y^2/4}$.
+Integration by parts $m$ times, with Gaussian-decaying boundary
+terms, makes $P_m$ orthogonal to every lower-degree polynomial
+for the measure $e^{-y^2/4}dy$. If it had fewer than $m$ real
+sign changes, the product of the factors at those sign changes
+would have degree less than $m$ and its product with $P_m$
+would have a fixed nonzero sign almost everywhere. Its integral
+could not vanish, a contradiction. Thus all $m$ roots are real
+and simple.
+The implicit expansions therefore apply to each root, and their
+symmetric sum is even in $\sqrt t$. Substitution of LT29 gives
+LT30, including every affine factor. This is precisely HR4 and
+RJ20, not a replacement of their full fixed-test jets.
+At every later $n$, LT8 and LT19 provide the entire original
+coefficient and its exact information cutoff. Neither the
+multiplicity nor the heat time has changed.
+
+\begin{figure}[p]
+\centering
+\begin{tikzpicture}[>=Stealth,box/.style={draw,rounded corners,
+ align=center,text width=11cm,inner sep=8pt}]
+\node[box] (res) at (0,0)
+ {Marked residue data on $A_{D+1}$\\
+ $\lambda_{D+1}(x^{D-r})=q_r$, $0\le r\le D$};
+\node[box] (unit) at (0,-2.1)
+ {Actual unit coefficients $u_0,\ldots,u_D$\\
+ LT13; $D=2n-\ell$ for a test of order $\ell<2n$};
+\node[box] (finite) at (0,-4.2)
+ {Finite partition polynomial $Q_{m,n}[u]$\\
+ $[t^n]Z_\phi=-\sum_{k=\ell}^{2n}k\phi_k[x^{2n-k}]Q_{m,n}[u]$};
+\node[box] (sharp) at (0,-6.6)
+ {Exact information test\\
+ highest coefficient: $-\ell[y^{-\ell}]P_{m+D}/P_m$\\
+ every lower coefficient: LT19; zero multipliers retained};
+\draw[->] (res)--node[right]{inverse unit recursion}(unit);
+\draw[->] (unit)--node[right]{LT4--8}(finite);
+\draw[->] (finite)--node[right]{LT15--19}(sharp);
+\end{tikzpicture}
+\caption{The all-order receiving map in the original coordinate.
+LT3 proves the contour identity; LT6--8 give the finite formula;
+LT11--14 prove the marked residue maps; LT15--28 determine
+sharpness and its exceptions. The actual multiplicity is still $m$.
+The diagram's $A_{D+1}$ is an analytic data receiver, and the
+original heat source and earlier fixed-test proofs are cited at
+the start of this section.}
+\end{figure}
+
+\clearpage
+\section{A certified arithmetic crossing with a surviving negative direction}
+\label{sec:native-crossing}
+
+The preceding WR1--14, reproduced in full in this edition, receive the
+exact vector in the supplied \texttt{rational\_witness.json} into the
+complete Rodgers--Tao theta trace. The companion manuscript
+\emph{A non-Eulerian RH counterexample attempt}, equations (4.2)--(7.2),
+supplied the vector and the signs at times $-2$ and $0$. Those signs
+are credited to that source. The calculation here adds a uniform
+curvature proof, an isolated simple crossing, and a second rational
+test that is strictly negative at that crossing. It uses the original
+heat time, coefficients, spatial coordinate and every root contribution.
+The human analytic sources are Brad Rodgers and Terence Tao,
+\href{https://arxiv.org/abs/1801.05914v5}{\emph{The de Bruijn--Newman
+constant is non-negative}}, original author equations
+\texttt{htdef}, \texttt{phidef}, \texttt{hoz}, \texttt{sas}, and
+Jacques Hadamard's
+\href{https://www.numdam.org/item/JMPA_1893_4_9__171_0/}{1893
+entire-function factorization paper}; WR1--5 articulate their precise
+use and the original-coordinate receiving maps.
+
+\paragraph{NC1. The fixed original tests.}
+Retain exactly
+\[
+ f_*(Z)=\sum_{i=0}^{18}c_i Z^{-2i-1},\qquad
+ c_i=1000^i n_i/10^{120},\qquad g_0(Z)=Z^{-1},
+ \tag{NC1}
+\]
+where the nineteen integers $n_i$ are the complete unrounded vector
+in the retained JSON. Its SHA256 is
+\path{85314e9fb3115647b7f03a5e00f1b5512c4b23c9280a753f3cf2cababdfed4ac}.
+The functions computed below are
+\[
+ \begin{split}
+ Q(t)&=Q_t(f_*,f_*)=\sum_{i,j=0}^{18}c_ic_j S_{i+j+1}(t),\\
+ B(t)&=Q_t(g_0,f_*)=\sum_{i=0}^{18}c_i S_{i+1}(t),\\
+ A(t)&=Q_t(g_0,g_0)=S_1(t).
+ \end{split}\tag{NC2}
+\]
+All $c_i$ are real. WR1--4 prove the complete-root interpretation,
+absolute convergence, and real analyticity on every compact real
+time interval. In particular $H_t(0)>0$, so these tests have no pole
+at a zero of $H_t$. From WR4 at $n=1$ one obtains the additional
+strict identity $A(t)=M_1(t)/M_0(t)>0$.
+
+\paragraph{NC2. Every required derivative from the original moments.}
+Put $D_{r,n}(t)=\partial_t^r S_n(t)$ for $r\ge0$, $n\ge1$.
+Differentiating WR5 $r$ times by the product rule gives
+\[
+ D_{r+1,n}=2n\left[
+ \sum_{a=1}^n\sum_{j=0}^r\binom rj
+ D_{j,a}D_{r-j,n+1-a}-(2n+1)D_{r,n+1}\right].
+ \tag{NC3}
+\]
+This is an identity of analytic functions, so it remains valid
+through collisions away from the fixed pole. Its proof uses no
+division by root differences. The entire initial row $D_{0,n}$
+is computed from WR4, including the positive denominator $M_0$.
+Induction on $r$ shows that derivatives through order $r$ of $Q$
+use precisely moments through $37+r$; the corresponding upper
+bound for $B$ is $19+r$. Hence moments through $42$ supply every
+entry used here, including fifth derivatives.
+
+There is an independent formal verification of the differential
+identity. In a variable $h$, set
+\[
+ a_n(h)=\frac{(-1)^n}{(2n)!}
+       \sum_{r\ge0}\frac{M_{n+r}(t)}{r!}h^r.
+ \tag{NC4}
+\]
+The identity $M_n^{(r)}=M_{n+r}$ follows by differentiating the
+dominated integral in WR1. Divide the $Z$-series $\partial_ZH/H$
+with coefficients $a_n(h)$. Equating the resulting coefficients
+gives the same $D_{r,n}/r!$. The included exact checker compares
+NC3 with this separate series-division construction; the analytic
+proof remains WR4--5 and the product rule above.
+
+\paragraph{NC3. Uniform interval calculation on the full time window.}
+Set $h_0=10^{-20}$ and
+\[
+ I=[-2,-2+h_0].\tag{NC5}
+\]
+The script \texttt{native\_curvature.py} computes all moments
+$M_0,\ldots,M_{42}$ both at $t=-2$ and uniformly for $t\in I$.
+It uses the same $160$ bracketed Gauss--Legendre nodes per panel,
+$24$ panels on $[0,3]$, first $16$ theta summands and directed
+$360$-digit intervals as WR8--11. The node brackets and positive
+weights are certified again by their exact recurrence signs;
+decimal Newton iterates only propose those brackets.
+
+Here the panel estimate holds uniformly, not merely at two times.
+For real $t\in I$ and complex $z=x+iy$ on the ellipse,
+\[
+ |e^{tz^2}|=e^{t(x^2-y^2)}\le e^{2B^2},\qquad B=15/128.
+ \tag{NC6}
+\]
+Thus the full WR9 panel error is bounded by
+$(4\ell/3)P_v e^{2B^2}R^{2k}4^{-319}$ for every $0\le k\le42$.
+The omitted theta summands on $[0,3]$ still have error at most
+$192\,17^4\,3^{2k}e^{-840}$, since $t\le0$.
+The extended spatial-tail proof, for $u\ge3$, is
+\[
+ 2k\log u+9u\le93u\le31u^2\le e^{4u}.
+ \tag{NC7}
+\]
+The last inequality holds at $3$, and $e^{4u}/u^2$ is increasing
+thereafter. The exact same bound
+$64\int_3^\infty e^{-2e^{4u}}du<e^{-2000}$ therefore applies.
+These estimates prove uniform containment of each actual moment.
+Outward arithmetic in WR4 and NC3 then proves uniform containment
+of every derivative in the retained receipt.
+
+In particular the uniform fifth-derivative bound is
+\[
+ \sup_{t\in I}|Q^{(5)}(t)|<4.8\,10^{17}=:C_5.
+ \tag{NC8}
+\]
+Direct interval evaluation of $Q$ on $I$ has a wide enclosure
+because it repeats the same time variable in many cancelling terms.
+NC8 retains a valid consequence of that enclosure. Taylor's theorem
+uses it together with the accurately evaluated derivatives at the
+original endpoint; no cancellation is assumed or discarded.
+The endpoint values, with the complete binary enclosures in
+\texttt{NATIVE\_CURVATURE\_INTERVALS.json}, begin
+\[
+\begin{array}{c|r}
+r&Q^{(r)}(-2)\\\hline
+0&-2.3840641788179150923540341723\ldots\,10^{-46}\\
+1& 1.0766217789670091488291342795\ldots\,10^{-44}\\
+2& 0.0000142941887834022346441600660202\ldots\\
+3& 0.0000713941668222182582756860423090\ldots\\
+4& 0.0002385266580194101433481063682461\ldots
+\end{array}\tag{NC9}
+\]
+These displayed decimals identify the values; the calculation uses
+their exact outward binary endpoints, not the truncated decimals.
+
+\paragraph{NC4. Positive curvature and the unique simple crossing.}
+For $0\le d\le h_0$ Taylor's theorem with integral remainder gives,
+for $r=0,1,2$,
+\[
+ \left|Q^{(r)}(-2+d)-
+ \sum_{j=r}^4\frac{Q^{(j)}(-2)}{(j-r)!}d^{j-r}\right|
+ \le\frac{C_5d^{5-r}}{(5-r)!}.
+ \tag{NC10}
+\]
+Indeed the integral remainder is
+$\int_0^d Q^{(5)}(-2+y)(d-y)^{4-r}dy/(4-r)!$.
+Applying the interval endpoint values in NC9 proves on all of $I$
+\[
+ 0.00001429418878340223<Q''(t)
+ <0.00001429418878340224.
+ \tag{NC11}
+\]
+Since $Q'(-2)>0$, $Q$ is strictly increasing on $I$.
+The same NC10 enclosure gives $Q(-2)<0$ and $Q(-2+h_0)>0$.
+The intermediate value theorem and strict monotonicity prove exactly
+one zero, which we denote $t_*=-2+d_*$. Its derivative is positive.
+
+The script \texttt{certify\_native\_crossing.py} performs $120$
+rational bisections, using NC10 at each proposed rational endpoint.
+Every sign must be strict; an undecided interval stops the code.
+The resulting certified bracket is
+\[
+ \frac{767703802914770771337427964528646841}
+      {2^{120}10^{20}}
+ <d_*<
+ \frac{767703802914770771337427964528646842}
+      {2^{120}10^{20}}.
+ \tag{NC12}
+\]
+It implies the more readable bounds
+\[
+\begin{aligned}
+d_*&>5.775561493959038849338863555346879146\,10^{-21},\\
+d_*&<5.775561493959038849338863555346879155\,10^{-21}.
+\end{aligned}\tag{NC13}
+\]
+The derivative obeys
+\[
+ \begin{aligned}
+ Q'(t_*)&>8.25569663247991463159849730318\,10^{-26},\\
+ Q'(t_*)&<8.25569663247991463159849730320\,10^{-26}.
+ \end{aligned}
+ \tag{NC14}
+\]
+In particular this is a transversal crossing of the scalar test.
+The positive root $d_2$ of the endpoint quadratic is also evaluated
+without changing the function:
+\[
+ d_2=\frac{-Q'(-2)+
+ \sqrt{Q'(-2)^2-2Q''(-2)Q(-2)}}{Q''(-2)}.
+ \tag{NC15}
+\]
+The same outward calculations give
+\[
+ -2.7767730799140320\,10^{-41}<d_*-d_2
+ <-2.7767730799140312\,10^{-41}.
+ \tag{NC16}
+\]
+This evaluates a nonlinear correction to the actual crossing;
+the quadratic expression alone was not used to certify its value.
+
+\paragraph{NC5. The complete two-test receiver at the crossing.}
+Apply NC3 to $B$ in NC2. Its first derivative at $-2$ begins
+$0.000128434311029871499097473571169\ldots$, while
+$B(-2)$ lies near $1.81298975228\,10^{-123}$.
+The full interval calculation bounds $|B^{(5)}|<0.063$ on $I$.
+The analogous fourth-order Taylor enclosure at the entire interval
+NC12 gives
+\[
+\begin{gathered}
+\begin{aligned}
+B(t_*)&>7.41780261287284496794922217392\,10^{-25},\\
+B(t_*)&<7.41780261287284496794922217394\,10^{-25},
+\end{aligned}\\
+0.01109183050805782326708<A(t_*)<0.01109183050805782326710.
+\end{gathered}\tag{NC17}
+\]
+The script retains the unrounded enclosures and checks $B(t_*)>0$.
+On the original two-dimensional subspace with ordered basis
+$(f_*,g_0)$, the actual trace form is exactly
+\[
+ \begin{pmatrix}0&B(t_*)\\B(t_*)&A(t_*)\end{pmatrix},
+ \qquad\det=-B(t_*)^2<0.
+ \tag{NC18}
+\]
+The two tests are linearly independent because $c_{18}=10^{54}$
+and $g_0$ has no $Z^{-37}$ term. The real symmetric matrix therefore
+has one positive and one negative eigenvalue. The vector $f_*$ is
+isotropic but outside the radical: its pairing with $g_0$ is nonzero.
+This statement is about the original full-root form, without deleting
+the roots outside any selected cluster.
+
+There is an explicit rational negative vector at the same time:
+\[
+ \widetilde f=f_*-10^{-22}g_0,
+ \qquad
+ Q_{t_*}(\widetilde f,\widetilde f)
+ =-2\,10^{-22}B(t_*)+10^{-44}A(t_*).
+ \tag{NC19}
+\]
+Substitution of the certified NC17 intervals proves
+\[
+ -3.74377471768786666882\,10^{-47}
+ <Q_{t_*}(\widetilde f,\widetilde f)
+ <-3.74377471768786666880\,10^{-47}.
+ \tag{NC20}
+\]
+Thus the zero of this one fixed test is not a positivity boundary
+for its two-test subspace. NC18--20 give the exact inclusion and
+the surviving negative direction establishing that assertion.
+Continuity also preserves that strict negative value on some open
+interval about $t_*$; no size is claimed without a further estimate.
+
+\paragraph{NC6. Supported zero, ordinary amplitude, and the retained label.}
+Let $V=\operatorname{span}_{\mathbb C}\{f_*,g_0\}$ and retain the
+original bounded distributive support lattice $L$. On the full
+carrier $M_L(V)=(V\times\{1_L\})\cup(\{0\}\times L)$, use amplitude
+addition with support join and scalar multiplication with support
+meet, exactly as in BT22. Its zero is $\tau=(0,0_L)$; the top
+supported zero is $e=(0,1_L)$. The complete lift is the explicit map
+\[
+ \widehat Q_t((v,\lambda),(w,\mu))
+       =(Q_t(v,w),\lambda\wedge\mu).
+ \tag{NC21}
+\]
+If a support is below $1_L$, the corresponding amplitude is zero,
+so the right side belongs to $M_L(\mathbb C)$. Sesquilinearity
+of WR3 verifies the amplitudes; distributivity of $L$ verifies
+the additive support identities, and complex conjugation retains
+the support. Thus NC21 is a sesquilinear map of the specified
+supported modules. The amplitude projections commute with NC21
+and $Q_t$ by their displayed formulas.
+
+At $t_*$, NC21 sends the pair of supported copies of $f_*$ to $e$,
+while its pairing with the supported $g_0$ has the positive amplitude
+in NC17. Applying the amplitude projection to the retained
+$2\times2$ array gives exactly NC18. The entire carrier still retains
+all other support labels. The diagonal supported zero therefore
+leaves $f_*$ present and outside the radical: NC17 is the explicit
+nonzero cross-pairing detecting the same vector.
+
+The physical time of this computed example is the negative number
+in NC12. WR7 separately gives the positive value of $Q_*(0)$.
+The exact map transporting its derivatives between those times is
+the original recurrence NC3, not a relabelling of $t_*$. The
+calculation supplies an arithmetic test-space crossing and its
+support-sensitive receiver. It does not assert a counterexample
+at the arithmetic endpoint $t=0$ or identify $t_*$ as a zero of
+$H_t$ itself.
+
+\paragraph{NC7. Verification scope.}
+The numerical proof uses outward \texttt{mpmath.iv} operations,
+explicit analytic quadrature and tail errors, positive-denominator
+checks, and exact rational bisection. It is computer-assisted;
+formal verification of the interval library is not claimed.
+\texttt{NATIVE\_CURVATURE\_INTERVALS.json} retains exact binary
+endpoints for the point and uniform derivatives.
+\texttt{CERTIFIED\_NATIVE\_CROSSING.json} retains the bracket,
+endpoint signs, curvature, derivative, cross-pairing and negative
+companion test. The symbolic checker verifies an independent
+finite consequence of NC3--4; it does not replace the analytic
+proof or the interval calculation.
+
+\begin{figure}[p]
+\centering
+\begin{tikzpicture}[>=Stealth,x=0.72cm,y=0.62cm]
+\draw[->] (0,-2.8)--(0,5.8) node[above] {$10^{46}Q(-2+d)$};
+\draw[->] (0,0)--(10.7,0) node[right] {$d/10^{-21}$};
+\foreach \x in {2,4,6,8,10}{\draw(\x,0.08)--(\x,-0.08) node[below] {\small\x};}
+\foreach \y in {-2,2,4}{\draw(0.08,\y)--(-0.08,\y) node[left] {\small\y};}
+\draw[thick,blue,domain=0:10,samples=100]
+ plot(\x,{-2.384064178817915+0.07147094391701117*\x*\x});
+\draw[dashed] (5.775561494,-2.8)--(5.775561494,3.2);
+\fill (5.775561494,0) circle(2pt);
+\node[anchor=west,align=left] at(6.0,2.1)
+ {$d_*/10^{-21}=5.77556149\ldots$\\unique simple crossing};
+\node[anchor=west,align=left,text width=10cm] at(0,-4.5)
+ {Curve: endpoint quadratic with the axis units shown.\\
+ The quadratic expression's total error is below $10^{-14}$ in these units.};
+\node[draw,rounded corners,align=center,text width=11.5cm,inner sep=8pt]
+ at(5,-8.5)
+ {At the actual crossing, in the original tests $(f_*,Z^{-1})$:\\[3pt]
+ $\begin{pmatrix}0&B_*\\B_*&A_*\end{pmatrix}$,
+ $B_*>0$, $A_*>0$, $\det=-B_*^2<0$\\[3pt]
+ $f_*-10^{-22}Z^{-1}$ has value in
+ $(-3.744,-3.743)\,10^{-47}$.};
+\end{tikzpicture}
+\caption{The actual fixed-witness crossing and its surviving negative
+direction. The axes record explicit display units only; time remains
+$t=-2+d$ and the original test coefficients are unchanged. The curve
+uses the endpoint quadratic (NC9--10); the displayed error bound also
+includes its omitted linear term and coefficient rounding. NC12--14
+give the rigorous crossing, and NC17--20 give the complete two-test
+matrix and negative companion. The full theta source is Rodgers--Tao
+(cited above); the vector is the supplied rational witness.}
+\end{figure}
+
+\clearpage
+\endgroup

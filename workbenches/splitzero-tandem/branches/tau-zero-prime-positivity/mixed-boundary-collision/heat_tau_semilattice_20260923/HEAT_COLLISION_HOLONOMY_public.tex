@@ -1,0 +1,770 @@
+% Standalone proof fragment: requires amsmath, amssymb, hyperref.
+% All statements below concern the original local heat family, with its units.
+\section{Parameter holonomy, the reflected trace, and arithmetic scaling}
+\label{sec:hh}
+\newcounter{hh}\renewcommand{\thehh}{HH\arabic{hh}}
+\newcommand{\HH}{\refstepcounter{hh}\par\medskip\noindent\textbf{\thehh.}\ }
+
+\HH\textbf{Original arithmetic family and scope.}
+We use precisely the convention of Brad Rodgers and Terence Tao,
+\emph{The de Bruijn--Newman constant is non-negative},
+\href{https://arxiv.org/abs/1801.05914v5}{arXiv:1801.05914v5},
+author source equations \texttt{hoz}, \texttt{sas}, \texttt{phidef},
+\texttt{htdef} and the sentence following \texttt{htdef}:
+\begin{align}
+ H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,&
+ H_0(Z)&=\tfrac18\xi_{\mathrm R}(\tfrac12+iZ/2),\notag\\
+ \Phi(u)&=\sum_{n\ge1}
+ (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},&
+ \partial_tH_t&=-\partial_Z^2H_t .
+ \tag{HH1}\label{hh:original}
+\end{align}
+Here $\xi_{\mathrm R}(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)/2$.
+The subscript prevents confusion with the local coordinate $\xi$ below.
+Fix an actual real zero $x_0$ of $H_0$ and retain its actual order
+$m\ge1$ and every coefficient
+\[
+ \begin{gathered}
+ H_0(x_0+\xi)=\sum_{n\ge m}a_n\xi^n,\qquad
+ a_n=\partial_Z^nH_0(x_0)/n!,\quad a_m\ne0,\\
+ c=a_{m+1}/a_m,\quad d=a_{m+2}/a_m,\quad b=2d-c^2 .
+ \end{gathered}
+ \tag{HH2}\label{hh:coeff}
+\]
+This describes each actual real zero without asserting that an actual
+multiple zero exists. At $t=0$ the constructions below are original
+completed-zeta jets and their reflected Weil trace contribution.
+At $t\ne0$ they are the explicitly defined trace and multiplier on
+the actual deformed $H_t$ cluster. An explicit formula for the original
+zeta function is not asserted for these deformed fibres.
+
+For completeness the analyticity used here follows directly from HH1.
+On compact subsets of complex $(t,Z)$ every differentiated integrand
+is bounded by a constant times
+$e^{C u^2+Cu}(1+u)^N e^{-c_1e^{4u}}$ for $u\ge1$, with $c_1>0$.
+To obtain this estimate, absorb polynomial factors of $n$ into
+$e^{-\pi n^2e^{4u}/2}$, and sum the remaining Gaussian tail uniformly.
+The series and its derivatives are uniformly convergent on bounded
+$u$ intervals. The displayed bound is integrable and remains so
+after any finite number of $t$ and $Z$ derivatives. Differentiation
+under the integral thus proves joint holomorphy and the heat equation.
+For real $t$ all local coefficients are real. These facts also prove
+the uniform convergence on a small fixed root-isolating circle that
+is used below.
+
+\HH\textbf{All analytic branches, with their original coefficients.}
+Define
+\[
+ P_n(z)=\sum_{j=0}^{\lfloor n/2\rfloor}
+       \frac{(-1)^jn!}{j!(n-2j)!}z^{n-2j}.
+ \qquad
+ H_{u^2}(x_0+uz)=\sum_{n\ge m}a_nu^nP_n(z).
+ \tag{HH3}\label{hh:branches-source}
+\]
+The second equality is convergent for bounded $z$ and small $u$:
+the heat equation gives
+$[t^j\xi^\ell]H_t=(-1)^j(\ell+2j)!a_{\ell+2j}/(j!\ell!)$,
+and the locally absolutely convergent double Taylor series can be
+regrouped by $n=2j+\ell$.
+This $P_n$ is the classical Hermite polynomial $H_n^{\rm Hermite}(z/2)$;
+the explicit finite formula is also
+\href{https://dlmf.nist.gov/18.5.E13}{DLMF 18.5.13},
+Chapter 18 by T.H. Koornwinder, R. Wong, R. Koekoek and
+R.F. Swarttouw. All zero properties used here have the following proof.
+The generating identity $\sum P_n(z)w^n/n!=e^{zw-w^2}$ gives
+\[
+ P_n'=nP_{n-1},\quad P_{n+1}=zP_n-2nP_{n-1},\quad
+ 2P_n''-zP_n'+nP_n=0,\quad
+ P_ne^{-z^2/4}=(-2)^n\partial_z^n e^{-z^2/4}.
+ \tag{HH4}
+\]
+Integration by parts makes $P_n$ orthogonal to each polynomial of
+degree less than $n$ for the positive weight $e^{-z^2/4}$.
+If it had fewer than $n$ distinct real sign-changing roots, multiply
+it by the product of those linear factors. The product has constant
+nonzero sign away from finitely many points, contradicting this
+orthogonality. Hence $P_m$ has exactly $m$ real simple roots
+$r_1<\cdots<r_m$. Its parity gives $r_{\sigma j}=-r_j$, where
+$\sigma j=m+1-j$.
+
+Apply the analytic implicit-function theorem to
+$H_{u^2}(x_0+uz)/(a_mu^m)$ at $(0,r_j)$.
+It gives convergent germs $\theta_j(u)=uz_j(u)$, with
+\begin{gather}
+ H_{u^2}(x_0+\theta_j(u))=0,\qquad
+ \theta_j(u)=r_ju+2cu^2+r_jbu^3+O(u^4),\notag\\
+ \theta_j(-u)=\theta_{\sigma j}(u),\qquad
+ \theta_j(\bar u)=\overline{\theta_j(u)} .
+ \tag{HH5}\label{hh:theta}
+\end{gather}
+Here the coefficients beyond the displayed terms remain the unique
+convergent coefficients specified by HH3; no polynomial replacement
+of $H$ is made. To compute the displayed terms, at a root of $P_m$,
+HH4 yields $P_{m+1}=-2P_m'$, $P_{m+1}'=0$,
+$P_m''=r_jP_m'/2$, $P_{m+2}=-2r_jP_m'$.
+Substitution of $z_j=r_j+A_ju+B_ju^2+O(u^3)$ gives
+$A_j=2c$ and $B_j=r_jb$.
+Complex conjugation and the change $u\mapsto-u$ give the last two
+identities by uniqueness of the corresponding implicit germ.
+Every difference $\theta_j-\theta_k$ equals
+$u(r_j-r_k+O(u))$, and is nonzero for small $u\ne0$.
+An isolating circle about $x_0$, followed by the argument principle
+and uniform convergence, retains exactly $m$ zeros for small $t$.
+These $m$ branches therefore exhaust the original local cluster.
+
+\HH\textbf{The original algebra, its full unit, and its evaluation map.}
+Put $\mathcal O=\mathbb C\{t\}$ and let $\mathcal K$ be its fraction field.
+Define
+\[
+ W(t,\xi)=\prod_{j=1}^m(\xi-\theta_j(u)),\quad t=u^2,\qquad
+ H_t(x_0+\xi)=U(t,\xi)W(t,\xi),\qquad
+ \mathcal A=\mathcal O[\xi]/(W).
+ \tag{HH6}\label{hh:original-algebra}
+\]
+The product is even in $u$ by HH5, so its coefficients are
+convergent germs in $t$. Its coefficients are real, $W(0,\xi)=\xi^m$,
+and $U$ is a holomorphic unit with
+$U(0,\xi)=\sum_{j\ge0}a_{m+j}\xi^j$.
+One can obtain the latter assertion without discarding any unit:
+divide the jointly holomorphic function $H_{u^2}(x_0+\xi)$ successively
+by $\xi-\theta_j(u)$. Holomorphic division by one such factor follows
+from the integral of its $\xi$ derivative along a line segment.
+At each remaining root the quotient vanishes for $u\ne0$, hence
+also at $u=0$ by analyticity. All $m$ divisions are therefore valid.
+The resulting quotient is even in $u$, since this is so away from
+the zero set, and hence everywhere by analytic continuation.
+It descends to $U(t,\xi)$, with $U(0,0)=a_m\ne0$.
+
+In the original basis $1,\xi,\ldots,\xi^{m-1}$ set
+\[
+ V(u)_{jk}=\theta_j(u)^k\quad(1\le j\le m,\ 0\le k<m).
+ \qquad V(-u)=P V(u),\quad
+ (Py)_j=y_{\sigma j}.
+ \tag{HH7}\label{hh:vandermonde}
+\]
+Its determinant is $\prod_{j<k}(\theta_k-\theta_j)$, nonzero off $u=0$.
+For a coefficient column $f$, $V(u)f$ is its exact vector of values.
+This retains every coefficient of every actual branch and the entire
+original nonreduced central algebra
+$\mathcal A/(t)=\mathbb C[\xi]/(\xi^m)$.
+
+\HH\textbf{The exact Gauss--Manin connection and the unit contribution.}
+The degree-zero Gauss--Manin connection here means differentiation
+of functions along the finite etale root cover, on the punctured
+disc. Its exact formula in $\mathcal A_{\mathcal K}$ is
+\begin{align}
+ \nabla f&=\partial_tf+q\,\partial_\xi f,&
+ q&=-\frac{W_t}{W_\xi}
+   =\frac{H_{\xi\xi}}{H_\xi}
+   =\frac{W_{\xi\xi}}{W_\xi}+2\frac{U_\xi}{U}\pmod W, \notag\\
+ \nabla f&=f'+\Gamma_{\mathcal A}f,&
+ \Gamma_{\mathcal A}(t)&=
+     V(u)^{-1}\frac1{2u}\partial_u V(u).
+ \tag{HH8}\label{hh:connection}
+\end{align}
+Every inverse in this equation is taken in the etale algebra over
+$\mathcal K$, where $W_\xi$ is invertible; reduction modulo $W$ is
+performed after the indicated operations.
+Indeed differentiating $W(t,\theta_j)=0$ gives
+$\theta_j'=-W_t/W_\xi$. Differentiating the actual equation $H=0$
+and using HH1 gives $\theta_j'=H_{\xi\xi}/H_\xi$.
+Differentiating $H=UW$ twice in $\xi$ proves the last expression
+at every simple root, and hence in the etale algebra.
+The expression $\partial_t+q\partial_\xi$ annihilates $W$ modulo $W$,
+so it is independent of polynomial representative.
+In the original power basis the $k$th column is the coefficient
+column of $k\xi^{k-1}q$ modulo $W$, including a zero column for $k=0$.
+The chain rule applied to $Vf$ proves the matrix formula.
+Its invariance under $u\mapsto-u$ follows from HH7, so it is
+meromorphic in $t$. In particular the term $2U_\xi/U$ is part of
+the actual connection and cannot be suppressed.
+
+\HH\textbf{Complete loop holonomy.}
+For a path in the punctured $t$ disc, choose its continuous square-root
+lift with endpoints $u_0,u_1$. Horizontality is precisely
+$(V(u)f)'=0$. Thus the exact coefficient transport and positive
+once-around holonomy at a base point $t_0=u_0^2$ are
+\[
+ C_{1\gets0}=V(u_1)^{-1}V(u_0),\qquad
+ M_{\mathcal A}(t_0)=V(u_0)^{-1}P V(u_0),\qquad
+ M_{\mathcal A}^2=I.
+ \tag{HH9}\label{hh:monodromy}
+\]
+These formulas are independent of the initial choice of square root.
+A loop of winding number $n$ has holonomy $M_{\mathcal A}^n$,
+because the square-root endpoint is $(-1)^nu_0$.
+There are $r=\lfloor m/2\rfloor$ transpositions and
+$\epsilon=m-2r\in\{0,1\}$ fixed branches. The multiplicities of
+the holonomy eigenvalues $+1,-1$ are therefore $r+\epsilon,r$.
+In particular a multiple real zero gives nonidentity parameter
+holonomy, although its central reflected trace is nonnegative,
+as will be calculated below. This holonomy is a meromorphic
+automorphism of $\mathcal A_{\mathcal K}$; regularity on the original
+integral lattice $\mathcal A$ has not been assumed.
+
+\HH\textbf{A logarithmic lattice and the exact integral-lattice defect.}
+Over the $u$ cover let
+\[
+ e_j=\prod_{k\ne j}\frac{\xi-\theta_k(u)}
+                               {\theta_j(u)-\theta_k(u)}.
+ \tag{HH10}
+\]
+Their evaluations are the coordinate unit vectors, so they are
+horizontal idempotents. For each positive leading root $r_a>0$
+choose its pair $(a,+),(a,-)$ with leading roots $r_a,-r_a$ and set
+\[
+ \mathbf e_a=e_{a,+}+e_{a,-},\qquad
+ \mathbf f_a=u(e_{a,+}-e_{a,-}),\qquad
+ \mathcal L=\bigoplus_{a=1}^r
+  (\mathcal O\mathbf e_a\oplus\mathcal O\mathbf f_a)
+       \ \oplus\ \mathcal O^\epsilon\mathbf e_0 .
+ \tag{HH11}\label{hh:loglattice}
+\]
+Here $\mathbf e_0$ is the central idempotent if $m$ is odd; the last
+summand is absent otherwise. All these elements are invariant under
+$u\mapsto-u$ and so belong to $\mathcal A_{\mathcal K}$.
+Products from different summands vanish,
+$\mathbf e_a^2=\mathbf e_a$,
+$\mathbf e_a\mathbf f_a=\mathbf f_a$,
+$\mathbf f_a^2=t\mathbf e_a$ and
+$1=\sum_a\mathbf e_a+\epsilon\mathbf e_0$.
+They are a basis over $\mathcal K$ and define an $\mathcal O$ algebra.
+They also give the explicit matrices
+\[
+ \nabla|_a=\partial_t+
+       \begin{pmatrix}0&0\\0&1/(2t)\end{pmatrix},\qquad
+ S_{\mathcal L}|_a=\begin{pmatrix}1&0\\0&-1\end{pmatrix};
+ \quad \nabla\mathbf e_0=0,\quad S_{\mathcal L}\mathbf e_0=\mathbf e_0 .
+ \tag{HH12}\label{hh:logconnection}
+\]
+Indeed $\nabla e_j=0$ and $\partial_tu=u/(2t)$.
+This proves regular singularity by exhibiting a logarithmic lattice,
+with no claim that the original power basis has a simple-pole matrix.
+
+For clarity the exact original-coordinate inclusion
+$J:\mathcal A\hookrightarrow\mathcal L$ is
+\begin{align}
+ (Jf)_{a,\mathrm{even}}&=
+   \frac{f(\theta_{a,+}(u))+f(\theta_{a,-}(u))}{2},&
+ (Jf)_{a,\mathrm{odd}}&=
+   \frac{f(\theta_{a,+}(u))-f(\theta_{a,-}(u))}{2u},\notag\\
+ (Jf)_0&=f(\theta_0(u)).
+ \tag{HH13}\label{hh:inclusion}
+\end{align}
+The two displayed numerators have the required parity, so these
+are holomorphic germs in $t$. For $f=\xi^k$ they give the exact
+matrix columns. The map is injective because it is injective off
+zero and $\mathcal A$ is free over $\mathcal O$. Its determinant is
+nonzero, so its cokernel has finite length. In particular
+\[
+ M_{\mathcal A}=J^{-1}S_{\mathcal L}J,\qquad
+ \mathcal D_M=
+   \frac{\mathcal A+M_{\mathcal A}\mathcal A}{\mathcal A}
+   =\frac{J\mathcal O^m+S_{\mathcal L}J\mathcal O^m}
+          {J\mathcal O^m}
+   \ \subset\ \mathcal L/\mathcal A .
+ \tag{HH14}\label{hh:lattice-defect}
+\]
+This is an exact finite-length object, with the exact sequence
+$0\to\mathcal A\to\mathcal A+M_{\mathcal A}\mathcal A
+\to\mathcal D_M\to0$.
+The middle module is the smallest $M_{\mathcal A}$-stable lattice
+containing $\mathcal A$: applying the involution interchanges its two
+summands. Its rank is $m$, and it is free since a finite torsion-free
+module over the discrete valuation ring $\mathcal O$ is free.
+No assertion that this sum is an algebra is needed.
+$\mathcal D_M=0$ is exactly the assertion that the loop preserves
+the original lattice. Equations HH13--14 compute this defect from
+the full actual coefficients even when it is not zero.
+
+The scalar even and odd branch germs
+\[
+ b_a(t)=\frac{\theta_{a,+}(u)+\theta_{a,-}(u)}2,\qquad
+ R_a(t)=\frac{\theta_{a,+}(u)-\theta_{a,-}(u)}{2u}
+ \tag{HH15}
+\]
+satisfy $b_a(t)=2ct+O(t^2)$,
+$R_a(t)=r_a(1+bt)+O(t^2)$ and $R_a(0)=r_a\ne0$.
+They retain all higher coefficients, and the original coordinate is
+exactly
+\[
+ \xi=\sum_a\bigl(b_a(t)\mathbf e_a+R_a(t)\mathbf f_a\bigr)
+                     +\epsilon\theta_0(t)\mathbf e_0 .
+ \tag{HH16}\label{hh:coordinate}
+\]
+The scalar $\theta_0$ is even in $u$ and is real for real $t$.
+This provides the concrete relation between the auxiliary lattice
+and the full original algebra without identifying their special fibres.
+
+\HH\textbf{The reflected trace and its three exact inertias.}
+For real $t$ define the conjugate-linear involution $\#$ by conjugating
+coefficients and fixing $\xi$. Put
+\[
+ T_t(f,g)=\operatorname{Tr}_{\mathcal A_t}
+                    (M_{f^\#g}),\qquad
+ K_{\mathcal A}(t)_{k\ell}
+       =\operatorname{Tr}_{\mathcal A_t}(M_{\xi^{k+\ell}})
+       =\sum_{j=1}^m\theta_j(u)^{k+\ell}.
+ \tag{HH17}\label{hh:trace}
+\]
+The last expression extends analytically to $t=0$. For nonzero $t$
+it follows by diagonalizing the multiplication operators via $V$;
+at zero direct multiplication on $\mathbb C[\xi]/\xi^m$ gives
+$\operatorname{Tr}(M_f)=mf(0)$.
+Thus $T_t(f,g)=f^*K_{\mathcal A}(t)g$ for real $t$, and the matrix
+is real symmetric. For $t>0$ choose $u=\sqrt t$; every root is real.
+For $t<0$ choose $u=i\sqrt{-t}$. HH5 then gives
+$\overline{\theta_j(u)}=\theta_{\sigma j}(u)$; each noncentral
+pair is nonreal for sufficiently small negative $t$. Consequently
+\[
+ K_{\mathcal A}(t)=V(u)^TV(u)
+   =\begin{cases}
+     V(u)^*V(u),&t>0,\\
+     V(u)^*P V(u),&t<0,
+    \end{cases}
+ \qquad K_{\mathcal A}(0)=\operatorname{diag}(m,0,\ldots,0).
+ \tag{HH18}\label{hh:gram}
+\]
+The first equality is a holomorphic bilinear identity for complex $t$;
+the other two are the Hermitian identities for the indicated real
+fibres. Congruence by the invertible $V$ proves the full inertia,
+written as (positive, negative, zero):
+\[
+ \operatorname{inertia}T_t=
+ \begin{cases}
+  (m,0,0),&t>0,\\
+  (1,0,m-1),&t=0,\\
+  (r+\epsilon,r,0),&t<0 .
+ \end{cases}
+ \qquad \operatorname{rad}T_0=(\xi).
+ \tag{HH19}\label{hh:inertia}
+\]
+On $\mathcal L$ the trace Gram matrix is exactly
+\[
+ K_{\mathcal L}(t)=
+       \bigoplus_{a=1}^r\begin{pmatrix}2&0\\0&2t\end{pmatrix}
+            \ \oplus\ (1)^\epsilon,\qquad
+ K_{\mathcal A}(t)=J(t)^T K_{\mathcal L}(t)J(t).
+ \tag{HH20}\label{hh:auxgram}
+\]
+For proof, $\#$ fixes $\mathbf e_a,\mathbf f_a$ for both real signs
+of $t$; at negative $t$, conjugation of $u$ and exchange of the
+idempotents cancel. The algebra relations give the traces $2,0,2t$.
+The congruence follows first off zero by HH13 and then at zero
+analytically. At $t=0$ the map on fibres induced by $J$ need not be
+injective. Accordingly HH20 does not replace the retained algebra
+$\mathbb C[\xi]/\xi^m$ by $r$ dual-number factors.
+
+\HH\textbf{Flatness, loop isometry, and the half-plane metric defect.}
+Differentiating the holomorphic identity $K=V^TV$ proves
+\[
+ K'=\Gamma_{\mathcal A}^T K+K\Gamma_{\mathcal A},\qquad
+ C_{1\gets0}^T K(t_1)C_{1\gets0}=K(t_0).
+ \tag{HH21}\label{hh:bilinear-flat}
+\]
+For real $t$ the connection matrix is real, so the first equality
+also states compatibility with the Hermitian trace on each real
+interval not containing zero.
+At a fixed nonzero real $t$, HH9 and HH18 give
+$M_{\mathcal A}^*K M_{\mathcal A}=K$, because $P$ is an isometry
+both for $I$ and for $P$. Thus the loop is unitary for the positive
+trace at $t>0$, and preserves the indefinite trace at $t<0$.
+
+There is also an exact defect when moving between the two real
+structures. Let $t_+>0,t_-<0$, choose the upper-half-plane path
+whose square-root lift goes from $u_+=\sqrt{t_+}$ to
+$u_-=i\sqrt{-t_-}$, and let $C=V(u_-)^{-1}V(u_+)$.
+Then
+\[
+ K(t_+)-C^*K(t_-)C
+     =V(u_+)^*(I-P)V(u_+)
+     =2V(u_+)^*\Pi_-V(u_+),\qquad
+ \Pi_-=(I-P)/2 .
+ \tag{HH22}\label{hh:halfplane}
+\]
+This is a positive semidefinite matrix of rank $r$.
+Indeed the first real fibre has value Gram matrix $I$, while the
+second has value Gram matrix $P$; substitution gives the equation,
+and $\Pi_-$ is the orthogonal projection on the antisymmetric
+pair directions. Its image and kernel are therefore exact:
+the defect vanishes precisely when the transported value vector
+has equal values within each pair. HH21 still holds with transpose.
+There is no inconsistency: HH22 measures the different endpoint
+conjugations in the Hermitian forms.
+
+\HH\textbf{The full-unit residue and the original Jacobian receiver.}
+Introduce the entire deformed function and its exact arithmetic
+coordinate
+\[
+ g_t(s)=16H_t(-2i(s-\tfrac12)),\quad
+ s=\rho+i\xi/2,\quad \rho=\tfrac12+ix_0/2,\quad
+ g_0(s)=2\xi_{\mathrm R}(s).
+ \tag{HH23}\label{hh:g}
+\]
+For real $t$, reflection is $s\mapsto1-\bar s$, or
+$\xi\mapsto\bar\xi$ on points. On coordinate algebras $\xi^\#=\xi$,
+whereas $v^\#=-v$ for $v=s-\rho=i\xi/2$.
+The raw residue pairing and Jacobian multiplier are
+\begin{align}
+ R_t(f,g)&=\frac{i}{32}\sum_{\text{cluster}}
+       \operatorname{Res}_\xi
+       \frac{f^\#(\xi)g(\xi)}
+            {U(t,\xi)W(t,\xi)}\,d\xi,&
+ \mathcal J_t&=M_{g_t'(s)}=-32iM_{H_\xi(t,x_0+\xi)},\notag\\
+ R_t(f,\mathcal J_tg)&=T_t(f,g).
+ \tag{HH24}\label{hh:residue}
+\end{align}
+The factor $i/32$ is exactly $ds/16=(i/32)d\xi$.
+The pairing is well-defined modulo $W$, since changing a numerator
+by a multiple of $W$ adds a holomorphic differential.
+It is perfect on every fibre. At a simple root its weight
+$i/(32H_\xi)$ is nonzero. At $t=0$ the matrix has entries
+$(i/32)[\xi^{m-1-k-\ell}]U(0,\xi)^{-1}$, zero when
+$k+\ell>m-1$ and equal to $i/(32a_m)$ on the antidiagonal.
+Its determinant is therefore nonzero. This is a perfect
+sesquilinear residue pairing; with these real-coordinate conventions
+it is skew-Hermitian, not the Hermitian trace itself.
+
+The last equality in HH24 follows by cancellation of the constants
+and the identity
+$H_\xi/H=W_\xi/W+U_\xi/U$. The unit term has no residue.
+At each root of multiplicity $n$, the residue of
+$f^\#g\,W_\xi/W$ is $n(f^\#g)$ evaluated at that root, exactly the
+regular multiplication trace. This proves the receiver at every
+fibre, including the original nonreduced central fibre.
+In matrix form, for $t\ne0$ and $C_t=I$ or $P$ as in HH18,
+\[
+ R_t=\frac{i}{32}V^*C_t
+       \operatorname{diag}\bigl(H_\xi(t,x_0+\theta_j)^{-1}\bigr)V,
+ \qquad
+ \mathcal J_t=V^{-1}
+       \operatorname{diag}\bigl(-32iH_\xi(t,x_0+\theta_j)\bigr)V .
+ \tag{HH25}\label{hh:residue-matrix}
+\]
+Their product is precisely $K_{\mathcal A}$, with all units retained.
+
+The compatibility with the connection has its own exact unit-sensitive
+formula. In the punctured algebra set
+\[
+ \kappa=-\frac{H_{\xi\xi\xi}}{H_\xi}
+                +\left(\frac{H_{\xi\xi}}{H_\xi}\right)^2\pmod W.
+ \tag{HH26}
+\]
+For horizontal $f,g$ on a real interval,
+$\frac{d}{dt}R_t(f,g)=-R_t(f,M_\kappa g)$.
+Indeed the values of $f,g$ are constant along each branch, while
+$(\partial_t+q\partial_\xi)\log H_\xi
+=-H_{\xi\xi\xi}/H_\xi+H_{\xi\xi}^2/H_\xi^2$ by HH1 and HH8.
+Differentiating the weights in HH25 proves the identity. The
+Jacobian satisfies $[\nabla,\mathcal J_t]=M_\kappa\mathcal J_t$ as
+a multiplier; its covariant derivative cancels this residue variation and
+recovers the trace compatibility HH21.
+
+\HH\textbf{Exact specialization to the arithmetic jet and its Weil value.}
+At $t=0$ the coordinate map
+\[
+ \begin{gathered}
+ \mathbb C[v]/(v^m)\longrightarrow\mathcal A_0,\qquad
+ v\longmapsto i\xi/2,\qquad g_0(\rho+v)=v^m u_\rho(v),\\
+ u_\rho(v)=16(-2i)^m\sum_{j\ge0}a_{m+j}(-2i)^jv^j
+ \end{gathered}
+ \tag{HH27}\label{hh:arithmetic-unit}
+\]
+is an isomorphism of the reflected algebras, including the full
+analytic unit in the displayed local equation.
+Consequently
+\[
+ T_0(f,g)=m\overline{f(0)}g(0),\qquad
+ (\log u_\rho)''(0)=4(c^2-2d).
+ \tag{HH28}
+\]
+The equality with the original local Weil contribution means exactly
+the multiplicity-$m$ summand at the fixed reflected zero
+$\rho=1-\bar\rho$ in the spectral side
+$\sum_\rho m_\rho\overline{F(1-\bar\rho)}G(\rho)$.
+The complete explicit formula retains its other zeros, its prime
+terms, its Archimedean term and its endpoint terms; none is replaced
+by the finite cluster. The original convention and criterion are
+Alain Connes and Caterina Consani,
+\emph{Weil positivity and trace formula, the archimedean place},
+\href{https://arxiv.org/abs/2006.13771v1}{arXiv:2006.13771v1},
+author source introduction and Appendix \texttt{mainprop};
+the full original-map derivation is also given in HW19--31 of this
+collection. The local equality here is proved independently by HH24
+and HH27. It asserts no positivity of the remaining spectral packet.
+
+\HH\textbf{Arithmetic scaling and its full deformed multiplier.}
+For real $L$ define, without any change of original coordinate,
+\[
+ \begin{gathered}
+ S_L(t)=M_{\exp(iL(x_0+\xi)/2)},\qquad
+ D_L(u)=\operatorname{diag}(d_j),\\
+ d_j=\exp(iL(x_0+\theta_j(u))/2),\qquad
+ S_L=V^{-1}D_LV .
+ \end{gathered}
+ \tag{HH29}\label{hh:scaling}
+\]
+The multiplier defines a holomorphic algebra section: it can be
+reduced modulo the monic $W$, or its entire convergent power series
+can be applied to the holomorphic multiplication matrix of $\xi$.
+At the arithmetic endpoint this is exactly
+\[
+ S_L(0)=e^{L(\rho-1/2)}\exp(LM_v)
+  =e^{iLx_0/2}\sum_{k=0}^{m-1}\frac{L^kM_v^k}{k!}.
+ \tag{HH30}\label{hh:arithmetic-scaling}
+\]
+It includes the original nilpotent factor on every jet layer.
+This is the shifted multiplicative arithmetic character convention
+used in Connes--Consani's spectral realizations. Their paper
+\emph{Hochschild homology, trace map and zeta cycles},
+\href{https://arxiv.org/abs/2207.10419}{arXiv:2207.10419},
+author source Remark \texttt{remtauto}, explicitly retains the
+Jordan blocks at multiple critical zeros. HH30 derives the entire
+finite matrix here, so no simplicity assumption is imported.
+
+For every real $t$, $(\exp(iL(x_0+\xi)/2))^\#
+\exp(iL(x_0+\xi)/2)=1$. Thus
+\[
+ S_L(t)^*K(t)S_L(t)=K(t).
+ \tag{HH31}\label{hh:scaling-isometry}
+\]
+This also preserves the raw residue by the same product identity.
+For $t>0$ each $d_j$ has modulus one.
+For $t<0$ the paired values obey
+$d_{\sigma j}=1/\bar d_j$ and
+$|d_j|=e^{-L\operatorname{Im}\theta_j/2}$.
+When $L\ne0$, each noncentral pair then has reciprocal nonunit
+moduli. These are zeros of the actual deformed $g_t$, not zeros of
+$g_0$ at the arithmetic endpoint. They preserve an indefinite trace
+with inertia HH19. At $t=0$ the nilpotent part in HH30 preserves the
+radical $(v)$ and is invisible to the value trace, but remains
+detected by the perfect residue HH24.
+
+In the auxiliary pair basis $(\mathbf e_a,\mathbf f_a)$ the exact
+same multiplier is
+\[
+ S_{L,a}(t)=e^{iL(x_0+b_a(t))/2}
+ \begin{pmatrix}
+  \cos z_a&i u\sin z_a\\
+  i\sin z_a/u&\cos z_a
+ \end{pmatrix},
+ \qquad z_a=L R_a(t)u/2 .
+ \tag{HH32}\label{hh:scaling-pair}
+\]
+The entries are analytic in $t$ by parity, and the value at zero is
+$e^{iLx_0/2}\left(\begin{smallmatrix}1&0\\iLr_a/2&1\end{smallmatrix}\right)$.
+To prove HH32, write the multiplier as $A+B\mathbf f_a$ on this
+factor, using $\mathbf f_a^2=t$, and take its exponential series.
+Multiplication by $A+B\mathbf f_a$ has matrix
+$\left(\begin{smallmatrix}A&tB\\B&A\end{smallmatrix}\right)$.
+This proves every entry and its limit. The auxiliary central matrix
+does not replace the length-$m$ original matrix HH30.
+
+\HH\textbf{The exact relation, rather than an identification, of the two actions.}
+The connection and the multiplier satisfy
+\[
+ [\nabla,S_L]=\frac{iL}{2}M_qS_L,\qquad
+ M_{\mathcal A}S_LM_{\mathcal A}^{-1}
+      =V^{-1}\operatorname{diag}(d_{\sigma j})V,\qquad
+ V[M_{\mathcal A},S_L]V^{-1}=P D_L-D_LP .
+ \tag{HH33}\label{hh:action-defect}
+\]
+The first formula is the Leibniz rule and $\nabla\xi=q$;
+it includes the entire unit contribution in HH8.
+The other two follow by substituting HH9 and HH29.
+Thus these actions commute exactly when each exchanged pair has
+equal exponential values. Nonidentity parameter holonomy alone
+neither says that these values have nonunit modulus nor gives a
+negative value of the arithmetic endpoint trace.
+
+\HH\textbf{A quantitative action defect containing the finite collision energy.}
+For $t>0$ the actual trace $T_t$ is positive definite, so its
+Hilbert--Schmidt operator norm is defined. The map $V$ is an isometry
+onto $\mathbb C^m$ with its usual inner product. Therefore HH33 gives
+the exact formula
+\[
+ \bigl\|[M_{\mathcal A},S_L]\bigr\|_{\mathrm{HS},T_t}^2
+  =\sum_j|d_j-d_{\sigma j}|^2
+  =8\sum_{a=1}^r
+       \sin^2\!\left(\frac{L(\theta_{a,+}(u)
+                                    -\theta_{a,-}(u))}{4}\right).
+ \tag{HH34}\label{hh:hs-exact}
+\]
+There is one nonzero entry per row of $P D-DP$; a pair contributes
+twice the same absolute square. The identity
+$|e^{i\alpha}-e^{i\beta}|^2=4\sin^2((\alpha-\beta)/2)$ gives
+exactly the factor $8$ and the denominator $4$ above.
+
+For each fixed real $L$ its full second-order expansion is
+\begin{align}
+ \bigl\|[M_{\mathcal A},S_L]\bigr\|_{\mathrm{HS},T_t}^2
+  ={}&2L^2m(m-1)t \notag\\
+   &+m(m-1)\left(4L^2(2d-c^2)
+                    -\frac{L^4}{3}(2m-3)\right)t^2+O(t^3).
+ \tag{HH35}\label{hh:hs-expansion}
+\end{align}
+Here the remainder is a convergent-germ remainder for the fixed
+actual root and fixed $L$. To prove every constant, HH3 has
+$[z^{m-2}]P_m=-m(m-1)$ and
+$[z^{m-4}]P_m=m(m-1)(m-2)(m-3)/2$, with missing coefficients
+taken as zero. Newton's identities, or direct expansion of the
+product, give
+\[
+ \sum_{a=1}^r r_a^2=m(m-1),\qquad
+ \sum_{a=1}^r r_a^4=2m(m-1)(2m-3).
+ \tag{HH36}
+\]
+For example the full fourth power sum is
+$2m^2(m-1)^2-2m(m-1)(m-2)(m-3)
+=4m(m-1)(2m-3)$; parity halves it.
+The identities also hold for $m=1,2,3$ by the same product expansion.
+Exact parity in HH5 improves the gap expansion to
+$\theta_{a,+}-\theta_{a,-}=2r_au+2r_ab u^3+O(u^5)$.
+Insert this in $\sin^2z=z^2-z^4/3+O(z^6)$ and multiply by $8$.
+The contribution of pair $a$ is
+$2L^2r_a^2t+(4L^2r_a^2b-L^4r_a^4/6)t^2+O(t^3)$.
+Summing by HH36 proves HH35.
+For $m\ge2$ and fixed $L\ne0$ this norm is strictly positive for all
+sufficiently small $t>0$, despite both actions being isometries.
+For $m=1$ or $L=0$ it is identically zero.
+
+The finite energy term can be calculated from the same retained
+coefficients, with the ordered-pair convention:
+\[
+ E_{x_0}(t)=\sum_{j\ne k}
+        \frac1{(\theta_j(u)-\theta_k(u))^2}
+     =\frac{m(m-1)}{8t}-\frac{m(m-1)b}{4}+O(t).
+ \tag{HH37}\label{hh:energy}
+\]
+For a complete verification, put
+$A_j=\sum_{k\ne j}(r_j-r_k)^{-1}$ and
+$B_j=\sum_{k\ne j}(r_j-r_k)^{-2}$.
+Logarithmic differentiation of the product for $P_m$, followed by
+HH4 and its derivative, gives
+$A_j=r_j/4$ and
+$3(A_j^2-B_j)=P_m'''(r_j)/P_m'(r_j)
+=r_j^2/4-(m-1)/2$.
+Thus $B_j=(m-1)/6-r_j^2/48$.
+HH36 gives $\sum_jB_j=m(m-1)/8$.
+Each gap equals $u(r_j-r_k)(1+bu^2)+O(u^4)$, so substitution gives
+the stated pole and finite part, initially with $O(u)$ remainder.
+The full ordered sum is even under $u\mapsto-u$, which permutes
+the roots. Its Laurent series is even, improving the remainder
+to $O(u^2)=O(t)$. For $m=1$ the sum is empty and all coefficients
+are zero. This finite cluster statement makes no assertion about
+the external interactions in the full Rodgers--Tao dynamics.
+
+Combining HH27--28 and HH37 gives the exact arithmetic-unit receiver
+and the following equivalent form of the $t^2$ coefficient in HH35:
+\begin{align}
+ \operatorname{FP}_{t=0}E_{x_0}
+       &=\frac{m(m-1)}{16}(\log u_\rho)''(0),\notag\\
+ [t^2]\bigl\|[M_{\mathcal A},S_L]\bigr\|_{\mathrm{HS},T_t}^2
+       &=-16L^2\operatorname{FP}_{t=0}E_{x_0}
+                    -\frac{L^4}{3}m(m-1)(2m-3).
+ \tag{HH38}\label{hh:energy-receiver}
+\end{align}
+This is a numerical relation between parameter transport, the
+explicit exponential multiplier, and the original arithmetic unit.
+Its proof retains all higher branch coefficients through HH3,
+HH7--8, HH13 and HH34; those coefficients determine all subsequent
+terms as convergent analytic functions. It supplies neither a
+nonreal zero of $H_0$ nor a negative test for the complete original
+Weil form.
+
+\HH\textbf{The full supported fixed locus of the actual endpoint action.}
+Let $\Lambda$ be the original bounded distributive support lattice,
+with every one of its labels retained; use $\Lambda$ here to
+distinguish it from the real scaling parameter $L$.
+For the original arithmetic jet $A_0=\mathbb C[\xi]/(\xi^m)$ define
+its supported module exactly as in the original lattice-split
+construction:
+\[
+ \widehat A_0=
+   \{(0,\lambda):\lambda\in\Lambda\}
+       \ \cup\ \{(f,1_\Lambda):f\in A_0\},\qquad
+ (f,\lambda)+(g,\mu)=(f+g,\lambda\vee\mu).
+ \tag{HH39}\label{hh:supported-module}
+\]
+The scalars $(a,\lambda)\in G_\Lambda(\mathbb C)$ act by
+$(a,\lambda)(f,\mu)=(af,\lambda\wedge\mu)$.
+Nonzero amplitudes occur only at top support, so the operations
+are closed and satisfy the semimodule axioms by distributivity
+of the lattice and the original vector-space operations.
+In particular actual absence $(0,0_\Lambda)$ and supported zero
+$(0,1_\Lambda)$ remain distinct when the lattice is nontrivial.
+Lift HH30 by
+\[
+ \widehat S_L(f,\lambda)=(S_L(0)f,\lambda).
+ \tag{HH40}
+\]
+This is a semimodule automorphism: the matrix is complex linear and
+invertible and the support coordinate is unchanged.
+It is not asserted to be a unital algebra automorphism.
+
+Set $\alpha=iL/2$, $N=M_\xi$, and
+$\lambda_0=e^{iLx_0/2}$. If $\lambda_0\ne1$, the original
+full-jet inverse is the finite expression
+\[
+ (S_L(0)-I)^{-1}
+  =\frac1{\lambda_0-1}
+      \sum_{j=0}^{m-1}
+       \left[-\frac{\lambda_0}{\lambda_0-1}
+                         (e^{\alpha N}-I)\right]^j .
+ \tag{HH41}\label{hh:fixed-inverse}
+\]
+Indeed $N^m=0$, so $(e^{\alpha N}-I)^m=0$, and multiplication
+by $S_L-I=(\lambda_0-1)I+\lambda_0(e^{\alpha N}-I)$
+telescopes to the identity. No jet coefficient is omitted by
+this terminating inverse. If $\lambda_0=1$ and $L\ne0$, instead
+\[
+ S_L(0)-I=\alpha N h(\alpha N),\qquad
+ h(z)=\sum_{k=0}^{m-1}\frac{z^k}{(k+1)!},\qquad
+ h(\alpha N)^{-1}
+      =\sum_{j=0}^{m-1}(I-h(\alpha N))^j .
+ \tag{HH42}\label{hh:fixed-resonance}
+\]
+The product $\alpha Nh(\alpha N)$ is exactly $e^{\alpha N}-I$,
+because its last potentially extra term contains $N^m=0$.
+The constant term of $h$ is one; the same terminating geometric
+identity proves its displayed inverse. Thus the full fixed
+amplitude space and the full lifted fixed set are
+\[
+ \begin{gathered}
+ F_L=\ker(S_L(0)-I)=
+ \begin{cases}
+   \{0\},&e^{iLx_0/2}\ne1,\\
+   \mathbb C\xi^{m-1},&e^{iLx_0/2}=1,\ L\ne0,\\
+   A_0,&L=0,
+  \end{cases}\\[5pt]
+ \operatorname{Fix}(\widehat S_L)=
+ \{(0,\lambda):\lambda\in\Lambda\}
+       \cup\{(f,1_\Lambda):f\in F_L\}.
+ \end{gathered}
+ \tag{HH43}\label{hh:fixed-locus}
+\]
+For the middle case, multiplication by the unit in HH42 does
+not change $\ker N$; writing the full polynomial of degree below
+$m$ proves $\ker N=\mathbb C\xi^{m-1}$. This also covers $m=1$,
+when the fixed amplitude is the entire one-dimensional algebra.
+If $m>1$, the resonant operator itself is still nonidentity:
+its difference from $I$ has rank $m-1$ by HH42. The scalar phase
+alone therefore does not determine the fixed amplitudes at
+resonance, while every zero-support label is fixed in all cases.
+For $m>1$ the nonzero resonant fixed direction lies in the Weil
+radical, but
+$R_0(\xi^{m-1},1)=i/(32a_m)\ne0$ by HH24.
+This is its exact retained residue receiver.
+
+
+\par\medskip\noindent\textbf{Source scope.}
+The exact author-source equations and human citations used in this
+derivation are given in HH1, HH3 and HH28--30. The retained original
+sources are Rodgers--Tao v5, Connes--Consani's archimedean Weil paper
+and their Hochschild/zeta-cycles paper, and the DLMF Hermite formula
+with its named authors. The complete local input EP1--21 and full
+global receiver HW19--31 precede this derivation in the present
+reader. The entire lattice definition is stated in SH and HH39.
+The branch, connection, holonomy, trace and fixed-locus calculations
+have their proofs here. No paper-wide reading beyond the recorded
+source passages is claimed.

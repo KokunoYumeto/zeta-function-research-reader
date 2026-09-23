@@ -1,0 +1,501 @@
+\section{The global arithmetic remainder with the full leading term retained}
+
+This calculation concerns every real translation, rather than a finite
+range of prime windows. It proves an exact original-zeta return for the
+signed remainder and proves that the absolute-value estimate used for
+finite windows cannot be uniform on the positive half-line. The latter
+result identifies a failed estimate, not a failure of the Split-Zero
+programme. The uniform bound on the signed remainder is not proved here.
+
+\subsection{The fixed source and its original arithmetic form}
+
+Keep the original radius, coordinate, endpoint operator and density:
+\[
+ r=1/64,\quad B=2r=1/32,\quad D=\frac{d}{da},\quad
+ T=D^2-1/4,\quad
+ b_r=\mathop{*}_{j\ge1}\frac{\mathbf1_{[-r2^{-j},r2^{-j}]}}{2r2^{-j}},
+ \quad k=b_r*b_r,\quad f=Tb_r,\quad h=T^2k.
+ \tag{GC1}
+\]
+The compact density is Juan Arias de Reyna's classical function,
+\href{https://arxiv.org/abs/1702.05442v1}{\emph{An infinitely differentiable
+function with compact support: Definition and properties}, Theorem 1,
+equations (1)--(9)}. The original-author TeX was read through the proof
+of Theorem 1. With that author's Fourier factor \(e^{-2\pi itz}\),
+the exact comparison is \(b_r(v)=r^{-1}\varphi(v/r)\) and
+\[
+ G_r(z)=\int b_r(v)e^{-zv}\,dv
+       =\widehat\varphi(rz/(2\pi i))
+       =\prod_{j\ge1}\frac{\sinh(r2^{-j}z)}{r2^{-j}z}.
+ \tag{GC2}
+\]
+In particular \(k\) is a nonnegative smooth probability density
+supported in \([-B,B]\). Every factor has removable value one at zero.
+Its deviations from one on a compact set are bounded by a constant
+times \(r^2 4^{-j}\), so the product converges locally uniformly.
+Away from the imaginary-axis factor zeros its logarithmic tail
+converges, proving \(G_r(z)\ne0\) when \(\Re z\ne0\).
+The first finitely many Fourier factors give decay of any prescribed
+inverse-power order, proving smoothness and compact-source derivative
+interchanges. These are also the complete construction used in the
+programme's UP1--15 and PW1--5, read in their original TeX versions.
+
+For the original Riemann zeta function set
+\[
+ \Lambda(p^j)=\log p\ (j\ge1),\quad\Lambda(n)=0\text{ otherwise},\qquad
+ \psi(X)=\sum_{2\le n\le X}\Lambda(n)\quad(X>0).
+ \tag{GC3}
+\]
+Thus \(\psi(X)=0\) for \(0<X<2\). There is no completed-function
+replacement in this definition. On the full real logarithmic axis put
+\[
+ \mu=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\delta_{\log n},\quad
+ Y(a)=(\mu*k)(a),\quad
+ Z(u)=e^{-u/2}\{\psi(e^u)-e^u\}.
+ \tag{GC4}
+\]
+All convolutions against \(k,h\) are defined locally because these
+kernels have compact support. The function \(Z\) is locally integrable
+and is exactly \(-e^{u/2}\) for \(u<\log2\); it is not artificially
+set to zero below the first prime.
+
+For the original reflected form, using the minus-exponent Mellin
+transform, let \(K(a)=B(f(\cdot-a),f)\). The full original arithmetic
+formula, with its Gamma term and both prime evaluations, is
+\[
+\begin{split}
+ K(a)={}&-(\gamma_E+\log\pi)h(a)\\
+ &+\int_0^\infty
+ \frac{e^{-x}h(a)-\tfrac12e^{-x/4}[h(a+x/2)+h(a-x/2)]}{1-e^{-x}}\,dx\\
+ &-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+                 [h(a+\log n)+h(a-\log n)].
+\end{split}\tag{GC5}
+\]
+This is \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/84edd11df011c3e161a57dad9f083276a3c0bb95/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/PRIMITIVE_PRIME_WINDOW_DERIVATION.tex}{PW12}, obtained from the original \(\zeta'/\zeta\) contour
+with each finite trivial-zero sum and its identical Gamma correction
+retained before cancellation. The two endpoints vanish because
+\(M_f(s)=s(s-1)G_r(s-1/2)\); no infinite trivial-zero sum is assigned
+a separate value. The original measure convention is Alain Connes,
+\href{https://arxiv.org/abs/math/9811068v1}{\emph{Trace formula in
+noncommutative geometry and the zeros of the Riemann zeta function},
+Appendix II}. PW12--19 provides the complete receiving derivation in
+the retained programme source; the present calculation starts from
+that full original formula and changes no coefficient.
+
+For \(a>B\), compact support makes the first term and the forward
+prime and Gamma evaluations zero. The change of variable \(x=2v\)
+then gives the exact formula
+\[
+\begin{split}
+ K(a)&=-(\mu*h)(a)-R(a),\\
+ R(a)&=\int_{a-B}^{a+B}W(v)k(a-v)\,dv,\\
+ W(v)&=\frac{4e^{-5v/2}(9+55e^{-2v}+31e^{-4v}+e^{-6v})}
+                         {(1-e^{-2v})^5}.
+\end{split}\tag{GC6}
+\]
+To verify the Gamma term independently, write
+\(e^{-v/2}/(1-e^{-2v})=\sum_{j\ge0}e^{-(2j+1/2)v}\)
+and integrate \(T^2\) by parts against the flat endpoints of \(k\).
+The coefficient becomes \(4j^2(2j+1)^2\). Its \(j=0\) value is
+zero; the full remaining geometric derivative sum is the displayed
+\(W\). Hence
+\[
+ R(a)=\sum_{j\ge1}4j^2(2j+1)^2G_r(2j+1/2)^2
+                     e^{-(2j+1/2)a},\quad
+ 0<R(a)\le W(a-B).\tag{GC7}
+\]
+All terms converge for \(a>B\): \(G_r(\lambda)\le e^{r\lambda}\)
+leaves a polynomial times \(e^{-\lambda(a-B)}\). In particular
+the complete Gamma remainder is bounded on every tail
+\([B+\delta,\infty)\), \(\delta>0\), and decreases exponentially.
+
+\subsection{Exact separation of the arithmetic leading term}
+
+Distributional differentiation of the actual right-continuous step
+function \(\psi(e^u)\) gives \(\sum_n\Lambda(n)\delta_{\log n}\).
+The exponential product rule therefore proves
+\[
+ (D+1/2)Z=\mu-e^{u/2}\,du.\tag{GC8}
+\]
+There is no additional atom at zero: both terms defining \(Z\) have
+the same actual formula there and \(\psi(e^u)\) first jumps at
+\(\log2\). Convolution with \(k\) gives, for every real \(a\),
+\[
+ \boxed{Y(a)=e^{a/2}G_r(1/2)^2+(D+1/2)(Z*k)(a).}\tag{GC9}
+\]
+Indeed the density contribution is exactly
+\(\int e^{u/2}k(a-u)du=e^{a/2}\int k(v)e^{-v/2}dv\),
+and the final integral is \(G_r(1/2)^2\), by compact Fubini.
+The leading term has been displayed and retained, not absorbed into
+the definition of \(Y\).
+
+The original filter has its complete expansion and factorization
+\[
+ T^2=D^4-\tfrac12D^2+\tfrac1{16}
+     =(D-1/2)^2(D+1/2)^2.
+ \tag{GC10}
+\]
+It sends the displayed leading term in GC9 to zero exactly. Combining
+GC6--10 proves the full signed original arithmetic return
+\[
+ \boxed{K(a)=-\int_{\mathbb R}Z(u)
+          [h'(a-u)+\tfrac12h(a-u)]\,du-R(a),\qquad a>B.}
+ \tag{GC11}
+\]
+Equivalently the integral is
+\((D-1/2)^2(D+1/2)^3(Z*k)(a)\). The integration domain remains
+the actual moving interval \([a-B,a+B]\); there is no truncated
+prime list or bound on \(a\). Integration by parts in distributions
+proves the equality for the step-function source, including every
+jump. All functions convolved against it are smooth with flat compact
+boundaries, so there is no missing endpoint term.
+
+GC11 identifies the exact expression requiring a uniform bound.
+The existing global criterion \href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/84edd11df011c3e161a57dad9f083276a3c0bb95/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.tex}{UP20--32} detects all possible
+off-critical original zeros, since \(s(s-1)G_r(s-1/2)\) does not
+vanish there. Its meromorphic Laplace residues are the actual
+\(m_\rho[\rho(\rho-1)G_r(\rho-1/2)]^2\).
+Thus boundedness of the signed integral in GC11 on the entire tail,
+with GC7 retained, is the unresolved global problem. Nothing in
+GC8--11 establishes that boundedness.
+
+\subsection{Why an absolute prime-window estimate cannot be uniform}
+
+Define the actual absolute majorant
+\[
+ A_h(a)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+                             |h(a-\log n)|,\qquad a\ge0.
+ \tag{GC12}
+\]
+It is continuous and nonnegative. The function \(h\) is nonzero:
+its bilateral Laplace transform is
+\((w^2-1/4)^2G_r(w)^2\), which is \(1/16\) at zero.
+For real \(w>1/2\), every translated kernel lies in \(a>0\)
+because \(\log2-B>0\). Tonelli's theorem and the change
+\(v=a-\log n\) yield the exact original-zeta identity
+\[
+\begin{split}
+ \int_0^\infty e^{-wa}A_h(a)\,da
+ &=\left(\int_{-B}^{B}|h(v)|e^{-wv}\,dv\right)
+                      \sum_{n\ge2}\frac{\Lambda(n)}{n^{w+1/2}}\\
+ &=\left(\int_{-B}^{B}|h(v)|e^{-wv}\,dv\right)
+                      \left(-\frac{\zeta'}{\zeta}(w+1/2)\right).
+\end{split}\tag{GC13}
+\]
+The Dirichlet series equality follows by logarithmic differentiation
+of the absolutely convergent Euler product for \(\Re s>1\):
+\(\log\zeta(s)=\sum_p\sum_{j\ge1}p^{-js}/j\), and the derivative
+keeps every weight \(\log p\). Its absolute convergence justifies
+the operation. No Euler product outside that half-plane is used.
+
+We also prove the pole used here directly for the original function.
+For \(\Re s>1\), subtract the integral of \(x^{-s}\) on each
+\([n,n+1]\) from \(n^{-s}\). The resulting series of differences
+converges locally uniformly on \(\Re s>0\), since on a compact
+subset it is bounded by a constant times \(n^{-1-\Re s}\).
+Consequently
+\[
+ \zeta(s)=\frac1{s-1}+H(s),\quad H\text{ holomorphic near }1,
+ \qquad -\frac{\zeta'}{\zeta}(s)=\frac1{s-1}+O(1).
+ \tag{GC14}
+\]
+The first factor in GC13 tends to the strictly positive number
+\(\int|h(v)|e^{-v/2}dv\). Therefore its integral diverges to
+\(+\infty\) as \(w\downarrow1/2\). This is a proved pole of
+the full absolute majorant, independent of RH and of any zero
+location assertion.
+
+More precisely, for every \(\varepsilon>0\),
+\[
+ \boxed{\limsup_{a\to\infty}
+       e^{-(1/2-\varepsilon)a}A_h(a)=+\infty.}\tag{GC15}
+\]
+If this nonnegative limsup were finite, continuity on compact
+intervals would give a constant \(C\) with
+\(A_h(a)\le Ce^{(1/2-\varepsilon)a}\) for all \(a\ge0\).
+Its Laplace integral would then be at most
+\(C/(w-1/2+\varepsilon)\), bounded as \(w\downarrow1/2\),
+contradicting GC13--14. This proves GC15. The same argument with
+\(|h|\) replaced by the nonnegative \(k\) proves the identical
+statement for \(Y\), with pole coefficient \(G_r(1/2)^2>0\).
+Every upper estimate using \(|h|\le\|f\|_2^2\) and the unsigned
+prime-window weight dominates \(A_h\), so that estimate cannot
+give a uniform constant on the half-line either.
+
+By contrast, without absolute values the exact transform is
+\[
+ \int_0^\infty e^{-wa}(\mu*h)(a)\,da
+  =(w^2-1/4)^2G_r(w)^2
+                  \left(-\frac{\zeta'}{\zeta}(w+1/2)\right),
+ \quad\Re w>1/2.\tag{GC16}
+\]
+The apparent pole at \(w=1/2\) is removed by the original factor:
+the full product is
+\((w-1/2)(w+1/2)^2G_r(w)^2+O((w-1/2)^2)\).
+The absolute-value estimate GC13 destroys precisely this cancellation.
+At an off-critical zero \(\rho\), the residue of GC16 is instead
+\(-m_\rho[(\rho-1/2)^2-1/4]^2G_r(\rho-1/2)^2\), which is nonzero.
+The Laplace transform of GC7 on any tail \([B+\delta,\infty)\),
+\(\delta>0\), has poles only at the displayed negative real
+exponents. For tail start \(A=B+\delta\), each summand has transform
+\(c_j e^{-(w+2j+1/2)A}/(w+2j+1/2)\), where
+\(c_j=4j^2(2j+1)^2G_r(2j+1/2)^2\). Its residue is exactly
+\(c_j\), independent of \(A\). Termwise integration converges normally
+away from these poles. The intervening compact interval contributes an
+entire function. Thus the Gamma term does not cancel such an
+off-critical residue.
+This states the exact difference between the leading pole and the
+arithmetic remainder, rather than deleting either term.
+
+\subsection{The lost directions as an exact retained source space}
+
+The polynomial part of the operator in GC11 is
+\[
+ L=(D-1/2)^2(D+1/2)^3.
+\]
+Its full kernel on \(C^\infty(\mathbb R)\) is
+\[
+ \mathcal E=\operatorname{span}_{\mathbb C}
+ \{e^{a/2},ae^{a/2},e^{-a/2},ae^{-a/2},a^2e^{-a/2}\}.
+ \tag{GC17}
+\]
+Each listed vector is annihilated by direct differentiation. They
+are linearly independent: applying one of the two relatively prime
+factors separates the two exponential polynomial blocks, and each
+polynomial block is independent. A monic fifth-order ODE has a
+unique solution for any five initial derivatives, by reduction to
+a constant-coefficient first-order system and its matrix exponential.
+This also proves that the five independent solutions exhaust the
+kernel.
+
+Retaining those five derivatives gives a faithful reconstruction:
+\[
+ \mathfrak R:C^\infty(\mathbb R)\longrightarrow
+ C^\infty(\mathbb R)\oplus\mathbb C^5,\quad
+ y\longmapsto(Ly,y(0),y'(0),y''(0),y'''(0),y^{(4)}(0)).
+ \tag{GC18}
+\]
+It is bijective. Explicitly let \(A_L\) be the companion matrix
+of the fully expanded original polynomial
+\((z-1/2)^2(z+1/2)^3\), using state
+\(X=(y,y',y'',y''',y^{(4)})^T\), and let \(e_5=(0,0,0,0,1)^T\).
+For data \((v,c)\) the inverse is the first coordinate of
+\[
+ X(a)=e^{aA_L}c+\int_0^a e^{(a-u)A_L}e_5v(u)\,du.\tag{GC19}
+\]
+Differentiation verifies the equation and all five initial values;
+the same expression with oriented integration holds for negative
+\(a\). This gives an actual source extension, not an assumption
+that the scalar filtered output already determines the input.
+
+The compact convolution has an exact return on every exponential
+jet. For \(\lambda\in\mathbb C\) and an integer \(j\ge0\),
+\[
+ (k*(a^je^{\lambda a}))(a)
+ =e^{\lambda a}\sum_{m=0}^j\binom jm a^{j-m}
+                  \frac{d^m}{d\lambda^m}G_r(\lambda)^2.
+ \tag{GC20}
+\]
+Expand \((a-v)^j\) under the compact integral to prove it;
+the derivative of \(G_r(\lambda)^2\) already contains the factor
+\((-v)^m\), so there is no additional sign in GC20.
+In the ordered polynomial basis its matrix is triangular with
+diagonal \(G_r(\lambda)^2\). On jets of degree at most \(j\),
+the composite \(L\circ(k*)\) therefore has determinant
+\[
+ \left[(\lambda-1/2)^2(\lambda+1/2)^3G_r(\lambda)^2\right]^{j+1}.
+ \tag{GC21}
+\]
+For every actual off-critical nontrivial zero \(\rho\), put
+\(\lambda=\rho-1/2\). The original restrictions
+\(\rho\notin\{0,1\}\) and \(\Re\lambda\ne0\) make this determinant
+nonzero. Thus this exact operator loses none of the corresponding
+finite jets. The inverse is finite triangular back substitution
+with the displayed nonzero diagonal; all lower derivative entries
+in GC20 remain part of that inverse.
+
+For the original bounded distributive lattice \(L_0\), define the
+additive carrier for a complex vector space \(V\) by
+\[
+ G_{L_0}(V)=\{(0,\ell):\ell\in L_0\}
+       \cup\{(v,1_{L_0}):v\in V\},\qquad
+ (v,\ell)+(w,j)=(v+w,\ell\vee j).
+\]
+For each complex-linear map \(A:V\to W\), its same-label lift is
+\(\widetilde A(v,\ell)=(Av,\ell)\). This is defined on the
+carrier because a nonzero image requires a nonzero input and hence
+top support. Direct substitution proves preservation of addition,
+the additive identity \((0,0_{L_0})\), and composition.
+The maps \(L\), convolution by \(k\), and GC18 are such maps.
+GC18 and its linear inverse GC19 therefore lift to inverse carrier
+maps as well. No multiplicative structure on \(V\) is being asserted.
+In
+particular the leading exponential in GC9 maps under the scalar
+filter to the supported zero \(e\), while GC18 retains its
+nonzero initial jet; it never becomes the absent element \(\tau\).
+The original supported-zero prime and lattice base are unchanged.
+These are exact source and support statements; they do not supply
+an estimate on the signed arithmetic remainder GC11.
+
+For this actual arithmetic source the retained five initial values
+are evaluated, rather than free parameters. Put \(y=Z*k\).
+Whenever \(a<\log2-B\), every \(u\) in the convolution's support
+is below \(\log2\), so \(Z(u)=-e^{u/2}\). It follows exactly that
+\[
+ y(a)=-G_r(1/2)^2e^{a/2},\qquad
+ y^{(j)}(0)=-2^{-j}G_r(1/2)^2\quad(0\le j\le4).
+ \tag{GC22}
+\]
+This includes the entire interval around zero on which there are no
+prime atoms. Applying \(L\) to this actual nonzero source gives the
+zero amplitude, while GC18 retains its explicitly nonzero jet and
+the split lift retains supported zero. Hence the source reconstruction
+in GC19 specializes to the full arithmetic identity
+\[
+ (Z*k)(a)=-G_r(1/2)^2e^{a/2}
+       +\int_0^a[e^{(a-u)A_L}]_{1,5}(L(Z*k))(u)\,du.
+ \tag{GC23}
+\]
+This is an exact global inverse with all five initial values fixed by
+the original prime source. It is not a bound on its forcing.
+
+The original prime \((e)=\{\tau,e\}\) and its ordinary-prime
+specializations belong to
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d2f0020a7c446f429682925c1c682d99ba86a4cc/workbenches/splitzero-tandem/foundations/globalization-semiring/globalization_note.tex}{the globalization note, prime-ideal classification};
+the full lattice formulation used for the carrier lift is
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex}{the retained split-support geometry source, lattice globalization}.
+
+The next global calculation must bound that signed remainder through
+the original arithmetic/support maps, or exhibit an actual violation.
+Extending unsigned finite-window bounds cannot accomplish it, by
+the proved global divergence GC15.
+
+\subsection{The causal inverse and the cancellation for every prime power}
+
+The full polynomial and its companion matrix in GC19 are
+\[
+\begin{split}
+L(z)&=z^5+\tfrac12z^4-\tfrac12z^3-\tfrac14z^2
+                  +\tfrac1{16}z+\tfrac1{32},\\
+A_L&=\begin{pmatrix}
+0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\\0&0&0&0&1\\
+-1/32&-1/16&1/4&1/2&-1/2
+\end{pmatrix}.
+\end{split}\tag{GC24}
+\]
+Its causal fundamental solution is the locally integrable function
+\[
+g_+(t)=\mathbf1_{t\ge0}
+ \left[(t-3)e^{t/2}+(3+2t+t^2/2)e^{-t/2}\right].\tag{GC25}
+\]
+Indeed the bracket solves the homogeneous equation for \(t>0\),
+since its positive-exponential polynomial has degree one and its
+negative-exponential polynomial has degree two. At zero its first
+four derivatives of orders zero through three vanish and its fourth
+derivative equals one. Distributional differentiation with the monic
+fifth-order polynomial GC24 therefore gives \(Lg_+=\delta_0\).
+Equivalently, its transform on \(\Re w>1/2\) is the exact partial
+fraction identity
+\[
+\frac1{(w-1/2)^2(w+1/2)^3}
+=\frac1{(w-1/2)^2}-\frac3{w-1/2}
+ +\frac3{w+1/2}+\frac2{(w+1/2)^2}+\frac1{(w+1/2)^3}.
+\tag{GC26}
+\]
+All five terms are retained. The value at zero of the indicator is
+irrelevant to the locally integrable distribution.
+
+Define \(E_-(t)=\mathbf1_{t\ge0}e^{-t/2}\). Then
+\[
+\boxed{g_+*h=E_-*k=:q_k,\qquad
+q_k(a)=e^{-a/2}\int_{-B}^{\min(a,B)}e^{u/2}k(u)\,du.}\tag{GC27}
+\]
+The displayed integral is zero for \(a<-B\), not an oriented integral
+in that case. Here is a proof covering its whole domain. Both
+convolutions are smooth and zero for \(a<-B\). They satisfy the same
+equation: \(L(g_+*h)=h\), while
+\((D+1/2)E_-=\delta_0\) gives
+\(L(E_-*k)=(D-1/2)^2(D+1/2)^2k=h\).
+Uniqueness for the homogeneous fifth-order equation, starting to the
+left of \(-B\), proves equality. Direct convolution gives the integral.
+
+Put \(M(w)=G_r(w)^2\) and \(m=M(1/2)>0\). For \(a\ge B\), GC27 is
+exactly \(q_k(a)=m e^{-a/2}\). This cancellation can also be verified
+term by term without the ODE argument. The transform of \(h\) is
+\(H(w)=(w^2-1/4)^2M(w)\), and
+\[
+H(1/2)=H'(1/2)=H(-1/2)=H'(-1/2)=0,\qquad
+H''(-1/2)=2m.\tag{GC28}
+\]
+The two coefficients of \(e^{a/2}\) in \((g_+*h)(a)\) are therefore
+zero. In the other exponential sector, the constant and linear moments
+vanish, and the remaining quadratic moment contributes
+\(\tfrac12 H''(-1/2)e^{-a/2}=m e^{-a/2}\).
+Thus both growing terms cancel for each completed prime contribution,
+before any limiting argument over primes.
+
+Let \(v=Ly=\mu*h\), the original signed forcing. Its support lies in
+\([\log2-B,\infty)\). Consequently the original source satisfies
+the all-prime identity
+\[
+\begin{split}
+y(a)&=-m e^{a/2}+(g_+*v)(a)\\
+&=-m e^{a/2}
+ +\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\,q_k(a-\log n),
+\qquad a\in\mathbb R.
+\end{split}\tag{GC29}
+\]
+At every fixed \(a\) the sum includes only \(n\le e^{a+B}\).
+This is a locally finite identity with no upper restriction on \(a\).
+For \(a\ge0\), it follows from GC19 and GC22, then convolution
+associativity for distributions supported below by a fixed constant.
+For \(a<0\), the prime sum is zero and GC22 gives exactly its other
+term. This also proves the equality directly for the full real axis.
+In particular every term associated to a completed prime power,
+\(\log n\le a-B\), is precisely
+\(m\Lambda(n)e^{-a/2}\). The terms crossing the moving boundary keep
+the full integral in GC27. No replacement by a prime density is used.
+
+The exact positive-half-line transform of the actual \(y\) is
+\[
+\boxed{\int_0^\infty e^{-wa}y(a)\,da
+=-\frac{m}{w-1/2}
+ +\frac{M(w)}{w+1/2}
+       \left(-\frac{\zeta'}{\zeta}(w+1/2)\right),
+\qquad\Re w>1/2.}\tag{GC30}
+\]
+For convergence, the elementary estimate
+\(\psi(X)\le X\log X\) for \(X\ge2\) gives
+\(y(a)=O((1+a)e^{a/2})\); convolution with the fixed compact \(k\)
+preserves this estimate. Transforming GC9 on the half-line gives
+\[
+M(w)\left(-\frac{\zeta'}{\zeta}(w+1/2)\right)
+=\frac{m}{w-1/2}+(w+1/2)\int_0^\infty e^{-wa}y(a)\,da+m.
+\]
+The final \(+m\) is the actual boundary term \(-y(0)\).
+Solving this identity proves GC30 with its displayed initial-source
+contribution; all operations took place in the convergence half-plane.
+
+The meromorphic expression on the right of GC30 is regular at
+\(w=1/2\), with the evaluated value
+\[
+\boxed{M'(1/2)-(1+\gamma_E)M(1/2).}\tag{GC31}
+\]
+To verify the constant, GC14 gives
+\(H(1)=\lim_N(\sum_{n=1}^N n^{-1}-\log(N+1))=\gamma_E\),
+so \(-\zeta'/\zeta(1+\varepsilon)=\varepsilon^{-1}-\gamma_E
++O(\varepsilon)\). The other full factor is
+\(M(1/2+\varepsilon)/(1+\varepsilon)
+=m+[M'(1/2)-m]\varepsilon+O(\varepsilon^2)\).
+Their product has residue \(+m\) and the stated constant.
+The separate initial-source term in GC30 has residue \(-m\),
+proving GC31. The symbol \(H\) here refers to the holomorphic
+remainder in GC14; the transform \(H(w)\) used in GC28 has already
+been specified independently.
+
+GC31 is an evaluated analytic continuation value. It does not assert
+convergence of the integral at \(w=1/2\), and it supplies no uniform
+bound on \(v\) or on \(K\). The original arithmetic forcing still
+obeys \(v(a)=-K(a)-R(a)\) for \(a>B\), with the whole Gamma series
+GC7 present. The exact cancelled source, its five boundary values,
+and the remaining global signed estimate are therefore all explicit.

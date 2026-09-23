@@ -1,0 +1,882 @@
+\section{Complete support cohomology of the original maps}
+
+
+The construction starts with the distinct zeros of \(G(R)\) and retains
+both of them. It takes finite matrices with their original coefficients
+and declared supports to a diagram of cohomology modules over every
+compatible support trajectory. This entire diagram carries a canonical
+action of \(G_{\LL}(R)\). Its full-support fibre is exactly the original
+kernel with its original minimum metric. Nonzero composites are computed
+before a sequence is called a complex.
+
+The foundational input is the original semimodule classification
+\cite{secondary}, lines 458--945, especially the source labels
+\texttt{thm:fiber-modules}, \texttt{thm:reconstruct-semimodule},
+\texttt{thm:equivalence-semimodules-diagrams}, and
+\texttt{thm:free-semimodule-boolean-cube}.
+All reconstruction assertions needed here are proved below.
+The original source and conductor matrices are those of OPG5, CEP2--5,
+PCL17--21, and GIP1--6 in the pinned source collection \cite{programme}.
+No coordinate support is identified across a basis change without its
+explicit connecting maps.
+
+\subsection{The two zeros and cancellation paths}
+
+Let \(R\) be a nonzero commutative ring with identity, and let
+\[
+ S=G(R)=R\sqcup\{\tau\},\qquad e=0_R\in R\subset S.
+ \tag{SCD1}
+\]
+On the supported copy of \(R\), the operations are the ring operations.
+The new element \(\tau\) is the additive identity and multiplicative
+absorber. Thus \(r+(-r)=e\), not \(\tau\).
+The ring projection \(p:S\to R\) sends \(\tau\) to \(0_R\) and fixes
+\(R\). The support character \(\chi:S\to\{0,1\}\) sends \(\tau\) to zero
+and every supported scalar to one. Checking whether the factors or
+summands are supported proves that both are semiring morphisms.
+These are the same maps as in the baseline note \cite{globalization}.
+
+For finite sets \(I,J\), a declared support for an \(R\)-matrix
+\(d:R^I\to R^J\) is a relation \(D\subseteq J\times I\) containing
+every pair with \(d_{ji}\ne0_R\). It may also contain supported zeros.
+Define
+\[
+ \widetilde d_{ji}=
+ \begin{cases}d_{ji}\in R\subset S &(j,i)\in D,\\
+ \tau &(j,i)\notin D,
+ \end{cases}
+ \qquad
+ D(A)=\{j:\exists i\in A,\ (j,i)\in D\}.
+ \tag{SCD2}
+\]
+The sparse declaration contains exactly the nonzero entries;
+the fully entrywise declaration has \(D=J\times I\).
+All results below retain whichever support is declared.
+
+A vector of \(S^I\) is a pair \((A,x)\) with \(A\subseteq I\),
+\(x\in R^A\). Zero entries of \(x\) are still supported; outside
+\(A\) its entries are \(\tau\). Direct matrix multiplication gives
+\[
+ \widetilde d(A,x)=(D(A),d_{D(A),A}x).
+ \tag{SCD3}
+\]
+Every row with a declared incident edge receives a supported sum,
+including a sum that cancels to \(e\).
+
+\begin{proposition}
+For \(d:R^I\to R^J\) and \(f:R^J\to R^K\) with supports \(D,F\),
+\[
+ p(\widetilde f\widetilde d)=fd,\qquad
+ \chi(\widetilde f\widetilde d)_{ki}
+ =\bigvee_{j\in J}\bigl(\mathbf1_F(k,j)\wedge\mathbf1_D(j,i)\bigr).
+ \tag{SCD4}
+\]
+If \(fd=0_R\), the lifted composite has entry \(e\) at every
+declared length-two path and \(\tau\) elsewhere. It is the global
+zero matrix over \(S\) exactly when there are no such paths.
+\end{proposition}
+\begin{proof}
+A product in the sum is supported exactly when both entries are
+supported. Its ring value is \(f_{kj}d_{ji}\), even when that product
+is zero. A nonempty sum of supported terms is supported and has the
+ring sum as its value. Only an empty supported sum is \(\tau\).
+This proves every assertion, including rings with zero divisors.
+The cancellation certificate \(\sum_j f_{kj}d_{ji}=0_R\) therefore
+retains all of its individual paths.
+\end{proof}
+
+In particular,
+\[
+ d_0=\begin{pmatrix}1\\1\end{pmatrix},\qquad
+ d_1=\begin{pmatrix}1&-1\end{pmatrix},
+ \qquad d_1d_0=0_R,\quad \widetilde d_1\widetilde d_0=(e).
+ \tag{SCD5}
+\]
+The exact morphism \(p\) carries this \(e\) to \(0_R\).
+It does not identify \(e\) and \(\tau\) in \(S\).
+
+\subsection{Every compatible support trajectory}
+
+Fix a finite cochain complex with its original based matrices:
+\[
+ C^n=R^{I_n},\quad d_n:C^n\to C^{n+1},\quad
+ d_{n+1}d_n=0_R.
+ \tag{SCD6}
+\]
+Only finitely many \(I_n\) are nonempty. Fix every declared support \(D_n\).
+A support trajectory is a sequence \(A=(A_n)_n\), \(A_n\subseteq I_n\),
+with \(D_n(A_n)\subseteq A_{n+1}\). Let \(\LL_D\) be their componentwise
+ordered set.
+
+\begin{theorem}
+The lattice \(\LL_D\) is complete and distributive. Its meet and join
+are componentwise intersection and union, its bottom is the empty
+trajectory, and its top is \(\mathbf I=(I_n)_n\).
+For arbitrary seed sets \(U_n\subseteq I_n\), their smallest containing
+trajectory is
+\[
+ \cl_D(U)_n=U_n\cup
+ \bigcup_{m<n}D_{n-1}\cdots D_m(U_m).
+ \tag{SCD7}
+\]
+This closure is monotone, idempotent, and preserves unions.
+\end{theorem}
+\begin{proof}
+An edge starting in a union starts in one member, whose next component
+contains its endpoint. An edge starting in an intersection has its
+endpoint in every next component. Thus arbitrary unions and intersections
+are trajectories, with the stated empty conventions. Set-theoretic
+distributivity proves the lattice assertion. Every path endpoint in SCD7
+is forced in any containing trajectory. Appending one edge proves that
+SCD7 itself is a trajectory. This proves minimality and all closure laws.
+\end{proof}
+
+Equivalently the graded vertices \((n,i)\) carry directed edges
+\((n,i)\to(n+1,j)\) from \(D_n\). Degrees strictly increase, so
+reachability defines a finite partial order. The trajectories are
+exactly its upward-closed subsets. Every path remains visible.
+
+\begin{theorem}
+For \(A\in\LL_D\) put
+\[
+ C_A^n=R^{A_n},\qquad d_{n,A}=(d_n)_{A_{n+1},A_n}.
+ \tag{SCD8}
+\]
+These are cochain complexes. Extension by zero \(j_{AB}^n:C_A^n\to C_B^n\)
+for \(A\subseteq B\) is an injective cochain map. Consequently
+\[
+ Z_A^n=\ker d_{n,A},\quad B_A^n=\im d_{n-1,A},\quad
+ H_A^n=Z_A^n/B_A^n,\qquad
+ h_{AB}^n[x]=[j_{AB}^nx]
+ \tag{SCD9}
+\]
+defines a diagram of \(R\)-modules, with exact composition of its maps.
+\end{theorem}
+\begin{proof}
+If \(i\in A_n\) and \(d_{n,ji}\ne0\), then \(j\in A_{n+1}\).
+Thus the restricted intermediate sum removes no nonzero term:
+\[
+ (d_{n+1,A}d_{n,A})_{ki}
+ =\sum_{j\in I_{n+1}}d_{n+1,kj}d_{n,ji}=0_R.
+\]
+Every declared intermediate path is also included in \(A_{n+1}\),
+so its cancellation is retained. The same support condition says
+that applying \(d_n\) to a vector supported in \(A_n\) produces
+a vector in \(R^{A_{n+1}}\). Therefore extension by zero commutes
+with the differential. It maps cycles and boundaries to cycles
+and boundaries; this proves the quotient map is well defined.
+Linearity, identity, and composition follow from zero extension.
+\end{proof}
+
+For \(A\subseteq B\), identify the smaller coordinate modules with
+their zero-extended copies. The exact kernels and cokernels are
+\[
+ \ker h_{AB}^n=(Z_A^n\cap B_B^n)/B_A^n,\qquad
+ \operatorname{coker}h_{AB}^n=Z_B^n/(Z_A^n+B_B^n).
+ \tag{SCD10}
+\]
+Indeed a smaller cycle becomes zero precisely when it becomes a
+larger boundary, and the image is
+\((Z_A^n+B_B^n)/B_B^n\).
+For SCD5 there are exactly six trajectories: the empty one; the
+last vertex; either middle vertex with the last; both middle vertices
+with the last; and the full set. The penultimate one has
+\(H^1=R(1,1)\), which becomes a boundary in the full exact complex.
+The last-vertex fibre has \(H^2=R\). Thus exactness at full support
+does not discard the nontrivial cohomology at smaller supports.
+
+\subsection{Reconstruction and the full \(G_{\LL_D}(R)\) base}
+
+Define the disjoint union, retaining its index even when a module is zero,
+\[
+ \mathcal H_D^n=\bigsqcup_{A\in\LL_D}H_A^n.
+ \tag{SCD11}
+\]
+For elements in two fibres use
+\[
+ (A,[x])+(B,[y])
+ =\bigl(A\cup B,\ h_{A,A\cup B}[x]+h_{B,A\cup B}[y]\bigr).
+ \tag{SCD12}
+\]
+A supported \(r\in R\) acts within its fibre, and \(\tau\) acts by
+the bottom-fibre zero. Define \(\mathcal C_D^n,\mathcal Z_D^n,
+\mathcal B_D^n\) from \(C_A^n,Z_A^n,B_A^n\) in the same way.
+
+\begin{theorem}
+These operations make \(\mathcal H_D^n\) a \(G(R)\)-semimodule.
+Its support lattice is exactly \(\LL_D\), its fibres are exactly
+\(H_A^n\), and its transports are \(h_{AB}^n\). It is the quotient
+of \(\mathcal Z_D^n\) by the congruence
+\[
+ (A,x)\sim(B,y)
+ \quad\Longleftrightarrow\quad A=B\ \hbox{ and }\ x-y\in B_A^n.
+ \tag{SCD13}
+\]
+Thus different support indices are never identified.
+\end{theorem}
+\begin{proof}
+Three summands may all be transported to \(A\cup B\cup C\).
+Functoriality of \(h\) makes either parenthesization equal to
+the same sum in that module. Commutativity and the bottom identity
+follow in the same way. Linearity of transport proves both scalar
+distributive laws. In particular \((r+s)x=rx+sx\) occurs in the
+same fibre, also when \(r+s=0_R\). The rules involving \(\tau\)
+follow from its action. The supported zero acts by
+\(e(A,[x])=(A,0)\), and
+\((A,0)+(B,0)=(A\cup B,0)\), identifying the support lattice.
+Boundaries transport to boundaries, so SCD13 is preserved under
+addition and scalars. Its fibre quotient is precisely \(H_A^n\).
+\end{proof}
+
+There is an exact distinction between this construction and a
+falsely asserted global square-zero lift. Put
+\[
+ \mathcal D_n(A,x)=(A,d_{n,A}x),\qquad
+ \mathbf z_{n,n+2}(A,x)=(A,0).
+ \tag{SCD14}
+\]
+They are \(S\)-linear and
+\(\mathcal D_{n+1}\mathcal D_n=\mathbf z_{n,n+2}\).
+For nontrivial \(\LL_D\), this is not the global zero map,
+whose output has index \(\varnothing\). The usual preimage of
+that global zero is not the union of fibre kernels.
+Cohomology is taken in the additive category of \(R\)-module
+diagrams on the fixed lattice, as explicitly specified in SCD9,
+then reconstructed by SCD11--13.
+
+The exact return map to the original free semimodule is
+\[
+ E_n:\mathcal C_D^n\to S^{I_n},\qquad E_n(A,x)=(A_n,x).
+ \tag{SCD15}
+\]
+It is \(S\)-linear because supports of sums are unions and
+zero extensions commute with addition. It can fail to be injective:
+two distinct trajectories may have the same \(n\)-th support.
+The original lifted matrix is related to it by
+\[
+ E_{n+1}\mathcal D_n(A,x)
+ =T_{D_n(A_n),A_{n+1}}\bigl(\widetilde d_n E_n(A,x)\bigr).
+ \tag{SCD16}
+\]
+Here \(T\) inserts supported zeros at the additional coordinates,
+exactly as in the Boolean-cube diagram of \(S^{I_{n+1}}\).
+SCD3 and SCD8 prove this identity at every coordinate.
+
+We now include all support scalars. For the bounded distributive
+lattice \(\LL=\LL_D\), define
+\[
+ G_{\LL}(R)
+ =\{(r,\mathbf I):r\in R\}\ \cup\
+   \{z_A=(0_R,A):A\in\LL\}\ \subset R\times\LL,
+ \tag{SCD17}
+\]
+with coordinatewise operations
+\[
+ (r,A)+(s,B)=(r+s,A\cup B),\qquad
+ (r,A)(s,B)=(rs,A\cap B).
+\]
+It is a subsemiring of the product of the ring \(R\) and the lattice
+semiring \((\LL,\cup,\cap)\): closure follows because a nonzero
+ring coordinate requires full support. The zero is \(z_\varnothing\),
+the unit is \((1,\mathbf I)\), and
+\((0_R,\mathbf I)=z_{\mathbf I}\) is the supported \(e\).
+
+\begin{theorem}[Canonical action of every support scalar]
+Every module diagram on \(\LL\), and in particular the cochain,
+cycle, boundary and cohomology diagrams above, has the action
+\[
+ (r,\mathbf I)(A,x)=(A,rx),\qquad
+ z_\lambda(A,x)=(\lambda\cap A,0).
+ \tag{SCD18}
+\]
+This defines a \(G_{\LL}(R)\)-semimodule. Restricting along
+\[
+ G(R)\longrightarrow G_{\LL}(R),\qquad
+ \tau\longmapsto z_\varnothing,\quad
+ r\longmapsto(r,\mathbf I)
+ \tag{SCD19}
+\]
+recovers exactly the preceding \(G(R)\)-semimodule.
+The scalar map is injective whenever \(\varnothing\ne\mathbf I\).
+\end{theorem}
+\begin{proof}
+The two rules agree at the shared element
+\((0_R,\mathbf I)=z_{\mathbf I}\): both give \((A,0)\).
+A supported scalar preserves the label and acts linearly. For a
+zero-support scalar, additivity on vectors is exactly
+\[
+ \lambda\cap(A\cup B)=(\lambda\cap A)\cup(\lambda\cap B),
+\]
+because linear transport sends a zero to a zero. Scalar addition
+of two such elements uses the other distributive identity,
+\((\lambda\cup\mu)\cap A=(\lambda\cap A)\cup(\mu\cap A)\).
+If one scalar is \((r,\mathbf I)\) and the other is \(z_\lambda\),
+their sum is \((r,\mathbf I)\); the vector sum is
+\((A,rx)+(\lambda\cap A,0)=(A,rx)\), as required.
+For two supported scalars, scalar additivity is the ordinary
+module law, even if their sum is the supported zero.
+
+For scalar multiplication, two zero-support scalars give
+\((\lambda\cap\mu)\cap A\). A supported scalar followed or preceded
+by \(z_\lambda\) gives the same zero in \(\lambda\cap A\).
+Two supported scalars satisfy the ordinary module multiplication
+law, also when their product is zero in \(R\).
+The unit acts as identity. The global zero maps to the zero of
+the bottom fibre, hence is the required absorber. All semimodule
+axioms have now been checked. The homomorphism SCD19 follows
+directly from SCD17, and its restriction gives the declared action
+of both \(\tau\) and every supported scalar. Injectivity follows
+from the distinct support coordinates.
+\end{proof}
+
+The maps in SCD14 and the cohomology quotient are linear for this
+larger semiring: each takes the zero in a fibre to the zero in the
+same fibre. Coordinate extraction SCD15 is equivariant along the
+scalar morphism
+\[
+ G_{\LL}(R)\to G_{\mathcal P(I_n)}(R),\qquad
+ (r,\mathbf I)\mapsto(r,I_n),\quad z_A\mapsto z_{A_n},
+\]
+because the coordinate map \(A\mapsto A_n\) preserves union,
+intersection, bottom and top.
+
+\begin{theorem}[Exact additive group completion and arithmetic receiver]
+The map
+\[
+ \epsilon_{\rm full}:\mathcal H_D^n\to H_{\mathbf I}^n,\qquad
+ (A,[x])\longmapsto h_{A,\mathbf I}^n[x]
+ \tag{SCD20}
+\]
+is the universal additive group completion. It is also the universal
+linear map to an \(R\)-module, for the scalar projection
+\(\pi:G_{\LL}(R)\to R,\ (r,A)\mapsto r\).
+Thus the original cohomology is recovered exactly on the arithmetic
+quotient \(G_{\LL}(R)/(e)\cong R\), while every other fibre remains
+in \(\mathcal H_D^n\).
+\end{theorem}
+\begin{proof}
+The displayed map preserves addition and is onto, using the top
+fibre. Any additive map from \(\mathcal H_D^n\) to an abelian group
+kills every \((A,0)\), since it is additively idempotent and the
+target permits cancellation. But
+\[
+ (A,[x])+(\mathbf I,0)
+ =(\mathbf I,h_{A,\mathbf I}[x]).
+\]
+Applying the map forces its value on \((A,[x])\) to be its value
+on that transported top-fibre element. The restriction to the
+top fibre is a group homomorphism. This proves unique factorization
+through SCD20 for every abelian target, hence the universal
+group-completion assertion. For \(R\)-linear targets the same proof
+retains scalar linearity.
+
+The scalar projection is a semiring morphism. Its kernel ideal
+is the full zero-amplitude fibre \(\{z_A:A\in\LL\}\), which equals
+the principal ideal \((e)\): \(ez_A=z_A\), while multiplying \(e\)
+by any scalar and adding such products always has zero amplitude.
+Moreover addition by \(e=z_{\mathbf I}\) sends every zero-amplitude
+scalar to \(e\). The congruence identifying \(e\) with the global
+zero therefore identifies every \(z_A\) with zero, and leaves
+exactly the ring operations on \(R\). Conversely \(\pi\) separates
+all different ring amplitudes. Thus this quotient is exactly \(R\).
+Finally SCD20 sends \(z_\lambda(A,[x])\), a fibre zero, to zero
+and sends supported scalars to their usual action, proving its
+\(\pi\)-linearity.
+\end{proof}
+
+\subsection{Gluing, matrix changes, and the space defined by curvature}
+
+For \(A,B\in\LL_D\), the original coordinate inclusions give
+a degreewise exact sequence of complexes
+\[
+ 0\to C_{A\cap B}\xrightarrow{x\mapsto(x,-x)}
+ C_A\oplus C_B\xrightarrow{(x,y)\mapsto x+y}C_{A\cup B}\to0 .
+ \tag{SCD21}
+\]
+Surjectivity follows by assigning coordinates in \(A\) to the first
+summand and those in \(B\setminus A\) to the second. A pair summing
+to zero has equal and opposite entries supported in the intersection,
+which proves exactness. SCD8 proves compatibility with the differentials.
+
+If \(z\) is a cycle in the union, choose \(z=x+y\) in the two
+summands. Then \(d_Ax=-d_By=w\) is an intersection cycle. Set
+\[
+ \partial[z]=[w],\qquad
+ \cdots\to H_{A\cap B}^n\to H_A^n\oplus H_B^n
+ \to H_{A\cup B}^n\xrightarrow{\partial}H_{A\cap B}^{n+1}\to\cdots .
+ \tag{SCD22}
+\]
+A new splitting changes \((x,y)\) by \((t,-t)\) with \(t\) in
+the intersection, so \(w\) changes by \(dt\). Splitting a primitive
+of a boundary shows independence of the representative of \([z]\).
+For exactness at the middle term, if a pair of cycles sums to a
+boundary, subtract a split primitive to make its sum zero. It then
+comes from an intersection cycle. If \(\partial[z]=0\), subtract
+an intersection primitive from one splitting term and add it to
+the other; both become cycles, proving exactness at the union.
+Finally if an intersection cycle maps to boundaries in both larger
+spaces, choose primitives with opposite signs. Their sum is a union
+cycle mapping to that intersection class. These arguments verify
+all three repeating positions and also that each composite is zero.
+
+For an actual cochain map \(F_n:C^n\to C'{}^n\), let \(P_n\)
+be a declared support containing its nonzero coefficients, and
+let \(D'\) be the target differential supports. Then
+\[
+ F_\#A=\cl_{D'}((P_n(A_n))_n)
+ \tag{SCD23}
+\]
+preserves joins and bottom, and the same matrices restrict to
+cochain maps \(C_A\to C'_{F_\#A}\). This follows from \(d'F=Fd\)
+and the defining support closure; hence it induces cohomology maps.
+If \(G\) is another map with declared supports \(Q_n\), and the
+declared support of \(GF\) is contained in \(Q_nP_n\) while retaining
+every nonzero coefficient, then
+\[
+ (GF)_\#A\subseteq G_\#F_\#A .
+ \tag{SCD24}
+\]
+Indeed the trajectory on the right contains every composite
+coordinate before cancellation. Its minimal closed subtrajectory
+contains the direct product support. The composite cohomology map
+equals the direct one followed by this inclusion, since their
+underlying matrices are equal. This is the exact comparison when
+a cancellation changes the minimal support. An invertible basis
+change gives an isomorphism at full support; it is not asserted
+to give a bijection of coordinate support lattices.
+
+The reconstructed map is always \(G(R)\)-linear. Its exact
+compatibility with the additional lattice scalars is the transport
+of a zero along
+\[
+ F_\#(\lambda\cap A)\subseteq F_\#\lambda\cap F_\#A.
+\]
+The left side is the support of the image of \(z_\lambda(A,x)\);
+the right side is the support obtained by applying
+\(z_{F_\#\lambda}\) to the image of \((A,x)\). Both amplitudes
+are zero, and the stated inclusion gives their exact diagram map.
+It follows from monotonicity of \(F_\#\). If \(F_\#\) also
+preserves intersections and top, it induces a semiring morphism
+on the two \(G_{\LL}(R)\) bases, and this comparison is equality.
+Thus an arbitrary matrix change has the proved support transport,
+without an unproved scalar-base isomorphism.
+
+Now allow arbitrary consecutive matrices with
+\[
+ \Omega_n=d_{n+1}d_n
+ \tag{SCD25}
+\]
+possibly nonzero, and retain the same trajectory lattice.
+For a trajectory \(A\), the restricted composite is exactly
+\((\Omega_n)_{A_{n+2},A_n}\), by the intermediate-index proof of
+SCD8. Define the forbidden vertices to be those \((n,i)\)
+whose \(i\)-th column in \(\Omega_n\) is not the zero vector.
+Include all ancestors of these vertices in the forbidden set,
+and let \(T\) be its complement.
+
+\begin{theorem}[The curvature defines a maximal exact support space]
+The set \(T\) is a trajectory. The trajectories whose restricted
+matrices are complexes are exactly
+\[
+ \{A\in\LL_D:A\subseteq T\}.
+ \tag{SCD26}
+\]
+They form a complete distributive lattice with top \(T\).
+\end{theorem}
+\begin{proof}
+An edge from a non-forbidden vertex cannot reach a forbidden
+vertex, since that would make its starting vertex an ancestor
+of a forbidden vertex. Hence \(T\) is forward closed.
+If column \(i\) of \(\Omega_n\) is nonzero, choose \(k\)
+with \((\Omega_n)_{ki}\ne0\). At least one summand
+\(d_{n+1,kj}d_{n,ji}\) is nonzero, so there is a declared path
+from \((n,i)\) to \((n+2,k)\). Every trajectory containing
+the first contains the last, and its restricted curvature
+therefore has that nonzero entry. It cannot be a complex.
+It also cannot contain an ancestor of the first vertex.
+Conversely, a trajectory contained in \(T\) contains no initial
+column on which \(\Omega_n\) is nonzero. All restricted composites
+are therefore zero. Closure under unions and intersections and
+the top assertion follow directly.
+\end{proof}
+
+This retains the full original curvature rather than declaring it zero.
+There is also an exact correction using submodules beyond coordinate
+supports. For consecutive maps \(d,f\),
+\[
+ d(\ker(fd))=\im d\cap\ker f .
+ \tag{SCD27}
+\]
+Both inclusions follow from \(f(dx)=0\). Restricting the first
+domain to \(\ker(fd)\) gives a genuine complex, while retaining
+the explicit defect \(fd\) and the exact connecting inclusion.
+Thus the obstruction specifies both a coordinate-support lattice
+and its potentially larger linear submodule receiver.
+
+\subsection{The original source, conductor and invariant observation}
+
+At every literal original cutoff retain
+\[
+ N\in\{q-1,q,2q-1,2q\},\qquad
+ \Pp_N=\C[S]_{\le N},\qquad E=\C[S]/(\chi_k),
+ \quad U_N:\Pp_N\to E,\quad p\mapsto[p].
+ \tag{SCD28}
+\]
+The polynomial \(\chi_k\) is the complete original monic root
+polynomial of degree \(q\). The source inner product is the original
+one, with its complete mass. Polynomial and primary coordinates
+are connected by the actual Vandermonde matrix.
+
+The observation is exactly the original OPG5 map:
+\[
+ P_k=\frac1{n+1}\sum_{a=0}^{n}(C^{-a})^{\otimes k},\qquad
+ L=P_k\Pi^{\otimes k}U^{\otimes k}\iota,\qquad
+ B=\im L,\quad\jmath\Lambda=L,\quad K=\ker\Lambda .
+ \tag{SCD29}
+\]
+The \(U\) in this tensor formula is the original period-unit map,
+distinct from the remainder \(U_N\). Every original period and
+invariant column in \(P_k,\Pi,U,\iota\) is kept. See the exact
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/6cf5b3aa8ff395eba6b5512b28d117334da5767b/workbenches/splitzero-tandem/continuations/20260922-cutoff-profile/RETAINED_COMPLETE_PROOF_SOURCES.tex#L9420}{OPG4--5 definition and original cycle action}.
+
+Let \(Z_{\chi,N}\) be multiplication by the complete \(\chi=\chi_k\),
+including its conversion to the original source coordinates.
+Use \(\Pp_{N-q}=0\) when \(N=q-1\). Then
+\[
+ \Pp_{N-q}\xrightarrow{Z_{\chi,N}}\Pp_N
+                  \xrightarrow{\Lambda U_N}B
+ \tag{SCD30}
+\]
+is a complex, with degrees zero, one and two. Its cohomology is
+\[
+ H^0=0,\qquad
+ H^1\xrightarrow{\sim}K,\quad[p]\mapsto U_Np,\qquad H^2=0.
+ \tag{SCD31}
+\]
+Multiplication by a monic nonzero polynomial is injective.
+Division by \(\chi\) proves
+\(\ker U_N=\chi\Pp_{N-q}\); \(U_N\) is onto since \(N\ge q-1\).
+A cycle therefore maps to \(K\), every member of \(K\) has a lift,
+and two lifts differ by exactly a relation. The map to \(B\)
+is onto, proving the last assertion. Applying SCD7--20 to these
+complete matrices supplies the full \(G_{\LL_D}(\C)\)-cohomology
+object, with precisely \(K\) as its terminal arithmetic fibre.
+
+For the conductor graph, retain its original simple-quartet domain
+\(m=1,\ k=4l+1\ge9,\ q=(k+1)^2,\ q'=(k-7)^2\).
+No conclusion about a more general multiplicity is imported from
+this graph presentation. Retain all coefficients of
+\(A=\sum_{a,b=0}^8a_{ab}e_{ab}^{(8)}\), all its shifts \(b_{ab}\),
+and the original lower polynomial \(\chi'=\chi_{k-8}\). The prime
+in \(\chi'\) denotes that polynomial, not a derivative. The maps are
+\[
+ (\mathcal T_Ap)(S')=\sum_{a,b=0}^8a_{ab}p(S'+b_{ab}),\qquad
+ C_{(i,j),(u,w)}=
+ \begin{cases}a_{u-i,w-j}&0\le u-i,w-j\le8,\\
+ 0&\text{otherwise}.
+ \end{cases}
+ \tag{SCD32}
+\]
+The root identity \(\beta'_{ij}+b_{ab}=\beta_{i+a,j+b}\)
+gives \(\chi'\mid\mathcal T_A(\chi h)\) for every \(h\).
+Thus \(\mathcal T_A\) induces the map on quotient spaces with
+matrix \(V_{\beta'}^{-1}CV_\beta\). The transpose \(C^{\mathsf T}\)
+is multiplication by the nonzero biform \(A\), hence injective
+in the polynomial domain. Therefore \(C\) is onto. Its kernel
+\(V_A\subset E\) contains the actual \(K\), by OCF17 and CEP5.
+
+The complete pivot and remaining invariant-image maps are retained:
+\[
+ CN_k^{\mathsf T}=0,\quad
+ S_k^{\mathsf T}N_k^{\mathsf T}=I,\quad
+ \im N_k^{\mathsf T}=V_A,\qquad J_R=S_kZ_k .
+ \tag{SCD33}
+\]
+These identities hold in the original primary coordinates.
+Here \(Z_k\) contains all additional invariant columns, so after
+imposing the conductor equation the complete residual equations
+still include \(J_R^{\mathsf T}V_\beta p=0\), as in CG29.
+The actual residual observation is
+\[
+ \Xi=\Lambda|_{V_A}:V_A\to B_A=\Lambda(V_A),\qquad\ker\Xi=K.
+\]
+In the original fixed residual frame it is \(\Xi_k^{\rm fix}\);
+changing to that frame retains its full invertible target map.
+No formula below substitutes a historical rank numeral for
+\(\dim K\) or \(\dim B_A\).
+
+Let \(v\) be the first nonzero translation moment order. The actual
+invertible source map \(S_N\) takes a polynomial to its first \(v\)
+original source coordinates and its \(\mathcal T_A\) image.
+To see invertibility, Taylor's finite expansion says
+\(\mathcal T_A\) lowers each degree at least \(v\) by exactly \(v\)
+and kills exactly \(\Pp_{v-1}\). The first \(v\) source coordinates
+are an isomorphism on that kernel. The source and target dimensions
+are equal, so the displayed injective map is invertible.
+Define the original graph maps
+\[
+ \begin{gathered}
+ X_N=\C^v\oplus\C[S']_{\le N-v-q'},\qquad
+ D_N=\operatorname{diag}(I_v,M_{\chi'}),\\
+ E_N=U_NS_N^{-1}D_N:X_N\to V_A,\qquad
+ B_N=\Xi E_N:X_N\to B_A .
+ \end{gathered}
+ \tag{SCD34}
+\]
+Here \(D_N\) includes the exact conversion to the lower original
+source coordinates. The equality
+\(S_N^{-1}D_NX_N=U_N^{-1}(V_A)\) follows from divisibility by
+\(\chi'\). Consequently \(E_N\) is onto \(V_A\).
+
+The full original relation columns are
+\[
+ \begin{gathered}
+ \mathcal Z_Nh=
+ \begin{pmatrix}P_{<v}Z_{\chi,N}h\\\mathcal U_{A,N-q}h\end{pmatrix},
+ \qquad D_N\mathcal Z_N=S_NZ_{\chi,N},\\
+ (\mathcal U_{A,N-q}h)(S')
+ =\sum_{a,b=0}^8a_{ab}d_{ab}(S')h(S'+b_{ab}),\qquad
+ d_{ab}(S')=\chi(S'+b_{ab})/\chi'(S').
+ \end{gathered}
+ \tag{SCD35}
+\]
+Each \(d_{ab}\) is the original complete product of root differences.
+Multiplication by \(\chi'\) proves the lower equality using SCD32;
+the upper block is exactly the retained lower source coordinates.
+Thus \(\mathcal Z_N\) is injective and
+\(\ker E_N=\im\mathcal Z_N\).
+
+The correct graph complex and its full-support cohomology are
+\[
+ \Pp_{N-q}\xrightarrow{\mathcal Z_N}X_N\xrightarrow{B_N}B_A,
+ \qquad H^1\xrightarrow{\sim}K,\quad[x]\mapsto E_Nx,
+ \qquad H^0=H^2=0 .
+ \tag{SCD36}
+\]
+Injectivity, surjectivity and \(\ker\Xi=K\) prove these statements
+exactly as in SCD31. The chain map to SCD30 is
+\[
+ (I,\ S_N^{-1}D_N,\ B_A\hookrightarrow B).
+ \tag{SCD37}
+\]
+Its squares are SCD35 and
+\(\Lambda U_NS_N^{-1}D_N=\Xi E_N\). Its induced middle
+cohomology map is the identity of \(K\). On support trajectories
+the exact map is SCD23 with the actual coefficient supports of
+these three maps. Hence the support comparison is proved as well.
+
+Choose the full original kernel frame \(I_K\) with actual rank
+\(r=\dim K\). In original orthonormal source coordinates let
+\(G_N=(U_NU_N^*)^{-1}\), and set
+\[
+ W_{K,N}=D_N^{-1}S_NU_N^*G_NI_K,\qquad
+ E_NW_{K,N}=I_K .
+\]
+The inverse of \(D_N\) is used only on its indicated image;
+the minimum lift is in \(U_N^{-1}(V_A)\). Then the exact kernel is
+\[
+ \ker B_N=\im[\mathcal Z_N,W_{K,N}],\qquad
+ \rk[\mathcal Z_N,W_{K,N}]=(N-q+1)+r .
+ \tag{SCD38}
+\]
+Applying \(E_N\) to a relation among those columns first kills
+the coefficients of the independent \(I_K\). Injectivity of
+\(\mathcal Z_N\) then kills the remainder. Conversely subtract
+the corresponding \(W_{K,N}\) lift from any vector in \(\ker B_N\);
+what remains lies in \(\ker E_N\). This proves every column and
+rank assertion, including the empty relation list at \(N=q-1\).
+
+The longer sequence \(X_N\xrightarrow{E_N}V_A\xrightarrow{\Xi}B_A\)
+has the exact curvature
+\[
+ \Xi E_N=B_N:X_N\twoheadrightarrow B_A .
+ \tag{SCD39}
+\]
+It is a complex only when the actual \(B_A\) is zero. In all cases
+its zero-curvature submodule is precisely SCD38. Thus the nonzero
+defect of that proposed sequence is retained, while SCD36 gives
+the genuine original graph complex.
+
+\subsection{Exact return to the original metric and arithmetic action}
+
+The full-support identification preserves the actual minimum metric.
+For a fixed \(x\in K\), all representatives in SCD30 differ by
+\(\chi h\). Minimizing their complete source norm is precisely
+the definition of the original quotient norm on \(E\). Thus in
+the unchanged full kernel frame it is
+\[
+ H^K_N=I_K^*G_NI_K .
+ \tag{SCD40}
+\]
+For the graph complex, its actual source metric is
+\[
+ H_N^{\rm actual}=D_N^*S_N^{-*}S_N^{-1}D_N .
+ \tag{SCD41}
+\]
+The map \(S_N^{-1}D_N\) in SCD37 is then an isometry onto its
+image. Every representative of \(x\in K\) lies in
+\(U_N^{-1}(V_A)\), so the same minimum gives exactly SCD40.
+This proof does not substitute the alternative graph product
+metric \(D_N^*D_N\) for SCD41. For all four cutoffs, the full
+cohomology determinant is therefore the original determinant,
+including the original signed return
+\[
+ \begin{split}
+ &\log\det H^{\rm coh}_{q-1,\mathbf I}
+ +\log\det H^{\rm coh}_{q,\mathbf I}
+ -\log\det H^{\rm coh}_{2q-1,\mathbf I}
+ -\log\det H^{\rm coh}_{2q,\mathbf I}\\
+ &\hspace{8mm}=
+ \log\det H^K_{q-1}+\log\det H^K_q
+ -\log\det H^K_{2q-1}-\log\det H^K_{2q}.
+ \end{split}
+ \tag{SCD42}
+\]
+Use the same \(I_K\) at every endpoint and the original empty
+determinant convention. This exact identity assigns no missing
+asymptotic coefficient.
+
+The original multiplication \(M:E\to E\) need not preserve \(K\).
+Its failure to descend through observation is explicitly computable.
+Keep the full minimum section and observed action
+\[
+ Q_N=(\Lambda G_N^{-1}\Lambda^*)^{-1},\quad
+ L_N=G_N^{-1}\Lambda^*Q_N,\quad P_N=L_N\Lambda,\quad
+ M_{B,N}=\Lambda ML_N .
+\]
+Then
+\[
+ \Lambda M-M_{B,N}\Lambda
+ =\Lambda M(I-P_N)
+ =\Lambda MI_K(H_N^K)^{-1}I_K^*G_N .
+ \tag{SCD43}
+\]
+For proof, direct multiplication gives the first equality.
+The minimum section is orthogonal to \(\ker\Lambda=K\);
+hence \(I-P_N\) is the \(G_N\)-orthogonal projector onto \(K\).
+The displayed expression \(I_K(H_N^K)^{-1}I_K^*G_N\)
+is the same projector: multiply to verify idempotence, image,
+identity on \(K\), and weighted self-adjointness. This proves
+the final equality without deleting its kernel block.
+
+The exact action-compatible subspace and defect space are
+\[
+ 0\to K\cap M^{-1}K\to K
+ \xrightarrow{\Lambda M}\im(\Lambda M|_K)\to0.
+ \tag{SCD44}
+\]
+The kernel assertion is its definition; the last target is the
+actual image. Thus this is the exact obstruction to obtaining
+an action on the original middle cohomology by \(M\).
+
+Retain every higher observation as well:
+\[
+ K^{(j)}=\bigcap_{a=0}^{j}\ker(\Lambda M^a),\qquad j\ge0.
+ \tag{SCD45}
+\]
+The connecting maps are inclusions, and
+\(K^{(j+1)}=K\cap M^{-1}K^{(j)}\). If two successive spaces
+are equal, the common space is \(M\)-invariant: membership in
+\(K^{(j+1)}\) implies that the \(M\)-image belongs to \(K^{(j)}\).
+It is then killed by every further observation, so the sequence
+stabilizes. It has at most \(\dim K\) strict drops. Its stable
+value is the largest \(M\)-invariant subspace of \(K\), since
+every such subspace is killed by every \(\Lambda M^a\), while
+the stable value itself is invariant. This is a specified space
+with exact connecting maps, rather than an assumed descent.
+
+The original metrics, periods and roots are unchanged throughout.
+The construction provides a complete support object over the
+absolute base, its exact arithmetic receiver, and the spaces
+defined by the two original curvature defects SCD39 and SCD43.
+No support trajectory or additional invariant column is discarded.
+
+\subsection{One support base for the four original cutoffs}
+
+The four support bases need not be identified by choosing bases again.
+There is a single exact common construction. For a fixed original source
+order \(s\in\{1,k\}\), retain the original source inclusions
+\(i_{NM}:\Pp_N\hookrightarrow\Pp_M\), \(N<M\), at the four cutoffs.
+On relation polynomials use \(j_{NM}:\Pp_{N-q}\hookrightarrow\Pp_{M-q}\)
+and on \(B\) use the identity. Their original matrices satisfy
+\[
+ i_{NM}Z_{\chi,N}=Z_{\chi,M}j_{NM},\qquad
+ U_Mi_{NM}=U_N,\qquad
+ \Lambda U_Mi_{NM}=\Lambda U_N .
+ \tag{SCD46}
+\]
+These are identities on polynomials before passing to any coordinates.
+Their matrices include whatever original basis conversions are required.
+They form cochain maps of SCD30 and induce precisely the identity of
+\(K\) in SCD31.
+
+For the graph presentations, the corresponding map is
+\[
+ F^X_{NM}=D_M^{-1}S_Mi_{NM}S_N^{-1}D_N,\qquad
+ E_MF^X_{NM}=E_N,\quad
+ F^X_{NM}\mathcal Z_N=\mathcal Z_Mj_{NM}.
+ \tag{SCD47}
+\]
+The inverse of \(D_M\) is taken only on its actual image: a polynomial
+whose class lies in \(V_A\) still has that property after source inclusion,
+so \(S_M\) of that polynomial has its second component divisible by
+\(\chi'\). This proves that the map is defined. Cancellation of the
+displayed inverse maps, followed by SCD35 and SCD46, proves the two
+identities. Composition for three source cutoffs follows by the same
+cancellation. The induced cohomology map is again the identity of \(K\).
+
+Now form a finite coefficient graph whose vertices record the cutoff,
+cochain degree and coefficient index. Include every declared differential
+edge, every edge of these original horizontal source maps, and, if both
+presentations are retained together, every edge of the graph-to-polynomial
+map SCD37. Let \(\LL_{\rm all}\) be all subsets closed under these edges.
+One can include both source orders as separately labelled copies, without
+identifying their metrics. The proof of SCD7 applies to this finite
+diagram: unions and intersections remain closed, and forward closure is
+the least containing closed set. Thus \(\LL_{\rm all}\) is a finite bounded
+distributive lattice with all the original coefficient supports retained.
+
+The coordinate projection to any one of the complexes preserves union,
+intersection, bottom and top, and takes a master trajectory to a valid
+local trajectory. Restricting every original matrix at a master trajectory
+therefore gives a diagram of complexes in which all original squares
+still commute. To verify a square entry, note that every intermediate
+index with a nonzero contribution is forced into the master trajectory
+by its first edge; its second edge is retained as well. Thus the restricted
+entry is the original full entry, with all its cancellation terms.
+
+For each cutoff reconstruct
+\[
+ \mathcal H_{\rm all,N}^1
+ =\bigsqcup_{A\in\LL_{\rm all}}H^1_{N,A|_N}.
+ \tag{SCD48}
+\]
+These are modules over the \emph{same} \(G_{\LL_{\rm all}}(\C)\) by
+SCD18. The horizontal cohomology maps preserve the master label \(A\),
+commute with union transports, and take a zero in a fibre to the zero in
+the same fibre. They are therefore \(G_{\LL_{\rm all}}(\C)\)-linear:
+for \(z_\lambda\) both composites give the zero at \(\lambda\cap A\);
+for a supported scalar the assertion is ordinary linearity.
+Their additive group completions all equal the same \(K\), with identity
+connecting maps and the four separate original metrics SCD40.
+This proves a common absolute-base receiver for the complete four-cutoff
+diagram, including the graph maps, without merging its source metrics.
+
+
+\subsection{Sources and verification scope}
+
+The accompanying exact checker verifies the complete six-trajectory
+cancellation example and its cohomology changes; the \(G_{\LL}(R)\)
+scalar laws; and the full source/graph/minimum identities on a
+specified positive four-root auxiliary example at all four cutoffs.
+This example tests the proved algebra. It is not a replacement
+for the original period matrices or an evaluation of a hypothetical
+zeta zero. No floating-point test proves a native sign or coefficient.
+
+The classification source is read as original LaTeX, not a PDF or
+a summary. The accompanying source-use ledger records exact hashes,
+reading coverage and receiving formulas. The elementary group-completion,
+gluing and cohomology constructions above have complete proofs here;
+the human semiring reference below is contextual provenance, not a
+claim that an unread external theorem supplies a missing calculation.
+

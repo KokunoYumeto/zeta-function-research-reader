@@ -1,0 +1,664 @@
+% Independent derivation for the root's actual-adelic/coinvariant bridge.
+% Algebraic quotients only; no assertion about an unproved topological quotient.
+\section{The actual adelic source and its retained prime boundary}
+\label{sec:independent-adelic-coinvariant-bridge}
+
+The adelic restriction operation and its original measures are those of
+Alain Connes, \emph{Trace formula in noncommutative geometry and the zeros
+of the Riemann zeta function},
+\href{https://arxiv.org/abs/math/9811068v1}{Section III (6)--(19)},
+and Alain Connes, Caterina Consani and Matilde Marcolli,
+\href{https://arxiv.org/abs/math/0703392v1}{\emph{The Weil proof and the
+geometry of the adeles class space}}, as specified in SWQ2--14.
+The homological complex used below is the standard Koszul complex,
+named for Jean-Louis Koszul. The standard regular-sequence mechanism is
+recorded by \emph{The Stacks Project Authors},
+\href{https://stacks.math.columbia.edu/tag/062F}{Tag 062F}, with
+\href{https://github.com/stacks/stacks-project/blob/a04446e57ec1fbc252a871afcec7752fb2807b14/more-algebra.tex#L7264}{original
+author TeX, lines 7264--7298, commit
+\texttt{a04446e57ec1fbc252a871afcec7752fb2807b14}}.
+The contribution here is the exact application, connecting representatives,
+and receiving maps for these specified programme modules; the necessary
+Koszul exactness is proved below as well. All tensor products and
+quotients below are algebraic unless a different meaning is explicitly
+stated.
+
+The precise public programme inputs are
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/acd7016b8232a56f31ae3e69fb800571e8789080/workbenches/splitzero-tandem/continuations/20260923-retained-source-readers/original-zeta-full-boundary/CC_WEIL_BOUNDARY_READER.tex#L927}{SWQ2--14},
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/acd7016b8232a56f31ae3e69fb800571e8789080/workbenches/splitzero-tandem/continuations/20260923-retained-source-readers/original-zeta-full-support/MASS_THETA_PRIME_RECEIVER.tex#L12}{MRT1--20}, and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/acd7016b8232a56f31ae3e69fb800571e8789080/workbenches/splitzero-tandem/continuations/20260923-retained-source-readers/endpoint-resonance/ENDPOINT_RESONANCE_AND_PRIME_CLASS.tex#L430}{ER27--30}.
+These pinned proof targets were checked against the local source versions.
+
+\subsection{The finite adelic basis and the exact original source}
+
+Put
+\begin{equation}\tag{ABR1}
+ G=\mathbb Q_{>0}^{\times},\quad R=\mathbb C[G],\quad
+ I=\ker(\varepsilon:R\longrightarrow\mathbb C),\quad
+ H=\mathcal S_{\rm even}(\mathbb R),\quad
+ K=\widehat{\mathbb Z}^{\times},\quad c_a=1_{a\widehat{\mathbb Z}}.
+\end{equation}
+The basis element $t_a\in R$ satisfies $t_at_b=t_{ab}$ and
+$\varepsilon(t_a)=1$. The finite additive measure has
+$\operatorname{vol}(\mathbb Z_p)=1$, and the real additive measure
+is Lebesgue measure. Thus
+\begin{equation}\tag{ABR2}
+ \operatorname{vol}(a\widehat{\mathbb Z})
+  =\prod_p p^{-v_p(a)}=a^{-1}\qquad(a>0\text{ rational}).
+\end{equation}
+This equality uses the original positive real value of $a$ and its
+prime factorization; the finite and real factors will both be retained.
+
+The family $(c_a)_{a\in G}$ is a vector-space basis of
+$\mathcal S(\mathbb A_f)^K$. To prove spanning, first observe that a
+compactly supported locally constant function on $\mathbb Q_p$,
+invariant under $\mathbb Z_p^\times$, is constant on valuation shells.
+Choose integers $A\le B$ such that its support is in $p^A\mathbb Z_p$
+and it is constant on cosets of $p^B\mathbb Z_p$. If its values on
+the shells $A\le n<B$ and on the last ball $p^B\mathbb Z_p$ are
+$d_A,\ldots,d_B$, the function is exactly
+\[
+ d_A1_{p^A\mathbb Z_p}
+ +\sum_{n=A+1}^{B}(d_n-d_{n-1})1_{p^n\mathbb Z_p}.
+\]
+The original Bruhat space on $\mathbb A_f$ consists of finite sums
+of restricted tensor products with $1_{\mathbb Z_p}$ outside a finite
+set of primes. Compact-unit averaging of a finite-place test is a
+finite linear operation: its support is contained in finitely many
+bounded local balls and its local-constancy subgroups have finite
+index there. Averaging therefore reduces to a finite quotient. Apply
+the preceding local formula at the finitely many relevant primes and
+expand the finite tensor products. Their balls are exactly $c_a$.
+For an invariant test averaging leaves the test itself fixed, which
+proves spanning.
+
+For independence, take distinct $a_1,\ldots,a_m\in G$ and partially
+order them by $a_i\preceq a_j$ when $a_j/a_i$ is an integer. This is
+a partial order because both positive ratios can be integers only
+when they are one. Order this finite set by a linear extension.
+Evaluate its characteristic functions at the finite rational ideles
+$x_f=a_j$. Then
+\[
+ c_{a_i}(a_j)=1\quad\Longleftrightarrow\quad a_i\preceq a_j.
+\]
+Indeed $\mathbb Q\cap\widehat{\mathbb Z}=\mathbb Z$.
+The resulting matrix is lower triangular with diagonal one. Its
+determinant is one, proving independence. This proof also works for
+coefficients in any complex vector space, because back substitution
+uses only this finite triangular matrix.
+
+Define
+\begin{equation}\tag{ABR3}
+ \Theta:R\otimes H\longrightarrow
+           \mathcal S(\mathbb A_{\mathbb Q})^{K,\mathrm{even}},
+ \qquad
+ \Theta(t_a\otimes h)(x_\infty,x_f)
+       =h(x_\infty/a)c_a(x_f).
+\end{equation}
+Here evenness refers to the original real variable $x_\infty$.
+Every target is a finite sum $\sum_a g_a(x_\infty)c_a(x_f)$ with
+$g_a\in H$. Set $h_a(x)=g_a(ax)$ to obtain its preimage in ABR3.
+Independence follows from the vector-valued independence of the
+$c_a$ and the injectivity of each real dilation. Thus $\Theta$ is
+an isomorphism of vector spaces, with the displayed exact inverse.
+No change in the original real coordinate has been made in the target.
+
+For $r\in G$ define full rational adelic dilation by
+$\alpha_r\xi(x)=\xi(r^{-1}x)$. The finite argument gives
+$c_a(r^{-1}x_f)=c_{ra}(x_f)$, while the real argument is
+$h(x_\infty/(ra))$. Consequently
+\begin{equation}\tag{ABR4}
+ \alpha_r\Theta(t_a\otimes h)=\Theta(t_{ra}\otimes h).
+\end{equation}
+This is the left $R$-action. It is full diagonal rational dilation;
+it is not dilation of the real idele-class coordinate alone.
+
+Let $m(h)=(h(0),\int_{\mathbb R}h(x)\,dx)$. Evaluation and
+integration of ABR3 give the two exact moments
+\begin{equation}\tag{ABR5}
+ \Theta(t_a\otimes h)(0)=h(0),\qquad
+ \int_{\mathbb A}\Theta(t_a\otimes h)
+     =a\left(\int_{\mathbb R}h\right)
+                     \prod_p p^{-v_p(a)}=\int_{\mathbb R}h.
+\end{equation}
+Thus $(\varepsilon_0,\varepsilon_1)\Theta=\varepsilon\otimes m$.
+In particular
+\begin{equation}\tag{ABR6}
+ M_0=\ker(\varepsilon\otimes m),\qquad H_{00}=\ker m,
+ \qquad
+ \Theta(M_0)=\mathcal S(\mathbb A)_0^{K,\mathrm{even}}.
+\end{equation}
+This is equality of the actual spaces with their two original
+endpoint conditions, not a comparison only after completion.
+
+\subsection{The complete algebraic coinvariant and its boundary}
+
+The two even Schwartz functions
+\[
+ h_0(x)=(1-2\pi x^2)e^{-\pi x^2},\qquad
+ h_1(x)=2\pi x^2e^{-\pi x^2}
+\]
+have moments $(1,0)$ and $(0,1)$. Indeed their evaluations are
+immediate and the real Gaussian integrals are
+$\int e^{-\pi x^2}=1$ and $\int x^2e^{-\pi x^2}=1/(2\pi)$.
+The section $\sigma(u_0,u_1)=u_0h_0+u_1h_1$ therefore splits $m$.
+It gives
+\begin{equation}\tag{ABR7}
+ M_0=(R\otimes H_{00})\oplus(I\otimes\sigma(\mathbb C^2)),
+ \qquad
+ Q_0=M_0/IM_0\cong H_{00}\oplus(I/I^2)\otimes\mathbb C^2.
+\end{equation}
+Indeed multiplication by $I$ has exactly the two components
+$I\otimes H_{00}$ and $I^2\otimes\sigma(\mathbb C^2)$.
+
+For clarity the resulting boundary and inverse can be written
+without leaving a dependence on the chosen moment section. Put
+\begin{equation}\tag{ABR8}
+ W=\bigoplus_{p\ \mathrm{prime}}\mathbb C\ell_p,
+ \qquad \mathcal B_{\mathrm{pr}}=W\otimes\mathbb C^2.
+\end{equation}
+The map $[t_a-1]\mapsto\sum_pv_p(a)\ell_p$ is an isomorphism
+$I/I^2\to W$. For its proof retain the identity
+$t_{ab}-1=(t_a-1)+(t_b-1)+(t_a-1)(t_b-1)$.
+Modulo $I^2$ it gives additivity, and inversion gives the negative
+of a class. Prime factorization expresses each class as the stated
+sum. For independence the functionals
+$D_p(\sum_ac_at_a)=\sum_ac_av_p(a)$ satisfy
+$D_p(rs)=\varepsilon(r)D_p(s)+\varepsilon(s)D_p(r)$, and hence
+vanish on $I^2$. They take value one on $[t_p-1]$ and zero on
+the other displayed prime generators.
+
+The canonical coordinates of $c=[\sum_at_a\otimes h_a]\in Q_0$
+are
+\begin{equation}\tag{ABR9}
+ \Phi(c)=\sum_a h_a\in H_{00},\qquad
+ \beta(c)=\sum_p\ell_p\otimes\sum_a v_p(a)m(h_a).
+\end{equation}
+Both maps kill $IM_0$. For $\beta$, apply the preceding derivation
+identity to a product $r\sum_at_a\otimes h_a$, $r\in I$;
+its value is $\sum_pD_p(r)\ell_p\otimes\sum_am(h_a)=0$ by
+the defining moment condition. The inverse of ABR9 sends
+\begin{equation}\tag{ABR10}
+ (h,\sum_p\ell_p\otimes u_p)
+ \longmapsto [t_1\otimes h]
+             +\sum_p[(t_p-1)\otimes\sigma(u_p)].
+\end{equation}
+Only finitely many $u_p$ are nonzero. Changing $\sigma$ changes
+the latter expression by an element of $I\otimes H_{00}\subset IM_0$.
+To check the inverse on an arbitrary representative, subtract
+$t_1\otimes\sum_a h_a$ and write the remainder as
+$\sum_a(t_a-1)\otimes h_a$. Replacing each $h_a$ there by
+$\sigma m(h_a)$ changes its class by $IM_0$, and ABR8 then
+gives exactly ABR10. Thus the short exact sequence
+\begin{equation}\tag{ABR11}
+ 0\longrightarrow\mathcal B_{\mathrm{pr}}
+   \xrightarrow{\ j\ }Q_0\xrightarrow{\Phi}H_{00}
+   \longrightarrow0
+\end{equation}
+is canonically split by $h\mapsto[t_1\otimes h]$, and $j$ is
+the section-independent second term of ABR10.
+
+\subsection{Actual periodization, injectivity, and exact inverse}
+
+For the original restriction map
+$E\xi(u,y)=\sum_{q\in\mathbb Q^\times}\xi(qy,qu)$,
+$u\in K$, $y>0$, the finite condition in ABR3 is
+$q/a\in\widehat{\mathbb Z}\cap\mathbb Q=\mathbb Z$.
+Hence $q=an$ for $n\in\mathbb Z\setminus\{0\}$. It follows that
+\begin{equation}\tag{ABR12}
+ E\Theta(t_a\otimes h)(u,y)
+    =\sum_{n\in\mathbb Z\setminus\{0\}}h(ny)
+    =2\sum_{n\ge1}h(ny)=:\mathcal P h(y).
+\end{equation}
+Evenness of $h$ supplies exactly the last factor two. The real
+and finite scales $a$ have both participated in the equality;
+no finite restriction has been dropped. All sums are locally
+absolutely convergent with every real derivative by Schwartz decay.
+For $m=\sum_at_a\otimes h_a\in M_0$, ABR12 is
+$E\Theta(m)=\mathcal P(\sum_a h_a)$.
+
+The Fourier convention
+$\widehat h(\xi)=\int_{\mathbb R}h(x)e^{-2\pi ix\xi}\,dx$
+gives the exact Poisson identity with both endpoints
+\begin{equation}\tag{ABR13}
+ \mathcal P h(y)
+ =y^{-1}\mathcal P\widehat h(1/y)
+     +y^{-1}\int_{\mathbb R}h(x)\,dx-h(0).
+\end{equation}
+For $h\in H_{00}$ both displayed endpoint terms are zero, and
+$\widehat h$ also belongs to $H_{00}$ because
+$\widehat h(0)=\int h=0$ and $\int\widehat h=h(0)=0$.
+At infinity the sums of every Euler derivative of $\mathcal P h$
+decay faster than every power: choose an arbitrarily large Schwartz
+power $A>1$ and bound their sums by a constant times
+$y^{-A}\sum n^{-A}$. ABR13 proves the corresponding estimates
+at zero. Therefore $\mathcal P h$ belongs to the original radial
+strong Schwartz test space. All powers of $\log y$ are also
+controlled by these bounds, so its Mellin transform is entire.
+
+For $\Re s>1$, absolute Fubini gives the original identity
+\begin{equation}\tag{ABR14}
+ \mathcal M(\mathcal P h)(s)
+   =2\zeta(s)\mathcal M_+h(s),\qquad
+ \mathcal M_+h(s)=\int_0^\infty h(x)x^{s-1}\,dx.
+\end{equation}
+Indeed the absolute sum of integrals is
+$2\zeta(\Re s)\int_0^\infty|h(x)|x^{\Re s-1}\,dx<\infty$.
+The original Euler product proves that $\zeta(s)\ne0$ in this
+half-plane: the logarithms of its factors converge absolutely
+because $\sum_p\sum_{k\ge1}p^{-k\Re s}/k<\infty$.
+Thus division by the actual $2\zeta(s)$ is valid on the exact
+domain used below. There is no completed replacement of $\zeta$.
+
+For $\sigma>1$, $g_\sigma(v)=e^{\sigma v}h(e^v)$ is Schwartz
+on $\mathbb R$. Every derivative is a finite sum of
+$e^{(\sigma+j)v}h^{(j)}(e^v)$. These decay exponentially at
+$-\infty$ and faster than any prescribed exponential at
+$+\infty$, using the original real Schwartz estimates.
+Consequently $\mathcal M_+h(\sigma+it)$ decays faster than
+every power of $t$. Fourier inversion in $v$ gives
+\begin{equation}\tag{ABR15}
+ h(x)=\frac1{4\pi i}
+   \int_{\sigma-i\infty}^{\sigma+i\infty}
+      \frac{\mathcal M(\mathcal P h)(s)}{\zeta(s)}x^{-s}\,ds,
+       \qquad x>0,\quad\sigma>1.
+\end{equation}
+Every constant is explicit: Mellin inversion has $1/(2\pi i)$,
+and ABR14 contributes the additional $1/2$. To justify inversion
+directly, multiply the Fourier integrand by $e^{-\epsilon t^2}$.
+Its inverse is convolution with
+$(4\pi\epsilon)^{-1/2}e^{-v^2/(4\epsilon)}$, which tends to
+$g_\sigma$ as $\epsilon\downarrow0$. The proved rapid vertical
+decay permits dominated convergence on the Fourier side. This
+proves ABR15, including absolute convergence. Evenness recovers
+$h(x)$ for $x<0$ and $h(0)=0$ supplies the remaining point.
+In particular $\mathcal P$ is injective on $H_{00}$.
+
+There is also an exact arithmetic inverse in the original variable:
+\begin{equation}\tag{ABR15a}
+ h(x)=\frac12\sum_{n\ge1}\mu(n)\mathcal P h(nx),\qquad x>0.
+\end{equation}
+For fixed $x>0$ and any $A>1$, Schwartz decay bounds the absolute
+double sum after inserting ABR12 by a constant depending on $x,A$
+times $\sum_{n,m\ge1}(nm)^{-A}=\zeta(A)^2$.
+It may therefore be regrouped by $k=nm$. Its coefficient of $h(kx)$
+is $\sum_{n\mid k}\mu(n)$, which is one for $k=1$ and zero for
+$k>1$: prime factorization gives the finite product
+$\prod_{p\mid k}(1-1)$ in the latter case. This proves ABR15a
+with its factor $1/2$ and also proves convergence locally with
+every Euler derivative. It is a second exact inverse, not a
+truncation or a substitute for ABR14--15's original zeta factor.
+
+Let $V=E\mathcal S(\mathbb A)_0$ be the actual restriction image,
+and let $V^K$ be its compact-unit invariant part. Then
+\begin{equation}\tag{ABR16}
+ V^K=E\mathcal S(\mathbb A)_0^{K,\mathrm{even}}
+      =\mathcal P(H_{00}).
+\end{equation}
+For the nontrivial inclusion, take $F=E\xi\in V^K$. Average
+$\xi(x_\infty,vx_f)$ over $v\in K$. This is a finite average
+in the original Bruhat space, retains both moments, and has
+restriction equal to $F$. Next project to real-even functions
+by averaging $x_\infty$ with $-x_\infty$. Under $E$, the real
+reflection equals the finite-unit translation $u\mapsto-u$,
+as seen by reindexing $q\mapsto-q$ in its absolutely convergent
+sum. Since $F$ is $K$-invariant this projection still restricts
+to $F$. ABR6 now supplies a preimage in $M_0$, whose sum of
+coefficients is in $H_{00}$. This proves ABR16 without replacing
+$V$ by its closure or by a topological completion.
+
+Full rational dilation is trivial after periodization, also
+directly by reindexing $q/r$ in the rational sum. Therefore
+ABR12 induces a surjection on the algebraic coinvariant, with
+the exact kernel
+\begin{equation}\tag{ABR17}
+ 0\longrightarrow\mathcal B_{\mathrm{pr}}
+    \xrightarrow{\ j\ }Q_0
+    \xrightarrow{\ \rho=\mathcal P\Phi\ }V^K
+    \longrightarrow0.
+\end{equation}
+Injectivity of $\mathcal P$ proves that this kernel is exactly
+the whole prime boundary, rather than merely containing it.
+A faithful joint receiver and its inverse are
+\begin{equation}\tag{ABR18}
+ \Omega(c)=(\rho(c),\beta(c)),\qquad
+ \Omega:Q_0\xrightarrow{\ \sim\ }V^K\oplus\mathcal B_{\mathrm{pr}},
+ \qquad
+ \Omega^{-1}(F,b)=[t_1\otimes\mathcal P^{-1}F]+j(b).
+\end{equation}
+The inverse $\mathcal P^{-1}$ is exactly ABR15.
+
+Keep Connes's original seminorm, without changing its measure,
+factor or weight:
+\begin{equation}\tag{ABR19}
+ \|c\|_\delta^2
+  =\int_0^\infty|y^{1/2}\rho(c)(y)|^2
+            (1+\log^2y)^{\delta/2}\frac{dy}{y},\qquad\delta>1.
+\end{equation}
+It is finite by the strong test estimates. Its weight is strictly
+positive. If the integral is zero, continuity gives $\rho(c)=0$
+everywhere, and ABR17 gives $c\in j(\mathcal B_{\mathrm{pr}})$.
+The reverse inclusion follows from ABR17 as well. Thus ABR19
+has precisely this algebraic nullspace. This identifies the
+lost coordinates but assigns no new norm to them and claims
+no equivalence with an unproved topological quotient.
+
+\subsection{Positive real ideles and the two endpoint characters}
+
+For $b>0$, now with no rationality assumption, define
+$R_bh(x)=h(x/b)$ and let $\mathscr R_b=\operatorname{id}_R\otimes R_b$
+be the operator on $R\otimes H$.
+Its original moments obey
+\begin{equation}\tag{ABR19a}
+ m(R_bh)=D_bm(h),\qquad
+ D_b=\begin{pmatrix}1&0\\0&b\end{pmatrix}.
+\end{equation}
+Evaluation at zero is unchanged, and the real substitution $x=bu$
+multiplies the additive integral by $b$. Thus $\mathscr R_b$
+preserves $M_0$, commutes with the full rational action, and
+descends to $Q_0$. Under $\Theta$ it is precisely the real-idele
+action $\xi(x_\infty,x_f)\mapsto\xi(x_\infty/b,x_f)$; the finite
+support $a\widehat{\mathbb Z}$ has not changed.
+
+In the exact coordinates ABR9, this action is
+\begin{equation}\tag{ABR19b}
+ (\Phi,\beta)\mathscr R_b c
+   =\left(R_b\Phi c,
+                (\operatorname{id}_W\otimes D_b)\beta c\right).
+\end{equation}
+This follows directly from the finite sums in ABR9. On the boundary
+inverse ABR10 it is also independent of the moment section:
+$R_b\sigma(u)-\sigma(D_bu)\in H_{00}$, so its product with
+$t_p-1$ is in $I\otimes H_{00}\subset IM_0$. Consequently
+$\Omega$ is equivariant for real dilation on its $V^K$ component
+and the two endpoint characters $1,b$ on its boundary component.
+These are the actual Connes endpoint characters
+$\mathbb C\oplus\mathbb C(1)$, with their displayed action;
+no purity theorem is inferred from this character calculation.
+
+Both periodization conventions and their exact comparison are
+\begin{equation}\tag{ABR19c}
+ \begin{split}
+ E_{2007}(R_bh)(y)&=(\mathcal P h)(y/b),\\
+ E_{1998}(h)(y)&=y^{1/2}\mathcal P h(y),\\
+ E_{1998}(R_bh)(y)&=b^{1/2}E_{1998}(h)(y/b).
+ \end{split}
+\end{equation}
+The first equality follows term by term from ABR12. The last one
+retains $y^{1/2}=b^{1/2}(y/b)^{1/2}$ and therefore its exact
+factor $b^{1/2}$. Multiplication by the nowhere-zero function
+$y^{1/2}$ is explicitly inverted by multiplication by $y^{-1/2}$
+on the original strong test spaces; it is not omitted in the
+seminorm. In particular that seminorm transforms exactly as
+\begin{equation}\tag{ABR19d}
+ \|\mathscr R_b c\|_\delta^2
+   =b\int_0^\infty|E_{1998}(\Phi c)(y)|^2
+       \{1+(\log y+\log b)^2\}^{\delta/2}\frac{dy}{y}.
+\end{equation}
+This follows by the positive substitution in ABR19 and does not
+claim that the original weighted seminorm is dilation-invariant.
+
+\subsection{Every higher-degree connecting representative}
+
+Identify $R$ with the Laurent polynomial algebra
+$\mathbb C[t_p^{\pm1}:p\text{ prime}]$, whose polynomials involve
+only finitely many variables. Let $x_p=t_p-1$ and use the ordered
+prime basis $\ell_p$ of $W$. The standard algebraic Koszul complex is
+\begin{equation}\tag{ABR20}
+ K_n(R)=R\otimes\Lambda^nW,\qquad
+ d(r\otimes\ell_{p_1}\wedge\cdots\wedge\ell_{p_n})
+  =\sum_{i=1}^n(-1)^{i-1}rx_{p_i}\otimes
+       \ell_{p_1}\wedge\cdots\widehat{\ell_{p_i}}\cdots
+                              \wedge\ell_{p_n}.
+\end{equation}
+The indices here satisfy $p_1<\cdots<p_n$. The two orders in
+which a pair of indices is removed have opposite signs and
+the coefficients commute, so $d^2=0$.
+
+This is a free resolution of the augmentation module $\mathbb C$.
+For a finite set of primes the sequence of its $x_p$ is regular:
+after any preceding variables have been set to one, the quotient
+is still a Laurent polynomial algebra in the remaining variables,
+and the next $t_p-1$ is a nonzero divisor. The finite Koszul complex
+is exact in positive degrees by induction: adjoining one variable
+is the mapping cone of multiplication by that variable's $x_p$,
+whose kernel on the preceding degree-zero quotient is zero and
+whose cokernel is the further quotient. The full complex ABR20 is
+the filtered union of these finite complexes. A cycle uses finitely
+many wedge indices; it is a boundary already in the corresponding
+finite complex. Degree zero is $R/(x_p:p\text{ prime})=\mathbb C$.
+This proves exactness also for the infinitely generated group, with
+only finite algebraic sums at every step.
+
+Tensor this resolution with the coefficient modules in the exact
+sequence
+\[
+ 0\longrightarrow M_0\longrightarrow R\otimes H
+          \xrightarrow{\varepsilon\otimes m}\mathbb C^2
+          \longrightarrow0.
+\]
+Here $\mathbb C^2$ has trivial $R$-action. Tensoring each free
+Koszul degree preserves the short exact sequence. For the middle
+module, its Koszul homology is $H$ in degree zero and zero in
+positive degrees, because the complex is $K_\bullet(R)\otimes H$.
+For the last module its differential is zero, and its degree-$n$
+homology is $\Lambda^nW\otimes\mathbb C^2$. Consequently
+\begin{equation}\tag{ABR21}
+ H_n(G,M_0)\cong\Lambda^{n+1}W\otimes\mathbb C^2
+            \quad(n\ge1),
+ \qquad H_0(G,M_0)=Q_0,
+\end{equation}
+with ABR11 as the degree-zero exact sequence.
+
+The exact connecting representative of an ordered element is
+\begin{equation}\tag{ABR22}
+ \begin{split}
+ &\partial_n\bigl((\ell_{p_1}\wedge\cdots\wedge\ell_{p_{n+1}})
+                                                    \otimes u\bigr)\\
+ &\quad=\left[
+  \sum_{i=1}^{n+1}(-1)^{i-1}
+       (x_{p_i}\otimes\sigma(u))\otimes
+       \ell_{p_1}\wedge\cdots\widehat{\ell_{p_i}}\cdots
+                                  \wedge\ell_{p_{n+1}}
+         \right]\in H_n(G,M_0).
+ \end{split}
+\end{equation}
+Each coefficient is in $M_0$ because $\varepsilon(x_p)=0$.
+This representative is the differential of
+$(t_1\otimes\sigma(u))\otimes
+  \ell_{p_1}\wedge\cdots\wedge\ell_{p_{n+1}}$
+in the middle module's complex, so it is a cycle. Changing a
+lift of $u$ changes it by a boundary in the first complex.
+For $n\ge1$ its map is an isomorphism: a cycle of the first
+complex becomes a boundary in the acyclic positive-degree middle
+complex, proving surjectivity; if a connecting class is a boundary,
+subtract its first-complex primitive from the chosen lift and use
+middle-complex acyclicity one degree higher, proving injectivity.
+Projection to the last complex has zero differential, so the latter
+argument forces the original exterior class to be zero. For $n=0$
+the representative is $[(t_p-1)\otimes\sigma(u)]$, exactly $j$ in
+ABR11. These proofs retain the original wedge order and sign.
+
+The module $V^K$ has trivial full-rational action, and its Koszul
+homology is $\Lambda^nW\otimes V^K$. Periodization kills every
+coefficient $x_p\otimes h$ in ABR22 separately, by ABR12. Thus
+the homology map induced by $E\Theta:M_0\to V^K$ is zero in
+every positive degree. In degree zero it is exactly ABR17.
+The action $\mathscr R_b$ commutes with the differential ABR20.
+Under the connecting isomorphism ABR21 its action is precisely
+$\operatorname{id}_{\Lambda^{n+1}W}\otimes D_b$. To verify the
+section-independence directly in ABR22, replace $R_b\sigma(u)$
+by $\sigma(D_bu)$. Their difference is in $H_{00}$, and the
+resulting difference of cycles is the differential of
+$(t_1\otimes(R_b\sigma(u)-\sigma(D_bu)))$
+times the complete ordered wedge, which lies in the first
+complex itself. Thus every higher connecting class has the same
+two original endpoint characters, with its prime wedge unchanged.
+
+\subsection{The existing mass and endpoint sources under this map}
+
+The actual source spaces, moments, group action, quotient and
+coordinate maps in ABR1 and ABR6--10 agree with MRT1--5 and
+ER27--30, not just their dimensions. The MRT source heat kernel is
+\[
+ k_T(x)=(4\pi T)^{-1/2}e^{-x^2/(4T)},\qquad T>0.
+\]
+For its even finite coefficient source $a$,
+$A_Ta(x)=\sum_na_nk_T(x-n)$ is even Schwartz and has exactly
+\begin{equation}\tag{ABR23}
+ m(A_Ta)=\left(\sum_na_nk_T(n),\sum_na_n\right)
+                  =(q_T(a),m(a)).
+\end{equation}
+Therefore the actual class and antecedent are
+\begin{equation}\tag{ABR24}
+ \begin{split}
+ B_{p,T}(a)&=[(t_p-1)\otimes A_Ta],\\
+ \Theta((t_p-1)\otimes A_Ta)(x)
+  &=(A_Ta)(x_\infty/p)c_p(x_f)-(A_Ta)(x_\infty)c_1(x_f),\\
+ (\rho,\beta)B_{p,T}(a)
+  &=\left(0,\ell_p\otimes(q_T(a),m(a))\right).
+ \end{split}
+\end{equation}
+Each such antecedent has both moments zero, including the separate
+finite Haar factor $p^{-1}$ and the real integral factor $p$ of
+its first summand. Its two periodizations are equal term by term
+after the exact arithmetic reindexing ABR12.
+
+These finite Gaussian sources attain all of $\mathcal B_{\mathrm{pr}}$.
+For a prescribed pair $(u_0,u_1)$ and a fixed $T>0$, retain
+$k_0=k_T(0)$ and $k_1=k_T(1)$ and take
+\[
+ a_0=\frac{u_0-k_1u_1}{k_0-k_1},\qquad
+ a_1=a_{-1}=\frac{k_0u_1-u_0}{2(k_0-k_1)},\qquad
+ a_n=0\quad(|n|>1).
+\]
+Here $k_0>k_1$ and direct substitution gives ABR23 equal to
+$(u_0,u_1)$. Summing the finitely many selected prime classes
+therefore realizes every boundary vector, with the original
+kernel and coordinate conventions of MRT8.
+
+For the Gaussian coefficient family $a_n^x=e^{-\pi n^2x}$,
+$x>0$, MRT13--14 proves that the same $A_Ta^x$ is even Schwartz
+and gives
+\begin{equation}\tag{ABR25}
+ \beta B_{p,T}(a^x)
+ =\ell_p\otimes\left(
+ (4\pi T)^{-1/2}\vartheta(x+1/(4\pi T)),\ \vartheta(x)\right),
+ \qquad \rho B_{p,T}(a^x)=0.
+\end{equation}
+No heat time has been identified with the independent parameter $x$.
+The separately specified MRT supported-zero source operation
+$\widehat E$ still has its actual receiving matrix
+$J_T=\left(\begin{smallmatrix}0&k_T(0)\\0&1\end{smallmatrix}\right)$
+on these two moments, as proved in MRT11. Its periodization is
+zero before and after that operation. The present comparison does
+not redefine $\widehat E$ as the scalar supported-zero operation
+on a different common-label vector carrier.
+
+For an arbitrary completed MRT input $(a,0,m)$, MRT10 already
+defines its boundary through $(q_T(a),m)$. ABR10 supplies the
+Schwartz representative $\sigma(q_T(a),m)$ and hence an actual
+adelic antecedent for this boundary. This does not assert that
+$A_Ta$ itself is Schwartz for every completed coefficient sequence.
+
+For the ER source, keep its original real variable $Z$, time $t>0$,
+and function
+\begin{equation}\tag{ABR26}
+ h_t(Z)=e^{-Z^2/(4t)}H_t(Z)\cos(Z/(2t)).
+\end{equation}
+It is even Schwartz. The exact moments are
+\begin{equation}\tag{ABR27}
+ m(h_t)=\left(H_t(0),\frac{\sqrt{\pi t}}8e^{-1/(4t)}\right).
+\end{equation}
+To retain the reason for the second constant, insert the original
+cosine integral $H_t(Z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du$.
+The inner Gaussian integral is
+\[
+ \sqrt{\pi t}\{e^{-t(u+1/(2t))^2}+e^{-t(u-1/(2t))^2}\}
+ =2\sqrt{\pi t}\,e^{-tu^2-1/(4t)}\cosh u.
+\]
+Absolute Fubini follows from the Gaussian and the faster-than-Gaussian
+decay of the original $\Phi$. The retained factor $e^{tu^2}$
+then gives $2\sqrt{\pi t}e^{-1/(4t)}H_0(i)$.
+ER3--5 gives $H_0(-i)=1/16$ from the original limit
+\[
+ \frac1{16}\lim_{s\to1}
+ s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)=\frac1{16};
+\]
+evenness gives $H_0(i)=H_0(-i)$. This proves ABR27 with the
+original zeta pole, Gamma factor, power of pi and factor 16 retained.
+No arithmetic Hurwitz-flow time is being substituted for $t$.
+
+In ABR3 use this same real variable for $x_\infty$ and $h_t$.
+The ER prime class has the actual antecedent and receiver
+\begin{equation}\tag{ABR28}
+ \begin{split}
+ \Xi_{p,t}(x)
+   &=h_t(x_\infty/p)c_p(x_f)-h_t(x_\infty)c_1(x_f),\\
+ \rho[(t_p-1)\otimes h_t]&=0,\\
+ \beta[(t_p-1)\otimes h_t]
+   &=\ell_p\otimes
+       \left(H_t(0),\frac{\sqrt{\pi t}}8e^{-1/(4t)}\right)\ne0.
+ \end{split}
+\end{equation}
+The last strict nonzero statement uses $t>0$. Thus it is a
+nonzero element of the exact kernel ABR17, with both original
+source moments computed rather than assumed.
+
+\subsection{Common-label support and the full SWQ receiving quotient}
+
+For every complex vector space $U$ keep
+\[
+ G_L(U)=\{(0,\lambda):\lambda\in L\}\cup(U\times\{1_L\})
+\]
+for the original arbitrary nontrivial bounded distributive lattice.
+Every linear map $T$ lifts by
+$T^\uparrow(u,\lambda)=(Tu,\lambda)$, preserving addition with
+label join, scalar action with label meet, and compositions.
+The exact coinvariant quotient here is the same-label congruence
+\begin{equation}\tag{ABR29}
+ (m,\lambda)\sim(m',\lambda')
+ \quad\Longleftrightarrow\quad
+ \lambda=\lambda'\ \hbox{ and }\ m-m'\in IM_0.
+\end{equation}
+Its quotient is $G_L(Q_0)$. The further map $\rho^\uparrow$ has
+fibres with the same labels and amplitude differences in
+$j(\mathcal B_{\mathrm{pr}})$. Therefore a top-labelled nonzero
+prime class from ABR24 or ABR28 maps to $(0,1_L)=e$, not
+to $\tau=(0,0_L)$. For a general zero-amplitude label its image
+is $(0,\lambda)$ with that same label. The joint map
+$\Omega^\uparrow$ is an isomorphism onto
+$G_L(V^K\oplus\mathcal B_{\mathrm{pr}})$; the entire direct sum
+has one common label, not independently chosen component labels.
+
+The Koszul amplitude complexes may be retained with these same
+common-label lifts. Their composites satisfy
+\begin{equation}\tag{ABR30}
+ d^\uparrow d^\uparrow(z,\lambda)=(0,\lambda)
+                                  =e\cdot(z,\lambda).
+\end{equation}
+Thus they are not ordinary complexes with a constant-$\tau$
+zero map. The amplitude-zero cycles are exactly $G_L(\ker d)$,
+and the same-label congruence by $\operatorname{im}d$ gives
+$G_L(H_n(G,M_0))$. Under the induced periodization the lifted
+classes ABR22 map to their retained zero labels in all positive
+degrees. This states the receiving maps without discarding the
+difference between amplitude zero and global absence.
+
+Finally the range $V^K$ in ABR17 is contained in the actual
+trivial-correspondence image $V$, not in a complementary spectral
+space. Let $B_{\rm CC}$ denote the ambient strong test algebra
+of SWQ and keep its original quotient
+$Q_{\rm CC}=B_{\rm CC}/\overline V$. The further composition
+\[
+ Q_0\xrightarrow{\rho}V^K\longrightarrow B_{\rm CC}
+                            \longrightarrow Q_{\rm CC}
+\]
+is the zero linear map because $V^K\subset V$. Its common-label
+lift retains each $(0,\lambda)$, in accordance with SWQ's
+same-label quotient; it does not identify $e$ and $\tau$.
+The exact faithful source receiver is ABR18, which retains the
+boundary rather than asserting an injection into this spectral
+quotient. No assertion that $V$ is closed, no new metric on the
+prime boundary, and no positivity or Riemann-hypothesis theorem
+is made by this calculation.

@@ -1,0 +1,325 @@
+# Independent local twisted divided-Frobenius calculation
+
+This is a calculation on the specified collision prism. It does not identify the prism's coefficient ring with an absolute prismatic complex, and it does not compute absolute syntomic cohomology.
+
+## Sources actually read
+
+Bhargav Bhatt and Jacob Lurie, *Absolute prismatic cohomology*, arXiv:2201.06120v1, original author source sources/prismatic/2201.06120v1/apc.tex:
+
+- Lines 1542–1595: Definition definition:twist-general, Notation notation:general-twists, Remark remark:BK-functoriality, Remark remark:Frobenius-on-twist. These give the invertible module, base-change compatibility, and semilinear Frobenius with target \(I^{-1}A\{1\}\).
+- Lines 1752–1760: Example BKcrystalline, supplying the crystalline generator with \(\varphi(e_A)=e_A/p\).
+- Lines 6950–6974: Construction construction:absolute-Nygaard-untwisted, whose absolute filtration involves global sections and a derived pullback.
+- Lines 9293–9339: Construction construction:syntomic-complex and Examples example:syntomic-of-qrsp, example:syntomic-of-qrsp-char-p. The sign is Frobenius minus inclusion. The degree-zero description there has additional quasiregular semiperfectoid hypotheses.
+
+These are the source passages used here. The algebra and all the comparisons below are proved directly.
+
+## 1. The original prism and its multiplication
+
+Let
+\[
+ O=\mathbf Z_3,\qquad
+ C=O[\epsilon,T]/(\epsilon^2,T^2-6\epsilon),\qquad
+ z=\epsilon T,\qquad
+ d=3+\epsilon,
+\]
+and fix \(c\in O\). The \(O\)-basis of \(C\) is \(1,\epsilon,T,z\). Indeed, division by the monic relation \(T^2-6\epsilon\), followed by division by \(\epsilon^2\), proves spanning and independence. In particular \(C\) is \(3\)-torsion-free. Its ideal
+\[
+ M=(\epsilon,T)=O\epsilon\oplus OT\oplus Oz
+\]
+satisfies
+\[
+ \epsilon^2=\epsilon z=Tz=z^2=0,\qquad T^2=6\epsilon,
+ \qquad M^2=6O\epsilon+Oz,\qquad M^3=6Oz,\qquad M^4=0.
+\]
+No equality \(d=3\) is imposed.
+
+Define the ring endomorphism
+\[
+ \varphi|_O=\operatorname{id},\qquad
+ \varphi(\epsilon)=0,\qquad
+ \varphi(T)=9cz.
+\]
+It respects both defining relations: \(\varphi(\epsilon)^2=0\) and
+\(\varphi(T)^2=0=6\varphi(\epsilon)\). It has
+\[
+ \varphi(z)=0,\qquad
+ \varphi(a+b\epsilon+tT+qz)=a+9ctz,\qquad
+ \varphi^2(a+b\epsilon+tT+qz)=a.
+ \tag{TDF1}
+\]
+Modulo \(3\), the elements \(\epsilon,T,z\) have cube zero, so this is a lift of Frobenius. Since \(C\) is \(3\)-torsion-free, it defines the delta structure
+\(\delta(x)=(\varphi(x)-x^3)/3\).
+
+For completeness the given pair is a bounded prism. Multiplication by \(d\) on the displayed basis has determinant \(3^4\), and hence is injective. The ring is complete for \((3,d)=(3,\epsilon)\), whose topology agrees with the \(3\)-adic topology since \(\epsilon^2=0\). Moreover \(\varphi(d)=3\), and
+\[
+ \delta(d)=\frac{3-(3+\epsilon)^3}{3}=-8-9\epsilon
+\]
+is a unit. Thus the principal ideal \((d)\) is Cartier and satisfies the prism condition \(3\in(d,\varphi(d))\). Finally
+\[
+ D=C/dC
+ \simeq O[T]/(9,T^2+18)
+ \simeq (\mathbf Z/9)[T]/(T^2).
+ \tag{TDF2}
+\]
+The displayed quotient calculation retains first \(\epsilon=-3\), then the relation \(\epsilon^2=9=0\), and then \(T^2=6\epsilon=-18=0\); bounded \(3\)-power torsion follows.
+
+The quotient \(q:C\to O=C/M\) is a morphism of prisms from \((C,(d))\) to \((O,(3))\). It is compatible with \(\varphi\) by (TDF1).
+
+## 2. Exact trivialization of the Breuil–Kisin line
+
+Let \(L=C\{1\}\). By the cited source \(L\) is invertible and its Frobenius induces an isomorphism
+\[
+ \varphi^*L\xrightarrow{\sim}d^{-1}L.
+\]
+Base change along \(q\) identifies \(L/ML\) with \(O\{1\}\), having the specified crystalline generator \(e_0\) with
+\(\varphi(e_0)=e_0/3\).
+
+Choose any lift \(e\in L\) of \(e_0\). It generates \(L\): its cokernel vanishes modulo the nilpotent ideal \(M\), and a lift of a basis through a nilpotent ideal is a basis of an invertible module. Write
+\[
+ \varphi(e)=\frac{u}{d}e.
+ \tag{TDF3}
+\]
+The Frobenius isomorphism makes \(u\) a unit of \(C\). After reduction to \(O\), (TDF3) and the equation for \(e_0\) give \(q(u)=1\), so \(u\in1+M\). Equation (TDF1) gives \(\varphi^2(u)=1\).
+
+Define the explicit new basis vector
+\[
+ e_*:=u\varphi(u)e.
+ \tag{TDF4}
+\]
+The original \(e\) and its inverse basis map \(e=(u\varphi(u))^{-1}e_*\) are retained. Semilinearity gives
+\[
+ \varphi(e_*)
+ =\varphi(u)\varphi^2(u)\frac{u}{d}e
+ =\frac{u\varphi(u)}d e
+ =\frac{e_*}{d}.
+ \tag{TDF5}
+\]
+The denominator is the original \(3+\epsilon\).
+
+This vector is independent of the chosen lift. If \(e'=v e\) with \(v\in1+M\), then
+\[
+ u'=\frac{\varphi(v)}v u,\qquad
+ u'\varphi(u')v
+ =\frac{\varphi(v)}v u\,
+   \frac{\varphi^2(v)}{\varphi(v)}\varphi(u)\,v
+ =u\varphi(u),
+\]
+because \(\varphi^2(v)=1\). Hence \(u'\varphi(u')e'=e_*\).
+It is also the unique generator lifting \(e_0\) that satisfies (TDF5). A second such generator is \(r e_*\), with \(r\in1+M\) and \(\varphi(r)=r\); applying \(\varphi\) twice gives \(r=1\).
+
+For every integer \(m\geq0\), the tensor basis \(e_*^{\otimes m}\) therefore has Frobenius multiplier \(d^{-m}\). Consequently the following coefficient calculation is exactly the fixed-point calculation in this specified local twisted line, in these explicit basis coordinates.
+
+## 3. The local filtration and its full differential
+
+For \(m\geq0\), define additive \(O\)-submodules
+\[
+ N_mC=\{x\in C:\varphi(x)\in d^mC\},\qquad
+ N_mM=N_mC\cap M
+\]
+and complexes in degrees \(0,1\)
+\[
+ J_m(C)=
+ [\,N_mC\xrightarrow{\,D_m=\varphi/d^m-\iota\,}C\,],
+ \qquad
+ J_m(M)=
+ [\,N_mM\xrightarrow{\,D_m\,}M\,].
+ \tag{TDF6}
+\]
+The division is unique since \(d\) is a non-zero-divisor. The restriction lands in \(M\) by the formulas below. The sign agrees with the cited syntomic construction; no global identification is asserted.
+
+Assume initially \(m\geq1\). Put
+\[
+ \eta_m=\begin{cases}1&3\nmid m,\\0&3\mid m,\end{cases}
+ \qquad
+ h_m=\begin{cases}
+ \max\{0,m-2-v_3(c)\}&c\ne0,\\
+ 0&c=0.
+ \end{cases}
+ \tag{TDF7}
+\]
+Inside \(C[1/3]\), the exact inverse power is
+\[
+ d^m=3^m+m3^{m-1}\epsilon,\qquad
+ d^{-m}=3^{-m}-m3^{-m-1}\epsilon.
+ \tag{TDF8}
+\]
+For \(x=a+b\epsilon+tT+qz\), this yields
+\[
+ \frac{\varphi(x)}{d^m}
+ =\frac{a}{3^m}
+  -\frac{ma}{3^{m+1}}\epsilon
+  +\frac{9ct}{3^m}z.
+ \tag{TDF9}
+\]
+The basis \(1,\epsilon,T,z\) makes integrality equivalent to the three separate conditions
+\[
+ a\in3^mO,\qquad ma\in3^{m+1}O,\qquad 9ct\in3^mO.
+\]
+The first two conditions say precisely \(a\in3^{m+\eta_m}O\), and the third says \(t\in3^{h_m}O\). Thus
+\[
+ N_mC
+ =3^{m+\eta_m}O\,1\oplus O\epsilon
+   \oplus3^{h_m}OT\oplus Oz,
+ \qquad
+ N_mM=O\epsilon\oplus3^{h_m}OT\oplus Oz.
+ \tag{TDF10}
+\]
+For example, the extra factor \(3\) in the constant coordinate when \(3\nmid m\) records the \(-ma\,\epsilon/3^{m+1}\) term; it would be lost by replacing \(d\) with \(3\).
+
+Write \(\eta=\eta_m\), \(h=h_m\) and
+\[
+ \gamma_m=\frac{9c\,3^h}{3^m}\in O.
+\]
+When \(c=0\), this is zero. In the domain basis
+\((3^{m+\eta}1,\epsilon,3^hT,z)\) and the original target basis
+\((1,\epsilon,T,z)\), the entire differential is
+\[
+ [D_m]=
+ \begin{pmatrix}
+ 3^\eta(1-3^m)&0&0&0\\
+ -m3^{\eta-1}&-1&0&0\\
+ 0&0&-3^h&0\\
+ 0&0&\gamma_m&-1
+ \end{pmatrix}.
+ \tag{TDF11}
+\]
+If \(\eta=0\), the second entry is the integer \(-m/3\). Every original factor and off-diagonal entry is present.
+
+Its determinant is \(-3^{\eta+h}(1-3^m)\ne0\). Hence
+\[
+ H^0J_m(C)=0,\qquad H^0J_m(M)=0.
+ \tag{TDF12}
+\]
+For the cokernel, \(D_m(\epsilon)=-\epsilon\) and \(D_m(z)=-z\). After these images are accounted for, the other two columns impose respectively \(3^\eta(1-3^m)1=0\) and \(3^hT=0\). Since \(1-3^m\in O^\times\), this proves
+\[
+ H^1J_m(C)\simeq O/3^\eta\{[1]\}\oplus O/3^h\{[T]\},
+ \qquad
+ H^1J_m(M)\simeq O/3^h\{[T]\}.
+ \tag{TDF13}
+\]
+Here \(O/3^0\) means the zero module. These identifications are given by actual quotient maps:
+\[
+ a+b\epsilon+tT+qz\longmapsto
+ (a\bmod3^\eta,\ t\bmod3^h),
+ \qquad
+ b\epsilon+tT+qz\longmapsto t\bmod3^h.
+ \tag{TDF14}
+\]
+For completeness, the kernel of the first map is the image of (TDF11). To represent an element in that kernel, take the coefficient of \(3^{m+\eta}1\) equal to
+\(a/(3^\eta(1-3^m))\), and the coefficient of \(3^hT\) equal to \(-t/3^h\); then the \(\epsilon\) and \(z\) domain coefficients correct the two remaining target coordinates because their diagonal entries are \(-1\). The same argument without the constant column proves the second statement.
+
+At \(m=0\), \(N_0C=C\) and \(D_0=\varphi-\operatorname{id}\). On \(M\), \(\varphi^2=0\), so the inverse of \(D_0|_M\) is \(-\operatorname{id}-\varphi\). On constants \(D_0=0\). Consequently
+\[
+ H^0J_0(C)=O,\qquad H^1J_0(C)=O,\qquad
+ H^0J_0(M)=H^1J_0(M)=0.
+ \tag{TDF15}
+\]
+
+## 4. Exact comparison with the earlier weight complex
+
+Retain the original earlier complex
+\[
+ K_m(M)=[\,M\xrightarrow{L_m=3^m-\varphi}M\,].
+\]
+For every \(m\geq0\), the maps
+\[
+ f_m^0:M\longrightarrow N_mM,\quad x\longmapsto3^mx,
+ \qquad
+ f_m^1:M\longrightarrow M,\quad y\longmapsto-y
+ \tag{TDF16}
+\]
+define a chain map \(K_m(M)\to J_m(M)\).
+
+To verify its domain and sign, (TDF1) gives \(\varphi(M)\subset Oz\); and \(\epsilon z=0\) gives \(d^mz=3^mz\). Therefore
+\[
+ \frac{\varphi(3^mx)}{d^m}=\varphi(x)\in M,
+ \qquad
+ D_m(3^mx)=\varphi(x)-3^mx=-L_m(x).
+ \tag{TDF17}
+\]
+This proves both required assertions directly. One must not replace the degree-zero map \(3^m\) by \(d^m\) without recalculating; multiplication by \(d^m\) contains an additional \(\epsilon\)-term on \(M\).
+
+Under (TDF13), the induced map on degree-one cohomology is
+\[
+ M/(3^m-\varphi)M\longrightarrow O/3^{h_m},
+ \qquad
+ [b\epsilon+tT+qz]\longmapsto-t\bmod3^{h_m}.
+ \tag{TDF18}
+\]
+It is surjective. It is well-defined directly because the \(T\)-coordinate of \(L_m(x)\) is \(3^m x_T\) and \(h_m\leq m\).
+
+In particular, the earlier connecting class
+\[
+ \delta_m(1)=[\,3^{m-1}z\,]\qquad(m\geq2)
+\]
+is carried to zero. This is proved by its exact primitive, not only by the quotient description:
+\[
+ f_m^1(3^{m-1}z)=-3^{m-1}z
+ =D_m(3^{m-1}z),\qquad
+ 3^{m-1}z\in N_mM.
+ \tag{TDF19}
+\]
+The original class in \(K_m(M)\) need not vanish, and this chain map does not assert that it does. Its image vanishes in this specified local divided-Frobenius receiver. The surviving part of that receiver is the \(T\)-class of exact order \(3^{h_m}\) when \(h_m>0\). For \(c\in O^\times\), it first occurs at \(m=3\), and its order is \(3^{m-2}\) for every \(m\geq3\).
+
+## 5. The quotient filtration defect and its exact connecting map
+
+The crystalline quotient has
+\[
+ N_mO=3^mO,\qquad
+ J_m(O)=[\,3^mO\xrightarrow{\,3^{-m}-1\,}O\,].
+ \tag{TDF20}
+\]
+For \(m\geq1\), its differential sends \(3^ma\) to \((1-3^m)a\) and is an isomorphism, so this complex is acyclic.
+
+The actual filtered image under \(q\), however, is
+\[
+ q(N_mC)=3^{m+\eta_m}O.
+\]
+Hence the failure of surjectivity is the explicitly identified module
+\[
+ N_mO/q(N_mC)
+ =3^mO/3^{m+\eta_m}O
+ \xrightarrow[\sim]{\,3^ma\mapsto a\,}O/3^{\eta_m}.
+ \tag{TDF21}
+\]
+The kernel of \(q:N_mC\to O\) is \(N_mM\), and the kernel in degree one is \(M\). Thus the termwise quotient complex is
+\[
+ \overline J_m=J_m(C)/J_m(M)
+ =[\,3^{m+\eta_m}O\xrightarrow{\,3^{-m}-1\,}O\,],
+ \tag{TDF22}
+\]
+and there is a short exact sequence of complexes
+\[
+ 0\longrightarrow J_m(M)\longrightarrow J_m(C)
+ \longrightarrow\overline J_m\longrightarrow0.
+ \tag{TDF23}
+\]
+Its cohomology agrees with the constant summand in (TDF13), namely
+\(H^0\overline J_m=0\) and \(H^1\overline J_m=O/3^{\eta_m}\).
+
+There is a second short exact sequence
+\[
+ 0\longrightarrow\overline J_m\longrightarrow J_m(O)
+ \longrightarrow
+ [\,3^mO/3^{m+\eta_m}O\longrightarrow0\,]
+ \longrightarrow0.
+ \tag{TDF24}
+\]
+The first arrow is the actual lattice inclusion in degree zero and the identity in degree one. Its connecting map from degree-zero cohomology of the last complex to \(H^1\overline J_m\) sends
+\[
+ [3^ma]\longmapsto[(1-3^m)a].
+ \tag{TDF25}
+\]
+Indeed, lift the source element to \(3^ma\in N_mO\) and apply the displayed differential of \(J_m(O)\). This is an isomorphism because \(1-3^m\) is a unit, and for \(\eta_m=1\) it sends the generator to \([1]\) modulo \(3\). Thus the constant torsion in \(J_m(C)\) is exactly the cohomology produced by the failure of filtered surjectivity; the acyclic crystalline quotient alone does not remove it.
+
+## 6. What this calculation does and does not identify
+
+Equations (TDF4)–(TDF5) prove a valid and lift-independent trivialization of the specified local Breuil–Kisin line. Equations (TDF10)–(TDF25) calculate the complete kernels, cokernels, comparison maps and filtered quotient defect for this local coefficient problem, including \(m=0\). The scalar \(d=3+\epsilon\), all differential entries, and the two different complexes \(K_m\) and \(J_m\) remain explicit.
+
+There is also a concrete reason why the quasiregular semiperfectoid example in the source cannot be invoked for \(D\) as it stands. By (TDF2),
+\[
+ D/3D=\mathbf F_3[T]/(T^2),
+\]
+and its Frobenius sends \(a+bT\) to \(a\). It does not reach the nonzero element \(T\). A quotient of an integral perfectoid ring has surjective Frobenius modulo \(3\), since Frobenius modulo \(3\) on the perfectoid ring is surjective and surjectivity descends through a quotient. Thus \(D\) is not semiperfectoid, and in particular is not quasiregular semiperfectoid.
+
+More fundamentally, the cited absolute Nygaard construction uses global sections over the Cartier–Witt stack and a derived pullback; none of those operations has been replaced here by the ring \(C\). Likewise no equality \(\Prism_D=C\), no equivalence of this local complex with \(\mathrm R\Gamma_{\mathrm{Syn}}(\operatorname{Spf}D,\mathbf Z_3(m))\), and no theorem about Weil positivity follows from the calculation. The proved receiver is the explicit map (TDF16), its vanishing statement is precisely (TDF19), and its surviving classes and filtered defect are precisely (TDF13) and (TDF21).

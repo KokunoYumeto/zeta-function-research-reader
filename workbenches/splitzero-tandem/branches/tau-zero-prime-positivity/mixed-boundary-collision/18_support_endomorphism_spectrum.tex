@@ -1,0 +1,829 @@
+\section{The exact spectrum of support operations and transfers}
+
+
+\subsection{The full support object and the endomorphism to be computed}
+
+Let $L$ be a finite nontrivial bounded distributive lattice,
+$S=\operatorname{SpecLat}L$, $X=\Spec\Z$, and
+$Y=S\triangleright X$. The opens of $Y$ are the opens of $S$ and
+the sets $S\cup U$ with nonempty open $U\subset X$. This is the
+entire spectrum of the original semiring
+\[
+ \G_L(\Z)=\{(0,\lambda):\lambda\in L\}
+       \cup\{(a,1_L):a\in\Z\}.
+ \tag{SE1}\label{eq:original-space}
+\]
+The supported zero $e=(0,1_L)$ and the additive identity
+$\tau=(0,0_L)$ remain distinct; $D(e)=S$ and $V(e)=X$.
+We use the original specialization order: $s\le t$ means that $s$
+generalizes $t$, so finite opens are lower sets.
+
+For completeness, the passage from the full lattice to this finite
+space loses no lattice element. An element $j\ne0$ is join
+irreducible if $j=a\vee b$ forces $j=a$ or $j=b$. Distributivity
+makes it join prime: if $j\le a\vee b$, then
+$j=(j\wedge a)\vee(j\wedge b)$, so $j\le a$ or $j\le b$.
+Every lattice element is the join of the join irreducibles below
+it, by induction in the finite order. Each $j$ defines the prime
+ideal $I_j=\{\lambda:j\not\le\lambda\}$. Conversely, the complement
+of a prime ideal is a nonempty finite filter; its meet $j$ generates
+it, and primeness makes $j$ join prime and nonzero. Thus these are
+exactly all prime ideals. Consequently
+\[
+ L\longrightarrow\Down(S),\qquad
+ \lambda\longmapsto D(\lambda)=\{I_j:j\le\lambda\}
+\]
+is an isomorphism: joins and meets give union and intersection,
+injectivity follows from the join decomposition, and a downset of
+join irreducibles is obtained from the join of its elements.
+For the last assertion, a join prime below that finite join lies
+below one member and hence lies in the downset. An order map on
+$S$ therefore gives an actual lattice map on this original $L$
+by inverse image of downsets. No Boolean replacement of $L$ is made.
+
+The receiving category in this note is abelian sheaves on the whole
+space $Y$. A sheaf is given by
+\[
+ (\mathcal A,\mathcal B,\phi),\qquad
+ \phi:\mathcal A\longrightarrow c_X\Gamma(S,\mathcal B),
+ \tag{SE2}\label{eq:gluing}
+\]
+where $c_X$ is the constant sheaf on the irreducible arithmetic space.
+Its mixed-open sections are $\mathcal A(U)$ and its support-open
+sections are $\mathcal B(V)$; the map $\phi$ gives their restrictions.
+This receiving category is not silently replaced by additive-group
+modules over the split semiring sheaf. That latter action kills its
+additively idempotent support stalks, as proved in (RP17)--(RP20) of
+\path{split_prime_recollement_pairing.tex}.
+
+Let $\Lambda$ be a finite free abelian group and set
+$V=\Lambda\otimes_{\Z}\Q$. The actual universal coefficient sheaf is
+\[
+ \mathcal U_{S,\Lambda}
+   =(\mathcal O_X\otimes_{\Z}\Lambda,V_S,
+                 \text{constant generic restriction}).
+ \tag{SE3}\label{eq:universal-coefficients}
+\]
+Every point of the support receives the same original generic value.
+For $\Lambda=\Z$ this is the previously constructed universal
+arithmetic coupling, with no branch selected.
+
+For constant rational coefficients define the full strict-chain complex
+\[
+ C^q(S,\Q)=\prod_{s_0<\cdots<s_q}\Q,
+ \quad
+ (dc)_{s_0<\cdots<s_{q+1}}
+   =\sum_{a=0}^{q+1}(-1)^a
+         c_{s_0<\cdots<\widehat{s_a}<\cdots<s_{q+1}}.
+ \tag{SE4}\label{eq:support-complex}
+\]
+Its exact relative arithmetic complex is
+\[
+ K_{S,\Lambda}^0=\Lambda,\qquad
+ K_{S,\Lambda}^{q+1}=C^q(S,\Q)\otimes_\Q V,\qquad
+ d^0(\lambda)=(\lambda)_{s\in S},\quad d^{q+1}=d_C\otimes1.
+ \tag{SE5}\label{eq:relative-complex}
+\]
+The proof that this is the actual closed-support derived complex is
+given in (FL8)--(FL22) of \path{finite_support_recollement.tex}:
+full sheaf gluing gives the mapping fibre
+$\Cone(R\Gamma(X,\mathcal O_X\otimes\Lambda)
+\to R\Gamma(S,V_S))[-1]$; the first term is $\Lambda[0]$.
+The support complex is the global-sections complex of an injective
+resolution: its degree-$q$ sheaf
+is the product over strict chains of the direct image of the first
+stalk from the chain's last point. At a point $s$, append the maximal
+point $s$ to chains in $\mathord\downarrow s$ with sign $(-1)^q$;
+this contracts its augmented stalk complex. Thus no support degree
+has been omitted in \eqref{eq:relative-complex}. The signs shown
+are obtained from the usual shifted cone by multiplying its support
+coordinate in degree $q+1$ by $(-1)^q$.
+
+\subsection{The exact cone endomorphism and its gluing constraint}
+
+An order-preserving map $f:S\to S$ induces an actual map
+$f_Y:Y\to Y$, equal to the identity on $X$ and to $f$ on $S$.
+For support spectra of downset lattices it is induced by
+$D\mapsto f^{-1}(D)$ on the lattice and the unchanged integer
+coefficient on \eqref{eq:original-space}.
+The pullback cochain map is
+\[
+ (f^*c)_{s_0<\cdots<s_q}=
+ \begin{cases}
+ c_{f(s_0)<\cdots<f(s_q)},&\text{the image points are distinct},\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \tag{SE6}\label{eq:finite-pullback}
+\]
+It commutes with $d$: on a chain with an adjacent pair of equal image
+points, the two terms deleting that pair cancel, and all other terms
+retain a repetition; on a chain without such a repetition it is the
+usual alternating-face identity. The maps are functorial under
+composition, including noninjective maps.
+
+\begin{theorem}[An endomorphism of the actual sheaf and its cone]
+\label{thm:cone-action}
+Let $A\in\operatorname{End}_{\Z}(\Lambda)$ and let $A_V$ be its
+rational extension. The maps $A$ on the arithmetic coefficients
+and $A_V$ on the pulled-back constant support sheaf define a morphism
+$f_Y^{-1}\mathcal U_{S,\Lambda}\to\mathcal U_{S,\Lambda}$.
+On the exact relative complex its endomorphism is
+\[
+ T_{A,f}^0=A,\qquad
+ T_{A,f}^{q+1}=f^*\otimes A_V.
+ \tag{SE7}\label{eq:actual-cone-action}
+\]
+For a general compatible cochain diagram $u:A^\bullet\to B^\bullet$,
+with endomorphisms $a,b$ satisfying $bu=ua$, the corresponding
+endomorphism of $\Cone(u)[-1]$ is exactly $(a,b)$ on its two entries.
+There is no extra scalar in this construction.
+\end{theorem}
+\begin{proof}
+For a regular coefficient section, taking its generic value and then
+applying $A_V$ gives the generic value of its original image under $A$.
+Its support restriction is constant, and pullback by any $f$ preserves
+that constant section. This is precisely the commutative gluing square
+in \eqref{eq:gluing}, so it constructs the sheaf morphism.
+The degree-zero map of \eqref{eq:relative-complex} therefore commutes
+with the constant generic inclusion. In higher degrees
+$A_V$ commutes with restrictions and $f^*$ commutes with $d$, proving
+\eqref{eq:actual-cone-action} is its chain endomorphism.
+
+For the general statement use the shifted-cone convention
+$R^n=A^n\oplus B^{n-1}$ with
+$d_R(x,y)=(d_Ax,u(x)-d_By)$. Applying $(a,b)$ before or after this
+differential gives the same result exactly when $bu=ua$.
+There is no multiplication other than $a$ and $b$ in either formula.
+Changing to the positive support-differential convention of
+\eqref{eq:relative-complex} conjugates both endomorphisms by the stated
+sign change and introduces no scalar.
+\end{proof}
+
+The absolute and relative receivers have an exact comparison as
+well. Let $i:X\hookrightarrow Y$ be the arithmetic inclusion. Its
+restriction functor has exact left adjoint
+\[
+ U_S(\mathcal A)=
+ (\mathcal A,c_S\mathcal A_\eta,\text{generic constant restriction}),
+\]
+where $\eta$ is the original arithmetic generic point, not a point
+of $S$. To check the adjunction, a map on the arithmetic component
+uniquely forces the support map: under
+$\operatorname{Hom}(c_S\mathcal A_\eta,\mathcal B)
+=\operatorname{Hom}(\mathcal A_\eta,\Gamma(S,\mathcal B))$
+it is its generic restriction followed by the target gluing map.
+Both the generic-stalk functor and the constant-sheaf functor are
+exact, which proves exactness of $U_S$. Thus $i^*$ preserves
+injectives. Since $\Gamma(Y,\mathcal F)=\Gamma(X,i^*\mathcal F)$
+by the triple description, injective resolutions give the exact
+equivariant identity
+\[
+ \bigl(R\Gamma(Y,\mathcal U_{S,\Lambda}),T_{A,f}\bigr)
+ \simeq\bigl(\Lambda[0],A\bigr).
+ \tag{SE7a}\label{eq:absolute-comparison}
+\]
+Here the arithmetic acyclicity was proved in (FL18)--(FL20) by the
+rational-sections and principal-parts resolution. Consequently the
+absolute rational receiver has exactly the coefficient eigenvalues.
+The new relative receiver is the actual cone
+\eqref{eq:relative-complex}; its additional degrees, possible zero
+blocks, and coefficient/support factors are calculated below. This
+gives both sides of the comparison, rather than substituting an
+absolute cohomology identity for the relative calculation.
+
+\begin{proposition}[When rescaling is a proved operation]
+\label{prop:rescaling}
+Over a coefficient field, replacing only the support endomorphism
+$b$ by $\lambda b$ while retaining $a$ defines an endomorphism of the
+same cone exactly when
+\[
+ (\lambda-1)ua=0.
+ \tag{SE8}\label{eq:scaling-constraint}
+\]
+In particular for the universal scalar arithmetic action $a=n\ne0$
+and its injective generic map, it forces $\lambda=1$.
+Multiplying both $a$ and $b$ by a scalar is instead a genuine new
+coefficient operation whenever that scalar preserves their coefficient
+objects. On the original scalar lattice $\Z$, such a scalar is an
+integer; an invertible scalar preserving this lattice in both
+directions is $1$ or $-1$.
+\end{proposition}
+\begin{proof}
+The new compatibility condition is $\lambda bu=ua$.
+Subtract the original equality $bu=ua$ to obtain exactly
+\eqref{eq:scaling-constraint}. The injectivity and nonzero scalar
+case gives the stated conclusion. Simultaneous scalar multiplication
+commutes with both differentials and preserves the equality.
+For a scalar preserving $\Z$, its value on $1$ must be an integer;
+if its inverse preserves $\Z$ too, both it and its reciprocal are
+integers, so it is $\pm1$.
+\end{proof}
+
+Thus a one-dimensional coefficient representation with an assigned
+endomorphism $\lambda$ would multiply the eigenvalues by $\lambda$
+because its tensor product does so. That is an additional specified
+operation. Neither the new prime topology nor the cone shift supplies
+that representation or an unproved Tate twist.
+
+\subsection{All eigenvalues and the nilpotent part of a finite support map}
+
+\begin{theorem}[The complete eventual-periodicity decomposition]
+\label{thm:eventual-periodicity}
+For every self-map $f$ of the finite support poset there are integers
+$N\ge0$ and $m\ge1$ such that $f^{N+m}=f^N$. Consequently, on every
+support cochain group and every rational support cohomology group,
+\[
+ F^N(F^m-I)=0,\qquad F=f^*.
+ \tag{SE9}\label{eq:annihilating-polynomial}
+\]
+Choose $k\ge N$ divisible by $m$ and set $S_\infty=f^N(S)$.
+Then $r=f^k:S\to S_\infty$ is a retraction of the inclusion
+$a:S_\infty\hookrightarrow S$. The restriction $f_\infty$ is an
+order automorphism of finite order dividing $m$. In each cohomological
+degree,
+\[
+ H^q(S,\Q)=
+ \underbrace{r^*H^q(S_\infty,\Q)}_{\text{periodic part}}
+ \ \oplus\
+ \underbrace{\ker(a^*:H^q(S,\Q)\to H^q(S_\infty,\Q))}_{\text{nilpotent part}}.
+ \tag{SE10}\label{eq:periodic-decomposition}
+\]
+On the first part $f^*$ is intertwined with $f_\infty^*$ by $r^*$;
+on the second $(f^*)^N=0$. The nonzero complex eigenvalues are roots
+of unity, with no nontrivial Jordan blocks. Every remaining Jordan
+block has eigenvalue zero and size at most $N$.
+\end{theorem}
+\begin{proof}
+Every orbit of a finite function eventually reaches a cycle. Take $N$
+at least the maximum number of steps before a cycle and let $m$ be
+a common multiple of all cycle lengths. This proves the equality of
+functions. Their pullbacks are functorial by
+\eqref{eq:finite-pullback}, so the same polynomial identity holds
+already on cochains and hence on cohomology.
+The stable image consists of precisely the periodic points. There
+$f$ is a permutation with inverse $f^{m-1}$. Both are order preserving,
+so the restricted map is an order automorphism. The map $r=f^k$ fixes
+every stable point and takes every point into the stable image,
+giving $ra=\mathrm{id}$.
+
+On cochains and cohomology, $E=r^*a^*=F^k$ is idempotent.
+The identities $a^*r^*=I$ and $E^2=E$ give exactly the direct sum
+in \eqref{eq:periodic-decomposition}. Its image is the finite-order
+part, since $F^m=I$ there. To verify the nilpotence bound, note that
+every $F^N v$ lies in this periodic image: the polynomial identity
+makes it fixed by $F^m$, and $E$ acts as the identity on such a vector.
+If $Ev=0$, then $F^Nv=EF^Nv=F^NEv=0$.
+Over $\C$, the polynomial $x^m-1$ has distinct roots, since its
+derivative $mx^{m-1}$ has no common root with it. It therefore
+diagonalizes the periodic part with roots of unity as eigenvalues.
+The other part is annihilated by $x^N$, which gives the stated zero
+eigenvalues and Jordan bound.
+\end{proof}
+
+This decomposition retains both the stable image and its exact
+complement, with explicit projection and connecting maps. It is not
+an instruction to replace the full support by its periodic points.
+
+It also computes all multiplicities, rather than only bounding the
+possible eigenvalues. In any fixed support degree, put $H=H^q(S,\C)$,
+$E=F^k$ as above, and $N_0=F|_{\ker E}$. For every $m$th root of
+unity $\zeta$, define the exact projector
+\[
+ \Pi_\zeta=\frac1m\sum_{j=0}^{m-1}\zeta^{-j}F^jE.
+ \tag{SE10a}\label{eq:periodic-projectors}
+\]
+On a periodic eigenvector of eigenvalue $\eta$, the coefficient is
+$m^{-1}\sum_j(\eta/\zeta)^j$, which is one for $\eta=\zeta$
+and zero otherwise; on $\ker E$ it vanishes. Thus the multiplicity
+of $\zeta$ is exactly $\operatorname{rank}\Pi_\zeta$, computable
+from the finite cochain kernels and quotients in
+\eqref{eq:support-complex}. Put $d_a=\dim\ker N_0^a$, so $d_0=0$
+and $d_a=\dim\ker E$ for $a\ge N$. The number of nilpotent Jordan
+blocks of size exactly $a\ge1$ is
+\[
+ b_a=2d_a-d_{a-1}-d_{a+1}.
+ \tag{SE10b}\label{eq:nilpotent-block-count}
+\]
+Indeed a nilpotent block of size $b$ contributes $\min(a,b)$ to
+$d_a$. Its first difference is one exactly for $a\le b$, and
+its second difference in the displayed order is one exactly for
+$a=b$. Summing over all blocks proves the formula. Therefore the
+finite cochain matrices, the recurrent retraction, and these formulas
+specify every eigenvalue and every Jordan block over $\C$, starting
+from the original rational cohomology action.
+
+Nonzero nilpotent blocks really occur. Let $S$ be the disjoint union
+of three copies of the six-point triangle face poset. Map the first
+copy isomorphically to the second, the second to the third, and every
+point of the third to one of its vertices. This is order preserving.
+Each triangle has rational $H^1=\Q$, with the six-incidence alternating
+cycle coordinate from (FL35)--(FL39). The induced action is
+\[
+ F(a_1,a_2,a_3)=(a_2,a_3,0)
+ \quad\text{on }H^1(S,\Q)=\Q^3.
+ \tag{SE11}\label{eq:nilpotent-example}
+\]
+It is a single zero-eigenvalue Jordan block of size three, because
+$F^3=0$ and $F^2\ne0$. The constant map on the third triangle kills
+its one-cochains under \eqref{eq:finite-pullback}, which verifies
+the last coordinate without a homotopy assumption.
+
+\begin{theorem}[Combining support and coefficient spectra]
+\label{thm:combined-spectrum}
+Let $A$ be any endomorphism of a finite-dimensional complex coefficient
+space $V$, and let $F=f^*$ act on a support cohomology group $H$.
+Write $V=V_0\oplus V_\times$ for the generalized zero eigenspace and
+the sum of its nonzero generalized eigenspaces. Write
+$H=H_{\mathrm{nil}}\oplus H_{\mathrm{per}}$ as in
+\eqref{eq:periodic-decomposition}. Then the exact zero-eigenvalue
+part of $A\otimes F$ is
+\[
+ (V_0\otimes H_{\mathrm{per}})\oplus(V\otimes H_{\mathrm{nil}}),
+ \tag{SE12}\label{eq:combined-zero}
+\]
+and its complementary invertible part is
+$V_\times\otimes H_{\mathrm{per}}$. On that part the eigenvalues
+are exactly $\lambda\zeta$, with multiplicity, where $\lambda$ is
+a nonzero coefficient eigenvalue and $\zeta$ a support root of unity.
+The coefficient Jordan-block sizes are retained on each support
+eigenspace. In particular
+\[
+ |\lambda\zeta|=|\lambda|.
+ \tag{SE13}\label{eq:modulus-comparison}
+\]
+\end{theorem}
+\begin{proof}
+Both displayed decompositions are invariant. On $H_{\mathrm{per}}$
+choose the eigenspace decomposition provided by
+Theorem~\ref{thm:eventual-periodicity}. Each summand with eigenvalue
+$\zeta$ gives the operator $\zeta A$ on $V$. This has precisely the
+coefficient Jordan blocks with their eigenvalues multiplied by
+$\zeta$. On $V\otimes H_{\mathrm{nil}}$, the $N$th power is zero
+because $(A\otimes F)^N=A^N\otimes F^N$. On
+$V_0\otimes H_{\mathrm{per}}$, a power annihilating $A|_{V_0}$
+annihilates the tensor. On the remaining summand both factors are
+invertible. This proves the exact generalized-zero space and every
+assertion about the complementary spectrum.
+\end{proof}
+
+For completeness, the sizes of the combined zero blocks are also
+fixed by the original matrices. Set $A_0=A|_{V_0}$ and
+$N_0=F|_{H_{\mathrm{nil}}}$. The rank of the $a$th power on the
+zero-eigenvalue space \eqref{eq:combined-zero} is exactly
+\[
+ \operatorname{rank}(A_0^a)\dim H_{\mathrm{per}}
+  +\operatorname{rank}(A^a)\operatorname{rank}(N_0^a),
+ \qquad a\ge0.
+ \tag{SE12a}\label{eq:combined-nilpotent-ranks}
+\]
+This follows from the two invariant direct summands in that formula,
+invertibility of $F^a$ on its periodic part, and
+$\operatorname{rank}(B\otimes C)=\operatorname{rank}(B)
+\operatorname{rank}(C)$. To see the last equality, choose bases in
+which the image and kernel of each map have coordinate bases;
+their tensor map has exactly the products of the nonzero image basis
+vectors as an image basis. Subtract
+\eqref{eq:combined-nilpotent-ranks} from the dimension of
+\eqref{eq:combined-zero} and apply
+\eqref{eq:nilpotent-block-count} to obtain every combined zero block.
+
+Consequently the statement that every eigenvalue has modulus one can
+change upon passing to the full support object: it acquires a failure
+if a nonzero nilpotent support part is retained. Its nonzero periodic
+eigenvalues do not acquire a new modulus. They retain the actual
+coefficient moduli by \eqref{eq:modulus-comparison}. A coefficient
+eigenvalue off the unit circle remains off it on every nonzero
+periodic support channel. If that channel is annihilated by the
+support map, the exact annihilated space is
+\eqref{eq:combined-zero}, rather than a corrected unit-modulus mode.
+If a supplied coefficient action is $p^{w/2}B$, its nonzero combined
+eigenvalues are $p^{w/2}\beta\zeta$; removing that scalar would be
+the specified coefficient operation $p^{-w/2}$, not a consequence
+of cohomological degree.
+
+\subsection{Relative degrees and their actual Euler determinant factors}
+
+For a bounded finite-dimensional complex $C^\bullet$ with chain
+endomorphism $T$, fix the convention
+\[
+ \mathcal E(C,T;t)=
+ \prod_q\det(1-tH^q(T))^{(-1)^{q+1}}.
+ \tag{SE14}\label{eq:euler-determinant}
+\]
+This rational function retains its stated convention throughout.
+
+\begin{proposition}[Cone determinant and degree change]
+\label{prop:cone-determinant}
+For a compatible map $(A^\bullet,a)\to(B^\bullet,b)$ and its actual
+relative cone $(R,T)$ from Theorem~\ref{thm:cone-action},
+\[
+ \mathcal E(R,T;t)=\mathcal E(A,a;t)/\mathcal E(B,b;t).
+ \tag{SE15}\label{eq:cone-determinant}
+\]
+A shift $C[-1]$ inverts $\mathcal E(C,T;t)$ and retains the same
+endomorphisms on the shifted cohomology spaces. More specifically,
+the actual relative cohomology has equivariant exact sequences
+\[
+ 0\to\coker(H^{q-1}A\to H^{q-1}B)\to H^qR
+   \to\ker(H^qA\to H^qB)\to0.
+ \tag{SE16}\label{eq:relative-eigen-subquotients}
+\]
+Thus its characteristic polynomial is the product of those of the
+two indicated actual subquotients. The degree shift changes the
+Euler exponent; kernels, cokernels, and possible extensions determine
+which eigenvalues and Jordan data the cone retains.
+\end{proposition}
+\begin{proof}
+For an invariant short exact sequence of finite-dimensional vector
+spaces, a basis adapted to its subspace makes the endomorphism
+upper triangular by blocks, so its determinant $\det(1-tT)$ is the
+product of those on the subspace and quotient. Apply this first to
+boundaries inside cycles and then to cycles inside cochains. All
+boundary factors cancel in the alternating product, proving that
+\eqref{eq:euler-determinant} can also be computed on cochains.
+The cochains of $R$ are $A^q\oplus B^{q-1}$ with the diagonal
+endomorphism $(a,b)$, so their alternating product is exactly
+\eqref{eq:cone-determinant}. The shift assertion follows by replacing
+$q$ by $q+1$. The long exact cohomology sequence of the cone, with
+the maps induced by $u$, gives \eqref{eq:relative-eigen-subquotients}.
+Its maps commute with $T$ by $bu=ua$, and the same block determinant
+argument proves the characteristic-polynomial assertion.
+\end{proof}
+
+For the actual lattice complex \eqref{eq:relative-complex}, its first
+relative group is
+\[
+ D_{S,\Lambda}=V^c/\Delta\Lambda,
+ \qquad c=|\pi_0(S)|,
+ \tag{SE17}\label{eq:relative-lattice-group}
+\]
+and its higher groups are $H^q(S,\Q)\otimes V$ in relative degree
+$q+1$ for $q\ge1$. On \eqref{eq:relative-lattice-group},
+\[
+ [v]\longmapsto[(A_Vv_{\bar f(b)})_{b\in\pi_0(S)}],
+ \tag{SE18}\label{eq:relative-lattice-action}
+\]
+where $\bar f$ is the actual map of connected components. Its
+canonical torsion subgroup is $\Delta(V/\Lambda)$, acted on by $A$;
+the rational quotient is $V^c/\Delta V$, acted on by
+$\overline{f^*}\otimes A_V$. Indeed torsion in
+\eqref{eq:relative-lattice-group} means that some integer multiple
+of the vector is an integer-lattice diagonal, forcing it to be a
+rational diagonal. This proves the assertion and retains that torsion.
+
+After rationalizing the complex, and only in that receiver, the
+torsion is killed. Its Euler determinant is then
+\[
+ \mathcal E(K_{S,\Lambda}\otimes\C,T_{A,f};t)
+ =\prod_{q\ge0}
+ \det\left(1-t(A_\C\otimes\widetilde f_q^*)\right)^{(-1)^q},
+ \tag{SE19}\label{eq:relative-support-determinant}
+\]
+where degree zero is reduced support cohomology
+$\widetilde H^0(S,\C)=H^0(S,\C)/\Delta\C$, and in positive degrees
+$\widetilde H^q=H^q$. This is exactly the relative shift in
+\eqref{eq:relative-complex}. Formula \eqref{eq:relative-support-determinant}
+does not encode the discarded $V/\Lambda$; its group and Hilbert
+receivers are treated in the next section.
+
+For Boolean support, let the eventual cycles of the component map
+have lengths $\ell_1,\ldots,\ell_b$. The transient coordinates give
+zero eigenvalues, and the periodic coordinates give these cycles.
+Thus the exact determinant in \eqref{eq:relative-support-determinant}
+is
+\[
+ \frac{\prod_{a=1}^b\det(1-t^{\ell_a}A_\C^{\ell_a})}
+      {\det(1-tA_\C)}.
+ \tag{SE20}\label{eq:boolean-determinant}
+\]
+For a cycle of length $\ell$, its eigenvalues are the $\ell$th roots
+of unity. Taking their product against each coefficient eigenvalue
+gives $\prod_{\zeta^\ell=1}(1-t\lambda\zeta)=1-(t\lambda)^\ell$,
+which proves the numerator. The diagonal coefficient space is
+invariant with action $A_\C$, proving the denominator. In particular
+with $r$ fixed Boolean branches and scalar coefficient $a$ it is
+$(1-at)^{r-1}$.
+
+For triangle support, its rational $H^1$ is one-dimensional, with
+the exact alternating incidence generator (FL36). The identity map
+acts there by $1$; reflection of the triangle reverses the generator
+and acts by $-1$; the constant map acts by $0$ by
+\eqref{eq:finite-pullback}. With scalar coefficient $a$, the respective
+Euler factors are
+\[
+ (1-at)^{-1},\qquad(1+at)^{-1},\qquad1.
+ \tag{SE21}\label{eq:triangle-determinants}
+\]
+The last value does not say that the relative degree-two space has
+vanished: it is still $\Q$, with zero endomorphism. These examples
+compute the actual spectral effect of the topology and its map.
+
+\subsection{Exact scalar-branch maps and the degree action (FD1)--(FD9)}
+
+Write $K_*$ for the one-support-point version of
+\eqref{eq:relative-complex}. Its diagonal inclusion in $K_S$ sends
+the generic coefficient to the constant zero-cochain and is the
+identity on the arithmetic lattice. Evaluation at $s\in S$, zero
+on positive support degrees, gives the branch map $\beta_s:K_S\to K_*$.
+The actual intertwining identities are
+\[
+ T_{A,f}\Delta=\Delta T_{A,*},\qquad
+ \beta_sT_{A,f}=T_{A,*}\beta_{f(s)}.
+ \tag{SE22}\label{eq:branch-action}
+\]
+They follow by substituting a constant cochain and by evaluation in
+\eqref{eq:finite-pullback}. If $s$ has period $m$, iteration gives
+$\beta_sT_{A,f}^m=T_{A,*}^m\beta_s$.
+There is also an equivariant retraction without choosing one branch:
+average evaluation over the finite stable set $S_\infty$ in degree
+zero of support, use zero in positive support degrees, and use the
+identity on $\Lambda$. This is a chain map: its degree-one component
+composed with $d^0$ is the original inclusion $\Lambda\to V$, and
+every differential out of a positive degree of the target vanishes.
+It retracts $\Delta$ because the average of a constant cochain is its
+original value. The stable map permutes this finite set,
+so the retraction commutes with the endomorphisms. Its rational
+average is taken in $V$ and sends every diagonal lattice element
+back to that same lattice element. Thus it splits off the actual
+scalar relative complex equivariantly while retaining the entire
+remaining support complex.
+
+Now specialize to the scalar lattice $\Lambda=\Z$ and the positive
+integer coefficient $n$. Set
+\[
+ D_S=\Q^c/\Delta\Z,\qquad
+ T=nF,\quad (Fv)_b=v_{\bar f(b)},\qquad
+ J=\bar f(\pi_0(S)),\quad r=|J|.
+ \tag{SE23}\label{eq:full-degree-group}
+\]
+Then the exact group kernel and cokernel are
+\[
+ \ker T\cong(n^{-1}\Z/\Z)\oplus\Q^{c-r},\qquad
+ \coker T\cong\Q^c/F\Q^c.
+ \tag{SE24}\label{eq:noninvertible-degree}
+\]
+For the kernel, the coordinates of a representative indexed by $J$
+must all equal a common $k/n$, with $k\in\Z$. Subtract that rational
+diagonal and retain the unrestricted coordinates off $J$. This gives
+the displayed isomorphism, independent of changing the representative
+by an integer diagonal. The image is $F\Q^c/\Delta\Z$, because
+$n\Q=\Q$ and the diagonal is included, which proves the cokernel.
+On the canonical diagonal torsion subgroup $\Q/\Z$ the action is
+exactly multiplication by $n$ for every support map.
+
+\begin{theorem}[When the full counting pullback exists]
+\label{thm:counting-action}
+On finitely supported functions on $D_S$, consider the actual
+pullback $P_T h(d)=h(Td)$. If $\bar f$ is not a permutation, it does
+not map the vector $\delta_0$ to $\ell^2(D_S)$: its support is the
+infinite kernel in \eqref{eq:noninvertible-degree}. Its exact target
+is then the space of all functions on $D_S$, not a bounded counting
+operator.
+
+If $\bar f$ is a permutation, $T$ is surjective with exactly $n$
+points in every fibre, and
+\[
+ P_T^*h(u)=\sum_{Td=u}h(d),\qquad P_T^*P_T=nI.
+ \tag{SE25}\label{eq:finite-degree-Hilbert}
+\]
+The diagonal torsion subspace is reducing, and extension by zero
+$J_S:\ell^2(\Q/\Z)\to\ell^2(D_S)$ satisfies
+\[
+ P_TJ_S=J_SP_n,\qquad P_T^*J_S=J_SP_n^*.
+ \tag{SE26}\label{eq:scalar-Hilbert-branch}
+\]
+For the additive receiver
+$\kappa_S(\delta_d)=d\otimes1\in\C^c/\Delta\C$,
+\[
+ \kappa_SP_T=\overline F^{-1}\kappa_S,
+ \qquad \kappa_SP_T^*=n\overline F\kappa_S.
+ \tag{SE27}\label{eq:additive-receiver}
+\]
+When $f=\mathrm{id}$ these are exactly (FD3)--(FD5) and (FD8)--(FD9)
+of \path{16_full_support_degree_and_arithmetic_quotient.tex}.
+\end{theorem}
+\begin{proof}
+The failure in the first case follows from
+$P_T\delta_0=\mathbf1_{\ker T}$ and the nonzero rational summand in
+\eqref{eq:noninvertible-degree}. If $\bar f$ is a permutation, $F$
+is a group automorphism and commutes with multiplication by $n$.
+The latter is surjective with kernel $\Delta(n^{-1}\Z)/\Delta\Z$,
+of order $n$. Group the counting sum by these fibres to obtain the
+adjoint and norm formulas in \eqref{eq:finite-degree-Hilbert}.
+
+The quotient of $D_S$ by its torsion is $\Q^c/\Delta\Q$; on it
+$n\overline F$ is invertible. Thus $Td$ is torsion exactly when $d$
+is torsion. Every fibre above torsion stays in that subgroup, and
+every other fibre stays outside it. This proves both reducing and
+the two pointwise identities \eqref{eq:scalar-Hilbert-branch}.
+
+The pullback of a basis vector is the sum of its $n$ preimages.
+After additive complexification every such preimage has the same
+value $n^{-1}\overline F^{-1}(u\otimes1)$, because the differences
+are torsion. Their sum proves the first identity in
+\eqref{eq:additive-receiver}. The adjoint sends $\delta_d$ to
+$\delta_{Td}$, proving the second. The complete kernel of
+$\kappa_S$ consists of the linear span of
+$\delta_0$ and $\delta_{a+b}-\delta_a-\delta_b$: this is the
+universal presentation of the additive tensor product. It in
+particular kills the entire diagonal torsion sector. This proves
+the receiver statements without discarding that sector beforehand.
+\end{proof}
+
+For a nonpermutational component map there is still a precise map
+on finitely supported functions: the pushforward
+$T_*\delta_d=\delta_{Td}$. It obeys
+\[
+ \kappa_ST_*=(n\overline F)\kappa_S.
+ \tag{SE28}\label{eq:pushforward-all-maps}
+\]
+Its algebraic dual is pullback on all functions, so the noninvertible
+support map is retained in exact domains and codomains. For the
+zero coefficient $n=0$, the kernel is all of the infinite group
+$D_S$ and the same counting-pullback obstruction holds. The abelian
+coefficient cone then has zero endomorphism; this statement does
+not identify the original semiring elements $e$ and $\tau$.
+
+For a prime $p$ and a permutational component map, write
+$P_T=U_F P_p$, with $U_Fh(d)=h(Fd)$. The two factors commute and
+$U_F$ is a finite-order unitary. Its normalized pullback is still
+a pure isometry in the exact sense of (FD6): the $m$th range consists
+of functions constant on cosets of the kernel of multiplication by
+$p^m$, since $F^m$ is an automorphism. A vector in every such range
+is constant on cosets of the infinite group
+$\Delta(\Z[1/p]/\Z)$ and square summability forces zero. The
+telescoping range projections therefore give the same bilateral
+shift extension as in (FD7), with coefficient $\sqrt p$ and with
+the support permutation retained. The norm factor is produced by
+the proved $p$-element fibre, not by the relative cohomological shift.
+
+\subsection{A proved covering operation that does produce a new multiplier}
+
+The finite-self-map restriction in
+Theorem~\ref{thm:eventual-periodicity} matters. Actual maps between
+different finite support lattices can have nonunit degree on their
+cohomology. The following construction gives all maps explicitly.
+
+For $m\ge1$, let $P_m$ be the face poset of a cycle with $3m$ vertices
+$v_i$ and $3m$ edges $e_i$, indexed modulo $3m$, with exactly
+$v_i<e_i$ and $v_{i+1}<e_i$. It has no two-dimensional face. Put
+$L_m=\Down(P_m)$ and define
+\[
+ q_m:P_m\to P_1,\qquad v_i\mapsto v_{i\bmod3},\quad
+ e_i\mapsto e_{i\bmod3}.
+ \tag{SE29}\label{eq:cycle-cover}
+\]
+It is an order map and an $m$-sheeted covering of the finite spaces:
+the preimage of a minimal vertex open is $m$ disjoint vertex opens,
+and that of $\{v_i,v_{i+1},e_i\}$ is $m$ disjoint copies of that
+three-point minimal edge open. Inverse image of downsets gives a
+bounded lattice homomorphism $L_1\to L_m$ and the corresponding
+coefficient-preserving semiring and full spectral maps.
+
+For the complete cochain complex of $P_m$, use zero-coordinates
+$a_i,b_i$ and incidence coordinates
+\[
+ (Da)_{i,0}=b_i-a_i,\qquad(Da)_{i,1}=b_i-a_{i+1}.
+\]
+Its cycle functional is
+\[
+ \omega_m(c)=\sum_{i\bmod3m}(c_{i,0}-c_{i,1}).
+ \tag{SE30}\label{eq:cover-cycle-coordinate}
+\]
+Its kernel is the image of $D$: set $a_0=0$, define successively
+$b_i=c_{i,0}+a_i$ and $a_{i+1}=b_i-c_{i,1}$, and the closing equation
+$a_{3m}=a_0$ is exactly $\omega_m(c)=0$. The kernel of $D$ itself
+is the constant functions on all vertices and edges. Since
+$\omega_m$ is surjective on the coordinate vector $c_{0,0}=1$,
+these formulas prove $H^0(P_m,\Q)=\Q$ and $H^1(P_m,\Q)=\Q$ with
+the exact stated orientation.
+
+\begin{theorem}[Cover pullback, transfer, and their full gluing]
+\label{thm:cover-degree}
+The actual cochain pullback $q_m^*$ repeats every coordinate $m$
+times. The transfer $\operatorname{Tr}_{q_m}$ sums the coordinates
+over all lifts of each vertex, edge, and incidence chain. They are
+cochain maps and satisfy
+\[
+ \operatorname{Tr}_{q_m}\,q_m^*=mI.
+ \tag{SE31}\label{eq:cover-transfer-identity}
+\]
+On support cohomology their exact maps are
+\[
+\begin{array}{c|cc}
+ &H^0&H^1\\ \hline
+ q_m^*&1&m\\
+ \operatorname{Tr}_{q_m}&m&1.
+\end{array}
+ \tag{SE32}\label{eq:cover-cohomology}
+\]
+The pullback of full universal arithmetic sheaves has arithmetic map
+the identity. Extending the support transfer across the arithmetic
+stratum forces its arithmetic map to be multiplication by $m$.
+With that map it gives an actual sheaf transfer, and the composite
+transfer after pullback is multiplication by $m$ on the entire
+universal sheaf and its relative complex. On relative cohomology the
+individual maps are
+\[
+\begin{array}{c|cc}
+ &H_X^1=\Q/\Z&H_X^2=\Q\\ \hline
+ q_m^*&1&m\\
+ \operatorname{Tr}_{q_m}&m&1.
+\end{array}
+ \tag{SE33}\label{eq:cover-relative-cohomology}
+\]
+\end{theorem}
+\begin{proof}
+Every base vertex, edge, and incidence has exactly $m$ lifts. Each
+lift of a face is the face of exactly one lifted incidence of the
+fixed base type. Thus taking a differential and summing lifts commute,
+proving the transfer is a cochain map; pullback is already
+\eqref{eq:finite-pullback}. Summing the $m$ identical pulled-back
+coordinates proves \eqref{eq:cover-transfer-identity} on every
+cochain, not only on cohomology. Constants pull back unchanged and
+transfer to $m$ times themselves. Formula
+\eqref{eq:cover-cycle-coordinate} gives
+$\omega_m(q_m^*c)=m\omega_1(c)$ and
+$\omega_1(\operatorname{Tr}_{q_m}d)=\omega_m(d)$, proving
+\eqref{eq:cover-cohomology}.
+
+The full map $Y_m\to Y_1$ is the identity on $X$ and $q_m$ on
+support. Pushforward on the support is exact because locally it is
+a finite product over the covering sheets; on arithmetic sheaves
+it is the identity. The full pushforward therefore is exact by the
+two-component sheaf description. The support trace is the sheaf
+map that sums these local sheets. A constant generic rational value
+$a$ restricts on them to $m$ copies of $a$, whose trace is $ma$.
+The gluing equation in \eqref{eq:gluing} consequently requires the
+arithmetic image of $a$ to have generic value $ma$. The injective
+map $\mathcal O_X\to\Q_X$ forces arithmetic multiplication by $m$.
+This map satisfies the equation and therefore defines the full
+sheaf transfer.
+
+On relative complexes the pullback is the identity on the initial
+$\Z$ and coordinate repetition thereafter. The transfer is $m$ on
+that $\Z$ and the just-proved cochain trace thereafter. Their composite
+is $m$ in every degree. A constant rational modulo the original
+integer diagonal is sent to itself under pullback and multiplied
+by $m$ under transfer, while the cycle coordinates are those already
+computed. This proves \eqref{eq:cover-relative-cohomology}.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzcd}[column sep=large,row sep=large]
+ \Z \arrow[r,"\Delta"] \arrow[d,equal]
+ & C^0(P_1,\Q) \arrow[r,"D"] \arrow[d,"q_m^*"]
+ & C^1(P_1,\Q) \arrow[d,"q_m^*"] \\
+ \Z \arrow[r,"\Delta"] \arrow[d,"m"]
+ & C^0(P_m,\Q) \arrow[r,"D"] \arrow[d,"\operatorname{Tr}_{q_m}"]
+ & C^1(P_m,\Q) \arrow[d,"\operatorname{Tr}_{q_m}"] \\
+ \Z \arrow[r,"\Delta"]
+ & C^0(P_1,\Q) \arrow[r,"D"]
+ & C^1(P_1,\Q)
+\end{tikzcd}
+\caption{The actual relative complexes, in degrees $0,1,2$ from
+left to right. The support covering fixes the arithmetic coefficient
+under pullback. Summing its $m$ support sheets forces multiplication
+by $m$ on that coefficient under transfer. Every square commutes,
+and each composite vertical map is $mI$, by
+Theorem~\ref{thm:cover-degree} and
+\eqref{eq:cover-transfer-identity}--\eqref{eq:cover-relative-cohomology}.
+The diagram records actual maps and assigns no metric or weight to
+the prime topology.}
+\end{figure}
+
+In particular, the multiplier $m$ on the new relative degree-two
+class has a proved source: the actual covering map and its oriented
+cycle coordinate. It is a map between the displayed support spaces;
+it is not the action of a self-map of one fixed finite space with
+eventual periodicity. The transfer--pullback composite is an actual
+endomorphism, and its multiplier is the proved degree. Its extension
+over the arithmetic stratum obeys, rather than bypasses, the scalar
+constraint \eqref{eq:scaling-constraint}. The induced determinant
+factor on the rational relative degree-two line is $(1-mt)^{-1}$
+under the convention \eqref{eq:euler-determinant}. This distinguishes
+an actual degree operation from a scalar invented from a degree label.
+
+\subsection{Proof scope and source locators}
+
+The existing reading ledger and the complete finite-support proof
+\path{finite_support_recollement.tex}, especially (FL8)--(FL22)
+and (FL32)--(FL39), fix the topology, derived complex, and triangle
+orientation used here. The actual root source
+\path{16_full_support_degree_and_arithmetic_quotient.tex},
+(FD1)--(FD9), was read in full through its degree-action receiver.
+The identities \eqref{eq:finite-degree-Hilbert}--\eqref{eq:additive-receiver}
+prove the comparison including noninvertible support maps and the
+complete domains in which their pullbacks exist.
+
+No assertion in this note is labelled as Deligne purity. The exact
+finite-support operation gives roots of unity and a computed nilpotent
+part; the coefficient operation supplies its actual scalar moduli;
+the cone supplies computed subquotients and Euler exponents; and the
+covering/transfer construction supplies its explicitly proved degree.
+No Tate twist, scalar multiplier, or positive metric is inferred from
+the topology without the corresponding operation. The Connes--Consani
+source is not needed for these finite-support derivations and is not
+claimed as read here.
+

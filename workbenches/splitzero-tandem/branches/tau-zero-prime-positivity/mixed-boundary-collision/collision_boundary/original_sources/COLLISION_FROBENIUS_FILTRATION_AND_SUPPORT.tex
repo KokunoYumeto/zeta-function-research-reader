@@ -1,0 +1,633 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\newcommand{\OO}{\mathbb Z_3}
+\newcommand{\KK}{\mathbb Q_3}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\SpecLat}{\operatorname{Spec}_{\rm Lat}}
+\newcommand{\Cone}{\operatorname{Cone}}
+\newcommand{\id}{\operatorname{id}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}[proposition]{Theorem}
+\title{Collision Frobenius, integral monodromy filtrations,\\
+and the full supported cohomology receiver}
+\author{}
+\date{23 September 2026}
+\begin{document}
+\maketitle
+
+This calculation concerns the existing integral collision prism and
+its actual operators. It constructs the coefficient maps into the
+abelian-sheaf cohomology of the full Split-Zero spectrum. No numerical
+range is used. The filtration computed here is a monodromy filtration
+of specified nilpotent operators; it is not an assertion of arithmetic
+purity or a proof of RH.
+
+\section{CFF1: the original coefficient object}
+Put \(O=\OO\), retain an arbitrary \(c\in O\), and retain the algebra
+\[
+ C=O[\epsilon,T]/(\epsilon^2,T^2-6\epsilon),\qquad
+ 1,\epsilon,T,z=\epsilon T.
+ \tag{CFF1}
+\]
+Successive monic division proves that the displayed elements are an
+\(O\)-basis. The nilradical is
+\[
+ M=O\epsilon\oplus OT\oplus Oz.
+ \tag{CFF2}
+\]
+Indeed \(M^2=6O\epsilon\oplus Oz\), \(M^3=6Oz\), and \(M^4=0\), while
+\(C/M=O\) is reduced. These statements follow from
+\(\epsilon^2=0\), \(\epsilon T=z\), \(T^2=6\epsilon\),
+\(Tz=0\), and \(\epsilon z=0\).
+
+The original Frobenius lift and divided residue are
+\[
+ F(\epsilon)=0,\quad F(T)=9cz,\quad F|_O=\id,\qquad
+ N(\epsilon)=0,\quad N(T)=-z/8,\quad N|_O=0 .
+ \tag{CFF3}
+\]
+The first is an algebra map: the two relations map to zero.
+Modulo 3 it is cubing on the generators and scalars. The second is
+an \(O\)-derivation: its value on \(\epsilon^2\) is zero and its
+value on \(T^2-6\epsilon\) is
+\(-\epsilon T^2/4=-3\epsilon^2/2=0\). The original undivided residue
+is \(D=3N\); this factor is retained throughout. In particular,
+\[
+ F^2=\eta\pi\text{ on }C,\qquad
+ F_M^2=0,\quad N_M^2=0,\quad N_MF_M=F_MN_M=0,
+ \tag{CFF4}
+\]
+where \(\pi:C\to O\) is augmentation and \(\eta:O\to C\) is the
+scalar inclusion. For \(c\ne0\), \(F_M\) has image \(9cOz\); for
+\(c=0\), its image is zero.
+
+The pair \((C,(3+\epsilon))\), including this entire Frobenius family,
+is the bounded prism proved in DP1--19 of
+\texttt{DISTINGUISHED\_COLLISION\_PRISM\_DERIVATION.md}.
+In particular, \(C/(3+\epsilon)=(O/9)[T]/T^2\) and the prism map
+to \((C,(3))\) is \(F\), not the identity. Nothing below changes
+the prism ideal or the parameter \(c\).
+
+\section{CFF2: the actual cotangent Frobenius}
+The two defining equations are a regular sequence in \(O[\epsilon,T]\):
+\(\epsilon^2\) is regular in that polynomial ring, and modulo it
+\(T^2-6\epsilon\) is monic in \(T\) and therefore regular. The
+relative cotangent presentation in degrees \(-1,0\) is
+\[
+ L=[C f_1\oplus C f_2 \xrightarrow{A}
+                 C\,d\epsilon\oplus C\,dT],\qquad
+ A=\begin{pmatrix}2\epsilon&-6\\0&2T\end{pmatrix}.
+ \tag{CFF5}
+\]
+Its degree-minus-one cohomology has the free \(O\)-basis
+\[
+ H=\ker A=Ov_1\oplus Ov_2\oplus Ov_3,\quad
+ v_1=(\epsilon,0),\quad v_2=(z,0),\quad v_3=(3T,z).
+ \tag{CFF6}
+\]
+To check exhaustiveness, the lower equation for \((a,b)\) gives
+\(Tb=0\), hence \(b=t z\) by comparison in CFF1. The upper equation
+is \(\epsilon a=3t z\); the scalar coefficient of \(a\) is zero
+and its \(T\)-coefficient is \(3t\). This is exactly CFF6.
+
+Lift \(F\) to the polynomial ring by
+\(\epsilon\mapsto0,\ T\mapsto9c\epsilon T\). Its images of the
+relations before quotienting are
+\[
+ F(f_1)=0,\qquad F(f_2)=81c^2T^2f_1.
+\]
+Consequently the actual \(F\)-semilinear chain map has matrices
+\[
+ U=\begin{pmatrix}0&486c^2\epsilon\\0&0\end{pmatrix}
+ \quad\text{in degree }-1,\qquad
+ V=\begin{pmatrix}0&9cT\\0&9c\epsilon\end{pmatrix}
+ \quad\text{in degree }0.
+ \tag{CFF7}
+\]
+The rule on a vector is \(a\mapsto U F(a)\) or \(a\mapsto V F(a)\),
+not ordinary multiplication by the displayed matrix. Directly,
+\[
+ AU=0=VF(A):
+\]
+the only possibly nonzero entries in either product are multiples
+of \(\epsilon^2\) or \(\epsilon T^2=6\epsilon^2\).
+The polynomial calculation proves that this is the induced
+cotangent map, and also checks its chain identity.
+The second coefficients of the three vectors in CFF6 are \(0,0,z\),
+and \(F(z)=0\). Therefore
+\[
+                         F_H=0.
+ \tag{CFF8}
+\]
+
+The divided Lie derivative induced by \(N\) on \(H\) is
+\[
+ N_Hv_1=N_Hv_2=0,\qquad N_Hv_3=-15v_2/8.
+ \tag{CFF9}
+\]
+Here the factor 5 has not disappeared. On the polynomial relation
+generators the derivation sends
+\[
+ N(f_1)=0,\qquad N(f_2)=-\tfrac32 f_1-\tfrac14\epsilon f_2.
+\]
+Applying its coefficient derivation to \(v_3=(3T,z)\) contributes
+\(-3z/8\) in the first coordinate, and its action on the second
+relation contributes \(-3z/2\). Their sum is \(-15z/8\).
+The other two cycles map to zero. Thus CFF9 is the Lie action
+of the actual divided residue, with \(D_H=3N_H\).
+
+\section{CFF3: the old injection and its Frobenius defect}
+Retain the existing \(C\)-linear map
+\[
+ \kappa:M\longrightarrow H,\qquad
+ \epsilon\longmapsto3v_1,\quad
+ T\longmapsto v_3-2v_2,\quad z\longmapsto3v_2.
+ \tag{CFF10}
+\]
+It is injective by comparing the three free basis coefficients.
+For linearity, the actions in \(H\) are
+\[
+ \epsilon v_1=\epsilon v_2=0,\quad \epsilon v_3=3v_2,\qquad
+ Tv_1=v_2,\quad Tv_2=0,\quad Tv_3=18v_1.
+\]
+These identities check both generator actions in CFF10, hence
+linearity for all of \(C\). Its cokernel is
+\[
+ H/\kappa M=(O/3)\{[v_1],[v_2]\},\qquad T[v_1]=[v_2],\
+ T[v_2]=0,\ \epsilon[v_i]=0.
+ \tag{CFF11}
+\]
+The residue comparison and the Frobenius defect are exactly
+\[
+ N_H\kappa=5\kappa N_M,\qquad
+ \Delta_F:=\kappa F_M-F_H\kappa,\qquad
+ \Delta_F(T)=27cv_2,\quad \Delta_F(\epsilon)=\Delta_F(z)=0.
+ \tag{CFF12}
+\]
+For \(c\ne0\) this defect is nonzero in the free module \(H\).
+It is not removed by inverting 3. For \(c=0\) it is zero.
+Thus the existing injection is preserved as a map with its exact
+defect, rather than being declared Frobenius-compatible.
+
+\section{CFF4: differentials give a compatible integral receiver}
+Set \(\Omega=H^0(L)=\Omega_{C/O}\). Use the actual elements
+\[
+ u=d\epsilon,\quad v=dT,\quad q=\epsilon dT,\quad
+ w=T\,d\epsilon-2\epsilon dT .
+ \tag{CFF13}
+\]
+Here \(q\) is a differential, not the earlier algebra quotient map.
+As an \(O\)-module,
+\[
+ \Omega=Ou\oplus Ov\oplus Oq\oplus(O/3)w .
+ \tag{CFF14}
+\]
+For a full presentation check, start with the eight basis elements
+of \(C u\oplus C v\). Multiples of the two columns of CFF5 impose
+\(\epsilon u=0,\ z u=0,\ Tv=3u,\ zv=0\), and
+\(3(Tu-2\epsilon v)=0\). All remaining multiples of those columns
+are consequences: multiplication of the latter relation by \(T\)
+or \(\epsilon\) yields zero after these relations. Eliminating
+\(\epsilon u,zu,Tv,zv\), and then writing \(Tu=w+2q\), gives
+exactly CFF14, including the order-three generator.
+
+The universal differential restricts to an \(O\)-linear map
+\[
+ d_M:M\longrightarrow\Omega,\qquad
+ \epsilon\mapsto u,\quad T\mapsto v,\quad z\mapsto w+3q.
+ \tag{CFF15}
+\]
+It is not asserted to be \(C\)-linear; its actual rule is Leibniz.
+It is injective: a zero linear combination of its images has zero
+\(u,v,q\) coefficients, forcing all three source coefficients to
+vanish in the torsionfree ring \(O\).
+In the cokernel, \(u=v=0,\ w=-3q,\ 3w=0\), giving the exact sequence
+\[
+ 0\longrightarrow M\xrightarrow{d_M}\Omega
+   \xrightarrow{\rho}O/9\longrightarrow0,\qquad
+ \rho(q)=1,\quad\rho(w)=-3,\quad\rho(u)=\rho(v)=0 .
+ \tag{CFF16}
+\]
+No shorter exponent is substituted. Its extension class, using the
+lift \(q\) of \(1\), is
+\[
+                   9q=3d_M(z),\qquad [3z]\in M/9M.
+ \tag{CFF17}
+\]
+It has exact order 3, so CFF16 does not split as \(O\)-modules.
+Indeed a section would provide a lift of 1 killed by 9, while
+changing \(q\) by \(d_M(m)\) changes \(9q\) by \(9d_M(m)\);
+the element \(3z\) is not in \(9M\).
+
+The induced Frobenius and Lie actions on \(\Omega\) are
+\[
+ \begin{array}{c|rrrr}
+       &u&v&q&w\\ \hline
+ F_\Omega&0&27cq&0&0\\
+ N_\Omega&0&-(w+3q)/8&0&0 .
+ \end{array}
+ \tag{CFF18}
+\]
+For Frobenius, \(F_\Omega(v)=d(9cz)=9c(w+3q)=27cq\)
+because \(3w=0\), and all other values follow from semilinearity.
+For the Lie action, \(N_\Omega(v)=d(-z/8)\);
+the coefficient rule gives the other three zero values.
+This proves
+\[
+ F_\Omega d_M=d_MF_M,\qquad N_\Omega d_M=d_MN_M,\qquad
+ F_\Omega^2=N_\Omega^2=F_\Omega N_\Omega=N_\Omega F_\Omega=0.
+ \tag{CFF19}
+\]
+The induced actions on the quotient \(O/9\) in CFF16 are both zero.
+The nonzero Frobenius on \(\Omega\) for \(c\ne0\) also proves
+that CFF7 is not a nullhomotopic cotangent chain map: a
+nullhomotopic map induces zero on every cohomology group.
+
+\section{CFF5: image/kernel monodromy and the integral middle piece}
+For each specified square-zero operator \(N_E\), use the increasing
+filtration
+\[
+ W_jE=0\ (j<-1),\quad W_{-1}E=\im N_E,\quad
+ W_0E=\ker N_E,\quad W_jE=E\ (j\ge1).
+ \tag{CFF20}
+\]
+It satisfies \(N_EW_j\subset W_{j-2}\) and
+\[
+ N_E:\operatorname{Gr}^W_1 E\xrightarrow{\sim}
+                  \operatorname{Gr}^W_{-1}E .
+ \tag{CFF21}
+\]
+The last statement is the first isomorphism theorem for the actual
+map \(N_E\). It is an integral statement for this specified
+filtration. It does not assert that every graded piece is free.
+
+For \(M,\Omega,H\) the whole calculation is
+\[
+\begin{array}{c|c|c|c}
+ E&W_{-1}E&W_0E&\operatorname{Gr}^W_0E\\ \hline
+ M&Oz&O\epsilon\oplus Oz&O\epsilon\\
+ \Omega&O(w+3q)&Ou\oplus Oq\oplus(O/3)w&Ou\oplus O/9\\
+ H&3Ov_2&Ov_1\oplus Ov_2&Ov_1\oplus(O/3)[v_2].
+\end{array}
+ \tag{CFF22}
+\]
+The first two rows follow from CFF3 and CFF18. The last follows
+from \(-15/8=3(-5/8)\), where \(-5/8\) is a unit in \(O\).
+The \(O/9\) in the middle row has generator \([q]\) and relation
+\([w]=-3[q]\). The top graded pieces are freely generated by
+\([T],[v],[v_3]\); the bottom arrows CFF21 have respective
+coefficients \(-1/8,-1/8,-5/8\) when the displayed bottom
+generators \(z,w+3q,3v_2\) are used.
+
+The map \(d_M\) is strict for these filtrations. On the bottom
+and top graded pieces it is an isomorphism; on the middle piece
+it is \(O\epsilon\to Ou\oplus O/9,\ \epsilon\mapsto u\).
+To prove strictness directly, a vector \(a u+b v+t(w+3q)\)
+lies in \(\ker N_\Omega\) exactly when \(b=0\), and lies in
+\(\im N_\Omega\) exactly when \(a=b=0\).
+Thus the full integral discrepancy of CFF16 is the middle
+graded torsion, not a discarded contribution.
+
+The map \(\kappa:(M,5N_M)\to(H,N_H)\) is also strict:
+its intersections with \(Ov_1\oplus Ov_2\) and \(3Ov_2\)
+are \(3Ov_1\oplus3Ov_2\) and \(3Ov_2\), respectively.
+It is an isomorphism on the outer graded pieces and has the
+two-dimensional \(O/3\) cokernel of CFF11 in the middle.
+Its Frobenius defect CFF12 sends the top step into the bottom
+step; hence it is invisible on the associated graded. All
+three Frobenius operators are zero on their associated graded
+pieces although \(F_M\) and \(F_\Omega\) are nonzero when \(c\ne0\).
+
+After tensoring with \(\KK\), CFF20 is the centered monodromy
+filtration of each retained square-zero operator: the only
+nontrivial required graded isomorphism is CFF21. Rationalizing
+does not authorize replacing CFF22. For example, saturating
+\(3Ov_2\subset H\) replaces it by \(Ov_2\) and changes the
+outer integral map to multiplication by \(-15/8\), whose
+cokernel is \(O/3\). Saturation is a different, explicitly
+comparable lattice, not the original image lattice.
+
+\section{CFF6: all tensor powers and dual evaluation}
+All tensors in this section are over \(O\), and all duals are
+\(O\)-linear. No comultiplication of \(C\) or diagonal
+\(C\)-module action is being assumed.
+For \(k\ge1\), retain \(M^{\otimes k}\) with
+\[
+ F_k=F_M^{\otimes k},\qquad
+ N_k=\sum_{i=1}^k1^{\otimes(i-1)}\otimes N_M\otimes
+                       1^{\otimes(k-i)} .
+ \tag{CFF23}
+\]
+For a word in \(\{\epsilon,T,z\}^k\), \(N_k^r\) is the sum over
+its \(r\)-element subsets of positions occupied by \(T\),
+replacing those entries by \(z\), with coefficient
+\[
+                         r!(-1/8)^r .
+ \tag{CFF24}
+\]
+This follows by expanding the \(r\)-th power in CFF23: repeated
+positions give zero and the \(r!\) distinct orders of any
+chosen subset give the same tensor word. It proves
+\(N_k^{k+1}=0\) and \(N_k^k(T^{\otimes k})=
+k!(-1/8)^k z^{\otimes k}\ne0\). In particular the length
+of these nilpotent strings is not bounded independently of \(k\).
+The original residue on the tensor power is \(D_k=3N_k\);
+its \(r\)-th power has the additional factor \(3^r\).
+
+Frobenius has the exact all-\(k\) formula
+\[
+ F_k(T^{\otimes k})=(9c)^kz^{\otimes k},\qquad
+ F_k(\text{every other original word})=0.
+ \tag{CFF25}
+\]
+Thus \(F_k^2=0\), \(F_kN_k=N_kF_k=0\), including \(c=0\).
+Increasing tensor degree retains longer monodromy strings,
+but does not turn this Frobenius into an invertible operator.
+The maps \(d_M^{\otimes k}\) intertwine both operators with
+their tensor counterparts on \(\Omega^{\otimes k}\), by
+expanding each tensor summand. No injectivity assertion for
+this tensor map is made by using the injection CFF15:
+\(\Omega\) contains torsion and is not flat over \(O\).
+
+On \(M^\vee=\operatorname{Hom}_O(M,O)\) the actual dual
+nilpotent is \(N^\vee=-N_M^t\); it satisfies
+\[
+ (N^\vee\lambda)(m)+\lambda(N_Mm)=0 .
+ \tag{CFF26}
+\]
+The ordinary Frobenius pullback \(F^t\lambda=\lambda\circ F_M\)
+satisfies the different, contravariant identity
+\[
+ (F^t\lambda)(m)=\lambda(F_Mm).
+ \tag{CFF27}
+\]
+There is no endomorphism \(F_{\rm dual}\) for which the
+ordinary evaluation to \((O,\id)\) obeys
+\((F_{\rm dual}\lambda)(F_Mm)=\lambda(m)\) for all \(m,\lambda\):
+take \(m=\epsilon\), \(F_Mm=0\), and the coordinate functional
+\(\lambda(\epsilon)=1\). This is an explicit failure of that
+particular proposed duality, with the valid transpose map
+CFF27 retained. With both factors acted on by \(F^t,F_M\),
+the evaluation equals \(\lambda(F_M^2m)=0\).
+
+More generally any map from \(M^{\otimes k}\), \(\Omega\), or
+\(H\), intertwining these operators with an injective
+Frobenius on a target, is zero: applying Frobenius twice
+reduces its image to zero, and injectivity cancels those two
+applications. In the opposite direction an intertwining
+map from an invertible-Frobenius object is zero by
+surjectivity of its squared Frobenius. These are exact Hom
+calculations in the category of modules with an endomorphism.
+The objects with their nilpotent Frobenius remain present.
+For \(C\), the sequential colimit along \(F\) is exactly \(O\):
+the augmentation induces this map, every \(m\in M\) dies
+after two transitions, and constants survive unchanged.
+
+\section{CFF7: the coefficient map to the whole spectrum}
+Let \(L\) be any finite nontrivial bounded distributive
+lattice and let
+\[
+ Y=\Spec G_L(\mathbb Z)=S\triangleright X,\qquad
+ S=\SpecLat L,\quad X=\Spec\mathbb Z.
+ \tag{CFF28}
+\]
+Here \(G_L(\mathbb Z)\) retains all \((0,\lambda)\) and all
+\((a,1_L)\); addition uses join and multiplication uses meet.
+Its two prime strata and all opens are FL1--4 of
+\texttt{15\_full\_finite\_support\_recollement.tex}.
+In particular \(D(e)=S,\ V(e)=X\), and \(e=(0,1_L)\ne
+\tau=(0,0_L)\). No arithmetic prime or support stratum is
+removed.
+
+The receiving category here is abelian sheaves, with the
+displayed constant \(O\)-action. For an \(O\)-module \(E\),
+forget its additional coefficient-ring action, take its
+constant sheaf \(c_XE\), and apply the actual exact universal
+coupling of FL8--10:
+\[
+ \mathcal U(E)=U_S(c_XE)
+       =(c_XE,c_SE,\Delta).
+ \tag{CFF29}
+\]
+The generic germ of \(c_XE\) is \(E\), and \(\Delta\) is its
+constant section on every component of \(S\). Thus every
+stalk is the original \(E\). An \(O\)-linear map is the same
+map on every stalk and commutes with these restrictions.
+This constructs the required coefficient-forgetful and
+constant-sheaf arrows; it uses no map from \(\mathbb C\)
+to \(O\) or to \(\KK\). It imposes no additive semiring
+module structure on these abelian sheaves.
+
+The integral cochains on \(S\) are
+\[
+ C^n(S,E)=\prod_{s_0<\cdots<s_n}E,\qquad
+ (db)_{s_0<\cdots<s_{n+1}}
+ =b_{s_1<\cdots<s_{n+1}}+
+   \sum_{i=1}^{n+1}(-1)^i
+     b_{s_0<\cdots<\widehat{s_i}<\cdots<s_{n+1}}.
+ \tag{CFF30}
+\]
+They compute \(R\Gamma(S,c_SE)\) also for the integral
+and torsion coefficients here. To verify the extension
+of FL14--15 beyond rational coefficients, use its
+resolution by products of \(I_t(E)\), direct images
+from one-point subspaces. The functor \(I_t\) is exact
+(check its stalks) and preserves injectives (it is right
+adjoint to the exact stalk functor). Applying \(I_t\)
+to an injective resolution of \(E\), then taking global
+sections, gives that same resolution of \(E\).
+Thus \(I_t(E)\) is \(\Gamma\)-acyclic without requiring
+that \(E\) be injective. The finite product terms are
+acyclic, and the stalk contraction obtained by adjoining
+the maximal point of a smallest open proves exactness
+of the augmented resolution over any coefficient group.
+This proves CFF30. The restrictions and alternating
+signs are exactly those in FL15.
+
+Let \(P_S=\Cone(O[0]\xrightarrow{\Delta}C^\bullet(S,O))[-1]\).
+For an explicit sign convention, \(P_S^0=O\),
+\(P_S^j=C^{j-1}(S,O)\) for \(j\ge1\), and its
+differentials are \(-\Delta\) from degree 0 and
+\(-d\) in the subsequent degrees. This is the
+unmodified shifted-cone convention. Every term is
+finite free over \(O\). FL11--12 and CFF30 now give
+\[
+ R\Gamma_X(Y,\mathcal U(E))=P_S\otimes_O E,\qquad
+ R\Gamma(Y,\mathcal U(E))=E[0].
+ \tag{CFF31}
+\]
+These are natural quasi-isomorphisms. In particular,
+all maps CFF12 and CFF15--19 act on the exact cochain
+model without collapsing any support label.
+
+\section{CFF8: the integral extension in supported cohomology}
+Since the terms of \(P_S\) are free, CFF16 gives the
+short exact sequence of actual complexes
+\[
+ 0\longrightarrow P_S\otimes M
+ \xrightarrow{1\otimes d_M}P_S\otimes\Omega
+ \xrightarrow{1\otimes\rho}P_S/9P_S\longrightarrow0 .
+ \tag{CFF32}
+\]
+The resulting connecting map has a complete cochain
+description. If \(\bar a\) is a degree-\(j\) cocycle
+modulo 9, lift it to \(a\in P_S^j\) and write
+\(d a=9b\). The lift to the middle complex is
+\(a\otimes q\), whose differential is
+\[
+ 9b\otimes q=3b\otimes d_M(z).
+ \tag{CFF33}
+\]
+Hence the connecting homomorphism is exactly
+\[
+ \partial[\bar a]=[3b\otimes z]
+       \in H^{j+1}(P_S\otimes M).
+ \tag{CFF34}
+\]
+This is 3 times the ordinary mod-9 Bockstein followed
+by the coefficient map \(1\mapsto z\). If the lift is
+changed by \(9a'\), then \(b\) changes by \(da'\) and
+the result changes by a boundary. Changing the cocycle
+representative gives the same conclusion, or follows
+directly from CFF32. Thus CFF34 is a proved map,
+not a choice of a torsion-free substitute for CFF16.
+
+Its exact image must also be retained. Since \(M\) is free
+on \(\epsilon,T,z\), cohomology with that coefficient is
+the direct sum of those three copies of \(H^{j+1}(P_S)\).
+The long exact sequence for
+\(0\to P_S\xrightarrow{9}P_S\to P_S/9P_S\to0\) gives
+\[
+ \im\beta_9=H^{j+1}(P_S)[9],\qquad
+ \im\partial=\{(0,0,3x):x\in H^{j+1}(P_S)[9]\}.
+ \tag{CFF34a}
+\]
+Here the three coordinates retain the original basis
+\(\epsilon,T,\epsilon T\). Thus \(3\im\partial=0\), and
+a class has nonzero image exactly when its Bockstein is
+not killed by 3. A non-split coefficient extension does
+not assert that this image is nonzero for every \(L\).
+
+For the two-element lattice \(L=\{0_L,1_L\}\), its support
+spectrum has one point and the actual relative complex is
+\[
+             P_S=[O\xrightarrow{-1}O]
+             \quad\text{in degrees }0,1 .
+ \tag{CFF34b}
+\]
+The homotopy \(-1:P_S^1\to P_S^0\) contracts it.
+Every relative group and connecting map in CFF32 then
+vanishes, while CFF16 remains non-split. The sheaf
+extension also remains non-split even after forgetting \(O\):
+an additive splitting at a stalk would lift \(1\in O/9\)
+to an element of order 9, whereas the torsion of
+\(\Omega\) is killed by 3. Ordinary cohomology still gives CFF16 itself
+through \(R\Gamma(Y,\mathcal U(E))=E[0]\). These are the
+exact comparison maps between the coefficient, ordinary,
+and relative statements.
+
+Frobenius on each nilpotent coefficient complex still
+has square zero, and the residue maps still satisfy
+the preceding formulas. On the whole coefficient
+algebra \(C=O\oplus M\), the supported complex splits
+as \(P_S\oplus(P_S\otimes M)\), and its squared
+Frobenius is the identity on the first summand and
+zero on the second. This is an exact result for every
+finite support lattice simultaneously; it is not an
+estimate on a growing finite range.
+
+For the support carrier
+\(G_L(E)=\{(v,1_L):v\in E\}\cup
+\{(0,\lambda):\lambda\in L\}\), addition is coefficient
+addition and lattice join. No multiplication on a
+general coefficient module is imposed. An \(O\)-linear map
+\(a:E\to E'\) also has the distinct lift
+\[
+ G_L(a)(v,1_L)=(a(v),1_L),\qquad
+ G_L(a)(0,\lambda)=(0,\lambda).
+ \tag{CFF35}
+\]
+It preserves addition by direct use of join, and
+composition by evaluating the two displayed types
+of element. In particular \(G_L(F_M)^2=G_L(0_M)\)
+sends every top-supported vector to \(e\) and fixes
+every lower zero label. It does not send them to
+\(\tau\). CFF29 is the sheaf receiver, while CFF35 is
+the coefficient-carrier map; these two constructions
+are both specified and are not being identified.
+
+\section{CFF9: exact diagram and consequence for the weight construction}
+\begin{figure}[ht]
+\centering
+\begin{tikzcd}[column sep=large,row sep=large]
+ M \arrow[r,"\kappa"] \arrow[d,"d_M"']&
+ H^{-1}(L_{C/O}) \\
+ \Omega_{C/O}\arrow[r,"\rho"']&
+ O/9
+\end{tikzcd}
+\caption{The two retained receivers from the collision nilradical.
+The top injection has residue factor 5 and Frobenius defect
+\(\Delta_F(T)=27cv_2\) (CFF12). The vertical injection preserves
+both Frobenius and residue and has the exact order-nine cokernel
+shown by the bottom arrow (CFF16--19). The diagram displays two
+receivers, not a commutative square: no arrow from the upper
+right object to the lower right object is supplied. Applying
+\(\mathcal U\) and then \(P_S\otimes-\) gives the actual full-support
+maps; CFF34 gives their integral connecting class.}
+\end{figure}
+
+The computed obstruction is therefore itself an object with
+maps: the lowering defect CFF12 (nonzero when \(c\ne0\)),
+the middle torsion in CFF22, and the supported Bockstein
+CFF34 with its exact image CFF34a. The coefficient and
+sheaf extension are non-split, whereas the relative
+connecting map can vanish, including in CFF34b.
+These specified distinctions remain part of any further
+weight construction. The local Frobenius is nilpotent on
+the collision pieces even after rationalization and in
+every tensor degree. Its exact Hom vanishing in CFF6
+means that those same pieces cannot be inserted by a
+nonzero Frobenius-equivariant map into an object with
+injective Frobenius while keeping this operator unchanged.
+The sheaf comparison CFF29--34b nevertheless retains
+the coefficient extension on every stalk and in ordinary
+cohomology, with the stated relative image. A geometric or prismatic cohomology
+comparison with a different Frobenius requires its actual
+construction; the present calculation does not supply or
+assume it. No sign of the full Weil form is inferred here.
+
+\section*{Sources and reading coverage}
+All displayed calculations CFF1--35 are derived in this file.
+The existing programme sources read for them are
+\texttt{DISTINGUISHED\_COLLISION\_PRISM\_DERIVATION.md},
+DP1--43 in full, and the residue and cotangent portions
+NC9--43 of
+\texttt{NILRADICAL\_COTANGENT\_DIVIDED\_RESIDUE\_DERIVATION.md}.
+The full-spectrum receiver is the programme source
+\path{15_full_finite_support_recollement.tex}
+in \path{work/split_zero_rebuilt_20260922},
+FL1--15, read through the complete cochain-resolution proof.
+The integral acyclic-resolution extension, coefficient
+comparison and Bockstein in CFF29--34 are proved here.
+
+The bounded-prism terminology is that of Bhargav Bhatt
+and Peter Scholze, \emph{Prisms and Prismatic Cohomology},
+\href{https://arxiv.org/abs/1905.08229}{arXiv:1905.08229v4};
+the original source and precise prior reading coverage are
+recorded in DP11. Deligne's monodromy-filtration, tensor
+and dual discussion is \emph{La conjecture de Weil II},
+sections 1.6.7--1.6.14. The programme's local math-mode
+English file is a historical transcription, not author
+TeX; its actual formulas are not used as an unverified
+purity theorem here. CFF20--27 give the needed algebraic
+proofs on the present objects.
+\appendix
+\input{COLLISION_FILTRATION_APPENDIX.tex}
+\end{document}

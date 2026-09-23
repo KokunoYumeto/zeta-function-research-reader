@@ -1,0 +1,407 @@
+\section{The original escaping endpoint and the arithmetic heat family}
+\label{sec:eh}
+\newcounter{eh}
+\renewcommand{\theeh}{EH\arabic{eh}}
+\newcommand{\EH}{\refstepcounter{eh}\par\medskip\noindent\textbf{\theeh.}\ }
+
+\EH\textbf{Sources and exact scope.}
+The two supplied versions of \emph{The flip, the Fable fibre on the Riemann
+sphere, and Weil positivity} have identical SHA256 values; they are retained
+as \path{inputs/flip_a.txt} and \path{inputs/flip_b.txt}. Their supplied
+attribution is Claude (Anthropic), dated 23 September 2026. They are inputs
+to this calculation, not primary literature certificates. The original
+programme calculation of the escaping orbit is retained in
+\path{material_generator_endpoint.md} and
+\path{tex/inverse_fibre_heat.tex} in the 8 September fluid research edition.
+All identities used from that orbit are proved again below. Its time is
+written $\tau_{\rm f}$ here to distinguish it from the adjoined semiring
+zero $\tau$. This is an explicit renaming, not a change of its time scale.
+The original spatial third coordinate, called $t$ in the polynomial, is
+written $w$. No coefficient is changed.
+
+Rodgers--Tao's original author source defines
+\begin{align}
+ H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,
+ &H_0(Z)&=\frac18\xi\left(\frac12+\frac{iZ}{2}\right),\label{eq:eh-heat}\\
+ \Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})
+ e^{-\pi n^2e^{4u}},
+ &\xi(s)&=\frac{s(s-1)}2\pi^{-s/2}\Gamma(s/2)\zeta(s).\notag
+\end{align}
+These are equations \texttt{hoz}, \texttt{sas}, \texttt{phidef},
+\texttt{htdef} in \href{https://arxiv.org/abs/1801.05914v5}{Rodgers--Tao,
+The de Bruijn--Newman constant is non-negative}, original TeX lines78--103.
+The factor $1/8$ in this definition is a nonzero scalar; the number $1/8$
+in the escaping trajectory below is a time. Their different roles are
+resolved by an explicit map, not by matching the displayed numerals.
+
+\EH\textbf{The original polynomial and its inverse-root chart.}
+Let $F:\mathbb C^3_{x,y,w}\to\mathbb C^3_{a,b,c}$ be
+\begin{align*}
+ F_1&=(1+xy)^3w+y^2(1+xy)(4+3xy),\\
+ F_2&=y+3x(1+xy)^2w+3xy^2(4+3xy),\\
+ F_3&=2x-3x^2y-x^3w.
+\end{align*}
+On $x\ne0$ set $v=1+xy$, $d=2-3xy-x^2w$, and
+$A=v^2+v-v^3d$, $B=4v+2-3v^2d$. Then
+$F=(A/x^2,B/x,xd)$ and the coordinate Jacobian
+$\partial(x,v,d)/\partial(x,y,w)$ has determinant $-x^3$.
+The determinant of $\partial F/\partial(x,v,d)$ is $x^{-3}$ times
+\[
+\det\begin{pmatrix}-2A&2v+1-3v^2d&-v^3\\
+-B&4-6vd&-3v^2\\d&0&1\end{pmatrix}=2.
+\]
+Expansion reduces the last expression to
+$(4-6vd)(-2v^2-2v+3v^3d)+(2v+1-3v^2d)(4v+2-6v^2d)=2$.
+Hence $\det DF=-2$ on a dense open set and therefore everywhere.
+
+Put $P_{a,b,c}(r)=cr^3-2r^2+br-2a$. For $x\ne0$, the exact inverse
+coordinates are
+\[
+ r=y+x^{-1},\quad \alpha=x^{-1},\quad
+ (x,y,w)=(\alpha^{-1},r-\alpha,5\alpha^2-3r\alpha-c\alpha^3).
+\]
+Substitution gives
+\[
+F=(r^2+r\alpha-cr^3,\ 4r+2\alpha-3cr^2,\ c).
+\]
+Thus $F=(a,b,c)$ is equivalent to $P(r)=0$ and
+$\alpha=P'(r)/2\ne0$. This proves both directions, including the
+excluded multiple-root locus. On $x=0$ the formula is
+$F(0,y,w)=(w+4y^2,y,0)$, so the entire additional inverse point is
+$(0,b,a-4b^2)$ when $c=0$.
+
+\EH\textbf{The escaping trajectory, with its original endpoint.}
+For $\tau_{\rm f}<1/8$ put
+\[
+ z=\sqrt{1-8\tau_{\rm f}}>0,\qquad
+ \gamma(\tau_{\rm f})=(z^{-1},-3z/2,13z^2/2).
+\]
+Direct substitution in the original polynomial gives
+\[
+ F(\gamma)=(-z^2/4,0,0)=(-1/4+2\tau_{\rm f},0,0),\quad
+ r(\gamma)=-z/2,\quad \alpha(\gamma)=z.
+\]
+Moreover $z'=-4/z$. Differentiating the displayed identity gives
+$DF(\gamma)\gamma'=(2,0,0)^{\mathsf T}$. For
+\[
+ U=2(DF)^{-1}e_1+6F_3(DF)^{-1}e_2
+\]
+this proves $\gamma'=U(\gamma)$, since $F_3(\gamma)=0$ and $DF$ is
+invertible. The trajectory has no finite affine limit because its first
+coordinate tends to infinity. Its target has the finite limit $(0,0,0)$.
+At that target the entire affine fibre is $(0,0,0)$, by the preceding
+inverse description: the double root $r=0$ has $\alpha=0$ and is excluded
+from the $x\ne0$ chart. These are exact statements about this field;
+they require no claim concerning a separate Navier--Stokes solution.
+
+\EH\textbf{The exact heat map and its time origin.}
+Retain the incoming note's arithmetic coordinate
+$s=1/2+r$ and heat coordinate $Z=-2ir$. Define
+\[
+ h=4\tau_{\rm f}-\frac12=2a,\qquad
+ Q_h(Z)=Z^2-2h.
+\]
+On $b=c=0$ one has the polynomial identity
+\[
+ Q_h(Z)=2P_{a,0,0}(r)\quad (Z=-2ir,\ h=2a).
+\]
+Consequently $\partial_hQ_h=-2=-\partial_Z^2Q_h$, with exactly the
+backward heat sign of \eqref{eq:eh-heat}. Along the escaping branch
+$Z=iz$ and $h=-z^2/2$. The original times map as
+\[
+ \tau_{\rm f}=0\longmapsto h=-1/2,\qquad
+ \tau_{\rm f}\uparrow1/8\longmapsto h\uparrow0.
+\]
+There is no step identifying $h$ with the absolute arithmetic time $t$
+of \eqref{eq:eh-heat}; the formula specifies the translated and scaled
+time of this particular polynomial solution completely.
+Its zeros are $\pm i\sqrt{-2h}$ for $h<0$, a double zero at $0$ for
+$h=0$, and $\pm\sqrt{2h}$ for $h>0$. Thus its all-real threshold is
+exactly $h=0$, including the endpoint. The escape reaches that real
+double root. It does not leave a nonreal root at the endpoint.
+
+The reciprocal of the escaping affine coordinate has an exact relation
+to the meromorphic heat-root velocity. On the same $b=c=0$ chart,
+$P'(r)=-4r$, so the inverse formulas give
+\begin{equation}
+ \alpha=-2r=-iZ,\qquad x=\frac{i}{Z},\qquad
+ \frac{dZ}{dh}=\frac1Z,\qquad
+ x=i\frac{dZ}{dh}.
+ \label{eq:eh-reciprocal-bridge}
+\end{equation}
+Here the derivatives are along either root branch on $Z\ne0$:
+differentiating $Z^2=2h$ proves $2Z\,dZ/dh=2$. The original root
+coordinate and original flow time therefore satisfy, with no change
+of scale left implicit,
+\begin{equation}
+ h=-2r^2,\qquad \frac{dr}{dh}=-\frac1{4r},\qquad
+ \frac{dr}{d\tau_{\rm f}}=-\frac1r,
+ \qquad \frac{dh}{d\tau_{\rm f}}=4.
+ \label{eq:eh-original-reciprocal}
+\end{equation}
+The ordered-pair rational energy of the two heat roots $Z,-Z$ is
+\begin{equation}
+ \mathcal E=\frac{2}{(2Z)^2}
+ =\frac1{2Z^2}=-\frac1{8r^2}=-\frac{x^2}{2}.
+ \label{eq:eh-energy-coordinates}
+\end{equation}
+Each equality follows from $Z=-2ir$ and $x=i/Z$. In particular, on
+the original escaping branch this rational function is
+\begin{equation}
+ \mathcal E(\gamma(\tau_{\rm f}))
+ =-\frac1{2z^2}=-\frac1{2(1-8\tau_{\rm f})}
+ \longrightarrow-\infty.
+ \label{eq:eh-incoming-energy}
+\end{equation}
+This is its analytic continuation along imaginary heat roots $Z=iz$.
+On the real-root branch $h>0$ the same rational function equals
+$1/(4h)>0$ instead. Thus the reciprocal bridge retains both the
+factor $4$ in time and the negative sign on the incoming branch.
+These are calculations on $Q_h$; the arithmetic time $t$ in
+\eqref{eq:eh-heat} has not been identified with $h$.
+
+\EH\textbf{Retaining the collision algebra and its holonomy.}
+The family
+\[
+ \mathcal A=\mathbb C[h,Z]/(Z^2-2h)
+\]
+is free of rank two over $\mathbb C[h]$, with basis $(1,Z)$: division
+by the monic polynomial gives existence and uniqueness of this basis.
+Its zero fibre is $\mathbb C[\eta]/(\eta^2)$ by $Z\mapsto\eta$.
+For $h\ne0$ its two roots are exchanged by one loop around $h=0$,
+since $\sqrt{2h_0e^{i\theta}}=\sqrt{2h_0}e^{i\theta/2}$ for
+$0\le\theta\le2\pi$. On the two labelled roots this is the matrix
+\[
+ M_{\rm loop}=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+ M_{\rm loop}^*M_{\rm loop}=I,\quad M_{\rm loop}\ne I.
+\]
+This computes nontrivial \emph{unitary} monodromy around a fibre whose
+only root is real. It supplies an explicit example against the implication
+``any nonidentity holonomy forces a nonreal zero''. The map from the
+family to this holonomy representation is the actual root covering over
+$\mathbb C^*$, not an asserted arithmetic spectral identification.
+
+\EH\textbf{The form through the collision.}
+For real $h$, conjugation on $\mathcal A_h$ fixes $Z$. The Hermitian
+trace form $q_h(f,g)=\operatorname{Tr}_{\mathcal A_h/\mathbb C}
+(f\overline g)$ has matrix $\operatorname{diag}(2,4h)$ in $(1,Z)$.
+Indeed multiplication by $Z$ has matrix
+$\left(\begin{smallmatrix}0&2h\\1&0\end{smallmatrix}\right)$,
+so its trace is zero and the trace of $Z^2$ is $4h$.
+The signature is $(2,0)$ for $h>0$, $(1,1)$ for $h<0$, and a positive
+line plus the nilpotent radical at $h=0$. In the original coordinate
+$r=iZ/2$ with involution $r\mapsto-r$, its matrix is
+$\operatorname{diag}(2,h)$: multiplying the second basis vector by
+$i/2$ gives precisely that congruence. On point values the reflection
+$s\mapsto1-\overline s$ sends $Z$ to $\overline Z$, because
+$s=1/2+iZ/2$. Its induced conjugate-linear coordinate-algebra
+involution, given by $f^\dagger(s)=\overline{f(1-\overline s)}$,
+fixes the formal generator $Z=-2i(s-1/2)$:
+\[
+ Z^\dagger=2i(1/2-s)=-2i(s-1/2)=Z,
+ \qquad r^\dagger=-r.
+\]
+Every sign and the degeneracy at zero therefore agree in the two
+presentations. No strict positivity is asserted on the nilpotent radical.
+
+\EH\textbf{The retained split boundary of the escaping chart.}
+Let $L$ be the original bounded distributive support lattice and let
+$G_L$ denote the original split-support semiring. Let
+\[
+ B=G_L(\mathbb C[z]),\quad B'=G_L(\mathbb C[z,z^{-1}]),\quad
+ C=G_L(\mathbb C),
+\]
+where $B\to C$ is evaluation $z\mapsto e$ (supported amplitude zero).
+The chart map to the trajectory is the ring homomorphism
+\[
+ \mathbb C[x,y,w]\longrightarrow\mathbb C[z,z^{-1}],\qquad
+ (x,y,w)\longmapsto(z^{-1},-3z/2,13z^2/2),
+\]
+and applying $G_L$ gives its exact support-preserving semiring map.
+Since $B'$ is the localization of $B$ at the supported polynomial $z$,
+base change along $z\mapsto e$ proves
+\begin{equation}
+ B'\amalg_B C\ \cong\ C[e^{-1}]\ \cong\ L.\label{eq:eh-boundary}
+\end{equation}
+For clarity, the second isomorphism follows directly: $e^2=e$ makes
+the image of $e$ equal to the unit when $e$ is invertible. Then
+$ea=e$ for every supported amplitude $a$ makes all those amplitudes
+equal to the top support, while each lower support label stays itself.
+The support character $\chi_L$ witnesses that no two distinct labels
+are identified. These equalities also prove the universal property.
+The construction has thus retained a whole support spectrum at the
+escaping endpoint. It has not created an affine complex value for
+$z^{-1}$ at $z=0$: any attempted nonzero ring-valued base change
+would send the invertible supported $e$ to ring zero and force $1=0$.
+The exact receiver is $L$, with all its labels, as in
+\eqref{eq:eh-boundary}.
+
+\EH\textbf{The actual arithmetic coefficients, without a finite-packet replacement.}
+For every $u\ge0$ each summand of $\Phi$ is strictly positive, since
+\[
+ 2\pi^2n^4e^{9u}-3\pi n^2e^{5u}
+ =\pi n^2e^{5u}(2\pi n^2e^{4u}-3)>0.
+\]
+For $a=\pi e^{4u}\ge\pi$,
+$\sum_{n\ge1}n^4 e^{-an^2}\le
+e^{-a/2}\sum_{n\ge1}n^4e^{-\pi n^2/2}$.
+Hence $0<\Phi(u)\le C e^{9u}e^{-\pi e^{4u}/2}$ with a finite
+constant $C$. This bound is integrable after multiplication by
+any $u^N e^{T u^2+Ru}$, for any fixed $N,T,R\ge0$.
+Uniform domination on compact subsets of $(t,Z)\in\mathbb C^2$
+therefore proves that \eqref{eq:eh-heat} is entire jointly in $(t,Z)$,
+and permits all the following differentiations and series integrations.
+
+Define the exact positive moments
+$M_j=\int_0^\infty u^{2j}\Phi(u)\,du>0$ for $j\ge0$. The full
+Taylor expansion, with every time and spatial coefficient retained, is
+\begin{equation}
+ H_t(Z)=\sum_{m,n\ge0}
+ \frac{(-1)^n M_{m+n}}{m!(2n)!}\,t^m Z^{2n}.\label{eq:eh-moments}
+\end{equation}
+Indeed the product of the absolute exponential and cosine Taylor series
+is bounded on $|t|\le T,|Z|\le R$ by $e^{Tu^2+Ru}$, so Tonelli and
+dominated convergence prove the equality. All displayed coefficients
+are nonzero. All coefficients of odd powers of $Z$ are zero.
+The identity $\partial_tH=-\partial_Z^2H$ follows coefficient by
+coefficient, including the factorials, or directly under the integral.
+
+The actual theta reciprocal can now be compared to
+\eqref{eq:eh-reciprocal-bridge}, including its first discrepancy.
+Fix a real arithmetic time $t$ and define
+$M_j(t)=\int_0^\infty u^{2j}e^{tu^2}\Phi(u)\,du$. The same
+domination proves that each moment is finite, and strict positivity
+of the integrand on $u>0$ gives $M_j(t)>0$. Taylor expansion at
+the spatial origin gives
+\begin{equation}
+ H_t(Z)=M_0(t)-\frac{M_1(t)}2Z^2
+          +\frac{M_2(t)}{24}Z^4+O(Z^6).
+ \label{eq:eh-theta-origin-jet}
+\end{equation}
+Consequently $H_Z/Z$ is holomorphic and nonzero at $Z=0$, with
+value $-M_1(t)$. It is a holomorphic unit in a neighbourhood of
+zero. Division in that punctured neighbourhood yields the exact
+identity and Laurent expansion
+\begin{align}
+ \frac{H_{ZZ}}{H_Z}-\frac1Z
+ &=\frac{ZH_{ZZ}-H_Z}{ZH_Z}
+   =-\frac{M_2(t)}{3M_1(t)}Z+O(Z^3),
+ \label{eq:eh-theta-reciprocal-defect}\\
+ \frac{H_{ZZ}}{H_Z}
+ &=\frac1Z-\frac{M_2(t)}{3M_1(t)}Z+O(Z^3).
+ \label{eq:eh-theta-reciprocal-expansion}
+\end{align}
+For completeness, differentiating \eqref{eq:eh-theta-origin-jet}
+gives $H_Z=-M_1(t)Z+M_2(t)Z^3/6+O(Z^5)$ and
+$H_{ZZ}=-M_1(t)+M_2(t)Z^2/2+O(Z^4)$. Subtracting cancels the
+linear numerator terms and gives
+$ZH_{ZZ}-H_Z=M_2(t)Z^3/3+O(Z^5)$; its denominator is
+$ZH_Z=-M_1(t)Z^2+O(Z^4)$. This proves the coefficient and its
+negative sign in \eqref{eq:eh-theta-reciprocal-defect}.
+
+For the quadratic, $(Q_h)_{ZZ}/(Q_h)_Z=1/Z$ identically wherever
+$Z\ne0$. The theta correction just computed is nonzero because
+$M_2(t)/M_1(t)>0$. Both quotients have a simple pole of residue
+one at the spatial origin, but $H_t(0)=M_0(t)>0$ for every real
+$t$, including $t=0$. Thus this pole is at a stationary point of
+the actual theta function, and is not a zero of that function.
+The quotient is a zero velocity only after restricting to an actual
+simple zero. The displayed identities compute the exact discrepancy
+between the two meromorphic quotients without identifying their
+zero spaces or their absolute time coordinates.
+
+\EH\textbf{The exact coefficient-support defect for this particular source.}
+Represent $H_0$ initially as a series independent of $t$, with top
+support on every even $Z$ coefficient in time degree zero, and bottom
+support elsewhere. In the coefficient-labelled semiring
+$(G_L(\mathbb C))[[t,Z]]$, lift a nonzero scalar coefficient to its
+top-supported value and let the heat operators retain addition's join
+of supports. The minus heat operator produces the coefficients in
+\eqref{eq:eh-moments}. Its support is top at every $(m,2n)$ and bottom
+at every $(m,2n+1)$.
+
+Applying the plus heat operator to this series cancels the amplitude of
+every positive time degree. At $(m,2n)$ that amplitude is
+\[
+ \frac{(-1)^nM_{m+n}}{(2n)!}
+ \sum_{j=0}^m\frac{(-1)^j}{j!(m-j)!},
+\]
+which is zero for $m>0$ by $(1-1)^m=0$, and equals the original
+$(-1)^nM_n/(2n)!$ for $m=0$. For $m>0$ every summand has top
+support, so the cancelled coefficient is the supported zero $e$, not
+absence $\tau$. All odd coefficients remain absent. This is a
+calculated support memory for the actual theta source. Evaluation at
+$t=0$ retains exactly the original $H_0$ coefficients. The general
+closure and its inverse-on-fixed-support interpretation are proved
+in the accompanying semilattice chapter.
+
+\EH\textbf{Why the support memory alone supplies neither sign of RH.}
+The map evaluating a globally supported function at $(0,Z_0)$ is
+\[
+ G_L(\mathcal O(\mathbb C^2))\longrightarrow G_L(\mathbb C),
+ \qquad \widehat f\longmapsto\widehat{f(0,Z_0)}.
+\]
+It retains every lower support label. Applied to the original source,
+$\widehat H(0,Z_0)=e$ if and only if $H_0(Z_0)=0$, equivalently
+$\xi(1/2+iZ_0/2)=0$. Applying $\chi_L$ afterwards maps both supported
+zero and every supported nonzero complex value to the same top label.
+Thus that additional map cannot test which $Z_0$ is a zero. This is
+proved by its displayed formula, without discarding the retained
+support boundary.
+
+There is also an explicit test of the amount of information in
+\eqref{eq:eh-moments}'s support. Take the positive measure
+$\delta_1$ on $[0,\infty)$ in the same cosine--heat integral. It gives
+$K_t(Z)=e^t\cos Z$, all of whose even coefficients have exactly that
+same nonzero sign pattern for all $m,n$. Every zero is real for every
+real $t$, since $\cos Z=0$ is equivalent to $e^{2iZ}=-1$ and hence
+$\Im Z=0$. Alternatively $Q_t(Z)=Z^2-2t$ gives the preceding
+nontrivial collision and monodromy at a real-root time-zero fibre.
+These test families are connected to the actual family by the common
+linear integral operator $\mu\mapsto\int e^{tu^2}\cos(Zu)\,d\mu$;
+their measures and values are stated, not substituted for $\Phi(u)du$.
+They show that coefficient support, local invertibility at $e$, and
+collision monodromy, without the arithmetic moment values, do not
+force a failure of real-rootedness at zero.
+
+\EH\textbf{The arithmetic threshold and the exact outstanding calculation.}
+For the original $H_t$, the de Bruijn--Newman theorem gives real zeros
+exactly for $t\ge\Lambda$. Rodgers--Tao prove $\Lambda\ge0$
+(Theorem1.1; original TeX label \texttt{main}). Platt--Trudgian's
+\href{https://arxiv.org/abs/2004.09765}{The Riemann hypothesis is true up
+to $3\cdot10^{12}$}, section on the de Bruijn--Newman constant, original
+TeX lines135--149, proves the corollary $\Lambda\le0.2$ using
+\href{https://arxiv.org/abs/1904.12438}{D.H.J. Polymath}, Table1.
+These cited results give $\mathrm{RH}\iff\Lambda=0$.
+The calculations above produce neither a nonreal zero of the actual
+$H_0$ nor a negative value of its whole Weil form. They identify the
+exact retained endpoint and support memory and the arithmetic
+evaluation map through which a proposed counterexample must pass.
+The unital-localization receiver is $L$, and the precise local collision
+above has a real double root.
+
+\begin{figure}[p]
+\centering
+\begin{tikzpicture}[>=Stealth,node distance=1.1cm,
+ box/.style={draw,rounded corners,align=center,text width=11.9cm,inner sep=7pt}]
+\node[box] (a) {$\tau_{\rm f}<1/8$, $z=\sqrt{1-8\tau_{\rm f}}$\\
+$\gamma=(z^{-1},-3z/2,13z^2/2)$, $F\gamma=(-z^2/4,0,0)$};
+\node[box,below=of a] (b) {$r=-z/2$, $Z=-2ir=iz$, $h=4\tau_{\rm f}-1/2$\\
+$Q_h(Z)=Z^2-2h=2P_{a,0,0}(r)$};
+\node[box,below=of b] (c) {$\tau_{\rm f}\uparrow1/8$ maps to $h\uparrow0$\\
+The affine coordinate $x$ escapes; both heat roots reach $Z=0$.};
+\node[box,below=of c] (d) {$\mathcal A_0=\mathbb C[\eta]/(\eta^2)$\\
+Loop around $h=0$: $M_{\rm loop}=\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$,
+ $M_{\rm loop}^*M_{\rm loop}=I$};
+\node[box,below=of d] (e) {Split chart boundary:
+$G_L(\mathbb C[z,z^{-1}])\amalg_{G_L(\mathbb C[z])}G_L(\mathbb C)=L$\\
+All support labels remain. Complex amplitudes do not survive this receiver.};
+\draw[->] (a)--(b);\draw[->] (b)--(c);\draw[->] (c)--(d);\draw[->] (d)--(e);
+\end{tikzpicture}
+\caption{Exact endpoint maps of EH2--EH7. The final arrow means applying
+the split localization construction to the retained chart, not an
+identification of the dual-number algebra with $L$. The labels give the
+original coefficients and the complete time conversion. The heat
+coordinate convention is Rodgers--Tao's; the polynomial orbit is the
+retained programme calculation rederived here.}
+\end{figure}

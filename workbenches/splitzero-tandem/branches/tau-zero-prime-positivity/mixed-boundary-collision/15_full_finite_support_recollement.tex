@@ -1,0 +1,862 @@
+
+
+\section{The whole finite support spectrum and its relative cohomology}
+\label{sec:full-finite-support}
+The coefficient source is the original globalization note and the full lattice extension \cite{globalization,support}. The complete construction and proofs follow.
+\subsection{The original semiring and its exact topology}
+
+Let $L$ be a finite nontrivial bounded distributive lattice. Its bottom
+and top are $0_L$ and $1_L$. For a nonzero ring $R$, retain the semiring
+\[
+ \G_L(R)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+     \cup\{\widehat a=(a,1_L):a\in R\}\subset R\times L.
+ \tag{FL1}\label{FL:eq:semiring}
+\]
+The overlap is $e=z_{1_L}=\widehat0$, and the additive identity is
+$\tau=z_{0_L}\ne e$. Addition is coefficient addition and lattice
+join; multiplication is coefficient multiplication and lattice meet.
+In particular
+\[
+ z_\lambda+z_\mu=z_{\lambda\vee\mu},\quad
+ z_\lambda z_\mu=z_{\lambda\wedge\mu},\quad
+ \widehat a+z_\lambda=\widehat a,\quad
+ \widehat a z_\lambda=z_\lambda.
+ \tag{FL2}\label{FL:eq:operations}
+\]
+Every coefficient and every support label remains present.
+
+\begin{proposition}[All strata and all opens]\label{FL:prop:ordinal-spectrum}
+Put $S=\SpecLat L$ and $X=\Spec R$. The prime spectrum of
+$\G_L(R)$ is the disjoint union $Y=S\sqcup X$ with primes
+\[
+ P_{\mathfrak a}=\{z_\lambda:\lambda\in\mathfrak a\},\qquad
+ Q_{\mathfrak p}=\{z_\lambda:\lambda\in L\}
+                   \cup\{\widehat a:a\in\mathfrak p\}.
+ \tag{FL3}\label{FL:eq:all-primes}
+\]
+Here $\mathfrak a$ is a prime lattice ideal and $\mathfrak p$ a ring
+prime. The order in either stratum is its original prime-inclusion
+order, and $P_{\mathfrak a}\subsetneq Q_{\mathfrak p}$ for every pair.
+The opens of $Y$ are exactly the opens of $S$ and the sets
+$S\cup U$ with nonempty open $U\subset X$. In particular
+$D(e)=S$ and $V(e)=X$.
+\end{proposition}
+\begin{proof}
+An ideal containing a supported element $\widehat a$ contains $e$
+because $\widehat a e=e$, and then contains every $z_\lambda$ because
+$ez_\lambda=z_\lambda$. Its supported coefficients form a ring ideal:
+closure under negatives is multiplication by $\widehat{-1}$. Its
+primality is exactly primality of that ring ideal. An ideal with no
+supported element consists of zero-coefficient labels from a proper
+lattice ideal. Addition gives join closure and multiplication by
+$z_\mu$ for $\mu\le\lambda$ gives downward closure. Its primality is
+exactly the meet-prime condition. Conversely these constructions give
+ideals and verify the corresponding primality conditions, proving
+\eqref{FL:eq:all-primes}. A pure support prime omits $e$ whereas every
+arithmetic prime contains the whole zero-coefficient lattice. This
+proves every stated inclusion. Finally the basic opens are
+\[
+ D(z_\lambda)=\{P_{\mathfrak a}:\lambda\notin\mathfrak a\},\qquad
+ D(\widehat a)=S\cup D_R(a).
+ \tag{FL4}\label{FL:eq:basic-opens}
+\]
+Unions of these give exactly the asserted topology and both stratum
+identifications.
+\end{proof}
+
+For completeness, the support spectrum here is nonempty and $T_0$.
+Choose a maximal proper lattice ideal $I$, possible because $L$ is
+finite and nontrivial. If $a,b\notin I$ but $a\wedge b\in I$,
+maximality gives $u\vee a=1_L$ and $v\vee b=1_L$ for some $u,v\in I$.
+Distributivity expands $(u\vee a)\wedge(v\vee b)$ as a join of four
+elements of $I$, including $a\wedge b$, a contradiction. Thus $I$
+is prime. Distinct prime ideals differ on some label $\lambda$, and
+the basic open $D(z_\lambda)$ separates them, proving $T_0$.
+
+More generally, take any nonempty finite $T_0$ space $S$ and any
+nonempty irreducible space $X$ and give $Y=S\triangleright X$ the
+same topology. Write $j:S\hookrightarrow Y$ for the open inclusion
+and $i:X\hookrightarrow Y$ for the closed inclusion. The applications
+below use $X=\Spec\mathbb Z$. No semiring additive-module action is
+implicitly imposed on the abelian sheaves: the receiving category
+throughout is the category of abelian sheaves on this whole topology.
+
+We use the specialization convention that $s\le t$ means that $s$
+generalizes $t$. Thus opens in a finite $T_0$ space are lower sets,
+the smallest neighbourhood of $s$ is $\mathord\downarrow s$, and a
+sheaf has a restriction map from its stalk at $t$ to its stalk at $s$
+when $s\le t$. This fixes all cochain orientations below.
+
+\subsection{Sheaves, universal coupling, and derived support}
+
+Let $c_X B$ denote the constant sheaf on the irreducible space $X$:
+its value on every nonempty open is $B$ and every such restriction is
+the identity. Let $c_S B$ denote the usual constant sheaf on $S$;
+its value on an open $V\subset S$ is one copy of $B$ for each connected
+component of $V$. For an abelian sheaf $\mathcal A$ on $X$ define
+\[
+ g\mathcal A=\varinjlim_{\varnothing\ne U\subset X}\mathcal A(U).
+ \tag{FL5}\label{FL:eq:generic}
+\]
+The nonempty opens form a filtered restriction system because $X$ is
+irreducible. The functor $g$ is exact. Indeed a sheaf epimorphism lifts
+a section on some nonempty member of an open cover, which suffices for
+its generic germ, and a generic germ with zero image becomes zero on
+a smaller nonempty open, where the kernel sheaf gives exactness.
+There are adjunctions
+\[
+ g\dashv c_X,\qquad c_S\dashv\Gamma(S,-).
+ \tag{FL6}\label{FL:eq:constant-adjunctions}
+\]
+The first expresses that compatible maps $\mathcal A(U)\to B$ are
+exactly maps from their colimit; the second follows because a map from
+constant sections is determined by their global images and then
+sheafification. Both constant-sheaf functors are exact, as is seen on
+stalks. In particular $c_X$ preserves injectives, and applying it to
+an injective resolution of $B$ proves
+\[
+ R\Gamma(X,c_XB)=B[0].
+ \tag{FL7}\label{FL:eq:constant-acyclic}
+\]
+
+\begin{theorem}[Full gluing over a finite support space]
+\label{FL:thm:finite-gluing}
+An abelian sheaf on $Y$ is exactly a triple
+\[
+ \mathcal F=(\mathcal A,\mathcal B,\phi),\qquad
+ \phi:\mathcal A\longrightarrow c_X\Gamma(S,\mathcal B),
+ \tag{FL8}\label{FL:eq:triple}
+\]
+with $\mathcal A$ a sheaf on $X$ and $\mathcal B$ a sheaf on $S$.
+Its sections on $S\cup U$ are $\mathcal A(U)$ and its sections on an
+open $V\subset S$ are $\mathcal B(V)$. Restriction from $S\cup U$ to
+$V$ is $\phi_U$ followed by restriction from $S$ to $V$.
+A morphism $(a,b)$ satisfies
+$\phi'a=c_X\Gamma(S,b)\phi$. Exactness is detected on the two
+components. The elementary functors are
+\[
+\begin{array}{lll}
+ i^*\mathcal F=\mathcal A,&i_*\mathcal A=(\mathcal A,0,0),&
+ i^!\mathcal F=\ker\phi,\\
+ j^*\mathcal F=\mathcal B,&j_!\mathcal B=(0,\mathcal B,0),&
+ j_*\mathcal B=(c_X\Gamma(S,\mathcal B),\mathcal B,\mathrm{id}).
+\end{array}
+ \tag{FL9}\label{FL:eq:functors}
+\]
+Moreover the exact left adjoint of $i^*$ is
+\[
+ U_S\mathcal A=
+ (\mathcal A,c_Sg\mathcal A,\epsilon_S),
+ \tag{FL10}\label{FL:eq:universal}
+\]
+where $\epsilon_S$ sends a section to the constant support section
+with its original generic germ. This is the universal coupling to
+the entire support space.
+\end{theorem}
+\begin{proof}
+Starting with a sheaf on $Y$, set
+$\mathcal A(U)=\mathcal F(S\cup U)$ for nonempty $U$ and
+$\mathcal B=j^*\mathcal F$. Any pair of nonempty arithmetic opens
+intersects. Consequently the sheaf gluing condition for the opens
+$S\cup U_a$ is exactly that for the corresponding opens $U_a$ of $X$.
+These values therefore form a sheaf $\mathcal A$. Restriction to all
+of $S$ gives $\phi$. The mixed open $S\cup U$ is the smallest open
+of $Y$ containing $U$, so the resulting sheaf is precisely $i^*\mathcal F$.
+
+Conversely a triple gives the displayed restrictions. A cover of a
+mixed open has mixed members covering its arithmetic part. Sections
+on those members glue in $\mathcal A$; compatibility with any member
+lying wholly in $S$ is exactly its prescribed restriction from
+$\Gamma(S,\mathcal B)$. Covers lying wholly in $S$ use the sheaf
+axiom for $\mathcal B$. This proves the sheaf axiom and the inverse
+classification. The morphism equation follows from restriction to
+$S$. Kernels and cokernels are computed on the two strata: they are
+the inverse-image sheaves on $X$ and $S$, and stalkwise exactness on
+these disjoint strata is exactness on $Y$. The induced cokernel arrow
+is obtained by composing to $\Gamma(S,\coker b)$; no exactness of
+$\Gamma(S,-)$ is being assumed.
+
+The formulas for $i^*,i_*,i^!,j^*,j_!,j_*$ follow by the Hom
+adjunctions: a map from $i_*\mathcal C$ lands in $\ker\phi$, and a
+map to $j_*\mathcal D$ has its arithmetic part forced by its support
+part. The putative $j_!$ has zero sections on every mixed open. This
+is a sheaf because a cover of a mixed open has a mixed member whose
+intersection with $S$ is all of $S$, forcing any compatible support
+section to vanish. It has the required left adjunction to $j^*$.
+
+For the final adjunction, a map $U_S\mathcal C\to\mathcal F$ with
+arithmetic part $a$ has its support map uniquely determined by the
+composite $\mathcal C\xrightarrow a\mathcal A\xrightarrow\phi
+c_X\Gamma(S,\mathcal B)$: apply successively the two adjunctions in
+\eqref{FL:eq:constant-adjunctions}. Conversely that map satisfies the
+gluing equation. Thus $U_S\dashv i^*$. Exactness of $U_S$ follows
+from exactness of $g,c_S$, and the componentwise exactness already
+proved. All assertions follow without dropping a support point.
+\end{proof}
+
+The distinction from a single open point is that $\Gamma(S,-)$, and
+hence $j_*$, can have higher derived functors. They must be retained.
+We use cohomological degrees, so $B[-1]$ has $B$ in degree one.
+
+\begin{theorem}[Derived gluing including support higher cohomology]
+\label{FL:thm:derived-finite}
+For $\mathcal F=(\mathcal A,\mathcal B,\phi)$ there are natural formulas
+\[
+ Ri^!\mathcal F\simeq
+ \operatorname{Cone}\bigl(\mathcal A\longrightarrow
+          c_XR\Gamma(S,\mathcal B)\bigr)[-1],
+ \tag{FL11}\label{FL:eq:derived-closed}
+\]
+\[
+ R\Gamma(Y,\mathcal F)=R\Gamma(X,\mathcal A),\qquad
+ R\Gamma_X(Y,\mathcal F)\simeq
+ \operatorname{Cone}\bigl(R\Gamma(X,\mathcal A)
+                \longrightarrow R\Gamma(S,\mathcal B)\bigr)[-1].
+ \tag{FL12}\label{FL:eq:derived-global}
+\]
+The maps are induced by the actual restriction to $S$ in
+\eqref{FL:eq:triple}. The localization triangle is
+\[
+ i_*Ri^!\mathcal F\longrightarrow\mathcal F
+ \longrightarrow Rj_*\mathcal B\longrightarrow i_*Ri^!\mathcal F[1].
+ \tag{FL13}\label{FL:eq:localization}
+\]
+Here $R\Gamma_X(Y,-)$ denotes derived sections supported in the closed
+arithmetic stratum. The formula does not replace $R\Gamma(S,\mathcal B)$
+by its zeroth cohomology.
+\end{theorem}
+\begin{proof}
+The functors $i^*$ and $j^*$ are exact. Their right adjoints $i_*$ and
+$j_*$ preserve injectives. Also $i^*$ preserves injectives because
+its left adjoint $U_S$ is exact, and $j^*$ preserves injectives because
+$j_!$ is exact.
+If $\mathcal I$ is injective on $Y$, write
+$\mathcal B_I=j^*\mathcal I$. Extend the identity support map
+$j_!\mathcal B_I\to\mathcal I$ along the monomorphism
+$j_!\mathcal B_I\to j_*\mathcal B_I$. Injectivity supplies a map
+$j_*\mathcal B_I\to\mathcal I$ right inverse to the restriction
+$\mathcal I\to j_*\mathcal B_I$: on $S$ its composite is the identity,
+and on $X$ the gluing equation forces the identity on
+$c_X\Gamma(S,\mathcal B_I)$. Thus
+\[
+ 0\to i_*i^!\mathcal I\to\mathcal I\to j_*j^*\mathcal I\to0
+\]
+is split exact. Apply this to an injective resolution of $\mathcal F$.
+Its support restriction is an injective resolution of $\mathcal B$;
+the corresponding $j_*$ complex computes $Rj_*\mathcal B$.
+The kernel complex computes $i_*Ri^!\mathcal F$, proving
+\eqref{FL:eq:localization}. Restriction to $X$ turns the $j_*$ complex
+into $c_X\Gamma(S,j^*\mathcal I^\bullet)$, which is exactly
+$c_XR\Gamma(S,\mathcal B)$. This proves
+\eqref{FL:eq:derived-closed}. Global sections on $Y$ are the sections
+of $\mathcal A$ on $X$, and $i^*$ preserves injectives, proving the
+first formula in \eqref{FL:eq:derived-global}. Applying global sections
+to \eqref{FL:eq:derived-closed} and using
+\eqref{FL:eq:constant-acyclic} proves the second. At degree zero the
+kernel consists precisely of sections restricting to zero on the
+open stratum, which verifies the asserted support interpretation.
+\end{proof}
+
+\subsection{Finite cochains with their complete orientation}
+
+For the next calculation, identify a finite $T_0$ space with its poset
+under the convention above. A sheaf $\mathcal B$ is equivalently the
+diagram of stalks $B_s=\mathcal B(\mathord\downarrow s)$ and restriction
+maps $r_{t,s}:B_t\to B_s$ for $s\le t$. Indeed a section on a lower
+open is a compatible family of these germs, since the smallest
+neighbourhoods cover it, and sheaf gluing recovers exactly such families.
+
+\begin{theorem}[The full finite cochain resolution]\label{FL:thm:finite-cochains}
+For a sheaf of rational vector spaces on a finite $T_0$ space $S$,
+$R\Gamma(S,\mathcal B)$ is represented by
+\[
+ C^n(S,\mathcal B)=\prod_{s_0<\cdots<s_n}B_{s_0},
+ \tag{FL14}\label{FL:eq:cochains}
+\]
+with differential
+\[
+ (dc)_{s_0<\cdots<s_{n+1}}
+ =r_{s_1,s_0}c_{s_1<\cdots<s_{n+1}}
+   +\sum_{a=1}^{n+1}(-1)^a
+       c_{s_0<\cdots<\widehat{s_a}<\cdots<s_{n+1}}.
+ \tag{FL15}\label{FL:eq:cochain-differential}
+\]
+For constant coefficients $\RQ$ every restriction is the identity,
+so the degree-zero differential is
+$(db)_{s<t}=b_t-b_s$. No chain with a repeated point is included.
+\end{theorem}
+\begin{proof}
+Computing with rational sheaves gives the same derived sections as
+computing with their underlying abelian sheaves. Indeed the forgetful
+functor is right adjoint to sheafwise rationalization
+$\RQ\otimes_{\mathbb Z}-$; rationalization is exact because it is
+localization of abelian groups. Thus an injective rational sheaf
+remains injective after forgetting its rational scalar action.
+For $t\in S$ and a rational vector space $M$, let $I_t(M)$ be the
+sheaf with value $M$ on an open containing $t$ and zero otherwise.
+This is direct image from the one-point subspace. Its stalk at $q$
+is $M$ if $t\le q$ and zero otherwise. It is right adjoint to the
+exact stalk functor at $t$. Since every rational vector space is
+injective, $I_t(M)$ is an injective sheaf.
+
+Define the sheaf
+\[
+ \mathcal C^n=\prod_{s_0<\cdots<s_n}I_{s_n}(B_{s_0}).
+\]
+Its value on a lower open $V$ is the product over all chains contained
+in $V$, since having $s_n\in V$ forces every preceding point into
+$V$. The formula \eqref{FL:eq:cochain-differential} therefore defines a
+sheaf differential. Expanding $d^2$ cancels every twice-deleted face
+with the opposite order of deletion; the two terms using a restriction
+cancel because $r_{s_2,s_0}=r_{s_1,s_0}r_{s_2,s_1}$.
+The augmentation $\mathcal B\to\mathcal C^0$ is the family of germs.
+
+At a stalk $q$, the augmented complex is that on
+$\mathord\downarrow q$, which has maximal point $q$.
+Its contracting map from degree zero to the augmentation is evaluation
+at $q$. For $n\ge1$, its contracting map from degree $n$ to degree
+$n-1$ is
+\[
+ (hc)_{s_0<\cdots<s_{n-1}}=
+ \begin{cases}
+ (-1)^n c_{s_0<\cdots<s_{n-1}<q},&s_{n-1}<q,\\
+ 0,&s_{n-1}=q.
+ \end{cases}
+\]
+The identity $dh+hd=1$ follows by pairing the faces omitting one of
+$s_0,\ldots,s_{n-1}$, which cancel, leaving only the face omitting
+$q$. In degree zero the additional term is the restriction of the
+value at $q$, so that identity includes the augmentation. This proves
+stalkwise exactness of the augmented complex. The sheaves
+$\mathcal C^n$ are finite products of injectives and vanish above the
+maximum strict-chain length. They give an injective resolution, whose
+global sections are precisely \eqref{FL:eq:cochains}. This proves the
+claimed derived computation with all its signs.
+\end{proof}
+
+For an order-preserving map $f:S'\to S$, the induced pullback on
+constant-coefficient cochains is
+\[
+ (f^*c)_{t_0<\cdots<t_n}=
+ \begin{cases}
+ c_{f(t_0)<\cdots<f(t_n)},&f(t_0),\ldots,f(t_n)\text{ are distinct},\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \tag{FL16}\label{FL:eq:cochain-map}
+\]
+At degree zero it is the usual coordinate pullback. This commutes
+with $d$. If the image chain has no repetitions it is immediate from
+\eqref{FL:eq:cochain-differential}. If it has a repetition, terms deleting
+either member of an adjacent equal pair have the same value and
+opposite signs; all other terms still have a repetition and are zero.
+This proves the identity in that case as well. The construction is
+functorial and gives the map induced by restriction on the injective
+cochain resolutions and their augmentations. More explicitly, at a
+point $t\in S'$ it pulls cochains on $\mathord\downarrow f(t)$ back
+to cochains on $\mathord\downarrow t$, by the displayed formula.
+These maps commute with restriction to smaller minimal opens, so
+define a sheaf cochain map from the inverse-image resolution to the
+resolution on $S'$. Its augmentation is the identity on constant
+coefficients. This identifies its global cochain map with the actual
+derived pullback. Equivalently it is the
+map on the cochains of strict chains after removing repeated chains;
+the cancellation just proved verifies that removal directly.
+
+\subsection{The universal arithmetic sheaf for every finite support}
+
+Take $X=\Spec\mathbb Z$, so its generic stalk is $\RQ$. Define the
+actual sheaf on the whole ordinal-sum space
+\[
+ \mathcal U_S=U_S\mathcal O_X
+   =(\mathcal O_X,\RQ_S,\text{generic constant restriction}).
+ \tag{FL17}\label{FL:eq:arithmetic-object}
+\]
+The morphism sends each original regular integer-valued rational
+section to its same rational generic value at every support point.
+In particular it is diagonal on disconnected support components.
+
+We will use $R\Gamma(X,\mathcal O_X)=\mathbb Z[0]$, including its
+vanishing in higher degrees. Here is a direct verification in this
+case. On a nonempty open $U=D(N)$, regular functions are the rational
+numbers whose denominator has prime factors only among those dividing
+$N$. The quotient sheaf $\PP_X=\RQ_X/\mathcal O_X$ has
+\[
+ \PP_X(U)=\bigoplus_{p\in U\text{ closed}}\RQ/\mathbb Z_{(p)}.
+ \tag{FL18}\label{FL:eq:principal-parts}
+\]
+The rational section map onto this direct sum is surjective: represent
+each of finitely many prescribed $p$ classes by $a_p/p^{n_p}$ and
+sum them; each other summand is integral at that prime. Its kernel
+is precisely $\mathcal O_X(U)$. Formula \eqref{FL:eq:principal-parts}
+is a sheaf, since opens of this Noetherian space are quasi-compact
+and compatible finite-support sections glue with finite support.
+Restrictions discard the removed primes and are surjective, so
+$\PP_X$ is flasque. The rational constant sheaf is also flasque.
+Their exact sequence is therefore an acyclic resolution of
+$\mathcal O_X$. The surjectivity just proved at $U=X$ makes its
+global-sections complex have only $\mathbb Z$ in degree zero, proving
+the claimed calculation. The acyclicity of flasque sheaves follows
+from the usual resolution argument: local lifts modulo a flasque
+kernel extend and glue by successive extension over open sets, so a
+flasque resolution has an exact global-sections complex in positive
+degrees. This argument applies to both displayed sheaves.
+
+\begin{theorem}[A complete relative complex for the full support lattice]
+\label{FL:thm:whole-relative-complex}
+Put $C^\bullet=C^\bullet(S,\RQ)$ with the exact differential
+\eqref{FL:eq:cochain-differential}. The relative complex of
+$\mathcal U_S$ is represented by
+\[
+ K_S^0=\mathbb Z,\qquad K_S^n=C^{n-1}\ (n\ge1),\qquad
+ d^0(z)=(z)_{s\in S},\quad d^n=d_C^{n-1}\ (n\ge1).
+ \tag{FL19}\label{FL:eq:relative-complex}
+\]
+These signs identify it with the mapping fibre in
+\eqref{FL:eq:derived-global}. Explicitly use fibre coordinates
+$(a,c)\in A^n\oplus C^{n-1}$ with differential
+$(a,c)\mapsto(d_Aa,f(a)-d_Cc)$; this is a model of
+$\operatorname{Cone}(f)[-1]$. In support degree $n-1$ multiply this
+coordinate by $(-1)^{n-1}$ to obtain the displayed positive
+support differential. Let $c$ be the number
+of connected components of $S$. Then
+\[
+ H_X^0(Y,\mathcal U_S)=0,\qquad
+ H_X^1(Y,\mathcal U_S)=\RQ^c/\Delta\mathbb Z,
+ \qquad
+ H_X^n(Y,\mathcal U_S)=H^{n-1}(S,\RQ)\quad(n\ge2).
+ \tag{FL20}\label{FL:eq:relative-groups}
+\]
+On the arithmetic stratum, the entire derived object is
+\[
+ Ri^!\mathcal U_S\simeq
+ [\mathcal O_X\longrightarrow c_XC^0\longrightarrow
+ c_XC^1\longrightarrow\cdots],
+ \tag{FL21}\label{FL:eq:relative-sheaf-complex}
+\]
+with $\mathcal O_X$ in degree zero, the displayed generic constant
+map in degree zero, and the same support differential thereafter.
+In particular
+\[
+ R^1i^!\mathcal U_S=(\RQ^c)_X/\Delta\mathcal O_X,
+ \qquad R^ni^!\mathcal U_S=c_XH^{n-1}(S,\RQ)\quad(n\ge2).
+ \tag{FL22}\label{FL:eq:relative-cohomology-sheaves}
+\]
+\end{theorem}
+\begin{proof}
+Theorem~\ref{FL:thm:finite-cochains} computes the actual support derived
+sections, and \eqref{FL:eq:arithmetic-object} sends a rational number
+to its constant zero-cochain. Substitute these maps and
+$R\Gamma(X,\mathcal O_X)=\mathbb Z[0]$ into
+Theorem~\ref{FL:thm:derived-finite}. The indicated sign change gives
+exactly \eqref{FL:eq:relative-complex} and
+\eqref{FL:eq:relative-sheaf-complex}; it does not change their maps on
+degree-zero constants.
+The kernel of $d_C^0$ consists of functions equal along every
+comparable pair, hence constant on each connected component of the
+comparability graph. Those graph components are exactly the connected
+components of the finite space: a union of graph components is open
+and closed, whereas a partition into two open-and-closed sets cannot
+separate a comparable pair. Thus that kernel is $\RQ^c$.
+The constant integer map is injective since $S$ is nonempty. Taking
+cohomology now gives \eqref{FL:eq:relative-groups}. Stalkwise the original
+local domain embeds into its generic field, and the same calculation
+of the kernel and higher differentials gives
+\eqref{FL:eq:relative-cohomology-sheaves}. This proves the derived
+formulas and all connecting maps from the actual sheaf data.
+\end{proof}
+
+There is a canonical diagonal inclusion of the one-point relative
+complex
+\[
+ [\mathbb Z\hookrightarrow\RQ]\longrightarrow K_S^\bullet,
+ \tag{FL23}\label{FL:eq:diagonal-inclusion}
+\]
+which is the identity on $\mathbb Z$, the all-points constant map
+on $\RQ$, and zero in higher degrees. At the sheaf level this is
+$[\mathcal O_X\hookrightarrow\RQ_X]\to Ri^!\mathcal U_S$.
+Its quotient is the shifted reduced support complex
+\[
+ \widetilde C^0=C^0/\Delta\RQ,\qquad
+ \widetilde C^n=C^n\ (n\ge1),
+ \quad\text{placed starting in relative degree one}.
+ \tag{FL24}\label{FL:eq:reduced-support-complex}
+\]
+Thus the original principal parts and the complete remaining support
+complex are linked by an explicit short exact sequence of complexes.
+For any specified support point $s$, evaluation of $C^0$ at $s$,
+zero in positive support degrees, and the identity on $\mathbb Z$
+give a retraction of \eqref{FL:eq:diagonal-inclusion}. It is a cochain
+map because the target has no positive support terms. This splits
+the complexes once that point is chosen. The diagonal inclusion
+itself requires no chosen point.
+
+\subsection{Every Boolean branch and every deletion map}
+
+Let $I$ be a nonempty finite set of cardinality $r$ and take
+$L=\mathcal P(I)=\mathbb B^r$. Its prime lattice ideals are
+$\mathfrak a_b=\{A\subset I:b\notin A\}$ for $b\in I$.
+Indeed a meet-prime ideal must omit some atom; it cannot omit two
+distinct atoms because their intersection is empty, and any ideal
+omitting the atom $\{b\}$ must contain every other atom. Hence these
+are all primes. They are incomparable, so $S_I$ is discrete.
+
+\begin{theorem}[The complete Boolean relative object]
+\label{FL:thm:boolean-relative}
+For $Y_I=S_I\triangleright\Spec\mathbb Z$ the universal arithmetic
+coupling has
+\[
+ Ri^!\mathcal U_I=[\mathcal O_X\xrightarrow\Delta\RQ_X^I],
+ \qquad H_X^1(Y_I,\mathcal U_I)=\RQ^I/\Delta\mathbb Z,
+ \tag{FL25}\label{FL:eq:boolean-relative}
+\]
+and all other relative cohomology groups vanish. Its exact canonical
+sequence is
+\[
+ 0\longrightarrow\RQ/\mathbb Z
+ \xrightarrow{\ d\ }\RQ^I/\Delta\mathbb Z
+ \xrightarrow{\ q\ }\RQ^I/\Delta\RQ\longrightarrow0,
+ \quad d(a+\mathbb Z)=[(a)_{b\in I}],\quad q([v])=v+\Delta\RQ.
+ \tag{FL26}\label{FL:eq:boolean-sequence}
+\]
+For a chosen branch $b\in I$, the branch map is
+$\beta_b([v])=v_b+\mathbb Z$ and a splitting of the sequence is
+\[
+ v+\Delta\RQ\longmapsto[v-v_b\mathbf1_I].
+ \tag{FL27}\label{FL:eq:branch-splitting}
+\]
+In particular the explicit branch coordinates are
+\[
+ \RQ^I/\Delta\mathbb Z\xrightarrow{\sim}
+ \RQ/\mathbb Z\oplus\RQ^{I\setminus\{b\}},\qquad
+ [v]\longmapsto(v_b+\mathbb Z,(v_a-v_b)_{a\ne b}).
+ \tag{FL28}\label{FL:eq:branch-coordinates}
+\]
+\end{theorem}
+\begin{proof}
+For discrete $S_I$, the support complex is $\RQ^I$ in degree zero
+and zero elsewhere. Theorem~\ref{FL:thm:whole-relative-complex} gives
+\eqref{FL:eq:boolean-relative}. In \eqref{FL:eq:boolean-sequence}, the
+first map is injective because a diagonal vector is an integer
+diagonal exactly when its coefficient is an integer. The kernel of
+the second consists exactly of rational diagonal vectors modulo
+integer diagonals; the second map is surjective. This proves the
+sequence. Changing a representative $v$ by a rational diagonal
+changes $v_b$ by the same rational, so
+$v-v_b\mathbf1_I$ is unchanged. Its class projects to
+$v+\Delta\RQ$, proving the splitting. Coordinate evaluation is well
+defined modulo integers and is a left inverse of $d$. Finally an
+inverse to \eqref{FL:eq:branch-coordinates} sends
+$(a+\mathbb Z,(u_c)_{c\ne b})$ to the class of the vector with entry
+$a$ at $b$ and entry $a+u_c$ at $c$; changing $a$ by an integer changes
+the vector by an integer diagonal. These checks prove every formula.
+\end{proof}
+
+\begin{proposition}[Actual branch, deletion, and duplication morphisms]
+\label{FL:prop:deletions}
+For a map of nonempty finite sets $f:J\to I$, inverse image of subsets
+is a bounded lattice homomorphism $\mathcal P(I)\to\mathcal P(J)$.
+It induces the original semiring map
+$\G_{\mathcal P(I)}(\mathbb Z)\to\G_{\mathcal P(J)}(\mathbb Z)$,
+with unchanged supported coefficients, and the corresponding map of
+full spectra is
+\[
+ f_Y:Y_J\to Y_I,\qquad f_Y|_{S_J}=f,\quad f_Y|_X=\mathrm{id}_X.
+ \tag{FL29}\label{FL:eq:branch-topology-map}
+\]
+The pullback of universal arithmetic sheaves is the universal sheaf
+on $Y_J$. Its induced relative map is exactly
+\[
+ \RQ^I/\Delta\mathbb Z\longrightarrow\RQ^J/\Delta\mathbb Z,
+ \qquad [v]\longmapsto[(v_{f(b)})_{b\in J}].
+ \tag{FL30}\label{FL:eq:branch-cohomology-map}
+\]
+For a nonempty subset $J\subset I$ this is the deletion projection,
+with the exact sequence
+\[
+ 0\longrightarrow\RQ^{I\setminus J}
+ \longrightarrow\RQ^I/\Delta\mathbb Z
+ \longrightarrow\RQ^J/\Delta\mathbb Z\longrightarrow0.
+ \tag{FL31}\label{FL:eq:deletion-kernel}
+\]
+The first map inserts zeros on $J$. For arbitrary $f$, the kernel
+is $\RQ^{I\setminus f(J)}$ by the same insertion, and the cokernel is
+$\RQ^J/f^*\RQ^I$; it consists of the differences between duplicated
+coordinates in each fibre of $f$.
+\end{proposition}
+\begin{proof}
+The preimage operation preserves bottom, top, intersections, and
+unions, so \eqref{FL:eq:operations} verifies the semiring map. The
+inverse image of the lattice prime at $b\in J$ is the lattice prime
+at $f(b)$; arithmetic primes contract to themselves. This proves
+\eqref{FL:eq:branch-topology-map} on the entire spectrum, not only on
+one stratum. A mixed open pulls back to the mixed open with the same
+arithmetic part; the constant rational support data pulls back by
+the same coordinate map. Thus it identifies the universal sheaves
+and gives the map of relative complexes that is the identity on
+$\mathbb Z$ and $f^*$ on degree one. This proves
+\eqref{FL:eq:branch-cohomology-map}.
+
+For inclusion of $J$, a kernel element restricts to one common integer
+on $J$. Subtract its integer diagonal to give zero on $J$, uniquely
+because $J$ is nonempty; all remaining coordinates are free rationals.
+Surjectivity is extension of a vector by zeros outside $J$. This proves
+\eqref{FL:eq:deletion-kernel}. The same reasoning uses $f(J)$ in the
+general case. Since $\Delta\mathbb Z\subset f^*\RQ^I$, taking the
+quotient of the target gives the stated cokernel. More explicitly it
+is $\bigoplus_{a\in f(J)}\RQ^{f^{-1}(a)}/\Delta\RQ$.
+\end{proof}
+
+Deleting all support points is a different endpoint: the remaining
+space is $X$, its relative complex is $\mathbb Z[0]$, and the map of
+complexes from \eqref{FL:eq:boolean-relative} is the identity in degree
+zero and zero in degree one. Its relative degree-one target is zero.
+The kernel formula \eqref{FL:eq:deletion-kernel} was stated only for
+nonempty $J$ and is not extended incorrectly to this endpoint.
+
+\subsection{A finite lattice whose support has a cycle}
+
+Let $P$ have six elements
+\[
+ v_1,v_2,v_3,e_{12},e_{23},e_{31},
+\]
+and exactly the strict relations
+\[
+ v_1<e_{12},\ v_2<e_{12},\ v_2<e_{23},\ v_3<e_{23},\
+ v_3<e_{31},\ v_1<e_{31}.
+ \tag{FL32}\label{FL:eq:triangle-relations}
+\]
+These are the vertices and edges of the boundary of a triangle ordered
+by face inclusion; there is no filled triangular face. Set
+$L=\Down(P)$, with union as join and intersection as meet.
+
+\begin{proposition}[The eighteen-element lattice and its exact spectrum]
+\label{FL:prop:triangle-lattice}
+The lattice $L$ has exactly eighteen elements. For any finite poset
+$P$, the map
+\[
+ p\longmapsto\mathfrak a_p=\{D\in\Down(P):p\notin D\}
+ \tag{FL33}\label{FL:eq:poset-primes}
+\]
+is a homeomorphism $P\to\SpecLat\Down(P)$ when $P$ has its lower-set
+topology. It preserves the stated specialization order: $p\le q$
+if and only if $\mathfrak a_p\subseteq\mathfrak a_q$.
+\end{proposition}
+\begin{proof}
+A downset in the triangle poset first chooses a subset $V$ of its
+three vertices and then an arbitrary subset of those edges whose
+two endpoints lie in $V$. For $|V|=0,1,2,3$, the numbers of choices
+are respectively $1,3,3\cdot2,2^3$. Their sum is
+$1+3+6+8=18$.
+
+For a general finite $P$, each displayed $\mathfrak a_p$ is a proper
+lattice ideal and is prime: membership in a union is downward-ideal
+closure, and if $p$ belongs to both downsets it belongs to their
+intersection. To show exhaustion, let $h:\Down(P)\to\{0,1\}$ be the
+indicator of the complement of a prime ideal. It preserves union
+and intersection by the ideal and prime conditions. Every nonempty
+downset is the union of the principal downsets of its members.
+Choose a minimal $p$ for which $h(\mathord\downarrow p)=1$; one exists
+because $h(P)=1$. If $h(\mathord\downarrow q)=1$, then
+$h(\mathord\downarrow p\cap\mathord\downarrow q)=1$. Decomposing that
+intersection into principal downsets yields some $r\le p,q$ with
+$h(\mathord\downarrow r)=1$. Minimality forces $r=p$, so $p\le q$.
+It follows that for every downset $D$, $h(D)=1$ exactly when $p\in D$.
+This proves exhaustion and uniqueness. The basic spectral open at a
+downset $D$ is exactly $\{\mathfrak a_p:p\in D\}$, which proves the
+homeomorphism. Finally if $p\le q$, absence of $p$ from a downset
+implies absence of $q$, proving the ideal inclusion. Conversely if
+$p\not\le q$, the downset $\mathord\downarrow q$ belongs to
+$\mathfrak a_p$ but not $\mathfrak a_q$, disproving inclusion.
+\end{proof}
+
+\begin{theorem}[Every triangle support cochain and every relative group]
+\label{FL:thm:triangle-cohomology}
+For $S=\SpecLat L$ with the lattice of
+Proposition~\ref{FL:prop:triangle-lattice}, the full constant-rational
+support complex is
+\[
+ C^0=\RQ^6\xrightarrow{D}C^1=\RQ^6,
+ \qquad C^n=0\quad(n\ge2),
+ \tag{FL34}\label{FL:eq:triangle-complex}
+\]
+where the degree-zero coordinates are
+$(a_1,a_2,a_3,b_{12},b_{23},b_{31})$, the degree-one coordinates are
+in exactly the order of \eqref{FL:eq:triangle-relations}, and
+\[
+ D(a,b)=(b_{12}-a_1,b_{12}-a_2,b_{23}-a_2,
+                b_{23}-a_3,b_{31}-a_3,b_{31}-a_1).
+ \tag{FL35}\label{FL:eq:triangle-differential}
+\]
+Its cohomology is $H^0(S,\RQ)=\RQ$ by constant sections and
+$H^1(S,\RQ)=\RQ$ by the quotient map
+\[
+ \omega(c)=c_1-c_2+c_3-c_4+c_5-c_6.
+ \tag{FL36}\label{FL:eq:cycle-functional}
+\]
+The actual relative complex over $\Spec\mathbb Z$ is
+\[
+ \mathbb Z\xrightarrow{z\mapsto(z,z,z,z,z,z)}\RQ^6
+ \xrightarrow{D}\RQ^6
+ \quad\text{in degrees }0,1,2.
+ \tag{FL37}\label{FL:eq:triangle-relative-complex}
+\]
+It has precisely
+\[
+ H_X^1(Y,\mathcal U_S)=\RQ/\mathbb Z,\qquad
+ H_X^2(Y,\mathcal U_S)=\RQ,
+ \qquad H_X^n(Y,\mathcal U_S)=0\ (n\ne1,2).
+ \tag{FL38}\label{FL:eq:triangle-relative-groups}
+\]
+At the sheaf level $R^1i^!\mathcal U_S=\PP_X$ and
+$R^2i^!\mathcal U_S=\RQ_X$, with no other cohomology sheaves.
+\end{theorem}
+\begin{proof}
+The six points and the six relations in \eqref{FL:eq:triangle-relations}
+are all strict chains of lengths zero and one. There is no strict
+chain of length two. Theorem~\ref{FL:thm:finite-cochains} therefore gives
+exactly \eqref{FL:eq:triangle-complex} and
+\eqref{FL:eq:triangle-differential}. Its kernel forces equal values at
+every incident vertex and edge, hence forces all six values equal.
+Substitution gives $\omega D=0$.
+
+Conversely let $c\in\RQ^6$ satisfy $\omega(c)=0$. Put
+\[
+\begin{aligned}
+ a_1&=0,& b_{12}&=c_1,& a_2&=c_1-c_2,\\
+ b_{23}&=c_1-c_2+c_3,&a_3&=c_1-c_2+c_3-c_4,\\
+ b_{31}&=c_1-c_2+c_3-c_4+c_5.
+\end{aligned}
+ \tag{FL39}\label{FL:eq:triangle-preimage}
+\]
+The first five equations of $D(a,b)=c$ hold by direct substitution;
+the sixth holds because $\omega(c)=0$. Thus $\operatorname{im}D$
+is exactly $\ker\omega$. The functional $\omega$ is surjective,
+as is seen on $(1,0,0,0,0,0)$, proving the support cohomology and
+fixing its generator and orientation.
+
+Insert this complete support complex into
+Theorem~\ref{FL:thm:whole-relative-complex}. The resulting relative
+differentials are precisely \eqref{FL:eq:triangle-relative-complex}.
+Its first cohomology consists of a rational constant six-vector
+modulo an integer constant six-vector, identified by $q\mapsto q+\mathbb Z$.
+Its second cohomology is the quotient by $D$, identified by
+\eqref{FL:eq:cycle-functional}. Its degree-zero kernel is zero, and
+there are no further terms. The sheaf-level calculation has the
+same support matrix, with the initial diagonal
+$\mathcal O_X\hookrightarrow\RQ_X$; its first quotient is
+$\RQ_X/\mathcal O_X=\PP_X$, and its second is $\RQ_X$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=stealth,scale=1.25]
+\node (v1) at (0,2) {$v_1$};
+\node (e12) at (1.732,1) {$e_{12}$};
+\node (v2) at (1.732,-1) {$v_2$};
+\node (e23) at (0,-2) {$e_{23}$};
+\node (v3) at (-1.732,-1) {$v_3$};
+\node (e31) at (-1.732,1) {$e_{31}$};
+\draw[->] (v1)--node[above right] {$c_1$}(e12);
+\draw[->] (v2)--node[right] {$c_2$}(e12);
+\draw[->] (v2)--node[below right] {$c_3$}(e23);
+\draw[->] (v3)--node[below left] {$c_4$}(e23);
+\draw[->] (v3)--node[left] {$c_5$}(e31);
+\draw[->] (v1)--node[above left] {$c_6$}(e31);
+\end{tikzpicture}
+\caption{The complete support specialization diagram for the
+eighteen-element lattice. Arrows run from a generalizing vertex prime
+to a specializing edge prime, so opens are lower sets. The six arrow
+coordinates are exactly those of (FL35). The oriented cycle functional
+is $c_1-c_2+c_3-c_4+c_5-c_6$; there is no two-simplex filling it.
+Theorem~\ref{FL:thm:triangle-cohomology} proves that this contributes
+the additional relative group $\RQ$ in degree two. The drawing is an
+order diagram and asserts no metric on the prime space.}
+\end{figure}
+
+\subsection{Maps retaining or deleting the actual cycle}
+
+\begin{proposition}[Support maps and their relative chain maps]
+\label{FL:prop:support-morphisms}
+For an order-preserving map $f:S'\to S$, the map
+$f_Y:S'\triangleright X\to S\triangleright X$ that is $f$ on support
+and the identity on $X$ is continuous. Its inverse image takes
+$\mathcal U_S$ to $\mathcal U_{S'}$. On relative complexes its map is
+the identity on $\mathbb Z$ and the cochain pullback
+\eqref{FL:eq:cochain-map} in all support degrees. If the support spaces
+are spectra of downset lattices, this is the actual spectral map
+induced by the lattice homomorphism $D\mapsto f^{-1}(D)$ and the
+coefficient-preserving map of the original semirings.
+\end{proposition}
+\begin{proof}
+The preimage of a support open is a support open because $f$ is
+order preserving. The preimage of $S\cup U$ is $S'\cup U$, proving
+continuity on every open. The arithmetic sheaf is unchanged and
+the inverse image of a constant rational sheaf on support is the
+constant rational sheaf. The generic-value map stays constant with
+the same value, proving the sheaf identification. Its maps on the
+relative resolutions are exactly those displayed, by the natural
+augmentations, restriction maps, and the cochain computation in
+Theorem~\ref{FL:thm:finite-cochains}. The cochain identity was checked
+including collapsed chains after \eqref{FL:eq:cochain-map}.
+Finally $f^{-1}$ preserves unions and intersections and both bounds.
+The preimage of the prime at $s'$, applied to a downset $D$, tests
+$s'\notin f^{-1}D$, which is exactly $f(s')\notin D$. Thus its
+spectral map is $f$, while supported coefficients are unchanged.
+This proves the last assertion on both strata.
+\end{proof}
+
+For the triangle, delete the maximal element $e_{31}$ to obtain the
+lower open subposet
+\[
+ T=\{v_1,v_2,v_3,e_{12},e_{23}\}.
+\]
+Its support cochains are $\RQ^5\to\RQ^4$, with the first four
+coordinates of \eqref{FL:eq:triangle-differential}. The explicit
+preimage formulas for these four coordinates are the first five
+assigned quantities in \eqref{FL:eq:triangle-preimage}; hence that
+differential is surjective and its kernel is the rational constants.
+The relative groups for $T$ are therefore $\RQ/\mathbb Z$ in degree
+one and zero in degree two. The actual inclusion map
+$T\triangleright X\to S\triangleright X$ pulls back the relative
+complex by deleting $b_{31}$ from degree one and $c_5,c_6$ from
+degree two. It induces the identity on the principal-parts
+$\RQ/\mathbb Z$ and the zero map from the original cycle $\RQ$.
+There is no claim that $T\triangleright X$ is an open subset of the
+whole space: it is the indicated continuous subspace embedding,
+and the maps are the proved pullbacks of pairs.
+
+The map $S\to\{*\}$ gives a map from the triangle full space to the
+one-point full space. Its relative pullback is the canonical diagonal
+inclusion \eqref{FL:eq:diagonal-inclusion}. Choosing any point
+$*\to S$ gives the evaluation retraction. Thus the ordinary
+principal-parts contribution is retained with exact section and
+retraction maps, while the new degree-two support cycle is kept in
+the kernel of each branch evaluation. These statements specify the
+full morphisms, not merely a comparison of dimensions.
+
+\subsection{Scope and proof provenance}
+
+The original coefficient/support definition and its complete prime
+classification were read in the existing programme sources
+\texttt{01\_spectra.tex}, the theorem
+\texttt{thm:rebuilt-full-support}, and
+\texttt{08\_full\_stalks.tex}, formulas (TL1)--(TL5). They are
+reproved in Proposition~\ref{FL:prop:ordinal-spectrum} to fix the topology
+and prevent a change of support object. The earlier independent
+\path{split_prime_recollement_pairing.tex}, formulas (RP3)--(RP12)
+and (RP21)--(RP25), treated a single extra point and its principal
+parts. The present proofs retain the entire finite support and the
+higher derived support sections, and do not infer them from that
+one-point calculation.
+
+The extra groups in \eqref{FL:eq:relative-groups} and
+\eqref{FL:eq:triangle-relative-groups} are actual derived invariants of
+the original full-support prime topology and the specified universal
+arithmetic coupling. Their receiving category is the abelian-sheaf
+category of that topology. They have not been given an incompatible
+additive-group semiring-module action. The proofs construct no
+Frobenius endomorphism and assign no weight to the new cycle; such
+an endomorphism and its trace would have to be computed from actual
+maps on the displayed complexes. No Riemann-hypothesis implication
+is asserted here.
+

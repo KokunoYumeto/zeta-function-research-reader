@@ -1,0 +1,648 @@
+\section{The full ideal arithmetic, divisor coordinates, and norms}
+\label{sec:sz-divisors}
+
+Let \(K\) be a number field, let \(A=\mathcal O_K\), and retain
+\[
+ S=G(A)=A\sqcup\{\tau\},\qquad e=0_A,\qquad
+ T=\{\tau\},\qquad E=\{\tau,e\}.
+\]
+Thus the zero ideal of the semiring is \(T\), whereas \(E=eS\) is a
+nonzero prime ideal. The supported-zero prime theorem is prior work:
+\cite[\texttt{thm:zero-prime-not-irr}]{globalization} states it explicitly.
+The programme's originator attributes its original derivation to
+Gemini 2.5 Pro. The present section calculates the complete fractional
+ideal structure and the exact class quotients using that theorem.
+Ideal products mean finite sums of elementwise products; an empty
+sum is \(\tau\).
+The integral ideal classification and Dedekind zeta identity are also
+retained prior results of
+\cite[\texttt{thm:OK-ideals-spectrum}, \texttt{thm:Dedekind-zeta}]{globalization}.
+The arguments below give their full fractional-ideal setting and
+the comparison for the exact displayed class relation.
+
+\subsection{Cancellation and the localization retaining both zeros}
+
+\begin{proposition}[The exact regular elements]\label{prop:sz-regular}
+Multiplication \(x\mapsto ax\) on \(S\) is injective exactly for
+\(a\in A\setminus\{0_A\}\). The units of \(S\) are \(A^\times\).
+The only element whose addition map is injective is \(\tau\).
+Nevertheless every \(a\ne\tau\), including \(e\), satisfies
+\[
+ ax=\tau\ \Longrightarrow\ x=\tau .
+\]
+Thus absence of a nontrivial product equal to \(\tau\) is a weaker
+condition here than multiplicative cancellation.
+\end{proposition}
+\begin{proof}
+For supported nonzero \(a\), a supported product cannot equal an
+absent product, and supported equality cancels in the domain \(A\).
+Multiplication by \(e\) identifies \(1\) and \(e\); multiplication
+by \(\tau\) is constant. A product is \(1\) exactly when its factors
+are inverse elements of \(A\), proving the unit assertion.
+For supported \(a\), \(a+\tau=a=a+e\), whereas addition by \(\tau\)
+is the identity. Finally a product equals \(\tau\) exactly when one
+factor equals \(\tau\).
+\end{proof}
+
+Call injective multiplication scalars \emph{regular}. Their localization is
+\begin{equation}\label{eq:sz-total-regular}
+ Q_{\rm reg}(S)=(A\setminus\{0_A\})^{-1}S=G(K).
+\end{equation}
+Indeed \(\tau/d\) maps to \(\tau\) and supported \(a/d\) to the
+corresponding field fraction. The localization relation identifies
+supported fractions precisely by equality in \(K\), and cannot identify
+one with \(\tau\). The units of \(G(K)\) are \(K^\times\).
+Localization at all of \(S\setminus\{\tau\}=A\) instead inverts \(e\)
+and yields \(\mathbb B\), as in
+\cite[\texttt{thm:frac-collapse}]{globalization}. Every fractional
+ideal below uses exactly \eqref{eq:sz-total-regular}.
+
+\subsection{The number-field ideal calculation used in the comparison}
+
+\begin{lemma}[Integral lattice and local valuation rings]\label{lem:sz-dedekind}
+The ring \(A\) is free abelian of rank \(n=[K:\mathbb Q]\),
+is Noetherian and integrally closed, and every nonzero prime
+\(\mathfrak p\) is maximal with finite residue field.
+For each such \(\mathfrak p\), \(A_{\mathfrak p}\) is a discrete
+valuation ring. Its valuation \(v_{\mathfrak p}:K^\times\to\mathbb Z\)
+has \(v_{\mathfrak p}(\pi_{\mathfrak p})=1\) for a generator of its
+maximal ideal.
+\end{lemma}
+\begin{proof}
+Choose a \(\mathbb Q\)-basis \(\alpha_1,\ldots,\alpha_n\) of \(K\)
+of algebraic integers by scaling any basis by suitable nonzero integers.
+The trace matrix
+\(B=(\operatorname{Tr}_{K/\mathbb Q}(\alpha_i\alpha_j))\)
+has integer entries and nonzero determinant. To check nondegeneracy,
+choose a primitive element \(\theta\) of the separable extension.
+The matrix of its \(n\) distinct embeddings on
+\(1,\theta,\ldots,\theta^{n-1}\) is an invertible Vandermonde matrix;
+the trace matrix is its transpose times itself. Change of basis
+preserves nondegeneracy.
+For \(x\in A\), each \(\operatorname{Tr}(x\alpha_j)\) is integral,
+being rational and a sum of algebraic integers. Thus if
+\(x=\sum_i c_i\alpha_i\), then
+\(c_i\in(\det B)^{-1}\mathbb Z\). Consequently
+\[
+ \sum_i\mathbb Z\alpha_i\subseteq A
+ \subseteq(\det B)^{-1}\sum_i\mathbb Z\alpha_i .
+\]
+It follows that \(A\) is free of rank \(n\). Each ideal is a subgroup
+of this lattice, hence has finitely many abelian generators, which
+also generate it as an \(A\)-module. This proves Noetherianity.
+
+If \(x\in K\) is integral over \(A\), adjoin to \(\mathbb Z\) the
+finitely many coefficients of its monic equation and then \(x\).
+The resulting ring is a finitely generated \(\mathbb Z\)-module:
+powers of each successive integral generator reduce using its monic
+equation. Multiplication by \(x\), applied to a finite set of module
+generators, gives a matrix; the determinant of \(xI-C\) annihilates
+that module and hence its element \(1\). This is a monic integer
+equation for \(x\), proving \(x\in A\).
+For \(0\ne a\in A\), the nonzero constant term of its monic minimal
+polynomial belongs to \(aA\). Every nonzero ideal therefore contains
+a nonzero integer \(d\), and its quotient is a quotient of the finite
+group \(A/dA\). A finite domain is a field. Hence every nonzero prime
+is maximal with finite residue field.
+
+Fix \(\mathfrak p\ne0\), and write \(B_{\mathfrak p}=A_{\mathfrak p}\)
+and \(\mathfrak m=\mathfrak p A_{\mathfrak p}\).
+This is a Noetherian local domain with only primes \(0,\mathfrak m\).
+It is integrally closed: given an integral equation for \(x\) over
+\(A_{\mathfrak p}\), choose \(s\notin\mathfrak p\) clearing every
+coefficient. Substituting \(y=sx\) gives a monic equation over \(A\),
+since its \(j\)-th coefficient is \(s^j\) times the old one. Thus
+\(sx\in A\) and \(x\in A_{\mathfrak p}\).
+
+For \(0\ne t\in\mathfrak m\),
+\(\sqrt{tB_{\mathfrak p}}=\mathfrak m\). Finite generation implies
+\(\mathfrak m^r\subseteq tB_{\mathfrak p}\) for some \(r\): a power
+of each generator lies in \(tB_{\mathfrak p}\), and a sufficiently
+long product includes one of those powers. Choose the least \(r\).
+If \(r=1\), then \(\mathfrak m=tB_{\mathfrak p}\). Otherwise choose
+\(y\in\mathfrak m^{r-1}\setminus tB_{\mathfrak p}\) and set \(z=y/t\).
+Then \(z\notin B_{\mathfrak p}\) and \(z\mathfrak m\subseteq B_{\mathfrak p}\).
+If \(z\mathfrak m\subseteq\mathfrak m\), express multiplication by
+\(z\) on finitely many generators of the nonzero ideal \(\mathfrak m\).
+The determinant of \(zI-C\) annihilates them. Cancellation of a
+nonzero generator in the field makes this determinant zero, forcing
+\(z\) integral over \(B_{\mathfrak p}\), a contradiction.
+Thus the ideal \(z\mathfrak m\) contains a unit and equals
+\(B_{\mathfrak p}\). Some \(\pi\in\mathfrak m\) satisfies \(z\pi=1\),
+and \(u=\pi(zu)\) for every \(u\in\mathfrak m\); therefore
+\(\mathfrak m=\pi B_{\mathfrak p}\).
+
+A nonzero \(b\in B_{\mathfrak p}\) cannot lie in every
+\(\pi^j B_{\mathfrak p}\). Otherwise the ascending sequence
+\((b/\pi^j)\) of ideals stabilizes, forcing \(\pi\) to be a unit
+after cancellation of \(b\). Thus \(b=\pi^j u\) for a unique
+\(j\ge0\) and a unit \(u\). Taking the least exponent occurring in
+a nonzero ideal proves that the ideal is a power of \(\mathfrak m\).
+Extending exponents to fractions gives the claimed discrete valuation.
+\end{proof}
+
+\begin{lemma}[Fractional factorization and norm]\label{lem:sz-factorization}
+Let \(\mathcal I(A)\) be the nonzero fractional ideals in \(K\).
+Every such ideal is invertible and has a unique expression
+\begin{equation}\label{eq:sz-ordinary-factor}
+ J=\prod_{\mathfrak p\ne0}\mathfrak p^{v_{\mathfrak p}(J)},
+ \qquad v_{\mathfrak p}(J)\in\mathbb Z,
+\end{equation}
+with finite support. Its ideal operations satisfy
+\begin{align*}
+ J\subseteq H&\iff v_{\mathfrak p}(J)\ge v_{\mathfrak p}(H)
+                  \quad\text{for every }\mathfrak p,\\
+ v_{\mathfrak p}(J+H)&=\min(v_{\mathfrak p}(J),v_{\mathfrak p}(H)),\\
+ v_{\mathfrak p}(J\cap H)&=\max(v_{\mathfrak p}(J),v_{\mathfrak p}(H)),\\
+ v_{\mathfrak p}(JH)&=v_{\mathfrak p}(J)+v_{\mathfrak p}(H).
+\end{align*}
+For integral \(J\ne0\),
+\begin{equation}\label{eq:sz-ordinary-norm}
+ |A/J|=\prod_{\mathfrak p}|A/\mathfrak p|^{v_{\mathfrak p}(J)}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Every bounded \(A\)-submodule of \(K\) is finitely generated, since
+a common denominator embeds it in the Noetherian module \(A\).
+Localizing \(J\) gives a power of the maximal ideal in each discrete
+valuation ring. For integral \(J\), its exponents are nonnegative
+and vanish outside the finitely many primes containing \(J\);
+there are finitely many because \(A/J\) is finite. Clearing a
+denominator proves finite support for fractional \(J\).
+
+Fractional ideals are determined by these localizations. If \(x\notin J\),
+the proper ideal \((J:x)=\{a\in A:ax\in J\}\) lies in a maximal
+\(\mathfrak p\). Membership \(x\in J_{\mathfrak p}\) would give an
+\(s\notin\mathfrak p\) with \(sx\in J\), a contradiction.
+Define \(\mathfrak p^{-1}=\{x\in K:x\mathfrak p\subseteq A\}\).
+For \(0\ne a\in\mathfrak p\), this module lies in \(a^{-1}A\), so it
+is fractional. At any maximal \(\mathfrak q\), its localization equals
+the inverse of \(\mathfrak p A_{\mathfrak q}\): to prove the reverse
+inclusion, clear denominators outside \(\mathfrak q\) for finitely
+many generators of \(\mathfrak p\).
+At \(\mathfrak q\ne\mathfrak p\), \(\mathfrak p A_{\mathfrak q}=A_{\mathfrak q}\);
+at \(\mathfrak p\) it is the principal maximal ideal. Thus
+\((\mathfrak p\mathfrak p^{-1})_{\mathfrak q}=A_{\mathfrak q}\)
+for every \(\mathfrak q\). The equality test proves
+\(\mathfrak p\mathfrak p^{-1}=A\).
+The product in \eqref{eq:sz-ordinary-factor} now has the same
+localizations as \(J\), which proves existence and uniqueness.
+The same local test with powers in each valuation ring proves the
+formulas for inclusion, sum, intersection, and product.
+
+Put \(q_{\mathfrak p}=|A/\mathfrak p|\). Each module
+\(\mathfrak p^j/\mathfrak p^{j+1}\) is killed by \(\mathfrak p\), so
+localizing it at \(\mathfrak p\) changes nothing: every scalar
+outside \(\mathfrak p\) already acts invertibly. Its localization
+is \(\pi^j A_{\mathfrak p}/\pi^{j+1}A_{\mathfrak p}\), one-dimensional
+over \(A/\mathfrak p\). Hence \(|A/\mathfrak p^r|=q_{\mathfrak p}^r\).
+Powers of distinct maximal ideals are comaximal, because a maximal
+ideal containing their sum would contain both radicals. For comaximal
+ideals, writing \(1=u+v\) with \(u,v\) in the two ideals proves the
+surjectivity of the Chinese remainder map and that intersection
+equals product. Induction gives
+\[
+ A/\prod_{\mathfrak p}\mathfrak p^{r_{\mathfrak p}}
+ \simeq\prod_{\mathfrak p}A/\mathfrak p^{r_{\mathfrak p}}.
+\]
+Cardinalities prove \eqref{eq:sz-ordinary-norm}.
+\end{proof}
+
+\subsection{Every fractional ideal, with both zero ideals retained}
+
+\begin{definition}
+A fractional \(S\)-ideal in \(G(K)\) is an \(S\)-subsemimodule
+\(F\subseteq G(K)\) with \(dF\subseteq S\) for some
+\(d\in A\setminus\{0_A\}\). It contains \(\tau\) and is closed under
+addition and multiplication by \(S\). No condition removes \(E\)
+or \(T\). Let \(\mathcal F(S)\) be all such ideals and put
+\(I_J=J\cup\{\tau\}\) for \(J\in\mathcal I(A)\).
+A fractional ideal is regular when it contains a regular element.
+\end{definition}
+
+\begin{theorem}[The entire fractional ideal structure]\label{thm:sz-all-fractional}
+Every fractional \(S\)-ideal is finitely generated, and
+\begin{equation}\label{eq:sz-all-fractional}
+ \mathcal F(S)=\{T,E\}\sqcup\{I_J:J\in\mathcal I(A)\}.
+\end{equation}
+Conversely, every finitely generated \(S\)-subsemimodule of \(G(K)\)
+is a fractional ideal in this list.
+Its regular ideals are exactly the \(I_J\), and its operations are
+\begin{align}
+ I_JI_H&=I_{JH},&
+ I_J+I_H&=I_{J+H},&
+ I_J\cap I_H&=I_{J\cap H}, \label{eq:sz-ideal-operations}\\
+ TF&=T,& T+F&=F,&T\cap F&=T, \label{eq:sz-absent-ideal}\\
+ EF&=E\ (F\ne T),&
+ E+F&=F\ (F\ne T),&
+ E\cap F&=E\ (F\ne T). \label{eq:sz-supported-ideal}
+\end{align}
+Thus \(E^r=E\) for every \(r\ge1\). The unit group of the
+multiplicative monoid \(\mathcal F(S)\) consists exactly of the
+regular ideals, with \(I_J^{-1}=I_{J^{-1}}\).
+Multiplication by \(F\) on \(\mathcal F(S)\) is injective exactly
+when \(F\) is regular.
+\end{theorem}
+\begin{proof}
+If \(F\cap K=\varnothing\), then \(F=T\). Otherwise multiplication
+by \(e\) puts \(e\) in \(F\), and multiplication by \(-1\) supplies
+additive inverses on \(F\cap K\). Thus \(J=F\cap K\) is an \(A\)-submodule.
+A common denominator makes \(dJ\) an ideal of \(A\). If \(J=0\),
+then \(F=E\); otherwise \(J\in\mathcal I(A)\), so \(F=I_J\).
+Conversely every listed set has the required closure and denominator.
+The ideals \(T,E\) are generated by \(\tau,e\). If \(a_1,\ldots,a_r\)
+generate \(J\) over \(A\), their \(S\)-span is \(I_J\):
+supported sums give the \(A\)-linear combinations and the absent
+sum gives \(\tau\). Hence all fractional ideals are finitely generated.
+Conversely finitely many elements of \(G(K)\) have finitely many
+supported field denominators. Their product is a nonzero common
+denominator for their entire \(S\)-span.
+
+Every supported product from \(I_J,I_H\) lies in \(JH\), and every
+element of \(JH\) is a finite sum of such products. This proves the
+product formula, including supported zero. Sum and intersection
+follow from their subsets. The relations involving \(T\) follow
+from its being the specified zero subsemimodule. Every \(F\ne T\)
+contains \(E\), and multiplication by \(e\) sends its supported
+elements to \(e\); hence \eqref{eq:sz-supported-ideal}.
+By Lemma~\ref{lem:sz-factorization}, \(I_JI_{J^{-1}}=S\).
+Neither \(E\) nor \(T\) is invertible, because its products stay in
+\(E\). Invertible ideals act injectively; \(E\) identifies \(E\)
+and \(S\) under multiplication, and \(T\) acts constantly.
+\end{proof}
+
+The entire ideal monoid therefore has an exact divisor presentation.
+Set
+\[
+ D_K=\bigoplus_{\mathfrak p\ne0}\mathbb Z[\mathfrak p],
+ \qquad \widehat D_K=D_K\sqcup\{\epsilon,\bot\},
+\]
+with extended addition
+\[
+ \epsilon+D=\epsilon,\quad \epsilon+\epsilon=\epsilon,\quad
+ \bot+x=\bot\quad(x\in\widehat D_K).
+\]
+Unique ideal factorization and the theorem give a monoid isomorphism
+\begin{equation}\label{eq:sz-full-divisor-monoid}
+ \mathcal F(S)\xrightarrow{\sim}\widehat D_K,\qquad
+ I_J\mapsto\sum_{\mathfrak p}v_{\mathfrak p}(J)[\mathfrak p],
+ \quad E\mapsto\epsilon,\quad T\mapsto\bot .
+\end{equation}
+Integral ideals correspond to effective divisors together with
+\(\epsilon,\bot\). The inclusion order keeps the strict levels
+\[
+ T\subsetneq E\subsetneq I_J,\qquad
+ I_J\subseteq I_H\iff v_{\mathfrak p}(J)\ge v_{\mathfrak p}(H)
+ \text{ for all }\mathfrak p.
+\]
+Every homomorphism from the full monoid to an abelian group is
+trivial: \(EI_J=E\) forces each \(I_J\) to the identity, and
+idempotence forces \(E,T\) there too. The object
+\(\widehat D_K\) retains all three kinds of ideals.
+
+\begin{proposition}[Extended coordinates and support]\label{prop:sz-extended-values}
+Define
+\[
+ \widetilde v_{\mathfrak p}(I_J)=v_{\mathfrak p}(J),\qquad
+ \widetilde v_{\mathfrak p}(E)=\widetilde v_{\mathfrak p}(T)=+\infty .
+\]
+With \(m+\infty=\infty\), these coordinates send product to addition,
+sum to minimum, and intersection to maximum. Together with
+\(\sigma(T)=0\), \(\sigma(F)=1\) for \(F\ne T\), they determine
+every fractional ideal. Also \(\sigma(FH)=\sigma(F)\sigma(H)\).
+\end{proposition}
+\begin{proof}
+For regular ideals this is Lemma~\ref{lem:sz-factorization};
+the two other cases follow from
+\eqref{eq:sz-absent-ideal}--\eqref{eq:sz-supported-ideal}.
+Regular ideals have integer exponent tuples with finite support.
+Only \(E,T\) have the all-infinite tuple, and \(\sigma\) distinguishes
+them. A product of supported ideals contains \(e\), whereas a
+product with \(T\) is \(T\).
+\end{proof}
+
+\subsection{The original class relation and its exact comparison}
+
+Write \(\mathrm{Cl}(A)=\mathcal I(A)/\{cA:c\in K^\times\}\) for
+the quotient of the fractional ideal group by its principal subgroup.
+The source \cite[definition before \texttt{thm:class-semigroup}]
+{globalization} defines, on nonzero semiring ideals,
+\begin{equation}\label{eq:sz-original-class}
+ F\sim_{\rm src}H\quad\Longleftrightarrow\quad
+ \exists a,b\in S\setminus\{\tau\}:\ aF=bH .
+\end{equation}
+Its displayed scalar set is \(A\), so it contains \(e\).
+We retain this relation exactly as written.
+
+\begin{theorem}[Both class quotients and their map]\label{thm:sz-class-comparison}
+On nonzero integral ideals, or on \(\mathcal F(S)\setminus\{T\}\),
+the source quotient is the one-element monoid.
+Define a distinct relation with regular scalars:
+\begin{equation}\label{eq:sz-regular-class}
+ F\sim_{\rm reg}H\quad\Longleftrightarrow\quad
+ \exists a,b\in A\setminus\{0_A\}:\ aF=bH .
+\end{equation}
+On either of those two domains its quotient is
+\begin{equation}\label{eq:sz-regular-class-monoid}
+ \mathrm{Cl}_{\rm reg}^{+}(S)\simeq\mathrm{Cl}(A)\sqcup\{\epsilon\},
+ \qquad \epsilon c=\epsilon,\quad\epsilon^2=\epsilon.
+\end{equation}
+The isomorphism is \([I_J]_{\rm reg}\mapsto[J]\),
+\([E]_{\rm reg}\mapsto\epsilon\).
+On regular ideals alone it is a group isomorphism
+\(\mathrm{Cl}_{\rm reg}(S)\simeq\mathrm{Cl}(A)\).
+The identity on ideals induces the exact comparison
+\begin{equation}\label{eq:sz-class-forget}
+ q:\mathrm{Cl}(A)\sqcup\{\epsilon\}
+ \longrightarrow\mathrm{Cl}_{\rm src}(S)=\{*\},\qquad
+ q([J])=q(\epsilon)=* .
+\end{equation}
+If \(T\) is included, the regular quotient adds a second absorbing
+level \(\bot\), while the source quotient has exactly two classes,
+represented by \(T,E\), with the Boolean multiplicative table.
+\end{theorem}
+\begin{proof}
+For every \(F\ne T\), \(eF=E\). Choosing \(a=b=e\) in
+\eqref{eq:sz-original-class} relates every two such ideals,
+including \(E,S\), and proves the first assertion.
+For regular scalars, \(aI_J=bI_H\) is equivalent to \(aJ=bH\),
+or \(J=(b/a)H\) in \(K\). Conversely every multiplier in \(K^\times\)
+has this form with \(a,b\in A\setminus\{0\}\). Thus on regular
+ideals the relation is exactly ordinary ideal-class equivalence.
+Every fractional ideal scales to an integral one, so integral ideals
+have the same class set. Regular scalars fix \(E\) and cannot send
+a regular ideal to \(E\). Its class is therefore a distinct
+absorber, and all other classes form the ordinary ideal class group.
+The implication \(\sim_{\rm reg}\Rightarrow\sim_{\rm src}\) gives
+the map \(q\) with the displayed values.
+Finally every supported scalar sends \(T\) to \(T\) and a supported
+ideal to a supported ideal, so \(T\) is a separate class in both
+relations. The product table follows from \(TF=T\).
+The explicit descriptions also verify transitivity and compatibility
+with multiplication on each stated domain.
+\end{proof}
+
+Thus the regular-scalar class group is an exact comparison object
+within the complete ideal calculation, and \(q\) records the precise
+quotient imposed by the original scalars. The comparison construction
+in \cite[\texttt{cor:dedekind-preservation}]{support} must likewise
+specify its regular ideals and regular principal scalars; it is not
+used to rename \eqref{eq:sz-original-class}.
+
+\subsection{Codimension and the divisor map}
+
+\begin{theorem}[The complete codimension filtration]\label{thm:sz-codimension}
+Put \(X=\operatorname{Spec}S\), \(Y=V(E)\).
+Every point, height, closure, stalk, and residue object is in this table;
+residue objects use the Bourne congruence of the stalk's maximal ideal.
+\[
+\begin{array}{c|c|c|c|c}
+\text{point}&\text{height in }X&\text{closure}&\mathcal O_{X,x}&\kappa(x)\\ \hline
+\eta=T&0&X&\mathbb B&\mathbb B\\
+\xi=E&1&Y&G(K)&K\\
+x_{\mathfrak p}=I_{\mathfrak p}&2&\{x_{\mathfrak p}\}
+ &G(A_{\mathfrak p})&A/\mathfrak p
+\end{array}
+\]
+The reflection induces a closed immersion
+\(i:\operatorname{Spec}A\to X\) with image \(Y\), sending the ordinary
+generic point to \(E\) and increasing every codimension by one.
+Precisely,
+\begin{equation}\label{eq:sz-codim-filtration}
+ X^{(0)}=\{\eta\},\quad X^{(1)}=\{E\},\quad
+ X^{(2)}=\{x_{\mathfrak p}:\mathfrak p\ne0\},\quad
+ X^{(r)}=\varnothing\ (r>2).
+\end{equation}
+Hence \(X^{\ge0}=X\), \(X^{\ge1}=Y\),
+\(X^{\ge2}=\{x_{\mathfrak p}\}\), and \(X^{\ge3}=\varnothing\).
+The subset \(X^{\ge2}\) is dense in \(Y\) and is not closed in \(X\).
+\end{theorem}
+\begin{proof}
+Every ideal containing a supported element contains \(e\), and its
+supported intersection is a ring ideal. Thus the integral ideals
+are \(T\) and \(J\cup\{\tau\}\) for integral ring ideals \(J\), including
+\(0\). Product testing shows that \(T\) is prime and
+\(J\cup\{\tau\}\) is prime exactly when \(J\) is prime.
+By Lemma~\ref{lem:sz-dedekind}, all maximal strict chains are
+\(T\subsetneq E\subsetneq I_{\mathfrak p}\).
+Closures consist of primes containing the given prime. This proves
+the heights, closures, and filtration.
+
+At \(T\), localization inverts \(e\); its idempotence forces \(e=1\),
+and then \(a=ea=e=1\) for every supported \(a\). The support map to
+\(\mathbb B\) distinguishes these from \(\tau\), proving the first
+stalk. At \(E\), localization is \eqref{eq:sz-total-regular}.
+At \(I_{\mathfrak p}\), the same fraction calculation with
+denominators \(A\setminus\mathfrak p\) gives \(G(A_{\mathfrak p})\).
+
+For any ring \(R\) and ideal \(J\), the Bourne relation of
+\(J\cup\{\tau\}\subseteq G(R)\) is
+\(x\sim y\) when \(x+u=y+v\) for some \(u,v\in J\cup\{\tau\}\).
+It implies equality of amplitudes in \(R/J\).
+Conversely adding \(e\) makes any absent element supported; if the
+two amplitudes differ by an element of \(J\), add that difference
+to one side. This proves that the quotient is exactly \(R/J\).
+For \(T\), the relation is equality. Applying these facts at the
+three stalks proves the residues in the table.
+Contraction along reflection sends \(J\) to \(J\cup\{\tau\}\);
+the formula \(D_X(a)\cap Y=D_A(a)\) proves its asserted topology.
+
+For every rational prime \(\ell\), the nonzero ring \(A/\ell A\)
+has \(\ell^n\) elements and a maximal ideal. Its inverse image is
+a prime above \(\ell\); distinct rational primes give distinct
+maximal ideals of \(A\). A fixed nonzero \(a\) belongs to only
+finitely many such ideals, since \(A/aA\) is finite.
+Thus every nonempty \(D_A(a)\) contains a closed point. The closed
+points are dense in \(Y\) but omit \(E\), so their set is not closed.
+\end{proof}
+
+\begin{proposition}[Arithmetic divisor sequence]\label{prop:sz-divisor-sequence}
+The free cycle groups on points of codimension \(r\) are
+\[
+ Z^0(X)=\mathbb Z[\eta],\qquad Z^1(X)=\mathbb Z[E],\qquad
+ Z^2(X)=\bigoplus_{\mathfrak p\ne0}\mathbb Z[x_{\mathfrak p}].
+\]
+The inclusion \(i\) identifies \(Z^0(Y)\) with \(Z^1(X)\), and
+\(Z^1(Y)\) with \(Z^2(X)\), point by point.
+There is an exact sequence
+\begin{equation}\label{eq:sz-divisor-sequence}
+ 1\longrightarrow A^\times\longrightarrow K^\times
+ \xrightarrow{\operatorname{div}_{\rm ar}}Z^2(X)
+ \longrightarrow\mathrm{Cl}_{\rm reg}(S)\longrightarrow0,\qquad
+ \operatorname{div}_{\rm ar}(a)=
+ \sum_{\mathfrak p}v_{\mathfrak p}(a)[x_{\mathfrak p}].
+\end{equation}
+A regular fractional ideal \(I_J\) has the unique divisor with
+coefficients \(v_{\mathfrak p}(J)\).
+Its extension at an arithmetic point is the fractional ideal
+\[
+ I_JG(A_{\mathfrak p})
+ =\pi_{\mathfrak p}^{\,v_{\mathfrak p}(J)}A_{\mathfrak p}
+   \cup\{\tau\}\subseteq G(K).
+\]
+At \(E\), it localizes to \(G(K)\), while \(E\) itself localizes to
+the proper ideal \(\{\tau,e\}\). At \(T\), every nonzero ideal
+localizes to the whole stalk \(\mathbb B\).
+\end{proposition}
+\begin{proof}
+The cycle groups and \(i\)'s maps follow from the point classification.
+Unique factorization identifies regular fractional ideals with
+\(Z^2(X)\), carrying \(I_{aA}=aS\) to the displayed principal divisor.
+The quotient by these principal ideals is exactly
+\(\mathrm{Cl}_{\rm reg}(S)\). If every \(v_{\mathfrak p}(a)\) is zero,
+then \(aA=A\), equivalent to \(a\in A^\times\), proving exactness.
+At \(I_{\mathfrak p}\), adjoining \(\tau\) to the ordinary equality
+\(JA_{\mathfrak p}=\pi_{\mathfrak p}^{v_{\mathfrak p}(J)}A_{\mathfrak p}\)
+gives the displayed local ideal.
+Every nonzero fractional ring ideal localizes to \(K\) at its
+generic point, whereas \(E\) keeps its two elements at the stalk
+\(G(K)\). At \(T\), a supported ideal contains \(e\), which becomes
+\(1\), so its extension is the whole stalk.
+\end{proof}
+
+The point \(E\) is therefore a codimension-one prime with an
+idempotent principal ideal. Any group-valued homomorphism on ideals
+sends \(E\) to the group identity because \(E^2=E\); the full divisor
+object \(\widehat D_K\) retains it as \(\epsilon\).
+A regular \(a\) is a unit of \(G(K)\), and direct prime membership gives
+\[
+ V_X(a)=\{x_{\mathfrak p}:v_{\mathfrak p}(a)>0\}\quad(0\ne a\in A),
+ \qquad V_X(e)=Y .
+\]
+Thus the vanishing set of a regular principal nonunit ideal lies
+in codimension two, whereas the codimension-one ideal \(E\) has
+the nonregular generator \(e\).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,every node/.style={font=\small}]
+\node (eta) at (0,3.2) {\(\eta=T\), height \(0\)};
+\node (e) at (0,1.7) {\(\xi=E=(e)\), height \(1\)};
+\node (p) at (-2.0,0) {\(x_{\mathfrak p}\)};
+\node (q) at (2.0,0) {\(x_{\mathfrak q}\)};
+\draw[->] (eta)--(e);
+\draw[->] (e)--(p);
+\draw[->] (e)--(q);
+\node at (0,-.65) {height \(2\) in \(X\); height \(1\) in \(Y\)};
+\node[anchor=west,align=left,text width=5.1cm] at (3.1,3.2)
+ {\(\mathcal O_{X,\eta}=\mathbb B\)\\\(\eta\) is not closed};
+\node[anchor=west,align=left,text width=5.1cm] at (3.1,1.7)
+ {\(\mathcal O_{X,E}=G(K)\), \(\kappa(E)=K\)\\\(E^2=E\), \(N(E)=\infty\)};
+\node[anchor=west,align=left,text width=5.1cm] at (3.1,0)
+ {\(N(I_{\mathfrak p})=|A/\mathfrak p|\)\\arithmetic divisor coordinates};
+\end{tikzpicture}
+\caption{Complete types of specialization in
+\(X=\operatorname{Spec}G(\mathcal O_K)\). Arrows mean strict
+inclusion of primes. The bottom points represent arbitrary distinct
+finite primes, not a two-point spectrum.
+Theorems~\ref{thm:sz-codimension} and \ref{thm:sz-norms} prove heights
+and norms; Proposition~\ref{prop:sz-divisor-sequence} proves the
+divisor map. The supported-zero prime is the prior result
+\cite[\texttt{thm:zero-prime-not-irr}]{globalization}.}
+\label{fig:sz-divisors}
+\end{figure}
+
+\subsection{Finite norms and the ideal zeta function}
+
+\begin{theorem}[All integral ideal norms and closed points]\label{thm:sz-norms}
+For an integral \(F\subseteq S\), let \(N_{\rm B}(F)\) be the
+cardinality of its Bourne-congruence quotient. Then
+\begin{equation}\label{eq:sz-all-norms}
+ N_{\rm B}(T)=\infty,\qquad N_{\rm B}(E)=\infty,\qquad
+ N_{\rm B}(I_J)=|A/J|\quad(0\ne J\subseteq A).
+\end{equation}
+The finite-norm ideals are exactly the regular integral ideals.
+The closed points are exactly \(I_{\mathfrak p}\) for nonzero
+primes \(\mathfrak p\), all with finite norm \(|A/\mathfrak p|\).
+The point \(E\) is not closed in \(X\), has infinite quotient \(A\),
+and infinite residue field \(K\). It is closed in its local spectrum
+\(\operatorname{Spec}G(K)\), still with infinite residue field.
+The generic point \(T\) has residue object \(\mathbb B\) of size
+two, but is not closed and has infinite global ideal quotient.
+\end{theorem}
+\begin{proof}
+The Bourne relation of \(T\) is equality, giving quotient \(S\).
+The quotient calculation in Theorem~\ref{thm:sz-codimension}
+gives \(S/E=A\) and \(S/I_J=A/J\). The first two quotients are
+infinite, and nonzero ring ideals have finite quotient by
+Lemma~\ref{lem:sz-dedekind}. Closed points are maximal primes,
+as already classified. The spectrum of \(G(K)\) consists of
+\(T\subsetneq E\), so \(E\) is closed there, with residue \(K\).
+The remaining assertions follow from the stalk and closure table.
+\end{proof}
+
+\begin{proposition}[Norm homomorphism and Euler product]\label{prop:sz-zeta}
+On regular fractional ideals the norm is
+\[
+ N(I_J)=\prod_{\mathfrak p}|A/\mathfrak p|^{v_{\mathfrak p}(J)}
+ \in\mathbb Q_{>0}.
+\]
+It is multiplicative, with
+\(N(cS)=|\operatorname{Norm}_{K/\mathbb Q}(c)|\) for \(c\in K^\times\).
+The sum over all finite Bourne-norm ideals is
+\begin{equation}\label{eq:sz-zeta}
+ \zeta_{S,{\rm B}}(s)
+ =\sum_{N_{\rm B}(F)<\infty}N_{\rm B}(F)^{-s}
+ =\sum_{0\ne J\subseteq A}|A/J|^{-s}
+ =\prod_{\mathfrak p\ne0}(1-|A/\mathfrak p|^{-s})^{-1}
+ =\zeta_K(s)\quad(\operatorname{Re}s>1).
+\end{equation}
+Equation~\eqref{eq:sz-all-norms} accounts explicitly for both
+zero ideals in this summation rule.
+\end{proposition}
+\begin{proof}
+The ideal norm formula is Lemma~\ref{lem:sz-factorization}.
+For \(0\ne c\in A\), multiplication by \(c\) on a \(\mathbb Z\)-basis
+of \(A\) is a full-rank integer matrix with image \(cA\).
+Its determinant's absolute value is the lattice index \([A:cA]\):
+integer elementary operations put the matrix in Smith diagonal form,
+where each quantity is the product of the positive diagonal entries.
+The rational determinant is the field norm by definition.
+For \(c=a/b\in K^\times\), multiplicativity gives the quotient
+of these two identities.
+
+Theorem~\ref{thm:sz-norms} proves the termwise equality of the sums.
+Unique ideal factorization gives the Euler product as a sum of
+nonnegative terms for real \(s>1\). To prove convergence, let
+\(n=[K:\mathbb Q]\). Primes above a rational prime \(\ell\) have
+residue sizes \(\ell^{f_{\mathfrak p}}\) with \(f_{\mathfrak p}\ge1\).
+There are at most \(n\) such primes: the Chinese remainder surjection
+\[
+ A/\ell A\longrightarrow\prod_{\mathfrak p\mid\ell}A/\mathfrak p
+\]
+gives \(\sum_{\mathfrak p\mid\ell}f_{\mathfrak p}\le n\).
+Every nonzero prime lies over a rational prime, since its residue
+field is finite. Hence for real \(\sigma>1\),
+\[
+ \prod_{\mathfrak p}(1-|A/\mathfrak p|^{-\sigma})^{-1}
+ \le\prod_{\ell\ {\rm prime}}(1-\ell^{-\sigma})^{-n}
+ =\left(\sum_{m\ge1}m^{-\sigma}\right)^n<\infty.
+\]
+The last sum converges by the integral test; its product expression
+follows from integer unique factorization and increasing finite
+products. Thus all rearrangements are valid for complex \(s\)
+with real part greater than one. The final ideal sum is the defining
+Dedekind zeta series, proving \eqref{eq:sz-zeta}.
+\end{proof}
+
+The quotient retaining a separate absent element has its own exact
+comparison map. For \(0\ne J\subseteq A\), set
+\[
+ x\equiv_J^{\rm sp}y
+ \iff (x=y=\tau)\ \text{or}\ (x,y\in A,\ x-y\in J).
+\]
+Its quotient is \(G(A/J)\), of size \(|A/J|+1\), with zero class
+\(T\), rather than \(I_J\). The natural morphism
+\[
+ G(A/J)\longrightarrow A/J,\qquad
+ \tau\mapsto0,\quad[a]\mapsto[a],
+\]
+identifies exactly its two zero-amplitude elements and has kernel
+\(\{\tau,0_{A/J}\}\). This proves the exact relation between the
+two quotient constructions. Their weights obey
+\[
+ (N(J)+1)(N(H)+1)-(N(JH)+1)=N(J)+N(H).
+\]
+The support-preserving cardinality therefore has its stated counting
+rule, while the Bourne norm retains the multiplicative formula
+\eqref{eq:sz-zeta}.

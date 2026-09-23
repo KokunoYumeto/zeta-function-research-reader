@@ -1,0 +1,911 @@
+\section{Every mixed-prime spectral direction and its actual pulse receiver}
+
+
+This paper independently derives the spectrum and every finite pulse
+eigenspace proposed in Sections 6--8 of the supplied continuation
+\emph{Full-support reconstruction: the missing cohomology, the actual
+prime degree, and complete mixed-sign calculations}.  The calculation
+retains the original support diagonal, all $s!$ tensor summands, the
+original pulse amplitudes, and the actual map from a compression back
+to the full Hilbert space.  It also derives every higher tensor
+evaluation on the same pulse tests.  The finite positivity estimate
+used in the last section is the proved companion result \cite{FinitePrimePulse};
+no positivity or boundedness of a full Weil operator is assumed.
+
+The analytic source is Alain Connes, \emph{The Riemann Hypothesis:
+Past, Present and a Letter Through Time}, arXiv:2602.04022v1,
+original author source \path{rhready.tex}, subsection
+\texttt{sectweilpos}, equations \texttt{wp} and \texttt{arch}
+(source lines 841--868).  Connes attributes the criterion there to
+Andr\'e Weil.  The exact programme antecedent is the pinned
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/033/MIXED_PRIME_ENERGY_AND_BOUNDARY.tex#L209}{edition 033, PME6--10},
+with the original three-pulse calculation
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/033/MIXED_PRIME_ENERGY_AND_BOUNDARY.tex#L648}{FWP2--23}
+and the shared-Archimedean support trace
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c78cfbd9e194d35117b33277c421c6564ce3dbf/workbenches/splitzero-tandem/continuations/20260923-full-prime-support/033/MIXED_PRIME_ENERGY_AND_BOUNDARY.tex#L1005}{FWJ1--8}.
+These antecedents and the supplied Sections 6--8 are identified
+separately from the new derivation below.  No prime-spectrum foundation
+or classical Fourier theorem is claimed as a new discovery.
+
+\subsection{The original prime operator and the form domain}
+
+Use the Hilbert space $H=L^2(\R_+^\times,dx/x)$ with inner product
+linear in its first variable.  The logarithmic coordinate is $x=e^u$.
+Our unitary Fourier transform and original Mellin transform are
+\begin{equation}\tag{FMS1}\label{fms:fms:fourier}
+ (\mathscr Fg)(t)=\frac1{\sqrt{2\pi}}\int_\R g(e^u)e^{-itu}\,du,
+ \qquad \widehat g(t)=\sqrt{2\pi}\,\mathscr Fg(t).
+\end{equation}
+For a rational prime $p$ put $\ell_p=\log p$ and $r_p=p^{-1/2}$.
+Let $(T_aF)(u)=F(u-a)$ on $L^2(\R,du)$.  The norm-convergent series
+\begin{equation}\tag{FMS2}\label{fms:fms:bp}
+ B_p=(\log p)\sum_{n\ge1}r_p^n(T_{n\ell_p}+T_{-n\ell_p})
+\end{equation}
+defines a bounded self-adjoint operator, since every translation has
+norm one and $\sum_{n\ge1}2r_p^n<\infty$.  The two geometric series give
+\begin{equation}\tag{FMS3}\label{fms:fms:multiplier}
+ \mathscr FB_p\mathscr F^{-1}=M_{b_p},\qquad
+ b_p(t)=(\log p)
+ \left(\frac{1-p^{-1}}{1-2p^{-1/2}\cos(t\log p)+p^{-1}}-1\right).
+\end{equation}
+Here $M_b$ denotes multiplication by $b$.  If
+$g^*(x)=\overline{g(x^{-1})}$ and $f=g*g^*$, convolution is always
+with respect to $dx/x$.  Direct substitution in the convolution gives
+\[
+ f(e^a)=\int_\R g(e^u)\overline{g(e^{u-a})}\,du.
+\]
+The symmetric pair of translations in \eqref{fms:fms:bp} therefore gives
+the exact original finite-place functional:
+\begin{equation}\tag{FMS4}\label{fms:fms:local}
+ \langle B_pg,g\rangle
+ =W_p(f)
+ =(\log p)\sum_{n\ge1}p^{-n/2}\{f(p^n)+f(p^{-n})\}.
+\end{equation}
+All terms, including $\log p$, both reciprocal arguments and the
+exponent $-n/2$, are retained.
+
+For completeness, this operator is the receiver of the actual
+relative-prime energy map in PME6--10, not an assigned multiplier.
+Use additive Haar measure $\mu(\Z_p)=1$ on $\Q_p$, and set
+\[
+ (\mathscr U_p\phi)(y)=\sqrt p\,\phi(y/p),\qquad
+ \xi_p=\mathbf1_{\Z_p}\in L^2(\Q_p).
+\]
+Changing variables proves that $\mathscr U_p$ is unitary, and
+$\mathscr U_p^n\xi_p=p^{n/2}\mathbf1_{p^n\Z_p}$ for $n\ge0$.
+Hence $\langle\mathscr U_p^n\xi_p,\xi_p\rangle=p^{-|n|/2}$ for
+every integer $n$.  For compactly supported $F(u)=g(e^u)$ set
+\begin{equation}\tag{FMS5}\label{fms:fms:energy}
+ (\mathcal E_pg)(x)=\sum_{n\in\Z}F(x+n\ell_p)\mathscr U_p^n\xi_p,
+ \quad 0\le x<\ell_p,\qquad
+ \mathcal E_p:H\longrightarrow
+ L^2([0,\ell_p);L^2(\Q_p)).
+\end{equation}
+The sum is initially finite. Expanding its squared norm and
+partitioning $\R$ by the intervals $[n\ell_p,(n+1)\ell_p)$ gives
+\[
+ \|\mathcal E_pg\|^2
+ =\sum_{j\in\Z}p^{-|j|/2}
+       \int_\R F(u)\overline{F(u-j\ell_p)}\,du.
+\]
+Cauchy--Schwarz bounds the absolute sum by
+$(1+r_p)(1-r_p)^{-1}\|g\|^2$, so $\mathcal E_p$ extends boundedly.
+The $j=0$ term is exactly $\|g\|^2$. Polarization now proves
+\begin{equation}\tag{FMS6}\label{fms:fms:energyreceiver}
+ B_p=(\log p)(\mathcal E_p^*\mathcal E_p-I_H).
+\end{equation}
+Thus the subtracted identity in \eqref{fms:fms:multiplier} is required by
+the original energy receiver.
+
+The denominator of the Poisson kernel in \eqref{fms:fms:multiplier}
+varies from $(1-r_p)^2$ to $(1+r_p)^2$.  Consequently
+\begin{equation}\tag{FMS7}\label{fms:fms:localrange}
+ b_p(\R)=[-\rho_pu_p,u_p],\qquad
+ u_p=\frac{2\log p}{\sqrt p-1},\qquad
+ \rho_p=\frac{\sqrt p-1}{\sqrt p+1}.
+\end{equation}
+The extrema occur at $\cos(t\log p)=-1$ and $1$, respectively.
+
+The actual admissible domain is
+\begin{equation}\tag{FMS8}\label{fms:fms:domain}
+ \mathcal D_0=\{g\in C_c^\infty(\R_+^\times):
+                  \widehat g(i/2)=\widehat g(-i/2)=0\}.
+\end{equation}
+It is dense in $H$.  Indeed the two moment functionals
+$F\mapsto\int F(u)e^{u/2}du$ and
+$F\mapsto\int F(u)e^{-u/2}du$ are linearly independent on
+$C_c^\infty(\R)$: translate a nonnegative nonzero test by a nonzero
+real number to obtain an invertible two-by-two moment matrix.
+Any linear functional vanishing on their joint kernel therefore is
+a linear combination of those two moments.  If an $L^2$ vector
+annihilates that kernel, its distribution equals a combination of
+$e^{u/2}$ and $e^{-u/2}$.  No nonzero such combination is in $L^2$:
+one coefficient produces exponential growth at $+\infty$, and the
+other at $-\infty$.  Thus the orthogonal complement of $\mathcal D_0$
+is zero.  Algebraic tensor powers of $\mathcal D_0$ are consequently
+dense in the corresponding Hilbert tensor powers of $H$.
+
+On $\mathcal D_0$ the complete Weil quadratic form has the convention
+\begin{equation}\tag{FMS9}\label{fms:fms:weil}
+ Q(g)=-W_{\rm arch}(g*g^*)-\sum_p W_p(g*g^*).
+\end{equation}
+Each sum on compact tests is finite: only prime powers in a fixed
+compact interval can occur in the convolution support.
+The Archimedean functional is the original one
+\begin{equation}\tag{FMS10}\label{fms:fms:arch}
+ W_{\rm arch}(f)
+ =(\log(4\pi)+\gamma_E)f(1)+
+ \int_1^\infty
+ \{f(x)+f(x^{-1})-2x^{-1/2}f(1)\}
+       \frac{x^{1/2}}{x-x^{-1}}\frac{dx}{x}.
+\end{equation}
+For convolution squares the bracket is $O(\log x)$ near $1$, so
+the integral is convergent.  Polarization makes all these Hermitian
+quadratic forms sesquilinear on $\mathcal D_0$.  No bounded
+representing operator for \eqref{fms:fms:weil} will be required.
+
+\subsection{The retained support diagonal and all permutation terms}
+
+Fix distinct primes $I=\{p_1,\ldots,p_s\}$ with $s\ge2$, and let
+$\Omega$ be the entire place set.  The actual support faces in this
+calculation are the interval
+\[
+ A\longmapsto(\Omega\setminus I)\cup A,\qquad A\subseteq I.
+\]
+This map preserves joins and meets and is a lattice isomorphism
+onto that interval. Its bottom contains the Archimedean place and
+every unselected place.  In particular it is not the external
+absent support.  The coefficient receiver used below is the complex
+vector space with basis these actual support states:
+\begin{equation}\tag{FMS11}\label{fms:fms:diagonal}
+ V_I=\C[\mathcal P(I)],\qquad
+ h_I=\sum_{A\subseteq I}(-1)^{|A|}\delta_A,\qquad
+ \Delta_r:V_I\longrightarrow V_I^{\otimes r},\quad
+ \Delta_r\delta_A=\delta_A^{\otimes r}.
+\end{equation}
+The map $\Delta_r$ is extended linearly.  In particular
+$\Delta_rh_I$ is the displayed signed sum of diagonals, and is not
+the tensor power $h_I^{\otimes r}$.
+
+Let $q_0$ be the common sesquilinear form
+$-W_{\rm arch}-\sum_{p\notin I}W_p$ on convolution pairs from
+$\mathcal D_0$, and set
+\[
+ q_A=q_0-\sum_{p_i\in A}\langle B_{p_i}\,\cdot,\cdot\rangle.
+\]
+The full support face $A=I$ is the complete form
+\eqref{fms:fms:weil}; all other faces retain the very same $q_0$.
+Let $\mathcal Q:V_I\to
+\{\text{sesquilinear forms on }\mathcal D_0\}$ send
+$\delta_A$ to $q_A$.  The precise mixed map is
+$\mathcal Q^{\otimes r}\Delta_r$.  Its value on $h_I$ is the form
+\begin{equation}\tag{FMS12}\label{fms:fms:mixedform}
+ \mathcal J_r=\sum_{A\subseteq I}(-1)^{|A|}q_A^{\otimes r}
+ \quad\hbox{on }\mathcal D_0^{\otimes_{\rm alg} r}.
+\end{equation}
+No product of unbounded operators is present in this definition.
+
+\begin{proposition}[Every tensor summand]\label{fms:fms:subset}
+Write $C_0=q_0$ and
+$C_i=\langle B_{p_i}\,\cdot,\cdot\rangle$ for $1\le i\le s$.
+For a word $w\in\{0,1,\ldots,s\}^r$, let $n(w)$ be its number
+of nonzero entries. Then
+\begin{equation}\tag{FMS13}\label{fms:fms:allwords}
+ \mathcal J_r=
+ \sum_{\substack{w\in\{0,\ldots,s\}^r\\
+                  \{1,\ldots,s\}\subseteq\{w_1,\ldots,w_r\}}}
+       (-1)^{s+n(w)}C_{w_1}\otimes\cdots\otimes C_{w_r}.
+\end{equation}
+In particular $\mathcal J_r=0$ for $r<s$. At $r=s$ its unique
+bounded Hilbert-space receiver is
+\begin{equation}\tag{FMS14}\label{fms:fms:mixedoperator}
+ \mathbb M_I=\sum_{\sigma\in S_s}
+        B_{p_{\sigma(1)}}\otimes\cdots\otimes B_{p_{\sigma(s)}}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+In the expansion of $q_A^{\otimes r}$ a fixed word $w$ can occur
+exactly when $A$ contains its nonzero labels $T(w)$; its coefficient
+there is $(-1)^{n(w)}$. The total coefficient is
+\[
+ (-1)^{n(w)}\sum_{A\supseteq T(w)}(-1)^{|A|}
+ =(-1)^{n(w)+|T(w)|}(1-1)^{s-|T(w)|}.
+\]
+It vanishes unless $T(w)=I$, in which case it is
+$(-1)^{s+n(w)}$.  At $r=s$ each nonzero label must occur exactly
+once, there is no zero label, and the coefficient is $1$.
+Thus every permutation occurs exactly once. Each factor $B_p$ is
+bounded, so their finite tensor sum represents this form. Density
+proved after \eqref{fms:fms:domain} gives uniqueness of its bounded
+extension. No commutativity between $q_0$ and other forms is needed;
+the entries occupy separate tensor factors.
+\end{proof}
+
+For $r>s$ formula \eqref{fms:fms:allwords} generally retains the common
+form $q_0$. It makes no bounded-extension assertion at those orders.
+The finite pulse restrictions and finite traces below exist at every
+order without such an assertion.
+
+\subsection{The entire mixed spectrum and its spectral projections}
+
+\begin{theorem}[Exact permanent spectrum]\label{fms:fms:spectrum}
+Put $u_i=u_{p_i}$, $\rho_i=\rho_{p_i}$ and
+$\rho_I=\max_i\rho_i$.  The bounded self-adjoint operator
+$\mathbb M_I$ is unitarily equivalent to multiplication on
+$L^2(\R^s)$ by
+\begin{equation}\tag{FMS15}\label{fms:fms:permanent}
+ m_I(t_1,\ldots,t_s)=
+ \perm[b_{p_i}(t_j)]_{i,j=1}^s
+ =\sum_{\sigma\in S_s}\prod_{j=1}^s b_{p_{\sigma(j)}}(t_j).
+\end{equation}
+Its spectrum and norm are
+\begin{equation}\tag{FMS16}\label{fms:fms:spectralinterval}
+ \sigma(\mathbb M_I)=
+ [-s!\rho_I\prod_i u_i,\ s!\prod_i u_i],
+ \qquad \|\mathbb M_I\|=s!\prod_i u_i.
+\end{equation}
+It has no eigenvalues. Its positive and negative spectral subspaces
+are both infinite-dimensional, and its kernel is zero.
+\end{theorem}
+\begin{proof}
+The product Fourier transform sends each tensor summand of
+\eqref{fms:fms:mixedoperator} to its product multiplier, proving
+\eqref{fms:fms:permanent}.  Every factor
+$b_{p_i}(t_j)/u_i$ lies in $[-\rho_i,1]$. A nonnegative product
+of $s$ such factors is at most $1$.  A negative product has at
+least one negative factor; its absolute value is at most
+$\rho_I$, since the other factors have absolute value at most $1$.
+Termwise summation proves both displayed spectral bounds for $m_I$.
+
+To prove their sharpness with all simultaneous prime frequencies,
+write $\mathbb T^s=(\R/2\pi\Z)^s$. The orbit
+\[
+ t\longmapsto(t\log p_1,\ldots,t\log p_s)\pmod{2\pi}
+\]
+is dense.  Here is a proof of the exact density needed.
+For $n\in\Z^s\setminus\{0\}$ one has
+$\sum_i n_i\log p_i\ne0$, since exponentiation and unique prime
+factorization forbid $\prod_i p_i^{n_i}=1$. Thus
+\[
+ \frac1{2T}\int_{-T}^T e^{it\sum_i n_i\log p_i}\,dt
+ =\frac{\sin(T\sum_i n_i\log p_i)}
+          {T\sum_i n_i\log p_i}\longrightarrow0.
+\]
+The average of the constant character is $1$. Uniform approximation
+by trigonometric polynomials proves that orbit averages of any
+continuous function converge to its Haar integral. If a nonempty
+open set were missed, choose a nonnegative continuous function
+supported inside it, with strictly positive Haar integral.
+Its orbit averages would be zero, a contradiction.
+
+The $s$ variables $t_1,\ldots,t_s$ are independent.  Consequently
+the corresponding $s$ columns have dense image in
+$(\mathbb T^s)^s$.  On this compact connected torus the function
+given by the permanent of the Poisson expressions is continuous.
+Its maximum is attained by setting every phase equal to $0$.
+Its minimum is attained by fixing an index $i_0$ with
+$\rho_{i_0}=\rho_I$, setting every phase in row $i_0$ equal to
+$\pi$, and every other phase equal to $0$.
+Every permutation product is then exactly
+$-\rho_I\prod_i u_i$.  These choices attain the two bounds.
+The image of a connected space in $\R$ is an interval. Hence the
+image on this torus is exactly the interval in
+\eqref{fms:fms:spectralinterval}, and the closure of $m_I(\R^s)$ is
+that interval.
+
+Every neighborhood of every point in this closed interval has
+preimage of positive Lebesgue measure in $\R^s$. Indeed density
+first gives a real tuple with its value in that neighborhood,
+and continuity gives a nonempty Euclidean open neighborhood of
+that tuple with the same property.  Thus the essential range is
+the entire interval. Outside it, multiplication by $m_I-z$ has
+bounded inverse. At any point of it, restrict a unit vector to a
+finite-measure part of the set $|m_I-z|<1/n$ to obtain approximate
+eigenvectors. This proves the spectrum and norm assertions.
+
+The denominator in each Poisson expression is strictly positive
+on the real axis. Thus $m_I$ is real analytic on $\R^s$ and is
+nonconstant, since its range closure contains both endpoints of
+a nondegenerate interval. We recall the full measure argument:
+the zero set of a nonzero real-analytic function $F$ on $\R^d$
+has measure zero. For $d=1$, its zeros are isolated unless it is
+identically zero. For the induction step expand in the last
+coordinate at zero. At least one coefficient
+$\partial_d^kF(x',0)$ is a nonzero analytic function of $x'$;
+otherwise analyticity on each vertical line forces $F$ to vanish
+everywhere. By induction, the zero set of this one coefficient
+has measure zero. Outside it the vertical restriction is not
+identically zero and its zero set has one-dimensional measure
+zero. Fubini on bounded boxes proves the assertion.
+Apply this to $F=m_I-a$ for every real $a$. Therefore an
+$L^2$ eigenvector at $a$, which would be supported on
+$\{m_I=a\}$, is zero. Nonreal eigenvalues are excluded by
+self-adjointness. Both sign regions contain nonempty open sets,
+since the range closure has a strictly negative and a strictly
+positive value. Their $L^2$ spaces are infinite-dimensional,
+for example by using infinitely many disjoint measurable subsets
+of a bounded open ball in each region.
+\end{proof}
+
+The proof also gives the full spectral measure, not merely its
+support. For every Borel set $E\subseteq\R$,
+\begin{equation}\tag{FMS17}\label{fms:fms:projection}
+ \mathsf E_I(E)=
+ (\mathscr F^{\otimes s})^{-1}
+       M_{\mathbf1_{\{m_I\in E\}}}\mathscr F^{\otimes s},\qquad
+ \langle\mathsf E_I(E)G,G\rangle
+ =\int_{\{m_I(t)\in E\}}
+            |(\mathscr F^{\otimes s}G)(t)|^2\,dt.
+\end{equation}
+In particular the sign projections are obtained with
+$E=(0,\infty)$ and $E=(-\infty,0)$, and their sum is the identity.
+Zero is in the continuous spectrum: $\mathbb M_I$ is injective
+with dense range, because its range orthogonal complement is its
+kernel, but its range is not closed. If it were closed, its inverse
+on that range would be bounded, contradicting the approximate
+zero-eigenvectors constructed in the proof.
+
+\subsection{The actual pulse map and its complete compression}
+
+Retain the exact pulse choices of the supplied continuation:
+\begin{equation}\tag{FMS18}\label{fms:fms:pulses}
+ \begin{gathered}
+ M_I=\prod_{i=1}^s p_i,\qquad
+ \varepsilon=\frac1{16}\log\frac{M_I+1}{M_I},\\
+ w(u)=
+ \begin{cases}
+ \exp[-1/(1-(u/\varepsilon)^2)],&|u|<\varepsilon,\\
+ 0,&|u|\ge\varepsilon,
+ \end{cases}
+ \qquad z=w''-\tfrac14w,\qquad
+ N=\int_\R z(u)^2\,du,\\
+ a_0=0,\quad a_i=\log p_i,\qquad
+ g_c(e^u)=\sum_{j=0}^s c_jz(u-a_j),\quad c\in\C^{s+1}.
+ \end{gathered}
+\end{equation}
+The exponent in $w$ dominates every inverse power of the distance
+to its endpoints, so all derivatives vanish at the endpoints.
+Thus $w$ and $z$ are smooth. Moreover
+$\int zw=-\int|w'|^2-\frac14\int w^2<0$, proving $N>0$.
+Two integrations by parts with the zero boundary terms give
+\[
+ \int_\R z(u)e^{cu}\,du=(c^2-\tfrac14)
+               \int_\R w(u)e^{cu}\,du=0,\quad c=\pm\tfrac12.
+\]
+ Translation multiplies each zero by $e^{ca_j}$.
+ Therefore $g_c\in\mathcal D_0$ for every complex coefficient
+vector, and every tensor product of these functions retains both
+moment conditions in each separate variable.
+
+Put $C(v)=\int z(u)z(u-v)\,du$. It is real and even, vanishes
+outside $[-2\varepsilon,2\varepsilon]$, has $C(0)=N$, and satisfies
+$|C(v)|\le N$. The pulse centers have pairwise distance greater
+than $16\varepsilon$. Indeed, for distinct positive integers
+$A,D$ with $D\ge2$,
+\begin{equation}\tag{FMS19}\label{fms:fms:integergap}
+ |\log(A/D)|\ge\log((D+1)/D).
+\end{equation}
+For $A>D$ this follows from $A\ge D+1$; for $A<D$ use
+$D/(D-1)>(D+1)/D$. Apply this to ratios of distinct primes,
+using $D<M_I$; the distances from $0$ are at least $\log2$.
+It follows that the map
+\begin{equation}\tag{FMS20}\label{fms:fms:embedding}
+ \mathcal U:\C^{s+1}\longrightarrow H,\qquad
+ (\mathcal Uc)(e^u)=N^{-1/2}\sum_{j=0}^s c_jz(u-a_j),
+ \qquad g_c=\sqrt N\,\mathcal Uc
+\end{equation}
+is an isometry. This changes no original amplitude:
+$g_c$ is exactly the unscaled function in \eqref{fms:fms:pulses}.
+
+\begin{proposition}[Lag calculation of every matrix entry]
+\label{fms:fms:compression}
+For every rational prime $q$,
+\begin{equation}\tag{FMS21}\label{fms:fms:primepulse}
+ W_q(g_c*g_c^*)=
+ \begin{cases}
+ 2N\beta_i\Re(\overline{c_0}c_i),&q=p_i,\\
+ 0,&q\notin I,
+ \end{cases}
+ \qquad \beta_i=\dfrac{\log p_i}{\sqrt{p_i}}.
+\end{equation}
+Consequently, writing $E_{ab}$ for the matrix taking $e_b$ to
+$e_a$ and killing all other basis vectors,
+\begin{equation}\tag{FMS22}\label{fms:fms:compressbp}
+ \mathcal U^*B_{p_i}\mathcal U=P_i
+       =\beta_i(E_{0i}+E_{i0}),\qquad
+ \mathcal U^*B_q\mathcal U=0\quad(q\notin I).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Expand the convolution with every complex coefficient:
+\[
+ (g_c*g_c^*)(e^v)=
+ \sum_{j,k=0}^s c_j\overline{c_k}\,
+                  C(v-a_j+a_k).
+\]
+Take $v=\log n$ with $n=q^m\ge2$. Terms $j=k$ vanish because
+$\log n\ge\log2>2\varepsilon$. If $j=0,k>0$, the argument is
+$\log(np_k)>2\varepsilon$. If $j>0,k=0$, the argument is
+$\log(n/p_j)$; it is zero only when $n=p_j$, and otherwise
+\eqref{fms:fms:integergap} makes its absolute value greater than
+$16\varepsilon$. Finally, when $j,k>0$ and $j\ne k$, the
+argument is $\log(np_k/p_j)$. It cannot be zero: distinct primes
+cannot satisfy $np_k=p_j$ with $n\ge2$. Again
+\eqref{fms:fms:integergap}, with denominator $p_j<M_I$, gives a
+gap greater than $16\varepsilon$. Hence the only nonzero value
+at $v=\log n$ is $Nc_i\overline{c_0}$ when $n=p_i$.
+The value at $-\log n$ is its conjugate. Unique factorization
+gives $q^m=p_i$ precisely for $q=p_i,m=1$.
+Substitution in \eqref{fms:fms:local} proves
+\eqref{fms:fms:primepulse}. The norm relation in
+\eqref{fms:fms:embedding} and polarization of the Hermitian forms
+then prove every entry of \eqref{fms:fms:compressbp}.
+\end{proof}
+
+Set $U_s=\mathcal U^{\otimes s}$ and $b=\prod_i\beta_i>0$.
+Tensoring the entrywise compression, without suppressing any term,
+gives the self-adjoint matrix
+\begin{equation}\tag{FMS23}\label{fms:fms:finitemixed}
+ \mathfrak M_I=U_s^*\mathbb M_IU_s
+       =\sum_{\sigma\in S_s}
+          P_{\sigma(1)}\otimes\cdots\otimes P_{\sigma(s)}
+ \quad\hbox{on }(\C^{s+1})^{\otimes s}.
+\end{equation}
+
+\subsection{Every pulse eigenspace, its inertia, and its leakage}
+
+The orthonormal tensor basis is indexed by words
+$w=(w_1,\ldots,w_s)\in\{0,1,\ldots,s\}^s$.
+A word is called admissible here when its nonzero labels are
+pairwise distinct; this finite-word condition is separate from the
+moment condition on test functions. For an admissible word let
+$J\subseteq\{1,\ldots,s\}$ be its occupied positions and
+$S\subseteq\{1,\ldots,s\}$ its labels. Then $|J|=|S|=k$.
+Let $\mathcal H_{J,S}$ be the span of the $k!$ bijective
+assignments $J\to S$, with zeros in the other positions.
+Define
+\begin{equation}\tag{FMS24}\label{fms:fms:blockvectors}
+ u_{J,S}=\frac1{\sqrt{k!}}\sum_{w\in\mathcal H_{J,S}}e_w.
+\end{equation}
+The sum notation means the basis words spanning the indicated block.
+
+\begin{theorem}[Complete pulse spectrum]\label{fms:fms:inertia}
+For every complementary pair $(J,S)$ and $(J^c,S^c)$ the vectors
+\begin{equation}\tag{FMS25}\label{fms:fms:eigenvectors}
+ v_{J,S}^{\pm}=
+        \frac{u_{J,S}\pm u_{J^c,S^c}}{\sqrt2}
+\end{equation}
+are eigenvectors of $\mathfrak M_I$ with respective eigenvalues
+\[
+ \pm b\sqrt{k!(s-k)!}.
+\]
+Choose one member of each complementary pair to avoid duplication.
+All other directions are zero directions: the zero-sum subspace
+in each $\mathcal H_{J,S}$ and the span of words with a repeated
+nonzero label. These form its entire kernel.
+
+For $0\le k\le\lfloor s/2\rfloor$ define
+\begin{equation}\tag{FMS26}\label{fms:fms:multiplicities}
+ \nu_k=
+ \begin{cases}
+ \binom{s}{k}^2,&k<s/2,\\[1mm]
+ \frac12\binom{s}{s/2}^2,&k=s/2\quad(s\text{ even}).
+ \end{cases}
+\end{equation}
+The two eigenvalues of magnitude $b\sqrt{k!(s-k)!}$ each
+have multiplicity $\nu_k$. Writing
+$n_s=\frac12\binom{2s}{s}$ and
+$d_s=(s+1)^s-\binom{2s}{s}$, the exact inertia and
+characteristic polynomial are
+\begin{equation}\tag{FMS27}\label{fms:fms:inertiapoly}
+ (n_+,n_-,n_0)=(n_s,n_s,d_s),\qquad
+ \det(\lambda I-\mathfrak M_I)=
+ \lambda^{d_s}\prod_{k=0}^{\lfloor s/2\rfloor}
+       \bigl(\lambda^2-b^2 k!(s-k)!\bigr)^{\nu_k}.
+\end{equation}
+Its operator norm and product of all nonzero eigenvalues are
+\begin{equation}\tag{FMS28}\label{fms:fms:normpdet}
+ \|\mathfrak M_I\|=\sqrt{s!}\,b,\qquad
+ \pdet(\mathfrak M_I)=
+ (-1)^{n_s}b^{2n_s}
+       \prod_{k=0}^{\lfloor s/2\rfloor}
+                    [k!(s-k)!]^{\nu_k}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The factor $P_i$ kills $e_j$ unless $j=0$ or $j=i$,
+and sends $e_0$ to $\beta_i e_i$ and $e_i$ to $\beta_i e_0$.
+For a permutation summand to act nontrivially on a word, the prime
+assigned to an occupied position must equal its label.
+Two equal nonzero labels therefore force every summand to vanish.
+For an admissible word in $\mathcal H_{J,S}$, the assigned prime
+is fixed at each occupied position, and the remaining primes may
+be assigned bijectively to $J^c$ in exactly $(s-k)!$ ways.
+Each such assignment has coefficient $b$ and gives one of the
+distinct complementary words. Thus
+\begin{equation}\tag{FMS29}\label{fms:fms:blockmap}
+ \mathfrak M_I e_w=
+ b\sum_{v\in\mathcal H_{J^c,S^c}}e_v,\qquad
+ \mathfrak M_Iu_{J,S}
+       =b\sqrt{k!(s-k)!}\,u_{J^c,S^c}.
+\end{equation}
+The matrix between the two word blocks is the constant-entry
+matrix $b\,\mathbf1$. Its only nonzero singular value is
+$b\sqrt{k!(s-k)!}$; the zero-sum subspaces are killed.
+Equivalently, summing the first equality proves the second,
+and applying the same argument to the complement gives the
+two-by-two matrix
+\[
+ \begin{array}{c|cc}
+ &u_{J,S}&u_{J^c,S^c}\\ \hline
+ u_{J,S}&0&b\sqrt{k!(s-k)!}\\
+ u_{J^c,S^c}&b\sqrt{k!(s-k)!}&0
+ \end{array}.
+\]
+Its two orthonormal eigenvectors are \eqref{fms:fms:eigenvectors}.
+The word blocks and repeated-label words exhaust the tensor
+basis, so the listed kernel and eigenspaces are complete.
+
+There are $\binom{s}{k}^2$ pairs $(J,S)$ of size $k$.
+For $k<s/2$ each complementary pair has exactly one such member.
+At $k=s/2$ complementation has no fixed pair: no subset of a
+nonempty position set equals its complement. Hence divide the
+count by two in that case. This proves \eqref{fms:fms:multiplicities}.
+Counting $s$ chosen elements from two disjoint sets of $s$
+elements gives Vandermonde's identity
+$\sum_k\binom{s}{k}^2=\binom{2s}{s}$, so
+$\sum_{k\le s/2}\nu_k=n_s$.
+The total dimension is $(s+1)^s$; this proves the inertia and
+characteristic polynomial. Finally
+$k!(s-k)!=s!/\binom{s}{k}\le s!$, with equality at $k=0$.
+Taking the largest magnitude and multiplying each positive-negative
+pair proves \eqref{fms:fms:normpdet}.
+\end{proof}
+
+For $s=2$ the inertia is $(3,3,3)$; the nonzero magnitudes
+are $\sqrt2\,b$ once per sign and $b$ twice per sign.
+For $s=3$ the inertia is $(10,10,44)$; the magnitudes are
+$\sqrt6\,b$ once per sign and $\sqrt2\,b$ nine times per sign.
+These are evaluations of the general proof, not numerical evidence
+substituted for it.
+
+The comparison with the full operator has an exact extra map.
+Put $\Pi_s=U_sU_s^*$, the orthogonal projection onto the pulse
+tensor space, and define
+\begin{equation}\tag{FMS30}\label{fms:fms:leakage}
+ L_I=(I-\Pi_s)\mathbb M_IU_s:
+       (\C^{s+1})^{\otimes s}\longrightarrow
+       (\operatorname{ran}U_s)^\perp.
+\end{equation}
+Then
+\begin{equation}\tag{FMS31}\label{fms:fms:leakidentities}
+ \begin{gathered}
+ \mathbb M_IU_s=U_s\mathfrak M_I+L_I,\qquad U_s^*L_I=0,\\
+ L_I^*L_I=U_s^*\mathbb M_I^2U_s-\mathfrak M_I^2,\qquad
+ \|\mathbb M_IU_sv\|^2
+       =\|\mathfrak M_Iv\|^2+\|L_Iv\|^2.
+ \end{gathered}
+\end{equation}
+To prove the first line, split the identity into $\Pi_s+(I-\Pi_s)$
+and use \eqref{fms:fms:finitemixed}. For the second line multiply
+$U_s^*\mathbb M_I(I-\Pi_s)\mathbb M_IU_s$ out, using
+$\mathbb M_I=\mathbb M_I^*$ and $U_s^*U_s=I$; orthogonality
+gives the norm equality.
+
+The restriction of $L_I$ to every eigenspace of
+$\mathfrak M_I$ is injective. Indeed if
+$\mathfrak M_Iv=\lambda v$ and $L_Iv=0$, then the first line
+of \eqref{fms:fms:leakidentities} gives
+$\mathbb M_IU_sv=\lambda U_sv$. The full operator has no
+eigenvectors, so $U_sv=0$ and then $v=0$. In particular
+\begin{equation}\tag{FMS32}\label{fms:fms:radicalmap}
+ L_I:\ker\mathfrak M_I\lhook\joinrel\longrightarrow
+       (\operatorname{ran}U_s)^\perp,\qquad
+ L_Iv=\mathbb M_IU_sv\quad(v\in\ker\mathfrak M_I).
+\end{equation}
+Thus every nonzero radical vector in the specified compression
+survives under the full operator through this explicit injection.
+For an individual normalized compression eigenvector $v$,
+$\|(\mathbb M_I-\lambda)U_sv\|=\|L_Iv\|>0$.
+The finite and infinite spectral assertions are connected by
+\eqref{fms:fms:leakidentities}; neither is substituted for the other.
+
+\subsection{All higher tensor orders on the same tests}
+
+Here the common term on the pulse space is exactly the
+Archimedean term, since \eqref{fms:fms:primepulse} proves that every
+unselected finite prime is zero. To retain the exact coefficient
+receiver, put
+\[
+ K(t)=\frac{e^{-t/2}}{1-e^{-2t}},\qquad
+ c_{\rm arch}=\log(4\pi)+\gamma_E,
+\]
+and define the convergent integrals
+\begin{equation}\tag{FMS33}\label{fms:fms:archcoeff}
+ \begin{split}
+ A_\varepsilon
+ &=c_{\rm arch}N+
+       2\int_0^\infty[C(t)-Ne^{-t/2}]K(t)\,dt,\\
+ J_\varepsilon(d)
+ &=\int_{d-2\varepsilon}^{d+2\varepsilon}
+                    C(t-d)K(t)\,dt\quad(d>16\varepsilon).
+ \end{split}
+\end{equation}
+The integrand of the first line is bounded near zero, since
+$C(t)-Ne^{-t/2}=O(t)$ and $K(t)=O(t^{-1})$.
+The original negative subtraction is exponentially integrable
+outside the support of $C$.
+Expansion of \eqref{fms:fms:arch}, using the convolution in the proof
+of Proposition~\ref{fms:fms:compression}, gives
+\begin{equation}\tag{FMS34}\label{fms:fms:facecoeff}
+ \begin{gathered}
+ W_{\rm arch}(g_c*g_c^*)=
+ A_\varepsilon\sum_{j=0}^s|c_j|^2+
+       2\sum_{0\le j<k\le s}
+            \Re(\overline{c_j}c_k)J_\varepsilon(|a_j-a_k|),\\
+ \mathsf W_A=-A_\varepsilon I
+       -[J_\varepsilon(|a_j-a_k|)]_{j\ne k}
+       -N\sum_{p_i\in A}\beta_i(E_{0i}+E_{i0}),\\
+ Q_A(g_c)=c^*\mathsf W_Ac.
+ \end{gathered}
+\end{equation}
+The off-diagonal matrix in the second line has zero diagonal.
+For each pair of different centers, one of the two shifted
+correlations is supported on the positive half-axis and the other
+on the negative half-axis. The two reciprocal values in
+\eqref{fms:fms:arch} therefore yield precisely the factor
+$2\Re(\overline{c_j}c_k)$ in the first line, with no assumption
+that $c$ is real. The same formula follows when two positive
+lag intervals overlap, since it is a linear integral of their sum.
+
+The companion finite-pulse theorem \cite{FinitePrimePulse}, FP37 with its complete
+proof FP38--43, with exactly
+\eqref{fms:fms:pulses} and \eqref{fms:fms:archcoeff}, proves the quantitative
+matrix inequality
+\begin{equation}\tag{FMS35}\label{fms:fms:finitebound}
+ \mathsf W_A\succeq\mu_*NI_{s+1}\quad(A\subseteq I),\qquad
+ \mu_*=\frac{6600077509}{144027072000}>\frac1{22}.
+\end{equation}
+This is a proved theorem about the entire $(s+1)$-dimensional
+complex pulse coefficient space and every finite support face.
+It is the only positivity input below. It makes no assertion on
+other compact tests or on a bounded global Weil operator.
+The companion proof evaluates the full subtraction in
+\eqref{fms:fms:archcoeff}; it is not an assumption that that integral
+has the desired sign.
+
+For the original unscaled $g_c$ put
+\begin{equation}\tag{FMS36}\label{fms:fms:cornerparameters}
+ A_c=-W_{\rm arch}(g_c*g_c^*),\qquad
+ \alpha_i=2N\beta_i\Re(\overline{c_0}c_i),\qquad
+ Q_A(g_c)=A_c-\sum_{p_i\in A}\alpha_i.
+\end{equation}
+The symbol $\alpha_i$ is the quantity denoted $a_i$ in the
+supplied continuation's Section 8; it is not the logarithmic
+pulse center $a_i$ in \eqref{fms:fms:pulses}. This distinction changes
+no parameter or formula.
+For integers $r\ge0$ define the literal support observation
+\begin{equation}\tag{FMS37}\label{fms:fms:jr}
+ J_r(c)=\sum_{A\subseteq I}(-1)^{|A|}
+                   \left(A_c-\sum_{p_i\in A}\alpha_i\right)^r.
+\end{equation}
+At $r=0$ each power is defined to be $1$, as for a zeroth tensor
+power; the signed sum is zero since $s>0$.
+
+\begin{theorem}[All orders, signs, bounds, and exact rate]
+\label{fms:fms:higher}
+For every $c\in\C^{s+1}$, $J_r(c)=0$ for $r<s$.
+For $r\ge s$,
+\begin{equation}\tag{FMS38}\label{fms:fms:integral}
+ J_r(c)=\frac{r!}{(r-s)!}\left(\prod_{i=1}^s\alpha_i\right)
+ \int_{[0,1]^s}
+          \left(A_c-\sum_{i=1}^s t_i\alpha_i\right)^{r-s}\,dt.
+\end{equation}
+For nonzero $c$, set
+\begin{equation}\tag{FMS39}\label{fms:fms:minmax}
+ m_c=A_c-\sum_i(\alpha_i)_+,\qquad
+ M_c=A_c+\sum_i(-\alpha_i)_+.
+\end{equation}
+These are the smallest and largest actual support-face values,
+and $m_c\ge\mu_*N\|c\|_2^2>0$.
+For every $r\ge s$ one has
+\begin{equation}\tag{FMS40}\label{fms:fms:sign}
+ \sgn J_r(c)=
+   \sgn\prod_{i=1}^s\Re(\overline{c_0}c_i),
+\end{equation}
+with $J_r(c)=0$ exactly when at least one factor on the right
+vanishes. The complete quantitative bounds are
+\begin{equation}\tag{FMS41}\label{fms:fms:bounds}
+ \frac{r!}{(r-s)!}\left|\prod_i\alpha_i\right|m_c^{\,r-s}
+ \le |J_r(c)|\le
+ \frac{r!}{(r-s)!}\left|\prod_i\alpha_i\right|M_c^{\,r-s}.
+\end{equation}
+If every $\alpha_i$ is nonzero, then
+\begin{equation}\tag{FMS42}\label{fms:fms:rate}
+ \lim_{r\to\infty}|J_r(c)|^{1/r}=M_c,\qquad
+ \frac{|J_r(c)|}{M_c^r}\longrightarrow1.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For a differentiable function $F$ and a real $\alpha$, including
+negative $\alpha$, the fundamental theorem of calculus gives
+\[
+ F(x)-F(x-\alpha)=
+       \alpha\int_0^1F'(x-t\alpha)\,dt.
+\]
+Apply this identity successively with
+$\alpha=\alpha_1,\ldots,\alpha_s$ to $F(x)=x^r$ at $x=A_c$.
+The left side expands to exactly \eqref{fms:fms:jr}, with its original
+sign $(-1)^{|A|}$. The $s$th derivative is zero for $r<s$, and
+is $r!(r-s)!^{-1}x^{r-s}$ otherwise. This proves both assertions
+through \eqref{fms:fms:integral}, also when some $\alpha_i=0$.
+
+The affine function on the cube in \eqref{fms:fms:integral} is
+minimized by $t_i=1$ for $\alpha_i>0$ and $t_i=0$ for
+$\alpha_i<0$; its maximum uses the reverse choices.
+This proves \eqref{fms:fms:minmax}, and these choices are cube
+vertices, hence actual face values. The finite theorem
+\eqref{fms:fms:finitebound} gives the stated positive lower bound.
+The integral in \eqref{fms:fms:integral} is therefore strictly positive
+for every $r\ge s$. Since $N$ and every $\beta_i$ are strictly
+positive, the sign of its prefactor is exactly
+\eqref{fms:fms:sign}. Bounding the integrand by its minimum and
+maximum, on a cube of volume one, proves \eqref{fms:fms:bounds}.
+At $c=0$ all $J_r$ with $r>0$ are zero, so no separate positivity
+claim is required.
+
+When every $\alpha_i\ne0$, the unique maximizing face is
+$A_{\max}=\{p_i:\alpha_i<0\}$, and its sign in
+\eqref{fms:fms:jr} is
+$\epsilon_c=(-1)^{|A_{\max}|}=\sgn\prod_i\alpha_i$.
+All other corner values are strictly between $0$ and $M_c$.
+Dividing \eqref{fms:fms:jr} by $M_c^r$ proves convergence to
+$\epsilon_c$ and hence both limits. More explicitly, if
+$d_c=\min_i|\alpha_i|>0$, every other corner is at most
+$M_c-d_c$, and all corners are positive. Thus the exact finite
+sum supplies the error bound
+\begin{equation}\tag{FMS43}\label{fms:fms:rateerror}
+ |J_r(c)-\epsilon_c M_c^r|
+       \le(2^s-1)(M_c-d_c)^r.
+\end{equation}
+\end{proof}
+
+For literal tests realizing all three possibilities, take $c_0=1$.
+The choice $c_i=1$ for every $i$ gives $J_r(c)>0$ for every
+$r\ge s$. The choice $c_1=-1$ and $c_i=1$ for $i>1$ gives
+$J_r(c)<0$ at every such order. The choice $c_1=i$ and
+$c_j=1$ for $j>1$ gives $J_r(c)=0$ at every order, while
+$g_c\ne0$ and every face form remains strictly positive by
+\eqref{fms:fms:finitebound}. These are the original amplitude choices
+in \eqref{fms:fms:pulses}, including the complex phase in the third test.
+
+These formulas retain all polynomial coefficients. An additional
+way to see them simultaneously is the exact exponential generating
+identity and its coefficient formula:
+\begin{equation}\tag{FMS44}\label{fms:fms:generating}
+ \begin{split}
+ \sum_{r=0}^\infty\frac{J_r(c)}{r!}z^r
+     &=e^{A_cz}\prod_{i=1}^s(1-e^{-\alpha_i z}),\\
+ J_r(c)&=
+ \sum_{\substack{n_0\ge0,\ n_i\ge1\\n_0+n_1+\cdots+n_s=r}}
+ \frac{r!}{n_0!n_1!\cdots n_s!}
+ A_c^{n_0}\prod_{i=1}^s
+                   (-1)^{n_i+1}\alpha_i^{n_i}.
+ \end{split}
+\end{equation}
+The first identity follows by summing the finite subset exponential
+and factoring; expanding the $s+1$ entire power series proves the
+second. In particular
+$J_s(c)=s!\prod_i\alpha_i$ and
+$J_{s+1}(c)=(s+1)!\prod_i\alpha_i
+             (A_c-\frac12\sum_i\alpha_i)$.
+The first formula agrees exactly with the compression, including
+its original mass:
+\begin{equation}\tag{FMS45}\label{fms:fms:nfactor}
+ J_s(c)=N^s
+ \langle\mathfrak M_Ic^{\otimes s},c^{\otimes s}\rangle
+ =s!(2N)^s\left(\prod_i\beta_i\right)
+                  \prod_i\Re(\overline{c_0}c_i).
+\end{equation}
+Indeed the matrix of $q_A$ on $\mathcal U\C^{s+1}$ is
+$N^{-1}\mathsf W_A$. Proposition~\ref{fms:fms:subset} at order $s$
+and \eqref{fms:fms:finitemixed} give the first equality. The product
+of the individual star-matrix values gives the second.
+
+Finally all orders have a finite trace receiver that preserves the
+support diagonal.  Let $\Pi_A$ be projection onto $\C\delta_A$
+in $V_I$, let $D_{h_I}\delta_A=(-1)^{|A|}\delta_A$, and for a
+finite vector $v$ put $R_vx=\langle x,v\rangle v$. Then
+\begin{equation}\tag{FMS46}\label{fms:fms:trace}
+ \begin{gathered}
+ \mathsf O_r=\sum_{A\subseteq I}\Pi_A\otimes\mathsf W_A^{\otimes r},
+ \\
+ \Tr\left[(D_{h_I}\otimes R_{c^{\otimes r}})\mathsf O_r\right]
+       =J_r(c).
+ \end{gathered}
+\end{equation}
+For one support block, the rank-one trace is
+$(c^*\mathsf W_Ac)^r$, because
+$\Tr(TR_v)=\langle Tv,v\rangle$; an orthonormal basis expansion
+proves this identity directly. Summing the support blocks proves
+\eqref{fms:fms:trace}. Each $\mathsf W_A$ is positive by the proved
+finite bound, so $\mathsf O_r$ is positive. The actual inserted
+$D_{h_I}$ has both signs and is not a positive functional.
+Consequently both signs in \eqref{fms:fms:sign} are compatible with
+the positive face matrices through this exact trace map.
+This finite receiver does not take an unspecified infinite trace.
+
+\paragraph{Precise scope of the result.}
+The full Hilbert-space assertion is the evaluated bounded operator
+\eqref{fms:fms:mixedoperator}, with every spectral projection in
+\eqref{fms:fms:projection}. The finite tensor eigenspaces are its exact
+compression through \eqref{fms:fms:embedding}, with the complementary
+map \eqref{fms:fms:leakage}. The all-order trace keeps the same support
+diagonal and the exact common Archimedean number. These maps prove
+how the different sign calculations are related. They establish no
+global Weil positivity theorem, no zero off the critical line, and
+no new purity statement.
+
+
+\begin{figure}[p]
+\centering
+\begin{tikzcd}[column sep=large,row sep=large]
+ (\C^{s+1})^{\otimes s}
+ \arrow[r,"U_s",hook]\arrow[d,"\mathfrak M_I"']
+ &H^{\otimes s}\arrow[d,"\mathbb M_I"]\\
+ (\C^{s+1})^{\otimes s}\arrow[r,"U_s",hook]
+ &H^{\otimes s}\arrow[l,bend left=20,"U_s^*"']
+\end{tikzcd}
+
+\medskip
+The square has the exact defect
+\[
+ \mathbb M_IU_s-U_s\mathfrak M_I=L_I,
+ \qquad U_s^*L_I=0,
+ \qquad L_I^*L_I=U_s^*\mathbb M_I^2U_s-\mathfrak M_I^2.
+\]
+
+\begin{minipage}{0.92\linewidth}
+\textbf{The full operator.}
+Its spectrum is the entire interval
+\[
+ [-s!\rho_I\prod_i u_i,\ s!\prod_i u_i],
+ \qquad u_i=\frac{2\log p_i}{\sqrt{p_i}-1},\quad
+ \rho_I=\max_i\frac{\sqrt{p_i}-1}{\sqrt{p_i}+1}.
+\]
+Both signs have infinite-dimensional spectral subspaces. There are
+no eigenvectors, including at zero.
+
+\medskip
+\textbf{The complete finite compression for two primes.}
+Put $b=(\log p_1)(\log p_2)/\sqrt{p_1p_2}$. Every one of
+its nine dimensions is represented in this table:
+\[
+\begin{array}{c|rrrrr}
+ \text{eigenvalue}&-\sqrt2b&-b&0&b&\sqrt2b\\\hline
+ \text{multiplicity}&1&2&3&2&1
+\end{array}
+\]
+The three-dimensional zero eigenspace maps injectively through
+$L_I$ into the orthogonal complement of the pulse space. This is
+the calculated fate of its apparent zero directions under the
+original full operator.
+
+\medskip
+\textbf{The Weil face matrices on the same tests.}
+Every face retains its original Archimedean integral and obeys
+$\mathsf W_A\succeq\mu_*N I$, where
+$\mu_*=6600077509/144027072000>1/22$.
+Their mixed tensor trace inserts $D_{h_I}$, whose diagonal entries
+are $(-1)^{|A|}$. The sign in the mixed trace comes from this
+specified insertion; the face matrices remain positive.
+\end{minipage}
+\caption{The exact maps from the finite tests to the full mixed-prime
+operator, including the square's nonzero defect. FMS14--17 prove
+the full spectrum, FMS20--32 give the compression and complementary
+map, and FP37--43 and FMS46 prove the positive face bound and
+signed trace. All original pulse amplitudes are recovered by
+$g_c=\sqrt N\,\mathcal Uc$. The local analytic distributions
+are those of Connes \cite{Connes2026}, with the programme's
+prime-energy receiver in the complete source \cite{Edition033}.}
+\end{figure}

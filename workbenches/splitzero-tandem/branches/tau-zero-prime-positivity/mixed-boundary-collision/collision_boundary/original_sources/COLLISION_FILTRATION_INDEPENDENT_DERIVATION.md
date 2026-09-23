@@ -1,0 +1,593 @@
+# Exact integral filtrations, tensor monodromy, and duality of the collision nilradical
+
+Independent mathematical derivation, 23 September 2026. All tensor products and duals in this file are over the displayed coefficient ring \(O=\mathbb Z_3\), unless a scalar extension to \(K=\mathbb Q_3\) is written. No diagonal action of the algebra \(C\) on these tensor products is assumed. The tensors are the original coefficient modules, with their actual ordered tensor bases.
+
+The incoming algebra, Frobenius family, and residue are those of [Distinguished collision prism, DP1, DP6, and DP9](DISTINGUISHED_COLLISION_PRISM_DERIVATION.md). Those sections were read directly. Every further algebraic and linear-algebraic claim needed here is proved below. No literature theorem about purity, arithmetic weights, or prismatic cohomology is used or asserted.
+
+## CF1. The retained algebra and its ideal powers
+
+Set
+\[
+ O=\mathbb Z_3,\qquad K=\mathbb Q_3,\qquad
+ C=O[\epsilon,T]/(\epsilon^2,T^2-6\epsilon),\qquad z=\epsilon T.
+ \tag{CF1}
+\]
+The notation \(z\) always means the original product \(\epsilon T\); it does not replace either generator or any coefficient. Monic division, first in \(T\) over \(O[\epsilon]/\epsilon^2\), gives the free \(O\)-basis
+\[
+ 1,\epsilon,T,\epsilon T.
+ \tag{CF2}
+\]
+The ideal
+\[
+ M=O\epsilon\oplus OT\oplus O\epsilon T
+ \tag{CF3}
+\]
+has multiplication table
+\[
+ \epsilon^2=0,\quad \epsilon T=z,\quad T^2=6\epsilon,
+ \quad \epsilon z=0,\quad Tz=0,\quad z^2=0.
+ \tag{CF4}
+\]
+For example \(Tz=\epsilon T^2=6\epsilon^2=0\); thus the zero products follow from the defining relations, including their factor \(6\).
+Consequently its exact ideal powers are
+\[
+ M^2=6O\epsilon\oplus Oz,\qquad M^3=6Oz,
+ \qquad M^4=0.
+ \tag{CF5}
+\]
+Both containments in each equality follow from CF4: the displayed generators are products, and every product belongs to their indicated span. Since \(C/M=O\) is reduced, every nilpotent element belongs to \(M\); since \(M^4=0\), every element of \(M\) is nilpotent. Thus \(M\) is exactly the nilradical.
+
+In the actual generators the successive quotients are
+\[
+ \begin{split}
+ M/M^2&=OT\oplus (O/6O)\epsilon,\\
+ M^2/M^3&=6O\epsilon\oplus (O/6O)z,\\
+ M^3/M^4&=6Oz.
+ \end{split}
+ \tag{CF6}
+\]
+Here a symbol in a quotient denotes its class, and \(6O\epsilon\) retains the sublattice with its indicated generator. Although \(6O=3O\) as ideals of \(O\), the exact factor \(6\) remains in CF4–CF6.
+
+For a submodule \(L\subseteq M\), define its \(O\)-saturation by
+\[
+ \operatorname{Sat}_M(L)=\{v\in M:\text{some }3^a v\text{ belongs to }L, a\geq0\}.
+\]
+Coefficient comparison in CF3 proves
+\[
+ \operatorname{Sat}_M(M^2)=O\epsilon\oplus Oz,
+ \qquad \operatorname{Sat}_M(M^3)=Oz.
+ \tag{CF7}
+\]
+The saturation quotients are respectively \((O/6O)\epsilon\) and \((O/6O)z\). These torsion groups are retained; saturation is a specified comparison map, not a replacement of the ideals.
+
+## CF2. The divided residue and its integral filtration
+
+Retain the original residue and its integral divided derivation:
+\[
+ D(\epsilon)=0,\quad D(T)=-\frac38\epsilon T,
+ \qquad N(\epsilon)=0,\quad N(T)=-\frac18\epsilon T,
+ \qquad D=3N.
+ \tag{CF8}
+\]
+To verify \(N\) on \(C\), start with the derivation on the polynomial ring having the stated generator values. Its values on the relations are
+\[
+ N(\epsilon^2)=0,\qquad
+ N(T^2-6\epsilon)=-\frac14\epsilon T^2
+ =-\frac32\epsilon^2=0
+ \quad\text{in }C.
+ \tag{CF9}
+\]
+Thus it descends. Moreover
+\[
+ N(z)=N(\epsilon)T+\epsilon N(T)=-\frac18\epsilon^2T=0.
+\]
+Writing \(u=-1/8\in O^\times\), the exact restriction to \(M\) is
+\[
+ N(a\epsilon+bT+dz)=u b z.
+ \tag{CF10}
+\]
+It follows that
+\[
+ \ker N=O\epsilon\oplus Oz,
+ \quad\operatorname{im}N=Oz,
+ \quad N^2=0,
+ \quad\operatorname{coker}N=O\epsilon\oplus OT.
+ \tag{CF11}
+\]
+The restriction \(N:M\to M\) is also \(C\)-linear, although \(N:C\to C\) is a derivation: CF10 and \(N(1)=0\) give \(N(C)\subseteq Oz\), and CF4 gives \(zM=0\). Therefore \(N(av)=N(a)v+aN(v)=aN(v)\) for every \(a\in C\) and \(v\in M\). The same argument applies to \(D\).
+For the original residue the corresponding formulas are
+\[
+ \ker D=O\epsilon\oplus Oz,
+ \quad\operatorname{im}D=3Oz,
+ \quad\operatorname{coker}D
+ =O\epsilon\oplus OT\oplus(O/3O)z.
+ \tag{CF12}
+\]
+All asserted kernels and direct sums are obtained by comparing the three independent coefficients in CF3. In particular dividing \(D\) by \(3\) changes its integral image and cokernel, even though its rational kernel and image are unchanged.
+
+Define the increasing integral filtration
+\[
+ W_jM=
+ \begin{cases}
+ 0,&j\leq-2,\\
+ Oz,&j=-1,\\
+ O\epsilon\oplus Oz,&j=0,\\
+ M,&j\geq1.
+ \end{cases}
+ \tag{CF13}
+\]
+Every step is a saturated \(O\)-submodule and also a \(C\)-submodule, by CF4. The relationships with the original ideal powers are exact:
+\[
+ W_{-1}M=\operatorname{im}N=\operatorname{Sat}_M(M^3),
+ \qquad W_0M=\ker N=\operatorname{Sat}_M(M^2).
+ \tag{CF14}
+\]
+The map on its two outer graded terms is
+\[
+ N:\operatorname{gr}^W_1M\longrightarrow\operatorname{gr}^W_{-1}M,
+ \qquad [T]\longmapsto-\frac18[z].
+ \tag{CF15}
+\]
+It is an integral isomorphism because \(-1/8\) is a unit. The middle graded term is \(O[\epsilon]\). Also \(NW_j\subseteq W_{j-2}\). After extension to \(K\), CF13 is therefore the monodromy filtration centered at index \(0\): by this term we mean an increasing finite filtration satisfying \(NW_j\subseteq W_{j-2}\) and
+\[
+ N^r:\operatorname{gr}^W_r\xrightarrow{\sim}\operatorname{gr}^W_{-r}
+ \quad(r\geq0).
+ \tag{CF16}
+\]
+The index \(0\) is a stated convention for the center. It is not an arithmetic purity assertion. CF8 shows that the same rational filtration is obtained with \(D\), but its integral outer map is multiplication by \(-3/8\), with cokernel \(O/3O\).
+
+## CF3. The full Frobenius family and the exact obstruction to invertibility
+
+For every retained \(c\in O\), let
+\[
+ \phi|_O=\operatorname{id}_O,\qquad
+ \phi(\epsilon)=0,\qquad \phi(T)=9c\epsilon T.
+ \tag{CF17}
+\]
+Both relations are preserved: the image of \(\epsilon^2\) is zero, and the image of \(T^2-6\epsilon\) is \((9c)^2z^2=0\). Thus this is the stated algebra endomorphism. Its restriction \(F=\phi|_M\) satisfies
+\[
+ F(a\epsilon+bT+dz)=9c b z,
+ \quad F=-72cN=-24cD,
+ \quad F^2=0,
+ \quad NF=FN=DF=FD=0.
+ \tag{CF18}
+\]
+As a map of the actual \(C\)-module, \(F\) is \(\phi\)-semilinear: \(F(av)=\phi(a)F(v)\) because \(\phi\) is an algebra map. The coefficient Frobenius fixes \(O\), so the same map is \(O\)-linear, as used throughout the tensor and dual calculations.
+These are equalities on the actual lattice, not just after extension of scalars. When \(c\neq0\), coefficient comparison gives
+\[
+ \ker F=O\epsilon\oplus Oz,
+ \qquad\operatorname{im}F=9cOz,
+\]
+\[
+ \operatorname{coker}F
+ =O\epsilon\oplus OT\oplus (O/(9c)O)z,
+ \quad\operatorname{Sat}_M(\operatorname{im}F)=Oz.
+ \tag{CF19}
+\]
+When \(c=0\), \(F=0\), its kernel is all of \(M\), its image and saturated image are zero, and its cokernel is \(M\). No formula requiring division by \(c\) is used.
+
+The filtration CF13 is \(F\)-stable, and \(F\) acts by zero on every same-index associated graded term. Its entire possible nonzero map is the index-lowering map
+\[
+ F:\operatorname{gr}^W_1M\longrightarrow\operatorname{gr}^W_{-1}M,
+ \qquad [T]\longmapsto 9c[z].
+ \tag{CF20}
+\]
+In particular a relation such as \(NF=3FN\) holds because both sides are zero. More generally \(aNF=bFN=0\) for all \(a,b\in O\); this relation does not determine a nonzero Frobenius scaling factor.
+
+There is no nonzero \(F\)-stable subquotient of \(M_K\), or of \(M\), on which the induced \(F\) is invertible: its square is zero, so invertibility would imply that the identity is zero. On the full algebra one has the exact \(O\)-linear, \(F\)-stable splitting
+\[
+ C=O\cdot1\oplus M,
+ \qquad \phi^2(a+m)=a,
+ \qquad \bigcap_{n\geq0}\phi^n(C)=O\cdot1.
+ \tag{CF21}
+\]
+Here \(a\in O,m\in M\). This proves precisely what survives after requiring invertible Frobenius. It does not identify the nonzero nilradical with that surviving constant sector.
+
+## CF4. Exact tensor powers, with every factorial and coefficient
+
+For every integer \(k\geq0\) define
+\[
+ V_k=M^{\otimes_O k},\qquad V_0=O,
+\]
+\[
+ N_k=\sum_{i=1}^k
+ 1^{\otimes(i-1)}\otimes N\otimes1^{\otimes(k-i)},
+ \quad D_k=3N_k,
+ \quad F_k=F^{\otimes k}.
+ \tag{CF22}
+\]
+For \(k=0\), the conventions are \(N_0=D_0=0\) and \(F_0=\operatorname{id}_O\). The ordered tensor basis for \(k\geq1\) consists of words \(w=w_1\otimes\cdots\otimes w_k\), with each \(w_i\) equal to \(\epsilon,T,z=\epsilon T\).
+
+Let \(B(w)=\{i:w_i=T\}\). For \(S\subseteq B(w)\), write \(w[S]\) for the word obtained by replacing \(T\) by \(z\) exactly at the positions in \(S\), preserving all other positions and their order. Then
+\[
+ \boxed{N_k^r(w)=r!\left(-\frac18\right)^r
+ \sum_{\substack{S\subseteq B(w)\\|S|=r}}w[S]}
+ \quad(r\geq0),
+ \tag{CF23}
+\]
+where a sum over no subsets is zero. Indeed, the summands in \(N_k\) commute. In a product of \(r\) of them, a repeated position gives zero because \(N^2=0\). Each \(r\)-element subset of distinct positions occurs in exactly \(r!\) orders, and each order has coefficient \((-1/8)^r\). This proves CF23 integrally. The full original residue formula is therefore
+\[
+ \boxed{D_k^r(w)=3^r r!\left(-\frac18\right)^r
+ \sum_{\substack{S\subseteq B(w)\\|S|=r}}w[S].}
+ \tag{CF24}
+\]
+In particular
+\[
+ N_k^{k+1}=0,\qquad
+ N_k^k(T^{\otimes k})=k!\left(-\frac18\right)^kz^{\otimes k}\neq0.
+ \tag{CF25}
+\]
+The last inequality holds in the free \(O\)-module even when \(3\mid k!\). Thus the exact nilpotence index is \(k+1\).
+
+Define the explicitly integral comparison operator
+\[
+ P_{k,r}(w)=\left(-\frac18\right)^r
+ \sum_{\substack{S\subseteq B(w)\\|S|=r}}w[S].
+ \tag{CF26}
+\]
+CF23 states \(N_k^r=r!P_{k,r}\). The operator \(P_{k,r}\) is given here to prove divisibility and identify a comparison, not to remove the factorial from the original operator. For \(k\geq1\), the exact Frobenius formula is
+\[
+ \boxed{F_k(w)=
+ \begin{cases}
+ (9c)^kz^{\otimes k},&w=T^{\otimes k},\\
+ 0,&\text{otherwise},
+ \end{cases}}
+ \tag{CF27}
+\]
+and hence
+\[
+ F_k=(-72c)^kP_{k,k},\qquad
+ k!F_k=(-72c)^kN_k^k,
+ \qquad F_k^2=N_kF_k=F_kN_k=0.
+ \tag{CF28}
+\]
+All are integral identities. The second equality retains the factorial even when it is not a unit. The equivalent original-residue identity is \(k!F_k=(-24c)^kD_k^k\).
+
+For \(c\neq0\), \(\ker F_k\) is the span of every original word except \(T^{\otimes k}\), and
+\[
+ \operatorname{im}F_k=(9c)^kOz^{\otimes k},
+ \qquad\operatorname{Sat}_{V_k}(\operatorname{im}F_k)=Oz^{\otimes k},
+\]
+\[
+ \operatorname{coker}F_k
+ =\left(\bigoplus_{w\neq z^{\otimes k}}Ow\right)
+ \oplus (O/(9c)^kO)z^{\otimes k}.
+ \tag{CF29}
+\]
+For \(c=0\), \(F_k=0\) for every \(k\geq1\), with zero image and full kernel and cokernel \(V_k\).
+
+## CF5. Integral diagonal forms for every power of the tensor residue
+
+This section proves an all-\(k\), all-\(r\) formula; it performs no finite-range enumeration. It also proves the rational isomorphisms used in the monodromy calculation.
+
+For integers \(m\geq0\) and \(0\leq s\leq m\), let \(B_{m,s}\) be the free \(O\)-module on the \(s\)-element subsets of \(\{1,\ldots,m\}\). For \(s\leq t\leq m\), define the inclusion map
+\[
+ J_{s,t}(S)=\sum_{\substack{U\supseteq S\\|U|=t}}U.
+ \tag{CF30}
+\]
+An \(i\)-element subset \(A=\{a_1<\cdots<a_i\}\) is called ballot here when \(a_j\geq2j\) for every \(j\). The empty set is ballot. Put
+\[
+ v_{A,s}=\sum_{\substack{S\supseteq A\\|S|=s}}S.
+\]
+Then
+\[
+ \{v_{A,s}: A\text{ ballot},\ |A|\leq\min(s,m-s)\}
+ \quad\text{is an integral basis of }B_{m,s}.
+ \tag{CF31}
+\]
+Here “integral basis” means that the coefficient change has determinant \(1\) or \(-1\) over \(\mathbb Z\), before scalar extension to \(O\).
+
+We prove CF31 by induction on \(m\). The assertion is immediate for \(m=0\). Suppose first \(s\leq m/2\). Decompose the subset module according as its subsets omit or contain \(m\):
+\[
+ B_{m,s}=B_{m-1,s}\oplus mB_{m-1,s-1}.
+\]
+If \(m>2s\), ballot indices omitting \(m\) have size at most \(s\); these are exactly the induction indices of a basis of \(B_{m-1,s}\). If \(m=2s\), no ballot \(s\)-element set can omit \(m\), because its last entry would be at least \(2s=m\); the remaining indices have size at most \(s-1\), again exactly the induction indices for \(B_{m-1,s}\). For every such index \(A\), the vector is
+\[
+ v_{A,s}^{(m)}=(v_{A,s}^{(m-1)},v_{A,s-1}^{(m-1)}).
+\]
+The ballot indices containing \(m\) are precisely \(A=A'\cup\{m\}\), with \(A'\) ballot and \(|A'|\leq s-1\), since \(m\geq2s\geq2(|A'|+1)\). Their vectors are
+\[
+ v_{A,s}^{(m)}=(0,v_{A',s-1}^{(m-1)}).
+\]
+These second components are exactly an induction basis of \(B_{m-1,s-1}\). The entire change-of-basis matrix is block triangular with integral-basis diagonal blocks, proving the assertion for \(s\leq m/2\), with the evident zero-module conventions at \(s=0\).
+
+For \(s>m/2\), complement maps a vector \(v_{A,s}\) to the sum of all \((m-s)\)-element subsets disjoint from \(A\). Inclusion-exclusion gives its exact expression
+\[
+ \operatorname{comp}(v_{A,s})
+ =\sum_{B\subseteq A}(-1)^{|B|}v_{B,m-s}.
+ \tag{CF32}
+\]
+Every subset of a ballot set is ballot: its \(j\)-th entry was the \(j'\)-th entry of the larger set for some \(j'\geq j\), hence is at least \(2j'\geq2j\). Order the ballot indices by cardinality. The matrix in CF32 is triangular with diagonal \((-1)^{|A|}\), so it is unimodular. The already proved lower-half basis therefore gives the upper-half basis. This completes the induction.
+
+The number of ballot \(i\)-subsets, for \(i\leq m/2\), is
+\[
+ b_{m,i}=\binom mi-\binom m{i-1},\qquad\binom m{-1}=0.
+ \tag{CF33}
+\]
+The case \(i=0\) consists of the empty set and gives \(b_{m,0}=1\). For \(i\geq1\), use binary words with selected and unselected positions. The ballot condition means that no initial segment has more selected than unselected positions. Among words with \(i\) selected positions, reflect the prefix through its first occurrence of one more selected than unselected. This sends a failed word to a word with \(i-1\) selected positions. Conversely every word with \(i-1\) selected positions ends with more unselected than selected when \(i\leq m/2\), so has a first prefix with one more unselected than selected; reflecting it recovers the unique failed word. This is a bijection between failed \(i\)-subsets and all \((i-1)\)-subsets, proving CF33.
+
+Assume \(s+t\leq m\). Counting intermediate subsets yields
+\[
+ J_{s,t}(v_{A,s})
+ =\binom{t-|A|}{s-|A|}v_{A,t}.
+ \tag{CF34}
+\]
+Every source index \(A\) has size at most \(s\leq\min(t,m-t)\), so it is among the target basis indices. Thus CF34 is a rectangular diagonal form in two unimodular bases. If \(s+t>m\), transpose the matrix and complement every subset: the resulting matrix is \(J_{m-t,m-s}\), which satisfies \((m-t)+(m-s)<m\). Transposition and permutations preserve its nonzero diagonal factors and rank. Therefore, with
+\[
+ q=\min(s,m-t),\qquad r=t-s,
+\]
+the nonzero diagonal factors of \(J_{s,t}\), up to unimodular left and right changes, are
+\[
+ \binom{q+r-i}{r}
+ \quad\text{with multiplicity }b_{m,i},\quad0\leq i\leq q.
+ \tag{CF35}
+\]
+They need not be ordered by divisibility. A diagonal presentation already determines the cokernel. Their number is \(\sum_{i=0}^q b_{m,i}=\binom mq\), which is the rank. This proves the claimed form without invoking an external diagonal-form theorem.
+
+Apply this to the original tensor basis. Fix the set \(A_\epsilon\subseteq\{1,\ldots,k\}\) of positions occupied by \(\epsilon\); write \(m=k-|A_\epsilon|\). The remaining positions have letters \(T\) or \(z\). Identify a word with the subset of those \(m\) positions occupied by \(z\). This is an explicit relabeling of the existing basis, with coefficient \(1\), and gives
+\[
+ V_k=\bigoplus_{A_\epsilon\subseteq\{1,\ldots,k\}}
+       \bigoplus_{s=0}^{m}B_{m,s}.
+ \tag{CF36}
+\]
+In this decomposition, CF23 says exactly
+\[
+ N_k^r|_{B_{m,s}}=r!\left(-\frac18\right)^r J_{s,s+r}
+ \quad(s+r\leq m),
+ \tag{CF37}
+\]
+and it is zero when \(s+r>m\). For a valid block put
+\[
+ q=\min(s,m-s-r),\qquad
+ d_{m,s,r,i}=r!\binom{q+r-i}{r}.
+ \tag{CF38}
+\]
+Its exact diagonal coefficients are
+\[
+ \left(-\frac18\right)^r d_{m,s,r,i}
+ \quad\text{with multiplicity }b_{m,i},\quad0\leq i\leq q.
+ \tag{CF39}
+\]
+Because \((-1/8)^r\) is a unit, the torsion cokernel summands are \(O/d_{m,s,r,i}O\), each with that multiplicity. Their respective orders are \(3^{\nu_3(d_{m,s,r,i})}\), with valuation
+\[
+ \nu_3(d_{m,s,r,i})
+ =\sum_{a\geq1}\left\lfloor\frac r{3^a}\right\rfloor
+  +\nu_3\!\binom{q+r-i}{r}.
+ \tag{CF40}
+\]
+The factorial valuation formula follows by counting each factor of \(3^a\) among \(1,\ldots,r\). Every sum is finite.
+
+For explicit assembly of the entire cokernel of \(N_k^r\), take \(r\geq1\). For each \(A_\epsilon\) and each target level \(0\leq t\leq m\), proceed as follows:
+
+* If \(t<r\), that target block contributes its whole free module \(B_{m,t}\).
+* If \(t\geq r\), put \(s=t-r\), \(q=\min(s,m-t)\). This target block contributes a free module of rank \(\binom mt-\binom mq\), and the torsion modules \(O/d_{m,s,r,i}O\) with multiplicities \(b_{m,i}\), \(0\leq i\leq q\).
+
+These are direct sums because different source levels land in different target levels, and \(N_k\) does not change the set \(A_\epsilon\). The kernel on a valid source block is free of rank \(\binom ms-\binom mq\); on a source block with \(s+r>m\), it is the whole block. This proves the global image, kernel-rank, and cokernel formulas for every \(k,r\), including \(r>k\).
+
+The saturation defect of the image is precisely the direct sum of the torsion summands just listed. Indeed, in the diagonal bases the image is generated by the nonzero diagonal multiples of separate target basis vectors; its saturation is generated by those target basis vectors themselves. In the original basis the image is also given without any basis change by the generators in CF23. Thus both its original-coordinate description and its exact saturation quotient are known.
+
+For \(D_k^r\), multiply every nonzero coefficient in CF39 by \(3^r\). The kernel and rational image stay the same; every displayed nonzero elementary-divisor valuation increases by \(r\). This records the entire integral effect of the original residue factor \(3\).
+
+## CF6. The exact all-tensor monodromy filtration
+
+Assign the original letters the indices
+\[
+ \operatorname{wt}(\epsilon)=0,\qquad
+ \operatorname{wt}(T)=1,\qquad
+ \operatorname{wt}(\epsilon T)=-1.
+ \tag{CF41}
+\]
+Here “wt” is an abbreviation for the chosen monodromy-filtration index, with no arithmetic purity meaning. Define
+\[
+ W_jV_k=\bigoplus_{\operatorname{wt}(w)\leq j}Ow,
+ \qquad\operatorname{wt}(w)=\sum_{i=1}^k\operatorname{wt}(w_i).
+ \tag{CF42}
+\]
+This is the tensor filtration generated by CF13: a basis word belongs to the convolution of the individual filtration steps exactly when the sum of its individual least indices is at most \(j\). Each step is saturated because it is spanned by a subset of the original basis. By CF23, \(N_kW_j\subseteq W_{j-2}\).
+
+In a block \(B_{m,s}\), every word has index \(m-2s\). A contribution to index \(r\geq0\) thus occurs exactly when \(m\geq r\), \(m-r\) is even, and \(s=(m-r)/2\). The map to index \(-r\) is
+\[
+ N_k^r:B_{m,s}\longrightarrow B_{m,s+r}=B_{m,m-s},
+ \qquad r!\left(-\frac18\right)^rJ_{s,m-s}.
+ \tag{CF43}
+\]
+In CF38, \(q=s\). Every diagonal coefficient
+\[
+ r!\left(-\frac18\right)^r\binom{s+r-i}{r},
+ \qquad0\leq i\leq s,
+ \tag{CF44}
+\]
+is nonzero. The source and target ranks agree. Hence CF43 is an isomorphism over \(K\). This proves all the defining identities CF16 for the filtration \(W(V_k\otimes_OK)\), for every \(k\).
+
+For completeness this filtration is intrinsic to \(N_k\) after extension to \(K\), rather than dependent on an arbitrary choice of a basis giving the displayed properties. Write \(V_h\) for its homogeneous index-\(h\) subspace over \(K\). The proven isomorphisms \(N_k^h:V_h\to V_{-h}\), \(h\geq0\), yield the following direct primitive decomposition. For \(h\geq0\) put
+\[
+ P_h=\ker(N_k^{h+1}:V_h\longrightarrow V_{-h-2}).
+\]
+The restriction of \(N_k\) to \(V_{h+2}\) is injective, since \(N_k^{h+2}\) is an isomorphism. The composite \(N_k^{h+1}N_k=N_k^{h+2}\) is an isomorphism \(V_{h+2}\to V_{-h-2}\). Therefore
+\[
+ V_h=P_h\oplus N_kV_{h+2}.
+ \tag{CF45}
+\]
+Iterating CF45 decomposes every nonnegative index space into the corresponding primitive chains. The isomorphism \(N_k^h:V_h\to V_{-h}\) then gives the decomposition in negative index spaces as well. Each vector in a basis of \(P_h\) has nonzero successive images through \(N_k^h\), vanishes under \(N_k^{h+1}\), and therefore gives a Jordan chain of length \(h+1\), with exact indices \(h,h-2,\ldots,-h\). These chains span a direct sum by CF45 and the isomorphisms just used.
+
+On any chain \(v_0,\ldots,v_h\) numbered from the bottom so \(N_kv_i=v_{i-1}\), its indices are \(2i-h\). Direct intersection of the initial segments of this chain proves
+\[
+ W_j(V_k\otimes_OK)=
+ \sum_{a\geq\max(0,-j)}
+ \left(\ker N_k^{j+a+1}\cap\operatorname{im}N_k^a\right).
+ \tag{CF46}
+\]
+Indeed the summand on this chain contains exactly the vectors with \(i\leq\min(j+a,h-a)\); maximizing over the indicated integers \(a\) yields exactly \(2i-h\leq j\). If \(j<-h\), both descriptions give zero, and if \(j\geq h\), both give the entire chain. Thus CF46 holds on every chain and on their direct sum. Its right-hand side uses \(N_k\) alone. This proves the intrinsic assertion and gives an explicit definition independent of the chosen primitive bases. The saturated integral lattice of that rational filtration is exactly CF42, since intersection with \(V_k\) in the original word basis retains precisely the same words.
+
+Let
+\[
+ a_{k,h}=[X^h](X^{-1}+1+X)^k.
+\]
+Counting the original words gives \(\dim_KV_h=a_{k,h}\). CF45 then proves that the Jordan blocks of \(N_k\) of length \(h+1\) have exact multiplicity
+\[
+ a_{k,h}-a_{k,h+2},\qquad0\leq h\leq k,
+ \tag{CF47}
+\]
+where coefficients outside the displayed polynomial are zero. Equivalently, every coefficient is the finite exact sum
+\[
+ a_{k,h}=
+ \sum_{\substack{0\leq m\leq k\\m\geq|h|\\m-h\text{ even}}}
+ \binom km\binom m{(m-h)/2}.
+ \tag{CF48}
+\]
+This formula chooses the non-\(\epsilon\) positions and then their \(z\) positions. It retains all three original states.
+
+Over \(O\), the map \(N_k^r:\operatorname{gr}_r^WV_k\to\operatorname{gr}_{-r}^WV_k\) is injective. Its exact finite cokernel is obtained by taking, for every \(m\leq k\) with \(m\geq r\) and \(m-r\) even, \(\binom km\) copies of
+\[
+ \bigoplus_{i=0}^{(m-r)/2}
+ \left(O\Big/\left(r!\binom{(m+r)/2-i}{r}\right)O\right)^{b_{m,i}}.
+ \tag{CF49}
+\]
+This follows directly from CF44 and CF33, and is the full integral defect of the rational monodromy isomorphism. In particular the top map, whose two graded terms have original generators \(T^{\otimes k}\) and \(z^{\otimes k}\), is multiplication by
+\[
+ k!\left(-\frac18\right)^k,
+ \quad\text{with cokernel }O/k!O.
+ \tag{CF50}
+\]
+For \(k\geq3\), this is nonzero \(3\)-power torsion. Thus the rational monodromy filtration has been calculated while the exact failure of an integral isomorphism remains visible. Replacing \(N_k\) by \(D_k\) multiplies the coefficients of the index-\(r\) map by \(3^r\), as in CF24.
+
+For \(k\geq1\), \(F_k\) annihilates \(W_{k-1}V_k\) and has image in \(W_{-k}V_k=Oz^{\otimes k}\). On the two extreme terms its exact map is
+\[
+ F_k:[T^{\otimes k}]\longmapsto(9c)^k[z^{\otimes k}].
+ \tag{CF51}
+\]
+It acts as zero on every same-index associated graded term. CF27–CF29 retain its entire nonzero part, its parameter, and its saturation defect; none follows from a purity theorem.
+
+## CF7. Duals, mixed tensors, and the precise evaluation obstruction
+
+Let \(M^\vee=\operatorname{Hom}_O(M,O)\), with the original dual basis
+\[
+ \epsilon^\vee,T^\vee,z^\vee,
+ \qquad a^\vee(b)=\begin{cases}1,&a=b,\\0,&a\neq b.\end{cases}
+\]
+The unique dual residue for which evaluation has zero total residue is
+\[
+ N^\vee(f)=-f\circ N.
+ \tag{CF52}
+\]
+Uniqueness follows from the required identity
+\[
+ (N^\vee f)(v)+f(Nv)=0
+ \quad(f\in M^\vee,v\in M).
+ \tag{CF53}
+\]
+Direct substitution into CF10 gives
+\[
+ N^\vee(\epsilon^\vee)=N^\vee(T^\vee)=0,
+ \qquad N^\vee(z^\vee)=\frac18T^\vee,
+ \qquad D^\vee=3N^\vee.
+ \tag{CF54}
+\]
+Its saturated integral filtration has indices \(0,-1,1\) on \(\epsilon^\vee,T^\vee,z^\vee\), respectively. In terms of the original filtration it is
+\[
+ W_jM^\vee=\{f:f(W_{-j-1}M)=0\}.
+ \tag{CF55}
+\]
+This equality follows by testing each original dual basis vector on CF13. The outer residue map is multiplication by \(1/8\), with its sign retained.
+
+The actual contravariant Frobenius pullback is
+\[
+ F^*(f)=f\circ F.
+ \tag{CF56}
+\]
+Its basis formulas are
+\[
+ F^*(\epsilon^\vee)=F^*(T^\vee)=0,
+ \qquad F^*(z^\vee)=9cT^\vee,
+ \qquad F^*=72cN^\vee.
+ \tag{CF57}
+\]
+It satisfies the exact dinaturality identity
+\[
+ \operatorname{ev}(F^*f,v)=\operatorname{ev}(f,Fv).
+ \tag{CF58}
+\]
+Also \(N^\vee F^*=F^*N^\vee=0\), as follows either from the basis or by transposing the two zero composites in CF18.
+
+There does not exist an \(O\)-linear endomorphism \(G\) of \(M^\vee\) for which evaluation is Frobenius compatible with the specified Frobenius of \(O\), namely
+\[
+ \operatorname{ev}(Gf,Fv)=\operatorname{ev}(f,v)
+ \quad\text{for all }f,v.
+ \tag{CF59}
+\]
+Take \(v=\epsilon\) and \(f=\epsilon^\vee\). Its left-hand side is zero because \(F\epsilon=0\), whereas its right-hand side is \(1\). This contradiction is independent of \(c\). It persists over \(K\). More generally no nonzero scalar \(\lambda\in O\) can replace the right-hand side by \(\lambda\operatorname{ev}(f,v)\), since the same test would give \(0=\lambda\). In particular a nonzero scalar twist cannot repair evaluation on this full module.
+
+The transpose \(F^*\) does satisfy a different, fully specified simultaneous identity:
+\[
+ \operatorname{ev}(F^*f,Fv)=f(F^2v)=0.
+ \tag{CF60}
+\]
+Thus it gives a pairing to a target whose endomorphism is zero, and the one-sided equality CF58, but not a pairing to the unit object \((O,\operatorname{id})\). These are the exact maps determined by the obstruction.
+
+For a categorical formulation, define \(\mathcal E_O\) to have finite free \(O\)-modules \(V\) equipped with an arbitrary endomorphism \(F_V\), with morphisms \(A\) satisfying \(AF_V=F_WA\), tensor endomorphism \(F_V\otimes F_W\), and unit \((O,\operatorname{id})\). If the ordinary perfect evaluation \(V^\vee\otimes V\to O\) is a morphism for some endomorphism \(G\) of \(V^\vee\), its matrix identity is \(G^{\mathsf t}F_V=I\). Taking determinants in the commutative local ring \(O\) proves that \(\det F_V\) is a unit, so \(F_V\) is invertible. Conversely, when \(F_V\) is invertible, \(G=(F_V^{-1})^{\mathsf t}\) gives that identity and the usual coevaluation identity. Hence precisely the invertible-endomorphism objects have their ordinary dual with these evaluation and coevaluation maps. Our \((M,F)\) is a specified nonzero object of \(\mathcal E_O\) outside that rigid subcategory. Its transpose and CF58 remain defined without an inverse.
+
+For every \(k\), identify \(V_k^\vee\) with \((M^\vee)^{\otimes k}\) by the ordered dual tensor basis. Then
+\[
+ N_k^\vee=-N_k^{\mathsf t}
+ =\sum_{i=1}^k1^{\otimes(i-1)}\otimes N^\vee\otimes1^{\otimes(k-i)},
+ \qquad F_k^*=(F^*)^{\otimes k}=F_k^{\mathsf t}.
+ \tag{CF61}
+\]
+The derivation identity CF53 proves the first equality on each tensor, and evaluating on the tensor basis proves the second. Every power \((N_k^\vee)^r\) has the same formula CF23 with \(z^\vee\) replaced by \(T^\vee\) and coefficient \(r!(1/8)^r\). Its integral diagonal factors and saturation defects are exactly CF38–CF40, since sign and powers of \(8\) are units. Its filtration is the dual annihilator filtration, equivalently the tensor word filtration on the dual indices in CF55. Its Frobenius sends only \((z^\vee)^{\otimes k}\) to \((9c)^k(T^\vee)^{\otimes k}\). Formulas CF58 and CF60 hold verbatim with \(k\)-fold evaluation. For \(k\geq1\), testing \(v=\epsilon^{\otimes k}\) and \(f=(\epsilon^\vee)^{\otimes k}\) again disproves any unit-target Frobenius evaluation.
+
+For clarity the same calculations cover all mixed tensors
+\[
+ V_{a,b}=M^{\otimes a}\otimes(M^\vee)^{\otimes b},
+ \qquad a,b\geq0.
+ \tag{CF62}
+\]
+Use the sum of \(N\) and \(N^\vee\) on its positions, and use \(F^{\otimes a}\otimes(F^*)^{\otimes b}\) as its endomorphism. A forward position has active arrow \(T\mapsto(-1/8)z\), and a dual position has active arrow \(z^\vee\mapsto(1/8)T^\vee\). For an \(r\)-element set \(S\) of active arrows applied to a basis word, with \(p(S)\) of them in forward positions, the coefficient in the \(r\)-th power is exactly
+\[
+ r!(-1)^{p(S)}8^{-r}.
+ \tag{CF63}
+\]
+This follows from the same commuting-summand expansion as CF23 and retains the location-dependent sign. The index is \(1\) on every arrow source, \(-1\) on its target, and \(0\) on \(\epsilon\) or \(\epsilon^\vee\). To compare integral diagonal factors with CF39, multiply the basis vector belonging to a selected set of arrow targets by the product of the arrow coefficients in those positions. These products are units in \(O\); conjugation then identifies the signed inclusion operator with the coefficient-one inclusion operator. This proves, by an explicit unit basis change, that the kernels' ranks, saturation quotients, and rational monodromy indices depend only on \(a+b\) and are those already proved, while CF63 retains every original coefficient and sign.
+
+For \(a+b\geq1\), the mixed Frobenius sends just the word
+\[
+ T^{\otimes a}\otimes(z^\vee)^{\otimes b}
+ \quad\text{to}\quad
+ (9c)^{a+b}z^{\otimes a}\otimes(T^\vee)^{\otimes b},
+ \tag{CF64}
+\]
+and kills every other word. Its square and its two composites with the mixed residue are zero. Thus the same image, cokernel, and \(c=0\) conclusions hold with \(k=a+b\). Each contraction of a forward and a dual position respects the residue by CF53, and has the simultaneous Frobenius value zero by CF60. No contraction is silently assigned an inverse Frobenius.
+
+## CF8. Supported zeros remain distinct from the unsupported element
+
+The calculations above concern the coefficient module at its full support. They give actual zero coefficients, not deletion of support. The exact minimal supported lift needed here can be defined without an additional theorem. For any displayed coefficient module \(V\), set
+\[
+ \operatorname{Spl}(V)=\{\tau_V\}\sqcup\{v^\bullet:v\in V\},
+ \qquad e_V=0_V^\bullet.
+ \tag{CF65}
+\]
+The union is disjoint, so \(e_V\neq\tau_V\). Give supported vectors the addition \(v^\bullet+w^\bullet=(v+w)^\bullet\), and let \(\tau_V\) be the external additive identity. On \(\operatorname{Spl}(O)\), give supported scalars the multiplication \(a^\bullet b^\bullet=(ab)^\bullet\), and let \(\tau_O\) be absorbing for multiplication. The scalar action on \(\operatorname{Spl}(V)\) is \(a^\bullet v^\bullet=(av)^\bullet\), with either unsupported input giving \(\tau_V\). These rules define the split semiring and its split semimodule: the identities follow from the corresponding coefficient identities when all inputs are supported, and from the stated external identity and absorption rules otherwise. In particular \(e_O^2=e_O\), \(e_Ov^\bullet=e_V\), and \(e_O\tau_V=\tau_V\). For every specified \(O\)-linear map \(A:V\to W\), define
+\[
+ \widehat A(\tau_V)=\tau_W,
+ \qquad \widehat A(v^\bullet)=(Av)^\bullet.
+ \tag{CF66}
+\]
+Then a supported vector in \(\ker A\) maps to \(e_W\), never to \(\tau_W\). Composition is exact because \((BA)v=B(Av)\) on supported inputs and every map preserves the unsupported element. In particular every zero composite in CF18 and CF28 has value \(e_V\) on a supported input and \(\tau_V\) on an unsupported input.
+
+Lift the coefficient evaluation by
+\[
+ \widehat{\operatorname{ev}}(f^\bullet,v^\bullet)
+ =f(v)^\bullet,
+ \qquad
+ \widehat{\operatorname{ev}}(\tau_{V^\vee},x)
+ =\widehat{\operatorname{ev}}(y,\tau_V)=\tau_O.
+ \tag{CF67}
+\]
+The one-sided Frobenius equality CF58 and the residue identity CF53 then hold on two supported inputs because their coefficient equalities hold; the unsupported cases follow from the indicated rule. The failed equality CF59 remains a failure at full support: its two values for the stated test pair are \(0^\bullet=e_O\) and \(1^\bullet\). The successful simultaneous equality CF60 has value \(e_O\) on two supported inputs and \(\tau_O\) if an input is unsupported. Thus the obstruction and its exact replacement pairing preserve the original distinction \(e\neq\tau\).
+
+This section supplies only these explicit full-support coefficient lifts. A sheaf or recollement construction with additional support labels must use its actual support objects and structure maps; none is inferred from adjoining the single symbol \(\tau\).
+
+## CF9. Exact scope of the result
+
+CF5–CF7 retain the original ideal powers and their saturation quotients. CF23–CF40 give all tensor-power residue coefficients, images, kernel ranks, cokernels, and saturation defects over \(\mathbb Z_3\). CF42–CF50 construct the rational monodromy filtration with its canonical saturated integral lattice and all integral defects. CF17–CF29 and CF51 retain every Frobenius parameter value, including \(c=0\). CF52–CF64 identify the dual residue, contravariant Frobenius pullback, every tensor and mixed-tensor evaluation relation, and the exact obstruction to a unit-target Frobenius evaluation. CF65–CF67 retain the supported-zero and unsupported states separately.
+
+These are complete algebraic calculations on the specified collision module. Their use of a monodromy-filtration index supplies no arithmetic Frobenius purity theorem, no replacement of the original zeta function, and no identification with an uncomputed prismatic cohomology group.

@@ -1,0 +1,1010 @@
+
+
+We calculate three different inverse operations on the original
+split-zero object, retaining its complete distributive support lattice.
+We then construct formal heat with its exact coefficient maps, its
+time-zero fibre, and its support adjunctions.  Two nontrivial defect
+objects result.  First, inverting the time coordinate before taking
+its zero fibre leaves the full support lattice as a boundary.
+Second, when support is permitted independently at every coefficient,
+forward and reverse heat leave an explicitly calculated idempotent
+support closure.  Neither defect is replaced by a scalar Boolean
+quotient.  Their maps to the original amplitude heat equation are
+proved below.
+
+\paragraph{Original sources actually used.}
+The first source is \emph{A Note on the Globalization Semiring
+$G(\Z)$}, March 2026, original \texttt{globalization\_note.tex},
+whose author field is empty.  The user's attribution of the originating
+construction to Gemini 2.5 Pro is retained separately from that
+byline.  Its definitions, projection, and localization statements are
+at source lines 53--139 and 432--563; the original
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/d2f0020a7c446f429682925c1c682d99ba86a4cc/workbenches/splitzero-tandem/foundations/globalization-semiring/globalization_note.tex#L432}{localization source}
+is a prior foundation, not a new result of this paper.
+The semilattice and adjunction source is The Clankers,
+\emph{A Secondary Note on Split-Zero Globalization:
+Semimodule Classification, Multiplicative Reconstruction, and
+All-Orders Zeta Deformation},
+\texttt{split\_zero\_secondary\_note.tex},
+source lines 459--819, especially
+\texttt{thm:fiber-modules}, \texttt{thm:equivalence-semimodules-diagrams},
+and \texttt{cor:adjunctions}.
+The general idempotent universal property is in The Clankers,
+\emph{Split-Zero Projective Geometry and Leibniz Monads},
+\texttt{split\_zero\_projective\_monads\_surcomplex.tex},
+lines 358--428, \texttt{thm:idempotent-localization}.
+The full lattice definition and its original localization theorem are
+in The Clankers, full-support Version 11,
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1228}{Definition \texttt{def:lattice-split}},
+and
+\href{https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a2851f9eb352e7e4376bc629de86fa4ed9c1c434/workbenches/splitzero-tandem/foundations/split-support-geometry-v11/split_support_geometry_arithmetic_curve_v11.tex#L1456}{Theorem \texttt{thm:lattice-localization}}.
+These exact original TeX passages were read. The formal heat and
+coefficient-support calculations below are new derivations from those
+objects; they are not attributed to the source authors as prior claims.
+
+\section{The whole support lattice and the three inverses}
+
+Let $R$ be a nonzero commutative unital ring and $L$ a nontrivial
+bounded distributive lattice.  Equip $L$ with semiring addition
+$\vee$, multiplication $\wedge$, zero $0_L$ and unit $1_L$.
+The original carrier and every one of its coefficients are
+\begin{equation}\tag{SH1}\label{sh:carrier}
+ S_R=G_L(R)=\{(0,\lambda):\lambda\in L\}
+          \cup\{(a,1_L):a\in R\}\subset R\times L.
+\end{equation}
+Write $z_\lambda=(0,\lambda)$, $\widehat a=(a,1_L)$,
+$\tau=z_{0_L}$, and $e=z_{1_L}=\widehat0$.
+Operations are componentwise:
+\begin{equation}\tag{SH2}\label{sh:operations}
+ (a,\lambda)+(b,\mu)=(a+b,\lambda\vee\mu),\qquad
+ (a,\lambda)(b,\mu)=(ab,\lambda\wedge\mu).
+\end{equation}
+Closure follows because an element with nonzero amplitude has
+support $1_L$. Distributivity is precisely ring distributivity and
+distributivity of meet over join. The semiring zero is $\tau$ and
+the multiplicative unit is $\widehat1$; both differ from $e$.
+The two projections are unital semiring homomorphisms
+\begin{equation}\tag{SH3}\label{sh:projections}
+ p:S_R\to R,\quad(a,\lambda)\mapsto a,\qquad
+ \chi:S_R\to L,\quad(a,\lambda)\mapsto\lambda.
+\end{equation}
+The map $(p,\chi)$ is injective with the exact image in
+\eqref{sh:carrier}. Thus their simultaneous receiver preserves all
+amplitudes and all support labels.
+
+\begin{proposition}[Local additive inverse]\label{sh:addinverse}
+Multiplication by $e$ is the projector
+\begin{equation}\tag{SH4}\label{sh:epsilon}
+ \nu:S_R\to S_R,\qquad \nu(x)=ex=z_{\chi(x)}.
+\end{equation}
+The additive monoid is a join-semilattice of abelian groups:
+the fibre of $\nu$ at $z_\lambda$ is the singleton $\{z_\lambda\}$
+for $\lambda<1_L$, and is the additive group
+$\{\widehat a:a\in R\}$ at $\lambda=1_L$, with zero $e$.
+Its local inverse map is
+\begin{equation}\tag{SH5}\label{sh:negative}
+ \iota(\widehat a)=\widehat{-a},\qquad
+ \iota(z_\lambda)=z_\lambda,\qquad
+ x+\iota(x)=\nu(x).
+\end{equation}
+In particular the additive inverse of $e$ in its own fibre is $e$.
+There is no $y$ with $e+y=\tau$.
+\end{proposition}
+\begin{proof}
+Multiplication in \eqref{sh:operations} proves the projector formula.
+Each stated fibre is closed under addition; its indicated point is
+the fibre zero. Formula \eqref{sh:negative} proves the inverse law
+within every fibre. It also proves $x+\iota(x)+x=x$ and
+$\iota(x)+x+\iota(x)=\iota(x)$. Uniqueness of such an inverse
+can be checked in the two coordinates: the two equalities force
+the support of a candidate inverse to equal the support of $x$,
+and its amplitude must be the negative amplitude of $x$.
+Finally $\chi(e+y)=1_L$ for every $y$, whereas $\chi(\tau)=0_L$.
+More generally, the only invertible element of the additive monoid
+with respect to its global identity $\tau$ is $\tau$ itself.
+\end{proof}
+
+\begin{proposition}[Local multiplicative inverse]\label{sh:localmult}
+The local multiplicative monoid at the idempotent $z_\lambda$ is
+\begin{equation}\tag{SH6}\label{sh:localmonoid}
+ z_\lambda S_Rz_\lambda
+ =\{z_\mu:\mu\le\lambda\}\cong(\downarrow\lambda,\wedge),
+ \qquad 1_{\rm local}=z_\lambda .
+\end{equation}
+Its only unit is $z_\lambda$, with inverse $z_\lambda$.
+In particular the inverse of $e$ in the local monoid $eS_Re$
+is $e$, while the global multiplicative unit group of $S_R$
+is $\{\widehat a:a\in R^\times\}$.
+\end{proposition}
+\begin{proof}
+For a supported amplitude, $z_\lambda\widehat a=z_\lambda$;
+for a zero label, $z_\lambda z_\mu=z_{\lambda\wedge\mu}$.
+These formulas prove the local monoid identification.  If
+$\mu,\eta\le\lambda$ and $\mu\wedge\eta=\lambda$, then
+$\mu=\eta=\lambda$, proving the unit assertion. Globally a product
+equal to $\widehat1$ must have both amplitudes nonzero and multiply
+to $1_R$, so both factors are the claimed ring units.
+The equation $ey=e$ alone has all supported amplitudes as solutions;
+it does not say that those elements are inverses in $eS_Re$,
+because they do not belong to that local monoid unless they equal
+$e$. If a reflexive generalized inverse is required to satisfy
+$eye=e$ and $yey=y$, the first identity forces $y$ to be supported
+and the second then forces $y=e$.
+\end{proof}
+
+\begin{theorem}[The genuine inverse-monoid structure over a field]
+\label{sh:inversemonoid}
+Let $K$ be a field. The entire multiplicative monoid of $G_L(K)$
+is an inverse monoid. Its unique generalized inverse is
+\begin{equation}\tag{SH6a}\label{sh:generalizedinverse}
+ (\widehat a)^\dagger=\widehat{a^{-1}}\quad(a\ne0),\qquad
+ z_\lambda^\dagger=z_\lambda\quad(\lambda\in L).
+\end{equation}
+It obeys $xx^\dagger x=x$ and
+$x^\dagger xx^\dagger=x^\dagger$ for every element,
+including the genuine identity $e^\dagger=e$.
+The corresponding multiplicative local identity is
+\begin{equation}\tag{SH6b}\label{sh:rangeidempotent}
+ \eta(x)=xx^\dagger=
+ \begin{cases}
+ \widehat1,&p(x)\ne0,\\
+ z_\lambda,&x=z_\lambda.
+ \end{cases}
+\end{equation}
+All multiplicative idempotents form the meet-semilattice
+$\mathcal E=\{\widehat1\}\sqcup\{z_\lambda:\lambda\in L\}$,
+in which $\widehat1$ is above every $z_\lambda$ and the
+original lattice $L$ remains unchanged beneath it.
+\end{theorem}
+\begin{proof}
+The two generalized-inverse equations follow by direct
+multiplication. To prove uniqueness, if $x=\widehat a$ with
+$a\ne0$, a lower-label candidate $y$ makes $xyx$ have zero
+amplitude, and cannot give $x$. For $y=\widehat b$ the first
+equation gives $a^2b=a$, hence $b=a^{-1}$ in the field.
+If $x=z_\lambda$ and a candidate $y$ has nonzero amplitude,
+the product $yxy$ has zero amplitude and cannot equal $y$.
+Thus $y=z_\mu$; the two equations are
+$\lambda\wedge\mu=\lambda$ and
+$\lambda\wedge\mu=\mu$, which force $\lambda=\mu$.
+This proves uniqueness for every element. A multiplicative
+idempotent with nonzero amplitude has amplitude satisfying
+$a^2=a$ in a field, hence is $\widehat1$; all other
+idempotents are exactly the $z_\lambda$.
+The monoid is commutative, so the idempotents commute, and
+their multiplication is the asserted meet. This also proves
+the inverse-monoid assertion directly.
+\end{proof}
+
+The map $\eta:G_L(K)\to\mathcal E$ is a multiplicative
+monoid homomorphism: a product of nonzero field amplitudes
+is nonzero, and every remaining product meets its zero labels.
+The full original support map factors through it by
+$\widehat1\mapsto1_L$, $z_\lambda\mapsto\lambda$.
+This last map identifies the two different idempotents
+$\widehat1$ and $e$; $\eta$ itself retains their difference.
+At an actual supported scalar difference $d=\widehat{a-b}$
+one has the exact two cases
+\begin{equation}\tag{SH6c}\label{sh:collisionunit}
+ dd^\dagger=
+ \begin{cases}
+ \widehat1,&a\ne b,\\
+ e,&a=b.
+ \end{cases}
+\end{equation}
+Thus inverse-monoid division by the supported zero is
+well-defined, with its specified local identity $e$.
+For any $f\in G_L(K)$ the exact division equation is
+$d(d^\dagger f)=\eta(d)f$. On the distinct-value locus
+it is $f$; at $a=b$ it is $ef=\nu(f)$.
+This supplies the precise idempotent defect in a rational
+identity whose ordinary derivation canceled $d$. It does
+not assume that the unit $\widehat1$ remains its local
+identity at a collision.
+
+\begin{theorem}[Universal unital inversion]\label{sh:localization}
+For every $\lambda\in L$, the universal unital localization is
+\begin{equation}\tag{SH7}\label{sh:localize}
+ S_R[z_\lambda^{-1}]\cong\downarrow\lambda,\qquad
+ q_\lambda(x)=\lambda\wedge\chi(x).
+\end{equation}
+The target has unit $\lambda$. In particular
+\begin{equation}\tag{SH8}\label{sh:elocalize}
+ S_R[e^{-1}]\cong L,\quad q_1=\chi,\qquad
+ S_R[\tau^{-1}]\cong\{0\}.
+\end{equation}
+The localization at $e$ keeps every label of $L$ and identifies
+all supported amplitudes with $1_L$.
+\end{theorem}
+\begin{proof}
+For any commutative semiring $S$ and idempotent $a$, the subset
+$aS$ is a semiring with unit $a$ and the same zero as $S$.
+The map $x\mapsto ax$ is unital into this new target because
+$\widehat1$ maps to its unit $a$. If $f:S\to T$ is unital and
+$f(a)$ is invertible, $f(a)^2=f(a)$ forces $f(a)=1_T$.
+It follows that $ax=ay$ implies $f(x)=f(y)$, so
+$\bar f(ax)=f(x)$ is a well-defined unique factorization.
+This proves the universal property of $aS$.
+Apply it to $a=z_\lambda$ and use \eqref{sh:localmonoid}.
+The two endpoint cases are $\lambda=1_L,0_L$.
+\end{proof}
+
+The kernel \emph{congruence} of $\chi$ is exactly
+\begin{equation}\tag{SH9}\label{sh:congruence}
+ \mathcal R_\chi=
+ \{(\widehat a,\widehat b):a,b\in R\}
+ \ \cup\
+ \{(z_\lambda,z_\lambda):\lambda<1_L\}.
+\end{equation}
+Its zero ideal $\chi^{-1}(0_L)=\{\tau\}$ does not detect the
+identified amplitudes. The kernel-pair object
+$S_R\times_L S_R$, its two projections to $S_R$, and the
+amplitude difference
+\[
+ d:S_R\times_L S_R\to(R,+),\qquad d(x,y)=p(x)-p(y)
+\]
+give an exact description of that identification: $d$ is additive
+and surjective, and $d^{-1}(0)$ is the diagonal copy of $S_R$.
+Surjectivity uses $(\widehat a,e)$; the kernel assertion follows
+from injectivity of $(p,\chi)$. This supplies an explicit receiver
+for the amplitudes identified by localization.
+
+The ring reflection $p$ is universal among unital maps to rings.
+Indeed $e+z_\lambda=e$ forces every $z_\lambda$ to map to zero
+in a ring by additive cancellation; the remaining restriction is
+then a ring homomorphism. Consequently the pushout of
+$S_R\to L$ and $S_R\to R$ in commutative unital semirings is the
+one-element ring: in the pushout the same element $e$ is both $1$
+and $0$. This proves the exact relation between the support
+localization and the ring reflection.
+
+\section{The original semilattice adjunctions with the full lattice}
+
+Let $M$ be a unital $S_R$-semimodule, meaning a commutative monoid
+under addition with a distributive $S_R$ action. Its global zero is
+$0_M$. Put
+\begin{equation}\tag{SH10}\label{sh:modulefibres}
+ \epsilon_M(m)=em,\qquad P_M=eM,\qquad
+ M_\ell=\{m:em=\ell\}\quad(\ell\in P_M).
+\end{equation}
+The module support semilattice $P_M$ is distinguished from the
+base support lattice $L$.
+
+\begin{theorem}[Full-lattice semilattice description]\label{sh:modules}
+The set $P_M$ is a join-semilattice with zero $0_M$ under the
+addition in $M$, and each $M_\ell$ is an $R$-module with zero
+$\ell$. For $\ell\le\ell'$ the transition
+\begin{equation}\tag{SH11}\label{sh:transport}
+ T_{\ell,\ell'}:M_\ell\to M_{\ell'},\qquad
+ m\mapsto m+\ell'
+\end{equation}
+is $R$-linear and these transitions compose. The remaining full
+lattice action is precisely an $L$-semimodule action on $P_M$:
+\begin{equation}\tag{SH12}\label{sh:laction}
+ \lambda\cdot\ell=z_\lambda\ell,\qquad
+ z_\lambda m=z_\lambda(em)=\lambda\cdot\ell\in P_M
+ \quad(m\in M_\ell).
+\end{equation}
+Conversely, a join-semilattice $P$ with zero carrying an
+$L$-semimodule action, together with a diagram of $R$-modules
+$M_\ell$ and $R$-linear transitions over $P$, reconstructs an
+$S_R$-semimodule by the following explicit operations:
+\begin{equation}\tag{SH13}\label{sh:reconstruction}
+ \begin{gathered}
+ M=\bigsqcup_{\ell\in P}M_\ell,\qquad
+ m+n=T_{\ell,\ell\vee\eta}m+
+             T_{\eta,\ell\vee\eta}n
+       \quad(m\in M_\ell,n\in M_\eta),\\
+ \widehat a\,m=am\in M_\ell,\qquad
+ z_\lambda m=0_{M_{\lambda\cdot\ell}}.
+ \end{gathered}
+\end{equation}
+The overlap $z_{1_L}=\widehat0$ has identical actions in these
+two formulas.
+\end{theorem}
+\begin{proof}
+The identities $e^2=e$, $e+e=e$, and $\widehat1+e=\widehat1$
+give $\epsilon_M^2=\epsilon_M$,
+$em+em=em$, and $m+em=m$. Thus $P_M$ is the asserted
+semilattice. In a fibre $M_\ell$, the last identity makes $\ell$
+its zero, and $m+\widehat{-1}m=em=\ell$ proves the additive
+inverse. Supported scalars preserve the fibre because
+$e\widehat a=e$, giving its $R$-module structure. The formula
+for transitions preserves fibres, zero, addition and scalar
+multiplication; composing transitions uses
+$\ell+\ell'=\ell'$ for $\ell\le\ell'$. Addition between fibres
+is their sum transported to the join fibre because $em+en$
+is that join. These are the original semilattice constructions.
+
+For the full $L$ action, $z_\lambda e=z_\lambda$ proves
+\eqref{sh:laction}. All semimodule laws on $P_M$ follow from
+the operations on the zero fibre of $S_R$. In particular
+$\lambda\cdot\ell\le\ell$, since $\lambda\vee1_L=1_L$.
+Conversely the usual diagram sum in \eqref{sh:reconstruction}
+is associative: transport three summands to their common join,
+where ordinary module associativity applies. Zero, scalar
+multiplication by supported amplitudes, and fibre inverses follow
+from their module counterparts. Scalar identities within $L$ are
+the $L$-semimodule identities on $P$. For mixed scalars,
+$(\widehat a+z_\lambda)m=\widehat a m$ holds because the zero
+in fibre $\lambda\cdot\ell\le\ell$ transports to the zero in
+$M_\ell$. The identity $\widehat a z_\lambda=z_\lambda$
+holds because an $R$ scalar sends every fibre zero to itself.
+The zero scalar $z_{0_L}$ acts as the zero of $M_{0_P}$.
+Thus every semimodule law holds. Extraction and reconstruction
+return the same elements and all the same operations.
+\end{proof}
+
+The adjunctions retain all these support fibres:
+\begin{equation}\tag{SH14}\label{sh:adjunctions}
+ \begin{gathered}
+ \Hom_{S_R}(M,\chi^*N)\cong\Hom_L(eM,N),\\
+ K_M=\{m:em=0_M\}=M_{0_M},\qquad
+ \Hom_{S_R}(p^*A,M)\cong\Hom_R(A,K_M).
+ \end{gathered}
+\end{equation}
+Here $N$ is an $L$-semimodule and $A$ an $R$-module.
+For the first identity, $f(m)=ef(m)=f(em)$ forces unique
+factorization through $m\mapsto em$; conversely an $L$-linear
+map on $eM$ composed with this projector is $S_R$-linear.
+For the second, $eg(a)=g(ea)=g(0)=0_M$ forces the image into
+$K_M$; on that fibre every $z_\lambda$ acts by zero since
+$z_\lambda m=z_\lambda em$, so precisely the $R$-linear
+maps occur. These arguments prove both bijections and their
+naturality.
+
+For the regular module $M=S_R$, one has $P_M=L$, top fibre $R$,
+and singleton fibres below the top. In particular $K_{S_R}$
+is the singleton $\{\tau\}$, whereas the ring reflection is $R$.
+The right adjoint $K_M$ is not being substituted for the amplitude
+projection $p$. The first adjoint is precisely universal inversion
+of the idempotent action: if an $S_R$-linear map receives $e$ as
+an invertible operator, that idempotent operator must be the
+identity, so the map factors uniquely through $eM$.
+
+\section{The exact integral coefficient heat operator}
+
+Let $A=R[[t,z]]$, with $t$ the formal heat parameter. An element
+$F$ is a family of coefficients $f_{mn}\in R$:
+$F=\sum_{m,n\ge0}f_{mn}t^mz^n$. The variable $z$ is the
+unchanged spatial coordinate. For $\sigma\in\{+1,-1\}$ define
+\begin{equation}\tag{SH15}\label{sh:heat}
+ [t^mz^n]\Ht_\sigma F
+ =\sum_{j=0}^m
+       \sigma^j\,\frac{(n+2j)!}{n!\,j!}\,f_{m-j,n+2j}.
+\end{equation}
+Each displayed integer is integral:
+$(n+2j)!/(n!j!)=\binom{n+2j}{2j}(2j)!/j!$.
+Thus the definition makes sense over every $R$, with no division
+operation in $R$. Every coefficient is a finite sum. The notation
+$\Ht_\sigma=\exp(\sigma t\partial_z^2)$ records this definition,
+not an analytic convergence assertion. The Newman heat sign
+$e^{tu^2}\cos(zu)$ corresponds to $\sigma=-1$, because
+$\partial_z^2\cos(zu)=-u^2\cos(zu)$.
+
+\begin{theorem}[Formal inverse and time-zero value]\label{sh:heatproperties}
+The maps $\Ht_\sigma$ are $R[[t]]$-linear continuous
+automorphisms for the $t$-adic topology, and
+\begin{equation}\tag{SH16}\label{sh:inverseheat}
+ \Ht_+\Ht_-=\Ht_-\Ht_+=I,\qquad
+ \operatorname{ev}_0\Ht_\sigma=\operatorname{ev}_0,
+ \quad\operatorname{ev}_0(F)=F(0,z).
+\end{equation}
+They commute with $\partial_z$ and with every coefficient-ring
+homomorphism. For initial data $f(z)\in R[[z]]$,
+$F=\Ht_\sigma f$ satisfies
+\begin{equation}\tag{SH17}\label{sh:pde}
+ \partial_tF=\sigma\partial_z^2F,\qquad F(0,z)=f(z).
+\end{equation}
+When $R$ is a $\Q$-algebra these conditions uniquely determine
+$F$. All assertions extend to coefficients in any $R$-module.
+\end{theorem}
+\begin{proof}
+The formula uses only integer scalar maps, sums and shifts of
+indices, proving linearity, coefficient naturality and commutation
+with $\partial_z$. It preserves the ideal $t^kA$ for every $k$;
+and multiplication by $t$ commutes with it, proving continuity
+and $R[[t]]$-linearity. To calculate the inverse, collect terms
+whose two heat indices sum to $k$. Over $\Q$ their coefficient
+in the composite is
+\[
+ \frac{(n+2k)!}{n!}
+ \sum_{j=0}^k\frac{(-1)^j}{j!(k-j)!}
+ =\frac{(n+2k)!}{n!k!}(1-1)^k.
+\]
+Every summand before collection is an integer, being a product
+of the integer coefficients in \eqref{sh:heat}; therefore this
+integer identity holds over every $R$. It is $1$ at $k=0$
+and zero otherwise, proving both inverse formulas.
+At $m=0$ only $j=0$ occurs, proving evaluation at zero.
+
+For initial data the coefficients are
+$[t^mz^n]F=\sigma^m(n+2m)!/(n!m!)\,f_{n+2m}$.
+Multiplying the coefficient with index $m+1$ by $m+1$
+gives exactly $\sigma(n+2)(n+1)$ times the coefficient with
+indices $m,n+2$. This proves the differential equation without
+division in $R$. If all positive integers are invertible in $R$,
+the recurrence
+$(m+1)F_{m+1}(z)=\sigma F_m''(z)$ uniquely constructs the
+solution from $F_0=f$. Module coefficients obey the same
+identities, proving the final assertion.
+\end{proof}
+
+The $\Q$-algebra condition is needed for that PDE uniqueness
+claim, not for \eqref{sh:heat} or its inverse. For example over
+$R=\mathbf F_p$, the nonzero series $t^p$ has zero time-zero
+value and satisfies $\partial_t t^p=\sigma\partial_z^2t^p=0$.
+The exact additional solution object in any characteristic is
+\begin{equation}\tag{SH18}\label{sh:pdetorsion}
+ \mathcal N_R=
+ \{(F_m)_{m\ge0}:F_0=0,\ 
+       (m+1)F_{m+1}=\sigma F_m''\}\subset tR[[t,z]].
+\end{equation}
+The difference of any two solutions with the same initial value
+lies in $\mathcal N_R$, and adding an element of $\mathcal N_R$
+to a solution gives another with that initial value. The
+$\Q$-algebra calculation proves $\mathcal N_R=0$ there.
+
+The heat map is generally not a ring homomorphism. With the
+original coordinate $z$ and sign $\sigma$,
+\begin{equation}\tag{SH19}\label{sh:productdefectexample}
+ \Ht_\sigma z=z,\qquad
+ \Ht_\sigma(z^2)=z^2+2\sigma t,\qquad
+ \Ht_\sigma(z^2)-(\Ht_\sigma z)^2=2\sigma t.
+\end{equation}
+Its complete multiplication defect has an exact receiver:
+\begin{equation}\tag{SH20}\label{sh:productdefect}
+ \Ht_\sigma(FG)-(\Ht_\sigma F)(\Ht_\sigma G)
+ =\sum_{k\ge1}\frac{(2\sigma t)^k}{k!}
+       \partial_z^k(\Ht_\sigma F)\,
+       \partial_z^k(\Ht_\sigma G).
+\end{equation}
+This is coefficientwise integral as well: the product of the two
+derivative coefficients is divisible by $k!$ as an integer.
+To prove the identity, first work over $\Q$ with independent
+variables $z_1,z_2$, so that differentiation of the product is
+$\partial_1+\partial_2$. The three commuting differential
+operators in
+$(\partial_1+\partial_2)^2=\partial_1^2+
+2\partial_1\partial_2+\partial_2^2$ exponentiate and give the
+formula, including its $k=0$ term. Each fixed output coefficient
+involves finitely many input coefficients and has integral
+coefficients on both sides; the identity in their polynomial
+ring over $\Q$ is consequently an integral identity, so descends
+to every $R$.
+
+An exact repaired multiplication, rather than an imposed
+multiplicativity claim, is
+\begin{equation}\tag{SH21}\label{sh:star}
+ F\star_\sigma G
+ =\sum_{k\ge0}\frac{(2\sigma t)^k}{k!}
+                       (\partial_z^kF)(\partial_z^kG)
+ =\Ht_\sigma((\Ht_{-\sigma}F)(\Ht_{-\sigma}G)).
+\end{equation}
+Transport of multiplication through the proved additive
+automorphism makes this an associative commutative
+$R[[t]]$-algebra with unit $1$, and makes
+$\Ht_\sigma:(A,\cdot)\to(A,\star_\sigma)$ a unital
+ring isomorphism. At $t=0$ this multiplication is the original
+one. This construction retains the precise product defect and
+does not assume that the original heat map was multiplicative.
+
+Multiplicative reciprocals of actual units have an equally exact
+map. A series $F\in A$ is a unit precisely when its coefficient
+$f_{00}$ is a unit in $R$: necessity follows by constant-term
+evaluation, and sufficiency follows from the coefficientwise
+convergent geometric series after factoring out $f_{00}$.
+Heat preserves this constant coefficient, hence preserves the
+set of units. For every such $F$,
+\begin{equation}\tag{SH21a}\label{sh:reciprocal}
+ \begin{gathered}
+ (\Ht_\sigma F)\star_\sigma\Ht_\sigma(F^{-1})=1,\\
+ (\Ht_\sigma F)\Ht_\sigma(F^{-1})-1
+ =-\sum_{k\ge1}\frac{(2\sigma t)^k}{k!}
+       \partial_z^k(\Ht_\sigma F)
+       \partial_z^k(\Ht_\sigma(F^{-1})).
+ \end{gathered}
+\end{equation}
+The first is the transported multiplication law; the second is
+\eqref{sh:productdefect} applied to $FF^{-1}=1$. This proves
+the complete ordinary-inversion defect and its divisibility by
+$t$, so at time zero the ordinary reciprocal is retained.
+For example over $\Q$, $F=1+z$ has $\Ht_\sigma F=1+z$,
+whereas
+$\Ht_\sigma(F^{-1})=(1+z)^{-1}
+ +2\sigma t(1+z)^{-3}+O(t^2)$.
+The defect is already nonzero at the displayed first order.
+
+The field inverse-monoid theorem is applied in its stated
+coefficient category. The formal series ring $K[[t,z]]$ is
+not a field: $t$ has no reflexive multiplicative inverse in
+it, since $tBt=t$ would imply $tB=1$ in this integral domain,
+contradicting evaluation at $t=0$. The exact extension receiving
+its inverse is the punctured chart in \eqref{sh:punctured},
+whose full supported time-zero fibre is proved below.
+
+\section{Heat on the full semilattice and its adjunction maps}
+
+On the actual requested carrier $G_L(A)$ define
+\begin{equation}\tag{SH22}\label{sh:lift}
+ \widetilde\Ht_\sigma(\widehat F)=\widehat{\Ht_\sigma F},
+ \qquad
+ \widetilde\Ht_\sigma(z_\lambda)=z_\lambda.
+\end{equation}
+The two prescriptions agree at $e=\widehat0=z_{1_L}$.
+They give a $G_L(R[[t]])$-linear automorphism of the underlying
+semimodule. Indeed additivity follows from heat additivity on
+the top fibre and from preservation of all lower zero fibres;
+supported scalars act by $R[[t]]$ multiplication, while
+$z_\lambda$ sends every top-fibre element to $z_\lambda$ and
+meets lower labels. Both operations commute with
+\eqref{sh:lift}. Its inverse is $\widetilde\Ht_{-\sigma}$.
+It is generally not a homomorphism for the original semiring
+product, by \eqref{sh:productdefectexample}; it is a unital
+semiring isomorphism to $G_L(A,\star_\sigma)$ by
+\eqref{sh:star}.
+
+The exact receiving diagram is
+\begin{equation}\tag{SH23}\label{sh:heatmaps}
+ \begin{array}{ccccc}
+ A&\xleftarrow{\ p\ }&G_L(A)&\xrightarrow{\ \chi\ }&L\\
+ \Ht_\sigma\downarrow&&
+ \widetilde\Ht_\sigma\downarrow&&\downarrow I_L\\
+ A&\xleftarrow{\ p\ }&G_L(A)&\xrightarrow{\ \chi\ }&L .
+ \end{array}
+\end{equation}
+Both squares commute directly from the coefficient formulas.
+Here the vertical maps are additive heat maps; the right square
+is also the exact induced map after universal unital inversion
+of $e$. On that localization the induced map is $I_L$.
+The restriction to the local monoid $eG_L(A)e=L$ is likewise
+$I_L$, and heat commutes with every local additive inverse in
+\eqref{sh:negative}. For a general label the localized square is
+the same with $L$ replaced by $\downarrow\lambda$ and
+$\chi$ replaced by $q_\lambda$. No Boolean branch has been chosen.
+
+The construction also works on the original general semilattice
+diagram, without replacing it by the regular scalar fibre.
+For the data in Theorem~\ref{sh:modules}, replace each module
+$M_\ell$ by $M_\ell[[t,z]]$ and each transition by its
+coefficientwise extension. The lattice $P$ and its complete
+$L$ action are unchanged. The heat maps of
+Theorem~\ref{sh:heatproperties} commute with all these
+transitions because their coefficients are integers. They thus
+form a natural automorphism of the reconstructed semimodule.
+Under the two adjunctions \eqref{sh:adjunctions}, they induce
+the identity on the support object $P$ and the ordinary
+coefficient heat on $M_{0_P}[[t,z]]$, respectively.
+These claims follow by applying the explicit factorization
+maps in the proof of \eqref{sh:adjunctions}, not by replacing
+one adjoint with the other.
+
+The derivative lifts also preserve every support label. Hence
+the differential equation is an equality in each module fibre:
+for example on the top fibre
+$\widetilde{\partial_t}\widehat F
+ =\sigma\widetilde{\partial_z^2}\widehat F$
+means exactly $\partial_tF=\sigma\partial_z^2F$.
+Bringing its two sides together gives the fibre zero $e$,
+not the external zero $\tau$. On a lower singleton fibre both
+sides equal $z_\lambda$. This is the same fibrewise inverse
+operation as in \eqref{sh:negative}.
+
+\section{The exact time-zero fibre and its punctured-time boundary}
+
+Set $A_0=R[[z]]$. The time-zero map is the unital semiring map
+\begin{equation}\tag{SH24}\label{sh:evzero}
+ \widetilde{\operatorname{ev}}_0:G_L(A)\to G_L(A_0),\qquad
+ \widehat F\mapsto\widehat{F(0,z)},\quad
+ z_\lambda\mapsto z_\lambda .
+\end{equation}
+It is onto, with constant-in-$t$ section. Its kernel congruence
+has the following complete description:
+\begin{equation}\tag{SH25}\label{sh:timekernel}
+ \widehat F\sim_0\widehat G
+ \iff F-G\in tA,\qquad
+ z_\lambda\sim_0z_\mu\iff\lambda=\mu;
+\end{equation}
+there is no additional identification between a lower label and
+a supported amplitude. In particular
+\begin{equation}\tag{SH26}\label{sh:timefibres}
+ \widetilde{\operatorname{ev}}_0^{-1}(\tau)=\{\tau\},\qquad
+ \widetilde{\operatorname{ev}}_0^{-1}(e)
+       =\{\widehat{tF}:F\in A\}.
+\end{equation}
+Thus the semiring-zero kernel ideal is trivial, while its
+congruence retains the full amplitude ideal $tA$.
+The ordinary exact sequence is
+$0\to tA\to A\to A_0\to0$, and its full supported lift is
+precisely \eqref{sh:timekernel}, not a quotient obtained by
+identifying supported zeros with $\tau$.
+
+The complete time-zero heat calculation is
+\begin{equation}\tag{SH27}\label{sh:timeheat}
+ \widetilde{\operatorname{ev}}_0\widetilde\Ht_\sigma
+     =\widetilde{\operatorname{ev}}_0,\qquad
+ \begin{array}{ccc}
+ G_L(A)&\xrightarrow{\ \widetilde{\operatorname{ev}}_0\ }&G_L(A_0)\\
+ \chi\downarrow&&\downarrow\chi\\
+ L&\xrightarrow{\ I_L\ }&L .
+ \end{array}
+\end{equation}
+Both claims follow from the $m=0$ term in
+\eqref{sh:heat} and preservation of all labels.
+Thus localization at $e$ and evaluation at $t=0$ commute
+through the displayed full-lattice map.
+
+\begin{theorem}[Supported special fibre of punctured time]
+\label{sh:puncture}
+Let $\widehat t=(t,1_L)\in G_L(A)$. There are canonical
+isomorphisms of unital semirings
+\begin{equation}\tag{SH28}\label{sh:punctured}
+ G_L(A)[\widehat t^{-1}]\cong G_L(A[t^{-1}]),\qquad
+ G_L(A)[\widehat t^{-1}]
+       \amalg_{G_L(A)}G_L(A_0)\cong L.
+\end{equation}
+The second target is the actual pushout for time-zero base
+change of the punctured-time chart. For every $n\ge0$,
+\begin{equation}\tag{SH29}\label{sh:thickenings}
+ G_L(A/(t^{n+1}))[\widehat t^{-1}]\cong L.
+\end{equation}
+All transition maps between these localized finite thickenings
+are the identity on $L$.
+\end{theorem}
+\begin{proof}
+Use fractions with denominators $\widehat t^k$. The map
+$z_\lambda/\widehat t^k\mapsto z_\lambda$ and
+$\widehat F/\widehat t^k\mapsto\widehat{F/t^k}$
+is surjective and respects both operations. Two fractions with
+lower labels are equal exactly when their labels agree, since
+multiplication by a supported denominator leaves such a label
+unchanged. A lower-label fraction cannot equal a top fraction.
+For two top fractions, their equality is exactly the usual ring
+localization relation. This proves the first isomorphism.
+
+For any unital target $T$, compatible maps from the first
+pushout factors are exactly maps $G_L(A_0)\to T$ in which
+the image of $\widehat t$ under time-zero evaluation is
+invertible. That image is $e$, so this universal property is
+the property of $G_L(A_0)[e^{-1}]$. Theorem
+\ref{sh:localization} identifies it with $L$, proving the second
+isomorphism. In the $n$th thickening,
+$\widehat t^{\,n+1}=e$, so inverting $\widehat t$ forces
+$e$ to be invertible. Conversely, after applying $\chi$ every
+supported amplitude, including $\widehat t$, is already the
+unit $1_L$. These two universal factorizations prove
+\eqref{sh:thickenings}; they also force the stated identity
+transition maps.
+\end{proof}
+
+The maps to the pushout in \eqref{sh:punctured} are
+$\widehat{F/t^k}\mapsto1_L$ and
+$z_\lambda\mapsto\lambda$ from the punctured chart, and
+$\widehat f\mapsto1_L$, $z_\lambda\mapsto\lambda$ from its
+time-zero chart. Thus every amplitude is explicitly identified
+there, but no label is. On ordinary ring amplitudes the
+corresponding pushout is the zero ring, since an invertible
+$t$ and $t=0$ force $1=0$. This proves the exact map from
+the retained support boundary to the ordinary empty ring fibre.
+It is not a statement that the supported boundary is absent.
+
+The spectral map retains its exact geometry. Every ideal of
+$G_L(A)$ either lies in the zero-label part, where it is a
+lattice ideal, or contains a supported amplitude and hence
+contains $e$ and all $z_\lambda$; its amplitudes then form a
+ring ideal. Testing products gives the two prime families
+$P_{\mathfrak p}=\{z_\lambda:\lambda\in\mathfrak p\}$ and
+$Q_{\mathfrak q}=\{z_\lambda:\lambda\in L\}
+\cup\{\widehat F:F\in\mathfrak q\}$.
+Every $P_{\mathfrak p}$ omits $e$, and every $Q_{\mathfrak q}$
+contains it. The basic-open formulas
+$D(z_\lambda)=D_L(\lambda)$ and
+$D(\widehat F)=\Spec_{\rm lat}L\cup D_A(F)$ prove
+\begin{equation}\tag{SH30}\label{sh:spectrum}
+ \Spec G_L(A)=\Spec_{\rm lat}L\blacktriangleright\Spec A,\qquad
+ D(e)=\Spec_{\rm lat}L.
+\end{equation}
+The map on spectra from the pushout fibre $L$ in
+\eqref{sh:punctured} is exactly this full support stratum in
+the time-zero chart. It does not select one Boolean character.
+
+The time-zero congruence map itself has the precise spectral image
+\begin{equation}\tag{SH30a}\label{sh:intersection}
+ \im\bigl(\Spec G_L(A_0)\to\Spec G_L(A)\bigr)
+   =\Spec_{\rm lat}L\ \cup\ V_A(t),\qquad
+ D(\widehat t)=\Spec_{\rm lat}L\ \cup\ D_A(t).
+\end{equation}
+Indeed pure-support primes pull back to the same lattice primes,
+and an arithmetic prime pulls back along $A\to A/(t)$ to a
+prime containing $t$. These are all such primes by the ordinary
+quotient correspondence. Their intersection with the punctured
+chart is exactly $\Spec_{\rm lat}L$. Thus the categorical fibre
+in \eqref{sh:punctured} also has this explicit topological map.
+The time-zero quotient is the stated congruence quotient; it is
+not being identified with the semiring ideal quotient by its
+trivial zero ideal in \eqref{sh:timefibres}.
+
+Heat also extends to the punctured chart as an additive map:
+$\Ht_\sigma(F/t^k)=\Ht_\sigma(F)/t^k$.
+$R[[t]]$-linearity makes the definition independent of the
+chosen denominator; its inverse is the opposite heat sign.
+Its support projection to the boundary $L$ is the identity.
+All time thickenings before localization still keep their
+amplitudes: heat preserves $t^{n+1}A$ and induces inverse maps
+on $A/(t^{n+1})$. The inverse limit of their full split carriers
+is $G_L(A)$, because a compatible sequence has one fixed
+support label, and at top support is a compatible sequence
+of ring coefficients. This describes both the retained formal
+neighborhood and its localized support-only boundary.
+
+\section{Independent coefficient supports and the exact heat defect}
+
+The requested global carrier $G_L(R[[t,z]])$ has one support
+label for an entire series. The original semilattice theory also
+allows the larger coefficient-series semiring
+\[
+ \mathscr T=(G_L(R))[[t,z]].
+\]
+An element $X$ has at each bidegree a pair
+$X_{mn}=(f_{mn},\lambda_{mn})\in G_L(R)$.
+Addition is coefficientwise, and multiplication is the finite
+Cauchy sum. Its amplitude map goes to $R[[t,z]]$ and its
+coefficient support map goes to the full semiring $L[[t,z]]$.
+Neither collection of labels is collapsed.
+
+Define coefficient heat using the same integers as before,
+lifted as supported scalars:
+\begin{equation}\tag{SH31}\label{sh:coeffheat}
+ (\mathscr H_\sigma X)_{mn}
+ =\sum_{j=0}^m
+ \widehat{\sigma^j(n+2j)!/(n!j!)}\ X_{m-j,n+2j}.
+\end{equation}
+Even when that integer is zero in $R$, its displayed lift is
+$e$, not $\tau$. Thus \eqref{sh:coeffheat} has the exact
+amplitude and support formulas
+\begin{equation}\tag{SH32}\label{sh:coeffformula}
+ p(\mathscr H_\sigma X)=\Ht_\sigma p(X),\qquad
+ \chi(\mathscr H_\sigma X)_{mn}
+       =(\mathcal C\lambda)_{mn}
+       :=\bigvee_{j=0}^m\lambda_{m-j,n+2j}.
+\end{equation}
+These are finite joins in $L$, so no completeness hypothesis
+on the lattice is needed.
+
+\begin{theorem}[The complete coefficient-support closure]
+\label{sh:closure}
+Define $\mathscr C:\mathscr T\to\mathscr T$ by keeping the
+amplitude of each coefficient and replacing its label by
+$\mathcal C\lambda$ in \eqref{sh:coeffformula}. Then
+\begin{equation}\tag{SH33}\label{sh:closurelaws}
+ \mathscr H_+\mathscr H_-=
+ \mathscr H_-\mathscr H_+=\mathscr C,\qquad
+ \mathscr C^2=\mathscr C,\qquad
+ \mathscr C\mathscr H_\sigma=
+ \mathscr H_\sigma\mathscr C=\mathscr H_\sigma.
+\end{equation}
+All these maps are additive $G_L(R)$-linear maps.
+The image and fixed set of $\mathscr C$ coincide, and are
+specified exactly by
+\begin{equation}\tag{SH34}\label{sh:fixedsupports}
+ \lambda_{m-1,n+2}\le\lambda_{mn}
+       \quad(m\ge1,n\ge0).
+\end{equation}
+On that retained-support subspace the two heat signs are inverse
+automorphisms. On the entire coefficient space their failure
+to be inverse is exactly $\mathscr C$, with no amplitude defect.
+\end{theorem}
+\begin{proof}
+The replacement gives a valid coefficient of $G_L(R)$ because
+the join includes its original label; any nonzero original
+amplitude already has label $1_L$. The amplitude of either
+composite heat is the original one by \eqref{sh:inverseheat}.
+Its support is
+\[
+ \bigvee_{i=0}^m\ \bigvee_{j=0}^{m-i}
+       \lambda_{m-i-j,n+2i+2j}
+ =\bigvee_{k=0}^m\lambda_{m-k,n+2k},
+\]
+because every $k=i+j$ from $0$ to $m$ occurs. This proves
+the first identity and the idempotence of the support closure.
+Applying this calculation to one heat image proves the two
+commutation identities. Distributivity of finite joins over
+joins proves additivity on support; amplitudes are additive.
+For a scalar with label $\eta$, distributivity
+$\eta\wedge\bigvee_j\lambda_j=
+\bigvee_j(\eta\wedge\lambda_j)$ proves scalar compatibility,
+including supported scalar zero.
+
+The fixed condition implies \eqref{sh:fixedsupports} because
+the defining join includes $j=1$. Conversely that inequality
+iterated $j$ times gives
+$\lambda_{m-j,n+2j}\le\lambda_{mn}$ for every $j$, so the
+join equals the term with $j=0$. This proves the exact fixed
+set. Idempotence identifies it with the image; the first
+identity in \eqref{sh:closurelaws} then proves mutual inverse
+heat maps on it.
+\end{proof}
+
+The exact quotient object of this defect is also explicit.
+The two heat maps and the retraction $\mathscr C$ have the
+same kernel equivalence:
+\begin{equation}\tag{SH34a}\label{sh:closurecongruence}
+ X\sim_{\mathscr C}Y
+ \iff p(X)=p(Y)\ \hbox{and}\
+            \mathcal C\chi(X)=\mathcal C\chi(Y).
+\end{equation}
+For $\mathscr C$ this follows from its coordinate definition.
+For heat, equality of its images gives equality of input
+amplitudes by the inverse amplitude map, and equality of
+closed supports by \eqref{sh:coeffformula}; the converse is
+the same formula. Thus the quotient additive $G_L(R)$-semimodule
+$\mathscr T/{\sim_{\mathscr C}}$ is isomorphic to
+$\im\mathscr C$, with its two induced inverse heat maps.
+Inclusion and $\mathscr C$ give a specified split retraction
+onto that image. The preimage of the external zero under each
+heat map remains the single zero series, since every original
+label occurs in its closure. Thus its possible noninjectivity
+is encoded by \eqref{sh:closurecongruence}, not by its zero ideal.
+
+For a literal nonzero defect, take the coefficient monomial
+$X=z^2$ in $\mathscr T$, meaning coefficient $\widehat1$
+at $(m,n)=(0,2)$ and $\tau$ at every other bidegree. Then
+\begin{equation}\tag{SH35}\label{sh:zerotail}
+ \mathscr C X:
+ \quad X_{0,2}=\widehat1,\qquad
+ X_{1,0}=e,\qquad
+ X_{mn}=\tau\text{ at every other bidegree}.
+\end{equation}
+The amplitude is still $z^2$, but the new coefficient $e$ at
+$t$ is a retained supported zero. This follows directly from
+\eqref{sh:coeffformula}: the only additional path from $(0,2)$
+is to $(1,0)$. Over characteristic zero it is also the explicit
+cancellation of the $2t$ and $-2t$ amplitudes in the two heat
+steps. The same support computation remains valid in
+characteristic two, where each of those amplitudes is already
+zero but its coefficient is still supported.
+
+There is also an exact infinite even-series example over $\Q$.
+Let $X^{\rm init}$ have coefficient
+$\widehat{(-1)^n/(2n)!}$ at $(0,2n)$ for every $n\ge0$,
+and $\tau$ elsewhere. Its amplitude is $\cos z$ and its
+initial time support is exactly the zeroth row. Then
+\[
+ p(\mathscr H_\sigma X^{\rm init})
+       =e^{-\sigma t}\cos z,\qquad
+ [t^mz^{2n}]\,p(\mathscr H_\sigma X^{\rm init})
+       =\frac{(-\sigma)^m(-1)^n}{m!(2n)!}\ne0 .
+\]
+This follows either by direct substitution in \eqref{sh:heat},
+using $\partial_z^{2m}\cos z=(-1)^m\cos z$, or by the
+displayed coefficient formula itself. Its support is $1_L$ at
+every $(m,2n)$ and $0_L$ at every odd spatial index.
+That support is $\mathcal C$-fixed by \eqref{sh:fixedsupports}.
+Reversing the heat therefore gives the initial amplitude
+$\cos z$ with supported zero $e$ at every positive-time even
+coefficient. It is exactly $\mathscr C X^{\rm init}$, not
+$X^{\rm init}$. This explicitly realizes the even-coefficient
+support cone and its retained zero coefficients.
+
+There is an exact comparison map from the global carrier:
+\begin{equation}\tag{SH36}\label{sh:uniformmap}
+ \Gamma:G_L(R[[t,z]])\hookrightarrow\mathscr T,\qquad
+ \Gamma(F,\lambda)_{mn}=(f_{mn},\lambda).
+\end{equation}
+For $\lambda<1_L$, necessarily every $f_{mn}=0$.
+The map is injective, additive and multiplicative: at bidegree
+$(m,n)$ every Cauchy summand has the same meet of the two
+global labels, and there is a nonempty finite set of summands.
+It need not send the unit to the standard unit of
+$\mathscr T$. Its image unit is the idempotent $E$ with
+coefficient $\widehat1$ at $(0,0)$ and $e$ everywhere else.
+Thus $\Gamma$ is a unital semiring map to its image, with that
+explicit unit, rather than a unital map to the whole standard
+power-series semiring. The image is the exact subsemiring of
+series with one constant label at every coefficient.
+It is fixed by $\mathscr C$, and
+\begin{equation}\tag{SH37}\label{sh:uniformheat}
+ \mathscr H_\sigma\Gamma=
+       \Gamma\widetilde\Ht_\sigma,\qquad
+ \mathscr C\Gamma=\Gamma .
+\end{equation}
+The amplitude identity is \eqref{sh:heat}; the support identity
+is the join of finitely many identical labels. In particular
+the forward-reverse defect on arbitrary coefficient supports
+does not contradict the actual automorphism on the specified
+global-label carrier.
+
+The coefficientwise support quotient itself is the universal
+inversion of the constant supported scalar $e$ in $\mathscr T$:
+\begin{equation}\tag{SH38}\label{sh:coefflocalize}
+\mathscr T[e^{-1}]\cong L[[t,z]],\qquad
+ X\longmapsto\sum_{m,n}\lambda_{mn}t^mz^n .
+\end{equation}
+Indeed multiplication by that constant $e$ sends every
+coefficient to its zero label and leaves its support unchanged;
+its image is exactly the displayed semiring, with the usual
+constant unit. The idempotent localization proof applies.
+On this quotient either heat sign induces the same map
+$\mathcal C$, not an inverse pair. This is the complete
+support receiver of the coefficient defect.
+Here the constant scalar being inverted has coefficient $e$
+at $(0,0)$ and $\tau$ at every other index; it differs from
+$\Gamma(e)$, whose every coefficient is $e$. Their connecting
+map is explicit: the support projection of $\Gamma$ is
+$\Lambda:L\to L[[t,z]]$, with
+$\Lambda(\lambda)_{mn}=\lambda$ at every index. This map
+preserves both operations and has unit the all-$1_L$ series
+in its image, rather than the standard constant unit.
+It satisfies $\mathcal C\Lambda=\Lambda$ and
+$\chi_{\rm coeff}\Gamma=\Lambda\chi$.
+Thus the two universal support receivers are connected without
+identifying their different coefficient units.
+
+Finally time-zero evaluation in $\mathscr T$ keeps exactly
+the row $m=0$. That row of \eqref{sh:coeffformula} has only
+$j=0$, so
+\begin{equation}\tag{SH39}\label{sh:coefftimezero}
+ \operatorname{ev}_0\mathscr H_\sigma
+   =\operatorname{ev}_0,\qquad
+ \operatorname{ev}_0\mathscr C=\operatorname{ev}_0,\qquad
+ \operatorname{ev}_0\Gamma
+   =\Gamma_0\widetilde{\operatorname{ev}}_0.
+\end{equation}
+Here $\Gamma_0:G_L(R[[z]])\to G_L(R)[[z]]$ is the
+same constant-label coefficient map in one variable.
+Thus even the enlarged support defect has the original
+time-zero coefficient fibre, with every original label retained.
+
+\section{The exact receiver of zero locations}
+
+Formal substitution $z=a$ into an arbitrary element of $R[[z]]$
+is not assumed. For an analytic initial function $h(z)$ and a
+specified complex point $a$, instead use its actual local
+coordinate $w=z-a$ and Taylor series
+$h(a+w)\in\C[[w]]$. This yields a unital evaluation map
+on the formal germ:
+\begin{equation}\tag{SH40}\label{sh:zeroreceiver}
+ G_L(\C[[t,w]])\longrightarrow G_L(\C),\qquad
+ \widehat F\mapsto\widehat{F(0,0)},\quad
+ z_\lambda\mapsto z_\lambda.
+\end{equation}
+For the supported initial germ and its formal heat evolution,
+\begin{equation}\tag{SH41}\label{sh:zeros}
+ \widehat{\Ht_\sigma(h(a+w))}\longmapsto\widehat{h(a)},\qquad
+ \widehat{h(a)}=e\iff h(a)=0 .
+\end{equation}
+This is exactly \eqref{sh:timeheat} followed by constant-term
+evaluation. The multiplicity is retained as well: the order of
+vanishing of $h(a+w)$ is the least $n$ with nonzero amplitude
+coefficient, and every coefficient is unchanged on the
+time-zero row. None is replaced by a different number or a
+different local coordinate.
+
+After localizing at $e$, every value in \eqref{sh:zeros} maps
+to $1_L$, regardless of whether $h(a)$ vanishes. The complete
+connecting receiver is the pair $(p,\chi)$ in
+\eqref{sh:projections}; on the germ it recovers its actual
+complex amplitude and its full label. The failure of $\chi$
+alone to distinguish zero values is precisely its kernel
+congruence \eqref{sh:congruence}. For a concrete test of that
+defect, the two initial polynomials $z^2-1$ and $z^2+1$ have
+different zero locations, while their supported values, formal
+heat families $z^2-1+2\sigma t$ and $z^2+1+2\sigma t$, and
+all their localized germs have the identical full-support
+projection $1_L$. Their amplitude projections distinguish them
+exactly. This constructs the lost-information object and its
+recovery map rather than inferring any zero-location theorem
+from the support quotient.
+
+The three inverse operations therefore have explicit, different
+receivers: local additive inverse stays in the fibre group;
+local multiplicative inverse changes the identity to its
+specified idempotent in the local monoid; universal unital
+inversion receives the full lattice via $q_\lambda$.
+Formal heat preserves their support maps and has the exact
+time-zero fibre \eqref{sh:timekernel}. The supported boundary
+\eqref{sh:punctured} and the coefficient closure
+\eqref{sh:closurelaws} are additional calculated objects, with
+their amplitude maps proved. These results do not produce an
+off-real zero of the original initial function, nor a conclusion
+for or against the Riemann hypothesis.

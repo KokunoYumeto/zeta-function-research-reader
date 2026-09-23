@@ -1,0 +1,988 @@
+\section{The full adelic valuation space and its derived geometry}
+
+
+\subsection{Objects and source scope}
+
+Throughout, a ring is commutative and has an identity. For a nonzero ring
+$A$, define the semiring
+\[
+ \G(A)=\{\tau\}\sqcup A.
+\]
+The symbol $\tau$ is the additive identity and multiplicative absorber.
+Addition and multiplication of two supported elements of $A$ are their
+original ring operations, with their results remaining in the supported
+copy of $A$. We write $e_A$ for its element $0_A$. Thus
+\[
+ \tau\ne e_A,\quad e_A+e_A=e_A,\quad
+ a+(-a)=e_A,\quad e_Aa=e_A\quad(a\in A).
+ \tag{AV1.1}\label{eq:split-identities}
+\]
+The last formula does not apply to $a=\tau$: $e_A\tau=\tau$.
+All semiring homomorphisms below preserve the additive identity and the
+multiplicative identity. Associativity and commutativity follow on supported
+inputs from those of $A$ and otherwise from the rules for $\tau$.
+Distributivity follows from that of $A$ when all three inputs are supported;
+if the multiplier is $\tau$, both sides are $\tau$; if either summand is
+$\tau$, the identity reduces to $a b=a b+\tau$. These checks prove that
+$\G(A)$ is a semiring. A ring homomorphism $f:A\to B$ gives a semiring
+homomorphism $\G(f)$ by $\tau\mapsto\tau$ and $a\mapsto f(a)$, including
+$e_A\mapsto e_B$.
+
+The human source used here is Antoine S\'edillot,
+\emph{Topological adelic curves: Zariski-Riemann spaces, algebraic coverings,
+Harder-Narsimhan filtrations and heights},
+\href{https://arxiv.org/abs/2503.20156v2}{arXiv:2503.20156v2}.
+The exact author file is \nolinkurl{topological_adelic_curves_V2.tex}.
+Its definition of pseudo-absolute values is at source lines 623--629;
+integral structures at lines 674--689, label
+\nolinkurl{subsub:prelim_integral_structures}; the algebraic
+Zariski--Riemann construction at lines 819--848, labels
+\nolinkurl{subsub:Zariski-Riemann_space_algebraic} and
+\nolinkurl{example:ZR_algebraic}; the general coherence and Tor assertion
+at lines 942--985, label
+\nolinkurl{prop:coherence_algeabraic_ZR_sheaf}.
+The spelling of the latter label is retained so the locator matches the
+source. The statements about split objects below are proved here. The
+general Tor assertion of the source is examined in Section~\ref{sec:repair};
+it is not used as a substitute for the proofs in this note.
+
+\subsection{The entire space of split pseudo-absolute values}
+
+Equip $[0,\infty]$ with its compact order topology. Extended addition has
+$r+\infty=\infty$. Extended multiplication is used only away from the two
+ordered pairs $(0,\infty)$ and $(\infty,0)$.
+
+\begin{definition}
+For a field $K$, let $\mathcal P(\G(K))$ consist of maps
+$w:\G(K)\to[0,\infty]$ such that
+\[
+ w(\tau)=0,\qquad w(1)=1,\qquad
+ w(a+b)\le w(a)+w(b),
+ \tag{AV2.1}\label{eq:split-pav}
+\]
+and
+\[
+ w(ab)=w(a)w(b)\quad\hbox{if }
+ \{w(a),w(b)\}\ne\{0,\infty\}.
+ \tag{AV2.2}\label{eq:partial-mult}
+\]
+Give this set its topology of pointwise convergence. Let $M_K$ be the
+space of pseudo-absolute values in S\'edillot's definition: the same
+conditions on $K$, with $v(0_K)=0$ and $v(1)=1$.
+\end{definition}
+
+\begin{theorem}[Exact component decomposition]\label{thm:decomposition}
+Define
+\[
+ \chi_K(\tau)=0,\qquad \chi_K(a)=1\ (a\in K),
+ \qquad
+ j_K(v)(\tau)=0,\quad j_K(v)(a)=v(a)\ (a\in K).
+\]
+Then
+\[
+ \mathcal P(\G(K))=\{\chi_K\}\sqcup j_K(M_K)
+ \tag{AV2.3}\label{eq:components}
+\]
+is a homeomorphism of a disjoint union of two compact Hausdorff spaces.
+The two components are respectively $w(e_K)=1$ and $w(e_K)=0$ and are
+both open and closed. In particular, the full space is not identified
+with $M_K$ by restriction to the supported coefficients.
+\end{theorem}
+\begin{proof}
+Since $(-1)^2=1$, multiplicativity applies to the repeated value
+$w(-1)$ and gives $w(-1)^2=1$. Neither zero nor infinity has square one,
+so $w(-1)=1$. The equality $1+(-1)=e_K$ implies $w(e_K)\le2$.
+The equality $e_K^2=e_K$ then gives $w(e_K)^2=w(e_K)$, whence
+$w(e_K)\in\{0,1\}$.
+
+If $w(e_K)=1$, then for every supported $a$ the pair
+$(w(e_K),w(a))$ is allowed in \eqref{eq:partial-mult}; hence
+$1=w(e_Ka)=w(a)$. Thus $w=\chi_K$. This map satisfies the triangle
+inequality: the sum of two supported elements is supported, so its
+value one is at most two; a sum involving $\tau$ is immediate.
+It is multiplicative because a product is supported exactly when both
+factors are supported.
+
+If $w(e_K)=0$, its restriction to $K$ satisfies precisely S\'edillot's
+three axioms. Conversely, any such $v$ extends by $v(\tau)=0$:
+the new triangle inequalities are equalities and each newly required
+product identity has value zero on both sides. This proves the bijection.
+Both restriction and extension are continuous in the product topologies.
+The continuous evaluation at $e_K$ takes only the values zero and one,
+which have disjoint open neighbourhoods. It therefore makes both
+components open and closed.
+
+For completeness, $M_K$ is a closed subset of $[0,\infty]^K$.
+The two value constraints and every triangle inequality are closed
+conditions. For a convergent net satisfying multiplicativity, if its
+limiting pair is allowed, it has a neighbourhood avoiding the two
+forbidden pairs; extended multiplication is continuous at that pair,
+so the limiting identity holds. Thus its multiplicativity condition
+is closed as well. The product is compact Hausdorff and the trivial
+absolute value supplies a point. This proves the compactness and
+Hausdorff assertions, and then those of \eqref{eq:components}.
+\end{proof}
+
+\begin{proposition}[Field maps preserve both components]\label{prop:fieldfunctor}
+A field embedding $i:K\hookrightarrow L$ induces a continuous restriction
+$\mathcal P(\G(L))\to\mathcal P(\G(K))$. It sends $\chi_L$ to $\chi_K$
+and $j_L(v)$ to $j_K(v|_K)$. Every extension of $\chi_K$ is $\chi_L$;
+extensions of $j_K(v)$ correspond exactly to extensions of $v$ to $L$.
+\end{proposition}
+\begin{proof}
+Precomposition preserves every displayed axiom and is continuous in
+the pointwise topology. It preserves $e$, so preserves its value zero
+or one. Theorem~\ref{thm:decomposition} then gives all assertions.
+\end{proof}
+
+\subsection{Finiteness, residue, and the complete prime space}
+
+\begin{proposition}[Finiteness and residue proved from the axioms]
+\label{prop:finite}
+For $v\in M_K$ put
+\[
+ A_v=\{a\in K:v(a)<\infty\},\quad
+ \mathfrak m_v=\{a\in K:v(a)=0\},\quad
+ \kappa_v=A_v/\mathfrak m_v.
+\]
+Then $A_v$ is a valuation ring of $K$, its unique maximal ideal is
+$\mathfrak m_v$, and $v$ induces an absolute value $\overline v$ on
+$\kappa_v$. The finite locus of $j_K(v)$ is exactly $\G(A_v)$.
+\end{proposition}
+\begin{proof}
+As above, $v(-1)=1$, so $v(-a)=v(a)$. The triangle and product axioms
+make $A_v$ a subring and $\mathfrak m_v$ an ideal in $A_v$.
+For $a\ne0$, the identity $aa^{-1}=1$ gives the following exhaustive
+possibilities. If $0<v(a)<\infty$, then $v(a^{-1})=v(a)^{-1}$:
+all pairs with the positive finite value $v(a)$ are allowed. If $v(a)=0$,
+then $v(a^{-1})$ must be infinity, since every finite alternative would
+give product value zero. If $v(a)=\infty$, then $v(a^{-1})$ must be zero,
+since every nonzero alternative would give product value infinity.
+Consequently $a$ or $a^{-1}$ belongs to $A_v$, proving the valuation
+property, and its units are precisely the elements of positive finite
+value. This proves the assertion about the maximal ideal.
+
+If $a-b\in\mathfrak m_v$, the triangle inequality gives $v(a)\le v(b)$
+and $v(b)\le v(a)$; hence the value depends only on the residue class.
+It vanishes precisely on the zero class, is finite there, and satisfies
+the ordinary triangle and multiplication laws. Thus it is an absolute
+value of the residue field. The final assertion follows from the value
+zero of $\tau$.
+\end{proof}
+
+\begin{proposition}[All ideals and all primes]\label{prop:ideals}
+For every nonzero ring $A$, the ideals of $\G(A)$ are $\{\tau\}$ and
+\[
+ I^+=\{\tau\}\sqcup I\qquad(I\text{ an ideal of }A).
+ \tag{AV3.1}\label{eq:liftideal}
+\]
+Its proper prime ideals are $\{\tau\}$ and $\mathfrak p^+$ for
+$\mathfrak p\in\Spec A$. The map
+$\mathfrak p\mapsto\mathfrak p^+$ identifies $\Spec A$ with the closed
+subset $V(e_A)$ of $\Spec\G(A)$. The remaining point $\{\tau\}$ is open
+and is a generalization of every point. For supported $a$,
+\[
+ D_{\G(A)}(a)=\{\{\tau\}\}\sqcup D_A(a),\qquad
+ D_{\G(A)}(e_A)=\{\{\tau\}\}.
+ \tag{AV3.2}\label{eq:opens}
+\]
+If $A$ is a domain and $\mathfrak p$ a nonzero prime, its original chain
+is retained as
+\[
+ (\tau)=\{\tau\}\ \subsetneq\ (e_A)=\{\tau,e_A\}
+ \ \subsetneq\ \mathfrak p^+.
+ \tag{AV3.3}\label{eq:chain}
+\]
+\end{proposition}
+\begin{proof}
+An ideal containing a supported element contains $e_A$ by multiplication
+by $e_A$. Its supported elements are closed under addition, multiplication
+by every element of $A$, and negatives by multiplication by $-1$; hence
+they form a ring ideal. The converse follows directly from the operations.
+A product of two supported elements is always supported, even when its
+coefficient is zero, proving primality of $\{\tau\}$. Primality of
+$\mathfrak p^+$ is exactly primality of $\mathfrak p$ in $A$.
+The formulas for the basic opens follow by membership in these ideals;
+they prove the topological assertions and the strict chain.
+\end{proof}
+
+\begin{theorem}[Residue map with supported zero]\label{thm:residue}
+For $v\in M_K$ there is a commuting diagram of semirings
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+ \G(A_v) \arrow[r,"\G(\pi_v)"] \arrow[d,"q_{A_v}"'] &
+ \G(\kappa_v) \arrow[d,"q_{\kappa_v}"]\\
+ A_v \arrow[r,"\pi_v"'] & \kappa_v .
+\end{tikzcd}
+\tag{AV3.4}\label{eq:residue-square}
+\]
+Here $q_A(\tau)=q_A(e_A)=0_A$ and $q_A(a)=a$ on supported coefficients.
+The top map is surjective and local: its inverse image of the unique
+maximal ideal $\{\tau,e_{\kappa_v}\}$ is
+$\mathfrak m_v^+$. Its fibre over the additive identity is only $\{\tau\}$.
+Its full congruence is
+\[
+ \tau\sim\tau,\qquad
+ a\sim b\ \Longleftrightarrow\ a-b\in\mathfrak m_v
+ \quad(a,b\in A_v),
+ \tag{AV3.5}\label{eq:residue-congruence}
+\]
+with no equivalence of $\tau$ and a supported element.
+On $\G(A_v)$ one has
+\[
+ j_K(v)=j_{\kappa_v}(\overline v)\circ\G(\pi_v).
+ \tag{AV3.6}\label{eq:residue-value-factor}
+\]
+\end{theorem}
+\begin{proof}
+Every map in \eqref{eq:residue-square} respects its stated operations;
+on a supported input both composites are its residue coefficient and
+on $\tau$ both are zero. The assertions concerning fibres, congruence,
+and localness follow respectively from preservation of support, equality
+of residue coefficients, and Proposition~\ref{prop:ideals}.
+The last formula is Proposition~\ref{prop:finite} on supported elements
+and the value zero on $\tau$.
+\end{proof}
+
+The restriction to the finite locus is essential. If $0\ne a\in
+\mathfrak m_v$, then $v(a)=0$, $v(a^{-1})=\infty$, and $v(aa^{-1})=1$.
+Thus $\{w=0\}$ is generally not an ideal of $\G(K)$; it becomes the
+prime ideal $\mathfrak m_v^+$ of $\G(A_v)$. The precise defect is the set
+of forbidden products
+\[
+ \mathcal D_v=\{(a,b)\in K^2:v(a)=0,\ v(b)=\infty\}
+ \cup\{(a,b):v(a)=\infty,\ v(b)=0\}.
+\]
+The restriction map to $\G(A_v)$ removes every such pair and gives the
+exact residue factorization \eqref{eq:residue-value-factor}; it does not
+identify the two zeros.
+
+\subsection{Integral structures and the support point}
+
+Let $A$ be a Pr\"ufer domain with fraction field $K$. Here this means that
+every $A_{\mathfrak p}$ is a valuation ring. Let $\|\cdot\|$ be a Banach
+ring norm as in S\'edillot's integral-structure definition. A bounded
+multiplicative seminorm $\alpha$ on $A$ means a finite map to
+$[0,\infty)$ with $\alpha(0)=0$, $\alpha(1)=1$, triangle inequality,
+multiplicativity, and $\alpha(a)\le\|a\|$.
+
+\begin{proposition}[Exact extension from the integral spectrum]
+\label{prop:integral}
+Restriction is a bijection between such $\alpha$ and the subset
+\[
+ M_{K,A}=\{v\in M_K:v(a)\le\|a\|\text{ for all }a\in A\}.
+ \tag{AV4.1}\label{eq:integral-subspace}
+\]
+For $\mathfrak p=\ker\alpha$, the inverse map has finiteness ring
+$A_{\mathfrak p}$ and is given by
+\[
+ v_\alpha(x)=
+ \begin{cases}
+  \overline\alpha(x\bmod\mathfrak p A_{\mathfrak p}),&x\in A_{\mathfrak p},\\
+  \infty,&x\notin A_{\mathfrak p},
+ \end{cases}
+ \tag{AV4.2}\label{eq:extension}
+\]
+where $\overline\alpha$ is the absolute value on
+$\kappa(\mathfrak p)=\Frac(A/\mathfrak p)$ defined by
+$\overline\alpha(\overline a/\overline b)=\alpha(a)/\alpha(b)$.
+The subset \eqref{eq:integral-subspace} is closed in $M_K$, and this
+bijection is a homeomorphism for the pointwise topologies.
+\end{proposition}
+\begin{proof}
+Multiplicativity makes $\mathfrak p$ prime. The triangle inequality proves
+that $\alpha$ depends only on a residue class, as in
+Proposition~\ref{prop:finite}, and its quotient norm extends uniquely by
+the indicated fraction formula. The residue field of $A_{\mathfrak p}$
+is exactly $\Frac(A/\mathfrak p)$ because its nonzero residue denominators
+are the elements outside $\mathfrak p$.
+
+For any valuation ring $V\subset K$ with maximal ideal $\mathfrak m$
+and residue absolute value $\beta$, the map equal to $\beta$ on residues
+of $V$ and infinity outside $V$ satisfies the pseudo-absolute-value
+axioms. To verify this, sums of two finite inputs use the residue triangle
+inequality and other sums have infinite right side. Products of finite
+inputs use the residue multiplication law. An element outside $V$ has
+inverse in $\mathfrak m$. Multiplication by a unit of $V$ preserves its
+being outside $V$, and the product of two outside elements is outside
+because its inverse is a product in $\mathfrak m$. The sole remaining
+case is one residue-zero factor and one infinite factor, for which no
+identity is imposed. This proves existence of \eqref{eq:extension}.
+
+For uniqueness let $v$ restrict to $\alpha$. Since every element of $A$
+is finite, $A\subset A_v$. All elements of $A\setminus\mathfrak p$ are
+units of $A_v$, giving $A_{\mathfrak p}\subset A_v$ with the displayed
+residue values. If $x\in A_v\setminus A_{\mathfrak p}$, the valuation
+property implies $x^{-1}\in\mathfrak p A_{\mathfrak p}$, whose value is
+zero. But then multiplicativity for the finite pair $(x,x^{-1})$ would
+give $v(1)=0$, a contradiction. Thus the finiteness ring and every value
+are forced.
+
+Each inequality in \eqref{eq:integral-subspace} is closed in the pointwise
+topology. This subset is compact by Theorem~\ref{thm:decomposition}.
+Restriction is a continuous bijection into a Hausdorff product space,
+so its inverse is continuous: a closed subset of a compact domain has
+compact, hence closed, image in a Hausdorff space.
+\end{proof}
+
+\begin{corollary}[What a bound does to the split point]
+Extend the norm bound by $\|\tau\|=0$ and
+$\|e_A\|=\|0_A\|=0$. The maps in $\mathcal P(\G(K))$ obeying this bound
+on $\G(A)$ are precisely $j_K(M_{K,A})$. In particular $\chi_K$ does not
+obey it. The full split extension of the integral space is instead the
+explicit disjoint union $\{\chi_K\}\sqcup j_K(M_{K,A})$.
+\end{corollary}
+\begin{proof}
+The character has $\chi_K(e_A)=1>0$, whereas every lifted valuation has
+value zero there. On every other supported input the bound is exactly
+\eqref{eq:integral-subspace}. Apply Theorem~\ref{thm:decomposition}.
+\end{proof}
+
+\begin{proposition}[The center map includes the additional prime]
+\label{prop:centermap}
+For the explicit space
+$\widetilde M_{K,A}=\{\chi_K\}\sqcup j_K(M_{K,A})$, there is a
+continuous map
+\[
+ c_A:\widetilde M_{K,A}\longrightarrow\Spec\G(A),\qquad
+ c_A(\chi_K)=\{\tau\},\qquad
+ c_A(j_K(v))=(\mathfrak m_v\cap A)^+.
+ \tag{AV4.3}\label{eq:center-map}
+\]
+At $j_K(v)$, writing $\mathfrak p=\mathfrak m_v\cap A$, the associated
+local semiring is $\G(A)_{\mathfrak p^+}=\G(A_{\mathfrak p})=\G(A_v)$.
+At the additional prime one instead has
+$\G(A)_{\{\tau\}}\cong\mathbb B$, where
+$\mathbb B=\{0,1\}$ has $1+1=1$.
+\end{proposition}
+\begin{proof}
+The values of $v$ are finite on $A$, so its zero locus there is a prime
+ideal, by multiplication of finite nonnegative values. For a supported
+$a\in A$, the inverse image of the basic open $D(a)$ is
+$\{\chi_K\}\sqcup\{j_K(v):v(a)>0\}$, which is open in the stated
+pointwise topology. The inverse image of $D(\tau)$ is empty. These
+opens prove continuity.
+
+For the local semiring at $\mathfrak p^+$, denominators are exactly
+supported $s\in A\setminus\mathfrak p$. Send a supported fraction
+$a/s$ to its supported coefficient in $A_{\mathfrak p}$ and the
+fraction $\tau/s$ to $\tau$. The usual cross-multiplication criterion
+proves equality of two supported fractions exactly when their ring
+fractions agree; no supported fraction equals a $\tau$ fraction since
+multiplication of supported elements stays supported. This proves the
+first localization isomorphism. The equality with $A_v$ was proved in
+Proposition~\ref{prop:integral}.
+
+At $\{\tau\}$ every supported element, including $e_A$, is inverted.
+An invertible multiplicative idempotent equals one, so $e_A=1$ in that
+localization. Then $e_Aa=e_A$ forces every supported $a$ to equal one.
+The two classes remain distinct because the support map to $\mathbb B$
+sends all supported denominators to a unit, and therefore factors
+through the localization while distinguishing their class from $\tau$.
+Its addition is $1+1=1$ by the image of $e_A+e_A=e_A$.
+\end{proof}
+
+\subsection{The exact additive bridge and its limits}
+
+\begin{theorem}[Universal ring recovery]\label{thm:ring-recovery}
+The map $q_A:\G(A)\to A$ is universal among semiring homomorphisms from
+$\G(A)$ to rings. It identifies exactly $\tau$ and $e_A$ and keeps all
+other coefficients distinct. Consequently the category of
+$\G(A)$-semimodules whose additive monoid is an abelian group is
+canonically equivalent to the category of $A$-modules, by restriction
+along $q_A$. Under this equivalence tensor products, resolutions, and
+$\Tor$ are exactly the ordinary $A$-module constructions.
+\end{theorem}
+\begin{proof}
+If $f:\G(A)\to R$ is a semiring homomorphism with $R$ a ring, then
+$f(e_A)+f(e_A)=f(e_A)$ implies $f(e_A)=0$. It already sends $\tau$ to
+zero. Its restriction to supported $A$ preserves addition,
+multiplication, and identities, hence is a ring homomorphism. It is
+uniquely determined and factors $f$ through $q_A$.
+
+On an abelian-group semimodule $M$, the relation
+$e_Am+e_Am=e_Am$ similarly gives $e_Am=0_M$ for all $m$. The action
+therefore factors through $A$, and all semimodule homomorphisms are
+precisely $A$-linear maps. Conversely every $A$-module gives such an
+action. These are inverse functors and preserve each addition and
+scalar action. A balanced biadditive map for one description is exactly
+one for the other, so the tensor universal properties agree. Free and
+projective objects, exact sequences, and tensor resolutions in this
+abelian category therefore agree, proving the Tor assertion.
+\end{proof}
+
+There is also a way to retain the two zeros on modules. For an $A$-module
+$M$, put $\G(M)=\{\tau_M\}\sqcup M$, with supported addition inherited
+from $M$, and the scalar action induced from $A$, with either $\tau$
+input absorbing. The semimodule laws follow by the same cases as in
+\eqref{eq:split-identities}.
+
+\begin{proposition}[Support-preserving module category]
+\label{prop:module-support}
+A homomorphism $h:\G(M)\to\G(N)$ is either the constant map to
+$\tau_N$, or is $\G(f)$ for a unique $A$-linear map $f:M\to N$.
+The morphisms preserving supported elements form a category equivalent
+to $A$-modules. Its additive zero morphism is the supported map
+$m\mapsto0_N$, extended by $\tau_M\mapsto\tau_N$; it differs from the
+constant-$\tau_N$ homomorphism in the ambient semimodule category.
+For every linear $f$,
+\[
+ (\G(f))^{-1}(\{\tau_N\})=\{\tau_M\},\qquad
+ \G(\ker f)=\{\tau_M\}\sqcup\{m:f(m)=0_N\}.
+ \tag{AV5.1}\label{eq:module-kernels}
+\]
+The second expression, with its inclusion, is the kernel in the
+support-preserving category; the first is the categorical zero fibre
+in the ambient category.
+\end{proposition}
+\begin{proof}
+The only additive idempotents in $\G(N)$ are $\tau_N$ and $0_N$:
+a supported idempotent satisfies $n+n=n$ in a group, so $n=0_N$.
+Hence $h(0_M)$ is one of these. If $h(0_M)=\tau_N$, then
+$h(m)+h(-m)=\tau_N$ forces both summands to be $\tau_N$, since any
+supported summand makes a sum supported. This is the constant map.
+If $h(0_M)=0_N$, the identity $0_M+m=m$ rules out $h(m)=\tau_N$,
+because $0_N+\tau_N=0_N\ne\tau_N$. Thus all supported elements have
+supported images. The homomorphism laws become exactly linearity of
+$f=h|_M$. Conversely every linear map extends, proving the categorical
+claim. The two kernel statements now follow by direct inverse-image
+calculation, including the distinct images of $0_M$ and $\tau_M$.
+\end{proof}
+
+In particular, no assertion about derived functors in the entire
+nonadditive semimodule category follows merely by renaming ordinary
+module Tor. Theorem~\ref{thm:ring-recovery} and
+Proposition~\ref{prop:module-support} specify two exact functors and
+the exact categories in which the asserted transfer holds.
+
+\subsection{Valuation stalks and the sheaf that retains support}
+
+\begin{proposition}[Tor bound over a valuation ring]
+\label{prop:valuation-tor}
+Let $V$ be a valuation ring with fraction field $F$. Every torsion-free
+$V$-module is flat. Every $V$-module has a flat resolution of length at
+most one. Every finitely presented $V$-module has a finite free
+resolution of length at most one. Consequently
+\[
+ \Tor_i^V(M,N)=0\qquad(i\ge2)
+ \tag{AV6.1}\label{eq:torvanishing}
+\]
+for all $V$-modules $M,N$.
+\end{proposition}
+\begin{proof}
+First a finitely generated torsion-free module is free. Given generators
+$m_1,\ldots,m_n$, if they are dependent choose a nonzero relation
+$\sum a_i m_i=0$. Among its nonzero coefficients choose $a_j$ dividing
+all the others; this is possible because principal ideals in a valuation
+ring are totally ordered. Write $a_i=a_jb_i$, with $b_j=1$.
+Torsion-freeness gives $\sum b_i m_i=0$, expressing $m_j$ in the other
+generators. Repeating decreases the number of generators until an
+independent generating set remains. This is a free basis.
+
+An arbitrary torsion-free module is the filtered union of its finitely
+generated submodules, all free by the preceding argument. It is flat:
+tensor commutes with filtered colimits, and filtered colimits preserve
+injections and exactness of modules. Explicitly, a finite tensor relation
+already lies in some finitely generated submodule, and if its image
+vanishes in the colimit it vanishes at a later stage; exactness there
+gives exactness in the colimit. Thus no relation obstructing flatness
+appears in the union.
+
+Choose a free surjection $P\twoheadrightarrow M$. Its kernel is a
+submodule of a free module over a domain and so is torsion-free, hence
+flat. This is the claimed length-one flat resolution. If $M$ is finitely
+presented, choose $P$ finite free and its kernel finitely generated;
+that kernel is then finite free by the first paragraph. Tensoring either
+resolution proves \eqref{eq:torvanishing}.
+\end{proof}
+
+If $(Z,\mathcal O_Z)$ is a locally ringed space with valuation-ring
+stalks, then for all sheaves of modules $\mathcal F,\mathcal H$,
+\[
+ \mathcal{T}or_i^{\mathcal O_Z}(\mathcal F,\mathcal H)=0\quad(i\ge2).
+ \tag{AV6.2}\label{eq:sheaf-tor}
+\]
+Indeed stalks commute with tensor and homology; applying a flat resolution
+and taking stalks identifies the stalk of this sheaf with
+$\Tor_i^{\mathcal O_{Z,z}}(\mathcal F_z,\mathcal H_z)$, which vanishes
+by Proposition~\ref{prop:valuation-tor}. A sheaf with all stalks zero is
+zero, since every section whose germs vanish vanishes on a neighbourhood
+of each point and hence globally by the sheaf axiom.
+
+There is a small sheaf issue that matters for retaining support.
+The assignment $U\mapsto\G(\mathcal O_Z(U))$ need not itself be a sheaf:
+on two disjoint nonempty opens, a supported section on one and $\tau$ on
+the other must be able to glue. Define instead
+\[
+ \mathcal S_Z(U)=\{(C,s):C\subset U\text{ is open and closed},\quad
+                         s\in\mathcal O_Z(C)\}.
+ \tag{AV6.3}\label{eq:split-sheaf}
+\]
+For $C=\varnothing$ the unique pair is $\tau$. Addition has support
+$C\cup D$ and is the original sum on $C\cap D$, the first section on
+$C\setminus D$, and the second on $D\setminus C$. Multiplication has
+support $C\cap D$ and is the original product there. These pieces are
+open and closed in the union, so the sheaf axiom for $\mathcal O_Z$
+defines each operation. In particular cancellation on $C\cap D$ leaves
+a supported zero.
+
+\begin{proposition}[Sheaf-level split and recovery]
+\label{prop:sheafsplit}
+The construction \eqref{eq:split-sheaf} is a sheaf of semirings with
+stalk $\mathcal S_{Z,z}=\G(\mathcal O_{Z,z})$. Extension by zero on
+$U\setminus C$ gives a morphism $q:\mathcal S_Z\to\mathcal O_Z$ which
+has the universal ring-recovery property stalkwise and as a sheaf.
+Sheaves of $\mathcal S_Z$-semimodules with abelian-group addition are
+exactly sheaves of $\mathcal O_Z$-modules. If the stalks of
+$\mathcal O_Z$ are valuation rings, their Tor sheaves in this abelian
+category obey \eqref{eq:sheaf-tor}.
+\end{proposition}
+\begin{proof}
+Compatible supports on an open cover glue to a subset whose membership
+is locally constant, hence to an open-and-closed subset. The supported
+sections then glue uniquely by the original sheaf axiom. All semiring
+identities hold locally according to whether each support is present,
+and there reduce to the verified identities of $\G$.
+A germ either has absent support on a neighbourhood or has full support
+on a neighbourhood. These alternatives give respectively $\tau$ and
+a unique supported coefficient germ, proving the stalk identification.
+The extension-by-zero map is compatible with restrictions and
+operations by the same local cases. Any map to a sheaf of rings factors
+uniquely on stalks by Theorem~\ref{thm:ring-recovery}; equivalently, a
+local section splits on its support and its complement, where the
+factorizations are unique and so glue. The action on every additive-group
+semimodule likewise factors locally and uniquely, giving the stated
+equivalence. Its tensor products agree on stalks by
+Theorem~\ref{thm:ring-recovery}, and hence as sheaves; the Tor conclusion
+follows from \eqref{eq:sheaf-tor}.
+\end{proof}
+
+\subsubsection{The full spectral extension, including the extra generic point}
+
+Let $(Z,\mathcal O_Z)$ be a nonempty irreducible locally ringed space
+whose local rings are nonzero. Form the space
+\[
+ Z^+=Z\sqcup\{\eta_\tau\}
+ \tag{AV6.4}\label{eq:full-spectrum-space}
+\]
+whose opens are the empty set, $\{\eta_\tau\}$, and
+$U_W=\{\eta_\tau\}\cup W$ for nonempty open $W\subset Z$.
+These sets form a topology: arbitrary unions are of the same form,
+and a finite intersection is obtained by intersecting the corresponding
+opens in $Z$, with empty intersection there giving $\{\eta_\tau\}$.
+Define
+\[
+ \mathcal O_Z^+(U_W)=\G(\mathcal O_Z(W)),\qquad
+ \mathcal O_Z^+(\{\eta_\tau\})=\mathbb B.
+ \tag{AV6.5}\label{eq:full-spectrum-sheaf}
+\]
+Restriction between two opens with nonempty arithmetic parts is the
+split extension of the original restriction map. Restriction to
+$\{\eta_\tau\}$ sends $\tau$ to $0$ and every supported section to $1$.
+This is a semiring homomorphism to $\mathbb B$: supported sums and
+products remain supported, including supported zero coefficients.
+On the empty open take the one-element semiring. The restriction maps
+compose because ordinary restriction never changes the support tag.
+
+\begin{theorem}[Full spectral gluing and stalks]\label{thm:fullspectral}
+The construction \eqref{eq:full-spectrum-sheaf} is a sheaf of local
+semirings. Its stalks are
+\[
+ \mathcal O_{Z,\eta_\tau}^+=\mathbb B,\qquad
+ \mathcal O_{Z,z}^+=\G(\mathcal O_{Z,z})\quad(z\in Z).
+ \tag{AV6.6}\label{eq:full-spectrum-stalks}
+\]
+The inclusion $i:Z\hookrightarrow Z^+$ is a closed embedding of spaces.
+The inverse-image sheaf $i^{-1}\mathcal O_Z^+$ is the split sheaf
+$\mathcal S_Z$ of Proposition~\ref{prop:sheafsplit}; its universal
+ring quotient is $\mathcal O_Z$.
+If $Z=\Spec A$ for a domain $A$, this construction is canonically the
+entire semiring spectrum $\Spec\G(A)$ with its localization sheaf,
+not only its closed arithmetic subset.
+\end{theorem}
+\begin{proof}
+Every nonempty open of $Z^+$ contains $\eta_\tau$. On any cover of such
+an open, compatible sections must therefore have the same image in
+the stalk $\mathbb B$ at $\eta_\tau$. If that image is zero, each section
+on an open with arithmetic part is $\tau$, and every section on the
+singleton is zero; they glue uniquely to the absent section. If that
+image is one, the sections on the arithmetic parts are supported.
+Their coefficients agree wherever the arithmetic parts overlap,
+because supported equality in $\G$ is coefficient equality. The
+original sheaf axiom glues these coefficients to one section on $W$,
+giving the unique supported glue on $U_W$. Sections on a singleton
+member of the cover must be one and impose exactly that support
+condition. This also proves the sheaf axiom for a cover of the
+singleton. In the irreducible case, nonempty arithmetic opens intersect,
+so the coefficient compatibility can equivalently be checked directly
+on their nonempty intersections.
+
+The singleton is a smallest neighbourhood of $\eta_\tau$, yielding
+its stalk. Neighbourhoods of an arithmetic point $z$ are exactly $U_W$
+for neighbourhoods $W$ of $z$. In their colimit no restriction identifies
+$\tau$ with a supported section, and supported germs are precisely
+$\mathcal O_{Z,z}$. This proves \eqref{eq:full-spectrum-stalks}.
+If $(R,\mathfrak m)$ is a local ring, Proposition~\ref{prop:ideals}
+shows that $\G(R)$ has the unique maximal ideal $\mathfrak m^+$.
+The Boolean stalk has the unique maximal ideal $\{0\}$.
+Thus all stalks are local semirings.
+
+The complement of $i(Z)$ is the open singleton. Its relative topology
+is the original topology of $Z$. The presheaf computing the inverse
+image of $\mathcal O_Z^+$ on an open $W\subset Z$ has the restriction
+of $\G(\mathcal O_Z(W))$ as a cofinal representative, because $U_W$
+is the smallest open of $Z^+$ containing $i(W)$. Sheafifying this
+presheaf allows the support tag to vary locally, giving exactly the
+open-and-closed supported subsets and coefficient sections of
+\eqref{eq:split-sheaf}. The construction in
+Proposition~\ref{prop:sheafsplit} proves the ring quotient assertion.
+
+For a domain $A$, Proposition~\ref{prop:ideals} identifies the points
+and opens with $Z^+$, taking $\eta_\tau$ to the prime $\{\tau\}$.
+For a nonzero supported $a$, the basic open $D_{\G(A)}(a)$ has
+arithmetic part $D_A(a)$, and its local-fraction semiring is
+$\G(A)_a\cong\G(A_a)$, by the same cross-multiplication calculation
+as Proposition~\ref{prop:centermap}. This agrees with
+$\G(\mathcal O_Z(D_A(a)))$. The remaining nonempty basic open
+$D_{\G(A)}(e_A)=\{\eta_\tau\}$ has localization $\mathbb B$ by that
+proposition. All restriction maps agree: between arithmetic charts
+they are localization maps, and to the singleton they retain exactly
+the support. Since these form a basis, gluing identifies their
+localization sheaf with \eqref{eq:full-spectrum-sheaf}.
+\end{proof}
+
+\begin{proposition}[Every local morphism extends with its support point]
+\label{prop:fullspectralfunctor}
+Let $f:(Z,\mathcal O_Z)\to(X,\mathcal O_X)$ be a morphism of nonempty
+irreducible locally ringed spaces with nonzero local rings. Then
+\[
+ f^+:Z^+\longrightarrow X^+,\qquad
+ f^+(z)=f(z),\quad f^+(\eta_{\tau,Z})=\eta_{\tau,X}
+ \tag{AV6.7}\label{eq:full-morphism}
+\]
+is canonically a morphism of locally semiringed spaces. At an arithmetic
+point its stalk map is $\G(f_z^\#)$, and at the extra point it is the
+identity of $\mathbb B$. The construction respects identities and
+composition, and its restriction followed by coefficient recovery
+is the original morphism $f$.
+\end{proposition}
+\begin{proof}
+The inverse image of $U_W$ is
+$\{\eta_{\tau,Z}\}\cup f^{-1}(W)$, an open of $Z^+$ even when the
+arithmetic inverse image is empty. If it is nonempty, use
+$\G(f^\#):\G(\mathcal O_X(W))\to
+\G(\mathcal O_Z(f^{-1}W))$ on sections. If it is empty, use the support
+homomorphism to $\mathbb B$. On the singleton use its identity.
+These homomorphisms respect restrictions, including restrictions that
+make the arithmetic part empty, because coefficient maps preserve the
+support tag. They therefore define a sheaf morphism and give the stated
+stalk maps. A local ring map has inverse image of the maximal ideal
+equal to the maximal ideal. Formula \eqref{eq:liftideal} shows the same
+for its split extension. The Boolean identity is local as well.
+Composition and recovery hold on every supported coefficient and on
+$\tau$, proving every remaining assertion.
+\end{proof}
+
+\subsection{The exact scope of the Tor assertion and its refinement}
+\label{sec:repair}
+
+\subsubsection{The whole-scheme submodel limit does not have the claimed bound}
+
+In the supplied source a projective submodel of a projective $K$-scheme
+$X$ over $k\subset K$ is a factorization $X\to\mathcal X\to\Spec k$
+with schematically dominant first map and projective second map.
+Its Zariski--Riemann space is the inverse limit of these submodels.
+
+\begin{proposition}[An explicit counterexample to the unrestricted claim]
+\label{prop:source-counterexample}
+If $k=K$ and $X$ is a projective $K$-scheme, this submodel limit is $X$.
+For $X=\mathbf P^2_K$, a coherent point sheaf has nonzero $\Tor_2$ with
+itself. Thus the source's assertion of Tor-dimension at most one for
+all coherent sheaves on its general $\mathrm{ZR}(X/k)$, with only its
+stated hypotheses, fails in this case.
+\end{proposition}
+\begin{proof}
+The identity factorization makes $X$ itself a submodel, and the defining
+map $X\to\mathcal X$ is the unique arrow from this object to each
+submodel compatible with the factorization. For any compatible cone,
+its map to the $X$ component determines every other component.
+Therefore the inverse limit is $X$, also as a locally ringed space.
+
+Take a $K$-rational point with affine coordinates $x=y=0$. Its local ring
+is $R=K[x,y]_{(x,y)}$, with residue field $K$. The sequence
+\[
+ 0\longrightarrow R\xrightarrow{c\mapsto(-yc,xc)}R^2
+ \xrightarrow{(a,b)\mapsto xa+yb}R\longrightarrow K\longrightarrow0
+ \tag{AV7.1}\label{eq:koszul}
+\]
+is exact. The left map is injective because $R$ is a domain. If
+$xa+yb=0$, reduction modulo $x$ in the domain $K[y]_{(y)}$ gives
+$b\equiv0\pmod x$, so $b=xc$, and then $a=-yc$. The image at $R$ is
+the ideal $(x,y)$, giving the last exactness. Tensoring with $K$ makes
+both differentials zero, so $\Tor_2^R(K,K)=K\ne0$.
+The coherent skyscraper sheaf at the point therefore has a nonzero
+second Tor stalk with itself. All the stated hypotheses hold: $K$ is
+stably coherent, and $\mathbf P^2_K$ is projective and integral.
+\end{proof}
+
+\subsubsection{The valuation refinement is a new space with an exact map}
+
+Let $X$ be an integral separated scheme of finite type over a field and
+$F=K(X)$ its actual function field. Consider integral schemes $Y$ with
+a projective birational morphism $Y\to X$, and compatible morphisms
+over $X$. Their category is cofiltered: the closure of the common
+generic point in $Y_1\times_XY_2$ is another such integral model
+dominating both. Define
+\[
+ \mathfrak Z_X=\varprojlim_{Y\to X}Y,\qquad
+ \mathcal O_{\mathfrak Z_X}
+   =\varinjlim_{Y\to X}p_Y^{-1}\mathcal O_Y.
+ \tag{AV7.2}\label{eq:valuation-refinement}
+\]
+The limit topology and the indicated sheaf are used. Stalks are the
+filtered colimits of the local rings at compatible centers; these
+colimits are local because all transition maps between these local
+rings are local. The projection to the identity model is a morphism of
+locally ringed spaces $\rho:\mathfrak Z_X\to X$.
+
+\begin{theorem}[Valuation refinement and the proved amplitude bound]
+\label{thm:valuationrefinement}
+Points of $\mathfrak Z_X$ are in bijection with pairs $(V,c)$ where $V$
+is a valuation ring of $F$ and $c:\Spec V\to X$ extends the generic
+point $\Spec F\to X$. At the corresponding point $z$, the stalk is
+exactly $V$. If $x=c(\mathfrak m_V)$, the stalk map of $\rho$ is the
+inclusion $\mathcal O_{X,x}\hookrightarrow V$. All sheaves of modules
+on $\mathfrak Z_X$ satisfy
+\[
+ \mathcal{T}or_i^{\mathcal O_{\mathfrak Z_X}}(\mathcal F,\mathcal H)=0
+ \quad(i\ge2).
+ \tag{AV7.3}\label{eq:refinement-tor}
+\]
+The split sheaf from \eqref{eq:split-sheaf} has stalks $\G(V)$ and
+maps to this ringed space by the exact coefficient quotient; its
+abelian-group module category has the same bound.
+\end{theorem}
+\begin{proof}
+Given $(V,c)$ and a model $Y\to X$, its generic map lifts uniquely to
+$\Spec V\to Y$. This is the valuative property of a projective map;
+it can be checked here using homogeneous coordinates: write the
+generic lift as $[a_0:\cdots:a_n]$ in a projective embedding of $Y$,
+divide by an $a_j$ whose value is least among these finitely many
+nonzero coordinates, and obtain coordinates in $V$ with one equal to
+one. The homogeneous equations hold over $V$ because they hold over
+$F$. Uniqueness follows from separatedness, since two maps agreeing
+at the generic point agree on the closed equations of the diagonal.
+These unique lifts give compatible centers $z_Y$ and therefore $z$.
+Each local ring $\mathcal O_{Y,z_Y}$ embeds locally into $V$.
+
+Conversely, a compatible family gives a union
+$R_z=\varinjlim_Y\mathcal O_{Y,z_Y}\subset F$. For each $f\in F^*$,
+take the closure of the graph of its rational map to $\mathbf P^1$
+inside $X\times\mathbf P^1$. It is an integral projective birational
+model. Its center lies in at least one of the two standard affine
+charts, so either $f$ or $f^{-1}$ belongs to its local ring and hence
+to $R_z$. Therefore $R_z$ is a valuation ring. Each center map is local,
+and the inclusion of the $X$ local ring gives the required center on $X$.
+
+For the family constructed from $V$, the union of center rings equals
+$V$, rather than just being contained in it. If $f\in V$, the graph
+model just used has center in its finite-coordinate chart: its unique
+$V$-lift has coordinate $f$, which is defined at the closed point of
+$\Spec V$. Thus $f$ lies in that center's local ring. Every element
+of $V$ is obtained. The construction is inverse in the other direction
+because the inclusions of center rings into the union give the unique
+lifts to each separated model. This proves both the bijection and the
+stalk and morphism formulas. The Tor assertions follow from
+\eqref{eq:sheaf-tor} and Proposition~\ref{prop:sheafsplit}.
+\end{proof}
+
+The distinction between \eqref{eq:valuation-refinement} and the source's
+whole-scheme submodels is an explicit morphism $\rho$ and a change of
+modification problem: the former models the generic map $\Spec F\to X$,
+whereas the latter requires the whole map $X\to\mathcal X$ to survive.
+For $X=\Spec K$ over a subring, valuation centers recover the valuation
+stalk setting recalled in S\'edillot's
+\nolinkurl{example:ZR_algebraic}, source lines 831--835. The bound is
+therefore proved on the valuation objects needed by that field-level
+route without asserting it on every whole-scheme submodel limit.
+
+\begin{corollary}[The entire spectrum survives valuation refinement]
+\label{cor:fullrefinement}
+The space $\mathfrak Z_X$ in Theorem~\ref{thm:valuationrefinement} is
+irreducible with generic point represented by the valuation ring $F$.
+The refinement induces the exact morphism
+\[
+ \rho^+:\mathfrak Z_X^+\longrightarrow X^+.
+ \tag{AV7.3a}\label{eq:fullrefinement}
+\]
+Its stalk map at a valuation center is
+$\G(\mathcal O_{X,x})\to\G(V)$, induced by the original inclusion;
+its stalk map at the new generic point is the Boolean identity.
+The ordinary generic point $\xi$ remains in the closed arithmetic
+stratum and remains distinct from $\eta_\tau$. At $\xi$, the stalk is
+$\G(F)$; the two primes that record the two generic points are
+$\{\tau\}$ and $\{\tau,e_F\}$. The latter is the supported-zero prime
+of the ordinary generic point.
+\end{corollary}
+\begin{proof}
+The compatible generic points of all integral birational models form
+a point of $\mathfrak Z_X$, with stalk $F$ by
+Theorem~\ref{thm:valuationrefinement}. Every nonempty basic open in the
+inverse-limit topology is a finite intersection of inverse images of
+opens on models. A common dominating model replaces these finitely
+many conditions by one open condition. If the intersection is nonempty,
+that open is nonempty in an integral scheme, so contains its generic
+point. Thus every nonempty open contains the compatible generic point,
+proving irreducibility. Proposition~\ref{prop:fullspectralfunctor}
+applies to $\rho$ and gives the stated map and stalk formulas.
+The arithmetic stratum is closed and omits the new point by
+Theorem~\ref{thm:fullspectral}, so the two are distinct. At $\xi$,
+Proposition~\ref{prop:ideals} for the field $F$ gives exactly the two
+listed primes; their localizations are respectively $\mathbb B$ and
+$\G(F)$, as proved in Proposition~\ref{prop:centermap}. This identifies
+their roles without identifying $e_F$ and $\tau$.
+\end{proof}
+
+\subsubsection{Where the derived contribution goes under a blowup}
+
+\begin{theorem}[Complete blowup-chart calculation]\label{thm:blowup}
+Let $A=K[x,y]$, $M=A/(x,y)$, and let
+\[
+ B=K[u,t],\qquad A\longrightarrow B,\quad x\longmapsto u,
+ \quad y\longmapsto ut
+ \tag{AV7.4}\label{eq:blowupchart}
+\]
+be the first chart of the blowup of $(x,y)$. Ordinary pullback is
+$B\otimes_A M=B/(u)$, whose projective dimension over $B$ is one.
+Derived pullback is represented, in homological degrees $2,1,0$, by
+\[
+ 0\longrightarrow B\xrightarrow{c\mapsto(-ut c,uc)}B^2
+ \xrightarrow{(a,b)\mapsto u(a+tb)}B\longrightarrow0.
+ \tag{AV7.5}\label{eq:blowupkoszul}
+\]
+Its homology is
+\[
+ H_0=B/(u),\qquad
+ H_1=(B/(u))\,[(-t,1)],\qquad H_2=0.
+ \tag{AV7.6}\label{eq:blowuphomology}
+\]
+Consequently the kernel and cokernel relevant to the middle map are
+\[
+ \ker d_1=B(-t,1),\quad \operatorname{im}d_2=uB(-t,1),\quad
+ \operatorname{im}d_1=uB,\quad\operatorname{coker}d_1=B/(u).
+ \tag{AV7.7}\label{eq:blowup-kernels}
+\]
+On the whole blowup with exceptional curve $E\cong\mathbf P^1_K$, the
+two homology sheaves are $\mathcal O_E$ in degree zero and
+$\mathcal O_E(-1)$ in degree one. These are the complete contributions;
+no degree-two term remains on either chart.
+\end{theorem}
+\begin{proof}
+The polynomial-ring version of the exact Koszul sequence
+\eqref{eq:koszul} has the same proof: reducing modulo $x$ in $K[y]$
+shows that a relation $xa+yb=0$ has $(a,b)=(-yc,xc)$. It is a free
+$A$-resolution of $M$. Tensoring it with the specified $A$-algebra $B$
+gives \eqref{eq:blowupkoszul}, which therefore computes derived pullback.
+
+Because $u$ is not a zero divisor, $d_2$ is injective. The equation
+$u(a+tb)=0$ gives $a=-tb$, so $\ker d_1=B(-t,1)$. The image of $d_2$
+is precisely $u$ times this free rank-one kernel. The image of $d_1$
+is $uB$ because $a$ can be arbitrary. This proves all four formulas
+in \eqref{eq:blowup-kernels} and their homology quotients.
+The sequence $0\to B\xrightarrow{u}B\to B/(u)\to0$ is a length-one
+free resolution. Its cokernel is not projective: after tensoring this
+resolution with $B/(u)$ the degree-one homology is $B/(u)\ne0$,
+whereas a projective module has vanishing positive Tor.
+
+On the second chart $B'=K[v,s]$ with $y=v,x=vs$, the same calculation
+gives a degree-one generator $(1,-s)$ and quotient $B'/(v)$.
+On the overlap $s=t^{-1}$ and $v=ut$, and the first generator satisfies
+\[
+ (-t,1)=-t(1,-s).
+ \tag{AV7.8}\label{eq:transition}
+\]
+The tautological line on $E=\mathbf P^1$ has local frames $(1,t)$ and
+$(s,1)$ with first frame $t$ times the second. Multiplying one frame
+by $-1$ changes no line bundle. Thus \eqref{eq:transition} is exactly
+the transition of $\mathcal O_E(-1)$. Degree-zero homology is the
+structure sheaf of the exceptional divisor on both charts, and
+degree-two homology is zero on this open cover, proving the global
+assertions.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzcd}[column sep=large,row sep=large]
+ \mathfrak Z_{\mathbf A^2_K}
+ \arrow[r]\arrow[dr,"\rho"'] &
+ \operatorname{Bl}_{(x,y)}\mathbf A^2_K
+ \arrow[d,"{(u,t)\mapsto(u,ut)}"]\\
+ & \mathbf A^2_K
+\end{tikzcd}
+\caption{Exact maps for the valuation refinement and one blowup chart.
+The exceptional equation is $u=0$. The supported point module pulls
+back to $B/(u)$, while its derived pullback also retains
+$(B/(u))[(-t,1)]$ in degree one. Theorems~\ref{thm:valuationrefinement}
+and~\ref{thm:blowup} prove every map and homology label. The source
+comparison is S\'edillot, arXiv:2503.20156v2, author-TeX labels
+\nolinkurl{lemma:Tor-dimension_pullback} and
+\nolinkurl{lemma:Tor-dimension_flattening}, lines 950--982.}
+\end{figure}
+
+For clarity, even a valuation target keeps the derived defect rather
+than erasing it. Let $A\to V$ be a map to a valuation ring contained in
+$K(x,y)$, with $u=x\ne0$, $t=y/x\in V$, and $u$ noninvertible. The same
+calculation over the domain $V$ gives
+\[
+ V\otimes_A M=V/(u),\qquad
+ \Tor_1^A(V,M)=V/(u),\qquad \Tor_i^A(V,M)=0\ (i\ge2).
+ \tag{AV7.9}\label{eq:valuation-pullback-defect}
+\]
+The nonzero first group is precisely the defect of flatness on this
+module. It is compatible with \eqref{eq:torvanishing}, whose base ring
+is $V$: that latter formula bounds derived tensor over the valuation
+ring, while \eqref{eq:valuation-pullback-defect} computes base change
+from the surface ring $A$. The connecting operation is the explicit
+base-change complex \eqref{eq:blowupkoszul}, with $B$ replaced by $V$.
+This is the exact relation between the two calculations, including its
+nonzero preserved term.
+
+\subsection{Adelic data transported without changing the product formula}
+
+\begin{proposition}[Exact transport of a topological adelic curve]
+\label{prop:adelictransport}
+Let $(K,\phi:\Omega\to M_K,\nu)$ satisfy S\'edillot's definition:
+$\Omega$ is locally compact Hausdorff, $\phi$ is continuous, and for
+each $a\in K^*$, $\omega\mapsto\log\phi(\omega)(a)$ is integrable.
+Then $\widetilde\phi=j_K\circ\phi$ is continuous into
+$\mathcal P(\G(K))$, and for every supported unit $a\in K^*$,
+\[
+ \int_\Omega\log\widetilde\phi(\omega)(a)\,d\nu(\omega)
+ =\int_\Omega\log\phi(\omega)(a)\,d\nu(\omega).
+ \tag{AV8.1}\label{eq:producttransport}
+\]
+Thus the original product formula is preserved exactly. Conversely,
+a continuous map into the component $w(e_K)=0$ with these integrability
+conditions uniquely recovers the original adelic data. An additional
+isolated point mapped to $\chi_K$, with any finite nonnegative mass,
+contributes zero to every integral in \eqref{eq:producttransport}.
+\end{proposition}
+\begin{proof}
+Continuity and the inverse assertion are
+Theorem~\ref{thm:decomposition}. The two integrands in
+\eqref{eq:producttransport} agree pointwise on their exact original
+domain $K^*$, proving integrability and equality without alteration of
+any values. At the added point, $\chi_K(a)=1$ for every such $a$, so
+$\log\chi_K(a)=0$. A topological disjoint union with one isolated point
+is locally compact Hausdorff, and adjoining its finite atomic measure
+has the asserted integral. No product formula for $e_K$ or $\tau$ is
+claimed, since those elements are not units and their logarithms do
+not enter the original definition.
+\end{proof}
+
+The final construction describes exactly what the support point can
+and cannot add at this stage: it retains a distinct character and an
+independent atomic mass, but the logarithms of supported units vanish
+there. No assertion of a Riemann-hypothesis criterion, a functional
+equation, or smoothness follows from this transport alone.
+

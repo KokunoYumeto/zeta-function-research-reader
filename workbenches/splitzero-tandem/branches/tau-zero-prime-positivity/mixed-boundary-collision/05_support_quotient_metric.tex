@@ -1,0 +1,90 @@
+\section{The attained metric on every support cohomology fibre}
+\label{sec:support-quotient-metric}
+This section works on the fibre complexes constructed from the original coefficient matrices. Their support labels retain which relation columns and ambient coordinates are present. For two nested trajectories $A\subseteq B$, write $K_A\subseteq K_B$ for the cycle spaces and $I_A\subseteq I_B$ for the relation images, all embedded by zero extension in the same original middle coefficient space $V$. In particular $I_A\subseteq K_A$ and $I_B\subseteq K_B$. No replacement inner product is introduced: let $G$ be the original positive-definite Hermitian form on $V$.
+
+For a subspace $I\subseteq V$, denote its $G$-orthogonal projection by $P_I$. With any full-column-rank frame $Z$ for $I$,
+\begin{equation}\label{eq:original-relation-projection}
+ P_I=Z(Z^*GZ)^{-1}Z^*G.
+\end{equation}
+The empty frame defines the zero projection. To verify the formula, its square equals itself, its image is $I$, and $Z^*G(x-P_Ix)=0$ for every $x$; these three properties characterize the orthogonal projection independently of the chosen frame.
+
+\begin{theorem}[Exact transport and its new boundary kernel]\label{thm:support-metric-transport}
+The quotient $\mathsf H_A=K_A/I_A$ has attained norm
+\[
+ \|[x]\|_A^2=\inf_{z\in I_A}\|x+z\|_G^2
+ =\|(1-P_{I_A})x\|_G^2.
+\]
+The inclusion of trajectories induces the well-defined linear map
+\[
+ t_{AB}:\mathsf H_A\to\mathsf H_B,\qquad[x]\mapsto[x],
+ \qquad\ker t_{AB}=(K_A\cap I_B)/I_A.
+\]
+For every $x\in K_A$ its entire norm loss is
+\begin{equation}\label{eq:support-loss}
+ \|[x]\|_A^2-\|t_{AB}[x]\|_B^2
+ =x^*G(P_{I_B}-P_{I_A})x
+ =\|(P_{I_B}-P_{I_A})x\|_G^2.
+\end{equation}
+The map is a contraction, and its defect has rank at most $\dim I_B-\dim I_A$.
+\end{theorem}
+\begin{proof}
+Write $x=P_{I_A}x+(1-P_{I_A})x$. For $z\in I_A$, orthogonality gives
+$\|x+z\|_G^2=\|P_{I_A}x+z\|_G^2+\|(1-P_{I_A})x\|_G^2$.
+The first term attains zero at $z=-P_{I_A}x$, proving the quotient formula. Because $I_A\subseteq I_B$, two representatives defining the same class at $A$ also define the same class at $B$. The image vanishes precisely for representatives in $K_A\cap I_B$, giving the exact kernel.
+
+Nested projections obey $P_{I_A}P_{I_B}=P_{I_A}=P_{I_B}P_{I_A}$. The second equality follows because $P_{I_A}x\in I_B$; the first follows by taking adjoints in the $G$ inner product. Thus $P_{I_B}-P_{I_A}$ is the orthogonal projection onto $I_B\cap I_A^{\perp_G}$. Subtract the two attained norm formulas to obtain \eqref{eq:support-loss}; its last expression and its rank follow from this projection description. This proof retains every actual relation vector and its position in the original metric.
+\end{proof}
+
+\begin{theorem}[The complete determinant correction]\label{thm:support-det-correction}
+Let the columns of $U_A$ be a basis of $K_A\cap I_A^{\perp_G}$, so they represent a basis of $\mathsf H_A$. Put
+\begin{align}
+ H_A&=U_A^*GU_A,\notag\\
+ E_{AB}&=U_A^*G(P_{I_B}-P_{I_A})U_A,\notag\\
+ H_{B\leftarrow A}&=U_A^*G(1-P_{I_B})U_A=H_A-E_{AB}.
+ \label{eq:support-metric-matrices}
+\end{align}
+Here $0\preceq E_{AB}\preceq H_A$, and $H_{B\leftarrow A}$ is exactly the pullback of the attained quotient metric, including its zero directions. Its kernel is the coordinate representation of $(K_A\cap I_B)/I_A$. When that kernel is zero,
+\begin{equation}\label{eq:support-logdet}
+ \log\det H_{B\leftarrow A}-\log\det H_A
+ =\log\det\left(1-H_A^{-1/2}E_{AB}H_A^{-1/2}\right).
+\end{equation}
+Every eigenvalue of the matrix subtracted from $1$ lies in $[0,1)$; at most $\dim I_B-\dim I_A$ are nonzero. If it has an eigenvalue $1$, the corresponding cohomology class becomes a boundary at $B$ and both sides must instead be restricted to a specified surviving subspace before taking an ordinary determinant.
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm:support-metric-transport} evaluated on $U_Ac$ gives every displayed form identity and inequality. Its zero norm at $B$ is equivalent to membership in $I_B$, proving the kernel assertion. Congruence by $H_A^{-1/2}$ transforms the metric difference into the matrix in \eqref{eq:support-logdet}; multiplicativity of determinant yields that formula, and positivity proves the eigenvalue claims. Rank cannot increase under congruence or compression. Thus the term records the original relative position of the relations rather than their number alone.
+\end{proof}
+
+\subsection{Return through all four original cutoffs}
+Use precisely the four indices and signs
+\[
+ (N_1,N_2,N_3,N_4)=(q-1,q,2q-1,2q),\qquad
+ (\sigma_1,\sigma_2,\sigma_3,\sigma_4)=(+1,+1,-1,-1).
+\]
+For each index use its original form $G_N$, actual relation spaces and attained quotient basis. Whenever the transported spaces have no killed class, define
+$\Lambda_N=H_{A,N}^{-1/2}E_{AB,N}H_{A,N}^{-1/2}$. Applying the proved identity separately at each index gives the exact signed return
+\begin{equation}\label{eq:all-four-support-return}
+ \sum_{j=1}^4\sigma_j\log\det H_{B\leftarrow A,N_j}
+ =\sum_{j=1}^4\sigma_j\log\det H_{A,N_j}
+  +\sum_{j=1}^4\sigma_j\log\det(1-\Lambda_{N_j}).
+\end{equation}
+No sign is assigned to the last sum by the separate contraction inequalities: the four signs in the return are retained. If a class is killed, Theorem~\ref{thm:support-det-correction} identifies exactly its kernel before a surviving determinant is formed.
+
+\begin{proposition}[An evaluated example of the full support correction]\label{prop:evaluated-support-correction}
+Take the complex $\C\xrightarrow{(1,1)^{\mathsf T}}\C^2\to0$. The trajectory with no relation column and both middle coordinates has $I_A=0$. Activating the relation gives $I_B=\C(1,1)^{\mathsf T}$. On the original class represented by $x=(1,0)^{\mathsf T}$ and metric $G_N=\operatorname{diag}(e^N,1)$,
+\[
+ \|[x]\|_A^2=e^N,\qquad
+ \|[x]\|_B^2=\frac{e^N}{1+e^N},\qquad
+ \frac{\|[x]\|_B^2}{\|[x]\|_A^2}=\frac1{1+e^N}.
+\]
+For $m$ independent copies, the four-cutoff logarithmic correction is exactly
+\begin{equation}\label{eq:evaluated-four-cutoff-defect}
+ 2mq+m\bigl(\log(1+e^{-(2q-1)})+\log(1+e^{-2q})
+ -\log(1+e^{-(q-1)})-\log(1+e^{-q})\bigr).
+\end{equation}
+Its difference from $2mq$ has absolute value at most
+$m(e^{-(2q-1)}+e^{-2q}+e^{-(q-1)}+e^{-q})$.
+\end{proposition}
+\begin{proof}
+The attained norm is the minimum over $t\in\C$ of $e^N|1+t|^2+|t|^2$. Completing the square gives the minimizer $t=-e^N/(1+e^N)$ and the stated value. The class is not killed because $(1,0)$ is not a multiple of $(1,1)$. Orthogonal direct sums multiply the ratios. Take logarithms at all four cutoffs and use $\log(1+e^N)=N+\log(1+e^{-N})$; their signed linear combination is $2q$. Finally $0\le\log(1+t)\le t$ for $t\ge0$ follows by integrating $(1+t)^{-1}\le1$, proving the error bound.
+\end{proof}
+This example is completely specified and is not substituted for a native arithmetic coefficient. It demonstrates with an attained minimum that a support transition can contribute at scale $kq$ when $m$ has scale $k$. Equation~\eqref{eq:all-four-support-return}, evaluated with the original programme spaces, is the receiver required for that programme calculation.

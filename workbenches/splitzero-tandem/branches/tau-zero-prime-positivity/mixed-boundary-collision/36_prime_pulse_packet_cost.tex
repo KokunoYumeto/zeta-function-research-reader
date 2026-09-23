@@ -1,0 +1,239 @@
+\section{The evaluated cost of retaining all packet jets in shrinking prime pulses}
+\label{sec:pulse-packet-cost}
+
+The preceding full-jet observation gives a concrete way to
+transport the positive pulse calculation into a complete finite
+packet. This section evaluates the original source cost of that
+transport, including its first matrix correction. The pulse,
+Haar measure and coefficient amplitude are precisely FP4--6
+\cite{FinitePrimePulse}; the conversion to the primitive Mellin
+coordinate is the one used in PL1--10. The prime set and all
+jet coordinates remain fixed where a matrix limit is taken.
+
+Fix a finite reflected packet $Z$, with its actual multiplicities,
+and its algebra $A=\prod_\rho\C[t_\rho]/t_\rho^{m_\rho}$,
+$t_\rho=s-\rho$, $d=\sum_\rho m_\rho$. Fix a finite set $J$
+of prime centres, allowing the original centre $1$, for which
+the complete exponential-column map is onto:
+\[
+ P_J:\C^J\longrightarrow A,\qquad
+ (c_r)\longmapsto\sum_{r\in J}c_r[r^{s-1/2}].
+ \tag{PCO1}\label{pco:prime-columns}
+\]
+The preceding prime-column spanning proof constructs such a set
+for every finite packet. This surjectivity is used only to
+invert its exact positive row Gram, not to remove any Taylor
+coefficient. Extend the ambient prime set $I$ containing the
+prime centres in $J$, and retain its prescribed FP width
+$\varepsilon=\frac1{16}\log(1+1/\prod_{p\in I}p)$.
+All coefficients outside $J$ are zero. Enlarging $I$ gives
+$\varepsilon\to0$ on this same coefficient face. No width or
+amplitude in FP is replaced by an independently chosen one.
+
+Put
+\[
+\begin{gathered}
+ w_0(v)=\begin{cases}e^{-1/(1-v^2)}&|v|<1,\\0&|v|\ge1,
+             \end{cases}\qquad
+ A_w=\int_{-1}^1(w_0'')^2\,dv,\quad
+ B_w=\int_{-1}^1(w_0')^2\,dv,\quad
+ C_w=\int_{-1}^1w_0^2\,dv,\\
+ \mu_0=\int_{-1}^1w_0\,dv>0,\qquad
+ \mu_2=\int_{-1}^1v^2w_0\,dv,\qquad
+ \kappa_w=\frac{\mu_2}{2\mu_0},\qquad 0<\kappa_w<\frac12.
+\end{gathered}
+ \tag{PCO2}\label{pco:constants}
+\]
+Every constant is the indicated integral of the original bump.
+In particular $A_w>0$: a smooth compactly supported function
+with zero second derivative would be affine and hence zero,
+whereas $w_0(0)=e^{-1}$. The literal FP source norm is
+\[
+ N_\varepsilon
+ =A_w\varepsilon^{-3}+\frac{B_w}{2}\varepsilon^{-1}
+                         +\frac{C_w}{16}\varepsilon.
+ \tag{PCO3}\label{pco:mass}
+\]
+For proof, substitute $v=t/\varepsilon$ into the square of
+$z(t)=\varepsilon^{-2}w_0''(t/\varepsilon)
+                  -\frac14w_0(t/\varepsilon)$.
+Its cross term is $-\frac12\varepsilon^{-1}\int w_0''w_0$.
+Integration by parts, with both endpoint values and derivatives
+zero, turns that integral into $-B_w$. This proves all three
+terms and their signs.
+
+Let $M$ be multiplication by $s-\frac12$ in the original jet
+basis, and $M_a$ multiplication by $a(s)=s(s-1)$. The latter
+is invertible since the selected nontrivial zeros avoid $0,1$.
+Define the complete, commuting matrix
+\[
+ B_\varepsilon=\mu_0^{-1}\int_{-1}^1
+                 w_0(v)e^{\varepsilon vM}\,dv.
+ \tag{PCO4}\label{pco:unit}
+\]
+The integral is entrywise in the finite original coordinates;
+the matrix exponential retains every nilpotent power. For the
+literal pulse $g_c$ set $F_c(x)=x^{-1/2}g_c(x)$. The two norms
+agree, since $\int|F_c|^2dx=\int|g_c|^2dx/x$. Its full Mellin
+jet matrix is exactly
+\[
+ E_\varepsilon=\varepsilon\mu_0 M_a B_\varepsilon P_J.
+ \tag{PCO5}\label{pco:observation}
+\]
+Indeed two integrations by parts give
+$\int z(t)e^{\beta t}dt=(\beta^2-\frac14)
+\varepsilon\int w_0(v)e^{\varepsilon\beta v}dv$.
+The centre $\log r$ contributes $r^\beta$, with
+$\beta=s-\frac12$, so $\beta^2-\frac14=a(s)$.
+Applying the full Taylor map to this entire identity gives
+PCO5, including every derivative of both factors.
+
+The inverse and its error can be controlled in these same
+coordinates. Write $m=\|M\|$ for the Euclidean operator norm
+and $\varepsilon_0=(2\max(1,m))^{-1}$. Evenness of $w_0$ and
+the matrix exponential series give, for $0<\varepsilon\le
+\varepsilon_0$,
+\[
+ B_\varepsilon=I+\kappa_w\varepsilon^2M^2+R_\varepsilon,
+ \qquad
+ \|R_\varepsilon\|\le
+       \frac{\varepsilon^4m^4e^{1/2}}{24}.
+ \tag{PCO6}\label{pco:remainder}
+\]
+To prove the bound, retain terms through degree three in the
+exponential series. The integrated odd terms vanish and the
+remaining tail is bounded by
+$|\varepsilon v|^4m^4e^{|\varepsilon v|m}/24$.
+Use $|v|\le1$ and divide the integral by its mass $\mu_0$.
+In particular $\|B_\varepsilon-I\|<1/2$, since the quadratic
+bound is at most $1/8$ and the fourth-order bound is at most
+$e^{1/2}/384<1/128$ (use $e^{1/2}<3$).
+The convergent geometric series proves invertibility, and
+\[
+ B_\varepsilon^{-1}=I-\kappa_w\varepsilon^2M^2
+                              +O_{Z}(\varepsilon^4).
+ \tag{PCO7}\label{pco:inverse}
+\]
+Here the error is effective in the displayed coordinates. For
+example set $r=m^4e^{1/2}/24$ and
+$b=\kappa_wm^2+\varepsilon_0^2r$; its norm is at most
+$\varepsilon^4(r+2b^2)$, by
+$(I+Y)^{-1}=I-Y+Y^2(I+Y)^{-1}$ and
+$\|(I+Y)^{-1}\|\le2$.
+
+Define the fixed full packet metric
+\[
+ K_J=(M_aP_JP_J^*M_a^*)^{-1}.
+ \tag{PCO8}\label{pco:fixed-metric}
+\]
+All cross entries and every confluent row are included. The
+minimum of the actual Haar norm over the fibre
+$E_\varepsilon c=u$ has Gram
+\[
+ H_\varepsilon
+  =N_\varepsilon(E_\varepsilon E_\varepsilon^*)^{-1}
+  =\frac{N_\varepsilon}{\varepsilon^2\mu_0^2}
+                B_\varepsilon^{-*}K_JB_\varepsilon^{-1}.
+ \tag{PCO9}\label{pco:attained}
+\]
+The first equality follows by writing the minimum solution as
+$c=E_\varepsilon^*(E_\varepsilon E_\varepsilon^*)^{-1}u$:
+all other solutions differ by an orthogonal kernel vector.
+For the second equality, use PCO5 and the fact that $M_a$
+commutes with $B_\varepsilon$, then invert by congruence.
+
+Combining PCO3, PCO7 and PCO9 evaluates both leading orders:
+\[
+\begin{split}
+ H_\varepsilon
+ ={}&\frac{A_w}{\mu_0^2\varepsilon^5}K_J\\
+ &+\frac1{\mu_0^2\varepsilon^3}
+   \left[\frac{B_w}{2}K_J
+     -A_w\kappa_w\big((M^2)^*K_J+K_JM^2\big)\right]
+       +O_{Z,J}(\varepsilon^{-1}).
+\end{split}
+ \tag{PCO10}\label{pco:matrix-expansion}
+\]
+This is a matrix-norm expansion in the original jets. Products
+of the explicit PCO7 error bounds with the three terms of PCO3
+give its stated remainder. It retains the off-diagonal
+confluent correction, which is lost by keeping only root values.
+
+Its full determinant, including the multiplicities, is
+\[
+\begin{split}
+ \log\det H_\varepsilon
+ ={}&-5d\log\varepsilon+d\log(A_w/\mu_0^2)+\log\det K_J\\
+ &+\varepsilon^2\left[
+       \frac{dB_w}{2A_w}-2\kappa_w\operatorname{Re}\tr(M^2)
+                        \right]+O_{Z,J}(\varepsilon^4),\\
+ \tr(M^2)={}&\sum_{\rho\in Z}m_\rho(\rho-\tfrac12)^2.
+\end{split}
+ \tag{PCO11}\label{pco:determinant}
+\]
+Indeed PCO9 gives
+$\det H_\varepsilon=(N_\varepsilon/(\varepsilon^2\mu_0^2))^d
+\det K_J/|\det B_\varepsilon|^2$.
+For a matrix $Y$ of norm below one,
+$\log\det(I+Y)=\tr(Y)+O(\|Y\|^2)$ follows by taking traces
+of the absolutely convergent logarithm series. Apply this to
+PCO6, taking twice the real part for the squared modulus.
+The scalar logarithm of PCO3 supplies the other quadratic term.
+The displayed trace follows directly from each triangular
+local block of $M$, with all $m_\rho$ diagonal entries retained.
+
+Finally let $W_I$ be the complete positive FP matrix on the
+fixed coefficient face $J$, at its ambient width. Its minimum
+under the same observation is
+$H_\varepsilon^{\rm Weil}
+ =(E_\varepsilon W_I^{-1}E_\varepsilon^*)^{-1}$.
+FP37 gives, with its proved original constant
+$\mu_*=6600077509/144027072000$,
+\[
+ H_\varepsilon^{\rm Weil}\succeq\mu_*H_\varepsilon.
+ \tag{PCO12}\label{pco:weil-cost}
+\]
+This follows by minimizing
+$c^*W_Ic\ge\mu_*N_\varepsilon\|c\|^2$ on the same fibre,
+so no change of section or observation is hidden. Let $W_Z$
+be the reflected full-packet value form and use the preceding
+exact primitive splitting of the pulse. The complementary
+whole-zero contribution for its minimum-Weil lift is therefore
+\[
+ u^*(H_\varepsilon^{\rm Weil}-W_Z)u
+ \ge\mu_*u^*H_\varepsilon u-u^*W_Zu.
+ \tag{PCO13}\label{pco:complement}
+\]
+For every fixed nonzero $u$, PCO10 makes its lower bound
+grow as a positive constant times $\varepsilon^{-5}$.
+For a reflected nonfixed pair of multiplicity $m_\rho$ and
+the value vector $(1,-1)$ with all higher jets and other
+factors zero, $u^*W_Zu=-2m_\rho$. Its complete complementary
+contribution is at least
+$\mu_*u^*H_\varepsilon u+2m_\rho$.
+This is the actual cost and complementary term of the
+surjective positive pulse receiver. Every factor belongs to
+the specified original test; no sign of an omitted root
+packet is inferred from finite-pulse positivity alone.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+ \node (C) at (0,0) {$(\C^J,N_\varepsilon I)$};
+ \node (B) at (5,0) {$\mathscr B_{\rm pr}$};
+ \node (A) at (5,-1.65) {$(A,H_\varepsilon)$};
+ \draw[->] (C)--node[above] {$c\mapsto x^{-1/2}g_c$} (B);
+ \draw[->] (C)--node[below left] {$E_\varepsilon$} (A);
+ \draw[->] (B)--node[left,xshift=-4pt] {$j_Z\mathcal M$} (A);
+ \draw[->] (A.east) to[out=25,in=-25]
+              node[right,xshift=4pt] {$S$} (B.east);
+\end{tikzpicture}
+\caption{Every arrow retains the full original Taylor coefficients.
+The pulse observation is PCO5, and the attained norm is PCO9.
+The primitive section $S$ has a different representative in the
+same packet; subtracting it leaves exactly the complementary
+Weil contribution PCO13. Along the actual shrinking ambient
+widths, the quotient metric has the complete
+$\varepsilon^{-5}$ and $\varepsilon^{-3}$ terms PCO10.
+The fixed column set $J$ remains in the original support face.}
+\end{figure}

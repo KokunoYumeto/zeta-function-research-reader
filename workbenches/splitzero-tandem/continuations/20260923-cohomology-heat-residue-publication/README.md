@@ -1,0 +1,18 @@
+# Split-Zero research edition: cohomology, heat and residue
+
+[Read the cumulative Zenodo collection](https://zenodo.org/records/22908213) · [DOI 10.5281/zenodo.22908213](https://doi.org/10.5281/zenodo.22908213) · [Complete sources](https://zenodo.org/records/22908213/files/158-splitzero-cohomology-heat-residue-sources.zip?download=1).
+
+The collection retains the whole Split-Zero and zeta research programme: coefficient geometry and cohomology, arithmetic theta sources and metric estimates, prime and spectral actions, formalization, and the related heat, trace, fluid, complexity and thermal investigations. This edition adds four separate readers, with complete LaTeX, citations, reproducible figures and calculation records:
+
+| Reader | What it calculates |
+|---|---|
+| [208-page full-support reconstruction](https://zenodo.org/records/22908213/files/154-splitzero-full-support-graph-pulses.pdf?download=1) | Full-prime cohomology, exact mixed observations, graph completion and complete prime-pulse costs. This is the Zenodo preview. |
+| [103-page full-lattice geometry](https://zenodo.org/records/22908213/files/155-splitzero-full-lattice-cc.pdf?download=1) | Connes–Consani arithmetic-site, tropical, sheaf, divisor, twistor and tensor maps with every support label retained. |
+| [40-page heat endpoints](https://zenodo.org/records/22908213/files/156-splitzero-heat-endpoints.pdf?download=1) | Original supported heat maps, endpoint cluster energy, holonomy observation and exact extension defects. |
+| [157-page supported-zero and residue collection](https://zenodo.org/records/22908213/files/157-splitzero-supported-residue-reader.pdf?download=1) | Twenty-one full proofs, including intrinsic zero-semimodule heat identities and the Jacobian from residue duality to Weil trace and cotangent cohomology. |
+
+[Commit-pinned source and equation links](PINNED_PROOF_LINKS.json) point to the actual complete proofs. The [research calculations](https://github.com/KokunoYumeto/zeta-function-research-reader/tree/5a89872598df0902b7c1393cf8e4692ca3010a95/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/research_calculations) retain the separate integral collision, prime-three, nilradical and divided-residue sources with individual review status and full Markdown/LaTeX. They are not silently treated as extra reviewed chapters of the157-page reader. The [mathematical status note](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5a89872598df0902b7c1393cf8e4692ca3010a95/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/RESEARCH_STATUS_ZERO_AND_RESIDUE.md) gives the exact established maps and the unresolved arithmetic sign question.
+
+All84 earlier PDFs remain separate, giving88 readable PDFs in100 downloads. Five earlier source archives remain unchanged separate downloads at immutable record22906270; [PUBLICATION_RECORD.json](PUBLICATION_RECORD.json) gives their exact links and hashes. Their private workstation metadata is not copied into this edition. No prior published files were deleted. The new source ZIP contains all231 selected source/artifact files plus the source-edition and retention catalogs.
+
+The owners' mathematical and build records retain their exact scope. Publication verified all outgoing GitHub bytes, all staged and public new Zenodo downloads, source completeness,100-file identities and the live pertinent PDF preview. It does not claim a new independent proof of every included theorem. Human authors and originating programme sources remain credited at their points of use. No RH decision is claimed.

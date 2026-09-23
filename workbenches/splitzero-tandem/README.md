@@ -1,5 +1,7 @@
 # Split-Zero cohomology: complete mathematical workbench
 
+[Current cumulative Zenodo edition](https://zenodo.org/records/22908213) (DOI 10.5281/zenodo.22908213) retains the whole Split-Zero and zeta research collection and adds the separate208-,103-,40- and157-page readers with full LaTeX and human citations. The208-page cohomology reconstruction is the preview; all84 preceding PDFs remain separate. [Reading guide, exact source links and verified publication record](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/continuations/20260923-cohomology-heat-residue-publication/README.md).
+
 This workbench contains the Split-Zero programme's complete source papers, cumulative manuscripts, supporting proofs, figures and calculation records. Its purpose is to connect support-preserving coefficient geometry and arithmetic theta cohomology to quantitative information about the Riemann zeta function's spectrum.
 
 The construction retains a ring's internal zero and a separate symbol for absence. Its analytic complex is `[V → B]` with theta map `Θ`, quotient `B/ΘV`, scaling generator `D = −x∂x`, and Mellin arithmetic function `2ξ(s)`. Finite packets keep all zero orders. The subsequent calculations preserve the original source maps, relations, masses and least-norm quotient metrics.

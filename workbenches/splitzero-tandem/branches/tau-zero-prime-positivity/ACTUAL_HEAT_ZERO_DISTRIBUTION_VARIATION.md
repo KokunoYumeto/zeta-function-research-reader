@@ -1,0 +1,221 @@
+# The global heat zero trace and its exact infinitesimal variation
+
+This proof establishes an actual holomorphic family of global zero traces for rational tests, and a separately specified regularized variation for rapidly decreasing entire tests. The two domains and their comparison maps are retained. The original heat family, constants and supported endpoint coordinates are used throughout.
+
+## 1. Uniform growth of the original entire family
+
+Use the original Rodgers–Tao integral and coordinates
+\[
+\begin{split}
+H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,\\
+\Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+g_t(s)&=16H_t(-2i(s-1/2)),\quad g_0=2\xi_R,\quad
+\partial_tg_t=\tfrac14g_t''.
+\end{split}\tag{AG1}
+\]
+The author source is [Rodgers–Tao, arXiv:1801.05914v5](https://arxiv.org/src/1801.05914v5), equations `hoz`, `phidef`, `htdef` and its subsequent heat equation. The coordinate verification is also given directly in HA1–HA4 of this edition.
+
+For \(u\ge0\), summing the defining series after retaining a fixed part of its \(n^2\) exponent gives constants \(C,c>0\) with
+\[
+|\Phi(u)|\le C e^{9u-ce^{4u}}.
+\tag{AG2}
+\]
+For example split \(\pi n^2e^{4u}\) into two equal parts. One is at least \((\pi/2)e^{4u}\), and the other makes \(\sum n^4e^{-\pi n^2/2}\) converge uniformly. The term with \(n^2e^{5u}\) has the same bound. For each fixed \(T\), the function \(Tu^2-(c/2)e^{4u}\) is bounded above on \([0,\infty)\). Thus on \(|t|\le T, |s|\le R\), the integral is bounded by a constant depending on \(T\) times
+\[
+\int_0^\infty \exp\bigl((2R+10)u-(c/2)e^{4u}\bigr)\,du
+\le \exp(C_T(R+1)\log(R+2)).
+\tag{AG3}
+\]
+For the last inequality put \(x=e^{4u}\), enlarge the resulting integral from \([1,\infty)\) to \([0,\infty)\), and use the Gamma integral with exponent \((2R+10)/4\). Its positive-real Stirling bound gives (AG3). Differentiating in \(s,t\) adds powers of \(u\), still integrable by (AG2). Consequently \(g\) is jointly entire and has order at most one in \(s\), uniformly on bounded time sets in the growth sense of (AG3).
+
+Every real time \(t_*\) has \(g_{t_*}(0)>0\). In fact \(\Phi(u)>0\) termwise for \(u\ge0\), since \(2\pi n^2e^{4u}-3>0\), and the integral at \(s=0\) uses \(\cosh u>0\). Continuity therefore supplies a complex time disc about \(t_*\) on which \(g_t(0)\) stays bounded away from zero. Jensen's formula on radii \(R\) and \(2R\), combined with (AG3), gives the uniform zero count
+\[
+N_t(R):=\sum_{|\rho|\le R}m_{\rho,t}=O(R\log(R+2)).
+\tag{AG4}
+\]
+The constant is uniform on a smaller closed time disc. Dyadic summation gives the useful uniform tail estimate
+\[
+\sum_{|\rho|>R}\frac{m_{\rho,t}}{|\rho|^2}
+=O\left(\frac{\log(R+2)}R\right).
+\tag{AG5}
+\]
+No common vertical strip for the moving zeros has been assumed.
+
+## 2. A rational test has a finite-pole global trace
+
+Let \(A(s)\) be rational, with \(A(s)=O(s^{-2})\) at infinity. Fix a real time \(t_*\) at which none of its finitely many poles is a zero of \(g_{t_*}\). Compact continuity supplies a smaller complex time disc \(D\) on which all those values and \(g_t(0)\) stay nonzero. Define
+\[
+Z_t(A)=\sum_{g_t(\rho)=0}m_{\rho,t}A(\rho),\qquad t\in D.
+\tag{AG6}
+\]
+For each \(t\), the sum is absolutely convergent by (AG4)–(AG5). Its far tail is uniformly bounded by \(C_A\log(R+2)/R\); fixed poles are excluded by the choice of \(D\).
+
+Hadamard factorization for an entire function of order at most one, with the nonzero value at zero, gives
+\[
+L_t(s):=g_t'(s)/g_t(s)
+=\beta_t+\sum_\rho m_{\rho,t}
+\left(\frac1{s-\rho}+\frac1\rho\right).
+\tag{AG7}
+\]
+The series is normally convergent away from the zeros. Its normal convergence follows directly for the logarithmic derivative from \(\sum m/|\rho|^2<\infty\), because the paired summand is \(O_K(|\rho|^{-2})\) on a fixed compact set \(K\). The exponential factor in the genus-one product supplies the constant \(\beta_t\).
+
+Let \(\mathcal P(A)\) be the finite pole set of \(A\). The exact global identity is
+\[
+\boxed{Z_t(A)=-\sum_{p\in\mathcal P(A)}
+\operatorname{Res}_{s=p}\bigl(A(s)L_t(s)\bigr).}
+\tag{AG8}
+\]
+To prove it, \(\sum_p\operatorname{Res}_pA=0\), since \(A=O(s^{-2})\). Thus the constant \(\beta_t\) and each \(1/\rho\) correction in (AG7) give zero after summing residues. For one zero \(\rho\), the rational function \(A(s)/(s-\rho)\) has zero residue at infinity, so its residues at the poles of \(A\) sum to \(-A(\rho)\). Normal convergence on small circles around the finite pole set justifies taking residues term by term. This proves (AG8), including repeated poles of \(A\) and repeated zeros of \(g_t\).
+
+The right side of (AG8) is holomorphic in \(t\) on \(D\). This proves holomorphic dependence of the actual whole zero trace. In particular its derivative is
+\[
+\dot Z_t(A)=-\frac14\sum_{p\in\mathcal P(A)}
+\operatorname{Res}_{s=p}\left(A(s)\partial_s\frac{g_t''(s)}{g_t(s)}\right).
+\tag{AG9}
+\]
+This conclusion does not exchange a derivative with an unrestricted infinite moving-zero sum. The finite residue expression proves the derivative of that sum as a holomorphic function.
+
+## 3. The Cauchy kernel and the original test domain
+
+For \(\Re z,\Re w>1\), set
+\[
+F_z(s)=(s-z)^{-1},\quad F^\#(s)=\overline{F(1-\bar s)},\quad
+A_{z,w}=F_z^\#F_w=-\frac1{(s-(1-\bar z))(s-w)}.
+\tag{AG10}
+\]
+At time zero both poles are nonzeros of \(g_0=2\xi_R\), by the unconditional critical-strip result proved in SZW25. Formula (AG8) now evaluates both simple residues:
+\[
+Z_t(A_{z,w})=
+\frac{L_t(w)-L_t(1-\bar z)}{w+\bar z-1}
+=\frac{L_t(w)+L_t(\bar z)}{w+\bar z-1}.
+\tag{AG11}
+\]
+Reflection gives the second equality for complex time. For real time \(L_t(\bar z)=\overline{L_t(z)}\). For a fixed finite set of tests the time disc is common to all its poles. If \(z,w>1\) are real, the positive integral and reflection make their poles nonzeros at every real time, so the same local argument applies around any such time.
+
+The minus-exponent Mellin convention is the original one:
+\[
+M_h(s)=\int_{\mathbb R}h(u)e^{-(s-1/2)u}\,du.
+\tag{AG12}
+\]
+For (AG10) its inverse is exactly
+\[
+h_{z,w}(u)=\frac1{w+\bar z-1}
+\begin{cases}e^{-(\bar z-1/2)u},&u\ge0,\\
+e^{(w-1/2)u},&u\le0.
+\end{cases}
+\tag{AG13}
+\]
+Direct integration proves (AG12) on \(1-\Re z<\Re s<\Re w\). The values at zeros outside this strip at other times use the rational meromorphic continuation (AG10); this is not an enlargement of the domain of convergence of the integral.
+
+More generally take any rational \(A=O(s^{-2})\) whose poles all lie in \(\Re s<0\) or \(\Re s>1\). Its inverse on the critical line has the explicit residue representation
+\[
+h_A(u)=
+\begin{cases}
+\displaystyle\sum_{\Re p<0}\operatorname{Res}_{s=p}
+\left(e^{(s-1/2)u}A(s)\right),&u\ge0,\\
+\displaystyle-\sum_{\Re p>1}\operatorname{Res}_{s=p}
+\left(e^{(s-1/2)u}A(s)\right),&u\le0.
+\end{cases}
+\tag{AG14}
+\]
+Partial fractions and integration of exponential polynomials verify this directly. At zero the two expressions agree because the finite residues of \(A\) sum to zero. There is \(d>1/2\) such that \(h_A\), its first derivative on the two half-lines and its distributional second derivative have finite weighted norms with weight \(e^{d|u|}\); for the second derivative the norm means total variation of a measure. The possible derivative jump contributes one delta atom. Repeated poles produce only polynomial factors multiplying the decreasing exponentials and do not affect this conclusion after decreasing \(d\) slightly.
+
+Let \(h_{R,\varepsilon}\) be a smooth compact cutoff of \(h_A\) on \([-R-1,R+1]\), convolved with a smooth mollifier of radius \(\varepsilon\to0\). The first two cutoff derivatives can be bounded independently of \(R\). Consequently the weighted norms just stated remain bounded uniformly for \(R\ge1,\varepsilon\le1\). Distributional integration by parts twice gives
+\[
+|M_{h_{R,\varepsilon}}(\sigma+iy)|\le\frac{C}{1+y^2}
+\quad(0\le\sigma\le1),\qquad
+|h_{R,\varepsilon}(u)|\le Ce^{-d|u|}.
+\tag{AG15}
+\]
+For the latter inequality apply the fundamental theorem of calculus to the absolutely continuous weighted function, using the bounded weighted value and first-derivative norms. The transforms converge pointwise to \(A\) on the strip. The zero sum is dominated by \(\sum m/(1+|\Im\rho|^2)<\infty\), from SZW25 and (AG4). The prime sum is dominated by \(C\sum\Lambda(n)n^{-1/2-d}<\infty\), and the archimedean integrand by \(C\log(2+|y|)/(1+y^2)\). Endpoint convergence follows from the weighted \(L^1\) bound. Applying dominated convergence to the complete compact-test formula SZW25 therefore proves its extension to \(h_A\), with all its terms.
+
+In particular, for \(A=A_{z,w}\), the exact supported identity remains
+\[
+\begin{split}
+\boldsymbol B_L&=(A(0)+A(1))\mathbf e_{1_L}
++A(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol Z_L&=Z_0(A)\mathbf e_{1_L},\\
+\boldsymbol D_L&=(P_{\rm fin}(h_A)-A_\infty(h_A))\mathbf e_{1_L}
++A(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol B_L-\boldsymbol Z_L&=\boldsymbol D_L.
+\end{split}\tag{AG16}
+\]
+These are the original SZW representations and label maps. Explicit evaluation of each Cauchy term and its actual heat derivative is proved in HA10–HA20.
+
+## 4. Every finite collision has an exact contour derivative
+
+Let \(\rho\) be any actual zero of \(g_0\), of multiplicity \(m\), and write \(g_0(s)=(s-\rho)^mu_\rho(s)\), \(u_\rho(\rho)\ne0\). A small fixed circle containing only this zero has no zeros on its boundary for small complex time. For every test \(A\) holomorphic near its closed disc, the argument principle gives the cluster trace and derivative
+\[
+Z_{\rho,t}(A)=\frac1{2\pi i}\int_{\partial D_\rho}A(s)L_t(s)\,ds,
+\quad
+\dot Z_{\rho,0}(A)
+=-\frac{m(m-1)}4A''(\rho)
+-\frac m2\frac{u_\rho'(\rho)}{u_\rho(\rho)}A'(\rho).
+\tag{AG17}
+\]
+Indeed \(g_0''/(4g_0)\) has principal part
+\(m(m-1)/(4(s-\rho)^2)+(m/2)(u_\rho'/u_\rho)(\rho)/(s-\rho)\).
+Differentiate this principal part in \(s\), multiply by the Taylor expansion of \(A\), and take its residue. Compact nonvanishing on the fixed circle permits the time derivative. No derivative of an individually labelled colliding root is required.
+
+## 5. An entire-test variation with its exact regularization
+
+For this section let \(A\) be entire and assume, for every integer \(N\ge0\) and \(j=0,1,2\),
+\[
+\sup_{0\le\Re s\le1}(1+|\Im s|)^N|A^{(j)}(s)|<\infty.
+\tag{AG18}
+\]
+This includes original compactly supported smooth Mellin tests by repeated integration by parts. The zeros in this section are the distinct zeros of \(g_0\), with multiplicities \(m_\rho\); they lie strictly inside the critical strip. Put \(b=g_0'(0)/g_0(0)\), and for distinct zeros define
+\[
+T_A(\rho,\eta)=\frac{A'(\rho)-A'(\eta)}{\rho-\eta}
++\frac{A'(\rho)}\eta+\frac{A'(\eta)}\rho.
+\tag{AG19}
+\]
+The following expression is absolutely convergent:
+\[
+\begin{split}
+\mathcal V(A)=-\frac14\Bigg[&\sum_\rho m_\rho(m_\rho-1)A''(\rho)
++2b\sum_\rho m_\rho A'(\rho)
++2\sum_\rho\frac{m_\rho^2A'(\rho)}\rho\\
+&+2\sum_{\{\rho,\eta\}}m_\rho m_\eta T_A(\rho,\eta)\Bigg].
+\end{split}\tag{AG20}
+\]
+The last sum is over unordered pairs. To verify convergence, arrange \(r=|\rho|\le R=|\eta|\). For \(R<2r\), either the distance is at least \(r/2\), when direct rapid-decrease estimates apply, or the straight segment joining them stays at modulus at least \(r/2\). In the second case its real part stays inside the strip and
+\((A'(\rho)-A'(\eta))/(\rho-\eta)=\int_0^1A''(\eta+t(\rho-\eta))dt\).
+Thus \(|T_A|\le C_N(1+r)^{-N}\). The total multiplicity weight of comparable pairs in a dyadic annulus is \(O(r^2\log^2(2+r))\), which is summable for large \(N\).
+
+If \(R\ge2r\), retain the exact cancellation
+\[
+T_A(\rho,\eta)=\frac{\rho A'(\rho)}{\eta(\rho-\eta)}
++\frac{\eta A'(\eta)}{\rho(\eta-\rho)},\quad
+|T_A|\le\frac{2r|A'(\rho)|}{R^2}+\frac{2|A'(\eta)|}r.
+\tag{AG21}
+\]
+The zero count gives \(\sum_{|\eta|\ge R}m_\eta/|\eta|^2=O(\log(2+R)/(1+R))\) and \(\sum_{|\rho|\le R}m_\rho/|\rho|=O(\log^2(2+R))\). These bounds and (AG18) prove convergence of the disparate-pair sum. The single sums in (AG20) converge as well, using the bound on \(\sum m_\rho^2\) in an annulus by the square of its total multiplicity. Finitely many zeros near the origin cause no problem since \(g_0(0)\ne0\).
+
+Here is the precise relation of (AG20) to the original family. For every sufficiently large integer \(j\), select \(T_j\in[j,j+1]\) at distance at least \(j^{-3}\) from every \(|\Im\rho|\). Such a value exists: only zeros of modulus at most \(2j+4\) matter, and their excluded intervals have total length \(O(j^{-2}\log j)<1\). Let \(\Gamma_j\) be the rectangle with real edges \(-1,2\) and heights \(\pm T_j\). For each fixed \(j\), its zero trace is analytic for sufficiently small time. Then
+\[
+\boxed{\mathcal V(A)=\lim_{j\to\infty}
+\left.\frac d{dt}\right|_0\frac1{2\pi i}\int_{\Gamma_j}A(s)L_t(s)\,ds.}
+\tag{AG22}
+\]
+To prove it, expand the regular part of (AG7) at \(\rho\):
+\[
+\frac{u_\rho'(\rho)}{u_\rho(\rho)}
+=b+\frac{m_\rho}\rho+
+\sum_{\eta\ne\rho}m_\eta\left(\frac1{\rho-\eta}+\frac1\eta\right).
+\tag{AG23}
+\]
+The series converges for this fixed zero by genus-one cancellation. Insert it in (AG17), summed over zeros inside \(\Gamma_j\). Pairs both inside combine to (AG19). The remaining cross-boundary sum is
+\[
+E_T=\sum_{|\Im\rho|<T<|\Im\eta|}
+m_\rho m_\eta A'(\rho)
+\left(\frac1{\rho-\eta}+\frac1\eta\right).
+\tag{AG24}
+\]
+For \(|\rho|\le T/2\) its absolute value is \(O(\log T/T)\), by the paired tail bound and summability of \(m_\rho|\rho A'(\rho)|\). For \(T/2<|\rho|\le2T\), \(T\le|\eta|\le4T\), the separated height gives \(|\rho-\eta|\gg T^{-3}\); the total is \(O_N(T^{5-N}\log^2T)\). For the same \(\rho\) and \(|\eta|>4T\), genus-one cancellation bounds the sum by \(O_N(T^{1-N}\log^2T)\). Hence \(E_T\to0\). Absolute convergence of (AG20) now proves (AG22) and independence from the chosen separated exhaustion.
+
+Formula (AG22) is a contour-regularized global variation: it is the limit of the derivatives of finite traces, with its order of operations specified. It does not assert that arbitrary entire tests in (AG18) have a holomorphic global moving-zero sum at nearby times. The stronger statement for rational tests is (AG6)–(AG9), proved by their finite pole map. Both receivers retain their exact domains rather than being identified without a convergence argument.
+
+## Sources and receiving calculations
+
+The exact original heat source and original author equations are cited at (AG1). Classical Jensen and Hadamard theorems are used with their growth and nonvanishing hypotheses verified in (AG2)–(AG7). The complete original supported formula and its zero-count and prime-contour proofs are [SZW19–SZW38](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c022a0adde0a6aa3d8fc8e43ef42795d88e44b0/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md). Its human Connes attribution and original source convention are retained. HA applies (AG8) to the complete arithmetic variation; HM applies it to all time derivatives; the Cauchy–Weil criterion applies (AG11) at zero. No assertion of RH or its negation follows from convergence alone.

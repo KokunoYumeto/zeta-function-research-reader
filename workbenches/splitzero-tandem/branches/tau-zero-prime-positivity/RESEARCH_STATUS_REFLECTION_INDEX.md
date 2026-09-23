@@ -1,0 +1,5 @@
+# Exact reflection index and finite jets
+
+This successor preserves all28 earlier complete proofs, inserts the primary human-method attribution into CK, and adds complete NI and FJ proofs. The original195-page handoff is unchanged. NI gives the exact negative index for every coefficient tail. FJ retains every fixed finite jet, the whole exterior form, and the integrated supported endpoints; its local heat calculation goes through the strictly positive third-order double-collision coefficient for the specified rational test. Its endpoint kernel still detects all zero pairs, while the uncorrected holonomy average adds one negative direction. None of these statements proves RH or a classical RH counterexample.
+
+The cumulative TeX/PDF, individual full sources, exact symbolic checker and reproducible figure are the deliverables. Original HR/HC/HF companion TeX sources are included unchanged. Review records remain in the private receiving workspace; no private correspondence is part of this publication payload. No cancelled square exploration or programme timeline is restored.

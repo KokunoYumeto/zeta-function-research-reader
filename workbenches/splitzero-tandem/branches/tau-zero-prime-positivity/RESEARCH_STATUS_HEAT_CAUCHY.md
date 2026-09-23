@@ -1,0 +1,15 @@
+# Actual heat, complete supported arithmetic, and the Cauchy matrix criterion
+
+This completed continuation contains four full proofs: AG1–AG24, HA1–HA26, HM1–HM13 and CK1–CK19. The cumulative reader retains the previous24 proofs and now contains28 proofs in195 pages.
+
+AG proves a holomorphic global rational zero trace by a finite-pole residue map and gives its actual derivative. Its separate entire-test variation is defined by a proved absolutely convergent pair sum and a specified contour exhaustion. HA evaluates the original supported-zero endpoints, Gamma term and prime sum on Cauchy tests; its heat derivative retains all cross terms and contains mixed products of two distinct primes. The real diagonal and its time derivative are strictly positive at every real time by the original positive heat measure and a strict covariance identity. This also holds at negative times and therefore does not imply real-rootedness.
+
+HM gives the exact differential-polynomial recurrence at every time-derivative order. At order k, the maximal distinct-prime contribution involves k+1 primes with coefficient -k! times (log n)^k times their log product, divided by 2^k. All Gamma and endpoint coefficient functions remain in the lower-degree terms. CK proves the complete equivalence between RH and positivity of the Cauchy matrix family, including a self-contained Schur transfer proof and the equivalent complete Taylor coefficient tower at one real point. It does not prove positivity of that tower.
+
+The original Rodgers–Tao heat conventions (authors Brad Rodgers and Terence Tao; arXiv1801.05914v5, hoz/phidef/htdef) and the human explicit-formula source retained in SZW are identified in the proofs. No novelty is claimed for classical Schur/Pick transfer, the logarithmic heat transformation or RH-equivalent criteria. Every support coordinate, original heat factor and multiple-zero analytic unit remains in its stated map.
+
+All four full proofs were written and checked by the root task. HA received a complete independent review, including its strict covariance and all-time trace statement. AG and CK were read completely by an independent mathematical reviewer, who reported no erroneous identities; exact review coverage is retained in the private source ledger. Symbolic checks comprise102 arithmetic identities,27 kernel/coefficient identities, and the complete recurrence through order6. Three numerical actual-zeta pairs are labelled consistency checks, not certificates. The general results are established by their full proofs.
+
+Both reproducible figures were rendered and inspected. The cumulative build has no overfull boxes, missing characters or undefined references. New proof pages176–191 and source pages192–195 were visually inspected. All four staged Markdown proofs are byte-identical to their checked derivations, with complete individual and cumulative LaTeX supplied.
+
+The Riemann hypothesis remains unproved. The complete positivity tower, rather than positivity of an isolated coefficient or diagonal, is the exact remaining sign problem exposed by this calculation.

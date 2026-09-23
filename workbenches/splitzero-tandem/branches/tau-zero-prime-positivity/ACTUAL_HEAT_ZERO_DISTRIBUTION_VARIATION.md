@@ -1,17 +1,22 @@
 # The global heat zero trace and its exact infinitesimal variation
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This proof establishes an actual holomorphic family of global zero traces for rational tests, and a separately specified regularized variation for rapidly decreasing entire tests. The two domains and their comparison maps are retained. The original heat family, constants and supported endpoint coordinates are used throughout.
 
 ## 1. Uniform growth of the original entire family
 
 Use the original Rodgers–Tao integral and coordinates
 \[
-\begin{split}
+\begin{aligned}
 H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,\\
 \Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
 g_t(s)&=16H_t(-2i(s-1/2)),\quad g_0=2\xi_R,\quad
 \partial_tg_t=\tfrac14g_t''.
-\end{split}\tag{AG1}
+\end{aligned}\tag{AG1}
 \]
 The author source is [Rodgers–Tao, arXiv:1801.05914v5](https://arxiv.org/src/1801.05914v5), equations `hoz`, `phidef`, `htdef` and its subsequent heat equation. The coordinate verification is also given directly in HA1–HA4 of this edition.
 
@@ -131,14 +136,14 @@ For the latter inequality apply the fundamental theorem of calculus to the absol
 
 In particular, for \(A=A_{z,w}\), the exact supported identity remains
 \[
-\begin{split}
+\begin{aligned}
 \boldsymbol B_L&=(A(0)+A(1))\mathbf e_{1_L}
 +A(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol Z_L&=Z_0(A)\mathbf e_{1_L},\\
 \boldsymbol D_L&=(P_{\rm fin}(h_A)-A_\infty(h_A))\mathbf e_{1_L}
 +A(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
 \boldsymbol B_L-\boldsymbol Z_L&=\boldsymbol D_L.
-\end{split}\tag{AG16}
+\end{aligned}\tag{AG16}
 \]
 These are the original SZW representations and label maps. Explicit evaluation of each Cauchy term and its actual heat derivative is proved in HA10–HA20.
 
@@ -172,12 +177,12 @@ T_A(\rho,\eta)=\frac{A'(\rho)-A'(\eta)}{\rho-\eta}
 \]
 The following expression is absolutely convergent:
 \[
-\begin{split}
+\begin{aligned}
 \mathcal V(A)=-\frac14\Bigg[&\sum_\rho m_\rho(m_\rho-1)A''(\rho)
 +2b\sum_\rho m_\rho A'(\rho)
 +2\sum_\rho\frac{m_\rho^2A'(\rho)}\rho\\
 &+2\sum_{\{\rho,\eta\}}m_\rho m_\eta T_A(\rho,\eta)\Bigg].
-\end{split}\tag{AG20}
+\end{aligned}\tag{AG20}
 \]
 The last sum is over unordered pairs. To verify convergence, arrange \(r=|\rho|\le R=|\eta|\). For \(R<2r\), either the distance is at least \(r/2\), when direct rapid-decrease estimates apply, or the straight segment joining them stays at modulus at least \(r/2\). In the second case its real part stays inside the strip and
 \((A'(\rho)-A'(\eta))/(\rho-\eta)=\int_0^1A''(\eta+t(\rho-\eta))dt\).
@@ -219,3 +224,7 @@ Formula (AG22) is a contour-regularized global variation: it is the limit of the
 ## Sources and receiving calculations
 
 The exact original heat source and original author equations are cited at (AG1). Classical Jensen and Hadamard theorems are used with their growth and nonvanishing hypotheses verified in (AG2)–(AG7). The complete original supported formula and its zero-count and prime-contour proofs are [SZW19–SZW38](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/3c022a0adde0a6aa3d8fc8e43ef42795d88e44b0/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md). Its human Connes attribution and original source convention are retained. HA applies (AG8) to the complete arithmetic variation; HM applies it to all time derivatives; the Cauchy–Weil criterion applies (AG11) at zero. No assertion of RH or its negation follows from convergence alone.
+
+## Actual positive-real-time continuation
+
+The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, strengthens the compact-test variation in this edition: the whole zero trace is smooth for the original real heat time t at least zero, with actual right derivatives at zero. RT16 identifies its first derivative with the full causal arithmetic distribution, and RT20–27 constructs every higher meromorphic derivative receiver. The contact comparison retains the unit and inter-zero terms. These results do not assert a common zero strip for negative or complex time and do not prove the remaining RH inequality. All original supported carriers remain present.

@@ -1,5 +1,10 @@
 # The complete Cauchy–Weil matrix criterion
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This note proves an equivalence with the classical Riemann hypothesis. It does not assume or establish positivity of the matrices occurring in that equivalence. The full supported-zero arithmetic evaluation of those matrices is [HA10–HA20](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md); every endpoint and lower support coordinate remains there.
 
 ## 1. The original kernel and zero sum
@@ -118,12 +123,12 @@ C_{jk}=[X^jY^k]\frac{L(\sigma+X)+L(\sigma+Y)}{d+X+Y},\qquad j,k\ge0.
 \]
 The bracket denotes the convergent Taylor expansion near \(X=Y=0\), not a truncation of the underlying function. Expanding the denominator geometrically gives the explicit coefficients
 \[
-\begin{split}
+\begin{aligned}
 C_{jk}={}&\sum_{n=0}^j
 \ell_n\frac{(-1)^{j+k-n}\binom{j+k-n}{k}}{d^{j+k-n+1}}\\
 &+\sum_{n=0}^k
 \ell_n\frac{(-1)^{j+k-n}\binom{j+k-n}{j}}{d^{j+k-n+1}}.
-\end{split}\tag{CK15}
+\end{aligned}\tag{CK15}
 \]
 In particular, \(\ell_0\) occurs twice, as it must in the numerator of (CK14).
 

@@ -1,5 +1,10 @@
 # The actual archimedean form on short-support primitives
 
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
 This proof gives an explicit rational lower bound, an exact bilinear
 representation of its positive remainder, and an exact localization
 on primitive functions retaining all cross terms. It uses the original minus-sign
@@ -38,14 +43,14 @@ the center of the interval.
 Use precisely the archimedean functional proved in [HA13, complete public proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/76f421965914beb133df797835f940849844dc4f/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/HEAT_CAUCHY_ARITHMETIC_DERIVATION.md):
 
 \[
-\begin{split}
+\begin{aligned}
 \mathcal A(f,g):=A_\infty(h_{f,g})
 ={}&-(\gamma+\log\pi)\langle f,g\rangle\\
 &+\int_0^\infty
 \frac{e^{-x}\langle f,g\rangle
 -\tfrac12e^{-x/4}(h_{f,g}(x/2)+h_{f,g}(-x/2))}
 {1-e^{-x}}\,dx.
-\end{split}
+\end{aligned}
 \tag{PS3}
 \]
 
@@ -61,13 +66,13 @@ positively in the original spectral explicit formula.
 For \(\ell>0\), set
 
 \[
-\begin{split}
+\begin{aligned}
 C(\ell)={}&-\gamma-\log\pi
 -\log(1-e^{-2\ell})\\
 &+\int_0^{2\ell}\frac{e^{-x}-e^{-x/4}}{1-e^{-x}}\,dx,
 \qquad
 w(x)=\frac{e^{-x/4}}{1-e^{-x}}.
-\end{split}
+\end{aligned}
 \tag{PS4}
 \]
 
@@ -156,14 +161,14 @@ Finally \(1-e^{-2\ell}\le2\ell\) follows by integrating \(e^{-x}\le1\).
 Combining all these inequalities in the correct direction gives
 
 \[
-\begin{split}
+\begin{aligned}
 C(\ell)
 &\ge-1-\log4-\log(2\ell)-\frac32\ell\\
 &=-1+\log\frac1{8\ell}-\frac32\ell\\
 &\ge-1+\log4-\frac3{64}
 \ge\frac13-\frac3{64}=\frac{55}{192}
 \qquad(0<\ell\le1/32).
-\end{split}
+\end{aligned}
 \tag{PS8}
 \]
 
@@ -202,12 +207,12 @@ enlarge the support. Its squared norm, with complex-valued
 functions permitted, is exactly
 
 \[
-\begin{split}
+\begin{aligned}
 \|Tg\|^2
 &=\|g''\|^2-\frac12\Re\langle g'',g\rangle
 +\frac1{16}\|g\|^2\\
 &=\|g''\|^2+\frac12\|g'\|^2+\frac1{16}\|g\|^2.
-\end{split}
+\end{aligned}
 \tag{PS12}
 \]
 
@@ -310,7 +315,7 @@ q_{jk}=\mathcal Q(f_j,f_k),
 sesquilinearity and the finite convolution expansion give
 
 \[
-\begin{split}
+\begin{aligned}
 \mathcal Q(Tg,Tg)
 &=\sum_{j,k}q_{jk}
 =\sum_j q_{jj}+2\Re\sum_{j<k}q_{jk},\\
@@ -320,7 +325,7 @@ q_{jj}
 &\ge\frac{55}{192}
 \left(\|g_j''\|^2+\frac12\|g_j'\|^2
 +\frac1{16}\|g_j\|^2\right).
-\end{split}
+\end{aligned}
 \tag{PS18}
 \]
 
@@ -419,3 +424,8 @@ short-support diagonal pieces and the common-window matrices.
 The exact cross-window form in PS18 remains in the global
 calculation. Nothing here assigns its sign or proves RH from
 the local estimate alone.
+
+
+## Proved compact-interval and finite-translation bounds
+
+The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1–43, proves full Weil coercivity with constant 11509/600000 through support diameter 19/25, including prime 2 and both original endpoint moments. [FW1–21](FIRST_PRIME_WINDOW_BOUND.md) proves the every-rank matrix bound for centre diameter 583/800 and a strict two-test margin through the next prime gap. The same unchanged test now satisfies its required strict correlation bound for every positive translation through log 256, by [FP1–25](FINITE_PRIME_WINDOW_EXTENSION.md) and the complete [rational prime-power certificate, FPC1–14](FINITE_PRIME_WINDOW_COEFFICIENT_CERTIFICATE.md). [PT1–40](PRIME_TWO_HEAT_TAIL_DERIVATION.md) calculates the surviving mixed channel and proves a strictly negative full actual right heat derivative on the stated short interval after the prime-2 atom ends. These are exact portions of the original bound, retaining supported zero and every original arithmetic coefficient. The uniform inequality beyond log 256 remains unproved.

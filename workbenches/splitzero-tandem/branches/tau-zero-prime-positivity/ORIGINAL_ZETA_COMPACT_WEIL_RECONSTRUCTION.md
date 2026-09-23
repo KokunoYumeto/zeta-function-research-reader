@@ -1,0 +1,509 @@
+# Original-zeta compact Weil reconstruction, with every divisor and support coordinate
+
+23 September 2026. This is an independent derivation from the original meromorphic Riemann zeta function. It keeps its pole at \(1\), every trivial zero, the complete Gamma reflection multiplier, the two endpoint representations, and every coordinate of the programme's finite support lattice. A finite-cutoff identity is proved before any limit is taken.
+
+There are two different scalar receivers. The signed divisor of the original zeta function includes its trivial zeros and its pole. The reflected Weil form used in UP, PW, FC, FW, FP and PT is the explicitly compensated receiver of that same divisor. The maps between them are proved below. In the original primitive translation family, the uncompensated trivial-zero trace equals the entire archimedean cross term \(R(a)\) whenever \(a\ge1/32\). Thus the original full signed divisor trace there is the finite prime-window expression alone. Its heat derivative is nevertheless nonzero on a prime-free interval. Every distinction is accompanied by its exact map and calculation.
+
+The dependencies are the complete in-repository proofs SZW19–38, UP0–23, PW1–22, FC1–43, FW1–21, FP1–25 with FPC1–14, CH1–30, RT1–30, PT1–40 and UZ1–46. In particular the historical explicit-formula source remains Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*](https://arxiv.org/abs/math/9811068), Appendix II, Theorem 6, whose original TeX and actual reading coverage are retained in SZW. The classical compact bump is Juan Arias de Reyna's [*An infinitely differentiable function with compact support: Definition and properties*](https://arxiv.org/abs/1702.05442v1), Theorem 1 and equations (1)–(9), with exact programme coordinate map UP0. The heat source is Brad Rodgers and Terence Tao, [*The de Bruijn–Newman constant is non-negative*](https://arxiv.org/abs/1801.05914v5), original equations hoz, sas, phidef, htdef and the following heat equation, through the original-author-source calculations in UZ1–5 and RT. No novelty claim is made for the classical explicit formula, Gamma function, compact bump or equivalent RH criteria.
+
+## 1. Original zeta, its reflection multiplier, and all divisor orders
+
+For \(h\in\mathcal T=C_c^\infty(\mathbb R;\mathbb C)\), retain
+\[
+H(s)=M_h(s)=\int_{\mathbb R}h(v)e^{-(s-1/2)v}\,dv,\qquad
+h^\#(v)=\overline{h(-v)},\qquad H^\vee(s)=H(1-s).
+\tag{OZC1}
+\]
+Repeated integration by parts proves that \(H\) is entire and, for every bounded real interval \(I\) and every integer \(d\ge0\),
+\[
+\sup_{\sigma\in I}|H(\sigma+iy)|\le C_{I,d,h}(1+|y|)^{-d}.
+\tag{OZC2}
+\]
+The constants need not be uniform as the interval \(I\) moves to negative infinity. That missing uniformity is precisely why a trivial-zero sum cannot be discarded by moving a contour indefinitely to the left.
+
+Start in the original Euler half-plane:
+\[
+\zeta(s)=\prod_p(1-p^{-s})^{-1},\qquad
+j(s):=\frac{\zeta'(s)}{\zeta(s)}
+ =-\sum_{n\ge2}\Lambda(n)n^{-s},\qquad \Re s>1.
+\tag{OZC3}
+\]
+Here \(\Lambda(p^k)=\log p\), with all prime powers retained, and \(\Lambda(n)=0\) otherwise, including \(n=1\). Absolute convergence follows by comparison with \(\sum_{n\ge2}(\log n)n^{-\sigma}\). The logarithmic Euler expansion and termwise differentiation on compact sub-half-planes prove the formula.
+
+Keep the factors themselves:
+\[
+B(s)=\pi^{-s/2}\Gamma(s/2),\quad
+\kappa(s)=\frac{B'}B(s)=-\frac12\log\pi+\frac12\psi(s/2),\quad
+C(s)=\frac12s(s-1)B(s).
+\tag{OZC4}
+\]
+Poisson summation for the original Gaussian, split at \(x=1\), gives the meromorphic theta identity
+\[
+B(s)\zeta(s)
+=-\frac1s+\frac1{s-1}
++\int_1^\infty\left(\sum_{n\ne0}e^{-\pi n^2x^2}\right)
+ (x^s+x^{1-s})\,\frac{dx}{x}.
+\tag{OZC5}
+\]
+The integral is entire, by its Gaussian decay uniformly on each compact set of \(s\). The formula first follows by Mellin transformation for \(\Re s>1\), where every interchange is absolutely convergent, and then supplies meromorphic continuation. It is the actual Gaussian case of the complete theta computation SZW14–22. In particular \(B(s)\zeta(s)=B(1-s)\zeta(1-s)\), with residues \(-1,+1\) at \(0,1\).
+
+The original, uncompleted reflection is therefore
+\[
+\zeta(s)=\chi(s)\zeta(1-s),\qquad
+\chi(s)=\frac{B(1-s)}{B(s)},\qquad
+\chi(s)\chi(1-s)=1,
+\]
+\[
+\boxed{j(s)+j(1-s)=-\kappa(s)-\kappa(1-s).}
+\tag{OZC6}
+\]
+These are meromorphic identities. They hold on an open set avoiding all zeros and poles by logarithmic differentiation, hence everywhere as meromorphic identities. In particular \(j\) is not antisymmetric under \(s\mapsto1-s\). The entire reflection multiplier is present in (OZC6).
+
+The Gamma product proves that \(B\) has simple poles at \(0,-2,-4,\ldots\), no zeros, and no other poles. Its residue at \(-2m\) is \(2(-1)^m\pi^m/m!\). At \(-2m\), \(m\ge1\), the value \(B(1+2m)\zeta(1+2m)\) is finite and positive; (OZC5)–(OZC6) therefore show that \(\zeta\) has a simple zero there. At zero, the ratio of the residues \(-1\) and \(2\) gives \(\zeta(0)=-1/2\). At one, \(B(1)=1\), so \(\zeta\) has its simple pole of residue one. Consequently
+\[
+\operatorname{res}_{1}j=-1,\qquad
+\operatorname{res}_{-2m}j=1\ (m\ge1),\qquad j\text{ is regular at }0.
+\tag{OZC7}
+\]
+The remaining zeros \(\rho\), counted with their orders \(m_\rho\), lie in \(0<\Re\rho<1\). To include the boundary argument: for \(\sigma>1\), the logarithm of
+\(\zeta(\sigma)^3|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|\)
+is the sum of the nonnegative terms
+\(2p^{-k\sigma}(1+\cos(kt\log p))^2/k\).
+A zero at \(1+it\), \(t\ne0\), would make this product tend to zero as \(\sigma\downarrow1\), contradicting its lower bound one. The functional equation then handles the other boundary; the real endpoints were just computed. The Euler product and reflection handle the exterior half-planes, with the stated Gamma divisor retained.
+
+For convergence estimates only, form the explicitly factored entire function \(C\zeta\). Equation (OZC5) and the Gaussian integral give its maximum on \(|s|\le R\) at most \(\exp(O(R\log(R+2)))\); its value at zero is \(1/2\). Jensen's formula gives \(O(R\log(R+2))\) nontrivial zeros in that disc. This use of a counted auxiliary entire function does not replace the original divisor: the exact meromorphic identity is
+\[
+\operatorname{div}\zeta
+=\sum_\rho m_\rho[\rho]+\sum_{m\ge1}[-2m]-[1],
+\qquad
+\operatorname{div}C=[1]-\sum_{m\ge1}[-2m].
+\tag{OZC8}
+\]
+Thus \(\sum_\rho m_\rho H(\rho)\) converges absolutely by (OZC2), whereas no assertion about \(\sum_m H(-2m)\) follows from that estimate.
+
+## 2. The original-zeta contour, with an explicit left-cutoff Gamma compensation
+
+Write
+\[
+I_c(U)=\frac1{2\pi i}\int_{\Re s=c}U(s)\,ds
+\quad\text{(upward)},\qquad b_N=-2N-1,\quad N=0,1,\ldots,
+\]
+\[
+T_N(H)=\sum_{m=1}^N H(-2m),\quad
+Z_{\rm nt}(H)=\sum_\rho m_\rho H(\rho),\quad
+V_{\zeta,N}(H)=Z_{\rm nt}(H)+T_N(H)-H(1).
+\tag{OZC9}
+\]
+The empty sum for \(N=0\) is zero. For fixed \(N\), the vertical integral of \(Hj\) on \(b_N\) is absolutely convergent: use (OZC6), the absolutely convergent Euler series on \(1-b_N>1\), and the logarithmic vertical growth of the two digamma functions. The same holds on any fixed \(\sigma>1\).
+
+Applying the residue theorem to the rectangle with sides \(b_N,\sigma\) gives
+\[
+\boxed{V_{\zeta,N}(H)=I_\sigma(Hj)-I_{b_N}(Hj).}
+\tag{OZC10}
+\]
+Here is a sufficient justification of its height limit. The genus-one logarithmic-derivative series of \(C\zeta\) has summands
+\(m_\rho((s-\rho)^{-1}+\rho^{-1})\), locally normally convergent away from its zeros, since \(\sum m_\rho/|\rho|^2<\infty\). In each height interval \([Y,Y+1]\), remove intervals of radius \(Y^{-3}\) about the heights of zeros with modulus at most \(3Y\). Their total length is \(O(Y^{-2}\log Y)<1\). On a remaining height the finite part is bounded by a polynomial in \(Y\), while its paired tail is \(O(\log Y)\). Subtract \(C'/C\), whose digamma and rational terms have polynomial bounds on these horizontal segments. Equation (OZC2), on the fixed strip \([b_N,\sigma]\), makes the two horizontal integrals tend to zero. The nontrivial zero sum is absolutely convergent, and the real divisor points enclosed are exactly \(1,-2,\ldots,-2N\). This proves (OZC10), with all their residues.
+
+Define the actual reflected Gamma boundary integral
+\[
+G_N(H)=I_{b_N}\!\left(H(s)[\kappa(s)+\kappa(1-s)]\right).
+\tag{OZC11}
+\]
+Inserting (OZC6) on the left edge of (OZC10), changing \(s\) to \(1-s\), and shifting the resulting Euler half-plane line from \(2N+2\) to \(\sigma\), gives
+\[
+V_{\zeta,N}(H)
+=I_\sigma\big((H+H^\vee)j\big)+G_N(H)
+=-P_{\rm fin}(h)+G_N(H),
+\]
+\[
+P_{\rm fin}(h)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+ \{h(\log n)+h(-\log n)\}.
+\tag{OZC12}
+\]
+For the last equality, Fourier inversion on \(\Re s=\sigma\) gives
+\(I_\sigma(H(s)n^{-s})=n^{-1/2}h(-\log n)\) and
+\(I_\sigma(H(1-s)n^{-s})=n^{-1/2}h(\log n)\).
+The Euler series permits termwise integration by absolute convergence and (OZC2). The final prime sum is finite by compact support. Shifts between the two Euler lines have no poles and have vanishing horizontal edges by the same rapid-decay estimate. Thus no assumption about a vanishing boundary at negative infinity entered (OZC12).
+
+The function \(\kappa(s)+\kappa(1-s)\) has residues \(-1\) at \(0,-2,-4,\ldots\), and residues \(+1\) at \(1,3,5,\ldots\). Shift its line in (OZC11) from \(b_N\) to \(1/2\). Exactly \(0,-2,\ldots,-2N\) are crossed. The residue theorem, with the same upward convention, yields
+\[
+\boxed{G_N(H)=A_\infty(h)+H(0)+T_N(H),}
+\]
+\[
+A_\infty(h)=\frac1{2\pi}\int_{\mathbb R}\widehat h(y)
+ \left[\Re\psi(1/4+iy/2)-\log\pi\right]\,dy.
+\tag{OZC13}
+\]
+The sign is fixed by \(I_{1/2}-I_{b_N}=-H(0)-T_N(H)\).
+On the middle line the two digamma values are conjugates, yielding the displayed real multiplier. All integrals converge absolutely by (OZC2) and logarithmic digamma growth.
+
+For every finite \(N\), not just in a limit, the complete result is
+\[
+\begin{aligned}
+Z_{\rm nt}(H)+T_N(H)-H(1)
+ &=G_N(H)-P_{\rm fin}(h),\\
+G_N(H)-T_N(H)&=H(0)+A_\infty(h),\\
+\mathcal W_\zeta(h)
+ :=V_{\zeta,N}(H)-T_N(H)+H(1)
+ &=H(0)+H(1)+A_\infty(h)-P_{\rm fin}(h).
+\end{aligned}
+\tag{OZC14}
+\]
+The receiver \(\mathcal W_\zeta\) is independent of \(N\) and equals \(Z_{\rm nt}(H)\) by (OZC9). This is a proved map from the retained original-zeta divisor and Gamma boundary, rather than an assertion that the two divisors coincide.
+
+More precisely, increasing \(N\) adds \(H(-2N-2)\) to each of \(V_{\zeta,N},T_N,G_N\). At finite rectangular height it additionally records each actual nontrivial zero crossed. Retain those locally finite divisors themselves, together with these evaluation functionals: one numerical evaluation alone does not determine a divisor. The directed system of divisors and integrals, with these transition maps, is the cutoff object. Its linear receiver
+\[
+(V,T,H(1))\longmapsto V-T+H(1)
+\tag{OZC15}
+\]
+is compatible with all left-cutoff transitions. Therefore its limit exists without requiring its first two coordinates to converge separately.
+
+This separation is necessary. If \(h\ge0\) is a nonzero bump supported in \([c,d]\) with \(c>0\), then
+\(H(-2m)\ge e^{(2m+1/2)c}\int h\), so the trivial sum diverges. It also diverges for actual two-moment quadratic tests. Choose a nonnegative even nonzero bump \(\phi\) with positive mass at some positive coordinate, and set \(F=(D^2-1/4)\phi\). Integration by parts gives
+\[
+M_F(s)=s(s-1)M_\phi(s),\quad M_F(0)=M_F(1)=0,\qquad
+M_{F^\#*F}(-2m)=[2m(2m+1)]^2M_\phi(-2m)^2>0.
+\tag{OZC16}
+\]
+A positive subinterval where \(\phi\) has positive integral gives exponential growth, so the sum diverges to \(+\infty\). The support of \(\phi\) can be made arbitrarily short. The endpoint equations do not repair this divergence.
+
+## 3. The original-zeta pairing, its exact adjoint defect, and the Gamma correction
+
+For \(F,G\in\mathcal T\), put \(h=F^\#*G\), so
+\[
+H(s)=\overline{M_F(1-\bar s)}M_G(s).
+\]
+Define three sesquilinear receivers, retaining their domains:
+\[
+\begin{aligned}
+B_{\zeta,N}(F,G)
+ &=\sum_\rho m_\rho\overline{M_F(1-\bar\rho)}M_G(\rho)
+   +\sum_{m=1}^N\overline{M_F(1+2m)}M_G(-2m)
+   -\overline{M_F(0)}M_G(1),\\
+\mathcal T_N(F,G)
+ &=\sum_{m=1}^N\overline{M_F(1+2m)}M_G(-2m),\\
+B_\zeta^{\rm W}(F,G)
+ &=B_{\zeta,N}(F,G)-\mathcal T_N(F,G)
+    +\overline{M_F(0)}M_G(1).
+\end{aligned}
+\tag{OZC17}
+\]
+The last form is independent of \(N\), equals the former full reflected nontrivial-zero pairing, and is Hermitian: conjugate it, exchange \(F,G\), and relabel the absolutely convergent sum by \(\rho\mapsto1-\bar\rho\), using (OZC6) in the open strip where \(\chi\) is a nonzero holomorphic unit. This retains the multiplier's role instead of assigning an involution to the trivial-zero set that it does not have.
+
+For completeness the exact defect of the raw finite receiver is
+\[
+\begin{aligned}
+B_{\zeta,N}(F,G)-\overline{B_{\zeta,N}(G,F)}
+={}&\sum_{m=1}^N
+ \{\overline{M_F(1+2m)}M_G(-2m)
+ -\overline{M_F(-2m)}M_G(1+2m)\}\\
+&-\overline{M_F(0)}M_G(1)
+ +\overline{M_F(1)}M_G(0).
+\end{aligned}
+\tag{OZC18}
+\]
+Thus the correction is a specific finite-rank form at each cutoff. It is not an assertion that the raw divisor is unrelated to the Weil form.
+
+The defect can actually be nonzero on arbitrarily short two-moment tests. For any distinct real points \(s_1,\ldots,s_d\), choose a nonnegative nonzero bump \(\phi\), so \(M_\phi(s_i)>0\), and let
+\(F=\sum_{j=0}^{d-1}c_j\phi(\cdot-j\delta)\), \(\delta>0\).
+The evaluation matrix is
+\[
+M_{\phi(\cdot-j\delta)}(s_i)
+=M_\phi(s_i)\left(e^{-\delta(s_i-1/2)}\right)^j.
+\tag{OZC19}
+\]
+Its determinant is a nonzero product of \(M_\phi(s_i)\) and a Vandermonde determinant, since its positive real bases are distinct. Hence the evaluations can be prescribed independently. Choose \(\delta\) and the bump diameter small enough that the union has any prescribed positive containing length.
+
+For \(N\ge1\), prescribe \(M_F(0)=M_F(1)=0\),
+\(M_F(-2)=1,\ M_F(3)=i\), and zero evaluations at the remaining points \(-2m,1+2m\), \(2\le m\le N\). Then
+\[
+B_{\zeta,N}(F,F)=B_\zeta^{\rm W}(F,F)-i.
+\tag{OZC20}
+\]
+Since the first term is real, the raw form is not Hermitian even on arbitrarily short two-moment tests. Consequently the FC positive lower bound cannot be asserted for this raw form. What survives, exactly and at every cutoff, is its compensated statement (OZC17). Both the non-Hermitian defect and the compensating form have been constructed.
+
+The scalar arithmetic pairing obtained directly from original zeta is
+\[
+\boxed{
+B_\zeta^{\rm W}(F,G)
+=\overline{M_F(1)}M_G(0)+\overline{M_F(0)}M_G(1)
+ +A_\infty(F^\#*G)-P_{\rm fin}(F^\#*G).}
+\tag{OZC21}
+\]
+The endpoint matrix is \(\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)\) in the ordered coordinates \((M_F(0),M_F(1))\), not a positive diagonal matrix. The signed pole term in (OZC17) and the two-endpoint expression in (OZC21) are linked by (OZC14); their signs have not been equated without that calculation.
+
+The whole Gamma term has a convergent real-space expression:
+\[
+A_\infty(h)=-(\gamma_E+\log\pi)h(0)
+ +\int_0^\infty
+ \frac{e^{-x}h(0)-\tfrac12e^{-x/4}\{h(x/2)+h(-x/2)\}}
+      {1-e^{-x}}\,dx.
+\tag{OZC22}
+\]
+Indeed the digamma identity
+\(\psi(z)=-\gamma_E+\int_0^\infty(e^{-x}-e^{-zx})/(1-e^{-x})\,dx\),
+initially \(\Re z>0\), follows from its convergent partial-fraction series by integration of each exponential difference. Insert it into (OZC13) with a common cutoff \(\varepsilon<x<R\), apply Fourier inversion, and then let \(\varepsilon\downarrow0,R\uparrow\infty\). At zero, \(h(x/2)+h(-x/2)=2h(0)+O(x^2)\), so the numerator is \(O(x)\); at infinity all remaining terms are integrable. This proves the cutoff passage and the full expression, including its constant.
+
+## 4. Reconstructing the interval operator from the original-zeta contour
+
+Take a smooth complex \(F\) with support in an interval of length \(T>0\), and suppose \(M_F(0)=M_F(1)=0\). Translation of its containing interval to the origin multiplies these moments by nonzero exponential factors, so the equations persist. It leaves \(F^\#*F\), its squared norm \(N_F=\|F\|_2^2\), and the pairing unchanged. Set \(h=F^\#*F\), so \(h(0)=N_F\) and \(h(-v)=\overline{h(v)}\). Substitution \(x=2v\) in OZC22 gives, with no removed Gamma summand,
+\[
+A_\infty(h)=-(\gamma_E+\log\pi)N_F+
+\int_0^\infty
+\frac{2e^{-2v}N_F-e^{-v/2}(h(v)+h(-v))}{1-e^{-2v}}\,dv.
+\tag{OZC23}
+\]
+Define the exact kernel and its removable remainder
+\[
+w(v)=\frac{e^{-v/2}}{1-e^{-2v}},\qquad
+r_0(v)=w(v)-\frac1{2v},\qquad r_0(0)=\frac14.
+\tag{OZC24}
+\]
+The subscript avoids confusion with the fixed bump radius below. Since \(h(v)=0\) for \(|v|\ge T\), the scalar part needed to split OZC23 is
+\[
+\lim_{\varepsilon\downarrow0}
+\left(\int_\varepsilon^\infty\frac{2e^{-2v}}{1-e^{-2v}}\,dv
+-\int_\varepsilon^T\frac{dv}{v}\right)
+=-\log(2T).
+\tag{OZC25}
+\]
+Indeed the first integral is \(-\log(1-e^{-2\varepsilon})\); the difference has the stated limit. Therefore
+\[
+A_\infty(h)=-(\gamma_E+\log(2\pi T))N_F
++\int_0^T\frac{2N_F-h(v)-h(-v)}{2v}\,dv
+-\int_0^T r_0(v)(h(v)+h(-v))\,dv.
+\tag{OZC26}
+\]
+This retains the finite constant originating from the cutoff instead of treating the divergent pieces as individual integrals.
+
+Put \(g(x)=\sqrt{T/2}\,F(Tx/2)\) on \([-1,1]\), and zero outside. This is the specified unitary coordinate map, with \(\|g\|_2^2=N_F\); the moment equations become \(\int_{-1}^1g(x)e^{\pm Tx/4}dx=0\). The middle term of OZC26 equals
+\[
+\frac14\iint_{|x-y|\le T}
+\frac{|F(x)-F(y)|^2}{|x-y|}\,dx\,dy.
+\tag{OZC27}
+\]
+This follows by putting \(v=x-y\) and using \(\|F-F(\cdot-v)\|_2^2=2N_F-h(v)-h(-v)\). The pairs inside the containing interval give the form of
+\[
+(\mathcal Lg)(x)=\frac12\int_{-1}^1\frac{g(x)-g(y)}{|x-y|}\,dy.
+\]
+The exterior pairs contribute exactly
+\[
+\frac12\int_{-T/2}^{T/2}|F(x)|^2
+\log\frac{T^2}{(T/2-x)(T/2+x)}\,dx
+=(\log2)N_F+\int_{-1}^1v(x)|g(x)|^2dx,
+\quad v(x)=-\frac12\log(1-x^2).
+\tag{OZC28}
+\]
+The two exterior integrals range from \(T/2-x\) and \(T/2+x\) to \(T\), respectively. These limits prove the formula and its factor \(1/2\). The last term in OZC26 is the form of the actual integral operator
+\[
+(\mathcal R_Tg)(x)=\frac T2\int_{-1}^1
+r_0(T|x-y|/2)g(y)\,dy.
+\tag{OZC29}
+\]
+Combining these equalities with the original finite-prime term in OZC12 reconstructs the complete compensated original-zeta form:
+\[
+\boxed{
+B_\zeta^{\rm W}(F,F)=
+\langle g,(\mathcal L+v-\log(\pi T)-\gamma_E-\mathcal R_T)g\rangle
+-2\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\Re h(\log n).}
+\tag{OZC30}
+\]
+Every prime power with \(\log n\le T\) is present. The separate raw form is this quantity plus \(\mathcal T_N(F,F)\); its pole contribution vanishes here because the endpoint moments were evaluated as zero.
+
+This gives the actual receiving calculation for the earlier interval bounds. In particular use the length \(T_*=19/25\) for any containing interval of length at most \(T_*\). Only \(n=2\) contributes, and the two overlap strips in \([-1,1]\), of shift \(\delta=2\log2/T_*\), are disjoint. Their complete term is bounded above by
+\(\beta\int_{|x|\ge\delta-1}|g(x)|^2dx\), \(\beta=\log2/\sqrt2\). The inequalities \(\log2>56/81\), \(e<11/4\), and \(\beta<1/2\) prove \(v>\beta\) on these strips, exactly as evaluated in FC17–19. Hence the difference of the whole \(v\) and prime term is nonnegative.
+
+To retain the remaining constants, define
+\[
+\begin{aligned}
+A(T)&=\frac{(T/4)^4\cosh^2(T/4)}{20},\\
+E(T)&=\sum_{j=1}^{8}|b_j|T^j+\frac{2(T/2)^9}{1-T/2},\\
+(b_0,\ldots,b_8)&=
+\left(\frac14,-\frac1{48},-\frac1{32},\frac7{11520},\frac5{1536},
+-\frac{31}{1935360},-\frac{61}{184320},
+\frac{127}{309657600},\frac{277}{8257536}\right).
+\end{aligned}
+\tag{OZC31}
+\]
+Here \(r_0(z)=\sum b_jz^j\); the retained contour bound \(|r_0(z)|<2\) on \(|z|=2\) gives the last term in \(E\). Its proof is the explicit sine and hyperbolic-sine estimate in FC25–28. The constant term contributes \(T|\langle g,1/\sqrt2\rangle|^2/4\), and the nonconstant part has operator norm at most \(TE(T)\), by row and column integration of its bounded kernel.
+
+For completeness the spectral bound used on the remaining exact operator is obtained by factoring monomials: \(\mathcal Lx^n=H_nx^n-\sum_{j=1}^{\lfloor n/2\rfloor}x^{n-2j}/(2j)\). Symmetry and degree preservation make the Legendre polynomial of degree \(n\) an eigenfunction of value \(H_n\). Finite orthogonal projection and the nonnegative double-integral form in OZC27 therefore give
+\(\langle g,\mathcal Lg\rangle\ge3\|g\|^2/2-3|c_0|^2/2-|c_1|^2/2\), where \(c_0,c_1\) are its coefficients on \(1/\sqrt2,\sqrt{3/2}x\). The two original moment equations and the inequalities
+\(|\cosh(ax)-1|\le a^2x^2\cosh a/2\),
+\(|\sinh(ax)/a-x|\le a^2|x|^3\cosh a/6\),
+with \(a=T/4\), give
+\(|c_0|^2\le A(T)\|g_{\rm even}\|^2\),
+\(|c_1|^2\le5A(T)\|g_{\rm odd}\|^2/21\).
+Thus OZC30 implies
+\[
+B_\zeta^{\rm W}(F,F)\ge
+\left\{\frac32-\log(\pi T_*)-\gamma_E
+-T_*E(T_*)-(\tfrac32+T_*/4)A(T_*)\right\}\|F\|_2^2.
+\tag{OZC32}
+\]
+The complete rational evaluation FC30–43 proves
+\(T_*E(T_*)<171/6250\),
+\((3/2+T_*/4)A(T_*)<1/8000\), and
+\(\log(\pi T_*)+\gamma_E<109/75\).
+Subtracting these three explicit rational bounds from \(3/2\) gives exactly \(11509/600000\). The retained FC proof and its exact checker contain the finite rational sums and remainder estimates, rather than an assumed sign. Consequently
+\[
+\boxed{B_\zeta^{\rm W}(F,F)>\frac{11509}{600000}\|F\|_2^2
+\quad(F\ne0,\ \operatorname{diam}\operatorname{supp}F\le19/25,
+\ M_F(0)=M_F(1)=0).}
+\tag{OZC33}
+\]
+This is the reconstructed inequality for the compensated original-zeta receiver. Equations OZC17–20 explicitly prevent assigning it to the raw full-divisor form.
+
+## 5. The fixed original test and the complete trivial-zero sum
+
+Keep the unchanged radius, bump, and every multiplier:
+\[
+\begin{aligned}
+r&=1/64,\quad d=2r=1/32,\quad
+b_r=*_{j\ge1}\frac{\mathbf1_{[-r2^{-j},r2^{-j}]}}{2r2^{-j}},\\
+f_r&=(D^2-1/4)b_r,\quad k_r=b_r*b_r,\quad h_r=f_r*f_r,\\
+G_r(z)&=\int_{\mathbb R}b_r(v)e^{-zv}dv,\quad
+F(s)=s(s-1)G_r(s-1/2),\quad
+A_a(s)=e^{a(s-1/2)}F(s)^2.
+\end{aligned}
+\tag{OZC34}
+\]
+The full bump construction and its source attribution are UP0–14. It is even, nonnegative, smooth, of mass one and full support \([-r,r]\). With \(f_a(v)=f_r(v-a)\), direct substitution in OZC1 gives
+\(A_a=M_{f_a^\#*f_r}\). Put \(N=\|f_r\|_2^2\),
+\(K(a)=B_\zeta^{\rm W}(f_a,f_r)\), and \(q_r=K(0)\). Both endpoint values of \(A_a\) are zero by its displayed polynomial factor.
+
+OZH19–21 proves, using the endpoint mass and repeated integration by parts of this very bump, that
+\[
+\sum_{m\ge1}A_a(-2m)<\infty\ \Longleftrightarrow\ a\ge d,
+\qquad
+R(a)=\sum_{m\ge1}4m^2(2m+1)^2G_r(2m+1/2)^2e^{-(2m+1/2)a}.
+\tag{OZC35}
+\]
+The equality boundary is included because every inverse-power estimate for \(G_r(R)e^{-rR}\) is available. Every derivative of this series converges uniformly on \([d,\infty)\), by increasing that inverse-power order. If \(a<d\), positive mass arbitrarily near the endpoints gives exponential growth of the positive summands, so the sum does not converge.
+
+For \(a>d\), the test \(h_r(v+a)\) vanishes at zero. Inserting it into the directly reconstructed Gamma expression OZC23 gives
+\[
+A_\infty(f_a^\#*f_r)=-\int_{-d}^{d}w(a-u)h_r(u)\,du=-R(a).
+\tag{OZC36}
+\]
+The last equality can be proved without identifying two named receivers. Expand
+\(w(v)=\sum_{m\ge0}e^{-(2m+1/2)v}\) for \(v>0\). Uniform absolute convergence on \([a-d,a+d]\) permits integration. Since \(h_r=(D^2-1/4)^2k_r\), four integrations by parts transfer this operator to each exponential. Its factor is
+\(((2m+1/2)^2-1/4)^2=4m^2(2m+1)^2\); the \(m=0\) term is evaluated as zero. The transform of \(k_r\) is \(G_r^2\). This proves exactly the series in OZC35 with every coefficient and sign. At \(a=d\), flatness of \(h_r\) at its endpoint bounds the possible kernel singularity by an integrable function. Alternatively the uniform series bounds just proved and the original smooth test formula give the same limiting equality. Thus both expressions extend to that endpoint.
+
+The prime term in OZC12 is exactly
+\[
+P_r(a)=\sum_{\substack{n\ge2\\|\log n-a|\le d}}
+\frac{\Lambda(n)}{\sqrt n}h_r(a-\log n),\qquad a\ge d.
+\tag{OZC37}
+\]
+Indeed of the two translates in that formula only the one intersecting the positive prime logarithms can contribute. Endpoint terms of \(h_r\) vanish with all derivatives, so including or omitting equality endpoints has the same evaluated value. Every prime power in the stated window is retained.
+
+The exact original-zeta conclusions are therefore
+\[
+\boxed{
+K(a)=-R(a)-P_r(a),\qquad
+J(a):=\sum_\rho m_\rho A_a(\rho)+\sum_{m\ge1}A_a(-2m)-A_a(1)
+=-P_r(a),\quad a\ge d.}
+\tag{OZC38}
+\]
+In particular a prime-free window gives \(J(a)=0\), whereas \(K(a)=-R(a)<0\). At \(a=\log2\) the only prime-power entry is two and
+\[
+J(\log2)=-\frac{\log2}{\sqrt2}N<0.
+\tag{OZC39}
+\]
+This is a cross-test value of the raw divisor trace, not a negative value of a positive-definite quadratic form. At \(a=0\), the raw trivial-zero sum diverges and \(q_r\) is precisely the cutoff-compensated form OZC17. No finite raw diagonal matrix with entries \(J(a_i-a_j)\) is supplied by OZC38, because its diagonal would require that divergent sum.
+
+The earlier matrix and finite-window bounds now have explicit original-zeta meanings. For distinct centers with diameter at most \(583/800\), the function \(\sum c_jf_{a_j}\) has support diameter at most \(19/25\). Apply OZC33 and expand its exact sesquilinear form to obtain
+\[
+\left[K(a_i-a_j)\right]_{i,j}
+-\frac{11509}{600000}\left[h_r(a_i-a_j)\right]_{i,j}\succ0.
+\tag{OZC40}
+\]
+Nonzero coefficients give a nonzero function: its Fourier transform is a nonzero entire transform of \(f_r\) times \(\sum c_je^{-ia_jy}\); vanishing on an interval would force all coefficients zero by the finite Vandermonde derivative system. This proves strictness. The entries on the left are, at every fixed-divisor cutoff, exactly the raw entries minus their complete trivial-zero correction plus their evaluated pole correction, as given in OZC17.
+
+For \(583/800\le a\le\log256\), the full original-zeta bound is
+\[
+|J(a)-R(a)|=|K(a)|
+<\left(\frac{223}{125}+2^{-24}\right)N
+<q_r-\left(\frac{182}{125}-2^{-24}\right)N.
+\tag{OZC41}
+\]
+Here is its full receiving calculation. Cauchy–Schwarz gives \(|h_r(u)|\le N\). The exact prime-power certificate FPC1–14 includes all 72 prime powers up to 264 and proves
+\(\sum_{|\log n-a|\le d}\Lambda(n)/\sqrt n<223/125\) on this interval. The retained source lists all 71 candidate packets, with exact rational logarithm and square-root bounds; no density approximation is substituted. The positive series OZC35, equivalently its differentiated kernel, gives \(0<R(a)<936<2^{-24}N\), using \(a-d\ge279/400>2/3\) and the actual Sobolev lower bound \(N>24159387650\) proved in FP14–20. At length \(d\), OZC30 has no prime term and the same Legendre/remainder argument yields \(q_r>81N/25\) with the stronger rational value in FP11–13. These are arithmetic estimates of the operator reconstructed in OZC30. Insert them into OZC38; subtraction of \(223/125\) from \(81/25\) is exactly \(182/125\), proving OZC41. The small interval follows from OZC40 and FW's explicitly decreasing positive series across the intervening prime gap. Thus the earlier bound \(|K(a)|<q_r\) through \(\log256\) is now a statement about the specified compensated original-zeta receiver, with its raw trace given separately by OZC38.
+
+## 6. Original-zeta heat response and support coordinates
+
+For the actual meromorphic family in UZ2/OZH1, keep \(l_t=\zeta_t'/\zeta_t\) and the full fixed
+\[
+q(s)=\frac1s+\frac1{s-1}-\frac{\log\pi}{2}+\frac12\psi(s/2).
+\]
+Direct product differentiation proves
+\[
+4\partial_t l_t=l_t''+2l_tl_t'+2q l_t'+2q'l_t+q''+2qq',
+\qquad l_0=-\sum_{n\ge2}\Lambda(n)n^{-s}\quad(\Re s>1).
+\tag{OZC42}
+\]
+OZH23–25 justifies differentiating the full compact-test contour for \(t\ge0\), including the right derivative at zero. Every fixed divisor term in OZC9 has zero derivative because its index and test value are time independent; its local unit remains time dependent as calculated in UZ24–30. Consequently for the convergent fixed-test receiver, \(a\ge d\),
+\[
+J_t(a)=K_t(a)+R(a),\qquad
+\partial_tJ_t(a)=\partial_tK_t(a).
+\tag{OZC43}
+\]
+The identity \(J_0=-P_r\) in OZC38 is only at time zero; it is not an Euler product for the deformed function.
+
+To retain every contribution to this derivative, the causal distribution with transform \(q\) is
+\[
+\begin{aligned}
+\langle\alpha,\varphi\rangle={}&
+\int_0^\infty(e^{-v/2}+e^{v/2})\varphi(v)dv
+-\frac{\gamma_E+\log\pi}{2}\varphi(0)\\
+&+\int_0^\infty
+\frac{e^{-2v}\varphi(0)-e^{-v/2}\varphi(v)}{1-e^{-2v}}dv,
+\quad
+\pi_{\rm ar}=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\delta_{\log n}.
+\end{aligned}
+\tag{OZC44}
+\]
+The numerator is \(O(v)\) at zero, so this is an actual distribution; OZH40–42 constructs every causal convolution as a derivative of weighted integrable measures. Substituting the original Euler derivative into OZC42 and using the Laplace derivative rule gives the full variation distribution
+\[
+4\mathfrak J_\zeta=
+-v^2\pi_{\rm ar}-v(\pi_{\rm ar}*\pi_{\rm ar})
++2v(\alpha*\pi_{\rm ar})+v^2\alpha-v(\alpha*\alpha).
+\tag{OZC45}
+\]
+Its pairing with \(h(v)+h(-v)\) is the actual right derivative of the original finite-cutoff trace, by the weighted Fourier inversion proof in OZH44–45. This reconstructs the full distribution formerly used in CH and PT from \(\zeta'/\zeta\), with all fixed-factor and mixed terms displayed. In particular the PT13–40 estimates apply to these very terms, not to a derivative of an assumed Euler product at nonzero time. They give
+\[
+\partial_tJ_t(a)|_{0+}=\partial_tK_t(a)|_{0+}
+<-\frac{286628}{27}
+\quad\left(\log2+\frac1{32}\le a\le\frac{583}{800}\right).
+\tag{OZC46}
+\]
+The interval has no active prime-power value in OZC37, including its flat endpoint, so \(J_0(a)=0\). The definition of the derivative and its strict sign imply \(J_t(a)<0\) for every sufficiently small positive \(t\), for each fixed \(a\) in that interval. This is a statement about the actual full signed trace in its convergence domain, and makes no claim that the deformed trace has a time-independent prime formula or that its sign implies RH.
+
+Finally retain the independent basis \((\mathbf e_\lambda)_{\lambda\in L}\) and define
+\[
+\begin{aligned}
+\boldsymbol V_{\zeta,N}(h)&=V_{\zeta,N}(H)\mathbf e_{1_L},\\
+\boldsymbol B_{\zeta,N}(h)&=(H(0)+T_N(H))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol D_L(h)&=(P_{\rm fin}(h)-A_\infty(h))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda.
+\end{aligned}
+\tag{OZC47}
+\]
+OZC14 proves \(\boldsymbol B_{\zeta,N}-\boldsymbol V_{\zeta,N}=\boldsymbol D_L\) in every coordinate. The pole \(-H(1)\) in \(V\) cancels exactly the matching change from the earlier boundary coordinate \(H(0)+H(1)\) to \(H(0)+T_N\); neither term was absent. The receiver
+\[
+\boldsymbol V_{\zeta,N}\longmapsto
+\boldsymbol V_{\zeta,N}-(T_N(H)-H(1))\mathbf e_{1_L}
+\tag{OZC48}
+\]
+is the full labelled map to the compensated divisor trace; the same subtraction on \(\boldsymbol B\) returns the earlier boundary. Every lower coordinate remains identical on both sides. The coefficient space is the space of functions on fixed support points. In the actual underlying carrier, only top support carries nonzero amplitudes; \(e_L=(0,1_L)\) is distinct from \(\tau_L=(0,0_L)\). The top and total observations are the explicit coefficient projection and coefficient sum, with different kernels as proved in SZW35–37. None of OZC47–48 replaces those maps by an identification.
+
+The reconstructed results are therefore exact original-zeta statements with their cutoff and support records. The positivity still to prove for RH is that of OZC17 on its full test domain, or the equivalent all-translation condition for \(K\). Raw trace positivity is neither asserted nor substituted for that missing estimate.
+
+
+
+
+## The full trace, its return, and its first heat variation
+
+![Full signed divisor and faithful return to the Hermitian pairing. The top panel displays OZK3–18, including the inverse retaining the complete correction. The bottom panel is the exact compact-test calculation OZC35–46: the trivial-zero sum equals the earlier archimedean remainder, the pole contribution evaluates to zero, and the full signed trace equals the finite prime expression only at time zero. The negative derivative retains all terms of OZC44–45 and the original Rodgers–Tao heat convention, arXiv:1801.05914v5, equations phidef and htdef. The boxes indicate exact intervals, not sampled values or geometric scale. Lower support labels are retained by OZC47–48. The full proofs define the original density and every test in the diagram.](original_zeta_trace_return.png)

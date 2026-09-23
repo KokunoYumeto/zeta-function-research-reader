@@ -1,0 +1,289 @@
+# The actual heat trace on compact tests and its complete derivative receiver
+
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
+The calculation below proves smooth dependence of the whole compact-test zero trace on the original real heat time for every nonnegative time. In particular, the first variation at zero is an actual right derivative of that whole trace. It also constructs the meromorphic receiver of every higher time derivative. The proof uses the original heat family, the strip theorem, and the full logarithmic derivative, with its endpoint and Gamma terms retained. It makes no common-strip assertion for negative or complex time.
+
+## 1. Original coordinate and the real-time zero strip
+
+Keep precisely the original functions of AG1:
+\[
+\begin{aligned}
+H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,\\
+\Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+g_t(s)&=16H_t(-2i(s-\tfrac12)),\qquad
+g_0(s)=2\xi_R(s),\qquad \partial_tg_t=\tfrac14g_t''.
+\end{aligned}\tag{RT1}
+\]
+The original author reference is Rodgers and Tao, [arXiv:1801.05914v5](https://arxiv.org/src/1801.05914v5), equations `hoz`, `phidef`, and `htdef`. The exact coordinate verification and analytic estimates are proved in [AG1–AG5](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md).
+
+We use the following classical de Bruijn strip theorem, in the original author TeX of Alexander Dobner, [arXiv:2005.05142v2](https://arxiv.org/src/2005.05142v2), `paper.tex`, theorem `debruijnthm` (lines 248–253). If an integrable function \(\phi\) satisfies \(\phi(u)=\overline{\phi(-u)}\) and \(\phi(u)=O(e^{-|u|^b})\) for some \(b>2\), and all zeros of \(\int_{\mathbb R}\phi(u)e^{iZu}\,du\) lie in \(|\Im Z|\le\Delta\), then those of \(\int_{\mathbb R}e^{tu^2}\phi(u)e^{iZu}\,du\), for real \(t>0\), lie in
+\[
+|\Im Z|\le\sqrt{\max(\Delta^2-2t,0)}.
+\tag{RT2}
+\]
+Dobner cites N. G. de Bruijn, *The roots of trigonometric integrals*, Duke Mathematical Journal 17 (1950), Theorem 13. The theorem is used with its stated hypotheses and original time; it is not a newly claimed result of this programme.
+
+Here take \(\phi(u)=\Phi(|u|)/2\). It is real and even, and AG2 proves its stronger bound \(C\exp(9|u|-c e^{4|u|})\). Thus every hypothesis concerning \(\phi\) holds. Its Fourier transform is exactly \(H_0\). The known zero strip \(0\le\Re s\le1\) of \(2\xi_R\), under \(Z=-2i(s-1/2)\), is exactly \(|\Im Z|\le1\). Applying (RT2) with \(\Delta=1\) proves
+\[
+|\Re\rho_t-\tfrac12|\le
+\tfrac12\sqrt{\max(1-2t,0)}\le\tfrac12,
+\qquad t\ge0,
+\tag{RT3}
+\]
+for every zero, with every multiplicity retained. Reflection of the integral also gives \(g_t(1-s)=g_t(s)\) and \(L_t(1-s)=-L_t(s)\), where \(L_t=g_t'/g_t\).
+
+## 2. Uniform bounds away from the strip
+
+Fix a finite real interval \(0\le t\le T\). Every term of \(\Phi(u)\) is positive for \(u\ge0\), since \(2\pi n^2e^{4u}-3>0\). Consequently
+\[
+g_t(0)=16\int_0^\infty e^{tu^2}\Phi(u)\cosh(u)\,du>0.
+\tag{RT4}
+\]
+This continuous positive function has a positive minimum on the compact time interval. Joint continuity of the entire function \(g_t(s)\), uniformly on a compact neighborhood of \([0,T]\times\{0\}\), now supplies \(\delta_T>0\) such that \(g_t(s)\ne0\) for \(|s|<\delta_T\), uniformly in that interval. The quantity \(\beta_t=g_t'(0)/g_t(0)\) is bounded there. AG3 and Jensen's formula therefore give constants uniform in real time with
+\[
+N_t(R)\le C_T(R+1)\log(R+2),\qquad
+\sum_{|\rho_t|>R}\frac{m_{\rho,t}}{|\rho_t|^2}
+\le C_T\frac{\log(R+2)}R\quad(R\ge1).
+\tag{RT5}
+\]
+The first assertion follows by bounding \(\log|g_t|\) on radius \(2R\) and subtracting the uniform lower bound for \(\log|g_t(0)|\). The second follows by splitting the exterior into dyadic annuli and applying the first. The zero-free disc additionally implies
+\[
+\sum_{|\rho_t|\le R}\frac{m_{\rho,t}}{|\rho_t|}
+\le C_T\log^2(R+2).
+\tag{RT6}
+\]
+For (RT6), each dyadic annulus contributes at most a constant times the logarithm of its outer radius, and there are finitely many small annuli down to \(\delta_T\).
+
+Hadamard factorization, with \(g_t(0)\ne0\), gives the normally convergent genus-one expansion
+\[
+L_t(s)=\beta_t+\sum_\rho m_{\rho,t}
+\left(\frac1{s-\rho_t}+\frac1{\rho_t}\right),\qquad
+\partial_s^jL_t(s)=(-1)^j j!\sum_\rho\frac{m_{\rho,t}}{(s-\rho_t)^{j+1}}\quad(j\ge1).
+\tag{RT7}
+\]
+Fix \(\sigma>1\). On either vertical line \(\Re s=\sigma\) or \(\Re s=1-\sigma\), distance to every zero is at least \(d=\sigma-1>0\). Put \(R=|s|+1\). Zeros with \(|\rho_t|\le2R\) contribute at most \(d^{-1}N_t(2R)\) to the first denominator sum in \(L_t\), and (RT6) bounds its genus-one corrections. For the remaining zeros retain the identity
+\[
+\frac1{s-\rho_t}+\frac1{\rho_t}
+=\frac{s}{\rho_t(s-\rho_t)}.
+\tag{RT8}
+\]
+Their absolute contribution is at most \(2|s|\sum_{|\rho_t|>2R}m_{\rho,t}/|\rho_t|^2\). The differentiated sums have near contribution at most \(j!d^{-j-1}N_t(2R)\), and their tails are bounded by the same square-denominator tail times the further factor \(C_jR^{1-j}\). Equations (RT5)–(RT8) prove, for every fixed \(j\ge0\),
+\[
+|\partial_s^jL_t(\sigma+iy)|+
+|\partial_s^jL_t(1-\sigma+iy)|
+\le C_{T,\sigma,j}(1+|y|)^2.
+\tag{RT9}
+\]
+This deliberately broad polynomial bound holds uniformly for all \(t\in[0,T]\); no unproved separation between individual zeros is used.
+
+Retain the exact recurrence HM1–HM3. In the polynomial algebra \(\mathbb Q[X_0,X_1,\ldots]\), let
+\[
+DX_j=X_{j+1},\qquad
+VX_j=D^j\!\left(\frac{X_2+2X_0X_1}{4}\right),\qquad
+B_k=V^kX_0.
+\tag{RT10}
+\]
+The heat equation and the chain rule give \(\partial_t^kL_t=B_k(L_t,L_t',\ldots)\). The polynomial has degree at most \(k+1\), as proved in HM4–HM6. Applying (RT9) to its finitely many spatial derivatives gives
+\[
+|\partial_t^k L_t(\sigma+iy)|+
+|\partial_t^k L_t(1-\sigma+iy)|
+\le C_{T,\sigma,k}(1+|y|)^{2(k+1)}.
+\tag{RT11}
+\]
+All derivatives here are the derivatives of the actual analytic quotient at a nonzero point. Their real-time continuity follows from joint analyticity locally at that point. No time series of the whole zero trace is assumed to converge.
+
+## 3. The whole compact-test trace is smooth in actual real time
+
+For \(h\in C_c^\infty(\mathbb R;\mathbb C)\), put
+\[
+A(s)=M_h(s)=\int_{\mathbb R}h(v)e^{-(s-1/2)v}\,dv,\qquad
+Z_t(A)=\sum_{g_t(\rho)=0}m_{\rho,t}A(\rho).
+\tag{RT12}
+\]
+Repeated integration by parts proves arbitrarily rapid vertical decay of \(A\) and every fixed spatial derivative on any fixed closed strip. Equations (RT3) and (RT5) prove absolute convergence of (RT12); in fact its absolute tail beyond modulus \(R\) is bounded uniformly on \([0,T]\) by \(C_N R^{1-N}\log(R+2)\), for every sufficiently large \(N\), by dyadic summation.
+
+Define the absolutely convergent vertical integral
+\[
+I_t(A)=\frac1{2\pi i}\int_{\Re s=\sigma}
+\{A(s)+A(1-s)\}L_t(s)\,ds.
+\tag{RT13}
+\]
+We prove that it equals the whole trace, separately at each real \(t\ge0\). In each interval \([j,j+1]\) one can choose a height \(Y_j\) at distance at least \(j^{-3}\) from every absolute zero ordinate in the adjacent interval: the total length of the excluded intervals is \(O_T(j^{-2}\log j)<1\), by (RT5). Zeros outside an interval enlarged by one already have distance at least one. For the rectangle with real edges \(1-\sigma,\sigma\) and heights \(\pm Y_j\), the near part of (RT7) is \(O_T(j^4\log j)\) on its horizontal edges, using total multiplicity \(O_T(j\log j)\); (RT8) bounds the far part by \(O_T(\log j)\). The rapid decay of \(A\) therefore makes those horizontal integrals tend to zero. The residue theorem gives (RT12) in the limit, and reflection with the downward orientation on the left edge gives exactly (RT13). This proves
+\[
+Z_t(A)=I_t(A),\qquad t\ge0.
+\tag{RT14}
+\]
+The heights may depend on \(t\). The result does not require one set of horizontal contours free of all moving zeros at all times.
+
+Now (RT11) supplies an integrable bound for every time derivative of the integrand of (RT13), after choosing the arbitrarily high decay order of the fixed test. Differentiation under the integral gives
+\[
+\boxed{
+\partial_t^kZ_t(A)=\frac1{2\pi i}\int_{\Re s=\sigma}
+\{A(s)+A(1-s)\}B_k(L_t,L_t',\ldots)(s)\,ds
+\quad(k\ge0).}
+\tag{RT15}
+\]
+These derivatives are continuous up to \(t=0\) from the right. For completeness, apply the fundamental theorem of calculus to \(\partial_t^{k-1}L_t(s)\) for real time on the line, integrate its bound (RT11), and interchange the two absolutely convergent integrals. Induction proves that the displayed integrals are the actual successive right derivatives at the endpoint and ordinary derivatives for \(t>0\). Thus \(Z_t(A)\) is \(C^\infty\) on the real closed half-line in this sense. It is not asserted to be holomorphic across zero time for compact tests.
+
+At \(t=0\), the first polynomial is \(B_1=(L''+2LL')/4\). The fixed-contour differentiation of AG22 and the passage to the same vertical line in CH17–CH20 therefore imply the precise strengthening
+\[
+\boxed{
+\left.\frac{d}{dt}\right|_{0+}Z_t(M_h)
+=\mathcal V(M_h)
+=\left\langle\mathfrak J,h(v)+h(-v)\right\rangle,
+\quad
+\mathfrak J=\tfrac14\{v^2\ell-v(\ell*\ell)\}.}
+\tag{RT16}
+\]
+Here \(\ell=\alpha-\pi\) is precisely the causal distribution of CH4–CH14, with the full endpoint/Gamma subtraction and prime measure \(\pi=\sum_{n\ge2}\Lambda(n)n^{-1/2}\delta_{\log n}\). Equality in (RT16) upgrades the previously specified regularized variation in this exact positive-real-time domain. All original grouped inter-zero terms of AG20 and GC14 remain equal to it.
+
+## 4. The fixed primitive correlation and all higher global receivers
+
+Use the original fixed test of UP1–UP35, without changing its radius or coefficients:
+\[
+r=\tfrac1{64},\qquad f_r=(D^2-\tfrac14)b_r,\qquad
+F(s)=s(s-1)G_r(s-\tfrac12),\qquad H(s)=F(s)^2,
+\quad A_a(s)=e^{a(s-1/2)}H(s).
+\tag{RT17}
+\]
+The function \(b_r\) is the smooth probability density given there by the infinite convolution of uniform densities on \([-r2^{-j},r2^{-j}]\), \(j\ge1\). Thus \(G_r(z)=\prod_{j\ge1}\sinh(r2^{-j}z)/(r2^{-j}z)\). Its zeros are precisely \(128\pi i k\), nonzero integers \(k\), so \(F\) is nonzero at every possible off-critical zero in the original strip. These assertions and convergence are proved completely in UP. In this section \(H\) is a test square, not the original heat function \(H_t\).
+
+For each real \(a\), \(A_a\) is a compact smooth Mellin transform, since multiplication by this exponential translates the compact inverse transform of \(H\). Define the whole actual correlation
+\[
+K_t(a)=Z_t(A_a)=\sum_\rho m_{\rho,t}H(\rho_t)e^{a(\rho_t-1/2)}.
+\tag{RT18}
+\]
+It is jointly smooth in real \(t\ge0,a\in\mathbb R\). Indeed every \(a\) derivative introduces only a fixed power of \(s-1/2\) on the lines in (RT15), and compact intervals of \(a\) have a common rapid-decay bound. The same dominated-integral proof applies to every mixed derivative.
+
+For \(a\ge0\), on the two lines in (RT15) the exponential modulus is at most \(e^{a(\sigma-1/2)}\). Consequently, for each \(k\),
+\[
+\sup_{0\le t\le T}|\partial_t^kK_t(a)|
+\le C_{T,\sigma,k}e^{(\sigma-1/2)a}\qquad(a\ge0,\ \sigma>1).
+\tag{RT19}
+\]
+The same conclusion holds with additional fixed \(a\) derivatives and a changed constant. This bound is proved, but it is not the boundedness in \(a\) required at time zero by UP and PW.
+
+For \(\Re w>1/2\), choose \(1<\sigma<\Re w+1/2\). The exponential margin in (RT19) is then strictly positive. Dominated differentiation in the Laplace integral gives the actual whole-trace receiver
+\[
+\begin{aligned}
+\mathscr K_t(w)&=\int_0^\infty e^{-wa}K_t(a)\,da
+=\sum_\rho\frac{m_{\rho,t}H(\rho_t)}{w-(\rho_t-1/2)},\\
+\mathscr K_k(w)&:=\left.\partial_t^k\mathscr K_t(w)\right|_{0+}
+=\int_0^\infty e^{-wa}
+\left.\partial_t^kK_t(a)\right|_{0+}\,da.
+\end{aligned}\tag{RT20}
+\]
+The first interchange also follows directly from the uniformly summable \(|H(\rho_t)|\) and the margin \(\Re w-1/2\). Uniformity on compact subsets of the indicated half-plane proves holomorphy in \(w\). No absolute sum of individual higher zero velocities is needed.
+
+There is an exact meromorphic continuation of every \(\mathscr K_k\) to the whole \(w\)-plane. To construct it rather than assume it, fix a bounded open \(w\)-set and choose \(\sigma>1\) so large that
+\[
+1-\sigma<\Re p<\sigma\quad\hbox{throughout the set},\qquad
+p=w+\tfrac12,\qquad \Psi_w(s)=\frac{H(s)}{w-(s-1/2)}.
+\tag{RT21}
+\]
+Keep a positive margin from both vertical lines. The test pole now lies inside the rectangles. Its residue in \(\Psi_w L_t\) is \(-H(p)L_t(p)\). The same exhaustion proof, with rapid decay of \(\Psi_w\) on these fixed lines, gives
+\[
+\mathscr K_t(w)=\frac1{2\pi i}\int_{\Re s=\sigma}
+\{\Psi_w(s)+\Psi_w(1-s)\}L_t(s)\,ds+H(p)L_t(p),
+\tag{RT22}
+\]
+whenever \(p\) is not a zero. The actual zero sum on the left is defined for any such \(w\) by its normally convergent rapid-decay tail. In particular (RT22) is its meromorphic continuation from (RT20).
+
+For a point \(p\) where \(g_0(p)\ne0\), joint continuity leaves it nonzero for all sufficiently small real times, and on a small compact \(w\)-neighborhood as well. Differentiate (RT22) using (RT11). It follows that
+\[
+\boxed{
+\mathscr K_k(w)=\frac1{2\pi i}\int_{\Re s=\sigma}
+\{\Psi_w(s)+\Psi_w(1-s)\}B_k(L_0,L_0',\ldots)(s)\,ds
++H(p)B_k(L_0,L_0',\ldots)(p).}
+\tag{RT23}
+\]
+The integral is holomorphic in the whole bounded \(w\)-set, including where \(p\) is a zero: its denominators remain separated on the lines, and uniform rapid decay justifies complex differentiation under the integral. The last term is meromorphic. Different choices of \(\sigma\) give the same expression, first by (RT22) off the zeros and then by differentiation and meromorphic continuation. These overlapping formulas define \(\mathscr K_k\) globally. In particular, at each distinct original zero \(\rho\), with \(c_\rho=\rho-1/2\),
+\[
+\operatorname{PP}_{w=c_\rho}\mathscr K_k(w)
+=\operatorname{PP}_{x=0}
+\left[H(\rho+x)B_k(L_0,L_0',\ldots)(\rho+x)\right],
+\qquad x=w-c_\rho.
+\tag{RT24}
+\]
+This is a proved all-order global receiver of the original heat motion. It retains the contour correction at the moving test pole explicitly; a pole is never moved across a vertical line without that correction.
+
+## 5. Every off-critical zero remains visible in the heat derivative tower
+
+For \(g_0(s)=(s-\rho)^m u_\rho(s)\), put \(b_\rho=u_\rho'(\rho)/u_\rho(\rho)\). Direct differentiation gives
+\[
+\operatorname{PP}_{\rho}B_1(L_0,L_0',\ldots)
+=-\frac{m(m-1)}{2(s-\rho)^3}-\frac{mb_\rho}{2(s-\rho)^2}.
+\tag{RT25}
+\]
+One can verify it by writing \(g_0''/g_0=m(m-1)/(s-\rho)^2+2mb_\rho/(s-\rho)+O(1)\) and differentiating with factor \(1/4\). At a multiple off-critical zero, (RT24)–(RT25) have the nonzero triple-pole coefficient \(-m(m-1)F(\rho)^2/2\). This is exactly the negative of the contact coefficient in GC12, before any modified contact equation is introduced.
+
+For a simple zero, GC26–GC29 proves that the analytic local zero branch moves at a finite order
+\[
+n_\rho=\min\{n\ge1:g_0^{(2n)}(\rho)\ne0\}<\infty,
+\qquad
+\rho(t)=\rho-
+\frac{g_0^{(2n_\rho)}(\rho)}{4^{n_\rho}n_\rho!g_0'(\rho)}t^{n_\rho}
++O(t^{n_\rho+1}).
+\tag{RT26}
+\]
+The finiteness does not assume nonzero first velocity. Its proof uses the exact original integral to show \(\sqrt T\,g_{-T}(s)\to8\sqrt\pi\Phi(0)>0\) for fixed \(s\), so \(g_t(\rho)\) cannot vanish identically in time. The heat equation then identifies its first nonzero coefficient as written.
+
+The local branch contribution \(\Psi_w(\rho(t))\), or equivalently (RT24) applied at its first nonzero motion order, gives
+\[
+\operatorname{PP}_{c_\rho}\mathscr K_{n_\rho}(w)
+=-\frac{g_0^{(2n_\rho)}(\rho)}{4^{n_\rho}g_0'(\rho)}
+\left\{\frac{F(\rho)^2}{(w-c_\rho)^2}
++\frac{2F(\rho)F'(\rho)}{w-c_\rho}\right\}.
+\tag{RT27}
+\]
+To justify the local-to-global equality, take a small disc containing only this simple zero. Analytic division gives its unique local branch. The derivative of its local resolvent has the displayed principal part. The complement in (RT23) is holomorphic near \(c_\rho\), since its entire principal part is fixed by (RT24); equivalently subtract the local logarithmic factor from \(L_t\) before differentiating. At an off-critical zero, the double-pole coefficient is nonzero. Therefore every possible off-critical simple zero is detected by some finite member of the actual global heat derivative tower, and every multiple one is already detected by the first derivative. No uniform bound on \(n_\rho\) is asserted or required for this pointwise statement.
+
+## 6. Exact contact comparison, supported endpoints, and the remaining bound
+
+The globally convergent contact contribution of GC5 is
+\[
+\mathcal C(a)=\frac14\sum_\rho m_\rho(m_\rho-1)A_a''(\rho).
+\tag{RT28}
+\]
+Combining its full proof with (RT16)–(RT20) gives the stronger interpretation
+\[
+\left.\partial_tK_t(a)\right|_{0+}+\mathcal C(a)=\mathcal R(a),
+\qquad
+\operatorname{PP}_{c_\rho}\widehat{\mathcal R}(w)
+=-\frac{m_\rho b_\rho}{2}
+\left\{\frac{F(\rho)^2}{(w-c_\rho)^2}
++\frac{2F(\rho)F'(\rho)}{w-c_\rho}\right\}.
+\tag{RT29}
+\]
+Here \(\mathcal R\) is exactly the absolutely convergent grouped inter-zero expression GC15, not an assumed absolutely convergent ungrouped sum of local drifts. Its contact term removes the multiple-zero splitting coefficient and retains the complete local unit. This identity does not construct a different global heat family with permanent collisions.
+
+The pole residues at \(s=0,1\) of \(g_t(s)/(s(s-1))\) remain \(-1\) in the logarithmic derivative for every real \(t\ge0\), by (RT4) and reflection. Thus fixed-test endpoint coordinates have actual zero derivative, including all lower support coordinates of the original full supported formula. For the fixed primitive tests \(F(0)=F(1)=0\), their endpoint amplitudes are zero from the start. In \(\boldsymbol B-\boldsymbol Z=\boldsymbol D\) the actual first derivative and its contact comparison are consequently
+\[
+\dot{\boldsymbol B}=0,\qquad
+\dot{\boldsymbol Z}=\mathcal V(A_a)\mathbf e_{1_L},\qquad
+\dot{\boldsymbol D}=-\mathcal V(A_a)\mathbf e_{1_L},\qquad
+\Delta\dot{\boldsymbol Z}=+\mathcal C(a)\mathbf e_{1_L},\quad
+\Delta\dot{\boldsymbol D}=-\mathcal C(a)\mathbf e_{1_L}.
+\tag{RT30}
+\]
+The first variation of the arithmetic coordinate at zero is the causal formula (RT16), including every term of CH24. At nonzero heat time \(\boldsymbol D\) is the induced complete analytic coordinate; the undeformed Euler series is not silently reused. Every linear map retains its original supported carrier, so zero amplitude here is supported zero \(e\), not \(\tau\).
+
+For the original \(K_0\), UP and PW prove that RH is equivalent to \(|K_0(a)|\le K_0(0)\) for every \(a\ge0\), and calculate the entire prime-window expression for \(K_0\). The bound (RT19) is exponential and does not prove that required uniform inequality. The results above instead close the analytic gap between the boundary/contact calculation, every genuine heat derivative, and the complete arithmetic receiver. They do not assign a positive sign to the residual or claim RH.
+
+
+## Exact trace and contact maps
+
+![The actual positive-real-time trace and the full causal arithmetic distribution are related by RT16. At each zero, the middle panel displays the complete singular coefficient before and after the contact addition; PP means its principal part. The bottom panels distinguish multiple zeros, simple zeros with nonzero first velocity, and simple zeros whose first motion occurs at a higher order. The test H is the square F squared in RT17, with its original radius one over sixty-four. All constants, coordinates, signs and support labels are retained. Proofs: CH4–25, GC12–21, and RT1–30. Human input: the original Rodgers–Tao heat integral and de Bruijn's strip theorem as stated in Dobner's original author TeX. This exact diagram is not a sampled zero configuration or a positivity certificate.](actual_heat_contact.png)
+
+## Source identity and reading coverage
+
+The author archive for Dobner v2 is retained intact with SHA256 `21574649cdaae016f7da90874f886f4391304ec7bd22808c2dad2c397ec9be75`. Its `paper.tex` has SHA256 `0de2b2f7e0d1178ca42a991cb803dae2ac0e24b7e6c9dae6a379e2f16f4d9f31`; it is byte-identical to the indexed expanded author source. Actual reading for this calculation covers lines 1–200 and 231–325, including the full statement and application of `debruijnthm`. No complete reading of that paper or its 1950 reference is claimed. The theorem supplies (RT2); the uniform bounds, actual trace differentiability, meromorphic derivative receiver, and exact maps (RT3)–(RT30) are proved here. AG, HM, GC, CH, UP and PW are included in full in this edition, with their original human sources and proof locators preserved.
+
+
+## Proved compact-interval and finite-translation bounds
+
+The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1–43, proves full Weil coercivity with constant 11509/600000 through support diameter 19/25, including prime 2 and both original endpoint moments. [FW1–21](FIRST_PRIME_WINDOW_BOUND.md) proves the every-rank matrix bound for centre diameter 583/800 and a strict two-test margin through the next prime gap. The same unchanged test now satisfies its required strict correlation bound for every positive translation through log 256, by [FP1–25](FINITE_PRIME_WINDOW_EXTENSION.md) and the complete [rational prime-power certificate, FPC1–14](FINITE_PRIME_WINDOW_COEFFICIENT_CERTIFICATE.md). [PT1–40](PRIME_TWO_HEAT_TAIL_DERIVATION.md) calculates the surviving mixed channel and proves a strictly negative full actual right heat derivative on the stated short interval after the prime-2 atom ends. These are exact portions of the original bound, retaining supported zero and every original arithmetic coefficient. The uniform inequality beyond log 256 remains unproved.

@@ -32,13 +32,13 @@ In particular, SW2 is not the separate prime-weight Euler product \(\prod_p(1-(p
 
 Write \(a=1+t\in[1,2]\). For any integer \(M\ge1\), Euler summation with \(2M\) derivatives gives
 \[
-\begin{split}
+\begin{aligned}
 F_t(s)={}&\frac{a^{1-s}}{s-1}+\frac{a^{-s}}2
  +\sum_{j=1}^{M}\frac{B_{2j}}{(2j)!}(s)_{2j-1}a^{1-s-2j}\\
 &-\frac{(s)_{2M}}{(2M)!}
 \int_0^\infty \widetilde B_{2M}(x)(x+a)^{-s-2M}\,dx,
 \qquad \Re s>1-2M.
-\end{split}
+\end{aligned}
 \tag{SW3}
 \]
 Here \(\widetilde B_k(x)=B_k(\{x\})\), and \((s)_j=s(s+1)\cdots(s+j-1)\). To check the formula, apply integration by parts on every interval \([n,n+1]\), using \(B_k'=kB_{k-1}\), \(B_k(1)=B_k(0)\) for \(k\ne1\), and \(B_1(1)-B_1(0)=1\). Summing the first boundary jumps gives the values \((n+a)^{-s}\). The remaining boundaries at the lower end are the displayed half-value and even Bernoulli terms; the upper boundaries tend to zero for \(\Re s>1\). The derivative of order \(j\) of \((x+a)^{-s}\) is \((-1)^j(s)_j(x+a)^{-s-j}\), giving the sign of the remainder. This proves SW3 first for \(\Re s>1\). Since \(\widetilde B_{2M}\) is bounded, its integral is absolutely and locally uniformly convergent for \(\Re s>1-2M\), so it proves the asserted continuation there.
@@ -152,12 +152,12 @@ Zeros and gamma poles are written separately, so exact cancellations in SW12 occ
 
 If \(\ell_t A\), \(\ell_t(s)A(1-s)\), and \(\ell_t(1-s)A(1-s)\) have only finitely many nonremovable poles in the strip and their horizontal integrals tend to zero, then taking \(T\to\infty\) gives
 \[
-\begin{split}
+\begin{aligned}
 Z_{t,c}(A)-A(1)-\sum_{j\ge0:\,-2j>1-c}A(-2j)
 ={}&\frac1{2\pi i}\int_{\Re s=c}
 \ell_t(s)(A(s)+A(1-s))\,ds\\
 &-\frac1{2\pi i}\int_{\Re s=c}d_t(s)A(1-s)\,ds.
-\end{split}
+\end{aligned}
 \tag{SW17}
 \]
 Here \(Z_{t,c}(A)\) is the finite sum of the zero terms not annihilated by \(A\), counted with multiplicity. The actual tests in SW9 satisfy every property in this sentence by a displayed cancellation identity, so SW17 is used below without a missing analytic assumption. For the sign, the left upward integral becomes the right upward integral of \(\ell_t(1-s)A(1-s)\); the positive contour subtracts it. Substituting \(\ell_t(1-s)=d_t(s)-\ell_t(s)\) proves SW17.
@@ -176,13 +176,13 @@ To verify differentiation and absolute convergence, take a slightly smaller real
 
 Define the absolutely convergent functional
 \[
-\begin{split}
+\begin{aligned}
 \mathcal L_t(k)={}&2\log(a)k(0)\\
 &+\sum_{k_0\ge1}\frac{(-1)^{k_0+1}}{k_0}
 \sum_{n_1,\ldots,n_{k_0}\ge2}
 \frac{\log r_{\boldsymbol n}}{\sqrt{r_{\boldsymbol n}}}
 \left[k(\log r_{\boldsymbol n})+k(-\log r_{\boldsymbol n})\right].
-\end{split}
+\end{aligned}
 \tag{SW19}
 \]
 Gaussian strip decay implies \(|k(v)|\le C_R e^{-R|v|}\) for every fixed \(R>0\): shift the vertical contour defining \(k\) by \(R\) in the appropriate direction. Choose \(R=c-1/2\), or a slightly larger value, and the absolute majorant just proved for SW18 proves convergence of SW19. All exchanges of its sum and integral are therefore justified.

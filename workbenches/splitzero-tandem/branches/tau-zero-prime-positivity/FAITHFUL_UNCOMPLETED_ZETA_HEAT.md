@@ -1,0 +1,588 @@
+# Faithful completion, local fibres and the uncompleted zeta heat equation
+
+This derivation retains the original meromorphic zeta function, the complete completion factor, its factorization, every local fibre and every support label. The completed function is a coordinate in an explicitly isomorphic invertible sheaf. Ordinary evaluation after forgetting that sheaf is a different map, computed below. The heat family is the original Rodgers–Tao family in its original coordinates. This derivation neither assumes an absolute-base origin for that author construction nor asserts Riemann-hypothesis positivity.
+
+## 1. Sources, conventions and the original family
+
+The original author source is Brad Rodgers and Terence Tao, *The de Bruijn–Newman constant is non-negative*, arXiv:1801.05914v5, equations hoz, sas, phidef, htdef and the heat-equation sentence following htdef; [author TeX](https://arxiv.org/src/1801.05914v5). Its canonical local ID is PUBUNIT-8AD81C89CA3B6B4D23E6BC27; the author file `sources/rodgers_tao_1801.05914v5/fmp-template.tex` has SHA256 `25b015c0fb151f1613247d82cf53a6561a320d4dab2bb4f809482e7c477a5817`. The introductory definitions and their surrounding statements were read, not inferred from a search hit.
+
+The programme receivers used here are [HA1–16, HA20](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md), [AG1–9, AG18–24](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md), [RT1–18](REAL_TIME_HEAT_TRACE_DERIVATION.md), and [SZW1–19, SZW24–38](SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md). HA supplies the unchanged completion logarithmic derivative and full arithmetic terms; AG supplies the rational trace theorem and specified contour variation; RT supplies the actual right-time compact-test derivative. SZW supplies the supported-zero theta comparison and label spaces. This note proves the additional completion/sheaf comparisons and local calculations in full.
+
+Write
+\[
+\begin{aligned}
+B(s)&=\pi^{-s/2}\Gamma(s/2),&
+p(s)&=\tfrac12s(s-1),&
+C(s)&=p(s)B(s),\\
+\xi(s)&=C(s)\zeta(s),&
+\Lambda(s)&=B(s)\zeta(s),&
+\xi(s)&=p(s)\Lambda(s).
+\end{aligned}\tag{UZ1}
+\]
+The symbol \(p(s)\) in this factorization is a polynomial, not a finite prime. The factor \(1/2\), the two endpoint factors and the whole Gamma factor remain in every map.
+
+The original heat family and its transported coordinate are
+\[
+\begin{aligned}
+\Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+H_t(z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(zu)\,du,\\
+\xi_t(s)&=8H_t(-2i(s-\tfrac12)),\qquad
+g_t(s)=2\xi_t(s)=16H_t(-2i(s-\tfrac12)),\\
+\zeta_t(s)&=C(s)^{-1}\xi_t(s),\qquad
+\Lambda_t(s)=B(s)\zeta_t(s)=\frac{2\xi_t(s)}{s(s-1)}.
+\end{aligned}\tag{UZ2}
+\]
+Thus \(\xi_0=\xi,\ \zeta_0=\zeta,\ g_0=2\xi\), and \(\Lambda_t=g_t/(s(s-1))\), exactly as in HA20.
+
+For \(u\ge0\), splitting the exponential in the \(n\)-sum gives
+\[
+|\Phi(u)|\le K e^{9u-ce^{4u}}\quad(c>0).
+\tag{UZ3}
+\]
+Indeed one half of \(\pi n^2e^{4u}\) bounds a positive multiple of \(e^{4u}\), while the other half makes \(\sum n^4e^{-\pi n^2/2}\) summable. On compact sets of complex \(s,t\), derivatives of the integrand add powers of \(u\), still bounded by an integrable function
+\(K'\exp(Tu^2+(2R+10)u-ce^{4u})\).
+Consequently \(\xi_t(s)\) is jointly entire in \((t,s)\), and direct differentiation, retaining \((-2i)^2=-4\), gives
+\[
+\partial_t\xi_t=\tfrac14\partial_s^2\xi_t,\qquad
+\xi_t(1-s)=\xi_t(s).
+\tag{UZ4}
+\]
+For no complex \(t\) is \(\xi_t\) the zero function. To see this, extend \(e^{tu^2}\Phi(u)\) evenly from the positive half-line. Its extension is in \(L^1(\mathbb R)\) by (UZ3), is nonzero, and its Fourier transform is \(2H_t\) on the real axis. If that transform vanished identically, convolution with each Gaussian approximate identity would vanish by Fourier inversion for the Gaussian and Fubini's theorem. Approximation in \(L^1\) would make the original function zero, a contradiction. Thus all divisors used below are defined, including at complex times.
+
+For real \(t,s\), every summand of \(\Phi(u)\) is positive because
+\(2\pi n^2e^{4u}-3>0\), and the cosine in (UZ2) becomes
+\(\cosh(2(s-\tfrac12)u)>0\). Hence
+\[
+\xi_t(s)>0\quad(t,s\in\mathbb R).
+\tag{UZ5}
+\]
+This does not assert positivity of a Weil quadratic form.
+
+## 2. Gamma factors and their exact local units
+
+Here are the Gamma facts and their sufficient derivation. Euler's limit and its reciprocal product are
+\[
+\Gamma(z)=\lim_{N\to\infty}\frac{N!\,N^z}{z(z+1)\cdots(z+N)},\qquad
+\frac1{\Gamma(z)}
+=z e^{\gamma z}\prod_{n\ge1}(1+z/n)e^{-z/n}.
+\tag{UZ6}
+\]
+The first follows for \(\Re z>0\) from
+\[
+\int_0^1x^{z-1}(1-x)^Ndx
+=\frac{N!}{z(z+1)\cdots(z+N)}
+\]
+by repeated integration by parts, substitution \(y=Nx\), and dominated convergence using \((1-y/N)^N\le e^{-y}\). For the reciprocal product use
+\(\sum_{n\le N}1/n-\log N\to\gamma\). The factors after their linear terms have uniformly summable logarithms on every compact set avoiding \(-1,-2,\ldots\). This proves local uniform convergence and nonvanishing there. Thus the reciprocal is entire, its zeros are simple and occur exactly at \(0,-1,-2,\ldots\), and \(\Gamma\) has no zeros. The integral also gives \(\Gamma(z+1)=z\Gamma(z)\) and \(\Gamma(1)=1\).
+
+Taking logarithms near zero gives the convergent identity
+\[
+\log\Gamma(1+z)
+=-\gamma z+\sum_{k\ge2}\frac{(-1)^k\zeta(k)}k z^k,\qquad |z|<1.
+\tag{UZ7}
+\]
+To verify it, expand \(\log(1+z/n)\) in (UZ6), interchange the absolutely convergent double series for \(|z|<1\), and retain the linear term separately. In this formula \(\zeta(k)=\sum_{n\ge1}n^{-k}\), with \(k\ge2\), needs no analytic continuation.
+
+Let \(u=s-s_*\). Write \(C(s_*+u)=u^d c_{s_*}(u)\), where \(c_{s_*}\) is a holomorphic unit. At zero there is no residual zero or pole:
+\[
+d=0,\qquad
+c_0(u)=(u-1)\pi^{-u/2}\Gamma(1+u/2),\qquad c_0(0)=-1,
+\tag{UZ8}
+\]
+and the full convergent unit expansion is specified by
+\[
+\log\frac{c_0(u)}{-1}
+=\log(1-u)-\frac{\gamma+\log\pi}{2}u
++\sum_{k\ge2}\frac{(-1)^k\zeta(k)}{k2^k}u^k,\qquad |u|<1.
+\tag{UZ9}
+\]
+The branch has value zero at \(u=0\). In particular
+\(C'(0)=1+(\gamma+\log\pi)/2\).
+
+At \(s=1\),
+\[
+d=1,\qquad
+c_1(u)=\tfrac12(1+u)\pi^{-(1+u)/2}\Gamma((1+u)/2),\qquad
+c_1(0)=\tfrac12,
+\tag{UZ10}
+\]
+and
+\[
+\begin{aligned}
+\log\frac{c_1(u)}{1/2}
+={}&\log(1+u)
+-\left(\frac{\gamma+\log\pi}{2}+\log2\right)u\\
+&+\sum_{k\ge2}\frac{(-1)^k(1-2^{-k})\zeta(k)}k u^k,
+\qquad |u|<1.
+\end{aligned}\tag{UZ11}
+\]
+For the value \(\Gamma(1/2)=\sqrt\pi\), square the positive Gaussian integral and change to polar coordinates. For the logarithmic series, differentiating (UZ6) gives
+\(\psi(z)=-\gamma+\sum_{n\ge0}(1/(n+1)-1/(n+z))\).
+At \(z=1/2\) the partial sums reduce to
+\(2(H_{N+1}-H_{2N+2})\to-2\log2\), so
+\(\psi(1/2)=-\gamma-2\log2\).
+For \(k\ge2\), termwise differentiation gives the Taylor coefficient
+\((-1)^k\sum_{n\ge0}(n+1/2)^{-k}/k\);
+after the substitution \(z=1/2+u/2\) it is
+\((-1)^k(1-2^{-k})\zeta(k)/k\).
+This proves (UZ11), including its linear coefficient.
+
+At \(s=-2m,\ m\ge1\), put
+\[
+\kappa_m=(-1)^m\frac{2m(2m+1)\pi^m}{m!}.
+\tag{UZ12}
+\]
+The complete local expression, retaining its original factors, is
+\[
+\begin{aligned}
+d&=-1,\qquad C(-2m+u)=u^{-1}c_{-2m}(u),\\
+c_{-2m}(u)
+&=\kappa_m
+\left(1-\frac{u}{2m}\right)
+\left(1-\frac{u}{2m+1}\right)
+\pi^{-u/2}\Gamma(1+u/2)
+\prod_{j=1}^{m}\left(1-\frac{u}{2j}\right)^{-1}.
+\end{aligned}\tag{UZ13}
+\]
+Indeed Gamma recurrence gives
+\[
+\Gamma(-m+u/2)
+=\frac{2(-1)^m}{m!\,u}\Gamma(1+u/2)
+\prod_{j=1}^m(1-u/(2j))^{-1}.
+\]
+Multiplication by \(\tfrac12(-2m+u)(-2m-1+u)\pi^{m-u/2}\) proves (UZ13). In particular \(c_{-2m}(0)=\kappa_m\), with its sign retained.
+
+For \(H_m^{(k)}=\sum_{j=1}^m j^{-k}\) and \(H_m=H_m^{(1)}\), the full convergent logarithmic series on \(|u|<1\) is
+\[
+\begin{aligned}
+\log\frac{c_{-2m}(u)}{\kappa_m}
+={}&\left[-\frac1{2m}-\frac1{2m+1}
+-\frac{\gamma+\log\pi}{2}+\frac{H_m}{2}\right]u\\
+&+\sum_{k\ge2}\frac1k
+\left[
+\frac{(-1)^k\zeta(k)+H_m^{(k)}}{2^k}
+-\frac1{(2m)^k}-\frac1{(2m+1)^k}
+\right]u^k .
+\end{aligned}\tag{UZ14}
+\]
+It follows by expanding every factor in (UZ13); convergence is absolute on compact subdiscs. Equations (UZ9), (UZ11), (UZ14), followed by exponentiation, specify all unit coefficients, not only leading values. At every other finite point \(s_*\), \(d=0\) and \(c_{s_*}(u)=C(s_*+u)\) is already a holomorphic unit.
+
+The full factor divisors are therefore
+\[
+\operatorname{div}B=-[0]-\sum_{m\ge1}[-2m],\quad
+\operatorname{div}p=[0]+[1],\quad
+D:=\operatorname{div}C=[1]-\sum_{m\ge1}[-2m].
+\tag{UZ15}
+\]
+Each sum is locally finite. The \([0]\) terms cancel as divisors; the factors \(B,p\), their residues and their full units remain part of (UZ1). In particular “zero divisor coefficient at 0” does not say that these factors or the supported-zero endpoint data were absent.
+
+## 3. The invertible sheaf and all local jets
+
+Let \(X=\mathbb C\), \(\mathcal O=\mathcal O_X\) be the holomorphic sheaf and \(\mathcal M\) the meromorphic sheaf. Define the embedded fractional ideal sheaf
+\[
+\mathcal L=\mathcal O(D)
+:=\{f\in\mathcal M:\operatorname{div}f+D\ge0\}
+=C^{-1}\mathcal O\subset\mathcal M.
+\tag{UZ16}
+\]
+The inequality is local at every finite point. Multiplication is an everywhere invertible sheaf morphism
+\[
+M_C:\mathcal L\xrightarrow{\;\sim\;}\mathcal O,\quad f\mapsto Cf,
+\qquad M_C^{-1}(F)=C^{-1}F .
+\tag{UZ17}
+\]
+Proof: both compositions are the identity in \(\mathcal M\); (UZ16) is precisely the condition that \(Cf\) be holomorphic. At \(s_*\), if \(C=u^dc(u)\), then
+\(\mathcal L_{s_*}=u^{-d}\mathcal O_{s_*}\), because \(c\) is a unit. Thus the morphism is an isomorphism at every stalk, not only off the completion divisor. Multiplication by \(C\) is also an automorphism of the \(\mathcal O\)-module \(\mathcal M\), but retaining \((\mathcal O,\mathcal L,\mathcal O\hookrightarrow\mathcal M,\mathcal L\hookrightarrow\mathcal M,C)\) additionally retains the original orders of vanishing and poles.
+
+Write \(f=u^{-d}y(u)\), \(Cf=x(u)=c(u)y(u)\), with
+\(x=\sum x_j u^j,\ y=\sum y_j u^j,\ c=\sum c_j u^j\).
+For every \(N\ge0\), (UZ17) induces the fibre-and-jet isomorphism
+\[
+\begin{aligned}
+\mathcal L_{s_*}/u^{N+1}\mathcal L_{s_*}
+&\xrightarrow{\;\sim\;}
+\mathcal O_{s_*}/u^{N+1}\mathcal O_{s_*},\\
+x_j&=\sum_{i=0}^{j}c_i y_{j-i},\qquad
+y_j=c_0^{-1}\left(x_j-\sum_{i=1}^{j}c_i y_{j-i}\right)
+\quad(0\le j\le N).
+\end{aligned}\tag{UZ18}
+\]
+The diagonal coefficient is \(c_0\ne0\), so the displayed recurrence proves bijectivity for every finite jet order and for the inverse-limit formal completion. Analytic sections are related by the convergent multiplication and division in (UZ17). This keeps all derivatives and Laurent coefficients with their exact index shift.
+
+At the three types of special point, the fibre maps are as follows:
+\[
+\begin{array}{c|c|c|c}
+s_* & \mathcal L_{s_*} & \mathcal L_{s_*}/u\mathcal L_{s_*}
+& M_C\text{ on that fibre}\\ \hline
+-2m & u\mathcal O_{s_*} & u\mathcal O_{s_*}/u^2\mathcal O_{s_*}
+& [u y]\mapsto \kappa_m y(0)\\
+1 & u^{-1}\mathcal O_1 & u^{-1}\mathcal O_1/\mathcal O_1
+& [u^{-1}y]\mapsto \tfrac12 y(0)\\
+0 & \mathcal O_0 & \mathcal O_0/u\mathcal O_0
+& [y]\mapsto -y(0).
+\end{array}\tag{UZ19}
+\]
+At \(-2m\), the inclusion \(u\mathcal O\hookrightarrow\mathcal O\) induces the zero map into \(\mathcal O/u\mathcal O\), since \(uy\) evaluates to zero. Its source fibre \(u\mathcal O/u^2\mathcal O\) is one dimensional and need not be zero. The completion map instead multiplies that fibre by \(\kappa_m\), an isomorphism. At 1 there is no ordinary holomorphic evaluation of \(u^{-1}y\); the correct fibre records its residue \(y(0)\). Evaluating \(C(1)=0\) and treating \(u^{-1}y\) as a scalar value would not be a defined map. These conclusions compute the maps responsible for the apparent losses.
+
+There is also the faithful intermediate factorization
+\[
+\begin{aligned}
+\mathcal L_\Lambda&=p^{-1}\mathcal O
+=\mathcal O([0]+[1])\subset\mathcal M,\\
+\mathcal L \xrightarrow{\,M_B\,}\mathcal L_\Lambda
+&\xrightarrow{\,M_p\,}\mathcal O,\qquad
+M_pM_B=M_C,
+\end{aligned}\tag{UZ20}
+\]
+with both arrows isomorphisms. In fact \(pf_\Lambda\) is holomorphic iff
+\(f_\Lambda\in\mathcal L_\Lambda\), and
+\(p(Bf)=Cf\), which proves the first arrow and its inverse. This preserves the Gamma pole at zero before the \(s\)-factor acts.
+
+For completeness, the classical values and leading coefficients follow without assuming trivial-zero simplicity. On \(\Re s>1\), integrating the counting function \(\lfloor x\rfloor\) gives
+\[
+\zeta(s)=s\int_1^\infty \lfloor x\rfloor x^{-s-1}dx
+=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}dx.
+\tag{UZ21}
+\]
+The last integral is holomorphic on \(\Re s>0\), by boundedness of \(\{x\}\) and differentiation on compact subsets. Thus the residue of \(\zeta\) at 1 is 1. Equations (UZ10) and \(\xi(1-s)=\xi(s)\) imply
+\[
+\xi(1)=\xi(0)=\tfrac12,\quad
+\zeta(0)=-\tfrac12,\quad
+\operatorname{Res}_{s=0}\Lambda=-1,\quad
+\operatorname{Res}_{s=1}\Lambda=1.
+\tag{UZ22}
+\]
+At \(-2m\), reflection gives
+\[
+\begin{aligned}
+\xi(-2m)&=\xi(2m+1)
+=\frac{m(2m+1)(2m)!}{4^m m!\pi^m}\zeta(2m+1)>0,\\
+\zeta'(-2m)&=\frac{\xi(-2m)}{\kappa_m}
+=(-1)^m\frac{(2m)!}{2(2\pi)^{2m}}\zeta(2m+1).
+\end{aligned}\tag{UZ23}
+\]
+To obtain the first expression use
+\(\Gamma(m+1/2)=(2m)!\sqrt\pi/(4^m m!)\), proved from Gamma recurrence and the Gaussian integral. The second follows by the first-fibre map in (UZ19). It is nonzero, so these are simple trivial zeros. No zero or coefficient has been identified with the unsupported element.
+
+For every real time, (UZ5) and the same local maps give the exact persistent geometry
+\[
+\begin{aligned}
+\operatorname{Res}_{s=1}\zeta_t&=2\xi_t(1)>0,&
+\zeta_t(0)&=-\xi_t(0)<0,\\
+\zeta_t'(-2m)&=\xi_t(-2m)/\kappa_m,&
+\operatorname{sgn}\zeta_t'(-2m)&=(-1)^m,\\
+\operatorname{Res}_{s=0}\Lambda_t&=-2\xi_t(0),&
+\operatorname{Res}_{s=1}\Lambda_t&=2\xi_t(1).
+\end{aligned}\tag{UZ24}
+\]
+In particular the pole and trivial-zero orders remain exactly simple for real \(t\). For complex \(t\) the sheaf maps and divisor identity remain valid, but a zero of \(\xi_t\) at one of these points can change the total order; no fixed-order assertion is made for complex time.
+
+## 4. The complete transported heat operator
+
+Put \(q=C'/C\). As a meromorphic function its exact expression is
+\[
+\begin{aligned}
+q(s)&=\frac1s+\frac1{s-1}-\frac{\log\pi}{2}
++\frac12\psi(s/2),\\
+q'(s)&=-\frac1{s^2}-\frac1{(s-1)^2}
++\frac14\psi^{(1)}(s/2),\\
+\frac{C''}{C}(s)
+&=\left(\frac1s+\frac1{s-1}-\frac{\log\pi}{2}
++\frac12\psi(s/2)\right)^2
+-\frac1{s^2}-\frac1{(s-1)^2}
++\frac14\psi^{(1)}(s/2).
+\end{aligned}\tag{UZ25}
+\]
+Here \(\psi=\Gamma'/\Gamma\). These formulas are valid meromorphically, with the removable singularity at 0 assigned the unit value from (UZ9); for example
+\(q(0)=-1-(\gamma+\log\pi)/2\).
+At 1 and \(-2m\) the residues of \(q\) are respectively \(+1\) and \(-1\), precisely the divisor coefficients in (UZ15).
+
+Since \(C\) does not depend on \(t\), (UZ4) proves
+\[
+\boxed{\quad
+\partial_t\zeta_t
+=\tfrac14\left[
+\partial_s^2\zeta_t
++2q(s)\partial_s\zeta_t
++\bigl(q'(s)+q(s)^2\bigr)\zeta_t
+\right]
+=\tfrac14 C^{-1}\partial_s^2(C\zeta_t).
+\quad}\tag{UZ26}
+\]
+It follows by expanding \(\partial_s^2(C\zeta_t)\), without deleting any factor of \(C\). In particular the uncompleted function does not satisfy the coefficient-free heat equation in this coordinate. For real time, \(\zeta_t''\) has a pole of order three at 1 with nonzero leading coefficient, by (UZ24), whereas \(\partial_t\zeta_t\) has at most a simple pole there because \(C^{-1}\) is fixed and \(\partial_t\xi_t\) is entire.
+
+The operator is defined across all special points as the connection
+\[
+\nabla_C:\mathcal L\to\mathcal L,\qquad
+\nabla_C f=C^{-1}\partial_s(Cf),\qquad
+\partial_t\zeta_t=\tfrac14\nabla_C^2\zeta_t .
+\tag{UZ27}
+\]
+It maps \(\mathcal L\) to itself because derivatives of a holomorphic function are holomorphic. It satisfies
+\(\nabla_C(af)=a'f+a\nabla_C f\) for \(a\in\mathcal O\). Thus its meromorphic coefficient presentation does not make its action on the retained lattice undefined.
+
+More explicitly, at every \(s_*\) write
+\(\zeta_t=u^{-d}y_t(u)\), \(C=u^dc(u)\).
+The full local heat equation is
+\[
+\partial_t y_t
+=\tfrac14\left[y_t''+2\frac{c'}c y_t'
++\frac{c''}c y_t\right].
+\tag{UZ28}
+\]
+Indeed \(\xi_t=cy_t\), and the time-independent factor \(u^{-d}\) cancels only as a change of local frame in (UZ26). Equivalently, differentiating \(u^{-d}y\) and using \(q=d/u+c'/c\) cancels each displayed \(1/u\) term in the connection. The complete unit \(c\), given in (UZ8), (UZ10), (UZ13), remains. Its coefficients are holomorphic on the local disc.
+
+All jets evolve through these same maps. For \(x_t=\xi_t=\sum x_j(t)u^j\),
+\[
+4\dot x_j=(j+2)(j+1)x_{j+2}.
+\tag{UZ29}
+\]
+The dot denotes a complex analytic local time derivative, justified by joint entire dependence in (UZ3). If \(a(u)=c'/c=\sum a_i u^i\), \(b(u)=c''/c=\sum b_i u^i\), and \(y_t=\sum y_j(t)u^j\), (UZ28) gives
+\[
+4\dot y_j=(j+2)(j+1)y_{j+2}
++2\sum_{i=0}^j a_i(j-i+1)y_{j-i+1}
++\sum_{i=0}^j b_i y_{j-i}.
+\tag{UZ30}
+\]
+The recurrence (UZ18) intertwines (UZ29) and (UZ30). Finite jets are not falsely claimed to form an autonomous heat system: their derivatives use the two additional jet orders displayed in these equations.
+
+On \(\Re s>1\), at \(t=0\), the logarithmic derivative of \(\xi\) is
+\[
+L_0=q+\zeta'/\zeta
+=q-\sum_{n\ge2}\Lambda(n)n^{-s}.
+\tag{UZ31}
+\]
+This is exactly HA10, with its original endpoint and Gamma terms. Differentiating the logarithmic derivative in time gives
+\[
+\partial_t(\zeta_t'/\zeta_t)
+=\partial_t(\xi_t'/\xi_t)
+=\tfrac14\partial_s(\xi_t''/\xi_t).
+\tag{UZ32}
+\]
+The first equality holds because \(q\) is independent of \(t\). Hence the full causal distribution in CH and its archimedean–prime mixed terms are unchanged by the faithful uncompleted coordinate. In particular replacing \(q\) by zero would change the actual heat variation and would discard the mixed terms, rather than implement (UZ17).
+
+Reflection also transports exactly. Let \(R(F)(s)=F(1-s)\). Then
+\[
+J_C:=M_C^{-1}RM_C,\qquad
+(J_C f)(s)=\frac{C(1-s)}{C(s)}f(1-s),\qquad
+J_C^2=\mathrm{id}_{\mathcal L}.
+\tag{UZ33}
+\]
+These are operators on global sections; on local sections the reflected operator sends sections over \(U\) to sections over \(1-U\), so its sheaf map covers the reflection of the base and is not \(\mathcal O\)-linear over the identity map. Proof: \(Cf\) is holomorphic, so its reflection is holomorphic on the reflected domain, proving the stated codomain; composition cancels the two meromorphic ratios and gives the identity. Also
+\[
+\nabla_C J_C=-J_C\nabla_C,\qquad
+\nabla_C^2J_C=J_C\nabla_C^2,\qquad
+J_C\zeta_t=\zeta_t.
+\tag{UZ34}
+\]
+The first relation is the chain rule after conjugating by \(C\); the others follow by a second application and (UZ4). No unweighted reflection of the uncompleted meromorphic coordinate is substituted for this operator.
+
+## 5. Divisors, finite contours and global traces
+
+The exact meromorphic divisor relation for every time is
+\[
+\operatorname{div}\zeta_t=\operatorname{div}\xi_t-D
+=\operatorname{div}\xi_t+\sum_{m\ge1}[-2m]-[1].
+\tag{UZ35}
+\]
+It is an identity of locally finite signed divisors. It follows at each stalk from
+\(\operatorname{ord}(C\zeta_t)=\operatorname{ord}C+\operatorname{ord}\zeta_t\).
+If \(\xi_t\) vanishes at a special point, the orders add there; the formula still holds.
+
+Let \(\Omega\) be bounded with a piecewise smooth boundary avoiding the zeros and poles of the functions involved, and let \(A\) be holomorphic near \(\overline\Omega\). The exact finite-contour map is
+\[
+\begin{aligned}
+\frac1{2\pi i}\int_{\partial\Omega}
+ A(s)\frac{\zeta_t'(s)}{\zeta_t(s)}\,ds
+&=\frac1{2\pi i}\int_{\partial\Omega}
+ A(s)\frac{\xi_t'(s)}{\xi_t(s)}\,ds
+-\frac1{2\pi i}\int_{\partial\Omega}A(s)q(s)\,ds\\
+&=\sum_{\rho\in\Omega}\operatorname{ord}_\rho(\xi_t)A(\rho)
++\sum_{-2m\in\Omega}A(-2m)-1_{\{1\in\Omega\}}A(1).
+\end{aligned}\tag{UZ36}
+\]
+Each sum is finite and includes multiplicity. This is the residue theorem applied to \(\zeta_t'/\zeta_t=\xi_t'/\xi_t-q\). It applies without a summability assumption on an infinite trivial-zero sequence. If a test has a pole inside \(\Omega\), its additional residues must also be retained; (UZ36) is stated with the holomorphic-test hypothesis to avoid suppressing them.
+
+For a fixed such contour nonvanishing persists at sufficiently small complex time, so differentiating (UZ36) gives equality of its two heat variations, since the \(q\) integral is fixed. Thus the equality holds before an infinite contour limit, including at every trivial-zero and endpoint local geometry.
+
+Now let \(A\) be rational, \(A(s)=O(s^{-2})\) at infinity, with poles avoiding \(1,-2,-4,\ldots\) and the zeros of \(\xi_{t_*}\) at a real time \(t_*\). There is a complex time neighbourhood of \(t_*\) in which
+\[
+\boxed{\quad
+Z_{\zeta_t}^{\mathrm{div}}(A)
+=Z_{\xi_t}(A)+\sum_{m\ge1}A(-2m)-A(1).
+\quad}\tag{UZ37}
+\]
+The left side is the sum of the signed divisor orders against \(A\); the right side retains all its three parts. Both sums converge absolutely. To prove it, (UZ3) yields the uniform growth
+\(\log\max_{|s|\le R}|\xi_t(s)|\le K(R+1)\log(R+2)\):
+absorb \(Tu^2\) into half of \(ce^{4u}\), then substitute \(x=e^{4u}\) in the remaining integral and bound the resulting Gamma integral. Since \(\xi_{t_*}(0)>0\), it remains nonzero in a small complex time disc. Jensen's formula then gives \(N_t(R)=O(R\log(R+2))\), uniformly there. Dyadic summation implies
+\(\sum_{|\rho|>R}m_\rho|\rho|^{-2}=O(\log(R+2)/R)\).
+Also \(A(-2m)=O(m^{-2})\). These bounds prove absolute convergence, and summing (UZ35) proves (UZ37).
+
+For clarity, the derivative in (UZ37) is a genuine derivative of the infinite rational trace. The genus-one logarithmic derivative is
+\[
+\frac{\xi_t'}{\xi_t}(s)
+=b_t+\sum_\rho m_\rho\left(\frac1{s-\rho}+\frac1\rho\right).
+\]
+It converges normally on compact sets avoiding the zeros by the preceding square-summability estimate. Summing residues at the finite pole set \(\mathcal P(A)\) gives
+\[
+Z_{\xi_t}(A)
+=-\sum_{a\in\mathcal P(A)}
+\operatorname{Res}_{s=a}
+\left(A(s)\frac{\xi_t'(s)}{\xi_t(s)}\right).
+\tag{UZ38}
+\]
+Indeed \(\sum_a\operatorname{Res}_a A=0\), so \(b_t\) and every constant \(1/\rho\) correction contribute zero, and the rational function \(A(s)/(s-\rho)\) has pole-set residues summing to \(-A(\rho)\). Normal convergence permits termwise residues. The right side is holomorphic in time while its finite pole values avoid zeros. Hence
+\[
+\partial_t Z_{\zeta_t}^{\mathrm{div}}(A)
+=\partial_t Z_{\xi_t}(A)
+=-\frac14\sum_{a\in\mathcal P(A)}
+\operatorname{Res}_{s=a}
+\left(A(s)\partial_s\frac{\xi_t''(s)}{\xi_t(s)}\right).
+\tag{UZ39}
+\]
+This proves equality of the actual derivatives, not an unsupported interchange with individually moving zero sums.
+
+For entire compact-test Mellin transforms this rational summability conclusion must not be transplanted. With the original convention
+\[
+A(s)=M_h(s)=\int_{\mathbb R}h(v)e^{-(s-1/2)v}dv,
+\tag{UZ40}
+\]
+choose a nonzero nonnegative \(h\in C_c^\infty((a,b))\) with \(0<a<b\). Then
+\[
+M_h(-2m)\ge e^{(2m+1/2)a}\int h(v)dv,
+\tag{UZ41}
+\]
+so \(\sum_mM_h(-2m)\) diverges. Even endpoint filtering does not repair this: for \(T=\partial_v^2-1/4\), two integrations by parts give
+\[
+M_{Th}(s)=s(s-1)M_h(s),
+\]
+so its values at \(-2m\) have the additional positive factor \(2m(2m+1)\) and still diverge. The values at 0 and 1 vanish, which is a different exact statement.
+
+There is nevertheless a faithful finite-contour and regularized map. Retain at every \(\Omega\) the pair
+\[
+\left(
+Z_{\zeta_t,\Omega}^{\mathrm{div}}(A),\
+D_\Omega(A):=\frac1{2\pi i}\int_{\partial\Omega}Aq\,ds
+\right),\qquad
+Z_{\zeta_t,\Omega}^{\mathrm{div}}(A)+D_\Omega(A)=Z_{\xi_t,\Omega}(A).
+\tag{UZ42}
+\]
+Retain also the actual divisors \(\operatorname{div}\zeta_t|_\Omega\) and \(D|_\Omega\), rather than only their value under a single test. Restriction to nested domains then records each added divisor point and its order; this is the faithful locally finite divisor data. A single weighted value can vanish at a nonempty divisor and is not an injective encoding. For real \(t\ge0\), RT1–18 provides the critical strip and complete compact-test trace. Exhausting the plane by bounded domains with boundaries avoiding the divisors then gives the specified relative trace
+\[
+Z_{\zeta_t;C}^{\mathrm{rel}}(M_h)
+:=\lim_{\Omega\uparrow\mathbb C}
+\left(Z_{\zeta_t,\Omega}^{\mathrm{div}}(M_h)+D_\Omega(M_h)\right)
+=Z_{\xi_t}(M_h).
+\tag{UZ43}
+\]
+The limit exists because the terms inside parentheses equal the finite completed trace exactly and the completed zero sum converges absolutely: compact smooth Mellin tests decrease faster than every power on the closed critical strip, and the zero count above applies. The two separate terms in parentheses need not converge. The definition is therefore a relative trace with its fixed divisor correction explicitly retained, not a convergent unsigned trivial-zero sum.
+
+At time zero, on the separated-height contours of AG22, or any enlargement adding the fixed real divisor points and excluding zeros on its boundary, the \(D_\Omega\) contribution has derivative zero. The limit of finite-contour derivatives is consequently the original AG20 variation. RT16 further proves that on the real \(t\ge0\) family this variation is the actual right derivative of (UZ43) for compact smooth \(h\). These are the specified contour map and the independently proved actual-time upgrade; no unproved complex-time entire-test convergence is inserted.
+
+## 6. The supported carrier and retained endpoint representations
+
+Let \(L\) be the original finite bounded distributive support lattice. Use exactly the SZW10 carrier, extended to meromorphic amplitudes:
+\[
+G_L(\mathcal M)
+=\{(f,1_L):f\in\mathcal M\}
+\cup\{z_\lambda=(0,\lambda):\lambda\ne1_L\},\qquad
+\tau=z_{0_L},\quad e=z_{1_L}.
+\]
+No nonzero amplitude is assigned a nontop label. The original addition uses amplitude addition and support join; multiplication uses amplitude multiplication and support meet. These operations preserve the displayed set: if an amplitude sum or product is nonzero, each factor that could force a nontop support has been excluded by that nonzero amplitude. More explicitly, a nonzero sum has at least one top-labelled summand, and a nonzero product has both factors top-labelled. The element \(\tau=z_{0_L}\) is the additive identity and is multiplicatively absorbing. These operations respect restriction of sections. In particular \(e\ne\tau\) for a nontrivial support lattice. The multiplication map is
+\[
+\widehat M_C(z_\lambda)=z_\lambda,\qquad
+\widehat M_C(f,1_L)=(Cf,1_L),\qquad
+\widehat M_C^{-1}(F,1_L)=(C^{-1}F,1_L).
+\tag{UZ44}
+\]
+It is an additive, label-preserving bijection between the carrier over \(\mathcal L\) and the carrier over \(\mathcal O\); the two prescriptions agree at \(e=(0,1_L)\). It is multiplication by \((C,1_L)\) in the ambient meromorphic semiring, and its inverse is multiplication by \((C^{-1},1_L)\). It fixes every \(z_\lambda\), including the distinct elements \(e\) and \(\tau\).
+
+For precision this is a module/scalar-multiplication isomorphism, not a claim that multiplication by \(C\) is a ring homomorphism. Moreover \(\mathcal O(D)\) is not generally closed under multiplication in its embedding: its natural product is
+\(\mathcal O(D)\otimes\mathcal O(D)\to\mathcal O(2D)\).
+The corresponding exact multiplicative square uses \(M_{C^2}\) on \(\mathcal O(2D)\), since
+\((Cf)(Cg)=C^2fg\). Thus product domains and all labels are retained.
+
+At a special point, first apply the stalk/fibre morphism (UZ18) on the top amplitude, leaving each lower zero label unchanged. This gives, for example,
+\[
+([u y],1_L)\longmapsto(\kappa_m y(0),1_L)
+\quad\text{at }-2m,\qquad
+([u^{-1}y],1_L)\longmapsto(\tfrac12y(0),1_L)
+\quad\text{at }1,\qquad z_\lambda\longmapsto z_\lambda.
+\tag{UZ45}
+\]
+If a top fibre coefficient is zero, its image is \(e=(0,1_L)\); it is never \(\tau\). At \(-2m\), the ambient holomorphic evaluation instead gives \(e\), regardless of the derivative coefficient. Equation (UZ19) proves exactly why that different map loses the first nonzero coefficient. The faithful sheaf map retains it, and the independent lower labels remain fixed.
+
+Finally SZW's full endpoint representation and every lower fixed coordinate can be carried as direct, unchanged components:
+\[
+M_C\oplus\mathrm{id}_{V_L}:
+\mathcal L\oplus V_L\longrightarrow\mathcal O\oplus V_L,
+\tag{UZ46}
+\]
+where \(V_L\) is the original endpoint/lower-label vector space of SZW13 and SZW33–38. This formula is read on the spaces of sections together with the attached fixed representation; its inverse is \(M_{C^{-1}}\oplus\mathrm{id}_{V_L}\). The arbitrary complex \(c_\lambda\) are values of functions **on** the lower carrier points, as in SZW11. They are not nonzero amplitudes **in** the carrier at nontop labels. This distinction retains both the exact set in SZW10 and all its independent function coordinates. Equations (UZ20), (UZ22), (UZ24) additionally retain the meromorphic residues of \(\Lambda_t\) at both endpoints. A fixed supported-zero trace, an endpoint residue, a divisor order, a local section coefficient and an unsupported element have the connecting maps above; none has been replaced by another object merely because a scalar coefficient vanishes.
+
+The classical author construction (UZ2) is presented over complex \(s\), complex-valued functions and real heat time, with joint complex analytic extension justified here. The programme's lift (UZ44) and its augmented endpoint map (UZ46) are explicit additional constructions. Their existence does not prove that the original author heat kernel was defined over the absolute base. Completion is useful here because it gives an entire heat coordinate and its reflection; uncompletion through (UZ17), (UZ20), (UZ26), (UZ35) and (UZ42) preserves the full local and supported data. The signs in (UZ23)–(UZ24) concern exact real local coefficients, and do not establish positivity of the full reflected Weil pairing.
+
+## 7. All reflected local orientations and the unchanged nontrivial divisor
+
+Write \(\mathcal R_C(s)=C(1-s)/C(s)\), retaining this quotient as the definition. Substitution of (UZ1), with both polynomial factors retained before the equality is taken, proves the meromorphic identity
+\[
+\mathcal R_C(s)=
+\frac{\frac12(1-s)(-s)\pi^{-(1-s)/2}\Gamma((1-s)/2)}
+{\frac12s(s-1)\pi^{-s/2}\Gamma(s/2)}
+=\pi^{s-1/2}\frac{\Gamma((1-s)/2)}{\Gamma(s/2)}.
+\tag{UZ47}
+\]
+The equality of the polynomial factors is an identity of meromorphic functions, and does not remove the embedded lattices or their endpoint fibres. By (UZ15), or directly by (UZ6),
+\[
+\operatorname{div}\mathcal R_C
+=\sum_{m\ge0}[-2m]-\sum_{m\ge0}[1+2m].
+\tag{UZ48}
+\]
+For \(m\ge1\), put \(r_m=(-1)^m(2m)!/[2(2\pi)^{2m}]\). The exact leading orientations are
+\[
+\begin{aligned}
+\mathcal R_C(u)&=\tfrac12u+O(u^2),&
+\mathcal R_C(1+u)&=-2u^{-1}+O(1),\\
+\mathcal R_C(-2m+u)&=r_mu+O(u^2),&
+\mathcal R_C(1+2m+u)&=-r_m^{-1}u^{-1}+O(1).
+\end{aligned}\tag{UZ49}
+\]
+At zero and one these follow from \(c_0(0)=-1,\ c_1(0)=1/2\), using \(1-(1+u)=-u\). At \(-2m\), the leading quotient is \(C(1+2m)/\kappa_m\), which equals \(r_m\) by the same Gamma recurrence used in (UZ23). At the reflected point the local variable is \(-u\); this accounts for the minus sign in the pole coefficient. Thus a sign is not silently lost on reflection.
+
+For an arbitrary point \(p_*\), set \(p_*^\vee=1-p_*\), \(d_p=\operatorname{ord}_p C\), and \(C(p+u)=u^{d_p}c_p(u)\). Then
+\[
+\mathcal R_C(p_*+u)
+=(-1)^{d_{p_*^\vee}}u^{d_{p_*^\vee}-d_{p_*}}
+\frac{c_{p_*^\vee}(-u)}{c_{p_*}(u)}.
+\tag{UZ50}
+\]
+This follows by factoring numerator and denominator at their indicated points. It is valid also when \(d=-1\). Write
+\(\zeta_t(p+u)=u^{-d_p}y_{p,t}(u)\). Substitution in
+\(\zeta_t(s)=\mathcal R_C(s)\zeta_t(1-s)\) gives the exact regular-germ and all-jet identity
+\[
+y_{p_*,t}(u)
+=\frac{c_{p_*^\vee}(-u)}{c_{p_*}(u)}\,y_{p_*^\vee,t}(-u).
+\tag{UZ51}
+\]
+The two factors \((-1)^{d_{p_*^\vee}}\) and \((-1)^{-d_{p_*^\vee}}\) cancel in this frame map. Every \(j\)-th Taylor coefficient on the reflected side still carries the orientation \((-1)^j\), and multiplication/division by the displayed full unit supplies the remaining exact triangular coefficients as in (UZ18). In particular at \(0,1\), \(y_{0,t}(0)=-y_{1,t}(0)/2\); it is the relation between the original value at zero and the original pole residue.
+
+Complex conjugation can be retained too. Since the defining factors of \(C\) are real under conjugation, define
+\[
+J_C^\# f(s)=C(s)^{-1}
+\overline{C(1-\bar s)f(1-\bar s)}
+=\frac{C(1-s)}{C(s)}\,\overline{f(1-\bar s)}.
+\tag{UZ52}
+\]
+This is an antilinear involution on global sections of \(\mathcal L\), covering \(s\mapsto1-\bar s\) locally; its square is the identity by the same quotient cancellation. For real \(t\), \(J_C^\#\zeta_t=\zeta_t\) follows from the integral (UZ2). The comparison conjugates the reflected section involution exactly. It does not replace the original test-function involution or assign a sign to its trace pairing.
+
+At a zero \(\rho\) of \(\xi_t\) away from the fixed completion divisor, \(C\) is a holomorphic unit. Hence the local ideals generated by \(\zeta_t\) and \(\xi_t\) coincide:
+\[
+(\zeta_t)_\rho=(\xi_t)_\rho,\qquad
+\mathcal O_\rho/(\zeta_t)_\rho
+=\mathcal O_\rho/(\xi_t)_\rho.
+\tag{UZ53}
+\]
+This follows because each generator is the other multiplied by a holomorphic unit. Thus the full nontrivial local divisor algebra, multiplicity and nilpotent jet directions are preserved exactly. Together with the distinct fractional fibres (UZ19) at the fixed special points, this proves the complete local comparison rather than only a correspondence of zero sets off those points.
+
+
+

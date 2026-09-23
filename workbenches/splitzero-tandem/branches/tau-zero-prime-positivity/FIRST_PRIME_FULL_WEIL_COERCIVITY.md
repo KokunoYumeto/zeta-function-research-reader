@@ -1,0 +1,539 @@
+# Full Weil coercivity across the first prime window
+
+<!-- original-zeta-reconstruction-start -->
+**Original-zeta receiving calculation.** The working meromorphic function is the original Riemann zeta, with its full Gamma/endpoints multiplier and its full trivial-zero and pole divisor retained. [TF1–42](FAITHFUL_THETA_COMPLETION_RETURN.md) proves the original labelled theta inverse and the actual heat-image defect. [UZ1–53](FAITHFUL_UNCOMPLETED_ZETA_HEAT.md) proves every exceptional-point fibre, jet, original-zeta heat term and reflection orientation. [OZC1–48](ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md) rederives the compact contour and interval operator directly from zeta, including the left-cutoff Gamma boundary, and specifies exactly which compensated pairing the bounds concern. [OZH1–49](ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md) rederives the actual meromorphic heat, rational signed trace, compact-test domain, contact drift and full causal arithmetic variation. The raw full divisor and the compensated Weil receiver are linked by their displayed correction, not identified. In particular the fixed-test trivial-zero sum converges exactly at translations at least 1/32 and equals the earlier R term; at zero translation it requires the proved cutoff compensation. [OZK1–38](ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md) reconstructs the original signed Cauchy trace, its full Gamma correction, resonant finite parts, every finite matrix and its index, and the complete local heat jets. Its invertible map retains the raw trace and correction separately. These complete receiving proofs govern the interpretation of the retained auxiliary calculations below.
+<!-- original-zeta-reconstruction-end -->
+
+
+The full reflected Weil form has an explicit positive lower bound on every compact smooth test satisfying its two global endpoint equations and supported in an interval of length at most \(19/25\). The prime-\(2\) interaction is included. Its two overlap regions are controlled by the exact archimedean boundary potential; the global moment equations then control the two lowest Legendre modes.
+
+Precisely, put
+\[
+T_*=\frac{19}{25},\qquad c_*=\frac{11509}{600000}.
+\tag{FC1}
+\]
+For every nonzero complex-valued test in
+\[
+\mathcal V_{T_*}=
+\left\{F\in C_c^\infty(\mathbb R;\mathbb C):
+\int F(t)e^{t/2}\,dt=\int F(t)e^{-t/2}\,dt=0,\
+\operatorname{diam}(\operatorname{supp}F)\le T_*\right\},
+\]
+the result is
+\[
+\boxed{Q(F)>c_*\|F\|_2^2>\frac1{64}\|F\|_2^2.}
+\tag{FC2}
+\]
+For the zero function all terms are zero; the corresponding non-strict inequality holds on the whole space.
+
+This extends the supplied companion manuscript's \(3/4\)-support calculation N48–N52. That incoming result and proof strategy are retained as the source of the starting estimate; the larger support width, its explicit constant, and the application of that width to the entire first-prime window are the continuation here. Every estimate needed for (FC2) is proved below. No numerical location of a zeta zero is used, and no assertion of global Weil positivity or RH follows from this local theorem.
+
+## 1. Original form, involution, and all endpoint coordinates
+
+Use exactly
+\[
+M_F(s)=\int_{\mathbb R}F(t)e^{-(s-1/2)t}\,dt,\qquad
+F^\#(t)=\overline{F(-t)},\qquad
+\tau_uF(t)=F(t-u),\qquad
+\langle F,G\rangle=\int\overline F G.
+\tag{FC3}
+\]
+For \(h=F^\#*F\),
+\[
+h(u)=\int\overline{F(t-u)}F(t)\,dt,\qquad
+M_h(s)=\overline{M_F(1-\overline s)}M_F(s).
+\]
+The full explicit formula, with every nontrivial zero and multiplicity, is
+\[
+\begin{aligned}
+Q(F)&=\sum_\rho m_\rho
+\overline{M_F(1-\overline\rho)}M_F(\rho)\\
+&=M_h(0)+M_h(1)+A_\infty(h)-P_{\rm fin}(h),\\
+P_{\rm fin}(h)&=
+2\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+\Re\langle F,\tau_{\log n}F\rangle.
+\end{aligned}
+\tag{FC4}
+\]
+Here \(\Lambda\) is the von Mangoldt function, with \(\Lambda(p^j)=\log p\) and zero otherwise. Compact support makes the prime sum finite. The original critical-strip zero count and rapid vertical decrease of the compact smooth transforms prove absolute convergence of the zero sum. The complete derivation, including the full supported endpoints, is [SZW19–SZW38](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/5a89872598df0902b7c1393cf8e4692ca3010a95/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md).
+
+The two original endpoint equations imply
+\[
+M_h(0)=\overline{M_F(1)}M_F(0)=0,\qquad
+M_h(1)=\overline{M_F(0)}M_F(1)=0.
+\tag{FC5}
+\]
+They are global equations on \(F\). No separate moment equations will be imposed on pieces of its support.
+
+For comparison with the incoming plus-exponent convention, the exact map is reflection:
+\[
+(RF)(t)=F(-t),\qquad R^2=1,\qquad
+M_F^+(s)=M_F(1-s)=M_{RF}(s).
+\tag{FC6}
+\]
+It is unitary on \(L^2\), preserves support diameter, and exchanges the moments. It preserves \(Q\), as follows by relabelling the absolutely convergent zero sum by \(\rho\mapsto1-\rho\). Thus the original convention and the supplied convention are related by a proved map, with no change to the Weil involution.
+
+## 2. The complete archimedean expression
+
+With \(N=\|F\|_2^2\), the original Gamma contribution is
+\[
+A_\infty(h)=-(\gamma_E+\log\pi)N+
+\int_0^\infty
+\frac{e^{-x}N-\tfrac12e^{-x/4}\{h(x/2)+h(-x/2)\}}
+{1-e^{-x}}\,dx.
+\tag{FC7}
+\]
+This is HA13, also PS3, derived from the exact multiplier
+\(\Re\psi(1/4+iy/2)-\log\pi\) in SZW24. The subtracted numerator makes the integral converge at zero.
+
+Put
+\[
+k(u)=\frac{e^{-u/2}}{1-e^{-2u}}=\frac{e^{u/2}}{2\sinh u},
+\qquad
+\kappa_\infty=\log(8\pi)+\gamma_E+\frac\pi2.
+\]
+Changing \(x=2u\) in (FC7) and using
+\(\|F-\tau_uF\|^2=2N-2\Re h(u)\) gives
+\[
+A_\infty(h)=
+\int_0^\infty k(u)\|F-\tau_uF\|_2^2\,du-\kappa_\infty N.
+\tag{FC8}
+\]
+Here is an explicit scalar verification. First (FC7) is the negative of
+\[
+\{\log(4\pi)+\gamma_E\}N+
+2\int_0^\infty\{\Re h(u)-e^{-u/2}N\}k(u)\,du.
+\]
+The sum of those two expressions is
+\[
+\log4\,N+
+2N\int_0^\infty
+\frac{e^{-2u}-e^{-u}}{1-e^{-2u}}\,du=0.
+\]
+Next, with \(q=e^{-u/2}\),
+\[
+2\int_0^\infty(1-e^{-u/2})k(u)\,du
+=4\int_0^1\frac{dq}{(1+q)(1+q^2)}
+=\log2+\frac\pi2.
+\tag{FC9}
+\]
+The partial fractions are
+\(\{2(1+q)\}^{-1}+(1-q)/\{2(1+q^2)\}\).
+These identities prove (FC8), including the entire constant.
+
+Equations (FC4)–(FC9) give the original full form on the two-moment space:
+\[
+Q(F)=\int_0^\infty k(u)\|F-\tau_uF\|_2^2\,du
+-\kappa_\infty\|F\|_2^2
+-2\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+\Re\langle F,\tau_{\log n}F\rangle.
+\tag{FC10}
+\]
+Near zero, \(\|F-\tau_uF\|_2\le u\|F'\|_2\); at infinity \(k\) decays exponentially. This verifies the convergence used above. In particular, the endpoint/Gamma term has not been replaced by a constant-only approximation.
+
+## 3. Exact interval transport and exterior potential
+
+For a containing interval \(I=[c-T/2,c+T/2]\), use the unitary map
+\[
+f(x)=(U_{T,c}F)(x)=\sqrt{\frac T2}\,F(c+Tx/2),
+\qquad -1\le x\le1,
+\]
+\[
+F(t)=\sqrt{\frac2T}\,f(2(t-c)/T),\qquad
+\|f\|_2=\|F\|_2.
+\tag{FC11}
+\]
+Translation preserves the full form: \(M_{\tau_cF}(s)=e^{-c(s-1/2)}M_F(s)\), and the two factors in the reflected pairing cancel. The transformed moments are exactly
+\[
+\int_{-1}^1f(x)e^{ax}\,dx=
+\int_{-1}^1f(x)e^{-ax}\,dx=0,\qquad a=T/4.
+\tag{FC12}
+\]
+The original scalar factors from the centre and Jacobian are nonzero. The displayed equations are therefore equivalent to the original two moments.
+
+Let
+\[
+\begin{aligned}
+(\mathcal Lf)(x)&=\frac12\int_{-1}^1
+\frac{f(x)-f(y)}{|x-y|}\,dy,\\
+v(x)&=-\frac12\log(1-x^2),\qquad
+r(s)=k(s)-\frac1{2s},\\
+(\mathcal R_Tf)(x)&=\frac T2\int_{-1}^1
+r(T|x-y|/2)f(y)\,dy.
+\end{aligned}
+\tag{FC13}
+\]
+The exact archimedean operator transported by (FC11) is
+\[
+\boxed{
+A_{\infty,T}=\mathcal L+v-\log(\pi T)-\gamma_E-\mathcal R_T.
+}
+\tag{FC14}
+\]
+To prove it, write the translation energy as
+\(\frac12\int_{\mathbb R^2}k(|t-u|)|F(t)-F(u)|^2\,dt\,du\).
+Interior pairs give the difference kernel after transport. Exterior pairs give the diagonal potential
+\[
+J(T(1+x)/2)+J(T(1-x)/2),\qquad
+J(s)=\int_s^\infty k(u)\,du.
+\]
+Direct differentiation and the limit at zero prove
+\[
+J(s)=\operatorname{arctanh}(e^{-s/2})
++\arctan(e^{-s/2})
+=-\frac12\log s+\log2+\frac\pi4-\int_0^s r(u)\,du.
+\tag{FC15}
+\]
+The interior diagonal part of \(r\) cancels the two integrals in (FC15). Its off-diagonal part is \(-\mathcal R_T\). The remaining exterior constant is
+\(-\log(T/2)+2\log2+\pi/2\).
+Subtracting \(\kappa_\infty\) leaves \(-\log(\pi T)-\gamma_E\); the remaining variable term is \(v(x)\). This proves (FC14), retaining the complete exterior contribution.
+
+## 4. Control the actual prime-\(2\) term for a range of widths
+
+For this section let
+\[
+\frac34\le T\le\frac{19}{25},\qquad
+\beta=\frac{\log2}{\sqrt2},\qquad
+\delta=\frac{2\log2}{T}.
+\tag{FC16}
+\]
+One has \(\log2<T<\log3\) and \(1<\delta<2\). Thus only the prime power \(2\) occurs in (FC10). Its full transported value is
+\[
+\langle f,B_2f\rangle=
+2\beta\Re\int_{-1+\delta}^1\overline{f(x)}f(x-\delta)\,dx
+\le\beta\int_{|x|\ge\delta-1}|f(x)|^2\,dx.
+\tag{FC17}
+\]
+The inequality is \(2\Re(\overline zw)\le|z|^2+|w|^2\). The overlap strips \([-1,1-\delta]\) and \([-1+\delta,1]\) are disjoint; changing variables in the second squared term gives exactly the displayed integral. No phase or part of the prime interaction is omitted.
+
+The convergent positive series
+\[
+\log2=2\sum_{j=0}^\infty\frac1{(2j+1)3^{2j+1}}
+\tag{FC18}
+\]
+follows by integrating the geometric series for \(1/(1-x^2)\) from zero to \(1/3\). Its first two terms give \(\log2>56/81\). Therefore uniformly over (FC16),
+\[
+\delta-1>\frac{1261}{1539},\qquad
+\left(\frac{1261}{1539}\right)^2-\frac7{11}
+=\frac{911684}{26053731}>0.
+\]
+The bound \(e<11/4\) gives \(1-e^{-1}<7/11\), so \(v(x)>1/2\) throughout both overlap strips. Outside them \(v(x)\ge0\).
+
+Also \(e^{7/10}>12013/6000>2\), by its first four positive terms; hence \(\log2<7/10\). Since \(\sqrt2>7/5\), one has \(\beta<1/2\). Consequently the complete prime term satisfies
+\[
+\boxed{\int_{-1}^1v(x)|f(x)|^2\,dx-\langle f,B_2f\rangle\ge0.}
+\tag{FC19}
+\]
+The elementary estimate \(e<11/4\) used here follows, for example, from
+\[
+e<\sum_{j=0}^3\frac1{j!}+
+\frac{1/4!}{1-1/5}
+=\frac{87}{32}<\frac{11}{4}.
+\]
+It also gives \(\log3>1\), verifying the claimed range of prime terms.
+
+## 5. The global moments give a quantitative Legendre gap
+
+The nonnegative Hermitian form of \(\mathcal L\) is
+\[
+\mathcal E(f,g)=\frac14\int_{-1}^1\int_{-1}^1
+\frac{\overline{f(x)-f(y)}(g(x)-g(y))}{|x-y|}\,dx\,dy.
+\]
+For a monomial, factor \(x^n-y^n\), divide by \(x-y\), and integrate each term with \(\operatorname{sgn}(x-y)\). This gives
+\[
+\mathcal Lx^n=H_nx^n-
+\sum_{j=1}^{\lfloor n/2\rfloor}\frac{x^{n-2j}}{2j},
+\qquad H_n=\sum_{j=1}^n\frac1j,\quad H_0=0.
+\tag{FC20}
+\]
+Symmetry and degree preservation therefore give
+\(\mathcal LP_n=H_nP_n\) for the Legendre polynomials. Put
+\[
+p_n=\sqrt{\frac{2n+1}{2}}P_n,\qquad
+c_n=\langle p_n,f\rangle.
+\]
+For a finite Legendre projection \(p^{(N)}=\sum_{n=0}^Nc_np_n\), the integral form gives
+\[
+\mathcal E(f,f)=
+\sum_{n=0}^NH_n|c_n|^2+
+\mathcal E(f-p^{(N)},f-p^{(N)}).
+\]
+Indeed \(\mathcal E(p_n,f)=H_n\langle p_n,f\rangle\), by Fubini, and all these integrals are finite for smooth \(f\) and polynomials. Nonnegativity and completeness of the Legendre basis imply
+\[
+\mathcal E(f,f)\ge
+\frac32\|f\|_2^2-\frac32|c_0|^2-\frac12|c_1|^2.
+\tag{FC21}
+\]
+No convergence assumption on an infinite operator expansion is required.
+
+The two equations (FC12) give orthogonality of \(f_{\rm even}\) to \(\cosh(ax)\), and of \(f_{\rm odd}\) to \(\sinh(ax)\). With \(p_0=1/\sqrt2\) and \(p_1=\sqrt{3/2}\,x\), Taylor's integral remainder and Cauchy–Schwarz give
+\[
+|c_0|^2\le A(T)\|f_{\rm even}\|_2^2,\qquad
+|c_1|^2\le\frac5{21}A(T)\|f_{\rm odd}\|_2^2,\qquad
+A(T)=\frac{(T/4)^4\cosh^2(T/4)}{20}.
+\tag{FC22}
+\]
+The two remainder inequalities are
+\[
+|\cosh(ax)-1|\le\frac{a^2x^2\cosh a}{2},\qquad
+|\sinh(ax)/a-x|\le\frac{a^2|x|^3\cosh a}{6}.
+\]
+After squaring, \(\int_{-1}^1x^4dx=2/5\) and \(\int_{-1}^1x^6dx=2/7\) give the constants \(1/20\) and \(1/84\), respectively.
+
+The constant \(1/4\) in \(r\) gives exactly
+\[
+\langle f,\mathcal R_T^{(0)}f\rangle
+=\frac T8\left|\int_{-1}^1f(x)\,dx\right|^2
+=\frac T4|c_0|^2.
+\tag{FC23}
+\]
+Combining (FC21)–(FC23), and using orthogonality of the even and odd parts, proves
+\[
+\mathcal E(f,f)-\langle f,\mathcal R_T^{(0)}f\rangle
+\ge
+\left\{\frac32-\left(\frac32+\frac T4\right)A(T)\right\}\|f\|_2^2.
+\tag{FC24}
+\]
+The odd deficit is \(5A(T)/42\), which is bounded by the displayed even deficit. This retains the constant kernel and uses only the original two global moments.
+
+## 6. A certified kernel bound with the original scale
+
+The analytic function \(r\) at zero has expansion
+\[
+r(z)=\sum_{j=0}^\infty b_jz^j,\qquad
+b_j=\frac{2^jB_{j+1}(3/4)}{(j+1)!},
+\]
+\[
+(b_0,\ldots,b_8)=
+\left(\frac14,-\frac1{48},-\frac1{32},
+\frac7{11520},\frac5{1536},-\frac{31}{1935360},
+-\frac{61}{184320},\frac{127}{309657600},
+\frac{277}{8257536}\right).
+\tag{FC25}
+\]
+This follows from
+\[
+\frac{e^{z/2}}{2\sinh z}
+=\frac1{2z}\frac{2ze^{3z/2}}{e^{2z}-1}.
+\]
+The nearest nonremovable singularities are \(z=\pm i\pi\), so \(r\) is analytic on the closed disc of radius \(2\).
+
+For \(z=x+iy\), \(|z|=2\),
+\[
+|\sinh z|^2=\sinh^2x+\sin^2y
+\ge x^2+\frac{\sin^22}{4}y^2\ge\sin^22.
+\]
+The first inequality uses the decrease of \(\sin y/y\) on \([0,2]\); its derivative has the sign of \(y\cos y-\sin y\), whose derivative is \(-y\sin y<0\). The alternating sine series gives
+\[
+\sin2>2-\frac{2^3}{3!}+\frac{2^5}{5!}-\frac{2^7}{7!}
+=\frac{286}{315}>\frac9{10}.
+\]
+Thus, on that circle,
+\[
+|r(z)|\le\frac e{2\sin2}+\frac14
+<\frac{16}{9}<2.
+\tag{FC26}
+\]
+Cauchy's estimate consequently bounds the degree-eight tail. Define the explicit rational function
+\[
+E(T)=\sum_{j=1}^8|b_j|T^j+
+\frac{2(T/2)^9}{1-T/2}\qquad(0<T<2).
+\tag{FC27}
+\]
+Then \(|r(s)-1/4|\le E(T)\) for \(0\le s\le T\). For the nonconstant remainder operator from (FC13), Schur's row and column bounds give
+\[
+\|\widetilde{\mathcal R}_T\|\le T E(T).
+\tag{FC28}
+\]
+Every coefficient and the remainder scale are those of the actual kernel.
+
+Before substituting a width, (FC14), (FC19), (FC24), and (FC28) prove on the whole interval (FC16)
+\[
+\boxed{
+Q(F)\ge c(T)\|F\|_2^2,\qquad
+c(T)=\frac32-\log(\pi T)-\gamma_E
+-T E(T)-\left(\frac32+\frac T4\right)A(T).
+}
+\tag{FC29}
+\]
+This is an explicit bound for every width in a stated numerical interval whose prime condition has already been proved. It does not assume the missing sign of a residual operator. If desired, a rational majorant for the moment quantity is
+\[
+A(T)\le
+\frac{(T/4)^4}{20(1-T^2/32)^2},
+\]
+because \((2n)!\ge2^n\) gives \(\cosh(T/4)\le(1-T^2/32)^{-1}\) on this range.
+
+## 7. Evaluation at \(T=19/25\)
+
+Here \(a=19/100\), and
+\[
+\cosh a\le\frac{20000}{19639}<\frac{33}{32}.
+\]
+Exact rational substitution in (FC22) gives
+\[
+A(T_*)<
+\frac{141919569}{2048000000000},
+\]
+\[
+\left(\frac32+\frac{T_*}{4}\right)
+\frac{141919569}{2048000000000}
+=\frac{23984407161}{204800000000000}
+=\frac1{8000}
+-\frac{1615592839}{204800000000000}
+<\frac1{8000}.
+\tag{FC30}
+\]
+The kernel bound is exactly
+\[
+E(T_*)=
+\frac{4199809019840292631}{117180000000000000000}
+=\frac9{250}-
+\frac{18670980159707369}{117180000000000000000}
+<\frac9{250}.
+\]
+Consequently
+\[
+T_* E(T_*)<\frac{171}{6250}.
+\tag{FC31}
+\]
+
+For the scalar term, the elementary identity
+\[
+\frac{22}{7}-\pi=
+\int_0^1\frac{x^4(1-x)^4}{1+x^2}\,dx>0
+\]
+gives \(\pi<22/7\). The exact positive exponential truncation
+\[
+\sum_{j=0}^7\frac{(43/50)^j}{j!}
+-\frac{33}{14}
+=\frac{1126807544917}{187500000000000}>0
+\]
+proves \(\log(33/14)<43/50\).
+For Euler's constant, monotonicity of \(H_n-\log n\), together with the first four terms of (FC18), gives
+\[
+\gamma_E<H_{256}-8\log2
+<\frac{612435}{100000}-8\frac{53056}{76545}
+=\frac{177361483}{306180000}<\frac{29}{50}.
+\tag{FC32}
+\]
+Here \(H_{256}<612435/100000\) is a finite exact rational sum, checked independently by the accompanying source. Therefore
+\[
+\log(3\pi/4)+\gamma_E<\frac{43}{50}+\frac{29}{50}=\frac{36}{25}.
+\]
+Since \(T_*/(3/4)=76/75\) and \(\log(1+x)<x\) for \(x>0\),
+\[
+\boxed{
+\log(\pi T_*)+\gamma_E
+<\frac{36}{25}+\frac1{75}=\frac{109}{75}.
+}
+\tag{FC33}
+\]
+
+Substitute (FC30)–(FC33) into (FC29). For nonzero \(F\),
+\[
+\begin{aligned}
+Q(F)&>
+\left(\frac32-\frac{109}{75}-\frac{171}{6250}-\frac1{8000}\right)
+\|F\|_2^2\\
+&=\frac{11509}{600000}\|F\|_2^2.
+\end{aligned}
+\tag{FC34}
+\]
+Its margin above \(1/64\) is exactly \(1067/300000>0\), proving (FC2).
+
+There is also a separate, slightly weaker rational scalar route. The five terms
+\[
+\sum_{j=0}^4\frac{(7/8)^j}{j!}
+=\frac{78443}{32768}
+>\frac{418}{175}>\pi T_*
+\]
+give \(\log(\pi T_*)+\gamma_E<291/200\), and hence
+\[
+Q(F)>\frac{3503}{200000}\|F\|_2^2>
+\frac1{64}\|F\|_2^2.
+\tag{FC35}
+\]
+The stronger constant in (FC34) exceeds this by exactly \(1/600\). Both estimates use the same full operator and prime term.
+
+## 8. Exact support range of the fixed first-prime tests
+
+For the programme's fixed radius \(r=1/64\), the test \(f_r\) has support in \([-r,r]\). Its autocorrelation has support in \([-2r,2r]\), so the possible first-prime translation window is
+\[
+\log2-2r\le a\le\log2+2r.
+\]
+The union of the supports of \(f_r\) and \(\tau_af_r\) has containing interval length at most \(a+2r\). Throughout this window it is therefore at most
+\[
+\log2+4r=\log2+\frac1{16}.
+\tag{FC36}
+\]
+This is below \(19/25\), with a rational proof. The first five positive terms of \(e^{25/36}\) exceed \(2\), so \(\log2<25/36\). Then
+\[
+\log2+\frac1{16}<\frac{109}{144}<\frac{19}{25},
+\qquad \frac{19}{25}-\frac{109}{144}=\frac{11}{3600}>0.
+\tag{FC37}
+\]
+The finite exponential comparison is included in the exact checker. Thus the larger coercive support interval covers the entire first-prime window for these original-radius tests, including every linear combination of the two translates. The complete fixed-test correlation calculation uses this inclusion; no outside-window bound is inferred here.
+
+## 9. Original primitives, finite matrices, and supported zero
+
+The endpoint-killing operator is unchanged:
+\[
+\mathcal D=\partial_t^2-\frac14,\qquad
+M_{\mathcal Dg}(s)=s(s-1)M_g(s).
+\tag{FC38}
+\]
+The identity follows by two integrations by parts for \(g\in C_c^\infty\), and \(\mathcal D\) does not enlarge support. Conversely every compact smooth \(F\) satisfying the two moments has the unique compact smooth primitive
+\[
+g(t)=-\int_{\mathbb R}e^{-|t-u|/2}F(u)\,du,\qquad
+\mathcal Dg=F.
+\tag{FC39}
+\]
+The kernel has derivative jump one. Outside a containing support interval, its two tails are the original two exponential moments and hence vanish. A difference of two compact primitives solves the homogeneous equation and must be zero. Thus (FC39) preserves the containing support interval.
+
+The norm calculation gives
+\[
+\|\mathcal Dg\|_2^2=
+\|g''\|_2^2+\frac12\|g'\|_2^2+\frac1{16}\|g\|_2^2.
+\]
+Consequently, for nonzero \(g\) with support diameter at most \(19/25\),
+\[
+Q(\mathcal Dg)>
+c_*\left(\|g''\|_2^2+\frac12\|g'\|_2^2+\frac1{16}\|g\|_2^2\right).
+\tag{FC40}
+\]
+The interval coordinate map has the exact intertwining formula
+\[
+U_{T,c}\mathcal D U_{T,c}^{-1}
+=\frac4{T^2}\partial_x^2-\frac14.
+\tag{FC41}
+\]
+No constant has been absorbed into a different differential operator.
+
+For a finite family in one common containing interval of length \(19/25\), the full sesquilinear form satisfies
+\[
+[Q(F_i,F_j)]\succeq c_*[\langle F_i,F_j\rangle].
+\tag{FC42}
+\]
+Apply (FC34) to \(\sum c_jF_j\) to prove the matrix statement; the difference is strictly positive whenever that function is nonzero.
+
+Finally retain the entire original support space \(\mathbb C[L]\). With \(H=M_{F^\#*F}\), its distributions are
+\[
+\begin{aligned}
+\boldsymbol B_L&=(H(0)+H(1))\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol Z_L&=Q(F)\mathbf e_{1_L},\\
+\boldsymbol D_L&=(P_{\rm fin}-A_\infty)\mathbf e_{1_L}
++H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\\
+\boldsymbol B_L-\boldsymbol Z_L&=\boldsymbol D_L.
+\end{aligned}
+\tag{FC43}
+\]
+Both endpoint coefficients vanish by (FC5); their coordinate spaces remain. Every linear map displayed above has the fixed-label lift \((F,\lambda)\mapsto(TF,\lambda)\) on its stated domain. It commutes with amplitude projection and leaves the support label unchanged. A zero amplitude in such a carrier remains its supported zero \((0,\lambda)\); it is not identified with the unsupported element \(\tau\).
+
+## Source and verification record
+
+The starting \(3/4\) theorem and interval-operator method were supplied in the companion manuscript “Direct RH continuation: the optimal packet cost in the full Weil form,” N1–N11 and N48–N52, dated 23 September 2026, source SHA256 D3B1AC08C71F6104CFE011BA5E5B86F6FBE182916C0B0270511671B1F7165D5B. The independent audit is retained separately. The present proof gives all arguments needed for the enlarged interval and its stronger constant.
+
+The programme's original full formula is SZW19–SZW38, with its human Weil and Connes sources; HA13 supplies the real kernel (FC7), and PS1–PS15 supplies the original support and primitive conventions, which are rederived where used here. No historical priority claim is made for the interval kernel, Legendre diagonalization, or local Weil positivity.
+
+The accompanying exact-rational checker divides the kernel power series independently, verifies every displayed rational estimate at \(3/4\) and \(19/25\), evaluates the finite harmonic sum, and checks the exponential comparisons. It uses rational arithmetic only. These checks supplement the analytic estimates (FC7)–(FC43); they do not replace the convergence, domain, or prime-interaction proofs.

@@ -1,0 +1,794 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{xurl}
+\emergencystretch=3em
+\setcounter{tocdepth}{1}
+\newcommand{\Beta}{\mathrm{B}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{21A6}{\ensuremath{\mapsto}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2209}{\ensuremath{\notin}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{2228}{\ensuremath{\vee}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{The localized Weil packet: values, jets, and the observation
+multiplier}\label{the-localized-weil-packet-values-jets-and-the-observation-multiplier}
+
+This paper computes the finite Hermitian form specified by the zero side
+of the Weil pairing on the programme's entire functions. It keeps the
+polynomial coordinate change, all primary jets, and the actual
+multiplier \(U=M_{j_h(v_h)}\). The form has a four-dimensional
+nondegenerate quotient and a fully described nilpotent radical. Every
+jet remains present in the source algebra and in the multiplier,
+although the zero-side pairing evaluates only the zeroth jets.
+
+The definitions of the quartet, \(E_h\), the Taylor remainder \(j_h\),
+the unit \(U\), and the primary basis are those of the programme's OPG1
+and OPG10--OPG11 in \emph{Full observation proofs}. They are restated
+and proved to the extent needed here. The starting suggestion is
+Proposition 3 in the supplied \emph{Split-Zero programme: orientation
+and new angles}, 22 September 2026. The formula there changes from the
+Fourier coordinate to the \(s\)-coordinate without changing the
+polynomial's name. Equations (WP5)--(WP11) below give the exact
+coordinate maps.
+
+No analytic explicit-formula identity, Fourier inversion assertion, or
+positivity theorem is assumed in the finite calculation. Section 10
+specifies the precise zero-side identity proved here and its analytic
+scope.
+
+\subsection{1. The complete-order quartet and the two polynomial
+coordinates}\label{the-complete-order-quartet-and-the-two-polynomial-coordinates}
+
+Retain the programme's hypotheses \[
+\rho=\frac12+\delta+i\gamma,
+\qquad 0<\delta<\frac12,\quad \gamma>2,\quad m\in\mathbb Z_{\ge1}.
+\tag{WP1}
+\] Order its four distinct points as \[
+\alpha_1=\rho,\quad
+\alpha_2=1-\overline\rho,\quad
+\alpha_3=\overline\rho,\quad
+\alpha_4=1-\rho,
+\qquad \mathcal R=\{\alpha_1,\alpha_2,\alpha_3,\alpha_4\}.
+\tag{WP2}
+\] The real parts distinguish points with the same imaginary part
+because \(\delta>0\), and the imaginary parts distinguish the upper and
+lower pairs because \(\gamma>0\). Let \(g=2\xi\) have a zero of exact
+order \(m\) at each \(\alpha\in\mathcal R\). Put \[
+d(s)=\prod_{\alpha\in\mathcal R}(s-\alpha),\qquad
+h(s)=d(s)^m,\qquad n=4m,\qquad v_h(s)=\frac{g(s)}{h(s)}.
+\tag{WP3}
+\] Here \(s\) is the original zeta coordinate. At each \(\alpha\), write
+\(g(s)=(s-\alpha)^m b_\alpha(s)\), where \(b_\alpha\) is holomorphic and
+\(b_\alpha(\alpha)\ne0\). If \(h_\alpha(s)=h(s)/(s-\alpha)^m\), then
+\(h_\alpha(\alpha)\ne0\), and \[
+v_h(s)=\frac{b_\alpha(s)}{h_\alpha(s)}\quad\hbox{near }\alpha,
+\qquad
+v_h(\alpha)=\frac{g^{(m)}(\alpha)}{m!\,h_\alpha(\alpha)}\ne0.
+\tag{WP4}
+\] Thus all the apparent singularities of \(g/h\) are removable and
+\(v_h\) is entire. At every zero \(\rho'\notin\mathcal R\) of \(g\), it
+vanishes because \(h(\rho')\ne0\).
+
+Define the Fourier coordinate and its inverse by \[
+\theta(s)=\frac{s-1/2}{i},\qquad \iota(z)=\frac12+iz,
+\qquad \theta\iota=\mathrm{id}_{\mathbb C},\quad
+\iota\theta=\mathrm{id}_{\mathbb C}.
+\tag{WP5}
+\] For \(P\in\mathbb C[z]\), the associated \(s\)-polynomial is \[
+q_P(s)=P(\theta(s)),
+\qquad F_P(z)=P(z)v_h(\iota(z)).
+\tag{WP6}
+\] In particular \(F_P(\theta(s))=q_P(s)v_h(s)\). The two polynomials
+\(P\) and \(q_P\) have the same degree, but their coefficients and
+variables differ by (WP5). A factor \(P(1-\overline\alpha)\) is
+therefore not the value obtained from \(F_P\) unless \(P\) has first
+been replaced by \(q_P\).
+
+Put \(\beta_\alpha=\theta(\alpha)\). In the order (WP2), \[
+(\beta_{\alpha_1},\beta_{\alpha_2},\beta_{\alpha_3},\beta_{\alpha_4})
+=(\gamma-i\delta,\gamma+i\delta,-\gamma-i\delta,-\gamma+i\delta).
+\tag{WP7}
+\] Let \(\sigma\alpha=1-\overline\alpha\). This involution interchanges
+\(\alpha_1,\alpha_2\) and \(\alpha_3,\alpha_4\). Direct substitution
+gives \[
+\overline{\theta(\alpha)}=\theta(\sigma\alpha),
+\qquad \iota(\overline{\beta_\alpha})=\sigma\alpha.
+\tag{WP8}
+\]
+
+Define \[
+H(z)=\prod_{\alpha\in\mathcal R}(z-\beta_\alpha)^m
+=i^{-n}h(\iota(z)),
+\qquad E_z=\mathbb C[z]/(H),\quad E_h=\mathbb C[s]/(h).
+\tag{WP9}
+\] Here \(n=4m\), so \(i^{-n}=1\); the scalar is displayed to record how
+the defining polynomials transform. The maps \[
+\mathcal C:E_z\longrightarrow E_h,
+\quad [P]\longmapsto[P\circ\theta],
+\qquad
+\mathcal C^{-1}:E_h\longrightarrow E_z,
+\quad[q]\longmapsto[q\circ\iota]
+\tag{WP10}
+\] are inverse algebra isomorphisms. Indeed substitution sends \(H\) to
+\(i^{-n}h\) and \(h\) to \(i^nH\), so the maps descend to the quotients.
+Their two composites fix every polynomial by (WP5). They also retain the
+multiplication operators exactly: \[
+\mathcal C M_z=M_{\theta(s)}\mathcal C,
+\qquad
+\mathcal C M_{\iota(z)}=M_s\mathcal C.
+\tag{WP11}
+\]
+
+\subsection{2. All the jets and the entire-function
+remainder}\label{all-the-jets-and-the-entire-function-remainder}
+
+For each \(\alpha\in\mathcal R\), introduce an independent nilpotent
+coordinate \(t_\alpha\) and the algebra \[
+A_\alpha=\mathbb C[t_\alpha]/(t_\alpha^m).
+\tag{WP12}
+\] There is an algebra isomorphism \[
+\mathcal J:E_h\longrightarrow\prod_{\alpha\in\mathcal R}A_\alpha,
+\qquad
+[q]\longmapsto\left(
+\sum_{a=0}^{m-1}\frac{q^{(a)}(\alpha)}{a!}t_\alpha^a
+\right)_{\alpha\in\mathcal R}.
+\tag{WP13}
+\] Every derivative in this formula is part of the specified map.
+
+Here is a direct proof including its inverse. Define \[
+T_\alpha(s)=\sum_{a=0}^{m-1}
+\frac{(1/h_\alpha)^{(a)}(\alpha)}{a!}(s-\alpha)^a,
+\qquad e_\alpha=[h_\alpha T_\alpha]\in E_h.
+\tag{WP14}
+\] Modulo \((s-\alpha)^m\), the product \(h_\alpha T_\alpha\) equals
+\(1\), by multiplication of the Taylor expansion and its truncated
+inverse. Modulo \((s-\eta)^m\) for \(\eta\ne\alpha\), it equals \(0\),
+because \(h_\alpha\) is divisible by that factor. Thus
+\(\mathcal J(e_\alpha)\) is \(1\) in the \(\alpha\)-factor and \(0\)
+elsewhere. The inverse of (WP13) is \[
+\mathcal J^{-1}\left(\left(\sum_{a=0}^{m-1}c_{\alpha,a}t_\alpha^a\right)_\alpha\right)
+=\sum_{\alpha\in\mathcal R}\sum_{a=0}^{m-1}
+c_{\alpha,a}e_\alpha(s-\alpha)^a.
+\tag{WP15}
+\] This proves surjectivity. For injectivity, a polynomial in the kernel
+has a zero of order at least \(m\) at each of the four distinct points.
+Successive division by their linear factors shows it is divisible by
+their product \(h\). The kernel is therefore zero in \(E_h\). Taylor
+multiplication modulo \(t_\alpha^m\) proves multiplicativity. Equations
+(WP13)--(WP15) also prove \[
+e_\alpha e_\eta=0\ (\alpha\ne\eta),\qquad
+e_\alpha^2=e_\alpha,\qquad\sum_\alpha e_\alpha=1,
+\tag{WP16}
+\] and give the basis \(e_\alpha(s-\alpha)^a\), \(0\le a<m\), of
+\(E_h\).
+
+For an entire function \(f\), define its finite Taylor remainder by \[
+j_h(f)=\mathcal J^{-1}\left(\left(
+\sum_{a=0}^{m-1}\frac{f^{(a)}(\alpha)}{a!}t_\alpha^a
+\right)_\alpha\right)\in E_h.
+\tag{WP17}
+\] This is an algebra homomorphism: addition and scalar multiplication
+follow coefficient by coefficient, and the Leibniz rule gives
+multiplication of the truncated Taylor series. It agrees with the
+quotient map on polynomials. The class \(j_h(f)\) has a unique
+representative of degree less than \(n\), by division by the monic
+polynomial \(h\).
+
+In the programme notation \(j_hv_h\), the symbol \(j_h\) denotes this
+map applied to \(v_h\). It is not a second scalar function multiplied by
+\(v_h\). Put \[
+u_h=j_h(v_h),\qquad U=M_{u_h}:E_h\longrightarrow E_h.
+\tag{WP18}
+\] In the \(\alpha\)-factor of (WP13), set \[
+v_{\alpha,a}=\frac{v_h^{(a)}(\alpha)}{a!},
+\qquad u_\alpha(t_\alpha)=\sum_{a=0}^{m-1}v_{\alpha,a}t_\alpha^a.
+\tag{WP19}
+\] All constants \(v_{\alpha,0}\) are nonzero by (WP4). Write
+\(u_\alpha=v_{\alpha,0}(1+b_\alpha)\), with \(b_\alpha\in(t_\alpha)\).
+Since \(b_\alpha^m=0\), its inverse is \[
+u_\alpha^{-1}=v_{\alpha,0}^{-1}
+\sum_{r=0}^{m-1}(-b_\alpha)^r.
+\tag{WP20}
+\] Multiplication of this finite series by \(u_\alpha\) gives
+\(1-(-b_\alpha)^m=1\). Hence \(u_h\) is a unit and \(U\) an
+automorphism. In full jet coordinates its formula is \[
+(Ux)_{\alpha,a}=\sum_{b=0}^a v_{\alpha,b}x_{\alpha,a-b}
+\qquad(0\le a<m).
+\tag{WP21}
+\] It therefore keeps every derivative of the amplitude through order
+\(m-1\). The determinant in the primary basis is
+\(\prod_{\alpha\in\mathcal R}v_h(\alpha)^m\ne0\), because each block in
+(WP21) is triangular with that constant diagonal.
+
+\subsection{3. The zeroth-jet quotient and its exact multiplier
+map}\label{the-zeroth-jet-quotient-and-its-exact-multiplier-map}
+
+Let \(V_{\mathcal R}=\mathbb C^{\mathcal R}\), with coordinatewise
+multiplication, and define \[
+e:E_h\longrightarrow V_{\mathcal R},\qquad
+e([q])=(q(\alpha))_{\alpha\in\mathcal R}.
+\tag{WP22}
+\] This is a surjective algebra homomorphism: it is the constant-term
+map in each factor of (WP13), and (WP15) lifts any tuple by
+\(\sum c_\alpha e_\alpha\). Its kernel is \[
+J=\ker e=(d)/(d^m)\subset E_h,
+\qquad\dim_{\mathbb C}J=4m-4.
+\tag{WP23}
+\] Indeed a polynomial has value zero at every \(\alpha\) precisely when
+it is divisible by \(d\). In the primary coordinates, \(J\) is
+\(\prod_\alpha(t_\alpha)\); it has basis \(e_\alpha(s-\alpha)^a\),
+\(1\le a<m\), and the asserted dimension follows. Every element of \(J\)
+has its \(m\)-th power zero. Conversely, a nilpotent element must have
+value zero in each complex coordinate, since a complex number with a
+vanishing positive power is zero. Thus \(J\) is exactly the nilradical
+of \(E_h\).
+
+Write \[
+V_h:V_{\mathcal R}\longrightarrow V_{\mathcal R},\qquad
+(c_\alpha)_\alpha\longmapsto(v_h(\alpha)c_\alpha)_\alpha,
+\quad
+a_h=eU:E_h\longrightarrow V_{\mathcal R}.
+\tag{WP24}
+\] Then \[
+eU=V_he,\qquad \ker a_h=J,
+\qquad a_h\text{ is surjective}.
+\tag{WP25}
+\] The identity follows either from evaluation of a product or from the
+\(a=0\) case of (WP21). The map \(V_h\) is invertible because its four
+diagonal entries are nonzero, so the kernel and surjectivity assertions
+follow from (WP22)--(WP23). Thus the exact comparison with the
+programme's multiplier is the commuting diagram of typed maps \[
+\begin{array}{ccc}
+E_h&\xrightarrow{\ U\ }&E_h\\
+e\downarrow&&\downarrow e\\
+V_{\mathcal R}&\xrightarrow{\ V_h\ }&V_{\mathcal R}.
+\end{array}
+\tag{WP26}
+\] The left and right vertical maps retain the same kernel \(J\); the
+horizontal map on the upper row retains all the additional coefficients
+(WP21).
+
+The entire-function family is a further, distinct vector space \[
+\mathcal F_h=\{F_P:P\in\mathbb C[z]\}.
+\tag{WP26a}
+\] The map \(P\mapsto F_P\) is a linear isomorphism onto this family.
+Surjectivity is its definition. For injectivity, \(v_h\) is nonzero at a
+packet root, hence nonzero on a neighborhood of that root. If \(F_P\)
+vanishes identically, \(P\) vanishes on the corresponding open set in
+the \(z\)-coordinate. A nonzero polynomial has only finitely many roots,
+so \(P=0\).
+
+The full-jet map from this entire-function family is \[
+\begin{aligned}
+\mathcal T_h:\mathcal F_h&\longrightarrow E_h,
+&\mathcal T_h(F)&=j_h(F\circ\theta),\\
+\mathcal T_h(F_P)&=U\mathcal C[P],
+&(\mathcal J\mathcal T_h(F))_{\alpha,a}
+&=i^{-a}\frac{F^{(a)}(\beta_\alpha)}{a!}.
+\end{aligned}
+\tag{WP26b}
+\] The first identity on the second line follows from (WP6), (WP17), and
+(WP18). The second follows by differentiating the affine change of
+variable \(\theta\) exactly \(a\) times; its derivative is \(1/i\). Thus
+the factor \(i^{-a}\) is retained in every jet coordinate.
+
+The map \(\mathcal T_h\) is onto and its kernel is \[
+\ker\mathcal T_h=\{F_{HQ}:Q\in\mathbb C[z]\}.
+\tag{WP26c}
+\] Indeed \(U\) and \(\mathcal C\) are isomorphisms, so
+\(\mathcal T_h(F_P)=0\) exactly when \(P\) is divisible by \(H\). There
+is a separate surjection \[
+e\mathcal T_h:\mathcal F_h\longrightarrow V_{\mathcal R},
+\quad F\longmapsto(F(\beta_\alpha))_\alpha,
+\qquad
+\ker(e\mathcal T_h)=\{F_{D_zQ}:Q\in\mathbb C[z]\},
+\quad D_z(z)=\prod_\alpha(z-\beta_\alpha).
+\tag{WP26d}
+\] The coordinate formula follows from (WP26b) at \(a=0\). It is onto by
+(WP25). Since \(v_h(\alpha)\ne0\), its value at \(F_P\) is zero exactly
+when \(P\) vanishes at all the distinct \(\beta_\alpha\), which is
+equivalent to divisibility by \(D_z\). Thus the entire functions
+themselves are not identified with their finite jets or with their
+values: (WP26b)--(WP26d) give the actual surjections and both exact
+kernels.
+
+\subsection{4. The finite Hermitian form and its
+radical}\label{the-finite-hermitian-form-and-its-radical}
+
+Use the convention that a Hermitian form is conjugate-linear in its
+first argument and linear in its second. On \(V_{\mathcal R}\), define
+\[
+b_{\mathcal R}(c,c')=m\sum_{\alpha\in\mathcal R}
+\overline{c_{\sigma\alpha}}c'_\alpha.
+\tag{WP27}
+\] It is Hermitian: the conjugate of \(b_{\mathcal R}(c',c)\), after
+replacing the summation index \(\alpha\) by \(\sigma\alpha\), is exactly
+(WP27). It is nondegenerate. If it vanishes against every \(c'\),
+selecting \(c'\) with a single nonzero coordinate at \(\alpha\) gives
+\(m\overline{c_{\sigma\alpha}}=0\), hence every coordinate of \(c\) is
+zero.
+
+Define the packet form on the full algebra by the pullback \[
+B_h(x,y)=b_{\mathcal R}(a_hx,a_hy)
+=m\sum_{\alpha\in\mathcal R}
+\overline{v_h(\sigma\alpha)x(\sigma\alpha)}
+v_h(\alpha)y(\alpha),
+\qquad x,y\in E_h.
+\tag{WP28}
+\] Evaluation is independent of polynomial representatives by (WP22), so
+the formula is well defined. It is Hermitian because (WP27) is. Let
+\(\operatorname{rad}B_h\) mean the set of \(x\) with \(B_h(x,y)=0\) for
+every \(y\in E_h\).
+
+\textbf{Theorem WP1 (exact radical and quotient).} There is an exact
+sequence \[
+0\longrightarrow J\longrightarrow E_h
+\xrightarrow{\ a_h\ }V_{\mathcal R}\longrightarrow0,
+\qquad \operatorname{rad}B_h=J.
+\tag{WP29}
+\] The induced map \(\overline a_h:E_h/J\to V_{\mathcal R}\) is an
+algebra-multiplier comparison and a linear isometry from the descended
+Hermitian form to \(b_{\mathcal R}\). More precisely,
+\(e:E_h/J\to V_{\mathcal R}\) is an algebra isomorphism, and
+\(\overline a_h=V_h\overline e\) is a linear isomorphism;
+\(\overline a_h\) need not preserve the unit or multiplication.
+
+\textbf{Proof.} Exactness is (WP25). If \(x\in J\), then \(a_hx=0\), so
+(WP28) vanishes for every \(y\). Conversely, if (WP28) vanishes for
+every \(y\), surjectivity of \(a_h\) implies that
+\(b_{\mathcal R}(a_hx,c')=0\) for every \(c'\). Nondegeneracy of (WP27)
+gives \(a_hx=0\), hence \(x\in J\). The quotient map is an isomorphism
+by exactness. Formula (WP28) proves the isometry identity. The
+distinction between \(\overline e\) and \(\overline a_h\) follows from
+(WP24): multiplying all coordinates by a fixed nonconstant unit is a
+linear automorphism, and is not in general an algebra homomorphism.
+\(\square\)
+
+This theorem does not remove the nilpotent directions from the original
+packet. It identifies the precise quotient seen by this particular
+Hermitian form, and identifies every omitted direction as an element of
+the specified ideal \(J\).
+
+\subsection{5. Complete inertia and explicit negative
+representatives}\label{complete-inertia-and-explicit-negative-representatives}
+
+In the order (WP2), write \(c=(a,b,c_3,c_4)\). Then \[
+b_{\mathcal R}(c,c')
+=m\bigl(\overline b a'+\overline a b'
++\overline{c_4}c_3'+\overline{c_3}c_4'\bigr).
+\tag{WP30}
+\] The matrix is the direct sum of two blocks
+\(m\begin{pmatrix}0&1\\1&0\end{pmatrix}\). In each pair the two vectors
+\((1,1)/\sqrt{2m}\) and \((1,-1)/\sqrt{2m}\) have squared values \(+1\)
+and \(-1\), and their mutual pairing is zero. They form a basis of that
+two-dimensional pair. Consequently \[
+\operatorname{inertia}(b_{\mathcal R})=(2,2,0),
+\qquad
+\operatorname{inertia}(B_h)=(2,2,4m-4),
+\tag{WP31}
+\] where inertia lists positive, negative, and radical dimensions in
+that order. This is inertia under congruence of Hermitian forms, rather
+than an assertion that an arbitrary coefficient-frame matrix of \(B_h\)
+has eigenvalues \(\pm m\).
+
+For a complete diagonal basis of the original packet, use \[
+x_1^{\pm}=\frac1{\sqrt{2m}}U^{-1}(e_{\alpha_1}\pm e_{\alpha_2}),
+\qquad
+x_2^{\pm}=\frac1{\sqrt{2m}}U^{-1}(e_{\alpha_3}\pm e_{\alpha_4}),
+\tag{WP32}
+\] together with \[
+x_{\alpha,a}=U^{-1}\bigl(e_\alpha(s-\alpha)^a\bigr),
+\quad \alpha\in\mathcal R,\quad 1\le a<m.
+\tag{WP33}
+\] These form a basis because the original primary vectors do, the two
+changes of basis at order zero are invertible, and \(U\) is invertible.
+The last \(4m-4\) vectors lie in \(J\). Formula (WP28) gives
+\(B_h(x_j^+,x_j^+)=1\), \(B_h(x_j^-,x_j^-)=-1\), all pairings between
+distinct displayed positive or negative vectors zero, and all pairings
+with (WP33) zero. This proves (WP31) on the entire vector space,
+including all primary multiplicities.
+
+These representatives are explicit finite Taylor expressions. For
+example \[
+U^{-1}e_\alpha
+=e_\alpha\sum_{a=0}^{m-1}
+\frac{(1/v_h)^{(a)}(\alpha)}{a!}(s-\alpha)^a.
+\tag{WP34}
+\] The reciprocal is taken only in a neighborhood of \(\alpha\), where
+it is holomorphic by (WP4). Taylor multiplication proves (WP34), as also
+follows from (WP20). Formula (WP34) prescribes the full jet of a
+representative whose amplitude has constant primary jet \(1\) at one
+root and zero at the others.
+
+There are also degree-three representatives, without imposing any
+condition on their higher amplitude jets. Define the Lagrange
+polynomials \[
+\ell_\alpha(s)=\prod_{\eta\in\mathcal R\setminus\{\alpha\}}
+\frac{s-\eta}{\alpha-\eta}.
+\tag{WP35}
+\] Their denominators are nonzero, and
+\(\ell_\alpha(\eta)=\delta_{\alpha\eta}\). Put \[
+q_-(s)=\frac{\ell_{\alpha_1}(s)}{v_h(\alpha_1)}
+-\frac{\ell_{\alpha_2}(s)}{v_h(\alpha_2)},
+\qquad P_-(z)=q_-(1/2+iz).
+\tag{WP36}
+\] Then \(a_h[q_-]=(1,-1,0,0)\), so \[
+B_h([q_-],[q_-])=-2m.
+\tag{WP37}
+\] Dividing either polynomial in (WP36) by \(\sqrt{2m}\) gives value
+\(-1\); dividing by \(\sqrt m\) gives value \(-2\). The second negative
+direction is obtained with \(\alpha_3,\alpha_4\). This formula includes
+the exact Fourier-coordinate representative \(P_-\).
+
+For \(m>1\), the class \([q_-]\) in (WP36) and the full-jet
+representative \(U^{-1}(e_{\alpha_1}-e_{\alpha_2})\) need not agree.
+Their difference lies in \(J\), because their images under \(a_h\) agree
+and \(\ker a_h=J\). Thus the two explicit choices have the same pairings
+with every packet class, with their difference retained as a specified
+nilpotent class.
+
+\subsection{6. The surviving jet filtration and multiplication
+operators}\label{the-surviving-jet-filtration-and-multiplication-operators}
+
+The radical has the finite filtration \[
+E_h=J^0\supset J^1\supset\cdots\supset J^{m-1}\supset J^m=0,
+\qquad J^r=(d^r)/(d^m).
+\tag{WP38}
+\] In primary coordinates, \(J^r=\prod_\alpha(t_\alpha^r)\). To verify
+this from \(d\), write \(d(s)=(s-\alpha)c_\alpha(s)\), with
+\(c_\alpha(\alpha)\ne0\). The factor \(c_\alpha\) is a unit in
+\(A_\alpha\), so the ideal generated by \(d^r\) in that primary factor
+is exactly \((t_\alpha^r)\). The isomorphism (WP13) then proves (WP38)
+for every \(r\).
+
+For \(0\le r<m\), the exact layer map is \[
+\lambda_r:J^r/J^{r+1}\longrightarrow V_{\mathcal R},
+\qquad [x]\longmapsto
+\left(\frac{x^{(r)}(\alpha)}{r!}\right)_\alpha.
+\tag{WP39}
+\] For \(r=0\), this means the map \(e\) on \(E_h/J\). A polynomial
+representative of an element of \(J^r\) has all derivatives of orders
+less than \(r\) zero at each root. Changing it by a multiple of \(h\)
+changes none of the derivatives in (WP39), since \(r<m\). Changing its
+class by \(J^{r+1}\) also leaves those coefficients unchanged. Formula
+(WP13) shows that the kernel is exactly \(J^{r+1}\), and that the
+elements \(e_\alpha(s-\alpha)^r\) map to the coordinate basis. Hence
+(WP39) is an isomorphism and every layer has dimension \(4\).
+
+All these layers are preserved by \(U\), its inverse, and \(A_h=M_s\).
+Their induced operators are \[
+\lambda_r\,\operatorname{gr}_r(U)=V_h\lambda_r,
+\qquad
+\lambda_r\,\operatorname{gr}_r(A_h)
+=\operatorname{diag}(\alpha)\lambda_r.
+\tag{WP40}
+\] For the first equality, use (WP21): the coefficient of order \(r\) in
+a product with an element whose lower coefficients are zero is
+\(v_{\alpha,0}x_{\alpha,r}\). For the second, multiply its Taylor series
+by \(\alpha+t_\alpha\); the extra term only enters the next layer.
+Before passage to a layer, the complete formulas remain (WP21) and \[
+A_h\bigl(e_\alpha(s-\alpha)^a\bigr)
+=\alpha e_\alpha(s-\alpha)^a+e_\alpha(s-\alpha)^{a+1},
+\tag{WP41}
+\] where the last term is zero for \(a=m-1\). Thus the original Jordan
+chains and the amplitude derivatives survive in the source and its
+filtered maps. The form (WP28) reads only the layer \(r=0\); this
+follows from its evaluated formula and does not assert that higher
+derivatives are unavailable to the observation map.
+
+\subsection{7. The exact adjoint relation for every polynomial
+multiplier}\label{the-exact-adjoint-relation-for-every-polynomial-multiplier}
+
+For \(q\in\mathbb C[s]\), define \[
+q^\#(s)=\overline{q(1-\overline s)}.
+\tag{WP42}
+\] This is a polynomial: if \(q(s)=\sum_k c_ks^k\), then
+\(q^\#(s)=\sum_k\overline{c_k}(1-s)^k\). It is an antilinear,
+multiplicative involution. Since \(\sigma\) permutes \(\mathcal R\), \[
+h^\#(s)=\prod_{\alpha\in\mathcal R}(1-s-\overline\alpha)^m
+=(-1)^{4m}\prod_{\alpha\in\mathcal R}(s-\sigma\alpha)^m=h(s).
+\tag{WP43}
+\] It therefore descends to an antilinear algebra involution on \(E_h\).
+Its action on all the jets is \[
+(x^\#)_{\alpha,a}=(-1)^a\overline{x_{\sigma\alpha,a}}.
+\tag{WP44}
+\] Indeed, substitute \(s=\alpha+t\) into (WP42), expand \(q\) at
+\(\sigma\alpha\), and conjugate its expansion at the increment
+\(-\overline t\). This gives the displayed coefficient, including its
+sign.
+
+For the original completed zeta function, its functional identities are
+\(g(1-s)=g(s)\) and \(g(\overline s)=\overline{g(s)}\). They imply
+\(g^\#=g\). The quartet polynomial has exactly the same two identities:
+conjugation permutes its four factors, and replacing \(s\) by \(1-s\)
+gives the sign \((-1)^{4m}=1\) and the permutation
+\(\alpha\mapsto1-\alpha\). Therefore \[
+v_h^\#=v_h,\qquad v_h(\sigma\alpha)=\overline{v_h(\alpha)},
+\qquad (j_hv_h)^\#=j_hv_h.
+\tag{WP44a}
+\] The first identity follows by division off the finite zero set of
+\(h\) and then by continuity at the removable points (WP4). The second
+is its evaluation, and the third follows from the signed jet formula
+(WP44). No scalar factor accompanies these identities for the monic
+degree-\(4m\) polynomial in (WP3).
+
+\textbf{Theorem WP2 (multiplier adjoints).} For every \(q,x,y\in E_h\),
+\[
+B_h(M_qx,y)=B_h(x,M_{q^\#}y).
+\tag{WP45}
+\] In particular, if \(Y_h=(A_h-\frac12I)/i=M_{\theta(s)}\), then \[
+B_h(A_hx,y)=B_h(x,(I-A_h)y),
+\qquad B_h(Y_hx,y)=B_h(x,Y_hy).
+\tag{WP46}
+\]
+
+\textbf{Proof.} At each root \(\alpha\),
+\(q^\#(\alpha)=\overline{q(\sigma\alpha)}\). Inserting a factor
+\(q(\sigma\alpha)\) in the conjugated first entry of (WP28) therefore
+has exactly the same effect as inserting \(q^\#(\alpha)\) in its second
+entry. This proves (WP45) term by term. For the coordinate polynomial,
+\(s^\#=1-s\). For \(\theta(s)=-i(s-1/2)\), antilinearity and this
+equality give \(\theta^\#(s)=i((1-s)-1/2)=-i(s-1/2)=\theta(s)\). These
+substitutions prove both assertions in (WP46). \(\square\)
+
+The operator \(Y_h\) is consequently self-adjoint with respect to the
+specified Hermitian form. Its induced eigenvalues on \(E_h/J\) are
+exactly (WP7), since (WP40) gives the diagonal multiplier
+\((\alpha-1/2)/i\). The nonreal values
+\(\gamma\pm i\delta,-\gamma\pm i\delta\) are paired by the two
+hyperbolic blocks (WP30). There is no claim that self-adjointness for
+this indefinite form makes those values real. Equations (WP40), (WP44),
+and (WP46) give the exact relation between the full primary operator and
+its value quotient.
+
+In particular the original amplitude unit is itself self-adjoint for
+this form, by (WP44a) and (WP45). For polynomial inputs, the entire
+function \[
+\mathcal A_{P,Q}(s)=q_P^\#(s)q_Q(s)v_h(s)^2
+\tag{WP46a}
+\] has the packet values \[
+\mathcal A_{P,Q}(\alpha)
+=\overline{q_P(\sigma\alpha)v_h(\sigma\alpha)}
+q_Q(\alpha)v_h(\alpha).
+\tag{WP46b}
+\] This follows from \(q_P^\#(\alpha)=\overline{q_P(\sigma\alpha)}\) and
+(WP44a). On the complement of the zeros of \(g\), the exact
+logarithmic-derivative identity is \[
+\frac{\xi'(s)}{\xi(s)}\mathcal A_{P,Q}(s)
+=q_P^\#(s)q_Q(s)\frac{g'(s)g(s)}{h(s)^2}.
+\tag{WP46c}
+\] Here \(g=2\xi\), so \(\xi'/\xi=g'/g\); multiplication by \((g/h)^2\)
+proves the formula with no additional factor of two. At a zero of \(g\)
+outside the packet, the right side is holomorphic because \(h\) does not
+vanish there. At \(\alpha\in\mathcal R\), writing
+\(g=(s-\alpha)^mb_\alpha\) and \(h=(s-\alpha)^mh_\alpha\) shows that
+\(g'g/h^2\) has the Laurent term \(m v_h(\alpha)^2/(s-\alpha)\). Thus
+its residue after multiplication by \(q_P^\#q_Q\) is exactly
+\(m\mathcal A_{P,Q}(\alpha)\). These are local meromorphic identities;
+no contour estimate or prime-side identity is used to prove them.
+
+\subsection{8. The original period observation and what each map
+reads}\label{the-original-period-observation-and-what-each-map-reads}
+
+The map \(a_h=eU\) applies the same full-jet unit as the original
+observation and then takes values. To make the relation to the period
+stage explicit, let \(\Pi:E_h\to\mathbb C^n\) be the programme's OPG4
+linear map, defined on the unique degree-less-than-\(n\) representative
+by its prescribed convergent period integrals. Retain its actual
+contours, exponential weight, and basis; none is changed here. Put \[
+\mathbf b_{\alpha,a}=\Pi\bigl(e_\alpha(s-\alpha)^a\bigr).
+\tag{WP47}
+\] For every \(x\in E_h\), linearity and (WP21) give the identity of
+vectors in \(\mathbb C^n\) \[
+\Pi Ux=
+\sum_{\alpha\in\mathcal R}\sum_{a=0}^{m-1}
+\mathbf b_{\alpha,a}
+\sum_{b=0}^a v_{\alpha,b}x_{\alpha,a-b}.
+\tag{WP48}
+\] This proof uses a finite sum of the original primary classes; it does
+not assign a period integral to an arbitrary entire function. The value
+map, with the same coefficients before projection, is \[
+a_hx=(v_{\alpha,0}x_{\alpha,0})_\alpha.
+\tag{WP49}
+\] Thus (WP48) and (WP49) are two exact maps out of the same source
+after the same multiplication. In particular, for \(x=j_h(f)\), the
+ring-homomorphism property (WP17) gives \[
+Uj_h(f)=j_h(v_hf),\qquad
+\Pi Uj_h(f)=\Pi j_h(v_hf),\qquad
+a_hj_h(f)=(v_h(\alpha)f(\alpha))_\alpha.
+\tag{WP50}
+\] The middle formula evaluates \(\Pi\) on a finite Taylor remainder,
+exactly as in OPG11. It is not the integral of the unreduced entire
+function unless a separate equality proves that assertion.
+
+There is also a precise test for whether any proposed observation
+\(T:E_h\to W\), to a complex vector space \(W\), factors through the
+value map \(a_h\). The factorization exists exactly when \(T(J)=0\);
+when it exists its only possible formula is \[
+\overline T(c)=T\left(U^{-1}\sum_{\alpha\in\mathcal R}c_\alpha e_\alpha\right).
+\tag{WP51}
+\] To prove this, the expression in parentheses has \(a_h\)-image \(c\)
+by (WP15) and (WP24). If \(T(J)=0\), any two lifts with that image
+differ by (WP29) in \(J\), so their \(T\)-images agree, and (WP51) gives
+a well-defined linear factorization. Surjectivity of \(a_h\) forces
+uniqueness. Conversely a factorization through \(a_h\) kills its kernel
+\(J\). This computes the exact space of factorizing maps as the
+injective image \[
+\operatorname{Hom}_{\mathbb C}(V_{\mathcal R},W)
+\xrightarrow{\ a_h^*\ }
+\operatorname{Hom}_{\mathbb C}(E_h,W),
+\quad \overline T\longmapsto\overline T a_h,
+\quad
+\operatorname{im}(a_h^*)=\{T:T(J)=0\}.
+\tag{WP52}
+\] It does not presume that the period map, or the later cyclic tensor
+observation, lies in that subspace.
+
+\subsection{9. Why the off-line and on-line cases have different packet
+algebras}\label{why-the-off-line-and-on-line-cases-have-different-packet-algebras}
+
+The hypotheses (WP1) guarantee four distinct roots. Substituting
+\(\delta=0\) into a formula which assumes four distinct roots merges
+\(\alpha_1\) with \(\alpha_2\) and \(\alpha_3\) with \(\alpha_4\). If
+one retains the product of four factors literally, their orders double.
+Exact zero order \(m\) would then no longer justify dividing \(g\) by
+that new polynomial. The on-line packet must instead be defined from its
+distinct roots and their actual orders.
+
+For completeness, the general finite value calculation is as follows.
+Let \(\mathcal A\) be a finite set of distinct complex points stable
+under \(\sigma\alpha=1-\overline\alpha\). Assign positive integer orders
+\(m_\alpha\), with \(m_{\sigma\alpha}=m_\alpha\), and suppose an entire
+\(g\) has these exact orders there. Set \[
+h_{\mathcal A}(s)=\prod_{\alpha\in\mathcal A}(s-\alpha)^{m_\alpha},
+\qquad v_{\mathcal A}=g/h_{\mathcal A}.
+\tag{WP53}
+\] With the corresponding jet algebra, remainder multiplier, and
+amplitude-value map, define \[
+B_{\mathcal A}(x,y)=
+\sum_{\alpha\in\mathcal A}m_\alpha
+\overline{v_{\mathcal A}(\sigma\alpha)x(\sigma\alpha)}
+v_{\mathcal A}(\alpha)y(\alpha).
+\tag{WP54}
+\] Let \(f\) be the number of fixed points of \(\sigma\) in
+\(\mathcal A\), and let \(p\) be the number of its two-element orbits.
+Then \[
+\operatorname{inertia}(B_{\mathcal A})
+=\left(f+p,\ p,\ \sum_{\alpha\in\mathcal A}(m_\alpha-1)\right).
+\tag{WP55}
+\] To prove this directly, use the local rings
+\(\mathbb C[t_\alpha]/t_\alpha^{m_\alpha}\). The interpolation proof
+(WP14)--(WP15) applies with the individual order in each factor, because
+the other factors are still units at that root. Evaluation has kernel
+\(\prod_\alpha(t_\alpha)\) of the stated dimension, and amplitude
+multiplication is invertible because its constants are nonzero. On its
+value quotient, a fixed point contributes the positive form
+\(m_\alpha|c_\alpha|^2\). A two-element orbit contributes the block
+\(m_\alpha\begin{pmatrix}0&1\\1&0\end{pmatrix}\), with one positive and
+one negative direction. Distinct orbits are orthogonal since their
+coordinates never occur together in (WP54). This proves the radical and
+all three entries of (WP55).
+
+In particular, a packet supported entirely on the critical line has
+\(p=0\), and (WP54) is positive semidefinite. Its radical still contains
+all higher jet directions. A distinct off-line quartet has \(f=0,p=2\),
+giving (WP31). Both assertions concern the respective actual packet
+algebras and the exact orders in (WP53).
+
+\subsection{10. The exact zero-side localization and analytic
+scope}\label{the-exact-zero-side-localization-and-analytic-scope}
+
+Index the distinct nontrivial zeros of \(\xi\) by \(\rho'\), and let
+\(m_{\rho'}\) be their multiplicities. For the entire functions (WP6),
+form the discrete zero pairing \[
+\mathscr W_0(F_P,F_Q)
+=\sum_{\rho'}m_{\rho'}
+\overline{F_P(\overline{\theta(\rho')})}
+F_Q(\theta(\rho')).
+\tag{WP56}
+\] This particular sum has only four potentially nonzero summands.
+Indeed, when \(\rho'\notin\mathcal R\), (WP4) gives
+\(F_Q(\theta(\rho'))=q_Q(\rho')v_h(\rho')=0\). Thus no issue of
+summation order remains in (WP56). At the quartet, the multiplicities
+equal \(m\), and (WP8) gives the exact identity \[
+\begin{aligned}
+\mathscr W_0(F_P,F_Q)
+&=m\sum_{\alpha\in\mathcal R}
+\overline{q_P(\sigma\alpha)v_h(\sigma\alpha)}
+q_Q(\alpha)v_h(\alpha)\\
+&=B_h(\mathcal C[P],\mathcal C[Q]).
+\end{aligned}
+\tag{WP57}
+\] The bracketed arguments on the second line are classes in \(E_z\),
+mapped into \(E_h\) by (WP10). If a polynomial is changed by a multiple
+of \(H\), its amplitude has all its first \(m\) jets zero at each
+Fourier root. Therefore (WP57) descends to \(E_z\) exactly as claimed.
+In fact the form already factors through the smaller value quotient
+\(\mathbb C[z]/\prod_\alpha(z-\beta_\alpha)\); the explicit kernel of
+the map from \(E_z\) to that quotient is \(\mathcal C^{-1}J\).
+
+For \(m>1\), the multiplicity in (WP56) multiplies a value. It does not
+differentiate \(F_P\) or \(F_Q\). This is why the correct inertia on the
+full \(4m\)-dimensional packet is (WP31), and why the higher jet
+directions appear as its precisely computed radical. Their maps remain
+(WP21), (WP38)--(WP44), and (WP48).
+
+The proof above does not identify (WP56) with pole, Gamma, and prime
+terms for this test family. Such an identity involves its analytic test
+class and convergence statements; none follows from the finite quotient
+alone. The finite algebra supplies a complete target for that
+calculation: the Hermitian form (WP28), with the explicit negative
+representatives (WP32) or (WP36), the complete radical (WP23), and the
+exact relation to the native amplitude multiplier (WP26). No assertion
+here establishes positivity of the prime-side expression or a conclusion
+about the existence of an off-line zero of \(\xi\).
+
+\end{document}

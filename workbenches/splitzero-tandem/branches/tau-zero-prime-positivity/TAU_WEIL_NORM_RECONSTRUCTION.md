@@ -1,0 +1,188 @@
+# Tau residue norms and the exact change in the Weil formula
+
+The original semiring is \(S=G(\mathbb Z)=\{\tau\}\sqcup\mathbb Z\), with the original integer operations, \(\tau+x=x\), and \(\tau x=\tau\). Write \(e=0_{\mathbb Z}\), retaining \(e\ne\tau\). This calculation starts from its residue and support maps. It does not replace a chosen residue norm by a different one without recording the map.
+
+The originating programme's `globalization_note.tex`, ideal/congruence/zeta sections, proves the original arithmetic ideal norm and its zeta function. Its prime spectrum is two-dimensional. The companion TAU_PRIME_SPECTRUM_DERIVATION.md checks that classification, its localizations and the coefficient maps in full. Here the calculation continues from the different residue constructions to their exact prime distributions and Weil forms.
+
+## TN1. Three numerical constructions, with their quotient maps
+
+For \(n\ge1\), reduction of supported integers defines the support-preserving semiring map
+\[
+\pi_n:S\longrightarrow G(\mathbb Z/n\mathbb Z),\qquad
+\tau\longmapsto\tau_n,\quad a\longmapsto(a\bmod n)^\bullet.
+\tag{TN1}
+\]
+It is onto and preserves both operations by their definitions. Its equivalence classes keep \(\tau\) separate from every integer. Its global-zero fibre is only \(\{\tau\}\). Arithmetic projection gives a second surjection
+\[
+G(\mathbb Z/n\mathbb Z)\longrightarrow\mathbb Z/n\mathbb Z,
+\quad\tau_n\longmapsto0,\quad b^\bullet\longmapsto b.
+\tag{TN2}
+\]
+The composite has zero fibre \(I_n=\{\tau\}\cup n\mathbb Z\). The two target cardinalities are \(n+1\) and \(n\), respectively. At \(n=1\) the first target is the two-element Boolean semiring and the second is the one-element ring; this case is retained.
+
+The usual ideal product is \(I_mI_n=I_{mn}\). Every finite sum of products of multiples of \(m,n\) is a multiple of \(mn\), and every multiple of \(mn\) is itself such a product; the adjoined identity \(\tau\) causes no further integer values. Hence the second cardinality is multiplicative, whereas the first has the exact defect
+\[
+(m+1)(n+1)-(mn+1)=m+n.
+\tag{TN3}
+\]
+Consequently the two actual ideal sums on \(I_n\), for \(\Re s>1\), are
+\[
+Z_{\rm ar}(s)=\sum_{n\ge1}n^{-s}=\zeta(s),\qquad
+Z_{\rm card}(s)=\sum_{n\ge1}(n+1)^{-s}=\zeta(s)-1.
+\tag{TN4}
+\]
+The second equality is an index change in an absolutely convergent series. It does not have the prime Euler product obtained by replacing every \(p\) by \(p+1\).
+
+There is also a precisely defined multiplicative prime weight
+\[
+N_{\rm pr}(n)=\prod_{p\mid n}(p+1)^{v_p(n)},\qquad N_{\rm pr}(1)=1.
+\tag{TN5}
+\]
+This agrees with the first residue cardinality at prime integers, but not at general integers or at \(1\). Unique factorization gives its separate Euler product
+\[
+E_{\rm pr}(s)=\sum_{n\ge1}N_{\rm pr}(n)^{-s}
+=\prod_p\frac1{1-(p+1)^{-s}},\qquad \Re s>1.
+\tag{TN6}
+\]
+Absolute convergence follows from \(N_{\rm pr}(n)\ge n\); expanding finite products and then passing to the absolutely convergent limit proves the identity. Thus all three functions in TN4 and TN6 are defined, and none is substituted for another.
+
+## TN2. The exact mixed-support reason for TN3
+
+For commutative rings \(R,T\), let \(\chi_R:G(R)\to\mathbb B\) send \(\tau\) to \(0\) and every supported element to \(1\); similarly for \(T\). There is a semiring isomorphism
+\[
+G(R\times T)\xrightarrow{\sim}
+G(R)\times_{\mathbb B}G(T),
+\quad \tau\longmapsto(\tau_R,\tau_T),\quad
+(r,t)^\bullet\longmapsto(r^\bullet,t^\bullet).
+\tag{TN7}
+\]
+The fibre product contains exactly the displayed two types, because equality of support means either both entries are absent or both are supported. The map is a bijection. Addition and multiplication on two supported entries are the ring product operations; entries involving the absent pair obey the external identity and absorber laws. These checks prove preservation of both operations, both identities, and the inverse laws. They also prove the pullback universal property: a pair of semiring maps with equal support takes values in exactly this subset, and therefore factors uniquely through it.
+
+If \(m,n\) are coprime, choose integers \(u,v\) with \(um+vn=1\). The usual reduction map \(\mathbb Z/mn\to\mathbb Z/m\times\mathbb Z/n\) is injective because divisibility by both coprime integers implies divisibility by their product; it is surjective because \(bvn+cum\) has residues \(b,c\). Applying TN7 gives
+\[
+G(\mathbb Z/mn)\cong
+G(\mathbb Z/m)\times_{\mathbb B}G(\mathbb Z/n).
+\tag{TN8}
+\]
+Its embedding into the full product omits precisely
+\[
+(\mathbb Z/m)^\bullet\times\{\tau_n\},\qquad
+\{\tau_m\}\times(\mathbb Z/n)^\bullet.
+\tag{TN9}
+\]
+These disjoint mixed-support subsets have sizes \(m,n\). TN3 is therefore the count of explicitly identified subsets. No supported cancellation is renamed as absence. In support-separated counts the vector is \((1,n)\); fibre-product multiplication is componentwise, \((1,m)(1,n)=(1,mn)\). Forgetting the labels by summing coordinates gives \(n+1\), and TN3 measures exactly the failure of that sum map to be multiplicative.
+
+## TN3. Exact analytic comparison for the prime weight
+
+On \(\Re s>0\), use the branch
+\[
+\log(1-x^{-s})=-\sum_{j\ge1}\frac{x^{-js}}j,\qquad x\ge2,
+\]
+and define
+\[
+L_\tau(s)=\sum_p\bigl(\log(1-p^{-s})-\log(1-(p+1)^{-s})\bigr),
+\quad R_\tau(s)=e^{L_\tau(s)}.
+\tag{TN10}
+\]
+This definition has no branch ambiguity because \(|x^{-s}|<1\). To prove convergence, differentiate the summand with respect to the real variable \(x\):
+\[
+\log(1-p^{-s})-\log(1-(p+1)^{-s})
+=-s\int_p^{p+1}\frac{x^{-s-1}}{1-x^{-s}}\,dx.
+\tag{TN11}
+\]
+Fix \(a>0\), and put \(d_a=1-2^{-a}>0\). On \(\Re s\ge a\), the absolute value of the integrand without \(s\) is at most \(x^{-a-1}/d_a\). The prime intervals are disjoint subsets of \([2,\infty)\), so
+\[
+|L_\tau(s)|\le \frac{|s|2^{-a}}{a d_a}.
+\tag{TN12}
+\]
+The same domination proves local uniform convergence of the series on the open half-plane. It therefore defines a holomorphic function, and its exponential is holomorphic and nowhere zero. On \(\Re s>1\), the absolutely convergent Euler products give
+\[
+E_{\rm pr}(s)=\zeta(s)R_\tau(s).
+\tag{TN13}
+\]
+This supplies a meromorphic continuation of the particular function TN6 to \(\Re s>0\). Its zero and pole divisor there equals that of \(\zeta\), with multiplicities, because \(R_\tau\) is a holomorphic unit. This is a statement about TN6 with TN5, not about TN4's function \(\zeta-1\), and not about an isomorphism of spectra or trace spaces.
+
+The retained logarithmic-derivative correction is
+\[
+r_\tau(s)=\frac{R_\tau'(s)}{R_\tau(s)}
+=\sum_p\left(\frac{\log p}{p^s-1}
+-\frac{\log(p+1)}{(p+1)^s-1}\right).
+\tag{TN14}
+\]
+One may differentiate locally uniformly in TN10 by holomorphy and Cauchy's formula on slightly larger compact sets. A direct formula, including a vertical bound, is
+\[
+r_\tau(s)=\sum_p\int_p^{p+1}x^{-s-1}
+\left(\frac{s\log x}{(1-x^{-s})^2}-\frac1{1-x^{-s}}\right)dx,
+\tag{TN15}
+\]
+\[
+|r_\tau(s)|\le
+\frac{2^{-a}}{a d_a}
++\frac{\displaystyle |s|2^{-a}\left(\frac{\log2}{a}+\frac1{a^2}\right)}{d_a^2},
+\qquad \Re s\ge a.
+\tag{TN16}
+\]
+For TN15, differentiate \((\log x)/(x^s-1)\) in \(x\) and integrate its negative derivative from \(p\) to \(p+1\). The estimates use \(\int_2^\infty x^{-a-1}dx=2^{-a}/a\) and \(\int_2^\infty(\log x)x^{-a-1}dx=2^{-a}(\log2/a+1/a^2)\). They prove absolute local uniform convergence, and show that \(r_\tau\) has at most linear vertical growth in every fixed strip inside this half-plane. All quantities in TN10–TN16 are retained; equality of a zero divisor does not remove this nonzero correction.
+
+## TN4. The corresponding prime distributions
+
+Use the programme's actual entire test functions from WEIL_PACKET_ANALYTIC_DERIVATION.md:
+\[
+A(s)=q_P^\#(s)q_Q(s)v(s)^2,\quad
+K(t)=A(\tfrac12+it)=\overline{F_P(t)}F_Q(t),\quad
+k(u)=\frac1{2\pi}\int_{\mathbb R}K(t)e^{itu}dt.
+\tag{TN17}
+\]
+Its proof WA2–WA3 establishes exponential decay of \(A\) in every fixed vertical strip and \(|k(u)|\le C_R e^{-R|u|}\) for every fixed \(R>0\). Define the two explicit prime functionals
+\[
+\begin{aligned}
+\mathcal P(k)&=\sum_p\sum_{j\ge1}(\log p)p^{-j/2}
+\bigl(k(j\log p)+k(-j\log p)\bigr),\\
+\mathcal P_\tau(k)&=\sum_p\sum_{j\ge1}\log(p+1)(p+1)^{-j/2}
+\bigl(k(j\log(p+1))+k(-j\log(p+1))\bigr).
+\end{aligned}
+\tag{TN18}
+\]
+Both sums converge absolutely: for \(R=2\), each is dominated by a constant times \(\sum_p(\log(p+1))(p+1)^{-5/2}/(1-(p+1)^{-5/2})\), or the analogous expression with \(p\); each is bounded by a convergent sum over all integers.
+
+The exact difference is
+\[
+\boxed{\mathcal P(k)-\mathcal P_\tau(k)
+=\frac1{2\pi}\int_{\mathbb R}K(t)
+\,2\Re r_\tau(\tfrac12+it)\,dt.}
+\tag{TN19}
+\]
+To prove it, start with
+\[
+\frac1{2\pi i}\int_{\Re s=3/2}
+r_\tau(s)\bigl(A(s)+A(1-s)\bigr)ds.
+\]
+On this line, expand both terms in TN14 as absolutely convergent geometric series and integrate term by term. Fourier inversion and an entire contour shift give exactly the difference in TN18, with the factors \(p^{-j/2}\) and \((p+1)^{-j/2}\). Alternatively shift the integral itself to \(\Re s=1/2\). No poles are crossed because \(r_\tau\) is holomorphic for positive real part; its vertical bound TN16 and the strip decay of \(A\) make the horizontal integrals tend to zero. Reflect \(t\mapsto-t\) in the second summand. Since TN10 has real coefficients under conjugation, \(r_\tau(\bar s)=\overline{r_\tau(s)}\). This gives TN19, including its sign and factor \(2\).
+
+## TN5. Weil's condition with the full tau correction
+
+Let
+\[
+w_\infty(t)=\Re\psi(\tfrac14+\tfrac{it}2)-\log\pi,
+\qquad
+w_{\infty,\tau}(t)=w_\infty(t)-2\Re r_\tau(\tfrac12+it).
+\tag{TN20}
+\]
+The complete analytic identity WA24 and TN19 give
+\[
+\boxed{B_h([q_P],[q_Q])
+=A(0)+A(1)
++\frac1{2\pi}\int_{\mathbb R}\overline{F_P(t)}F_Q(t)
+w_{\infty,\tau}(t)dt
+-\mathcal P_\tau(k).}
+\tag{TN21}
+\]
+Here \(B_h\) is the literal full-jet packet form with its exact radical, as constructed in WP28–WP29. To check the sign directly, TN19 says \(\mathcal P=\mathcal P_\tau+D\), where \(D\) is the integral of \(2\Re r_\tau\). Substitution into the original term \(-\mathcal P\) subtracts this integral, giving TN20. Thus altering the prime norms alone while keeping the previous infinite-place term does not produce the same form; TN20 is its required exact correction.
+
+For \(P=Q\), the right side of TN21 is real. Its nonnegativity is exactly the original packet's Weil positivity condition, since TN21 is an equality of forms. This calculation does not prove that condition. It supplies a full new expression of the condition through the separately defined prime-residue weight, preserving the support cardinality defect and the correcting distribution. In particular the degree-three negative representative WP36 of an assumed off-line packet still gives the exact value \(-2m\) in TN21.
+
+## TN6. What this does and does not identify
+
+There are exact maps from the original tau semiring to two different residue targets, an exact support fibre product explaining the failure of scalar count multiplicativity, and a complete analytic comparison from one specified prime-residue Euler product to its Weil functional. These statements use the original addition and keep its supported zero. They do not replace the two-dimensional semiring spectrum by the one-dimensional arithmetic spectrum, or identify either with Connes's adele-class orbit space.
+
+The further Connes calculation must retain the supported coordinate-zero hyperplanes, their stabilizers and transverse additive fields, and the new absence strata. Those are the objects entering Section VI, equations (5)–(15), of Alain Connes, [*Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068v1). The independent endpoint and adelic comparison continues in TAU_CONNES_ENDPOINT_DERIVATION.md and TAU_PRIME_SPECTRUM_DERIVATION.md. No equality of their Hilbert-space traces is assumed from the scalar function identity TN13.

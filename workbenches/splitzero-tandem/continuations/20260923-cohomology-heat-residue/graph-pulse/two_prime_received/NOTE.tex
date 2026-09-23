@@ -1,0 +1,649 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,graphicx,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\rem}{rem}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\B}{\mathscr B}
+\newcommand{\MM}{\mathcal M}
+\newcommand{\PP}{\operatorname{Prim}_h}
+\newcommand{\HS}{\mathsf H_c}
+\newcommand{\dd}{\,d}
+\title{Constructive two-prime packets:\\exact theta lifts and bounded moment dynamics}
+\author{Programme calculation; private working note}
+\date{23 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The original prime actions for 2 and 3 recover a finite zero packet with
+every multiplicity. We turn that generation statement into a finite
+construction: a bounded search for a real generator, an invertible
+full-jet matrix, an explicit polynomial inverse, and prime words of
+length at most one less than the packet's total multiplicity.
+The same words act by actual dilations of the original theta source.
+Their exact cochain discrepancy is calculated, rather than discarded.
+Their inherited $L^2(dx)$ Gram matrices come from a compactly supported
+arithmetic measure, whose recurrence coefficients have a bound
+independent of the cutoff. The associated source/relation determinant
+ratio satisfies an explicit bounded Toda curvature identity.
+An original-zeta example is evaluated numerically. No off-critical zero
+is invented or found, no positivity of the full Weil form is assumed,
+and no existing Euler-polynomial metric is replaced by the new word metric.
+\end{abstract}
+
+\section{Original objects, source identity, and the calculation being extended}
+The immediate programme inputs are TP1--8 (the two-prime torus receiver)
+and PL1--27 (primitive full-jet representatives and their exact theta
+relations) in the current, unsealed source of the task
+\emph{Split Zero to GCT bridge}. Their private proof files and byte hashes
+are identified in \texttt{SOURCE\_READING.json}; they have not been uploaded
+by this calculation. We prove the ingredients needed here below.
+The human Mellin-quotient context is Ralf Meyer's original
+\href{https://arxiv.org/abs/math/0412277}{spectral interpretation},
+Theorem \texttt{the:Lap\_range} and Corollary
+\texttt{cor:Dminus\_eigenvalues} \cite{Meyer}. The interpolation step is
+classical Chinese remainder/Hermite interpolation; its human algebraic
+source is \href{https://stacks.math.columbia.edu/tag/00DT}{Stacks tag 00DT}
+\cite{Stacks}. The specialised coefficients, lifts, and bounds are
+derived explicitly here, not attributed to those sources as new results.
+
+Keep
+\begin{align}
+ V&=\{\phi\in\mathcal S(\R):\phi\text{ even},\ \phi(0)=0,
+                         \ \int_\R\phi(x)\dd x=0\},\nonumber\\
+ \B&=\{F\in C^\infty(\R_{>0}):
+       \sup_{x>0}|x^bD^jF(x)|<\infty\quad(b\in\mathbb Z,j\ge0)\},\nonumber\\
+ D&=-x\partial_x,\qquad\Theta\phi(x)=2\sum_{n\ge1}\phi(nx),
+ \qquad Q=\B/\Theta V.\label{eq:spaces}
+\end{align}
+The observation is the actual measure $dx$ on $\R_{>0}$, not $dx/x$.
+The Mellin transform itself uses $dx/x$:
+\begin{equation}
+ \MM F(s)=\int_0^\infty F(x)x^s\frac{dx}{x},\qquad
+ \|F\|_{L^2(dx)}^2=\frac1{2\pi}\int_\R
+                         |\MM F(1/2+it)|^2\dd t.\label{eq:plancherel}
+\end{equation}
+Indeed $x=e^y$ gives the ordinary Fourier transform of
+$e^{y/2}F(e^y)$, with kernel $e^{ity}$; Fourier--Plancherel proves
+the equality with the factor $1/(2\pi)$ retained.
+
+Write
+\begin{equation}
+ a(s)=s(s-1),\quad
+ g(s)=2\xi(s)=a(s)\pi^{-s/2}\Gamma(s/2)\zeta(s),\quad
+ \phi_*(x)=(4\pi^2x^4-6\pi x^2)e^{-\pi x^2}.\label{eq:seed}
+\end{equation}
+Here $g$ is the entire completion; Meyer's notation for a completed
+function must not be substituted for this definition. Direct Gaussian
+integration gives $\phi_*\in V$ and
+$M_+\phi_*=a(s)\pi^{-s/2}\Gamma(s/2)/2$.
+Absolute summation for $\Re s>1$ gives
+$\MM\Theta\phi=2\zeta M_+\phi$, hence
+$\MM\Theta\phi_*=g$; continuation gives these identities wherever used.
+Poisson summation and the two zero moments show $\Theta V\subset\B$.
+The Fourier convention in this step is $e^{-2\pi ix\xi}$.
+Also $\MM DF=s\MM F$ by integration by parts.
+
+Let $Z$ be a nonempty finite set of actual nontrivial zeros, stable under
+$\iota\rho=1-\bar\rho$, with their full orders $m_\rho$.
+The leading coefficient below is not changed:
+\begin{equation}
+ h(s)=c_h\prod_{\rho\in Z}(s-\rho)^{m_\rho},\quad c_h\ne0,
+ \quad d=\sum_\rho m_\rho,\quad U_h=g/h,\quad
+ A_h=\C[s]/(h)=\prod_\rho\C[t_\rho]/(t_\rho^{m_\rho}).\label{eq:packet}
+\end{equation}
+The coordinate $t_\rho=s-\rho$ and the conjugation
+$f^\dagger(s)=\overline{f(1-\bar s)}$ remain fixed.
+Both $[a]$ and $[U_h]$ are units in this full, possibly nonreduced algebra.
+For $u\in A_h$ put
+\begin{equation}
+ R_u=\rem_h([aU_h]^{-1}u),\qquad
+ \PP(u)=a(D)S_h\Theta(R_u(D)\phi_*),\qquad
+ \MM\PP(u)=aU_hR_u.\label{eq:primitive}
+\end{equation}
+Here the inverse Euler operators are actual integrals:
+\begin{equation}
+ S_\rho H(x)=x^{-\rho}\int_x^\infty H(t)t^{\rho-1}\dd t,
+ \qquad S_h=c_h^{-1}\prod_\rho S_\rho^{m_\rho}.\label{eq:inverse}
+\end{equation}
+They are applied only after the corresponding full zero orders are
+present in the Mellin transform. Differentiation gives
+$(D-\rho)S_\rho H=H$. At zero, the vanishing Mellin moment changes
+the tail to minus the integral from zero to $x$. Rapid decay of $H$
+then gives rapid decay at both ends for $S_\rho H$ and all Euler
+derivatives. For example, bounds $|H(e^y)|\le C_Ne^{-Ny}$ on $y\ge0$
+and $|H(e^y)|\le C'_Ne^{Ny}$ on $y\le0$ give respectively denominators
+$N-\Re\rho$ and $N+\Re\rho$ when these are positive.
+Integration by parts proves its Mellin quotient. Repeating removes
+each required order. Injectivity of every $D-\rho$ on $\B$ (its
+nonzero homogeneous solution fails rapid decay at an end) proves
+independence of the order of these inverse operations.
+
+Thus \eqref{eq:primitive} belongs to $\B$ and has endpoint Mellin values
+zero. Its full jets at $Z$ equal $u$, and at every other zero of $g$
+they vanish to the full order. Its class in $Q$ is injective in $u$:
+a theta relation has zero selected jets. These facts establish the
+literal map that will receive the prime words, without assuming a
+positive form on the quotient.
+
+\input{GENERATOR.tex}
+
+\section{The actual four dilation terms and their finite theta relation}
+For every positive real $q$ set
+\begin{equation}
+ U_qF(x)=F(x/q),\qquad V_q=q^{-1/2}U_q,\qquad
+ \MM V_qF(s)=q^{s-1/2}\MM F(s).\label{eq:Vq}
+\end{equation}
+The same formulas act on the Schwartz source and commute with $\Theta$.
+Substitution in $dx$ gives $\|U_qF\|^2=q\|F\|^2$, so $V_q$ is unitary
+and $V_q^*=V_{q^{-1}}$. The original prime action is exactly
+$U_p=p^{1/2}V_p$, not $V_p$ alone.
+Use the real integer $c$ constructed in Section 2 and the four coefficients
+\begin{equation}
+ \alpha_2=\frac{1-ic}{2},\quad\alpha_{1/2}=\frac{1+ic}{2},\quad
+ \alpha_3=\frac{c^2-ic^3}{2},\quad\alpha_{1/3}=\frac{c^2+ic^3}{2}.
+ \label{eq:alphas}
+\end{equation}
+Their original operator and its finite-packet image are
+\begin{equation}
+ \HS=\sum_{q\in\{2,1/2,3,1/3\}}\alpha_q V_q,
+ \qquad M=M_{H_c}\in\operatorname{End}(A_h).
+ \label{eq:operator}
+\end{equation}
+Each pair of coefficients is conjugate, proving self-adjointness on
+$L^2(dx)$. On the actual Mellin line its multiplier is the real function
+\begin{align}
+ x_c(t):=H_c(1/2+it)
+ &=\cos(t\log2)+c\sin(t\log2)\nonumber\\
+ &\quad+c^2\cos(t\log3)+c^3\sin(t\log3),\nonumber\\
+ |x_c(t)|&\le K_c:=(1+c^2)^{3/2},\qquad\|\HS\|\le K_c.
+ \label{eq:bound}
+\end{align}
+Each sine--cosine pair has amplitude respectively
+$\sqrt{1+c^2}$ and $c^2\sqrt{1+c^2}$, proving this bound.
+We need no assertion of equality in the operator norm.
+
+\subsection{The coefficient of the discrepancy, including all zero derivatives}
+Let $M_s$ multiply by $s$ in $A_h$. Exact division gives the scalar
+\begin{equation}
+ \kappa_h(u)=\frac{sR_u-R_{M_su}}{h}
+            =\frac{[s^{d-1}]R_u}{c_h},\qquad
+ D\PP(u)-\PP(M_su)=\Theta(\kappa_h(u)a(D)\phi_*).
+ \label{eq:kappa}
+\end{equation}
+The numerator vanishes modulo $h$ and has degree at most $d$, giving
+the first two equalities. Taking Mellin transforms gives the last one.
+There is a useful direct expression in the original local units:
+\begin{equation}
+ \kappa_h(u)=\sum_{\rho\in Z}\Res_\rho
+                     \frac{u(s)}{a(s)g(s)}\dd s.\label{eq:kappa-residue}
+\end{equation}
+Represent $u$ by its local jets. The residues of $R_u/h$ and
+$u/(ag)$ coincide at each selected zero, since $[aU_h]R_u=u$.
+The sum of the residues of $R_u/h$ is its coefficient of $s^{-1}$
+at infinity, namely $[s^{d-1}]R_u/c_h$.
+This proves \eqref{eq:kappa-residue}, and records exactly where the
+unchanged $c_h$ cancels against the unit in $R_u$.
+If $g(\rho+t)=t^{m_\rho}\gamma_\rho(t)$, define
+\begin{equation}
+ B_{\rho,j}(u)=[t^j]\frac{u_\rho(t)}{a(\rho+t)\gamma_\rho(t)}.
+\end{equation}
+Expanding the exponential in the residue then yields the finite formula
+\begin{equation}
+ \kappa_h(e^{vM_s}u)=\sum_\rho e^{v\rho}
+       \sum_{k=0}^{m_\rho-1}\frac{v^k}{k!}B_{\rho,m_\rho-1-k}(u).
+ \label{eq:kappa-exp}
+\end{equation}
+No derivative of the actual zero unit has been replaced by its value.
+
+\begin{theorem}[An exact source relation for the four original dilations]
+For $L\in\R$ use an oriented integral and set
+\begin{align}
+ \psi_L(u)&=\int_0^L\kappa_h(e^{vM_s}u)
+           U_{e^{L-v}}(a(D)\phi_*)\dd v,\nonumber\\
+ \Psi_c(u)&=\sum_q\alpha_q q^{-1/2}\psi_{\log q}(u).
+ \label{eq:psi}
+\end{align}
+Then $\Psi_c(u)\in V$, its theta transform has endpoint Mellin values
+zero, and
+\begin{equation}
+ \HS\PP(u)-\PP(Mu)=\Theta\Psi_c(u).\label{eq:homotopy}
+\end{equation}
+The interval for $q<1$ retains its negative orientation.
+\end{theorem}
+\begin{proof}
+Differentiate $U_{e^{L-v}}\PP(e^{vM_s}u)$ in $v$. Equation
+\eqref{eq:kappa} gives derivative
+\[
+ -\Theta[\kappa_h(e^{vM_s}u)U_{e^{L-v}}a(D)\phi_*].
+\]
+Integrating from $0$ to $L$, with either sign of $L$, proves
+$U_{e^L}\PP(u)-\PP(e^{LM_s}u)=\Theta\psi_L(u)$.
+Multiply by $q^{-1/2}$ and the four coefficients to get
+\eqref{eq:homotopy}. The integrands are smooth Schwartz families on
+compact intervals. Their source conditions are preserved by positive
+dilation. Their theta transforms are dilates of $ag$, which vanish
+at $s=0,1$. This proves every asserted space membership.
+\end{proof}
+
+This is also a quantitative relation, in the same inherited observation.
+Set
+\[
+ C_*:=\|\Theta(a(D)\phi_*)\|_{L^2(dx)}<\infty.
+\]
+Then
+\begin{equation}
+ \|\Theta\Psi_c(u)\|\le C_*\sum_q|\alpha_q|
+   \int_{\min(0,\log q)}^{\max(0,\log q)}
+      e^{-v/2}|\kappa_h(e^{vM_s}u)|\dd v.\label{eq:cost}
+\end{equation}
+Indeed the norm of the dilated seed is $e^{(L-v)/2}C_*$;
+the factor $q^{-1/2}=e^{-L/2}$ cancels precisely its $e^{L/2}$.
+The triangle inequality for the finite sum and each integral proves
+\eqref{eq:cost}. Its integrand is the finite exponential polynomial
+in \eqref{eq:kappa-exp}, made from actual zero derivatives.
+
+\section{Finite prime-word representatives, with exact source and Weil metrics}
+Put $F_*:=\PP(1)$ and define
+\begin{equation}
+ F_j=\HS^jF_*,\qquad\Phi(P)=P(\HS)F_*,\qquad
+ \widehat F_*(s):=\MM F_*(s)=a(s)U_h(s)R_1(s).
+ \label{eq:word-family}
+\end{equation}
+These functions are in $\B$, have both endpoint moments zero, and
+have full selected jets $H_c^j$. Their transforms vanish at every
+other actual zero to its full order. Powers through $j=d-1$ give a
+basis of the entire arithmetic packet by Section 2.
+For every $j\ge1$ the exact comparison with the original section is
+\begin{equation}
+ \HS^j\PP(u)-\PP(M^ju)=\Theta\mathcal D_j(u),\quad
+ \mathcal D_j(u)=\sum_{k=0}^{j-1}\HS^{j-1-k}\Psi_c(M^ku),
+ \quad\mathcal D_0=0.\label{eq:powers}
+\end{equation}
+The source action of $\HS$ in this formula uses the same four
+dilations. Induction using commutation with $\Theta$ proves
+\eqref{eq:powers}, including its order and signs. Extend
+$\mathcal D_P=\sum_jp_j\mathcal D_j$ linearly in $P(X)=\sum_jp_jX^j$.
+
+Let
+\begin{equation}
+ \nu(X)=\prod_\rho(X-z_\rho)^{m_\rho}\in\R[X],
+ \qquad z_\rho=H_c(\rho).
+ \label{eq:nu}
+\end{equation}
+This is the minimal polynomial of $M$, not a polynomial obtained by
+removing multiplicities. The exact relation calculation is
+\begin{equation}
+ [\Phi(P)]=0\text{ in }Q
+ \quad\Longleftrightarrow\quad\nu\mid P.
+ \label{eq:relation-ideal}
+\end{equation}
+Necessity follows from the full jet isomorphism. For sufficiency,
+$P(M)=0$ and \eqref{eq:powers} give the actual source primitive
+$\Phi(P)=\Theta\mathcal D_P(1)$.
+At a fixed original nonempty support label, this polynomial quotient
+sends killed coefficients to that label's supported zero. Every
+support label is retained. Applying $G_L$ to the unital algebra
+isomorphism of Section 2 therefore gives the same label-preserving
+semiring morphism; no support stratum is removed.
+
+Define the finite positive measure $\mu$ by its integrals:
+\begin{equation}
+ \int f(x)\dd\mu(x)=\frac1{2\pi}\int_\R
+  f(x_c(t))|a(1/2+it)U_h(1/2+it)R_1(1/2+it)|^2\dd t.
+ \label{eq:measure}
+\end{equation}
+The real spectral integration variable in $\mu$ is not the positive
+source coordinate inside $F(x)$; their connecting map is exactly
+$t\mapsto x_c(t)$ after the Mellin transform.
+Its support lies in $[-K_c,K_c]$, and its total mass is
+$\|F_*\|^2$, not one. In particular
+\begin{align}
+ \langle\Phi(P),\Phi(Q)\rangle_{L^2(dx)}
+     &=\int\overline{P(x)}Q(x)\dd\mu(x),\nonumber\\
+ \mu_j&=\int x^j\dd\mu(x),\qquad
+ G^{\rm word}_{jk}=\mu_{j+k}.\label{eq:source-gram}
+\end{align}
+Equation \eqref{eq:plancherel} and the real multiplier
+\eqref{eq:bound} prove this identity. The source Gram is positive
+definite at every finite degree: $\widehat F_*$ is not the zero entire
+function, so its real-line zeros are isolated; $x_c$ is a nonconstant
+real analytic function. The latter follows from independence of its
+four distinct exponential frequencies, since $\alpha_2\ne0$.
+On an interval where $x_c'\ne0$ and $\widehat F_*\ne0$, the measure
+has positive mass in every subinterval of its image. A nonzero
+polynomial cannot vanish on that interval. This proves the asserted
+strict positivity and also that the map $\Phi$ before quotient is
+injective in every polynomial degree.
+
+The whole Weil form, on these same representatives, is a different
+explicit matrix:
+\begin{equation}
+ T^{\rm word}_{jk}=\mathcal W_g(F_j,F_k)
+       =\sum_{\rho\in Z}m_\rho z_\rho^{j+k}.
+ \label{eq:Weil-gram}
+\end{equation}
+Indeed all omitted-zero summands are identically zero by
+\eqref{eq:word-family}; and
+$\overline{H_c(\iota\rho)}=H_c(\rho)$ gives the displayed powers.
+Thus \eqref{eq:source-gram} and \eqref{eq:Weil-gram} calculate two
+forms on the identical functions, with an explicit identity map
+between their underlying vectors. The finite trace has radical the
+positive-order jet ideal. Its matrix on values is positive $m_\rho$
+at a reflection-fixed root and
+$\left(\begin{smallmatrix}0&m_\rho\\m_\rho&0\end{smallmatrix}\right)$
+at a two-element reflection orbit. These statements follow by writing
+the two terms of the reflected sum. The raw pairing
+\[
+ R_h(u,v)=\sum_\rho\Res_\rho\frac{u^\dagger v}{g}\dd s
+\]
+still detects all jets: its local coefficient matrix has nonzero
+antidiagonal $(-1)^j/\gamma_\rho(0)$. It is perfect, and insertion
+of $g'$ gives the trace because $g'/g=m_\rho/t+\gamma_\rho'/\gamma_\rho$.
+This proves the connecting map between the raw and contracted forms.
+
+\section{Bounded moment dynamics and the attained quotient volume}
+For $\theta\in\C$ set
+\begin{equation}
+ \begin{gathered}
+ Z(\theta)=\int e^{\theta x}\dd\mu(x),\qquad
+ Z_\nu(\theta)=\int |\nu(x)|^2e^{\theta x}\dd\mu(x),\\
+ D_n=\det[Z^{(i+j)}]_{i,j<n},\qquad
+ B_n=\det[Z_\nu^{(i+j)}]_{i,j<n}.
+ \end{gathered}\label{eq:determinants}
+\end{equation}
+Empty determinants are $D_0=B_0=1$. Both transforms are entire, since
+on every compact set of $\theta$ the integrand and all its derivatives
+are bounded by a constant times the finite measure. Their derivatives
+are exactly the indicated moments. For real $\theta$, every
+positive-order determinant is positive; multiplication by $\nu$ loses
+only finitely many real points from the interval used to prove strict
+positivity. In particular no atom assumption is needed for this step.
+
+For $n\ge d-1$, the original word-degree cutoff has the exact sequence
+\begin{equation}
+ 0\longrightarrow\C[X]_{\le n-d}
+ \xrightarrow{\times\nu}\C[X]_{\le n}
+ \longrightarrow\C[X]/(\nu)\longrightarrow0.\label{eq:sequence}
+\end{equation}
+Set $\C[X]_{\le-1}=0$. Give the middle space precisely the measure
+$e^{\theta x}\mu$ and the quotient its unique least-norm
+representative metric. At $\theta=0$ this is the inherited source
+metric of the displayed prime words. In the quotient basis
+$1,X,\ldots,X^{d-1}$, write this Gram matrix as $G_n(\theta)$.
+Then
+\begin{equation}
+ \mathcal V_n(\theta):=\det G_n(\theta)
+       =\frac{D_{n+1}(\theta)}{B_{n-d+1}(\theta)}.
+ \label{eq:volume}
+\end{equation}
+To prove it, use the middle-space basis
+$1,\ldots,X^{d-1},\nu,X\nu,\ldots,X^{n-d}\nu$.
+The monic polynomial $\nu$ gives change-of-basis determinant one.
+The relation block has Gram $B_{n-d+1}$. Orthogonally subtracting
+that block gives the Schur complement, exactly the least-norm
+quotient Gram. Taking determinants proves \eqref{eq:volume}.
+The auxiliary observation has an exact isometry to the original
+word measure: $f(x)\mapsto e^{\theta x/2}f(x)$ for real $\theta$.
+On the source Hilbert space this is $e^{\theta\HS/2}$, with both it
+and its inverse bounded by $e^{|\theta|K_c/2}$. Its image of the
+polynomial subspace is specified by this formula; it is not assumed
+to preserve a polynomial cutoff.
+These are also actual operators on $\B$: for its defining seminorm
+$p_{b,j}$ one has $p_{b,j}(V_qF)=q^{b-1/2}p_{b,j}(F)$, hence
+$p_{b,j}(\HS F)\le C_b p_{b,j}(F)$ with
+$C_b=\sum_q|\alpha_q|q^{b-1/2}$.
+The exponential series converges in every such seminorm. The
+same dilation estimate on the Schwartz source proves preservation
+of its source conditions and theta relations. Taking Mellin
+transforms termwise gives multiplication by $e^{\theta H_c(s)/2}$.
+For clarity, its full packet action is $E_\theta=e^{\theta M/2}$:
+the transported seed has jets $e^{\theta H_c/2}$, not $1$.
+If these transported representatives are then re-expressed in the
+same original jet coordinates, their quotient-volume determinant is
+\begin{equation}
+ \widetilde{\mathcal V}_n(\theta)
+ =e^{-\theta\sum_\rho m_\rho z_\rho}\mathcal V_n(\theta).
+ \label{eq:tilt-coordinate}
+\end{equation}
+Indeed their Gram in fixed jets is
+$E_{-\theta}^*G_nE_{-\theta}$; its determinant changes by
+$|\det E_{-\theta}|^2=e^{-\theta\Tr M}$.
+The trace is real by reflection. This retained linear logarithmic
+term has zero second derivative, so the curvature below is unchanged.
+
+\begin{theorem}[Cutoff-independent arithmetic recurrence bounds]
+For each of the two positive measures $e^{\theta x}\mu$ and
+$e^{\theta x}|\nu(x)|^2\mu$, let $p_j$ be its monic orthogonal
+polynomial and $h_j$ its squared norm. Its three-term recurrence is
+\begin{equation}
+ xp_j=p_{j+1}+b_jp_j+a_jp_{j-1},\qquad
+ a_j=h_j/h_{j-1},\quad a_0=0.
+ \label{eq:recurrence}
+\end{equation}
+For every real $\theta$ and $j\ge1$,
+\begin{equation}
+ 0<a_j\le K_c^2=(1+c^2)^3.\label{eq:uniform}
+\end{equation}
+Writing $a_j^{\rm src}$ and $a_j^{\rm rel}$ for the two sequences,
+the exact volume identity is
+\begin{equation}
+ (\log\mathcal V_n)''=a_{n+1}^{\rm src}-a_{n-d+1}^{\rm rel},
+ \qquad |(\log\mathcal V_n)''|\le K_c^2.
+ \label{eq:curvature}
+\end{equation}
+At $n=d-1$ the second term is zero, without a negative-index determinant.
+\end{theorem}
+\begin{proof}
+Orthogonality and symmetry of multiplication by $x$ show that in
+$xp_j$ only degrees $j+1,j,j-1$ occur; pairing with $p_{j-1}$ gives
+the displayed $a_j$. The coefficient of $p_j/\sqrt{h_j}$ in
+$x p_{j-1}/\sqrt{h_{j-1}}$ is $\sqrt{h_j/h_{j-1}}$.
+Multiplication by $x$ has norm at most $K_c$ on each of the two
+measures. Cauchy--Schwarz proves \eqref{eq:uniform}.
+
+Differentiating orthogonality with respect to the real parameter,
+including the derivative $x e^{\theta x}$ of the measure, gives
+$\partial_\theta p_j=-a_jp_{j-1}$ and
+$\partial_\theta\log h_j=b_j$.
+For precision, pairing $\partial_\theta p_j$ with a degree $k<j-1$
+gives zero because $xp_k$ has degree below $j$; pairing with
+$p_{j-1}$ gives $-h_j$, yielding exactly $-a_j$.
+The derivative terms from $p_j$ in $h_j'$ vanish by orthogonality.
+Now differentiate $b_j=\langle xp_j,p_j\rangle/h_j$.
+The measure derivative contributes
+$a_{j+1}+b_j^2+a_j$, the two polynomial derivatives contribute
+$-2a_j$, and the denominator contributes $-b_j^2$.
+Thus $b_j'=a_{j+1}-a_j$. Since $D_n=\prod_{j<n}h_j$,
+telescoping gives
+\[
+ (\log D_n)''=a_n=\frac{D_{n+1}D_{n-1}}{D_n^2}
+ \quad(n\ge1).
+\]
+The same proof gives the identity for $B_n$. Subtracting their
+logarithms in \eqref{eq:volume} proves \eqref{eq:curvature}.
+Both recurrence terms lie in $[0,K_c^2]$, so their difference has
+absolute value at most $K_c^2$, not twice that bound.
+\end{proof}
+
+These are the classical Hankel--Toda identities, here derived for the
+explicit measure \eqref{eq:measure}; their general orthogonal-polynomial
+provenance is recorded in \cite{Toda}. This is a concrete continuation of
+the programme's source/relation-volume calculation, not a new choice of
+positive metric on $A_h$. The earlier Euler-polynomial family uses
+$P(D)F_h$ and an unbounded Mellin coordinate. Here the family is
+$P(\HS)\PP(1)$, a finite sum of dilations. Equation \eqref{eq:powers}
+is their exact cohomological comparison with the same original section;
+\eqref{eq:source-gram} supplies the new family's actual metric.
+No bound proved for this family is silently transferred to the earlier
+Euler cutoffs. For the identity map on the finite packet, its two
+representative maps differ by the displayed theta source relation.
+
+\section{The relation cost retains every spectral discrepancy}
+For a polynomial $P$, \eqref{eq:powers} gives
+\begin{equation}
+ P(\HS)\PP(u)=\PP(P(M)u)+\Theta\mathcal D_P(u).
+ \label{eq:polynomial-defect}
+\end{equation}
+Let $z\in\C$ and $m\ge1$, and put
+\begin{equation}
+ d_K(z)=\sqrt{(\Im z)^2+\max\{|\Re z|-K_c,0\}^2}.
+\end{equation}
+By multiplication on the Mellin line, for every $u\in A_h$,
+\begin{equation}
+ \|\Theta\mathcal D_{(X-z)^m}(u)\|
+ \ge d_K(z)^m\|\PP(u)\|-\|\PP((M-z)^mu)\|.
+ \label{eq:residual}
+\end{equation}
+Indeed $|x_c(t)-z|\ge d_K(z)$ pointwise, so the left-hand side of
+\eqref{eq:polynomial-defect} has norm at least
+\[
+ d_K(z)^m\|\PP(u)\|.
+\]
+The triangle inequality proves
+\eqref{eq:residual}. On the actual generalized eigenspace
+$\ker(M-z)^m$, the last term is exactly zero. This calculates a
+necessary nonzero theta-relation norm whenever that eigenspace has
+$d_K(z)>0$. It does not identify an unbounded algebraic quotient
+with a bounded Hilbert quotient.
+
+There is a full matrix equality behind this bound. In any fixed
+coordinate basis of $A_h$, write $S$ for the column map $\PP$,
+$G=S^*S$ for its inherited positive Gram, and
+$E=\HS S-SM=\Theta\Psi_c$ for the actual discrepancy columns.
+Self-adjointness of $\HS$ gives exactly
+\begin{equation}
+ S^*E-E^*S=M^*G-GM.\label{eq:matrix-defect}
+\end{equation}
+Expanding the two left terms proves the formula; the common term
+$S^*\HS S$ cancels. Every coefficient is either an original source
+inner product or the explicit finite operator. This is the precise
+map relating a self-adjoint source operator to its possibly
+non-self-adjoint algebraic finite action.
+
+\section{An original-zeta numerical example and exact finite checks}
+Take the actual first two positive critical ordinates $\gamma_1,\gamma_2$,
+their negative partners, and $c_h=1$. With
+\[
+ h(s)=\bigl((s-1/2)^2+\gamma_1^2\bigr)
+      \bigl((s-1/2)^2+\gamma_2^2\bigr),\qquad c=1,
+\]
+the numerical generator values, in the order
+$-\gamma_1,+\gamma_1,-\gamma_2,+\gamma_2$, are
+\[
+ (-1.729633532453,\ -2.100994546437,\
+   -0.885009068584,\ -0.856555247283).
+\]
+These decimal observations are not used to certify the general theorem
+or the simplicity of a zero. The original low-height human source is
+Platt--Trudgian \cite{Platt}; the numerical computation here uses
+\texttt{mpmath.zetazero}, retaining its status as numerical evidence.
+For these simple nodes the matrix has rows $(1,z,z^2,z^3)$ and
+numerical determinant $-0.0117911416732783$.
+
+The exact unit-inverse polynomial is obtained without discarding its
+large coefficients. Put $\rho_j=1/2+i\gamma_j$ and
+\[
+ b_j=\frac{h'(\rho_j)}{\rho_j(\rho_j-1)g'(\rho_j)},\qquad
+ r_2=\frac{b_1-b_2}{\gamma_2^2-\gamma_1^2},\qquad
+ r_0=b_1+r_2\gamma_1^2.
+\]
+Then $R_1(s)=r_0+r_2(s-1/2)^2$: it has exactly the four required
+values $[aU_h]^{-1}$, by conjugation and reflection, and degree below
+four. Numerically $r_0\simeq512549.3874122573$ and
+$r_2\simeq2627.36745870685$. The resulting source Gram is
+\[
+ \begin{pmatrix}
+ 16369.56790&201.64114&11653.99632&-6605.01598\\
+ 201.64114&11653.99632&-6605.01598&27600.94756\\
+ 11653.99632&-6605.01598&27600.94756&-29905.12371\\
+ -6605.01598&27600.94756&-29905.12371&96519.71793
+ \end{pmatrix}.
+\]
+Its first three monic recurrence coefficients are numerically
+\[
+ (a_1,a_2,a_3)\simeq(0.7117788668,\ 1.3213160586,\ 1.4695672533),
+ \qquad a_j\le8\text{ for every degree by \eqref{eq:uniform}}.
+\]
+In particular the source unit has squared norm about $16369.56790$,
+whereas its full Weil value is exactly $4$ for this simple four-root
+packet. This is a calculation on the same original representative,
+not a rescaling to hide the difference.
+
+\texttt{calculate\_example.py} evaluates the source at 40 decimal
+working digits, then uses double-precision composite Gauss--Legendre
+quadrature on $0\le t\le80$, exploiting the proved evenness of this
+example's density. Orders 12 and 20 on intervals of length two give
+maximum relative moment discrepancy $3.95\times10^{-14}$ using the
+comparison denominator $\max(1,|\mu_j|)$. This agreement is not an
+interval certificate or a bound for the omitted tail. All numerical
+matrices and coefficients are in \texttt{NUMERICAL\_EXAMPLE.json}.
+\texttt{check\_identities.py} separately verifies exact rational and
+symbolic finite identities, including repeated jets, nonunit $c_h$,
+the oriented dilation formula, and the endpoint of the determinant
+ratio. It does not certify the transcendental numerical example.
+
+\begin{figure}[p]
+ \centering\includegraphics[width=\textwidth]{two_prime_example.pdf}
+ \caption{The original two-prime symbol, primitive unit density,
+ distinct packet values, and inherited source Gram. These are
+ numerical observations, not certified bounds. The exact operator
+ and constants are \eqref{eq:alphas}--\eqref{eq:bound}; the actual
+ density and full matrix are \eqref{eq:measure}--\eqref{eq:source-gram}.
+ The full-jet mechanism is proved in Section 2, while the bounded
+ recurrence and determinant dynamics are proved in Section 5.
+ Human source locators: Meyer \cite{Meyer}, Theorem
+ \texttt{the:Lap\_range}; Stacks \cite{Stacks}, tag 00DT.
+ Reproducible figure source: \texttt{calculate\_example.py}.}
+\end{figure}
+
+\section*{What this calculation supplies}
+There is now a finite construction of every full packet class using
+the actual primes 2 and 3, an exact original theta primitive for
+every discrepancy, and an inherited arithmetic word metric with
+cutoff-independent recurrence and curvature bounds. The construction
+retains the original $e$-relations through \eqref{eq:relation-ideal},
+not through a numerical replacement of the supported zeros.
+This supplies directly evaluable inputs for the programme's
+source/relation determinant method. It neither proves the Riemann
+hypothesis nor provides a counterexample. The new observation is
+joined to the old section by a proved cochain formula, not declared
+equal to a previously chosen metric or cutoff.
+
+\begin{thebibliography}{9}
+\bibitem{Meyer} Ralf Meyer, \emph{A spectral interpretation for the zeros
+of the Riemann zeta function},
+\href{https://arxiv.org/abs/math/0412277}{arXiv:math/0412277}.
+Original author source, Theorem \texttt{the:Lap\_range} and
+Corollary \texttt{cor:Dminus\_eigenvalues}; read lines 641--740
+of the indexed local source. This is the human context for the
+original Mellin quotient and multiplicities.
+\bibitem{Stacks} The Stacks Project Authors,
+\href{https://stacks.math.columbia.edu/tag/00DT}{Lemma 10.15.4,
+Chinese remainder, tag 00DT}. Original \texttt{algebra.tex},
+\texttt{lemma-chinese-remainder}, complete proof read.
+The determinant and inverse formulas here are specialised
+Hermite-interpolation calculations proved in Section 2.
+\bibitem{Toda} A. I. Aptekarev, A. Branquinho and F. Marcell\'an,
+\emph{Toda-type differential equations
+for the recurrence coefficients of orthogonal polynomials and Freud
+transformation}, Journal of Computational and Applied Mathematics
+ 78 (1997), 139--160, \href{https://doi.org/10.1016/S0377-0427(96)00138-0}
+ {doi:10.1016/S0377-0427(96)00138-0}.
+Historical provenance for the orthogonality/Toda mechanism; the
+identities used in this note are proved directly in Section 5.
+\bibitem{Platt} David Platt and Timothy Trudgian,
+\emph{The Riemann hypothesis is true up to $3\cdot10^{12}$},
+\href{https://arxiv.org/abs/2004.09765}{arXiv:2004.09765}.
+Human provenance for the established low-height zero computation,
+not a certificate for the numerical quadrature performed here.
+\end{thebibliography}
+\end{document}

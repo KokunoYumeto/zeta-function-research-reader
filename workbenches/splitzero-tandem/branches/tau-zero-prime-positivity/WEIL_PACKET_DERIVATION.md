@@ -546,3 +546,7 @@ The bracketed arguments on the second line are classes in \(E_z\), mapped into \
 For \(m>1\), the multiplicity in (WP56) multiplies a value. It does not differentiate \(F_P\) or \(F_Q\). This is why the correct inertia on the full \(4m\)-dimensional packet is (WP31), and why the higher jet directions appear as its precisely computed radical. Their maps remain (WP21), (WP38)–(WP44), and (WP48).
 
 The proof above does not identify (WP56) with pole, Gamma, and prime terms for this test family. Such an identity involves its analytic test class and convergence statements; none follows from the finite quotient alone. The finite algebra supplies a complete target for that calculation: the Hermitian form (WP28), with the explicit negative representatives (WP32) or (WP36), the complete radical (WP23), and the exact relation to the native amplitude multiplier (WP26). No assertion here establishes positivity of the prime-side expression or a conclusion about the existence of an off-line zero of \(\xi\).
+
+## Exact residue-duality continuation
+
+[RD1–RD31b](COLLISION_RESIDUE_DUALITY_DERIVATION.md) proves the complete Jacobian map from perfect residue duality to the retained regular trace, identifies the actual packet radical with cotangent cohomology, and computes the supported endpoint compensation. The existing formulas and all their coordinates remain unchanged.

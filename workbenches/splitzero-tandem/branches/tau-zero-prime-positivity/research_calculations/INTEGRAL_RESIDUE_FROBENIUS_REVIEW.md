@@ -1,0 +1,582 @@
+# The integral holonomy residue and every coefficient-fixed Frobenius lift
+
+Independent bounded derivation, 23 September 2026. The residue below is the original operator with its original clock coefficient. It is an ordinary derivation; it is not the \(p\)-derivation associated with a Frobenius lift.
+
+The original residue and its clock are [EHM43–EHM46, published proof](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/adfbfe74fa49e31cb7aa068cf755fb083be37c32/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/EIGHT_STATE_HOLONOMY_DERIVATION.md#L371). This review directly read local EHM27–EHM46, CBR25–CBR27, IEC30–IEC33 and the integral cotangent and de Rham presentations in IEC16–IEC28, together with the previously checked unsplit presentation. The local source files are [EIGHT_STATE_HOLONOMY_DERIVATION.md](EIGHT_STATE_HOLONOMY_DERIVATION.md), [CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md](CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md), [INTEGRAL_EIGHT_STATE_COLLISION_DERIVATION.md](INTEGRAL_EIGHT_STATE_COLLISION_DERIVATION.md), and [IEC_P3_INDEPENDENT_REVIEW.md](IEC_P3_INDEPENDENT_REVIEW.md). Their roles here are source formulas and previously proved finite presentations; every new operator calculation is proved below.
+
+The three source-file SHA256 values, in the order EHM, CBR, IEC, are B46B9FC8D7DA2DCD3F2E5A93C083E9FFB9E0E029E0AEEE747BC19641D5B5F90D, 0A3AD6A8F37FE651ABFB57DE46475C20259E0BF76DAA41D12D8D046A31ED28B9, and DAD299495E93DB162931C5CCDDD86610F352BA046A9F13FB91A9FD1ABEA00FBE. This is a private calculation and makes no new publication, historical-literature, or novelty claim.
+
+## RF1. The algebra and the exact domain of the residue
+
+For a specified prime \(p\), put \(O=\mathbb Z_p\) and
+\[
+C=O[\epsilon,T]/(\epsilon^2,T^2-6\epsilon).
+\tag{RF1}
+\]
+Its ordered \(O\)-basis is \(1,\epsilon,T,\epsilon T\), by successive division by the two monic relations. Thus \(C\) is finite free, complete, and torsionfree over \(O\). Its nilradical is
+\[
+N=O\epsilon\oplus OT\oplus O\epsilon T.
+\]
+Indeed this ideal has fourth power zero and the quotient is the reduced ring \(O\). Direct multiplication gives the exact powers
+\[
+N^2=6O\epsilon\oplus O\epsilon T,\qquad
+N^3=6O\epsilon T,\qquad N^4=0.
+\tag{RF2}
+\]
+The nonzero products are \(T^2=6\epsilon\) and \(\epsilon T=\epsilon\cdot T\); multiplying \(N^2\) by \(N\) gives only \(6\epsilon T\), which proves generation of each displayed power. Freeness proves that no scalar index has been lost.
+
+The published residue is the operator
+\[
+\mathcal R(1)=\mathcal R(\epsilon)=\mathcal R(\epsilon T)=0,\qquad
+\mathcal R(T)=-\frac38\epsilon T=-\frac{T^3}{16}.
+\tag{RF3}
+\]
+For odd \(p\), these coefficients belong to \(O\), so it is an integral \(O\)-linear map. It is an ordinary derivation: the polynomial assignment
+\(\widetilde{\mathcal R}(\epsilon)=0,\ 
+\widetilde{\mathcal R}(T)=-3\epsilon T/8\)
+preserves the two relation ideals, as proved explicitly in (RF30) below.
+
+At \(p=2\), (RF3) does not define an endomorphism of the integral lattice \(C\): its \(T\)-image has coefficient \(-3/8\) on the independent vector \(\epsilon T\). It defines a map on \(C\otimes_O\mathbb Q_2\). Among integral scalars \(m\in O\),
+\[
+m\mathcal R(C)\subseteq C
+\quad\Longleftrightarrow\quad m\in8O,
+\]
+\[
+m\mathcal R(N)\subseteq N^3
+\quad\Longleftrightarrow\quad m\in16O.
+\tag{RF4}
+\]
+The first assertion compares the valuation of \(3m/8\) with zero. The second compares \(-3m\epsilon T/8\) with the exact lattice \(6O\epsilon T\), equivalently \(m/16\in O\). The maps \(8\mathcal R\) and \(16\mathcal R\) are therefore available integral multiples with different exact images; neither is substituted for the original residue.
+
+For a uniform calculation at every prime, let \(s\in O\) and define
+\[
+D_s(\epsilon)=0,\qquad D_s(T)=s\epsilon T.
+\tag{RF5}
+\]
+It is an integral derivation, has square zero, has kernel
+\(O1\oplus O\epsilon\oplus O\epsilon T\) when \(s\ne0\), and has image \(sO\epsilon T\). Its image is square-zero and is annihilated by \(N\). The specializations are \(\mathcal R=D_{-3/8}\) at odd primes, \(8\mathcal R=D_{-3}\) at 2, and \(16\mathcal R=D_{-6}\) at 2.
+
+For odd \(p\), (RF2) and (RF3) give the exact sequence
+\[
+0\longrightarrow(O/6O)[\epsilon]
+\longrightarrow N/N^2
+\xrightarrow{\overline{\mathcal R}}N^3
+\longrightarrow0,
+\qquad
+[T]\longmapsto-\frac1{16}(6\epsilon T).
+\tag{RF6}
+\]
+The source is \(OT\oplus(O/6O)[\epsilon]\). The target is free on \(6\epsilon T\), and \(-1/16\) is a unit. Hence surjectivity and the indicated kernel follow by coefficient comparison. At 3, the kernel is exactly \(\mathbb F_3[\epsilon]\); at primes greater than 3 it is zero.
+
+The saturated annihilator line is \(S=O\epsilon T\). It has
+\[
+S/N^3=(O/6O)[\epsilon T].
+\tag{RF7}
+\]
+Thus at 3 the residue is onto \(N^3\), while its cokernel in the larger line \(S\) is \(\mathbb F_3\). These are different codomains, with their exact inclusion retained.
+
+## RF2. Every Frobenius lift and the commutator on the full algebra
+
+Every coefficient-fixed Frobenius lift on \(C\) has parameters \(b,c,d\in O\) and formulas
+\[
+\Phi(T)=p(b\epsilon+cT+d\epsilon T),\qquad
+\Phi(\epsilon)=p^2c^2\epsilon+\frac{p^2bc}{3}\epsilon T.
+\tag{RF8}
+\]
+The fraction in the second formula is integral: at \(p=3\) it is \(3bc\), while at every other prime 3 is a unit. To verify exhaustion, an endomorphism sends the nilpotent \(T\) to a nilpotent. The Frobenius congruence and \(T^p\in pC\) force its three nilpotent coefficients to be divisible by \(p\). Squaring its image, and comparing the two independent coefficients in the relation \(6\Phi(\epsilon)=\Phi(T)^2\), forces (RF8). Conversely the displayed \(\epsilon\)-image squares to zero, and its product with 6 is exactly \(\Phi(T)^2\). Both images reduce to the prescribed Frobenius images. This proves existence and exhaustion without making 3 a unit.
+
+Write
+\[
+\lambda=pc,\qquad \beta=pb,\qquad \xi=pd,\qquad
+\mu=p^2bc/3,
+\quad 3\mu=\beta\lambda.
+\]
+Then
+\[
+\Phi(\epsilon)=\lambda^2\epsilon+\mu\epsilon T,\qquad
+\Phi(T)=\beta\epsilon+\lambda T+\xi\epsilon T,\qquad
+\Phi(\epsilon T)=\lambda^3\epsilon T.
+\tag{RF9}
+\]
+The last equality follows by multiplying the preceding two expressions: every term except \(\lambda^3\epsilon T\) contains either \(\epsilon^2\) or \(\epsilon T^2\), both zero.
+
+For every integral \(D_s\), exact evaluation on the basis gives
+\[
+D_s\Phi=\lambda D_s,\qquad
+\Phi D_s=\lambda^3D_s.
+\tag{RF10}
+\]
+On the basis vectors \(1,\epsilon,\epsilon T\), both sides are zero. On \(T\), the first equality uses only the \(\lambda T\) term in \(\Phi(T)\), and the second uses \(\Phi(\epsilon T)=\lambda^3\epsilon T\). Therefore
+\[
+[D_s,\Phi]=\lambda(1-\lambda^2)D_s
+\tag{RF11}
+\]
+as \(O\)-linear maps on the entire algebra. In particular, for every odd prime,
+\[
+[\mathcal R,\Phi](T)
+=-\frac38pc(1-p^2c^2)\epsilon T,\qquad
+[\mathcal R,\Phi](\epsilon)=0.
+\tag{RF12}
+\]
+The candidate formula is correct with the commutator convention
+\([A,B]=AB-BA\). Its value is independent of \(b,d\), although those parameters remain part of the full endomorphism.
+
+Since \(\lambda\in pO\), the element \(1-\lambda^2\) is a unit. The algebra is torsionfree, so the residue commutes with \(\Phi\) exactly when \(c=0\). This includes the augmentation lift and, at 3, the monoidal lift \(\Phi(T)=T^3=6\epsilon T,\Phi(\epsilon)=0\); the latter has \(b=c=0,d=2\). A commuting lift need not be the augmentation.
+
+The commutator is ordinarily a \(\Phi\)-derivation because it is a difference of two compositions. In this specific algebra it is also the ordinary derivation (RF11). There is no conflict: \(D_s\) takes values in \(S\), which is annihilated by \(N\), and \(\Phi\) fixes scalar coefficients. Thus multiplication by \(a\) and by \(\Phi(a)\) agree on \(S\) for every \(a\in C\).
+
+## RF3. The filtration, exact divisibility, and the quotient defined by the defect
+
+The endomorphism \(\Phi\) preserves \(N\) and every power of \(N\). On \(N/N^2\),
+\[
+\Phi[T]=\lambda[T],\qquad \Phi[\epsilon]=0.
+\tag{RF13}
+\]
+Indeed the extra term \(\beta[\epsilon]\) in \(\Phi[T]\) is zero: at \(p=2,3\), \(\beta\) is divisible by the prime and \(O/6O\) has that prime as its annihilator; at other primes \(O/6O=0\). The same argument kills \(\lambda^2[\epsilon]\). On \(N^3\), the map is multiplication by \(\lambda^3\). Consequently (RF11) is the exact difference between the factor \(\lambda\) on the free first layer and the factor \(\lambda^3\) on the third layer.
+
+Assume \(p\) is odd and \(c\ne0\). On the map from \(N/N^2\) to \(N^3\), the commutator has
+\[
+\ker\overline{[\mathcal R,\Phi]}=(O/6O)[\epsilon],\quad
+\operatorname{im}\overline{[\mathcal R,\Phi]}=\lambda N^3,\quad
+\operatorname{coker}\overline{[\mathcal R,\Phi]}\simeq O/\lambda O.
+\tag{RF14}
+\]
+The unit factors in (RF6) and (RF11) prove these three claims. At 3, if \(r=v_3(c)\), its cokernel has exact order \(3^{r+1}\).
+
+As an endomorphism of the full free lattice \(C\), the commutator at 3 instead has image
+\[
+3^{r+2}O\epsilon T.
+\tag{RF15}
+\]
+One factor of 3 comes from the original residue and another from \(\lambda=3c\). Write \(c=3^rc_0\), with \(c_0\) a unit. There is an exact integral divided map
+\[
+\frac{[\mathcal R,\Phi]}{3^{r+2}}(T)
+=-\frac{c_0}{8}(1-9c^2)\epsilon T,
+\quad
+\frac{[\mathcal R,\Phi]}{3^{r+2}}(\epsilon)=0.
+\tag{RF16}
+\]
+It reduces to a nonzero map modulo 3. Here division denotes the unique integral map whose indicated scalar multiple is the original map, proved by its basis coefficients; it does not divide a torsion module. Relative to the target basis \(6\epsilon T\) of \(N^3\), the corresponding exact divisor is \(3^{r+1}\). The inclusion \(N^3\hookrightarrow C\) accounts for the additional factor in (RF15).
+
+Likewise \(\mathcal R\) itself is zero after reduction as an endomorphism of \(C/3C\), while \(\mathcal R/3\) is the integral map sending \(T\) to \(-\epsilon T/8\), which is nonzero modulo 3. The layer map (RF6) is already nonzero modulo 3 in \(N^3/3N^3\). This quotient is not the image of \(N^3\) in \(C/3C\), since that image is zero.
+
+There is an exact quotient algebra that makes the specified operators commute. For odd \(p\), put
+\[
+I_\Phi=\left(-\frac38\lambda(1-\lambda^2)\epsilon T\right)\subset C.
+\tag{RF17}
+\]
+Every commutator value lies in this ideal, and its value on \(T\) generates the ideal. It is stable under \(\mathcal R\) because \(\mathcal R(\epsilon T)=0\), and under \(\Phi\) because \(\Phi(\epsilon T)=\lambda^3\epsilon T\). Thus both maps descend to \(Q_\Phi=C/I_\Phi\) and commute there. Every quotient with descended operators in which they commute must kill their value on \(T\), hence factors uniquely through \(Q_\Phi\). This proves the universal property for quotients of the specified algebra with these specified operators.
+
+At 3 and \(c\ne0\), (RF15) gives
+\[
+Q_\Phi=
+O\{1,\epsilon,T\}\oplus(O/3^{r+2}O)\{\epsilon T\},
+\quad \epsilon^2=0,\quad T^2=6\epsilon.
+\tag{RF18}
+\]
+The other products are inherited from \(C\). The descended residue remains nonzero: its image is the subgroup generated by \(3\epsilon T\), of exact order \(3^{r+1}\). Killing the commutator therefore retains a nonzero residue in this precisely defined space of quotient objects.
+
+For the specified \(p\)-derivation \(\delta_\Phi(a)=(\Phi(a)-a^p)/p\) on the torsionfree source \(C\), the ideal \(I_\Phi\) is also stable. Every element \(j\in I_\Phi\) is a scalar multiple of \(\epsilon T\), hence \(j^p=0\) and
+\[
+\delta_\Phi(j)=\frac{\lambda^3}{p}j\in I_\Phi.
+\]
+The coefficient \(\lambda^3/p=p^2c^3\) is integral. The descended operation on the torsion quotient is this particular descended \(p\)-derivation; it is not reconstructed by dividing an arbitrary element of the quotient by \(p\).
+
+## RF4. The ordinary de Rham action and its integral homotopy
+
+For the next explicit presentation let \(p\) be odd. Use
+\[
+\alpha=d\epsilon,\quad \beta_1=dT,\quad
+u=\epsilon\,dT,\quad
+k=T\,d\epsilon-2\epsilon\,dT.
+\]
+The differential relations and all their basis multiples give
+\[
+\epsilon d\epsilon=\epsilon T\,d\epsilon=\epsilon T\,dT=0,
+\quad TdT=3d\epsilon,\quad3k=0.
+\]
+They give the direct \(O\)-module decomposition
+\[
+\Omega^1_{C/O}=O\alpha\oplus O\beta_1\oplus Ou\oplus(O/3O)k.
+\tag{RF19}
+\]
+To check completeness, \(2\epsilon d\epsilon=0\) and its \(T\)-multiple kill the first two forms; the \(\epsilon\)-multiple of \(2TdT-6d\epsilon=0\) kills \(\epsilon T\,dT\); the original relation eliminates \(TdT\); its \(T\)-multiple is \(6(Td\epsilon-2\epsilon dT)=0\). After division by the unit 2, this is \(3k=0\). No other independent relation remains.
+
+The exterior module is
+\[
+\Omega^2_{C/O}=(O/3O)w,\qquad w=d\epsilon\wedge dT,\qquad
+\Omega^j_{C/O}=0\ (j\ge3).
+\tag{RF20}
+\]
+Indeed its coefficient ideal is \((6,2\epsilon,2T)=(3,\epsilon,T)\). Its de Rham differential has \(du=w,dk=-3w=0\), while \(d\alpha=d\beta_1=0\). The image from the algebra is generated by \(\alpha,\beta_1,k+3u=d(\epsilon T)\). Thus
+\[
+H^0_{\mathrm{dR}}(C/O)=O,\quad
+H^1_{\mathrm{dR}}(C/O)=(O/3O)[3u],\quad
+H^j_{\mathrm{dR}}(C/O)=0\ (j\ge2).
+\tag{RF21}
+\]
+The kernel in degree one before quotienting is
+\(O\alpha\oplus O\beta_1\oplus O(3u)\oplus(O/3O)k\). Quotienting by the three displayed exact forms proves the nonzero order-three class at 3 and proves its absence at other odd primes.
+
+An ordinary derivation \(D\) induces its Lie operator on forms by
+\[
+\mathcal L_D(a\,db)=D(a)\,db+a\,dD(b).
+\tag{RF22}
+\]
+For \(\mathcal R\), (RF19) gives
+\[
+\mathcal L_{\mathcal R}(\alpha)
+=\mathcal L_{\mathcal R}(u)
+=\mathcal L_{\mathcal R}(k)=0,\qquad
+\mathcal L_{\mathcal R}(\beta_1)=-\frac98u.
+\tag{RF23}
+\]
+For example
+\[
+d\mathcal R(T)
+=-\frac38(T\,d\epsilon+\epsilon\,dT)
+=-\frac38(k+3u)=-\frac98u,
+\]
+because \(3k=0\). Applying (RF22) to the other three generators gives zero using the three vanished forms before (RF19). On \(\Omega^2\), the Lie operator is multiplication by \(-3\epsilon/8\), which is zero in (RF20).
+
+At 3, (RF23) therefore has the exact kernel, image, and cokernel
+\[
+\ker\mathcal L_{\mathcal R}
+=O\alpha\oplus Ou\oplus\mathbb F_3k,\qquad
+\operatorname{im}\mathcal L_{\mathcal R}=9Ou,
+\]
+\[
+\operatorname{coker}\mathcal L_{\mathcal R}
+=O\alpha\oplus O\beta_1\oplus(O/9O)u\oplus\mathbb F_3k.
+\tag{RF24}
+\]
+Its action on the de Rham cohomology in (RF21) is zero. That zero action does not erase the nonzero operator (RF23).
+
+The zero action has an integral chain homotopy. Contraction is the \(C\)-linear map
+\[
+\iota_{\mathcal R}(d\epsilon)=0,\qquad
+\iota_{\mathcal R}(dT)=-3\epsilon T/8,
+\]
+extended as a degree-minus-one antiderivation on exterior forms. The differentiated relations are killed because \(\mathcal R\) is a derivation of the quotient. On the algebra, \(\iota_{\mathcal R}d=\mathcal R\). On \(a\,db\), direct expansion gives
+\[
+(d\iota_{\mathcal R}+\iota_{\mathcal R}d)(a\,db)
+=d(aD(b))+D(a)db-D(b)da
+=D(a)db+a\,dD(b).
+\]
+This proves the Cartan identity
+\[
+\mathcal L_{\mathcal R}=d\iota_{\mathcal R}+\iota_{\mathcal R}d
+\tag{RF25}
+\]
+without denominators other than 8. The identical calculation applies to every integral \(D_s\), including the two distinguished integral multiples at 2. It proves zero Lie action on their ordinary de Rham cohomology at every prime.
+
+The Frobenius map on (RF19) is
+\[
+\Phi_*\alpha=\lambda^2\alpha+\beta\lambda u,\qquad
+\Phi_*\beta_1=\beta\alpha+\lambda\beta_1+3\xi u,
+\]
+\[
+\Phi_*u=\lambda^3u,\qquad \Phi_*k=0.
+\tag{RF26}
+\]
+Differentiating (RF9) first gives additional terms \(\mu k\) and \(\xi k\) in the first two expressions. At 3, both coefficients are divisible by 3; at other odd primes \(k=0\). These terms are therefore exactly zero. Multiplication in the quotient proves the third formula. The unreduced expression for the last is \(\lambda^3k\), again zero. Thus every lift acts by the identity on \(H^0\) and by zero on \(H^1\); the latter follows from \(\Phi_*[3u]=\lambda^3[3u]\).
+
+Combining (RF23) and (RF26) gives the full degree-one commutator
+\[
+[\mathcal L_{\mathcal R},\Phi_*]
+=\lambda(1-\lambda^2)\mathcal L_{\mathcal R}
+\quad\text{on }\Omega^1_{C/O}.
+\tag{RF27}
+\]
+This statement concerns actual forms before taking cohomology.
+
+## RF5. The cotangent Lie operator and its exact torsion
+
+Put \(f_C=\epsilon^2,g_C=T^2-6\epsilon\). The regular-sequence cotangent complex has degrees \(-1,0\):
+\[
+L_{C/O}=
+\left[C\bar f_C\oplus C\bar g_C
+\xrightarrow{\left(\begin{smallmatrix}2\epsilon&-6\\0&2T\end{smallmatrix}\right)}
+C\,d\epsilon\oplus C\,dT\right].
+\tag{RF28}
+\]
+Regularity follows because \(f_C\) is a nonzero divisor in \(O[\epsilon,T]\), and \(g_C\) is monic in \(T\) modulo \(f_C\).
+
+At every prime the degree-minus-one cohomology is free on
+\[
+v_1=\epsilon\bar f_C,\qquad
+v_2=\epsilon T\bar f_C,\qquad
+v_3=3T\bar f_C+\epsilon T\bar g_C.
+\tag{RF29}
+\]
+The second kernel equation \(2Tb=0\) implies \(b=d\epsilon T\), by torsionfreeness and expansion in the basis of \(C\). The first equation then forces the scalar coefficient of \(a\) to vanish and its \(T\)-coefficient to be \(3d\). The two remaining coefficients are free. This proves (RF29), including its integral basis.
+
+The Lie operators are \(O\)-linear and satisfy \(\mathcal L_{D_s}(am)=D_s(a)m+a\mathcal L_{D_s}(m)\). The Frobenius maps are \(O\)-linear and satisfy \(\Phi_*(am)=\Phi(a)\Phi_*(m)\). The kernel and cokernel calculations here are for the displayed \(O\)-modules.
+
+Lift \(D_s\) to the polynomial derivation with the same values on \(\epsilon,T\). Its exact relation images are
+\[
+\widetilde D_s(f_C)=0,\qquad
+\widetilde D_s(g_C)=12s f_C+2s\epsilon g_C.
+\tag{RF30}
+\]
+Indeed \(D_s(T^2-6\epsilon)=2s\epsilon T^2=2s\epsilon(g_C+6\epsilon)\). Thus on the relation module the Lie operator has
+\[
+\mathcal L_{D_s}(\bar f_C)=0,\qquad
+\mathcal L_{D_s}(\bar g_C)=12s\bar f_C+2s\epsilon\bar g_C,
+\]
+and on coefficient multiples it satisfies the Leibniz rule with \(D_s\). Differentiating (RF30) proves that this operator and (RF22) give a chain map of (RF28).
+
+On the basis (RF29), direct calculation gives
+\[
+\mathcal L_{D_s}(v_1)=\mathcal L_{D_s}(v_2)=0,\qquad
+\mathcal L_{D_s}(v_3)=15s\,v_2.
+\tag{RF31}
+\]
+The term \(3T\bar f_C\) contributes \(3s\epsilon T\bar f_C\), and the term \(\epsilon T\bar g_C\) contributes \(12s\epsilon T\bar f_C\); its other contributions vanish by \(\epsilon^2=0\). This retains the coefficient 15, rather than inferring it from the generator value in the algebra.
+
+For the original residue at odd primes,
+\[
+\mathcal L_{\mathcal R}(v_3)=-\frac{45}{8}v_2.
+\tag{RF32}
+\]
+It has square zero, kernel \(Ov_1\oplus Ov_2\), image \(45Ov_2\), and cokernel
+\[
+Ov_1\oplus Ov_3\oplus(O/45O)v_2.
+\tag{RF33}
+\]
+At 3 the torsion term is \(O/9O\); at 5 it is \(O/5O\); at odd primes other than 3 and 5 it is zero. The free image remains nonzero at every odd prime. These statements use the free cotangent lattice, so they are compatible with the nullhomotopic ordinary de Rham action.
+
+## RF6. The complete Frobenius map on the cotangent cycles
+
+Use the polynomial lifts
+\[
+X=\epsilon(\lambda^2+\mu T),\qquad
+Y=\beta\epsilon+\lambda T+\xi\epsilon T.
+\]
+Their relation identities are
+\[
+X^2=(\lambda^2+\mu T)^2 f_C,
+\]
+\[
+Y^2-6X=
+\left(\beta^2+12\lambda\xi+2\beta\xi T+\xi^2T^2\right)f_C
+\left(\lambda^2+2\lambda\xi\epsilon\right)g_C.
+\tag{RF34}
+\]
+Expanding proves both polynomial identities; the mixed \(\epsilon T\) coefficient cancels because \(6\mu=2\beta\lambda\). Every coefficient is integral as specified before (RF9).
+
+The resulting chain map of cotangent presentations sends the relation generators according to (RF34) and sends \(d\epsilon,dT\) to \(dX,dY\). On coefficients it acts by \(\Phi\). This proves its full type and the chain identity. In the cycle basis (RF29), it is
+\[
+\begin{aligned}
+\Phi_*v_1&=\lambda^6v_1+\beta\lambda^5v_2,\\
+\Phi_*v_2&=\lambda^7v_2,\\
+\Phi_*v_3&=15\beta\lambda^4v_1
++(5\beta^2\lambda^3+15\xi\lambda^4)v_2+\lambda^5v_3.
+\end{aligned}
+\tag{RF35}
+\]
+For the first expression, multiply
+\(X(\lambda^2+\mu T)^2
+=\epsilon(\lambda^2+\mu T)^3\)
+and reduce; it gives \(\lambda^6\epsilon+3\lambda^4\mu\epsilon T\), with \(3\mu=\beta\lambda\). The second uses \(\Phi(\epsilon T)=\lambda^3\epsilon T\).
+
+For the third, the \(\bar g_C\)-component is \(\lambda^5\epsilon T\). The \(\bar f_C\)-component, before identifying the cycle basis, is
+\[
+3Y(\lambda^2+\mu T)^2
++\lambda^3\epsilon T
+\left(\beta^2+12\lambda\xi+2\beta\xi T+\xi^2T^2\right).
+\]
+Its \(T,\epsilon,\epsilon T\) coefficients are respectively
+\[
+3\lambda^5,\qquad15\beta\lambda^4,\qquad
+5\beta^2\lambda^3+15\xi\lambda^4.
+\]
+These follow using \(T^2=6\epsilon,\epsilon^2=0,3\mu=\beta\lambda\), and prove the third expression in full.
+
+Equations (RF31) and (RF35) now give, at every prime for each integral \(D_s\),
+\[
+[\mathcal L_{D_s},\Phi_*]
+=\lambda^5(1-\lambda^2)\mathcal L_{D_s}
+\quad\text{on }H^{-1}(L_{C/O}).
+\tag{RF36}
+\]
+Both operators kill \(v_1,v_2\) after taking their commutator. On \(v_3\), the two terms are \(15s\lambda^5v_2\) and \(15s\lambda^7v_2\). This proves (RF36). The factor \(\lambda^5\) here differs from the factor \(\lambda\) on the algebra and in (RF27), because the relation-cycle basis has the weights displayed in (RF35).
+
+At 3, when \(c\ne0\) and \(r=v_3(c)\), the image of (RF36) for \(\mathcal R\) is exactly
+\[
+3^{7+5r}Ov_2.
+\tag{RF37}
+\]
+Indeed \(v_3(45/8)=2\), \(v_3(\lambda^5)=5+5r\), and \(1-\lambda^2\) is a unit. Its kernel is \(Ov_1\oplus Ov_2\); its cokernel is
+\[
+Ov_1\oplus Ov_3\oplus(O/3^{7+5r}O)v_2.
+\tag{RF38}
+\]
+For \(c=0\), the Frobenius map (RF35) is zero, and the commutator is zero. In that case (RF37)–(RF38), which assumed \(c\ne0\), are not applied.
+
+## RF7. The unsplit integral algebra and the order-nine filtration image
+
+Now specialize to \(O=\mathbb Z_3\) and retain the full unsplit algebra
+\[
+B=O[x,T]/(f,g),\quad
+f=x^2(x+3),\quad g=T^2-3x(x+2).
+\tag{RF39}
+\]
+Its basis is \(1,x,x^2,T,xT,x^2T\), its quotient \(q:B\to C\) sends \(x\mapsto\epsilon,T\mapsto T\), and its nilradical has basis
+\[
+n_1=x(x+3),\qquad n_2=T(x+3),\qquad n_3=Tx(x+3).
+\]
+Direct multiplication gives
+\[
+n_1^2=n_1n_3=n_2n_3=n_3^2=0,\quad
+n_2^2=18n_1,\quad n_1n_2=3n_3,
+\]
+\[
+N_B^2=18On_1\oplus3On_3,\qquad
+N_B^3=54On_3,\qquad N_B^4=0.
+\tag{RF40}
+\]
+Their span is the entire nilradical: evaluation at \((x,T)=(0,0),(-3,3),(-3,-3)\) has exactly this common kernel by coefficient comparison, and every nilpotent must vanish in the reduced target \(O^3\).
+
+The integral extension of the residue is
+\[
+D_B(x)=0,\qquad D_B(T)=-\frac18n_3.
+\tag{RF41}
+\]
+To verify that it is a derivation on \(B\), lift the same polynomial formula. Its relation images are
+\[
+\widetilde D_B(f)=0,\qquad
+\widetilde D_B(g)
+=-\frac34(x+2)f-\frac14n_1g.
+\tag{RF42}
+\]
+Indeed \(D_B(g)=-n_1T^2/4\), and
+\[
+n_1x(x+2)=x^2(x+3)(x+2)=f(x+2).
+\]
+Substituting \(T^2=g+3x(x+2)\) proves (RF42). Under \(q\), \(n_3\mapsto3\epsilon T\), so \(qD_B=\mathcal Rq\) exactly.
+
+The values on the actual integral nilradical basis are
+\[
+D_B(n_1)=D_B(n_3)=0,\qquad D_B(n_2)=-\frac38n_3.
+\tag{RF43}
+\]
+For the last equality use \(xn_3=0\), so \((x+3)n_3=3n_3\). Thus \(D_B\) kills \(N_B^2\) and has image \(3On_3\) on \(N_B\). It does not send all of \(N_B\) into \(N_B^3=54On_3\).
+
+The exact resulting layer map is
+\[
+N_B/N_B^2\xrightarrow{\overline D_B}N_B^2/N_B^3,
+\qquad[n_2]\longmapsto-\frac18[3n_3].
+\tag{RF44}
+\]
+The source and target are
+\[
+N_B/N_B^2
+=On_2\oplus(O/9O)n_1\oplus(O/3O)n_3,
+\]
+\[
+N_B^2/N_B^3
+=O(18n_1)\oplus(O/9O)(3n_3).
+\tag{RF45}
+\]
+Here 18 generates \(9O\), and \(54/3=18\) also generates \(9O\). Hence the image of (RF44) is precisely the order-nine summand \((O/9O)(3n_3)\); its kernel is
+\[
+9On_2\oplus(O/9O)n_1\oplus(O/3O)n_3,
+\]
+and its cokernel is \(O(18n_1)\). These are exact integral modules. Passing to the fraction field removes this particular torsion image, so that passage cannot replace this calculation.
+
+The quotient sends
+\[
+q(n_1)=3\epsilon,\quad
+q(n_2)=3T+\epsilon T,\quad
+q(n_3)=3\epsilon T.
+\tag{RF46}
+\]
+Their images span the ideal \(M=q(N_B)\subset N\) with index \(27\) in the full free \(O\)-module \(N\). The determinant of their columns in \(\epsilon,T,\epsilon T\) is \(27\). Therefore these three original radical generators are not an integral basis of \(N\) at 3. The layer maps in (RF6) and (RF44) concern the precise radicals of their respective source algebras.
+
+## RF8. The nonzero divided action on the cotangent quotient
+
+The unsplit cotangent complex has matrix
+\[
+J_B=
+\begin{pmatrix}3x(x+2)&-6(x+1)\\0&2T\end{pmatrix}
+\]
+and degree-minus-one basis
+\[
+u_1=(n_1,0),\quad u_2=(n_3,0),\quad u_3=(n_2,n_3).
+\tag{RF47}
+\]
+For completeness, \(\operatorname{ann}_B(T)=On_3\) and
+\(\operatorname{ann}_B(T^2)=On_1\oplus On_3\), by expansion in the free basis. If \(J_B(a,b)=0\), the second equation gives \(b=dn_3\); because \((x+1)n_3=n_3\) and \(T^2n_2=6n_3\), the first becomes \(T^2(a-dn_2)=0\). This proves (RF47).
+
+The polynomial lift (RF42) defines the cotangent Lie operator. Its action is
+\[
+\mathcal L_{D_B}(u_1)=\mathcal L_{D_B}(u_2)=0,\qquad
+\mathcal L_{D_B}(u_3)=-\frac{15}{8}u_2.
+\tag{RF48}
+\]
+The \(n_2\bar f\) term contributes \(-3n_3\bar f/8\) by (RF43). The \(n_3\bar g\) term contributes
+\(-3(x+2)n_3\bar f/4=-3n_3\bar f/2\), while its other terms vanish. Their sum is exactly (RF48).
+
+The map induced by \(q\) on these free cotangent groups is
+\[
+q_*u_1=9v_1,\qquad q_*u_2=9v_2,\qquad
+q_*u_3=3v_3-3v_2.
+\tag{RF49}
+\]
+To verify it, the relation maps are
+\(\bar f\mapsto(\epsilon+3)\bar f_C\) and
+\(\bar g\mapsto-3\bar f_C+\bar g_C\), because
+\(f(\epsilon)=(\epsilon+3)f_C\) and
+\(g(\epsilon,T)=g_C-3f_C\). Applying (RF46) gives (RF49). Both Lie maps commute with (RF49): on the only nontrivial source vector the two values are
+\[
+\mathcal L_{\mathcal R}(3v_3-3v_2)
+=-\frac{135}{8}v_2
+=q_*\!\left(-\frac{15}{8}u_2\right).
+\tag{RF50}
+\]
+
+The map (RF49) is injective and, in the basis
+\(v_1,v_2,w=v_3-v_2\), has diagonal entries \(9,9,3\). Its exact cokernel is
+\[
+K=(O/9O)[v_1]\oplus(O/9O)[v_2]\oplus(O/3O)[w].
+\tag{RF51}
+\]
+The unscaled Lie operator is zero on this quotient, since it sends \(w\) to \(-45v_2/8\), which vanishes modulo 9.
+
+Both free cotangent Lie operators, however, are divisible by 3 as maps between their displayed free lattices:
+\[
+\frac{\mathcal L_{D_B}}3(u_3)=-\frac58u_2,\qquad
+\frac{\mathcal L_{\mathcal R}}3(v_3)=-\frac{15}{8}v_2.
+\tag{RF52}
+\]
+Their compatibility follows either by dividing the equality of maps into the torsionfree target in (RF50), or by direct substitution. They therefore induce a well-defined operator \(L_K\) on the torsion quotient (RF51):
+\[
+L_K[v_1]=L_K[v_2]=0,\qquad
+L_K[w]=-\frac{15}{8}[v_2]\ne0.
+\tag{RF53}
+\]
+This construction divides the free maps first. It does not divide an operator on \(K\) by 3.
+
+The coefficient \(-15/8\) has valuation one, so its class modulo 9 has exact order 3. Hence
+\[
+\operatorname{im}L_K=3(O/9O)[v_2]\simeq\mathbb F_3,\qquad
+\ker L_K=(O/9O)[v_1]\oplus(O/9O)[v_2],
+\]
+\[
+\operatorname{coker}L_K
+=(O/9O)[v_1]\oplus\mathbb F_3[v_2]\oplus\mathbb F_3[w],
+\qquad L_K^2=0.
+\tag{RF54}
+\]
+The kernel formula follows because the order-three \(w\)-summand maps injectively to the indicated order-three subgroup. Thus the vanishing unscaled action coexists with this nonzero, exactly defined divided action on the retained cotangent quotient.
+
+There is no integral algebra derivation \(D_B/3\): it would send \(T\) to \(-n_3/24\), and \(n_3=x^2T+3xT\) has a unit coefficient on the independent basis vector \(x^2T\). The division in (RF52) is valid on the free cotangent cohomology lattices and does not assert that nonexistent division on the integral algebra.
+
+## RF9. Checked conclusions
+
+The ring commutator (RF12) is confirmed for all odd primes and all coefficient-fixed lifts. Its integral formulation at 2 requires retaining the fractional original residue or specifying one of the exact integral multiples in (RF4). The residue's map \(N/N^2\to N^3\), its ordinary de Rham action, and its cotangent action are the different maps proved in (RF6), (RF23)–(RF25), and (RF32); none is inferred from another map's vanishing.
+
+At 3 the retained data include the \(\mathbb F_3\) kernel in (RF6), the order-nine cotangent cokernel in (RF33), the order-nine unsplit layer image in (RF44), and the nonzero order-three image on the cotangent quotient in (RF53)–(RF54). The Frobenius commutators and their exact powers of 3 are (RF12), (RF14)–(RF16), and (RF36)–(RF38). All use the original coefficients \(-3/8\), \(-1/16\), \(6\), \(9\), \(18\), and \(54\).
+
+Independent symbolic verification reduced the polynomial relation lifts in (RF34) with the original equations and checked every column in (RF35). Exact matrix multiplication also verified (RF36) and the commutative square (RF50). The proofs above give the integral maps and their exact modules without using a symbolic check as a substitute for proof.

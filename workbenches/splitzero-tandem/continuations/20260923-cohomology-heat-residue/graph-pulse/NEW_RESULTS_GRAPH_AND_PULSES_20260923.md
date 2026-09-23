@@ -84,4 +84,4 @@ The source-only word metric, the two-observation graph metric, the pulse Haar me
 
 Root ran 87 exact auxiliary graph identities and five matrix-expansion checks, including a test detecting an omitted derivative. The independent pulse derivation supplied exact Taylor, nonunit-rank, minimum-section and residual checks, and independently checked PCO5,9,10,11. These checks supplement the complete proofs; they do not certify unknown zero locations or global asymptotics. The attempted separate GC review returned a usage-limit error and supplied no independent validation.
 
-The prior sealed 189-page edition remains unchanged. This continuation is local while the sole publication task holds uploads.
+The prior sealed 189-page edition remains unchanged. This continuation is included in the public 208-page edition; its original completed proof sources are preserved.

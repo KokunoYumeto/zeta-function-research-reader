@@ -62,3 +62,11 @@ The Connes–Consani finite covers now receive an explicit quadratic quotient of
 
 - [PHW1–PHW25: oriented prime traces, inertia, character decomposition and supported endpoints](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4a4238afc992e77aee83b97d38a1a63d283f540c/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/PRIME_HOLONOMY_SUPPORTED_WEIL_DERIVATION.md)
 - [CBR1–CBR29: discriminant quotient, arithmetic cover and surviving infinitesimal residue](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/4a4238afc992e77aee83b97d38a1a63d283f540c/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/CLASS_FIELD_SIGNED_HOLONOMY_DERIVATION.md)
+
+## Supported-zero identity and the exact residue-to-trace map
+
+The original singlet algebra has supported zero as its own multiplicative identity and inverse. Its semilattice adjunctions and the actual invertible heat group are now calculated explicitly. The collision infinitesimal acts nontrivially on perfect residue duality; the Jacobian maps this duality to regular trace. On the actual Weil packet that same map identifies the trace radical with cotangent cohomology, retaining all amplitude jets and all supported endpoint corrections. No proof or disproof of RH is asserted.
+
+- [ZH1–ZH26: intrinsic zero identity, heat flow and residue-generated actions](SUPPORTED_ZERO_HEAT_IDENTITY_DERIVATION.md)
+- [RD1–RD31b: integral duality, Jacobian trace, cotangent radical and endpoint compensation](COLLISION_RESIDUE_DUALITY_DERIVATION.md)
+- [HZ1–HZ29: supporting specialization maps and local persistence of zeros](supporting_proofs/TAU_HEAT_ZERO_LOCALIZATION_DERIVATION.md)

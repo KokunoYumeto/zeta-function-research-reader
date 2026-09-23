@@ -245,7 +245,7 @@ Thus actual tests with \((A,B)=(1,-1)\) have old value−2 and averaged value \(
 
 The root-pair image of \(j\) is not invariant under the full group: a signed root permutation taking root1 to root0 sends a vector with \(A\ne0,B=0\) outside it. Such a permutation is in(HWA7) after choosing signs with product equal to its permutation sign. This proves a specific failure of invariance of this comparison map, with the group action and endpoint map explicitly retained. It does not assert that every other arithmetic comparison fails.
 
-The full supported-zero construction [*The supported-zero prime in the full theta and Weil trace distribution*, SZW24–SZW42](SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md) proves the actual integrated formula. Here are its explicit terms and their exact transport. Put \(h=f^\#*g\), \(H=M_h\), and retain
+The full supported-zero construction [*The supported-zero prime in the full theta and Weil trace distribution*, SZW24–SZW42](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/adfbfe74fa49e31cb7aa068cf755fb083be37c32/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/SUPPORTED_ZERO_PRIME_WEIL_DERIVATION.md) proves the actual integrated formula. Here are its explicit terms and their exact transport. Put \(h=f^\#*g\), \(H=M_h\), and retain
 \[
 \begin{aligned}
 \mathcal Z(f,g)&=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho),\\

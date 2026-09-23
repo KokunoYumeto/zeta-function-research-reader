@@ -1,0 +1,1199 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,mathrsfs,booktabs,longtable,array}
+\usepackage[margin=25mm]{geometry}
+\usepackage{enumitem,xurl,hyperref,fancyhdr}
+\hypersetup{hidelinks,pdftitle={Invertible supported zero, full heat collisions, and the arithmetic trace},pdfauthor={Independent programme reconstruction}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Split-Zero / heat reconstruction}\fancyhead[R]{\small 23 September 2026}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}\setlength{\emergencystretch}{3em}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}[section]\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}\newcommand{\Z}{\mathbb Z}\newcommand{\B}{\mathbb B}
+\newcommand{\curl}{\operatorname{curl}}
+\newcommand{\Tr}{\operatorname{Tr}}\newcommand{\im}{\operatorname{im}}\newcommand{\diag}{\operatorname{diag}}\newcommand{\rad}{\operatorname{rad}}\newcommand{\Spec}{\operatorname{Spec}}\newcommand{\Ann}{\operatorname{Ann}}\newcommand{\Disc}{\operatorname{Disc}}\newcommand{\Hom}{\operatorname{Hom}}\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\amp}{\operatorname{amp}}\newcommand{\supp}{\operatorname{supp}}\newcommand{\one}{1^\bullet}
+\newcommand{\src}[1]{\textit{Source interface:} #1}
+\title{Invertible supported zero, full heat collisions,\\and the arithmetic trace\\[4pt]\large Exact semilattice maps, a heat--holonomy identity,\\and the remaining time-zero arithmetic test}
+\author{Independent programme reconstruction}
+\date{23 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+Supported zero is used here as the actual multiplicative identity of the original zero algebra, before localization. The full semilattice adjunction is carried through an independent-support cyclic receiver. At the collision the receiver has a generalized inverse between its original corner images and an invertible action on every zero-support label, while its amplitude is nonzero nilpotent. A reverse edge labelled by supported zero is essential. The full signed collision family, unlike its marked quadratic quotient, has a nonzero heat-equation defect. In the original reciprocal coordinate this defect is $R_{\rm heat}=-6T^2$ and its published holonomy residue satisfies $96\delta(T)=TR_{\rm heat}$. Relative and perfect residue traces detect it; the regular trace kills it through the Jacobian. The actual finite-order transport has a pole whose optimal positive invariant metric degenerates at a calculated rate. The calculated correction to genuine quartic heat preserves the full critical nilpotent and a nonzero, explicitly rescaled transport residue, while making its positive-time local trace positive definite. An independent calculation at the original zeta endpoints shows that pole cancellation contributes exactly $1/16$ to Rodgers--Tao's $H_0$: totalizing the pole first loses that term and creates spurious zeros at $Z=\pm i$. General collision expansions, their energy finite part and a finite error bound give a genuine possible time-zero negativity test. The original inverse-fibre fluid map is reconstructed with its Euclidean forcing and pullback metric, separating it from the released finite-energy Navier--Stokes construction. No RH proof or disproof is obtained; the surviving maps and exact nonzero corrections are the results.
+\end{abstract}
+\tableofcontents\newpage
+
+\section{Sources, statements, and the question being tested}
+This note tests an implication, not an objection based on the classical axiom $0x=0$: can the original invertibility of supported zero force failure of real-rootedness at the original time zero of the Riemann heat family? All local zeros, the absent element, and the nonreduced collision directions remain in the coefficient objects below. Ordinary complex amplitudes occur only through explicitly identified fibre maps.
+
+The foundational inputs are the supplied globalization note, the original projective/monad paper, the semimodule classification in the secondary note, and the full lattice construction in version 11 \cite{Globalization,P1,Secondary,V11}. The original inverse-fibre polynomial and its incompressible lift are read from the complete 480-line programme source \cite{IFH}. They are used as explicit polynomial identities, irrespective of their historical announcement. The supplied original Rodgers--Tao v5 mathematical text was read in full, including its revised boundary-energy section \cite{RT}. The published programme's EHM, ZH, SZW and RD proofs are read at commit \texttt{ffffbe41d458728cbdda0c6e32702ff2c1a8fce0} \cite{EHM,ZH,SZW,RD}. They are mathematical inputs with stated scope, not independent verification certificates.
+
+Rodgers--Tao use
+\begin{equation}
+ H_t(Z)=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,
+ \qquad H_0(Z)=\tfrac18\xi(\tfrac12+iZ/2),
+ \quad \partial_tH_t=-\partial_Z^2H_t,                 \label{eq:rt}
+\end{equation}
+where
+\begin{equation}
+ \Phi(u)=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}}.
+                                                        \label{eq:phi}
+\end{equation}
+The statements imported from the analytic literature are that all zeros of $H_t$ are real exactly for $t\ge\Lambda$, that $\Lambda\ge0$, and that $\Lambda\le0.2$ \cite{RT,PT}. The last bound suffices here; no claim about a sharper current upper bound is made. A contradiction can begin with an actual time-zero witness. It need not begin with a numerical positive lower bound for $\Lambda$. Section~\ref{sec:origin} proves how such a witness would propagate.
+
+The 2026 Navier--Stokes paper states a smooth-forced, initially resting, finite-energy solution with terminal velocity blowup \cite{NS}. Its existence proof is not re-established in this note. We compare its stated equation and class with the explicit inverse-fibre fluid construction; we do not replace the released theorem by an informal analogy.
+
+\section{The original zero algebra and the full semilattice adjunction}
+Let $R$ be a nonzero commutative unital ring and $L$ a nontrivial bounded distributive lattice. Define precisely
+\begin{equation}
+ S=G_L(R)=\{z_\lambda=(0,\lambda):\lambda\in L\}
+ \cup\{r^\bullet=(r,1_L):r\in R\},\quad
+ e=z_{1_L}=0_R^\bullet,\quad\tau=z_{0_L}.                 \label{eq:base}
+\end{equation}
+The overlap in this union is just $e$. The operations are
+\begin{equation}
+ (r,\lambda)+(s,\mu)=(r+s,\lambda\vee\mu),\qquad
+ (r,\lambda)(s,\mu)=(rs,\lambda\wedge\mu).               \label{eq:ops}
+\end{equation}
+Nonzero amplitudes occur only at top support. Distributivity follows from distributivity in $R$ and $L$; all the mixed cases follow from $r^\bullet z_\lambda=z_\lambda$.
+
+\begin{proposition}[The unlocalized inverse and its actual domain]
+The ideal $eS$ is a semiring with its own identity $e$, and
+\begin{equation}
+ eS=Z_L\simeq L,\qquad 1_{eS}=e,\qquad e^{-1}=e.
+                                                        \label{eq:inverse}
+\end{equation}
+The inclusion $i:eS\to S$ preserves addition, multiplication and additive zero. The map $p:S\to eS$, $p(s)=es$, is unital and $pi=\operatorname{id}_{eS}$.
+\end{proposition}
+\begin{proof}
+Products with $e$ are exactly the $z_\lambda$, and $ez_\lambda=z_\lambda$. On these elements the two operations are join and meet, proving the semiring and inverse assertions. Also $(es)(et)=est$ and $e(s+t)=es+et$. Finally $p(1_S)=e=1_{eS}$, and the inclusion returns that same element, rather than $1_S$. No localization is involved.
+\end{proof}
+For every $\lambda$, the corner $z_\lambda S$ similarly has identity $z_\lambda$ and is isomorphic to the lattice $\downarrow\lambda$. This retains every zero label, not only the scalar pair $\{\tau,e\}$.
+
+\begin{theorem}[Both original adjunctions, over the full lattice]
+For an $S$-semimodule $M$, put $I_M=eM$. It is an $L$-semimodule. Let $J$ inflate an $L=eS$-semimodule along $p:S\to eS$. Then
+\begin{align}
+ \Hom_S(M,JN)&\simeq\Hom_L(eM,N),                         \label{eq:adjleft}\\
+ \Hom_S(JN,M)&\simeq\Hom_L(N,eM).                         \label{eq:adjright}
+\end{align}
+The maps $p_M(m)=em$ and $i_M:eM\hookrightarrow M$ satisfy
+\begin{equation}
+ p_Mi_M=\operatorname{id}_{eM},\quad i_Mp_M=e(-),\quad
+ e|_{eM}=\operatorname{id}_{eM}.                           \label{eq:retract}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Since $e+e=e$, addition on $eM$ is idempotent, hence its join; its global zero is the bottom. The scalar action factors through $eS$ because $s(em)=(es)(em)$. This proves the $L$-module structure. An $S$-linear $f:M\to JN$ obeys $f(m)=ef(m)=f(em)$, so restricts uniquely to an $L$-linear map on $eM$; the inverse sends $g$ to $gp_M$. An $S$-linear $h:JN\to M$ obeys $h(n)=h(en)=eh(n)$, so factors uniquely through $i_M$. These are inverse constructions on homomorphisms, natural in both variables. Equation~\eqref{eq:retract} is $e^2=e$.
+\end{proof}
+Every support fibre $M_\lambda=\{m:em=\lambda\}$ is an $R$-module with local additive zero $\lambda$: $m+\lambda=(1_S+e)m=m$, and $m+(-1)^\bullet m=em=\lambda$. For $\lambda\le\mu$ the transition is $m\mapsto m+\mu$. These are exactly the original semilattice-of-modules operations \cite[semimodule section]{Secondary}. In particular, the inverse action of $e$ on $eM$ is compatible with nontrivial amplitude modules above the labels; it does not identify them.
+
+For every $S$-linear $A:M\to M'$,
+\begin{equation}
+ p_{M'}A=(A|_{eM})p_M,\qquad Ai_M=i_{M'}(A|_{eM}).        \label{eq:naturality}
+\end{equation}
+Thus support can carry a nontrivial invertible map even when a fibre-amplitude action is nilpotent. Section~\ref{sec:cyclic} calculates precisely this situation.
+
+\subsection{The supplied faithful tensor map}
+Use $K=\R_{\ge0,\max}$ with addition $\max$, ordinary multiplication, zero $0$ and unit $1$. The map $\chi:K\to\B$, zero on $0$ and one on every positive number, is a semiring map and retracts $\B\hookrightarrow K$. Hence
+\begin{equation}
+ L\longrightarrow K\otimes_\B L,\quad\lambda\longmapsto1\otimes\lambda
+                                                        \label{eq:tensor}
+\end{equation}
+is injective: $\chi\otimes\operatorname{id}$ is its left inverse. Consequently
+\begin{equation}
+ j:S\hookrightarrow R\times(K\otimes_\B L),\qquad
+ (r,\lambda)\longmapsto(r,1\otimes\lambda)               \label{eq:jfull}
+\end{equation}
+preserves both operations and is injective. The amplitude and every join/meet label are retained jointly. In particular $j(e)=(0,1\otimes1_L)$ and $j(1_R^\bullet)=(1_R,1\otimes1_L)$ are distinct. We use this very map below, not a Boolean replacement of $L$.
+
+\subsection{Prime and localization maps}
+The ideals are either $\{z_\lambda:\lambda\in\mathfrak a\}$ for a proper lattice ideal $\mathfrak a$, or
+\[
+ Q_J=Z_L\cup\{r^\bullet:r\in J\},\qquad J\triangleleft R.
+\]
+Indeed, an ideal containing a top-supported element contains $e$ after multiplication by $e$, then every $z_\lambda$; its amplitudes form a ring ideal. Otherwise its labels are lower and join-closed. Testing multiplication proves that the primes are the lattice-prime ideals and the $Q_\mathfrak q$ for $\mathfrak q\in\Spec R$. Every support prime is below every arithmetic prime. The opens are
+\[
+ D(z_\lambda)=\{P_\mathfrak p:\lambda\notin\mathfrak p\},\qquad
+ D(r^\bullet)=\Spec_{\rm Lat}L\cup D_R(r).
+\]
+This proves the full ordinal-sum spectrum of the foundation \cite{V11}.
+
+There is also a different map $S[e^{-1}]\simeq L$: an invertible idempotent is its local unit, so every $r^\bullet$ becomes $1_L$, while $z_\lambda$ retains $\lambda$. The original inverse~\eqref{eq:inverse} already existed before this change. We do not use localization in its place.
+
+At a nonreduced coefficient extension, primality must also be transported rather than asserted. In $G_L(\C[T]/T^2)$ the ideal $(e)$ is not prime because $(T^\bullet)^2=e$ with $T^\bullet\notin(e)$. Its arithmetic prime $Q_{(T)}$ contracts to $(e)$ in $G_L(\C)$. This is the exact way the original supported-zero prime meets a nilpotent thickening.
+
+\section{Original inverse-fibre coordinates and the clocks}
+\src{All coefficients and the complete fluid lift in this section are from the original source \cite{IFH}; their polynomial identities are independently checked in the supplied script.}
+
+The original map in coordinates $(x,y,w)$ is
+\begin{equation}
+\begin{split}
+ F_1&=(1+xy)^3w+y^2(1+xy)(4+3xy),\\
+ F_2&=y+3x(1+xy)^2w+3xy^2(4+3xy),\\
+ F_3&=2x-3x^2y-x^3w.
+\end{split}                                               \label{eq:fable}
+\end{equation}
+Expanding its Jacobian gives $\det DF=-2$. The original three preimages of $(-1/4,0,0)$ are
+\[
+ (0,0,-1/4),\quad(1,-3/2,13/2),\quad(-1,3/2,13/2).
+\]
+Substitution in~\eqref{eq:fable} verifies all three coordinates of each image.
+
+For target $(a,b,c)$, use the complete root polynomial
+\begin{equation}
+ P_{a,b,c}(r)=cr^3-2r^2+br-2a,
+ \qquad \alpha=\tfrac12P_r(r).                            \label{eq:rootpoly}
+\end{equation}
+On the original chart $x\ne0$, the inverse and its domain are
+\begin{equation}
+ (x,y,w)=(\alpha^{-1},r-\alpha,5\alpha^2-3r\alpha-c\alpha^3),
+ \qquad P(r)=0,\quad\alpha\ne0.                           \label{eq:inversef}
+\end{equation}
+At $c=0$ there is separately the original point $(0,b,a-4b^2)$. It is not deleted when the quadratic root chart is used.
+
+The actual target heat trajectory is
+\begin{equation}
+ (a,b,c)\longmapsto(a+2\theta,b+6c\theta,c),\qquad
+ \partial_\theta P=P_{rr}.                               \label{eq:forward}
+\end{equation}
+For the fixed initial target $(-1/4,0,0)$, the nonzero-$x$ branches obey
+\begin{equation}
+ r^2=\tfrac14-2\theta,\quad \alpha=-2r,\quad x=-\frac1{2r},
+ \quad\theta_c=\tfrac18.                                 \label{eq:esc}
+\end{equation}
+Their full source trajectories, with $q=1-8\theta>0$, are
+\begin{equation}
+ \gamma_\pm(\theta)=
+ (\pm q^{-1/2},\mp\tfrac32q^{1/2},\tfrac{13}2q).
+                                                        \label{eq:gamma}
+\end{equation}
+The third point is on the distinct $x=0$ component.
+
+\begin{proposition}[Two explicit, different time identifications]
+The direct Newman time is $t_{\rm dir}=-\theta$. In the original real coordinate $r$, its collision is at $t_{\rm dir}=-1/8$, not at zero. A second, rotated and reanchored identification is
+\begin{equation}
+ t=4\theta-\tfrac12,\qquad Z=-2ir,\qquad
+ 2P_{-1/4+2\theta,0,0}(iZ/2)=Z^2-2t.                   \label{eq:clock}
+\end{equation}
+It sends the original initial time to $t=-1/2$ and the escape to $t=0$.
+\end{proposition}
+\begin{proof}
+Equation~\eqref{eq:forward} changes to backward heat under $t_{\rm dir}=-\theta$. For~\eqref{eq:clock}, $P=-2r^2+1/2-4\theta$; substitution of $r=iZ/2$ gives $2P=Z^2+1-8\theta=Z^2-2t$. Both the factor two and the time shift are retained. Its roots at the original initial target are $Z=\pm i$; after the escape they are real. The involution $r^\#=-r$ and conjugation of scalars gives $Z^\#=Z$. Thus the new real structure is explicitly transported rather than identified with coefficient conjugation in the original $r$-chart.
+\end{proof}
+The polynomial $Z^2-2t$ is an actual backward heat solution with the same differential operator as~\eqref{eq:rt}. Equation~\eqref{eq:clock} does not assert equality of this polynomial's initial datum with $H_0$. The difference is now a specified initial-data question, not an untracked change of clock.
+
+\section{The independent-support cyclic receiver at the collision}\label{sec:cyclic}
+Work on the free semimodule $M=S^2$, with structural off-diagonal zeros $\tau$, for $S=G_L(\C)$. For real $t$ define
+\begin{equation}
+ C_t=\begin{pmatrix}\tau&(it)^\bullet\\(-2i)^\bullet&\tau\end{pmatrix},
+ \qquad \mathcal H_t=\begin{pmatrix}4^\bullet&\tau\\\tau&(2t)^\bullet\end{pmatrix}.
+                                                        \label{eq:cyclic}
+\end{equation}
+Conjugate transpose preserves every label. Direct semiring multiplication gives
+\begin{equation}
+ C_t^2=(2t)^\bullet I,\qquad C_t^*\mathcal H_t=\mathcal H_tC_t.
+                                                        \label{eq:cycliclaws}
+\end{equation}
+These equations are valid also at $t=0$, where $(2t)^\bullet=e$, not $\tau$.
+
+\begin{theorem}[A genuine inverse on original corner images]
+At $t=0$ put
+\begin{equation}
+ B_0=\begin{pmatrix}\tau&(i/2)^\bullet\\e&\tau\end{pmatrix},
+ \quad P=\diag(\one,e),\quad Q=\diag(e,\one).
+                                                        \label{eq:partialinverse}
+\end{equation}
+Then
+\begin{gather}
+ B_0C_0=P,\quad C_0B_0=Q,\quad C_0B_0C_0=C_0,\quad B_0C_0B_0=B_0,\label{eq:regularinverse}\\
+ P^2=P,\quad Q^2=Q,\quad P+Q=I,\quad PQ=QP=eI.           \label{eq:corners}
+\end{gather}
+Moreover $C_0:\im P\to\im Q$ is invertible with inverse $B_0$, and its restriction to $eM=L^2$ is the invertible exchange of the two independent labels.
+\end{theorem}
+\begin{proof}
+The nonzero diagonal products of $B_0C_0$ are $(i/2)^\bullet(-2i)^\bullet=\one$ and $e^2=e$. In the other order they are reversed. All off-diagonal products are absent. The remaining equations follow by multiplication, using $1_R^\bullet+e=1_R^\bullet$.
+The two images are $\im P=S\times Z_L$ and $\im Q=Z_L\times S$. For $(x,z_\lambda)$ the map $C_0$ gives $(z_\lambda,(-2i)^\bullet x)$ and $B_0$ returns it. On $(z_\lambda,z_\mu)$ the maps both give $(z_\mu,z_\lambda)$. Their square is the identity on $eM$ by~\eqref{eq:retract}. This retains every label of $L^2$.
+\end{proof}
+The intersection of the two images is $eM$, not the absent vector. Their amplitude images are complementary ordinary lines, but their full semimodule intersection is the common semilattice. This is precisely where forgetting supported zero loses information.
+
+Let the structural one-edge map be
+\[
+ N=\begin{pmatrix}\tau&\tau\\\one&\tau\end{pmatrix}.
+\]
+Then $N^2$ is the globally absent matrix, whereas
+\begin{equation}
+ C_0=(-2i)^\bullet N+eN^*,\qquad C_0^2=eI,
+ \qquad \mathcal H_0C_0=e\begin{pmatrix}\tau&\one\\\one&\tau\end{pmatrix}.
+                                                        \label{eq:ghost}
+\end{equation}
+The reverse edge $eN^*$ cannot be deleted. The last matrix is nonzero in the full semiring even though its amplitude is zero. Odd powers of $C_0$ have absent trace $\tau$; even positive powers have trace $e$. A cycle which has not returned and a returned cycle whose amplitude is zero therefore remain different.
+
+For comparison, the common-support retract is
+\[
+ P_{\rm sync}=\begin{pmatrix}\one&e\\e&\one\end{pmatrix}.
+\]
+It is idempotent, commutes with $C_0$, and maps $(z_\lambda,z_\mu)$ to $(z_{\lambda\vee\mu},z_{\lambda\vee\mu})$. Its relative cyclic trace is $\Tr(C_0P_{\rm sync})=e$, unlike $\Tr C_0=\tau$. This is an explicit comparison to synchronization, not a substitution of that smaller object for the independent-support receiver.
+
+\subsection{Positivity with the support still present}
+Use the intrinsic ordered cone
+\begin{equation}
+ S_+=Z_L\cup\{a^\bullet:a\in\R_{>0}\}=\{x^*x:x\in S\}.
+                                                        \label{eq:cone}
+\end{equation}
+The equality follows by taking square roots of positive amplitudes and by $z_\lambda^2=z_\lambda$. From~\eqref{eq:cyclic},
+\begin{equation}
+ v^*\mathcal H_tv\in S_+\ \text{for every }v\in S^2
+ \quad\Longleftrightarrow\quad t\ge0.                   \label{eq:positive}
+\end{equation}
+Sufficiency is the sum of the two nonnegative amplitudes, with the actual joined labels. For necessity take $v=(\tau,\one)$ when $t<0$. At the collision the second direction has supported-zero value, not absence. Thus the inverse in~\eqref{eq:regularinverse}, the nontrivial amplitude nilpotent, and full semiring positivity coexist.
+
+In the ordinary trace basis $(1,Z)$ of $\C[Z]/(Z^2-2t)$, the amplitude companion is $M_Z=\left(\begin{smallmatrix}0&2t\\1&0\end{smallmatrix}\right)$ and its reflected trace form is $\diag(2,4t)$. The monomial coordinate map
+\begin{equation}
+ V=\diag(1/\sqrt2,-i\sqrt2),\quad VM_ZV^{-1}=\amp C_t,
+ \quad V^*\amp(\mathcal H_t)V=\diag(2,4t)                \label{eq:traceiso}
+\end{equation}
+preserves independent support labels when lifted. It is the exact link to the original shell receiver, where $N=D/2$, $N^*N=P_{<}$ and $NN^*=P_{>}$:
+\[
+ C_t=-2iN+itN^*,\qquad\mathcal H_t=4P_{<}+2tP_{>}.
+\]
+The infinite shell version means the bounded direct sum of these maps on its stated two sectors; no finite trace is assigned to an infinite identity.
+
+The positive norm energy and the signed trace energy are different even in these coordinates:
+\begin{equation}
+ (\amp C_t)^*(\amp C_t)=\diag(4,t^2),\qquad
+ \amp\mathcal H_t-(\amp C_t)^*(\amp C_t)=\diag(0,2t-t^2).
+                                                        \label{eq:energydefect}
+\end{equation}
+The matrix family is regular at zero: $C_0^{\rm amp}C'_0+C'_0C_0^{\rm amp}=2I$. Its individual root coordinates need not have finite derivatives there.
+
+\section{The full length-four family has a heat defect}\label{sec:heatdefect}
+\src{The local family and its reciprocal coordinate are EHM27--28. The following comparison with the whole heat equation, including its exact correction, is calculated here.}
+
+Let $\eta=h-1/8$ be the original displacement and put
+\begin{equation}
+ \beta=\frac{\sqrt{9+64\eta}-3}{2},\quad\beta(\beta+3)=16\eta,
+ \quad
+ \mathscr L=\frac{\C\{\eta\}[\epsilon,T]}
+ {(\epsilon^2-\beta\epsilon,\ T^2+16\eta-(6+3\beta)\epsilon)}.
+                                                        \label{eq:localfamily}
+\end{equation}
+The square root is its analytic branch with value three. The free basis is $1,\epsilon,T,\epsilon T$. At $\eta=0$,
+\begin{equation}
+ \mathscr L_0=\C[\epsilon,T]/(\epsilon^2,T^2-6\epsilon)
+ \simeq\C[T]/(T^4),\qquad \epsilon=T^2/6.                \label{eq:lengthfour}
+\end{equation}
+This last isomorphism is over $\C$; its integral counterpart is retained in Section~\ref{sec:residue}.
+
+Use exactly the marked receiver's clock and coordinate
+\begin{equation}
+ t=4\eta,\qquad Z=-iT/\sqrt2,\quad
+ t=\frac{\beta(\beta+3)}4,\quad\beta'=\frac4{2\beta+3}.
+                                                        \label{eq:quarticclock}
+\end{equation}
+Eliminating $\epsilon$ in~\eqref{eq:localfamily} gives
+\[
+ T^4-\beta^2T^2-\beta^2(\beta+3)(2\beta+3)=0.
+\]
+The resulting full monic polynomial is
+\begin{align}
+ Q_t(Z)&=Z^4+\tfrac12\beta^2Z^2-\tfrac14\beta^2(\beta+3)(2\beta+3)\notag\\
+       &=(Z^2-2t)\left(Z^2+\tfrac12\beta(2\beta+3)\right).
+                                                        \label{eq:quartic}
+\end{align}
+The first factor is the marked quadratic receiver. The second factor is part of the same local algebra, not an optional extra.
+
+\begin{theorem}[Exact heat defect and its correction]
+In the unchanged $Z,t$ coordinates,
+\begin{equation}
+ (\partial_t+\partial_Z^2)Q_t
+ =\frac{4(7\beta+9)}{2\beta+3}Z^2
+ -\frac{6\beta(\beta+1)(\beta+3)}{2\beta+3}.              \label{eq:fullres}
+\end{equation}
+At the collision its class in $\mathscr L_0$ is
+\begin{equation}
+ R_{\rm heat}=12Z^2=-6T^2=-36\epsilon\ne0.               \label{eq:rheat}
+\end{equation}
+The genuine unforced quartic heat solution with initial value $Z^4$ is
+\begin{equation}
+ P_t^{\rm heat}=Z^4-12tZ^2+12t^2.                        \label{eq:trueheat}
+\end{equation}
+Its exact difference from the original signed family is
+\begin{equation}
+ Q_t-P_t^{\rm heat}
+ =\frac{\beta(7\beta+18)}2Z^2
+ -\frac{\beta^2(\beta+3)(5\beta+12)}4.                   \label{eq:truecorrection}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Differentiate the first line of~\eqref{eq:quartic} with $\beta'=4/(2\beta+3)$ and add $12Z^2+\beta^2$. This gives~\eqref{eq:fullres}. At zero, $Z^2=-T^2/2=-3\epsilon$, proving~\eqref{eq:rheat}. Direct differentiation of~\eqref{eq:trueheat} gives zero heat residual and its initial value is $Z^4$; coefficient recursion proves uniqueness among quartics. Substituting $t=\beta(\beta+3)/4$ and subtracting gives~\eqref{eq:truecorrection}.
+\end{proof}
+This calculation explains exactly why the positive marked quotient cannot certify the whole family. At $t=0$ the quotient is $\mathscr L_0\twoheadrightarrow\C[T]/T^2$, killing $\mathfrak N^2=(T^2)$, and it kills $R_{\rm heat}$. Away from zero, keeping that same marked factor is incompatible with unforced quartic heat:
+\begin{equation}
+ P_t^{\rm heat}\bmod(Z^2-2t)=-8t^2,\qquad
+ (\partial_t+\partial_Z^2)Q_t\bmod(Z^2-2t)=16t.           \label{eq:quotientfailure}
+\end{equation}
+The second-order differential operator does not descend through this moving root quotient. Equations~\eqref{eq:truecorrection} and~\eqref{eq:quotientfailure} are the complete correction, rather than a claim that the two families cannot be related.
+
+
+\subsection{A complete no-extension test, including the analytic unit}
+The defect is not repaired merely by restoring a nonvanishing factor omitted in monic division. Suppose $G$ is analytic near $(0,0)$ and $G(0,0)\ne0$. Since $Q_0=Z^4$ and $\partial_tQ_t|_0=0$,
+\begin{equation}
+ (\partial_t+\partial_Z^2)(GQ)\big|_{t=0}
+ =12G(0,Z)Z^2+8G_Z(0,Z)Z^3+(G_t+G_{ZZ})(0,Z)Z^4.
+                                                        \label{eq:unitobstruction}
+\end{equation}
+Its coefficient of $Z^2$ is $12G(0,0)\ne0$. Thus no analytic unit makes the unchanged signed family an unforced heat solution.
+
+Even adding further analytic colliding factors cannot make this moving quartic a divisor of a nonzero analytic heat solution. For $t>0$ small, it has the two roots
+\[
+ Z=\pm i\sqrt{\beta(2\beta+3)/2}=\pm i\sqrt{2t}\,[1+O(t)].
+\]
+Any nonzero analytic heat solution vanishing to finite order $m$ at the origin has leading scaled roots equal to the real roots of $P_m$, by the scaling proof in Section~\ref{sec:origin}. This leading statement does not require real Taylor coefficients: the leading scalar coefficient cancels out of the scaled equation. An imaginary leading root $\pm i\sqrt2$ is impossible. If the initial germ vanished identically, the heat Taylor recursion would make the solution itself identically zero. These two cases prove the no-divisor statement.
+
+There is an exact cancellation in the holomorphic inverse-gap sum of this unchanged family. Write its squared roots as $u=2t=\beta(\beta+3)/2$ and $v=-\beta(2\beta+3)/2$. Summing all twelve ordered pairs gives
+\begin{align}
+ E_Q(t)&=\frac1{2u}+\frac1{2v}+\frac{8(u+v)}{(u-v)^2}\notag\\
+       &=\frac1{(\beta+3)(2\beta+3)}-\frac{16}{9(\beta+2)^2}
+         \longrightarrow-\frac13.                      \label{eq:energycancel}
+\end{align}
+The cross-pair identity follows by combining $(\sqrt u-\sqrt v)^{-2}$ and $(\sqrt u+\sqrt v)^{-2}$, and is independent of the choices of square roots. This is a genuinely finite negative limit after cancellation of singular complex gap terms. It is the holomorphic extension of the real-gap expression, not the sum of squared absolute reciprocal gaps on a complex configuration. By contrast the true quartic heat solution~\eqref{eq:trueheat} has real positive-time roots and ordered energy $3/(2t)$. The difference is accounted for by the full residual~\eqref{eq:fullres}, not by suppressing the infinity direction or replacing $L$.
+
+\section{The heat defect is the published holonomy residue}\label{sec:holonomy}
+\src{The actual punctured-disk transport is EHM43--46 and CBR26--27, not an assumed exponential of a nilpotent.}
+
+The based monodromy element under consideration fixes one sign and reverses the other sign in the colliding cluster. Its unique generic algebra formula is
+\begin{equation}
+ S_b(\epsilon)=\epsilon,\qquad
+ S_b(T)=(1-2\epsilon/\beta)T,\qquad
+ S_b(\epsilon T)=-\epsilon T.                            \label{eq:sb}
+\end{equation}
+Because $\epsilon^2=\beta\epsilon$, the multiplier has square one. Thus $S_b^2=I$ on the punctured family. Its pole does not disappear by this finite-order identity. Since $\eta/\beta=(\beta+3)/16$,
+\begin{equation}
+ \delta:=\left.\eta S_b\right|_0,
+ \quad \delta(T)=-\tfrac38\epsilon T=-T^3/16,
+ \quad\delta(1)=\delta(\epsilon)=\delta(\epsilon T)=0.
+                                                        \label{eq:resdelta}
+\end{equation}
+Freeness of the basis proves that this is a nonremovable operator pole in the original local lattice. It is not the assertion that $S_b$ specializes to $I+\delta$.
+
+\begin{theorem}[The surviving heat--holonomy identity]
+With the original displacement $\eta$ used to define the residue,
+\begin{equation}
+ \boxed{\quad96\delta(T)=T R_{\rm heat},\qquad
+ \overline\delta=\tfrac1{96}M_{R_{\rm heat}}:
+ \mathfrak N/\mathfrak N^2\longrightarrow\mathfrak N^3.\quad}
+                                                        \label{eq:bridge}
+\end{equation}
+Both maps are nonzero. In the original radical generators
+\begin{equation}
+ n_1=T^2/2,\quad n_2=3T+T^3/6,\quad n_3=T^3/2,
+ \qquad\overline\delta([n_2])=-\tfrac38n_3.              \label{eq:nmaps}
+\end{equation}
+For a residue defined using the rescaled time $t=4\eta$, $\delta_t=4\delta$, and the coefficient in~\eqref{eq:bridge} is $24$ instead of $96$.
+\end{theorem}
+\begin{proof}
+Multiply~\eqref{eq:rheat} by $T$: its value is $-6T^3=96(-T^3/16)$. Multiplication by $T^2$ kills $\mathfrak N^2$, so the map is well defined on $\mathfrak N/\mathfrak N^2$ with image in $\mathfrak N^3$. Its value on the class of $T$ is nonzero. Formula~\eqref{eq:nmaps} follows by substitution. The time-residue factor is $tS_b=4\eta S_b$.
+\end{proof}
+Thus the infinitesimal the marked heat quotient omits is exactly the one whose product supplies the nonzero holonomy residue. The full source and quotient maps are
+\[
+ \mathscr L_0\twoheadrightarrow\mathscr L_0/\mathfrak N^2,
+ \qquad
+ 0\to\mathfrak N^2\to\mathfrak N\to\mathfrak N/\mathfrak N^2\to0,
+ \qquad \mathfrak N/\mathfrak N^2\xrightarrow{\overline\delta}\mathfrak N^3.
+\]
+Applying $G_L$ to the algebra maps retains every support label; the complex-linear maps are lifted over $G_L(\C)$ fibrewise with the same local zeros (not asserted to be linear over the varying collision algebra). In the dual-number receiver $(T^\bullet)^2=e$, whereas in the full source its squared amplitude is the nonzero element $T^2$. Neither object is identified with $\tau$.
+
+\subsection{The exact positive-metric cost of this finite-order transport}
+For real $\beta\ne0$, the odd block in basis $(T,\epsilon T)$ is
+\begin{equation}
+ S_b=\begin{pmatrix}1&0\\-2/\beta&-1\end{pmatrix},\qquad
+ \|S_b\|_2=\sqrt{1+\beta^{-2}}+|\beta|^{-1}.              \label{eq:sbnorm}
+\end{equation}
+Its singular values are reciprocal since its determinant has modulus one. Their squared sum is $2+4/\beta^2$, which proves~\eqref{eq:sbnorm}.
+
+For any positive definite Hermitian $G$ with $S_b^*GS_b=G$,
+\begin{equation}
+ \operatorname{cond}_2G\ge\|S_b\|_2^2.                  \label{eq:metriclower}
+\end{equation}
+Indeed $G^{1/2}S_bG^{-1/2}$ is unitary, so its Euclidean norm is one. The bound is attained by the explicitly constructed metric
+\begin{equation}
+ G_\beta=\frac{\beta^2}{2}(I+S_b^*S_b)
+ =\begin{pmatrix}\beta^2+2&\beta\\\beta&\beta^2\end{pmatrix},
+ \quad\det G_\beta=\beta^2(\beta^2+1).                   \label{eq:optimalmetric}
+\end{equation}
+Invariance follows by $S_b^2=I$; its eigenvalue ratio equals that of $I+S_b^*S_b$, namely $\|S_b\|_2^2$. This is an auxiliary positive metric with an exact comparison cost, not a replacement of a canonical programme metric. Its limit has radical $\C\epsilon T$, precisely the residue image.
+
+The actual local signed trace has even and odd blocks
+\begin{equation}
+ \begin{pmatrix}4&2\beta\\2\beta&2\beta^2\end{pmatrix},
+ \qquad -2\begin{pmatrix}
+ \beta^2&\beta^2(2\beta+3)\\
+ \beta^2(2\beta+3)&\beta^3(2\beta+3)
+ \end{pmatrix}.                                         \label{eq:localtrace}
+\end{equation}
+These follow by summing the multiplication traces over the two root values $\epsilon=0,\beta$, each with two signs. The odd determinant is $-4\beta^4(\beta+3)(2\beta+3)$, and $Q(T,T)=-2\beta^2$. Hence it is indefinite on either real side near zero. Direct multiplication verifies $S_b^*Q_{\rm odd}S_b=Q_{\rm odd}$. The negative second-order response is genuine in this full family; Section~\ref{sec:heatdefect} identifies exactly why this family is not itself the unforced Riemann heat flow.
+
+
+\subsection{Canceling the heat defect while retaining a nonzero residue}
+There is an explicit positive local replacement, not just an obstruction. Keep the original reciprocal coordinate $T$ and set
+\begin{equation}
+ \widetilde P_t(T)=T^4+24tT^2+48t^2
+                 =4P_t^{\rm heat}(-iT/\sqrt2).
+                                                        \label{eq:correctedT}
+\end{equation}
+It has exactly the same critical algebra $\C[T]/T^4$. Its squared-root factors are $T^2=a t,b t$ with
+\[
+ a=-12+4\sqrt6,\qquad b=-12-4\sqrt6.
+\]
+Both numbers are negative. The generic operation fixing the signs above $at$ and reversing them above $bt$ is the actual involutive algebra map
+\begin{equation}
+ \widetilde S(T)=\left(1-\frac{2(T^2-at)}{(b-a)t}\right)T
+ =\frac{\sqrt6}{2}T+\frac{T^3}{4\sqrt6\,t}.
+                                                        \label{eq:correctedS}
+\end{equation}
+The multiplier is $+1$ and $-1$ in the two squared-root factors, so it preserves the defining equation and has square the identity. Its residue still does not vanish:
+\begin{equation}
+ \left.t\widetilde S(T)\right|_0=\frac{T^3}{4\sqrt6}
+                  =-\frac4{\sqrt6}\delta(T).             \label{eq:correctedresidue}
+\end{equation}
+This is the exact comparison with the old original-$\eta$ residue, including the clock convention of~\eqref{eq:bridge}.
+
+With $T^\#=-T$, the complete regular trace matrix in the reordered basis $(1,T^2,T,T^3)$ is
+\begin{equation}
+ \begin{pmatrix}4&-48t\\-48t&960t^2\end{pmatrix}
+ \oplus
+ \begin{pmatrix}48t&-960t^2\\-960t^2&20736t^3\end{pmatrix}.
+                                                        \label{eq:correctedGram}
+\end{equation}
+The traces of $1,T^2,T^4,T^6$ are $4,-48t,960t^2,-20736t^3$, obtained by the monic recurrence; odd powers have zero trace. This proves every entry. The block determinants are $1536t^2$ and $73728t^4$, so the form is positive definite for $t>0$, with a three-dimensional nilpotent radical at $t=0$. The invertible supported-zero action of Section~\ref{sec:cyclic} and the nonzero residue~\eqref{eq:correctedresidue} are therefore compatible with a genuine, locally real-rooted unforced heat evolution.
+
+This replacement is not claimed to leave the original family unchanged: its entire coefficient difference is~\eqref{eq:truecorrection}, and it no longer has the old marked factor by~\eqref{eq:quotientfailure}. Nor does it remove the other four dimensions of the eight-state completion. Retaining the separate factor $\C[T_-]/(T_-^2-9)$ and the infinity factor $\C[\Theta]/(\Theta^2+1)$ adds respectively matrices $\diag(2,-18)$ and $\diag(2,2)$. The corrected local-positive block plus these unchanged factors has inertia $(7,1,0)$ for $t>0$ and $(4,1,3)$ at zero. Its remaining negative reduced direction is explicit. This is a completed local heat correction and residue comparison, not a declaration of full Weil positivity.
+
+\section{The actual Riemann heat group with all zero labels}
+\src{The weighted-function construction is ZH9--21 \cite{ZH}. Its full-lattice lift and the evaluation square are given explicitly here.}
+
+Let $V$ be the space of even measurable complex functions $q$ on $\R$ with
+\[
+ \|q\|_a=\int_\R e^{a u^2}|q(u)|\,du<\infty\quad(a>0),
+\]
+modulo equality almost everywhere. For any real $t$, multiplication $U_tq=e^{tu^2}q$ is continuous for this family of seminorms: choose $b>\max(a+t,0)$, then $\|U_tq\|_a\le\|q\|_b$. It has the exact inverse $U_{-t}$.
+
+The cosine transform $\mathcal Cq(Z)=\int_0^\infty q(u)\cos(Zu)\,du$ is entire. Every differentiated integrand on $|Z|\le B$ is bounded by a constant times $e^{a u^2}|q(u)|$, since $|u|^j e^{B|u|}\le C e^{a u^2}$. It is injective: its even Fourier transform vanishes only for the zero $L^1$ function. One direct proof convolves $q$ with every Gaussian approximate identity, using Fourier inversion of the Gaussian, then takes the $L^1$ limit. Define $\mathcal V=\mathcal C(V)$ with the transported topology. The operators
+\begin{equation}
+ T_t=\mathcal C U_t\mathcal C^{-1},\qquad
+ T_tT_s=T_{t+s},\quad T_t^{-1}=T_{-t},\quad T_0=I         \label{eq:heatgroup}
+\end{equation}
+are genuine automorphisms of this one space, and differentiation gives the backward heat equation.
+
+The original kernel~\eqref{eq:phi} belongs to $V$. Evenness follows from the original Poisson formula. On $u\ge0$, splitting off half the leading exponential gives
+\[
+ |\Phi(u)|\le C e^{9u}e^{-(\pi/2)e^{4u}},
+ \quad C=\sum_{n\ge1}(2\pi^2n^4+3\pi n^2)e^{-(\pi/2)n^2}<\infty.
+\]
+This bounds all weighted integrals. Thus the actual $H_t=T_tH_0$ are in~\eqref{eq:heatgroup} for every real $t$.
+
+For a complex vector space $W$, define its full-lattice semimodule
+\[
+ G_L(W)=\{(v,1_L):v\in W\}\cup\{(0,\lambda):\lambda\in L\}.
+\]
+Vector addition and the scalar action use the same join and meet as~\eqref{eq:ops}. A linear map $A$ lifts to
+\begin{equation}
+ A^\uparrow(v,\lambda)=(Av,\lambda),\qquad
+ (A^\uparrow)^{-1}=(A^{-1})^\uparrow\quad\text{when $A$ is invertible},
+                                                        \label{eq:lift}
+\end{equation}
+Both compositions are the identity, checked separately on top vectors and each lower zero. In particular $(T_t)^\uparrow$ fixes every label in $eG_L(\mathcal V)$, and is invertible on the whole semimodule.
+
+Evaluation has its own exact map
+\begin{equation}
+ \operatorname{ev}_Z^\uparrow:G_L(\mathcal V)\to G_L(\C),\qquad
+ \operatorname{ev}_Z^\uparrow(H_t^\bullet)=e
+ \quad\Longleftrightarrow\quad H_t(Z)=0.                 \label{eq:evaluation}
+\end{equation}
+After the faithful map~\eqref{eq:jfull}, its two coordinates are $(H_t(Z),1\otimes1_L)$, not only the support coordinate. Both supported cancellation and nonzero values retain their full label; their amplitude values remain distinguished in the joint receiver.
+
+Equations~\eqref{eq:heatgroup}--\eqref{eq:evaluation} are the concrete consequences of using the original adjunction on the actual heat family. Using the imported bounds, $H_{-1}$ has a nonreal zero and $H_{0.2}$ has only real zeros. Both have the same invertible zero-algebra action and are related by the actual operator $T_{1.2}$. This comparison uses two members of the Riemann family itself, not an arbitrary substitute polynomial. At time zero it leaves the exact evaluation in~\eqref{eq:evaluation} to be determined; it has not changed that evaluation's definition.
+
+\subsection{The full semilattice of polynomial heat maps: $e$ is not silently replaced by $\tau$}
+There is a further distinction on the original free coefficient source. It is useful precisely because a synchronized label would hide it. Let $N\ge2$, let $D_N$ be formal differentiation on coefficients $(1,Z,\ldots,Z^N)$, with its nonzero integer entries lifted to supported scalars and every structural zero equal to $\tau$. For every $a\in G_L(\C)$ define the actual finite matrix
+\begin{equation}
+ \mathcal E_a=I+\sum_{k=1}^{\lfloor N/2\rfloor}
+       \left(\frac{(-1)^k}{k!}\right)^\bullet a^kD_N^{2k}.
+                                                        \label{eq:splitexp}
+\end{equation}
+All powers and sums are taken in the split semiring. If $j-i=2k\ge0$, its $(i,j)$ entry is $1^\bullet$ for $k=0$ and
+$( (-1)^k j!/(i!k!))^\bullet a^k$ for $k>0$; all other entries are $\tau$. The finite binomial identity proves
+\begin{equation}
+ \mathcal E_a\mathcal E_b=\mathcal E_{a+b},\qquad
+ \mathcal E_\tau=I.                                     \label{eq:splitsemigroup}
+\end{equation}
+For example, the coefficient of $D_N^{2m}$ in the product is the binomial expansion of $(-1)^m(a+b)^m/m!$. Nilpotence truncates both sides at exactly the same degree. Scalar multiplication by the nonzero supported integer $-2$ is invertible, and $(\mathcal E_a)_{0,2}=(-2)^\bullet a$; thus $a\mapsto\mathcal E_a$ is injective. Every lattice zero label is genuinely retained by this representation.
+
+Put $P_\lambda=\mathcal E_{z_\lambda}$. Then
+\begin{equation}
+ P_\lambda^2=P_\lambda,\quad
+ P_\lambda P_\mu=P_{\lambda\vee\mu},\quad
+ P_{0_L}=I,\quad P_{1_L}=:P\ne I.                      \label{eq:heatlabelprojectors}
+\end{equation}
+The diagonal of $P_\lambda$ is $1^\bullet$; its strict upper same-parity entries are $z_\lambda$, not absence. For a coefficient vector with coordinate labels $\lambda_i$, the new label at index $i$ is
+\[
+ \lambda_i\vee\left(\lambda\wedge
+       \bigvee_{j>i,\ j-i\ {
+m even}}\lambda_j\right).
+\]
+The amplitudes are unchanged. In particular the image of $P$ consists of the full independent-support vectors satisfying
+$\lambda_j\le\lambda_i$ whenever $j>i$ and $j-i$ is even. This is a pair of nested support chains, not synchronization of all coordinates. Idempotence also proves that $PS^{N+1}$ is a finite projective semimodule with its explicitly given retract.
+
+For the embedded arithmetic parameters $t^\bullet$ and $(-t)^\bullet$, the exact product is
+\begin{equation}
+ \mathcal E_{t^\bullet}\mathcal E_{(-t)^\bullet}=P,
+ \qquad \mathcal E_{0^\bullet}=P,
+ \qquad \mathcal E_\tau=I.                              \label{eq:twotimezeros}
+\end{equation}
+Consequently these heat maps form a group of automorphisms of $PS^{N+1}$, with identity $P$ and inverse parameter $-t$, while they are not generally automorphisms of the entire free source. This is the actual forward--backward support defect on that free source. Its amplitudes are the ordinary heat group and its identity, but the full maps distinguish supported cancellation at $e$ from absence at $\tau$. No local inverse, label or support path has been erased to obtain this result.
+
+The map to a common-labelled polynomial has its own explicit type:
+\[
+ \eta:S^{N+1}\to G_L(\C[Z]_{\le N}),\qquad
+ (a_i,\lambda_i)_i\mapsto\left(\sum_i a_iZ^i,\bigvee_i\lambda_i\right).
+\]
+It is $S$-linear, satisfies $\eta P=\eta$, and intertwines
+$\mathcal E_{t^\bullet}$ with the lift of $e^{-t\partial_Z^2}$ on polynomials. Its kernel congruence equates vectors with the same coefficients and the same total support join. This map is not used as an isomorphism: its support loss has just been specified.
+
+Finally, finite polynomial heat is not silently substituted for the actual $H_t$. For $H=\mathcal Cq\in\mathcal V$, let $j_NH$ be its Taylor polynomial of degree $N$ at zero. The exact amplitude difference is
+\begin{align}
+ j_N(T_tH)-e^{-t\partial_Z^2}j_NH
+ &=\sum_{i=0}^N\frac{Z^i}{i!}
+       \sum_{k>K_i}\frac{(-t)^k}{k!}H^{(i+2k)}(0),
+ \qquad K_i=\left\lfloor\frac{N-i}{2}\right\rfloor.
+                                                        \label{eq:jettail}
+\end{align}
+Absolute convergence follows from the defining Gaussian weighted integrability of $q$. For the inner sum the explicit bound is
+\begin{equation}
+ \left|\sum_{k>K_i}\frac{(-t)^k}{k!}H^{(i+2k)}(0)\right|
+ \le\frac{|t|^{K_i+1}}{(K_i+1)!}
+   \int_0^\infty u^{i+2K_i+2}e^{|t|u^2}|q(u)|\,du.
+                                                        \label{eq:jetbound}
+\end{equation}
+It follows by differentiating the cosine transform and bounding the exponential-series remainder by $e^x x^{K_i+1}/(K_i+1)!$. For the original family take $q=\Phi$. Thus the supported-zero heat idempotent is computed on the whole finite coefficient source, and the complete error connecting that source to the original entire heat family is retained separately.
+
+
+\section{What a finite reciprocal changes in the collision equation}
+The following universal construction makes explicit why a local inverse is not automatically a regular inverse in a scalar differential equation. It also displays the boundary retained when an inverse is adjoined.
+
+\begin{theorem}[Universal commutative inner inverse]
+For a commutative ring $A$ and $a\in A$, let
+\[
+ A^\dagger=A[b]/(a^2b-a,b^2a-b).
+\]
+There is a natural isomorphism
+\begin{equation}
+ A^\dagger\simeq A[a^{-1}]\times A/(a),\qquad
+ a\mapsto(a,0),\quad b\mapsto(a^{-1},0).                 \label{eq:universal}
+\end{equation}
+The coefficient map sends $r\in A$ to $(r,r\bmod a)$.
+\end{theorem}
+\begin{proof}
+Put $p=ab$. The relations give $p^2=p$, $pa=a$, $pb=b$. In $pA^\dagger$, $a$ and $b$ are inverse with identity $p$. In $(1-p)A^\dagger$, both $a$ and $b$ vanish, leaving exactly $A/(a)$. The product decomposition by $p,1-p$ and these two universal maps are inverse on the generators. This proves the assertion also when $A$ has zero divisors.
+\end{proof}
+Applying $G_L$ to~\eqref{eq:universal} retains the entire common support spectrum below both arithmetic factors. It does not identify $G_L(A\times B)$ with the product of two independent copies of $G_L$.
+
+For the root algebra $A=\C[t,Z]/(Z^2-2t)\simeq\C[Z]$, adjoining a commutative inner inverse to $Z$ therefore gives
+\begin{equation}
+ A^\dagger\simeq\C[Z,Z^{-1}]\times\C.                   \label{eq:rootinverse}
+\end{equation}
+The new factor is retained, but a regular time derivation does not extend across it.
+\begin{proposition}
+There is no derivation $\nabla:A^\dagger\to A^\dagger$ with $\nabla t=1$. On the root complement the correct derivation has $\nabla Z=1/Z$. The logarithmic derivation $t\nabla$, with $t\nabla Z=Z/2$, does extend.
+\end{proposition}
+\begin{proof}
+Let $\rho=1-Zb$ be the boundary idempotent. Every derivation kills an idempotent: differentiating $\rho^2=\rho$, then multiplying by $\rho$, gives first $\rho\nabla\rho=0$ and then $\nabla\rho=0$. Here $t\rho=0$; its derivative would imply $\rho=0$, contrary to the second nonzero factor in~\eqref{eq:rootinverse}. On the root complement differentiating $Z^2=2t$ gives $\nabla Z=Z^{-1}$. Multiplying by $t=Z^2/2$ gives the regular logarithmic derivation, acting trivially on the constant boundary factor.
+\end{proof}
+This is an obstruction to a regular first-order vector field lifting time on the ramified root cover. The entire heat function itself still satisfies its second-order PDE at the collision. A proposed assignment $\nabla Z=Z^\dagger$ has the exact relation defect
+\begin{equation}
+ \nabla(Z^2-2t)=2ZZ^\dagger-2=-2(1-ZZ^\dagger).          \label{eq:rootdefect}
+\end{equation}
+The boundary amplitude is $-2$, as reported in the incoming continuation; it is not a solution of the original root equation there.
+
+At the special dual-number fibre, a commutative inner inverse would force $Z=Z^2b=0$. The noncommutative corner inverse~\eqref{eq:regularinverse} avoids deleting this amplitude direction by using the actual different image identities $P,Q$. That is a constructed alternative, but it is not scalar division in~\eqref{eq:rootdefect}.
+
+\subsection{The exact Rodgers--Tao potential discrepancy}
+On a positive real gap ratio $a$, the source potential is
+\[
+ V(a)=a^{-2}+2a-3=\frac{(a-1)^2(2a+1)}{a^2}.
+\]
+In the inner-inverse algebra put $b=a^\dagger$. Polynomial reduction by the two defining relations gives
+\begin{equation}
+ \bigl(b^2+2a-3\bigr)-(a-1)^2(2a+1)b^2
+ =(2a-3)(1-ab).                                         \label{eq:vdefect}
+\end{equation}
+Indeed expanding the product and replacing $a^2b^2$ by $ab$ and $a^3b^2$ by $a$ proves the equality. At $a=e$, $b=e$ in the supported additive fibre, the first expression is $(-3)^\bullet$ and the second is $e$. This is a real failure of extending the two algebraically equal nonzero-gap expressions by that finite reciprocal rule. The equation gives its precise boundary support.
+
+Rodgers--Tao's v5 proof assumes $\Lambda<0$ in its contradiction argument and proves estimates on distinct real zeros for the required interval; it does not assign either extension at a collision \cite[Sections 4--9]{RT}. Its revised Section 8 retains cutoff boundary contributions. Thus~\eqref{eq:vdefect} identifies a boundary comparison that must be added to any new extension, rather than a negative value inside the original domain of the proven potential inequality.
+
+\section{The actual zeta endpoints retain a nonzero counterterm}\label{sec:endpoints}
+This calculation uses the full supported theta, not a spectrum in which supported zero has been deleted. Put
+\[
+ \psi(x)=\sum_{n\ge1}e^{-\pi n^2x},\qquad
+ \vartheta(x)=1+2\psi(x),\quad\vartheta(x)=x^{-1/2}\vartheta(1/x).
+\]
+Splitting the Mellin integral at one and applying this Poisson identity gives
+\begin{equation}
+ \Lambda_{\rm c}(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s)
+ =\frac1{s-1}-\frac1s+A(s)=\frac1{s(s-1)}+A(s),           \label{eq:completion}
+\end{equation}
+where the full tail is
+\begin{equation}
+ A(s)=\int_1^\infty\psi(x)
+       \bigl(x^{s/2}+x^{(1-s)/2}\bigr)\,\frac{dx}{x}.    \label{eq:tail}
+\end{equation}
+The integral is entire by Gaussian decay, uniformly with every $s$-derivative on compact sets. The pole terms in~\eqref{eq:completion} are exactly the supported-zero term and its Fourier-dual endpoint.
+
+With $q(s)=s(s-1)$, $s=1/2+iZ/2$, the actual Rodgers--Tao function is
+\begin{equation}
+ H_0(Z)=\frac1{16}\{1+q(s)A(s)\},\qquad
+ q(s)=-\frac{Z^2+1}{4},\qquad
+ \boxed{H_0(i)=H_0(-i)=\frac1{16}.}                     \label{eq:counterterm}
+\end{equation}
+No RH assertion is used: this follows by clearing the full principal part in~\eqref{eq:completion}.
+
+Now extend the scalar reciprocal pointwise by the original local-zero rule, $q^\dagger=q^{-1}$ where $q\ne0$ and $q^\dagger=e$ where $q=0$. If it is applied before clearing the poles, the resulting function would have amplitude
+\[
+ H_0^\dagger(Z)=\tfrac1{16}q(s)\bigl(q^\dagger(s)+A(s)\bigr).
+\]
+The exact defect is
+\begin{equation}
+ \boxed{H_0-H_0^\dagger=\tfrac1{16}(1-qq^\dagger).}     \label{eq:counterdefect}
+\end{equation}
+At $Z=\pm i$ the totalized expression gives supported zero, while the original function gives $(1/16)^\bullet$. Under the full map~\eqref{eq:jfull}, these values are respectively $(0,1\otimes1_L)$ and $(1/16,1\otimes1_L)$. The distinction has not been made moot by suppressing support: both have identical full support and different retained amplitudes.
+
+The map retaining the pole data is the exact principal-parts sequence
+\begin{equation}
+ 0\longrightarrow\mathcal O\longrightarrow q^{-1}\mathcal O
+ \xrightarrow{F\mapsto qF\bmod q}\mathcal O/(q)\longrightarrow0, \label{eq:principalparts}
+\end{equation}
+where $\mathcal O$ is the ring of entire functions. Surjectivity follows by choosing $F=g/q$; the kernel is exactly the entire functions. The class of $\Lambda_{\rm c}$ maps to $1\bmod q$, with value one at both endpoints. The lost constant in~\eqref{eq:counterdefect} is that class divided by sixteen. It is not an arbitrary positive correction.
+
+Moreover $H_0^\dagger$ is not entire: it agrees with $H_0$ off two points, and differs at those points. If it were entire the identity theorem would make the difference vanish. It agrees on the real $Z$ axis, so the injective transform in Section 7 would return $H_0$, not the altered endpoint assignment. A disproof based on the two apparent zeros therefore fails for this explicit, source-calculated reason. This does not preclude a different, genuinely analytic time-zero mechanism.
+
+
+\subsection{An explicit native zero-exclusion bound along the whole relevant interval}
+The endpoint correction supplies a quantitative statement for the actual Riemann family, not only a formal germ. Positivity of every summand in~\eqref{eq:phi} and $\cos(iu)=\cosh u$ give
+\[
+ H_t(i)=H_t(-i)\ge H_0(i)=1/16\qquad(t\ge0).
+\]
+For $0\le t\le1/5$ and $|\Im Z|\le2$, differentiation of the original integral gives $|H_t'(Z)|\le D_2$, where
+\[
+ D_2=\int_0^\infty u e^{u^2/5}\Phi(u)e^{2u}\,du.
+\]
+The kernel bound in Section 7 can be made rational. Using $3<\pi<22/7$, $e^{3/2}>4$, and $n^2\ge n$ gives
+\[
+ C\le\sum_{n\ge1}(20n^4+10n^2)4^{-n}
+ =20\frac{380}{81}+10\frac{20}{27}=\frac{8200}{81}.
+\]
+The two geometric moment sums follow by applying $(x\partial_x)^j$ to $x/(1-x)$ and evaluating at $x=1/4$. Since $u^2\le e^{4u}/8$ for $u\ge0$,
+\[
+ D_2\le\frac C{16}\int_1^\infty (\log x)x^{7/4}
+             e^{-(\pi/2-1/40)x}\,dx
+ \le\frac C{16}\int_0^\infty x^3e^{-x}\,dx
+ =\frac{3C}{8}\le\frac{1025}{27}<38.
+\]
+Here $x=e^{4u}$, $\pi/2-1/40>1$, and $(\log x)x^{7/4}\le x^3$ on $x\ge1$. Integrating along a line segment from either endpoint therefore proves
+\begin{equation}
+ \boxed{\quad |H_t(Z)|\ge\frac1{32}
+ \quad\text{if}\quad 0\le t\le\frac15,\quad
+ |Z-i|\le\frac1{1216}\ \text{or}\ |Z+i|\le\frac1{1216}.\quad}
+                                                        \label{eq:nativeguard}
+\end{equation}
+Indeed $38/1216=1/32$ and the segments stay in $|\Im Z|\le2$. This includes the proposed initial $\pm i$ pair produced by the original reanchoring~\eqref{eq:clock}. The full support of every value remains top;~\eqref{eq:nativeguard} bounds its retained complex amplitude away from the supported zero. No numerical zero search, RH assumption, or reduced support lattice enters this calculation.
+
+\section{Full supported Weil distributions and residue duality}\label{sec:residue}
+\src{SZW19--42 and RD1--31 give the stated analytic test class, labels, and original packet multiplier. The calculations below keep their signs and compare the new defect to those exact receivers.}
+
+For $f\in C_c^\infty(\R;\C)$ set
+\[
+ M_f(s)=\int_\R f(v)e^{-(s-1/2)v}\,dv,\qquad f^\#(v)=\overline{f(-v)}.
+\]
+For $k=f^\#*g$, $H=M_k$ satisfies
+\[
+ H(s)=\overline{M_f(1-\bar s)}M_g(s).
+\]
+The original full formula is
+\begin{align}
+ Z(k)&=H(0)+H(1)+A_\infty(k)-P_{\rm fin}(k),             \label{eq:weil}\\
+ A_\infty(k)&=\frac1{2\pi}\int_\R\widehat k(u)
+       \left(\Re\frac{\Gamma'}{\Gamma}(1/4+iu/2)-\log\pi\right)du,\notag\\
+ P_{\rm fin}(k)&=\sum_{p,j\ge1}(\log p)p^{-j/2}
+       \{k(j\log p)+k(-j\log p)\},\notag\\
+ Z(k)&=\sum_\rho m_\rho H(\rho).\notag
+\end{align}
+The prime sum is finite on each compactly supported test, the archimedean integral is absolutely convergent, and the zero sum converges absolutely using rapid vertical Mellin decay and $O(T\log T)$ zero counting. The analytic derivation is the contour identity in SZW24--27, with all endpoint residues retained \cite{SZW,Connes}. On $k=f^\#*f$ it is the full Weil quadratic form, with its positivity criterion as in \cite{CCM}.
+
+For finite full $L$, with independent coordinate vectors $\mathbf e_\lambda$ in $\C[L]$, retain
+\begin{align}
+ \boldsymbol B_L(k)&=(H(0)+H(1))\mathbf e_{1_L}
+                 +H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\notag\\
+ \boldsymbol Z_L(k)&=Z(k)\mathbf e_{1_L},\notag\\
+ \boldsymbol D_L(k)&=(P_{\rm fin}(k)-A_\infty(k))\mathbf e_{1_L}
+                 +H(0)\sum_{\lambda\ne1_L}\mathbf e_\lambda,\notag\\
+ \boldsymbol B_L-\boldsymbol Z_L&=\boldsymbol D_L.         \label{eq:fullweil}
+\end{align}
+These are defined representation traces, not a scalar identification of all support points. The top-coordinate observation and the sum of all coordinates are different linear maps with different kernels. Fourier closure adjoins the missing weight-one partner at each lower label, adding $H(1)$ to both boundary and geometric sides there. The full divisor term is unchanged by this simultaneous addition. For infinite $L$, one may retain the coordinatewise identity or prescribed finite-label subobjects; no divergent count of labels is assigned a finite trace.
+
+The exact test-to-theta map is
+\begin{equation}
+ (J_\theta f)(x)=\int_\R e^{v/2}f(v)e^{-\pi e^{2v}x^2}\,dv,
+ \quad (J_\theta f)(0)=M_f(0),\quad\int_\R J_\theta f=M_f(1).
+                                                        \label{eq:testtheta}
+\end{equation}
+It is Schwartz because $v$ has compact support. Fourier transforming the Gaussian and changing $v\mapsto-v$ gives
+$\mathcal FJ_\theta f=J_\theta(f(-\cdot))$. Its full Mellin theta formula is $\Lambda_{\rm c}(s)M_f(s)$, first by absolutely convergent integrals for $\Re s>1$, then by~\eqref{eq:completion}. Thus the endpoint in Section~\ref{sec:endpoints} is directly in this receiver.
+
+\subsection{The exact map annihilating the infinitesimal}
+Keep the integral algebra
+\begin{equation}
+ C=\Z[\epsilon,T]/(\epsilon^2,T^2-6\epsilon),\qquad
+ \mathcal B=(1,\epsilon,T,\epsilon T),\quad
+ \lambda_C(f)=[\epsilon T]f.                             \label{eq:integralC}
+\end{equation}
+The pairing $\lambda_C(fg)$ has antidiagonal matrix with entries one in this basis, hence is perfect over $\Z$. The dual basis is $(\epsilon T,T,\epsilon,1)$; its product sum is
+\[
+ J_C=4\epsilon T.
+\]
+For any finite free algebra with dual bases $b_i,b_i^*$, the coefficient of $b_i$ in $fb_i$ is $\lambda(b_i^*fb_i)$, so summing proves
+\begin{equation}
+ \Tr(m_f)=\lambda\left(f\sum_i b_i b_i^*\right).
+ \quad\text{Here}\quad\Tr_C(m_f)=\lambda_C(J_Cf).        \label{eq:tracejac}
+\end{equation}
+This is the actual Jacobian of $(\epsilon^2,T^2-6\epsilon)$, not a chosen multiplier.
+
+Over $\C$, $\lambda_C=6[T^3]$ and $J_C=(2/3)T^3$ under~\eqref{eq:lengthfour}. The integral map $\Z[T]/T^4\to C$ instead has cokernel $(\Z/6)^2$ on $\epsilon,\epsilon T$; division by six is not an integral isomorphism. With $T^\#=-T$ and conjugated scalars,
+\begin{equation}
+ Q_{\rm res}(f,g)=i\lambda_C(f^\#g),\qquad
+ Q_{\rm tr}(f,g)=Q_{\rm res}(f,-iJ_Cg)=4\bar f_0g_0.    \label{eq:duality}
+\end{equation}
+The residue form has inertia $(2,2,0)$; its antidiagonal entries are $6i,-6i,6i,-6i$. The trace form is semidefinite with radical $(T)$. These are two explicit maps from the same complete algebra.
+
+The heat and holonomy terms are detected before the Jacobian and killed after it:
+\begin{gather}
+ \lambda_C(T R_{\rm heat})=-36,\qquad
+ i\lambda_C(\delta T)=-3i/8,\qquad
+ J_C R_{\rm heat}=J_C\delta(T)=0.                        \label{eq:detected}\\
+ \delta^\vee\lambda_C=-\lambda_C\circ\delta
+  =\frac{3\epsilon}{8}\lambda_C
+  =-\frac{R_{\rm heat}}{96}\lambda_C.                   \label{eq:dualheat}
+\end{gather}
+To prove~\eqref{eq:dualheat}, test the four basis elements: the only nonzero value on the left is $3/8$ at $T$, which is also the coefficient of $\epsilon T$ in $(3\epsilon/8)T$. For a multiplier $a$, the Leibniz rule gives the full dual action
+\[
+ \delta^\vee(a\lambda_C)=
+ \left(\delta a-\frac{R_{\rm heat}}{96}a\right)\lambda_C.
+\]
+This relates the full heat defect to the original dualizing-module connection as well as the graded map~\eqref{eq:bridge}.
+
+\begin{proposition}[The local positive scalar cone cannot detect this radical]
+If a complex linear functional $\ell$ on $\C[T]/T^4$ satisfies $\ell(x^\#x)\ge0$ for all $x$, then $\ell(T)=\ell(T^2)=\ell(T^3)=0$.
+\end{proposition}
+\begin{proof}
+The associated form is Hermitian by polarization and obeys Cauchy--Schwarz. The squared norm of $T^2$ is zero since $T^4=0$; it is therefore radical, giving $\ell(T^2)=\ell(T^3)=0$ by pairing with $1,T$. The squared norm of $T$ is $-\ell(T^2)=0$, so it too is radical and $\ell(T)=0$.
+\end{proof}
+This does not erase the infinitesimal. It proves that positive scalar trace observation and faithful residue observation have different kernels on the original algebra.
+
+\subsection{The full original Weil packet multiplier}
+For a monic polynomial $h$ of even degree with $h^\#=h$, let $E_h=\C[s]/h$ and let $\lambda_h$ be the coefficient of $s^{\deg h-1}$ in the remainder. Its pairing is perfect: reversing columns of its monomial matrix gives a triangular matrix with diagonal one. For every $h$, including repeated roots,
+\begin{equation}
+ \Tr_{E_h}(m_f)=\lambda_h(h'f).                           \label{eq:monictrace}
+\end{equation}
+For simple roots this follows from Lagrange interpolation. Both sides for each monomial $f$ are polynomial in the coefficients of the monic $h$, so the identity extends from the nonzero-discriminant open set to all coefficients. Reflection gives $\lambda_h(f^\#)=-\overline{\lambda_h(f)}$ and $(h')^\#=-h'$. Thus $Q_h(f,g)=i\lambda_h(f^\#g)$ is a perfect Hermitian form.
+
+For the original full-multiplicity packet $h=d^m\mid2\xi$, with squarefree $d$, retain the complete unit $u=j_h(2\xi/h)$ and $U=M_u$. Its invertibility follows from every nonzero constant primary Taylor coefficient and the finite geometric inverse on each jet algebra. The exact original pairing is
+\begin{equation}
+ B_h(f,g)=\Tr(m_{(uf)^\#ug})
+ =Q_h(Uf,-ih'Ug),\qquad
+ \rad B_h=\Ann(h')=(d)/(d^m).                            \label{eq:packet}
+\end{equation}
+Perfection of $\lambda_h$ proves the kernel, since $u^\#u$ is a unit. As $h'=md^{m-1}d'$ and $(d,d')=1$, the ideal assertion follows by polynomial divisibility. The cotangent complex is $[E_h\xrightarrow{h'}E_hds]$ in degrees $-1,0$; hence this same included ideal is $H^{-1}(L_{E_h/\C})$. The maps, phase and original unit are all retained.
+
+For the actual entire packet test $A_{f,g}=f^\#g(2\xi/h)^2$, changes in a radical direction give $\Delta Z=0$. Subtracting~\eqref{eq:fullweil} then gives
+\begin{equation}
+ \Delta(P_{\rm fin}-A_\infty)=\Delta A(0)+\Delta A(1),
+ \qquad\Delta\boldsymbol B_L=\Delta\boldsymbol D_L.       \label{eq:compensate}
+\end{equation}
+Each lower label separately changes by $\Delta A(0)$. Thus an invisible nilpotent in the divisor trace does not make the supported endpoints individually vanish. This is the exact full-supported comparison needed before interpreting any local sign as a global Weil sign.
+
+\section{Propagation into the newly published complete Cauchy criterion}\label{sec:cauchy}
+During this calculation the repository advanced to commit
+\path{34b9f4cc44d52d32b96f9f3038aab9c509922359}.
+The complete CK1--19 and HA1--26 sources were read and are used here at their stated scope \cite{CK,HA}. Their criterion is not being replaced by a finite scalar observation. The following calculation puts the exact defect of Section~\ref{sec:heatdefect} into that new matrix receiver.
+
+\subsection{The actual arithmetic kernel and its complete support}
+For the actual function in~\eqref{eq:rt}, set
+\[
+ g_t(s)=16H_t(-2i(s-\tfrac12)),\qquad
+ g_0=2\xi,\qquad L_t=g_t'/g_t.
+\]
+The exact coordinate map gives $\partial_tg_t=\tfrac14g_t''$, hence
+\begin{equation}
+ \partial_tL_t=\tfrac14L_t''+\tfrac12L_tL_t'.
+                                                        \label{eq:cauchyburgers}
+\end{equation}
+On $\mathcal U=\{\Re s>1\}$, the time-zero Cauchy kernel is
+\begin{align}
+ K_0(z,w)&=\frac{L_0(w)+\overline{L_0(z)}}{w+\bar z-1},\notag\\
+ L_0(s)&=\frac1s+\frac1{s-1}-\frac12\log\pi
+       +\frac12\psi(s/2)-\sum_{n\ge2}\Lambda(n)n^{-s}.
+                                                        \label{eq:actualcauchy}
+\end{align}
+These are original arithmetic values, with $\Lambda(n)$ here the von Mangoldt function, not the de Bruijn--Newman constant. HA10--14 proves the full supported-zero evaluation: the endpoint contribution is
+\[
+ E(z,w)=\frac1{w(\bar z-1)}+\frac1{\bar z(w-1)},
+\]
+the Gamma and prime terms are the corresponding two logarithmic-derivative terms in~\eqref{eq:actualcauchy}, divided by $w+\bar z-1$. Each lower support label retains the coefficient $A_{z,w}(0)$ on both boundary and geometric sides, where
+\[
+ A_{z,w}(s)=-\frac1{(s-(1-\bar z))(s-w)}.
+\]
+Thus its full label-resolved identity is precisely~\eqref{eq:fullweil}, not a formula obtained by removing the $e$-boundary.
+
+CK13 and CK17 prove that RH is equivalent to positivity of every finite matrix $[K_0(z_i,z_j)]$ on $\mathcal U$, equivalently all finite sections of its entire Taylor coefficient matrix at any fixed real $\sigma>1$. The proof retains the full zero sum, then uses an explicit Cayley transform and a Schur transfer realization to extend $L_0$ holomorphically to $\Re s>1/2$. A zero there would make the identity $g_0'=\widetilde Lg_0$ impossible by comparing vanishing orders. We use that completed criterion as an imported theorem, not a claim that its matrices are positive. In particular, HA24--26 proves positive real diagonal values even at negative heat times; a diagonal sign does not suffice.
+
+\subsection{The forced kernel contributed by the original length-four defect}
+For any specified analytic $g$ nonzero at the test poles, define
+\[
+ R=g_t-\tfrac14g_{ss},\qquad L=g_s/g.
+\]
+Differentiating this quotient gives the complete identity
+\begin{equation}
+ \partial_tL-\tfrac14L_{ss}-\tfrac12LL_s
+     =\partial_s(R/g).                                  \label{eq:forcedburgers}
+\end{equation}
+There is no omitted unit: $R/g$ is computed from the entire proposed function.
+
+Apply this to the original signed quartic of~\eqref{eq:quartic}, using the same coordinate map as the arithmetic receiver:
+\[
+ g_t^F(s)=Q_t(-2i(s-\tfrac12)),\qquad r=s-\tfrac12.
+\]
+At the collision $g_0^F=16r^4$ and $R_0=-48r^2$. Hence
+\begin{equation}
+ R_0/g_0^F=-3r^{-2},\qquad
+ \partial_s(R_0/g_0^F)=6r^{-3}.                         \label{eq:cauchyforcedres}
+\end{equation}
+The resulting missing Cauchy-kernel velocity is exactly
+\begin{align}
+ \mathcal D(z,w)
+ &=\frac{6r_w^{-3}+6\bar r_z^{-3}}{r_w+\bar r_z}\notag\\
+ &=6\bigl(\bar r_z^{-1}r_w^{-3}
+       -\bar r_z^{-2}r_w^{-2}
+       +\bar r_z^{-3}r_w^{-1}\bigr).                    \label{eq:rank3defect}
+\end{align}
+It is a rank-three Hermitian kernel with feature matrix
+\[
+ 6\begin{pmatrix}0&0&1\\0&-1&0\\1&0&0\end{pmatrix},
+ \qquad \operatorname{inertia}=(1,2,0).
+\]
+The rank assertion follows because the three functions $r^{-1},r^{-2},r^{-3}$ are linearly independent on any nonempty open subset of $\mathcal U$; evaluation at three distinct positive $r$ gives a Vandermonde matrix after nonzero diagonal factors. Its indefinite sign is a property of the specified heat-equation defect, not a negative value of the actual arithmetic kernel~\eqref{eq:actualcauchy}.
+
+The full signed family's $\partial_tL^F|_0$ is zero. The genuine heat correction, whose initial datum is the same $16r^4$, instead has
+\[
+ \widetilde g_t(s)=16r^4+48tr^2+12t^2,\qquad
+ \partial_t\widetilde L|_0=-6r^{-3}.
+\]
+Consequently its kernel velocity is $-\mathcal D$, with no residue discarded. Initially
+\[
+ K_0^F(z,w)=\frac4{\bar r_zr_w}.
+\]
+For any finite combination satisfying $\sum_j c_j/r_{z_j}=0$, this initial form vanishes and
+\begin{equation}
+ \sum_{i,j}\bar c_i\left.\partial_t\widetilde K_t(z_i,z_j)\right|_0c_j
+   =6\left|\sum_j\frac{c_j}{r_{z_j}^2}\right|^2\ge0.
+                                                        \label{eq:cauchytangent}
+\end{equation}
+This is the exact positive tangent response on the initially null layer. It is the $m=4$ case of the actual local-jet formula HA22, derived here directly for the original collision and its heat correction.
+
+\subsection{An explicit two-point sign comparison, with no asymptotic ambiguity}
+Take fixed test poles $z_1=3/2,z_2=5/2$ and vector $c=(1,-2)^{\mathsf T}$. Both poles belong to $\mathcal U$; their $r$-coordinates are $1,2$. For the original signed family put $t=\beta(\beta+3)/4$. Direct logarithmic differentiation of
+\[
+ g_t^F(s)=16r^4-2\beta^2r^2
+             -\tfrac14\beta^2(\beta+3)(2\beta+3)
+\]
+gives
+\begin{equation}
+\begin{split}
+ c^*K_t^F c
+ ={}&\frac{16\beta^2
+ (2\beta^4+9\beta^3-151\beta^2-720\beta-976)}
+ {(\beta^2+3\beta+8)(\beta^2+3\beta+32)
+  (2\beta^2+3\beta-32)(2\beta^2+3\beta-8)}.
+\end{split}                                             \label{eq:negcauchyfinite}
+\end{equation}
+For $0<\beta\le1/4$ the denominator is positive, as its last two factors are negative. The positive terms in the last numerator factor total at most $2/256+9/64<1$, while its constant term is $-976$ and all its other terms are nonpositive. Therefore
+\[
+ c^*K_t^Fc<0\qquad (0<t\le13/64).
+\]
+In particular the chosen poles are not zeros in this interval. Its expansion is $-61t^2/144+O(t^3)$, verified either from~\eqref{eq:negcauchyfinite} or the full quotient expansion.
+
+For the uniquely corrected, unforced quartic heat solution, the same test poles and vector give instead
+\begin{equation}
+ c^*\widetilde K_t c
+ =\frac{24t(3t^2+10t+16)}
+ {(3t^2+12t+4)(3t^2+48t+64)}>0\qquad(t>0).             \label{eq:poscauchyfinite}
+\end{equation}
+This follows by substituting the displayed $\widetilde g_t$; it starts as $3t/2+O(t^2)$, in agreement with~\eqref{eq:cauchytangent}. The corrected solution retains the nonzero holonomy residue already computed in Section~\ref{sec:holonomy}. Thus a nonzero residue and a locally positive Cauchy response coexist after the exact equation correction.
+
+Neither $g_0^F$ nor $\widetilde g_0$ is $2\xi$. The native zero-exclusion estimate~\eqref{eq:nativeguard} and the analytic-unit obstruction in Section~\ref{sec:heatdefect} show why these fixed original maps cannot be declared arithmetic initial-data identifications. Equations~\eqref{eq:rank3defect}--\eqref{eq:poscauchyfinite} instead calculate exactly how the proposed full collision, the equation correction and the newest positivity receiver are related. The complete native Cauchy matrix in~\eqref{eq:actualcauchy} remains the arithmetic quantity to evaluate; its lower support terms have been retained in the same calculation.
+
+
+\section{A complete local collision expansion and a time-zero test}\label{sec:origin}
+This section calculates a singularity at the endpoint itself, rather than requiring the argument to start with a numerical positive time. It concerns an actual jointly analytic solution of the backward heat equation. Translating a proposed collision $(t_0,z_0)$ to local coordinates $(s,z)=(t-t_0,Z-z_0)$ does not identify $t_0$ with the original arithmetic time zero.
+
+Suppose
+\begin{equation}
+ H_s=-H_{zz},\qquad
+ H(0,z)=c_m z^m(1+a z+bz^2+O(z^3)),\quad c_m\ne0,\quad m\ge2.
+                                                        \label{eq:localdata}
+\end{equation}
+Assume the germ is real for real $s,z$. Define the monic heat Hermite polynomials
+\begin{equation}
+ P_m(u)=\sum_{k=0}^{\lfloor m/2\rfloor}
+ \frac{(-1)^km!}{k!(m-2k)!}u^{m-2k}.                    \label{eq:hermite}
+\end{equation}
+They are orthogonal for the positive Gaussian weight $e^{-u^2/4}$ by repeated integration by parts in the Rodrigues formula
+$P_m=(-2)^m e^{u^2/4}(d/du)^m e^{-u^2/4}$. Thus they have $m$ simple real roots $\lambda_j$: otherwise multiplying the distinct real sign-changing factors of $P_m$ would give a polynomial of degree below $m$ whose product with $P_m$ has constant nonzero sign, contradicting orthogonality. This standard argument also rules out missing real roots or even multiplicities.
+
+\begin{theorem}[Roots, full ordered energy, and determinant finite parts]
+The $m$ roots near the collision have, for $s>0$ small,
+\begin{equation}
+ z_j(s)=\lambda_j\sqrt{s}+2as+(2b-a^2)\lambda_j s^{3/2}+O(s^2).
+                                                        \label{eq:rootexpansion}
+\end{equation}
+Their ordered inverse-gap energy is
+\begin{equation}
+ \boxed{E_m(s):=\sum_{j\ne k}(z_j(s)-z_k(s))^{-2}
+ =\frac{m(m-1)}{8s}+\frac{m(m-1)}4(a^2-2b)+O(s).}       \label{eq:energyfinite}
+\end{equation}
+For the monic cluster polynomial $Q_s$, the positive-side discriminant satisfies
+\begin{align}
+ \log\Disc Q_s={}&\log D_m+\tfrac12m(m-1)\log s
+                  +m(m-1)(2b-a^2)s+O(s^2),\notag\\
+ D_m={}&2^{m(m-1)/2}\prod_{j=1}^m j^j.                  \label{eq:discfinite}
+\end{align}
+All $m$ roots are real and simple for positive sufficiently small $s$. On the negative side, all except the possible central branch for odd $m$ are nonreal.
+\end{theorem}
+\begin{proof}
+Put $w=\sqrt{s}$ and divide $H(w^2,wu)$ by $c_mw^m$. Analyticity and the heat coefficient recursion give the convergent expansion on compact $u$ sets
+\[
+ F(w,u)=P_m(u)+a w P_{m+1}(u)+b w^2P_{m+2}(u)+O(w^3).
+\]
+The implicit function theorem at each simple $\lambda_j$ gives analytic roots $u_j(w)$. The recurrence $P_{m+1}=uP_m-2P'_m$ and differential equation $2P_m''-uP'_m+mP_m=0$ imply, at a root,
+\[
+ P_{m+1}=-2P_m',\quad P_{m+1}'=0,\quad
+ P_m''/P_m'=\lambda_j/2,\quad P_{m+2}=-2\lambda_jP_m'.
+\]
+Substitute $u_j=\lambda_j+\alpha_jw+\gamma_jw^2+O(w^3)$ into $F=0$. The first coefficient gives $\alpha_j=2a$; the second gives $\gamma_j=(2b-a^2)\lambda_j$. Multiplication by $w$ proves~\eqref{eq:rootexpansion}.
+
+For the leading gap sum, the logarithmic derivative identities at a simple root give
+\[
+ \sum_{k\ne j}\frac1{\lambda_j-\lambda_k}=\frac{\lambda_j}{4},\qquad
+ \sum_{k\ne j}\frac1{(\lambda_j-\lambda_k)^2}
+ =\frac{m-1}{6}-\frac{\lambda_j^2}{48}.
+\]
+The second identity follows from
+$P_m'''/P_m'=\lambda_j^2/4-(m-1)/2$ and
+$\sum_{k\ne j}(\lambda_j-\lambda_k)^{-2}
+=(P_m''/(2P_m'))^2-P_m'''/(3P_m')$.
+The coefficient of $u^{m-2}$ in~\eqref{eq:hermite} gives $\sum_j\lambda_j^2=2m(m-1)$. Summing proves the leading constant $m(m-1)/8$.
+
+The common $2as$ root translation cancels in every difference. The next difference multiplier is $1+(2b-a^2)s$, so the energy's constant term is $-2(2b-a^2)m(m-1)/8$. The remainder improves from a possible half-power to $O(s)$ because the symmetric root-gap expression in the scaled roots is analytic and even in $w$: $F(-w,u)=(-1)^mF(w,-u)$ permutes and negates all the roots. This proves~\eqref{eq:energyfinite}.
+
+For completeness, $P_m'=mP_{m-1}$. The recurrence and the resultant product over roots give recursively the Hermite discriminant in~\eqref{eq:discfinite}: $D_m=2^{m-1}m^mD_{m-1}$, with $D_1=1$. Each squared root difference supplies a factor $s[1+2(2b-a^2)s+O(s^{3/2})]$. Taking the product over $m(m-1)/2$ pairs gives~\eqref{eq:discfinite}; symmetry again makes the relative series analytic in $s$.
+
+For real positive $s$, each scaled real-coefficient root disk contains exactly one zero and is invariant under conjugation, so that zero is real. For negative $s$, use $w=i\sqrt{|s|}$. The leading roots $i\lambda_j\sqrt{|s|}$ with $\lambda_j\ne0$ are nonreal; an isolated zero disk preserves this property. The odd central branch is the only possible exception.
+\end{proof}
+
+\subsection{A finite guard and remainder, not just a formal series}
+Choose $R,T_0,M>0$ such that $H$ is analytic on a neighborhood of $|s|\le T_0$, $|z|\le R$ and $|H|\le M$ there. Let $\Delta=\min_{j\ne k}|\lambda_j-\lambda_k|$ and choose $0<\rho<\Delta/4$. For assertions about negative-side nonreal roots additionally take $\rho<\min_{\lambda_j\ne0}|\lambda_j|/4$. Put
+\[
+ B=\max_j|\lambda_j|+\rho,\quad w_0^2<T_0,\quad w_0B<R,
+ \quad M_0=\frac{M}{|c_m|w_0^m},\quad
+ d_0=\rho(\Delta-\rho)^{m-1},
+\]
+\begin{equation}
+ w_* =\min\left\{\frac{w_0}{2},\frac{d_0w_0}{4M_0}\right\},
+ \qquad M_E=\frac{m(m-1)}{(\Delta-2\rho)^2}.              \label{eq:guard}
+\end{equation}
+On $|w|=w_0$, $|F(w,u)|\le M_0$ for $|u|\le B$. Cauchy's coefficient estimate gives
+$|F(w,u)-P_m(u)|\le M_0|w|/(w_0-|w|)$. On each root circle $|u-\lambda_j|=\rho$, $|P_m(u)|\ge d_0$. Thus for $|w|\le w_*$, Rouch\'e gives exactly one simple root in each disk; a contour integral of $uF_u/F$ gives its analytic dependence. The gap sum in the scaled roots is even, analytic, and bounded by $M_E$. Its Cauchy tail proves, for $0<s\le w_*^2/4$,
+\begin{equation}
+ \left|E_m(s)-\frac{m(m-1)}{8s}
+          -\frac{m(m-1)}4(a^2-2b)\right|
+ \le \frac{4M_E}{3w_*^4}\,s.                             \label{eq:energyerror}
+\end{equation}
+All constants depend on the stated actual analytic germ. They have not been numerically evaluated for an undiscovered multiple zeta zero.
+
+\subsection{The rest of the function is retained in the root dynamics}
+Write the Weierstrass factorization locally as $H_s(z)=g_s(z)Q_s(z)$, with $g$ nonvanishing. At simple cluster roots put $\gamma_s=g_s'/g_s$. The exact equations are
+\begin{align}
+ z_j'&=2\sum_{k\ne j}\frac1{z_j-z_k}+2\gamma_s(z_j),      \label{eq:environment}\\
+ \frac d{ds}\log\Disc Q_s
+ &=4E_m(s)+4\sum_{j<k}\frac{\gamma_s(z_j)-\gamma_s(z_k)}{z_j-z_k}.
+                                                        \label{eq:discenv}
+\end{align}
+The first follows by differentiating $H_s(z_j)=0$ and using the heat equation; the second follows by differentiating the full product of gaps. In the pair sum, the three-index terms cancel, leaving $4E_m$. Thus the unit $g$ is not silently discarded when a cluster is isolated.
+
+\begin{corollary}[An actual endpoint finite-part disproof test]
+Suppose $z_0$ is a real multiple zero of the actual $H_0$, of multiplicity $m$. If
+\begin{equation}
+ a^2-2b<0,\quad
+ a=\frac{H_0^{(m+1)}(z_0)}{(m+1)H_0^{(m)}(z_0)},\quad
+ b=\frac{H_0^{(m+2)}(z_0)}{(m+1)(m+2)H_0^{(m)}(z_0)},    \label{eq:nativetest}
+\end{equation}
+then $H_0$ has a nonreal zero. Thus~\eqref{eq:nativetest}, if established for the actual function, would be a time-zero route to a disproof without first locating a positive-time collision.
+\end{corollary}
+\begin{proof}
+Assume all zeros of $H_0$ are real. Its order-one Hadamard product, after removing the zero at $z_0$, gives for the nonvanishing factor $g$ at that point
+\[
+ (\log g)''(z_0)=-\sum_{\rho\ne z_0}\frac{m_\rho}{(z_0-\rho)^2}\le0.
+\]
+The sum converges absolutely and the linear exponential factor has zero second derivative. On the other hand $(\log g)''(z_0)=2b-a^2$. This contradicts~\eqref{eq:nativetest}.
+\end{proof}
+No such negative value or actual multiple zeta zero is established here. The pole $m(m-1)/(8s)$ alone is compatible with all zeros being real at the collision; its complete finite part is a more discriminating target.
+
+There is also no zero at the spatial origin of~\eqref{eq:rt}: every summand of $\Phi(u)$ is positive for $u\ge0$ because $2\pi n^2e^{4u}>3$, hence $H_t(0)>0$ for all real $t$. This is a separate spatial statement, not a substitution of spatial zero for the user's time-zero question.
+
+\subsection{How a genuine time-zero off-real witness would persist}
+Let a closed disk $D$ lie off the real axis, have no zeros of $H_0$ on its boundary, and contain an actual zero. Set $\eta_0=\min_{\partial D}|H_0|>0$ and $B=\max_{Z\in\partial D}|\Im Z|$. For any fixed $T_1>0$ the original kernel gives
+\[
+ |H_t(Z)-H_0(Z)|\le t C_D,\quad
+ C_D=\int_0^\infty u^2e^{T_1u^2}\Phi(u)e^{Bu}\,du<\infty,
+ \quad 0\le t\le T_1.
+\]
+This follows from $e^{tu^2}-1\le tu^2e^{T_1u^2}$. Rouch\'e then preserves the nonreal zero count for $0<t<\min(T_1,\eta_0/(2C_D))$. A strict positive Newman bound would follow \emph{after} the actual endpoint witness, rather than being a prerequisite imposed on its discovery.
+
+\section{The Navier--Stokes analogy through the actual maps}
+\src{The full polynomial fluid lift, its original metric, and force curl are in \cite{IFH}. The released finite-energy singular solution is a separate input \cite{NS}; no identity with the polynomial flow is assumed.}
+
+Let $J=DF$ for~\eqref{eq:fable} and let $W_i=J^{-1}e_i$. Since $\det J=-2$,
+\[
+ W_i=-\tfrac12\nabla F_{i+1}\times\nabla F_{i+2}
+\]
+with cyclic indices. Divergence of each cross gradient is zero, $W_iF_j=\delta_{ij}$, and the commutators vanish because they annihilate every $F_j$ and $J$ is invertible. The original lifted vector field is
+\begin{equation}
+ U=2W_1+6F_3W_2,\qquad \operatorname{div}U=0,\qquad
+ DF\,U=(2,6F_3,0).                                     \label{eq:fluidlift}
+\end{equation}
+The divergence calculation uses $W_2F_3=0$. An exact vector potential is $-F_2\nabla F_3-(3/2)F_3^2\nabla F_1$. In polynomial components, with $b=2-3xy-x^2w$ and $c=3b(1+xy)-2$,
+\begin{equation}
+ U_x=x^3(c^2-3b),\quad U_y=x(c^2-c-3b),\quad
+ U_w=3c+(3b+3xy-7)c^2+(21-9xy)b-9b^2.                   \label{eq:Ucomponents}
+\end{equation}
+This renames only the two auxiliary polynomials, not source coordinates or target parameters.
+
+If $\varphi_\theta$ is its maximal local flow and $\Phi_\theta$ the target flow~\eqref{eq:forward}, uniqueness gives
+\begin{equation}
+ F\varphi_\theta=\Phi_\theta F,\qquad
+ D\varphi_\theta=J(\varphi_\theta)^{-1}D\Phi_\theta J,
+ \quad\det D\varphi_\theta=1.                            \label{eq:material}
+\end{equation}
+This is a volume-preserving map of trajectories, not an analogy of words.
+
+The target field $v=(2,6c,0)$ solves stationary unforced Navier--Stokes at every viscosity $\nu>0$: its divergence, convective acceleration and component Laplacian all vanish. The source metric $g=J^{\mathsf T}J$ is the exact local pullback, with $\det g=4$. Therefore $U$ solves the corresponding intrinsic unforced viscous equation with its Levi--Civita connection and Hodge vector Laplacian. Along~\eqref{eq:gamma},
+\begin{equation}
+ |\gamma'|_g^2=4,\qquad
+ |\gamma'|_{\rm Eucl}^2=16q^{-3}+36q^{-1}+2704,
+ \quad q=1-8\theta.                                    \label{eq:speed}
+\end{equation}
+The $g$-length to escape from time zero is exactly $1/4$, so this smooth flat pullback metric is incomplete: the remaining curve lengths tend to zero while the original coordinate $x$ diverges.
+
+In the original Euclidean metric, by contrast, all pressures and forces for the same stationary field have precisely the form
+\begin{equation}
+ p=q_0,\qquad f=(U\cdot\nabla)U-\nu\Delta U+\nabla q_0,
+ \qquad\curl f(0,0,w)=(0,0,108\nu w).                   \label{eq:NSforce}
+\end{equation}
+For an explicit derivative proof, the needed transverse terms are
+\[
+ U_x=10x^3+O((x,y)^5),\quad
+ U_y=6x-12x^2y-18wx^3+O((x,y)^5),
+\]
+\[
+ U_w=2-54xy-18wx^2+O((x,y)^4).
+\]
+Here the remainders denote exact polynomial membership in the displayed ideals. On the axis $U=2e_3$, $DU$ has only entry $(2,1)=6$, and the derivative of the convective acceleration is $(DU)^2+2\partial_w DU=0$. The third component of $\Delta\curl U$ is $-108w$ and the other two are zero. Taking curl in~\eqref{eq:NSforce} proves the assertion for every pressure. Thus a smooth compact force cannot be obtained from this unchanged Euclidean field by pressure adjustment. It also has infinite Euclidean $L^2$ norm because it is a nonzero polynomial.
+
+\subsection{A second exact heat-to-fluid map and its force defect}
+For any nonvanishing heat germ $\phi(s,x)=H_{-\nu s}(x)$, the original backward heat equation gives $\phi_s=\nu\phi_{xx}$. Put
+\begin{equation}
+ v=-2\nu\partial_x\log\phi.
+\end{equation}
+Differentiating and using $\phi_s=\nu\phi_{xx}$ proves $v_s+vv_x=\nu v_{xx}$. Its three-dimensional shear lift $\mathsf U=(0,v(x,s),0)$ is incompressible, and obeys exactly
+\begin{equation}
+ \mathsf U_s+(\mathsf U\cdot\nabla)\mathsf U-\nu\Delta\mathsf U
+ =(0,-vv_x,0).                                         \label{eq:burgersforce}
+\end{equation}
+For the original quadratic collision $\phi=x^2+2\nu s$,
+\[
+ v=-\frac{4\nu x}{x^2+2\nu s},\qquad
+ -vv_x\longrightarrow\frac{16\nu^2}{x^3}\quad(s\downarrow0,\ x\ne0).
+\]
+The velocity singularity therefore comes with a singular, noncompact force under this explicit shear map. No smooth-force Navier--Stokes counterexample is supplied by this particular transport. Equation~\eqref{eq:burgersforce}, rather than a missing analogy, is the calculated object that would have to be canceled by a different nonlinear construction.
+
+\subsection{What the released Navier--Stokes construction contributes}
+Theorem 1.1 of \cite{NS} constructs, for every $\nu>0$, a solution starting at rest, driven by a smooth compactly supported force, with bounded kinetic energy and unbounded terminal velocity. The proof's stated mechanism cancels the singular momentum residual by oscillatory momentum flux and higher corrections; it is not evaluation of a reciprocal at zero.
+
+Its stated core scales, writing $\tau_{\rm NS}=1-t_{\rm NS}$ and $0<\varepsilon<1/100$, are
+\[
+ \ell_r\asymp\tau_{\rm NS}^{1/2},\qquad
+ \ell_z\asymp\tau_{\rm NS}^{1/2-\varepsilon},\qquad
+ |u_{\theta,z}|\asymp\tau_{\rm NS}^{-1/2-\varepsilon}.
+\]
+Multiplication gives core volume $\tau_{\rm NS}^{3/2-\varepsilon}$ and kinetic energy $\tau_{\rm NS}^{1/2-3\varepsilon}$. Radial differentiation gives the core dissipation scale $\tau_{\rm NS}^{-1/2-3\varepsilon}$, whose time integral is finite. These scale calculations explain compatibility of singular velocity with finite energy; they are not a replay of the existence proof or a bound for all corrections.
+
+The rigorous common issue with the present programme is residual cancellation in the \emph{specified original equation and source class}. Here the corresponding residuals have been evaluated:~\eqref{eq:fullres}, \eqref{eq:counterdefect}, and \eqref{eq:NSforce}. The polynomial heat correction~\eqref{eq:truecorrection} cancels the first, but loses the original marked quotient by~\eqref{eq:quotientfailure}; retaining the actual theta principal part restores the second. No map from the released finite-energy solution to the actual zeta initial datum has been constructed in the available sources or in this note.
+
+\section{Connes--Consani monodromy and the retained trace sector}
+Connes--Consani construct finite covers associated with finite abelian extensions of $\mathbb Q$; on the periodic orbit of length $\log p$ the monodromy is arithmetic Frobenius at an unramified prime \cite[Theorem 1 and the mapping-torus theorem]{CC}. The source's arithmetic map is
+\[
+ C_p\simeq\R/(\log p)\Z,\qquad \operatorname{Mon}(C_p)=\operatorname{Frob}_p.
+\]
+For a finite-dimensional coefficient representation and an unramified prime, its forward $k$-return contributes $\Tr(T_p^k)$. The reversed return contributes $\Tr(T_p^{-k})$; in a finite unitary representation these are complex conjugates. The supported-zero programme's prime receiver accordingly retains
+\[
+ \sum_{p,k\ge1}(\log p)p^{-k/2}
+ \bigl\{\Tr(T_p^k)k_0(k\log p)+\Tr(T_p^{-k})k_0(-k\log p)\bigr\}
+\]
+for a compactly supported test $k_0$, with inertia invariants required at ramified primes. This is the PHW/CBR comparison, not a replacement of the trivial zeta sector by an arbitrary character.
+
+The signed cover's residue~\eqref{eq:resdelta} is a different, explicitly mapped filtered object: it is the pole residue of a based coefficient-space transport. The programme's abelian character can have trivial monodromy at this collision while this residue is nonzero. The source proves both facts by its explicit quotient and normalization maps \cite{EHM,CBR}. Nontrivial monodromy alone is not the negativity criterion in~\eqref{eq:weil}; its actual representation, character, involution and complete trace contribution must be retained. Here the nonzero filtered contribution is detected by~\eqref{eq:detected} and its scalar trace annihilation is proved by~\eqref{eq:tracejac}, not assumed from the word holonomy.
+
+\section{Conclusions at the original time zero}
+The original assertion that supported zero is invertible is accepted and proved in its actual zero algebra and both semilattice adjunctions. It has a concrete effect: at the collision the full cyclic map has an invertible zero-label action and a corner inverse, with $C_0^2=eI$ and a retained reverse $e$-edge. It also has a nonnegative full split trace form there. The finite coefficient heat family itself retains two different time-zero maps: $\mathcal E_\tau=I$ and $\mathcal E_e=P\ne I$, with the full same-parity support chains and $\mathcal E_t\mathcal E_{-t}=P$. Its actual group lives on the finite projective image, and the entire-function Taylor tail is explicitly retained. Thus invertibility of this zero object is not by itself the negation of time-zero real-rootedness.
+
+The proposed boundary investigation nevertheless produces substantive, nonzero mathematics. The full length-four family has $R_{\rm heat}=-6T^2$, invisible in its marked dual-number quotient. Its residue obeys $96\delta(T)=TR_{\rm heat}$ and its dual density is $-R_{\rm heat}/96$. The exact finite-order transport has a nonremovable pole, with sharp positive-metric condition cost~\eqref{eq:metriclower}. The newer Cauchy receiver sees its heat defect as the explicit rank-three signed kernel~\eqref{eq:rank3defect}; the same two-point test changes from the negative expression~\eqref{eq:negcauchyfinite} to the positive expression~\eqref{eq:poscauchyfinite} when the full equation defect is corrected. Those are the correct retained endpoint obstructions, not an assertion that the infinitesimal vanishes as an element.
+
+At the actual zeta endpoints the full source yields a specific obstruction to the simplest contradiction: $H_0(\pm i)=1/16$, with the explicit original-family zero-exclusion bound~\eqref{eq:nativeguard}. Totalizing before pole cancellation loses exactly that principal-part coefficient. The loss has a full-lattice map, and the supported Weil formula retains its compensation. At an actual real multiple zeta zero, the finite part~\eqref{eq:nativetest} would instead provide a genuine endpoint negativity test if it were negative. This note computes its coefficient and a finite error bound, but does not evaluate it negatively for the actual $H_0$.
+
+Accordingly, no RH proof or disproof is certified. This is not a conclusion drawn from the problem's historical status; it is the outcome of the displayed maps and their exact surviving terms. The next arithmetic calculation is specified by an actual function or pairing: a negative value of the complete supported divisor form, an off-real zero of $H_0$ with its full principal part retained, or an actual negative endpoint finite part as above. Any proposed cancellation mechanism has to preserve that receiver while canceling the explicitly computed defect, as the Navier--Stokes construction preserves its equation and smooth forcing class.
+
+\section*{Verification and reading scope}\addcontentsline{toc}{section}{Verification and reading scope}
+The accompanying exact checker uses rational and symbolic arithmetic, raises explicit errors rather than relying on Python assertions, and includes negative controls against the specific invalid identifications. Its report records the number of named check groups; exhaustive finite-table tuple counts are stated inside the relevant group, not misreported as independent theorems. It is neither a proof assistant nor a numerical verification of native zeta zeros, and it does not execute the 166-page Navier--Stokes existence proof.
+
+The supplied globalization note and all 480 lines of the original inverse-fibre heat source were read in this turn. The original Rodgers--Tao v5 mathematical body through its bibliography was read. The secondary note's semimodule section was read in full; the specified definitions and relevant semimodule, spectrum and projective passages of P1 and v11 were consulted, not their entire corpus re-proved here. The Connes--Consani original source passages read are its introduction and mapping-torus/Frobenius theorem with proof. The current programme EHM, ZH, SZW and RD passages used are recorded by equation locators in the source ledger. The later CK1--19 and HA1--26 proofs were read in full at the separately pinned successor; the rest of that new 195-page edition is not represented as read or independently checked here. Archive identity or a passing checker is not represented as an independent proof of an imported theorem.
+
+\begin{thebibliography}{99}
+\bibitem{Globalization} Author unspecified. (2026, March). \emph{A note on the globalization semiring $G(\mathbb Z)$}. User-supplied LaTeX source, \texttt{globalization\_note.tex}.
+\bibitem{P1} The Clankers. (2026, June). \emph{Split-zero projective geometry and Leibniz monads} [Pre-publication draft]. Original source \texttt{split\_zero\_projective\_monads\_surcomplex.tex}.
+\bibitem{Secondary} The Clankers. (n.d.). \emph{A secondary note on split-zero globalization: Semimodule classification, multiplicative reconstruction, and all-orders zeta deformation}. Original supplied source \texttt{split\_zero\_secondary\_note.tex}.
+\bibitem{V11} The Clankers. (2026, June). \emph{Split support geometry: Universal zero fibres, arithmetic curves, and Frobenius-perfect quantization} (Version 11). Original supplied LaTeX source.
+\bibitem{RT} Rodgers, B., \& Tao, T. (2021). \emph{The de Bruijn--Newman constant is non-negative} (Version 5; original preprint 2018). arXiv:1801.05914v5. \url{https://arxiv.org/abs/1801.05914v5}. Supplied original source; v5 records corrections to Section 8 boundary-energy contributions.
+\bibitem{PT} Platt, D., \& Trudgian, T. (2020). \emph{The Riemann hypothesis is true up to $3\cdot10^{12}$}. arXiv:2004.09765. Corollary 2, p.~5. \url{https://arxiv.org/abs/2004.09765}.
+\bibitem{Connes} Connes, A. (1999). Trace formula in noncommutative geometry and the zeros of the Riemann zeta function. \emph{Selecta Mathematica, 5}, 29--106. arXiv:math/9811068. The original explicit-formula convention is transported through SZW19--27.
+\bibitem{CCM} Connes, A., Consani, C., \& Marcolli, M. (2007). \emph{The Weil proof and the geometry of the adeles class space}. arXiv:math/0703392. \url{https://arxiv.org/abs/math/0703392}.
+\bibitem{CC} Connes, A., \& Consani, C. (2025). \emph{Knots, primes and class field theory} (Version 1). arXiv:2501.06560v1. \url{https://arxiv.org/abs/2501.06560v1}. Supplied original source, introductory Theorem 1 and source labels \texttt{mappingtorus1}, \texttt{artinrec}, \texttt{main}.
+\bibitem{NS} OpenAI. (2026). \emph{Finite time blowup for Navier--Stokes}. Released 166-page manuscript, Theorem 1.1 and Sections 2--3. \url{https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf}. Publication notice: \url{https://openai.com/index/navier-stokes-solution/}.
+\bibitem{IFH} Split-Zero programme. (2026). \emph{The original inverse-fibre heat and incompressible lift} [Programme source \texttt{26\_incompressible\_fibre\_heat.tex}]. Complete supplied 480-line version, SHA-256 \texttt{72058517553ff3a2c35699844fa95bba9ec695e774e0e3d4cf33cf7b84da51dd}. Public coordinate source at commit \texttt{ac168d55cbb400a6c8926a00d67909ba65646ac5}, path \texttt{satellites/26\_incompressible\_fibre\_heat.tex}. Original map provenance is retained in that source; the present calculations use its displayed polynomial.
+\bibitem{EHM} Split-Zero programme. (2026). \emph{The signed eight-state holonomy and its collision residue} [EHM1--EHM53]. \texttt{EIGHT\_STATE\_HOLONOMY\_DERIVATION.md}, especially EHM27--46.
+\bibitem{CBR} Split-Zero programme. (2026). \emph{From the signed cover to an arithmetic quadratic cover} [CBR1--CBR29]. \texttt{CLASS\_FIELD\_SIGNED\_HOLONOMY\_DERIVATION.md}.
+\bibitem{ZH} Split-Zero programme. (2026). \emph{The original supported-zero identity on the heat semimodule} [ZH1--ZH26]. \texttt{SUPPORTED\_ZERO\_HEAT\_IDENTITY\_DERIVATION.md}.
+\bibitem{SZW} Split-Zero programme. (2026). \emph{The supported-zero prime in the full theta and Weil trace distribution} [SZW1--SZW42]. \texttt{SUPPORTED\_ZERO\_PRIME\_WEIL\_DERIVATION.md}.
+\bibitem{RD} Split-Zero programme. (2026). \emph{Residue duality, the collision Jacobian, and the supported Weil trace} [RD1--RD31b]. \texttt{COLLISION\_RESIDUE\_DUALITY\_DERIVATION.md}.
+\bibitem{CK} Split-Zero programme. (2026). \emph{The complete Cauchy--Weil matrix criterion} [CK1--CK19]. \path{CAUCHY_WEIL_POSITIVITY_CRITERION.md}. Successor source pin: Section~\ref{sec:cauchy} and \path{SOURCE_LEDGER.md}. The general Schur transfer construction is credited in that proof to Ball, Biswas, Fang, and ter Horst (arXiv:0705.2042v3).
+\bibitem{HA} Split-Zero programme. (2026). \emph{The actual heat pairing, its supported endpoints, and mixed prime products} [HA1--HA26]. \path{HEAT_CAUCHY_ARITHMETIC_DERIVATION.md}. Successor source pin: Section~\ref{sec:cauchy} and \path{SOURCE_LEDGER.md}.
+\end{thebibliography}
+\end{document}

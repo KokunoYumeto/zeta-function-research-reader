@@ -70,3 +70,13 @@ The original singlet algebra has supported zero as its own multiplicative identi
 - [ZH1–ZH26: intrinsic zero identity, heat flow and residue-generated actions](SUPPORTED_ZERO_HEAT_IDENTITY_DERIVATION.md)
 - [RD1–RD31b: integral duality, Jacobian trace, cotangent radical and endpoint compensation](COLLISION_RESIDUE_DUALITY_DERIVATION.md)
 - [HZ1–HZ29: supporting specialization maps and local persistence of zeros](supporting_proofs/TAU_HEAT_ZERO_LOCALIZATION_DERIVATION.md)
+
+## Collision prism, integral extension, and supported spectrum
+
+The retained collision algebra now carries the bounded prism with divisor 3+epsilon. Its quotient is exactly (Z/9)[T]/T². The original nilradical quotient is the nilradical (3,T) of this ring, and the divided residue detects its square (3T). The cotangent quotient keeps its larger extension and both connecting maps. All unsupported and arithmetic prime pullbacks are calculated explicitly.
+
+- [EC1–EC48: the complete extension group and both connecting maps](NILRADICAL_COTANGENT_EXTENSION_CLASS_DERIVATION.md).
+- [DP1–DP43: the bounded prism, its universal property, and both module specializations](DISTINGUISHED_COLLISION_PRISM_DERIVATION.md).
+- [SG1–SG23: the supported spectrum, nilradical, Frobenius kernel, and divided derivation](SUPPORTED_PRISM_SPECTRUM_DERIVATION.md).
+
+These results identify integral infinitesimal data; they do not establish positivity of the complete supported Weil form. The full earlier analytic formula and every support coordinate remain in this reader.

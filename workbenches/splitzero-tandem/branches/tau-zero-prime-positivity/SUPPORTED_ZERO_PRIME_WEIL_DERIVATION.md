@@ -533,3 +533,7 @@ The first equality is the actual carrier sum (SZW9). The second is precisely the
 ## Exact residue-duality continuation
 
 [RD1–RD31b](COLLISION_RESIDUE_DUALITY_DERIVATION.md) proves the complete Jacobian map from perfect residue duality to the retained regular trace, identifies the actual packet radical with cotangent cohomology, and computes the supported endpoint compensation. The existing formulas and all their coordinates remain unchanged.
+
+## Integral prism continuation
+
+[DP1–DP43](DISTINGUISHED_COLLISION_PRISM_DERIVATION.md) constructs the specific bounded prism and proves the original nilradical specialization. [EC1–EC48](NILRADICAL_COTANGENT_EXTENSION_CLASS_DERIVATION.md) computes its complete extension class and the exact maps detecting the divided residue. [SG1–SG23](SUPPORTED_PRISM_SPECTRUM_DERIVATION.md) gives the supported prime pullbacks, retaining the unsupported point and the original supported-zero prime under coefficient contraction. These calculations retain all earlier trace and endpoint identities.

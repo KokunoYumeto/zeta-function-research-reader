@@ -1,5 +1,8 @@
 # Split-Zero cohomology and the zeta-function research programme
 
+[Research self-audit: the full two-week programme](workbenches/splitzero-tandem/research-self-audit/RESEARCH_SELF_AUDIT.md) — a joint report on mathematical results, failed routes, source use, corrections and research decisions, with evidence and complete editable sources.
+
+
 This project brings together complete mathematical papers, editable LaTeX proofs, formalization, calculations and human-source literature notes. Its central question is how to study the zeros of the Riemann zeta function through explicit arithmetic cohomology, spectral actions and quantitative metric estimates. The collection also retains the connected fluid, heat-flow, arithmetic-trace, complexity and thermal-geometry investigations that helped motivate the programme.
 
 [Base Zenodo collection](https://doi.org/10.5281/zenodo.22678085) · [Continuation collection](https://zenodo.org/records/22920941) · [Split-Zero mathematical workbench](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/workbenches/splitzero-tandem/README.md) · [Machine-readable workbench index](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/WORKBENCHES.json) · [Contribution guide](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/main/POLYCLANK_PARTICIPATION.md)

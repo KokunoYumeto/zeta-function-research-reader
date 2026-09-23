@@ -1,0 +1,617 @@
+# The endpoint-resonant cosine test detects the whole critical strip
+
+Independent mathematical derivation, 2026-09-23. The actual test at \(t=1/32\) is nonzero throughout the closed critical strip. The proof is uniform in height and uses neither RH nor the location of a numerically computed zero. It retains the full original zeta, Gamma and endpoint factors.
+
+## Source and scope
+
+The complete incoming source [complete ER source](supporting_proofs/endpoint_resonance_20260923/ENDPOINT_RESONANCE_AND_PRIME_CLASS.tex), ER1–40a, including ER26a–f, was read at
+
+[Retained complete ER source](supporting_proofs/endpoint_resonance_20260923/ENDPOINT_RESONANCE_AND_PRIME_CLASS.tex).
+
+SHA256: `8e068f06bc98749a7e5747b17a798d3221dc4984dec316026bcd213a874bf667`.
+
+The receiving calculation here is ER31–34's actual cosine transform. Its Gaussian calculation is reproduced below. Its original human source is Brad Rodgers and Terence Tao, [The de Bruijn–Newman constant is non-negative, arXiv:1801.05914v5](https://arxiv.org/abs/1801.05914v5), original author TeX definitions phidef, htdef, hoz and sas. This bounded reading covers the complete incoming programme source, not a fresh exhaustive reading of the human paper. No scalar arithmetic pairing is evaluated here.
+
+The incoming ER source uses the full multiplier \(s(s-1)\pi^{-s/2}\Gamma(s/2)\), without a factor \(1/2\). Every occurrence below follows that convention.
+
+## 1. The actual test and all original factors
+
+Put
+\[
+ \begin{aligned}
+ \Phi(u)&=\sum_{n\ge1}
+       (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},
+       &&u\ge0,\\
+ H_t(Z)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(Zu)\,du,
+       &&t\in\mathbb R,\\
+ A(a)&=\pi^{-a/2}\Gamma(a/2),&
+ \mathcal Q(a)&=a(a-1)\pi^{-a/2}\Gamma(a/2)\zeta(a).
+ \end{aligned}
+ \tag{ERD1}
+\]
+The symbol \(\mathcal Q\) denotes exactly the displayed full product and its continued germs. It is not an identification of the original \(\zeta\) with a different function. The original comparison is
+\[
+ \mathcal Q(a)=16H_0(-2i(a-\tfrac12)).
+ \tag{ERD2}
+\]
+The even extension of \(\Phi\) follows from the original theta identity. Its derivatives decrease faster than any Gaussian. Every term in its displayed half-line series is positive, since \(2\pi n^2e^{4u}>3\).
+
+For \(t>0\), the actual source, transform and endpoint-null test are
+\[
+ \begin{aligned}
+ h_t(Z)&=e^{-Z^2/(4t)}H_t(Z)\cos(Z/(2t)),\\
+ w&=s-\tfrac12,\qquad
+ M_t(s)=\int_{\mathbb R}h_t(Z)e^{-wZ}\,dZ,\\
+ f_t&=(\partial_Z^2-\tfrac14)h_t,\qquad
+ F_t(s)=s(s-1)M_t(s).
+ \end{aligned}
+ \tag{ERD3}
+\]
+All the derivatives of \(H_t\) are bounded on the real axis by absolute integration of its differentiated density. The factor \(e^{-Z^2/(4t)}\) therefore gives Gaussian bounds, with polynomial factors, for every derivative of \(h_t\) and \(f_t\). In particular their bilateral transforms are entire in \(s\).
+
+For a general complex \(b\), direct Gaussian integration gives
+\[
+ \int_{\mathbb R}e^{-Z^2/(4t)-bZ}\cos(uZ)\,dZ
+       =2\sqrt{\pi t}\,e^{tb^2-tu^2}\cos(2tbu).
+\]
+The outer Gaussian controls \(e^{|\Re b||Z|}\), while
+\(\int_0^\infty e^{tu^2}|\Phi(u)|du<\infty\). These two integrable bounds justify the interchange with the defining \(H_t\) integral. They give
+\[
+ \int_{\mathbb R}e^{-Z^2/(4t)}H_t(Z)e^{-bZ}\,dZ
+       =2\sqrt{\pi t}\,e^{tb^2}H_0(2tb).
+\]
+Splitting the retained cosine into its two exponentials proves the exact formula
+\[
+ \begin{aligned}
+ M_t(s)=\sqrt{\pi t}\big\{&
+ e^{t(w-i/(2t))^2}H_0(2tw-i)\\
+ &+e^{t(w+i/(2t))^2}H_0(2tw+i)\big\}.
+ \end{aligned}
+ \tag{ERD4}
+\]
+Set \(z=itw\), \(\sigma_0=z\), \(\sigma_1=1+z\). By ERD2 this is the original-zeta expression
+\[
+ \boxed{\begin{aligned}
+ M_t(s)=\frac{\sqrt{\pi t}}{16}e^{tw^2-1/(4t)}
+ \big\{&
+ e^{-iw}(1+z)z\,\pi^{-(1+z)/2}
+          \Gamma((1+z)/2)\zeta(1+z)\\
+ &+e^{iw}z(z-1)\,\pi^{-z/2}
+          \Gamma(z/2)\zeta(z)\big\}.
+ \end{aligned}}
+ \tag{ERD5}
+\]
+Every product at a zero or pole of one of its factors means its full continued germ. In the compact notation of ERD1, the bracket is
+\(e^{-z/t}\mathcal Q(z+1)+e^{z/t}\mathcal Q(z)\), because \(iw=z/t\). Both expressions will remain linked throughout the proof.
+
+## 2. The full product's endpoint data and a low-height zero-free band
+
+The original theta identity is
+\[
+ A(a)\zeta(a)
+ =-\frac1a+\frac1{a-1}
+       +\mathcal J(a),\qquad
+ \mathcal J(a)=\int_1^\infty
+       \psi(x)\{x^{a/2-1}+x^{(1-a)/2-1}\}\,dx,
+ \quad \psi(x)=\sum_{n\ge1}e^{-\pi n^2x}.
+ \tag{ERD6}
+\]
+Its integral is entire. Multiplying its displayed rational terms by \(a(a-1)\), without dropping either term, gives
+\[
+ \mathcal Q(a)=1+a(a-1)\mathcal J(a),\qquad
+ \mathcal Q(1-a)=\mathcal Q(a).
+ \tag{ERD7}
+\]
+The second identity follows by interchanging the two summands in \(\mathcal J\). In particular
+\[
+ \mathcal Q(0)=\mathcal Q(1)=1,\qquad
+ \delta:=\mathcal Q'(1)=\mathcal J(1)>0,\qquad
+ \mathcal Q'(0)=-\delta.
+ \tag{ERD8}
+\]
+These endpoint values retain the original cancellation data:
+\[
+ \lim_{a\to1}(a-1)\zeta(a)=1,\quad
+ \lim_{a\to1}A(a)=1,\quad
+ A(h)=h^{-1}a_0(h),\quad a_0(0)=2,\quad
+ \zeta(0)=-\frac12.
+ \tag{ERD9}
+\]
+At zero, \(a(a-1)A(a)\) has the nonzero value \(-2\), and its product with \(\zeta(0)\) is \(1\). At one, the simple pole of \(\zeta\) and the simple zero of \(a(a-1)A\) give the value \(1\). These are the two different original germs, not a deletion of either endpoint.
+
+For \(0\le\Re a\le1\), the absolute value of each power of \(x\) in ERD6 is at most \(x^{-1/2}\le1\). Therefore, uniformly in \(\Im a\),
+\[
+ \begin{aligned}
+ |\mathcal J(a)|
+ &\le2\sum_{n\ge1}
+            \frac{e^{-\pi n^2}}{\pi n^2}
+ \le\frac2{\pi(e^\pi-1)}
+ <\frac2{21}.
+ \end{aligned}
+ \tag{ERD10}
+\]
+For the middle inequality use \(n^2\ge n\) and \(1/n^2\le1\), then sum the geometric series. The last strict inequality follows from \(\pi>3\) and \(e^3>8\). In particular
+\[
+ 0<\delta<\frac2{21}.
+ \tag{ERD11}
+\]
+If also \(|\Im a|\le1\), both \(|a|\) and \(|a-1|\) are at most \(\sqrt2\). It follows that
+\[
+ |\mathcal Q(a)-1|<\frac4{21}<1
+       \quad(0\le\Re a\le1,\ |\Im a|\le1).
+ \tag{ERD12}
+\]
+Thus no zero of \(\mathcal Q\) lies in that rectangle.
+
+There are no zeros of \(\mathcal Q\) when \(\Re a>1\): the nonvanishing of \(\zeta\) there follows from its absolutely convergent Euler product, and all the other factors in ERD1 are nonzero and finite there. To recall the nonvanishing argument, the logarithmic prime series
+\(\sum_p\sum_{k\ge1}p^{-ka}/k\) converges absolutely for \(\Re a>1\), and its exponential is the Euler product. Finite prime products expand into their absolutely convergent integer Dirichlet series, which converge to the original \(\zeta\). Reflection in ERD7 excludes zeros when \(\Re a<0\). Consequently every zero
+\[
+ \rho=\beta+i\gamma\quad\hbox{of }\mathcal Q
+ \quad\hbox{satisfies}\quad
+ 0\le\beta\le1,\qquad |\gamma|>1.
+ \tag{ERD13}
+\]
+This argument does not need a zero-free theorem on the boundary lines \(\Re a=0,1\).
+
+For completeness, the original trivial-zero germs remain recoverable. At \(a=-2m+h\), \(m\ge1\),
+\[
+ A(-2m+h)=h^{-1}a_m(h),\qquad
+ a_m(0)=\frac{2(-1)^m\pi^m}{m!}\ne0,
+\]
+and the full inverse is
+\[
+ \zeta(-2m+h)
+    =h\,\frac{\mathcal Q(-2m+h)}
+          {(-2m+h)(-2m-1+h)a_m(h)}.
+ \tag{ERD14}
+\]
+Here \(\mathcal Q(-2m)=\mathcal Q(1+2m)>0\); the latter value is a product of positive real factors and \(\zeta(1+2m)>0\). Thus the original trivial zero is simple, with exactly the coefficient displayed in ERD14. At every zero of \(\mathcal Q\), the full multiplier \(a(a-1)A(a)\) is a holomorphic unit by ERD13, so that zero is an original-zeta zero with the same multiplicity. The retained product has introduced no extra zero into the set used below.
+
+## 3. The exact logarithmic curvature and its uniform bound
+
+We give the needed product argument rather than assuming a bound for a logarithmic derivative near high zeros. The integral in ERD6 and \(\psi(x)\le K e^{-\pi x}\), \(x\ge1\), imply
+\[
+ \log^+|\mathcal Q(a)|
+       \le K(1+|a|)\log(2+|a|).
+ \tag{ERD15}
+\]
+Indeed, for \(|a|\le R\), the absolute powers of \(x\) in the integral are bounded above by \(x^{(R+1)/2}\). Split \(e^{-\pi x}\) into two factors and maximize
+\(((R+1)/2)\log x-(\pi/2)x\); its maximum is \(O((R+1)\log(R+2))\). The remaining exponential is integrable. Multiplication by \(a(a-1)\) adds only a polynomial factor. Hence \(\mathcal Q\) is entire of order at most one.
+
+Let its zeros, counted with multiplicity, be the \(\rho\)'s of ERD13. The resulting full genus-one factorization is
+\[
+ \mathcal Q(a)=e^{-\delta a}
+     \prod_\rho \left(1-\frac a\rho\right)e^{a/\rho}.
+ \tag{ERD16}
+\]
+Here is a proof of the precise assertion used. With \(\varepsilon=1/4\), Jensen's circle identity and ERD15 give \(n(R)=O(R^{1+\varepsilon})\). Jensen's identity follows by removing the finitely many zeros inside a circle and using the mean-value identity for their logarithmic factors; each zero of modulus at most \(R\) contributes at least \(\log2\) on a circle of radius at least \(2R\). Dyadic summation proves
+\(\sum_\rho|\rho|^{-2}<\infty\). The product
+\(\Pi(a)=\prod_\rho(1-a/\rho)e^{a/\rho}\) therefore converges locally normally and has precisely those zeros and multiplicities. The zero-free entire quotient \(\mathcal Q/\Pi\) has an entire logarithm \(B\), chosen with \(B(0)=0\), by integrating its entire logarithmic derivative.
+
+To bound the degree of \(B\), choose \(r\in[R,2R]\) avoiding the intervals of radius \(R^{-3}\) about \(|\rho|\) for \(|\rho|\le4R\). Their total length is \(O(R^{-2+\varepsilon})<R\), so such a radius exists. On its circle,
+\(\log|1-a/\rho|\ge-\log4-4\log R\) for those zeros. Moreover
+\(\Re(a/\rho)\ge-2R/|\rho|\), and
+\(\sum_{|\rho|\le4R}|\rho|^{-1}=O(1+R^\varepsilon)\);
+the latter follows from the same dyadic zero count. There are no arbitrarily small nonzero zeros by ERD13. Thus the small-zero product has logarithm of modulus bounded below by
+\(-K R^{1+\varepsilon}\log R\). For \(|\rho|>4R\), use
+\(\log[(1-v)e^v]=-\sum_{k\ge2}v^k/k\) for \(|v|\le1/2\); the tail logarithm is bounded below by
+\(-K r^2\sum_{|\rho|>4R}|\rho|^{-2}\ge-K R^{1+\varepsilon}\).
+It follows that \(\Re B\le K R^{1+\varepsilon}\log R\) on the selected circles.
+
+Writing \(B(a)=\sum b_n a^n\), the nonnegative circle function
+\(M_R-\Re B(r e^{i\theta})\), with this upper bound \(M_R\), has \(n\)-th Fourier coefficient \(-b_n r^n/2\). Its modulus is at most its average \(M_R-\Re B(0)\). Therefore
+\(|b_n|\le K_nR^{1+\varepsilon-n}\log R\). Letting \(R\) tend to infinity proves \(b_n=0\) for \(n\ge2\). Thus \(B=b_1a\); differentiating at zero and using ERD8 gives \(b_1=-\delta\). This proves ERD16, including its retained linear exponential.
+
+Let \(\mathcal L(a)=\mathcal Q'(a)/\mathcal Q(a)\). The exact original-factor expression and the product expression are
+\[
+ \begin{aligned}
+ \mathcal L(a)
+ &=\frac{\zeta'(a)}{\zeta(a)}
+    +\frac1a+\frac1{a-1}
+    -\frac12\log\pi+\frac12\psi_\Gamma(a/2),\\
+ &=-\delta+\sum_\rho
+                  \left[\frac1{a-\rho}+\frac1\rho\right],
+ \qquad
+ \mathcal L'(a)=-\sum_\rho\frac1{(a-\rho)^2}.
+ \end{aligned}
+ \tag{ERD17}
+\]
+These are meromorphic identities with their full exceptional germs. The series converge locally normally away from the zeros. No derivative term of the original multiplier has been dropped.
+
+Evaluation of the difference between the values at one and zero gives the absolutely convergent identity
+\[
+ \sum_\rho\frac1{\rho(1-\rho)}
+       =\mathcal L(1)-\mathcal L(0)=2\delta.
+ \tag{ERD18}
+\]
+For each \(\rho=\beta+i\gamma\), put \(b=\beta(1-\beta)\in[0,1/4]\) and \(x=\gamma^2>1\). An exact calculation gives
+\[
+ \Re\frac1{\rho(1-\rho)}
+  =\frac{x+b}{(x+b)^2+x(1-4b)}
+  \ge\frac1{x+1}>\frac1{2x}.
+ \tag{ERD19}
+\]
+For the first inequality, cross multiplication leaves
+\(b(3x+1-b)\ge0\). The strict last inequality uses \(x>1\).
+Taking real parts in the absolutely convergent ERD18 proves
+\[
+ \boxed{\displaystyle
+       \sum_\rho\frac1{\gamma^2}\le4\delta<\frac8{21}.}
+ \tag{ERD20}
+\]
+Multiplicity is present in every one of these sums. For \(a=u+iv\), \(|v|<1\), ERD13 gives
+\[
+ |a-\rho|\ge|\gamma|-|v|
+             \ge(1-|v|)|\gamma|.
+\]
+Substitution in the exact curvature series yields the uniform-in-\(u\) bound
+\[
+ \boxed{\displaystyle
+ |\mathcal L'(u+iv)|
+       \le\frac{4\delta}{(1-|v|)^2}
+       <\frac{8}{21(1-|v|)^2}.}
+ \tag{ERD21}
+\]
+Only the original endpoint moment \(\delta=\mathcal J(1)\), the original Euler product, and the elementary height-one exclusion were used. There is no assumed placement of the zeros on the critical line.
+
+## 4. A noncancellation theorem uniform in the entire critical strip
+
+The product \(\mathcal Q\) is nonzero on the simply connected strip \(|\Im a|<1\). It is real and positive on the real axis: it is real there, nonzero there by ERD13, and its value at zero is one. Equivalently, positivity follows directly from ERD2 and
+\(H_0(iu)=\int_0^\infty\Phi(v)\cosh(uv)dv>0\).
+There is consequently a holomorphic logarithm \(q\) on this strip with \(q(0)=0\), real values on the real axis, and \(q'=\mathcal L\).
+
+For the exact quotient of the two full original products, put
+\[
+ R(z)=\frac{\mathcal Q(z+1)}{\mathcal Q(z)},\qquad
+ b(z)=q(z+1)-q(z).
+ \tag{ERD22}
+\]
+Thus \(R=e^b\), \(b\) is real on the real axis, and
+\[
+ b'(z)=\mathcal L(z+1)-\mathcal L(z)
+                   =\int_0^1\mathcal L'(z+x)\,dx .
+\]
+Integrating vertically from \(u\) to \(u+iv\), and using ERD21, gives the explicit phase estimate
+\[
+ \boxed{\displaystyle
+ |\Im b(u+iv)|
+ \le4\delta\,\frac{|v|}{1-|v|}
+ <\frac8{21}\frac{|v|}{1-|v|}
+       \quad(0<|v|<1).}
+ \tag{ERD23}
+\]
+At \(v=0\), \(\Im b=0\). The integral used here is
+\(\int_0^{|v|}(1-y)^{-2}dy=|v|/(1-|v|)\).
+The estimate concerns the relative phase. No bound on the individual phases of the two Gamma factors at arbitrarily large real arguments is being assumed.
+
+Let
+\[
+ T_*=\frac{2(\pi-1)}{\pi-1+8/21}.
+ \tag{ERD24}
+\]
+It satisfies \(1<T_*<2\), since \(\pi>3\) and \(8/21<1\). For every
+\[
+ 0<t\le T_*,\qquad 0\le\Re s\le1,
+\]
+write \(s-1/2=x+iy\) and \(z=it(s-1/2)=u+iv\), so \(v=tx\) and \(|v|\le t/2<1\). Factoring the bracket in ERD5 gives
+\[
+ e^{-z/t}\mathcal Q(z+1)+e^{z/t}\mathcal Q(z)
+     =e^{-z/t}\mathcal Q(z)
+                  [e^{b(z)}+e^{2z/t}].
+ \tag{ERD25}
+\]
+The first two factors on the right are nonzero. A cancellation of the last two terms would require
+\(\Im b(z)-2v/t\) to be an odd multiple of \(\pi\).
+For \(v\ne0\), ERD23 gives instead
+\[
+ \begin{aligned}
+ \left|\Im b(z)-\frac{2v}{t}\right|
+ &<\frac{2|v|}{t}
+       +\frac8{21}\frac{|v|}{1-|v|}\\
+ &\le1+\frac8{21}\frac{t}{2-t}
+ \le\pi .
+ \end{aligned}
+ \tag{ERD26}
+\]
+The first inequality is strict, including when \(t=T_*\), so equality to an odd multiple of \(\pi\) is impossible. For \(v=0\), both terms in the last bracket of ERD25 are positive real, hence cannot cancel. The outside multiplier in ERD5 is also nonzero for fixed \(t>0\).
+
+We have therefore proved the unconditional fixed-time statement
+\[
+ \boxed{\displaystyle
+ M_t(s)\ne0
+ \quad\hbox{for all }0\le\Re s\le1
+ \quad\hbox{whenever }0<t\le T_*.}
+ \tag{ERD27}
+\]
+This explicit interval is a proved interval, not a claim that its upper endpoint is optimal. It includes every \(0<t\le1\) and the exact requested time \(t=1/32\).
+
+At that exact time the relative phase bound on the whole closed strip is
+\[
+ \left|\Im b(z)-\frac{2v}{t}\right|
+       <1+\frac8{21\cdot63}
+        =\frac{1331}{1323}<\pi
+ \quad(v\ne0).
+ \tag{ERD28}
+\]
+It is independent of \(\Im s\). The proof therefore applies simultaneously to all heights, rather than first fixing a compact region and choosing a different small time for each region.
+
+For all positive times, even beyond the interval ERD24, one further exact nonvanishing line remains:
+\[
+ M_t(\tfrac12+iy)
+  =\frac{\sqrt{\pi t}}{16}e^{-ty^2-1/(4t)}
+       \left[e^y\mathcal Q(1-ty)+e^{-y}\mathcal Q(-ty)\right]
+       >0,\qquad y\in\mathbb R.
+ \tag{ERD29}
+\]
+This uses the original real-axis positivity of both full products. It does not assert full-strip nonvanishing for times beyond the proved interval.
+
+## 5. Common zeros of the full cosine family
+
+The small-time statement can be made global in the spatial variable without asserting a globally uniform time outside the critical strip. Define the auxiliary entire-in-\(t\) function, with an explicit inverse to the original transform for \(t>0\),
+\[
+ \begin{aligned}
+ B(t,w)&=\frac1{16}
+      [e^{-iw}\mathcal Q(1+itw)+e^{iw}\mathcal Q(itw)],\\
+ M_t(\tfrac12+w)
+      &=\sqrt{\pi t}\,e^{tw^2-1/(4t)}B(t,w).
+ \end{aligned}
+ \tag{ERD30}
+\]
+The scalar on the second line is nonzero for every \(t>0\); its full value has been retained. Endpoint data ERD8 give
+\[
+ B(0,w)=\frac18\cos w,\qquad
+ \partial_tB(0,w)=\frac{\delta}{8}w\sin w .
+ \tag{ERD31}
+\]
+For the derivative, differentiate the two \(\mathcal Q\) arguments:
+\[
+ \frac{iw}{16}
+   [e^{-iw}\mathcal Q'(1)+e^{iw}\mathcal Q'(0)]
+        =\frac{\delta}{8}w\sin w.
+\]
+If \(\cos w\ne0\), the first value in ERD31 is nonzero. If \(\cos w=0\), then \(w=\pi/2+k\pi\) for an integer \(k\); in particular \(w\ne0\) and \(\sin w=\pm1\). Since \(\delta>0\), the first derivative in ERD31 is nonzero in that case. Thus \(B(\,\cdot\,,w)\) is never the identically zero entire function, for any \(w\in\mathbb C\).
+
+It follows that
+\[
+ \boxed{\displaystyle
+ \bigcap_{t>0}\{s:M_t(s)=0\}=\varnothing
+       \quad\hbox{in the entire complex plane}.}
+ \tag{ERD32}
+\]
+More precisely, for each fixed \(s\), the positive times for which \(M_t(s)=0\) form a discrete subset of \((0,\infty)\). There is a positive gap next to zero with no such time: when \(B(0,w)\ne0\) use continuity, and when it is zero use the nonzero derivative to factor \(B(t,w)=t\,b_w(t)\), \(b_w(0)\ne0\). A set of positive times having an accumulation point in \((0,\infty)\) already detects every spatial point in the same common-zero sense, by the identity theorem in \(t\).
+
+On a compact subset of \(|\Re w|<1/2\), the first limit in ERD31 is uniformly nonzero, because the zeros of \(\cos w\) are the displayed real points outside that strip. This recovers the compact small-time proof. ERD27 is the stronger uniform statement at the one actual time \(1/32\).
+
+Since \(F_t(s)=s(s-1)M_t(s)\), ERD32 and ERD27 give the full common-zero and multiplicity statement
+\[
+ \boxed{\displaystyle
+ \bigcap_{t>0}\{s:F_t(s)=0\}=\{0,1\},
+ \quad\hbox{with common multiplicity exactly one at each endpoint}.}
+ \tag{ERD33}
+\]
+Every \(F_t\) vanishes there because of the retained endpoint polynomial. For any \(0<t\le T_*\), ERD27 gives \(M_t(0)\ne0\) and \(M_t(1)\ne0\), so those two zeros are simple. At any other point, ERD32 gives a time with \(M_t(s)\ne0\), and the endpoint polynomial is nonzero.
+
+## 6. The exact original-zeta detection and inverse maps
+
+The endpoint-null operation in ERD3 is an invertible operator on its stated real-axis source, not an assertion that the two discarded test values contain no information. Twice integrating by parts, with the proved Gaussian derivative bounds, gives
+\[
+ \mathcal M f_t(s)
+     =(w^2-\tfrac14)M_t(s)=s(s-1)M_t(s)=F_t(s).
+ \tag{ERD34}
+\]
+All boundary terms vanish by those bounds. The distribution
+\(G(Z)=-e^{-|Z|/2}\) has
+\((\partial_Z^2-\tfrac14)G=\delta_0\), since the derivative jump of \(e^{-|Z|/2}\) is \(-1\). Thus its source inverse is
+\[
+ h_t(Z)=-\int_{\mathbb R}e^{-|Z-y|/2}f_t(y)\,dy.
+ \tag{ERD35}
+\]
+Convolution with \(G\) preserves Schwartz space: move derivatives to the Schwartz factor and use
+\((1+|Z|)^m\le(1+|Z-y|)^m(1+|y|)^m\), whose first factor is integrable against \(|G(Z-y)|\). The homogeneous solutions \(a e^{Z/2}+b e^{-Z/2}\) have no nonzero Schwartz member. Consequently this is the two-sided inverse on Schwartz space and returns the actual Gaussian-decaying \(h_t\).
+
+Let \(U=\{s:0<\Re s<1\}\). At the fixed time \(t=1/32\), both \(M_t\) and \(F_t\) are holomorphic units on \(U\). Multiplication gives the explicit invertible maps
+\[
+ \mathcal O(U)\longrightarrow\mathcal O(U),\qquad
+ g\longmapsto F_tg,\qquad
+ g\longmapsto g/F_t
+ \quad\hbox{as inverse maps}.
+ \tag{ERD36}
+\]
+These are complex-linear, indeed \(\mathcal O(U)\)-module, automorphisms. Multiplication by \(F_t\) has not been called a unital ring homomorphism.
+
+In particular, for every original nontrivial zero \(\rho\in U\) of \(\zeta\), with its actual multiplicity \(m_\rho\), the fully original local formula is
+\[
+ \zeta(\rho+h)=h^{m_\rho}u_\rho(h),\quad u_\rho(0)\ne0,
+ \qquad
+ F_t(\rho+h)\zeta(\rho+h)
+       =h^{m_\rho}F_t(\rho+h)u_\rho(h),
+ \quad F_t(\rho)\ne0.
+ \tag{ERD37}
+\]
+Thus every such zero survives with exactly its multiplicity. This holds simultaneously for all the zeros at the one time \(t=1/32\). The same is true after multiplication by \(F_t^2\), the actual square entering the companion's Weil test. In particular, a zero cannot be absent from that test merely because \(F_t(\rho)\) vanishes.
+
+Every finite jet is also recovered. If
+\(F_t(\rho+h)=\sum_{n\ge0}a_nh^n\), \(a_0\ne0\), then the inverse coefficients are
+\[
+ b_0=a_0^{-1},\qquad
+ b_n=-a_0^{-1}\sum_{k=1}^{n}a_kb_{n-k}\quad(n\ge1),
+ \qquad
+ \frac1{F_t(\rho+h)}=\sum_{n\ge0}b_nh^n.
+ \tag{ERD38}
+\]
+The Taylor series converges in a sufficiently small disk because \(F_t\) is a holomorphic unit there; the recurrence comes from multiplying it by \(F_t\) and comparing all coefficients. Reduction modulo \(h^{N+1}\) gives the exact inverse on every finite jet module.
+
+The endpoint ideal is not identified with the interior domain. At zero and one, \(F_t\) has the two simple zeros of ERD33, and ERD36 is asserted only on \(U\). At negative even integers, the original zeta germs remain ERD14. Equations ERD5 and ERD14 retain their Gamma poles, trivial zeros and unit coefficients whether or not a separate endpoint-null test vanishes.
+
+## 7. Retained support and the exact limit of the conclusion
+
+For the original bounded distributive support lattice \(L\), use the actual carrier
+\[
+ G_L(V)=\{(v,1_L):v\in V\}
+       \cup\{(0,\lambda):\lambda\ne1_L\},\qquad
+ e=(0,1_L),\qquad \tau=(0,0_L).
+ \tag{ERD39}
+\]
+Every displayed linear map has the specified label lift
+\((v,1_L)\mapsto(Tv,1_L)\), \((0,\lambda)\mapsto(0,\lambda)\).
+The two inverse maps ERD36 lift to inverse maps of these carriers over \(U\), and the same is true on each local jet module in ERD38. At a zero of the original zeta, the evaluated top amplitude is zero with label \(1_L\), namely \(e\); no vanishing computation changes it to \(\tau\). The coefficient-semiring base morphism remains its identity, with identity pullback on its prime spectrum. The module map has not supplied an unproved new spectrum morphism.
+
+The concrete conclusion is that the actual resonant cosine test at \(t=1/32\) has no missing zero anywhere in the critical strip, and the full family has no common zero anywhere before its two endpoint factors are inserted. This closes a zero-detection issue for that actual test. It does not turn positivity of one scalar Weil value into positivity of the whole Weil form: complex terms can cancel in a scalar sum even when none of their test factors is zero. The translated or matrix pairing is a further calculation, whose sign is not assigned by the nonvanishing theorem.
+
+## 8. The exact flat-time object and its retained inverse
+
+The preceding proof uses the actual positive time, where its scalar factor is nonzero. At time zero a different, completely evaluated phenomenon occurs. Retain
+\[
+ \begin{aligned}
+ g_t&=\sqrt{\pi t}\,e^{-1/(4t)}, &&t>0,\\
+ B(t,w)&=\frac1{16}
+       [e^{-iw}\mathcal Q(1+itw)+e^{iw}\mathcal Q(itw)],\\
+ D(t,s)&=e^{t(s-1/2)^2}B(t,s-\tfrac12),\\
+ M_t(s)&=g_tD(t,s),&
+ F_t(s)&=s(s-1)g_tD(t,s).
+ \end{aligned}
+ \tag{ERD40}
+\]
+The function \(B\), and therefore \(D\), is jointly entire in its two displayed complex variables. The function \(g_t\) in this statement uses the positive square root at positive real time. Set
+\(g_0=0\), \(M_0(s)=0\) and \(F_0(s)=0\). These are smooth right-time boundary values, not values obtained by substituting into the singular expression \(e^{-1/(4t)}\).
+
+Every derivative of the full scalar is given by
+\[
+ \begin{aligned}
+ \frac{d^n g_t}{dt^n}
+   &=\sqrt\pi\,e^{-1/(4t)}
+                  t^{1/2-2n}P_n(t),\\
+ P_0(t)&=1,\qquad
+ P_{n+1}(t)=t^2P_n'(t)
+             +\left[\left(\frac12-2n\right)t+\frac14\right]P_n(t).
+ \end{aligned}
+ \tag{ERD41}
+\]
+For the proof, differentiate the first line and factor out
+\(\sqrt\pi e^{-1/(4t)}t^{1/2-2n-2}\). The derivative of the exponential contributes \(P_n/4\); the power contributes \((1/2-2n)tP_n\); the polynomial derivative contributes \(t^2P_n'\). This is exactly the recurrence. Induction also gives \(\deg P_n\le n\) and \(P_n(0)=4^{-n}\). In particular \(P_1=t/2+1/4\). All powers, signs and constants in the original scalar have been retained.
+
+Let \(K\subset\mathbb C\) be compact, \(n,m\ge0\), and \(0<\epsilon\le1\). Every derivative
+\(\partial_t^{n-j}\partial_s^mD\), \(0\le j\le n\), is bounded on
+\([0,\epsilon]\times K\), because \(D\) is jointly entire. The product rule, ERD41 and boundedness of the finitely many polynomials \(P_j\) on \([0,\epsilon]\) give
+\[
+ \begin{aligned}
+ \sup_{s\in K}
+   |\partial_t^n\partial_s^mM_t(s)|
+    &\le C_{K,n,m,\epsilon}\,
+          t^{1/2-2n}e^{-1/(4t)},\\
+ \sup_{s\in K}
+   |\partial_t^n\partial_s^mF_t(s)|
+    &\le C'_{K,n,m,\epsilon}\,
+          t^{1/2-2n}e^{-1/(4t)},
+       \qquad 0<t\le\epsilon.
+ \end{aligned}
+ \tag{ERD42}
+\]
+Indeed the \(j\)-th term has \(t^{1/2-2j}\), which is at most \(t^{1/2-2n}\) for \(0<t\le1\). For \(F_t\), differentiating \(s(s-1)D\) in \(s\) produces only finitely many additional bounded factors.
+
+For every real \(a\), \(t^a e^{-1/(4t)}\to0\) as \(t\to0+\). One direct proof is to put \(x=1/(4t)\) and use \(e^x\ge x^N/N!\) with an integer \(N>-a\). ERD42 therefore tends to zero locally uniformly in \(s\), for every \(n,m\). Defining every displayed derivative at \(t=0\) to be zero yields the actual smooth extension: inductively, its next right derivative at zero is zero because the corresponding difference quotient is bounded by the same exponential times one more inverse power of \(t\); its right continuity follows from ERD42. Consequently
+\[
+ \boxed{\displaystyle
+ \left.\partial_t^n\partial_s^mM_t(s)\right|_{0+}
+   =\left.\partial_t^n\partial_s^mF_t(s)\right|_{0+}=0
+ \quad\hbox{for every }n,m\ge0,}
+ \tag{ERD43}
+\]
+locally uniformly on the entire complex \(s\)-plane. The same statement holds for all right derivatives of \(g_t\). This is flatness in the original time variable, with no change of time.
+
+It coexists with the already proved nonvanishing
+\[
+ M_t(s)\ne0\quad
+       (0<t\le T_*,\ 0\le\Re s\le1),
+ \qquad
+ F_t(s)\ne0\quad
+       (0<t\le T_*,\ 0<\Re s<1).
+ \tag{ERD44}
+\]
+Thus the zero Taylor series at the boundary does not describe the nonzero positive-time detector. In fact \(M_t(s)\), for every fixed \(s\), is not real analytic at \(t=0\): an analytic function with all Taylor coefficients zero would vanish near zero, whereas ERD31 proves \(M_t(s)\ne0\) for all sufficiently small positive \(t\). For \(F_t(s)\) the same statement holds for \(s\notin\{0,1\}\); at the two endpoints \(F_t\) is identically zero, as its explicit polynomial factor requires.
+
+The exact retained data and inverse must be stated on their real domain. For \(t>0\), the maps
+\[
+ \begin{aligned}
+ (g_t,B(t,w))
+     &\longmapsto
+        \big(g_t,\,
+             M_t(\tfrac12+w)=g_te^{tw^2}B(t,w)\big),\\
+ (g_t,M_t(\tfrac12+w))
+     &\longmapsto
+        \big(g_t,\,
+             B(t,w)=e^{-tw^2}M_t(\tfrac12+w)/g_t\big)
+ \end{aligned}
+ \tag{ERD45}
+\]
+are inverse fibrewise linear maps in the function coordinate; \(g_t\) is retained as its own scalar coordinate. They use its full value \(\sqrt{\pi t}e^{-1/(4t)}\). At \(t=0\), \(g_0=0\), so the second line is not defined. The extended first line sends every function coordinate \(B(0,\cdot)\) to the zero \(M_0\) coordinate. To retain the original analytic data at that boundary one therefore keeps the augmented triple
+\((g_t,M_t(\cdot),B(t,\cdot))\) together with ERD40. Its third coordinate is neither identified with zero nor recovered by an invalid division \(0/0\). Knowing the positive-time pair permits the division in ERD45 and the analytic limit; knowing only its Taylor jet at zero does not.
+
+The leading and next analytic coefficients are completely specified:
+\[
+ \begin{aligned}
+ B(t,w)
+   &=\frac{\cos w}{8}
+        +t\,\frac{\delta w\sin w}{8}+O_K(t^2),\\
+ D(t,\tfrac12+w)
+   &=\frac{\cos w}{8}
+        +t\,\frac{w^2\cos w+\delta w\sin w}{8}+O_K(t^2).
+ \end{aligned}
+ \tag{ERD46}
+\]
+Here \(K\) is any compact set of \(w\)'s; the remainders, and every fixed finite set of their \(w\)-derivatives, are bounded by a constant times \(|t|^2\) for \(t\) in a sufficiently small complex disk. This follows from joint entire dependence and the Taylor formula, or Cauchy's derivative bound on a larger compact set. The first line is ERD31 with its actual analytic remainder; the second retains the extra derivative of \(e^{tw^2}\).
+
+In particular, with the entire remainder still present,
+\[
+ \begin{aligned}
+ M_t(\tfrac12+w)
+   &=\sqrt{\pi t}\,e^{-1/(4t)}
+       \left[
+          \frac{\cos w}{8}
+          +t\,\frac{w^2\cos w+\delta w\sin w}{8}
+          +O_K(t^2)\right],\\
+ F_t(\tfrac12+w)
+   &=(w^2-\tfrac14)\sqrt{\pi t}\,e^{-1/(4t)}
+       \left[
+          \frac{\cos w}{8}
+          +t\,\frac{w^2\cos w+\delta w\sin w}{8}
+          +O_K(t^2)\right].
+ \end{aligned}
+ \tag{ERD47}
+\]
+At a fixed zero \(w=\pi/2+k\pi\) of \(\cos w\), the leading nonzero bracket is \(t\delta w\sin w/8\). At \(w=0\), the exact values, without a remainder, are
+\[
+ M_t(\tfrac12)=\frac{\sqrt{\pi t}}8 e^{-1/(4t)},\qquad
+ F_t(\tfrac12)=-\frac{\sqrt{\pi t}}{32}e^{-1/(4t)}.
+ \tag{ERD48}
+\]
+These reproduce both retained endpoint-moment constants of the incoming source.
+
+There is also an exact algebraic description of what finite-order infinitesimals forget. For a nonempty open set \(U\subset\mathbb C\), let \(\mathscr H(U)\) be the algebra of right-time germs at zero of families holomorphic in \(s\in U\) and \(C^\infty\) in \(t\ge0\), with all derivatives locally uniform in \(s\). Define its flat ideal and finite jet maps by
+\[
+ \begin{aligned}
+ \mathscr F(U)&=
+   \{a\in\mathscr H(U):
+        \partial_t^n a(0,s)=0\ \hbox{for every }n\ge0\},\\
+ J_N:\mathscr H(U)&\longrightarrow
+        \mathcal O(U)[\varepsilon]/(\varepsilon^{N+1}),\\
+ J_N(a)&=\sum_{n=0}^N
+       \frac{\partial_t^n a(0,s)}{n!}\,\varepsilon^n .
+ \end{aligned}
+ \tag{ERD49}
+\]
+Leibniz's rule, including the binomial coefficients divided by \(n!\), proves that each \(J_N\) is a unital algebra homomorphism. It also proves that \(\mathscr F(U)\) is an ideal and that it is the intersection of the kernels of all \(J_N\). ERD43 evaluates these maps:
+\[
+ J_N(g)=J_N(M)=J_N(F)=0
+      \quad\hbox{for every }N,\qquad
+ J_1(B)=\frac{\cos(s-1/2)}8
+       +\frac{\delta(s-1/2)\sin(s-1/2)}8\,\varepsilon .
+ \tag{ERD50}
+\]
+In \(J_1(B)\), \(B\) means the germ \(B(t,s-1/2)\) and
+\(\varepsilon^2=0\). This gives the explicit map to the dual-number time jet. The exponential boundary factor is killed by that map; it is not itself a nonzero square-zero element in \(\mathscr H(U)\). Indeed \(g^k(t)>0\) for every positive real \(t\) and every finite integer \(k\ge1\), so \(g^k\) is a nonzero germ. Thus \(g\) is a nonzero, nonnilpotent element of the flat ideal, while every finite-order time-jet image vanishes. The original positive-time inverse ERD45, together with the retained analytic \(B\), gives its exact relation to the detectable source.
+
+Finally apply the specified label lift ERD39 to these jet maps. A nonzero top-supported flat germ maps to amplitude zero with the same top support, namely \(e\). All lower-support zero points keep their existing labels, and \(\tau\) remains the distinct bottom-supported point. The actual \(M_t\), \(F_t\), their flat boundary germs, and the analytic coordinate \(B\) have therefore all been related by explicit maps without conflating a zero amplitude, a vanishing finite jet, a nilpotent element, or the unsupported label. None of these flat-time conclusions assigns a sign to a Weil pairing.
+
+
+![The left panel represents the entire closed strip, with no plotted zeta zeros: ERD27–28 proves uniform nonvanishing at the original time 1/32. The middle panel plots only the exact retained scalar sqrt(pi t) exp(-1/(4t)), not the source transform or its Weil value; ERD40–50 proves its flat germ and full factorization. The right panel joins the companion AP1–28 arithmetic certificate to the exact receiving criterion EPM43–47, whose global inequality remains unproved. All original Gamma, endpoint and prime terms occur in those proofs.](endpoint_resonant_detection.png)

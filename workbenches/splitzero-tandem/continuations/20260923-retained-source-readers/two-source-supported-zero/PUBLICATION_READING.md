@@ -1,0 +1,7 @@
+# Supported zero on an evaluated arithmetic source plane
+
+The [16-page paper](NOTE.pdf) starts with the original theta test and evaluates its two-dimensional Weil form. It proves an exact map to the arithmetic prime boundary, calculates the action of supported zero in the unchanged metric, and determines the local cohomology where its square-zero metric defect vanishes. The integer-prime support is retained. Theta time and coefficient heat time are separate parameters.
+
+The [complete master](NOTE.tex), both included proof sources, reproducible figures, interval certificates and three independent derivations are included. Each Markdown derivation also has a TeX companion. [The public result index](PUBLIC_RESULT_INDEX.json) links results SZ-20260923-149, -150 and -151 to their exact proof locations. [Human-source reading and attribution](SOURCE_READING.json) records versions and reading scope.
+
+The preserved nineteen-file source edition is unchanged. This publication changes only the general-ring explanatory clause after TS30 and its rebuilt PDF among those nineteen files; [the correction and exact file identities](CORRECTION.md) are included. The publisher checked source hashes, full dependencies and rendered pages. Independent derivations checked TS11–29 and TS30–32a and supplied the corrected support-label argument. The owner's interval and mathematical review records are adopted at their stated scope; the publisher did not rerun the numerical certificates. The full proof does not establish positivity for all Weil tests or decide RH.

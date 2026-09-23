@@ -1,0 +1,457 @@
+# The original endpoint pair: exact transport and the full Weil matrix
+
+The two endpoint arguments of the original zeta theta identity supply a pair of tests with no common nontrivial zero. We calculate their exact time transport, the original signed divisor at every finite cutoff, and the full translated Weil matrix. The scalar sign of one test does not determine this matrix.
+
+The incoming proofs are ER1–40a, [complete ER source](supporting_proofs/endpoint_resonance_20260923/ENDPOINT_RESONANCE_AND_PRIME_CLASS.tex), and AP1–28, [complete AP source](supporting_proofs/arithmetic_pairing_20260923/ACTUAL_ENDPOINT_PAIRING.tex). Their complete unchanged sources and exact hashes are retained in the accompanying intake. ER and AP use the original [Rodgers–Tao author formulas, arXiv:1801.05914v5](https://arxiv.org/abs/1801.05914v5), equations phidef, htdef, hoz, and sas; the explicit-formula convention is [Connes, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068v1), Appendix II (1)–(11). Root read both incoming proofs completely. This note does not claim a new reading of either author archive.
+
+## 1. Original function and endpoint arguments
+
+Throughout \(t>0\), \(x,u\in\mathbb R\), \(s\in\mathbb C\), and \(w=s-\tfrac12\). Retain
+\[
+\begin{aligned}
+\Phi(u)&=\sum_{n\ge1}(2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},\\
+H_t(x)&=\int_0^\infty e^{tu^2}\Phi(u)\cos(xu)\,du,\\
+A(s)&=\pi^{-s/2}\Gamma(s/2),\quad P(w)=w^2-\tfrac14=s(s-1),\\
+\mathcal Q(s)&=s(s-1)A(s)\zeta(s),\qquad
+16H_0(-2i(s-\tfrac12))=\mathcal Q(s).
+\end{aligned}\tag{EPM1}
+\]
+The displayed product, including each exceptional factor, is retained whenever \(\mathcal Q\) is used. It is an auxiliary entire product, not the working replacement for \(\zeta\). In particular the original theta identity is
+\[
+A(s)\zeta(s)=-\frac1s+\frac1{s-1}
++\int_1^\infty\sum_{n\ge1}e^{-\pi n^2v}
+\{v^{s/2-1}+v^{(1-s)/2-1}\}\,dv .
+\tag{EPM2}
+\]
+The integral is entire by exponential domination. Thus \(\mathcal Q(0)=\mathcal Q(1)=1\). At \(s=-2m+h\), \(m\ge1\), the original factors have the full local forms
+\[
+\begin{aligned}
+\zeta(-2m+h)&=h\,u_m(h),\quad
+\mathcal Q(-2m+h)=b_m(h)u_m(h),\\
+b_m(h)&=\frac{(-1)^m4m(2m+1)\pi^m}{m!}
+(1-h/(2m))(1-h/(2m+1))\pi^{-h/2}\Gamma(1+h/2)
+\prod_{\ell=1}^{m}(1-h/(2\ell))^{-1}.
+\end{aligned}\tag{EPM3}
+\]
+Here \(u_m,b_m\) are nonvanishing holomorphic germs. Gamma recurrence proves every factor in \(b_m\); the original functional equation and the nonzero Euler product at \(1+2m\) prove the simple zero and \(u_m(0)\ne0\). At \(s=1+h\), retain
+\[
+\zeta(1+h)=h^{-1}u_{\rm pole}(h),\quad
+s(s-1)A(s)=h(1+h)\pi^{-(1+h)/2}\Gamma((1+h)/2),
+\quad u_{\rm pole}(0)=1.
+\tag{EPM4}
+\]
+Consequently the zeros of \(\mathcal Q\) are exactly the original nontrivial zeros, with the same multiplicities. They lie in \(0<\Re s<1\). To include the boundary argument, absolute logarithmic Euler expansion for \(\sigma>1\) and
+\(3+4\cos v+\cos(2v)=2(1+\cos v)^2\ge0\) give
+\[
+\zeta(\sigma)^3|\zeta(\sigma+iy)|^4|\zeta(\sigma+2iy)|\ge1.
+\tag{EPM5}
+\]
+If \(y\ne0\) and \(\zeta(1+iy)\) vanished to order \(m\ge1\), the left side would be \(O((\sigma-1)^{4m-3})\), tending to zero. The other nonreal factor is bounded because the only pole is at one. This is a contradiction. The point one has the retained product value EPM4. Reflection in EPM2 gives the zero-free opposite boundary. The Euler product and the same reflection exclude the two exterior half-planes.
+
+Every term of \(\Phi(u)\) is positive for \(u\ge0\), since \(2\pi n^2e^{4u}>3\). Its even extension and all derivatives have faster-than-Gaussian decay. Direct differentiation of the convergent series and Fourier integration by parts show that \(H_t\) is real even Schwartz on the real line for every real \(t\).
+
+Define two real sources with their parity retained:
+\[
+\begin{aligned}
+h_{c,t}(x)&=e^{-x^2/(4t)}H_t(x)\cos(x/(2t)),&
+h_{s,t}(x)&=e^{-x^2/(4t)}H_t(x)\sin(x/(2t)),\\
+T&=D_x^2-\tfrac14,& f_{i,t}&=Th_{i,t}\quad(i=c,s),\\
+M_i(t,s)&=\int_{\mathbb R}h_{i,t}(x)e^{-wx}\,dx,&
+F_i(t,s)&=\int_{\mathbb R}f_{i,t}(x)e^{-wx}\,dx=P(w)M_i(t,s).
+\end{aligned}\tag{EPM6}
+\]
+The subscript \(s\) on a test denotes the sine component. All derivatives of these tests have Gaussian tails. Their transforms are entire, and integration by parts proves the full factor \(P(w)\). The cosine component is even, the sine component odd, and both \(F_i(t,0)=F_i(t,1)=0\).
+
+Gaussian integration in the original variables gives
+\[
+\int_{\mathbb R}e^{-x^2/(4t)}H_t(x)e^{-wx}\,dx
+=2\sqrt{\pi t}\,e^{tw^2}H_0(2tw).
+\tag{EPM7}
+\]
+Fubini holds because the Gaussian dominates \(e^{|\Re w||x|}\) and the original density has every Gaussian moment. Splitting cosine and sine into their two exponential terms yields
+\[
+\begin{aligned}
+M_c+iM_s&=2\sqrt{\pi t}e^{tw^2-1/(4t)-iw}H_0(2tw-i)
+=\frac{\sqrt{\pi t}}8e^{tw^2-1/(4t)-iw}\mathcal Q(1+itw),\\
+M_c-iM_s&=2\sqrt{\pi t}e^{tw^2-1/(4t)+iw}H_0(2tw+i)
+=\frac{\sqrt{\pi t}}8e^{tw^2-1/(4t)+iw}\mathcal Q(itw).
+\end{aligned}\tag{EPM8}
+\]
+The original arguments are \(\sigma_1=1+itw\), \(\sigma_0=itw\). Each \(\mathcal Q(\sigma_j)\) means the full
+\(\sigma_j(\sigma_j-1)\pi^{-\sigma_j/2}\Gamma(\sigma_j/2)\zeta(\sigma_j)\), with EPM3–4 at exceptional points.
+
+The two \(M_i\) never vanish together. Otherwise both products in EPM8 would vanish, placing both \(\sigma_0\) and \(\sigma_0+1\) in the open strip \(0<\Re\sigma<1\), which is impossible. Therefore
+\[
+\{s:M_c(t,s)=M_s(t,s)=0\}=\varnothing,\qquad
+\{s:F_c(t,s)=F_s(t,s)=0\}=\{0,1\}.
+\tag{EPM9}
+\]
+At each latter point the minimum vanishing order is one. At every original nontrivial zero at least one transform is nonzero. This holds for every \(t>0\), without selecting a zero or time.
+
+The source image has the direct inverse
+\[
+H_t(x)=e^{x^2/(4t)}
+[\cos(x/(2t))h_{c,t}(x)+\sin(x/(2t))h_{s,t}(x)].
+\tag{EPM10}
+\]
+It follows from \(\cos^2+\sin^2=1\), and holds on the image of the specified map from Schwartz \(H\) to the pair. The growing-Gaussian multiplication is not asserted continuous on arbitrary Schwartz pairs. The filter \(T\) has the exact continuous Schwartz inverse
+\[
+(T^{-1}f)(x)=-\int_{\mathbb R}e^{-|x-y|/2}f(y)\,dy.
+\tag{EPM11}
+\]
+The kernel has derivative jump one, so \(T(-e^{-|x|/2})=\delta_0\). Polynomially weighted convolution estimates, moving derivatives onto the Schwartz factor, prove continuity. The two homogeneous exponentials \(e^{x/2},e^{-x/2}\) have no nonzero Schwartz combination. Hence this is a two-sided inverse, returning the actual Gaussian sources when applied to the present pair.
+
+## 2. Coupled dynamics and invertible time map
+
+Use column vectors \(\mathbf h=(h_c,h_s)^{\mathsf T}\), \(\mathbf M=(M_c,M_s)^{\mathsf T}\), \(\mathbf F=(F_c,F_s)^{\mathsf T}\), and
+\[
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
+R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.
+\tag{EPM12}
+\]
+Differentiation of the original integral gives \(\partial_tH_t=-\partial_x^2H_t\). Set \(g_\pm=e^{-x^2/(4t)\pm ix/(2t)}\), \(a_\pm=\log g_\pm\). The product rule gives
+\[
+\begin{aligned}
+\partial_t(g_\pm H_t)&=-\partial_x^2(g_\pm H_t)
++2a_{\pm,x}\partial_x(g_\pm H_t)
++(a_{\pm,t}+a_{\pm,xx}-a_{\pm,x}^2)g_\pm H_t,\\
+2a_{\pm,x}&=-x/t\pm i/t,\qquad
+a_{\pm,t}+a_{\pm,xx}-a_{\pm,x}^2=1/(4t^2)-1/(2t).
+\end{aligned}\tag{EPM13}
+\]
+Taking the two real linear combinations proves
+\[
+\partial_t\mathbf h
+=-\partial_x^2\mathbf h-\frac{x}{t}\partial_x\mathbf h
++\frac1tJ\partial_x\mathbf h+
+\left(\frac1{4t^2}-\frac1{2t}\right)\mathbf h .
+\tag{EPM14}
+\]
+The cross derivatives preserve the parity of the components. Integration by parts gives \(M(Dh)=wM(h)\), \(M(xDh)=-M(h)-w\partial_wM(h)\), hence
+\[
+\partial_t\mathbf M
+=\frac wt\partial_w\mathbf M+
+\left(-w^2+\frac1{2t}+\frac1{4t^2}\right)\mathbf M
++\frac wtJ\mathbf M .
+\tag{EPM15}
+\]
+The endpoint filter contributes its full derivative:
+\[
+\partial_t\mathbf F
+=\frac wt\partial_w\mathbf F+
+\left(-w^2+\frac1{2t}+\frac1{4t^2}
+-\frac{2w^2}{t(w^2-1/4)}\right)\mathbf F
++\frac wtJ\mathbf F .
+\tag{EPM16}
+\]
+At \(w=\pm1/2\), use \(\mathbf F=P\mathbf M\). The apparent poles are resolved by this exact local divisibility, without deleting the rational term.
+
+For \(t_0>0\), put
+\[
+w_0=\frac t{t_0}w,\qquad
+E(t,t_0,w)=\sqrt{\frac t{t_0}}
+\exp\left(tw^2-t_0w_0^2-\frac1{4t}+\frac1{4t_0}\right).
+\tag{EPM17}
+\]
+The complete comparison is
+\[
+\begin{aligned}
+\mathbf M(t,\tfrac12+w)&=E(t,t_0,w)R(w_0-w)
+\mathbf M(t_0,\tfrac12+w_0),\\
+\mathbf F(t,\tfrac12+w)&=\frac{P(w)}{P(w_0)}E(t,t_0,w)
+R(w_0-w)\mathbf F(t_0,\tfrac12+w_0).
+\end{aligned}\tag{EPM18}
+\]
+Indeed along \(tw=t_0w_0=q\), the two original products in EPM8 have constant arguments \(iq,1+iq\). Their scalar ratio is EPM17. Recombining the remaining \(e^{-iw},e^{iw}\) gives exactly \(R(w_0-w)\), fixing the rotation sign.
+
+The first map in EPM18 is an isomorphism on \(\mathcal O(\mathbb C)^2\). Swap \(t,t_0\), substitute \(w=(t_0/t)w_0\), and reverse the rotation for its inverse; both scalar multipliers multiply to one. The second is an isomorphism on the specified space \(P\mathcal O(\mathbb C)^2\): divide by \(P\) onto its image, use the first isomorphism, then multiply by \(P\). Where \(P(w_0)=0\), use the full holomorphic quotient \(\mathbf F(t_0)/P\), including its derivatives. This proves all exceptional values. No isomorphism on unrestricted Schwartz pairs is asserted. These time and argument changes act on tests; the original zeta zeros used below remain fixed.
+
+## 3. Original prime quotient and its odd complement
+
+The sine source is odd and is not an input to ER's even quotient. Its exact extension is specified here. Let \(H^{\rm all}=\mathcal S(\mathbb R)=H^{\rm ev}\oplus H^{\rm odd}\), with projections
+\(\Pi_{\rm ev}h=(h(x)+h(-x))/2\) and \(\Pi_{\rm odd}=1-\Pi_{\rm ev}\). The moment map \(\mu(h)=(h(0),\int h)\) kills \(H^{\rm odd}\). The even functions
+\[
+b_0=(1-2\pi x^2)e^{-\pi x^2},\quad b_1=2\pi x^2e^{-\pi x^2},
+\quad \mu(b_0)=(1,0),\quad\mu(b_1)=(0,1)
+\tag{EPM19}
+\]
+split it. Let \(R_0=\mathbb C[\mathbb Q_{>0}^{\times}]\), \(I=\ker\operatorname{aug}\), \(H_0^{\rm ev}=\ker(\mu|_{H^{\rm ev}})\). Directly,
+\[
+\begin{aligned}
+M_0^{\rm all}&=\ker(\operatorname{aug}\otimes\mu)
+=(R_0\otimes H_0^{\rm ev})\oplus(R_0\otimes H^{\rm odd})\oplus(I\otimes\mathbb C^2),\\
+Q_0^{\rm all}&=M_0^{\rm all}/IM_0^{\rm all}
+=H_0^{\rm ev}\oplus H^{\rm odd}\oplus(I/I^2)\otimes\mathbb C^2
+=Q_0^{\rm ev}\oplus H^{\rm odd}.
+\end{aligned}\tag{EPM20}
+\]
+Here \(R_0/I=\mathbb C\) proves the first two quotient summands. The last is \(I/I^2\). The original even quotient has a split inclusion, with left inverse induced by \(\Pi_{\rm ev}\); the complementary projection is induced by \(\Pi_{\rm odd}\). This defines the new domain and its exact relation to the original one.
+
+Prime factorization and
+\(t_{ab}-1=(t_a-1)+(t_b-1)+(t_a-1)(t_b-1)\) identify \(I/I^2=\bigoplus_p\mathbb C\ell_p\) by valuations. Thus
+\[
+\begin{aligned}
+\beta[(t_p-1)\otimes f_c]
+&=\ell_p\otimes\left(
+H_t''(0)-\left(\frac1{2t}+\frac1{4t^2}+\frac14\right)H_t(0),
+-\frac{\sqrt{\pi t}}{32}e^{-1/(4t)}\right),\\
+[(t_p-1)\otimes f_s]&=0\quad\text{in }Q_0^{\rm all},\qquad
+[1\otimes f_s]=f_s\ne0\quad\text{in its }H^{\rm odd}\text{ summand}.
+\end{aligned}\tag{EPM21}
+\]
+Twice differentiating EPM6 at zero proves the first entry; evaluating EPM8 at \(s=1/2\), where both products equal one, proves the second. Also \(1\otimes f_s\in M_0^{\rm all}\), so multiplication by \(t_p-1\) puts it in \(IM_0^{\rm all}\). Finally \(h_s\ne0\) and injectivity of \(T\) prove \(f_s\ne0\). These are exact quotient maps, with no new norm assigned.
+
+## 4. Original divisor and translated matrix
+
+Let \(i,j\in\{c,s\}\), \(\eta_c=1,\eta_s=-1\), and \(c_\rho=\rho-\tfrac12\) for the distinct original nontrivial zeros with multiplicities \(m_\rho\). Reflection and reality give
+\[
+F_i(1-s)=\eta_iF_i(s),\quad F_i(\bar s)=\overline{F_i(s)},\quad
+\overline{F_i(1-\bar s)}=\eta_iF_i(s).
+\tag{EPM22}
+\]
+The reflected product is \(\eta_iF_i(s)F_j(s)\), with its displayed sign; it is not an absolute square off the critical line. For real \(a\), let \((f_i)_a(x)=f_i(x-a)\), whose transform is \(e^{-aw}F_i(s)\). Define
+\[
+\begin{aligned}
+B(f,g)&=\sum_\rho m_\rho\overline{M_f(1-\bar\rho)}M_g(\rho),\\
+K_{ij}(a)&=B((f_i)_a,f_j)
+=\sum_\rho m_\rho\eta_iF_i(\rho)F_j(\rho)e^{ac_\rho},\\
+k_{ij}&=f_i^\#*f_j=\eta_i f_i*f_j,\quad f^\#(x)=\overline{f(-x)},\\
+\mathcal A_{ij,a}(s)&=e^{aw}\eta_iF_i(s)F_j(s)
+=M_{k_{ij}(\,\cdot+a)}(s),\quad
+\mathcal A_{ij,a}(0)=\mathcal A_{ij,a}(1)=0 .
+\end{aligned}\tag{EPM23}
+\]
+All these sums converge. To give a stronger bound, for \(u\ge0\),
+\[
+0<\Phi(u)\le D e^{9u}e^{-\pi e^{4u}},\quad
+D=2\pi^2\sum_{n\ge1}n^4e^{-\pi(n^2-1)}<\infty .
+\]
+With \(b=|\Im z|\), splitting the last exponential in two and maximizing
+\((b+9)u-(\pi/2)e^{4u}\) proves
+\[
+|H_0(z)|\le\frac{D e^{-\pi/2}}{2\pi}
+\exp\left(\frac{b+9}{4}\log(b+11)\right).
+\tag{EPM24}
+\]
+Indeed \(e^{4u}\ge1+4u\) bounds the residual integral by
+\(e^{-\pi/2}/(2\pi)\); elementary differentiation bounds the maximum by \((b+9)\log(b+11)/4\).
+In EPM8, \(|\Im(2tw\pm i)|\le2t|\Im w|+1\), whereas the full Gaussian modulus has exponent
+\(t(\Re w)^2-t(\Im w)^2-1/(4t)\pm\Im w\). Hence, on any fixed finite real strip \(|\Re w|\le A\),
+\[
+|F_c(t,s)|+|F_s(t,s)|\le C_{t,A}e^{-t|\Im w|^2/2}.
+\tag{EPM25}
+\]
+The polynomial \(P\) remains in every identity. In this inequality its polynomial magnitude times the spare Gaussian is bounded. The \(O(|\Im w|\log(2+|\Im w|))\) exponent from EPM24 is dominated by \(t|\Im w|^2/2\) outside a bounded interval, proving a finite constant. The original zero count \(N(Y)=O(Y\log(Y+2))\) proves normal convergence of EPM23 and every translation derivative on complex \(a\)-compact sets. In particular \(K\) is entire. The original count and finite-strip contour estimates are also used in OZG20–26, whose complete proof is retained in the repository. No zero list is used.
+
+Changing \(\rho\) to \(1-\rho\) and \(\bar\rho\) in the convergent series gives
+\[
+K_{ij}(a)\in\mathbb R\ (a\in\mathbb R),\quad
+K_{ji}(a)=\eta_i\eta_jK_{ij}(a)=K_{ij}(-a),\quad
+K(0)=\begin{pmatrix}q_c&0\\0&q_s\end{pmatrix}.
+\tag{EPM26}
+\]
+The off-diagonal entry is odd. Its value at zero does not remove its other values.
+
+Retain the original logarithmic derivatives
+\[
+j=\zeta'/\zeta,\quad
+\kappa(s)=-\tfrac12\log\pi+\tfrac12\psi_\Gamma(s/2),\quad
+q(s)=1/s+1/(s-1)+\kappa(s).
+\tag{EPM27}
+\]
+The full local units EPM3–4 remain in these functions. Original reflection gives \(j(s)+j(1-s)=-\kappa(s)-\kappa(1-s)\); the rational derivatives of \(s(s-1)\) and their reflected partners sum to zero in this identity.
+
+For each finite \(N\ge1\), \(b_N=-2N-1\), set
+\[
+\begin{aligned}
+U_{N,ij}(a)&=\sum_{m=1}^N\mathcal A_{ij,a}(-2m),\\
+V_{N,ij}(a)&=K_{ij}(a)+U_{N,ij}(a)-\mathcal A_{ij,a}(1),\\
+\mathcal G_{N,ij}(a)&=\frac1{2\pi i}\int_{\Re s=b_N}
+\mathcal A_{ij,a}(s)[\kappa(s)+\kappa(1-s)]\,ds .
+\end{aligned}\tag{EPM28}
+\]
+Every line is upward. The original argument principle, reflection, and Mellin inversion of \(j(s)=-\sum_{n\ge2}\Lambda(n)n^{-s}\) on \(\Re s>1\) give
+\[
+\begin{aligned}
+V_{N,ij}&=-P_{ij}(a)+\mathcal G_{N,ij},\\
+\mathcal G_{N,ij}&=A_{\infty,ij}(a)+\mathcal A_{ij,a}(0)+U_{N,ij}(a),\\
+K_{ij}(a)&=\mathcal A_{ij,a}(0)+\mathcal A_{ij,a}(1)
++A_{\infty,ij}(a)-P_{ij}(a).
+\end{aligned}\tag{EPM29}
+\]
+The complete expressions are
+\[
+\begin{aligned}
+P_{ij}(a)&=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+[k_{ij}(a+\log n)+k_{ij}(a-\log n)],\\
+A_{\infty,ij}(a)&=-(\gamma_{\rm E}+\log\pi)k_{ij}(a)\\
+&\quad+\int_0^\infty
+\frac{e^{-x}k_{ij}(a)-\tfrac12e^{-x/4}
+[k_{ij}(a+x/2)+k_{ij}(a-x/2)]}{1-e^{-x}}\,dx .
+\end{aligned}\tag{EPM30}
+\]
+Every prime power has \(\Lambda(p^\ell)=\log p\); the two legs do not become a factor two for a general entry and translation.
+
+To verify the contour step, exhaust its finite width at heights separated from zero ordinates by an inverse-polynomial distance. The original zero count provides such a sequence. Subtracting the full \(q\) from the factored logarithmic derivative gives polynomial growth there; EPM25 kills the horizontal integrals. The enclosed divisor consists of the nontrivial zeros, \(-2,\ldots,-2N\), and the pole at one, with the signs EPM28. Moving the Gamma edge to \(1/2\) crosses residues \(-1\) at \(0,-2,\ldots,-2N\), so the left-edge value has the additional positive terms \(\mathcal A(0)+U_N\). The original digamma integral gives EPM30. Gaussian convolution estimates prove absolute convergence of both prime legs. At the Gamma origin the numerator is
+\((e^{-x}-e^{-x/4})k_{ij}(a)\) minus half the weighted central second difference, of respective orders \(O(x)\), \(O(x^2)\). Its exponential factors and the bounded convolution give convergence at infinity. These bounds also justify each fixed translation derivative. This proves EPM29–30 without taking a separate infinite limit of \(U_N\).
+
+The exact augmented comparison and inverse are
+\[
+(K,(\mathcal A(-2m))_{m\ge1})
+\longleftrightarrow
+((V_N)_{N\ge0},(\mathcal A(-2m))_{m\ge1}),\quad
+K=V_N-U_N+\mathcal A(1).
+\tag{EPM31}
+\]
+Both endpoints are evaluated zero for this source. Each divisor entry and its matching Gamma boundary remain part of the map; a divergent raw sum is not assigned a new value.
+
+## 5. All-zero matrix detection and its exact index
+
+For \(\Re z>1/2\), absolute integration and summation give
+\[
+\int_0^\infty e^{-za}K_{ij}(a)\,da
+=\sum_\rho\frac{m_\rho\eta_iF_i(\rho)F_j(\rho)}{z-c_\rho}.
+\tag{EPM32}
+\]
+This is normally meromorphic on the whole plane by EPM25. Its residue at \(c_\rho\) is
+\[
+m_\rho
+\begin{pmatrix}F_c(\rho)\\-F_s(\rho)\end{pmatrix}
+\begin{pmatrix}F_c(\rho)&F_s(\rho)\end{pmatrix}.
+\tag{EPM33}
+\]
+It is nonzero of rank one by EPM9. Distinct original zeros give distinct poles; their multiplicities are the displayed positive integers.
+
+If every entry of \(K(a)\) is bounded for \(a\ge0\), its Laplace integral is holomorphic on \(\Re z>0\). It agrees with EPM32 on \(\Re z>1/2\). The positive half-plane minus a discrete set is connected, since any compact path can be detoured around its finitely many intersections. The identity theorem extends equality to that punctured half-plane. A zero with \(\Re\rho>1/2\) would contradict holomorphy by EPM33; reflection excludes the opposite off-critical half too.
+
+Under RH, conversely, EPM22 at each zero is the usual complex conjugate, and \(K\) is an absolutely convergent positive-matrix Fourier series. Cauchy–Schwarz gives, for \(u,v\in\mathbb C^2\),
+\[
+|u^*K(a)v|^2\le(u^*K(0)u)(v^*K(0)v)\quad(a\in\mathbb R).
+\tag{EPM34}
+\]
+Thus every entry is bounded. The same spectral Gram calculation proves positivity of
+\[
+\begin{pmatrix}K(0)&K(a)\\K(a)^*&K(0)\end{pmatrix}.
+\tag{EPM35}
+\]
+Conversely positivity of EPM35 for every \(a\ge0\) bounds each entry using its two-dimensional principal restrictions. For every fixed \(t>0\), RH is therefore equivalent to entrywise boundedness on \([0,\infty)\), and to positivity of EPM35 for all \(a\ge0\). This proves an equivalence, not the inequalities themselves.
+
+Set
+\[
+g_{i,j}=D_x^j f_i/j!,\qquad
+\mathcal C_{(i,j),(\ell,k)}
+=\frac{(-1)^j}{j!k!}K_{i\ell}^{(j+k)}(0).
+\tag{EPM36}
+\]
+The exact position dictionary is \(B((f_i)_a,(f_j)_b)=K_{ij}(a-b)\). Thus EPM35 is the Gram block for positions \(0,-a\), and the kernel \(K_{i\ell}(b-a)\) below uses source shifts \(-a,-b\). This is exactly \(B(g_{i,j},g_{\ell,k})\): reflection contributes \(\eta_i(-1)^jw^j\). It is Hermitian, and the entire expansion
+\[
+K_{i\ell}(b-a)=\sum_{j,k\ge0}
+\mathcal C_{(i,j),(\ell,k)}a^jb^k
+\tag{EPM37}
+\]
+converges absolutely on all compact translation pairs. Positive semidefiniteness of every initial coefficient block yields positivity of finite translation matrices by square Taylor truncations, including EPM35. Under RH the spectral Gram series proves the coefficient positivity. This is the complete coefficient criterion, with every factorial and sign.
+
+Its negative index is exact. Let \(\mathcal H=\ell^2(\{\rho\},m_\rho)\) and
+\((\mathcal Ju)_\rho=u_{1-\bar\rho}\). Equal reflected multiplicities make \(\mathcal J\) a self-adjoint involution. For polynomials \(P_c,P_s\), put
+\[
+(V_{P_c,P_s})_\rho=F_c(\rho)P_c(c_\rho)+F_s(\rho)P_s(c_\rho).
+\tag{EPM38}
+\]
+These vectors belong to \(\mathcal H\) by EPM25 and are dense. Orthogonality to all of them makes every derivative at zero of
+\(\sum_\rho m_\rho\bar u_\rho F_i(\rho)e^{zc_\rho}\) vanish, for each \(i\). Cauchy–Schwarz and EPM25 make these series entire, hence identically zero. Their half-line Laplace transforms and EPM32's residue argument yield \(m_\rho\bar u_\rho F_i(\rho)=0\) for each \(\rho,i\). Joint nonvanishing EPM9 gives \(u=0\).
+
+With the first slot conjugate-linear, \(\langle\mathcal J V_P,V_Q\rangle\) is EPM36. Every distinct two-point reflection orbit supplies one negative direction of \(\mathcal J\); a fixed critical-line point supplies none. If \(\kappa_-\) counts these two-point orbits, allowing infinity, then
+\[
+\sup_n n_-\left(\mathcal C|_{\{c,s\}\times\{0,\ldots,n\}}\right)=\kappa_-.
+\tag{EPM39}
+\]
+For the upper bound, projection of a negative subspace into the negative eigenspace is injective. For the lower bound, approximate any finite negative orthonormal family by EPM38 using density. A column error in operator norm below \(1/4\) changes its Gram matrix by at most \(2/4+1/16<1\), preserving negative definiteness. The finitely many polynomials fit in one block. Multiplicities remain in the scalar product throughout.
+
+## 6. Certified scalar and original support
+
+At \(t=1/32\), AP1–28 evaluates the cosine diagonal \(q_c=K_{cc}(0)\) from the complete arithmetic form:
+\[
+50<q_c<64,\quad
+\beta[(t_p-1)\otimes f_c]
+=\ell_p\otimes\left(-J_2-\frac{1089}{4}J_0,
+-\frac{\sqrt{\pi/32}}{32}e^{-8}\right),\quad
+J_j=\int_0^\infty u^j e^{u^2/32}\Phi(u)\,du.
+\tag{EPM40}
+\]
+The AP proof supplies this enclosure, retaining its complete source residual and arithmetic tails. No fresh numerical reproduction is claimed here. The two source moments are negative. Their relation to the positive diagonal is a relation between specified maps of the same source. Neither the diagonal nor the moments determine EPM34–39.
+
+For the original bounded distributive lattice \(L\) with distinct bottom and top, retain
+\[
+G_L(V)=\{(v,1_L):v\in V\}\cup\{z_\lambda=(0,\lambda):\lambda\ne1_L\},
+\quad e=(0,1_L),\quad\tau=z_{0_L}.
+\tag{EPM41}
+\]
+Each linear map here lifts as \((v,1_L)\mapsto(Av,1_L)\), \(z_\lambda\mapsto z_\lambda\). Substitution proves compatibility with composition; the inverses and left inverses in EPM10–11, EPM18, EPM20 retain their stated domains. A zero amplitude under the endpoint map has top label \(e\), whereas the absent input retains \(\tau\). The pairing lift is
+\[
+B^L((f,\lambda),(g,\mu))=(B(f,g),\lambda\wedge\mu).
+\tag{EPM42}
+\]
+A nonzero output requires both inputs nonzero, hence top support, so it belongs to the carrier. Distributivity of meet over join proves the additive identities. Independently attached lower-label function values remain separate coordinates; they are not nonzero amplitudes at lower points of \(G_L\). Differential operators and source transport are not declared semiring homomorphisms.
+
+The original signed trace, each trivial-zero entry, Gamma boundary, prime quotient, and odd complementary source all have specified receiving maps. All-zero detection is EPM8–9 and EPM32–33. The remaining global sign is the actual arithmetic matrix EPM29–30 and EPM35–39; neither a completion nor a support label has assigned it a sign.
+
+## 7. The certified cosine test alone reaches every original zero
+
+The independent complete proof [ERD1–39](ENDPOINT_RESONANT_ZERO_DETECTION.md), read in full by root, strengthens EPM9 on an explicit time interval. With the original endpoint integral
+\[
+\delta=\int_1^\infty\left(\sum_{n\ge1}e^{-\pi n^2v}\right)
+(v^{-1/2}+v^{-1})\,dv,\qquad 0<\delta<2/21,
+\]
+it proves
+\[
+M_c(t,s)\ne0\quad(0\le\Re s\le1),\qquad
+0<t\le T_*=\frac{2(\pi-1)}{\pi-1+8/21}.
+\tag{EPM43}
+\]
+To make the receiving step explicit, its full-product logarithmic curvature is
+\[
+\left(\frac{\zeta'}{\zeta}+\frac1s+\frac1{s-1}
+-\frac12\log\pi+\frac12\psi_\Gamma(s/2)\right)'
+=-\sum_\rho\frac{m_\rho}{(s-\rho)^2}.
+\]
+The theta estimate excludes \(|\Im\rho|\le1\), and the exact endpoint difference gives
+\(\sum_\rho m_\rho/[\rho(1-\rho)]=2\delta\). Taking real parts yields
+\(\sum_\rho m_\rho|\Im\rho|^{-2}\le4\delta\). For \(|v|<1\), the resulting bound on the relative phase of
+\(\mathcal Q(u+iv+1)/\mathcal Q(u+iv)\) is
+\(4\delta|v|/(1-|v|)\).
+In EPM8, \(|v|=t|\Re w|\le t/2\). Thus the relative phase between the two cosine summands has magnitude strictly below
+\[
+1+\frac8{21}\frac{t}{2-t}\le\pi.
+\tag{EPM44}
+\]
+They cannot cancel. ERD15–26 proves the factorization, estimates, strict endpoint case and every original germ used in this calculation, without a zero table.
+
+Fix the original \(t=1/32\) and retain \(f=f_{c,1/32}\),
+\(F=F_c(1/32,\cdot)\), \(K(a)=K_{cc}(a)\), \(q=K(0)\). Equations EPM6 and EPM43 prove \(F(\rho)\ne0\) at every original nontrivial zero. Thus the scalar Laplace transform EPM32 has the nonzero residue \(m_\rho F(\rho)^2\) at each \(c_\rho\). The proof following EPM33, now in this one component, gives
+\[
+\boxed{\mathrm{RH}\ \Longleftrightarrow\
+K\text{ bounded on }[0,\infty)\
+\Longleftrightarrow\ |K(a)|\le q\text{ for all }a\ge0,
+\qquad 50<q<64.}
+\tag{EPM45}
+\]
+For the last implication towards RH, the inequality supplies boundedness. For the converse, under RH each \(F(\rho)\) is real and the weights \(m_\rho F(\rho)^2\) are positive; absolute convergence and the triangle inequality yield the bound. ERD29 in fact gives \(F(1/2+iy)=-(y^2+1/4)M_c(1/2+iy)<0\), so none of these critical-line weights is zero either. The enclosure for \(q\) is AP's certified arithmetic calculation, not an assumed sign.
+
+The original translated tests satisfy, by direct expansion of the Hermitian pairing,
+\[
+B(f_a,f_a)=q,\qquad
+Q(f_a+f)=2q+2K(a),\qquad
+Q(f_a-f)=2q-2K(a),\qquad Q(g)=B(g,g).
+\tag{EPM46}
+\]
+Here the translation factors cancel exactly on each reflected diagonal; the cross term is real by EPM26. Both endpoint moments remain zero, with their translation multipliers retained in EPM23. Therefore the inequalities in EPM45 are precisely positivity of these two actual two-translate tests for every \(a\ge0\). At a hypothetical off-critical zero, the nonzero scalar Laplace residue forces unbounded \(K\), hence a translate and one of these two signs with negative value. This is the contrapositive proof of the criterion, not the construction of an actual off-critical zero.
+
+The scalar divided-derivative matrix
+\[
+C_{jk}=\frac{(-1)^j}{j!k!}K^{(j+k)}(0)
+\tag{EPM47}
+\]
+has the exact index \(\sup_n n_-(C|_{0,\ldots,n})=\kappa_-\).
+The density proof EPM38–39 now needs only \(F\): orthogonality to all \(F(\rho)P(c_\rho)\) makes the corresponding entire exponential series zero, its Laplace residues give \(\bar u_\rho F(\rho)=0\), and EPM43 gives \(u=0\). The same finite-family approximation proves the index equality. Every initial block is positive semidefinite exactly when RH holds, by EPM37 and EPM45. The full original arithmetic evaluation of every entry is obtained by differentiating EPM29–30 in the cosine entry; its finite trivial-zero and Gamma coordinates remain EPM28–31.
+
+This is the exact bridge from the newly certified scalar to the global question: a fixed source originating in the retained endpoint residue detects all original zeros, and its whole translated form carries their reflection index. A positive value at \(a=0\) is one evaluated entry of that form. The uniform bound in EPM45 remains unproved.

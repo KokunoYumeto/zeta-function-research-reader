@@ -3,7 +3,7 @@ title: "Split-Zero: escaping fibres and separated-zeta positivity"
 date: "Proofs of 22–23 September 2026"
 ---
 
-This edition contains the complete 47 derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs. The original-zeta reconstruction chapters retain the full meromorphic function, its signed divisor, every Gamma and endpoint factor, and all lattice support. Earlier auxiliary calculations must be read through those exact maps. The raw full-divisor pairing is not assigned the positivity of the compensated Weil receiver.
+This edition contains the complete 49 derivations in the order listed below. Its finite algebra, analytic explicit formulas and exact comparison maps retain their own hypotheses. The source and reading guide follows the proofs. The original-zeta reconstruction chapters retain the full meromorphic function, its signed divisor, every Gamma and endpoint factor, and all lattice support. Earlier auxiliary calculations must be read through those exact maps. The raw full-divisor pairing is not assigned the positivity of the compensated Weil receiver.
 
 
 \clearpage
@@ -10537,6 +10537,13 @@ The inspected treatment attributes the scalar positive-kernel Hilbert-space cons
 
 The [prime-operator calculation](PRIME_PROJECTOR_MOBIUS_DERIVATION.md), PM1–41, proves both distinct Fourier support corrections and their exact map into the full Weil formula. The [local estimate](PRIMITIVE_SHORT_SUPPORT_DERIVATION.md), PS1–21, gives a positive translation-difference remainder. The [fixed-test proof](UNIVERSAL_PRIMITIVE_TRANSLATION_CRITERION.md), UP1–35, constructs one compact test whose transform is nonzero at every possible off-critical zero. The [complete arithmetic calculation](PRIMITIVE_PRIME_WINDOW_DERIVATION.md), PW1–22, expresses its entire translated correlation through a fixed-width prime window and an explicit archimedean remainder. Its boundedness is equivalent to RH; that bound remains unresolved. All boundary coordinates and supported-zero labels remain explicit.
 
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
+
 \clearpage
 
 # The exact reflection index of the global Cauchy–Weil pairing
@@ -12396,6 +12403,13 @@ The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, st
 
 The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1–43, proves full Weil coercivity with constant 11509/600000 through support diameter 19/25, including prime 2 and both original endpoint moments. [FW1–21](FIRST_PRIME_WINDOW_BOUND.md) proves the every-rank matrix bound for centre diameter 583/800 and a strict two-test margin through the next prime gap. The same unchanged test now satisfies its required strict correlation bound for every positive translation through log 256, by [FP1–25](FINITE_PRIME_WINDOW_EXTENSION.md) and the complete [rational prime-power certificate, FPC1–14](FINITE_PRIME_WINDOW_COEFFICIENT_CERTIFICATE.md). [PT1–40](PRIME_TWO_HEAT_TAIL_DERIVATION.md) calculates the surviving mixed channel and proves a strictly negative full actual right heat derivative on the stated short interval after the prime-2 atom ends. These are exact portions of the original bound, retaining supported zero and every original arithmetic coefficient. The uniform inequality beyond log 256 remains unproved.
 
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
+
 \clearpage
 
 # A fixed primitive test and the complete translated prime window
@@ -12614,6 +12628,13 @@ The complete [real-time proof](REAL_TIME_HEAT_TRACE_DERIVATION.md), RT1–30, st
 ## Proved compact-interval and finite-translation bounds
 
 The complete [compact-interval proof](FIRST_PRIME_FULL_WEIL_COERCIVITY.md), FC1–43, proves full Weil coercivity with constant 11509/600000 through support diameter 19/25, including prime 2 and both original endpoint moments. [FW1–21](FIRST_PRIME_WINDOW_BOUND.md) proves the every-rank matrix bound for centre diameter 583/800 and a strict two-test margin through the next prime gap. The same unchanged test now satisfies its required strict correlation bound for every positive translation through log 256, by [FP1–25](FINITE_PRIME_WINDOW_EXTENSION.md) and the complete [rational prime-power certificate, FPC1–14](FINITE_PRIME_WINDOW_COEFFICIENT_CERTIFICATE.md). [PT1–40](PRIME_TWO_HEAT_TAIL_DERIVATION.md) calculates the surviving mixed channel and proves a strictly negative full actual right heat derivative on the stated short interval after the prime-2 atom ends. These are exact portions of the original bound, retaining supported zero and every original arithmetic coefficient. The uniform inequality beyond log 256 remains unproved.
+
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
 
 \clearpage
 
@@ -15815,6 +15836,13 @@ The rapid exponential bounds prove the integral is entire in \(s\), and \(C|_U\)
 
 ![The exact original-zeta return. TF9–15 proves the filter and its inverse on the original even-Schwartz theta image, recovering both endpoints and every lower point-function coefficient. UZ18–24 and UZ44–46 prove the three embedded local fibre maps and retain all higher jets; h is the local coordinate s minus the point in each row. TF21–31 proves that the original Gaussian heat curve develops a nonzero return defect, and identifies its entire local jet tuple with the principal parts of the displayed meromorphic Mellin candidate. Its return obstruction is nonzero for every sufficiently small nonzero time. No zero location or RH assumption is used. Original heat convention: Rodgers–Tao, arXiv:1801.05914v5, equations hoz, phidef and htdef; every factor is retained in TF17–20.](faithful_theta_return.png)
 
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
+
 \clearpage
 
 # Faithful completion, local fibres and the uncompleted zeta heat equation
@@ -16406,6 +16434,13 @@ This follows because each generator is the other multiplied by a holomorphic uni
 
 
 
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
+
 \clearpage
 
 # Original-zeta compact Weil reconstruction, with every divisor and support coordinate
@@ -16917,6 +16952,13 @@ The reconstructed results are therefore exact original-zeta statements with thei
 ## The full trace, its return, and its first heat variation
 
 ![Full signed divisor and faithful return to the Hermitian pairing. The top panel displays OZK3–18, including the inverse retaining the complete correction. The bottom panel is the exact compact-test calculation OZC35–46: the trivial-zero sum equals the earlier archimedean remainder, the pole contribution evaluates to zero, and the full signed trace equals the finite prime expression only at time zero. The negative derivative retains all terms of OZC44–45 and the original Rodgers–Tao heat convention, arXiv:1801.05914v5, equations phidef and htdef. The boxes indicate exact intervals, not sampled values or geometric scale. Lower support labels are retained by OZC47–48. The full proofs define the original density and every test in the diagram.](original_zeta_trace_return.png)
+
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
 
 \clearpage
 
@@ -17465,6 +17507,13 @@ OZH1–OZH15 reconstruct AG's full rational receiver; OZH16–OZH25 reconstruct 
 
 
 
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
+
 \clearpage
 
 # Original zeta, the complete Cauchy correction, and the reflected index
@@ -17934,6 +17983,993 @@ Human source definitions enter through Brad Rodgers and Terence Tao, *The de Bru
 
 
 
+
+## Original-zeta Gaussian and affine receiving maps
+
+The complete extension OZG1–55 proves that Gaussian convolution of the test at every positive time makes the original trivial-zero scalar sum diverge for every real translation. Its admissible replacement retains each cutoff trace and the Gamma boundary with the identical finite sum U_N; OZG20–27 gives both maps and the inverse. The full coefficient tower, its raw non-Hermitian correction and exact compensated negative index are OZG28–39. No compact-support prime window is assumed after smoothing; all prime powers and Gamma terms, with explicit error bounds, are OZG40–52. This extension acts on the tests while fixing the original zeta zeros.
+
+The different affine change of the actual original heat family is OZR1–36. Its multiplier is exp(chi) C(phi)/C, with the full inverse, exceptional units and local jets. The original generator contains every q derivative term. The signed divisor comparison is OZR19–24; its Cauchy logarithmic kernel has an additional growth contribution 2a. OZR33 proves the exact full negative index after that contribution is retained. The full support carrier and every lower coordinate are OZG53–55 and OZR34–36. These are the receiving maps for these specified extensions; the original preceding test, time and domains remain those stated in its proof.
+
+\clearpage
+
+# Original zeta under Gaussian translation of the test
+
+This derivation starts with the original meromorphic zeta function and its full signed divisor. Gaussian translation heat changes the test and fixes every zeta zero. At positive translation-heat time its full trivial-zero sum diverges for every real translation. The exact finite-cutoff original trace, the Gamma boundary with the same growing terms, and their invertible augmented comparison are constructed below. Their compensated receiver has the entire coefficient tower and the exact negative index proved here.
+
+The incoming source is PRIME_TRANSLATION_EXTENSION.tex, PWG1–28, read in full from the supplied Shift_Synchronization_Arithmetic_20260923 archive. One numerical identity in PWG28 needs correction:
+\(B_2(1/8)=16/\mathrm e+4\), not \(32/\mathrm e+4\).
+The stated \(6\cdot10^{-44}\) tail bound remains valid. Its earlier larger expression was an upper bound, and the corrected calculation below gives a stronger intermediate constant.
+
+## 1. Original objects, measures, and factors
+
+Use the original zeta function, its logarithmic Euler derivative, and every Gamma and endpoint factor:
+\[
+\begin{aligned}
+j(s)&=\frac{\zeta'(s)}{\zeta(s)}
+=-\sum_{n\ge2}\Lambda(n)n^{-s},\qquad \Re s>1,\\
+B(s)&=\pi^{-s/2}\Gamma(s/2),\qquad
+\kappa(s)=-\frac{\log\pi}{2}+\frac12\psi(s/2),\\
+C(s)&=\tfrac12s(s-1)B(s),\qquad
+q(s)=\frac1s+\frac1{s-1}+\kappa(s).
+\end{aligned}
+\tag{OZG1}
+\]
+Here \(\Lambda(p^k)=\log p\) and all other \(\Lambda(n)\) are zero. The divisor and reflection formulas, proved directly from the original theta formula in OZC3–8, are
+\[
+\begin{aligned}
+\operatorname{div}\zeta
+&=\sum_\rho m_\rho[\rho]+\sum_{m\ge1}[-2m]-[1],\\
+\operatorname{div}C&=[1]-\sum_{m\ge1}[-2m],\\
+j(s)+j(1-s)&=-\kappa(s)-\kappa(1-s).
+\end{aligned}
+\tag{OZG2}
+\]
+Every nontrivial zero satisfies \(0<\Re\rho<1\), and its multiplicity is positive. The zero count is \(N(R)=O(R\log(R+2))\). No completed zeta function replaces the original function in these formulas.
+
+The full local units remain present. At \(s=-2m+h\), Gamma recurrence gives
+\[
+\begin{aligned}
+C(-2m+h)&=h^{-1}c_m(h),\qquad \zeta(-2m+h)=h\,u_m(h),\\
+c_m(h)&=(-1)^m\frac{2m(2m+1)\pi^m}{m!}
+\left(1-\frac h{2m}\right)\left(1-\frac h{2m+1}\right)
+\pi^{-h/2}\Gamma(1+h/2)
+\prod_{l=1}^m(1-h/(2l))^{-1}.
+\end{aligned}
+\tag{OZG2a}
+\]
+Both \(c_m\) and \(u_m\) are nonvanishing units. At \(s=1+h\),
+\(C=h\,c_1^{\rm pole}(h)\), \(\zeta=h^{-1}u_1^{\rm pole}(h)\), where
+\(c_1^{\rm pole}(h)=\tfrac12(1+h)\pi^{-(1+h)/2}\Gamma((1+h)/2)\),
+\(c_1^{\rm pole}(0)=1/2\), and \(u_1^{\rm pole}(0)=1\).
+Consequently the logarithmic derivatives have their signed \(1/h\) terms plus the complete unit logarithmic derivatives. For the entire tests used here, the latter products are holomorphic in the small fixed-point discs and have residue zero. This proves their zero contribution to those particular local residues; the full units remain in the logarithmic derivatives and in every boundary integral. Translation heat changes the tests, not these original units.
+
+Retain the classical bump, its fixed radius, and the original differential filter:
+\[
+\begin{aligned}
+r&=1/64,\quad a_j=r2^{-j},\quad
+b_r=*_{j\ge1}\frac{\mathbf1_{[-a_j,a_j]}}{2a_j},\\
+G_r(z)&=\prod_{j\ge1}\frac{\sinh(a_jz)}{a_jz}
+=\int_{-r}^{r}b_r(v)e^{-zv}\,dv,\qquad
+T=D_v^2-\tfrac14,\\
+f_r&=Tb_r,\quad k_r=b_r*b_r,\quad h_r=f_r*f_r=T^2k_r,\quad d=2r=1/32.
+\end{aligned}
+\tag{OZG3}
+\]
+The probability law of the uniformly convergent sum of independent interval variables gives the density and its support. Its Fourier product decreases faster than every inverse power: any prescribed number of its first factors supplies that bound, while the remaining factors have modulus at most one. Fourier inversion therefore gives a smooth even nonnegative density, flat at its support endpoints. It has mass one. The product is locally normally convergent, since the deviations of the factors from one are \(O(a_j^2)\) on compact sets. Its only zeros are \(128\pi i k\), \(k\ne0\), with multiplicity \(1+\nu_2(|k|)\), by the zeros of the individual factors and the convergent nonzero logarithm of the remaining tail. This is the classical Arias de Reyna bump with the original UP coordinate map, not a new density.
+
+The retained Mellin convention gives
+\[
+M_f(s)=\int_{\mathbb R}f(v)e^{-(s-1/2)v}\,dv,\qquad
+F(s)=M_{f_r}(s)=s(s-1)G_r(s-1/2).
+\tag{OZG4}
+\]
+Integration by parts proves the two factors, and \(F(0)=F(1)=0\). The original \(F\) is nonzero at every off-critical nontrivial zero. All its derivatives decay faster than every inverse power of height on any fixed real strip.
+
+For the exact multiplicative dictionary define
+\[
+(\mathcal V f)(x)=x^{-1/2}f(-\log x),\quad
+\int_0^\infty(\mathcal V f)(x)x^s\,\frac{dx}{x}=M_f(s),\quad
+\|\mathcal V f\|_{L^2(dx)}=\|f\|_{L^2(dv)}.
+\tag{OZG5}
+\]
+Substitution \(v=-\log x\) proves both assertions. It also gives
+\(\mathcal V(f^\#)(x)=x^{-1}\overline{\mathcal V f(1/x)}\),
+\(\mathcal V(f*g)=\mathcal V f *_\times\mathcal V g\), and
+\(\mathcal V(f(\cdot-a))(x)=e^{a/2}\mathcal V f(e^a x)\).
+Differentiation proves
+\(\mathcal V D_v\mathcal V^{-1}=-xD_x-1/2\).
+Thus translation by \(\log p\) is the unitary dilation
+\(u(x)\mapsto\sqrt p\,u(px)\) with the displayed measure.
+
+## 2. Gaussian test heat and its exact entire receiver
+
+For real \(\epsilon>0\), define
+\[
+\gamma_\epsilon(v)=\frac{e^{-v^2/(4\epsilon)}}{\sqrt{4\pi\epsilon}},
+\quad f_\epsilon=\gamma_{\epsilon/2}*f_r,\quad
+h_\epsilon=\gamma_\epsilon*h_r,\quad
+A_{\epsilon,a}(s)=e^{\epsilon(s-1/2)^2+a(s-1/2)}F(s)^2.
+\tag{OZG6}
+\]
+Completing the square in the absolutely convergent Gaussian integral gives
+\[
+M_{f_\epsilon}(s)=e^{\epsilon(s-1/2)^2/2}F(s),\qquad
+M_{h_\epsilon(\cdot+a)}(s)=A_{\epsilon,a}(s).
+\tag{OZG7}
+\]
+The second equality follows first for real \(a\), then for complex \(a\) by analytic continuation; Gaussian convolution of the compact \(h_r\) is entire and has Gaussian decay along any fixed horizontal line. The factor \(\epsilon/2\) in each test slot is essential. The two endpoints remain exactly zero, with their multipliers \(e^{\epsilon/4\mp a/2}\) retained.
+
+Put \(c_\rho=\rho-1/2\), \(w_\rho=m_\rho F(\rho)^2\), and
+\[
+K_\epsilon(a)=\sum_\rho w_\rho e^{\epsilon c_\rho^2+ac_\rho}.
+\tag{OZG8}
+\]
+The unsmoothed weights obey
+\(\sum_\rho|w_\rho|(1+|\Im\rho|)^n<\infty\) for every integer \(n\ge0\), by the zero count and the compact-test bounds. Writing \(a=A+iB\), \(c_\rho=x+iy\), \(|x|\le1/2\), gives
+\[
+\left|e^{\epsilon c_\rho^2+ac_\rho}\right|
+\le e^{\epsilon/4+|A|/2-\epsilon y^2+|B||y|}
+\le e^{\epsilon/4+|A|/2+B^2/(4\epsilon)}.
+\tag{OZG9}
+\]
+Thus the series and every fixed derivative converge normally on complex \(a\)-compact sets and on compact positive \(\epsilon\)-intervals. It is entire in \(a\), real and even for real \(a\), and
+\[
+\partial_\epsilon K_\epsilon=\partial_a^2K_\epsilon,\qquad
+K_\epsilon=\gamma_\epsilon*K_0.
+\tag{OZG10}
+\]
+For the convolution assertion, the bound \(|K_0(x)|\le C_re^{|x|/2}\) makes the Gaussian integral absolutely convergent; termwise integration is dominated by the same weight sum and gives \(e^{\epsilon c_\rho^2}\). The initial Gaussian limit holds locally with every real \(a\)-derivative. This heat fixes all \(\rho\). It is not the heat equation that moves the zeros of the returned family \(\zeta_t\).
+
+The distinction is explicit also on source functions: Gaussian convolution has Fourier multiplier \(e^{-\epsilon y^2}\), so it is injective and a contraction on \(L^2(dv)\); its inverse on its range need not be bounded. Under (OZG5) its generator is \((xD_x+1/2)^2\). This is different from the full original-zeta equation
+\(4\partial_t\zeta_t=\zeta_t''+2q\zeta_t'+(q'+q^2)\zeta_t\).
+
+## 3. The full trivial-zero sum and its exact obstruction
+
+Set \(R_m=2m+1/2\). The actual trivial-zero entry is
+\[
+d_m(\epsilon,a)=A_{\epsilon,a}(-2m)
+=4m^2(2m+1)^2
+e^{\epsilon R_m^2-aR_m}G_r(R_m)^2.
+\tag{OZG11}
+\]
+For real \(a,\epsilon\) every entry is positive. Evenness, nonnegativity, and mass one give
+\[
+1\le G_r(R)=\int b_r(v)\cosh(Rv)\,dv\le e^{rR},\qquad R\ge0.
+\tag{OZG12}
+\]
+Therefore, for every \(\epsilon>0\) and every real \(a\),
+\[
+d_m(\epsilon,a)\longrightarrow+\infty,\qquad
+\sum_{m\ge1}d_m(\epsilon,a)=+\infty,\qquad
+\lim_{m\to\infty}\frac{\log d_m(\epsilon,a)}{R_m^2}=\epsilon.
+\tag{OZG13}
+\]
+The positive quadratic factor dominates every retained linear exponent. In particular the lost full-sum domain is not merely the region of small translations.
+
+Write \(U_N(\epsilon,a)=\sum_{m=1}^Nd_m(\epsilon,a)\). Since \(G_r(R)\) is increasing for \(R>0\), the ratio of consecutive entries is bounded below by
+\[
+\frac{d_{m+1}}{d_m}\ge
+\exp\{4\epsilon R_m+4\epsilon-2a\}\longrightarrow+\infty.
+\tag{OZG14}
+\]
+The polynomial prefactor is increasing as well. Hence
+\[
+U_N/d_N\longrightarrow1,\qquad
+\frac{\log U_N}{R_N^2}\longrightarrow\epsilon.
+\tag{OZG15}
+\]
+To prove the first limit, fix any \(q>1\). Beyond a fixed index the ratios are at least \(q\), so the late part of the sum is bounded by \(d_N\sum_{j\ge0}q^{-j}\); the finitely many early terms divided by \(d_N\) tend to zero. Taking the upper limit and then \(q\to\infty\) proves the assertion. The second follows from (OZG13).
+
+For comparison, at \(\epsilon=0\) the exact summability domain is \(a\ge d=1/32\). Repeated integration by parts gives
+\[
+|G_r(R)|\le \|b_r^{(L)}\|_1 R^{-L}e^{rR}.
+\tag{OZG16}
+\]
+For \(a\ge2r\), the entries are \(O(m^{4-2L})\), summable for \(L\ge3\), including the boundary. For \(a<2r\), choose \(r'<r\) with \(2r'>a\). The independent-interval construction gives positive mass in every interval adjacent to an endpoint: restrict finitely many variables to their upper endpoint neighborhoods and bound the remaining total radius. Thus \(G_r(R)\ge c_{r'}e^{r'R}\), and the summands fail to tend to zero. For negative \(\epsilon\), the fixed trivial-zero series alone converges for every real \(a\), by its Gaussian upper bound from (OZG12). This last statement does not assert existence of a moving-zero or nontrivial-zero heat sum at negative translation time.
+
+Thus, for every \(a\ge d\), the fixed-sector limits do not commute:
+\[
+\lim_{\epsilon\downarrow0}\lim_{N\to\infty}U_N(\epsilon,a)=+\infty,
+\qquad
+\lim_{N\to\infty}\lim_{\epsilon\downarrow0}U_N(\epsilon,a)
+=U_\infty(0,a)<\infty.
+\tag{OZG17}
+\]
+Every finite entry is analytic in \(\epsilon,a\); the failure lies in the domain of infinite summation.
+
+There is a concrete object for this obstruction. Let \(\mathcal P=\mathbb C^{\mathbb N}\) as a vector space, let \(\Sigma:\ell^1\to\mathbb C\) be ordinary summation, and retain
+\[
+\mathfrak o_{\epsilon,a}=[(d_m(\epsilon,a))_m]\in\mathcal P/\ell^1 .
+\tag{OZG18}
+\]
+For \(\epsilon>0\), \(\mathfrak o_{\epsilon,a}\ne0\) by (OZG13); at \(\epsilon=0,a\ge d\) it is zero. This is an algebraic quotient; no Hausdorff quotient topology is asserted. The completion-divisor sequence is \(-d\), whose class is the exact negative of (OZG18).
+
+The largest elementary paired-sum domain needed here is
+\[
+\mathcal D_\Sigma=\{(x,y)\in\mathcal P^2:x+y\in\ell^1\},\qquad
+(x,y)\longmapsto\Sigma(x+y).
+\tag{OZG19}
+\]
+The actual pair \((d,-d)\) belongs to this domain even though neither component belongs to \(\ell^1\). Retaining both entries and then adding is a specified map. It does not assign a value to either divergent individual sum. The equivalent finite-cutoff construction, with all Gamma terms still present, is proved next.
+
+## 4. Original-zeta contours and the retained Gamma boundary
+
+Let \(A=A_{\epsilon,a}\), first for real \(\epsilon>0,a\), and let
+\[
+I_c(H)=\frac1{2\pi i}\int_{\Re s=c}H(s)\,ds,\quad
+b_N=-2N-1,\quad \sigma>1,
+\]
+\[
+V_N(A)=K_\epsilon(a)+U_N(\epsilon,a)-A(1).
+\tag{OZG20}
+\]
+Each vertical line is integrated upward. In any fixed real strip, \(A\) and all its derivatives decrease faster than every inverse power of height, with an additional Gaussian factor \(e^{-\epsilon y^2}\). The constants depend on the strip; they are not uniform as \(b_N\to-\infty\).
+
+The original argument principle gives
+\[
+V_N(A)=I_\sigma(Aj)-I_{b_N}(Aj).
+\tag{OZG21}
+\]
+Indeed the enclosed real divisor points are precisely \(1,-2,\ldots,-2N\), with their signed orders from (OZG2). To justify exhaustion in height, use the genus-one logarithmic-derivative expansion of the explicitly factored auxiliary \(C\zeta\), subtract the full \(q\), and choose heights a distance at least \(Y^{-3}\) from adjacent zero ordinates. The zero count leaves an allowed height in each sufficiently large unit interval. Near zero terms then have polynomial growth and the paired tails are \(O(\log Y)\). The Gaussian vertical decay on the fixed strip makes the horizontal integrals tend to zero. The vertical lines converge absolutely, using the original reflection (OZG2) on the left and the Euler series on the right. This proves (OZG21) for each finite \(N\); it does not move a boundary to negative infinity.
+
+Retain the actual reflected Gamma boundary
+\[
+\mathcal G_N(A)=
+I_{b_N}\bigl(A(s)\{\kappa(s)+\kappa(1-s)\}\bigr).
+\tag{OZG22}
+\]
+Insert the original reflection into the left edge of (OZG21), substitute \(s\mapsto1-s\), and move the resulting Euler half-plane line to \(\sigma\). No poles are crossed in that shift. Fourier inversion with the same Mellin convention gives
+\[
+\begin{aligned}
+V_N(A)&=-P_\epsilon(a)+\mathcal G_N(A),\\
+P_\epsilon(a)&=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+\{h_\epsilon(a+\log n)+h_\epsilon(a-\log n)\}.
+\end{aligned}
+\tag{OZG23}
+\]
+The infinite prime sum converges absolutely by the Gaussian bounds proved in Section 7. Alternatively absolute convergence of the Euler series and the vertical test bound justifies the Fourier inversion first, and gives the same convergent sum.
+
+The residues of \(\kappa(s)+\kappa(1-s)\) are \(-1\) at \(0,-2,-4,\ldots\) and \(+1\) at \(1,3,5,\ldots\). Shifting its line from \(b_N\) to \(1/2\) crosses exactly \(0,-2,\ldots,-2N\). Therefore
+\[
+\begin{aligned}
+\mathcal G_N(A)&=A_\infty(h_\epsilon(\cdot+a))+A(0)+U_N(\epsilon,a),\\
+A_\infty(h)&=\frac1{2\pi}\int_{\mathbb R}\widehat h(y)
+\{\Re\psi(1/4+iy/2)-\log\pi\}\,dy .
+\end{aligned}
+\tag{OZG24}
+\]
+The sign follows from
+\(I_{1/2}-I_{b_N}=-A(0)-U_N\). Both endpoint evaluations are zero for the present test, but their factors and evaluated values remain stated.
+
+The full retained identities, valid at every finite cutoff, are
+\[
+\boxed{\begin{aligned}
+V_N&=K_\epsilon+U_N-A(1),\\
+\mathcal G_N&=A_\infty+A(0)+U_N,\\
+V_N-U_N+A(1)&=A(0)+A(1)+A_\infty-P_\epsilon=K_\epsilon.
+\end{aligned}}
+\tag{OZG25}
+\]
+The Gamma boundary and original signed trace both have the positive quadratic growth (OZG15); their difference has the displayed finite value. The entire completion factor itself gives the separate exact contour
+\[
+I_\sigma(Aq)-I_{b_N}(Aq)=A(1)-U_N.
+\tag{OZG26}
+\]
+This follows either from its full factorization or from its divisor, with the same finite contour justification. Thus the endpoint polynomial and Gamma factor have both been retained.
+
+Increasing \(N\) adds \(d_{N+1}\) to \(V_N,U_N,\mathcal G_N\) and subtracts it from (OZG26). Keep the entire sequence of these increments. The map
+\[
+(K,d)\longmapsto
+\bigl((K+\sum_{m\le N}d_m)_N,\ d\bigr)
+\tag{OZG27}
+\]
+is injective, with inverse \(K=V_0\) for the present endpoint-zero test. The receiving map \(V_N-U_N\) is independent of \(N\). This is the finite-cutoff form of (OZG19), with the actual arithmetic boundary identified.
+
+## 5. Entire coefficient tower and exact raw corrections
+
+Define actual source tests and their Mellin transforms by
+\[
+g_j=\frac{D_v^j f_\epsilon}{j!},\qquad
+M_{g_j}(s)=\frac{(s-1/2)^j}{j!}
+e^{\epsilon(s-1/2)^2/2}F(s).
+\tag{OZG28}
+\]
+Integration by parts has no boundary term because the functions and all derivatives have Gaussian tails. All endpoint evaluations still vanish.
+
+The compensated coefficient form of these tests is
+\[
+\mathcal C_{\epsilon,jk}
+=\frac{(-1)^j}{j!k!}K_\epsilon^{(j+k)}(0)
+=\sum_\rho m_\rho e^{\epsilon c_\rho^2}F(\rho)^2
+\frac{(-1)^jc_\rho^{j+k}}{j!k!}.
+\tag{OZG29}
+\]
+The sign comes from the exact reflected factor
+\(\overline{M_{g_j}(1-\bar s)}=(-1)^j(s-1/2)^j
+e^{\epsilon(s-1/2)^2/2}F(s)/j!\).
+The matrix is real Hermitian because \(K_\epsilon\) is real even.
+
+The original signed finite-cutoff coefficient matrix is
+\[
+\mathcal R_{\epsilon,N,jk}
+=\mathcal C_{\epsilon,jk}+\mathcal D_{\epsilon,N,jk},\qquad
+\mathcal D_{\epsilon,N,jk}
+=\frac{(-1)^k}{j!k!}
+\sum_{m=1}^{N}d_m(\epsilon,0)R_m^{j+k}.
+\tag{OZG30}
+\]
+The completion-divisor coefficient is \(-\mathcal D_{\epsilon,N,jk}\), with its pole entry zero. Formula (OZG30) follows by evaluating the original reflected test at \(s=-2m\), where \(c=-R_m\). For \(N\ge1\),
+\[
+\mathcal R_{\epsilon,N,01}-\mathcal R_{\epsilon,N,10}
+=-2\sum_{m=1}^{N}d_m(\epsilon,0)R_m<0.
+\tag{OZG31}
+\]
+Thus even each finite raw correction is generally non-Hermitian. Every entry in its infinite fixed-divisor sum diverges in modulus, with sign \((-1)^k\). A raw negative diagonal cannot be substituted for negativity of the compensated Hermitian form.
+
+The exact evolution laws are
+\[
+\partial_\epsilon\mathcal C_{\epsilon,jk}
+=-(j+1)(k+1)\mathcal C_{\epsilon,j+1,k+1}
+\]
+\[
+=\tfrac12\{(j+1)(j+2)\mathcal C_{\epsilon,j+2,k}
++(k+1)(k+2)\mathcal C_{\epsilon,j,k+2}\}.
+\tag{OZG32}
+\]
+They follow by differentiating (OZG29) and comparing its signs and factorials. The finite-cutoff matrices \(\mathcal R,\mathcal D\) obey the same identities separately, by (OZG30). They require the higher displayed rows; a finite block alone is not a closed evolution.
+
+## 6. All-zero detection and the exact negative index
+
+For every fixed \(\epsilon>0\),
+\[
+\mathrm{RH}\quad\Longleftrightarrow\quad
+K_\epsilon\text{ bounded on }[0,\infty)
+\quad\Longleftrightarrow\quad
+|K_\epsilon(a)|\le K_\epsilon(0)\quad(a\ge0).
+\tag{OZG33}
+\]
+Under RH, each \(c_\rho=i\gamma_\rho\), the original \(F(\rho)\) is real, and every weight is \(m_\rho F(\rho)^2e^{-\epsilon\gamma_\rho^2}\ge0\). The triangle inequality proves the last condition. Conversely boundedness makes the Laplace transform holomorphic on \(\Re w>0\). On \(\Re w>1/2\), absolute convergence gives its exact expression
+\[
+\int_0^\infty e^{-wa}K_\epsilon(a)\,da
+=\sum_\rho\frac{w_\rho e^{\epsilon c_\rho^2}}{w-c_\rho}.
+\tag{OZG34}
+\]
+This sum is normally meromorphic on the whole plane. Each off-critical residue is nonzero by (OZG4) and the nonvanishing Gaussian multiplier. The connectedness of the complement of the discrete pole set and the identity theorem rule out any pole in \(\Re w>0\). Reflection rules out the left half of the critical strip as well. This proves the converse without omitting multiplicities.
+
+The entire function gives an absolutely convergent two-variable expansion
+\[
+K_\epsilon(b-a)=\sum_{j,k\ge0}
+\mathcal C_{\epsilon,jk}a^jb^k .
+\tag{OZG35}
+\]
+If every initial coefficient block is positive semidefinite, substitution of any finite real translation set and passage through square truncations prove positivity of its full translation matrix. Its two-point submatrix then gives the last bound in (OZG33). Under RH, the Gram series in (OZG29) proves positivity of every block. Hence
+\[
+\mathrm{RH}\quad\Longleftrightarrow\quad
+[\mathcal C_{\epsilon,jk}]_{0\le j,k\le n}\succeq0
+\quad\text{for every }n.
+\tag{OZG36}
+\]
+This is a proved equivalence, not a proof of the inequalities.
+
+The complete negative index is also exact. Let \(\mathcal Z_*\) consist of the nontrivial zeros with \(F(\rho)\ne0\), let
+\[
+\mathcal H_*=\ell^2(\mathcal Z_*,m),\quad
+(Ju)_\rho=u_{\rho^\#},\quad \rho^\#=1-\bar\rho,\quad
+\alpha_\rho=F(\rho)e^{\epsilon c_\rho^2/2}.
+\tag{OZG37}
+\]
+This reflection-stable set contains every off-critical zero. The omitted points are critical and remove only positive directions. The equal multiplicities on exchanged points make \(J\) a self-adjoint involution. For polynomials \(P\), set
+\((V_P)_\rho=\alpha_\rho P(c_\rho)\).
+Gaussian decay puts every such vector in \(\mathcal H_*\). The identities
+\(\bar\alpha_{\rho^\#}=\alpha_\rho\) and
+\(c_{\rho^\#}=-\bar c_\rho\) prove that
+\(\langle JV_P,V_Q\rangle\) in the divided-power basis is exactly (OZG29).
+
+These polynomial vectors are dense. If \(u\) is orthogonal to all of them, form
+\[
+H_u(z)=\sum_{\rho\in\mathcal Z_*}
+m_\rho\bar u_\rho\alpha_\rho e^{c_\rho z}.
+\tag{OZG38}
+\]
+Cauchy–Schwarz and Gaussian decay prove normal convergence and normal differentiability on every complex compact set. All derivatives at zero vanish, so \(H_u\) is identically zero. On the positive real half-line its absolute value is at most
+\(e^{z/2}\|u\|(\sum m_\rho|\alpha_\rho|^2)^{1/2}\).
+Its Laplace transform on \(\Re w>1/2\) is therefore
+\(\sum m_\rho\bar u_\rho\alpha_\rho/(w-c_\rho)=0\).
+This series is normally meromorphic: its coefficients are absolutely summable by Cauchy–Schwarz, and the high-height denominators give a further bound. Its residue at \(c_\rho\) is \(m_\rho\bar u_\rho\alpha_\rho\). The identity theorem and \(\alpha_\rho\ne0\) force \(u=0\), proving density.
+
+Let \(\kappa_-\) be the number of distinct two-point reflection orbits in the actual nontrivial zero set, allowing infinity. Each contributes one negative direction to \(J\); a critical point contributes none. A negative polynomial subspace injects into the negative spectral subspace, giving an upper bound \(\kappa_-\). Conversely approximate any finite negative orthonormal family by \(V_P\). If the column error has norm less than \(1/4\), its Gram error is at most \(2/4+1/16<1\), preserving negative definiteness. Finitely many approximants lie in one finite degree block. Thus
+\[
+\boxed{\sup_n n_-\bigl([\mathcal C_{\epsilon,jk}]_{0\le j,k\le n}\bigr)
+=\kappa_-\qquad(\epsilon>0).}
+\tag{OZG39}
+\]
+The original multiplicities remain in all Hilbert weights. This index belongs to the compensated augmented receiver, not to the divergent full raw sum or its non-Hermitian cutoff matrices.
+
+## 7. Complete arithmetic formula and explicit error bounds
+
+The original Gamma boundary and prime terms yield, for every real \(a\),
+\[
+\begin{aligned}
+K_\epsilon(a)={}&-(\gamma_{\rm E}+\log\pi)h_\epsilon(a)\\
+&+\int_0^\infty
+\frac{e^{-x}h_\epsilon(a)-\tfrac12e^{-x/4}
+\{h_\epsilon(a+x/2)+h_\epsilon(a-x/2)\}}
+{1-e^{-x}}\,dx\\
+&-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}
+\{h_\epsilon(a+\log n)+h_\epsilon(a-\log n)\}.
+\end{aligned}
+\tag{OZG40}
+\]
+This is (OZG25) with its actual endpoint-zero values, not a prime-window formula with compact support assumed after smoothing. It also follows by Gaussian convolution of the entire original OZC/PW distribution. The near-zero Gamma numerator is kept together:
+\[
+(e^{-x}-e^{-x/4})h(a)
+-\tfrac12e^{-x/4}\{h(a+x/2)+h(a-x/2)-2h(a)\}.
+\tag{OZG41}
+\]
+Its two terms are \(O(x)\) and \(O(x^2)\); division by \(1-e^{-x}\) is locally bounded. At infinity the exponential factors are integrable. These bounds and the following prime majorant justify Fubini and all fixed translation derivatives.
+
+For each nonnegative integer \(l\), define
+\[
+\mathcal B_l(\epsilon)=\frac{l!}{2^l}
+\sum_{j=0}^{\lfloor l/2\rfloor}
+\frac{\epsilon^{-(l-j)}}{j!(l-2j)!}
+\left(\frac{4\epsilon(l-2j)}{\mathrm e}\right)^{(l-2j)/2},
+\tag{OZG42}
+\]
+where the last factor is one at \(l-2j=0\). The exact polynomial derivative of the Gaussian and the maximum
+\(\sup_x|x|^d e^{-x^2/(8\epsilon)}
+=(4\epsilon d/\mathrm e)^{d/2}\) prove
+\[
+|\gamma_\epsilon^{(l)}(x)|
+\le(4\pi\epsilon)^{-1/2}\mathcal B_l(\epsilon)
+e^{-x^2/(8\epsilon)} .
+\tag{OZG43}
+\]
+Indeed the \(j\)th derivative-polynomial coefficient is
+\(l!(-1)^{l-j}x^{l-2j}/(2^l\epsilon^{l-j}j!(l-2j)!)\).
+Split its Gaussian factor into two equal exponents and apply the displayed maximum to one.
+
+Retain
+\[
+\mathcal C_{\epsilon,l}=(4\pi\epsilon)^{-1/2}
+\{\mathcal B_{l+4}+\tfrac12\mathcal B_{l+2}
++\tfrac1{16}\mathcal B_l\}.
+\tag{OZG44}
+\]
+Since \(k_r\) is a probability measure supported in \([-d,d]\), convolution and the full filter \(D^4-\tfrac12D^2+\tfrac1{16}\) give
+\[
+|h_\epsilon^{(l)}(a\pm\log n)|
+\le\mathcal C_{\epsilon,l}
+e^{-(\log n-A-d)^2/(8\epsilon)}
+\quad(|a|\le A,\ \log n>A+d).
+\tag{OZG45}
+\]
+Put \(B=A+d\), \(c_B=B+2\epsilon\), and assume
+\(\log N\ge\max(B,2)\). Then the complete omitted prime contribution satisfies
+\[
+\sup_{|a|\le A}
+|\partial_a^l(P_\epsilon-P_{\epsilon,N})(a)|
+\le2\mathcal C_{\epsilon,l}\mathcal J_{\epsilon,B}(N),
+\tag{OZG46}
+\]
+where
+\[
+\begin{aligned}
+\mathcal J_{\epsilon,B}(N)
+=e^{B/2+\epsilon/2}\bigg\{&
+4\epsilon e^{-(\log N-c_B)^2/(8\epsilon)}\\
+&+c_B\sqrt{2\pi\epsilon}\,
+\operatorname{erfc}\frac{\log N-c_B}{\sqrt{8\epsilon}}\bigg\}.
+\end{aligned}
+\tag{OZG47}
+\]
+To prove this, use \(0\le\Lambda(n)\le\log n\). The real-variable majorant
+\((\log x)x^{-1/2}e^{-(\log x-B)^2/(8\epsilon)}\)
+is decreasing on \(x\ge N\), because its logarithmic derivative with respect to \(u=\log x\) is
+\(1/u-1/2-(u-B)/(4\epsilon)\le0\).
+Thus the omitted integer sum is bounded by its integral from \(N\) to infinity. Substitution \(u=\log x\) gives
+\(\int_{\log N}^{\infty}u e^{u/2-(u-B)^2/(8\epsilon)}du\).
+Completing the square gives exactly (OZG47), including both terms and the factor 2 for the two translated legs. Every omitted prime power is included.
+
+The finite convolution source \(k_{r,J}\) omits a probability factor of radius \(d2^{-J}\). The mean value theorem gives
+\[
+\sup_a|h_\epsilon^{(l)}(a)-h_{\epsilon,J}^{(l)}(a)|
+\le\eta_l:=d2^{-J}\mathcal C_{\epsilon,l+1}.
+\tag{OZG48}
+\]
+For the whole Gamma expression, (OZG41), \(1-e^{-x}\ge x/2\) on \(0<x\le1\), and the central second-difference bound give error
+\(3\eta_l/2+\eta_{l+2}/8\) on that interval. On \(x\ge1\) the uniform error is at most
+\(\eta_l(e^{-1}+4e^{-1/4})/(1-e^{-1})\).
+The constant term adds \(|\gamma_{\rm E}+\log\pi|\eta_l\). Writing
+\[
+\mathcal A=
+|\gamma_{\rm E}+\log\pi|+\tfrac32+
+\frac{e^{-1}+4e^{-1/4}}{1-e^{-1}},
+\quad W_N=\sum_{2\le n\le N}\frac{\Lambda(n)}{\sqrt n},
+\]
+the complete source-and-prime error is
+\[
+2\mathcal C_{\epsilon,l}\mathcal J_{\epsilon,B}(N)
++(\mathcal A+2W_N)\eta_l+\tfrac18\eta_{l+2}.
+\tag{OZG49}
+\]
+This proves PWG14–22 with their full original arithmetic terms.
+
+At \(\epsilon=1/8\), direct substitution into (OZG42) gives the corrected values
+\[
+\mathcal B_2=16/\mathrm e+4,\qquad
+\mathcal B_4=1024/\mathrm e^2+384/\mathrm e+48.
+\tag{OZG50}
+\]
+Using \(\mathrm e>2,\pi>2\) gives \(\mathcal C_{1/8,0}<503\), since
+\(\mathcal B_4<496\), \(\mathcal B_2<12\), and
+\((4\pi\epsilon)^{-1/2}<1\). The source's weaker bound \(507\) is therefore also valid.
+
+For \(A=0,N=65536\), one has \(B=1/32\), \(c_B=9/32\), and
+\(x=16\log2-9/32>997/96>10\). The bound
+\(\operatorname{erfc}x\le e^{-x^2}/(\sqrt\pi x)\), obtained by comparing \(u/x\ge1\) in the Gaussian tail integral, gives
+\[
+\mathcal J_{1/8,1/32}(65536)
+<\frac{329}{590}e^{-994009/9216}.
+\tag{OZG51}
+\]
+Here \(e^{5/64}<64/59\), by termwise comparison with the geometric series. Also \(\log2>2/3\) follows from its positive atanh series, and \(\log10<7/3\) follows from the sixth exponential partial sum at \(7/3\), which is \(1071641/104976>10\). Since \(994009/9216>46(7/3)\), the last exponential is less than \(10^{-46}\). Equations (OZG46), (OZG50), and (OZG51) therefore prove
+\[
+|P_{1/8}(0)-P_{1/8,65536}(0)|<6\cdot10^{-44}.
+\tag{OZG52}
+\]
+This certifies the prime tail only, not the value or sign of the full first matrix entry.
+
+## 8. Full lattice coordinates and the corrected interpretation
+
+For the original finite bounded distributive lattice \(L\), the actual carrier is
+\[
+G_L(V)=\{(v,1_L):v\in V\}
+\cup\{z_\lambda=(0,\lambda):\lambda\ne1_L\},\qquad
+e=(0,1_L),\quad\tau=z_{0_L}.
+\tag{OZG53}
+\]
+Linear source maps send \((v,1_L)\) to \((Av,1_L)\) and fix each lower zero label. Nonzero carrier amplitudes occur only at top support. Independent function values at lower carrier points belong to the attached function space and are retained separately. Pairings use meet labels.
+
+At every fixed cutoff, the original signed spectral and completion-divisor coordinates are
+\[
+\boldsymbol R_{\epsilon,N}
+=(K_\epsilon+U_N)\mathbf e_{1_L},\qquad
+\boldsymbol E_{\epsilon,N}=-U_N\mathbf e_{1_L}.
+\tag{OZG54}
+\]
+The original endpoint values are zero because the unchanged factor \(F(0)=F(1)=0\) remains in every smoothed test. The supported identity is exactly
+\[
+\boldsymbol B_L=0,\quad
+\boldsymbol D_L=-K_\epsilon\mathbf e_{1_L},\qquad
+\boldsymbol B_L-\boldsymbol R_{\epsilon,N}
+=\boldsymbol D_L+\boldsymbol E_{\epsilon,N}.
+\tag{OZG55}
+\]
+Every lower coordinate has its evaluated zero amplitude and retained coordinate space. The Gamma boundary itself has top coefficient \(A_\infty+U_N\), as in (OZG24), and is recorded with its cutoff transition.
+
+The complete object consists of the indexed nontrivial-zero sequence, the indexed trivial-zero sequence, the pole entry with its evaluated zero, the Gamma data, and these full lattice coordinates. The compensated map first adds the original signed and opposite completion-divisor entry at each identical fixed index, then applies the proved summation map. At such a zero amplitude, the top label remains \(e\); it does not become \(\tau\). The augmented comparison (OZG27), or entrywise \((R,E)\mapsto(R+E,E)\), retains an explicit inverse. Discarding the second coordinate would lose the obstruction class (OZG18).
+
+Thus positive Gaussian translation time produces an entire compensated test receiver and an exact coefficient tower, while the full raw scalar divisor sum has no real translation domain. The finite-cutoff original-zeta equations and their common Gamma increments are the required replacement for an asserted nonexistent full scalar sum. The negative-index theorem applies to their compensated receiver and leaves the global sign inequality unresolved.
+
+## Source identity and actual use
+
+The incoming archive has SHA256
+70810361fd8fd66f9cc7154ed919bc5c0c15d003e3ec72504b173bbb24aeed15.
+Its member Shift_Synchronization_Arithmetic_20260923/PRIME_TRANSLATION_EXTENSION.tex has SHA256
+21cacaaac17e356d5c4feb29213b30a9765a786bd80b1aca009d85f775268d14,
+26746 bytes. PWG1–28, including its nonsequential PWG24 and PWG28, was read in full.
+
+OZC1–18 and their complete preceding proofs were read directly for the original-zeta contour, reflection, Gamma boundary, and raw adjoint defect. The fixed primitive UP/PW definitions and proofs were already read in the preceding original-zeta audits; their displayed formulas are rederived above where used. No source-space mass-completion calculation from another task is claimed or duplicated here.
+
+Human provenance remains Juan Arias de Reyna, [An infinitely differentiable function with compact support: Definition and properties, arXiv:1702.05442v1](https://arxiv.org/abs/1702.05442v1), Theorem 1, for the classical bump, and Alain Connes, [Trace formula in noncommutative geometry and the zeros of the Riemann zeta function, arXiv:math/9811068v1](https://arxiv.org/abs/math/9811068), Appendix II, Theorem 6, through the source-defined full theta and explicit-formula comparison. This derivation does not claim a fresh full reading of those human papers. Its new original-zeta content is the all-translation trivial-zero divergence, its exact growth and obstruction space, the retained finite-cutoff Gamma comparison, and the raw coefficient correction accompanying the entire compensated tower.
+
+
+![Exact enclosure for the retained trivial-zero terms at the displayed original parameters. The lower and upper edges are the full logarithm of OZG11 with the proved bounds 1 and exp(r R) for G, respectively. OZG13–17 proves divergence and the failure to interchange the positive-time and infinite-cutoff limits. The density is the classical Arias de Reyna function, with the source and exact coordinate comparison stated in OZG3.](gaussian_trivial_zero_growth.png)
+
+
+Pinned public predecessor proofs: [Original theta and its exact return](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_THETA_COMPLETION_RETURN.md#L149), TF17; [Original meromorphic heat family](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_UNCOMPLETED_ZETA_HEAT.md#L20), UZ1; [Full original-zeta contour and compact form](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md#L15), OZC1; [Original heat/contact traces](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md#L17), OZH1; [Original Cauchy correction and raw skew defect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md#L184), OZK17. Their complete sources are also retained in this edition. The new full incoming programme TeX is included above, with its original references and its corrected receiving maps.
+
+\clearpage
+
+# Original zeta under regular affine heat transport
+
+This proof reconstructs RG1–4, CW1–11 and the marked-unit transport in the received RECONSTRUCTION.tex using the original meromorphic zeta family. The map includes the complete ratio of Gamma, endpoint and pi factors. Its divisor, heat residual, rational trace, exceptional local units and residue at infinity are calculated separately and retained together. A quadratic exponential contributes to a logarithmic-derivative kernel without changing the moving zero divisor. The exact additional term and its full negative index are proved below.
+
+## 1. Original function and the complete transport
+
+Fix the factors and connection
+\[
+\begin{aligned}
+C(s)&=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\\
+q(s)&=\frac1s+\frac1{s-1}-\frac12\log\pi+\frac12\psi(s/2),\\
+\nabla_s&=\partial_s+q(s),\qquad
+\mathcal D_C=\tfrac14\nabla_s^2
+=\tfrac14\{\partial_s^2+2q\partial_s+q'+q^2\}.
+\end{aligned}\tag{OZR1}
+\]
+The original returned heat family from TF/UZ is the meromorphic function
+\[
+\zeta_\theta(s)=\frac8{C(s)}\int_0^\infty
+ e^{\theta u^2}\Phi_G(u)\cosh((2s-1)u)\,du,
+\qquad \zeta_0=\zeta.
+\tag{OZR2}
+\]
+Here the original Gaussian theta kernel is
+\[
+\Phi_G(u)=\sum_{n\ge1}
+ (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},
+\]
+with its exact source inverse and constants proved in TF1–42. Its doubly exponential tail justifies differentiation for finite complex \(\theta,s\). Differentiating the displayed integrand gives
+\(\partial_\theta\zeta_\theta=\mathcal D_C\zeta_\theta\), because the second derivative of \(\cosh((2s-1)u)\) is \(4u^2\) times that function. Thus the equation contains every term in (OZR1); it is not the free heat equation for \(\zeta_\theta\).
+
+For a real parameter \(t\), take real differentiable functions \(a,b,c,\alpha,y,\theta\), with \(\alpha>0\), and set
+\[
+r=s-\tfrac12,\qquad
+\varphi_t(s)=\tfrac12+\alpha r+iy,\qquad
+\chi_t(s)=ar^2+ibr+c.
+\tag{OZR3}
+\]
+The receiving map on meromorphic functions on \(\mathbb C\) is
+\[
+(\mathcal T_t f)(s)=M_t(s)f(\varphi_t(s)),\qquad
+M_t(s)=e^{\chi_t(s)}\frac{C(\varphi_t(s))}{C(s)}.
+\tag{OZR4}
+\]
+In full factors the multiplier is
+\[
+M_t(s)=e^{\chi_t(s)}
+\frac{\tfrac12\varphi_t(s)(\varphi_t(s)-1)
+ \pi^{-\varphi_t(s)/2}\Gamma(\varphi_t(s)/2)}
+ {\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)}.
+\tag{OZR5}
+\]
+These are meromorphic identities, including points at which an individual numerator or denominator factor vanishes or has a pole. At fixed \(t\) the inverse is
+\[
+f(z)=e^{-\chi_t(\varphi_t^{-1}(z))}
+\frac{C(\varphi_t^{-1}(z))}{C(z)}
+(\mathcal T_t f)(\varphi_t^{-1}(z)),\qquad
+\varphi_t^{-1}(z)=\tfrac12+\frac{z-\tfrac12-iy}{\alpha}.
+\tag{OZR6}
+\]
+Substitution proves both inverse identities on a nonempty regular open set, and meromorphic continuation proves them everywhere. The map is a complex-linear bijection, not an asserted algebra homomorphism or isometry. It restricts to an automorphism of the embedded space \(C^{-1}\mathcal O(\mathbb C)\): multiplying (OZR4) by the full \(C(s)\) gives \(e^\chi(Cf)\circ\varphi\), and (OZR6) proves the converse. The embedding into meromorphic functions remains part of this space.
+
+## 2. Every exceptional order and unit
+
+Let \(s_0\in\mathbb C\), \(z_0=\varphi_t(s_0)\), and use the original local coordinates \(x=s-s_0\) and \(h=z-z_0=\alpha x\). Write
+\[
+C(z_0+h)=h^{e_z}b_z(h),\quad
+C(s_0+x)=x^{e_s}b_s(x),\quad
+f(z_0+h)=h^d u(h),
+\tag{OZR7}
+\]
+where \(f\) is not identically zero and all three displayed units are holomorphic and nonzero at zero. The integers \(d,e_z,e_s\) may be negative. Direct substitution gives the entire local identity
+\[
+\boxed{(\mathcal T_t f)(s_0+x)=
+x^{d+e_z-e_s}\alpha^{d+e_z}
+e^{\chi_t(s_0+x)}\frac{b_z(\alpha x)u(\alpha x)}{b_s(x)}.}
+\tag{OZR8}
+\]
+Thus the target order is \(d+e_z-e_s\); the source order alone is insufficient at exceptional points. Every constant, power of \(\alpha\), and analytic unit survives.
+
+For clarity the actual exceptional units of \(C\) are
+\[
+\begin{aligned}
+C(-2m+x)&=x^{-1}b_{-2m}(x),\\
+b_{-2m}(x)&=(-1)^m\frac{2m(2m+1)\pi^m}{m!}
+\left(1-\frac{x}{2m}\right)\left(1-\frac{x}{2m+1}\right)
+\pi^{-x/2}\Gamma(1+x/2)
+\prod_{j=1}^m\left(1-\frac{x}{2j}\right)^{-1},\\
+C(1+x)&=x\,\tfrac12(1+x)\pi^{-(1+x)/2}\Gamma((1+x)/2),\\
+C(x)&=(x-1)\pi^{-x/2}\Gamma(1+x/2).
+\end{aligned}\tag{OZR9}
+\]
+The Gamma recurrence \(\Gamma(1+x/2)=\prod_{j=0}^m(x/2-j)\Gamma(-m+x/2)\) proves the first two lines after inserting both polynomial factors. The last two follow directly from the same recurrence. In particular \(e_{-2m}=-1,e_1=1,e_0=0\). This calculation retains the Gamma pole and endpoint zero at zero through their exact unit, whose value is \(-1\).
+
+Let \(W(x)=\alpha^{d+e_z}e^{\chi_t(s_0+x)}b_z(\alpha x)/b_s(x)\). If \(u(h)=\sum u_nh^n\), then its transported unit has coefficients
+\[
+\widetilde u_n=\sum_{j=0}^n W_{n-j}\alpha^ju_j.
+\tag{OZR10}
+\]
+Since \(W_0\ne0\), this triangular map is invertible at every finite order by recursion. Its inverse is the expansion of (OZR6). For every \(N\ge1\), the exact jet isomorphism is
+\[
+h^d\mathcal O_h/h^{d+N}\mathcal O_h
+\longrightarrow
+x^{d+e_z-e_s}\mathcal O_x/x^{d+e_z-e_s+N}\mathcal O_x.
+\]
+It is linear over the local-ring identification \(h=\alpha x\). The target exponent is the one in (OZR8), not a substituted ordinary scalar fibre.
+
+The logarithmic derivatives of the units satisfy
+\[
+\begin{aligned}
+(\log\widetilde u)'(0)
+&=\chi_t'(s_0)+\alpha\{(\log b_z)'(0)+(\log u)'(0)\}
+ -(\log b_s)'(0),\\
+(\log\widetilde u)''(0)
+&=2a+\alpha^2\{(\log b_z)''(0)+(\log u)''(0)\}
+ -(\log b_s)''(0).
+\end{aligned}\tag{OZR11}
+\]
+These follow by differentiating the nonvanishing unit in (OZR8). At ordinary points of the divisor of \(C\), the two additional second derivatives are \(\alpha^2q'(z_0)-q'(s_0)\). They cannot be omitted from the curvature of the original zeta unit.
+
+For an independent integer marking \(n\), put
+\(\lambda_n(g)=\operatorname{Res}_{h=0}g(h)/(h^nu(h))\,dh\).
+Write \(\chi_t(s_0+x)=\chi_0+\chi_1x+ax^2\). The transported marked functional is exactly
+\[
+\begin{aligned}
+\widetilde\lambda_n(g)=e^{-\chi_0}\alpha^{n-d-e_z-1}
+\lambda_n\left(
+e^{-\chi_1h/\alpha-ah^2/\alpha^2}
+\frac{b_s(h/\alpha)}{b_z(h)}g(h/\alpha)\right).
+\end{aligned}\tag{OZR12}
+\]
+Indeed substitute (OZR8)'s unit in the residue and change \(h=\alpha x\); \(x^{-n}dx=\alpha^{n-1}h^{-n}dh\). Multiplying the retained \(\alpha^{-d-e_z}\) gives the stated power. The marking \(n\) is not silently set equal to either source or target valuation.
+
+## 3. The full heat residual and its clocks
+
+Allow a source residual \(R_f=(\partial_\theta-\mathcal D_{C,z})f_\theta\). The identities
+\[
+\nabla_s\mathcal T_t f
+=M_t(s)\{\chi_t'(s)f(\varphi_t(s))
++\alpha(\nabla_z f)(\varphi_t(s))\},
+\]
+\[
+\begin{aligned}
+\nabla_s^2\mathcal T_t f=M_t(s)\{&((\chi_t'(s))^2+\chi_t''(s))f(\varphi_t(s))\\
+ &+2\alpha\chi_t'(s)(\nabla_z f)(\varphi_t(s))
+ +\alpha^2(\nabla_z^2f)(\varphi_t(s))\}.
+\end{aligned}
+\tag{OZR13}
+\]
+follow by differentiating all three factors of \(M_t\). In particular
+\(M_t'/M_t=\chi_t'+\alpha q(\varphi_t)-q(s)\), which accounts for both connection terms. The time derivative gives
+\[
+\begin{aligned}
+\partial_t\mathcal T_t f_\theta=M_t(s)\{&\theta'(\partial_\theta f)(\theta,\varphi_t(s))\\
+ &+\dot\varphi_t(s)(\nabla_z f)(\theta,\varphi_t(s))
+ +\dot\chi_t(s)f(\theta,\varphi_t(s))\}.
+\end{aligned}
+\]
+Subtracting one quarter of (OZR13) proves
+\[
+\begin{aligned}
+M_t^{-1}(\partial_t-\mathcal D_{C,s})\mathcal T_t f_\theta
+={}&\theta'R_f
+ +\frac{\theta'-\alpha^2}{4}\nabla_z^2 f\\
+&+\{(\alpha'-a\alpha)r+i(y'-\alpha b/2)\}\nabla_z f\\
+&+\{(a'-a^2)r^2+i(b'-ab)r+c'-a/2+b^2/4\}f,
+\end{aligned}\tag{OZR14}
+\]
+where every source term on the right is evaluated at \((\theta(t),\varphi_t(s))\).
+
+Consequently the exact equations for this map to carry every solution of the original connected equation to a solution are
+\[
+\theta'=\alpha^2,\quad \alpha'=a\alpha,\quad y'=\alpha b/2,
+\quad a'=a^2,\quad b'=ab,\quad c'=a/2-b^2/4.
+\tag{OZR15}
+\]
+Sufficiency follows from (OZR14). For necessity take successively the three meromorphic solutions \(f_\theta=C^{-1}\), \(zC^{-1}\), and \((z^2+\theta/2)C^{-1}\). Their products by the full \(C\) are the constant, affine and quadratic caloric polynomials. Substitution forces respectively the coefficients of \(f,\nabla_z f,\nabla_z^2 f\) to vanish, and polynomial comparison in \(r\) gives all six equations. No claim about all source functions lying in the original theta image is used in this necessity test.
+
+For initial data at \(t=0\), write \(d_t=1-a_0t>0\). The solutions are
+\[
+\begin{aligned}
+a&=a_0/d_t,& b&=b_0/d_t,& \alpha&=\alpha_0/d_t,\\
+y&=y_0+\frac{\alpha_0b_0t}{2d_t},&
+\theta&=\theta_0+\frac{\alpha_0^2t}{d_t},&
+c&=c_0-\tfrac12\log d_t-\frac{b_0^2t}{4d_t}.
+\end{aligned}\tag{OZR16}
+\]
+Integrating \(a'=a^2\), then substituting into the equations for \(b,\alpha\), proves their first three formulas. The identity \((t/d_t)'=d_t^{-2}\) proves the next two. Differentiating the last formula gives \(a/2-b^2/4\). These checks prove the solution and its regular domain. The clock is strictly increasing there; the excluded point \(d_t=0\) is not identified with an original finite heat time.
+
+Under (OZR15) the residual ratio is
+\[
+\frac{(\partial_t-\mathcal D_C)\mathcal T_t f_\theta}
+ {\mathcal T_t f_\theta}
+=\alpha^2(R_f/f_\theta)\circ\varphi_t.
+\tag{OZR17}
+\]
+If its source germ is the retained contact residual
+\(-m(m-1)/(4(z-\rho)^2)+B(z)\), with \(B\) holomorphic as proved for the modified contact dynamics in BT, substitution gives
+\[
+-\frac{m(m-1)}{4(s-\varphi_t^{-1}\rho)^2}
+ +\alpha^2B(\varphi_t(s)).
+\tag{OZR18}
+\]
+The factors \(\alpha^2\) and the squared local-coordinate factor cancel exactly in the principal part. Here \(m\) is the order of the complete source product \(Cf\). At an exceptional target point it need not equal the raw target order \(m-e_s\); the connection retains this difference. This statement transports the specified modified residual; it does not assign that residual to the unmodified heat solution (OZR2), whose residual is zero.
+
+## 4. Signed divisor and rational traces, including collisions
+
+For real \(\theta\), retain the moving divisor \(D_\theta\) of the entire product \(C\zeta_\theta\), with its actual multiplicities. The original heat estimates in UZ/AG give its locally finite zero set and
+\(\sum_{\rho\in D_\theta}m_\rho/(1+|\rho|^2)<\infty\).
+At \(\theta=0\) it is precisely the nontrivial zeta divisor. Algebra of meromorphic divisors gives
+\[
+\begin{aligned}
+\operatorname{div}\zeta_\theta&=D_\theta-\operatorname{div}C,\\
+\operatorname{div}(\mathcal T_t\zeta_\theta)
+&=\varphi_t^*\operatorname{div}\zeta_\theta
+ +\varphi_t^*\operatorname{div}C-\operatorname{div}C\\
+&=\varphi_t^*D_\theta+\sum_{m\ge1}[-2m]-[1].
+\end{aligned}\tag{OZR19}
+\]
+All three contributions in the middle line are retained as indexed divisors. When a pulled moving zero meets a fixed divisor point, their signed orders add, exactly as in (OZR8). The last line is not a claim that these component sets are disjoint or that every target trivial-zero order stays one.
+
+For a rational test \(A(s)=O(s^{-2})\), define
+\(\operatorname{FP}_p A=[(s-p)^0]A(s)\).
+For source tests the poles must avoid \(D_\theta\). For the target test \(A\) below they must avoid \(\varphi_t^{-1}(D_\theta)\), equivalently the poles of \(A\circ\varphi_t^{-1}\) must avoid \(D_\theta\). They may meet the fixed divisor of \(C\). A finite part is a specified local Laurent coefficient at such a pole. It is not an ordinary value or a limit in an external parameter. Put
+\[
+\begin{aligned}
+E_C^{\rm fp}(A)&=\operatorname{FP}_1A
+ -\sum_{m\ge1}\operatorname{FP}_{-2m}A,\\
+R_\theta^{\rm fp}(A)&=\sum_{\rho\in D_\theta}m_\rho A(\rho)
+ -E_C^{\rm fp}(A),\\
+Q_\theta(A)&=R_\theta^{\rm fp}(A)+E_C^{\rm fp}(A).
+\end{aligned}\tag{OZR20}
+\]
+The tails converge absolutely by the displayed zero bound and \(A(s)=O(s^{-2})\). Only finitely many terms require the finite-part evaluation. A linear coordinate change \(h=\alpha x\) preserves the constant Laurent coefficient, because \([x^0]\sum a_j\alpha^jx^j=a_0\). Therefore (OZR19) proves the exact transport
+\[
+\boxed{\widetilde R^{\rm fp}(A)=
+R_\theta^{\rm fp}(A\circ\varphi_t^{-1})
+ +E_C^{\rm fp}(A\circ\varphi_t^{-1})-E_C^{\rm fp}(A).}
+\tag{OZR21}
+\]
+This formula still applies at fixed-divisor resonances. In its first two terms the Gamma and original trivial-zero entries are at the original source points; in the last term they are at the target points. Keeping this entire tuple and using the inverse affine substitution gives the inverse comparison. Projection to its sum alone is not the claimed faithful map.
+
+There is also an explicit logarithmic residue formula. Write
+\[
+\ell_\theta=\zeta_\theta'/\zeta_\theta,\qquad
+\widetilde\ell=\chi_t'+\alpha(\ell_\theta+q)\circ\varphi_t-q,
+\qquad a_\infty(A)=\lim_{s\to\infty}s^2A(s).
+\tag{OZR22}
+\]
+Let \(\mathcal P(A)\) be the finite test-pole set, and \(n_p\) the total original target order of \(\mathcal T_t\zeta_\theta\). Then
+\[
+\boxed{\widetilde R^{\rm fp}(A)=
+-\sum_{p\in\mathcal P(A)}\operatorname{Res}_p(A\widetilde\ell)
+ +2a\,a_\infty(A)
+ +\sum_{p\in\mathcal P(A)}n_p\operatorname{FP}_p A.}
+\tag{OZR23}
+\]
+Here is a direct proof with the exceptional unit terms retained. A local factor \(f=h^nu(h)\), \(A=\sum A_jh^j\) with pole order \(M\) (and \(M=0\) when holomorphic), satisfies
+\[
+\operatorname{Res}(Af'/f)=nA_0+
+\sum_{j=0}^{M-1}A_{-j-1}[h^j](u'/u).
+\tag{OZR24}
+\]
+The source genus-one logarithmic expansion of \(C\zeta_\theta\) and the full Gamma expansion
+\[
+q(s)=\frac1{s-1}-\frac{\gamma_{\rm E}+\log\pi}{2}
+ +\sum_{m\ge1}\left(\frac1{2m}-\frac1{s+2m}\right)
+\tag{OZR25}
+\]
+are normally convergent on the finitely many integration circles after their pole terms there are isolated. Pull them back by \(\varphi_t\), subtract the second expansion, and retain \(\chi_t'=2as-a+ib\). For every remaining divisor point \(x\) outside \(\mathcal P(A)\), the rational function \(A(s)/(s-x)\) has total finite residue zero, and its test-pole residues sum to \(-A(x)\). If \(x\) lies in the test-pole set, those test residues include all finite poles and sum to zero; the last term of (OZR23) restores its prescribed \(n_x\operatorname{FP}_xA\). Constants multiply \(A\) with total finite residue zero. Finally \(A(s)\chi_t'(s)=2a\,a_\infty(A)/s+O(s^{-2})\), so its test-pole residues sum to \(2a\,a_\infty(A)\). This proves exactly the middle correction and its sign. It avoids applying a genus-one formula to the quadratically multiplied target, which may have growth of order two.
+
+## 5. Cauchy kernels and the exact infinity correction
+
+Use the original reflection \(s^\#=1-\bar s\) and tests
+\[
+F_z(s)=\frac1{s-z},\qquad
+A_{z,w}(s)=F_z^\#(s)F_w(s)
+=-\frac1{(s-z^\#)(s-w)}.
+\tag{OZR26}
+\]
+Choose poles outside the pulled-back moving divisor \(\varphi_t^{-1}(D_\theta)\) and its reflection. Gamma resonances use (OZR20). We have
+\(\varphi_t(s^\#)=\varphi_t(s)^\#\) and
+\(\chi_t^\#=\chi_t\), by the stated real parameters. The original meromorphic family itself has the twisted reflection determined by \(C\); the untwisted reflected function is its full product \(C\zeta_\theta\). In particular its logarithmic derivative \(\ell_\theta+q\) obeys the odd reflected identity. Direct substitution gives
+\[
+F_z\circ\varphi_t^{-1}=\alpha F_{\varphi_t(z)},\qquad
+A_{z,w}\circ\varphi_t^{-1}=\alpha^2A_{\varphi_t(z),\varphi_t(w)}.
+\tag{OZR27}
+\]
+The compensated divisor and logarithmic kernels consequently are
+\[
+\begin{aligned}
+\widetilde Q_{\rm div}(z,w)
+&=\widetilde R^{\rm fp}(A_{z,w})+E_C^{\rm fp}(A_{z,w})
+=\alpha^2Q_\theta(\varphi_t(z),\varphi_t(w)),\\
+\widetilde Q_{\log}(z,w)
+&=\frac{\widetilde\ell(w)+q(w)
+ +\overline{\widetilde\ell(z)+q(z)}}{w+\bar z-1}
+=\alpha^2Q_\theta(\varphi_t(z),\varphi_t(w))+2a.
+\end{aligned}\tag{OZR28}
+\]
+The removable cases of the denominator are interpreted by their derivatives. The imaginary linear terms cancel, while the two real quadratic derivatives sum to \(2a(w+\bar z-1)\). Equivalently \(a_\infty(A_{z,w})=-1\), so (OZR23) subtracts \(2a\) from the logarithmic kernel to give the divisor kernel. Every term agrees in both calculations.
+
+The original uncompensated trace is explicitly
+\[
+\widetilde R^{\rm fp}(A_{z,w})=
+\alpha^2\{R_\theta^{\rm fp}+E_C^{\rm fp}\}
+(A_{\varphi_t(z),\varphi_t(w)})-E_C^{\rm fp}(A_{z,w}).
+\tag{OZR29}
+\]
+It is not assigned a Hermitian negative index. At \(t=0\) without remapping the raw skew defect is already nonzero, as calculated in OZK17. The compensated divisor kernel, its fixed-divisor correction and the growth correction are separate entries of the retained comparison.
+
+## 6. Infinity direction and the complete negative index
+
+Let \(\mathcal Z\) be the pulled-back distinct moving zero set, weighted by \(m_\rho\). Put
+\(\mathcal H=\ell^2(\mathcal Z,m)\), \((Jv)(\rho)=v(\rho^\#)\).
+Reflection preserves multiplicity, so \(J\) is a bounded self-adjoint involution. The divisor form on rational tests is
+\[
+\widetilde Q_{\rm div}(F,G)
+=\sum_{\rho\in\mathcal Z}m_\rho
+ \overline{F(\rho^\#)}G(\rho)
+=\langle J\operatorname{ev}F,\operatorname{ev}G\rangle.
+\tag{OZR30}
+\]
+Take a real \(\sigma\) outside this discrete set and its reflection and
+\(\mathcal R_\sigma=\operatorname{span}\{(s-\sigma)^{-j-1}:j\ge0\}\).
+Every evaluation vector lies in \(\mathcal H\) by the retained zero-tail bound. Define \(\ell_\infty(F)=\lim_{s\to\infty}sF(s)\). The complete logarithmic form, extending the Cauchy kernel in (OZR28), is
+\[
+\widetilde Q_{\log}(F,G)=\widetilde Q_{\rm div}(F,G)
+ +2a\,\overline{\ell_\infty(F)}\ell_\infty(G).
+\tag{OZR31}
+\]
+This is also obtained directly from (OZR23), since
+\(a_\infty(F^\#G)=-\overline{\ell_\infty(F)}\ell_\infty(G)\).
+
+The map \(F\mapsto(\ell_\infty(F),\operatorname{ev}F)\) is dense in \(\mathbb C\oplus\mathcal H\), and its first coordinate can be fixed exactly. To prove it, suppose \(v\) is orthogonal to all evaluations of \((s-\sigma)^{-j-1}\) with \(j\ge1\). The function
+\[
+H_v(z)=\sum_{\rho\in\mathcal Z}
+ \frac{m_\rho\overline{v(\rho)}}{\rho-z}
+\tag{OZR32}
+\]
+converges normally away from \(\mathcal Z\) by Cauchy–Schwarz and the zero-tail bound. All its positive-order derivatives at \(\sigma\) vanish. It is constant locally, hence on the connected complement of the discrete zero set. Its residue at \(\rho\) is \(-m_\rho\overline{v(\rho)}\), so each coefficient is zero. Thus the kernel of \(\ell_\infty\) has dense evaluation image. Starting with \(b/(s-\sigma)\) fixes any desired first coordinate \(b\), and elements of this kernel approximate any remaining evaluation vector.
+
+Let \(\kappa\) be the number, possibly infinite, of distinct two-point reflection orbits in \(\mathcal Z\). Each such orbit contributes one negative direction to \(J\); every fixed point contributes a positive one. The bounded direct-sum form \((2a)\oplus J\), the preceding density and finite-dimensional approximation prove
+\[
+\boxed{\operatorname{ind}_-\widetilde Q_{\rm div}=\kappa,
+\qquad \operatorname{ind}_-\widetilde Q_{\log}
+=\kappa+\mathbf1_{a<0}.}
+\tag{OZR33}
+\]
+For completeness, any negative subspace injects into the negative spectral subspace of the bounded operator, giving the upper bound. Given a finite negative spectral frame \(U\), approximate it by rational-image columns \(V\). The Gram error is at most
+\(\|A\|(2\|U\|\|V-U\|+\|V-U\|^2)\), where \(A=(2a)\oplus J\). Taking the error below the strict negative margin preserves that frame. This gives the lower bound for every finite negative dimension, including the case of infinite index. The same proof with the first coordinate omitted gives the divisor assertion. Thus a positive quadratic correction does not remove an existing off-critical negative direction; a negative correction adds an independently detected infinity direction. This statement concerns the complete rational space, not a selected finite matrix.
+
+## 7. Full support and the receiving arithmetic identity
+
+For the original finite bounded distributive lattice \(L\), retain
+\[
+G_L(V)=\{(v,1_L):v\in V\}\cup
+ \{(0,\lambda):\lambda\ne1_L\},\qquad
+e=(0,1_L),\quad\tau=(0,0_L).
+\tag{OZR34}
+\]
+The bijection (OZR4) lifts by \((f,1_L)\mapsto(\mathcal T_tf,1_L)\) and by fixing every lower carrier point. Its inverse is the lift of (OZR6). Only top support admits a nonzero carrier amplitude. Independent function values assigned to lower points are retained in the attached function space, and are not reinterpreted as nonzero amplitudes in this carrier. A zero output of a nonzero test functional has its specified support label; it is not changed to \(\tau\).
+
+Write the previously proved full supported identity as
+\(\boldsymbol B_L-\boldsymbol Z_{L,\mathrm{div}}=\boldsymbol D_L\), where its top spectral coefficient is \(Q_\theta\), and the endpoint, Gamma and arithmetic terms in \(\boldsymbol D_L\) are all retained. Under the actual test map (OZR27), pull back every term by the same map. The raw original target divisor is
+\[
+\boldsymbol R_L=\widetilde{\boldsymbol Z}_{L,\mathrm{div}}
+ -E_C^{\rm fp}(A)\mathbf e_{1_L},\qquad
+\widetilde{\boldsymbol B}_L-\boldsymbol R_L
+=\widetilde{\boldsymbol D}_L+E_C^{\rm fp}(A)\mathbf e_{1_L}.
+\tag{OZR35}
+\]
+If the logarithmic kernel is used, retain in addition
+\[
+\widetilde{\boldsymbol Z}_{L,\log}
+=\widetilde{\boldsymbol Z}_{L,\mathrm{div}}
+ +2a\,\overline{\ell_\infty(F)}\ell_\infty(G)\mathbf e_{1_L},
+\]
+\[
+\widetilde{\boldsymbol D}_{L,\log}
+=\widetilde{\boldsymbol D}_L
+ -2a\,\overline{\ell_\infty(F)}\ell_\infty(G)\mathbf e_{1_L}.
+\tag{OZR36}
+\]
+Equations (OZR21), (OZR23), (OZR35) and (OZR36) prove the comparison with every fixed-divisor, growth and support coordinate. The arithmetic term here is the complete heat continuation at the actual source time and the actual transformed test. It is not asserted to equal the time-zero Euler weights at another time. The coefficient semiring \(S\) has comparison map \(\mathrm{id}_S\), whose pullback sends each prime ideal to itself. Separately, (OZR4) acts on the function space and fixes the label set. No ring-spectrum map is inferred from (OZR4), which was proved complex-linear.
+
+## Sources and reconstruction scope
+
+The received RECONSTRUCTION.tex, RG1–4, CW1–11 and CT1–9, supplies the specified affine/quadratic class and its earlier entire-function calculation. Its complete source was read in the intake recorded in INTAKE_RECORD.json. The reconstruction above independently differentiates the complete original-zeta multiplier, proves its exceptional local maps and residue-at-infinity correction, and retains the underlying growth estimates through their proved TF/UZ/AG/OZK sources. The source's elementary heat symmetry is not claimed as new. The full theta inverse and original heat domain are TF1–42; original fractional modules and all exceptional units are UZ1–53; finite-part residue conventions and full Cauchy comparison are OZK1–38, including OZK33a. These complete sources accompany the cumulative collection. BT's modified contact residual is used only with its proved scope as identified in (OZR17)–(OZR18).
+
+At \(t=0,\theta_0=0,a_0=b_0=c_0=y_0=0,\alpha_0=1\), the map is the identity on the original zeta function and every support label. Other choices retain their full multiplier, source time and coordinate change. Nothing here proves positivity of the original compensated arithmetic form at all tests or proves RH.
+
+
+![The complete original-zeta map and the exact inverse in OZR4–6 preserve every exceptional valuation and jet by OZR7–12. Here chi(s)=a(s−1/2)^2+ib(s−1/2)+c. For the Cauchy test the complete signed-divisor trace, fixed-factor trace, and infinity contribution are the three separately retained quantities in OZR19–36. The plus 2a term belongs to the logarithmic kernel. OZR33 proves its full negative-index effect.](original_zeta_regular_transport.png)
+
+
+Pinned public predecessor proofs: [Original theta and its exact return](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_THETA_COMPLETION_RETURN.md#L149), TF17; [Original meromorphic heat family](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_UNCOMPLETED_ZETA_HEAT.md#L20), UZ1; [Full original-zeta contour and compact form](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md#L15), OZC1; [Original heat/contact traces](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md#L17), OZH1; [Original Cauchy correction and raw skew defect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md#L184), OZK17. Their complete sources are also retained in this edition. The new full incoming programme TeX is included above, with its original references and its corrected receiving maps.
+
 \clearpage
 
 # Sources, exact proof locations, and reading scope
@@ -18046,3 +19082,11 @@ The original author heat formula is Rodgers–Tao arXiv:1801.05914v5, equations 
 OZK reconstructs every Cauchy and finite-jet receiver from the original signed divisor, including the complete Gamma correction and the residue terms at resonant test poles. Its formulas are proved for the original coefficient basis; its single-stalk heat matrices explicitly concern critical-line zeros and real time. The independently reproducible 59 rational/Laurent checks supplement its analytic proof.
 
 The complete public companion FR1–38 source is retained unchanged in `supporting_proofs/ORIGINAL_ZETA_RETURN_FR.tex`, from GitHub proof pin ec73ac350d0cda3d95c0bd1361bede33166b4d34. Root read it in full. TF37–42 proves the exact coordinate comparison, both inverse maps, the factor 32 in the original seminorm, and the ambient heat-defect map with its full domain. The prime-boundary coordinates are retained even though the original seminorm vanishes on them.
+
+
+## Gaussian translation and regular affine heat reconstruction
+
+The incoming complete programme sources are retained byte-identically as [the full incoming reconstruction](supporting_proofs/SHIFT_SYNCHRONIZATION_RECONSTRUCTION.tex) and [its Gaussian extension](supporting_proofs/PRIME_TRANSLATION_EXTENSION.tex). Root read both complete sources; OZG has an independent complete derivation and audit, while OZR has the complete RHR derivation and ORA audit. The incoming PWG28 expression B2(1/8) is corrected to 16/e+4; its stated prime-tail bound remains valid. The original human theta source remains [Rodgers and Tao, The de Bruijn–Newman constant is non-negative](https://arxiv.org/abs/1801.05914), v5 equations hoz, phidef and htdef, through the already read TF/UZ source comparison. The classical density attribution to Arias de Reyna and the original Connes explicit-formula source are retained at their exact OZG use. No Gaussian coordinate change is promoted to an RH sign theorem.
+
+
+Pinned public predecessor proofs: [Original theta and its exact return](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_THETA_COMPLETION_RETURN.md#L149), TF17; [Original meromorphic heat family](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_UNCOMPLETED_ZETA_HEAT.md#L20), UZ1; [Full original-zeta contour and compact form](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md#L15), OZC1; [Original heat/contact traces](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md#L17), OZH1; [Original Cauchy correction and raw skew defect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md#L184), OZK17. Their complete sources are also retained in this edition. The new full incoming programme TeX is included above, with its original references and its corrected receiving maps.

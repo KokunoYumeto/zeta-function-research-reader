@@ -1,0 +1,397 @@
+# Original zeta under regular affine heat transport
+
+This proof reconstructs RG1–4, CW1–11 and the marked-unit transport in the received RECONSTRUCTION.tex using the original meromorphic zeta family. The map includes the complete ratio of Gamma, endpoint and pi factors. Its divisor, heat residual, rational trace, exceptional local units and residue at infinity are calculated separately and retained together. A quadratic exponential contributes to a logarithmic-derivative kernel without changing the moving zero divisor. The exact additional term and its full negative index are proved below.
+
+## 1. Original function and the complete transport
+
+Fix the factors and connection
+\[
+\begin{aligned}
+C(s)&=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2),\\
+q(s)&=\frac1s+\frac1{s-1}-\frac12\log\pi+\frac12\psi(s/2),\\
+\nabla_s&=\partial_s+q(s),\qquad
+\mathcal D_C=\tfrac14\nabla_s^2
+=\tfrac14\{\partial_s^2+2q\partial_s+q'+q^2\}.
+\end{aligned}\tag{OZR1}
+\]
+The original returned heat family from TF/UZ is the meromorphic function
+\[
+\zeta_\theta(s)=\frac8{C(s)}\int_0^\infty
+ e^{\theta u^2}\Phi_G(u)\cosh((2s-1)u)\,du,
+\qquad \zeta_0=\zeta.
+\tag{OZR2}
+\]
+Here the original Gaussian theta kernel is
+\[
+\Phi_G(u)=\sum_{n\ge1}
+ (2\pi^2n^4e^{9u}-3\pi n^2e^{5u})e^{-\pi n^2e^{4u}},
+\]
+with its exact source inverse and constants proved in TF1–42. Its doubly exponential tail justifies differentiation for finite complex \(\theta,s\). Differentiating the displayed integrand gives
+\(\partial_\theta\zeta_\theta=\mathcal D_C\zeta_\theta\), because the second derivative of \(\cosh((2s-1)u)\) is \(4u^2\) times that function. Thus the equation contains every term in (OZR1); it is not the free heat equation for \(\zeta_\theta\).
+
+For a real parameter \(t\), take real differentiable functions \(a,b,c,\alpha,y,\theta\), with \(\alpha>0\), and set
+\[
+r=s-\tfrac12,\qquad
+\varphi_t(s)=\tfrac12+\alpha r+iy,\qquad
+\chi_t(s)=ar^2+ibr+c.
+\tag{OZR3}
+\]
+The receiving map on meromorphic functions on \(\mathbb C\) is
+\[
+(\mathcal T_t f)(s)=M_t(s)f(\varphi_t(s)),\qquad
+M_t(s)=e^{\chi_t(s)}\frac{C(\varphi_t(s))}{C(s)}.
+\tag{OZR4}
+\]
+In full factors the multiplier is
+\[
+M_t(s)=e^{\chi_t(s)}
+\frac{\tfrac12\varphi_t(s)(\varphi_t(s)-1)
+ \pi^{-\varphi_t(s)/2}\Gamma(\varphi_t(s)/2)}
+ {\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)}.
+\tag{OZR5}
+\]
+These are meromorphic identities, including points at which an individual numerator or denominator factor vanishes or has a pole. At fixed \(t\) the inverse is
+\[
+f(z)=e^{-\chi_t(\varphi_t^{-1}(z))}
+\frac{C(\varphi_t^{-1}(z))}{C(z)}
+(\mathcal T_t f)(\varphi_t^{-1}(z)),\qquad
+\varphi_t^{-1}(z)=\tfrac12+\frac{z-\tfrac12-iy}{\alpha}.
+\tag{OZR6}
+\]
+Substitution proves both inverse identities on a nonempty regular open set, and meromorphic continuation proves them everywhere. The map is a complex-linear bijection, not an asserted algebra homomorphism or isometry. It restricts to an automorphism of the embedded space \(C^{-1}\mathcal O(\mathbb C)\): multiplying (OZR4) by the full \(C(s)\) gives \(e^\chi(Cf)\circ\varphi\), and (OZR6) proves the converse. The embedding into meromorphic functions remains part of this space.
+
+## 2. Every exceptional order and unit
+
+Let \(s_0\in\mathbb C\), \(z_0=\varphi_t(s_0)\), and use the original local coordinates \(x=s-s_0\) and \(h=z-z_0=\alpha x\). Write
+\[
+C(z_0+h)=h^{e_z}b_z(h),\quad
+C(s_0+x)=x^{e_s}b_s(x),\quad
+f(z_0+h)=h^d u(h),
+\tag{OZR7}
+\]
+where \(f\) is not identically zero and all three displayed units are holomorphic and nonzero at zero. The integers \(d,e_z,e_s\) may be negative. Direct substitution gives the entire local identity
+\[
+\boxed{(\mathcal T_t f)(s_0+x)=
+x^{d+e_z-e_s}\alpha^{d+e_z}
+e^{\chi_t(s_0+x)}\frac{b_z(\alpha x)u(\alpha x)}{b_s(x)}.}
+\tag{OZR8}
+\]
+Thus the target order is \(d+e_z-e_s\); the source order alone is insufficient at exceptional points. Every constant, power of \(\alpha\), and analytic unit survives.
+
+For clarity the actual exceptional units of \(C\) are
+\[
+\begin{aligned}
+C(-2m+x)&=x^{-1}b_{-2m}(x),\\
+b_{-2m}(x)&=(-1)^m\frac{2m(2m+1)\pi^m}{m!}
+\left(1-\frac{x}{2m}\right)\left(1-\frac{x}{2m+1}\right)
+\pi^{-x/2}\Gamma(1+x/2)
+\prod_{j=1}^m\left(1-\frac{x}{2j}\right)^{-1},\\
+C(1+x)&=x\,\tfrac12(1+x)\pi^{-(1+x)/2}\Gamma((1+x)/2),\\
+C(x)&=(x-1)\pi^{-x/2}\Gamma(1+x/2).
+\end{aligned}\tag{OZR9}
+\]
+The Gamma recurrence \(\Gamma(1+x/2)=\prod_{j=0}^m(x/2-j)\Gamma(-m+x/2)\) proves the first two lines after inserting both polynomial factors. The last two follow directly from the same recurrence. In particular \(e_{-2m}=-1,e_1=1,e_0=0\). This calculation retains the Gamma pole and endpoint zero at zero through their exact unit, whose value is \(-1\).
+
+Let \(W(x)=\alpha^{d+e_z}e^{\chi_t(s_0+x)}b_z(\alpha x)/b_s(x)\). If \(u(h)=\sum u_nh^n\), then its transported unit has coefficients
+\[
+\widetilde u_n=\sum_{j=0}^n W_{n-j}\alpha^ju_j.
+\tag{OZR10}
+\]
+Since \(W_0\ne0\), this triangular map is invertible at every finite order by recursion. Its inverse is the expansion of (OZR6). For every \(N\ge1\), the exact jet isomorphism is
+\[
+h^d\mathcal O_h/h^{d+N}\mathcal O_h
+\longrightarrow
+x^{d+e_z-e_s}\mathcal O_x/x^{d+e_z-e_s+N}\mathcal O_x.
+\]
+It is linear over the local-ring identification \(h=\alpha x\). The target exponent is the one in (OZR8), not a substituted ordinary scalar fibre.
+
+The logarithmic derivatives of the units satisfy
+\[
+\begin{aligned}
+(\log\widetilde u)'(0)
+&=\chi_t'(s_0)+\alpha\{(\log b_z)'(0)+(\log u)'(0)\}
+ -(\log b_s)'(0),\\
+(\log\widetilde u)''(0)
+&=2a+\alpha^2\{(\log b_z)''(0)+(\log u)''(0)\}
+ -(\log b_s)''(0).
+\end{aligned}\tag{OZR11}
+\]
+These follow by differentiating the nonvanishing unit in (OZR8). At ordinary points of the divisor of \(C\), the two additional second derivatives are \(\alpha^2q'(z_0)-q'(s_0)\). They cannot be omitted from the curvature of the original zeta unit.
+
+For an independent integer marking \(n\), put
+\(\lambda_n(g)=\operatorname{Res}_{h=0}g(h)/(h^nu(h))\,dh\).
+Write \(\chi_t(s_0+x)=\chi_0+\chi_1x+ax^2\). The transported marked functional is exactly
+\[
+\begin{aligned}
+\widetilde\lambda_n(g)=e^{-\chi_0}\alpha^{n-d-e_z-1}
+\lambda_n\left(
+e^{-\chi_1h/\alpha-ah^2/\alpha^2}
+\frac{b_s(h/\alpha)}{b_z(h)}g(h/\alpha)\right).
+\end{aligned}\tag{OZR12}
+\]
+Indeed substitute (OZR8)'s unit in the residue and change \(h=\alpha x\); \(x^{-n}dx=\alpha^{n-1}h^{-n}dh\). Multiplying the retained \(\alpha^{-d-e_z}\) gives the stated power. The marking \(n\) is not silently set equal to either source or target valuation.
+
+## 3. The full heat residual and its clocks
+
+Allow a source residual \(R_f=(\partial_\theta-\mathcal D_{C,z})f_\theta\). The identities
+\[
+\nabla_s\mathcal T_t f
+=M_t(s)\{\chi_t'(s)f(\varphi_t(s))
++\alpha(\nabla_z f)(\varphi_t(s))\},
+\]
+\[
+\begin{aligned}
+\nabla_s^2\mathcal T_t f=M_t(s)\{&((\chi_t'(s))^2+\chi_t''(s))f(\varphi_t(s))\\
+ &+2\alpha\chi_t'(s)(\nabla_z f)(\varphi_t(s))
+ +\alpha^2(\nabla_z^2f)(\varphi_t(s))\}.
+\end{aligned}
+\tag{OZR13}
+\]
+follow by differentiating all three factors of \(M_t\). In particular
+\(M_t'/M_t=\chi_t'+\alpha q(\varphi_t)-q(s)\), which accounts for both connection terms. The time derivative gives
+\[
+\begin{aligned}
+\partial_t\mathcal T_t f_\theta=M_t(s)\{&\theta'(\partial_\theta f)(\theta,\varphi_t(s))\\
+ &+\dot\varphi_t(s)(\nabla_z f)(\theta,\varphi_t(s))
+ +\dot\chi_t(s)f(\theta,\varphi_t(s))\}.
+\end{aligned}
+\]
+Subtracting one quarter of (OZR13) proves
+\[
+\begin{aligned}
+M_t^{-1}(\partial_t-\mathcal D_{C,s})\mathcal T_t f_\theta
+={}&\theta'R_f
+ +\frac{\theta'-\alpha^2}{4}\nabla_z^2 f\\
+&+\{(\alpha'-a\alpha)r+i(y'-\alpha b/2)\}\nabla_z f\\
+&+\{(a'-a^2)r^2+i(b'-ab)r+c'-a/2+b^2/4\}f,
+\end{aligned}\tag{OZR14}
+\]
+where every source term on the right is evaluated at \((\theta(t),\varphi_t(s))\).
+
+Consequently the exact equations for this map to carry every solution of the original connected equation to a solution are
+\[
+\theta'=\alpha^2,\quad \alpha'=a\alpha,\quad y'=\alpha b/2,
+\quad a'=a^2,\quad b'=ab,\quad c'=a/2-b^2/4.
+\tag{OZR15}
+\]
+Sufficiency follows from (OZR14). For necessity take successively the three meromorphic solutions \(f_\theta=C^{-1}\), \(zC^{-1}\), and \((z^2+\theta/2)C^{-1}\). Their products by the full \(C\) are the constant, affine and quadratic caloric polynomials. Substitution forces respectively the coefficients of \(f,\nabla_z f,\nabla_z^2 f\) to vanish, and polynomial comparison in \(r\) gives all six equations. No claim about all source functions lying in the original theta image is used in this necessity test.
+
+For initial data at \(t=0\), write \(d_t=1-a_0t>0\). The solutions are
+\[
+\begin{aligned}
+a&=a_0/d_t,& b&=b_0/d_t,& \alpha&=\alpha_0/d_t,\\
+y&=y_0+\frac{\alpha_0b_0t}{2d_t},&
+\theta&=\theta_0+\frac{\alpha_0^2t}{d_t},&
+c&=c_0-\tfrac12\log d_t-\frac{b_0^2t}{4d_t}.
+\end{aligned}\tag{OZR16}
+\]
+Integrating \(a'=a^2\), then substituting into the equations for \(b,\alpha\), proves their first three formulas. The identity \((t/d_t)'=d_t^{-2}\) proves the next two. Differentiating the last formula gives \(a/2-b^2/4\). These checks prove the solution and its regular domain. The clock is strictly increasing there; the excluded point \(d_t=0\) is not identified with an original finite heat time.
+
+Under (OZR15) the residual ratio is
+\[
+\frac{(\partial_t-\mathcal D_C)\mathcal T_t f_\theta}
+ {\mathcal T_t f_\theta}
+=\alpha^2(R_f/f_\theta)\circ\varphi_t.
+\tag{OZR17}
+\]
+If its source germ is the retained contact residual
+\(-m(m-1)/(4(z-\rho)^2)+B(z)\), with \(B\) holomorphic as proved for the modified contact dynamics in BT, substitution gives
+\[
+-\frac{m(m-1)}{4(s-\varphi_t^{-1}\rho)^2}
+ +\alpha^2B(\varphi_t(s)).
+\tag{OZR18}
+\]
+The factors \(\alpha^2\) and the squared local-coordinate factor cancel exactly in the principal part. Here \(m\) is the order of the complete source product \(Cf\). At an exceptional target point it need not equal the raw target order \(m-e_s\); the connection retains this difference. This statement transports the specified modified residual; it does not assign that residual to the unmodified heat solution (OZR2), whose residual is zero.
+
+## 4. Signed divisor and rational traces, including collisions
+
+For real \(\theta\), retain the moving divisor \(D_\theta\) of the entire product \(C\zeta_\theta\), with its actual multiplicities. The original heat estimates in UZ/AG give its locally finite zero set and
+\(\sum_{\rho\in D_\theta}m_\rho/(1+|\rho|^2)<\infty\).
+At \(\theta=0\) it is precisely the nontrivial zeta divisor. Algebra of meromorphic divisors gives
+\[
+\begin{aligned}
+\operatorname{div}\zeta_\theta&=D_\theta-\operatorname{div}C,\\
+\operatorname{div}(\mathcal T_t\zeta_\theta)
+&=\varphi_t^*\operatorname{div}\zeta_\theta
+ +\varphi_t^*\operatorname{div}C-\operatorname{div}C\\
+&=\varphi_t^*D_\theta+\sum_{m\ge1}[-2m]-[1].
+\end{aligned}\tag{OZR19}
+\]
+All three contributions in the middle line are retained as indexed divisors. When a pulled moving zero meets a fixed divisor point, their signed orders add, exactly as in (OZR8). The last line is not a claim that these component sets are disjoint or that every target trivial-zero order stays one.
+
+For a rational test \(A(s)=O(s^{-2})\), define
+\(\operatorname{FP}_p A=[(s-p)^0]A(s)\).
+For source tests the poles must avoid \(D_\theta\). For the target test \(A\) below they must avoid \(\varphi_t^{-1}(D_\theta)\), equivalently the poles of \(A\circ\varphi_t^{-1}\) must avoid \(D_\theta\). They may meet the fixed divisor of \(C\). A finite part is a specified local Laurent coefficient at such a pole. It is not an ordinary value or a limit in an external parameter. Put
+\[
+\begin{aligned}
+E_C^{\rm fp}(A)&=\operatorname{FP}_1A
+ -\sum_{m\ge1}\operatorname{FP}_{-2m}A,\\
+R_\theta^{\rm fp}(A)&=\sum_{\rho\in D_\theta}m_\rho A(\rho)
+ -E_C^{\rm fp}(A),\\
+Q_\theta(A)&=R_\theta^{\rm fp}(A)+E_C^{\rm fp}(A).
+\end{aligned}\tag{OZR20}
+\]
+The tails converge absolutely by the displayed zero bound and \(A(s)=O(s^{-2})\). Only finitely many terms require the finite-part evaluation. A linear coordinate change \(h=\alpha x\) preserves the constant Laurent coefficient, because \([x^0]\sum a_j\alpha^jx^j=a_0\). Therefore (OZR19) proves the exact transport
+\[
+\boxed{\widetilde R^{\rm fp}(A)=
+R_\theta^{\rm fp}(A\circ\varphi_t^{-1})
+ +E_C^{\rm fp}(A\circ\varphi_t^{-1})-E_C^{\rm fp}(A).}
+\tag{OZR21}
+\]
+This formula still applies at fixed-divisor resonances. In its first two terms the Gamma and original trivial-zero entries are at the original source points; in the last term they are at the target points. Keeping this entire tuple and using the inverse affine substitution gives the inverse comparison. Projection to its sum alone is not the claimed faithful map.
+
+There is also an explicit logarithmic residue formula. Write
+\[
+\ell_\theta=\zeta_\theta'/\zeta_\theta,\qquad
+\widetilde\ell=\chi_t'+\alpha(\ell_\theta+q)\circ\varphi_t-q,
+\qquad a_\infty(A)=\lim_{s\to\infty}s^2A(s).
+\tag{OZR22}
+\]
+Let \(\mathcal P(A)\) be the finite test-pole set, and \(n_p\) the total original target order of \(\mathcal T_t\zeta_\theta\). Then
+\[
+\boxed{\widetilde R^{\rm fp}(A)=
+-\sum_{p\in\mathcal P(A)}\operatorname{Res}_p(A\widetilde\ell)
+ +2a\,a_\infty(A)
+ +\sum_{p\in\mathcal P(A)}n_p\operatorname{FP}_p A.}
+\tag{OZR23}
+\]
+Here is a direct proof with the exceptional unit terms retained. A local factor \(f=h^nu(h)\), \(A=\sum A_jh^j\) with pole order \(M\) (and \(M=0\) when holomorphic), satisfies
+\[
+\operatorname{Res}(Af'/f)=nA_0+
+\sum_{j=0}^{M-1}A_{-j-1}[h^j](u'/u).
+\tag{OZR24}
+\]
+The source genus-one logarithmic expansion of \(C\zeta_\theta\) and the full Gamma expansion
+\[
+q(s)=\frac1{s-1}-\frac{\gamma_{\rm E}+\log\pi}{2}
+ +\sum_{m\ge1}\left(\frac1{2m}-\frac1{s+2m}\right)
+\tag{OZR25}
+\]
+are normally convergent on the finitely many integration circles after their pole terms there are isolated. Pull them back by \(\varphi_t\), subtract the second expansion, and retain \(\chi_t'=2as-a+ib\). For every remaining divisor point \(x\) outside \(\mathcal P(A)\), the rational function \(A(s)/(s-x)\) has total finite residue zero, and its test-pole residues sum to \(-A(x)\). If \(x\) lies in the test-pole set, those test residues include all finite poles and sum to zero; the last term of (OZR23) restores its prescribed \(n_x\operatorname{FP}_xA\). Constants multiply \(A\) with total finite residue zero. Finally \(A(s)\chi_t'(s)=2a\,a_\infty(A)/s+O(s^{-2})\), so its test-pole residues sum to \(2a\,a_\infty(A)\). This proves exactly the middle correction and its sign. It avoids applying a genus-one formula to the quadratically multiplied target, which may have growth of order two.
+
+## 5. Cauchy kernels and the exact infinity correction
+
+Use the original reflection \(s^\#=1-\bar s\) and tests
+\[
+F_z(s)=\frac1{s-z},\qquad
+A_{z,w}(s)=F_z^\#(s)F_w(s)
+=-\frac1{(s-z^\#)(s-w)}.
+\tag{OZR26}
+\]
+Choose poles outside the pulled-back moving divisor \(\varphi_t^{-1}(D_\theta)\) and its reflection. Gamma resonances use (OZR20). We have
+\(\varphi_t(s^\#)=\varphi_t(s)^\#\) and
+\(\chi_t^\#=\chi_t\), by the stated real parameters. The original meromorphic family itself has the twisted reflection determined by \(C\); the untwisted reflected function is its full product \(C\zeta_\theta\). In particular its logarithmic derivative \(\ell_\theta+q\) obeys the odd reflected identity. Direct substitution gives
+\[
+F_z\circ\varphi_t^{-1}=\alpha F_{\varphi_t(z)},\qquad
+A_{z,w}\circ\varphi_t^{-1}=\alpha^2A_{\varphi_t(z),\varphi_t(w)}.
+\tag{OZR27}
+\]
+The compensated divisor and logarithmic kernels consequently are
+\[
+\begin{aligned}
+\widetilde Q_{\rm div}(z,w)
+&=\widetilde R^{\rm fp}(A_{z,w})+E_C^{\rm fp}(A_{z,w})
+=\alpha^2Q_\theta(\varphi_t(z),\varphi_t(w)),\\
+\widetilde Q_{\log}(z,w)
+&=\frac{\widetilde\ell(w)+q(w)
+ +\overline{\widetilde\ell(z)+q(z)}}{w+\bar z-1}
+=\alpha^2Q_\theta(\varphi_t(z),\varphi_t(w))+2a.
+\end{aligned}\tag{OZR28}
+\]
+The removable cases of the denominator are interpreted by their derivatives. The imaginary linear terms cancel, while the two real quadratic derivatives sum to \(2a(w+\bar z-1)\). Equivalently \(a_\infty(A_{z,w})=-1\), so (OZR23) subtracts \(2a\) from the logarithmic kernel to give the divisor kernel. Every term agrees in both calculations.
+
+The original uncompensated trace is explicitly
+\[
+\widetilde R^{\rm fp}(A_{z,w})=
+\alpha^2\{R_\theta^{\rm fp}+E_C^{\rm fp}\}
+(A_{\varphi_t(z),\varphi_t(w)})-E_C^{\rm fp}(A_{z,w}).
+\tag{OZR29}
+\]
+It is not assigned a Hermitian negative index. At \(t=0\) without remapping the raw skew defect is already nonzero, as calculated in OZK17. The compensated divisor kernel, its fixed-divisor correction and the growth correction are separate entries of the retained comparison.
+
+## 6. Infinity direction and the complete negative index
+
+Let \(\mathcal Z\) be the pulled-back distinct moving zero set, weighted by \(m_\rho\). Put
+\(\mathcal H=\ell^2(\mathcal Z,m)\), \((Jv)(\rho)=v(\rho^\#)\).
+Reflection preserves multiplicity, so \(J\) is a bounded self-adjoint involution. The divisor form on rational tests is
+\[
+\widetilde Q_{\rm div}(F,G)
+=\sum_{\rho\in\mathcal Z}m_\rho
+ \overline{F(\rho^\#)}G(\rho)
+=\langle J\operatorname{ev}F,\operatorname{ev}G\rangle.
+\tag{OZR30}
+\]
+Take a real \(\sigma\) outside this discrete set and its reflection and
+\(\mathcal R_\sigma=\operatorname{span}\{(s-\sigma)^{-j-1}:j\ge0\}\).
+Every evaluation vector lies in \(\mathcal H\) by the retained zero-tail bound. Define \(\ell_\infty(F)=\lim_{s\to\infty}sF(s)\). The complete logarithmic form, extending the Cauchy kernel in (OZR28), is
+\[
+\widetilde Q_{\log}(F,G)=\widetilde Q_{\rm div}(F,G)
+ +2a\,\overline{\ell_\infty(F)}\ell_\infty(G).
+\tag{OZR31}
+\]
+This is also obtained directly from (OZR23), since
+\(a_\infty(F^\#G)=-\overline{\ell_\infty(F)}\ell_\infty(G)\).
+
+The map \(F\mapsto(\ell_\infty(F),\operatorname{ev}F)\) is dense in \(\mathbb C\oplus\mathcal H\), and its first coordinate can be fixed exactly. To prove it, suppose \(v\) is orthogonal to all evaluations of \((s-\sigma)^{-j-1}\) with \(j\ge1\). The function
+\[
+H_v(z)=\sum_{\rho\in\mathcal Z}
+ \frac{m_\rho\overline{v(\rho)}}{\rho-z}
+\tag{OZR32}
+\]
+converges normally away from \(\mathcal Z\) by Cauchy–Schwarz and the zero-tail bound. All its positive-order derivatives at \(\sigma\) vanish. It is constant locally, hence on the connected complement of the discrete zero set. Its residue at \(\rho\) is \(-m_\rho\overline{v(\rho)}\), so each coefficient is zero. Thus the kernel of \(\ell_\infty\) has dense evaluation image. Starting with \(b/(s-\sigma)\) fixes any desired first coordinate \(b\), and elements of this kernel approximate any remaining evaluation vector.
+
+Let \(\kappa\) be the number, possibly infinite, of distinct two-point reflection orbits in \(\mathcal Z\). Each such orbit contributes one negative direction to \(J\); every fixed point contributes a positive one. The bounded direct-sum form \((2a)\oplus J\), the preceding density and finite-dimensional approximation prove
+\[
+\boxed{\operatorname{ind}_-\widetilde Q_{\rm div}=\kappa,
+\qquad \operatorname{ind}_-\widetilde Q_{\log}
+=\kappa+\mathbf1_{a<0}.}
+\tag{OZR33}
+\]
+For completeness, any negative subspace injects into the negative spectral subspace of the bounded operator, giving the upper bound. Given a finite negative spectral frame \(U\), approximate it by rational-image columns \(V\). The Gram error is at most
+\(\|A\|(2\|U\|\|V-U\|+\|V-U\|^2)\), where \(A=(2a)\oplus J\). Taking the error below the strict negative margin preserves that frame. This gives the lower bound for every finite negative dimension, including the case of infinite index. The same proof with the first coordinate omitted gives the divisor assertion. Thus a positive quadratic correction does not remove an existing off-critical negative direction; a negative correction adds an independently detected infinity direction. This statement concerns the complete rational space, not a selected finite matrix.
+
+## 7. Full support and the receiving arithmetic identity
+
+For the original finite bounded distributive lattice \(L\), retain
+\[
+G_L(V)=\{(v,1_L):v\in V\}\cup
+ \{(0,\lambda):\lambda\ne1_L\},\qquad
+e=(0,1_L),\quad\tau=(0,0_L).
+\tag{OZR34}
+\]
+The bijection (OZR4) lifts by \((f,1_L)\mapsto(\mathcal T_tf,1_L)\) and by fixing every lower carrier point. Its inverse is the lift of (OZR6). Only top support admits a nonzero carrier amplitude. Independent function values assigned to lower points are retained in the attached function space, and are not reinterpreted as nonzero amplitudes in this carrier. A zero output of a nonzero test functional has its specified support label; it is not changed to \(\tau\).
+
+Write the previously proved full supported identity as
+\(\boldsymbol B_L-\boldsymbol Z_{L,\mathrm{div}}=\boldsymbol D_L\), where its top spectral coefficient is \(Q_\theta\), and the endpoint, Gamma and arithmetic terms in \(\boldsymbol D_L\) are all retained. Under the actual test map (OZR27), pull back every term by the same map. The raw original target divisor is
+\[
+\boldsymbol R_L=\widetilde{\boldsymbol Z}_{L,\mathrm{div}}
+ -E_C^{\rm fp}(A)\mathbf e_{1_L},\qquad
+\widetilde{\boldsymbol B}_L-\boldsymbol R_L
+=\widetilde{\boldsymbol D}_L+E_C^{\rm fp}(A)\mathbf e_{1_L}.
+\tag{OZR35}
+\]
+If the logarithmic kernel is used, retain in addition
+\[
+\widetilde{\boldsymbol Z}_{L,\log}
+=\widetilde{\boldsymbol Z}_{L,\mathrm{div}}
+ +2a\,\overline{\ell_\infty(F)}\ell_\infty(G)\mathbf e_{1_L},
+\]
+\[
+\widetilde{\boldsymbol D}_{L,\log}
+=\widetilde{\boldsymbol D}_L
+ -2a\,\overline{\ell_\infty(F)}\ell_\infty(G)\mathbf e_{1_L}.
+\tag{OZR36}
+\]
+Equations (OZR21), (OZR23), (OZR35) and (OZR36) prove the comparison with every fixed-divisor, growth and support coordinate. The arithmetic term here is the complete heat continuation at the actual source time and the actual transformed test. It is not asserted to equal the time-zero Euler weights at another time. The coefficient semiring \(S\) has comparison map \(\mathrm{id}_S\), whose pullback sends each prime ideal to itself. Separately, (OZR4) acts on the function space and fixes the label set. No ring-spectrum map is inferred from (OZR4), which was proved complex-linear.
+
+## Sources and reconstruction scope
+
+The received RECONSTRUCTION.tex, RG1–4, CW1–11 and CT1–9, supplies the specified affine/quadratic class and its earlier entire-function calculation. Its complete source was read in the intake recorded in INTAKE_RECORD.json. The reconstruction above independently differentiates the complete original-zeta multiplier, proves its exceptional local maps and residue-at-infinity correction, and retains the underlying growth estimates through their proved TF/UZ/AG/OZK sources. The source's elementary heat symmetry is not claimed as new. The full theta inverse and original heat domain are TF1–42; original fractional modules and all exceptional units are UZ1–53; finite-part residue conventions and full Cauchy comparison are OZK1–38, including OZK33a. These complete sources accompany the cumulative collection. BT's modified contact residual is used only with its proved scope as identified in (OZR17)–(OZR18).
+
+At \(t=0,\theta_0=0,a_0=b_0=c_0=y_0=0,\alpha_0=1\), the map is the identity on the original zeta function and every support label. Other choices retain their full multiplier, source time and coordinate change. Nothing here proves positivity of the original compensated arithmetic form at all tests or proves RH.
+
+
+![The complete original-zeta map and the exact inverse in OZR4–6 preserve every exceptional valuation and jet by OZR7–12. Here chi(s)=a(s−1/2)^2+ib(s−1/2)+c. For the Cauchy test the complete signed-divisor trace, fixed-factor trace, and infinity contribution are the three separately retained quantities in OZR19–36. The plus 2a term belongs to the logarithmic kernel. OZR33 proves its full negative-index effect.](original_zeta_regular_transport.png)
+
+
+Pinned public predecessor proofs: [Original theta and its exact return](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_THETA_COMPLETION_RETURN.md#L149), TF17; [Original meromorphic heat family](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/FAITHFUL_UNCOMPLETED_ZETA_HEAT.md#L20), UZ1; [Full original-zeta contour and compact form](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_COMPACT_WEIL_RECONSTRUCTION.md#L15), OZC1; [Original heat/contact traces](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_HEAT_CONTACT_RECONSTRUCTION.md#L17), OZH1; [Original Cauchy correction and raw skew defect](https://github.com/KokunoYumeto/zeta-function-research-reader/blob/a8e35be8f238913ae5bcbd8ad55a07d539b350f3/workbenches/splitzero-tandem/branches/tau-zero-prime-positivity/ORIGINAL_ZETA_CAUCHY_RECONSTRUCTION.md#L184), OZK17. Their complete sources are also retained in this edition. The new full incoming programme TeX is included above, with its original references and its corrected receiving maps.

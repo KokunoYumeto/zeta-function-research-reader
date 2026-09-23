@@ -224,3 +224,7 @@ The complete ZH1–ZH26 calculation, including ZH7a, received an independent mat
 ![The original zero-semimodule retraction, the actual invertible heat evolution and its two known root regimes, and the exact invariant-form consequence of the retained residue. ZH1–ZH26 prove the displayed maps and statements. Time-marker positions are schematic and are not a numerical scale.](supported_zero_heat_identity.png)
 
 The reproducible figure source is draw_supported_zero_heat_identity.py; both its PNG and SVG are retained. The PNG was visually inspected. The two arrows at the top preserve all module fibres and support labels; the lower arrow concerns the residue-generated action, with no identification with an arithmetic Weil pairing assumed.
+
+## Actual global heat continuation
+
+The [global heat trace](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md) retains all zero multiplicities. The [arithmetic calculation, HA1–HA26](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md), evaluates the complete supported formula on Cauchy tests and computes its actual derivative. The local response keeps the complete analytic unit; the global response includes mixed prime-product terms. The [matrix criterion](CAUCHY_WEIL_POSITIVITY_CRITERION.md) gives the exact relation of this test family to RH. No sign from an isolated local coefficient replaces the complete pairing.

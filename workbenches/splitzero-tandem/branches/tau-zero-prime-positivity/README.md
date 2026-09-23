@@ -80,3 +80,18 @@ The retained collision algebra now carries the bounded prism with divisor 3+epsi
 - [SG1–SG23: the supported spectrum, nilradical, Frobenius kernel, and divided derivation](SUPPORTED_PRISM_SPECTRUM_DERIVATION.md).
 
 These results identify integral infinitesimal data; they do not establish positivity of the complete supported Weil form. The full earlier analytic formula and every support coordinate remain in this reader.
+
+## The actual heat family and the complete arithmetic pairing
+
+The original heat family now has a global rational-test trace with all zero multiplicities retained. Its Cauchy kernel evaluates the full supported-zero endpoints, the archimedean term and the prime sum separately. The actual time derivative introduces products of distinct prime contributions. The complete matrix positivity criterion is equivalent to RH; this equivalence does not assert that its matrices have been proved positive.
+
+- [The global heat zero trace and its exact variation](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md).
+- [The full supported arithmetic Cauchy pairing and first heat derivative](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md).
+- [The exact mixed-prime recurrence at every time-derivative order](HEAT_MIXED_PRIME_RECURRENCE.md).
+- [The complete Cauchy–Weil positivity criterion and its proof](CAUCHY_WEIL_POSITIVITY_CRITERION.md).
+
+The earlier finite-fibre, infinitesimal, integral-prismatic and supported-spectrum proofs remain in the collection. The new calculation preserves their distinction between a trace that vanishes and a nonzero infinitesimal element.
+
+## Exact reflection index and the complete local-to-global comparison
+
+The [reflection-index proof](CAUCHY_REFLECTION_INDEX_DERIVATION.md), NI1–32, determines the negative index of the full Cauchy form and every coefficient tail from the actual reflected zero pairs. The [finite-jet calculation](FINITE_JET_COMPLEMENT_AND_HEAT_TRUNCATION.md), FJ1–29, proves the exact exterior comparison, calculates the second and third original heat coefficients, and retains all endpoint corrections. Positivity of the full original form remains unresolved. Both new full proofs and the inspected reproducible diagram are included in the cumulative reader. The preceding algebraic, prismatic, supported-spectrum and arithmetic proofs are preserved.

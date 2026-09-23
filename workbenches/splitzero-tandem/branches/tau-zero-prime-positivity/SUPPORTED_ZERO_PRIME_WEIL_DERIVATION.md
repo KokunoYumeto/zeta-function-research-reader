@@ -537,3 +537,11 @@ The first equality is the actual carrier sum (SZW9). The second is precisely the
 ## Integral prism continuation
 
 [DP1–DP43](DISTINGUISHED_COLLISION_PRISM_DERIVATION.md) constructs the specific bounded prism and proves the original nilradical specialization. [EC1–EC48](NILRADICAL_COTANGENT_EXTENSION_CLASS_DERIVATION.md) computes its complete extension class and the exact maps detecting the divided residue. [SG1–SG23](SUPPORTED_PRISM_SPECTRUM_DERIVATION.md) gives the supported prime pullbacks, retaining the unsupported point and the original supported-zero prime under coefficient contraction. These calculations retain all earlier trace and endpoint identities.
+
+## Actual global heat continuation
+
+The [global heat trace](ACTUAL_HEAT_ZERO_DISTRIBUTION_VARIATION.md) retains all zero multiplicities. The [arithmetic calculation, HA1–HA26](HEAT_CAUCHY_ARITHMETIC_DERIVATION.md), evaluates the complete supported formula on Cauchy tests and computes its actual derivative. The local response keeps the complete analytic unit; the global response includes mixed prime-product terms. The [matrix criterion](CAUCHY_WEIL_POSITIVITY_CRITERION.md) gives the exact relation of this test family to RH. No sign from an isolated local coefficient replaces the complete pairing.
+
+## Exact full-form continuation
+
+The [reflection-index theorem, NI1–32](CAUCHY_REFLECTION_INDEX_DERIVATION.md), calculates the signed index of every complete Cauchy coefficient tail. The [finite-jet and endpoint proof, FJ1–29](FINITE_JET_COMPLEMENT_AND_HEAT_TRUNCATION.md), preserves the exact finite jets while proving density on the remaining zeros, derives the full exterior index and tail, and calculates the second and third actual heat coefficients. All supported endpoints remain explicit. These results identify the remaining sign problem without asserting its resolution.
